@@ -4,59 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D033ED26296
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 14:21:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72EC7C44536
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 14:25:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DF4810E7F1;
-	Wed, 21 Jan 2026 14:21:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30E1610E7D5;
+	Wed, 21 Jan 2026 14:25:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M5lUUbXh";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ge0gfH42";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 698B610E7F5;
- Wed, 21 Jan 2026 14:21:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769005286; x=1800541286;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=+Qo+QQsHczHs9cLFHKvwVhnwVQbU2MrgM/vXLXGr2L4=;
- b=M5lUUbXhKOQf/MEbPe0iFOCuAAaWLfdcZ43uZyoyrWkLH58fwczjT7q+
- WlZ521MTvo6117PyxuKDdBPAO/ch/bKEPYA/OvTwdS4+QGkCjT8xls0VG
- 4gTyuJFZRwTuYSCeSTUknyyZfh9e4FAzvwGTpzAEBZQopdkZtskdQAVqb
- LFIfB2wmWhFM1vZ8dB3HuTbP9Fy1Q0p8I40osByrcbdvyeSsJ3ExzAjT1
- 77kQqgLSMsvEfik/iYgnn2sizEX05thKlcbfZaSwf9H4cPMkycvALbbz+
- ZEqvuMcet2kcwDLlhMYR0GD11v7MKb42SNRJ+9XihnZN0iUTPUcLC6kh2 w==;
-X-CSE-ConnectionGUID: aEUt8iGIREC9hA8OetsX+g==
-X-CSE-MsgGUID: dvaMkLLnSuik7c1JjhM7Ng==
-X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="70136667"
-X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="70136667"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2026 06:21:26 -0800
-X-CSE-ConnectionGUID: 6T8dwqyrTHiOdG7Y8Rm3tw==
-X-CSE-MsgGUID: e6Yx7h3yQ6yABaog0N7GGA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="237122043"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.119])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2026 06:21:22 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Juasheem Sultan <jdsultan@google.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: Juasheem Sultan <jdsultan@google.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Manasi Navare <navaremanasi@google.com>, Drew
- Davenport <ddavenport@google.com>, Sean Paul <seanpaul@google.com>
-Subject: Re: [RFC PATCH v2 0/2]  Enable seamless boot (fastboot) for PTL
-In-Reply-To: <20260120161539.3161533-1-jdsultan@google.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260120161539.3161533-1-jdsultan@google.com>
-Date: Wed, 21 Jan 2026 16:21:19 +0200
-Message-ID: <c9f8bef6ee6f2b78072d6919bd6854ad24ce0c7a@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D921710E598;
+ Wed, 21 Jan 2026 14:25:33 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 9D7BC40A2E;
+ Wed, 21 Jan 2026 14:25:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B46B1C4CEF1;
+ Wed, 21 Jan 2026 14:25:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1769005533;
+ bh=Z1b1OV+NsXvKxZL5y0yjDvYw+BPD/t+tNec7lO1yOeQ=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=ge0gfH42x3ObIVHqMUppthrzucjXvd0sKFBBGu4TSY+DEJrnvIfuVNOm/mqKYdhDY
+ yRDoNVy9wGFl4Ut19lSeYJrZe1wCJhZj8ub12kLqzIUXGFSWsV2rP3hdPPT/s+/Bzd
+ CNaQbyUxt0oTU0nSQY9kuHTyvAqfiinywrhwtEMUV9GHruLOW8ZAKWIwXf2aeNTpP2
+ re5/XOlW/nicBV4K88fU1PWmqnjNVT5UYqPTrWW4KLfK4zZvyO+aP+i6vFjcIWCD3y
+ /TbHj97MVtfL42yJ9golJbaNDyXRlaBRj2ChbMR7xPn3wzQIArZQpFbMw80UjQAQRs
+ hWPGykweNH8jA==
+Date: Wed, 21 Jan 2026 16:25:28 +0200
+From: Leon Romanovsky <leon@kernel.org>
+To: Pranjal Shrivastava <praan@google.com>
+Cc: Jason Gunthorpe <jgg@ziepe.ca>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
+ Vivek Kasireddy <vivek.kasireddy@intel.com>,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
+ intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ iommu@lists.linux.dev, kvm@vger.kernel.org
+Subject: Re: [PATCH v4 8/8] vfio: Validate dma-buf revocation semantics
+Message-ID: <20260121142528.GC13201@unreal>
+References: <20260121-dmabuf-revoke-v4-0-d311cbc8633d@nvidia.com>
+ <20260121-dmabuf-revoke-v4-8-d311cbc8633d@nvidia.com>
+ <20260121134712.GZ961572@ziepe.ca> <aXDhJ89Yru577jeY@google.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aXDhJ89Yru577jeY@google.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,15 +80,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 20 Jan 2026, Juasheem Sultan <jdsultan@google.com> wrote:
-> This patch series is the second revision of a series of patches meant
-> to add support for seamless framebuffer handoff within the Xe driver.
+On Wed, Jan 21, 2026 at 02:22:31PM +0000, Pranjal Shrivastava wrote:
+> On Wed, Jan 21, 2026 at 09:47:12AM -0400, Jason Gunthorpe wrote:
+> > On Wed, Jan 21, 2026 at 02:59:16PM +0200, Leon Romanovsky wrote:
+> > > From: Leon Romanovsky <leonro@nvidia.com>
+> > > 
+> > > Use the new dma_buf_attach_revocable() helper to restrict attachments to
+> > > importers that support mapping invalidation.
+> > > 
+> > > Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
+> > > ---
+> > >  drivers/vfio/pci/vfio_pci_dmabuf.c | 3 +++
+> > >  1 file changed, 3 insertions(+)
+> > > 
+> > > diff --git a/drivers/vfio/pci/vfio_pci_dmabuf.c b/drivers/vfio/pci/vfio_pci_dmabuf.c
+> > > index 5fceefc40e27..85056a5a3faf 100644
+> > > --- a/drivers/vfio/pci/vfio_pci_dmabuf.c
+> > > +++ b/drivers/vfio/pci/vfio_pci_dmabuf.c
+> > > @@ -31,6 +31,9 @@ static int vfio_pci_dma_buf_attach(struct dma_buf *dmabuf,
+> > >  	if (priv->revoked)
+> > >  		return -ENODEV;
+> > >  
+> > > +	if (!dma_buf_attach_revocable(attachment))
+> > > +		return -EOPNOTSUPP;
+> > > +
+> > >  	return 0;
+> > >  }
+> > 
+> > We need to push an urgent -rc fix to implement a pin function here
+> > that always fails. That was missed and it means things like rdma can
+> > import vfio when the intention was to block that. It would be bad for
+> > that uAPI mistake to reach a released kernel.
+> > 
+> > It's tricky that NULL pin ops means "I support pin" :|
+> > 
+> 
+> I've been wondering about this for a while now, I've been sitting on the
+> following:
+> 
+> diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
+> index a4d8f2ff94e4..962bce959366 100644
+> --- a/drivers/dma-buf/dma-buf.c
+> +++ b/drivers/dma-buf/dma-buf.c
+> @@ -1133,6 +1133,8 @@ int dma_buf_pin(struct dma_buf_attachment *attach)
+> 
+>         if (dmabuf->ops->pin)
+>                 ret = dmabuf->ops->pin(attach);
+> +       else
+> +               ret = -EOPNOTSUPP;
+> 
+>         return ret;
+>  }
+> 
+> But didn't get a chance to dive in the history yet. I thought there's a
+> good reason we didn't have it? Would it break exisitng dmabuf users?
 
-We've only received this cover letter.
+Probably every importer which called to dma_buf_pin() while connecting
+to existing exporters as many in tree implementation don't have ->pin()
+implemented.
 
-BR,
-Jani.
+Thanks
 
-
--- 
-Jani Nikula, Intel
+> 
+> Praan
