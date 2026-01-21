@@ -4,70 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDF40D262B2
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 07:59:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE3E8D262B2
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 08:00:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 90DF710E105;
-	Wed, 21 Jan 2026 07:59:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AF2810E6D9;
+	Wed, 21 Jan 2026 08:00:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dfyuJlQZ";
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="d4kCt325";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="0+oMVAel";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F198D10E0EE;
- Wed, 21 Jan 2026 07:59:34 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id A89F043E8F;
- Wed, 21 Jan 2026 07:59:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9A6FC116D0;
- Wed, 21 Jan 2026 07:59:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1768982374;
- bh=lEy1yZ/ijqL0f8O4r3b/+kmhBy9GW/pNUeqgzBHM/dA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=dfyuJlQZbT+khgy1UNrCtf//gRr41b5TeKPoiYg80AS6Fc/HmDd3VwtiI+5NSenuw
- 2Spobvzc4gCbVDeqXVaQQbRwrS6+CHKVy3XbpOJDk9mphG7a3wdXKInoc7n0OfcKWE
- 8SWHbICqvKTijL1hBIfRy4blDhgnKn5Fu+boDiKbghi+pmOrn0ZdSCoarjSE6+E1nR
- 24AKgBy+Kh5VI/MLAyjcYTcRF130zk6/0Xf1/w1d4GVohJUI57MraMOfQ3eptReL80
- 6JZuVHv3OQrm+n2zA8FnYBMhG1FJ8jnjl2gjc7wulNG8aRh7RUGCDXECKS4I2EibU8
- Rp2oext3FgQ8w==
-Date: Wed, 21 Jan 2026 09:59:29 +0200
-From: Leon Romanovsky <leon@kernel.org>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: Re: [PATCH v3 6/7] vfio: Wait for dma-buf invalidation to complete
-Message-ID: <20260121075929.GU13201@unreal>
-References: <20260120-dmabuf-revoke-v3-0-b7e0b07b8214@nvidia.com>
- <20260120-dmabuf-revoke-v3-6-b7e0b07b8214@nvidia.com>
- <aW/pQmOO8komCgOK@lstrano-desk.jf.intel.com>
+X-Greylist: delayed 415 seconds by postgrey-1.36 at gabe;
+ Wed, 21 Jan 2026 08:00:47 UTC
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4C9910E6D7;
+ Wed, 21 Jan 2026 08:00:47 +0000 (UTC)
+Date: Wed, 21 Jan 2026 08:53:48 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1768982030;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=L2q8M3UrjydVqdDqxNGy9BOk1w9FNNPzwD677+fHY+I=;
+ b=d4kCt325DYPw0em7fsICBVjO9HzFxGIr+z8RYkEbepqy0r6WtWhehG9sFc08bCVdVQRty4
+ zYo/awKVT6iipvx7KGWrhFWvrXoPCRF2QAmaCS/8p70LEQnSX/szukrPTgLU0lOhi/+b8+
+ J88TtrvVC9hJYyeaApJNJE0YXn3zSbRXMGIehVt19255IGthfD6DA7blw6GXUpsd1d4EFG
+ Rx4FCMw8kjuvT/nOLKKNYOhCsLsDFBmDyCK65/oXUtbSB7ic5TT4DZGT/whpCmM61x2ZMz
+ 1Z87rTO6+F92JC0RJyqbTgTtI/OgLIrEb0hPLPxJjiDagNKKAjzyxhKhauq19g==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1768982030;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=L2q8M3UrjydVqdDqxNGy9BOk1w9FNNPzwD677+fHY+I=;
+ b=0+oMVAelr4theE4TX5E2r+mfr10029bnGW7Mt00xpEpQoMgJod/RCMzx3WMznszzSqvXDN
+ PatAUuf0C8Q9JwAQ==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Cc: hansg@kernel.org, "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>,
+ "Saarinen, Jani" <jani.saarinen@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ linux-kernel@vger.kernel.org, linux-rt-devel@lists.linux.dev,
+ sfr@canb.auug.org.au, ilpo.jarvinen@linux.intel.com,
+ regressions@leemhuis.info
+Subject: Re: REGRESSION on linux-next (next-20260115)
+Message-ID: <20260121075348.5MyqcHFB@linutronix.de>
+References: <555f1c56-0f74-41bf-8bd2-6217e0aab0c6@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aW/pQmOO8komCgOK@lstrano-desk.jf.intel.com>
+In-Reply-To: <555f1c56-0f74-41bf-8bd2-6217e0aab0c6@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,92 +68,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jan 20, 2026 at 12:44:50PM -0800, Matthew Brost wrote:
-> On Tue, Jan 20, 2026 at 04:07:06PM +0200, Leon Romanovsky wrote:
-> > From: Leon Romanovsky <leonro@nvidia.com>
-> > 
-> > dma-buf invalidation is performed asynchronously by hardware, so VFIO must
-> > wait until all affected objects have been fully invalidated.
-> > 
-> > Fixes: 5d74781ebc86 ("vfio/pci: Add dma-buf export support for MMIO regions")
-> > Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
-> > ---
-> >  drivers/vfio/pci/vfio_pci_dmabuf.c | 5 +++++
-> >  1 file changed, 5 insertions(+)
-> > 
-> > diff --git a/drivers/vfio/pci/vfio_pci_dmabuf.c b/drivers/vfio/pci/vfio_pci_dmabuf.c
-> > index d4d0f7d08c53..33bc6a1909dd 100644
-> > --- a/drivers/vfio/pci/vfio_pci_dmabuf.c
-> > +++ b/drivers/vfio/pci/vfio_pci_dmabuf.c
-> > @@ -321,6 +321,9 @@ void vfio_pci_dma_buf_move(struct vfio_pci_core_device *vdev, bool revoked)
-> >  			dma_resv_lock(priv->dmabuf->resv, NULL);
-> >  			priv->revoked = revoked;
-> >  			dma_buf_move_notify(priv->dmabuf);
-> > +			dma_resv_wait_timeout(priv->dmabuf->resv,
-> > +					      DMA_RESV_USAGE_KERNEL, false,
-> > +					      MAX_SCHEDULE_TIMEOUT);
+On 2026-01-21 12:42:16 [+0530], Borah, Chaitanya Kumar wrote:
+> commit aef30c8d569c0f31715447525640044c74feb26f
+> Author: Sebastian Andrzej Siewior bigeasy@linutronix.de
+> Date:   Mon Jan 12 14:40:13 2026 +0100
 > 
-> Should we explicitly call out in the dma_buf_move_notify() /
-> invalidate_mappings kernel-doc that KERNEL slots are the mechanism
-> for communicating asynchronous dma_buf_move_notify /
-> invalidate_mappings events via fences?
 > 
-> Yes, this is probably implied, but it wouldn’t hurt to state this
-> explicitly as part of the cross-driver contract.
+>     genirq: Warn about using IRQF_ONESHOT without a threaded handler
+> `````````````````````````````````````````````````````````````````````````````````````````````````````````
 > 
-> Here is what we have now:
+> Looking at the irq register code in int0002_vgpio.c, it seems the warning
+> comes from
 > 
->  	 * - Dynamic importers should set fences for any access that they can't
-> 	 *   disable immediately from their &dma_buf_attach_ops.invalidate_mappings
->  	 *   callback.
+>         ret = devm_request_irq(dev, irq, int0002_irq,
+>                                IRQF_ONESHOT | IRQF_SHARED, "INT0002", chip);
+> 
+> Looking at the history, this flag was added by the Commit 8f812373d195
+> ("platform/x86: intel: int0002_vgpio: Pass IRQF_ONESHOT to request_irq()")
+> to resolve another issue.
+> 
+> Any proposals for solving the WARN_ON?
 
-I believe I documented this in patch 4:
-https://lore.kernel.org/all/20260120-dmabuf-revoke-v3-4-b7e0b07b8214@nvidia.com/"
-Is there anything else that should be added?
+Do you have the ACPI interrupt also on the same interrupt on the board
+in question?
 
-  1275 /**
-  1276  * dma_buf_move_notify - notify attachments that DMA-buf is moving
-  1277  *
-  1278  * @dmabuf:     [in]    buffer which is moving
-  1279  *
-  1280  * Informs all attachments that they need to destroy and recreate all their
-  1281  * mappings. If the attachment is dynamic then the dynamic importer is expected
-  1282  * to invalidate any caches it has of the mapping result and perform a new
-  1283  * mapping request before allowing HW to do any further DMA.
-  1284  *
-  1285  * If the attachment is pinned then this informs the pinned importer that
-  1286  * the underlying mapping is no longer available. Pinned importers may take
-  1287  * this is as a permanent revocation so exporters should not trigger it
-  1288  * lightly.
-  1289  *
-  1290  * For legacy pinned importers that cannot support invalidation this is a NOP.
-  1291  * Drivers can call dma_buf_attach_revocable() to determine if the importer
-  1292  * supports this.
-  1293  *
-  1294  * NOTE: The invalidation triggers asynchronous HW operation and the callers
-  1295  * need to wait for this operation to complete by calling
-  1296  * to dma_resv_wait_timeout().
-  1297  */
-
-Thanks
-
-
-> 
-> Matt
-> 
-> >  			dma_resv_unlock(priv->dmabuf->resv);
-> >  		}
-> >  		fput(priv->dmabuf->file);
-> > @@ -342,6 +345,8 @@ void vfio_pci_dma_buf_cleanup(struct vfio_pci_core_device *vdev)
-> >  		priv->vdev = NULL;
-> >  		priv->revoked = true;
-> >  		dma_buf_move_notify(priv->dmabuf);
-> > +		dma_resv_wait_timeout(priv->dmabuf->resv, DMA_RESV_USAGE_KERNEL,
-> > +				      false, MAX_SCHEDULE_TIMEOUT);
-> >  		dma_resv_unlock(priv->dmabuf->resv);
-> >  		vfio_device_put_registration(&vdev->vdev);
-> >  		fput(priv->dmabuf->file);
-> > 
-> > -- 
-> > 2.52.0
-> > 
+Sebastian
