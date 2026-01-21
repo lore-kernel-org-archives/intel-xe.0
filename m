@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F902C44526
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 13:02:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E32EC44526
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 13:06:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF9B710E77F;
-	Wed, 21 Jan 2026 13:02:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VBD3LKuP";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9874C10E77F
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Jan 2026 13:02:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769000577; x=1800536577;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=06HnCxUF8RH/TuxV13Wuyjw9IUeyczz66ygRpiulYHU=;
- b=VBD3LKuPH81eZyrDVm+1bm3U5Qxax6fk/+r6wNsQLheTCHhTXdudSbkl
- 7yPmlUxtD+ot/EW4po7pN+j84sgqSCwtxPzyCXJPsGs5fRqSkiRxyzk+E
- 53bucue/4IBziF+4u5z40z5dfLPDrZ/nVeqe7Py6ov3gNnDVVOuTyQPvy
- is4tIZ4tJTfG97zok97kRTqKppTHGp4HhP6fR3hYGjDWSihx0oKCWqxjo
- JfJs0usm7rShu24RXWtTKn9r/PScnBOWYcdXi0FsDw0KqOr1e1PzxJJEt
- mzwqNt02iWIFDvdF4R5x0jvcxXNekBEwYg8wyF9+TFFQZtMnLmyHutyFG Q==;
-X-CSE-ConnectionGUID: ONa7bhkeQZCvKK9xQyascA==
-X-CSE-MsgGUID: xUB2ZsBsREqhw5jgj50UYQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="80944494"
-X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="80944494"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2026 05:02:56 -0800
-X-CSE-ConnectionGUID: FR01gN1ETx6CctIuUQyAPA==
-X-CSE-MsgGUID: yK/R4wqkSRKeSwj3gquUog==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="211452180"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO fdugast-desk.home)
- ([10.245.245.68])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2026 05:02:53 -0800
-From: Francois Dugast <francois.dugast@intel.com>
-To: iommu@lists.linux.dev
-Cc: intel-xe@lists.freedesktop.org,
- Francois Dugast <francois.dugast@intel.com>,
- Jason Gunthorpe <jgg@nvidia.com>, Joerg Roedel <joerg.roedel@amd.com>,
- Calvin Owens <calvin@wbinvd.org>, David Woodhouse <dwmw2@infradead.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Samiullah Khawaja <skhawaja@google.com>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Tina Zhang <tina.zhang@intel.com>, Lu Baolu <baolu.lu@linux.intel.com>,
- Kevin Tian <kevin.tian@intel.com>
-Subject: Xe performance regression with recent IOMMU changes
-Date: Wed, 21 Jan 2026 14:02:16 +0100
-Message-ID: <20260121130233.257428-1-francois.dugast@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EC5710E791;
+	Wed, 21 Jan 2026 13:06:10 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09E1110E796;
+ Wed, 21 Jan 2026 13:06:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_dma-buf=3A_Use_revoke_mec?=
+ =?utf-8?q?hanism_to_invalidate_shared_buffers_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Leon Romanovsky" <leon@kernel.org>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 21 Jan 2026 13:06:09 -0000
+Message-ID: <176900076902.177211.4393263972040166681@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260121-dmabuf-revoke-v4-0-d311cbc8633d@nvidia.com>
+In-Reply-To: <20260121-dmabuf-revoke-v4-0-d311cbc8633d@nvidia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,61 +36,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-I am reporting a slowdown in Xe caused by a couple of IOMMU changes. It
-can be observed during DMA mappings/unmappings required to issue copies
-between system memory and the device, when handling GPU faults. Not sure
-how other use cases or vendors are affected but below is the impact on
-execution times for BMG:
+== Series Details ==
 
-Before changes:
-  4KB
-    drm_pagemap_migrate_map_pages: 0.4 us
-    drm_pagemap_migrate_unmap_pages: 0.4 us
-  64KB
-    drm_pagemap_migrate_map_pages: 2.5 us
-    drm_pagemap_migrate_unmap_pages: 3.5 us
-  2MB
-    drm_pagemap_migrate_map_pages: 88 us
-    drm_pagemap_migrate_unmap_pages: 108 us
+Series: dma-buf: Use revoke mechanism to invalidate shared buffers (rev2)
+URL   : https://patchwork.freedesktop.org/series/160360/
+State : warning
 
-After changes:
-  4KB
-    drm_pagemap_migrate_map_pages: 0.7 us
-    drm_pagemap_migrate_unmap_pages: 0.7 us
-  64KB
-    drm_pagemap_migrate_map_pages: 3.5 us
-    drm_pagemap_migrate_unmap_pages: 10.5 us
-  2MB
-    drm_pagemap_migrate_map_pages: 102 us
-    drm_pagemap_migrate_unmap_pages: 330 us
+== Summary ==
 
-Bisecting points to these commits:
-  d373449d8e97 iommu/vt-d: Use the generic iommu page table
-  d856f9d27885 iommupt/vtd: Allow VT-d to have a larger table top than the vasz requires
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit db8740607e9fad983ee78ad1b1889f69ee6aa96a
+Author: Leon Romanovsky <leon@kernel.org>
+Date:   Wed Jan 21 14:59:16 2026 +0200
 
-Simply reverting them brings back performance.
+    vfio: Validate dma-buf revocation semantics
+    
+    Use the new dma_buf_attach_revocable() helper to restrict attachments to
+    importers that support mapping invalidation.
+    
+    Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
++ /mt/dim checkpatch f869ee12e212bfa9fe277e6586c2c02902ed950b drm-intel
+9c38a404c8cc dma-buf: Rename .move_notify() callback to a clearer identifier
+53d3f42f1443 dma-buf: Rename dma_buf_move_notify() to dma_buf_invalidate_mappings()
+786155566295 dma-buf: Always build with DMABUF_MOVE_NOTIFY
+10e31654fce5 dma-buf: Make .invalidate_mapping() truly optional
+93fb0dca8875 dma-buf: Add check function for revoke semantics
+-:16: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#16: 
+For importers, this means implementing .invalidate_mappings(). For exporters,
 
-Any idea about why and how to fix it?
+total: 0 errors, 1 warnings, 0 checks, 51 lines checked
+4bc785872420 iommufd: Pin dma-buf importer for revoke semantics
+2b8b34f75c2b vfio: Wait for dma-buf invalidation to complete
+db8740607e9f vfio: Validate dma-buf revocation semantics
 
-Thanks,
-Francois
-
-Cc: Jason Gunthorpe <jgg@nvidia.com>
-Cc: Joerg Roedel <joerg.roedel@amd.com>
-Cc: Calvin Owens <calvin@wbinvd.org>
-Cc: David Woodhouse <dwmw2@infradead.org>
-Cc: Will Deacon <will@kernel.org>
-Cc: Robin Murphy <robin.murphy@arm.com>
-Cc: Samiullah Khawaja <skhawaja@google.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Tina Zhang <tina.zhang@intel.com>
-Cc: Lu Baolu <baolu.lu@linux.intel.com>
-Cc: Kevin Tian <kevin.tian@intel.com>
-
--- 
-2.43.0
 
