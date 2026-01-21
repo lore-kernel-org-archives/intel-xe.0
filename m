@@ -4,35 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B0A7C4453B
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 13:54:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D5CCC4453A
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 13:54:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 403F610E7F7;
-	Wed, 21 Jan 2026 13:54:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30C8A10E7FC;
+	Wed, 21 Jan 2026 13:54:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="HojSNJg5";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="pUF5E/3U";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47B9410E7F6;
- Wed, 21 Jan 2026 13:54:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7C7A10E7F7;
+ Wed, 21 Jan 2026 13:54:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1769003643;
- bh=BQuzkKqBZBGO9wE3d6cW/JI4pdjDP8E9SuARGbRWeLQ=;
+ s=default; t=1769003641;
+ bh=VBco7zVB9VTaGgt3tIx7GWoTZdb6hMaqwzco395EbzY=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=HojSNJg55D33Tq58tcFdNbKWuz6dvKRLlmfmu7kLV+SLprAd212Lj/7lCyTCinu31
- Mzbte7L+KWi23iYDBVnnf9yLLT7KQn9M7AOlDlidmZDKYUqVURJ900Zmal0Kczc5oF
- P3RCr8lq1N8PIm4u3IEoUmZwyH+twpNeSaFBfpQ2fo2eis+vmU5u0JVpXIJ5gpxQOW
- rPIXp3vOJq8VHIWe6h8XAnU+2BhOSvNe5W5YvLeEP+7c3LqAFL7I4qeKIZXPcqkxdd
- oob1JuiKQDjQbUgnlttUikmp9qzAmSxtPGEDB5NK+tVT9qJI0nq5fA0AOttfZpDMzZ
- c5iu/jqH2/U7g==
+ b=pUF5E/3UBjquetMfP4cI1LEeRgtfBiJfz5lEOYRj1SGnhiObI9oP1WYVXSOkz1O6P
+ WNovSnBsB2EACKT8FwQIeAfpFfUlsPHEcjZyCA0Nz5a3cXrtg2C85nouJMLNgvxwST
+ 2b1pu/dUHajrB2PdC6BNJ3AnuIQAXflrmcKF+2f2JTXdQqGoeWLu2VaNuJjQ/jHE8L
+ W4BFu19Pc+2uaz5nUSPPvIiNol3bPkYRHKc8KIDCnqqkirhuwQsazD3XaREDTC0xj8
+ tVWj2YDnEgBKHav1vfLssJNu8WdlASsxuDdyg/Z1xzfaOLrdzwMjwiubdwJOOTH1zk
+ iLGySeSfT/EDw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [i915-rt v5 21/21] FOR-CI: drm/i915: Reset lockdep after selftest
- unload
-Date: Wed, 21 Jan 2026 14:53:17 +0100
-Message-ID: <20260121135318.651622-22-dev@lankhorst.se>
+Subject: [i915-rt v5 20/21] PREEMPT_RT injection
+Date: Wed, 21 Jan 2026 14:53:16 +0100
+Message-ID: <20260121135318.651622-21-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260121135318.651622-1-dev@lankhorst.se>
 References: <20260121135318.651622-1-dev@lankhorst.se>
@@ -52,33 +51,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We're hitting a bug in CI where MAX_STACK_TRACE_ENTRIES is set too low.
-My guess is the repeated loading/unloading is creating multiples of the
-same entries. As a hack just reset lockdep. This might only be necessary
-for CI + PREEMPT_RT.
-
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/i915_module.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/i915/Kconfig.debug | 15 ---------------
+ drivers/gpu/drm/xe/Kconfig.debug   |  5 +++++
+ kernel/Kconfig.preempt             |  4 ++--
+ 3 files changed, 7 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_module.c b/drivers/gpu/drm/i915/i915_module.c
-index 5d9c35b5a1820..4c135688d9660 100644
---- a/drivers/gpu/drm/i915/i915_module.c
-+++ b/drivers/gpu/drm/i915/i915_module.c
-@@ -117,6 +117,12 @@ static void __exit i915_exit(void)
- 		if (init_funcs[i].exit)
- 			init_funcs[i].exit();
- 	}
-+
-+	/* Workaround for "MAX_STACK_TRACE_ENTRIES" too low, reset all locks after exit */
-+#if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
-+	if (i915_selftest.live || i915_selftest.mock || i915_selftest.perf)
-+		lockdep_reset();
-+#endif
- }
+diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
+index 3562a02ef7adc..0ab10ff41e38d 100644
+--- a/drivers/gpu/drm/i915/Kconfig.debug
++++ b/drivers/gpu/drm/i915/Kconfig.debug
+@@ -233,21 +233,6 @@ config DRM_I915_LOW_LEVEL_TRACEPOINTS
  
- module_init(i915_init);
+ 	  If in doubt, say "N".
+ 
+-config DRM_I915_DEBUG_VBLANK_EVADE
+-	bool "Enable extra debug warnings for vblank evasion"
+-	depends on DRM_I915
+-	default n
+-	help
+-	  Choose this option to turn on extra debug warnings for the
+-	  vblank evade mechanism. This gives a warning every time the
+-	  the deadline allotted for the vblank evade critical section
+-	  is exceeded, even if there isn't an actual risk of missing
+-	  the vblank.
+-
+-	  Recommended for driver developers only.
+-
+-	  If in doubt, say "N".
+-
+ config DRM_I915_DEBUG_RUNTIME_PM
+ 	bool "Enable extra state checking for runtime PM"
+ 	depends on DRM_I915
+diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
+index 01227c77f6d70..1d5f11c6e88f3 100644
+--- a/drivers/gpu/drm/xe/Kconfig.debug
++++ b/drivers/gpu/drm/xe/Kconfig.debug
+@@ -30,6 +30,11 @@ config DRM_XE_DEBUG
+ 
+ 	  If in doubt, say "N".
+ 
++config DRM_I915_DEBUG_VBLANK_EVADE
++        def_bool y
++        depends on DRM_XE
++
++
+ config DRM_XE_DEBUG_VM
+ 	bool "Enable extra VM debugging info"
+ 	default n
+diff --git a/kernel/Kconfig.preempt b/kernel/Kconfig.preempt
+index da326800c1c9b..68a6d42c55abe 100644
+--- a/kernel/Kconfig.preempt
++++ b/kernel/Kconfig.preempt
+@@ -87,9 +87,9 @@ config PREEMPT_LAZY
+ endchoice
+ 
+ config PREEMPT_RT
+-	bool "Fully Preemptible Kernel (Real-Time)"
+-	depends on EXPERT && ARCH_SUPPORTS_RT && !COMPILE_TEST
++	def_bool y
+ 	select PREEMPTION
++	depends on ARCH_SUPPORTS_RT
+ 	help
+ 	  This option turns the kernel into a real-time kernel by replacing
+ 	  various locking primitives (spinlocks, rwlocks, etc.) with
 -- 
 2.51.0
 
