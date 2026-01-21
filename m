@@ -4,66 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 102D6C4453B
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 13:58:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CC2AC4453D
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 14:03:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9BA210E802;
-	Wed, 21 Jan 2026 13:58:48 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=kde.org header.i=@kde.org header.b="dKpl6QC2";
-	dkim-atps=neutral
-Received: from letterbox.kde.org (letterbox.kde.org [46.43.1.242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A3C310E800
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Jan 2026 13:58:47 +0000 (UTC)
-Received: from mail-yx1-f42.google.com (mail-yx1-f42.google.com
- [74.125.224.42]) (Authenticated sender: zamundaaa)
- by letterbox.kde.org (Postfix) with ESMTPSA id 595F133FB69
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Jan 2026 13:58:46 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
- t=1769003926; bh=t+WAegLd0O2DA7u4H3Ymm5GHutH0tSda5Ue+u5MqbKo=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=dKpl6QC24aDxNbPcdRMGR67Strq0xoxamUE44MsHf8qW24/6jfsk4hD79rR/KSLmX
- JyOEGNp8XxtIl0EtKhAfDYI75UzVsmodkNXNfPxbY06ZGqQOh0YfRuuByKC65B3OVE
- GpNKmoNRC30JLnQItNBFwIqnO5SV1ZRzsezq8s8AXJ1PV2iU3uKC3Stfw68FpuczZM
- zEwwLePy2yBMeFis8UycwhbijsCBDnhRnK+Fp22+U0tMGdgb0BHPhzC5uMAYdnJkt0
- NEclQY/D3vvbM66rYdXZUV/pLqIOzIdo4r11nKgrooylgzDI9yE8jSCLexyKm6JBK1
- FAYidJud3+dng==
-Received: by mail-yx1-f42.google.com with SMTP id
- 956f58d0204a3-649166a96a9so6056243d50.3
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Jan 2026 05:58:46 -0800 (PST)
-X-Forwarded-Encrypted: i=1;
- AJvYcCVQMjG8HXeMr+YQdoxSCAbsWZlnuDi60obNDhJ2rKZLwLs9FOJJEVzwYqNr4rsUJtUGx+TrtH2Dcg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxv612AcE1F1H8M0VwqksqRPue4TccrzR0yN7wqcsYVGamrUWMF
- PVQgdnE8boTiGedngq0/1BtEfXH5jTEeQXKR+KMZUFyLnpmRWJhl2fXJH2ofUPgLUfv4GQpsYSK
- DJgr94eRT57/yNHZVmWkMQ/0u2gbDsWc=
-X-Received: by 2002:a05:690e:c43:b0:649:4640:f8ee with SMTP id
- 956f58d0204a3-6494640f9f8mr1693053d50.6.1769003924752; Wed, 21 Jan 2026
- 05:58:44 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACD3D10E7D5;
+	Wed, 21 Jan 2026 14:03:36 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61E0510E199;
+ Wed, 21 Jan 2026 14:03:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20260106-atomic-v7-0-d51d9a351684@intel.com>
- <20260106-atomic-v7-1-d51d9a351684@intel.com>
- <CAFZQkGzQ3GmUHibTJS2xCWsya2=Bh_Uo8zjqN5f_K4HMdfpHCA@mail.gmail.com>
-In-Reply-To: <CAFZQkGzQ3GmUHibTJS2xCWsya2=Bh_Uo8zjqN5f_K4HMdfpHCA@mail.gmail.com>
-From: Xaver Hugl <xaver.hugl@kde.org>
-Date: Wed, 21 Jan 2026 14:58:33 +0100
-X-Gmail-Original-Message-ID: <CAFZQkGwdpfEzv=210AQxBhqauj4NmSQCb1m1xfD1+e6rsTrwow@mail.gmail.com>
-X-Gm-Features: AZwV_QgPlPv5DCiiKJt6RSzHn6CFCSx25NGw-cD-v0VCaFqpNEWAu8UUQuVEVMU
-Message-ID: <CAFZQkGwdpfEzv=210AQxBhqauj4NmSQCb1m1xfD1+e6rsTrwow@mail.gmail.com>
-Subject: Re: [PATCH v7 1/5] drm: Define user readable error codes for atomic
- ioctl
-To: Arun R Murthy <arun.r.murthy@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- harry.wentland@amd.com, uma.shankar@intel.com, louis.chauvet@bootlin.com, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_All_p?=
+ =?utf-8?q?atches_to_make_PREEMPT=5FRT_work_on_i915_+_xe=2E_=28rev9=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 21 Jan 2026 14:03:35 -0000
+Message-ID: <176900421540.178097.13586449514492248503@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260121135318.651622-1-dev@lankhorst.se>
+In-Reply-To: <20260121135318.651622-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,11 +36,175 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Oh, I just noticed: It would help if we had a CAP for this, so the
-compositor knows if the new API is supported before doing atomic tests
-with it.
+== Series Details ==
 
-- Xaver
+Series: drm/i915/display: All patches to make PREEMPT_RT work on i915 + xe. (rev9)
+URL   : https://patchwork.freedesktop.org/series/159034/
+State : warning
+
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1c1bd417f4da7897365e49537320be8ac12c5bf9
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Wed Jan 21 14:53:17 2026 +0100
+
+    FOR-CI: drm/i915: Reset lockdep after selftest unload
+    
+    We're hitting a bug in CI where MAX_STACK_TRACE_ENTRIES is set too low.
+    My guess is the repeated loading/unloading is creating multiples of the
+    same entries. As a hack just reset lockdep. This might only be necessary
+    for CI + PREEMPT_RT.
+    
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch dc0b90be8d513256a6594095731a702287f29602 drm-intel
+a89c1881920c drm/i915/display: Fix intel_lpe_audio_irq_handler for PREEMPT-RT
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#11: 
+Because intel_lpe_audio_irq_handler() may be called in threaded IRQ context,
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+78b31b024306 drm/i915/display: Make get_vblank_counter use intel_de_read_fw()
+-:8: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#8: 
+<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+f33ba27d3180 drm/i915/display: Use intel_de_write_fw in intel_pipe_fastset
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+
+-:201: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
+
+total: 0 errors, 2 warnings, 0 checks, 110 lines checked
+92e677408bae drm/i915/display: Make set_pipeconf use the fw variants
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#11: 
+| BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+
+-:46: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#46: 
+Reported-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+
+-:76: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
+
+total: 0 errors, 3 warnings, 0 checks, 22 lines checked
+609cc73b2dc4 drm/i915/display: Move vblank put until after critical section
+f0ab1dee913e drm/i915/display: Remove locking from intel_vblank_evade critical section
+-:47: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#47: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:735:
++static bool scanline_in_safe_range(struct intel_vblank_evade_ctx *evade, int *scanline, bool unlocked)
+
+-:91: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#91: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:767:
++		timeout = wait_event_timeout(*wq, scanline_in_safe_range(evade, &scanline, true), timeout);
+
+total: 0 errors, 2 warnings, 0 checks, 78 lines checked
+ecc9204fd54e drm/i915/display: Handle vlv dsi workaround in scanline_in_safe_range too
+96e1287960d3 drm/i915/display: Make icl_dsi_frame_update use _fw too
+0c32d3d85911 drm/i915/display: Enable interrupts earlier on PREEMPT_RT
+cfb0dade73eb drm/i915: Use preempt_disable/enable_rt() where recommended
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#7: 
+  ad3543ede630f ("drm/intel: Push get_scanout_position() timestamping into kms driver.")
+
+-:45: WARNING:LINE_SPACING: Missing a blank line after declarations
+#45: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:324:
++	struct intel_uncore *uncore = to_intel_uncore(display->drm);
++	spin_lock_irqsave(&uncore->lock, *flags);
+
+-:52: WARNING:LINE_SPACING: Missing a blank line after declarations
+#52: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:331:
++	struct intel_uncore *uncore = to_intel_uncore(display->drm);
++	spin_unlock_irqrestore(&uncore->lock, flags);
+
+total: 0 errors, 3 warnings, 0 checks, 78 lines checked
+1ba4205f0cc2 drm/i915/display: Use intel_de_read/write_fw in colorops
+-:122: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#122: FILE: drivers/gpu/drm/i915/display/intel_color.c:1054:
++	intel_de_write_fw(display, GAMMA_MODE(crtc->pipe),
+ 		       crtc_state->gamma_mode);
+
+-:142: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
+
+total: 0 errors, 1 warnings, 1 checks, 24 lines checked
+744255da7913 drm/i915/gt: Use spin_lock_irq() instead of local_irq_disable() + spin_lock()
+-:22: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#22: 
+Reported-by: Clark Williams <williams@redhat.com>
+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+
+total: 0 errors, 1 warnings, 0 checks, 53 lines checked
+466fc14ba7bb drm/i915: Drop the irqs_disabled() check
+-:16: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#16: 
+Reported-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+
+total: 0 errors, 1 warnings, 0 checks, 14 lines checked
+817c26666095 drm/i915/guc: Consider also RCU depth in busy loop.
+-:13: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#13: 
+Reported-by: "John B. Wyatt IV" <jwyatt@redhat.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+-:27: ERROR:IN_ATOMIC: do not use in_atomic in drivers
+#27: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc.h:365:
++	bool not_atomic = !in_atomic() && !irqs_disabled() && !rcu_preempt_depth();
+
+total: 1 errors, 1 warnings, 0 checks, 8 lines checked
+81ea0ad3d818 Revert "drm/i915: Depend on !PREEMPT_RT."
+9c6485ebe971 drm/i915/gt: Fix selftests on PREEMPT_RT
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 26 lines checked
+6b1d34174e36 drm/i915/gt: Set stop_timeout() correctly on PREEMPT-RT
+-:20: WARNING:LONG_LINE_COMMENT: line length of 101 exceeds 100 columns
+#20: FILE: drivers/gpu/drm/i915/gt/intel_engine_cs.c:1610:
++	if (in_atomic() || irqs_disabled() || rcu_preempt_depth()) /* inside atomic preempt-reset? */
+
+-:20: ERROR:IN_ATOMIC: do not use in_atomic in drivers
+#20: FILE: drivers/gpu/drm/i915/gt/intel_engine_cs.c:1610:
++	if (in_atomic() || irqs_disabled() || rcu_preempt_depth()) /* inside atomic preempt-reset? */
+
+total: 1 errors, 1 warnings, 0 checks, 8 lines checked
+874206cc0047 drm/i915/display: Do not take uncore lock in i915_get_vblank_counter
+-:8: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+-:39: ERROR:CODE_INDENT: code indent should use tabs where possible
+#39: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:113:
++^I^I^I^I        PIPEFRAME(display, pipe));$
+
+-:39: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#39: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:113:
++	frame = intel_de_read64_2x32_fw(display, PIPEFRAMEPIXEL(display, pipe),
++				        PIPEFRAME(display, pipe));
+
+-:56: WARNING:LINE_SPACING: Missing a blank line after declarations
+#56: FILE: drivers/gpu/drm/i915/intel_uncore.h:457:
++	u32 upper, lower, old_upper, loop = 0;
++	upper = intel_uncore_read_fw(uncore, upper_reg);
+
+total: 1 errors, 2 warnings, 1 checks, 85 lines checked
+3a4c7ff5c581 drm/i915/display: Remove uncore lock from vlv_atomic_update_fifo
+74fd18c3c82d PREEMPT_RT injection
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 43 lines checked
+1c1bd417f4da FOR-CI: drm/i915: Reset lockdep after selftest unload
+
+
