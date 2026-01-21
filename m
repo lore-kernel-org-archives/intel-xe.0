@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFE7FC44536
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 23:08:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87FC9D4695A
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 23:08:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99D3F10E8A9;
-	Wed, 21 Jan 2026 23:08:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 460A310E8AC;
+	Wed, 21 Jan 2026 23:08:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Eh0AMYIW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FxNXg0MA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D629910E8A6;
- Wed, 21 Jan 2026 23:08:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B32FF10E267;
+ Wed, 21 Jan 2026 23:08:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769036918; x=1800572918;
+ t=1769036922; x=1800572922;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jzmCfeCsagm8lF28lM33L0fiE0r1TaZeKopgYWO7zEs=;
- b=Eh0AMYIWbnLm1HnUsvUgN1niXjNBWTOuRPtbq5H6Q1elHTlUjuAeAuKc
- C+p8IMELIjXWQdvuti3ahbMu9sitH/lYA8zNUDAMKKxQuXKu32x6G39ml
- k0lzDlWTGbbs44kvMonj4ZXTxdibeRyP9z8Zy72NgetcRhlgyG97dVE7P
- LnT8XpaygPEIUdZIrff623M1nyO6o29Q/hA+gmwCoH42iVfo37WBcy9r0
- jsaEV6i2gcfuLr+/XNPQEo4cVT+5ZD4J8eC6r2Qhj9u1Ho255uJVPHNux
- YaAZAj/heyW1mFOk1sGyurMQ7ZbbXAb5T05N+TJLPhgNj13HAMj7cj6jR Q==;
-X-CSE-ConnectionGUID: 3Gv3rfmxQMWvtYOa11K8kA==
-X-CSE-MsgGUID: ImNkfjMaQ+etKaJXJ0IxEg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="70244974"
-X-IronPort-AV: E=Sophos;i="6.21,244,1763452800"; d="scan'208";a="70244974"
+ bh=4IYIxggpt9bPcfPMcbuROgrwRfX7v80R5KnBYND1Ynk=;
+ b=FxNXg0MAHzeXb42LbE85ejCMNJR7z3DsLRk8PAZ8IyYuW1COuO+2jmqB
+ H9nZrhIImlA6LaLWEtN+rvO/B/RBObhWqECY9sqlttPyfb5G0vbJuxI5D
+ 4MOa055COaE9TToFUVpIPZNQ3hmvdoMwYkN++dEmrLEwsvkX5UbMnPSJb
+ G+ls7l8X96d+bMqg7yTaxx3Y3gO1MYTd5HZVPF/1Fbg0qhiLZfwIqVki5
+ ri+6Ysm6H9kgGUcvUQIYffv1Wg4PJW8HNlXh9It/PdnRKO+G2jLQDeCUk
+ uu5/21paA1QyOeCC/Z47rcK1TgMgAeq1SRMdAPazNxFwe0TguzLe7w0P8 A==;
+X-CSE-ConnectionGUID: lRb1IdeeSR6rijvgGIgDFw==
+X-CSE-MsgGUID: LRz5pM76SV2ds+9bavsxNg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="70244984"
+X-IronPort-AV: E=Sophos;i="6.21,244,1763452800"; d="scan'208";a="70244984"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2026 15:08:38 -0800
-X-CSE-ConnectionGUID: aIkAef7DRFiqeKgR+HksFg==
-X-CSE-MsgGUID: u/Izn4y9Sf+tIKS/3nnvqA==
+ 21 Jan 2026 15:08:41 -0800
+X-CSE-ConnectionGUID: uMsywyBlRGGY2bXsMHXSkg==
+X-CSE-MsgGUID: q1OGKSaDR4iGSk8ReYU2vg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,244,1763452800"; d="scan'208";a="206889577"
+X-IronPort-AV: E=Sophos;i="6.21,244,1763452800"; d="scan'208";a="206889587"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa010.fm.intel.com with ESMTP; 21 Jan 2026 15:08:36 -0800
+ by fmviesa010.fm.intel.com with ESMTP; 21 Jan 2026 15:08:40 -0800
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
  Uma Shankar <uma.shankar@intel.com>
-Subject: [v2 05/19] drm/{i915, xe}: Extract pcode definitions to common header
-Date: Thu, 22 Jan 2026 04:54:00 +0530
-Message-ID: <20260121232414.707192-6-uma.shankar@intel.com>
+Subject: [v2 07/19] drm/{i915, xe}: Remove i915_reg.h from intel_dram.c
+Date: Thu, 22 Jan 2026 04:54:02 +0530
+Message-ID: <20260121232414.707192-8-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260121232414.707192-1-uma.shankar@intel.com>
 References: <20260121232414.707192-1-uma.shankar@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,269 +67,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There are certain register definitions which are commonly shared
-by i915, xe and display. Extract the same to a common header to
-avoid duplication.
-
-Move GEN6_PCODE_MAILBOX to common header to make intel_cdclk.c
-free from including i915_reg.h
+Make intel_dram.c free from including i915_reg.h.
 
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c |   2 +-
- drivers/gpu/drm/i915/i915_reg.h            | 101 +------------------
- include/drm/intel/intel_gmd_common_regs.h  | 108 +++++++++++++++++++++
- 3 files changed, 110 insertions(+), 101 deletions(-)
- create mode 100644 include/drm/intel/intel_gmd_common_regs.h
+ drivers/gpu/drm/i915/display/intel_display_regs.h | 6 +++++-
+ drivers/gpu/drm/i915/display/intel_dram.c         | 3 ++-
+ drivers/gpu/drm/i915/i915_reg.h                   | 6 ------
+ 3 files changed, 7 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 9bfbfbf34dc0..531db1b452d1 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -27,9 +27,9 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index 3447ee229354..f395b7d4d640 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -3075,6 +3075,10 @@ enum skl_power_gate {
+ #define   MTL_TRAS_MASK			REG_GENMASK(16, 8)
+ #define   MTL_TRDPRE_MASK		REG_GENMASK(7, 0)
  
- #include <drm/drm_fixed.h>
+-
++#define MTL_MEM_SS_INFO_GLOBAL			_MMIO(0x45700)
++#define   XE3P_ECC_IMPACTING_DE			REG_BIT(12)
++#define   MTL_N_OF_ENABLED_QGV_POINTS_MASK	REG_GENMASK(11, 8)
++#define   MTL_N_OF_POPULATED_CH_MASK		REG_GENMASK(7, 4)
++#define   MTL_DDR_TYPE_MASK			REG_GENMASK(3, 0)
+ 
+ #endif /* __INTEL_DISPLAY_REGS_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_dram.c b/drivers/gpu/drm/i915/display/intel_dram.c
+index 170de304fe96..73a127dd6720 100644
+--- a/drivers/gpu/drm/i915/display/intel_dram.c
++++ b/drivers/gpu/drm/i915/display/intel_dram.c
+@@ -7,10 +7,11 @@
+ 
+ #include <drm/drm_managed.h>
  #include <drm/drm_print.h>
 +#include <drm/intel/intel_gmd_common_regs.h>
  
- #include "hsw_ips.h"
 -#include "i915_reg.h"
- #include "intel_atomic.h"
- #include "intel_audio.h"
- #include "intel_cdclk.h"
+ #include "intel_display_core.h"
+ #include "intel_display_utils.h"
++#include "intel_display_regs.h"
+ #include "intel_dram.h"
+ #include "intel_mchbar_regs.h"
+ #include "intel_pcode.h"
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index dc13f9eb4cd7..35122c997b8a 100644
+index fac24a649d61..c9fb9af1a35c 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -25,6 +25,7 @@
- #ifndef _I915_REG_H_
- #define _I915_REG_H_
+@@ -1005,12 +1005,6 @@
+ #define OROM_OFFSET				_MMIO(0x1020c0)
+ #define   OROM_OFFSET_MASK			REG_GENMASK(20, 16)
  
-+#include <drm/intel/intel_gmd_common_regs.h>
- #include "i915_reg_defs.h"
- #include "display/intel_display_reg_defs.h"
+-#define MTL_MEM_SS_INFO_GLOBAL			_MMIO(0x45700)
+-#define   XE3P_ECC_IMPACTING_DE			REG_BIT(12)
+-#define   MTL_N_OF_ENABLED_QGV_POINTS_MASK	REG_GENMASK(11, 8)
+-#define   MTL_N_OF_POPULATED_CH_MASK		REG_GENMASK(7, 4)
+-#define   MTL_DDR_TYPE_MASK			REG_GENMASK(3, 0)
+-
+ #define MTL_MEDIA_GSI_BASE		0x380000
  
-@@ -956,106 +957,6 @@
- #define    EDRAM_WAYS_IDX(cap)			(((cap) >> 5) & 0x7)
- #define    EDRAM_SETS_IDX(cap)			(((cap) >> 8) & 0x3)
- 
--#define GEN6_PCODE_MAILBOX			_MMIO(0x138124)
--#define   GEN6_PCODE_READY			(1 << 31)
--#define   GEN6_PCODE_MB_PARAM2			REG_GENMASK(23, 16)
--#define   GEN6_PCODE_MB_PARAM1			REG_GENMASK(15, 8)
--#define   GEN6_PCODE_MB_COMMAND			REG_GENMASK(7, 0)
--#define   GEN6_PCODE_ERROR_MASK			0xFF
--#define     GEN6_PCODE_SUCCESS			0x0
--#define     GEN6_PCODE_ILLEGAL_CMD		0x1
--#define     GEN6_PCODE_MIN_FREQ_TABLE_GT_RATIO_OUT_OF_RANGE 0x2
--#define     GEN6_PCODE_TIMEOUT			0x3
--#define     GEN6_PCODE_UNIMPLEMENTED_CMD	0xFF
--#define     GEN7_PCODE_TIMEOUT			0x2
--#define     GEN7_PCODE_ILLEGAL_DATA		0x3
--#define     GEN11_PCODE_ILLEGAL_SUBCOMMAND	0x4
--#define     GEN11_PCODE_LOCKED			0x6
--#define     GEN11_PCODE_REJECTED		0x11
--#define     GEN7_PCODE_MIN_FREQ_TABLE_GT_RATIO_OUT_OF_RANGE 0x10
--#define   GEN6_PCODE_WRITE_RC6VIDS		0x4
--#define   GEN6_PCODE_READ_RC6VIDS		0x5
--#define     GEN6_ENCODE_RC6_VID(mv)		(((mv) - 245) / 5)
--#define     GEN6_DECODE_RC6_VID(vids)		(((vids) * 5) + 245)
--#define   BDW_PCODE_DISPLAY_FREQ_CHANGE_REQ	0x18
--#define   GEN9_PCODE_READ_MEM_LATENCY		0x6
--#define     GEN9_MEM_LATENCY_LEVEL_3_7_MASK	REG_GENMASK(31, 24)
--#define     GEN9_MEM_LATENCY_LEVEL_2_6_MASK	REG_GENMASK(23, 16)
--#define     GEN9_MEM_LATENCY_LEVEL_1_5_MASK	REG_GENMASK(15, 8)
--#define     GEN9_MEM_LATENCY_LEVEL_0_4_MASK	REG_GENMASK(7, 0)
--#define   SKL_PCODE_LOAD_HDCP_KEYS		0x5
--#define   SKL_PCODE_CDCLK_CONTROL		0x7
--#define     SKL_CDCLK_PREPARE_FOR_CHANGE	0x3
--#define     SKL_CDCLK_READY_FOR_CHANGE		0x1
--#define   GEN6_PCODE_WRITE_MIN_FREQ_TABLE	0x8
--#define   GEN6_PCODE_READ_MIN_FREQ_TABLE	0x9
--#define   GEN6_READ_OC_PARAMS			0xc
--#define   ICL_PCODE_MEM_SUBSYSYSTEM_INFO	0xd
--#define     ICL_PCODE_MEM_SS_READ_GLOBAL_INFO	(0x0 << 8)
--#define     ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point)	(((point) << 16) | (0x1 << 8))
--#define     ADL_PCODE_MEM_SS_READ_PSF_GV_INFO	((0) | (0x2 << 8))
--#define   DISPLAY_TO_PCODE_CDCLK_MAX		0x28D
--#define   DISPLAY_TO_PCODE_VOLTAGE_MASK		REG_GENMASK(1, 0)
--#define	  DISPLAY_TO_PCODE_VOLTAGE_MAX		DISPLAY_TO_PCODE_VOLTAGE_MASK
--#define   DISPLAY_TO_PCODE_CDCLK_VALID		REG_BIT(27)
--#define   DISPLAY_TO_PCODE_PIPE_COUNT_VALID	REG_BIT(31)
--#define   DISPLAY_TO_PCODE_CDCLK_MASK		REG_GENMASK(25, 16)
--#define   DISPLAY_TO_PCODE_PIPE_COUNT_MASK	REG_GENMASK(30, 28)
--#define   DISPLAY_TO_PCODE_CDCLK(x)		REG_FIELD_PREP(DISPLAY_TO_PCODE_CDCLK_MASK, (x))
--#define   DISPLAY_TO_PCODE_PIPE_COUNT(x)	REG_FIELD_PREP(DISPLAY_TO_PCODE_PIPE_COUNT_MASK, (x))
--#define   DISPLAY_TO_PCODE_VOLTAGE(x)		REG_FIELD_PREP(DISPLAY_TO_PCODE_VOLTAGE_MASK, (x))
--#define   DISPLAY_TO_PCODE_UPDATE_MASK(cdclk, num_pipes, voltage_level) \
--		((DISPLAY_TO_PCODE_CDCLK(cdclk)) | \
--		(DISPLAY_TO_PCODE_PIPE_COUNT(num_pipes)) | \
--		(DISPLAY_TO_PCODE_VOLTAGE(voltage_level)))
--#define   ICL_PCODE_SAGV_DE_MEM_SS_CONFIG	0xe
--#define     ICL_PCODE_REP_QGV_MASK		REG_GENMASK(1, 0)
--#define     ICL_PCODE_REP_QGV_SAFE		REG_FIELD_PREP(ICL_PCODE_REP_QGV_MASK, 0)
--#define     ICL_PCODE_REP_QGV_POLL		REG_FIELD_PREP(ICL_PCODE_REP_QGV_MASK, 1)
--#define     ICL_PCODE_REP_QGV_REJECTED		REG_FIELD_PREP(ICL_PCODE_REP_QGV_MASK, 2)
--#define     ADLS_PCODE_REP_PSF_MASK		REG_GENMASK(3, 2)
--#define     ADLS_PCODE_REP_PSF_SAFE		REG_FIELD_PREP(ADLS_PCODE_REP_PSF_MASK, 0)
--#define     ADLS_PCODE_REP_PSF_POLL		REG_FIELD_PREP(ADLS_PCODE_REP_PSF_MASK, 1)
--#define     ADLS_PCODE_REP_PSF_REJECTED		REG_FIELD_PREP(ADLS_PCODE_REP_PSF_MASK, 2)
--#define     ICL_PCODE_REQ_QGV_PT_MASK		REG_GENMASK(7, 0)
--#define     ICL_PCODE_REQ_QGV_PT(x)		REG_FIELD_PREP(ICL_PCODE_REQ_QGV_PT_MASK, (x))
--#define     ADLS_PCODE_REQ_PSF_PT_MASK		REG_GENMASK(10, 8)
--#define     ADLS_PCODE_REQ_PSF_PT(x)		REG_FIELD_PREP(ADLS_PCODE_REQ_PSF_PT_MASK, (x))
--#define   GEN6_PCODE_READ_D_COMP		0x10
--#define   GEN6_PCODE_WRITE_D_COMP		0x11
--#define   ICL_PCODE_EXIT_TCCOLD			0x12
--#define   HSW_PCODE_DE_WRITE_FREQ_REQ		0x17
--#define   DISPLAY_IPS_CONTROL			0x19
--#define   TGL_PCODE_TCCOLD			0x26
--#define     TGL_PCODE_EXIT_TCCOLD_DATA_L_EXIT_FAILED	REG_BIT(0)
--#define     TGL_PCODE_EXIT_TCCOLD_DATA_L_BLOCK_REQ	0
--#define     TGL_PCODE_EXIT_TCCOLD_DATA_L_UNBLOCK_REQ	REG_BIT(0)
--            /* See also IPS_CTL */
--#define     IPS_PCODE_CONTROL			(1 << 30)
--#define   HSW_PCODE_DYNAMIC_DUTY_CYCLE_CONTROL	0x1A
--#define   GEN9_PCODE_SAGV_CONTROL		0x21
--#define     GEN9_SAGV_DISABLE			0x0
--#define     GEN9_SAGV_IS_DISABLED		0x1
--#define     GEN9_SAGV_ENABLE			0x3
--#define   DG1_PCODE_STATUS			0x7E
--#define     DG1_UNCORE_GET_INIT_STATUS		0x0
--#define     DG1_UNCORE_INIT_STATUS_COMPLETE	0x1
--#define   PCODE_POWER_SETUP			0x7C
--#define     POWER_SETUP_SUBCOMMAND_READ_I1	0x4
--#define     POWER_SETUP_SUBCOMMAND_WRITE_I1	0x5
--#define	    POWER_SETUP_I1_WATTS		REG_BIT(31)
--#define	    POWER_SETUP_I1_SHIFT		6	/* 10.6 fixed point format */
--#define	    POWER_SETUP_I1_DATA_MASK		REG_GENMASK(15, 0)
--#define     POWER_SETUP_SUBCOMMAND_G8_ENABLE	0x6
--#define GEN12_PCODE_READ_SAGV_BLOCK_TIME_US	0x23
--#define   XEHP_PCODE_FREQUENCY_CONFIG		0x6e	/* pvc */
--/* XEHP_PCODE_FREQUENCY_CONFIG sub-commands (param1) */
--#define     PCODE_MBOX_FC_SC_READ_FUSED_P0	0x0
--#define     PCODE_MBOX_FC_SC_READ_FUSED_PN	0x1
--/* PCODE_MBOX_DOMAIN_* - mailbox domain IDs */
--/*   XEHP_PCODE_FREQUENCY_CONFIG param2 */
--#define     PCODE_MBOX_DOMAIN_NONE		0x0
--#define     PCODE_MBOX_DOMAIN_MEDIAFF		0x3
- #define GEN6_PCODE_DATA				_MMIO(0x138128)
- #define   GEN6_PCODE_FREQ_IA_RATIO_SHIFT	8
- #define   GEN6_PCODE_FREQ_RING_RATIO_SHIFT	16
-diff --git a/include/drm/intel/intel_gmd_common_regs.h b/include/drm/intel/intel_gmd_common_regs.h
-new file mode 100644
-index 000000000000..8e9a574c87d9
---- /dev/null
-+++ b/include/drm/intel/intel_gmd_common_regs.h
-@@ -0,0 +1,108 @@
-+/* SPDX-License-Identifier: MIT */
-+/* Copyright © 2026 Intel Corporation */
-+
-+#ifndef _INTEL_GMD_COMMON_REG_H_
-+#define _INTEL_GMD_COMMON_REG_H_
-+
-+#define GEN6_PCODE_MAILBOX			_MMIO(0x138124)
-+#define   GEN6_PCODE_READY			(1 << 31)
-+#define   GEN6_PCODE_MB_PARAM2			REG_GENMASK(23, 16)
-+#define   GEN6_PCODE_MB_PARAM1			REG_GENMASK(15, 8)
-+#define   GEN6_PCODE_MB_COMMAND			REG_GENMASK(7, 0)
-+#define   GEN6_PCODE_ERROR_MASK			0xFF
-+#define     GEN6_PCODE_SUCCESS			0x0
-+#define     GEN6_PCODE_ILLEGAL_CMD		0x1
-+#define     GEN6_PCODE_MIN_FREQ_TABLE_GT_RATIO_OUT_OF_RANGE 0x2
-+#define     GEN6_PCODE_TIMEOUT			0x3
-+#define     GEN6_PCODE_UNIMPLEMENTED_CMD	0xFF
-+#define     GEN7_PCODE_TIMEOUT			0x2
-+#define     GEN7_PCODE_ILLEGAL_DATA		0x3
-+#define     GEN11_PCODE_ILLEGAL_SUBCOMMAND	0x4
-+#define     GEN11_PCODE_LOCKED			0x6
-+#define     GEN11_PCODE_REJECTED		0x11
-+#define     GEN7_PCODE_MIN_FREQ_TABLE_GT_RATIO_OUT_OF_RANGE 0x10
-+#define   GEN6_PCODE_WRITE_RC6VIDS		0x4
-+#define   GEN6_PCODE_READ_RC6VIDS		0x5
-+#define     GEN6_ENCODE_RC6_VID(mv)		(((mv) - 245) / 5)
-+#define     GEN6_DECODE_RC6_VID(vids)		(((vids) * 5) + 245)
-+#define   BDW_PCODE_DISPLAY_FREQ_CHANGE_REQ	0x18
-+#define   GEN9_PCODE_READ_MEM_LATENCY		0x6
-+#define     GEN9_MEM_LATENCY_LEVEL_3_7_MASK	REG_GENMASK(31, 24)
-+#define     GEN9_MEM_LATENCY_LEVEL_2_6_MASK	REG_GENMASK(23, 16)
-+#define     GEN9_MEM_LATENCY_LEVEL_1_5_MASK	REG_GENMASK(15, 8)
-+#define     GEN9_MEM_LATENCY_LEVEL_0_4_MASK	REG_GENMASK(7, 0)
-+#define   SKL_PCODE_LOAD_HDCP_KEYS		0x5
-+#define   SKL_PCODE_CDCLK_CONTROL		0x7
-+#define     SKL_CDCLK_PREPARE_FOR_CHANGE	0x3
-+#define     SKL_CDCLK_READY_FOR_CHANGE		0x1
-+#define   GEN6_PCODE_WRITE_MIN_FREQ_TABLE	0x8
-+#define   GEN6_PCODE_READ_MIN_FREQ_TABLE	0x9
-+#define   GEN6_READ_OC_PARAMS			0xc
-+#define   ICL_PCODE_MEM_SUBSYSYSTEM_INFO	0xd
-+#define     ICL_PCODE_MEM_SS_READ_GLOBAL_INFO	(0x0 << 8)
-+#define     ICL_PCODE_MEM_SS_READ_QGV_POINT_INFO(point)	(((point) << 16) | (0x1 << 8))
-+#define     ADL_PCODE_MEM_SS_READ_PSF_GV_INFO	((0) | (0x2 << 8))
-+#define   DISPLAY_TO_PCODE_CDCLK_MAX		0x28D
-+#define   DISPLAY_TO_PCODE_VOLTAGE_MASK		REG_GENMASK(1, 0)
-+#define	  DISPLAY_TO_PCODE_VOLTAGE_MAX		DISPLAY_TO_PCODE_VOLTAGE_MASK
-+#define   DISPLAY_TO_PCODE_CDCLK_VALID		REG_BIT(27)
-+#define   DISPLAY_TO_PCODE_PIPE_COUNT_VALID	REG_BIT(31)
-+#define   DISPLAY_TO_PCODE_CDCLK_MASK		REG_GENMASK(25, 16)
-+#define   DISPLAY_TO_PCODE_PIPE_COUNT_MASK	REG_GENMASK(30, 28)
-+#define   DISPLAY_TO_PCODE_CDCLK(x)		REG_FIELD_PREP(DISPLAY_TO_PCODE_CDCLK_MASK, (x))
-+#define   DISPLAY_TO_PCODE_PIPE_COUNT(x)	REG_FIELD_PREP(DISPLAY_TO_PCODE_PIPE_COUNT_MASK, (x))
-+#define   DISPLAY_TO_PCODE_VOLTAGE(x)		REG_FIELD_PREP(DISPLAY_TO_PCODE_VOLTAGE_MASK, (x))
-+#define   DISPLAY_TO_PCODE_UPDATE_MASK(cdclk, num_pipes, voltage_level) \
-+		((DISPLAY_TO_PCODE_CDCLK(cdclk)) | \
-+		(DISPLAY_TO_PCODE_PIPE_COUNT(num_pipes)) | \
-+		(DISPLAY_TO_PCODE_VOLTAGE(voltage_level)))
-+#define   ICL_PCODE_SAGV_DE_MEM_SS_CONFIG	0xe
-+#define     ICL_PCODE_REP_QGV_MASK		REG_GENMASK(1, 0)
-+#define     ICL_PCODE_REP_QGV_SAFE		REG_FIELD_PREP(ICL_PCODE_REP_QGV_MASK, 0)
-+#define     ICL_PCODE_REP_QGV_POLL		REG_FIELD_PREP(ICL_PCODE_REP_QGV_MASK, 1)
-+#define     ICL_PCODE_REP_QGV_REJECTED		REG_FIELD_PREP(ICL_PCODE_REP_QGV_MASK, 2)
-+#define     ADLS_PCODE_REP_PSF_MASK		REG_GENMASK(3, 2)
-+#define     ADLS_PCODE_REP_PSF_SAFE		REG_FIELD_PREP(ADLS_PCODE_REP_PSF_MASK, 0)
-+#define     ADLS_PCODE_REP_PSF_POLL		REG_FIELD_PREP(ADLS_PCODE_REP_PSF_MASK, 1)
-+#define     ADLS_PCODE_REP_PSF_REJECTED		REG_FIELD_PREP(ADLS_PCODE_REP_PSF_MASK, 2)
-+#define     ICL_PCODE_REQ_QGV_PT_MASK		REG_GENMASK(7, 0)
-+#define     ICL_PCODE_REQ_QGV_PT(x)		REG_FIELD_PREP(ICL_PCODE_REQ_QGV_PT_MASK, (x))
-+#define     ADLS_PCODE_REQ_PSF_PT_MASK		REG_GENMASK(10, 8)
-+#define     ADLS_PCODE_REQ_PSF_PT(x)		REG_FIELD_PREP(ADLS_PCODE_REQ_PSF_PT_MASK, (x))
-+#define   GEN6_PCODE_READ_D_COMP		0x10
-+#define   GEN6_PCODE_WRITE_D_COMP		0x11
-+#define   ICL_PCODE_EXIT_TCCOLD			0x12
-+#define   HSW_PCODE_DE_WRITE_FREQ_REQ		0x17
-+#define   DISPLAY_IPS_CONTROL			0x19
-+#define   TGL_PCODE_TCCOLD			0x26
-+#define     TGL_PCODE_EXIT_TCCOLD_DATA_L_EXIT_FAILED	REG_BIT(0)
-+#define     TGL_PCODE_EXIT_TCCOLD_DATA_L_BLOCK_REQ	0
-+#define     TGL_PCODE_EXIT_TCCOLD_DATA_L_UNBLOCK_REQ	REG_BIT(0)
-+/* See also IPS_CTL */
-+#define     IPS_PCODE_CONTROL			(1 << 30)
-+#define   HSW_PCODE_DYNAMIC_DUTY_CYCLE_CONTROL	0x1A
-+#define   GEN9_PCODE_SAGV_CONTROL		0x21
-+#define     GEN9_SAGV_DISABLE			0x0
-+#define     GEN9_SAGV_IS_DISABLED		0x1
-+#define     GEN9_SAGV_ENABLE			0x3
-+#define   DG1_PCODE_STATUS			0x7E
-+#define     DG1_UNCORE_GET_INIT_STATUS		0x0
-+#define     DG1_UNCORE_INIT_STATUS_COMPLETE	0x1
-+#define   PCODE_POWER_SETUP			0x7C
-+#define     POWER_SETUP_SUBCOMMAND_READ_I1	0x4
-+#define     POWER_SETUP_SUBCOMMAND_WRITE_I1	0x5
-+#define	    POWER_SETUP_I1_WATTS		REG_BIT(31)
-+#define	    POWER_SETUP_I1_SHIFT		6	/* 10.6 fixed point format */
-+#define	    POWER_SETUP_I1_DATA_MASK		REG_GENMASK(15, 0)
-+#define     POWER_SETUP_SUBCOMMAND_G8_ENABLE	0x6
-+#define GEN12_PCODE_READ_SAGV_BLOCK_TIME_US	0x23
-+#define   XEHP_PCODE_FREQUENCY_CONFIG		0x6e	/* pvc */
-+/* XEHP_PCODE_FREQUENCY_CONFIG sub-commands (param1) */
-+#define     PCODE_MBOX_FC_SC_READ_FUSED_P0	0x0
-+#define     PCODE_MBOX_FC_SC_READ_FUSED_PN	0x1
-+/* PCODE_MBOX_DOMAIN_* - mailbox domain IDs */
-+/*   XEHP_PCODE_FREQUENCY_CONFIG param2 */
-+#define     PCODE_MBOX_DOMAIN_NONE		0x0
-+#define     PCODE_MBOX_DOMAIN_MEDIAFF		0x3
-+
-+#endif
+ #endif /* _I915_REG_H_ */
 -- 
 2.50.1
 
