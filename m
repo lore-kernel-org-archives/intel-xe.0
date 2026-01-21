@@ -4,65 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF838D3EE69
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05DEDD3EE6C
 	for <intel-xe@archiver.kernel.org>; Thu, 22 Jan 2026 13:38:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 951B310E9AE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0E3810E9B3;
 	Thu, 22 Jan 2026 13:38:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="SZfzG+rP";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="buP14dfE";
 	dkim-atps=neutral
-Received: from mail-dl1-f74.google.com (mail-dl1-f74.google.com [74.125.82.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 411F010E62C
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Jan 2026 16:16:14 +0000 (UTC)
-Received: by mail-dl1-f74.google.com with SMTP id
- a92af1059eb24-123840bf029so7525420c88.1
- for <intel-xe@lists.freedesktop.org>; Tue, 20 Jan 2026 08:16:14 -0800 (PST)
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
+ [209.85.214.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3E6C10E7D5
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Jan 2026 14:22:41 +0000 (UTC)
+Received: by mail-pl1-f179.google.com with SMTP id
+ d9443c01a7336-2a0d06cfa93so75655ad.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Jan 2026 06:22:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1768925773; x=1769530573;
+ d=google.com; s=20230601; t=1769005361; x=1769610161;
  darn=lists.freedesktop.org; 
- h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
- :date:message-id:reply-to;
- bh=U0JstZ3U8EnaEwbbkqLAiAggjIS51Q+2B5R7r3dcgTs=;
- b=SZfzG+rPpFBgTzZ1QZ3HF8t9bAADDZF0hjhuhBO9h5AR7Rq3i78n8Hy1hGOZxZPP64
- hzMCgRPSeefT427RbM7wYYx/4l4c7/BC1TyNu2zrXxZ3JrabIoUF5tTO98YUUdDp7gz9
- U7stWtdBHALKqt6hCeQ2OshCWaj8oNyXsVEhE1KB6m7jFZzjUqwmu3vlwrIT5DfTUgey
- qcglzG/b9BrhTSOmEUkX+UeDIEYfytucnVjqlkPXUR7G0ZcJG48d9LC8496cvwUCYcXb
- O/8WMpcdBVUS/pn71BY3pNnZslwTtGfq05nTbOxRarqHpnPDib060uznmb6EWslNINhz
- +alQ==
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=Df9DnST7C0sPqC8cKGnMiT7cxfRi0XBTWHY9JjLQ7zk=;
+ b=buP14dfEBR6sdmQ6ARRBNj1DQtd7iiSjOMwtgEQudS2oCVri+dH6m6rH6gPsngQ4yn
+ gVYhCEoqRoGU8lO0s6wDwrWTjGXOa3Cwz9RcUfJl8UtuMpbUXjY0BIPvZBxCmNp5wdbM
+ dwqqbfZ0iYHScBLltbRAeEAh5fnZlCz2fsuPaVXg1dN8+a1fvN+v7JS8Cpk6SqWnd7Ao
+ H7Rjznu/8LBUvNCKPZ5pRTL9Qn3N0AGta+H2c/ZAu+hUVe8VwrZ6vFnBP65LTDWBYVNQ
+ a5jrBk4YxVMkr+tkWwXfbDfEWkGKjFZyyLngfSt3ZNvJBKb7NnSytZKZpPRepeQYG99f
+ N5AQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1768925773; x=1769530573;
- h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=U0JstZ3U8EnaEwbbkqLAiAggjIS51Q+2B5R7r3dcgTs=;
- b=IGHkPJ0M3mCGTxJCQWji6Z8uM9BrC/F/7IfFvG26qSRjphnSCji80f5LWMFBPOSKFa
- pPRAg+Nim2WlJOGw7bZTYTffQLru/FsV3YS/tLkzoPoEh2zcwAGVk80R/6UJVH/0Scjd
- zcntfi3NWJog9MWD4Auw2s8e4MLfuJeQZMbQOMWLtk/j/1sYGD+h+icRMW9Xa4tIP4Fo
- ArPKIaQAVyq9CUph7MgEIdS3PKHwUt2XGxDZi/nFyuQDDIbmbhQxk83NUyR0zt1YTchD
- 89QBf0tNnuxQvKZrJ4oASYhgTagaU1sDfKrXHzr2/sQlI42bAKb0846mjg4Av49eUHqy
- VrdQ==
+ d=1e100.net; s=20230601; t=1769005361; x=1769610161;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=Df9DnST7C0sPqC8cKGnMiT7cxfRi0XBTWHY9JjLQ7zk=;
+ b=oqsQ3RtoTf6u6IWTsjTzeBxP6aEJzXWNhkbveHSyy/Ok0CIhgggNyVhIR/T1BDPwRP
+ LwKUU5IcIIl9PmP0lbKiMzjee7Rnqn2PO5pz5GSY0Thz9tfUgAnThpRGYNGQc9ONN6/k
+ AaTKQ3jeP6B84vNqNL3qdL+Zl3sRLRQykZGRwj6g93Td2fVs5JqOalohu2NQhWr6iy3q
+ 3hVomoufILCilazyoMB7p/JqMRoYOWb8ogNw3GeFUqbvMfuQUitgmvCnt1bo5c+if/1G
+ UPinaEbRpICvLvicgNjwY9Oj4gFtnUdWcm2ImQQohH2M4HAyqGJpM/51cZN8a7+rVBLe
+ dbqg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUzyoK4dcMSiIAPHzWjkEQyKVekWrHYqUiCKydX2ie/IiamO5PGmifKpbx5GTbKhkn+LqDGvzKsRA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YznWL/vXjHdPC0ExumwmWSy0VhytyuD/2mB884RCsfdTH4VaF9d
- PgChThjFXY8tMIAStQAFeyqD7qu94nWvDDaSI2pv4TjopGxJQnbwNpqjKbgbdEfcMZK1USxXaBh
- A95cQSxTf5hkJuA==
-X-Received: from dlah28.prod.google.com ([2002:a05:701b:261c:b0:11a:51f9:d69])
- (user=jdsultan job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:7022:f8b:b0:11f:3d55:ab9a with SMTP id
- a92af1059eb24-1244a70b337mr11389662c88.13.1768925773304; 
- Tue, 20 Jan 2026 08:16:13 -0800 (PST)
-Date: Tue, 20 Jan 2026 08:13:38 -0800
-Mime-Version: 1.0
-X-Mailer: git-send-email 2.52.0.457.g6b5491de43-goog
-Message-ID: <20260120161539.3161533-1-jdsultan@google.com>
-Subject: [RFC PATCH v2 0/2]  Enable seamless boot (fastboot) for PTL
-From: Juasheem Sultan <jdsultan@google.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Juasheem Sultan <jdsultan@google.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Manasi Navare <navaremanasi@google.com>,
- Drew Davenport <ddavenport@google.com>, Sean Paul <seanpaul@google.com>
-Content-Type: text/plain; charset="UTF-8"
+ AJvYcCVyQarrxCN86x2rPcSBrOCJWkiW+1DksA733M2SAxFbKGWbPUPi0IJdX/RlUqWge1PmkRmiAS7yNw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxW3FkGfqHYn9yp4o/0bGPXXtpEwI9XyvdyrHxw1A04X0uMSAoR
+ gJeDgI9+7yiBdu2+1g3tKCFWfQo4lyYw5+MbYiBYYDbo7jFD2oLxHmlak2EAtVizTw==
+X-Gm-Gg: AZuq6aJQju1oZPgQPuOgbuffGWDT0a59SO/jYtOeZAXoHyB2wWiuzF0mPpWzd5AHIO8
+ zKESIwVEY1HAd+gkwaMvsvZBMWyvLeJKEQbmZ8qoGgLoGzKfovD3sKWk/xPF8PLcbSfNPLc5tLN
+ h217euB2hsFVf2FBqFsbD3BYaHlEkPKCG7DJBCjV8bfgKr6b8lrHqdEXrqTzGulpOrLFSxUPpTy
+ u6xPH2i5QqmNprYJ8f9cCtrt7bnkaiLF+s9Tvlpq0RPJ79yd/GL4NlPHfx74mvGcVpvpPVAks+C
+ Te78HtNL5oVxA7q7Q7L78ywXkbX5QK/vCyzKy+HKCYmqPllEFpjKrlPJeh2JrMsr40i3ExR3D5Q
+ X8NwbaOloW0DjLlvjLocqyOR7s+9EsyWnYGOUJUwaPtQFBmGzJUBPQ4phur0PJM93bOWDhZSFtv
+ izrZ5XHNRIW7Ft5UPCNMBpR3p5uEN6bCVYOBccjjI8c9VSjIQ7
+X-Received: by 2002:a17:903:1c8:b0:295:5405:46be with SMTP id
+ d9443c01a7336-2a7a23cc8f3mr2519245ad.1.1769005361111; 
+ Wed, 21 Jan 2026 06:22:41 -0800 (PST)
+Received: from google.com (222.245.187.35.bc.googleusercontent.com.
+ [35.187.245.222]) by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-2a7190ce6a9sm159451235ad.34.2026.01.21.06.22.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 21 Jan 2026 06:22:40 -0800 (PST)
+Date: Wed, 21 Jan 2026 14:22:31 +0000
+From: Pranjal Shrivastava <praan@google.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Leon Romanovsky <leon@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
+ Vivek Kasireddy <vivek.kasireddy@intel.com>,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
+ intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ iommu@lists.linux.dev, kvm@vger.kernel.org
+Subject: Re: [PATCH v4 8/8] vfio: Validate dma-buf revocation semantics
+Message-ID: <aXDhJ89Yru577jeY@google.com>
+References: <20260121-dmabuf-revoke-v4-0-d311cbc8633d@nvidia.com>
+ <20260121-dmabuf-revoke-v4-8-d311cbc8633d@nvidia.com>
+ <20260121134712.GZ961572@ziepe.ca>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260121134712.GZ961572@ziepe.ca>
 X-Mailman-Approved-At: Thu, 22 Jan 2026 13:38:39 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -78,40 +113,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch series is the second revision of a series of patches meant
-to add support for seamless framebuffer handoff within the Xe driver.
-It was tested on Panther Lake platforms.
+On Wed, Jan 21, 2026 at 09:47:12AM -0400, Jason Gunthorpe wrote:
+> On Wed, Jan 21, 2026 at 02:59:16PM +0200, Leon Romanovsky wrote:
+> > From: Leon Romanovsky <leonro@nvidia.com>
+> > 
+> > Use the new dma_buf_attach_revocable() helper to restrict attachments to
+> > importers that support mapping invalidation.
+> > 
+> > Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
+> > ---
+> >  drivers/vfio/pci/vfio_pci_dmabuf.c | 3 +++
+> >  1 file changed, 3 insertions(+)
+> > 
+> > diff --git a/drivers/vfio/pci/vfio_pci_dmabuf.c b/drivers/vfio/pci/vfio_pci_dmabuf.c
+> > index 5fceefc40e27..85056a5a3faf 100644
+> > --- a/drivers/vfio/pci/vfio_pci_dmabuf.c
+> > +++ b/drivers/vfio/pci/vfio_pci_dmabuf.c
+> > @@ -31,6 +31,9 @@ static int vfio_pci_dma_buf_attach(struct dma_buf *dmabuf,
+> >  	if (priv->revoked)
+> >  		return -ENODEV;
+> >  
+> > +	if (!dma_buf_attach_revocable(attachment))
+> > +		return -EOPNOTSUPP;
+> > +
+> >  	return 0;
+> >  }
+> 
+> We need to push an urgent -rc fix to implement a pin function here
+> that always fails. That was missed and it means things like rdma can
+> import vfio when the intention was to block that. It would be bad for
+> that uAPI mistake to reach a released kernel.
+> 
+> It's tricky that NULL pin ops means "I support pin" :|
+> 
 
-The goal of this series is to achieve a flicker-free transition from
-the bootloader (BIOS/UEFI) to the kernel driver by strictly adhering
-to the hardware state established by the firmware.
+I've been wondering about this for a while now, I've been sitting on the
+following:
 
-Thank you for the feedback on the previous revision.
-  
-This new patch series was created with that feedback in mind. That
-revision was too rough of an implementation that had a considerable
-amount of useless code and fixed problems that it unecessarily
-introduced. Because of that, I completely reworked and rewrote the
-solution into a much smaller, efficient version that properly makes
-use of the existing infrastructure. This patch series has two specific
-focal points. It enables Xe to properly adopt a framebuffer from bios
-by fixing how we read stolen memory and it synchronizes an inherited
-crtc state with the new state so that we can perform an initial commit.
-This allows us to achieve seamless handoff between the firmware and
-kernel with minimal changes required.
+diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
+index a4d8f2ff94e4..962bce959366 100644
+--- a/drivers/dma-buf/dma-buf.c
++++ b/drivers/dma-buf/dma-buf.c
+@@ -1133,6 +1133,8 @@ int dma_buf_pin(struct dma_buf_attachment *attach)
 
----
-Changes since v1
-- Complete rewrite of the code
+        if (dmabuf->ops->pin)
+                ret = dmabuf->ops->pin(attach);
++       else
++               ret = -EOPNOTSUPP;
 
-Juasheem Sultan (2):
-  drm/xe/display: Fix reading the framebuffer from stolen memory
-  drm/i915/display: Synchronize crtc_state for initial commit
+        return ret;
+ }
 
- drivers/gpu/drm/i915/display/intel_display.c  | 19 ++++++++++++++++
- drivers/gpu/drm/xe/display/xe_plane_initial.c | 22 ++++++++++++++++++-
- 2 files changed, 40 insertions(+), 1 deletion(-)
+But didn't get a chance to dive in the history yet. I thought there's a
+good reason we didn't have it? Would it break exisitng dmabuf users?
 
--- 
-2.52.0.457.g6b5491de43-goog
-
+Praan
