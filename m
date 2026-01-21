@@ -4,76 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BA1DC4453B
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 13:48:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC30AC4452E
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 13:51:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFD0910E7C4;
-	Wed, 21 Jan 2026 13:48:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9071A10E7BB;
+	Wed, 21 Jan 2026 13:51:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="NBgc6ozo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ffGW5zjS";
 	dkim-atps=neutral
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D21CB10E7C4;
- Wed, 21 Jan 2026 13:48:51 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1769003323; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=Qu5HcFI7eZQyiLafHMrl40Bks9ctbn3Ag/wWiDv4upwjKR2blsOUlAAB+pwG4gnk1oMbo6IckVIieq4tPo2co0flrE6JQDG75MFPG2S8idT5LkDpkZRny0maeIl33YuuAvdD8Wa1Hcqu7VlU76nJ4rFSTTi3fw7mqUR/byQ4XEQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1769003323;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=SfjcxeAT2W+o+UxrPmZJDMJEXHj1m3+fRUI5YUGISxM=; 
- b=KhH6sT8FeyTWPQ93V/yBX/pRI+veKpouS2PgUmP8OeIaNEDLH4tu9tNIuh5NGYd4VowpJqrG5L8LoetvhaqhC13gGxEw/pFfh6b9XtAhyf5J54GPblqhxvTmTAmu6pd7bjSFhcGqnT32X0rrlhg0+5GWhbZerJ4jMWH9TxxPO4k=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1769003323; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=SfjcxeAT2W+o+UxrPmZJDMJEXHj1m3+fRUI5YUGISxM=;
- b=NBgc6ozo0i/RTDRfPAIxxMCsaynl11+ueBDC0eT6tGUo92Lv21csWpMu8MW+PpwE
- HG8fPD/kd3L6KIb+sPpMgHUXL3U4hMtwD8b3oN8/K0qN3AdNNpVXmLt5KKxEhNA3ehu
- /RZi4IFp0AyKU9yvGug+X0zTy4RLOdZFb0bOtYKI=
-Received: by mx.zohomail.com with SMTPS id 1769003320832411.20417740809444;
- Wed, 21 Jan 2026 05:48:40 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Wed, 21 Jan 2026 14:45:47 +0100
-Subject: [PATCH v6 21/21] drm/bridge: Document bridge chain format
- selection
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7729C10E7C4;
+ Wed, 21 Jan 2026 13:51:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769003496; x=1800539496;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=X6WWV8Zc3M2gl2bSFzCM11YEJF5O9CumjKArCsMsjr0=;
+ b=ffGW5zjSEhh0ovBVqSabzHoKpRz/hJiG/kZG8e5Eq1RVDXbnDRBLg5s8
+ 1PiHMT2kT4ngS1BN/lPCgM+nnkea0VW6Lx5swsH3QidYp9+u/fLWIuPvx
+ X/Y5VdkkOpmDALicw3CKfR0o6AhN8bN4A6fUCXiRjwIEVBCiE0S6HAO83
+ aIPeE3SnHG/Mg8LDMGL1ys26YkBvMdiGq0+dZ1Pe7hPC92OuELia2J0bi
+ DlmJJzg122XIv5I5EYEyHdy3ppMpgHXIy2Dq92UCVaELNGppyGlksqj9m
+ Xv2/6aAZkuJIVtf3dAC0tn5/v2uBfnvbfoEHW7etNi/hLv34uiTH1Mnfz g==;
+X-CSE-ConnectionGUID: wrMBmj8TSU+JbQYztKosJA==
+X-CSE-MsgGUID: C2bjjir8Qfa+kLgv7max4A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="70141359"
+X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="70141359"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2026 05:51:35 -0800
+X-CSE-ConnectionGUID: +VjNks09T5C1G0XER90Uug==
+X-CSE-MsgGUID: Zgeiwj2zTP6tnOIDWBVJ4Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="205704745"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.119])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2026 05:51:30 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+Cc: harry.wentland@amd.com, louis.chauvet@bootlin.com, mwen@igalia.com,
+ contact@emersion.fr, alex.hung@amd.com, daniels@collabora.com,
+ uma.shankar@intel.com, suraj.kandpal@intel.com, nfraprado@collabora.com,
+ ville.syrjala@linux.intel.com, matthew.d.roper@intel.com
+Subject: Re: [PATCH v3 00/13] drm: Color pipeline teardown and follow-up
+ fixes/improvements
+In-Reply-To: <20260113102303.724205-1-chaitanya.kumar.borah@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260113102303.724205-1-chaitanya.kumar.borah@intel.com>
+Date: Wed, 21 Jan 2026 15:51:26 +0200
+Message-ID: <513db214e2adcad6a70cea2461b7bfc26c2884db@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260121-color-format-v6-21-7b81a771cd0b@collabora.com>
-References: <20260121-color-format-v6-0-7b81a771cd0b@collabora.com>
-In-Reply-To: <20260121-color-format-v6-0-7b81a771cd0b@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-doc@vger.kernel.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.3
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,89 +74,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The bridge chain format selection behaviour was, until now,
-undocumented. With the addition of the "color format" DRM property, it's
-not sufficiently complex enough that documentation is warranted,
-especially for driver authors trying to do the right thing.
+On Tue, 13 Jan 2026, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
+> This series contains follow-up fixes and improvements for the DRM color
+> pipeline infrastructure that was introduced in v6.19.[1][2]
+>
+> The central handling of clean up of colorop from the mode_config list
+> is missing. While vkms calls drm_colorop_pipeline_destroy() in vkms_destroy(),
+> amd driver calls it only during failure of the init path and i915/xe driver
+> does not call it at all. This means amd and intel leaks these objects on
+> driver removal.
+>
+> This series adds the teardown of mode_config.colorop_list in drm_mode_config_cleanup().
+> Since, i915/xe sub-classes the drm_colorop within intel_colorop it was not enough
+> to just use drm_colorop_pipeline_destroy(). Therefore, this series
+>
+> - Introduces driver-managed destruction for drm_colorop objects and
+>   updates core helpers to use driver-provided destroy callbacks.
+> - Ensures all colorop objects are correctly torn down during
+>   mode_config cleanup and driver removal.
+>
+> In addition to that following changes are made in the series
+> - Fixes enum name lifetime leaks in color pipeline init in i915, amdgpu_dm, and vkms
+> - Corrects the ordering of the 3D LUT block in the i915 plane color pipeline
+> - Refactors i915 plane color pipeline initialization to reliably clean
+>   up partially constructed pipelines on failure.
+>
+> Thanks for taking a look. Feedback is welcome.
 
-Add a high-level overview of how the process is supposed to work, and
-mention what the display driver is supposed to do if it wants to make
-use of this functionality.
+I did not do detailed review, but
 
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- Documentation/gpu/drm-kms-helpers.rst |  6 ++++++
- drivers/gpu/drm/drm_bridge.c          | 39 +++++++++++++++++++++++++++++++++++
- 2 files changed, 45 insertions(+)
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-diff --git a/Documentation/gpu/drm-kms-helpers.rst b/Documentation/gpu/drm-kms-helpers.rst
-index 781129f78b06..47c4f593cf9d 100644
---- a/Documentation/gpu/drm-kms-helpers.rst
-+++ b/Documentation/gpu/drm-kms-helpers.rst
-@@ -181,6 +181,12 @@ Bridge Operations
- .. kernel-doc:: drivers/gpu/drm/drm_bridge.c
-    :doc: bridge operations
- 
-+Bridge Chain Format Selection
-+-----------------------------
-+
-+.. kernel-doc:: drivers/gpu/drm/drm_bridge.c
-+   :doc: bridge chain format selection
-+
- Bridge Connector Helper
- -----------------------
- 
-diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-index b0dfa03dbb81..a155b8aa4a3d 100644
---- a/drivers/gpu/drm/drm_bridge.c
-+++ b/drivers/gpu/drm/drm_bridge.c
-@@ -198,6 +198,45 @@
-  * driver.
-  */
- 
-+/**
-+ * DOC: bridge chain format selection
-+ *
-+ * A bridge chain, from display output processor to connector, may contain
-+ * bridges capable of converting between bus formats on their inputs, and
-+ * output formats on their outputs. For example, a bridge may be able to convert
-+ * from RGB to YCbCr 4:4:4, and pass through YCbCr 4:2:0 as-is, but not convert
-+ * from RGB to YCbCr 4:2:0. This means not all input formats map to all output
-+ * formats.
-+ *
-+ * Further adding to this, a desired output color format, as specified with the
-+ * "color format" DRM property, might not correspond to what the display driver
-+ * should set at its output 1:1. The bridge chain it feeds into may only be able
-+ * to reach the desired output format, if a conversion from a different starting
-+ * format is performed.
-+ *
-+ * To deal with this complexity, the recursive bridge chain bus format selection
-+ * logic starts with the last bridge in the chain, usually the connector, and
-+ * then recursively walks the chain of bridges backwards to the first bridge,
-+ * trying to find a path.
-+ *
-+ * For a display driver to work in such a scenario, it should read the first
-+ * bridge's bridge state to figure out which bus format the chain resolved to.
-+ * If the first bridge's input format resolved to %MEDIA_BUS_FMT_FIXED, then its
-+ * output format should be used.
-+ *
-+ * Special handling is done for HDMI as it relates to format selection. Instead
-+ * of directly using the "color format" DRM property for bridge chains that end
-+ * in HDMI bridges, the bridge chain format selection logic will trust the logic
-+ * that set the HDMI output format. For the common HDMI state helper
-+ * functionality, this means that %DRM_COLOR_FORMAT_AUTO will allow fallbacks to
-+ * YCBCr 4:2:0 if the bandwidth requirements would otherwise be too high but the
-+ * mode and connector allow it.
-+ *
-+ * For bridge chains that do not end in an HDMI bridge, %DRM_COLOR_FORMAT_AUTO
-+ * will be satisfied with the first output format on the last bridge for which
-+ * it can find a path back to the first bridge.
-+ */
-+
- /* Protect bridge_list and bridge_lingering_list */
- static DEFINE_MUTEX(bridge_lock);
- static LIST_HEAD(bridge_list);
+for merging via drm-misc.
+
+Please coordinate with drm and drm-misc maintainers on which branch
+these should merged through. IIUC there are memory leak fixes for
+changes heading to v6.19, which speaks for drm-misc-fixes. But is it too
+much at this stage? Up to drm and drm-misc maintainers I think.
+
+BR,
+Jani.
+
+
+>
+> [1] https://lore.kernel.org/dri-devel/cbe00ac4-a535-47d3-813a-e2eda7e9b991@amd.com/
+> [2] https://lore.kernel.org/intel-gfx/20251203085211.3663374-1-uma.shankar@intel.com/
+>
+> v2:
+>  - Re-arrange patches (Alex)
+>  - Re-factor code to avoid repitition in pipeline creation (Suraj)
+>
+> v3:
+>  - Add documentation only to function definition (Jani)
+>  - s/nvl/xe3plpd (Suraj)
+>
+> Chaitanya Kumar Borah (13):
+>   drm/i915/color: Place 3D LUT after CSC in plane color pipeline
+>   drm/amd/display: Fix color pipeline enum name leak
+>   drm/vkms: Fix color pipeline enum name leak
+>   drm/i915/display: Fix color pipeline enum name leak
+>   drm/colorop: Add destroy helper for colorop objects
+>   drm: Allow driver-managed destruction of colorop objects
+>   drm/amd/display: Hook up colorop destroy helper for plane pipelines
+>   drm/vkms: Hook up colorop destroy helper for plane pipelines
+>   drm/i915/display: Hook up intel_colorop_destroy
+>   drm: Clean up colorop objects during mode_config cleanup
+>   drm/vkms: Remove drm_colorop_pipeline_destroy() from vkms_destroy()
+>   drm/colorop: Use destroy callback for color pipeline teardown
+>   drm/i915/color: Add failure handling in plane color pipeline init
+>
+>  .../amd/display/amdgpu_dm/amdgpu_dm_colorop.c |  31 ++-
+>  .../amd/display/amdgpu_dm/amdgpu_dm_plane.c   |  13 +-
+>  drivers/gpu/drm/drm_colorop.c                 |  49 +++--
+>  drivers/gpu/drm/drm_mode_config.c             |   6 +
+>  .../drm/i915/display/intel_color_pipeline.c   | 179 +++++++++++++-----
+>  drivers/gpu/drm/i915/display/intel_colorop.c  |   6 +
+>  drivers/gpu/drm/i915/display/intel_colorop.h  |   1 +
+>  drivers/gpu/drm/vkms/vkms_colorop.c           |  31 +--
+>  drivers/gpu/drm/vkms/vkms_drv.c               |   1 -
+>  include/drm/drm_colorop.h                     |  32 +++-
+>  10 files changed, 259 insertions(+), 90 deletions(-)
 
 -- 
-2.52.0
-
+Jani Nikula, Intel
