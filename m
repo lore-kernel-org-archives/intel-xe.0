@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3443C44536
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 22:20:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA5CEC44536
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 22:25:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5965F10E1D4;
-	Wed, 21 Jan 2026 22:20:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8600410E1D4;
+	Wed, 21 Jan 2026 22:25:51 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E002D10E07B;
- Wed, 21 Jan 2026 22:20:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8932342993464890524=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE49C10E1D4;
+ Wed, 21 Jan 2026 22:25:50 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/multi=5Fqueue=3A_Pro?=
- =?utf-8?q?tect_priority_against_concurrent_access?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/configfs=3A_Add_sr?=
+ =?utf-8?q?iov=2Eadmin=5Fonly=5Fpf_attribute?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 21 Jan 2026 22:20:21 -0000
-Message-ID: <176903402191.180247.2991691728121792314@a3b018990fe9>
+Date: Wed, 21 Jan 2026 22:25:50 -0000
+Message-ID: <176903435077.180221.8752032944778137785@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260121211933.3354277-2-niranjana.vishwanathapura@intel.com>
-In-Reply-To: <20260121211933.3354277-2-niranjana.vishwanathapura@intel.com>
+References: <20260121214218.2817-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20260121214218.2817-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,50 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8932342993464890524==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/multi_queue: Protect priority against concurrent access
-URL   : https://patchwork.freedesktop.org/series/160447/
-State : success
+Series: drm/xe/configfs: Add sriov.admin_only_pf attribute
+URL   : https://patchwork.freedesktop.org/series/160448/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4431-d081bd6774793057d23d5e7942dbc6dbd1c20bd3_BAT -> xe-pw-160447v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2e8765600edf7c3f0526c54b2285ccb903ff5ea9
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Wed Jan 21 22:42:16 2026 +0100
 
-Summary
--------
+    drm/xe/configfs: Add sriov.admin_only_pf attribute
+    
+    Instead of relying on fixed relation to the display probe flag,
+    add configfs attribute to allow an administrator to configure
+    desired PF operation mode in a more flexible way.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
++ /mt/dim checkpatch ad2a046603cba140214aed34015ed5027441e85a drm-intel
+ee84fcf9ad2b drm/xe: Keep all defaults in single header
+-:16: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#16: 
+new file mode 100644
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 140 lines checked
+29e9a322836f drm/xe/configfs: Use proper notation for local include
+7f6b229df44f drm/xe/configfs: Always return consistent max_vfs value
+38d6f0f29145 drm/xe/pf: Define admin_only as real flag
+2e8765600edf drm/xe/configfs: Add sriov.admin_only_pf attribute
+-:147: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#147: FILE: drivers/gpu/drm/xe/xe_configfs.h:52:
+ }
++static inline bool xe_configfs_admin_only_pf(struct pci_dev *pdev)
 
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-160447v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6519])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4431-d081bd6774793057d23d5e7942dbc6dbd1c20bd3/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160447v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4431-d081bd6774793057d23d5e7942dbc6dbd1c20bd3 -> xe-pw-160447v1
-
-  IGT_8709: 16ce286cac6acc9669a1c758572ae9fceb483c46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4431-d081bd6774793057d23d5e7942dbc6dbd1c20bd3: d081bd6774793057d23d5e7942dbc6dbd1c20bd3
-  xe-pw-160447v1: 160447v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160447v1/index.html
-
---===============8932342993464890524==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 0 warnings, 1 checks, 140 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/multi_queue: Protect priority against concurrent access</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160447/">https://patchwork.freedesktop.org/series/160447/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160447v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160447v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4431-d081bd6774793057d23d5e7942dbc6dbd1c20bd3_BAT -&gt; xe-pw-160447v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-160447v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4431-d081bd6774793057d23d5e7942dbc6dbd1c20bd3/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160447v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4431-d081bd6774793057d23d5e7942dbc6dbd1c20bd3 -&gt; xe-pw-160447v1</li>
-</ul>
-<p>IGT_8709: 16ce286cac6acc9669a1c758572ae9fceb483c46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4431-d081bd6774793057d23d5e7942dbc6dbd1c20bd3: d081bd6774793057d23d5e7942dbc6dbd1c20bd3<br />
-  xe-pw-160447v1: 160447v1</p>
-
-</body>
-</html>
-
---===============8932342993464890524==--
