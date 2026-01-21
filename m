@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12B4FC44500
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 21:42:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3443C44536
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 22:20:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A744810E88B;
-	Wed, 21 Jan 2026 21:42:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VSO6gvv7";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 991BA10E880
- for <intel-xe@lists.freedesktop.org>; Wed, 21 Jan 2026 21:42:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769031758; x=1800567758;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=BElhj0CtkQFogdB6O5jevdIyuRcHzLhWJUFwPyDCf18=;
- b=VSO6gvv7BW07IBHFefyam+1TUv199Ab42m1DZzyB+fkTK3upVI6n6Feu
- BOMJyrHlItqL0rP+kpmMskpD/MdeChEzdhALDot+l1vNn0wQMGgb9lFUO
- iSMUOk4A6MS3aXRK+Jl80BANbOElPZBeUBT9yGbmJWP/Q+wUn0vBDTyhh
- OFB6CgyA2WBJqDecVuZhQzCb7l3UbnqhseeiiNZNzRx329WNhjYdILLuq
- fAsGOY5rhzdiAoS1HhklMe5NNwKSXGWT8TVBzYYw4ebrGufmegqt49D2y
- FFHqtugV1dSkogHq6czeXvoAkbBrv8xoqmXHfr0kVo14MD+2SoFP1lzbD g==;
-X-CSE-ConnectionGUID: 3SdO+5QfSniJoO9kLM6IBQ==
-X-CSE-MsgGUID: KKiw/9+VRQCnucgTi8IIyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="70433945"
-X-IronPort-AV: E=Sophos;i="6.21,244,1763452800"; d="scan'208";a="70433945"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2026 13:42:38 -0800
-X-CSE-ConnectionGUID: 9ipg59/aRFuMUpjWbSY0yQ==
-X-CSE-MsgGUID: 3Y0087fGSiuIqRKlVHngng==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,244,1763452800"; d="scan'208";a="205691632"
-Received: from lalin-p14sg4.amr.corp.intel.com (HELO
- mwajdecz-hp.clients.intel.com) ([10.245.33.19])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2026 13:42:36 -0800
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 5/5] drm/xe/configfs: Add sriov.admin_only_pf attribute
-Date: Wed, 21 Jan 2026 22:42:16 +0100
-Message-ID: <20260121214218.2817-6-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260121214218.2817-1-michal.wajdeczko@intel.com>
-References: <20260121214218.2817-1-michal.wajdeczko@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5965F10E1D4;
+	Wed, 21 Jan 2026 22:20:23 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E002D10E07B;
+ Wed, 21 Jan 2026 22:20:21 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8932342993464890524=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/multi=5Fqueue=3A_Pro?=
+ =?utf-8?q?tect_priority_against_concurrent_access?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 21 Jan 2026 22:20:21 -0000
+Message-ID: <176903402191.180247.2991691728121792314@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260121211933.3354277-2-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20260121211933.3354277-2-niranjana.vishwanathapura@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,188 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Instead of relying on fixed relation to the display probe flag,
-add configfs attribute to allow an administrator to configure
-desired PF operation mode in a more flexible way.
+--===============8932342993464890524==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_configfs.c | 61 ++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_configfs.h |  6 ++++
- drivers/gpu/drm/xe/xe_defaults.h |  1 +
- drivers/gpu/drm/xe/xe_sriov_pf.c |  2 +-
- 4 files changed, 69 insertions(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index a823b0bd4ebb..2596810f4366 100644
---- a/drivers/gpu/drm/xe/xe_configfs.c
-+++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -264,6 +264,7 @@ struct xe_config_group_device {
- 		bool enable_psmi;
- 		struct {
- 			unsigned int max_vfs;
-+			bool admin_only_pf;
- 		} sriov;
- 	} config;
- 
-@@ -282,6 +283,7 @@ static const struct xe_config_device device_defaults = {
- 	.enable_psmi = false,
- 	.sriov = {
- 		.max_vfs = XE_DEFAULT_MAX_VFS,
-+		.admin_only_pf = XE_DEFAULT_ADMIN_ONLY_PF,
- 	},
- };
- 
-@@ -898,10 +900,40 @@ static ssize_t sriov_max_vfs_store(struct config_item *item, const char *page, s
- 	return len;
- }
- 
-+static ssize_t sriov_admin_only_pf_show(struct config_item *item, char *page)
-+{
-+	struct xe_config_group_device *dev = to_xe_config_group_device(item->ci_parent);
-+
-+	guard(mutex)(&dev->lock);
-+
-+	return sprintf(page, "%s\n", str_yes_no(dev->config.sriov.admin_only_pf));
-+}
-+
-+static ssize_t sriov_admin_only_pf_store(struct config_item *item, const char *page, size_t len)
-+{
-+	struct xe_config_group_device *dev = to_xe_config_group_device(item->ci_parent);
-+	bool admin_only_pf;
-+	int ret;
-+
-+	guard(mutex)(&dev->lock);
-+
-+	if (is_bound(dev))
-+		return -EBUSY;
-+
-+	ret = kstrtobool(page, &admin_only_pf);
-+	if (ret)
-+		return ret;
-+
-+	dev->config.sriov.admin_only_pf = admin_only_pf;
-+	return len;
-+}
-+
- CONFIGFS_ATTR(sriov_, max_vfs);
-+CONFIGFS_ATTR(sriov_, admin_only_pf);
- 
- static struct configfs_attribute *xe_config_sriov_attrs[] = {
- 	&sriov_attr_max_vfs,
-+	&sriov_attr_admin_only_pf,
- 	NULL,
- };
- 
-@@ -912,6 +944,8 @@ static bool xe_config_sriov_is_visible(struct config_item *item,
- 
- 	if (attr == &sriov_attr_max_vfs && dev->mode != XE_SRIOV_MODE_PF)
- 		return false;
-+	if (attr == &sriov_attr_admin_only_pf && dev->mode != XE_SRIOV_MODE_PF)
-+		return false;
- 
- 	return true;
- }
-@@ -1065,6 +1099,7 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
- 	PRI_CUSTOM_ATTR("%llx", engines_allowed);
- 	PRI_CUSTOM_ATTR("%d", enable_psmi);
- 	PRI_CUSTOM_ATTR("%d", survivability_mode);
-+	PRI_CUSTOM_ATTR("%u", sriov.admin_only_pf);
- 
- #undef PRI_CUSTOM_ATTR
- }
-@@ -1243,6 +1278,32 @@ u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
- }
- 
- #ifdef CONFIG_PCI_IOV
-+/**
-+ * xe_configfs_admin_only_pf() - Get PF's operational mode.
-+ * @pdev: the &pci_dev device
-+ *
-+ * Find the configfs group that belongs to the PCI device and return a flag
-+ * whether the PF driver should be dedicated for VFs management only.
-+ *
-+ * If configfs group is not present, use driver's default value.
-+ *
-+ * Return: true if PF driver is dedicated for VFs administration only.
-+ */
-+bool xe_configfs_admin_only_pf(struct pci_dev *pdev)
-+{
-+	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
-+	bool admin_only_pf;
-+
-+	if (!dev)
-+		return XE_DEFAULT_ADMIN_ONLY_PF;
-+
-+	scoped_guard(mutex, &dev->lock)
-+		admin_only_pf = dev->config.sriov.admin_only_pf;
-+
-+	config_group_put(&dev->group);
-+
-+	return admin_only_pf;
-+}
- /**
-  * xe_configfs_get_max_vfs() - Get number of VFs that could be managed
-  * @pdev: the &pci_dev device
-diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
-index e0a555b871b3..487531269511 100644
---- a/drivers/gpu/drm/xe/xe_configfs.h
-+++ b/drivers/gpu/drm/xe/xe_configfs.h
-@@ -8,6 +8,7 @@
- #include <linux/limits.h>
- #include <linux/types.h>
- 
-+#include "xe_defaults.h"
- #include "xe_hw_engine_types.h"
- #include "xe_module.h"
- 
-@@ -28,6 +29,7 @@ u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev, enum xe_engine_cla
- 					const u32 **cs);
- #ifdef CONFIG_PCI_IOV
- unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev);
-+bool xe_configfs_admin_only_pf(struct pci_dev *pdev);
- #endif
- #else
- static inline int xe_configfs_init(void) { return 0; }
-@@ -47,6 +49,10 @@ static inline unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev)
- {
- 	return xe_modparam.max_vfs;
- }
-+static inline bool xe_configfs_admin_only_pf(struct pci_dev *pdev)
-+{
-+	return XE_DEFAULT_ADMIN_ONLY_PF;
-+}
- #endif
- #endif
- 
-diff --git a/drivers/gpu/drm/xe/xe_defaults.h b/drivers/gpu/drm/xe/xe_defaults.h
-index 9183d05b96e1..5d5d41d067c5 100644
---- a/drivers/gpu/drm/xe/xe_defaults.h
-+++ b/drivers/gpu/drm/xe/xe_defaults.h
-@@ -18,6 +18,7 @@
- #define XE_DEFAULT_FORCE_PROBE			CONFIG_DRM_XE_FORCE_PROBE
- #define XE_DEFAULT_MAX_VFS			~0
- #define XE_DEFAULT_MAX_VFS_STR			"unlimited"
-+#define XE_DEFAULT_ADMIN_ONLY_PF		false
- #define XE_DEFAULT_WEDGED_MODE			XE_WEDGED_MODE_UPON_CRITICAL_ERROR
- #define XE_DEFAULT_WEDGED_MODE_STR		"upon-critical-error"
- #define XE_DEFAULT_SVM_NOTIFIER_SIZE		512
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.c b/drivers/gpu/drm/xe/xe_sriov_pf.c
-index 919f176a19eb..47a6e0fd66e0 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf.c
-@@ -22,7 +22,7 @@
- 
- static bool wanted_admin_only(struct xe_device *xe)
- {
--	return !xe->info.probe_display;
-+	return xe_configfs_admin_only_pf(to_pci_dev(xe->drm.dev));
- }
- 
- static unsigned int wanted_max_vfs(struct xe_device *xe)
--- 
-2.47.1
+Series: drm/xe/multi_queue: Protect priority against concurrent access
+URL   : https://patchwork.freedesktop.org/series/160447/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4431-d081bd6774793057d23d5e7942dbc6dbd1c20bd3_BAT -> xe-pw-160447v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-160447v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6519])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4431-d081bd6774793057d23d5e7942dbc6dbd1c20bd3/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160447v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+
+
+Build changes
+-------------
+
+  * Linux: xe-4431-d081bd6774793057d23d5e7942dbc6dbd1c20bd3 -> xe-pw-160447v1
+
+  IGT_8709: 16ce286cac6acc9669a1c758572ae9fceb483c46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4431-d081bd6774793057d23d5e7942dbc6dbd1c20bd3: d081bd6774793057d23d5e7942dbc6dbd1c20bd3
+  xe-pw-160447v1: 160447v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160447v1/index.html
+
+--===============8932342993464890524==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/multi_queue: Protect priority against concurrent access</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160447/">https://patchwork.freedesktop.org/series/160447/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160447v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160447v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4431-d081bd6774793057d23d5e7942dbc6dbd1c20bd3_BAT -&gt; xe-pw-160447v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-160447v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4431-d081bd6774793057d23d5e7942dbc6dbd1c20bd3/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160447v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4431-d081bd6774793057d23d5e7942dbc6dbd1c20bd3 -&gt; xe-pw-160447v1</li>
+</ul>
+<p>IGT_8709: 16ce286cac6acc9669a1c758572ae9fceb483c46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4431-d081bd6774793057d23d5e7942dbc6dbd1c20bd3: d081bd6774793057d23d5e7942dbc6dbd1c20bd3<br />
+  xe-pw-160447v1: 160447v1</p>
+
+</body>
+</html>
+
+--===============8932342993464890524==--
