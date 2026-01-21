@@ -4,176 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F77CC44503
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 10:58:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A9E1C44503
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 11:16:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02FDA10E74D;
-	Wed, 21 Jan 2026 10:58:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2F8B10E74D;
+	Wed, 21 Jan 2026 11:16:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ZKcl1Yod";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ao0lJYF4";
 	dkim-atps=neutral
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010053.outbound.protection.outlook.com
- [40.93.198.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8EDD10E1B9;
- Wed, 21 Jan 2026 10:58:01 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=a1oFvLy5CQr5NUvkjT5MhuriZ7bygi5IkNSe/Ou9PZ1rFFLb7/m4O6TWKrP7XelfVYH4sIE/MCpKD4IMJQo1ZXzmYQXuHWzh1N5SVcVmcRSRub4trAzTv4qAcEPPa1jBQxyhc3tel6vVKY7UtKtr8JJqWnD3DsZLko40TFtQYdByje8pC6nmCw292qoiMSmGPoEPBQcWeGGLP1TIjjU5jdCSuB0msgKz7q8urY7X1rRVTvtSkdz3y0F9kFEXD7+iYUwnilq1h8SUupXvOHofcmZxUZkbHnhdp5LyByoYynpDJfx0cXGOCSK5uMzfIgJrIj2XU7xQktE7CxO7FvxmPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NQiQmUMK8nqIXoP3Ke5JWgql+62HnBBJ0VHUnRuGISE=;
- b=WgJ1K6WeKhjfkGZ82Fl/FOqHCOSvXuSKIPWt+CyqdfYR3A/GbSjDZikXvesBdvfzdPb6NWstrthcXooEkqxLMo9Qxl9SvyFZ8ZG1oA/3e1EAUERvm1fvc7ex5bxwsaBfehwmcf0desdp7EezVMhSGmp2D+j1giNqMijSxiwZIFNMbPYIzpvTcP6rd82kqfaGnc73WI8hDWy8KMGpNaGFMKYUyVrVRPHaT0boQA8xAPp46BS/yEiUQKbaKBzC2Tqu8DmSX/PMyW0Ta5jlIBqnhAO51AtPt3TCDrbKNlh+h/qUflxKTC+0iuMyc3OkXf70NgixmWH4+SlK+D4lMytxbg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NQiQmUMK8nqIXoP3Ke5JWgql+62HnBBJ0VHUnRuGISE=;
- b=ZKcl1YodPgYP6sqP8l8BAppdI+8lRvjZpuCjGzUJOpeI5zH18WUj8Rma3ZK51MkjMATno6sjx/TrykcpHpnzmO3fUzxTYoOqXal5KulM/0vwMtb53yaC1gVBAggMZvbD+S4LqULT3Gs0Rj771hYiBAX7j6tACDz3JOnxBwJinMw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by PH7PR12MB5736.namprd12.prod.outlook.com (2603:10b6:510:1e3::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.9; Wed, 21 Jan
- 2026 10:57:57 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::46fb:96f2:7667:7ca5%4]) with mapi id 15.20.9542.008; Wed, 21 Jan 2026
- 10:57:57 +0000
-Message-ID: <693f302b-e859-47a3-ab00-626ced35ee78@amd.com>
-Date: Wed, 21 Jan 2026 11:57:45 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/7] dma-buf: Always build with DMABUF_MOVE_NOTIFY
-To: Leon Romanovsky <leon@kernel.org>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>, Alex Williamson <alex@shazbot.org>,
- Ankit Agrawal <ankita@nvidia.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
- linux-rdma@vger.kernel.org, iommu@lists.linux.dev, kvm@vger.kernel.org
-References: <20260120-dmabuf-revoke-v3-0-b7e0b07b8214@nvidia.com>
- <20260120-dmabuf-revoke-v3-2-b7e0b07b8214@nvidia.com>
- <24c7a7e6-b1bd-4407-b62d-4d9ea4cdeee4@amd.com>
- <20260121101421.GZ13201@unreal>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260121101421.GZ13201@unreal>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0270.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:e8::20) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1F9110E74D
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Jan 2026 11:16:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1768994191; x=1800530191;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MG9XxH5ZBJrul0ukz4XSN9n7PwzKvXnuCGNiYLZ0a3Q=;
+ b=Ao0lJYF401uGB4y+SZjBiWcNBo6bIy2ki4vGPQl/cBN/tQ8rqgdfRhu+
+ AWncURjD9B4Cz0O37ioGw3K1XPC9QEV1XLt/EwvHnOw5ozBdXLr3EVi9Z
+ SkxNTcfukya5Og/wdMW132E0wcZuzMJB0JP4lVoeEUgZyIcJ4d6JDKca4
+ xHt3A26q4BJQ59vvLxE1qbUoYC2LxEahuBgxxY2xBkgdlw+z4CAGCTlay
+ B0s/90YbX3RwJpuMzzQTzlf/6FctT0eq9y+LNuI+7FPNs/HNAoI0rshe0
+ 4d/wAQ8THFeFEys3HYyzLk+rpxuG6j0aDfMrzXFHLH1yKAFevbhG1KzbL A==;
+X-CSE-ConnectionGUID: lv26157GT0SL6/CPW9+5dQ==
+X-CSE-MsgGUID: prwdbYhASkStvwa60Sjf6w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="70312019"
+X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="70312019"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2026 03:16:31 -0800
+X-CSE-ConnectionGUID: rMkcAtX+RUaGd9ipZD8LNw==
+X-CSE-MsgGUID: IXLm2bK/Saymo/1g1hlBQQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="206236583"
+Received: from yadavs-z690i-a-ultra-plus.iind.intel.com ([10.190.216.90])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2026 03:16:30 -0800
+From: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [CI] drm/xe: Use DRM_BUDDY_CONTIGUOUS_ALLOCATION for contiguous
+ allocations
+Date: Wed, 21 Jan 2026 16:44:17 +0530
+Message-ID: <20260121111416.3104399-2-sanjay.kumar.yadav@intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|PH7PR12MB5736:EE_
-X-MS-Office365-Filtering-Correlation-Id: cb2d42ee-b7cd-4742-bbaf-08de58dbef56
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?VVRQM0Rmb0ZYSCt4T0JuOTBVN2l5bDM1K0RJOEJKaE9aSzloOWgyNFVnR2JV?=
- =?utf-8?B?Z29qcCtPMlY1bFlLa2MrcFpKVG1TSTBaTFZLRFRZbzRWNGwveHNyY0xMOUxW?=
- =?utf-8?B?TVlpWGtmVHRHUi9UVko4VGxsY3RYb0FIR0M0Yi9BYjRublVyYVZEV2FoTWNU?=
- =?utf-8?B?V1JpeGF5VmxjVStRcFZvaGJEdFRLaldWVUhXWkx4V0s3OG14VGVjSnFlekxx?=
- =?utf-8?B?OXgyb29JK2NFbTVMVE9pNm5VNERRZ1hLM3lJeklhQ1dwNjk3cno5d0cxTTFV?=
- =?utf-8?B?RXNmMnEwcUR1cFViU1VqYnpnUjZleE9lOWcrNThwa25zbzcwUFJmc1VOSE5B?=
- =?utf-8?B?VkI3bDIrck1yekVhSkhmUjNVbnI5OVIxS085ZXdneUhKN0I5dW9FU2N0Y2Z6?=
- =?utf-8?B?SFFwY2I1NlJGV3RIUDN4SEVLZU9Pa2hDdHMrcHM1YzRNQ3B2M2FJa2tKbXUr?=
- =?utf-8?B?MEE1aW9RZ3gxRFg3VUxBYkFkcnViRmdSVGhpMUt0Q2RSSGtzbUQ4c2NVRGo4?=
- =?utf-8?B?cE9rdlY5R1V2eWo4QUgzZGhEV0x4NG5ZNkF2UnZHRGxOZEViWEdNN3JLZlNw?=
- =?utf-8?B?L3IrelZ5NEpBenpJdlpyUVVkWi9jMStuZTZ5dXlheGlYbDlkZlloS2NhQnlC?=
- =?utf-8?B?ZmtSZWNxeVVIYzZXSmFCVlpjN3RRRU9YaUNyNlZ6eTVSbDdBOVZTbmZKdlNY?=
- =?utf-8?B?UmNMblh2OGJDTml2SFMyY0tMRDBmNTFqQUpvbTczM2dSWnp4WjRBc2lLOVNl?=
- =?utf-8?B?SW5FZ2s5S2pWS3hPWmdSdk9WM3AwdkZZRmQ0UVJnd1JoWkZJVkJ4NW8vcmhL?=
- =?utf-8?B?Q0Jkcy9PdGxzcW02cThrVEJGeVVlN1ZJL0F6VHpxUURsb1RsaUxNUHQyaEJx?=
- =?utf-8?B?YjlEWjFab1JzZUlyaHV0SUFmRE5OSnBYanV2ejBpcTdiQlNyMis5VElpd0FW?=
- =?utf-8?B?OXB1ZEhsc2FzMCs0a0JJUEdGY1hONTEwaEYxdVVhWmlRbk53MnhMd0FmUHdX?=
- =?utf-8?B?TzNLM0NaVml2bGpZSGIwbzBkY05aYkV3Rk82NFEwTDZBMzJieGZ5UmJZNVIr?=
- =?utf-8?B?S290T1hESEs5S1pLL2p0cXhENHNreUl1SG93NitqdUZKbzRLVmpGMGtycmV4?=
- =?utf-8?B?bHhXcFExSFpZbitURkt4Q0xwcDJNNGVXbVFmTDNEVFBBRmtoTnFUTDJXUEFx?=
- =?utf-8?B?d0trSFpYWnRRaU11Y0dURHJFUGtwL3R3TFJUazBIZHY2SGI3TEk5ZW1lLzhp?=
- =?utf-8?B?NDdmdjE1V0lIc0ZtZGwzY2plK1ordWt3RmpVTklrbE42WXdYeFJMSnJIbFlz?=
- =?utf-8?B?TDNGc1hxbTJGYkFQRUFKemdxVEdmbzVYWERIQWFCZERwNEFjN0ExVlk5NG8z?=
- =?utf-8?B?eWJvNjkva01hR2xqL2lWUHdsUTFmV1hqcWgxUFV6cGNYR0pUMFVxWkcrWk9U?=
- =?utf-8?B?UTFJT0ZYN09iYmR6ZnpsdStXenpVcFR4aTNzTjF5dVhyTTZoek56MFgyQm1Y?=
- =?utf-8?B?ZjVtWHRBVnJqZ21BSmpTOUxldUMwUmZOSHpxTEpiZUtXMmxPT1ZNRmd1Y3p0?=
- =?utf-8?B?YUNHSUhPSkpBNWNtbnl3Q1hNa2JOajJpbFc1c2svRllIaEFhb0I5eW4vcFVP?=
- =?utf-8?B?Y0JBRjJ1bUJwaXIxVVlXTlRGYk5RZDFlZmorbXVBSHYvdmtITkZQMStHTERD?=
- =?utf-8?B?SFlTamNuZUsvdTU0dUQraGZ3WFhocUNnODhWOS9wWm40bFY1WG5jMFlVU2xo?=
- =?utf-8?B?amdWRVFsMVdFc1lLNlBPbUVPZCtwQk1kOUtvaEFBS3VoZGZiaUdqa1Z3enZv?=
- =?utf-8?B?S2ZMSlR6YUFPUUpYWkphS3JlZERiYk4wU09NNzltL2sxWmxJRlhJVnR6Z2lO?=
- =?utf-8?B?SnFLMUtWTCswejlxSkR5SzRmb3dCb1dlc2dlODlOSlB5MXJHWVJySVJvRDhB?=
- =?utf-8?B?T2pkeE5QU1pEY201eWJPelVEV0VOemN4YUFPZlFCZW82QnRWTjJMdVRpMzRm?=
- =?utf-8?B?aytBL1NqU051dUMrb3ZFdldBTmRoYVlnYnYxN3NuQngxMnZmcmVLK1o2dHdS?=
- =?utf-8?B?UXo3eWF0c2VEN084aERaOVJXSVRZSmMzY2NDYmJqY2VJSnBmVnRzZEcvTkVi?=
- =?utf-8?Q?lA0U=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V2l0cTEvUmI4eFBRWXVudk5mbUZFOVM3dTFyRVI5bU4xNS9LRFpjT25lNC9l?=
- =?utf-8?B?Tng4N3Y5Snc1aXZlbzdEU2ltamxSQkRWN1d3Z3lGY0dSaTAyTlIxVE56Q09E?=
- =?utf-8?B?K2tIUWY5SFUxSEZqSllZMnZyZk9yUjRzY01RT3RDLytpZk02UWFOQ1RCR0lK?=
- =?utf-8?B?SU5CUjRYVGpURVhwL28xaWt3MS9UenlEemc5NEpTQVhudEd1VHRmelRDUlNv?=
- =?utf-8?B?cnJzWmpoeVN6dlJQNjB3RHJLakdQSW5Xeno5dnJKTk0xVHhncGFYZjV6S2JG?=
- =?utf-8?B?SjUrNUZtTEFGMEVlQ0ZDWTVMaWs4U1JlbSs2bkFaSzRGbnFwMGFwWlZsOG94?=
- =?utf-8?B?cGtQbEJJNnJmS1hOck8ySTdaeExKL2FEa21XL2V1UHhJbDRsM081d1l0dWVl?=
- =?utf-8?B?YWFjamFlK0ZQc3pnaUhnenZGQnB4RVl2UHhoMVVnZDJGUUUwM1ArSjIrU2Nx?=
- =?utf-8?B?dTFHaEt3Z1VPdU5ibkR5RWMxVC9ieXMxRWc0TGJVZlFxcnZFaW1SZVVXdkx1?=
- =?utf-8?B?R3g2UmtwZTZPbmI2L0s2cGdBQ3NUUDkvc2dIaGpmMnlUajJSS2R6T2RLc3F6?=
- =?utf-8?B?MHljWm1DNFpSSDNWY1RseSthY1lycDNUSGFUNDhSWXB6MmtWWU1YeE5PWGIy?=
- =?utf-8?B?SWNURlN0SncvU1RLbFZ6eHZzU05VOXhHU3lGVmhwR3ExV1FlTHM1eXdzV05G?=
- =?utf-8?B?dXBMOTRXWW11L3hSNEFrUEx0UnNlTzVLdE9OK3h2Mld5bFJ0aWhKYm5McTNo?=
- =?utf-8?B?cTdFUjJ0SEhBNGNKZ3o4aTY0cHFsUEZ1NVpzdXNQSFVmTFQvZnFETkVTMXc3?=
- =?utf-8?B?bS9XRllYUXF0SC90K0lHSmdTWFJSb1FrZ3E1QmVhZUZsdDZaaytmMjhHeW50?=
- =?utf-8?B?YTBVZTVPQWdyc2NKamF5VE4xcE00V1gzcE5UUVVzZmdVRzV4ZXFZUXQydkdw?=
- =?utf-8?B?RWl2WU1CVHZ6Y2VoS0Y3RkhjWGJLVHJEUXhGS05VV3VlZTUwdXZYUzQ4QWtl?=
- =?utf-8?B?bGVEalZpTHdCNDh4emNCMXlnbFoydllIQUtWVFhQbkF4d3BJVlE2a28wRFFo?=
- =?utf-8?B?eSsyWVpVZWlPSkFOUGxjQWF2cXBiQVpqQmFNbWMvalNiMCt3THUyS0w4aWI0?=
- =?utf-8?B?T1NKcXVLTE1vcHgwb2psa2VtYWh6NFBsWENxWVFuZFAyUi9Eb1QwTHB6SEtX?=
- =?utf-8?B?SHZWVTROV0h2ZnFPLzdOdWFtbFIxZUlCWlRVZUNLbjMrV01LN0tNVi90dGFK?=
- =?utf-8?B?SHBCeUhpWEF4OGZ3Z1BsVnYvTVovcnhxMVNFQWlReW91MFRyOXFMaGkrMUor?=
- =?utf-8?B?U0s2UGdsaTNGbVIycEdHa3hKNmVSbzZnYjJ6YXR2QTZhQ0lGcVhYZnVETkg4?=
- =?utf-8?B?QnNNbU9JOVpJdld6MGxIdmgvVHhCNmVPUWE1enk0bTkwWDd0NEE5UFFoNTdW?=
- =?utf-8?B?OEJJZnpuM2VZaEpkdjA2SDBhM1g2cWZROWNtUmk1cXB0a1p2VzkwSk15akd4?=
- =?utf-8?B?UmxTOVM0RjExMERkSE1PRGFmUkNlVXYrVGFWZm50OFl3TXJGaWlEa1UydUZm?=
- =?utf-8?B?M1VXMHR3Q3l1TUNWU1Y3Q1NZOUtjc092NXdqc3A0L3c3WFVuTGR3TWFtaWU3?=
- =?utf-8?B?eFRSN3JMVFhQQ2U1MG16Q2o5aFQzdFZRcFFsK1pPbmxFMmlmOTNJdE9pUUtl?=
- =?utf-8?B?LzJCUkNmMUEvUXp6R2Z6QUJCSTYxalFQcndBSm04VVcyMWF5SHYyMmFzNStv?=
- =?utf-8?B?N3JqaGQyRkhjalQycnQyQ2toMjE2SElrOXNPWGdUUHNMQk44K00vY09UTElD?=
- =?utf-8?B?d0MxamlkS2FaNjBCcXI3V0VGZ3pGZzExeC9VYkJmLzgwVTcwa24wdFRlZnJC?=
- =?utf-8?B?WkFaV2V6R3lCSVFmRjhDVmI0UU5uOU1CU2FXWmNoT3JiSmhCVjF2UFd0WW1W?=
- =?utf-8?B?RlB4WVFkMDRublArSUhHaUlnSVdOSEsxQ24zL28yZDUxU2prM25QbkxHRXd3?=
- =?utf-8?B?RmZKUHNsQlZQcGFuMXpqdG02NE1EcTllYmZkcncwUGVuTEJ3eEV5cjYxdytF?=
- =?utf-8?B?dThNWG5TbFlqWFVLaS9QUERoTmZpU1o5bGh4TGFyUFY4RHI2VVJONjhCZDNj?=
- =?utf-8?B?K1hudkpQdCtVUi9UcTlUT3U5L2lyM1E0ZTBsQUtqaUx2S3lPdFVjUGY0MEo1?=
- =?utf-8?B?ZTVEcnFJZElrZTlzampoUWdyMzdPMVphaUdCZTFFV0JlWWtacFZsOHYzQm91?=
- =?utf-8?B?NEtLOHZjMjdaYTVkbVBIaUlRSERKT2xlaytxazh4ZFZnYVJ4Z3Z0ZExDelQ5?=
- =?utf-8?Q?xqM9jk9FzzNvUY30lH?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cb2d42ee-b7cd-4742-bbaf-08de58dbef56
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Jan 2026 10:57:57.0919 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: w1HWx8A9tVnNr+Ul2VeoKBasGwsWi3/SYoJOvwFDzfJSZnRKLIMF+a57bLWnr+p9
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5736
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -188,82 +64,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 1/21/26 11:14, Leon Romanovsky wrote:
-> On Wed, Jan 21, 2026 at 09:55:38AM +0100, Christian König wrote:
->> On 1/20/26 15:07, Leon Romanovsky wrote:
->>> From: Leon Romanovsky <leonro@nvidia.com>
->>>
->>> DMABUF_MOVE_NOTIFY was introduced in 2018 and has been marked as
->>> experimental and disabled by default ever since. Six years later,
->>> all new importers implement this callback.
->>>
->>> It is therefore reasonable to drop CONFIG_DMABUF_MOVE_NOTIFY and
->>> always build DMABUF with support for it enabled.
->>>
->>> Suggested-by: Christian König <christian.koenig@amd.com>
->>> Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
->>> ---
->>>  drivers/dma-buf/Kconfig                     | 12 ------------
->>>  drivers/dma-buf/dma-buf.c                   | 12 ++----------
->>>  drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c | 10 +++-------
->>>  drivers/gpu/drm/amd/amdkfd/Kconfig          |  2 +-
->>>  drivers/gpu/drm/xe/tests/xe_dma_buf.c       |  3 +--
->>>  drivers/gpu/drm/xe/xe_dma_buf.c             | 12 ++++--------
->>>  6 files changed, 11 insertions(+), 40 deletions(-)
->>>
->>> diff --git a/drivers/dma-buf/Kconfig b/drivers/dma-buf/Kconfig
->>> index b46eb8a552d7..84d5e9b24e20 100644
->>> --- a/drivers/dma-buf/Kconfig
->>> +++ b/drivers/dma-buf/Kconfig
->>> @@ -40,18 +40,6 @@ config UDMABUF
->>>  	  A driver to let userspace turn memfd regions into dma-bufs.
->>>  	  Qemu can use this to create host dmabufs for guest framebuffers.
->>>  
->>> -config DMABUF_MOVE_NOTIFY
->>> -	bool "Move notify between drivers (EXPERIMENTAL)"
->>> -	default n
->>> -	depends on DMA_SHARED_BUFFER
->>> -	help
->>> -	  Don't pin buffers if the dynamic DMA-buf interface is available on
->>> -	  both the exporter as well as the importer. This fixes a security
->>> -	  problem where userspace is able to pin unrestricted amounts of memory
->>> -	  through DMA-buf.
->>> -	  This is marked experimental because we don't yet have a consistent
->>> -	  execution context and memory management between drivers.
->>> -
->>>  config DMABUF_DEBUG
->>>  	bool "DMA-BUF debug checks"
->>>  	depends on DMA_SHARED_BUFFER
->>> diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
->>> index 59cc647bf40e..cd3b60ce4863 100644
->>> --- a/drivers/dma-buf/dma-buf.c
->>> +++ b/drivers/dma-buf/dma-buf.c
->>> @@ -837,18 +837,10 @@ static void mangle_sg_table(struct sg_table *sg_table)
->>>  
->>>  }
->>>  
->>> -static inline bool
->>> -dma_buf_attachment_is_dynamic(struct dma_buf_attachment *attach)
->>
->> I would rather like to keep the wrapper and even add some explanation what it means when true is returned.
-> 
-> We have different opinion here. I don't like single line functions which
-> are called only twice. I'll keep this function to ensure progress the
-> series.
+The VRAM/stolen memory managers do not currently set
+DRM_BUDDY_CONTIGUOUS_ALLOCATION for contiguous allocations. Enabling
+this flag activates the buddy allocator's try_harder path, which helps
+handle fragmented memory scenarios.
 
-Yeah, I agree with that but I like to have the opportunity to document things.
+This enables the __alloc_contig_try_harder fallback in the buddy
+allocator, allowing contiguous allocation requests to succeed even when
+memory is fragmented by combining allocations from both(RHS and LHS)
+sides of a large free block.
 
-Especially since the meaning changed over time.
+v2: (Matt B)
+- Remove redundant logic for rounding allocation size and trimming when
+  TTM_PL_FLAG_CONTIGUOUS is set, since drm_buddy now handles this when
+  DRM_BUDDY_CONTIGUOUS_ALLOCATION is enabled
 
-Thanks,
-Christian.
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6713
+Suggested-by: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+---
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 16 +++-------------
+ 1 file changed, 3 insertions(+), 13 deletions(-)
 
-> 
-> Thanks
-> 
->>
->> Apart from that looks good to me.
->>
->> Regards,
->> Christian.
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 6553a19f7cf2..d6aa61e55f4d 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -81,6 +81,9 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+ 	if (place->flags & TTM_PL_FLAG_TOPDOWN)
+ 		vres->flags |= DRM_BUDDY_TOPDOWN_ALLOCATION;
+ 
++	if (place->flags & TTM_PL_FLAG_CONTIGUOUS)
++		vres->flags |= DRM_BUDDY_CONTIGUOUS_ALLOCATION;
++
+ 	if (place->fpfn || lpfn != man->size >> PAGE_SHIFT)
+ 		vres->flags |= DRM_BUDDY_RANGE_ALLOCATION;
+ 
+@@ -110,25 +113,12 @@ static int xe_ttm_vram_mgr_new(struct ttm_resource_manager *man,
+ 		goto error_unlock;
+ 	}
+ 
+-	if (place->fpfn + (size >> PAGE_SHIFT) != lpfn &&
+-	    place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+-		size = roundup_pow_of_two(size);
+-		min_page_size = size;
+-
+-		lpfn = max_t(unsigned long, place->fpfn + (size >> PAGE_SHIFT), lpfn);
+-	}
+-
+ 	err = drm_buddy_alloc_blocks(mm, (u64)place->fpfn << PAGE_SHIFT,
+ 				     (u64)lpfn << PAGE_SHIFT, size,
+ 				     min_page_size, &vres->blocks, vres->flags);
+ 	if (err)
+ 		goto error_unlock;
+ 
+-	if (place->flags & TTM_PL_FLAG_CONTIGUOUS) {
+-		if (!drm_buddy_block_trim(mm, NULL, vres->base.size, &vres->blocks))
+-			size = vres->base.size;
+-	}
+-
+ 	if (lpfn <= mgr->visible_size >> PAGE_SHIFT) {
+ 		vres->used_visible_size = size;
+ 	} else {
+-- 
+2.52.0
 
