@@ -4,75 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B02BD262B5
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 14:31:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A98A4CA5FD7
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 14:35:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3207F10E7CA;
-	Wed, 21 Jan 2026 14:31:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BBB010E7CB;
+	Wed, 21 Jan 2026 14:35:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KqhQkB0H";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CoBcO8l/";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8166510E598;
- Wed, 21 Jan 2026 14:31:55 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 88F98600AD;
- Wed, 21 Jan 2026 14:31:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2629C4CEF1;
- Wed, 21 Jan 2026 14:31:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1769005914;
- bh=PeR5g4KP8x/lJhIeGe2dDKX2Op8R7HIZRzZ9ayHsJco=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=KqhQkB0HZ1m+DKmEb4iOkwxeDGvAPNkuGn61XTxaCqhuL9qVbUQfxtrTwPujoAdVb
- VrWiUmPtEeUvE9nGyKANKxMoUIMS0e5nHQ31T+VEQXUu37yer/5Hzj5XuurNOilyo2
- +YYGfaIa3Dbj0S4Qd6g3VaXA17/1wzg6rpzqnlrG4nsV8pQRcJ1G7Oj+N6BLxO/rpy
- nVcDdV+4eAHtYRPFNU2TGJOODjbr6a9NoxnTowpmmzFAyZbPWVMuabJ0YV3hjf1iNz
- 8aDY8IqPHmmGAsQTtHkqpxZzOBU4w+H2paxEDwGUBatWmmBD4eAn1X2NjKOH85/uBz
- eYXBSWhDgDLeQ==
-Date: Wed, 21 Jan 2026 16:31:50 +0200
-From: Leon Romanovsky <leon@kernel.org>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: Jason Gunthorpe <jgg@ziepe.ca>, Sumit Semwal <sumit.semwal@linaro.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: Re: [PATCH v3 3/7] dma-buf: Document RDMA non-ODP
- invalidate_mapping() special case
-Message-ID: <20260121143150.GD13201@unreal>
-References: <20260120-dmabuf-revoke-v3-0-b7e0b07b8214@nvidia.com>
- <20260120-dmabuf-revoke-v3-3-b7e0b07b8214@nvidia.com>
- <4fe42e7e-846c-4aae-8274-3e9a5e7f9a6d@amd.com>
- <20260121091423.GY13201@unreal>
- <7cfe0495-f654-4f9d-8194-fa5717eeafff@amd.com>
- <20260121131852.GX961572@ziepe.ca>
- <8a8ba092-6cfa-41d2-8137-e5e9d917e914@amd.com>
- <20260121135948.GB961572@ziepe.ca>
- <8689345b-241a-47f4-8e9a-61cde285bf8b@amd.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86F8010E7CB
+ for <intel-xe@lists.freedesktop.org>; Wed, 21 Jan 2026 14:35:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769006146; x=1800542146;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=lpvl2MnPG3U1z5NNHo6jZjE5r6LRnQfeZjsWQQJFFx8=;
+ b=CoBcO8l/j19kZlorHqn18NcTax2gp+b3JwjqHDaFF7ibHZnG9oe3dmGZ
+ erEmJzWgt0XRFB+tjyNJ6hb9wIRQRolX3Mpd4TrejDOMD5TS2+gjJkYqK
+ R/piv+X6MaEPzIr1RVq9JXFVqPadPpHJH54hCFNnrKapFr1NCy2zKG1yF
+ TSAHswY6zKvNrPHVt4K9VroddtU+8EQAZw1nSxOWcStPzEbWxv8DHKk7+
+ QB9LdP4GuLXHDki7fFwj+HpqahcZJLTmgOpDAWfoTwW7lFUFRmMHFGmzq
+ rD8xJGSjnP6B9BwRdOBfkLzw8IzEQyBbzgTiC3SvaCSRyIjsinjfh7eIC g==;
+X-CSE-ConnectionGUID: 79MswE8URV6n+ltpYIVUaQ==
+X-CSE-MsgGUID: C0nvFnPpQ46bM3T9iLgoIw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="87645212"
+X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="87645212"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2026 06:35:46 -0800
+X-CSE-ConnectionGUID: CzQnl8aZRpmqBwqqrVf94w==
+X-CSE-MsgGUID: nbQnazZwRFa30RGyuWqcBA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="237706640"
+Received: from bvivekan-desk.iind.intel.com ([10.190.238.63])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2026 06:35:43 -0800
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Subject: [PATCH] drm/xe/xe3p: Disable GuC Dynamic ICS for Xe3p
+Date: Wed, 21 Jan 2026 20:07:33 +0530
+Message-ID: <20260121143732.523081-2-balasubramani.vivekanandan@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <8689345b-241a-47f4-8e9a-61cde285bf8b@amd.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,63 +66,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jan 21, 2026 at 03:15:46PM +0100, Christian König wrote:
-> On 1/21/26 14:59, Jason Gunthorpe wrote:
-> > On Wed, Jan 21, 2026 at 02:52:53PM +0100, Christian König wrote:
-> >> On 1/21/26 14:18, Jason Gunthorpe wrote:
-> >>> On Wed, Jan 21, 2026 at 10:17:16AM +0100, Christian König wrote:
-> >>>> The whole idea is to make invalidate_mappings truly optional.
-> >>>
-> >>> But it's not really optional! It's absence means we are ignoring UAF
-> >>> security issues when the exporters do their move_notify() and nothing
-> >>> happens.
-> >>
-> >> No that is unproblematic.
-> >>
-> >> See the invalidate_mappings callback just tells the importer that
-> >> the mapping in question can't be relied on any more.
-> >>
-> >> But the mapping is truly freed only by the importer calling
-> >> dma_buf_unmap_attachment().
-> >>
-> >> In other words the invalidate_mappings give the signal to the
-> >> importer to disable all operations and the
-> >> dma_buf_unmap_attachment() is the signal from the importer that the
-> >> housekeeping structures can be freed and the underlying address
-> >> space or backing object re-used.
-> > 
-> > I see
-> > 
-> > Can we document this please, I haven't seen this scheme described
-> > anyhwere.
-> > 
-> > And let's clarify what I said in my other email that this new revoke
-> > semantic is not just a signal to maybe someday unmap but a hard
-> > barrier that it must be done once the fences complete, similar to
-> > non-pinned importers.
-> 
-> Well, I would avoid that semantics.
-> 
-> Even when the exporter requests the mapping to be invalidated it does not mean that the mapping can go away immediately.
-> 
-> It's fine when accesses initiated after an invalidation and then waiting for fences go into nirvana and have undefined results, but they should not trigger PCI AER, warnings from the IOMMU or even worse end up in some MMIO BAR of a newly attached devices.
-> 
-> So if the exporter wants to be 100% sure that nobody is using the mapping any more then it needs to wait for the importer to call dma_buf_unmap_attachment().
-> 
-> > The cover letter should be clarified with this understanding too.
-> 
-> Yeah, completely agree. We really need to flash out that semantics in the documentation.
+From: Gustavo Sousa <gustavo.sousa@intel.com>
 
-Someone knowledgeable needs to document this properly, either in the code  
-or in the official documentation. A cover letter is not the right place for  
-subtle design decisions.
+The Dynamic Inhibit Context Switch (ICS) feature is not currently
+supported on Xe3p due to conflict with multi-queue feature on the GuC
+side. Disable ICS so multi-queue can be introduced for Xe3p platforms.
 
-Thanks
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-> 
-> Regards,
-> Christian.
-> 
-> > 
-> > Jason
-> 
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 44360437beeb..e350ded92544 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -608,6 +608,13 @@ static bool supports_dynamic_ics(struct xe_guc *guc)
+ 	if (xe_gt_is_media_type(gt) || gt->ccs_mode > 1)
+ 		return false;
+ 
++	/*
++	 * The feature is currently not compatible with platforms with support
++	 * to multi-queue, even if the feature is not enabled/used.
++	 */
++	if (GRAPHICS_VER(xe) >= 35)
++		return false;
++
+ 	/*
+ 	 * Dynamic ICS requires GuC v70.40.1, which maps to compatibility
+ 	 * version v1.18.4.
+-- 
+2.43.0
+
