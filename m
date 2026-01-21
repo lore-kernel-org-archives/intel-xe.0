@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 822BEC44503
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 10:38:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D29DBC44503
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 10:39:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39CAB10E74A;
-	Wed, 21 Jan 2026 10:38:43 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF8A310E74B;
- Wed, 21 Jan 2026 10:38:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8681595532547160267=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95E0310E74C;
+	Wed, 21 Jan 2026 10:39:25 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="gMnx02Z5";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="HJlrt+gO";
+	dkim-atps=neutral
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C2C610E74A;
+ Wed, 21 Jan 2026 10:39:24 +0000 (UTC)
+Date: Wed, 21 Jan 2026 11:39:21 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020; t=1768991962;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=LuScnkTRBXXAwIA4U4HYbmGJQye4khtaiAYe5oV0p6o=;
+ b=gMnx02Z58ThkRv3eA+BrfCcMv9QBQPvFX4K7ToswAovbQ355uw1CwypkN77v3r0KvgTwMm
+ TZmPcmZ4bKfWCGKvfIul48PSTEHzRKw5klz6SX++QvdZ5yiaOlBHKsDnyu3zrLSnpeZp0o
+ SRl0aKB5jZnOplgXhmGAS6LmbSn15a5RsXC1aGC+fAMoEqfDUbWJPd8F+niH87VtMOXL6V
+ RqIhiMSC0Ux+5fR/AI3oFJf4k0kcY2U7S5kcTo6mH1Peep9uOCNtIjOfDzG2Totp9OBNNO
+ jIn+PeV6LEKVOdUr8NpJX0nImUA8N7Fqsf0RvRGiPQWJlmL99pg3Uqd+Jc5t4Q==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+ s=2020e; t=1768991962;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=LuScnkTRBXXAwIA4U4HYbmGJQye4khtaiAYe5oV0p6o=;
+ b=HJlrt+gO7iq91Ckn0ORVvTw1fL8FlhmlVRDxE2RdCbZ5kKlT77AObykEn5hCzQeDGdMVOM
+ IO+Njc/HN0Im3LAw==
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+To: Hans de Goede <hansg@kernel.org>
+Cc: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
+ "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>,
+ "Saarinen, Jani" <jani.saarinen@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ linux-kernel@vger.kernel.org, linux-rt-devel@lists.linux.dev,
+ sfr@canb.auug.org.au, ilpo.jarvinen@linux.intel.com,
+ regressions@leemhuis.info
+Subject: Re: REGRESSION on linux-next (next-20260115)
+Message-ID: <20260121103921.q-r7pAzL@linutronix.de>
+References: <555f1c56-0f74-41bf-8bd2-6217e0aab0c6@intel.com>
+ <20260121075348.5MyqcHFB@linutronix.de>
+ <89de03a5-e5da-4d2e-8547-8e54ad73b324@intel.com>
+ <20260121090154.Lpaj9hrr@linutronix.de>
+ <1a68f6d5-6541-4b04-8628-397001cb1e55@kernel.org>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm=2C_drm/xe=3A_Fix_xe_SVM?=
- =?utf-8?q?_configs_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 21 Jan 2026 10:38:41 -0000
-Message-ID: <176899192199.176277.3099875987355713385@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260121091048.41371-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20260121091048.41371-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1a68f6d5-6541-4b04-8628-397001cb1e55@kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +68,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8681595532547160267==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 2026-01-21 11:20:53 [+0100], Hans de Goede wrote:
+> Hi,
+Hi,
 
-== Series Details ==
+> Right, so as the commit message of commit 8f812373d195 ("platform/x86: intel:
+> int0002_vgpio: Pass IRQF_ONESHOT to request_irq()") explains
+> the int0002_vgpio driver *must* use the same flags to request
+> the IRQ as the ACPI core does, which is why it passes IRQF_ONESHOT
+> even though it does not have a threaded handler.
+> 
+> This worked fine until commit aef30c8d569c ("genirq: Warn about using
+> IRQF_ONESHOT without a threaded handler") as Chaitanya's bisect
+> pointed out.
 
-Series: drm, drm/xe: Fix xe SVM configs (rev3)
-URL   : https://patchwork.freedesktop.org/series/160350/
-State : success
+Avoiding forced-threading on the int0002_vgpio handler is actually a
+problem on PREEMPT_RT. But yeah no complains from the stack.
 
-== Summary ==
+> Sebastian as I agree that switching to IRQF_COND_ONESHOT on
+> the int0002_vgpio.c side is a good way to fix this.
+> 
+> But If I'm reading your proposed changes correct then your suggestion
+> is to drop IRQF_ONESHOT from int0002_vgpio.c and then instead of
+> replacing it with IRQF_COND_ONESHOT you want to always pass
+> IRQF_COND_ONESHOT when using the non-threaded request_irq functions?
 
-CI Bug Log - changes from xe-4424-b7c3274a57563fc1652889043a6e8d08473e5f31_BAT -> xe-pw-160350v3_BAT
-====================================================
+Correct.
 
-Summary
--------
+> I'm not objecting against this, just making sure I understand
+> correctly.
+> 
+> Note in that case you should also add this to the non devm_
+> prefixed version.
 
-  **SUCCESS**
+You mean request_irq() as it has been done in commit
+   c37927a203fa2 ("genirq: Set IRQF_COND_ONESHOT in request_irq()")
 
-  No regressions found.
+or did I miss yet another wrapper?
 
-  
+> Regards,
+> 
+> Hans
 
-Participating hosts (12 -> 11)
-------------------------------
-
-  Missing    (1): bat-bmg-3 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-160350v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6519]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4424-b7c3274a57563fc1652889043a6e8d08473e5f31/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160350v3/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4424-b7c3274a57563fc1652889043a6e8d08473e5f31 -> xe-pw-160350v3
-
-  IGT_8709: 16ce286cac6acc9669a1c758572ae9fceb483c46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4424-b7c3274a57563fc1652889043a6e8d08473e5f31: b7c3274a57563fc1652889043a6e8d08473e5f31
-  xe-pw-160350v3: 160350v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160350v3/index.html
-
---===============8681595532547160267==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm, drm/xe: Fix xe SVM configs (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160350/">https://patchwork.freedesktop.org/series/160350/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160350v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160350v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4424-b7c3274a57563fc1652889043a6e8d08473e5f31_BAT -&gt; xe-pw-160350v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 11)</h2>
-<p>Missing    (1): bat-bmg-3 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-160350v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4424-b7c3274a57563fc1652889043a6e8d08473e5f31/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160350v3/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4424-b7c3274a57563fc1652889043a6e8d08473e5f31 -&gt; xe-pw-160350v3</li>
-</ul>
-<p>IGT_8709: 16ce286cac6acc9669a1c758572ae9fceb483c46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4424-b7c3274a57563fc1652889043a6e8d08473e5f31: b7c3274a57563fc1652889043a6e8d08473e5f31<br />
-  xe-pw-160350v3: 160350v3</p>
-
-</body>
-</html>
-
---===============8681595532547160267==--
+Sebastian
