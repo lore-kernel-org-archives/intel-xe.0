@@ -4,27 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D117C44508
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 17:20:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAB38C44506
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 17:20:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E2F710E858;
-	Wed, 21 Jan 2026 17:20:00 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A6C010E853;
- Wed, 21 Jan 2026 17:19:59 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D10610E853;
+	Wed, 21 Jan 2026 17:20:05 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OByhvrR9";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C40010E853;
+ Wed, 21 Jan 2026 17:20:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769016003; x=1800552003;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=RT+nH3hDNGsYT1UnSKOcCfuQw0yC7WxJ2GBu/Q7kfIQ=;
+ b=OByhvrR9BS+odKQPC3moDj4qQ62H1AwUkkArD/3pOrq26l7O1JgG2aYE
+ itzqkmvSUC15G94YVhZJ5UytsU6Wws32U/nROzmn2Ir3pAQk2Hvjtqy+N
+ P5sTpv5NS69eSvqXTDYB0EKoxuX2Sm8Ed4Gxs9X5siIOghJM34ucWCkru
+ nt++qcCgvxYo0RoEhAeLlJjZ2N6mkmwoBwCipOIkYRZD8w+D7LjsU5Ryr
+ eYLlrU/sYGFziiVDiHx10C0K4jiWHzAU3RLW2CLuvdtfJtKftN8G4gbCn
+ x9gZGNElhcJoU59gyNbIUy7nyVBeBdnW02t425csMW+GYvBZGyV4f2aJ5 g==;
+X-CSE-ConnectionGUID: ZskCy0R/QOu07mD9oPLrBQ==
+X-CSE-MsgGUID: ewRYWdQ3RkChabpbzarVwQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="70299113"
+X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="70299113"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2026 09:20:03 -0800
+X-CSE-ConnectionGUID: ulsi36SFTT+R+bfSrWKahw==
+X-CSE-MsgGUID: stBHJcLBQUqI6PHpAXWiSA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="211340559"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO [10.245.245.122])
+ ([10.245.245.122])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Jan 2026 09:20:01 -0800
+Message-ID: <ad0efbfc-b7b3-4dc8-9499-8a7accd6c5e4@intel.com>
+Date: Wed, 21 Jan 2026 17:19:59 +0000
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_All_p?=
- =?utf-8?q?atches_to_make_PREEMPT=5FRT_work_on_i915_+_xe=2E_=28rev10=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 21 Jan 2026 17:19:59 -0000
-Message-ID: <176901599963.179413.12563900587090797445@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260121135318.651622-1-dev@lankhorst.se>
-In-Reply-To: <20260121135318.651622-1-dev@lankhorst.se>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] drm, drm/xe: Fix xe userptr in the absence of
+ CONFIG_DEVICE_PRIVATE
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
+ stable@vger.kernel.org
+References: <20260121091048.41371-1-thomas.hellstrom@linux.intel.com>
+ <20260121091048.41371-2-thomas.hellstrom@linux.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20260121091048.41371-2-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,175 +72,154 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 21/01/2026 09:10, Thomas Hellström wrote:
+> CONFIG_DEVICE_PRIVATE is not selected by default by some distros,
+> for example Fedora, and that leads to a regression in the xe driver
+> since userptr support gets compiled out.
+> 
+> It turns out that DRM_GPUSVM, which is needed for xe userptr support
+> compiles also without CONFIG_DEVICE_PRIVATE, but doesn't compile
+> without CONFIG_ZONE_DEVICE.
+> Exclude the drm_pagemap files from compilation with !CONFIG_ZONE_DEVICE,
+> and remove the CONFIG_DEVICE_PRIVATE dependency from CONFIG_DRM_GPUSVM and
+> the xe driver's selection of it, re-enabling xe userptr for those configs.
+> 
+> v2:
+> - Don't compile the drm_pagemap files unless CONFIG_ZONE_DEVICE is set.
+> - Adjust the drm_pagemap.h header accordingly.
+> 
+> Fixes: 9e9787414882 ("drm/xe/userptr: replace xe_hmm with gpusvm")
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: <stable@vger.kernel.org> # v6.18+
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-Series: drm/i915/display: All patches to make PREEMPT_RT work on i915 + xe. (rev10)
-URL   : https://patchwork.freedesktop.org/series/159034/
-State : warning
+Let me double check that while it does at least build it is also 
+functional without DRM_XE_GPUSVM. I think it takes a different init path 
+and maybe some other differences. Unless you already did?
 
-== Summary ==
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-1f57ba1afceae32108bd24770069f764d940a0e4
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit b0946f038fe7bd46bc9a25b59ab88421d4b0280b
-Author: Maarten Lankhorst <dev@lankhorst.se>
-Date:   Wed Jan 21 17:56:56 2026 +0100
-
-    FOR-CI: drm/i915: Reset lockdep after selftest unload
-    
-    We're hitting a bug in CI where MAX_STACK_TRACE_ENTRIES is set too low.
-    My guess is the repeated loading/unloading is creating multiples of the
-    same entries. As a hack just reset lockdep. This might only be necessary
-    for CI + PREEMPT_RT.
-    
-    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-+ /mt/dim checkpatch 1b605c703d92a52ffbb52b16ceba4e4a3964a849 drm-intel
-0d209c2b0157 drm/i915/display: Fix intel_lpe_audio_irq_handler for PREEMPT-RT
--:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#11: 
-Because intel_lpe_audio_irq_handler() may be called in threaded IRQ context,
-
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
-64bf5ed0b881 drm/i915/display: Make get_vblank_counter use intel_de_read_fw()
--:8: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#8: 
-<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
-
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
-6c7c5f049d29 drm/i915/display: Use intel_de_write_fw in intel_pipe_fastset
--:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#14: 
-<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
-
--:201: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
-
-total: 0 errors, 2 warnings, 0 checks, 110 lines checked
-03ab93efb785 drm/i915/display: Make set_pipeconf use the fw variants
--:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#11: 
-| BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
-
--:46: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
-#46: 
-Reported-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-
--:76: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
-
-total: 0 errors, 3 warnings, 0 checks, 22 lines checked
-40868634b1fe drm/i915/display: Move vblank put until after critical section
-e4abe1ac099c drm/i915/display: Remove locking from intel_vblank_evade critical section
--:47: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#47: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:735:
-+static bool scanline_in_safe_range(struct intel_vblank_evade_ctx *evade, int *scanline, bool unlocked)
-
--:91: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
-#91: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:767:
-+		timeout = wait_event_timeout(*wq, scanline_in_safe_range(evade, &scanline, true), timeout);
-
-total: 0 errors, 2 warnings, 0 checks, 78 lines checked
-927a8d42f021 drm/i915/display: Handle vlv dsi workaround in scanline_in_safe_range too
-cf93d3dc53ef drm/i915/display: Make icl_dsi_frame_update use _fw too
-27bbb1d39175 drm/i915/display: Enable interrupts earlier on PREEMPT_RT
-065ebed2ffa4 drm/i915: Use preempt_disable/enable_rt() where recommended
--:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#7: 
-  ad3543ede630f ("drm/intel: Push get_scanout_position() timestamping into kms driver.")
-
--:45: WARNING:LINE_SPACING: Missing a blank line after declarations
-#45: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:324:
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
-+	spin_lock_irqsave(&uncore->lock, *flags);
-
--:52: WARNING:LINE_SPACING: Missing a blank line after declarations
-#52: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:331:
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
-+	spin_unlock_irqrestore(&uncore->lock, flags);
-
-total: 0 errors, 3 warnings, 0 checks, 78 lines checked
-8b5532d434df drm/i915/display: Use intel_de_read/write_fw in colorops
--:122: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#122: FILE: drivers/gpu/drm/i915/display/intel_color.c:1054:
-+	intel_de_write_fw(display, GAMMA_MODE(crtc->pipe),
- 		       crtc_state->gamma_mode);
-
--:142: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
-
-total: 0 errors, 1 warnings, 1 checks, 24 lines checked
-c6dea87d90bd drm/i915/gt: Use spin_lock_irq() instead of local_irq_disable() + spin_lock()
--:22: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
-#22: 
-Reported-by: Clark Williams <williams@redhat.com>
-Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-
-total: 0 errors, 1 warnings, 0 checks, 53 lines checked
-58e70eda02cc drm/i915: Drop the irqs_disabled() check
--:16: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
-#16: 
-Reported-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-
-total: 0 errors, 1 warnings, 0 checks, 14 lines checked
-6492d75301e4 drm/i915/guc: Consider also RCU depth in busy loop.
--:13: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
-#13: 
-Reported-by: "John B. Wyatt IV" <jwyatt@redhat.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
--:27: ERROR:IN_ATOMIC: do not use in_atomic in drivers
-#27: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc.h:365:
-+	bool not_atomic = !in_atomic() && !irqs_disabled() && !rcu_preempt_depth();
-
-total: 1 errors, 1 warnings, 0 checks, 8 lines checked
-a329c54cc4a6 Revert "drm/i915: Depend on !PREEMPT_RT."
-47d606c5a12e drm/i915/gt: Fix selftests on PREEMPT_RT
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
-total: 0 errors, 1 warnings, 0 checks, 26 lines checked
-00adffd6ec5d drm/i915/gt: Set stop_timeout() correctly on PREEMPT-RT
--:20: WARNING:LONG_LINE_COMMENT: line length of 101 exceeds 100 columns
-#20: FILE: drivers/gpu/drm/i915/gt/intel_engine_cs.c:1610:
-+	if (in_atomic() || irqs_disabled() || rcu_preempt_depth()) /* inside atomic preempt-reset? */
-
--:20: ERROR:IN_ATOMIC: do not use in_atomic in drivers
-#20: FILE: drivers/gpu/drm/i915/gt/intel_engine_cs.c:1610:
-+	if (in_atomic() || irqs_disabled() || rcu_preempt_depth()) /* inside atomic preempt-reset? */
-
-total: 1 errors, 1 warnings, 0 checks, 8 lines checked
-ee7807f30331 drm/i915/display: Do not take uncore lock in i915_get_vblank_counter
--:8: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:39: ERROR:CODE_INDENT: code indent should use tabs where possible
-#39: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:113:
-+^I^I^I^I        PIPEFRAME(display, pipe));$
-
--:39: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#39: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:113:
-+	frame = intel_de_read64_2x32_fw(display, PIPEFRAMEPIXEL(display, pipe),
-+				        PIPEFRAME(display, pipe));
-
--:56: WARNING:LINE_SPACING: Missing a blank line after declarations
-#56: FILE: drivers/gpu/drm/i915/intel_uncore.h:457:
-+	u32 upper, lower, old_upper, loop = 0;
-+	upper = intel_uncore_read_fw(uncore, upper_reg);
-
-total: 1 errors, 2 warnings, 1 checks, 85 lines checked
-b8bdfb204f89 drm/i915/display: Remove uncore lock from vlv_atomic_update_fifo
-82a189c48422 PREEMPT_RT injection
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
-total: 0 errors, 1 warnings, 0 checks, 43 lines checked
-b0946f038fe7 FOR-CI: drm/i915: Reset lockdep after selftest unload
-
+> ---
+>   drivers/gpu/drm/Kconfig    |  2 +-
+>   drivers/gpu/drm/Makefile   |  4 +++-
+>   drivers/gpu/drm/xe/Kconfig |  2 +-
+>   include/drm/drm_pagemap.h  | 18 ++++++++++++++----
+>   4 files changed, 19 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
+> index a33b90251530..d3d52310c9cc 100644
+> --- a/drivers/gpu/drm/Kconfig
+> +++ b/drivers/gpu/drm/Kconfig
+> @@ -210,7 +210,7 @@ config DRM_GPUVM
+>   
+>   config DRM_GPUSVM
+>   	tristate
+> -	depends on DRM && DEVICE_PRIVATE
+> +	depends on DRM
+>   	select HMM_MIRROR
+>   	select MMU_NOTIFIER
+>   	help
+> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> index 0deee72ef935..0c21029c446f 100644
+> --- a/drivers/gpu/drm/Makefile
+> +++ b/drivers/gpu/drm/Makefile
+> @@ -108,9 +108,11 @@ obj-$(CONFIG_DRM_EXEC) += drm_exec.o
+>   obj-$(CONFIG_DRM_GPUVM) += drm_gpuvm.o
+>   
+>   drm_gpusvm_helper-y := \
+> -	drm_gpusvm.o\
+> +	drm_gpusvm.o
+> +drm_gpusvm_helper-$(CONFIG_ZONE_DEVICE) += \
+>   	drm_pagemap.o\
+>   	drm_pagemap_util.o
+> +
+>   obj-$(CONFIG_DRM_GPUSVM) += drm_gpusvm_helper.o
+>   
+>   obj-$(CONFIG_DRM_BUDDY) += drm_buddy.o
+> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+> index 4b288eb3f5b0..c34be1be155b 100644
+> --- a/drivers/gpu/drm/xe/Kconfig
+> +++ b/drivers/gpu/drm/xe/Kconfig
+> @@ -39,7 +39,7 @@ config DRM_XE
+>   	select DRM_TTM
+>   	select DRM_TTM_HELPER
+>   	select DRM_EXEC
+> -	select DRM_GPUSVM if !UML && DEVICE_PRIVATE
+> +	select DRM_GPUSVM if !UML
+>   	select DRM_GPUVM
+>   	select DRM_SCHED
+>   	select MMU_NOTIFIER
+> diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
+> index 46e9c58f09e0..2baf0861f78f 100644
+> --- a/include/drm/drm_pagemap.h
+> +++ b/include/drm/drm_pagemap.h
+> @@ -243,6 +243,8 @@ struct drm_pagemap_devmem_ops {
+>   			   struct dma_fence *pre_migrate_fence);
+>   };
+>   
+> +#if IS_ENABLED(CONFIG_ZONE_DEVICE)
+> +
+>   int drm_pagemap_init(struct drm_pagemap *dpagemap,
+>   		     struct dev_pagemap *pagemap,
+>   		     struct drm_device *drm,
+> @@ -252,17 +254,22 @@ struct drm_pagemap *drm_pagemap_create(struct drm_device *drm,
+>   				       struct dev_pagemap *pagemap,
+>   				       const struct drm_pagemap_ops *ops);
+>   
+> -#if IS_ENABLED(CONFIG_DRM_GPUSVM)
+> +struct drm_pagemap *drm_pagemap_page_to_dpagemap(struct page *page);
+>   
+>   void drm_pagemap_put(struct drm_pagemap *dpagemap);
+>   
+>   #else
+>   
+> +static inline struct drm_pagemap *drm_pagemap_page_to_dpagemap(struct page *page)
+> +{
+> +	return NULL;
+> +}
+> +
+>   static inline void drm_pagemap_put(struct drm_pagemap *dpagemap)
+>   {
+>   }
+>   
+> -#endif /* IS_ENABLED(CONFIG_DRM_GPUSVM) */
+> +#endif /* IS_ENABLED(CONFIG_ZONE_DEVICE) */
+>   
+>   /**
+>    * drm_pagemap_get() - Obtain a reference on a struct drm_pagemap
+> @@ -334,6 +341,8 @@ struct drm_pagemap_migrate_details {
+>   	u32 source_peer_migrates : 1;
+>   };
+>   
+> +#if IS_ENABLED(CONFIG_ZONE_DEVICE)
+> +
+>   int drm_pagemap_migrate_to_devmem(struct drm_pagemap_devmem *devmem_allocation,
+>   				  struct mm_struct *mm,
+>   				  unsigned long start, unsigned long end,
+> @@ -343,8 +352,6 @@ int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem *devmem_allocation);
+>   
+>   const struct dev_pagemap_ops *drm_pagemap_pagemap_ops_get(void);
+>   
+> -struct drm_pagemap *drm_pagemap_page_to_dpagemap(struct page *page);
+> -
+>   void drm_pagemap_devmem_init(struct drm_pagemap_devmem *devmem_allocation,
+>   			     struct device *dev, struct mm_struct *mm,
+>   			     const struct drm_pagemap_devmem_ops *ops,
+> @@ -359,4 +366,7 @@ int drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+>   void drm_pagemap_destroy(struct drm_pagemap *dpagemap, bool is_atomic_or_reclaim);
+>   
+>   int drm_pagemap_reinit(struct drm_pagemap *dpagemap);
+> +
+> +#endif /* IS_ENABLED(CONFIG_ZONE_DEVICE) */
+> +
+>   #endif
 
