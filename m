@@ -4,52 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67040C44508
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 23:08:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AAF8C44536
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 23:08:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23EB310E267;
-	Wed, 21 Jan 2026 23:08:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C0FA10E8A2;
+	Wed, 21 Jan 2026 23:08:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jQG0v24u";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="INtaMIun";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3384810E0FB;
- Wed, 21 Jan 2026 23:08:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9CD2410E267;
+ Wed, 21 Jan 2026 23:08:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769036908; x=1800572908;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=fAkFu+lgU2VkfSpyN4JLcGQTiOwOQ0W/WaYxpPMowic=;
- b=jQG0v24uO62Z/Y9/462XbDM8hIifZ9VEdi11EZhZc6aSrYQ5zswA/Vmv
- pwggrJLccfhIlaj+650txoN5hDIjH4I2ncomFM4Lx3wQenkgy3eyxVXek
- 85mmIEs62OdymSkqN9+pN8aRooeu6Mkkuz2Z5nDSCrmJ4NeueQ8MtdPHe
- tDAmuf5Fd3XZZdB5MMi1+hmwCHEJDPSfX0G4AccmVltLGv+GK0kLy9Y3z
- 1x8Pu7fZyVnBfixzgPiLRPGkmd/sXNwE7TDizE0q4uyrKlVT+bV3M2krK
- 8jtcJvFJdXjgPLvXvMpYHl4k/riy3zd8X679W0t/gvzUz49iYQR5lkKEA A==;
-X-CSE-ConnectionGUID: AaZm+GZ1RKyhA4yibCh3qA==
-X-CSE-MsgGUID: 1rdHlZV1QVOb8CV50OVXUA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="70244959"
-X-IronPort-AV: E=Sophos;i="6.21,244,1763452800"; d="scan'208";a="70244959"
+ t=1769036910; x=1800572910;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=dzbT3Lt0loMToosMDY91G0HZMNmeRZ/rgu/qCyxpp80=;
+ b=INtaMIuncePV63GVsRCD76oufWq+xmpgqFeWkpaZoh6KdCP028Ld4m7P
+ 1J3IBIOpbM3TvtEhFNMQcwXyrr0pfXVlGsz+iU1JHnIwsr0qe30I4KyxB
+ 6IjmLEuOqm2xEAD4mgF56vpR5FaqhxW32T3lYYHNOMIRQ0abv2MB5wLX7
+ nk4tD4Qxf31W/PfiTbxGr7ZQ6k2VgpYNRo5oG+eNfqUPnCus/xc6lK2iJ
+ v5sfJEOS+TdX7AnzOtC6oUlcwso5Z68Xc+t3AzlSXFMD8LH0mSG6oXOBL
+ ITi/bO602vJxsSxPVJPTejqRqDHM8LU7HQL156dC9zJ0A2j1e/LUxCXWe g==;
+X-CSE-ConnectionGUID: bNk9sPn9TpOTIMVkDH6lGw==
+X-CSE-MsgGUID: 5S2F1SlrSaSuSTS+uONFNA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="70244963"
+X-IronPort-AV: E=Sophos;i="6.21,244,1763452800"; d="scan'208";a="70244963"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2026 15:08:28 -0800
-X-CSE-ConnectionGUID: tGFNgi36SD+gN4jRih8RCg==
-X-CSE-MsgGUID: v1Q7tjiqROC+xJWssujQQQ==
+ 21 Jan 2026 15:08:29 -0800
+X-CSE-ConnectionGUID: +0jw6w3/T0y8nEmjupEiiQ==
+X-CSE-MsgGUID: wENWl6FcQdq4u4vewNfncw==
 X-Ironport-Invalid-End-Of-Message: True
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,244,1763452800"; d="scan'208";a="206889505"
+X-IronPort-AV: E=Sophos;i="6.21,244,1763452800"; d="scan'208";a="206889537"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa010.fm.intel.com with ESMTP; 21 Jan 2026 15:08:25 -0800
+ by fmviesa010.fm.intel.com with ESMTP; 21 Jan 2026 15:08:27 -0800
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
  Uma Shankar <uma.shankar@intel.com>
-Subject: [v2 00/19] Make Display free from i915_reg.h
-Date: Thu, 22 Jan 2026 04:53:55 +0530
-Message-ID: <20260121232414.707192-1-uma.shankar@intel.com>
+Subject: [v2 01/19] drm/{i915,
+ xe}: Extract display registers from i915_reg.h to display
+Date: Thu, 22 Jan 2026 04:53:56 +0530
+Message-ID: <20260121232414.707192-2-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20260121232414.707192-1-uma.shankar@intel.com>
+References: <20260121232414.707192-1-uma.shankar@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,82 +69,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move the common register definition to a header to free up
-display files from including i915_reg.h. This will help
-avoid dupicate definitions and includes and can serve as
-a common file for xe, i915 and display module.
+There are certain register definitions which are defined in i915_reg.h
+which are exclusively needed by display. Move the same to display
+headers to remove i915_reg.h includes from display. This is a step
+towards making display independent of i915.
 
-v2:
-- Moved display definitions needed for gvt and clock gating
-  to display header (Jani)
-- Fixed redundant includes
+intel_clock_gating.c can include display header directly.
 
-Uma Shankar (19):
-  drm/{i915, xe}: Extract display registers from i915_reg.h to display
-  drm/{i915, xe}: Extract South chicken registers from i915_reg.h to
-    display
-  drm/{i915, xe}: Extract display interrupt definitions
-  drm/{i915, xe}: Extract DSPCLK_GATE_D from i915_reg to display
-  drm/{i915, xe}: Extract pcode definitions to common header
-  drm/{i915, xe}: Remove i915_reg.h from intel_display_device.c
-  drm/{i915, xe}: Remove i915_reg.h from intel_dram.c
-  drm/{i915, xe}: Removed i915_reg.h from intel_display.c
-  drm/{i915, xe}: Remove i915_reg.h from intel_overlay.c
-  drm/{i915, xe}: Remove i915_reg.h from g4x_dp.c
-  drm/{i915, xe}: Remove i915_reg.h from i9xx_wm.c
-  drm/{i915, xe}: Remove i915_reg.h from g4x_hdmi.c
-  drm/{i915, xe}: Remove i915_reg.h from intel_rom.c
-  drm/{i915, xe}: Remove i915_reg.h from intel_psr.c
-  drm/{i915, xe}: Remove i915_reg.h from intel_fifo_underrun.c
-  drm/{i915, xe}: Remove i915_reg.h from intel_display_irq.c
-  drm/{i915, xe}: Remove i915_reg.h from intel_display_power_well.c
-  drm/{i915, xe}: Remove i915_reg.h from intel_modeset_setup.c
-  drm/{i915, xe}: Remove i915_reg.h from display
+v2: Drop common header in include and use display_regs.h (Jani)
 
- drivers/gpu/drm/i915/display/g4x_dp.c         |   2 +-
- drivers/gpu/drm/i915/display/g4x_hdmi.c       |   1 -
- drivers/gpu/drm/i915/display/hsw_ips.c        |   2 +-
- drivers/gpu/drm/i915/display/i9xx_plane.c     |   1 -
- drivers/gpu/drm/i915/display/i9xx_wm.c        |   2 +-
- drivers/gpu/drm/i915/display/icl_dsi.c        |   1 -
- .../gpu/drm/i915/display/intel_backlight.c    |   1 -
- drivers/gpu/drm/i915/display/intel_bw.c       |   2 +-
- drivers/gpu/drm/i915/display/intel_casf.c     |   1 -
- drivers/gpu/drm/i915/display/intel_cdclk.c    |   2 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      |   2 +-
- drivers/gpu/drm/i915/display/intel_display.c  |   1 -
- .../drm/i915/display/intel_display_debugfs.c  |   2 +-
- .../drm/i915/display/intel_display_device.c   |   2 +-
- .../gpu/drm/i915/display/intel_display_irq.c  |   2 +-
- .../drm/i915/display/intel_display_power.c    |   2 +-
- .../i915/display/intel_display_power_well.c   |   2 +-
- .../gpu/drm/i915/display/intel_display_regs.h | 257 +++++++++-
- .../gpu/drm/i915/display/intel_display_rps.c  |   2 +-
- .../gpu/drm/i915/display/intel_display_wa.c   |   1 -
- drivers/gpu/drm/i915/display/intel_dmc.c      |   1 -
- drivers/gpu/drm/i915/display/intel_dram.c     |   3 +-
- drivers/gpu/drm/i915/display/intel_fdi.c      |   1 -
- .../drm/i915/display/intel_fifo_underrun.c    |   2 +-
- drivers/gpu/drm/i915/display/intel_gmbus.c    |   1 -
- drivers/gpu/drm/i915/display/intel_hdcp.c     |   2 +-
- .../gpu/drm/i915/display/intel_hotplug_irq.c  |   1 -
- drivers/gpu/drm/i915/display/intel_lt_phy.c   |   1 -
- .../drm/i915/display/intel_modeset_setup.c    |   1 -
- drivers/gpu/drm/i915/display/intel_overlay.c  |   2 +-
- .../gpu/drm/i915/display/intel_pch_display.c  |   1 -
- .../gpu/drm/i915/display/intel_pch_refclk.c   |   1 -
- drivers/gpu/drm/i915/display/intel_pps.c      |   1 -
- drivers/gpu/drm/i915/display/intel_psr.c      |   1 -
- drivers/gpu/drm/i915/display/intel_rom.c      |   3 +-
- drivers/gpu/drm/i915/display/intel_tc.c       |   2 +-
- drivers/gpu/drm/i915/display/skl_watermark.c  |   2 +-
- drivers/gpu/drm/i915/display/vlv_dsi.c        |   1 -
- drivers/gpu/drm/i915/i915_reg.h               | 465 +-----------------
- drivers/gpu/drm/i915/intel_clock_gating.c     |   2 +-
- include/drm/intel/intel_gmd_common_regs.h     | 249 ++++++++++
- 41 files changed, 514 insertions(+), 517 deletions(-)
- create mode 100644 include/drm/intel/intel_gmd_common_regs.h
+Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_regs.h | 10 ++++++++++
+ drivers/gpu/drm/i915/display/intel_pch_display.c  |  1 -
+ drivers/gpu/drm/i915/i915_reg.h                   | 10 ----------
+ drivers/gpu/drm/i915/intel_clock_gating.c         |  2 +-
+ 4 files changed, 11 insertions(+), 12 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index 9e0d853f4b61..9f8fbfb2e115 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -2021,6 +2021,16 @@
+ #define  TRANS_BPC_6			REG_FIELD_PREP(TRANS_BPC_MASK, 2)
+ #define  TRANS_BPC_12			REG_FIELD_PREP(TRANS_BPC_MASK, 3)
+ 
++#define _TRANSA_CHICKEN2	0xf0064
++#define _TRANSB_CHICKEN2	0xf1064
++#define TRANS_CHICKEN2(pipe)	_MMIO_PIPE(pipe, _TRANSA_CHICKEN2, _TRANSB_CHICKEN2)
++#define   TRANS_CHICKEN2_TIMING_OVERRIDE		REG_BIT(31)
++#define   TRANS_CHICKEN2_FDI_POLARITY_REVERSED		REG_BIT(29)
++#define   TRANS_CHICKEN2_FRAME_START_DELAY_MASK		REG_GENMASK(28, 27)
++#define   TRANS_CHICKEN2_FRAME_START_DELAY(x)		REG_FIELD_PREP(TRANS_CHICKEN2_FRAME_START_DELAY_MASK, (x)) /* 0-3 */
++#define   TRANS_CHICKEN2_DISABLE_DEEP_COLOR_COUNTER	REG_BIT(26)
++#define   TRANS_CHICKEN2_DISABLE_DEEP_COLOR_MODESWITCH	REG_BIT(25)
++
+ #define PCH_DP_B		_MMIO(0xe4100)
+ #define PCH_DP_C		_MMIO(0xe4200)
+ #define PCH_DP_D		_MMIO(0xe4300)
+diff --git a/drivers/gpu/drm/i915/display/intel_pch_display.c b/drivers/gpu/drm/i915/display/intel_pch_display.c
+index 16619f7be5f8..69c7952a1413 100644
+--- a/drivers/gpu/drm/i915/display/intel_pch_display.c
++++ b/drivers/gpu/drm/i915/display/intel_pch_display.c
+@@ -6,7 +6,6 @@
+ #include <drm/drm_print.h>
+ 
+ #include "g4x_dp.h"
+-#include "i915_reg.h"
+ #include "intel_crt.h"
+ #include "intel_crt_regs.h"
+ #include "intel_de.h"
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 5bf3b4ab2baa..d247e107f42f 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -1022,16 +1022,6 @@
+ #define   TRANS_CHICKEN1_HDMIUNIT_GC_DISABLE	REG_BIT(10)
+ #define   TRANS_CHICKEN1_DP0UNIT_GC_DISABLE	REG_BIT(4)
+ 
+-#define _TRANSA_CHICKEN2	 0xf0064
+-#define _TRANSB_CHICKEN2	 0xf1064
+-#define TRANS_CHICKEN2(pipe)	_MMIO_PIPE(pipe, _TRANSA_CHICKEN2, _TRANSB_CHICKEN2)
+-#define   TRANS_CHICKEN2_TIMING_OVERRIDE		REG_BIT(31)
+-#define   TRANS_CHICKEN2_FDI_POLARITY_REVERSED		REG_BIT(29)
+-#define   TRANS_CHICKEN2_FRAME_START_DELAY_MASK		REG_GENMASK(28, 27)
+-#define   TRANS_CHICKEN2_FRAME_START_DELAY(x)		REG_FIELD_PREP(TRANS_CHICKEN2_FRAME_START_DELAY_MASK, (x)) /* 0-3 */
+-#define   TRANS_CHICKEN2_DISABLE_DEEP_COLOR_COUNTER	REG_BIT(26)
+-#define   TRANS_CHICKEN2_DISABLE_DEEP_COLOR_MODESWITCH	REG_BIT(25)
+-
+ #define SOUTH_CHICKEN1		_MMIO(0xc2000)
+ #define  FDIA_PHASE_SYNC_SHIFT_OVR	19
+ #define  FDIA_PHASE_SYNC_SHIFT_EN	18
+diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
+index 7336934bb934..4e18d5a22112 100644
+--- a/drivers/gpu/drm/i915/intel_clock_gating.c
++++ b/drivers/gpu/drm/i915/intel_clock_gating.c
+@@ -30,7 +30,7 @@
+ #include "display/i9xx_plane_regs.h"
+ #include "display/intel_display.h"
+ #include "display/intel_display_core.h"
+-
++#include "display/intel_display_regs.h"
+ #include "gt/intel_engine_regs.h"
+ #include "gt/intel_gt.h"
+ #include "gt/intel_gt_mcr.h"
 -- 
 2.50.1
 
