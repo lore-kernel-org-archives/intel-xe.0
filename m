@@ -4,76 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D497C44501
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 09:36:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68553C44501
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 09:45:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E42C110E730;
-	Wed, 21 Jan 2026 09:36:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e6+k0CNt";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A181310E72B;
- Wed, 21 Jan 2026 09:36:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1768988192; x=1800524192;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=qL9iu/H5hpUrP/X6+ggfEAqN7pCzi7K6vLcfE1tY/YA=;
- b=e6+k0CNtnOrCxHtia9YZYzbn6HZW3/yeAn50pdVz48/oDX5d4hn1NAYZ
- AInXBnGemUHtxKJnNyMo7YZGh6+wwKxRd/vnrFhKidws+QIUrRyByb5cK
- i5jtMfa5qcBvSykXn2mD/yhUo09Ffm2jPdVwBGS5K++DEEhU6Vs3zfemu
- VJJMw6Wc0AIqNAjVbY9xaKDolfHAe2/3Rmli8FxqZgcgHNbpp2WisUxpA
- lt3ipjM7CI28EH6dxYEFYSMjlh1hdfSAZeZfQhNw5cBGfRJlqgJrXCb0n
- bvpOioRiWQNwV6oR2t/cagC6zqPVVgTD6FnRdJKINY9eHEwwahWl4TP1n Q==;
-X-CSE-ConnectionGUID: 8h/OYap6TlCgU6jGfQYAig==
-X-CSE-MsgGUID: YCmR13y9TliCJByGsV6MLQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11677"; a="87624104"
-X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="87624104"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2026 01:36:32 -0800
-X-CSE-ConnectionGUID: 60Hy4B3ETOyz27yzkkUGrg==
-X-CSE-MsgGUID: Cg2+ahF4Sdui1FjdHXerRA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,242,1763452800"; d="scan'208";a="206639396"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.245.107])
- ([10.245.245.107])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2026 01:36:24 -0800
-Message-ID: <107464758df9444a465a3a9e387f5a42827aff51.camel@linux.intel.com>
-Subject: Re: [PATCH v3 6/7] vfio: Wait for dma-buf invalidation to complete
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Leon
- Romanovsky <leon@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>, Alex
- Deucher	 <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter	 <simona@ffwll.ch>, Gerd Hoffmann <kraxel@redhat.com>, Dmitry
- Osipenko	 <dmitry.osipenko@collabora.com>, Gurchetan Singh
- <gurchetansingh@chromium.org>,  Chia-I Wu <olvaffe@gmail.com>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard	
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Lucas De
- Marchi	 <lucas.demarchi@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>, Joerg
- Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin Murphy
- <robin.murphy@arm.com>, Felix Kuehling	 <Felix.Kuehling@amd.com>, Alex
- Williamson <alex@shazbot.org>, Ankit Agrawal	 <ankita@nvidia.com>, Vivek
- Kasireddy <vivek.kasireddy@intel.com>
-Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org, 
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev, 
- intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org, 
- iommu@lists.linux.dev, kvm@vger.kernel.org
-Date: Wed, 21 Jan 2026 10:36:09 +0100
-In-Reply-To: <b129f0c1-b61e-4efb-9e25-d8cdadaca1b3@amd.com>
-References: <20260120-dmabuf-revoke-v3-0-b7e0b07b8214@nvidia.com>
- <20260120-dmabuf-revoke-v3-6-b7e0b07b8214@nvidia.com>
- <b129f0c1-b61e-4efb-9e25-d8cdadaca1b3@amd.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 310EB10E734;
+	Wed, 21 Jan 2026 09:45:45 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8035910E22C;
+ Wed, 21 Jan 2026 09:45:44 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6911263620694371132=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_REGRESSION_on_linux-next_?=
+ =?utf-8?q?=28next-20260115=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sebastian Andrzej Siewior" <bigeasy@linutronix.de>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 21 Jan 2026 09:45:44 -0000
+Message-ID: <176898874452.176277.16241822915361920382@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <555f1c56-0f74-41bf-8bd2-6217e0aab0c6@intel.com>
+In-Reply-To: <555f1c56-0f74-41bf-8bd2-6217e0aab0c6@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,74 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Christian,
+--===============6911263620694371132==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Wed, 2026-01-21 at 10:20 +0100, Christian K=C3=B6nig wrote:
-> On 1/20/26 15:07, Leon Romanovsky wrote:
-> > From: Leon Romanovsky <leonro@nvidia.com>
-> >=20
-> > dma-buf invalidation is performed asynchronously by hardware, so
-> > VFIO must
-> > wait until all affected objects have been fully invalidated.
-> >=20
-> > Fixes: 5d74781ebc86 ("vfio/pci: Add dma-buf export support for MMIO
-> > regions")
-> > Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
->=20
-> Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
->=20
-> Please also keep in mind that the while this wait for all fences for
-> correctness you also need to keep the mapping valid until
-> dma_buf_unmap_attachment() was called.
+== Series Details ==
 
-I'm wondering shouldn't we require DMA_RESV_USAGE_BOOKKEEP here, as
-*any* unsignaled fence could indicate access through the map?
+Series: REGRESSION on linux-next (next-20260115)
+URL   : https://patchwork.freedesktop.org/series/160408/
+State : success
 
-/Thomas
+== Summary ==
 
->=20
-> In other words you can only redirect the DMA-addresses previously
-> given out into nirvana (or a dummy memory or similar), but you still
-> need to avoid re-using them for something else.
->=20
-> Regards,
-> Christian.
->=20
-> > ---
-> > =C2=A0drivers/vfio/pci/vfio_pci_dmabuf.c | 5 +++++
-> > =C2=A01 file changed, 5 insertions(+)
-> >=20
-> > diff --git a/drivers/vfio/pci/vfio_pci_dmabuf.c
-> > b/drivers/vfio/pci/vfio_pci_dmabuf.c
-> > index d4d0f7d08c53..33bc6a1909dd 100644
-> > --- a/drivers/vfio/pci/vfio_pci_dmabuf.c
-> > +++ b/drivers/vfio/pci/vfio_pci_dmabuf.c
-> > @@ -321,6 +321,9 @@ void vfio_pci_dma_buf_move(struct
-> > vfio_pci_core_device *vdev, bool revoked)
-> > =C2=A0			dma_resv_lock(priv->dmabuf->resv, NULL);
-> > =C2=A0			priv->revoked =3D revoked;
-> > =C2=A0			dma_buf_move_notify(priv->dmabuf);
-> > +			dma_resv_wait_timeout(priv->dmabuf->resv,
-> > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > DMA_RESV_USAGE_KERNEL, false,
-> > +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > MAX_SCHEDULE_TIMEOUT);
-> > =C2=A0			dma_resv_unlock(priv->dmabuf->resv);
-> > =C2=A0		}
-> > =C2=A0		fput(priv->dmabuf->file);
-> > @@ -342,6 +345,8 @@ void vfio_pci_dma_buf_cleanup(struct
-> > vfio_pci_core_device *vdev)
-> > =C2=A0		priv->vdev =3D NULL;
-> > =C2=A0		priv->revoked =3D true;
-> > =C2=A0		dma_buf_move_notify(priv->dmabuf);
-> > +		dma_resv_wait_timeout(priv->dmabuf->resv,
-> > DMA_RESV_USAGE_KERNEL,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 false,
-> > MAX_SCHEDULE_TIMEOUT);
-> > =C2=A0		dma_resv_unlock(priv->dmabuf->resv);
-> > =C2=A0		vfio_device_put_registration(&vdev->vdev);
-> > =C2=A0		fput(priv->dmabuf->file);
-> >=20
+CI Bug Log - changes from xe-4424-b7c3274a57563fc1652889043a6e8d08473e5f31_BAT -> xe-pw-160408v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-160408v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6519]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4424-b7c3274a57563fc1652889043a6e8d08473e5f31/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160408v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+
+
+Build changes
+-------------
+
+  * Linux: xe-4424-b7c3274a57563fc1652889043a6e8d08473e5f31 -> xe-pw-160408v1
+
+  IGT_8709: 16ce286cac6acc9669a1c758572ae9fceb483c46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4424-b7c3274a57563fc1652889043a6e8d08473e5f31: b7c3274a57563fc1652889043a6e8d08473e5f31
+  xe-pw-160408v1: 160408v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160408v1/index.html
+
+--===============6911263620694371132==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>REGRESSION on linux-next (next-20260115)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160408/">https://patchwork.freedesktop.org/series/160408/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160408v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160408v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4424-b7c3274a57563fc1652889043a6e8d08473e5f31_BAT -&gt; xe-pw-160408v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-160408v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4424-b7c3274a57563fc1652889043a6e8d08473e5f31/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160408v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4424-b7c3274a57563fc1652889043a6e8d08473e5f31 -&gt; xe-pw-160408v1</li>
+</ul>
+<p>IGT_8709: 16ce286cac6acc9669a1c758572ae9fceb483c46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4424-b7c3274a57563fc1652889043a6e8d08473e5f31: b7c3274a57563fc1652889043a6e8d08473e5f31<br />
+  xe-pw-160408v1: 160408v1</p>
+
+</body>
+</html>
+
+--===============6911263620694371132==--
