@@ -4,36 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5B48C4453A
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 13:53:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3502DC4453A
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 13:53:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EBDB10E7CB;
-	Wed, 21 Jan 2026 13:53:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5E7410E791;
+	Wed, 21 Jan 2026 13:53:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Fds77Ijg";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="hq9DvDWB";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B91DE10E7CE;
- Wed, 21 Jan 2026 13:53:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90D7710E7D5;
+ Wed, 21 Jan 2026 13:53:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1769003605;
- bh=uLFCamQk+mxuKbmOw6XpLu3qm2HJUuDv67/dvtuqQyM=;
- h=From:To:Cc:Subject:Date:From;
- b=Fds77Ijgb4TuwdMLJMxsUSus7jJ/N+E9YMZCOF/kV9ZIEpZoVzOFGO+eIqArn6yHH
- DkZXckxzJSTJ5AjV3csMTrjVHpezZ9mEGgg1DnLcaxCBavKtNcJmDke0MY86P9o5eH
- HXTwYPbjKRp1ayJn4Sj9cewsQueHdBQaDLzqsZ2Jr/vBVOWps//KKFUbd7qpI3GPNI
- mblhXR1kR1oKzYzhhrJqhvT865rQ+YiNc9Ux1fDy4GTjPMVxR3NM9Tn+/HgmQNCEz6
- gSFcBvimSjQe9zfXC4lGY3sqTgqrnbF3iztWbEKhNDqjk7M56W+BoJ8dtsgx9nBa5q
- w0Y+DEsvTg2Qw==
+ s=default; t=1769003607;
+ bh=R+fal4yuTKHwwqED/ZBkyEjBDsBXWQ+zyEcVUQqMxtw=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=hq9DvDWBaDtH0aniNzuV9DDHg8apRhpLOnxucFbmkCXDVXAiJ0nSBUO+2Jw0i4auF
+ dQOg7ity1lcv4ZtJ38AeWXdhhB8tP1CIYPgP/zBKH7tPJfe9LJWR1jN1NJwJ5q1+hU
+ ZGC6OJq9/BIp/DRfkeVKS0gl4V2NlePMtlR5x9Ja2lgCPNpx2mNTBwL4cpP+3NeVjS
+ e1Y6RcEkDlRSJoCDekeO9qHOh37OIDKr+Ft31Q3jYpZTeYRRdt9v1/BgcofRysui7k
+ TPJMt/kz6Ote0n9wv3IjNVZAVGvVSI1WJGFVw+T7Xllps3iiBoI8QwFRlK8nxWJn3F
+ m/zIXDL9JO6rA==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [i915-rt v5 00/21] drm/i915/display: All patches to make PREEMPT_RT
- work on i915 + xe.
-Date: Wed, 21 Jan 2026 14:52:56 +0100
-Message-ID: <20260121135318.651622-1-dev@lankhorst.se>
+Subject: [i915-rt v5 02/21] drm/i915/display: Make get_vblank_counter use
+ intel_de_read_fw()
+Date: Wed, 21 Jan 2026 14:52:58 +0100
+Message-ID: <20260121135318.651622-3-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260121135318.651622-1-dev@lankhorst.se>
+References: <20260121135318.651622-1-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -50,69 +52,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We should probably take the uncore lock only once, and hold it during
-entire evasion. For now just remove the code using it to see if CI
-passes.
+Fixes the following lockdep splat on PREEMPT_RT:
+<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+<3> in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 1373, name: xe_module_load
+<3> preempt_count: 1, expected: 0
+<3> RCU nest depth: 0, expected: 0
+<4> 11 locks held by xe_module_load/1373:
+<4>  #0: ffff888107b691a0 (&dev->mutex){....}-{3:3}, at: __driver_attach+0x104/0x220
+<4>  #1: ffff88813cd30280 (&dev->clientlist_mutex){+.+.}-{3:3}, at: drm_client_register+0x32/0xe0
+<4>  #2: ffffffff837f88f8 (registration_lock){+.+.}-{3:3}, at: register_framebuffer+0x1b/0x50
+<4>  #3: ffffffff835985e0 (console_lock){+.+.}-{0:0}, at: fbcon_fb_registered+0x6f/0x90
+<4>  #4: ffff88812589e6a0 (&helper->lock){+.+.}-{3:3}, at: __drm_fb_helper_restore_fbdev_mode_unlocked+0x7b/0x110
+<4>  #5: ffff88813cd30158 (&dev->master_mutex){+.+.}-{3:3}, at: drm_master_internal_acquire+0x20/0x50
+<4>  #6: ffff88812589e488 (&client->modeset_mutex){+.+.}-{3:3}, at: drm_client_modeset_commit_locked+0x2a/0x1b0
+<4>  #7: ffffc9000031eef0 (crtc_ww_class_acquire){+.+.}-{0:0}, at: drm_client_modeset_commit_atomic+0x4c/0x2b0
+<4>  #8: ffffc9000031ef18 (crtc_ww_class_mutex){+.+.}-{3:3}, at: drm_client_modeset_commit_atomic+0x4c/0x2b0
+<4>  #9: ffff888114f7b8b8 (&intel_dp->psr.lock){+.+.}-{3:3}, at: intel_psr_lock+0xc5/0xf0 [xe]
+<4>  #10: ffff88812a0cbbc0 (&wl->lock){+.+.}-{2:2}, at: intel_dmc_wl_get+0x3c/0x140 [xe]
 
-Since last time, adjust some patches to compile again, and also
-add a lockdep_reset() to make CI pass from repeatedly loading
-the i915 module.
+This splat will happen otherwise on all tracepoints too, for similar reasons.
 
-Maarten Lankhorst (16):
-  drm/i915/display: Fix intel_lpe_audio_irq_handler for PREEMPT-RT
-  drm/i915/display: Make get_vblank_counter use intel_de_read_fw()
-  drm/i915/display: Use intel_de_write_fw in intel_pipe_fastset
-  drm/i915/display: Make set_pipeconf use the fw variants
-  drm/i915/display: Move vblank put until after critical section
-  drm/i915/display: Remove locking from intel_vblank_evade critical
-    section
-  drm/i915/display: Handle vlv dsi workaround in scanline_in_safe_range
-    too
-  drm/i915/display: Make icl_dsi_frame_update use _fw too
-  drm/i915/display: Enable interrupts earlier on PREEMPT_RT
-  drm/i915/display: Use intel_de_read/write_fw in colorops
-  drm/i915/gt: Fix selftests on PREEMPT_RT
-  drm/i915/gt: Set stop_timeout() correctly on PREEMPT-RT
-  drm/i915/display: Do not take uncore lock in i915_get_vblank_counter
-  drm/i915/display: Remove uncore lock from vlv_atomic_update_fifo
-  PREEMPT_RT injection
-  FOR-CI: drm/i915: Reset lockdep after selftest unload
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/i915/display/intel_vblank.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Mike Galbraith (1):
-  drm/i915: Use preempt_disable/enable_rt() where recommended
-
-Sebastian Andrzej Siewior (4):
-  drm/i915/gt: Use spin_lock_irq() instead of local_irq_disable() +
-    spin_lock()
-  drm/i915: Drop the irqs_disabled() check
-  drm/i915/guc: Consider also RCU depth in busy loop.
-  Revert "drm/i915: Depend on !PREEMPT_RT."
-
- drivers/gpu/drm/i915/Kconfig                  |   1 -
- drivers/gpu/drm/i915/Kconfig.debug            |  15 ---
- drivers/gpu/drm/i915/display/i9xx_wm.c        |   4 -
- drivers/gpu/drm/i915/display/icl_dsi.c        |   4 +-
- drivers/gpu/drm/i915/display/intel_color.c    |   6 +-
- drivers/gpu/drm/i915/display/intel_crtc.c     |  12 +-
- drivers/gpu/drm/i915/display/intel_cursor.c   |   8 +-
- drivers/gpu/drm/i915/display/intel_de.h       |   8 ++
- drivers/gpu/drm/i915/display/intel_display.c  |  46 +++----
- .../gpu/drm/i915/display/intel_lpe_audio.c    |   2 +-
- drivers/gpu/drm/i915/display/intel_vblank.c   | 115 ++++++++++--------
- drivers/gpu/drm/i915/display/intel_vblank.h   |   1 +
- drivers/gpu/drm/i915/display/intel_vrr.c      |  16 +--
- drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   2 +-
- .../drm/i915/gt/intel_execlists_submission.c  |  17 +--
- drivers/gpu/drm/i915/gt/selftest_engine_pm.c  |   8 +-
- drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   2 +-
- drivers/gpu/drm/i915/i915_module.c            |   6 +
- drivers/gpu/drm/i915/i915_request.c           |   2 -
- drivers/gpu/drm/i915/intel_uncore.h           |  26 ++--
- drivers/gpu/drm/xe/Kconfig.debug              |   5 +
- .../drm/xe/compat-i915-headers/intel_uncore.h |   7 ++
- kernel/Kconfig.preempt                        |   4 +-
- 23 files changed, 180 insertions(+), 137 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index 1b7cfe226ff8f..a85796f9d29ba 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -132,7 +132,7 @@ u32 g4x_get_vblank_counter(struct drm_crtc *crtc)
+ 	if (!vblank->max_vblank_count)
+ 		return 0;
+ 
+-	return intel_de_read(display, PIPE_FRMCOUNT_G4X(display, pipe));
++	return intel_de_read_fw(display, PIPE_FRMCOUNT_G4X(display, pipe));
+ }
+ 
+ static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
 -- 
 2.51.0
 
