@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87FC9D4695A
-	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 23:08:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BBF3C44536
+	for <intel-xe@archiver.kernel.org>; Wed, 21 Jan 2026 23:08:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 460A310E8AC;
-	Wed, 21 Jan 2026 23:08:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F79910E8AD;
+	Wed, 21 Jan 2026 23:08:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FxNXg0MA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MRTg9j5G";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B32FF10E267;
- Wed, 21 Jan 2026 23:08:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6B0D10E8AA;
+ Wed, 21 Jan 2026 23:08:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769036922; x=1800572922;
+ t=1769036920; x=1800572920;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4IYIxggpt9bPcfPMcbuROgrwRfX7v80R5KnBYND1Ynk=;
- b=FxNXg0MAHzeXb42LbE85ejCMNJR7z3DsLRk8PAZ8IyYuW1COuO+2jmqB
- H9nZrhIImlA6LaLWEtN+rvO/B/RBObhWqECY9sqlttPyfb5G0vbJuxI5D
- 4MOa055COaE9TToFUVpIPZNQ3hmvdoMwYkN++dEmrLEwsvkX5UbMnPSJb
- G+ls7l8X96d+bMqg7yTaxx3Y3gO1MYTd5HZVPF/1Fbg0qhiLZfwIqVki5
- ri+6Ysm6H9kgGUcvUQIYffv1Wg4PJW8HNlXh9It/PdnRKO+G2jLQDeCUk
- uu5/21paA1QyOeCC/Z47rcK1TgMgAeq1SRMdAPazNxFwe0TguzLe7w0P8 A==;
-X-CSE-ConnectionGUID: lRb1IdeeSR6rijvgGIgDFw==
-X-CSE-MsgGUID: LRz5pM76SV2ds+9bavsxNg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="70244984"
-X-IronPort-AV: E=Sophos;i="6.21,244,1763452800"; d="scan'208";a="70244984"
+ bh=eRpk0aTawOwCXLCbJtOyn+I3NptABsxg6lyWBc4ALKw=;
+ b=MRTg9j5GIP0tx8hPFTh2gHupo0k/rtqjxVL8ZpUOBjbdCMr177B4uPct
+ tNCVeS2ZmQSRK/L8hVvjEnhxTM2zq1LQbk4ltbSOK5w0PqkIyWpiCLOiA
+ GUdn8cpSaio2wtN3Di+KzXVGhzce+sopacqxHMAeOqFEZQxXDz5fBvOs4
+ JWXo/qfG37WnTfHn/7+q79weeo5U7axy5HXI25l8yAn9fF15WOJpOEJi6
+ 2eMe6Gmeh2UfzV3X4PT2G4HUC1lcI6EtobdpTye/a77f3/YghRc3lft9f
+ WMG4WVjvxbBs+pCLZ+I2txSPxuuCBJdkzyJZyDfF2AhRfl8QbotkSPbr9 w==;
+X-CSE-ConnectionGUID: MiN07CZNQ7mjoFzustm0jw==
+X-CSE-MsgGUID: 5kcWaUziTiKXS/yYa8rXHw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="70244978"
+X-IronPort-AV: E=Sophos;i="6.21,244,1763452800"; d="scan'208";a="70244978"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2026 15:08:41 -0800
-X-CSE-ConnectionGUID: uMsywyBlRGGY2bXsMHXSkg==
-X-CSE-MsgGUID: q1OGKSaDR4iGSk8ReYU2vg==
+ 21 Jan 2026 15:08:40 -0800
+X-CSE-ConnectionGUID: jauMYuEFRLKpB7iJq5tcLQ==
+X-CSE-MsgGUID: RNw8gB2LS4uDd4GZdZIlxQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,244,1763452800"; d="scan'208";a="206889587"
+X-IronPort-AV: E=Sophos;i="6.21,244,1763452800"; d="scan'208";a="206889580"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa010.fm.intel.com with ESMTP; 21 Jan 2026 15:08:40 -0800
+ by fmviesa010.fm.intel.com with ESMTP; 21 Jan 2026 15:08:38 -0800
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
  Uma Shankar <uma.shankar@intel.com>
-Subject: [v2 07/19] drm/{i915, xe}: Remove i915_reg.h from intel_dram.c
-Date: Thu, 22 Jan 2026 04:54:02 +0530
-Message-ID: <20260121232414.707192-8-uma.shankar@intel.com>
+Subject: [v2 06/19] drm/{i915,
+ xe}: Remove i915_reg.h from intel_display_device.c
+Date: Thu, 22 Jan 2026 04:54:01 +0530
+Message-ID: <20260121232414.707192-7-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260121232414.707192-1-uma.shankar@intel.com>
 References: <20260121232414.707192-1-uma.shankar@intel.com>
@@ -67,65 +68,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Make intel_dram.c free from including i915_reg.h.
+Move GU_CNTL_PROTECTED to common header, this helps
+intel_display_device.c free from i915_reg.h dependency.
 
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_regs.h | 6 +++++-
- drivers/gpu/drm/i915/display/intel_dram.c         | 3 ++-
- drivers/gpu/drm/i915/i915_reg.h                   | 6 ------
- 3 files changed, 7 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_device.c | 2 +-
+ drivers/gpu/drm/i915/display/intel_display_regs.h   | 3 +++
+ drivers/gpu/drm/i915/i915_reg.h                     | 8 --------
+ include/drm/intel/intel_gmd_common_regs.h           | 5 +++++
+ 4 files changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 3447ee229354..f395b7d4d640 100644
---- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -3075,6 +3075,10 @@ enum skl_power_gate {
- #define   MTL_TRAS_MASK			REG_GENMASK(16, 8)
- #define   MTL_TRDPRE_MASK		REG_GENMASK(7, 0)
- 
--
-+#define MTL_MEM_SS_INFO_GLOBAL			_MMIO(0x45700)
-+#define   XE3P_ECC_IMPACTING_DE			REG_BIT(12)
-+#define   MTL_N_OF_ENABLED_QGV_POINTS_MASK	REG_GENMASK(11, 8)
-+#define   MTL_N_OF_POPULATED_CH_MASK		REG_GENMASK(7, 4)
-+#define   MTL_DDR_TYPE_MASK			REG_GENMASK(3, 0)
- 
- #endif /* __INTEL_DISPLAY_REGS_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_dram.c b/drivers/gpu/drm/i915/display/intel_dram.c
-index 170de304fe96..73a127dd6720 100644
---- a/drivers/gpu/drm/i915/display/intel_dram.c
-+++ b/drivers/gpu/drm/i915/display/intel_dram.c
-@@ -7,10 +7,11 @@
- 
- #include <drm/drm_managed.h>
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index 471f236c9ddf..f7cc4198a870 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -9,8 +9,8 @@
+ #include <drm/drm_drv.h>
  #include <drm/drm_print.h>
+ #include <drm/intel/pciids.h>
 +#include <drm/intel/intel_gmd_common_regs.h>
  
 -#include "i915_reg.h"
- #include "intel_display_core.h"
- #include "intel_display_utils.h"
-+#include "intel_display_regs.h"
- #include "intel_dram.h"
- #include "intel_mchbar_regs.h"
- #include "intel_pcode.h"
+ #include "intel_cx0_phy_regs.h"
+ #include "intel_de.h"
+ #include "intel_display.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index 5136b7166775..3447ee229354 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -6,6 +6,9 @@
+ 
+ #include "intel_display_reg_defs.h"
+ 
++#define GU_CNTL_PROTECTED		_MMIO(0x10100C)
++#define   DEPRESENT			REG_BIT(9)
++
+ #define _GEN7_PIPEA_DE_LOAD_SL	0x70068
+ #define _GEN7_PIPEB_DE_LOAD_SL	0x71068
+ #define GEN7_PIPE_DE_LOAD_SL(pipe) _MMIO_PIPE(pipe, _GEN7_PIPEA_DE_LOAD_SL, _GEN7_PIPEB_DE_LOAD_SL)
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index fac24a649d61..c9fb9af1a35c 100644
+index 35122c997b8a..fac24a649d61 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1005,12 +1005,6 @@
- #define OROM_OFFSET				_MMIO(0x1020c0)
- #define   OROM_OFFSET_MASK			REG_GENMASK(20, 16)
+@@ -117,9 +117,6 @@
+  *  #define GEN8_BAR                    _MMIO(0xb888)
+  */
  
--#define MTL_MEM_SS_INFO_GLOBAL			_MMIO(0x45700)
--#define   XE3P_ECC_IMPACTING_DE			REG_BIT(12)
--#define   MTL_N_OF_ENABLED_QGV_POINTS_MASK	REG_GENMASK(11, 8)
--#define   MTL_N_OF_POPULATED_CH_MASK		REG_GENMASK(7, 4)
--#define   MTL_DDR_TYPE_MASK			REG_GENMASK(3, 0)
+-#define GU_CNTL_PROTECTED		_MMIO(0x10100C)
+-#define   DEPRESENT			REG_BIT(9)
 -
- #define MTL_MEDIA_GSI_BASE		0x380000
+ #define GU_CNTL				_MMIO(0x101010)
+ #define   LMEM_INIT			REG_BIT(7)
+ #define   DRIVERFLR			REG_BIT(31)
+@@ -925,11 +922,6 @@
+ #define   MASK_WAKEMEM				REG_BIT(13)
+ #define   DDI_CLOCK_REG_ACCESS			REG_BIT(7)
  
- #endif /* _I915_REG_H_ */
+-#define GMD_ID_DISPLAY				_MMIO(0x510a0)
+-#define   GMD_ID_ARCH_MASK			REG_GENMASK(31, 22)
+-#define   GMD_ID_RELEASE_MASK			REG_GENMASK(21, 14)
+-#define   GMD_ID_STEP				REG_GENMASK(5, 0)
+-
+ /* PCH */
+ 
+ #define SDEISR  _MMIO(0xc4000)
+diff --git a/include/drm/intel/intel_gmd_common_regs.h b/include/drm/intel/intel_gmd_common_regs.h
+index 8e9a574c87d9..489d59379ab0 100644
+--- a/include/drm/intel/intel_gmd_common_regs.h
++++ b/include/drm/intel/intel_gmd_common_regs.h
+@@ -105,4 +105,9 @@
+ #define     PCODE_MBOX_DOMAIN_NONE		0x0
+ #define     PCODE_MBOX_DOMAIN_MEDIAFF		0x3
+ 
++#define GMD_ID_DISPLAY				_MMIO(0x510a0)
++#define   GMD_ID_ARCH_MASK			REG_GENMASK(31, 22)
++#define   GMD_ID_RELEASE_MASK			REG_GENMASK(21, 14)
++#define   GMD_ID_STEP				REG_GENMASK(5, 0)
++
+ #endif
 -- 
 2.50.1
 
