@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEBDDC44536
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Jan 2026 00:39:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26394C44536
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Jan 2026 00:44:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 709AE10E264;
-	Thu, 22 Jan 2026 00:39:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D608B10E264;
+	Thu, 22 Jan 2026 00:44:26 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC00710E264;
- Thu, 22 Jan 2026 00:39:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5713952683831585032=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3765F10E19A;
+ Thu, 22 Jan 2026 00:44:26 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Make_Display_free_from_i915?=
- =?utf-8?q?=5Freg=2Eh_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Misc_refine_for_xe=5Fmodu?=
+ =?utf-8?q?le?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Uma Shankar" <uma.shankar@intel.com>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 22 Jan 2026 00:39:05 -0000
-Message-ID: <176904234570.180221.1983879333471306661@a3b018990fe9>
+Date: Thu, 22 Jan 2026 00:44:26 -0000
+Message-ID: <176904266621.180247.2116214397773555784@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260121232414.707192-1-uma.shankar@intel.com>
-In-Reply-To: <20260121232414.707192-1-uma.shankar@intel.com>
+References: <20260121235618.3138251-4-shuicheng.lin@intel.com>
+In-Reply-To: <20260121235618.3138251-4-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,43 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5713952683831585032==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Make Display free from i915_reg.h (rev2)
-URL   : https://patchwork.freedesktop.org/series/159130/
-State : success
+Series: Misc refine for xe_module
+URL   : https://patchwork.freedesktop.org/series/160459/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4432-ad2a046603cba140214aed34015ed5027441e85a_BAT -> xe-pw-159130v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 9e27b3363ecf2b3e096c14af6f003818d3ce035f
+Author: Shuicheng Lin <shuicheng.lin@intel.com>
+Date:   Wed Jan 21 23:56:21 2026 +0000
 
-Summary
--------
+    drm/xe: Log module init failure as error
+    
+    Module init abort is fatal, so log it with pr_err() instead of pr_info()
+    to make the failure visible in typical log-level configurations.
+    
+    Also reorder internal includes to be alphabetically sorted.
+    
+    Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
++ /mt/dim checkpatch ad2a046603cba140214aed34015ed5027441e85a drm-intel
+433e915389d2 drm/xe: Make xe_modparam.force_vram_bar_size signed
+9e27b3363ecf drm/xe: Log module init failure as error
+-:39: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#39: FILE: drivers/gpu/drm/xe/xe_module.c:161:
++			pr_err("%s: module_init aborted at %ps %pe\n",
+ 				DRIVER_NAME, init_funcs[i].init, ERR_PTR(err));
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8709 -> IGT_8710
-  * Linux: xe-4432-ad2a046603cba140214aed34015ed5027441e85a -> xe-pw-159130v2
-
-  IGT_8709: 16ce286cac6acc9669a1c758572ae9fceb483c46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8710: 8710
-  xe-4432-ad2a046603cba140214aed34015ed5027441e85a: ad2a046603cba140214aed34015ed5027441e85a
-  xe-pw-159130v2: 159130v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159130v2/index.html
-
---===============5713952683831585032==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 0 warnings, 1 checks, 23 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Make Display free from i915_reg.h (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159130/">https://patchwork.freedesktop.org/series/159130/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159130v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159130v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4432-ad2a046603cba140214aed34015ed5027441e85a_BAT -&gt; xe-pw-159130v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8709 -&gt; IGT_8710</li>
-<li>Linux: xe-4432-ad2a046603cba140214aed34015ed5027441e85a -&gt; xe-pw-159130v2</li>
-</ul>
-<p>IGT_8709: 16ce286cac6acc9669a1c758572ae9fceb483c46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8710: 8710<br />
-  xe-4432-ad2a046603cba140214aed34015ed5027441e85a: ad2a046603cba140214aed34015ed5027441e85a<br />
-  xe-pw-159130v2: 159130v2</p>
-
-</body>
-</html>
-
---===============5713952683831585032==--
