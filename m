@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9F29D62618
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Jan 2026 11:51:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35D2FC44536
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Jan 2026 12:00:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1B0310E99E;
-	Thu, 22 Jan 2026 11:51:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE89710E094;
+	Thu, 22 Jan 2026 12:00:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VPRLhJ7Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dJDMopLT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B108C10E094;
- Thu, 22 Jan 2026 11:51:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E39510E094;
+ Thu, 22 Jan 2026 12:00:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769082702; x=1800618702;
+ t=1769083222; x=1800619222;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=jfr8kn3V0aWXrwdr5yf10x2cmM0L0paUnfzJbc+BxFc=;
- b=VPRLhJ7YF7uRzltQ8NoyF1n5QZ22YZjLtHUJKYQzGSm9WZYdcmEk/WK9
- 3B2sRqrzO59Ak0f6L+GG2Ivtd1IcsaYZfHtY1E/CzGK6owf9HMejBhYcU
- Rm85/W3OSqdgcsFIAHR6ymIfgSER0rz9zV0xg3cPO/7cpuJXQbvjPoTN3
- byGiWH9k3OkyH6YdF9lJC020B5MIAilNctso4jUq8ynTbPTQFMeBWDjlh
- WNbO91ziIXOZ0WshRST4ljhq7dGfxYKW+lthtfSmHUzMgEUo7floXOmwG
- r16mRXWEesh7ItpvPAhOG65xo0wRYnez7NdLsDivZmI+rFcRksn5vCZhl g==;
-X-CSE-ConnectionGUID: t7hkAEY8RtOab4oR5M52Hw==
-X-CSE-MsgGUID: rZ9Xx6t0T4uzeU+diXWGsw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="69339829"
-X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="69339829"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2026 03:51:42 -0800
-X-CSE-ConnectionGUID: FVKhefnARMiwfjtMhFp5vw==
-X-CSE-MsgGUID: f/yiy5qpQ1+3GRFjo6HHvw==
+ bh=JamKimX62RjeWFZMoHCHkC4ip4xckOWXodxjakkVb+s=;
+ b=dJDMopLT6lgMClPA5orl2bgkFZmh+52kqYTUmVVQ3YSn1lwLnUNTWGoc
+ 87O2DM8bIJCBnHQ8TWIVZlEl05gZ2J4PJbuarg9X25mJQ8spMMzkmisG6
+ h3mcM2fBiH5e1rb+tlerDHUU1IT3bIXutbq99dWY2QfRpyIAdnJ1fqhwM
+ KqwhscHJN5SJF6D/dKgvVGZa4/XcAd67/7WIXQe9FfDpukPZm/kX3W3uF
+ vMYVyRWa5uwbtb2gththjSPnV6FmuM2zx1aQulyt4Mb+ixORoApuGDO2g
+ VzqkPi+iwABoAEjFotqJB6mq0Eur0Y5M4u4+I2ysF0EOuzYgOUbbm2xMM A==;
+X-CSE-ConnectionGUID: ob+VA3uwQS6DfnEHxkrKvw==
+X-CSE-MsgGUID: OBJR0B3eQjCh2j25IwfmwA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="92987874"
+X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="92987874"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2026 04:00:22 -0800
+X-CSE-ConnectionGUID: q4ky35jaRmCRJ5B/VNILkg==
+X-CSE-MsgGUID: p4qvXEmZSm+oN66oFndIgw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="205839217"
+X-IronPort-AV: E=Sophos;i="6.21,246,1763452800"; d="scan'208";a="207043579"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.192])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2026 03:51:40 -0800
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jan 2026 04:00:20 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: Uma Shankar <uma.shankar@intel.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, Uma Shankar <uma.shankar@intel.com>
-Subject: Re: [v2 09/19] drm/{i915, xe}: Remove i915_reg.h from intel_overlay.c
-In-Reply-To: <20260121232414.707192-10-uma.shankar@intel.com>
+Subject: Re: [v2 10/19] drm/{i915, xe}: Remove i915_reg.h from g4x_dp.c
+In-Reply-To: <20260121232414.707192-11-uma.shankar@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260121232414.707192-1-uma.shankar@intel.com>
- <20260121232414.707192-10-uma.shankar@intel.com>
-Date: Thu, 22 Jan 2026 13:51:37 +0200
-Message-ID: <5ca273535beadccfab95542b986a65720d44a88f@intel.com>
+ <20260121232414.707192-11-uma.shankar@intel.com>
+Date: Thu, 22 Jan 2026 14:00:17 +0200
+Message-ID: <5e7c148ebdff10f12bfb3972671a44420c0bfbca@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -71,144 +71,108 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On Thu, 22 Jan 2026, Uma Shankar <uma.shankar@intel.com> wrote:
-> Move GEN2_ISR and some interrupt definitions to common header.
-> This removes dependency of i915_reg.h from intel_overlay.c.
+> Move DE_IRQ_REGS to common header to make g4x_dp.c
+> free from i915_reg.h dependency.
+>
+> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/g4x_dp.c            |  2 +-
+>  .../gpu/drm/i915/display/intel_display_regs.h    |  9 +++++++++
+>  drivers/gpu/drm/i915/i915_reg.h                  | 16 ----------------
+>  include/drm/intel/intel_gmd_common_regs.h        |  7 +++++++
+>  4 files changed, 17 insertions(+), 17 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
+> index 4cb753177fd8..b2b63e811776 100644
+> --- a/drivers/gpu/drm/i915/display/g4x_dp.c
+> +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+> @@ -8,9 +8,9 @@
+>  #include <linux/string_helpers.h>
+>  
+>  #include <drm/drm_print.h>
+> +#include <drm/intel/intel_gmd_common_regs.h>
+>  
+>  #include "g4x_dp.h"
+> -#include "i915_reg.h"
+>  #include "intel_audio.h"
+>  #include "intel_backlight.h"
+>  #include "intel_connector.h"
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> index b26e6a4ee1c3..eabee5abc23b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> @@ -3104,4 +3104,13 @@ enum skl_power_gate {
+>  #define   MTL_N_OF_POPULATED_CH_MASK		REG_GENMASK(7, 4)
+>  #define   MTL_DDR_TYPE_MASK			REG_GENMASK(3, 0)
+>  
+> +#define DEISR   _MMIO(0x44000)
+> +#define DEIMR   _MMIO(0x44004)
+> +#define DEIIR   _MMIO(0x44008)
+> +#define DEIER   _MMIO(0x4400c)
+> +
+> +#define DE_IRQ_REGS		I915_IRQ_REGS(DEIMR, \
+> +					      DEIER, \
+> +					      DEIIR)
+> +
+>  #endif /* __INTEL_DISPLAY_REGS_H__ */
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index 504ba9b2fb5b..c0c2fab99a47 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -728,15 +728,6 @@
+>  #define VLV_MASTER_IER			_MMIO(0x4400c) /* Gunit master IER */
+>  #define   MASTER_INTERRUPT_ENABLE	(1 << 31)
+>  
+> -#define DEISR   _MMIO(0x44000)
+> -#define DEIMR   _MMIO(0x44004)
+> -#define DEIIR   _MMIO(0x44008)
+> -#define DEIER   _MMIO(0x4400c)
+> -
+> -#define DE_IRQ_REGS		I915_IRQ_REGS(DEIMR, \
+> -					      DEIER, \
+> -					      DEIIR)
+> -
+>  #define GTISR   _MMIO(0x44010)
+>  #define GTIMR   _MMIO(0x44014)
+>  #define GTIIR   _MMIO(0x44018)
+> @@ -864,13 +855,6 @@
+>  #define   MASK_WAKEMEM				REG_BIT(13)
+>  #define   DDI_CLOCK_REG_ACCESS			REG_BIT(7)
+>  
+> -/* PCH */
+> -
+> -#define SDEISR  _MMIO(0xc4000)
+> -#define SDEIMR  _MMIO(0xc4004)
+> -#define SDEIIR  _MMIO(0xc4008)
+> -#define SDEIER  _MMIO(0xc400c)
+> -
+>  /* Icelake PPS_DATA and _ECC DIP Registers.
+>   * These are available for transcoders B,C and eDP.
+>   * Adding the _A so as to reuse the _MMIO_TRANS2
+> diff --git a/include/drm/intel/intel_gmd_common_regs.h b/include/drm/intel/intel_gmd_common_regs.h
+> index 2214cee38cf7..c8b2b5b2739c 100644
+> --- a/include/drm/intel/intel_gmd_common_regs.h
+> +++ b/include/drm/intel/intel_gmd_common_regs.h
+> @@ -148,4 +148,11 @@
+>  #define I915_ASLE_INTERRUPT				(1 << 0)
+>  #define I915_BSD_USER_INTERRUPT				(1 << 25)
+>  
+> +/* PCH */
+> +
+> +#define SDEISR  _MMIO(0xc4000)
+> +#define SDEIMR  _MMIO(0xc4004)
+> +#define SDEIIR  _MMIO(0xc4008)
+> +#define SDEIER  _MMIO(0xc400c)
 
-Subject: drm/i915.
-
-Here too I think this should be a dedicated file for the feture.
-
-I actually think we might be able to refactor this away, but for the
-time being a header in include/drm/intel is probably fine. But at least
-you can just git grep who includes it (provided it's not included in
-i915_reg.h!) and see what to do about it.
+These are only used by display and gvt. I don't know what we're going to
+do about gvt in the long run, but at this point I'd be prepared to just
+include the necessary display register headers directly. This is what we
+do with all the other registers. There are no other users for these, and
+IMO shouldn't be in the common header.
 
 BR,
 Jani.
 
->
-> Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_overlay.c |  2 +-
->  drivers/gpu/drm/i915/i915_reg.h              | 36 -------------------
->  include/drm/intel/intel_gmd_common_regs.h    | 38 ++++++++++++++++++++
->  3 files changed, 39 insertions(+), 37 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-> index 88eb7ae5765c..62026f7f71d3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_overlay.c
-> +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-> @@ -28,6 +28,7 @@
->  
->  #include <drm/drm_fourcc.h>
->  #include <drm/drm_print.h>
-> +#include <drm/intel/intel_gmd_common_regs.h>
->  
->  #include "gem/i915_gem_internal.h"
->  #include "gem/i915_gem_object_frontbuffer.h"
-> @@ -37,7 +38,6 @@
->  #include "gt/intel_ring.h"
->  
->  #include "i915_drv.h"
-> -#include "i915_reg.h"
->  #include "intel_color_regs.h"
->  #include "intel_de.h"
->  #include "intel_display_regs.h"
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index c1d141e9ca47..504ba9b2fb5b 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -522,42 +522,6 @@
->  /* These are all the "old" interrupts */
->  #define ILK_BSD_USER_INTERRUPT				(1 << 5)
->  
-> -#define I915_PM_INTERRUPT				(1 << 31)
-> -#define I915_ISP_INTERRUPT				(1 << 22)
-> -#define I915_LPE_PIPE_B_INTERRUPT			(1 << 21)
-> -#define I915_LPE_PIPE_A_INTERRUPT			(1 << 20)
-> -#define I915_MIPIC_INTERRUPT				(1 << 19)
-> -#define I915_MIPIA_INTERRUPT				(1 << 18)
-> -#define I915_PIPE_CONTROL_NOTIFY_INTERRUPT		(1 << 18)
-> -#define I915_DISPLAY_PORT_INTERRUPT			(1 << 17)
-> -#define I915_DISPLAY_PIPE_C_HBLANK_INTERRUPT		(1 << 16)
-> -#define I915_MASTER_ERROR_INTERRUPT			(1 << 15)
-> -#define I915_DISPLAY_PIPE_B_HBLANK_INTERRUPT		(1 << 14)
-> -#define I915_GMCH_THERMAL_SENSOR_EVENT_INTERRUPT	(1 << 14) /* p-state */
-> -#define I915_DISPLAY_PIPE_A_HBLANK_INTERRUPT		(1 << 13)
-> -#define I915_HWB_OOM_INTERRUPT				(1 << 13)
-> -#define I915_LPE_PIPE_C_INTERRUPT			(1 << 12)
-> -#define I915_SYNC_STATUS_INTERRUPT			(1 << 12)
-> -#define I915_MISC_INTERRUPT				(1 << 11)
-> -#define I915_DISPLAY_PLANE_A_FLIP_PENDING_INTERRUPT	(1 << 11)
-> -#define I915_DISPLAY_PIPE_C_VBLANK_INTERRUPT		(1 << 10)
-> -#define I915_DISPLAY_PLANE_B_FLIP_PENDING_INTERRUPT	(1 << 10)
-> -#define I915_DISPLAY_PIPE_C_EVENT_INTERRUPT		(1 << 9)
-> -#define I915_OVERLAY_PLANE_FLIP_PENDING_INTERRUPT	(1 << 9)
-> -#define I915_DISPLAY_PIPE_C_DPBM_INTERRUPT		(1 << 8)
-> -#define I915_DISPLAY_PLANE_C_FLIP_PENDING_INTERRUPT	(1 << 8)
-> -#define I915_DISPLAY_PIPE_A_VBLANK_INTERRUPT		(1 << 7)
-> -#define I915_DISPLAY_PIPE_A_EVENT_INTERRUPT		(1 << 6)
-> -#define I915_DISPLAY_PIPE_B_VBLANK_INTERRUPT		(1 << 5)
-> -#define I915_DISPLAY_PIPE_B_EVENT_INTERRUPT		(1 << 4)
-> -#define I915_DISPLAY_PIPE_A_DPBM_INTERRUPT		(1 << 3)
-> -#define I915_DISPLAY_PIPE_B_DPBM_INTERRUPT		(1 << 2)
-> -#define I915_DEBUG_INTERRUPT				(1 << 2)
-> -#define I915_WINVALID_INTERRUPT				(1 << 1)
-> -#define I915_USER_INTERRUPT				(1 << 1)
-> -#define I915_ASLE_INTERRUPT				(1 << 0)
-> -#define I915_BSD_USER_INTERRUPT				(1 << 25)
-> -
->  #define GEN6_BSD_RNCID			_MMIO(0x12198)
->  
->  #define GEN7_FF_THREAD_MODE		_MMIO(0x20a0)
-> diff --git a/include/drm/intel/intel_gmd_common_regs.h b/include/drm/intel/intel_gmd_common_regs.h
-> index 489d59379ab0..2214cee38cf7 100644
-> --- a/include/drm/intel/intel_gmd_common_regs.h
-> +++ b/include/drm/intel/intel_gmd_common_regs.h
-> @@ -110,4 +110,42 @@
->  #define   GMD_ID_RELEASE_MASK			REG_GENMASK(21, 14)
->  #define   GMD_ID_STEP				REG_GENMASK(5, 0)
->  
-> +#define GEN2_ISR       _MMIO(0x20ac)
-
-This is duplication, and only used in display.
-
-> +
-> +#define I915_PM_INTERRUPT				(1 << 31)
-> +#define I915_ISP_INTERRUPT				(1 << 22)
-> +#define I915_LPE_PIPE_B_INTERRUPT			(1 << 21)
-> +#define I915_LPE_PIPE_A_INTERRUPT			(1 << 20)
-> +#define I915_MIPIC_INTERRUPT				(1 << 19)
-> +#define I915_MIPIA_INTERRUPT				(1 << 18)
-> +#define I915_PIPE_CONTROL_NOTIFY_INTERRUPT		(1 << 18)
-> +#define I915_DISPLAY_PORT_INTERRUPT			(1 << 17)
-> +#define I915_DISPLAY_PIPE_C_HBLANK_INTERRUPT		(1 << 16)
-> +#define I915_MASTER_ERROR_INTERRUPT			(1 << 15)
-> +#define I915_DISPLAY_PIPE_B_HBLANK_INTERRUPT		(1 << 14)
-> +#define I915_GMCH_THERMAL_SENSOR_EVENT_INTERRUPT	(1 << 14) /* p-state */
-> +#define I915_DISPLAY_PIPE_A_HBLANK_INTERRUPT		(1 << 13)
-> +#define I915_HWB_OOM_INTERRUPT				(1 << 13)
-> +#define I915_LPE_PIPE_C_INTERRUPT			(1 << 12)
-> +#define I915_SYNC_STATUS_INTERRUPT			(1 << 12)
-> +#define I915_MISC_INTERRUPT				(1 << 11)
-> +#define I915_DISPLAY_PLANE_A_FLIP_PENDING_INTERRUPT	(1 << 11)
-> +#define I915_DISPLAY_PIPE_C_VBLANK_INTERRUPT		(1 << 10)
-> +#define I915_DISPLAY_PLANE_B_FLIP_PENDING_INTERRUPT	(1 << 10)
-> +#define I915_DISPLAY_PIPE_C_EVENT_INTERRUPT		(1 << 9)
-> +#define I915_OVERLAY_PLANE_FLIP_PENDING_INTERRUPT	(1 << 9)
-> +#define I915_DISPLAY_PIPE_C_DPBM_INTERRUPT		(1 << 8)
-> +#define I915_DISPLAY_PLANE_C_FLIP_PENDING_INTERRUPT	(1 << 8)
-> +#define I915_DISPLAY_PIPE_A_VBLANK_INTERRUPT		(1 << 7)
-> +#define I915_DISPLAY_PIPE_A_EVENT_INTERRUPT		(1 << 6)
-> +#define I915_DISPLAY_PIPE_B_VBLANK_INTERRUPT		(1 << 5)
-> +#define I915_DISPLAY_PIPE_B_EVENT_INTERRUPT		(1 << 4)
-> +#define I915_DISPLAY_PIPE_A_DPBM_INTERRUPT		(1 << 3)
-> +#define I915_DISPLAY_PIPE_B_DPBM_INTERRUPT		(1 << 2)
-> +#define I915_DEBUG_INTERRUPT				(1 << 2)
-> +#define I915_WINVALID_INTERRUPT				(1 << 1)
-> +#define I915_USER_INTERRUPT				(1 << 1)
-> +#define I915_ASLE_INTERRUPT				(1 << 0)
-> +#define I915_BSD_USER_INTERRUPT				(1 << 25)
 > +
 >  #endif
 
