@@ -4,101 +4,194 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 411CBC44500
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Jan 2026 08:51:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93739C44500
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Jan 2026 09:10:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 014D410E94F;
-	Thu, 22 Jan 2026 08:51:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5783810E959;
+	Thu, 22 Jan 2026 09:10:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="ah+Fumuu";
-	dkim=pass (2048-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="AIrHbxRh";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="lU64f+Bh";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C60AD10E94C
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Jan 2026 08:51:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1769071896;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=vAwMvvvHUxZ6RErnKH9hGq1hwjn0bnOrqDnkVZlrd+4=;
- b=ah+Fumuusn4+6mJH2IgrI+eiruWpX3jASPKL6TRYytaSYQ0HTD4ELvoxOnA9b0XUmScbLd
- WIZkr2i9zYSIVjRFWCy2XvwpTBdd1JdqXkq0r+LVi2nQ4elfAzmxI+IZUsUYX6n1W/WY8e
- YPQF2oOuwMtfBUO8v/Ol3fJp7zqsgLc=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-651-vSrRLW7ZO5-LhSc_BAL21g-1; Thu, 22 Jan 2026 03:51:35 -0500
-X-MC-Unique: vSrRLW7ZO5-LhSc_BAL21g-1
-X-Mimecast-MFC-AGG-ID: vSrRLW7ZO5-LhSc_BAL21g_1769071894
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-4803a72daaeso5743915e9.0
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Jan 2026 00:51:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=redhat.com; s=google; t=1769071894; x=1769676694; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=vAwMvvvHUxZ6RErnKH9hGq1hwjn0bnOrqDnkVZlrd+4=;
- b=AIrHbxRh0y2nZpbAu9VgS4G8s3GZ9Z/wTy1EMuY8028pZseNe4xDhvwnVl2dav4OXa
- GULfJNBcresV4c5RdHQVhToGDqHzUnrPRM8CBU5oBiVMi8YIi/qgCDrcSmKEtX85oyEY
- uJZsMGKhBXchJXTHm9UbHn2Iw94pufz9yoKsbIi0tekqut/q6MZ12XhxBs2/OP1RpmNY
- zDYhvIMNSozTz9FguyiyC0eBI4OzvItivZpNvWAnJREg1m1gE0Dg8PQZs5WKJyIwMaS4
- X/B391+p82AbNrsbN+/iVsdZ+G1cZFFIybOLaiILaD9e1qUUaSJsQq1g8Do/5P6ONYuB
- AsEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769071894; x=1769676694;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=vAwMvvvHUxZ6RErnKH9hGq1hwjn0bnOrqDnkVZlrd+4=;
- b=WCGZr2Ky93OW07VNvTbfxzM2F4o7KurtVNEjEJGRtn5pZc+ZeY6jAjDQVCxAUNlAWH
- 0hm0fn0TK4fOcFpp37T7lYf/PoHsjc8n2bMECw1RpmZFfWEha7+3DPFqmYpZDpWfUF68
- EcW33nOupUIJOa/vPKkFsARZj1kGyXpxHIY3QwcdkMjDYJmhKiudCTRnx/fZ0VistZNa
- copxwwVyL2g9JFOxpV5s+ZEMkZElE9eArNzMem+IcyjHam+Ygzx2h5rFKtkOvSV/p0vW
- 1ZAqyhfDR4vHZoMJc+BJWkp8ipPLZaumMsctu7/JPepR0ooYmycUG1V2NsTTAMHptwlV
- bQQA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXfUiBSpRIbPR5J6Qwk4oWDheG/FWFOeWWxMi2mGXTqnaGyIzq+AxU87WORH9mBq2oOQxxl3hogmg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzxOBXleWJJTNAeiZECqiyueUK3lmAugjeFy9CtQAciQ1cy6Fwk
- dXoQCazVS/7wuEdpmZdFQaLmedIS5QRnL5oMfEvdYi6Jb7WGPxoFtbC3/UpuBWIjbwqf6ZA+W1Y
- sk/jmC2eUfvHpsOuEXbYnKnRucANKk9f9FUlvrQ8ezs1KtjMXrRAqQJwNdNVZwjvoX6SG
-X-Gm-Gg: AZuq6aIyFxkDPkulIo4gE/lpCaOPFn2f5KI+eOVL6MSgvbbzwt7CKoutWtxn4rD50fm
- X1OlcLZt2jp9IjzB+fWZEdbnOLYKM1oRmuCRaC7cJ2beZBZiC1t7XPjIxjlCMG7gdqSBwYtzjMr
- r6+OFT22TfY3dLAjNQCfDV2pd4efwXe2qc0h3hkeGQxC5kHSv25/uVXk62vGg7hQ/FZGUWza99E
- z7JzkVxTk3RA+9T5neWvP4Y13EnUu4p9LHFmiAFj5moIx256/pn0mXloHNgCxxLGe5bmgBL9N/o
- V135uAKh/hanDOn9mzTulYDSwWzdL7QBOvWzz7afm2khhj4f13JKtLpbcYvATA==
-X-Received: by 2002:a05:600c:1d23:b0:477:a289:d854 with SMTP id
- 5b1f17b1804b1-48047073e5bmr48399275e9.5.1769071893602; 
- Thu, 22 Jan 2026 00:51:33 -0800 (PST)
-X-Received: by 2002:a05:600c:1d23:b0:477:a289:d854 with SMTP id
- 5b1f17b1804b1-48047073e5bmr48398675e9.5.1769071893110; 
- Thu, 22 Jan 2026 00:51:33 -0800 (PST)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-480470287c3sm52812045e9.3.2026.01.22.00.51.32
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 22 Jan 2026 00:51:32 -0800 (PST)
-Date: Thu, 22 Jan 2026 09:51:32 +0100
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+Received: from CH4PR04CU002.outbound.protection.outlook.com
+ (mail-northcentralusazon11013032.outbound.protection.outlook.com
+ [40.107.201.32])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1AB910E959;
+ Thu, 22 Jan 2026 09:10:58 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=KtJmgflt+LRIhEs81tZMQHCVbyzd8ePWUS8/0rom5yvbDcNsO3+c1cq4K/+4czlzwItM6aLvR3f9/uRqaKh3PpDHrZ8dP4A1tGM6d12e9qUrms1mK6CprmTXVpm0srq1AdMYGawnfGrYtXsHvKxQ1aSAIRFCq7OfQkuR6RZRGze0qRkFjmhlFbJ+Jvr3f4xPIyKYDoypEcNjiEA8usjUA8lxuJwnfKLKl6yjdqvBtVvrbeowaexxI0hZQaimMfwAGX5wsEddoiDtxpvkUq9aAo4oGubDjqqpzsenZ/lLfbcaqdiWRCEBM+15R+sxg5n8rEkQYi41EmM9po1YQOM47A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=i0hebeOKDRPad9y6i+fih1AebL1/WcupoZ5Ju9S49Nc=;
+ b=uE64dix8dFYWzO08G/zOI2Ke2Vxr1lrkHF5IuFNdRx573l282S5xiX2b24gygMVlV/1y4BMBgihnq79qTf2ktK2OtAKf3uayPVA3FaMsb94+IjMiqLksvNoWmSnW4DdScAMonOy9S3E5omxirITNMo4ZxTaZXjHL5Ok4hQqTnn8KUR8P4npEQKCzr3tjTaNzttSRg6HDVhqQwCxTh5yp2pDDv3ZL7mYzhr5L4fEY9eisIH/uH1kePqWSoTLRhXTRCVGRCOm6DLfnVXyL+xMA6qLW4q9dBvWrUCsZW7oTR6nKfYmFJTQ3sd9LFIiCKWqSn7zoVKwzTGm2BI/rvcQvwQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=i0hebeOKDRPad9y6i+fih1AebL1/WcupoZ5Ju9S49Nc=;
+ b=lU64f+Bh7wsS/EBEzyj+qkKCad8R7S65Tkz9viCE6+CpHj3B9SymnBX56tD8Ngs4DEep/9mUVebdYeFfCOdH7MR7vi5wRDvl40P3nH21NMSG7rsQ0h3g+3d5lgJpUx+wWcZY6wsJI/Q5BIoRvvxnmWwN1FgvFXv0QA3OWWjdphTwF0o4vo8AFoEBi3ScFk1qbwZI7j46fQuteAfLreA8+vOcaxhP8hZ6Bo0wwrDJ30cBHSls5T45wBdyO++GKX5pDqY7N7IJhM8t85ZTFvMDdtdfARZqzEaGB5ruepSaBtLgv2wGZqfye663La0dVk7j4Bz8jf6Zr5J71RHAB5h1hw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from PH8PR12MB7277.namprd12.prod.outlook.com (2603:10b6:510:223::13)
+ by SA0PR12MB4429.namprd12.prod.outlook.com (2603:10b6:806:73::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.10; Thu, 22 Jan
+ 2026 09:10:55 +0000
+Received: from PH8PR12MB7277.namprd12.prod.outlook.com
+ ([fe80::2920:e6d9:4461:e2b4]) by PH8PR12MB7277.namprd12.prod.outlook.com
+ ([fe80::2920:e6d9:4461:e2b4%5]) with mapi id 15.20.9542.008; Thu, 22 Jan 2026
+ 09:10:55 +0000
+Message-ID: <626c34fc-34df-4629-baf3-fbebc9abafbb@nvidia.com>
+Date: Thu, 22 Jan 2026 20:10:44 +1100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/5] mm/zone_device: Reinitialize large zone device
+ private folios
+To: Vlastimil Babka <vbabka@suse.cz>, Matthew Brost
+ <matthew.brost@intel.com>, Zi Yan <ziy@nvidia.com>
+Cc: Jason Gunthorpe <jgg@nvidia.com>, Matthew Wilcox <willy@infradead.org>,
+ Alistair Popple <apopple@nvidia.com>,
+ Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, adhavan Srinivasan <maddy@linux.ibm.com>,
+ Nicholas Piggin <npiggin@gmail.com>, Michael Ellerman <mpe@ellerman.id.au>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Matthew Brost <matthew.brost@intel.com>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next
-Message-ID: <20260122-antique-sexy-junglefowl-1bc5a8@houat>
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>,
+ David Hildenbrand <david@kernel.org>, Oscar Salvador <osalvador@suse.de>,
+ Andrew Morton <akpm@linux-foundation.org>, Leon Romanovsky
+ <leon@kernel.org>, Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R . Howlett" <Liam.Howlett@oracle.com>, Mike Rapoport
+ <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
+ Michal Hocko <mhocko@suse.com>, linuxppc-dev@lists.ozlabs.org,
+ kvm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-mm@kvack.org, linux-cxl@vger.kernel.org
+References: <eb94d115-18a6-455b-b020-f18f372e283a@nvidia.com>
+ <aWsdv6dX2RgqajFQ@lstrano-desk.jf.intel.com>
+ <4k72r4n5poss2glrof5fsapczkpcrnpokposeikw5wjvtodbto@wpqsxoxzpvy6>
+ <20260119142019.GG1134360@nvidia.com>
+ <96926697-070C-45DE-AD26-559652625859@nvidia.com>
+ <20260119203551.GQ1134360@nvidia.com>
+ <ef6ef1e2-25f1-4f1b-a8d4-98c0d7b4ad0c@nvidia.com>
+ <EE2956E3-CCEA-4EF9-A1A4-A483245091FC@nvidia.com>
+ <20260120135340.GA1134360@nvidia.com>
+ <F7E3DF24-A37B-40A0-A507-CEF4AB76C44D@nvidia.com>
+ <aXHPkQfwhMHU/oP6@lstrano-desk.jf.intel.com>
+ <9077ab5b-f2c8-4c8d-8441-631e7c2cf384@suse.cz>
+Content-Language: en-US
+From: Balbir Singh <balbirs@nvidia.com>
+In-Reply-To: <9077ab5b-f2c8-4c8d-8441-631e7c2cf384@suse.cz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BYAPR01CA0051.prod.exchangelabs.com (2603:10b6:a03:94::28)
+ To PH8PR12MB7277.namprd12.prod.outlook.com
+ (2603:10b6:510:223::13)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="3nm3t5sl2o35yjav"
-Content-Disposition: inline
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR12MB7277:EE_|SA0PR12MB4429:EE_
+X-MS-Office365-Filtering-Correlation-Id: e46775ea-521f-434e-a33d-08de599625e9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|7416014|376014|1800799024|366016|10070799003; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?MDJ4c2NmVzRJbGcxTXRCOU9Bd0dGcmwzUW9jWURoTmRFVEd4WVVaaW9IOVhE?=
+ =?utf-8?B?Q1ZYMlpvSUxyWW4yMHBjZ3pJUzdCVE1ZNDVoUmMzYVBLWG5hMEtsbGsxZzZo?=
+ =?utf-8?B?dGJaZW9TWTY4My9hNmVNZk1KVmhJaEZIWDFhdFNwUUREaHF6Qi8yazgzcUgr?=
+ =?utf-8?B?TmlSdG5yVC9wMmQzTTVqODFiQnhRZWdWeUFpalVWLy9FQ3lWTGdKaVAxVVBQ?=
+ =?utf-8?B?YUpFTG5oYW1DdHQwR0xEYVZlSC9rQnhFb3RPaXNSWmlPS3hWbHpBbE14VUQ3?=
+ =?utf-8?B?dUZhd0hYZEpSamlPc3FaUHVrUGtnMUhlS2VRZmJyVnN1c0h2b2VGZE1yUkxS?=
+ =?utf-8?B?ekdiL0cxSVRIR2hSYUxNNmxxRW5mbVBnaTVKRkRsdUdrWk1uR1lydTNxQWJo?=
+ =?utf-8?B?RzBIQ1BzTUxSNEFRYVdnbjNvUWhGOGJBS3JJZnY5ai9XbSs0L2svbFRjUW8v?=
+ =?utf-8?B?UGU3VGx1YTlCQS82aGtleWlDNDFQdEV4VWMzdFNuSis4OVVnalR3NXdCTElD?=
+ =?utf-8?B?Qjl5RUVLYkxERmJCNWsva3JTM2UxL0NCRU9LaTZ3TWtzRHBxVmNUT2tGWE1l?=
+ =?utf-8?B?MmlDMVRmT0llb3E1bWJlMUhrTmIvZkozY3g2eUZWbW9EeG9rOUhFR3pPOGg0?=
+ =?utf-8?B?YVRuMW9CRHVDU2EwSmluRjNmM2VLNWxkdXdSM0F4VjJOTEdUWlh0dnBYYWkx?=
+ =?utf-8?B?TFcwK1ZQdFJ2V05qV29rRnJ1NGUyd2ozN1d4cDFXVmpYREIrMWJQb2M2dFg0?=
+ =?utf-8?B?R3IwRjVONVB5SWZXdlIyYlI4ekZCUDllWm1wNmhKYmUrdlhPcDdmM2FENzRI?=
+ =?utf-8?B?L093SlFmbGFOdjVReUFBczZhejRvTEpoVGcyNTRYeXRrb0pOUE42OUsrLzdY?=
+ =?utf-8?B?dW40T0pKZjg0Z0NDWmxQR080NGxRWGZGcjMxWWpSbDNQSmYyakhud2t5R0ZE?=
+ =?utf-8?B?dEJuTjJWNVBpV1AzSUt3Tm9GeUg1Ym5MZWpiOEdWMFhtRjA2TnE3ZHE3T3dD?=
+ =?utf-8?B?M1ZCSkxxM3NJaEo2bVV5SHBhbzVxMzZvME82NHpYREpvdUNRRCtmaTJnV3BY?=
+ =?utf-8?B?SUNtNzA5cGlWUTQ5NWtiZVV3Tk1EdDJ2Y1JtZW1TVDdCRENyeEpJb01jU0Fw?=
+ =?utf-8?B?YWZEM1U5RnozUzJoNUVVb0NhSjhwaHJ0ZnFjYlg1MXJ4Z1p0aWpDVjVOL052?=
+ =?utf-8?B?aXpEcU5FKzdsMjV5TUlkMHJpS1pPblZqR1U5bHI5YmY1bGZRUzQvT0QvaVhC?=
+ =?utf-8?B?YjVEZHcyMUowaW40Q09YaHpMVjM5Z2tyZGtEOGpJQ1B0UGZVTG1ORzRyMERM?=
+ =?utf-8?B?SjFWS25pSEtDRlNjUjdtMldtOXY5b0JZS1FnRkwzekxhSTJJcVpXZTl1eWx0?=
+ =?utf-8?B?Z2lZUlJYWEZQcW5qMkNseS9TZ2sxYWgvOTFtdExDZkRkSVN6bU0ra3RvZ2NB?=
+ =?utf-8?B?eU02di9yT3JmTTI5a1hqK1JKY3ZjU1h6S0pDU2hMQTRQbDlDUXoreTFGUDV0?=
+ =?utf-8?B?WGJNWGlqRm41WHphUm1tQVlnMVA5bSs3cGwwN1p5aVUvVS9UQU1pVnVKNXFW?=
+ =?utf-8?B?azNaWk9wRFd4VlVIUk1sa2NmVTAycEpmZThJUG1BaFhla2dzeVVKS3lhWjlH?=
+ =?utf-8?B?RmpKYUF4TEZ6anBMK2RwaURuZGhCL0FjRlRaWWpHbzVqRTlMeEk4TE5MbHBT?=
+ =?utf-8?B?SElRQ1dQYkNPMWw1UktYd1h2YkhJQnZEVHJxd05MQ2tYK2puakRIRDN6bGt6?=
+ =?utf-8?B?dkNSZkJQZjEwZFl0ek04V0N2dngzNzB3aktCTGNHNUtsK0RIN1BsRlIzdmNC?=
+ =?utf-8?B?emFaOG81WFk1NGRmNEQ1ZXhyWWtyNmROaTFzSkpTWUdRRisxVXoxb2xNelEv?=
+ =?utf-8?B?SkRDRGdnaFhkb1VjZTIrZ1NMbnBPSVFhYnd5bTVrNlFid3J0RStyaVdiMVYw?=
+ =?utf-8?B?SHBQMzA2RDVSaDV5bUdsTUs3aUtCZmI4dzkrRUFTL0tVdzRYZytlUnAzUzFW?=
+ =?utf-8?B?WWdDL2FxbGVYQUhoWWVUUEl5Q3BaSy9OSXpDUlZPV282SFpkdlVlMExNU0lY?=
+ =?utf-8?B?cmpIUkQyeFhheGZnMW03QWM2MU5CZmVKaVd5emF3Wk9hcVRiM1RuejgwejIz?=
+ =?utf-8?Q?6GTY=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR12MB7277.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(1800799024)(366016)(10070799003); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WFZ2WEJJQUVzaDBVOUo3ck5CbFhmMVFaaGMrTUVQOWQvd0JrcmZmc1duSEwz?=
+ =?utf-8?B?aFlaSGtYUVd4KzQxZHRzUXZmOGdyaHVWalNrZCt2YnowbGNhblAxMkdFRXBF?=
+ =?utf-8?B?WU16TUdnS0s3TGhHK2RKaFo1NU1saStZYlVvMVVEeHArZUprUld3Q3p4Rjc4?=
+ =?utf-8?B?T2Q0emJWaHZaam5xWGdBTTZqcDNzaE9YM3p5L0ErVi9qRzdWZDUzTnA5R0pU?=
+ =?utf-8?B?YkhPc2xSMytsVWhzZktvS1FzSlRhQ2tqRVNjeElVaWVnRGd4VlBmcnd2dllM?=
+ =?utf-8?B?SFRYS1ltSldsL3ZLTDhVV1QxWmY4OGpXWFdUTmlLQzY0VFlSZ2JjVVQxYXd5?=
+ =?utf-8?B?WnpxOVFiTkJWN2crZE9Mc2dOdFpiYlgzODluVTg4eGNOS21SbDhlMVFpT1Qr?=
+ =?utf-8?B?NkJ4Z2ZsN05Jam9aR1AvQnlsdFRnRDEzbXFJRHZ4TlR1VlZKZXc1UnIxZ1pl?=
+ =?utf-8?B?Z2h5UTFBSFFTeFUycTFMQnlpczN2aUtyczZNcXcrTEdEajJLblJSU29tYjdM?=
+ =?utf-8?B?UDJUVHREaUp2Mm1FaDlVZHQyeURKOGNIS09DNDAzTTJrdkM2ZG9pTU03TndO?=
+ =?utf-8?B?OTR2R3ZzRGltbkJjejZSaWM0ZHZPRmZqNU1zWktNVjJyS0lHQ3BYalRwcnVs?=
+ =?utf-8?B?cW1hU1htRHQwcFNReG8reEtuci9XaHVIajZBRzl2NnVIYkZ3LzZGS3l5ZWx1?=
+ =?utf-8?B?Y2t0MnVBTTZTbks4SlRtZGE0Wllid0lFU2lPeFBYeXp3Yi9nKzBVazF0SFEy?=
+ =?utf-8?B?d0J1aTNxUmdIdWxPMkk5Q0k5Qk5la0J3bFltMzdDeWVLNUxwcmRReFJ3UVVk?=
+ =?utf-8?B?ZFJ4SkkvL3hvUG9yWDhZdVgwN05TbDVvcHpvQmoxMlFYb1gwK0F3NFBXemY0?=
+ =?utf-8?B?L0hPMUhWclpXUkQwbzhBak1wdERUSHFQY1NnYWtaK29xKzZwbU9vcEVvMmpa?=
+ =?utf-8?B?VlBmazlrQmxObnhwM2plb1QxUGlTOCtpSERjN1FlWm1BbnpSNkpOR0ZyWEFR?=
+ =?utf-8?B?dHZoTXpENFpITTVSS2pibmZNQlBVMzg1WVBlRVhOMmwvRjlWSUV2c1lUMjRO?=
+ =?utf-8?B?MjF6NTYwYUhOYnkwQWdLZUt1VUtyZGNTcFhwWEVhVGl4Yzc3RjQyc1o5c2dG?=
+ =?utf-8?B?S092THBybGxJZUVEUnpER0dsWkpuYTBRbytKZjNXTzFHS3BjTFAvNzdUTCtz?=
+ =?utf-8?B?ODAzbit2YlJPSmRCalRieis0WUpwNlFNYUtNemgwcHFaZTNoL1MzWjk5c0tt?=
+ =?utf-8?B?cU5LbWF2c1ZxSGE1S0Nrak5BaHVFL2tiUzR1Y055czRrbFdWZC81SHpPdE5X?=
+ =?utf-8?B?SWJnOW1NZlVoWjJKQUtBK0lqM1g0RFN1TWtiTnhZa1BabEpiNFFPeThrZUIz?=
+ =?utf-8?B?RGpWQ2oxL0JOSXJJTHV0eXhkMWlFQjI2ZXAwY0xETWlERXRYT3MzU0RLaGc0?=
+ =?utf-8?B?ZS90aU1PTG11bHJNdkZleG0wdHh5VXk4azZJZWpWRGdadjVCR3B3UkNYVVN5?=
+ =?utf-8?B?ZXhQOGhETVZQbm9DeEtaNlp0TDhSVEZFMkVCUlkvMzl5OThQakEvYTZkYUdL?=
+ =?utf-8?B?TmFPT2RjU0tDU0JiaFZEc3Z1cE1vcXRjKzRTZGhvYUx5RU1Za29XL3JvR3o3?=
+ =?utf-8?B?OUUrNEk3ZjltMk5QZUN3SkJLdHVMMGE4Z0c0b09ob0t0YjVXQkhQY01pU0RH?=
+ =?utf-8?B?QzhGZEVycjNZQXhRWkQ0aGp0S0pMaDNIYW9ZdDE2MytHdTBzRFJpNVI2WkhU?=
+ =?utf-8?B?NnNWMXdSb1FrZ0w3TWtNaEtiV3RRamxZRGlxYnlDZGRaS3FwK1FpamNIN3dy?=
+ =?utf-8?B?N2RFWERqNkVFaFVRZ3lmUU9jaUk0MTQ4Y1pmOU9EbGpxdVFGUVJodys1Q1VI?=
+ =?utf-8?B?WXROcWVTakFyUkhtc3k2YXd0T0hlMlZSRXpReS9Hc2EwR1loSFo4Qnl4WTJk?=
+ =?utf-8?B?cW8wNGFlWUYxSHhpcDR1bUwrNTUwV2k5MXN1Y21qT00yWDk5b29jN1JqenhF?=
+ =?utf-8?B?RU5iWjZKeDNKdTAvdXFYZS9ENjZ2L1k5K2loYjNPRWduQlJOYmpkZ0gvQmhS?=
+ =?utf-8?B?SmwwdzJnWjhVWDJuejEzQ3IvQmZ3aGV4RjJoRXFJakU4SGYvdTgrL0s5UVN1?=
+ =?utf-8?B?S2FDWnRJTXQ4N0FTYkxSOVlSbmMyYU4rYW5tTk5RVDhzVzJFUm11Qjd6Lzli?=
+ =?utf-8?B?bjFpSERNOWloWXcwSldOaEwraXJqUnBWQk9aamlQTCtnS0YzRUx2UmhsUG5Y?=
+ =?utf-8?B?UnlNM21IOW9xUlFMSjA2cERDYmtUNXN0aGlFaWx6ejA3Ti94bEhleTExZ1B1?=
+ =?utf-8?B?SXpEQ2JKd2MrNEhoN0RYZ2NOK1lOZWY4R01YSjMyS2N6a0hQTVZCeTZNNlFE?=
+ =?utf-8?Q?QSyQXJSaQLUQuJVnGdpWEzIjJhfH4zALPj42PtZKLKp2n?=
+X-MS-Exchange-AntiSpam-MessageData-1: EHzCNiTJ32GXEQ==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e46775ea-521f-434e-a33d-08de599625e9
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB7277.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2026 09:10:55.0938 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HF5GSrur9tdXdSjm8lfxAqBvr9x78S8dWBjAlJHwVElq+qrcpNzmGO/ETnsA2sw15hc2k1sgid3lKnAaovQ8SA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR12MB4429
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,338 +206,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On 1/22/26 19:00, Vlastimil Babka wrote:
+> On 1/22/26 08:19, Matthew Brost wrote:
+>> On Tue, Jan 20, 2026 at 10:01:18PM -0500, Zi Yan wrote:
+>>> On 20 Jan 2026, at 8:53, Jason Gunthorpe wrote:
+>>>
+>>
+>> This whole thread makes my head hurt, as does core MM.
+>>
+>> IMO the TL;DR is:
+>>
+>> - Why is Intel the only one proving this stuff works? We can debate all
+>>   day about what should or should not work — but someone else needs to
+>>   actually prove it.i, rather than type hypotheticals.
+>>
+>> - Intel has demonstrated that this works and is still getting blocked.
+>>
+>> - This entire thread is about a fixes patch for large device pages.
+>>   Changing prep_compound_page is completely out of scope for a fixes
+>>   patch, and honestly so is most of the rest of what’s being proposed.
+> 
+> FWIW I'm ok if this lands as a fix patch, and perceived the discussion to be
+> about how refactor things more properly afterwards, going forward.
+> 
 
---3nm3t5sl2o35yjav
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: [PULL] drm-misc-next
-MIME-Version: 1.0
+I've said the same thing and I concur, we can use the patch as-is and
+change this to set the relevant identified fields after 6.19
 
-Hi Dave, Sima,
+Balbir
 
-Here's this week drm-misc-next PR. It should be the last drm-misc-next
-PR for the 6.20/7.0 release cycle.
+>> - At a minimum, you must clear every page’s flags in the loop. So why not
+>>   conservatively clear anything else a folio might have set before calling
+>>   an existing core-MM function, ensuring the pages are in a known state?
+>>   This is a fixes patch.
+>>
+>> - Given the current state of the discussion, I don’t think large device
+>>   pages should be in 6.19. And if so, why didn’t the entire device pages
+>>   series receive this level of scrutiny earlier? It’s my mistake for not
+>>   saying “no” until the reallocation at different sizes issue was resolved.
+>>
+>> @Andrew. - I'd revert large device pages in 6.19 as it doesn't work and
+>> we seemly cannot close on this.
+>>
+>> Matt
 
-Maxime
 
-drm-misc-next-2026-01-22:
-drm-misc-next for 6.20:
-
-Core Changes:
- - buddy: Fix free_trees memory leak, prevent a BUG_ON
- - dma-buf: Start to introduce cgroup memory accounting in heaps, Remove
-   sysfs stats, add new tracepoints
- - hdmi: Limit infoframes exposure to userspace based on driver
-   capabilities
- - property: Account for property blobs in memcg
-
-Driver Changes:
- - atmel-hlcdc: Switch to drmm resources, Support nomodeset parameter,
-   various patches to use newish helpers and fix memory safety bugs
- - hisilicon: Fix various DisplayPort related bugs
- - imagination: Introduce hardware version checks
- - renesas: Fix kernel panic on reboot
- - rockchip: Fix RK3576 HPD interrupt handling, Improve RK3588 HPD
-   interrupt handling
- - v3d: Convert to drm logging helpers
-
- - bridge:
-   - Continuation of the refcounting effort
-   - new bridge: Algoltek AG6311
-
- - panel:
-   - new panel: Anbernic RG-DS
-The following changes since commit b36178488d479e9a53bbef2b01280378b5586e60:
-
-  accel/amdxdna: Fix notifier_wq flushing warning (2026-01-14 09:07:33 -080=
-0)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-202=
-6-01-22
-
-for you to fetch changes up to 68b271a3a94cfd6c7695a96b6398b52feb89e2c2:
-
-  drm/bridge: fix kdoc syntax (2026-01-21 18:02:28 +0100)
-
-----------------------------------------------------------------
-drm-misc-next for 6.20:
-
-Core Changes:
- - buddy: Fix free_trees memory leak, prevent a BUG_ON
- - dma-buf: Start to introduce cgroup memory accounting in heaps, Remove
-   sysfs stats, add new tracepoints
- - hdmi: Limit infoframes exposure to userspace based on driver
-   capabilities
- - property: Account for property blobs in memcg
-
-Driver Changes:
- - atmel-hlcdc: Switch to drmm resources, Support nomodeset parameter,
-   various patches to use newish helpers and fix memory safety bugs
- - hisilicon: Fix various DisplayPort related bugs
- - imagination: Introduce hardware version checks
- - renesas: Fix kernel panic on reboot
- - rockchip: Fix RK3576 HPD interrupt handling, Improve RK3588 HPD
-   interrupt handling
- - v3d: Convert to drm logging helpers
-
- - bridge:
-   - Continuation of the refcounting effort
-   - new bridge: Algoltek AG6311
-
- - panel:
-   - new panel: Anbernic RG-DS
-
-----------------------------------------------------------------
-Alexandru Dadu (1):
-      drm/imagination: Add gpuid module parameter
-
-Alice Ryhl (1):
-      drm/tyr: rename pad0 to selected_coherency
-
-Andy Yan (1):
-      drm/rockchip: vop2: Add mode valid callback for crtc
-
-Baihan Li (4):
-      drm/hisilicon/hibmc: fix dp probabilistical detect errors after HPD i=
-rq
-      drm/hisilicon/hibmc: add dp mode valid check
-      drm/hisilicon/hibmc: fix no showing problem with loading hibmc manual=
-ly
-      drm/hisilicon/hibmc: Adding reset colorbar cfg in dp init.
-
-Chris Morgan (3):
-      drm: panel: jd9365da: Use gpiod_set_value_cansleep()
-      dt-bindings: display: panel: Add compatible for Anbernic RG-DS
-      drm/panel: jd9365da: Support for Anbernic RG-DS Panel
-
-Cristian Ciocaltea (2):
-      drm/rockchip: dw_hdmi_qp: Fix RK3576 HPD interrupt handling
-      drm/rockchip: dw_hdmi_qp: Optimize RK3588 HPD interrupt handling
-
-Dmitry Baryshkov (11):
-      drm/tests: hdmi: check the infoframes behaviour
-      drm/vc4: hdmi: implement clear_infoframe
-      drm/sun4i: hdmi_enc: implement clear_infoframe stub
-      drm/connector: make clear_infoframe callback mandatory for HDMI conne=
-ctors
-      drm/bridge: refactor HDMI InfoFrame callbacks
-      drm/display: hdmi_state_helper: split InfoFrame functions per type
-      drm/display: hdmi_state_helper: reject Audio IF updates if it's not s=
-upported
-      drm/display: hdmi_state_helper: don't generate unsupported InfoFrames
-      drm/display: bridge_connector: dynamically generate HDMI callbacks
-      drm/debug: don't register files for unsupported HDMI InfoFrames
-      drm/tests: hdmi: fix build failure
-
-Eric Chanudet (2):
-      dma-buf: heaps: add parameter to account allocations using cgroup
-      dma-buf: system_heap: account for system heap allocation in memcg
-
-Hugo Villeneuve (1):
-      drm: renesas: rz-du: mipi_dsi: fix kernel panic when rebooting for so=
-me panels
-
-Jani Nikula (1):
-      drm/rockchip: inno-hdmi: make inno_hdmi.h header self-contained
-
-Jessica Zhang (1):
-      mailmap: Update Jessica Zhang's email address
-
-Loic Poulain (1):
-      drm/bridge: anx7625: Fix invalid EDID size
-
-Luca Ceresoli (19):
-      drm: of: drm_of_panel_bridge_remove(): fix device_node leak
-      drm: of: drm_of_panel_bridge_remove(): convert to of_drm_find_and_get=
-_bridge()
-      drm/bridge: sii902x: convert to of_drm_find_and_get_bridge()
-      drm/bridge: thc63lvd1024: convert to of_drm_find_and_get_bridge()
-      drm/bridge: tfp410: convert to of_drm_find_and_get_bridge()
-      drm/bridge: tpd12s015: convert to of_drm_find_and_get_bridge()
-      drm/bridge: lt8912b: convert to of_drm_find_and_get_bridge()
-      drm/bridge: imx8mp-hdmi-pvi: convert to of_drm_find_and_get_bridge()
-      drm/bridge: imx8qxp-ldb: convert to of_drm_find_and_get_bridge()
-      drm/bridge: samsung-dsim: samsung_dsim_host_attach: use a temporary v=
-ariable for the next bridge
-      drm/bridge: samsung-dsim: samsung_dsim_host_attach: don't use the bri=
-dge pointer as an error indicator
-      drm/bridge: samsung-dsim: samsung_dsim_host_attach: convert to of_drm=
-_find_and_get_bridge()
-      drm/bridge: dw-hdmi: convert to of_drm_find_and_get_bridge()
-      drm/meson/dw-hdmi: convert to of_drm_find_and_get_bridge()
-      drm/imx/dw-hdmi: convert to of_drm_find_and_get_bridge()
-      drm/mediatek: mtk_hdmi*: convert to of_drm_find_and_get_bridge()
-      drm/exynos: hdmi: convert to of_drm_find_and_get_bridge()
-      drm: rcar-du: lvds: convert to of_drm_find_and_get_bridge()
-      drm/bridge: fix kdoc syntax
-
-Ludovic Desroches (11):
-      drm/atmel-hlcdc: use managed device resources for the display control=
-ler
-      drm/atmel-hlcdc: add support for the nomodeset kernel parameter
-      drm/atmel-hlcdc: use drmm_simple_encoder_alloc()
-      drm/atmel-hlcdc: use drm_crtc_mask()
-      drm/atmel-hlcdc: use devm_drm_of_get_bridge()
-      drm/atmel-hlcdc: use drmm_crtc_alloc_with_planes()
-      drm/atmel-hlcdc: use drmm_universal_plane_alloc()
-      drm/atmel-hlcdc: destroy properly the plane state in the reset callba=
-ck
-      drm/atmel-hlcdc: fix memory leak from the atomic_destroy_state callba=
-ck
-      drm/atmel-hlcdc: fix use-after-free of drm_crtc_commit after release
-      drm/atmel-hlcdc: don't reject the commit if the src rect has fraction=
-al parts
-
-Matt Coster (5):
-      drm/imagination: Simplify module parameters
-      drm/imagination: Validate fw trace group_mask
-      drm/imagination: Load FW trace config at init
-      drm/imagination: KUnit test for pvr_gpuid_decode_string()
-      drm/imagination: Warn or error on unsupported hardware
-
-Ma=C3=ADra Canal (2):
-      drm/v3d: Consolidate CPU job validation in a function
-      drm/v3d: Convert v3d logging to device-based DRM helpers
-
-Micha=C5=82 Grzelak (1):
-      drm/buddy: release free_trees array on buddy mm teardown
-
-Sanjay Yadav (2):
-      drm/buddy: Prevent BUG_ON by validating rounded allocation
-      drm/tests/drm_buddy: Add tests for allocations exceeding max_order
-
-T.J. Mercier (1):
-      dma-buf: Remove DMA-BUF sysfs stats
-
-Val Packett (3):
-      dt-bindings: vendor-prefixes: Add AlgolTek
-      dt-bindings: display: bridge: simple: document the Algoltek AG6311 DP=
--to-HDMI bridge
-      drm/bridge: simple: add the Algoltek AG6311 DP-to-HDMI bridge
-
-Xiao Kan (1):
-      drm: Account property blob allocations to memcg
-
-gaoxiang17 (1):
-      dma-buf: add some tracepoints to debug.
-
- .mailmap                                           |   4 +-
- .../ABI/testing/sysfs-kernel-dmabuf-buffers        |  24 -
- .../bindings/display/bridge/simple-bridge.yaml     |   1 +
- .../bindings/display/panel/jadard,jd9365da-h3.yaml |   2 +
- .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
- Documentation/driver-api/dma-buf.rst               |   5 -
- drivers/dma-buf/Kconfig                            |  15 -
- drivers/dma-buf/Makefile                           |   1 -
- drivers/dma-buf/dma-buf-sysfs-stats.c              | 202 -------
- drivers/dma-buf/dma-buf-sysfs-stats.h              |  35 --
- drivers/dma-buf/dma-buf.c                          |  27 +-
- drivers/dma-buf/dma-heap.c                         |   5 +
- drivers/dma-buf/heaps/system_heap.c                |   7 +-
- drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_crtc.c     |  32 +-
- drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.c       |  40 +-
- drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_dc.h       |   1 +
- drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_output.c   |  50 +-
- drivers/gpu/drm/atmel-hlcdc/atmel_hlcdc_plane.c    |  98 ++-
- drivers/gpu/drm/bridge/adv7511/adv7511_drv.c       | 166 ++---
- drivers/gpu/drm/bridge/analogix/anx7625.c          |   2 +-
- drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pvi.c       |  15 +-
- drivers/gpu/drm/bridge/imx/imx8qxp-ldb.c           |  12 +-
- drivers/gpu/drm/bridge/inno-hdmi.c                 |  41 +-
- drivers/gpu/drm/bridge/ite-it6263.c                |  87 +--
- drivers/gpu/drm/bridge/lontium-lt8912b.c           |  31 +-
- drivers/gpu/drm/bridge/lontium-lt9611.c            | 145 +++--
- drivers/gpu/drm/bridge/samsung-dsim.c              |  37 +-
- drivers/gpu/drm/bridge/sii902x.c                   |   7 +-
- drivers/gpu/drm/bridge/simple-bridge.c             |   5 +
- drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c       | 116 ++--
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |   7 +-
- drivers/gpu/drm/bridge/thc63lvd1024.c              |   7 +-
- drivers/gpu/drm/bridge/ti-tfp410.c                 |  27 +-
- drivers/gpu/drm/bridge/ti-tpd12s015.c              |   8 +-
- drivers/gpu/drm/display/drm_bridge_connector.c     | 190 +++++-
- drivers/gpu/drm/display/drm_hdmi_state_helper.c    | 114 ++--
- drivers/gpu/drm/drm_bridge.c                       |   3 +
- drivers/gpu/drm/drm_buddy.c                        |  10 +
- drivers/gpu/drm/drm_connector.c                    |   6 +
- drivers/gpu/drm/drm_debugfs.c                      |   7 +
- drivers/gpu/drm/drm_property.c                     |   2 +-
- drivers/gpu/drm/exynos/exynos_hdmi.c               |   4 +-
- drivers/gpu/drm/hisilicon/hibmc/dp/dp_comm.h       |   4 +
- drivers/gpu/drm/hisilicon/hibmc/dp/dp_config.h     |   2 +
- drivers/gpu/drm/hisilicon/hibmc/dp/dp_hw.c         |  38 +-
- drivers/gpu/drm/hisilicon/hibmc/dp/dp_hw.h         |   8 +
- drivers/gpu/drm/hisilicon/hibmc/dp/dp_reg.h        |   3 +
- drivers/gpu/drm/hisilicon/hibmc/hibmc_drm_dp.c     |  71 ++-
- drivers/gpu/drm/imagination/Kconfig                |  12 +
- drivers/gpu/drm/imagination/Makefile               |   3 +-
- drivers/gpu/drm/imagination/pvr_debugfs.c          |   2 -
- drivers/gpu/drm/imagination/pvr_device.c           | 200 +++++-
- drivers/gpu/drm/imagination/pvr_device.h           |  24 +-
- drivers/gpu/drm/imagination/pvr_fw_trace.c         | 125 +++-
- drivers/gpu/drm/imagination/pvr_fw_trace.h         |   3 -
- drivers/gpu/drm/imagination/pvr_params.c           | 147 -----
- drivers/gpu/drm/imagination/pvr_params.h           |  72 ---
- drivers/gpu/drm/imagination/pvr_test.c             |  73 +++
- drivers/gpu/drm/imx/ipuv3/dw_hdmi-imx.c            |   7 +-
- drivers/gpu/drm/mediatek/mtk_hdmi.c                |   4 +-
- drivers/gpu/drm/mediatek/mtk_hdmi_common.c         |  12 +-
- drivers/gpu/drm/mediatek/mtk_hdmi_common.h         |   1 -
- drivers/gpu/drm/mediatek/mtk_hdmi_v2.c             | 114 ++--
- drivers/gpu/drm/meson/meson_dw_hdmi.c              |   6 +-
- drivers/gpu/drm/msm/hdmi/hdmi_bridge.c             | 195 +++---
- drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c   | 281 ++++++++-
- drivers/gpu/drm/renesas/rcar-du/rcar_lvds.c        |  10 +-
- drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c     |   8 +
- drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c     |  13 +-
- drivers/gpu/drm/rockchip/rk3066_hdmi.c             |  47 +-
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       |  12 +
- drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c             |  42 +-
- drivers/gpu/drm/tests/drm_buddy_test.c             |  35 ++
- drivers/gpu/drm/tests/drm_client_modeset_test.c    |   3 +
- drivers/gpu/drm/tests/drm_connector_test.c         |  19 +
- drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c | 667 +++++++++++++++++=
-++++
- drivers/gpu/drm/tests/drm_kunit_edid.h             | 119 ++++
- drivers/gpu/drm/tyr/gpu.rs                         |   5 +-
- drivers/gpu/drm/v3d/v3d_bo.c                       |   8 +-
- drivers/gpu/drm/v3d/v3d_drv.c                      |   6 +-
- drivers/gpu/drm/v3d/v3d_gem.c                      |  16 +-
- drivers/gpu/drm/v3d/v3d_irq.c                      |   8 +-
- drivers/gpu/drm/v3d/v3d_mmu.c                      |   6 +-
- drivers/gpu/drm/v3d/v3d_sched.c                    |   6 +-
- drivers/gpu/drm/v3d/v3d_submit.c                   | 140 ++---
- drivers/gpu/drm/vc4/vc4_hdmi.c                     | 105 +++-
- include/drm/bridge/inno_hdmi.h                     |   2 +
- include/drm/bridge/samsung-dsim.h                  |   1 -
- include/drm/drm_bridge.h                           | 127 +++-
- include/drm/drm_connector.h                        | 115 ++--
- include/drm/drm_of.h                               |   6 +-
- include/linux/dma-buf.h                            |  12 -
- include/linux/dma-heap.h                           |   2 +
- include/trace/events/dma_buf.h                     |  50 +-
- 94 files changed, 3108 insertions(+), 1489 deletions(-)
- delete mode 100644 Documentation/ABI/testing/sysfs-kernel-dmabuf-buffers
- delete mode 100644 drivers/dma-buf/dma-buf-sysfs-stats.c
- delete mode 100644 drivers/dma-buf/dma-buf-sysfs-stats.h
- delete mode 100644 drivers/gpu/drm/imagination/pvr_params.c
- delete mode 100644 drivers/gpu/drm/imagination/pvr_params.h
- create mode 100644 drivers/gpu/drm/imagination/pvr_test.c
-
---3nm3t5sl2o35yjav
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaXHlEwAKCRAnX84Zoj2+
-drV4AYD0UR4P2ca5rh1TJzj9bl7+fIQqyxGdialw5Y1R/mek4lQ7vUei6dGqXuUf
-FPCb4EYBf19QzC5daLd5f4uHvBgS936S4CWVnZ7kuilC4PS1jOSZAEiMBz1L1cMQ
-jHQpdf/xig==
-=6hsF
------END PGP SIGNATURE-----
-
---3nm3t5sl2o35yjav--
-
+<snip>
