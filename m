@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FE07D625E6
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Jan 2026 03:09:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE881D625E5
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Jan 2026 03:09:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA49D10E8D5;
-	Thu, 22 Jan 2026 03:09:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9279E10E8CA;
+	Thu, 22 Jan 2026 03:09:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TuzkaHBX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SofctCFn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 648C710E124;
- Thu, 22 Jan 2026 03:09:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCDDA10E8CD;
+ Thu, 22 Jan 2026 03:09:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769051354; x=1800587354;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qDqbfIee7pKsafEmYG7DwNAfcGe8Ua+GpIWsgAWLb0Y=;
- b=TuzkaHBX21mSZ4PeWo2PfqXniahTww87wS+is8NlDRGNTeYj7EVb+OYn
- JsmEErv7PhVgh1J1WsVw4Tqirxr4kwgOEZR4RKDH+/hOh6rVRE3S9bzZ2
- XPyBrDEuegYgZJPA3K6G0GjcPNYTi6ia+OsEaFzdRYbm8+w3ZtNxHFwV2
- zp070mvJKsYVOucJSLihTnu4+xrsJOwhyDaN72ap9duzYo59S8VlpeFnK
- kSGtZBmLhbJKJezkzSyQ/nEUwl2nbpCgVkly9TPFvfMW00KVDFn80H+gH
- NgykOVjrvWY/CYXPenR8Nky5IUTofmzRqyhaDEHa+c/qAEEQApa1nvMJI w==;
-X-CSE-ConnectionGUID: PqR4GADdSVeaEnZ3Fa345Q==
-X-CSE-MsgGUID: STPA4NFLSIi+YhFfnNDu5A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="81733101"
-X-IronPort-AV: E=Sophos;i="6.21,245,1763452800"; d="scan'208";a="81733101"
+ t=1769051352; x=1800587352;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rpOou/GHq40Xxq50H3x2JsCD0p6Oz/B8KYtHFVgVWm8=;
+ b=SofctCFn1yAJbPCX9nt54dlXjQIXbwR8WxgG3CSSqiRvrhO5gO6bxDFk
+ 9fqtx9S/oX6UtPV4xjMoz67KgQx7J5cvIkQ2/v46TiF6iQF0cP20jD/Gq
+ Q0dCvHpscDgJ+iogjN3Ud21Ul5A5u+IdGmEvg1Chqt+OB7Ra4mzoFGYi8
+ XGJtmssYdrWovg7xu2+QKnx0TVbnhpYUfSsLXDkZhkldy0VlJHaM4kaIP
+ RE7fuLBpyRVEq0tmAXq8rAzAzCFijjoDYJtEsqL9w7zxrdKxilWDQYPc2
+ ckgp2tRq2ejan3Q6ByJ714vTO/jXi7N7JqEBHsiQAq8CMrPfpOaGHCl7f A==;
+X-CSE-ConnectionGUID: LX4QREFjRKWTbzGT2J5kVA==
+X-CSE-MsgGUID: WktQ9hpwQladOz08kXT2dw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="81733088"
+X-IronPort-AV: E=Sophos;i="6.21,245,1763452800"; d="scan'208";a="81733088"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2026 19:09:14 -0800
-X-CSE-ConnectionGUID: W+skS0UmTqGI9nsYQmZL8g==
-X-CSE-MsgGUID: RCHralVqReC/qfVjCnjocg==
+ 21 Jan 2026 19:09:12 -0800
+X-CSE-ConnectionGUID: 0nuMA4sISDe9LenXzl7WlA==
+X-CSE-MsgGUID: Xb4duWThTkSo4bXj8cMXzA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,245,1763452800"; d="scan'208";a="211058832"
+X-IronPort-AV: E=Sophos;i="6.21,245,1763452800"; d="scan'208";a="211058806"
 Received: from debox1-desk4.jf.intel.com ([10.88.27.138])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Jan 2026 19:09:12 -0800
+ 21 Jan 2026 19:09:10 -0800
 From: "David E. Box" <david.e.box@linux.intel.com>
 To: thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
  irenic.rajneesh@gmail.com, ilpo.jarvinen@linux.intel.com,
@@ -48,13 +48,10 @@ To: thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
  dri-devel@lists.freedesktop.org, xi.pardee@linux.intel.com
 Cc: "David E. Box" <david.e.box@linux.intel.com>, hansg@kernel.org,
  linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
-Subject: [PATCH v3 3/6] platform/x86/intel/vsec: Decouple add/link helpers
- from PCI
-Date: Wed, 21 Jan 2026 19:08:58 -0800
-Message-ID: <20260122030903.3247167-4-david.e.box@linux.intel.com>
+Subject: [PATCH v3 0/6] platform/x86/intel/vsec: Prep for ACPI PMT discovery
+Date: Wed, 21 Jan 2026 19:08:55 -0800
+Message-ID: <20260122030903.3247167-1-david.e.box@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260122030903.3247167-1-david.e.box@linux.intel.com>
-References: <20260122030903.3247167-1-david.e.box@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
@@ -72,119 +69,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This refactor is prepares for adding ACPI-enumerated PMT endpoints. While
-intel_vsec is bound to PCI today, some helpers are used by code that will
-also register PMT endpoints from non-PCI (ACPI) paths. Clean up
-PCI-specific plumbing where it isn=E2=80=99t strictly required and rely on
-generic struct device where possible.
+This series updates intel_vsec to improve const-correctness, decouple
+helper APIs from PCI, enhance error handling, and plumb ACPI-based Intel
+Platform Monitoring Technology (PMT) discovery through the vsec layer. It
+is preparatory infrastructure for follow-on PMT core/telemetry and
+PMC/SSRAM series that add ACPI discovery and support for new platforms.
 
-Signed-off-by: David E. Box <david.e.box@linux.intel.com>
-Reviewed-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
----
+The series is organized as follows:
 
-v3:
-  - No change
+Patches 1-2 refactor and improve const-correctness of base_addr handling.
+Patch 1 makes base_addr an explicit parameter throughout the call chain,
+clarifying ownership and removing conditional logic. Patch 2 then makes the
+platform info data structure read-only, preventing unintended modifications
+to shared driver data.
 
-v2:
-  - No changes (previous patch 1)
+Patches 3-4 decouple the vsec layer from PCI-specific types, updating
+helper APIs and data structures to use generic struct device instead of
+struct pci_dev.  This enables vsec to work with both PCI and ACPI parent
+devices.
 
- drivers/platform/x86/intel/vsec.c      | 13 +++++++++----
- drivers/platform/x86/intel/vsec_tpmi.c |  2 +-
- include/linux/intel_vsec.h             |  2 +-
- 3 files changed, 11 insertions(+), 6 deletions(-)
+Patch 5 enhances error visibility by returning meaningful error codes from
+the registration path instead of collapsing to boolean success/failure.
 
-diff --git a/drivers/platform/x86/intel/vsec.c b/drivers/platform/x86/intel=
-/vsec.c
-index 61b32ae7f064..f850343491fc 100644
---- a/drivers/platform/x86/intel/vsec.c
-+++ b/drivers/platform/x86/intel/vsec.c
-@@ -158,18 +158,23 @@ static bool vsec_driver_present(int cap_id)
-  */
- static const struct pci_device_id intel_vsec_pci_ids[];
-=20
--static int intel_vsec_link_devices(struct pci_dev *pdev, struct device *de=
-v,
-+static int intel_vsec_link_devices(struct device *parent, struct device *d=
-ev,
- 				   int consumer_id)
- {
- 	const struct vsec_feature_dependency *deps;
- 	enum vsec_device_state *state;
- 	struct device **suppliers;
- 	struct vsec_priv *priv;
-+	struct pci_dev *pdev;
- 	int supplier_id;
-=20
- 	if (!consumer_id)
- 		return 0;
-=20
-+	if (!dev_is_pci(parent))
-+		return 0;
-+
-+	pdev =3D to_pci_dev(parent);
- 	if (!pci_match_id(intel_vsec_pci_ids, pdev))
- 		return 0;
-=20
-@@ -204,7 +209,7 @@ static int intel_vsec_link_devices(struct pci_dev *pdev=
-, struct device *dev,
- 	return 0;
- }
-=20
--int intel_vsec_add_aux(struct pci_dev *pdev, struct device *parent,
-+int intel_vsec_add_aux(struct device *parent,
- 		       struct intel_vsec_device *intel_vsec_dev,
- 		       const char *name)
- {
-@@ -252,7 +257,7 @@ int intel_vsec_add_aux(struct pci_dev *pdev, struct dev=
-ice *parent,
- 	if (ret)
- 		goto cleanup_aux;
-=20
--	ret =3D intel_vsec_link_devices(pdev, &auxdev->dev, intel_vsec_dev->cap_i=
-d);
-+	ret =3D intel_vsec_link_devices(parent, &auxdev->dev, intel_vsec_dev->cap=
-_id);
- 	if (ret)
- 		goto cleanup_aux;
-=20
-@@ -343,7 +348,7 @@ static int intel_vsec_add_dev(struct pci_dev *pdev, str=
-uct intel_vsec_header *he
- 	 * Pass the ownership of intel_vsec_dev and resource within it to
- 	 * intel_vsec_add_aux()
- 	 */
--	return intel_vsec_add_aux(pdev, parent, no_free_ptr(intel_vsec_dev),
-+	return intel_vsec_add_aux(parent, no_free_ptr(intel_vsec_dev),
- 				  intel_vsec_name(header->id));
- }
-=20
-diff --git a/drivers/platform/x86/intel/vsec_tpmi.c b/drivers/platform/x86/=
-intel/vsec_tpmi.c
-index 7748b5557a18..180bc5e18e06 100644
---- a/drivers/platform/x86/intel/vsec_tpmi.c
-+++ b/drivers/platform/x86/intel/vsec_tpmi.c
-@@ -655,7 +655,7 @@ static int tpmi_create_device(struct intel_tpmi_info *t=
-pmi_info,
- 	 * feature_vsec_dev and res memory are also freed as part of
- 	 * device deletion.
- 	 */
--	return intel_vsec_add_aux(vsec_dev->pcidev, &vsec_dev->auxdev.dev,
-+	return intel_vsec_add_aux(&vsec_dev->pcidev->dev,
- 				  feature_vsec_dev, feature_id_name);
- }
-=20
-diff --git a/include/linux/intel_vsec.h b/include/linux/intel_vsec.h
-index d551174b0049..49a746ec0128 100644
---- a/include/linux/intel_vsec.h
-+++ b/include/linux/intel_vsec.h
-@@ -184,7 +184,7 @@ struct pmt_feature_group {
- 	struct telemetry_region	regions[];
- };
-=20
--int intel_vsec_add_aux(struct pci_dev *pdev, struct device *parent,
-+int intel_vsec_add_aux(struct device *parent,
- 		       struct intel_vsec_device *intel_vsec_dev,
- 		       const char *name);
-=20
+Patch 6 adds infrastructure for ACPI-based PMT discovery, allowing client
+drivers to consume discovery data from either PCI or ACPI sources.
+
+David E. Box (6):
+  platform/x86/intel/vsec: Refactor base_addr handling
+  platform/x86/intel/vsec: Make driver_data info const
+  platform/x86/intel/vsec: Decouple add/link helpers from PCI
+  platform/x86/intel/vsec: Switch exported helpers from pci_dev to
+    device
+  platform/x86/intel/vsec: Return real error codes from registration
+    path
+  platform/x86/intel/vsec: Plumb ACPI PMT discovery tables through vsec
+
+ drivers/gpu/drm/xe/xe_debugfs.c               |   2 +-
+ drivers/gpu/drm/xe/xe_hwmon.c                 |   2 +-
+ drivers/gpu/drm/xe/xe_vsec.c                  |   7 +-
+ drivers/gpu/drm/xe/xe_vsec.h                  |   2 +-
+ drivers/platform/x86/intel/pmc/core.c         |   4 +-
+ .../platform/x86/intel/pmc/ssram_telemetry.c  |   2 +-
+ drivers/platform/x86/intel/pmt/class.c        |   8 +-
+ drivers/platform/x86/intel/pmt/class.h        |   5 +-
+ drivers/platform/x86/intel/pmt/discovery.c    |   4 +-
+ drivers/platform/x86/intel/pmt/telemetry.c    |  13 +-
+ drivers/platform/x86/intel/pmt/telemetry.h    |  12 +-
+ drivers/platform/x86/intel/sdsi.c             |   5 +-
+ drivers/platform/x86/intel/vsec.c             | 122 +++++++++++-------
+ drivers/platform/x86/intel/vsec_tpmi.c        |  10 +-
+ include/linux/intel_vsec.h                    |  39 ++++--
+ 15 files changed, 144 insertions(+), 93 deletions(-)
+
+
+base-commit: 0f61b1860cc3f52aef9036d7235ed1f017632193
 --=20
 2.43.0
 
