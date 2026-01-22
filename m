@@ -4,27 +4,164 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D339D3EE67
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Jan 2026 13:31:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82A50D3EE66
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Jan 2026 13:31:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10E5E10E9AB;
-	Thu, 22 Jan 2026 13:31:14 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0940710E9AD;
- Thu, 22 Jan 2026 13:31:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3581604139104936197=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4830F10E99F;
+	Thu, 22 Jan 2026 13:31:36 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="ZWQXDyT5";
+	dkim-atps=neutral
+Received: from SJ2PR03CU001.outbound.protection.outlook.com
+ (mail-westusazon11012026.outbound.protection.outlook.com [52.101.43.26])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B775010E99F
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Jan 2026 13:31:34 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ks3lKE84kGs61apLqiu8AIS4jUiBuwHpS3Vnfi3muhMhUonW1yPORiTOHD9ql9iYIqwebeXG4uushduXC6jSAG84weNni4YSamcLDRqJSIqwtyx1zCGjdtL57Bx+8IrLnLfGE2Sj2nZCE5BAB6o8saQcwKys56aoBPSnFJ80Bp4HZNyCecgEdYcET4mbvuFzprT2ejX770DvUllqqsaJ6mm4xiwiQSdZ/ea+VnYi69L4EcByGTDT+cIwr29Mzm4Z8e88/o18hbcCwglRtED2IQHJizYoSkXZ8sOq8dSL2ifYoptRcHXbDIldOJNxnULSi56CFhC5GrUbv5ek/PAxUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nfv9Yf2SpTCMF8EcpVxIJYw8fFNfVGK/hPh4Wu4VJOQ=;
+ b=g7xLrjiPnX3y3/bnbGfDrqJ1RTS9rHjpjLs5LVLMIoimpJBGDM6b8B/F6jaVpDi9UFlCfvnFO48vCwpzDVZEdCXGWx5wnlYxjWLRw9ThA5ciUP1letRB/ysZlhTKLu2HlpA/2Xa14JhfgRDGkwcuTuWb3ANaAhstEsDxKtEiZFlIFZF5sfgsS4rxmpq7fcdBld6f6vMxD+uVqxPrb9J8GGDW6d0Plgj89jbzgDef9LnrC10K5exUazgvSiyLHkmGasGkBqkBieV5lQBPu/3sYousvPtxjc8DTkcq+VCZbTC3JD5iRysZwsVrg103r+7CDhdxKitfCX9if1xy3YLmfQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nfv9Yf2SpTCMF8EcpVxIJYw8fFNfVGK/hPh4Wu4VJOQ=;
+ b=ZWQXDyT5Rg2W/dRselkrkP/jYEhpyUSmXcDJCKM6ylQ4t8mULEShjjDt0sTPBvVgxKpcNWpaydcwmij7CeH01qSUqFVMm/Q8TvdQVnUsbBdIJ9nUfuYp9y/bbNMHlRQOtRZ4GMl54YXqp/nCivFdSh+i6tHNv7F8yLO4cKCY01C3LDLpS8tboMeLahE62ie8T+hp4kWM48/sptp96hjymAkq1J5Mpk8qBj3RNJuF23WLqh+MzcbDfMu5AThaN6GO3Bm9z2j/RZkLpoMHpPASdKFgWnEbf4We7EtHgA86qifjU4iu/OiarJuLTz+H1sQaKfn6DgfVkIr7mLFF1CeEkA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV8PR12MB9620.namprd12.prod.outlook.com (2603:10b6:408:2a1::19)
+ by MN2PR12MB4127.namprd12.prod.outlook.com (2603:10b6:208:1d1::24)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.11; Thu, 22 Jan
+ 2026 13:31:32 +0000
+Received: from LV8PR12MB9620.namprd12.prod.outlook.com
+ ([fe80::1b59:c8a2:4c00:8a2c]) by LV8PR12MB9620.namprd12.prod.outlook.com
+ ([fe80::1b59:c8a2:4c00:8a2c%3]) with mapi id 15.20.9542.010; Thu, 22 Jan 2026
+ 13:31:32 +0000
+Date: Thu, 22 Jan 2026 09:31:31 -0400
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>, iommu@lists.linux.dev,
+ intel-xe@lists.freedesktop.org, Joerg Roedel <joerg.roedel@amd.com>,
+ Calvin Owens <calvin@wbinvd.org>, David Woodhouse <dwmw2@infradead.org>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Samiullah Khawaja <skhawaja@google.com>,
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Tina Zhang <tina.zhang@intel.com>, Lu Baolu <baolu.lu@linux.intel.com>,
+ Kevin Tian <kevin.tian@intel.com>
+Subject: Re: Xe performance regression with recent IOMMU changes
+Message-ID: <20260122133131.GL1134360@nvidia.com>
+References: <20260121130233.257428-1-francois.dugast@intel.com>
+ <20260121131135.GF1134360@nvidia.com>
+ <20260121180449.GA1490142@nvidia.com>
+ <aXHAcibp/4pUB8f0@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aXHAcibp/4pUB8f0@lstrano-desk.jf.intel.com>
+X-ClientProxiedBy: MN2PR13CA0022.namprd13.prod.outlook.com
+ (2603:10b6:208:160::35) To LV8PR12MB9620.namprd12.prod.outlook.com
+ (2603:10b6:408:2a1::19)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/i915/cdclk=3A_Extend_Wa?=
- =?utf-8?q?=5F13012396614_to_Xe3p=5FLPD?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 22 Jan 2026 13:31:13 -0000
-Message-ID: <176908867303.183336.16279719596350334072@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260122-wa_13012396614-xe3p_lpd-v1-1-39d34a3a5b77@intel.com>
-In-Reply-To: <20260122-wa_13012396614-xe3p_lpd-v1-1-39d34a3a5b77@intel.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV8PR12MB9620:EE_|MN2PR12MB4127:EE_
+X-MS-Office365-Filtering-Correlation-Id: e25c685f-626e-46f7-fead-08de59ba8ea2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?NldDNGN5bm9pL014YUhKOHlMRkRmRGZvNUp6aW82MTVDemZKeDlydEhIVyt3?=
+ =?utf-8?B?aGc3ejRac01ndkgwcGl0Tm4zRU9aZ2xza1dGYmRYZ0F6RWplWXlNbXZwWjRK?=
+ =?utf-8?B?c3dNTzZIVks2RVVzdnN4SEE4MDF0MGFGdzdaQVhoY3lhSDJnZnU0b0srVGFw?=
+ =?utf-8?B?Rm5VK0dXQTBSYzNZeUhodFNtWnl2aTYzcW1HVDBNSzJISkUxK3AxdjRkTjJr?=
+ =?utf-8?B?K3Jab25VUVphZDBRWW1idkhoYlA4NWJxR0dYaGZSVUdFSk41UnF2SWVuVFdj?=
+ =?utf-8?B?d2t5ZE5Vb0VoMkZldTZzUW9PQzJ1OEk2Z3hEbHFXeGFSTDM4dkVxUFpQV2pJ?=
+ =?utf-8?B?VDNob0lHdmhXaW5KQ28zbGp2b0p2dnE3OUZnYmJmRE5rdHBIV2V3SU11RGNG?=
+ =?utf-8?B?dVJNUjR3STE3eFBUYVV1Z1dzUHBBd0FxZVJSOEJHWnJ1UkRWdWVKb0gxTy82?=
+ =?utf-8?B?ZzNzU05IZVN2NDVWZHZra3NpQnlFV1VzVHFRelVJLzYySmZpSnlOWk9QcWNu?=
+ =?utf-8?B?eWk2MXlwKzNka3lFaTkxRnVpeWJrQzhzc0ZtVHlDbXdCQzB4N3Jud2V2ZHM5?=
+ =?utf-8?B?SlI4a2lpQkh1UjJQUm1BbEUrYU9xckdOQSsxMzlhZUhOSjlTYmwzZ0dkZ3R3?=
+ =?utf-8?B?NGtldVdKVTBuRlo4aFc4UHVVTm55TnVORFBYU0hycUpaN3psbmlDQnMvY2NV?=
+ =?utf-8?B?bG5EMVh5ZmtpV2ZTZTBUaGpaS0RDWXgveUFBczRXVHoyMlBET2FvbXc4Z1A0?=
+ =?utf-8?B?NzRIRm9WbU1XWkk1LzN0RkhkUUJYdDJxOERrRDd2RjVqZ054eGsyYktFM1Z0?=
+ =?utf-8?B?MzF2WUx0dXBJMlNmekxUdURBd0J1MmtEVE41aHlEbGxJeHpkVUdXTmJGM1JN?=
+ =?utf-8?B?UXJrNVpiN21HamRYVkxEYTc4NEpXOXZZT014UDdqbjU5SUVIZ2RtNmJTc2c2?=
+ =?utf-8?B?Rm9BaFNDdVUyMlFCTUswV3doblBMK3JRY1NqWTZ5aE1BY3JpSWFJQzJVNWJP?=
+ =?utf-8?B?RFM3MEZ4RWYzK0dweHJ6dnFlS0dlOXl1dUhJNXpENFh4M2ZqczVidTEzRFlu?=
+ =?utf-8?B?YzZFYUlEdG8raS9JU3E2c0RNV3hvNk9rZUFEbmtCQkltSm4wZ3BZd1hyK2o5?=
+ =?utf-8?B?VTZFR2FTVVMrb0lPQnIwYTgwYmdWNEZoL1Z0MWZ3WW82ODAyUjNTdVc0MEhM?=
+ =?utf-8?B?RUFTTlppUkdhYlVkVHN1eW9wSXVTK3h3SDBoc0xXMVFJZzNVTDlrL1BDT1Z4?=
+ =?utf-8?B?ZWpNZ1liRHNTcC9Zc1g5YjFlSjlOR3Y0SE5hazF3ZzdGZVRlMXFQUWxRU1dp?=
+ =?utf-8?B?YW9BY2t3ZVVxaDBUY1hqcldIbXpKeG13VkhVVU9PZnB2M3VoY1JacFdLOGg2?=
+ =?utf-8?B?akJKS2NtVFBhMG0xT3pzSVkxL3pDUWN6OVc1aHFKYzU1TkxwT2ZRU0YyK1JN?=
+ =?utf-8?B?cWFJcmRwemNIek12ZUhJbmZMRDZ1QXNzSERJSDNJQ1lEZGJQYlMxL3puSWI4?=
+ =?utf-8?B?c0F0ZkJPNzJUSzNkbTlrcUp5dnFlT1oxY0k3YlFCRUZ2VXpDbW5FS1NJOW01?=
+ =?utf-8?B?WmlnWXlVQVNlZjZRcnRQWVFSUzQrSFFQc2RzRzRRY3N4SDlobG5obC9rbHVp?=
+ =?utf-8?B?a1FHQzF3R0RBNFVTTlVzL29oVmNISi9pMHlncE8wd1VCZC9MT1dCV014RGJq?=
+ =?utf-8?B?NXc0U0hvS0xjcDVmOTJaZ1I0UGZNTlJtZ0N3OVNMcFh3MkY3STlrNm0zK0RD?=
+ =?utf-8?B?aEJFbmdnQzl1TFJncDdRb2MwWHB0QUwvS2VsMjVCZ0xZTmxkc0dOV3lIbGNx?=
+ =?utf-8?B?aitOZUtKZWhFY2hJZmMxRlQrZUNRWnlRdXp1ZCtkZS9sRm1lY1VSMWdkMzVK?=
+ =?utf-8?B?NkdHa3RzcHlVdUJwM1dsNUVoQ2JLWERCdjZBdnd5eE96bjVHWmVSQ0g5dW51?=
+ =?utf-8?B?NWVYTE9MTVdhYmZBK00zL1JQbE9wU3NSZWdmK0dNZHY5ai9lQ3RGUkRvOVZC?=
+ =?utf-8?B?WFJMdllQaWxXSWE1TkVieEhxbGI2dVg4L1hWMUljQU9aZEtvZ05oSGtIajJY?=
+ =?utf-8?B?MXdRUW92cHNFRTkvbFFtLzM0RVFEVkpzeFd0WHV0Z1UwbXBoRGpvZkQyTUdo?=
+ =?utf-8?Q?N/Hw=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV8PR12MB9620.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(7416014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RVdNZkpXMmFEc1FSV1RvM250ZlZZQllVa2hTVlFxeGhLNWdwaGphV1NlbjV4?=
+ =?utf-8?B?SEYwNnROT2gzUm1DOStHallkTE52dmV1VDRSRCtjNnVxeHcvV0lySTVEalMx?=
+ =?utf-8?B?WWZUU1R6MW9FYUNuK255NkRnRkVMUFRSRkpvdGI5T2YyelMvWkc5L1JYWU5P?=
+ =?utf-8?B?aExyTElXWjh6b2lGa1lRblJicjdVck10RUtQSGRmVVBTWXB1Z0lST21GZ3ZJ?=
+ =?utf-8?B?c1VuVU5PaUo1QkJaWE85NlNCN3c3aDRrSlppS2tybFMrelNONkx4NHBJNS9W?=
+ =?utf-8?B?cFY3NzI5bkY0VStsYy8xZjdKeUtvTXJoOWo1RWpITkRqVGVwTDlyaUsvcC9S?=
+ =?utf-8?B?WEFBVmVOYWJNenFiVGpoTEEzZk92TW5zdkNDVXg2d3FnM3NtQWpWUmQvS1c1?=
+ =?utf-8?B?bERadlFXV1BCT2FTNzhNVkpwZytOVUtqUGd5dURkM0d3Y1ZTZG5EVGN6a1VV?=
+ =?utf-8?B?Qkpic1lsL002UFVENkNyTVl6Z3dwR2hvdzczL2U1b05oL005RlhpU0k1c3FY?=
+ =?utf-8?B?dDQ0bVZpREtxWjFodDYxY3JEc0pCRUpoY0ZwV3ZPNlZHbWduYVcxd1AzTTRT?=
+ =?utf-8?B?VjFiWVBRNFBWbUlRRUFrSWNSenU4QkZHdmV2d2g1cFFmbzNnTUNFNC82N01Z?=
+ =?utf-8?B?Rlg3Z21ZaHdabnRTMjlaZnk1NWpRODlrYUFnTlRtcGNrRytaKzVZN01KWFdq?=
+ =?utf-8?B?aWJtUk9OQ25pMzd4Y2tqQk9RNzVBbFZvNytBWDlLY0ZTQjhpQUZseTVYekRO?=
+ =?utf-8?B?aDBlSWxBaWJsYjBjck9LNy92TUliZ2hzMlpPdDlaN25uK1QvS0tqV1c4U0pK?=
+ =?utf-8?B?SXNwZlZHMHdiMjFYcWpsK2x4cFZsT1VBOGh6Y3k1cXVvYU8rUWdDc1gvQUlv?=
+ =?utf-8?B?bjJjbFJCY1BzZFR0VXpTRkxLbE44Q0xYTWZaWFp1UFZUZ2tGRDEyZnNCYUJ5?=
+ =?utf-8?B?cVFqWEVleCthbEZEM2FSaEp1czdEb0FTcGdVNmF5ZDJZNE1ZSVk0TVFYczZh?=
+ =?utf-8?B?SkpKRHFENXJCcWdBWlJpL0RzSTc1a1VRd1c4QVI1SUhNNjZNVEZtc2ZaZ2tK?=
+ =?utf-8?B?SjhpeU1DQmZNWGFRdXVNR2ZiYlE0Q3JMdzlxcE4wYWZnSHRmMHMxREJJdDA1?=
+ =?utf-8?B?N2pUQUdFZ0hVL080YytINnFyb0dhbjV0UDIwaENneFRlUFJhaVJpc1g4M0dq?=
+ =?utf-8?B?SXVyMWI1TUY5S3hXV2JZS3BtMDJLQnIwZUhqS09WU1dleDJJUTlUem9JY1hR?=
+ =?utf-8?B?MmUyVlBIanBZZTU3b05PUjdINVhrcFZEeTBqbkM1TXhCTCtieFRkbjFTaW4x?=
+ =?utf-8?B?QzYwMW96WW1zOWtWa0pxWkVtT0toWjRGZTRTYVVud0dJZGlXeXpuTGlQMkcy?=
+ =?utf-8?B?YkdScDhyWG03MllWcldDQ2tZdEExNWtBTFc4R2tJWnhpaE1MK2F6K3NuWjVY?=
+ =?utf-8?B?S0ZPQ0duTVZQNVJQUVJFNjN5RkF6ZFNKRzd5MXdPUERsQklzNllhWi9sRVdB?=
+ =?utf-8?B?WWs3b1NIdWVZcXloNWFOSnhQUjdaRENiZURXek00cEJHYnovSmlveGNRWWcx?=
+ =?utf-8?B?VFgxUHlsVWRIb09WNktMcTYvSEtrMkRiVWZGVDZrSW5PTG10RVB3RVc1QWVC?=
+ =?utf-8?B?d0lrc2l6YkhqRG5zekdmU1RSS2Y1SGpEbmNkOHRocDd0NlhQN29Ka2hHYWho?=
+ =?utf-8?B?QlRBTkVsVE9yNFliY1VIdXE2OE5lTlhYZTViemZCMTljWHIvbnNpZjdpSHpG?=
+ =?utf-8?B?MWp4MU1sYStqV0IzUmxrQ29WU29xMVMxb3JzLysxdldEQkxsV25RelZDdzBx?=
+ =?utf-8?B?K0xuZkhNc1NYZlVrYXR2dmoxQk5uRWlOakNISHpucTBSTytUaTdCQTFHTUp5?=
+ =?utf-8?B?MHZDb1loaHdveFdZZ3Y4ZnJRRFZ2WEQ1Z2VybUorQWhIOVRrWVBrSzZGM1ds?=
+ =?utf-8?B?ak43Y1Z5LzBRa0JjTzg1OERlYjlPd3FyYkFvMmQyVklMVGJ2SHVXN2NXTDBB?=
+ =?utf-8?B?RW1nYnBMaGZpRVZxMmwvTVM3elZiT0tZbU9aWGNlb0h6VVdTcC9sU1hhbWJC?=
+ =?utf-8?B?SUV5eVplUWh0aDhVWUxXdktsZ2JaVnQvYzUxU2RMSS9aS2dlUWhNRXdvekRn?=
+ =?utf-8?B?em02Y2ZXQUp1YlEvTCs5Um5IeXFYSHRSNjJqa1hZRzI5dnB0YW1EcFJheHIr?=
+ =?utf-8?B?emlicnZUdWp4QXZrS1F3bHRudEJZN1RZak1jUkc4R1FkWG94dDY3bWJPUGN4?=
+ =?utf-8?B?QTd1Q0tBZ0FUZ1had2lJQVUwVVJPWk5RRExUdGhrNEJiWk1yd3BhZnRnNjNz?=
+ =?utf-8?B?Z1haQTNVSmhKVzBkWGw3aEd0bVFJL1cxVTFXS09EenBXMEYyYXRzdz09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e25c685f-626e-46f7-fead-08de59ba8ea2
+X-MS-Exchange-CrossTenant-AuthSource: LV8PR12MB9620.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jan 2026 13:31:32.6250 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9KSu2Pckue4TotJKQcO27rePAm6x7aBFmIzkYclhzfquipP8fA+id7CL6U/tUZk3
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB4127
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,118 +173,56 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3581604139104936197==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Jan 21, 2026 at 10:15:14PM -0800, Matthew Brost wrote:
+> > > I posted some more optimizations for these cases, it should reduce the
+> > > numbers.
+> 
+> We can try those — link? I believe I know the series, but just to make
+> sure we’re on the same page.
 
-== Series Details ==
+https://patch.msgid.link/r/0-v2-973a6bdc820f+693-iommpt_map_direct_jgg@nvidia.com
 
-Series: drm/i915/cdclk: Extend Wa_13012396614 to Xe3p_LPD
-URL   : https://patchwork.freedesktop.org/series/160488/
-State : failure
+I also need the answer if this testing is running on the non-cache
+coherent iommu HW Intel sometimes has, it makes a difference.
 
-== Summary ==
+I also have in mind a fairly small change to make this special unmap
+case speed up.
 
-CI Bug Log - changes from xe-4434-2efdbb79ed20bfabfbe6f2e5cc393d85973d567c_BAT -> xe-pw-160488v1_BAT
-====================================================
+IMHO those two together will likely get you back to close enough.
 
-Summary
--------
+And then do link if you actually care about this scenario.
 
-  **FAILURE**
+> This was a fairly common pattern prior to Leon’s series, I believe. The
+> cross-references show this pattern appearing frequently in the kernel
+> [1].
 
-  Serious unknown changes coming with xe-pw-160488v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-160488v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+Yes the pattern is common but virtually nobody actually uses it with
+the iommu turned on because it is something like 10x slower than using
+just identity mode.
 
-  
+I understand this is a test suite and it should test with iommu
+enabled, but I'm deeply skeptical this represents actual users who
+also care about performace. If they did they'd already have set the
+iommu to identity.
 
-Participating hosts (12 -> 1)
-------------------------------
+> > The optimizations I posted will help this noticably.
+> 
+> I think we need to start with a revert and then discuss whether your
+> subsequent changes actually fix the problem.
 
-  ERROR: It appears as if the changes made in xe-pw-160488v1_BAT prevented too many machines from booting.
+We haven't even done some basic investigation, immediately demanding a
+revert of such a large amount of work for a use case I suspect doesn't
+have users it not reasonable.
 
-  Missing    (11): bat-bmg-1 bat-lnl-2 bat-ptl-1 bat-ptl-2 bat-lnl-1 bat-ptl-vm bat-dg2-oem2 bat-atsm-2 bat-bmg-3 bat-bmg-2 bat-adlp-vm 
+This work was not done for no reason and is bringing performance wins
+for other use cases that do actually have real users. If we eventually
+really can't fix it then you can talk about reverts, but given link
+will absolutely fix xe, I don't see that happening.
 
+Try the patches, give me the new numbers, tell me if you have the
+non-cache iommu and I will give you another one to try.
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4434-2efdbb79ed20bfabfbe6f2e5cc393d85973d567c -> xe-pw-160488v1
-
-  IGT_8712: 8712
-  xe-4434-2efdbb79ed20bfabfbe6f2e5cc393d85973d567c: 2efdbb79ed20bfabfbe6f2e5cc393d85973d567c
-  xe-pw-160488v1: 160488v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160488v1/index.html
-
---===============3581604139104936197==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/cdclk: Extend Wa_13012396614 to Xe3p_LPD</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160488/">https://patchwork.freedesktop.org/series/160488/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160488v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160488v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4434-2efdbb79ed20bfabfbe6f2e5cc393d85973d567c_BAT -&gt; xe-pw-160488v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-160488v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-160488v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (12 -&gt; 1)</h2>
-<p>ERROR: It appears as if the changes made in xe-pw-160488v1_BAT prevented too many machines from booting.</p>
-<p>Missing    (11): bat-bmg-1 bat-lnl-2 bat-ptl-1 bat-ptl-2 bat-lnl-1 bat-ptl-vm bat-dg2-oem2 bat-atsm-2 bat-bmg-3 bat-bmg-2 bat-adlp-vm </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4434-2efdbb79ed20bfabfbe6f2e5cc393d85973d567c -&gt; xe-pw-160488v1</li>
-</ul>
-<p>IGT_8712: 8712<br />
-  xe-4434-2efdbb79ed20bfabfbe6f2e5cc393d85973d567c: 2efdbb79ed20bfabfbe6f2e5cc393d85973d567c<br />
-  xe-pw-160488v1: 160488v1</p>
-
-</body>
-</html>
-
---===============3581604139104936197==--
+Jason
