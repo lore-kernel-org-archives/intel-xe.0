@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76A01C44500
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Jan 2026 10:21:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 072FBC44536
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Jan 2026 10:26:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35BD910E05D;
-	Thu, 22 Jan 2026 10:21:56 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 915A610E05D;
- Thu, 22 Jan 2026 10:21:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2772588611368026497=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6BE210E035;
+	Thu, 22 Jan 2026 10:26:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="B+mW1Jni";
+	dkim-atps=neutral
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B05A10E035
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Jan 2026 10:26:13 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 31483438D8;
+ Thu, 22 Jan 2026 10:26:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2E3BC116C6;
+ Thu, 22 Jan 2026 10:26:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1769077573;
+ bh=e1EPzldw91Ho5uT5Mgj2iuuebqOQUeSD880I5lTXzvQ=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=B+mW1JniIE3obYKPFV2lu9DGPBMqbDYh574WY4zKvlkpcCFTfg5mYVjYVd0IbDGi/
+ Z40H3mcwGS3HgBxGJdtJEuuxYBz78VtR4ReNLI6kNN1vbaMS43FmJUMKJgbHZowVlm
+ ytux24fGmcHVhEWCeJNPqT/v8cJ52n9VwOVze8LoMDW8/bPKZhSc5/7EeIytrmvEH9
+ K1hDtC0urC1ie6PIytkykcFQ5wUkhmYmRP4/d0PiEYTm5o6dVBDAT48CwbawV/if09
+ wuhJdm+HjjsaEf0ydbQE/7cYqgVYZYl7LQqmFtPCw4nfK8AAAQFfLRUwR+qUTM9VuO
+ MH4rNoSe4qAsQ==
+Date: Thu, 22 Jan 2026 12:26:07 +0200
+From: Leon Romanovsky <leon@kernel.org>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: Jason Gunthorpe <jgg@nvidia.com>,
+ Francois Dugast <francois.dugast@intel.com>, iommu@lists.linux.dev,
+ intel-xe@lists.freedesktop.org, Joerg Roedel <joerg.roedel@amd.com>,
+ Calvin Owens <calvin@wbinvd.org>, David Woodhouse <dwmw2@infradead.org>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Samiullah Khawaja <skhawaja@google.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Tina Zhang <tina.zhang@intel.com>, Lu Baolu <baolu.lu@linux.intel.com>,
+ Kevin Tian <kevin.tian@intel.com>
+Subject: Re: Xe performance regression with recent IOMMU changes
+Message-ID: <20260122102607.GK13201@unreal>
+References: <20260121130233.257428-1-francois.dugast@intel.com>
+ <20260121131135.GF1134360@nvidia.com>
+ <20260121180449.GA1490142@nvidia.com>
+ <aXHAcibp/4pUB8f0@lstrano-desk.jf.intel.com>
+ <20260122072913.GJ13201@unreal>
+ <aXHTjz6SP5w/PTPa@lstrano-desk.jf.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_Xe_Uncorrectable_?=
- =?utf-8?q?Error_Handling?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 22 Jan 2026 10:21:55 -0000
-Message-ID: <176907731559.182891.7488743928992460707@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260122100613.3631582-10-riana.tauro@intel.com>
-In-Reply-To: <20260122100613.3631582-10-riana.tauro@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aXHTjz6SP5w/PTPa@lstrano-desk.jf.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,168 +66,88 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2772588611368026497==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Jan 21, 2026 at 11:36:47PM -0800, Matthew Brost wrote:
+> On Thu, Jan 22, 2026 at 09:29:13AM +0200, Leon Romanovsky wrote:
+> > On Wed, Jan 21, 2026 at 10:15:14PM -0800, Matthew Brost wrote:
+> > > On Wed, Jan 21, 2026 at 02:04:49PM -0400, Jason Gunthorpe wrote:
+> > > > On Wed, Jan 21, 2026 at 09:11:35AM -0400, Jason Gunthorpe wrote:
+> > > > > On Wed, Jan 21, 2026 at 02:02:16PM +0100, Francois Dugast wrote:
+> > > > > > I am reporting a slowdown in Xe caused by a couple of IOMMU changes. It
+> > > > > > can be observed during DMA mappings/unmappings required to issue copies
+> > > > > > between system memory and the device, when handling GPU faults. Not sure
+> > > > > > how other use cases or vendors are affected but below is the impact on
+> > > > > > execution times for BMG:
+> > > > > > 
+> > > > > > Before changes:
+> > > > > >   4KB
+> > > > > >     drm_pagemap_migrate_map_pages: 0.4 us
+> > > > > >     drm_pagemap_migrate_unmap_pages: 0.4 us
+> > > > > >   64KB
+> > > > > >     drm_pagemap_migrate_map_pages: 2.5 us
+> > > > > >     drm_pagemap_migrate_unmap_pages: 3.5 us
+> > > > > >   2MB
+> > > > > >     drm_pagemap_migrate_map_pages: 88 us
+> > > > > >     drm_pagemap_migrate_unmap_pages: 108 us
+> > > > > > 
+> > > > > > After changes:
+> > > > > >   4KB
+> > > > > >     drm_pagemap_migrate_map_pages: 0.7 us
+> > > > > >     drm_pagemap_migrate_unmap_pages: 0.7 us
+> > > > > >   64KB
+> > > > > >     drm_pagemap_migrate_map_pages: 3.5 us
+> > > > > >     drm_pagemap_migrate_unmap_pages: 10.5 us
+> > > > > >   2MB
+> > > > > >     drm_pagemap_migrate_map_pages: 102 us
+> > > > > >     drm_pagemap_migrate_unmap_pages: 330 us
+> > > > > 
+> > > > > I posted some more optimizations for these cases, it should reduce the
+> > > > > numbers.
+> > > > > 
+> > > 
+> > > We can try those — link? I believe I know the series, but just to make
+> > > sure we’re on the same page.
+> > > 
+> > > > > This is the opposite of the benchmark numbers I ran which showed
+> > > > > significant gains as the page count and sizes increased.
+> > > > > 
+> > > > > But something weird is going on to see a 3x increase in unmap, that
+> > > > > shouldn't be just algorithm overhead. That almost seems like
+> > > > > additional IOTLB invalidation overhead or something else going wrong.
+> > > > > 
+> > > > > Is this from a system with the VT-d cache flushing requirement? That
+> > > > > logic changed around too and could have this kind of big impact.
+> > > > 
+> > > > Oh looking at the code a bit you've got pretty much the slowest
+> > > > possible thing you can do here:
+> > > 
+> > > This was a fairly common pattern prior to Leon’s series, I believe. The
+> > > cross-references show this pattern appearing frequently in the kernel
+> > > [1]. I do agree with the point below that, with Leon’s changes applied,
+> > > this could be refactored into an IOVA alloc/link/unlink/free flow, which
+> > > would work better (also 2M device pages reduces the common 2M case to a
+> > > mute point).
+> > > 
+> > > But that’s not what we’re discussing here. We’re talking about a
+> > > regression introduced in the dma-mapping API for x86, which in my view
+> > > is unacceptable for a kernel release. So IMO we should revert those
+> > > changes [2].
+> > > 
+> > > [1] https://elixir.bootlin.com/linux/v6.18.6/A/ident/dma_unmap_page
+> > 
+> > I think this comparison is unfair. The previous behavior was bad for
+> > everyone, while the current issue affects only the specific
+> > drm_pagemap_migrate_unmap_pages() flow. Cases where the performance of
+> > dma_unmap_page() in non-direct mode matters are extremely rare.
+> > 
+> 
+> I don’t think you can reason about this without extensive testing across
+> multiple platforms. Nor is it fair to say - sorry we slowed down your
+> existing code, good luck.
 
-== Series Details ==
+It is not what I said. I only pointed to the specific point that loop
+over dma_unmap_page() is universally performance critical.
 
-Series: Introduce Xe Uncorrectable Error Handling
-URL   : https://patchwork.freedesktop.org/series/160482/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-4433-40800011414446888105f6beae6dd3fac56516aa_BAT -> xe-pw-160482v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-160482v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@xe_evict@evict-beng-small:
-    - bat-adlp-7:         [SKIP][1] ([Intel XE#261] / [Intel XE#5564] / [Intel XE#688]) -> [SKIP][2] ([Intel XE#261] / [Intel XE#688]) +9 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4433-40800011414446888105f6beae6dd3fac56516aa/bat-adlp-7/igt@xe_evict@evict-beng-small.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160482v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html
-
-  * igt@xe_evict@evict-small-external-cm:
-    - bat-adlp-vm:        [SKIP][3] ([Intel XE#261] / [Intel XE#5564] / [Intel XE#688]) -> [SKIP][4] ([Intel XE#261] / [Intel XE#688]) +9 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4433-40800011414446888105f6beae6dd3fac56516aa/bat-adlp-vm/igt@xe_evict@evict-small-external-cm.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160482v1/bat-adlp-vm/igt@xe_evict@evict-small-external-cm.html
-
-  * igt@xe_exec_fault_mode@twice-userptr-invalidate-imm:
-    - bat-adlp-vm:        [SKIP][5] ([Intel XE#288] / [Intel XE#5561]) -> [SKIP][6] ([Intel XE#288]) +32 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4433-40800011414446888105f6beae6dd3fac56516aa/bat-adlp-vm/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160482v1/bat-adlp-vm/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html
-
-  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
-    - bat-adlp-7:         [SKIP][7] ([Intel XE#288] / [Intel XE#5561]) -> [SKIP][8] ([Intel XE#288]) +32 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4433-40800011414446888105f6beae6dd3fac56516aa/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160482v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
-
-  
-  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#5561]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5561
-  [Intel XE#5564]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5564
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
-
-
-Build changes
--------------
-
-  * IGT: IGT_8711 -> IGT_8712
-  * Linux: xe-4433-40800011414446888105f6beae6dd3fac56516aa -> xe-pw-160482v1
-
-  IGT_8711: 38428617bae65b39b306f79217ac922ebee3b477 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8712: 8712
-  xe-4433-40800011414446888105f6beae6dd3fac56516aa: 40800011414446888105f6beae6dd3fac56516aa
-  xe-pw-160482v1: 160482v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160482v1/index.html
-
---===============2772588611368026497==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce Xe Uncorrectable Error Handling</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160482/">https://patchwork.freedesktop.org/series/160482/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160482v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160482v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4433-40800011414446888105f6beae6dd3fac56516aa_BAT -&gt; xe-pw-160482v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-160482v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@xe_evict@evict-beng-small:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4433-40800011414446888105f6beae6dd3fac56516aa/bat-adlp-7/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5564">Intel XE#5564</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160482v1/bat-adlp-7/igt@xe_evict@evict-beng-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +9 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-small-external-cm:</p>
-<ul>
-<li>bat-adlp-vm:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4433-40800011414446888105f6beae6dd3fac56516aa/bat-adlp-vm/igt@xe_evict@evict-small-external-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5564">Intel XE#5564</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160482v1/bat-adlp-vm/igt@xe_evict@evict-small-external-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +9 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-imm:</p>
-<ul>
-<li>bat-adlp-vm:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4433-40800011414446888105f6beae6dd3fac56516aa/bat-adlp-vm/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5561">Intel XE#5561</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160482v1/bat-adlp-vm/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4433-40800011414446888105f6beae6dd3fac56516aa/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5561">Intel XE#5561</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160482v1/bat-adlp-7/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8711 -&gt; IGT_8712</li>
-<li>Linux: xe-4433-40800011414446888105f6beae6dd3fac56516aa -&gt; xe-pw-160482v1</li>
-</ul>
-<p>IGT_8711: 38428617bae65b39b306f79217ac922ebee3b477 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8712: 8712<br />
-  xe-4433-40800011414446888105f6beae6dd3fac56516aa: 40800011414446888105f6beae6dd3fac56516aa<br />
-  xe-pw-160482v1: 160482v1</p>
-
-</body>
-</html>
-
---===============2772588611368026497==--
+Thanks
