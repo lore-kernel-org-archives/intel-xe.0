@@ -4,61 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4202CC44500
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Jan 2026 08:44:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04BF8D625F9
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Jan 2026 08:45:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 015C310E942;
-	Thu, 22 Jan 2026 08:44:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A63FB10E94B;
+	Thu, 22 Jan 2026 08:45:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kQKOWsCV";
+	dkim=pass (1024-bit key; unprotected) header.d=163.com header.i=@163.com header.b="kg/vJ0TP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0BF910E942
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Jan 2026 08:44:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769071458; x=1800607458;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=p5Mjo7C0gA2cNXK3v4V5/FWGl5nBanxKh7E7ETWUa1M=;
- b=kQKOWsCVIg/4iGdFyhWXICwqbMRgHFQdoYi+KQjeoqUq5tYkW8rt9lGO
- VM2MDH15X8CFMOrGG0+PpNWahgsid7T6K7pYkK38tLD15qEJmuYDoGrQA
- X/eDA1dXZox9KUJm7RWiu0oT//mNrfaC51cwg0FFlnunyfy0ZFgW60fI9
- 26xuI3ZX8RdruuPKxNOvqLZ138v9YU9kwfrWjvSL5gXDnEWRLmbkW6TaY
- eEwDavL8F+3Fqeiu+sqHFhb1emvOzul78L7Ue9TJol21fHIr4rOfx5Glp
- 9wbJZr2NX1CD2ynl/KS6casZrJNi8IxqIwreKtIFLPJdhc58Px0uC1L1x w==;
-X-CSE-ConnectionGUID: WDCuLpdMQ82Pr7ct9XXMUg==
-X-CSE-MsgGUID: IocsE8thT4GD799d2S2XZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="95783369"
-X-IronPort-AV: E=Sophos;i="6.21,245,1763452800"; d="scan'208";a="95783369"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2026 00:44:16 -0800
-X-CSE-ConnectionGUID: CadctTKHRYOweIib6xQT9Q==
-X-CSE-MsgGUID: jNm+RtrIR2+rk7QSCKp4gw==
-X-ExtLoop1: 1
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
- ([10.245.245.217])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2026 00:44:15 -0800
-Date: Thu, 22 Jan 2026 09:44:14 +0100
-From: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, 
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Carlos Santa <carlos.santa@intel.com>
-Subject: Re: [PATCH] drm/xe: Do not preempt fence signaling CS instructions
-Message-ID: <ftzvlqcyj74d4bh25mreg64f647jintfteo7apctrnrsjgqbjs@k2ulohn2ycsg>
-References: <20260115004546.58060-1-matthew.brost@intel.com>
- <q4f6zwko4q6337m3ap244j6q3lfqqrkmlxq2l5ojgcbensliaf@yj7ndeqnrvuz>
- <aWqn/eXaw2t9j4fY@lstrano-desk.jf.intel.com>
- <5nddlxy5z2naxxoz7jnyhpwpv3pofv57fuhflcjjwhxell5ozg@xmrhis4b7hhf>
- <aW/vdvCw/3DZwfpt@lstrano-desk.jf.intel.com>
+X-Greylist: delayed 8017 seconds by postgrey-1.36 at gabe;
+ Thu, 22 Jan 2026 08:45:24 UTC
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76F6810E942;
+ Thu, 22 Jan 2026 08:45:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
+ Message-ID; bh=bTQS2Ub48cluoF04AksxVAcZz1dPPLXQ7ZO9ToPloD8=; b=k
+ g/vJ0TPJyGvaf2ouh7+ZkgLUAP8nvM10am5Erku9m7bIbDckHfw0bURZa0D/VQb4
+ nX7Sf5y4c+Eqiu8X38rRqxwoeOJXcn3ThpWJfObzkfeaAc8S9/n6PdA45lsFq3q3
+ L1SiiNyCptSK+e3S0ohSaxovyeMZr1hT3qdJdBa8QY=
+Received: from andyshrk$163.com ( [110.83.51.2] ) by
+ ajax-webmail-wmsvr-40-107 (Coremail) ; Thu, 22 Jan 2026 16:44:24 +0800
+ (CST)
+X-Originating-IP: [110.83.51.2]
+Date: Thu, 22 Jan 2026 16:44:24 +0800 (CST)
+From: "Andy Yan" <andyshrk@163.com>
+To: "Nicolas Frattaroli" <nicolas.frattaroli@collabora.com>
+Cc: "Harry Wentland" <harry.wentland@amd.com>, "Leo Li" <sunpeng.li@amd.com>, 
+ "Rodrigo Siqueira" <siqueira@igalia.com>,
+ "Alex Deucher" <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ "David Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>,
+ "Andrzej Hajda" <andrzej.hajda@intel.com>,
+ "Neil Armstrong" <neil.armstrong@linaro.org>,
+ "Robert Foss" <rfoss@kernel.org>,
+ "Laurent Pinchart" <Laurent.pinchart@ideasonboard.com>,
+ "Jonas Karlman" <jonas@kwiboo.se>,
+ "Jernej Skrabec" <jernej.skrabec@gmail.com>,
+ "Sandy Huang" <hjc@rock-chips.com>,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ "Andy Yan" <andy.yan@rock-chips.com>,
+ "Jani Nikula" <jani.nikula@linux.intel.com>,
+ "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>,
+ "Tvrtko Ursulin" <tursulin@ursulin.net>,
+ "Dmitry Baryshkov" <lumag@kernel.org>,
+ "Sascha Hauer" <s.hauer@pengutronix.de>,
+ "Rob Herring" <robh@kernel.org>, "Jonathan Corbet" <corbet@lwn.net>,
+ kernel@collabora.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org
+Subject: Re:[PATCH v7 13/22] drm/rockchip: vop2: Set correct output format
+ for RK3576 YUV422
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2023.4-cmXT build
+ 20251222(83accb85) Copyright (c) 2002-2026 www.mailtech.cn 163com
+In-Reply-To: <20260121-color-format-v7-13-ef790dae780c@collabora.com>
+References: <20260121-color-format-v7-0-ef790dae780c@collabora.com>
+ <20260121-color-format-v7-13-ef790dae780c@collabora.com>
+X-CM-CTRLMSGS: RtNQZnBsdXM9MTc2OTA3MTQ2MzM1NV8yNGY3NzZiM2I2YjU1M2E3ZjVjMWNiM
+ GY5NjQzYTBhNw==
+X-NTES-SC: AL_Qu2dC/ycvkwt4iOcYukfmUgWjuw/WsG1v/Ul1YBSP556jCHp1zA+YHtOI0XuzsGkOiqykTu2XSVH2/VTe6BkepsbYkh+3JfXd1VE6LuMWmOAAQ==
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aW/vdvCw/3DZwfpt@lstrano-desk.jf.intel.com>
+Message-ID: <27c44445.7a56.19be4e04fa9.Coremail.andyshrk@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: aygvCgDnDxRo43FpXbFcAA--.14910W
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbCxgjJKGlx42hHoQAA3a
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,135 +92,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jan 20, 2026 at 01:11:18PM -0800, Matthew Brost wrote:
-> On Mon, Jan 19, 2026 at 01:01:34PM +0100, Zbigniew Kempczyński wrote:
-> > On Fri, Jan 16, 2026 at 01:05:01PM -0800, Matthew Brost wrote:
-> > > On Fri, Jan 16, 2026 at 10:45:39AM +0100, Zbigniew Kempczyński wrote:
-> > > > On Wed, Jan 14, 2026 at 04:45:46PM -0800, Matthew Brost wrote:
-> > > > > If a batch buffer is complete, it makes little sense to preempt the
-> > > > > fence signaling instructions in the ring, as the largest portion of the
-> > > > > work (the batch buffer) is already done and fence signaling consists of
-> > > > > only a few instructions. If these instructions are preempted, the GuC
-> > > > > would need to perform a context switch just to signal the fence, which
-> > > > > is costly and delays fence signaling. Avoid this scenario by disabling
-> > > > > preemption immediately after the BB start instruction and re-enabling it
-> > > > > after executing the fence signaling instructions.
-> > > > > 
-> > > > > Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-> > > > > Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> > > > > Cc: Carlos Santa <carlos.santa@intel.com>
-> > > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/xe/xe_ring_ops.c | 9 +++++++++
-> > > > >  1 file changed, 9 insertions(+)
-> > > > > 
-> > > > > diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > > > index a1fd99f2d539..cd645ee400b9 100644
-> > > > > --- a/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > > > +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-> > > > > @@ -282,6 +282,9 @@ static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc
-> > > > >  
-> > > > >  	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
-> > > > >  
-> > > > > +	/* Don't preempt fence signaling */
-> > > > > +	dw[i++] = MI_ARB_ON_OFF | MI_ARB_DISABLE;
-> > > > > +
-> > > > >  	if (job->user_fence.used) {
-> > > > >  		i = emit_flush_dw(dw, i);
-> > > > >  		i = emit_store_imm_ppgtt_posted(job->user_fence.addr,
-> > > > > @@ -347,6 +350,9 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
-> > > > >  
-> > > > >  	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
-> > > > >  
-> > > > > +	/* Don't preempt fence signaling */
-> > > > > +	dw[i++] = MI_ARB_ON_OFF | MI_ARB_DISABLE;
-> > > > > +
-> > > > >  	if (job->user_fence.used) {
-> > > > >  		i = emit_flush_dw(dw, i);
-> > > > >  		i = emit_store_imm_ppgtt_posted(job->user_fence.addr,
-> > > > > @@ -399,6 +405,9 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
-> > > > >  
-> > > > >  	i = emit_bb_start(batch_addr, ppgtt_flag, dw, i);
-> > > > >  
-> > > > > +	/* Don't preempt fence signaling */
-> > > > > +	dw[i++] = MI_ARB_ON_OFF | MI_ARB_DISABLE;
-> > > > > +
-> > > > 
-> > > > IGT tests which calls compute-walker, then bbe are asynchronous (don't
-> > > > wait for completion, pipe-control is necessary to wait on
-> > > > compute-walker).
-> > > > 
-> > > 
-> > > This asynchronous behavior may explain things. Is this a common use
-> > > case?
-> > 
-> > Compute runtime if I'm not wrong uses pipe-control explicitely. IGT are
-> > not doing this relying on kmd.
-> > 
-> 
-> It would be good confirm this.
-> 
-> > > 
-> > > Also do you know if render engines have similar asynchronous behaviors
-> > > or is this specific to compute engines?
-> > 
-> > I don't know, I think Mesa folks may know the answer.
-> >
-> 
-> Let me ask around about this.
->  
-> > > 
-> > > Lastly, the i915 disables preemption on both render / compute engines
-> > > immediately after the BB before emitting the pipe control. Is this async
-> > > behavior a new few feature in Xe2 parts which only the Xe driver
-> > > supports? This might explain why the i915 works and Xe does not.
-> > 
-> > Test exercises WMTP and this is supported starting at Xe2+. Probably
-> > what test is doing has a meaning in this case. First compute-walker
-> > submits kernel which loops until it will observe some memory write.
-> > Second job executes compute-walker with kernel which does some quick job.
-> > But first occupies all EU's so second job can be preempted only when
-> > preemption occurs and SIP will be executed. So if we disable preemption
-> > immediately we submit compute-walker I think we have no change to enter
-> > SIP and switch. Even if I add pipe-control to batch level according
-> > to Daniele comment job it is still preemptable and we move pipe-control
-> > location from kmd -> batch level..
-> 
-> Does the test work with a pipe control in the batch? That would be a
-> good data point - if let me know how I can change the test I can test
-> out too.
-
-I'm going to add appropriate pipe-control to pipeline and send the
-patch.
-
---
-Zbigniew
-
-> 
-> It is fine the batch preempts, we actually want that. Mid-batch
-> preemption is not what we are trying to prevent - we are trying to
-> prevent preemption of the fence signaling after the batch is done. As
-> long as we don't regress any user applications we can safely make this
-> change - it is fine to break IGTs which are not doing the right thing
-> wrt to batch programming.
-> 
-> Matt
-> 
-> > 
-> > --
-> > Zbigniew
-> > 
-> > > 
-> > > Matt
-> > > 
-> > > > May you try to put arb disable after emit_render_cache_flush?
-> > > > 
-> > > > --
-> > > > Zbigniew
-> > > > 
-> > > > >  	i = emit_render_cache_flush(job, dw, i);
-> > > > >  
-> > > > >  	if (job->user_fence.used)
-> > > > > -- 
-> > > > > 2.34.1
-> > > > > 
+CgpIZWxsbyBOaWNvbGFzLAoKQXQgMjAyNi0wMS0yMSAyMjo0NToyMCwgIk5pY29sYXMgRnJhdHRh
+cm9saSIgPG5pY29sYXMuZnJhdHRhcm9saUBjb2xsYWJvcmEuY29tPiB3cm90ZToKPkZvciBSSzM1
+NzYgdG8gYmUgYWJsZSB0byBvdXRwdXQgWVVWNDIyIHNpZ25hbHMsIGl0IGZpcnN0IG5lZWRzIHRv
+IGJlCj5hYmxlIHRvIHBpY2sgdGhlIHJpZ2h0IG91dHB1dCBtb2RlIGluIHRoZSBkaXNwbGF5IGNv
+bnRyb2xsZXIgdG8gZG8gc28uCj4KPlRoZSBSSzM1NzYgaGFyZHdhcmUgc3BlY2lmaWVzIGRpZmZl
+cmVudCBvdXRwdXQgZm9ybWF0cyBkZXBlbmRpbmcgb24gdGhlCj51c2VkIGRpc3BsYXkgcHJvdG9j
+b2wuCj4KPkFkanVzdCB0aGUgd3JpdHRlbiByZWdpc3RlciB2YWx1ZSBiYXNlZCBvbiB0aGUgU29D
+IGFuZCBjb25uZWN0b3IsIHNvCj5vdGhlciB1c2VycyBvZiB2Y3N0YXRlLT5vdXRwdXRfbW9kZSBk
+b24ndCBoYXZlIHRvIGNhcmUgYWJvdXQgdGhpcy4KPgo+U2lnbmVkLW9mZi1ieTogTmljb2xhcyBG
+cmF0dGFyb2xpIDxuaWNvbGFzLmZyYXR0YXJvbGlAY29sbGFib3JhLmNvbT4KCgogICAgUmV2aWV3
+ZWQtYnk6IEFuZHkgWWFuIDxhbmR5c2hya0AxNjMuY29tPgo+LS0tCj4gZHJpdmVycy9ncHUvZHJt
+L3JvY2tjaGlwL3JvY2tjaGlwX2RybV92b3AyLmMgfCAxNiArKysrKysrKysrKysrKysrCj4gMSBm
+aWxlIGNoYW5nZWQsIDE2IGluc2VydGlvbnMoKykKPgo+ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS9yb2NrY2hpcC9yb2NrY2hpcF9kcm1fdm9wMi5jIGIvZHJpdmVycy9ncHUvZHJtL3JvY2tj
+aGlwL3JvY2tjaGlwX2RybV92b3AyLmMKPmluZGV4IDNkZDdiNzU3MTQ4Ny4uZDkzYzY3NzkyODZl
+IDEwMDY0NAo+LS0tIGEvZHJpdmVycy9ncHUvZHJtL3JvY2tjaGlwL3JvY2tjaGlwX2RybV92b3Ay
+LmMKPisrKyBiL2RyaXZlcnMvZ3B1L2RybS9yb2NrY2hpcC9yb2NrY2hpcF9kcm1fdm9wMi5jCj5A
+QCAtMTcwNiw2ICsxNzA2LDIyIEBAIHN0YXRpYyB2b2lkIHZvcDJfY3J0Y19hdG9taWNfZW5hYmxl
+KHN0cnVjdCBkcm1fY3J0YyAqY3J0YywKPiAJaWYgKHZjc3RhdGUtPm91dHB1dF9tb2RlID09IFJP
+Q0tDSElQX09VVF9NT0RFX0FBQUEgJiYKPiAJICAgICEodnBfZGF0YS0+ZmVhdHVyZSAmIFZPUDJf
+VlBfRkVBVFVSRV9PVVRQVVRfMTBCSVQpKQo+IAkJb3V0X21vZGUgPSBST0NLQ0hJUF9PVVRfTU9E
+RV9QODg4Owo+KwllbHNlIGlmICh2Y3N0YXRlLT5vdXRwdXRfbW9kZSA9PSBST0NLQ0hJUF9PVVRf
+TU9ERV9ZVVY0MjIgJiYKPisJCSB2b3AyLT52ZXJzaW9uID09IFZPUF9WRVJTSU9OX1JLMzU3NikK
+PisJCXN3aXRjaCAodmNzdGF0ZS0+b3V0cHV0X3R5cGUpIHsKPisJCWNhc2UgRFJNX01PREVfQ09O
+TkVDVE9SX0Rpc3BsYXlQb3J0Ogo+KwkJY2FzZSBEUk1fTU9ERV9DT05ORUNUT1JfZURQOgo+KwkJ
+CW91dF9tb2RlID0gUk9DS0NISVBfT1VUX01PREVfWVVWNDIyX1JLMzU3Nl9EUDsKPisJCQlicmVh
+azsKPisJCWNhc2UgRFJNX01PREVfQ09OTkVDVE9SX0hETUlBOgo+KwkJCW91dF9tb2RlID0gUk9D
+S0NISVBfT1VUX01PREVfWVVWNDIyX1JLMzU3Nl9IRE1JOwo+KwkJCWJyZWFrOwo+KwkJZGVmYXVs
+dDoKPisJCQlkcm1fZXJyKHZvcDItPmRybSwgIlVua25vd24gRFJNX01PREVfQ09OTkVDVE9SICVk
+XG4iLAo+KwkJCQl2Y3N0YXRlLT5vdXRwdXRfdHlwZSk7Cj4rCQkJdm9wMl91bmxvY2sodm9wMik7
+Cj4rCQkJcmV0dXJuOwo+KwkJfQo+IAllbHNlCj4gCQlvdXRfbW9kZSA9IHZjc3RhdGUtPm91dHB1
+dF9tb2RlOwo+IAo+Cj4tLSAKPjIuNTIuMAo+Cg==
