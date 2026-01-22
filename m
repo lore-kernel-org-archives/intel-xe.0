@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEA5FC44500
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Jan 2026 09:36:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C40FCC44500
+	for <intel-xe@archiver.kernel.org>; Thu, 22 Jan 2026 09:36:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8251A10E96E;
-	Thu, 22 Jan 2026 09:36:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8332D10E968;
+	Thu, 22 Jan 2026 09:36:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BS7nhagv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HoE6xoc6";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46FCB10E96E
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Jan 2026 09:36:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3FF710E96F
+ for <intel-xe@lists.freedesktop.org>; Thu, 22 Jan 2026 09:36:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769074564; x=1800610564;
+ t=1769074568; x=1800610568;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lNI7NlJ7gpVrOV3Fn1nnVtOEHM/PiktafCrAQGcgOto=;
- b=BS7nhagv5orQWTd+PBAYIWp4VUIqz5z26uLFbteDU+joZVQMiNrMnIzU
- h0pG0dOJqTWJvom3YSNqam58mBbq6mM0F1ijAMF0DrgRZHpgU66mJfNia
- HRcY2xFfxL/TyXcD561Xq1zQaC9J6n8mN3e+9nSh3QGf9Ed4X2zD7PLaY
- 3FyaIY53oJXYZeGxOencNa75oF9vhzGxTvyzA6FZRVo70E3uQAJ1Do9sH
- YCfswXlHBC2wK3EHn1IqapXl89Z3Upm/9FTFhvMszaztF+pg9VzgEqqx0
- s34p02jGSYpfIwWc0vR3mLjzhCpAcu11cRonR1qiOBXCP6vB63PyTYUoG w==;
-X-CSE-ConnectionGUID: DxN6mhOIQ+CvKoslivIapw==
-X-CSE-MsgGUID: R9haXNj/R920CWl5wlvVdw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="80937756"
-X-IronPort-AV: E=Sophos;i="6.21,245,1763452800"; d="scan'208";a="80937756"
+ bh=A9jxJb7Xhrnqx2LZK5xTa6o/bt1ZMf7r7TPmq56TE4k=;
+ b=HoE6xoc6sNK2JYjWamIc2531Ql531NqD5EIW1NoUN5VXJA2wZbuxcOeI
+ OCV9KGr1kNbplTl6TJrpR0u+qYPAneEnrF0E7FGjJoGg/h4xMGedco07B
+ kIfEZdCVkJxsin0rai0YBMFkFDscItr+ObY1jTnNLH2CasNx8R0zSnUCZ
+ +mch3HOHNrIpnz25gsqXQE0F9Qb40ndkohFVluxyA+Fec1YW6fwW/URYZ
+ wvuithzeMjTQmG8SKiRKgBfmLVYbAZXpjkPqTlaSNYLKDcOTfdKa8b6gC
+ LJM6MLF/+an1BulEGS3P9xKYM78B5Ax1QhzNF5RiklMZQRDPrmdTbXKwK A==;
+X-CSE-ConnectionGUID: Vl4MTq8mRbOv0gxMiVjPlg==
+X-CSE-MsgGUID: erHn9B1pSJ25uiqVy1kYDw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11678"; a="80937764"
+X-IronPort-AV: E=Sophos;i="6.21,245,1763452800"; d="scan'208";a="80937764"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2026 01:36:04 -0800
-X-CSE-ConnectionGUID: xUiP+vMMTt+/A24aCNZmSA==
-X-CSE-MsgGUID: dNMfH7CWR4O7pRECQBlOtQ==
+ 22 Jan 2026 01:36:07 -0800
+X-CSE-ConnectionGUID: c8sHLkqgQm+lMyj8ZjxTRA==
+X-CSE-MsgGUID: r6kK08Y/QtipX3vQqhBTOg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,245,1763452800"; d="scan'208";a="207122790"
+X-IronPort-AV: E=Sophos;i="6.21,245,1763452800"; d="scan'208";a="207122817"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2026 01:36:02 -0800
+ 22 Jan 2026 01:36:05 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
  mallesh.koujalagi@intel.com
-Subject: [PATCH 5/8] drm/xe/xe_ras: Initialize Uncorrectable AER Registers
-Date: Thu, 22 Jan 2026 15:36:17 +0530
-Message-ID: <20260122100613.3631582-15-riana.tauro@intel.com>
+Subject: [PATCH 6/8] drm/xe/xe_ras: Add structures and commands for
+ Uncorrectable Core Compute Errors
+Date: Thu, 22 Jan 2026 15:36:18 +0530
+Message-ID: <20260122100613.3631582-16-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20260122100613.3631582-10-riana.tauro@intel.com>
 References: <20260122100613.3631582-10-riana.tauro@intel.com>
@@ -70,155 +71,245 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Uncorrectable errors from different endpoints in the device are steered to
-the USP which is a PCI Advanced Error Reporting (AER) Compliant device.
-Downgrade all the errors to non-fatal to prevent PCIe bus driver
-from triggering a Secondary Bus Reset (SBR). This allows error
-detection, containment and recovery in the driver.
-
-The Uncorrectable Error Severity Register has the 'Uncorrectable
-Internal Error Severity' set to fatal by default. Set this to
-non-fatal and unmask the error.
+Add the sysctrl commands and response structures for Uncorrectable
+Core Compute errors.
 
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile    |  1 +
- drivers/gpu/drm/xe/xe_device.c |  3 ++
- drivers/gpu/drm/xe/xe_ras.c    | 71 ++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_ras.h    | 13 +++++++
- 4 files changed, 88 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_ras.c
- create mode 100644 drivers/gpu/drm/xe/xe_ras.h
+ drivers/gpu/drm/xe/xe_ras.c                   |  53 +++++++
+ drivers/gpu/drm/xe/xe_ras_types.h             | 131 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  13 ++
+ 3 files changed, 197 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_ras_types.h
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 5581f2180b5c..85ec53eb0b62 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -110,6 +110,7 @@ xe-y += xe_bb.o \
- 	xe_pxp_debugfs.o \
- 	xe_pxp_submit.o \
- 	xe_query.o \
-+	xe_ras.o \
- 	xe_range_fence.o \
- 	xe_reg_sr.o \
- 	xe_reg_whitelist.o \
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index f418ebf04f0f..be89ffc9eade 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -59,6 +59,7 @@
- #include "xe_psmi.h"
- #include "xe_pxp.h"
- #include "xe_query.h"
-+#include "xe_ras.h"
- #include "xe_shrinker.h"
- #include "xe_soc_remapper.h"
- #include "xe_survivability_mode.h"
-@@ -1019,6 +1020,8 @@ int xe_device_probe(struct xe_device *xe)
- 
- 	xe_vsec_init(xe);
- 
-+	xe_ras_init(xe);
-+
- 	err = xe_sriov_init_late(xe);
- 	if (err)
- 		goto err_unregister_display;
 diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-new file mode 100644
-index 000000000000..ba5ed37aed28
---- /dev/null
+index ba5ed37aed28..ace08d8d8d46 100644
+--- a/drivers/gpu/drm/xe/xe_ras.c
 +++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -0,0 +1,71 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+#include <linux/pci.h>
+@@ -4,9 +4,62 @@
+  */
+ #include <linux/pci.h>
+ 
++#include "xe_assert.h"
+ #include "xe_device_types.h"
+ #include "xe_ras.h"
+ 
++/* Severity classification of detected errors */
++enum xe_ras_severity {
++	XE_RAS_SEVERITY_NOT_SUPPORTED = 0,
++	XE_RAS_SEVERITY_CORRECTABLE,
++	XE_RAS_SEVERITY_UNCORRECTABLE,
++	XE_RAS_SEVERITY_INFORMATIONAL,
++	XE_RAS_SEVERITY_MAX
++};
 +
-+#include "xe_device_types.h"
-+#include "xe_ras.h"
++/* major IP blocks where errors can originate */
++enum xe_ras_component {
++	XE_RAS_COMPONENT_NOT_SUPPORTED = 0,
++	XE_RAS_COMPONENT_DEVICE_MEMORY,
++	XE_RAS_COMPONENT_CORE_COMPUTE,
++	XE_RAS_COMPONENT_RESERVED,
++	XE_RAS_COMPONENT_PCIE,
++	XE_RAS_COMPONENT_FABRIC,
++	XE_RAS_COMPONENT_SOC,
++	XE_RAS_COMPONENT_MAX
++};
 +
-+#ifdef CONFIG_PCIEAER
-+static void unmask_and_downgrade_internal_error(struct xe_device *xe)
++static const char * const xe_ras_severities[] = {
++	[XE_RAS_SEVERITY_NOT_SUPPORTED]		= "Not Supported",
++	[XE_RAS_SEVERITY_CORRECTABLE]		= "Correctable",
++	[XE_RAS_SEVERITY_UNCORRECTABLE]		= "Uncorrectable",
++	[XE_RAS_SEVERITY_INFORMATIONAL]		= "Informational",
++};
++
++static const char * const xe_ras_components[] = {
++	[XE_RAS_COMPONENT_NOT_SUPPORTED]	= "Not Supported",
++	[XE_RAS_COMPONENT_DEVICE_MEMORY]	= "Device Memory",
++	[XE_RAS_COMPONENT_CORE_COMPUTE]		= "Core Compute",
++	[XE_RAS_COMPONENT_RESERVED]		= "Reserved",
++	[XE_RAS_COMPONENT_PCIE]			= "PCIe",
++	[XE_RAS_COMPONENT_FABRIC]		= "Fabric",
++	[XE_RAS_COMPONENT_SOC]			= "SoC",
++};
++
++static inline const char *severity_to_str(struct xe_device *xe, u32 severity)
 +{
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+	struct pci_dev *vsp, *usp;
-+	u32 aer_uncorr_sev, aer_uncorr_mask;
-+	u16 aer_cap;
++	xe_assert(xe, severity < XE_RAS_SEVERITY_MAX);
 +
-+	 /* Gfx Device Hierarchy: USP-->VSP-->SGunit */
-+	vsp = pci_upstream_bridge(pdev);
-+	if (!vsp)
-+		return;
-+
-+	usp = pci_upstream_bridge(vsp);
-+	if (!usp)
-+		return;
-+
-+	aer_cap = usp->aer_cap;
-+
-+	if (!aer_cap)
-+		return;
-+
-+	/*
-+	 * All errors are steered to USP which is a PCIe AER Complaint device.
-+	 * Downgrade all the errors to non-fatal to prevent PCIe bus driver
-+	 * from triggering a Secondary Bus Reset (SBR). This allows error
-+	 * detection, containment and recovery in the driver.
-+	 *
-+	 * The Uncorrectable Error Severity Register has the 'Uncorrectable
-+	 * Internal Error Severity' set to fatal by default. Set this to
-+	 * non-fatal and unmask the error.
-+	 */
-+
-+	/* Initialize Uncorrectable Error Severity Register */
-+	pci_read_config_dword(usp, aer_cap + PCI_ERR_UNCOR_SEVER, &aer_uncorr_sev);
-+	aer_uncorr_sev &= ~PCI_ERR_UNC_INTN;
-+	pci_write_config_dword(usp, aer_cap + PCI_ERR_UNCOR_SEVER, aer_uncorr_sev);
-+
-+	/* Initialize Uncorrectable Error Mask Register */
-+	pci_read_config_dword(usp, aer_cap + PCI_ERR_UNCOR_MASK, &aer_uncorr_mask);
-+	aer_uncorr_mask &= ~PCI_ERR_UNC_INTN;
-+	pci_write_config_dword(usp, aer_cap + PCI_ERR_UNCOR_MASK, aer_uncorr_mask);
-+
-+	pci_save_state(usp);
++	return xe_ras_severities[severity];
 +}
-+#endif
 +
-+/**
-+ * xe_ras_init - Initialize Xe RAS
-+ * @xe: xe device instance
-+ *
-+ * Initialize Xe RAS
-+ */
-+void xe_ras_init(struct xe_device *xe)
++static inline const char *comp_to_str(struct xe_device *xe, u32 comp)
 +{
-+	if (!xe->info.has_sysctrl)
-+		return;
++	xe_assert(xe, comp < XE_RAS_COMPONENT_MAX);
 +
-+#ifdef CONFIG_PCIEAER
-+	unmask_and_downgrade_internal_error(xe);
-+#endif
++	return xe_ras_components[comp];
 +}
-diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
++
+ #ifdef CONFIG_PCIEAER
+ static void unmask_and_downgrade_internal_error(struct xe_device *xe)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
 new file mode 100644
-index 000000000000..14cb973603e7
+index 000000000000..c7a930c16f68
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_ras.h
-@@ -0,0 +1,13 @@
++++ b/drivers/gpu/drm/xe/xe_ras_types.h
+@@ -0,0 +1,131 @@
 +/* SPDX-License-Identifier: MIT */
 +/*
 + * Copyright © 2026 Intel Corporation
 + */
 +
-+#ifndef _XE_RAS_H_
-+#define _XE_RAS_H_
++#ifndef _XE_RAS_TYPES_H_
++#define _XE_RAS_TYPES_H_
 +
-+struct xe_device;
++#include <linux/types.h>
 +
-+void xe_ras_init(struct xe_device *xe);
++#define XE_RAS_MAX_ERROR_DETAILS	16
++
++/**
++ * struct xe_ras_error_common - Common RAS error class
++ *
++ * This structure contains error severity and component information
++ * across all products
++ */
++struct xe_ras_error_common {
++	/** @severity: Error Severity */
++	u8 severity;
++	/** @component: IP where the error originated */
++	u8 component;
++} __packed;
++
++/**
++ * struct xe_ras_error_unit - Error unit information
++ */
++struct xe_ras_error_unit {
++	/** @tile: Tile identifier */
++	u8 tile;
++	/** @instance: Instance identifier within a component */
++	u32 instance;
++} __packed;
++
++/**
++ * struct xe_ras_error_cause - Error cause information
++ */
++struct xe_ras_error_cause {
++	/** @cause: Cause */
++	u32 cause;
++	/** @reserved: For future use */
++	u8 reserved;
++} __packed;
++
++/**
++ * struct xe_ras_error_product - Error fields that are specific to the product
++ */
++struct xe_ras_error_product {
++	/** @unit: Unit within IP block */
++	struct xe_ras_error_unit unit;
++	/** @error_cause: Cause/checker */
++	struct xe_ras_error_cause error_cause;
++} __packed;
++
++/**
++ * struct xe_ras_error_class - Complete RAS Error Class
++ *
++ * This structure provides the complete error classification by combining
++ * the common error class with the product-specific error class.
++ */
++struct xe_ras_error_class {
++	/** @common: Common error severity and component */
++	struct xe_ras_error_common common;
++	/** @product: Product-specific unit and cause */
++	struct xe_ras_error_product product;
++} __packed;
++
++/**
++ * struct xe_ras_error_array - Details of the error types
++ */
++struct xe_ras_error_array {
++	/** @error_class: Error class */
++	struct xe_ras_error_class error_class;
++	/** @timestamp: Timestamp */
++	u64 timestamp;
++	/** @error_details: Error details specific to the class */
++	u32 error_details[XE_RAS_MAX_ERROR_DETAILS];
++} __packed;
++
++/**
++ * struct xe_ras_get_error_response - Response for XE_SYSCTRL_GET_SOC_ERROR
++ */
++struct xe_ras_get_error_response {
++	/** @num_errors: No of errors reported in this response */
++	u8 num_errors;
++	/** @additional_errors: Indicates if the errors are pending */
++	u8 additional_errors;
++	/** @error_arr: Array of up to 3 errors */
++	struct xe_ras_error_array error_arr[3];
++} __packed;
++
++/**
++ * struct xe_ras_compute_error: Error details of Compute error
++ */
++struct xe_ras_compute_error {
++	/** @error_log_header: Error Source and type */
++	u32 error_log_header;
++	/** @internal_error_log: Internal Error log */
++	u32 internal_error_log;
++	/** @fabric_log: Fabric Error log */
++	u32 fabric_log;
++	/** @internal_error_addr_log0: Internal Error addr log */
++	u32 internal_error_addr_log0;
++	/** @internal_error_addr_log1: Internal Error addr log */
++	u32 internal_error_addr_log1;
++	/** @packet_log0: Packet log */
++	u32 packet_log0;
++	/** @packet_log1: Packet log */
++	u32 packet_log1;
++	/** @packet_log2: Packet log */
++	u32 packet_log2;
++	/** @packet_log3: Packet log */
++	u32 packet_log3;
++	/** @packet_log4: Packet log */
++	u32 packet_log4;
++	/** @misc_log0: Misc log */
++	u32 misc_log0;
++	/** @misc_log1: Misc log */
++	u32 misc_log1;
++	/** @spare_log0: Spare log */
++	u32 spare_log0;
++	/** @spare_log1: Spare log */
++	u32 spare_log1;
++	/** @spare_log2: Spare log */
++	u32 spare_log2;
++	/** @spare_log3: Spare log */
++	u32 spare_log3;
++} __packed;
 +
 +#endif
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+index 1f315ad1b996..45ef10f5cfa2 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
++++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+@@ -8,6 +8,19 @@
+ 
+ #include <linux/types.h>
+ 
++/**
++ * enum xe_sysctrl_mailbox_command_id - RAS Command ID's for GFSP group
++ *
++ * @XE_SYSCTRL_CMD_GET_SOC_ERROR: Get basic error information
++ */
++enum xe_sysctrl_mailbox_command_id {
++	XE_SYSCTRL_CMD_GET_SOC_ERROR = 1
++};
++
++enum xe_sysctrl_group {
++	XE_SYSCTRL_GROUP_GFSP = 1
++};
++
+ struct xe_sysctrl_mailbox_mkhi_msg_hdr {
+ 	__le32 data;
+ } __packed;
 -- 
 2.47.1
 
