@@ -4,61 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CB32D74ED3
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Jan 2026 13:42:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4AEED74EC2
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Jan 2026 13:50:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBA0B10EAE6;
-	Fri, 23 Jan 2026 13:42:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 644F310EAF1;
+	Fri, 23 Jan 2026 13:50:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A8qrwYf7";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="EvzMft5Y";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF35910EAE6
- for <intel-xe@lists.freedesktop.org>; Fri, 23 Jan 2026 13:42:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769175774; x=1800711774;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=suRK11EMKvqGEnxk90IKLl/7LyVaParitNPcCYmcCWw=;
- b=A8qrwYf7GRFlPJqqxGGgv7ZzewTfj4XKvYlVT1JIrU8NAw/1jI7FF1vF
- Ojjx70z3zPTLtTL7khdv4Sadkzl/FPbl66vRptrNccz9sUXwCZF4dKLqp
- DZmNXjskSwYcEbMroscYZ0i/lcQL1xVgUmcnJP/g0uZHA5l+4+srqzO2P
- 9ufxmV4YW3ppototd6TbOVaEYODWUEimL63jROjuw6un6Gy4OMFShVDEV
- wQamPnieoevRELWG4oYYj/roh2dVj+N5FobMeiIn6yK0XxiGpidMRgk39
- jnAVKC9lxpf3jAQHMsm63OzbbvnJPCg9eGUxsykdHOclfK5mZW9hazU+8 g==;
-X-CSE-ConnectionGUID: HYvFZHSKRwGdCohnTaoRiQ==
-X-CSE-MsgGUID: 5h1piRpFTXGGOMLs6pj2/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11680"; a="74060170"
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="74060170"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2026 05:42:54 -0800
-X-CSE-ConnectionGUID: u9QqsghJQTSnrlQSqUTF1g==
-X-CSE-MsgGUID: m3IGCIVITy6csrHeA1d53w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="211530298"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.244.177])
- ([10.245.244.177])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2026 05:42:52 -0800
-Message-ID: <dce5519b701a56d0e2ebf8e7c3370badda894dfc.camel@linux.intel.com>
-Subject: Re: [PATCH v4 8/8] drm/xe/bo: Add purgeable shrinker state helpers
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, Arvind Yadav
- <arvind.yadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org, himal.prasad.ghimiray@intel.com, 
- pallavi.mishra@intel.com
-Date: Fri, 23 Jan 2026 14:42:49 +0100
-In-Reply-To: <aW/CNu35NYz/2758@lstrano-desk.jf.intel.com>
-References: <20260120060900.3137984-1-arvind.yadav@intel.com>
- <20260120060900.3137984-9-arvind.yadav@intel.com>
- <aW/CNu35NYz/2758@lstrano-desk.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
+Received: from PH0PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11011000.outbound.protection.outlook.com [40.107.208.0])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DF3810EAE9;
+ Fri, 23 Jan 2026 13:50:55 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ORX5KQb+sUpI+3viBQ4yY6j1/Kca4/35sLpbMQE4IJeUYVdG3mQTHywkT/skGTQHRkGyqb4QWZ64aIdCDCdvH77oJv6XC7CraQN2Hlsw8SBwyezC4eQU3GxTy+WZgQ5uRN2F0FBWgJZG2XsEQgBcJt6/nGk0taSOFcUfqmC7Put89V3VsGsO+w1XdAlpZzPXUgKYFOfe/ia1KJs3EJIirkN902A4L+qUhsWkh1MX3LJHI56d8gUV7Z4azuolWKbjwrZEk3Z+cHeyB2oS9CtsvzyvhlEQEftJq8ayCtwhpdjWPsy/Nb5as9oIhqWbvtdC5cJB2NLSgc7qQOhN9jwLhw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Kwkv0CPCm+LrqMV02WPMv2mTlRAudQjYt+uuDKxdFjU=;
+ b=UVYK2A6xpKqAGR5StexFNtdtnj+7Otj6ZsgVwRUzvBk2FacvmFCc7oC2y8FWO6IXV2md3VV7KFYeSH3geX36KLCk6YdVXG9qzdTnbAmgVi4gwslErB5AYbL4fHKwx6Lk+jFQL8Y+WBiiG5bFBckkFIV61nncxKv8ucmuNECuqlKTNeSPNyxo3ukELWIjsUvoaXkCo1s+InlQSM8PMYNXpkz4jUeuNCJ+W33z0maJeiQ3ma0v4pi+O/r1LM0d9dsG0f8A64e/nozqaHHUXiicfaoRT2dPZ0CdroPeAcJhaL9/Y/LdqYv09shzKuVtZFOTWo4ginVcISz93yHJha6ceg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Kwkv0CPCm+LrqMV02WPMv2mTlRAudQjYt+uuDKxdFjU=;
+ b=EvzMft5YJ/df9prsh/xcQELZ0389OaP1QN7p+DHYbTYBLLW9FCN/HPzsy7gcRGekfcx2SMtBbvd5TAmA4KEoiPbeOMGz5P7IWLZYOl/ar3uE0o766B0PRRZyMevkS00WSPABZ5RmxE7jl0fTV3cuSDV/SWIyNpMXdzXJnDy7560AJC5kv1YMMxHQftWMXawAs8nycYQ+2RIIkkpWUte70/Du4aJUJC6nGIF1VfI46h2H40dVROqk9B1Q9K5SMJKXaLV5VGggfxtUT7wQQ0cWDDJb7UbAqNuf+ORVLwk3iDBGmt/clOkY3tfDCdN2cdvuZvjPNWdxAReSz+LIlwVAag==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV8PR12MB9620.namprd12.prod.outlook.com (2603:10b6:408:2a1::19)
+ by CY3PR12MB9655.namprd12.prod.outlook.com (2603:10b6:930:100::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.11; Fri, 23 Jan
+ 2026 13:50:51 +0000
+Received: from LV8PR12MB9620.namprd12.prod.outlook.com
+ ([fe80::1b59:c8a2:4c00:8a2c]) by LV8PR12MB9620.namprd12.prod.outlook.com
+ ([fe80::1b59:c8a2:4c00:8a2c%3]) with mapi id 15.20.9542.010; Fri, 23 Jan 2026
+ 13:50:51 +0000
+Date: Fri, 23 Jan 2026 09:50:50 -0400
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Alistair Popple <apopple@nvidia.com>
+Cc: Zi Yan <ziy@nvidia.com>, Jordan Niethe <jniethe@nvidia.com>,
+ linux-mm@kvack.org, balbirs@nvidia.com, matthew.brost@intel.com,
+ akpm@linux-foundation.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, david@redhat.com,
+ lorenzo.stoakes@oracle.com, lyude@redhat.com, dakr@kernel.org,
+ airlied@gmail.com, simona@ffwll.ch, rcampbell@nvidia.com,
+ mpenttil@redhat.com, willy@infradead.org,
+ linuxppc-dev@lists.ozlabs.org, intel-xe@lists.freedesktop.org,
+ Felix.Kuehling@amd.com
+Subject: Re: [PATCH v2 11/11] mm: Remove device private pages from the
+ physical address space
+Message-ID: <20260123135050.GV1134360@nvidia.com>
+References: <20260107091823.68974-12-jniethe@nvidia.com>
+ <36F96303-8FBB-4350-9472-52CC50BAB956@nvidia.com>
+ <c9afedc6-f763-410f-b78b-522b98122f06@nvidia.com>
+ <6C5F185E-BB12-4B01-8283-F2C956E84AA3@nvidia.com>
+ <fd4b6553-3e9e-4829-a12f-51d29a5d7571@nvidia.com>
+ <16770FCE-A248-4184-ABFC-94C02C0B30F3@nvidia.com>
+ <sezye7d27h7pioazf4k3wfrdbradxovmdqyyp5slhljkmcnxf5@ckj3ujikhsnj>
+ <DBBD65CA-A8F2-40AC-AFA0-FC95CBDB3DF5@nvidia.com>
+ <0C16A79F-5A7B-4358-9806-7F78E7EA8EE6@nvidia.com>
+ <l5jxxobpj6shwuuthsyxlzfnhs6dx4spvzcqxrycn4chtywniq@e2eaio4nhorq>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <l5jxxobpj6shwuuthsyxlzfnhs6dx4spvzcqxrycn4chtywniq@e2eaio4nhorq>
+X-ClientProxiedBy: MN2PR14CA0001.namprd14.prod.outlook.com
+ (2603:10b6:208:23e::6) To LV8PR12MB9620.namprd12.prod.outlook.com
+ (2603:10b6:408:2a1::19)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV8PR12MB9620:EE_|CY3PR12MB9655:EE_
+X-MS-Office365-Filtering-Correlation-Id: fcc29591-dc62-40fd-74fd-08de5a866b85
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?A4wW0D44C/oxAKRogWI/ujFJVZ5ltMY6Hwv9i533fwU/IYuc0hvogf0Xp89F?=
+ =?us-ascii?Q?16ovx/A0CCymnP8pNvDrjf3TBz/SXlFg/us6O1YlEbJ3e8gA25uxnIhqCLl/?=
+ =?us-ascii?Q?/Qzk7SGZBlQetyeR0Rvkusa54TgC2NyBXtDuWRt4WtHQQZaOaguYnPBS8Isp?=
+ =?us-ascii?Q?B7cUyK61uZwd5BHUsjzwfIuHM7oF9kbBMgOc+O5h+b0FHCLRdwua259YVA4w?=
+ =?us-ascii?Q?gV+SDy5aheZLaAAujauhBbx5AEh3Wztt7FtGjnjwfC9w4c2R2r/6g5wRXC0r?=
+ =?us-ascii?Q?9F76QufySD5yrAo4MqZ7uXX6SolaokBm18yWiSIqzmQ4UQbJmJeUnT0tByvn?=
+ =?us-ascii?Q?BHpzHb6qO0He3LgeVSyQBpUSNbc3wudeEO3PrD3PwciU9bZtEyzWexg708Jc?=
+ =?us-ascii?Q?jnP1x9WXfb9zA1STgR7cTH1GYMZkHHMsEferQxwat7mIerZ5TeY7pC3+zidE?=
+ =?us-ascii?Q?vi8x2ownDAX9GaDgYJSZD8OS1QHvjD49H7zImGENyzWUVd9+LZV5rchvIB5a?=
+ =?us-ascii?Q?UDHp+UThp+oWufc3F0BXaIh3aOJvCPW+G2kK/gHJYLZ3um9uACQ6dl1dA94T?=
+ =?us-ascii?Q?osS/rsRQgMPgZywARHZxgAXfzHEq+vtbiXq0tjwC1GDPKcOsV5CwsYxeFBUv?=
+ =?us-ascii?Q?f9E2LQVpCs8DFttH+iLh13P8lFHemM55WVOeD6xTTZ4sCTvB32r0aF4SyEDl?=
+ =?us-ascii?Q?GDri7sGaLor87tHBbCziKaAROZ4KQwTbdIkUVy0YtmgVqAnvCFh4CdImZo4h?=
+ =?us-ascii?Q?uY38wuPGAKaScBUiCkYUw5wofnMi5Rs+kqSH6LlJx4cBk2skFwstwv0Ptr5i?=
+ =?us-ascii?Q?J8xVwn+/71jWwsttbcorUkg1PXEyj0uS/O2fXWXGfBdmwY9BfcrhNXe0aF59?=
+ =?us-ascii?Q?5ejo9GZjqaV5rOITZoeE5uqKUqPtwurDhOqXer5cB4EwliIEGH+HZh8G8GhF?=
+ =?us-ascii?Q?2Uvw4xRs0aJ8Sj0/xsXYlyD/Hj0qAWuQP/NjR/qZGc46EQZmsPF1rLFFZFnb?=
+ =?us-ascii?Q?hmdZ0I8mz8nCJgLeLNINY7CLsyy00TVAxuhbeVKD4twx4g/XWg4ur4DEollQ?=
+ =?us-ascii?Q?lEHI31tasCTh1B7vdm+mqzM3MGsBUucKeZca0ROZymJ+DPybREQDLDLqB6mB?=
+ =?us-ascii?Q?JZyQnX1MoNYTOigZkUQcN3rAYUhsINs3MfhGHM8IQmvLtGdHE8uIcIjm2PU1?=
+ =?us-ascii?Q?9Jurub3cWJ20JkeOBlNGcWr8Y91v1IhTH0ResGF41O+rgqurCe75YfA2zshg?=
+ =?us-ascii?Q?EvMsWtbuABtySbth8TxD/RbTaR0vVlvyJzC5Eea2b15kuuw/i0ahy+6Vb/gz?=
+ =?us-ascii?Q?d8m/qV+FvJ6t6CfAINgDrBsF6IaIQhvAlT4H1XicGb3O1IzVkYx7UP1lpUcd?=
+ =?us-ascii?Q?vg6L+Vx6P5HjlgKS5fp9c1NMdNhLh/CyuuIEaJnaXJR9kw1cv2jcoTCJstBj?=
+ =?us-ascii?Q?s7/NuC6Dxn4UAZm5BYXd2QqGASuE9eJ4bPq8Pu2xUjsDOmiN9e8GK1hjqfEV?=
+ =?us-ascii?Q?js5152yil416hxUKiQa36GZ4gq3wNMhISObW3MFnZtiRuenku1LcKYKOylaV?=
+ =?us-ascii?Q?aIJ84syENlqjOWhrj4c=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV8PR12MB9620.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(7416014)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?6n5bbpHPt/ZRXAxW/cRAjMitrJ6ClygL5kppuG9OHQ6EygfERfSxKMVcKnaX?=
+ =?us-ascii?Q?EXAJ9Z6PTt+7vvNNqB+a5L5nA1xhnZhSP/DmepcJ+fdoZ1lYbm5jn5pqIuPN?=
+ =?us-ascii?Q?Fh77mzDZRyt4LyNe0eYWAEjd+/NWV/htkko+aJc12VtlNcWmLJEIwT+TcpUy?=
+ =?us-ascii?Q?EqzvrlvkcFpaLGkWFpsMwciaOR/XZ1eTi/lUfvef5gg9EpySurhxP1klqkep?=
+ =?us-ascii?Q?9ytiUBjeSgiCeUF4umD+7AMQc+4++I9MKJvm1HNOroZ94/4S8Flk+qlKOIKM?=
+ =?us-ascii?Q?j4wkLm9u03kjxRY0OizkKYpwue4H84XodEkJzh8hDGdTWP4minypilOaBobS?=
+ =?us-ascii?Q?eOx7ZpPJVneetKQ1UxuR3aTP5l+sjKxxzpiaqIOZNFP1MZurYCH5NIvWaiF3?=
+ =?us-ascii?Q?yYUCRH/j65owbS0Dod/nGgvctaGVT+cq5sCOFwoEOCL1+YpKXav20lM3KCmv?=
+ =?us-ascii?Q?6Ubvru98qtXQR9CY5NyTihnhBq9OGmPbEA+xQ+KwOb6LogdVpZ5fiyPKU6DF?=
+ =?us-ascii?Q?/6cFw/3sJOxRzfYgq0IVIWhcPsJOK20knximwCN2XYQ0SAoCBqhnPq6oBVkq?=
+ =?us-ascii?Q?9yaNx+YO7ATDJ24w/nbUvllcxwjW+AkLHzfmxMBsIzFREuJVoELhuFZhKm/8?=
+ =?us-ascii?Q?bH20imouET3K4uHD1R00XA2HkU4KhnM7Zuq/2J/gTnwkfc7818IF70xOjsXA?=
+ =?us-ascii?Q?xYZBh5IWY97ffjwIac0hOq4G3IlK5SHa6q/kiehpzrE4jq/4RdjtDorErXrl?=
+ =?us-ascii?Q?vRc3t5wcqQBBpcHCBh4TXzwjbMnPMHranGJzB3kKnwWXXlzD+m2oiiJYh8Z+?=
+ =?us-ascii?Q?uvdrodRxJluwG2pQ0j3mYInlAfwD+pAfcls2dy48irnXdopiF4uNDq7xbpdg?=
+ =?us-ascii?Q?ddi0vRbNJ/WnEJ71aUtjBJPVcY0As0ECUj4oU0llYSmLv5aa9rtP+sJ+hY9z?=
+ =?us-ascii?Q?QHiFyOky+ai+Fb0CjBUXiFHOR8m+2VcQGk5/mUdcBNLfRV0tGjM5NAkSYO38?=
+ =?us-ascii?Q?ncAxVK1wrpL+V6ehVQWeSE6GTCquOv4EuogoTw+wOoksOnn3D1gE6jzHFh0U?=
+ =?us-ascii?Q?NxpamDRX9hYgqEqJNbJ4mRd1/LLncCO+RaNJU4Mnk5N/mLvaNIb/q0+61iim?=
+ =?us-ascii?Q?HqzV5FggZSYTUEFBLraCdwoYHQb/UgyBRrqHv6TOVLBle+WPNYXJjU556WQV?=
+ =?us-ascii?Q?HV/ORRRRbgjkmvlS1+hZ3iuY25EVVTp0SZUhxrOPZOiOGDahQ58c4wfIxB6t?=
+ =?us-ascii?Q?PufVzs0BfRUPQxjAntD1gxsk/rQ0+JXmI7QyBkzWO74P/i1dFV/0wTnp43OG?=
+ =?us-ascii?Q?nJtQvJ8E7N/1LALj+lPePNyGisA3czpxZR2kivDJpZatLyjy98CN/oH41xoq?=
+ =?us-ascii?Q?v4R3uVRTYWI1rB+fCc1JR9FMpJDX6xIjiVwDlChA1O8jApsQd6CjnaoW4rqu?=
+ =?us-ascii?Q?+K1zF9mWcsQq//DdDH+lOeaBvZgWkjVPCJyAIPA5lPrwwWJBDSCf05VXlR/u?=
+ =?us-ascii?Q?wP4lCle2VLx45LOMRQYqXTH8C7faBTS2KQms4nQBBjc17WeF7cf70P57BHCx?=
+ =?us-ascii?Q?HP3zntQ80Ikt9pfd/+f7cgFv2BBYM/yQBDNPrfHzPIrjZDIxViX4eCmDs9Tq?=
+ =?us-ascii?Q?JyADniIUhyZrF/ghdob41Ecbex8QP9lwwKxRctsEdOUjPkmHosvUqUAi2uT2?=
+ =?us-ascii?Q?XRuuzlioMzCwody3epeVaLh0x3hdCVvUn+6WKR1pBaNTEXxIOg9aJ3T/FKLu?=
+ =?us-ascii?Q?p0cw5dzvQg=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fcc29591-dc62-40fd-74fd-08de5a866b85
+X-MS-Exchange-CrossTenant-AuthSource: LV8PR12MB9620.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2026 13:50:51.1056 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: o0Dcu+lYo9RzqG09W5FZTgTlAgHF0BbKGUhWGGo1ryzJTCTzDCMQ+18J/9Hb54CE
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY3PR12MB9655
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,218 +165,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2026-01-20 at 09:58 -0800, Matthew Brost wrote:
-> On Tue, Jan 20, 2026 at 11:38:54AM +0530, Arvind Yadav wrote:
-> > Encapsulate TTM purgeable flag updates and shrinker page accounting
-> > into helper functions. This prevents desynchronization between the
-> > TTM tt->purgeable flag and the shrinker's page bucket counters.
-> >=20
-> > Without these helpers, direct manipulation of xe_ttm_tt->purgeable
-> > risks forgetting to update the corresponding shrinker counters,
-> > leading to incorrect memory pressure calculations.
-> >=20
-> > Add xe_bo_set_purgeable_shrinker() and
-> > xe_bo_clear_purgeable_shrinker()
-> > which atomically update both the TTM flag and transfer pages
-> > between
-> > the shrinkable and purgeable buckets.
-> >=20
-> > v4:
-> > =C2=A0 - @madv_purgeable atomic_t =E2=86=92 u32 change across all relev=
-ant
-> > patches. (Matt)
-> >=20
-> > Cc: Matthew Brost <matthew.brost@intel.com>
->=20
-> I think this patch is right but best to double check with Thomas as
-> he
-> wrote the shrinker logic and is the expert here.
->=20
-> Matt
+On Fri, Jan 23, 2026 at 04:38:49PM +1100, Alistair Popple wrote:
+> > >> We need to be a bit careful by what we mean when we say "HMM" in the kernel.
+> > >>
+> > >> Specifically MIGRATE_PFN_SHIFT is used with migrate_vma/migrate_device, which
+> > >> is the migration half of "HMM" which does depend on CONFIG_DEVICE_MIGRATION or
+> > >> really just CONFIG_ZONE_DEVICE making it somewhat arch specific.
+> > >>
+> > >> However hmm_range_fault() does something similar - see the definition of
+> > >> hmm_pfn_flags - it actually steals the top 11 bits of a pfn for flags, and it is
+> > >> not architecture specific. It only depends on CONFIG_MMU.
+> > >
+> > > Oh, that is hacky. But are HMM PFNs with any flag exposed to code outside HMM?
+> > > Currently, device private needs to reserve PFNs for struct page, so I assume
+> > > only the reserved PFNs are seen by outsiders. Otherwise, when outsiders see
+> > > a HMM PFN with a flag, pfn_to_page() on such a PFN will read non exist
+> > > struct page, right?
+> 
+> Any user of hmm_range_fault() would be exposed to an issue - most users of
+> hmm_range_fault() use it to grab a PFN (ie. physical address) to map into some
+> remote page table. So potentially if some important bit in the PFN is dropped
+> that could potentially result in users mapping the wrong physical address or
+> page.
 
+Trim the quotes guys..
 
-Looks correct to me.
+hmm is arguably returning phys_addr_t >> PAGE_SHIFT. This is a lossless
+translation because everything is aligned, it isn't hacky.
 
-@Arvind: Did you look at removing the xe_tt purgeable field (which I
-always thought of as an intermediate until we had purgeable bos) and
-replace it with the bo->madv_purgeable field in the shrinker code. I'm
-not sure how complicated it would be, TBH but feel free to leave that
-as a follow-up patch.
+The value it returns is not a "pfn", it is a hmm structure that has to
+be decoded to something else using a hmm helper function.
 
-Also make sure the xe_bo_shrink xe_live_ktest subtest still works since
-it relies heavily on shrinkable bos. I don't think CI runs it because
-of the execution time and insufficient memory allocation amount
-heuristics. We should also file a jira to rewrite that test to a user-
-space IGT test now that we support shrinkable bos. I'll take a look at
-that.
+I think we take a number of liberties going between pte, phys_addr_t,
+pfn. If there are arches that use a special encoding for the mm PFN
+then range_fault would need to call converter functions to get to/from
+phys_addr_t.
 
-Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-
->=20
-> > Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> > Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
-> > ---
-> > =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 | 60
-> > ++++++++++++++++++++++++++++++
-> > =C2=A0drivers/gpu/drm/xe/xe_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 3 ++
-> > =C2=A0drivers/gpu/drm/xe/xe_vm_madvise.c | 13 +++++--
-> > =C2=A03 files changed, 73 insertions(+), 3 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/xe/xe_bo.c
-> > b/drivers/gpu/drm/xe/xe_bo.c
-> > index cc547915161d..2b1448ea3aed 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > @@ -836,6 +836,66 @@ static int xe_bo_move_notify(struct xe_bo *bo,
-> > =C2=A0	return 0;
-> > =C2=A0}
-> > =C2=A0
-> > +/**
-> > + * xe_bo_set_purgeable_shrinker() - Mark BO purgeable and update
-> > shrinker
-> > + * @bo: Buffer object
-> > + *
-> > + * Transfers pages from shrinkable to purgeable bucket. Shrinker
-> > can now
-> > + * discard pages immediately without swapping. Caller holds BO
-> > lock.
-> > + */
-> > +void xe_bo_set_purgeable_shrinker(struct xe_bo *bo)
-> > +{
-> > +	struct ttm_buffer_object *ttm_bo =3D &bo->ttm;
-> > +	struct ttm_tt *tt =3D ttm_bo->ttm;
-> > +	struct xe_device *xe =3D ttm_to_xe_device(ttm_bo->bdev);
-> > +	struct xe_ttm_tt *xe_tt;
-> > +
-> > +	xe_bo_assert_held(bo);
-> > +
-> > +	if (!tt || !ttm_tt_is_populated(tt))
-> > +		return;
-> > +
-> > +	xe_tt =3D container_of(tt, struct xe_ttm_tt, ttm);
-> > +
-> > +	if (!xe_tt->purgeable) {
-> > +		xe_tt->purgeable =3D true;
-> > +		/* Transfer pages from shrinkable to purgeable
-> > count */
-> > +		xe_shrinker_mod_pages(xe->mem.shrinker,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -(long)tt->num_pages,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tt->num_pages);
-> > +	}
-> > +}
-> > +
-> > +/**
-> > + * xe_bo_clear_purgeable_shrinker() - Mark BO non-purgeable and
-> > update shrinker
-> > + * @bo: Buffer object
-> > + *
-> > + * Transfers pages from purgeable to shrinkable bucket. Shrinker
-> > must now
-> > + * swap pages instead of discarding. Caller holds BO lock.
-> > + */
-> > +void xe_bo_clear_purgeable_shrinker(struct xe_bo *bo)
-> > +{
-> > +	struct ttm_buffer_object *ttm_bo =3D &bo->ttm;
-> > +	struct ttm_tt *tt =3D ttm_bo->ttm;
-> > +	struct xe_device *xe =3D ttm_to_xe_device(ttm_bo->bdev);
-> > +	struct xe_ttm_tt *xe_tt;
-> > +
-> > +	xe_bo_assert_held(bo);
-> > +
-> > +	if (!tt || !ttm_tt_is_populated(tt))
-> > +		return;
-> > +
-> > +	xe_tt =3D container_of(tt, struct xe_ttm_tt, ttm);
-> > +
-> > +	if (xe_tt->purgeable) {
-> > +		xe_tt->purgeable =3D false;
-> > +		/* Transfer pages from purgeable to shrinkable
-> > count */
-> > +		xe_shrinker_mod_pages(xe->mem.shrinker,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tt->num_pages,
-> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -(long)tt->num_pages);
-> > +	}
-> > +}
-> > +
-> > =C2=A0/**
-> > =C2=A0 * xe_ttm_bo_purge() - Purge buffer object backing store
-> > =C2=A0 * @ttm_bo: The TTM buffer object to purge
-> > diff --git a/drivers/gpu/drm/xe/xe_bo.h
-> > b/drivers/gpu/drm/xe/xe_bo.h
-> > index 00e93b3065c9..681495e905af 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo.h
-> > +++ b/drivers/gpu/drm/xe/xe_bo.h
-> > @@ -270,6 +270,9 @@ static inline bool
-> > xe_bo_madv_is_dontneed(struct xe_bo *bo)
-> > =C2=A0	return bo->madv_purgeable =3D=3D XE_MADV_PURGEABLE_DONTNEED;
-> > =C2=A0}
-> > =C2=A0
-> > +void xe_bo_set_purgeable_shrinker(struct xe_bo *bo);
-> > +void xe_bo_clear_purgeable_shrinker(struct xe_bo *bo);
-> > +
-> > =C2=A0static inline void xe_bo_unpin_map_no_vm(struct xe_bo *bo)
-> > =C2=A0{
-> > =C2=A0	if (likely(bo)) {
-> > diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c
-> > b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> > index 5808fef89777..0fb07a1ed3ae 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-> > +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> > @@ -274,12 +274,16 @@ void
-> > xe_bo_recheck_purgeable_on_vma_unbind(struct xe_bo *bo)
-> > =C2=A0
-> > =C2=A0	if (xe_bo_all_vmas_dontneed(bo)) {
-> > =C2=A0		/* All VMAs are DONTNEED - mark BO purgeable */
-> > -		if (bo->madv_purgeable !=3D
-> > XE_MADV_PURGEABLE_DONTNEED)
-> > +		if (bo->madv_purgeable !=3D
-> > XE_MADV_PURGEABLE_DONTNEED) {
-> > =C2=A0			bo->madv_purgeable =3D
-> > XE_MADV_PURGEABLE_DONTNEED;
-> > +			xe_bo_set_purgeable_shrinker(bo);
-> > +		}
-> > =C2=A0	} else {
-> > =C2=A0		/* At least one VMA is WILLNEED - BO must not be
-> > purgeable */
-> > -		if (bo->madv_purgeable !=3D
-> > XE_MADV_PURGEABLE_WILLNEED)
-> > +		if (bo->madv_purgeable !=3D
-> > XE_MADV_PURGEABLE_WILLNEED) {
-> > =C2=A0			bo->madv_purgeable =3D
-> > XE_MADV_PURGEABLE_WILLNEED;
-> > +			xe_bo_clear_purgeable_shrinker(bo);
-> > +		}
-> > =C2=A0	}
-> > =C2=A0}
-> > =C2=A0
-> > @@ -325,13 +329,16 @@ static bool xe_vm_madvise_purgeable_bo(struct
-> > xe_device *xe, struct xe_vm *vm,
-> > =C2=A0
-> > =C2=A0			/* Mark VMA WILLNEED - BO becomes non-
-> > purgeable immediately */
-> > =C2=A0			bo->madv_purgeable =3D
-> > XE_MADV_PURGEABLE_WILLNEED;
-> > +			xe_bo_clear_purgeable_shrinker(bo);
-> > =C2=A0			break;
-> > =C2=A0		case DRM_XE_VMA_PURGEABLE_STATE_DONTNEED:
-> > =C2=A0			vmas[i]->purgeable_state =3D
-> > XE_MADV_PURGEABLE_DONTNEED;
-> > =C2=A0
-> > =C2=A0			/* Mark BO purgeable only if all VMAs are
-> > DONTNEED */
-> > -			if (xe_bo_all_vmas_dontneed(bo))
-> > +			if (xe_bo_all_vmas_dontneed(bo)) {
-> > =C2=A0				bo->madv_purgeable =3D
-> > XE_MADV_PURGEABLE_DONTNEED;
-> > +				xe_bo_set_purgeable_shrinker(bo);
-> > +			}
-> > =C2=A0			break;
-> > =C2=A0		default:
-> > =C2=A0			drm_warn(&vm->xe->drm, "Invalid madvice
-> > value =3D %d\n",
-> > --=20
-> > 2.43.0
-> >=20
+Jason
