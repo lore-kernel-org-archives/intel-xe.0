@@ -4,58 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A056D74EC5
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Jan 2026 13:34:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CB32D74ED3
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Jan 2026 13:42:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B91810E2C1;
-	Fri, 23 Jan 2026 13:34:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBA0B10EAE6;
+	Fri, 23 Jan 2026 13:42:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kPooClfI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A8qrwYf7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0F2910E2B6;
- Fri, 23 Jan 2026 13:34:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF35910EAE6
+ for <intel-xe@lists.freedesktop.org>; Fri, 23 Jan 2026 13:42:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769175264; x=1800711264;
+ t=1769175774; x=1800711774;
  h=message-id:subject:from:to:cc:date:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=7oayTD6co6QgsQ4//6MfuYdj5SZ6hyLjyd7xM1Ok0pU=;
- b=kPooClfIL2RBs4qBQO3eyYzAB845ezsJZmIWRjm7gH5JBUt/XqzP+mQK
- YlW8dUIYYazDV4X9VTGbFNZ/tSLBXB/3KIOhZIS6+XwEF9pB7EwSB5PCA
- CYePqb12pUR5RC2+2FoPoAtD7VAx3kPzunrjoemPogSGzpewNCkBUZU9Y
- Yr426z58rimv8y6r6+MARK7pE7EXzZPFzOT2erRnWYdoMMOQUSApMVVEX
- GOOmpH9b0O8Kh0PFJ7lyhm2pcQlGvbwB9yJGEJs8wpRHIP6OphCoN/Y2j
- taNH3mMJm4wgpzppiWL2/qx4477ankTYuP8xWpxq3/rTW6yG9kS3x/bGK g==;
-X-CSE-ConnectionGUID: MotdPnXCSRu7x6mzy/AGAw==
-X-CSE-MsgGUID: pVb46t4+RbiwANk6vpbFtQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11680"; a="95897314"
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="95897314"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2026 05:34:24 -0800
-X-CSE-ConnectionGUID: FKcDDHE4SgW+MZ2YqpLZBQ==
-X-CSE-MsgGUID: B3VAN+lBSxuV05gpRtUVyg==
+ bh=suRK11EMKvqGEnxk90IKLl/7LyVaParitNPcCYmcCWw=;
+ b=A8qrwYf7GRFlPJqqxGGgv7ZzewTfj4XKvYlVT1JIrU8NAw/1jI7FF1vF
+ Ojjx70z3zPTLtTL7khdv4Sadkzl/FPbl66vRptrNccz9sUXwCZF4dKLqp
+ DZmNXjskSwYcEbMroscYZ0i/lcQL1xVgUmcnJP/g0uZHA5l+4+srqzO2P
+ 9ufxmV4YW3ppototd6TbOVaEYODWUEimL63jROjuw6un6Gy4OMFShVDEV
+ wQamPnieoevRELWG4oYYj/roh2dVj+N5FobMeiIn6yK0XxiGpidMRgk39
+ jnAVKC9lxpf3jAQHMsm63OzbbvnJPCg9eGUxsykdHOclfK5mZW9hazU+8 g==;
+X-CSE-ConnectionGUID: HYvFZHSKRwGdCohnTaoRiQ==
+X-CSE-MsgGUID: 5h1piRpFTXGGOMLs6pj2/w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11680"; a="74060170"
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="74060170"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2026 05:42:54 -0800
+X-CSE-ConnectionGUID: u9QqsghJQTSnrlQSqUTF1g==
+X-CSE-MsgGUID: m3IGCIVITy6csrHeA1d53w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="211898362"
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="211530298"
 Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.244.177])
  ([10.245.244.177])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2026 05:34:22 -0800
-Message-ID: <34532068b6414d35264bc1d2f0a33b0a1be8fb3e.camel@linux.intel.com>
-Subject: Re: [PATCH v2 1/2] drm, drm/xe: Fix xe userptr in the absence of
- CONFIG_DEVICE_PRIVATE
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2026 05:42:52 -0800
+Message-ID: <dce5519b701a56d0e2ebf8e7c3370badda894dfc.camel@linux.intel.com>
+Subject: Re: [PATCH v4 8/8] drm/xe/bo: Add purgeable shrinker state helpers
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>, 
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, 	dri-devel@lists.freedesktop.org,
- stable@vger.kernel.org
-Date: Fri, 23 Jan 2026 14:34:19 +0100
-In-Reply-To: <aW/D6ehR6DB2SVlf@lstrano-desk.jf.intel.com>
-References: <20260120143459.9485-1-thomas.hellstrom@linux.intel.com>
- <20260120143459.9485-2-thomas.hellstrom@linux.intel.com>
- <aW/D6ehR6DB2SVlf@lstrano-desk.jf.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, Arvind Yadav
+ <arvind.yadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org, himal.prasad.ghimiray@intel.com, 
+ pallavi.mishra@intel.com
+Date: Fri, 23 Jan 2026 14:42:49 +0100
+In-Reply-To: <aW/CNu35NYz/2758@lstrano-desk.jf.intel.com>
+References: <20260120060900.3137984-1-arvind.yadav@intel.com>
+ <20260120060900.3137984-9-arvind.yadav@intel.com>
+ <aW/CNu35NYz/2758@lstrano-desk.jf.intel.com>
 Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -75,183 +73,218 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2026-01-20 at 10:05 -0800, Matthew Brost wrote:
-> On Tue, Jan 20, 2026 at 03:34:58PM +0100, Thomas Hellstr=C3=B6m wrote:
-> > CONFIG_DEVICE_PRIVATE is not selected by default by some distros,
-> > for example Fedora, and that leads to a regression in the xe driver
-> > since userptr support gets compiled out.
+On Tue, 2026-01-20 at 09:58 -0800, Matthew Brost wrote:
+> On Tue, Jan 20, 2026 at 11:38:54AM +0530, Arvind Yadav wrote:
+> > Encapsulate TTM purgeable flag updates and shrinker page accounting
+> > into helper functions. This prevents desynchronization between the
+> > TTM tt->purgeable flag and the shrinker's page bucket counters.
 > >=20
-> > It turns out that DRM_GPUSVM, which is needed for xe userptr
-> > support
-> > compiles also without CONFIG_DEVICE_PRIVATE, but doesn't compile
-> > without CONFIG_ZONE_DEVICE.
-> > Exclude the drm_pagemap files from compilation with
-> > !CONFIG_ZONE_DEVICE,
-> > and remove the CONFIG_DEVICE_PRIVATE dependency from
-> > CONFIG_DRM_GPUSVM and
-> > the xe driver's selection of it, re-enabling xe userptr for those
-> > configs.
+> > Without these helpers, direct manipulation of xe_ttm_tt->purgeable
+> > risks forgetting to update the corresponding shrinker counters,
+> > leading to incorrect memory pressure calculations.
 > >=20
-> > v2:
-> > - Don't compile the drm_pagemap files unless CONFIG_ZONE_DEVICE is
-> > set.
-> > - Adjust the drm_pagemap.h header accordingly.
+> > Add xe_bo_set_purgeable_shrinker() and
+> > xe_bo_clear_purgeable_shrinker()
+> > which atomically update both the TTM flag and transfer pages
+> > between
+> > the shrinkable and purgeable buckets.
 > >=20
-> > Fixes: 9e9787414882 ("drm/xe/userptr: replace xe_hmm with gpusvm")
-> > Cc: Matthew Auld <matthew.auld@intel.com>
-> > Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> > Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > v4:
+> > =C2=A0 - @madv_purgeable atomic_t =E2=86=92 u32 change across all relev=
+ant
+> > patches. (Matt)
+> >=20
 > > Cc: Matthew Brost <matthew.brost@intel.com>
-> > Cc: "Thomas Hellstr=C3=B6m" <thomas.hellstrom@linux.intel.com>
-> > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > Cc: dri-devel@lists.freedesktop.org
-> > Cc: <stable@vger.kernel.org> # v6.18+
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > ---
-> > =C2=A0drivers/gpu/drm/Kconfig=C2=A0=C2=A0=C2=A0 |=C2=A0 2 +-
-> > =C2=A0drivers/gpu/drm/Makefile=C2=A0=C2=A0 |=C2=A0 4 +++-
-> > =C2=A0drivers/gpu/drm/xe/Kconfig |=C2=A0 2 +-
-> > =C2=A0include/drm/drm_pagemap.h=C2=A0 | 18 ++++++++++++++----
-> > =C2=A04 files changed, 19 insertions(+), 7 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-> > index a33b90251530..d3d52310c9cc 100644
-> > --- a/drivers/gpu/drm/Kconfig
-> > +++ b/drivers/gpu/drm/Kconfig
-> > @@ -210,7 +210,7 @@ config DRM_GPUVM
-> > =C2=A0
-> > =C2=A0config DRM_GPUSVM
-> > =C2=A0	tristate
-> > -	depends on DRM && DEVICE_PRIVATE
-> > +	depends on DRM
-> > =C2=A0	select HMM_MIRROR
-> > =C2=A0	select MMU_NOTIFIER
-> > =C2=A0	help
-> > diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> > index 0deee72ef935..0c21029c446f 100644
-> > --- a/drivers/gpu/drm/Makefile
-> > +++ b/drivers/gpu/drm/Makefile
-> > @@ -108,9 +108,11 @@ obj-$(CONFIG_DRM_EXEC) +=3D drm_exec.o
-> > =C2=A0obj-$(CONFIG_DRM_GPUVM) +=3D drm_gpuvm.o
-> > =C2=A0
-> > =C2=A0drm_gpusvm_helper-y :=3D \
-> > -	drm_gpusvm.o\
-> > +	drm_gpusvm.o
-> > +drm_gpusvm_helper-$(CONFIG_ZONE_DEVICE) +=3D \
-> > =C2=A0	drm_pagemap.o\
-> > =C2=A0	drm_pagemap_util.o
-> > +
-> > =C2=A0obj-$(CONFIG_DRM_GPUSVM) +=3D drm_gpusvm_helper.o
-> > =C2=A0
-> > =C2=A0obj-$(CONFIG_DRM_BUDDY) +=3D drm_buddy.o
-> > diff --git a/drivers/gpu/drm/xe/Kconfig
-> > b/drivers/gpu/drm/xe/Kconfig
-> > index 4b288eb3f5b0..c34be1be155b 100644
-> > --- a/drivers/gpu/drm/xe/Kconfig
-> > +++ b/drivers/gpu/drm/xe/Kconfig
-> > @@ -39,7 +39,7 @@ config DRM_XE
-> > =C2=A0	select DRM_TTM
-> > =C2=A0	select DRM_TTM_HELPER
-> > =C2=A0	select DRM_EXEC
-> > -	select DRM_GPUSVM if !UML && DEVICE_PRIVATE
-> > +	select DRM_GPUSVM if !UML
-> > =C2=A0	select DRM_GPUVM
-> > =C2=A0	select DRM_SCHED
-> > =C2=A0	select MMU_NOTIFIER
-> > diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
-> > index 46e9c58f09e0..2baf0861f78f 100644
-> > --- a/include/drm/drm_pagemap.h
-> > +++ b/include/drm/drm_pagemap.h
-> > @@ -243,6 +243,8 @@ struct drm_pagemap_devmem_ops {
-> > =C2=A0			=C2=A0=C2=A0 struct dma_fence *pre_migrate_fence);
-> > =C2=A0};
-> > =C2=A0
-> > +#if IS_ENABLED(CONFIG_ZONE_DEVICE)
-> > +
 >=20
-> What happens if we select ZONE_DEVICE but not DEVICE_PRIVATE?
-
-This code builds, and in theory would work for DEVICE_COHERENT but the
-device-private checks in the code always return false as I understand
-it.=20
-
-So should be safe for our userptr code, and SVM still requires /
-selects DEVICE_PRIVATE.
-
-Thomas
-
-
+> I think this patch is right but best to double check with Thomas as
+> he
+> wrote the shrinker logic and is the expert here.
 >=20
 > Matt
+
+
+Looks correct to me.
+
+@Arvind: Did you look at removing the xe_tt purgeable field (which I
+always thought of as an intermediate until we had purgeable bos) and
+replace it with the bo->madv_purgeable field in the shrinker code. I'm
+not sure how complicated it would be, TBH but feel free to leave that
+as a follow-up patch.
+
+Also make sure the xe_bo_shrink xe_live_ktest subtest still works since
+it relies heavily on shrinkable bos. I don't think CI runs it because
+of the execution time and insufficient memory allocation amount
+heuristics. We should also file a jira to rewrite that test to a user-
+space IGT test now that we support shrinkable bos. I'll take a look at
+that.
+
+Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+
 >=20
-> > =C2=A0int drm_pagemap_init(struct drm_pagemap *dpagemap,
-> > =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0 struct dev_pagemap *pagemap,
-> > =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_device *drm,
-> > @@ -252,17 +254,22 @@ struct drm_pagemap *drm_pagemap_create(struct
-> > drm_device *drm,
-> > =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct dev_pagemap
-> > *pagemap,
-> > =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const struct
-> > drm_pagemap_ops *ops);
-> > =C2=A0
-> > -#if IS_ENABLED(CONFIG_DRM_GPUSVM)
-> > +struct drm_pagemap *drm_pagemap_page_to_dpagemap(struct page
-> > *page);
-> > =C2=A0
-> > =C2=A0void drm_pagemap_put(struct drm_pagemap *dpagemap);
-> > =C2=A0
-> > =C2=A0#else
-> > =C2=A0
-> > +static inline struct drm_pagemap
-> > *drm_pagemap_page_to_dpagemap(struct page *page)
-> > +{
-> > +	return NULL;
-> > +}
-> > +
-> > =C2=A0static inline void drm_pagemap_put(struct drm_pagemap *dpagemap)
-> > =C2=A0{
+> > Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> > Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+> > ---
+> > =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 | 60
+> > ++++++++++++++++++++++++++++++
+> > =C2=A0drivers/gpu/drm/xe/xe_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0 3 ++
+> > =C2=A0drivers/gpu/drm/xe/xe_vm_madvise.c | 13 +++++--
+> > =C2=A03 files changed, 73 insertions(+), 3 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/xe/xe_bo.c
+> > b/drivers/gpu/drm/xe/xe_bo.c
+> > index cc547915161d..2b1448ea3aed 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > @@ -836,6 +836,66 @@ static int xe_bo_move_notify(struct xe_bo *bo,
+> > =C2=A0	return 0;
 > > =C2=A0}
 > > =C2=A0
-> > -#endif /* IS_ENABLED(CONFIG_DRM_GPUSVM) */
-> > +#endif /* IS_ENABLED(CONFIG_ZONE_DEVICE) */
-> > =C2=A0
+> > +/**
+> > + * xe_bo_set_purgeable_shrinker() - Mark BO purgeable and update
+> > shrinker
+> > + * @bo: Buffer object
+> > + *
+> > + * Transfers pages from shrinkable to purgeable bucket. Shrinker
+> > can now
+> > + * discard pages immediately without swapping. Caller holds BO
+> > lock.
+> > + */
+> > +void xe_bo_set_purgeable_shrinker(struct xe_bo *bo)
+> > +{
+> > +	struct ttm_buffer_object *ttm_bo =3D &bo->ttm;
+> > +	struct ttm_tt *tt =3D ttm_bo->ttm;
+> > +	struct xe_device *xe =3D ttm_to_xe_device(ttm_bo->bdev);
+> > +	struct xe_ttm_tt *xe_tt;
+> > +
+> > +	xe_bo_assert_held(bo);
+> > +
+> > +	if (!tt || !ttm_tt_is_populated(tt))
+> > +		return;
+> > +
+> > +	xe_tt =3D container_of(tt, struct xe_ttm_tt, ttm);
+> > +
+> > +	if (!xe_tt->purgeable) {
+> > +		xe_tt->purgeable =3D true;
+> > +		/* Transfer pages from shrinkable to purgeable
+> > count */
+> > +		xe_shrinker_mod_pages(xe->mem.shrinker,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -(long)tt->num_pages,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tt->num_pages);
+> > +	}
+> > +}
+> > +
+> > +/**
+> > + * xe_bo_clear_purgeable_shrinker() - Mark BO non-purgeable and
+> > update shrinker
+> > + * @bo: Buffer object
+> > + *
+> > + * Transfers pages from purgeable to shrinkable bucket. Shrinker
+> > must now
+> > + * swap pages instead of discarding. Caller holds BO lock.
+> > + */
+> > +void xe_bo_clear_purgeable_shrinker(struct xe_bo *bo)
+> > +{
+> > +	struct ttm_buffer_object *ttm_bo =3D &bo->ttm;
+> > +	struct ttm_tt *tt =3D ttm_bo->ttm;
+> > +	struct xe_device *xe =3D ttm_to_xe_device(ttm_bo->bdev);
+> > +	struct xe_ttm_tt *xe_tt;
+> > +
+> > +	xe_bo_assert_held(bo);
+> > +
+> > +	if (!tt || !ttm_tt_is_populated(tt))
+> > +		return;
+> > +
+> > +	xe_tt =3D container_of(tt, struct xe_ttm_tt, ttm);
+> > +
+> > +	if (xe_tt->purgeable) {
+> > +		xe_tt->purgeable =3D false;
+> > +		/* Transfer pages from purgeable to shrinkable
+> > count */
+> > +		xe_shrinker_mod_pages(xe->mem.shrinker,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tt->num_pages,
+> > +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -(long)tt->num_pages);
+> > +	}
+> > +}
+> > +
 > > =C2=A0/**
-> > =C2=A0 * drm_pagemap_get() - Obtain a reference on a struct drm_pagemap
-> > @@ -334,6 +341,8 @@ struct drm_pagemap_migrate_details {
-> > =C2=A0	u32 source_peer_migrates : 1;
-> > =C2=A0};
+> > =C2=A0 * xe_ttm_bo_purge() - Purge buffer object backing store
+> > =C2=A0 * @ttm_bo: The TTM buffer object to purge
+> > diff --git a/drivers/gpu/drm/xe/xe_bo.h
+> > b/drivers/gpu/drm/xe/xe_bo.h
+> > index 00e93b3065c9..681495e905af 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo.h
+> > +++ b/drivers/gpu/drm/xe/xe_bo.h
+> > @@ -270,6 +270,9 @@ static inline bool
+> > xe_bo_madv_is_dontneed(struct xe_bo *bo)
+> > =C2=A0	return bo->madv_purgeable =3D=3D XE_MADV_PURGEABLE_DONTNEED;
+> > =C2=A0}
 > > =C2=A0
-> > +#if IS_ENABLED(CONFIG_ZONE_DEVICE)
+> > +void xe_bo_set_purgeable_shrinker(struct xe_bo *bo);
+> > +void xe_bo_clear_purgeable_shrinker(struct xe_bo *bo);
 > > +
-> > =C2=A0int drm_pagemap_migrate_to_devmem(struct drm_pagemap_devmem
-> > *devmem_allocation,
-> > =C2=A0				=C2=A0 struct mm_struct *mm,
-> > =C2=A0				=C2=A0 unsigned long start, unsigned
-> > long end,
-> > @@ -343,8 +352,6 @@ int drm_pagemap_evict_to_ram(struct
-> > drm_pagemap_devmem *devmem_allocation);
+> > =C2=A0static inline void xe_bo_unpin_map_no_vm(struct xe_bo *bo)
+> > =C2=A0{
+> > =C2=A0	if (likely(bo)) {
+> > diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c
+> > b/drivers/gpu/drm/xe/xe_vm_madvise.c
+> > index 5808fef89777..0fb07a1ed3ae 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
+> > +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+> > @@ -274,12 +274,16 @@ void
+> > xe_bo_recheck_purgeable_on_vma_unbind(struct xe_bo *bo)
 > > =C2=A0
-> > =C2=A0const struct dev_pagemap_ops *drm_pagemap_pagemap_ops_get(void);
+> > =C2=A0	if (xe_bo_all_vmas_dontneed(bo)) {
+> > =C2=A0		/* All VMAs are DONTNEED - mark BO purgeable */
+> > -		if (bo->madv_purgeable !=3D
+> > XE_MADV_PURGEABLE_DONTNEED)
+> > +		if (bo->madv_purgeable !=3D
+> > XE_MADV_PURGEABLE_DONTNEED) {
+> > =C2=A0			bo->madv_purgeable =3D
+> > XE_MADV_PURGEABLE_DONTNEED;
+> > +			xe_bo_set_purgeable_shrinker(bo);
+> > +		}
+> > =C2=A0	} else {
+> > =C2=A0		/* At least one VMA is WILLNEED - BO must not be
+> > purgeable */
+> > -		if (bo->madv_purgeable !=3D
+> > XE_MADV_PURGEABLE_WILLNEED)
+> > +		if (bo->madv_purgeable !=3D
+> > XE_MADV_PURGEABLE_WILLNEED) {
+> > =C2=A0			bo->madv_purgeable =3D
+> > XE_MADV_PURGEABLE_WILLNEED;
+> > +			xe_bo_clear_purgeable_shrinker(bo);
+> > +		}
+> > =C2=A0	}
+> > =C2=A0}
 > > =C2=A0
-> > -struct drm_pagemap *drm_pagemap_page_to_dpagemap(struct page
-> > *page);
-> > -
-> > =C2=A0void drm_pagemap_devmem_init(struct drm_pagemap_devmem
-> > *devmem_allocation,
-> > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 struct device *dev, struct mm_struct
-> > *mm,
-> > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 const struct drm_pagemap_devmem_ops
-> > *ops,
-> > @@ -359,4 +366,7 @@ int drm_pagemap_populate_mm(struct drm_pagemap
-> > *dpagemap,
-> > =C2=A0void drm_pagemap_destroy(struct drm_pagemap *dpagemap, bool
-> > is_atomic_or_reclaim);
+> > @@ -325,13 +329,16 @@ static bool xe_vm_madvise_purgeable_bo(struct
+> > xe_device *xe, struct xe_vm *vm,
 > > =C2=A0
-> > =C2=A0int drm_pagemap_reinit(struct drm_pagemap *dpagemap);
-> > +
-> > +#endif /* IS_ENABLED(CONFIG_ZONE_DEVICE) */
-> > +
-> > =C2=A0#endif
+> > =C2=A0			/* Mark VMA WILLNEED - BO becomes non-
+> > purgeable immediately */
+> > =C2=A0			bo->madv_purgeable =3D
+> > XE_MADV_PURGEABLE_WILLNEED;
+> > +			xe_bo_clear_purgeable_shrinker(bo);
+> > =C2=A0			break;
+> > =C2=A0		case DRM_XE_VMA_PURGEABLE_STATE_DONTNEED:
+> > =C2=A0			vmas[i]->purgeable_state =3D
+> > XE_MADV_PURGEABLE_DONTNEED;
+> > =C2=A0
+> > =C2=A0			/* Mark BO purgeable only if all VMAs are
+> > DONTNEED */
+> > -			if (xe_bo_all_vmas_dontneed(bo))
+> > +			if (xe_bo_all_vmas_dontneed(bo)) {
+> > =C2=A0				bo->madv_purgeable =3D
+> > XE_MADV_PURGEABLE_DONTNEED;
+> > +				xe_bo_set_purgeable_shrinker(bo);
+> > +			}
+> > =C2=A0			break;
+> > =C2=A0		default:
+> > =C2=A0			drm_warn(&vm->xe->drm, "Invalid madvice
+> > value =3D %d\n",
 > > --=20
-> > 2.52.0
+> > 2.43.0
 > >=20
