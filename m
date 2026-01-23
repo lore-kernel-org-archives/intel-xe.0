@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D807D72365
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Jan 2026 09:45:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B977D7234F
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Jan 2026 10:06:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C24D10EA87;
-	Fri, 23 Jan 2026 09:45:06 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NWSqjSC/";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72E7C10EA84;
- Fri, 23 Jan 2026 09:45:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769161505; x=1800697505;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=3358mfMQQ3L4x5UeL6cI36QsgfGXhfdntN5rcZAt9XM=;
- b=NWSqjSC/66U7OrMsX0X7SleyNRygd3hmYRZa+TDcfITfgjk0uMs0WL0a
- 8xO8DhS9aEBVOEm4+1hPMW24kk9A3zguWU5u1Y/bwwVNN9Bj6gd7vvexp
- bkvBUa0y8hK7IDmt7/0ZSraZofkWqpJYwftvXDmfZrB3/tMkmrj0FTaXJ
- QldhaolDuEGSWXihdO53vwREEeqrR4D+As70hxQPgkcOYb6OwOxZ52PJx
- b4adm4nLgCb/atHZ+Y2ye2TX5YGPL9MRp4g6YzIC8ivLNB4IV8SmNfSnM
- gaXuvM7hlslPffUsxLmPLYq4kug/9RrP1DPfxL7d9LDcrDaPYLH8Cf6vw g==;
-X-CSE-ConnectionGUID: l4oQjjHDTtKZIRU+TYlIdw==
-X-CSE-MsgGUID: 8ijjU0YYTHmcgsRNS01ZxQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="80720409"
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="80720409"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2026 01:44:17 -0800
-X-CSE-ConnectionGUID: bqdNhbeqSlWAYyhvSmIr6Q==
-X-CSE-MsgGUID: TnrPQn+NSauquddZPwO70g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="211855516"
-Received: from aotchere-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.2])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2026 01:44:16 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: "Shankar, Uma" <uma.shankar@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH] drm/i915: move GEN7_ERR_INT snapshot to display irq code
-In-Reply-To: <CY5PR11MB6344156110390114E8974C33F494A@CY5PR11MB6344.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260122123759.1701492-1-jani.nikula@intel.com>
- <CY5PR11MB6344156110390114E8974C33F494A@CY5PR11MB6344.namprd11.prod.outlook.com>
-Date: Fri, 23 Jan 2026 11:44:13 +0200
-Message-ID: <9c2bee04bf61874849aa53af3baae3f878dcbf19@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1754910EA8A;
+	Fri, 23 Jan 2026 10:06:20 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D74F10EA8A;
+ Fri, 23 Jan 2026 10:06:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3230061559234932389=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Use_IS=5FENABLED?=
+ =?utf-8?q?=28=29_for_config_checks_instead_of_defined=28=29_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nitin Gote" <nitin.r.gote@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 23 Jan 2026 10:06:19 -0000
+Message-ID: <176916277937.186801.13386892849134050707@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20251202070231.187562-2-nitin.r.gote@intel.com>
+In-Reply-To: <20251202070231.187562-2-nitin.r.gote@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,115 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 23 Jan 2026, "Shankar, Uma" <uma.shankar@intel.com> wrote:
->> -----Original Message-----
->> From: Nikula, Jani <jani.nikula@intel.com>
->> Sent: Thursday, January 22, 2026 6:08 PM
->> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Cc: Nikula, Jani <jani.nikula@intel.com>; Shankar, Uma
->> <uma.shankar@intel.com>
->> Subject: [PATCH] drm/i915: move GEN7_ERR_INT snapshot to display irq code
->> 
->> The error interrupt register GEN7_ERR_INT is a display irq register. Move its
->> GPU error capture to display irq snapshot.
->
-> Looks Good to me.
-> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+--===============3230061559234932389==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks, pushed to din.
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/xe: Use IS_ENABLED() for config checks instead of defined() (rev3)
+URL   : https://patchwork.freedesktop.org/series/158176/
+State : success
 
->
->> Cc: Uma Shankar <uma.shankar@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_display_irq.c | 5 +++++
->>  drivers/gpu/drm/i915/i915_gpu_error.c            | 6 ------
->>  drivers/gpu/drm/i915/i915_gpu_error.h            | 1 -
->>  3 files changed, 5 insertions(+), 7 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c
->> b/drivers/gpu/drm/i915/display/intel_display_irq.c
->> index 9adeebb376b1..0a71840041de 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
->> @@ -2472,6 +2472,7 @@ void intel_display_irq_init(struct intel_display *display)
->> 
->>  struct intel_display_irq_snapshot {
->>  	u32 derrmr;
->> +	u32 err_int;
->>  };
->> 
->>  struct intel_display_irq_snapshot *
->> @@ -2486,6 +2487,9 @@ intel_display_irq_snapshot_capture(struct intel_display
->> *display)
->>  	if (DISPLAY_VER(display) >= 6 && DISPLAY_VER(display) < 20 &&
->> !HAS_GMCH(display))
->>  		snapshot->derrmr = intel_de_read(display, DERRMR);
->> 
->> +	if (DISPLAY_VER(display) == 7)
->> +		snapshot->err_int = intel_de_read(display, GEN7_ERR_INT);
->> +
->>  	return snapshot;
->>  }
->> 
->> @@ -2496,4 +2500,5 @@ void intel_display_irq_snapshot_print(const struct
->> intel_display_irq_snapshot *s
->>  		return;
->> 
->>  	drm_printf(p, "DERRMR: 0x%08x\n", snapshot->derrmr);
->> +	drm_printf(p, "ERR_INT: 0x%08x\n", snapshot->err_int);
->>  }
->> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c
->> b/drivers/gpu/drm/i915/i915_gpu_error.c
->> index 303d8d9b7775..31c5341fb9cf 100644
->> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
->> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
->> @@ -824,9 +824,6 @@ static void err_print_gt_global(struct
->> drm_i915_error_state_buf *m,
->>  		err_printf(m, "FAULT_TLB_DATA: 0x%08x 0x%08x\n",
->>  			   gt->fault_data1, gt->fault_data0);
->> 
->> -	if (GRAPHICS_VER(m->i915) == 7)
->> -		err_printf(m, "ERR_INT: 0x%08x\n", gt->err_int);
->> -
->>  	if (IS_GRAPHICS_VER(m->i915, 8, 11))
->>  		err_printf(m, "GTT_CACHE_EN: 0x%08x\n", gt->gtt_cache);
->> 
->> @@ -1929,9 +1926,6 @@ static void gt_record_global_regs(struct
->> intel_gt_coredump *gt)
->>  	if (IS_VALLEYVIEW(i915))
->>  		gt->forcewake = intel_uncore_read_fw(uncore,
->> FORCEWAKE_VLV);
->> 
->> -	if (GRAPHICS_VER(i915) == 7)
->> -		gt->err_int = intel_uncore_read(uncore, GEN7_ERR_INT);
->> -
->>  	if (GRAPHICS_VER_FULL(i915) >= IP_VER(12, 55)) {
->>  		gt->fault_data0 = intel_gt_mcr_read_any((struct intel_gt *)gt->_gt,
->> 
->> 	XEHP_FAULT_TLB_DATA0);
->> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.h
->> b/drivers/gpu/drm/i915/i915_gpu_error.h
->> index 91b3df621a49..26970c5e291e 100644
->> --- a/drivers/gpu/drm/i915/i915_gpu_error.h
->> +++ b/drivers/gpu/drm/i915/i915_gpu_error.h
->> @@ -149,7 +149,6 @@ struct intel_gt_coredump {
->>  	u32 gtier[6], ngtier;
->>  	u32 forcewake;
->>  	u32 error; /* gen6+ */
->> -	u32 err_int; /* gen7 */
->>  	u32 fault_data0; /* gen8, gen9 */
->>  	u32 fault_data1; /* gen8, gen9 */
->>  	u32 done_reg;
->> --
->> 2.47.3
->
+== Summary ==
 
--- 
-Jani Nikula, Intel
+CI Bug Log - changes from xe-4441-4a255b429d80f8b0800bdef43ba3175b771e77ff_BAT -> xe-pw-158176v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-158176v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6519]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4441-4a255b429d80f8b0800bdef43ba3175b771e77ff/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158176v3/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+
+
+Build changes
+-------------
+
+  * Linux: xe-4441-4a255b429d80f8b0800bdef43ba3175b771e77ff -> xe-pw-158176v3
+
+  IGT_8715: 8715
+  xe-4441-4a255b429d80f8b0800bdef43ba3175b771e77ff: 4a255b429d80f8b0800bdef43ba3175b771e77ff
+  xe-pw-158176v3: 158176v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158176v3/index.html
+
+--===============3230061559234932389==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Use IS_ENABLED() for config checks instead of defined() (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158176/">https://patchwork.freedesktop.org/series/158176/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158176v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158176v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4441-4a255b429d80f8b0800bdef43ba3175b771e77ff_BAT -&gt; xe-pw-158176v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-158176v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4441-4a255b429d80f8b0800bdef43ba3175b771e77ff/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158176v3/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4441-4a255b429d80f8b0800bdef43ba3175b771e77ff -&gt; xe-pw-158176v3</li>
+</ul>
+<p>IGT_8715: 8715<br />
+  xe-4441-4a255b429d80f8b0800bdef43ba3175b771e77ff: 4a255b429d80f8b0800bdef43ba3175b771e77ff<br />
+  xe-pw-158176v3: 158176v3</p>
+
+</body>
+</html>
+
+--===============3230061559234932389==--
