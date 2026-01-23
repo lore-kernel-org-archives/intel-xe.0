@@ -4,53 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3EE7D6CFAC
-	for <intel-xe@archiver.kernel.org>; Thu, 22 Jan 2026 23:50:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE26FD6CFAC
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Jan 2026 00:05:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8129A10E181;
-	Thu, 22 Jan 2026 23:50:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V4HIQsOf";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 305AF10E181
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Jan 2026 23:50:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769125827; x=1800661827;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=VK0YwuiUvjIYkvvE672Yfcr8EI1x+j8nYdEuaT4iook=;
- b=V4HIQsOf3+0tzMgFJrbBTi4jWBxFyIcRkNpzLzakJ5rgY/a7EpkhkcMO
- AdwXkkT2vFmN9QBkKWMtiY3VPfdx4Uq7hkOy9xtV3F6sl8Njx4pjHCee0
- zVvzlwmMT7xTrM3PkVEjgdWZ16ihVu1dM/uIr91u+2c8FzCnrYWJlyTbF
- 4nEKjJ2fJh/H3/uUgLo+DvFUweurHmpUxbMJhayW1Q5ilfC4CaUGMCA/W
- tpDp6lVPMibtKQtI8AV1J9zymwrGZ4B9XfsMJtwTWP7sMpWCvM8s+q4ZL
- OezwAKzzF8LNH9OpGN4mIXprjOcuJCvvbXY4mXK2TpcRNl2yRmimUsqj8 w==;
-X-CSE-ConnectionGUID: QlzgQficSp+nxg6o/NZW0w==
-X-CSE-MsgGUID: KP+mQsB3TPCndhjanYGGdA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="70468110"
-X-IronPort-AV: E=Sophos;i="6.21,247,1763452800"; d="scan'208";a="70468110"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jan 2026 15:50:27 -0800
-X-CSE-ConnectionGUID: 11G6I7dtRjelvzAgwsJiiw==
-X-CSE-MsgGUID: 9lkhwUtUSNmHeZoGR591Mw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,247,1763452800"; d="scan'208";a="206458787"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.23])
- by fmviesa007.fm.intel.com with ESMTP; 22 Jan 2026 15:50:27 -0800
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v3] drm/xe/ptl: Disable DCC on PTL
-Date: Thu, 22 Jan 2026 15:47:29 -0800
-Message-Id: <20260122234729.177484-1-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5930E10EBB3;
+	Fri, 23 Jan 2026 00:05:26 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3869810EBB3;
+ Fri, 23 Jan 2026 00:05:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1197808280787203374=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Separate_out_GuC_?=
+ =?utf-8?q?RC_code_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 23 Jan 2026 00:05:25 -0000
+Message-ID: <176912672522.185372.9675960540029788638@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260122232057.150725-1-vinay.belgaumkar@intel.com>
+In-Reply-To: <20260122232057.150725-1-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,77 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On PTL, the recommendation is to disable DCC(Duty Cycle Control) as
-it may cause some regressions due to added latencies. Upcoming GuC
-releases will disable DCC on PTL as well, but we need to force it in
-KMD so that this behavior is propagted to older kernels.
+--===============1197808280787203374==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Update commit message (Rodrigo)
-v3: Rebase
+== Series Details ==
 
-Fixes: 5cdb71d3b0db ("drm/xe/ptl: Add GuC FW definition for PTL")
-Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Vinay Belgaumkar<vinay.belgaumkar@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_pc.c | 34 ++++++++++++++++++++++++++++++++++
- 1 file changed, 34 insertions(+)
+Series: drm/xe: Separate out GuC RC code (rev2)
+URL   : https://patchwork.freedesktop.org/series/158581/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index 54702a0fd05b..5e5495a39a3c 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -1198,6 +1198,36 @@ int xe_guc_pc_set_power_profile(struct xe_guc_pc *pc, const char *buf)
- 	return ret;
- }
- 
-+static int pc_action_set_dcc(struct xe_guc_pc *pc, bool enable)
-+{
-+	int ret;
-+
-+	ret = pc_action_set_param(pc,
-+				  SLPC_PARAM_TASK_ENABLE_DCC,
-+				  enable);
-+	if (!ret)
-+		return pc_action_set_param(pc,
-+					   SLPC_PARAM_TASK_DISABLE_DCC,
-+					   !enable);
-+	else
-+		return ret;
-+}
-+
-+static int pc_modify_defaults(struct xe_guc_pc *pc)
-+{
-+	struct xe_device *xe = pc_to_xe(pc);
-+	struct xe_gt *gt = pc_to_gt(pc);
-+	int ret = 0;
-+
-+	if (xe->info.platform == XE_PANTHERLAKE) {
-+		ret = pc_action_set_dcc(pc, false);
-+		if (unlikely(ret))
-+			xe_gt_err(gt, "Failed to modify DCC default: %pe\n", ERR_PTR(ret));
-+	}
-+
-+	return ret;
-+}
-+
- /**
-  * xe_guc_pc_start - Start GuC's Power Conservation component
-  * @pc: Xe_GuC_PC instance
-@@ -1249,6 +1279,10 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
- 			   ktime_ms_delta(ktime_get(), earlier));
- 	}
- 
-+	ret = pc_modify_defaults(pc);
-+	if (ret)
-+		return ret;
-+
- 	ret = pc_init_freqs(pc);
- 	if (ret)
- 		return ret;
--- 
-2.38.1
+== Summary ==
 
+CI Bug Log - changes from xe-4438-cb83f2b90fe3dba3db516c1d9ad1a86dcc5e8e50_BAT -> xe-pw-158581v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8713 -> IGT_8714
+  * Linux: xe-4438-cb83f2b90fe3dba3db516c1d9ad1a86dcc5e8e50 -> xe-pw-158581v2
+
+  IGT_8713: 33d772ed2d772fee329e6200cd968962f695a927 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8714: 8714
+  xe-4438-cb83f2b90fe3dba3db516c1d9ad1a86dcc5e8e50: cb83f2b90fe3dba3db516c1d9ad1a86dcc5e8e50
+  xe-pw-158581v2: 158581v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158581v2/index.html
+
+--===============1197808280787203374==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Separate out GuC RC code (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158581/">https://patchwork.freedesktop.org/series/158581/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158581v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158581v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4438-cb83f2b90fe3dba3db516c1d9ad1a86dcc5e8e50_BAT -&gt; xe-pw-158581v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8713 -&gt; IGT_8714</li>
+<li>Linux: xe-4438-cb83f2b90fe3dba3db516c1d9ad1a86dcc5e8e50 -&gt; xe-pw-158581v2</li>
+</ul>
+<p>IGT_8713: 33d772ed2d772fee329e6200cd968962f695a927 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8714: 8714<br />
+  xe-4438-cb83f2b90fe3dba3db516c1d9ad1a86dcc5e8e50: cb83f2b90fe3dba3db516c1d9ad1a86dcc5e8e50<br />
+  xe-pw-158581v2: 158581v2</p>
+
+</body>
+</html>
+
+--===============1197808280787203374==--
