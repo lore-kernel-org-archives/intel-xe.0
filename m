@@ -4,185 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A524DD74EC3
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Jan 2026 12:59:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE606D74EC5
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Jan 2026 13:07:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6216510E27E;
-	Fri, 23 Jan 2026 12:59:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DD3710E27E;
+	Fri, 23 Jan 2026 13:07:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="fWAhVIzQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EKgh4rKW";
 	dkim-atps=neutral
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013052.outbound.protection.outlook.com
- [40.93.201.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2936E10E27E;
- Fri, 23 Jan 2026 12:59:09 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Xx63ylS7lhg5ohjAMtJvl/NXi2J9qSli1gayouBXb5IPHIWKmi3A0XssXRHER0Y8Rv2rrBX8QCshQtWBwlLPmKr/VN2vkZ2EQO251k449eU2aZCw5c4K+LqzRTP/FXbdOub+TbBZ8l7n5Yo9fHr8132nTX41RcDZEoERM8LwhHvY/QP8/5gjqiHGXB4zOQBSHorvOwJPo/UpySMg4Qv/WssJ0uET1rVAa0AZhVF5xFn8QlRCYnFIo//vqWrKvGHQzza9Sk/tUFC5/2KG/znaG+RSU7yv2qJJO5zFk23gXV7qPQrFSGqkDxal2SUeSYDNBncKSf5tf2H7nR1zvu/tkw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UJHN+IQ5IWfcCuuLhyeXkaHe7zqEMDGwHYL/MdYJbT0=;
- b=C34VyrzvhQ2cmHbQnI38ZbKhWwutQfYGAnWeRRoVEwvbG63No9Cq1s7Hrix+d4X7NZzojUWo0mf9nuIAjNU7AOPs0iPDAEOrjK1xCVYJS34tmw4nU6l64BhmE0zeRI9EFzQk0aVMmnViuhA6tPW2DPPJBhFj6bALGz9BzPZFnldUA4XW0JrI4UlPsaDDipTHs+G6+6uZmtJJL+fLxgo1L8d26cuzg/j9MpfT+aEuLNHPiS/NJNqKnXxZyc0FWcmm16kpeAHd+0XyFMZ4F6MeMxnEkPCPJwhA9GjfWg7CgkeFENEfOS4KQm9YqCs7TCVo/3Cc0Yb3O8gmIqL0Wm+WPw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UJHN+IQ5IWfcCuuLhyeXkaHe7zqEMDGwHYL/MdYJbT0=;
- b=fWAhVIzQ7C+uG/ZFTXXREPiNiQPB04aSNpDyXao63XZ8tFdiQEnTXqEejnU0J9fyKYeYk9VKfjLIQGVu+In/zs8h8Qd02+eaG8cgOo9EctcfsFeGsqeAIj1OlV3A+ts8h3DDPK7bcNk7QpbeLLxzytDRMcJgcI02wg5RjL5k5L93BmzZne4imIZz8AQxyjNZHuSOH9KCS8Xh8QWumvKJWHMecuOOo7iy5bOzmanXuLAH2NoEBoYti9nWsWiV5eJAAb5dbJEOra9tmKFqqCc5mF6az22MdjgfgDN4pXbiD7yVH+/c2La10alLCcY5xE3G7fal79bUoMEznApMOdpFpw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- PH7PR12MB5832.namprd12.prod.outlook.com (2603:10b6:510:1d7::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9542.11; Fri, 23 Jan 2026 12:59:02 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9542.010; Fri, 23 Jan 2026
- 12:59:02 +0000
-Date: Fri, 23 Jan 2026 07:59:01 -0500
-From: Joel Fernandes <joelagnelf@nvidia.com>
-To: Zhi Wang <zhiw@nvidia.com>
-Cc: linux-kernel@vger.kernel.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- Christian Koenig <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Danilo Krummrich <dakr@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Miguel Ojeda <ojeda@kernel.org>,
- Alex Gaynor <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>,
- Gary Guo <gary@garyguo.net>, Bjorn Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>, Alistair Popple <apopple@nvidia.com>,
- Alexandre Courbot <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
- Alexey Ivanov <alexeyi@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
- Elle Rhumsaa <elle@weathered-steel.dev>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- nouveau@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH RFC v6 05/26] nova-core: mm: Add support to use PRAMIN
- windows to write to VRAM
-In-Reply-To: <20260123121343.396bc4cd.zhiw@nvidia.com>
-References: <20260120204303.3229303-1-joelagnelf@nvidia.com>
- <20260120204303.3229303-6-joelagnelf@nvidia.com>
- <20260121100745.2b5a58e5.zhiw@nvidia.com>
- <e186973c-ce31-405a-8bfa-dc647737a666@nvidia.com>
- <DS0PR12MB6486717785F6DD14EE1F1C46A397A@DS0PR12MB6486.namprd12.prod.outlook.com>
- <20260123121343.396bc4cd.zhiw@nvidia.com>
-Content-Type: text/plain; charset="utf-8"
-X-ClientProxiedBy: BL6PEPF00013E0D.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:22e:400:0:1001:0:11) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
-Message-ID: <DS0PR12MB648644D902FAD272898AE22AA394A@DS0PR12MB6486.namprd12.prod.outlook.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27F6910EAF3
+ for <intel-xe@lists.freedesktop.org>; Fri, 23 Jan 2026 13:07:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769173625; x=1800709625;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=w+Qs/7dLqDZrNY67h8MloRVr03xH0dZoCaWcz8TG75c=;
+ b=EKgh4rKWvpzcfta6hs3CHUvhafsZJ9m6/8XjhJGluqM+vLekvG8nm5Y+
+ qK9hdE7EAffMCnzFwERoCaQuiH+0s6L5qzD4eqQXWK9qmpq3Ogo91Usu2
+ 6tIznd4HOs0XAbL8U9PRisaI5Gm/+WB7f7P1I1dLoEa4JXBS/+mgh0s13
+ vnAXM7IjN7XHLSdhQ9DbeN1on4ghFCeH8gW+i7I4jSlfvte8W3z+J2Fh+
+ kgKOTGaZsG6VUg6/L1kU8RVWHZi15z1a7KfkuoE+6DlMRb7kSR+Xoz2M8
+ UFcBcWHs66fZH6xGX2wq1z3AdVkRlDB0M5AoN0SpuXTWPotmiU4T0CIaz Q==;
+X-CSE-ConnectionGUID: piV3N3bgRzOR7raZqOqJFA==
+X-CSE-MsgGUID: Pzu4p90/SYWF/JQadQbR6Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11680"; a="70401223"
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="70401223"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2026 05:07:05 -0800
+X-CSE-ConnectionGUID: UHJAQ7SsR1qrfEnqLfeXgQ==
+X-CSE-MsgGUID: FPaUQd9mTqi0sJynbORzrQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="206283400"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.244.177])
+ ([10.245.244.177])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2026 05:07:03 -0800
+Message-ID: <d5511be1440bb04ccf4f16651a1fb840a3b9b245.camel@linux.intel.com>
+Subject: Re: [PATCH v4 6/8] drm/xe/madvise: Implement per-VMA purgeable
+ state tracking
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, Arvind Yadav
+ <arvind.yadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org, himal.prasad.ghimiray@intel.com, 
+ pallavi.mishra@intel.com
+Date: Fri, 23 Jan 2026 14:07:00 +0100
+In-Reply-To: <aW++QuG51rGP1Ru4@lstrano-desk.jf.intel.com>
+References: <20260120060900.3137984-1-arvind.yadav@intel.com>
+ <20260120060900.3137984-7-arvind.yadav@intel.com>
+ <aW++QuG51rGP1Ru4@lstrano-desk.jf.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|PH7PR12MB5832:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0b6556f3-69ec-4fdc-ad67-08de5a7f2e71
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024|7416014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?S0Y0VVpYZVFHNGlUVE41MUt5eUZKS3ozZ3h2MTBvbW5zVDY1a0xQWUg5T3FK?=
- =?utf-8?B?Q1hZbmdYT0E2WjRrcEMvSXpjK2M3dC8xU25oKzZZbFZUYjNNYkk1QTdmYTBL?=
- =?utf-8?B?elFFV1VOb3ZGN1V4dnh4ZmpyOVovbm1GSXExVHRnYUhrbW1HS0FMa0tqeDU0?=
- =?utf-8?B?cEc2eUpLZ1lYdGZ2c0huUTBVSysrRlZUMHZQUXc3MXdQU2FhS0crR0pER1Ay?=
- =?utf-8?B?TFY2ZFFMR0tFU0Rta1ZwTDBWemZUMGltUWxTRFFZWmx6N1o3ZU96aEp4dFov?=
- =?utf-8?B?WXcrNkUvcHBWSFZiNnVBQWJ3RGRrcS9XUkNEVXZPWXJyaC9ZWVA2UVpwNHV0?=
- =?utf-8?B?bmpVVXNvKyswWUtKd2Z4QWpnUWR1QzNsQUc5Q2xXTXgxaEl6U2F0aERqNFp0?=
- =?utf-8?B?cnFDVW1sbWFaUHpjS3hELzNRS3E0cFlaK1A1T2ZKWGlrUTExaFhkNHA2c0lJ?=
- =?utf-8?B?L1RXTUxFSEcyTXQxS0xncDNGUkxldXlETXNwRFdoZ2F2VkxxK1lpUXdMakxa?=
- =?utf-8?B?cC94bnFCOENKK0pTRUNlTTQ5VTYvQisySUlPNFB4N29ZWjAvYnliSEdYZXNJ?=
- =?utf-8?B?TU4zdExGMFJ2bnZZbFA5SFZxcjNQSlFhQjR0MFlCREkzK1VBenlpNjkvVnFu?=
- =?utf-8?B?aml3YnhaWVphNTdOUjhUOFRNczgxRzNvaVBXK2VsLytWWWlsUFZRTXdPZzFl?=
- =?utf-8?B?aHNKUGovNzRnd05jZHRLc28vbjVhbFdnUUd6bFBZMEVWdWZ4TStQZzZhN2M4?=
- =?utf-8?B?S1BiMUp0OHBuWlQwTXV3MG53WE4yODRTLzNkMVBSbmJvdEIyQ2NOKzlSN01O?=
- =?utf-8?B?M0Y0cUFMQUNDb0h5RWN3R2NDeERWdTRMR1dPV3NqdFVIWU5id3ozNVNDcDky?=
- =?utf-8?B?UW9xQk9XbTZBRkx6K0FYVTRzL3NtMU1YMlFaYityUDFTMitTMHVtbWJxK3U3?=
- =?utf-8?B?VWV5c2huMWovck1qZ1RISkRYa3NUUktjSG05dUFXcFRqMEZKM3NkNlAyQitV?=
- =?utf-8?B?UU83Y1ZpVFB5Qnk5a0dkNzkxVXpHY1NvaHZvYVB1dmo4ZndIc3h5MXJkM2xE?=
- =?utf-8?B?ZkhabHlScXNVZExqRmZwRnVtK01pL3ZpZWd6RUZBNGtxb2NyelovUjVDZXgr?=
- =?utf-8?B?bmJacktER2QzY2I1cUhqaXo4VHNRdUU3MHlrZkNoNHZ2VXYva2czMi9Xcnd1?=
- =?utf-8?B?YlhYc3hhZCtrY3NIa1VFSjdiTTVpVytkWUt0aGo2bjg0NURxbzhqYkZFUkF2?=
- =?utf-8?B?RVFMb3FRUnhlU0VmbWxoZFRUVGdUM1UzREdscnphWExDWUpGVHptc0VhUDQ1?=
- =?utf-8?B?M3g0VEdIcm1jcWMwVnFOZU9ObDMzMGlZUnBDaG0wWXV0alFlVW1yYjl1b2Yw?=
- =?utf-8?B?cXVUaWl3ZytmZzhwZlE5M2orYlQwNEw0SzdBOGVCL1J2RlhqZXBMeDVSbk96?=
- =?utf-8?B?TlJwbXNLdWhMSDZTZFJWNDRyeG1NS3pmd1dhTUtoa2I0WXJRNUR0d2Q2SWdG?=
- =?utf-8?B?TFVSUzFWSGdvN1dOMHpEakNWUGQ1SlpMMHloMHZUcUhWWGJya2twcUF6L2ho?=
- =?utf-8?B?Y29nTW1DR3VYeGM2Z2x5cmZIWGhYK25iS0xXZWpkL0VBNlFwWHVBdzJUZFA3?=
- =?utf-8?B?S2REd0VOUDFkVzZockQwVkVSTWZLOXowYVZTSW84OFI5M1lPazUvb0U4Smgw?=
- =?utf-8?B?K3UzMy9RMkxBdlM1VUtxa21BN0w2blRFY0l6NjhldE91dTBURjNaOEdqcFdW?=
- =?utf-8?B?THJFaURwcEc5aG94UW8rSkIzTW0yL3NCNUFmQmdrUEZYK0lBN2NiaE5wZnY4?=
- =?utf-8?B?Yk0vbTBRclkwNVdwbXZITFM5dmdNT1VidXhlVUd3cys1bDR6VVNVV1YyMmFy?=
- =?utf-8?B?Lysrd01VcmphRzk5MmJ2clRVWCsrYkpLbjh6TUhFbTdFb0hsZnk5UmhMTUt1?=
- =?utf-8?B?RU9YUWNwVEFEN0FoNTRFZzduYXk0Q2x5MkFVdkpMQjVHM0ZtSTZGMEpvSlNL?=
- =?utf-8?B?ODNKdFNEcUc5UW5taUlHZWQ0RFFIb2xhR2Q4NHNFR2F0cXZpRUdjTzk2S1Zu?=
- =?utf-8?B?dS9ISDRRYkZhTDV2cHMzR0dXdWRiZ0hsWTV3NUVzcTRPaDBNeGczYVAvOGIx?=
- =?utf-8?Q?Fm20=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(7416014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eDM1Um54VUtMODY5Ty9SQUo2cmxYVndBbFBndk1rSk4rcm9DeTUvNzd4SDdE?=
- =?utf-8?B?b3lDZVd3N09jV3d4MmZCZjNBMERkc0FiZHAyWkliZGRkS3JWNzZQVjF6aDhu?=
- =?utf-8?B?cnpHWFl3L0lXRk9ZcWZXNjBINitVVDFyQURlY0Z0OW9RN0pUUC91QVJDaUl5?=
- =?utf-8?B?YjVSVjJ2VEh6UTZlaEFhald5cnBBc2lCV1FDYUZ2TDU4OWJta1FEWU1HSXZz?=
- =?utf-8?B?V3NJbUZ0VXNDdEVuaVhsdDVOcHBkcUROWEZUOVFHYTJJb2Z6RHBZVVdoUlhY?=
- =?utf-8?B?ZnpvTllYSUFSL01qQ04vZ1FFanBVU2pwaG1XaTI4WEc5RlNwbFRjYVErVHZT?=
- =?utf-8?B?QzgveFNzaWhxcUFtUjVOWDA5b1hxcUxrMWRROTJ0dVF2VXNDa25KLzlveG5s?=
- =?utf-8?B?WjFXR0RyV0ZJdUszbk9PTnNjQ1VERVg0MzJSblRpa0ZzODZBbjVpZk5BMlFS?=
- =?utf-8?B?WFpheFFWMnpMTzdXN0tpUG96QmhJeGFsOXg2QUdZaFdkaklsL1lJTFBoM0Y3?=
- =?utf-8?B?ZHllWWZQNk1udURMdDlscHFBNmZxdnJSOGh6a2ZEU1NiT3FGbWpIRFhGdnBq?=
- =?utf-8?B?STRIRmVMSzdnd1FCcXplUmxUT2x5NGFPT1BhUHNuTVFyZktoZGdQUFZLQ3VX?=
- =?utf-8?B?bXQvUW93V2JTUlJ1T3V4emx0bVZaU3ZoWGdPaEQ5L0owOFN5SmpPUm94MDJH?=
- =?utf-8?B?NDdkK0YySng5VnJVYit2QjBSaG9hVStqQ2JSK2lwbFUzOGpTMVdldDM4bVpJ?=
- =?utf-8?B?STcrdzVVK0RLTHFHZHF1MGFmTlRxeDRSSXg3OHFyMmtLdVYxYVc3aVdzL1gw?=
- =?utf-8?B?Y04wenV2NC9XK2lCNDVqdjdQc3hTbTZaYzZyemtlYlZ0NkU3L3ZReDFCOVp1?=
- =?utf-8?B?M1pCTm9nbDhRZFlXb1QydmtIMXpmUkUreHVlZFBNVHVJRWhtUjBOU1ZvallS?=
- =?utf-8?B?QUpiR1Q1OHpFSm1mNXFzVGl5b1ljbElIZTlpemRtZ0J0MU9rcjQrTnV5QnhU?=
- =?utf-8?B?SDBVME1ybmJGSUJjUG1WWDZPTTVBdHFpZ3J4NzJvVk0zQS9FQ0wzcGdWdXQ2?=
- =?utf-8?B?bGVWVEFRbVdHVWp1RzY2cjRPWVM3S3pPcnluYjNiQ3JJSlZZSWQzWVNkNmxT?=
- =?utf-8?B?endzOWNGWis0V2NhM3dWb0p0TlJXWnF1eHhsalVyaUEzNGVBcXJ0bHpEQUh3?=
- =?utf-8?B?Z0RheUxGTU1oeWpyMm5CRUp1YWN4SXNGTm9laC9WQkI3MnA5Mld1WXFVWmJn?=
- =?utf-8?B?MDRSN2ZMaDV1V0RqRGw5R0VsUzdxUXVvTmNCZVBFVk5FZFVEZkdIeDJvM1Fp?=
- =?utf-8?B?dm0zUldtZmpEcWd5Mnh0M0tZMVpMQitFemdzLzI1M01PT1dJYmNFZWVhSVI5?=
- =?utf-8?B?NWRpZUN6UERXanU2ZnZHaXJwS1psc1hVSlljY0xtcXcrRGhsVWZmTVovaTZx?=
- =?utf-8?B?RlhJNlpBQ3NodXRFaDJTeUJmMk5sVEVHS041aEFlb1owdlEwdkx6WE92Z092?=
- =?utf-8?B?K3prc0gzMnZiMURjVDVkcjFxTDE3NE8yZHkxNlNtK2hyYWtmWXJoVlgwTTc0?=
- =?utf-8?B?RnFHbUFLMlAvbWtMSnlaNklLWHlQYWNIRElnTmdNTHNnYTZUQnhpajU1SXlB?=
- =?utf-8?B?c2pQUDEvMmdyWmhEVDl1TDNSKzV5MklDWkpzQjEyQ3F4NkU1emRYUFlSUjdL?=
- =?utf-8?B?NVpSUDIwN1A3Y1dBeXZ0U0tmdVBRdWowczRLb2ZPZ0l3c3JBTnBiM1IwY2xm?=
- =?utf-8?B?cWZLNHp3V1ROSzJ6eklGdktpQ2FQVWF5STd0aldmWHZoeTBLcUpkMzllKzlj?=
- =?utf-8?B?OFpKZVUyT1pQbEFnUEdDbGpRUGwyaUtKSnZyUlNaR1UzeTkwMkVPMjBaZWJW?=
- =?utf-8?B?TXpPMmtFcEJsN0NpQmFaY1R0RHVSM1NwYkROMzBQYkFCbjk0OXp0WGRPN00y?=
- =?utf-8?B?MmJveWE2VkhPaW5Vcm5rSkNKWVFsc3FNc0ZYdHdpR3JnSHJuUVpybTlQZ3ZS?=
- =?utf-8?B?dHNWbGF5THFEU0ZCTXQvVS9rSnZPVGlMMlk5Z0t3cjBZQUhDUmhRK0FxdFZO?=
- =?utf-8?B?MTBmQ1RUUWRSVWZzWnlab2F5ellKZm96cW1DdEl0eTFJZGlLSURMMXdiL2s4?=
- =?utf-8?B?V2RHM1FhelJIZFg1YjA0U3h1ZlR0bUdUWFRYT0RvQW1xa2JlTnZ2MmNQaHJR?=
- =?utf-8?B?WlBzSDJuNXJGcERpT1VPeDg1bURvQzFXVXFWcU9PMXRuMElON0tOU0JkRFov?=
- =?utf-8?B?a0ErQnAxZ2g1SWdjZ3pIU1JDNFRlbVplYUx5RkhOblpmOFMvK3JzaTFERlVI?=
- =?utf-8?B?MDJVM3MzQ0lJai8ySTN5RzBFMW90UEZYR3R6K0QrYytPL3JFcUlNZz09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0b6556f3-69ec-4fdc-ad67-08de5a7f2e71
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2026 12:59:02.1970 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zZ6GJ+PtPhaxmaZDJKKtOIDJqdVnr/zQzFTHi8QRzQIZQ4Suk1k18SMn0zJiYdvoIaRTXN9MVMMHYn4nzSpxNg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5832
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -197,38 +74,337 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 23 Jan 2026 12:13:43 +0200, Zhi Wang wrote:
-> Thanks so much for the work and the discussion. It is super important
-> efforts for me to move on for the vGPU work. :)
+On Tue, 2026-01-20 at 09:41 -0800, Matthew Brost wrote:
+> On Tue, Jan 20, 2026 at 11:38:52AM +0530, Arvind Yadav wrote:
+> > Track purgeable state per-VMA instead of using a coarse shared
+> > BO check. This prevents purging shared BOs until all VMAs across
+> > all VMs are marked DONTNEED.
+> >=20
+> > Add xe_bo_all_vmas_dontneed() to check all VMAs before marking
+> > a BO purgeable. Add xe_bo_recheck_purgeable_on_vma_unbind() to
+> > handle state transitions when VMAs are destroyed - if all
+> > remaining VMAs are DONTNEED the BO can become purgeable, or if
+> > no VMAs remain it transitions to WILLNEED.
+> >=20
+> > The per-VMA purgeable_state field stores the madvise hint for
+> > each mapping. Shared BOs can only be purged when all VMAs
+> > unanimously indicate DONTNEED.
+> >=20
+> > v3:
+> > =C2=A0 - This addresses Thomas Hellstr=C3=B6m's feedback: "loop over al=
+l vmas
+> > =C2=A0=C2=A0=C2=A0 attached to the bo and check that they all say WONTN=
+EED. This
+> > will
+> > =C2=A0=C2=A0=C2=A0 also need a check at VMA unbinding"
+> >=20
+> > v4:
+> > =C2=A0 - @madv_purgeable atomic_t =E2=86=92 u32 change across all relev=
+ant
+> > patches. (Matt)
+> >=20
+> > Cc: Matthew Brost <matthew.brost@intel.com>
+> > Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> > Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+> > ---
+> > =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 | 15 +++++-
+> > =C2=A0drivers/gpu/drm/xe/xe_vm_madvise.c | 84
+> > +++++++++++++++++++++++++++++-
+> > =C2=A0drivers/gpu/drm/xe/xe_vm_madvise.h |=C2=A0 3 ++
+> > =C2=A0drivers/gpu/drm/xe/xe_vm_types.h=C2=A0=C2=A0 | 11 ++++
+> > =C2=A04 files changed, 111 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/xe/xe_vm.c
+> > b/drivers/gpu/drm/xe/xe_vm.c
+> > index f250daae3012..9543960b5613 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > @@ -40,6 +40,7 @@
+> > =C2=A0#include "xe_tile.h"
+> > =C2=A0#include "xe_tlb_inval.h"
+> > =C2=A0#include "xe_trace_bo.h"
+> > +#include "xe_vm_madvise.h"
+> > =C2=A0#include "xe_wa.h"
+> > =C2=A0
+> > =C2=A0static struct drm_gem_object *xe_vm_obj(struct xe_vm *vm)
+> > @@ -1079,12 +1080,18 @@ static struct xe_vma *xe_vma_create(struct
+> > xe_vm *vm,
+> > =C2=A0static void xe_vma_destroy_late(struct xe_vma *vma)
+> > =C2=A0{
+> > =C2=A0	struct xe_vm *vm =3D xe_vma_vm(vma);
+> > +	struct xe_bo *bo =3D NULL;
+> > =C2=A0
+> > =C2=A0	if (vma->ufence) {
+> > =C2=A0		xe_sync_ufence_put(vma->ufence);
+> > =C2=A0		vma->ufence =3D NULL;
+> > =C2=A0	}
+> > =C2=A0
+> > +	/* Get BO reference for purgeable state re-check */
+> > +	if (!xe_vma_is_userptr(vma) && !xe_vma_is_null(vma) &&
+> > +	=C2=A0=C2=A0=C2=A0 !xe_vma_is_cpu_addr_mirror(vma))
+> > +		bo =3D xe_vma_bo(vma);
+>=20
+> I think xe_vma_bo just returns NULL if any of the above conditions
+> are
+> met, so I believe is ok to just blindly call xe_vma_bo as you have a
+> NULL check on the BO below.
+>=20
+> > +
+> > =C2=A0	if (xe_vma_is_userptr(vma)) {
+> > =C2=A0		struct xe_userptr_vma *uvma =3D to_userptr_vma(vma);
+> > =C2=A0
+> > @@ -1093,7 +1100,13 @@ static void xe_vma_destroy_late(struct
+> > xe_vma *vma)
+> > =C2=A0	} else if (xe_vma_is_null(vma) ||
+> > xe_vma_is_cpu_addr_mirror(vma)) {
+> > =C2=A0		xe_vm_put(vm);
+> > =C2=A0	} else {
+> > -		xe_bo_put(xe_vma_bo(vma));
+> > +		/* Trylock safe for async context; madvise
+> > corrects failures */
+> > +		if (bo && dma_resv_trylock(bo->ttm.base.resv)) {
+> > +			xe_bo_recheck_purgeable_on_vma_unbind(bo);
+>=20
+> Also I don't think the correct place to call this.
+>=20
+> I believe you can call this function in xe_vma_destroy after
+> drm_gpuva_unlink. You also have BO lock there too so no need from
+> this
+> trylock path.
+>=20
+> > +			dma_resv_unlock(bo->ttm.base.resv);
+> > +		}
+> > +
+> > +		xe_bo_put(bo);
+> > =C2=A0	}
+> > =C2=A0
+> > =C2=A0	xe_vma_free(vma);
+> > diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c
+> > b/drivers/gpu/drm/xe/xe_vm_madvise.c
+> > index dfeab9e24a09..27b6ad65b314 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
+> > +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+> > @@ -12,6 +12,7 @@
+> > =C2=A0#include "xe_pat.h"
+> > =C2=A0#include "xe_pt.h"
+> > =C2=A0#include "xe_svm.h"
+> > +#include "xe_vm.h"
+> > =C2=A0
+> > =C2=A0struct xe_vmas_in_madvise_range {
+> > =C2=A0	u64 addr;
+> > @@ -179,6 +180,80 @@ static void madvise_pat_index(struct xe_device
+> > *xe, struct xe_vm *vm,
+> > =C2=A0	}
+> > =C2=A0}
+> > =C2=A0
+> > +/**
+> > + * xe_bo_all_vmas_dontneed() - Check if all VMAs of a BO are
+> > marked DONTNEED
+> > + * @bo: Buffer object
+> > + *
+> > + * Check all VMAs across all VMs to determine if BO can be purged.
+> > + * Shared BOs require unanimous DONTNEED state from all mappings.
+> > + *
+> > + * Caller must hold BO dma-resv lock.
+> > + *
+> > + * Return: true if all VMAs are DONTNEED, false otherwise
+> > + */
+> > +static bool xe_bo_all_vmas_dontneed(struct xe_bo *bo)
+> > +{
+> > +	struct drm_gpuvm_bo *vm_bo;
+> > +	struct drm_gpuva *gpuva;
+> > +	struct drm_gem_object *obj =3D &bo->ttm.base;
+> > +	bool has_vmas =3D false;
+> > +
+> > +	dma_resv_assert_held(bo->ttm.base.resv);
+> > +
+> > +	drm_gem_for_each_gpuvm_bo(vm_bo, obj) {
+> > +		drm_gpuvm_bo_for_each_va(gpuva, vm_bo) {
+> > +			struct xe_vma *vma =3D gpuva_to_vma(gpuva);
+> > +
+> > +			has_vmas =3D true;
+> > +
+> > +			/* Any non-DONTNEED VMA prevents purging
+> > */
+> > +			if (READ_ONCE(vma->purgeable_state) !=3D
+> > XE_MADV_PURGEABLE_DONTNEED)
+>=20
+> You don't need the READ_ONCE as purgeable_state is only accessed
+> under
+> the dma-resv lock, also there isn't a WRITE_ONCE anywhere.
+>=20
+> > +				return false;
+> > +		}
+> > +	}
+> > +
+> > +	/* No VMAs means not purgeable */
+>=20
+> No VMAs means it is purgeable, right?
 
-Great!
+Then it would be purgeable just after creation, even if CPU is
+accessing. However I think we should consider the case where a bo is
+purgeable and it's single VMA goes away. Then I'd say it's still
+purgeable.
 
-> As we discussed, the concurrency matters most when booting multiple vGPUs.
-> At that time, the concurrency happens at:
->
-> 1) Allocating GPU memory chunks
-> 2) Reserving GPU channels
-> 3) Mapping GPU memory to BAR1 page table
+I guess this is our last chance to, after discussing for years,
+revert to a bo madvise UAPI before the UAPI is set in stone, given the
+above corner-cases. I must admit I'm not 100% sure myself, given CPU
+madvises are always based on the virtual address map, and we try to
+mimic that as much as possible.=20
 
-Yes all these are already covered from a concurrency PoV by the v6.
+>=20
+> > +	if (!has_vmas)
+> > +		return false;
+> > +
+> > +	return true;
+> > +}
+> > +
+> > +/**
+> > + * xe_bo_recheck_purgeable_on_vma_unbind() - Re-evaluate BO
+> > purgeable state after VMA unbind
+> > + * @bo: Buffer object
+> > + *
+> > + * When a VMA is unbound, re-check if the BO's purgeable state
+> > should change.
+> > + * Destroyed VMAs may allow the BO to become purgeable if all
+> > remaining VMAs
+> > + * are DONTNEED, or require transition to WILLNEED if no VMAs
+> > remain.
+> > + *
+> > + * Called from VMA destruction path with BO dma-resv lock held.
+> > + */
+> > +void xe_bo_recheck_purgeable_on_vma_unbind(struct xe_bo *bo)
+> > +{
+> > +	if (!bo)
+> > +		return;
+> > +
+> > +	dma_resv_assert_held(bo->ttm.base.resv);
+> > +
+> > +	/*
+> > +	 * Once purged, always purged. Cannot transition back to
+> > WILLNEED.
+> > +	 * This matches i915 semantics where purged BOs are
+> > permanently invalid.
+> > +	 */
+> > +	if (bo->madv_purgeable =3D=3D XE_MADV_PURGEABLE_PURGED)
+> > +		return;
 
-> I can see you are thinking of fine-granularity locking scheme, which I
-> think is the right direction to go. I agreed with the above two locks.
+	Perhaps replace the below with
 
-Cool!
+	bo->madv_purgeable =3D xe_bo_all_vmas_dontneed(bo) ?
+		XE_MADV_PURGEABLE_DONTNEED : 		XE_MADV_PURGEABLE_WILLNEED;=20
+> > +
+> > +	if (xe_bo_all_vmas_dontneed(bo)) {
+> > +		/* All VMAs are DONTNEED - mark BO purgeable */
+> > +		if (bo->madv_purgeable !=3D
+> > XE_MADV_PURGEABLE_DONTNEED)
+> > +			bo->madv_purgeable =3D
+> > XE_MADV_PURGEABLE_DONTNEED;
+> > +	} else {
+> > +		/* At least one VMA is WILLNEED - BO must not be
+> > purgeable */
+> > +		if (bo->madv_purgeable !=3D
+> > XE_MADV_PURGEABLE_WILLNEED)
+> > +			bo->madv_purgeable =3D
+> > XE_MADV_PURGEABLE_WILLNEED;
+> > +	}
+> > +}
+> > +
+> > =C2=A0/*
+> > =C2=A0 * Handle purgeable buffer object advice for
+> > DONTNEED/WILLNEED/PURGED.
+> > =C2=A0 * Returns true if any BO was purged, false otherwise.
+> > @@ -213,10 +288,17 @@ static bool xe_vm_madvise_purgeable_bo(struct
+> > xe_device *xe, struct xe_vm *vm,
+> > =C2=A0
+> > =C2=A0		switch (op->purge_state_val.val) {
+> > =C2=A0		case DRM_XE_VMA_PURGEABLE_STATE_WILLNEED:
+> > +			vmas[i]->purgeable_state =3D
+> > XE_MADV_PURGEABLE_WILLNEED;
+> > +
+> > +			/* Mark VMA WILLNEED - BO becomes non-
+> > purgeable immediately */
+> > =C2=A0			bo->madv_purgeable =3D
+> > XE_MADV_PURGEABLE_WILLNEED;
+> > =C2=A0			break;
+> > =C2=A0		case DRM_XE_VMA_PURGEABLE_STATE_DONTNEED:
+> > -			bo->madv_purgeable =3D
+> > XE_MADV_PURGEABLE_DONTNEED;
+> > +			vmas[i]->purgeable_state =3D
+> > XE_MADV_PURGEABLE_DONTNEED;
+> > +
+> > +			/* Mark BO purgeable only if all VMAs are
+> > DONTNEED */
+> > +			if (xe_bo_all_vmas_dontneed(bo))
+> > +				bo->madv_purgeable =3D
+> > XE_MADV_PURGEABLE_DONTNEED;
+> > =C2=A0			break;
+> > =C2=A0		default:
+> > =C2=A0			drm_warn(&vm->xe->drm, "Invalid madvice
+> > value =3D %d\n",
 
-> However for 3), We need to have one there as well beside the above two
-> locks. Have you already had one in the GPU VA allocator?
+This is part of the IOCTL processing, right? Then we should use
+XE_IOCTL_DBG() on invalid values, or xe_assert() if input values are
+already checked elsewhere.
 
-Currently for mapping Bar pages, you need a mutable reference to BarUser.
-For the future, when we have multiple channels sharing the same va space,
-it will still be protected because the va space allocator (virt_buddy)
-already has internal locking. And for each map_page, it is protected as
-well. So I believe that should also be covered. Thanks for checking.
 
-> If yes, the above two locks should be good enough so far. IMO.
+> > diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.h
+> > b/drivers/gpu/drm/xe/xe_vm_madvise.h
+> > index b0e1fc445f23..61868f851949 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm_madvise.h
+> > +++ b/drivers/gpu/drm/xe/xe_vm_madvise.h
+> > @@ -8,8 +8,11 @@
+> > =C2=A0
+> > =C2=A0struct drm_device;
+> > =C2=A0struct drm_file;
+> > +struct xe_bo;
+> > =C2=A0
+> > =C2=A0int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
+> > =C2=A0			struct drm_file *file);
+> > =C2=A0
+> > +void xe_bo_recheck_purgeable_on_vma_unbind(struct xe_bo *bo);
+> > +
+> > =C2=A0#endif
+> > diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
+> > b/drivers/gpu/drm/xe/xe_vm_types.h
+> > index 437f64202f3b..94ca9d033b06 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> > @@ -150,6 +150,17 @@ struct xe_vma {
+> > =C2=A0	 */
+> > =C2=A0	bool skip_invalidation;
+> > =C2=A0
+> > +	/**
+> > +	 * @purgeable_state: Purgeable hint for this VMA mapping
+> > +	 *
+> > +	 * Per-VMA purgeable state from madvise. Valid states are
+> > WILLNEED (0)
+> > +	 * or DONTNEED (1). Shared BOs require all VMAs to be
+> > DONTNEED before
+> > +	 * the BO can be purged. PURGED state exists only at BO
+> > level.
+> > +	 *
+> > +	 * Protected by BO dma-resv lock. Set via
+> > DRM_IOCTL_XE_MADVISE.
+> > +	 */
+> > +	u32 purgeable_state;
+> > +
+>=20
+> I think xe_vma_mem_attr is a better place for this field.
 
-Ok, thanks for checking.
++1.
 
---
-Joel Fernandes
+/Thomas
+
+
+>=20
+> Matt
+>=20
+> > =C2=A0	/**
+> > =C2=A0	 * @ufence: The user fence that was provided with MAP.
+> > =C2=A0	 * Needs to be signalled before UNMAP can be processed.
+> > --=20
+> > 2.43.0
+> >=20
