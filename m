@@ -4,54 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF6F0D72379
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Jan 2026 12:04:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1270ED6CFD1
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Jan 2026 12:37:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8922D10EACF;
-	Fri, 23 Jan 2026 12:04:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C812810E119;
+	Fri, 23 Jan 2026 12:37:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Smyol/wK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MlgaV7HE";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 488D610EAC9
- for <intel-xe@lists.freedesktop.org>; Fri, 23 Jan 2026 12:04:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59AF910EAD3
+ for <intel-xe@lists.freedesktop.org>; Fri, 23 Jan 2026 12:37:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769169854; x=1800705854;
+ t=1769171844; x=1800707844;
  h=message-id:subject:from:to:cc:date:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=7Qgclsp+BGncNJnG5RVMQDh/ScxYo+SqWoGDHh64MoI=;
- b=Smyol/wKh34UvliXWo2FW6NDgWi1aOD9kFLYn9nGmnZwL28w7u5g1q4k
- 7mJgCTcEhKkPTVdDWnrNUBiRqqgwI8f/RTWCuhyHOum3quDEFMpi9uglk
- lRfnPfO8lrV4RckfZtwkT2oSXKUBwsMFxVM1jrmwfxzTe5peeIcxO5Di4
- m0miuQENztbNZHGQetXXnLye+HQrK5qr+Mh/Ul0YG2G9Chj6mre3sT/7z
- 3HlIel9g1o+nTazvqbrikao4PJn5/Y289fuPnmFxAyPYIth/FRV2jnoZt
- rcadg5aJCC5VOOZoAn2mAFtlroLeVT+mTXk5SiE3Z57EsS6AJBuK7yb6h w==;
-X-CSE-ConnectionGUID: jUgazZVIR5uuP2+uyLuQpw==
-X-CSE-MsgGUID: VRcusbpTSjirhKIeGKWQrQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="95892277"
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="95892277"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2026 04:04:14 -0800
-X-CSE-ConnectionGUID: lLLsTFvnR2KD2OUPYJgIzg==
-X-CSE-MsgGUID: 3TC4T4G2REebKkspwnBfrg==
+ bh=rKG8nF2mhACUyREzoDe+JAk/JkRN1n6eg9W0AN+KXLA=;
+ b=MlgaV7HELTu8e9+eGNEBJKp9aX2twD/6H/UQcLUe/Hbw46tpm9T51FbG
+ mBFHrGc57NODJxFgHQyYJ1PuQzSuojSZOeN+hLYTtFyL9fYxXhYSxJ8yj
+ 3aNO7tF2grX4aXL1cyfPVbGZatK/6Djlxn3h7w2dy3fbEOvHFopJN8o9D
+ zbgxqE0GJdAKe+ybfq/gKN5nsXrEK8t9cukZ89dojryuIQGC8QItsFClR
+ 2+HqbEXtb0fVsqLwBTb6fOJsuctg7TJS0jclhO84m2FTo/nuAzzEO5LcS
+ 6fZr8c4M749e22umsjX/LTmfWEW5SAoJDeHBTClowp53E1RMbyyOHu6IZ g==;
+X-CSE-ConnectionGUID: Gx+AsND/R+eh7tAEpJicqg==
+X-CSE-MsgGUID: cNz7zUDOS9+xnuJ/cNmBJA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11679"; a="87842343"
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="87842343"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2026 04:37:24 -0800
+X-CSE-ConnectionGUID: ddigG6M4QzCcNH8XJrH6zg==
+X-CSE-MsgGUID: erB7K0UBTpeASXNQVP+00A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="206832353"
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="206276540"
 Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.244.177])
  ([10.245.244.177])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2026 04:04:13 -0800
-Message-ID: <b6b13b58a7ffd230d68964e32ddfea7972809751.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/xe/multi_queue: Protect priority against concurrent
- access
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2026 04:37:22 -0800
+Message-ID: <bedb36f03c7e82ffca688a1ba69929a343bc4f37.camel@linux.intel.com>
+Subject: Re: [PATCH v4 5/8] drm/xe/vm: Prevent binding of purged buffer objects
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>, 
- intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com
-Date: Fri, 23 Jan 2026 13:04:10 +0100
-In-Reply-To: <20260121211933.3354277-2-niranjana.vishwanathapura@intel.com>
-References: <20260121211933.3354277-2-niranjana.vishwanathapura@intel.com>
+To: "Yadav, Arvind" <arvind.yadav@intel.com>, Matthew Brost
+ <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, himal.prasad.ghimiray@intel.com, 
+ pallavi.mishra@intel.com
+Date: Fri, 23 Jan 2026 13:37:19 +0100
+In-Reply-To: <7614efa2-b126-4fa6-8213-a8cd764e4419@intel.com>
+References: <20260120060900.3137984-1-arvind.yadav@intel.com>
+ <20260120060900.3137984-6-arvind.yadav@intel.com>
+ <aW+6+dvH8trVV8eD@lstrano-desk.jf.intel.com>
+ <7614efa2-b126-4fa6-8213-a8cd764e4419@intel.com>
 Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -71,119 +74,190 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Niranjana,
-
-On Wed, 2026-01-21 at 13:19 -0800, Niranjana Vishwanathapura wrote:
-> From: "Vishwanathapura, Niranjana"
-> <niranjana.vishwanathapura@intel.com>
+On Fri, 2026-01-23 at 11:11 +0530, Yadav, Arvind wrote:
 >=20
-> Use a spin_lock to protect multi-queue priority being concurrently
-> updated by multiple set_priority ioctls and protect against
-> concurrent read and write to this field. Also, guard against
-> compile optimization by using WRITE_ONCE() and READ_ONCE() macros.
+> On 20-01-2026 22:57, Matthew Brost wrote:
+> > On Tue, Jan 20, 2026 at 11:38:51AM +0530, Arvind Yadav wrote:
+> > > Add check_purged parameter to vma_lock_and_validate() to block
+> > > new mapping operations on purged BOs while allowing cleanup
+> > > operations to proceed.
+> > >=20
+> > > Purged BOs have their backing pages freed by the kernel. New
+> > > mapping operations (MAP, PREFETCH, REMAP) must be rejected with
+> > > -EINVAL to prevent GPU access to invalid memory. Cleanup
+> > > operations (UNMAP) must be allowed so applications can release
+> > > resources after detecting purge via the retained field.
+> > >=20
+> > > REMAP operations require mixed handling - reject new prev/next
+> > > VMAs if the BO is purged, but allow the unmap portion to proceed
+> > > for cleanup.
+> > >=20
+> > > The check_purged parameter distinguishes between these cases:
+> > > true for new mappings (must reject), false for cleanup (allow).
+> > >=20
+> > > v2:
+> > > =C2=A0=C2=A0 - Clarify that purged BOs are permanently invalid (i915
+> > > semantics)
+> > > =C2=A0=C2=A0 - Remove incorrect claim about madvise(WILLNEED) restori=
+ng
+> > > purged BOs
+> > >=20
+> > > v3:
+> > > =C2=A0=C2=A0 - Move xe_bo_is_purged check under vma_lock_and_validate
+> > > (Matthew Brost)
+> > > =C2=A0=C2=A0 - Add check_purged parameter to distinguish new mappings=
+ from
+> > > cleanup
+> > > =C2=A0=C2=A0 - Allow UNMAP operations to prevent resource leaks
+> > > =C2=A0=C2=A0 - Handle REMAP operation's dual nature (cleanup + new
+> > > mappings)
+> > >=20
+> > > Cc: Matthew Brost<matthew.brost@intel.com>
+> > > Cc: Thomas Hellstr=C3=B6m<thomas.hellstrom@linux.intel.com>
+> > > Cc: Himal Prasad Ghimiray<himal.prasad.ghimiray@intel.com>
+> > > Signed-off-by: Arvind Yadav<arvind.yadav@intel.com>
+> > > ---
+> > > =C2=A0 drivers/gpu/drm/xe/xe_vm.c | 20 +++++++++++++-------
+> > > =C2=A0 1 file changed, 13 insertions(+), 7 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/xe/xe_vm.c
+> > > b/drivers/gpu/drm/xe/xe_vm.c
+> > > index c3a5fe76ff96..f250daae3012 100644
+> > > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > > @@ -2883,7 +2883,7 @@ static void vm_bind_ioctl_ops_unwind(struct
+> > > xe_vm *vm,
+> > > =C2=A0 }
+> > >=20
+> > > =C2=A0 static int vma_lock_and_validate(struct drm_exec *exec, struct
+> > > xe_vma *vma,
+> > > -				 bool res_evict, bool validate)
+> > > +				 bool res_evict, bool validate,
+> > > bool check_purged)
+> > It probably time to add something like this to avoid transposing
+> > arguments.
+> >=20
+> > struct lock_and_validate_flags {
+> > 	bool res_evict;
+> > 	bool validate;
+> > 	bool check_purged;
+> > };
+> >=20
+> > Logic in the patch looks correct though.
 >=20
-> Signed-off-by: Niranjana Vishwanathapura
-> <niranjana.vishwanathapura@intel.com>
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_exec_queue.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0 1 +
-> =C2=A0drivers/gpu/drm/xe/xe_exec_queue_types.h |=C2=A0 2 ++
-> =C2=A0drivers/gpu/drm/xe/xe_guc_submit.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 | 20 ++++++++++++++------
-> =C2=A03 files changed, 17 insertions(+), 6 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c
-> b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index 7e7e663189e4..66d0e10ee2c4 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -230,6 +230,7 @@ static struct xe_exec_queue
-> *__xe_exec_queue_alloc(struct xe_device *xe,
-> =C2=A0	INIT_LIST_HEAD(&q->multi_gt_link);
-> =C2=A0	INIT_LIST_HEAD(&q->hw_engine_group_link);
-> =C2=A0	INIT_LIST_HEAD(&q->pxp.link);
-> +	spin_lock_init(&q->multi_queue.lock);
-> =C2=A0	q->multi_queue.priority =3D XE_MULTI_QUEUE_PRIORITY_NORMAL;
-> =C2=A0
-> =C2=A0	q->sched_props.timeslice_us =3D hwe->eclass-
-> >sched_props.timeslice_us;
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> index e987d431ce27..ab6980aaa36e 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-> @@ -163,6 +163,8 @@ struct xe_exec_queue {
-> =C2=A0		struct list_head link;
-> =C2=A0		/** @multi_queue.priority: Queue priority within the
-> multi-queue group */
-> =C2=A0		enum xe_multi_queue_priority priority;
+> Noted, I will add "struct xe_lock_and_validate_flags" Thanks, Arvind
 
-Should probably add to each field protected that it is protected by the
-lock, and in the kernel-doc below mention that it's used to protect
-certain members.
+Note that if you follow the pattern of struct xe_bo_shink_flags,
+passing the struct as a const and using
 
-> +		/** @multi_queue.lock: Lock for
-> @multi_queue.priority access */
-> +		spinlock_t lock;
-> =C2=A0		/** @multi_queue.pos: Position of queue within the
-> multi-queue group */
-> =C2=A0		u8 pos;
-> =C2=A0		/** @multi_queue.valid: Queue belongs to a multi
-> queue group */
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c
-> b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index 456f549c16f6..76dd3a204811 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -827,7 +827,9 @@ static void
-> xe_guc_exec_queue_group_cgp_sync(struct xe_guc *guc,
-> =C2=A0		return;
-> =C2=A0	}
-> =C2=A0
-> -	xe_lrc_set_multi_queue_priority(q->lrc[0], q-
-> >multi_queue.priority);
-> +	spin_lock(&q->multi_queue.lock);
-> +	xe_lrc_set_multi_queue_priority(q->lrc[0], READ_ONCE(q-
-> >multi_queue.priority));
+struct lock_and_validate_flags {
+	u32 res_evict : 1;
+        u32 validate : 1;
+        u32 check_purged : 1;
+};
 
-Since we have the lock, no need for READ_ONCE()?
+This will be more or less equivalent to passing a bit-field with type-
+checking.
 
-> +	spin_unlock(&q->multi_queue.lock);
-> =C2=A0	xe_guc_exec_queue_group_cgp_update(xe, q);
-> =C2=A0
-> =C2=A0	WRITE_ONCE(group->sync_pending, true);
-> @@ -2181,15 +2183,21 @@ static int
-> guc_exec_queue_set_multi_queue_priority(struct xe_exec_queue *q,
-> =C2=A0
-> =C2=A0	xe_gt_assert(guc_to_gt(exec_queue_to_guc(q)),
-> xe_exec_queue_is_multi_queue(q));
-> =C2=A0
-> -	if (q->multi_queue.priority =3D=3D priority ||
-> -	=C2=A0=C2=A0=C2=A0 exec_queue_killed_or_banned_or_wedged(q))
-> -		return 0;
-> -
-> =C2=A0	msg =3D kmalloc(sizeof(*msg), GFP_KERNEL);
-> =C2=A0	if (!msg)
-> =C2=A0		return -ENOMEM;
-> =C2=A0
-> -	q->multi_queue.priority =3D priority;
-> +	spin_lock(&q->multi_queue.lock);
-> +	if (q->multi_queue.priority =3D=3D priority ||
-> +	=C2=A0=C2=A0=C2=A0 exec_queue_killed_or_banned_or_wedged(q)) {
-> +		spin_unlock(&q->multi_queue.lock);
-> +		kfree(msg);
-> +		return 0;
-> +	}
-> +
-> +	WRITE_ONCE(q->multi_queue.priority, priority);
+Some reviewers frown on using "bool" in compound types although we
+accept that in the xe driver.
 
-Similarly here, no need for WRITE_ONCE()?
+Otherwise patch LGTM as well.
 
-> +	spin_unlock(&q->multi_queue.lock);
-> +
-> =C2=A0	guc_exec_queue_add_msg(q, msg, SET_MULTI_QUEUE_PRIORITY);
-> =C2=A0
-> =C2=A0	return 0;
+/Thomas
 
-Thanks,
-Thomas
+
+>=20
+> >=20
+> > Matt
+> >=20
+> > > =C2=A0 {
+> > > =C2=A0=C2=A0	struct xe_bo *bo =3D xe_vma_bo(vma);
+> > > =C2=A0=C2=A0	struct xe_vm *vm =3D xe_vma_vm(vma);
+> > > @@ -2892,6 +2892,11 @@ static int vma_lock_and_validate(struct
+> > > drm_exec *exec, struct xe_vma *vma,
+> > > =C2=A0=C2=A0	if (bo) {
+> > > =C2=A0=C2=A0		if (!bo->vm)
+> > > =C2=A0=C2=A0			err =3D drm_exec_lock_obj(exec, &bo-
+> > > >ttm.base);
+> > > +
+> > > +		/* Reject new mappings to purged BOs; allow
+> > > cleanup operations */
+> > > +		if (!err && check_purged && xe_bo_is_purged(bo))
+> > > +			err =3D -EINVAL;
+> > > +
+> > > =C2=A0=C2=A0		if (!err && validate)
+> > > =C2=A0=C2=A0			err =3D xe_bo_validate(bo, vm,
+> > > =C2=A0=C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0
+> > > !xe_vm_in_preempt_fence_mode(vm) &&
+> > > @@ -2990,7 +2995,8 @@ static int op_lock_and_prep(struct drm_exec
+> > > *exec, struct xe_vm *vm,
+> > > =C2=A0=C2=A0			err =3D vma_lock_and_validate(exec, op-
+> > > >map.vma,
+> > > =C2=A0=C2=A0						=C2=A0=C2=A0=C2=A0 res_evict,
+> > > =C2=A0=C2=A0						=C2=A0=C2=A0=C2=A0
+> > > !xe_vm_in_fault_mode(vm) ||
+> > > -						=C2=A0=C2=A0=C2=A0 op-
+> > > >map.immediate);
+> > > +						=C2=A0=C2=A0=C2=A0 op-
+> > > >map.immediate,
+> > > +						=C2=A0=C2=A0=C2=A0 true);
+> > > =C2=A0=C2=A0		break;
+> > > =C2=A0=C2=A0	case DRM_GPUVA_OP_REMAP:
+> > > =C2=A0=C2=A0		err =3D check_ufence(gpuva_to_vma(op-
+> > > >base.remap.unmap->va));
+> > > @@ -2999,13 +3005,13 @@ static int op_lock_and_prep(struct
+> > > drm_exec *exec, struct xe_vm *vm,
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0		err =3D vma_lock_and_validate(exec,
+> > > =C2=A0=C2=A0					=C2=A0=C2=A0=C2=A0 gpuva_to_vma(op-
+> > > >base.remap.unmap->va),
+> > > -					=C2=A0=C2=A0=C2=A0 res_evict, false);
+> > > +					=C2=A0=C2=A0=C2=A0 res_evict, false,
+> > > false);
+> > > =C2=A0=C2=A0		if (!err && op->remap.prev)
+> > > =C2=A0=C2=A0			err =3D vma_lock_and_validate(exec, op-
+> > > >remap.prev,
+> > > -						=C2=A0=C2=A0=C2=A0 res_evict,
+> > > true);
+> > > +						=C2=A0=C2=A0=C2=A0 res_evict,
+> > > true, true);
+> > > =C2=A0=C2=A0		if (!err && op->remap.next)
+> > > =C2=A0=C2=A0			err =3D vma_lock_and_validate(exec, op-
+> > > >remap.next,
+> > > -						=C2=A0=C2=A0=C2=A0 res_evict,
+> > > true);
+> > > +						=C2=A0=C2=A0=C2=A0 res_evict,
+> > > true, true);
+> > > =C2=A0=C2=A0		break;
+> > > =C2=A0=C2=A0	case DRM_GPUVA_OP_UNMAP:
+> > > =C2=A0=C2=A0		err =3D check_ufence(gpuva_to_vma(op-
+> > > >base.unmap.va));
+> > > @@ -3014,7 +3020,7 @@ static int op_lock_and_prep(struct drm_exec
+> > > *exec, struct xe_vm *vm,
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0		err =3D vma_lock_and_validate(exec,
+> > > =C2=A0=C2=A0					=C2=A0=C2=A0=C2=A0 gpuva_to_vma(op-
+> > > >base.unmap.va),
+> > > -					=C2=A0=C2=A0=C2=A0 res_evict, false);
+> > > +					=C2=A0=C2=A0=C2=A0 res_evict, false,
+> > > false);
+> > > =C2=A0=C2=A0		break;
+> > > =C2=A0=C2=A0	case DRM_GPUVA_OP_PREFETCH:
+> > > =C2=A0=C2=A0	{
+> > > @@ -3029,7 +3035,7 @@ static int op_lock_and_prep(struct drm_exec
+> > > *exec, struct xe_vm *vm,
+> > > =C2=A0=20
+> > > =C2=A0=C2=A0		err =3D vma_lock_and_validate(exec,
+> > > =C2=A0=C2=A0					=C2=A0=C2=A0=C2=A0 gpuva_to_vma(op-
+> > > >base.prefetch.va),
+> > > -					=C2=A0=C2=A0=C2=A0 res_evict, false);
+> > > +					=C2=A0=C2=A0=C2=A0 res_evict, false,
+> > > true);
+> > > =C2=A0=C2=A0		if (!err && !xe_vma_has_no_bo(vma))
+> > > =C2=A0=C2=A0			err =3D xe_bo_migrate(xe_vma_bo(vma),
+> > > =C2=A0=C2=A0					=C2=A0=C2=A0=C2=A0
+> > > region_to_mem_type[region],
+> > > --=20
+> > > 2.43.0
