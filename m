@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2E9DD778BC
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Jan 2026 21:46:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EE53D778B9
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Jan 2026 21:59:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A6F510EBEC;
-	Fri, 23 Jan 2026 21:46:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE97710EBEE;
+	Fri, 23 Jan 2026 21:59:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hL9Xr+Io";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="emTd+tlU";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 427B410EBDE;
- Fri, 23 Jan 2026 21:46:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B416310EBEC;
+ Fri, 23 Jan 2026 21:59:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769204794; x=1800740794;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=bQ7XBAz9El5KyoThCXzV6soqsHlWszTZlAcSyflTR+I=;
- b=hL9Xr+IoHQCiEWsuHwLE4xHLAzna+CF43QzslOFQ8FWRvhTyjgY6Q1iz
- Y6lDOEPgOspO/GOa802NdUJDmlCe3FfZqQoBW009ltvNEv2WFOGVh6Dbd
- ii82Cd0qaERCedbDro+wyKKJTUzo/4kRp5HoJXAYHgYBsmSC+/CCJi7YJ
- dioocSN6DPqvw1d2+xhH4yeJU7qZob8Jn/qZPhrY2ZiYiS4w4ET7XI3vl
- y6UJEgoa/cNWDBbZv4W5VE4LU0I9LW0nAyMRLwYY40orHou+DfvK5qOSB
- KyqqHS6cPmfS9pg5lY9yOIS3z4OlgKSKnLVv7Z0imrouwouZFAUG03L8w g==;
-X-CSE-ConnectionGUID: 6w7sUch+R4uXuAa4k6zTsQ==
-X-CSE-MsgGUID: zjhn2cJDS4+6RnTK1HpSBg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11680"; a="74323568"
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="74323568"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2026 13:46:31 -0800
-X-CSE-ConnectionGUID: b0vcMqJYTk+00mezL9Kkeg==
-X-CSE-MsgGUID: lYxv4+beROSbjqZB+AVYzA==
+ t=1769205552; x=1800741552;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=1lUPFbl2m/SWMxITVjXHTkYuysDrNyCNQ1dslLRMgb0=;
+ b=emTd+tlU0UXhQXjJBLZkKxuxhjPoYQ74ZxiyySMQeBZCqa+zy9MsPAAI
+ LOdAZjYTXi4MdIq7MeUZEbAOy8kNWVo+niruCqfzrxecWWaX0DMBGEkTn
+ oEjLNJT+7/Cxrn6q37dpZkUWlwWksFOHW7qoD/kB6OWU8ans8rgrNYYUA
+ v1d6JBPd+/8S4haLQxddlteEBzmNddNlvPupi7lsz/uluJUo0qlhzLfJk
+ KMISFsfSEn2pnXYHy1IIFgt9WG20v60suu+do19euqvsto7VhcEhd9QYe
+ ZNf1zdqtfrt1JyQGVXckhT5zxUmj3ZmCd9gGwicfFK5BD1/+uFQEZYmKA A==;
+X-CSE-ConnectionGUID: rsrkaJwNRzO7lVRrrNQgpA==
+X-CSE-MsgGUID: BYxdoAdXRryj1POraZXNvQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11680"; a="81091908"
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="81091908"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2026 13:59:11 -0800
+X-CSE-ConnectionGUID: stLFRuO3Tb2YOmavmMV/Xg==
+X-CSE-MsgGUID: 9UVyJgI3SD28tEhcc8DvXg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="207169222"
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="206935364"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jan 2026 13:46:31 -0800
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2026 13:59:10 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
 Cc: leonro@nvidia.com, francois.dugast@intel.com,
  thomas.hellstrom@linux.intel.com, himal.prasad.ghimiray@intel.com,
  jgg@ziepe.ca
-Subject: [RFC PATCH 0/2] Use new dma-map IOVA alloc, link,
- and sync API in GPU SVM and DRM pagemap
-Date: Fri, 23 Jan 2026 13:46:23 -0800
-Message-Id: <20260123214625.1612365-1-matthew.brost@intel.com>
+Subject: [RFC PATCH v2 1/3] drm/pagemap: Add helper to access zone_device_data
+Date: Fri, 23 Jan 2026 13:59:05 -0800
+Message-Id: <20260123215907.1643088-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260123215907.1643088-1-matthew.brost@intel.com>
+References: <20260123215907.1643088-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,39 +69,159 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The dma-map IOVA alloc, link, and sync APIs perform significantly better
-than dma-map / dma-unmap, as they avoid costly IOMMU synchronizations.
-This difference is especially noticeable when mapping a 2MB region in
-4KB pages.
+From: Francois Dugast <francois.dugast@intel.com>
 
-Use dma-map IOVA alloc, link, and sync APIs for GPU SVM and DRM page,
-which mappings between the CPU and GPU.
+This new helper helps ensure all accesses to zone_device_data use the
+correct API whether the page is part of a folio or not.
 
-Initial results are promising.
+v2:
+- Move to drm_pagemap.h, stick to folio_zone_device_data (Matthew Brost)
+- Return struct drm_pagemap_zdd * (Matthew Brost)
 
-Baseline CPU time during 2M / 64K fault with a migration:
-Average migrate 2M cpu time (us, percentage): 552.36049107142857142857, .71943789893868318799
-Average migrate 64K cpu time (us, percentage): 24.97767857142857142857, .34789908128526791960
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+---
+ drivers/gpu/drm/drm_gpusvm.c  |  7 +++++--
+ drivers/gpu/drm/drm_pagemap.c | 21 ++++++++++++---------
+ include/drm/drm_pagemap.h     | 14 ++++++++++++++
+ 3 files changed, 31 insertions(+), 11 deletions(-)
 
-After this series CPU time during 2M / 64K fault with a migration:
-Average migrate 2M cpu time (us, percentage): 224.81808035714285714286, .51412827364772602557
-Average migrate 64K cpu time (us, percentage): 14.65625000000000000000, .25659463050529524405
-
-Sending as an RFC as there appears to be intermittent memory corruptions
-when running xe_exec_system_allocator that need to be tracked down.
-
-Matt
-
-Matthew Brost (2):
-  drm/gpusvm: Use new dma-map IOVA alloc, link, and sync API in GPU SVM
-  drm/pagemap: Use new dma-map IOVA alloc, link, and sync API for DRM
-    pagemap
-
- drivers/gpu/drm/drm_gpusvm.c  |  63 +++++++++++-----
- drivers/gpu/drm/drm_pagemap.c | 135 ++++++++++++++++++++++++++--------
- include/drm/drm_gpusvm.h      |   3 +
- 3 files changed, 152 insertions(+), 49 deletions(-)
-
+diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
+index aa9a0b60e727..585d913d3d19 100644
+--- a/drivers/gpu/drm/drm_gpusvm.c
++++ b/drivers/gpu/drm/drm_gpusvm.c
+@@ -1488,12 +1488,15 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
+ 		order = drm_gpusvm_hmm_pfn_to_order(pfns[i], i, npages);
+ 		if (is_device_private_page(page) ||
+ 		    is_device_coherent_page(page)) {
++			struct drm_pagemap_zdd *__zdd =
++				drm_pagemap_page_zone_device_data(page);
++
+ 			if (!ctx->allow_mixed &&
+-			    zdd != page->zone_device_data && i > 0) {
++			    zdd != __zdd && i > 0) {
+ 				err = -EOPNOTSUPP;
+ 				goto err_unmap;
+ 			}
+-			zdd = page->zone_device_data;
++			zdd = __zdd;
+ 			if (pagemap != page_pgmap(page)) {
+ 				if (i > 0) {
+ 					err = -EOPNOTSUPP;
+diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
+index 03ee39a761a4..2c67aabd8d65 100644
+--- a/drivers/gpu/drm/drm_pagemap.c
++++ b/drivers/gpu/drm/drm_pagemap.c
+@@ -244,7 +244,7 @@ static int drm_pagemap_migrate_map_pages(struct device *dev,
+ 		order = folio_order(folio);
+ 
+ 		if (is_device_private_page(page)) {
+-			struct drm_pagemap_zdd *zdd = page->zone_device_data;
++			struct drm_pagemap_zdd *zdd = drm_pagemap_page_zone_device_data(page);
+ 			struct drm_pagemap *dpagemap = zdd->dpagemap;
+ 			struct drm_pagemap_addr addr;
+ 
+@@ -315,7 +315,7 @@ static void drm_pagemap_migrate_unmap_pages(struct device *dev,
+ 			goto next;
+ 
+ 		if (is_zone_device_page(page)) {
+-			struct drm_pagemap_zdd *zdd = page->zone_device_data;
++			struct drm_pagemap_zdd *zdd = drm_pagemap_page_zone_device_data(page);
+ 			struct drm_pagemap *dpagemap = zdd->dpagemap;
+ 
+ 			dpagemap->ops->device_unmap(dpagemap, dev, pagemap_addr[i]);
+@@ -603,7 +603,8 @@ int drm_pagemap_migrate_to_devmem(struct drm_pagemap_devmem *devmem_allocation,
+ 
+ 		pages[i] = NULL;
+ 		if (src_page && is_device_private_page(src_page)) {
+-			struct drm_pagemap_zdd *src_zdd = src_page->zone_device_data;
++			struct drm_pagemap_zdd *src_zdd =
++				drm_pagemap_page_zone_device_data(src_page);
+ 
+ 			if (page_pgmap(src_page) == pagemap &&
+ 			    !mdetails->can_migrate_same_pagemap) {
+@@ -725,8 +726,8 @@ static int drm_pagemap_migrate_populate_ram_pfn(struct vm_area_struct *vas,
+ 			goto next;
+ 
+ 		if (fault_page) {
+-			if (src_page->zone_device_data !=
+-			    fault_page->zone_device_data)
++			if (drm_pagemap_page_zone_device_data(src_page) !=
++			    drm_pagemap_page_zone_device_data(fault_page))
+ 				goto next;
+ 		}
+ 
+@@ -1067,7 +1068,7 @@ static int __drm_pagemap_migrate_to_ram(struct vm_area_struct *vas,
+ 	void *buf;
+ 	int i, err = 0;
+ 
+-	zdd = page->zone_device_data;
++	zdd = drm_pagemap_page_zone_device_data(page);
+ 	if (time_before64(get_jiffies_64(), zdd->devmem_allocation->timeslice_expiration))
+ 		return 0;
+ 
+@@ -1150,7 +1151,9 @@ static int __drm_pagemap_migrate_to_ram(struct vm_area_struct *vas,
+  */
+ static void drm_pagemap_folio_free(struct folio *folio)
+ {
+-	drm_pagemap_zdd_put(folio->page.zone_device_data);
++	struct page *page = folio_page(folio, 0);
++
++	drm_pagemap_zdd_put(drm_pagemap_page_zone_device_data(page));
+ }
+ 
+ /**
+@@ -1166,7 +1169,7 @@ static void drm_pagemap_folio_free(struct folio *folio)
+  */
+ static vm_fault_t drm_pagemap_migrate_to_ram(struct vm_fault *vmf)
+ {
+-	struct drm_pagemap_zdd *zdd = vmf->page->zone_device_data;
++	struct drm_pagemap_zdd *zdd = drm_pagemap_page_zone_device_data(vmf->page);
+ 	int err;
+ 
+ 	err = __drm_pagemap_migrate_to_ram(vmf->vma,
+@@ -1232,7 +1235,7 @@ EXPORT_SYMBOL_GPL(drm_pagemap_devmem_init);
+  */
+ struct drm_pagemap *drm_pagemap_page_to_dpagemap(struct page *page)
+ {
+-	struct drm_pagemap_zdd *zdd = page->zone_device_data;
++	struct drm_pagemap_zdd *zdd = drm_pagemap_page_zone_device_data(page);
+ 
+ 	return zdd->devmem_allocation->dpagemap;
+ }
+diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
+index 2baf0861f78f..c6459f4bde8b 100644
+--- a/include/drm/drm_pagemap.h
++++ b/include/drm/drm_pagemap.h
+@@ -4,6 +4,7 @@
+ 
+ #include <linux/dma-direction.h>
+ #include <linux/hmm.h>
++#include <linux/memremap.h>
+ #include <linux/types.h>
+ 
+ #define NR_PAGES(order) (1U << (order))
+@@ -367,6 +368,19 @@ void drm_pagemap_destroy(struct drm_pagemap *dpagemap, bool is_atomic_or_reclaim
+ 
+ int drm_pagemap_reinit(struct drm_pagemap *dpagemap);
+ 
++/**
++ * drm_pagemap_page_zone_device_data() - Page to zone_device_data
++ * @page: Pointer to the page
++ *
++ * Return: Page's zone_device_data
++ */
++static inline struct drm_pagemap_zdd *drm_pagemap_page_zone_device_data(struct page *page)
++{
++	struct folio *folio = page_folio(page);
++
++	return folio_zone_device_data(folio);
++}
++
+ #endif /* IS_ENABLED(CONFIG_ZONE_DEVICE) */
+ 
+ #endif
 -- 
 2.34.1
 
