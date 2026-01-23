@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1C01D778B1
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Jan 2026 23:21:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54246D778B1
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Jan 2026 23:34:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2E8E10E2F0;
-	Fri, 23 Jan 2026 23:21:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE78910EC00;
+	Fri, 23 Jan 2026 23:34:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ppuSAcuU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ffl9qToZ";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8B3710EC0F
- for <intel-xe@lists.freedesktop.org>; Fri, 23 Jan 2026 23:21:21 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id DE4036011E;
- Fri, 23 Jan 2026 23:21:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77667C116D0;
- Fri, 23 Jan 2026 23:21:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1769210480;
- bh=LkzcoGeDBfBgFxa/0vzN0Wd0gngQs6b43wHsK+jfaS8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=ppuSAcuUVnIXmFKaf/QKGmVrIrcvoCLW0qlPdAXL8NQofhPC7X2fH3UaCyKiEdwcN
- GHq36qvwOmwFbElx46GGR5mMBkEMdUn2XHtac8+TOqaAay2OdBs4KgUDWt46Yclzpr
- zgSIglhH+ggDdTHutxonHJtPdPne/9H27adh40Ey15D/cTrM8Hn441fLq3T0fRNkLV
- 8Jwf/VwLYg77GEj0f0QuDCUneb7//xP/J/Q8cHpS1Oo1p6sTDXRgEshrOrQLM3X8yG
- Fx/SdHsk2O7nTqHGoXkJwyDiQ80V+QmsugR8E+mFzr7ieEILaZkl40AVIGH/Lzi6+n
- 9DWt9Li2nr9AA==
-Date: Fri, 23 Jan 2026 23:21:16 +0000
-From: Mark Brown <broonie@kernel.org>
-To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Brost, Matthew" <matthew.brost@intel.com>,
- "Souza, Jose" <jose.souza@intel.com>,
- "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>
-Subject: Re: Mail problems for Lucas De Marchi?
-Message-ID: <5568f3ac-8b1b-46c3-8c37-61a61d62babd@sirena.org.uk>
-References: <3135e2fd-fdac-469c-be2e-6c1cb024883f@sirena.org.uk>
- <8542127c23736029c476033bc933e12503bc3fd3.camel@intel.com>
- <CYYPR11MB8430903D2AE8BDD782B59B128B94A@CYYPR11MB8430.namprd11.prod.outlook.com>
- <2919dcfb-68ec-46e4-858a-08a0d42c27ff@sirena.org.uk>
- <ca24e8a12732720302823d1571e217017e5744c4.camel@intel.com>
- <585d9e41-8627-48cc-aa3e-efb1ab9cbb90@sirena.org.uk>
- <0952430293e438fc76bfd1a8d080716583edc41a.camel@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEC2510EC03
+ for <intel-xe@lists.freedesktop.org>; Fri, 23 Jan 2026 23:34:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769211267; x=1800747267;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9B2qmOh8iN8Lr+ELhNvYJtSFwIquSJV7UF8NblHT6vE=;
+ b=Ffl9qToZVhhWIT1DW0xKlXGqrBfnQi4LlYUeNgfH4EszMcqKJnycVEw0
+ z5jMs2VQ/9vMpsbLz50TsYXB9/OSRi0053VSP+JAWf1eqxr7EwGB4Z0Sw
+ WwnDCCDvItWOjzgvrPCi5bgK0FQDEPULj9WM97CwQLNsq6drRmTBADi7y
+ rceIKV3EgxKmyJW09vf8PLJ2610R6G0xoXOo9IMBzrZhGzOfm6oeq/MGU
+ +3C1T3FsVdQdHGOSF9ev5G4p/bO80yqwpUxXHEGsWwAnVvYv6NtuBeN/K
+ ndNV6eJ5/BTj9V+RMOT/bwzMNQ34P5MgJY+ZRl1+ZSRXzGqnh2PaxrrC4 Q==;
+X-CSE-ConnectionGUID: qjrRBJ+9Qwebi7WGGqHa9g==
+X-CSE-MsgGUID: yvl3ugM+Qoe+b7zhC8JXYw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11680"; a="87884146"
+X-IronPort-AV: E=Sophos;i="6.21,249,1763452800"; d="scan'208";a="87884146"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2026 15:34:27 -0800
+X-CSE-ConnectionGUID: kIliVnE6Q8mIaHiwx8CL+Q==
+X-CSE-MsgGUID: SRWumiCRQMWAe5fBy1o+Cg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,249,1763452800"; d="scan'208";a="230103096"
+Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.23])
+ by fmviesa002.fm.intel.com with ESMTP; 23 Jan 2026 15:34:25 -0800
+From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v3] drm/xe/ptl: Disable DCC on PTL
+Date: Fri, 23 Jan 2026 15:31:05 -0800
+Message-Id: <20260123233105.369575-1-vinay.belgaumkar@intel.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="z5Auc8WcnZko6xCp"
-Content-Disposition: inline
-In-Reply-To: <0952430293e438fc76bfd1a8d080716583edc41a.camel@intel.com>
-X-Cookie: HAIR TONICS, please!!
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,39 +65,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On PTL, the recommendation is to disable DCC(Duty Cycle Control) as
+it may cause some regressions due to added latencies. Upcoming GuC
+releases will disable DCC on PTL as well, but we need to force it in
+KMD so that this behavior is propagated to older kernels.
 
---z5Auc8WcnZko6xCp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+v2: Update commit message (Rodrigo)
+v3: Rebase
 
-On Fri, Jan 23, 2026 at 10:37:42PM +0000, Vivi, Rodrigo wrote:
+Fixes: 5cdb71d3b0db ("drm/xe/ptl: Add GuC FW definition for PTL")
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Vinay Belgaumkar<vinay.belgaumkar@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_pc.c | 34 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
 
-> Sorry, I thought your scripts were getting this already from the
-> MAINTAINERS file.
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 54702a0fd05b..5e5495a39a3c 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -1198,6 +1198,36 @@ int xe_guc_pc_set_power_profile(struct xe_guc_pc *pc, const char *buf)
+ 	return ret;
+ }
+ 
++static int pc_action_set_dcc(struct xe_guc_pc *pc, bool enable)
++{
++	int ret;
++
++	ret = pc_action_set_param(pc,
++				  SLPC_PARAM_TASK_ENABLE_DCC,
++				  enable);
++	if (!ret)
++		return pc_action_set_param(pc,
++					   SLPC_PARAM_TASK_DISABLE_DCC,
++					   !enable);
++	else
++		return ret;
++}
++
++static int pc_modify_defaults(struct xe_guc_pc *pc)
++{
++	struct xe_device *xe = pc_to_xe(pc);
++	struct xe_gt *gt = pc_to_gt(pc);
++	int ret = 0;
++
++	if (xe->info.platform == XE_PANTHERLAKE) {
++		ret = pc_action_set_dcc(pc, false);
++		if (unlikely(ret))
++			xe_gt_err(gt, "Failed to modify DCC default: %pe\n", ERR_PTR(ret));
++	}
++
++	return ret;
++}
++
+ /**
+  * xe_guc_pc_start - Start GuC's Power Conservation component
+  * @pc: Xe_GuC_PC instance
+@@ -1249,6 +1279,10 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
+ 			   ktime_ms_delta(ktime_get(), earlier));
+ 	}
+ 
++	ret = pc_modify_defaults(pc);
++	if (ret)
++		return ret;
++
+ 	ret = pc_init_freqs(pc);
+ 	if (ret)
+ 		return ret;
+-- 
+2.38.1
 
-> I was wonder here if we could make the intel-next feeding branch as
-> part of the MAINTAINERS file in a more broader fashion I mean. But
-> I can imagine that it would cause other different kinds of issues
-> for you... so feel free to just ignore me...
-
-It'd probably be possible to convince the scripting to put a redirection
-in to a specific MAINTAINERS entry...  I'll have a think but might take
-a while to come up with something usable so I wouldn't hold your breath.
-I worry about fragility with whatever key gets used to look up.
-
---z5Auc8WcnZko6xCp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAml0AmwACgkQJNaLcl1U
-h9ApbQf7BfztG1LH1QxjjO1kTk42ZTQYzjmjRdvKDDsCxtHWG32FumFTKZgHYLl9
-v242tbAe6wDK/+rD41/anKCnNBGaWaDURiXRjD4j5lccTlRzFSWoYHrobr+MGSs+
-Ub6B/V99KoVYI3OAmIXuYwylxvBzNV2e/n0hBp8Oxs98FrMRxnTw6mN0lG5qtOKR
-9tlZ+JuNFoytdFHvOmfg6hNQ3yy9uK0kMS0y6RQJh6Lm18vF+K+bE4VGy8Zy5BNa
-B8gIe4WYEIdIrZ6FecYKz2ZBm/W2nJOgucsWuYmTY13OxGNmCrdSTMinc6QG7eB1
-F3bmv3lGf5oiz3BW6agJbqFpV2oOZA==
-=D3vJ
------END PGP SIGNATURE-----
-
---z5Auc8WcnZko6xCp--
