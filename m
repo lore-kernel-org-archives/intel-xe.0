@@ -4,153 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4AEED74EC2
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Jan 2026 13:50:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F37CED74ED9
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Jan 2026 14:10:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 644F310EAF1;
-	Fri, 23 Jan 2026 13:50:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5C5110EAF9;
+	Fri, 23 Jan 2026 14:10:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="EvzMft5Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k7D5jdwM";
 	dkim-atps=neutral
-Received: from PH0PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11011000.outbound.protection.outlook.com [40.107.208.0])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4DF3810EAE9;
- Fri, 23 Jan 2026 13:50:55 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ORX5KQb+sUpI+3viBQ4yY6j1/Kca4/35sLpbMQE4IJeUYVdG3mQTHywkT/skGTQHRkGyqb4QWZ64aIdCDCdvH77oJv6XC7CraQN2Hlsw8SBwyezC4eQU3GxTy+WZgQ5uRN2F0FBWgJZG2XsEQgBcJt6/nGk0taSOFcUfqmC7Put89V3VsGsO+w1XdAlpZzPXUgKYFOfe/ia1KJs3EJIirkN902A4L+qUhsWkh1MX3LJHI56d8gUV7Z4azuolWKbjwrZEk3Z+cHeyB2oS9CtsvzyvhlEQEftJq8ayCtwhpdjWPsy/Nb5as9oIhqWbvtdC5cJB2NLSgc7qQOhN9jwLhw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Kwkv0CPCm+LrqMV02WPMv2mTlRAudQjYt+uuDKxdFjU=;
- b=UVYK2A6xpKqAGR5StexFNtdtnj+7Otj6ZsgVwRUzvBk2FacvmFCc7oC2y8FWO6IXV2md3VV7KFYeSH3geX36KLCk6YdVXG9qzdTnbAmgVi4gwslErB5AYbL4fHKwx6Lk+jFQL8Y+WBiiG5bFBckkFIV61nncxKv8ucmuNECuqlKTNeSPNyxo3ukELWIjsUvoaXkCo1s+InlQSM8PMYNXpkz4jUeuNCJ+W33z0maJeiQ3ma0v4pi+O/r1LM0d9dsG0f8A64e/nozqaHHUXiicfaoRT2dPZ0CdroPeAcJhaL9/Y/LdqYv09shzKuVtZFOTWo4ginVcISz93yHJha6ceg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Kwkv0CPCm+LrqMV02WPMv2mTlRAudQjYt+uuDKxdFjU=;
- b=EvzMft5YJ/df9prsh/xcQELZ0389OaP1QN7p+DHYbTYBLLW9FCN/HPzsy7gcRGekfcx2SMtBbvd5TAmA4KEoiPbeOMGz5P7IWLZYOl/ar3uE0o766B0PRRZyMevkS00WSPABZ5RmxE7jl0fTV3cuSDV/SWIyNpMXdzXJnDy7560AJC5kv1YMMxHQftWMXawAs8nycYQ+2RIIkkpWUte70/Du4aJUJC6nGIF1VfI46h2H40dVROqk9B1Q9K5SMJKXaLV5VGggfxtUT7wQQ0cWDDJb7UbAqNuf+ORVLwk3iDBGmt/clOkY3tfDCdN2cdvuZvjPNWdxAReSz+LIlwVAag==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from LV8PR12MB9620.namprd12.prod.outlook.com (2603:10b6:408:2a1::19)
- by CY3PR12MB9655.namprd12.prod.outlook.com (2603:10b6:930:100::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.11; Fri, 23 Jan
- 2026 13:50:51 +0000
-Received: from LV8PR12MB9620.namprd12.prod.outlook.com
- ([fe80::1b59:c8a2:4c00:8a2c]) by LV8PR12MB9620.namprd12.prod.outlook.com
- ([fe80::1b59:c8a2:4c00:8a2c%3]) with mapi id 15.20.9542.010; Fri, 23 Jan 2026
- 13:50:51 +0000
-Date: Fri, 23 Jan 2026 09:50:50 -0400
-From: Jason Gunthorpe <jgg@nvidia.com>
-To: Alistair Popple <apopple@nvidia.com>
-Cc: Zi Yan <ziy@nvidia.com>, Jordan Niethe <jniethe@nvidia.com>,
- linux-mm@kvack.org, balbirs@nvidia.com, matthew.brost@intel.com,
- akpm@linux-foundation.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, david@redhat.com,
- lorenzo.stoakes@oracle.com, lyude@redhat.com, dakr@kernel.org,
- airlied@gmail.com, simona@ffwll.ch, rcampbell@nvidia.com,
- mpenttil@redhat.com, willy@infradead.org,
- linuxppc-dev@lists.ozlabs.org, intel-xe@lists.freedesktop.org,
- Felix.Kuehling@amd.com
-Subject: Re: [PATCH v2 11/11] mm: Remove device private pages from the
- physical address space
-Message-ID: <20260123135050.GV1134360@nvidia.com>
-References: <20260107091823.68974-12-jniethe@nvidia.com>
- <36F96303-8FBB-4350-9472-52CC50BAB956@nvidia.com>
- <c9afedc6-f763-410f-b78b-522b98122f06@nvidia.com>
- <6C5F185E-BB12-4B01-8283-F2C956E84AA3@nvidia.com>
- <fd4b6553-3e9e-4829-a12f-51d29a5d7571@nvidia.com>
- <16770FCE-A248-4184-ABFC-94C02C0B30F3@nvidia.com>
- <sezye7d27h7pioazf4k3wfrdbradxovmdqyyp5slhljkmcnxf5@ckj3ujikhsnj>
- <DBBD65CA-A8F2-40AC-AFA0-FC95CBDB3DF5@nvidia.com>
- <0C16A79F-5A7B-4358-9806-7F78E7EA8EE6@nvidia.com>
- <l5jxxobpj6shwuuthsyxlzfnhs6dx4spvzcqxrycn4chtywniq@e2eaio4nhorq>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <l5jxxobpj6shwuuthsyxlzfnhs6dx4spvzcqxrycn4chtywniq@e2eaio4nhorq>
-X-ClientProxiedBy: MN2PR14CA0001.namprd14.prod.outlook.com
- (2603:10b6:208:23e::6) To LV8PR12MB9620.namprd12.prod.outlook.com
- (2603:10b6:408:2a1::19)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 717C910EAF8;
+ Fri, 23 Jan 2026 14:10:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769177408; x=1800713408;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=lry5Uj69UaszXP+pvCo6pyUz2K+FEVihynfNVOPmVZ4=;
+ b=k7D5jdwMRXGmYEfJEdvZM06G5UteEIn/TInk/vMn8pDQP3CqUw0ONlE/
+ aQEMxWqtvmBxLU5p9NsAGgMfOhbXU/666eGgYyNR8IA0KFB2FbeMH29yL
+ f0lkoN9xEpELCkoNo9ts4B09YEnsBsDjD087ziIbivahQULl1rFiRJbh7
+ 7aTv/VKkudjmXA6XrTwx6E3Zb7pWojMYGXqFwM1JvcGaFHii39b0WIPR1
+ LgrL5lTpOdm6yLsFGFqz1craIKvDFegrptGwABOCiAq1JwHl0SEaA7+jE
+ FrHrMfc4TivqL2oe2fcfT2/WyAI+9VCj3lGKjSBN78KdQjRHRysjEWpmo A==;
+X-CSE-ConnectionGUID: /EddrusgSaiABnl7tww+1g==
+X-CSE-MsgGUID: 4kzlD5d9RY6Ea90GjOAUIQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11680"; a="70490460"
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="70490460"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2026 06:10:08 -0800
+X-CSE-ConnectionGUID: 04g/ksv5RVqRpbe9c31Zuw==
+X-CSE-MsgGUID: A25+nd7iTieRnfFAR/kw3w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,248,1763452800"; d="scan'208";a="207378474"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.8])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Jan 2026 06:10:06 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Subject: Re: [PATCH i-g-t 1/7] lib/igt_device_scan: Don't print fake link
+ bandwidth attributes
+Date: Fri, 23 Jan 2026 15:10:03 +0100
+Message-ID: <13932403.uLZWGnKmhe@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <DFVX1OVYV0MD.35VZJM8STQSXN@intel.com>
+References: <20260121114656.1970684-9-janusz.krzysztofik@linux.intel.com>
+ <20260121114656.1970684-10-janusz.krzysztofik@linux.intel.com>
+ <DFVX1OVYV0MD.35VZJM8STQSXN@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV8PR12MB9620:EE_|CY3PR12MB9655:EE_
-X-MS-Office365-Filtering-Correlation-Id: fcc29591-dc62-40fd-74fd-08de5a866b85
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?A4wW0D44C/oxAKRogWI/ujFJVZ5ltMY6Hwv9i533fwU/IYuc0hvogf0Xp89F?=
- =?us-ascii?Q?16ovx/A0CCymnP8pNvDrjf3TBz/SXlFg/us6O1YlEbJ3e8gA25uxnIhqCLl/?=
- =?us-ascii?Q?/Qzk7SGZBlQetyeR0Rvkusa54TgC2NyBXtDuWRt4WtHQQZaOaguYnPBS8Isp?=
- =?us-ascii?Q?B7cUyK61uZwd5BHUsjzwfIuHM7oF9kbBMgOc+O5h+b0FHCLRdwua259YVA4w?=
- =?us-ascii?Q?gV+SDy5aheZLaAAujauhBbx5AEh3Wztt7FtGjnjwfC9w4c2R2r/6g5wRXC0r?=
- =?us-ascii?Q?9F76QufySD5yrAo4MqZ7uXX6SolaokBm18yWiSIqzmQ4UQbJmJeUnT0tByvn?=
- =?us-ascii?Q?BHpzHb6qO0He3LgeVSyQBpUSNbc3wudeEO3PrD3PwciU9bZtEyzWexg708Jc?=
- =?us-ascii?Q?jnP1x9WXfb9zA1STgR7cTH1GYMZkHHMsEferQxwat7mIerZ5TeY7pC3+zidE?=
- =?us-ascii?Q?vi8x2ownDAX9GaDgYJSZD8OS1QHvjD49H7zImGENyzWUVd9+LZV5rchvIB5a?=
- =?us-ascii?Q?UDHp+UThp+oWufc3F0BXaIh3aOJvCPW+G2kK/gHJYLZ3um9uACQ6dl1dA94T?=
- =?us-ascii?Q?osS/rsRQgMPgZywARHZxgAXfzHEq+vtbiXq0tjwC1GDPKcOsV5CwsYxeFBUv?=
- =?us-ascii?Q?f9E2LQVpCs8DFttH+iLh13P8lFHemM55WVOeD6xTTZ4sCTvB32r0aF4SyEDl?=
- =?us-ascii?Q?GDri7sGaLor87tHBbCziKaAROZ4KQwTbdIkUVy0YtmgVqAnvCFh4CdImZo4h?=
- =?us-ascii?Q?uY38wuPGAKaScBUiCkYUw5wofnMi5Rs+kqSH6LlJx4cBk2skFwstwv0Ptr5i?=
- =?us-ascii?Q?J8xVwn+/71jWwsttbcorUkg1PXEyj0uS/O2fXWXGfBdmwY9BfcrhNXe0aF59?=
- =?us-ascii?Q?5ejo9GZjqaV5rOITZoeE5uqKUqPtwurDhOqXer5cB4EwliIEGH+HZh8G8GhF?=
- =?us-ascii?Q?2Uvw4xRs0aJ8Sj0/xsXYlyD/Hj0qAWuQP/NjR/qZGc46EQZmsPF1rLFFZFnb?=
- =?us-ascii?Q?hmdZ0I8mz8nCJgLeLNINY7CLsyy00TVAxuhbeVKD4twx4g/XWg4ur4DEollQ?=
- =?us-ascii?Q?lEHI31tasCTh1B7vdm+mqzM3MGsBUucKeZca0ROZymJ+DPybREQDLDLqB6mB?=
- =?us-ascii?Q?JZyQnX1MoNYTOigZkUQcN3rAYUhsINs3MfhGHM8IQmvLtGdHE8uIcIjm2PU1?=
- =?us-ascii?Q?9Jurub3cWJ20JkeOBlNGcWr8Y91v1IhTH0ResGF41O+rgqurCe75YfA2zshg?=
- =?us-ascii?Q?EvMsWtbuABtySbth8TxD/RbTaR0vVlvyJzC5Eea2b15kuuw/i0ahy+6Vb/gz?=
- =?us-ascii?Q?d8m/qV+FvJ6t6CfAINgDrBsF6IaIQhvAlT4H1XicGb3O1IzVkYx7UP1lpUcd?=
- =?us-ascii?Q?vg6L+Vx6P5HjlgKS5fp9c1NMdNhLh/CyuuIEaJnaXJR9kw1cv2jcoTCJstBj?=
- =?us-ascii?Q?s7/NuC6Dxn4UAZm5BYXd2QqGASuE9eJ4bPq8Pu2xUjsDOmiN9e8GK1hjqfEV?=
- =?us-ascii?Q?js5152yil416hxUKiQa36GZ4gq3wNMhISObW3MFnZtiRuenku1LcKYKOylaV?=
- =?us-ascii?Q?aIJ84syENlqjOWhrj4c=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV8PR12MB9620.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(7416014)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?6n5bbpHPt/ZRXAxW/cRAjMitrJ6ClygL5kppuG9OHQ6EygfERfSxKMVcKnaX?=
- =?us-ascii?Q?EXAJ9Z6PTt+7vvNNqB+a5L5nA1xhnZhSP/DmepcJ+fdoZ1lYbm5jn5pqIuPN?=
- =?us-ascii?Q?Fh77mzDZRyt4LyNe0eYWAEjd+/NWV/htkko+aJc12VtlNcWmLJEIwT+TcpUy?=
- =?us-ascii?Q?EqzvrlvkcFpaLGkWFpsMwciaOR/XZ1eTi/lUfvef5gg9EpySurhxP1klqkep?=
- =?us-ascii?Q?9ytiUBjeSgiCeUF4umD+7AMQc+4++I9MKJvm1HNOroZ94/4S8Flk+qlKOIKM?=
- =?us-ascii?Q?j4wkLm9u03kjxRY0OizkKYpwue4H84XodEkJzh8hDGdTWP4minypilOaBobS?=
- =?us-ascii?Q?eOx7ZpPJVneetKQ1UxuR3aTP5l+sjKxxzpiaqIOZNFP1MZurYCH5NIvWaiF3?=
- =?us-ascii?Q?yYUCRH/j65owbS0Dod/nGgvctaGVT+cq5sCOFwoEOCL1+YpKXav20lM3KCmv?=
- =?us-ascii?Q?6Ubvru98qtXQR9CY5NyTihnhBq9OGmPbEA+xQ+KwOb6LogdVpZ5fiyPKU6DF?=
- =?us-ascii?Q?/6cFw/3sJOxRzfYgq0IVIWhcPsJOK20knximwCN2XYQ0SAoCBqhnPq6oBVkq?=
- =?us-ascii?Q?9yaNx+YO7ATDJ24w/nbUvllcxwjW+AkLHzfmxMBsIzFREuJVoELhuFZhKm/8?=
- =?us-ascii?Q?bH20imouET3K4uHD1R00XA2HkU4KhnM7Zuq/2J/gTnwkfc7818IF70xOjsXA?=
- =?us-ascii?Q?xYZBh5IWY97ffjwIac0hOq4G3IlK5SHa6q/kiehpzrE4jq/4RdjtDorErXrl?=
- =?us-ascii?Q?vRc3t5wcqQBBpcHCBh4TXzwjbMnPMHranGJzB3kKnwWXXlzD+m2oiiJYh8Z+?=
- =?us-ascii?Q?uvdrodRxJluwG2pQ0j3mYInlAfwD+pAfcls2dy48irnXdopiF4uNDq7xbpdg?=
- =?us-ascii?Q?ddi0vRbNJ/WnEJ71aUtjBJPVcY0As0ECUj4oU0llYSmLv5aa9rtP+sJ+hY9z?=
- =?us-ascii?Q?QHiFyOky+ai+Fb0CjBUXiFHOR8m+2VcQGk5/mUdcBNLfRV0tGjM5NAkSYO38?=
- =?us-ascii?Q?ncAxVK1wrpL+V6ehVQWeSE6GTCquOv4EuogoTw+wOoksOnn3D1gE6jzHFh0U?=
- =?us-ascii?Q?NxpamDRX9hYgqEqJNbJ4mRd1/LLncCO+RaNJU4Mnk5N/mLvaNIb/q0+61iim?=
- =?us-ascii?Q?HqzV5FggZSYTUEFBLraCdwoYHQb/UgyBRrqHv6TOVLBle+WPNYXJjU556WQV?=
- =?us-ascii?Q?HV/ORRRRbgjkmvlS1+hZ3iuY25EVVTp0SZUhxrOPZOiOGDahQ58c4wfIxB6t?=
- =?us-ascii?Q?PufVzs0BfRUPQxjAntD1gxsk/rQ0+JXmI7QyBkzWO74P/i1dFV/0wTnp43OG?=
- =?us-ascii?Q?nJtQvJ8E7N/1LALj+lPePNyGisA3czpxZR2kivDJpZatLyjy98CN/oH41xoq?=
- =?us-ascii?Q?v4R3uVRTYWI1rB+fCc1JR9FMpJDX6xIjiVwDlChA1O8jApsQd6CjnaoW4rqu?=
- =?us-ascii?Q?+K1zF9mWcsQq//DdDH+lOeaBvZgWkjVPCJyAIPA5lPrwwWJBDSCf05VXlR/u?=
- =?us-ascii?Q?wP4lCle2VLx45LOMRQYqXTH8C7faBTS2KQms4nQBBjc17WeF7cf70P57BHCx?=
- =?us-ascii?Q?HP3zntQ80Ikt9pfd/+f7cgFv2BBYM/yQBDNPrfHzPIrjZDIxViX4eCmDs9Tq?=
- =?us-ascii?Q?JyADniIUhyZrF/ghdob41Ecbex8QP9lwwKxRctsEdOUjPkmHosvUqUAi2uT2?=
- =?us-ascii?Q?XRuuzlioMzCwody3epeVaLh0x3hdCVvUn+6WKR1pBaNTEXxIOg9aJ3T/FKLu?=
- =?us-ascii?Q?p0cw5dzvQg=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fcc29591-dc62-40fd-74fd-08de5a866b85
-X-MS-Exchange-CrossTenant-AuthSource: LV8PR12MB9620.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2026 13:50:51.1056 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: o0Dcu+lYo9RzqG09W5FZTgTlAgHF0BbKGUhWGGo1ryzJTCTzDCMQ+18J/9Hb54CE
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY3PR12MB9655
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,40 +77,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jan 23, 2026 at 04:38:49PM +1100, Alistair Popple wrote:
-> > >> We need to be a bit careful by what we mean when we say "HMM" in the kernel.
-> > >>
-> > >> Specifically MIGRATE_PFN_SHIFT is used with migrate_vma/migrate_device, which
-> > >> is the migration half of "HMM" which does depend on CONFIG_DEVICE_MIGRATION or
-> > >> really just CONFIG_ZONE_DEVICE making it somewhat arch specific.
-> > >>
-> > >> However hmm_range_fault() does something similar - see the definition of
-> > >> hmm_pfn_flags - it actually steals the top 11 bits of a pfn for flags, and it is
-> > >> not architecture specific. It only depends on CONFIG_MMU.
-> > >
-> > > Oh, that is hacky. But are HMM PFNs with any flag exposed to code outside HMM?
-> > > Currently, device private needs to reserve PFNs for struct page, so I assume
-> > > only the reserved PFNs are seen by outsiders. Otherwise, when outsiders see
-> > > a HMM PFN with a flag, pfn_to_page() on such a PFN will read non exist
-> > > struct page, right?
-> 
-> Any user of hmm_range_fault() would be exposed to an issue - most users of
-> hmm_range_fault() use it to grab a PFN (ie. physical address) to map into some
-> remote page table. So potentially if some important bit in the PFN is dropped
-> that could potentially result in users mapping the wrong physical address or
-> page.
+Hi Sebastian,
 
-Trim the quotes guys..
+Thanks for looking at this.
 
-hmm is arguably returning phys_addr_t >> PAGE_SHIFT. This is a lossless
-translation because everything is aligned, it isn't hacky.
+On Friday, 23 January 2026 12:01:54 CET Sebastian Brzezinka wrote:
+> On Wed Jan 21, 2026 at 12:42 PM CET, Janusz Krzysztofik wrote:
+> > Users of Intel discrete graphics adapters are confused with fake
+> > information on PCIe link bandwidth (speed and size) of their GPU devices
+> > reported by tools like lspci or lsgpu.  That fake information is
+> > unfortunately provided by hardware, Linux PCI subsystem just exposes it
+> > untouched to upper layers, including userspace via sysfs, and userspace
+> > tools just report those fake values.
+> >
+> > While we can't do much about the kernel side or general purpose userspa=
+ce
+> > tools like lspci, we can try to address the issue with our lsgpu utilit=
+y.
+> >
+> > Correct link bandwidth attributes of a discrete GPU card can be obtained
+> > from the kernel by looking not at the PCI device of the GPU itself, only
+> > at a PCIe upstream port of the card's PCI bridge.  For integrity with
+> > content of the sysfs and with output from the other tools, we are not
+> > going to replace the fake information with that from the bridge upstream
+> > port, only show that port and its attributes themselves while listing
+> > devices.
+> >
+> > Since the tool uses our udev based igt_device_scan library for identify=
+ing
+> > GPU devices and printing their properties and attributes, modifications
+> > that we need apply to that library.
+> >
+> > As a first step, exclude the fake data from being printed.
+> >
+> > Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/10753
+> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> > ---
+> >  lib/igt_device_scan.c | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> >
+> > diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
+> > index abd8ca209e..7753262a53 100644
+> > --- a/lib/igt_device_scan.c
+> > +++ b/lib/igt_device_scan.c
+> > @@ -613,6 +613,14 @@ static void dump_props_and_attrs(const struct igt_=
+device *dev)
+> > =20
+> >  	printf("\n[attributes]\n");
+> >  	igt_map_foreach(dev->attrs_map, entry) {
+> > +		/* omit fake link bandwidth attributes */
+> > +		if (dev->dev_type =3D=3D DEVTYPE_DISCRETE &&
+> > +		    (!strcmp(entry->key, "max_link_speed") ||
+> > +		     !strcmp(entry->key, "max_link_width") ||
+> > +		     !strcmp(entry->key, "current_link_speed") ||
+> > +		     !strcmp(entry->key, "current_link_width")))
+> > +			continue;
+> > +
+> Nit: This might be a bit confusing now that the return value depends on D=
+EVTYPE_DISCRETE,
+> especially for a library. I know it=E2=80=99s extra work to keep it gener=
+ic, but maybe we could
+> move the check to its own function just to clean things up a bit?
+>=20
+>=20
 
-The value it returns is not a "pfn", it is a hmm structure that has to
-be decoded to something else using a hmm helper function.
+OK, so you say it's not clear for someone reading this why the exclusion of=
+=20
+the fake data from print output is limited to discrete graphics adapter. =20
+Simply because integrated graphics devices don't provide any fake values, t=
+hey=20
+respond with "unknown" which I see no reason to also remove from the output.
 
-I think we take a number of liberties going between pte, phys_addr_t,
-pfn. If there are arches that use a special encoding for the mm PFN
-then range_fault would need to call converter functions to get to/from
-phys_addr_t.
+Since I don't understand how moving that piece of code to a separate functi=
+on=20
+could make things more clear, I think I'll better provide the missing detai=
+ls=20
+about acceptable behavior of integrated devices to my commit description an=
+d,=20
+still better, extend the in-line comment above that piece of code with that=
+=20
+information.  What do you think?
 
-Jason
+Thanks,
+Janusz
+
+
