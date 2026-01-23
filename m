@@ -4,174 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10EACD6CFDC
-	for <intel-xe@archiver.kernel.org>; Fri, 23 Jan 2026 06:25:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8DABD6CFDC
+	for <intel-xe@archiver.kernel.org>; Fri, 23 Jan 2026 06:30:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC78510EA49;
-	Fri, 23 Jan 2026 06:25:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="mqNFJNWU";
-	dkim-atps=neutral
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013000.outbound.protection.outlook.com
- [40.93.196.0])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 96E5B10EA49;
- Fri, 23 Jan 2026 06:25:23 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kSRNZtWRSaXEg7AjA8zAEHsaxGhHZkjaRCTH4bsrTXm6auHuMwrQKDyw1opdgyav1CUs4xDRisy+2rjYUknZ4fHGRzhHGut6OHk0Qpz7cTHsYD5xqXM0MxH0BxkwfAI/JpWJJ73WcdJhFRsswabw3c3OQA1+tKm5M9t1spoEFu1NtBh853PvaOLrTN8hwZFRoMbQTk+zH5/xbRF65ABwYFGrbRWHcPHcH4ZilvAU5P+cjkKmWyqLRRiu9wLaXOO1okgxwtEgps5cvkwL6+dYs5nebuWNBl5FJgRH+5YGhbRwVcRpBDcQ7IGb4FwmxMsip0dxwqcWJeJmv2YLG8jZrg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=i5J1rpiHRpfCQc/BFCNb8Fngc4dZK5qasWF65UrhwFc=;
- b=JBdzCiULswg80YeT7bGLsnph+5TX5v/kiIHdsYKIxXlwRouhwgD0UUdIdfemdjYWGTXO81VS/vbD4err5Pxkzg8qubzj0o60OgTs+IxRqRmgwwZdB81CBEUAKaZEAAIa1p7AccPrHUgUeuAOBKfBIEZ4i2HR3Xn4ca22EQTCcKeiwiKXuGHdOfVJp95t3xDwJmB7cxHW/Ukd3CD6yOiQn7MnS/pkaVbvdsGs2K9Ga4Evcxb4BIH3C62aRBQUpJ6z5l4mOYrvwaisRWGau/9CrwbB607W9x7k2BsU4Oa2YOafDbKkakg/GoZuXLFeGn3GslB3s5c9nomZAOquKqlejw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=i5J1rpiHRpfCQc/BFCNb8Fngc4dZK5qasWF65UrhwFc=;
- b=mqNFJNWUSsJQlRwuJo0UbYnpmSpYSOJvmle3hWKJnXLZ1w06wWvH9l48FAxyTFDPOSbPuXEFDmkihaqTEzn48m9rZAKJPV1cq4GW3+LeZSnnC1449S43Qc0YZar9nBSC58oEv8hYjRl4xB6eQUwsmjvqxu0lNoa7YJdOG+dIihrCixHzD2P7OWABIHn1/gdTJYvMIUWjjwaFTgpHvqodOpMbtzGVDHj2u3n1gteVc9rR1xx76h3ufTofxTBz012B9bsE3hVvDjR4hggw2wGPAnlbGqsd+ClYUv5MA8+PybvUyC9fOOmW6FYEEH4oHTSxi1aPWXzOA3Qey9jwPx3KgA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DM4PR12MB9072.namprd12.prod.outlook.com (2603:10b6:8:be::6) by
- SJ5PPF01781787B.namprd12.prod.outlook.com (2603:10b6:a0f:fc02::986)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.9; Fri, 23 Jan
- 2026 06:25:19 +0000
-Received: from DM4PR12MB9072.namprd12.prod.outlook.com
- ([fe80::9e49:782:8e98:1ff1]) by DM4PR12MB9072.namprd12.prod.outlook.com
- ([fe80::9e49:782:8e98:1ff1%5]) with mapi id 15.20.9542.010; Fri, 23 Jan 2026
- 06:25:19 +0000
-Message-ID: <b2b81b99-29ee-4122-99ef-4a6094f4ec5c@nvidia.com>
-Date: Fri, 23 Jan 2026 17:25:08 +1100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/11] Remove device private pages from physical
- address space
-From: Jordan Niethe <jniethe@nvidia.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: linux-mm@kvack.org, balbirs@nvidia.com, akpm@linux-foundation.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- david@redhat.com, ziy@nvidia.com, apopple@nvidia.com,
- lorenzo.stoakes@oracle.com, lyude@redhat.com, dakr@kernel.org,
- airlied@gmail.com, simona@ffwll.ch, rcampbell@nvidia.com,
- mpenttil@redhat.com, jgg@nvidia.com, willy@infradead.org,
- linuxppc-dev@lists.ozlabs.org, intel-xe@lists.freedesktop.org, jgg@ziepe.ca,
- Felix.Kuehling@amd.com
-References: <20260107091823.68974-1-jniethe@nvidia.com>
- <aV6nvCw2ugAbSpFL@lstrano-desk.jf.intel.com>
- <3586d8f1-a25f-4087-a987-162ccd97c25f@nvidia.com>
- <6a911224-05e5-45ee-8008-e36ef35cbc7b@nvidia.com>
- <eb45fb36-4f0b-4a83-8852-abac3205a988@nvidia.com>
- <aWBMbGQApg81Kxba@lstrano-desk.jf.intel.com>
- <ad2a0fe8-6d00-46a8-8f4c-fd7fb6aac8b1@nvidia.com>
- <aWCerW4QP0t7CrC8@lstrano-desk.jf.intel.com>
- <f295d9ba-bbef-4a11-95b5-c468f08f992c@nvidia.com>
-Content-Language: en-US
-In-Reply-To: <f295d9ba-bbef-4a11-95b5-c468f08f992c@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BY5PR04CA0030.namprd04.prod.outlook.com
- (2603:10b6:a03:1d0::40) To DM4PR12MB9072.namprd12.prod.outlook.com
- (2603:10b6:8:be::6)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58BE810EA51;
+	Fri, 23 Jan 2026 06:30:12 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69B2210E10A;
+ Fri, 23 Jan 2026 06:30:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB9072:EE_|SJ5PPF01781787B:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2a110c9b-0436-49a8-59d6-08de5a482e45
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|7416014|13003099007; 
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?UDljOERLc3ptS1p2RjdLWGhDVDZ6QVp0eGxWNzRESC9ZSlBjZDRnbzY4eDdj?=
- =?utf-8?B?RE9uV2VSMUEzaFpSMGpmQWg5dFl6YzZmeUdIQVRSYUZFaW5CZURyU3hzWUtM?=
- =?utf-8?B?Vmd3ZzE5UDFYQU5FRmU3RE5PditmT01NVGRXWVpyYlo2ZHVJamNmcnU1S2k2?=
- =?utf-8?B?WGQrVUlwQ1Z1bFJCTGZVZmU2UDBYb1JkcDZPeW5uSTJPNG5ORDYwNW5YOWNZ?=
- =?utf-8?B?WWpMYVlwSGphKzBlNUZBZXhYNU9ESVRoK01aSnV4VUI3bWFhTGZlOEQ1V05T?=
- =?utf-8?B?MGhOY1RYeXBNbG9kRDhpVW83UGw4c3pYcEQvZ3dmcWd5YnJMaXpDa01SM08z?=
- =?utf-8?B?VExZczQyZ0U2cjJoWFllT1BieGVDblVLYXhoV1c3a3VTQStEdnpqTnlBRTJG?=
- =?utf-8?B?S3RQdEQ5bTBpSGZxM2RvdFcyRlgrK3N4VzRlR0gzUkcrLzNNcy9HWVhtQWNM?=
- =?utf-8?B?ZG9oZVllRDRJUEdMYkgyamhaM205cWk5dVlkWEg5cnEzK094ck1DTm9hQldj?=
- =?utf-8?B?VnAvYW5zLy80Q2EybUp5NUkydTZMdDBqRDdsQ2h1MGZWZUNHaHpvaHNJTnFC?=
- =?utf-8?B?bXZ1UTVRWVRlaXNPYVptdU1aMXZlOWZvdlJ2UUJJZjB0MUU5OGJ5WlptVENi?=
- =?utf-8?B?YldUb1ZEdHNBWEF0YUVETE9reDFvbWkrVytqOXpMOWp5WlJxZVVNdmtkb09P?=
- =?utf-8?B?d0FsWklKcnQ3NFRLclZPUXBSaXNOZDByQXdUTS9DL010MFhUVnFWaWI0K1BW?=
- =?utf-8?B?UnZQUnl2QmYrSzUyMSs5QUord0FLY0pmWndHMC9wV3dnT0dCK056MjNBV3F5?=
- =?utf-8?B?V1QwZEJIcnMwU3Q3aG9VU0F0NmdseFJCeTFtMHFwS2hkei9HU0FTSUw3SWxS?=
- =?utf-8?B?VytubmF1cHYrdktQZlNSVStHL1dLRDNOdmJ4UHpmUitONUI4dUJDQlNnVDRZ?=
- =?utf-8?B?SEtOdVlzM2pXbmpvVG5zY1RLTnorZTE3cHlCVW9sbWFUNEgvT1RWdUpyZ05p?=
- =?utf-8?B?S3lMWW1TMEUvTjQ3bzZzd000VkV2ZlJOYlA1TU9IV1dRMDh5UEEvYVFwZzY5?=
- =?utf-8?B?TGRYZnRmTnNLenNRRksrVnZUMXppQ2FkaUNWd0REclk1dzFDZVo2b3Ftblhz?=
- =?utf-8?B?NC9qOFFTZjE5OEdyNzREVWJlVEVydXdlR2pIbFU1VzJUbXpxZ3ZlY29na2h5?=
- =?utf-8?B?RmsvQ0ZlMmdLWnFQK1JvTVlWZm5tTHZjVWo5MFFxK1ludkw5WkcwUlV2NkZZ?=
- =?utf-8?B?RVV1TzhudjVISUpQeXdpaGh3anNrYktCWU5yTVphOVBiQlMvS3JFd3VGdmJ2?=
- =?utf-8?B?WGRWb0JGOVZSS096RkVFdXNySFY3NzZTTmRwUFp2WFZtVTlMSVRoQVI1MThn?=
- =?utf-8?B?d0JKYzduQjFBZWdwQ05PbW5RRE0wMkhZU1pWdzFoblFhMWhnWENsWmhoM2o4?=
- =?utf-8?B?dVJTVkI4am44WEowSWF4aVdqZktmWGFzN3B6b2NDc3NhTzhQS241Y3NSV0Vs?=
- =?utf-8?B?MmZkMC94MHdRK1JsWE85VURhdGVnSG8vOHdISFFpNG5VWkpmYkduUWN4MjdH?=
- =?utf-8?B?dGdvaGJTbmNvMmt5MUF6VVNzR202TFRXQS93ZVJ5SGY2dWpGMFdUVzJoVE5y?=
- =?utf-8?B?ZE03OEtGWThHbjg0VDdja1M5OEhWWWFCSjUwb2NEMHpBZTRBSUNpb2RpdGNt?=
- =?utf-8?B?dzFHZHptc0krSVgyc0NpNmhmVmxoUDBhUHZiaGRabVBDSmFRNVFYTWliY0hh?=
- =?utf-8?B?UmZUUUd3NWE3bFJ0RU5qK1BtWXVybHVhMmwxM3FBaVZtMDFIR0xQY1VhQzM0?=
- =?utf-8?B?cjZrVjhUZm1yYnBZZjJtS1NwTVpxb3JReHRKbS9jSDV1Z2dvVlp6YzJWZjdY?=
- =?utf-8?B?TFR5cytkQzNFSEorQWpRZ1BYd2JlLzlyZmNDVVprTjNiakxyZjdHajczelRU?=
- =?utf-8?B?RlBOdzJzem05Nll4d1l3TzNKUjdoWXRIOFFUZFFOdXZBQnYxSFdzejdoRHZ4?=
- =?utf-8?B?dnQzUDRXNEpWTHBEZm50WlphZEtTbnAzcEZ5bUprQW8yUGtlbS92c3QzcGVY?=
- =?utf-8?B?QjhlNzNXM0lMR2JwbnpmVlltRjJVQ3dGOVJ6V09UZDUvR3R6d1hpVnd3eUxu?=
- =?utf-8?Q?Wlm0=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB9072.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(7416014)(13003099007); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cXN1YlpFQUtJNG9nQjZnOTI5c0pqNkhnNGE0VG05a0pOWjROeUtoaE42ZEx6?=
- =?utf-8?B?Yk1pYzhwWXhHYm9yQnBGQUFmY2NISVFCcFlwSVFDMU1PUkI4WG1KYW1lVlg5?=
- =?utf-8?B?UjJFTjJSckQ5ZWRSWnZQbld2M3h0YU83RTZaREU0bW5KWGZtcXROK09KWW5E?=
- =?utf-8?B?ZlFHRnE2dFNXUWlFVGRkYk1hZm50V2N6NG10TzdGdTRuMXE3dWNVZmtGaXM0?=
- =?utf-8?B?NXBObS8xeVJYVEl1bFNod2QwYnlpOVhaeVlkR0E4OXQzc2liT2ZpN1U4NWtn?=
- =?utf-8?B?ZGR4TEVoeWJLN2RqUGpzZDFFUWNBR2FqaytLTHkvZDhuUWErTGVBaTZnN1Zk?=
- =?utf-8?B?eVpxY2gwSndjekI3RWFuN2hSb1Y5bFdmc0taVmRNNmMxM1NEcjVJOE9sWXJ3?=
- =?utf-8?B?am1lUTFzNTNuL3BqWGljOUx0d0V5UXF2OUtHMTNFMC9KZllVdDl6VWRFYzR5?=
- =?utf-8?B?a1NvN1MrUHNkVFR1R256M3J0UWZCU2x3VGw3VkthK3d6OGw2N0xQRzZ5QkpZ?=
- =?utf-8?B?Rm9uUXB4TkJzcVo1bmZ5WWorNEtOTU1MZnNwd3BHYVpiZS8ycFUyN2h3dmQx?=
- =?utf-8?B?SFdFZHBJMXd2bTQzeFBOWVYrSFNqckxEbkpUY05oWUlzZitRK2NmRFZ4YWRh?=
- =?utf-8?B?UGVuSTI2WVZwdmFZTDJNMVVKZG1ON2hub0lndUhDS2piY3hVaWRnenNKVlY3?=
- =?utf-8?B?dWNMSmRjRkZONmVCZ2doY2d2Wkx6TVROaloxNFJVK1lqblAwak5iRnRqNkE5?=
- =?utf-8?B?RjdLc1oxeENrZDVmL1lmV3o4UFpRclQrS0J4NUs3azZFVnVZOGhod0NIdnVx?=
- =?utf-8?B?UkNmRXN2OUdGNWpWZkdHYXFVVmxLaTlocmFCSFFHdzZWTWU1bjE3TkRMRlVy?=
- =?utf-8?B?Vm1xTm1WODNhNjhWKzQxcmZZK3ZQcjQraWVYVDM2TlRNaEZxeVZaazFxdUxK?=
- =?utf-8?B?a3p5bE82d1FsRTI0ditjWnc3SjA1K0phVlV1MURqbjNDZnpad3JUODdubU5B?=
- =?utf-8?B?QXpNc1dzR0haN2ZCcVF6OXZ4WEMwSDloU3RwRjdFT0J4dEtnVy83SEw1a3Fh?=
- =?utf-8?B?djlXNEswZGtFRENhb0gvemxadmw0Mi9KU2xCZlY3YXlKQWhPWXIzTUFCZWdz?=
- =?utf-8?B?SEZPOUJzeHIxazk4aEFCV1lhQWx6MEV6Vlhkc05vYU5mQnhMQlJDUXZVR2kw?=
- =?utf-8?B?WEF2ZWZQNW43UmlJZVVpQ1o5L3JzL2IydnJMZjhaZXZPZEJYcUsweHFVWlJh?=
- =?utf-8?B?K0NqS1RNNmdiK3g4TW9PR2xRbHVMVDlLZlRpVGVUNmRsamRMOUNDYnJzNTZS?=
- =?utf-8?B?bGdlRHdWWEcxRnVGOHNQdUNLdEx3dnRrRDFtRmxhaHFrNEk0Nlg4T3EwYnRM?=
- =?utf-8?B?U0p4K1Y0VlMyUU41NTl0R1pyMmp3RGs3cUFJRkE0aEk0S2dOVE9mMXRackRX?=
- =?utf-8?B?cUwycm1kNWRPQzhVcW1yMUsvRjBHcEFKVk9HSGNMZGZCcXV1UXBnQkpuTGpC?=
- =?utf-8?B?SS9NcDNSOGx2Z0lpTVJ5d0daR0JCcVpndzZ0dUNPMTlYaHQwMDlWaGZTeDlQ?=
- =?utf-8?B?QUlLSHdDanp1MWpnbTczMmliVUhDL2ZyQVZVMWo2Q1pWdHpoT0cxbzNQWEds?=
- =?utf-8?B?bytKdmg5TnNLQ2hhM0x3NnFoUnp6clpLMlNhekF3dWhqa3M0V3l1OVZmeTVN?=
- =?utf-8?B?S1JZSFBBNy9FMTBWdXFqekxSL3g0bjJZd0RkWkQ1b3dZcWJPV09aNlZ3Wm4y?=
- =?utf-8?B?Vld2a2gyZGo3ay9Ja1hkMXlURjlxdldxOHpoaDZNWit4VWJ0djRqemdhc2RZ?=
- =?utf-8?B?Ly9NSU0zNFBWRldIanNSTWNTODc3Zi9aVXJuaUNIcFVHVmlub1ZxbjFzY3lu?=
- =?utf-8?B?Sk1LN2tzNmhPUGF0K0FieHJlU2hZN0FGTUlTakJweXFmYkNIbEFYd0cwb0JN?=
- =?utf-8?B?cXlRV2xPSlpRSXcwQTFxSTE3UDhVenBqNDBraXAvQWNoWUo2SWJFOWcvSWd3?=
- =?utf-8?B?dENqeUx0NXAxNHFkK2ZUcEdlQ1VrVVp0dE80d0kzSTd2OG5VTk1Qck03TFp6?=
- =?utf-8?B?cXNSTmY0bnpERDBrZzRZQ2RBQW4rUVVvTy9SWXdjSWdUUUhsREpMb0xPNGhV?=
- =?utf-8?B?TXpjYWZZZlFtUTBEbTU3bWlUSEpudUlPUEkxOWJRcUFnVGZhR1Bwd1NUelhC?=
- =?utf-8?B?THFEUHlHZEErYllQeTl2cGVCZXZYOTFRVmljZ1hJaWc4dXFvSkpMYndPclli?=
- =?utf-8?B?U3VlWDdSWm8xTDhXMXRmVkkvcStPYjNySDNlbVRCK2E1L24ydStRaTB2RDFi?=
- =?utf-8?B?emxJT1ZtT0hYVlVyTHZpa0hoVThWU2FjL0RVT2lHaUx3T1FTdUU3Zz09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2a110c9b-0436-49a8-59d6-08de5a482e45
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB9072.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Jan 2026 06:25:19.5857 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: HV48n2fcwMpSoztZv48oFpyWzyT5QaW6ZxWUZ0IOD428dfbA7RhrtDSp4DFBbAW4f5WNmoGQdPUEkSmAa2Rwmw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF01781787B
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Remove_device_private_pag?=
+ =?utf-8?q?es_from_physical_address_space_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jordan Niethe" <jniethe@nvidia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 23 Jan 2026 06:30:11 -0000
+Message-ID: <176914981143.186240.6543490593013952308@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260123062309.23090-1-jniethe@nvidia.com>
+In-Reply-To: <20260123062309.23090-1-jniethe@nvidia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -183,133 +36,341 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+== Series Details ==
 
-On 14/1/26 16:41, Jordan Niethe wrote:
-> Hi,
-> 
-> On 9/1/26 17:22, Matthew Brost wrote:
->> On Fri, Jan 09, 2026 at 12:27:50PM +1100, Jordan Niethe wrote:
->>> Hi
->>> On 9/1/26 11:31, Matthew Brost wrote:
->>>> On Fri, Jan 09, 2026 at 11:01:13AM +1100, Jordan Niethe wrote:
->>>>> Hi,
->>>>>
->>>>> On 8/1/26 16:42, Jordan Niethe wrote:
->>>>>> Hi,
->>>>>>
->>>>>> On 8/1/26 13:25, Jordan Niethe wrote:
->>>>>>> Hi,
->>>>>>>
->>>>>>> On 8/1/26 05:36, Matthew Brost wrote:
->>>>>>>>
->>>>>>>> Thanks for the series. For some reason Intel's CI couldn't apply this
->>>>>>>> series to drm-tip to get results [1]. I'll manually apply this
->>>>>>>> and run all
->>>>>>>> our SVM tests and get back you on results + review the changes here. For
->>>>>>>> future reference if you want to use our CI system, the series must apply
->>>>>>>> to drm-tip, feel free to rebase this series and just send to intel-xe
->>>>>>>> list if you want CI
->>>>>>>
->>>>>>> Thanks, I'll rebase on drm-tip and send to the intel-xe list.
->>>>>>
->>>>>> For reference the rebase on drm-tip on the intel-xe list:
->>>>>>
->>>>>> https://patchwork.freedesktop.org/series/159738/
->>>>>>
->>>>>> Will watch the CI results.
->>>>>
->>>>> The series causes some failures in the intel-xe tests:
->>>>> https://patchwork.freedesktop.org/series/159738/#rev4
->>>>>
->>>>> Working through the failures now.
->>>>>
->>>>
->>>> Yea, I saw the failures. I haven't had time look at the patches on my
->>>> end quite yet. Scrabling to get a few things in 6.20/7.0 PR, so I may
->>>> not have bandwidth to look in depth until mid next week but digging is
->>>> on my TODO list.
->>>
->>> Sure, that's completely fine. The failures seem pretty directly related to
->>> the
->>> series so I think I'll be able to make good progress.
->>>
->>> For example https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159738v4/bat-bmg-2/igt@xe_evict@evict-beng-small.html
->>>
->>> It looks like I missed that xe_pagemap_destroy_work() needs to be updated to
->>> remove the call to devm_release_mem_region() now we are no longer reserving
->>> a mem
->>> region.
->>
->> +1
->>
->> So this is the one I’d be most concerned about [1].
->> xe_exec_system_allocator is our SVM test, which does almost all the
->> ridiculous things possible in user space to stress SVM. It’s blowing up
->> in the core MM—but the source of the bug could be anywhere (e.g., Xe
->> SVM, GPU SVM, migrate device layer, or core MM). I’ll try to help when I
->> have bandwidth.
->>
->> Matt
->>
->> [1] https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159738v4/shard-bmg-9/igt@xe_exec_system_allocator@threads-many-large-execqueues-free-nomemset.html
-> 
-> A similar fault in lruvec_stat_mod_folio can be repro'd if
-> memremap_device_private_pagemap() is called with NUMA_NO_NODE instead of (say)
-> numa_node_id() for the nid parameter.
-> 
-> The xe_svm driver uses devm_memremap_device_private_pagemap() which uses
-> dev_to_node() for the nid parameter. Suspect this is causing something similar
-> to happen.
-> 
-> When memremap_pages() calls pagemap_range() we have the following logic:
-> 
->          if (nid < 0)
->                  nid = numa_mem_id();
-> 
-> I think we might need to add this to memremap_device_private_pagemap() to handle
-> the NUMA_NO_NODE case. Still confirming.
+Series: Remove device private pages from physical address space (rev5)
+URL   : https://patchwork.freedesktop.org/series/159738/
+State : warning
 
-This was the problem, fixed in v3.
+== Summary ==
 
-> 
-> Thanks,
-> Jordan.
-> 
->>
->>>
->>>
->>> Thanks,
->>> Jordan.
->>>
->>>>
->>>> Matt
->>>>
->>>>> Thanks,
->>>>> Jordan.
->>>>>
->>>>>>
->>>>>> Thanks,
->>>>>> Jordan.
->>>>>>
->>>>>>>
->>>>>>> Jordan.
->>>>>>>
->>>>>>>>
->>>>>>>> I was also wondering if Nvidia could help review one our core MM patches
->>>>>>>> [2] which is gating enabling 2M device pages too?
->>>>>>>>
->>>>>>>> Matt
->>>>>>>>
->>>>>>>> [1] https://patchwork.freedesktop.org/series/159738/
->>>>>>>> [2] https://patchwork.freedesktop.org/patch/694775/?series=159119&rev=1
->>>>>>>
->>>>>>>
->>>>>>
->>>>>
->>>
-> 
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1802d11c036e59160f648898603b993d191deff9
+Author: Jordan Niethe <jniethe@nvidia.com>
+Date:   Fri Jan 23 17:23:09 2026 +1100
+
+    mm: Remove device private pages from the physical address space
+    
+    Currently when creating device private struct pages, the first step is
+    to use request_free_mem_region() to get a range of physical address
+    space large enough to represent the devices memory. This allocated
+    physical address range is then remapped as device private memory using
+    memremap_pages().
+    
+    Needing allocation of physical address space has some problems:
+    
+      1) There may be insufficient physical address space to represent the
+         device memory. KASLR reducing the physical address space and VM
+         configurations with limited physical address space increase the
+         likelihood of hitting this especially as device memory increases. This
+         has been observed to prevent device private from being initialized.
+    
+      2) Attempting to add the device private pages to the linear map at
+         addresses beyond the actual physical memory causes issues on
+         architectures like aarch64 meaning the feature does not work there.
+    
+    Instead of using the physical address space, introduce a device private
+    address space and allocate devices regions from there to represent the
+    device private pages.
+    
+    Introduce a new interface memremap_device_private_pagemap() that
+    allocates a requested amount of device private address space and creates
+    the necessary device private pages.
+    
+    To support this new interface, struct dev_pagemap needs some changes:
+    
+      - Add a new dev_pagemap::nr_pages field as an input parameter.
+      - Add a new dev_pagemap::pages array to store the device
+        private pages.
+    
+    When using memremap_device_private_pagemap(), rather then passing in
+    dev_pagemap::ranges[dev_pagemap::nr_ranges] of physical address space to
+    be remapped, dev_pagemap::nr_ranges will always be 1, and the device
+    private range that is reserved is returned in dev_pagemap::range.
+    
+    Forbid calling memremap_pages() with dev_pagemap::ranges::type =
+    MEMORY_DEVICE_PRIVATE.
+    
+    Represent this device private address space using a new
+    device_private_pgmap_tree maple tree. This tree maps a given device
+    private address to a struct dev_pagemap, where a specific device private
+    page may then be looked up in that dev_pagemap::pages array.
+    
+    Device private address space can be reclaimed and the assoicated device
+    private pages freed using the corresponding new
+    memunmap_device_private_pagemap() interface.
+    
+    Because the device private pages now live outside the physical address
+    space, they no longer have a normal PFN. This means that page_to_pfn(),
+    et al. are no longer meaningful.
+    
+    Introduce helpers:
+    
+      - device_private_page_to_offset()
+      - device_private_folio_to_offset()
+    
+    to take a given device private page / folio and return its offset within
+    the device private address space.
+    
+    Update the places where we previously converted a device private page to
+    a PFN to use these new helpers. When we encounter a device private
+    offset, instead of looking up its page within the pagemap use
+    device_private_offset_to_page() instead.
+    
+    Update the existing users:
+    
+     - lib/test_hmm.c
+     - ppc ultravisor
+     - drm/amd/amdkfd
+     - gpu/drm/xe
+     - gpu/drm/nouveau
+    
+    to use the new memremap_device_private_pagemap() interface.
+    
+    Signed-off-by: Jordan Niethe <jniethe@nvidia.com>
+    Signed-off-by: Alistair Popple <apopple@nvidia.com>
++ /mt/dim checkpatch 4a255b429d80f8b0800bdef43ba3175b771e77ff drm-intel
+194d435cc980 mm/migrate_device: Introduce migrate_pfn_from_page() helper
+ab50de99e563 drm/amdkfd: Use migrate pfns internally
+807b654cd212 mm/migrate_device: Make migrate_device_{pfns, range}() take mpfns
+-:215: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#215: FILE: mm/migrate_device.c:1394:
++int migrate_device_range(unsigned long *src_mpfns, unsigned long start,
+ 			unsigned long npages)
+
+-:235: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#235: FILE: mm/migrate_device.c:1408:
++				src_mpfns[i+j] = 0;
+ 				           ^
+
+-:279: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#279: FILE: mm/migrate_device.c:1444:
++				src_mpfns[i+j] = 0;
+ 				           ^
+
+total: 0 errors, 0 warnings, 3 checks, 220 lines checked
+317cbbab0ef1 mm/migrate_device: Add migrate PFN flag to track device private pages
+8d3f2e81810a mm/page_vma_mapped: Add flag to page_vma_mapped_walk::flags to track device private pages
+a4f0d38701db mm: Add helpers to create migration entries from struct pages
+-:136: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#136: FILE: mm/huge_memory.c:2528:
++			entry = make_readable_exclusive_migration_entry_from_page(
+
+-:141: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#141: FILE: mm/huge_memory.c:2532:
++			entry = make_readable_migration_entry_from_page(
+
+-:153: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#153: FILE: mm/huge_memory.c:3191:
++				swp_entry = make_writable_migration_entry_from_page(
+
+-:158: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#158: FILE: mm/huge_memory.c:3194:
++				swp_entry = make_readable_exclusive_migration_entry_from_page(
+
+-:163: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#163: FILE: mm/huge_memory.c:3197:
++				swp_entry = make_readable_migration_entry_from_page(
+
+-:193: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#193: FILE: mm/hugetlb.c:4958:
++				softleaf = make_readable_migration_entry_from_page(
+
+-:205: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#205: FILE: mm/hugetlb.c:6511:
++					entry = make_readable_exclusive_migration_entry_from_page(
+
+-:211: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#211: FILE: mm/hugetlb.c:6515:
++					entry = make_readable_migration_entry_from_page(
+
+-:227: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#227: FILE: mm/memory.c:966:
++			entry = make_readable_migration_entry_from_page(
+
+-:243: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#243: FILE: mm/migrate_device.c:435:
++				entry = make_writable_migration_entry_from_page(
+
+-:248: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#248: FILE: mm/migrate_device.c:438:
++				entry = make_readable_exclusive_migration_entry_from_page(
+
+-:253: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#253: FILE: mm/migrate_device.c:441:
++				entry = make_readable_migration_entry_from_page(
+
+-:268: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#268: FILE: mm/mprotect.c:331:
++					entry = make_readable_exclusive_migration_entry_from_page(
+
+-:273: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#273: FILE: mm/mprotect.c:335:
++					entry = make_readable_migration_entry_from_page(
+
+-:290: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#290: FILE: mm/rmap.c:2542:
++				entry = make_writable_migration_entry_from_page(
+
+-:295: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#295: FILE: mm/rmap.c:2545:
++				entry = make_readable_exclusive_migration_entry_from_page(
+
+-:300: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#300: FILE: mm/rmap.c:2548:
++				entry = make_readable_migration_entry_from_page(
+
+total: 0 errors, 0 warnings, 17 checks, 234 lines checked
+38619cdddc5a mm: Add a new swap type for migration entries of device private pages
+-:63: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#63: FILE: include/linux/swap.h:86:
++#define SWP_MIGRATION_DEVICE_READ (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+3)
+                                                 ^
+
+-:63: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#63: FILE: include/linux/swap.h:86:
++#define SWP_MIGRATION_DEVICE_READ (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+3)
+                                                                  ^
+
+-:63: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#63: FILE: include/linux/swap.h:86:
++#define SWP_MIGRATION_DEVICE_READ (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+3)
+                                                                                    ^
+
+-:64: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#64: FILE: include/linux/swap.h:87:
++#define SWP_MIGRATION_DEVICE_READ_EXCLUSIVE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+4)
+                                                           ^
+
+-:64: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#64: FILE: include/linux/swap.h:87:
++#define SWP_MIGRATION_DEVICE_READ_EXCLUSIVE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+4)
+                                                                            ^
+
+-:64: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#64: FILE: include/linux/swap.h:87:
++#define SWP_MIGRATION_DEVICE_READ_EXCLUSIVE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+4)
+                                                                                              ^
+
+-:65: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#65: FILE: include/linux/swap.h:88:
++#define SWP_MIGRATION_DEVICE_WRITE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+5)
+                                                  ^
+
+-:65: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#65: FILE: include/linux/swap.h:88:
++#define SWP_MIGRATION_DEVICE_WRITE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+5)
+                                                                   ^
+
+-:65: CHECK:SPACING: spaces preferred around that '+' (ctx:VxV)
+#65: FILE: include/linux/swap.h:88:
++#define SWP_MIGRATION_DEVICE_WRITE (MAX_SWAPFILES+SWP_HWPOISON_NUM+SWP_MIGRATION_NUM+5)
+                                                                                     ^
+
+total: 0 errors, 0 warnings, 9 checks, 61 lines checked
+b4561fd2eece mm: Add softleaf support for device private migration entries
+-:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#11: 
+  - SWP_MIGRATION_DEVICE_READ_EXCLUSIVE -> SOFTLEAF_MIGRATION_DEVICE_PRIVATE_READ_EXCLUSIVE
+
+total: 0 errors, 1 warnings, 0 checks, 139 lines checked
+033968b40f43 mm: Begin creating device private migration entries
+-:23: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#23: FILE: include/linux/swapops.h:209:
++		return make_readable_migration_device_private_entry(
+
+-:34: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#34: FILE: include/linux/swapops.h:224:
++		return make_readable_exclusive_migration_device_private_entry(
+
+-:45: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#45: FILE: include/linux/swapops.h:239:
++		return make_writable_migration_device_private_entry(
+
+total: 0 errors, 0 warnings, 3 checks, 30 lines checked
+d31f873267a1 mm: Add helpers to create device private entries from struct pages
+-:88: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#88: FILE: mm/huge_memory.c:3222:
++				swp_entry = make_writable_device_private_entry_from_page(
+
+-:93: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#93: FILE: mm/huge_memory.c:3225:
++				swp_entry = make_readable_device_private_entry_from_page(
+
+total: 0 errors, 0 warnings, 2 checks, 113 lines checked
+031758330705 mm/util: Add flag to track device private pages in page snapshots
+-:32: CHECK:LOGICAL_CONTINUATIONS: Logical continuations should be on the previous line
+#32: FILE: fs/proc/page.c:199:
++	} else if (!(ps.flags & PAGE_SNAPSHOT_DEVICE_PRIVATE)
++		   && is_zero_pfn(ps.pfn)) {
+
+total: 0 errors, 0 warnings, 1 checks, 36 lines checked
+a903a479162c mm/hmm: Add flag to track device private pages
+1802d11c036e mm: Remove device private pages from the physical address space
+-:542: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#542: FILE: include/linux/memremap.h:235:
++void __init_zone_device_page(struct page *page, unsigned long pfn,
++	unsigned long zone_idx, int nid,
+
+-:573: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#573: FILE: include/linux/memremap.h:303:
++static inline int devm_memremap_device_private_pagemap(struct device *dev,
++		struct dev_pagemap *pgmap)
+
+-:585: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#585: FILE: include/linux/memremap.h:315:
++static inline void devm_memunmap_device_private_pagemap(struct device *dev,
++		struct dev_pagemap *pgmap)
+
+-:902: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#902: FILE: mm/debug.c:81:
++	pr_warn("page: refcount:%d mapcount:%d mapping:%p index:%#lx %spfn:%#lx\n",
+ 			folio_ref_count(folio), mapcount, mapping,
+
+-:1060: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1060: FILE: mm/memremap.c:388:
++	ret = devm_add_action_or_reset(dev, devm_memremap_device_private_pagemap_release,
++			pgmap);
+
+-:1102: CHECK:ALLOC_SIZEOF_STRUCT: Prefer kvzalloc(sizeof(*pgmap->pages)...) over kvzalloc(sizeof(struct page)...)
+#1102: FILE: mm/memremap.c:522:
++	pgmap->pages = kvzalloc(sizeof(struct page) * pgmap->nr_pages,
+
+-:1103: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1103: FILE: mm/memremap.c:523:
++	pgmap->pages = kvzalloc(sizeof(struct page) * pgmap->nr_pages,
++			       GFP_KERNEL);
+
+-:1119: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1119: FILE: mm/memremap.c:539:
++	rc = percpu_ref_init(&pgmap->ref, dev_pagemap_percpu_release, 0,
++		GFP_KERNEL);
+
+-:1132: CHECK:SPACING: No space is necessary after a cast
+#1132: FILE: mm/memremap.c:552:
++		page_folio(page)->pgmap = (void *) pgmap;
+
+-:1172: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#1172: FILE: mm/memremap.c:592:
++	if (!((softleaf_is_device_private(entry) ||
++	    (softleaf_is_migration_device_private(entry)))))
+
+-:1181: CHECK:SPACING: No space is necessary after a cast
+#1181: FILE: mm/memremap.c:601:
++	struct dev_pagemap *pgmap = (struct dev_pagemap *) page_pgmap(page);
+
+total: 0 errors, 0 warnings, 11 checks, 1169 lines checked
+
 
