@@ -4,83 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C7EAD715EE
-	for <intel-xe@archiver.kernel.org>; Sat, 24 Jan 2026 14:54:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE676D715E4
+	for <intel-xe@archiver.kernel.org>; Sat, 24 Jan 2026 19:14:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C010610E28F;
-	Sat, 24 Jan 2026 14:54:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55F0510E117;
+	Sat, 24 Jan 2026 19:14:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="I8wHhZ1v";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="X+xeQLyr";
 	dkim-atps=neutral
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com
- [209.85.221.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0E0610E33B
- for <intel-xe@lists.freedesktop.org>; Sat, 24 Jan 2026 14:54:38 +0000 (UTC)
-Received: by mail-wr1-f41.google.com with SMTP id
- ffacd0b85a97d-435a11957f6so2584189f8f.0
- for <intel-xe@lists.freedesktop.org>; Sat, 24 Jan 2026 06:54:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1769266477; x=1769871277; darn=lists.freedesktop.org; 
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=LHc4Ub/6LqQBr/dlSGg55syvwKsNbB8vfiClU/RuIFk=;
- b=I8wHhZ1vFk6bZvULKD6DEtv8CalgXadwi1o86Jhar4i48zW8WtXceGHvZeXf5+Il8F
- 8mJC0kE9+aoFR1C8q+ZKQuyxa3hza1dP/vx7F8uGwnR/iKChSvp5HzjuJpZ+k2PX20Vo
- soNiUxDOT16w3gpwpR4e7Nj7ecxL3dzzKZtDWBVrjL4sBQiaBA5nFCdPbdABdPwk1vig
- AkpsY/6THlu4El5jo+1sQHSLoOEnwOcpexQpFHvhlxzh3pRnY8lb4MY1tIxSLk/TVzq7
- JgHzmh6fifULM+5RrtjD2HAVLFJLRuGqAUPY3bOB12f3Jblo68pTMEx8l/gSVEufMzJY
- efxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769266477; x=1769871277;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=LHc4Ub/6LqQBr/dlSGg55syvwKsNbB8vfiClU/RuIFk=;
- b=Ec4GdlzGwsekiaOFqU+y30cLCskHEyhlGBjRhbpWMMoUz2uXNLlCr471qser0CXiBe
- yk1aJgdzyFZYJyHKmz5MCUol82nTPGRTTkimKymTsttgD4ExzqkKDAS/xlXPTqOASk8r
- c5a+txZJWNSCH8HtnxeZB2159WL8RpsjC15sNUe03XtFQ3klxo6/Q1dMogKP+q6NgoCd
- A68PXNK/GaJQaiXLmRP3swLecA2RPgn8KKNhQxQ2um0JQ7Hc0cUmaQ/mo1rREG1vVqA0
- x4npSBupK5cjmeG/+2m9BOqUdXay6szbTh+ufZk1kLpjXjii9P23jVDhGw57EJyShh3p
- ROig==
-X-Forwarded-Encrypted: i=1;
- AJvYcCW3F6eWaeujoA751CnTUqWRIpDIN8qsMPxzbwOtwhvnkUzq0N8EotqwHQp6kkEv7s4KU+2QjyOxvg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw+eN6Bx5OWlMu85kIadh7i9F+V/gK0sR7eR0yg7g1o1nC8N8Z1
- zEWzFz8593SHx6CCz2PgqvtXfujXZyMuJwL/WrVFCP0/VTsWMkHxQKTsoc43cSF8pg0=
-X-Gm-Gg: AZuq6aJDHxoSFX60A0Sl25dAdTJZPCPzBzHYJqzGH0k0pOnnESKjypbQUR1v192SO6T
- HqY/kSDjry01VmQ69TStw3Y8tdoc5QbAVTK2tN0nv3iTfVteunmaPBmesqEmM/aNzbHxBda7tmY
- B3bbqrrwAdBytHYqMGrHQpOlSww0pK8/y3g6f3d5vEdvjixk3Jc12PN22iEwsw05aiAutq95LEA
- lDe9uJIEkiCxvEkc24KhsH0R7oJfK1cOsVT219Io2y74VN/4a8g58Lboczt+GiAKo+pZ/Fmukt7
- L0RLZ/ZyM0AkjCJHhsulqq1XQWdbmgLqhoBtdd6OeBGu6taxNsqyhwcJzcWpcS1S5Kz+at/bGpQ
- zVy0KNyFPd9Y6VEpTGAjaWbFlJxj+LlAxAwzt8jXpwDyrN7Kn/sTtCK5OICmBDuCUe1/QR6vmCn
- RLksVlvMmEgPcfnw==
-X-Received: by 2002:a05:6000:144a:b0:431:1ae:a3ca with SMTP id
- ffacd0b85a97d-435b1587d00mr12343074f8f.11.1769266477265; 
- Sat, 24 Jan 2026 06:54:37 -0800 (PST)
-Received: from linux ([2a00:6d43:105:c401:e307:1a37:2e76:ce91])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-435b1f73855sm14846241f8f.29.2026.01.24.06.54.36
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 24 Jan 2026 06:54:36 -0800 (PST)
-From: Marco Crivellari <marco.crivellari@suse.com>
-To: linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>,
- Frederic Weisbecker <frederic@kernel.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Marco Crivellari <marco.crivellari@suse.com>,
- Michal Hocko <mhocko@suse.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Subject: [PATCH v3 2/2] drm/xe: add WQ_PERCPU to alloc_workqueue users
-Date: Sat, 24 Jan 2026 15:54:01 +0100
-Message-ID: <20260124145401.44992-3-marco.crivellari@suse.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B4C410E04A;
+ Sat, 24 Jan 2026 19:14:35 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 955BC42A2C;
+ Sat, 24 Jan 2026 19:14:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCCF3C116D0;
+ Sat, 24 Jan 2026 19:14:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1769282074;
+ bh=NATdES5Oox4rtKNrsa+ZhkierotfR0B1Snwy5+c+Bbs=;
+ h=From:To:Cc:Subject:Date:From;
+ b=X+xeQLyrmiha8BnMyD/M7eCAnElWAXyx4WoXt4tfQS4vL+Lj18HptF4vdWkGC4rsF
+ l8VbI+pUbykRLgy+6HA7aEBf907qD9ZZ68jrJPOWicwTO+ZPQM7fh1ZBoWto4NeTPO
+ o4hShgOgl/vcRYumX0eSg2+G78kV/SGlmCWKgkqVnHTOl9emqQWFdABDA/b2N39qv0
+ Xiv1ayiZVo9ubVfOKCJjfRXnVDqvVzFz/s589xDn35UnaZbuVmhRZT8jXS+iF8zWsu
+ 5djtR6/w1SSZRATrIsFH01/wqz8sQFLKMWlV+ljHqiEl9WbAG4nfs7qWXfJLeFekkc
+ w2VlG2FGlCcNA==
+From: Leon Romanovsky <leon@kernel.org>
+To: Sumit Semwal <sumit.semwal@linaro.org>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Gerd Hoffmann <kraxel@redhat.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Leon Romanovsky <leon@kernel.org>, Kevin Tian <kevin.tian@intel.com>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
+ Vivek Kasireddy <vivek.kasireddy@intel.com>
+Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
+ intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ iommu@lists.linux.dev, kvm@vger.kernel.org
+Subject: [PATCH v5 0/8] dma-buf: Use revoke mechanism to invalidate shared
+ buffers
+Date: Sat, 24 Jan 2026 21:14:12 +0200
+Message-ID: <20260124-dmabuf-revoke-v5-0-f98fca917e96@nvidia.com>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260124145401.44992-1-marco.crivellari@suse.com>
-References: <20260124145401.44992-1-marco.crivellari@suse.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
+X-Change-ID: 20251221-dmabuf-revoke-b90ef16e4236
+X-Mailer: b4 0.15-dev-47773
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -96,87 +79,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This continues the effort to refactor workqueue APIs, which began with
-the introduction of new workqueues and a new alloc_workqueue flag in:
+Changelog:
+v5:
+ * Documented the DMA-BUF expectations around DMA unmap.
+ * Added wait support in VFIO for DMA unmap.
+ * Reordered patches.
+ * Improved commit messages to document even more.
+v4: https://lore.kernel.org/all/20260121-dmabuf-revoke-v4-0-d311cbc8633d@nvidia.com
+ * Changed DMA_RESV_USAGE_KERNEL to DMA_RESV_USAGE_BOOKKEEP.
+ * Made .invalidate_mapping() truly optional.
+ * Added patch which renames dma_buf_move_notify() to be
+   dma_buf_invalidate_mappings().
+ * Restored dma_buf_attachment_is_dynamic() function.
+v3: https://lore.kernel.org/all/20260120-dmabuf-revoke-v3-0-b7e0b07b8214@nvidia.com/
+ * Used Jason's wordings for commits and cover letter.
+ * Removed IOMMUFD patch.
+ * Renamed dma_buf_attachment_is_revoke() to be dma_buf_attach_revocable().
+ * Added patch to remove CONFIG_DMABUF_MOVE_NOTIFY.
+ * Added Reviewed-by tags.
+ * Called to dma_resv_wait_timeout() after dma_buf_move_notify() in VFIO.
+ * Added dma_buf_attach_revocable() check to VFIO DMABUF attach function.
+ * Slightly changed commit messages.
+v2: https://patch.msgid.link/20260118-dmabuf-revoke-v2-0-a03bb27c0875@nvidia.com
+ * Changed series to document the revoke semantics instead of
+   implementing it.
+v1: https://patch.msgid.link/20260111-dmabuf-revoke-v1-0-fb4bcc8c259b@nvidia.com
 
-   commit 128ea9f6ccfb ("workqueue: Add system_percpu_wq and system_dfl_wq")
-   commit 930c2ea566af ("workqueue: Add new WQ_PERCPU flag")
+-------------------------------------------------------------------------
+This series is based on latest VFIO fix, which will be sent to Linus
+very soon.
 
-The refactoring is going to alter the default behavior of
-alloc_workqueue() to be unbound by default.
+https://lore.kernel.org/all/20260121-vfio-add-pin-v1-1-4e04916b17f1@nvidia.com/
 
-With the introduction of the WQ_PERCPU flag (equivalent to !WQ_UNBOUND),
-any alloc_workqueue() caller that doesn’t explicitly specify WQ_UNBOUND
-must now use WQ_PERCPU. For more details see the Link tag below.
+Thanks
+-------------------------------------------------------------------------
+This series documents a dma-buf “revoke” mechanism: to allow a dma-buf
+exporter to explicitly invalidate (“kill”) a shared buffer after it has
+been distributed to importers, so that further CPU and device access is
+prevented and importers reliably observe failure.
 
-In order to keep alloc_workqueue() behavior identical, explicitly request
-WQ_PERCPU.
+The change in this series is to properly document and use existing core
+“revoked” state on the dma-buf object and a corresponding exporter-triggered
+revoke operation.
 
-Link: https://lore.kernel.org/all/20250221112
-Suggested-by: Tejun Heo <tj@kernel.org>
-Signed-off-by: Marco Crivellari <marco.crivellari@suse.com>
+dma-buf has quietly allowed calling move_notify on pinned dma-bufs, even
+though legacy importers using dma_buf_attach() would simply ignore
+these calls.
+
+The intention was that move_notify() would tell the importer to expedite
+it's unmapping process and once the importer is fully finished with DMA it
+would unmap the dma-buf which finally signals that the importer is no
+longer ever going to touch the memory again. Importers that touch past
+their unmap() call can trigger IOMMU errors, AER and beyond, however
+read-and-discard access between move_notify() and unmap is allowed.
+
+Thus, we can define the exporter's revoke sequence for pinned dma-buf as:
+
+	dma_resv_lock(dmabuf->resv, NULL);
+	// Prevent new mappings from being established
+	priv->revoked = true;
+
+	// Tell all importers to eventually unmap
+	dma_buf_invalidate_mappings(dmabuf);
+
+	// Wait for any inprogress fences on the old mapping
+	dma_resv_wait_timeout(dmabuf->resv,
+			      DMA_RESV_USAGE_BOOKKEEP, false,
+			      MAX_SCHEDULE_TIMEOUT);
+	dma_resv_unlock(dmabuf->resv, NULL);
+
+	// Wait for all importers to complete unmap
+	wait_for_completion(&priv->unmapp_comp);
+
+However, dma-buf also supports importers that don't do anything on
+move_notify(), and will not unmap the buffer in bounded time.
+
+Since such importers would cause the above sequence to hang, a new
+mechanism is needed to detect incompatible importers.
+
+Introduce dma_buf_attach_revocable() which if true indicates the above
+sequence is safe to use and will complete in kernel-only bounded time for
+this attachment.
+
+Unfortunately dma_buf_attach_revocable() is going to fail for the popular
+RDMA pinned importer, which means we cannot introduce it to existing
+places using pinned move_notify() without potentially breaking existing
+userspace flows.
+
+Existing exporters that only trigger this flow for RAS errors should not
+call dma_buf_attach_revocable() and will suffer an unbounded block on the
+final completion, hoping that the userspace will notice the RAS and clean
+things up. Without revoke support on the RDMA pinned importers it doesn't
+seem like any other non-breaking option is currently possible.
+
+For new exporters, like VFIO and RDMA, that have userspace triggered
+revoke events, the unbouned sleep would not be acceptable. They can call
+dma_buf_attach_revocable() and will not work with the RDMA pinned importer
+from day 0, preventing regressions.
+
+In the process add documentation explaining the above details.
+
+Thanks
+
+Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
 ---
- drivers/gpu/drm/xe/xe_device.c          | 4 ++--
- drivers/gpu/drm/xe/xe_ggtt.c            | 2 +-
- drivers/gpu/drm/xe/xe_hw_engine_group.c | 3 ++-
- drivers/gpu/drm/xe/xe_sriov.c           | 2 +-
- 4 files changed, 6 insertions(+), 5 deletions(-)
+Leon Romanovsky (8):
+      dma-buf: Rename .move_notify() callback to a clearer identifier
+      dma-buf: Rename dma_buf_move_notify() to dma_buf_invalidate_mappings()
+      dma-buf: Always build with DMABUF_MOVE_NOTIFY
+      vfio: Wait for dma-buf invalidation to complete
+      dma-buf: Make .invalidate_mapping() truly optional
+      dma-buf: Add dma_buf_attach_revocable()
+      vfio: Permit VFIO to work with pinned importers
+      iommufd: Add dma_buf_pin()
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index cf29e259861f..1b20ea03a938 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -488,8 +488,8 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
- 	xe->preempt_fence_wq = alloc_ordered_workqueue("xe-preempt-fence-wq",
- 						       WQ_MEM_RECLAIM);
- 	xe->ordered_wq = alloc_ordered_workqueue("xe-ordered-wq", 0);
--	xe->unordered_wq = alloc_workqueue("xe-unordered-wq", 0, 0);
--	xe->destroy_wq = alloc_workqueue("xe-destroy-wq", 0, 0);
-+	xe->unordered_wq = alloc_workqueue("xe-unordered-wq", WQ_PERCPU, 0);
-+	xe->destroy_wq = alloc_workqueue("xe-destroy-wq", WQ_PERCPU, 0);
- 	if (!xe->ordered_wq || !xe->unordered_wq ||
- 	    !xe->preempt_fence_wq || !xe->destroy_wq) {
- 		/*
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 793d7324a395..0849917b16c7 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -322,7 +322,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
- 	else
- 		ggtt->pt_ops = &xelp_pt_ops;
- 
--	ggtt->wq = alloc_workqueue("xe-ggtt-wq", WQ_MEM_RECLAIM, 0);
-+	ggtt->wq = alloc_workqueue("xe-ggtt-wq", WQ_MEM_RECLAIM | WQ_PERCPU, 0);
- 	if (!ggtt->wq)
- 		return -ENOMEM;
- 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine_group.c b/drivers/gpu/drm/xe/xe_hw_engine_group.c
-index fa4db5f23342..8526addcdf42 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine_group.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine_group.c
-@@ -48,7 +48,8 @@ hw_engine_group_alloc(struct xe_device *xe)
- 	if (!group)
- 		return ERR_PTR(-ENOMEM);
- 
--	group->resume_wq = alloc_workqueue("xe-resume-lr-jobs-wq", 0, 0);
-+	group->resume_wq = alloc_workqueue("xe-resume-lr-jobs-wq", WQ_PERCPU,
-+					   0);
- 	if (!group->resume_wq)
- 		return ERR_PTR(-ENOMEM);
- 
-diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
-index ea411944609b..f3835867fce5 100644
---- a/drivers/gpu/drm/xe/xe_sriov.c
-+++ b/drivers/gpu/drm/xe/xe_sriov.c
-@@ -120,7 +120,7 @@ int xe_sriov_init(struct xe_device *xe)
- 		xe_sriov_vf_init_early(xe);
- 
- 	xe_assert(xe, !xe->sriov.wq);
--	xe->sriov.wq = alloc_workqueue("xe-sriov-wq", 0, 0);
-+	xe->sriov.wq = alloc_workqueue("xe-sriov-wq", WQ_PERCPU, 0);
- 	if (!xe->sriov.wq)
- 		return -ENOMEM;
- 
--- 
-2.52.0
+ drivers/dma-buf/Kconfig                     | 12 ----
+ drivers/dma-buf/dma-buf.c                   | 69 +++++++++++++++++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c | 14 ++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c  |  2 +-
+ drivers/gpu/drm/amd/amdkfd/Kconfig          |  2 +-
+ drivers/gpu/drm/virtio/virtgpu_prime.c      |  2 +-
+ drivers/gpu/drm/xe/tests/xe_dma_buf.c       |  7 +--
+ drivers/gpu/drm/xe/xe_bo.c                  |  2 +-
+ drivers/gpu/drm/xe/xe_dma_buf.c             | 14 ++---
+ drivers/infiniband/core/umem_dmabuf.c       | 13 -----
+ drivers/infiniband/hw/mlx5/mr.c             |  2 +-
+ drivers/iommu/iommufd/pages.c               | 11 +++-
+ drivers/iommu/iommufd/selftest.c            |  2 +-
+ drivers/vfio/pci/vfio_pci_dmabuf.c          | 90 +++++++++++++++++++++++------
+ include/linux/dma-buf.h                     | 17 +++---
+ 15 files changed, 164 insertions(+), 95 deletions(-)
+---
+base-commit: 61ceaf236115f20f4fdd7cf60f883ada1063349a
+change-id: 20251221-dmabuf-revoke-b90ef16e4236
+
+Best regards,
+--  
+Leon Romanovsky <leonro@nvidia.com>
 
