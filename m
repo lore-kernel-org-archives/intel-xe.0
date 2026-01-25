@@ -4,77 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DCF4ED13C13
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Jan 2026 13:55:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE16BD13C13
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Jan 2026 13:55:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 697B310E430;
-	Mon, 26 Jan 2026 13:55:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76A3210E43B;
+	Mon, 26 Jan 2026 13:55:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=freebsd.org header.i=@freebsd.org header.b="TL38t8RT";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="CRzTbWsA";
 	dkim-atps=neutral
-Received: from mx2.freebsd.org (mx2.freebsd.org [96.47.72.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CA8D10EA75
- for <intel-xe@lists.freedesktop.org>; Thu, 22 Jan 2026 19:38:24 +0000 (UTC)
-Received: from mx1.freebsd.org (mx1.freebsd.org [IPv6:2610:1c1:1:606c::19:1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits)
- client-signature RSA-PSS (4096 bits))
- (Client CN "mx1.freebsd.org", Issuer "R12" (verified OK))
- by mx2.freebsd.org (Postfix) with ESMTPS id 4dxrvf5c9pz3HcT;
- Thu, 22 Jan 2026 19:38:22 +0000 (UTC)
- (envelope-from emaste@freebsd.org)
-Received: from freefall.freebsd.org (freefall.freebsd.org [96.47.72.132])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256
- client-signature RSA-PSS (4096 bits) client-digest SHA256)
- (Client CN "freefall.freebsd.org", Issuer "R13" (verified OK))
- by mx1.freebsd.org (Postfix) with ESMTPS id 4dxrvf39srz467V;
- Thu, 22 Jan 2026 19:38:22 +0000 (UTC)
- (envelope-from emaste@freebsd.org)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=freebsd.org; s=dkim;
- t=1769110702;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=8aQOJxIZJ7mv3eG5vzqzXIZlYpvZF2Wnn9sG1+GJjSA=;
- b=TL38t8RTt5k5YqBmE1KgSzNB000BmPLDFwSV8WSkWPNMA0pFTruRYm4SCYbAvpTAv/mv5p
- G8bSoYCJXcWu74Dv2xM36Wx4htCLYwoXs6lpB3ZxXV8sD+ajFWD8/88RBz3WfNHCV5Y7Mj
- OM7+Rws97q3t1Bp13OGkvUtdBbmhVR/pp+Bi6s2RCnGT+cwiDl8ecRLjmU16/FD6KP0VV7
- IQvvgIbkKiISUApRbbxoeWK3KjZKCHUod4mpE3wQW4PTta1REUHywHSWJ4TNXTuacJheqI
- DS8DUHMlO/E22gGVuJwRYWDLCOqUU+aLwIvW4E1T3xgq6NjEznCCXRvo30B6KQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=freebsd.org;
- s=dkim; t=1769110702;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=8aQOJxIZJ7mv3eG5vzqzXIZlYpvZF2Wnn9sG1+GJjSA=;
- b=lLefD4lzJpbNpaXLgzYlSVMn9sRvuK6J3RVs/RmD4+3iK8Agr8rWd/6RgjsHDPV48If+d8
- qAy+5Cqc6xYX+5n0E5UsGARnT2kH/HnwhxWC9vHNRahut2UVKZ+43ycENZ4dG1wSZfyIHn
- /XMgMzoX4S15m9jpJ46a+ruVHMJWEeJhx4j+nh1RJjUUWNvy0o0J2k3ON17oeWwSmHDYz2
- 2nYbdcGE2ACtV/XDtL3y31nKSWFTCZXwmEajzchFs21kwqOz6OOKLYKxd2oeQ2USx9aMyw
- 958JpjJMkxDYbzVLkBo6TBuGsHQikLMwW/Q477gak/YFguUW3tpAd3kR/Z7ioA==
-ARC-Seal: i=1; s=dkim; d=freebsd.org; t=1769110702; a=rsa-sha256; cv=none;
- b=PmIlns44P+5zUG2YDlaglzPPYVLk8JR52GwlYPKLBgv1ajLUBJ9bABDkpSywYPzi7aXfWr
- OodP7JTjP4Y1DQuLDf71OKjGZAfHGRrzlwnFZkvPLwK9/JZa9j6hlL70mf/1FK27N4cTQl
- zNKDptXInahodlZlJcRQWwiRPwRdISFssQe2bf1KQ4X92Bp7G6188id9H4Rzo/i3dbDCO4
- 9geZ7q7aiiZ8dQT7JVvDNmILrfI9XLhiWIE19PGqTxmkiOJuodQv7Ah5+4oJ916qVOXe+y
- KF2E1h4GjLWHNVyOOOceHQpw+JWQEs83bY5f4Mcc0JF4I0edLOxHz1sXth1xBg==
-ARC-Authentication-Results: i=1;
-	mx1.freebsd.org;
-	none
-Received: by freefall.freebsd.org (Postfix, from userid 1079)
- id 59C9AD1C4; Thu, 22 Jan 2026 19:38:22 +0000 (-00)
-From: Ed Maste <emaste@FreeBSD.org>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, Vivi@freebsd.org,
- Rodrigo <rodrigo.vivi@intel.com>, Hellstrom@freebsd.org,
- Thomas <thomas.hellstrom@intel.com>, airlied@redhat.com,
- dan.carpenter@linaro.org, dev@lankhorst.se, marievic@google.com,
- Ed Maste <emaste@FreeBSD.org>
-Subject: [PATCH] drm/xe/tests: Update SPDX license to GPL-2.0 OR MIT
-Date: Thu, 22 Jan 2026 19:38:15 +0000
-Message-ID: <20260122193817.28043-1-emaste@FreeBSD.org>
-X-Mailer: git-send-email 2.51.0
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com
+ [209.85.210.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C84710E34A
+ for <intel-xe@lists.freedesktop.org>; Sun, 25 Jan 2026 00:12:16 +0000 (UTC)
+Received: by mail-pf1-f175.google.com with SMTP id
+ d2e1a72fcca58-82311f4070cso1354065b3a.0
+ for <intel-xe@lists.freedesktop.org>; Sat, 24 Jan 2026 16:12:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1769299936; x=1769904736; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=iR/kjqFsPEWOeJ8atT4KIIDdY2v61pRn+hE1X2EyFVo=;
+ b=CRzTbWsACR5WzeGVD8vOY6a8eKgQ8bAKu+e2z2csuK7Cj1uHSfRdjBuwFQCnz2Ix5F
+ L3ai/L8HYsGp7lSSmDEa7afqM2vlY79QezwSP5ZjXDzulg37X1M6UpsjEJiPTm4wDfiQ
+ UkhSpzSCtu+UFRlIK1fRpAwP1LzWTT0pP8H3Lm+7/OptIYt0L0miCqZtgWrNUk/0410i
+ rYN68M3vS/2AS458f+oE5I/jhss1x6WwVCzdHqkrXk2CjoCmycEvuxAUd5KUhaoIeFVG
+ /JIQul2Om9HjVLQ2n+AM88vXswGI3gOId9Y3vhwkLGC7dj8kU5gp1v0YbxPeUx4stwbu
+ kvvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1769299936; x=1769904736;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=iR/kjqFsPEWOeJ8atT4KIIDdY2v61pRn+hE1X2EyFVo=;
+ b=TkQvsTxUXlMbVQmnc0aBjpRzL+LKxJIVz4y7x+cJ7twj4e6pU3V3C/4LP7kHeVt8C5
+ qaMbNIBgScZeHPFggo/6ijaKpeez1u5DpvSCAA7o5zsJXDpDz9hivV9HAAvuj0jtjtIf
+ zmG/CgQaeCwt9xYpVo1dANgJVuoLr+xxFV9q4GhJuqXqY9CNBSgKG4hHO10BilWIViDX
+ QgLmcEx0zfJ4fu3xoHC+PhOJyhJbh9iI6SrANzB2KB/6556cREWjyi3PGSn7QUaRpznR
+ 1eFtCvD0ixzvrpjlXq3VV+wFPmGM3aDsoGY5zOcuHRUOE01zKzizS69sk0d3S1ZDvg+q
+ nJ4w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVLBv02ds+c9Z9ne72WaA4klwtuKTnJeCTwJ3y+7ZWdLHzKn/LvQPjb+s7b4AKLw6E3IOUdkEPUFQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxNePhfEVB0z0ozafvQ3a9T1IjGI5WosCk9tXRAKqmg15DBqFCk
+ G2vJnLimNqsrW5IdrvfyFHFtTTg07Et7DrZEMfTaP43MrU8OJdRuZzM=
+X-Gm-Gg: AZuq6aI7e/Xv5B3I0w2moHpzdfuL3/0SO9m7odm+qY8lhadhpP3j7KM5PPrVHnYgtyw
+ EOy0hIMa+RNbOdk/eqafYDegqm/5aCFzoEUo2wL6cgoRCq/zlnoRmQy0KH+7uBEETqvPfC33Rd2
+ p/x8CN/GexBBL9ep+AsP5Y+j7SzuJT65A64NBqrstYATYxvYw8VUvImmPzqNsK17PPP1kdJ3q8M
+ GGRexaQ/arOQM0h5f4Sdkfl+hnGVtnZ9AaQaopQ3HA4Au6gWEizMXzzSD82GDRGrVqpNpI/Q20Q
+ PZG/KGV/fzcvB1hcJklTz/d7Cc1F1WaqwHyZEm6rUuWeqrL4+ufLO/itxGidaXdyin3cOUlsLP0
+ 39zn7hCaeB82VkyF+gC9qkeQ27cNaPCr9upIq6F1pKQerrgYuO1LpzVKlFe4aEclFwp1LNhQ2A8
+ gQp3HZmNAqSLGd2xw=
+X-Received: by 2002:a05:6a00:7702:b0:7ab:2c18:34eb with SMTP id
+ d2e1a72fcca58-823411db9d4mr224890b3a.12.1769299936136; 
+ Sat, 24 Jan 2026 16:12:16 -0800 (PST)
+Received: from at.. ([171.61.161.234]) by smtp.gmail.com with ESMTPSA id
+ d2e1a72fcca58-8231876e5d0sm5608273b3a.61.2026.01.24.16.12.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 24 Jan 2026 16:12:15 -0800 (PST)
+From: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>
+To: 
+Cc: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH 2/2] drm/i915/display: Disable display for iMac's
+Date: Sun, 25 Jan 2026 00:11:01 +0000
+Message-ID: <20260125001111.1269-3-atharvatiwarilinuxdev@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260125001111.1269-1-atharvatiwarilinuxdev@gmail.com>
+References: <20260125001111.1269-1-atharvatiwarilinuxdev@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -93,195 +95,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-"GPL-2.0 AND MIT" indicates that both licenses must be complied with,
-so was not significantly different from GPL-only, and so I presume was
-unintentional.
+Disable display on iMacs, as they can't do link training
+on the internal display.
 
-Signed-off-by: Ed Maste <emaste@FreeBSD.org>
+(tested on iMac20,1)
+
+Signed-off-by: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>
 ---
-The original author at Intel (matthew.brost@intel.com) agrees this is
-likely not desired.
+ drivers/gpu/drm/i915/display/intel_display_device.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-I've CC'd non-Intel authors of changes to these files to ack the change.
-
- drivers/gpu/drm/xe/tests/xe_bo.c                       | 2 +-
- drivers/gpu/drm/xe/tests/xe_dma_buf.c                  | 2 +-
- drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c | 2 +-
- drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c            | 2 +-
- drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c          | 2 +-
- drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c             | 2 +-
- drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c          | 2 +-
- drivers/gpu/drm/xe/tests/xe_guc_relay_test.c           | 2 +-
- drivers/gpu/drm/xe/tests/xe_kunit_helpers.c            | 2 +-
- drivers/gpu/drm/xe/tests/xe_kunit_helpers.h            | 2 +-
- drivers/gpu/drm/xe/tests/xe_lmtt_test.c                | 2 +-
- drivers/gpu/drm/xe/tests/xe_mocs.c                     | 2 +-
- drivers/gpu/drm/xe/tests/xe_pci.c                      | 2 +-
- drivers/gpu/drm/xe/tests/xe_pci_test.h                 | 2 +-
- drivers/gpu/drm/xe/tests/xe_sriov_pf_service_kunit.c   | 2 +-
- drivers/gpu/drm/xe/tests/xe_test.h                     | 2 +-
- 16 files changed, 16 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-index 2294cf89f3e1..386d51de0073 100644
---- a/drivers/gpu/drm/xe/tests/xe_bo.c
-+++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: GPL-2.0 AND MIT
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
- /*
-  * Copyright © 2022 Intel Corporation
-  */
-diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-index 5df98de5ba3c..422ea4433bba 100644
---- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: GPL-2.0 AND MIT
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
- /*
-  * Copyright © 2022 Intel Corporation
-  */
-diff --git a/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
-index 42bfc4bcfbcf..5307c26e2c69 100644
---- a/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
-+++ b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: GPL-2.0 AND MIT
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
- /*
-  * Copyright © 2025 Intel Corporation
-  */
-diff --git a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-index d266882adc0e..ca7c2fb1ed4f 100644
---- a/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-+++ b/drivers/gpu/drm/xe/tests/xe_guc_buf_kunit.c
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: GPL-2.0 AND MIT
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
- /*
-  * Copyright © 2024 Intel Corporation
-  */
-diff --git a/drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c b/drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c
-index a87a7b4b040a..4d39cd345b50 100644
---- a/drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_guc_db_mgr_test.c
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: GPL-2.0 AND MIT
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
- /*
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index 1170afaa8680..3fb47232e7a4 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -3,6 +3,7 @@
   * Copyright © 2023 Intel Corporation
   */
-diff --git a/drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c b/drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c
-index 3b213fcae916..7f71fb7b817d 100644
---- a/drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_guc_g2g_test.c
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: GPL-2.0 AND MIT
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
- /*
-  * Copyright © 2025 Intel Corporation
-  */
-diff --git a/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c b/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c
-index ee30a1939eb0..eae0bc65374c 100644
---- a/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_guc_id_mgr_test.c
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: GPL-2.0 AND MIT
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
- /*
-  * Copyright © 2024 Intel Corporation
-  */
-diff --git a/drivers/gpu/drm/xe/tests/xe_guc_relay_test.c b/drivers/gpu/drm/xe/tests/xe_guc_relay_test.c
-index 13701451b923..c386d35796f6 100644
---- a/drivers/gpu/drm/xe/tests/xe_guc_relay_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_guc_relay_test.c
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: GPL-2.0 AND MIT
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
- /*
-  * Copyright © 2023 Intel Corporation
-  */
-diff --git a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-index bc5156966ce9..8799b4dda3e6 100644
---- a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-+++ b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.c
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: GPL-2.0 AND MIT
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
- /*
-  * Copyright © 2023 Intel Corporation
-  */
-diff --git a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
-index 83665f7b1254..d330d01e7964 100644
---- a/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
-+++ b/drivers/gpu/drm/xe/tests/xe_kunit_helpers.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: GPL-2.0 AND MIT */
-+/* SPDX-License-Identifier: GPL-2.0 OR MIT */
- /*
-  * Copyright © 2023 Intel Corporation
-  */
-diff --git a/drivers/gpu/drm/xe/tests/xe_lmtt_test.c b/drivers/gpu/drm/xe/tests/xe_lmtt_test.c
-index 1f1557c45ae1..3f98a05ea262 100644
---- a/drivers/gpu/drm/xe/tests/xe_lmtt_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_lmtt_test.c
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: GPL-2.0 AND MIT
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
- /*
-  * Copyright © 2023 Intel Corporation
-  */
-diff --git a/drivers/gpu/drm/xe/tests/xe_mocs.c b/drivers/gpu/drm/xe/tests/xe_mocs.c
-index 6bb278167aaf..db44dba9f338 100644
---- a/drivers/gpu/drm/xe/tests/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/tests/xe_mocs.c
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: GPL-2.0 AND MIT
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
- /*
-  * Copyright © 2022 Intel Corporation
-  */
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
-index f3179b31f13e..b7dc67a58bc7 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci.c
-+++ b/drivers/gpu/drm/xe/tests/xe_pci.c
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: GPL-2.0 AND MIT
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
- /*
-  * Copyright © 2023 Intel Corporation
-  */
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci_test.h b/drivers/gpu/drm/xe/tests/xe_pci_test.h
-index 30505d1cbefc..b9bdda92bc42 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci_test.h
-+++ b/drivers/gpu/drm/xe/tests/xe_pci_test.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: GPL-2.0 AND MIT */
-+/* SPDX-License-Identifier: GPL-2.0 OR MIT */
- /*
-  * Copyright © 2023 Intel Corporation
-  */
-diff --git a/drivers/gpu/drm/xe/tests/xe_sriov_pf_service_kunit.c b/drivers/gpu/drm/xe/tests/xe_sriov_pf_service_kunit.c
-index ba95e29b597d..c5c952224a55 100644
---- a/drivers/gpu/drm/xe/tests/xe_sriov_pf_service_kunit.c
-+++ b/drivers/gpu/drm/xe/tests/xe_sriov_pf_service_kunit.c
-@@ -1,4 +1,4 @@
--// SPDX-License-Identifier: GPL-2.0 AND MIT
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
- /*
-  * Copyright © 2024-2025 Intel Corporation
-  */
-diff --git a/drivers/gpu/drm/xe/tests/xe_test.h b/drivers/gpu/drm/xe/tests/xe_test.h
-index 9c23ad9dba8d..c7a658fb9f20 100644
---- a/drivers/gpu/drm/xe/tests/xe_test.h
-+++ b/drivers/gpu/drm/xe/tests/xe_test.h
-@@ -1,4 +1,4 @@
--/* SPDX-License-Identifier: GPL-2.0 AND MIT */
-+/* SPDX-License-Identifier: GPL-2.0 OR MIT */
- /*
-  * Copyright © 2022 Intel Corporation
-  */
+ 
++#include <linux/dmi.h>
+ #include <linux/pci.h>
+ 
+ #include <drm/drm_color_mgmt.h>
+@@ -1657,6 +1658,7 @@ struct intel_display *intel_display_device_probe(struct pci_dev *pdev,
+ 	const struct platform_desc *desc;
+ 	const struct subplatform_desc *subdesc;
+ 	enum intel_step step;
++	const char *product_name = dmi_get_system_info(DMI_PRODUCT_NAME);
+ 
+ 	display = kzalloc(sizeof(*display), GFP_KERNEL);
+ 	if (!display)
+@@ -1674,6 +1676,11 @@ struct intel_display *intel_display_device_probe(struct pci_dev *pdev,
+ 		goto no_display;
+ 	}
+ 
++	if (dmi_match(DMI_BOARD_VENDOR, "Apple Inc.") && !strncmp(product_name, "iMac", 4)) {
++		drm_dbg_kms(display->drm, "iMac Detected, Disabling display\n");
++		goto no_display;
++	}
++
+ 	desc = find_platform_desc(pdev);
+ 	if (!desc) {
+ 		drm_dbg_kms(display->drm,
 -- 
-2.51.1
+2.43.0
 
