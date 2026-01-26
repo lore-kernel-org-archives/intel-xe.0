@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1AFECF65E5
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Jan 2026 11:46:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B441CF65DB
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Jan 2026 11:55:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DAD610E1CD;
-	Mon, 26 Jan 2026 11:46:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C1FC10E401;
+	Mon, 26 Jan 2026 11:55:03 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DC4A10E1B9;
- Mon, 26 Jan 2026 11:46:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7089579009140457326=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AAAA610E401;
+ Mon, 26 Jan 2026 11:55:02 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_Privatize_struct_?=
- =?utf-8?q?xe=5Fggtt=2E_=28rev4=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/=7Bi915=2C_xe=7D/pcod?=
+ =?utf-8?q?e=3A_move_display_pcode_calls_to_parent_interface_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 26 Jan 2026 11:46:31 -0000
-Message-ID: <176942799135.191609.9376056985409437869@a3b018990fe9>
+Date: Mon, 26 Jan 2026 11:55:02 -0000
+Message-ID: <176942850269.192609.15420011058872380744@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260126104604.988024-1-dev@lankhorst.se>
-In-Reply-To: <20260126104604.988024-1-dev@lankhorst.se>
+References: <20260126112925.2452171-1-jani.nikula@intel.com>
+In-Reply-To: <20260126112925.2452171-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,133 +40,66 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7089579009140457326==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Privatize struct xe_ggtt. (rev4)
-URL   : https://patchwork.freedesktop.org/series/160006/
-State : failure
+Series: drm/{i915, xe}/pcode: move display pcode calls to parent interface (rev3)
+URL   : https://patchwork.freedesktop.org/series/159877/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b_BAT -> xe-pw-160006v4_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4d3925323b05ff8ce53858e4b50bbcd16570199e
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Mon Jan 26 13:29:25 2026 +0200
 
-Summary
--------
+    drm/{i915, xe}/pcode: move display pcode calls to parent interface
+    
+    Call the parent driver pcode functions through the parent interface
+    function pointers instead of expecting both to have functions of the
+    same name.
+    
+    In i915, add the interface to existing intel_pcode.[ch], while in xe
+    move them to new display/xe_display_pcode.[ch] and build it only for
+    CONFIG_DRM_XE_DISPLAY=y.
+    
+    Do not add separate write and write_timeout calls in the
+    interface. Instead, handle the default 1 ms timeout in the
+    intel_parent.c glue layer.
+    
+    This drops the last intel_pcode.h includes from display, and allows us
+    to remove the corresponding xe compat header.
+    
+    v2: initialize .pcode in i915
+    
+    Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 0f7122915dfd558c57f69c4f97ebd64707a721cc drm-intel
+4d3925323b05 drm/{i915, xe}/pcode: move display pcode calls to parent interface
+-:354: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#354: FILE: drivers/gpu/drm/i915/display/intel_parent.c:101:
++int intel_parent_pcode_write_timeout(struct intel_display *display, u32 mbox, u32 val, int timeout_ms)
 
-  **FAILURE**
+-:367: WARNING:LONG_LINE: line length of 112 exceeds 100 columns
+#367: FILE: drivers/gpu/drm/i915/display/intel_parent.c:114:
++	return display->parent->pcode->request(display->drm, mbox, request, reply_mask, reply, timeout_base_ms);
 
-  Serious unknown changes coming with xe-pw-160006v4_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-160006v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:383: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#383: FILE: drivers/gpu/drm/i915/display/intel_parent.h:41:
++int intel_parent_pcode_write_timeout(struct intel_display *display, u32 mbox, u32 val, int timeout_ms);
 
-  
+-:551: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#551: 
+deleted file mode 100644
 
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-160006v4_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_module_load@load:
-    - bat-bmg-1:          [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b/bat-bmg-1/igt@xe_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160006v4/bat-bmg-1/igt@xe_module_load@load.html
-
-  
-
-
-Build changes
--------------
-
-  * IGT: IGT_8716 -> IGT_8717
-  * Linux: xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b -> xe-pw-160006v4
-
-  IGT_8716: 8716
-  IGT_8717: 8717
-  xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b: 6d7af7c5b6b121d5595b64be7dfcbf33be53287b
-  xe-pw-160006v4: 160006v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160006v4/index.html
-
---===============7089579009140457326==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 4 warnings, 0 checks, 524 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Privatize struct xe_ggtt. (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160006/">https://patchwork.freedesktop.org/series/160006/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160006v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160006v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b_BAT -&gt; xe-pw-160006v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-160006v4_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-160006v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-160006v4_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_module_load@load:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b/bat-bmg-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160006v4/bat-bmg-1/igt@xe_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8716 -&gt; IGT_8717</li>
-<li>Linux: xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b -&gt; xe-pw-160006v4</li>
-</ul>
-<p>IGT_8716: 8716<br />
-  IGT_8717: 8717<br />
-  xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b: 6d7af7c5b6b121d5595b64be7dfcbf33be53287b<br />
-  xe-pw-160006v4: 160006v4</p>
-
-</body>
-</html>
-
---===============7089579009140457326==--
