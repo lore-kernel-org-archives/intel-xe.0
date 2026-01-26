@@ -4,63 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 256CAE63CB1
-	for <intel-xe@archiver.kernel.org>; Sun, 25 Jan 2026 17:36:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 458A9C88E64
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Jan 2026 08:00:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EF5310E0A4;
-	Sun, 25 Jan 2026 17:36:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D534310E08B;
+	Mon, 26 Jan 2026 08:00:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aCInzFCO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SSWNY/m0";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B49A10E0A4;
- Sun, 25 Jan 2026 17:36:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC67610E08B;
+ Mon, 26 Jan 2026 08:00:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769362593; x=1800898593;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=nv1wxSrtm7P0hycmz56kHy70Z0Tg3BIJ1VNF0ACAFoE=;
- b=aCInzFCOYZg3JZ4nXpwIUFtgFNAy4cNuJ0Enne9tSbnzT0RUb0veQNIO
- tITLZoRwI0+gDibqEhm6IfJnOz3GlXJMiItnKhqGCaKqTop8Dv5QT4pHB
- evELpETqCy/w6JbyLBR4YDG1tjKBCGMeB0K+4MpmgSNGl+q4eXKMxIwDr
- mrK6E4sjD5KDBrTJJ/WjHjYjD++9lCD4XAguK/5jt+zdx0AXo4xEXsyS9
- LOTq8mtpzI4WRTDa4bepYToD6lDJ7ag/wPJArvhmnih/qmwIKL/pA+hek
- Ux8KIqEY3L9UrPJagKeM9k7kFWlIM2wWVYhi0qhDf/b+g7rfzdNJPGUdO A==;
-X-CSE-ConnectionGUID: d9Vcs3xnT0O9B9Oy1+mKcw==
-X-CSE-MsgGUID: OWczF7xRR/GIH3t18dHKow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11682"; a="73137744"
-X-IronPort-AV: E=Sophos;i="6.21,253,1763452800"; d="scan'208";a="73137744"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jan 2026 09:36:33 -0800
-X-CSE-ConnectionGUID: ehcMsMgnQ2Oyiy3lgNVKug==
-X-CSE-MsgGUID: Dny8s/5ORwO1xDUdrwvm6Q==
+ t=1769414433; x=1800950433;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=j1M5IJusKDUcLDFz9KL6EzsDZPnmrgcV0G7F0O68EsI=;
+ b=SSWNY/m0wTSwVmZe2YJx1SPKtFwfJpcqC2tSOcvHeX4iAVuBBS5aGZ+g
+ 5c9Vt9tGYhlD0xPv1fDR/nPTNEcoDzRT1lbvgnoU2QCpofcdtEgwUmZNy
+ xrszLQfzUV+kG58yKlETRJxHsUQ1vtm8nc/P7W5gX4ouYdiYa1livJAiz
+ ehlBsXQTbNwSmUnbMmhUvWUdUqLsYtDt0cJRZbqH+CSUuaL5LZNPlG1SX
+ fkB0UepNQzr1d/jpir7hj2DtnF5hViIfF+P46gm8NMJp5EsiK4nPzeonf
+ p5Eru7YvHQ0FnxiDstxVpy+6lhI/AnO3ku97CtTu6aPfAVRRLFmD906ZH g==;
+X-CSE-ConnectionGUID: UQTNEEBTSKiDw98eADv+Cw==
+X-CSE-MsgGUID: a9a9ce8lSjCyZ2ubZZShIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11682"; a="70682839"
+X-IronPort-AV: E=Sophos;i="6.21,254,1763452800"; d="scan'208";a="70682839"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2026 00:00:33 -0800
+X-CSE-ConnectionGUID: Xslb8gIfT7iUoTNUm6aUKA==
+X-CSE-MsgGUID: 5WJyxgMgTTKnYo9a/t8Riw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,253,1763452800"; d="scan'208";a="238139627"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
- by orviesa002.jf.intel.com with ESMTP; 25 Jan 2026 09:36:29 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1vk42F-00000000WJ4-0Wiz;
- Sun, 25 Jan 2026 17:36:27 +0000
-Date: Mon, 26 Jan 2026 01:35:49 +0800
-From: kernel test robot <lkp@intel.com>
-To: "David E. Box" <david.e.box@linux.intel.com>,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- irenic.rajneesh@gmail.com, ilpo.jarvinen@linux.intel.com,
- srinivas.pandruvada@linux.intel.com, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, xi.pardee@linux.intel.com
-Cc: oe-kbuild-all@lists.linux.dev,
- "David E. Box" <david.e.box@linux.intel.com>, hansg@kernel.org,
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
-Subject: Re: [PATCH v4 4/6] platform/x86/intel/vsec: Switch exported helpers
- from pci_dev to device
-Message-ID: <202601260115.T3rBZhUE-lkp@intel.com>
-References: <20260123025108.3772255-5-david.e.box@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,254,1763452800"; d="scan'208";a="207867637"
+Received: from krybak-mobl1.ger.corp.intel.com (HELO jhogande-mobl3.intel.com)
+ ([10.245.246.56])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jan 2026 00:00:31 -0800
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v10 00/10] Use trans push mechanism to generate frame change
+ event
+Date: Mon, 26 Jan 2026 09:59:49 +0200
+Message-ID: <20260126075959.925413-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260123025108.3772255-5-david.e.box@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,41 +69,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi David,
+Currently we are using "automatic" frame change event generation. The
+event is generated by any access to plane or pipe registers.
 
-kernel test robot noticed the following build errors:
+We have option to use "PSR PR Frame Change Enable" bit in TRANS_PUSH
+register to enable frame change event generation only when doing trans
+push. When this bit is set "automatic" frame change event generation
+doesn't work anymore. Benfit from this is more controled updates send
+by PSR HW.
 
-[auto build test ERROR on 0f61b1860cc3f52aef9036d7235ed1f017632193]
+This patch set is taking trans push mechanism into use.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/David-E-Box/platform-x86-intel-vsec-Refactor-base_addr-handling/20260123-105437
-base:   0f61b1860cc3f52aef9036d7235ed1f017632193
-patch link:    https://lore.kernel.org/r/20260123025108.3772255-5-david.e.box%40linux.intel.com
-patch subject: [PATCH v4 4/6] platform/x86/intel/vsec: Switch exported helpers from pci_dev to device
-config: x86_64-randconfig-074-20251025 (https://download.01.org/0day-ci/archive/20260126/202601260115.T3rBZhUE-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260126/202601260115.T3rBZhUE-lkp@intel.com/reproduce)
+v10:
+  - added patch implementing helper for parsing value to be written
+    into TRANS_PUSH
+  - Adding HAS_PSR_FRAME_CHANGE macro moved to separate patch and
+    renamed as HAS_PSR_TRANS_PUSH_FRAME_CHANGE
+  - use intel_psr_use_trans_push instead of HAS_PSR_FRAME_CHANGE in
+    intel_psr_trigger_frame_change
+  - moved calling intel_vrr_psr_frame_change_enable away from this
+    patch
+  -
+v9: always do PSR exit on frontbuffer flush for LunarLake and onwards
+v8:
+  - rebase
+  - Wait for idle only after possible send
+v7:
+  - added bspec references
+  - add HAS_PSR_FRAME_CHANGE macro
+  - use TRANS_PUSH in instead of TRAN_VRR_CTL
+  - "Do not trigger Frame Change events from frontbuffer flush" patch
+    already merged
+v6: use AND instead of OR in intel_psr_use_trans_push
+v5: add missing patch
+v4:
+  - add intel_psr_use_trans_push to query if TRANS_PUSH is used
+  - set DSB_SKIP_WAITS_EN chicken bit when TRANS_PUSH is used
+  - Wait for vblank in case of PSR is using trans push
+v3:
+  - use rmw when enabling disabling transh push for PSR or VRR
+  - rely on crtc_state->has_psr/has_vrr to keep trans push enabled
+  - modify frontbuffer flush/invalidate to use disable/enable also for
+    SU/SF on recent platforms.
+  - send push before waiting for vblank
+v2: implement intel_vrr_trans_push_enabled_set_clear and use that
+    instead of rmw
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202601260115.T3rBZhUE-lkp@intel.com/
+Jouni Högander (10):
+  drm/i915/psr: Add TRANS_PUSH register bit definition for PSR
+  drm/i915/psr: Add intel_psr_use_trans_push to query if TRANS_PUSH is
+    used
+  drm/i915/vrr: Add helper for parsing value to be written into
+    TRANS_PUSH
+  drm/i915/vrr: Prepare to Use TRANS_PUSH mechanism for PSR frame change
+  drm/i915/dsb: Set DSB_SKIP_WAITS_EN chicken bit for LunarLake and
+    onwards
+  drm/i915/display: Wait for vblank in case of PSR is using trans push
+  drm/i915/psr: Wait for idle only after possible send push
+  drm/i915/psr: Do PSR exit on frontbuffer flush on LunarLake and
+    onwards
+  drm/i915/display: Add HAS_PSR_TRANS_PUSH_FRAME_CHANGE macro
+  drm/i915/psr: Use TRANS_PUSH to trigger frame change event
 
-All errors (new ones prefixed by >>):
-
-   In file included from <command-line>:
->> drivers/gpu/drm/xe/xe_vsec.h:13:30: error: 'struct device' declared inside parameter list will not be visible outside of this definition or declaration [-Werror]
-      13 | int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offset, u32 count);
-         |                              ^~~~~~
-   cc1: all warnings being treated as errors
-
-
-vim +13 drivers/gpu/drm/xe/xe_vsec.h
-
-    11	
-    12	void xe_vsec_init(struct xe_device *xe);
-  > 13	int xe_pmt_telem_read(struct device *dev, u32 guid, u64 *data, loff_t user_offset, u32 count);
-    14	
+ drivers/gpu/drm/i915/display/intel_crtc.c     |  4 +-
+ drivers/gpu/drm/i915/display/intel_display.c  | 33 ++++++++++++++--
+ .../drm/i915/display/intel_display_device.h   |  1 +
+ drivers/gpu/drm/i915/display/intel_dsb.c      | 15 +++++--
+ drivers/gpu/drm/i915/display/intel_psr.c      | 36 +++++++++++------
+ drivers/gpu/drm/i915/display/intel_psr.h      |  1 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      | 39 ++++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_vrr.h      |  1 +
+ drivers/gpu/drm/i915/display/intel_vrr_regs.h |  1 +
+ 9 files changed, 106 insertions(+), 25 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.43.0
+
