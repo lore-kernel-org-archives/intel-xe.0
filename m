@@ -4,33 +4,34 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23A78C88E7C
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Jan 2026 12:52:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3717D74EFD
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Jan 2026 12:52:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4A5E10E416;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2AB310E414;
 	Mon, 26 Jan 2026 12:52:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="fl3PEyZP";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="O+jepxTW";
 	dkim-atps=neutral
 Received: from lankhorst.se (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A02410E411
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F367410E414
  for <intel-xe@lists.freedesktop.org>; Mon, 26 Jan 2026 12:52:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
  s=default; t=1769431931;
- bh=ps0hYh4CEfwjO0Bf7CHwUoWsi7tS2ONDIHEr5mTTQTM=;
+ bh=ONs2Lew0ZEGvw/toj8nPlkKV0A+fyeJ+JJLT2MjHZrI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=fl3PEyZP2I9MrPgFDn+uO7jjp/r0gmKmVPRhaCilZguFLjnKrR13KnbR6spXXLzTB
- li76feMxiLMaxDkZH4rNsLo4H9gj45rhJYVbdkbseZOJOFdVg86C8uiQYKuqGf5Z1b
- h2q5Use+uh4wP6kch3AHmmHVHKzkRxaNgFXGYa65CxGAgFqADFAsqj0DNLs0RUQCQl
- xNCjxIF2wTkdxju56MZfKB1K3wPHIba/niBjouvm2ML9/7zee4FIo/IiVb6EZNQJ07
- 3EEfSN+B4Ud/6MASdUqSPCxAd9ITpOpQjkPDB5+HmPVnAltMjHBPOMNY6Rw6QsQVoM
- ugBs+zhj31GfA==
+ b=O+jepxTWkVLO4pu+DEQ8z1QspE/75jZCNEwOfc1kWRkc/3ecBkyxZRfsN+ROihuvN
+ xDe3IwYVLchruV+o031ZhxxSX7glLfGEX5xNXtIqRGEy0z4obrPkk6U2lnBxZkcUvD
+ qVoiHLn1k6Y3ymwxREaqWMr42ITDKvTk1ik33s+h3iqZjb4YbxvCcXcZwgWZ+4to+z
+ YSAOfQmq1nc+sBn4KlX8WcNhsKi47XLeIi3DMYEkNz9bzKLREEW2tTbhfUbManKHlZ
+ afjdyYVkLfUt+SNtie1HKcQEB55InD4nzFlwzs9sd1rMqrku1ro0629sW4L2q9uZp3
+ yDeEOSsYW2HjQ==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org
 Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [RFC PATCH 2/3] drm/xe: Set the bits in PASID to enable ATS.
-Date: Mon, 26 Jan 2026 13:52:06 +0100
-Message-ID: <20260126125207.1119351-3-dev@lankhorst.se>
+Subject: [RFC PATCH 3/3] drm/xe: Add migration selftest for validating job
+ submission and basic features work
+Date: Mon, 26 Jan 2026 13:52:07 +0100
+Message-ID: <20260126125207.1119351-4-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260126125207.1119351-1-dev@lankhorst.se>
 References: <20260126125207.1119351-1-dev@lankhorst.se>
@@ -50,51 +51,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the PCI device claims to support ATS, use it and set the
-relevant bits in the context.
+Add a migration selftest that copies either from local VRAM to sysmem,
+or sysmem to sysmem. The idea is to validate whether accessing VRAM and
+system memory works, so we don't run into slightly harder issues later
+if ATS fails.
+
+TODO: Do we want to run this all the time, put it behind a module
+parameter, or only if DRM_XE_DEBUG_VM is set?
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/regs/xe_lrc_layout.h | 1 +
- drivers/gpu/drm/xe/xe_lrc.c             | 6 ++++++
- 2 files changed, 7 insertions(+)
+ drivers/gpu/drm/xe/xe_device.c  |  7 ++++++
+ drivers/gpu/drm/xe/xe_migrate.c | 43 +++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_migrate.h |  1 +
+ 3 files changed, 51 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-index b5eff383902c5..959b3f7db91f6 100644
---- a/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-+++ b/drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-@@ -18,6 +18,7 @@
- #define CTX_TIMESTAMP_UDW		(0x24 + 1)
- #define CTX_INDIRECT_RING_STATE		(0x26 + 1)
- #define CTX_ACC_CTR_THOLD		(0x2a + 1)
-+#define CTX_SYS_PASID			(0x2c + 1)
- #define CTX_ASID			(0x2e + 1)
- #define CTX_PDP0_UDW			(0x30 + 1)
- #define CTX_PDP0_LDW			(0x32 + 1)
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index f4f31bc240d93..fa911ea80c772 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -32,6 +32,8 @@
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index aad4aa53a51f9..4e244c0ed23cc 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -46,6 +46,7 @@
+ #include "xe_i2c.h"
+ #include "xe_irq.h"
+ #include "xe_late_bind_fw.h"
++#include "xe_migrate.h"
+ #include "xe_mmio.h"
+ #include "xe_module.h"
+ #include "xe_nvm.h"
+@@ -974,6 +975,12 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		return err;
+ 
++	for_each_tile(tile, xe, id) {
++		err = xe_migrate_selftest(tile->migrate);
++		if (err)
++			return err;
++	}
++
+ 	err = drm_dev_register(&xe->drm, 0);
+ 	if (err)
+ 		return err;
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index cbcac57b2c760..bf2000d8d7c23 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -37,6 +37,7 @@
+ #include "xe_sriov_vf_ccs.h"
+ #include "xe_svm.h"
+ #include "xe_sync.h"
++#include "xe_tile_printk.h"
+ #include "xe_trace_bo.h"
+ #include "xe_validation.h"
  #include "xe_vm.h"
- #include "xe_wa.h"
+@@ -519,6 +520,48 @@ int xe_migrate_init(struct xe_migrate *m)
  
-+#define LRC_SYS_PASID_ENABLE_ATS		BIT(31)
-+
- #define LRC_VALID				BIT_ULL(0)
- #define LRC_PRIVILEGE				BIT_ULL(8)
- #define LRC_ADDRESSING_MODE			GENMASK_ULL(4, 3)
-@@ -1557,6 +1559,10 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	if (xe->info.has_asid && vm)
- 		xe_lrc_write_ctx_reg(lrc, CTX_ASID, vm->usm.asid);
+ }
  
-+	/* If possible, enable ATS to offload the IOMMU TLB */
-+	if (to_pci_dev(xe->drm.dev)->ats_enabled)
-+		xe_lrc_write_ctx_reg(lrc, CTX_SYS_PASID, LRC_SYS_PASID_ENABLE_ATS);
++int xe_migrate_selftest(struct xe_migrate *m)
++{
++	struct xe_tile *tile = m->tile;
++	struct xe_device *xe = tile->xe;
++	struct xe_bo *mem_bo;
++	struct xe_bo *tile_bo;
++	struct dma_fence *fence;
++	int err;
 +
- 	lrc->desc = LRC_VALID;
- 	lrc->desc |= FIELD_PREP(LRC_ADDRESSING_MODE, LRC_LEGACY_64B_CONTEXT);
- 	/* TODO: Priority */
++	tile_bo = xe_bo_create_pin_map_novm(xe, tile, SZ_2M, ttm_bo_type_kernel,
++					    XE_BO_FLAG_VRAM_IF_DGFX(tile), false);
++
++	if (IS_ERR(tile_bo))
++		return PTR_ERR(tile_bo);
++
++	mem_bo = xe_bo_create_pin_map_novm(xe, tile, xe_bo_size(tile_bo), ttm_bo_type_kernel,
++					   XE_BO_FLAG_SYSTEM, false);
++
++	if (IS_ERR(mem_bo)) {
++		err = PTR_ERR(mem_bo);
++		goto out_put_tile;
++	}
++
++	xe_map_memset(xe, &mem_bo->vmap, 0, 0xc0, xe_bo_size(mem_bo));
++
++	fence = xe_migrate_copy(m, tile_bo, mem_bo, tile_bo->ttm.resource, mem_bo->ttm.resource, false);
++	if (IS_ERR(fence)) {
++		err = PTR_ERR(fence);
++		goto out_put_mem;
++	}
++	err = dma_fence_wait(fence, false);
++	dma_fence_put(fence);
++
++out_put_mem:
++	xe_bo_unpin_map_no_vm(mem_bo);
++out_put_tile:
++	xe_bo_unpin_map_no_vm(tile_bo);
++	if (err)
++		xe_tile_err(tile, "Migration selftest failed with %pe\n", ERR_PTR(err));
++	return err;
++}
++
+ static u64 max_mem_transfer_per_pass(struct xe_device *xe)
+ {
+ 	if (!IS_DGFX(xe) && xe_device_has_flat_ccs(xe))
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index 1522afb37dcfa..92f40bc671d40 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -112,6 +112,7 @@ struct xe_migrate_pt_update {
+ 
+ struct xe_migrate *xe_migrate_alloc(struct xe_tile *tile);
+ int xe_migrate_init(struct xe_migrate *m);
++int xe_migrate_selftest(struct xe_migrate *m);
+ 
+ struct dma_fence *xe_migrate_to_vram(struct xe_migrate *m,
+ 				     unsigned long npages,
 -- 
 2.51.0
 
