@@ -4,53 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 458A9C88E64
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Jan 2026 08:00:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FF07C88E6B
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Jan 2026 08:00:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D534310E08B;
-	Mon, 26 Jan 2026 08:00:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E28010E3A2;
+	Mon, 26 Jan 2026 08:00:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SSWNY/m0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dJa1vpaG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC67610E08B;
- Mon, 26 Jan 2026 08:00:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53E0710E39F;
+ Mon, 26 Jan 2026 08:00:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769414433; x=1800950433;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=j1M5IJusKDUcLDFz9KL6EzsDZPnmrgcV0G7F0O68EsI=;
- b=SSWNY/m0wTSwVmZe2YJx1SPKtFwfJpcqC2tSOcvHeX4iAVuBBS5aGZ+g
- 5c9Vt9tGYhlD0xPv1fDR/nPTNEcoDzRT1lbvgnoU2QCpofcdtEgwUmZNy
- xrszLQfzUV+kG58yKlETRJxHsUQ1vtm8nc/P7W5gX4ouYdiYa1livJAiz
- ehlBsXQTbNwSmUnbMmhUvWUdUqLsYtDt0cJRZbqH+CSUuaL5LZNPlG1SX
- fkB0UepNQzr1d/jpir7hj2DtnF5hViIfF+P46gm8NMJp5EsiK4nPzeonf
- p5Eru7YvHQ0FnxiDstxVpy+6lhI/AnO3ku97CtTu6aPfAVRRLFmD906ZH g==;
-X-CSE-ConnectionGUID: UQTNEEBTSKiDw98eADv+Cw==
-X-CSE-MsgGUID: a9a9ce8lSjCyZ2ubZZShIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11682"; a="70682839"
-X-IronPort-AV: E=Sophos;i="6.21,254,1763452800"; d="scan'208";a="70682839"
+ t=1769414435; x=1800950435;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=J1yRZcBZ39zxOnP4u+JOqe3o8vvahB1l8dPe682vYk8=;
+ b=dJa1vpaG0L/ta0CexyMhmuwI9cjP82gCzRCyMzEwPYdjIwCePnpArrq4
+ dbaVrjMFknDbdBrNspsOqKoXk1e3D4/yl9ysogxuGDgq/Sgj74/fer4TV
+ k0piv94NzNlSCqS72Vr9wlgip4v6xHiAemH0jVRlNsGFbbgohKqYRHVna
+ PMvqtSteEmObJEVgBaBvvVgzAV11XDlr27DEQjJcXLiLERuxi6rnUhEk9
+ /LQfGxGPn7J+eNNk6EqG812x9vj/2Fqv5kPvBH9egJIPgYVn8+ypeftXT
+ GQv9QAtrHjTyAnzlAIiV4EG4yahM48gKCpoxr0tNliRsE5u1ruWjRMU4k w==;
+X-CSE-ConnectionGUID: xGIiLG5iTfm+4U5nuURU5A==
+X-CSE-MsgGUID: zWXCyNwJR4+VjLgte6nw+g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11682"; a="70682840"
+X-IronPort-AV: E=Sophos;i="6.21,254,1763452800"; d="scan'208";a="70682840"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2026 00:00:33 -0800
-X-CSE-ConnectionGUID: Xslb8gIfT7iUoTNUm6aUKA==
-X-CSE-MsgGUID: 5WJyxgMgTTKnYo9a/t8Riw==
+ 26 Jan 2026 00:00:34 -0800
+X-CSE-ConnectionGUID: Y0v+gnTqRSu9EA4jaCH5UQ==
+X-CSE-MsgGUID: cCi8YCoTQU6Q1JkEhF2h3g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,254,1763452800"; d="scan'208";a="207867637"
+X-IronPort-AV: E=Sophos;i="6.21,254,1763452800"; d="scan'208";a="207867650"
 Received: from krybak-mobl1.ger.corp.intel.com (HELO jhogande-mobl3.intel.com)
  ([10.245.246.56])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2026 00:00:31 -0800
+ 26 Jan 2026 00:00:32 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v10 00/10] Use trans push mechanism to generate frame change
- event
-Date: Mon, 26 Jan 2026 09:59:49 +0200
-Message-ID: <20260126075959.925413-1-jouni.hogander@intel.com>
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH v10 01/10] drm/i915/psr: Add TRANS_PUSH register bit
+ definition for PSR
+Date: Mon, 26 Jan 2026 09:59:50 +0200
+Message-ID: <20260126075959.925413-2-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260126075959.925413-1-jouni.hogander@intel.com>
+References: <20260126075959.925413-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -69,79 +72,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently we are using "automatic" frame change event generation. The
-event is generated by any access to plane or pipe registers.
+Add TRANS_PUSH register bit LNL_TRANS_PUSH_PSR_PR_EN definition for PSR
+usage.
 
-We have option to use "PSR PR Frame Change Enable" bit in TRANS_PUSH
-register to enable frame change event generation only when doing trans
-push. When this bit is set "automatic" frame change event generation
-doesn't work anymore. Benfit from this is more controled updates send
-by PSR HW.
+v2: add bspec reference
 
-This patch set is taking trans push mechanism into use.
+Bspec: 69984
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_vrr_regs.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-v10:
-  - added patch implementing helper for parsing value to be written
-    into TRANS_PUSH
-  - Adding HAS_PSR_FRAME_CHANGE macro moved to separate patch and
-    renamed as HAS_PSR_TRANS_PUSH_FRAME_CHANGE
-  - use intel_psr_use_trans_push instead of HAS_PSR_FRAME_CHANGE in
-    intel_psr_trigger_frame_change
-  - moved calling intel_vrr_psr_frame_change_enable away from this
-    patch
-  -
-v9: always do PSR exit on frontbuffer flush for LunarLake and onwards
-v8:
-  - rebase
-  - Wait for idle only after possible send
-v7:
-  - added bspec references
-  - add HAS_PSR_FRAME_CHANGE macro
-  - use TRANS_PUSH in instead of TRAN_VRR_CTL
-  - "Do not trigger Frame Change events from frontbuffer flush" patch
-    already merged
-v6: use AND instead of OR in intel_psr_use_trans_push
-v5: add missing patch
-v4:
-  - add intel_psr_use_trans_push to query if TRANS_PUSH is used
-  - set DSB_SKIP_WAITS_EN chicken bit when TRANS_PUSH is used
-  - Wait for vblank in case of PSR is using trans push
-v3:
-  - use rmw when enabling disabling transh push for PSR or VRR
-  - rely on crtc_state->has_psr/has_vrr to keep trans push enabled
-  - modify frontbuffer flush/invalidate to use disable/enable also for
-    SU/SF on recent platforms.
-  - send push before waiting for vblank
-v2: implement intel_vrr_trans_push_enabled_set_clear and use that
-    instead of rmw
-
-Jouni Högander (10):
-  drm/i915/psr: Add TRANS_PUSH register bit definition for PSR
-  drm/i915/psr: Add intel_psr_use_trans_push to query if TRANS_PUSH is
-    used
-  drm/i915/vrr: Add helper for parsing value to be written into
-    TRANS_PUSH
-  drm/i915/vrr: Prepare to Use TRANS_PUSH mechanism for PSR frame change
-  drm/i915/dsb: Set DSB_SKIP_WAITS_EN chicken bit for LunarLake and
-    onwards
-  drm/i915/display: Wait for vblank in case of PSR is using trans push
-  drm/i915/psr: Wait for idle only after possible send push
-  drm/i915/psr: Do PSR exit on frontbuffer flush on LunarLake and
-    onwards
-  drm/i915/display: Add HAS_PSR_TRANS_PUSH_FRAME_CHANGE macro
-  drm/i915/psr: Use TRANS_PUSH to trigger frame change event
-
- drivers/gpu/drm/i915/display/intel_crtc.c     |  4 +-
- drivers/gpu/drm/i915/display/intel_display.c  | 33 ++++++++++++++--
- .../drm/i915/display/intel_display_device.h   |  1 +
- drivers/gpu/drm/i915/display/intel_dsb.c      | 15 +++++--
- drivers/gpu/drm/i915/display/intel_psr.c      | 36 +++++++++++------
- drivers/gpu/drm/i915/display/intel_psr.h      |  1 +
- drivers/gpu/drm/i915/display/intel_vrr.c      | 39 ++++++++++++++++---
- drivers/gpu/drm/i915/display/intel_vrr.h      |  1 +
- drivers/gpu/drm/i915/display/intel_vrr_regs.h |  1 +
- 9 files changed, 106 insertions(+), 25 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr_regs.h b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+index 427ada0d3973..9d4d6573a149 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_vrr_regs.h
+@@ -165,6 +165,7 @@
+ #define TRANS_PUSH(display, trans)		_MMIO_TRANS2((display), (trans), _TRANS_PUSH_A)
+ #define   TRANS_PUSH_EN				REG_BIT(31)
+ #define   TRANS_PUSH_SEND			REG_BIT(30)
++#define   LNL_TRANS_PUSH_PSR_PR_EN		REG_BIT(16)
+ 
+ #define _TRANS_VRR_VSYNC_A			0x60078
+ #define TRANS_VRR_VSYNC(display, trans)		_MMIO_TRANS2((display), (trans), _TRANS_VRR_VSYNC_A)
 -- 
 2.43.0
 
