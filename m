@@ -4,65 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8092D74EFD
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Jan 2026 12:56:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25616E63C8C
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Jan 2026 12:59:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B264A10E414;
-	Mon, 26 Jan 2026 12:56:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZuqI96h+";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6399710E21E;
- Mon, 26 Jan 2026 12:56:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769432213; x=1800968213;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=+lMEAILZfAJO9u0LWDi0oL79K7xksAaqRfLBQX37uF0=;
- b=ZuqI96h+3O5ysjqythMo/4r9nB5IBw6rrdeBvvukoPZ06QxQhCiabXRH
- A9mRq8LEauTKpv7bVCEarNFxgUMqCebs5ZqY15Cze9RvnE+r0Jj42kOsu
- SKnFZqvmTvF9p2tf3co7+DF9PcrNb+8fVlqQnmpsi8wU0hwk8xqW01JTo
- oc17JRHsyPjZFEnUydIbEV9EQO4QiKKGq0U6cYFgNf5ojSwZuzVLrD2Dp
- Rb/9V/zEdKerBoXScDWtMQNXN471r724tpQvvGRocyFhKJg87SyNvzOn5
- g59YvP3hnAOJdjJ6bmKdeIzUNlVkGKVciwiodzxDqu8YjHZQLWHZON5F/ g==;
-X-CSE-ConnectionGUID: j9KlGbquRKKIHvAEgXNxtw==
-X-CSE-MsgGUID: oWmGmFcUQHWswr+eWX37eQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="81326493"
-X-IronPort-AV: E=Sophos;i="6.21,255,1763452800"; d="scan'208";a="81326493"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2026 04:56:53 -0800
-X-CSE-ConnectionGUID: 2xHfz/nbSuygkHrfbxZ00g==
-X-CSE-MsgGUID: LS3dOau+QeyYBeotQoCHIg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,255,1763452800"; d="scan'208";a="207728841"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.97])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2026 04:56:49 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Subject: Re: [PATCH i-g-t 7/7] lib/igt_device_scan: Print GPU upstream port
- parent/child relations
-Date: Mon, 26 Jan 2026 13:56:46 +0100
-Message-ID: <2893102.BEx9A2HvPv@jkrzyszt-mobl2.ger.corp.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <6123599.MhkbZ0Pkbq@jkrzyszt-mobl2.ger.corp.intel.com>
-References: <20260121114656.1970684-9-janusz.krzysztofik@linux.intel.com>
- <DFVX33TUJM19.WAFS6MCXBOJR@intel.com>
- <6123599.MhkbZ0Pkbq@jkrzyszt-mobl2.ger.corp.intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+	by gabe.freedesktop.org (Postfix) with ESMTP id D383910E21E;
+	Mon, 26 Jan 2026 12:58:59 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDC7610E21E;
+ Mon, 26 Jan 2026 12:58:57 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Enable_ATS=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 26 Jan 2026 12:58:57 -0000
+Message-ID: <176943233784.192609.18224488738586999097@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260126125207.1119351-1-dev@lankhorst.se>
+In-Reply-To: <20260126125207.1119351-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,92 +35,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+== Series Details ==
 
-Here are my conclusion from a closer look.
+Series: drm/xe: Enable ATS.
+URL   : https://patchwork.freedesktop.org/series/160645/
+State : warning
 
-On Friday, 23 January 2026 15:34:23 CET Janusz Krzysztofik wrote:
-> Hi Sebastian,
->=20
-> On Friday, 23 January 2026 12:03:45 CET Sebastian Brzezinka wrote:
-> > Hi Janusz,
-> >=20
-> > On Wed Jan 21, 2026 at 12:42 PM CET, Janusz Krzysztofik wrote:
-> > > In a short listing, information about PCI parents of DRM devices, as =
-well
-> > > as about DRM children of PCI GPU devices is now printed.  In a long
-> > > listing in turn, the latter is also printed.  Apply a similar approac=
-h to
-> > > PCIe bridge upstream ports: print information about their PCI GPU chi=
-ldren
-> > > and also their codenames in both formats, and inform about upstream p=
-orts
-> > > of PCIe bridges found on PCI discrete GPU cards in the short format.
-> > >
-> > > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > > ---
-> > >  lib/igt_device_scan.c | 22 +++++++++++++++++-----
-> > >  1 file changed, 17 insertions(+), 5 deletions(-)
-> > >
-> > > diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
-> > > index e86da001a9..69ea8d2eaf 100644
-> > > --- a/lib/igt_device_scan.c
-> > > +++ b/lib/igt_device_scan.c
-> > > @@ -250,6 +250,8 @@ struct igt_device {
-> > >  	char *codename; /* For grouping by codename */
-> > >  	enum dev_type dev_type; /* For grouping by integrated/discrete */
-> > > =20
-> > > +	char *pci_gpu; /* Filled for upstream bridge ports */
-> > > +
-> > >  	struct igt_list_head link;
-> > >  };
-> > > =20
-> > > @@ -1058,6 +1060,9 @@ static void update_or_add_parent(struct udev *u=
-dev,
-> > >  	igt_assert(bridge_idev);
-> > > =20
-> > >  	bridge_idev->dev_type =3D DEVTYPE_BRIDGE;
-> > > +	bridge_idev->pci_gpu =3D parent_idev->pci_slot_name;
-> > > +	bridge_idev->codename =3D parent_idev->codename;
-> > > +	parent_idev->parent =3D bridge_idev;
-> > I haven=E2=80=99t checked the release process myself. Have you verified=
- that freeing this
-> > memory won=E2=80=99t lead to any problems?
-> >  (Maybe use strdup??)
->=20
-> Indeed, I might have missed something here.  While pci_gpu and parent see=
-m=20
-> safe for me at a first glance, I'm not sure about codename.  Let me have=
-=20
-> another, closer look at all of them.
+== Summary ==
 
-I think parent_idev->parent is safe, it follows the pattern used before:
-	idev->parent =3D parent_idev;
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 9a9635013e6cb63c1689fafcd337cfe49821bbac
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Mon Jan 26 13:52:07 2026 +0100
 
-However, bridge_idev->codename evidently requires strdup() to avoid double=
-=20
-free() on destroy.
+    drm/xe: Add migration selftest for validating job submission and basic features work
+    
+    Add a migration selftest that copies either from local VRAM to sysmem,
+    or sysmem to sysmem. The idea is to validate whether accessing VRAM and
+    system memory works, so we don't run into slightly harder issues later
+    if ATS fails.
+    
+    TODO: Do we want to run this all the time, put it behind a module
+    parameter, or only if DRM_XE_DEBUG_VM is set?
+    
+    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
++ /mt/dim checkpatch a1e0224c47409e3c48cfc55a7db0321d22dc343e drm-intel
+7257559f3a6e drm/xe: Force page fault
+dff21062a1f8 drm/xe: Set the bits in PASID to enable ATS.
+9a9635013e6c drm/xe: Add migration selftest for validating job submission and basic features work
+-:83: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#83: FILE: drivers/gpu/drm/xe/xe_migrate.c:548:
++	fence = xe_migrate_copy(m, tile_bo, mem_bo, tile_bo->ttm.resource, mem_bo->ttm.resource, false);
 
-As long as printing to stdout likely captures content of bridge_idev->pci_g=
-pu=20
-before parent_idev and its attributes are destroyed, that one seems safe, b=
-ut=20
-let's use strdup() as well to be on the safe side.
-
-Thanks for catching this.
-
-Thanks,
-Janusz
-
-
->=20
-> Thanks,
-> Janusz
->=20
-
-
+total: 0 errors, 1 warnings, 0 checks, 81 lines checked
 
 
