@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF949C88E6D
-	for <intel-xe@archiver.kernel.org>; Mon, 26 Jan 2026 08:00:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 050B1C88E6D
+	for <intel-xe@archiver.kernel.org>; Mon, 26 Jan 2026 08:00:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A391B10E08B;
-	Mon, 26 Jan 2026 08:00:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B835D10E3A2;
+	Mon, 26 Jan 2026 08:00:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vrhm6JM3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yd1k39qq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2EEB10E08B;
- Mon, 26 Jan 2026 08:00:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1AFE10E3A9;
+ Mon, 26 Jan 2026 08:00:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769414447; x=1800950447;
+ t=1769414450; x=1800950450;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=X76fVjXUM+EUXPAQWqwUJ2huZ6jA5EhkFSyd2rcuPgE=;
- b=Vrhm6JM3wBwSN9xeaNNkckMJL4lsprAZ+Ov7K184I2cwMo6knCIMcj05
- 8/eQPxD25ZR0p1cNXVkuME9aTIBo0N4fta9MniF2kk24ZMxc7j++spt1R
- RXNWtIOD9JAnhv2i3dZsHqwYlx9PEuBSOIDCd7F6KBs1mAMprKJfJ+e/R
- J0P290mCKRFZ4GtxfQxIOi/fg4FjAi6dwThR3KDehGnAls4upDUAjt9ex
- iwlU6J5ErXpaMutI0m16Xu2doXU3byfOIKuMyUR690yu9cKO0utclbxRo
- s9ewLu87GyX92pa4V6YcMoqSTHfeoXiux+24qrO/NcGQke4n8q+ueQ0FJ g==;
-X-CSE-ConnectionGUID: 3dc/jo0xSWew7rsalTZafA==
-X-CSE-MsgGUID: 0RFJhti+SDylflUACRDseA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11682"; a="70682863"
-X-IronPort-AV: E=Sophos;i="6.21,254,1763452800"; d="scan'208";a="70682863"
+ bh=H1SudnLOexAkLnmkz1kZcme7no2i0TmUI0Hi1FVtUa0=;
+ b=Yd1k39qqooBq5pkeNja88LsyeIgJ7/LCo15GABMCesJZ2IEayZwtdcCG
+ uMkhZgc77js5nYCDS0xkpmf8Ubwa6D61h+jt8Exe8ZRHwdLubmDxVN7tW
+ xhZycIXTF6vtpZDuh5ta6dNQ70meN1aj1FKWfjajd16p3iEt7gGI4ZAAW
+ J+qrfUWbxQQBvl2OEUdn6v5sIoTiBg7kqg8aVpRhwwi46hmfx8LaMrUxX
+ GTaZSvECYnzSslVd0fmJe2ZHbt8rtNIEHq5Ac9m8LVLmIRzuwr9ZsCPr0
+ Pe6oAqV4fHFPw6qUhIhbumXunEUdcE5Qam3tMzQYCpQ6GzY9X4/VlmXo8 A==;
+X-CSE-ConnectionGUID: uWSqrwFjSBWaRXfqet9ddw==
+X-CSE-MsgGUID: /p42KfaNRxyxzP0V4HvcPA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11682"; a="70682869"
+X-IronPort-AV: E=Sophos;i="6.21,254,1763452800"; d="scan'208";a="70682869"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2026 00:00:47 -0800
-X-CSE-ConnectionGUID: fdxmYbGZRtyvMYhtGIs2AA==
-X-CSE-MsgGUID: WG5CekRyT6KxP288+lvuOQ==
+ 26 Jan 2026 00:00:50 -0800
+X-CSE-ConnectionGUID: +JlYpp4HRA2U64FraB13sw==
+X-CSE-MsgGUID: lSaEP/ctR22PEwZfH2NLxg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,254,1763452800"; d="scan'208";a="207867712"
+X-IronPort-AV: E=Sophos;i="6.21,254,1763452800"; d="scan'208";a="207867733"
 Received: from krybak-mobl1.ger.corp.intel.com (HELO jhogande-mobl3.intel.com)
  ([10.245.246.56])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2026 00:00:44 -0800
+ 26 Jan 2026 00:00:48 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH v10 08/10] drm/i915/psr: Do PSR exit on frontbuffer flush on
- LunarLake and onwards
-Date: Mon, 26 Jan 2026 09:59:57 +0200
-Message-ID: <20260126075959.925413-9-jouni.hogander@intel.com>
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v10 10/10] drm/i915/psr: Use TRANS_PUSH to trigger frame
+ change event
+Date: Mon, 26 Jan 2026 09:59:59 +0200
+Message-ID: <20260126075959.925413-11-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260126075959.925413-1-jouni.hogander@intel.com>
 References: <20260126075959.925413-1-jouni.hogander@intel.com>
@@ -72,60 +71,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We need to use intel_psr_exit in frontbuffer flush on LunarLake and
-onwards if we want to move using trans push mechanism to trigger Frame
-Change event.
+Now we have everything in place for triggering PSR "frame change" event
+using TRANS_PUSH: use TRANS_PUSH for LunarLake and onwards.
 
-Keep PSR1 and PSR2 HW tracking as it is for older platforms as this was
-seen causing problems there.
-
-v2: typo fixed
+v4:
+  - Added call to intel_vrr_psr_frame_change_enable call
+  - added setting LNL_TRANS_PUSH_PSR_PR_EN into intel_vrr_send_push
+v3: use HAS_PSR_FRAME_CHANGE macro
+v2: use AND instead of OR in intel_psr_use_trans_push
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 18 ++++++++++--------
- 1 file changed, 10 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 8 ++++++--
+ drivers/gpu/drm/i915/display/intel_vrr.c | 3 +++
+ 2 files changed, 9 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 9613c50623dc..9a4354c6bdda 100644
+index 9a4354c6bdda..4e644711c571 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3559,7 +3559,14 @@ static void _psr_flush_handle(struct intel_dp *intel_dp)
+@@ -2125,6 +2125,9 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
+ 		intel_dmc_block_pkgc(display, intel_dp->psr.pipe, true);
+ 
+ 	intel_alpm_configure(intel_dp, crtc_state);
++
++	if (HAS_PSR_TRANS_PUSH_FRAME_CHANGE(display))
++		intel_vrr_psr_frame_change_enable(crtc_state);
+ }
+ 
+ static bool psr_interrupt_error_check(struct intel_dp *intel_dp)
+@@ -4569,6 +4572,7 @@ int intel_psr_min_guardband(struct intel_crtc_state *crtc_state)
+ 
+ bool intel_psr_use_trans_push(const struct intel_crtc_state *crtc_state)
  {
- 	struct intel_display *display = to_intel_display(intel_dp);
+-	/* TODO: Enable using trans push when everything is in place */
+-	return false;
++	struct intel_display *display = to_intel_display(crtc_state);
++
++	return HAS_PSR_TRANS_PUSH_FRAME_CHANGE(display) && crtc_state->has_psr;
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 8a072f90049f..9d814cc2d608 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -689,6 +689,9 @@ static u32 trans_vrr_push(const struct intel_crtc_state *crtc_state,
+ 	if (send_push)
+ 		trans_vrr_push |= TRANS_PUSH_SEND;
  
--	if (DISPLAY_VER(display) < 20 && intel_dp->psr.psr2_sel_fetch_enabled) {
-+	if (DISPLAY_VER(display) >= 20) {
-+		/*
-+		 * We can use PSR exit on LunarLake onwards. Also
-+		 * using trans push mechanism to trigger Frame Change
-+		 * event requires using PSR exit.
-+		 */
-+		intel_psr_exit(intel_dp);
-+	} else if (intel_dp->psr.psr2_sel_fetch_enabled) {
- 		/* Selective fetch prior LNL */
- 		if (intel_dp->psr.psr2_sel_fetch_cff_enabled) {
- 			/* can we turn CFF off? */
-@@ -3579,16 +3586,11 @@ static void _psr_flush_handle(struct intel_dp *intel_dp)
- 		intel_psr_configure_full_frame_update(intel_dp);
++	if (HAS_PSR_TRANS_PUSH_FRAME_CHANGE(display))
++		trans_vrr_push |= LNL_TRANS_PUSH_PSR_PR_EN;
++
+ 	return trans_vrr_push;
+ }
  
- 		intel_psr_force_update(intel_dp);
--	} else if (!intel_dp->psr.psr2_sel_fetch_enabled) {
-+	} else {
- 		/*
--		 * PSR1 on all platforms
--		 * PSR2 HW tracking
--		 * Panel Replay Full frame update
-+		 * On older platforms using PSR exit was seen causing problems
- 		 */
- 		intel_psr_force_update(intel_dp);
--	} else {
--		/* Selective update LNL onwards */
--		intel_psr_exit(intel_dp);
- 	}
- 
- 	if (!intel_dp->psr.active && !intel_dp->psr.busy_frontbuffer_bits)
 -- 
 2.43.0
 
