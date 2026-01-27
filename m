@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE97CD2FEDD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE94ED2FEDC
 	for <intel-xe@archiver.kernel.org>; Tue, 27 Jan 2026 19:37:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85B5410E5B8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8482710E5B7;
 	Tue, 27 Jan 2026 19:37:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FCRVTfwX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WfXt9RDd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D75B910E5B7
- for <intel-xe@lists.freedesktop.org>; Tue, 27 Jan 2026 19:37:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EE25C10E5B6
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Jan 2026 19:37:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769542662; x=1801078662;
+ t=1769542659; x=1801078659;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uRMBxVNj1gpl2FwTqI3Gyv+4f3W0Kyj2QnzRjq8JBwI=;
- b=FCRVTfwXtvjut+2iW3ZTWMItryx9IEbPKkACk8W+sER7EWb1EHi4YyPM
- ucXnhsq/348RyPzmOMGeNL3HbFJ1HDpW+4PcjG5C4JddVjEaHTLaXnqBE
- LJzVgEUmgkz3HId3RtYKw4cMLt1klg5nPRVYEecVyH9aj6F5YnIwmBTim
- qcfxVwymdUxTfAHJryyZ1gIcws67Ph0xFARjnCz3F7niUx/V2dStrhU9V
- a9o0aO3gH52Jix5kl2Oh7AXsv3zMe/LIBKOR27hgjvs8RpWFEEj+YJtNE
- VZ8RRRyTprDPBtXJV+Ss5CaDINb6YmJZQy23t5ez5EYYAvAFB0aYEe/IT Q==;
-X-CSE-ConnectionGUID: 3q1Z+t5SS9u0EHUs7rwS4Q==
-X-CSE-MsgGUID: e+KeLVBKSf+5BKpgwVm1HQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="69764783"
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="69764783"
+ bh=ckxywbTFiXiWlG5qK1DIJK8cjB8a3KDdUbAzBv9LxGo=;
+ b=WfXt9RDdxKi8o5CHxl2UllRTVOrgMkFYsxg68uL6O3ch/x9LeH51dZaP
+ buL6NWHCTVVqK9rYUHQIl/e2iE33mzHjMrh97AsE6sNbdBMLVl4n7ZXvi
+ H5PXE2Zsq1EzMCS2xX6dJacg7NDL3mniLLDJpnC5bK38luGU6JsBCSe4e
+ 07lMtV4jpPohGEAPvPWQE6ad88+FrtHAgL/eWqpR815dJFlQxpVDWW9JG
+ Ff5OFx92WbJck6TQmkoI5nYzi47zZcNQd3Itv3Mq08DxSKxSd6nnVFzvG
+ eKWbIRubZChy+OMbQ9OKFtKSBW0Wfhjzgk54wnP1kQFV3A3m8SBjjsbNk A==;
+X-CSE-ConnectionGUID: ffs4Ax3HSDKbPaq9Zk8EbQ==
+X-CSE-MsgGUID: nE7u6okmTWukZmmR9H+83g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="69764779"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="69764779"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 11:37:42 -0800
-X-CSE-ConnectionGUID: xP4KVDXUQSiCZ28D1olE9Q==
-X-CSE-MsgGUID: Im4DV1DFQD2zZOoRFRrjhw==
+ 27 Jan 2026 11:37:38 -0800
+X-CSE-ConnectionGUID: Ule7MO6oQkWLppBxrKRTAg==
+X-CSE-MsgGUID: ywTDKBOzTRClz0DgREoT1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="207958951"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="207958942"
 Received: from mahadzix-mobl.gar.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.17.196])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 11:37:41 -0800
+ 27 Jan 2026 11:37:38 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v2 5/6] drm/xe/guc: Wait before retrying sending H2G
-Date: Tue, 27 Jan 2026 20:37:25 +0100
-Message-ID: <20260127193727.601-6-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH v2 2/6] drm/xe: Move exponential sleep logic to helper
+Date: Tue, 27 Jan 2026 20:37:22 +0100
+Message-ID: <20260127193727.601-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260127193727.601-1-michal.wajdeczko@intel.com>
 References: <20260127193727.601-1-michal.wajdeczko@intel.com>
@@ -68,49 +67,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We shall resend H2G message after receiving NO_RESPONSE_RETRY reply,
-but since GuC dropped that H2G due to some interim state, we should
-give it a little time to stabilize. Wait before sending the same H2G
-again, start with 1ms delay, then increase exponentially to 256ms.
+We want to reuse the same increased sleep logic in other places.
+To avoid code duplication, move it to the helper.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
 ---
-v2: use xe_sleep_exponential_ms helper (Michal)
-    don't wait full 1s (Matt)
----
- drivers/gpu/drm/xe/xe_guc.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_submit.c |  5 +----
+ drivers/gpu/drm/xe/xe_sleep.h      | 21 +++++++++++++++++++++
+ 2 files changed, 22 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 2a3b057fc828..231844bce1e0 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -40,6 +40,7 @@
- #include "xe_memirq.h"
- #include "xe_mmio.h"
- #include "xe_platform_types.h"
-+#include "xe_sleep.h"
- #include "xe_sriov.h"
- #include "xe_sriov_pf_migration.h"
- #include "xe_uc.h"
-@@ -1397,6 +1398,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
- 	struct xe_reg reply_reg = xe_gt_is_media_type(gt) ?
- 		MED_VF_SW_FLAG(0) : VF_SW_FLAG(0);
- 	const u32 LAST_INDEX = VF_SW_FLAG_COUNT - 1;
-+	unsigned int sleep_period_ms = 1;
- 	bool lost = false;
- 	u32 header;
- 	int ret;
-@@ -1479,6 +1481,8 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 4ea14f2794f4..66dffa13553e 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1045,10 +1045,7 @@ static int wq_wait_for_space(struct xe_exec_queue *q, u32 wqi_size)
+ 				return -ENODEV;
+ 			}
  
- 		xe_gt_dbg(gt, "GuC mmio request %#x: retrying, reason %#x\n",
- 			  request[0], reason);
-+
-+		xe_sleep_exponential_ms(&sleep_period_ms, 256);
- 		goto retry;
+-			msleep(sleep_period_ms);
+-			sleep_total_ms += sleep_period_ms;
+-			if (sleep_period_ms < 64)
+-				sleep_period_ms <<= 1;
++			sleep_total_ms += xe_sleep_exponential_ms(&sleep_period_ms, 64);
+ 			goto try_again;
+ 		}
  	}
+diff --git a/drivers/gpu/drm/xe/xe_sleep.h b/drivers/gpu/drm/xe/xe_sleep.h
+index a772f1a37395..2bc3f4c0ee0b 100644
+--- a/drivers/gpu/drm/xe/xe_sleep.h
++++ b/drivers/gpu/drm/xe/xe_sleep.h
+@@ -33,4 +33,25 @@ static inline void xe_sleep_relaxed_ms(unsigned int delay_ms)
+ 	usleep_range(min_us, max_us);
+ }
  
++/**
++ * xe_sleep_exponential_ms() - Sleep for a exponentially increased time.
++ * @sleep_period_ms: current time in msec to sleep
++ * @max_sleep_ms: maximum time in msec to sleep
++ *
++ * Sleep for the @sleep_period_ms and exponentially increase this time for the
++ * next loop, unless reaching the @max_sleep_ms limit.
++ *
++ * Return: approximate time in msec the task was delayed.
++ */
++static inline unsigned int xe_sleep_exponential_ms(unsigned int *sleep_period_ms,
++						   unsigned int max_sleep_ms)
++{
++	unsigned int delay_ms = *sleep_period_ms;
++	unsigned int next_delay_ms = 2 * delay_ms;
++
++	xe_sleep_relaxed_ms(delay_ms);
++	*sleep_period_ms = min(next_delay_ms, max_sleep_ms);
++	return delay_ms;
++}
++
+ #endif
 -- 
 2.47.1
 
