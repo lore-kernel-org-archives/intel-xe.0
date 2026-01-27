@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56DC3D2D8FA
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Jan 2026 10:54:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70FA1D2D8FA
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Jan 2026 10:54:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B21310E0C5;
-	Tue, 27 Jan 2026 10:54:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AB5510E05D;
+	Tue, 27 Jan 2026 10:54:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bw1RuJ/M";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T38LvKiq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED88B10E0C5
- for <intel-xe@lists.freedesktop.org>; Tue, 27 Jan 2026 10:54:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28B3D10E05D
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Jan 2026 10:54:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769511258; x=1801047258;
+ t=1769511263; x=1801047263;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WhJTSUG5TVOSWIDVou6XzdhsZnXgdyMG2d0cmV5zd4k=;
- b=bw1RuJ/MLzyHgk5ezOY5v9/nyiEllbtR4UOydNJ2z0/IcJDaUGz989Pp
- TFAg5ezJNjZ3KlEi0DsgSyNtUjxGuJ7L7YaCSw4e+YO1Mx8K/lOLwjXd8
- aHZUVxjqyY4X/JDM4wiKd2RJDRPLlmsV64viPJtXrdknmnTC+5I6pXlJ/
- ID7m2KFSH/GF9XOncWKq5Og2jeFEO9GyYr/EaULLYEJfxfaA9Y3sCFDel
- 2QgtZuqXWQY8P+pAX2Hphgbe3ui9Ox4NBj2lq0wh8uGOG7GvMzlksdIQQ
- BrpWBW7Ls07ziolFv6GR96HoTsWECV4Y5q0bUHY2EMmfOxlLKhWDEWioD A==;
-X-CSE-ConnectionGUID: Ki6iUcLuQlyJ2Oj710Gi9w==
-X-CSE-MsgGUID: sEvvNWw9Sfu9VoCVTzsbhQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="70606776"
-X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; d="scan'208";a="70606776"
+ bh=Jpg1oiMmSWD3L3PyvlA00J8MGyatipNp8LFLW62CwZA=;
+ b=T38LvKiqf+cEu8RUszqrDx2+XfMX7gD5armSc02P0sP0bhbXfbOOOQO6
+ XTyIgMwTtvJYTeKq1pP4yeLKM01Vl3rBfDOsCd+Iyh6FR2CZW/npuv9FB
+ exUutegp1fZj43h1mo2l4dvYf6TRWeBNBRwje7K5zlSwW/kGDVjO97yYS
+ 5ZqzRIqlISJ1UwNX8WP7S+c8nDaM88xG3FmkiaygbL9AtdkRooZWFHSzx
+ tdFdEgstGcK2D38P8F+Yh3GaibITL+fEhjOMBZwIm6sGS4SRm2O4N5Q2g
+ vOVpP1Yc1Yh1znI7p3h5vwSRLusYiO5h9UUyVOjZSZd5aJhWgB4j7WPKZ w==;
+X-CSE-ConnectionGUID: IT5QQMFJR6KLRYfpq5l7lA==
+X-CSE-MsgGUID: N8O/u0aBTzW+TXGX+GHF5Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="70606783"
+X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; d="scan'208";a="70606783"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 02:54:18 -0800
-X-CSE-ConnectionGUID: T3Mcy1sQScu8oGYEO/UFBA==
-X-CSE-MsgGUID: 8hwkWws8TnaBqLWKchl3Tg==
+ 27 Jan 2026 02:54:22 -0800
+X-CSE-ConnectionGUID: 0+0wXNYITXmaZn0JiVPsMg==
+X-CSE-MsgGUID: k6BYJGZsS36R82zAwVI/rw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; d="scan'208";a="207965541"
+X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; d="scan'208";a="207965547"
 Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 02:54:13 -0800
+ 27 Jan 2026 02:54:18 -0800
 From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
@@ -48,9 +48,9 @@ Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
  riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
  michael.j.ruhl@intel.com, paul.e.luse@intel.com,
  mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
-Subject: [PATCH v5 5/6] drm/xe/sysctrl: Integrate System Controller into device
-Date: Tue, 27 Jan 2026 02:53:49 -0800
-Message-ID: <20260127105347.2651751-13-anoop.c.vijay@intel.com>
+Subject: [PATCH v5 6/6] drm/xe/sysctrl: Enable System Controller for Xe3p
+Date: Tue, 27 Jan 2026 02:53:50 -0800
+Message-ID: <20260127105347.2651751-14-anoop.c.vijay@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260127105347.2651751-8-anoop.c.vijay@intel.com>
 References: <20260127105347.2651751-8-anoop.c.vijay@intel.com>
@@ -72,71 +72,64 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Add System Controller to the xe_device structure and wire
-up initialization during device probe.
+Add PCI device detection for System Controller capability
+and update build system to include System Controller
+components.
 
 Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
 
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c       | 5 +++++
- drivers/gpu/drm/xe/xe_device_types.h | 6 ++++++
- 2 files changed, 11 insertions(+)
+ drivers/gpu/drm/xe/Makefile       | 2 ++
+ drivers/gpu/drm/xe/xe_pci.c       | 2 ++
+ drivers/gpu/drm/xe/xe_pci_types.h | 1 +
+ 3 files changed, 5 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index f4741cbe4c45..e11339e10433 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -66,6 +66,7 @@
- #include "xe_survivability_mode.h"
- #include "xe_sriov.h"
- #include "xe_svm.h"
-+#include "xe_sysctrl.h"
- #include "xe_tile.h"
- #include "xe_ttm_stolen_mgr.h"
- #include "xe_ttm_sys_mgr.h"
-@@ -1027,6 +1028,10 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		goto err_unregister_display;
- 
-+	err = xe_sysctrl_init(xe);
-+	if (err)
-+		goto err_unregister_display;
-+
- 	err = xe_device_sysfs_init(xe);
- 	if (err)
- 		goto err_unregister_display;
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index a85be9ba175e..6295b2c35d4a 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -29,6 +29,7 @@
- #include "xe_sriov_vf_ccs_types.h"
- #include "xe_step_types.h"
- #include "xe_survivability_mode_types.h"
-+#include "xe_sysctrl_types.h"
- #include "xe_tile_sriov_vf_types.h"
- #include "xe_validation.h"
- 
-@@ -340,6 +341,8 @@ struct xe_device {
- 		u8 has_soc_remapper_telem:1;
- 		/** @info.has_sriov: Supports SR-IOV */
- 		u8 has_sriov:1;
-+		/** @info.has_sysctrl: Supports System Controller */
-+		u8 has_sysctrl:1;
- 		/** @info.has_usm: Device has unified shared memory support */
- 		u8 has_usm:1;
- 		/** @info.has_64bit_timestamp: Device supports 64-bit timestamps */
-@@ -606,6 +609,9 @@ struct xe_device {
- 	/** @heci_gsc: graphics security controller */
- 	struct xe_heci_gsc heci_gsc;
- 
-+	/** @sc: System Controller */
-+	struct xe_sysctrl sc;
-+
- 	/** @nvm: discrete graphics non-volatile memory */
- 	struct intel_dg_nvm_dev *nvm;
- 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 2b20c79d7ec9..947fbcac65d5 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -121,6 +121,8 @@ xe-y += xe_bb.o \
+ 	xe_step.o \
+ 	xe_survivability_mode.o \
+ 	xe_sync.o \
++	xe_sysctrl.o \
++	xe_sysctrl_mailbox.o \
+ 	xe_tile.o \
+ 	xe_tile_sysfs.o \
+ 	xe_tlb_inval.o \
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 91e0553a8163..b6dc3030b673 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -426,6 +426,7 @@ static const struct xe_device_desc cri_desc = {
+ 	.has_soc_remapper_sysctrl = true,
+ 	.has_soc_remapper_telem = true,
+ 	.has_sriov = true,
++	.has_sysctrl = true,
+ 	.max_gt_per_tile = 2,
+ 	.require_force_probe = true,
+ 	.va_bits = 57,
+@@ -701,6 +702,7 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.has_soc_remapper_telem = desc->has_soc_remapper_telem;
+ 	xe->info.has_sriov = xe_configfs_primary_gt_allowed(to_pci_dev(xe->drm.dev)) &&
+ 		desc->has_sriov;
++	xe->info.has_sysctrl = desc->has_sysctrl;
+ 	xe->info.has_mem_copy_instr = desc->has_mem_copy_instr;
+ 	xe->info.skip_guc_pc = desc->skip_guc_pc;
+ 	xe->info.skip_mtcfg = desc->skip_mtcfg;
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index 5f20f56571d1..53e44a32883d 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -56,6 +56,7 @@ struct xe_device_desc {
+ 	u8 has_soc_remapper_sysctrl:1;
+ 	u8 has_soc_remapper_telem:1;
+ 	u8 has_sriov:1;
++	u8 has_sysctrl:1;
+ 	u8 needs_scratch:1;
+ 	u8 skip_guc_pc:1;
+ 	u8 skip_mtcfg:1;
 -- 
 2.43.0
 
