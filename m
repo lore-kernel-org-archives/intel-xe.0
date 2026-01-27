@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33E4CD2FEC6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 091A9D2FEC2
 	for <intel-xe@archiver.kernel.org>; Tue, 27 Jan 2026 17:05:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7517910E5A8;
-	Tue, 27 Jan 2026 17:05:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9079B10E5A7;
+	Tue, 27 Jan 2026 17:04:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fir43sCe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SvI6ghio";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3721810E5A2
- for <intel-xe@lists.freedesktop.org>; Tue, 27 Jan 2026 17:04:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E33ED10E5A2
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Jan 2026 17:04:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1769533498; x=1801069498;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Zn5jTmerUNkrbCmXKfWSkBaKSE5gUrq1fv//SmwgjLk=;
- b=Fir43sCelZLExDIZ17VnVJXjhwaKd7vulyIyJqg7J18F2RvPLBOlIzRz
- kU8ZzCa5EbZXnlZTon5m/lNp2/EPKDs0MsI0bSnRZHJ2bgn03R3t3RPEu
- FGS7QGQR9I9lRBptooQum7q7WdIxol71XHJql9GJ4fOZ9BSk+R/dWaRWV
- n0EpSGU8APaKfOMqQK5AlhAd5+p0+2flucELGqgySCKCJrg4rNxv6u23H
- QJo1+d9/NyaubIyydAFvX5WPtr8MIWfDqFx2UObOZTUivKrNPg+iaBoFA
- yNCm05IBEpZ800f3Cu8kueiv0axGb+0igqJXO/VcPBtUyZGU33QGDak4c g==;
-X-CSE-ConnectionGUID: nTxMRE6LQ0usPv2QYwKGxg==
-X-CSE-MsgGUID: 6yDSRlE9Q3W0MWIQ15fOZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="93393531"
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="93393531"
+ bh=zjrHbgjKFl7wijIV0wGzGMx6vTG0FnXHa4QendUclIU=;
+ b=SvI6ghioVoXY+69zzlMPhp/t0h8/YIGAkHZhTJNInGaHTvDRjHzTnOXB
+ ZQHBh6qz7ohOquT2QX+9MQpT+NuVIw8uFRf4wDj1kXiBnflM3GOtBJcK2
+ XAPHV8VMNWBLbuo73V2q0s5Bof+EEaCfeDTVo5uFeGena0Td/G5meNqUd
+ oYwvojru2zweKBUBinQfNqKNVme3E6crb5rdQiEaJtQYc4Wwow1Yuykl0
+ Vd84xNMMp+3Sp6ejR0uQJlAHqdYpHYpRu1ZXeA2PrhGctMlVWa7V+bGox
+ QRtMtBgoxlVtXgJU6eMPrMo8n4+0sHEU6HqTV/ImHPh1RmJrHhekc9iBR Q==;
+X-CSE-ConnectionGUID: zPTMw2/yQQW2lJd0MnzMDQ==
+X-CSE-MsgGUID: VYuDIMtFShmSm8Zzvs0b0g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="93393527"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="93393527"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 09:04:58 -0800
-X-CSE-ConnectionGUID: YvHudb4JRmuUtlvyQ7ng+Q==
-X-CSE-MsgGUID: TeOnzCMRSiGWNLMdWQilYA==
+ 27 Jan 2026 09:04:57 -0800
+X-CSE-ConnectionGUID: q0mzEbOzQMmW+/jKadpILA==
+X-CSE-MsgGUID: /UOQVbIRRrS83+fUiMpOAg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="208039401"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="208039395"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.39.24])
- by orviesa008.jf.intel.com with ESMTP; 27 Jan 2026 09:04:58 -0800
+ by orviesa008.jf.intel.com with ESMTP; 27 Jan 2026 09:04:57 -0800
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v4 5/5] drm/xe/uc: Drop xe_guc_sanitize in favor of managed
- cleanup
-Date: Tue, 27 Jan 2026 12:04:55 -0500
-Message-Id: <20260127170455.618616-6-zhanjun.dong@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org,
+ Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: [PATCH v4 3/5] drm/xe: Trigger queue cleanup if not in wedged mode 2
+Date: Tue, 27 Jan 2026 12:04:53 -0500
+Message-Id: <20260127170455.618616-4-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260127170455.618616-1-zhanjun.dong@intel.com>
 References: <20260127170455.618616-1-zhanjun.dong@intel.com>
@@ -67,35 +66,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the firmware fails to load in GT resets the device is wedged also
-initiating a GuC state cleanup.
+From: Matthew Brost <matthew.brost@intel.com>
 
+The intent of wedging a device is to allow queues to continue running
+only in wedged mode 2. In other modes, queues should initiate cleanup
+and signal all remaining fences. Fix xe_guc_submit_wedge to correctly
+clean up queues when wedge mode != 2.
+
+Fixes: 7dbe8af13c18 ("drm/xe: Wedge the entire device")
+Cc: stable@vger.kernel.org
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_uc.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 34 ++++++++++++++++++------------
+ 1 file changed, 21 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index 3f63c2a7e86d..39101120d43a 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -171,7 +171,6 @@ static int vf_uc_load_hw(struct xe_uc *uc)
- 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 92ea32423838..f29ed62d2b12 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1326,6 +1326,7 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
+  */
+ void xe_guc_submit_wedge(struct xe_guc *guc)
+ {
++	struct xe_device *xe = guc_to_xe(guc);
+ 	struct xe_gt *gt = guc_to_gt(guc);
+ 	struct xe_exec_queue *q;
+ 	unsigned long index;
+@@ -1340,20 +1341,27 @@ void xe_guc_submit_wedge(struct xe_guc *guc)
+ 	if (!guc->submission_state.initialized)
+ 		return;
  
- err_out:
--	xe_guc_sanitize(&uc->guc);
- 	return err;
+-	err = devm_add_action_or_reset(guc_to_xe(guc)->drm.dev,
+-				       guc_submit_wedged_fini, guc);
+-	if (err) {
+-		xe_gt_err(gt, "Failed to register clean-up in wedged.mode=%s; "
+-			  "Although device is wedged.\n",
+-			  xe_wedged_mode_to_string(XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET));
+-		return;
+-	}
++	if (xe->wedged.mode == 2) {
++		err = devm_add_action_or_reset(guc_to_xe(guc)->drm.dev,
++					       guc_submit_wedged_fini, guc);
++		if (err) {
++			xe_gt_err(gt, "Failed to register clean-up on wedged.mode=2; "
++				  "Although device is wedged.\n");
++			return;
++		}
+ 
+-	mutex_lock(&guc->submission_state.lock);
+-	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
+-		if (xe_exec_queue_get_unless_zero(q))
+-			set_exec_queue_wedged(q);
+-	mutex_unlock(&guc->submission_state.lock);
++		mutex_lock(&guc->submission_state.lock);
++		xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
++			if (xe_exec_queue_get_unless_zero(q))
++				set_exec_queue_wedged(q);
++		mutex_unlock(&guc->submission_state.lock);
++	} else {
++		/* Forcefully kill any remaining exec queues, signal fences */
++		xe_guc_ct_stop(&guc->ct);
++		__xe_guc_submit_reset_prepare(guc);
++		xe_guc_submit_stop(guc);
++		xe_guc_submit_pause_abort(guc);
++	}
  }
  
-@@ -229,7 +228,6 @@ int xe_uc_load_hw(struct xe_uc *uc)
- 	return 0;
- 
- err_out:
--	xe_guc_sanitize(&uc->guc);
- 	return ret;
- }
- 
+ static bool guc_submit_hint_wedged(struct xe_guc *guc)
 -- 
 2.34.1
 
