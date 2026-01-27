@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18F3ED2F03E
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Jan 2026 14:57:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E40DD34092
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Jan 2026 15:46:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C811610E58E;
-	Tue, 27 Jan 2026 14:57:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j1ArsMBJ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2647510E58B;
- Tue, 27 Jan 2026 14:57:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769525853; x=1801061853;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=GF3hAJ+nQjE0sguR8uHzep8IWqz/2IX5fpA+BkSPp4w=;
- b=j1ArsMBJTGScU8+yEClg/DTFW5jHjo/Gs2sOO7SWDQCQXTqcQb/FmcuE
- 4BtPygO/k5Dz6p1l4KYZg1Mh2g1vMau13t3Hb4ZZt/6r3lsVThALJhnSW
- jq1WoivChW710AnBokqBGEM0aiws2Jfe8vivIK7BeM9PdlTy6QmTM/nUH
- h9lbbEPCUB9/cI7Rz8ie3s8tzwcNsWXH27YTCYRFAMogG0mEamAs2RrVs
- M9GFy1Yr14YcuHSPO5RCI01/ceW//+BG3GKsp+vXfupXgezMMOIcyQOPq
- 5vha4zUPCeYeMf0UpMAFtCuoYV3nznxfE5N5JN7wx+dHMRDHWx6EoLSCg Q==;
-X-CSE-ConnectionGUID: pjb3SwiiQUS7CDhhRkNqjQ==
-X-CSE-MsgGUID: EkEh9gc2Sce6P/bqJEPoHg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="70763159"
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="70763159"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 06:57:33 -0800
-X-CSE-ConnectionGUID: CWJZdYcwSGiBiYbsJazt4w==
-X-CSE-MsgGUID: WHorqjZERjayIlJYB6grxw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="208242096"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.148])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 06:57:28 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>
-Cc: airlied@gmail.com, atharvatiwarilinuxdev@gmail.com,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, joonas.lahtinen@linux.intel.com,
- linux-kernel@vger.kernel.org, rodrigo.vivi@intel.com, simona@ffwll.ch,
- tursulin@ursulin.net, ville.syrjala@linux.intel.com
-Subject: Re: [PATCH 2/2] drm/i915/display: Disable display for iMac's
-In-Reply-To: <20260126204915.1324-1-atharvatiwarilinuxdev@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <c3fc271e9cd1eec5ab96c70c9dc3c971d5ed73d6@intel.com>
- <20260126204915.1324-1-atharvatiwarilinuxdev@gmail.com>
-Date: Tue, 27 Jan 2026 16:57:25 +0200
-Message-ID: <bc778f93d4e2a18848bc93a51aed9b627bcbb2cf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DD6F10E0CB;
+	Tue, 27 Jan 2026 15:46:59 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3480010E0CB;
+ Tue, 27 Jan 2026 15:46:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7671784707678823530=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Apply_WA=5F160280?=
+ =?utf-8?q?05424_to_Media?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 27 Jan 2026 15:46:57 -0000
+Message-ID: <176952881720.197081.16114120214285134861@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260127144340.1396752-2-balasubramani.vivekanandan@intel.com>
+In-Reply-To: <20260127144340.1396752-2-balasubramani.vivekanandan@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,74 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 26 Jan 2026, Atharva Tiwari <atharvatiwarilinuxdev@gmail.com> wrote:
->> Rendering and display are quite separate in the hardware and in the
->> driver. Perhaps you do not mean "rendering" here? Perhaps it can be used
->> for rendering but not display?
->
-> Yeah, it can be used for rendering but not display, sorry for the wording.
->
->> Okay, so perhaps there's no eDP connected. But what about the other
->> connectors on the iGPU? What about everything else in the display
->> hardware?
->
-> You cant use the iGPU to drive the display on any hardware (including external displays).
->
->> If you can figure out that it's specifically link training that fails (a
->> dmesg would be useful to show this) there clearly is display hardware,
->> right?
->
-> As said the iGPU cant drive the display on all monitors (even on macOS), but still heres the dmesg before this patch:
->
-> [    5.095489] i915 0000:00:02.0: [drm] Found cometlake (device ID 9bc8) integrated display version 9.00 stepping N/A
-> [    5.096061] i915 0000:00:02.0: [drm] VT-d active for gfx access
-> [    5.096102] i915 0000:00:02.0: [drm] Using Transparent Hugepages
-> [    5.099214] i915 0000:00:02.0: Invalid PCI ROM header signature: expecting 0xaa55, got 0xffff
-> [    5.099217] i915 0000:00:02.0: [drm] Failed to find VBIOS tables (VBT)
-> [    5.099324] i915 0000:00:02.0: vgaarb: VGA decodes changed: olddecodes=io+mem,decodes=none:owns=io+mem
-> [    5.100960] i915 0000:00:02.0: [drm] Finished loading DMC firmware i915/kbl_dmc_ver1_04.bin (v1.4)
-> [    5.832214] i915 0000:00:02.0: [drm] [ENCODER:105:DDI A/PHY A] failed to retrieve link info, disabling eDP
-> [    5.835756] i915 0000:00:02.0: [drm] Registered 3 planes with drm panic
-> [    6.428455] i915 0000:00:02.0: [drm] Cannot find any crtc or sizes
-> [    6.722404] i915 0000:00:02.0: [drm] Cannot find any crtc or sizes
->
->> There's at least three levels where this could be handled, depending on
->> details:
->> 
->> - Display probe (the patch at hand). Assumes there's no display
->>   hardware, at all. The driver doesn't touch the hardware, which
->>   continues to consume power, it's not put in low power states. Not
->>   optimal if there actually is display hardware.
->> 
->> - Display disable. See intel_display_device_enabled(). The driver takes
->>   over the hardware, puts it to sleep, but prevents all connectors from
->>   being connected.
+--===============7671784707678823530==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-At a glance, this seems like the appropriate level.
+== Series Details ==
 
-What if you drop patch 2 and supply i915.disable_display=1 module
-parameter? Or return false from intel_display_device_enabled().
+Series: drm/xe: Apply WA_16028005424 to Media
+URL   : https://patchwork.freedesktop.org/series/160712/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-4451-ad8c37855805baaa6d835e520e802c950b0491ac_BAT -> xe-pw-160712v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
 
 
-BR,
-Jani.
+Changes
+-------
 
->> 
->> - eDP disable. Add a quirk somewhere to enforce eDP is disconnected, but
->>   other connectors can be used.
->
-> The main reason I sent this patch is that after i915 trys to probe the display,
-> the dGPU (amdgpu) is no longer able to detect the internal display,
-> resulting in a black screen.
->
->> It would be quite useful to indicate the PCI ID of the device in
->> question.
->
-> 00:02.0 VGA compatible controller [0300]: Intel Corporation CometLake-S GT2 [UHD Graphics 630] [8086:9bc8] (rev 03) (prog-if 00 [VGA controller])
-> 	Subsystem: Apple Inc. CometLake-S GT2 [UHD Graphics 630] [106b:ffff]
+  No changes found
 
--- 
-Jani Nikula, Intel
+
+Build changes
+-------------
+
+  * IGT: IGT_8719 -> IGT_8720
+  * Linux: xe-4451-ad8c37855805baaa6d835e520e802c950b0491ac -> xe-pw-160712v1
+
+  IGT_8719: 399f1e1cd9d38f0d0ab2c55a9ade415cc8248959 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8720: b37a4d70080afd7426cb249787545df75f762dc0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4451-ad8c37855805baaa6d835e520e802c950b0491ac: ad8c37855805baaa6d835e520e802c950b0491ac
+  xe-pw-160712v1: 160712v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160712v1/index.html
+
+--===============7671784707678823530==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Apply WA_16028005424 to Media</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160712/">https://patchwork.freedesktop.org/series/160712/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160712v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160712v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4451-ad8c37855805baaa6d835e520e802c950b0491ac_BAT -&gt; xe-pw-160712v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8719 -&gt; IGT_8720</li>
+<li>Linux: xe-4451-ad8c37855805baaa6d835e520e802c950b0491ac -&gt; xe-pw-160712v1</li>
+</ul>
+<p>IGT_8719: 399f1e1cd9d38f0d0ab2c55a9ade415cc8248959 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8720: b37a4d70080afd7426cb249787545df75f762dc0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4451-ad8c37855805baaa6d835e520e802c950b0491ac: ad8c37855805baaa6d835e520e802c950b0491ac<br />
+  xe-pw-160712v1: 160712v1</p>
+
+</body>
+</html>
+
+--===============7671784707678823530==--
