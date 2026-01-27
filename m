@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61E8ED2F00B
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Jan 2026 12:41:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1092D2F00E
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Jan 2026 12:41:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0985810E569;
-	Tue, 27 Jan 2026 12:41:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A22AE10E55C;
+	Tue, 27 Jan 2026 12:41:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ADMe0oH5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PPnU+l23";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C65EA10E564;
- Tue, 27 Jan 2026 12:41:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7521E10E55C;
+ Tue, 27 Jan 2026 12:41:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769517705; x=1801053705;
+ t=1769517708; x=1801053708;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=OiJjqgAevpOTPiZ0qP4voa/sqVyVnCj9slX5jGuH/Hc=;
- b=ADMe0oH5bffesYbxyFsQ7RHF+EtFznm2dYTZDpDb6adfN8mSGEBr/sSq
- TQQ3XveimS+QDQDKyB5D9e3nRtcecS8/JgiSzYI7Q0RWUJG91nExmf52g
- k56xnb+bJdvCpEgHCXZAjOEcVLN0dSBSOR7SvV9PcJLwuQ/Q01Akre8FW
- Z1sxPCxuH2Akwe8oYpdD7+A2xfw43I2MLngbXbKRSWeLJSg/wdfx+XekD
- GSFLjwcze6fUWa9KcMMNHAj8V5EMx1R68hW9f+5R9Cg1uRs/1mDjjnqA5
- gJN7e/F8aX0pQHHJ9Bz/eVA6e2pqU/pkrw1t1YHAWWYMipHCPAUh/d3wR Q==;
-X-CSE-ConnectionGUID: 6Iir57XSSL6NhB1dAIoPMA==
-X-CSE-MsgGUID: JvOV9Nm0RYiRm3l0LVwv7A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="70767652"
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="70767652"
+ bh=HhXRU0Vv8vobJjrbMd23xdBb1ruKyd8kPMSWwPUCPNk=;
+ b=PPnU+l23RXsY/YAiu1UGDKzwPFJZqipBv5YCJPwcgJ7J4+X9ZCm1kdDu
+ b694e/PxrUPU98gb6jIHUfQKEZNfud6bwZW5eOX6RaZGR06u5tsgrflMp
+ +bvWCk9SqZylL3rxAsjxZ2BWZhv8kSmOIkQ6hkSojDPliXXKkmF2HSUAb
+ GSBINJrWPd2HKIisxjSfFKke3vzEACEoBdcZBWNSoPPIiCWQbvmitkHZ8
+ X/5Agj7hF/QmgKCQ86XLLv/Fbig17cGbJ2C0vTV/KOugsEgchOY8J7xWT
+ 2rd9++c+aAFOQjb7Ld5F/ShVroWhRlL9xL1Frbj9/7kDWvCLVDHIPl5ot Q==;
+X-CSE-ConnectionGUID: cOR7bKdOSBWCFFRiBK87cw==
+X-CSE-MsgGUID: c5k8DB8ZSt+dqrCoQ+lqKg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="70767659"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="70767659"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 04:41:45 -0800
-X-CSE-ConnectionGUID: WqrSXSa2Q/GbZFY/F7JQsA==
-X-CSE-MsgGUID: zqKe5XW3TSyyDBSFL45qKQ==
+ 27 Jan 2026 04:41:48 -0800
+X-CSE-ConnectionGUID: VP3Q0jzTROmeynQiuZRVmg==
+X-CSE-MsgGUID: XP8LvfXfT6aKm+N84INu+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="239231231"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="239231238"
 Received: from ettammin-desk.ger.corp.intel.com (HELO
  jhogande-mobl3.intel.com) ([10.245.246.134])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 04:41:43 -0800
+ 27 Jan 2026 04:41:46 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH v11 06/11] drm/i915/dsb: Set DSB_SKIP_WAITS_EN chicken bit for
- LunarLake and onwards
-Date: Tue, 27 Jan 2026 14:41:15 +0200
-Message-ID: <20260127124120.1069026-7-jouni.hogander@intel.com>
+Subject: [PATCH v11 08/11] drm/i915/psr: Wait for idle only after possible
+ send push
+Date: Tue, 27 Jan 2026 14:41:17 +0200
+Message-ID: <20260127124120.1069026-9-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260127124120.1069026-1-jouni.hogander@intel.com>
 References: <20260127124120.1069026-1-jouni.hogander@intel.com>
@@ -72,58 +72,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On LunarLake we are using TRANS_PUSH mechanism to trigger "Frame Change"
-event. This way we have more control on when PSR HW is woken up. I.e. not
-every display register write is triggering sending update. This allows us
-setting DSB_SKIP_WAITS_EN chicken bit as well.
+We are planning to move using trans push mechanism to trigger the Frame
+Change event. In that case we can't wait PSR to idle before send push
+happens. Due to this move wait for idle to be done after possible send push
+is done.
+
+This should be ok for Frame Change event triggered by register write as
+well. Wait for idle is needed only for corner case where PSR is
+transitioning into DEEP_SLEEP when Frame Change event is triggered. It just
+has to be before wait for vblank. Otherwise we may have vblank before PSR
+enters DEEP_SLEEP and still using old frame buffers for first frame after
+wake up.
+
+v2: some typos fixed
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index cf5fb30cab83..8868776c4311 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -17,6 +17,7 @@
- #include "intel_display_types.h"
- #include "intel_dsb.h"
- #include "intel_dsb_regs.h"
-+#include "intel_psr.h"
- #include "intel_vblank.h"
- #include "intel_vrr.h"
- #include "skl_watermark.h"
-@@ -217,18 +218,24 @@ static int dsb_scanline_to_hw(struct intel_atomic_state *state,
-  * definitely do not want to skip vblank wait. We also have concern what comes
-  * to skipping vblank evasion. I.e. arming registers are latched before we have
-  * managed writing them. Due to these reasons we are not setting
-- * DSB_SKIP_WAITS_EN.
-+ * DSB_SKIP_WAITS_EN except when using TRANS_PUSH mechanism to trigger
-+ * "frame change" event.
-  */
- static u32 dsb_chicken(struct intel_atomic_state *state,
- 		       struct intel_crtc *crtc)
- {
-+	const struct intel_crtc_state *new_crtc_state =
-+		intel_atomic_get_new_crtc_state(state, crtc);
-+	u32 chicken = intel_psr_use_trans_push(new_crtc_state) ?
-+		DSB_SKIP_WAITS_EN : 0;
-+
- 	if (pre_commit_is_vrr_active(state, crtc))
--		return DSB_CTRL_WAIT_SAFE_WINDOW |
-+		chicken |= DSB_CTRL_WAIT_SAFE_WINDOW |
- 			DSB_CTRL_NO_WAIT_VBLANK |
- 			DSB_INST_WAIT_SAFE_WINDOW |
- 			DSB_INST_NO_WAIT_VBLANK;
--	else
--		return 0;
-+
-+	return chicken;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 176bd5e6f291..d107b6863781 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -7357,9 +7357,6 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+ 		intel_psr_trigger_frame_change_event(new_crtc_state->dsb_commit,
+ 						     state, crtc);
  
- static bool assert_dsb_has_room(struct intel_dsb *dsb)
+-		intel_psr_wait_for_idle_dsb(new_crtc_state->dsb_commit,
+-					    new_crtc_state);
+-
+ 		if (new_crtc_state->use_dsb)
+ 			intel_dsb_vblank_evade(state, new_crtc_state->dsb_commit);
+ 
+@@ -7399,6 +7396,16 @@ static void intel_atomic_dsb_finish(struct intel_atomic_state *state,
+ 
+ 		intel_vrr_send_push(new_crtc_state->dsb_commit, new_crtc_state);
+ 
++		/*
++		 * Wait for idle is needed for corner case where PSR HW
++		 * is transitioning into DEEP_SLEEP/SRDENT_OFF when
++		 * new Frame Change event comes in. It is ok to do it
++		 * here for both Frame Change mechanism (trans push
++		 * and register write).
++		 */
++		intel_psr_wait_for_idle_dsb(new_crtc_state->dsb_commit,
++					    new_crtc_state);
++
+ 		/*
+ 		 * In case PSR uses trans push as a "frame change" event and
+ 		 * VRR is not in use we need to wait vblank. Otherwise we may
 -- 
 2.43.0
 
