@@ -4,54 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE149D2595C
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Jan 2026 07:57:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38BBBD2595C
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Jan 2026 08:01:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 838A610E468;
-	Tue, 27 Jan 2026 07:57:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fR/I/88/";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71DAE10E468;
- Tue, 27 Jan 2026 07:57:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769500620; x=1801036620;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uCv3pGgErWDgTQjmtYedWPhWT8BqUXsAhqVpTGRhU/Q=;
- b=fR/I/88/Et+x4owIe87bj8R6lIroNluGlhAj32exUeKgDzerzinI9Odf
- 1b9ULfwxIicOxpoR+1q+uPIWecHrcOHKhETpYY8iQLdYJYETq6PVNesOM
- GG8J2ds3unGcSUA9y65pBJodc8YDzjJRCyuyk0hY56e6JPflEKA2m+KnO
- Gz+nQ89UYMXJALHgw3MPmOJ107i+2DntlPyImVAyRZkQjhHhtcuN6dDOp
- IhS3EnyJGG1XR3I7JrAg0RfuowSljgWytrCYBvAP2NQnOLTsrF8X4MGuz
- 4StP1nxor2cEQ5a6P2ak1RFN1IDHwz/ksk4ptxGt137yaCfA4JzysCZc3 Q==;
-X-CSE-ConnectionGUID: a7kicRRTQda3y62yUmtUkQ==
-X-CSE-MsgGUID: pBSWyKduRyeVaXQjsMO62Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="81320948"
-X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; d="scan'208";a="81320948"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jan 2026 23:57:00 -0800
-X-CSE-ConnectionGUID: bKQyGOPAQzKCTJJB+pp4vA==
-X-CSE-MsgGUID: 5zdZDW9dQJW8BtwxOeIu3Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; d="scan'208";a="207026714"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa006.jf.intel.com with ESMTP; 26 Jan 2026 23:57:00 -0800
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: suraj.kandpal@intel.com
-Subject: [PATCH v2 1/1] drm/i915/display: Implement Wa_16024710867
-Date: Tue, 27 Jan 2026 13:16:44 +0530
-Message-ID: <20260127074644.991015-2-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20260127074644.991015-1-mitulkumar.ajitkumar.golani@intel.com>
-References: <20260127074644.991015-1-mitulkumar.ajitkumar.golani@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E2BE410E4CA;
+	Tue, 27 Jan 2026 08:01:14 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A34E810E4C7;
+ Tue, 27 Jan 2026 08:01:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1259056450526214004=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_Enable_ATS=2E?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 27 Jan 2026 08:01:14 -0000
+Message-ID: <176950087467.194858.9701698916215407202@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260126125207.1119351-1-dev@lankhorst.se>
+In-Reply-To: <20260126125207.1119351-1-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,37 +35,157 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Defeature port sync feature for xe3lpd onwards.
+--===============1259056450526214004==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---v1:
-- Use xe3lpd naming (Suraj)
-- Use IS_DISPLAY_VER (Suraj)
+== Series Details ==
 
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+Series: drm/xe: Enable ATS.
+URL   : https://patchwork.freedesktop.org/series/160645/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index d8739e2bb004..a3e6f9a31b20 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4588,8 +4588,11 @@ intel_ddi_port_sync_transcoders(const struct intel_crtc_state *ref_crtc_state,
- 	/*
- 	 * We don't enable port sync on BDW due to missing w/as and
- 	 * due to not having adjusted the modeset sequence appropriately.
-+	 *
-+	 * Wa_16024710867
-+	 * Deprecate port sync support for xe3lpd+
- 	 */
--	if (DISPLAY_VER(display) < 9)
-+	if (!IS_DISPLAY_VER(display, 9, 20))
- 		return 0;
- 
- 	if (!intel_crtc_has_type(ref_crtc_state, INTEL_OUTPUT_DP))
--- 
-2.48.1
+== Summary ==
 
+CI Bug Log - changes from xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b_BAT -> xe-pw-160645v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-160645v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-160645v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (12 -> 6)
+------------------------------
+
+  Missing    (6): bat-bmg-1 bat-lnl-2 bat-lnl-1 bat-atsm-2 bat-bmg-3 bat-bmg-2 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-160645v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_module_load@load:
+    - bat-ptl-2:          [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b/bat-ptl-2/igt@xe_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160645v1/bat-ptl-2/igt@xe_module_load@load.html
+    - bat-dg2-oem2:       [PASS][3] -> [ABORT][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b/bat-dg2-oem2/igt@xe_module_load@load.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160645v1/bat-dg2-oem2/igt@xe_module_load@load.html
+    - bat-adlp-vm:        [PASS][5] -> [ABORT][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b/bat-adlp-vm/igt@xe_module_load@load.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160645v1/bat-adlp-vm/igt@xe_module_load@load.html
+    - bat-ptl-1:          [PASS][7] -> [ABORT][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b/bat-ptl-1/igt@xe_module_load@load.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160645v1/bat-ptl-1/igt@xe_module_load@load.html
+    - bat-ptl-vm:         [PASS][9] -> [ABORT][10]
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b/bat-ptl-vm/igt@xe_module_load@load.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160645v1/bat-ptl-vm/igt@xe_module_load@load.html
+    - bat-adlp-7:         [PASS][11] -> [ABORT][12]
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b/bat-adlp-7/igt@xe_module_load@load.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160645v1/bat-adlp-7/igt@xe_module_load@load.html
+
+  
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8716 -> IGT_8717
+  * Linux: xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b -> xe-pw-160645v1
+
+  IGT_8716: 8716
+  IGT_8717: 8717
+  xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b: 6d7af7c5b6b121d5595b64be7dfcbf33be53287b
+  xe-pw-160645v1: 160645v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160645v1/index.html
+
+--===============1259056450526214004==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Enable ATS.</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160645/">https://patchwork.freedesktop.org/series/160645/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160645v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160645v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b_BAT -&gt; xe-pw-160645v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-160645v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-160645v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (12 -&gt; 6)</h2>
+<p>Missing    (6): bat-bmg-1 bat-lnl-2 bat-lnl-1 bat-atsm-2 bat-bmg-3 bat-bmg-2 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-160645v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b/bat-ptl-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160645v1/bat-ptl-2/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b/bat-dg2-oem2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160645v1/bat-dg2-oem2/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-adlp-vm:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b/bat-adlp-vm/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160645v1/bat-adlp-vm/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b/bat-ptl-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160645v1/bat-ptl-1/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-ptl-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b/bat-ptl-vm/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160645v1/bat-ptl-vm/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b/bat-adlp-7/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160645v1/bat-adlp-7/igt@xe_module_load@load.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8716 -&gt; IGT_8717</li>
+<li>Linux: xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b -&gt; xe-pw-160645v1</li>
+</ul>
+<p>IGT_8716: 8716<br />
+  IGT_8717: 8717<br />
+  xe-4447-6d7af7c5b6b121d5595b64be7dfcbf33be53287b: 6d7af7c5b6b121d5595b64be7dfcbf33be53287b<br />
+  xe-pw-160645v1: 160645v1</p>
+
+</body>
+</html>
+
+--===============1259056450526214004==--
