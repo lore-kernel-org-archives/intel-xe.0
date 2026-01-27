@@ -4,28 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79DF7D2D8E7
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Jan 2026 10:28:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0CD0D2D8F7
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Jan 2026 10:53:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DCD510E517;
-	Tue, 27 Jan 2026 10:28:28 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CFE710E50D;
- Tue, 27 Jan 2026 10:28:27 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2569962839405523316=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E10310E53E;
+	Tue, 27 Jan 2026 10:53:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H5cizGNm";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DECB110E05D
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Jan 2026 10:53:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769511236; x=1801047236;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7y4R6b0JsePYqNFinOT3hjBdYd2fRfFn+8IgcSsa8ww=;
+ b=H5cizGNmcby+kLHZyTTBJqhMcwGT02Ex8U5BkAjE5lYUWXuWB1B3TgNS
+ G9lDPFwLDAN59kU08ucdJkNB+kgS/A1rWp6F7s+6cggdTYlMemUL1ogO+
+ QetV5cLrB4iPmkfwkVMA625qoe8j8hnC0SDsX9sHSiFVxX1qzqEAmSvCm
+ 3Xwky75IeyDhd1FjZTvEnrOdmfVVB1WppVyhV41q2b5P1ZfZSDwzgvxr+
+ GMUyx4ofrRdbx3yAOnbxMqdW2gnTh913AybPcc3AmKjPpVa0UkVUCaIHq
+ e1PBcJakFNhGOPnjbGJKCPVxiMLqB9OSXOJ8Pdn9PuoZxyQ5UBY6m5zhp A==;
+X-CSE-ConnectionGUID: HWeYp0EYRLCG+vc5C5byaA==
+X-CSE-MsgGUID: se6p3so6QSKLqixY8pshLQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="70606713"
+X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; d="scan'208";a="70606713"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2026 02:53:56 -0800
+X-CSE-ConnectionGUID: zV7KTE4ITs2hFTqz8cSJbA==
+X-CSE-MsgGUID: NNqObjfhTpaKIQtAaqrGXg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,256,1763452800"; d="scan'208";a="207965511"
+Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2026 02:53:51 -0800
+From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
+ rodrigo.vivi@intel.com, aravind.iddamsetty@intel.com,
+ riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
+ michael.j.ruhl@intel.com, paul.e.luse@intel.com,
+ mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
+Subject: [PATCH v5 0/6] drm/xe/sysctrl: Add system controller component for
+ Xe3p dGPU platforms
+Date: Tue, 27 Jan 2026 02:53:44 -0800
+Message-ID: <20260127105347.2651751-8-anoop.c.vijay@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFull=3A_failure_for_series_starting_with_=5B1/?=
- =?utf-8?q?1=5D_drm/xe/xe2lpg=3A_Extend_Wa=5F18041344222_to_graphics_IP_20?=
- =?utf-8?q?=2E04?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Harish Chegondi" <harish.chegondi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 27 Jan 2026 10:28:27 -0000
-Message-ID: <176950970744.195254.554571895236404332@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <ddcfcd0631ccc39a84d63e1760cce672dcc7f097.1769499842.git.harish.chegondi@intel.com>
-In-Reply-To: <ddcfcd0631ccc39a84d63e1760cce672dcc7f097.1769499842.git.harish.chegondi@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,61 +66,91 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2569962839405523316==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-== Series Details ==
+This patch series introduces System Controller (sysctrl) component for Intel Xe3p 
+dGPU platforms.
 
-Series: series starting with [1/1] drm/xe/xe2lpg: Extend Wa_18041344222 to graphics IP 20.04
-URL   : https://patchwork.freedesktop.org/series/160683/
-State : failure
+This component provides the foundational infrastructure for communication
+with the System Controller firmware using MKHI protocol over a mailbox interface.
 
-== Summary ==
+Key features introduced:
+- Detection and initialization of System Controller interface on Xe3p dGPU platforms
+- Mailbox communication with System Controller firmware
+- Fragmented message transfer for large command payloads
 
-ERROR: The runconfig 'xe-4450-81edc0e82197ad273a82b5da0a64c43d5c5a9a5d_FULL' does not exist in the database
+This implementation establishes the base for future System Controller feature
+enablement and firmware command handling.
+---
+v2: (Umesh)
+- Fix commit message to 75 chars per line
+- Address CI.Hooks and checkpatch warnings
+- Add sc_to_xe() helper for cleaner conversions
+- Alphabetical order for headers
+- Simplify write/read frame logic using memcpy
+- Drop redundant frame length checks
+- Use xe_mmio_rmw32() for register updates
+- Align FIELD_PREP macros
+- Improve error handling and timeout messages
+- Handle phase_bit revert on write-frame failure
+- Update rdata_len on partial receive before return
+- Remove unnecessary headers
 
-== Logs ==
+v3: (Matt, Riana, Umesh)
+- Split patch into logical series
+- Rename SC_* macros to SYSCTRL_* for consistency
+- Move MKHI_* defines to .c file
+- Pass xe directly to helpers
+- Place devm_add_action_or_reset() after set_sysctrl_region()
+- Add kernel-doc for xe_sysctrl_mailbox_init()
+- Add short documentation for System Controller in xe_sysctrl.c
+- Avoid hardcoded sizes
+- Move structs to _types.h
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160683v1/index.html
+v4: (Matt, Mike)
+- Code style improvements
+- Add domain-specific MMIO accessor
+- Change phase_bit to bool type
+- Add input validation and buffer overflow protection
 
---===============2569962839405523316==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+v5: (Umesh, Riana)
+- Reset phase bit to 0 on error conditions
+- Refactor mailbox receive path
+- Updated xe_err messages for consistency
+---
 
+Anoop Vijay (6):
+  drm/xe/sysctrl: Add System Controller register definitions
+  drm/xe/sysctrl: Add System Controller types and structures
+  drm/xe/sysctrl: Add System Controller mailbox implementation
+  drm/xe/sysctrl: Add System Controller initialization
+  drm/xe/sysctrl: Integrate System Controller into device
+  drm/xe/sysctrl: Enable System Controller for Xe3p
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+ drivers/gpu/drm/xe/Makefile                   |   2 +
+ drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h     |  44 ++
+ drivers/gpu/drm/xe/xe_device.c                |   5 +
+ drivers/gpu/drm/xe/xe_device_types.h          |   6 +
+ drivers/gpu/drm/xe/xe_pci.c                   |   2 +
+ drivers/gpu/drm/xe/xe_pci_types.h             |   1 +
+ drivers/gpu/drm/xe/xe_sysctrl.c               |  80 ++++
+ drivers/gpu/drm/xe/xe_sysctrl.h               |  13 +
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.c       | 390 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.h       |  35 ++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  36 ++
+ drivers/gpu/drm/xe/xe_sysctrl_types.h         |  33 ++
+ 12 files changed, 647 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_types.h
 
+-- 
+2.43.0
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/1] drm/xe/xe2lpg: Extend Wa_18041344222 to graphics IP 20.04</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160683/">https://patchwork.freedesktop.org/series/160683/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160683v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160683v1/index.html</a></td></tr>
-
-</table>
-
-
-    <p>ERROR: The runconfig 'xe-4450-81edc0e82197ad273a82b5da0a64c43d5c5a9a5d_FULL' does not exist in the database</p>
-
-</body>
-</html>
-
---===============2569962839405523316==--
