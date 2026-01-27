@@ -4,55 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 052BDD2FED2
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Jan 2026 19:37:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CD65D2FEDD
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Jan 2026 19:42:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD63510E5B9;
-	Tue, 27 Jan 2026 19:37:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XwJ9TdkE";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F37F110E5B7
- for <intel-xe@lists.freedesktop.org>; Tue, 27 Jan 2026 19:37:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769542664; x=1801078664;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=F5gWfHenP06ZAr+/pEOY+IXzZ+elhDD0DiDA21vw8lc=;
- b=XwJ9TdkEAPbU30Qmjhd57UMrpDlCTCIG3fB3SQ5c3WaeG8fGgnMt36ux
- 6HtUIODTAJLBg64tgRy2YnvTdviDy1bS8Te5DAbdvi8DE/2XK4mp1CQoX
- 0liaQmVl+HChW2TkiIiaT4ekxAdrUnq+4PgBeECgRNfRp3wtEjF1r0P1o
- MhAxs9yX1Ng/QFWfSXP1wDCR7w0fNG73LyVPGClGXpqsR13p8BrK+X54M
- PauYFv5ZLuKxWPDnPI1wzU1bqWb4bJjc1EFRmgerYYWZa8lFRZLhlDH+b
- Pb4g+M0xeT/+6FOHcI6G/YrQURDSuW2WYkiOpJjTjdfP6heoaUwKrLr1d g==;
-X-CSE-ConnectionGUID: asNENXIaRGOifI9UdvKxAg==
-X-CSE-MsgGUID: OB8w21LNTVGmV4LslpskrA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="69764784"
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="69764784"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 11:37:43 -0800
-X-CSE-ConnectionGUID: 7oznbiMpSJ+bBxcb7CgqKw==
-X-CSE-MsgGUID: lIJoMKqURCm7bRGWi6kz/g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="207958954"
-Received: from mahadzix-mobl.gar.corp.intel.com (HELO
- mwajdecz-hp.clients.intel.com) ([10.246.17.196])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 11:37:43 -0800
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v2 6/6] drm/xe/guc: Allow second H2G retry on FLR
-Date: Tue, 27 Jan 2026 20:37:26 +0100
-Message-ID: <20260127193727.601-7-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260127193727.601-1-michal.wajdeczko@intel.com>
-References: <20260127193727.601-1-michal.wajdeczko@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02ADF10E5B8;
+	Tue, 27 Jan 2026 19:42:06 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA99010E5B8;
+ Tue, 27 Jan 2026 19:42:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3043914705440984676=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Crescent_Island_PMT_support?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 27 Jan 2026 19:42:04 -0000
+Message-ID: <176954292469.197481.16939192308252356706@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260127182418.640701-7-michael.j.ruhl@intel.com>
+In-Reply-To: <20260127182418.640701-7-michael.j.ruhl@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,61 +35,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-During VF FLR the scratch registers could be cleared both by the
-GuC and by the PF driver. Allow to retry more times once we find
-out that the HXG header was cleared and wait at least 256ms before
-resending the same message again to the GuC.
+--===============3043914705440984676==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
-v2: rebased
----
- drivers/gpu/drm/xe/xe_guc.c | 14 +++++++++++---
- 1 file changed, 11 insertions(+), 3 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 231844bce1e0..70ce1d7aec21 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -1389,6 +1389,9 @@ int xe_guc_auth_huc(struct xe_guc *guc, u32 rsa_addr)
- 	return xe_guc_ct_send_block(&guc->ct, action, ARRAY_SIZE(action));
- }
- 
-+#define MAX_RETRIES_ON_FLR	2
-+#define MIN_SLEEP_MS_ON_FLR	256
-+
- int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
- 			  u32 len, u32 *response_buf)
- {
-@@ -1399,7 +1402,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
- 		MED_VF_SW_FLAG(0) : VF_SW_FLAG(0);
- 	const u32 LAST_INDEX = VF_SW_FLAG_COUNT - 1;
- 	unsigned int sleep_period_ms = 1;
--	bool lost = false;
-+	unsigned int lost = 0;
- 	u32 header;
- 	int ret;
- 	int i;
-@@ -1435,9 +1438,14 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
- 			     50000, &header, false);
- 	if (ret) {
- 		/* scratch registers might be cleared during FLR, try once more */
--		if (!header && !lost) {
-+		if (!header) {
-+			if (++lost > MAX_RETRIES_ON_FLR) {
-+				xe_gt_err(gt, "GuC mmio request %#x: lost, too many retries %u\n",
-+					  request[0], lost);
-+				return -ENOLINK;
-+			}
- 			xe_gt_dbg(gt, "GuC mmio request %#x: lost, trying again\n", request[0]);
--			lost = true;
-+			xe_sleep_relaxed_ms(MIN_SLEEP_MS_ON_FLR);
- 			goto retry;
- 		}
- timeout:
--- 
-2.47.1
+Series: Crescent Island PMT support
+URL   : https://patchwork.freedesktop.org/series/160717/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4455-1d48b83aca95e25996b1a212f5d3035f38233a24_BAT -> xe-pw-160717v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-160717v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6520])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4455-1d48b83aca95e25996b1a212f5d3035f38233a24/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160717v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+
+
+Build changes
+-------------
+
+  * Linux: xe-4455-1d48b83aca95e25996b1a212f5d3035f38233a24 -> xe-pw-160717v1
+
+  IGT_8720: b37a4d70080afd7426cb249787545df75f762dc0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4455-1d48b83aca95e25996b1a212f5d3035f38233a24: 1d48b83aca95e25996b1a212f5d3035f38233a24
+  xe-pw-160717v1: 160717v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160717v1/index.html
+
+--===============3043914705440984676==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Crescent Island PMT support</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160717/">https://patchwork.freedesktop.org/series/160717/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160717v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160717v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4455-1d48b83aca95e25996b1a212f5d3035f38233a24_BAT -&gt; xe-pw-160717v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-160717v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4455-1d48b83aca95e25996b1a212f5d3035f38233a24/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160717v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4455-1d48b83aca95e25996b1a212f5d3035f38233a24 -&gt; xe-pw-160717v1</li>
+</ul>
+<p>IGT_8720: b37a4d70080afd7426cb249787545df75f762dc0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4455-1d48b83aca95e25996b1a212f5d3035f38233a24: 1d48b83aca95e25996b1a212f5d3035f38233a24<br />
+  xe-pw-160717v1: 160717v1</p>
+
+</body>
+</html>
+
+--===============3043914705440984676==--
