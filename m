@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DE58D2FEC4
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEAF9D2FEC0
 	for <intel-xe@archiver.kernel.org>; Tue, 27 Jan 2026 17:05:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B72010E5A5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84B7410E5A6;
 	Tue, 27 Jan 2026 17:04:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T2Mge5v/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TqYgZ3pc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 11AE610E5A1
- for <intel-xe@lists.freedesktop.org>; Tue, 27 Jan 2026 17:04:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 81DED10E5A2
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Jan 2026 17:04:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1769533498; x=1801069498;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6piSAGUydFEVLrWUa1H6WrRq9PKT544OvcATww2IUdc=;
- b=T2Mge5v/M/Dqv6/42OTmuXfQl2YKen2BwmiRVWGf5nFpfjQ5N5nIybms
- IR/X+GaUYoudCejnUVDc1icmp4BRSI6ZxJBD0tsN+VCQxP13RcBSlmn9q
- 1nnMLizWDSpRGOnLUH0LVPcdZNUeJM0aOiYMdYdSHQBbzGJEQwtPK6w5P
- jWx4YQLgk3HkpEBaSTgYDqshu9DKfC+NEKX6zxxsVtkJEV7sYcIWRb0Mp
- DGaIRekOYaeUCdDU2N9JNL9JejK72Hp4snNENsdHu/eBKRP3DtFqWlJbX
- rAM6MfePGjysMcYcjiIa1M36rL3w3iVfv2odz6y8BSeFXjNUlkncuc13/ g==;
-X-CSE-ConnectionGUID: BZ8RZSZ7REaBbHO1GYT6Rg==
-X-CSE-MsgGUID: rsGUVMZsSjOPCiQV8ge2MA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="93393530"
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="93393530"
+ bh=5g7eNrockMgk0yivVHjBlRycQ6V13a9tjJgfB5sdCxI=;
+ b=TqYgZ3pcOpKGKrnZhfp3Va5QEZGaQf2Hh4603abrw5/2rMcNDK2XYXHD
+ iPWMbz6nucWCBQ/klF4HAxf2bh3TTeWMwou9y+8GFofkZahMnhyDI2lNO
+ 0I1X7UwvAMDoxs/6sEMoLv9nu/RCcVL7TrZxaq7o45dx48fJcDLUzUX0C
+ NfQYAkiE6gs2FQrOBALJzvr0SQFDlHvVSXRVBf2TqXqtWA4UHo7qAonpx
+ dl/9E3TkugEQ1QUQjpqREYtBrVXsNUysRPSO/OJwhIxx9dSxi8otG8oS0
+ 7V6nxmUjpRQyg+RkzqM4q83est0Gbk5H0FZ2gYnM8vxj/8Y/2Ew9N+3H4 Q==;
+X-CSE-ConnectionGUID: 0jY+jvPQQGKdDZz1907rzw==
+X-CSE-MsgGUID: R84B5Z2uSU2KixCvLpYA+A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="93393522"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="93393522"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 09:04:58 -0800
-X-CSE-ConnectionGUID: 1Ya8M0chSWiDjKn9fkmMng==
-X-CSE-MsgGUID: yfnXmkAPRKiubeCwnmBioA==
+ 27 Jan 2026 09:04:57 -0800
+X-CSE-ConnectionGUID: Y2vXN4vtS3mCemYU34N2kA==
+X-CSE-MsgGUID: 2Gxn7tzMQECALw/ZuHgKZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="208039398"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="208039388"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.39.24])
- by orviesa008.jf.intel.com with ESMTP; 27 Jan 2026 09:04:58 -0800
+ by orviesa008.jf.intel.com with ESMTP; 27 Jan 2026 09:04:57 -0800
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>, stable@vger.kernel.org,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v4 4/5] drm/xe/guc: Ensure CT state transitions via STOP
- before DISABLED
-Date: Tue, 27 Jan 2026 12:04:54 -0500
-Message-Id: <20260127170455.618616-5-zhanjun.dong@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org,
+ Zhanjun Dong <zhanjun.dong@intel.com>,
+ Stuart Summers <stuart.summers@intel.com>
+Subject: [PATCH v4 1/5] drm/xe: Always kill exec queues in
+ xe_guc_submit_pause_abort
+Date: Tue, 27 Jan 2026 12:04:51 -0500
+Message-Id: <20260127170455.618616-2-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260127170455.618616-1-zhanjun.dong@intel.com>
 References: <20260127170455.618616-1-zhanjun.dong@intel.com>
@@ -67,30 +68,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GuC CT state transition requires moving to the STOP state before
-entering the DISABLED state. Update the driver teardown sequence to make
-the proper state machine transitions.
+From: Matthew Brost <matthew.brost@intel.com>
 
-Fixes: ee4b32220a6b ("drm/xe/guc: Add devm release action to safely tear down CT")
+xe_guc_submit_pause_abort is intended to be called after something
+disastrous occurs (e.g., VF migration fails, device wedging, or driver
+unload) and should immediately trigger the teardown of remaining
+submission state. With that, kill any remaining queues in this function.
+
+Fixes: 7c4b7e34c83b ("drm/xe/vf: Abort VF post migration recovery on failure")
 Cc: stable@vger.kernel.org
 Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Stuart Summers <stuart.summers@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index dfbf76037b04..6a658f085e0f 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -345,6 +345,7 @@ static void guc_action_disable_ct(void *arg)
- {
- 	struct xe_guc_ct *ct = arg;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 456f549c16f6..d61bd0094e0b 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2774,8 +2774,7 @@ void xe_guc_submit_pause_abort(struct xe_guc *guc)
+ 			continue;
  
-+	xe_guc_ct_stop(ct);
- 	guc_ct_change_state(ct, XE_GUC_CT_STATE_DISABLED);
+ 		xe_sched_submission_start(sched);
+-		if (exec_queue_killed_or_banned_or_wedged(q))
+-			xe_guc_exec_queue_trigger_cleanup(q);
++		guc_exec_queue_kill(q);
+ 	}
+ 	mutex_unlock(&guc->submission_state.lock);
  }
- 
 -- 
 2.34.1
 
