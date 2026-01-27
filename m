@@ -4,51 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F3DFD2F004
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Jan 2026 11:57:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AD78D2F000
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Jan 2026 11:57:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C50B10E54C;
-	Tue, 27 Jan 2026 11:57:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D72E710E551;
+	Tue, 27 Jan 2026 11:57:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jTyMl4W5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dKPbiFTT";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E8AB10E54C
- for <intel-xe@lists.freedesktop.org>; Tue, 27 Jan 2026 11:57:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B44BD10E551
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Jan 2026 11:57:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769515056; x=1801051056;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=3ueUX1QRujgPnFYw1YPwHAFt1bgxJtTvETAtm3z/LRs=;
- b=jTyMl4W5yf107KscxkBKL37FecJ1B+faaeB98h8diPSSpmhTipNuga6X
- UvY1LAsdLK0v/j0qXxY+gNLwli9kBnq24sR9Fef075CcxssxMgBoLlzm0
- 423GApEjtB5hPq3gckUznGqwkbTARv4129MblE67nU5tPo9YDMN/dXTSI
- 73dE9fX9ruki9NrVDL2zWg2wehM6BRRQe4cUA93VE0KjE6te/3pfWatTS
- Sf/JC/HXzkQ1OvsPzviLwIXQ1o813tm+g2BYmvtwvLK8bv85lZNvq9oQd
- rTSrBsfDOzryBJ6VEHT/B8yPbO2IYN2xeK4fyq9VhgRCqLJCMax1kueOA A==;
-X-CSE-ConnectionGUID: U5/emS28SfqDCz1BaT/ZEQ==
-X-CSE-MsgGUID: KialH8i6RJW3w25vNtmrgQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="74330358"
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="74330358"
+ t=1769515058; x=1801051058;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Eg3MBYFQgtPHPfkmPyduSH2nPejLYXlhrtiXoZjAX1k=;
+ b=dKPbiFTTm9wdEMVXUXgy3mzttWhq66uKEe4AFJ/RODj6gtX5IB2hNzRE
+ 9+D2mFD82XhmRTQHlCIDqPacinih+atPpBSiIZHq1dFQlPH9C+ZRP4DaX
+ eQKCbpuK09zcS7rSyOTtu2fNXg2iv80upTLFfnEBC//w0PCSunIxDF4SS
+ wJGBqUSvMUJ1PYGWp3JKX5NypZqRJ47id9vlci5s0KiXPVq8YnMRGpX6S
+ bpmVw9luwBpVStH5QQxLpzO0dtpXd4XYoltWLaJcZ61jPSxt/ZQfhTC9T
+ 8Ap/ZFe4/aqxzD4orHbInOIJLOikY5S8F+VXKKGe1DRhyJE57rgws5IuZ g==;
+X-CSE-ConnectionGUID: sWw1uIe0S2mWD03AZRNeLw==
+X-CSE-MsgGUID: 0YEr9jOxQqesLP2FXZ+85A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11683"; a="74330359"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="74330359"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 03:57:36 -0800
-X-CSE-ConnectionGUID: 3sdmBiXKTp2KDttLTebN6w==
-X-CSE-MsgGUID: JpHiBFUGTqyPW05KRGnz3g==
+ 27 Jan 2026 03:57:38 -0800
+X-CSE-ConnectionGUID: 6xS7GzGsR3a3GG/vxfkdjA==
+X-CSE-MsgGUID: B0rsTo7mSVizXK+jDZTPrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="245576195"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="245576201"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 03:57:33 -0800
+ 27 Jan 2026 03:57:35 -0800
 From: Varun Gupta <varun.gupta@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, matthew.d.roper@intel.com,
  priyanka.dandamudi@intel.com, himal.prasad.ghimiray@intel.com
-Subject: [PATCH v2 0/2] drm/xe: Add prefetch pagefault support for Xe3p
-Date: Tue, 27 Jan 2026 17:27:11 +0530
-Message-ID: <20260127115713.869000-1-varun.gupta@intel.com>
+Subject: [PATCH v2 1/2] drm/xe: Rename xe_pagefault_print to
+ xe_pagefault_error_account
+Date: Tue, 27 Jan 2026 17:27:12 +0530
+Message-ID: <20260127115713.869000-2-varun.gupta@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260127115713.869000-1-varun.gupta@intel.com>
+References: <20260127115713.869000-1-varun.gupta@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,38 +68,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Xe3p hardware prefetches memory ranges and notifies software via an
-additional bit (bit 11) in the page fault descriptor that the fault
-was caused by prefetch.
+Rename the function to better reflect its purpose of error handling.
+Add an err parameter to the function signature.
 
-Patch 1 renames xe_pagefault_print to xe_pagefault_error_account and
-adds an err parameter to prepare for prefetch error handling.
+v2: Clarified commit message to describe only the changes made in this
+    commit (Matt Roper)
 
-Patch 2 implements the prefetch support by extracting the prefetch bit
-from the fault descriptor and echoing it in the response (bit 6) only
-when handling fails. This prevents CAT errors for prefetch faults.
-Stats are incremented for prefetch errors without verbose logging to
-avoid log spam.
+Originally-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Varun Gupta <varun.gupta@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pagefault.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Based on original patches by Brian Welty and Priyanka Dandamudi.
-
-v2: Clarified first commit message to describe only the changes made
-    in that commit.
-    Changed comment wording from "repairs" to "handling" for clarity.
-    (Matt Roper)
-
-Varun Gupta (2):
-  drm/xe: Rename xe_pagefault_print to xe_pagefault_error_account
-  drm/xe: Add prefetch fault support for Xe3p
-
- drivers/gpu/drm/xe/xe_gt_stats.c        |  1 +
- drivers/gpu/drm/xe/xe_gt_stats_types.h  |  1 +
- drivers/gpu/drm/xe/xe_guc_fwif.h        |  5 +++--
- drivers/gpu/drm/xe/xe_guc_pagefault.c   |  2 ++
- drivers/gpu/drm/xe/xe_pagefault.c       | 16 ++++++++++++++--
- drivers/gpu/drm/xe/xe_pagefault_types.h |  8 +++++++-
- 6 files changed, 28 insertions(+), 5 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
+index 6bee53d6ffc3..34dac4280b9d 100644
+--- a/drivers/gpu/drm/xe/xe_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_pagefault.c
+@@ -221,7 +221,7 @@ static bool xe_pagefault_queue_pop(struct xe_pagefault_queue *pf_queue,
+ 	return found_fault;
+ }
+ 
+-static void xe_pagefault_print(struct xe_pagefault *pf)
++static void xe_pagefault_error_account(struct xe_pagefault *pf, int err)
+ {
+ 	xe_gt_info(pf->gt, "\n\tASID: %d\n"
+ 		   "\tFaulted Address: 0x%08x%08x\n"
+@@ -259,7 +259,7 @@ static void xe_pagefault_queue_work(struct work_struct *w)
+ 
+ 		err = xe_pagefault_service(&pf);
+ 		if (err) {
+-			xe_pagefault_print(&pf);
++			xe_pagefault_error_account(&pf, err);
+ 			xe_gt_info(pf.gt, "Fault response: Unsuccessful %pe\n",
+ 				   ERR_PTR(err));
+ 		}
 -- 
 2.43.0
 
