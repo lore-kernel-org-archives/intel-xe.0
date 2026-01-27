@@ -4,143 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A1A2D2FEDF
-	for <intel-xe@archiver.kernel.org>; Tue, 27 Jan 2026 21:01:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8083D2FEDF
+	for <intel-xe@archiver.kernel.org>; Tue, 27 Jan 2026 21:05:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33F7B10E5C3;
-	Tue, 27 Jan 2026 21:01:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64A6310E5C9;
+	Tue, 27 Jan 2026 21:05:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="uVqayyQG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OIZLfxyj";
 	dkim-atps=neutral
-Received: from PH8PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11012028.outbound.protection.outlook.com [40.107.209.28])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3C7A10E5C3;
- Tue, 27 Jan 2026 21:01:25 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ln6xSEP6txzkCu/A5AYuCYlZvT+ErIx/AkF27ThdbLl+yeaiDulzYmCLrt6TJBPmJDpdvrhCdCDKIv5op68GnTYuWGTj/3djLDrVwkwSZuGVLod2sPWbTAohntg69G40lVoFm84P1m0ftIRz/N6xnX/pUJ5jCxTx84jz1g0rge4U91F46Xj9sI6PVoPU9XVJ6xOfdknlvP5mgT2V9MPP5lc1pJ6UCZoxvw/o7bagsG6DiKFMjUIjsvj5dTw40Vp/ZM82CUIClRA3ARaFcE+X8vKHNEZXbcGgsmX+Ed3j31SJ/bo07ip7D/OXa5/YeAzirPgGQv5AlX/inLY1yFVEIA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gaqI3OwIeMouuLobv5DJAeXMC69tZTqxpB+l9u8X3P8=;
- b=t8tAbSqAP12TkJ0VmIJP/9KLkhE2aBCOT8cfzsQfSrUk7OE2AlHibNs65zmOi35pmyh4RA0feAZPUKT7xaDJFjXzz527NJDrPxxEnaK5+XkiNbHLYh+oyzv0EXP+lNz2zyDaL8TF5gK8jiJdjweiZmLvcTK04dDssQzgh8m2icDW2gwB2kQ8MEpaZ+iX3ctT6uoX3QqpuMMw4mmghTx4DStKjZw5Qcm0JaVueIF5VAxbhqfSZHXIJlcSS/zEwSBI4quOVoz3MWOcgv1lvnrmBo1zTGCeHQwBal+h+otshC6FERgO22zLEFPmeAGVhUoUxlkUge8o8LrePqzDpQfy+w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=gaqI3OwIeMouuLobv5DJAeXMC69tZTqxpB+l9u8X3P8=;
- b=uVqayyQGJ70Bznw2I5YiA8ViVHXsm/EAgoopPZW287UGLEzFt9ywGCSBY2kfONjzf9PXB3jzXWt+u3sR54WxhaO+OjNkVgyiOu2aZSBazF4NZdtmG+Rc6DbXmhLSCpay9EF/e8OHB/iVVZamrQvSBGkYrgro8RxhBTtIr5tG7BUyLqxdZ/HWpc/1O518Syuj/EP6xdBS0Bfj56OyAWLnwf0clcgqyG3IeiYPhu0nC+1p4AHUcbqvg1vhna0hlsqZ1Aty2CovMEnXT+UwoNe5gePsk48yTiFNzWLPbFrMtJAzx2r1ZOKILxFtfFj+l2x+WJSDDL8ojsbNpCXLck1eDA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS7PR12MB9473.namprd12.prod.outlook.com (2603:10b6:8:252::5) by
- PH7PR12MB5806.namprd12.prod.outlook.com (2603:10b6:510:1d2::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.7; Tue, 27 Jan
- 2026 21:01:21 +0000
-Received: from DS7PR12MB9473.namprd12.prod.outlook.com
- ([fe80::f01d:73d2:2dda:c7b2]) by DS7PR12MB9473.namprd12.prod.outlook.com
- ([fe80::f01d:73d2:2dda:c7b2%4]) with mapi id 15.20.9542.010; Tue, 27 Jan 2026
- 21:01:21 +0000
-From: Zi Yan <ziy@nvidia.com>
-To: Jordan Niethe <jniethe@nvidia.com>
-Cc: linux-mm@kvack.org, balbirs@nvidia.com, matthew.brost@intel.com,
- akpm@linux-foundation.org, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, david@redhat.com, apopple@nvidia.com,
- lorenzo.stoakes@oracle.com, lyude@redhat.com, dakr@kernel.org,
- airlied@gmail.com, simona@ffwll.ch, rcampbell@nvidia.com,
- mpenttil@redhat.com, jgg@nvidia.com, willy@infradead.org,
- linuxppc-dev@lists.ozlabs.org, intel-xe@lists.freedesktop.org, jgg@ziepe.ca,
- Felix.Kuehling@amd.com, jhubbard@nvidia.com
-Subject: Re: [PATCH v3 05/13] mm/page_vma_mapped: Add flag to
- page_vma_mapped_walk::flags to track device private pages
-Date: Tue, 27 Jan 2026 16:01:15 -0500
-X-Mailer: MailMate (2.0r6290)
-Message-ID: <7AEEAEF2-5876-4EF4-B79C-D95E4E637A89@nvidia.com>
-In-Reply-To: <20260123062309.23090-6-jniethe@nvidia.com>
-References: <20260123062309.23090-1-jniethe@nvidia.com>
- <20260123062309.23090-6-jniethe@nvidia.com>
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR13CA0177.namprd13.prod.outlook.com
- (2603:10b6:a03:2c7::32) To DS7PR12MB9473.namprd12.prod.outlook.com
- (2603:10b6:8:252::5)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21D8510E5C9
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Jan 2026 21:05:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769547913; x=1801083913;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=okk4djVqRomkgTk2gtJietnXFVbvJR42gHgADUEBkQ4=;
+ b=OIZLfxyjdooO5/Dt6M9eQ47jTwsna2iP2AygLwRec1ETbd9A4hg+ze61
+ BgunaF+CVy7N47hln/hI9Oq7BuEk/hAZxB5iCBVwA4Np67IDdvx3/+t2P
+ 7aYzzX5zKT+zOw8cxk0mLUStu7OCcQDf1bMKii/3EpB+mpK9Vmu+BKvGg
+ MCvzfwjg0xk5XAY48ptXyC6QnscycBtzlBbtOZegCgWC+ug0x7QVXB8fB
+ s0Ze9yFKOyO+hgiPADvFGwewmxIMA7CIRKtQKD4cBqBgevgJ9/HFBUDCa
+ Qwm69id48gUckOcNduYG5GGe0sBFxkX+jHQrQFXoxferPeBkkoe0nJ148 g==;
+X-CSE-ConnectionGUID: k1C9m2M6SaqnCBGEVHKENg==
+X-CSE-MsgGUID: I9p3y3I7QSe5QG88UmNgvg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="70797622"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="70797622"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2026 13:05:13 -0800
+X-CSE-ConnectionGUID: 0O8TXVYzQ0uBUH8MaWqMpA==
+X-CSE-MsgGUID: 3b7eLYmNR5y0HlPYBpxNAA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="231035914"
+Received: from mahadzix-mobl.gar.corp.intel.com (HELO
+ mwajdecz-hp.clients.intel.com) ([10.246.17.196])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Jan 2026 13:05:11 -0800
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH v2 4/5] drm/xe/pf: Define admin_only as real flag
+Date: Tue, 27 Jan 2026 22:05:01 +0100
+Message-ID: <20260127210501.794-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260121214218.2817-5-michal.wajdeczko@intel.com>
+References: <20260121214218.2817-5-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR12MB9473:EE_|PH7PR12MB5806:EE_
-X-MS-Office365-Filtering-Correlation-Id: b1ae36ba-40a8-4f37-526a-08de5de7392c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?EKBBYPJR1IsNI9gMqWPlRvgZQPLLo0MFb4ez7CtfX0vKus64UhWgVNRUrU40?=
- =?us-ascii?Q?nbqXJTMk0Cq6u5DdJWqcBX9Mmm/RXdDbcYEHLa2cwMFjjNeNKsTw1KkOxXhm?=
- =?us-ascii?Q?F4kWJvWrwTaM/B++eK+aj4rCPYK8n2MG9NlCMetnByvNSLE0SEOKG8IHVVId?=
- =?us-ascii?Q?szJ1an7RmaT74X90IMoYz0gKIkjT7G1MqtI3t5VdaEpXHm4qCCpsF/M39cvL?=
- =?us-ascii?Q?sBRtGJpXwdssBa/p1Fxuc1VsNOEfC35OAeVo7EFJYuWNYFxYd5uOv3Dsl4eR?=
- =?us-ascii?Q?I7IYD73jTLACJEfl6TmH1FWAxs8F7Jl5HnRc8IIEp78WDh+efLPkuGIO5FLf?=
- =?us-ascii?Q?qFy1U9zt3XmiuylsdhE29UKQdSu/xZZZH16LvlhwudafnoTjKXycTUtqWcLf?=
- =?us-ascii?Q?53u/SyLFR5CvoHnbIB+U6Y4vWVqOK4Dd1ftHDQC8g9WcOE+wdFa+yA6jLNr6?=
- =?us-ascii?Q?6nG6uy2+0CD6C8a1K3y/suZjqPKVm+bc19cZkrhEH2KpL8rtQnvRtzVBoqoS?=
- =?us-ascii?Q?DYG7u41+CflbADSArTPJywL92Z8HjErNB05ZWhNnpkgI17fpMP69bW9IBzDb?=
- =?us-ascii?Q?j8dqTqlCcOVD5beWH5t22k0eYM57bPY/brnB3mpaR0IUxuz/rOB5ymlBhvB1?=
- =?us-ascii?Q?6hBTC5TwIPuoxsfFnl4klLL187aHYJbiiummp/kDWUL6piwb3CjQjoUoCSqB?=
- =?us-ascii?Q?kXJra3rAEVKbHeMg4zDZ26Vj/4MjJ82KcEs911mzipfPMMPYpNPjiijGvJas?=
- =?us-ascii?Q?oqUKetCzXOZHVunRsy2KNWRxJn70pOTUVSGgWJUzYM/0k3Ya4cZuxv2+3CF9?=
- =?us-ascii?Q?hipEb4rr3TDwdDCT+x7XqSNGV6YKtPCDCSyM4NWsvfKQqE78cTzRnhiMpvD6?=
- =?us-ascii?Q?vmeuiOVAhrrjmMVXrqKe/MQAR+l3XNALcS5lIhjAqT6zqGIzFggtd9K2ZAMi?=
- =?us-ascii?Q?lNaHYHqUCJfJYAcmbzNtZhJxhpnv1F/eW7qMY5qUbinhCjzdwMk6W0qBMMwf?=
- =?us-ascii?Q?SffOJVGI0SfvnYsR3Y5RVuupStszEimU9mhWibTrdppIR8RY4NYRksDHW9am?=
- =?us-ascii?Q?bgBGTcwhxkSQrG8VtYz22u8g0A61NIk8g71q9SyHvUjlFd+mjR0D6eSeAwUj?=
- =?us-ascii?Q?eBnQdBbj69Vp7cgpG6AeNHUX2pjOFBTuenisQDXINXjdJt2npCwtHM8beh0N?=
- =?us-ascii?Q?xEnZZzKbzCVTG4+5wuCddKDRcCARC9MvWLGf6ryh/vkYdkxq+WByDLTcQE00?=
- =?us-ascii?Q?p6X7jw14ilg+DswqI0GgI+CE5zY1eern9fqOx2stXionA6I6pWZCdIknzXMt?=
- =?us-ascii?Q?k7BqKv5nE0JZIxIQcg+ycWNtBuogwxgDW652PHVo8r2w7zmGuYNY6MvpS+Qr?=
- =?us-ascii?Q?SRmVOnOj8aiW1INSFT+Ox4/g4LOl81IpPQ7meLeENPJaF7lnzDm+zWAl7vz4?=
- =?us-ascii?Q?teaeLD8Kx11LOsweg0deQhCt2PrMf1Y+3M45dzuppZvrLMhRpK46jmAUNH9b?=
- =?us-ascii?Q?y8qu9hp3RoqoRSxKhRC1NE6pKv7/KpQqruOxCzDYxPut7ZqmVxhp7fTWeWSu?=
- =?us-ascii?Q?+Aq7EZyNSsBSlUfyTiI=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR12MB9473.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(7416014)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?QIpyNnjINwQsIv455BZiYa8utrEZ6+diqEIIGtYiUwB+qACtnQRGz5qm6R6m?=
- =?us-ascii?Q?jKXpgDoWbDYzexEnyFdC6BliwR9WnGjyiEnKljAaBuQkSfTqwl976VKhQj/L?=
- =?us-ascii?Q?64zMH2TIeQhln3UNHJn/bKdWaPwuKwsAwHvJlySQ01HXKP5xloIKKv70+PGf?=
- =?us-ascii?Q?kxBoq51twdZx8br0/zZsBcUg5xiAcAMbkH/EGvfi3E4+Jm0vBZJW/uBGV4/n?=
- =?us-ascii?Q?LUyxkWcjXet6dtDmJRaWzDd9ZIYotDX1Mro9XloLGKUsp5oN062y+vz83A9+?=
- =?us-ascii?Q?PYbPV963wvcdGVWishI4ImmMvIOsc/KScAaMPAcxNJ+7cTwQDpioZA17oaRl?=
- =?us-ascii?Q?isl3fgkj3YbkWLmI2/ic1sA3dnOAiQs6h8q49Wqk/wASgLZ+dhtQcTBssG9c?=
- =?us-ascii?Q?tDRWmoXod0dnV468NlsoXjbprz+/6sTOeWRNCZjO9Yg990WMXGCP2dEQRaHy?=
- =?us-ascii?Q?quWFRcFDBLYpCLFZ1Jnr8iKzrWg8vt1f88zVOhJ1m9rypI7jlX9w3M7vpkff?=
- =?us-ascii?Q?o+hR7T/xpUobAf84eiVqrOjPd0sY6j/6ZwIt38i89k1H8o2S8if8tZszUlUM?=
- =?us-ascii?Q?0j0ENf1TOA2b9vjySw3m4etdXPDuXRRTBA58eSvVNzO6hZTDoy9c+xdmoS5q?=
- =?us-ascii?Q?zTLLTclXb2yRW6GYuoDOWSZBEIUhVWYz5OcXfFXXLqFkjNzHivPhgTOmYd2E?=
- =?us-ascii?Q?4ZIoYMkQkTvSU6PJ/1+M6YtMi9/1itqOMuqd+8g4/DCj0nip9BlTw/dh0GEI?=
- =?us-ascii?Q?VSzu3pGwk1zFwogq2lpswTuB4LNMOdELfFOSEFKNu/isfIyzPtQ2ZE/ORSMk?=
- =?us-ascii?Q?sL162R8dry17VeVPHGnMmksSDApClpJWvolytgMCLc+bsmda7eX8zULR3GK/?=
- =?us-ascii?Q?OGROsvj0QMpkPX77ATLfNjp0NQSzEP1LyDYPAs282YkbX3kzxk5Gaf/tM25X?=
- =?us-ascii?Q?/tPDa/MXnLJ5Vqa6wYRrn3SuSwpUJlU82jq0/KbeVE41QwTY75zCVp8UqWro?=
- =?us-ascii?Q?vtecG0YIjq/f515vBJt1td8+MRXjE3DZe3VTeGe2HOdvbTbzgYBgOHK6Uw87?=
- =?us-ascii?Q?TldMrcSRRTMoDT4pb19KJM4HahO2hklbZR6hDJ53nN/PcpB4V1GZVWqd7xyL?=
- =?us-ascii?Q?nrCji+QhxeUH0fkvXrjvY0Bw+ugRiBkln7X3kUkVAnSWa7qTEmyHKK3XbKOe?=
- =?us-ascii?Q?QH4UO+LhKLP+9VeecU5u8Mv+KxPopdl7Ojv5ANCBMOB8t5TDZcUHQymom2UO?=
- =?us-ascii?Q?Y9C0pgrenpSRobGgXxUS5NKb3lrm+n2pKi4pVyymy7oNw01nKtoGguMK+dsI?=
- =?us-ascii?Q?6G4BFPCbgiMFyqmMirXAopFagQMTeUQb2qSlqnb5seeTrtxytMN4BtKqfZFo?=
- =?us-ascii?Q?0Ds8tSWPKvQOZOxFqSizmZa3jcgtPDiz36u1Yyoueitb1MK4zIr6+rwRvdr/?=
- =?us-ascii?Q?deTqEECoeZuPT/9Mbf3ZzRzpoM7sJo+qIzMatL064bQlQwcQlUItm4sh9eTZ?=
- =?us-ascii?Q?930HTVmprQjT0NYh3HzMkjDi5gk4Yl9nX4eAEr2o+yCDrKsikM0t5vO7aVaN?=
- =?us-ascii?Q?iPzB/KEjdOf5Ok2DNJ8SberZwDLf2P4Il0bfA+gVQhe/YvWsGhNcU7tcvoNT?=
- =?us-ascii?Q?dHtmMwFGBSHhLDqqsRx0R4W+/WzQ/YDkYStsthNGHdyE8V3pRXKIM6v1d76t?=
- =?us-ascii?Q?UESARebIVjnpOmXPpKi+TTSeqUJJd55iGlYzNbIJovZn0Ebw?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b1ae36ba-40a8-4f37-526a-08de5de7392c
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR12MB9473.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jan 2026 21:01:21.2923 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: j8+FRpKrWXCiVupAJMMDpKOlqnPP7Bw/KUPJRl5NcZBbkQROp38gvOrGr+VsN0Pm
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5806
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,40 +67,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 23 Jan 2026, at 1:23, Jordan Niethe wrote:
+Instead of doing guesses each time during the runtime, set flag
+admin_only once during PF's initialization.
 
-> A future change will remove device private pages from the physical
-> address space. This will mean that device private pages no longer have
-> normal PFN and must be handled separately.
->
-> Prepare for this by adding a PVMW_DEVICE_PRIVATE flag to
-> page_vma_mapped_walk::flags. This indicates that
-> page_vma_mapped_walk::pfn contains a device private offset rather than a
-> normal pfn.
->
-> Once the device private pages are removed from the physical address
-> space this flag will be used to ensure a device private offset is
-> returned.
->
-> Signed-off-by: Jordan Niethe <jniethe@nvidia.com>
-> Signed-off-by: Alistair Popple <apopple@nvidia.com>
-> ---
-> v1:
->   - Update for HMM huge page support
-> v2:
->   - Move adding device_private param to check_pmd() until final patch
-> v3:
->   - Track device private offset in pvmw::flags instead of pvmw::pfn
-> ---
->  include/linux/rmap.h | 24 ++++++++++++++++++++++--
->  mm/page_vma_mapped.c |  4 ++--
->  mm/rmap.c            |  4 ++--
->  mm/vmscan.c          |  2 +-
->  4 files changed, 27 insertions(+), 7 deletions(-)
->
-LGTM.
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+v2: update flag in kunit test (CI)
+---
+ drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c | 2 +-
+ drivers/gpu/drm/xe/xe_sriov_pf.c                       | 6 ++++++
+ drivers/gpu/drm/xe/xe_sriov_pf_helpers.h               | 3 ++-
+ drivers/gpu/drm/xe/xe_sriov_pf_types.h                 | 3 +++
+ 4 files changed, 12 insertions(+), 2 deletions(-)
 
-Reviewed-by: Zi Yan <ziy@nvidia.com>
+diff --git a/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
+index 42bfc4bcfbcf..3889dc3e49ca 100644
+--- a/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
++++ b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
+@@ -15,7 +15,7 @@
+ static void pf_set_admin_mode(struct xe_device *xe, bool enable)
+ {
+ 	/* should match logic of xe_sriov_pf_admin_only() */
+-	xe->info.probe_display = !enable;
++	xe->sriov.pf.admin_only = enable;
+ 	KUNIT_EXPECT_EQ(kunit_get_current_test(), enable, xe_sriov_pf_admin_only(xe));
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.c b/drivers/gpu/drm/xe/xe_sriov_pf.c
+index 33bd754d138f..919f176a19eb 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf.c
+@@ -20,6 +20,11 @@
+ #include "xe_sriov_pf_sysfs.h"
+ #include "xe_sriov_printk.h"
+ 
++static bool wanted_admin_only(struct xe_device *xe)
++{
++	return !xe->info.probe_display;
++}
++
+ static unsigned int wanted_max_vfs(struct xe_device *xe)
+ {
+ 	return xe_configfs_get_max_vfs(to_pci_dev(xe->drm.dev));
+@@ -74,6 +79,7 @@ bool xe_sriov_pf_readiness(struct xe_device *xe)
+ 
+ 	pf_reduce_totalvfs(xe, newlimit);
+ 
++	xe->sriov.pf.admin_only = wanted_admin_only(xe);
+ 	xe->sriov.pf.device_total_vfs = totalvfs;
+ 	xe->sriov.pf.driver_max_vfs = newlimit;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
+index 9054fdc34597..0fcc6cec4afc 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_helpers.h
+@@ -56,7 +56,8 @@ static inline unsigned int xe_sriov_pf_num_vfs(const struct xe_device *xe)
+  */
+ static inline bool xe_sriov_pf_admin_only(const struct xe_device *xe)
+ {
+-	return !xe->info.probe_display;
++	xe_assert(xe, IS_SRIOV_PF(xe));
++	return xe->sriov.pf.admin_only;
+ }
+ 
+ static inline struct mutex *xe_sriov_pf_master_mutex(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_types.h b/drivers/gpu/drm/xe/xe_sriov_pf_types.h
+index b0253e1ae5da..080cf10512f4 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_types.h
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_types.h
+@@ -36,6 +36,9 @@ struct xe_sriov_metadata {
+  * @XE_SRIOV_MODE_PF mode.
+  */
+ struct xe_device_pf {
++	/** @admin_only: PF functionality focused on VFs management only. */
++	bool admin_only;
++
+ 	/** @device_total_vfs: Maximum number of VFs supported by the device. */
+ 	u16 device_total_vfs;
+ 
+-- 
+2.47.1
 
-Best Regards,
-Yan, Zi
