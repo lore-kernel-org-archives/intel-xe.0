@@ -4,55 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCC8DD2FEDE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF2D9D2FEDF
 	for <intel-xe@archiver.kernel.org>; Tue, 27 Jan 2026 19:37:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6059110E5BA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 606AC10E5BB;
 	Tue, 27 Jan 2026 19:37:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZvEorIpl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fm6IbELt";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E2E510E5B7
- for <intel-xe@lists.freedesktop.org>; Tue, 27 Jan 2026 19:37:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFBAB10E5B3
+ for <intel-xe@lists.freedesktop.org>; Tue, 27 Jan 2026 19:37:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769542661; x=1801078661;
+ t=1769542657; x=1801078657;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PiXekx6l6pRA83cpeINGR7hQhXOPGYCKiWt3bwAEsDQ=;
- b=ZvEorIpltC/6qUEqOhUy+rI1Mk8ERXAD8SFCHjFVH1tcDNi9imnhl6W3
- kMFi9qbM8c8xq65KUOVcs+PCufyD2lNjTow6/WMc3l7bDR06QI8dnfWR9
- 3l46iqMrAsAjj3jp+aNe5Ecnb4nHr8OCBM6Q4MBrOqbLqqwvzNYQ3T2Qi
- 1Eqc+Qrd8U1yPFFyfbLa+kRt4c92vey6eVTt5CgNWHVDD8cHFZe4cUXGr
- rv3uRLKbnOCx3pFCmVPoVes5ruMMD75x3wr8WMMX75O5kzjsaGr2dd+32
- 7Ek1W29aSYyGFPbQ536NN6FoqOgiwwIDXzssw3GLFIMwnym1BRBZBY/X0 Q==;
-X-CSE-ConnectionGUID: ZQNa2fvRSZ63XQlewnf5fA==
-X-CSE-MsgGUID: QP/Y/AL0QoKmRPTx/3k20A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="69764782"
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="69764782"
+ bh=YcO7ubYxT4jT260nMoUOB+1POJ9pB+lZRUtCOJEBnmY=;
+ b=fm6IbELtEil9gQ8QO/ULdaSLAiQMO9ypoSnREVWCb0VH0QGshVcZmYBt
+ ou+i6W1VQK56zR5eoGfy/FfimaBFhcUGq/xiV2WQ9vx7GudtdYlV4FZOe
+ UK9B25emTuO9H1Hicx7EFTiYD9fr0bFoez6fsrpmQSRdy4VUGmp4QOmv5
+ ChPGqjSkTj2rpH1F5XeHxW4DGuQzwhl5f/FdRaXQenlsatkhMTDQICqqA
+ E72cM6Hp7dR4PhF4FiigIl5cXQat8TRlXEQejhikc1cgQhE4cZCiVnWHQ
+ PAkcW9tGITJdrmLwH7V4HKVMDkZraSFjV4NCTWOdn0ms4uPuiPaD7vCi5 Q==;
+X-CSE-ConnectionGUID: dutvY/UhQoeqRlsoyZ1/SQ==
+X-CSE-MsgGUID: dwGO3X5DT8uip0Rtz+kYiw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="69764778"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="69764778"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 11:37:41 -0800
-X-CSE-ConnectionGUID: 85opBsVBSB6shzyI0ZRGGw==
-X-CSE-MsgGUID: nCqxGYJgTRiJ4vTBpw/EzA==
+ 27 Jan 2026 11:37:37 -0800
+X-CSE-ConnectionGUID: h475Ztb5TTa8XLSRNmIyUA==
+X-CSE-MsgGUID: CPuKkViZQK+XPvkM1WPvfA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="207958948"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="207958939"
 Received: from mahadzix-mobl.gar.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.17.196])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 11:37:40 -0800
+ 27 Jan 2026 11:37:37 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v2 4/6] drm/xe/guc: Drop redundant register read
-Date: Tue, 27 Jan 2026 20:37:24 +0100
-Message-ID: <20260127193727.601-5-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH v2 1/6] drm/xe: Promote relaxed_ms_sleep
+Date: Tue, 27 Jan 2026 20:37:21 +0100
+Message-ID: <20260127193727.601-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260127193727.601-1-michal.wajdeczko@intel.com>
 References: <20260127193727.601-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,57 +68,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The xe_mmio_wait32() already returns the last value of the register
-for which we were waiting, there is no need read it again.
+We want to have single place with sleep related helpers for better
+code reuse. Create xe_sleep.h and move relaxed_ms_sleep() there.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc.c | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 23 ++-----------------
+ drivers/gpu/drm/xe/xe_sleep.h      | 36 ++++++++++++++++++++++++++++++
+ 2 files changed, 38 insertions(+), 21 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_sleep.h
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 44360437beeb..2a3b057fc828 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -1394,11 +1394,11 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
- 	struct xe_device *xe = guc_to_xe(guc);
- 	struct xe_gt *gt = guc_to_gt(guc);
- 	struct xe_mmio *mmio = &gt->mmio;
--	u32 header, reply;
- 	struct xe_reg reply_reg = xe_gt_is_media_type(gt) ?
- 		MED_VF_SW_FLAG(0) : VF_SW_FLAG(0);
- 	const u32 LAST_INDEX = VF_SW_FLAG_COUNT - 1;
- 	bool lost = false;
-+	u32 header;
- 	int ret;
- 	int i;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 456f549c16f6..4ea14f2794f4 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -8,9 +8,7 @@
+ #include <linux/bitfield.h>
+ #include <linux/bitmap.h>
+ #include <linux/circ_buf.h>
+-#include <linux/delay.h>
+ #include <linux/dma-fence-array.h>
+-#include <linux/math64.h>
  
-@@ -1430,21 +1430,20 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
+ #include <drm/drm_managed.h>
  
- 	ret = xe_mmio_wait32(mmio, reply_reg, GUC_HXG_MSG_0_ORIGIN,
- 			     FIELD_PREP(GUC_HXG_MSG_0_ORIGIN, GUC_HXG_ORIGIN_GUC),
--			     50000, &reply, false);
-+			     50000, &header, false);
- 	if (ret) {
- 		/* scratch registers might be cleared during FLR, try once more */
--		if (!reply && !lost) {
-+		if (!header && !lost) {
- 			xe_gt_dbg(gt, "GuC mmio request %#x: lost, trying again\n", request[0]);
- 			lost = true;
- 			goto retry;
- 		}
- timeout:
- 		xe_gt_err(gt, "GuC mmio request %#x: no reply %#x\n",
--			  request[0], reply);
-+			  request[0], header);
- 		return ret;
- 	}
+@@ -42,6 +40,7 @@
+ #include "xe_pm.h"
+ #include "xe_ring_ops_types.h"
+ #include "xe_sched_job.h"
++#include "xe_sleep.h"
+ #include "xe_trace.h"
+ #include "xe_uc_fw.h"
+ #include "xe_vm.h"
+@@ -1028,24 +1027,6 @@ static u32 wq_space_until_wrap(struct xe_exec_queue *q)
+ 	return (WQ_SIZE - q->guc->wqi_tail);
+ }
  
--	header = xe_mmio_read32(mmio, reply_reg);
- 	if (FIELD_GET(GUC_HXG_MSG_0_TYPE, header) ==
- 	    GUC_HXG_TYPE_NO_RESPONSE_BUSY) {
- 		/*
+-static inline void relaxed_ms_sleep(unsigned int delay_ms)
+-{
+-	unsigned long min_us, max_us;
+-
+-	if (!delay_ms)
+-		return;
+-
+-	if (delay_ms > 20) {
+-		msleep(delay_ms);
+-		return;
+-	}
+-
+-	min_us = mul_u32_u32(delay_ms, 1000);
+-	max_us = min_us + 500;
+-
+-	usleep_range(min_us, max_us);
+-}
+-
+ static int wq_wait_for_space(struct xe_exec_queue *q, u32 wqi_size)
+ {
+ 	struct xe_guc *guc = exec_queue_to_guc(q);
+@@ -1830,7 +1811,7 @@ static void __guc_exec_queue_process_msg_suspend(struct xe_sched_msg *msg)
+ 				since_resume_ms;
+ 
+ 			if (wait_ms > 0 && q->guc->resume_time)
+-				relaxed_ms_sleep(wait_ms);
++				xe_sleep_relaxed_ms(wait_ms);
+ 
+ 			set_exec_queue_suspended(q);
+ 			disable_scheduling(q, false);
+diff --git a/drivers/gpu/drm/xe/xe_sleep.h b/drivers/gpu/drm/xe/xe_sleep.h
+new file mode 100644
+index 000000000000..a772f1a37395
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sleep.h
+@@ -0,0 +1,36 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#ifndef _XE_SLEEP_H_
++#define _XE_SLEEP_H_
++
++#include <linux/delay.h>
++#include <linux/math64.h>
++
++/**
++ * xe_sleep_relaxed_ms() - Sleep for an approximate time.
++ * @delay_ms: time in msec to sleep
++ *
++ * For smaller timeouts, sleep with 0.5ms accuracy.
++ */
++static inline void xe_sleep_relaxed_ms(unsigned int delay_ms)
++{
++	unsigned long min_us, max_us;
++
++	if (!delay_ms)
++		return;
++
++	if (delay_ms > 20) {
++		msleep(delay_ms);
++		return;
++	}
++
++	min_us = mul_u32_u32(delay_ms, 1000);
++	max_us = min_us + 500;
++
++	usleep_range(min_us, max_us);
++}
++
++#endif
 -- 
 2.47.1
 
