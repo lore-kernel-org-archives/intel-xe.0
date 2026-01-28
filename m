@@ -4,61 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF013D25B47
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 11:42:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA15ED25B48
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 11:52:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8249910E297;
-	Wed, 28 Jan 2026 11:42:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF43110E00D;
+	Wed, 28 Jan 2026 11:52:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IIG97y2h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S0ngy5L1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DACC10E6AB;
- Wed, 28 Jan 2026 11:42:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2177210E00D
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Jan 2026 11:52:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769600527; x=1801136527;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=7V57PF/K4KWB0Lf/aLPtIvJRf80T3BVClO24KED1RdQ=;
- b=IIG97y2h+kwDvv1E6A2u1lrkR8P6M+jApvpwH0p0mNPieR1VzUh+jiGh
- 8y4uH7mLq3c5eW87Y8uO05YTDIQJ9M/0xc0cZ4EvgwqlaCTgEqC9BdyBa
- lRzNlQfdKTxvrdvS2W8c1m/GIlWrtIk84JohqGaDen7S3WmC942sHROVr
- lAkNjRA9cF56e7FCTDJGeQTB6XsL51TYaxwu/6zeNQKNHyBJy+x97k3au
- 4bz1t//7IfAJtenDrEHQzCUk7LG5I8PHV1zgkc0MFSh5w7ZZV+c4rMASG
- gL+Nx4Tcc97INDlLaaP51RYFhO+R6e5vPQdHdKt0h9cgH1qNrN2YYaZBL w==;
-X-CSE-ConnectionGUID: a5kvkBKJQnWJFhLq/6X5eA==
-X-CSE-MsgGUID: 6hpX4O4MQw6lcB1YoCqG0A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="70704886"
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="70704886"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 03:42:06 -0800
-X-CSE-ConnectionGUID: EEfl5fiRT1eatRGG6hIgPA==
-X-CSE-MsgGUID: kQH+rG8mS3KpGLXTFW6jnw==
+ t=1769601129; x=1801137129;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0GUHdur7wuFUG4imk4Hr1b6NiRimAkqTJSnVDKSQLzo=;
+ b=S0ngy5L1POLDPEKRrPdNOl4RreGHi/zkQFdXvUyG/3yHEsviWsajVNN6
+ QW3jMPnqs9TmoThsLoQgMEgiqpJ/ASDHjY3I0aKDpOmeUWF+t4VDZqWpk
+ Zs99ASWPHW/Z3cNGDdv2CfLi7uTx+n5UV8SSerJAWI+aap19JAOcgWc/m
+ oIgvLVsxwwywVDg6abitL+ueKO/rBrUQqIm0SUJP3kWxe0rD25mBMllGA
+ 9xu0LocfsLqN5Mb9WFVer0UO5Gzm12VgpqAldjYaYUTSozpAFnK8vIR1q
+ +DsUsfX/Vk2jHCvFlSjWPseqXzy2UlPFuUM4lDB3S+VJmEou6tidA2Sf/ A==;
+X-CSE-ConnectionGUID: MQX4LAKXSL2Qmx0VSZezBA==
+X-CSE-MsgGUID: GIpfMw1rSP66PzLz76643g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="70527315"
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="70527315"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 03:52:09 -0800
+X-CSE-ConnectionGUID: 5P4J7bBATQa+gl63dlbvVw==
+X-CSE-MsgGUID: YdGHbHPnS6GCFskMjIOJBw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="213114894"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.207])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 03:42:02 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>
-Cc: airlied@gmail.com, atharvatiwarilinuxdev@gmail.com,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, joonas.lahtinen@linux.intel.com,
- linux-kernel@vger.kernel.org, rodrigo.vivi@intel.com, simona@ffwll.ch,
- tursulin@ursulin.net, ville.syrjala@linux.intel.com
-Subject: Re: [PATCH 2/2] drm/i915/display: Disable display for iMac's
-In-Reply-To: <20260127183924.1109-1-atharvatiwarilinuxdev@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <bc778f93d4e2a18848bc93a51aed9b627bcbb2cf@intel.com>
- <20260127183924.1109-1-atharvatiwarilinuxdev@gmail.com>
-Date: Wed, 28 Jan 2026 13:41:59 +0200
-Message-ID: <c4cc37ed9b626155706d5b167935c65eb5fc139d@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="208042059"
+Received: from anirban-z690i-a-ultra-plus.iind.intel.com ([10.190.216.83])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 03:52:04 -0800
+From: Sk Anirban <sk.anirban@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
+ karthik.poosa@intel.com, raag.jadav@intel.com, soham.purkait@intel.com,
+ mallesh.koujalagi@intel.com, vinay.belgaumkar@intel.com,
+ daniele.ceraolospurio@intel.com, nishanth.p.reddy@intel.com,
+ rodrigo.vivi@intel.com, matthew.d.roper@intel.com,
+ Sk Anirban <sk.anirban@intel.com>
+Subject: [PATCH v3 0/2] drm/xe/guc: Add Wa_14025883347 for GuC DMA failure on
+ reset
+Date: Wed, 28 Jan 2026 17:21:35 +0530
+Message-ID: <20260128115134.657091-4-sk.anirban@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,56 +70,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 27 Jan 2026, Atharva Tiwari <atharvatiwarilinuxdev@gmail.com> wrote:
->>At a glance, this seems like the appropriate level.
->> 
->> What if you drop patch 2 and supply i915.disable_display=1 module
->> parameter? Or return false from intel_display_device_enabled().
->
-> I added the i915.disable_display=1 module parameter and removed the patch
-> , but then the display just goes blank, here are some logs:
+Prevent GuC firmware DMA failures during GuC-only reset by disabling
+idle flow and verifying SRAM handling completion. Without this, reset
+can be issued while SRAM handler is copying WOPCM to SRAM,
+causing GuC HW to get stuck.
 
-Mmh, okay. Honestly, I still feel like this would be the better thing to
-do, but I don't think I have the time to debug this further. Feels like
-a rabbit hole. ;)
+v2: Modify error message (Badal)
+    Rename reg bit name (Daniele)
+    Update WA skip condition (Daniele)
+    Update SRAM handling logic (Daniele)
+v3: Reorder WA call (Badal)
+    Wait for GuC ready status (Daniele)
 
-So I guess let's go with ignoring display completely. The way to go is
-to extend has_no_display() with a struct dmi_system_id array, and use
-dmi_check_system() on it. Even if it's just one, it'll be so much easier
-to extend later on.
+Sk Anirban (2):
+  drm/xe/rtp: Extend support for max rules/actions per entry
+  drm/xe/guc: Add Wa_14025883347 for GuC DMA failure on reset
 
-Something like this, completely untested of course:
-
-static bool has_no_display(struct pci_dev *pdev)
-{
-	static const struct pci_device_id ids[] = {
-		INTEL_IVB_Q_IDS(INTEL_VGA_DEVICE, 0),
-		{}
-	};
-
-	static const struct dmi_system_id dmi_ids[] = {
-		{
-			.ident = "Apple iMac",
-			.matches = {
-				DMI_EXACT_MATCH(DMI_BOARD_VENDOR, "Apple Inc."),
-				DMI_EXACT_MATCH(DMI_PRODUCT_NAME, "iMac"),
-			}
-		},
-		{}
-	};
-
-	return pci_match_id(ids, pdev) || dmi_check_system(dmi_ids);
-}
-
-Finally, it would really be super helpful if you could file a bug at the
-fdo gitlab as described at [1], along with the full dmesg with debugs
-enabled, running just patch 1, and then you could reference that issue
-in the commit. So we'd have some info for posterity of what's actually
-going on.
-
-
-Thanks,
-Jani.
+ drivers/gpu/drm/xe/regs/xe_guc_regs.h |  8 ++++++
+ drivers/gpu/drm/xe/xe_guc.c           | 37 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_rtp.h           |  4 +--
+ drivers/gpu/drm/xe/xe_rtp_helpers.h   |  3 +++
+ drivers/gpu/drm/xe/xe_wa_oob.rules    |  9 +++++++
+ 5 files changed, 59 insertions(+), 2 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.43.0
+
