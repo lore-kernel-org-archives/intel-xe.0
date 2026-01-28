@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1435D3568D
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 08:14:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11F22D3568E
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 08:14:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2A5F10E625;
-	Wed, 28 Jan 2026 08:14:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD9A910E628;
+	Wed, 28 Jan 2026 08:14:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zzna5Gdg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mSI2ZP6u";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55BBE10E627
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9443B10E627
  for <intel-xe@lists.freedesktop.org>; Wed, 28 Jan 2026 08:14:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1769588069; x=1801124069;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+N/biAZHeqAo5/0g5xrQEtfO9W/SDgO7lJIBacoRaBQ=;
- b=Zzna5Gdg7PM8ZVrtTvs5xApYpQJQY+nsckmOpCLfRzlE57YrSZOUUouI
- Lw9pWejGHUI+HZ/ACR+weB3GaaRfrcy0hn2o5PvRJ5nxVR6XFaeYS8ine
- QvDQYEJVkjFx52ejXY0eGoGiqimddfVbZXEUQbs4MkTxnCRugD00SWyJv
- w70TfIhC0EWZLLMgHq15vyC5oHMW288qKd7VZEjKeV0yJz5Comp2t29Ls
- 0lt4YosbQkHShCpYvcV+gfD1uscyzQ+hCY8xL8VQen2pW7dPDAQmmqG5Y
- CgGHhAwTFzUylFFzL9f1vTdrnluN2mC0QombYSz7dtTvkCYPRzEpY+2cu w==;
-X-CSE-ConnectionGUID: Cd/PL6VTR/qlxK0/KMHGxw==
-X-CSE-MsgGUID: AOkoEJ4HRTGy/iSdc0Yd+Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="74643440"
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="74643440"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=jT5A66TwxtBWedX1V5NxmT6ZIf9befRjTVAsqtJHlzk=;
+ b=mSI2ZP6uJypW+9oMy9bpvtUtBpr8sp2kWj29FQmFt+F8wrSPcUkl3Owk
+ l8kmqgWnxYdMwzgs6/8fJz85ga57KkkaaqVHGmd2UBxL3sizrUWB/Nvuy
+ z7lPKtCJqV1Gb/I1XxqbdsHZ624D+h+pmOFPurKUZz4+o6VBsmCKWsTPu
+ vHaL4z3nI/mgOZDX8kNaIniNVsgm+bkGmefnzQlgjs6uKoCZxyXpG4vND
+ 9jPdjL/nVSNqApGOqpE8X9eMO9j86fj0XB9EfurCG+n998eb6P8uIAQMs
+ aXww7HL4txOpBnccxBmsX6nD8cEWFrjFYa4wcBPj40qKtBoFtzjmpVFGb w==;
+X-CSE-ConnectionGUID: RwY1mdUOTYCFfQUjMgzMDg==
+X-CSE-MsgGUID: RqIfFxDdTZeU55aP40oMhQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="74643468"
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="74643468"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 00:14:10 -0800
-X-CSE-ConnectionGUID: nROPZ11ESTuTRURum2SOSw==
-X-CSE-MsgGUID: fhGgeQP6TAuhSOf4y1rzFg==
+ 28 Jan 2026 00:14:14 -0800
+X-CSE-ConnectionGUID: l/Kc+b5bSsO3HblnWTSxIg==
+X-CSE-MsgGUID: HBelr47QRgi0zZOnnrScOA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="231156806"
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="231156812"
 Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 00:14:07 -0800
+ 28 Jan 2026 00:14:10 -0800
 From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
@@ -48,12 +48,15 @@ Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
  riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
  michael.j.ruhl@intel.com, paul.e.luse@intel.com,
  mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
-Subject: [PATCH v6 0/6] drm/xe/sysctrl: Add system controller component for
- Xe3p dGPU platforms
-Date: Wed, 28 Jan 2026 00:14:02 -0800
-Message-ID: <20260128081403.3138456-8-anoop.c.vijay@intel.com>
+Subject: [PATCH v6 1/6] drm/xe/sysctrl: Add System Controller register
+ definitions
+Date: Wed, 28 Jan 2026 00:14:03 -0800
+Message-ID: <20260128081403.3138456-9-anoop.c.vijay@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260128081403.3138456-8-anoop.c.vijay@intel.com>
+References: <20260128081403.3138456-8-anoop.c.vijay@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,90 +74,66 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-This patch series introduces System Controller (sysctrl) component for Intel Xe3p 
-dGPU platforms.
+Add register definitions for System Controller mailbox
+interface on Xe3p dGPU platforms.
 
-This component provides the foundational infrastructure for communication
-with the System Controller firmware using MKHI protocol over a mailbox interface.
-
-Key features introduced:
-- Detection and initialization of System Controller interface on Xe3p dGPU platforms
-- Mailbox communication with System Controller firmware
-- Fragmented message transfer for large command payloads
-
-This implementation establishes the base for future System Controller feature
-enablement and firmware command handling.
+Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
 ---
-v2: (Umesh)
-- Fix commit message to 75 chars per line
-- Address CI.Hooks and checkpatch warnings
-- Add sc_to_xe() helper for cleaner conversions
-- Alphabetical order for headers
-- Simplify write/read frame logic using memcpy
-- Drop redundant frame length checks
-- Use xe_mmio_rmw32() for register updates
-- Align FIELD_PREP macros
-- Improve error handling and timeout messages
-- Handle phase_bit revert on write-frame failure
-- Update rdata_len on partial receive before return
-- Remove unnecessary headers
-
-v3: (Matt, Riana, Umesh)
-- Split patch into logical series
-- Rename SC_* macros to SYSCTRL_* for consistency
-- Move MKHI_* defines to .c file
-- Pass xe directly to helpers
-- Place devm_add_action_or_reset() after set_sysctrl_region()
-- Add kernel-doc for xe_sysctrl_mailbox_init()
-- Add short documentation for System Controller in xe_sysctrl.c
-- Avoid hardcoded sizes
-- Move structs to _types.h
-
-v4: (Matt, Mike)
-- Code style improvements
-- Add domain-specific MMIO accessor
-- Change phase_bit to bool type
-- Add input validation and buffer overflow protection
-
-v5: (Umesh, Riana)
-- Reset phase bit to 0 on error conditions
-- Refactor mailbox receive path
-- Updated xe_err messages for consistency
+v4: (Matt)
+- Use lowercase hex values
+- Align macro definitions to column 49
+- Change to relative register offsets
 
 v6: (Matt)
-- Move protocol constants from xe_sysctrl_regs.h to xe_sysctrl_mailbox_types.h
+- Move protocol constants to xe_sysctrl_mailbox_types.h
 - Add SYSCTRL_MB_CTRL_MKHI_CMD helper macro
 ---
-
-Anoop Vijay (6):
-  drm/xe/sysctrl: Add System Controller register definitions
-  drm/xe/sysctrl: Add System Controller types and structures
-  drm/xe/sysctrl: Add System Controller mailbox implementation
-  drm/xe/sysctrl: Add System Controller initialization
-  drm/xe/sysctrl: Integrate System Controller into device
-  drm/xe/sysctrl: Enable System Controller for Xe3p
-
- drivers/gpu/drm/xe/Makefile                   |   2 +
- drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h     |  36 ++
- drivers/gpu/drm/xe/xe_device.c                |   5 +
- drivers/gpu/drm/xe/xe_device_types.h          |   6 +
- drivers/gpu/drm/xe/xe_pci.c                   |   2 +
- drivers/gpu/drm/xe/xe_pci_types.h             |   1 +
- drivers/gpu/drm/xe/xe_sysctrl.c               |  80 ++++
- drivers/gpu/drm/xe/xe_sysctrl.h               |  13 +
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.c       | 390 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.h       |  35 ++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  42 ++
- drivers/gpu/drm/xe/xe_sysctrl_types.h         |  33 ++
- 12 files changed, 645 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h | 36 +++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
  create mode 100644 drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.c
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.h
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_types.h
 
+diff --git a/drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h b/drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h
+new file mode 100644
+index 000000000000..2e91febfa9a2
+--- /dev/null
++++ b/drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h
+@@ -0,0 +1,36 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#ifndef _XE_SYSCTRL_REGS_H_
++#define _XE_SYSCTRL_REGS_H_
++
++#include "xe_regs.h"
++
++#define SYSCTRL_BASE_OFFSET			0xdb000
++#define SYSCTRL_BASE				(SOC_BASE + SYSCTRL_BASE_OFFSET)
++#define SYSCTRL_MAILBOX_INDEX			0x03
++#define SYSCTRL_BAR_LENGTH			0x1000
++
++#define SYSCTRL_MB_CTRL				XE_REG(0x10)
++#define   SYSCTRL_MB_CTRL_RUN_BUSY		REG_BIT(31)
++#define   SYSCTRL_MB_CTRL_IRQ			REG_BIT(30)
++#define   SYSCTRL_MB_CTRL_RUN_BUSY_OUT		REG_BIT(29)
++#define   SYSCTRL_MB_CTRL_PARAM3_MASK		REG_GENMASK(28, 24)
++#define   SYSCTRL_MB_CTRL_PARAM2_MASK		REG_GENMASK(23, 16)
++#define   SYSCTRL_MB_CTRL_PARAM1_MASK		REG_GENMASK(15, 8)
++#define   SYSCTRL_MB_CTRL_COMMAND_MASK		REG_GENMASK(7, 0)
++#define   SYSCTRL_MB_CTRL_MKHI_CMD		REG_FIELD_PREP(SYSCTRL_MB_CTRL_COMMAND_MASK, 5)
++
++#define SYSCTRL_MB_DATA0			XE_REG(0x14)
++#define SYSCTRL_MB_DATA1			XE_REG(0x18)
++#define SYSCTRL_MB_DATA2			XE_REG(0x1C)
++#define SYSCTRL_MB_DATA3			XE_REG(0x20)
++
++#define MKHI_FRAME_PHASE			REG_BIT(24)
++#define MKHI_FRAME_CURRENT_MASK			REG_GENMASK(21, 16)
++#define MKHI_FRAME_TOTAL_MASK			REG_GENMASK(13, 8)
++#define MKHI_FRAME_COMMAND_MASK			REG_GENMASK(7, 0)
++
++#endif /* _XE_SYSCTRL_REGS_H_ */
 -- 
 2.43.0
 
