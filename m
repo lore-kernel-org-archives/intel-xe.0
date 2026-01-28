@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCF94D3F079
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 14:59:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFBEBD3F079
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 15:00:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 914B410E6E0;
-	Wed, 28 Jan 2026 14:59:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H7LySltt";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7382210E6E0;
- Wed, 28 Jan 2026 14:59:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769612379; x=1801148379;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=fEdqgvYFPvWJpsa3pJucaOQlS15fp708qTz479n7NCs=;
- b=H7LySltt/h6jUNDAdShNPobGVTC/3HZmK4X77BA+5ErvNRQLLX9KlSpH
- cj+qzzzNqTy4MDFGVnS99XysPBYNu1+N4csEXCEyrSQGlzQkY/Qek7iaH
- Ehd0luTGbT5T0pxkJ4xkZtFIRzxFDnVuGMkvgutx2fYAXS34ZswLURJOG
- sRpjs9BTtgKcLmn6RswcKf2IpdNR/IxImd7ZnumLAPbbGGtogGzZ73Pe6
- YkPv2pH2EE3B79h1yjXfR/JCQaXcvnjHnETNWN9EoO1hxUnbPoz/I6g80
- zRqC9yD2poKisNTBj6XnAUZLTbZiO1A/Bm2FiiPn6WN99+9PYeEgG09Nf A==;
-X-CSE-ConnectionGUID: 20q1ZJj9QCuqBUoVTsAyNQ==
-X-CSE-MsgGUID: LlMXU17nTZuu3VsZdbze0A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="70728175"
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="70728175"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 06:59:38 -0800
-X-CSE-ConnectionGUID: YM8RVOnKQNWBxllIhlbgqg==
-X-CSE-MsgGUID: axgBXTF+TnShPR435SxPkw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="212845177"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.207])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 06:59:36 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 4/4] drm/i915/gvt: drop unnecessary include of intel_display.h
-Date: Wed, 28 Jan 2026 16:59:10 +0200
-Message-ID: <32359d5d5feb777ecc7c983d970823218851035f.1769612208.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1769612208.git.jani.nikula@intel.com>
-References: <cover.1769612208.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B00FB10E6E0;
+	Wed, 28 Jan 2026 15:00:59 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98EC410E6E0;
+ Wed, 28 Jan 2026 15:00:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3155617828075061265=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Fix_CFI_viola?=
+ =?utf-8?q?tion_in_debugfs_access=2E_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 28 Jan 2026 15:00:58 -0000
+Message-ID: <176961245862.201476.16860894210248812338@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260126231011.3834087-2-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20260126231011.3834087-2-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,29 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This does not appear to be needed at all.
+--===============3155617828075061265==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/gvt/display.c | 1 -
- 1 file changed, 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/gvt/display.c b/drivers/gpu/drm/i915/gvt/display.c
-index 21341842c0a9..c026526c39f6 100644
---- a/drivers/gpu/drm/i915/gvt/display.c
-+++ b/drivers/gpu/drm/i915/gvt/display.c
-@@ -39,7 +39,6 @@
- #include "display/i9xx_plane_regs.h"
- #include "display/intel_crt_regs.h"
- #include "display/intel_cursor_regs.h"
--#include "display/intel_display.h"
- #include "display/intel_display_regs.h"
- #include "display/intel_dpio_phy.h"
- #include "display/intel_dpll_mgr.h"
--- 
-2.47.3
+Series: drm/xe/guc: Fix CFI violation in debugfs access. (rev2)
+URL   : https://patchwork.freedesktop.org/series/160668/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4465-8059f097e25f736bb3da09af6a9b283079abfd4f_BAT -> xe-pw-160668v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-160668v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6519]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4465-8059f097e25f736bb3da09af6a9b283079abfd4f/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160668v2/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+
+
+Build changes
+-------------
+
+  * Linux: xe-4465-8059f097e25f736bb3da09af6a9b283079abfd4f -> xe-pw-160668v2
+
+  IGT_8721: 3707bb4267de22a18d61b232c4ab5fbaf61db90c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4465-8059f097e25f736bb3da09af6a9b283079abfd4f: 8059f097e25f736bb3da09af6a9b283079abfd4f
+  xe-pw-160668v2: 160668v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160668v2/index.html
+
+--===============3155617828075061265==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Fix CFI violation in debugfs access. (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160668/">https://patchwork.freedesktop.org/series/160668/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160668v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160668v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4465-8059f097e25f736bb3da09af6a9b283079abfd4f_BAT -&gt; xe-pw-160668v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-160668v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4465-8059f097e25f736bb3da09af6a9b283079abfd4f/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160668v2/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4465-8059f097e25f736bb3da09af6a9b283079abfd4f -&gt; xe-pw-160668v2</li>
+</ul>
+<p>IGT_8721: 3707bb4267de22a18d61b232c4ab5fbaf61db90c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4465-8059f097e25f736bb3da09af6a9b283079abfd4f: 8059f097e25f736bb3da09af6a9b283079abfd4f<br />
+  xe-pw-160668v2: 160668v2</p>
+
+</body>
+</html>
+
+--===============3155617828075061265==--
