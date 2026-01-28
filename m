@@ -4,80 +4,86 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7ED3D73E89
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 20:48:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 316CAD73E83
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 20:48:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 79AAC10E8CD;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFD6010E8CC;
 	Thu, 29 Jan 2026 20:48:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="M89UFxJh";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="g8L04+IK";
 	dkim-atps=neutral
-Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com
- [209.85.215.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EA2D10E253
- for <intel-xe@lists.freedesktop.org>; Thu, 29 Jan 2026 17:54:08 +0000 (UTC)
-Received: by mail-pg1-f174.google.com with SMTP id
- 41be03b00d2f7-c2af7d09533so717987a12.1
- for <intel-xe@lists.freedesktop.org>; Thu, 29 Jan 2026 09:54:08 -0800 (PST)
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
+ [209.85.214.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79C8D10E711
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Jan 2026 14:59:29 +0000 (UTC)
+Received: by mail-pl1-f179.google.com with SMTP id
+ d9443c01a7336-2a12ed4d205so46369215ad.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Jan 2026 06:59:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1769709248; x=1770314048; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1769612369; x=1770217169; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=pRBeS4+WQmZOEFMKUG8W1VxyeXhFlcnz8q11qIvwb5g=;
- b=M89UFxJhHI6qbcUc9gyaDKKcgns+oBNp1sXgGbs/+cZ8rOxn7q3KrpvXeJDV5cT4mT
- 3vnOx8p8ykM4/8l4hAbOJD5k9fe/RJtLTn3xhE+2KGUrp5dqT4rZggDP7rWLvl0+Bhk5
- QuCYgJ11M+wyCimScqaqbrMNsFdA/jtdL0qR30rWyBc+Z9TJ2Y2Ar/SdfVJIBaDDb3Vq
- GUh2+82xnnPWIxksc42RO6XhGtRpDYCynjZkdT70SMsxwvDDcVw/AEYbRYT9EqpvLhSB
- j4nCGiHC/tz/jYT7I7+p8WvNYMmpKLj8jy0lu3eOC/9NCu9ug0lRTNCDlsQ3ugq9ybzl
- I8Ig==
+ bh=aXyZBm2HT5a2syRm7I8O8JEOj9+5Hm8S0vVHV9UIr+Q=;
+ b=g8L04+IK5edafrFewkF4egpq/1U4F9l3c5eUEiLuZ8xy479s1ZoS68Qup0umF8kqqr
+ 42/k7Ve20KT4sZUbc4Fi3rtjUSh7uWjAojcbybVgcV9GD5cxrb6XOw6yeskXwWYp1xy1
+ FW7FKIZQvStzzk8R+d3Wr/s04H1OBpN6FqbxJQoQ2ZTxlFvo8h7Sa1KDsvZHLdB1skYG
+ hLeBwm8WGB4L8hjYyI+OcOoTgM+NdtjY4B8YJ2tUcqRkqXTavkQBRB3VuuyRNAgMxvAL
+ BR14NnC2zC3xsKGpCsh9R0VxOU0sS1SZFbZdQpUdzgkqNtYHdCjvPVtQ8MfzU8RzRyso
+ KnuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769709248; x=1770314048;
+ d=1e100.net; s=20230601; t=1769612369; x=1770217169;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=pRBeS4+WQmZOEFMKUG8W1VxyeXhFlcnz8q11qIvwb5g=;
- b=cKCaH65mUIlDXMhtTdzEGdLgi7IbGCHJnOqHDrM5c7LiHs0/s+9bqwuXbgODTRnE3R
- QoHlFkXEnBmWV3RAIJaaGoEWI6B8920EhCd8gY4xE4smRLIkALiFc0mdIwszN72XnPhb
- T+rPJxFq+1+1mhTcnkAzJ3DEpZopgle4nZSRdqR7OuZuQQYhr0WgDXVQ+WuTmyhJaGNi
- N90vaTZGQUA5N2A7jo6iH7Zo+uu9hEsSLmiAnPu+2WjiwK8HiCW6zqh71G9o1pbcpegt
- zZpIlX3OC9SI/Lwp07y5PqEJJAsuAN6m7D0WgGQCmparMagQwmMuooLOI/T/hb/Z//4p
- PIXQ==
+ bh=aXyZBm2HT5a2syRm7I8O8JEOj9+5Hm8S0vVHV9UIr+Q=;
+ b=jPTK36YupAdiwei6h1LNNnmrnH5lwoFijp+kw2sduSpd3/PwsyWsDOfjTOl+dbTKVo
+ 2LXimgNnyjbXQXG+HrIpTg0J/YMxh3PfrNj+iATmiGTRSwpZB0b5Hnk/b2wkANLJXwnm
+ H4o99xXu1jjd4bmSFikixfPE0fFU9gqP4mp0PS1+kYqJGD4Fdulw7AwuZHbdhNdAMGK0
+ 1qNQyzgsGlgXDd5EBec5MHZ0i/nJLNj9vrALfypMVbXrnSvpCLduyrBUnfAskYGlKyOa
+ D0frXx5dIypjNa3zg4p8qZZZuVzTtQjTAZRUDIvGwLjlLBVyWGpzSo6JscR2PssjkSRM
+ F8jQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXsWpIvmsQc2Towys4IZnx0BU0s085Ez944vukY/M3NrPiFynxGAHke3l+lhIOyfW3Pme0Vwx5ezQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwjiEpZ7sWhiyc1p95lw50MYAXZEQEO+H13fqzPkJ/k7FW2SkI5
- S637KthULnCHfFgVCDm7VFrrokqduVySmpj6GBYmqSwIKrfzNxaQeeE=
-X-Gm-Gg: AZuq6aIqneam1z6uHqDAMRcW2fDHdjfWubHyFC8BUEin/9mrW8vb5+4Depdaqgz2rqf
- LOG4RtPqHCmRFVCXMV/H2IYMri2HRJCzhlClDIVTpP7/nE+I/+ILQv+wz4ZbxqrUiqVzS+WnhOb
- K03GUnMqAxl1uf8Kj5nSdM2bEl7kBq5VYdpdVZ9fEGfntR07ziEXE69VWkBv8urxQ1hIijNKhH2
- Pon+ywq8+7hIyAzZo3y7osjBrxY32kZ7hQTQYlRqegK0w8dZihexHPuG10AOSzcT/M4VF0cuLgR
- nO8OD3juiQdYlPAXWHVw/CTrH/m19nY+Sbk3GQ6PMml3ix5yLVJEM2nCW8QRsovT0xi/uKff1Fy
- Hyuhl4cGoYyQjHyLmxuuQAGH5RoL+otEYV4KMdLoH/vbr/NnkjLkcFCiFlgLijHCphNMrpNKljQ
- /fTK+hBz/fCKub
-X-Received: by 2002:a17:90a:d60d:b0:32e:38b0:15f4 with SMTP id
- 98e67ed59e1d1-3543b2dc1c9mr291029a91.7.1769709247945; 
- Thu, 29 Jan 2026 09:54:07 -0800 (PST)
+ AJvYcCVkgWVneZwMTiYCTp+bZZlvoNH4QuILsABo/WwqtK1RDw6H7jZ44b79Rn/qJQLz+x318GJK4GySSg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyw/mFdi4e4urnVI8MhWCCOggtJrg5kPWbr0WTBXQjLXPEtIG0+
+ /zJHXbatojN5RaAYlcbrqJhmh1NgfMOuE++9F1k11K2/vhYWdqOnY/I=
+X-Gm-Gg: AZuq6aI48Xr+EiLc1nzXtuTxvZz0TDDIShv3QySzGlO5xCzNGIQUaHqN9XzPuHo/a/b
+ 3151tJfjm6FCJm83IeHiEbm3HDytfHAs3VxwRayUaqJmg++cdka+yoY0p1XgT3fZYqgeW0f1AyD
+ CCmBrloXbxiVSaLEIrrKCWX5AeKftFG0FY56uFEvrd84GSlWSLEVV04fXR6Jsj1318d1oFCgfvY
+ it8qin2NCWqBhtETMZobnlfaFcuXzYKN1cdySzWrNp2ts3R4RmY3M73utdy/6OmLnn5nnoDTe/S
+ aSHIPrase3R5zxiFjWHu2B/a9r/yUr237jo8cPII2OWYXLbbmUEfFLMXvdzVSDGPFGPvGCRtEQv
+ fSWcnSfNGluegpPQz5gnXjzBnbrv2aF1ald70ifataKgezI65lfju1itIgflJfRnr0TQrPldiBG
+ 9KvUtPq4Zgi1zB
+X-Received: by 2002:a17:902:ce0d:b0:2a7:d7b8:7661 with SMTP id
+ d9443c01a7336-2a870d536c7mr48989305ad.4.1769612368925; 
+ Wed, 28 Jan 2026 06:59:28 -0800 (PST)
 Received: from at.. ([171.61.161.8]) by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-3540f2cb5adsm5952303a91.3.2026.01.29.09.54.01
+ d9443c01a7336-2a88b5d9a7bsm25820235ad.79.2026.01.28.06.59.22
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 29 Jan 2026 09:54:07 -0800 (PST)
+ Wed, 28 Jan 2026 06:59:28 -0800 (PST)
 From: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>
-To: lukas@wunner.de
-Cc: airlied@gmail.com, ardb@kernel.org, atharvatiwarilinuxdev@gmail.com,
- bp@alien8.de, dri-devel@lists.freedesktop.org, francescopompo2@gmail.com,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com, javierm@redhat.com,
- joonas.lahtinen@linux.intel.com, linux-efi@vger.kernel.org,
- linux-kernel@vger.kernel.org, lszubowi@redhat.com, rodrigo.vivi@intel.com,
- simona@ffwll.ch, tursulin@ursulin.net, tzimmermann@suse.de
-Subject: Re: [PATCH v2 1/2] efi/libstub: enable apple-set-os for all apple
- devices
-Date: Thu, 29 Jan 2026 17:53:58 +0000
-Message-ID: <20260129175358.1100-1-atharvatiwarilinuxdev@gmail.com>
+To: 
+Cc: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>,
+ Ard Biesheuvel <ardb@kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ "Borislav Petkov (AMD)" <bp@alien8.de>,
+ Lenny Szubowicz <lszubowi@redhat.com>,
+ Francesco Pompo <francescopompo2@gmail.com>, linux-efi@vger.kernel.org,
+ linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: [PATCH v2 2/2] drm/i915/display: Disable display for iMac's
+Date: Wed, 28 Jan 2026 14:58:38 +0000
+Message-ID: <20260128145855.1071-3-atharvatiwarilinuxdev@gmail.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <aXs3XOYucVna8eGH@wunner.de>
-References: <aXs3XOYucVna8eGH@wunner.de>
+In-Reply-To: <20260128145855.1071-1-atharvatiwarilinuxdev@gmail.com>
+References: <20260128145855.1071-1-atharvatiwarilinuxdev@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Thu, 29 Jan 2026 20:47:57 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -94,14 +100,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> I don't quite follow.  The patch counts the number of GPUs and
-> uses the set_os protocol if there are at least 2 of them.
-> One dGPU + one eGPU = 2, so the protocol is used.
-> 
-> Am I missing something?
+Disable display on iMacs, as they can't do link training
+on the internal display.
 
-Well your not, and it was a mistake of me, which i apologize for.
+(tested on iMac20,1)
 
-but i still think a MacBookAir dmi check would be better, as
-theoretically you can connect a eGPU to a 2013/2014 MacBookAir,
-which would enable set-os, and will cause problems in applespi.c
+Signed-off-by: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>
+---
+ .../gpu/drm/i915/display/intel_display_device.c    | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index 1170afaa8680..b1fec1018d7e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -3,6 +3,7 @@
+  * Copyright © 2023 Intel Corporation
+  */
+ 
++#include <linux/dmi.h>
+ #include <linux/pci.h>
+ 
+ #include <drm/drm_color_mgmt.h>
+@@ -1435,7 +1436,18 @@ static bool has_no_display(struct pci_dev *pdev)
+ 		{}
+ 	};
+ 
+-	return pci_match_id(ids, pdev);
++	static const struct dmi_system_id dmi_ids[] = {
++		{
++			.ident = "Apple Inc. iMac",
++			.matches = {
++				DMI_EXACT_MATCH(DMI_BOARD_VENDOR, "Apple Inc."),
++				DMI_MATCH(DMI_PRODUCT_NAME, "iMac"),
++			}
++		},
++		{}
++	};
++
++	return pci_match_id(ids, pdev) || dmi_check_system(dmi_ids);
+ }
+ 
+ #define INTEL_DISPLAY_DEVICE(_id, _desc) { .devid = (_id), .desc = (_desc) }
+-- 
+2.43.0
+
