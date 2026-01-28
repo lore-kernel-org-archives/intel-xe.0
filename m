@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9546D35660
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 00:48:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C727D35662
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 00:48:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9ADE810E5DA;
-	Wed, 28 Jan 2026 00:48:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3943F10E5E2;
+	Wed, 28 Jan 2026 00:48:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kACxfDVm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XeAOc9jJ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 999FF10E5DA;
- Wed, 28 Jan 2026 00:48:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EF8410E5DA;
+ Wed, 28 Jan 2026 00:48:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769561328; x=1801097328;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=GSmVERaQj0ngdCVZ2PIvfqkVQNDMvY5d6l/2GaPSKBc=;
- b=kACxfDVmJ4VFq2rIZd5TRnu4fR9oUmLBW6mkthCyNTKvbOOA1VPxZsvn
- qEY7QsGBj+QymThveaYaBVF23UfC+axLGpzQVBN1w7t7GENlWU7PRhY/b
- 3syL/OFghMqkKxi75Zlyc/YloNDY9zkJczMtAk+BsnvYqddEbo/i/azcI
- thUZP7DKYMD0o0AAZA/sd3c45wwsvZW67v9yx0Fkky5V0iBQrh6fLmsor
- WF/22gP2oLoIPbT2xNW5Nfoa6cLhtrVL8DyKCuev8Aj2+5uTYKxz8W6Ka
- 5MrG7LWlJpxFfZtrUX95MZcT/idByObhscnRNvd9r3UGEwuH1avX6Z67q Q==;
-X-CSE-ConnectionGUID: YQSSHTvES9ugnES4D5DncA==
-X-CSE-MsgGUID: XjkzWqGxTBKOLc1OiOfJIw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="93427502"
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="93427502"
+ t=1769561331; x=1801097331;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=r3Vehl4OndggIDmEgz7+9BnBrwvQR9H0lkmrnllQyUk=;
+ b=XeAOc9jJMWxv9gn7eVGGynktluDuAC5y4Vup63wfYlaQ0elMs5fAGr42
+ Gzi6NfcwOIRULAl3q21tZwTL/Xj+7i5a4nTzOTxui2py4GWAwzRYoMd75
+ UNbn7moAMIKjmnEhEkgxR6cXsOamzvilX/MdE9F/KyI+GNe0SDOYGPKE+
+ D1045TNoJ8xbXBcJQ3+2RiCyG3d/NqifNNuU/aSy2V/qpqxVKRFOVh+ym
+ JRfC5QC9hVHKjUIDdmDy0xZxMKltbTHgRSQxQ3AeAj9s3zkDf4spFYL3I
+ gkXAyT+FNRAxJ9HI3MwwkApzBaFx80kEhOYat+B0XIw48y6txIxf65w32 A==;
+X-CSE-ConnectionGUID: 0wWHUs+vTRKxqHo3JIpbRQ==
+X-CSE-MsgGUID: erG0bNNuTCG3dM8rRK1Gbw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="93427532"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="93427532"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 16:48:47 -0800
-X-CSE-ConnectionGUID: b8pYwTrJQqy+JV+KQ2xdDw==
-X-CSE-MsgGUID: jOwupUI1SMCOzDcZHkq0Xw==
+ 27 Jan 2026 16:48:48 -0800
+X-CSE-ConnectionGUID: 7j2UDeYsQa+HOroB1vFbGQ==
+X-CSE-MsgGUID: KPUroDZYS5GtbmDBivPUVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="238822634"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="238822673"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Jan 2026 16:48:48 -0800
@@ -47,11 +47,13 @@ To: intel-xe@lists.freedesktop.org,
 Cc: leonro@nvidia.com, francois.dugast@intel.com,
  thomas.hellstrom@linux.intel.com, himal.prasad.ghimiray@intel.com,
  jgg@ziepe.ca
-Subject: [RFC PATCH v3 00/11] Use new dma-map IOVA alloc, link,
- and sync API in GPU SVM and DRM pagemap
-Date: Tue, 27 Jan 2026 16:48:30 -0800
-Message-Id: <20260128004841.2436896-1-matthew.brost@intel.com>
+Subject: [RFC PATCH v3 09/11] drm/xe: Drop BO dma-resv lock during SVM
+ migrate-to-device
+Date: Tue, 27 Jan 2026 16:48:39 -0800
+Message-Id: <20260128004841.2436896-10-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260128004841.2436896-1-matthew.brost@intel.com>
+References: <20260128004841.2436896-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,74 +70,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The dma-map IOVA alloc, link, and sync APIs perform significantly better
-than dma-map / dma-unmap, as they avoid costly IOMMU synchronizations.
-This difference is especially noticeable when mapping a 2MB region in
-4KB pages.
+Device-to-device migration may require DRM pagemap IOVA allocations,
+which are allowed to acquire dma-resv locks. To support this, pin the BO
+before initiating the migration, preventing immediate eviction and
+allowing dma-resv locks to be taken safely during the migration process.
 
-Use dma-map IOVA alloc, link, and sync APIs for GPU SVM and DRM page,
-which mappings between the CPU and GPU.
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_svm.c | 19 +++++++++++++++----
+ 1 file changed, 15 insertions(+), 4 deletions(-)
 
-Initial results are promising.
-
-Baseline CPU time during 2M / 64K fault with a migration:
-Average migrate 2M cpu time (us, percentage): 552.36049107142857142857, .71943789893868318799
-Average migrate 64K cpu time (us, percentage): 24.97767857142857142857, .34789908128526791960
-
-After patch 4 in this series CPU time during 2M / 64K fault with a migration:
-Average migrate 2M cpu time (us, percentage): 224.81808035714285714286, .51412827364772602557
-Average migrate 64K cpu time (us, percentage): 14.65625000000000000000, .25659463050529524405
-
-After patch 5 in this series CPU time during 2M / 64K fault with a migration:
-Average migrate 2M cpu time (us, percentage): 158.52901785714285714286, .42740093699505625280
-Average migrate 64K cpu time (us, percentage): 14.00000000000000000000, .23276613905846987437
-
-- Patches 2-4 implement dma-map IOVA API for system pages
-
-- Patch 5 optimizes this a bit but questionable if we need if this
-  needed if 2M pages are enabled
-
-- Patches 6-11 implement a IOVA API for multi-GPU PoC. I'm told drivers
-  shouldn't call dma-map IOVA API for multi-device but including it as
-  reference for a design we'd like to get to with high-speed fabrics in
-  mind.
-
-Still an RFC as patches 6-11 may not be able to merged in there current
-form, the series can be split if needed to merge eariler patches.
-
-Matt
-
-v2:
- - Include missing basline patch for CI
-v3:
- - Fix memory corruption
- - PoC IOVA alloc for multi-GPU
-
-Francois Dugast (1):
-  drm/pagemap: Add helper to access zone_device_data
-
-Matthew Brost (10):
-  drm/gpusvm: Use dma-map IOVA alloc, link, and sync API in GPU SVM
-  drm/pagemap: Split drm_pagemap_migrate_map_pages into device / system
-  drm/pagemap: Use dma-map IOVA alloc, link, and sync API for DRM
-    pagemap
-  drm/pagemap: Reduce number of IOVA link calls
-  drm/pagemap: Add IOVA interface to DRM pagemap
-  drm/xe: Stub out DRM pagemap IOVA alloc implementation
-  drm/pagemap: Use device-to-device IOVA alloc, link, and sync API for
-    DRM pagemap
-  drm/xe: Drop BO dma-resv lock during SVM migrate-to-device
-  drm/xe: Implement DRM pagemap IOVA vfuncs
-  drm/gpusvm: Use device-to-device IOVA alloc, link, and sync API in GPU
-    SVM
-
- drivers/gpu/drm/drm_gpusvm.c  | 196 ++++++++++++++++---
- drivers/gpu/drm/drm_pagemap.c | 351 +++++++++++++++++++++++++++-------
- drivers/gpu/drm/xe/xe_svm.c   | 143 +++++++++++++-
- include/drm/drm_gpusvm.h      |   5 +
- include/drm/drm_pagemap.h     | 101 ++++++++++
- 5 files changed, 693 insertions(+), 103 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index eb8d8fe6ff75..c2a6bb367e0a 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -1077,15 +1077,26 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+ 			block->private = vr;
+ 
+ 		xe_bo_get(bo);
++		/* Guard against eviction */
++		ttm_bo_pin(&bo->ttm);
+ 
+ 		/* Ensure the device has a pm ref while there are device pages active. */
+ 		xe_pm_runtime_get_noresume(xe);
+-		/* Consumes the devmem allocation ref. */
+-		err = drm_pagemap_migrate_to_devmem(&bo->devmem_allocation, mm,
+-						    start, end, &mdetails);
+ 		xe_bo_unlock(bo);
+-		xe_bo_put(bo);
++
+ 	}
++
++	/* Consumes the devmem allocation ref. */
++	err = drm_pagemap_migrate_to_devmem(&bo->devmem_allocation, mm,
++					    start, end, &mdetails);
++
++	xe_bo_lock(bo, false);
++	ttm_bo_unpin(&bo->ttm);
++	ttm_bo_move_to_lru_tail_unlocked(&bo->ttm);
++	xe_bo_unlock(bo);
++
++	xe_bo_put(bo);
++
+ 	xe_pm_runtime_put(xe);
+ 	drm_dev_exit(idx);
+ 
 -- 
 2.34.1
 
