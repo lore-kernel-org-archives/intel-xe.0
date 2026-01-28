@@ -4,51 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE0E1D25B48
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 11:08:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 350D5D25B40
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 11:09:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D9CB10E696;
-	Wed, 28 Jan 2026 11:08:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E51EA10E6A5;
+	Wed, 28 Jan 2026 11:09:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="TYGsSG+j";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nwl9+wO5";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F7E710E685;
- Wed, 28 Jan 2026 11:08:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=NaFH3Y022RATKKNl7Y+V+1q98VJmEOTSRrXcvdjorEo=; b=TYGsSG+jHN/vRefcDACAekKY3l
- Jv1Y96ItaT5Mpx5u6HbQ5u7Qun8S+UlWrAdFsLFu5tXFuphR4BEcYsg2C/g3867Ten1uXAgZAWuDx
- LcXZelmwG/thqaIHFZw6YNzMW8T2+M4XteRo0o29yywk1luPIGFSLu9ZkD/ehj2gq/KqrJ+cxIVG2
- NFk4mAUb7lMWXF55f/mCXdflzT6W00QcADecXpyemHUOU+YSRJP1qAL+XrhODDV8fcTRNyn4sFbdG
- OEIKze5oHQlQox+BYfmj+1Teb9h+5fzzf6sG18TCFAWOqpM2nCIs1D/p0xrI96MnW6+co7hdLREou
- 6dQhy0pA==;
-Received: from [90.240.106.137] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vl3PT-00Aqgl-2u; Wed, 28 Jan 2026 12:08:31 +0100
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: amd-gfx@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v6 30/31] drm/xe: Remove drm_sched_init_args->num_rqs usage
-Date: Wed, 28 Jan 2026 11:08:05 +0000
-Message-ID: <20260128110806.38350-31-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260128110806.38350-1-tvrtko.ursulin@igalia.com>
-References: <20260128110806.38350-1-tvrtko.ursulin@igalia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F91B10E670;
+ Wed, 28 Jan 2026 11:08:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769598538; x=1801134538;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=O94qbvvf2ZiN2hTRJdwF6VJOBsrqvvkBYizKzu16mgM=;
+ b=Nwl9+wO5OX1ArmGRTy3sBjdiX0Alik9BEEFRmPXw3ZfsvZksbt6LIZLV
+ D9YX46VONcgUtlLORnlXCLuhL2RbHtN7Fcg2Iu1HmVsGuMWc94TuaJXMQ
+ lckqxJ8USPDgez5y//5O5sz745Xyqrk1yqNlsKferBYcHJ7o1C/79hgcJ
+ PPLpSAxnu5mkv08FtJykFRu3zllIqsi8thGsKyhCwbYynqiAox9XQ0tLB
+ p8LuiHq9iBhSx63A/4mFhPpMaDiVsRudZH9Xre8KttIVUkETkDhLY/PPq
+ jkAJZ5XymEH+9lZ/vHn+mDbNaJiSWst2PEDgZd5i1cCMC8uYc9Jg1En8p Q==;
+X-CSE-ConnectionGUID: w4Vk8xYUSBW3NEn7kBPPJg==
+X-CSE-MsgGUID: 0DZAhHtvTImNLlB6EigxjA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="70898225"
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="70898225"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 03:08:58 -0800
+X-CSE-ConnectionGUID: XEr8HY/RTmKFofnB1GWFSw==
+X-CSE-MsgGUID: gKI1PtRJTjezk7WFKkzj/A==
+X-ExtLoop1: 1
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.207])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 03:08:56 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, Suraj Kandpal
+ <suraj.kandpal@intel.com>
+Subject: Re: [PATCH] drm/i915/dp: Add a meaningful return to
+ intel_dp_read_dsc_dpcd
+In-Reply-To: <20260128044904.1293185-1-suraj.kandpal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260128044904.1293185-1-suraj.kandpal@intel.com>
+Date: Wed, 28 Jan 2026 13:08:53 +0200
+Message-ID: <51a869ec09c61bd8ba56db858c983bb9667ac11b@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,56 +70,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Remove member no longer used by the scheduler core.
+On Wed, 28 Jan 2026, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> Add a meaningful return to intel_dp_read_dsc_dpcd so tha we avoid
+> unwanted DPCD reads which are not needed once we know DSC DPCD
+> read fails. While we are at it remove the drm_err since we do not
+> shout error during intel_dp_detect phase since it may take time
+> to come up after pps_on is called for eDP scenario.
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_dep_scheduler.c | 1 -
- drivers/gpu/drm/xe/xe_execlist.c      | 1 -
- drivers/gpu/drm/xe/xe_gpu_scheduler.c | 1 -
- 3 files changed, 3 deletions(-)
+Please pay more attention to the commit message.
 
-diff --git a/drivers/gpu/drm/xe/xe_dep_scheduler.c b/drivers/gpu/drm/xe/xe_dep_scheduler.c
-index 9bd3bfd2e526..2c7f43e61069 100644
---- a/drivers/gpu/drm/xe/xe_dep_scheduler.c
-+++ b/drivers/gpu/drm/xe/xe_dep_scheduler.c
-@@ -78,7 +78,6 @@ xe_dep_scheduler_create(struct xe_device *xe,
- 	const struct drm_sched_init_args args = {
- 		.ops = &sched_ops,
- 		.submit_wq = submit_wq,
--		.num_rqs = 1,
- 		.credit_limit = job_limit,
- 		.timeout = MAX_SCHEDULE_TIMEOUT,
- 		.name = name,
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index 005a5b2c36fe..94aeab394f88 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -337,7 +337,6 @@ static int execlist_exec_queue_init(struct xe_exec_queue *q)
- 	struct drm_gpu_scheduler *sched;
- 	const struct drm_sched_init_args args = {
- 		.ops = &drm_sched_ops,
--		.num_rqs = 1,
- 		.credit_limit = xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES,
- 		.hang_limit = XE_SCHED_HANG_LIMIT,
- 		.timeout = XE_SCHED_JOB_TIMEOUT,
-diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-index 9c8004d5dd91..67d8ce368486 100644
---- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-+++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-@@ -66,7 +66,6 @@ int xe_sched_init(struct xe_gpu_scheduler *sched,
- 	const struct drm_sched_init_args args = {
- 		.ops = ops,
- 		.submit_wq = submit_wq,
--		.num_rqs = 1,
- 		.credit_limit = hw_submission,
- 		.hang_limit = hang_limit,
- 		.timeout = timeout,
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 24 +++++++++++++++---------
+>  1 file changed, 15 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 79fd3b8d8b25..d2ed8ec145a2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -4281,20 +4281,21 @@ static bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp)
+>  	return dprx & DP_VSC_SDP_EXT_FOR_COLORIMETRY_SUPPORTED;
+>  }
+>  
+> -static void intel_dp_read_dsc_dpcd(struct drm_dp_aux *aux,
+> -				   u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE])
+> +static int intel_dp_read_dsc_dpcd(struct drm_dp_aux *aux,
+> +				  u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE])
+>  {
+>  	if (drm_dp_dpcd_read(aux, DP_DSC_SUPPORT, dsc_dpcd,
+>  			     DP_DSC_RECEIVER_CAP_SIZE) < 0) {
+> -		drm_err(aux->drm_dev,
+> -			"Failed to read DPCD register 0x%x\n",
+> -			DP_DSC_SUPPORT);
+> -		return;
+> +		drm_dbg_kms(aux->drm_dev,
+> +			    "Could not read DSC DPCD register 0x%x\n",
+> +			    DP_DSC_SUPPORT);
+> +		return -EINVAL;
+
+If we want to do this properly, then let's propagate the actual error
+code instead of inventing -EINVAL here. And switch to
+drm_dp_dpcd_read_data(), which returns an error if not all bytes were
+transferred (also a case the current implementation completely ignores).
+
+Finlly, the debug logging could log the error code. A combo of %pe in
+the format string and ERR_PTR(ret) in the corresponding parameter will
+do it nicely.
+
+>  	}
+>  
+>  	drm_dbg_kms(aux->drm_dev, "DSC DPCD: %*ph\n",
+>  		    DP_DSC_RECEIVER_CAP_SIZE,
+>  		    dsc_dpcd);
+> +	return 0;
+>  }
+>  
+>  static void init_dsc_overall_throughput_limits(struct intel_connector *connector, bool is_branch)
+> @@ -4345,8 +4346,11 @@ void intel_dp_get_dsc_sink_cap(u8 dpcd_rev,
+>  	if (dpcd_rev < DP_DPCD_REV_14)
+>  		return;
+>  
+> -	intel_dp_read_dsc_dpcd(connector->dp.dsc_decompression_aux,
+> -			       connector->dp.dsc_dpcd);
+> +	if (intel_dp_read_dsc_dpcd(connector->dp.dsc_decompression_aux,
+> +				   connector->dp.dsc_dpcd) < 0) {
+> +		drm_err(display->drm, "Failed to read DSC DPCD register\n");
+> +		return;
+> +	}
+>  
+>  	if (drm_dp_dpcd_readb(connector->dp.dsc_decompression_aux, DP_FEC_CAPABILITY,
+>  			      &connector->dp.fec_capability) < 0) {
+> @@ -4376,7 +4380,9 @@ static void intel_edp_get_dsc_sink_cap(u8 edp_dpcd_rev, struct intel_connector *
+>  	if (edp_dpcd_rev < DP_EDP_14)
+>  		return;
+>  
+> -	intel_dp_read_dsc_dpcd(connector->dp.dsc_decompression_aux, connector->dp.dsc_dpcd);
+> +	if (intel_dp_read_dsc_dpcd(connector->dp.dsc_decompression_aux,
+> +				   connector->dp.dsc_dpcd) < 0)
+> +		return;
+>  
+>  	if (connector->dp.dsc_dpcd[0] & DP_DSC_DECOMPRESSION_IS_SUPPORTED)
+>  		init_dsc_overall_throughput_limits(connector, false);
+
 -- 
-2.52.0
-
+Jani Nikula, Intel
