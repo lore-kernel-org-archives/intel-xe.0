@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08408D46C0F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8626D46C16
 	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 23:16:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6FA810E77D;
-	Wed, 28 Jan 2026 23:16:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91B7610E77E;
+	Wed, 28 Jan 2026 23:16:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JUySYfAR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CTkPHrUG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 058F810E77D
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Jan 2026 23:16:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA0E010E77C
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Jan 2026 23:16:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1769642197; x=1801178197;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Zn5jTmerUNkrbCmXKfWSkBaKSE5gUrq1fv//SmwgjLk=;
- b=JUySYfAR2XRRg3IKedyNYGYhc++l7JYqhjn9MUaYQWM6+3z3IneeDTGN
- 6EK6SJX1hc7qYWH4jGAcUb38qb1EJ1YfgvqCZoHrJagf3XplbphNgOkG/
- A8BwZfMJB7xP5cuzb3762EOftSm5UGF/MQHfFRbfUsmGdLy62/7dyX1gP
- ii4DA2IKxYaLhbM3lMVwls4ld+Mu/ZrfBsrI0zKoa2vey2RAU10iPKgZS
- QA6O8J2iQ0oyANoevZQ+dGbrQ24otGK2k6OgtNGT1Hv8o62TC+faCNbrg
- xDZTPCfxlC1myA/Q7Pd+MhpTirEVirRUhLaQ09PT4VmeNpBQHaU+b1uTv A==;
-X-CSE-ConnectionGUID: /g70HPhpTvuETiWnGxQRNQ==
-X-CSE-MsgGUID: 4UCQ8HqzT5iFvoI2mDny3Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="73462224"
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="73462224"
+ bh=6piSAGUydFEVLrWUa1H6WrRq9PKT544OvcATww2IUdc=;
+ b=CTkPHrUGTPbXwnltioP2yu+TYlSziOrMGvE4Ht2evB2p2ZM1HEIak5A2
+ faubgPBA2uWWNZ1pE57bZmVN6gd0F77Lg1ppJMH/MNPlFzLXNNOWm0/1u
+ aWngs6f3pO2tuWNLbmiR3uPluGA22gJVMjr5ozooDibkZGwj9lRI8jvni
+ csOTnbnWN3h07/g9OkX9KeFNcjXPz4pthL7rqf1lhhxirjrgB7mHRdO1V
+ EqyCX3vwdB/H5yf/Q9KurEc872f1jQo5t2LzdTMAmLWFfmd07Car9iLTI
+ SVXoFdfGY0afAi8ei5QO4NLQnmS5iZsy8zXzTOYs4I+GxDgZsGUFPyMsR Q==;
+X-CSE-ConnectionGUID: LnOoWO4GRgSgEGCK25CKqQ==
+X-CSE-MsgGUID: 5j64Ow+ERK+lrxQZOl0Gkg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="73462223"
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="73462223"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 Jan 2026 15:16:36 -0800
-X-CSE-ConnectionGUID: PPnKljjERk23IA6g8yVipA==
-X-CSE-MsgGUID: Ji02KULyQliNLX1/zu4RQA==
+X-CSE-ConnectionGUID: tHrcOhpdRe61V8+mKKCRFA==
+X-CSE-MsgGUID: sdPp+btKTdmkNxNDh5N51Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="213266654"
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="213266651"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.39.24])
  by fmviesa004.fm.intel.com with ESMTP; 28 Jan 2026 15:16:36 -0800
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>,
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>, stable@vger.kernel.org,
  Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v5 6/6] drm/xe/uc: Drop xe_guc_sanitize in favor of managed
- cleanup
-Date: Wed, 28 Jan 2026 18:16:34 -0500
-Message-Id: <20260128231634.982494-7-zhanjun.dong@intel.com>
+Subject: [PATCH v5 5/6] drm/xe/guc: Ensure CT state transitions via STOP
+ before DISABLED
+Date: Wed, 28 Jan 2026 18:16:33 -0500
+Message-Id: <20260128231634.982494-6-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260128231634.982494-1-zhanjun.dong@intel.com>
 References: <20260128231634.982494-1-zhanjun.dong@intel.com>
@@ -67,33 +67,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the firmware fails to load in GT resets the device is wedged also
-initiating a GuC state cleanup.
+The GuC CT state transition requires moving to the STOP state before
+entering the DISABLED state. Update the driver teardown sequence to make
+the proper state machine transitions.
 
+Fixes: ee4b32220a6b ("drm/xe/guc: Add devm release action to safely tear down CT")
+Cc: stable@vger.kernel.org
 Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_uc.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index 3f63c2a7e86d..39101120d43a 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -171,7 +171,6 @@ static int vf_uc_load_hw(struct xe_uc *uc)
- 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index dfbf76037b04..6a658f085e0f 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -345,6 +345,7 @@ static void guc_action_disable_ct(void *arg)
+ {
+ 	struct xe_guc_ct *ct = arg;
  
- err_out:
--	xe_guc_sanitize(&uc->guc);
- 	return err;
- }
- 
-@@ -229,7 +228,6 @@ int xe_uc_load_hw(struct xe_uc *uc)
- 	return 0;
- 
- err_out:
--	xe_guc_sanitize(&uc->guc);
- 	return ret;
++	xe_guc_ct_stop(ct);
+ 	guc_ct_change_state(ct, XE_GUC_CT_STATE_DISABLED);
  }
  
 -- 
