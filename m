@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2267D2F00C
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 00:48:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9546D35660
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 00:48:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6377F10E5DD;
-	Wed, 28 Jan 2026 00:48:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9ADE810E5DA;
+	Wed, 28 Jan 2026 00:48:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S3aBqhkl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kACxfDVm";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F7C410E5DB;
- Wed, 28 Jan 2026 00:48:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 999FF10E5DA;
+ Wed, 28 Jan 2026 00:48:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769561329; x=1801097329;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wR5eJaE3er7aH+UrHNNk29s7/Z2nV9gpmyRYENcx3w0=;
- b=S3aBqhklMFXdedBDNFoW3DKtuET5p4PcCWUKTODdgg2yBatigHbt7JAj
- 5FU78776crqMFQgn7BrcqUHMORlzv1t3uhUCH5FtzlCiENdrrXzMJMCdU
- bbFcfmT2mqfUQp1hGQhHp5n87CELx+CEG0N3L0nHjZiTWfll4/cPoDZqU
- ozq0v73tAxwxNYFrnujM2kOLHmyh7LQ0Mtplgo/wfEq05sxlxjoz+MJw5
- 492JcWLRWP/tAkKhL9fsiE19XkgzbwXxP3XINLFIJOcC1VHyWwdjBOn3j
- edD3DZgBDmmeuyR3o1m5Oh2hGS/d88mH4pXyr/m0HJ3vQUbj9SNo3GU4c g==;
-X-CSE-ConnectionGUID: kWTETeBHTT6A/WLgmFmGNg==
-X-CSE-MsgGUID: +zHDm7VkSEaWzY5tS25BPw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="93427506"
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="93427506"
+ t=1769561328; x=1801097328;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=GSmVERaQj0ngdCVZ2PIvfqkVQNDMvY5d6l/2GaPSKBc=;
+ b=kACxfDVmJ4VFq2rIZd5TRnu4fR9oUmLBW6mkthCyNTKvbOOA1VPxZsvn
+ qEY7QsGBj+QymThveaYaBVF23UfC+axLGpzQVBN1w7t7GENlWU7PRhY/b
+ 3syL/OFghMqkKxi75Zlyc/YloNDY9zkJczMtAk+BsnvYqddEbo/i/azcI
+ thUZP7DKYMD0o0AAZA/sd3c45wwsvZW67v9yx0Fkky5V0iBQrh6fLmsor
+ WF/22gP2oLoIPbT2xNW5Nfoa6cLhtrVL8DyKCuev8Aj2+5uTYKxz8W6Ka
+ 5MrG7LWlJpxFfZtrUX95MZcT/idByObhscnRNvd9r3UGEwuH1avX6Z67q Q==;
+X-CSE-ConnectionGUID: YQSSHTvES9ugnES4D5DncA==
+X-CSE-MsgGUID: XjkzWqGxTBKOLc1OiOfJIw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="93427502"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="93427502"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Jan 2026 16:48:48 -0800
-X-CSE-ConnectionGUID: ozqqd8c8SXGVmbr/GdvFsQ==
-X-CSE-MsgGUID: SkWOAK5fTkuNt93I+LpkzA==
+ 27 Jan 2026 16:48:47 -0800
+X-CSE-ConnectionGUID: b8pYwTrJQqy+JV+KQ2xdDw==
+X-CSE-MsgGUID: jOwupUI1SMCOzDcZHkq0Xw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="238822642"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="238822634"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Jan 2026 16:48:48 -0800
@@ -47,13 +47,11 @@ To: intel-xe@lists.freedesktop.org,
 Cc: leonro@nvidia.com, francois.dugast@intel.com,
  thomas.hellstrom@linux.intel.com, himal.prasad.ghimiray@intel.com,
  jgg@ziepe.ca
-Subject: [RFC PATCH v3 02/11] drm/gpusvm: Use dma-map IOVA alloc, link,
- and sync API in GPU SVM
-Date: Tue, 27 Jan 2026 16:48:32 -0800
-Message-Id: <20260128004841.2436896-3-matthew.brost@intel.com>
+Subject: [RFC PATCH v3 00/11] Use new dma-map IOVA alloc, link,
+ and sync API in GPU SVM and DRM pagemap
+Date: Tue, 27 Jan 2026 16:48:30 -0800
+Message-Id: <20260128004841.2436896-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260128004841.2436896-1-matthew.brost@intel.com>
-References: <20260128004841.2436896-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -75,187 +73,69 @@ than dma-map / dma-unmap, as they avoid costly IOMMU synchronizations.
 This difference is especially noticeable when mapping a 2MB region in
 4KB pages.
 
-Use the IOVA alloc, link, and sync APIs for GPU SVM, which create DMA
-mappings between the CPU and GPU.
+Use dma-map IOVA alloc, link, and sync APIs for GPU SVM and DRM page,
+which mappings between the CPU and GPU.
 
+Initial results are promising.
+
+Baseline CPU time during 2M / 64K fault with a migration:
+Average migrate 2M cpu time (us, percentage): 552.36049107142857142857, .71943789893868318799
+Average migrate 64K cpu time (us, percentage): 24.97767857142857142857, .34789908128526791960
+
+After patch 4 in this series CPU time during 2M / 64K fault with a migration:
+Average migrate 2M cpu time (us, percentage): 224.81808035714285714286, .51412827364772602557
+Average migrate 64K cpu time (us, percentage): 14.65625000000000000000, .25659463050529524405
+
+After patch 5 in this series CPU time during 2M / 64K fault with a migration:
+Average migrate 2M cpu time (us, percentage): 158.52901785714285714286, .42740093699505625280
+Average migrate 64K cpu time (us, percentage): 14.00000000000000000000, .23276613905846987437
+
+- Patches 2-4 implement dma-map IOVA API for system pages
+
+- Patch 5 optimizes this a bit but questionable if we need if this
+  needed if 2M pages are enabled
+
+- Patches 6-11 implement a IOVA API for multi-GPU PoC. I'm told drivers
+  shouldn't call dma-map IOVA API for multi-device but including it as
+  reference for a design we'd like to get to with high-speed fabrics in
+  mind.
+
+Still an RFC as patches 6-11 may not be able to merged in there current
+form, the series can be split if needed to merge eariler patches.
+
+Matt
+
+v2:
+ - Include missing basline patch for CI
 v3:
- - Always link IOVA in mixed mappings
- - Sync IOVA
+ - Fix memory corruption
+ - PoC IOVA alloc for multi-GPU
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/drm_gpusvm.c | 87 ++++++++++++++++++++++++++++--------
- include/drm/drm_gpusvm.h     |  3 ++
- 2 files changed, 71 insertions(+), 19 deletions(-)
+Francois Dugast (1):
+  drm/pagemap: Add helper to access zone_device_data
 
-diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-index 585d913d3d19..084e78fa0f32 100644
---- a/drivers/gpu/drm/drm_gpusvm.c
-+++ b/drivers/gpu/drm/drm_gpusvm.c
-@@ -1139,19 +1139,26 @@ static void __drm_gpusvm_unmap_pages(struct drm_gpusvm *gpusvm,
- 		struct drm_gpusvm_pages_flags flags = {
- 			.__flags = svm_pages->flags.__flags,
- 		};
-+		struct dma_iova_state __state = {};
- 
--		for (i = 0, j = 0; i < npages; j++) {
--			struct drm_pagemap_addr *addr = &svm_pages->dma_addr[j];
--
--			if (addr->proto == DRM_INTERCONNECT_SYSTEM)
--				dma_unmap_page(dev,
--					       addr->addr,
--					       PAGE_SIZE << addr->order,
--					       addr->dir);
--			else if (dpagemap && dpagemap->ops->device_unmap)
--				dpagemap->ops->device_unmap(dpagemap,
--							    dev, *addr);
--			i += 1 << addr->order;
-+		if (dma_use_iova(&svm_pages->state)) {
-+			dma_iova_destroy(dev, &svm_pages->state,
-+					 npages * PAGE_SIZE,
-+					 svm_pages->dma_addr[0].dir, 0);
-+		} else {
-+			for (i = 0, j = 0; i < npages; j++) {
-+				struct drm_pagemap_addr *addr = &svm_pages->dma_addr[j];
-+
-+				if (addr->proto == DRM_INTERCONNECT_SYSTEM)
-+					dma_unmap_page(dev,
-+						       addr->addr,
-+						       PAGE_SIZE << addr->order,
-+						       addr->dir);
-+				else if (dpagemap && dpagemap->ops->device_unmap)
-+					dpagemap->ops->device_unmap(dpagemap,
-+								    dev, *addr);
-+				i += 1 << addr->order;
-+			}
- 		}
- 
- 		/* WRITE_ONCE pairs with READ_ONCE for opportunistic checks */
-@@ -1161,6 +1168,7 @@ static void __drm_gpusvm_unmap_pages(struct drm_gpusvm *gpusvm,
- 
- 		drm_pagemap_put(svm_pages->dpagemap);
- 		svm_pages->dpagemap = NULL;
-+		svm_pages->state = __state;
- 	}
- }
- 
-@@ -1402,12 +1410,14 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 	unsigned long num_dma_mapped;
- 	unsigned int order = 0;
- 	unsigned long *pfns;
-+	phys_addr_t last_phys;
- 	int err = 0;
- 	struct dev_pagemap *pagemap;
- 	struct drm_pagemap *dpagemap;
- 	struct drm_gpusvm_pages_flags flags;
- 	enum dma_data_direction dma_dir = ctx->read_only ? DMA_TO_DEVICE :
- 							   DMA_BIDIRECTIONAL;
-+	struct dma_iova_state *state = &svm_pages->state;
- 
- retry:
- 	if (time_after(jiffies, timeout))
-@@ -1496,6 +1506,17 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 				err = -EOPNOTSUPP;
- 				goto err_unmap;
- 			}
-+
-+			if (dma_use_iova(state)) {
-+				err = dma_iova_link(gpusvm->drm->dev, state,
-+						    last_phys,
-+						    i * PAGE_SIZE,
-+						    PAGE_SIZE << order,
-+						    dma_dir, 0);
-+				if (err)
-+					goto err_unmap;
-+			}
-+
- 			zdd = __zdd;
- 			if (pagemap != page_pgmap(page)) {
- 				if (i > 0) {
-@@ -1539,13 +1560,34 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 				goto err_unmap;
- 			}
- 
--			addr = dma_map_page(gpusvm->drm->dev,
--					    page, 0,
--					    PAGE_SIZE << order,
--					    dma_dir);
--			if (dma_mapping_error(gpusvm->drm->dev, addr)) {
--				err = -EFAULT;
--				goto err_unmap;
-+			if (!i)
-+				dma_iova_try_alloc(gpusvm->drm->dev, state,
-+						   npages * PAGE_SIZE >=
-+						   HPAGE_PMD_SIZE ?
-+						   HPAGE_PMD_SIZE : 0,
-+						   npages * PAGE_SIZE);
-+
-+			if (dma_use_iova(state)) {
-+				last_phys = page_to_phys(page);
-+
-+				err = dma_iova_link(gpusvm->drm->dev, state,
-+						    page_to_phys(page),
-+						    i * PAGE_SIZE,
-+						    PAGE_SIZE << order,
-+						    dma_dir, 0);
-+				if (err)
-+					goto err_unmap;
-+
-+				addr = state->addr + i * PAGE_SIZE;
-+			} else {
-+				addr = dma_map_page(gpusvm->drm->dev,
-+						    page, 0,
-+						    PAGE_SIZE << order,
-+						    dma_dir);
-+				if (dma_mapping_error(gpusvm->drm->dev, addr)) {
-+					err = -EFAULT;
-+					goto err_unmap;
-+				}
- 			}
- 
- 			svm_pages->dma_addr[j] = drm_pagemap_addr_encode
-@@ -1557,6 +1599,13 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 		flags.has_dma_mapping = true;
- 	}
- 
-+	if (dma_use_iova(state)) {
-+		err = dma_iova_sync(gpusvm->drm->dev, state, 0,
-+				    npages * PAGE_SIZE);
-+		if (err)
-+			goto err_unmap;
-+	}
-+
- 	if (pagemap) {
- 		flags.has_devmem_pages = true;
- 		drm_pagemap_get(dpagemap);
-diff --git a/include/drm/drm_gpusvm.h b/include/drm/drm_gpusvm.h
-index 2578ac92a8d4..6772d8a92788 100644
---- a/include/drm/drm_gpusvm.h
-+++ b/include/drm/drm_gpusvm.h
-@@ -6,6 +6,7 @@
- #ifndef __DRM_GPUSVM_H__
- #define __DRM_GPUSVM_H__
- 
-+#include <linux/dma-mapping.h>
- #include <linux/kref.h>
- #include <linux/interval_tree.h>
- #include <linux/mmu_notifier.h>
-@@ -136,6 +137,7 @@ struct drm_gpusvm_pages_flags {
-  * @dma_addr: Device address array
-  * @dpagemap: The struct drm_pagemap of the device pages we're dma-mapping.
-  *            Note this is assuming only one drm_pagemap per range is allowed.
-+ * @state: DMA IOVA state for mapping.
-  * @notifier_seq: Notifier sequence number of the range's pages
-  * @flags: Flags for range
-  * @flags.migrate_devmem: Flag indicating whether the range can be migrated to device memory
-@@ -147,6 +149,7 @@ struct drm_gpusvm_pages_flags {
- struct drm_gpusvm_pages {
- 	struct drm_pagemap_addr *dma_addr;
- 	struct drm_pagemap *dpagemap;
-+	struct dma_iova_state state;
- 	unsigned long notifier_seq;
- 	struct drm_gpusvm_pages_flags flags;
- };
+Matthew Brost (10):
+  drm/gpusvm: Use dma-map IOVA alloc, link, and sync API in GPU SVM
+  drm/pagemap: Split drm_pagemap_migrate_map_pages into device / system
+  drm/pagemap: Use dma-map IOVA alloc, link, and sync API for DRM
+    pagemap
+  drm/pagemap: Reduce number of IOVA link calls
+  drm/pagemap: Add IOVA interface to DRM pagemap
+  drm/xe: Stub out DRM pagemap IOVA alloc implementation
+  drm/pagemap: Use device-to-device IOVA alloc, link, and sync API for
+    DRM pagemap
+  drm/xe: Drop BO dma-resv lock during SVM migrate-to-device
+  drm/xe: Implement DRM pagemap IOVA vfuncs
+  drm/gpusvm: Use device-to-device IOVA alloc, link, and sync API in GPU
+    SVM
+
+ drivers/gpu/drm/drm_gpusvm.c  | 196 ++++++++++++++++---
+ drivers/gpu/drm/drm_pagemap.c | 351 +++++++++++++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_svm.c   | 143 +++++++++++++-
+ include/drm/drm_gpusvm.h      |   5 +
+ include/drm/drm_pagemap.h     | 101 ++++++++++
+ 5 files changed, 693 insertions(+), 103 deletions(-)
+
 -- 
 2.34.1
 
