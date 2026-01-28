@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68F29D35693
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58011D3569C
 	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 10:14:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 24F5D10E635;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17C6F10E639;
 	Wed, 28 Jan 2026 10:14:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="DiHzE1Az";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="I+IqkTlx";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4714010E64B
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Jan 2026 10:13:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 455D310E63A
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Jan 2026 10:13:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,25 +22,24 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=sB+/Lathet14ipTbR5HCBBOBEqDEznVR/RlNPkaXi7A=; b=DiHzE1AzzJSF2nDawT+UmI5tIV
- blK+KWkxvyX3xASZFBdft2ti+kP95U3VYiu2DfzX64IPHTlyHAMGYaZl8Esdz8COrCzP8MOEf4O5k
- cy5KmUlM6dD9hAMo/V0X9XUCQniii1TUhjptdpWYtAQzom0FnthgOS6hBk7VczuFrIYaQvtugdJkZ
- WNCHlGx8A0y2r1nrfBX0f198n0q4BGHyTqMK7L8NpiJemTFTQ+6sqNk1RG3g/DQ0PisZDiEA84FWs
- g90DRmCpsDCT5aJoe+5/p9tYSvLmsXAOLtsDPDKycqT4BhZ47szdluU9bfPFnpELBDCHNOKzHAnWV
- zcGIRVlw==;
+ bh=m8NQ4P+q4GoE1gTQNzbMWOFS5A3A+5FF2WBC4xh0Ci4=; b=I+IqkTlxPXOCf1M72u7CiAQEJO
+ QxTNByKT07mwxs3ePrXZAdpLJqrmpLuKwsQ+7BT+R48KTnmzq+UarGpN2YbgB9NHfakjt/QTDpyZh
+ ED9nEr1WVjA1lryK1dErPVkMi3KNnnc7y91CVbR1R/AC14J0XqBHOG8293GcL/9mWFrfzXWfEJlmU
+ cHnl4VhR4L/29SGO98/Ra0fsaIGteRtoqGjQHXpPNAEkWXjEVgNa5U3C7wSCnpXD0qO83gv29ezk8
+ uMxsuVcPNt2rYZktUAhb20C0uXiiASsa3BtHO8jceR8KuvLLHS0G0B3FOdsgcHSY4lN2zjYyv6CLx
+ VQgv4klA==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vl2YW-00ApMx-9W; Wed, 28 Jan 2026 11:13:48 +0100
+ id 1vl2YV-00ApMo-Hz; Wed, 28 Jan 2026 11:13:47 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v17 7/8] drm/xe/display: Add support for AuxCCS
-Date: Wed, 28 Jan 2026 10:13:32 +0000
-Message-ID: <20260128101333.37765-8-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v17 6/8] drm/xe/xelp: Add AuxCCS invalidation to the indirect
+ context workarounds
+Date: Wed, 28 Jan 2026 10:13:31 +0000
+Message-ID: <20260128101333.37765-7-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260128101333.37765-1-tvrtko.ursulin@igalia.com>
 References: <20260128101333.37765-1-tvrtko.ursulin@igalia.com>
@@ -60,161 +59,174 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add support for mapping the auxiliary CCS buffer into the DPT page tables.
-
-This will allow for better power efficiency by enabling the render
-compression frame buffer modifiers such as
-I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS in a following patch.
-
-We do this by refactoring the code a bit so handling for the linear
-auxiliary frame buffer can be added in a tidy way. Also replace some
-hardcoded constants.
+Following from the i915 reference implementation, we add the AuxCCS
+invalidation to the indirect context workarounds page.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 111 ++++++++++++++++++-------
- 1 file changed, 81 insertions(+), 30 deletions(-)
+ drivers/gpu/drm/xe/xe_hw_engine.h | 24 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_lrc.c       | 27 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ring_ops.c  | 19 +++----------------
+ 3 files changed, 54 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index b285cc446f57..7617c2b3f3cb 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -50,33 +50,94 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
- 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
+index 6b5f9fa2a594..725467b5877c 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine.h
+@@ -6,6 +6,7 @@
+ #ifndef _XE_HW_ENGINE_H_
+ #define _XE_HW_ENGINE_H_
+ 
++#include "xe_device_types.h"
+ #include "xe_hw_engine_types.h"
+ 
+ struct drm_printer;
+@@ -79,4 +80,27 @@ enum xe_force_wake_domains xe_hw_engine_to_fw_domain(struct xe_hw_engine *hwe);
+ void xe_hw_engine_mmio_write32(struct xe_hw_engine *hwe, struct xe_reg reg, u32 val);
+ u32 xe_hw_engine_mmio_read32(struct xe_hw_engine *hwe, struct xe_reg reg);
+ 
++static inline bool
++xe_engine_class_has_auxccs(struct xe_device *xe, enum xe_engine_class class)
++{
++	/*
++	 * PVC is a special case that has no compression of either type
++	 * (FlatCCS or AuxCCS).  Also, AuxCCS is no longer used from Xe2
++	 * onward, so any future platforms with no FlatCCS will not have
++	 * AuxCCS, and we explicity do not want to support it on MTL.
++	 */
++	if (GRAPHICS_VERx100(xe) >= 1270 ||
++	    xe->info.platform == XE_PVC ||
++	    xe->info.has_flat_ccs)
++		return false;
++
++	if (class == XE_ENGINE_CLASS_RENDER ||
++	    class == XE_ENGINE_CLASS_COMPUTE ||
++	    class == XE_ENGINE_CLASS_VIDEO_DECODE ||
++	    class == XE_ENGINE_CLASS_VIDEO_ENHANCE)
++		return true;
++
++	return false;
++}
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 3db7968aa5e2..25e4392e303f 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -23,10 +23,12 @@
+ #include "xe_exec_queue_types.h"
+ #include "xe_gt.h"
+ #include "xe_gt_printk.h"
++#include "xe_hw_engine.h"
+ #include "xe_hw_fence.h"
+ #include "xe_map.h"
+ #include "xe_memirq.h"
+ #include "xe_mmio.h"
++#include "xe_ring_ops.h"
+ #include "xe_sriov.h"
+ #include "xe_trace_lrc.h"
+ #include "xe_vm.h"
+@@ -93,6 +95,10 @@ gt_engine_needs_indirect_ctx(struct xe_gt *gt, enum xe_engine_class class)
+ 					       class, NULL))
+ 		return true;
+ 
++	/* For AuxCCS invalidation */
++	if (xe_engine_class_has_auxccs(xe, class))
++		return true;
++
+ 	return false;
  }
  
-+static unsigned int
-+write_dpt_padding(struct iosys_map *map, unsigned int dest, unsigned int pad)
+@@ -1209,6 +1215,25 @@ static ssize_t setup_invalidate_state_cache_wa(struct xe_lrc *lrc,
+ 	return cmd - batch;
+ }
+ 
++static ssize_t setup_invalidate_auxccs_wa(struct xe_lrc *lrc,
++					  struct xe_hw_engine *hwe,
++					  u32 *batch, size_t max_len)
 +{
-+	/* The DE ignores the PTEs for the padding tiles */
-+	return dest + pad * sizeof(u64);
++	struct xe_gt *gt = lrc->gt;
++	struct xe_device *xe = gt_to_xe(gt);
++	u32 *cmd;
++
++	if (!xe_engine_class_has_auxccs(xe, hwe->class))
++		return 0;
++
++	if (xe_gt_WARN_ON(gt, max_len < 8))
++		return -ENOSPC;
++
++	cmd = xe_emit_aux_table_inv(hwe, batch);
++
++	return cmd - batch;
 +}
 +
-+static unsigned int
-+write_dpt_remapped_linear(struct xe_bo *bo, struct iosys_map *map,
-+			  unsigned int dest,
-+			  const struct intel_remapped_plane_info *plane)
-+{
-+	struct xe_device *xe = xe_bo_device(bo);
-+	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
-+	const u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo,
-+						 xe->pat.idx[XE_CACHE_NONE]);
-+	unsigned int offset = plane->offset * XE_PAGE_SIZE;
-+	unsigned int size = plane->size;
-+
-+	while (size--) {
-+		u64 addr = xe_bo_addr(bo, offset, XE_PAGE_SIZE);
-+
-+		iosys_map_wr(map, dest, u64, addr | pte);
-+		dest += sizeof(u64);
-+		offset += XE_PAGE_SIZE;
-+	}
-+
-+	return dest;
-+}
-+
-+static unsigned int
-+write_dpt_remapped_tiled(struct xe_bo *bo, struct iosys_map *map,
-+			 unsigned int dest,
-+			 const struct intel_remapped_plane_info *plane)
-+{
-+	struct xe_device *xe = xe_bo_device(bo);
-+	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
-+	const u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo,
-+						 xe->pat.idx[XE_CACHE_NONE]);
-+	unsigned int offset, column, row;
-+
-+	for (row = 0; row < plane->height; row++) {
-+		offset = (plane->offset + plane->src_stride * row) *
-+			 XE_PAGE_SIZE;
-+
-+		for (column = 0; column < plane->width; column++) {
-+			u64 addr = xe_bo_addr(bo, offset, XE_PAGE_SIZE);
-+
-+			iosys_map_wr(map, dest, u64, addr | pte);
-+			dest += sizeof(u64);
-+			offset += XE_PAGE_SIZE;
-+		}
-+
-+		dest = write_dpt_padding(map, dest,
-+					 plane->dst_stride - plane->width);
-+	}
-+
-+	return dest;
-+}
-+
- static void
--write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
--		   u32 bo_ofs, u32 width, u32 height, u32 src_stride,
--		   u32 dst_stride)
-+write_dpt_remapped(struct xe_bo *bo,
-+		   const struct intel_remapped_info *remap_info,
-+		   struct iosys_map *map)
+ struct bo_setup {
+ 	ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 			 u32 *batch, size_t max_size);
+@@ -1341,9 +1366,11 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
  {
--	struct xe_device *xe = xe_bo_device(bo);
--	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
--	u32 column, row;
--	u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo, xe->pat.idx[XE_CACHE_NONE]);
-+	unsigned int i, dest = 0;
- 
--	for (row = 0; row < height; row++) {
--		u32 src_idx = src_stride * row + bo_ofs;
-+	for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++) {
-+		const struct intel_remapped_plane_info *plane =
-+						&remap_info->plane[i];
- 
--		for (column = 0; column < width; column++) {
--			u64 addr = xe_bo_addr(bo, src_idx * XE_PAGE_SIZE, XE_PAGE_SIZE);
--			iosys_map_wr(map, *dpt_ofs, u64, pte | addr);
-+		if (!plane->width && !plane->height && !plane->linear)
-+			continue;
- 
--			*dpt_ofs += 8;
--			src_idx++;
-+		if (remap_info->plane_alignment) {
-+			const unsigned int index = dest / sizeof(u64);
-+			const unsigned int pad =
-+				ALIGN(index, remap_info->plane_alignment) -
-+				index;
-+
-+			dest = write_dpt_padding(map, dest, pad);
- 		}
- 
--		/* The DE ignores the PTEs for the padding tiles */
--		*dpt_ofs += (dst_stride - width) * 8;
-+		if (plane->linear)
-+			dest = write_dpt_remapped_linear(bo, map, dest, plane);
-+		else
-+			dest = write_dpt_remapped_tiled(bo, map, dest, plane);
- 	}
--
--	/* Align to next page */
--	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
+ 	static const struct bo_setup rcs_funcs[] = {
+ 		{ .setup = setup_timestamp_wa },
++		{ .setup = setup_invalidate_auxccs_wa },
+ 		{ .setup = setup_configfs_mid_ctx_restore_bb },
+ 	};
+ 	static const struct bo_setup xcs_funcs[] = {
++		{ .setup = setup_invalidate_auxccs_wa },
+ 		{ .setup = setup_configfs_mid_ctx_restore_bb },
+ 	};
+ 	struct bo_setup_state state = {
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index e6ecd70618c3..cb6c7d18b939 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -12,6 +12,7 @@
+ #include "regs/xe_engine_regs.h"
+ #include "regs/xe_gt_regs.h"
+ #include "xe_exec_queue.h"
++#include "xe_hw_engine.h"
+ #include "xe_gt_printk.h"
+ #include "xe_gt_types.h"
+ #include "xe_lrc.h"
+@@ -331,20 +332,6 @@ static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc
+ 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
  }
  
- static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
-@@ -139,17 +200,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 			iosys_map_wr(&dpt->vmap, x * 8, u64, pte | addr);
- 		}
- 	} else if (view->type == I915_GTT_VIEW_REMAPPED) {
--		const struct intel_remapped_info *remap_info = &view->remapped;
--		u32 i, dpt_ofs = 0;
+-static bool has_aux_ccs(struct xe_device *xe)
+-{
+-	/*
+-	 * PVC is a special case that has no compression of either type
+-	 * (FlatCCS or AuxCCS).  Also, AuxCCS is no longer used from Xe2
+-	 * onward, so any future platforms with no FlatCCS will not have
+-	 * AuxCCS, and we explicity do not want to support it on MTL.
+-	 */
+-	if (GRAPHICS_VERx100(xe) >= 1270 || xe->info.platform == XE_PVC)
+-		return false;
 -
--		for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++)
--			write_dpt_remapped(bo, &dpt->vmap, &dpt_ofs,
--					   remap_info->plane[i].offset,
--					   remap_info->plane[i].width,
--					   remap_info->plane[i].height,
--					   remap_info->plane[i].src_stride,
--					   remap_info->plane[i].dst_stride);
+-	return !xe->info.has_flat_ccs;
+-}
 -
-+		write_dpt_remapped(bo, &view->remapped, &dpt->vmap);
- 	} else {
- 		const struct intel_rotation_info *rot_info = &view->rotated;
- 		u32 i, dpt_ofs = 0;
+ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+ 				   u64 batch_addr, u32 *head, u32 seqno)
+ {
+@@ -360,7 +347,7 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+ 	dw[i++] = preparser_disable(true);
+ 
+ 	/* hsdes: 1809175790 */
+-	if (has_aux_ccs(xe))
++	if (xe_engine_class_has_auxccs(xe, job->q->class))
+ 		i = emit_aux_table_inv(job->q->hwe, dw, i);
+ 
+ 	if (job->ring_ops_flush_tlb)
+@@ -401,7 +388,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 	struct xe_gt *gt = job->q->gt;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
+-	const bool aux_ccs = has_aux_ccs(xe);
++	const bool aux_ccs = xe_engine_class_has_auxccs(xe, job->q->class);
+ 	u32 mask_flags = 0;
+ 
+ 	*head = lrc->ring.tail;
 -- 
 2.52.0
 
