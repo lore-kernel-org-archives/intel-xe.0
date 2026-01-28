@@ -4,133 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35862D3F066
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 14:05:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E743D3F06B
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 14:22:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBADC10E2CD;
-	Wed, 28 Jan 2026 14:05:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6C60895B9;
+	Wed, 28 Jan 2026 14:22:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="oU6xbeEq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MIgaKb4l";
 	dkim-atps=neutral
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012059.outbound.protection.outlook.com
- [40.107.200.59])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65EBC10E2B6;
- Wed, 28 Jan 2026 14:05:31 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Y8a4r5ne5kBFQFtnRQAds4j/5ADTuigCIRAHKeaCcLH2b+ibF1LuIZF0qt8PaXhJds3zCQh37gg3ToOpDBl8Ygnz087KXE//bT/MFPZsGrAM7r1CIASuZ1TJiye5IYT//+6uijn0w+jYlBXBPBL8CkM6R2y6VOSX16rPin+E6Q+gH++JTEwN8OkOO9Vc0Mg/VAB4WdjPASqvO2Bn4lfMHPI3Y9b6UpX/+d8fmKeaAM9nTMBn42dmLY4RKkW3MFtnuyRNWX18zbWunxspEJdwzNqwp+1s2yCOXxSg2gt+4FvpEov0DaaM1jxhvlur6lIypb+GF2mgD6I2/oVX3ooLng==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NuWeP+ogy0j18Jd3L1j1zkRz7/yOk7vhjLBZXR4LkuA=;
- b=Ia0baoCZxuwIlcE7MqeMVKwsdPHIvu1366/cilVDhadoti2MzYSbw2DzmAX/Vh6OnDLM+gm0tdXZ5kQl5Y0NWJpnIemb5KDAFcad5kGtA5g/iarT0CQl/QLZ/4XKOw6LwS/U3Pvmrq0o3Tcllu1kU10YegE6W1rsIivsmgXVaW4dotancwPIalzAfytgZ1DbFhb8oP83Ugjk5CkXLH+wO6NE6gamtSYFKikupZwpNZmmi7i//7Pnzgec/PSGpfTozit8peNYvC9VRpW0bDnHF44PEidaLSMaQh7kHRaGwKEmOHNMJaAJTZiO6T0VszycrTbHZalx5KY9yJgkHpwGEQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=intel.com smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NuWeP+ogy0j18Jd3L1j1zkRz7/yOk7vhjLBZXR4LkuA=;
- b=oU6xbeEqy49NVHkd5hPZo9L3VtvLN3O5R7urMt8b+94FjYme3Hmey4vamU2uT6q0GuTf2igx2IB5+I8wyPMm21RNbQrV32BqPshbBStaqr2BH5XM4y0YTNB14FpUcoozjXsr8LK0OC2BY4/Q6UGOWwZqJOOUcKqMnlUKCG6fAgDbvp7UKO/KES8V2b5QA1dcWwCwZb6tBc27tdC2RqWYUyskhNIImpaGb686DD8DzhBjkdSmOtSWAHOpZWivdy3cL7qBfwiHEOKaUG2wJYTX4AWHcpiExfxPFchYfHJQHr4cJM9aw18hiNfcQ68x6Z6bc8NiVerPFudl0rZEx2Iz4w==
-Received: from BN9PR03CA0099.namprd03.prod.outlook.com (2603:10b6:408:fd::14)
- by SJ5PPF09E5F035B.namprd12.prod.outlook.com
- (2603:10b6:a0f:fc02::988) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.8; Wed, 28 Jan
- 2026 14:04:54 +0000
-Received: from BN1PEPF0000468E.namprd05.prod.outlook.com
- (2603:10b6:408:fd:cafe::7c) by BN9PR03CA0099.outlook.office365.com
- (2603:10b6:408:fd::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9542.16 via Frontend Transport; Wed,
- 28 Jan 2026 14:04:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com;
- dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- BN1PEPF0000468E.mail.protection.outlook.com (10.167.243.139) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.3 via Frontend Transport; Wed, 28 Jan 2026 14:04:46 +0000
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 28 Jan
- 2026 06:04:25 -0800
-Received: from localhost (10.126.231.35) by rnnvmail201.nvidia.com
- (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 28 Jan
- 2026 06:04:24 -0800
-Date: Wed, 28 Jan 2026 16:04:22 +0200
-From: Leon Romanovsky <leonro@nvidia.com>
-To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <francois.dugast@intel.com>, <thomas.hellstrom@linux.intel.com>,
- <himal.prasad.ghimiray@intel.com>, <jgg@ziepe.ca>
-Subject: Re: [RFC PATCH v3 02/11] drm/gpusvm: Use dma-map IOVA alloc, link,
- and sync API in GPU SVM
-Message-ID: <20260128140422.GF40916@unreal>
-References: <20260128004841.2436896-1-matthew.brost@intel.com>
- <20260128004841.2436896-3-matthew.brost@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FFFA895B9;
+ Wed, 28 Jan 2026 14:22:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769610145; x=1801146145;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=sqhuIEHbJHODKUI+yBWqLhY1ksZ1vKjlIAylS0VHgSY=;
+ b=MIgaKb4l5tjmOUnPze8B1dOrnux3e2sAnQCJEIDRR3yZeBkuReEuXgdj
+ wQdpfQzbVmgR39YenGWgPDkIMcyyQlzeU1grVeFII+9S0Jq1Fa3gDYCtr
+ +oysJTqfd2Q/IujKdY1TTRmnynx3nBbbJ26Ge/QXm5q8Sf6HAw9MhTVbJ
+ qnNijxF+NJ0usaSjHFXn7q7371yzK3uSqOwR17VYM9RFDSdPtEBFXct4q
+ hm0kuOmxWnuJlfeoUu1Lll5dfRb7zcu8E75v1/nKnZuYwL/iDptB1xkpy
+ 6V2PAPhO4MGYxJ9IBvYadxJmcH3X9iJkrPn8WzVNCnrA73nZwjrJcfFrc Q==;
+X-CSE-ConnectionGUID: yHFSh7dEQVmGqzhJtA0iyA==
+X-CSE-MsgGUID: eY665PH6TsmZExe2SddAQQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="58400881"
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="58400881"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 06:22:24 -0800
+X-CSE-ConnectionGUID: bFeltKwAQ32lzUhGbBvltg==
+X-CSE-MsgGUID: gPdKkZoSSSatj5dvGfd9rQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="245881320"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 06:22:23 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com, imre.deak@intel.com,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 00/16] Account for DSC bubble overhead for horizontal slices
+Date: Wed, 28 Jan 2026 19:36:20 +0530
+Message-ID: <20260128140636.3527799-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260128004841.2436896-3-matthew.brost@intel.com>
-X-Originating-IP: [10.126.231.35]
-X-ClientProxiedBy: rnnvmail203.nvidia.com (10.129.68.9) To
- rnnvmail201.nvidia.com (10.129.68.8)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN1PEPF0000468E:EE_|SJ5PPF09E5F035B:EE_
-X-MS-Office365-Filtering-Correlation-Id: f4c36072-5d36-4da2-e4ed-08de5e7631e2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|82310400026|376014|36860700013|1800799024|7053199007; 
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?3q+IloRHkFdbSWikOll1VUdEOSEhXMJlF3EEUHsYWpmLJ83JFdjcR7jZaQya?=
- =?us-ascii?Q?9p/00qukHWREZH9YbFyfUta3sNr6pg0x0NOCY2QiOFDnt9NXAT2L/ZPSnnZ3?=
- =?us-ascii?Q?N9Zsq4w6FHTS+4SbZxIgVtOC9mDZ0GYh6flHggZDmsFmUPk0pBOy15Uv9IPg?=
- =?us-ascii?Q?6angb2N7CvpM7dTOLhbS8lWtQSL9OR9Ln1X7AmIiNyIRDdIaRL22JTt1lacD?=
- =?us-ascii?Q?4fPbLyrVPJVL7OHM57lPew0ncHTRrZ8krUL/ULA1obpogfYJMXDnqLvC6EER?=
- =?us-ascii?Q?gcAy2pQlkS/SvGBK6tzkThkZOTCoYRMUOBM/BYzy3VMcBaygTRYFRBap+rcH?=
- =?us-ascii?Q?DpueLycr+iNWSEUbckTDPpxuJG0rOZE+gHtHmGOD1f1o1r0VPs8XPGpZstaf?=
- =?us-ascii?Q?kLhFn5FSLc/SNTMc+5S14XAfx4750VaYNIe5HdbaQ0sVQJzUr16KU/uPjgzW?=
- =?us-ascii?Q?H6/gdJAq3e1M4DBynIuAL8N1vyT7TxX4FANPw8PbLwErCL6P0GsVy9FVMKk8?=
- =?us-ascii?Q?1rX6VbSlSGox8FwPZI/rz63hlsbU4yewZzJwf2eZs6EFat0LFiEmVlnf8tIU?=
- =?us-ascii?Q?MAhPYw0C5uw4XHFlwo8nY6rHwtIGYf1ExVji0OEyd6TxbQl/MU0ee58N20bG?=
- =?us-ascii?Q?m3FyZUEDMlqNVKQ63ROZTPKTOWxZdfLH5lpITU7YH+xzMUvJ8uEDVhQU6Xqi?=
- =?us-ascii?Q?NKZa2Q8S8XjGhCSd14ETvNhFt7pTFtWX2HDxWHW111lWR+U8k/2e6kv2KpNL?=
- =?us-ascii?Q?qvNg169TIXllSDmffZtVlf+ltZqKysnY4hSKD4nOiIzGHTNI+D9uP7eFwbpP?=
- =?us-ascii?Q?+XfmeXmW38qWRtYXLT0GmCNkVw+MVlEFI9tIQNNpvLEK5OjweLrzucf1zrcA?=
- =?us-ascii?Q?g4xQT4XW72L0/E/56keSZVYVa74vnvsxy8CoKwYWuWp/vNurJ4yf3/1cJyPu?=
- =?us-ascii?Q?IuavssCYo401vYn3G9IR9mCnBJ5knUksT6P9PkwWCZeWCmtboiNmfxEkfCFa?=
- =?us-ascii?Q?+w3/i2q2ByUN9TIJQoWYA62rGPlZL6LuYopVNjgH0kQMsT+wWZDvIcbOs+9X?=
- =?us-ascii?Q?gCUb+khltSLIsKgaa/MgtWbu6ZK85S2dnZ9TSxwqylOt93gz9bVa+NsjmMip?=
- =?us-ascii?Q?PK2AfL0w+cpod88umEtI/x4lUmjb3YibyNJiSGurShNe8aje8XrGpjjzvz99?=
- =?us-ascii?Q?+NVSH2MAXN3PhFdoRxzYVS0reUt95elnIwRvsbNu1gOtasG22I5dHS9k7Omb?=
- =?us-ascii?Q?mZTZoaCqcVcToEWjuqWc9Fl3RiLcbV2wVCFSEA6s3BU8N1c4rEGYjC16L+yj?=
- =?us-ascii?Q?/Vx9B93aqGB5ViFAlLZKZA1yhHQ8sHKJs0FrD71GJLXhX5raUJbkLfbWO0Ih?=
- =?us-ascii?Q?UniUFBrvRJb1FKSCM03VB+hBx61nyvQ5cQL9NzWww5V8fxqCuJLVZxN9jyVt?=
- =?us-ascii?Q?gkxkYs3MRxYMG14fies0bkkAM8yMCyxW937OLjMRJ6CbZx5ViLwKcvdkkWht?=
- =?us-ascii?Q?awccXYwSaZvTxxggGRdpcg/LM+I992Yo59UqIutSHSKyEUavfEgkBSChgq8i?=
- =?us-ascii?Q?dxwHZevI+5KQq+g4/PRpwYSguEg08guV1fSM8tc+G80AQCvYrJYxGDw3d8f8?=
- =?us-ascii?Q?csNMHW24IUykDBUjpWYLBIGsfuD/nWfep1qCAqxpl1/G1DgsOf7kYAsODFo2?=
- =?us-ascii?Q?eMLQSQ=3D=3D?=
-X-Forefront-Antispam-Report: CIP:216.228.117.160; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge1.nvidia.com; CAT:NONE;
- SFS:(13230040)(82310400026)(376014)(36860700013)(1800799024)(7053199007);
- DIR:OUT; SFP:1101; 
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2026 14:04:46.7324 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f4c36072-5d36-4da2-e4ed-08de5e7631e2
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.160];
- Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN1PEPF0000468E.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF09E5F035B
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,149 +67,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Jan 27, 2026 at 04:48:32PM -0800, Matthew Brost wrote:
-> The dma-map IOVA alloc, link, and sync APIs perform significantly better
-> than dma-map / dma-unmap, as they avoid costly IOMMU synchronizations.
-> This difference is especially noticeable when mapping a 2MB region in
-> 4KB pages.
-> 
-> Use the IOVA alloc, link, and sync APIs for GPU SVM, which create DMA
-> mappings between the CPU and GPU.
-> 
-> v3:
->  - Always link IOVA in mixed mappings
->  - Sync IOVA
+When DSC is enabled on a pipe, the pipe pixel rate input to cdclk frequency
+and pipe joiner calculations needs to be adjusted to account for
+compression overhead: specifically, the "bubbles" added at each horizontal
+slice boundary. This overhead has always existed, even on earlier
+platforms, but was not previously accounted for.
 
-The same comment as before.
+Currently, the number of joined pipes is computed much earlier than the
+decision to use DSC: both during the mode_valid phase for each mode and in
+the compute_config phase for a given mode. As a result, the DSC bubble
+overhead cannot be considered when determining the number of pipes to join,
+which may lead to incorrect configurations.
 
-> 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/drm_gpusvm.c | 87 ++++++++++++++++++++++++++++--------
->  include/drm/drm_gpusvm.h     |  3 ++
->  2 files changed, 71 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-> index 585d913d3d19..084e78fa0f32 100644
-> --- a/drivers/gpu/drm/drm_gpusvm.c
-> +++ b/drivers/gpu/drm/drm_gpusvm.c
-> @@ -1139,19 +1139,26 @@ static void __drm_gpusvm_unmap_pages(struct drm_gpusvm *gpusvm,
->  		struct drm_gpusvm_pages_flags flags = {
->  			.__flags = svm_pages->flags.__flags,
->  		};
-> +		struct dma_iova_state __state = {};
+This series refactors the sequence of steps used to determine the number of
+pipes to be joined and the DSC policy. The first few patches restructure
+the mode_valid and compute config logic to make room for DSC bubble
+overhead accounting. With these, we iterate over joiner candidates and
+select the minimal joiner configuration that satisfies the
+mode-requirements. The later patches introduce the actual overhead
+adjustment and use it for: the minimum cdclk requirements with DSC,
+SST mode_valid logic, and SST/MST compute_config logic.
 
-Why don't you use svm_pages->state directly?
+Rev 2:
+ - Refactor joiner computation for compute config.
+ - Refactor DSC BW calculation.
+ - Add overhead for SST/MST compute config phase for recomputing joiner
+   requirements for DSC.
+ - NOTE:
+   - For Patch#7 (drm/i915/dp: Rework pipe joiner logic in mode_valid)
+     git diff = --patience is used for better readability.
 
->  
-> -		for (i = 0, j = 0; i < npages; j++) {
-> -			struct drm_pagemap_addr *addr = &svm_pages->dma_addr[j];
-> -
-> -			if (addr->proto == DRM_INTERCONNECT_SYSTEM)
-> -				dma_unmap_page(dev,
-> -					       addr->addr,
-> -					       PAGE_SIZE << addr->order,
-> -					       addr->dir);
-> -			else if (dpagemap && dpagemap->ops->device_unmap)
-> -				dpagemap->ops->device_unmap(dpagemap,
-> -							    dev, *addr);
-> -			i += 1 << addr->order;
-> +		if (dma_use_iova(&svm_pages->state)) {
-> +			dma_iova_destroy(dev, &svm_pages->state,
-> +					 npages * PAGE_SIZE,
-> +					 svm_pages->dma_addr[0].dir, 0);
-> +		} else {
-> +			for (i = 0, j = 0; i < npages; j++) {
-> +				struct drm_pagemap_addr *addr = &svm_pages->dma_addr[j];
-> +
-> +				if (addr->proto == DRM_INTERCONNECT_SYSTEM)
-> +					dma_unmap_page(dev,
-> +						       addr->addr,
-> +						       PAGE_SIZE << addr->order,
-> +						       addr->dir);
-> +				else if (dpagemap && dpagemap->ops->device_unmap)
-> +					dpagemap->ops->device_unmap(dpagemap,
-> +								    dev, *addr);
-> +				i += 1 << addr->order;
-> +			}
->  		}
->  
->  		/* WRITE_ONCE pairs with READ_ONCE for opportunistic checks */
-> @@ -1161,6 +1168,7 @@ static void __drm_gpusvm_unmap_pages(struct drm_gpusvm *gpusvm,
->  
->  		drm_pagemap_put(svm_pages->dpagemap);
->  		svm_pages->dpagemap = NULL;
-> +		svm_pages->state = __state;
->  	}
->  }
->  
-> @@ -1402,12 +1410,14 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
->  	unsigned long num_dma_mapped;
->  	unsigned int order = 0;
->  	unsigned long *pfns;
-> +	phys_addr_t last_phys;
->  	int err = 0;
->  	struct dev_pagemap *pagemap;
->  	struct drm_pagemap *dpagemap;
->  	struct drm_gpusvm_pages_flags flags;
->  	enum dma_data_direction dma_dir = ctx->read_only ? DMA_TO_DEVICE :
->  							   DMA_BIDIRECTIONAL;
-> +	struct dma_iova_state *state = &svm_pages->state;
->  
->  retry:
->  	if (time_after(jiffies, timeout))
-> @@ -1496,6 +1506,17 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
->  				err = -EOPNOTSUPP;
->  				goto err_unmap;
->  			}
-> +
-> +			if (dma_use_iova(state)) {
-> +				err = dma_iova_link(gpusvm->drm->dev, state,
-> +						    last_phys,
-> +						    i * PAGE_SIZE,
-> +						    PAGE_SIZE << order,
-> +						    dma_dir, 0);
-> +				if (err)
-> +					goto err_unmap;
-> +			}
-> +
->  			zdd = __zdd;
->  			if (pagemap != page_pgmap(page)) {
->  				if (i > 0) {
-> @@ -1539,13 +1560,34 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
->  				goto err_unmap;
->  			}
->  
-> -			addr = dma_map_page(gpusvm->drm->dev,
-> -					    page, 0,
-> -					    PAGE_SIZE << order,
-> -					    dma_dir);
-> -			if (dma_mapping_error(gpusvm->drm->dev, addr)) {
-> -				err = -EFAULT;
-> -				goto err_unmap;
-> +			if (!i)
-> +				dma_iova_try_alloc(gpusvm->drm->dev, state,
-> +						   npages * PAGE_SIZE >=
-> +						   HPAGE_PMD_SIZE ?
-> +						   HPAGE_PMD_SIZE : 0,
-> +						   npages * PAGE_SIZE);
-> +
-> +			if (dma_use_iova(state)) {
-> +				last_phys = page_to_phys(page);
+Rev 3:
+ - Use diff = --patience in format-patch for better readability.
+ - Add a macro to iterate over the joiner candidates.
+ - Add a separate helper to check pixel rate against dotclock limit.
+ - Add patch from Chaitanya for additional platform specific
+   limitations [1].
 
-hmm_pfn_to_phys().
+[1] https://patchwork.freedesktop.org/patch/661952/?series=151047&rev=1
 
-> +
-> +				err = dma_iova_link(gpusvm->drm->dev, state,
-> +						    page_to_phys(page),
+Rev 4:
+ - Address review comments from Jani and Imre.
+ - Drop enum for joiner candidates and iterate over num of pipes joined.
+ - Rename some of the helpers.
+ - Split the patch to check for pixel limit for max uncompressed
+   dotclock into PTL and other platforms. For PTL the bspec and HSDES
+   matches, but for other platforms need to confirm the need for the
+   limits.
 
-you have last_phys here.
+Ankit Nautiyal (14):
+  drm/i915/dp: Early reject bad hdisplay in intel_dp_mode_valid
+  drm/i915/dp: Move num_joined_pipes and related checks together
+  drm/i915/dp: Extract helper to get the hdisplay limit
+  drm/i915/dp: Rework pipe joiner logic in mode_valid
+  drm/i915/dp: Rework pipe joiner logic in compute_config
+  drm/i915/dp_mst: Move the check for dotclock at the end
+  drm/i915/dp_mst: Move the joiner dependent code together
+  drm/i915/dp_mst: Rework pipe joiner logic in mode_valid
+  drm/i915/dp_mst: Extract helper to compute link for given joiner
+    config
+  drm/i915/dp_mst: Rework pipe joiner logic in compute_config
+  drm/i915/dp: Introduce helper to check pixel rate against dotclock
+    limits
+  drm/i915/dp: Refactor dsc_slice_count handling in
+    intel_dp_mode_valid()
+  drm/i915/dp: Account for DSC slice overhead
+  drm/i915/dp: Add helpers for joiner candidate loops
 
-> +						    i * PAGE_SIZE,
-> +						    PAGE_SIZE << order,
-> +						    dma_dir, 0);
-> +				if (err)
-> +					goto err_unmap;
-> +
+Chaitanya Kumar Borah (2):
+  drm/i915/display: Add upper limit check for pixel clock
+  drm/i915/display: Extend the max dotclock limit to WCL and pre PTL
+    platforms
 
-Thanks
+ drivers/gpu/drm/i915/display/intel_display.c |  17 ++
+ drivers/gpu/drm/i915/display/intel_display.h |   1 +
+ drivers/gpu/drm/i915/display/intel_dp.c      | 295 ++++++++++++++-----
+ drivers/gpu/drm/i915/display/intel_dp.h      |  39 +++
+ drivers/gpu/drm/i915/display/intel_dp_mst.c  | 195 ++++++++----
+ drivers/gpu/drm/i915/display/intel_vdsc.c    |   1 -
+ drivers/gpu/drm/i915/display/intel_vdsc.h    |   3 +
+ 7 files changed, 411 insertions(+), 140 deletions(-)
+
+-- 
+2.45.2
+
