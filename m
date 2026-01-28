@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB76CD46BEB
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 18:57:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EAF2D46BEE
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 19:02:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91B9010E763;
-	Wed, 28 Jan 2026 18:57:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CF7810E753;
+	Wed, 28 Jan 2026 19:02:33 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0342E10E75E;
- Wed, 28 Jan 2026 18:57:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1910666703317396572=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66DF710E753;
+ Wed, 28 Jan 2026 19:02:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Add_Wa=5F1402?=
- =?utf-8?q?5883347_for_GuC_DMA_failure_on_reset_=28rev3=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Account_for_DSC_bubble_ov?=
+ =?utf-8?q?erhead_for_horizontal_slices_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sk Anirban" <sk.anirban@intel.com>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 28 Jan 2026 18:57:09 -0000
-Message-ID: <176962662901.201476.18215826525917352767@a3b018990fe9>
+Date: Wed, 28 Jan 2026 19:02:31 -0000
+Message-ID: <176962695141.202473.3556287048605523941@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260128115134.657091-4-sk.anirban@intel.com>
-In-Reply-To: <20260128115134.657091-4-sk.anirban@intel.com>
+References: <20260128140636.3527799-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260128140636.3527799-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,125 +40,56 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1910666703317396572==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/guc: Add Wa_14025883347 for GuC DMA failure on reset (rev3)
-URL   : https://patchwork.freedesktop.org/series/160091/
-State : success
+Series: Account for DSC bubble overhead for horizontal slices (rev4)
+URL   : https://patchwork.freedesktop.org/series/152803/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4465-8059f097e25f736bb3da09af6a9b283079abfd4f_BAT -> xe-pw-160091v3_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 561bfc1f131f591b6e7ce1a5895146675badbe0d
+Author: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Date:   Wed Jan 28 19:36:36 2026 +0530
 
-Summary
--------
+    drm/i915/display: Extend the max dotclock limit to WCL and pre PTL platforms
+    
+    Add upper limit check for pixel clock for WCL and pre PTL platforms.
+    
+    BSpec: 49199, 68912
+    Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+    Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
++ /mt/dim checkpatch 8059f097e25f736bb3da09af6a9b283079abfd4f drm-intel
+e189256ebbf9 drm/i915/dp: Early reject bad hdisplay in intel_dp_mode_valid
+61bf1f3e518e drm/i915/dp: Move num_joined_pipes and related checks together
+4c11ba8020c7 drm/i915/dp: Extract helper to get the hdisplay limit
+f185163b86d4 drm/i915/dp: Rework pipe joiner logic in mode_valid
+28741493655f drm/i915/dp: Rework pipe joiner logic in compute_config
+8fad0d0a581e drm/i915/dp_mst: Move the check for dotclock at the end
+fb33802f2c81 drm/i915/dp_mst: Move the joiner dependent code together
+476534bc2b84 drm/i915/dp_mst: Rework pipe joiner logic in mode_valid
+89bc0e2d077d drm/i915/dp_mst: Extract helper to compute link for given joiner config
+7e3b4a1ec324 drm/i915/dp_mst: Rework pipe joiner logic in compute_config
+422fe5f97060 drm/i915/dp: Introduce helper to check pixel rate against dotclock limits
+066feacb7b68 drm/i915/dp: Refactor dsc_slice_count handling in intel_dp_mode_valid()
+2c27080c57c7 drm/i915/dp: Account for DSC slice overhead
+00c28ebf4f81 drm/i915/dp: Add helpers for joiner candidate loops
+-:83: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__num_pipes' - possible side-effects?
+#83: FILE: drivers/gpu/drm/i915/display/intel_dp.h:237:
++#define for_each_joiner_candidate(__num_pipes) \
++	for ((__num_pipes) = 0; (__num_pipes) < (I915_MAX_PIPES); (__num_pipes)++)
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-160091v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6519]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4465-8059f097e25f736bb3da09af6a9b283079abfd4f/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v3/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * IGT: IGT_8721 -> IGT_8723
-  * Linux: xe-4465-8059f097e25f736bb3da09af6a9b283079abfd4f -> xe-pw-160091v3
-
-  IGT_8721: 3707bb4267de22a18d61b232c4ab5fbaf61db90c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8723: 8723
-  xe-4465-8059f097e25f736bb3da09af6a9b283079abfd4f: 8059f097e25f736bb3da09af6a9b283079abfd4f
-  xe-pw-160091v3: 160091v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v3/index.html
-
---===============1910666703317396572==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 0 warnings, 1 checks, 153 lines checked
+9f0443ca46c0 drm/i915/display: Add upper limit check for pixel clock
+561bfc1f131f drm/i915/display: Extend the max dotclock limit to WCL and pre PTL platforms
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Add Wa_14025883347 for GuC DMA failure on reset (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160091/">https://patchwork.freedesktop.org/series/160091/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4465-8059f097e25f736bb3da09af6a9b283079abfd4f_BAT -&gt; xe-pw-160091v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-160091v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4465-8059f097e25f736bb3da09af6a9b283079abfd4f/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160091v3/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8721 -&gt; IGT_8723</li>
-<li>Linux: xe-4465-8059f097e25f736bb3da09af6a9b283079abfd4f -&gt; xe-pw-160091v3</li>
-</ul>
-<p>IGT_8721: 3707bb4267de22a18d61b232c4ab5fbaf61db90c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8723: 8723<br />
-  xe-4465-8059f097e25f736bb3da09af6a9b283079abfd4f: 8059f097e25f736bb3da09af6a9b283079abfd4f<br />
-  xe-pw-160091v3: 160091v3</p>
-
-</body>
-</html>
-
---===============1910666703317396572==--
