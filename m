@@ -4,58 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 350D5D25B40
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 11:09:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5764DD25B44
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 11:37:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E51EA10E6A5;
-	Wed, 28 Jan 2026 11:09:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AD7E10E6B4;
+	Wed, 28 Jan 2026 11:37:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nwl9+wO5";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VEC26QRf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F91B10E670;
- Wed, 28 Jan 2026 11:08:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769598538; x=1801134538;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=O94qbvvf2ZiN2hTRJdwF6VJOBsrqvvkBYizKzu16mgM=;
- b=Nwl9+wO5OX1ArmGRTy3sBjdiX0Alik9BEEFRmPXw3ZfsvZksbt6LIZLV
- D9YX46VONcgUtlLORnlXCLuhL2RbHtN7Fcg2Iu1HmVsGuMWc94TuaJXMQ
- lckqxJ8USPDgez5y//5O5sz745Xyqrk1yqNlsKferBYcHJ7o1C/79hgcJ
- PPLpSAxnu5mkv08FtJykFRu3zllIqsi8thGsKyhCwbYynqiAox9XQ0tLB
- p8LuiHq9iBhSx63A/4mFhPpMaDiVsRudZH9Xre8KttIVUkETkDhLY/PPq
- jkAJZ5XymEH+9lZ/vHn+mDbNaJiSWst2PEDgZd5i1cCMC8uYc9Jg1En8p Q==;
-X-CSE-ConnectionGUID: w4Vk8xYUSBW3NEn7kBPPJg==
-X-CSE-MsgGUID: 0DZAhHtvTImNLlB6EigxjA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="70898225"
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="70898225"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 03:08:58 -0800
-X-CSE-ConnectionGUID: XEr8HY/RTmKFofnB1GWFSw==
-X-CSE-MsgGUID: gKI1PtRJTjezk7WFKkzj/A==
-X-ExtLoop1: 1
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.207])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 03:08:56 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, Suraj Kandpal
- <suraj.kandpal@intel.com>
-Subject: Re: [PATCH] drm/i915/dp: Add a meaningful return to
- intel_dp_read_dsc_dpcd
-In-Reply-To: <20260128044904.1293185-1-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260128044904.1293185-1-suraj.kandpal@intel.com>
-Date: Wed, 28 Jan 2026 13:08:53 +0200
-Message-ID: <51a869ec09c61bd8ba56db858c983bb9667ac11b@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7ADD910E6A7;
+ Wed, 28 Jan 2026 11:37:57 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 224C244091;
+ Wed, 28 Jan 2026 11:37:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23404C4CEF1;
+ Wed, 28 Jan 2026 11:37:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1769600277;
+ bh=Q84GU8xgsjGXyT/viKhB7wVI26KgRvvwxmD1gNRdy8M=;
+ h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
+ b=VEC26QRf+0VxV8vqSHDh+7/n7HJgr9VHxk0DfXO02krOr0HKGpHnslA8xQM7F/Sfx
+ uvgpjvKWl80Jt2NzzrP5Vf4WzZEKkgkCutpfrCte31cGJ0oyWexjKhZZJaw9iMT5Kr
+ MRJ659ORGYlPWX98JxGlDIa2zLTppGEXexk40IyQd06aW2Z0u1J2et46X9rBROXCpr
+ 3Eu1ofi7CTwfE7MEJTfTYl337ZPaHDbJf5Fxu+NXyXcRqGvGFSqH2uIoULyZTrma/o
+ gNvMYUWfo1U6149cpZkMVGRsGAZLiRYJ5I0009kg+Guok8oyVcMNOqbgdra/drRR6I
+ tev/SXp8kLopQ==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 28 Jan 2026 12:37:44 +0100
+Message-Id: <DG06XUWOJLO5.1ESB8ES6A6081@kernel.org>
+Subject: Re: [PATCH RFC v6 00/26] nova-core: Memory management
+ infrastructure (v6)
+Cc: <linux-kernel@vger.kernel.org>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet"
+ <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
+ <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
+ "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
+ <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Helge Deller" <deller@gmx.de>, "Alice Ryhl" <aliceryhl@google.com>,
+ "Miguel Ojeda" <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>,
+ "Boqun Feng" <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
+ <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Trevor
+ Gross" <tmgross@umich.edu>, "John Hubbard" <jhubbard@nvidia.com>, "Alistair
+ Popple" <apopple@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>, "Edwin Peer"
+ <epeer@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>, "Andrea
+ Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>, "Zhi Wang"
+ <zhiw@nvidia.com>, "Alexey Ivanov" <alexeyi@nvidia.com>, "Balbir Singh"
+ <balbirs@nvidia.com>, "Philipp Stanner" <phasta@kernel.org>, "Elle Rhumsaa"
+ <elle@weathered-steel.dev>, "Daniel Almeida"
+ <daniel.almeida@collabora.com>, <joel@joelfernandes.org>,
+ <nouveau@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <rust-for-linux@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+ <amd-gfx@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <linux-fbdev@vger.kernel.org>
+To: "Joel Fernandes" <joelagnelf@nvidia.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
+References: <20260120204303.3229303-1-joelagnelf@nvidia.com>
+In-Reply-To: <20260120204303.3229303-1-joelagnelf@nvidia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,87 +84,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 28 Jan 2026, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Add a meaningful return to intel_dp_read_dsc_dpcd so tha we avoid
-> unwanted DPCD reads which are not needed once we know DSC DPCD
-> read fails. While we are at it remove the drm_err since we do not
-> shout error during intel_dp_detect phase since it may take time
-> to come up after pps_on is called for eDP scenario.
+On Tue Jan 20, 2026 at 9:42 PM CET, Joel Fernandes wrote:
+> This series is rebased on drm-rust-kernel/drm-rust-next and provides memo=
+ry
+> management infrastructure for the nova-core GPU driver. It combines sever=
+al
+> previous series and provides a foundation for nova GPU memory management
+> including page tables, virtual memory management, and BAR mapping. All th=
+ese
+> are critical nova-core features.
 
-Please pay more attention to the commit message.
+Thanks for this work, I will go through the series soon. (Although it would=
+ also
+be nice to have what I mention below addressed first.)
 
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 24 +++++++++++++++---------
->  1 file changed, 15 insertions(+), 9 deletions(-)
+> The series includes:
+> - A Rust module (CList) to interface with C circular linked lists, requir=
+ed
+>   for iterating over buddy allocator blocks.
+> - Movement of the DRM buddy allocator up to drivers/gpu/ level, renamed t=
+o GPU buddy.
+> - Rust bindings for the GPU buddy allocator.
+> - PRAMIN aperture support for direct VRAM access.
+> - Page table types for MMU v2 and v3 formats.
+> - Virtual Memory Manager (VMM) for GPU virtual address space management.
+> - BAR1 user interface for mapping access GPU via virtual memory.
+> - Selftests for PRAMIN and BAR1 user interface (disabled by default).
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 79fd3b8d8b25..d2ed8ec145a2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -4281,20 +4281,21 @@ static bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp)
->  	return dprx & DP_VSC_SDP_EXT_FOR_COLORIMETRY_SUPPORTED;
->  }
->  
-> -static void intel_dp_read_dsc_dpcd(struct drm_dp_aux *aux,
-> -				   u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE])
-> +static int intel_dp_read_dsc_dpcd(struct drm_dp_aux *aux,
-> +				  u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE])
->  {
->  	if (drm_dp_dpcd_read(aux, DP_DSC_SUPPORT, dsc_dpcd,
->  			     DP_DSC_RECEIVER_CAP_SIZE) < 0) {
-> -		drm_err(aux->drm_dev,
-> -			"Failed to read DPCD register 0x%x\n",
-> -			DP_DSC_SUPPORT);
-> -		return;
-> +		drm_dbg_kms(aux->drm_dev,
-> +			    "Could not read DSC DPCD register 0x%x\n",
-> +			    DP_DSC_SUPPORT);
-> +		return -EINVAL;
+> Changes from v5 to v6:
+> - Rebased on drm-rust-kernel/drm-rust-next
+> - Added page table types and page table walker infrastructure
+> - Added Virtual Memory Manager (VMM)
+> - Added BAR1 user interface
+> - Added TLB flush support
+> - Added GpuMm memory manager
+> - Extended to 26 patches from 6 (full mm infrastructure now included)
+>
+> The git tree with all patches can be found at:
+> git://git.kernel.org/pub/scm/linux/kernel/git/jfern/linux.git (tag: nova-=
+mm-v6-20260120)
+>
+> Link to v5: https://lore.kernel.org/all/20251219203805.1246586-1-joelagne=
+lf@nvidia.com/
+>
+> Previous series that are combined:
+> - v4 (clist + buddy): https://lore.kernel.org/all/20251204215129.2357292-=
+1-joelagnelf@nvidia.com/
+> - v3 (clist only): https://lore.kernel.org/all/20251129213056.4021375-1-j=
+oelagnelf@nvidia.com/
+> - v2 (clist only): https://lore.kernel.org/all/20251111171315.2196103-4-j=
+oelagnelf@nvidia.com/
+> - clist RFC (original with buddy): https://lore.kernel.org/all/2025103019=
+0613.1224287-1-joelagnelf@nvidia.com/
+> - DRM buddy move: https://lore.kernel.org/all/20251124234432.1988476-1-jo=
+elagnelf@nvidia.com/
+> - PRAMIN series: https://lore.kernel.org/all/20251020185539.49986-1-joela=
+gnelf@nvidia.com/
 
-If we want to do this properly, then let's propagate the actual error
-code instead of inventing -EINVAL here. And switch to
-drm_dp_dpcd_read_data(), which returns an error if not all bytes were
-transferred (also a case the current implementation completely ignores).
+I'm not overly happy with this version history. I understand that you are
+building things on top of each other, but going back and forth with adding =
+and
+removing features from a series is confusing and makes it hard to keep trac=
+k of
+things.
 
-Finlly, the debug logging could log the error code. A combo of %pe in
-the format string and ERR_PTR(ret) in the corresponding parameter will
-do it nicely.
+(In the worst case it may even result in reviewers skipping over it leaving=
+ you
+with no progress eventually.)
 
->  	}
->  
->  	drm_dbg_kms(aux->drm_dev, "DSC DPCD: %*ph\n",
->  		    DP_DSC_RECEIVER_CAP_SIZE,
->  		    dsc_dpcd);
-> +	return 0;
->  }
->  
->  static void init_dsc_overall_throughput_limits(struct intel_connector *connector, bool is_branch)
-> @@ -4345,8 +4346,11 @@ void intel_dp_get_dsc_sink_cap(u8 dpcd_rev,
->  	if (dpcd_rev < DP_DPCD_REV_14)
->  		return;
->  
-> -	intel_dp_read_dsc_dpcd(connector->dp.dsc_decompression_aux,
-> -			       connector->dp.dsc_dpcd);
-> +	if (intel_dp_read_dsc_dpcd(connector->dp.dsc_decompression_aux,
-> +				   connector->dp.dsc_dpcd) < 0) {
-> +		drm_err(display->drm, "Failed to read DSC DPCD register\n");
-> +		return;
-> +	}
->  
->  	if (drm_dp_dpcd_readb(connector->dp.dsc_decompression_aux, DP_FEC_CAPABILITY,
->  			      &connector->dp.fec_capability) < 0) {
-> @@ -4376,7 +4380,9 @@ static void intel_edp_get_dsc_sink_cap(u8 edp_dpcd_rev, struct intel_connector *
->  	if (edp_dpcd_rev < DP_EDP_14)
->  		return;
->  
-> -	intel_dp_read_dsc_dpcd(connector->dp.dsc_decompression_aux, connector->dp.dsc_dpcd);
-> +	if (intel_dp_read_dsc_dpcd(connector->dp.dsc_decompression_aux,
-> +				   connector->dp.dsc_dpcd) < 0)
-> +		return;
->  
->  	if (connector->dp.dsc_dpcd[0] & DP_DSC_DECOMPRESSION_IS_SUPPORTED)
->  		init_dsc_overall_throughput_limits(connector, false);
+I.e. you stared with a CList and DRM buddy RFC, then DRM buddy disappeared =
+for a
+few versions and came back eventually. Then, in the next version, the PRAMI=
+N
+stuff came back in, which also had a predecessor series already and now you
+added lots of MM stuff on top of it.
 
--- 
-Jani Nikula, Intel
+The whole version history is about what features and patches were added and
+removed to/from the series, rather than about what actually changed design =
+wise
+and code wise between the iterations (which is the important part for revie=
+wers
+and maintainers).
+
+I also think it is confusing that a lot of the patches in this series have =
+never
+been posted before, yet they are labeled as v6 of this RFC.
+
+Hence, please separate the features from each other in separate patch serie=
+s,
+with their own proper version history and changelog. In order to account fo=
+r the
+dependencies, you can just mention them in the cover letter and add a link =
+to
+the other related patch series, which should be sufficient for people inter=
+ested
+in the full picture.
+
+I think the most clean approach would probably be a split with CList, DRM b=
+uddy
+and Nova MM stuff.
+
+And just to clarify, in the end I do not care too much about whether it's a=
+ll in
+a single series or split up, but going back and forth with combining things=
+ that
+once have been separate and have a separate history doesn't work out well.
