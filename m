@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77F42D25B4B
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 12:09:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 827EAD25B4B
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 12:09:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 343E389A72;
-	Wed, 28 Jan 2026 12:09:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4695810E6A6;
+	Wed, 28 Jan 2026 12:09:23 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15D9589A72;
- Wed, 28 Jan 2026 12:09:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2589210E6B7;
+ Wed, 28 Jan 2026 12:09:22 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============7445217855884099430=="
+ boundary="===============4484989370312466090=="
 MIME-Version: 1.0
 Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_fix_the?=
  =?utf-8?q?_pixel_normalization_handling_for_xe3p=5Flpd_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 28 Jan 2026 12:09:13 -0000
-Message-ID: <176960215309.200099.6676498518214446741@a3b018990fe9>
+Date: Wed, 28 Jan 2026 12:09:22 -0000
+Message-ID: <176960216216.200099.13738357661371567751@a3b018990fe9>
 X-Patchwork-Hint: ignore
 References: <20260127111345.939736-1-vinod.govindapillai@intel.com>
 In-Reply-To: <20260127111345.939736-1-vinod.govindapillai@intel.com>
@@ -40,7 +40,7 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7445217855884099430==
+--===============4484989370312466090==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -90,7 +90,7 @@ Build changes
 
 For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160254v3/index.html
 
---===============7445217855884099430==
+--===============4484989370312466090==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -138,4 +138,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============7445217855884099430==--
+--===============4484989370312466090==--
