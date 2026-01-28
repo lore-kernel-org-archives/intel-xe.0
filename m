@@ -4,79 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4820CD3F071
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 14:38:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 814BBD3F078
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 14:54:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6C9D10E702;
-	Wed, 28 Jan 2026 14:38:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 402C910E1C2;
+	Wed, 28 Jan 2026 14:54:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="F5Z5/6/5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L0Ws6k/m";
 	dkim-atps=neutral
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com
- [209.85.210.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7788010E5AB
- for <intel-xe@lists.freedesktop.org>; Tue, 27 Jan 2026 18:39:33 +0000 (UTC)
-Received: by mail-pf1-f170.google.com with SMTP id
- d2e1a72fcca58-82318b640beso2513487b3a.0
- for <intel-xe@lists.freedesktop.org>; Tue, 27 Jan 2026 10:39:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1769539173; x=1770143973; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=zuBwDnVwHXbDGSLNmgtRuuG8WZfJILUne8QmOX3UcsE=;
- b=F5Z5/6/5dvYTJ9KpS0qitnyVoBSO92vCjsH5ILlYMoaoHmpJ1gXQ4rXpfzbuGuNMyl
- zMsVyyazpYa9yz/j2IGoSLaSYXb1NSEYwvqy7sMi0MbrCrRpCBELXv3zutH9rLlc9V77
- L/eUyy5NPdmftAwZhDWD2gQ0kmnBCU3C83cteva/2HFQ3rlJqK9AKhsVBoZZ1xys4ZZN
- oE519jh2jajvbBRT2KJ5rfCEdo9YiwIGmUwnAY8bMzPLBTjh99Mk2YTBitZrqmzK1ygH
- r6dZmhrrTWYGiUKgNff8CjQF4qVgnSTuHvy6KzYBy9OXvalpRMRiu9TEfSbCcclw4vep
- nQag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769539173; x=1770143973;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=zuBwDnVwHXbDGSLNmgtRuuG8WZfJILUne8QmOX3UcsE=;
- b=mzj2iM+tagm/hLKbgn/6hPNXj/HDPsOQbE8gsurzf9ZnFjSAd3VIYpn4fYCJkWWMny
- AzkKzZedP47Ow+AfvuI9r/tKfBzMHt0XaWCr0jrm8xK1qbdeFH5Z24CQ3e5GQ+CK7lpC
- RmRWSMaRSw8n8N++GbRdklrxrZsYPXSKjaALQV/AqcS8cZGjGmweYTOvFcIuSbdOgx72
- 3aPm5iqZnqBvjeBemURTUVJsTgQuG0k5ospMqKIuwZlBqC7jGejJ4v9XA9RTHH+ZhKwo
- 6h7oJi/q9hcn0/MMpD7bObIALdI28r4/e/4NIONxIwjiT0fLm41Vq4ddi8pi4HqrCboo
- m6NA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWThpYPNyV4aJ/7HZZt1fIsIVB3z6qgskEOAcZWI/44xjrvk+GTrhhGWykQ9mEmFxxR5F4y+4UEUw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw7udG8F3p6rLGR/8qMBJwWmBYnN4DuOLLA3XUuhJacC0ftHL3Y
- NA3VicHYm20ea2ouqwvaSGkCzBO41UaZfIOLnwvmNrTNuy5h9BYfAvY=
-X-Gm-Gg: AZuq6aKqbEFX6NsH2i6pZ9M+WsyHT6XqLTPV1/GsPswNtbRrDUmbhlVTJcxXwFoUubd
- mizT/wdF5zWU/y+GzYmRLNs6hKiifgmkFRepIxe3p82xQIljguPsTK7rW3kTtC5mpijf9sg4mV5
- vvHTqBnJKB+43Pzcwr4fEZgFD6HE3x4BS/cLVWH7WnCzp+muDmkinMoAT3IFqjK4Dojul62zkR8
- VHDCx0cGMtU9nAoCIu3H8skU0Nisa3lF2GzNfRARXjcseiTHiF+XYwS1CcQraBYXCj8eoijk8/d
- 2U7p1akMtR5JUPAkpgsf8wc2UafkTh3yKrJdfL06oLp+hoYit4wPe6op5mqfxSi22nO3B602cPD
- cBqoB6AKCpVmn1Y1CcmuqOJjnGgh91IHRVYtWBJkxPit3FfgOtXaojmk1cU6aJY7zZw60v/BDnp
- JbEMJvfgrQMfh/
-X-Received: by 2002:a05:6a21:b91:b0:35b:4f5c:4adf with SMTP id
- adf61e73a8af0-38ec640a1d9mr2317312637.43.1769539172787; 
- Tue, 27 Jan 2026 10:39:32 -0800 (PST)
-Received: from at.. ([171.61.161.8]) by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-c642a9f41d0sm113221a12.27.2026.01.27.10.39.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 27 Jan 2026 10:39:32 -0800 (PST)
-From: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>
-To: jani.nikula@linux.intel.com
-Cc: airlied@gmail.com, atharvatiwarilinuxdev@gmail.com,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, joonas.lahtinen@linux.intel.com,
- linux-kernel@vger.kernel.org, rodrigo.vivi@intel.com, simona@ffwll.ch,
- tursulin@ursulin.net, ville.syrjala@linux.intel.com
-Subject: Re: [PATCH 2/2] drm/i915/display: Disable display for iMac's
-Date: Tue, 27 Jan 2026 18:39:24 +0000
-Message-ID: <20260127183924.1109-1-atharvatiwarilinuxdev@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <bc778f93d4e2a18848bc93a51aed9b627bcbb2cf@intel.com>
-References: <bc778f93d4e2a18848bc93a51aed9b627bcbb2cf@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 28 Jan 2026 14:38:43 +0000
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2AC9E10E1C2
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Jan 2026 14:54:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769612087; x=1801148087;
+ h=date:from:to:cc:subject:message-id;
+ bh=iJBC77Jb1BHP56pVzye+HdoHv852rqVmw6SjRa8q8lU=;
+ b=L0Ws6k/mrgMqlvkgszobPk3cUz2ioWOZEqkM/4t8PCcgpvvFQzU0aYJK
+ k8qRAwXlrOPpkLtv2HGMvrkPyBZRYkHIsO0+ZTDMQkzw2YlyvSOUMo4Wh
+ 5Djqs2b9sz1nAm+cSAoLjnP12gaSbFIWnIPHIRW6aw0b+UNBVrOVInbP5
+ DSCheGcpakRcFTGp7YkNK1WvNfhkczC+/Zx4s1YFCK7dBiXg6sHWXhEzu
+ Ui4xAJ1jyN/s+JElSXhbn0ZPKDJv5q1qiRd9m2CpMnRX8owabDlFKYq6j
+ rVm589kJ4+EEdX+Oep2DKjN9iDAiKNK9pidn/mWvK2ByqMntO/99PQ42J Q==;
+X-CSE-ConnectionGUID: sM6FJT7pSrW3KuhC4EGa5A==
+X-CSE-MsgGUID: 16+0TsFkQwGZiQdyYlzsmw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="81935161"
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="81935161"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 06:54:46 -0800
+X-CSE-ConnectionGUID: eBNlqP+dTyOBD59CPuHbWQ==
+X-CSE-MsgGUID: cERS0NNiTduJMyquWUL8pA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="208082418"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+ by orviesa009.jf.intel.com with ESMTP; 28 Jan 2026 06:54:44 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1vl6wL-00000000ZmS-2iFs;
+ Wed, 28 Jan 2026 14:54:41 +0000
+Date: Wed, 28 Jan 2026 22:53:55 +0800
+From: kernel test robot <lkp@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ d043b95983e692718922abdc6ba652322e66d318
+Message-ID: <202601282248.F1NA8JWG-lkp@intel.com>
+User-Agent: s-nail v14.9.25
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,108 +64,221 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
->At a glance, this seems like the appropriate level.
-> 
-> What if you drop patch 2 and supply i915.disable_display=1 module
-> parameter? Or return false from intel_display_device_enabled().
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: d043b95983e692718922abdc6ba652322e66d318  drm/xe/vf: Reset VF GuC state on fini
 
-I added the i915.disable_display=1 module parameter and removed the patch
-, but then the display just goes blank, here are some logs:
+elapsed time: 1047m
 
-$ cat /proc/cmdline 
-BOOT_IMAGE=/boot/vmlinuz-6.19.0-rc4+ root=UUID=c058ecbb-6bf6-480c-943a-e8c48a831554 ro pcie_ports=native intel_iommu=on iommu=pt i915.disable_display=1
+configs tested: 202
+configs skipped: 4
 
-$ $ sudo cat /sys/module/i915/parameters/disable_display 
-Y
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-$ dmesg | grep i915
-[    5.255798] i915 0000:00:02.0: [drm] Found cometlake (device ID 9bc8) integrated display version 9.00 stepping N/A
-[    5.256392] i915 0000:00:02.0: [drm] VT-d active for gfx access
-[    5.256437] i915 0000:00:02.0: [drm] Using Transparent Hugepages
-[    5.263588] i915 0000:00:02.0: Invalid PCI ROM header signature: expecting 0xaa55, got 0xffff
-[    5.263592] i915 0000:00:02.0: [drm] Failed to find VBIOS tables (VBT)
-[    5.263698] i915 0000:00:02.0: vgaarb: VGA decodes changed: olddecodes=io+mem,decodes=none:owns=io+mem
-[    5.993265] i915 0000:00:02.0: [drm] [ENCODER:105:DDI A/PHY A] failed to retrieve link info, disabling eDP
-[    5.994957] mei_hdcp 0000:00:16.0-b638ab7e-94e2-4ea2-a552-d1c54b627f04: bound 0000:00:02.0 (ops i915_hdcp_ops [i915])
-[    6.308891] i915 0000:00:02.0: [drm] Finished loading DMC firmware i915/kbl_dmc_ver1_04.bin (v1.4)
-[    6.310598] i915 0000:00:02.0: [drm] Registered 3 planes with drm panic
-[    6.310602] [drm] Initialized i915 1.6.0 for 0000:00:02.0 on minor 1
-[    6.314962] i915 0000:00:02.0: [drm] Cannot find any crtc or sizes
-[    6.318910] snd_hda_intel 0000:00:1f.3: bound 0000:00:02.0 (ops intel_audio_component_bind_ops [i915])
+tested configs:
+alpha                             allnoconfig    gcc-15.2.0
+alpha                            allyesconfig    gcc-15.2.0
+alpha                               defconfig    gcc-15.2.0
+arc                              allmodconfig    clang-16
+arc                              allmodconfig    gcc-15.2.0
+arc                               allnoconfig    gcc-15.2.0
+arc                              allyesconfig    clang-22
+arc                              allyesconfig    gcc-15.2.0
+arc                                 defconfig    gcc-15.2.0
+arc                     haps_hs_smp_defconfig    clang-22
+arc                            hsdk_defconfig    clang-22
+arc                   randconfig-001-20260128    gcc-8.5.0
+arc                   randconfig-002-20260128    gcc-8.5.0
+arm                               allnoconfig    clang-22
+arm                               allnoconfig    gcc-15.2.0
+arm                              allyesconfig    clang-16
+arm                              allyesconfig    gcc-15.2.0
+arm                       aspeed_g4_defconfig    clang-22
+arm                         at91_dt_defconfig    clang-22
+arm                                 defconfig    gcc-15.2.0
+arm                   randconfig-001-20260128    gcc-8.5.0
+arm                   randconfig-002-20260128    gcc-8.5.0
+arm                   randconfig-003-20260128    gcc-8.5.0
+arm                   randconfig-004-20260128    gcc-8.5.0
+arm64                            allmodconfig    clang-19
+arm64                            allmodconfig    clang-22
+arm64                             allnoconfig    gcc-15.2.0
+arm64                               defconfig    gcc-15.2.0
+arm64                 randconfig-001-20260128    gcc-14.3.0
+arm64                 randconfig-002-20260128    gcc-14.3.0
+arm64                 randconfig-003-20260128    gcc-14.3.0
+arm64                 randconfig-004-20260128    gcc-14.3.0
+csky                             allmodconfig    gcc-15.2.0
+csky                              allnoconfig    gcc-15.2.0
+csky                                defconfig    gcc-15.2.0
+csky                  randconfig-001-20260128    gcc-14.3.0
+csky                  randconfig-002-20260128    gcc-14.3.0
+hexagon                          allmodconfig    clang-17
+hexagon                          allmodconfig    gcc-15.2.0
+hexagon                           allnoconfig    clang-22
+hexagon                           allnoconfig    gcc-15.2.0
+hexagon                             defconfig    gcc-15.2.0
+hexagon               randconfig-001-20260128    clang-22
+hexagon               randconfig-002-20260128    clang-22
+i386                             allmodconfig    clang-20
+i386                              allnoconfig    gcc-14
+i386                              allnoconfig    gcc-15.2.0
+i386                             allyesconfig    clang-20
+i386        buildonly-randconfig-001-20260128    clang-20
+i386        buildonly-randconfig-001-20260128    gcc-14
+i386        buildonly-randconfig-002-20260128    clang-20
+i386        buildonly-randconfig-003-20260128    clang-20
+i386        buildonly-randconfig-003-20260128    gcc-14
+i386        buildonly-randconfig-004-20260128    clang-20
+i386        buildonly-randconfig-005-20260128    clang-20
+i386        buildonly-randconfig-005-20260128    gcc-14
+i386        buildonly-randconfig-006-20260128    clang-20
+i386                                defconfig    gcc-15.2.0
+i386                  randconfig-001-20260128    gcc-14
+i386                  randconfig-002-20260128    gcc-14
+i386                  randconfig-003-20260128    gcc-14
+i386                  randconfig-004-20260128    gcc-14
+i386                  randconfig-005-20260128    gcc-14
+i386                  randconfig-006-20260128    gcc-14
+i386                  randconfig-007-20260128    gcc-14
+i386                  randconfig-011-20260128    clang-20
+i386                  randconfig-012-20260128    clang-20
+i386                  randconfig-013-20260128    clang-20
+i386                  randconfig-014-20260128    clang-20
+i386                  randconfig-015-20260128    clang-20
+i386                  randconfig-016-20260128    clang-20
+i386                  randconfig-017-20260128    clang-20
+loongarch                        allmodconfig    clang-19
+loongarch                        allmodconfig    clang-22
+loongarch                         allnoconfig    clang-22
+loongarch                         allnoconfig    gcc-15.2.0
+loongarch                           defconfig    clang-19
+loongarch             randconfig-001-20260128    clang-22
+loongarch             randconfig-002-20260128    clang-22
+m68k                             allmodconfig    gcc-15.2.0
+m68k                              allnoconfig    gcc-15.2.0
+m68k                             allyesconfig    clang-16
+m68k                             allyesconfig    gcc-15.2.0
+m68k                                defconfig    clang-19
+m68k                       m5275evb_defconfig    clang-22
+microblaze                        allnoconfig    gcc-15.2.0
+microblaze                       allyesconfig    gcc-15.2.0
+microblaze                          defconfig    clang-19
+mips                             allmodconfig    gcc-15.2.0
+mips                              allnoconfig    gcc-15.2.0
+mips                             allyesconfig    gcc-15.2.0
+nios2                            allmodconfig    clang-22
+nios2                            allmodconfig    gcc-11.5.0
+nios2                             allnoconfig    clang-22
+nios2                             allnoconfig    gcc-11.5.0
+nios2                               defconfig    clang-19
+nios2                 randconfig-001-20260128    clang-22
+nios2                 randconfig-002-20260128    clang-22
+openrisc                         allmodconfig    clang-22
+openrisc                         allmodconfig    gcc-15.2.0
+openrisc                          allnoconfig    clang-22
+openrisc                          allnoconfig    gcc-15.2.0
+openrisc                            defconfig    gcc-15.2.0
+openrisc                  or1klitex_defconfig    clang-22
+parisc                           allmodconfig    gcc-15.2.0
+parisc                            allnoconfig    clang-22
+parisc                            allnoconfig    gcc-15.2.0
+parisc                           allyesconfig    clang-19
+parisc                           allyesconfig    gcc-15.2.0
+parisc                              defconfig    gcc-15.2.0
+parisc                randconfig-001-20260128    gcc-11.5.0
+parisc                randconfig-002-20260128    gcc-11.5.0
+parisc64                            defconfig    clang-19
+powerpc                          allmodconfig    gcc-15.2.0
+powerpc                           allnoconfig    clang-22
+powerpc                           allnoconfig    gcc-15.2.0
+powerpc                 linkstation_defconfig    clang-22
+powerpc               randconfig-001-20260128    gcc-11.5.0
+powerpc               randconfig-002-20260128    gcc-11.5.0
+powerpc64             randconfig-001-20260128    gcc-11.5.0
+powerpc64             randconfig-002-20260128    gcc-11.5.0
+riscv                            allmodconfig    clang-22
+riscv                             allnoconfig    clang-22
+riscv                             allnoconfig    gcc-15.2.0
+riscv                            allyesconfig    clang-16
+riscv                               defconfig    gcc-15.2.0
+riscv                 randconfig-001-20260128    gcc-13.4.0
+riscv                 randconfig-002-20260128    gcc-13.4.0
+s390                             allmodconfig    clang-18
+s390                             allmodconfig    clang-19
+s390                              allnoconfig    clang-22
+s390                             allyesconfig    gcc-15.2.0
+s390                                defconfig    gcc-15.2.0
+s390                  randconfig-001-20260128    gcc-13.4.0
+s390                  randconfig-002-20260128    gcc-13.4.0
+sh                               allmodconfig    gcc-15.2.0
+sh                                allnoconfig    clang-22
+sh                                allnoconfig    gcc-15.2.0
+sh                               allyesconfig    clang-19
+sh                               allyesconfig    gcc-15.2.0
+sh                                  defconfig    gcc-14
+sh                    randconfig-001-20260128    gcc-13.4.0
+sh                    randconfig-002-20260128    gcc-13.4.0
+sparc                             allnoconfig    clang-22
+sparc                             allnoconfig    gcc-15.2.0
+sparc                               defconfig    gcc-15.2.0
+sparc                 randconfig-001-20260128    gcc-11.5.0
+sparc                 randconfig-002-20260128    gcc-11.5.0
+sparc64                          allmodconfig    clang-22
+sparc64                             defconfig    gcc-14
+sparc64               randconfig-001-20260128    gcc-11.5.0
+sparc64               randconfig-002-20260128    gcc-11.5.0
+um                               allmodconfig    clang-19
+um                                allnoconfig    clang-22
+um                               allyesconfig    gcc-14
+um                               allyesconfig    gcc-15.2.0
+um                                  defconfig    gcc-14
+um                             i386_defconfig    gcc-14
+um                    randconfig-001-20260128    gcc-11.5.0
+um                    randconfig-002-20260128    gcc-11.5.0
+um                           x86_64_defconfig    gcc-14
+x86_64                           allmodconfig    clang-20
+x86_64                            allnoconfig    clang-20
+x86_64                            allnoconfig    clang-22
+x86_64                           allyesconfig    clang-20
+x86_64      buildonly-randconfig-001-20260128    gcc-14
+x86_64      buildonly-randconfig-002-20260128    gcc-14
+x86_64      buildonly-randconfig-003-20260128    gcc-14
+x86_64      buildonly-randconfig-004-20260128    gcc-14
+x86_64      buildonly-randconfig-005-20260128    gcc-14
+x86_64      buildonly-randconfig-006-20260128    gcc-14
+x86_64                              defconfig    gcc-14
+x86_64                                  kexec    clang-20
+x86_64                randconfig-001-20260128    gcc-13
+x86_64                randconfig-002-20260128    gcc-13
+x86_64                randconfig-003-20260128    gcc-13
+x86_64                randconfig-004-20260128    gcc-13
+x86_64                randconfig-005-20260128    gcc-13
+x86_64                randconfig-006-20260128    gcc-13
+x86_64                randconfig-071-20260128    clang-20
+x86_64                randconfig-072-20260128    clang-20
+x86_64                randconfig-073-20260128    clang-20
+x86_64                randconfig-073-20260128    gcc-12
+x86_64                randconfig-074-20260128    clang-20
+x86_64                randconfig-074-20260128    gcc-14
+x86_64                randconfig-075-20260128    clang-20
+x86_64                randconfig-075-20260128    gcc-14
+x86_64                randconfig-076-20260128    clang-20
+x86_64                randconfig-076-20260128    gcc-14
+x86_64                               rhel-9.4    clang-20
+x86_64                           rhel-9.4-bpf    gcc-14
+x86_64                          rhel-9.4-func    clang-20
+x86_64                    rhel-9.4-kselftests    clang-20
+x86_64                         rhel-9.4-kunit    gcc-14
+x86_64                           rhel-9.4-ltp    gcc-14
+x86_64                          rhel-9.4-rust    clang-20
+xtensa                            allnoconfig    clang-22
+xtensa                            allnoconfig    gcc-15.2.0
+xtensa                           allyesconfig    clang-22
+xtensa                randconfig-001-20260128    gcc-11.5.0
+xtensa                randconfig-002-20260128    gcc-11.5.0
+xtensa                    xip_kc705_defconfig    clang-22
 
-$ dmesg | grep amdgpu
-[    8.655793] [drm] amdgpu kernel modesetting enabled.
-[    8.656000] amdgpu: Virtual CRAT table created for CPU
-[    8.656025] amdgpu: Topology: Add CPU node
-[    8.656191] amdgpu 0000:03:00.0: amdgpu: initializing kernel modesetting (NAVI14 0x1002:0x7340 0x106B:0x0219 0x47).
-[    8.656203] amdgpu 0000:03:00.0: amdgpu: register mmio base: 0x81600000
-[    8.656204] amdgpu 0000:03:00.0: amdgpu: register mmio size: 524288
-[    8.660144] amdgpu 0000:03:00.0: amdgpu: detected ip block number 0 <common_v1_0_0> (nv_common)
-[    8.660146] amdgpu 0000:03:00.0: amdgpu: detected ip block number 1 <gmc_v10_0_0> (gmc_v10_0)
-[    8.660147] amdgpu 0000:03:00.0: amdgpu: detected ip block number 2 <ih_v5_0_0> (navi10_ih)
-[    8.660149] amdgpu 0000:03:00.0: amdgpu: detected ip block number 3 <psp_v11_0_0> (psp)
-[    8.660150] amdgpu 0000:03:00.0: amdgpu: detected ip block number 4 <smu_v11_0_0> (smu)
-[    8.660151] amdgpu 0000:03:00.0: amdgpu: detected ip block number 5 <dce_v1_0_0> (dm)
-[    8.660152] amdgpu 0000:03:00.0: amdgpu: detected ip block number 6 <gfx_v10_0_0> (gfx_v10_0)
-[    8.660154] amdgpu 0000:03:00.0: amdgpu: detected ip block number 7 <sdma_v5_0_0> (sdma_v5_0)
-[    8.660155] amdgpu 0000:03:00.0: amdgpu: detected ip block number 8 <vcn_v2_0_0> (vcn_v2_0)
-[    8.660156] amdgpu 0000:03:00.0: amdgpu: detected ip block number 9 <jpeg_v2_0_0> (jpeg_v2_0)
-[    8.660172] amdgpu 0000:03:00.0: amdgpu: Fetched VBIOS from VFCT
-[    8.660174] amdgpu: ATOM BIOS: 113-D322A1XL-011
-[    8.687707] amdgpu 0000:03:00.0: vgaarb: deactivate vga console
-[    8.687710] amdgpu 0000:03:00.0: amdgpu: Trusted Memory Zone (TMZ) feature disabled as experimental (default)
-[    8.687766] amdgpu 0000:03:00.0: amdgpu: vm size is 262144 GB, 4 levels, block size is 9-bit, fragment size is 9-bit
-[    8.687782] amdgpu 0000:03:00.0: BAR 0 [mem 0xa0000000-0xafffffff 64bit pref]: releasing
-[    8.687784] amdgpu 0000:03:00.0: BAR 2 [mem 0xb0000000-0xb01fffff 64bit pref]: releasing
-[    8.687798] amdgpu 0000:03:00.0: BAR 0 [mem 0x4100000000-0x41ffffffff 64bit pref]: assigned
-[    8.687805] amdgpu 0000:03:00.0: BAR 2 [mem 0x4080000000-0x40801fffff 64bit pref]: assigned
-[    8.687842] amdgpu 0000:03:00.0: amdgpu: VRAM: 4080M 0x0000008000000000 - 0x00000080FEFFFFFF (4080M used)
-[    8.687843] amdgpu 0000:03:00.0: amdgpu: GART: 512M 0x0000000000000000 - 0x000000001FFFFFFF
-[    8.687947] amdgpu 0000:03:00.0: amdgpu: amdgpu: 4080M of VRAM memory ready
-[    8.687949] amdgpu 0000:03:00.0: amdgpu: amdgpu: 7918M of GTT memory ready.
-[    8.688772] amdgpu 0000:03:00.0: amdgpu: [VCN instance 0] Found VCN firmware Version ENC: 1.21 DEC: 7 VEP: 0 Revision: 2
-[    8.754221] amdgpu 0000:03:00.0: amdgpu: reserve 0x900000 from 0x80fd000000 for PSP TMR
-[    8.823385] amdgpu 0000:03:00.0: amdgpu: RAS: optional ras ta ucode is not available
-[    8.834600] amdgpu 0000:03:00.0: amdgpu: RAP: optional rap ta ucode is not available
-[    8.834603] amdgpu 0000:03:00.0: amdgpu: SECUREDISPLAY: optional securedisplay ta ucode is not available
-[    8.834654] amdgpu 0000:03:00.0: amdgpu: use vbios provided pptable
-[    8.834656] amdgpu 0000:03:00.0: amdgpu: smc_dpm_info table revision(format.content): 4.5
-[    8.849207] amdgpu 0000:03:00.0: amdgpu: SMU is initialized successfully!
-[    8.849532] amdgpu 0000:03:00.0: amdgpu: [drm] Display Core v3.2.359 initialized on DCN 2.0
-[    8.849534] amdgpu 0000:03:00.0: amdgpu: [drm] DP-HDMI FRL PCON supported
-[    8.881799] snd_hda_intel 0000:03:00.1: bound 0000:03:00.0 (ops amdgpu_dm_audio_component_bind_ops [amdgpu])
-[    9.011896] amdgpu 0000:03:00.0: amdgpu: kiq ring mec 2 pipe 1 q 0
-[    9.036429] amdgpu: HMM registered 4080MB device memory
-[    9.545268] amdgpu 0000:03:00.0: amdgpu: Fence fallback timer expired on ring sdma0
-[    9.545394] kfd kfd: amdgpu: Allocated 3969056 bytes on gart
-[    9.545417] kfd kfd: amdgpu: Total number of KFD nodes to be created: 1
-[   10.049267] amdgpu 0000:03:00.0: amdgpu: Fence fallback timer expired on ring sdma0
-[   10.049402] amdgpu: Virtual CRAT table created for GPU
-[   10.049521] amdgpu: Topology: Add dGPU node [0x7340:0x1002]
-[   10.049523] kfd kfd: amdgpu: added device 1002:7340
-[   10.049539] amdgpu 0000:03:00.0: amdgpu: SE 1, SH per SE 2, CU per SH 12, active_cu_number 20
-[   10.049544] amdgpu 0000:03:00.0: amdgpu: ring gfx_0.0.0 uses VM inv eng 0 on hub 0
-[   10.049546] amdgpu 0000:03:00.0: amdgpu: ring comp_1.0.0 uses VM inv eng 1 on hub 0
-[   10.049547] amdgpu 0000:03:00.0: amdgpu: ring comp_1.1.0 uses VM inv eng 4 on hub 0
-[   10.049548] amdgpu 0000:03:00.0: amdgpu: ring comp_1.2.0 uses VM inv eng 5 on hub 0
-[   10.049549] amdgpu 0000:03:00.0: amdgpu: ring comp_1.3.0 uses VM inv eng 6 on hub 0
-[   10.049550] amdgpu 0000:03:00.0: amdgpu: ring comp_1.0.1 uses VM inv eng 7 on hub 0
-[   10.049550] amdgpu 0000:03:00.0: amdgpu: ring comp_1.1.1 uses VM inv eng 8 on hub 0
-[   10.049551] amdgpu 0000:03:00.0: amdgpu: ring comp_1.2.1 uses VM inv eng 9 on hub 0
-[   10.049552] amdgpu 0000:03:00.0: amdgpu: ring comp_1.3.1 uses VM inv eng 10 on hub 0
-[   10.049553] amdgpu 0000:03:00.0: amdgpu: ring kiq_0.2.1.0 uses VM inv eng 11 on hub 0
-[   10.049554] amdgpu 0000:03:00.0: amdgpu: ring sdma0 uses VM inv eng 12 on hub 0
-[   10.049555] amdgpu 0000:03:00.0: amdgpu: ring sdma1 uses VM inv eng 13 on hub 0
-[   10.049556] amdgpu 0000:03:00.0: amdgpu: ring vcn_dec uses VM inv eng 0 on hub 8
-[   10.049557] amdgpu 0000:03:00.0: amdgpu: ring vcn_enc0 uses VM inv eng 1 on hub 8
-[   10.049558] amdgpu 0000:03:00.0: amdgpu: ring vcn_enc1 uses VM inv eng 4 on hub 8
-[   10.049559] amdgpu 0000:03:00.0: amdgpu: ring jpeg_dec uses VM inv eng 5 on hub 8
-[   10.061446] amdgpu 0000:03:00.0: amdgpu: Runtime PM not available
-[   10.061681] amdgpu 0000:03:00.0: amdgpu: [drm] Skipping amdgpu DM backlight registration
-[   10.062153] amdgpu 0000:03:00.0: [drm] Registered 5 planes with drm panic
-[   10.062155] [drm] Initialized amdgpu 3.64.0 for 0000:03:00.0 on minor 2
-[   10.067637] fbcon: amdgpudrmfb (fb0) is primary device
-[   10.067724] amdgpu 0000:03:00.0: [drm] fb0: amdgpudrmfb frame buffer device
-
-$ xrandr 
-Can't open display
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
