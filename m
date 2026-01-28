@@ -4,60 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D6B2D25B44
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 11:52:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6838CD25B49
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 12:04:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3775410E6AD;
-	Wed, 28 Jan 2026 11:52:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27A8E10E6B7;
+	Wed, 28 Jan 2026 12:04:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N64BgLId";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Hx8cf+jz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F73A10E6AD
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Jan 2026 11:52:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769601138; x=1801137138;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rpC3oMucEgYkzL75VnTLnW2KMo8yN1ZRgAuhF635NBg=;
- b=N64BgLIdrBZeoKvdpdeHWko9db+OxSEfK1AOP8GRMDU5pq11oj4SViX+
- m22AEfbkOghOyjAFfxcV2g0jKAwBzDcwG0SAEBBG6/sAwggAfw/8hqlS3
- ty67oT253PIe7bJY3PMrS8ur5E0sxzd1ShskN0Ce8rx2aSHLt4QEJa/Hx
- FiWJ1vAwkxFO1owvegwzP8tlDijX7xVyB4vVpQzsk6o7mddmObEU74FWW
- mJNcVxRELvZqPXT3SOechUMstXfH/lkIpCyT04f01YLm43/TxWuiWrg/z
- OsZldp1ttghYjO49ZiG4JKKwwtcT7MUJCRbpY5RhK29RFOPCzS78syCeR w==;
-X-CSE-ConnectionGUID: lJkXL5H6TYy9EtGC8tGrQw==
-X-CSE-MsgGUID: 0HbCpS5ZRTSuE0el3kZGDA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="70527326"
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="70527326"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 03:52:18 -0800
-X-CSE-ConnectionGUID: xIYF4T4dTz+EoYIG+gsoag==
-X-CSE-MsgGUID: wjQBLaTvQri5eHDwC4juHA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="208042085"
-Received: from anirban-z690i-a-ultra-plus.iind.intel.com ([10.190.216.83])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 03:52:12 -0800
-From: Sk Anirban <sk.anirban@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
- karthik.poosa@intel.com, raag.jadav@intel.com, soham.purkait@intel.com,
- mallesh.koujalagi@intel.com, vinay.belgaumkar@intel.com,
- daniele.ceraolospurio@intel.com, nishanth.p.reddy@intel.com,
- rodrigo.vivi@intel.com, matthew.d.roper@intel.com,
- Sk Anirban <sk.anirban@intel.com>
-Subject: [PATCH v3 2/2] drm/xe/guc: Add Wa_14025883347 for GuC DMA failure on
- reset
-Date: Wed, 28 Jan 2026 17:21:37 +0530
-Message-ID: <20260128115134.657091-6-sk.anirban@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260128115134.657091-4-sk.anirban@intel.com>
-References: <20260128115134.657091-4-sk.anirban@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7F6710E6AF;
+ Wed, 28 Jan 2026 12:04:14 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 588EB4038E;
+ Wed, 28 Jan 2026 12:04:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9DA89C4CEF1;
+ Wed, 28 Jan 2026 12:04:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1769601854;
+ bh=ZmWp47hdVxyqv1Ds+2Hq8SoLybTurOLu+L6KbG5zDis=;
+ h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
+ b=Hx8cf+jzc7ub0hEm2EJD7hjBM5GYjypHZfOvHh9LRFTILWZObQdgV/HK/IWv+uLPy
+ QzwMaPaZwA+V+WErhedeik+QeYs1j80V+8P+jOhgKApsZ1s79rGFAC6RUq4+D5Ardn
+ n62+ipYg5+OX6sXbx9BsgWCbDyUkOOSoZW9EPkqcJk4sUK+fsaoJcXefEI/9RvlHNC
+ eqkqF2D98GiwsjvyxkKugFrsM93/vx/v/+zhBRaGrlGsp/aOZuQGevj0bw7jmsrvBG
+ cv+blyDHbdlOGVFLw2q2+VMmk/cjQy252+jpZJPmDd65c5tggySUXW4QONEzl5E3Ao
+ RqgAJXywJWoUw==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 28 Jan 2026 13:04:02 +0100
+Message-Id: <DG07HZN0PL87.X5MKDCVVYIRE@kernel.org>
+Subject: Re: [PATCH RFC v6 05/26] nova-core: mm: Add support to use PRAMIN
+ windows to write to VRAM
+Cc: "Zhi Wang" <zhiw@nvidia.com>, <linux-kernel@vger.kernel.org>, "Maarten
+ Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
+ <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
+ Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan
+ Corbet" <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>,
+ "Christian Koenig" <christian.koenig@amd.com>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
+ <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
+ "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
+ <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ "Thomas Hellstrom" <thomas.hellstrom@linux.intel.com>, "Helge Deller"
+ <deller@gmx.de>, "Alice Ryhl" <aliceryhl@google.com>, "Miguel Ojeda"
+ <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng"
+ <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>, "Bjorn Roy Baron"
+ <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Trevor Gross" <tmgross@umich.edu>,
+ "John Hubbard" <jhubbard@nvidia.com>, "Alistair Popple"
+ <apopple@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>, "Edwin Peer"
+ <epeer@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>, "Andrea
+ Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>, "Alexey
+ Ivanov" <alexeyi@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>, "Philipp
+ Stanner" <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>,
+ "Daniel Almeida" <daniel.almeida@collabora.com>,
+ <nouveau@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <rust-for-linux@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+ <amd-gfx@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <linux-fbdev@vger.kernel.org>
+To: "Joel Fernandes" <joelagnelf@nvidia.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
+References: <20260120204303.3229303-1-joelagnelf@nvidia.com>
+ <20260120204303.3229303-6-joelagnelf@nvidia.com>
+ <20260121100745.2b5a58e5.zhiw@nvidia.com>
+ <e186973c-ce31-405a-8bfa-dc647737a666@nvidia.com>
+ <DS0PR12MB6486717785F6DD14EE1F1C46A397A@DS0PR12MB6486.namprd12.prod.outlook.com>
+In-Reply-To: <DS0PR12MB6486717785F6DD14EE1F1C46A397A@DS0PR12MB6486.namprd12.prod.outlook.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,124 +87,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Prevent GuC firmware DMA failures during GuC-only reset by disabling
-idle flow and verifying SRAM handling completion. Without this, reset
-can be issued while SRAM handler is copying WOPCM to SRAM,
-causing GuC HW to get stuck.
+On Fri Jan 23, 2026 at 12:16 AM CET, Joel Fernandes wrote:
+> My plan is to make TLB and PRAMIN use immutable references in their funct=
+ion
+> calls and then implement internal locking. I've already done this for the=
+ GPU
+> buddy functions, so it should be doable, and we'll keep it consistent. As=
+ a
+> result, we will have finer-grain locking on the memory management objects
+> instead of requiring to globally lock a common GpuMm object. I'll plan on
+> doing this for v7.
+>
+> Also, the PTE allocation race you mentioned is already handled by PRAMIN
+> serialization. Since threads must hold the PRAMIN lock to write page tabl=
+e
+> entries, concurrent writers are not possible:
+>
+>   Thread A: acquire PRAMIN lock
+>   Thread A: read PDE (via PRAMIN) -> NULL
+>   Thread A: alloc PT page, write PDE
+>   Thread A: release PRAMIN lock
+>
+>   Thread B: acquire PRAMIN lock
+>   Thread B: read PDE (via PRAMIN) -> sees A's pointer
+>   Thread B: uses existing PT page, no allocation needed
 
-v2: Modify error message (Badal)
-    Rename reg bit name (Daniele)
-    Update WA skip condition (Daniele)
-    Update SRAM handling logic (Daniele)
-v3: Reorder WA call (Badal)
-    Wait for GuC ready status (Daniele)
+This won't work unfortunately.
 
-Signed-off-by: Sk Anirban <sk.anirban@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_guc_regs.h |  8 ++++++
- drivers/gpu/drm/xe/xe_guc.c           | 37 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_wa_oob.rules    |  9 +++++++
- 3 files changed, 54 insertions(+)
+We have to separate allocations and modifications of the page tabe. Or in o=
+ther
+words, we must not allocate new PDEs or PTEs while holding the lock protect=
+ing
+the page table from modifications.
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
-index 87984713dd12..c9cb02f32f5a 100644
---- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
-@@ -40,6 +40,9 @@
- #define   GS_BOOTROM_JUMP_PASSED		REG_FIELD_PREP(GS_BOOTROM_MASK, 0x76)
- #define   GS_MIA_IN_RESET			REG_BIT(0)
- 
-+#define GUC_HASH_BOOT_CHECK			XE_REG(0xc010)
-+#define   GUC_BOOT_UKERNEL_VALID		REG_BIT(31)
-+
- #define GUC_HEADER_INFO				XE_REG(0xc014)
- 
- #define GUC_WOPCM_SIZE				XE_REG(0xc050)
-@@ -83,7 +86,12 @@
- #define   GUC_WOPCM_OFFSET_MASK			REG_GENMASK(31, GUC_WOPCM_OFFSET_SHIFT)
- #define   HUC_LOADING_AGENT_GUC			REG_BIT(1)
- #define   GUC_WOPCM_OFFSET_VALID		REG_BIT(0)
-+
-+#define GUC_SRAM_STATUS				XE_REG(0xc398)
-+#define   GUC_SRAM_HANDLING_MASK		REG_GENMASK(8, 7)
-+
- #define GUC_MAX_IDLE_COUNT			XE_REG(0xc3e4)
-+#define   GUC_IDLE_FLOW_DISABLE			REG_BIT(31)
- #define GUC_PMTIMESTAMP_LO			XE_REG(0xc3e8)
- #define GUC_PMTIMESTAMP_HI			XE_REG(0xc3ec)
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 44360437beeb..d28542d980ac 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -900,6 +900,40 @@ int xe_guc_post_load_init(struct xe_guc *guc)
- 	return xe_guc_submit_enable(guc);
- }
- 
-+/*
-+ * Wa_14025883347: Prevent GuC firmware DMA failures during GuC-only reset by ensuring
-+ * SRAM save/restore operations are complete before reset.
-+ */
-+static void guc_prevent_fw_dma_failure_on_reset(struct xe_guc *guc)
-+{
-+	struct xe_gt *gt = guc_to_gt(guc);
-+	u32 boot_hash_chk, guc_status, sram_status;
-+	int ret;
-+
-+	guc_status = xe_mmio_read32(&gt->mmio, GUC_STATUS);
-+	if (guc_status & GS_MIA_IN_RESET)
-+		return;
-+
-+	boot_hash_chk = xe_mmio_read32(&gt->mmio, GUC_HASH_BOOT_CHECK);
-+	if (!(boot_hash_chk & GUC_BOOT_UKERNEL_VALID))
-+		return;
-+
-+	xe_mmio_rmw32(&gt->mmio, GUC_MAX_IDLE_COUNT, 0, GUC_IDLE_FLOW_DISABLE);
-+
-+	ret = xe_mmio_wait32(&gt->mmio, GUC_STATUS, GS_UKERNEL_MASK,
-+			     FIELD_PREP(GS_UKERNEL_MASK, XE_GUC_LOAD_STATUS_READY),
-+			     100000, &guc_status, false);
-+	if (ret)
-+		xe_gt_warn(gt, "GuC not ready after disabling idle flow (GUC_STATUS: 0x%x)\n",
-+			   guc_status);
-+
-+	ret = xe_mmio_wait32(&gt->mmio, GUC_SRAM_STATUS, GUC_SRAM_HANDLING_MASK,
-+			     0, 5000, &sram_status, false);
-+	if (ret)
-+		xe_gt_warn(gt, "SRAM handling not complete (GUC_SRAM_STATUS: 0x%x)\n",
-+			   sram_status);
-+}
-+
- int xe_guc_reset(struct xe_guc *guc)
- {
- 	struct xe_gt *gt = guc_to_gt(guc);
-@@ -912,6 +946,9 @@ int xe_guc_reset(struct xe_guc *guc)
- 	if (IS_SRIOV_VF(gt_to_xe(gt)))
- 		return xe_gt_sriov_vf_bootstrap(gt);
- 
-+	if (XE_GT_WA(gt, 14025883347))
-+		guc_prevent_fw_dma_failure_on_reset(guc);
-+
- 	xe_mmio_write32(mmio, GDRST, GRDOM_GUC);
- 
- 	ret = xe_mmio_wait32(mmio, GDRST, GRDOM_GUC, 0, 5000, &gdrst, false);
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index 5cd7fa6d2a5c..ff2efc7a68cc 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -73,3 +73,12 @@
- 15015404425_disable	PLATFORM(PANTHERLAKE), MEDIA_STEP(B0, FOREVER)
- 16026007364    MEDIA_VERSION(3000)
- 14020316580    MEDIA_VERSION(1301)
-+
-+14025883347	MEDIA_VERSION(1301)
-+		MEDIA_VERSION(2000)
-+		MEDIA_VERSION(3000)
-+		MEDIA_VERSION(3002)
-+		MEDIA_VERSION(3500)
-+		MEDIA_VERSION(3503)
-+		GRAPHICS_VERSION_RANGE(3000, 3001)
-+		GRAPHICS_VERSION_RANGE(3003, 3005)
--- 
-2.43.0
+Once we have VM_BIND in nova-drm, we will have the situation that userspace
+passes jobs to modify the GPUs virtual address space and hence the page tab=
+les.
 
+Such a jobs has mainly three stages.
+
+  (1) The submit stage.
+
+      This is where the job is initialized, dependencies are set up and the
+      driver has to pre-allocate all kinds of structures that are required
+      throughout the subsequent stages of the job.
+
+  (2) The run stage.
+
+      This is the stage where the job is staged for execution and its DMA f=
+ence
+      has been made public (i.e. it is accessible by userspace).
+
+      This is the stage where we are in the DMA fence signalling critical
+      section, hence we can't do any non-atomic allocations, since otherwis=
+e we
+      could deadlock in MMU notifier callbacks for instance.
+
+      This is the stage where the page table is actually modified. Hence, w=
+e
+      can't acquire any locks that might be held elsewhere while doing
+      non-atomic allocations. Also note that this is transitive, e.g. if yo=
+u
+      take lock A and somewhere else a lock B is taked while A is already h=
+eld
+      and we do non-atomic allocations while holding B, then A can't be hel=
+d in
+      the DMA fence signalling critical path either.
+
+      It is also worth noting that this is the stage where we know the exac=
+t
+      operations we have to execute based on the VM_BIND request from users=
+pace.
+
+      For instance, in the submit stage we may only know that userspace wan=
+ts
+      that we map a BO with a certain offset in the GPUs virtual address sp=
+ace
+      at [0x0, 0x1000000]. What we don't know is what exact operations this=
+ does
+      require, i.e. "What do we have to unmap first?", "Are there any
+      overlapping mappings that we have to truncate?", etc.
+
+      So, we have to consider this when we pre-allocate in the submit stage=
+.
+
+  (3) The cleanup stage.
+
+      This is where the job has been signaled and hence left the DMA fence
+      signalling critical section.
+
+      In this stage the job is cleaned up, which includes freeing data that=
+ is
+      not required anymore, such as PTEs and PDEs.
