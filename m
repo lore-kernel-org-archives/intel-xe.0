@@ -4,61 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B1C2D3F07A
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 15:30:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41022D3F080
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 15:37:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11E3310E71C;
-	Wed, 28 Jan 2026 15:30:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3A9810E193;
+	Wed, 28 Jan 2026 15:37:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YZXAr0cl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YVnu31vF";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E92FB10E71C
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Jan 2026 15:30:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A26B10E193;
+ Wed, 28 Jan 2026 15:37:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769614239; x=1801150239;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=6zPd5spmWJWQQqvS+/TKoBN5KReKeBDGB+kuYGaloQA=;
- b=YZXAr0clxZwSnSAh3t4Gqk9LQB1+Ec3Ctt+QmWNMv1xuw6Nhb/m9aGRh
- MoN2jp3V4IAk4FhEYguxjpl7Brx/MwGVVUiiSa/gqIXGmxiV89MYN80jq
- 6Leucb53e46JpI6HNYJlRkPZaFDB/DqikLedjBdfdtmcP2s0wRZaq26na
- a21TNrO1vqs6mq41eamE6uySDB8qhL0zilQvlMVbs3G7olXyvNGpfave6
- w7MxT8nHNj22QWKl3A169nTAslHlfPNd23H/xmoGfKcOuDE6kCvv2UGoD
- pb/p+1gxc7ceLYnXhrIMPYj0sHeh/Ad2nUT/QInnxx3T2/9qkaZDx+4bz Q==;
-X-CSE-ConnectionGUID: 8zP1P/JPSfSI9uZnh1ZWjA==
-X-CSE-MsgGUID: 7kx3zZIwSxq6Z6h/wiSXsQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="81557830"
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="81557830"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 07:30:38 -0800
-X-CSE-ConnectionGUID: LZdElvtJT5y4ax/7q8xgDQ==
-X-CSE-MsgGUID: W4uQP4cPT3u8k47ODINEOQ==
+ t=1769614646; x=1801150646;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=0wyoV90WmYlDsdIojZFY1AdPgbfCyPWW+8y/M6SlHE4=;
+ b=YVnu31vFQzt7TQVlmmMc4IEbz4CDfPqGipBCN+bomJ0BV4u1Jv9R42fE
+ JziIsH33RRFh5ZMWTqVAyK6Q73U0EzkwwhS/UxAkD2qCmvnFsdXP/7Mu8
+ /uLhKpaE6GXBGdIpACkZTyFadnV9Kver0yw0j322qZEQxE1XYXHKrh4c2
+ kihwx13jShoGLNgk1vB0FskX7QwGhJFJZzj3TkpXOZpdQDLY4Q2e/9EMU
+ 54pqafakpp46GIr0lraF1fztVmpNUAnoK8+yF9GQbdfWyTIiB9sejaQxL
+ yGvDta00JWpsbXznXiKjuBWNHNmL2HV5XA639Em+Wc/3NQrXDVBLliM2Q Q==;
+X-CSE-ConnectionGUID: wuNfWE8gSiyYn411D7UlAA==
+X-CSE-MsgGUID: iACIfWaqQAip+yct40NZ+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="73423407"
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="73423407"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 07:37:25 -0800
+X-CSE-ConnectionGUID: KTQ67kAaSbu8bA5Ll5fKQg==
+X-CSE-MsgGUID: QZTVq2c0S8Gv4W9Dfv9tAw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="208536126"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.207])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 07:30:34 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
- platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
- hansg@kernel.org, ilpo.jarvinen@linux.intel.com, matthew.brost@intel.com,
- rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
- airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com
-Cc: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-Subject: Re: [PATCH 1/5] pmt: Add register access callbacks
-In-Reply-To: <20260127182418.640701-8-michael.j.ruhl@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260127182418.640701-7-michael.j.ruhl@intel.com>
- <20260127182418.640701-8-michael.j.ruhl@intel.com>
-Date: Wed, 28 Jan 2026 17:30:31 +0200
-Message-ID: <7c4167508d597118cab2470daadab05e10297d5e@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="208673485"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.54])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 07:37:21 -0800
+Date: Wed, 28 Jan 2026 17:37:18 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>,
+ Ard Biesheuvel <ardb@kernel.org>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ "Borislav Petkov (AMD)" <bp@alien8.de>,
+ Lenny Szubowicz <lszubowi@redhat.com>,
+ Francesco Pompo <francescopompo2@gmail.com>,
+ linux-efi@vger.kernel.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2 2/2] drm/i915/display: Disable display for iMac's
+Message-ID: <aXotLnGvZu4Ib0Vx@intel.com>
+References: <20260128145855.1071-1-atharvatiwarilinuxdev@gmail.com>
+ <20260128145855.1071-3-atharvatiwarilinuxdev@gmail.com>
+ <26c4e0b7f9c25f405401288d13fc7e5097e9c7f5@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <26c4e0b7f9c25f405401288d13fc7e5097e9c7f5@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,127 +85,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 27 Jan 2026, "Michael J. Ruhl" <michael.j.ruhl@intel.com> wrote:
-> Some HW does not have the explicit access via MMIO.  Allow
-> for parent drivers to control access to the status/control
-> path.
+On Wed, Jan 28, 2026 at 05:23:51PM +0200, Jani Nikula wrote:
+> On Wed, 28 Jan 2026, Atharva Tiwari <atharvatiwarilinuxdev@gmail.com> wrote:
+> > Disable display on iMacs, as they can't do link training
+> > on the internal display.
+> 
+> I'd expand on that a bit, based on the previous discussion.
+> 
+> >
+> > (tested on iMac20,1)
+> >
+> > Signed-off-by: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>
+> 
+> I can't test this, but if nobody chimes in to oppose, I'll take it.
 
-I think this is quite vague, and could use some copy-paste from the
-cover letter, for posterity.
+I guess the main problem with a hack like this is that you won't
+be able to get deep pkgC states due to the display hardware not
+going into DC5/6.
 
-BR,
-Jani.
+But I can't immediately think of other issues due this being an
+iGPU, so eg. runtime PCI D3 doesn't really do anything meaningful
+and thus the display hardware remaining powered on shouldn't
+matter that much (apart from the increased power usage).
 
->
-> Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
-> ---
->  drivers/platform/x86/intel/pmt/crashlog.c | 39 +++++++++++++++++++++--
->  include/linux/intel_vsec.h                | 26 +++++++++++----
->  2 files changed, 55 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x86/intel/pmt/crashlog.c
-> index b0393c9c5b4b..978b35d56888 100644
-> --- a/drivers/platform/x86/intel/pmt/crashlog.c
-> +++ b/drivers/platform/x86/intel/pmt/crashlog.c
-> @@ -129,7 +129,19 @@ static void pmt_crashlog_rmw(struct crashlog_entry *crashlog, u32 bit, bool set)
->  {
->  	const struct crashlog_control *control = &crashlog->info->control;
->  	struct intel_pmt_entry *entry = &crashlog->entry;
-> -	u32 reg = readl(entry->disc_table + control->offset);
-> +	u32 guid = entry->header.guid;
-> +	u32 reg;
-> +	int err;
-> +
-> +	if (entry->cb->read_reg) {
-> +		err = entry->cb->read_reg(entry->pcidev, guid, &reg, control->offset);
-> +		if (err) {
-> +			pr_err("%s: failed to read reg: %d\n", __func__, err);
-> +			return;
-> +		}
-> +	} else {
-> +		reg = readl(entry->disc_table + control->offset);
-> +	}
->  
->  	reg &= ~control->trigger_mask;
->  
-> @@ -138,14 +150,35 @@ static void pmt_crashlog_rmw(struct crashlog_entry *crashlog, u32 bit, bool set)
->  	else
->  		reg &= ~bit;
->  
-> -	writel(reg, entry->disc_table + control->offset);
-> +	if (entry->cb->write_reg) {
-> +		err = entry->cb->write_reg(entry->pcidev, guid, reg, control->offset);
-> +		if (err) {
-> +			pr_err("%s: failed to write reg: %d\n", __func__, err);
-> +			return;
-> +		}
-> +	} else {
-> +		writel(reg, entry->disc_table + control->offset);
-> +	}
->  }
->  
->  /* Read the status register and see if the specified @bit is set */
->  static bool pmt_crashlog_rc(struct crashlog_entry *crashlog, u32 bit)
->  {
->  	const struct crashlog_status *status = &crashlog->info->status;
-> -	u32 reg = readl(crashlog->entry.disc_table + status->offset);
-> +	struct intel_pmt_entry *entry = &crashlog->entry;
-> +	u32 guid = entry->header.guid;
-> +	u32 reg;
-> +	int err;
-> +
-> +	if (entry->cb->read_reg) {
-> +		err = entry->cb->read_reg(entry->pcidev, guid, &reg, status->offset);
-> +		if (err) {
-> +			pr_err("%s: failed to read reg: %d\n", __func__, err);
-> +			return false;
-> +		}
-> +	} else {
-> +		reg = readl(crashlog->entry.disc_table + status->offset);
-> +	}
->  
->  	return !!(reg & bit);
->  }
-> diff --git a/include/linux/intel_vsec.h b/include/linux/intel_vsec.h
-> index 1a0f357c2427..5416f84aca40 100644
-> --- a/include/linux/intel_vsec.h
-> +++ b/include/linux/intel_vsec.h
-> @@ -80,16 +80,28 @@ enum intel_vsec_quirks {
->  
->  /**
->   * struct pmt_callbacks - Callback infrastructure for PMT devices
-> - * @read_telem: when specified, called by client driver to access PMT
-> - * data (instead of direct copy).
-> - * * pdev:  PCI device reference for the callback's use
-> - * * guid:  ID of data to acccss
-> - * * data:  buffer for the data to be copied
-> - * * off:   offset into the requested buffer
-> - * * count: size of buffer
-> + * ->read_telem() when specified, called by client driver to access PMT data (instead
-> + * of direct copy).
-> + * @pdev:  PCI device reference for the callback's use
-> + * @guid:  ID of data to access
-> + * @data:  buffer for the data to be copied
-> + * @off:   offset into the requested buffer
-> + * @count: size of buffer
-> + * ->read_reg() when specified called by client driver to read PMT state
-> + * @pdev: PCI device reference for the callback's use
-> + * @guid: ID of data to access
-> + * @data: buffer for the register data to be read
-> + * @offset: offset of control register to access
-> + * ->write_reg() when specified called by client driver to write PMT state
-> + * @pdev: PCI device reference for the callback's use
-> + * @guid: ID of data to access
-> + * @data: buffer data to be written to the register
-> + * @offset: offset of control register to access
->   */
->  struct pmt_callbacks {
->  	int (*read_telem)(struct pci_dev *pdev, u32 guid, u64 *data, loff_t off, u32 count);
-> +	int (*read_reg)(struct pci_dev *pdev, u32 guid, u32 *data, u32 offset);
-> +	int (*write_reg)(struct pci_dev *pdev, u32 guid, u32 data, u32 offset);
->  };
->  
->  struct vsec_feature_dependency {
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> 
+> > ---
+> >  .../gpu/drm/i915/display/intel_display_device.c    | 14 +++++++++++++-
+> >  1 file changed, 13 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+> > index 1170afaa8680..b1fec1018d7e 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_device.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+> > @@ -3,6 +3,7 @@
+> >   * Copyright © 2023 Intel Corporation
+> >   */
+> >  
+> > +#include <linux/dmi.h>
+> >  #include <linux/pci.h>
+> >  
+> >  #include <drm/drm_color_mgmt.h>
+> > @@ -1435,7 +1436,18 @@ static bool has_no_display(struct pci_dev *pdev)
+> >  		{}
+> >  	};
+> >  
+> > -	return pci_match_id(ids, pdev);
+> > +	static const struct dmi_system_id dmi_ids[] = {
+> > +		{
+> > +			.ident = "Apple Inc. iMac",
+> > +			.matches = {
+> > +				DMI_EXACT_MATCH(DMI_BOARD_VENDOR, "Apple Inc."),
+> > +				DMI_MATCH(DMI_PRODUCT_NAME, "iMac"),
+> > +			}
+> > +		},
+> > +		{}
+> > +	};
+> > +
+> > +	return pci_match_id(ids, pdev) || dmi_check_system(dmi_ids);
+> >  }
+> >  
+> >  #define INTEL_DISPLAY_DEVICE(_id, _desc) { .devid = (_id), .desc = (_desc) }
+> 
+> -- 
+> Jani Nikula, Intel
 
 -- 
-Jani Nikula, Intel
+Ville Syrjälä
+Intel
