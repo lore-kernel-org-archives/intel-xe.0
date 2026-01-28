@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46091D3569C
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 10:13:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09EB3D35693
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 10:13:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 055C310E637;
-	Wed, 28 Jan 2026 10:13:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A93AD10E635;
+	Wed, 28 Jan 2026 10:13:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="ok8gmn//";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Bgo9iRWX";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DC8A10E638
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28C3F10E637
  for <intel-xe@lists.freedesktop.org>; Wed, 28 Jan 2026 10:13:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=NnX7d2t76mXS6WHn24Nc8McgVv8qTzsfc8O/OXGjTtI=; b=ok8gmn///ejnuOJE9eiFDct770
- 0q15FjnaeSsV+TXFJJi7pMlFekSG41gMtLDD3wAuREZZP0Rmy29OxyOz9CKr7hXToAOgWuqdgcmUC
- Q60j04YeLXVJW2VSpm3jHNzOi4YCHJ3XLPmEs7v//rr+nJjJe47O8VTUJA0s6fw7diNcF3u2hkaOZ
- n9Axn25wLz3861jmz27oGnu/95YjO5hakM4WuuUFSewNZhmyFAQoW9f5NaVt9cAf/uXnqsFo8mDqc
- RD55giZmqIklBp/sR8Juys2znNOARPaxQFRxksss3FfrHm06VSQohEAXToHVUSPYreD2SaRzLHclc
- ifJQegyQ==;
+ bh=deDONDRruKFp/sB0mWitPhkp71A2MFABf1aScPZV8Is=; b=Bgo9iRWXkVyVYTvkThEURtyWb9
+ XjQGvzCC0Z0WDy8lgdha2BAh+E7NYUn25hnMaYzaGK4QtFKtpdmA9fd55ZymsM5+gEBHWexUfzmVQ
+ BeeVl0IZzuDSmVsbXbp5APD/y07JDDKLEE+lgGiICOJo7gLWwCsrxfcYKv80CzRfTqLbAKRLuc0cr
+ 9skWONqD/fbcxyScAjKlngMkowOs+UNwCKxcjs4/nkzrSVbic2xJPFTtE1+waQjUueHFrZ/F0ESQd
+ yA8j5IiKpKjDd8m/FAu7BC3dv0zF/XHB6i3ljxqghILYgDUMMJGDu4+8pm9cIL8witilGkg6pcj9D
+ U+0CFlLw==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vl2YS-00ApMC-Kl; Wed, 28 Jan 2026 11:13:44 +0100
+ id 1vl2YR-00ApM0-TM; Wed, 28 Jan 2026 11:13:43 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v17 2/8] drm/xe/xelpg: Limit AuxCCS ring buffer programming to
- Alderlake
-Date: Wed, 28 Jan 2026 10:13:27 +0000
-Message-ID: <20260128101333.37765-3-tvrtko.ursulin@igalia.com>
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [PATCH v17 1/8] drm/xe: Use write-combine mapping when populating DPT
+Date: Wed, 28 Jan 2026 10:13:26 +0000
+Message-ID: <20260128101333.37765-2-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260128101333.37765-1-tvrtko.ursulin@igalia.com>
 References: <20260128101333.37765-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -59,34 +59,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-At the moment the driver does not support AuxCCS at all due respective
-modifiers being hidden from userspace.
+The fallback case for DPT backing store is a buffer object in system
+memory buffer, which by default use a write-back CPU caching policy.
 
-As we are about to start enabling them, starting with Alderlake, let us
-begin by limiting the ring buffer support to just that initial platform.
+If this fallback gets triggered, and since there is currently no flushing,
+the DPT writes made when pinning a buffer to display are not guaranteed to
+be seen by the display engine.
+
+To fix this, since both the local memory and the stolen memory DPT
+placement use write-combine, let us make the system memory option follow
+suit by marking the buffer with the scanout flag.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_ring_ops.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 248620b0901d..dfa0cd25167b 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -302,9 +302,9 @@ static bool has_aux_ccs(struct xe_device *xe)
- 	 * PVC is a special case that has no compression of either type
- 	 * (FlatCCS or AuxCCS).  Also, AuxCCS is no longer used from Xe2
- 	 * onward, so any future platforms with no FlatCCS will not have
--	 * AuxCCS either.
-+	 * AuxCCS, and we explicity do not want to support it on MTL.
- 	 */
--	if (GRAPHICS_VER(xe) >= 20 || xe->info.platform == XE_PVC)
-+	if (GRAPHICS_VERx100(xe) >= 1270 || xe->info.platform == XE_PVC)
- 		return false;
- 
- 	return !xe->info.has_flat_ccs;
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index d2c4e94180fa..b285cc446f57 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -123,7 +123,8 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 						   ttm_bo_type_kernel,
+ 						   XE_BO_FLAG_SYSTEM |
+ 						   XE_BO_FLAG_GGTT |
+-						   XE_BO_FLAG_PAGETABLE,
++						   XE_BO_FLAG_PAGETABLE |
++						   XE_BO_FLAG_SCANOUT, /* Force WC mapping */
+ 						   alignment, false);
+ 	if (IS_ERR(dpt))
+ 		return PTR_ERR(dpt);
 -- 
 2.52.0
 
