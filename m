@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5066DD3568D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E76DD3568F
 	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 08:15:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13F4E10E625;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3948410E627;
 	Wed, 28 Jan 2026 08:15:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bgbhocH8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c3EM7flN";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A8CC10E624
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67FBD10E625
  for <intel-xe@lists.freedesktop.org>; Wed, 28 Jan 2026 08:15:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1769588100; x=1801124100;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GTFAwLN6ifIGQaRFx4ol8ogRzNQF728ckwOlEwYikNU=;
- b=bgbhocH8TcwQfzhsoO/OnUwqVi/uJ1tVDCnkEKkMkmSeL5rJpW7I0fXx
- NdGBUPOuLYZ9bEoFPUbbVvmDbE0CUQjaVNfdKnvcaNfiw+pCJIiEoiMGo
- aampd/F0dJoe5hSol+aJtbHlpgh9On+hMfACI8vfMt34F7o6mhQrFXdoi
- R8REVn+oXWmnrS6ueyET/i4RPwh2f4oYsDaC6fMlncC858czN3BNERr9M
- 3LUHfh6vUnW3AQI4jPu/9Cr1G8EoURP0SwZMQrwDnCyMbUeESGm9lClgY
- gyaAhSO3X5HEZE9sz6leGbWCNtp777XZ3g9SXY50RTDfxxC9UYdAkzLkR w==;
-X-CSE-ConnectionGUID: nvH+zzSeTBuHQQJ9Tb5mXQ==
-X-CSE-MsgGUID: YmVZoaloTX+wyi459m/eoA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="74643504"
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="74643504"
+ bh=asuFuRu6Zmk2S6ag5k1uBGvRjJEwNI49kbXIVwak8sE=;
+ b=c3EM7flNtjH+hXOyyeYucqR7DPqPfXJNipAEnAZBqjWUf6UFqqliC5d2
+ O+XPj2Bw4tzrU3gKTt5JhUgxrZ/Tc+fV8c+LDRMbn11yRt1zbRuBAJNCP
+ cNoAvBNUWK8Av0pS/mj42PY8vlgCUdAQs2uoL0a8GITyuqkLrn/ZV642M
+ 5ZlO5vfiRE6fsn4KyO1dzHz5dUVsuBQbJrPmw+5/2qHDvajZ1G3m08CNz
+ AB8f58PBIce1RwqyV9GXVkMOeOaHy7RM/t3W+wEfzNCx5Lu850HwuONBD
+ 1CtgY+U+gAAa1+kMHfzQeUk367jvInyBcuLNoNvfPYnwvGj6bOfhSlSBo g==;
+X-CSE-ConnectionGUID: 9vh522dFTWiWsPWj0v8JvQ==
+X-CSE-MsgGUID: lP+3qCF1QKWCT7ArrcvKUA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="74643514"
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="74643514"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 00:14:21 -0800
-X-CSE-ConnectionGUID: 7b8JRt+oRlCNkc7OrOVxuw==
-X-CSE-MsgGUID: MmRRFk8OQzeFXW461mciig==
+ 28 Jan 2026 00:14:25 -0800
+X-CSE-ConnectionGUID: +L3ootJsRzCnCcuPxWoKAQ==
+X-CSE-MsgGUID: NhVulvucRGiQNxTYKYpbyQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="231156826"
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="231156832"
 Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 00:14:17 -0800
+ 28 Jan 2026 00:14:21 -0800
 From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
@@ -48,10 +48,9 @@ Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
  riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
  michael.j.ruhl@intel.com, paul.e.luse@intel.com,
  mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
-Subject: [PATCH v6 3/6] drm/xe/sysctrl: Add System Controller mailbox
- implementation
-Date: Wed, 28 Jan 2026 00:14:05 -0800
-Message-ID: <20260128081403.3138456-11-anoop.c.vijay@intel.com>
+Subject: [PATCH v6 4/6] drm/xe/sysctrl: Add System Controller initialization
+Date: Wed, 28 Jan 2026 00:14:06 -0800
+Message-ID: <20260128081403.3138456-12-anoop.c.vijay@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260128081403.3138456-8-anoop.c.vijay@intel.com>
 References: <20260128081403.3138456-8-anoop.c.vijay@intel.com>
@@ -74,434 +73,124 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Implement the System Controller mailbox communication layer:
-- Low-level frame I/O operations
-- Mailbox busy/ready state polling
-- Command preparation and fragmentation
-- Multi-frame send/receive with phase bit handling
-- MKHI protocol header validation
-- Public API for sending commands to System Controller
-
-This provides the complete mailbox infrastructure for
-communicating with System Controller firmware on Xe3p
-dGPU platforms.
+Add top-level System Controller initialization and cleanup:
+- SOC remapper region configuration
+- Mailbox initialization
+- Resource cleanup on driver unload
 
 Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
 ---
-v4: (Matt, Mike)
-- Refactor MMIO access to use domain-specific accessor
-- Add input validation and buffer overflow protection
-- Add bounds checking for multi-frame operations
-- Fix potential NULL pointer dereference
+ drivers/gpu/drm/xe/xe_sysctrl.c | 80 +++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl.h | 13 ++++++
+ 2 files changed, 93 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.h
 
-v5: (Umesh, Riana)
-- Reset phase bit to 0 on error conditions
-- Refactor mailbox receive path
-- Updated xe_err messages for consistency
-
-v6: (Matt)
-- Use SYSCTRL_MB_CTRL_MKHI_CMD macro instead of FIELD_PREP
----
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 390 ++++++++++++++++++++++++
- 1 file changed, 390 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
 new file mode 100644
-index 000000000000..15a186a6f057
+index 000000000000..430bccbdc3b9
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-@@ -0,0 +1,390 @@
++++ b/drivers/gpu/drm/xe/xe_sysctrl.c
+@@ -0,0 +1,80 @@
 +// SPDX-License-Identifier: MIT
 +/*
 + * Copyright © 2026 Intel Corporation
 + */
 +
-+#include <linux/bitfield.h>
-+#include <linux/cleanup.h>
-+#include <linux/container_of.h>
-+#include <linux/errno.h>
-+#include <linux/minmax.h>
++#include <drm/drm_managed.h>
++#include <linux/device.h>
 +#include <linux/mutex.h>
-+#include <linux/slab.h>
-+#include <linux/string.h>
-+#include <linux/types.h>
 +
 +#include "regs/xe_sysctrl_regs.h"
 +#include "xe_device.h"
-+#include "xe_device_types.h"
 +#include "xe_mmio.h"
-+#include "xe_pm.h"
 +#include "xe_printk.h"
++#include "xe_soc_remapper.h"
 +#include "xe_sysctrl.h"
 +#include "xe_sysctrl_mailbox.h"
-+#include "xe_sysctrl_mailbox_types.h"
 +#include "xe_sysctrl_types.h"
 +
-+#define MKHI_HDR_GROUP_ID_MASK		GENMASK(7, 0)
-+#define MKHI_HDR_COMMAND_MASK		GENMASK(14, 8)
-+#define MKHI_HDR_IS_RESPONSE		BIT(15)
-+#define MKHI_HDR_RESERVED_MASK		GENMASK(23, 16)
-+#define MKHI_HDR_RESULT_MASK		GENMASK(31, 24)
++/**
++ * DOC: System Controller (sysctrl)
++ *
++ * The System Controller (sysctrl) is an embedded microcontroller in Intel GPUs
++ * responsible for managing various low-level platform functions. Communication
++ * between the driver and the System Controller occurs via a mailbox interface,
++ * enabling the exchange of commands and responses.
++ *
++ * This module provides initialization routines and helper functions to interact
++ * with the System Controller through the mailbox.
++ */
 +
-+#define XE_SYSCTRL_MKHI_HDR_GROUP_ID(hdr) \
-+	FIELD_GET(MKHI_HDR_GROUP_ID_MASK, le32_to_cpu((hdr)->data))
-+
-+#define XE_SYSCTRL_MKHI_HDR_COMMAND(hdr) \
-+	FIELD_GET(MKHI_HDR_COMMAND_MASK, le32_to_cpu((hdr)->data))
-+
-+#define XE_SYSCTRL_MKHI_HDR_IS_RESPONSE(hdr) \
-+	FIELD_GET(MKHI_HDR_IS_RESPONSE, le32_to_cpu((hdr)->data))
-+
-+#define XE_SYSCTRL_MKHI_HDR_RESULT(hdr) \
-+	FIELD_GET(MKHI_HDR_RESULT_MASK, le32_to_cpu((hdr)->data))
-+
-+static struct xe_device *sc_to_xe(struct xe_sysctrl *sc)
++static void xe_sysctrl_fini(void *arg)
 +{
-+	return container_of(sc, struct xe_device, sc);
-+}
++	struct xe_device *xe = arg;
 +
-+static bool xe_sysctrl_mailbox_wait_bit_clear(struct xe_sysctrl *sc, u32 bit_mask,
-+					      unsigned int timeout_ms)
-+{
-+	int ret;
-+
-+	ret = xe_mmio_wait32_not(sc->mmio, SYSCTRL_MB_CTRL, bit_mask, bit_mask,
-+				 timeout_ms * 1000, NULL, false);
-+
-+	return ret == 0;
-+}
-+
-+static bool xe_sysctrl_mailbox_wait_bit_set(struct xe_sysctrl *sc, u32 bit_mask,
-+					    unsigned int timeout_ms)
-+{
-+	int ret;
-+
-+	ret = xe_mmio_wait32(sc->mmio, SYSCTRL_MB_CTRL, bit_mask, bit_mask,
-+			     timeout_ms * 1000, NULL, false);
-+
-+	return ret == 0;
-+}
-+
-+static int xe_sysctrl_mailbox_write_frame(struct xe_sysctrl *sc, const void *frame,
-+					  size_t len)
-+{
-+	static const struct xe_reg regs[] = {
-+		SYSCTRL_MB_DATA0, SYSCTRL_MB_DATA1, SYSCTRL_MB_DATA2, SYSCTRL_MB_DATA3
-+	};
-+	u32 val[SYSCTRL_MB_FRAME_SIZE / sizeof(u32)] = {0};
-+	u32 dw = DIV_ROUND_UP(len, sizeof(u32));
-+	u32 i;
-+
-+	memcpy(val, frame, len);
-+
-+	for (i = 0; i < dw; i++)
-+		xe_mmio_write32(sc->mmio, regs[i], val[i]);
-+
-+	return 0;
-+}
-+
-+static int xe_sysctrl_mailbox_read_frame(struct xe_sysctrl *sc, void *frame,
-+					 size_t len)
-+{
-+	static const struct xe_reg regs[] = {
-+		SYSCTRL_MB_DATA0, SYSCTRL_MB_DATA1, SYSCTRL_MB_DATA2, SYSCTRL_MB_DATA3
-+	};
-+	u32 val[SYSCTRL_MB_FRAME_SIZE / sizeof(u32)] = {0};
-+	u32 dw = DIV_ROUND_UP(len, sizeof(u32));
-+	u32 i;
-+
-+	for (i = 0; i < dw; i++)
-+		val[i] = xe_mmio_read32(sc->mmio, regs[i]);
-+
-+	memcpy(frame, val, len);
-+
-+	return 0;
-+}
-+
-+static void xe_sysctrl_mailbox_clear_response(struct xe_sysctrl *sc)
-+{
-+	xe_mmio_rmw32(sc->mmio, SYSCTRL_MB_CTRL, SYSCTRL_MB_CTRL_RUN_BUSY_OUT, 0);
-+}
-+
-+static int xe_sysctrl_mailbox_prepare_command(struct xe_device *xe,
-+					      u8 group_id, u8 command,
-+					      const void *data_in, size_t data_in_len,
-+					      u8 **mbox_cmd, size_t *cmd_size)
-+{
-+	struct xe_sysctrl_mailbox_mkhi_msg_hdr *mkhi_hdr;
-+	size_t size;
-+	u8 *buffer;
-+
-+	if (data_in_len > SYSCTRL_MB_MAX_MESSAGE_SIZE - sizeof(*mkhi_hdr)) {
-+		xe_err(xe, "sysctrl: Input data too large: %zu bytes\n", data_in_len);
-+		return -EINVAL;
-+	}
-+
-+	size = sizeof(*mkhi_hdr) + data_in_len;
-+
-+	buffer = kmalloc(size, GFP_KERNEL);
-+	if (!buffer)
-+		return -ENOMEM;
-+
-+	mkhi_hdr = (struct xe_sysctrl_mailbox_mkhi_msg_hdr *)buffer;
-+	mkhi_hdr->data = cpu_to_le32(FIELD_PREP(MKHI_HDR_GROUP_ID_MASK, group_id) |
-+				     FIELD_PREP(MKHI_HDR_COMMAND_MASK, command & 0x7F) |
-+				     FIELD_PREP(MKHI_HDR_IS_RESPONSE, 0) |
-+				     FIELD_PREP(MKHI_HDR_RESERVED_MASK, 0) |
-+				     FIELD_PREP(MKHI_HDR_RESULT_MASK, 0));
-+
-+	if (data_in && data_in_len)
-+		memcpy(buffer + sizeof(*mkhi_hdr), data_in, data_in_len);
-+
-+	*mbox_cmd = buffer;
-+	*cmd_size = size;
-+
-+	return 0;
-+}
-+
-+static int xe_sysctrl_mailbox_send_frames(struct xe_sysctrl *sc,
-+					  const u8 *mbox_cmd,
-+					  size_t cmd_size, unsigned int timeout_ms)
-+{
-+	struct xe_device *xe = sc_to_xe(sc);
-+	u32 ctrl_reg, total_frames, frame;
-+	size_t bytes_sent, frame_size;
-+
-+	total_frames = DIV_ROUND_UP(cmd_size, SYSCTRL_MB_FRAME_SIZE);
-+
-+	if (!xe_sysctrl_mailbox_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms)) {
-+		xe_err(xe, "sysctrl: Mailbox busy\n");
-+		return -EBUSY;
-+	}
-+
-+	sc->phase_bit ^= 1;
-+	bytes_sent = 0;
-+
-+	for (frame = 0; frame < total_frames; frame++) {
-+		frame_size = min_t(size_t, cmd_size - bytes_sent, SYSCTRL_MB_FRAME_SIZE);
-+
-+		if (xe_sysctrl_mailbox_write_frame(sc, mbox_cmd + bytes_sent, frame_size)) {
-+			xe_err(xe, "sysctrl: Failed to write frame %u\n", frame);
-+			sc->phase_bit = 0;
-+			return -EIO;
-+		}
-+
-+		ctrl_reg = SYSCTRL_MB_CTRL_RUN_BUSY |
-+			   FIELD_PREP(MKHI_FRAME_CURRENT_MASK, frame) |
-+			   FIELD_PREP(MKHI_FRAME_TOTAL_MASK, total_frames - 1) |
-+			   SYSCTRL_MB_CTRL_MKHI_CMD |
-+			   (sc->phase_bit ? MKHI_FRAME_PHASE : 0);
-+
-+		xe_mmio_write32(sc->mmio, SYSCTRL_MB_CTRL, ctrl_reg);
-+
-+		if (!xe_sysctrl_mailbox_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms)) {
-+			xe_err(xe, "sysctrl: Frame %u acknowledgment timeout\n", frame);
-+			sc->phase_bit = 0;
-+			return -ETIMEDOUT;
-+		}
-+
-+		bytes_sent += frame_size;
-+	}
-+
-+	return 0;
-+}
-+
-+static int xe_sysctrl_mailbox_process_frame(struct xe_sysctrl *sc, void *out,
-+					    size_t frame_size, unsigned int timeout_ms,
-+					    bool *done)
-+{
-+	u32 curr_frame, total_frames, ctrl_reg;
-+	struct xe_device *xe = sc_to_xe(sc);
-+	int ret;
-+
-+	if (!xe_sysctrl_mailbox_wait_bit_set(sc, SYSCTRL_MB_CTRL_RUN_BUSY_OUT, timeout_ms)) {
-+		xe_err(xe, "sysctrl: Response frame timeout\n");
-+		return -ETIMEDOUT;
-+	}
-+
-+	ctrl_reg = xe_mmio_read32(sc->mmio, SYSCTRL_MB_CTRL);
-+	total_frames = FIELD_GET(MKHI_FRAME_TOTAL_MASK, ctrl_reg);
-+	curr_frame = FIELD_GET(MKHI_FRAME_CURRENT_MASK, ctrl_reg);
-+
-+	ret = xe_sysctrl_mailbox_read_frame(sc, out, frame_size);
-+	if (ret)
-+		return ret;
-+
-+	xe_sysctrl_mailbox_clear_response(sc);
-+
-+	if (curr_frame == total_frames)
-+		*done = true;
-+
-+	return 0;
-+}
-+
-+static int xe_sysctrl_mailbox_receive_frames(struct xe_sysctrl *sc,
-+					     const struct xe_sysctrl_mailbox_mkhi_msg_hdr *req,
-+					     void *data_out, size_t data_out_len,
-+					     size_t *rdata_len, unsigned int timeout_ms)
-+{
-+	struct xe_sysctrl_mailbox_mkhi_msg_hdr *mkhi_hdr;
-+	struct xe_device *xe = sc_to_xe(sc);
-+	size_t frame_size, remain;
-+	bool done = false;
-+	u8 *out;
-+	int ret = 0;
-+
-+	remain = sizeof(*mkhi_hdr) + data_out_len;
-+	u8 *buffer __free(kfree) = kzalloc(remain, GFP_KERNEL);
-+	if (!buffer)
-+		return -ENOMEM;
-+
-+	out = buffer;
-+	while (!done && remain) {
-+		frame_size = min_t(size_t, remain, SYSCTRL_MB_FRAME_SIZE);
-+
-+		ret = xe_sysctrl_mailbox_process_frame(sc, out, frame_size, timeout_ms,
-+						       &done);
-+		if (ret)
-+			return ret;
-+
-+		remain -= frame_size;
-+		out += frame_size;
-+	}
-+
-+	mkhi_hdr = (struct xe_sysctrl_mailbox_mkhi_msg_hdr *)buffer;
-+
-+	if (!XE_SYSCTRL_MKHI_HDR_IS_RESPONSE(mkhi_hdr) ||
-+	    XE_SYSCTRL_MKHI_HDR_GROUP_ID(mkhi_hdr) != XE_SYSCTRL_MKHI_HDR_GROUP_ID(req) ||
-+	    XE_SYSCTRL_MKHI_HDR_COMMAND(mkhi_hdr) != XE_SYSCTRL_MKHI_HDR_COMMAND(req)) {
-+		xe_err(xe, "sysctrl: Response header mismatch\n");
-+		return -EPROTO;
-+	}
-+
-+	if (XE_SYSCTRL_MKHI_HDR_RESULT(mkhi_hdr) != 0) {
-+		xe_err(xe, "sysctrl: Firmware error: 0x%02lx\n",
-+		       XE_SYSCTRL_MKHI_HDR_RESULT(mkhi_hdr));
-+		return -EIO;
-+	}
-+
-+	memcpy(data_out, mkhi_hdr + 1, data_out_len);
-+	*rdata_len = out - buffer - sizeof(*mkhi_hdr);
-+
-+	return ret;
-+}
-+
-+static int xe_sysctrl_mailbox_send_command(struct xe_sysctrl *sc,
-+					   const u8 *mbox_cmd, size_t cmd_size,
-+					   void *data_out, size_t data_out_len,
-+					   size_t *rdata_len, unsigned int timeout_ms)
-+{
-+	const struct xe_sysctrl_mailbox_mkhi_msg_hdr *mkhi_hdr;
-+	size_t received;
-+	int ret;
-+
-+	ret = xe_sysctrl_mailbox_send_frames(sc, mbox_cmd, cmd_size, timeout_ms);
-+	if (ret)
-+		return ret;
-+
-+	if (!data_out || !rdata_len)
-+		return 0;
-+
-+	mkhi_hdr = (const struct xe_sysctrl_mailbox_mkhi_msg_hdr *)mbox_cmd;
-+
-+	ret = xe_sysctrl_mailbox_receive_frames(sc, mkhi_hdr, data_out, data_out_len,
-+						&received, timeout_ms);
-+	if (ret)
-+		return ret;
-+
-+	*rdata_len = received;
-+
-+	return 0;
++	xe->soc_remapper.set_sysctrl_region(xe, 0);
 +}
 +
 +/**
-+ * xe_sysctrl_mailbox_init - Initialize System Controller mailbox interface
-+ * @sc: System controller structure
++ * xe_sysctrl_init - Initialize System Controller subsystem
++ * @xe: xe device instance
 + *
-+ * Initialize system controller mailbox interface for communication.
++ * Entry point for System Controller initialization, called from xe_device_probe.
++ * This function checks platform support and initializes the system controller.
++ *
++ * Return: 0 on success, error code on failure
 + */
-+void xe_sysctrl_mailbox_init(struct xe_sysctrl *sc)
++int xe_sysctrl_init(struct xe_device *xe)
 +{
-+	u32 ctrl_reg;
-+
-+	ctrl_reg = xe_mmio_read32(sc->mmio, SYSCTRL_MB_CTRL);
-+	sc->phase_bit = (ctrl_reg & MKHI_FRAME_PHASE) ? 1 : 0;
-+}
-+
-+/**
-+ * xe_sysctrl_send_command - Send command to System Controller via mailbox
-+ * @xe: XE device instance
-+ * @cmd: Pointer to xe_sysctrl_mailbox_command structure
-+ * @rdata_len: Pointer to store actual response data size (can be NULL)
-+ *
-+ * Send a command to the System Controller using MKHI protocol. Handles
-+ * command preparation, fragmentation, transmission, and response reception.
-+ *
-+ * Return: 0 on success, negative error code on failure
-+ */
-+int xe_sysctrl_send_command(struct xe_device *xe,
-+			    struct xe_sysctrl_mailbox_command *cmd,
-+			    size_t *rdata_len)
-+{
-+	struct xe_sysctrl *sc;
-+	u8 group_id, command_code;
-+	u8 *mbox_cmd = NULL;
-+	size_t cmd_size = 0;
-+	int ret = 0;
-+
-+	if (!xe) {
-+		pr_err("sysctrl: Invalid device handle\n");
-+		return -EINVAL;
-+	}
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
++	struct xe_sysctrl *sc = &xe->sc;
++	int ret;
 +
 +	if (!xe->info.has_sysctrl)
++		return 0;
++
++	if (!xe->soc_remapper.set_sysctrl_region)
 +		return -ENODEV;
 +
-+	sc = &xe->sc;
++	xe->soc_remapper.set_sysctrl_region(xe, SYSCTRL_MAILBOX_INDEX);
 +
-+	if (!cmd) {
-+		xe_err(xe, "sysctrl: Invalid command buffer\n");
-+		return -EINVAL;
-+	}
-+
-+	group_id = XE_SYSCTRL_APP_HDR_GROUP_ID(&cmd->header);
-+	command_code = XE_SYSCTRL_APP_HDR_COMMAND(&cmd->header);
-+
-+	if (!cmd->data_in && cmd->data_in_len) {
-+		xe_err(xe, "sysctrl: Invalid input parameters\n");
-+		return -EINVAL;
-+	}
-+
-+	if (!cmd->data_out && cmd->data_out_len) {
-+		xe_err(xe, "sysctrl: Invalid output parameters\n");
-+		return -EINVAL;
-+	}
-+
-+	might_sleep();
-+
-+	ret = xe_sysctrl_mailbox_prepare_command(xe, group_id, command_code,
-+						 cmd->data_in, cmd->data_in_len,
-+						 &mbox_cmd, &cmd_size);
-+	if (ret) {
-+		xe_err(xe, "sysctrl: Failed to prepare command: %d\n", ret);
-+		return ret;
-+	}
-+
-+	guard(xe_pm_runtime)(xe);
-+
-+	guard(mutex)(&sc->cmd_lock);
-+
-+	ret = xe_sysctrl_mailbox_send_command(sc, mbox_cmd, cmd_size,
-+					      cmd->data_out, cmd->data_out_len, rdata_len,
-+					      SYSCTRL_MB_DEFAULT_TIMEOUT_MS);
++	ret = devm_add_action_or_reset(xe->drm.dev, xe_sysctrl_fini, xe);
 +	if (ret)
-+		xe_err(xe, "sysctrl: Mailbox command failed: %d\n", ret);
++		return ret;
 +
-+	kfree(mbox_cmd);
++	sc->mmio = devm_kzalloc(xe->drm.dev, sizeof(*sc->mmio), GFP_KERNEL);
++	if (!sc->mmio)
++		return -ENOMEM;
 +
-+	return ret;
++	xe_mmio_init(sc->mmio, tile, tile->mmio.regs, tile->mmio.regs_size);
++	sc->mmio->adj_offset = SYSCTRL_BASE;
++	sc->mmio->adj_limit = U32_MAX;
++
++	ret = drmm_mutex_init(&xe->drm, &sc->cmd_lock);
++	if (ret)
++		return ret;
++
++	xe_sysctrl_mailbox_init(sc);
++
++	return 0;
 +}
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
+new file mode 100644
+index 000000000000..ee7826fe4c98
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sysctrl.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#ifndef _XE_SYSCTRL_H_
++#define _XE_SYSCTRL_H_
++
++struct xe_device;
++
++int xe_sysctrl_init(struct xe_device *xe);
++
++#endif /* _XE_SYSCTRL_H_ */
 -- 
 2.43.0
 
