@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C727D35662
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 00:48:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A12CD35661
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 00:48:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3943F10E5E2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4079010E5E5;
 	Wed, 28 Jan 2026 00:48:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XeAOc9jJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sl1bG/6H";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EF8410E5DA;
- Wed, 28 Jan 2026 00:48:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA1FE10E5DD;
+ Wed, 28 Jan 2026 00:48:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769561331; x=1801097331;
+ t=1769561329; x=1801097329;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=r3Vehl4OndggIDmEgz7+9BnBrwvQR9H0lkmrnllQyUk=;
- b=XeAOc9jJMWxv9gn7eVGGynktluDuAC5y4Vup63wfYlaQ0elMs5fAGr42
- Gzi6NfcwOIRULAl3q21tZwTL/Xj+7i5a4nTzOTxui2py4GWAwzRYoMd75
- UNbn7moAMIKjmnEhEkgxR6cXsOamzvilX/MdE9F/KyI+GNe0SDOYGPKE+
- D1045TNoJ8xbXBcJQ3+2RiCyG3d/NqifNNuU/aSy2V/qpqxVKRFOVh+ym
- JRfC5QC9hVHKjUIDdmDy0xZxMKltbTHgRSQxQ3AeAj9s3zkDf4spFYL3I
- gkXAyT+FNRAxJ9HI3MwwkApzBaFx80kEhOYat+B0XIw48y6txIxf65w32 A==;
-X-CSE-ConnectionGUID: 0wWHUs+vTRKxqHo3JIpbRQ==
-X-CSE-MsgGUID: erG0bNNuTCG3dM8rRK1Gbw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="93427532"
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="93427532"
+ bh=OnOQh1Qj33/UNnWPRm4ArdCwn+OnRbMVCy4pH3tEYXA=;
+ b=Sl1bG/6HBDTQCq7ZtvezBe3D8ehngPp81IeQoZ3iJlhBS8bTAuencvtb
+ 46igQwLEIe+jPyKSdJ6PzDQb085K4CorWpmOWUSXlEtS9dR71IY/zOccp
+ rUdrHznqSWclkdqUlzUti0MDK+4+a27WT9+KhhVsW7Qie7CwkqAMto9C7
+ kvyQE22cJHbTCyLBkfjrmzjJ7+XwWOsERTDpyv8BSY9C9ac83MvvgzDrV
+ nE8YZizLGQRd9464ZRfClhQ59jL1/u/tlHmbOfqtC4dMoCCD+gbL1XQ1L
+ 2dBMsiMX7D1/CsgJaLwrQKAAKpMy6/DNJ8UwAi/6LDAAbqDDl8FTqACbi A==;
+X-CSE-ConnectionGUID: uEJxkX6AT525NTrmhGLyCQ==
+X-CSE-MsgGUID: M0Q9+/GqTE2iBKoJkSsKvA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11684"; a="93427518"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="93427518"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Jan 2026 16:48:48 -0800
-X-CSE-ConnectionGUID: 7j2UDeYsQa+HOroB1vFbGQ==
-X-CSE-MsgGUID: KPUroDZYS5GtbmDBivPUVQ==
+X-CSE-ConnectionGUID: lKB6kxkKTtGoQ5dg5tV6sw==
+X-CSE-MsgGUID: 0LSlxnlMSpSI6rxqnVN2WQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="238822673"
+X-IronPort-AV: E=Sophos;i="6.21,257,1763452800"; d="scan'208";a="238822657"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Jan 2026 16:48:48 -0800
@@ -47,10 +47,9 @@ To: intel-xe@lists.freedesktop.org,
 Cc: leonro@nvidia.com, francois.dugast@intel.com,
  thomas.hellstrom@linux.intel.com, himal.prasad.ghimiray@intel.com,
  jgg@ziepe.ca
-Subject: [RFC PATCH v3 09/11] drm/xe: Drop BO dma-resv lock during SVM
- migrate-to-device
-Date: Tue, 27 Jan 2026 16:48:39 -0800
-Message-Id: <20260128004841.2436896-10-matthew.brost@intel.com>
+Subject: [RFC PATCH v3 05/11] drm/pagemap: Reduce number of IOVA link calls
+Date: Tue, 27 Jan 2026 16:48:35 -0800
+Message-Id: <20260128004841.2436896-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260128004841.2436896-1-matthew.brost@intel.com>
 References: <20260128004841.2436896-1-matthew.brost@intel.com>
@@ -70,51 +69,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Device-to-device migration may require DRM pagemap IOVA allocations,
-which are allowed to acquire dma-resv locks. To support this, pin the BO
-before initiating the migration, preventing immediate eviction and
-allowing dma-resv locks to be taken safely during the migration process.
+Each IOVA link call results in a page walk, which is relatively
+expensive. Reduce the number of IOVA link calls by collapsing
+contiguous physical pages into a single IOVA link operation.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_svm.c | 19 +++++++++++++++----
- 1 file changed, 15 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/drm_pagemap.c | 49 ++++++++++++++++++++++++++---------
+ 1 file changed, 37 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index eb8d8fe6ff75..c2a6bb367e0a 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -1077,15 +1077,26 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
- 			block->private = vr;
+diff --git a/drivers/gpu/drm/drm_pagemap.c b/drivers/gpu/drm/drm_pagemap.c
+index b928c89f4bd1..a167064ce41a 100644
+--- a/drivers/gpu/drm/drm_pagemap.c
++++ b/drivers/gpu/drm/drm_pagemap.c
+@@ -305,7 +305,8 @@ drm_pagemap_migrate_map_system_pages(struct device *dev,
+ 				     struct dma_iova_state *state)
+ {
+ 	struct page *dummy_page = NULL;
+-	unsigned long i, psize;
++	unsigned long i, j, psize;
++	phys_addr_t phys = -1;
+ 	bool try_alloc = false;
  
- 		xe_bo_get(bo);
-+		/* Guard against eviction */
-+		ttm_bo_pin(&bo->ttm);
+ 	for (i = 0; i < npages;) {
+@@ -339,26 +340,50 @@ drm_pagemap_migrate_map_system_pages(struct device *dev,
  
- 		/* Ensure the device has a pm ref while there are device pages active. */
- 		xe_pm_runtime_get_noresume(xe);
--		/* Consumes the devmem allocation ref. */
--		err = drm_pagemap_migrate_to_devmem(&bo->devmem_allocation, mm,
--						    start, end, &mdetails);
- 		xe_bo_unlock(bo);
--		xe_bo_put(bo);
-+
- 	}
-+
-+	/* Consumes the devmem allocation ref. */
-+	err = drm_pagemap_migrate_to_devmem(&bo->devmem_allocation, mm,
-+					    start, end, &mdetails);
-+
-+	xe_bo_lock(bo, false);
-+	ttm_bo_unpin(&bo->ttm);
-+	ttm_bo_move_to_lru_tail_unlocked(&bo->ttm);
-+	xe_bo_unlock(bo);
-+
-+	xe_bo_put(bo);
-+
- 	xe_pm_runtime_put(xe);
- 	drm_dev_exit(idx);
+ 		if (dma_use_iova(state)) {
+ 			bool found_dummy = page && !dummy_page;
++			bool phys_match;
+ 			int err;
  
+-			if (found_dummy) {
+-				unsigned long j;
++			if (found_dummy && i) {
++				err = dma_iova_link(dev, state,
++						    page_to_phys(page),
++						    0, i * PAGE_SIZE,
++						    dir, 0);
++				if (err)
++					return err;
++			}
++
++			if (phys == -1) {
++				phys = page_to_phys(page);
++				j = i;
++				phys_match = true;
++			} else {
++				phys_match = phys + (i - j) * PAGE_SIZE ==
++					page_to_phys(page);
++			}
+ 
+-				for (j = 0; j < i; ++j) {
++			if (psize != PAGE_SIZE || !phys_match ||
++			    (i + 1) == npages) {
++				err = dma_iova_link(dev, state, phys,
++						    j * PAGE_SIZE,
++						    psize * ((i - j) +
++						    phys_match),
++						    dir, 0);
++				if (err)
++					return err;
++
++				if (!phys_match && (i + 1) == npages) {
+ 					err = dma_iova_link(dev, state,
+ 							    page_to_phys(page),
+-							    j * PAGE_SIZE,
+-							    PAGE_SIZE, dir, 0);
++							    i * PAGE_SIZE,
++							    psize,
++							    dir, 0);
+ 					if (err)
+ 						return err;
+ 				}
+-			}
+ 
+-			err = dma_iova_link(dev, state, page_to_phys(page),
+-					    i * PAGE_SIZE, psize,
+-					    dir, 0);
+-			if (err)
+-				return err;
++				phys = page_to_phys(page);
++				j = i;
++			}
+ 
+ 			if (page != dummy_page)
+ 				dma_addr = state->addr + i * PAGE_SIZE;
 -- 
 2.34.1
 
