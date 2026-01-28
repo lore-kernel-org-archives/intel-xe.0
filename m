@@ -4,189 +4,170 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFE58D46C01
-	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 23:43:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DBE5D46C0F
+	for <intel-xe@archiver.kernel.org>; Wed, 28 Jan 2026 23:59:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7824D10E0ED;
-	Wed, 28 Jan 2026 23:43:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5750210E0ED;
+	Wed, 28 Jan 2026 23:59:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XAf97OtZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="etnsWKlk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E599510E0ED
- for <intel-xe@lists.freedesktop.org>; Wed, 28 Jan 2026 23:43:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D050C10E0ED
+ for <intel-xe@lists.freedesktop.org>; Wed, 28 Jan 2026 23:59:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769643787; x=1801179787;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=9WzvroAMSrWJ42nnJa/fB1vybq9kSuQIpjLKLKZDUOI=;
- b=XAf97OtZfdmEvKaaqHknoMyT93ULzk+i262kJMMEWCMyV2FCupGeH2tS
- YR/XJQuG2jmrl82XsbwYThQisYAm37Wiy5/sYGc2QXGKhDfbnNBzm30SM
- fkx9/c7IFUTP8JABVQBCyIMWlIM80i/TStTPndRFnDu0W7KIY3DUdZMZS
- yf1LkSgCu7Oq+gNRLgvteAjqxXDowx1/MRyme76Ud7f6Xd3sMDsMoAk3j
- 1/Frc2Z6Crazas+dbfsO4RTM4CqgiCggTXzR0Ny+Nolx880Msc7ZIRTRP
- FyhcIbg4+e8ARwYVKJhhCTL22P8E7F3L9y63t31X1xpZ2fveHnA8kGebM Q==;
-X-CSE-ConnectionGUID: PPBrxdZDTe+OCluEwsLXBQ==
-X-CSE-MsgGUID: QUiRCtcfTqWQv2EuN8yV9A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="70910455"
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="70910455"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 15:43:06 -0800
-X-CSE-ConnectionGUID: bYZGUqC1RNON3MVtamfsGA==
-X-CSE-MsgGUID: De0CHzlxT8yjhcB3+0YlDQ==
+ t=1769644792; x=1801180792;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=ZFvwL3V4cC5p0lEUgdoYukIB2Vpa+3Y+SmJmt7AIzLs=;
+ b=etnsWKlkNceDV4DEH7mJD6s/yFCWZuCo8z+OgcQMz9hrqPqam3XsiI5q
+ d/J/6XWrZD7DK9XlBzhP14U8aejTo/QF3YgTBgeZT0iefJPqPae7GrEAO
+ ShZCGDoePU3d8HtmolWDh8ytW3zfparmNFuQl7BucCEVG6lrfe3diHrMt
+ VIPnwtMZQhNpOytfpeLcflhSAJOhGvArPcHUFZjFG5nsjtEzX6FYM+OTy
+ CMicj3ZRCe2Jhc1semaQVkOKSoXMVGOOjKYYmzyzphmJDNEz3oJiBlFbD
+ fiEKsDlnPCh/Qbf0a+L1YR9wLcup78kvrfZi3GNOUSKoKk7pWODndKh9h Q==;
+X-CSE-ConnectionGUID: NbEPKEAYSBCj4BBGao9i4Q==
+X-CSE-MsgGUID: 4HZhQ7KRQD6411qGNXOIuw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="96334931"
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="96334931"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 15:59:51 -0800
+X-CSE-ConnectionGUID: u41AjF6FRdq0xkrWPbxScg==
+X-CSE-MsgGUID: zrk2Ta2rTCmptUJjDdSAbg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="208768059"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 15:43:06 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.21,258,1763452800"; d="scan'208";a="213273941"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Jan 2026 15:59:51 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 28 Jan 2026 15:43:05 -0800
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.35; Wed, 28 Jan 2026 15:59:51 -0800
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Wed, 28 Jan 2026 15:43:05 -0800
-Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.36) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.35 via Frontend Transport; Wed, 28 Jan 2026 15:59:51 -0800
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.15) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 28 Jan 2026 15:43:05 -0800
+ 15.2.2562.35; Wed, 28 Jan 2026 15:59:50 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=W6TMB3uyM0H1R/Pumi/MlmxxhquFnTLebHtRHnjDzXRWkiFjcMTMNYQc4VoKe/jfQEwPAnTr3EpaRJzjzuhr0fLsDjqzGqWHDRH6iVme8JMGbSfEY2pbbtNxaXdyy5wwV6IQzRi4Ysk7P0cF2hgXY0TlNaIeN1i7OjgEzxctudHR5wzhjc/JD+boi+W+cArRCwfaoIns9nYA6wln40+bQGVupTQS8MI9llNKo//NiHWdDSIWyIDvdvN+Ruq4SzHXlqFeOPa3irHolRskygmLIrWWeb524xi9qx3jITndL2hehwH9GsR5A1jv6W0LHNJd9yg28cN9ko0j50Remul0bg==
+ b=pJBdU8wS1FtdZ6ABNtXUnEuUu2n3dD7AZ/p5cWN+ptppDjIJaWK4kbKFd3/CS+0tW5i36+rQZrstJ+4cxh64BoWXrpnfaIpN4DNPzqjCwCLiXC2kfzN9QoWzXztIxxF1N0LdxCwQ8Dlj6i8wYlWwx1n/xzIeICUXi9MgC3pZf1Q0/CMs3PfxVo0Rl9nk/IOOnt25/Tu/NrJHP9lrHAlH8IdLW8U7mgwuht1G/D2kNLYJQzy77FjW2DWNAboJ0w27tXaIs1PUzCCzVu3oR2yXtKbSQKrNN7sUIJ2oeJA6fK14TmgMy3kilEkIH01wIIs2QNTJ0PzNWztkE4Jh9EVjig==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SGwy68WIPWp/rYEXb1Qu4Iyj2X8zou/srWrHQNyqrK8=;
- b=WoDqnWiwIVQMG3bZcWH8LMSjAgGDlgVXm66UIwdXV8dSCxit87rxew3sxdaKhu/TskRzeAYgI0r0pkHMVHEyFkDUiDE0MnPmOFE6yFKkAP1YtGAeMbMLThpOnCSuSOhKPr/ktSVmEv2jS+VNeKxTPuOx8HKRF1+kl3jHJ0D2Cbgk58+Jevi4Z0FB5RXz7vuj8+dQtJELXIoS/WMEY9ZTdm/Uno0XZFmA4WfwX6lriG3EOchV2S6rsj2y97vjJX/Xabi40oKmecovFkvrIxR0EgOC7WAgNZfQmzhkmBehBXTSAzzDOSNKNVQIF5imXdrsS57EUue9MkWjZTvaAmMAhQ==
+ bh=JaFAbmR83DTF0x28Ourj1Ig1AWhrwbEDk7CljsFYq9E=;
+ b=G/Zd58ADaDoHj92vQVTweEEitQU/Xzn7dFlyhMTbWUzqSFkkoH+IbQbq2mUfjIF7KWgMMjjfX4A6tiVU85nmkyAfj4zLJ2lv8wsGgFWQdSZ0EhKuY0W6KWG094xgPKb5/tLmvkI71vPQGrmwVT9+A5A3rFUrhH15BwfOuyDzCx6m3DCwA9/+u9yeucuI5VxEkHd3n9DCtfPaHiNBIdiyymMqLAyOZtFVp95riuIazG+GBzRI59iXvjfu091AcSIZxWHie+DWr5ZgF4lvmuzR0V4hPOcsL9YREmMfPqSkHXz6gcVsDJijsxbKy6pbcPiC0jGIG6fao2VTwulZjw/tzw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by DM4PR11MB5261.namprd11.prod.outlook.com (2603:10b6:5:388::13) with
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by DM3PPF58BF5162C.namprd11.prod.outlook.com (2603:10b6:f:fc00::f23) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.7; Wed, 28 Jan
- 2026 23:43:03 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811%3]) with mapi id 15.20.9564.006; Wed, 28 Jan 2026
- 23:43:03 +0000
-Message-ID: <ec7f72fa-409b-466c-8cc9-65b50c46b1c3@intel.com>
-Date: Thu, 29 Jan 2026 00:42:59 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/5] drm/xe/configfs: Add sriov.admin_only_pf attribute
-To: =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9542.16; Wed, 28 Jan
+ 2026 23:59:43 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e%7]) with mapi id 15.20.9564.007; Wed, 28 Jan 2026
+ 23:59:43 +0000
+Date: Wed, 28 Jan 2026 15:59:40 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>
 CC: <intel-xe@lists.freedesktop.org>
-References: <20260121214218.2817-1-michal.wajdeczko@intel.com>
- <20260121214218.2817-6-michal.wajdeczko@intel.com>
- <20260128163514.snhhdbgdwzchu3x4@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20260128163514.snhhdbgdwzchu3x4@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH 12/12] drm/xe/reg_sr: Do sanity check for MCR vs non-MCR
+Message-ID: <20260128235940.GW458797@mdroper-desk1.amr.corp.intel.com>
+References: <20260116-rtp-mcr-check-v1-0-d420b9c1a327@intel.com>
+ <20260116-rtp-mcr-check-v1-12-d420b9c1a327@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: WA0P291CA0014.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:1::19) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
+In-Reply-To: <20260116-rtp-mcr-check-v1-12-d420b9c1a327@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0067.namprd05.prod.outlook.com
+ (2603:10b6:a03:332::12) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|DM4PR11MB5261:EE_
-X-MS-Office365-Filtering-Correlation-Id: 68f7b150-7312-4ea6-5e80-08de5ec6fa6a
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|DM3PPF58BF5162C:EE_
+X-MS-Office365-Filtering-Correlation-Id: 402578f7-57ab-4eef-71ba-08de5ec94e47
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Ulh4YkRFM3pMaEpBbElaSXYvRjNyOUxtcUlmbmhVclo0MmErUXNHYi9BczRD?=
- =?utf-8?B?TXFlNjA2aVpVekhOd0dwaU1zRmc4d3Q5WGE0VVpkL1c5NWRTK3Q2eGEwcHNI?=
- =?utf-8?B?UEpkMUpzajZZZW5wREx3Y25VYTJIeDNwTmdDQkd3dVZIOVFqZnJYMVBOREY0?=
- =?utf-8?B?SDM3ZmFkbHhvNFpaOVREYW9Yb0dFSmwwZmJvZlFqM1JMczZBdkRKT1lDeWZO?=
- =?utf-8?B?ZFlENEtad2M0SWh3NzQ3MjBiN0JyTDNwL3VhMTZYd21UeFZkY3NvKzlGTXg5?=
- =?utf-8?B?UnVyQXVKZjNnOHQvY2F0N00wUFNzMkJHM0tmaHJpOVdMQ2N0UDRWMDJxb29v?=
- =?utf-8?B?WkszeXFyZGhUbzEwcG1YcCtSWFlidVU4VlBzWGI0a2FWcEVqeS90ZXJORkU3?=
- =?utf-8?B?dHVNSGM5dGU5RXgwZ0ZJOHhCWWJsWHlVdTFIWFZMYTlqRDd3Wng3OWdvY2gw?=
- =?utf-8?B?eFpaQmVzZHFFYThjMlJma1Q3VCs0cGhmZ2g4dnhKYzg1cERpd1ArcTRnZis3?=
- =?utf-8?B?Z2FJNnZQenhsWVpHb3UzNnR5WkY2OVRnaS9mem5VQ2UrVTdHZHBqSWZHWlV6?=
- =?utf-8?B?eFlUcUMxam9MbHVISW9VRzJYSmRhZmM5WHdSZWlhcWFvT0dxV2NKYUZLUk9U?=
- =?utf-8?B?UGZvLzdmbDkyUUh2VFpjbnFFSnhTUzdkektSVGg2TjRFUHE2dkNicG55ZXRY?=
- =?utf-8?B?L3BXYlEzR2dqTjBCTWQxVnFCMlZlVGZYZFA4VFJXWmU0LzExUWRJdkZaWUhI?=
- =?utf-8?B?YXMxakdYMXM5MEg1eUl2ek4wai9UUy9kajUvNHBzNUhDdDgwOVF2ZENoWEhC?=
- =?utf-8?B?ZU02TFhjaDZiV2p0eGt1eHRUTEZwQXVqUGw2VWsyTmR3WmVjQU04bE1ZNCs5?=
- =?utf-8?B?VVp3YUpwV080VUJIc1JsU2xjS3AxMm81QUFyMGFHMVlzY0U2TndBWDlwNkpK?=
- =?utf-8?B?bWhUdVZFbjEzNGNWVlgyYTVtTzZWQlQ4a1Z1UzRINzl4UmwrT21nektxRi9m?=
- =?utf-8?B?QWMyU0JvRHY2Vy9FZng2dzZhK1RNM3VIME9ZeU13ZFlTcm9BTWxDK1lHZkVJ?=
- =?utf-8?B?L3VnV0psS3l4WDJ2MHNzYVRJRUpLSlZjcnI0RlFxRDNxUktESERRSjJMbEhS?=
- =?utf-8?B?MDF0eFpuSzREdXNZT1RRanNXcGY4Q0g1TzNQdGV6dFVyS3o5TDROcGNiZ0gr?=
- =?utf-8?B?dWFCbHU5RE9sTWtiVnpiN2pEOGxMOVVLaUo0d3pmZnUrQWdGYjk0NUl0bUNS?=
- =?utf-8?B?WW9ETlJLaTY4MTcvS0R4NnhXcG1HaGdBQ0x1ZGxXblJSUFBxVStnWXZWK041?=
- =?utf-8?B?OS9hQWM0V09aNXNGSVN0WTNkT2JuN0UvUnNvYm9WNVpvT3BnckhWQzdMaGE4?=
- =?utf-8?B?OEJyMnFqa2JNcyt5d1VYR3ZkRVpLYmpsL3NQakJ4am03TDJPT1AzeVZ5U0Zt?=
- =?utf-8?B?clhNaWU0bFdWUjFrVkQrbjhjSG1Bby9kVEpLTjNLM3FZUW1VS0FkWVA4eXFn?=
- =?utf-8?B?UFdXMmxJTnE2dHdLbjZCU0paWkZ1SGFWNnRQNW9aOHREYTc2VjV1KzRoNUhF?=
- =?utf-8?B?b0NGTkpUUWo3emJDUXpmU1Z0d0tIMVdmTXVOL0tmU2hxYjQ1ZFpsNkNjYm5I?=
- =?utf-8?B?Q05UVk9qRjNDdU9pNUlranBXbDY5dW83NllEUjNPcm5EQW9wbEVBR0VGZEtU?=
- =?utf-8?B?d1Z1dFhwUFozVjZyRmRiKyt5NTVCOW9lTGkzcWlNbklOenVDQWlRblFXcEM5?=
- =?utf-8?B?Ylcxb0N5cmNTKzRmY2c0Zm9UNkpjVVVsODNoZW5uMldNZHB2NU5Jc29TemRq?=
- =?utf-8?B?OFh0ZEw2WG5DOXlxY1gyMmRwUmE2L29qdkZ2bVRFUTRGVWxSQ2JYUzY2SXJT?=
- =?utf-8?B?OG5zY1k5b0Ewc0hlRWxnbWZmd0V6MU52NGZYaXJwdTRtVnJiV0s3WVpZRE1I?=
- =?utf-8?B?OUttRDU3S1VUZnJsSmVIdzdwRVdxbFI0aU5EWGpJZStWQjJudGxadDBjUUlD?=
- =?utf-8?B?bTJSMTZBaW9SUXFGNHNjUEFPTWs1YUJ5M0hmcTkydWVNVlNhZmFpS3UwOC9j?=
- =?utf-8?B?cHFSNEkza1hHTVllQ2RNWmpJNmpLeW9QTmRhWVRSdFVTVWp6YWJMUmZGYWUy?=
- =?utf-8?Q?VeqA=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?nd9/dGPgmODWhGLRza8Gacl/7jxtlRSfoKSexqDEabkikoulx3C43k70j8?=
+ =?iso-8859-1?Q?dPj8UGttZK9FdXeuY9vDjl75dVWt5lt6dTrNS6Yf8nvmJPBJTW1gEXZWN/?=
+ =?iso-8859-1?Q?4EnRFlBrZp7gVSK+tzI2cjvVzFkJhqcWfb4KJ7cVs5ehdzFtjZeYfkD5pt?=
+ =?iso-8859-1?Q?8Tw8rhIPDsPVfjq3ueJkbBbLbdnBHUgGkXPOEgJDU3aoLMjsGgZwoiowa1?=
+ =?iso-8859-1?Q?pYHdjXihj5PXHadVpesjqvef557fMeKIBIK5aoBlqePiXF7ssGVRnbYHJG?=
+ =?iso-8859-1?Q?zBNuyoK5J53IJcnDpwmJyY/jH8DylWMnxjeCy26p9e5rnVkEd4nGT1gsib?=
+ =?iso-8859-1?Q?xyjLw5bHeoN4ROJdllrA+Ts5qPgOrUd1ZfPImPosrEcI+dXOmvqL5r4Pu7?=
+ =?iso-8859-1?Q?xgWHnTQ+nXweEMJRlPoXeu9QlSr7/2CtiuqXSWtnIwjlhlFIBwkX0vu18F?=
+ =?iso-8859-1?Q?ivU8oKVrVSEmRRj29v0di/sR5QyP1UY4njwW25oJ9To8kpIn0PjIB0aLdI?=
+ =?iso-8859-1?Q?hWzMU83asE8m2ypiAdQi+RPRDjx5XOcbKIqk1RFQgnbnz6+0gUXmpoOK2y?=
+ =?iso-8859-1?Q?c7bluO5s6CVqsjcXMJt+Q+Hv8+iLV8i7Vz13clIqqWUDkY2Fps8WvkzgkT?=
+ =?iso-8859-1?Q?KI7yvf8LhOjKbIiPPK9AXC3rLUoClJQCIeujKu9oAu3DaKXtLRDu80p5Lh?=
+ =?iso-8859-1?Q?kdzxe2Z44zsbkhRi+aGOQ7yj+a5wh1AYp4qBVw+oFNw+7OtnYLeybvUD/8?=
+ =?iso-8859-1?Q?pdRcEPruIWr5vTnJLTfM5KCD+YWFlwfUkV+ghoTTGLR1XS0UzTeaCvaTcB?=
+ =?iso-8859-1?Q?i5TRdRIn41Os3IBWfqovk24Y2ouz9+KUi8BnS2YgV39BNMrpmuH2i5Surd?=
+ =?iso-8859-1?Q?fa71Kv65ATLr1cwpsNLJCQus6p5E1FP3FTXIEZSlu7dXAHYwgVsJJwQlBu?=
+ =?iso-8859-1?Q?CJq3uT41fQzCO3fqYFUtP9vM8VKvpfgn/wiJJ8YXOEuUfdYKjD2YP7d19T?=
+ =?iso-8859-1?Q?qcgUFBh40Rmh1M+gAjByjwHL1m8h706ABTh+Eaax9IKTb7S1hnZ2PxqtkE?=
+ =?iso-8859-1?Q?AqQ0BgMNUgiRjU+mDoTA1A5VSN5KYUwXkp3dSbpWgI6+pTs4Ofyn0fszMG?=
+ =?iso-8859-1?Q?PUC+68NiQ8dMN80VXaV3YKVO3mv0gGcjwxn+UDMHSUAt0di4FN4eyVkp41?=
+ =?iso-8859-1?Q?iu0Md93Oc78ibweyWCitGTVhqak6v/i6Alm4xmF6WxvMhrPib9c2qj73sl?=
+ =?iso-8859-1?Q?ef3WbapXfjIvUH2078OHFYeCqCCSQZKhpDAvwbIfUdpdg43xnCqZGS1DgD?=
+ =?iso-8859-1?Q?D6UTZECPaCbel8q5UQADG4VJd/xUW4kLghtC81k9tto1d/0D3PT/rp0MZB?=
+ =?iso-8859-1?Q?dzSkfhQXWMcbvJqbL4WjPhXYUEkCYE8GTFejrOeDr5K418If8lPlsDN8/P?=
+ =?iso-8859-1?Q?Q8xmBN06GaHecRD7Ula+wm4FwGY5d8pJ5XvK6o8WvHUBwn5diVvBIgUDKg?=
+ =?iso-8859-1?Q?qTy/wislMLusNEHMJvoLhPPqqLOVZMnxyk/drJjIjWG/INq1yUsvV0AP4X?=
+ =?iso-8859-1?Q?/6Hkj9dD+6yIEcrxryf881SAzVc0gu27OUIecwZuYkEKTYC0U/G/YeKDmf?=
+ =?iso-8859-1?Q?uLEwmdk9c77ho=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OWVqZkgxb0xxUG5tODdpTi9kLysxYThLT0hXL3dFZVlVUHhaemRLMEpGTzlN?=
- =?utf-8?B?MWZVb0V0VC9IOEJDTlBvMlRDdGUzTHBSMC9DTWNjcDdEdkw5VFp4NVpvVHJS?=
- =?utf-8?B?ZENVREQwcUJJNnp1Z3VrRmZQRURPbHB4MVd1UE5uSzBTZ0g4NXB1YzFTNHNo?=
- =?utf-8?B?b2llR1R3RWFzY2xVZXgyd3hBY3A3SGxGUjhHdUVSWHBCbC84Y0Q1SUdMbW8x?=
- =?utf-8?B?VTUwT3gvRVg4anhOY01tU2JiU3NTTWMxTmdscWJrTFBqeWFhNFE3bGRMUzVk?=
- =?utf-8?B?cjhadjBwMkxaVWdHY3lKMEZUVW9ORGszSWZhU2RzRTRoNjJKZ1BYYnRjMjZQ?=
- =?utf-8?B?YUJnSWs2UFR0WC9WcE5QUFg3QzV3T1h1Q2hLTTVpN01tM0RkWkV0NlhqSzZ2?=
- =?utf-8?B?RGRwNUJOZFZDVERhR3oxUWpONU1CSXZoY1JWVE9Gd09jc0hKZlpoWTNwaHFk?=
- =?utf-8?B?ZVBoWUdFdm5MMXFXYys0aWpZVWE4YlN4TGVJZGczMjJ1L1VzdEorVlhBSUZ1?=
- =?utf-8?B?SXZWbEJ2UW02bUxocHhYNUdhd0RJOVZLWVgwWVhTMXdyMk8vMDFFNzVmTGJD?=
- =?utf-8?B?SXlRNkNYZTF3VjZSU004cEVLTnQzZXFEVDNJc2dWbkpFT0pFa1RVN01PWlZU?=
- =?utf-8?B?MFhYSHJkWG5YWlBBWE1IMU1IMCtoaFpoS05hdGZCbWZQcHpKbm9nK3ZCWmJt?=
- =?utf-8?B?dDRMNElLK0lvcituanRwNmsvZ2FuSnd4UkpPeUUwMC9RN29MZUxhSTJXM1Vl?=
- =?utf-8?B?Zk1NeHZIQXFaWVpQcmxnZkp1ZTJhUWdFQW5TS251OGtTaDhtVDZ4bitBSGo1?=
- =?utf-8?B?VzFNOHRqVUpKUi9TTjRlWXJyNE45Qkp0VFl6QzlMZGNKRGd5NGxDUXo2TkFK?=
- =?utf-8?B?OXRNNzYvSGZtNFNDMSswNzNzNjRKUnREeDUzRUtpVDE5dFRxWXYrNm5raGo0?=
- =?utf-8?B?MHEwbWFrYjNLeHFiYzZ5R2k3NzJ3aGt0WHlVL1NKcWxwUy9pdnprdUF1WU9q?=
- =?utf-8?B?WFBQODNpVkdwc1ZZcjd3TGZUdnRhUjNWQVZGYU12S3RKaGhzUk16b2tWK1NR?=
- =?utf-8?B?cm9YNVJxdXA3MWlkcERjTDFkR3VpaFA3dlZjZ1JGRnREblE1R3dDTGtDUitP?=
- =?utf-8?B?dm5vR2FHYUt0T0RSckhReWZKdjArTmxKUGhENTQyb2tiQm1mbUN2TFQ4eTAw?=
- =?utf-8?B?ZExkcWl1RzV6ZkwxT2xlWE1YK3VFcytlbEFGcS9pL0RORmtzbTFRTGNNMTZi?=
- =?utf-8?B?YUsvUU1MeE1NaVpVTU1iTUhMOUpGUjYxZkpSOXk1U2RIaTZwQVo2cGZxcEpJ?=
- =?utf-8?B?SlVJekFQbHgrbzd6SVcwS2U5TnlGOXNkbEFhYUtMdHY2QmM4QzRKU3YyUFBq?=
- =?utf-8?B?eEZPdXE5NjZ5blNLTWIzK2lZMmZLd1pXN05CK2U3YVZFTTVMaHZINTdqQkdM?=
- =?utf-8?B?d21aMWxtZlUrbzE1NlpaRWc0VloyTUNnSTdjc2MzcSt5OHdiajBBOUVtWldD?=
- =?utf-8?B?eUNTcHpyRjJhLzNJUHRhbWNRb2ZTUzdIY3N1MU1ydHlhVXFid3pJV3E0Q2J2?=
- =?utf-8?B?ZlVGWGczbllIbzYydU9kamVhS2xCa0lGNHRsRFNUSHRTM3YxU2dkL3g1V0di?=
- =?utf-8?B?Q2duS08zNzlYZ0VpNzJsZ1pwd01nT3ZDQk5GWVcxcHdHR0hWd2JEYkcyVW15?=
- =?utf-8?B?Qzh0OW1SaVNVaTRqQUlMM2ZNRWdxYUJneUxNbzV3Smx2d1lMMjB6UDM4Vmlr?=
- =?utf-8?B?Q2JZdnVNL3hCNUYxYlNYc0J1QkQ1TVNPVm1zanZ3dnFtM3lDSDBmU3hWRnY2?=
- =?utf-8?B?UlJjT0hjeVBGRCtBc2c0YVVBQzBFRXhyMmNNbzJpZDJjbmxDNXllYnVNZWVp?=
- =?utf-8?B?V3oydEtueS9PQkN0dEo3WkNndGpnOFhkdE1Dc0N3M1lWYk9udXFhUFlrR09u?=
- =?utf-8?B?d3hTVWFsWkNpbXpDZkJmTjcxT2VMZHVYMWQ1ZE91SWRGRU1ZNGxCOG44ajdJ?=
- =?utf-8?B?R0duM0xMWFlZcC9Gc0JWR0dBZjE5ZjJUSWsvUGdZakVBaDJla3RlT092bXVk?=
- =?utf-8?B?bW1yTCtxWWxPTmYyY1pvWERlSGN4emsvT05aNDNJb0FzbmxOYWdtUEhJRkVm?=
- =?utf-8?B?OSs0clVxTEFlVkZwdGtzYm04YUZwbWkxN0h4dGxrb1ZSZGtwRlZnVFRWZzlu?=
- =?utf-8?B?aDQ3eUJZZXQ4UHJOUFJPa2tOQnQxaEk1TXNRS2FHeXh6MXAxNm5tOXl1cWJp?=
- =?utf-8?B?cnA0VWJ0Y09hWUpuL2ZUMDkvdTV2YVE0Tm9zWEl3L1ZUTTQ0UmhIK25jYjJD?=
- =?utf-8?B?MHg4cHQ0ZmprdDlaQTJ4cHF5UkxIYjJJVWdFVHBZeldEZ3M2ZTNRZXNkNUF0?=
- =?utf-8?Q?BSFXc5QXDG9xtDcs=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 68f7b150-7312-4ea6-5e80-08de5ec6fa6a
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?qYUSRCy8Mgt8TSACdqoeFVLvqCQUCjve0qyETLYMXiqn8e3pBVCascUAQJ?=
+ =?iso-8859-1?Q?T2d4VglA4EZv1rs1S2H3/cZzURrLMxqwlTEV+2B173ey6B/NqitYMmpPDg?=
+ =?iso-8859-1?Q?QkFuxL/+qzBaFo8N7Plite8K1SvKKVVSU0rsACake/+SckUlf6mE7eXvkf?=
+ =?iso-8859-1?Q?U/w5yvQK9ioZcjHh2UJ3oXDsvY5i5zSEGeyxuiBAcFees23gEt0211AhiE?=
+ =?iso-8859-1?Q?ibTtXVf3Bv9kY2dhwJyC0JPM43znFhUmsONP8KJSPchhvzwf0kEOYMBdfA?=
+ =?iso-8859-1?Q?YB8G8ogYB6jF8v4UZ7pX7Tg+qhUwdB14bR9CTrmQLOBUWSJA1AzhXuwILK?=
+ =?iso-8859-1?Q?cjNdprdt7pkCuopfsVfhbdFfZvvXvgpsLjaiIHXoRYZMDmNn+hDL216nfV?=
+ =?iso-8859-1?Q?vUAbX/G7TqXdfdRCG9vv4dZqHqZTysaRzmyGS3QoxKGn6blx7hb74PnR1W?=
+ =?iso-8859-1?Q?HvDcPWdRL8HxTlskWF20y4bwVUOGXNfzHBshAW91TrUFBcrDbreOMnG3TZ?=
+ =?iso-8859-1?Q?43b+cV3RjYFFpsNlSfEK/JNzoVVQhMoJISW2ep10od0/zI7kXeOfOBMwGx?=
+ =?iso-8859-1?Q?9EzNfI1bwxeRZqTAc4G3JIgbqvnpHXKgHro5hf6yaUOmOHBXZzvg3Q3pip?=
+ =?iso-8859-1?Q?EcflT4saaHD/C8aong60Awz+Hn8oy1HCZGXiQUASMOJQPW+yFdKQrOttPn?=
+ =?iso-8859-1?Q?iarXqz2crRkIIUHEabcQ4unYcM6gvvg1x+elaDVQthDhn9wCYNzXgeyB4p?=
+ =?iso-8859-1?Q?Zt5vXgTyqkgM1h0Gf+3zXLxrFlONIG87qjW1E4uISsb8x2CxfAD47juDWq?=
+ =?iso-8859-1?Q?xcsvhZvmLAccVkKoescc1s0gjOOusf3OpIMARsDkJOmuAqhy2Bzd9ZNKn2?=
+ =?iso-8859-1?Q?WEy0fzSBJp+UWOt9Jmv+Mw6wGaAzq63ywSPASvukOydVd/OGruTtrtCb/j?=
+ =?iso-8859-1?Q?GzyENNmW8CMgbjyAEJn2x06qntaFRT8r0SCOtPEt8VyyWUnY5xkJ6N9wlD?=
+ =?iso-8859-1?Q?B5JF0Pg3uUnyb1LxnFSsxocJQhk76RDJXP4RqL/BGxE669HPCuyZptMq+u?=
+ =?iso-8859-1?Q?25UlBDi+HtwGsTYDLBtVF/JOeXZ+NLCd25rYOkShTVw0RxJUC1zlzZ6A96?=
+ =?iso-8859-1?Q?XmxpdTvfHqwqGBUEFka/rA6vmcQIY457n1edvOlrymSzs/faY1RaKKdlXz?=
+ =?iso-8859-1?Q?3jCazu1V8OGU9AkYpUR5blrU6BSr92YsVCvYv6GaeoHmOVJ6b642pDHq2i?=
+ =?iso-8859-1?Q?TfgCL9HG5ds1rAkIN8L0lIhkQWuke9cBeiW6Fpn2mLJkl3CzhURBM8gtCx?=
+ =?iso-8859-1?Q?p4rtY4Jt4dTPEiyrI/bSqCDLqZFdxo1PNcNHtZorTjBRoE7KxkCYdKHr9U?=
+ =?iso-8859-1?Q?GvRFBq4JLPH/LrFG4SHNc/gATtG5iVqGVuvBD+95Jnns59kKBWB0l/Fs0L?=
+ =?iso-8859-1?Q?Dkxh8OH1EtmnG7umBQgmqR5MbJQmwWJNMRI/HOs3CxYmEjYp20LAD0OVl8?=
+ =?iso-8859-1?Q?+FVEfajNtela+MC0+Nmr5QVuH3uAxC2ujqHyHdLQLQL7txK2kPMno/C8sv?=
+ =?iso-8859-1?Q?uZpO/beUv6r0vdse++RGCkDRvlExSqVDwybqYuQmsxBEq6FJePOn9rUtQD?=
+ =?iso-8859-1?Q?/Sd5j6jpZaQNqlVzr3K2CP7F9hJf3YcOVwXZD+XNCIi22g+FiIupM+ZoK2?=
+ =?iso-8859-1?Q?DBt5TjPkFKX2CuMbLNnUPqvlTXGmAWICw0zBnPVm6QqkH1ubS6z3jNYAuQ?=
+ =?iso-8859-1?Q?zP9HBecq9gxRD+OtOu+EBXQA+PUsx2cPzpeMJ7ikRHLQh5vVDxgaWx+0Rw?=
+ =?iso-8859-1?Q?EJH5JSJmnTJQc/9PhXdPQpRQUF/MaYY=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 402578f7-57ab-4eef-71ba-08de5ec94e47
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2026 23:43:03.2081 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jan 2026 23:59:42.9629 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TSdexDzbufu4arZKC29JccLrsEopL0LQ+SWrgsejPXiY4foV9k4ZIaUKe2RTmlubfKWRZf29pr8IPFVaeJI2ma/dzg1DVDP17kahA0FF8UI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5261
+X-MS-Exchange-CrossTenant-UserPrincipalName: PAmCQJRGJfDJRlawqVm6SWPYvXiO11AT2VjpsI8gBRQJzkGFekfQShlUrdBybM6WkFQpstYNtOPBj7H/V0yPe0QrQ1nr1G8+RumA0Bpttg0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPF58BF5162C
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -202,209 +183,347 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 1/28/2026 5:35 PM, Piotr Piórkowski wrote:
-> Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on śro [2026-sty-21 22:42:16 +0100]:
->> Instead of relying on fixed relation to the display probe flag,
->> add configfs attribute to allow an administrator to configure
->> desired PF operation mode in a more flexible way.
->>
->> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_configfs.c | 61 ++++++++++++++++++++++++++++++++
->>  drivers/gpu/drm/xe/xe_configfs.h |  6 ++++
->>  drivers/gpu/drm/xe/xe_defaults.h |  1 +
->>  drivers/gpu/drm/xe/xe_sriov_pf.c |  2 +-
->>  4 files changed, 69 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
->> index a823b0bd4ebb..2596810f4366 100644
->> --- a/drivers/gpu/drm/xe/xe_configfs.c
->> +++ b/drivers/gpu/drm/xe/xe_configfs.c
->> @@ -264,6 +264,7 @@ struct xe_config_group_device {
->>  		bool enable_psmi;
->>  		struct {
->>  			unsigned int max_vfs;
->> +			bool admin_only_pf;
->>  		} sriov;
->>  	} config;
->>  
->> @@ -282,6 +283,7 @@ static const struct xe_config_device device_defaults = {
->>  	.enable_psmi = false,
->>  	.sriov = {
->>  		.max_vfs = XE_DEFAULT_MAX_VFS,
->> +		.admin_only_pf = XE_DEFAULT_ADMIN_ONLY_PF,
->>  	},
->>  };
->>  
->> @@ -898,10 +900,40 @@ static ssize_t sriov_max_vfs_store(struct config_item *item, const char *page, s
->>  	return len;
->>  }
->>  
->> +static ssize_t sriov_admin_only_pf_show(struct config_item *item, char *page)
->> +{
->> +	struct xe_config_group_device *dev = to_xe_config_group_device(item->ci_parent);
->> +
->> +	guard(mutex)(&dev->lock);
->> +
->> +	return sprintf(page, "%s\n", str_yes_no(dev->config.sriov.admin_only_pf));
->> +}
->> +
->> +static ssize_t sriov_admin_only_pf_store(struct config_item *item, const char *page, size_t len)
->> +{
->> +	struct xe_config_group_device *dev = to_xe_config_group_device(item->ci_parent);
->> +	bool admin_only_pf;
->> +	int ret;
->> +
->> +	guard(mutex)(&dev->lock);
->> +
->> +	if (is_bound(dev))
->> +		return -EBUSY;
->> +
->> +	ret = kstrtobool(page, &admin_only_pf);
->> +	if (ret)
->> +		return ret;
->> +
->> +	dev->config.sriov.admin_only_pf = admin_only_pf;
->> +	return len;
->> +}
->> +
->>  CONFIGFS_ATTR(sriov_, max_vfs);
->> +CONFIGFS_ATTR(sriov_, admin_only_pf);
->>  
->>  static struct configfs_attribute *xe_config_sriov_attrs[] = {
->>  	&sriov_attr_max_vfs,
->> +	&sriov_attr_admin_only_pf,
->>  	NULL,
->>  };
->>  
->> @@ -912,6 +944,8 @@ static bool xe_config_sriov_is_visible(struct config_item *item,
->>  
->>  	if (attr == &sriov_attr_max_vfs && dev->mode != XE_SRIOV_MODE_PF)
->>  		return false;
->> +	if (attr == &sriov_attr_admin_only_pf && dev->mode != XE_SRIOV_MODE_PF)
->> +		return false;
+On Fri, Jan 16, 2026 at 07:12:20PM -0300, Gustavo Sousa wrote:
+> The type struct xe_reg_mcr exists to ensure that the correct API is used
+> when handling MCR registers.  However, for in the register save/restore
+> functionality, the RTP processing always cast the register to a struct
+> xe_reg and then apply_one_mmio() selects the MMIO API based on the "mcr"
+> field of the register instance.
 > 
-> I assume you have a reason for this, but without an explanation, I don't understand this approach.
-> I assume that sriov config should only be available to PF by definition, so I don't understand
-> why you are checking for individual attr. 
-
-sriov group should be always added unless there is no .has_sriov flag
-
-and while today in this group we only have attributes for the PF, soon we might add more attributes that will be for both PF and VFs, or just for VFs
-hence the check per-attribute, to show what to do
-
+> This allows the developer to commit mistakes like passing a MCR register
+> for an RTP action for a platform where the respective register is not
+> MCR; and vice-versa.
 > 
->>  
->>  	return true;
->>  }
->> @@ -1065,6 +1099,7 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
->>  	PRI_CUSTOM_ATTR("%llx", engines_allowed);
->>  	PRI_CUSTOM_ATTR("%d", enable_psmi);
->>  	PRI_CUSTOM_ATTR("%d", survivability_mode);
->> +	PRI_CUSTOM_ATTR("%u", sriov.admin_only_pf);
->>  
->>  #undef PRI_CUSTOM_ATTR
->>  }
->> @@ -1243,6 +1278,32 @@ u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev,
->>  }
->>  
->>  #ifdef CONFIG_PCI_IOV
->> +/**
->> + * xe_configfs_admin_only_pf() - Get PF's operational mode.
->> + * @pdev: the &pci_dev device
->> + *
->> + * Find the configfs group that belongs to the PCI device and return a flag
->> + * whether the PF driver should be dedicated for VFs management only.
->> + *
->> + * If configfs group is not present, use driver's default value.
->> + *
->> + * Return: true if PF driver is dedicated for VFs administration only.
->> + */
->> +bool xe_configfs_admin_only_pf(struct pci_dev *pdev)
->> +{
->> +	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
->> +	bool admin_only_pf;
->> +
->> +	if (!dev)
->> +		return XE_DEFAULT_ADMIN_ONLY_PF;
->> +
->> +	scoped_guard(mutex, &dev->lock)
->> +		admin_only_pf = dev->config.sriov.admin_only_pf;
->> +
->> +	config_group_put(&dev->group);
->> +
->> +	return admin_only_pf;
->> +}
->>  /**
->>   * xe_configfs_get_max_vfs() - Get number of VFs that could be managed
->>   * @pdev: the &pci_dev device
->> diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
->> index e0a555b871b3..487531269511 100644
->> --- a/drivers/gpu/drm/xe/xe_configfs.h
->> +++ b/drivers/gpu/drm/xe/xe_configfs.h
->> @@ -8,6 +8,7 @@
->>  #include <linux/limits.h>
->>  #include <linux/types.h>
->>  
->> +#include "xe_defaults.h"
->>  #include "xe_hw_engine_types.h"
->>  #include "xe_module.h"
->>  
->> @@ -28,6 +29,7 @@ u32 xe_configfs_get_ctx_restore_post_bb(struct pci_dev *pdev, enum xe_engine_cla
->>  					const u32 **cs);
->>  #ifdef CONFIG_PCI_IOV
->>  unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev);
->> +bool xe_configfs_admin_only_pf(struct pci_dev *pdev);
->>  #endif
->>  #else
->>  static inline int xe_configfs_init(void) { return 0; }
->> @@ -47,6 +49,10 @@ static inline unsigned int xe_configfs_get_max_vfs(struct pci_dev *pdev)
->>  {
->>  	return xe_modparam.max_vfs;
->>  }
->> +static inline bool xe_configfs_admin_only_pf(struct pci_dev *pdev)
->> +{
->> +	return XE_DEFAULT_ADMIN_ONLY_PF;
->> +}
->>  #endif
->>  #endif
->>  
->> diff --git a/drivers/gpu/drm/xe/xe_defaults.h b/drivers/gpu/drm/xe/xe_defaults.h
->> index 9183d05b96e1..5d5d41d067c5 100644
->> --- a/drivers/gpu/drm/xe/xe_defaults.h
->> +++ b/drivers/gpu/drm/xe/xe_defaults.h
->> @@ -18,6 +18,7 @@
->>  #define XE_DEFAULT_FORCE_PROBE			CONFIG_DRM_XE_FORCE_PROBE
->>  #define XE_DEFAULT_MAX_VFS			~0
->>  #define XE_DEFAULT_MAX_VFS_STR			"unlimited"
->> +#define XE_DEFAULT_ADMIN_ONLY_PF		false
->>  #define XE_DEFAULT_WEDGED_MODE			XE_WEDGED_MODE_UPON_CRITICAL_ERROR
->>  #define XE_DEFAULT_WEDGED_MODE_STR		"upon-critical-error"
->>  #define XE_DEFAULT_SVM_NOTIFIER_SIZE		512
->> diff --git a/drivers/gpu/drm/xe/xe_sriov_pf.c b/drivers/gpu/drm/xe/xe_sriov_pf.c
->> index 919f176a19eb..47a6e0fd66e0 100644
->> --- a/drivers/gpu/drm/xe/xe_sriov_pf.c
->> +++ b/drivers/gpu/drm/xe/xe_sriov_pf.c
->> @@ -22,7 +22,7 @@
->>  
->>  static bool wanted_admin_only(struct xe_device *xe)
->>  {
->> -	return !xe->info.probe_display;
->> +	return xe_configfs_admin_only_pf(to_pci_dev(xe->drm.dev));
->>  }
-> Overall, it looks good. I'd really like to know what's going on with this approach
-> in xe_config_sriov_is_visible.
-> But still:
-> Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+> To capture such scenarios, do a sanity check in xe_reg_sr_add() and
+> raise warnings if inconsistencies are detected.
+> 
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> ---
+>  drivers/gpu/drm/xe/tests/xe_rtp_test.c | 71 ++++++++++++++++++++++++++++++----
+>  drivers/gpu/drm/xe/tests/xe_wa_test.c  | 11 +++++-
+>  drivers/gpu/drm/xe/xe_gt_mcr.c         | 21 ++++++++++
+>  drivers/gpu/drm/xe/xe_gt_mcr.h         |  1 +
+>  drivers/gpu/drm/xe/xe_reg_sr.c         | 36 +++++++++++++++++
+>  5 files changed, 132 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+> index d2255a59e58f..80bd83f56d04 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+> @@ -9,24 +9,30 @@
+>  #include <drm/drm_drv.h>
+>  #include <drm/drm_kunit_helpers.h>
+>  
+> +#include <kunit/static_stub.h>
+>  #include <kunit/test.h>
+>  
+>  #include "regs/xe_gt_regs.h"
+>  #include "regs/xe_reg_defs.h"
+>  #include "xe_device.h"
+>  #include "xe_device_types.h"
+> +#include "xe_gt_mcr.h"
+>  #include "xe_kunit_helpers.h"
+>  #include "xe_pci_test.h"
+>  #include "xe_reg_sr.h"
+>  #include "xe_rtp.h"
+>  
+> -#define REGULAR_REG1	XE_REG(1)
+> -#define REGULAR_REG2	XE_REG(2)
+> -#define REGULAR_REG3	XE_REG(3)
+> -#define MCR_REG1	XE_REG_MCR(1)
+> -#define MCR_REG2	XE_REG_MCR(2)
+> -#define MCR_REG3	XE_REG_MCR(3)
+> -#define MASKED_REG1	XE_REG(1, XE_REG_OPTION_MASKED)
+> +#define REGULAR_REG1		XE_REG(1)
+> +#define REGULAR_REG2		XE_REG(2)
+> +#define REGULAR_REG3		XE_REG(3)
+> +#define REGULAR_REG4		XE_REG(4)
+> +#define BAD_REGULAR_REG5	XE_REG(5)
+> +#define MCR_REG1		XE_REG_MCR(1)
+> +#define MCR_REG2		XE_REG_MCR(2)
+> +#define MCR_REG3		XE_REG_MCR(3)
+> +#define BAD_MCR_REG4		XE_REG_MCR(4)
+> +#define MCR_REG5		XE_REG_MCR(5)
+> +#define MASKED_REG1		XE_REG(1, XE_REG_OPTION_MASKED)
+>  
+>  #undef XE_REG_MCR
+>  #define XE_REG_MCR(...)     XE_REG(__VA_ARGS__, .mcr = 1)
+> @@ -48,6 +54,23 @@ struct rtp_test_case {
+>  	const struct xe_rtp_entry *entries;
+>  };
+>  
+> +static bool fake_xe_gt_mcr_check_reg(struct xe_gt *gt, struct xe_reg reg)
+> +{
+> +	/*
+> +	 * All supported platforms in this imaginary setup will always have REG4
+> +	 * as a non-MCR register and REG5 as MCR, meaning that BAD_MCR_REG4 and
+> +	 * BAD_REGULAR_REG5 represent programming errors to be captured by our
+> +	 * tests.
+> +	 */
+> +	if (reg.raw == BAD_REGULAR_REG5.raw)
+> +		return true;
+> +
+> +	if (reg.raw == BAD_MCR_REG4.raw)
+> +		return false;
+> +
+> +	return reg.mcr;
+> +}
+> +
+>  static bool match_yes(const struct xe_device *xe, const struct xe_gt *gt,
+>  		      const struct xe_hw_engine *hwe)
+>  {
+> @@ -304,6 +327,38 @@ static const struct rtp_to_sr_test_case rtp_to_sr_cases[] = {
+>  			{}
+>  		},
+>  	},
+> +	{
+> +		.name = "bad-mcr-reg-forced-to-regular",
+> +		.expected_reg = REGULAR_REG4,
+> +		.expected_set_bits = REG_BIT(0),
+> +		.expected_clr_bits = REG_BIT(0),
+> +		.expected_active = BIT(0),
+> +		.expected_count_sr_entries = 1,
+> +		.expected_sr_errors = 1,
+> +		.entries = (const struct xe_rtp_entry_sr[]) {
+> +			{ XE_RTP_NAME("bad-mcr-regular-reg"),
+> +			  XE_RTP_RULES(FUNC(match_yes)),
+> +			  XE_RTP_ACTIONS(SET(BAD_MCR_REG4, REG_BIT(0)))
+> +			},
+> +			{}
+> +		},
+> +	},
+> +	{
+> +		.name = "bad-regular-reg-forced-to-mcr",
+> +		.expected_reg = MCR_REG5,
+> +		.expected_set_bits = REG_BIT(0),
+> +		.expected_clr_bits = REG_BIT(0),
+> +		.expected_active = BIT(0),
+> +		.expected_count_sr_entries = 1,
+> +		.expected_sr_errors = 1,
+> +		.entries = (const struct xe_rtp_entry_sr[]) {
+> +			{ XE_RTP_NAME("bad-regular-reg"),
+> +			  XE_RTP_RULES(FUNC(match_yes)),
+> +			  XE_RTP_ACTIONS(SET(BAD_REGULAR_REG5, REG_BIT(0)))
+> +			},
+> +			{}
+> +		},
+> +	},
+>  };
+>  
+>  static void xe_rtp_process_to_sr_tests(struct kunit *test)
+> @@ -522,6 +577,8 @@ static int xe_rtp_test_init(struct kunit *test)
+>  	xe->drm.dev = dev;
+>  	test->priv = xe;
+>  
+> +	kunit_activate_static_stub(test, xe_gt_mcr_check_reg, fake_xe_gt_mcr_check_reg);
+> +
+>  	return 0;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/xe/tests/xe_wa_test.c b/drivers/gpu/drm/xe/tests/xe_wa_test.c
+> index 3311f05a6fc2..326278488cdb 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_wa_test.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_wa_test.c
+> @@ -13,6 +13,7 @@
+>  #include "tests/xe_mmio_intercept.h"
+>  #include "xe_device.h"
+>  #include "xe_gt.h"
+> +#include "xe_gt_mcr.h"
+>  #include "xe_hw_engine.h"
+>  #include "xe_kunit_helpers.h"
+>  #include "xe_pci_test.h"
+> @@ -38,8 +39,10 @@ static int xe_wa_test_init(struct kunit *test)
+>  {
+>  	const struct xe_pci_fake_data *param = test->param_value;
+>  	struct xe_pci_fake_data data = *param;
+> -	struct xe_device *xe;
+>  	struct device *dev;
+> +	struct xe_device *xe;
+> +	struct xe_gt *gt;
+> +	int id;
+>  	int ret;
+>  
+>  	dev = drm_kunit_helper_alloc_device(test);
+> @@ -52,6 +55,12 @@ static int xe_wa_test_init(struct kunit *test)
+>  	ret = xe_pci_fake_device_init(xe);
+>  	KUNIT_ASSERT_EQ(test, ret, 0);
+>  
+> +	/* Needed for sanitize_mcr(). */
+> +	for_each_gt(gt, xe, id) {
+> +		xe_gt_mcr_init_early(gt);
+> +		xe_gt_mmio_init(gt);
+> +	}
+> +
+>  	kunit_activate_static_stub(test,
+>  				   xe_mmio_intercept_read32,
+>  				   xe_wa_mmio_intercept_read32);
+> diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+> index e7eb3c6da234..c6d9766b6cc6 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+> @@ -3,6 +3,8 @@
+>   * Copyright � 2022 Intel Corporation
+>   */
+>  
+> +#include <kunit/static_stub.h>
+> +
+>  #include "xe_gt_mcr.h"
+>  
+>  #include "regs/xe_gt_regs.h"
+> @@ -623,6 +625,25 @@ static bool reg_in_steering_type_ranges(struct xe_gt *gt,
+>  	return false;
+>  }
+>  
+> +/*
+> + * xe_gt_mcr_check_reg - check if a register is recognized by this GT as MCR
+> + * @gt: GT structure
+> + * @reg: The register to check
+> + *
+> + * Returns true if the register offset falls within one of the MMIO ranges
+> + * classified as MCR for the GT.
+> + */
+> +bool xe_gt_mcr_check_reg(struct xe_gt *gt, struct xe_reg reg)
+> +{
+> +	KUNIT_STATIC_STUB_REDIRECT(xe_gt_mcr_check_reg, gt, reg);
+> +
+> +	for (int type = 0; type <= IMPLICIT_STEERING; type++)
+> +		if (reg_in_steering_type_ranges(gt, reg, type))
+> +			return true;
+> +
+> +	return false;
+> +}
+> +
+>  /*
+>   * xe_gt_mcr_get_nonterminated_steering - find group/instance values that
+>   *    will steer a register to a non-terminated instance
+> diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.h b/drivers/gpu/drm/xe/xe_gt_mcr.h
+> index 283a1c9770e2..d6b50b52b1d5 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_mcr.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_mcr.h
+> @@ -26,6 +26,7 @@ void xe_gt_mcr_unicast_write(struct xe_gt *gt, struct xe_reg_mcr mcr_reg,
+>  void xe_gt_mcr_multicast_write(struct xe_gt *gt, struct xe_reg_mcr mcr_reg,
+>  			       u32 value);
+>  
+> +bool xe_gt_mcr_check_reg(struct xe_gt *gt, struct xe_reg reg);
+>  bool xe_gt_mcr_get_nonterminated_steering(struct xe_gt *gt,
+>  					  struct xe_reg_mcr reg_mcr,
+>  					  u8 *group, u8 *instance);
+> diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
+> index d3e13ea33123..89d35301defa 100644
+> --- a/drivers/gpu/drm/xe/xe_reg_sr.c
+> +++ b/drivers/gpu/drm/xe/xe_reg_sr.c
+> @@ -68,14 +68,49 @@ static void reg_sr_inc_error(struct xe_reg_sr *sr)
+>  #endif
+>  }
+>  
+> +static struct xe_reg sanitize_mcr(struct xe_reg_sr *sr,
+> +				  const struct xe_reg_sr_entry *e,
+> +				  struct xe_gt *gt)
+> +{
+> +	struct xe_reg reg = e->reg;
+> +	bool is_mcr;
+> +
+> +	/*
+> +	 * We need the gt structure to check MCR ranges.
+> +	 */
+> +	if (!gt)
+> +		return reg;
+> +
+> +	is_mcr = xe_gt_mcr_check_reg(gt, reg);
+> +
+> +	if (is_mcr && !reg.mcr) {
+> +		reg.mcr = 1;
+> +		xe_gt_warn(gt, "xe_reg_sr_entry using non-MCR register for address 0x%x, forcing MCR\n",
+> +			   reg.addr);
+> +		reg_sr_inc_error(sr);
+> +	}
+> +
+> +	if (!is_mcr && reg.mcr) {
+> +		reg.mcr = 0;
+> +		xe_gt_warn(gt, "xe_reg_sr_entry using MCR register for address 0x%x, forcing non-MCR\n",
+> +			   reg.addr);
+> +		reg_sr_inc_error(sr);
+> +	}
 
-thanks!
+This sanity check (and fixup) is going to happen not only on the
+non-live kunit test, but also on true device probes on hardware, right?
+In this case, we might want to consider downgrading these messages to
+notice level rather than warn.  The kunit results should let us know if
+we have a problem here (even before we have real hardware CI setup), but
+if a mistake somehow sneaks by, having warn (or error) level messages
+printed in dmesg will cause CI to consider the entire device probe a
+failure and will prevent any further testing from running on the
+platform until it's fixed.  That seems unnecessarily harsh since a
+mistake here shouldn't really impact most of the other CI results we
+could be receiving.
 
->>  
->>  static unsigned int wanted_max_vfs(struct xe_device *xe)
->> -- 
->> 2.47.1
->>
+
+Actually, related to the earlier patches in this series, I wonder if we
+truly need to mock up register accesses for non-live kunits.  It seems
+like we might still wind up with some FUNC() rules that incorrectly
+disqualify RTP entries that we want to check.  I'm thinking of oddball
+rules like xe_rtp_match_gt_has_discontiguous_dss_groups that either come
+from previous parts of driver initialization, and/or have somewhat
+non-obvious relationships to register values. It seems like for the
+purposes of checking MCR vs non-MCR status, the _only_ thing that
+matters is IP version:  IP version determines which MCR tables are used
+on the platform and IP version is the only RTP rule that actually
+matters to confirming that we're using proper register definitions.
+E.g., for an RTP entry with rules:
+
+   XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 2004),
+                GRAPHICS_STEP(B0, D0),
+                FUNC(check_foo()),
+                FUNC(check_bar()))
+   XE_RTP_ACTIONS(SET(CHKNREG, SOMEBIT)),
+
+we don't care what check_foo() and check_bar() are, or even what the
+stepping is.  Only the IP version rule is necessary to determine whether
+we should check CHKNREG's status against a specific IP version's MCR
+table and for the purposes of the kunit we can treat all other rules as
+'true' without trying to process them.
+
+So maybe a simpler approach would be to have an alternative version of
+xe_rtp_process_to_sr() intended for use in non-live kunit tests that
+just ignores everything except the IP version rules and treats
+everything else as an automatic 'true.'
+
+
+Matt
+
+> +
+> +	return reg;
+> +}
+> +
+>  int xe_reg_sr_add(struct xe_reg_sr *sr,
+>  		  const struct xe_reg_sr_entry *e,
+>  		  struct xe_gt *gt)
+>  {
+>  	unsigned long idx = e->reg.addr;
+>  	struct xe_reg_sr_entry *pentry = xa_load(&sr->xa, idx);
+> +	struct xe_reg reg;
+>  	int ret;
+>  
+> +	reg = sanitize_mcr(sr, e, gt);
+> +
+>  	if (pentry) {
+>  		if (!compatible_entries(pentry, e)) {
+>  			ret = -EINVAL;
+> @@ -96,6 +131,7 @@ int xe_reg_sr_add(struct xe_reg_sr *sr,
+>  	}
+>  
+>  	*pentry = *e;
+> +	pentry->reg = reg;
+>  	ret = xa_err(xa_store(&sr->xa, idx, pentry, GFP_KERNEL));
+>  	if (ret)
+>  		goto fail;
+> 
+> -- 
+> 2.52.0
 > 
 
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
