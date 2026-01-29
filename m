@@ -4,27 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA532D6101C
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 14:13:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A9F5D61018
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 14:20:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 597EB10E330;
-	Thu, 29 Jan 2026 14:13:55 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 767EB10E330;
- Thu, 29 Jan 2026 14:13:54 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4100847052135094722=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBE4110E86D;
+	Thu, 29 Jan 2026 14:20:04 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="COY+I1LN";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE88110E330;
+ Thu, 29 Jan 2026 14:20:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769696404; x=1801232404;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=apqALf2mZvnFPwFAMX3pLXqSOd6RTvU3jT7r+/TFQCQ=;
+ b=COY+I1LN/5i3LdC7YO1hmlFv5Ltx+PoDkdyLfwZth3PfSylc0HHigq0/
+ 4KpVsnmDQ9Ik2W8tpTssXe0NmFvHTwHUmFoiIgFek6M4Ky6tjTzCD3tQP
+ 05HlInzZrfuHsA2ttcFYCfTkIrEVsOQAlCTQstjFi9McHsqsb2hW9weba
+ m/8Hs5YRROXRGK3dQH9mn8AZLMulICeqw4E6enBnxgI0GQZbaj5DKJcW7
+ ajK3twchq3wmtp9cSorMesZNakDq1xYBmBNBZgFHJBS7IrRpAuSU+wzuo
+ 1mkgJO+IK1qKHwplkFQ7UikmYXYfdu16NUDqMt3YGX3rKdf+TMs4iBOr7 A==;
+X-CSE-ConnectionGUID: GgSVWZJ+Q+epaziioHOH0Q==
+X-CSE-MsgGUID: v8WLJIqKQXG2KZkkHW0W4g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="70831091"
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="70831091"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2026 06:20:03 -0800
+X-CSE-ConnectionGUID: +fIWDTCtRX+Rd9/3zT4Q+Q==
+X-CSE-MsgGUID: cHu1RMjnT+SWuLKUdUN45Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="208829978"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+ by fmviesa008.fm.intel.com with ESMTP; 29 Jan 2026 06:19:57 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1vlSsE-00000000bXM-42xH;
+ Thu, 29 Jan 2026 14:19:54 +0000
+Date: Thu, 29 Jan 2026 22:19:24 +0800
+From: kernel test robot <lkp@intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, xaver.hugl@kde.org,
+ harry.wentland@amd.com, uma.shankar@intel.com,
+ louis.chauvet@bootlin.com, naveen1.kumar@intel.com,
+ ramya.krishna.yella@intel.com
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Arun R Murthy <arun.r.murthy@intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCH v8 2/7] drm/atomic: Add error_code element in atomic_state
+Message-ID: <202601292223.hq35FrBc-lkp@intel.com>
+References: <20260129-atomic-v8-2-4cb7b0faa051@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Fix_fs=5Freclaim_deadlock_c?=
- =?utf-8?q?aused_by_CCS_save/restore?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 29 Jan 2026 14:13:54 -0000
-Message-ID: <176969603448.205866.12154977200480998401@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260129125141.523087-4-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20260129125141.523087-4-satyanarayana.k.v.p@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260129-atomic-v8-2-4cb7b0faa051@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +79,33 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4100847052135094722==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Arun,
 
-== Series Details ==
+kernel test robot noticed the following build warnings:
 
-Series: Fix fs_reclaim deadlock caused by CCS save/restore
-URL   : https://patchwork.freedesktop.org/series/160841/
-State : success
+[auto build test WARNING on 6a3c9a03d943eb112c916c7419a837bc7de3a296]
 
-== Summary ==
+url:    https://github.com/intel-lab-lkp/linux/commits/Arun-R-Murthy/drm-Define-user-readable-error-codes-for-atomic-ioctl/20260129-170325
+base:   6a3c9a03d943eb112c916c7419a837bc7de3a296
+patch link:    https://lore.kernel.org/r/20260129-atomic-v8-2-4cb7b0faa051%40intel.com
+patch subject: [PATCH v8 2/7] drm/atomic: Add error_code element in atomic_state
+config: hexagon-randconfig-001-20260129 (https://download.01.org/0day-ci/archive/20260129/202601292223.hq35FrBc-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 9b8addffa70cee5b2acc5454712d9cf78ce45710)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260129/202601292223.hq35FrBc-lkp@intel.com/reproduce)
 
-CI Bug Log - changes from xe-4469-7d2c5f861ae9bbed1464e1a6aa39a9055139a4b0_BAT -> xe-pw-160841v1_BAT
-====================================================
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202601292223.hq35FrBc-lkp@intel.com/
 
-Summary
--------
+All warnings (new ones prefixed by >>):
 
-  **SUCCESS**
+>> Warning: drivers/gpu/drm/drm_atomic.c:2119 function parameter 'format' not described in 'drm_mode_atomic_add_error_msg'
+>> Warning: drivers/gpu/drm/drm_atomic.c:2119 function parameter 'format' not described in 'drm_mode_atomic_add_error_msg'
 
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 11)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4469-7d2c5f861ae9bbed1464e1a6aa39a9055139a4b0 -> xe-pw-160841v1
-
-  IGT_8724: 6a10d1136a4e856cc4ceb5b899c32b03ed8ddc5e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4469-7d2c5f861ae9bbed1464e1a6aa39a9055139a4b0: 7d2c5f861ae9bbed1464e1a6aa39a9055139a4b0
-  xe-pw-160841v1: 160841v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160841v1/index.html
-
---===============4100847052135094722==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fix fs_reclaim deadlock caused by CCS save/restore</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160841/">https://patchwork.freedesktop.org/series/160841/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160841v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160841v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4469-7d2c5f861ae9bbed1464e1a6aa39a9055139a4b0_BAT -&gt; xe-pw-160841v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 11)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4469-7d2c5f861ae9bbed1464e1a6aa39a9055139a4b0 -&gt; xe-pw-160841v1</li>
-</ul>
-<p>IGT_8724: 6a10d1136a4e856cc4ceb5b899c32b03ed8ddc5e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4469-7d2c5f861ae9bbed1464e1a6aa39a9055139a4b0: 7d2c5f861ae9bbed1464e1a6aa39a9055139a4b0<br />
-  xe-pw-160841v1: 160841v1</p>
-
-</body>
-</html>
-
---===============4100847052135094722==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
