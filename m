@@ -4,60 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 286B6D358E6
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 08:59:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BFB7D358E5
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 09:02:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDE8E10E83B;
-	Thu, 29 Jan 2026 08:59:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E3BF89E59;
+	Thu, 29 Jan 2026 09:02:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ibaoibi+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V5ZxpOiX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1141810E83C;
- Thu, 29 Jan 2026 08:59:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9396F890EB;
+ Thu, 29 Jan 2026 09:02:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769677148; x=1801213148;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=bcrAzpbqJixVR9lvMZUFhUvTL4GAMcNwl2QZ2OB5SA0=;
- b=Ibaoibi+mGY1b6k+mTfe0v/L5lFnCq4Q5XwEAIU62HmvNxh4Gxx5VQxI
- Bk3GoHSGVqniSa2M1DBFxe8smXwXC1fDybtzZ+2RFvdBEMZY8ojoxKzsr
- 06hoYxlf8QeN/nI3i+zeDWRfrk5ShgHFMXZwXEFyTaVBrV7+A54TY7AqY
- ARBj7vEZjJJbh0xrCt7EqNwU8s2EofVd1dMkeCsDD/I7m5gF1I+ixOlpC
- 79epoHXOjKE0sweRth1hRCoxUt2E+RujBWfxOCb1EOoWv7A+WEKNeA2LE
- nHD6jAIqQfx2fXduYJB3LJMHMvBwGDwhyHyKTRMBp8kEty6l2czzcFhKU w==;
-X-CSE-ConnectionGUID: ITOqsJbVSCqGxlYLmKkQag==
-X-CSE-MsgGUID: Rm45cbJ0Qs28xHV6nxuZxg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="70959983"
-X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="70959983"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 00:59:08 -0800
-X-CSE-ConnectionGUID: KnWF/oF3TF6tsHtfEepC9Q==
-X-CSE-MsgGUID: VmFwc7t5SjCNC8aZQ6yYfg==
+ t=1769677355; x=1801213355;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7nLHDetjhXQKtgNSEu0MclmdkH2clD6+kPuMXFtNOZY=;
+ b=V5ZxpOiXjGpWZazZUlMfulGh6yZU0pDg4B8i6dlpUyjVmuFoqbBFi41R
+ aMFOdmbP/ej47Yo96sKElMVCexzh4dSnBvarxh7aEj1jZMjEsXcYl+kDZ
+ KR4QJcDhiXxvxceohKd+CjgT2IICfWY6GMk5IRq7Y3+Y7DN2FPUjDU1Xe
+ 1wS1c3WmtONhstKHsWqYt37ppXFegPUPby4RB+/b0a9+XIeTzGwrewjG3
+ 6hn8w7F6aCYy0FCzwkFmtjnxC1Mp7VnCBta1U0WYF51ABbKvklvmM9275
+ IHzKQSzvjhloGXMlZJWJ22o9zvBP/1APc6RcZQM2zMx5RTc5xwmGTWOs3 Q==;
+X-CSE-ConnectionGUID: Gb3hFCM+Ssy2sxT5gJ0SZA==
+X-CSE-MsgGUID: bu6YN/mzR4S034ReBKNhNg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="69920774"
+X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="69920774"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2026 01:02:35 -0800
+X-CSE-ConnectionGUID: iMt3rOxiR4+Napiq4Pe9tg==
+X-CSE-MsgGUID: OYjZopwESyG6Zy5ksB3+xw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="246122781"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.4])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 00:59:05 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, Suraj Kandpal
- <suraj.kandpal@intel.com>
-Subject: Re: [PATCH v2] drm/i915/display: Wait for pipe start to avoid
- vblank and scanline jumps
-In-Reply-To: <20260129060722.1382789-1-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260119043025.589754-1-suraj.kandpal@intel.com>
- <20260129060722.1382789-1-suraj.kandpal@intel.com>
-Date: Thu, 29 Jan 2026 10:59:01 +0200
-Message-ID: <58597bfd2f0b15ed1ba4ca4b8f80aaa6d9030b8b@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="213020948"
+Received: from administrator-system-product-name.igk.intel.com
+ ([10.91.214.181])
+ by fmviesa005.fm.intel.com with ESMTP; 29 Jan 2026 01:02:33 -0800
+From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+Subject: [PATCH v2 0/1] i915/i915_driver: move intel_gvt_init() level higher
+Date: Thu, 29 Jan 2026 10:01:28 +0100
+Message-ID: <20260129090129.2601661-1-michal.grzelak@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,76 +74,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 29 Jan 2026, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Check if values are updated or not in PIPE_SCANLINE register before we
-> move on ahead with modeset.
-> This is because we need to make sure we are not getting
-> stale values from PIPE_SCANLINE register as we use theses scanline
-> values to make a decision if an atomic commit can go through. Without
-> this change we see Atomic update failure warning with the following
-> signature:
-> [drm] *ERROR* Atomic update failure on pipe B (start=457 end=458) time
-> 50 us, min 2128, max 2161, scanline start 411, end 2165.
-> Where the atomic commit takes less than 100us but we still see a
-> vblank count jump and a big leap in scanline.
-> The PIPE_SCANLINE may give stale values as internally after writing
-> to TRANSCONF register it take H/w around a vblank to actually get
-> enabled.
->
-> Bspec: 69961
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index d8739e2bb004..4514de71cb9f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -83,6 +83,7 @@
->  #include "intel_snps_phy.h"
->  #include "intel_step.h"
->  #include "intel_tc.h"
-> +#include "intel_vblank.h"
->  #include "intel_vdsc.h"
->  #include "intel_vdsc_regs.h"
->  #include "intel_vrr.h"
-> @@ -3562,6 +3563,16 @@ static void intel_ddi_enable(struct intel_atomic_state *state,
->  		intel_ddi_enable_hdmi(state, encoder, crtc_state, conn_state);
->  	else
->  		intel_ddi_enable_dp(state, encoder, crtc_state, conn_state);
-> +	/*
-> +	 * Somtimes when pipe starts PIPEDSL/PIPE_SCANLINE reads will return a
-> +	 * stale value, this is because it may take 1 vblank for TRANSCONF
-> +	 * register to enable the pipe, which causes an apparent vblank
-> +	 * timestamp and scaline jump  jump when PIPEDSL/PIPE_SCANLINE
-> +	 * resets to its proper value. That also messes up the frame count
-> +	 * when it's derived from the timestamps. So let's wait for the
-> +	 * pipe to start properly, So lets wait before we proceed with modeset.
-> +	 */
-> +	intel_wait_for_pipe_scanline_moving(to_intel_crtc(crtc_state->uapi.crtc));
+Next version of [1]. Tested on MTL-P.
 
-The problem with adding these type of things is that they're almost
-impossible to remove afterwards.
-
-And on the face of it, it's kind of random placement in DDI encoder
-enable where there's nothing else like this.
-
-But the *_crtc_enable() functions in intel_display.c do have vblank
-waits and scanline moving waits right after intel_encoders_enable(). So
-that's kind of where it feels like this belongs.
-
-On another note, what about the stale values? Related perhaps? [1]
+[1] https://lore.kernel.org/all/20260128180933.2561419-1-michal.grzelak@intel.com
 
 BR,
-Jani.
+Michał
 
+---
+Changelog:
+v1->v2
+- don't move err_msi error path from i915_driver_hw_probe (Jani)
+- rewrite commit message
 
-[1] https://lore.kernel.org/r/20260108165139.1381835-1-aer@tuxedocomputers.com
+Michał Grzelak (1):
+  i915/i915_driver: move intel_gvt_init() level higher
 
-
->  
->  	intel_hdcp_enable(state, encoder, crtc_state, conn_state);
+ drivers/gpu/drm/i915/i915_driver.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.45.2
+
