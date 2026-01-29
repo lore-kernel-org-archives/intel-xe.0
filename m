@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CB21D358F6
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 11:02:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32E45D6100A
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 11:30:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D1E910E102;
-	Thu, 29 Jan 2026 11:02:48 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PYxsdwZW";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D9ED10E102;
- Thu, 29 Jan 2026 11:02:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769684567; x=1801220567;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=zyC8VKz5aS6W4/l1+3DxCQ0yH37qtqSXhcpR94LBS74=;
- b=PYxsdwZWc5Quw/l5A6cwrO8mWgW32uVxJT7bI8Pd00D6gjc2zMXrw/zw
- RXM58EIOq/Dqv4eAcEYbmH1LNoFPQfTpFStOR15Seg7AXkwkCgAYKPMcm
- upjBPEOnpZ0YVmb+1jQhv9Rj8nJ6i4IhxfLTlQVHRF/eQbunvf1kIcLIU
- rmVtHkwRoV7xcDlOe18PiXj+kUWGJN7q5rbYhp2KA0SbntZtTSXaPOQqE
- dTc07NReJQJL89v/OVQD4zGLSsmNRgwt55fSR7Ldp+JVf9LtgMZeeWA7X
- iTHp/X16sVuBxtNl1E3CpS8IuQ0geu8yv/l2aolK5Codu835wRyx21J4+ g==;
-X-CSE-ConnectionGUID: PP6WsmEPS4mog35+ELjmWg==
-X-CSE-MsgGUID: VE5dcpH9RpmCGeB0rW7IrA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="58501507"
-X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="58501507"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 03:02:46 -0800
-X-CSE-ConnectionGUID: 5dBykHyMS2y5wOws+oIgtw==
-X-CSE-MsgGUID: HvyOjBU/RVu969o7d1l5fQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="239280093"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by orviesa002.jf.intel.com with ESMTP; 29 Jan 2026 03:02:45 -0800
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: daniele.ceraolospurio@intel.com
-Subject: [PATCH] drm/xe/guc: Fix kernel-doc warning in GuC scheduler ABI header
-Date: Thu, 29 Jan 2026 16:07:30 +0530
-Message-Id: <20260129103730.2289942-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id E22A510E102;
+	Thu, 29 Jan 2026 11:30:01 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 594B810E102;
+ Thu, 29 Jan 2026 11:30:01 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6155188247234194120=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_i915/i915=5Fdriver=3A_move_?=
+ =?utf-8?q?intel=5Fgvt=5Finit=28=29_level_higher_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 29 Jan 2026 11:30:01 -0000
+Message-ID: <176968620136.205652.3690838066824379701@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260129090129.2601661-1-michal.grzelak@intel.com>
+In-Reply-To: <20260129090129.2601661-1-michal.grzelak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,46 +36,133 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GuC scheduler ABI header contains a file-level comment that is not
-intended to document a kernel-doc symbol. Using kernel-doc comment
-syntax (/** */) triggers kernel-doc warnings.
+--===============6155188247234194120==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-With "-Werror", this causes the build to fail. Convert the comment to a
-regular block comment.
+== Series Details ==
 
-HDRTEST drivers/gpu/drm/xe/abi/guc_scheduler_abi.h
-Warning: drivers/gpu/drm/xe/abi/guc_scheduler_abi.h:11 This comment starts with '/**', but isn't a kernel-doc comment. Refer to Documentation/doc-guide/kernel-doc.rst
- * Generic defines required for registration with and submissions to the GuC
-1 warnings as errors
-make[6]: *** [drivers/gpu/drm/xe/Makefile:377: drivers/gpu/drm/xe/abi/guc_scheduler_abi.hdrtest] Error 3
-make[5]: *** [scripts/Makefile.build:544: drivers/gpu/drm/xe] Error 2
-make[4]: *** [scripts/Makefile.build:544: drivers/gpu/drm] Error 2
-make[3]: *** [scripts/Makefile.build:544: drivers/gpu] Error 2
-make[2]: *** [scripts/Makefile.build:544: drivers] Error 2
-make[1]: *** [/home/kbuild2/kernel/Makefile:2088: .] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+Series: i915/i915_driver: move intel_gvt_init() level higher (rev2)
+URL   : https://patchwork.freedesktop.org/series/160787/
+State : failure
 
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- drivers/gpu/drm/xe/abi/guc_scheduler_abi.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_scheduler_abi.h b/drivers/gpu/drm/xe/abi/guc_scheduler_abi.h
-index 513b22a87428..19ec89bf39c5 100644
---- a/drivers/gpu/drm/xe/abi/guc_scheduler_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_scheduler_abi.h
-@@ -8,7 +8,7 @@
- 
- #include <linux/types.h>
- 
--/**
-+/*
-  * Generic defines required for registration with and submissions to the GuC
-  * scheduler. Includes engine class/instance defines and context attributes
-  * (id, priority, etc)
--- 
-2.25.1
+CI Bug Log - changes from xe-4468-a13ec0c1edcbd6228db6236164902b8188a9a578_BAT -> xe-pw-160787v2_BAT
+====================================================
 
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-160787v2_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-160787v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-160787v2_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_peer2peer@read:
+    - bat-bmg-3:          [PASS][1] -> [INCOMPLETE][2] +1 other test incomplete
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4468-a13ec0c1edcbd6228db6236164902b8188a9a578/bat-bmg-3/igt@xe_peer2peer@read.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160787v2/bat-bmg-3/igt@xe_peer2peer@read.html
+
+  
+
+
+Build changes
+-------------
+
+  * Linux: xe-4468-a13ec0c1edcbd6228db6236164902b8188a9a578 -> xe-pw-160787v2
+
+  IGT_8724: 6a10d1136a4e856cc4ceb5b899c32b03ed8ddc5e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4468-a13ec0c1edcbd6228db6236164902b8188a9a578: a13ec0c1edcbd6228db6236164902b8188a9a578
+  xe-pw-160787v2: 160787v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160787v2/index.html
+
+--===============6155188247234194120==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>i915/i915_driver: move intel_gvt_init() level higher (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160787/">https://patchwork.freedesktop.org/series/160787/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160787v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160787v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4468-a13ec0c1edcbd6228db6236164902b8188a9a578_BAT -&gt; xe-pw-160787v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-160787v2_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-160787v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-160787v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_peer2peer@read:<ul>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4468-a13ec0c1edcbd6228db6236164902b8188a9a578/bat-bmg-3/igt@xe_peer2peer@read.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160787v2/bat-bmg-3/igt@xe_peer2peer@read.html">INCOMPLETE</a> +1 other test incomplete</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4468-a13ec0c1edcbd6228db6236164902b8188a9a578 -&gt; xe-pw-160787v2</li>
+</ul>
+<p>IGT_8724: 6a10d1136a4e856cc4ceb5b899c32b03ed8ddc5e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4468-a13ec0c1edcbd6228db6236164902b8188a9a578: a13ec0c1edcbd6228db6236164902b8188a9a578<br />
+  xe-pw-160787v2: 160787v2</p>
+
+</body>
+</html>
+
+--===============6155188247234194120==--
