@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CA5ED73E87
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 016FED73E83
 	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 20:58:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31B9510E90C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBBBA10E910;
 	Thu, 29 Jan 2026 20:58:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VZNzsXPI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kGOnOM+d";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E6DD10E902;
- Thu, 29 Jan 2026 20:58:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D13910E905;
+ Thu, 29 Jan 2026 20:58:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769720322; x=1801256322;
+ t=1769720326; x=1801256326;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=q5LrUvSn+rX4MnhZ+UUzLYESBvlLN6SlryEwyNy1g8E=;
- b=VZNzsXPIY8VC+NvKe6TaF7DfIe9BMe7TinES0XqQvsdh/7HUA/sO5pJr
- PL0+OZSSg2TfGIXdFCxWi0YiNMYKuFbGUlKA14/Mz8AYxTaOJzr4ruF0p
- fuoQ8T4DIKsQLYGVEHH4WZ4s3IS4WD4zDFiOcXBp6KzBgpev7SFBAzIum
- VzIAZkCuEA6PMA1MfFf6FmlrKgN2x5jfnX57m09mpXfWZRos44Jq2z5iY
- dTfyTNoBH3i4Geq+phyYikIdpLZUa3SIkkQ8dWvwFnltNozBx159MdP/Q
- zj+PekOhcFiZPcA8fGvi8axY5IBfzKt5DgnKHlPPJxfudLGNDkkGUszww Q==;
-X-CSE-ConnectionGUID: JwlucTwOSbmAZvqjmzEOfA==
-X-CSE-MsgGUID: G99Qn2gnQy61tsQXly38OQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="88545346"
-X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="88545346"
+ bh=Qz4RvKvhtgfjqNlEBm5Six8p0JrsePchLa5KsJ77oPI=;
+ b=kGOnOM+dwqaAq/Kga7V80do9qQaVpqRR/hKq0v4dhq+PD/OfDMu1KWlg
+ 1tTGyYalI/ANBFH+pvE0cgqY48GlFdOimJtbVXuYBLXgZpxABjMc3QYOG
+ LyAgkXQaT4DmEVDVEv4HncnP6Zbkkjs++Z1VOSrUEqtuARbUGhERlN+Vh
+ 0eWDoxJ7NDaaVwaKxEivQSa2HSVkFndDfI+Vd6dhQAUZHqWZ9YuLg2VwM
+ FXtHQIzj4G+qkQYlyg5JMDLLba2HIV5VIfFzC/6EVdm5jHEJgwRWTAYEF
+ I2MjxmMhmmJZ/+JGDqvGaocw0OwDJVwi8E+vaatMS77gDzLk+txoqKWlC g==;
+X-CSE-ConnectionGUID: hcRHVWw3Q2mIBS3iSBDgYw==
+X-CSE-MsgGUID: 6z19R0UgQhioyfx4gjuddg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="88545349"
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="88545349"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 12:58:42 -0800
-X-CSE-ConnectionGUID: CwG8kGppSgC8IraRM7jlBg==
-X-CSE-MsgGUID: dRkk4qTRS9y4k9YQaxSxMA==
+ 29 Jan 2026 12:58:46 -0800
+X-CSE-ConnectionGUID: E/fKtTMVSriZoO+Yd3RR9g==
+X-CSE-MsgGUID: eCqP60x0TZipbHsM5KIB+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="239927221"
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="239927264"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa001.fm.intel.com with ESMTP; 29 Jan 2026 12:58:40 -0800
+ by fmviesa001.fm.intel.com with ESMTP; 29 Jan 2026 12:58:44 -0800
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
  Uma Shankar <uma.shankar@intel.com>
-Subject: [v3 15/19] drm/i915: Remove i915_reg.h from intel_fifo_underrun.c
-Date: Fri, 30 Jan 2026 02:43:54 +0530
-Message-ID: <20260129211358.1240283-16-uma.shankar@intel.com>
+Subject: [v3 17/19] drm/i915: Remove i915_reg.h from intel_display_power_well.c
+Date: Fri, 30 Jan 2026 02:43:56 +0530
+Message-ID: <20260129211358.1240283-18-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260129211358.1240283-1-uma.shankar@intel.com>
 References: <20260129211358.1240283-1-uma.shankar@intel.com>
@@ -67,98 +67,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move GEN7_ERR_INT reg to common header to make intel_fifo_underrun.c
-free from including i915_reg.h.
+Make intel_display_power_well.c free from including i915_reg.h.
 
-v2: Move GEN7_ERR_INT regs to display header (Jani)
+v2: Include specific pcode header, drop common header (Jani)
 
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_regs.h | 23 +++++++++++++++++++
- .../drm/i915/display/intel_fifo_underrun.c    |  1 -
- drivers/gpu/drm/i915/i915_reg.h               | 23 -------------------
- 3 files changed, 23 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_power_well.c | 2 +-
+ drivers/gpu/drm/i915/display/intel_display_regs.h       | 2 ++
+ drivers/gpu/drm/i915/i915_reg.h                         | 3 ---
+ 3 files changed, 3 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 23626ee2d4ce..ab2ef267c9ce 100644
---- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -91,6 +91,29 @@
- #define   DERRMR_PIPEC_VBLANK		(1 << 21)
- #define   DERRMR_PIPEC_HBLANK		(1 << 22)
- 
-+#define GEN7_ERR_INT	_MMIO(0x44040)
-+#define   ERR_INT_POISON		(1 << 31)
-+#define   ERR_INT_INVALID_GTT_PTE	(1 << 29)
-+#define   ERR_INT_INVALID_PTE_DATA	(1 << 28)
-+#define   ERR_INT_SPRITE_C_FAULT	(1 << 23)
-+#define   ERR_INT_PRIMARY_C_FAULT	(1 << 22)
-+#define   ERR_INT_CURSOR_C_FAULT	(1 << 21)
-+#define   ERR_INT_SPRITE_B_FAULT	(1 << 20)
-+#define   ERR_INT_PRIMARY_B_FAULT	(1 << 19)
-+#define   ERR_INT_CURSOR_B_FAULT	(1 << 18)
-+#define   ERR_INT_SPRITE_A_FAULT	(1 << 17)
-+#define   ERR_INT_PRIMARY_A_FAULT	(1 << 16)
-+#define   ERR_INT_CURSOR_A_FAULT	(1 << 15)
-+#define   ERR_INT_MMIO_UNCLAIMED	(1 << 13)
-+#define   ERR_INT_PIPE_CRC_DONE_C	(1 << 8)
-+#define   ERR_INT_FIFO_UNDERRUN_C	(1 << 6)
-+#define   ERR_INT_PIPE_CRC_DONE_B	(1 << 5)
-+#define   ERR_INT_FIFO_UNDERRUN_B	(1 << 3)
-+#define   ERR_INT_PIPE_CRC_DONE_A	(1 << 2)
-+#define   ERR_INT_PIPE_CRC_DONE(pipe)	(1 << (2 + (pipe) * 3))
-+#define   ERR_INT_FIFO_UNDERRUN_A	(1 << 0)
-+#define   ERR_INT_FIFO_UNDERRUN(pipe)	(1 << ((pipe) * 3))
-+
- #define VLV_IRQ_REGS		I915_IRQ_REGS(VLV_IMR, \
- 					      VLV_IER, \
- 					      VLV_IIR)
-diff --git a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-index b413b3e871d8..bf047180def9 100644
---- a/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-+++ b/drivers/gpu/drm/i915/display/intel_fifo_underrun.c
-@@ -29,7 +29,6 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 6f9bc6f9615e..f98de1baa63d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -6,8 +6,8 @@
+ #include <linux/iopoll.h>
  
  #include <drm/drm_print.h>
++#include <drm/intel/intel_pcode.h>
  
 -#include "i915_reg.h"
- #include "intel_de.h"
- #include "intel_display_irq.h"
- #include "intel_display_regs.h"
+ #include "intel_backlight_regs.h"
+ #include "intel_combo_phy.h"
+ #include "intel_combo_phy_regs.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index 4a9b7560ce8c..758749c5c322 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -359,6 +359,8 @@
+ #define  FW_CSPWRDWNEN		(1 << 15)
+ 
+ #define MI_ARB_VLV		_MMIO(VLV_DISPLAY_BASE + 0x6504)
++/* Disable display A/B trickle feed */
++#define   MI_ARB_DISPLAY_TRICKLE_FEED_DISABLE	(1 << 2)
+ 
+ #define CZCLK_CDCLK_FREQ_RATIO	_MMIO(VLV_DISPLAY_BASE + 0x6508)
+ #define   CDCLK_FREQ_SHIFT	4
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index b23ac1b8f495..611ae5861450 100644
+index 9cd7fce09ebe..e4fc61dcd384 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -327,29 +327,6 @@
- #define GEN7_MEDIA_MAX_REQ_COUNT	_MMIO(0x4070)
- #define GEN7_GFX_MAX_REQ_COUNT		_MMIO(0x4074)
+@@ -428,9 +428,6 @@
+ #define   MI_ARB_LOW_PRIORITY_GRACE_4KB		(0 << 4)	/* default */
+ #define   MI_ARB_LOW_PRIORITY_GRACE_8KB		(1 << 4)
  
--#define GEN7_ERR_INT	_MMIO(0x44040)
--#define   ERR_INT_POISON		(1 << 31)
--#define   ERR_INT_INVALID_GTT_PTE	(1 << 29)
--#define   ERR_INT_INVALID_PTE_DATA	(1 << 28)
--#define   ERR_INT_SPRITE_C_FAULT	(1 << 23)
--#define   ERR_INT_PRIMARY_C_FAULT	(1 << 22)
--#define   ERR_INT_CURSOR_C_FAULT	(1 << 21)
--#define   ERR_INT_SPRITE_B_FAULT	(1 << 20)
--#define   ERR_INT_PRIMARY_B_FAULT	(1 << 19)
--#define   ERR_INT_CURSOR_B_FAULT	(1 << 18)
--#define   ERR_INT_SPRITE_A_FAULT	(1 << 17)
--#define   ERR_INT_PRIMARY_A_FAULT	(1 << 16)
--#define   ERR_INT_CURSOR_A_FAULT	(1 << 15)
--#define   ERR_INT_MMIO_UNCLAIMED	(1 << 13)
--#define   ERR_INT_PIPE_CRC_DONE_C	(1 << 8)
--#define   ERR_INT_FIFO_UNDERRUN_C	(1 << 6)
--#define   ERR_INT_PIPE_CRC_DONE_B	(1 << 5)
--#define   ERR_INT_FIFO_UNDERRUN_B	(1 << 3)
--#define   ERR_INT_PIPE_CRC_DONE_A	(1 << 2)
--#define   ERR_INT_PIPE_CRC_DONE(pipe)	(1 << (2 + (pipe) * 3))
--#define   ERR_INT_FIFO_UNDERRUN_A	(1 << 0)
--#define   ERR_INT_FIFO_UNDERRUN(pipe)	(1 << ((pipe) * 3))
+-/* Disable display A/B trickle feed */
+-#define   MI_ARB_DISPLAY_TRICKLE_FEED_DISABLE	(1 << 2)
 -
- #define FPGA_DBG		_MMIO(0x42300)
- #define   FPGA_DBG_RM_NOCLAIM	REG_BIT(31)
- 
+ /* Set display plane priority */
+ #define   MI_ARB_DISPLAY_PRIORITY_A_B		(0 << 0)	/* display A > display B */
+ #define   MI_ARB_DISPLAY_PRIORITY_B_A		(1 << 0)	/* display B > display A */
 -- 
 2.50.1
 
