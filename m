@@ -4,61 +4,173 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17750D6B076
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 15:39:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1277CD358D6
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 16:55:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC58010E89D;
-	Thu, 29 Jan 2026 15:39:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCE3410E298;
+	Thu, 29 Jan 2026 16:55:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gpYHO1iA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L5CYsijN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AF0C10E8A1
- for <intel-xe@lists.freedesktop.org>; Thu, 29 Jan 2026 15:39:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A27C10E298
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 Jan 2026 16:55:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769701193; x=1801237193;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=RXA19DD3wYlXa3jFcGFnTh8t3fY+SYCuic0urkcHqj8=;
- b=gpYHO1iAuJPQ5dFBlrw40zHpKDPmSedxAIUYBUs3p+TveAKapXocX553
- tCh9rK2+/fU1L+3Qogps4oYMiiukIU5pJHtT1VTfuxu1ywxZ1cOje7Yku
- TXhyeWiI6sqiZRjKRgHZ8zsL24QamabASpcJ3RHTITFfqqIzfIDzqRSg+
- PmaN7Y2bx/oZQYrN5UsM42nsPsgEK39kbgkVGoUBUlkuP+QkibYxLMElC
- YNaOuwMpMG1jZCLuyafvQrpBGk7TsF86+fuAatUB1tOsdxh/Y1DuVJ/jn
- mSVEBiclXgs18wfsrWYtjdoZySC7phSnfUYzbkFz191mQSMb2xdFKlVmH w==;
-X-CSE-ConnectionGUID: vKoB6TlaQ2WpJcnIlQOEJQ==
-X-CSE-MsgGUID: j7O67Z0FS7yJGeXZ8NkYeA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="70143585"
-X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="70143585"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 07:39:53 -0800
-X-CSE-ConnectionGUID: 5PZL6QkQThCt1g1Qn2VhCw==
-X-CSE-MsgGUID: MJ8o6JpSSQmXIx/gZttB+Q==
+ t=1769705734; x=1801241734;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=2UmtWnjE22R1CSPASHSgfIaUo+pRngDlB0zpYWPFgaU=;
+ b=L5CYsijN0UwS5T/UTBL7+KFNVhdJ+BZIztRePifxYKs/KxL+Y1LchokO
+ LWzQ4fX5BvXOM6ZJoo9dVop++RcsDKd3XXurd1QGPAj5aFHRwljbhmsQF
+ cL4YHe2pofuHq4PEukDMNFw9/SAMNhQhx5xgIDLMXAEWmpSfH/2iTSL9r
+ 3oP/RZVxSK8t1e87qqlYahs5j2uma0nt4zXFOzzQpm779UiOkuJHbc1o9
+ 48nicTqBWo49H+98sck89eMGWsVp5S7htOT5AK4uTZEd4O+lzQpu9VKxN
+ sicG83AYK1+9En2oar26aWGE6J01WxZ6+GXnWj3AORksBlC3FBTO9j/NW g==;
+X-CSE-ConnectionGUID: YhBDKCAmTAuXXlsZjq28uw==
+X-CSE-MsgGUID: DRatq/+YS7ea6y5g8en6wg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="82317469"
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="82317469"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2026 08:55:33 -0800
+X-CSE-ConnectionGUID: EBeF061XQQW8KWFcpMNdEw==
+X-CSE-MsgGUID: tJDjGRTwTsuSjXbtmc0Wow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="208616441"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO [10.245.245.140])
- ([10.245.245.140])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 07:39:51 -0800
-Message-ID: <39c1fd57b78f09761867a469fae16c347d879dcb.camel@linux.intel.com>
-Subject: Re: [PATCH 1/2] drm/xe/vf: Fix fs_reclaim warning with CCS
- save/restore BB allocation
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>, 
- intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, Michal Wajdeczko
- <michal.wajdeczko@intel.com>, Matthew Auld <matthew.auld@intel.com>
-Date: Thu, 29 Jan 2026 16:39:37 +0100
-In-Reply-To: <20260129125141.523087-5-satyanarayana.k.v.p@intel.com>
-References: <20260129125141.523087-4-satyanarayana.k.v.p@intel.com>
- <20260129125141.523087-5-satyanarayana.k.v.p@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="213513142"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2026 08:55:33 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Thu, 29 Jan 2026 08:55:32 -0800
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35 via Frontend Transport; Thu, 29 Jan 2026 08:55:32 -0800
+Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.1) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Thu, 29 Jan 2026 08:55:32 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PQAdMsUKtgAPDPWclvDzJwmleu31BWSap7X2zLjYyunxS9svtmEDYisTFkEe38yVIYRh1uUfGDafjojM/8PoobYFJ1DEqUcdt7LrZMPSozx7qNeIoxl1NIMrMvKXEoQoOw8tBj9Z5xVVjLQ68/NXwRE+ddQmq/nPOCno8gWYaP2Nc0zoM8V12zkFbjmHPZLPPR0IF36CmLMfQaGR0dZfzM8Qwkk89brKDc0qAwvDzyCiZ2KPSwTiS1kwWCFdL9QISvh/8Xvubw3Tsy3dBtpRLvKH0DOEoTpgbbJXBoSNqFC9CmwKuwkyUyyfsOQyLk7KdgvJnP9ErmKNLydtP07n9w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Xigd4LT35drXZRCFPb9N+woKE7mXBLlgObKwM6XX2Nc=;
+ b=pgN5nQAG8bvJhNbwvftlDa4r2dkjsk0v+KHMNVUdjcjDJY67eUw3zqO8IXsr+t9qCUU2M4JdrStQQ3xGocW2OFTZopgzzFSZw6iU87eTCerFu4pkmlD4gFNy3+BN9Yh1P2oTl72DQ9wv2SnPB42ciXaEucpGdp1UTDbA6UGgqGNBUKBL+OEjeZkK1wurCtGoYowzYK1eDulZTpko0RE/if2Ohll9N4lraOTv9m1P95rIqIRMocJL8gAz1z01nd5DHLKR1JH8ITHfpuGWAWzUDUleubyLr2z9fGk+KyFRQRsnqZVF5QvPJ2BpgZVZGTNdrRN3rpf05IMaeJ84FwRjEg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB5456.namprd11.prod.outlook.com (2603:10b6:5:39c::14)
+ by DS0PR11MB8081.namprd11.prod.outlook.com (2603:10b6:8:15c::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.7; Thu, 29 Jan
+ 2026 16:55:25 +0000
+Received: from DM4PR11MB5456.namprd11.prod.outlook.com
+ ([fe80::b23b:735f:b015:26ad]) by DM4PR11MB5456.namprd11.prod.outlook.com
+ ([fe80::b23b:735f:b015:26ad%5]) with mapi id 15.20.9564.006; Thu, 29 Jan 2026
+ 16:55:25 +0000
+From: "Lin, Shuicheng" <shuicheng.lin@intel.com>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "Wajdeczko, Michal"
+ <Michal.Wajdeczko@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH] drm/xe/pf: Fix typo in function kernel-doc
+Thread-Topic: [PATCH] drm/xe/pf: Fix typo in function kernel-doc
+Thread-Index: AQHcb2bnp9eArEXqKkCdhFr1pAWv9LUmFPaAgEOLsoA=
+Date: Thu, 29 Jan 2026 16:55:25 +0000
+Message-ID: <DM4PR11MB5456623FF9658D6D85BAC5DBEA9EA@DM4PR11MB5456.namprd11.prod.outlook.com>
+References: <20251217150702.2669-1-michal.wajdeczko@intel.com>
+ <aULnG7jGU0RwR0Hp@intel.com>
+In-Reply-To: <aULnG7jGU0RwR0Hp@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB5456:EE_|DS0PR11MB8081:EE_
+x-ms-office365-filtering-correlation-id: ea893b66-5530-4694-fc99-08de5f5732c1
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|376014|366016|38070700021;
+x-microsoft-antispam-message-info: =?us-ascii?Q?RGNJlnD6l1rfyAsn0/pHHeyStJzCxCcjznrSU6PnNQaMzy+nqaz8SV6StKCx?=
+ =?us-ascii?Q?GKakJ+XsAZcZWrVCV6FutOq/IlK3x1WKY6NB2Do/bjwDiyc5n14+SrmFt90u?=
+ =?us-ascii?Q?fgATU7CRKvUrVgg1dm1wt7LcmgPIydkQIyXMVuu9o2xEIdoupqZJMoP9L17Z?=
+ =?us-ascii?Q?3eHiNzg5u9aZzgPE82R96vGpmmHXSqzTLDxBQdeLnJvIOLvZYt+N6mYwFONS?=
+ =?us-ascii?Q?YVGhOH58qYlgLExH8cCytG2MtoszaTFD0WKdndOh4PU0ofrB0gWHXTQ9+BGl?=
+ =?us-ascii?Q?OXXzUa9IivEbzgZ6WXGnGsKD0iyAh3X1DjjlXGgQ8uIMl+SxluRUV9NLZisO?=
+ =?us-ascii?Q?93s0YyfHWrFSiW80FwUeoUg1mVV+R5dMuQ70mPyVFi3R09hmBKIG35VKK+st?=
+ =?us-ascii?Q?r4j9KQKdXP4r8Nt2VqLawygcZs4qCMeqO++3UUR7mtn4Y7lGr+/Q1MU558qP?=
+ =?us-ascii?Q?UBAtRD6iO6DT7KZAM2HjiogFcV2URPZfuuYXwDxs9EWliN3pezWzFiXXmV/+?=
+ =?us-ascii?Q?fd1CaAwFnjbWIPF8BzTlwYJDHfJ+QBA+Vg7kN8yszRSNDKy5XEJKFFe2rSpG?=
+ =?us-ascii?Q?GVq5rVT/VLHFEiRBwqfuyItUk69ui8PGzfW33FOGk1Yki3mtwTuy1UeQG1EO?=
+ =?us-ascii?Q?86EyjG+CBiyF0zHRbd3Bhtjf+lUn/mMP1K5IbeTI4mvU/1dUPKhnupki4EYH?=
+ =?us-ascii?Q?4rJy4uoFYqU+kzgDA0emJiTARY3WqzmStRyOSYoPMRaducGTk0Lzm5AIG+7j?=
+ =?us-ascii?Q?FKxdUtSCe3AeVYqgoWqZklOM+oMfMdti/cZTFE/zB+smNQPC50vGv0c/3NP/?=
+ =?us-ascii?Q?9Mhp/jBYk5UkvX0FpPmILYlBBDNQD6d+OwCSk0eE14o2nRjeuGP3sXsFFKOb?=
+ =?us-ascii?Q?HZp8xlKOAJJ6UnN4g/dPld1BX4Nq6pnEQDeVfH4d2hPHHruOArf6tsz8JjeN?=
+ =?us-ascii?Q?0W+/ezpVV1kwVXgPZMS+3QtBfqe7cCzx8vLOC0Z97xNfcd7zWbtR/4EHGqMz?=
+ =?us-ascii?Q?OUrrvkHKW1znJqxS4APeP3xPgDntcUte2FMYkFV81dqwN5NfUu3zQ4Um9QF4?=
+ =?us-ascii?Q?Q5qLF9iQIz3GZMtDzvdlZoICj/aqblKQ0m7dpi5aSplUb+1R3XvAfoTvrixw?=
+ =?us-ascii?Q?zN7ITFvwWbVkjTZNPngqjwrNKX4ym2FpZO95BBx/FvL2kKVDBS4ocAlfow8g?=
+ =?us-ascii?Q?0mt1muiblDPZ2r6Jf/5RUlJl32Kp4axdzkrUSI+g+1Mxt8TArM/9/XfntU3x?=
+ =?us-ascii?Q?FNZosKhhmPGeFWxxscft9PRZ7bVmzpTDYNhTizpLvfaY1Zo0edbYoabsKZQv?=
+ =?us-ascii?Q?oO4r8ycMKI8k9hh09XmdD4i/ViFl71MsNq8s+5CkUx06ZbADXlf/wa4efcRr?=
+ =?us-ascii?Q?zYt/pl6fqsUHW80cPnxxcFmptaPlm12YRDvohPKp/KZyMQRU/pyMkHjM5cXp?=
+ =?us-ascii?Q?BuhKyKSLXXyHoiYU3BhQ5u7M5oZl1nngw29ryG5hRs0FfvB0naqxw0/ScupY?=
+ =?us-ascii?Q?efYZHOj6TB6EbEsU+ve8QUP2tg6Fk8VJtwi+UcFoGIdDb9Si0vIErvcQQ8p4?=
+ =?us-ascii?Q?BTnb41/to9jMcjoTlVoPEB0dT+wRTvm5JZTlTbOD1RvMrN/P+gQnHUsAUk05?=
+ =?us-ascii?Q?RNqyll7+P07DwjRJvzyU7yU=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5456.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(38070700021); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?deqUMptTV9WJUrjPqVmX/aFFVz+BT7G2k16A2dN9EyqJzLI32hKB71w3ZOrQ?=
+ =?us-ascii?Q?vKg32pPE9r8QAvZVIBOxSTuSYMX7OPbb82ty3Gs01RgGwxL2Nm0cx4CRonOP?=
+ =?us-ascii?Q?9PyVTIjZwvdUMWMBekELzoC/TrZB4WeyVAu1s0IuxDdgi3d8bIDLh9XsNwBH?=
+ =?us-ascii?Q?Q3mbSAhaC6ESsx5rk1hNWTXqEA6LX5xDnlDs9huw4dRckCI7TLNHFXUJqtvI?=
+ =?us-ascii?Q?7kLS6HQiA4d3S4wXWzIiCxEcTvlPhEfxkxqFwrLrkkWtPCuSErrSOhnIw36s?=
+ =?us-ascii?Q?XzQ0dX3WKjzvNAMdBzyg0uSTZXu4ggM1xgamKdNHLRUVr+48yoZpvErQgMwJ?=
+ =?us-ascii?Q?TVWPtG3QWv5ABceAup33NwGoh65LbQMxdjkz7VvRe8Wd7eOGnGeVEM5gr06K?=
+ =?us-ascii?Q?1POhGbyE1MUW2ogsgcgEMRH6tLXGhr1u+24NeY7DQrTe87t/N0WpifnsaOG6?=
+ =?us-ascii?Q?CIbGVMlNFu0nL7mm9k6pEgHDVfO9cJyiubSQVgHwr07yEXCivIWH1dyhzch+?=
+ =?us-ascii?Q?kH2OOL3A1pkcpZSG5d5e55wCQfNEkWqo5Rm87YJAIEQbvbnWejF+MDefEfbP?=
+ =?us-ascii?Q?K+E5IZeE/CbtDWhH7QZARmFzYzFTIUWjzJgWRUdf2FLdwVwbLUknv+cswZn7?=
+ =?us-ascii?Q?ZplqLNNjHRbPxijFG2nGG27d4TLXmUfsMB9ks/H21DIszMVtXOYq3QLksP53?=
+ =?us-ascii?Q?g8wFEazpRJ6SZLG1NJxFpgZ3vgUKKCqc5Mem8naLYhs5tObTPRhWN1mLBU03?=
+ =?us-ascii?Q?iNk6ld6sdkicFeZih4vtCnNv/Z+klEArnnWzi7RF0p7Kqi1oNe64Xi4Y5xn5?=
+ =?us-ascii?Q?2aQxwAEpwQfLbpQrBOByLLcdBqUSN/VUSCqamEds1tbz0iHDPlBH/HJXahS2?=
+ =?us-ascii?Q?Pvo31BAUD8PHJduFmfmhMQOARZNX0Y1q4MADekvHsub1CMNWszoSZlPCCDuz?=
+ =?us-ascii?Q?0nZpMY8Q7LUDksYzuKP+uJRCk3dSOoWkaejY/j7TaIM7O3XePulxRFNOXO2B?=
+ =?us-ascii?Q?r3JgCQBZnaWQFGNdEad/+027mBU9EQsbal2j2FSvN4r1CQKqXLD5LsCO7E2f?=
+ =?us-ascii?Q?GD4/zgzduWYH+OeI9EbPoqo638QT6AzPOsyY63ET+3GwIEIG8b0TEZHZUoW7?=
+ =?us-ascii?Q?yCb0QpK7eb+PZ9AjS4GM5wXuNJoHRU/eX+/7XyT9IOqZ/DBhIDRhl+j6HhEH?=
+ =?us-ascii?Q?ZlHpOsCQFgNgHkr24hHSmL2uON3p+weoJzHnfGs7uKVHPbFLhQxL/1zWNo8o?=
+ =?us-ascii?Q?HvkAvw03qPi+8rAEuwQxwy3elSgNcxFgShkcYH48cBJAWI96ly1+7dM+7Qaz?=
+ =?us-ascii?Q?2gNf9YbY2Wz4DKZEQP9d6nl+8nTigz0tvk/1tcfW62vokS7lheYPlF4NFU1l?=
+ =?us-ascii?Q?t3EBpQ6wYjs5Zdwmx7RTvrxFT7CY9o5i1W7cdaAebWX9gOXMa4dYSdS0qa9b?=
+ =?us-ascii?Q?+XrVy8st8t+p7KsvbQyVdea2VRC4khUN3fiT26GmZENJ0Jz77/sa02ohdG7C?=
+ =?us-ascii?Q?71viHRAio6SsK7bA8JhLZw1auRNhkgP/9IUUIm3qbi0sR2yo/ZtuMs54TvNy?=
+ =?us-ascii?Q?HnOxfBx0/2EMY01w2l8FK5imhoHOgtByCqHcu/SeHOo8yAtS/PdO+hsHr5ii?=
+ =?us-ascii?Q?CgA5lH6QxPXzetSl8F6/hE1Imz8aBFCRESpAf9a/jvB0+NtOr8RXjyjhluCi?=
+ =?us-ascii?Q?guzFJnSlkzUWfTANMBuVl01E4rr/x46YcH58t72xWGIV0TRmstrRdtxvItA3?=
+ =?us-ascii?Q?5MvLWK4xuw=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
 MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5456.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ea893b66-5530-4694-fc99-08de5f5732c1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jan 2026 16:55:25.0979 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ohNfEQUgJm7G3bI7MvfcT1BufNhuvytk3GgVSgPQJQCmJ4LP8G+h64TpZTTHf2ee/63eMtEkfyPocQJAg8/e4A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8081
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,107 +185,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi.
-
-On Thu, 2026-01-29 at 12:51 +0000, Satyanarayana K V P wrote:
-> CCS save/restore batch buffers are attached during BO allocation and
-> detached during BO teardown. The shrinker triggers xe_bo_move(),
-> which is
-> used for both allocation and deletion paths.
+On Wed, Dec 17, 2025 9:24 AM Rodrigo Vivi wrote:
+> On Wed, Dec 17, 2025 at 04:07:02PM +0100, Michal Wajdeczko wrote:
+> > The function name is missing an underscore, which results in:
 >=20
-> When BO allocation and shrinking occur concurrently, a circular
-> locking
-> dependency involving fs_reclaim and swap_guard can occur, leading to
-> a
-> deadlock such as:
+> I'm glad you wrote this. I was looking to the patch first without been ab=
+le to
+> spot the difference! o.O
 >=20
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D
-> WARNING: possible circular locking dependency detected
-> ------------------------------------------------------
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+It seems this patch is missed to be merged. I don't see it in the latest xe=
+ kernel.
+LGTM.
+Reviewed-by: Shuicheng Lin <shuicheng.lin@intel.com>
+
 >=20
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 CPU0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 CPU1
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ----=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 ----
-> =C2=A0lock(fs_reclaim);
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 lock(&sa_manager->swap_guard);
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 lock(fs_reclaim);
-> =C2=A0lock(&sa_manager->swap_guard);
->=20
-> =C2=A0*** DEADLOCK ***
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
->=20
-> To avoid this, allocate CCS save/restore BB BOs using GFP_ATOMIC,
-> preventing reclaim from being invoked in this context.
->=20
-> Fixes: 864690cf4dd62 ("drm/xe/vf: Attach and detach CCS copy commands
-> with BO")
-> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-> Suggested-by: Matthew Brost <matthew.brost@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-
-If shrinking and allocation is indeed happening concurrently, then
-GFP_ATOMIC is highly likely to fail. In fact it shouldn't be used if we
-can't gracefully recover from a failure or if the failure doesn't
-matter at all, like in debugging cases where we can lose data.
-
-I'm trying to wrap my head around the sa manager shadow approach and it
-seems to me like external code putting the sa manager in a particular
-state and the internal lock is accessed from outside the sa code with
-no clearly defined locking rules / asserts? IMO it's a very odd and
-fragile construct, in particular when used with guard() where it's
-unclear exactly what scope is needing locking.
-
-I'm trying to find some documentation to explain why this is used and
-the only thing I can find is=20
-
-"Directly clearing the BB lacks atomicity and can lead to undefined
-behavior if the vCPU is halted mid-operation...."
-
-But what if the vCPU is halted during xe_sa_bo_sync_shadow()? What is
-exactly is the atomicity in this case?=20
-
-Thanks,
-Thomas
-
-
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_bb.c | 4 ++--
-> =C2=A01 file changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
-> index 8b678297aaa2..355365625df9 100644
-> --- a/drivers/gpu/drm/xe/xe_bb.c
-> +++ b/drivers/gpu/drm/xe/xe_bb.c
-> @@ -62,7 +62,7 @@ struct xe_bb *xe_bb_new(struct xe_gt *gt, u32
-> dwords, bool usm)
-> =C2=A0struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
-> =C2=A0			=C2=A0=C2=A0=C2=A0 enum xe_sriov_vf_ccs_rw_ctxs ctx_id)
-> =C2=A0{
-> -	struct xe_bb *bb =3D kmalloc(sizeof(*bb), GFP_KERNEL);
-> +	struct xe_bb *bb =3D kmalloc(sizeof(*bb), GFP_ATOMIC);
-> =C2=A0	struct xe_device *xe =3D gt_to_xe(gt);
-> =C2=A0	struct xe_sa_manager *bb_pool;
-> =C2=A0	int err;
-> @@ -78,7 +78,7 @@ struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32
-> dwords,
-> =C2=A0	 */
-> =C2=A0
-> =C2=A0	bb_pool =3D xe->sriov.vf.ccs.contexts[ctx_id].mem.ccs_bb_pool;
-> -	bb->bo =3D xe_sa_bo_new(bb_pool, 4 * (dwords + 1));
-> +	bb->bo =3D __xe_sa_bo_new(bb_pool, 4 * (dwords + 1),
-> GFP_ATOMIC);
-> =C2=A0
-> =C2=A0	if (IS_ERR(bb->bo)) {
-> =C2=A0		err =3D PTR_ERR(bb->bo);
+> >
+> >   Warning: ../drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c:1261
+> >   This comment starts with '/**', but isn't a kernel-doc comment.
+> >   Refer to Documentation/doc-guide/kernel-doc.rst
+> >   * xe_gt_sriov_pf_control_trigger restore_vf() - Start ...
+> >
+> > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
+> > b/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
+> > index bf48b05797de..5cb705c7ee7a 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
+> > +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c
+> > @@ -1259,7 +1259,7 @@ int
+> > xe_gt_sriov_pf_control_process_restore_data(struct xe_gt *gt, unsigned
+> > int v  }
+> >
+> >  /**
+> > - * xe_gt_sriov_pf_control_trigger restore_vf() - Start an SR-IOV VF
+> migration data restore sequence.
+> > + * xe_gt_sriov_pf_control_trigger_restore_vf() - Start an SR-IOV VF
+> migration data restore sequence.
+> >   * @gt: the &xe_gt
+> >   * @vfid: the VF identifier
+> >   *
+> > --
+> > 2.47.1
+> >
