@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BF9ED73E8A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBCF5D73E8C
 	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 20:58:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2D3C10E8F3;
-	Thu, 29 Jan 2026 20:58:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A62910E8F5;
+	Thu, 29 Jan 2026 20:58:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HPGRKd05";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YMbA+Dl+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D33110E8F1;
- Thu, 29 Jan 2026 20:58:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64B0110E8EA;
+ Thu, 29 Jan 2026 20:58:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769720312; x=1801256312;
+ t=1769720308; x=1801256308;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=W6yiwG0dBsvR58/gF1w4iXLv7cOaxByq6SP2SJ+qxoQ=;
- b=HPGRKd055AgJaxeIlmj/aTlM4cLZv0leV6a4VF4h20nsyGMKL7V2eMmD
- DoJq9pGappHASlbI4qzyPrNptLPypETVeAW4ilUH4iqI3Cjrj9hXxhBep
- E+2YWUBq1JGY7tWwHzo8C3i1q8hDnzKbpBA4bk90NRRRx1oYbSYQrWsPh
- WzlavufVcwY0Lstq7VBVtcx5FOYtyJBevmeGddyuSUvwFLg6ZwpGDgi5a
- 7Gs+fOpgtx0TkhmwZ98c8FxUq1iQRdX83tmfFOLSHn58ldRk8UIEt0AtD
- 8is7G3LzAsu0Cp92LihTJsc2q9HYex5H6f54SmI3JKkfxKySt80SPfteh A==;
-X-CSE-ConnectionGUID: DepZWdk0SSK7FqgoUMFoMw==
-X-CSE-MsgGUID: /J87YrQhRQ+gJHOes6msNg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="88545329"
-X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="88545329"
+ bh=PBWjBuL5KzvoLyxKKLAFG5CI4wQEQOEuY2CrU9R7Dc4=;
+ b=YMbA+Dl+vKvlWfj16XUH3MEsSZVwtmQ+OwRXeC2uXAl+CVhv0qWz4GMq
+ 3EQuqHRbUzghVPCL1W1pIAgBLM+CUyn+AUWot6N9rhJwhaouT/osAget/
+ 3heaXQU23k4uZmqlJtbQoFIJSfoQ5urUHRCalNQuWc9/eUp5jTqdw9RU/
+ ASkTR1FEOKZtxUVpyyDeACHY1IT50JAQ9MOtpr44nUuzx/t9Hw2mG9eg7
+ rb30TvePQuiGTmK51zgAaSP6+KQAcTY+uhSx1YOvmCGeO6+Ucfi6SWN3h
+ DHxFWnLdvO7SDVSQno+wxj/lnt/lZn2tCgf8TrhzABg4sHh0dJL8bMFSm g==;
+X-CSE-ConnectionGUID: HgdGk4e4SEOIaSy3At+j4w==
+X-CSE-MsgGUID: yq0E5IKlQfKpMgJek4ycUw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="88545322"
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="88545322"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 12:58:32 -0800
-X-CSE-ConnectionGUID: VoI4haFhQcKU7MU/fXMfpg==
-X-CSE-MsgGUID: mPtfsB0WTrujbwJuS4agZg==
+ 29 Jan 2026 12:58:28 -0800
+X-CSE-ConnectionGUID: SKlP3geFQCeCNZIOrJiAeA==
+X-CSE-MsgGUID: q4k5AtUpR2Ggvi0ZhP+8QA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="239927157"
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="239927148"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa001.fm.intel.com with ESMTP; 29 Jan 2026 12:58:30 -0800
+ by fmviesa001.fm.intel.com with ESMTP; 29 Jan 2026 12:58:26 -0800
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
  Uma Shankar <uma.shankar@intel.com>
-Subject: [v3 10/19] drm/i915: Remove i915_reg.h from g4x_dp.c
-Date: Fri, 30 Jan 2026 02:43:49 +0530
-Message-ID: <20260129211358.1240283-11-uma.shankar@intel.com>
+Subject: [v3 08/19] drm/i915: Remove i915_reg.h from intel_display.c
+Date: Fri, 30 Jan 2026 02:43:47 +0530
+Message-ID: <20260129211358.1240283-9-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260129211358.1240283-1-uma.shankar@intel.com>
 References: <20260129211358.1240283-1-uma.shankar@intel.com>
@@ -67,101 +67,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move DE_IRQ_REGS to display header to make g4x_dp.c
-free from i915_reg.h dependency. These registers are
-only used by display and gvt.
+Move CHICKEN_PIPESL_1 register definition to display header.
+This allows intel_display.c free of i915_reg.h include.
 
-v2: Move DE interrupt regs from common to display header (Jani)
+v3: Fix commit header (Jani)
 
+v2: Drop common header in include and use display_regs.h (Jani)
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/g4x_dp.c            |  2 +-
- .../gpu/drm/i915/display/intel_display_regs.h    | 16 ++++++++++++++++
- drivers/gpu/drm/i915/i915_reg.h                  | 15 ---------------
- 3 files changed, 17 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  |  1 -
+ .../gpu/drm/i915/display/intel_display_regs.h | 23 +++++++++++++++++++
+ drivers/gpu/drm/i915/i915_reg.h               | 22 ------------------
+ 3 files changed, 23 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-index 4cb753177fd8..017c6dd8f9f6 100644
---- a/drivers/gpu/drm/i915/display/g4x_dp.c
-+++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-@@ -8,9 +8,9 @@
- #include <linux/string_helpers.h>
- 
- #include <drm/drm_print.h>
-+#include <drm/intel/intel_gmd_interrupt.h>
- 
- #include "g4x_dp.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 7491e00e3858..b7d4ac7e5ff9 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -50,7 +50,6 @@
+ #include "g4x_hdmi.h"
+ #include "hsw_ips.h"
+ #include "i915_config.h"
 -#include "i915_reg.h"
- #include "intel_audio.h"
- #include "intel_backlight.h"
- #include "intel_connector.h"
+ #include "i9xx_plane.h"
+ #include "i9xx_plane_regs.h"
+ #include "i9xx_wm.h"
 diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 40538910cb09..0164dcbb709f 100644
+index 0d7788db4a7f..706024c2a463 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -1049,6 +1049,15 @@
- #define SWF3(dev_priv, i)	_MMIO(DISPLAY_MMIO_BASE(dev_priv) + 0x72414 + (i) * 4)
- #define SWF_ILK(i)	_MMIO(0x4F000 + (i) * 4)
+@@ -1543,6 +1543,29 @@
+ #define   CHICKEN_FBC_STRIDE_MASK	REG_GENMASK(12, 0)
+ #define   CHICKEN_FBC_STRIDE(x)		REG_FIELD_PREP(CHICKEN_FBC_STRIDE_MASK, (x))
  
-+#define DEISR   _MMIO(0x44000)
-+#define DEIMR   _MMIO(0x44004)
-+#define DEIIR   _MMIO(0x44008)
-+#define DEIER   _MMIO(0x4400c)
++#define _CHICKEN_PIPESL_1_A	0x420b0
++#define _CHICKEN_PIPESL_1_B	0x420b4
++#define CHICKEN_PIPESL_1(pipe)	_MMIO_PIPE(pipe, _CHICKEN_PIPESL_1_A, _CHICKEN_PIPESL_1_B)
++#define   HSW_PRI_STRETCH_MAX_MASK	REG_GENMASK(28, 27)
++#define   HSW_PRI_STRETCH_MAX_X8	REG_FIELD_PREP(HSW_PRI_STRETCH_MAX_MASK, 0)
++#define   HSW_PRI_STRETCH_MAX_X4	REG_FIELD_PREP(HSW_PRI_STRETCH_MAX_MASK, 1)
++#define   HSW_PRI_STRETCH_MAX_X2	REG_FIELD_PREP(HSW_PRI_STRETCH_MAX_MASK, 2)
++#define   HSW_PRI_STRETCH_MAX_X1	REG_FIELD_PREP(HSW_PRI_STRETCH_MAX_MASK, 3)
++#define   HSW_SPR_STRETCH_MAX_MASK	REG_GENMASK(26, 25)
++#define   HSW_SPR_STRETCH_MAX_X8	REG_FIELD_PREP(HSW_SPR_STRETCH_MAX_MASK, 0)
++#define   HSW_SPR_STRETCH_MAX_X4	REG_FIELD_PREP(HSW_SPR_STRETCH_MAX_MASK, 1)
++#define   HSW_SPR_STRETCH_MAX_X2	REG_FIELD_PREP(HSW_SPR_STRETCH_MAX_MASK, 2)
++#define   HSW_SPR_STRETCH_MAX_X1	REG_FIELD_PREP(HSW_SPR_STRETCH_MAX_MASK, 3)
++#define   HSW_FBCQ_DIS			REG_BIT(22)
++#define   HSW_UNMASK_VBL_TO_REGS_IN_SRD REG_BIT(15) /* hsw */
++#define   SKL_PSR_MASK_PLANE_FLIP	REG_BIT(11) /* skl+ */
++#define   SKL_PLANE1_STRETCH_MAX_MASK	REG_GENMASK(1, 0)
++#define   SKL_PLANE1_STRETCH_MAX_X8	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 0)
++#define   SKL_PLANE1_STRETCH_MAX_X4	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 1)
++#define   SKL_PLANE1_STRETCH_MAX_X2	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 2)
++#define   SKL_PLANE1_STRETCH_MAX_X1	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 3)
++#define   BDW_UNMASK_VBL_TO_REGS_IN_SRD	REG_BIT(0) /* bdw */
 +
-+#define DE_IRQ_REGS		I915_IRQ_REGS(DEIMR, \
-+					      DEIER, \
-+					      DEIIR)
-+
- #define DIGITAL_PORT_HOTPLUG_CNTRL	_MMIO(0x44030)
- #define  DIGITAL_PORTA_HOTPLUG_ENABLE		(1 << 4)
- #define  DIGITAL_PORTA_PULSE_DURATION_2ms	(0 << 2) /* pre-HSW */
-@@ -1792,6 +1801,13 @@
- 					 SDE_TC_HOTPLUG_ICP(HPD_PORT_TC2) | \
- 					 SDE_TC_HOTPLUG_ICP(HPD_PORT_TC1))
- 
-+/* PCH */
-+
-+#define SDEISR  _MMIO(0xc4000)
-+#define SDEIMR  _MMIO(0xc4004)
-+#define SDEIIR  _MMIO(0xc4008)
-+#define SDEIER  _MMIO(0xc400c)
-+
- #define SDE_IRQ_REGS			I915_IRQ_REGS(SDEIMR, \
- 						      SDEIER, \
- 						      SDEIIR)
+ #define _CHICKEN_TRANS_A	0x420c0
+ #define _CHICKEN_TRANS_B	0x420c4
+ #define _CHICKEN_TRANS_C	0x420c8
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 22b68ddfa7b4..6cb72e6e9086 100644
+index bc466d8c8c60..10928e8406dc 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -728,15 +728,6 @@
- #define VLV_MASTER_IER			_MMIO(0x4400c) /* Gunit master IER */
- #define   MASTER_INTERRUPT_ENABLE	(1 << 31)
+@@ -879,28 +879,6 @@
+ #define CHICKEN_PAR2_1		_MMIO(0x42090)
+ #define   KVM_CONFIG_CHANGE_NOTIFICATION_SELECT	REG_BIT(14)
  
--#define DEISR   _MMIO(0x44000)
--#define DEIMR   _MMIO(0x44004)
--#define DEIIR   _MMIO(0x44008)
--#define DEIER   _MMIO(0x4400c)
--
--#define DE_IRQ_REGS		I915_IRQ_REGS(DEIMR, \
--					      DEIER, \
--					      DEIIR)
--
- #define GTISR   _MMIO(0x44010)
- #define GTIMR   _MMIO(0x44014)
- #define GTIIR   _MMIO(0x44018)
-@@ -868,12 +859,6 @@
- #define   GMD_ID_RELEASE_MASK			REG_GENMASK(21, 14)
- #define   GMD_ID_STEP				REG_GENMASK(5, 0)
+-#define _CHICKEN_PIPESL_1_A	0x420b0
+-#define _CHICKEN_PIPESL_1_B	0x420b4
+-#define CHICKEN_PIPESL_1(pipe)	_MMIO_PIPE(pipe, _CHICKEN_PIPESL_1_A, _CHICKEN_PIPESL_1_B)
+-#define   HSW_PRI_STRETCH_MAX_MASK	REG_GENMASK(28, 27)
+-#define   HSW_PRI_STRETCH_MAX_X8	REG_FIELD_PREP(HSW_PRI_STRETCH_MAX_MASK, 0)
+-#define   HSW_PRI_STRETCH_MAX_X4	REG_FIELD_PREP(HSW_PRI_STRETCH_MAX_MASK, 1)
+-#define   HSW_PRI_STRETCH_MAX_X2	REG_FIELD_PREP(HSW_PRI_STRETCH_MAX_MASK, 2)
+-#define   HSW_PRI_STRETCH_MAX_X1	REG_FIELD_PREP(HSW_PRI_STRETCH_MAX_MASK, 3)
+-#define   HSW_SPR_STRETCH_MAX_MASK	REG_GENMASK(26, 25)
+-#define   HSW_SPR_STRETCH_MAX_X8	REG_FIELD_PREP(HSW_SPR_STRETCH_MAX_MASK, 0)
+-#define   HSW_SPR_STRETCH_MAX_X4	REG_FIELD_PREP(HSW_SPR_STRETCH_MAX_MASK, 1)
+-#define   HSW_SPR_STRETCH_MAX_X2	REG_FIELD_PREP(HSW_SPR_STRETCH_MAX_MASK, 2)
+-#define   HSW_SPR_STRETCH_MAX_X1	REG_FIELD_PREP(HSW_SPR_STRETCH_MAX_MASK, 3)
+-#define   HSW_FBCQ_DIS			REG_BIT(22)
+-#define   HSW_UNMASK_VBL_TO_REGS_IN_SRD REG_BIT(15) /* hsw */
+-#define   SKL_PSR_MASK_PLANE_FLIP	REG_BIT(11) /* skl+ */
+-#define   SKL_PLANE1_STRETCH_MAX_MASK	REG_GENMASK(1, 0)
+-#define   SKL_PLANE1_STRETCH_MAX_X8	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 0)
+-#define   SKL_PLANE1_STRETCH_MAX_X4	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 1)
+-#define   SKL_PLANE1_STRETCH_MAX_X2	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 2)
+-#define   SKL_PLANE1_STRETCH_MAX_X1	REG_FIELD_PREP(SKL_PLANE1_STRETCH_MAX_MASK, 3)
+-#define   BDW_UNMASK_VBL_TO_REGS_IN_SRD	REG_BIT(0) /* bdw */
  
--/* PCH */
--
--#define SDEISR  _MMIO(0xc4000)
--#define SDEIMR  _MMIO(0xc4004)
--#define SDEIIR  _MMIO(0xc4008)
--#define SDEIER  _MMIO(0xc400c)
- 
- /* Icelake PPS_DATA and _ECC DIP Registers.
-  * These are available for transcoders B,C and eDP.
+ #define DISP_ARB_CTL	_MMIO(0x45000)
+ #define   DISP_FBC_MEMORY_WAKE		REG_BIT(31)
 -- 
 2.50.1
 
