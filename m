@@ -4,64 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BA6CD73EA7
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 23:40:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11547D73EA8
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 23:41:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F136410E19D;
-	Thu, 29 Jan 2026 23:40:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2B7310E19D;
+	Thu, 29 Jan 2026 23:41:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OOUAUFch";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BYs9UYE5";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F8A910E144;
- Thu, 29 Jan 2026 23:40:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34A5510E19D
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 Jan 2026 23:41:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769730017; x=1801266017;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=EeJHdXLpUbXmfjf7GoXb4csH9iYFb2OQHF5cIIK7b34=;
- b=OOUAUFchlSl9fMrQukZehbkhWitt96XCRm5apHwaOhJ6tW/nTE7m4J3A
- NNb9OSEcpmQGT2iShzJfC/3m+D9F+mLjKvanGT5sLenmmA9H7X7GjnzcX
- LdkMhZAWabt8pQxp1hGhpY9f6cjp8BZ9PkhCpYS5CcTHuhxp7S245Btej
- 0PNgdxnpMgrdaq4JwblfEDYWNbf9/4fL0NY4tOOs+e3X6gMjpOJQg/MDq
- CvjpEyfYmhnomToZ31ZyzArmqzQhQz86qcwR2HBZR7DoprZUfpbQECIJO
- kBDqjNWqFbKawSB3h6QyeEExmrGtN1EkSxRzkdseM7BlJlkgafF0rfhcw w==;
-X-CSE-ConnectionGUID: FZdYx4jGQZmuiVeGo2mzmg==
-X-CSE-MsgGUID: Df8Esat4RuKCNxSM/prGaw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="82350832"
-X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="82350832"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 15:40:17 -0800
-X-CSE-ConnectionGUID: hLdrIAV9TamdsE1+FL3JSw==
-X-CSE-MsgGUID: Fumg6Ek2QO2BmLZDWdgvBA==
+ t=1769730098; x=1801266098;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=kWcTjpi1KnnNIfOprbMWqKfei1pxItRBp9/aBf3loHU=;
+ b=BYs9UYE53Kuk++cWX9KGzsYQ/o4dQdHth4ts4SAmF5ge3JKD3KbVJfj/
+ 5jTi8zzBkVZif9D4qrRxsVWAynwY6GaW9kMFSiky9+IV5HwwyhdUvQDsi
+ RvFcSJtvOvmPlo9/rUJESCfHmL7nhSovly0uXRalIyWDI4SOJQuNOcHRN
+ KeZeU6/H0Lo6UwMxizxrEsuGNU1uL/QnOb1Thd4N/KGjhMVyKN1tSXSlT
+ kD4nwenJqTvJPgUjPiwt85rpNMm2E0yTZNLC3TA1z3awXILsXnEExs+uH
+ DrFpYyh0BgE3QReura23+PEQ7KN6amYRyRA8C+69sgnjhMbdrcxWpDzpf Q==;
+X-CSE-ConnectionGUID: rm4c43YmRzmD59DGQ1e5bw==
+X-CSE-MsgGUID: uokOfYUHRXmdmUm8n8ONIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="58560066"
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="58560066"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2026 15:41:38 -0800
+X-CSE-ConnectionGUID: PL0KNLVHSDKaDRhkxxxGtA==
+X-CSE-MsgGUID: GsC630foTyW1CyNUmgO2nQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="213615588"
-Received: from administrator-system-product-name.igk.intel.com
- ([10.91.214.181])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 15:40:15 -0800
-Date: Fri, 30 Jan 2026 00:40:13 +0100 (CET)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-cc: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Jani Nikula <jani.nikula@intel.com>, 
- Krzysztof Karas <krzysztof.karas@intel.com>, 
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>, 
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>, 
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: Re: [PATCH v2 1/1] i915/i915_driver: move intel_gvt_init() level
- higher
-In-Reply-To: <aXtasNhZFdaqbnAm@ashyti-mobl2.lan>
-Message-ID: <0a6b4d7e-4eb2-c81a-6f49-209d67eeaaf7@intel.com>
-References: <20260129090129.2601661-1-michal.grzelak@intel.com>
- <20260129090129.2601661-2-michal.grzelak@intel.com>
- <aXtasNhZFdaqbnAm@ashyti-mobl2.lan>
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="213201733"
+Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.103])
+ by fmviesa005.fm.intel.com with ESMTP; 29 Jan 2026 15:41:37 -0800
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Subject: [PATCH v2 0/3] Fix warning of kerneldoc
+Date: Thu, 29 Jan 2026 23:38:35 +0000
+Message-ID: <20260129233834.419977-5-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
- boundary="8323329-1256697926-1769730016=:2616878"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,50 +63,18 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+v2: add () for xe_gt_tlb_inval_init_early. (Michal)
 
---8323329-1256697926-1769730016=:2616878
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+Shuicheng Lin (3):
+  drm/xe: Fix kerneldoc for xe_migrate_exec_queue
+  drm/xe: Fix kerneldoc for xe_gt_tlb_inval_init_early
+  drm/xe: Fix kerneldoc for xe_tlb_inval_job_alloc_dep
 
-On Thu, 29 Jan 2026, Andi Shyti wrote:
-> Hi Michal,
->
-> On Thu, Jan 29, 2026 at 10:01:29AM +0100, Michał Grzelak wrote:
->> Both initialisation and removal of GVT happen at different abstraction
->> levels. Hence caller of i915_driver_hw_probe() has no way of knowing
->> status of intel_gvt_init(). This can lead to an unbalanced number of
->> calls of intel_gvt_init() and intel_gvt_driver_remove() since GVT error
->> path is currently handled in i915_driver_probe(). One such scenario has
->> been seen with i915_driver_hw_probe() fault injection, which caused
->> double entry deletion and list corruption.
->>
->> Move intel_gvt_init() up to i915_driver_probe(). Add out_cleanup_gvt
->> error path for removing gvt. Trigger it only after intel_gvt_init()
->> succeeded.
->>
->> In case intel_gvt_init() failed, theoretically we should follow err_msi
->> error path. That is actually impossible since call to intel_gvt_init()
->> unconditionally returns 0, although it claims to return negative error
->> code on failure. Thus follow standard out_cleanup_hw error path on a
->> hypothetical future intel_gvt_init() failure. Remove err_msi label from
->> i915_driver_hw_probe() since intel_gvt_init() was the only user of it.
->>
->> Changelog:
->> v1->v2
->> - don't move err_msi error path from i915_driver_hw_probe (Jani)
->> - rewrite commit message
->>
->> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15481
->> Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
->
-> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+ drivers/gpu/drm/xe/xe_migrate.c       | 2 +-
+ drivers/gpu/drm/xe/xe_tlb_inval.c     | 2 +-
+ drivers/gpu/drm/xe/xe_tlb_inval_job.c | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-Thank you Andi for the review. Do you have any suggestion via which tree
-should the patch be merged? Asking since I don't have commit right to
-any of drm-* repositories.
+-- 
+2.50.1
 
-BR,
-Michał
---8323329-1256697926-1769730016=:2616878--
