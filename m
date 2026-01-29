@@ -4,53 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 803DFD73EA0
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 23:00:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BE16D73EA8
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 23:06:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F6F510E8D3;
-	Thu, 29 Jan 2026 23:00:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OIwEAtev";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6B7D10E8D3
- for <intel-xe@lists.freedesktop.org>; Thu, 29 Jan 2026 23:00:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769727618; x=1801263618;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rI9L/I+1Kd4FWC7cDLrMzl/G2UTBSqTHqNqWo3zCJDk=;
- b=OIwEAtevbNyXx0RU0j8csdVFPjkqxQMZYkjQ35meGGKwbtm8lpFECJNY
- 4qAsylXvZ9zvklTuTJJD5qBbIU2DM3pzcIa6mqfG3FKeP8m6ITEiPrh4Z
- XB/jTGVz2rCFpxucPrssapfqh1Z1yxTfWzq65+puMUXWQp51Lsdd1qnyg
- pMWhhdFpDFNg1RAnzim32rQTX0Rgml4LN2matRTJxosFJak3nuTyTm01t
- b3acDr+EFE4x+Vvy8QDO3/TzKzf6SvJ1IPZEeak4An4VMprziMU+MOe14
- pU09y/ysdfleoeIJGmpJOVNxkwTgCEvH4yPejslN0NZyHzotfdNR4htFc w==;
-X-CSE-ConnectionGUID: 17HyjG1SRMuiB9ARZbTFqw==
-X-CSE-MsgGUID: pm58VF9wRxighr/aX4uMUw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="82089505"
-X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="82089505"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 15:00:18 -0800
-X-CSE-ConnectionGUID: D0meCsLLQFmJESSa0V/Tyw==
-X-CSE-MsgGUID: BD7WTz4ATNu8IWFscilCQg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="208715246"
-Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.103])
- by orviesa008.jf.intel.com with ESMTP; 29 Jan 2026 15:00:17 -0800
-From: Shuicheng Lin <shuicheng.lin@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>
-Subject: [PATCH 3/3] drm/xe: Fix kerneldoc for xe_tlb_inval_job_alloc_dep
-Date: Thu, 29 Jan 2026 22:56:10 +0000
-Message-ID: <20260129225606.412902-8-shuicheng.lin@intel.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260129225606.412902-5-shuicheng.lin@intel.com>
-References: <20260129225606.412902-5-shuicheng.lin@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC99E10E1EA;
+	Thu, 29 Jan 2026 23:06:07 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 15EEA10E1EA;
+ Thu, 29 Jan 2026 23:06:07 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Fix_warning_of_kerneldoc?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 29 Jan 2026 23:06:07 -0000
+Message-ID: <176972796706.207489.1827979132251531848@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260129225606.412902-5-shuicheng.lin@intel.com>
+In-Reply-To: <20260129225606.412902-5-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,33 +35,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Correct the function name in the kerneldoc.
-It is for below warning:
-"Warning: drivers/gpu/drm/xe/xe_tlb_inval_job.c:210 expecting prototype for
+== Series Details ==
+
+Series: Fix warning of kerneldoc
+URL   : https://patchwork.freedesktop.org/series/160866/
+State : warning
+
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f01a3377a17cb613b55df6d4c67c3bdce2685a1f
+Author: Shuicheng Lin <shuicheng.lin@intel.com>
+Date:   Thu Jan 29 22:56:10 2026 +0000
+
+    drm/xe: Fix kerneldoc for xe_tlb_inval_job_alloc_dep
+    
+    Correct the function name in the kerneldoc.
+    It is for below warning:
+    "Warning: drivers/gpu/drm/xe/xe_tlb_inval_job.c:210 expecting prototype for
+    xe_tlb_inval_alloc_dep(). Prototype was for xe_tlb_inval_job_alloc_dep() instead"
+    
+    Fixes: 15366239e2130 ("drm/xe: Decouple TLB invalidations from GT")
+    Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
++ /mt/dim checkpatch bd9c2b8a3a5b7bd8c38108929bfabd7a40dc922b drm-intel
+be5a582ce339 drm/xe: Fix kerneldoc for xe_migrate_exec_queue
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#9: 
+xe_get_migrate_exec_queue(). Prototype was for xe_migrate_exec_queue() instead"
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+969b81c80caa drm/xe: Fix kerneldoc for xe_gt_tlb_inval_init_early
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#9: 
+xe_gt_tlb_inval_init(). Prototype was for xe_gt_tlb_inval_init_early() instead"
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+f01a3377a17c drm/xe: Fix kerneldoc for xe_tlb_inval_job_alloc_dep
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#9: 
 xe_tlb_inval_alloc_dep(). Prototype was for xe_tlb_inval_job_alloc_dep() instead"
 
-Fixes: 15366239e2130 ("drm/xe: Decouple TLB invalidations from GT")
-Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
----
- drivers/gpu/drm/xe/xe_tlb_inval_job.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
 
-diff --git a/drivers/gpu/drm/xe/xe_tlb_inval_job.c b/drivers/gpu/drm/xe/xe_tlb_inval_job.c
-index 6a7bd6315797..01c413a2537e 100644
---- a/drivers/gpu/drm/xe/xe_tlb_inval_job.c
-+++ b/drivers/gpu/drm/xe/xe_tlb_inval_job.c
-@@ -198,7 +198,7 @@ static void xe_tlb_inval_job_destroy(struct kref *ref)
- }
- 
- /**
-- * xe_tlb_inval_alloc_dep() - TLB invalidation job alloc dependency
-+ * xe_tlb_inval_job_alloc_dep() - TLB invalidation job alloc dependency
-  * @job: TLB invalidation job to alloc dependency for
-  *
-  * Allocate storage for a dependency in the TLB invalidation fence. This
--- 
-2.50.1
 
