@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEA52D358D2
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 07:27:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D479ED358D2
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 07:27:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C11810E7D8;
-	Thu, 29 Jan 2026 07:27:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8332E10E7DA;
+	Thu, 29 Jan 2026 07:27:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MhvAhbgS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BMaaGqSY";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07C7410E7D8
- for <intel-xe@lists.freedesktop.org>; Thu, 29 Jan 2026 07:27:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13FF010E7D9
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 Jan 2026 07:27:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769671639; x=1801207639;
+ t=1769671641; x=1801207641;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IPW1W39qGnqSLG7kU7Q7fFG/bxAv1OXmqZBFe514jo0=;
- b=MhvAhbgSEyfMfBYblrVP5gb4QTMHY4uAunfeg9kDeYO410DChWAFb5nz
- oPuxilZwJbbqiolNSJtMO714dpaqLXnrfDP1lDpITTr8JyElPWPQyduCr
- c0BJT9wnXhpB3m/rWHF+/Jvk4CiKgOxyu1Sx0N6l+6O9FfgouYHeoI06Q
- hTUd8BqE9iGYXpvxSkayZl2Ej230UBNuXLgAI0mHV8H2yj7G6BSwtGEaX
- 1UTSuY11F/AfPHG74wujJHcv0tkV8gY8ItWgdKD1lEueeQftM/7ivkkkF
- BjRIIev9fDVIK2bfycfmQZ5UC+Uj9pOvUSl4L2OyuGDxmYEZZ9uFFsHyQ A==;
-X-CSE-ConnectionGUID: T/7Ra/CRSS6uLrywjmZxHQ==
-X-CSE-MsgGUID: inhc6nIqRyO6SUAowD6+Cg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="93561865"
-X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="93561865"
+ bh=IuC7XURrzYB3d5znHzzBCNJSkegynUsozaC9QbLVTmM=;
+ b=BMaaGqSYjnH6hAfDTjM0PUXfr0O5XfBHxBiWbD/rasceXGakeGXRhhqI
+ DTgQmjSdb+tAuDiNuyxZeaEyvmVRMNrAEletAbjSgF0qMTw9sBVQNwpxi
+ Z3XESaCJve5ptc4eYBISQYa3SPYx9spnTvKYd6jngVPbUw90LlrBwr22v
+ CP93gT6WxShkkNWexuWaMF6kOOqwV4QOoouA6/WtMfz/6ipQ6wk0cB1A1
+ nNT/ns8anelYPPRlSTJa16DWFSt9T4DezQwJDOlOrbRP1SeLDOEzQzSu3
+ SXcLmbO9DjmDd11aA5soxwjpF5gL8RQBPy8Icj1h0y3catkyes0dY2y3c g==;
+X-CSE-ConnectionGUID: B2IGk9pjRIiLA+SOy0+7+A==
+X-CSE-MsgGUID: fukITtOIQfC4AUIct4d+XQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="93561871"
+X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="93561871"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 23:27:19 -0800
-X-CSE-ConnectionGUID: kLQm81f5QaG4AdFFmNjdOA==
-X-CSE-MsgGUID: ITf4SjsOTKmuzAOymtuNuQ==
+ 28 Jan 2026 23:27:21 -0800
+X-CSE-ConnectionGUID: U6jN3+jDTca0ADJkDUPFmw==
+X-CSE-MsgGUID: XnBZNLy8TICC2+OyogetXg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="212579495"
+X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="212579499"
 Received: from bfilipch-desk.jf.intel.com ([10.88.27.152])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Jan 2026 23:27:19 -0800
+ 28 Jan 2026 23:27:21 -0800
 From: Julia Filipchuk <julia.filipchuk@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH 1/3] drm/xe: Enable Wa_14025515070
-Date: Wed, 28 Jan 2026 23:26:59 -0800
-Message-ID: <20260129072706.2587551-6-julia.filipchuk@intel.com>
+Subject: [PATCH 2/3] Revert "drm/xe/xe3p_xpc: Enable Indirect Ring State for
+ xe3p_xpc"
+Date: Wed, 28 Jan 2026 23:27:00 -0800
+Message-ID: <20260129072706.2587551-7-julia.filipchuk@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260129072706.2587551-5-julia.filipchuk@intel.com>
 References: <20260129072706.2587551-5-julia.filipchuk@intel.com>
@@ -66,69 +67,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Corrects a failure on context switch. On registration of context with
-indirect ring state will correct state of targeted and idle command
-streamers.
-
-If Wa is unavailable, notify and disable indirect_ring_state.
+This reverts commit 81e77c028848b7131d7653dd443a4049334a920b.
 
 Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
 ---
- drivers/gpu/drm/xe/abi/guc_klvs_abi.h |  1 +
- drivers/gpu/drm/xe/xe_guc_ads.c       | 10 ++++++++++
- drivers/gpu/drm/xe/xe_wa_oob.rules    |  6 ++++++
- 3 files changed, 17 insertions(+)
+ drivers/gpu/drm/xe/xe_pci.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-index e33bd622ab44..69e6d9f9650c 100644
---- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-@@ -496,6 +496,7 @@ enum xe_guc_klv_ids {
- 	GUC_WA_KLV_WAKE_POWER_DOMAINS_FOR_OUTBOUND_MMIO					= 0x900a,
- 	GUC_WA_KLV_RESET_BB_STACK_PTR_ON_VF_SWITCH					= 0x900b,
- 	GUC_WA_KLV_RESTORE_UNSAVED_MEDIA_CONTROL_REG					= 0x900c,
-+	GUC_WA_KLV_CLEAR_CS_INDIRECT_RING_STATE_IF_IDLE_AT_CONTEXT_REGISTRATION		= 0x900e,
- };
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index b5e8935fff1d..779546ec8836 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -108,7 +108,6 @@ static const struct xe_graphics_desc graphics_xe2 = {
  
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-index f4cbc030f4c8..1c563a01c12c 100644
---- a/drivers/gpu/drm/xe/xe_guc_ads.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-@@ -360,6 +360,16 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
- 	if (XE_GT_WA(gt, 14020001231))
- 		guc_waklv_enable(ads, NULL, 0, &offset, &remain,
- 				 GUC_WORKAROUND_KLV_DISABLE_PSMI_INTERRUPTS_AT_C6_ENTRY_RESTORE_AT_EXIT);
-+	if (XE_GT_WA(gt, 14025515070)) {
-+		if (GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 53))
-+			guc_waklv_enable(ads, NULL, 0, &offset, &remain,
-+					 GUC_WA_KLV_CLEAR_CS_INDIRECT_RING_STATE_IF_IDLE_AT_CONTEXT_REGISTRATION);
-+		else {
-+			/* Disable indirect_ring_state when workaround not available. */
-+			gt->info.has_indirect_ring_state = 0;
-+			xe_gt_notice(gt, "indirect ring state requires workaround present in GuC firmware v70.53.+\n");
-+		}
-+	}
- 
- 	size = guc_ads_waklv_size(ads) - remain;
- 	if (!size)
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index 5cd7fa6d2a5c..e0e5645384eb 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -69,6 +69,12 @@
- 		MEDIA_VERSION(3002), FUNC(xe_rtp_match_psmi_enabled)
- 16023683509	MEDIA_VERSION(2000), FUNC(xe_rtp_match_psmi_enabled)
- 		MEDIA_VERSION(3000), MEDIA_STEP(A0, B0), FUNC(xe_rtp_match_psmi_enabled)
-+14025515070	MEDIA_VERSION(1301)
-+		MEDIA_VERSION(2000)
-+		MEDIA_VERSION(3000)
-+		MEDIA_VERSION(3002)
-+		GRAPHICS_VERSION_RANGE(3000, 3001)
-+		GRAPHICS_VERSION(3003)
- 
- 15015404425_disable	PLATFORM(PANTHERLAKE), MEDIA_STEP(B0, FOREVER)
- 16026007364    MEDIA_VERSION(3000)
+ static const struct xe_graphics_desc graphics_xe3p_xpc = {
+ 	XE2_GFX_FEATURES,
+-	.has_indirect_ring_state = 1,
+ 	.hw_engine_mask =
+ 		GENMASK(XE_HW_ENGINE_BCS8, XE_HW_ENGINE_BCS1) |
+ 		GENMASK(XE_HW_ENGINE_CCS3, XE_HW_ENGINE_CCS0),
 -- 
 2.51.0
 
