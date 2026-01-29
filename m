@@ -4,101 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CA91D358E0
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 08:58:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 286B6D358E6
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 08:59:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BE0810E838;
-	Thu, 29 Jan 2026 08:58:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDE8E10E83B;
+	Thu, 29 Jan 2026 08:59:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="UxBW1H/d";
-	dkim=pass (2048-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="OEwC98oI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ibaoibi+";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 787AD10E837
- for <intel-xe@lists.freedesktop.org>; Thu, 29 Jan 2026 08:58:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1769677121;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=tXPLi5MPleV0XT1GzNz4vZO6yU1p82vu1eMa85GiDrc=;
- b=UxBW1H/dac+jT5u1zkJ6RvZGXQMjEbbZ/CjDQtk5HsjLVIh7z26GKH4uaeT5BhA3OeAR1F
- TO0n1AfN0wYFx/97IDR0zT9stDphz8D1bVmuejIaIHnkshR32oPxZOKQD3NBzvUFwdCjN9
- fjyZcay30Sg/xTm3kCYAHYK4MFfCLkI=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-421-87SRfBntO-ur5QvXtFWvVw-1; Thu, 29 Jan 2026 03:58:39 -0500
-X-MC-Unique: 87SRfBntO-ur5QvXtFWvVw-1
-X-Mimecast-MFC-AGG-ID: 87SRfBntO-ur5QvXtFWvVw_1769677119
-Received: by mail-wm1-f70.google.com with SMTP id
- 5b1f17b1804b1-4804157a3c9so9978935e9.1
- for <intel-xe@lists.freedesktop.org>; Thu, 29 Jan 2026 00:58:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=redhat.com; s=google; t=1769677118; x=1770281918; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=tXPLi5MPleV0XT1GzNz4vZO6yU1p82vu1eMa85GiDrc=;
- b=OEwC98oIE/gmRH6G5Yz5N4/xmW52WArLT00m9oHfAMDPUrinRCQDO7tUIjEvxlUG4C
- Yb0NwD6CuA5PnL2MSg86xVlLTsQYK9a4wFwZh9sPF4foetv4+W7DBBBzavy8gsobNoa4
- LPJJ/Ob47kSP5kVEMa14SXiWa8EpTJITyda+G891Gz7eq/GNo/pvmRiS2SYqrfQwXlOm
- W9JkSMmuZlCdkupYqly6kmQzJam/bvGCz9Trzy2kOl3f6WRBS6EViuGuj//AxPNj6QlK
- Q5Hc8hJvI4DNjfnjz6B7MRCsIEYTva4pLpeiZ2l+U/VWJPFN8dS2sJkODs6Yn0jew9Yg
- q6Yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1769677118; x=1770281918;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=tXPLi5MPleV0XT1GzNz4vZO6yU1p82vu1eMa85GiDrc=;
- b=rqhLjeTSDILqq+SpsPPrEv9+GjFUwGNldrFozV+GOPDV/1927I+TI6ZyV6/nZrs61z
- /VBGBcRsleIKmrZ577A2LJ+U+217H01BW4tQeOgYA4iDsm/O/MGwY+kf+cMOz+bfe4pW
- w5Mx/YQDyTRDahkh+YS8qmihBotHBYs1yL9gqWUn2PeAOqsDsLhBF3XOdiSLiwdmxOA+
- QtG9LZAhA51qjhYFKN9RwJX1PSBRn7YYWnmDqN8afzeSqSJGkgy8UaJycKOjt4BO2+wd
- OAZh/YxxwBi1iXnr2abZZFJVzAPGpLALgzzAC4oo4nertPkmJQEPTBlhI+UXSWVWy93I
- 4exA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXFzcvNCCkprq47Co3LiI/OfI7T4cC+rhSBtMKhFkJWa0+wFA3uB+zdP9yuMW7AA2d5ziGXvCb0Gw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxkWvLAFScrMGAePeOYQ+MSZP+RYYksxbGB/c/u3PtafLtTMZh0
- Rgf0GoL4HBJrasTjvS1WFRRCMegZit9kRFDryTiT7alu15rpfhZBcYDyyx6YbFKY5hlzGLersRn
- OAF08txHtXvcoHDGabqECJlSrkBWOy0JvMQPZgrVySJ3m/EY70txEJwCQE4NfSKU84mNS
-X-Gm-Gg: AZuq6aL63K2blwCQ3J5NpKCgnOXApoJC0R+sHTTr4hWpgr2f6TwEnrt0p4eAxCsWoYy
- bAfjkbwTDBEc/s8p8uEKaMU8Np1Uh4ZScty11YlGyswmmarDU2bVD0bs6YzcdpY/uQjIORsRrm4
- TDRirjesRDc+f7LyXqFxzfW07SmpctehMbhs7yyCqbdlyrMVdGfAcuVEhA71SNXyysn3GwmyOve
- +6QUmaHbVTj8yEoh4TdyoZGXXZBIQXYFJ5WwcHfPRwguS+lrEslg5e1XaOUy6etzvUlVkD5gYuT
- axacM6UuYXOYco7CZHWwypLDRmqeevnDpx69OheDvbp6Vuk5AdxpEIck+d3JSw==
-X-Received: by 2002:a05:600c:820c:b0:47b:de05:aa28 with SMTP id
- 5b1f17b1804b1-48069c0e172mr100786555e9.2.1769677118615; 
- Thu, 29 Jan 2026 00:58:38 -0800 (PST)
-X-Received: by 2002:a05:600c:820c:b0:47b:de05:aa28 with SMTP id
- 5b1f17b1804b1-48069c0e172mr100786155e9.2.1769677118181; 
- Thu, 29 Jan 2026 00:58:38 -0800 (PST)
-Received: from localhost ([2a01:e0a:b25:f902::ff])
- by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-481a5d31650sm5802175e9.4.2026.01.29.00.58.37
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 29 Jan 2026 00:58:37 -0800 (PST)
-Date: Thu, 29 Jan 2026 09:58:37 +0100
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Matthew Brost <matthew.brost@intel.com>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next-fixes
-Message-ID: <20260129-efficient-jerboa-of-ecstasy-822832@houat>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1141810E83C;
+ Thu, 29 Jan 2026 08:59:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769677148; x=1801213148;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=bcrAzpbqJixVR9lvMZUFhUvTL4GAMcNwl2QZ2OB5SA0=;
+ b=Ibaoibi+mGY1b6k+mTfe0v/L5lFnCq4Q5XwEAIU62HmvNxh4Gxx5VQxI
+ Bk3GoHSGVqniSa2M1DBFxe8smXwXC1fDybtzZ+2RFvdBEMZY8ojoxKzsr
+ 06hoYxlf8QeN/nI3i+zeDWRfrk5ShgHFMXZwXEFyTaVBrV7+A54TY7AqY
+ ARBj7vEZjJJbh0xrCt7EqNwU8s2EofVd1dMkeCsDD/I7m5gF1I+ixOlpC
+ 79epoHXOjKE0sweRth1hRCoxUt2E+RujBWfxOCb1EOoWv7A+WEKNeA2LE
+ nHD6jAIqQfx2fXduYJB3LJMHMvBwGDwhyHyKTRMBp8kEty6l2czzcFhKU w==;
+X-CSE-ConnectionGUID: ITOqsJbVSCqGxlYLmKkQag==
+X-CSE-MsgGUID: Rm45cbJ0Qs28xHV6nxuZxg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="70959983"
+X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="70959983"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2026 00:59:08 -0800
+X-CSE-ConnectionGUID: KnWF/oF3TF6tsHtfEepC9Q==
+X-CSE-MsgGUID: VmFwc7t5SjCNC8aZQ6yYfg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="246122781"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.4])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2026 00:59:05 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com, Suraj Kandpal
+ <suraj.kandpal@intel.com>
+Subject: Re: [PATCH v2] drm/i915/display: Wait for pipe start to avoid
+ vblank and scanline jumps
+In-Reply-To: <20260129060722.1382789-1-suraj.kandpal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260119043025.589754-1-suraj.kandpal@intel.com>
+ <20260129060722.1382789-1-suraj.kandpal@intel.com>
+Date: Thu, 29 Jan 2026 10:59:01 +0200
+Message-ID: <58597bfd2f0b15ed1ba4ca4b8f80aaa6d9030b8b@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="qzorfjkesxyen2l3"
-Content-Disposition: inline
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,64 +72,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Thu, 29 Jan 2026, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> Check if values are updated or not in PIPE_SCANLINE register before we
+> move on ahead with modeset.
+> This is because we need to make sure we are not getting
+> stale values from PIPE_SCANLINE register as we use theses scanline
+> values to make a decision if an atomic commit can go through. Without
+> this change we see Atomic update failure warning with the following
+> signature:
+> [drm] *ERROR* Atomic update failure on pipe B (start=457 end=458) time
+> 50 us, min 2128, max 2161, scanline start 411, end 2165.
+> Where the atomic commit takes less than 100us but we still see a
+> vblank count jump and a big leap in scanline.
+> The PIPE_SCANLINE may give stale values as internally after writing
+> to TRANSCONF register it take H/w around a vblank to actually get
+> enabled.
+>
+> Bspec: 69961
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_ddi.c | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index d8739e2bb004..4514de71cb9f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -83,6 +83,7 @@
+>  #include "intel_snps_phy.h"
+>  #include "intel_step.h"
+>  #include "intel_tc.h"
+> +#include "intel_vblank.h"
+>  #include "intel_vdsc.h"
+>  #include "intel_vdsc_regs.h"
+>  #include "intel_vrr.h"
+> @@ -3562,6 +3563,16 @@ static void intel_ddi_enable(struct intel_atomic_state *state,
+>  		intel_ddi_enable_hdmi(state, encoder, crtc_state, conn_state);
+>  	else
+>  		intel_ddi_enable_dp(state, encoder, crtc_state, conn_state);
+> +	/*
+> +	 * Somtimes when pipe starts PIPEDSL/PIPE_SCANLINE reads will return a
+> +	 * stale value, this is because it may take 1 vblank for TRANSCONF
+> +	 * register to enable the pipe, which causes an apparent vblank
+> +	 * timestamp and scaline jump  jump when PIPEDSL/PIPE_SCANLINE
+> +	 * resets to its proper value. That also messes up the frame count
+> +	 * when it's derived from the timestamps. So let's wait for the
+> +	 * pipe to start properly, So lets wait before we proceed with modeset.
+> +	 */
+> +	intel_wait_for_pipe_scanline_moving(to_intel_crtc(crtc_state->uapi.crtc));
 
---qzorfjkesxyen2l3
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: [PULL] drm-misc-next-fixes
-MIME-Version: 1.0
+The problem with adding these type of things is that they're almost
+impossible to remove afterwards.
 
-Hi,
+And on the face of it, it's kind of random placement in DDI encoder
+enable where there's nothing else like this.
 
-Here's this week drm-misc-next-fixes PR.
+But the *_crtc_enable() functions in intel_display.c do have vblank
+waits and scanline moving waits right after intel_encoders_enable(). So
+that's kind of where it feels like this belongs.
 
-Maxime
+On another note, what about the stale values? Related perhaps? [1]
 
-drm-misc-next-fixes-2026-01-29:
-Two fixes for NULL pointer dereference in imx8 following the bridge
-refcounting conversions, and one for the bridge connector following the
-HDMI audio reworks.
-The following changes since commit b2c6627e406d00bc53903ff6204aabb0c6a22b1a:
+BR,
+Jani.
 
-  Merge tag 'drm-misc-next-2026-01-22' of https://gitlab.freedesktop.org/drm/misc/kernel into drm-next (2026-01-23 12:45:15 +1000)
 
-are available in the Git repository at:
+[1] https://lore.kernel.org/r/20260108165139.1381835-1-aer@tuxedocomputers.com
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2026-01-29
 
-for you to fetch changes up to db7e7ea838c916ee4cdf26bee126fd36f58295dc:
+>  
+>  	intel_hdcp_enable(state, encoder, crtc_state, conn_state);
 
-  drm/bridge: imx8qxp-pxl2dpi: Fix NULL pointer dereference in imx8qxp_pxl2dpi_bridge_destroy() (2026-01-27 12:22:22 +0100)
-
-----------------------------------------------------------------
-Two fixes for NULL pointer dereference in imx8 following the bridge
-refcounting conversions, and one for the bridge connector following the
-HDMI audio reworks.
-
-----------------------------------------------------------------
-Dmitry Baryshkov (1):
-      drm/display: bridge_connector: move audio_infoframe checks to OP_HDMI
-
-Liu Ying (2):
-      drm/bridge: imx8qxp-ldb: Fix NULL pointer dereference in imx8qxp_ldb_bridge_destroy()
-      drm/bridge: imx8qxp-pxl2dpi: Fix NULL pointer dereference in imx8qxp_pxl2dpi_bridge_destroy()
-
- drivers/gpu/drm/bridge/imx/imx8qxp-ldb.c       | 7 +++++--
- drivers/gpu/drm/bridge/imx/imx8qxp-pxl2dpi.c   | 3 +++
- drivers/gpu/drm/display/drm_bridge_connector.c | 9 ++++++---
- 3 files changed, 14 insertions(+), 5 deletions(-)
-
---qzorfjkesxyen2l3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaXshPAAKCRAnX84Zoj2+
-dt5gAX9pLQKJqPi71NBJ0MlwXV8Fw2qlSyadbcBKrNT6zVmvePwu1VujKc72vdbK
-PGa8m1UBfihH1CZO4n4ggv7HJw2uTr/I6jE1EJKhPaEFh8p56JbOMM/9ySGzgoHY
-9jcd7C9RUg==
-=5QvF
------END PGP SIGNATURE-----
-
---qzorfjkesxyen2l3--
-
+-- 
+Jani Nikula, Intel
