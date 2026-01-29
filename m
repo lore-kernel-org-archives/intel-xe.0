@@ -4,54 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A6FFD73E84
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 17:28:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96604D73E80
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 17:28:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17E6510E8CB;
-	Thu, 29 Jan 2026 17:28:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5518010E8D1;
+	Thu, 29 Jan 2026 17:28:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AOuzekYw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H8gPKdoi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA25210E8C5;
- Thu, 29 Jan 2026 17:28:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8465310E8D6
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 Jan 2026 17:28:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769707696; x=1801243696;
+ t=1769707708; x=1801243708;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VLTybSIUHmLPIWYYfJAHjcaveJkTJ/NNOsiKW6Iy7ZE=;
- b=AOuzekYwcfDdD4Iu6f8HDyW2feV85HKUlyF7jW4RrRxePN5F8So+vXG/
- iexHt0Dkff3SmCZPXVMYHhNSwej5pqWO154SW0ehxUathh6xqBnZGJ1fW
- fbm92zaMc1BSArzQSLrlsFkHQYJaKTJX5wPn6mme2pRMTto6dP5cFNJcg
- P01321Bk8wXg/0DJ4Flg92fLThgbFvOATxku1ju6aLf1/p67qgmJUHWzb
- 7rQ641N5EJMCP6Y3xrgkSn7I3fjPAod+XAq+0zr/G3FKaNQtL+E+YP6Xx
- Sd1e1QkKXcJobTGGP7IJwJZdlBh6oXPlYKftMsSotY9xsnSypX7rKeIV3 g==;
-X-CSE-ConnectionGUID: tBkLjrMwSAiItvfYCIZrfQ==
-X-CSE-MsgGUID: IRSFhf1RRpCZF+vhtyKurg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="70926934"
-X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="70926934"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 09:28:16 -0800
-X-CSE-ConnectionGUID: FaEGn4dDRyCORP9CXtFwmg==
-X-CSE-MsgGUID: yxs0z7ZrRru3Qe1vdqqFBA==
+ bh=LYk0KSzWLdTeHoG32wY+IwIEgfYYieHvUqSTObipPHs=;
+ b=H8gPKdoiv/5Vk/nraciiRvfIc+s/7bvRAMf/bMkTlmUAXQOWD09D+0Vr
+ 54Ghplz1QvV7d5rvD9VIS/ktP9G4UUmfIxNO2RRnVXGD3L2GVKksmqW23
+ f4eupiM0fIAjwiF2WwJywwkVCXCXeBEXQQ84zFIV1lsf0cPaU9Vo/2OGf
+ TXs8/Ssp4GnzcMNC2Ss5VBI7qnja47AkGpkHf8DK1YOnngtVPUIOrm/VJ
+ oR4t0QcrTcL6/rO77+X516HcYoPbrer019j5+TCKWhn74JZUhj5xyNC4O
+ PhjuFZmBVERBSpP0NJzh2i+9zfLGY95YjVJHMyE2avwIS2tYbXVUXUxmz A==;
+X-CSE-ConnectionGUID: wwQYLaVQQ7aqBLWMjN28ZQ==
+X-CSE-MsgGUID: 1k8GSmaeScO8okWFBhRIQQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="70849959"
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="70849959"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2026 09:28:28 -0800
+X-CSE-ConnectionGUID: rOsOUhP5TtONQOaLR7arrg==
+X-CSE-MsgGUID: STURfkynSACo9MuNZByHRQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="239361106"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 09:28:14 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com, imre.deak@intel.com,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 14/16] drm/i915/dp: Account for DSC slice overhead
-Date: Thu, 29 Jan 2026 22:41:52 +0530
-Message-ID: <20260129171154.3898077-15-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20260129171154.3898077-1-ankit.k.nautiyal@intel.com>
-References: <20260129171154.3898077-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="208989869"
+Received: from nkumarg-desk.iind.intel.com ([10.190.216.171])
+ by fmviesa010.fm.intel.com with ESMTP; 29 Jan 2026 09:28:26 -0800
+From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Michal.Wajdeczko@intel.com,
+ Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+Subject: [PATCH v2 0/2] drm/xe:Mutual exclusivity between CCS-mode and PF
+Date: Thu, 29 Jan 2026 22:52:47 +0530
+Message-ID: <20260129172246.1106097-4-naresh.kumar.g@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251128171759.2775650-4-naresh.kumar.g@intel.com>
+References: <20251128171759.2775650-4-naresh.kumar.g@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,198 +66,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Account for DSC slice overhead bubbles and adjust the pixel rate while
-checking the pixel rate against the max dotclock limits.
+     Due to SLA agreement between PF and VFs,the alternate CCS-mode
+cannot be changed when VFs are already enabled.
+Similarly, enabling VFs is not permitted when the alternate
+CCS-mode is active. Also skipping populating
+CCS-mode sysfs entry in VF Mode.
 
-v2: Add missing assignment for dsc_slice_count in
-mst_connector_mode_valid_ctx(). (Imre)
-
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c     | 20 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.h     |  2 ++
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 19 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_vdsc.c   |  1 -
- drivers/gpu/drm/i915/display/intel_vdsc.h   |  3 +++
- 5 files changed, 44 insertions(+), 1 deletion(-)
+v2:
+- function xe_device_is_vf_enabled has been refactored to
+  xe_sriov_pf_has_vfs_enabled and moved to xe_sriov_pf_helper.h.
+- The code now distinctly checks for SR-IOV VF mode and
+  SR-IOV PF with VFs enabled.
+- Log messages have been updated to explicitly state the current mode.
+- The function xe_multi_ccs_mode_enabled is moved to xe_device.h
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 69a87c5933b1..798a0d192b72 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1414,6 +1414,8 @@ bool intel_dp_can_join(struct intel_display *display,
- 
- bool intel_dp_dotclk_valid(struct intel_display *display,
- 			   int target_clock,
-+			   int htotal,
-+			   int dsc_slice_count,
- 			   int num_joined_pipes)
- {
- 	int max_dotclk = display->cdclk.max_dotclk_freq;
-@@ -1421,6 +1423,12 @@ bool intel_dp_dotclk_valid(struct intel_display *display,
- 
- 	effective_dotclk_limit = max_dotclk * num_joined_pipes;
- 
-+	if (dsc_slice_count)
-+		target_clock = intel_dsc_get_pixel_rate_with_dsc_bubbles(display,
-+									 target_clock,
-+									 htotal,
-+									 dsc_slice_count);
-+
- 	return target_clock <= effective_dotclk_limit;
- }
- 
-@@ -1553,8 +1561,13 @@ intel_dp_mode_valid(struct drm_connector *_connector,
- 		if (status != MODE_OK)
- 			continue;
- 
-+		if (!dsc)
-+			dsc_slice_count = 0;
-+
- 		if (!intel_dp_dotclk_valid(display,
- 					   target_clock,
-+					   mode->htotal,
-+					   dsc_slice_count,
- 					   num_joined_pipes))
- 			continue;
- 
-@@ -2787,6 +2800,7 @@ intel_dp_compute_link_for_joined_pipes(struct intel_encoder *encoder,
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 	struct link_config_limits limits;
- 	bool dsc_needed, joiner_needs_dsc;
-+	int dsc_slice_count = 0;
- 	int ret = 0;
- 
- 	joiner_needs_dsc = intel_dp_joiner_needs_dsc(display, num_joined_pipes);
-@@ -2815,6 +2829,8 @@ intel_dp_compute_link_for_joined_pipes(struct intel_encoder *encoder,
- 		if (ret ||
- 		    !intel_dp_dotclk_valid(display,
- 					   adjusted_mode->crtc_clock,
-+					   adjusted_mode->crtc_htotal,
-+					   dsc_slice_count,
- 					   num_joined_pipes))
- 			dsc_needed = true;
- 	}
-@@ -2841,8 +2857,12 @@ intel_dp_compute_link_for_joined_pipes(struct intel_encoder *encoder,
- 		if (ret < 0)
- 			return ret;
- 
-+		dsc_slice_count = intel_dsc_line_slice_count(&pipe_config->dsc.slice_config);
-+
- 		if (!intel_dp_dotclk_valid(display,
- 					   adjusted_mode->crtc_clock,
-+					   adjusted_mode->crtc_htotal,
-+					   dsc_slice_count,
- 					   num_joined_pipes))
- 			return -EINVAL;
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index edeb09372d1e..95a38763a367 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -226,6 +226,8 @@ bool intel_dp_can_join(struct intel_display *display,
- 		       int num_joined_pipes);
- bool intel_dp_dotclk_valid(struct intel_display *display,
- 			   int target_clock,
-+			   int htotal,
-+			   int dsc_slice_count,
- 			   int num_joined_pipes);
- 
- #endif /* __INTEL_DP_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 129ea3e3916e..1c4b3014ba33 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -608,6 +608,7 @@ static int mst_stream_compute_link_for_joined_pipes(struct intel_encoder *encode
- 		to_intel_connector(conn_state->connector);
- 	struct link_config_limits limits;
- 	bool dsc_needed, joiner_needs_dsc;
-+	int dsc_slice_count = 0;
- 	int ret = 0;
- 
- 	joiner_needs_dsc = intel_dp_joiner_needs_dsc(display, num_joined_pipes);
-@@ -626,6 +627,8 @@ static int mst_stream_compute_link_for_joined_pipes(struct intel_encoder *encode
- 		if (ret ||
- 		    !intel_dp_dotclk_valid(display,
- 					   adjusted_mode->clock,
-+					   adjusted_mode->htotal,
-+					   dsc_slice_count,
- 					   num_joined_pipes))
- 			dsc_needed = true;
- 	}
-@@ -670,8 +673,12 @@ static int mst_stream_compute_link_for_joined_pipes(struct intel_encoder *encode
- 		if (ret)
- 			return ret;
- 
-+		dsc_slice_count = intel_dp_mst_dsc_get_slice_count(connector, pipe_config);
-+
- 		if (!intel_dp_dotclk_valid(display,
- 					   adjusted_mode->clock,
-+					   adjusted_mode->htotal,
-+					   dsc_slice_count,
- 					   num_joined_pipes))
- 			return -EINVAL;
- 	}
-@@ -1531,6 +1538,8 @@ mst_connector_mode_valid_ctx(struct drm_connector *_connector,
- 	}
- 
- 	for (num_pipes = 1; num_pipes <= I915_MAX_PIPES; num_pipes++) {
-+		int dsc_slice_count = 0;
-+
- 		*status = MODE_CLOCK_HIGH;
- 
- 		if (connector->force_joined_pipes &&
-@@ -1553,6 +1562,11 @@ mst_connector_mode_valid_ctx(struct drm_connector *_connector,
- 			 */
- 			int pipe_bpp = intel_dp_dsc_compute_max_bpp(connector, U8_MAX);
- 
-+			dsc_slice_count = intel_dp_dsc_get_slice_count(connector,
-+								       mode->clock,
-+								       mode->hdisplay,
-+								       num_joined_pipes);
-+
- 			if (!drm_dp_is_uhbr_rate(max_link_clock))
- 				bw_overhead_flags |= DRM_DP_BW_OVERHEAD_FEC;
- 
-@@ -1575,8 +1589,13 @@ mst_connector_mode_valid_ctx(struct drm_connector *_connector,
- 		if (*status != MODE_OK)
- 			continue;
- 
-+		if (!dsc)
-+			dsc_slice_count = 0;
-+
- 		if (!intel_dp_dotclk_valid(display,
- 					   mode->clock,
-+					   mode->htotal,
-+					   dsc_slice_count,
- 					   num_joined_pipes))
- 			*status = MODE_CLOCK_HIGH;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
-index 642a89270d8e..7e53201b3cb1 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
-@@ -1104,7 +1104,6 @@ void intel_vdsc_state_dump(struct drm_printer *p, int indent,
- 	drm_dsc_dump_config(p, indent, &crtc_state->dsc.config);
- }
- 
--static
- int intel_dsc_get_pixel_rate_with_dsc_bubbles(struct intel_display *display,
- 					      int pixel_rate, int htotal,
- 					      int dsc_horizontal_slices)
-diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.h b/drivers/gpu/drm/i915/display/intel_vdsc.h
-index aeb17670307b..f4d5b37293cf 100644
---- a/drivers/gpu/drm/i915/display/intel_vdsc.h
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.h
-@@ -41,5 +41,8 @@ void intel_vdsc_state_dump(struct drm_printer *p, int indent,
- 			   const struct intel_crtc_state *crtc_state);
- int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state);
- unsigned int intel_vdsc_prefill_lines(const struct intel_crtc_state *crtc_state);
-+int intel_dsc_get_pixel_rate_with_dsc_bubbles(struct intel_display *display,
-+					      int pixel_rate, int htotal,
-+					      int dsc_horizontal_slices);
- 
- #endif /* __INTEL_VDSC_H__ */
+v3: Described missed arg documentation for xe_sriov_pf_has_vfs_enabled
+
+v4:
+- sysfs interface for CCS mode is not initialized
+  when operating in SRIOV VF Mode.
+- xe_sriov_pf_has_vfs_enabled() check is sufficient while CCS mode
+  enablement.
+- remove unnecessary comments as flow is self explanatory.
+
+v5:(review comments from Michal)
+- Add xe device level CCS mode block with mutex lock and CCS mode state
+- necessesary functions to manage ccs mode state to provide strict mutual
+  exclusive support b/w CCS mode & SRIOV VF enabling
+
+v6:
+- Re modeled implementation based on lockdown the PF using custom guard
+  supported functions by Michal
+
+v7:
+- Corrected patch style as message written as subject
+- Used public PF lockdown functions instead internal funcions(Michal)
+- Creating CCS Mode entries only on PF Mode
+
+v8:(Michal)
+- updated short subject and few comments
+- used guard for mutex
+- Add a check of PF Mode to ensure use of xe_sriov_pf_lockdown only in
+  PF Mode
+- Added default CCS mode check to xe_gt_ccs_mode_default(gt) function
+
+v9:(Michal)
+- Added xe_gt_ccs_mode_default(gt) as static inline and it can be used
+  across driver to use between default or alternate CCS mode
+- removed comment from obvious code
+v10[v2 as per new series]:(Michal)
+- revoked gt_prepare_ccs_mode_enabling/gt_finish_ccs_mode_enabling functions
+  Instead added direct code for better readability
+
+Nareshkumar Gollakoti (2):
+  drm/xe: Fix Prevent VFs from exposing the CCS mode sysfs file
+  drm/xe: Mutual exclusivity between CCS-mode and PF
+
+ drivers/gpu/drm/xe/xe_gt_ccs_mode.c | 39 ++++++++++++++++++-----------
+ drivers/gpu/drm/xe/xe_gt_ccs_mode.h | 12 +++++++++
+ 2 files changed, 36 insertions(+), 15 deletions(-)
+
 -- 
-2.45.2
+2.43.0
 
