@@ -4,194 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39EB9D358F3
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 10:01:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14EA0D358F5
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 10:15:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D199310E325;
-	Thu, 29 Jan 2026 10:01:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3AF010E848;
+	Thu, 29 Jan 2026 10:14:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j32w0EMc";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="jVk2hmPT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CE5810E31F;
- Thu, 29 Jan 2026 10:01:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769680880; x=1801216880;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=YrSxYtrDpFLfaTf2Y3qNccK/G1GOdo6tH/kgfeH8GLk=;
- b=j32w0EMc9GxbzGHS3w2xFxp9QgE1MYDjGMqJa72IgxgOk4c2nHFlaaIE
- GE8LEhlQd5NbPfgZR2PtHptp7LaJquqCKOxzm/NcfdGCGM/Wk3TjdGlzR
- qovAvKwmewVtlccJRExsrnq9IXTqeWcJnkweIvPYBMJHJb7KISR4etvla
- VRBHu39qlBtJueYVBvlnCyispLZJG3sx38qjr3BzqCRvipZUWVZ95bEkG
- GWS0zccD3A/yzfxXSkdmDqic97i0DZ9Z4bpubZA4NfoAV3yjqtNymaznw
- SvnK42vyff20N7eif/0EEyX4JMSUCr16sq1oTfydPGkXvGHgHAJblIfbM g==;
-X-CSE-ConnectionGUID: v8p+gpGwQxaeLy0byQGGVA==
-X-CSE-MsgGUID: 4wM8hIFEThahpvapZ2FRRg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11685"; a="70111587"
-X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="70111587"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 02:01:18 -0800
-X-CSE-ConnectionGUID: 1RndCfLTRyeEUqI2bj+obA==
-X-CSE-MsgGUID: clBsVAfeRQ+a/lzvUCETfQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,260,1763452800"; d="scan'208";a="207777238"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 02:01:17 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Thu, 29 Jan 2026 02:01:17 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Thu, 29 Jan 2026 02:01:17 -0800
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.12) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Thu, 29 Jan 2026 02:01:16 -0800
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012031.outbound.protection.outlook.com [52.101.53.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B95EF10E849;
+ Thu, 29 Jan 2026 10:14:57 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Cm5Q8j6n1B6vhvwvdmYtoET43rc6wqIqmpL3mWZOIxhdK0P5Rno+CfKOk1mm3j/Rx8mzgNdGoiGXD+m063pbrYWK76/oYD72YwrdkClDNXtkb8LGi8sfh4sk7xX8LKJhsctgXLjEoEtzJI3T6/jV7asfASl3ZzSo8ysPW1quGhJY9oA0pA85YB8P4HYz4JXM9ErFhQSWX28zfZFW0n23xFgA8gSoiWfOS4RTS3gGXZ3hYjn40FiCG1bYyBWDk/ziffwK9eTt9V3z213uFe9fm37TW1jiv9CbEbwM3Xm8QBnGGqiSzNjoCtp3X/HCg1AEbPu6WEFKgQgIMxUqqI4Xpw==
+ b=OifiDUst/aCS0FoqEzz9kL9CV01j7HluopXcdHp1pFgbCwuoTQDJXb4BCfmb6c+75OlcFtEPqNB5n7HjkQi2O0NG6ltOV0lKnssheeT+xqJhz9vJxjYSvY9mX1a53cSp0sgKPug+PDurMWWrP8F9kedh/Z5kQD8nzDvxjrN0gGSogyiVmy7Gvb6zwhO/GLkJi4pasP1dQrLPJpA8Htu3m63icmCt/lyfirLGJE2SJlDmIiacBOOgl2ra/t1i7vIru9FQEfuEb537d0PDzrMx60n1ScPX7hDrQRvpiCVP+Wgv3uOT/YJ5gc7Q6bYDQshdalSd5t3bmYWBFdPUGC0ckg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KahT2RBWCpSs8fgKwUcaKYD5MFTE94pjU1PUBX7xpP0=;
- b=BoGvo+rSOFW17FgHd0l9+vT25mUDAmZjNXwn8UUjNRFuJYH1AMBBGEzQI3UECXHMz+Vdj9V0tafCuNe+p6kAscsWQnWnf+wZ5lZx4npY1+dVEAoxjC+N9EVVIU4iSE2xWA0k6cMGz6lHcmcHc2YbJ3DrNQBpAHXY1qSN4tW/theJyuVgII+DaAzkwWWHxqcHXBcGnKA2nPSk1Q+2goBHW0ld45J3RSEwYeQkzOciniJwzhsMJjFhKgsgwgKMLWCvkxzliV8mkNyIHNA6HKnOGzZR36ThE8JdbOActS8/vIe93JqnVguMaIP2WrXu2HY/IJ4E3zn4aV0zcDQzC/xu+g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by PH3PPF6D09CA9CB.namprd11.prod.outlook.com (2603:10b6:518:1::d2c) with
- Microsoft SMTP Server (version=TLS1_2,
+ bh=zsJ9Ojs78hKX217IaTw2L4OGtoM2fnVEbKvvjjsLGG8=;
+ b=MeK+gwRdTd9WpYA90ZFV7xe6pq6JDliUtwaoTD7OLhGX6QZS8UNsB/n8xZS2luzzs8bz/SwL4TIGayisnywRtqpHcDyDP64wpopRm2Vh7Kr7AJ+FUeOvPvVfaUR3UwberLv8xZ3vfEB/RvJ/qOTg76UWOUfIhbFnRrMkPJJQAbFOAdlIDrIUTlhUqHDAYo2uWeHG+RpHxk5w4jDnAI/7EOeWwLOqa/f10Lto3LgFV+ckmOLgrXa+Fg17zfrd9KjQhBazsovbe+ZUsFzwlsfXJxHy0jHZa/7wC7ARwYidzdI2w6DBTSWqQhCmrnCselmYicn+FckOCqwgdc9U8T40LA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=intel.com smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zsJ9Ojs78hKX217IaTw2L4OGtoM2fnVEbKvvjjsLGG8=;
+ b=jVk2hmPT5wksisI33fUrsizG87cOMjMRmPLFSqNW9dohTu9cT5QzVY0pUjaQrMaKkTRcrpYj9PoHexhqH4x6Ra0KT3wzWFfsCeRMfvv4TxjIudDzU1RolsgaVuxRSUTw2Wu2TUIHnV5FIR9JiEW8dzVy3Xb+yQyLQ/1Df4PqLp4siSan9LwUbUSDcXYKDguxVSlOTaKSxXLqzEKIG5qH7P9O8MA/SNGcmKXCvvezvx3lm8EiducHHoMB8qU5ZHD//aGoTvFym+BmKOaGXRBQUognZd0rpA7qlqliPDxWgQfJ4l+LvYnrTO0H3bZLAZDIVkXtfiOaMD67KuJ4IDP8BQ==
+Received: from BLAPR03CA0075.namprd03.prod.outlook.com (2603:10b6:208:329::20)
+ by CY8PR12MB7660.namprd12.prod.outlook.com (2603:10b6:930:84::12)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.7; Thu, 29 Jan
- 2026 10:01:14 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839%3]) with mapi id 15.20.9542.010; Thu, 29 Jan 2026
- 10:01:14 +0000
-Message-ID: <103cf6b7-25cc-4934-82a8-ea5e80c1ca4f@intel.com>
-Date: Thu, 29 Jan 2026 15:31:07 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/16] drm/i915/dp: Rework pipe joiner logic in mode_valid
-To: <imre.deak@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <jani.nikula@linux.intel.com>
-References: <20260128140636.3527799-1-ankit.k.nautiyal@intel.com>
- <20260128140636.3527799-5-ankit.k.nautiyal@intel.com>
- <aXo8dwGBqxY5vE6o@ideak-desk.lan>
- <079b962e-c649-4abd-a75e-5c50800542be@intel.com>
- <0fea6800-d846-450f-af08-5fa90f6827bf@intel.com>
- <aXsnN6_AtVeWvL_J@ideak-desk.lan>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <aXsnN6_AtVeWvL_J@ideak-desk.lan>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0159.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1ba::13) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+ 2026 10:14:52 +0000
+Received: from MN1PEPF0000ECDA.namprd02.prod.outlook.com
+ (2603:10b6:208:329:cafe::1) by BLAPR03CA0075.outlook.office365.com
+ (2603:10b6:208:329::20) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9564.8 via Frontend Transport; Thu,
+ 29 Jan 2026 10:14:50 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com;
+ dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ MN1PEPF0000ECDA.mail.protection.outlook.com (10.167.242.134) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9564.3 via Frontend Transport; Thu, 29 Jan 2026 10:14:52 +0000
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 29 Jan
+ 2026 02:14:33 -0800
+Received: from localhost (10.126.231.35) by rnnvmail201.nvidia.com
+ (10.129.68.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 29 Jan
+ 2026 02:14:33 -0800
+Date: Thu, 29 Jan 2026 12:14:27 +0200
+From: Leon Romanovsky <leonro@nvidia.com>
+To: Matthew Brost <matthew.brost@intel.com>
+CC: Jason Gunthorpe <jgg@ziepe.ca>, <intel-xe@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <francois.dugast@intel.com>,
+ <thomas.hellstrom@linux.intel.com>, <himal.prasad.ghimiray@intel.com>
+Subject: Re: [RFC PATCH v3 04/11] drm/pagemap: Use dma-map IOVA alloc, link,
+ and sync API for DRM pagemap
+Message-ID: <20260129101427.GE10992@unreal>
+References: <20260128004841.2436896-1-matthew.brost@intel.com>
+ <20260128004841.2436896-5-matthew.brost@intel.com>
+ <20260128142853.GH40916@unreal>
+ <aXpLhN08jVbltQC0@lstrano-desk.jf.intel.com>
+ <20260128175531.GR1641016@ziepe.ca>
+ <aXpjk5sAgOzE3OcR@lstrano-desk.jf.intel.com>
+ <20260128194540.GA10992@unreal>
+ <aXp58fqfeeDD6YI+@lstrano-desk.jf.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aXp58fqfeeDD6YI+@lstrano-desk.jf.intel.com>
+X-Originating-IP: [10.126.231.35]
+X-ClientProxiedBy: rnnvmail203.nvidia.com (10.129.68.9) To
+ rnnvmail201.nvidia.com (10.129.68.8)
+X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|PH3PPF6D09CA9CB:EE_
-X-MS-Office365-Filtering-Correlation-Id: 429a7c3f-8c55-48ad-ac05-08de5f1d566b
+X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECDA:EE_|CY8PR12MB7660:EE_
+X-MS-Office365-Filtering-Correlation-Id: ae70f007-37e3-4499-c88e-08de5f1f3e18
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?VFNlR1I0Tk5pd2VSWkphbkIzR3NXWU1MVCtvdWJpSnVSNUtBR3Nhdnh1dG90?=
- =?utf-8?B?RFVqWTFEdmJyVUljeSs4LzhWdmhpTXdjTVQ4MGM2MmF3R3BQSkkyTXZLczlK?=
- =?utf-8?B?SGl3dG54bE1vak8rc2NkcGdTSENFN2lrbW1mczFNS2lRbTg0OU4ySFU4L1RI?=
- =?utf-8?B?ZG10RnhDTmZ2QXNUdWdsdllqS1U0bTZFTlcrbklpdjEydStKME1rMGhWTFhL?=
- =?utf-8?B?ZHVWN1BWd3hGU0kzdlpiNVErZThNZTlSWjQ0MXFZL1Evb0trN0ZMVnFXUG5X?=
- =?utf-8?B?TnpsVG5vRjRDS2pEZFhZdEpTSmtZTlBJMHRuQ2F4QjhLeVRvZTBtQ1pKbzlu?=
- =?utf-8?B?OGdaUlBKdVJTWGd1WXcyUEhINWFBdnZ4bWJxVVJQUmRkWFdyaS9RM3ZIY09i?=
- =?utf-8?B?d0M4dUFNMCtYTTF2YnpVR3Uzb1pVUytHazdlaGozRWRsZDNJYjByM2RpNy84?=
- =?utf-8?B?NE5pNGJabVBUYVNKZm9JalBjT2RBZVdMVzY4cGx4L2hwOFJ2QloybTg1MnRN?=
- =?utf-8?B?TTJrVWNnYnVvbDJTZGRkbXkva3pYRHhuMmJCd1Byekh4c0xHc0N4WFp2OVB2?=
- =?utf-8?B?cXJ1Nzd3K1BkcEYvOVd3eTNTUHFPcitEVks5K0RqUytqTGxiNlZaejVHR1VG?=
- =?utf-8?B?WllEbEkyVDlPK2F6VXR0eXgwcXpjUHM2QnVwZitjQzBVRU0wcE0zNWxvbEdY?=
- =?utf-8?B?SGN5OS9COWl5KzJiMTZJRTNIdVoySzgrLytaOGp4RjFLbyt4eXZiaXAwUmgx?=
- =?utf-8?B?MEJZUml2UW5RUEc4L1NpMjdFZTlpWkJ2eDVDSHQ4Z2JUc3crOWQ2SGRhakJl?=
- =?utf-8?B?LzJlVlJzcS9FOHpKSmUzY3hpOThKVXBXMnFJOWljazFiUW15TWZhWTZYYW9E?=
- =?utf-8?B?N1p1WEREWTB1c3NpSXlFdzA1T2ZqS1M1NVVTN1loc1kvdzh4OFgrcjRXRkda?=
- =?utf-8?B?d0lxNjRMeFhQN2J6bnRLR3J5aXBtR3A0ODBrWDhZTVl3Q3NNV09YQUh5UXJV?=
- =?utf-8?B?aUdBL25ZY3NjQTdRem9YOTVQQ0hka2RvSEw3cXcvRzliOUdLelBFT0xib3Q2?=
- =?utf-8?B?Vk91YnhHTFRMTFVyOXBNZzlxZUR5V0tGVExXQlZIblYyOFhCTEowSWpKbWlX?=
- =?utf-8?B?bitGWGpaTkUrQ1F0elorRFpWN1BnanA4NEQ1bnU1S0VOZFl1Vys5bVRCTmRW?=
- =?utf-8?B?Z3JQd2RVUDcxUEM2bW5qVVVjcDBUcWFLSi9RMVFVTFJybGpINFJsRGtmQXNR?=
- =?utf-8?B?UUtqdTBiNktoV0hlSHFhSXQ0dHl4NG5vRG1qckJTbnBPamxaaUtjMDMxS2xr?=
- =?utf-8?B?Um1ZemVhb2p6NEFGUll3dGRualBzNzZqdnlYbHRTWlZMenR3RmJyWC9DMHdo?=
- =?utf-8?B?MEJRaGJYekVXTkt0WkdsUXJ6Rm9WMU9Pbm1SdEM1aHNUR0s5NUY0RUUrU1pr?=
- =?utf-8?B?U3doTEZxVjNWZGZRcVdTNDZ1SzVJNlY3SGlsVmZ1RDNnUWFxNGNYZnA0R2Vr?=
- =?utf-8?B?OFM0cGpVQUg0YnZQd0Jid1NkS2hDUXlXN0liNzZFR1FRUkVMWmpLRmNQTGpT?=
- =?utf-8?B?QzJDdmdqTzJ0Z28rVlZ1dG9nNmpRTGtuQUIwSVdYK1hmZmJmdEE3MnVGRUxF?=
- =?utf-8?B?WnRqL0xWYiszYi9Mc1lEV2xiR29yVDZZZGNPM1QrKzJsenhYMjMwV3FoU1Rj?=
- =?utf-8?B?dXpveHIyN0JoVTVicVNtUEhIZksveWtaRUR1cm9XQTJmbWlOY0JKWmJiUHhv?=
- =?utf-8?B?UHh3RitmODN3V3RVdkJpWHg2UEpERzZnSE9pK21ucDBVZ3kxNFgzMEttK2VY?=
- =?utf-8?B?NVdoa3R4WXMrOThnN1FJSkhIaU9GMlpRS3NrV3MxMGx5cTVFQnBJZ2ErOUdu?=
- =?utf-8?B?ZUJra2VWUTBYSHNPSUJJYlVYL3h1WmtjUWxUSUpCZ3orTnpqMUdzM2ZtS3VV?=
- =?utf-8?B?N3orYlVWcG5tLzJwaWVWSkQvNFNYNnphWjBFOWlZQWk3emdtdlYrOEtGY2RY?=
- =?utf-8?B?U3FJWWlVaHV1Y0IwVEdhQ0lLNGllbFpHTm1OUytDeHNzdWtacURUMWFEamx5?=
- =?utf-8?B?MDNnNmNxaEFGNTZyRHVBOFgvQWJtMkVyZVI5cXdBaXJObFUrb0d4bHJPcTUv?=
- =?utf-8?Q?09Wg=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SVBYVzF6U09nWThpU2d5bjVhMVZKeElVSjJNby9KbUhJQk5xbFRRSFg0NHVO?=
- =?utf-8?B?b3BYWHF2ZzJrQi9WTU54c3NRTW9ySnZrNmViVnJBRTcrSHBUaVg4Tjk0K3dV?=
- =?utf-8?B?eFVndlhGcmpvcTFTQkVZL0E0NzdtWFU3MnowNlhOOXVzSUFremY4VHZhMng3?=
- =?utf-8?B?Z3dqUkZQVGVMbXNiNmhSMDQxVmNadHpXYTZxTkdqTlBBSlRMWkxFSi9kQVlz?=
- =?utf-8?B?NWNsNkhSdlJVWHpDcUdCb0l1SVJZbEZGdml2TE5pT1F6dWxDMkF3K0plai8z?=
- =?utf-8?B?aU5SS3VicThPSGMxT3MrQ05INGdhUkdUT3JCclFSSmNMd1Y3dnVmQ2Z6WHFu?=
- =?utf-8?B?SUhneno0UFlMK0RyYUlrdTEzMEp0VDJjZUhPZ3gxNG10aE51YXF6b1VNV1B6?=
- =?utf-8?B?NHhTeEd0aTZhVFNLN1IzY1NPT1ZrWXduRWY4V2pTMkZnWGVBeFJFOUlRelk5?=
- =?utf-8?B?Uzd5YmgwWmNha3dIRGRFM0xuZlNSZU5ZK212TXpPRDMydzhUYThrT1dyaitT?=
- =?utf-8?B?ZU1RenJqVGJhamNEQTljZXNFT0VRaGNGeFRCQXJlNW90WlNyWkZ3SjV0SXhy?=
- =?utf-8?B?cE9YMlNWbDdIQjFRR0tLWlpYS0F0bkJKS1NQQ3VlVi9uSlBqUWhvb1ZoZkI0?=
- =?utf-8?B?VE9XS0RvZGMwekljcjFaYVZrZVkvV09WRmt4YWFzR2IzZWdIZ1pNKzhmTmIy?=
- =?utf-8?B?bUFZNE9GQVlkR0xUaGFtVkx6M3lZN3JiTE9YUFFDSG9qMkh6TEplU3J1emFk?=
- =?utf-8?B?LzJWWTdYbzg2TlJzaGJGZTlyQXFYTzZ4M214enNjMlM5SEpWdERtckoxaGxC?=
- =?utf-8?B?d09qdVUrODhMdUp5TTgyZUZzQndVbXB4V2VoanpIWmV1NGp2cEljTzY4VEtv?=
- =?utf-8?B?ZnJJdmxpd3dPTUFLUWVqSVlZZmhGUlhGT0JQNVBick5LTGRJT3NQdlFjbDlj?=
- =?utf-8?B?QmpFN3lrbjUwVGdoTEVWcVpUT1hidXB6dmhCMUg2anFxTE5Vc3BXSXl2VlpU?=
- =?utf-8?B?cXJ1OGdqTzhkdFRHaHZqQXc1d2NjOGw2NFF0UkVwT2dTa3BwNi9YU0ZMRk1I?=
- =?utf-8?B?UHE3dEwvSDArbmFWMlZ6UjJGdXhzTGdRUDlHa2ZRdnNFeWVBY1FpZFdkNUFk?=
- =?utf-8?B?VG1CU25xQzBPSS9Wd3hieC9UYnNyNUV6QmdNVlMva3IzZGkyYXRmOFp5S0RF?=
- =?utf-8?B?bnpZRFQ3TkJ1TTZWQStZazIrOTNNTnJXMXhSVGxHdS9kcUM3enZXOXUzSzFW?=
- =?utf-8?B?ckoycnJaZmEvT0xmYWxtcklkTC9PZUFVM3NyNDZYRVFiSUFZZnZzd09TMWty?=
- =?utf-8?B?Myt5UFpqT2x4TFBmQ2M0VDY3NnV1Z3lHaldLOGkzNUZ3S1J1VnpMOStDVktk?=
- =?utf-8?B?QTlUQ1l0bmtoL2ZwSEd4cUh2WDE3Qmw3WWlKbDcxTzdMVTc0Mzd3enVvVkpL?=
- =?utf-8?B?Y1VxdzVKZ2xLcjFEOTZ0V1drSGgwcTNNRmF2ZUV6WjNCbTZITjM1WmRhbjJT?=
- =?utf-8?B?REEyRnNyRUp4N1ZHMVdscS83Z1c0WXdjVzRxSEZGWDNEcG4vYXlUUi9EbFlU?=
- =?utf-8?B?dnpnbUQ2NUYrUjRRL0tiR09nMFhtUE1FZjJ4N1B6S3Rva0ZiT0c2RG42OXRE?=
- =?utf-8?B?enJpNTBaMnlsZ3A3ZThhZUplQUVXMnVoVjdnZkFEQzdOcVczemt1WGJWMUZU?=
- =?utf-8?B?ZzRBVDZLbEpVc2dEdnpOYVZ6SUgxZjVXNWtnUGYvbGFMNTczdXFpVWZ1NTE0?=
- =?utf-8?B?YmQ1Y3ZXeDZ4K0VnTHBvYnlGTytscG5hR0MyUWNRZGRKUDdjcXBqUk1EUFIv?=
- =?utf-8?B?VzNONmlVOXYzV1hTS1lKRUxZaFhQVDV2bURYeWo4RjBvS2UxeVZBSWR5b1Ex?=
- =?utf-8?B?S3g1VU45NFB4OGlMeXIySEIzdlljbWkvcmFvV0hOTlc4UGxmWVllMXlCd3VP?=
- =?utf-8?B?MTBzdHMvUVI3RUtFNXdsMjRzeGxac0lMRCtuYWxOZkJhVncvdDZySW5tOVQv?=
- =?utf-8?B?Mm84VjlFeUJrVW1adWRseWhpNXN0TTZWdTh3K0pmdVdBbXV0WXVDdUw3Y3VE?=
- =?utf-8?B?Umo4WU5ETXF2SFh5UnhabDBmNnVLU0FLOVJTRUNCY0dkdEhackZ1bXJsLzF5?=
- =?utf-8?B?azJ0MmZlbS84cjlzaFJ4cnFDY2dXeTZrUm5WMlJHc0YxZFJXQnozeHRKMXJM?=
- =?utf-8?B?eTk5RjJLdGc4Zzg1cXMwWWVpdVNUK21NVEw3OCtoTlpENFlibkhERVVKTU1x?=
- =?utf-8?B?Y1pOUmhnRXpFRUF4aEs3dDNoOUVWRWFBNlBhS3dHS09VVDk0WmU2SGdBa0FV?=
- =?utf-8?B?UmtQN3dmckdoeGlzRGhCNko3dzZJNnRhd1ZnL3JCUkJLYlVSQXI3RzZ1R0Zo?=
- =?utf-8?Q?Czt/AeQ9+MbB/W1M=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 429a7c3f-8c55-48ad-ac05-08de5f1d566b
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2026 10:01:14.3645 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PpjkE/xT+d5sNZw2c0INCDkSwJ7UNsLdZN63qJPo63VwerZV+8XScU1rXRcY7x5LUkEBLtTdBK3XXMjXjyfqNIu8pvH74genfuileW9+7fs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPF6D09CA9CB
-X-OriginatorOrg: intel.com
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|82310400026|376014|1800799024|36860700013|13003099007; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Zm9NUXVUVFdQZEM3dEdybVlNdWZldmVSWTMvMHB0R3lCRXFBYVJ5L0g4Qk9M?=
+ =?utf-8?B?YlQxNzVnNHFOTk1heXh3c2xLV0pDbGhRRVo2SXRhVVRRWDRhdFErQ0pJUEYy?=
+ =?utf-8?B?U2NmUjkzYzlLdmxpS2U5cjdjVjNGQnpYYUFBOTUwV1pUS0NnNlpnVUFqek5P?=
+ =?utf-8?B?Mlk5dTJHcm1FNWNqaUg2VzUwMDFXU0x0QmlJWFdHMVdrUTZjTlNqL1lyRWgw?=
+ =?utf-8?B?OFAvaEU5SE5EQ1pWbm1HT1ZVQTdjcVhMRHZ2N2dvWFNpNlp5RlNITy8yK05J?=
+ =?utf-8?B?cHkwcmY2bzUyOG5HOHJhM1NEOHdhRzVVVFBuaDdjUkRmUFRSQ1I2OTF1ZGQr?=
+ =?utf-8?B?cVJhcytZQnpZN2d1SDBtK1ZEdTFGMVdwejg3Q0VKRXpKdWxhYytxcEZCNGkr?=
+ =?utf-8?B?R3hWTGg4QmxBbncxNnFwMHlDVHhvcVNOSHFFdldSLy9pQ3BIQk04MXFWUkNI?=
+ =?utf-8?B?WW9Gd08ycTBmMERVNkFsbDkyRDRLeUtRSXo4RmorRE5pWGp3bUNzU2IxbFNF?=
+ =?utf-8?B?L29aaGlqOWhlZTlIS2I4Y0g4cGl5REsvKy9pL3VSTHM5VTYwcVJBR2RtMFB3?=
+ =?utf-8?B?R0t5R25iS3p6NUNod2toL25TM2M5Ui9LK3dzdkFlZmRpbUlKTXBOd2VTMzdn?=
+ =?utf-8?B?ZXNIU3lCS2tYOUpzUE5aM0tiZ1VRT1Rjbkw2ZzRMRkhoeVg3eG02UW0vUlRh?=
+ =?utf-8?B?SUdJZm8ySWpQa3RYNTc0MlFZYVNuaHYyQThKMG9nR21DWGZkYUEva0dvNklC?=
+ =?utf-8?B?VEd0bkpXN1RkTEdaL2s1NkJHNFAwdTBDc0FsRVF3S2x3V0NuMjU4RW9ObkNS?=
+ =?utf-8?B?dlRoUlNiSzJQQ25PeGhNS2JqWW9PNHZMbzU0a0xXei9xRTljSjNZZDdXVXZD?=
+ =?utf-8?B?ZWVYQ3ArdWovUGRNdDRwclFacUM5Ni9ld3c1NTNFa041bHROUmNFTVVzRDhZ?=
+ =?utf-8?B?aEVhenhHMHdMQ2NpbUtDN1lYK1EwRlBWNTRaUk5CaXlIQjJYby9JWkN4bklR?=
+ =?utf-8?B?cHFSbHhkS3N4V3FtRnlpSjlSN2pkVVVqRWx6aEdOTFY0Y2NmTTIyRkhXVnVD?=
+ =?utf-8?B?aEpTY1pURnB2dk5BY1grNFgwVlFpZjVuV3FwekpTeGtyakszMFR3NUhUYVlt?=
+ =?utf-8?B?bFFzbGozV1IrOGwxUWVDY2d2NGFKSUt2MWRwNkY3cW8vWklka3M4bm1mVHE1?=
+ =?utf-8?B?TGdXeUFVTEh2Tk94WjZ0dm5IWHlCVHZOeHZIL0JTdUlPS25NME1PRjV0aDZu?=
+ =?utf-8?B?aWxudUZvWW1KakVSM2xpd29DRnF4MDl0Q3hZQVdmbzBCempoNk54bi9NSlNY?=
+ =?utf-8?B?dDRoSTRhTkt1R3JXWU1jQ0Y2eEdqd2VIak53ZTUxNFRzOG14UjAvQjVxUGFX?=
+ =?utf-8?B?dXRrcldHTVJ0QUMvUVRLSER6bUFOUk1May9udUtpNSs5Nm4wTXlvYkljMk9r?=
+ =?utf-8?B?QVFncnBFbnZGYlJJUGdTSGRucFBSRnk4WUNIU0J3amtDYUxsTTdTejFyVXFu?=
+ =?utf-8?B?MmMweUIycU40cWg2b3F1cVhqMjRVZ2J6bEFibTFBdzRDUjB1WTBoYksxajBl?=
+ =?utf-8?B?dXRMbnJuZHpEeUZrejhETHhJZHR6OGdPS2xETWRTSFlQWVNMbE5ITHdKdS9K?=
+ =?utf-8?B?M1hpRDJvRGk0SUdpdkh2WlJGYitTWnVtR2tJNC9kaVlRQmtzMXo3UTBydDBn?=
+ =?utf-8?B?QjJ1TmlDU2xudUNpaDhWN3NXOCtad3hzSmsweUJQU3BFSzNxOGRRUVZNWjZ0?=
+ =?utf-8?B?UGk3bUUyUGRZVWdZREpmbGplNTl6NGdqT250aWZHSlhwd21VSHVEcWlTd2tK?=
+ =?utf-8?B?cWxMdEd0a3dNZGJZU1hEL0VGT0k4NlluUzNkbVYxWEJuS0dUa3YwS0MzeXE0?=
+ =?utf-8?B?VS9qZ3p3TTh6ZXlYK0ZKTWtiMUE2L1RIVGhQeGxkQnVmdmtPUk9CTnpEU3JH?=
+ =?utf-8?B?UGJFZldaK2NtaXBkMEtSVkhETlBacm5nRWVudmZ3Zml4S1FCbW5sanVUOGtv?=
+ =?utf-8?B?d1k0eFQ1SytBWG80dG0yK0wzQXFUVUJ2cFJ4RlIzVjBtVXRpSFFMRTNmU2Qx?=
+ =?utf-8?B?cWpZYXlTMURzcGpQb2VZN0d5L2hETms1TGQxVFVlNno5Um8wZTRrWWFyL0p3?=
+ =?utf-8?B?OTlKcWVOcXJzWkVYdDJqUnJ3L0FJRHozRVlLWWFxL0R5RFJ5dC9lSHZPS0Rs?=
+ =?utf-8?B?eXFxcDRnMjlROEtKb2syYlR3WDVkYUtnQUMyOWtqL0NmbFNqazViK3lCdSt4?=
+ =?utf-8?B?M2lUSkpZdmJZYU4rbmhCYWVWNklnPT0=?=
+X-Forefront-Antispam-Report: CIP:216.228.117.161; CTRY:US; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:mail.nvidia.com; PTR:dc6edge2.nvidia.com; CAT:NONE;
+ SFS:(13230040)(82310400026)(376014)(1800799024)(36860700013)(13003099007);
+ DIR:OUT; SFP:1101; 
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jan 2026 10:14:52.1692 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ae70f007-37e3-4499-c88e-08de5f1f3e18
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a; Ip=[216.228.117.161];
+ Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: MN1PEPF0000ECDA.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7660
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -206,330 +160,143 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, Jan 28, 2026 at 01:04:49PM -0800, Matthew Brost wrote:
+> On Wed, Jan 28, 2026 at 09:45:40PM +0200, Leon Romanovsky wrote:
+> > On Wed, Jan 28, 2026 at 11:29:23AM -0800, Matthew Brost wrote:
+> > > On Wed, Jan 28, 2026 at 01:55:31PM -0400, Jason Gunthorpe wrote:
+> > > > On Wed, Jan 28, 2026 at 09:46:44AM -0800, Matthew Brost wrote:
+> > > > 
+> > > > > It is intended to fill holes. The input pages come from the
+> > > > > migrate_vma_* functions, which can return a sparsely populated array of
+> > > > > pages for a region (e.g., it scans a 2M range but only finds several of
+> > > > > the 512 pages eligible for migration). As a result, if (!page) is true
+> > > > > for many entries.
+> > > > 
+> > > > This is migration?? So something is DMA'ing from A -> B - why put
+> > > > holes in the first place? Can you tightly pack the pages in the IOVA?
+> > > > 
+> > > 
+> > > This could probably could be made to work. I think it would be an
+> > > initial pass to figure out the IOVA size then tightly pack.
+> > > 
+> > > Let me look at this. Probably better too as installing dummy pages is a
+> > > non-zero cost as I assume dma_iova_link is a radix tree walk.
+> > > 
+> > > > If there is no iommu then the addresses are scattered all over anyhow
+> > > > so it can't be relying on some dma_addr_t relationship?
+> > > 
+> > > Scattered dma-addresses is already handled in the copy code, likewise
+> > > holes so non-issue.
+> > > 
+> > > > 
+> > > > You don't have to fully populate the allocated iova, you can link from
+> > > > A-B and then unlink from A-B even if B is less than the total size
+> > > > requested.
+> > > > 
+> > > > The hmm users have the holes because hmm is dynamically
+> > > > adding/removing pages as it runs and it can't do anything to pack the
+> > > > mapping.
+> > > > 
+> > > > > > IOVA space? If so, what necessitates those holes? You can have less mapped
+> > > > > > than IOVA and dma_iova_*() API can handle it.
+> > > > > 
+> > > > > I was actually going to ask you about this, so I’m glad you brought it
+> > > > > up here. Again, this is a hack to avoid holes — the holes are never
+> > > > > touched by our copy function, but rather skipped, so we just jam in a
+> > > > > dummy address so the entire IOVA range has valid IOMMU pages.
+> > > > 
+> > > > I would say what you are doing is trying to optimize unmap by
+> > > 
+> > > Yes and make the code simplish.
+> > > 
+> > > > unmapping everything in one shot instead of just the mapped areas, and
+> > > > the WARN_ON is telling you that it isn't allowed to unmap across a
+> > > > hole.
+> > > > 
+> > > > > at the moment I’m not sure whether this warning affects actual
+> > > > > functionality or if we could just delete it. 
+> > > > 
+> > > > It means the iommu page table stopped unmapping when it hit a hole and
+> > > > there is a bunch of left over maps in the page table that shouldn't be
+> > > > there. So yes, it is serious and cannot be deleted.
+> > > >
+> > > 
+> > > Cool, this explains the warning.
+> > >  
+> > > > This is a possible option to teach things to detect the holes and
+> > > > ignore them..
+> > > 
+> > > Another option — and IMO probably the best one — as it makes potential
+> > > usages with holes the simplest at the driver level. Let me look at this
+> > > too.
+> > 
+> > It would be ideal if we could code a more general solution. In HMM we
+> > release pages one by one, and it would be preferable to have a single-shot
+> > unmap routine instead. In similar to NVMe which release all IOVA space
+> > with one call to dma_iova_destroy().
+> > 
+> > HMM chain:
+> > 
+> > ib_umem_odp_unmap_dma_pages()
+> >  -> for (...)
+> >    -> hmm_dma_unmap_pfn()
+> > 
+> > After giving more thought to my earlier suggestion to use
+> > hmm_pfn_to_phys(), I began to wonder why did not you use the
+> > hmm_dma_*() API instead?
+> > 
+> 
+> That is ill-suited for high-speed fabrics, but so is our existing
+> implementation — we’re just in slightly better shape (?). It also seems
+> ill-suited [1][2][3] for variable page sizes (which are possible with
+> our API), as well as the way we currently program device PTEs in our
+> driver. We also receive PFNs from the migrate_vma_* layer, which must
+> also be mapped.
+> 
+> I also believe the hmm_dma_* code predates the DRM code being merged, or
+> was merged around the same time.
+> 
+> We could work to unify the HMM helpers and make them usable, but that
+> won’t happen overnight. The HMM layer needs quite a bit of work to
+> useable, and then we’d have to propagate everything upward through
+> DRM/Xe and any new users. Let me play around with this though a bit
+> though to get rough idea what would need to be done here.
+> 
+> [1] https://elixir.bootlin.com/linux/v6.18.6/source/drivers/infiniband/core/umem_odp.c#L255
+> [2] https://elixir.bootlin.com/linux/v6.18.6/source/drivers/infiniband/core/umem_odp.c#L193
+> [3] https://elixir.bootlin.com/linux/v6.18.6/source/drivers/infiniband/core/umem_odp.c#L104 
+> 
+> Also this is some odd stuff going... Why sync after every mapping [4].
 
-On 1/29/2026 2:54 PM, Imre Deak wrote:
-> On Thu, Jan 29, 2026 at 11:18:28AM +0530, Nautiyal, Ankit K wrote:
->> On 1/29/2026 10:51 AM, Nautiyal, Ankit K wrote:
->>> On 1/28/2026 10:16 PM, Imre Deak wrote:
->>>> On Wed, Jan 28, 2026 at 07:36:24PM +0530, Ankit Nautiyal wrote:
->>>>> Currently in intel_dp_mode_valid(), we compute the number of
->>>>> joined pipes
->>>>> required before deciding whether DSC is needed. This ordering
->>>>> prevents us
->>>>> from accounting for DSC-related overhead when determining pipe
->>>>> requirements.
->>>>>
->>>>> It is not possible to first decide whether DSC is needed and
->>>>> then compute
->>>>> the required number of joined pipes, because the two depend on
->>>>> each other:
->>>>>
->>>>>    - DSC need is a function of the pipe count (e.g., 4‑pipe
->>>>> always requires
->>>>>      DSC; 2‑pipe may require it if uncompressed joiner is unavailable).
->>>>>
->>>>>    - Whether a given pipe‑join configuration is sufficient depends on
->>>>>      effective bandwidth, which itself changes when DSC is used.
->>>>>
->>>>> As a result, the only correct approach is to iterate candidate
->>>>> pipe counts.
->>>>>
->>>>> So, refactor the logic to start with a single pipe and
->>>>> incrementally try
->>>>> additional pipes only if needed. While DSC overhead is not yet computed
->>>>> here, this restructuring prepares the code to support that in a
->>>>> follow-up
->>>>> changes.
->>>>>
->>>>> Additionally, if a forced joiner configuration is present, we
->>>>> first check
->>>>> whether it satisfies the bandwidth and timing constraints. If it
->>>>> does not,
->>>>> we fall back to evaluating configurations with 1, 2, or 4 pipes joined
->>>>> and prune or keep the mode accordingly.
->>>>>
->>>>> v2:
->>>>>    - Iterate over number of pipes to be joined instead of joiner
->>>>>      candidates. (Jani)
->>>>>    - Document the rationale of iterating over number of joined pipes.
->>>>>      (Imre)
->>>>>
->>>>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->>>>> ---
->>>>>    drivers/gpu/drm/i915/display/intel_dp.c | 158
->>>>> +++++++++++++++---------
->>>>>    1 file changed, 103 insertions(+), 55 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
->>>>> b/drivers/gpu/drm/i915/display/intel_dp.c
->>>>> index 4c3a1b6d0015..599965a6e1a6 100644
->>>>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->>>>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->>>>> @@ -1434,6 +1434,23 @@ bool intel_dp_has_dsc(const struct
->>>>> intel_connector *connector)
->>>>>        return true;
->>>>>    }
->>>>>    +static
->>>>> +bool intel_dp_can_join(struct intel_display *display,
->>>>> +               int num_joined_pipes)
->>>>> +{
->>>>> +    switch (num_joined_pipes) {
->>>>> +    case 1:
->>>>> +        return true;
->>>>> +    case 2:
->>>>> +        return HAS_BIGJOINER(display) ||
->>>>> +               HAS_UNCOMPRESSED_JOINER(display);
->>>>> +    case 4:
->>>>> +        return HAS_ULTRAJOINER(display);
->>>>> +    default:
->>>>> +        return false;
->>>>> +    }
->>>>> +}
->>>>> +
->>>>>    static enum drm_mode_status
->>>>>    intel_dp_mode_valid(struct drm_connector *_connector,
->>>>>                const struct drm_display_mode *mode)
->>>>> @@ -1445,13 +1462,13 @@ intel_dp_mode_valid(struct drm_connector
->>>>> *_connector,
->>>>>        const struct drm_display_mode *fixed_mode;
->>>>>        int target_clock = mode->clock;
->>>>>        int max_rate, mode_rate, max_lanes, max_link_clock;
->>>>> -    int max_dotclk = display->cdclk.max_dotclk_freq;
->>>>>        u16 dsc_max_compressed_bpp = 0;
->>>>>        u8 dsc_slice_count = 0;
->>>>>        enum drm_mode_status status;
->>>>>        bool dsc = false;
->>>>>        int num_joined_pipes;
->>>>>        int link_bpp_x16;
->>>>> +    int num_pipes;
->>>>>          status = intel_cpu_transcoder_mode_valid(display, mode);
->>>>>        if (status != MODE_OK)
->>>>> @@ -1488,67 +1505,98 @@ intel_dp_mode_valid(struct drm_connector
->>>>> *_connector,
->>>>>                           target_clock, mode->hdisplay,
->>>>>                           link_bpp_x16, 0);
->>>>>    -    num_joined_pipes = intel_dp_num_joined_pipes(intel_dp,
->>>>> connector,
->>>>> -                             mode->hdisplay, target_clock);
->>>>> -    max_dotclk *= num_joined_pipes;
->>>>> -
->>>>> -    if (target_clock > max_dotclk)
->>>>> -        return MODE_CLOCK_HIGH;
->>>>> -
->>>>> -    status = intel_pfit_mode_valid(display, mode,
->>>>> output_format, num_joined_pipes);
->>>>> -    if (status != MODE_OK)
->>>>> -        return status;
->>>>> -
->>>>> -    if (intel_dp_has_dsc(connector)) {
->>>>> -        int pipe_bpp;
->>>>> -
->>>>> -        /*
->>>>> -         * TBD pass the connector BPC,
->>>>> -         * for now U8_MAX so that max BPC on that platform
->>>>> would be picked
->>>>> -         */
->>>>> -        pipe_bpp = intel_dp_dsc_compute_max_bpp(connector, U8_MAX);
->>>>> -
->>>>> -        /*
->>>>> -         * Output bpp is stored in 6.4 format so right shift by
->>>>> 4 to get the
->>>>> -         * integer value since we support only integer values of bpp.
->>>>> -         */
->>>>> -        if (intel_dp_is_edp(intel_dp)) {
->>>>> -            dsc_max_compressed_bpp =
->>>>> - drm_edp_dsc_sink_output_bpp(connector->dp.dsc_dpcd) >> 4;
->>>>> -
->>>>> -            dsc_slice_count =
->>>>> -                intel_dp_dsc_get_slice_count(connector,
->>>>> -                                 target_clock,
->>>>> -                                 mode->hdisplay,
->>>>> -                                 num_joined_pipes);
->>>>> -
->>>>> -            dsc = dsc_max_compressed_bpp && dsc_slice_count;
->>>>> -        } else if
->>>>> (drm_dp_sink_supports_fec(connector->dp.fec_capability)) {
->>>>> -            unsigned long bw_overhead_flags = 0;
->>>>> -
->>>>> -            if (!drm_dp_is_uhbr_rate(max_link_clock))
->>>>> -                bw_overhead_flags |= DRM_DP_BW_OVERHEAD_FEC;
->>>>> -
->>>>> -            dsc = intel_dp_mode_valid_with_dsc(connector,
->>>>> -                               max_link_clock, max_lanes,
->>>>> -                               target_clock, mode->hdisplay,
->>>>> -                               num_joined_pipes,
->>>>> -                               output_format, pipe_bpp,
->>>>> -                               bw_overhead_flags);
->>>>> +    /*
->>>>> +     * We cannot determine the required pipe‑join count before
->>>>> knowing whether
->>>>> +     * DSC is needed, nor can we determine DSC need without
->>>>> knowing the pipe
->>>>> +     * count.
->>>>> +     * Because of this dependency cycle, the only correct
->>>>> approach is to iterate
->>>>> +     * over candidate pipe counts and evaluate each combination.
->>>>> +     */
->>>>> +    for (num_pipes = 0; num_pipes < I915_MAX_PIPES; num_pipes++) {
->>>>> +        int max_dotclk = display->cdclk.max_dotclk_freq;
->>>>> +
->>>>> +        status = MODE_CLOCK_HIGH;
->>>>> +
->>>>> +        if (num_pipes == 0) {
->>>>> +            if (!connector->force_joined_pipes)
->>>>> +                continue;
->>>>> +            num_joined_pipes = connector->force_joined_pipes;
->>>>> +        } else {
->>>>> +            num_joined_pipes = num_pipes;
->>>>> +        }
->>>> The current way is to try connector->force_joined_pipes and fail the
->>>> commit if that doesn't work. Here you'd change that to fall back trying
->>>> non-forced pipe-joined configs in that case. If that's needed (not sure
->>>> if that's a good idea, since then the user wouldn't know which case
->>>> succeeded or failed), it should be a separate change. Here it could be
->>>> simply an if (forced_joined_pipes && num_pipes != forced_joined_pipes)
->>>> continue and then use num_pipes instead of num_joined_pipes later in the
->>>> loop.
->>> Hmm Yeah the initial thought process was to try force joiner thing
->>> first, if succeed well and good, if not we do our usual thing.
->>>
->>> But I see your point. I think we can just fail the commit if forced
->>> joiner doesn't work.
->>>
->>> This will also help simplify the loop and will allow to have an iterator
->>> macro as you have mentioned in the later patch.
->> For mode_valid phase can there be a corner case where force joiner is set to
->> some high value with which all modes somehow fail?
->>
->> Can hdisplay/htotal or clock  for a mode go below some acceptable value if
->> joiner is used?
-> I.e. hdisplay/htotal/clock per-pipe becoming too low, right? I don't
-> recall that the driver would check for these anywhere. The mode timing
-> itself is checked and then (for instance) MODE_CLOCK_LOW is returned,
-> but that's not a per-pipe thing. One thing that can fail is the DSC
-> slice count, which can get too high for the sink.
->
-> In any case there's not much we can do about any such failure scenario,
-> just fail the commit?
+Right now, hmm_dma_map_pfn() user is page-based one, we need to sync
+after every pagefault.
 
+> Blindly doing BIDIRECTIONAL [5]... 
 
-Hmm makes sense. I have already started working on this, will send the 
-next revision with this change and other suggested changes soon.
+It was promoted from old code, callers can provide direction.
 
-Regards,
-
-Ankit
-
->
->> Regards,
->>
->> Ankit
->>
->>>
->>>>> +
->>>>> +        if (!intel_dp_can_join(display, num_joined_pipes))
->>>>> +            continue;
->>>>> +
->>>>> +        if (mode->hdisplay > num_joined_pipes *
->>>>> intel_dp_max_hdisplay_per_pipe(display))
->>>>> +            continue;
->>>>> +
->>>>> +        status = intel_pfit_mode_valid(display, mode,
->>>>> output_format, num_joined_pipes);
->>>>> +        if (status != MODE_OK)
->>>>> +            continue;
->>>>> +
->>>>> +        if (intel_dp_has_dsc(connector)) {
->>>>> +            int pipe_bpp;
->>>>> +
->>>>> +            /*
->>>>> +             * TBD pass the connector BPC,
->>>>> +             * for now U8_MAX so that max BPC on that platform
->>>>> would be picked
->>>>> +             */
->>>>> +            pipe_bpp = intel_dp_dsc_compute_max_bpp(connector,
->>>>> U8_MAX);
->>>>> +
->>>>> +            /*
->>>>> +             * Output bpp is stored in 6.4 format so right
->>>>> shift by 4 to get the
->>>>> +             * integer value since we support only integer
->>>>> values of bpp.
->>>>> +             */
->>>>> +            if (intel_dp_is_edp(intel_dp)) {
->>>>> +                dsc_max_compressed_bpp =
->>>>> + drm_edp_dsc_sink_output_bpp(connector->dp.dsc_dpcd) >> 4;
->>>>> +
->>>>> +                dsc_slice_count =
->>>>> +                    intel_dp_dsc_get_slice_count(connector,
->>>>> +                                     target_clock,
->>>>> +                                     mode->hdisplay,
->>>>> +                                     num_joined_pipes);
->>>>> +
->>>>> +                dsc = dsc_max_compressed_bpp && dsc_slice_count;
->>>>> +            } else if
->>>>> (drm_dp_sink_supports_fec(connector->dp.fec_capability)) {
->>>>> +                unsigned long bw_overhead_flags = 0;
->>>>> +
->>>>> +                if (!drm_dp_is_uhbr_rate(max_link_clock))
->>>>> +                    bw_overhead_flags |= DRM_DP_BW_OVERHEAD_FEC;
->>>>> +
->>>>> +                dsc = intel_dp_mode_valid_with_dsc(connector,
->>>>> +                                   max_link_clock, max_lanes,
->>>>> +                                   target_clock, mode->hdisplay,
->>>>> +                                   num_joined_pipes,
->>>>> +                                   output_format, pipe_bpp,
->>>>> +                                   bw_overhead_flags);
->>>>> +            }
->>>>> +        }
->>>>> +
->>>>> +        if (intel_dp_joiner_needs_dsc(display,
->>>>> num_joined_pipes) && !dsc)
->>>>> +            continue;
->>>>> +
->>>>> +        if (mode_rate > max_rate && !dsc)
->>>>> +            continue;
->>>>> +
->>>>> +        status = intel_mode_valid_max_plane_size(display, mode,
->>>>> num_joined_pipes);
->>>>> +        if (status != MODE_OK)
->>>>> +            continue;
->>>>> +
->>>>> +        max_dotclk *= num_joined_pipes;
->>>>> +
->>>>> +        if (target_clock <= max_dotclk) {
->>>>> +            status = MODE_OK;
->>>> status stays MODE_OK if target_clock > max_dotclk.
->>> Oh yes.. will fix this.
->>>
->>>
->>>>> +            break;
->>>>>            }
->>>>>        }
->>>>>    -    if (intel_dp_joiner_needs_dsc(display, num_joined_pipes)
->>>>> && !dsc)
->>>>> -        return MODE_CLOCK_HIGH;
->>>>> -
->>>>> -    status = intel_mode_valid_max_plane_size(display, mode,
->>>>> num_joined_pipes);
->>>>>        if (status != MODE_OK)
->>>>>            return status;
->>>>>    -    if (mode_rate > max_rate && !dsc)
->>>>> -        return MODE_CLOCK_HIGH;
->>>>> -
->>>>>        return intel_dp_mode_valid_downstream(connector, mode,
->>>>> target_clock);
->>>>> +
->>>> Extra w/s.
->>> Will drop this extra line.
->>>
->>>
->>> Thanks & Regards,
->>>
->>> Ankit
->>>
->>>>>    }
->>>>>      bool intel_dp_source_supports_tps3(struct intel_display *display)
->>>>> -- 
->>>>> 2.45.2
->>>>>
+> 
+> [4] https://elixir.bootlin.com/linux/v6.18.6/source/mm/hmm.c#L826
+> [5] https://elixir.bootlin.com/linux/v6.18.6/source/mm/hmm.c#L821
+> 
+> > > 
+> > > Do you think we need flag somewhere for 'ignore holes' or can I just
+> > > blindly skip them?
+> > 
+> > Better if we will have something like dma_iova_with_holes_destroy()
+> > function call to make sure that we don't hurt performance of existing
+> > dma_iova_destroy() users.
+> >
+> 
+> Yes, I think this is the best route for the time being. Let me look at
+> this.
+> 
+> Matt
+> 
+> > Thanks
+> > 
+> > > 
+> > > Matt
+> > > 
+> > > > 
+> > > > Jason
