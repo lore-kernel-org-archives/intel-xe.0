@@ -4,27 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B14E0D73E87
-	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 22:57:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B310D73EA0
+	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 23:00:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64EAC10E8CF;
-	Thu, 29 Jan 2026 22:57:10 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC66E10E1EA;
- Thu, 29 Jan 2026 22:57:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8403372503721964945=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 326E410E1EA;
+	Thu, 29 Jan 2026 23:00:13 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ChHc3vxs";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67A1910E1EA
+ for <intel-xe@lists.freedesktop.org>; Thu, 29 Jan 2026 23:00:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769727612; x=1801263612;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+6+ofwovX1gWt5UuNJwnpd6H0c6MkJsGpnoZSEIffPg=;
+ b=ChHc3vxsiVC3yo0T1EX5BnTlL0cpWVVqblj+dZC6gzEp21kYlBxokAj0
+ 1F7TnJ99kskOxcUoVO3UfvRh/1Za5i05uzKAX1vnIuIc3CyO5dSZlxktR
+ p0cpLbrb3ys39RitNSkHdthUiSRZiueWr+yx0coLJX6JcuUJBBU4Xu4Wc
+ JzX2NY1SAAE0mxzuiBdkjukagF2kwmbt8o1Kjy2x/+fAbkB/l2yRhmjPi
+ BjPm0H7hugSDYtSxJsbwfhaFce2JRTmdY4PJ8QxGxt+f1O8YK33Uz8Rzu
+ CA5A3Ry46c2YdZpwTLetYmA3A7PnMNlfWLYWJ02WnhInfb84SgBu+hKVp A==;
+X-CSE-ConnectionGUID: 8Z3Dvp0eQz601pjUWjynjg==
+X-CSE-MsgGUID: IbZtopprQTaxYgLjzyGTPw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="82089482"
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="82089482"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2026 15:00:12 -0800
+X-CSE-ConnectionGUID: iqBzSSG1RZOmA6EO4p21+Q==
+X-CSE-MsgGUID: BQbHG8kDTJ2WqZdYS9P/xA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="208715199"
+Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.103])
+ by orviesa008.jf.intel.com with ESMTP; 29 Jan 2026 15:00:10 -0800
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Subject: [PATCH 0/3] Fix warning of kerneldoc
+Date: Thu, 29 Jan 2026 22:56:07 +0000
+Message-ID: <20260129225606.412902-5-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_series_starting_with_=5B1/2?=
- =?utf-8?q?=5D_drm/xe/xe2hpg=3A_Remove_SRIOV_VF_check_for_Wa=5F18041344222?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Harish Chegondi" <harish.chegondi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 29 Jan 2026 22:57:09 -0000
-Message-ID: <176972742989.207735.6334513726054936195@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <928d363f96c55923f7765afdbc833d515fdb80b9.1769723894.git.harish.chegondi@intel.com>
-In-Reply-To: <928d363f96c55923f7765afdbc833d515fdb80b9.1769723894.git.harish.chegondi@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,154 +60,19 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8403372503721964945==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Shuicheng Lin (3):
+  drm/xe: Fix kerneldoc for xe_migrate_exec_queue
+  drm/xe: Fix kerneldoc for xe_gt_tlb_inval_init_early
+  drm/xe: Fix kerneldoc for xe_tlb_inval_job_alloc_dep
 
-== Series Details ==
+ drivers/gpu/drm/xe/xe_migrate.c       | 2 +-
+ drivers/gpu/drm/xe/xe_tlb_inval.c     | 2 +-
+ drivers/gpu/drm/xe/xe_tlb_inval_job.c | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-Series: series starting with [1/2] drm/xe/xe2hpg: Remove SRIOV VF check for Wa_18041344222
-URL   : https://patchwork.freedesktop.org/series/160865/
-State : failure
+-- 
+2.50.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-4472-bd9c2b8a3a5b7bd8c38108929bfabd7a40dc922b_BAT -> xe-pw-160865v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-160865v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-160865v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-160865v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@sriov_basic@enable-vfs-autoprobe-on:
-    - bat-ptl-1:          [PASS][1] -> [ABORT][2] +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4472-bd9c2b8a3a5b7bd8c38108929bfabd7a40dc922b/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160865v1/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
-    - bat-bmg-2:          [PASS][3] -> [ABORT][4] +1 other test abort
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4472-bd9c2b8a3a5b7bd8c38108929bfabd7a40dc922b/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160865v1/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
-
-  * igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:
-    - bat-bmg-1:          [PASS][5] -> [ABORT][6] +1 other test abort
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4472-bd9c2b8a3a5b7bd8c38108929bfabd7a40dc922b/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160865v1/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-    - bat-ptl-2:          [PASS][7] -> [ABORT][8] +1 other test abort
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4472-bd9c2b8a3a5b7bd8c38108929bfabd7a40dc922b/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160865v1/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-4472-bd9c2b8a3a5b7bd8c38108929bfabd7a40dc922b -> xe-pw-160865v1
-
-  IGT_8725: 8725
-  xe-4472-bd9c2b8a3a5b7bd8c38108929bfabd7a40dc922b: bd9c2b8a3a5b7bd8c38108929bfabd7a40dc922b
-  xe-pw-160865v1: 160865v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160865v1/index.html
-
---===============8403372503721964945==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe/xe2hpg: Remove SRIOV VF check for Wa_18041344222</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160865/">https://patchwork.freedesktop.org/series/160865/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160865v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160865v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4472-bd9c2b8a3a5b7bd8c38108929bfabd7a40dc922b_BAT -&gt; xe-pw-160865v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-160865v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-160865v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (10 -&gt; 10)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-160865v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-on:</p>
-<ul>
-<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4472-bd9c2b8a3a5b7bd8c38108929bfabd7a40dc922b/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160865v1/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4472-bd9c2b8a3a5b7bd8c38108929bfabd7a40dc922b/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160865v1/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4472-bd9c2b8a3a5b7bd8c38108929bfabd7a40dc922b/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160865v1/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">ABORT</a> +1 other test abort</li>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4472-bd9c2b8a3a5b7bd8c38108929bfabd7a40dc922b/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160865v1/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4472-bd9c2b8a3a5b7bd8c38108929bfabd7a40dc922b -&gt; xe-pw-160865v1</li>
-</ul>
-<p>IGT_8725: 8725<br />
-  xe-4472-bd9c2b8a3a5b7bd8c38108929bfabd7a40dc922b: bd9c2b8a3a5b7bd8c38108929bfabd7a40dc922b<br />
-  xe-pw-160865v1: 160865v1</p>
-
-</body>
-</html>
-
---===============8403372503721964945==--
