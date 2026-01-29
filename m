@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2B6AD73E8A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10088D73E8B
 	for <intel-xe@archiver.kernel.org>; Thu, 29 Jan 2026 20:58:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9192510E911;
-	Thu, 29 Jan 2026 20:58:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C09A610E90D;
+	Thu, 29 Jan 2026 20:58:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ETF7DGe3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="amiYZ14A";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C70110E902;
- Thu, 29 Jan 2026 20:58:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4295310E8FA;
+ Thu, 29 Jan 2026 20:58:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769720325; x=1801256325;
+ t=1769720320; x=1801256320;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eHw4gnl06CjcebJxh84r83gRvZ7wGHEhCd3F4lHEoqg=;
- b=ETF7DGe3TG34WWLDQWY2bJemrClycnadyAn0fwt75G9fo/udcDEbikon
- WlDrGM89ZTVa8yjKl/qVKqxxehU9OycDnpCzGlBr2GQVlAgteOuu90n2H
- 3MAj4DrbpnsIlja5/YnbBvSR8P+YguorDB1rd0aUvUEzT7z1MPe7fet5H
- 63sLzT2eW9BaCb3Yf+DYpDeLMv+jbq4kXDU5ObRy+W1Esd8twV8ds5ZZR
- pNz1BbtqBBwV2YmVEhUWwa29y1u9N8Xc4INP3NmonB4OuI1htElCjTUnm
- wd3CoFv18Q54DPC+4bC4JZLUJIcVx1P13ggEgHG7+WccPSNqcoAkx2d4G w==;
-X-CSE-ConnectionGUID: fKwTfk9/SjKRrifbr99kVw==
-X-CSE-MsgGUID: daP7eUnESBmiOgGLQOvAhA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="88545347"
-X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="88545347"
+ bh=jmFR//1ujOKFKlcbga0dXUSA+VUQWA0LLddC0EhYzq8=;
+ b=amiYZ14A6W5UQVnsaqFqHsugrqLmGkMc0+mlZVsPYSLJ1kHdvrshXoz1
+ FrLcz8qzIn07SUWk/Qd79rv6WJxIYf51ulGvXxTuAAsIuHmR7VOjU+kb8
+ dbJM2ZOsu7B3UWQ+klNzTbwS4d4JLXI6L7ffMuhM2vVzT0IHWD3MhP/5K
+ Sn0186Z8u+vkFDheo6g9sJ58A/zbx50PslmJF2vUrRfmiQLayztSBc+5f
+ wJpOqmuUW5SRrAggQXqbS5eHNN7afORAxbtia8XtkdqQ3DMxTX5erA3dB
+ eWPauJUjb4I4ol9/x+15QIXzl5jgLdxnvGeeSJ+jHzqSprQtwlOM2dlf8 g==;
+X-CSE-ConnectionGUID: l98z2wEgT5iEqfz2AaM24A==
+X-CSE-MsgGUID: OLhmmtLBTdC7ztEPd6UAuQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="88545343"
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="88545343"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jan 2026 12:58:44 -0800
-X-CSE-ConnectionGUID: AMFCyEO+TYGF7OyKZ5MiUg==
-X-CSE-MsgGUID: 6XhEjUi/TZiz0o5E1xpf4w==
+ 29 Jan 2026 12:58:40 -0800
+X-CSE-ConnectionGUID: 9r39QMLASSmBduJnAN8f0Q==
+X-CSE-MsgGUID: BiutdfxbRC6nE7EDWLp/QQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="239927239"
+X-IronPort-AV: E=Sophos;i="6.21,261,1763452800"; d="scan'208";a="239927202"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa001.fm.intel.com with ESMTP; 29 Jan 2026 12:58:42 -0800
+ by fmviesa001.fm.intel.com with ESMTP; 29 Jan 2026 12:58:38 -0800
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
  Uma Shankar <uma.shankar@intel.com>
-Subject: [v3 16/19] drm/i915: Remove i915_reg.h from intel_display_irq.c
-Date: Fri, 30 Jan 2026 02:43:55 +0530
-Message-ID: <20260129211358.1240283-17-uma.shankar@intel.com>
+Subject: [v3 14/19] drm/i915: Remove i915_reg.h from intel_psr.c
+Date: Fri, 30 Jan 2026 02:43:53 +0530
+Message-ID: <20260129211358.1240283-15-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260129211358.1240283-1-uma.shankar@intel.com>
 References: <20260129211358.1240283-1-uma.shankar@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,289 +67,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move VLV_IRQ_REGS to common header for interrupt to make
-intel_display_irq.c free from including i915_reg.h.
+Move some chicken registers to display header to make
+intel_psr.c free from including i915_reg.h.
 
-v2: Move interrupt to dedicated header (Jani)
+v3: Update commit header
 
+v2: Use display header instead of gmd common include (Jani)
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_irq.c  |  1 -
- .../gpu/drm/i915/display/intel_display_regs.h |  5 ++
- drivers/gpu/drm/i915/gt/intel_gt_irq.c        |  2 +
- drivers/gpu/drm/i915/gt/intel_rc6.c           |  1 +
- drivers/gpu/drm/i915/gvt/handlers.c           |  1 +
- drivers/gpu/drm/i915/gvt/interrupt.c          |  1 +
- drivers/gpu/drm/i915/i915_reg.h               | 52 -------------------
- drivers/gpu/drm/i915/intel_clock_gating.c     |  1 +
- drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |  2 +
- drivers/gpu/drm/i915/vlv_suspend.c            |  1 +
- include/drm/intel/intel_gmd_interrupt.h       | 49 +++++++++++++++++
- 11 files changed, 63 insertions(+), 53 deletions(-)
+ .../gpu/drm/i915/display/intel_display_regs.h | 26 +++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_psr.c      |  1 -
+ drivers/gpu/drm/i915/i915_reg.h               | 28 -------------------
+ 3 files changed, 26 insertions(+), 29 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 31c78dc3d63b..5d80f0f4779c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -7,7 +7,6 @@
- #include <drm/drm_vblank.h>
- #include <drm/intel/intel_gmd_interrupt.h>
- 
--#include "i915_reg.h"
- #include "icl_dsi_regs.h"
- #include "intel_crtc.h"
- #include "intel_de.h"
 diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index ab2ef267c9ce..4a9b7560ce8c 100644
+index 3707c5999ffb..23626ee2d4ce 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -1479,6 +1479,11 @@
- #define DE_PIPEA_FIFO_UNDERRUN  (1 << 0)
- #define DE_PIPE_FIFO_UNDERRUN(pipe)  (1 << (8 * (pipe)))
+@@ -366,6 +366,32 @@
+ #define OGAMC1			_MMIO(0x30020)
+ #define OGAMC0			_MMIO(0x30024)
  
-+/* Display Internal Timeout Register */
-+#define RM_TIMEOUT		_MMIO(0x42060)
-+#define RM_TIMEOUT_REG_CAPTURE	_MMIO(0x420E0)
-+#define  MMIO_TIMEOUT_US(us)	((us) << 0)
++#define GEN8_CHICKEN_DCPR_1			_MMIO(0x46430)
++#define   _LATENCY_REPORTING_REMOVED_PIPE_D	REG_BIT(31)
++#define   SKL_SELECT_ALTERNATE_DC_EXIT		REG_BIT(30)
++#define   _LATENCY_REPORTING_REMOVED_PIPE_C	REG_BIT(25)
++#define   _LATENCY_REPORTING_REMOVED_PIPE_B	REG_BIT(24)
++#define   _LATENCY_REPORTING_REMOVED_PIPE_A	REG_BIT(23)
++#define   LATENCY_REPORTING_REMOVED(pipe)	_PICK((pipe), \
++						      _LATENCY_REPORTING_REMOVED_PIPE_A, \
++						      _LATENCY_REPORTING_REMOVED_PIPE_B, \
++						      _LATENCY_REPORTING_REMOVED_PIPE_C, \
++						      _LATENCY_REPORTING_REMOVED_PIPE_D)
++#define   ICL_DELAY_PMRSP			REG_BIT(22)
++#define   DISABLE_FLR_SRC			REG_BIT(15)
++#define   MASK_WAKEMEM				REG_BIT(13)
++#define   DDI_CLOCK_REG_ACCESS			REG_BIT(7)
 +
- #define GEN8_DE_MISC_ISR _MMIO(0x44460)
- #define GEN8_DE_MISC_IMR _MMIO(0x44464)
- #define GEN8_DE_MISC_IIR _MMIO(0x44468)
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_irq.c b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-index 75e802e10be2..702d8558aa69 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_irq.c
-@@ -5,6 +5,8 @@
- 
- #include <linux/sched/clock.h>
- 
-+#include <drm/intel/intel_gmd_interrupt.h>
++#define CHICKEN_PAR1_1		_MMIO(0x42080)
++#define   IGNORE_KVMR_PIPE_A		REG_BIT(23)
++#define   KBL_ARB_FILL_SPARE_22		REG_BIT(22)
++#define   DIS_RAM_BYPASS_PSR2_MAN_TRACK	REG_BIT(16)
++#define   SKL_DE_COMPRESSED_HASH_MODE	REG_BIT(15)
++#define   HSW_MASK_VBL_TO_PIPE_IN_SRD	REG_BIT(15) /* hsw/bdw */
++#define   FORCE_ARB_IDLE_PLANES		REG_BIT(14)
++#define   SKL_EDP_PSR_FIX_RDWRAP	REG_BIT(3)
++#define   IGNORE_PSR2_HW_TRACKING	REG_BIT(1)
 +
- #include "i915_drv.h"
- #include "i915_irq.h"
- #include "i915_reg.h"
-diff --git a/drivers/gpu/drm/i915/gt/intel_rc6.c b/drivers/gpu/drm/i915/gt/intel_rc6.c
-index 286d49ecc449..dfda675f633a 100644
---- a/drivers/gpu/drm/i915/gt/intel_rc6.c
-+++ b/drivers/gpu/drm/i915/gt/intel_rc6.c
-@@ -7,6 +7,7 @@
- #include <linux/string_helpers.h>
- 
+ #define GEN9_CLKGATE_DIS_4		_MMIO(0x4653C)
+ #define   BXT_GMBUS_GATING_DIS		(1 << 14)
+ #define   DG2_DPFC_GATING_DIS		REG_BIT(31)
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 62208ffc5101..bde7dbfe15a8 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -29,7 +29,6 @@
  #include <drm/drm_print.h>
-+#include <drm/intel/intel_gmd_interrupt.h>
+ #include <drm/drm_vblank.h>
  
- #include "display/vlv_clock.h"
- #include "gem/i915_gem_region.h"
-diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-index 6f860c320afc..28541b0c7cb9 100644
---- a/drivers/gpu/drm/i915/gvt/handlers.c
-+++ b/drivers/gpu/drm/i915/gvt/handlers.c
-@@ -40,6 +40,7 @@
- 
- #include <drm/display/drm_dp.h>
- #include <drm/drm_print.h>
-+#include <drm/intel/intel_gmd_interrupt.h>
- 
- #include "display/bxt_dpio_phy_regs.h"
- #include "display/i9xx_plane_regs.h"
-diff --git a/drivers/gpu/drm/i915/gvt/interrupt.c b/drivers/gpu/drm/i915/gvt/interrupt.c
-index 91d22b1c62e2..92c4e2762032 100644
---- a/drivers/gpu/drm/i915/gvt/interrupt.c
-+++ b/drivers/gpu/drm/i915/gvt/interrupt.c
-@@ -32,6 +32,7 @@
- #include <linux/eventfd.h>
- 
- #include <drm/drm_print.h>
-+#include <drm/intel/intel_gmd_interrupt.h>
- 
- #include "display/intel_display_regs.h"
- 
+-#include "i915_reg.h"
+ #include "intel_alpm.h"
+ #include "intel_atomic.h"
+ #include "intel_crtc.h"
 diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 611ae5861450..9cd7fce09ebe 100644
+index f896ece3b568..b23ac1b8f495 100644
 --- a/drivers/gpu/drm/i915/i915_reg.h
 +++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -337,9 +337,6 @@
+@@ -807,41 +807,13 @@
+ #define   CHICKEN3_DGMG_REQ_OUT_FIX_DISABLE	REG_BIT(5)
+ #define   CHICKEN3_DGMG_DONE_FIX_DISABLE	REG_BIT(2)
  
- #define VLV_GU_CTL0	_MMIO(VLV_DISPLAY_BASE + 0x2030)
- #define VLV_GU_CTL1	_MMIO(VLV_DISPLAY_BASE + 0x2034)
--#define SCPD0		_MMIO(0x209c) /* 915+ only */
--#define  SCPD_FBC_IGNORE_3D			(1 << 6)
--#define  CSTATE_RENDER_CLOCK_GATE_DISABLE	(1 << 5)
- #define GEN2_IER	_MMIO(0x20a0)
- #define GEN2_IIR	_MMIO(0x20a4)
- #define GEN2_IMR	_MMIO(0x20a8)
-@@ -352,13 +349,6 @@
- #define   GINT_DIS		(1 << 22)
- #define   GCFG_DIS		(1 << 8)
- #define VLV_GUNIT_CLOCK_GATE2	_MMIO(VLV_DISPLAY_BASE + 0x2064)
--#define VLV_IIR_RW	_MMIO(VLV_DISPLAY_BASE + 0x2084)
--#define VLV_IER		_MMIO(VLV_DISPLAY_BASE + 0x20a0)
--#define VLV_IIR		_MMIO(VLV_DISPLAY_BASE + 0x20a4)
--#define VLV_IMR		_MMIO(VLV_DISPLAY_BASE + 0x20a8)
--#define VLV_ISR		_MMIO(VLV_DISPLAY_BASE + 0x20ac)
--#define VLV_PCBR	_MMIO(VLV_DISPLAY_BASE + 0x2120)
--#define VLV_PCBR_ADDR_SHIFT	12
- 
- #define EIR		_MMIO(0x20b0)
- #define EMR		_MMIO(0x20b4)
-@@ -684,11 +674,6 @@
- #define PCH_3DCGDIS1		_MMIO(0x46024)
- # define VFMUNIT_CLOCK_GATE_DISABLE		(1 << 11)
- 
--/* Display Internal Timeout Register */
--#define RM_TIMEOUT		_MMIO(0x42060)
--#define RM_TIMEOUT_REG_CAPTURE	_MMIO(0x420E0)
--#define  MMIO_TIMEOUT_US(us)	((us) << 0)
+-#define CHICKEN_PAR1_1		_MMIO(0x42080)
+-#define   IGNORE_KVMR_PIPE_A		REG_BIT(23)
+-#define   KBL_ARB_FILL_SPARE_22		REG_BIT(22)
+-#define   DIS_RAM_BYPASS_PSR2_MAN_TRACK	REG_BIT(16)
+-#define   SKL_DE_COMPRESSED_HASH_MODE	REG_BIT(15)
+-#define   HSW_MASK_VBL_TO_PIPE_IN_SRD	REG_BIT(15) /* hsw/bdw */
+-#define   FORCE_ARB_IDLE_PLANES		REG_BIT(14)
+-#define   SKL_EDP_PSR_FIX_RDWRAP	REG_BIT(3)
+-#define   IGNORE_PSR2_HW_TRACKING	REG_BIT(1)
 -
- #define VLV_MASTER_IER			_MMIO(0x4400c) /* Gunit master IER */
- #define   MASTER_INTERRUPT_ENABLE	(1 << 31)
+ #define CHICKEN_PAR2_1		_MMIO(0x42090)
+ #define   KVM_CONFIG_CHANGE_NOTIFICATION_SELECT	REG_BIT(14)
  
-@@ -701,24 +686,6 @@
- 					      GTIER, \
- 					      GTIIR)
- 
--#define GEN8_MASTER_IRQ			_MMIO(0x44200)
--#define  GEN8_MASTER_IRQ_CONTROL	(1 << 31)
--#define  GEN8_PCU_IRQ			(1 << 30)
--#define  GEN8_DE_PCH_IRQ		(1 << 23)
--#define  GEN8_DE_MISC_IRQ		(1 << 22)
--#define  GEN8_DE_PORT_IRQ		(1 << 20)
--#define  GEN8_DE_PIPE_C_IRQ		(1 << 18)
--#define  GEN8_DE_PIPE_B_IRQ		(1 << 17)
--#define  GEN8_DE_PIPE_A_IRQ		(1 << 16)
--#define  GEN8_DE_PIPE_IRQ(pipe)		(1 << (16 + (pipe)))
--#define  GEN8_GT_VECS_IRQ		(1 << 6)
--#define  GEN8_GT_GUC_IRQ		(1 << 5)
--#define  GEN8_GT_PM_IRQ			(1 << 4)
--#define  GEN8_GT_VCS1_IRQ		(1 << 3) /* NB: VCS2 in bspec! */
--#define  GEN8_GT_VCS0_IRQ		(1 << 2) /* NB: VCS1 in bpsec! */
--#define  GEN8_GT_BCS_IRQ		(1 << 1)
--#define  GEN8_GT_RCS_IRQ		(1 << 0)
 -
- #define GEN8_GT_ISR(which) _MMIO(0x44300 + (0x10 * (which)))
- #define GEN8_GT_IMR(which) _MMIO(0x44304 + (0x10 * (which)))
- #define GEN8_GT_IIR(which) _MMIO(0x44308 + (0x10 * (which)))
-@@ -744,25 +711,6 @@
- 						      GEN8_PCU_IER, \
- 						      GEN8_PCU_IIR)
- 
--#define GEN11_GU_MISC_ISR	_MMIO(0x444f0)
--#define GEN11_GU_MISC_IMR	_MMIO(0x444f4)
--#define GEN11_GU_MISC_IIR	_MMIO(0x444f8)
--#define GEN11_GU_MISC_IER	_MMIO(0x444fc)
--#define  GEN11_GU_MISC_GSE	(1 << 27)
+-#define GEN8_CHICKEN_DCPR_1			_MMIO(0x46430)
+-#define   _LATENCY_REPORTING_REMOVED_PIPE_D	REG_BIT(31)
+-#define   SKL_SELECT_ALTERNATE_DC_EXIT		REG_BIT(30)
+-#define   _LATENCY_REPORTING_REMOVED_PIPE_C	REG_BIT(25)
+-#define   _LATENCY_REPORTING_REMOVED_PIPE_B	REG_BIT(24)
+-#define   _LATENCY_REPORTING_REMOVED_PIPE_A	REG_BIT(23)
+-#define   LATENCY_REPORTING_REMOVED(pipe)	_PICK((pipe), \
+-						      _LATENCY_REPORTING_REMOVED_PIPE_A, \
+-						      _LATENCY_REPORTING_REMOVED_PIPE_B, \
+-						      _LATENCY_REPORTING_REMOVED_PIPE_C, \
+-						      _LATENCY_REPORTING_REMOVED_PIPE_D)
+-#define   ICL_DELAY_PMRSP			REG_BIT(22)
+-#define   DISABLE_FLR_SRC			REG_BIT(15)
+-#define   MASK_WAKEMEM				REG_BIT(13)
+-#define   DDI_CLOCK_REG_ACCESS			REG_BIT(7)
 -
--#define GEN11_GU_MISC_IRQ_REGS		I915_IRQ_REGS(GEN11_GU_MISC_IMR, \
--						      GEN11_GU_MISC_IER, \
--						      GEN11_GU_MISC_IIR)
+ #define   GMD_ID_ARCH_MASK			REG_GENMASK(31, 22)
+ #define   GMD_ID_RELEASE_MASK			REG_GENMASK(21, 14)
+ #define   GMD_ID_STEP				REG_GENMASK(5, 0)
+ 
 -
--#define GEN11_GFX_MSTR_IRQ		_MMIO(0x190010)
--#define  GEN11_MASTER_IRQ		(1 << 31)
--#define  GEN11_PCU_IRQ			(1 << 30)
--#define  GEN11_GU_MISC_IRQ		(1 << 29)
--#define  GEN11_DISPLAY_IRQ		(1 << 16)
--#define  GEN11_GT_DW_IRQ(x)		(1 << (x))
--#define  GEN11_GT_DW1_IRQ		(1 << 1)
--#define  GEN11_GT_DW0_IRQ		(1 << 0)
--
- #define DG1_MSTR_TILE_INTR		_MMIO(0x190008)
- #define   DG1_MSTR_IRQ			REG_BIT(31)
- #define   DG1_MSTR_TILE(t)		REG_BIT(t)
-diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
-index 4e18d5a22112..627185c6d110 100644
---- a/drivers/gpu/drm/i915/intel_clock_gating.c
-+++ b/drivers/gpu/drm/i915/intel_clock_gating.c
-@@ -26,6 +26,7 @@
-  */
+ #define  VLV_PMWGICZ				_MMIO(0x1300a4)
  
- #include <drm/drm_print.h>
-+#include <drm/intel/intel_gmd_interrupt.h>
- 
- #include "display/i9xx_plane_regs.h"
- #include "display/intel_display.h"
-diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-index c0154fd77fc9..b20d4eb0bfd2 100644
---- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-+++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2020 Intel Corporation
-  */
- 
-+#include <drm/intel/intel_gmd_interrupt.h>
-+
- #include "display/bxt_dpio_phy_regs.h"
- #include "display/i9xx_plane_regs.h"
- #include "display/i9xx_wm_regs.h"
-diff --git a/drivers/gpu/drm/i915/vlv_suspend.c b/drivers/gpu/drm/i915/vlv_suspend.c
-index bace7b38329b..e350f588cec1 100644
---- a/drivers/gpu/drm/i915/vlv_suspend.c
-+++ b/drivers/gpu/drm/i915/vlv_suspend.c
-@@ -7,6 +7,7 @@
- #include <linux/kernel.h>
- 
- #include <drm/drm_print.h>
-+#include <drm/intel/intel_gmd_interrupt.h>
- 
- #include "gt/intel_gt_regs.h"
- 
-diff --git a/include/drm/intel/intel_gmd_interrupt.h b/include/drm/intel/intel_gmd_interrupt.h
-index eae0acade16a..5c77b0aa96a2 100644
---- a/include/drm/intel/intel_gmd_interrupt.h
-+++ b/include/drm/intel/intel_gmd_interrupt.h
-@@ -40,4 +40,53 @@
- #define I915_ASLE_INTERRUPT				(1 << 0)
- #define I915_BSD_USER_INTERRUPT				(1 << 25)
- 
-+#define GEN8_MASTER_IRQ			_MMIO(0x44200)
-+#define  GEN8_MASTER_IRQ_CONTROL	(1 << 31)
-+#define  GEN8_PCU_IRQ			(1 << 30)
-+#define  GEN8_DE_PCH_IRQ		(1 << 23)
-+#define  GEN8_DE_MISC_IRQ		(1 << 22)
-+#define  GEN8_DE_PORT_IRQ		(1 << 20)
-+#define  GEN8_DE_PIPE_C_IRQ		(1 << 18)
-+#define  GEN8_DE_PIPE_B_IRQ		(1 << 17)
-+#define  GEN8_DE_PIPE_A_IRQ		(1 << 16)
-+#define  GEN8_DE_PIPE_IRQ(pipe)		(1 << (16 + (pipe)))
-+#define  GEN8_GT_VECS_IRQ		(1 << 6)
-+#define  GEN8_GT_GUC_IRQ		(1 << 5)
-+#define  GEN8_GT_PM_IRQ			(1 << 4)
-+#define  GEN8_GT_VCS1_IRQ		(1 << 3) /* NB: VCS2 in bspec! */
-+#define  GEN8_GT_VCS0_IRQ		(1 << 2) /* NB: VCS1 in bpsec! */
-+#define  GEN8_GT_BCS_IRQ		(1 << 1)
-+#define  GEN8_GT_RCS_IRQ		(1 << 0)
-+
-+#define GEN11_GU_MISC_ISR	_MMIO(0x444f0)
-+#define GEN11_GU_MISC_IMR	_MMIO(0x444f4)
-+#define GEN11_GU_MISC_IIR	_MMIO(0x444f8)
-+#define GEN11_GU_MISC_IER	_MMIO(0x444fc)
-+#define  GEN11_GU_MISC_GSE	(1 << 27)
-+
-+#define GEN11_GU_MISC_IRQ_REGS		I915_IRQ_REGS(GEN11_GU_MISC_IMR, \
-+						      GEN11_GU_MISC_IER, \
-+						      GEN11_GU_MISC_IIR)
-+
-+#define GEN11_GFX_MSTR_IRQ		_MMIO(0x190010)
-+#define  GEN11_MASTER_IRQ		(1 << 31)
-+#define  GEN11_PCU_IRQ			(1 << 30)
-+#define  GEN11_GU_MISC_IRQ		(1 << 29)
-+#define  GEN11_DISPLAY_IRQ		(1 << 16)
-+#define  GEN11_GT_DW_IRQ(x)		(1 << (x))
-+#define  GEN11_GT_DW1_IRQ		(1 << 1)
-+#define  GEN11_GT_DW0_IRQ		(1 << 0)
-+
-+#define SCPD0		_MMIO(0x209c) /* 915+ only */
-+#define  SCPD_FBC_IGNORE_3D			(1 << 6)
-+#define  CSTATE_RENDER_CLOCK_GATE_DISABLE	(1 << 5)
-+
-+#define VLV_IIR_RW	_MMIO(VLV_DISPLAY_BASE + 0x2084)
-+#define VLV_IER		_MMIO(VLV_DISPLAY_BASE + 0x20a0)
-+#define VLV_IIR		_MMIO(VLV_DISPLAY_BASE + 0x20a4)
-+#define VLV_IMR		_MMIO(VLV_DISPLAY_BASE + 0x20a8)
-+#define VLV_ISR		_MMIO(VLV_DISPLAY_BASE + 0x20ac)
-+#define VLV_PCBR	_MMIO(VLV_DISPLAY_BASE + 0x2120)
-+#define VLV_PCBR_ADDR_SHIFT	12
-+
- #endif
+ #define  HSW_EDRAM_CAP				_MMIO(0x120010)
 -- 
 2.50.1
 
