@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23D32D49C7A
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Jan 2026 08:34:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64B37D49C76
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Jan 2026 08:34:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB2A110E949;
-	Fri, 30 Jan 2026 08:34:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23B7710E93B;
+	Fri, 30 Jan 2026 08:34:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ExfoDtUm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V3UvZ4sD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6C4410E92F;
- Fri, 30 Jan 2026 08:34:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D553210E946;
+ Fri, 30 Jan 2026 08:34:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769762079; x=1801298079;
+ t=1769762085; x=1801298085;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Z1GJVSP5Nm3M9+vb4DtZPlxW/70yWANl+YKY0ZBVpbE=;
- b=ExfoDtUmo3ZugJg8b7KEImcLhb+9tdNeNbfifqMjT1odzodM1a1/b5Pp
- bA8TnC12f6IEGhal+bvWZQ2atHoub/gJAiu7rcyZ6NB/7r7WL9wh2/66H
- o70eysnHb5pvTtUKN490LqrDDR5v+iFSn+jGUD3OfzSnDvkbaMlbAN3G5
- sfEWAUhCKOqG5JoVlg07JDGa4f/ncOuKzFf09+NNUbGvxI5oE6PJS78E7
- V9r3j4Ju5MvH21d1KLvLPs4gKebIn0GqmFpekSII06E+MuI0TkFUAdC98
- 1k0m6C2vc8SRbwYeLaR6StE7m+RVdyu3GHNsEKFfMnVQysBqQhww2DGUL w==;
-X-CSE-ConnectionGUID: LXftjAloR9iMfTBbQK4npw==
-X-CSE-MsgGUID: ikkKkOKoTim+Oe7Cvo7Aiw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="74636687"
-X-IronPort-AV: E=Sophos;i="6.21,262,1763452800"; d="scan'208";a="74636687"
+ bh=Hk1qRDoawFpqOCPOl9nTuUjvr9SSKs9+pMF+ZFkrmB4=;
+ b=V3UvZ4sD/fz+dPCUtQP1BMPMbxz+7RnuwigymKfBw63VtMh5KfUkWy/V
+ kJrBcrQkHs+5dmGcdRPsr1XJH4eIqcqGG4XnI8n5rrDYieZfH5Bad5PCM
+ +VDXL5Fw5gwRh8TcGkf9U2eTzjicsGlWC4PfL5LX/yjxRBZWWKwZhmbeP
+ cF4PIBzo7ORylulC/ZKbMGfYba4y9L5UufDWKG/w/57yEAQVVn6V3ePGW
+ FMfjvqZIspYfFrKhRd6j5YFCYtal801Hc4WjeoEdwgWCbgcm6gPprK6oy
+ Fk23qKmwQhUUt6zAEQ9B1WjqiOGnN/Zr3oTEFIEqLdUpCc+BYCpTNh/By A==;
+X-CSE-ConnectionGUID: MDSuwh6AQHmCUl56Xn+Nvw==
+X-CSE-MsgGUID: ysQnxE6kSUiiEXjJLx+Pjg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="74636698"
+X-IronPort-AV: E=Sophos;i="6.21,262,1763452800"; d="scan'208";a="74636698"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2026 00:34:39 -0800
-X-CSE-ConnectionGUID: 2uvBE00xQ7aof9M3UEryzg==
-X-CSE-MsgGUID: jOyS9alATKSSMyQNYxq9xQ==
+ 30 Jan 2026 00:34:45 -0800
+X-CSE-ConnectionGUID: NXLIdACVRh+NOjrpo883Sg==
+X-CSE-MsgGUID: lsWhnRsuSl+ZcVvqWu8o1Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,262,1763452800"; d="scan'208";a="208910120"
+X-IronPort-AV: E=Sophos;i="6.21,262,1763452800"; d="scan'208";a="208910165"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2026 00:34:22 -0800
+ 30 Jan 2026 00:34:28 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com, imre.deak@intel.com,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 12/17] drm/i915/dp: Introduce helper to check pixel rate
- against dotclock limits
-Date: Fri, 30 Jan 2026 13:48:07 +0530
-Message-ID: <20260130081812.32087-13-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 14/17] drm/i915/dp: Account for DSC slice overhead
+Date: Fri, 30 Jan 2026 13:48:09 +0530
+Message-ID: <20260130081812.32087-15-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260130081812.32087-1-ankit.k.nautiyal@intel.com>
 References: <20260130081812.32087-1-ankit.k.nautiyal@intel.com>
@@ -69,180 +68,203 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add intel_dp_dotclk_valid() helper, that checks the required pixel rate
-against platform dotclock limit. With joined pipes the effective dotclock
-limit depends upon the number of joined pipes.
+Account for DSC slice overhead bubbles and adjust the pixel rate while
+checking the pixel rate against the max dotclock limits.
 
-Call the helper from the mode_valid phase and from the compute_config
-phase where we need to check the limits for the given target clock for a
-given joiner candidate.
+v2: Add missing assignment for dsc_slice_count in
+mst_connector_mode_valid_ctx(). (Imre)
 
-v2: Rename the helper to intel_dp_dotclk_valid(). (Imre)
+v3: Explicitly pass dsc_slice_count as 0 for Non-DSC case. (Imre)
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Imre Deak <imre.deak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c     | 31 +++++++++++++++------
- drivers/gpu/drm/i915/display/intel_dp.h     |  3 ++
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 19 +++++++------
- 3 files changed, 35 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c     | 21 +++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dp.h     |  2 ++
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 20 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_vdsc.c   |  1 -
+ drivers/gpu/drm/i915/display/intel_vdsc.h   |  3 +++
+ 5 files changed, 46 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index c5e2e29a751b..bf90605ec9cb 100644
+index 61b86cdff3ef..3905723f5ab6 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1412,6 +1412,18 @@ bool intel_dp_can_join(struct intel_display *display,
- 	}
+@@ -1414,6 +1414,8 @@ bool intel_dp_can_join(struct intel_display *display,
+ 
+ bool intel_dp_dotclk_valid(struct intel_display *display,
+ 			   int target_clock,
++			   int htotal,
++			   int dsc_slice_count,
+ 			   int num_joined_pipes)
+ {
+ 	int max_dotclk = display->cdclk.max_dotclk_freq;
+@@ -1421,6 +1423,12 @@ bool intel_dp_dotclk_valid(struct intel_display *display,
+ 
+ 	effective_dotclk_limit = max_dotclk * num_joined_pipes;
+ 
++	if (dsc_slice_count)
++		target_clock = intel_dsc_get_pixel_rate_with_dsc_bubbles(display,
++									 target_clock,
++									 htotal,
++									 dsc_slice_count);
++
+ 	return target_clock <= effective_dotclk_limit;
  }
  
-+bool intel_dp_dotclk_valid(struct intel_display *display,
-+			   int target_clock,
-+			   int num_joined_pipes)
-+{
-+	int max_dotclk = display->cdclk.max_dotclk_freq;
-+	int effective_dotclk_limit;
-+
-+	effective_dotclk_limit = max_dotclk * num_joined_pipes;
-+
-+	return target_clock <= effective_dotclk_limit;
-+}
-+
- static enum drm_mode_status
- intel_dp_mode_valid(struct drm_connector *_connector,
- 		    const struct drm_display_mode *mode)
-@@ -1474,8 +1486,6 @@ intel_dp_mode_valid(struct drm_connector *_connector,
- 	 */
- 	status = MODE_CLOCK_HIGH;
- 	for (num_joined_pipes = 1; num_joined_pipes <= I915_MAX_PIPES; num_joined_pipes++) {
--		int max_dotclk = display->cdclk.max_dotclk_freq;
--
- 		if (connector->force_joined_pipes &&
- 		    num_joined_pipes != connector->force_joined_pipes)
- 			continue;
-@@ -1539,9 +1549,9 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+@@ -1549,8 +1557,13 @@ intel_dp_mode_valid(struct drm_connector *_connector,
  		if (status != MODE_OK)
  			continue;
  
--		max_dotclk *= num_joined_pipes;
--
--		if (target_clock > max_dotclk) {
-+		if (!intel_dp_dotclk_valid(display,
-+					   target_clock,
-+					   num_joined_pipes)) {
++		if (!dsc)
++			dsc_slice_count = 0;
++
+ 		if (!intel_dp_dotclk_valid(display,
+ 					   target_clock,
++					   mode->htotal,
++					   dsc_slice_count,
+ 					   num_joined_pipes)) {
  			status = MODE_CLOCK_HIGH;
  			continue;
- 		}
-@@ -2772,12 +2782,10 @@ intel_dp_compute_link_for_joined_pipes(struct intel_encoder *encoder,
- 	const struct drm_display_mode *adjusted_mode =
- 		&pipe_config->hw.adjusted_mode;
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
--	int max_dotclk = display->cdclk.max_dotclk_freq;
- 	struct link_config_limits limits;
- 	bool dsc_needed, joiner_needs_dsc;
- 	int ret = 0;
- 
--	max_dotclk *= num_joined_pipes;
- 	joiner_needs_dsc = intel_dp_joiner_needs_dsc(display, num_joined_pipes);
- 
- 	dsc_needed = joiner_needs_dsc || intel_dp->force_dsc_en ||
-@@ -2801,7 +2809,10 @@ intel_dp_compute_link_for_joined_pipes(struct intel_encoder *encoder,
- 							     fxp_q4_from_int(pipe_config->pipe_bpp),
- 							     0, false);
- 
--		if (ret || adjusted_mode->crtc_clock > max_dotclk)
-+		if (ret ||
-+		    !intel_dp_dotclk_valid(display,
-+					   adjusted_mode->crtc_clock,
-+					   num_joined_pipes))
+@@ -2812,6 +2825,8 @@ intel_dp_compute_link_for_joined_pipes(struct intel_encoder *encoder,
+ 		if (ret ||
+ 		    !intel_dp_dotclk_valid(display,
+ 					   adjusted_mode->crtc_clock,
++					   adjusted_mode->crtc_htotal,
++					   0,
+ 					   num_joined_pipes))
  			dsc_needed = true;
  	}
+@@ -2822,6 +2837,8 @@ intel_dp_compute_link_for_joined_pipes(struct intel_encoder *encoder,
+ 	}
  
-@@ -2827,7 +2838,9 @@ intel_dp_compute_link_for_joined_pipes(struct intel_encoder *encoder,
+ 	if (dsc_needed) {
++		int dsc_slice_count;
++
+ 		drm_dbg_kms(display->drm,
+ 			    "Try DSC (fallback=%s, joiner=%s, force=%s)\n",
+ 			    str_yes_no(ret), str_yes_no(joiner_needs_dsc),
+@@ -2838,8 +2855,12 @@ intel_dp_compute_link_for_joined_pipes(struct intel_encoder *encoder,
  		if (ret < 0)
  			return ret;
  
--		if (adjusted_mode->crtc_clock > max_dotclk)
-+		if (!intel_dp_dotclk_valid(display,
-+					   adjusted_mode->crtc_clock,
-+					   num_joined_pipes))
++		dsc_slice_count = intel_dsc_line_slice_count(&pipe_config->dsc.slice_config);
++
+ 		if (!intel_dp_dotclk_valid(display,
+ 					   adjusted_mode->crtc_clock,
++					   adjusted_mode->crtc_htotal,
++					   dsc_slice_count,
+ 					   num_joined_pipes))
  			return -EINVAL;
  	}
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index ebaa35d23c9c..edeb09372d1e 100644
+index edeb09372d1e..95a38763a367 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.h
 +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -224,5 +224,8 @@ int intel_dp_sdp_min_guardband(const struct intel_crtc_state *crtc_state,
- int intel_dp_max_hdisplay_per_pipe(struct intel_display *display);
- bool intel_dp_can_join(struct intel_display *display,
+@@ -226,6 +226,8 @@ bool intel_dp_can_join(struct intel_display *display,
  		       int num_joined_pipes);
-+bool intel_dp_dotclk_valid(struct intel_display *display,
-+			   int target_clock,
-+			   int num_joined_pipes);
+ bool intel_dp_dotclk_valid(struct intel_display *display,
+ 			   int target_clock,
++			   int htotal,
++			   int dsc_slice_count,
+ 			   int num_joined_pipes);
  
  #endif /* __INTEL_DP_H__ */
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index dac89dc54f1d..0eab5ced27d3 100644
+index 0eab5ced27d3..ad66c483959b 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -606,12 +606,10 @@ static int mst_stream_compute_link_for_joined_pipes(struct intel_encoder *encode
- 		&pipe_config->hw.adjusted_mode;
- 	struct intel_connector *connector =
- 		to_intel_connector(conn_state->connector);
--	int max_dotclk = display->cdclk.max_dotclk_freq;
- 	struct link_config_limits limits;
- 	bool dsc_needed, joiner_needs_dsc;
- 	int ret = 0;
- 
--	max_dotclk *= num_joined_pipes;
- 	joiner_needs_dsc = intel_dp_joiner_needs_dsc(display, num_joined_pipes);
- 
- 	dsc_needed = joiner_needs_dsc || intel_dp->force_dsc_en ||
-@@ -625,7 +623,10 @@ static int mst_stream_compute_link_for_joined_pipes(struct intel_encoder *encode
- 		if (ret == -EDEADLK)
- 			return ret;
- 
--		if (ret || adjusted_mode->clock > max_dotclk)
-+		if (ret ||
-+		    !intel_dp_dotclk_valid(display,
-+					   adjusted_mode->clock,
-+					   num_joined_pipes))
+@@ -626,6 +626,8 @@ static int mst_stream_compute_link_for_joined_pipes(struct intel_encoder *encode
+ 		if (ret ||
+ 		    !intel_dp_dotclk_valid(display,
+ 					   adjusted_mode->clock,
++					   adjusted_mode->htotal,
++					   0,
+ 					   num_joined_pipes))
  			dsc_needed = true;
  	}
+@@ -637,6 +639,8 @@ static int mst_stream_compute_link_for_joined_pipes(struct intel_encoder *encode
  
-@@ -669,7 +670,9 @@ static int mst_stream_compute_link_for_joined_pipes(struct intel_encoder *encode
+ 	/* enable compression if the mode doesn't fit available BW */
+ 	if (dsc_needed) {
++		int dsc_slice_count;
++
+ 		drm_dbg_kms(display->drm, "Try DSC (fallback=%s, joiner=%s, force=%s)\n",
+ 			    str_yes_no(ret), str_yes_no(joiner_needs_dsc),
+ 			    str_yes_no(intel_dp->force_dsc_en));
+@@ -670,8 +674,12 @@ static int mst_stream_compute_link_for_joined_pipes(struct intel_encoder *encode
  		if (ret)
  			return ret;
  
--		if (adjusted_mode->clock > max_dotclk)
-+		if (!intel_dp_dotclk_valid(display,
-+					   adjusted_mode->clock,
-+					   num_joined_pipes))
++		dsc_slice_count = intel_dp_mst_dsc_get_slice_count(connector, pipe_config);
++
+ 		if (!intel_dp_dotclk_valid(display,
+ 					   adjusted_mode->clock,
++					   adjusted_mode->htotal,
++					   dsc_slice_count,
+ 					   num_joined_pipes))
  			return -EINVAL;
  	}
- 
-@@ -1525,8 +1528,6 @@ mst_connector_mode_valid_ctx(struct drm_connector *_connector,
+@@ -1528,6 +1536,8 @@ mst_connector_mode_valid_ctx(struct drm_connector *_connector,
  
  	*status = MODE_CLOCK_HIGH;
  	for (num_joined_pipes = 1; num_joined_pipes <= I915_MAX_PIPES; num_joined_pipes++) {
--		int max_dotclk = display->cdclk.max_dotclk_freq;
--
++		int dsc_slice_count = 0;
++
  		if (connector->force_joined_pipes &&
  		    num_joined_pipes != connector->force_joined_pipes)
  			continue;
-@@ -1567,9 +1568,9 @@ mst_connector_mode_valid_ctx(struct drm_connector *_connector,
+@@ -1546,6 +1556,11 @@ mst_connector_mode_valid_ctx(struct drm_connector *_connector,
+ 			 */
+ 			int pipe_bpp = intel_dp_dsc_compute_max_bpp(connector, U8_MAX);
+ 
++			dsc_slice_count = intel_dp_dsc_get_slice_count(connector,
++								       mode->clock,
++								       mode->hdisplay,
++								       num_joined_pipes);
++
+ 			if (!drm_dp_is_uhbr_rate(max_link_clock))
+ 				bw_overhead_flags |= DRM_DP_BW_OVERHEAD_FEC;
+ 
+@@ -1568,8 +1583,13 @@ mst_connector_mode_valid_ctx(struct drm_connector *_connector,
  		if (*status != MODE_OK)
  			continue;
  
--		max_dotclk *= num_joined_pipes;
--
--		if (mode->clock > max_dotclk) {
-+		if (!intel_dp_dotclk_valid(display,
-+					   mode->clock,
-+					   num_joined_pipes)) {
++		if (!dsc)
++			dsc_slice_count = 0;
++
+ 		if (!intel_dp_dotclk_valid(display,
+ 					   mode->clock,
++					   mode->htotal,
++					   dsc_slice_count,
+ 					   num_joined_pipes)) {
  			*status = MODE_CLOCK_HIGH;
  			continue;
- 		}
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index 642a89270d8e..7e53201b3cb1 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -1104,7 +1104,6 @@ void intel_vdsc_state_dump(struct drm_printer *p, int indent,
+ 	drm_dsc_dump_config(p, indent, &crtc_state->dsc.config);
+ }
+ 
+-static
+ int intel_dsc_get_pixel_rate_with_dsc_bubbles(struct intel_display *display,
+ 					      int pixel_rate, int htotal,
+ 					      int dsc_horizontal_slices)
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.h b/drivers/gpu/drm/i915/display/intel_vdsc.h
+index aeb17670307b..f4d5b37293cf 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.h
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.h
+@@ -41,5 +41,8 @@ void intel_vdsc_state_dump(struct drm_printer *p, int indent,
+ 			   const struct intel_crtc_state *crtc_state);
+ int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state);
+ unsigned int intel_vdsc_prefill_lines(const struct intel_crtc_state *crtc_state);
++int intel_dsc_get_pixel_rate_with_dsc_bubbles(struct intel_display *display,
++					      int pixel_rate, int htotal,
++					      int dsc_horizontal_slices);
+ 
+ #endif /* __INTEL_VDSC_H__ */
 -- 
 2.45.2
 
