@@ -4,57 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E4B9E6BF0D
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Jan 2026 13:37:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D0ECE6BF0D
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Jan 2026 13:37:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13B4510E146;
-	Fri, 30 Jan 2026 13:37:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B05A10E0B7;
+	Fri, 30 Jan 2026 13:37:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U2zqPiOa";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Ztb5d4ge";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7FB410E0B7
- for <intel-xe@lists.freedesktop.org>; Fri, 30 Jan 2026 13:37:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769780226; x=1801316226;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uxc4BLSbUvRQ08teLQSVBdDF2Ugb/ucTh1s2BsbySvU=;
- b=U2zqPiOat+SApTHGSJEz+6pLQWQEuH9t1y61gsCQHsYnVp+c3DsDZBdk
- gvt1vTBA0MRuvb4qqqPYeM8P0Fl4Gc+aF9pIvdDBenBp9xG1HqtVpS9G5
- DvRvD/DRLsxpsHGy7usWghimk/2MXLS9M6+irBvkcySMSAiLEzkVjNxNr
- o8wi4tPFlm5o2FSNSVxXIFbt6X0hGqHiO10PmhuTDKD7Tr+dsG6d89o2b
- AapgqNl0khpDE/YrZ4bXVdpqJcH6g7Xd3uYJSgBc8vvz7pipoTfrwa1nX
- yamdSRU0Lo8Slb7bjWlRRdpnUdFCe1Hvr1JsXL1BXGHc1ddD6TTCKRIpM A==;
-X-CSE-ConnectionGUID: 9RLbWRyWTN6Cghi2fbxESg==
-X-CSE-MsgGUID: y3aZ02XRQgGN2ggc5VAw0w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="71194414"
-X-IronPort-AV: E=Sophos;i="6.21,263,1763452800"; d="scan'208";a="71194414"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2026 05:37:06 -0800
-X-CSE-ConnectionGUID: QALi9TGQR1iHSOeQhtNfsw==
-X-CSE-MsgGUID: EDj+p0ZRSSuvQbUzhW0nFQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,263,1763452800"; d="scan'208";a="207983263"
-Received: from mjruhl-desk.amr.corp.intel.com (HELO mjruhl-desk.intel.com)
- ([10.124.220.170])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2026 05:37:04 -0800
-From: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-To: platform-driver-x86@vger.kernel.org, intel-xe@lists.freedesktop.org,
- hansg@kernel.org, ilpo.jarvinen@linux.intel.com, matthew.brost@intel.com,
- rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
- airlied@gmail.com, simona@ffwll.ch, david.e.box@linux.intel.com
-Cc: "Michael J. Ruhl" <michael.j.ruhl@intel.com>
-Subject: [PATCH v2 5/5] drm/xe/vsec: Crescent Island PMT callbacks
-Date: Fri, 30 Jan 2026 08:36:45 -0500
-Message-ID: <20260130133639.765378-12-michael.j.ruhl@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 782BC10E0B7;
+ Fri, 30 Jan 2026 13:37:34 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 43CB443EEC;
+ Fri, 30 Jan 2026 13:37:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C4C6C4CEF7;
+ Fri, 30 Jan 2026 13:37:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1769780254;
+ bh=JM5ClxRt+pnQDAxcgQA3pw6Qd6iDb+qngu7mGzqmca8=;
+ h=From:To:Cc:Subject:Date:From;
+ b=Ztb5d4geNYQ4a6cz3kGUKxjmJ7ibSBzZTn0rboMaA6J9QVxgWkqnP0/QT/XKNCUSE
+ hhjLu/nZjv7HN8je0oVrw2IjGzcoUDYiwATmbx4plVGGXGg+tS7EP0ftB742/9WHbD
+ HodzA8n1YzjdKSCXivNxnKOL1nVUp15Hb22RnamMlRMu839k2CKP2eRCvMaTkoTPpp
+ n8SFHW8LHQ/nKvYSnHyPT7ThRqbw5v00Vk3k3z23BQDeaqMnKpMLHOa1K2syRs1BS1
+ Q6eSXA7EoGqp9kXzw3NL2LoBk3xmTr4VW1tpRxpcNe5zr1PPPNcOVLT38r2J9M8/XN
+ jORfYJr5pEwJQ==
+From: Leon Romanovsky <leon@kernel.org>
+To: Sumit Semwal <sumit.semwal@linaro.org>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Gerd Hoffmann <kraxel@redhat.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Leon Romanovsky <leon@kernel.org>, Kevin Tian <kevin.tian@intel.com>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
+ Vivek Kasireddy <vivek.kasireddy@intel.com>
+Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
+ intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ iommu@lists.linux.dev, kvm@vger.kernel.org
+Subject: [PATCH v6 0/8] dma-buf: Use revoke mechanism to invalidate shared
+ buffers
+Date: Fri, 30 Jan 2026 15:37:16 +0200
+Message-ID: <20260130-dmabuf-revoke-v6-0-06278f9b7bf0@nvidia.com>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260130133639.765378-7-michael.j.ruhl@intel.com>
-References: <20260130133639.765378-7-michael.j.ruhl@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-Change-ID: 20251221-dmabuf-revoke-b90ef16e4236
+X-Mailer: b4 0.15-dev-47773
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,131 +79,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-CRI PMT support requires callbacks to access the discovery status
-and control areas.  Access is a common MMIO area that requires an
-index to be set before access is allowed.
+Changelog:
+v6:
+ * Added Reviewed-by tags.
+ * Changed for blocking wait_for_completion() in VFIO
+ * Fixed race between ->attach and move_notify, where priv->revoked is
+   flipped and lock is released.
+v5: https://patch.msgid.link/20260124-dmabuf-revoke-v5-0-f98fca917e96@nvidia.com
+ * Documented the DMA-BUF expectations around DMA unmap.
+ * Added wait support in VFIO for DMA unmap.
+ * Reordered patches.
+ * Improved commit messages to document even more.
+v4: https://lore.kernel.org/all/20260121-dmabuf-revoke-v4-0-d311cbc8633d@nvidia.com
+ * Changed DMA_RESV_USAGE_KERNEL to DMA_RESV_USAGE_BOOKKEEP.
+ * Made .invalidate_mapping() truly optional.
+ * Added patch which renames dma_buf_move_notify() to be
+   dma_buf_invalidate_mappings().
+ * Restored dma_buf_attachment_is_dynamic() function.
+v3: https://lore.kernel.org/all/20260120-dmabuf-revoke-v3-0-b7e0b07b8214@nvidia.com/
+ * Used Jason's wordings for commits and cover letter.
+ * Removed IOMMUFD patch.
+ * Renamed dma_buf_attachment_is_revoke() to be dma_buf_attach_revocable().
+ * Added patch to remove CONFIG_DMABUF_MOVE_NOTIFY.
+ * Added Reviewed-by tags.
+ * Called to dma_resv_wait_timeout() after dma_buf_move_notify() in VFIO.
+ * Added dma_buf_attach_revocable() check to VFIO DMABUF attach function.
+ * Slightly changed commit messages.
+v2: https://patch.msgid.link/20260118-dmabuf-revoke-v2-0-a03bb27c0875@nvidia.com
+ * Changed series to document the revoke semantics instead of
+   implementing it.
+v1: https://patch.msgid.link/20260111-dmabuf-revoke-v1-0-fb4bcc8c259b@nvidia.com
 
-Introduce the necessary callbacks to get the status and control
-information for CRI PMT usage.
+-------------------------------------------------------------------------
+This series is based on latest VFIO fix, which will be sent to Linus
+very soon.
 
-Add the glue logic to register the CRI PMT functionality.
+https://lore.kernel.org/all/20260121-vfio-add-pin-v1-1-4e04916b17f1@nvidia.com/
 
-Signed-off-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
+Thanks
+-------------------------------------------------------------------------
+This series documents a dma-buf “revoke” mechanism: to allow a dma-buf
+exporter to explicitly invalidate (“kill”) a shared buffer after it has
+been distributed to importers, so that further CPU and device access is
+prevented and importers reliably observe failure.
+
+The change in this series is to properly document and use existing core
+“revoked” state on the dma-buf object and a corresponding exporter-triggered
+revoke operation.
+
+dma-buf has quietly allowed calling move_notify on pinned dma-bufs, even
+though legacy importers using dma_buf_attach() would simply ignore
+these calls.
+
+The intention was that move_notify() would tell the importer to expedite
+it's unmapping process and once the importer is fully finished with DMA it
+would unmap the dma-buf which finally signals that the importer is no
+longer ever going to touch the memory again. Importers that touch past
+their unmap() call can trigger IOMMU errors, AER and beyond, however
+read-and-discard access between move_notify() and unmap is allowed.
+
+Thus, we can define the exporter's revoke sequence for pinned dma-buf as:
+
+	dma_resv_lock(dmabuf->resv, NULL);
+	// Prevent new mappings from being established
+	priv->revoked = true;
+
+	// Tell all importers to eventually unmap
+	dma_buf_invalidate_mappings(dmabuf);
+
+	// Wait for any inprogress fences on the old mapping
+	dma_resv_wait_timeout(dmabuf->resv,
+			      DMA_RESV_USAGE_BOOKKEEP, false,
+			      MAX_SCHEDULE_TIMEOUT);
+	dma_resv_unlock(dmabuf->resv, NULL);
+
+	// Wait for all importers to complete unmap
+	wait_for_completion(&priv->unmapp_comp);
+
+However, dma-buf also supports importers that don't do anything on
+move_notify(), and will not unmap the buffer in bounded time.
+
+Since such importers would cause the above sequence to hang, a new
+mechanism is needed to detect incompatible importers.
+
+Introduce dma_buf_attach_revocable() which if true indicates the above
+sequence is safe to use and will complete in kernel-only bounded time for
+this attachment.
+
+Unfortunately dma_buf_attach_revocable() is going to fail for the popular
+RDMA pinned importer, which means we cannot introduce it to existing
+places using pinned move_notify() without potentially breaking existing
+userspace flows.
+
+Existing exporters that only trigger this flow for RAS errors should not
+call dma_buf_attach_revocable() and will suffer an unbounded block on the
+final completion, hoping that the userspace will notice the RAS and clean
+things up. Without revoke support on the RDMA pinned importers it doesn't
+seem like any other non-breaking option is currently possible.
+
+For new exporters, like VFIO and RDMA, that have userspace triggered
+revoke events, the unbouned sleep would not be acceptable. They can call
+dma_buf_attach_revocable() and will not work with the RDMA pinned importer
+from day 0, preventing regressions.
+
+In the process add documentation explaining the above details.
+
+Thanks
+
+Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
 ---
- drivers/gpu/drm/xe/xe_vsec.c | 83 ++++++++++++++++++++++++++++++++++--
- 1 file changed, 80 insertions(+), 3 deletions(-)
+Leon Romanovsky (8):
+      dma-buf: Rename .move_notify() callback to a clearer identifier
+      dma-buf: Rename dma_buf_move_notify() to dma_buf_invalidate_mappings()
+      dma-buf: Always build with DMABUF_MOVE_NOTIFY
+      vfio: Wait for dma-buf invalidation to complete
+      dma-buf: Make .invalidate_mapping() truly optional
+      dma-buf: Add dma_buf_attach_revocable()
+      vfio: Permit VFIO to work with pinned importers
+      iommufd: Add dma_buf_pin()
 
-diff --git a/drivers/gpu/drm/xe/xe_vsec.c b/drivers/gpu/drm/xe/xe_vsec.c
-index c43b0d554ead..f55d9a292818 100644
---- a/drivers/gpu/drm/xe/xe_vsec.c
-+++ b/drivers/gpu/drm/xe/xe_vsec.c
-@@ -299,17 +299,88 @@ int xe_pmt_telem_read(struct pci_dev *pdev, u32 guid, u64 *data, loff_t user_off
- 	return count;
- }
- 
--static struct pmt_callbacks xe_pmt_cb = {
-+/**
-+ * xe_pmt_read_reg() - read a crashlog register
-+ * @pdev: the pcie device that register the callback
-+ * @guid: PMT guid of the crashlog instance
-+ * @reg: data read from the PMT data structure
-+ * @offset: which data to read from the PMT data structure
-+ *
-+ * Read the requested PMT register based on the pcie device and guid.  The
-+ * supported struct is the Crashlog Type1 Version2.
-+ *
-+ * Currently this is for CRI only.
-+ */
-+static int xe_pmt_read_reg(struct pci_dev *pdev, u32 guid, u32 *reg, u32 offset)
-+{
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	void __iomem *disc_addr = xe->mmio.regs;
-+	u32 inst;
-+
-+	if (FIELD_GET(GUID_DEVICE_ID, guid) != CRI_DEVICE_ID ||
-+	    FIELD_GET(GUID_CAP_TYPE, guid) != CRASHLOG)
-+		return -EINVAL;
-+
-+	inst = FIELD_GET(GUID_RECORD_ID, guid) == PUNIT ? PUNIT_DISC_OFFSET : OOBMSM_DISC_OFFSET;
-+	disc_addr += CRI_DISCOVERY_OFFSET + inst + offset;
-+
-+	guard(mutex)(&xe->pmt.lock);
-+
-+	xe_pm_runtime_get(xe);
-+
-+	xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-+
-+	memcpy_fromio(reg, disc_addr, sizeof(*reg));
-+
-+	xe_pm_runtime_put(xe);
-+
-+	return 0;
-+}
-+
-+static int xe_pmt_write_reg(struct pci_dev *pdev, u32 guid, u32 reg, u32 offset)
-+{
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	void __iomem *disc_addr = xe->mmio.regs;
-+	u32 inst;
-+
-+	if (FIELD_GET(GUID_DEVICE_ID, guid) != CRI_DEVICE_ID ||
-+	    FIELD_GET(GUID_CAP_TYPE, guid) != CRASHLOG)
-+		return -EINVAL;
-+
-+	inst = FIELD_GET(GUID_RECORD_ID, guid) == PUNIT ? PUNIT_DISC_OFFSET : OOBMSM_DISC_OFFSET;
-+	disc_addr += CRI_DISCOVERY_OFFSET + inst + offset;
-+
-+	guard(mutex)(&xe->pmt.lock);
-+
-+	xe_pm_runtime_get(xe);
-+
-+	xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-+
-+	memcpy_toio(disc_addr, &reg, sizeof(reg));
-+
-+	xe_pm_runtime_put(xe);
-+
-+	return 0;
-+}
-+
-+static struct pmt_callbacks xe_bmg_pmt_cb = {
-+	.read_telem = xe_pmt_telem_read,
-+};
-+
-+static struct pmt_callbacks xe_cri_pmt_cb = {
- 	.read_telem = xe_pmt_telem_read,
-+	.read_reg = xe_pmt_read_reg,
-+	.write_reg = xe_pmt_write_reg,
- };
- 
- static const int vsec_platforms[] = {
- 	[XE_BATTLEMAGE] = XE_VSEC_BMG,
-+	[XE_CRESCENTISLAND] = XE_VSEC_CRI,
- };
- 
- static enum xe_vsec get_platform_info(struct xe_device *xe)
- {
--	if (xe->info.platform > XE_BATTLEMAGE)
-+	if (xe->info.platform > XE_CRESCENTISLAND)
- 		return XE_VSEC_UNKNOWN;
- 
- 	return vsec_platforms[xe->info.platform];
-@@ -337,8 +408,14 @@ void xe_vsec_init(struct xe_device *xe)
- 
- 	switch (platform) {
- 	case XE_VSEC_BMG:
--		info->priv_data = &xe_pmt_cb;
-+		info->priv_data = &xe_bmg_pmt_cb;
- 		break;
-+
-+	case XE_VSEC_CRI:
-+		info->priv_data = &xe_cri_pmt_cb;
-+		xe->soc_remapper.set_telem_region(xe, CRI_IDX_TELEM_DISCOVERY);
-+		break;
-+
- 	default:
- 		break;
- 	}
--- 
-2.52.0
+ drivers/dma-buf/Kconfig                     | 12 -----
+ drivers/dma-buf/dma-buf.c                   | 69 +++++++++++++++++++-----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c | 14 ++---
+ drivers/gpu/drm/amd/amdgpu/amdgpu_object.c  |  2 +-
+ drivers/gpu/drm/amd/amdkfd/Kconfig          |  2 +-
+ drivers/gpu/drm/virtio/virtgpu_prime.c      |  2 +-
+ drivers/gpu/drm/xe/tests/xe_dma_buf.c       |  7 ++-
+ drivers/gpu/drm/xe/xe_bo.c                  |  2 +-
+ drivers/gpu/drm/xe/xe_dma_buf.c             | 14 ++---
+ drivers/infiniband/core/umem_dmabuf.c       | 13 -----
+ drivers/infiniband/hw/mlx5/mr.c             |  2 +-
+ drivers/iommu/iommufd/pages.c               | 11 +++-
+ drivers/iommu/iommufd/selftest.c            |  2 +-
+ drivers/vfio/pci/vfio_pci_dmabuf.c          | 84 ++++++++++++++++++++++-------
+ include/linux/dma-buf.h                     | 17 +++---
+ 15 files changed, 157 insertions(+), 96 deletions(-)
+---
+base-commit: 61ceaf236115f20f4fdd7cf60f883ada1063349a
+change-id: 20251221-dmabuf-revoke-b90ef16e4236
+
+Best regards,
+--  
+Leon Romanovsky <leonro@nvidia.com>
 
