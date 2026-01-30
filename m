@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC57DE6BF17
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Jan 2026 14:46:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62C31E6BF1B
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Jan 2026 15:12:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7109910EA07;
-	Fri, 30 Jan 2026 14:46:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O0fkowIi";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF05310EA03;
- Fri, 30 Jan 2026 14:45:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769784360; x=1801320360;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=15Hl+K7cKkodTSwPvhoZK9Gww0RwmQIdjPmcrj08khs=;
- b=O0fkowIiOLzysmm1Vos6EacA2gn2W0zDL54lIFnawwn+sPNyrI72AMGP
- 4BrPB5bUFZq8angbAOdzhjsKgq2lIoWatgLY/KHABUzCcAQETSv93A3iS
- xyrbzfp56MzKSVDfcxgomu5t/R5l3Wte2Sp6VzpJLm0DYYFH+TSH4MCub
- txLagF1Vk7cVSJoqFPXV4QiSFGK3qqonLMVwudhbkLDS3D2EJ18mSPDT6
- s+eWa8AeZU7ir0UD8rpr/NRT/eU8mt5r6uzzQSa/jdIn5IBlKAT4cUSQ5
- 5Ko8XtUnrhTVK1YkcMOf1AyBWfUZjxW0ztLKvavaTLRdrZEVQjsE84Jzv g==;
-X-CSE-ConnectionGUID: iNRg/OERTbOF5dyrwXtoLQ==
-X-CSE-MsgGUID: V16tbu78TxuL12id8qTQ3g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="96495809"
-X-IronPort-AV: E=Sophos;i="6.21,263,1763452800"; d="scan'208";a="96495809"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2026 06:45:59 -0800
-X-CSE-ConnectionGUID: XMz+iAomQ36BwmT6wZEAQw==
-X-CSE-MsgGUID: dqWyryrwSxaMxaCisrfI1Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,263,1763452800"; d="scan'208";a="209224967"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO fedora) ([10.245.244.13])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2026 06:45:56 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Ralph Campbell <rcampbell@nvidia.com>, Christoph Hellwig <hch@lst.de>,
- Jason Gunthorpe <jgg@mellanox.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- Leon Romanovsky <leon@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Matthew Brost <matthew.brost@intel.com>, linux-mm@kvack.org,
- stable@vger.kernel.org, dri-devel@lists.freedesktop.org
-Subject: [PATCH] mm/hmm: Fix a hmm_range_fault() livelock / starvation problem
-Date: Fri, 30 Jan 2026 15:45:29 +0100
-Message-ID: <20260130144529.79909-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.52.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1323E10E36E;
+	Fri, 30 Jan 2026 15:12:52 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF56410E36E;
+ Fri, 30 Jan 2026 15:12:50 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1184120387908143262=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/power=5Fwell=3A_En?=
+ =?utf-8?q?able_workaround_for_DSS_clock_gating_issue?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kahola" <mika.kahola@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 30 Jan 2026 15:12:50 -0000
+Message-ID: <176978597077.210646.8003438482136713712@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260130134534.63118-1-mika.kahola@intel.com>
+In-Reply-To: <20260130134534.63118-1-mika.kahola@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,82 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If hmm_range_fault() fails a folio_trylock() in do_swap_page,
-trying to acquire the lock of a device-private folio for migration,
-to ram, the function will spin until it succeeds grabbing the lock.
+--===============1184120387908143262==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-However, if the process holding the lock is depending on a work
-item to be completed, which is scheduled on the same CPU as the
-spinning hmm_range_fault(), that work item might be starved and
-we end up in a livelock / starvation situation which is never
-resolved.
+== Series Details ==
 
-This can happen, for example if the process holding the
-device-private folio lock is stuck in
-   migrate_device_unmap()->lru_add_drain_all()
-The lru_add_drain_all() function requires a short work-item
-to be run on all online cpus to complete.
+Series: drm/i915/power_well: Enable workaround for DSS clock gating issue
+URL   : https://patchwork.freedesktop.org/series/160923/
+State : success
 
-A prerequisite for this to happen is:
-a) Both zone device and system memory folios are considered in
-   migrate_device_unmap(), so that there is a reason to call
-   lru_add_drain_all() for a system memory folio while a
-   folio lock is held on a zone device folio.
-b) The zone device folio has an initial mapcount > 1 which causes
-   at least one migration PTE entry insertion to be deferred to
-   try_to_migrate(), which can happen after the call to
-   lru_add_drain_all().
-c) No or voluntary only preemption.
+== Summary ==
 
-This all seems pretty unlikely to happen, but indeed is hit by
-the "xe_exec_system_allocator" igt test.
+CI Bug Log - changes from xe-4476-feea7da320aa6950f02d3c4633ab678e6e61f7e9_BAT -> xe-pw-160923v1_BAT
+====================================================
 
-Resolve this using a cond_resched() after each iteration in
-hmm_range_fault(). Future code improvements might consider moving
-the lru_add_drain_all() call in migrate_device_unmap() out of the
-folio locked region.
+Summary
+-------
 
-Also, hmm_range_fault() can be a very long-running function
-so a cond_resched() at the end of each iteration can be
-motivated even in the absence of an -EBUSY.
+  **SUCCESS**
 
-Fixes: d28c2c9a4877 ("mm/hmm: make full use of walk_page_range()")
-Cc: Ralph Campbell <rcampbell@nvidia.com>
-Cc: Christoph Hellwig <hch@lst.de>
-Cc: Jason Gunthorpe <jgg@mellanox.com>
-Cc: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Leon Romanovsky <leon@kernel.org>
-Cc: Andrew Morton <akpm@linux-foundation.org>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: linux-mm@kvack.org
-Cc: <stable@vger.kernel.org> # v5.5+
-Cc: <dri-devel@lists.freedesktop.org>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- mm/hmm.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+  No regressions found.
 
-diff --git a/mm/hmm.c b/mm/hmm.c
-index 4ec74c18bef6..160c9e4e5a92 100644
---- a/mm/hmm.c
-+++ b/mm/hmm.c
-@@ -674,6 +674,13 @@ int hmm_range_fault(struct hmm_range *range)
- 			return -EBUSY;
- 		ret = walk_page_range(mm, hmm_vma_walk.last, range->end,
- 				      &hmm_walk_ops, &hmm_vma_walk);
-+		/*
-+		 * Conditionally reschedule to let other work items get
-+		 * a chance to unlock device-private pages whose locks
-+		 * we're spinning on.
-+		 */
-+		cond_resched();
-+
- 		/*
- 		 * When -EBUSY is returned the loop restarts with
- 		 * hmm_vma_walk.last set to an address that has not been stored
--- 
-2.52.0
+  
 
+Participating hosts (12 -> 11)
+------------------------------
+
+  Missing    (1): bat-bmg-3 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8726 -> IGT_8728
+  * Linux: xe-4476-feea7da320aa6950f02d3c4633ab678e6e61f7e9 -> xe-pw-160923v1
+
+  IGT_8726: 8726
+  IGT_8728: 8728
+  xe-4476-feea7da320aa6950f02d3c4633ab678e6e61f7e9: feea7da320aa6950f02d3c4633ab678e6e61f7e9
+  xe-pw-160923v1: 160923v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160923v1/index.html
+
+--===============1184120387908143262==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/power_well: Enable workaround for DSS clock gating issue</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160923/">https://patchwork.freedesktop.org/series/160923/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160923v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160923v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4476-feea7da320aa6950f02d3c4633ab678e6e61f7e9_BAT -&gt; xe-pw-160923v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 11)</h2>
+<p>Missing    (1): bat-bmg-3 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8726 -&gt; IGT_8728</li>
+<li>Linux: xe-4476-feea7da320aa6950f02d3c4633ab678e6e61f7e9 -&gt; xe-pw-160923v1</li>
+</ul>
+<p>IGT_8726: 8726<br />
+  IGT_8728: 8728<br />
+  xe-4476-feea7da320aa6950f02d3c4633ab678e6e61f7e9: feea7da320aa6950f02d3c4633ab678e6e61f7e9<br />
+  xe-pw-160923v1: 160923v1</p>
+
+</body>
+</html>
+
+--===============1184120387908143262==--
