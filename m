@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B18CE6BF1F
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Jan 2026 15:24:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0B96E6BF1E
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Jan 2026 15:53:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DBFF10E4EB;
-	Fri, 30 Jan 2026 15:24:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="epvsSdVu";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63A5E10E02F;
- Fri, 30 Jan 2026 15:24:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769786650; x=1801322650;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=GVG6h9UxiVPKBf7FR7ftcFkKeNjwmjse+rf2+9R2Trc=;
- b=epvsSdVufYwbmJN4TCJsrUROJuNf4s/mHHzN+gQLT3kLcsn+akVS4A7g
- m01AApomN675Djl8wwXAz9P+v/BAB1oR5oMqrW7yRaEYstSnr9V0fXto9
- VN5qxPmdzKGeChoWhqcakHiXQDQLlGhhWIFwWwOTS0pm8XnM+WWqA6wWT
- EFRZqWS2bpLvKcD/q6R3P5MnYnaRQm4rRoqc+mSy18RluPixz7iOvLJus
- Cxqlzu+yrVPVOiw0DR0EqhYWONgnMlg1vFWvH+7dKAUeAfbLQxqzPcMg8
- QwXg25ZHe7ZWm4mPm7MmJ/8VtAlUp72bRS84TybKFvgMvUIolWRIikQGf w==;
-X-CSE-ConnectionGUID: b2GjFm5rTCW0v51xbzHrXw==
-X-CSE-MsgGUID: 40FxSB9sRtCd/YcHEWW1Bw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="73639636"
-X-IronPort-AV: E=Sophos;i="6.21,263,1763452800"; d="scan'208";a="73639636"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2026 07:24:10 -0800
-X-CSE-ConnectionGUID: JaEgrHpMQ0a376xVz/g1xg==
-X-CSE-MsgGUID: wJaL/d4gQkaQ6f9nQ3t9UQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,263,1763452800"; d="scan'208";a="207996639"
-Received: from ettammin-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.77])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2026 07:24:07 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, Patrik Jakobsson
- <patrik.r.jakobsson@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, ville.syrjala@linux.intel.com
-Subject: Re: [PATCH 6/6] drm/gma500: use drm_crtc_vblank_crtc()
-In-Reply-To: <5aec1964-072c-4335-8f37-35e6efb4910e@suse.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <cover.1762513240.git.jani.nikula@intel.com>
- <27b2c6772c68120d0d5ec28477db0d993743e955.1762513240.git.jani.nikula@intel.com>
- <CAMeQTsaU7nS9K=UkQW73L6TS6PBLw26s_-jiOchEyT7dcfz-7Q@mail.gmail.com>
- <5aec1964-072c-4335-8f37-35e6efb4910e@suse.de>
-Date: Fri, 30 Jan 2026 17:24:04 +0200
-Message-ID: <ee3b272aeab7dd88d2285e9234c75f8c14d8ddad@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA07610EA0C;
+	Fri, 30 Jan 2026 15:53:19 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 731DB10EA0C;
+ Fri, 30 Jan 2026 15:53:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5459711175027385723=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_mm/hmm=3A_Fix_a_hmm=5Frange?=
+ =?utf-8?q?=5Ffault=28=29_livelock_/_starvation_problem?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 30 Jan 2026 15:53:18 -0000
+Message-ID: <176978839847.210706.18313683437342797643@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260130144529.79909-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20260130144529.79909-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,28 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 30 Jan 2026, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> This patch breaks the driver with a NULL-ptr oops on startup. This is 
-> because the IRQ initialization in gma_irq_install() now uses CRTCs that 
-> are only allocated later in psb_modeset_init(). Stack trace is below.
->
-> There's a nearby comment about preserving the order of the operations, 
-> so I don't dare touching it. But reverting commit d930ffa5d6e8 
-> ("drm/gma500: use drm_crtc_vblank_crtc()") resolves the issue.
+--===============5459711175027385723==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks for the report. Since we're at -rc7 and there's going to be -rc8,
-I think the only reasonable approach at this time is to revert [1].
+== Series Details ==
 
-BR,
-Jani.
+Series: mm/hmm: Fix a hmm_range_fault() livelock / starvation problem
+URL   : https://patchwork.freedesktop.org/series/160928/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-4476-feea7da320aa6950f02d3c4633ab678e6e61f7e9_BAT -> xe-pw-160928v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
 
 
-[1] https://lore.kernel.org/r/20260130151319.31264-1-jani.nikula@intel.com
+Changes
+-------
+
+  No changes found
 
 
+Build changes
+-------------
 
--- 
-Jani Nikula, Intel
+  * IGT: IGT_8726 -> IGT_8728
+  * Linux: xe-4476-feea7da320aa6950f02d3c4633ab678e6e61f7e9 -> xe-pw-160928v1
+
+  IGT_8726: 8726
+  IGT_8728: 8728
+  xe-4476-feea7da320aa6950f02d3c4633ab678e6e61f7e9: feea7da320aa6950f02d3c4633ab678e6e61f7e9
+  xe-pw-160928v1: 160928v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160928v1/index.html
+
+--===============5459711175027385723==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>mm/hmm: Fix a hmm_range_fault() livelock / starvation problem</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160928/">https://patchwork.freedesktop.org/series/160928/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160928v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160928v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4476-feea7da320aa6950f02d3c4633ab678e6e61f7e9_BAT -&gt; xe-pw-160928v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8726 -&gt; IGT_8728</li>
+<li>Linux: xe-4476-feea7da320aa6950f02d3c4633ab678e6e61f7e9 -&gt; xe-pw-160928v1</li>
+</ul>
+<p>IGT_8726: 8726<br />
+  IGT_8728: 8728<br />
+  xe-4476-feea7da320aa6950f02d3c4633ab678e6e61f7e9: feea7da320aa6950f02d3c4633ab678e6e61f7e9<br />
+  xe-pw-160928v1: 160928v1</p>
+
+</body>
+</html>
+
+--===============5459711175027385723==--
