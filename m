@@ -4,82 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CD67E7315D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60E55E7315F
 	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 12:55:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF5FE10E4C0;
-	Mon,  2 Feb 2026 12:55:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1097510E4C5;
+	Mon,  2 Feb 2026 12:55:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Qhb1TKEy";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="M2NEkiG3";
 	dkim-atps=neutral
-Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com
- [209.85.216.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53C1B10E287
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Feb 2026 08:01:17 +0000 (UTC)
-Received: by mail-pj1-f45.google.com with SMTP id
- 98e67ed59e1d1-34c718c5481so2583485a91.3
- for <intel-xe@lists.freedesktop.org>; Mon, 02 Feb 2026 00:01:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1770019277; x=1770624077; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Gpa7TO42qLDaaK7rvjxkwHnmN2Z6us+3ErmDg7wFIC0=;
- b=Qhb1TKEyd0C9yjBTj1EEYKYh3xRTSx6YeQJYBX0l2LJkXOIh+iUOo8cwzIi/qCbR18
- k1HgFP8odZzyYCR80T6oNNT2+9GuKdJP2Qm8hF+tWKWCzWcw3jkpmw/Tdy1hVR2QLe2L
- wm12/Sjr4Xwn+6Ox/iDDMu98dqRndwaIR2d+kVjAPU5uDh4SpR8mxm3Arfjg8FwMB13+
- qRsa3AySl7yMah6mLz0wTuwtWeOxRJPFCHM5gSYGY92MXTwJN8ELIKEvkfLnSy5V0r9d
- ZMSaMgrQexhU3rhD2nuOqzhFpyWbcoCLsUcsv4V+j5Ln0HUMAXIIRw3hiUTGLE5SapLH
- AzRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1770019277; x=1770624077;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=Gpa7TO42qLDaaK7rvjxkwHnmN2Z6us+3ErmDg7wFIC0=;
- b=SV+i54mBPD+WV0BzrCmmVREjUAqPO3dt0mj08L8VWMtuFOIJ3F3JDqXsPxgpptYKx6
- uyFNa9HdbYX7qxrH6Y2mXz4hO919QyTgid8Nt1aBJUv07JZV0Je10+QXtulqRtbErtNZ
- XiPwja5zCWlF31f8kaeZ5L4tYPEIXnKN9U5BvKHmdD0c8J1nnNXhEW6LHJiN/ah6oNHU
- LXea5dGgmk5Sd0qMM4KD7sCjjZoAFkqEJF9KuMqb7FF6xql6X8dxW3zpBEt/+S2W6JFS
- LmLT9yiJBfPBOxFslflsME/Zzc6OX+TBHk5UDkWJbC9j0psGkpyWN2vR5VeK4dvO17+G
- gSww==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWZCaUjCeEzeDm2B/xoTNVvUry2bi+pzf3EbolDyrNy2mkJJN6iqtCkoST+w9iX7L45Caipvwvi9w==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxqu13Qu9IU/QE1HcOMoPuqndrjTF/HjZM2+jpExv9Dd9t5noHF
- zs9IMSzVJjSrPkfWSFUNwqboAlDkamOBFi8ED2SVHa7yuuz7ZVsn490=
-X-Gm-Gg: AZuq6aLkruNSgkvxmnXT0paAC2nvqdV/fzo8R0TOsM5cMewYjCQnX5QP6QeyVEUFbsN
- J2taGWV5SxVlg6Sm01+iyAu3WiL8A40+p6EfPdJq0WcXhUB+CD1cTg7scyCR2HAhvErdn/WKcjO
- DE3hWfxF8Ne2hAIcRkwSv/pV1dKmjwsRyKrMD/G3rwAqkC/hiPIGfwrLxw9dIwuEgULsb+xqDRh
- S62JhZSK1xbQX2Gx5X5npZZ74kj3XBJi9ng3mAyle4NTG5dj0d8XMrvAEnCp4ZL6g6ZOeRrqHv0
- YXApZIWTLBgwy7Z6En+Hc/H2ywGkjSbuB/gGpAnDGaLxbmPpz2rsKGp7mmmJQAycuwSWM5hIEOo
- EJV+4jkRqWKgDqZ/qCqbajXktRWoPsPmxIKA4vlwjCtQ6CbqcsfoX3K1y40gL9ryxuibAfpDL6F
- 0M3dwg1Rjqm/Mh3ZA=
-X-Received: by 2002:a17:90b:3dcb:b0:340:b912:536 with SMTP id
- 98e67ed59e1d1-3543b3ad361mr9815251a91.31.1770019275904; 
- Mon, 02 Feb 2026 00:01:15 -0800 (PST)
-Received: from at.. ([171.61.160.203]) by smtp.gmail.com with ESMTPSA id
- 98e67ed59e1d1-3540f2f02aasm14655168a91.7.2026.02.02.00.01.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 02 Feb 2026 00:01:15 -0800 (PST)
-From: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>
-To: lukas@wunner.de
-Cc: airlied@gmail.com, ardb@kernel.org, atharvatiwarilinuxdev@gmail.com,
- bp@alien8.de, dri-devel@lists.freedesktop.org, francescopompo2@gmail.com,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com, javierm@redhat.com,
- joonas.lahtinen@linux.intel.com, linux-efi@vger.kernel.org,
- linux-kernel@vger.kernel.org, lszubowi@redhat.com, rodrigo.vivi@intel.com,
- simona@ffwll.ch, tursulin@ursulin.net, tzimmermann@suse.de
-Subject: Re: [PATCH v2 1/2] efi/libstub: enable apple-set-os for all apple
- devices
-Date: Mon,  2 Feb 2026 08:01:06 +0000
-Message-ID: <20260202080106.1093-1-atharvatiwarilinuxdev@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <aXovFQsk-w90wZi1@wunner.de>
-References: <aXovFQsk-w90wZi1@wunner.de>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D566F10E8F4;
+ Fri, 30 Jan 2026 05:43:28 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 6FE1A60125;
+ Fri, 30 Jan 2026 05:43:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E00EC4CEF7;
+ Fri, 30 Jan 2026 05:43:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1769751807;
+ bh=1mj10mAR+dREfsDvfo4M+yfN+P1zHg8E8B5cbP3m5V0=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=M2NEkiG3nXvvzMUybPf9u2NsYSvRQJPu/txpSsJ+Qsxe4sqfutLmoEU01sEJ8CMIg
+ I8qJygosMIvzV8Of29N3Q+NJ4IHqtJpQhzT+fhE6yUEPTeU+erOtBeCAbmFGR6dG/L
+ E41kzSGtTsuhJoFAsbxx660eUE1Lspm74+ePErFMRfookARjIAbj+d5y8bxZjOG3DU
+ tQFiGiDeQxNuiZkSlsQtK41CFeWa6ILJtXkFNDVk30w/Rnxyezaqc8f7v77sWasdlr
+ bW4sKqqCB6eR9qjkzlxTaYVQ4r7qf/9DIoodjgENpnF0X4+qtu5CzCULpCvoHa985+
+ ryXH1ILEAGAQw==
+Date: Fri, 30 Jan 2026 06:43:17 +0100
+From: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To: "Tian, Kevin" <kevin.tian@intel.com>
+Cc: Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
+ Pranjal Shrivastava <praan@google.com>, Sumit Semwal
+ <sumit.semwal@linaro.org>, Christian =?UTF-8?B?S8O2bmln?=
+ <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>,
+ "David Airlie" <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Gerd
+ Hoffmann <kraxel@redhat.com>, Dmitry Osipenko
+ <dmitry.osipenko@collabora.com>, Gurchetan Singh
+ <gurchetansingh@chromium.org>, Chia-I Wu <olvaffe@gmail.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, "Lucas De
+ Marchi" <lucas.demarchi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?=
+ <thomas.hellstrom@linux.intel.com>, "Vivi, Rodrigo"
+ <rodrigo.vivi@intel.com>, Joerg Roedel <joro@8bytes.org>, Will Deacon
+ <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, Felix Kuehling
+ <Felix.Kuehling@amd.com>, "Alex Williamson" <alex@shazbot.org>, Ankit
+ Agrawal <ankita@nvidia.com>, "Kasireddy, Vivek"
+ <vivek.kasireddy@intel.com>, "linux-media@vger.kernel.org"
+ <linux-media@vger.kernel.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "linaro-mm-sig@lists.linaro.org"
+ <linaro-mm-sig@lists.linaro.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "amd-gfx@lists.freedesktop.org"
+ <amd-gfx@lists.freedesktop.org>, "virtualization@lists.linux.dev"
+ <virtualization@lists.linux.dev>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "linux-rdma@vger.kernel.org"
+ <linux-rdma@vger.kernel.org>, "iommu@lists.linux.dev"
+ <iommu@lists.linux.dev>, "kvm@vger.kernel.org" <kvm@vger.kernel.org>
+Subject: Re: [PATCH v5 4/8] vfio: Wait for dma-buf invalidation to complete
+Message-ID: <20260130064317.3c0fead7@foz.lan>
+In-Reply-To: <BN9PR11MB5276907FC927424043C636E68C9FA@BN9PR11MB5276.namprd11.prod.outlook.com>
+References: <20260124-dmabuf-revoke-v5-0-f98fca917e96@nvidia.com>
+ <20260124-dmabuf-revoke-v5-4-f98fca917e96@nvidia.com>
+ <aXfUZcSEr9N18o6w@google.com> <20260127085835.GQ13967@unreal>
+ <20260127162754.GH1641016@ziepe.ca>
+ <BN9PR11MB5276B99D4E8C6496B0C447888C9EA@BN9PR11MB5276.namprd11.prod.outlook.com>
+ <20260129145851.GE2307128@ziepe.ca>
+ <BN9PR11MB5276907FC927424043C636E68C9FA@BN9PR11MB5276.namprd11.prod.outlook.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 02 Feb 2026 12:55:53 +0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 02 Feb 2026 12:55:52 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,12 +88,87 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> Maybe you could give it a spin and verify if it fixes the issue for you?
+On Fri, 30 Jan 2026 03:12:02 +0000
+"Tian, Kevin" <kevin.tian@intel.com> wrote:
 
-I tested it, and only tested to see if it booted.
-now again i tested, and it seems my iGPU and eGPU wasnt detected?
-and after futher debuging i found that setup_efi_pci only detected
-dGPU, so using update_nr_gpus was useless.
+> > From: Jason Gunthorpe <jgg@ziepe.ca>
+> > Sent: Thursday, January 29, 2026 10:59 PM
+> >=20
+> > On Thu, Jan 29, 2026 at 07:06:37AM +0000, Tian, Kevin wrote: =20
+> > > Bear me if it's an ignorant question.
+> > >
+> > > The commit msg of patch6 says that VFIO doesn't tolerate unbounded
+> > > wait, which is the reason behind the 2nd timeout wait here. =20
+> >=20
+> > As far as I understand dmabuf design a fence wait should complete
+> > eventually under kernel control, because these sleeps are
+> > sprinkled all around the kernel today.
+> >=20
+> > I suspect that is not actually true for every HW, probably something
+> > like "shader programs can run forever technically".
+> >=20
+> > We can argue if those cases should not report revocable either, but at
+> > least this will work "correctly" even if it takes a huge amount of
+> > time. =20
+>=20
+> good to know those background.
+>=20
+> >=20
+> > I wouldn't mind seeing a shorter timeout and print on the fence too
+> > just in case.
+> >  =20
+>=20
+> either way is OK. It's not difficult to figure out a long wait anyway. =
+=F0=9F=98=8A
 
-and about the macbookair situation, i say we just exclude macbook from
-enabling apple-set-os via a smbios quirk.
+Please don't use Outlook when answering to patches - or ensure that
+it is properly patched to only send plain text - which I don't
+think it is possible.
+
+If you look on this message source code, it is not in plain text:
+
+	Content-Type: text/plain; charset=3D"utf-8"
+	Content-Transfer-Encoding: base64
+
+Your message content is:
+
+	PiBGcm9tOiBKYXNvbiBHdW50aG9ycGUgPGpnZ0B6aWVwZS5jYT4NCj4gU2VudDogVGh1cnNkYX=
+ks
+	IEphbnVhcnkgMjksIDIwMjYgMTA6NTkgUE0NCj4gDQo+IE9uIFRodSwgSmFuIDI5LCAyMDI2IG=
+F0
+	IDA3OjA2OjM3QU0gKzAwMDAsIFRpYW4sIEtldmluIHdyb3RlOg0KPiA+IEJlYXIgbWUgaWYgaX=
+Qn
+	cyBhbiBpZ25vcmFudCBxdWVzdGlvbi4NCj4gPg0KPiA+IFRoZSBjb21taXQgbXNnIG9mIHBhdG=
+No
+	NiBzYXlzIHRoYXQgVkZJTyBkb2Vzbid0IHRvbGVyYXRlIHVuYm91bmRlZA0KPiA+IHdhaXQsIH=
+do
+	aWNoIGlzIHRoZSByZWFzb24gYmVoaW5kIHRoZSAybmQgdGltZW91dCB3YWl0IGhlcmUuDQo+IA=
+0K
+	PiBBcyBmYXIgYXMgSSB1bmRlcnN0YW5kIGRtYWJ1ZiBkZXNpZ24gYSBmZW5jZSB3YWl0IHNob3=
+Vs
+	ZCBjb21wbGV0ZQ0KPiBldmVudHVhbGx5IHVuZGVyIGtlcm5lbCBjb250cm9sLCBiZWNhdXNlIH=
+Ro
+	ZXNlIHNsZWVwcyBhcmUNCj4gc3ByaW5rbGVkIGFsbCBhcm91bmQgdGhlIGtlcm5lbCB0b2RheS=
+4N
+	Cj4gDQo+IEkgc3VzcGVjdCB0aGF0IGlzIG5vdCBhY3R1YWxseSB0cnVlIGZvciBldmVyeSBIVy=
+wg
+	cHJvYmFibHkgc29tZXRoaW5nDQo+IGxpa2UgInNoYWRlciBwcm9ncmFtcyBjYW4gcnVuIGZvcm=
+V2
+	ZXIgdGVjaG5pY2FsbHkiLg0KPiANCj4gV2UgY2FuIGFyZ3VlIGlmIHRob3NlIGNhc2VzIHNob3=
+Vs
+	ZCBub3QgcmVwb3J0IHJldm9jYWJsZSBlaXRoZXIsIGJ1dCBhdA0KPiBsZWFzdCB0aGlzIHdpbG=
+wg
+	d29yayAiY29ycmVjdGx5IiBldmVuIGlmIGl0IHRha2VzIGEgaHVnZSBhbW91bnQgb2YNCj4gdG=
+lt
+	ZS4NCg0KZ29vZCB0byBrbm93IHRob3NlIGJhY2tncm91bmQuDQoNCj4gDQo+IEkgd291bGRuJ3=
+Qg
+	bWluZCBzZWVpbmcgYSBzaG9ydGVyIHRpbWVvdXQgYW5kIHByaW50IG9uIHRoZSBmZW5jZSB0b2=
+8N
+	Cj4ganVzdCBpbiBjYXNlLg0KPiANCg0KZWl0aGVyIHdheSBpcyBPSy4gSXQncyBub3QgZGlmZm=
+lj
+	dWx0IHRvIGZpZ3VyZSBvdXQgYSBsb25nIHdhaXQgYW55d2F5LiDwn5iKDQo=3D
+
+which is something that patch tools - in special patchwork - won't handle.
+
+Thanks,
+Mauro
