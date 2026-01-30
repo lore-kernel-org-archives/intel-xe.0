@@ -4,57 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CEDCE6BF3B
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Jan 2026 19:49:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 384E7E6BF10
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Jan 2026 19:55:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3810810E37B;
-	Fri, 30 Jan 2026 19:49:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AhQ0parr";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 313D910E376;
- Fri, 30 Jan 2026 19:49:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769802574; x=1801338574;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=zuLXmLDkFghiiihjuxLqaE3txVaJxrJ+NhXu0jJjTI8=;
- b=AhQ0parrTRQchxrbs4YGRhkK76WBZpsOgwrNDFDiDjIlFygVuZP2swqS
- Raz3i5WazLtS5BY8z+PQNi6532PPJoHA4z1aLO8EVBrzfB7FrKDfCwzIQ
- Ly2rGapBV7MXYgFHPIpRiGN0y5NarUfUTsX+myIBsh5qf+g2ZHrkS12Ci
- ggw4KjdoI6d0/XMHACSZMGDq/zry5Y/eB/qn4qd9HTscg0vWysF5N88MR
- soZmgNk0+ClyvNXqCD3S5weshoNRQZ+CdTmFs8dZe35niUK0dKzMpGOxQ
- yzMNDFxZ4xPCRO7vasYCkwl4vn0HE9LUKTw1TVOb2/HZl8x7d2a9LUMjb A==;
-X-CSE-ConnectionGUID: 8KJLtO8mRvCB1UYO1+5tsA==
-X-CSE-MsgGUID: Yo3j2+vHTcCNMJ83knmAQA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11687"; a="70260319"
-X-IronPort-AV: E=Sophos;i="6.21,263,1763452800"; d="scan'208";a="70260319"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2026 11:49:34 -0800
-X-CSE-ConnectionGUID: x2bZuCcjRceSvcduboIYSQ==
-X-CSE-MsgGUID: 5cugSQSoTZOYbH3WWkx1GQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,263,1763452800"; d="scan'208";a="240202398"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2026 11:49:33 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: francois.dugast@intel.com, thomas.hellstrom@linux.intel.com,
- himal.prasad.ghimiray@intel.com
-Subject: [PATCH 1/2] drm/gpusvm: Force unmapping on error in
- drm_gpusvm_get_pages
-Date: Fri, 30 Jan 2026 11:49:27 -0800
-Message-Id: <20260130194928.3255613-2-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260130194928.3255613-1-matthew.brost@intel.com>
-References: <20260130194928.3255613-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1F2110E378;
+	Fri, 30 Jan 2026 19:55:55 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C659210E378;
+ Fri, 30 Jan 2026 19:55:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Small_GPUSVM_fixes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 30 Jan 2026 19:55:54 -0000
+Message-ID: <176980295480.211739.4416646965582328462@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260130194928.3255613-1-matthew.brost@intel.com>
+In-Reply-To: <20260130194928.3255613-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,34 +35,53 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-drm_gpusvm_get_pages() only sets the local flags prior to committing the
-pages. If an error occurs mid-mapping, has_dma_mapping will be clear,
-causing the unmap function to skip unmapping pages that were
-successfully mapped before the error. Fix this by forcibly setting
-has_dma_mapping in the error path to ensure all previously mapped pages
-are properly unmapped.
+== Series Details ==
 
-Fixes: 99624bdff867 ("drm/gpusvm: Add support for GPU Shared Virtual Memory")
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/drm_gpusvm.c | 1 +
- 1 file changed, 1 insertion(+)
+Series: Small GPUSVM fixes
+URL   : https://patchwork.freedesktop.org/series/160939/
+State : warning
 
-diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-index aa9a0b60e727..d733599ceb9a 100644
---- a/drivers/gpu/drm/drm_gpusvm.c
-+++ b/drivers/gpu/drm/drm_gpusvm.c
-@@ -1572,6 +1572,7 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
- 	return 0;
- 
- err_unmap:
-+	svm_pages->flags.has_dma_mapping = true;
- 	__drm_gpusvm_unmap_pages(gpusvm, svm_pages, num_dma_mapped);
- 	drm_gpusvm_notifier_unlock(gpusvm);
- err_free:
--- 
-2.34.1
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit bac2283518b360e57e6bbb625d9cbf9bf25f279f
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Fri Jan 30 11:49:28 2026 -0800
+
+    drm/gpusvm: Allow device pages to be mapped in mixed mappings after system pages
+    
+    The current code rejects device mappings whenever system pages have
+    already been encountered. This is not the intended behavior when
+    allow_mixed is set.
+    
+    Relax the restriction by permitting a single pagemap to be selected when
+    allow_mixed is enabled, even if system pages were found earlier.
+    
+    Fixed: bce13d6ecd6c ("drm/gpusvm, drm/xe: Allow mixed mappings for userptr")
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 6f83a1771eab8d70d3cd7ac7e478d42c3a25e572 drm-intel
+a5c1d2a0b17e drm/gpusvm: Force unmapping on error in drm_gpusvm_get_pages
+bac2283518b3 drm/gpusvm: Allow device pages to be mapped in mixed mappings after system pages
+-:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#14: 
+Fixed: bce13d6ecd6c ("drm/gpusvm, drm/xe: Allow mixed mappings for userptr")
+
+-:14: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit bce13d6ecd6c ("drm/gpusvm, drm/xe: Allow mixed mappings for userptr")'
+#14: 
+Fixed: bce13d6ecd6c ("drm/gpusvm, drm/xe: Allow mixed mappings for userptr")
+
+total: 1 errors, 1 warnings, 0 checks, 8 lines checked
+
 
