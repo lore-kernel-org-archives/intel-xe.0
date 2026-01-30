@@ -4,66 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D063EE6BF0E
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Jan 2026 13:38:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C9FAE6BF0D
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Jan 2026 13:45:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8825B10E9EC;
-	Fri, 30 Jan 2026 13:38:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6451F10E9F2;
+	Fri, 30 Jan 2026 13:45:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="i0M+C/ei";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lPdG05xs";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F308110E9F9;
- Fri, 30 Jan 2026 13:38:03 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id D9CA643EEC;
- Fri, 30 Jan 2026 13:38:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D9D4C4CEF7;
- Fri, 30 Jan 2026 13:38:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1769780283;
- bh=jrUktIM7vM/80ddCZ+2MusPve+WTOO+VsuJlV1nB6jM=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=i0M+C/eioHuYogmy0Da5vMPAH7UkBp+pP7m8wKSGBPQ16nSY3W5XL2/A4x4QcClup
- I8/bZ7sSDRosWHNDLtpzHKth4IXsxBTGyt4Cjm+FfZEBqrDkq9vnNm815YHtoMLAcp
- BAqPrsN08lsCZlkvN21bPZMTERcVRK8i8NfgNVa39jSW/PW1/OfKv97dxYnn7lwosw
- 9+N31toxl9iF66LerNQGze25PWKC9dxO+QYYOfmAT9NCG1GT+l1S4EZiAKudF294zX
- mx3KTgMWDJILsRaqjksQO21oCnSzN/tUDbzkWULK6oWEXpWkxFboXwoCLJOarkhP6o
- RgIAsQKJdURjg==
-From: Leon Romanovsky <leon@kernel.org>
-To: Sumit Semwal <sumit.semwal@linaro.org>,
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- Leon Romanovsky <leon@kernel.org>, Kevin Tian <kevin.tian@intel.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>
-Cc: linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: [PATCH v6 5/8] dma-buf: Make .invalidate_mapping() truly optional
-Date: Fri, 30 Jan 2026 15:37:21 +0200
-Message-ID: <20260130-dmabuf-revoke-v6-5-06278f9b7bf0@nvidia.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260130-dmabuf-revoke-v6-0-06278f9b7bf0@nvidia.com>
-References: <20260130-dmabuf-revoke-v6-0-06278f9b7bf0@nvidia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAF2E10E9E9;
+ Fri, 30 Jan 2026 13:45:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769780744; x=1801316744;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=mS7hH7MRDRBY1MjYz32KpV4yQppxZpVhhInj9VPI/n0=;
+ b=lPdG05xsBAMHuGXJwv7ap8o/B/owLeuX5kCF+cLfjr/AbmdR4rLfRJgF
+ 7AUwLZ4FTnLBECnauNI8nSqSAUkaOXMsSL4GBhXlYpOn1DjEThQjE731O
+ TEc5kFxUlc7O3yXAVKJOePCBoiz4vsbrjNkEOArePDUbEEthOhoFD5sOC
+ yyMQEHOnfQpz/e3Bfndt/iXEuVsWdMAlE+Cp8dVnDys70ABG2lyFy8qXD
+ cyMFwQBEj4FR/zcys8HBoRCNExeabe8LhJsREqKPJOhuIG5UIXJhpXvzN
+ a+8zTW0+U+H3P311LrZ1g6JtYdtla+3QwX0kjU4B6TunKvQvC0VyeHxqF A==;
+X-CSE-ConnectionGUID: lpEMqbtRSleK4ojAvxFkvg==
+X-CSE-MsgGUID: BgSEgxztQoGj0salgbCOhQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="74654895"
+X-IronPort-AV: E=Sophos;i="6.21,263,1763452800"; d="scan'208";a="74654895"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jan 2026 05:45:43 -0800
+X-CSE-ConnectionGUID: PAOMTzJUTgiqVXLX0a9I0Q==
+X-CSE-MsgGUID: jJX77exXT2aD5feF+0DUvg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,263,1763452800"; d="scan'208";a="208451705"
+Received: from display-adls.igk.intel.com ([10.211.131.198])
+ by fmviesa007.fm.intel.com with ESMTP; 30 Jan 2026 05:45:41 -0800
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: suraj.kandpal@intel.com, jani.nikula@linux.intel.com,
+ Mika Kahola <mika.kahola@intel.com>
+Subject: [PATCH v2] drm/i915/power_well: Enable workaround for DSS clock
+ gating issue
+Date: Fri, 30 Jan 2026 13:45:34 +0000
+Message-ID: <20260130134534.63118-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.15-dev-47773
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -79,82 +66,160 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Leon Romanovsky <leonro@nvidia.com>
+Prevent display corruption observed after restart, hotplug, or unplug
+operations on Meteor Lake and newer platforms. The issue is caused by
+DSS clock gating affecting DSC logic when pipe power wells are disabled.
 
-The .invalidate_mapping() callback is documented as optional, yet it
-effectively became mandatory whenever importer_ops were provided. This
-led to cases where RDMA non-ODP code had to supply an empty stub.
+Apply this WA by disabling DSS clock gating for the affected pipes
+before turning off their power wells. This avoids DSC corruption on
+external displays.
 
-Relax the checks in the dma-buf core so the callback can be omitted,
-allowing RDMA code to drop the unnecessary function.
+v2: Use single intel_de_rmw() (Jani)
+    Switch to use drm_dbg_kms() instead of drm_printf() (Jani)
+    Remove WA number from commit message (Suraj)
+    rename dss_clock_gating_enable_disable() to
+    dss_pipe_gating_enable_disable();
 
-Removing the stub allows the next patch to tell that RDMA does not support
-.invalidate_mapping() by checking for a NULL op.
-
-Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
+WA: 22021048059
+BSpec: 690991, 666241
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/dma-buf/dma-buf.c             |  6 ++----
- drivers/infiniband/core/umem_dmabuf.c | 13 -------------
- 2 files changed, 2 insertions(+), 17 deletions(-)
+ .../i915/display/intel_display_power_well.c   | 55 ++++++++++++++++++-
+ .../gpu/drm/i915/display/intel_display_regs.h |  7 +++
+ .../gpu/drm/i915/display/intel_display_wa.c   |  2 +
+ .../gpu/drm/i915/display/intel_display_wa.h   |  1 +
+ 4 files changed, 63 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/dma-buf/dma-buf.c b/drivers/dma-buf/dma-buf.c
-index cd68c1c0bfd7..1629312d364a 100644
---- a/drivers/dma-buf/dma-buf.c
-+++ b/drivers/dma-buf/dma-buf.c
-@@ -947,9 +947,6 @@ dma_buf_dynamic_attach(struct dma_buf *dmabuf, struct device *dev,
- 	if (WARN_ON(!dmabuf || !dev))
- 		return ERR_PTR(-EINVAL);
- 
--	if (WARN_ON(importer_ops && !importer_ops->invalidate_mappings))
--		return ERR_PTR(-EINVAL);
--
- 	attach = kzalloc(sizeof(*attach), GFP_KERNEL);
- 	if (!attach)
- 		return ERR_PTR(-ENOMEM);
-@@ -1260,7 +1257,8 @@ void dma_buf_invalidate_mappings(struct dma_buf *dmabuf)
- 	dma_resv_assert_held(dmabuf->resv);
- 
- 	list_for_each_entry(attach, &dmabuf->attachments, node)
--		if (attach->importer_ops)
-+		if (attach->importer_ops &&
-+		    attach->importer_ops->invalidate_mappings)
- 			attach->importer_ops->invalidate_mappings(attach);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 6f9bc6f9615e..78f707b00550 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -18,6 +18,7 @@
+ #include "intel_display_regs.h"
+ #include "intel_display_rpm.h"
+ #include "intel_display_types.h"
++#include "intel_display_wa.h"
+ #include "intel_dkl_phy.h"
+ #include "intel_dkl_phy_regs.h"
+ #include "intel_dmc.h"
+@@ -194,6 +195,48 @@ int intel_power_well_refcount(struct i915_power_well *power_well)
+ 	return power_well->count;
  }
- EXPORT_SYMBOL_NS_GPL(dma_buf_invalidate_mappings, "DMA_BUF");
-diff --git a/drivers/infiniband/core/umem_dmabuf.c b/drivers/infiniband/core/umem_dmabuf.c
-index d77a739cfe7a..256e34c15e6b 100644
---- a/drivers/infiniband/core/umem_dmabuf.c
-+++ b/drivers/infiniband/core/umem_dmabuf.c
-@@ -129,9 +129,6 @@ ib_umem_dmabuf_get_with_dma_device(struct ib_device *device,
- 	if (check_add_overflow(offset, (unsigned long)size, &end))
- 		return ret;
  
--	if (unlikely(!ops || !ops->invalidate_mappings))
--		return ret;
--
- 	dmabuf = dma_buf_get(fd);
- 	if (IS_ERR(dmabuf))
- 		return ERR_CAST(dmabuf);
-@@ -184,18 +181,8 @@ struct ib_umem_dmabuf *ib_umem_dmabuf_get(struct ib_device *device,
++static u32 dss_pipe_gating_bits(u8 irq_pipe_mask)
++{
++	u32 bits = 0;
++
++	if (irq_pipe_mask & BIT(PIPE_A))
++		bits |= DSS_PIPE_A_GATING_DISABLED;
++	if (irq_pipe_mask & BIT(PIPE_B))
++		bits |= DSS_PIPE_B_GATING_DISABLED;
++	if (irq_pipe_mask & BIT(PIPE_C))
++		bits |= DSS_PIPE_C_GATING_DISABLED;
++	if (irq_pipe_mask & BIT(PIPE_D))
++		bits |= DSS_PIPE_D_GATING_DISABLED;
++
++	return bits;
++}
++
++static void dss_pipe_gating_enable_disable(struct intel_display *display,
++					   u8 irq_pipe_mask,
++					   bool disable)
++{
++	u32 bits = dss_pipe_gating_bits(irq_pipe_mask);
++	u32 clear, set;
++
++	if (!bits)
++		return;
++
++	/*
++	 * Single intel_de_rmw() for both enable/disable:
++	 *  - disable == true, set bits (disable clock gating)
++	 *  - disable == false, clear bits (re-enable clock gating)
++	 */
++	set = disable ? bits : 0;
++	clear = disable ? 0 : bits;
++
++	intel_de_rmw(display, CLKGATE_DIS_DSSDSC, clear, set);
++
++	drm_dbg_kms(display->drm,
++		    "DSS clock gating %sd for pipe_mask=0x%x (CLKGATE_DIS_DSSDSC=0x%08x)\n",
++		    str_enable_disable(!disable), irq_pipe_mask,
++		    intel_de_read(display, CLKGATE_DIS_DSSDSC));
++}
++
+ /*
+  * Starting with Haswell, we have a "Power Down Well" that can be turned off
+  * when not needed anymore. We have 4 registers that can request the power well
+@@ -203,15 +246,23 @@ int intel_power_well_refcount(struct i915_power_well *power_well)
+ static void hsw_power_well_post_enable(struct intel_display *display,
+ 				       u8 irq_pipe_mask)
+ {
+-	if (irq_pipe_mask)
++	if (irq_pipe_mask) {
+ 		gen8_irq_power_well_post_enable(display, irq_pipe_mask);
++
++		if (intel_display_wa(display, 22021048059))
++			dss_pipe_gating_enable_disable(display, irq_pipe_mask, false);
++	}
  }
- EXPORT_SYMBOL(ib_umem_dmabuf_get);
  
--static void
--ib_umem_dmabuf_unsupported_move_notify(struct dma_buf_attachment *attach)
--{
--	struct ib_umem_dmabuf *umem_dmabuf = attach->importer_priv;
--
--	ibdev_warn_ratelimited(umem_dmabuf->umem.ibdev,
--			       "Invalidate callback should not be called when memory is pinned\n");
--}
--
- static struct dma_buf_attach_ops ib_umem_dmabuf_attach_pinned_ops = {
- 	.allow_peer2peer = true,
--	.invalidate_mappings = ib_umem_dmabuf_unsupported_move_notify,
+ static void hsw_power_well_pre_disable(struct intel_display *display,
+ 				       u8 irq_pipe_mask)
+ {
+-	if (irq_pipe_mask)
++	if (irq_pipe_mask) {
++		if (intel_display_wa(display, 22021048059))
++			dss_pipe_gating_enable_disable(display, irq_pipe_mask, true);
++
+ 		gen8_irq_power_well_pre_disable(display, irq_pipe_mask);
++	}
+ }
+ 
+ #define ICL_AUX_PW_TO_PHY(pw_idx)	\
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index 9e0d853f4b61..9740f32ced24 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -2211,6 +2211,13 @@
+ #define   HSW_PWR_WELL_FORCE_ON			(1 << 19)
+ #define HSW_PWR_WELL_CTL6			_MMIO(0x45414)
+ 
++/* clock gating DSS DSC disable register */
++#define CLKGATE_DIS_DSSDSC			_MMIO(0x46548)
++#define   DSS_PIPE_D_GATING_DISABLED		REG_BIT(31)
++#define   DSS_PIPE_C_GATING_DISABLED		REG_BIT(29)
++#define   DSS_PIPE_B_GATING_DISABLED		REG_BIT(27)
++#define   DSS_PIPE_A_GATING_DISABLED		REG_BIT(25)
++
+ /* SKL Fuse Status */
+ enum skl_power_gate {
+ 	SKL_PG0,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
+index 86a6cc45b6ab..f8e14aa34dae 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.c
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+@@ -84,6 +84,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
+ 		return intel_display_needs_wa_16025573575(display);
+ 	case INTEL_DISPLAY_WA_22014263786:
+ 		return IS_DISPLAY_VERx100(display, 1100, 1400);
++	case INTEL_DISPLAY_WA_22021048059:
++		return DISPLAY_VER(display) >= 14;
+ 	default:
+ 		drm_WARN(display->drm, 1, "Missing Wa number: %s\n", name);
+ 		break;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
+index 40f989f19df1..767420d5f406 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.h
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
+@@ -34,6 +34,7 @@ enum intel_display_wa {
+ 	INTEL_DISPLAY_WA_16023588340,
+ 	INTEL_DISPLAY_WA_16025573575,
+ 	INTEL_DISPLAY_WA_22014263786,
++	INTEL_DISPLAY_WA_22021048059,
  };
  
- struct ib_umem_dmabuf *
-
+ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name);
 -- 
-2.52.0
+2.43.0
 
