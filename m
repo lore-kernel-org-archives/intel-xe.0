@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8858D49C9B
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Jan 2026 11:01:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3288CD49C92
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Jan 2026 11:06:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A23410E99D;
-	Fri, 30 Jan 2026 11:01:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kqxv4Man";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD4FD10E99D
- for <intel-xe@lists.freedesktop.org>; Fri, 30 Jan 2026 11:01:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769770873; x=1801306873;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=WssLIGVWHxo4UvgDHWGbpMwJ7cJkMm+oI/rjEOqXGQg=;
- b=kqxv4ManTKbAtu6skTO3Vj4OwJ/bx9Pt6u+aom6C/+znxyCYcRidHqQC
- adAXySeiX5uTIFivW2EGAWkZqEFsEhdG1r4F006CqrPxxfvJ3ShMZFDdI
- dztViDNbBT/yzufLQlN62a3c8yd/B4+cpqq0Uh/QABPabUu9UfYeDTQJt
- BXG8UkOVQdgKUrQzcgEtSiC76FTlePZ3j7kbbyE8yxNO1R6GGVaO7v98j
- /0kkLvRcDWy73CkoZT84C37OGypG9NwMDobHiyKIEKO/3pF4UxvZUeJmo
- mTUlrOZsXQ36dBEX+Iy0Ru+gi/jHIm3o58G3omxUhMMkCD5SxVD4FX6m/ A==;
-X-CSE-ConnectionGUID: 17CEGwD8T6i24YmOmsU51g==
-X-CSE-MsgGUID: /0Syk0pHRKGfS/snT+L+Ug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="70931524"
-X-IronPort-AV: E=Sophos;i="6.21,262,1763452800"; d="scan'208";a="70931524"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2026 03:01:13 -0800
-X-CSE-ConnectionGUID: KWukUJunTKWIO+njxNUDzg==
-X-CSE-MsgGUID: jDWVRxAuRLO4IbZOnM1yuQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,262,1763452800"; d="scan'208";a="240092222"
-Received: from abityuts-desk.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.244.35])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2026 03:01:11 -0800
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Ulisses Furquim <ulisses.furquim@intel.com>,
- Sanjay Yadav <sanjay.kumar.yadav@intel.com>
-Subject: [PATCH] drm/xe/uapi: update used tracking kernel-doc
-Date: Fri, 30 Jan 2026 11:01:01 +0000
-Message-ID: <20260130110100.439832-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.52.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF21410E99D;
+	Fri, 30 Jan 2026 11:06:54 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17F7810E99D;
+ Fri, 30 Jan 2026 11:06:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/display=3A_fix_?=
+ =?utf-8?q?the_pixel_normalization_handling_for_xe3p=5Flpd_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 30 Jan 2026 11:06:54 -0000
+Message-ID: <176977121409.209935.10028876238373553237@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260130095919.107805-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20260130095919.107805-1-vinod.govindapillai@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,49 +36,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In commit 4d0b035fd6da ("drm/xe/uapi: loosen used tracking restriction")
-we dropped the CAP_PERMON restriction but missed updating the
-corresponding kernel-doc. Fix that.
+== Series Details ==
 
-Reported-by: Ulisses Furquim <ulisses.furquim@intel.com>
-Fixes: 4d0b035fd6da ("drm/xe/uapi: loosen used tracking restriction")
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
----
- include/uapi/drm/xe_drm.h | 10 ----------
- 1 file changed, 10 deletions(-)
+Series: drm/i915/display: fix the pixel normalization handling for xe3p_lpd (rev4)
+URL   : https://patchwork.freedesktop.org/series/160254/
+State : warning
 
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 077e66a682e2..e2b62a1b6118 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -335,10 +335,6 @@ struct drm_xe_mem_region {
- 	__u64 total_size;
- 	/**
- 	 * @used: Estimate of the memory used in bytes for this region.
--	 *
--	 * Requires CAP_PERFMON or CAP_SYS_ADMIN to get reliable
--	 * accounting.  Without this the value here will always equal
--	 * zero.
- 	 */
- 	__u64 used;
- 	/**
-@@ -362,12 +358,6 @@ struct drm_xe_mem_region {
- 	/**
- 	 * @cpu_visible_used: Estimate of CPU visible memory used, in
- 	 * bytes.
--	 *
--	 * Requires CAP_PERFMON or CAP_SYS_ADMIN to get reliable
--	 * accounting. Without this the value here will always equal
--	 * zero.  Note this is only currently tracked for
--	 * DRM_XE_MEM_REGION_CLASS_VRAM regions (for other types the value
--	 * here will always be zero).
- 	 */
- 	__u64 cpu_visible_used;
- 	/** @reserved: Reserved */
--- 
-2.52.0
+== Summary ==
+
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast feea7da320aa6950f02d3c4633ab678e6e61f7e9
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
++):
+-drivers/gpu/drm/i915/display/intel_link_bw.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
+-drivers/gpu/drm/i915/display/intel_load_detect.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_link_bw.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.hdrivers/gpu/drm/i915/display/intel_load_detect.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
