@@ -4,27 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6388D73EB8
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Jan 2026 03:57:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16C8BD73EB8
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Jan 2026 04:42:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AD6410E8F6;
-	Fri, 30 Jan 2026 03:57:10 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3E2510E8F0;
- Fri, 30 Jan 2026 03:57:08 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2736840180425580397=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A45510E8F0;
+	Fri, 30 Jan 2026 04:42:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TFOgaegq";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8ABE710E8F0
+ for <intel-xe@lists.freedesktop.org>; Fri, 30 Jan 2026 04:42:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1769748157; x=1801284157;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pgaGmQruWWZmnQ7uFdwVvezvt5RYX8Hc7a+IiCD9zQU=;
+ b=TFOgaegqQj6Yfh2XIHv/WpEocKWqMOmQvW9+BVWXIl5iKEWtA8bgY+cR
+ jSkKOaHka07J6bU059EUTtJUmTtRMF5wyVayVFLmFRsApzRxvu+eNT6vj
+ 4vpmhPEuhyf9oQWF9M1FDxkf/VhnUL1ex27/x7yVTSQT+g3+4F6smT+8U
+ iysNLDzXebqiIVKIz/7DTuFkh6glVr50FMmQAPbnrZbdiXw/zxGNPDrEv
+ vfCJoHUdqkhBcjkLAg3stZkM1yBGQ8WfU7wWglBnWWROGsjvl9hNHgyWB
+ gFp8xWtYeV/o6goOdFzk4Na6Xzm+b8oyLcnkXE7NVwZM0UEqVEzW/GspH Q==;
+X-CSE-ConnectionGUID: 0pKmIl0MSdSKpICRJynVRQ==
+X-CSE-MsgGUID: SsqCv9Z9T3yJ501nYR42Pg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="71051134"
+X-IronPort-AV: E=Sophos;i="6.21,262,1763452800"; d="scan'208";a="71051134"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jan 2026 20:42:36 -0800
+X-CSE-ConnectionGUID: GRvKydsVQHeJ1M26j/Zacg==
+X-CSE-MsgGUID: rpAD4QfDSNSaI18UFCApaw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,262,1763452800"; d="scan'208";a="212837919"
+Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.103])
+ by orviesa003.jf.intel.com with ESMTP; 29 Jan 2026 20:42:35 -0800
+From: Shuicheng Lin <shuicheng.lin@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Subject: [PATCH] drm/xe/query: Fix topology query pointer advance
+Date: Fri, 30 Jan 2026 04:39:08 +0000
+Message-ID: <20260130043907.465128-2-shuicheng.lin@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_use_entry=5Fdump_?=
- =?utf-8?q?callbacks_for_xe2+_PAT_dumps_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Xin Wang" <x.wang@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 30 Jan 2026 03:57:08 -0000
-Message-ID: <176974542886.207489.7263638142559159169@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260130024923.2219501-1-x.wang@intel.com>
-In-Reply-To: <20260130024923.2219501-1-x.wang@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +60,35 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2736840180425580397==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The topology query helper advanced the user pointer by the size
+of the pointer, not the size of the structure. This can misalign
+the output blob and corrupt the following mask. Fix the increment
+to use sizeof(*topo).
+There is no issue currently, as sizeof(*topo) happens to be equal
+to sizeof(topo) on 64-bit systems (both evaluate to 8 bytes).
 
-== Series Details ==
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+---
+ drivers/gpu/drm/xe/xe_query.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Series: drm/xe: use entry_dump callbacks for xe2+ PAT dumps (rev3)
-URL   : https://patchwork.freedesktop.org/series/160868/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index b7b4261968e0..34db266b723f 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -487,7 +487,7 @@ static int copy_mask(void __user **ptr,
+ 
+ 	if (copy_to_user(*ptr, topo, sizeof(*topo)))
+ 		return -EFAULT;
+-	*ptr += sizeof(topo);
++	*ptr += sizeof(*topo);
+ 
+ 	if (copy_to_user(*ptr, mask, mask_size))
+ 		return -EFAULT;
+-- 
+2.50.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-4474-344db0fba38920be64a429c64a8ca0531572896c_BAT -> xe-pw-160868v3_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 10)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4474-344db0fba38920be64a429c64a8ca0531572896c -> xe-pw-160868v3
-
-  IGT_8725: 8725
-  xe-4474-344db0fba38920be64a429c64a8ca0531572896c: 344db0fba38920be64a429c64a8ca0531572896c
-  xe-pw-160868v3: 160868v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160868v3/index.html
-
---===============2736840180425580397==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: use entry_dump callbacks for xe2+ PAT dumps (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160868/">https://patchwork.freedesktop.org/series/160868/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160868v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160868v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4474-344db0fba38920be64a429c64a8ca0531572896c_BAT -&gt; xe-pw-160868v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 10)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4474-344db0fba38920be64a429c64a8ca0531572896c -&gt; xe-pw-160868v3</li>
-</ul>
-<p>IGT_8725: 8725<br />
-  xe-4474-344db0fba38920be64a429c64a8ca0531572896c: 344db0fba38920be64a429c64a8ca0531572896c<br />
-  xe-pw-160868v3: 160868v3</p>
-
-</body>
-</html>
-
---===============2736840180425580397==--
