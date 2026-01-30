@@ -4,64 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9F39D49C80
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Jan 2026 08:59:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36B18D49C82
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Jan 2026 09:15:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D7B910E93E;
-	Fri, 30 Jan 2026 08:59:55 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="il1dRf3C";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D99810E93E
- for <intel-xe@lists.freedesktop.org>; Fri, 30 Jan 2026 08:59:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769763594; x=1801299594;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=Vm8lP+NwdY310yf960f4DVGuX+KfO9W/1YRMnbpZrQY=;
- b=il1dRf3CGBnnwFsdE+r+reDsWUI1lT6WOBtRvWrC3kPEftUodhrdhC78
- BV2grWtYjBitCVwWNWOndB2bbsoJXj5iQ57gi7ZJ2//3xaY2Cp10/Df1v
- /7KHBoswptEi708OhG24uTsLXET9L8e7X678Rmgj+7g1i2rgOZ9zr2r9O
- yxrvWTMqUbQGbBmvNAbDadTzxydx+wEId4Km1TdJn2e2TRXwTeBvFBL/K
- +hH7qnWNwDjPjehlxf7FFbSK/+ScUPliCYegWvo0UhsBfVIUx7gkYh7GB
- XQkJASxPMjKP4G99GE6/Tp2Txcr9WtW7TXq1dVQCGFcEDyzELcEVTw5NX Q==;
-X-CSE-ConnectionGUID: utktEFLQSZeiZf56pbuwmQ==
-X-CSE-MsgGUID: ZaC9BAPRTemwnqPB5xIR+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="81746477"
-X-IronPort-AV: E=Sophos;i="6.21,262,1763452800"; d="scan'208";a="81746477"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2026 00:59:54 -0800
-X-CSE-ConnectionGUID: ImDVSNVYRT6/GlihAi1Djg==
-X-CSE-MsgGUID: W49FldB6QZe59Gs+xstiRg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,262,1763452800"; d="scan'208";a="208721594"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO [10.245.244.13])
- ([10.245.244.13])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2026 00:59:52 -0800
-Message-ID: <3fe5bd7e1d45686f5e637c7751954f04573deb7b.camel@linux.intel.com>
-Subject: Re: [PATCH v4 7/8] drm/xe/madvise: Block imported and exported
- dma-bufs
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: "Yadav, Arvind" <arvind.yadav@intel.com>, Matthew Brost
- <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, himal.prasad.ghimiray@intel.com, 
- pallavi.mishra@intel.com
-Date: Fri, 30 Jan 2026 09:59:50 +0100
-In-Reply-To: <f7ff5e5a-f4f1-473b-bd53-01afe5cc5c89@intel.com>
-References: <20260120060900.3137984-1-arvind.yadav@intel.com>
- <20260120060900.3137984-8-arvind.yadav@intel.com>
- <aW/ArJw02DG/6wHv@lstrano-desk.jf.intel.com>
- <06e2e9a9493b5389c9bf01304ea248dd3c86c8e4.camel@linux.intel.com>
- <f7ff5e5a-f4f1-473b-bd53-01afe5cc5c89@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF79210E940;
+	Fri, 30 Jan 2026 09:15:49 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCC8C10E940;
+ Fri, 30 Jan 2026 09:15:48 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1155813138614354841=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Account_for_DSC_bubble_over?=
+ =?utf-8?q?head_for_horizontal_slices_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 30 Jan 2026 09:15:48 -0000
+Message-ID: <176976454883.208851.3741366167069729410@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260130081812.32087-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260130081812.32087-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,227 +36,297 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 2026-01-30 at 13:52 +0530, Yadav, Arvind wrote:
->=20
-> On 23-01-2026 19:01, Thomas Hellstr=C3=B6m wrote:
-> > On Tue, 2026-01-20 at 09:51 -0800, Matthew Brost wrote:
-> > > On Tue, Jan 20, 2026 at 11:38:53AM +0530, Arvind Yadav wrote:
-> > > > Prevent marking imported or exported dma-bufs as purgeable.
-> > > > External devices may be accessing these buffers without our
-> > > > knowledge, making purging unsafe.
-> > > >=20
-> > > > Check drm_gem_is_imported() for buffers created by other
-> > > > drivers and obj->dma_buf for buffers exported to other
-> > > > drivers. Silently skip these BOs during madvise processing.
-> > > >=20
-> > > > This follows drm_gem_shmem's purgeable implementation and
-> > > > prevents data corruption from purging actively-used shared
-> > > > buffers.
-> > > >=20
-> > > > v3:
-> > > > =C2=A0=C2=A0=C2=A0 - Addresses review feedback from Matt Roper abou=
-t handling
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 imported/exported BOs correctly in t=
-he purgeable BO
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 implementation.
-> > > >=20
-> > > > v4:
-> > > > =C2=A0=C2=A0=C2=A0 - Check should be add to xe_vm_madvise_purgeable=
-_bo.
-> > > >=20
-> > > > Cc: Matthew Brost <matthew.brost@intel.com>
-> > > > Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > > @Thomas - couple questions below here I need a 2nd opinion on.
-> > >=20
-> > > > Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> > > > Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
-> > > > ---
-> > > > =C2=A0=C2=A0drivers/gpu/drm/xe/xe_vm_madvise.c | 33
-> > > > ++++++++++++++++++++++++++++++
-> > > > =C2=A0=C2=A01 file changed, 33 insertions(+)
-> > > >=20
-> > > > diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c
-> > > > b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> > > > index 27b6ad65b314..5808fef89777 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> > > > @@ -180,6 +180,31 @@ static void madvise_pat_index(struct
-> > > > xe_device
-> > > > *xe, struct xe_vm *vm,
-> > > > =C2=A0=C2=A0	}
-> > > > =C2=A0=C2=A0}
-> > > > =C2=A0=20
-> > > > +/**
-> > > > + * xe_bo_is_external_dmabuf() - Check if BO is imported or
-> > > > exported dma-buf
-> > > > + * @bo: Buffer object
-> > > > + *
-> > > > + * Prevent marking imported or exported dma-bufs as purgeable.
-> > > > + * External devices may be accessing these buffers without our
-> > > > + * knowledge, making purging unsafe.
-> > > > + *
-> > > > + * Return: true if BO is imported or exported, false otherwise
-> > > > + */
-> > > > +static bool xe_bo_is_external_dmabuf(struct xe_bo *bo)
-> > > > +{
-> > > @Thomas
-> > >=20
-> > > Should we have this check more generic? e.g., if a BO is not tied
-> > > to
-> > > a
-> > > VM, we don't allow purablity to be set?
-> > I think if NEO is going to implement this in one form or another,
-> > we
-> > need to support also external bos as long as they're not exported,
-> > since NEO refuses to use local bos.
->=20
->=20
-> You're right, and I believe the current implementation should support
-> that.
->=20
-> To clarify: "external" here refers only to dma-buf sharing (imported
-> or
-> exported), not to placement. System-memory BOs that NEO typically
-> uses
-> remain fully eligible for purging.
->=20
-> The xe_bo_is_dmabuf_shared() check specifically targets:
-> =C2=A0=C2=A0 - Imported dma-bufs (we don't own backing store)
-> =C2=A0=C2=A0 - Exported dma-bufs (external devices may have active mappin=
-gs)
->=20
-> Regular Xe-owned system BOs can be marked DONTNEED and purged under
-> memory
-> pressure. We only skip cases where the BO is shared via dma-buf,
-> following
-> the same pattern as drm_gem_shmem_is_purgeable().
->=20
-> Please let me know if I've misunderstood the NEO requirements.
+--===============1155813138614354841==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-No it sounds right. We have
-*local BOs, those that Matt refers to as tied to a VM. They are not
-sharable.
-*external BOs. Those may or may not be exported as dma-bufs. NEO uses
-only these, and they need to be purgeable as well, as long as they are
-not exported or imported dma-bufs.
+== Series Details ==
 
-Thanks,
-Thomas
+Series: Account for DSC bubble overhead for horizontal slices (rev6)
+URL   : https://patchwork.freedesktop.org/series/152803/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from xe-4475-69c1143407ca17d556eb4e5ead7eb43b60a3fe65_BAT -> xe-pw-152803v6_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-152803v6_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-152803v6_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (10 -> 12)
+------------------------------
+
+  Additional (2): bat-adlp-vm bat-ptl-vm 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-152803v6_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_waitfence@engine:
+    - bat-ptl-2:          [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4475-69c1143407ca17d556eb4e5ead7eb43b60a3fe65/bat-ptl-2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-2/igt@xe_waitfence@engine.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-152803v6_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_evict@evict-beng-small-cm:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][3] ([Intel XE#5764]) +10 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html
+
+  * igt@xe_evict@evict-small-external-cm:
+    - bat-adlp-vm:        NOTRUN -> [SKIP][4] ([Intel XE#261] / [Intel XE#688]) +9 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_evict@evict-small-external-cm.html
+
+  * igt@xe_evict_ccs@evict-overcommit-simple:
+    - bat-adlp-vm:        NOTRUN -> [SKIP][5] ([Intel XE#688])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_evict_ccs@evict-overcommit-simple.html
+
+  * igt@xe_exec_fault_mode@twice-userptr-invalidate-imm:
+    - bat-adlp-vm:        NOTRUN -> [SKIP][6] ([Intel XE#288]) +32 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][7] ([Intel XE#5775])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-vm/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+    - bat-adlp-vm:        NOTRUN -> [SKIP][8] ([Intel XE#2229] / [Intel XE#5488])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  * igt@xe_mmap@vram:
+    - bat-adlp-vm:        NOTRUN -> [SKIP][9] ([Intel XE#1008] / [Intel XE#5591])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_mmap@vram.html
+    - bat-ptl-vm:         NOTRUN -> [SKIP][10] ([Intel XE#5776])
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-vm/igt@xe_mmap@vram.html
+
+  * igt@xe_pat@pat-index-xe2:
+    - bat-adlp-vm:        NOTRUN -> [SKIP][11] ([Intel XE#977])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_pat@pat-index-xe2.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][12] ([Intel XE#5777])
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html
+    - bat-adlp-vm:        NOTRUN -> [SKIP][13] ([Intel XE#2838] / [Intel XE#979])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelp:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][14] ([Intel XE#5771])
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-ptl-vm:         NOTRUN -> [SKIP][15] ([Intel XE#5780])
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html
+    - bat-adlp-vm:        NOTRUN -> [SKIP][16] ([Intel XE#979])
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_pat@pat-index-xelpg.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [FAIL][17] ([Intel XE#6520]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4475-69c1143407ca17d556eb4e5ead7eb43b60a3fe65/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#1008]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
+  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#5488]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5488
+  [Intel XE#5591]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5591
+  [Intel XE#5764]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764
+  [Intel XE#5771]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771
+  [Intel XE#5775]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775
+  [Intel XE#5776]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776
+  [Intel XE#5777]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777
+  [Intel XE#5780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
 
 
+Build changes
+-------------
 
->=20
->=20
-> > > > +	struct drm_gem_object *obj =3D &bo->ttm.base;
-> > > > +
-> > > > +	/* Imported from another driver */
-> > > > +	if (drm_gem_is_imported(obj))
-> > > > +		return true;
-> > > > +
-> > > > +	/* Exported to another driver */
-> > > > +	if (obj->dma_buf)
-> > > > +		return true;
-> > > > +
-> > > > +	return false;
-> > > > +}
-> > > > +
-> > > > =C2=A0=C2=A0/**
-> > > > =C2=A0=C2=A0 * xe_bo_all_vmas_dontneed() - Check if all VMAs of a B=
-O are
-> > > > marked DONTNEED
-> > > > =C2=A0=C2=A0 * @bo: Buffer object
-> > > > @@ -200,6 +225,10 @@ static bool xe_bo_all_vmas_dontneed(struct
-> > > > xe_bo *bo)
-> > > > =C2=A0=20
-> > > > =C2=A0=C2=A0	dma_resv_assert_held(bo->ttm.base.resv);
-> > > > =C2=A0=20
-> > > > +	/* External dma-bufs cannot be purgeable */
-> > > > +	if (xe_bo_is_external_dmabuf(bo))
-> > > > +		return false;
-> > > > +
-> > > > =C2=A0=C2=A0	drm_gem_for_each_gpuvm_bo(vm_bo, obj) {
-> > > > =C2=A0=C2=A0		drm_gpuvm_bo_for_each_va(gpuva, vm_bo) {
-> > > > =C2=A0=C2=A0			struct xe_vma *vma =3D
-> > > > gpuva_to_vma(gpuva);
-> > > > @@ -277,6 +306,10 @@ static bool
-> > > > xe_vm_madvise_purgeable_bo(struct
-> > > > xe_device *xe, struct xe_vm *vm,
-> > > > =C2=A0=C2=A0		/* BO must be locked before modifying madv
-> > > > state
-> > > > */
-> > > > =C2=A0=C2=A0		xe_bo_assert_held(bo);
-> > > > =C2=A0=20
-> > > > +		/* Skip external dma-bufs */
-> > > > +		if (xe_bo_is_external_dmabuf(bo))
-> > > > +			continue;
-> > > @Thomas
-> > >=20
-> > > I think instead of silently continuing here we fail the IOCTL
-> > > with
-> > > -EINVAL?
-> > >=20
-> > > What do you think?
-> > Hmm. If we view the export as yet another map, then IMO silently
-> > continuing would probably be the best option and consistent with
-> > sharing across VMs.
-> Noted, I'll keep the silent skip behavior for dma-buf shared BOs to=20
-> match the "unanimous DONTNEED" model.
-> >=20
-> > Finally I wonder if we should update the purgeable state on final
-> > dma-
-> > buf attach.
->=20
->=20
-> Good point. Currently the check only happens at madvise time, so
-> there's=20
-> a window where a BO marked DONTNEED could later be exported.
-> Would it make sense to hook into the export path to force transition
-> to=20
-> WILLNEED? That would make the "export as implicit mapping" model
-> complete,
-> though it adds complexity. Let me know your preference.
->=20
-> >=20
-> > Floating an idea here:
-> >=20
-> > Could the code be simplified if we maintain a map_count and a
-> > purgeable_count on each bo? Bo is purgeable iff map_count =3D=3D
-> > purgeable_count. vmas and dma-buf attachments are included in
-> > map_count.
->=20
->=20
-> That's good idea and would avoid VMA iteration. The tradeoff is=20
-> maintaining correct counts across all VMA and dma-buf lifecycle
-> paths.
->=20
-> For this series, would you prefer I pursue the counter-based refactor
-> now, or is the current iteration approach acceptable
-> with counters as a future optimization? I'm happy to go either
-> direction=20
-> based on your feedback.
->=20
->=20
-> Thanks,
-> Arvind
->=20
-> >=20
-> > Thanks,
-> > Thomas
-> >=20
-> >=20
-> > > Matt
-> > >=20
-> > > > +
-> > > > =C2=A0=C2=A0		/*
-> > > > =C2=A0=C2=A0		 * Once purged, always purged. Cannot
-> > > > transition
-> > > > back to WILLNEED.
-> > > > =C2=A0=C2=A0		 * This matches i915 semantics where purged
-> > > > BOs
-> > > > are permanently invalid.
-> > > > --=20
-> > > > 2.43.0
-> > > >=20
+  * IGT: IGT_8725 -> IGT_8726
+  * Linux: xe-4475-69c1143407ca17d556eb4e5ead7eb43b60a3fe65 -> xe-pw-152803v6
+
+  IGT_8725: 8725
+  IGT_8726: 8726
+  xe-4475-69c1143407ca17d556eb4e5ead7eb43b60a3fe65: 69c1143407ca17d556eb4e5ead7eb43b60a3fe65
+  xe-pw-152803v6: 152803v6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/index.html
+
+--===============1155813138614354841==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Account for DSC bubble overhead for horizontal slices (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152803/">https://patchwork.freedesktop.org/series/152803/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4475-69c1143407ca17d556eb4e5ead7eb43b60a3fe65_BAT -&gt; xe-pw-152803v6_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-152803v6_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-152803v6_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (10 -&gt; 12)</h2>
+<p>Additional (2): bat-adlp-vm bat-ptl-vm </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-152803v6_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4475-69c1143407ca17d556eb4e5ead7eb43b60a3fe65/bat-ptl-2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-2/igt@xe_waitfence@engine.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-152803v6_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-beng-small-cm:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764">Intel XE#5764</a>) +10 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict@evict-small-external-cm:</p>
+<ul>
+<li>bat-adlp-vm:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_evict@evict-small-external-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +9 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict_ccs@evict-overcommit-simple:</p>
+<ul>
+<li>bat-adlp-vm:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_evict_ccs@evict-overcommit-simple.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-imm:</p>
+<ul>
+<li>bat-adlp-vm:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-vm/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775">Intel XE#5775</a>)</li>
+<li>bat-adlp-vm:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5488">Intel XE#5488</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_mmap@vram:</p>
+<ul>
+<li>bat-adlp-vm:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008">Intel XE#1008</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5591">Intel XE#5591</a>)</li>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-vm/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776">Intel XE#5776</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2:</p>
+<ul>
+<li>bat-adlp-vm:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777">Intel XE#5777</a>)</li>
+<li>bat-adlp-vm:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelp:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771">Intel XE#5771</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-ptl-vm:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780">Intel XE#5780</a>)</li>
+<li>bat-adlp-vm:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4475-69c1143407ca17d556eb4e5ead7eb43b60a3fe65/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8725 -&gt; IGT_8726</li>
+<li>Linux: xe-4475-69c1143407ca17d556eb4e5ead7eb43b60a3fe65 -&gt; xe-pw-152803v6</li>
+</ul>
+<p>IGT_8725: 8725<br />
+  IGT_8726: 8726<br />
+  xe-4475-69c1143407ca17d556eb4e5ead7eb43b60a3fe65: 69c1143407ca17d556eb4e5ead7eb43b60a3fe65<br />
+  xe-pw-152803v6: 152803v6</p>
+
+</body>
+</html>
+
+--===============1155813138614354841==--
