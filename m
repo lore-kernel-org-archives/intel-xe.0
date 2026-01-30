@@ -4,189 +4,143 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A377D49C92
-	for <intel-xe@archiver.kernel.org>; Fri, 30 Jan 2026 11:10:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFCDDD61037
+	for <intel-xe@archiver.kernel.org>; Fri, 30 Jan 2026 11:11:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1902810E9B1;
-	Fri, 30 Jan 2026 11:10:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 708BA10E99D;
+	Fri, 30 Jan 2026 11:11:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ipo46/f8";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="gHsbcLXb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5AEE10E99D;
- Fri, 30 Jan 2026 11:10:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1769771435; x=1801307435;
- h=message-id:date:subject:to:references:cc:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=9PE3oJKdsFoyDrSMFmwWP5tXceVDcEtdl8lvomR2I5E=;
- b=Ipo46/f8JzQpzs8/ryJfMg9qja2PvBTiMj2vnYq+CU99KqFFSGpgPsUP
- a2CxIa/u8cxNGWZG4F05ymA3GkH6XjZWqFMMiNDZrbxHURjOec1nVw9vq
- kWEdp+8C0t+05G/bQ4f5M5F3f+bzeQoTbNrMz+CokXGMOhz2ecY8/YGQ/
- 95kTzlWP8fcftE00lIi1tMPHANuwmKXchGAIfbQOc9Tj0h/sNaNl2WXPX
- ExLQ+HUVYIQlYqhg+4U+pRp0oMEVay9sys6FfQmQc2tBYhaj4oYIaYTyP
- KMKYRpMSfjqmGTQYhVZgcS3S9abI4nc1JJjanSiLSJ6y0/4P3edkKeYgc Q==;
-X-CSE-ConnectionGUID: v7g/CrE6QaaVls7VPE4DLA==
-X-CSE-MsgGUID: WTTsgfx7T46M4jTVdTFmag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11686"; a="71076308"
-X-IronPort-AV: E=Sophos;i="6.21,262,1763452800"; d="scan'208";a="71076308"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2026 03:10:34 -0800
-X-CSE-ConnectionGUID: znla4jRzQUyQCjH5L0Ue8Q==
-X-CSE-MsgGUID: pK5926XeQ8KUUncZacV5ww==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,262,1763452800"; d="scan'208";a="208429025"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jan 2026 03:10:35 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Fri, 30 Jan 2026 03:10:33 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Fri, 30 Jan 2026 03:10:33 -0800
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.60) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Fri, 30 Jan 2026 03:10:33 -0800
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011011.outbound.protection.outlook.com [52.101.52.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD9D910E99D;
+ Fri, 30 Jan 2026 11:10:59 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QypO7iDgN31VisB83RUpF7UmOzXzUMTqQKK7Vkrc5yn5GRoDiSv8XZd7tL+9+VeDxg49dnR16QECPnsK3IFhntSvAvNT6kMHaAPy+jx4te0ASJMPlL8NfoRAKQssTfDl/BsFbQeb/hnoBIT7IK0cL0XahqBWXF/BptNsoN/WPzmY7zKVl3PSBLO52do1Ppw9qT0ddxFbQWGtwCpg9LQgK2zgunip+bHA8uVOhVnY3zfq/QbBzrK3sc8n4NzPsH5tghZwTpJWl4JIsrOHRJ3l9gnhDn/Ss2mz2ojY8j5IX0OtkhJC7HU5HF/gHXsJjysezb9cyMj3gtKxltCz415Nog==
+ b=vocn7r1ydJuU2oKN9c8f0upYUHirvfph99utU5aEty/gmVqab8kfDfOR274IZpTgCZXXMke+guT9S8H1N42SHf0a9DgetivawxJ7NbnhL3RasFGK+zdvc/b413akaoDM7mu4hJ6DGdXPMrMU5Zckaai1Slq1cwYM9IFYbPpMpDW6Pw31g/WoUTmSO2ewuZyCZA5ACzq2UY7EMNGYhGoJChOwg0FydUhGtQVclvrno0Twpe3UyOU6LL43cZj3/QqCPa4KrUOEkVr1G5yHtGvE1/AfkDVQH3l7ObjCu8rW8SxlKAFQgJYN2XMBz9Iu7a1lZOeQF+WUIyOTUH4tgr15iw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4x1qKjOIYzRKljw3ZC5n1tEr6OJ51Ft46wzWMklC9Hs=;
- b=Kkz+ucGYjUN+DeknrdF4f8Td/2BXR4haNXQFILQbJBtCm4prLelpmioB5+W48ZlVRACfs8OUwVjnhQk/rsk5pnjAme5NFH9jULyS8nNwhLf0DGfwaFene3sCvuxLRZ3a4J5GqjS8G4os+BLDX+kCsSBXu+hytavcpwlazKnPhTnextTkbbUFKs9XobYyINgbfMQul4cTcbVUyAJDDG1poG2fJvitx33JZJCgN2b51MA5IhRkWf+y6LUgm/U7VcUEV3mMsUJja2wOMo8L19Oh9qRVCuDHkWKPNPoFIcCLz/f+sK8NhXPPRvVWb4EGnQlhJZHjr4zonqjy8sR1uatKIg==
+ bh=68K3Gr8TegDmsX2nE2uiqv6bMN02WPhp/ztefXKBbrM=;
+ b=Ik4smnJyqMcsLTLdX92BKJiPrzsTBiG7jRidSpP+YzaP9dJAZZztzzeGjZ9dEFwNAyjVQ69a7WrqxardAAk5ikG9Sv0SXXX09EijhtxegAZfp7FSUhB1PZWJ/pTVVvpmSgHIIJjSYGZHZBeT7azDpDQ5tseWuQDNrxRr6F7IGwbE4QDyFR5BrWQ5xoe4sHi0vdM8+6dTTwNK4UP68JNsu3Z4u14eeCtGFGuy0UpzzLBrhL83j6V6CMmKkXtY1AFNzaBi9KZHqMAglAElEM5Y2j4FSYksOhAcSbAcgKxEa9tsAbfaQT307xqznSR5zr8epZUu4pi24S9WQUp5KiebcQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=68K3Gr8TegDmsX2nE2uiqv6bMN02WPhp/ztefXKBbrM=;
+ b=gHsbcLXb9jMTLHSV8A0CJEvFqeoYR8owsETLsjz7kPbwSydM+/0I+BEOzpFEhcD3vJxCydA3VKiKrOwXJrRluQA5jJPvltm1LUoF30FsjnX2jD9OCVYyGE3/TdKqOUE99kANWQKPLRnmxE2iIsD3HShCbZ5dH+ybdnl7uF5Q+A4j4M8X1mhovIMIouhVj/7uMVLJa6Ow988/yiAQBhVEMi9qytsA5rYwD4ksf/SLUZeYx0abb3aeQCbpocJ/kgF3N2bFbaYCgJpswzBgiut/SNbxL7ZLtf5t79QPlSRVhk9zGyp667p26v5lzLwSCTx2eNYqfULhcKMtYHHpaQ18JA==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by CO1PR11MB4980.namprd11.prod.outlook.com (2603:10b6:303:98::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.11; Fri, 30 Jan
- 2026 11:10:31 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::397:7566:d626:e839%3]) with mapi id 15.20.9542.010; Fri, 30 Jan 2026
- 11:10:30 +0000
-Message-ID: <e9ec9e2b-d933-4b79-8c35-bfccdf621e4d@intel.com>
-Date: Fri, 30 Jan 2026 16:40:23 +0530
-User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Account_for_?=
- =?UTF-8?Q?DSC_bubble_overhead_for_horizontal_slices_=28rev6=29?=
-To: <intel-xe@lists.freedesktop.org>, <I915-ci-infra@lists.freedesktop.org>
-References: <20260130081812.32087-1-ankit.k.nautiyal@intel.com>
- <176976454883.208851.3741366167069729410@a3b018990fe9>
-Content-Language: en-US
-CC: Imre Deak <imre.deak@intel.com>
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <176976454883.208851.3741366167069729410@a3b018990fe9>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0188.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1ac::8) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DM4PR12MB9072.namprd12.prod.outlook.com (2603:10b6:8:be::6) by
+ IA1PR12MB7712.namprd12.prod.outlook.com (2603:10b6:208:420::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9564.7; Fri, 30 Jan 2026 11:10:54 +0000
+Received: from DM4PR12MB9072.namprd12.prod.outlook.com
+ ([fe80::9e49:782:8e98:1ff1]) by DM4PR12MB9072.namprd12.prod.outlook.com
+ ([fe80::9e49:782:8e98:1ff1%5]) with mapi id 15.20.9564.013; Fri, 30 Jan 2026
+ 11:10:54 +0000
+From: Jordan Niethe <jniethe@nvidia.com>
+To: linux-mm@kvack.org
+Cc: balbirs@nvidia.com, matthew.brost@intel.com, akpm@linux-foundation.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ david@redhat.com, ziy@nvidia.com, apopple@nvidia.com,
+ lorenzo.stoakes@oracle.com, lyude@redhat.com, dakr@kernel.org,
+ airlied@gmail.com, simona@ffwll.ch, rcampbell@nvidia.com,
+ mpenttil@redhat.com, jgg@nvidia.com, willy@infradead.org,
+ linuxppc-dev@lists.ozlabs.org, intel-xe@lists.freedesktop.org,
+ jgg@ziepe.ca, Felix.Kuehling@amd.com, jniethe@nvidia.com,
+ jhubbard@nvidia.com, maddy@linux.ibm.com, mpe@ellerman.id.au
+Subject: [PATCH v5 00/13] Remove device private pages from physical address
+ space
+Date: Fri, 30 Jan 2026 22:10:37 +1100
+Message-Id: <20260130111050.53670-1-jniethe@nvidia.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR05CA0035.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f::10) To DM4PR12MB9072.namprd12.prod.outlook.com
+ (2603:10b6:8:be::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|CO1PR11MB4980:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7c809f96-a5ce-49d2-af0b-08de5ff02dd1
+X-MS-TrafficTypeDiagnostic: DM4PR12MB9072:EE_|IA1PR12MB7712:EE_
+X-MS-Office365-Filtering-Correlation-Id: d5f1d862-f3a8-4006-8dea-08de5ff03c6e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0; ARA:13230040|366016|376014|1800799024|13003099007;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?VlQ4UGtqd1RmbXBzWkFpdEZ2aUtNZkpRNFNFd2J2TDdKejltZkQ3MjN6Tytv?=
- =?utf-8?B?R2padkwvMm5aM3kvTnloUHV6VjhqS3BmNDByK3ppNXZuQXhBUnNjaE16ZW1O?=
- =?utf-8?B?WTlkbkZDVW1xbUl6MndIK0RnRkxCaUMveS9oQStZQ0JjRS9ZTUFVNm1aMDlD?=
- =?utf-8?B?TmE1UmNzdmI3WlJzUGNKdFVkWSt3TEFPOTNkTVBsZjA2U25JYU5ReFBmTWY2?=
- =?utf-8?B?VU9qRW0xUmZMOUIyTXBtN3A5eXBuOFI2YU1Ta1VYZmlXL0pKemxWRUl6VHhC?=
- =?utf-8?B?dHRGTWx5QmZTYzRUd0d5V1JibGtzMFF2NDlHNFN2bFNKanNmVVFDSUtuQmMx?=
- =?utf-8?B?ODBVL0Q5ZnpzekdSYlZYb0JjcXpadGp5NUJtQVZwcE8rZ25JbG1RbGxhMHpW?=
- =?utf-8?B?TU9SdnVsWFZOK3ZmVjdiRjM4YXUxeFg3YVd6SVVzVk9OWFkybS8rcWIxUXNC?=
- =?utf-8?B?Qm1lNUZlY1NLMERGZUVpaUhuZmNPQTNRemlyeHZxSTZ2RGhtdTNsVDZKbHlo?=
- =?utf-8?B?WlA0QWp0NndzMDE2NnVHRVVkdDRaRUh2K25FOVFwTnBrNVBLL2RFWUxwODNm?=
- =?utf-8?B?NEpSYjRzeUFTMUIxa1QxYXY5MHJoakVLL1FHcHBBa2hVYUdJcXNHNC9OeHQx?=
- =?utf-8?B?RTh1MkNlbCtoUk5yR0NHeUswMFVPZG1LL1UrUG9tT1htYmhJdUxyQnB0MTh1?=
- =?utf-8?B?RnhPUFNjNzFzWmdOdzRFQWNlZTF5K3M5cmZlZ3pTMGVLbXR6akJVMFdvRmZO?=
- =?utf-8?B?WmdCRlhvRXZ1bUtlZUN4K3c5NU9oRkg4Y1U4Rmt1MkdXYjJIRkZEMDhiZ3Uy?=
- =?utf-8?B?QzlWY2JBMGpsR3JQWk9aUXowa1k3V3U2Wi9zdFREeHlwd0pMUlVCaGJtWnZ6?=
- =?utf-8?B?czd1cFNteEcyaVpPMUJ5WllmdExldldwbG1QZnRKMEdZUXlUazV3Uk5ieVNy?=
- =?utf-8?B?amZ4UytPYnZOT1dDeDcvUVZWZWYzQmVnVHdHRndBcGVkODRBVWhkb0lpRHRD?=
- =?utf-8?B?VE5UQWxZMWpFYVloc0QvTXFVdWE1ckw5SE9VeXFLYWgwbWRubndqR3c1RXFp?=
- =?utf-8?B?TW9HcDdBQWRFbCtpaU4vUTNvRThPeXQycWx5dHl1UkN6bHlnUDFJSzdoVVF0?=
- =?utf-8?B?SGIvLzdSVmRsaHhYdWM3UW9qVWpySTlvcm5yb2UvblI0czI5K3VPOXBsYlR5?=
- =?utf-8?B?ZFVENlc5Ym03Q1N5bkdEd2crVnJka3lTNU1HSkRBUWRYTjRhb3RSMDVMaG8v?=
- =?utf-8?B?bHdFQ3QyY0N4NkhKaHo1TWxEazhYQUhxUWVDUXo3S0tVUW04Y1Y2a04yazE4?=
- =?utf-8?B?TDl3Qkc1cEUvRnBpS2d1VktNYUVvdkh5VTBWMTZ2ZkM0L2xGYi9mNDR2VXdm?=
- =?utf-8?B?dDJTaFVYS2FxeFIzNkIvZlVBbTFKTEVEL0dxQXFxa2x6MlE0V0lJeFF0QXhU?=
- =?utf-8?B?Q1dZTm9GSE0rSTFrSWdESVp2NDVsVE5VdHUrY0ZnTTNGMlgvOEVoNUNHNEYz?=
- =?utf-8?B?dVdEKzlrZUV6ZmphNmxLRVlCTDZUNnBWVkl0MmJWMmc0WC9qakpta0dLZjcr?=
- =?utf-8?B?MlIxU3NkbW5SSVQybnZ5UFZIYklldkxPY0lvVGxDK1NNVDhRb05aTkQwYy9r?=
- =?utf-8?B?YlpiY0ZyNEgvL1djMmpMRU9DL3dZSXYrTXU3VmlrYzZ4S0dvNW4yM0lqc3h2?=
- =?utf-8?B?YVkzTys5SHRqSjBFS3JVbFR4Y2ZMckJ6Tm42Ky91Wmx3TEZYRVdIMEZINzB0?=
- =?utf-8?B?ZjhJNjRQZ0NXOVIzcnNLd1lDN0kzQVk2ZyszWGNteVV0S2hidzl1b3NxTFN0?=
- =?utf-8?B?dUxLOElub3Y1MUJRcTI3YnArbEhLenYwc0JnMGpLaU9IUGgzMUlVSlBYMGNY?=
- =?utf-8?B?ZmQvQThpcnhuQVlKRHltK0dGV0ZHbkc5aVBZNWowTGpodkMydmx3QU5USm1H?=
- =?utf-8?B?QVR4Ly9SdEMxYXZtMHA0bDlyUUpqNnJXNkNGamR2WG5jL2wvbDNwN2ZkSG9J?=
- =?utf-8?B?UEhja2ZPdmkwcTg0M25pYVc4akUzQzVSczdzWWhNdDIrT1U5SFM4a1hhdWp1?=
- =?utf-8?Q?Y3dEX1?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?qO1rbjt1A/uT7You2PHdC8yK9Fvpw3gq/HQqhL2G1ZngRXvXkXj9GJijtthd?=
+ =?us-ascii?Q?T8lpQFfy0TsmtyUHq1jL+QoHjJ7p4s5aZYzCEFPl/DMMu1p/mE+9Mx5YCcRU?=
+ =?us-ascii?Q?SaWN0VLfTVb3O10aqDDPYT/xud2c3Z9F8lZXUvvyYl4uN8ZvpzkOvKGA2Q4w?=
+ =?us-ascii?Q?dd7ZOkv6d159Lnh4JIWlj9t0lC0CmAcbC9fGZQMG3Fi0yIY3GwnOthTyzGdN?=
+ =?us-ascii?Q?0YC7yAD/mMNBqUhH5fX543plxaTrcCuVEtpezBFbYkRG5Cwwq98LAAe7Cf2c?=
+ =?us-ascii?Q?1prghFdxcQSy6/DUQWutnQj8z7Te1+qgxbDW+7+seUAT4NtkUbdcdb4hqe6m?=
+ =?us-ascii?Q?DVwC7jr7ZiSfMNlsxVxq1XehkXHZ78U19gyhLggrJ9RY8+LUTMYIlfrn4NeL?=
+ =?us-ascii?Q?8OtZEVGiWlRhGrFC1xPGLhuHo2k77asxZYCCn4K002veVJ6wWab+02CJxe01?=
+ =?us-ascii?Q?F41X8oQluY0HLxrX6Eer1YNu9Qr9RpHcv54WY2YkY9PC7wOde4j41Ru2Jj7/?=
+ =?us-ascii?Q?LAw4B8JJSdl+L6L/P7XSkrzMb4S9WkRUG7XZ2KUiodNwl0JQV/1vNNg9UerO?=
+ =?us-ascii?Q?ptzeK/rjnRwxnQYQZp0/uGdJ8xsJVeaecwwsDh+GMY0+35v60qY2rU+sOUpD?=
+ =?us-ascii?Q?n07VD8z+EWM3GoOKY8x8UNn8x4ApPv2aUGEr0Xcb+xOu0+29MO7In/+2569x?=
+ =?us-ascii?Q?a7AsaVmjfJqarmEM6axClnGl4hy8oJfya9GvbqZTIL/2V5Km5kHxmssWtAjA?=
+ =?us-ascii?Q?LM3PAnBX5ImIT19Wkt6TX4z9Cdtr6qdhh73kzRF8s6GPMJ7mdVigJ/BeQnx9?=
+ =?us-ascii?Q?K1Q6nU6/FHMP/RBzJfP6OHgKTE47yxEVz1BFTj8ep4q6Fm5lwT+u9MMy3LhM?=
+ =?us-ascii?Q?VxhbhYXIIcv3EZBlhSuxAO1tbsR7ok6HxsAOPX5Sb83HsgrG2r2QGb9aYAS+?=
+ =?us-ascii?Q?LMMKy3RKXymz0L3VGSyWHoOoJu4NKYF8+f7H1foP6qXWwo3DTrM+YtAvWFE7?=
+ =?us-ascii?Q?WIwmvJX5G+7fo9TYHVkXd198e0Vc2IW4Cmlh+17jzz6C/fzhRbpzMm76Zw3d?=
+ =?us-ascii?Q?ft2QbM37zScpEz2luSKvM4pVXzIpvzYBNVwcItEEC1zHgYfwy+G4ujVO83uW?=
+ =?us-ascii?Q?8D4X3LWfYNnztHbSu8VdOaA+yCYDGiGYW84Z45wBiHWWaOwuk6SW8tKT7gwR?=
+ =?us-ascii?Q?RxNrAF8KWgEaJtwyIUplJlAFWdp6PZfO+YKxCZ7NkBMpg7kRCXzOegMx6vMN?=
+ =?us-ascii?Q?4K7t7k+eb+ngpx79+OZmUrxbLWSvnap6Thd8YnI/DiCb1AzpDuu+zuCdRW+h?=
+ =?us-ascii?Q?SxERXF7MxIrkNSltnmJj1vpViUjge3zQwt50e2EphA+ttcS6aqWXee7iKrkT?=
+ =?us-ascii?Q?dJFzP+vPPEQ8ODl0TQtzGA4VlxPI1B8GrNS6KYveUkPBj1jXwKedJLxw5QlL?=
+ =?us-ascii?Q?RGKoBPagOyfu59zVnQyEwX+AqKdVrCLvWts5SMg79r6Yrcr8bj8/1XS3ndim?=
+ =?us-ascii?Q?OE8nAHsoH7YrAQCtGGusFMawBkcBxWXSewp3WRN/TX/qZCB+uktdSxGdyoBo?=
+ =?us-ascii?Q?xqOMNliX+A18YDHsxWo=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(13003099007); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB9072.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UHBTWkRWcmlCV2lmRytxWXUrM1RuNm1VR2kwTnZ1UzEvNHJJTHlWME5rSjhj?=
- =?utf-8?B?WmFmazBMNGphdTJ2cERaVUxoMmVnQ2N6Z2h1ZFo4VGlHVExLQTRMeDBYSXFr?=
- =?utf-8?B?Z0xPVW1zUC9DZ0lidnpUai9OVlBCRG1sMHFYRWx2TGJaZis1QlNoeWw2L1Jq?=
- =?utf-8?B?QURwbEhWRkNPdmEzT0xLSzJ4aVQ5SXQ3c1BjR0M2YUg3TmN1anNsUWtNZWN1?=
- =?utf-8?B?VzFCSis4WkVONElLN1FyQ0Z3NHBhMVUyYnp5ZUQ0bWNQNUlsYkZFblVlcUF4?=
- =?utf-8?B?a1Y3U3B6OU84aHlaaUhXWGxBa3lFemNlTHF3UjJEY0kvVHZRSnA3SHpzVGJW?=
- =?utf-8?B?Y3NBQ0x0OTFzNmZzK3E5SzZEQkk0Y21CTE13ZTNETytyLzZFUWpVeElSclYx?=
- =?utf-8?B?SE1IcnBYL2RWSTZmTjY4d0I1UUJEdEhOWHNIYXhBOFd1alNneUpiZVAweThj?=
- =?utf-8?B?UFdmZDdTaHY5S0JoK2IxdzBNVmJuYnE0Smx3MHJwMjYxTmZRT2xYS1JEcTlj?=
- =?utf-8?B?eXl0ZndwUGJtUE04WFhoREViVjNLWGtnQVc0VExLejFJdks5RnRORUhlMjQx?=
- =?utf-8?B?S0QxaEplV3p3QWkvNEQ1RSt5dlhVMGFOd2RXa2RmcXRjTEdBM0pCWWhIWVUz?=
- =?utf-8?B?UW1TMThKTFVHVVA0c0lWeXczRjJ1Y1pJQWVyTVZZSzRraWV3T2JZL3pEbkFF?=
- =?utf-8?B?T2RwaHhFd09hTTdNYk1WU1dzMFczcjNabGs3VWljd2RPQk04MHhzZ016UGdJ?=
- =?utf-8?B?RXFJQ1VpZmdIbVRFaTRRVmlZOFMzQmhVSEVxL1Q2ak1DYVgzbWlvTkhWZ0VI?=
- =?utf-8?B?WWM3N1VzbXpxZm43RGEyamZQaFFpZWdUMEp4VFRZeU0xNEJMbW8rYml3Y0E1?=
- =?utf-8?B?S3NtKysrdHcvSjQrTk9Za2E0dlZoNzRTNE1jMXhpMnJrZmo3ZzhWYnFrdTBP?=
- =?utf-8?B?TjQ1OFZQWUNWeWMrWVdtQVltdGtISlZlK0hjL1laTVBQeTRjbXhRU012dzZv?=
- =?utf-8?B?YmtoTS9BbHBvajR4RHhhNmR4YUJYK3BtOWFrbjdPN2NGa2RhZHRydGJGTE81?=
- =?utf-8?B?eVlsM3VBczN2MFN4aElMb2tFd0ZqYkJSanFwaFJGRlNMWDdCdzZ6UUVocGVE?=
- =?utf-8?B?MDdJNHpNZHpxbkF1WEdLYjRYRnJjUWd0ODN5OWZXVlZ1RDdyT3JyQlBhUWZp?=
- =?utf-8?B?S2xxUTRZSC8wVEdMRXdwTTNnVDBKVVJXbW56eUZnWWZCUTRrblZka1BzaE9P?=
- =?utf-8?B?S0R2ODZicVJpVUVjNXJWWWZkOVpXaTFraEdnM1luUHhHMUFOclhhM0NqZHUv?=
- =?utf-8?B?bW0yd0VNVFhFaWh0QVFTNjNEM24xeHowanlyZktCbEw1bWNqUW9hRzdIYUZy?=
- =?utf-8?B?OTdsZmJJOGRHaGQxdS8vNjRtK0h2b2RDU1N4VmUzRTlZTlBXcmJ5ckZPVXdr?=
- =?utf-8?B?L3Vka2ljbHc4VDZCVHJhelJaRE5YK2d3WHlxR2MyMk4xT1dmaUk3TjNxUThO?=
- =?utf-8?B?RytxM0pwL2lYcnROUEJFSlZDR3RYWVVHVmV1bm13QkVOZUtJZ2IwaG16eEEx?=
- =?utf-8?B?Qlh1Uy9SNENBMDN0Uytxd2dtYWpVVHRMTzRaMWFUZHFEZC91Q1BRZVdremdn?=
- =?utf-8?B?VldMVVUzTFZzRVlPZWw5QVlHVkNqWGRhOTJWKzlLcFp1NEZ6U21wV1VYbGFk?=
- =?utf-8?B?cUdScXM0UjI3ZUsySVFUL1d5L1lHRW1iNi9odndsN1lQRGg5aDVOOC9TQVY4?=
- =?utf-8?B?RVB3TE1QZTBiZDlvWjJEV1JybU1VSlEzNVV1S0M0ZGt0elhwWHRWY1I3Y1ZX?=
- =?utf-8?B?U0w2MWd3RWZSczZFN011LzBtRFRNcGpPOU9pRnU4a1FwTjM4cTZhazNwWmpx?=
- =?utf-8?B?N0UrT3hkc3hGWDM1R1ZHckcrQUJ2dGxlWWo3ZWxtRnVtZnh2amhaTkNxUDkz?=
- =?utf-8?B?dU5xZXB5Y3ZrUDNFdVRWZWtwWHg3cnZSaWJsZlJES3JiM2l6UGlYRjF0L2lm?=
- =?utf-8?B?TzNSc3hSNlBPSFJYaWRndzZXR0xBYjRKQkZtakdNazAvaFk4UDBLOFNNd0po?=
- =?utf-8?B?U0oraldRRUlQTm8zdi84ZFFyNmgwbGgzQm5ueW96Y3piVnRuZlpmbUp4Skc0?=
- =?utf-8?B?dEo1OWl5Mnp2RE04S3MwQXZuMzBFM1JXTmxzMy9aOCs0ME10WDFtZWxXL2R3?=
- =?utf-8?B?UFhoQjFrSEtuVUxmZEQ4RFNuUkk4UXZ5K01KUzE4OXBBWjZjNGd6OGR2VFFN?=
- =?utf-8?B?RTdYRjJSeS9TcTQ5MjZIMi94eGh5dE1yTjBZSDRFcmJQKzJrZUtiV0w1Q0ww?=
- =?utf-8?B?SFR3Q29NRDNxOHZ1dU8vWmpsbVRjWGYvbGpLMm1TUmZZZXdXemlOMUFuRlBY?=
- =?utf-8?Q?U3ToS6S6qNki+zp8=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7c809f96-a5ce-49d2-af0b-08de5ff02dd1
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vv3IQxGg77K6o4AnSAVn2GmyLN4G2HLf7Frnf1QHK9HduMko+mHfq2JTiZX0?=
+ =?us-ascii?Q?QyRssO5ScUVE+OUsB4xvCcfjFbjLtQYH4g2ByPfrBUA1MXuc9KdR3tXD28na?=
+ =?us-ascii?Q?vQpy5LXQjMsJvWQDY+tgQ04/W9FGHIGIpQaTBABUkHSW64HyhTKyR0UBP6en?=
+ =?us-ascii?Q?XR0fOEKMENazy0wP2HUGpzfYFv2Ec2F7++Cokh3FcHOl4hgS/PGOh2AJlcq3?=
+ =?us-ascii?Q?so/ZpB8Y1zrWXZHZlbNIw9urRmM4rDJbNJxLFMaL/LIiWfLdZ66R7cDcAZvx?=
+ =?us-ascii?Q?B2R0d5qLiIQLma0JftA+w7HavC7iwt5rdPV1tC6C78H3zqWJHBFgw6qS3yrR?=
+ =?us-ascii?Q?PqyKtIFIpEMcMsqnE+ArStICExh+G3TdmgLKV+0DtFnSosG4WgUihKJIq9Ih?=
+ =?us-ascii?Q?2ZSG39r+SXveyUG5e7xTyGrwISaYkdyAt5WauHPB0u0/77rHlR+pjTxsHDo0?=
+ =?us-ascii?Q?mtltPjYR4OybybxTtkEXaRZ5yDMJiAwyFHiHXmBJn55nyV5VGu72GPuwluzU?=
+ =?us-ascii?Q?tRECRT6VGLdz+MkLUXtTxrhEH30Vx4pjDJjKaB+xejrFYndEuovOSjj+5rmD?=
+ =?us-ascii?Q?IdvAFxNxXp8w9VnOKz/9hQyGSR+i6KCUCTJtlnlxciTsajZVNlPalANgFYQV?=
+ =?us-ascii?Q?l35O+JA10ZaV/DOzbkC3Bsw4EEMduVKa57RdC8CpztBL1MMbeup/M4MY18LP?=
+ =?us-ascii?Q?ipgGla9DE/oJCabb68A/rc2BDGblBBTsyGVYyTgguqXwJV+ra0vqj9J2h9Wc?=
+ =?us-ascii?Q?yRLD3xRxjLVue0EgAZ2ugTpQijIaNRca0pu/V1LQi17Y6d7tXaxlFyjoO8Z9?=
+ =?us-ascii?Q?/T/oNAlWh0F2q8qv2gHtVccGFvd5bQjrObzfgxWmSQicg2VTd5Aa/Nyn4VPY?=
+ =?us-ascii?Q?xHhKVm6QMZNJkk5i59QJBt0jYZIrTaputqSa+XwJ0q4epBMNhnVyZumPGIjJ?=
+ =?us-ascii?Q?YJytUymoVC949vVj0B7EL34KyKAjPLqPBT8xFtv0yjGRc1SMPncu6DiRNV50?=
+ =?us-ascii?Q?2KiZ1OT0pgZjFG/9mQJ5AD+mIzhYbLyhQ69oKMJo1Ra7RhSntilDFPc3mZs+?=
+ =?us-ascii?Q?/nOFkEMtbPAFujFpfkQ9YHiTU9DVbOyuOP8o952nRTicEn40dZAqysU0ulDI?=
+ =?us-ascii?Q?bbrT6NvL2EzUPMutU9DTiXWSaHIw/+J6l2lC7M7217qDA8KxYman550WXrOB?=
+ =?us-ascii?Q?JGInXcdCbX7aAKEw/Rgq/PHU4bNSsmHs81KlAZACGL/Ric7+x1t+qKK9BL9u?=
+ =?us-ascii?Q?BD6QY3n/Wyc1jxQgfXv9nx1h9wPL90viSja7CgY9rEikF30lCRvFyZewK3Pq?=
+ =?us-ascii?Q?8UadPThmoGSfjv6uq5lkyBpaFCE2XSdNuhcE61Qy2Q0Vn8yvW5hZGK+rogUz?=
+ =?us-ascii?Q?a62mF/HK6w+H6Nen7s2ZwgPuFAOn9yfUHZ3xi7cyZpgt83QlHX+81qzYCNzq?=
+ =?us-ascii?Q?vOmkxHY1jPPpgz+GFK1kNCF6tcQiW5tFCUzsSInyKNEqdrVHDuO9osIgfaAP?=
+ =?us-ascii?Q?RMcFkonBVdvdgSFOD5nxdP2EAqyMBCmihMPh7hSV3cUmtrmoIreJ9rZ3yTjQ?=
+ =?us-ascii?Q?D2eyMIYEV7+U4STsmhcaPRDfNRstYipGlbFESgMCEtqFYdZ3FLatTpGhi/ZV?=
+ =?us-ascii?Q?tfIbkF+N+IQzJyMSPnNVNDYYRQTDHh3ZtrtomwOvbgycmiYfANK9INXvhE83?=
+ =?us-ascii?Q?C98+G7TRxeVNHwO8IaOxrvA2BcKwX7FRofzScE+D+fSOyNTnAMiCjj4rnWlw?=
+ =?us-ascii?Q?g6ufaB2Chg=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d5f1d862-f3a8-4006-8dea-08de5ff03c6e
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB9072.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2026 11:10:30.2739 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jan 2026 11:10:54.5175 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: vzPNYYknpm0eqzv944uqhN1uXetEfuyHYAL5+3WqcSzGZxhkoKmJiwTTxaJwYALP9lBti6jYu1k+uQnb8I20YWMCj7GfKAoZfGtefBOMY+U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4980
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: z1oTGaJKyKCbyWj1jCfcxHO9LXKRpvIrLpaOgjTJykkpBTCo6OEAm0CjeXONwrrJENIexpUYE/1kqYoNoJKNqg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7712
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -201,215 +155,180 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+[ Apologies for the spam - I missed squashing in one of the style fixups
+intended for v4 leaving device_private_entry_to_page() in a broken
+state. ]
 
-On 1/30/2026 2:45 PM, Patchwork wrote:
-> Project List - Patchwork *Patch Details*
-> *Series:* 	Account for DSC bubble overhead for horizontal slices (rev6)
-> *URL:* 	https://patchwork.freedesktop.org/series/152803/
-> *State:* 	failure
-> *Details:* 
-> https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/index.html
->
->
->   CI Bug Log - changes from
->   xe-4475-69c1143407ca17d556eb4e5ead7eb43b60a3fe65_BAT ->
->   xe-pw-152803v6_BAT
->
->
->     Summary
->
-> *FAILURE*
->
-> Serious unknown changes coming with xe-pw-152803v6_BAT absolutely need 
-> to be
-> verified manually.
->
-> If you think the reported changes have nothing to do with the changes
-> introduced in xe-pw-152803v6_BAT, please notify your bug team 
-> (I915-ci-infra@lists.freedesktop.org) to allow them
-> to document this new failure mode, which will reduce false positives 
-> in CI.
->
->
->     Participating hosts (10 -> 12)
->
-> Additional (2): bat-adlp-vm bat-ptl-vm
->
->
->     Possible new issues
->
-> Here are the unknown changes that may have been introduced in 
-> xe-pw-152803v6_BAT:
->
->
->       IGT changes
->
->
->         Possible regressions
->
->   * igt@xe_waitfence@engine:
->       o bat-ptl-2: PASS
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-4475-69c1143407ca17d556eb4e5ead7eb43b60a3fe65/bat-ptl-2/igt@xe_waitfence@engine.html>
->         -> FAIL
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-2/igt@xe_waitfence@engine.html>
->
-Hi @I915-ci-infra@lists.freedesktop.org
+Introduction
+------------
 
-The BAT issue reported is not related to the series.
+The existing design of device private memory imposes limitations which
+render it non functional for certain systems and configurations where
+the physical address space is limited. 
 
-Regards,
+Limited available address space
+-------------------------------
 
-Ankit
+Device private memory is implemented by first reserving a region of the
+physical address space. This is a problem. The physical address space is
+not a resource that is directly under the kernel's control. Availability
+of suitable physical address space is constrained by the underlying
+hardware and firmware and may not always be available. 
+
+Device private memory assumes that it will be able to reserve a device
+memory sized chunk of physical address space. However, there is nothing
+guaranteeing that this will succeed, and there a number of factors that
+increase the likelihood of failure. We need to consider what else may
+exist in the physical address space. It is observed that certain VM
+configurations place very large PCI windows immediately after RAM. Large
+enough that there is no physical address space available at all for
+device private memory. This is more likely to occur on 43 bit physical
+width systems which have less physical address space.
+
+The fundamental issue is the physical address space is not a resource
+the kernel can rely on being to allocate from at will.  
+
+New implementation
+------------------
+
+This series changes device private memory so that it does not require
+allocation of physical address space and these problems are avoided.
+Instead of using the physical address space, we introduce a "device
+private address space" and allocate from there.
+
+A consequence of placing the device private pages outside of the
+physical address space is that they no longer have a PFN. However, it is
+still necessary to be able to look up a corresponding device private
+page from a device private PTE entry, which means that we still require
+some way to index into this device private address space. Instead of a
+PFN, device private pages use an offset into this device private address
+space to look up device private struct pages.
+
+The problem that then needs to be addressed is how to avoid confusing
+these device private offsets with PFNs. It is the limited usage
+of the device private pages themselves which make this possible. A
+device private page is only used for userspace mappings, we do not need
+to be concerned with them being used within the mm more broadly. This
+means that the only way that the core kernel looks up these pages is via
+the page table, where their PTE already indicates if they refer to a
+device private page via their swap type, e.g.  SWP_DEVICE_WRITE. We can
+use this information to determine if the PTE contains a PFN which should
+be looked up in the page map, or a device private offset which should be
+looked up elsewhere.
+
+This applies when we are creating PTE entries for device private pages -
+because they have their own type there are already must be handled
+separately, so it is a small step to convert them to a device private
+PFN now too.
+
+The first part of the series updates callers where device private
+offsets might now be encountered to track this extra state.
+
+The last patch contains the bulk of the work where we change how we
+convert between device private pages to device private offsets and then
+use a new interface for allocating device private pages without the need
+for reserving physical address space.
+
+By removing the device private pages from the physical address space,
+this series also opens up the possibility to moving away from tracking
+device private memory using struct pages in the future. This is
+desirable as on systems with large amounts of memory these device
+private struct pages use a signifiant amount of memory and take a
+significant amount of time to initialize.
+
+Changes in v5
+-------------
+- Fix broken device_private_entry_to_page() in v4
+
+Changes in v4
+-------------
+
+Thanks all for feedback and suggestions on v3.
+
+The only major change is using devm_memunmap_device_private_pagemap() in
+xe_pagemap_destroy_work.
+
+Note removed previous discussion in the cover letter relating to aarch64
+and memremap_pages() as this was actually already addressed in commit
+eeb8fdfcf090 ("arm64: Expose the end of the linear map in PHYSMEM_END"). 
+
+Details:
+  mm/util: Add flag to track device private pages in page snapshots
+    - style: move logical continuation to previous line
+  mm: Remove device private pages from the physical address space
+    - Use devm_memunmap_device_private_pagemap() in
+      xe_pagemap_destroy_work()
+    - Replace ^ with != for PVMW_DEVICE_PRIVATE comparisions
+    - Minor style changes
+
+Jordan Niethe (13):
+  mm/migrate_device: Introduce migrate_pfn_from_page() helper
+  drm/amdkfd: Use migrate pfns internally
+  mm/migrate_device: Make migrate_device_{pfns,range}() take mpfns
+  mm/migrate_device: Add migrate PFN flag to track device private pages
+  mm/page_vma_mapped: Add flag to page_vma_mapped_walk::flags to track
+    device private pages
+  mm: Add helpers to create migration entries from struct pages
+  mm: Add a new swap type for migration entries of device private pages
+  mm: Add softleaf support for device private migration entries
+  mm: Begin creating device private migration entries
+  mm: Add helpers to create device private entries from struct pages
+  mm/util: Add flag to track device private pages in page snapshots
+  mm/hmm: Add flag to track device private pages
+  mm: Remove device private pages from the physical address space
+
+Jordan Niethe (13):
+  mm/migrate_device: Introduce migrate_pfn_from_page() helper
+  drm/amdkfd: Use migrate pfns internally
+  mm/migrate_device: Make migrate_device_{pfns,range}() take mpfns
+  mm/migrate_device: Add migrate PFN flag to track device private pages
+  mm/page_vma_mapped: Add flag to page_vma_mapped_walk::flags to track
+    device private pages
+  mm: Add helpers to create migration entries from struct pages
+  mm: Add a new swap type for migration entries of device private pages
+  mm: Add softleaf support for device private migration entries
+  mm: Begin creating device private migration entries
+  mm: Add helpers to create device private entries from struct pages
+  mm/util: Add flag to track device private pages in page snapshots
+  mm/hmm: Add flag to track device private pages
+  mm: Remove device private pages from the physical address space
+
+ Documentation/mm/hmm.rst                 |  11 +-
+ arch/powerpc/kvm/book3s_hv_uvmem.c       |  43 ++---
+ drivers/gpu/drm/amd/amdkfd/kfd_migrate.c |  45 +++---
+ drivers/gpu/drm/amd/amdkfd/kfd_migrate.h |   2 +-
+ drivers/gpu/drm/drm_pagemap.c            |  11 +-
+ drivers/gpu/drm/nouveau/nouveau_dmem.c   |  45 ++----
+ drivers/gpu/drm/xe/xe_svm.c              |  39 ++---
+ fs/proc/page.c                           |   6 +-
+ include/drm/drm_pagemap.h                |   8 +-
+ include/linux/hmm.h                      |   7 +-
+ include/linux/leafops.h                  | 120 ++++++++++++--
+ include/linux/memremap.h                 |  64 +++++++-
+ include/linux/migrate.h                  |  23 ++-
+ include/linux/mm.h                       |   9 +-
+ include/linux/rmap.h                     |  29 +++-
+ include/linux/swap.h                     |   8 +-
+ include/linux/swapops.h                  | 100 ++++++++++++
+ lib/test_hmm.c                           |  87 ++++++----
+ mm/debug.c                               |   9 +-
+ mm/hmm.c                                 |   5 +-
+ mm/huge_memory.c                         |  43 ++---
+ mm/hugetlb.c                             |  15 +-
+ mm/memory.c                              |   5 +-
+ mm/memremap.c                            | 196 ++++++++++++++++++-----
+ mm/migrate.c                             |   6 +-
+ mm/migrate_device.c                      |  76 +++++----
+ mm/mm_init.c                             |   8 +-
+ mm/mprotect.c                            |  10 +-
+ mm/page_vma_mapped.c                     |  26 ++-
+ mm/rmap.c                                |  59 ++++---
+ mm/util.c                                |   8 +-
+ mm/vmscan.c                              |   2 +-
+ 32 files changed, 783 insertions(+), 342 deletions(-)
 
 
-Regards,
+base-commit: 344db0fba38920be64a429c64a8ca0531572896c
+-- 
+2.34.1
 
-Ankit
-
-
->  *
->
->
->     Known issues
->
-> Here are the changes found in xe-pw-152803v6_BAT that come from known 
-> issues:
->
->
->       IGT changes
->
->
->         Issues hit
->
->  *
->
->     igt@xe_evict@evict-beng-small-cm:
->
->       o bat-ptl-vm: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-vm/igt@xe_evict@evict-beng-small-cm.html>
->         (Intel XE#5764
->         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/5764>)
->         +10 other tests skip
->  *
->
->     igt@xe_evict@evict-small-external-cm:
->
->       o bat-adlp-vm: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_evict@evict-small-external-cm.html>
->         (Intel XE#261
->         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/261> /
->         Intel XE#688
->         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/688>) +9
->         other tests skip
->  *
->
->     igt@xe_evict_ccs@evict-overcommit-simple:
->
->       o bat-adlp-vm: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_evict_ccs@evict-overcommit-simple.html>
->         (Intel XE#688
->         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/688>)
->  *
->
->     igt@xe_exec_fault_mode@twice-userptr-invalidate-imm:
->
->       o bat-adlp-vm: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html>
->         (Intel XE#288
->         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/288>) +32
->         other tests skip
->  *
->
->     igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
->
->       o bat-ptl-vm: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-vm/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html>
->         (Intel XE#5775
->         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/5775>)
->       o bat-adlp-vm: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html>
->         (Intel XE#2229
->         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229> /
->         Intel XE#5488
->         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/5488>)
->  *
->
->     igt@xe_mmap@vram:
->
->       o bat-adlp-vm: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_mmap@vram.html>
->         (Intel XE#1008
->         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/1008> /
->         Intel XE#5591
->         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/5591>)
->       o bat-ptl-vm: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-vm/igt@xe_mmap@vram.html>
->         (Intel XE#5776
->         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/5776>)
->  *
->
->     igt@xe_pat@pat-index-xe2:
->
->       o bat-adlp-vm: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_pat@pat-index-xe2.html>
->         (Intel XE#977
->         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/977>)
->  *
->
->     igt@xe_pat@pat-index-xehpc:
->
->       o bat-ptl-vm: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-vm/igt@xe_pat@pat-index-xehpc.html>
->         (Intel XE#5777
->         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/5777>)
->       o bat-adlp-vm: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_pat@pat-index-xehpc.html>
->         (Intel XE#2838
->         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838> /
->         Intel XE#979
->         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/979>)
->  *
->
->     igt@xe_pat@pat-index-xelp:
->
->       o bat-ptl-vm: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-vm/igt@xe_pat@pat-index-xelp.html>
->         (Intel XE#5771
->         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/5771>)
->  *
->
->     igt@xe_pat@pat-index-xelpg:
->
->       o bat-ptl-vm: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-ptl-vm/igt@xe_pat@pat-index-xelpg.html>
->         (Intel XE#5780
->         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/5780>)
->       o bat-adlp-vm: NOTRUN -> SKIP
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-adlp-vm/igt@xe_pat@pat-index-xelpg.html>
->         (Intel XE#979
->         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/979>)
->
->
->         Possible fixes
->
->   * igt@xe_waitfence@reltime:
->       o bat-dg2-oem2: FAIL
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-4475-69c1143407ca17d556eb4e5ead7eb43b60a3fe65/bat-dg2-oem2/igt@xe_waitfence@reltime.html>
->         (Intel XE#6520
->         <https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520>) ->
->         PASS
->         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-152803v6/bat-dg2-oem2/igt@xe_waitfence@reltime.html>
->
->
->     Build changes
->
->   * IGT: IGT_8725 -> IGT_8726
->   * Linux: xe-4475-69c1143407ca17d556eb4e5ead7eb43b60a3fe65 ->
->     xe-pw-152803v6
->
-> IGT_8725: 8725
-> IGT_8726: 8726
-> xe-4475-69c1143407ca17d556eb4e5ead7eb43b60a3fe65: 
-> 69c1143407ca17d556eb4e5ead7eb43b60a3fe65
-> xe-pw-152803v6: 152803v6
->
