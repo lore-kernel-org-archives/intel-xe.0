@@ -4,69 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1511BE73157
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 10:51:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DFA7E73157
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 10:53:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF36210E420;
-	Mon,  2 Feb 2026 10:51:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC21310E23B;
+	Mon,  2 Feb 2026 10:53:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nkwFxinw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dq2YrfOA";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8B2A10E420;
- Mon,  2 Feb 2026 10:51:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 60BEE10E23B;
+ Mon,  2 Feb 2026 10:53:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770029474; x=1801565474;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=CU+EqcrQo41HxY+mJmIJYrt/CzhgHVJ/Cwyd+zcgbdA=;
- b=nkwFxinwDXclib1KMlN+Ys2mUHYfZQFDVMwZ3RDl6dng47g0NgpG/90S
- FGQwptlK2E/WDkxZtekKjyyyX39hKTnd2mtE12pDmlJxK9aRae7djkxD3
- l1NEhzbrpQ3qwiG/4PmNYnXgyD0A1iKMOYyxEgy6qCQN3nck15d20LiYA
- +XziNYM7hwZgUb5xubc7l9Qa4Pzlk6xBh/tMdtiqyCdMXVD2MLMdCHyy/
- 8Xh3l1Lwr9QRKRgsNauDoixQn+oY2+737v4K1qZyezDeKV8YPArhOjjJe
- bkepGD4opg+xOrJDi83qiI/z2SXSAj85qLWpzFZzEc5FpAu4eNoBcEleH Q==;
-X-CSE-ConnectionGUID: tR1EYOcwQcu8EOfmYQ0B5A==
-X-CSE-MsgGUID: lpc3zg20TKS8g+7LRKRNPw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11689"; a="81497369"
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="81497369"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 02:51:13 -0800
-X-CSE-ConnectionGUID: bdUGNwPTRgCA1JyWkJ5CRQ==
-X-CSE-MsgGUID: VxeTC3hDSnaok3tgirY+DQ==
+ t=1770029594; x=1801565594;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=pf7K+xZyNSaQrsjPOC4Md6AwU3Rr94tQPCPmgwDWNlA=;
+ b=dq2YrfOAMaWaD6I2WrDkFCIGt3x+TKokkXZRXeABfRU26jzDFk36J4ls
+ CwTBGP2Zt62OQ1t8Y4SFRgYsSHLGvImUANE7YkEiM/FjFk9OAbry0mVx5
+ SJFQ58Py38VZlsUDQdIN2kNHlMu2zGq9dM/L5SsDOwuFAlAVN2kCdevGd
+ T5TBEZQvmK5R4WccpI42Jwakvc2LSAAzAIa/KB2E1bKDm4l+u6m4eGUAc
+ /U4XeI2Us95+ig2Tx+ZQ0ASMHBZLUVXgeVLeE0JKe1eWSWMMz75tpuxO3
+ dJ4WQEwvF79yhRsI5916CMQr/8qWwcs/jFLyRD1Ahasg6hgzQ0oi5laJx g==;
+X-CSE-ConnectionGUID: X4dSbwZ/QvehifA+ynGUfg==
+X-CSE-MsgGUID: MDoYfqBrQDadG1w6hIGcDA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11689"; a="70384996"
+X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="70384996"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2026 02:53:14 -0800
+X-CSE-ConnectionGUID: lRqI6nDGTtu72RYtHNDN3w==
+X-CSE-MsgGUID: FKT2MdYLQoG+lPseY2GW5w==
 X-ExtLoop1: 1
-Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.244.223])
- ([10.245.244.223])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 02:51:10 -0800
-Message-ID: <6a6e054bb6efe76c439b3329702829dbc75b9060.camel@linux.intel.com>
-Subject: Re: [PATCH] mm/hmm: Fix a hmm_range_fault() livelock / starvation
- problem
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Alistair Popple <apopple@nvidia.com>
-Cc: John Hubbard <jhubbard@nvidia.com>, Matthew Brost
- <matthew.brost@intel.com>,  Andrew Morton <akpm@linux-foundation.org>,
- intel-xe@lists.freedesktop.org, Ralph Campbell <rcampbell@nvidia.com>, 
- Christoph Hellwig	 <hch@lst.de>, Jason Gunthorpe <jgg@mellanox.com>, Jason
- Gunthorpe <jgg@ziepe.ca>,  Leon Romanovsky	 <leon@kernel.org>,
- linux-mm@kvack.org, stable@vger.kernel.org, 	dri-devel@lists.freedesktop.org
-Date: Mon, 02 Feb 2026 11:51:08 +0100
-In-Reply-To: <nm4qa6fz2kecodhtt7yfcnfx77ik7pr7332amfqvgyhgs5xwqf@v2v6coz5genz>
-References: <20260130144529.79909-1-thomas.hellstrom@linux.intel.com>
- <20260130100013.fb1ce1cd5bd7a440087c7b37@linux-foundation.org>
- <57fd7f99-fa21-41eb-b484-56778ded457a@nvidia.com>
- <2d96c9318f2a5fc594dc6b4772b6ce7017a45ad9.camel@linux.intel.com>
- <aX5RQBxYB029/dkt@lstrano-desk.jf.intel.com>
- <0025ee21-2a6c-4c6e-a49a-2df525d3faa1@nvidia.com>
- <a459f147b461c6e6e806282956b7931f74a0aa93.camel@linux.intel.com>
- <nm4qa6fz2kecodhtt7yfcnfx77ik7pr7332amfqvgyhgs5xwqf@v2v6coz5genz>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
+X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="232419718"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2026 02:53:12 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com, imre.deak@intel.com,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 00/17] Account for DSC bubble overhead for horizontal slices
+Date: Mon,  2 Feb 2026 16:07:14 +0530
+Message-ID: <20260202103731.357416-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,86 +66,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2026-02-02 at 21:34 +1100, Alistair Popple wrote:
-> On 2026-02-02 at 20:13 +1100, Thomas Hellstr=C3=B6m
-> <thomas.hellstrom@linux.intel.com> wrote...
-> > On Sat, 2026-01-31 at 13:42 -0800, John Hubbard wrote:
-> > > On 1/31/26 11:00 AM, Matthew Brost wrote:
-> > > > On Sat, Jan 31, 2026 at 01:57:21PM +0100, Thomas Hellstr=C3=B6m
-> > > > wrote:
-> > > > > On Fri, 2026-01-30 at 19:01 -0800, John Hubbard wrote:
-> > > > > > On 1/30/26 10:00 AM, Andrew Morton wrote:
-> > > > > > > On Fri, 30 Jan 2026 15:45:29 +0100 Thomas Hellstr=C3=B6m
-> > > > > > > <thomas.hellstrom@linux.intel.com> wrote:
-> > > > > > ...
-> > >=20
-> > > >=20
-> > > > > I'm also not sure a folio refcount should block migration
-> > > > > after
-> > > > > the
-> > > > > introduction of pinned (like in pin_user_pages) pages. Rather
-> > > > > perhaps a
-> > > > > folio pin-count should block migration and in that case
-> > > > > do_swap_page()
-> > > > > can definitely do a sleeping folio lock and the problem is
-> > > > > gone.
-> > >=20
-> > > A problem for that specific point is that pincount and refcount
-> > > both
-> > > mean, "the page is pinned" (which in turn literally means "not
-> > > allowed
-> > > to migrate/move").
-> >=20
-> > Yeah this is what I actually want to challenge since this is what
-> > blocks us from doing a clean robust solution here. From brief
-> > reading
-> > of the docs around the pin-count implementation, I understand it as
-> > "If
-> > you want to access the struct page metadata, get a refcount, If you
-> > want to access the actual memory of a page, take a pin-count"
-> >=20
-> > I guess that might still not be true for all old instances in the
-> > kernel using get_user_pages() instead of pin_user_pages() for
-> > things
-> > like DMA, but perhaps we can set that in stone and document it at
-> > least
-> > for device-private pages for now which would be sufficient for the
-> > do_swap_pages() refcount not to block migration.
->=20
-> Having just spent a long time cleaning up a bunch of special
-> rules/cases for
-> ZONE_DEVICE page refcounting I'm rather against reintroducing them
-> just for some
-> ZONE_DEVICE pages. So whatever arguments are applied or introduced
-> here would
-> need to be made to work for all pages, not just some ZONE_DEVICE
-> pages.
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-That's completely understandable. I would like to be able to say if we
-apply the argument that when checking the pin-count pages are locked,
-lru-isolated and with zero map-count then that would hold for all
-pages, but my knowledge of the mm internals isn't sufficient
-unfortunately.
+When DSC is enabled on a pipe, the pipe pixel rate input to cdclk frequency
+and pipe joiner calculations needs to be adjusted to account for
+compression overhead: specifically, the "bubbles" added at each horizontal
+slice boundary. This overhead has always existed, even on earlier
+platforms, but was not previously accounted for.
 
-So even if that would be an ultimate goal, we would probably have to be
-prepared to have to revert (at least temporarily) such a solution for
-!ZONE_DEVICE pages and have a plan for handling that.
+Currently, the number of joined pipes is computed much earlier than the
+decision to use DSC: both during the mode_valid phase for each mode and in
+the compute_config phase for a given mode. As a result, the DSC bubble
+overhead cannot be considered when determining the number of pipes to join,
+which may lead to incorrect configurations.
 
-Thanks,
-Thomas
+This series refactors the sequence of steps used to determine the number of
+pipes to be joined and the DSC policy. The first few patches restructure
+the mode_valid and compute config logic to make room for DSC bubble
+overhead accounting. With these, we iterate over joiner candidates and
+select the minimal joiner configuration that satisfies the
+mode-requirements. The later patches introduce the actual overhead
+adjustment and use it for: the minimum cdclk requirements with DSC,
+SST mode_valid logic, and SST/MST compute_config logic.
 
+Rev 2:
+ - Refactor joiner computation for compute config.
+ - Refactor DSC BW calculation.
+ - Add overhead for SST/MST compute config phase for recomputing joiner
+   requirements for DSC.
+ - NOTE:
+   - For Patch#7 (drm/i915/dp: Rework pipe joiner logic in mode_valid)
+     git diff = --patience is used for better readability.
 
->=20
-> > >=20
-> > > (In fact, pincount is implemented in terms of refcount, in most
-> > > configurations still.)
-> >=20
-> > Yes but that's only a space optimization never intended to
-> > conflict,
-> > right? Meaning a pin-count will imply a refcount but a refcount
-> > will
-> > never imply a pin-count?
-> >=20
-> > Thanks,
-> > Thomas
-> >=20
+Rev 3:
+ - Use diff = --patience in format-patch for better readability.
+ - Add a macro to iterate over the joiner candidates.
+ - Add a separate helper to check pixel rate against dotclock limit.
+ - Add patch from Chaitanya for additional platform specific
+   limitations [1].
+
+[1] https://patchwork.freedesktop.org/patch/661952/?series=151047&rev=1
+
+Rev 4:
+ - Address review comments from Jani and Imre.
+ - Drop enum for joiner candidates and iterate over num of pipes joined.
+ - Rename some of the helpers.
+ - Split the patch to check for pixel limit for max uncompressed
+   dotclock into PTL and other platforms. For PTL the bspec and HSDES
+   matches, but for other platforms need to confirm the need for the
+   limits.
+
+Rev 5:
+ - Address comments from Imre.
+ - Add a patch to remove joiner helpers that are no longer required.
+ - Dropped the patch to replace the joiner loops with an iterator; will
+   follow up this separately.
+ - Modified the patch to enforce pixel limit for max uncomprssed
+   dotclock for pre PTL platforms, and added the limit only for WCL.
+   Limits for prior platforms is intentionally left to avoid regression
+   on these platforms and deal with them if there are actual issues
+   reported.
+ - Use diff = --histogram as its seen to work better for this series as
+   also suggested by Imre.
+
+Rev 6:
+ - Address comments from Imre.
+ - Re-add the patch to replace the joiner loops with iterator; [credits to
+   Imre to figure it out and for the suggested changes.]
+
+Rev 7:
+ - Fix status in mode valid in patch#4
+ - Align MST code with SSt in patch#8 and patch#10.
+
+Ankit Nautiyal (15):
+  drm/i915/dp: Early reject bad hdisplay in intel_dp_mode_valid
+  drm/i915/dp: Move num_joined_pipes and related checks together
+  drm/i915/dp: Extract helper to get the hdisplay limit
+  drm/i915/dp: Rework pipe joiner logic in mode_valid
+  drm/i915/dp: Rework pipe joiner logic in compute_config
+  drm/i915/dp_mst: Move the check for dotclock at the end
+  drm/i915/dp_mst: Move the joiner dependent code together
+  drm/i915/dp_mst: Rework pipe joiner logic in mode_valid
+  drm/i915/dp_mst: Extract helper to compute link for given joiner
+    config
+  drm/i915/dp_mst: Rework pipe joiner logic in compute_config
+  drm/i915/dp: Remove unused joiner helpers
+  drm/i915/dp: Introduce helper to check pixel rate against dotclock
+    limits
+  drm/i915/dp: Refactor dsc_slice_count handling in
+    intel_dp_mode_valid()
+  drm/i915/dp: Account for DSC slice overhead
+  drm/i915/dp: Add helpers for joiner candidate loops
+
+Chaitanya Kumar Borah (2):
+  drm/i915/display: Add upper limit check for pixel clock
+  drm/i915/display: Extend the max dotclock limit to WCL
+
+ drivers/gpu/drm/i915/display/intel_display.c |  19 ++
+ drivers/gpu/drm/i915/display/intel_display.h |   1 +
+ drivers/gpu/drm/i915/display/intel_dp.c      | 316 ++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_dp.h      |  19 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c  | 190 +++++++----
+ drivers/gpu/drm/i915/display/intel_vdsc.c    |   1 -
+ drivers/gpu/drm/i915/display/intel_vdsc.h    |   3 +
+ 7 files changed, 375 insertions(+), 174 deletions(-)
+
+-- 
+2.45.2
+
