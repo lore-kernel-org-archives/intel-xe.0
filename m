@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC5BCE7DF11
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 17:32:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00381E7DF11
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 17:37:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AD9C10E52F;
-	Mon,  2 Feb 2026 17:32:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1A0F10E535;
+	Mon,  2 Feb 2026 17:37:54 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63F7210E52F;
- Mon,  2 Feb 2026 17:32:17 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3643075403593499916=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4001010E535;
+ Mon,  2 Feb 2026 17:37:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Add_a_meanin?=
- =?utf-8?q?gful_return_to_intel=5Fdp=5Fread=5Fdsc=5Fdpcd_=28rev3=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm=3A_Color_pipeline_tea?=
+ =?utf-8?q?rdown_and_follow-up_fixes/improvements_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 02 Feb 2026 17:32:17 -0000
-Message-ID: <177005353738.217225.18219764015441047988@a3b018990fe9>
+Date: Mon, 02 Feb 2026 17:37:53 -0000
+Message-ID: <177005387324.217225.2955380866375662506@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260128044904.1293185-1-suraj.kandpal@intel.com>
-In-Reply-To: <20260128044904.1293185-1-suraj.kandpal@intel.com>
+References: <20260202094202.2871478-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20260202094202.2871478-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,121 +40,97 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3643075403593499916==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/dp: Add a meaningful return to intel_dp_read_dsc_dpcd (rev3)
-URL   : https://patchwork.freedesktop.org/series/160734/
-State : success
+Series: drm: Color pipeline teardown and follow-up fixes/improvements (rev4)
+URL   : https://patchwork.freedesktop.org/series/159263/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4481-cd1fd615b2ba56ea3fb033262d4fbd0503055d3c_BAT -> xe-pw-160734v3_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6c3fabe8b9d3f8eb7ca5f2372d6929fd804bc598
+Author: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Date:   Mon Feb 2 15:12:02 2026 +0530
 
-Summary
--------
+    drm/i915/color: Add failure handling in plane color pipeline init
+    
+    The plane color pipeline initialization built up multiple colorop blocks
+    inline, but did not reliably clean up partially constructed pipelines
+    when an intermediate step failed. This could lead to leaked colorop
+    objects and fragile error handling as the pipeline grows.
+    
+    Refactor the pipeline construction to use a common helper for adding
+    colorop blocks. This centralizes allocation, initialization, and
+    teardown logic, allowing the caller to reliably unwind all previously
+    created colorops on failure.
+    
+    v2:
+     - Refactor code to avoid repetition (Suraj)
+    
+    v3:
+     - s/nvl/xe3plpd (Suraj)
+    
+    Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+    Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+    Acked-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch ce23cb229dd84e6459444e216fb5e7980be7849b drm-intel
+ca94c7e9ac59 drm/colorop: Add destroy helper for colorop objects
+ac8a891caa86 drm: Allow driver-managed destruction of colorop objects
+-:59: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#59: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:125:
++		ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane, NULL,
+ 						amdgpu_dm_supported_shaper_tfs,
 
-  **SUCCESS**
+-:68: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#68: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:142:
++		ret = drm_plane_colorop_curve_1d_lut_init(dev, ops[i], plane, NULL,
++							MAX_COLOR_LUT_ENTRIES,
 
-  No regressions found.
+-:78: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#78: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:160:
++		ret = drm_plane_colorop_3dlut_init(dev, ops[i], plane, NULL, LUT3D_SIZE,
+ 					DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL,
 
-  
+-:162: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#162: FILE: drivers/gpu/drm/drm_colorop.c:319:
++					uint32_t lut_size,
 
-Participating hosts (12 -> 12)
-------------------------------
+-:353: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#353: FILE: include/drm/drm_colorop.h:413:
++					uint32_t lut_size,
 
-  No changes in participating hosts
+total: 0 errors, 0 warnings, 5 checks, 300 lines checked
+024a993a0dac drm/amd/display: Hook up colorop destroy helper for plane pipelines
+-:66: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#66: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:131:
++		ret = drm_plane_colorop_curve_1d_init(dev, ops[i], plane, &dm_colorop_funcs,
+ 						amdgpu_dm_supported_shaper_tfs,
 
-Known issues
-------------
+-:75: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#75: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:148:
++		ret = drm_plane_colorop_curve_1d_lut_init(dev, ops[i], plane,
++							&dm_colorop_funcs,
 
-  Here are the changes found in xe-pw-160734v3_BAT that come from known issues:
+-:85: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#85: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_colorop.c:167:
++		ret = drm_plane_colorop_3dlut_init(dev, ops[i], plane,
++					&dm_colorop_funcs, LUT3D_SIZE,
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6519])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4481-cd1fd615b2ba56ea3fb033262d4fbd0503055d3c/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160734v3/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4481-cd1fd615b2ba56ea3fb033262d4fbd0503055d3c -> xe-pw-160734v3
-
-  IGT_8729: 8729
-  xe-4481-cd1fd615b2ba56ea3fb033262d4fbd0503055d3c: cd1fd615b2ba56ea3fb033262d4fbd0503055d3c
-  xe-pw-160734v3: 160734v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160734v3/index.html
-
---===============3643075403593499916==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 0 warnings, 3 checks, 79 lines checked
+2bcdbaaa1294 drm/vkms: Hook up colorop destroy helper for plane pipelines
+b467c701d8c6 drm/i915/display: Hook up intel_colorop_destroy
+804a5f8aef40 drm: Clean up colorop objects during mode_config cleanup
+268cabcad8ce drm/vkms: Remove drm_colorop_pipeline_destroy() from vkms_destroy()
+45eb622ce270 drm/colorop: Use destroy callback for color pipeline teardown
+6c3fabe8b9d3 drm/i915/color: Add failure handling in plane color pipeline init
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: Add a meaningful return to intel_dp_read_dsc_dpcd (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160734/">https://patchwork.freedesktop.org/series/160734/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160734v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160734v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4481-cd1fd615b2ba56ea3fb033262d4fbd0503055d3c_BAT -&gt; xe-pw-160734v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-160734v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4481-cd1fd615b2ba56ea3fb033262d4fbd0503055d3c/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160734v3/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4481-cd1fd615b2ba56ea3fb033262d4fbd0503055d3c -&gt; xe-pw-160734v3</li>
-</ul>
-<p>IGT_8729: 8729<br />
-  xe-4481-cd1fd615b2ba56ea3fb033262d4fbd0503055d3c: cd1fd615b2ba56ea3fb033262d4fbd0503055d3c<br />
-  xe-pw-160734v3: 160734v3</p>
-
-</body>
-</html>
-
---===============3643075403593499916==--
