@@ -4,61 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D4E0E73153
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 10:08:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CA3CE7314A
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 10:08:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E74810E3FD;
-	Mon,  2 Feb 2026 10:08:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FC1210E40D;
+	Mon,  2 Feb 2026 10:08:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FToguoyC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YDw2WQEz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F2A710E3F5;
- Mon,  2 Feb 2026 10:08:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32E6810E40B;
+ Mon,  2 Feb 2026 10:08:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770026883; x=1801562883;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=W/C/wzNeqFOKr/Zl27ESeNBGX7o8naiaK6p98qzk65s=;
- b=FToguoyCoWg8atakYg75xxoUZxL5/aM53SF94NXYWz9DxJ/smhjO4LVs
- //H23DEyaYIEfJTgOtHQ6WrhLk20SXr1BQSqjqwwbyMMmSGOn/wfJsrm3
- BNeqfAgBqwtChXxe5Wbhxu8H6b5f5ofuT88HR0vAbXxpYyV6z1H4LSOAD
- 9P9BrWndoyaliXCUKby2FBPdMWIk6I/rIIKY07fudPjD+W2ehu298S6Xq
- GDxX+DwL+0cUXFT/EetcukONaekbgxAyZhyPNXur4poZqk5r8Y/yxsK37
- W66uccKWSXTzyNiGPtRTwXhU0Gwqh+5lhGIyXXLH8iwG0WYoQ63erBHJO w==;
-X-CSE-ConnectionGUID: wHVFtEHXRFSo+Dz6ZRukkQ==
-X-CSE-MsgGUID: I9JsP7oCRdmZGMWTA5jwbg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11689"; a="71163423"
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="71163423"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 02:08:02 -0800
-X-CSE-ConnectionGUID: +U6sgBR5QpSg7OJ62+W4uQ==
-X-CSE-MsgGUID: 7JrS7HxcQuKu6mDPlybpdA==
+ t=1770026919; x=1801562919;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=cCgG3dIux3x+xt02C17bJz27PWIwYr7tHK1Irige0qI=;
+ b=YDw2WQEz5+dH62HBMtjsk/gcEsNVkw9HGRv9mR6HETnL+IviVd0DWmbR
+ oUM8vZJBb6IzpTP/a0nlV+z5bIPWiG8uv40c3+jbs+q2v3IqW/1FkrnTq
+ 6k2lVN3PfYkIJrV/cO7n5nFPlZknt1t8M7csj4ToJoK9A8h2AmnXK68U1
+ MDy4npID0HVOrYXonNlC6SPi5gPx6RSq9dNmu7qWeI1jxByL6QNbBIkbW
+ 1Nf8yNN/kvrI+E0bk/QpiFYsACxR5l9u29g/wz9tVOrWR5YWXtJYmQ3R/
+ LRFVaNfw7sEaxUq+f9xGUzmBp1ZnKUHrHXUll5pe9G4/+MiIMnbwT0Nfy g==;
+X-CSE-ConnectionGUID: Fb9kQGgFSQezNXnTzEso5A==
+X-CSE-MsgGUID: Yi3C56tvS7KH+AIQjHxeMA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11689"; a="82289595"
+X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="82289595"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2026 02:08:38 -0800
+X-CSE-ConnectionGUID: 4A8P+vxkRfuBRuRzEds7GQ==
+X-CSE-MsgGUID: M1aAK9y4RLq/kvZE4ISRrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="208984878"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa007.fm.intel.com with ESMTP; 02 Feb 2026 02:07:58 -0800
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Cc: harry.wentland@amd.com, jani.nikula@linux.intel.com,
- louis.chauvet@bootlin.com, mwen@igalia.com, contact@emersion.fr,
- alex.hung@amd.com, daniels@collabora.com, uma.shankar@intel.com,
- suraj.kandpal@intel.com, nfraprado@collabora.com,
- ville.syrjala@linux.intel.com, matthew.d.roper@intel.com,
- maarten.lankhorst@intel.com, chaitanya.kumar.borah@intel.com
-Subject: [RESEND 9/9] drm/i915/color: Add failure handling in plane color
- pipeline init
-Date: Mon,  2 Feb 2026 15:12:02 +0530
-Message-Id: <20260202094202.2871478-10-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260202094202.2871478-1-chaitanya.kumar.borah@intel.com>
-References: <20260202094202.2871478-1-chaitanya.kumar.borah@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="209483479"
+Received: from igk-lkp-server01.igk.intel.com (HELO afc5bfd7f602)
+ ([10.211.93.152])
+ by orviesa008.jf.intel.com with ESMTP; 02 Feb 2026 02:08:34 -0800
+Received: from kbuild by afc5bfd7f602 with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1vmqr9-00000000345-1anf;
+ Mon, 02 Feb 2026 10:08:31 +0000
+Date: Mon, 2 Feb 2026 11:08:22 +0100
+From: kernel test robot <lkp@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, aravind.iddamsetty@linux.intel.com,
+ anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, simona.vetter@ffwll.ch,
+ airlied@gmail.com, pratik.bari@intel.com,
+ joshua.santosh.ranjan@intel.com, ashwin.kumar.kulkarni@intel.com,
+ shubham.kumar@intel.com, ravi.kishore.koppuravuri@intel.com,
+ raag.jadav@intel.com, Zack McKevitt <zachary.mckevitt@oss.qualcomm.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org,
+ Riana Tauro <riana.tauro@intel.com>
+Subject: Re: [PATCH v5 1/5] drm/ras: Introduce the DRM RAS infrastructure
+ over generic netlink
+Message-ID: <202602021142.G5vT8UkJ-lkp@intel.com>
+References: <20260202064356.286243-8-riana.tauro@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260202064356.286243-8-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,235 +81,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The plane color pipeline initialization built up multiple colorop blocks
-inline, but did not reliably clean up partially constructed pipelines
-when an intermediate step failed. This could lead to leaked colorop
-objects and fragile error handling as the pipeline grows.
+Hi Riana,
 
-Refactor the pipeline construction to use a common helper for adding
-colorop blocks. This centralizes allocation, initialization, and
-teardown logic, allowing the caller to reliably unwind all previously
-created colorops on failure.
+kernel test robot noticed the following build warnings:
 
-v2:
- - Refactor code to avoid repetition (Suraj)
+[auto build test WARNING on drm-xe/drm-xe-next]
+[also build test WARNING on drm-misc/drm-misc-next drm/drm-next linus/master v6.16-rc1 next-20260130]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-v3:
- - s/nvl/xe3plpd (Suraj)
+url:    https://github.com/intel-lab-lkp/linux/commits/Riana-Tauro/drm-ras-Introduce-the-DRM-RAS-infrastructure-over-generic-netlink/20260202-141553
+base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+patch link:    https://lore.kernel.org/r/20260202064356.286243-8-riana.tauro%40intel.com
+patch subject: [PATCH v5 1/5] drm/ras: Introduce the DRM RAS infrastructure over generic netlink
+reproduce: (https://download.01.org/0day-ci/archive/20260202/202602021142.G5vT8UkJ-lkp@intel.com/reproduce)
 
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Acked-by: Jani Nikula <jani.nikula@intel.com>
----
- .../drm/i915/display/intel_color_pipeline.c   | 164 +++++++++++++-----
- 1 file changed, 117 insertions(+), 47 deletions(-)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202602021142.G5vT8UkJ-lkp@intel.com/
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color_pipeline.c b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-index 8fecc53540ba..6cf8080ee800 100644
---- a/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-+++ b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-@@ -2,6 +2,8 @@
- /*
-  * Copyright © 2025 Intel Corporation
-  */
-+#include <drm/drm_print.h>
-+
- #include "intel_color.h"
- #include "intel_colorop.h"
- #include "intel_color_pipeline.h"
-@@ -10,6 +12,7 @@
- #include "skl_universal_plane.h"
- 
- #define MAX_COLOR_PIPELINES 1
-+#define MAX_COLOROP 4
- #define PLANE_DEGAMMA_SIZE 128
- #define PLANE_GAMMA_SIZE 32
- 
-@@ -17,70 +20,137 @@ static const struct drm_colorop_funcs intel_colorop_funcs = {
- 	.destroy = intel_colorop_destroy,
- };
- 
-+/*
-+ * 3DLUT can be bound to all three HDR planes. However, even with the latest
-+ * color pipeline UAPI, there is no good way to represent a HW block which
-+ * can be shared/attached at different stages of the pipeline. So right now,
-+ * we expose 3DLUT only attached with the primary plane.
-+ *
-+ * That way we don't confuse the userspace with opaque commit failures
-+ * on trying to enable it on multiple planes which would otherwise make
-+ * the pipeline totally unusable.
-+ */
-+static const enum intel_color_block xe3plpd_primary_plane_pipeline[] = {
-+	INTEL_PLANE_CB_PRE_CSC_LUT,
-+	INTEL_PLANE_CB_CSC,
-+	INTEL_PLANE_CB_3DLUT,
-+	INTEL_PLANE_CB_POST_CSC_LUT,
-+};
-+
-+static const enum intel_color_block hdr_plane_pipeline[] = {
-+	INTEL_PLANE_CB_PRE_CSC_LUT,
-+	INTEL_PLANE_CB_CSC,
-+	INTEL_PLANE_CB_POST_CSC_LUT,
-+};
-+
-+static bool plane_has_3dlut(struct intel_display *display, enum pipe pipe,
-+			    struct drm_plane *plane)
-+{
-+	return (DISPLAY_VER(display) >= 35 &&
-+		intel_color_crtc_has_3dlut(display, pipe) &&
-+		plane->type == DRM_PLANE_TYPE_PRIMARY);
-+}
-+
- static
--int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_enum_list *list,
--				     enum pipe pipe)
-+struct intel_colorop *intel_color_pipeline_plane_add_colorop(struct drm_plane *plane,
-+							     struct intel_colorop *prev,
-+							     enum intel_color_block id)
- {
- 	struct drm_device *dev = plane->dev;
--	struct intel_display *display = to_intel_display(dev);
--	struct drm_colorop *prev_op;
- 	struct intel_colorop *colorop;
- 	int ret;
- 
--	colorop = intel_colorop_create(INTEL_PLANE_CB_PRE_CSC_LUT);
--
--	ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane, &intel_colorop_funcs,
--						  PLANE_DEGAMMA_SIZE,
--						  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
--						  DRM_COLOROP_FLAG_ALLOW_BYPASS);
--
--	if (ret)
--		return ret;
--
--	list->type = colorop->base.base.id;
--
--	/* TODO: handle failures and clean up */
--	prev_op = &colorop->base;
--
--	colorop = intel_colorop_create(INTEL_PLANE_CB_CSC);
--	ret = drm_plane_colorop_ctm_3x4_init(dev, &colorop->base, plane, &intel_colorop_funcs,
--					     DRM_COLOROP_FLAG_ALLOW_BYPASS);
--	if (ret)
--		return ret;
--
--	drm_colorop_set_next_property(prev_op, &colorop->base);
--	prev_op = &colorop->base;
--
--	if (DISPLAY_VER(display) >= 35 &&
--	    intel_color_crtc_has_3dlut(display, pipe) &&
--	    plane->type == DRM_PLANE_TYPE_PRIMARY) {
--		colorop = intel_colorop_create(INTEL_PLANE_CB_3DLUT);
--
-+	colorop = intel_colorop_create(id);
-+
-+	if (IS_ERR(colorop))
-+		return colorop;
-+
-+	switch (id) {
-+	case INTEL_PLANE_CB_PRE_CSC_LUT:
-+		ret = drm_plane_colorop_curve_1d_lut_init(dev,
-+							  &colorop->base, plane,
-+							  &intel_colorop_funcs,
-+							  PLANE_DEGAMMA_SIZE,
-+							  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
-+							  DRM_COLOROP_FLAG_ALLOW_BYPASS);
-+		break;
-+	case INTEL_PLANE_CB_CSC:
-+		ret = drm_plane_colorop_ctm_3x4_init(dev, &colorop->base, plane,
-+						     &intel_colorop_funcs,
-+						     DRM_COLOROP_FLAG_ALLOW_BYPASS);
-+		break;
-+	case INTEL_PLANE_CB_3DLUT:
- 		ret = drm_plane_colorop_3dlut_init(dev, &colorop->base, plane,
- 						   &intel_colorop_funcs, 17,
- 						   DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL,
- 						   true);
--		if (ret)
--			return ret;
--
--		drm_colorop_set_next_property(prev_op, &colorop->base);
--
--		prev_op = &colorop->base;
-+		break;
-+	case INTEL_PLANE_CB_POST_CSC_LUT:
-+		ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane,
-+							  &intel_colorop_funcs,
-+							  PLANE_GAMMA_SIZE,
-+							  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
-+							  DRM_COLOROP_FLAG_ALLOW_BYPASS);
-+		break;
-+	default:
-+		drm_err(plane->dev, "Invalid colorop id [%d]", id);
-+		ret = -EINVAL;
- 	}
- 
--	colorop = intel_colorop_create(INTEL_PLANE_CB_POST_CSC_LUT);
--	ret = drm_plane_colorop_curve_1d_lut_init(dev, &colorop->base, plane, &intel_colorop_funcs,
--						  PLANE_GAMMA_SIZE,
--						  DRM_COLOROP_LUT1D_INTERPOLATION_LINEAR,
--						  DRM_COLOROP_FLAG_ALLOW_BYPASS);
- 	if (ret)
--		return ret;
-+		goto cleanup;
- 
--	drm_colorop_set_next_property(prev_op, &colorop->base);
-+	if (prev)
-+		drm_colorop_set_next_property(&prev->base, &colorop->base);
- 
--	list->name = kasprintf(GFP_KERNEL, "Color Pipeline %d", list->type);
-+	return colorop;
-+
-+cleanup:
-+	intel_colorop_destroy(&colorop->base);
-+	return ERR_PTR(ret);
-+}
-+
-+static
-+int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_enum_list *list,
-+				     enum pipe pipe)
-+{
-+	struct drm_device *dev = plane->dev;
-+	struct intel_display *display = to_intel_display(dev);
-+	struct intel_colorop *colorop[MAX_COLOROP];
-+	struct intel_colorop *prev = NULL;
-+	const enum intel_color_block *pipeline;
-+	int pipeline_len;
-+	int ret = 0;
-+	int i;
-+
-+	if (plane_has_3dlut(display, pipe, plane)) {
-+		pipeline = xe3plpd_primary_plane_pipeline;
-+		pipeline_len = ARRAY_SIZE(xe3plpd_primary_plane_pipeline);
-+	} else {
-+		pipeline = hdr_plane_pipeline;
-+		pipeline_len = ARRAY_SIZE(hdr_plane_pipeline);
-+	}
-+
-+	for (i = 0; i < pipeline_len; i++) {
-+		colorop[i] = intel_color_pipeline_plane_add_colorop(plane, prev,
-+								    pipeline[i]);
-+		if (IS_ERR(colorop[i])) {
-+			ret = PTR_ERR(colorop[i]);
-+			goto cleanup;
-+		}
-+
-+		prev = colorop[i];
-+	}
-+
-+	list->type = colorop[0]->base.base.id;
-+	list->name = kasprintf(GFP_KERNEL, "Color Pipeline %d", colorop[0]->base.base.id);
- 
- 	return 0;
-+
-+cleanup:
-+	while (--i >= 0)
-+		intel_colorop_destroy(&colorop[i]->base);
-+	return ret;
- }
- 
- int intel_color_pipeline_plane_init(struct drm_plane *plane, enum pipe pipe)
+All warnings (new ones prefixed by >>):
+
+   ERROR: Cannot find file ./include/linux/hdmi.h
+   ERROR: Cannot find file ./include/linux/hdmi.h
+   WARNING: No kernel-doc for file ./include/linux/hdmi.h
+   WARNING: ./drivers/gpu/drm/scheduler/sched_main.c:367 function parameter 'result' not described in 'drm_sched_job_done'
+   Documentation/gpu/drm-ras:39: ./drivers/gpu/drm/drm_ras.c:40: ERROR: Unexpected indentation. [docutils]
+>> Documentation/gpu/drm-ras:39: ./drivers/gpu/drm/drm_ras.c:41: WARNING: Block quote ends without a blank line; unexpected unindent. [docutils]
+   Documentation/gpu/drm-ras:39: ./drivers/gpu/drm/drm_ras.c:46: ERROR: Unexpected indentation. [docutils]
+   Documentation/gpu/drm-ras:39: ./drivers/gpu/drm/drm_ras.c:59: ERROR: Unexpected indentation. [docutils]
+   Documentation/gpu/drm-ras:39: ./drivers/gpu/drm/drm_ras.c:60: WARNING: Block quote ends without a blank line; unexpected unindent. [docutils]
+   Documentation/gpu/drm-uapi:607: ./drivers/gpu/drm/drm_ioctl.c:923: WARNING: Duplicate C declaration, also defined at gpu/drm-uapi:69.
+   Declaration is '.. c:function:: bool drm_ioctl_flags (unsigned int nr, unsigned int *flags)'. [duplicate_declaration.c]
+--
+   ERROR: Cannot find file ./include/linux/mutex.h
+   ERROR: Cannot find file ./include/linux/mutex.h
+   WARNING: No kernel-doc for file ./include/linux/mutex.h
+   ERROR: Cannot find file ./include/linux/fwctl.h
+   WARNING: No kernel-doc for file ./include/linux/fwctl.h
+>> Documentation/gpu/drm-ras.rst:59: WARNING: undefined label: 'documentation/netlink/specs/drm_ras.yaml' [ref.ref]
+
 -- 
-2.25.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
