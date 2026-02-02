@@ -4,171 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83EC3E7315F
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 12:36:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CD67E7315D
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 12:55:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3637510E4A8;
-	Mon,  2 Feb 2026 12:36:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF5FE10E4C0;
+	Mon,  2 Feb 2026 12:55:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hq0VlHMJ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Qhb1TKEy";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3614910E4A4;
- Mon,  2 Feb 2026 12:36:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770035805; x=1801571805;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=z1rflKvmvBHfjTcMtzONhMS+Acy9TWkYjb0ZbK6K7ak=;
- b=hq0VlHMJt1rTQvJ6rZjYNRZXQ3/nN9rweCI3APKVMUV4PEo4vo03bQfL
- l/LeT15buohmBVKVyaZEGoehqtFr4zNSN+hONSM5rRH+L90FbHY+jlVHx
- 7szwKiMY6UxRK8B93nB6Jh+aCtDrf3Ll+rwVa21AXnCq7F8I+ln4w0EMt
- ZUTPUGE8ix7gsGXAbb5hlGQCD0oAJRDLg0PR3xGZ2s2xg+t6QDticJus7
- 3uIehV6Hj/bWxMw+Bs34joow98qJdl2qBMX01b7sNKqb6Sj/Wb5DBml3v
- cmwZhNNa0mOzB7SjI3GJasz3PcBYXPQLCrFLsN5Hiw90oc0A2/Slc+eZN w==;
-X-CSE-ConnectionGUID: F7g6Rwq2Sn6kbKH/WaQ4mA==
-X-CSE-MsgGUID: 2eW6Kop/R7qN92X+ZAbfyg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11689"; a="75041771"
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="75041771"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 04:36:45 -0800
-X-CSE-ConnectionGUID: mze89bZfTtyH3NocOyJniQ==
-X-CSE-MsgGUID: VCwHL5v5RnmCXqiK2HtiGw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="214450631"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 04:36:45 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Mon, 2 Feb 2026 04:36:44 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Mon, 2 Feb 2026 04:36:44 -0800
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.68) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Mon, 2 Feb 2026 04:36:43 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UVfYv77IPraDqIuER2sHV1E9/1Dncgx6/xICxgYqw43Kty9do2rMIgVqkFsFHKUQlh5Wa2twAQfODeGiw6A6I06aEiSQS8BImo38AaPULQytDjIHwgXuEj9Cj8zZT7eof0SlsSg7yN2SzqnycKlpBBu2ydzV4ls4Z4hvn0iXC91+Q/poPhLtcsbKPqorDCpXVMBWq7idVBTtk/n3t5NiIUeZbBL8AfYR6PaBj++JAPkSn/CJMewQrsFGFvpATBqktRamWabFlO5ySvd2xS5zY21RDxXhRRXpRBh5XarSOuaKXgrfBdC2VHJ2BE8BO24SW+2JC3a4dMtt5wzsY/HdmQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PfQB9xyzGQRlRJ77gPlDbI0fMV/FcdmtVugbh6a2H+0=;
- b=X+reh3ycru5R5iHnYqUV9wA8YdpnsZF6ZaQ4Ps4Gd00rDkOpCG3aYsFPztpfIS++Wqvh5F5jW+M0qhLaZHr067WY0v47Rs6bAUewdS6R+8r32KscF7+sGz0Efu5GzoxYSDQVjHl4WGTpiP9DFvv2pWrIzU5zfImj5U/DB1cPK/FqzXiXBudzUXpRuRYcU0TOpxRihIpUkIdz9bQMa2SQ4/tqBUQnjDm+46sw+lJn3gp3xIVe0vq9xCektuLeI1kpbco5OdyhqF7GKb4y+Ozs8rzNM+mOuLZQGxjK96NGetWBOxbsEx0yjavlEYIbsZxDokkRDUn62kIIQnBjaH2MuA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com (2603:10b6:930:78::8)
- by PH8PR11MB6729.namprd11.prod.outlook.com (2603:10b6:510:1c5::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Mon, 2 Feb
- 2026 12:36:41 +0000
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::1171:db4d:d6ad:3277]) by CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::1171:db4d:d6ad:3277%3]) with mapi id 15.20.9564.016; Mon, 2 Feb 2026
- 12:36:41 +0000
-Date: Mon, 2 Feb 2026 13:36:33 +0100
-From: Francois Dugast <francois.dugast@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <thomas.hellstrom@linux.intel.com>, <himal.prasad.ghimiray@intel.com>
-Subject: Re: [PATCH 2/2] drm/gpusvm: Allow device pages to be mapped in mixed
- mappings after system pages
-Message-ID: <aYCaUawn5i4Vpk3v@fdugast-desk>
-References: <20260130194928.3255613-1-matthew.brost@intel.com>
- <20260130194928.3255613-3-matthew.brost@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260130194928.3255613-3-matthew.brost@intel.com>
-Organization: Intel Corporation
-X-ClientProxiedBy: DU2PR04CA0200.eurprd04.prod.outlook.com
- (2603:10a6:10:28d::25) To CY8PR11MB7828.namprd11.prod.outlook.com
- (2603:10b6:930:78::8)
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com
+ [209.85.216.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53C1B10E287
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Feb 2026 08:01:17 +0000 (UTC)
+Received: by mail-pj1-f45.google.com with SMTP id
+ 98e67ed59e1d1-34c718c5481so2583485a91.3
+ for <intel-xe@lists.freedesktop.org>; Mon, 02 Feb 2026 00:01:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1770019277; x=1770624077; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Gpa7TO42qLDaaK7rvjxkwHnmN2Z6us+3ErmDg7wFIC0=;
+ b=Qhb1TKEyd0C9yjBTj1EEYKYh3xRTSx6YeQJYBX0l2LJkXOIh+iUOo8cwzIi/qCbR18
+ k1HgFP8odZzyYCR80T6oNNT2+9GuKdJP2Qm8hF+tWKWCzWcw3jkpmw/Tdy1hVR2QLe2L
+ wm12/Sjr4Xwn+6Ox/iDDMu98dqRndwaIR2d+kVjAPU5uDh4SpR8mxm3Arfjg8FwMB13+
+ qRsa3AySl7yMah6mLz0wTuwtWeOxRJPFCHM5gSYGY92MXTwJN8ELIKEvkfLnSy5V0r9d
+ ZMSaMgrQexhU3rhD2nuOqzhFpyWbcoCLsUcsv4V+j5Ln0HUMAXIIRw3hiUTGLE5SapLH
+ AzRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1770019277; x=1770624077;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=Gpa7TO42qLDaaK7rvjxkwHnmN2Z6us+3ErmDg7wFIC0=;
+ b=SV+i54mBPD+WV0BzrCmmVREjUAqPO3dt0mj08L8VWMtuFOIJ3F3JDqXsPxgpptYKx6
+ uyFNa9HdbYX7qxrH6Y2mXz4hO919QyTgid8Nt1aBJUv07JZV0Je10+QXtulqRtbErtNZ
+ XiPwja5zCWlF31f8kaeZ5L4tYPEIXnKN9U5BvKHmdD0c8J1nnNXhEW6LHJiN/ah6oNHU
+ LXea5dGgmk5Sd0qMM4KD7sCjjZoAFkqEJF9KuMqb7FF6xql6X8dxW3zpBEt/+S2W6JFS
+ LmLT9yiJBfPBOxFslflsME/Zzc6OX+TBHk5UDkWJbC9j0psGkpyWN2vR5VeK4dvO17+G
+ gSww==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWZCaUjCeEzeDm2B/xoTNVvUry2bi+pzf3EbolDyrNy2mkJJN6iqtCkoST+w9iX7L45Caipvwvi9w==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxqu13Qu9IU/QE1HcOMoPuqndrjTF/HjZM2+jpExv9Dd9t5noHF
+ zs9IMSzVJjSrPkfWSFUNwqboAlDkamOBFi8ED2SVHa7yuuz7ZVsn490=
+X-Gm-Gg: AZuq6aLkruNSgkvxmnXT0paAC2nvqdV/fzo8R0TOsM5cMewYjCQnX5QP6QeyVEUFbsN
+ J2taGWV5SxVlg6Sm01+iyAu3WiL8A40+p6EfPdJq0WcXhUB+CD1cTg7scyCR2HAhvErdn/WKcjO
+ DE3hWfxF8Ne2hAIcRkwSv/pV1dKmjwsRyKrMD/G3rwAqkC/hiPIGfwrLxw9dIwuEgULsb+xqDRh
+ S62JhZSK1xbQX2Gx5X5npZZ74kj3XBJi9ng3mAyle4NTG5dj0d8XMrvAEnCp4ZL6g6ZOeRrqHv0
+ YXApZIWTLBgwy7Z6En+Hc/H2ywGkjSbuB/gGpAnDGaLxbmPpz2rsKGp7mmmJQAycuwSWM5hIEOo
+ EJV+4jkRqWKgDqZ/qCqbajXktRWoPsPmxIKA4vlwjCtQ6CbqcsfoX3K1y40gL9ryxuibAfpDL6F
+ 0M3dwg1Rjqm/Mh3ZA=
+X-Received: by 2002:a17:90b:3dcb:b0:340:b912:536 with SMTP id
+ 98e67ed59e1d1-3543b3ad361mr9815251a91.31.1770019275904; 
+ Mon, 02 Feb 2026 00:01:15 -0800 (PST)
+Received: from at.. ([171.61.160.203]) by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-3540f2f02aasm14655168a91.7.2026.02.02.00.01.09
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 02 Feb 2026 00:01:15 -0800 (PST)
+From: Atharva Tiwari <atharvatiwarilinuxdev@gmail.com>
+To: lukas@wunner.de
+Cc: airlied@gmail.com, ardb@kernel.org, atharvatiwarilinuxdev@gmail.com,
+ bp@alien8.de, dri-devel@lists.freedesktop.org, francescopompo2@gmail.com,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, javierm@redhat.com,
+ joonas.lahtinen@linux.intel.com, linux-efi@vger.kernel.org,
+ linux-kernel@vger.kernel.org, lszubowi@redhat.com, rodrigo.vivi@intel.com,
+ simona@ffwll.ch, tursulin@ursulin.net, tzimmermann@suse.de
+Subject: Re: [PATCH v2 1/2] efi/libstub: enable apple-set-os for all apple
+ devices
+Date: Mon,  2 Feb 2026 08:01:06 +0000
+Message-ID: <20260202080106.1093-1-atharvatiwarilinuxdev@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <aXovFQsk-w90wZi1@wunner.de>
+References: <aXovFQsk-w90wZi1@wunner.de>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY8PR11MB7828:EE_|PH8PR11MB6729:EE_
-X-MS-Office365-Filtering-Correlation-Id: 891c1c7f-2200-4b8e-a5db-08de6257b764
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?3yu69CsrbOdqwZcFMcEFj+m+3Z5m+s8Xu/qZAFQpKvqBqUz/Z7xl++12sEuH?=
- =?us-ascii?Q?f5tG/VBSJsKUhBSu+MuNKewuUV3Mf7m5i7fXdevkuu/S+eesluZpFXw0Xjo9?=
- =?us-ascii?Q?m0oxzpLOIKXAGUaiF9pF63Jhy9EIcGGdG1BBI95TU7YEuy40H8oiRXMDZhR6?=
- =?us-ascii?Q?p8vuw41pdmZGVgNTvvLHyOWsw7rk+s6/7SX9ij+hhraV2FfTvv/9PtEsIpRy?=
- =?us-ascii?Q?c5cCOB8Xh/8xz2kcK7FvRMZpvcDB0MXeO2UQ7+Uia/ZS2Bm/9KPzj8Ag+QzC?=
- =?us-ascii?Q?GmkclHUL13V6SviJKI2msBXh5cYFa4KFpqMyRWKBf3w+aCz6O0SGkd3GLbVC?=
- =?us-ascii?Q?+hwpSukThvulvInzwd5Ump3JjASrYsixvNka98nXKQmz0EEGAdr71R3Tjpry?=
- =?us-ascii?Q?y2i/gwA+7Q47o7A6rmdgTZspSd8IrZ4C4E7PHq5wi68mEyykmhvedWRmArnW?=
- =?us-ascii?Q?Fxaaw7Bp+A9DeRE3IHSQGDrPqRiQ8msjnWsNZ7T9xWB25KmH0zd/XhGihfHp?=
- =?us-ascii?Q?lzg9UrmtEPCI6qlihAugYH+Rp91ebx0yG/4k7LCVhLfkQwOSfRXnMVETyWzW?=
- =?us-ascii?Q?wI5RH1PGQV1uRa9LpCbTWpM29FNbruarI+CzS4tyEliwqFRNMQ00w5pob6DZ?=
- =?us-ascii?Q?R42BhPh2H2RQ2l1uMi8EDqVkgMqzQoZNmcFndQrbvN/PHXPuAdNCY6TJkm1j?=
- =?us-ascii?Q?/55bPwRSOD/kQUkAlyPIdpFE8zKdDSSH01//o4C6ScLy5Ac+PuK0e5U17FWD?=
- =?us-ascii?Q?4sQK2rfwnqPhs4dPnPdBc7At8dB7KEP3ZvW5+EBE5BJAlvnrSN1RCwV8pZyp?=
- =?us-ascii?Q?EBaZu37i+PJ8WOCizbwiVM4B+Il5FyplOblZtOOXKNUQxq2hfM44xIjUnDGd?=
- =?us-ascii?Q?78so/Ewvzsl4rLHjoejbfVsUauNrV1eoLaR+94SaESMbOw9yoHz3hDlSqT+r?=
- =?us-ascii?Q?RH4EA7zjz6ex+x6ywWmTjqEbRBDCE6W94as88wYESxzyaJtsQbBtZkbY2Mlj?=
- =?us-ascii?Q?EC0MP5a7/LRvY+PUeFSefi+uMQgEi9Lwsy/MPc7tIBuRoapcZ/MlG09+TP4O?=
- =?us-ascii?Q?YerGXF79VnV2Tbp45HR5EfWWvIQwxbtYchrsfDIZiLW0PVuU5IBcU3mmGHaD?=
- =?us-ascii?Q?eLK+wKvWXhGMYN5+Ek96/ySugfCefWZAiwwAPakmk8sM+mr3Yw0WO/Fmgj3d?=
- =?us-ascii?Q?Wa1JokDnoAzpZmeXSj4tpviVjdv+6QF9yVW+ycpJcElAgv/3oGcqXfVTZGxy?=
- =?us-ascii?Q?Gy7FvEjoNkJFIPxviKxVp0MoDGUcJsKji41ZXr8rRieGqm181mjrnX9Is/QF?=
- =?us-ascii?Q?venK9LoktYy045fizsoAM2rkjhYmBVwmRXs3yrU0PNqDC2YDDZL8Svtbq/8L?=
- =?us-ascii?Q?8O16izyZRrnFuDgfAnzp1GW/h5UodwM3oQy1Bd0eVlYcJVhz3vDv9aKhFq7v?=
- =?us-ascii?Q?C0juQR9NtDI+krNDM6CayQFYv2vgKNAhyPlp7E7BbxEmNnEIv0Xv0GNs81y9?=
- =?us-ascii?Q?el00owDFl7HTwdDOwVE9/bsperj7cKfBZvUuW7LiNJasEE5rlCE/ztg6X5Za?=
- =?us-ascii?Q?59RN2zsK8jEDQJIkAUU=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR11MB7828.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?sQKjoIPVnAUa/3LtrsCPib6y+93EgPUK1YTYvdKlQAA5THytnEG7XQnVcHxw?=
- =?us-ascii?Q?A4vs9K0EEc7fijTPfi5hxf0MpYNi9iH5W5d3Q4bQNK7Ihxkv7oOlo3B5aeck?=
- =?us-ascii?Q?jHFP3lDuqv8lkx9fcZE8ioxN5tAO6p/PK3WOVO/RMZ/Munm+f2zz6/wRa5AC?=
- =?us-ascii?Q?V14UU/PTDVPxMAaO3PmwA28nylgUvYl2R0YkNfM3ojFQMXRfoRnYzOfuepPG?=
- =?us-ascii?Q?3kmp/nAwNPo9DpQoXB07Ts25yqLCi74F7xpz7HQwsvnmNrqkM32GX2+0EKIM?=
- =?us-ascii?Q?b/hpBampZN8nfsJl1Ep7jHVlC2FcOI/lVdMCBK9B4sna35j4RZBzWL73wIn4?=
- =?us-ascii?Q?aNrQWT7ZEtD4Fa5QsoCpMTgoxoLrKTc+smJMF66jJDEaSKgpPxZqpv3Rm+VL?=
- =?us-ascii?Q?5EZb6s8gYmXyA6uzyrNGT9tvETYIZKNfBPpeyY1/PID7UcLoxFwmdZQlx1Vw?=
- =?us-ascii?Q?MycrtF0vDWse5tJpGcyb2OkGG63GdNGPRT35dkRkOyQx8D3pW04uYyXTAFfo?=
- =?us-ascii?Q?6xz5n11MkFUWxOmYCjP14CZuOl0AKaqNuW4TX9EmCGo+YxS64Bm1pMRyCnYP?=
- =?us-ascii?Q?yCuKjsbQMx5JmshuVf21WfyVpVgUoBKCw/XPBypsDqZByxnJgZeLkwOrJqgV?=
- =?us-ascii?Q?JH1fH1XDbab/ZINtA2uqmT9LG89GFGrBeTsc1r41fyLrqh0sLfaWlacOzBuw?=
- =?us-ascii?Q?9T++7OCPwpRw+21y+Otr/ZNH7fNXef0Xe6OslB91Ah8DF046soYUMjyRm/D/?=
- =?us-ascii?Q?wHaNpoBXSLOG5f7eQh/HN62X7b7jRNtiuuMAGw8JlzInSViNxIEb+s2NhcF0?=
- =?us-ascii?Q?YUTGqUfVCJSgABDCZsbZt3zO6D/zGL8H1jkZt4iOZWYGU8nCf8stdxf7zMat?=
- =?us-ascii?Q?ks1mczK/usNMI2SW/vsCZkELyxytpXu4LyIlQ5qlCnLkqcxatKYcd2g9LT5N?=
- =?us-ascii?Q?JGkzGpg+kVS7CWAkHkpSIPk3rI96UUEKR58vJIxx0gM5ftll0jhpsy8qU9wI?=
- =?us-ascii?Q?J2dimrlZqKHgSFB6JLefAb9n/hkOuYqrGpp9vcXfNxD/uyoplJTROOsYwdwT?=
- =?us-ascii?Q?w/SpH+abslCnjR/5zk55OVI2A8RlhEZyEMdHPFOkIn0Ya4ybt+AvFHEA9pTB?=
- =?us-ascii?Q?1F/9dkQXg8OA1oRpgwGQgRZ0IjZvIlLCxHl4/51figtRwoKNrR9QvtF/zc+p?=
- =?us-ascii?Q?+Z48EaVHxSdOsB8EjpUw/z2FV3klwR+pLR6ZWIHVuyvSQoXXLjlWzG9ddVm2?=
- =?us-ascii?Q?8EzIlxWF+oXDudYAK3iBtMOin2XsGRqymYhHw2ZAKXrnRgt1M7H7BAbCV7FV?=
- =?us-ascii?Q?nIivjlVEQOYUKSw8JljC05RzNucPyFWTQIULJqdcyco4Pe623QK6dEwAYm6g?=
- =?us-ascii?Q?uWt5R/RJBbT75EY3qJy9yh9GhZagXWth+tmK1DwUYmsb1Rg+Rb1FnsbU6qq6?=
- =?us-ascii?Q?ubRA3Qq1XUugkeBzK2xAl7vads5WgYUdafIaTESkrLPWSdhUkkD94rUhULkj?=
- =?us-ascii?Q?xUgr4sHcNIKPq+/dVlnY5u+QYqYJv8oBmB4eyE99fUDw0adffSVZTqloGwSN?=
- =?us-ascii?Q?3N/yZ5Y9nULT8H1ICWltyBE4N8/RckuRKxnXH0Rr7iQji+bRCCaEuiLDGi6g?=
- =?us-ascii?Q?y8bK5biEWdbv+6cRAyoFtzq3HQC+4gRaNXxGWJQ2cKLuzMYQOxK11oWaaEQe?=
- =?us-ascii?Q?B5GXBcp1JqGkjgp6S51HOT3frasso4YOJP45tHLvSAZPzsHfuYsAJTdNrXso?=
- =?us-ascii?Q?3J+K3s5mgPORZB8sIEdzRFgvWAciRsM=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 891c1c7f-2200-4b8e-a5db-08de6257b764
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7828.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2026 12:36:41.3281 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yUiY+78CjUL4SR5zTFYTzDy1vLAw5/Y0nM9yQRK+oA4veMmLs8UwyCGuFs8FP8ENc7Qn2/v37vUOVKE9/7ZEb7dpFjY89D5BN2UG8g/64qM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6729
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 02 Feb 2026 12:55:53 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -183,36 +94,12 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Jan 30, 2026 at 11:49:28AM -0800, Matthew Brost wrote:
-> The current code rejects device mappings whenever system pages have
-> already been encountered. This is not the intended behavior when
-> allow_mixed is set.
-> 
-> Relax the restriction by permitting a single pagemap to be selected when
-> allow_mixed is enabled, even if system pages were found earlier.
-> 
-> Fixed: bce13d6ecd6c ("drm/gpusvm, drm/xe: Allow mixed mappings for userptr")
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> Maybe you could give it a spin and verify if it fixes the issue for you?
 
-Reviewed-by: Francois Dugast <francois.dugast@intel.com>
+I tested it, and only tested to see if it booted.
+now again i tested, and it seems my iGPU and eGPU wasnt detected?
+and after futher debuging i found that setup_efi_pci only detected
+dGPU, so using update_nr_gpus was useless.
 
-> ---
->  drivers/gpu/drm/drm_gpusvm.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_gpusvm.c b/drivers/gpu/drm/drm_gpusvm.c
-> index d733599ceb9a..871fcccd128a 100644
-> --- a/drivers/gpu/drm/drm_gpusvm.c
-> +++ b/drivers/gpu/drm/drm_gpusvm.c
-> @@ -1495,7 +1495,7 @@ int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
->  			}
->  			zdd = page->zone_device_data;
->  			if (pagemap != page_pgmap(page)) {
-> -				if (i > 0) {
-> +				if (pagemap) {
->  					err = -EOPNOTSUPP;
->  					goto err_unmap;
->  				}
-> -- 
-> 2.34.1
-> 
+and about the macbookair situation, i say we just exclude macbook from
+enabling apple-set-os via a smbios quirk.
