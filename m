@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88B08E7DF0F
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 18:22:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27BCCE7DF11
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 18:48:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9003890B6;
-	Mon,  2 Feb 2026 18:22:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c1X4CYFH";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 128F0890B6
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Feb 2026 18:22:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770056526; x=1801592526;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=SmqtiAQ9/JkwLcu5dJ3HMIjINDq4UvEZRCn2B0WmIwY=;
- b=c1X4CYFHjt7ZwZrpNX9Psttg4zQyUVy0eioUbudPUUq56c/cucp0gHfB
- QxbcvUVSa9GdkQvNIUfqsGVMWIIFLUtrZ8KziTbyjkWvHnYNMOsrDY4Aa
- as2usgmSb2Grg3sl2KBWU7ELsYNP/3yUEhmEYrGCRr0t2XO1D8yj0Lu/0
- Ga54u2SHzZ+VqeG1r8JqLXkbTLvWHOsz7HPfT9ZacBnlxuyFwjCoD4c78
- PQvaRv1B/eF1UWedMO+3XV6lQNMxG7Q3tkJX6JYE81IlStH9yvQMK5695
- 6GKmIi94jSiO0w1/U4gXZvvvfOtQkeHI64NN8EpKUYpQtzJ2tmmeMPfas w==;
-X-CSE-ConnectionGUID: Br1GkuK+QvOvWbSeSP8Xsw==
-X-CSE-MsgGUID: dPgGfQ3qQjiRJ/Ojj2ms0Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="70424685"
-X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="70424685"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 10:22:06 -0800
-X-CSE-ConnectionGUID: pxcJloi1R4WeZj4RCetp5g==
-X-CSE-MsgGUID: 8/as9Q+CQqG9Y5/0X5pzLQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="247193985"
-Received: from osgc-linux-buildserver.sh.intel.com ([10.112.232.103])
- by orviesa001.jf.intel.com with ESMTP; 02 Feb 2026 10:22:05 -0800
-From: Shuicheng Lin <shuicheng.lin@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v2] drm/xe: Make xe_modparam.force_vram_bar_size signed
-Date: Mon,  2 Feb 2026 18:18:54 +0000
-Message-ID: <20260202181853.1095736-2-shuicheng.lin@intel.com>
-X-Mailer: git-send-email 2.50.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id A190E10E550;
+	Mon,  2 Feb 2026 18:48:08 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BE7C10E53F;
+ Mon,  2 Feb 2026 18:48:07 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0781135650694274855=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm=3A_Color_pipeline_teard?=
+ =?utf-8?q?own_and_follow-up_fixes/improvements_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 02 Feb 2026 18:48:07 -0000
+Message-ID: <177005808728.217507.4671185412441261949@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260202094202.2871478-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20260202094202.2871478-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,34 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-vram_bar_size is registered as an int module parameter and is documented
-to accept negative values to disable BAR resizing.
-Store it as an int in xe_modparam as well, so negative values work as
-intended and the module_param type matches.
+--===============0781135650694274855==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: 80742a1aa26e ("drm/xe: Allow to drop vram resizing")
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
----
- drivers/gpu/drm/xe/xe_module.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index 1c75f38ca393..79cb9639c0f3 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -12,7 +12,7 @@
- struct xe_modparam {
- 	bool force_execlist;
- 	bool probe_display;
--	u32 force_vram_bar_size;
-+	int force_vram_bar_size;
- 	int guc_log_level;
- 	char *guc_firmware_path;
- 	char *huc_firmware_path;
--- 
-2.50.1
+Series: drm: Color pipeline teardown and follow-up fixes/improvements (rev4)
+URL   : https://patchwork.freedesktop.org/series/159263/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4481-cd1fd615b2ba56ea3fb033262d4fbd0503055d3c_BAT -> xe-pw-159263v4_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4481-cd1fd615b2ba56ea3fb033262d4fbd0503055d3c -> xe-pw-159263v4
+
+  IGT_8729: 8729
+  xe-4481-cd1fd615b2ba56ea3fb033262d4fbd0503055d3c: cd1fd615b2ba56ea3fb033262d4fbd0503055d3c
+  xe-pw-159263v4: 159263v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159263v4/index.html
+
+--===============0781135650694274855==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm: Color pipeline teardown and follow-up fixes/improvements (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159263/">https://patchwork.freedesktop.org/series/159263/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159263v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159263v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4481-cd1fd615b2ba56ea3fb033262d4fbd0503055d3c_BAT -&gt; xe-pw-159263v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4481-cd1fd615b2ba56ea3fb033262d4fbd0503055d3c -&gt; xe-pw-159263v4</li>
+</ul>
+<p>IGT_8729: 8729<br />
+  xe-4481-cd1fd615b2ba56ea3fb033262d4fbd0503055d3c: cd1fd615b2ba56ea3fb033262d4fbd0503055d3c<br />
+  xe-pw-159263v4: 159263v4</p>
+
+</body>
+</html>
+
+--===============0781135650694274855==--
