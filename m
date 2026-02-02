@@ -4,170 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4139E7FDF3
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 22:51:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FBEBE7FDF3
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 22:53:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D1E110E129;
-	Mon,  2 Feb 2026 22:51:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0383910E2EC;
+	Mon,  2 Feb 2026 22:53:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZjPAjjg8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Daf+EW5e";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E180810E129;
- Mon,  2 Feb 2026 22:51:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABEAD10E129;
+ Mon,  2 Feb 2026 22:53:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770072685; x=1801608685;
+ t=1770072815; x=1801608815;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=v+uCtbhTmywmKwTvj2Wh9uaj0kA3s6H4hMG3ZCl0Gp8=;
- b=ZjPAjjg858NrqJFxYucb+Nyk38cNnRT9dREXBh+KLGdwhjYh/YKrpFFc
- DiTuzIjRqbthv5YeXamvyEfFjMiG4kgw9jyt23b74VMueOKd8VOJ0hSO8
- dgCbv1lIrZ3niq7rpwaa+y+wyt92VDBLAs2J9FBSfv0c1GdKXxqcoH6xm
- 9cp0iLba4m6N0OOP63OtltwrlLWx4HKgX0P9sIRQAdeDbICyD0IpOO0s6
- G99+m314Ses3nuGVDkAg9IFmX7vVa8JZZOCRapUrqLWIdJq4STRCpcq3m
- puhvbMU7zLhaZw9f9JjcuH7n2jTjfqLc4Kcr3NBrV4NbaMKZviCM3eGQQ w==;
-X-CSE-ConnectionGUID: x92bfAlbT6uiqggzhVj2Dg==
-X-CSE-MsgGUID: EoRfpPf5RqeiGv6C5PmfXA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="70444506"
-X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="70444506"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ mime-version:in-reply-to;
+ bh=9jJkKSmHjIY4PvmTJDT7aV53FEqAwXGVXBEAlca9+SQ=;
+ b=Daf+EW5ee0sG7P60biwHs6paL1kMHXr1dl+BK97FrPgVCgnwzTJdeSwc
+ 9qoyPA9nRNwJjdBc43cHCgh2KidVTxEkeE/idNWTwtJXwk64u0xqQIeMC
+ kGhRd5hkcPYDcr5cFUe72pJiYP5930PlKBwG7PdhFZoPCrsYso21t9l/0
+ Ra7tfl2B6K+XuyJ4YU0/sTt3LqdCHTw/jwoJh68ZsZVi2qgDbNLF+pYRE
+ ypPj0V2LRDIfIomI78gbpc90se4kG//mgXuLKAN8YK2k6U4rJeK1KKKES
+ Go1ZwtXmhFjFspp6vtQ0OOrXvO/iu/cjBpk6+uIJg/igBpj1II7U8viqy g==;
+X-CSE-ConnectionGUID: S3rKOF+9QzubX2hNrTPIFQ==
+X-CSE-MsgGUID: 2YU9P4wzTcm9dMlkQWmeRw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="70444692"
+X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="70444692"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 14:51:24 -0800
-X-CSE-ConnectionGUID: tY1zav9jTei8B0c0qNPhDw==
-X-CSE-MsgGUID: B7d0ZSRbRTygQth/wYQLfA==
+ 02 Feb 2026 14:53:34 -0800
+X-CSE-ConnectionGUID: Op/gtPnQThup9+D+67l0kQ==
+X-CSE-MsgGUID: Z6MA8XHuSTm3sPal1HjJbg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="247261941"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 14:51:24 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Mon, 2 Feb 2026 14:51:23 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Mon, 2 Feb 2026 14:51:23 -0800
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.2) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Mon, 2 Feb 2026 14:51:23 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wZu2hdta7API//z+p+eDr3x2YqAcizfIekLse8eKyPeK2iuLb4zffY8Rsngp6xxU+PAp4Z0GIuYuRH/PBOPtkQsz+/L5hvwQ9h9Qm+lWxHpf6wzCaPqeFF60fQgfiSXasrdJ89TwiNR+4XKBj6QrT8yiZGjmpjgRFJ7q3nUs5YCa1FtZ4G+TZXfW6PLIyS7FRhY8JethUTVmB9yjf7QAHSqzO1wJPmlOv5k7ah89CjhdKVvKCIaVFfR6XYJ+4L4pe5wOqiW9FHV5R1AE8CjSZOgDPUUkVoLpY1nHJF6oLrwXlcxrZKfUPZlUhbe0Z59l4nwJldz04Cvcc+5u5zEtPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tiXu7mNRgPjAHqTHwrxIrIQbmQajFahfbHpvWta78mk=;
- b=JFCNe6zWy79sTG4tMi9g5+sFtaQ4+5snTHXWruoxF/kCDEc98vQchb9uxrvbe4sMcgUTmnDHzob8N02spiVK4D8TfYd7e6y+tWU98yp4dAmVOwufKFbdbjqHklAiAYeGNptBYjiC9HdbP5ZdwHhUH02fGPC+Rm4qXCE4CsgYqj4OTVuZgOB3HbBCUrRqqzm1pMSNV2UVZCVICXqlvQLquzs6iFyLZ9NnNARQxNEw5mA/CvquTe5DFL01ceTU6wLBhgc8OfdCKOSdZfxKLvsl/EVG88uTzHKBB5Bjx8rxUfAmNuaWwnQhTY0lD4/q5c4lk06V8qa2qGrmIa0M0os3Pw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by DM4PR11MB8131.namprd11.prod.outlook.com (2603:10b6:8:190::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Mon, 2 Feb
- 2026 22:51:18 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e%7]) with mapi id 15.20.9564.016; Mon, 2 Feb 2026
- 22:51:18 +0000
-Date: Mon, 2 Feb 2026 14:51:15 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- "Tejas Upadhyay" <tejas.upadhyay@intel.com>
-Subject: Re: [PATCH 03/16] drm/xe/pat: Differentiate between primary and
- media for PTA
-Message-ID: <20260202225115.GK458797@mdroper-desk1.amr.corp.intel.com>
-References: <20260202-nvl-p-upstreaming-v1-0-653e4ff105dc@intel.com>
- <20260202-nvl-p-upstreaming-v1-3-653e4ff105dc@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260202-nvl-p-upstreaming-v1-3-653e4ff105dc@intel.com>
-X-ClientProxiedBy: BY3PR04CA0017.namprd04.prod.outlook.com
- (2603:10b6:a03:217::22) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="209660424"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+ by orviesa008.jf.intel.com with ESMTP; 02 Feb 2026 14:53:28 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1vn2nN-00000000g24-3BAB;
+ Mon, 02 Feb 2026 22:53:25 +0000
+Date: Tue, 3 Feb 2026 06:52:29 +0800
+From: kernel test robot <lkp@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: oe-kbuild-all@lists.linux.dev, aravind.iddamsetty@linux.intel.com,
+ anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, simona.vetter@ffwll.ch,
+ airlied@gmail.com, pratik.bari@intel.com,
+ joshua.santosh.ranjan@intel.com, ashwin.kumar.kulkarni@intel.com,
+ shubham.kumar@intel.com, ravi.kishore.koppuravuri@intel.com,
+ raag.jadav@intel.com, Zack McKevitt <zachary.mckevitt@oss.qualcomm.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Eric Dumazet <edumazet@google.com>, netdev@vger.kernel.org,
+ Riana Tauro <riana.tauro@intel.com>
+Subject: Re: [PATCH v5 1/5] drm/ras: Introduce the DRM RAS infrastructure
+ over generic netlink
+Message-ID: <202602030622.mmakbYmv-lkp@intel.com>
+References: <20260202064356.286243-8-riana.tauro@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|DM4PR11MB8131:EE_
-X-MS-Office365-Filtering-Correlation-Id: 107a6ea8-f918-42fe-479b-08de62ad93d1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?O2zVc1G7E4DfVxWpYefKPHVhykJh5k4POFR9xlpXJs+Y3iOku23Vd5VfXroE?=
- =?us-ascii?Q?2VsWh1Wl0xRH0AwItKbDA1V+TT5GA5439HwCi/IHAeHBV2EYSXdD0v2n7WDy?=
- =?us-ascii?Q?mXREuk/QJwcWEZfGhg8Vb9PaPat5now6eCelSQeYn3IBuDGJuFVaUT3tmJQI?=
- =?us-ascii?Q?H3oZbojtdz6N9KK0L76j1Kn40t0BjBE7kv/6c2u1r1EuG9R36Mo+dH6iy+WX?=
- =?us-ascii?Q?Dr9dsl5uwNIpTgo9lG4hwPb171h33tUK6cgepiHxf1wzQS4HUdFDlTkbMF7g?=
- =?us-ascii?Q?kEOFyKJSxyzjlX6RGVI3Z66BtMjoiTTe38tsUsfaFA6r+rcVtLv56GKWyOq3?=
- =?us-ascii?Q?iLCS13MZCSrbn1AQ6sD3WwfJ4RUQaMXDjUs200BvafCH3CvmvhStENbJrWYN?=
- =?us-ascii?Q?je3Yn4vsgP4Ls+pvfyUnGayA2a2e3wKSj6oW2llfZb+LXFwm1sx0RztSIq5X?=
- =?us-ascii?Q?nirfi4GjqJsip5JnsGnqktl8RGYyIcSpSsQ1aJdwGrBwtM2HeIizZg3KjNab?=
- =?us-ascii?Q?dEgxkSNN6hvOSFj+FOi+o/wRwv9oww7qnVH48kIlgnUq4ApzsiAMBq2yujqs?=
- =?us-ascii?Q?Oxost/JOuKy4WXcWvAx++TsOEw6tXlDZPC/Wqbe4hhoHBtvIHdNUFJsJNcSb?=
- =?us-ascii?Q?aDdNyW9mzrMsaTE5XAkN8PXiGOLir0OB7Qqrkg0M7wOBIm5qz131n6C4ukka?=
- =?us-ascii?Q?iY32mDFd9n/+01e/5RwxyOnkSkZdRnMcrU9OOfzLIurtyx9rRZ+opX7RbGOO?=
- =?us-ascii?Q?HDxD5ku7MWklGXoi2hhQyUlzMJC+tx0zPzlUAGEVa2VJu3a5sAN6+VgffJqr?=
- =?us-ascii?Q?rOx/0p7w3rWGXL4lMHsH7Z5eocme/NHcp8AxTeo3mLmqRPj5N5mDIY97VKxG?=
- =?us-ascii?Q?fZ/psXdqY1QVnD7qN3y8SanocfaHvhTgpzTij2GS2hxVsD2uYWLUrrDMK2Na?=
- =?us-ascii?Q?/D1vJYsrTL0p1ESTwa0aY2QWK6Qu8hmKrHTQmIzW84J08YRgjAOBAMZr8CMB?=
- =?us-ascii?Q?C/PwOZJuOXOa0f9xRGm+/iTHi3S7GjDrFue8MJnkwXzeRbHaIc4eHBVKvQOZ?=
- =?us-ascii?Q?paUppxnBsrAelVg6jR0CXfhTgHMMeRrtyEmJOYcnKL7LOFH0N4WXfi5EqZw1?=
- =?us-ascii?Q?heKVNrKilTJsypjA/rkrwJnSXEgWzC6FH8CtROxMHo6SzSrSo9N3CuTsyTlN?=
- =?us-ascii?Q?TszT6p7RydVkcD9lKK+DaswS7HyobD6TcAM1OcR+gz24B/3g0eHP/6XIE2BM?=
- =?us-ascii?Q?xrUIl8y5VmrzeWezMmmUfpCINjR/QmbJZ2/VrHoLCxK/CjxGt6F+tEMYWJ0U?=
- =?us-ascii?Q?py4cbXB4uz7FyEQi0NtyDgmhSHitaLIrUx4u8yHnWWAecduC8/SqJRwnyxG1?=
- =?us-ascii?Q?3l6XhmhNpRMWxVHIJwpXY0+DKmetbyYnhrkec7/hluO5DXYOJS4sGzjSWFwf?=
- =?us-ascii?Q?KGCEgZSaOkE0ODD1Scf8FvEEzeeGNQPKpiDc2/0oQmVUMTB2lotgdkTU9SnL?=
- =?us-ascii?Q?DBbavj+wO4QPI9TiHhHoAuSwdEmnYFz3uLJcb8lLplBcgekHUl2hCFzixypE?=
- =?us-ascii?Q?fSIPcVa5fN4O3gV5CeI=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?v6Ze3+3VZVqECniyU7Wr9VS/ubszFHBVkIakaZSLPGqTyqRtlJJKvVZ7s/5D?=
- =?us-ascii?Q?FEOwN7mdFtSA5jrNwoDX90gKRga+77fnsSrsmThmkfKdYgft+Xk2TWl0KrzP?=
- =?us-ascii?Q?u/23lv2jUqMLup0lskMindGFt95/O81Pnw3lkEnD/L+VFA+c6/QyM42BzaBv?=
- =?us-ascii?Q?bpN7a92CGRzUJTPlpdU1zVayskxZZyZLiNOg5MEDbeSDzCdhI6U/mR1zY+Gn?=
- =?us-ascii?Q?vUUz/kBdSaul40qkOtWDdOo3WDF2dcJEcuHtLbmnkb+uDQN6/WSYUWBNeJ33?=
- =?us-ascii?Q?QgIZxAWw3Ok0CUu0Kh9QUJaC4+f+32zh7yaDaA+HlhjDceIUtp6koIORwBLC?=
- =?us-ascii?Q?Lw3yKehk/EBHK5J9i8S4lDp7ZfxITjh70agly2Qqu2a7dYeRgzUVZ8GT2FKu?=
- =?us-ascii?Q?HCMDxphjxd5+DjUix0zga91GMUxJ/CUtMTIX7j0Z/ZtPLT/SZQ+xoUkeVb+q?=
- =?us-ascii?Q?lkAotn/dqc58cawllnipANmdZuYVou/nxK5W5ZfpBjQbuqLAzr4GUAWsePHa?=
- =?us-ascii?Q?HalnGUAKsDnackIGMeFsL79Os4Iy0iYcngshkAhAlpyS14uC8p7D/EehsDe8?=
- =?us-ascii?Q?uREcT1QBAfsZRY76WQJ3KO0NZBrvk0mUK31q+DuEes7Dzf988L2Y7IEazn4V?=
- =?us-ascii?Q?dDNKzRp2SdAhzO7/2BmckR4N2Z/JUci27ftKQNXSm3gj1SDM1QeqjIkN0d6f?=
- =?us-ascii?Q?mQkogwD08NlmKIgjyACih6vG6Pn7AFI4Qz4ouI0SAq5JZGh/OSniEcUofvMH?=
- =?us-ascii?Q?/yEmTRo/E0pENthUYehCD8E9dru2BP9k8sWVPplJgZcHERI0gsgFh107ntGm?=
- =?us-ascii?Q?XnM8AQqDT6mC5eRSDuYcocY4Ve+3S/JFySQeKCQjOVEz1lTLU9b2xdbk8RG4?=
- =?us-ascii?Q?93t8QJp2aNkr9jt2x8618Ej5Un8fkGTiF9UToi81G7b/3kciVhG71FId07f/?=
- =?us-ascii?Q?Pfgvt5fvuBgxeOUgqKtxYgQsyhgHVYyxrHzU4YcF6vkvrvRCW4Sue5GgklgD?=
- =?us-ascii?Q?35iU98Zbq0lCvpeEZECYbFSGN4COIBHjkqeJNs+oPd1Izi5a7ZhcX/NlpyGe?=
- =?us-ascii?Q?p6u9JogkMC98esmOtOYAGbFJCle2o/TlyLxgXzEWwYuAPwkZoE93GfGAvgpx?=
- =?us-ascii?Q?bnLhO1mU5ousBFlDsyVrA4tm3VGheFWLoqj2FMop7yXQb0DVva0GVfwrUiPp?=
- =?us-ascii?Q?W8K7Flw89q32xv1AaCNosHllZcV5MKrEFdFdTvRKVcLU6An/K6BvSovushTC?=
- =?us-ascii?Q?cuKr3iwLXn+fyHDm7JuE4vf5PgHVpnNI1Z98/meX4wm4sOMvPWhCWohmV9L9?=
- =?us-ascii?Q?IQKQYmNa5WYBkYKXCOM0/sE5YCUlMfhFZ8UE7yCnkjk2LR8i7jMTM3D0l0cK?=
- =?us-ascii?Q?G0lWnk8HSQ4Nt/Clt2Pt9c0eVWyi+55LzSQxzEXzYaAhQo5rHwQagjS+0Ogw?=
- =?us-ascii?Q?xyMYsHbWXcHqPnWP9xK0QI4kujwIa40OxB3MlYVl1mlFg0yWowrYIZHELPFv?=
- =?us-ascii?Q?llIOcp8J/jcTfKHPbO/FBlWKKIfjaoHiCeQyeiQS6UiEJZbkupA9l6otDiQn?=
- =?us-ascii?Q?VZ+yHvIsblrLXBHnGeAiPJiXb67F6SSo+MZ/gvJNxGui0JWKiQKi3K9oYqy/?=
- =?us-ascii?Q?S9C5lRENUdt2vGs/bszCy3yXAt3p3fchZJESbE5eVHb6oImhGgFDhRKJCRw0?=
- =?us-ascii?Q?GkDB2CpMpkWwtVepkWyUPOOQvSGryrwMUCTaNsIXfpkWBAofhG5mbdve5wT1?=
- =?us-ascii?Q?bVlVxcYoQkyi6eYqKDolR5IxRk6dprA=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 107a6ea8-f918-42fe-479b-08de62ad93d1
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2026 22:51:18.3195 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SvgUWUJOVO6rKxgl8hlPh4vOgXGkfdCfLSWt0cvWIoPL7E3NRS3aEjSxmpGU8Y3JcGRJUhnyEdTgBUDqSJtkuk7EXOUXyJXh32l0L1r6Ows=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB8131
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260202064356.286243-8-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -182,125 +80,303 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Feb 02, 2026 at 06:43:09PM -0300, Gustavo Sousa wrote:
-> Differently from currently supported platforms, in upcoming changes we
-> will need to have different PAT entries for PTA based on the GT type. As
-> such, let's prepare the code to support that by having two separate
-> PTA-specific members in the pat struct, one for each type of GT.
-> 
-> While at it, also fix the kerneldoc for pat_ats.
-> 
-> Co-developed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Hi Riana,
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+kernel test robot noticed the following build errors:
 
-> ---
->  drivers/gpu/drm/xe/xe_device_types.h |  8 +++++---
->  drivers/gpu/drm/xe/xe_pat.c          | 27 ++++++++++++++++++---------
->  2 files changed, 23 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 34feef79fa4e..4508ed54d1d5 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -568,10 +568,12 @@ struct xe_device {
->  		const struct xe_pat_table_entry *table;
->  		/** @pat.n_entries: Number of PAT entries */
->  		int n_entries;
-> -		/** @pat.ats_entry: PAT entry for PCIe ATS responses */
-> +		/** @pat.pat_ats: PAT entry for PCIe ATS responses */
->  		const struct xe_pat_table_entry *pat_ats;
-> -		/** @pat.pta_entry: PAT entry for page table accesses */
-> -		const struct xe_pat_table_entry *pat_pta;
-> +		/** @pat.pat_primary_pta: primary GT PAT entry for page table accesses */
-> +		const struct xe_pat_table_entry *pat_primary_pta;
-> +		/** @pat.pat_media_pta: media GT PAT entry for page table accesses */
-> +		const struct xe_pat_table_entry *pat_media_pta;
->  		u32 idx[__XE_CACHE_LEVEL_COUNT];
->  	} pat;
->  
-> diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-> index 14d0dce5190a..5776ea67fe02 100644
-> --- a/drivers/gpu/drm/xe/xe_pat.c
-> +++ b/drivers/gpu/drm/xe/xe_pat.c
-> @@ -284,8 +284,10 @@ static void program_pat(struct xe_gt *gt, const struct xe_pat_table_entry table[
->  
->  	if (xe->pat.pat_ats)
->  		xe_mmio_write32(&gt->mmio, XE_REG(_PAT_ATS), xe->pat.pat_ats->value);
-> -	if (xe->pat.pat_pta)
-> -		xe_mmio_write32(&gt->mmio, XE_REG(_PAT_PTA), xe->pat.pat_pta->value);
-> +	if (xe->pat.pat_primary_pta && xe_gt_is_main_type(gt))
-> +		xe_mmio_write32(&gt->mmio, XE_REG(_PAT_PTA), xe->pat.pat_primary_pta->value);
-> +	if (xe->pat.pat_media_pta && xe_gt_is_media_type(gt))
-> +		xe_mmio_write32(&gt->mmio, XE_REG(_PAT_PTA), xe->pat.pat_media_pta->value);
->  }
->  
->  static void program_pat_mcr(struct xe_gt *gt, const struct xe_pat_table_entry table[],
-> @@ -301,8 +303,10 @@ static void program_pat_mcr(struct xe_gt *gt, const struct xe_pat_table_entry ta
->  
->  	if (xe->pat.pat_ats)
->  		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_ATS), xe->pat.pat_ats->value);
-> -	if (xe->pat.pat_pta)
-> -		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_PTA), xe->pat.pat_pta->value);
-> +	if (xe->pat.pat_primary_pta && xe_gt_is_main_type(gt))
-> +		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_PTA), xe->pat.pat_primary_pta->value);
-> +	if (xe->pat.pat_media_pta && xe_gt_is_media_type(gt))
-> +		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_PTA), xe->pat.pat_media_pta->value);
->  }
->  
->  static int xelp_dump(struct xe_gt *gt, struct drm_printer *p)
-> @@ -527,7 +531,8 @@ void xe_pat_init_early(struct xe_device *xe)
->  		xe->pat.ops = &xe3p_xpc_pat_ops;
->  		xe->pat.table = xe3p_xpc_pat_table;
->  		xe->pat.pat_ats = &xe3p_xpc_pat_ats;
-> -		xe->pat.pat_pta = &xe3p_xpc_pat_pta;
-> +		xe->pat.pat_primary_pta = &xe3p_xpc_pat_pta;
-> +		xe->pat.pat_media_pta = &xe3p_xpc_pat_pta;
->  		xe->pat.n_entries = ARRAY_SIZE(xe3p_xpc_pat_table);
->  		xe->pat.idx[XE_CACHE_NONE] = 3;
->  		xe->pat.idx[XE_CACHE_WT] = 3;	/* N/A (no display); use UC */
-> @@ -541,8 +546,10 @@ void xe_pat_init_early(struct xe_device *xe)
->  			xe->pat.table = xe2_pat_table;
->  		}
->  		xe->pat.pat_ats = &xe2_pat_ats;
-> -		if (IS_DGFX(xe))
-> -			xe->pat.pat_pta = &xe2_pat_pta;
-> +		if (IS_DGFX(xe)) {
-> +			xe->pat.pat_primary_pta = &xe2_pat_pta;
-> +			xe->pat.pat_media_pta = &xe2_pat_pta;
-> +		}
->  
->  		/* Wa_16023588340. XXX: Should use XE_WA */
->  		if (GRAPHICS_VERx100(xe) == 2001)
-> @@ -649,6 +656,8 @@ int xe_pat_dump(struct xe_gt *gt, struct drm_printer *p)
->  int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
->  {
->  	struct xe_device *xe = gt_to_xe(gt);
-> +	const struct xe_pat_table_entry *pta_entry = xe_gt_is_main_type(gt) ?
-> +		xe->pat.pat_primary_pta : xe->pat.pat_media_pta;
->  	char label[PAT_LABEL_LEN];
->  
->  	if (!xe->pat.table || !xe->pat.n_entries)
-> @@ -675,8 +684,8 @@ int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
->  		}
->  	}
->  
-> -	if (xe->pat.pat_pta) {
-> -		u32 pat = xe->pat.pat_pta->value;
-> +	if (pta_entry) {
-> +		u32 pat = pta_entry->value;
->  
->  		drm_printf(p, "Page Table Access:\n");
->  		xe2_pat_entry_dump(p, "PTA_MODE", pat, false);
-> 
-> -- 
-> 2.52.0
-> 
+[auto build test ERROR on drm-xe/drm-xe-next]
+[also build test ERROR on drm-misc/drm-misc-next drm/drm-next linus/master v6.19-rc8]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Riana-Tauro/drm-ras-Introduce-the-DRM-RAS-infrastructure-over-generic-netlink/20260202-141553
+base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+patch link:    https://lore.kernel.org/r/20260202064356.286243-8-riana.tauro%40intel.com
+patch subject: [PATCH v5 1/5] drm/ras: Introduce the DRM RAS infrastructure over generic netlink
+config: csky-randconfig-002-20260203 (https://download.01.org/0day-ci/archive/20260203/202602030622.mmakbYmv-lkp@intel.com/config)
+compiler: csky-linux-gcc (GCC) 15.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260203/202602030622.mmakbYmv-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202602030622.mmakbYmv-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   csky-linux-ld: drivers/gpu/drm/drm_ras.o: in function `nla_put_u32':
+>> include/net/netlink.h:1459:(.text+0x12): undefined reference to `nla_put'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.o: in function `nla_put_string':
+   include/net/netlink.h:1657:(.text+0x28): undefined reference to `nla_put'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.o: in function `nla_put_u32':
+   include/net/netlink.h:1459:(.text+0x3a): undefined reference to `nla_put'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.o: in function `drm_ras_node_unregister':
+>> drivers/gpu/drm/drm_ras.c:350:(.text+0x10c): undefined reference to `nla_put'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.o: in function `__genlmsg_iput':
+>> include/net/genetlink.h:342:(.text+0x246): undefined reference to `genlmsg_put'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.o: in function `nla_put_u32':
+   include/net/netlink.h:1459:(.text+0x262): undefined reference to `nla_put'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.o: in function `nla_put_string':
+   include/net/netlink.h:1657:(.text+0x27e): undefined reference to `nla_put'
+>> csky-linux-ld: include/net/netlink.h:1657:(.text+0x29a): undefined reference to `nla_put'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.o: in function `nla_put_u32':
+   include/net/netlink.h:1459:(.text+0x2b6): undefined reference to `nla_put'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.o: in function `nlmsg_trim':
+>> include/net/netlink.h:1108:(.text+0x2e4): undefined reference to `skb_trim'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.o: in function `drm_ras_nl_list_nodes_dumpit':
+>> drivers/gpu/drm/drm_ras.c:144:(.text+0x330): undefined reference to `genlmsg_put'
+>> csky-linux-ld: drivers/gpu/drm/drm_ras.c:144:(.text+0x334): undefined reference to `nla_put'
+>> csky-linux-ld: drivers/gpu/drm/drm_ras.c:144:(.text+0x344): undefined reference to `skb_trim'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.o: in function `__genlmsg_iput':
+   include/net/genetlink.h:342:(.text+0x408): undefined reference to `genlmsg_put'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.o: in function `nlmsg_trim':
+   include/net/netlink.h:1108:(.text+0x45a): undefined reference to `skb_trim'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.o: in function `alloc_skb':
+>> include/linux/skbuff.h:1383:(.text+0x4f8): undefined reference to `__alloc_skb'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.o: in function `__genlmsg_iput':
+   include/net/genetlink.h:342:(.text+0x510): undefined reference to `genlmsg_put'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.o: in function `kfree_skb_reason':
+>> include/linux/skbuff.h:1322:(.text+0x51e): undefined reference to `sk_skb_reason_drop'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.o: in function `doit_reply_value':
+   drivers/gpu/drm/drm_ras.c:196:(.text+0x534): undefined reference to `genlmsg_put'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.c:196:(.text+0x544): undefined reference to `skb_trim'
+>> csky-linux-ld: drivers/gpu/drm/drm_ras.c:196:(.text+0x548): undefined reference to `__alloc_skb'
+>> csky-linux-ld: drivers/gpu/drm/drm_ras.c:196:(.text+0x54c): undefined reference to `sk_skb_reason_drop'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.o: in function `nlmsg_trim':
+   include/net/netlink.h:1108:(.text+0x5a4): undefined reference to `skb_trim'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.o: in function `kfree_skb_reason':
+   include/linux/skbuff.h:1322:(.text+0x5b6): undefined reference to `sk_skb_reason_drop'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.o: in function `nlmsg_unicast':
+>> include/net/netlink.h:1198:(.text+0x5d6): undefined reference to `netlink_unicast'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.o: in function `drm_ras_nl_query_error_counter_doit':
+>> drivers/gpu/drm/drm_ras.c:312:(.text+0x614): undefined reference to `skb_trim'
+   csky-linux-ld: drivers/gpu/drm/drm_ras.c:312:(.text+0x618): undefined reference to `sk_skb_reason_drop'
+>> csky-linux-ld: drivers/gpu/drm/drm_ras.c:312:(.text+0x61c): undefined reference to `init_net'
+>> csky-linux-ld: drivers/gpu/drm/drm_ras.c:312:(.text+0x620): undefined reference to `netlink_unicast'
+   csky-linux-ld: drivers/gpu/drm/drm_ras_genl_family.o: in function `drm_ras_genl_family_register':
+>> drivers/gpu/drm/drm_ras_genl_family.c:23:(.text+0xa): undefined reference to `genl_register_family'
+   csky-linux-ld: drivers/gpu/drm/drm_ras_genl_family.o: in function `drm_ras_genl_family_unregister':
+>> drivers/gpu/drm/drm_ras_genl_family.c:39:(.text+0x4c): undefined reference to `genl_unregister_family'
+>> csky-linux-ld: drivers/gpu/drm/drm_ras_genl_family.c:42:(.text+0x64): undefined reference to `genl_register_family'
+>> csky-linux-ld: drivers/gpu/drm/drm_ras_genl_family.c:42:(.text+0x68): undefined reference to `genl_unregister_family'
+
+
+vim +1459 include/net/netlink.h
+
+24c410dce335db David S. Miller 2012-04-01  1448  
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1449  /**
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1450   * nla_put_u32 - Add a u32 netlink attribute to a socket buffer
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1451   * @skb: socket buffer to add attribute to
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1452   * @attrtype: attribute type
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1453   * @value: numeric value
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1454   */
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1455  static inline int nla_put_u32(struct sk_buff *skb, int attrtype, u32 value)
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1456  {
+b4391db42308c9 Arnd Bergmann   2017-09-22  1457  	u32 tmp = value;
+b4391db42308c9 Arnd Bergmann   2017-09-22  1458  
+b4391db42308c9 Arnd Bergmann   2017-09-22 @1459  	return nla_put(skb, attrtype, sizeof(u32), &tmp);
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1460  }
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1461  
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1462  /**
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1463   * nla_put_uint - Add a variable-size unsigned int to a socket buffer
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1464   * @skb: socket buffer to add attribute to
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1465   * @attrtype: attribute type
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1466   * @value: numeric value
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1467   */
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1468  static inline int nla_put_uint(struct sk_buff *skb, int attrtype, u64 value)
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1469  {
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1470  	u64 tmp64 = value;
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1471  	u32 tmp32 = value;
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1472  
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1473  	if (tmp64 == tmp32)
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1474  		return nla_put_u32(skb, attrtype, tmp32);
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1475  	return nla_put(skb, attrtype, sizeof(u64), &tmp64);
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1476  }
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1477  
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1478  /**
+569a8fc38367df David S. Miller 2012-03-29  1479   * nla_put_be32 - Add a __be32 netlink attribute to a socket buffer
+569a8fc38367df David S. Miller 2012-03-29  1480   * @skb: socket buffer to add attribute to
+569a8fc38367df David S. Miller 2012-03-29  1481   * @attrtype: attribute type
+569a8fc38367df David S. Miller 2012-03-29  1482   * @value: numeric value
+569a8fc38367df David S. Miller 2012-03-29  1483   */
+569a8fc38367df David S. Miller 2012-03-29  1484  static inline int nla_put_be32(struct sk_buff *skb, int attrtype, __be32 value)
+569a8fc38367df David S. Miller 2012-03-29  1485  {
+b4391db42308c9 Arnd Bergmann   2017-09-22  1486  	__be32 tmp = value;
+b4391db42308c9 Arnd Bergmann   2017-09-22  1487  
+b4391db42308c9 Arnd Bergmann   2017-09-22  1488  	return nla_put(skb, attrtype, sizeof(__be32), &tmp);
+569a8fc38367df David S. Miller 2012-03-29  1489  }
+569a8fc38367df David S. Miller 2012-03-29  1490  
+6c1dd3b6a35178 David S. Miller 2012-04-01  1491  /**
+6c1dd3b6a35178 David S. Miller 2012-04-01  1492   * nla_put_net32 - Add 32-bit network byte order netlink attribute to a socket buffer
+6c1dd3b6a35178 David S. Miller 2012-04-01  1493   * @skb: socket buffer to add attribute to
+6c1dd3b6a35178 David S. Miller 2012-04-01  1494   * @attrtype: attribute type
+6c1dd3b6a35178 David S. Miller 2012-04-01  1495   * @value: numeric value
+6c1dd3b6a35178 David S. Miller 2012-04-01  1496   */
+6c1dd3b6a35178 David S. Miller 2012-04-01  1497  static inline int nla_put_net32(struct sk_buff *skb, int attrtype, __be32 value)
+6c1dd3b6a35178 David S. Miller 2012-04-01  1498  {
+b4391db42308c9 Arnd Bergmann   2017-09-22  1499  	__be32 tmp = value;
+b4391db42308c9 Arnd Bergmann   2017-09-22  1500  
+b4391db42308c9 Arnd Bergmann   2017-09-22  1501  	return nla_put_be32(skb, attrtype | NLA_F_NET_BYTEORDER, tmp);
+6c1dd3b6a35178 David S. Miller 2012-04-01  1502  }
+6c1dd3b6a35178 David S. Miller 2012-04-01  1503  
+24c410dce335db David S. Miller 2012-04-01  1504  /**
+24c410dce335db David S. Miller 2012-04-01  1505   * nla_put_le32 - Add a __le32 netlink attribute to a socket buffer
+24c410dce335db David S. Miller 2012-04-01  1506   * @skb: socket buffer to add attribute to
+24c410dce335db David S. Miller 2012-04-01  1507   * @attrtype: attribute type
+24c410dce335db David S. Miller 2012-04-01  1508   * @value: numeric value
+24c410dce335db David S. Miller 2012-04-01  1509   */
+24c410dce335db David S. Miller 2012-04-01  1510  static inline int nla_put_le32(struct sk_buff *skb, int attrtype, __le32 value)
+24c410dce335db David S. Miller 2012-04-01  1511  {
+b4391db42308c9 Arnd Bergmann   2017-09-22  1512  	__le32 tmp = value;
+b4391db42308c9 Arnd Bergmann   2017-09-22  1513  
+b4391db42308c9 Arnd Bergmann   2017-09-22  1514  	return nla_put(skb, attrtype, sizeof(__le32), &tmp);
+24c410dce335db David S. Miller 2012-04-01  1515  }
+24c410dce335db David S. Miller 2012-04-01  1516  
+73520786b0793c Nicolas Dichtel 2016-04-22  1517  /**
+73520786b0793c Nicolas Dichtel 2016-04-22  1518   * nla_put_u64_64bit - Add a u64 netlink attribute to a skb and align it
+73520786b0793c Nicolas Dichtel 2016-04-22  1519   * @skb: socket buffer to add attribute to
+73520786b0793c Nicolas Dichtel 2016-04-22  1520   * @attrtype: attribute type
+73520786b0793c Nicolas Dichtel 2016-04-22  1521   * @value: numeric value
+73520786b0793c Nicolas Dichtel 2016-04-22  1522   * @padattr: attribute type for the padding
+73520786b0793c Nicolas Dichtel 2016-04-22  1523   */
+73520786b0793c Nicolas Dichtel 2016-04-22  1524  static inline int nla_put_u64_64bit(struct sk_buff *skb, int attrtype,
+73520786b0793c Nicolas Dichtel 2016-04-22  1525  				    u64 value, int padattr)
+73520786b0793c Nicolas Dichtel 2016-04-22  1526  {
+b4391db42308c9 Arnd Bergmann   2017-09-22  1527  	u64 tmp = value;
+b4391db42308c9 Arnd Bergmann   2017-09-22  1528  
+b4391db42308c9 Arnd Bergmann   2017-09-22  1529  	return nla_put_64bit(skb, attrtype, sizeof(u64), &tmp, padattr);
+73520786b0793c Nicolas Dichtel 2016-04-22  1530  }
+73520786b0793c Nicolas Dichtel 2016-04-22  1531  
+569a8fc38367df David S. Miller 2012-03-29  1532  /**
+b46f6ded906ef0 Nicolas Dichtel 2016-04-22  1533   * nla_put_be64 - Add a __be64 netlink attribute to a socket buffer and align it
+569a8fc38367df David S. Miller 2012-03-29  1534   * @skb: socket buffer to add attribute to
+569a8fc38367df David S. Miller 2012-03-29  1535   * @attrtype: attribute type
+569a8fc38367df David S. Miller 2012-03-29  1536   * @value: numeric value
+b46f6ded906ef0 Nicolas Dichtel 2016-04-22  1537   * @padattr: attribute type for the padding
+569a8fc38367df David S. Miller 2012-03-29  1538   */
+b46f6ded906ef0 Nicolas Dichtel 2016-04-22  1539  static inline int nla_put_be64(struct sk_buff *skb, int attrtype, __be64 value,
+b46f6ded906ef0 Nicolas Dichtel 2016-04-22  1540  			       int padattr)
+569a8fc38367df David S. Miller 2012-03-29  1541  {
+b4391db42308c9 Arnd Bergmann   2017-09-22  1542  	__be64 tmp = value;
+b4391db42308c9 Arnd Bergmann   2017-09-22  1543  
+b4391db42308c9 Arnd Bergmann   2017-09-22  1544  	return nla_put_64bit(skb, attrtype, sizeof(__be64), &tmp, padattr);
+569a8fc38367df David S. Miller 2012-03-29  1545  }
+569a8fc38367df David S. Miller 2012-03-29  1546  
+6c1dd3b6a35178 David S. Miller 2012-04-01  1547  /**
+e9bbe898cbe89b Nicolas Dichtel 2016-04-22  1548   * nla_put_net64 - Add 64-bit network byte order nlattr to a skb and align it
+6c1dd3b6a35178 David S. Miller 2012-04-01  1549   * @skb: socket buffer to add attribute to
+6c1dd3b6a35178 David S. Miller 2012-04-01  1550   * @attrtype: attribute type
+6c1dd3b6a35178 David S. Miller 2012-04-01  1551   * @value: numeric value
+e9bbe898cbe89b Nicolas Dichtel 2016-04-22  1552   * @padattr: attribute type for the padding
+6c1dd3b6a35178 David S. Miller 2012-04-01  1553   */
+e9bbe898cbe89b Nicolas Dichtel 2016-04-22  1554  static inline int nla_put_net64(struct sk_buff *skb, int attrtype, __be64 value,
+e9bbe898cbe89b Nicolas Dichtel 2016-04-22  1555  				int padattr)
+6c1dd3b6a35178 David S. Miller 2012-04-01  1556  {
+b4391db42308c9 Arnd Bergmann   2017-09-22  1557  	__be64 tmp = value;
+b4391db42308c9 Arnd Bergmann   2017-09-22  1558  
+b4391db42308c9 Arnd Bergmann   2017-09-22  1559  	return nla_put_be64(skb, attrtype | NLA_F_NET_BYTEORDER, tmp,
+e9bbe898cbe89b Nicolas Dichtel 2016-04-22  1560  			    padattr);
+6c1dd3b6a35178 David S. Miller 2012-04-01  1561  }
+6c1dd3b6a35178 David S. Miller 2012-04-01  1562  
+24c410dce335db David S. Miller 2012-04-01  1563  /**
+e7479122befd70 Nicolas Dichtel 2016-04-22  1564   * nla_put_le64 - Add a __le64 netlink attribute to a socket buffer and align it
+24c410dce335db David S. Miller 2012-04-01  1565   * @skb: socket buffer to add attribute to
+24c410dce335db David S. Miller 2012-04-01  1566   * @attrtype: attribute type
+24c410dce335db David S. Miller 2012-04-01  1567   * @value: numeric value
+e7479122befd70 Nicolas Dichtel 2016-04-22  1568   * @padattr: attribute type for the padding
+24c410dce335db David S. Miller 2012-04-01  1569   */
+e7479122befd70 Nicolas Dichtel 2016-04-22  1570  static inline int nla_put_le64(struct sk_buff *skb, int attrtype, __le64 value,
+e7479122befd70 Nicolas Dichtel 2016-04-22  1571  			       int padattr)
+24c410dce335db David S. Miller 2012-04-01  1572  {
+b4391db42308c9 Arnd Bergmann   2017-09-22  1573  	__le64 tmp = value;
+b4391db42308c9 Arnd Bergmann   2017-09-22  1574  
+b4391db42308c9 Arnd Bergmann   2017-09-22  1575  	return nla_put_64bit(skb, attrtype, sizeof(__le64), &tmp, padattr);
+24c410dce335db David S. Miller 2012-04-01  1576  }
+24c410dce335db David S. Miller 2012-04-01  1577  
+4778e0be16c291 Jiri Pirko      2012-07-27  1578  /**
+4778e0be16c291 Jiri Pirko      2012-07-27  1579   * nla_put_s8 - Add a s8 netlink attribute to a socket buffer
+4778e0be16c291 Jiri Pirko      2012-07-27  1580   * @skb: socket buffer to add attribute to
+4778e0be16c291 Jiri Pirko      2012-07-27  1581   * @attrtype: attribute type
+4778e0be16c291 Jiri Pirko      2012-07-27  1582   * @value: numeric value
+4778e0be16c291 Jiri Pirko      2012-07-27  1583   */
+4778e0be16c291 Jiri Pirko      2012-07-27  1584  static inline int nla_put_s8(struct sk_buff *skb, int attrtype, s8 value)
+4778e0be16c291 Jiri Pirko      2012-07-27  1585  {
+b4391db42308c9 Arnd Bergmann   2017-09-22  1586  	s8 tmp = value;
+b4391db42308c9 Arnd Bergmann   2017-09-22  1587  
+b4391db42308c9 Arnd Bergmann   2017-09-22  1588  	return nla_put(skb, attrtype, sizeof(s8), &tmp);
+4778e0be16c291 Jiri Pirko      2012-07-27  1589  }
+4778e0be16c291 Jiri Pirko      2012-07-27  1590  
+4778e0be16c291 Jiri Pirko      2012-07-27  1591  /**
+4778e0be16c291 Jiri Pirko      2012-07-27  1592   * nla_put_s16 - Add a s16 netlink attribute to a socket buffer
+4778e0be16c291 Jiri Pirko      2012-07-27  1593   * @skb: socket buffer to add attribute to
+4778e0be16c291 Jiri Pirko      2012-07-27  1594   * @attrtype: attribute type
+4778e0be16c291 Jiri Pirko      2012-07-27  1595   * @value: numeric value
+4778e0be16c291 Jiri Pirko      2012-07-27  1596   */
+4778e0be16c291 Jiri Pirko      2012-07-27  1597  static inline int nla_put_s16(struct sk_buff *skb, int attrtype, s16 value)
+4778e0be16c291 Jiri Pirko      2012-07-27  1598  {
+b4391db42308c9 Arnd Bergmann   2017-09-22  1599  	s16 tmp = value;
+b4391db42308c9 Arnd Bergmann   2017-09-22  1600  
+b4391db42308c9 Arnd Bergmann   2017-09-22  1601  	return nla_put(skb, attrtype, sizeof(s16), &tmp);
+4778e0be16c291 Jiri Pirko      2012-07-27  1602  }
+4778e0be16c291 Jiri Pirko      2012-07-27  1603  
+4778e0be16c291 Jiri Pirko      2012-07-27  1604  /**
+4778e0be16c291 Jiri Pirko      2012-07-27  1605   * nla_put_s32 - Add a s32 netlink attribute to a socket buffer
+4778e0be16c291 Jiri Pirko      2012-07-27  1606   * @skb: socket buffer to add attribute to
+4778e0be16c291 Jiri Pirko      2012-07-27  1607   * @attrtype: attribute type
+4778e0be16c291 Jiri Pirko      2012-07-27  1608   * @value: numeric value
+4778e0be16c291 Jiri Pirko      2012-07-27  1609   */
+4778e0be16c291 Jiri Pirko      2012-07-27  1610  static inline int nla_put_s32(struct sk_buff *skb, int attrtype, s32 value)
+4778e0be16c291 Jiri Pirko      2012-07-27  1611  {
+b4391db42308c9 Arnd Bergmann   2017-09-22  1612  	s32 tmp = value;
+b4391db42308c9 Arnd Bergmann   2017-09-22  1613  
+b4391db42308c9 Arnd Bergmann   2017-09-22  1614  	return nla_put(skb, attrtype, sizeof(s32), &tmp);
+4778e0be16c291 Jiri Pirko      2012-07-27  1615  }
+4778e0be16c291 Jiri Pirko      2012-07-27  1616  
+4778e0be16c291 Jiri Pirko      2012-07-27  1617  /**
+756a2f59b73cd6 Nicolas Dichtel 2016-04-22  1618   * nla_put_s64 - Add a s64 netlink attribute to a socket buffer and align it
+4778e0be16c291 Jiri Pirko      2012-07-27  1619   * @skb: socket buffer to add attribute to
+4778e0be16c291 Jiri Pirko      2012-07-27  1620   * @attrtype: attribute type
+4778e0be16c291 Jiri Pirko      2012-07-27  1621   * @value: numeric value
+756a2f59b73cd6 Nicolas Dichtel 2016-04-22  1622   * @padattr: attribute type for the padding
+4778e0be16c291 Jiri Pirko      2012-07-27  1623   */
+756a2f59b73cd6 Nicolas Dichtel 2016-04-22  1624  static inline int nla_put_s64(struct sk_buff *skb, int attrtype, s64 value,
+756a2f59b73cd6 Nicolas Dichtel 2016-04-22  1625  			      int padattr)
+4778e0be16c291 Jiri Pirko      2012-07-27  1626  {
+b4391db42308c9 Arnd Bergmann   2017-09-22  1627  	s64 tmp = value;
+b4391db42308c9 Arnd Bergmann   2017-09-22  1628  
+b4391db42308c9 Arnd Bergmann   2017-09-22  1629  	return nla_put_64bit(skb, attrtype, sizeof(s64), &tmp, padattr);
+4778e0be16c291 Jiri Pirko      2012-07-27  1630  }
+4778e0be16c291 Jiri Pirko      2012-07-27  1631  
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1632  /**
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1633   * nla_put_sint - Add a variable-size signed int to a socket buffer
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1634   * @skb: socket buffer to add attribute to
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1635   * @attrtype: attribute type
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1636   * @value: numeric value
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1637   */
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1638  static inline int nla_put_sint(struct sk_buff *skb, int attrtype, s64 value)
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1639  {
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1640  	s64 tmp64 = value;
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1641  	s32 tmp32 = value;
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1642  
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1643  	if (tmp64 == tmp32)
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1644  		return nla_put_s32(skb, attrtype, tmp32);
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1645  	return nla_put(skb, attrtype, sizeof(s64), &tmp64);
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1646  }
+374d345d9b5e13 Jakub Kicinski  2023-10-18  1647  
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1648  /**
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1649   * nla_put_string - Add a string netlink attribute to a socket buffer
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1650   * @skb: socket buffer to add attribute to
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1651   * @attrtype: attribute type
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1652   * @str: NUL terminated string
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1653   */
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1654  static inline int nla_put_string(struct sk_buff *skb, int attrtype,
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1655  				 const char *str)
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1656  {
+bfa83a9e03cf8d Thomas Graf     2005-11-10 @1657  	return nla_put(skb, attrtype, strlen(str) + 1, str);
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1658  }
+bfa83a9e03cf8d Thomas Graf     2005-11-10  1659  
 
 -- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
