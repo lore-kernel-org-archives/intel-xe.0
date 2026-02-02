@@ -4,73 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8724E7DEED
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 14:07:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6F97E7DEEE
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 14:11:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 228AF10E2AE;
-	Mon,  2 Feb 2026 14:07:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07F7D10E4DA;
+	Mon,  2 Feb 2026 14:11:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZnBWeuZm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PFwwYaz/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D07F10E2AE;
- Mon,  2 Feb 2026 14:07:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 768FE10E2AE;
+ Mon,  2 Feb 2026 14:11:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770041248; x=1801577248;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=ZqzrDhj1EDilGK9q5axYNOV/YZlmUYC0LduGT2R5lv4=;
- b=ZnBWeuZmIxSHmKKJ+jQzY2kDBpOsBYQbtlF0MpKNDxQCF9NdLpKZ0tr9
- Qywfyovw5MSwKnRKZxTITF6nNLanNB+5I2oRp0j9t4dfsmx2Z0LyoZZUg
- eEKEyF7Ivp61h2EXURdKeK2BF6Hc2w/2vMkRRJ1NBcuD+d0Dz40zGSrog
- U+UJYxFWtGzZrKhdikq/CldDcAm2OVsjtxQGgtyrdF3xXLp9z2voKT0YB
- mLfq0APqQW+W5vFFQX15Hr6vfLmcR2FGtHtVi64p/YFbYwOPLHn4Jeiqg
- nNOGoWX6A6yLmMr2auV7lifPuLzPAFixSdYPigXEGUgF9PwcyXSvo5qK5 g==;
-X-CSE-ConnectionGUID: HKr8iFqeSrC4gMbAayERFA==
-X-CSE-MsgGUID: 22qWzwjxQcafk4SdviYTTQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11689"; a="70917882"
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="70917882"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 06:07:27 -0800
-X-CSE-ConnectionGUID: cKEYfzuTR5u4KYjUt9zLbw==
-X-CSE-MsgGUID: fsCbwpmqTpOP4g2Rlt202Q==
+ t=1770041462; x=1801577462;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=tGdh1Zt07Yc/aQsZwfNaZFZHC+pVd2xgpTeBQaOMgA0=;
+ b=PFwwYaz/XxHlbA75QK6Y3QvKb9u9nORFK99ryrShD1iqbY6wCsg7ofQi
+ 5xOeB5/+1fd6JQF/jamGA7RaWjZVryqch5019CkFCVrjcgt8cIL4+1XG1
+ 3j7xUipP3UsYHzwPsZYuz243W1w2W3htdifdYyRQ+0dFwm37dsfMbF+C9
+ K3DHb56LBwzq9jnAAzJRzyTrJA3pO68gO/969a0BOYx9aj9yrz+xbHGNG
+ FmQXqdzt/51MT0NWi45tG9sAZXgVHmsJiwXQvBAU3KmHiYPCbR5K88tw8
+ gRMyucGM8cr0aUwKCSbTV2BqequGe3cAFlGnMZY6CWUX/VJLwszjtEG9z A==;
+X-CSE-ConnectionGUID: rICa+MM7Sz613lNzsE0GQQ==
+X-CSE-MsgGUID: OXOid2flRZuPrZ2F+EnWXA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="88774533"
+X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="88774533"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2026 06:11:01 -0800
+X-CSE-ConnectionGUID: dGdJGdetSvKY8H2xC5IiyQ==
+X-CSE-MsgGUID: MTMOmV6jQI2jtbg30vNX9g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="214476189"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO [10.245.244.242])
- ([10.245.244.242])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 06:07:24 -0800
-Message-ID: <43d010966fc99ca480f365220ae8c3615e538b07.camel@linux.intel.com>
-Subject: Re: [PATCH] mm/hmm: Fix a hmm_range_fault() livelock / starvation
- problem
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Alistair Popple <apopple@nvidia.com>
-Cc: Matthew Brost <matthew.brost@intel.com>, John Hubbard
- <jhubbard@nvidia.com>,  Andrew Morton <akpm@linux-foundation.org>,
- intel-xe@lists.freedesktop.org, Ralph Campbell <rcampbell@nvidia.com>, 
- Christoph Hellwig	 <hch@lst.de>, Jason Gunthorpe <jgg@mellanox.com>, Jason
- Gunthorpe <jgg@ziepe.ca>,  Leon Romanovsky	 <leon@kernel.org>,
- linux-mm@kvack.org, stable@vger.kernel.org, 	dri-devel@lists.freedesktop.org
-Date: Mon, 02 Feb 2026 15:07:21 +0100
-In-Reply-To: <nvajpou3j7osyx553ktafdc3qx3v6hisygho42swkzm6xdbwvt@bg6d25otpqj3>
-References: <0025ee21-2a6c-4c6e-a49a-2df525d3faa1@nvidia.com>
- <aX+oUorOWPt1xbgw@lstrano-desk.jf.intel.com>
- <81b9ffa6-7624-4ab0-89b7-5502bc6c711a@nvidia.com>
- <aX/AgHAZ7Tl4iOua@lstrano-desk.jf.intel.com>
- <lbqqmohxpeynsrunbdyvod2fm4tinzq5coueh2mq6weubste5x@y4f5weqvwszg>
- <f48e3d818c6e20d6ea7a7fbd6b1741f25df17a78.camel@linux.intel.com>
- <ymg5yawktqtw7vfgt77iciqzxhjlsnqrwnjx3xmkflbjqbmq5s@jcxzcymqq2af>
- <d8c02e59a4cdd2d02b41aa5ce8dcd36a94fbba86.camel@linux.intel.com>
- <ewowxagab6ej5xldwsewfvg4wgpmelps2dgqj7efmcnhks4nqg@nqdhfedzlvjb>
- <aaffa3f1bbb97e61d86c0e4ac474cdc8b983b85b.camel@linux.intel.com>
- <nvajpou3j7osyx553ktafdc3qx3v6hisygho42swkzm6xdbwvt@bg6d25otpqj3>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
+X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="209792099"
+Received: from display-adls.igk.intel.com ([10.211.131.198])
+ by fmviesa010.fm.intel.com with ESMTP; 02 Feb 2026 06:02:45 -0800
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ matthew.d.roper@intel.com, jani.nikula@linux.intel.com,
+ suraj.kandpal@intel.com
+Cc: Mika Kahola <mika.kahola@intel.com>
+Subject: [PATCH v3] drm/i915/power_well: Enable workaround for DSS clock
+ gating issue
+Date: Mon,  2 Feb 2026 14:02:42 +0000
+Message-ID: <20260202140242.704234-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,439 +66,163 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2026-02-02 at 23:26 +1100, Alistair Popple wrote:
-> On 2026-02-02 at 22:44 +1100, Thomas Hellstr=C3=B6m
-> <thomas.hellstrom@linux.intel.com> wrote...
-> > On Mon, 2026-02-02 at 22:22 +1100, Alistair Popple wrote:
-> > > On 2026-02-02 at 21:41 +1100, Thomas Hellstr=C3=B6m
-> > > <thomas.hellstrom@linux.intel.com> wrote...
-> > > > On Mon, 2026-02-02 at 21:25 +1100, Alistair Popple wrote:
-> > > > > On 2026-02-02 at 20:30 +1100, Thomas Hellstr=C3=B6m
-> > > > > <thomas.hellstrom@linux.intel.com> wrote...
-> > > > > > Hi,
-> > > > > >=20
-> > > > > > On Mon, 2026-02-02 at 11:10 +1100, Alistair Popple wrote:
-> > > > > > > On 2026-02-02 at 08:07 +1100, Matthew Brost
-> > > > > > > <matthew.brost@intel.com>
-> > > > > > > wrote...
-> > > > > > > > On Sun, Feb 01, 2026 at 12:48:33PM -0800, John Hubbard
-> > > > > > > > wrote:
-> > > > > > > > > On 2/1/26 11:24 AM, Matthew Brost wrote:
-> > > > > > > > > > On Sat, Jan 31, 2026 at 01:42:20PM -0800, John
-> > > > > > > > > > Hubbard
-> > > > > > > > > > wrote:
-> > > > > > > > > > > On 1/31/26 11:00 AM, Matthew Brost wrote:
-> > > > > > > > > > > > On Sat, Jan 31, 2026 at 01:57:21PM +0100,
-> > > > > > > > > > > > Thomas
-> > > > > > > > > > > > Hellstr=C3=B6m
-> > > > > > > > > > > > wrote:
-> > > > > > > > > > > > > On Fri, 2026-01-30 at 19:01 -0800, John
-> > > > > > > > > > > > > Hubbard
-> > > > > > > > > > > > > wrote:
-> > > > > > > > > > > > > > On 1/30/26 10:00 AM, Andrew Morton wrote:
-> > > > > > > > > > > > > > > On Fri, 30 Jan 2026 15:45:29 +0100 Thomas
-> > > > > > > > > > > > > > > Hellstr=C3=B6m
-> > > > > > > > > > > > > > > wrote:
-> > > > > > > > > > > > > > ...
-> > > > > > > > > > > > I=E2=80=99m not convinced the folio refcount has an=
-y
-> > > > > > > > > > > > bearing if
-> > > > > > > > > > > > we
-> > > > > > > > > > > > can take a
-> > > > > > > > > > > > sleeping lock in do_swap_page, but perhaps I=E2=80=
-=99m
-> > > > > > > > > > > > missing
-> > > > > > > > > > > > something.
-> > > > > > >=20
-> > > > > > > I think the point of the trylock vs. lock is that if you
-> > > > > > > can't
-> > > > > > > immediately
-> > > > > > > lock the page then it's an indication the page is
-> > > > > > > undergoing
-> > > > > > > a
-> > > > > > > migration.
-> > > > > > > In other words there's no point waiting for the lock and
-> > > > > > > then
-> > > > > > > trying
-> > > > > > > to call
-> > > > > > > migrate_to_ram() as the page will have already moved by
-> > > > > > > the
-> > > > > > > time
-> > > > > > > you
-> > > > > > > acquire
-> > > > > > > the lock. Of course that just means you spin faulting
-> > > > > > > until
-> > > > > > > the
-> > > > > > > page
-> > > > > > > finally
-> > > > > > > migrates.
-> > > > > > >=20
-> > > > > > > If I'm understanding the problem it sounds like we just
-> > > > > > > want
-> > > > > > > to
-> > > > > > > sleep
-> > > > > > > until the
-> > > > > > > migration is complete, ie. same as the migration entry
-> > > > > > > path.
-> > > > > > > We
-> > > > > > > don't
-> > > > > > > have a
-> > > > > > > device_private_entry_wait() function, but I don't think
-> > > > > > > we
-> > > > > > > need
-> > > > > > > one,
-> > > > > > > see below.
-> > > > > > >=20
-> > > > > > > > > > diff --git a/mm/memory.c b/mm/memory.c
-> > > > > > > > > > index da360a6eb8a4..1e7ccc4a1a6c 100644
-> > > > > > > > > > --- a/mm/memory.c
-> > > > > > > > > > +++ b/mm/memory.c
-> > > > > > > > > > @@ -4652,6 +4652,8 @@ vm_fault_t
-> > > > > > > > > > do_swap_page(struct
-> > > > > > > > > > vm_fault
-> > > > > > > > > > *vmf)
-> > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 vmf->page =3D
-> > > > > > > > > > softleaf_to_page(entry);
-> > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 ret =3D
-> > > > > > > > > > remove_device_exclusive_entry(vmf);
-> > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 } else if
-> > > > > > > > > > (softleaf_is_device_private(entry))
-> > > > > > > > > > {
-> > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 struct dev_pagemap *pgmap;
-> > > > > > > > > > +
-> > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 if (vmf->flags &
-> > > > > > > > > > FAULT_FLAG_VMA_LOCK)
-> > > > > > > > > > {
-> > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /*
-> > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * mig=
-rate_to_ram
-> > > > > > > > > > is
-> > > > > > > > > > not
-> > > > > > > > > > yet
-> > > > > > > > > > ready to operate
-> > > > > > > > > > @@ -4670,21 +4672,15 @@ vm_fault_t
-> > > > > > > > > > do_swap_page(struct
-> > > > > > > > > > vm_fault
-> > > > > > > > > > *vmf)
-> > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0
-> > > > > > > > > > =C2=A0
-> > > > > > > > > > vmf-
-> > > > > > > > > > > orig_pte)))
-> > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 goto unlock=
-;
-> > > > > > > > > >=20
-> > > > > > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 /*
-> > > > > > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 * Get a page reference
-> > > > > > > > > > while
-> > > > > > > > > > we
-> > > > > > > > > > know
-> > > > > > > > > > the page can't be
-> > > > > > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 * freed.
-> > > > > > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 */
-> > > > > > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 if (trylock_page(vmf-
-> > > > > > > > > > >page)) {
-> > > > > > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct dev_pagemap
-> > > > > > > > > > *pgmap;
-> > > > > > > > > > -
-> > > > > > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 get_page(vmf-
-> > > > > > > > > > >page);
-> > > > > > >=20
-> > > > > > > At this point we:
-> > > > > > > 1. Know the page needs to migrate
-> > > > > > > 2. Have the page locked
-> > > > > > > 3. Have a reference on the page
-> > > > > > > 4. Have the PTL locked
-> > > > > > >=20
-> > > > > > > Or in other words we have everything we need to install a
-> > > > > > > migration
-> > > > > > > entry,
-> > > > > > > so why not just do that? This thread would then proceed
-> > > > > > > into
-> > > > > > > migrate_to_ram()
-> > > > > > > having already done migrate_vma_collect_pmd() for the
-> > > > > > > faulting
-> > > > > > > page
-> > > > > > > and any
-> > > > > > > other threads would just sleep in the wait on migration
-> > > > > > > entry
-> > > > > > > path
-> > > > > > > until the
-> > > > > > > migration is complete, avoiding the livelock problem the
-> > > > > > > trylock
-> > > > > > > was
-> > > > > > > introduced
-> > > > > > > for in 1afaeb8293c9a.
-> > > > > > >=20
-> > > > > > > =C2=A0- Alistair
-> > > > > > >=20
-> > > > > > > > >=20
-> > > > > >=20
-> > > > > > There will always be a small time between when the page is
-> > > > > > locked
-> > > > > > and
-> > > > > > when we can install a migration entry. If the page only has
-> > > > > > a
-> > > > > > single
-> > > > > > mapcount, then the PTL lock is held during this time so the
-> > > > > > issue
-> > > > > > does
-> > > > > > not occur. But for multiple map-counts we need to release
-> > > > > > the
-> > > > > > PTL
-> > > > > > lock
-> > > > > > in migration to run try_to_migrate(), and before that, the
-> > > > > > migrate
-> > > > > > code
-> > > > > > is running lru_add_drain_all() and gets stuck.
-> > > > >=20
-> > > > > Oh right, my solution would be fine for the single mapping
-> > > > > case
-> > > > > but I
-> > > > > hadn't
-> > > > > fully thought through the implications of other threads
-> > > > > accessing
-> > > > > this for
-> > > > > multiple map-counts. Agree it doesn't solve anything there
-> > > > > (the
-> > > > > rest
-> > > > > of the
-> > > > > threads would still spin on the trylock).
-> > > > >=20
-> > > > > Still we could use a similar solution for waiting on device-
-> > > > > private
-> > > > > entries as
-> > > > > we do for migration entries. Instead of spinning on the
-> > > > > trylock
-> > > > > (ie.
-> > > > > PG_locked)
-> > > > > we could just wait on it to become unlocked if it's already
-> > > > > locked.
-> > > > > Would
-> > > > > something like the below completely untested code work?
-> > > > > (obviously
-> > > > > this is a bit
-> > > > > of hack, to do it properly you'd want to do more than just
-> > > > > remove
-> > > > > the
-> > > > > check from
-> > > > > migration_entry_wait)
-> > > >=20
-> > > > Well I guess there could be failed migration where something is
-> > > > aborting the migration even after a page is locked. Also we
-> > > > must
-> > > > unlock
-> > > > the PTL lock before waiting otherwise we could deadlock.
-> > >=20
-> > > Yes, this is exactly what the migration entry wait code does. And
-> > > if
-> > > there's a
-> > > failed migration, no problem, you just retry. That's not a
-> > > deadlock
-> > > unless the
-> > > migration never succeeds and then your stuffed anyway.
-> > >=20
-> > > > I believe a robust solution would be to take a folio reference
-> > > > and
-> > > > do a
-> > > > sleeping lock like John's example. Then to assert that a folio
-> > > > pin-
-> > > > count, not ref-count is required to pin a device-private folio.
-> > > > That
-> > > > would eliminate the problem of the refcount held while locking
-> > > > blocking
-> > > > migration. It looks like that's fully consistent with=20
-> > >=20
-> > > Waiting on a migration entry like in my example below is exactly
-> > > the
-> > > same as
-> > > sleeping on the page lock other than it just waits for the page
-> > > to be
-> > > unlocked
-> > > rather than trying to lock it.
-> > >=20
-> > > Internally migration_entry_wait_on_locked() is just an open-coded
-> > > version
-> > > of folio_lock() which deals with dropping the PTL and that works
-> > > without a page
-> > > refcount.
-> > >=20
-> > > So I don't understand how this solution isn't robust? It requires
-> > > no
-> > > funniness
-> > > with refcounts and works practically the same as a sleeping lock.
-> >=20
-> > You're right. I didn't look closely enough into what the
-> > migration_entry_wait_on_locked() did. Sorry about that.
->=20
-> No worries. I'm somewhat familiar with it from updating it
-> specifically so it
-> wouldn't take a page reference as we used to have similar live-
-> lock/starvation
-> issues in that path too.
->=20
-> > That would indeed fix the problem as well. Then the only argument
-> > remaining for the get-a-reference-and-lock solution would be it's
-> > not
-> > starvation prone in the same way. But that's definitely a problem I
-> > think we could live with for now.
->=20
-> I don't follow how this solution would be any more starvation prone
-> than getting
-> a reference and locking - here the winning fault takes the lock and
-> any other
-> faulting threads would just wait until it was released before
-> returning from
-> the fault handler assuming it had been handled. But it's been a while
-> since I've
-> thought about all the scenarios here so maybe I missed one.
+Prevent display corruption observed after restart, hotplug, or unplug
+operations on Meteor Lake and newer platforms. The issue is caused by
+DSS clock gating affecting DSC logic when pipe power wells are disabled.
 
-My thinking is that it would be if theoretical racing lock-holders
-don't migrate to system, we can't *guarantee* migration will ever
-happen. Although admittedly this is very unlikely to happen. If we
-instead locked the page we'd on the other hand need to walk the page
-table again to check whether the pte content was still valid....
+Apply this WA by disabling DSS clock gating for the affected pipes
+before turning off their power wells. This avoids DSC corruption on
+external displays.
 
+v2: Use single intel_de_rmw() (Jani)
+    Switch to use drm_dbg_kms() instead of drm_printf() (Jani)
+    Remove WA number from commit message (Suraj)
+    rename dss_clock_gating_enable_disable() to
+    dss_pipe_gating_enable_disable();
+v3: Do not use open ended display version when checking
+    wa (Matt)
 
->=20
-> > I'll give this code a test. BTW that removal of unlock_page() isn't
-> > intentional, right?=20
->=20
-> Thanks. And you're right, that was unintentional. Serves me for
-> responding too
-> late at night :-)
+WA: 22021048059
+BSpec: 690991, 666241
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ .../i915/display/intel_display_power_well.c   | 55 ++++++++++++++++++-
+ .../gpu/drm/i915/display/intel_display_regs.h |  7 +++
+ .../gpu/drm/i915/display/intel_display_wa.c   |  2 +
+ .../gpu/drm/i915/display/intel_display_wa.h   |  1 +
+ 4 files changed, 63 insertions(+), 2 deletions(-)
 
-So I ended up with this:
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 6f9bc6f9615e..78f707b00550 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -18,6 +18,7 @@
+ #include "intel_display_regs.h"
+ #include "intel_display_rpm.h"
+ #include "intel_display_types.h"
++#include "intel_display_wa.h"
+ #include "intel_dkl_phy.h"
+ #include "intel_dkl_phy_regs.h"
+ #include "intel_dmc.h"
+@@ -194,6 +195,48 @@ int intel_power_well_refcount(struct i915_power_well *power_well)
+ 	return power_well->count;
+ }
+ 
++static u32 dss_pipe_gating_bits(u8 irq_pipe_mask)
++{
++	u32 bits = 0;
++
++	if (irq_pipe_mask & BIT(PIPE_A))
++		bits |= DSS_PIPE_A_GATING_DISABLED;
++	if (irq_pipe_mask & BIT(PIPE_B))
++		bits |= DSS_PIPE_B_GATING_DISABLED;
++	if (irq_pipe_mask & BIT(PIPE_C))
++		bits |= DSS_PIPE_C_GATING_DISABLED;
++	if (irq_pipe_mask & BIT(PIPE_D))
++		bits |= DSS_PIPE_D_GATING_DISABLED;
++
++	return bits;
++}
++
++static void dss_pipe_gating_enable_disable(struct intel_display *display,
++					   u8 irq_pipe_mask,
++					   bool disable)
++{
++	u32 bits = dss_pipe_gating_bits(irq_pipe_mask);
++	u32 clear, set;
++
++	if (!bits)
++		return;
++
++	/*
++	 * Single intel_de_rmw() for both enable/disable:
++	 *  - disable == true, set bits (disable clock gating)
++	 *  - disable == false, clear bits (re-enable clock gating)
++	 */
++	set = disable ? bits : 0;
++	clear = disable ? 0 : bits;
++
++	intel_de_rmw(display, CLKGATE_DIS_DSSDSC, clear, set);
++
++	drm_dbg_kms(display->drm,
++		    "DSS clock gating %sd for pipe_mask=0x%x (CLKGATE_DIS_DSSDSC=0x%08x)\n",
++		    str_enable_disable(!disable), irq_pipe_mask,
++		    intel_de_read(display, CLKGATE_DIS_DSSDSC));
++}
++
+ /*
+  * Starting with Haswell, we have a "Power Down Well" that can be turned off
+  * when not needed anymore. We have 4 registers that can request the power well
+@@ -203,15 +246,23 @@ int intel_power_well_refcount(struct i915_power_well *power_well)
+ static void hsw_power_well_post_enable(struct intel_display *display,
+ 				       u8 irq_pipe_mask)
+ {
+-	if (irq_pipe_mask)
++	if (irq_pipe_mask) {
+ 		gen8_irq_power_well_post_enable(display, irq_pipe_mask);
++
++		if (intel_display_wa(display, 22021048059))
++			dss_pipe_gating_enable_disable(display, irq_pipe_mask, false);
++	}
+ }
+ 
+ static void hsw_power_well_pre_disable(struct intel_display *display,
+ 				       u8 irq_pipe_mask)
+ {
+-	if (irq_pipe_mask)
++	if (irq_pipe_mask) {
++		if (intel_display_wa(display, 22021048059))
++			dss_pipe_gating_enable_disable(display, irq_pipe_mask, true);
++
+ 		gen8_irq_power_well_pre_disable(display, irq_pipe_mask);
++	}
+ }
+ 
+ #define ICL_AUX_PW_TO_PHY(pw_idx)	\
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index 9e0d853f4b61..9740f32ced24 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -2211,6 +2211,13 @@
+ #define   HSW_PWR_WELL_FORCE_ON			(1 << 19)
+ #define HSW_PWR_WELL_CTL6			_MMIO(0x45414)
+ 
++/* clock gating DSS DSC disable register */
++#define CLKGATE_DIS_DSSDSC			_MMIO(0x46548)
++#define   DSS_PIPE_D_GATING_DISABLED		REG_BIT(31)
++#define   DSS_PIPE_C_GATING_DISABLED		REG_BIT(29)
++#define   DSS_PIPE_B_GATING_DISABLED		REG_BIT(27)
++#define   DSS_PIPE_A_GATING_DISABLED		REG_BIT(25)
++
+ /* SKL Fuse Status */
+ enum skl_power_gate {
+ 	SKL_PG0,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
+index 2eb4af62d556..b1979ee9d836 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.c
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+@@ -85,6 +85,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
+ 		return intel_display_needs_wa_16025573575(display);
+ 	case INTEL_DISPLAY_WA_22014263786:
+ 		return IS_DISPLAY_VERx100(display, 1100, 1400);
++	case INTEL_DISPLAY_WA_22021048059:
++		return IS_DISPLAY_VER(display, 14, 35);
+ 	default:
+ 		drm_WARN(display->drm, 1, "Missing Wa number: %s\n", name);
+ 		break;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
+index 40f989f19df1..767420d5f406 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_wa.h
++++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
+@@ -34,6 +34,7 @@ enum intel_display_wa {
+ 	INTEL_DISPLAY_WA_16023588340,
+ 	INTEL_DISPLAY_WA_16025573575,
+ 	INTEL_DISPLAY_WA_22014263786,
++	INTEL_DISPLAY_WA_22021048059,
+ };
+ 
+ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name);
+-- 
+2.43.0
 
-
-
-
-diff --git a/mm/memory.c b/mm/memory.c
-index da360a6eb8a4..84b6019eac6d 100644
---- a/mm/memory.c
-+++ b/mm/memory.c
-@@ -4684,7 +4684,8 @@ vm_fault_t do_swap_page(struct vm_fault *vmf)
- 				unlock_page(vmf->page);
- 				put_page(vmf->page);
- 			} else {
--				pte_unmap_unlock(vmf->pte, vmf->ptl);
-+				pte_unmap(vmf->pte);
-+			  	migration_entry_wait_on_locked(entry,
-vmf->ptl);
- 			}
- 		} else if (softleaf_is_hwpoison(entry)) {
- 			ret =3D VM_FAULT_HWPOISON;
---=20
-2.52.0
-
-
-Seems to be a working fix.
-
-/Thomas
-
-
->=20
-> =C2=A0- Alistair
->=20
-> > Thanks,
-> > Thomas
-> >=20
-> >=20
-> > >=20
-> > > =C2=A0- Alistair
-> > >=20
-> > > > https://docs.kernel.org/core-api/pin_user_pages.html
-> > > >=20
-> > > > Then as general improvements we should fully unmap pages before
-> > > > calling
-> > > > lru_add_drain_all() as MBrost suggest and finally, to be more
-> > > > nice
-> > > > to
-> > > > the system in the common cases, add a cond_resched() to
-> > > > hmm_range_fault().
-> > > >=20
-> > > > Thanks,
-> > > > Thomas
-> > > >=20
-> > > >=20
-> > > >=20
-> > > > >=20
-> > > > > ---
-> > > > >=20
-> > > > > diff --git a/mm/memory.c b/mm/memory.c
-> > > > > index 2a55edc48a65..3e5e205ee279 100644
-> > > > > --- a/mm/memory.c
-> > > > > +++ b/mm/memory.c
-> > > > > @@ -4678,10 +4678,10 @@ vm_fault_t do_swap_page(struct
-> > > > > vm_fault
-> > > > > *vmf)
-> > > > > =C2=A0				pte_unmap_unlock(vmf->pte,
-> > > > > vmf-
-> > > > > > ptl);
-> > > > > =C2=A0				pgmap =3D page_pgmap(vmf-
-> > > > > >page);
-> > > > > =C2=A0				ret =3D pgmap->ops-
-> > > > > > migrate_to_ram(vmf);
-> > > > > -				unlock_page(vmf->page);
-> > > > > =C2=A0				put_page(vmf->page);
-> > > > > =C2=A0			} else {
-> > > > > -				pte_unmap_unlock(vmf->pte,
-> > > > > vmf-
-> > > > > > ptl);
-> > > > > +				migration_entry_wait(vma-
-> > > > > >vm_mm,
-> > > > > vmf->pmd,
-> > > > > +						=C2=A0=C2=A0=C2=A0=C2=A0 vmf-
-> > > > > > address);
-> > > > > =C2=A0			}
-> > > > > =C2=A0		} else if (softleaf_is_hwpoison(entry)) {
-> > > > > =C2=A0			ret =3D VM_FAULT_HWPOISON;
-> > > > > diff --git a/mm/migrate.c b/mm/migrate.c
-> > > > > index 5169f9717f60..b676daf0f4e8 100644
-> > > > > --- a/mm/migrate.c
-> > > > > +++ b/mm/migrate.c
-> > > > > @@ -496,8 +496,6 @@ void migration_entry_wait(struct
-> > > > > mm_struct
-> > > > > *mm,
-> > > > > pmd_t *pmd,
-> > > > > =C2=A0		goto out;
-> > > > > =C2=A0
-> > > > > =C2=A0	entry =3D softleaf_from_pte(pte);
-> > > > > -	if (!softleaf_is_migration(entry))
-> > > > > -		goto out;
-> > > > > =C2=A0
-> > > > > =C2=A0	migration_entry_wait_on_locked(entry, ptl);
-> > > > > =C2=A0	return;
