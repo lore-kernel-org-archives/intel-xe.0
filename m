@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E307E7FDF7
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 21:44:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B01DCE7FDE0
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 21:53:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F45A10E4B5;
-	Mon,  2 Feb 2026 21:44:30 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R4gStIKP";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E17E10E4B3;
- Mon,  2 Feb 2026 21:44:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770068669; x=1801604669;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=D2KiAw2jiuHzd3aPvnCnuxS6G/8zvv7CohabzQ3qViQ=;
- b=R4gStIKPJAplf9SuB++bFqXvzzP7sYbD4PKNj9hiVOrimK1bEbUPHGV2
- jgwyKWmoJaz2TO2tJtC4zkk3hjzrXk5rfcmEo39fqKrztjdEDBtgcXnWu
- PoVyutgExYIpsnW5l8jDKNNA5um+7wXhD5Q6rrKCDvQm6mDeZ7NYZe9ai
- 172EFdV7oxSZGZz3jJV4RLpCMC+HaRnINqvhghoGiJ0bP/4STQIgRdb81
- qXOkkfnuHWVsezNJ9VXJvGHauUtt/HHbXIhPyKJ9yCt1+W+aCIYtoirXZ
- kIQCPgUszT8Qy86XmgJss/ALV8VsbQhBw7Fkl+kl+bk4KrZUHMGCb46ON g==;
-X-CSE-ConnectionGUID: 0rC25LiZTfO782WrPW/3+w==
-X-CSE-MsgGUID: dwAgwV8QShmp/vafhvM03w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="58814369"
-X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="58814369"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 13:44:29 -0800
-X-CSE-ConnectionGUID: 4J02nvIlQEKQensMQSThsg==
-X-CSE-MsgGUID: xTo65c6aQiqTW/zYqoNN+A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="209646891"
-Received: from smoehrl-linux.amr.corp.intel.com (HELO [192.168.1.16])
- ([10.124.221.51])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 13:44:27 -0800
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Mon, 02 Feb 2026 18:43:22 -0300
-Subject: [PATCH 16/16] drm/xe/nvlp: Define GuC firmware for NVL-P
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E04E10E3DE;
+	Mon,  2 Feb 2026 21:53:21 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B75D10E3DB;
+ Mon,  2 Feb 2026 21:53:20 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7651436763955419083=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260202-nvl-p-upstreaming-v1-16-653e4ff105dc@intel.com>
-References: <20260202-nvl-p-upstreaming-v1-0-653e4ff105dc@intel.com>
-In-Reply-To: <20260202-nvl-p-upstreaming-v1-0-653e4ff105dc@intel.com>
-To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
- John Harrison <John.C.Harrison@Intel.com>
-X-Mailer: b4 0.15-dev
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Remove_device_private_pages?=
+ =?utf-8?q?_from_physical_address_space_=28rev9=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jordan Niethe" <jniethe@nvidia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 02 Feb 2026 21:53:20 -0000
+Message-ID: <177006920028.217225.17433851177881923603@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260202113642.59295-1-jniethe@nvidia.com>
+In-Reply-To: <20260202113642.59295-1-jniethe@nvidia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,34 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: John Harrison <John.C.Harrison@Intel.com>
+--===============7651436763955419083==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Novalake P has different IP on each GT and requires a different GuC
-for each. So add separate graphics and media GT entries or NVL-P.
+== Series Details ==
 
-Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/xe/xe_uc_fw.c | 2 ++
- 1 file changed, 2 insertions(+)
+Series: Remove device private pages from physical address space (rev9)
+URL   : https://patchwork.freedesktop.org/series/159738/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index 6a8e692fd7a1..60c82b920f47 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -115,6 +115,8 @@ struct fw_blobs_by_type {
- #define XE_GT_TYPE_ANY XE_GT_TYPE_UNINITIALIZED
- 
- #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)					\
-+	fw_def(NOVALAKE_P,	GT_TYPE_MAIN,	mmp_ver(xe,	guc,	nvlpg,	70, 55, 4))	\
-+	fw_def(NOVALAKE_P,	GT_TYPE_MEDIA,	mmp_ver(xe,	guc,	nvlpm,	70, 55, 4))	\
- 	fw_def(CRESCENTISLAND,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	cri,	70, 55, 4))	\
- 	fw_def(NOVALAKE_S,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	nvl,	70, 55, 4))	\
- 	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	ptl,	70, 54, 0))	\
+== Summary ==
 
--- 
-2.52.0
+CI Bug Log - changes from xe-4484-a68485eec77211a46da7bdb6a0f862e4b365f1e3_BAT -> xe-pw-159738v9_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4484-a68485eec77211a46da7bdb6a0f862e4b365f1e3 -> xe-pw-159738v9
+
+  IGT_8729: 8729
+  xe-4484-a68485eec77211a46da7bdb6a0f862e4b365f1e3: a68485eec77211a46da7bdb6a0f862e4b365f1e3
+  xe-pw-159738v9: 159738v9
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159738v9/index.html
+
+--===============7651436763955419083==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Remove device private pages from physical address space (rev9)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159738/">https://patchwork.freedesktop.org/series/159738/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159738v9/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159738v9/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4484-a68485eec77211a46da7bdb6a0f862e4b365f1e3_BAT -&gt; xe-pw-159738v9_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4484-a68485eec77211a46da7bdb6a0f862e4b365f1e3 -&gt; xe-pw-159738v9</li>
+</ul>
+<p>IGT_8729: 8729<br />
+  xe-4484-a68485eec77211a46da7bdb6a0f862e4b365f1e3: a68485eec77211a46da7bdb6a0f862e4b365f1e3<br />
+  xe-pw-159738v9: 159738v9</p>
+
+</body>
+</html>
+
+--===============7651436763955419083==--
