@@ -4,54 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F89BE7DF0F
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 17:14:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFCF2E7DF11
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 17:21:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC40A10E515;
-	Mon,  2 Feb 2026 17:14:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50BCB10E1B4;
+	Mon,  2 Feb 2026 17:21:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nfm6Ulw1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bt8AD1EG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE38410E523
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Feb 2026 17:14:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30B5610E1B4;
+ Mon,  2 Feb 2026 17:21:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770052443; x=1801588443;
+ t=1770052891; x=1801588891;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NWb1EAwWPemOKRMG2005GSlqkTkiqiKodbU+H0mAue8=;
- b=nfm6Ulw1ff8NgYzC5Gb9KjJVFOL0pWFS1Zd2aeLnB/BqYYi/99t0m6VS
- bgqL15ZOsyEIq0pvjiYR/D4X4jf+sSzbq6gPxTf50NfhlcNtAhATG42vb
- Mjv6QPxUFoU0Nu5CbwnlIwaK+MsSsWklZ9Ev+2Gvt0KKfiU4UPyPRw7xq
- Jfy2v4DL00MxkBV3Spt7ZP4zOYUcMBZeB307KGCRSL7JPDsE9rWkUamam
- 2WdZvuasde6GYPNX/OY0hFJ5P9iUK41zKBfr+CruqvsJMoVqK5qVPkZ9o
- eGvx/aV/lJNBkc7E6aygO8nGeHpQ83G9qXv25Cp7SfSLI29E2CCiIyTvn g==;
-X-CSE-ConnectionGUID: 8kQHYrPDTw+PSamWrnK0Pw==
-X-CSE-MsgGUID: m23JxPcDRfqZoDxVHeN7Hw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="82641717"
-X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="82641717"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 09:14:03 -0800
-X-CSE-ConnectionGUID: t9mbAhMfQbuKRh8/yzWb7g==
-X-CSE-MsgGUID: R1OTjn/qT7m5b4+qr0tgiw==
+ bh=ndXsjL8euQWQHw6KVXGoSgnGy/CUTJCJJfMsYtQaNvs=;
+ b=Bt8AD1EGUEsA7Tn+C2ZrHjAvsZcwQ6ygYj0I76c3NbHAgPi5W/7VCLou
+ RU3t82MXzcGuoju2A4S/2940wTCoEaW9A3ibfqk9fb2gIBkD3tYcuiFeu
+ Qnn3OLiRYK0LJCR1sr6Jatw71a6Giw3G2g90wG7vczbndqAdP+JoZLNTi
+ 9THrJUD5LwnqB8u1fHB2GSY1/HDJWe7U9TyGmRiXPDBA8/wQDMjq+GQmW
+ c53JI/XVdrM/T9xS/l5mTZ92G7LI1HygWLT4XsFh6UDljCs+KQLvxUBWo
+ Gl0xerUp3gPC2osp27MwyzZfFDGigF7lM9LVOEO9Ln1ohJ65+7N9QuOk3 g==;
+X-CSE-ConnectionGUID: tpZYZnfnS8yuOxCAIOn0XQ==
+X-CSE-MsgGUID: uAf/u5wxSUKFRO7qrPyqWA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="71124424"
+X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="71124424"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2026 09:21:31 -0800
+X-CSE-ConnectionGUID: Wj5YVyu7RA+Tabdkyt8OIw==
+X-CSE-MsgGUID: XCl1YKtSQrmfMyj9EwOhXQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="208682922"
-Received: from nkumarg-desk.iind.intel.com ([10.190.216.171])
- by orviesa006.jf.intel.com with ESMTP; 02 Feb 2026 09:14:01 -0800
-From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: naresh.kumar.g@intel.com, Michal.Wajdeczko@intel.com,
- Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v3 2/2] drm/xe: Mutual exclusivity between CCS-mode and PF
-Date: Mon,  2 Feb 2026 22:38:13 +0530
-Message-ID: <20260202170810.1393147-6-naresh.kumar.g@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260202170810.1393147-4-naresh.kumar.g@intel.com>
-References: <20260202170810.1393147-4-naresh.kumar.g@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="209585959"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.168])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2026 09:21:29 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Subject: Re: [PATCH i-g-t v3 6/6] lib/igt_device_scan: Print GPU upstream port
+ parent/child relations
+Date: Mon, 02 Feb 2026 18:21:26 +0100
+Message-ID: <3833156.RUnXabflUD@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <DG11TIYPUWHH.1SQKHOBSDKJEF@intel.com>
+References: <20260128161041.225652-8-janusz.krzysztofik@linux.intel.com>
+ <20260128161041.225652-14-janusz.krzysztofik@linux.intel.com>
+ <DG11TIYPUWHH.1SQKHOBSDKJEF@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,107 +77,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Due to SLA agreement between PF and VFs, Currently we block CCS mode
-changes if driver is running as PF, even if there are no VFs enabled yet.
-Use lockdown mechanism provided by the PF to relax that limitation
-and still enforce above VFs related requirements.
+On Thursday, 29 January 2026 12:49:39 CET Sebastian Brzezinka wrote:
+> Hi Janusz,
+>=20
+> On Wed Jan 28, 2026 at 5:09 PM CET, Janusz Krzysztofik wrote:
+> > In a short listing, lsgpu prints a sysfs path of a PCI GPU parent as a
+> > local attribute of a DRM device.  However, if that's a discrete GPU and
+> > its associated PCIe upstream bridge port has been identified, no
+> > information on that bridge is listed among the GPU attributes.  Follow =
+the
+> > pattern used with DRM devices and also show a PCI slot of the bridge po=
+rt
+> > as a local attribute of the discrete GPU device.
+> >
+> > Moreover, in both short and detailed listings, local attributes intended
+> > for providing device names of GPU associated DRM devices and the GPU
+> > codename are also printed as attributes of related PCIe upstream bridge
+> > port, however, the DRM device names are shown as (null), and the codena=
+me
+> > attribute provides raw vendor:device codes of the bridge itself.  Repla=
+ce
+> > those with PCI slot and codename of the GPU device.
+> >
+> > v2: Allocate memory to local attributes of a bridge for safety (Sebasti=
+an),
+> >   - merge with a formerly separate patch "lib/igt_device_scan: Don't pr=
+int
+> >     bridge not applicable attributes" (Sebastian),
+> >   - no need for DEVTYPE_BRIDGE, just skip attributes if NULL.
+> >
+> > Cc: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> > ---
+> >  lib/igt_device_scan.c | 18 ++++++++++++++++--
+> >  1 file changed, 16 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/lib/igt_device_scan.c b/lib/igt_device_scan.c
+> > index f4d2eb6568..96bf0e359d 100644
+> > --- a/lib/igt_device_scan.c
+> > +++ b/lib/igt_device_scan.c
+> > @@ -249,6 +249,8 @@ struct igt_device {
+> >  	char *codename; /* For grouping by codename */
+> >  	enum dev_type dev_type; /* For grouping by integrated/discrete */
+> > =20
+> > +	char *pci_gpu; /* Filled for upstream bridge ports */
+> > +
+> >  	struct igt_list_head link;
+> >  };
+> > =20
+> > @@ -1063,6 +1065,9 @@ static void update_or_add_parent(struct udev *ude=
+v,
+> > =20
+> >  	/* override DEVTYPE_INTEGRATED so link attributes won't be omitted */
+> >  	bridge_idev->dev_type =3D DEVTYPE_ALL;
+> > +	bridge_idev->pci_gpu =3D strdup(parent_idev->pci_slot_name);
+> > +	bridge_idev->codename =3D strdup(parent_idev->codename);
+> Releasing memory here is safer, but we must ensure
+> igt_device_new_from_udev hasn't already filled the codename otherwise,
+> the original pointer will be lost.
+>=20
+> I=E2=80=99m thinking about how to refactor these functions to make them
+> cleaner. They=E2=80=99re a bit cluttered right now since the 'find' and
+> 'update' logic are merged together. This might be outside the scope
+> of your current patches, but the memory management is becoming quite
+> confusing. Unfortunately, there isn't an easy way to move this logic
+> into igt_device_new_from_udev right now.
 
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+I've had another look at it.  We could pass a flag that says that's a bridg=
+e,=20
+not a GPU, but that's not sufficient.  It could be used for selecting corre=
+ct=20
+dev_type for the bridge, but if we also wanted igt_device_new_from_udev() t=
+o=20
+populated codename with a copy of that of the GPU then also that data would=
+=20
+have to be passed.  OTOH, update_or_add_parent() never fully relied on=20
+igt_device_new_from_udev() populating all attributes of a GPU parent and=20
+handled some, e.g. drm_dev and drm_render, locally, then I think we can tak=
+e=20
+a similar approach to a bridge sub-parent.  As I stated before, the only no=
+n-
+trivial case is the already populated codename, but I'll fix its handling.
 
----
-v2:(Michal) 
-- Add direct code instead of gt_prepare_ccs_mode_enabling and
-  gt_finish_ccs_mode_enabling function's for readability
+Thanks,
+Janusz
 
-v3:(Michal)
-- Refactored commit message
+>=20
+> > +	parent_idev->parent =3D bridge_idev;
+> >  }
+> > =20
+> >  static struct igt_device *duplicate_device(struct igt_device *dev) {
+> > @@ -1234,6 +1239,7 @@ static void igt_device_free(struct igt_device *de=
+v)
+> >  	free(dev->device);
+> >  	free(dev->driver);
+> >  	free(dev->pci_slot_name);
+> > +	free(dev->pci_gpu);
+> It could be unalocated memory.
+>=20
+>=20
 
----
- drivers/gpu/drm/xe/xe_gt_ccs_mode.c | 42 +++++++++++++++++++----------
- 1 file changed, 28 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-index fe944687728c..b35be36b0eaa 100644
---- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-+++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
-@@ -13,6 +13,7 @@
- #include "xe_gt_sysfs.h"
- #include "xe_mmio.h"
- #include "xe_sriov.h"
-+#include "xe_sriov_pf.h"
- 
- static void __xe_gt_apply_ccs_mode(struct xe_gt *gt, u32 num_engines)
- {
-@@ -88,6 +89,11 @@ void xe_gt_apply_ccs_mode(struct xe_gt *gt)
- 	__xe_gt_apply_ccs_mode(gt, gt->ccs_mode);
- }
- 
-+static bool gt_ccs_mode_default(struct xe_gt *gt)
-+{
-+	return gt->ccs_mode == 1;
-+}
-+
- static ssize_t
- num_cslices_show(struct device *kdev,
- 		 struct device_attribute *attr, char *buf)
-@@ -117,12 +123,6 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
- 	u32 num_engines, num_slices;
- 	int ret;
- 
--	if (IS_SRIOV(xe)) {
--		xe_gt_dbg(gt, "Can't change compute mode when running as %s\n",
--			  xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
--		return -EOPNOTSUPP;
--	}
--
- 	ret = kstrtou32(buff, 0, &num_engines);
- 	if (ret)
- 		return ret;
-@@ -139,21 +139,35 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
- 	}
- 
- 	/* CCS mode can only be updated when there are no drm clients */
--	mutex_lock(&xe->drm.filelist_mutex);
-+	guard(mutex)(&xe->drm.filelist_mutex);
- 	if (!list_empty(&xe->drm.filelist)) {
--		mutex_unlock(&xe->drm.filelist_mutex);
- 		xe_gt_dbg(gt, "Rejecting compute mode change as there are active drm clients\n");
- 		return -EBUSY;
- 	}
- 
--	if (gt->ccs_mode != num_engines) {
--		xe_gt_info(gt, "Setting compute mode to %d\n", num_engines);
--		gt->ccs_mode = num_engines;
--		xe_gt_record_user_engines(gt);
--		xe_gt_reset(gt);
-+	if (gt->ccs_mode == num_engines)
-+		return count;
-+
-+	/*
-+	 * Changing default CCS mode is only allowed when there
-+	 * are no VFs. Try to lockdown PF to find out.
-+	 */
-+	if (gt_ccs_mode_default(gt) && IS_SRIOV_PF(xe)) {
-+		ret = xe_sriov_pf_lockdown(xe);
-+		if (ret) {
-+			xe_gt_dbg(gt, "Can't change CCS Mode: VFs are enabled\n");
-+			return ret;
-+		}
- 	}
- 
--	mutex_unlock(&xe->drm.filelist_mutex);
-+	xe_gt_info(gt, "Setting compute mode to %d\n", num_engines);
-+	gt->ccs_mode = num_engines;
-+	xe_gt_record_user_engines(gt);
-+	xe_gt_reset(gt);
-+
-+	/* We may end PF lockdown once CCS mode is default again */
-+	if (gt_ccs_mode_default(gt) && IS_SRIOV_PF(xe))
-+		xe_sriov_pf_end_lockdown(xe);
- 
- 	return count;
- }
--- 
-2.43.0
+
 
