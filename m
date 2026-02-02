@@ -4,61 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDC5CE7DEFC
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 16:02:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7DABE7DEFB
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 16:04:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73DF210E504;
-	Mon,  2 Feb 2026 16:02:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 906DC10E50D;
+	Mon,  2 Feb 2026 16:04:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fP9isPWp";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="f/aB5C6X";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3926510E501;
- Mon,  2 Feb 2026 16:02:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770048174; x=1801584174;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=93vC35IoasH+ZPtHd4L8/1MfGfVTntkR6ZOHyPwamGo=;
- b=fP9isPWpPXoGEwXOA8geQkA1dHF8JEzPyzNfLGYX35sOYokZ7KnWUuhj
- HqXSmIEtCuXs746h6lZ5JWQ3wwEiHbpg/shxFnnDP7rt9Tvfxga93U7LQ
- QtPJAgzzJ/937x0kkF7fnozwFSA0HDcYNLg8RoW/YxPGnGGwcbnF7vMdi
- aoDiTAsFghA0OYtiYOXNje0ElIFPzA9+GWYzI3Va/7ZxLL8hrzdMOfdW1
- hhdqrtaxmGsf8nTpkan+KAK0zWZtZcC5R622JsXjluCgESoe84OKwUYvd
- JdNe4TZPgDkTxOJlddlHj0bnOeRH4usvyc0Lx8/SkcTOuDQ3B5tsZMASA g==;
-X-CSE-ConnectionGUID: P80HNB26RbyqLkC5Ppc/1A==
-X-CSE-MsgGUID: 4gcCFacaTEq7Ip3iBy+1UA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="71105848"
-X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="71105848"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 08:02:53 -0800
-X-CSE-ConnectionGUID: 0+LfPTEaR96bWLI8YVAiBQ==
-X-CSE-MsgGUID: GNlrpl3KR+CjXe8/Ci1geA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="209559118"
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.244.247])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 08:02:49 -0800
-Date: Mon, 2 Feb 2026 18:02:46 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jouni.hogander@intel.com
-Subject: Re: [PATCH 2/4] drm/i915/vrr: Avoid vrr for PCON with HDMI2.1 sink
-Message-ID: <aYDKpm3SKZPyZMnA@intel.com>
-References: <20251111093007.3771409-1-ankit.k.nautiyal@intel.com>
- <20251111093007.3771409-3-ankit.k.nautiyal@intel.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D48EF10E504;
+ Mon,  2 Feb 2026 16:04:33 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id B0F16600BB;
+ Mon,  2 Feb 2026 16:04:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C63C6C116C6;
+ Mon,  2 Feb 2026 16:04:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1770048272;
+ bh=7imNtjuPs1te+Kisp0FjgtPNX3MVFkhCCfZGQjL0zdE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=f/aB5C6XvMX7ySgFLbkB7nsbkNjnx01Vj3syyHczl0oLlRz9+pP1I+iCDjrW/iGE/
+ O7AQHu69UN3T+TU5FuhDC1Gqg+whGbB6rUX5kvnaFYduFi4aQqmdZskSdFLIsH+yV/
+ 3WVLf9QxlXUBZ/YCuEJD7DKWz4xBbcsnh3zo8X8aT698GMC9lUyGwKC82KAXlXEAK+
+ YSvnfx0cc6lZCbWhfI0bW1MJi2So9rZTK5TNjLGe78XaGFRLlFEPJTrTLXTdK+R0LO
+ aJrihNOOGO4iUaVjnls8WcA2+TFWeUMSBuRwtDAFQoNTDAthUbI/n2zQR/DAnDLQwF
+ kG55IL5/qUQWQ==
+Date: Mon, 2 Feb 2026 18:04:25 +0200
+From: Leon Romanovsky <leon@kernel.org>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: Sumit Semwal <sumit.semwal@linaro.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
+ Vivek Kasireddy <vivek.kasireddy@intel.com>,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
+ intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ iommu@lists.linux.dev, kvm@vger.kernel.org
+Subject: Re: [PATCH v7 0/8] dma-buf: Use revoke mechanism to invalidate
+ shared buffers
+Message-ID: <20260202160425.GO34749@unreal>
+References: <20260131-dmabuf-revoke-v7-0-463d956bd527@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251111093007.3771409-3-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+In-Reply-To: <20260131-dmabuf-revoke-v7-0-463d956bd527@nvidia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,44 +79,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Nov 11, 2025 at 03:00:05PM +0530, Ankit Nautiyal wrote:
-> Currently we do not support VRR with HDMI so skip vrr compute
-> config step for DP PCON with HDMI sink.
+On Sat, Jan 31, 2026 at 07:34:10AM +0200, Leon Romanovsky wrote:
+> Changelog:
+> v7:
+
+<...>
+
+> Leon Romanovsky (8):
+>       dma-buf: Rename .move_notify() callback to a clearer identifier
+>       dma-buf: Rename dma_buf_move_notify() to dma_buf_invalidate_mappings()
+>       dma-buf: Always build with DMABUF_MOVE_NOTIFY
+>       vfio: Wait for dma-buf invalidation to complete
+>       dma-buf: Make .invalidate_mapping() truly optional
+>       dma-buf: Add dma_buf_attach_revocable()
+>       vfio: Permit VFIO to work with pinned importers
+>       iommufd: Add dma_buf_pin()
 > 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_vrr.c | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index 00cbc126fb36..7a58e1f8acea 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -42,7 +42,14 @@ bool intel_vrr_is_capable(struct intel_connector *connector)
->  	case DRM_MODE_CONNECTOR_DisplayPort:
->  		if (connector->mst.dp)
->  			return false;
-> +
->  		intel_dp = intel_attached_dp(connector);
-> +		/*
-> +		 * VRR via PCON is currently unsupported.
-> +		 * TODO: Add support for VRR for DP HDMI2.1 PCON.
-> +		 */
-> +		if (intel_dp_has_hdmi_sink(intel_dp))
+>  drivers/dma-buf/Kconfig                     | 12 -----
+>  drivers/dma-buf/dma-buf.c                   | 69 ++++++++++++++++++++-----
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c | 14 ++---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_object.c  |  2 +-
+>  drivers/gpu/drm/amd/amdkfd/Kconfig          |  2 +-
+>  drivers/gpu/drm/virtio/virtgpu_prime.c      |  2 +-
+>  drivers/gpu/drm/xe/tests/xe_dma_buf.c       |  7 ++-
+>  drivers/gpu/drm/xe/xe_bo.c                  |  2 +-
+>  drivers/gpu/drm/xe/xe_dma_buf.c             | 14 ++---
+>  drivers/infiniband/core/umem_dmabuf.c       | 13 -----
+>  drivers/infiniband/hw/mlx5/mr.c             |  2 +-
+>  drivers/iommu/iommufd/pages.c               | 11 +++-
+>  drivers/iommu/iommufd/selftest.c            |  2 +-
+>  drivers/vfio/pci/vfio_pci_dmabuf.c          | 80 ++++++++++++++++++++++-------
+>  include/linux/dma-buf.h                     | 17 +++---
+>  15 files changed, 153 insertions(+), 96 deletions(-)
 
-That just checks what the EDID says about HDMI support, it
-doesn't really mean anything wrt. PCON vs. not.
+Christian,
 
-So if we eg. have a DVI sink attach through a PCON we won't
-bail out here.
+Given the ongoing discussion around patch v5, I'm a bit unclear on the
+current state. Is the series ready for merging, or do you need me to
+rework anything further?
 
-> +			return false;
->  
->  		if (!drm_dp_sink_can_do_video_without_timing_msa(intel_dp->dpcd))
->  			return false;
-> -- 
-> 2.45.2
-
--- 
-Ville Syrjälä
-Intel
+Thanks
