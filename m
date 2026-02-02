@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CACC6E7DEFD
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 16:15:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD5BAE7DEFC
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 16:15:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 771B210E526;
-	Mon,  2 Feb 2026 16:15:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HQnbwgj+";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0674010E526;
- Mon,  2 Feb 2026 16:15:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770048902; x=1801584902;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=MNtshAPjRtVYIcKAHTqWNLU0nQa9mBXz4LVFP2FXAQE=;
- b=HQnbwgj+Bxl2LVkIE2HfipMdlLWBaOBzh4vA+Vf8XBKTW+tSe+0bwLkM
- SwbxtSQ9HRC63Fj0hWWWhwKMAJbtAJAaVOZq3+fUzEeUlKEPCONTTe8JE
- DgsCyjzAoSVROEcoOaQfaex6+08IN6htXi2QfQX5GmdN3pz48v3PQwO4g
- nMM1t08amlOzK/OQjSRto3sMvU9Ljf1n3gHviang599qvGz1+AAo1t3s0
- ASdBW2eHDYQwPQs0+MKBYkZk69BSHC5Y1BrXOW59Yv2n4MKFRelapODpj
- PpBEHAcS5FVhZlSs4dgLkTHp4wuRHG0Sz91/bkXFeikGHHdxRcovbhhAy g==;
-X-CSE-ConnectionGUID: ozxky5V1RIizo/WB62+2Bw==
-X-CSE-MsgGUID: 04NKYq/gQJC2E/iLZa04UQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="71262815"
-X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="71262815"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 08:14:22 -0800
-X-CSE-ConnectionGUID: soP2zpFRRvaCj35G8AFABA==
-X-CSE-MsgGUID: 42HwYyEFS5uGcXECEdG/1g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="213678310"
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.244.247])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 08:14:15 -0800
-Date: Mon, 2 Feb 2026 18:14:05 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jouni.hogander@intel.com
-Subject: Re: [PATCH 3/4] drm/i915/dp: Allow AS_SDP only if panel replay +
- auxless alpm is supported
-Message-ID: <aYDNTXVr1CUQZcKn@intel.com>
-References: <20251111093007.3771409-1-ankit.k.nautiyal@intel.com>
- <20251111093007.3771409-4-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A21310E526;
+	Mon,  2 Feb 2026 16:15:18 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAD3010E529;
+ Mon,  2 Feb 2026 16:15:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20251111093007.3771409-4-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_DRM=5FRAS_using?=
+ =?utf-8?q?_generic_netlink_for_RAS_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 02 Feb 2026 16:15:16 -0000
+Message-ID: <177004891687.217225.3215056749919102439@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260202064356.286243-7-riana.tauro@intel.com>
+In-Reply-To: <20260202064356.286243-7-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,68 +36,149 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Nov 11, 2025 at 03:00:06PM +0530, Ankit Nautiyal wrote:
-> Adaptive Sync SDP is required when Panel replay is active and for
-> supporting VRR on PCON.
-> 
-> Since VRR on PCON still needs some effort, enable adaptive sync SDP only
-> when Panel replay with ALPM-Auxless is supported.
-> 
-> Set the AS_SDP mode for Fixed Vtotal mode for fixed refresh rate case.
-> 
-> v2: Remove redundant target_rr assignments. (Ville)
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 15 ++++++++++++---
->  1 file changed, 12 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 92a553a76b57..2852a1d9f157 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2935,7 +2935,15 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
->  	const struct drm_display_mode *adjusted_mode =
->  		&crtc_state->hw.adjusted_mode;
->  
-> -	if (!crtc_state->vrr.enable || !intel_dp->as_sdp_supported)
-> +	if (!intel_dp->as_sdp_supported)
-> +		return;
-> +
-> +	/*
-> +	 * Support Adaptive-Sync SDP only for PR+AUX-less ALPM for now.
-> +	 * It can be enabled for PCON + VRR, but that is currently not supported.
-> +	 */
-> +	if (!CAN_PANEL_REPLAY(intel_dp) ||
-> +	    !intel_alpm_aux_less_wake_supported(intel_dp))
->  		return;
->  
->  	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
-> @@ -2949,9 +2957,10 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
->  		as_sdp->mode = DP_AS_SDP_FAVT_TRR_REACHED;
->  		as_sdp->target_rr = drm_mode_vrefresh(adjusted_mode);
->  		as_sdp->target_rr_divider = true;
-> -	} else {
-> +	} else if (crtc_state->vrr.enable) {
->  		as_sdp->mode = DP_AS_SDP_AVT_DYNAMIC_VTOTAL;
-> -		as_sdp->target_rr = 0;
-> +	} else {
-> +		as_sdp->mode = DP_AS_SDP_AVT_FIXED_VTOTAL;
+== Series Details ==
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Series: Introduce DRM_RAS using generic netlink for RAS (rev5)
+URL   : https://patchwork.freedesktop.org/series/155188/
+State : warning
 
-But we're still not configuring DOWNSPREAD_CTRL correctly so PR+VRR
-seems to be busted.
+== Summary ==
 
->  	}
->  }
->  
-> -- 
-> 2.45.2
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit fcca046b31c2fcbb66c93b92a4dccfcfbb7ce6c2
+Author: Riana Tauro <riana.tauro@intel.com>
+Date:   Mon Feb 2 12:14:01 2026 +0530
 
--- 
-Ville Syrjälä
-Intel
+    drm/xe/xe_hw_error: Add support for PVC SoC errors
+    
+    Report the SoC nonfatal/fatal hardware error and update the counters.
+    
+    $ sudo ynl --family drm_ras --do query-error-counter  --json '{"node-id":0, "error-id":2}'
+    {'error-id': 2, 'error-name': 'soc-internal', 'error-value': 0}
+    
+    Co-developed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
++ /mt/dim checkpatch 4af5aac5c903c12b53b9cab756c49496f595a27d drm-intel
+47e5280eac8e drm/ras: Introduce the DRM RAS infrastructure over generic netlink
+-:58: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#58: 
+new file mode 100644
+
+-:806: WARNING:LONG_LINE: line length of 114 exceeds 100 columns
+#806: FILE: drivers/gpu/drm/drm_ras_nl.c:13:
++static const struct nla_policy drm_ras_get_error_counters_nl_policy[DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID + 1] = {
+
+-:811: WARNING:LONG_LINE: line length of 116 exceeds 100 columns
+#811: FILE: drivers/gpu/drm/drm_ras_nl.c:18:
++static const struct nla_policy drm_ras_query_error_counter_nl_policy[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID + 1] = {
+
+total: 0 errors, 3 warnings, 0 checks, 905 lines checked
+3f3ad751454b drm/xe/xe_drm_ras: Add support for XE DRM RAS
+-:27: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#27: 
+$ sudo ynl --family drm_ras  --dump get-error-counters --json '{"node-id":1}'
+
+-:73: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#73: 
+new file mode 100644
+
+-:277: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
+#277: FILE: drivers/gpu/drm/xe/xe_drm_ras.h:10:
++#define for_each_error_severity(i)	\
++	for (i = 0; i < DRM_XE_RAS_ERR_SEV_MAX; i++)
+
+total: 0 errors, 2 warnings, 1 checks, 347 lines checked
+eb45f7caee60 drm/xe/xe_hw_error: Integrate DRM RAS with hardware error handling
+ad91cbc89f23 drm/xe/xe_hw_error: Add support for Core-Compute errors
+-:66: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#66: FILE: drivers/gpu/drm/xe/regs/xe_hw_error_regs.h:40:
++									  DEV_ERR_STAT_CORRECTABLE, \
+
+-:83: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#83: FILE: drivers/gpu/drm/xe/regs/xe_hw_error_regs.h:57:
++									  ERR_STAT_GT_COR_VECTOR_0, \
+
+-:86: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'hw_err' may be better as '(hw_err)' to avoid precedence issues
+#86: FILE: drivers/gpu/drm/xe/regs/xe_hw_error_regs.h:60:
++#define ERR_STAT_GT_VECTOR_REG(hw_err, x)		(hw_err == HARDWARE_ERROR_CORRECTABLE ? \
++							ERR_STAT_GT_COR_VECTOR_REG(x) : \
++							ERR_STAT_GT_FATAL_VECTOR_REG(x))
+
+-:86: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'x' - possible side-effects?
+#86: FILE: drivers/gpu/drm/xe/regs/xe_hw_error_regs.h:60:
++#define ERR_STAT_GT_VECTOR_REG(hw_err, x)		(hw_err == HARDWARE_ERROR_CORRECTABLE ? \
++							ERR_STAT_GT_COR_VECTOR_REG(x) : \
++							ERR_STAT_GT_FATAL_VECTOR_REG(x))
+
+-:118: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'hw_err' may be better as '(hw_err)' to avoid precedence issues
+#118: FILE: drivers/gpu/drm/xe/xe_hw_error.c:23:
++#define  PVC_ERROR_MASK_SET(hw_err, err_bit) \
++	((hw_err == HARDWARE_ERROR_CORRECTABLE) ? (BIT(err_bit) & PVC_COR_ERR_MASK) : \
++	(BIT(err_bit) & PVC_FAT_ERR_MASK))
+
+-:118: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'err_bit' - possible side-effects?
+#118: FILE: drivers/gpu/drm/xe/xe_hw_error.c:23:
++#define  PVC_ERROR_MASK_SET(hw_err, err_bit) \
++	((hw_err == HARDWARE_ERROR_CORRECTABLE) ? (BIT(err_bit) & PVC_COR_ERR_MASK) : \
++	(BIT(err_bit) & PVC_FAT_ERR_MASK))
+
+total: 0 errors, 2 warnings, 4 checks, 320 lines checked
+fcca046b31c2 drm/xe/xe_hw_error: Add support for PVC SoC errors
+-:8: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#8: 
+$ sudo ynl --family drm_ras --do query-error-counter  --json '{"node-id":0, "error-id":2}'
+
+-:36: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'base' - possible side-effects?
+#36: FILE: drivers/gpu/drm/xe/regs/xe_hw_error_regs.h:70:
++#define SOC_GLOBAL_ERR_STAT_REG(base, x)		XE_REG(_PICK_EVEN((x), \
++									  (base) + SOC_GCOERRSTS, \
++									  (base) + SOC_GNFERRSTS))
+
+-:45: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#45: FILE: drivers/gpu/drm/xe/regs/xe_hw_error_regs.h:79:
++									  (master) + SOC_GSYSEVTCTL, \
+
+-:50: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#50: FILE: drivers/gpu/drm/xe/regs/xe_hw_error_regs.h:84:
++#define SOC_LOCAL_ERR_STAT_REG(base, hw_err)		XE_REG(hw_err == HARDWARE_ERROR_CORRECTABLE ? \
+
+-:50: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'base' - possible side-effects?
+#50: FILE: drivers/gpu/drm/xe/regs/xe_hw_error_regs.h:84:
++#define SOC_LOCAL_ERR_STAT_REG(base, hw_err)		XE_REG(hw_err == HARDWARE_ERROR_CORRECTABLE ? \
++							       (base) + SOC_LERRCORSTS : \
++							       (base) + SOC_LERRUNCSTS)
+
+-:50: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'hw_err' may be better as '(hw_err)' to avoid precedence issues
+#50: FILE: drivers/gpu/drm/xe/regs/xe_hw_error_regs.h:84:
++#define SOC_LOCAL_ERR_STAT_REG(base, hw_err)		XE_REG(hw_err == HARDWARE_ERROR_CORRECTABLE ? \
++							       (base) + SOC_LERRCORSTS : \
++							       (base) + SOC_LERRUNCSTS)
+
+-:211: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#211: FILE: drivers/gpu/drm/xe/xe_hw_error.c:342:
++static void soc_slave_ieh_handler(struct xe_tile *tile, const enum hardware_error hw_err, u32 error_id)
+
+-:222: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#222: FILE: drivers/gpu/drm/xe/xe_hw_error.c:353:
++		slave_local_errstat = xe_mmio_read32(mmio, SOC_LOCAL_ERR_STAT_REG(slave_base, hw_err));
+
+-:283: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#283: FILE: drivers/gpu/drm/xe/xe_hw_error.c:414:
++		master_local_errstat = xe_mmio_read32(mmio, SOC_LOCAL_ERR_STAT_REG(master_base, hw_err));
+
+total: 0 errors, 6 warnings, 3 checks, 293 lines checked
+
+
