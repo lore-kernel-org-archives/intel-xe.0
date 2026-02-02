@@ -4,192 +4,189 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F9EBE73146
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 08:38:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5443E73145
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 08:41:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC85D10E286;
-	Mon,  2 Feb 2026 08:38:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E10E10E286;
+	Mon,  2 Feb 2026 08:41:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P1pOtJCT";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sk18yRJf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBC7F10E286
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Feb 2026 08:38:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB6A710E286;
+ Mon,  2 Feb 2026 08:41:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770021510; x=1801557510;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=P0HSLM4k3LXOiQ7hGhHZj8m+oWLZJmxMZMM/9Eog+24=;
- b=P1pOtJCTx5ovKjsbAkDNQX5nxCCEYp2IW8a2nRSffh9u4BAX1trJ2Z3o
- OxsJkDR/APiAIzJ3+XXRp4Qqfh2FTfwtWEGX82v/ErhzrLoDAKwb5OAo8
- JR9VBYDAfjzsUCW+Bj02aAZdTTCTsxhhIXAYjcQTxhXAAyWmzdfmIuRGw
- xL9LvH9aHkFYZurd8jHFN4S3TcxyOSbwf3G5sEgGU1bjXptCm4WSku1fb
- hCzoMlk/3YhBOQXA7+j6HKQ1r6qoDh+Tbe7jPnIfQ4J50jayRH9Onu+7U
- LVrcgw6OdRSkMZCHknvlZozQcG+t/DScJ86cgeifiEORSylTfSd8lzV/d Q==;
-X-CSE-ConnectionGUID: YI2JnSsySt+HP4sXvWVz/Q==
-X-CSE-MsgGUID: 7TxI/X+nRAuh/kWmShT/zw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11689"; a="71156727"
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="71156727"
+ t=1770021672; x=1801557672;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=lmRpa1QcvM1GQ15Lh+yDlk89eMgU60hbHA6XTYmV+SY=;
+ b=Sk18yRJfxMu/dro+U3XBKiOhQrc6wkMa1R6RE9i3AFdy0qC9Oo1AIiaw
+ RXlxhVDN54Tpoa/HkX1fmMYZEWdimLeeAZQYJn5CD7E8NxoZEijLZlXvl
+ XWrEYVb8/EzSGdKBGtqa5UzQb4TJYAgUDyP+UtXZdZv0Jhwsiktw95JZT
+ WyJfGmsTqNr5rOnU7CN6g9j9FUXbR3y/kOzJJOvmJ2TNowRnPPSKxAOyB
+ HMGXEkB/TtsyqfyCi0tWfqBxKVLsMlUs10Yqn7h7lOtzmr4l2b1OMYXL8
+ RaLlktRatPztFrdYBPG7ToxvZRJxnvjGqzCPCTvWMHlz5LeBLAdcB9gj3 Q==;
+X-CSE-ConnectionGUID: yP3WyD/5SBGnCCMIyQTsgA==
+X-CSE-MsgGUID: /ZQem9EkS2iwifgRgvR6tQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11689"; a="71156945"
+X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="71156945"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 00:38:30 -0800
-X-CSE-ConnectionGUID: 9cvTTwAXQ5eowicdE96zYQ==
-X-CSE-MsgGUID: V9uDZr5DRVObFaQqOXwlGw==
+ 02 Feb 2026 00:41:09 -0800
+X-CSE-ConnectionGUID: yVkREdouTmmfFrL67oML8g==
+X-CSE-MsgGUID: 0iU6duCFSb2xwgxK/Cb2nw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="209317572"
+X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="209318005"
 Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
  by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 00:38:28 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ 02 Feb 2026 00:41:07 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
  fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Mon, 2 Feb 2026 00:38:28 -0800
+ 15.2.2562.35; Mon, 2 Feb 2026 00:41:07 -0800
 Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Mon, 2 Feb 2026 00:38:28 -0800
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.39) by
+ 15.2.2562.35 via Frontend Transport; Mon, 2 Feb 2026 00:41:07 -0800
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.4) by
  edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Mon, 2 Feb 2026 00:38:28 -0800
+ 15.2.2562.35; Mon, 2 Feb 2026 00:41:06 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=XQLci23qNkv9tEmh17SZxNeMr3MBZppi/+ENkG6a4NWBhU4S9kH7oJ89eRRnNG8GXINfHPSHwH6C8ZLzgAB5c8KjxOIztxHRkCBK1vI/QkmLfPjvRMC+KJwRuvXPzPQ4ZZku3xJ9auhbCsVUIUX5sHxcaOCUj4WyxUxiGLFrGTYnK9t9hxPTGdOil8jUKdbDcQevlSKlsVYiRbfxnR4mmvvnoDD0Bnuqr4Ihx0/XWgIwqyAE4uk46pGaNg4LfQdZLxgrLSd5qWTYWq+riyl4mJ+ayp2+gXB2Nyb4dRKNf52emvVU6LBbJYYw/AwUcCjsB78ozhK+3ond/6lvznb0tQ==
+ b=xZkzvJXocQiJnToccETgS0sK1XT0tj224TtTrPouUwekemrbgSo8tL6kPrw7y2WXkLgWX0oDSemqHixdeT4R37BBJZvzl3DgAff9Vmat7p6bROVDgyZQFeioLIjWN6Ql21s025mk/ZDEzlGfzpMntxctfhEgNlHUpZVQ93AbHCiyXxK+eWE6ym4nHoHWpG05su5W2E/fXWCQttprX8ov51HlH6eqpBNehBWYkRTurWPgHHAQEz/lp3qZV1ejuAQMymObDo804mCw+sAv96GOHHP8mj7ES2NMP85nqWbLYm3r8+EXOZI6TVNvS6ztdFb1CcDvejqZs8ETi9IzulztWQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XOmgDR8sscsZzvUFIEC8/h6YnJbCV+SDP9mnYKUxuZc=;
- b=oax48Yb506ZHfpM3LTkM+tqRJRIHAfTQUAtQCuZ/4/jT47tZg6Ga3Jd1sdeQ1lZFCif3gYvQSjslk9QzMLzuaSnmhuBrD9BpnJKRB6f1ZtGnjSDlsA184gaYcoeVRbp16/UEaqZ95PrjKfwFml+dfGAB3tcJM5/toPMhpCZ9A/yp7rxZN7uXEgxjgXwvuWQj+XF7MGd2p/x5EMmfvez/etOOFtfdw0nvfpa/mo8AZfmZPMBRGqPsurWYHxvOjaz1xSMk0qIMsHvJ8E5fTfh2RWdemzWRkFlkJjEzIafvVp2s29nMTXZmkFgfXseVOABqlvco02TpU92cXVMr6BKjGQ==
+ bh=NPQBTPPIjNQaJpeZGEM7MtX2ur9KNLrzwof+P2xOZdc=;
+ b=UcFeAHUB+tsPEJ0kxXO8vwW7Y9UatSmw/qs+8+BrQyB2ttPdgK73wbOJYXUtJuq9b6wLDLStFvticL/1fWibWYbY923Uha+G+nvoVnNLCuQiQaJwqvyYeESd836g7BirSNq8MWE4iipFuumHo9HzCBOijmE97AVpJOr7ce7GZTtjzQFqRp60KZ3zjaJygew0ljXWdxWTmvBZa9GwWeul342qJ7hMBci3f+7QAaPWoE2YJLmj4Fm9oAdJavW6RrOwaAtQJTXBFosvUOjUSe2kwHJOcLNE+kOb0UJYUjmiuHwjQ7GbPw9g15Bi8L7GwbiZFXMTZ++FeXTjCbGFu22MJA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- CY8PR11MB7313.namprd11.prod.outlook.com (2603:10b6:930:9c::20) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9564.16; Mon, 2 Feb 2026 08:38:25 +0000
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::d3ba:63fc:10be:dfca]) by DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::d3ba:63fc:10be:dfca%3]) with mapi id 15.20.9564.016; Mon, 2 Feb 2026
- 08:38:25 +0000
-Message-ID: <052efa8b-665b-454f-9329-74df8b534ca9@intel.com>
-Date: Mon, 2 Feb 2026 14:08:17 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 7/8] drm/xe/xe_ras: Add support for Uncorrectable
- Core-Compute errors
-To: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>,
- <intel-xe@lists.freedesktop.org>
-CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
- <aravind.iddamsetty@linux.intel.com>, <badal.nilawar@intel.com>,
- <raag.jadav@intel.com>, <ravi.kishore.koppuravuri@intel.com>
-References: <20260122100613.3631582-10-riana.tauro@intel.com>
- <20260122100613.3631582-17-riana.tauro@intel.com>
- <b9c82350-c32f-4cd3-9d69-c9c7aa1a347a@intel.com>
-Content-Language: en-US
-From: Riana Tauro <riana.tauro@intel.com>
-In-Reply-To: <b9c82350-c32f-4cd3-9d69-c9c7aa1a347a@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
+ by SN7PR11MB7091.namprd11.prod.outlook.com (2603:10b6:806:29a::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Mon, 2 Feb
+ 2026 08:41:04 +0000
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::9ca5:4d1d:db45:f523]) by SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::9ca5:4d1d:db45:f523%4]) with mapi id 15.20.9564.016; Mon, 2 Feb 2026
+ 08:41:04 +0000
+Date: Mon, 2 Feb 2026 10:40:59 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <jani.nikula@linux.intel.com>
+Subject: Re: [PATCH 04/17] drm/i915/dp: Rework pipe joiner logic in mode_valid
+Message-ID: <aYBi67v7ks4V3C1e@ideak-desk.lan>
+References: <20260130081812.32087-1-ankit.k.nautiyal@intel.com>
+ <20260130081812.32087-5-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0274.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1f2::14) To DS0PR11MB7958.namprd11.prod.outlook.com
- (2603:10b6:8:f9::19)
+In-Reply-To: <20260130081812.32087-5-ankit.k.nautiyal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-ClientProxiedBy: GVYP280CA0006.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:150:fa::11) To SJ0PR11MB4845.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d1::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|CY8PR11MB7313:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8aa6693f-c318-48c8-f9a0-08de62366e48
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|SN7PR11MB7091:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2ff025dd-8d06-4d63-57af-08de6236cd36
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?V3pUa05uUWxEeGZYMjRjcDJaYmp0QmVpd2lCb2lzMEIzc1BMNVhsamtTSXBn?=
- =?utf-8?B?NHhZaWhXY0NXcG9UNk96em9ab1BGenZNWWk4MU4veXljVjV2eitBclV5SDlk?=
- =?utf-8?B?YlM0cmZDR3UwaytaVjZRWEx2V0dITjJabXpEa1BGS0FMYUVYaXdzNWxTeFJC?=
- =?utf-8?B?aTRPNUFDMkhnUDk0OW4wdHVmcCs3QTU4Zy93RSt1UmJsWHJqdTNGbzVhVUo4?=
- =?utf-8?B?L1dJNDR2cTJFdnZXQTRYQ204cWh4U2xtNEsvbHZFaG5pUTdGejlMYzVnaVZh?=
- =?utf-8?B?L25IRWhOd1d3bVZiTmhoNTNmeEdSWVR4bXJoY1V5SlEvT2Y0NXhabjVNYlZK?=
- =?utf-8?B?RHpMVE0yQ0J1TWlvMjlTZVBndXBsaTFnOUc3bUZjWUw0a1FsY0JudzVMNWYx?=
- =?utf-8?B?TmlLWUgvTWNqVkxsV1FuSThQRXo2NEh4V2xPaHlMYlRGT0lkTlFlQ0orOFNj?=
- =?utf-8?B?QzlmSTgvNzcrWjRjcTRrQnFRMUlHdnVoVFhPbHhhaXBRajVxVWxrUG1wcVBs?=
- =?utf-8?B?QVQwSW1mL2RHdnFRdUJuUS96QlVabEY5L0tmUS8rd1ZCOW5VRWlJWFByclBj?=
- =?utf-8?B?dGxXeEh1ZVVoQTNXYlJpejZ2Y3lrWkh5aVNpQzB6WUJ2ZFZnSUhIRldaSFND?=
- =?utf-8?B?b0VQVVJTcUJ0RlhOZXBkdkVWYUF3NnZWcURsTEF3Sko0R2tzbEt4RzBoQVJu?=
- =?utf-8?B?MlN6SlEvaVNoeXBVN21hcVl0Y3FBN1p0aFNzU1VTYnI1ZUZHdm1tTGVSQXBo?=
- =?utf-8?B?TGJPUmZPQzBoQ2hLVVM4M2RQVXVmWWhCaW5QUWEveThqK21Wd09LL3ZieEN3?=
- =?utf-8?B?TlpGR0JURlZUSjkwNnVSNzlyTFhBaXBKcHoxeU5lV1NldGg3bFcxUk54cFkw?=
- =?utf-8?B?YWtObDJrcFFVU1l0MXo5K2w2TmdaeGhmSFdNMmZybFpVcHI2R3hIMVZpMjUz?=
- =?utf-8?B?UjBkbEVTQ1BTNlQ2ejlLSjMvOVZZend2bk1iN1RFREREZ3R4eXB5NEdrNEVx?=
- =?utf-8?B?ckYzQTRORVhNL0tNdU8wQ3BTdTBsMTNPaHNSV1huZTB5TGw4ZXgvdmFnOElG?=
- =?utf-8?B?T1RPc1d5Y1c2RW1sV3ZUdTJybCtqdFR0NVZkZEhEM3NCaWZyYXJ2Wnd2aERl?=
- =?utf-8?B?Y1cxczYzeW03dXlMcDVEbFdxaUU0UXprWGFiNFhIUFE4YmlMWGk0eGFTUm1i?=
- =?utf-8?B?ODIyMG9XU3c1bzNhS2dVa2VvOUkwSmY3RlZzS2ZyalFlRGxaN1Fod3ZPSUk3?=
- =?utf-8?B?RnNFM2QzaWYwbXJBbGtUc2RIZkM4YmlSSkcrMi9vcVN0c2FBd3RxVjF3RDc0?=
- =?utf-8?B?WjFpdXNsY1J4Q3B3eS9MMTZ3MkQ1Q1RLSXdNM3R4M0RyN1dyU3FVdWlPdlRa?=
- =?utf-8?B?VE5UcmpSeWxLRnJ2cEtSZ1ozb3orMmpaSTNkVHcvL3ZSMEw1T2lnRlo4OGw1?=
- =?utf-8?B?NFlVdC8wWnl6SDdCRFAwNG91U2puT1dGeUtQVGs0OE54Z2g2eUJvdW5mT2RE?=
- =?utf-8?B?dFgveS9LWUE5K0duNzhIdTFRaWYyVmtiblhCQk9WWjBlTkhySHBVaUlnZzFP?=
- =?utf-8?B?S3dXZ20yN2ZiRnh2V2M5U042MEVoMjRqTTlZcDZjR0ZLQ1VhQ3RxV3VDcXJt?=
- =?utf-8?B?UnNYK2RYS0lNUm9VRCtlYUxCNHVsOGdNNGZ0djhRVEE2SDN2Wk9vU3Q4T09t?=
- =?utf-8?B?cmhRdStCeGJsZkVtdFMvWkJWZ2k5azdveFFtNURKeVN5eitYWFY5VUloajFP?=
- =?utf-8?B?V29RMEYzZWtLTkMyTFVzQXM0N1lDU2EvbVl3TlFqMnY1ZkpRcWtUR2V0eHR6?=
- =?utf-8?B?dlBvZ3pWUThxOU1yNFNhUmdZVFpRVk9vZ09WekRNeVJYL2FSMHc0RjNjSHVO?=
- =?utf-8?B?RkVyOGprUDR3TU9aTG5qNjUvWFFSQS8yQnRHRlMyd3ZzaTlCZkNTRHFMU3VH?=
- =?utf-8?B?eUF0cUJxeE96SVJ4SjdETzEwTU1DeGJ0UmtxYXBLNjFDUmtiRVY4UGN1Wkk0?=
- =?utf-8?B?aUIrZDgrNk84RTEyRTZVVDdpcDlzbzhVblBTMlk2SjUwSXBnQWpoc3J0Z0lL?=
- =?utf-8?B?SVlOTDRrOXdVV2s4Rm1oNzViTUVQMXNGc1N4VDN4ZWhxSklXTUJmalRGVGxq?=
- =?utf-8?Q?em3o=3D?=
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?L1lRdTdOSW83YS9tK2hubHB0TERHUkc3bGxyWHRyV2tJc3NBZCtScENndkJP?=
+ =?utf-8?B?UzF4QTR3RDRpT1dEQWNvcW4xanRaVVlHU2FpTVYwc2N3NUZHNnFWaGJjKzN6?=
+ =?utf-8?B?OXJKdjgvS2dhbjd0cktNYTVJMGlTWEJPckNleHVhalZZcW5tUkJCcVpGZzFa?=
+ =?utf-8?B?WFN0UFQrd0tlTHJNR0lUZFBGa0hXaWVWRmhUbW1NSDhnZkczY0NWMnhyRXhr?=
+ =?utf-8?B?RUJoaGpoQVQ4bTZxRExlTWVBOXE2UnhmVGdGamlzZE9jTXdKcU5kS3ZYVzJS?=
+ =?utf-8?B?dFlXcXVPNjZMK3RQOFoyQ3EybnY0M1VTd3hnQ3lqSkVWN2RMeDRlU2NOWkhK?=
+ =?utf-8?B?NkIvb2o3ZG52Y3JvenBvZHh0OXVhcjVmTDRhWWwrNlphNGo3VzJkcFNCRG9O?=
+ =?utf-8?B?UDFHMGJDQmJJeGgzanJMWnRXcjNxaFp4ZFN0ZUZmcnduUm5DZXNDUVVkWG1J?=
+ =?utf-8?B?UlJYN2VGeXhnRFoyOXk4dmF4c3JhSmRDZmRsTE13L21LNU9aU0JjUExIU2xY?=
+ =?utf-8?B?M29GbGtxR01MaGt3WEFlbnVhRnM1NE95aHdvQmk5SlBHa3lYM2tDVHhYSExR?=
+ =?utf-8?B?SUhWcGxDa3dGOVY3ZjRDcjRVOEtmTkVQTStUb2dteEdUVFhmL0xRTy9lUGN0?=
+ =?utf-8?B?MldSSGVvV2dzM2RwUDFYdXBhcTU5TkE2YmpMcE5XZUtyZWlRZFhuR2F0b1p6?=
+ =?utf-8?B?V3RNSVZoQWthR1FGYSt6SERCRXREM25hTmRoQnJIYWY3T1BtOU5ibTltRk41?=
+ =?utf-8?B?TjF2VEhuaGQwSCswdFAyVEdLcnFXVDFCOFRwZ0JBd2NmVWtoTDJXcmZ6TjdK?=
+ =?utf-8?B?dWlNYUYvRGlnWFE1ZGJCMm4zSEZtY1lEbW1qL2V2ZFhBRjhiRWlCejROdFgv?=
+ =?utf-8?B?ekJ0YTBNTVNWTXRoQjVSZy9mcXJNRTNnT3lhaTNvdGJhS0xVbk1OOXdNWmo1?=
+ =?utf-8?B?RTV6R2dZdXRYZUlIS3BBR2FlVjlnQjdicGVtdzBhOUVsWmpwNXAyWktFbVpu?=
+ =?utf-8?B?dVhYOVlKUXRNbnFqTUFIME5SOEJ3ZEdZV3RtZEZHeHZ3MXZxY0h1SzZHb1ZN?=
+ =?utf-8?B?V09idTQ2ajFVY3AxSXlBNHA5Z010SnVQRmNXK3psRHFMOHNONFp5Q21SeWlQ?=
+ =?utf-8?B?UVNhRzNOWlk0SVdnRWJJY1Q3STNZVVV0cGl2L2w0RkIzRDVhSGpCTDQ4SDNN?=
+ =?utf-8?B?REFrMGtkU1JMQmV4ZTRaSWlsTjZqM3VJdWNYQzk0TEtWZVZKUUxHWVlIK2Jy?=
+ =?utf-8?B?T0JOYlNtWm1KRTFzdUQrVFMzaFVzQStZVmhmNzc0SFZZZTRWRWRSUUR0MUxj?=
+ =?utf-8?B?Znl3QnViVHJIVm1QOEdTYy80THdLT3BQRjVrZkNycllWdmhhZ09ZRFJQcWtC?=
+ =?utf-8?B?Y3pHUStxWUo4NGpWY0lWOUJJaCtTTDYza1lUNmJoUTg2VHBRT2NpRmhuNWo1?=
+ =?utf-8?B?aE91eTZpT3dWNGNXcVRFQTNBeFEyS1RaNnB0SXlUdEd6NmVzdDRybnU0b1B1?=
+ =?utf-8?B?d1Q3VUhsakY3R2tkTisvTWZRQ09wMWdOZlJ6M2VNcWdtRUQ1Q2NkNExtVkcz?=
+ =?utf-8?B?TGdCOTd3aDRERDR6M1Q5aWRMZ3d0Q01TV1lid0dtMm1TVFl4QWdaL21Pakh2?=
+ =?utf-8?B?REpnSGtqL2F5ZXFhM2pweXR5alVrYnZkdHlwMWxjNEE0UkFLd0gyMW80bjdB?=
+ =?utf-8?B?M0ROREx6T2toUUVCeUNrcWx3b0lMS0V2YlNIQThHdWgrYWt0YnRZK2k5UnNn?=
+ =?utf-8?B?WmVaWTAvTlRWMmZuNlVEbG5WSUVXdTFiZFF1OExjT2lMTTdsSFErTWt1RklY?=
+ =?utf-8?B?cmFlWW9CdDlpSFRleXJ6cURpUEpnMHpBL0VBSzdtK1ovR2hwVVdoVVNqUTg0?=
+ =?utf-8?B?TnI4UkRObkN5ZTZaUFpKU254MHZQbUxDOEQvTW1Ydm8xVDNEdnZpOTQrR3Rn?=
+ =?utf-8?B?ZldMMEZIdGJnRE0vaEZLekx1UmZwK3RaR1FRQTdXc3lXbWJwZ0g0OExlZnhy?=
+ =?utf-8?B?N0tDRWp0eFNaNTJFZUhJZ3hxcWJyU2YwYXVqM2NPNFRWQ045WFYvN25ONnJ3?=
+ =?utf-8?B?K3JVZkFNK2Y4Nmx4Z1ljMlp2VDZuL2hvcUg3eUNlVnJvanhwSm00dGF3ejQr?=
+ =?utf-8?Q?zAzU=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZkJOdkt4RnA1Z1lKMXpjZysxMGRZNVBrclZVdkYxT3NRb3hiWUlJbE9FZGdQ?=
- =?utf-8?B?MnZFeHlvVW9tZ2RQYWFJYTY3cWpxSDFveERpcW91NmZINzVOalg0cVNWTGQ0?=
- =?utf-8?B?M042M2FiQmFjM21BakVBSlIydmJBK0NMK1ZDWUwrVmxEQTk3RlpMWk5PWHN1?=
- =?utf-8?B?bjY0c1k5QjJiT3gzUkRsdVRUL3AwUk55WDBkOXVqQmlXRS8ydFFkNi9DMWc1?=
- =?utf-8?B?Tnh4aVZ1QWFiSzdHcGQxMzA2Z3NOSlFFQjJ3ZjhSbHhFY3NlRTJVczhXejBX?=
- =?utf-8?B?WWxGeUtHdk1Ib1BBWmlzT2owcXJVSnorWUJMbXNieS9zb1c0MHJSczNQYXJ4?=
- =?utf-8?B?ZU05bWx4aG0xM3VyWGZpV282SWRJS0l3MGJ3WUV6c3ppQkJVZXVlS0ZKOGlm?=
- =?utf-8?B?TjJXT2xjUCtqRytJVTN1eVlhNFZPNnI4a0xlK2pLa1VHYUZncDFiZ0xIY2pp?=
- =?utf-8?B?VDVsMFU4MFYrSjcxd3VhZmgxeHJnR1BYYUdGeHJaZ3J6ZFAxd2cvZjRMMk5E?=
- =?utf-8?B?SHNWM2xROU5OZm5LNEg1b3gwczJFallpTEZmMkI2TWhvemsvYXhVbnJuUERL?=
- =?utf-8?B?ZEtJbFlkV05yekFMcW5INjNlM3QwRUpWVGNzVDFpWmlkZU5pbDNVODN0dzRk?=
- =?utf-8?B?QWQxbDVhbGtmSlhlRUs4bTlGdGpaZE5BSEtwY21sZnRHQS9DWGovTnpQR3Fx?=
- =?utf-8?B?K3NTNU5hNHM1WTVZQWRnZlljQnRUck9QQ1FlOWVvd1pGUitzdzJKeWdZcGhT?=
- =?utf-8?B?eG5TczBHaXN0ZnZWSWc3aUdaZlgwZGJFNzJ1OEZYT1duSm1NMjY5Z293aStr?=
- =?utf-8?B?bkZiRzNRZjRCSklMVnFEc2syMUlvWjNhMUQyWndGUXczQTduWVQ5c0pRTGZv?=
- =?utf-8?B?YStoenNBZ3ZoS0YxQnkxVWNDWnFnMVczVTRQZkFDVDFvWjhmczlHMk1sTkNo?=
- =?utf-8?B?WVV0YUYvQUE4Q1d5QlNieXREdFhaQWNwZ2diV3RvVE1xSWJaQVVkd3BvOHds?=
- =?utf-8?B?UDZOK0QrYzVLTkQrN1ZtUG5Oc0dxWE5mdUVpdVRGSEpMYzY2TmlMUm5OUlZy?=
- =?utf-8?B?c2lCeExLZFFhQ3FWaWdZNnBkMDIwQ3Qvay9EN0haM2sxZ2V6UnVzU3Z5TTlh?=
- =?utf-8?B?ZHFlSFR2M1dPSmhOQzBhd0pVRGJJK1AwcG85dDhORlJVcjY1cGVBR2xqWGVN?=
- =?utf-8?B?SXNHNklmNDgvNFdzUjJQNnRKUGRua3c0UlVvSlRMOU4yR096Q0VmQVhEampv?=
- =?utf-8?B?WDFibmNjY1hpbWlRNFN0REtESDMxMnZFMnNZclZRd2hpUmY0Z3BsZjR2V0F5?=
- =?utf-8?B?bmtialZHcURGbDl3QlVOMUVYSkMyeFRFTzFHUk5hekl1U212dnNyK3hkankr?=
- =?utf-8?B?Um43d0JlZ2hWTGhkN0VqSGV5dDJ2M1BlQUQzMG5iQlFrTlVOV0VzYmN3K3Yr?=
- =?utf-8?B?R0VjeXZCVWtTSTU2QlpyVitMNzJVMVBSOTBBakJ4OW9UZzU0dXlHcmtVMGpr?=
- =?utf-8?B?b0JoWG1veXhNK1Axd0xLUlRiamZGQ0IvdGdaSjhZQjBRN3F6UzYreERkZDV0?=
- =?utf-8?B?Y1JPQzJ5ZVphWkNWREVMN1FDVnRtamVPN0E1TysxVytnVDRmMEplUHZ3QXQx?=
- =?utf-8?B?bXJvWi9BQVJrTU1MbmlDZ3kvK2Q0VU41aXFnVWFNMTNpNVFVZzRjNUU4N0dS?=
- =?utf-8?B?SFk0bVVEMVM4SUxJNUYrVkhTMnUzTnpqTnpSUTIyVkc3S0lWQ2JMY29mN1dP?=
- =?utf-8?B?WlhjcHljT01qaGtsYVRya2JOVCtGV01IRXh3elBiU0JFN1ZBRTIyZVhzcXZy?=
- =?utf-8?B?Z1R4VjVNYkNLQ3hkTUNKdWxNZ0VMVkdicm0wSUlyYlh0NHF3SUMra0ZNOEZ0?=
- =?utf-8?B?VlhJbG1hbEFUdmRuUlVkUHN4Q1E1enBUUDhwcHZ0Q2dFQjI0SS9UTjVhWlMz?=
- =?utf-8?B?RWFTc2tiUnMxRjJFck1IdEZOajArWW05M1Z3dmVPNDZ1UFpRRnFtdEM1b2tm?=
- =?utf-8?B?bnhLelJFeGRYdzBwRGhLdHJDU0crOG4wYVJDNklJTWlTN2FlZzB2NnFoQWxU?=
- =?utf-8?B?dldzeUpBVFlJY1pwZmZKYlZVUkM5UXZER21QNVQreHdrSFVQeUFzVmdqM1ly?=
- =?utf-8?B?djFhRVNYeDNWZkp4THlMZTNYcHpvY2F1MzV0L1MxRUkzalY1YVBmYzU3OUg5?=
- =?utf-8?B?dmc5azJuZlpmNGFpSGNPSEpGbG9SSmxUUHl4VnQ0UjdEeENta0gzTW9FVjVB?=
- =?utf-8?B?a1FBcUNrSGZBZlhUVkNwdzVvNWNHamtJcDNOamdDUTRYc2lmTzJ0NVVkL243?=
- =?utf-8?B?YUxiOUExeXN0SVFBYWlyaDFOcXppN2VsZTUwTHBka3F5ZWo2T2wxUT09?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8aa6693f-c318-48c8-f9a0-08de62366e48
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?L1RtZkVqRlJQZklkakllc1IydUdIZkxhdk15aldQbkk0RUNnakhZR0hRRlh0?=
+ =?utf-8?B?aFpBTUJUNTJkS2NKVktKMDBmTXlkd05MMlZpZi9hdW9KT0hjejgzay9peHhi?=
+ =?utf-8?B?T3VwY1ZjaG91c3M5ZGM5TzI3MUYwdnFaWHk4MWdoRmlZV2JJYW5wTlJ2ZGc5?=
+ =?utf-8?B?ejZmTnRtaHJ0bUExakhEVHJrcVl6M1FWL21MREVBWW95cWJvaS9TQU84cVJl?=
+ =?utf-8?B?RVppK3dZMVFqSzV5YU5jbVYzdkpEVmxmaXE0ZVhVUUFtZ3FWTFJJSS9Eb2dJ?=
+ =?utf-8?B?VUs3YTlZY010V2Q4S3NOTTdqSU9mRi9qeTdDWUtYQkdLVDNORHVWK0RmM2NY?=
+ =?utf-8?B?bDVvYXNnak5KZTAxRWY1UCtBZndrWGFoUlIzb0ZVRTJkekVsQWpKWVdnaVlr?=
+ =?utf-8?B?V1duM1R6a2xSNVJCbVRRK3JyOGJhc0ZIaEkzbjhzb2R2dDNyd0lhWFlxUTdV?=
+ =?utf-8?B?TUtlWDZtK1dSTUxwM1d5Ui9tOWNVRktRa29ETHJPNXNpRzhSL2NibUVKb3pU?=
+ =?utf-8?B?akdSQ3ZZQ1M3VEdEYUw3VXE1WVVZMEpENERUUjluYXBjVXRKU0pmK2R3Rk5h?=
+ =?utf-8?B?UmlKWno3ZWkzUTZvOFhmQVc0TlkxaThjcEtlZlN5SEhoMkRjbnNDTk5rTWp5?=
+ =?utf-8?B?NWdYQzN1OTZTdnZSdmJnK1E1ZWwxZ0NQclpCRTlvWEszQXdRNTNNTndkVWJl?=
+ =?utf-8?B?TlpuSDVhRDhHUVVjVUdrUXhNbnhYNjd1ejF6aUU0eWUxNkF3RXAxR2t1cExr?=
+ =?utf-8?B?QXE1Y3ErK2NvQlNDOW16OHFBNkdpblJzRFloUktyTGhaV2pMa3BDVnZBUXFH?=
+ =?utf-8?B?UDd2MVFJTGtIbzg2NTU2c2NaUUpPSEFHNVZLaTRPL2ZscGpvM3VwWGRjMlh6?=
+ =?utf-8?B?ekdhSktCeWxFT2RpaTduOEdSbWhnc050ajZJN3dhMHF1aUtydFY2c0pIRThK?=
+ =?utf-8?B?V1JIU0Z2WUhGSEswc0QrcmN3bi8yUytFcnk1SmMxbDVMWlZ2MXZsSW5oZUFS?=
+ =?utf-8?B?T2l1OUFOYjUyN290MWMxZ0tncWM0bGpnZldzTXNkeVZaK1pTZnVlVVBHUHZz?=
+ =?utf-8?B?RS80MjlHS0d3OTBjVDBsYU5LY1lUZEIyNlFpdXdoTkxteEpndU1peHdtTEFT?=
+ =?utf-8?B?ZENFbUtLZTNDSERnTVR0VlBNcDZiTjRKOWU0WjZqTEVld3RRV1gwbkdyakNs?=
+ =?utf-8?B?K3kxQUZKOXA4a2xpL3FuS1ZtejBnSWNXWmFtRTN1WVcybUg0VFR0SmRINFl1?=
+ =?utf-8?B?UE5OMkt6YURnZ3lPVHB3d3pjMXNTNEFyRkpOc1F4cGNSdFZFSFEzVzNTOFRn?=
+ =?utf-8?B?M3Y2S2hzOWNnR3cxejlNUC9nbFVGV25ua2dBWVpLVFFXRkxkK05LNlVncjA1?=
+ =?utf-8?B?Umc4WVdqdzFpSTNZME1aSzl1ejVrZGVNTXJCMnhmUXZPck0waWYvdFV6Uy9p?=
+ =?utf-8?B?blFIU0M0WmlvSTUvNnlPaTJFV3ByTUlsNlNkZ2lVaXlOTU1yK1BUN0Zjci9o?=
+ =?utf-8?B?cTZCV2p3blEwYlZPazF1NDltNGpXQTVjM2U1citoa3lpQjFmL1B4R2xyUTlK?=
+ =?utf-8?B?SHRzZEY4VXh6cUgvQnZYeEtxY0tQMkxtUjR0ZTJzaGd1L29HOUxkVkRJQ1hU?=
+ =?utf-8?B?QjNaaUx2eUltcWdEOGxMY3RpemQwVjc1cmhBMWVwR2tyL045TnlCeVFvL3RO?=
+ =?utf-8?B?c0lSM3dudk1ZQ1lab0lnTGRVV0Jjb25xTDRkUDR4MFB4ZHplMDZycXRWb3hR?=
+ =?utf-8?B?RXFoMFpvZGlCL0VGY3B4OWEzKzVJdTcySzdDaUlZeTN1NHhuTUJiK3dyaFFh?=
+ =?utf-8?B?SS9nbldFR3NCUjI5aGZEcFlKNC9wTE11clc3dU8yVjlvVG1wcHNUS1pQVGll?=
+ =?utf-8?B?UXZVMmlsdGlxRFRib0pIRzhFNnBIZytCRXY2NkRIdnE2RU8rUkJUK25ZZjBV?=
+ =?utf-8?B?b09JWnpVWGk5ejduYVhLd1h6R2hIbmhpMWFiV2ZiQUo2VHVsblRwTHZuT2FN?=
+ =?utf-8?B?QmF3UXdWeFZsVzl1Ym9aSjY1aFY5MXhpbmJFaUZFOGFwczhoMmtNM1pzYkpK?=
+ =?utf-8?B?S1JhUjZSaXNlK09RWUFNSmcwQ1B4UGJiN0N3NkE2K2ttenBSYlR3MzNLbm9a?=
+ =?utf-8?B?d2gwRFRkY1JYUmNqTFZzQ0d0cmdValhGQ3JWSERNeThCNHgzcm9PWkZwV2Fz?=
+ =?utf-8?B?QTRnY0Zua2toTThQNGgveng4ZUtmZTFrbGhpVWZwbEcxNk1RM2JNZWhLMnRj?=
+ =?utf-8?B?WkRwV1U3N210YS8yZllwZXlzK2V6NWhxSkpQQWZPWldzdmxWd29JclNGR3JQ?=
+ =?utf-8?B?TjVUS1ZvSUNBaFF3ckh5SVl2VXZMTzJWaTI5RzhvUHlIMEFTbVZQdz09?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ff025dd-8d06-4d63-57af-08de6236cd36
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2026 08:38:25.5692 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Feb 2026 08:41:04.6664 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1VLulMmK2WGWus9ubBlw6HgH3023N3JCZRMvQL9hdPtSCz4X2jljLrCQAZXVjMuP788RvNgst3CY0+u070FBzQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7313
+X-MS-Exchange-CrossTenant-UserPrincipalName: deX4ufBDf+iin/x8O49uVFI++7oq0w1Tol1Q7PE/I86FcD3jMIaMrGOXz10vY1KBMmnsMbhYqbnMG436YHnMVQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7091
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -202,203 +199,249 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 1/27/2026 5:14 PM, Mallesh, Koujalagi wrote:
-> Hi Riana,
+On Fri, Jan 30, 2026 at 01:47:59PM +0530, Ankit Nautiyal wrote:
+> Currently in intel_dp_mode_valid(), we compute the number of joined pipes
+> required before deciding whether DSC is needed. This ordering prevents us
+> from accounting for DSC-related overhead when determining pipe
+> requirements.
 > 
-> On 22-01-2026 03:36 pm, Riana Tauro wrote:
->> Uncorrectable Core-Compute errors are classified into Global and Local
->> errors.
->>
->> Global error is an error that affects the entire device requiring a
->> reset. This type of error is not isolated. When an AER is reported and
->> error_detected is invoked return PCI_ERS_RESULT_NEED_RESET.
->>
->> A Local error is confined to a specific component or context like a
->> engine. These errors can be contained and recovered by resetting
->> only the affected part without distrupting the rest of the device.
->>
->> Upon detection of an Uncorrectable Local Core-Compute error, an AER is
->> generated and GuC is notified of the error. The KMD then sets
->> the context as non-runnable and initiates an engine reset.
->> (TODO: GuC <->KMD communication for the error).
->> Since the error is contained and recovered, PCI error handling
->> callback returns PCI_ERS_RESULT_RECOVERED.
->>
->> Signed-off-by: Riana Tauro<riana.tauro@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_ras.c | 109 +++++++++++++++++++++++++++++++++++-
->>   drivers/gpu/drm/xe/xe_ras.h |   3 +
->>   2 files changed, 110 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
->> index ace08d8d8d46..2a98cb116dc7 100644
->> --- a/drivers/gpu/drm/xe/xe_ras.c
->> +++ b/drivers/gpu/drm/xe/xe_ras.c
->> @@ -2,11 +2,16 @@
->>   /*
->>    * Copyright © 2026 Intel Corporation
->>    */
->> -#include <linux/pci.h>
->> -
->>   #include "xe_assert.h"
->>   #include "xe_device_types.h"
->> +#include "xe_printk.h"
->>   #include "xe_ras.h"
->> +#include "xe_ras_types.h"
->> +#include "xe_sysctrl_mailbox.h"
->> +#include "xe_sysctrl_mailbox_types.h"
->> +
->> +#define COMPUTE_ERROR_SEVERITY_MASK        GENMASK(26, 25)
->> +#define GLOBAL_UNCORR_ERROR            2
->>   /* Severity classification of detected errors */
->>   enum xe_ras_severity {
->> @@ -60,6 +65,106 @@ static inline const char *comp_to_str(struct 
->> xe_device *xe, u32 comp)
->>       return xe_ras_components[comp];
->>   }
->> +static void log_ras_error(struct xe_device *xe, struct 
->> xe_ras_error_class *error_class)
->> +{
->> +    struct xe_ras_error_common common_info = error_class->common;
->> +    struct xe_ras_error_product product_info = error_class->product;
->> +    u8 tile = product_info.unit.tile;
->> +    u32 instance = product_info.unit.instance;
->> +    u32 cause = product_info.error_cause.cause;
->> +
->> +    xe_err(xe, "[RAS]: Tile%u, Instance %u, %s %s Error detected 
->> Cause: 0x%x",
->> +           tile, instance, severity_to_str(xe, common_info.severity),
->> +           comp_to_str(xe, common_info.component), cause);
->> +}
->> +
->> +static pci_ers_result_t handle_compute_errors(struct xe_device *xe, 
->> struct xe_ras_error_array *arr)
->> +{
->> +    struct xe_ras_compute_error *error_info = (struct 
->> xe_ras_compute_error *)arr->error_details;
->> +    u8 uncorr_type;
->> +
->> +    uncorr_type = FIELD_GET(COMPUTE_ERROR_SEVERITY_MASK, error_info- 
->> >error_log_header);
->> +    log_ras_error(xe, &arr->error_class);
->> +
->> +    xe_err(xe, "[RAS]: Core Compute Error: timestamp %llu Uncorrected 
->> error type %u\n",
->> +           arr->timestamp, uncorr_type);
->> +
->> +    /* Request a RESET if error is global */
->> +    if (uncorr_type == GLOBAL_UNCORR_ERROR)
->> +        return PCI_ERS_RESULT_NEED_RESET;
->> +
->> +    /* Local errors are recovered using a engine reset */
->> +    return PCI_ERS_RESULT_RECOVERED;
->> +}
->> +
->> +/**
->> + * xe_ras_process_errors - Process and contain hardware errors
->> + * @xe: xe device instance
->> + *
->> + * Get error details from system controller and return recovery
->> + * method. Called only from PCI error handling.
->> + *
->> + * Returns: PCI_ERS_RESULT_RECOVERED if recovered or if no recovery 
->> needed,
->> + * PCI_ERS_RESULT_NEED_RESET otherwise.
->> + */
->> +pci_ers_result_t xe_ras_process_errors(struct xe_device *xe)
->> +{
->> +    struct xe_sysctrl_mailbox_command command = {0};
->> +    struct xe_sysctrl_mailbox_app_msg_hdr msg_hdr = {0};
->> +    struct xe_ras_get_error_response response;
->> +    u32 req_hdr;
->> +    size_t rlen;
->> +    int ret;
->> +
->> +    if (!xe->info.has_sysctrl)
->> +        return PCI_ERS_RESULT_NEED_RESET;
->> +
->> +    req_hdr = FIELD_PREP(APP_HDR_GROUP_ID_MASK, XE_SYSCTRL_GROUP_GFSP) |
->> +          FIELD_PREP(APP_HDR_COMMAND_MASK, 
->> XE_SYSCTRL_CMD_GET_SOC_ERROR);
->> +
->> +    msg_hdr.data = req_hdr;
->> +    command.header = msg_hdr;
->> +    command.data_out = &response;
->> +    command.data_out_len = sizeof(response);
->> +
->> +    do {
->> +        memset(&response, 0, sizeof(response));
->> +        rlen = 0;
->> +
->> +        ret = xe_sysctrl_send_command(xe, &command, &rlen);
->> +        if (ret || !rlen) {
->> +            xe_err(xe, "[RAS]: Sysctrl error ret %d\n", ret);
->> +            goto err;
->> +        }
->> +
->> +        if (rlen != sizeof(response)) {
->> +            xe_err(xe, "[RAS]: Sysctrl response does not match len!! 
->> \n");
->> +            goto err;
->> +        }
->> +
+> It is not possible to first decide whether DSC is needed and then compute
+> the required number of joined pipes, because the two depend on each other:
 > 
->   Array bound check is required for response.num_errors. if num_errors 
-> are more than 3 then potentials security issue (accessing uninitialized 
-> or arbitrary memory).
-
-yeah agree. Will fix this in next revision
-
-Thanks
-Riana
-
+>  - DSC need is a function of the pipe count (e.g., 4‑pipe always requires
+>    DSC; 2‑pipe may require it if uncompressed joiner is unavailable).
 > 
-> Thanks,
+>  - Whether a given pipe‑join configuration is sufficient depends on
+>    effective bandwidth, which itself changes when DSC is used.
 > 
-> -/Mallesh
+> As a result, the only correct approach is to iterate candidate pipe counts.
 > 
->> +        for (int i = 0; i < response.num_errors; i++) {
->> +            struct xe_ras_error_array arr = response.error_arr[i];
->> +            struct xe_ras_error_class error_class;
->> +            u8 component;
->> +
->> +            error_class = arr.error_class;
->> +            component = error_class.common.component;
->> +
->> +            if (component == XE_RAS_COMPONENT_CORE_COMPUTE) {
->> +                ret = handle_compute_errors(xe, &arr);
->> +                if (ret == PCI_ERS_RESULT_NEED_RESET)
->> +                    goto err;
->> +            }
->> +        }
->> +
->> +    } while (response.additional_errors);
->> +
->> +    return PCI_ERS_RESULT_RECOVERED;
->> +
->> +err:
->> +    return PCI_ERS_RESULT_NEED_RESET;
->> +}
->> +
->>   #ifdef CONFIG_PCIEAER
->>   static void unmask_and_downgrade_internal_error(struct xe_device *xe)
->>   {
->> diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
->> index 14cb973603e7..28400613c9a9 100644
->> --- a/drivers/gpu/drm/xe/xe_ras.h
->> +++ b/drivers/gpu/drm/xe/xe_ras.h
->> @@ -6,8 +6,11 @@
->>   #ifndef _XE_RAS_H_
->>   #define _XE_RAS_H_
->> +#include <linux/pci.h>
->> +
->>   struct xe_device;
->>   void xe_ras_init(struct xe_device *xe);
->> +pci_ers_result_t xe_ras_process_errors(struct xe_device *xe);
->>   #endif
+> So, refactor the logic to start with a single pipe and incrementally try
+> additional pipes only if needed. While DSC overhead is not yet computed
+> here, this restructuring prepares the code to support that in a follow-up
+> changes.
+> 
+> If a forced joiner configuration is present, we just check for that
+> configuration. If it fails, we bailout and return instead of trying with
+> other joiner configurations.
+> 
+> v2:
+>  - Iterate over number of pipes to be joined instead of joiner
+>    candidates. (Jani)
+>  - Document the rationale of iterating over number of joined pipes.
+>    (Imre)
+> v3:
+>  - In case the force joiner configuration doesn't work, do not fallback
+>    to the normal routine, bailout instead of trying other joiner
+>    configurations. (Imre)
+> v4:
+>  - Use num_joined_pipes instead of num_pipes. (Imre)
+>  - Inititialize status before the loops starts. (Imre)
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Reviewed-by: Imre Deak <imre.deak@intel.com>
 
+There is still one issue, see below.
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 135 ++++++++++++++++--------
+>  1 file changed, 89 insertions(+), 46 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 4c3a1b6d0015..dbe63efc1694 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -1434,6 +1434,23 @@ bool intel_dp_has_dsc(const struct intel_connector *connector)
+>  	return true;
+>  }
+>  
+> +static
+> +bool intel_dp_can_join(struct intel_display *display,
+> +		       int num_joined_pipes)
+> +{
+> +	switch (num_joined_pipes) {
+> +	case 1:
+> +		return true;
+> +	case 2:
+> +		return HAS_BIGJOINER(display) ||
+> +		       HAS_UNCOMPRESSED_JOINER(display);
+> +	case 4:
+> +		return HAS_ULTRAJOINER(display);
+> +	default:
+> +		return false;
+> +	}
+> +}
+> +
+>  static enum drm_mode_status
+>  intel_dp_mode_valid(struct drm_connector *_connector,
+>  		    const struct drm_display_mode *mode)
+> @@ -1445,7 +1462,6 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+>  	const struct drm_display_mode *fixed_mode;
+>  	int target_clock = mode->clock;
+>  	int max_rate, mode_rate, max_lanes, max_link_clock;
+> -	int max_dotclk = display->cdclk.max_dotclk_freq;
+>  	u16 dsc_max_compressed_bpp = 0;
+>  	u8 dsc_slice_count = 0;
+>  	enum drm_mode_status status;
+> @@ -1488,66 +1504,93 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+>  					   target_clock, mode->hdisplay,
+>  					   link_bpp_x16, 0);
+>  
+> -	num_joined_pipes = intel_dp_num_joined_pipes(intel_dp, connector,
+> -						     mode->hdisplay, target_clock);
+> -	max_dotclk *= num_joined_pipes;
+> +	/*
+> +	 * We cannot determine the required pipe‑join count before knowing whether
+> +	 * DSC is needed, nor can we determine DSC need without knowing the pipe
+> +	 * count.
+> +	 * Because of this dependency cycle, the only correct approach is to iterate
+> +	 * over candidate pipe counts and evaluate each combination.
+> +	 */
+> +	status = MODE_CLOCK_HIGH;
+> +	for (num_joined_pipes = 1; num_joined_pipes <= I915_MAX_PIPES; num_joined_pipes++) {
+> +		int max_dotclk = display->cdclk.max_dotclk_freq;
+>  
+> -	if (target_clock > max_dotclk)
+> -		return MODE_CLOCK_HIGH;
+> +		if (connector->force_joined_pipes &&
+> +		    num_joined_pipes != connector->force_joined_pipes)
+> +			continue;
+>  
+> -	status = intel_pfit_mode_valid(display, mode, output_format, num_joined_pipes);
+> -	if (status != MODE_OK)
+> -		return status;
+> +		if (!intel_dp_can_join(display, num_joined_pipes))
+> +			continue;
+>  
+> -	if (intel_dp_has_dsc(connector)) {
+> -		int pipe_bpp;
+> +		if (mode->hdisplay > num_joined_pipes * intel_dp_max_hdisplay_per_pipe(display))
+> +			continue;
+>  
+> -		/*
+> -		 * TBD pass the connector BPC,
+> -		 * for now U8_MAX so that max BPC on that platform would be picked
+> -		 */
+> -		pipe_bpp = intel_dp_dsc_compute_max_bpp(connector, U8_MAX);
+> +		status = intel_pfit_mode_valid(display, mode, output_format, num_joined_pipes);
+> +		if (status != MODE_OK)
+> +			continue;
+
+I missed it in my review of this particular patch, even though
+I did mention the similar issue elsewhere:
+
+status is guaranteed to be MODE_OK at this point and then ...
+
+>  
+> -		/*
+> -		 * Output bpp is stored in 6.4 format so right shift by 4 to get the
+> -		 * integer value since we support only integer values of bpp.
+> -		 */
+> -		if (intel_dp_is_edp(intel_dp)) {
+> -			dsc_max_compressed_bpp =
+> -				drm_edp_dsc_sink_output_bpp(connector->dp.dsc_dpcd) >> 4;
+> +		if (intel_dp_has_dsc(connector)) {
+> +			int pipe_bpp;
+>  
+> -			dsc_slice_count =
+> -				intel_dp_dsc_get_slice_count(connector,
+> -							     target_clock,
+> -							     mode->hdisplay,
+> -							     num_joined_pipes);
+> +			/*
+> +			 * TBD pass the connector BPC,
+> +			 * for now U8_MAX so that max BPC on that platform would be picked
+> +			 */
+> +			pipe_bpp = intel_dp_dsc_compute_max_bpp(connector, U8_MAX);
+>  
+> -			dsc = dsc_max_compressed_bpp && dsc_slice_count;
+> -		} else if (drm_dp_sink_supports_fec(connector->dp.fec_capability)) {
+> -			unsigned long bw_overhead_flags = 0;
+> +			/*
+> +			 * Output bpp is stored in 6.4 format so right shift by 4 to get the
+> +			 * integer value since we support only integer values of bpp.
+> +			 */
+> +			if (intel_dp_is_edp(intel_dp)) {
+> +				dsc_max_compressed_bpp =
+> +					drm_edp_dsc_sink_output_bpp(connector->dp.dsc_dpcd) >> 4;
+>  
+> -			if (!drm_dp_is_uhbr_rate(max_link_clock))
+> -				bw_overhead_flags |= DRM_DP_BW_OVERHEAD_FEC;
+> +				dsc_slice_count =
+> +					intel_dp_dsc_get_slice_count(connector,
+> +								     target_clock,
+> +								     mode->hdisplay,
+> +								     num_joined_pipes);
+>  
+> -			dsc = intel_dp_mode_valid_with_dsc(connector,
+> -							   max_link_clock, max_lanes,
+> -							   target_clock, mode->hdisplay,
+> -							   num_joined_pipes,
+> -							   output_format, pipe_bpp,
+> -							   bw_overhead_flags);
+> +				dsc = dsc_max_compressed_bpp && dsc_slice_count;
+> +			} else if (drm_dp_sink_supports_fec(connector->dp.fec_capability)) {
+> +				unsigned long bw_overhead_flags = 0;
+> +
+> +				if (!drm_dp_is_uhbr_rate(max_link_clock))
+> +					bw_overhead_flags |= DRM_DP_BW_OVERHEAD_FEC;
+> +
+> +				dsc = intel_dp_mode_valid_with_dsc(connector,
+> +								   max_link_clock, max_lanes,
+> +								   target_clock, mode->hdisplay,
+> +								   num_joined_pipes,
+> +								   output_format, pipe_bpp,
+> +								   bw_overhead_flags);
+> +			}
+>  		}
+> +
+> +		if (intel_dp_joiner_needs_dsc(display, num_joined_pipes) && !dsc)
+> +			continue;
+
+... this will continue with status == MODE_OK and the loop can terminate
+like that. So need a status = MODE_CLOCK_HIGH before continue.
+
+> +
+> +		if (mode_rate > max_rate && !dsc)
+
+This needs a status = MODE_CLOCK_HIGH as well.
+
+With the above fixed:
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+
+> +			continue;
+> +
+> +		status = intel_mode_valid_max_plane_size(display, mode, num_joined_pipes);
+> +		if (status != MODE_OK)
+> +			continue;
+> +
+> +		max_dotclk *= num_joined_pipes;
+> +
+> +		if (target_clock > max_dotclk) {
+> +			status = MODE_CLOCK_HIGH;
+> +			continue;
+> +		}
+> +
+> +		break;
+>  	}
+>  
+> -	if (intel_dp_joiner_needs_dsc(display, num_joined_pipes) && !dsc)
+> -		return MODE_CLOCK_HIGH;
+> -
+> -	status = intel_mode_valid_max_plane_size(display, mode, num_joined_pipes);
+>  	if (status != MODE_OK)
+>  		return status;
+>  
+> -	if (mode_rate > max_rate && !dsc)
+> -		return MODE_CLOCK_HIGH;
+> -
+>  	return intel_dp_mode_valid_downstream(connector, mode, target_clock);
+>  }
+>  
+> -- 
+> 2.45.2
+> 
