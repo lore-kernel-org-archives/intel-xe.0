@@ -4,55 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0BCCE7314E
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 10:53:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 409D6E7314E
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 10:54:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A35C310E45C;
-	Mon,  2 Feb 2026 10:53:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0172810E45F;
+	Mon,  2 Feb 2026 10:54:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KXkyhfCc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OGxgj/ld";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C6EA10E45E;
- Mon,  2 Feb 2026 10:53:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E67210E460
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Feb 2026 10:54:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770029627; x=1801565627;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8w11NIAeGaxobtFZZqqxVEDqNov1+wailnBFSsUjuNg=;
- b=KXkyhfCc6Po+6kHX1hu7FOIjh3povCW5N2hgeaXTDGGTF200F0UNN3q/
- Hh8I33SGFbYTxQ56FIJpBMhz7WUXvUj4s0f/tdSoaXVaq0guKb+GGHu7Q
- VoBK2gQuhICia7FM0snaVg4tSZ5sYsR/PUh5SI1JVZoihdoZUQ236IDKf
- 9NGtOd9ckFLZNG1M7QCQQgXBvXF5KEJHp07s9gtAD/j5B7LWwRaqfOX4v
- JYVOEnO3e+N5qB/UhzHZxH2sCQYR9hNNXHvtiJAdoQp7/kct3rm6K3nQ/
- 2sjT5++3RN3QuRIHxHSeD1/e31r3FPVgX6wD5CrTx80pfegVlYEVrcVnc w==;
-X-CSE-ConnectionGUID: CgUyqkkSTI+6xOUctzrE4Q==
-X-CSE-MsgGUID: XTP9EdXkQgWQs5YPC7xerg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11689"; a="70385073"
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="70385073"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 02:53:47 -0800
-X-CSE-ConnectionGUID: HWWHALMQSF2zkiGQbTjHgw==
-X-CSE-MsgGUID: DOi6LhgHSgyPui+2rwx+eQ==
+ t=1770029651; x=1801565651;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=eLQq3Nj02UH2micafNV+YEyQNe3Imgc6ET0a9tWxXv4=;
+ b=OGxgj/ldMMzgMjejrj08LZbD6YF/U+iGure3o9lCtp4NyAKnPfxgYjF3
+ nsEoBmQYHNlzlNEmOneG8MLhivT0oZPgBEnwLiIDsgzjRKwVm+wUI1EYi
+ qxDW3kEACwJsB/71ifk31tEsQ9bTCnaPzJxRM/obir+8AxT09geCib6bO
+ mN+oUD+eE58vAsITMexZXvyHWRJJYVlQx4uP+AjXKuWJFgVyoqHvd/6qv
+ p9FpfATheg/o0UVXd9zZAKLfKwMpd5chf55UglCXlCK1rc3GLSrKGFQFr
+ P3sgO/7VVRXlnWfY5ewRUPMQYYpvwfxhuoxSjPnx0czmtjT+G1alOg4tK w==;
+X-CSE-ConnectionGUID: k37dRGDLTpy0BWL1rPmZNw==
+X-CSE-MsgGUID: PA0X91nZRq6DGX9n9A/nnw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11689"; a="71347926"
+X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="71347926"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2026 02:54:10 -0800
+X-CSE-ConnectionGUID: FJYWnMXxR56uWupCitPoMw==
+X-CSE-MsgGUID: +uE54a6DQhetcT1v6aY+dA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="232419902"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Feb 2026 02:53:45 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com, imre.deak@intel.com,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 17/17] drm/i915/display: Extend the max dotclock limit to WCL
-Date: Mon,  2 Feb 2026 16:07:31 +0530
-Message-ID: <20260202103731.357416-18-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20260202103731.357416-1-ankit.k.nautiyal@intel.com>
-References: <20260202103731.357416-1-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="208592131"
+Received: from anirban-z690i-a-ultra-plus.iind.intel.com ([10.190.216.83])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2026 02:54:07 -0800
+From: Sk Anirban <sk.anirban@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, riana.tauro@intel.com,
+ karthik.poosa@intel.com, raag.jadav@intel.com, soham.purkait@intel.com,
+ mallesh.koujalagi@intel.com, vinay.belgaumkar@intel.com,
+ daniele.ceraolospurio@intel.com, nishanth.p.reddy@intel.com,
+ rodrigo.vivi@intel.com, matthew.d.roper@intel.com,
+ Sk Anirban <sk.anirban@intel.com>
+Subject: [PATCH v4 0/1] drm/xe/guc: Add Wa_14025883347 for GuC DMA failure on
+ reset
+Date: Mon,  2 Feb 2026 16:23:14 +0530
+Message-ID: <20260202105313.3338094-3-sk.anirban@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -69,44 +70,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Prevent GuC firmware DMA failures during GuC-only reset by disabling
+idle flow and verifying SRAM handling completion. Without this, reset
+can be issued while SRAM handler is copying WOPCM to SRAM,
+causing GuC HW to get stuck.
 
-Add upper limit check for pixel clock for WCL.
+v2: Modify error message (Badal)
+    Rename reg bit name (Daniele)
+    Update WA skip condition (Daniele)
+    Update SRAM handling logic (Daniele)
+v3: Reorder WA call (Badal)
+    Wait for GuC ready status (Daniele)
+v4: Update reg name (Badal)
+    Add comment (Daniele)
+    Add extended graphics version (Daniele)
+    Modify rules
 
-For prior platforms though the bspec mentions the dotclock limits, however
-these are intentionally not enforced to avoid regressions, unless real
-issues are observed.
+Sk Anirban (1):
+  drm/xe/guc: Add Wa_14025883347 for GuC DMA failure on reset
 
-BSpec: 49199, 68912
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/regs/xe_guc_regs.h |  8 ++++++
+ drivers/gpu/drm/xe/xe_guc.c           | 38 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules    |  3 +++
+ 3 files changed, 49 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 9cfeb5530fd8..bd4219467e0e 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -8006,8 +8006,16 @@ int intel_max_uncompressed_dotclock(struct intel_display *display)
- 	int max_dotclock = display->cdclk.max_dotclk_freq;
- 	int limit = max_dotclock;
- 
--	if (DISPLAY_VER(display) >= 30)
-+	if (DISPLAY_VERx100(display) == 3002)
-+		limit = 937500;
-+	else if (DISPLAY_VER(display) >= 30)
- 		limit = 1350000;
-+	/*
-+	 * Note: For other platforms though there are limits given
-+	 * in the Bspec, however the limit is intentionally not
-+	 * enforced to avoid regressions, unless real issues are
-+	 * observed.
-+	 */
- 
- 	return min(max_dotclock, limit);
- }
 -- 
-2.45.2
+2.43.0
 
