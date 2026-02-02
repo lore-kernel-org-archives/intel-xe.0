@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A895AD172CC
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 05:14:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFDEBD172CD
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 05:14:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EFB910E103;
-	Mon,  2 Feb 2026 05:14:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4959510E1DA;
+	Mon,  2 Feb 2026 05:14:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I4WJpZ9l";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="azsLLNFB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A001010E103
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Feb 2026 05:14:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9553F10E1DA
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Feb 2026 05:14:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770009257; x=1801545257;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=W7PmMtPpPOKMpdRFcvf9WVs/VgoefIaNBmlhQ6Jw1aI=;
- b=I4WJpZ9lgH9Ze8vxD562q6L8+fjEGyqd2ddv8MXSaOdxQeu58aBraOUh
- Ngw+xT8eSxA3yx/1v33BXCLe6cSt0zsBkGh7q5ruBBeP2rm4Y1N4U50sC
- 9Ak8U0z4yGrW5V/Cj249IxxwINfDOgg0K3E4RvtCC3CTdOad2K4unqUxT
- Eh6411Yy3CVRjcRqRpPT+wMdVVWMhg4dtwpzffNNJxBSs8CCbM7it+e9m
- 20YpsBZryFDR/iTqT48qDEuLja/fmSKybVGZB5CjlHrZ+zlNbgyLqSfsz
- ajw88Rq1YOmrXZRC//x4i4q+IAeFIKibLsi0fktwsb38smOCE2nFWf6Vi w==;
-X-CSE-ConnectionGUID: j3xvB+jFQ8S/+DsCmL8bxA==
-X-CSE-MsgGUID: ux+HSDW4Qf2awMu3CgWR3Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11689"; a="58745185"
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="58745185"
+ t=1770009260; x=1801545260;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=LKAVV/KPz41jVFHbvCgWRgBGoZ4E2eu6XcMkIXzBZns=;
+ b=azsLLNFBDlEiYrSj91VMskxl2ulFj673IbGa7Lghmlr2TS7UYsFmzhZp
+ ovAHSIhfZTz7pq7b/nvI3YE8O4Z3rqOe+t1c+xFLqbr0wFYED9z8dGo5q
+ R9Uxt30YoYxe+ry9YHAnBjERsTWb7ur1o0op5G5cDHp7OgAW9sziB2ClT
+ tjNJZaTny1P3Ncoy3v4O69M7XulcpqXVf2BjQZeh0zMn2kIKR99XVcyEw
+ wCetkXPRjr5j1QXmQ+v+HndhkNlqwtUCNQaHj17qqf7Dp/9VZXb3TpIVt
+ yohvFg0jCClPA0GvCFXxeLGDguI/9xGsOD6tqQ8anVjzk4flEsycs6dmI A==;
+X-CSE-ConnectionGUID: d23q6ByoSSaYASkNfPPu6Q==
+X-CSE-MsgGUID: K3kcqhZAQnW0OhYMUMDMMg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11689"; a="58745187"
+X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="58745187"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2026 21:14:16 -0800
-X-CSE-ConnectionGUID: 3IawEKDPS/u0qe//+P+yVw==
-X-CSE-MsgGUID: csJ8jdagTPmx2qsJLjcm1Q==
+ 01 Feb 2026 21:14:20 -0800
+X-CSE-ConnectionGUID: G0imGz7BSBSbNQOoaWMGIA==
+X-CSE-MsgGUID: Y6E2Y6ZmTBSGtoy4g+ICcg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="213953046"
+X-IronPort-AV: E=Sophos;i="6.21,268,1763452800"; d="scan'208";a="213953051"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Feb 2026 21:14:15 -0800
+ 01 Feb 2026 21:14:18 -0800
 From: Varun Gupta <varun.gupta@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, matthew.d.roper@intel.com,
  himal.prasad.ghimiray@intel.com, priyanka.dandamudi@intel.com
-Subject: [PATCH v3 0/2] drm/xe: Add prefetch fault support for Xe3p
-Date: Mon,  2 Feb 2026 10:44:02 +0530
-Message-ID: <20260202051404.835714-1-varun.gupta@intel.com>
+Subject: [PATCH v3 1/2] drm/xe: Add counter for invalid prefetch pagefaults
+Date: Mon,  2 Feb 2026 10:44:03 +0530
+Message-ID: <20260202051404.835714-2-varun.gupta@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260202051404.835714-1-varun.gupta@intel.com>
+References: <20260202051404.835714-1-varun.gupta@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,46 +67,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Xe3p hardware prefetches memory ranges and notifies software via an
-additional bit (bit 11) in the page fault descriptor that the fault
-was caused by prefetch.
+Add a stats counter for invalid prefetch page faults to avoid
+excessive logging.
 
-Patch 1 adds a dedicated stats counter to track invalid prefetch
-pagefaults separately from regular faults.
+Originally-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Varun Gupta <varun.gupta@intel.com>
 
-Patch 2 implements the prefetch support by extracting the prefetch bit
-from the fault descriptor and echoing it in the response (bit 6) only
-when handling fails. This prevents CAT errors for prefetch faults.
-For failed prefetch faults, a single-line error message with the prefetch
-bit value is printed to reduce excessive logging.
-
-Based on original patches by Brian Welty and Priyanka Dandamudi.
-
+---
 v3:
- - Split stats counter into separate patch (Matt Brost)
- - Drop xe_guc_pagefault_types.h rename patch (Matt Brost)
- - Move prefetch check to caller of xe_pagefault_print (Matt Brost)
- - Rename XE3P_PFD_PREFETCH/PFR_PREFETCH to remove XE3P_ prefix,
-   add comments about Xe3+ platform support (Matt Brost)
- - Rename PREFETCH_PAGEFAULT_COUNT to INVALID_PREFETCH_PAGEFAULT_COUNT
-   for clarity (Matt Brost)
- - Include prefetch bit value in error message (Matt Brost)
+ - New patch splitting stats counter from main prefetch implementation (Matt Brost)
+ - Renamed from PREFETCH_PAGEFAULT_COUNT to INVALID_PREFETCH_PAGEFAULT_COUNT (Matt Brost)
+---
+ drivers/gpu/drm/xe/xe_gt_stats.c       | 1 +
+ drivers/gpu/drm/xe/xe_gt_stats_types.h | 1 +
+ 2 files changed, 2 insertions(+)
 
-v2:
- - Initial implementation combining all changes
-
-Varun Gupta (2):
-  drm/xe: Add counter for invalid prefetch pagefaults
-  drm/xe: Add prefetch fault support for Xe3p
-
- drivers/gpu/drm/xe/xe_gt_stats.c        |  1 +
- drivers/gpu/drm/xe/xe_gt_stats_types.h  |  1 +
- drivers/gpu/drm/xe/xe_guc_fwif.h        |  5 +++--
- drivers/gpu/drm/xe/xe_guc_pagefault.c   |  2 ++
- drivers/gpu/drm/xe/xe_pagefault.c       | 16 +++++++++++++---
- drivers/gpu/drm/xe/xe_pagefault_types.h |  8 +++++++-
- 6 files changed, 27 insertions(+), 6 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_stats.c b/drivers/gpu/drm/xe/xe_gt_stats.c
+index fb2904bd0abd..202aebe3300b 100644
+--- a/drivers/gpu/drm/xe/xe_gt_stats.c
++++ b/drivers/gpu/drm/xe/xe_gt_stats.c
+@@ -35,6 +35,7 @@ static const char *const stat_description[__XE_GT_STATS_NUM_IDS] = {
+ 	DEF_STAT_STR(SVM_TLB_INVAL_US, "svm_tlb_inval_us"),
+ 	DEF_STAT_STR(VMA_PAGEFAULT_COUNT, "vma_pagefault_count"),
+ 	DEF_STAT_STR(VMA_PAGEFAULT_KB, "vma_pagefault_kb"),
++	DEF_STAT_STR(INVALID_PREFETCH_PAGEFAULT_COUNT, "invalid_prefetch_pagefault_count"),
+ 	DEF_STAT_STR(SVM_4K_PAGEFAULT_COUNT, "svm_4K_pagefault_count"),
+ 	DEF_STAT_STR(SVM_64K_PAGEFAULT_COUNT, "svm_64K_pagefault_count"),
+ 	DEF_STAT_STR(SVM_2M_PAGEFAULT_COUNT, "svm_2M_pagefault_count"),
+diff --git a/drivers/gpu/drm/xe/xe_gt_stats_types.h b/drivers/gpu/drm/xe/xe_gt_stats_types.h
+index b92d013091d5..bc4116c70171 100644
+--- a/drivers/gpu/drm/xe/xe_gt_stats_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_stats_types.h
+@@ -13,6 +13,7 @@ enum xe_gt_stats_id {
+ 	XE_GT_STATS_ID_SVM_TLB_INVAL_US,
+ 	XE_GT_STATS_ID_VMA_PAGEFAULT_COUNT,
+ 	XE_GT_STATS_ID_VMA_PAGEFAULT_KB,
++	XE_GT_STATS_ID_INVALID_PREFETCH_PAGEFAULT_COUNT,
+ 	XE_GT_STATS_ID_SVM_4K_PAGEFAULT_COUNT,
+ 	XE_GT_STATS_ID_SVM_64K_PAGEFAULT_COUNT,
+ 	XE_GT_STATS_ID_SVM_2M_PAGEFAULT_COUNT,
 -- 
 2.43.0
 
