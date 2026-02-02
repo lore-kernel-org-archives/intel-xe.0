@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27BCCE7DF11
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 18:48:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 050DDE7DF0F
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Feb 2026 18:53:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A190E10E550;
-	Mon,  2 Feb 2026 18:48:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86FF910E55B;
+	Mon,  2 Feb 2026 18:53:01 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4BE7C10E53F;
- Mon,  2 Feb 2026 18:48:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0781135650694274855=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F69910E53F;
+ Mon,  2 Feb 2026 18:53:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm=3A_Color_pipeline_teard?=
- =?utf-8?q?own_and_follow-up_fixes/improvements_=28rev4=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_replace_system=5Funbound?=
+ =?utf-8?q?=5Fwq=2C_add_WQ=5FPERCPU_to_alloc=5Fworkqueue_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+To: "Marco Crivellari" <marco.crivellari@suse.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 02 Feb 2026 18:48:07 -0000
-Message-ID: <177005808728.217507.4671185412441261949@a3b018990fe9>
+Date: Mon, 02 Feb 2026 18:53:00 -0000
+Message-ID: <177005838030.217507.10192863826272507865@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260202094202.2871478-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20260202094202.2871478-1-chaitanya.kumar.borah@intel.com>
+References: <20260202103756.62138-1-marco.crivellari@suse.com>
+In-Reply-To: <20260202103756.62138-1-marco.crivellari@suse.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,60 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0781135650694274855==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm: Color pipeline teardown and follow-up fixes/improvements (rev4)
-URL   : https://patchwork.freedesktop.org/series/159263/
-State : success
+Series: replace system_unbound_wq, add WQ_PERCPU to alloc_workqueue (rev3)
+URL   : https://patchwork.freedesktop.org/series/156941/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4481-cd1fd615b2ba56ea3fb033262d4fbd0503055d3c_BAT -> xe-pw-159263v4_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b0f177338830ba210d3dc2a85d9190c0d401418b
+Author: Marco Crivellari <marco.crivellari@suse.com>
+Date:   Mon Feb 2 11:37:56 2026 +0100
 
-Summary
--------
+    drm/xe: add WQ_PERCPU to alloc_workqueue users
+    
+    This continues the effort to refactor workqueue APIs, which began with
+    the introduction of new workqueues and a new alloc_workqueue flag in:
+    
+       commit 128ea9f6ccfb ("workqueue: Add system_percpu_wq and system_dfl_wq")
+       commit 930c2ea566af ("workqueue: Add new WQ_PERCPU flag")
+    
+    The refactoring is going to alter the default behavior of
+    alloc_workqueue() to be unbound by default.
+    
+    With the introduction of the WQ_PERCPU flag (equivalent to !WQ_UNBOUND),
+    any alloc_workqueue() caller that doesn’t explicitly specify WQ_UNBOUND
+    must now use WQ_PERCPU. For more details see the Link tag below.
+    
+    In order to keep alloc_workqueue() behavior identical, explicitly request
+    WQ_PERCPU.
+    
+    Link: https://lore.kernel.org/all/20250221112
+    Suggested-by: Tejun Heo <tj@kernel.org>
+    Signed-off-by: Marco Crivellari <marco.crivellari@suse.com>
++ /mt/dim checkpatch a68485eec77211a46da7bdb6a0f862e4b365f1e3 drm-intel
+d391a4e602f6 drm/xe: replace use of system_unbound_wq with system_dfl_wq
+-:9: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#9: 
+   commit 128ea9f6ccfb ("workqueue: Add system_percpu_wq and system_dfl_wq")
 
-  **SUCCESS**
+total: 0 errors, 1 warnings, 0 checks, 56 lines checked
+b0f177338830 drm/xe: add WQ_PERCPU to alloc_workqueue users
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#12: 
+   commit 128ea9f6ccfb ("workqueue: Add system_percpu_wq and system_dfl_wq")
 
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4481-cd1fd615b2ba56ea3fb033262d4fbd0503055d3c -> xe-pw-159263v4
-
-  IGT_8729: 8729
-  xe-4481-cd1fd615b2ba56ea3fb033262d4fbd0503055d3c: cd1fd615b2ba56ea3fb033262d4fbd0503055d3c
-  xe-pw-159263v4: 159263v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159263v4/index.html
-
---===============0781135650694274855==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 35 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm: Color pipeline teardown and follow-up fixes/improvements (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159263/">https://patchwork.freedesktop.org/series/159263/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159263v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159263v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4481-cd1fd615b2ba56ea3fb033262d4fbd0503055d3c_BAT -&gt; xe-pw-159263v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4481-cd1fd615b2ba56ea3fb033262d4fbd0503055d3c -&gt; xe-pw-159263v4</li>
-</ul>
-<p>IGT_8729: 8729<br />
-  xe-4481-cd1fd615b2ba56ea3fb033262d4fbd0503055d3c: cd1fd615b2ba56ea3fb033262d4fbd0503055d3c<br />
-  xe-pw-159263v4: 159263v4</p>
-
-</body>
-</html>
-
---===============0781135650694274855==--
