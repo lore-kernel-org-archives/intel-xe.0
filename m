@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5736FE83043
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Feb 2026 02:22:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 809F0E83040
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Feb 2026 02:41:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1251210E4D0;
-	Tue,  3 Feb 2026 02:22:57 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D403A10E4CB;
- Tue,  3 Feb 2026 02:22:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0780816887779668173=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3713C10E4C8;
+	Tue,  3 Feb 2026 02:41:47 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iyrQh7cc";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EAB910E4C8;
+ Tue,  3 Feb 2026 02:41:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1770086507; x=1801622507;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=f4sI9rmaVXPffMelMtqKY4kvhIM6UXiS1A7zEhdsEmU=;
+ b=iyrQh7cc8zgj010AYf4Nr+AOZPechtf0xe7HlwRiPdx6qECBM6RxAYPs
+ z4KZr9R8QY4rUF9mHWEibaHv9VqfdFBMMNPTr4Jo8XsMr4/wG7OqLabtd
+ UwpBaH6yX/bBHnddbxnxy/y6Apn95MHwSBWWRs6akcelAn9qftALp+IaM
+ rQkN11X4QVDqWyrxQnqdoqwN/ATF188/KlupINHJOPswpqOR2M+iHMWTZ
+ idGr1nmXuwStXysydjY+ByLN/WESa5c5yzNKyQgbkR5cvOrtgbXtmqZA2
+ 1qymN+Q4yGU0wFyrtopHybPoFq6yxYSIlC0A7kGaSBoMX3NMf6crEbU0W g==;
+X-CSE-ConnectionGUID: ijB6HKo9Rhqsxb88wynljw==
+X-CSE-MsgGUID: pbk5xOyzRjCz3Sn/vD/Y1w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="74875604"
+X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="74875604"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Feb 2026 18:41:46 -0800
+X-CSE-ConnectionGUID: K2n321HORGm0hpYZH4yFjg==
+X-CSE-MsgGUID: dEQspnRoTTa8FNABLLd0Cg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,269,1763452800"; d="scan'208";a="214224417"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa004.jf.intel.com with ESMTP; 02 Feb 2026 18:41:44 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/ltphy: Return true for TBT scenario during
+ lt_phy_state compare
+Date: Tue,  3 Feb 2026 08:11:41 +0530
+Message-Id: <20260203024141.1549517-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Enable_THP_support_in_drm?=
- =?utf-8?q?=5Fpagemap?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 03 Feb 2026 02:22:55 -0000
-Message-ID: <177008537584.218777.4298293954964981106@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260202160118.1983946-1-francois.dugast@intel.com>
-In-Reply-To: <20260202160118.1983946-1-francois.dugast@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +63,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0780816887779668173==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+TBT PHY is enablement/disablement is handled by its own TBT module.
+We do not play a big part in it's state management that being take care
+by it's own TBT modeule. With that in mind comparing the state would be
+wrong since we really don't touch it.
+Simple return true when we are in tbt mode.
 
-== Series Details ==
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_lt_phy.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Series: Enable THP support in drm_pagemap
-URL   : https://patchwork.freedesktop.org/series/161023/
-State : success
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+index 04f63bdd0b87..27ad8407606b 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+@@ -2158,6 +2158,9 @@ bool
+ intel_lt_phy_pll_compare_hw_state(const struct intel_lt_phy_pll_state *a,
+ 				  const struct intel_lt_phy_pll_state *b)
+ {
++	if (a->tbt_mode || b->tbt_mode)
++		return true;
++
+ 	/*
+ 	 * With LT PHY values other than VDR0_CONFIG and VDR2_CONFIG are
+ 	 * unreliable. They cannot always be read back since internally
+-- 
+2.34.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-4486-67c3b61c4451b33dbf846f97cb2389b7fb6db09d_BAT -> xe-pw-161023v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-161023v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6519]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4486-67c3b61c4451b33dbf846f97cb2389b7fb6db09d/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161023v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4486-67c3b61c4451b33dbf846f97cb2389b7fb6db09d -> xe-pw-161023v1
-
-  IGT_8729: 8729
-  xe-4486-67c3b61c4451b33dbf846f97cb2389b7fb6db09d: 67c3b61c4451b33dbf846f97cb2389b7fb6db09d
-  xe-pw-161023v1: 161023v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161023v1/index.html
-
---===============0780816887779668173==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Enable THP support in drm_pagemap</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161023/">https://patchwork.freedesktop.org/series/161023/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161023v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161023v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4486-67c3b61c4451b33dbf846f97cb2389b7fb6db09d_BAT -&gt; xe-pw-161023v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-161023v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4486-67c3b61c4451b33dbf846f97cb2389b7fb6db09d/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161023v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4486-67c3b61c4451b33dbf846f97cb2389b7fb6db09d -&gt; xe-pw-161023v1</li>
-</ul>
-<p>IGT_8729: 8729<br />
-  xe-4486-67c3b61c4451b33dbf846f97cb2389b7fb6db09d: 67c3b61c4451b33dbf846f97cb2389b7fb6db09d<br />
-  xe-pw-161023v1: 161023v1</p>
-
-</body>
-</html>
-
---===============0780816887779668173==--
