@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E98E8E8B365
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Feb 2026 21:13:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BB24E8B361
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Feb 2026 21:13:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E91F10E1D5;
-	Tue,  3 Feb 2026 21:13:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C47B210E266;
+	Tue,  3 Feb 2026 21:13:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lTxc/uA5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cyGQxnSC";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F45D10E1D5
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Feb 2026 21:13:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BAB9D10E266
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Feb 2026 21:13:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770153183; x=1801689183;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=CgxQy1rAxRTqohC72h+cJnhrZIzWBRFaM8ced8jc8r4=;
- b=lTxc/uA57ov/ThpMfXot5rzvs/y6DBd05xORlG6mU4H/0h20hk0rkUZt
- aNz8SIw/qZlbf8F54zy7gmICCDMuH//3xfAhDQapT4C8CSgVy/fWKiVzC
- dvIeqQe0EcHINoT67YJ18YF9IwJdMUsXor8rW8dywNi8UxJmL7g3rR7SA
- oRgvot419ATSlYFM8G7UDNAWkVXDIN7UL0XXCfkQpYJojBZ2+ft7aBq7L
- dhkaw5q3E6Jrb8HzCmvUcKM4Xt18143LVsx20SUP5cvBkfDwb12zcfLIE
- FG5xinmU37Jp7YTp1JV3wdZHdp6Ap+qIo8iTdld8A10FIvn5BX/DCiJVo Q==;
-X-CSE-ConnectionGUID: xBDh1Kt8S/yWoYkqpNDpKg==
-X-CSE-MsgGUID: KK3fjS5TSu6Nz7B88EW/xA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="58913890"
-X-IronPort-AV: E=Sophos;i="6.21,271,1763452800"; d="scan'208";a="58913890"
+ t=1770153186; x=1801689186;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=4d0/d5HFD82YC34dDUWpGXAwYEoyUDUHJ7ySI2rmbAQ=;
+ b=cyGQxnSCEf/StBP4ycch61zNOF348d461JjQBKkUh2w52pgR5oXuf6ZY
+ LTqzXKG3MrbbQwm4N0BMhQU7V0oGDeG30Vj5j77fc+nZut/J/oRUgbT2O
+ Q2XY70jFCRVrttsKkZ/ONxtLafbRguqZf1RduPuyCav0kkdZvc3JNKW/b
+ nAjDBrBT7ec8CHkKC8CajBN7JiXs9ID4KXAbn++32VWQVx3kCqEq6YElu
+ sQOgBJ3TRYbq8grNcZzziSlvoZEL9F5L1saSebnezhVYkzRN1XBTY5iPM
+ WRxmksHJCT/xb002zbEtlnl1AssaCGfzOMwBeEFDPwt2qV9jiCA2bFKAu g==;
+X-CSE-ConnectionGUID: NGrmXXYsQUywJSf4av9zFA==
+X-CSE-MsgGUID: ylWVfA8lSx6GyNkJiwKj2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="58913896"
+X-IronPort-AV: E=Sophos;i="6.21,271,1763452800"; d="scan'208";a="58913896"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 13:13:03 -0800
-X-CSE-ConnectionGUID: ocVAQqzETnOaht9+ras4vQ==
-X-CSE-MsgGUID: EWkz6pWyT5So3+a4C/cIoQ==
+ 03 Feb 2026 13:13:06 -0800
+X-CSE-ConnectionGUID: widF1wZeQU+o31WUXJlnog==
+X-CSE-MsgGUID: 5WWZC0aPT6+4R5/QzcSQIw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,271,1763452800"; d="scan'208";a="210079734"
+X-IronPort-AV: E=Sophos;i="6.21,271,1763452800"; d="scan'208";a="210079740"
 Received: from unknown (HELO mwajdecz-hp.clients.intel.com) ([10.246.19.151])
  by fmviesa010-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 13:13:01 -0800
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Feb 2026 13:13:03 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH v2 0/4] Some more _types.h cleanups
-Date: Tue,  3 Feb 2026 22:12:35 +0100
-Message-ID: <20260203211240.745-1-michal.wajdeczko@intel.com>
+ Stuart Summers <stuart.summers@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH v2 1/4] drm/xe: Move xe_root_tile_mmio() to xe_device.h
+Date: Tue,  3 Feb 2026 22:12:36 +0100
+Message-ID: <20260203211240.745-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260203211240.745-1-michal.wajdeczko@intel.com>
+References: <20260203211240.745-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,36 +68,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Promote xe_mmio and xe_tile definitions to own files.
+It seems to be a better place for this helper function, where
+we already have other 'root' oriented helpers.
 
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Stuart Summers <stuart.summers@intel.com>
-
-v1: https://patchwork.freedesktop.org/series/149807/#rev1
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Stuart Summers <stuart.summers@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+---
+v1: https://patchwork.freedesktop.org/patch/656884/?series=149807&rev=1
 v2: rebased
+---
+ drivers/gpu/drm/xe/xe_device.h       | 5 +++++
+ drivers/gpu/drm/xe/xe_i2c.c          | 2 +-
+ drivers/gpu/drm/xe/xe_mmio.h         | 5 -----
+ drivers/gpu/drm/xe/xe_nvm.c          | 2 +-
+ drivers/gpu/drm/xe/xe_soc_remapper.c | 1 +
+ 5 files changed, 8 insertions(+), 7 deletions(-)
 
-Michal Wajdeczko (4):
-  drm/xe: Move xe_root_tile_mmio() to xe_device.h
-  drm/xe: Promote struct xe_mmio definition to own file
-  drm/xe: Promote struct xe_tile definition to own file
-  drm/xe: Drop unnecessary include from xe_tile.h
-
- drivers/gpu/drm/xe/xe_device.h       |   5 +
- drivers/gpu/drm/xe/xe_device_types.h | 167 +--------------------------
- drivers/gpu/drm/xe/xe_gt_types.h     |   5 -
- drivers/gpu/drm/xe/xe_i2c.c          |   2 +-
- drivers/gpu/drm/xe/xe_mmio.h         |   7 +-
- drivers/gpu/drm/xe/xe_mmio_types.h   |  64 ++++++++++
- drivers/gpu/drm/xe/xe_nvm.c          |   2 +-
- drivers/gpu/drm/xe/xe_soc_remapper.c |   1 +
- drivers/gpu/drm/xe/xe_tile.h         |   4 +-
- drivers/gpu/drm/xe/xe_tile_sysfs.c   |   2 +-
- drivers/gpu/drm/xe/xe_tile_types.h   | 141 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vram_freq.c    |   2 +-
- 12 files changed, 219 insertions(+), 183 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_mmio_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_tile_types.h
-
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index 58d7d8b2fea3..39464650533b 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -109,6 +109,11 @@ static inline struct xe_gt *xe_root_mmio_gt(struct xe_device *xe)
+ 	return xe_device_get_root_tile(xe)->primary_gt;
+ }
+ 
++static inline struct xe_mmio *xe_root_tile_mmio(struct xe_device *xe)
++{
++	return &xe->tiles[0].mmio;
++}
++
+ static inline bool xe_device_uc_enabled(struct xe_device *xe)
+ {
+ 	return !xe->info.force_execlist;
+diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
+index 1e1fb72e49bf..1deb812fe01d 100644
+--- a/drivers/gpu/drm/xe/xe_i2c.c
++++ b/drivers/gpu/drm/xe/xe_i2c.c
+@@ -27,7 +27,7 @@
+ #include "regs/xe_i2c_regs.h"
+ #include "regs/xe_irq_regs.h"
+ 
+-#include "xe_device_types.h"
++#include "xe_device.h"
+ #include "xe_i2c.h"
+ #include "xe_mmio.h"
+ #include "xe_sriov.h"
+diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
+index cd355a43af3d..b7e69ed67cbe 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.h
++++ b/drivers/gpu/drm/xe/xe_mmio.h
+@@ -38,11 +38,6 @@ static inline u32 xe_mmio_adjusted_addr(const struct xe_mmio *mmio, u32 addr)
+ 	return addr;
+ }
+ 
+-static inline struct xe_mmio *xe_root_tile_mmio(struct xe_device *xe)
+-{
+-	return &xe->tiles[0].mmio;
+-}
+-
+ #ifdef CONFIG_PCI_IOV
+ void xe_mmio_init_vf_view(struct xe_mmio *mmio, const struct xe_mmio *base, unsigned int vfid);
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_nvm.c b/drivers/gpu/drm/xe/xe_nvm.c
+index bc88804de514..1fdfb690ea3d 100644
+--- a/drivers/gpu/drm/xe/xe_nvm.c
++++ b/drivers/gpu/drm/xe/xe_nvm.c
+@@ -6,7 +6,7 @@
+ #include <linux/intel_dg_nvm_aux.h>
+ #include <linux/pci.h>
+ 
+-#include "xe_device_types.h"
++#include "xe_device.h"
+ #include "xe_mmio.h"
+ #include "xe_nvm.h"
+ #include "xe_pcode_api.h"
+diff --git a/drivers/gpu/drm/xe/xe_soc_remapper.c b/drivers/gpu/drm/xe/xe_soc_remapper.c
+index 1c391d719196..c031336a6d75 100644
+--- a/drivers/gpu/drm/xe/xe_soc_remapper.c
++++ b/drivers/gpu/drm/xe/xe_soc_remapper.c
+@@ -4,6 +4,7 @@
+  */
+ 
+ #include "regs/xe_soc_remapper_regs.h"
++#include "xe_device.h"
+ #include "xe_mmio.h"
+ #include "xe_soc_remapper.h"
+ 
 -- 
 2.47.1
 
