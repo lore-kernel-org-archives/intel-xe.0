@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADE49E6E7F4
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Feb 2026 10:38:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B7BDE6E7F4
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Feb 2026 10:39:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6850710E2DE;
-	Tue,  3 Feb 2026 10:38:22 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9418310E5FE;
- Tue,  3 Feb 2026 10:38:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4789666381277939950=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11CB110E2DE;
+	Tue,  3 Feb 2026 10:39:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hJVa/7Re";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C21D010E2DE
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Feb 2026 10:39:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1770115146; x=1801651146;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=upU6meRoTh7wdhqynGKd/5fPoNT7lHNJtytQ9sq6DvM=;
+ b=hJVa/7ReYROsZ8QTvoIpezxO3lCEYhCMab1DFnF4Rhogm12wB9LH7QET
+ JMXB/mblZBskK46XfQOzcC1ur5oKbNSfL3gv/OkPpMahiU+VM8hi9Adzq
+ w0fGfhSNocba+rq1SqGqycSric+oxh9IVa+IpZEYjoRVgCEkKNByO8iBt
+ mK9SzZpT+x2lWfl1KcdE2HRMXdVbS5duMRWL36NXBZZvutXninqoSPQO/
+ 7nqK9JJg6qAJr56fsH8TOtI4BDHltRWeVCvIIDppHbC9FzOCwLoYOa1C+
+ JaoBo4s75cUZE1gyvZmOapnACWXsbI7fwwjjfcrfY6BFo8kPSvKYTFpbz Q==;
+X-CSE-ConnectionGUID: ry0AHc+nTlyHLZe47oTyPg==
+X-CSE-MsgGUID: mDy1L2wZTp6aYgHrSAQHdg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="73878758"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="73878758"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2026 02:39:04 -0800
+X-CSE-ConnectionGUID: YY2Bi/xeQ16GqC208p2fng==
+X-CSE-MsgGUID: vAF77Fp9QfGwo/dnnAdrlg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="208915720"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2026 02:39:01 -0800
+Date: Tue, 3 Feb 2026 11:38:58 +0100
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, jani.nikula@intel.com,
+ ville.syrjala@linux.intel.com, rodrigo.vivi@intel.com,
+ thomas.hellstrom@linux.intel.com, riana.tauro@intel.com,
+ michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
+ mallesh.koujalagi@intel.com, dev@lankhorst.se
+Subject: Re: [PATCH v1] drm/xe/irq: Introduce xe_irq_init_late()
+Message-ID: <aYHQQvihdYGLOqeO@black.igk.intel.com>
+References: <20260202114609.1276227-1-raag.jadav@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Fix_Adaptive_Sync_SDP_for_P?=
- =?utf-8?q?anel_Replay_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 03 Feb 2026 10:38:20 -0000
-Message-ID: <177011510058.219828.4330189861411410886@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251111093007.3771409-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20251111093007.3771409-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260202114609.1276227-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +67,81 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4789666381277939950==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, Feb 02, 2026 at 05:14:29PM +0530, Raag Jadav wrote:
+> Introduce xe_irq_init_late() which will enable the IRQs at the end of
+> xe_device_probe() to make sure we don't hit them during probe sequence.
+> 
+> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> ---
+> PS: I'm not aware of any historic significance of current sequence.
+> If I've missed anything, please let me know.
 
-== Series Details ==
+As per CI results, this looks like a bad idea. Sorry about the noise.
 
-Series: Fix Adaptive Sync SDP for Panel Replay (rev4)
-URL   : https://patchwork.freedesktop.org/series/156622/
-State : success
+Raag
 
-== Summary ==
-
-CI Bug Log - changes from xe-4488-6e53f6296065672f8a0c7f98b4b6c409dac382b4_BAT -> xe-pw-156622v4_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4488-6e53f6296065672f8a0c7f98b4b6c409dac382b4 -> xe-pw-156622v4
-
-  IGT_8729: 8729
-  xe-4488-6e53f6296065672f8a0c7f98b4b6c409dac382b4: 6e53f6296065672f8a0c7f98b4b6c409dac382b4
-  xe-pw-156622v4: 156622v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156622v4/index.html
-
---===============4789666381277939950==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fix Adaptive Sync SDP for Panel Replay (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156622/">https://patchwork.freedesktop.org/series/156622/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156622v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156622v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4488-6e53f6296065672f8a0c7f98b4b6c409dac382b4_BAT -&gt; xe-pw-156622v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4488-6e53f6296065672f8a0c7f98b4b6c409dac382b4 -&gt; xe-pw-156622v4</li>
-</ul>
-<p>IGT_8729: 8729<br />
-  xe-4488-6e53f6296065672f8a0c7f98b4b6c409dac382b4: 6e53f6296065672f8a0c7f98b4b6c409dac382b4<br />
-  xe-pw-156622v4: 156622v4</p>
-
-</body>
-</html>
-
---===============4789666381277939950==--
+>  drivers/gpu/drm/xe/xe_device.c |  3 +++
+>  drivers/gpu/drm/xe/xe_irq.c    | 10 ++++++++--
+>  drivers/gpu/drm/xe/xe_irq.h    |  1 +
+>  3 files changed, 12 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 9cf82bde36c4..40c27e62bc01 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -1013,6 +1013,9 @@ int xe_device_probe(struct xe_device *xe)
+>  
+>  	detect_preproduction_hw(xe);
+>  
+> +	/* Turn irqs on only after we're setup to service them */
+> +	xe_irq_init_late(xe);
+> +
+>  	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
+>  
+>  err_unregister_display:
+> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+> index 7560a45f7f64..bf554268762e 100644
+> --- a/drivers/gpu/drm/xe/xe_irq.c
+> +++ b/drivers/gpu/drm/xe/xe_irq.c
+> @@ -802,6 +802,14 @@ int xe_irq_init(struct xe_device *xe)
+>  	return xe_irq_msix_init(xe);
+>  }
+>  
+> +void xe_irq_init_late(struct xe_device *xe)
+> +{
+> +	if (!atomic_read(&xe->irq.enabled))
+> +		return;
+> +
+> +	xe_irq_postinstall(xe);
+> +}
+> +
+>  int xe_irq_install(struct xe_device *xe)
+>  {
+>  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> @@ -831,8 +839,6 @@ int xe_irq_install(struct xe_device *xe)
+>  
+>  	atomic_set(&xe->irq.enabled, 1);
+>  
+> -	xe_irq_postinstall(xe);
+> -
+>  	return devm_add_action_or_reset(xe->drm.dev, irq_uninstall, xe);
+>  }
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_irq.h b/drivers/gpu/drm/xe/xe_irq.h
+> index a28bd577ba52..ad03e830a0b0 100644
+> --- a/drivers/gpu/drm/xe/xe_irq.h
+> +++ b/drivers/gpu/drm/xe/xe_irq.h
+> @@ -15,6 +15,7 @@ struct xe_tile;
+>  struct xe_gt;
+>  
+>  int xe_irq_init(struct xe_device *xe);
+> +void xe_irq_init_late(struct xe_device *xe);
+>  int xe_irq_install(struct xe_device *xe);
+>  void xe_irq_suspend(struct xe_device *xe);
+>  void xe_irq_resume(struct xe_device *xe);
+> -- 
+> 2.43.0
+> 
