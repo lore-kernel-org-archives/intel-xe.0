@@ -4,68 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C818E83070
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Feb 2026 09:31:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5ED9E8306E
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Feb 2026 09:34:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B59910E59B;
-	Tue,  3 Feb 2026 09:31:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dkruFm8L";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C25D110E59B;
- Tue,  3 Feb 2026 09:31:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770111084; x=1801647084;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=9ZCbCekETf/Hc7H9g6zabuW31iHCCcdMboCzlVHoOOY=;
- b=dkruFm8LB1uWUa5bOHOo3MeXo3fyiKK70ai+X2MEfxhjVloYoww2DqEt
- bTvTQnWKmkoeE5/P3ml9Sr6PdznKujPR7vk1CkLlIsDQUzUykzfRav1fK
- iF4pr3e9S6Le/EzBiWxO2DMZoPhdsBEFzdjxjS3BKMIXWOUTBvMBnRQ6a
- v6HaBtNKxK9hbAcnfBfkwXR3danRlLE5S6NpIUkYl47sVlzmwT1gfchoe
- HU2dIeeNKvg/pPfbmqv3vDZ7zbYOcLYzCYYbyRKEnj3XDva6Hlt2Asqq9
- z1l36LB2KFQCiCTwctNtpbJC7q1n+ISH2BtgZYKREl/wsvWRuAJ4oXN5N g==;
-X-CSE-ConnectionGUID: LGk++OysTiuuB0EGmnRzTg==
-X-CSE-MsgGUID: lBdpCon7R2yVlFrs3+9DZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="82385812"
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="82385812"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 01:31:23 -0800
-X-CSE-ConnectionGUID: lG5quSw+RHGTOlWRbhDFtw==
-X-CSE-MsgGUID: lZ/yXG0gRkCAAQSG3/jopw==
-X-ExtLoop1: 1
-Received: from rvuia-mobl.ger.corp.intel.com (HELO [10.245.245.55])
- ([10.245.245.55])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 01:31:20 -0800
-Message-ID: <9a9853a320a30802ff35803a574aab037aa2fd92.camel@linux.intel.com>
-Subject: Re: [PATCH] mm/hmm: Fix a hmm_range_fault() livelock / starvation
- problem
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: John Hubbard <jhubbard@nvidia.com>, Matthew Brost <matthew.brost@intel.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>,
- intel-xe@lists.freedesktop.org,  Ralph Campbell <rcampbell@nvidia.com>,
- Christoph Hellwig <hch@lst.de>, Jason Gunthorpe <jgg@mellanox.com>,  Jason
- Gunthorpe	 <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
- linux-mm@kvack.org, 	stable@vger.kernel.org, dri-devel@lists.freedesktop.org
-Date: Tue, 03 Feb 2026 10:31:04 +0100
-In-Reply-To: <a5b71dbc-9e3a-4098-8821-21a9a02ec235@nvidia.com>
-References: <20260130144529.79909-1-thomas.hellstrom@linux.intel.com>
- <20260130100013.fb1ce1cd5bd7a440087c7b37@linux-foundation.org>
- <57fd7f99-fa21-41eb-b484-56778ded457a@nvidia.com>
- <2d96c9318f2a5fc594dc6b4772b6ce7017a45ad9.camel@linux.intel.com>
- <aX5RQBxYB029/dkt@lstrano-desk.jf.intel.com>
- <0025ee21-2a6c-4c6e-a49a-2df525d3faa1@nvidia.com>
- <a459f147b461c6e6e806282956b7931f74a0aa93.camel@linux.intel.com>
- <a5b71dbc-9e3a-4098-8821-21a9a02ec235@nvidia.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82CB810E5B4;
+	Tue,  3 Feb 2026 09:34:35 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7386610E5B5;
+ Tue,  3 Feb 2026 09:34:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2942960218873514287=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/gt=3A_Check_set=5F?=
+ =?utf-8?q?default=5Fsubmission=28=29_before_deferencing_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 03 Feb 2026 09:34:34 -0000
+Message-ID: <177011127444.219828.13227768998280902376@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260203044839.1555147-1-suraj.kandpal@intel.com>
+In-Reply-To: <20260203044839.1555147-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,144 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============2942960218873514287==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Mon, 2026-02-02 at 14:28 -0800, John Hubbard wrote:
-> On 2/2/26 1:13 AM, Thomas Hellstr=C3=B6m wrote:
-> > On Sat, 2026-01-31 at 13:42 -0800, John Hubbard wrote:
-> > > On 1/31/26 11:00 AM, Matthew Brost wrote:
-> > > > On Sat, Jan 31, 2026 at 01:57:21PM +0100, Thomas Hellstr=C3=B6m
-> > > > wrote:
-> > > > > On Fri, 2026-01-30 at 19:01 -0800, John Hubbard wrote:
-> > > > > > On 1/30/26 10:00 AM, Andrew Morton wrote:
-> > > > > > > On Fri, 30 Jan 2026 15:45:29 +0100 Thomas Hellstr=C3=B6m
-> > > > > > > <thomas.hellstrom@linux.intel.com> wrote:
-> > > > > > ...
-> > >=20
-> > > >=20
-> > > > > I'm also not sure a folio refcount should block migration
-> > > > > after
-> > > > > the
-> > > > > introduction of pinned (like in pin_user_pages) pages. Rather
-> > > > > perhaps a
-> > > > > folio pin-count should block migration and in that case
-> > > > > do_swap_page()
-> > > > > can definitely do a sleeping folio lock and the problem is
-> > > > > gone.
-> > >=20
-> > > A problem for that specific point is that pincount and refcount
-> > > both
-> > > mean, "the page is pinned" (which in turn literally means "not
-> > > allowed
-> > > to migrate/move").
-> >=20
-> > Yeah this is what I actually want to challenge since this is what
-> > blocks us from doing a clean robust solution here. From brief
-> > reading
-> > of the docs around the pin-count implementation, I understand it as
-> > "If
-> > you want to access the struct page metadata, get a refcount, If you
-> > want to access the actual memory of a page, take a pin-count"
-> >=20
-> > I guess that might still not be true for all old instances in the
-> > kernel using get_user_pages() instead of pin_user_pages() for
-> > things
-> > like DMA, but perhaps we can set that in stone and document it at
-> > least
-> > for device-private pages for now which would be sufficient for the
-> > do_swap_pages() refcount not to block migration.
-> >=20
->=20
-> It's an interesting direction to go...
->=20
-> >=20
-> > >=20
-> > > (In fact, pincount is implemented in terms of refcount, in most
-> > > configurations still.)
-> >=20
-> > Yes but that's only a space optimization never intended to
-> > conflict,
-> > right? Meaning a pin-count will imply a refcount but a refcount
-> > will
-> > never imply a pin-count?
-> >=20
-> Unfortunately, they are more tightly linked than that today, at least
-> until
-> someday when specialized folios are everywhere (at which point
-> pincount
-> gets its own field).
->=20
-> Until then, it's not just a "space optimization", it's "overload
-> refcount
-> to also do pincounting". And "let core mm continue to treat refcounts
-> as
-> meaning that the page is pinned".
+== Series Details ==
 
-So this is what I had in mind:
+Series: drm/i915/gt: Check set_default_submission() before deferencing (rev2)
+URL   : https://patchwork.freedesktop.org/series/161051/
+State : success
 
-I think certainly this would work regardless of whether pincount is
-implemented by means of refcount with a bias or not, and AFAICT it's
-also consistent with=20
+== Summary ==
 
-https://docs.kernel.org/core-api/pin_user_pages.html
+CI Bug Log - changes from xe-4488-6e53f6296065672f8a0c7f98b4b6c409dac382b4_BAT -> xe-pw-161051v2_BAT
+====================================================
 
-But it would not work if some part of core mm grabs a page refcount and
-*expects* that to pin a page in the sense that it should not be
-migrated. But you're suggesting that's actually the case?
+Summary
+-------
 
-Thanks,
-Thomas
+  **SUCCESS**
 
-diff --git a/mm/migrate_device.c b/mm/migrate_device.c
-index a101a187e6da..c07a79995128 100644
---- a/mm/migrate_device.c
-+++ b/mm/migrate_device.c
-@@ -534,33 +534,15 @@ static void migrate_vma_collect(struct
-migrate_vma *migrate)
-  * migrate_vma_check_page() - check if page is pinned or not
-  * @page: struct page to check
-  *
-- * Pinned pages cannot be migrated. This is the same test as in
-- * folio_migrate_mapping(), except that here we allow migration of a
-- * ZONE_DEVICE page.
-+ * Pinned pages cannot be migrated.
-  */
- static bool migrate_vma_check_page(struct page *page, struct page
-*fault_page)
- {
-        struct folio *folio =3D page_folio(page);
-=20
--       /*
--        * One extra ref because caller holds an extra reference,
-either from
--        * folio_isolate_lru() for a regular folio, or
-migrate_vma_collect() for
--        * a device folio.
--        */
--       int extra =3D 1 + (page =3D=3D fault_page);
--
--       /* Page from ZONE_DEVICE have one extra reference */
--       if (folio_is_zone_device(folio))
--               extra++;
--
--       /* For file back page */
--       if (folio_mapping(folio))
--               extra +=3D 1 + folio_has_private(folio);
--
--       if ((folio_ref_count(folio) - extra) > folio_mapcount(folio))
--               return false;
-+       VM_WARN_ON_FOLIO(folio_test_lru(folio) || folio_mapped(folio),
-folio);
-=20
--       return true;
-+       return !folio_maybe_dma_pinned(folio);
- }
-=20
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-161051v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_pat@pat-index-xe2@render:
+    - bat-ptl-vm:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7110]) +1 other test dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4488-6e53f6296065672f8a0c7f98b4b6c409dac382b4/bat-ptl-vm/igt@xe_pat@pat-index-xe2@render.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161051v2/bat-ptl-vm/igt@xe_pat@pat-index-xe2@render.html
+
+  
+  [Intel XE#7110]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7110
 
 
+Build changes
+-------------
 
->=20
->=20
-> thanks,
+  * Linux: xe-4488-6e53f6296065672f8a0c7f98b4b6c409dac382b4 -> xe-pw-161051v2
+
+  IGT_8729: 8729
+  xe-4488-6e53f6296065672f8a0c7f98b4b6c409dac382b4: 6e53f6296065672f8a0c7f98b4b6c409dac382b4
+  xe-pw-161051v2: 161051v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161051v2/index.html
+
+--===============2942960218873514287==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: Check set_default_submission() before deferencing (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161051/">https://patchwork.freedesktop.org/series/161051/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161051v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161051v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4488-6e53f6296065672f8a0c7f98b4b6c409dac382b4_BAT -&gt; xe-pw-161051v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-161051v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_pat@pat-index-xe2@render:<ul>
+<li>bat-ptl-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4488-6e53f6296065672f8a0c7f98b4b6c409dac382b4/bat-ptl-vm/igt@xe_pat@pat-index-xe2@render.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161051v2/bat-ptl-vm/igt@xe_pat@pat-index-xe2@render.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7110">Intel XE#7110</a>) +1 other test dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4488-6e53f6296065672f8a0c7f98b4b6c409dac382b4 -&gt; xe-pw-161051v2</li>
+</ul>
+<p>IGT_8729: 8729<br />
+  xe-4488-6e53f6296065672f8a0c7f98b4b6c409dac382b4: 6e53f6296065672f8a0c7f98b4b6c409dac382b4<br />
+  xe-pw-161051v2: 161051v2</p>
+
+</body>
+</html>
+
+--===============2942960218873514287==--
