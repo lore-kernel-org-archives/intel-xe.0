@@ -4,58 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B7BDE6E7F4
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Feb 2026 10:39:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BC2AE6E7FA
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Feb 2026 10:46:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11CB110E2DE;
-	Tue,  3 Feb 2026 10:39:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3B7910E607;
+	Tue,  3 Feb 2026 10:45:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hJVa/7Re";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fqyt2IfZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C21D010E2DE
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Feb 2026 10:39:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A65A610E603;
+ Tue,  3 Feb 2026 10:45:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770115146; x=1801651146;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=upU6meRoTh7wdhqynGKd/5fPoNT7lHNJtytQ9sq6DvM=;
- b=hJVa/7ReYROsZ8QTvoIpezxO3lCEYhCMab1DFnF4Rhogm12wB9LH7QET
- JMXB/mblZBskK46XfQOzcC1ur5oKbNSfL3gv/OkPpMahiU+VM8hi9Adzq
- w0fGfhSNocba+rq1SqGqycSric+oxh9IVa+IpZEYjoRVgCEkKNByO8iBt
- mK9SzZpT+x2lWfl1KcdE2HRMXdVbS5duMRWL36NXBZZvutXninqoSPQO/
- 7nqK9JJg6qAJr56fsH8TOtI4BDHltRWeVCvIIDppHbC9FzOCwLoYOa1C+
- JaoBo4s75cUZE1gyvZmOapnACWXsbI7fwwjjfcrfY6BFo8kPSvKYTFpbz Q==;
-X-CSE-ConnectionGUID: ry0AHc+nTlyHLZe47oTyPg==
-X-CSE-MsgGUID: mDy1L2wZTp6aYgHrSAQHdg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="73878758"
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="73878758"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 02:39:04 -0800
-X-CSE-ConnectionGUID: YY2Bi/xeQ16GqC208p2fng==
-X-CSE-MsgGUID: vAF77Fp9QfGwo/dnnAdrlg==
+ t=1770115559; x=1801651559;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=kjyxA60L8xhgKFON85U0bBh5TOrChBXp9hwXJ5/2Fvc=;
+ b=Fqyt2IfZGQbDUDm384vl4kiXQQ8dlWg9gBTygl/k90GjEbKSMP2pUiiQ
+ HirBgVIL0xwTB5ywZXophfs2UWOqV83s11iy8HDd+3fbvvbEQZtQVTcOv
+ 839/C/A5KANukYRLn7FSdCWqqYSCxvMUGM1wbzN1hEt4JzOtQOdJN3DR+
+ lfkXBr9Irht+y5O5N4rNfpEtH4T/X90F1VdnOnlj/KCnTLSlo5cTsS529
+ /jcSwN+wT/BtdiPJ5ArAQXHCaUwTdx+xx6QCM7D7XZzGYR378gTafzXCH
+ L32FvWR/MxI185C/M3Srikvmz1pOsNh/PMl4WsTUkELeFfbBY6LqKitgM w==;
+X-CSE-ConnectionGUID: FZT1tisoREqmwqgU2DH9wg==
+X-CSE-MsgGUID: iS5nprQLRPqrfdmavGC+yw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="71005744"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="71005744"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2026 02:45:58 -0800
+X-CSE-ConnectionGUID: OxX4/WPKS7eRU64QvwjcBA==
+X-CSE-MsgGUID: GSPn8rJPR4O6xritYvNlcQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="208915720"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 02:39:01 -0800
-Date: Tue, 3 Feb 2026 11:38:58 +0100
-From: Raag Jadav <raag.jadav@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="209982222"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO fedora) ([10.245.245.55])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2026 02:45:54 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, jani.nikula@intel.com,
- ville.syrjala@linux.intel.com, rodrigo.vivi@intel.com,
- thomas.hellstrom@linux.intel.com, riana.tauro@intel.com,
- michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
- mallesh.koujalagi@intel.com, dev@lankhorst.se
-Subject: Re: [PATCH v1] drm/xe/irq: Introduce xe_irq_init_late()
-Message-ID: <aYHQQvihdYGLOqeO@black.igk.intel.com>
-References: <20260202114609.1276227-1-raag.jadav@intel.com>
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Alistair Popple <apopple@nvidia.com>,
+ Ralph Campbell <rcampbell@nvidia.com>, Christoph Hellwig <hch@lst.de>,
+ Jason Gunthorpe <jgg@mellanox.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Leon Romanovsky <leon@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Matthew Brost <matthew.brost@intel.com>,
+ John Hubbard <jhubbard@nvidia.com>, linux-mm@kvack.org,
+ dri-devel@lists.freedesktop.org, stable@vger.kernel.org
+Subject: [PATCH v2] mm: Fix a hmm_range_fault() livelock / starvation problem
+Date: Tue,  3 Feb 2026 11:45:32 +0100
+Message-ID: <20260203104532.98534-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260202114609.1276227-1-raag.jadav@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,78 +73,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Feb 02, 2026 at 05:14:29PM +0530, Raag Jadav wrote:
-> Introduce xe_irq_init_late() which will enable the IRQs at the end of
-> xe_device_probe() to make sure we don't hit them during probe sequence.
-> 
-> Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> ---
-> PS: I'm not aware of any historic significance of current sequence.
-> If I've missed anything, please let me know.
+If hmm_range_fault() fails a folio_trylock() in do_swap_page,
+trying to acquire the lock of a device-private folio for migration,
+to ram, the function will spin until it succeeds grabbing the lock.
 
-As per CI results, this looks like a bad idea. Sorry about the noise.
+However, if the process holding the lock is depending on a work
+item to be completed, which is scheduled on the same CPU as the
+spinning hmm_range_fault(), that work item might be starved and
+we end up in a livelock / starvation situation which is never
+resolved.
 
-Raag
+This can happen, for example if the process holding the
+device-private folio lock is stuck in
+   migrate_device_unmap()->lru_add_drain_all()
+The lru_add_drain_all() function requires a short work-item
+to be run on all online cpus to complete.
 
->  drivers/gpu/drm/xe/xe_device.c |  3 +++
->  drivers/gpu/drm/xe/xe_irq.c    | 10 ++++++++--
->  drivers/gpu/drm/xe/xe_irq.h    |  1 +
->  3 files changed, 12 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 9cf82bde36c4..40c27e62bc01 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -1013,6 +1013,9 @@ int xe_device_probe(struct xe_device *xe)
->  
->  	detect_preproduction_hw(xe);
->  
-> +	/* Turn irqs on only after we're setup to service them */
-> +	xe_irq_init_late(xe);
-> +
->  	return devm_add_action_or_reset(xe->drm.dev, xe_device_sanitize, xe);
->  
->  err_unregister_display:
-> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-> index 7560a45f7f64..bf554268762e 100644
-> --- a/drivers/gpu/drm/xe/xe_irq.c
-> +++ b/drivers/gpu/drm/xe/xe_irq.c
-> @@ -802,6 +802,14 @@ int xe_irq_init(struct xe_device *xe)
->  	return xe_irq_msix_init(xe);
->  }
->  
-> +void xe_irq_init_late(struct xe_device *xe)
-> +{
-> +	if (!atomic_read(&xe->irq.enabled))
-> +		return;
-> +
-> +	xe_irq_postinstall(xe);
-> +}
-> +
->  int xe_irq_install(struct xe_device *xe)
->  {
->  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-> @@ -831,8 +839,6 @@ int xe_irq_install(struct xe_device *xe)
->  
->  	atomic_set(&xe->irq.enabled, 1);
->  
-> -	xe_irq_postinstall(xe);
-> -
->  	return devm_add_action_or_reset(xe->drm.dev, irq_uninstall, xe);
->  }
->  
-> diff --git a/drivers/gpu/drm/xe/xe_irq.h b/drivers/gpu/drm/xe/xe_irq.h
-> index a28bd577ba52..ad03e830a0b0 100644
-> --- a/drivers/gpu/drm/xe/xe_irq.h
-> +++ b/drivers/gpu/drm/xe/xe_irq.h
-> @@ -15,6 +15,7 @@ struct xe_tile;
->  struct xe_gt;
->  
->  int xe_irq_init(struct xe_device *xe);
-> +void xe_irq_init_late(struct xe_device *xe);
->  int xe_irq_install(struct xe_device *xe);
->  void xe_irq_suspend(struct xe_device *xe);
->  void xe_irq_resume(struct xe_device *xe);
-> -- 
-> 2.43.0
-> 
+A prerequisite for this to happen is:
+a) Both zone device and system memory folios are considered in
+   migrate_device_unmap(), so that there is a reason to call
+   lru_add_drain_all() for a system memory folio while a
+   folio lock is held on a zone device folio.
+b) The zone device folio has an initial mapcount > 1 which causes
+   at least one migration PTE entry insertion to be deferred to
+   try_to_migrate(), which can happen after the call to
+   lru_add_drain_all().
+c) No or voluntary only preemption.
+
+This all seems pretty unlikely to happen, but indeed is hit by
+the "xe_exec_system_allocator" igt test.
+
+Resolve this by waiting for the folio to be unlocked if the
+folio_trylock() fails in the do_swap_page() function.
+
+Future code improvements might consider moving
+the lru_add_drain_all() call in migrate_device_unmap() to be
+called *after* all pages have migration entries inserted.
+That would eliminate also b) above.
+
+v2:
+- Instead of a cond_resched() in the hmm_range_fault() function,
+  eliminate the problem by waiting for the folio to be unlocked
+  in do_swap_page() (Alistair Popple, Andrew Morton)
+
+Suggested-by: Alistair Popple <apopple@nvidia.com>
+Fixes: 1afaeb8293c9 ("mm/migrate: Trylock device page in do_swap_page")
+Cc: Ralph Campbell <rcampbell@nvidia.com>
+Cc: Christoph Hellwig <hch@lst.de>
+Cc: Jason Gunthorpe <jgg@mellanox.com>
+Cc: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Leon Romanovsky <leon@kernel.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: John Hubbard <jhubbard@nvidia.com>
+Cc: Alistair Popple <apopple@nvidia.com>
+Cc: linux-mm@kvack.org
+Cc: <dri-devel@lists.freedesktop.org>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: <stable@vger.kernel.org> # v6.15+
+---
+ mm/memory.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/mm/memory.c b/mm/memory.c
+index da360a6eb8a4..ed20da5570d5 100644
+--- a/mm/memory.c
++++ b/mm/memory.c
+@@ -4684,7 +4684,8 @@ vm_fault_t do_swap_page(struct vm_fault *vmf)
+ 				unlock_page(vmf->page);
+ 				put_page(vmf->page);
+ 			} else {
+-				pte_unmap_unlock(vmf->pte, vmf->ptl);
++				pte_unmap(vmf->pte);
++				migration_entry_wait_on_locked(entry, vmf->ptl);
+ 			}
+ 		} else if (softleaf_is_hwpoison(entry)) {
+ 			ret = VM_FAULT_HWPOISON;
+-- 
+2.52.0
+
