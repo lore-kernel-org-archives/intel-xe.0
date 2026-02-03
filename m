@@ -4,61 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06C1FE8783B
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Feb 2026 14:35:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62EC4E8783D
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Feb 2026 14:46:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3DC210E30A;
-	Tue,  3 Feb 2026 14:35:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dks8yw80";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF9A310E30A;
- Tue,  3 Feb 2026 14:35:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770129319; x=1801665319;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=gHhxN6CXwkf40kYnaBa2r/QM0E1cp8eHB6SFVk3SDEs=;
- b=dks8yw80oF0/iqwsYf3ZBU8wFT0EWpvOLSqeDka1mDnCI19CUE4uoL1Y
- 730eiP/Mbc1T9zekZXThXD0FvfD49RYuJ9PbiMrza+sbetv+cdTbg3vU/
- oeAt9+lqaClwnDdkPHVey55MPlgLH0ZHqOynczkmsEXkTqux2l0OryBGu
- AUv6o8IyR6u1tAUN7H/mxqfKMwuLgdVspKsTAMB0RhozNpJ3i8VXiBgV1
- 0CQtSDqy4bD02UAZ01PEL4oLsK0MW5YsTdAYmtKzDoY8NbYrqW426h5gg
- FL6EXL/12Z1fLqa05lLI7vmlh8JcAYr+PwfgWeR9OJsdC2e2a/MrYAoH7 w==;
-X-CSE-ConnectionGUID: KY8oRxOBTUCn50Jssg9JQQ==
-X-CSE-MsgGUID: cVxa/x2jSUGGYTi69+dSrQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="88722754"
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="88722754"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 06:35:19 -0800
-X-CSE-ConnectionGUID: ZwOGZvpDT8mZPEX1B4OqYQ==
-X-CSE-MsgGUID: lxzhFc3nRnyKll0zH2HsWg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="209574218"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO fedora) ([10.245.245.55])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Feb 2026 06:35:15 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Alistair Popple <apopple@nvidia.com>,
- Ralph Campbell <rcampbell@nvidia.com>, Christoph Hellwig <hch@lst.de>,
- Jason Gunthorpe <jgg@mellanox.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- Leon Romanovsky <leon@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Matthew Brost <matthew.brost@intel.com>,
- John Hubbard <jhubbard@nvidia.com>, linux-mm@kvack.org,
- dri-devel@lists.freedesktop.org, stable@vger.kernel.org
-Subject: [PATCH v3] mm: Fix a hmm_range_fault() livelock / starvation problem
-Date: Tue,  3 Feb 2026 15:34:34 +0100
-Message-ID: <20260203143434.16349-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.52.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 260E810E6A4;
+	Tue,  3 Feb 2026 14:46:50 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A510A10E695;
+ Tue,  3 Feb 2026 14:46:48 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5446939674213720167=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_series_starting_with_=5Bv3?=
+ =?utf-8?q?=2C1/2=5D_drm/xe/cri=3A_Add_check_to_verify_if_CSC_is_a_PCIe_endp?=
+ =?utf-8?q?oint?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 03 Feb 2026 14:46:48 -0000
+Message-ID: <177013000865.219828.4276045296332238500@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260203140639.2048912-3-balasubramani.vivekanandan@intel.com>
+In-Reply-To: <20260203140639.2048912-3-balasubramani.vivekanandan@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,106 +37,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If hmm_range_fault() fails a folio_trylock() in do_swap_page,
-trying to acquire the lock of a device-private folio for migration,
-to ram, the function will spin until it succeeds grabbing the lock.
+--===============5446939674213720167==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-However, if the process holding the lock is depending on a work
-item to be completed, which is scheduled on the same CPU as the
-spinning hmm_range_fault(), that work item might be starved and
-we end up in a livelock / starvation situation which is never
-resolved.
+== Series Details ==
 
-This can happen, for example if the process holding the
-device-private folio lock is stuck in
-   migrate_device_unmap()->lru_add_drain_all()
-The lru_add_drain_all() function requires a short work-item
-to be run on all online cpus to complete.
+Series: series starting with [v3,1/2] drm/xe/cri: Add check to verify if CSC is a PCIe endpoint
+URL   : https://patchwork.freedesktop.org/series/161088/
+State : failure
 
-A prerequisite for this to happen is:
-a) Both zone device and system memory folios are considered in
-   migrate_device_unmap(), so that there is a reason to call
-   lru_add_drain_all() for a system memory folio while a
-   folio lock is held on a zone device folio.
-b) The zone device folio has an initial mapcount > 1 which causes
-   at least one migration PTE entry insertion to be deferred to
-   try_to_migrate(), which can happen after the call to
-   lru_add_drain_all().
-c) No or voluntary only preemption.
+== Summary ==
 
-This all seems pretty unlikely to happen, but indeed is hit by
-the "xe_exec_system_allocator" igt test.
+ERROR: The runconfig 'xe-4490-9f5242e63f0bab74d47ae6792e0c25a324184a6b_BAT' does not exist in the database
 
-Resolve this by waiting for the folio to be unlocked if the
-folio_trylock() fails in the do_swap_page() function.
+== Logs ==
 
-Future code improvements might consider moving
-the lru_add_drain_all() call in migrate_device_unmap() to be
-called *after* all pages have migration entries inserted.
-That would eliminate also b) above.
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161088v1/index.html
 
-v2:
-- Instead of a cond_resched() in the hmm_range_fault() function,
-  eliminate the problem by waiting for the folio to be unlocked
-  in do_swap_page() (Alistair Popple, Andrew Morton)
-v3:
-- Add a stub migration_entry_wait_on_locked() for the
-  !CONFIG_MIGRATION case. (Kernel Test Robot)
+--===============5446939674213720167==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Suggested-by: Alistair Popple <apopple@nvidia.com>
-Fixes: 1afaeb8293c9 ("mm/migrate: Trylock device page in do_swap_page")
-Cc: Ralph Campbell <rcampbell@nvidia.com>
-Cc: Christoph Hellwig <hch@lst.de>
-Cc: Jason Gunthorpe <jgg@mellanox.com>
-Cc: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Leon Romanovsky <leon@kernel.org>
-Cc: Andrew Morton <akpm@linux-foundation.org>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: John Hubbard <jhubbard@nvidia.com>
-Cc: Alistair Popple <apopple@nvidia.com>
-Cc: linux-mm@kvack.org
-Cc: <dri-devel@lists.freedesktop.org>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: <stable@vger.kernel.org> # v6.15+
----
- include/linux/migrate.h | 6 ++++++
- mm/memory.c             | 3 ++-
- 2 files changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/include/linux/migrate.h b/include/linux/migrate.h
-index 26ca00c325d9..800ec174b601 100644
---- a/include/linux/migrate.h
-+++ b/include/linux/migrate.h
-@@ -97,6 +97,12 @@ static inline int set_movable_ops(const struct movable_operations *ops, enum pag
- 	return -ENOSYS;
- }
- 
-+static inline void migration_entry_wait_on_locked(softleaf_t entry, spinlock_t *ptl)
-+	__releases(ptl)
-+{
-+	spin_unlock(ptl);
-+}
-+
- #endif /* CONFIG_MIGRATION */
- 
- #ifdef CONFIG_NUMA_BALANCING
-diff --git a/mm/memory.c b/mm/memory.c
-index da360a6eb8a4..ed20da5570d5 100644
---- a/mm/memory.c
-+++ b/mm/memory.c
-@@ -4684,7 +4684,8 @@ vm_fault_t do_swap_page(struct vm_fault *vmf)
- 				unlock_page(vmf->page);
- 				put_page(vmf->page);
- 			} else {
--				pte_unmap_unlock(vmf->pte, vmf->ptl);
-+				pte_unmap(vmf->pte);
-+				migration_entry_wait_on_locked(entry, vmf->ptl);
- 			}
- 		} else if (softleaf_is_hwpoison(entry)) {
- 			ret = VM_FAULT_HWPOISON;
--- 
-2.52.0
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v3,1/2] drm/xe/cri: Add check to verify if CSC is a PCIe endpoint</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161088/">https://patchwork.freedesktop.org/series/161088/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161088v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161088v1/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-4490-9f5242e63f0bab74d47ae6792e0c25a324184a6b_BAT' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============5446939674213720167==--
