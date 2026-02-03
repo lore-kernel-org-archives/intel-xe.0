@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F967E83071
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Feb 2026 09:57:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97BFBE8307B
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Feb 2026 10:09:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4FA710E5B4;
-	Tue,  3 Feb 2026 09:57:04 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5A3610E5B4;
- Tue,  3 Feb 2026 09:57:02 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9610310E5C2;
+	Tue,  3 Feb 2026 10:09:39 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HCOjMFz+";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D61B10E5B4;
+ Tue,  3 Feb 2026 10:09:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1770113378; x=1801649378;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=hU9JZgf1rZr6wrHAYrs0HECFxMMoHAPenR8wzFGowZ8=;
+ b=HCOjMFz+v0tWsEkAwHWqSHVR1eSC7IrM/V9vehaZswO/yhPF2K/kpsmo
+ tChl/7N/zLFNUPwwNpoGGQJmcOHFMgoKNk3m+JkZUdqxxeBWiJ8CLnou7
+ qUQDKTEUY/LA/2nZElKWkGkWvGJWO/h1BQWQVVa7rFzEktEkNjninFMFH
+ JWQfvoXl3H4+4xLUsa93DSDm2WJ+z0Vf/uEaKJ3omXtlQPUYcjwxArR1F
+ hYKeLyv1uXUIP61/EsLVCG5yXLsxYAHstowofr/Bj4P13e9LcEm5ytn22
+ r0+EFRPF/VRytIA7Bl7pb9cJZjOJztiQFfTMVT5NcNMFGrOIP+gdSE+Oe Q==;
+X-CSE-ConnectionGUID: Oe5ga63oStiDCtayJXTqhw==
+X-CSE-MsgGUID: /Kd4b0ESRBeOXizul09LaQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11690"; a="88702698"
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="88702698"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2026 02:09:37 -0800
+X-CSE-ConnectionGUID: 5w4yDAIcRuiVQpaxQKAE/A==
+X-CSE-MsgGUID: J6bbS+wYSsq3n3iz2Jgjcg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,270,1763452800"; d="scan'208";a="240476135"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.210])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2026 02:09:35 -0800
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v4 0/6] lsgpu: Report upstream port link bandwidth
+Date: Tue,  3 Feb 2026 11:05:02 +0100
+Message-ID: <20260203100920.420551-8-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_Fix_Adaptive_Sync_SDP_fo?=
- =?utf-8?q?r_Panel_Replay_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 03 Feb 2026 09:57:02 -0000
-Message-ID: <177011262285.219828.15156151310946199078@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20251111093007.3771409-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20251111093007.3771409-1-ankit.k.nautiyal@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,38 +67,72 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Users of Intel discrete graphics adapters are confused with fake
+information on PCIe link bandwidth (speed and size) of their GPU devices
+reported by tools like lspci or lsgpu.  That fake information is
+unfortunately provided by hardware, Linux PCI subsystem just exposes it
+untouched to upper layers, including userspace via sysfs, and userspace
+tools just report those fake values.
 
-Series: Fix Adaptive Sync SDP for Panel Replay (rev4)
-URL   : https://patchwork.freedesktop.org/series/156622/
-State : warning
+While we can't do much about the kernel side or general purpose userspace
+tools like lspci, we can try to address the issue with our lsgpu utility.
 
-== Summary ==
+Correct link bandwidth attributes of a discrete GPU card can be obtained
+from the kernel by looking not at the PCI device of the GPU itself, only
+at a PCIe upstream port of the card's PCI bridge.  For integrity with
+content of the sysfs and with output from the other tools, we are not
+going to replace the fake information with that from the bridge upstream
+port, only show that port and its attributes themselves while listing
+devices.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 1c038794140250955ba149f8175f6564e573d5c7
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/display/intel_vrr.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+./include/linux/pwm.h:13:1: error: bad constant expression
+Since the tool uses our udev based igt_device_scan library for identifying
+GPU devices and printing their properties and attributes, modifications
+that we need apply to that library.
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+v4: Also change RETRIES_GET_PARENT to RETRIES_GET_DEVICE for consistency
+    with renamed variables (Krzysztof),
+  - replace 0x7f constant with PCI_HEADER_TYPE_MASK symbol (Krzysztof),
+  - free already allocated numeric codename before replacing (Sebastian),
+  - visually separate bridge specific updates of attributes already
+    populated by find_or_add_igt_device from bridge specific attribute
+    assignments.
+v3: Fix incorrect use of ffs(),
+  - fix bridge link attribute printing suppressed with DEVTYPE_DISCRETE,
+  - in commit description, elaborate more on reasons for using libpci.
+v2: Keep dump_props_and_attrs() generic: hand over decision on omitting
+    link attributes to the caller, and implementation of the check to a
+    helper (Sebastian),
+  - drop unclear GET_REG_MASK macro (Sebastian),
+  - reuse no longer needed variable containing PCI_HEADER_TYPE for storing
+    PCI_EXP_FLAGS_TYPE,
+  - maintain a single instance of struct pci_access throughout processing
+    of the whole udev device list (Sebastian),
+  - hand over detection of AER attributes to a helper,
+  - merge a formerly separate patch "lib/igt_device_scan: Don't print
+    bridge not applicable attributes" into "lib/igt_device_scan: Print GPU
+    upstream port parent/child relations" (Sebastian),
+  - allocate memory to local attributes of a bridge for safety (Sebastian),
+  - no need for DEVTYPE_BRIDGE, just skip attributes if NULL.
 
+Cc: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Cc: Krzysztof Karas <krzysztof.karas@intel.com>
+
+Janusz Krzysztofik (6):
+  lib/igt_device_scan: Don't print fake link bandwidth attributes
+  lib/igt_device_scan: Split out reusable part of update_or_add_parent
+  lib/igt_device_scan: Include PCIe bridge upstream port if available
+  lib/igt_device_scan: List PCIe bridge ports after their children
+  lib/igt_device_scan: Omit AER statistics data from attributes
+  lib/igt_device_scan: Print GPU upstream port parent/child relations
+
+ lib/igt_device_scan.c | 209 +++++++++++++++++++++++++++++++++++-------
+ lib/meson.build       |   2 +
+ meson.build           |   1 +
+ 3 files changed, 179 insertions(+), 33 deletions(-)
+
+-- 
+2.52.0
 
