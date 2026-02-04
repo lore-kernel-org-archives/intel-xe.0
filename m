@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD1BFE9D410
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 16:47:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50527E9D411
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 16:48:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CB7510E6D0;
-	Wed,  4 Feb 2026 16:47:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DE2910E6D3;
+	Wed,  4 Feb 2026 16:48:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MQD5XXWE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="elWXs1VI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4728C10E6D0
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Feb 2026 16:47:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 324B610E6D1;
+ Wed,  4 Feb 2026 16:48:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770223624; x=1801759624;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2DDD/ilorNLzRMHYv7p2QUZDPoUUfHq7d+ChB0kozto=;
- b=MQD5XXWE85megVZag6QSDOIg7aAzdKWodeq/B1ae8NgT8vj1YCe7zdVx
- Usg8KM/ASJahH6/DKCy7Lgwt0UJIQl8LZpifuKsRThW9sIKMATUa8QYwM
- JhLC4oSr2INdj923ysdzTmTWIjRV9CaG6wzLw3egmmkrZSORVekSaPPvt
- 0SUKqYkMvKeU/MRQEuSbvMb1KdZBOoIApdJG6UbQ6c+vVSUDU/CQm5HnC
- xITRsbVR0AAFgHoLHJWugXmgjipH0IBbDs0aOM7RhvwZPy3rjs0aVTh6j
- vImwGtWQZqf1KH2TPDXAgqxlkpiIK5l27OrQARW7JOhMydfrZbkiDabji A==;
-X-CSE-ConnectionGUID: PpEg6jmWRHuJfPregOdtZw==
-X-CSE-MsgGUID: VE1J6INTQgKDBvRVitNa8A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="70433623"
-X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="70433623"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2026 08:47:04 -0800
-X-CSE-ConnectionGUID: 92Va9FOeRFSMGWGsN4CGTw==
-X-CSE-MsgGUID: WvFvIydNTNy/GASUmGCBAA==
+ t=1770223719; x=1801759719;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=hqaixW3GZxkQ3u0RRS+ZcVJuGFrnEeCqG5FxLxxelZA=;
+ b=elWXs1VIQbKy+hbV7a09TRecDMeVpTwJ7NXiAaY3JerM66Wl+iR6fnvJ
+ yGTdNb+8ZqxPNOflzLyHKzwp0w/1DfOUlmyIbXwO06Jb2oTBnwq1tz1p4
+ r9fGaERyY0Lq+lC9sXbu13eQKhmXY+NKf/Vs4ZvYqGSN8os2iOXelp9uM
+ qXisAGYbjWsULF6bxUaE8OXi+nZX0qPD/QJvCiRb8PJQYfGOMScqeKA4o
+ VccpDmH8WUMn21AB+qDn1xbUhesxdJoIA93txiQaZXkD8KLCjklA4vyai
+ 46BP/FZhHSFmXJDR41CxMMz4gB7raiZhnX/1oZhl42+xuqC4Q0bf+k/Dg Q==;
+X-CSE-ConnectionGUID: gi1nazsLQtanEJOq/0Uw1A==
+X-CSE-MsgGUID: dDJNEo/VQcaUJPEEmY8n0g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="71578997"
+X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="71578997"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2026 08:48:38 -0800
+X-CSE-ConnectionGUID: yBxwfeD5SpC0LKm20rrzGQ==
+X-CSE-MsgGUID: Zk7VEgN8RrWQ1x844OYi3w==
 X-ExtLoop1: 1
-Received: from gsd-build.iind.intel.com ([10.190.229.167])
- by fmviesa003.fm.intel.com with ESMTP; 04 Feb 2026 08:47:02 -0800
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Subject: [PATCH v2 3/3] drm/xe/vf: Fix fs_reclaim warning with CCS
- save/restore BB allocation
-Date: Wed,  4 Feb 2026 16:46:46 +0000
-Message-ID: <20260204164642.3509298-8-satyanarayana.k.v.p@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260204164642.3509298-5-satyanarayana.k.v.p@intel.com>
-References: <20260204164642.3509298-5-satyanarayana.k.v.p@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="210311606"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.7])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2026 08:48:34 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Cc: jani.nikula@intel.com, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [PATCH 1/2] drm/i915: drop display version 2-4 overlay uAPI
+Date: Wed,  4 Feb 2026 18:48:26 +0200
+Message-ID: <20260204164827.807502-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,247 +71,118 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-CCS save/restore batch buffers are attached during BO allocation and
-detached during BO teardown. The shrinker triggers xe_bo_move(), which is
-used for both allocation and deletion paths.
+i915 has a custom overlay IOCTL uAPI for display version 2-4, give or
+take a few platforms.
 
-When BO allocation and shrinking occur concurrently, a circular locking
-dependency involving fs_reclaim and swap_guard can occur, leading to a
-deadlock such as:
+The implementation sits somewhere between i915 display and core
+(although the files are located under display). In order to properly
+separate display and core, a lot of refactoring would be required,
+splitting the functionality, defining better interfaces between them,
+and so on.
 
-======================================================
-WARNING: possible circular locking dependency detected
-------------------------------------------------------
+The problem is, there are no IGT tests for the overlay IOCTLs,
+I915_OVERLAY_PUT_IMAGE and I915_OVERLAY_ATTRS, at all. And even if there
+were IGT tests, there seems to be only one PNV machine with overlay
+support left in CI, at this time. A significant refactoring without
+testing or CI support is bound to break something.
 
-      CPU0                    CPU1
-      ----                    ----
- lock(fs_reclaim);
-                              lock(&sa_manager->swap_guard);
-                              lock(fs_reclaim);
- lock(&sa_manager->swap_guard);
+In user space the functionality is, to the best of my knowledge, only
+supported by xf86-video-intel. There have been no updates to it in the
+past six years, and the last tag is from 10+ years ago. It's been at the
+end of the line for quite some time now. It's not really something
+people should be using. The question is, if we regressed the
+functionality, who is even going to notice, and when?
 
- *** DEADLOCK ***
-=====================================================
+Let's just drop the custom IOCTL support.
 
-To avoid this, the BB pointer allocation is separated from xe_bb_ccs_new(),
-used drm_suballoc_alloc() for SA allocation and drm_suballoc_init() for BB
-allocation preventing reclaim from being invoked in this context.
+The functionality is behind an I915_GETPARAM feature check, and the
+current IOCTLs expect the caller to respect that. Return 0 for the
+feature check, and -ENODEV for the IOCTLs, reusing and refactoring
+i915_gem_reject_pin_ioctl() as i915_enodev_ioctl() for the job.
 
-Fixes: 864690cf4dd62 ("drm/xe/vf: Attach and detach CCS copy commands with BO")
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
-V1 -> V2:
-- Used drm_suballoc_alloc() and drm_suballoc_init() for BB allocation
-(Thomas).
----
- drivers/gpu/drm/xe/xe_bb.c      | 22 ++++++++--------------
- drivers/gpu/drm/xe/xe_bb.h      |  4 ++--
- drivers/gpu/drm/xe/xe_migrate.c | 29 +++++++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_sa.c      | 24 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sa.h      | 19 +++++++++++++++++++
- 5 files changed, 78 insertions(+), 20 deletions(-)
+ drivers/gpu/drm/i915/i915_driver.c   | 13 +++++--------
+ drivers/gpu/drm/i915/i915_getparam.c |  4 +---
+ 2 files changed, 6 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
-index 8b678297aaa2..9a04d0e814d3 100644
---- a/drivers/gpu/drm/xe/xe_bb.c
-+++ b/drivers/gpu/drm/xe/xe_bb.c
-@@ -59,16 +59,14 @@ struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm)
- 	return ERR_PTR(err);
- }
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index c01a35ecfa2f..da8f0210cc46 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -65,7 +65,6 @@
+ #include "display/intel_gmbus.h"
+ #include "display/intel_hotplug.h"
+ #include "display/intel_opregion.h"
+-#include "display/intel_overlay.h"
+ #include "display/intel_pch_refclk.h"
+ #include "display/intel_pps.h"
+ #include "display/intel_sbi.h"
+@@ -1772,9 +1771,7 @@ static const struct file_operations i915_driver_fops = {
+ 	.fop_flags = FOP_UNSIGNED_OFFSET,
+ };
  
--struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
--			    enum xe_sriov_vf_ccs_rw_ctxs ctx_id)
-+int xe_bb_ccs_new(struct xe_gt *gt, struct xe_bb *bb, struct drm_suballoc *sa,
-+		  u32 dwords, enum xe_sriov_vf_ccs_rw_ctxs ctx_id)
+-static int
+-i915_gem_reject_pin_ioctl(struct drm_device *dev, void *data,
+-			  struct drm_file *file)
++static int i915_enodev_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
  {
--	struct xe_bb *bb = kmalloc(sizeof(*bb), GFP_KERNEL);
- 	struct xe_device *xe = gt_to_xe(gt);
- 	struct xe_sa_manager *bb_pool;
-+	int timeout = HZ;
- 	int err;
- 
--	if (!bb)
--		return ERR_PTR(-ENOMEM);
- 	/*
- 	 * We need to allocate space for the requested number of dwords &
- 	 * one additional MI_BATCH_BUFFER_END dword. Since the whole SA
-@@ -78,20 +76,16 @@ struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
- 	 */
- 
- 	bb_pool = xe->sriov.vf.ccs.contexts[ctx_id].mem.ccs_bb_pool;
--	bb->bo = xe_sa_bo_new(bb_pool, 4 * (dwords + 1));
-+	err = xe_sa_bo_new_init(bb_pool, sa, 4 * (dwords + 1), timeout);
- 
--	if (IS_ERR(bb->bo)) {
--		err = PTR_ERR(bb->bo);
--		goto err;
--	}
-+	if (err)
-+		return err;
- 
-+	bb->bo = sa;
- 	bb->cs = xe_sa_bo_cpu_addr(bb->bo);
- 	bb->len = 0;
- 
--	return bb;
--err:
--	kfree(bb);
--	return ERR_PTR(err);
-+	return 0;
+ 	return -ENODEV;
  }
+@@ -1800,8 +1797,8 @@ static const struct drm_ioctl_desc i915_ioctls[] = {
+ 	DRM_IOCTL_DEF_DRV(I915_GEM_INIT, drm_noop, DRM_AUTH|DRM_MASTER|DRM_ROOT_ONLY),
+ 	DRM_IOCTL_DEF_DRV(I915_GEM_EXECBUFFER, drm_invalid_op, DRM_AUTH),
+ 	DRM_IOCTL_DEF_DRV(I915_GEM_EXECBUFFER2_WR, i915_gem_execbuffer2_ioctl, DRM_RENDER_ALLOW),
+-	DRM_IOCTL_DEF_DRV(I915_GEM_PIN, i915_gem_reject_pin_ioctl, DRM_AUTH|DRM_ROOT_ONLY),
+-	DRM_IOCTL_DEF_DRV(I915_GEM_UNPIN, i915_gem_reject_pin_ioctl, DRM_AUTH|DRM_ROOT_ONLY),
++	DRM_IOCTL_DEF_DRV(I915_GEM_PIN, i915_enodev_ioctl, DRM_AUTH|DRM_ROOT_ONLY),
++	DRM_IOCTL_DEF_DRV(I915_GEM_UNPIN, i915_enodev_ioctl, DRM_AUTH|DRM_ROOT_ONLY),
+ 	DRM_IOCTL_DEF_DRV(I915_GEM_BUSY, i915_gem_busy_ioctl, DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(I915_GEM_SET_CACHING, i915_gem_set_caching_ioctl, DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(I915_GEM_GET_CACHING, i915_gem_get_caching_ioctl, DRM_RENDER_ALLOW),
+@@ -1821,8 +1818,8 @@ static const struct drm_ioctl_desc i915_ioctls[] = {
+ 	DRM_IOCTL_DEF_DRV(I915_GEM_GET_APERTURE, i915_gem_get_aperture_ioctl, DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(I915_GET_PIPE_FROM_CRTC_ID, intel_crtc_get_pipe_from_crtc_id_ioctl, 0),
+ 	DRM_IOCTL_DEF_DRV(I915_GEM_MADVISE, i915_gem_madvise_ioctl, DRM_RENDER_ALLOW),
+-	DRM_IOCTL_DEF_DRV(I915_OVERLAY_PUT_IMAGE, intel_overlay_put_image_ioctl, DRM_MASTER),
+-	DRM_IOCTL_DEF_DRV(I915_OVERLAY_ATTRS, intel_overlay_attrs_ioctl, DRM_MASTER),
++	DRM_IOCTL_DEF_DRV(I915_OVERLAY_PUT_IMAGE, i915_enodev_ioctl, DRM_MASTER),
++	DRM_IOCTL_DEF_DRV(I915_OVERLAY_ATTRS, i915_enodev_ioctl, DRM_MASTER),
+ 	DRM_IOCTL_DEF_DRV(I915_SET_SPRITE_COLORKEY, intel_sprite_set_colorkey_ioctl, DRM_MASTER),
+ 	DRM_IOCTL_DEF_DRV(I915_GET_SPRITE_COLORKEY, drm_noop, DRM_MASTER),
+ 	DRM_IOCTL_DEF_DRV(I915_GEM_WAIT, i915_gem_wait_ioctl, DRM_RENDER_ALLOW),
+diff --git a/drivers/gpu/drm/i915/i915_getparam.c b/drivers/gpu/drm/i915/i915_getparam.c
+index cf47c2491a0a..cdf8ad4b6f3a 100644
+--- a/drivers/gpu/drm/i915/i915_getparam.c
++++ b/drivers/gpu/drm/i915/i915_getparam.c
+@@ -4,7 +4,6 @@
  
- static struct xe_sched_job *
-diff --git a/drivers/gpu/drm/xe/xe_bb.h b/drivers/gpu/drm/xe/xe_bb.h
-index 2a8adc9a6dee..3da4652cf0b0 100644
---- a/drivers/gpu/drm/xe/xe_bb.h
-+++ b/drivers/gpu/drm/xe/xe_bb.h
-@@ -16,8 +16,8 @@ struct xe_sched_job;
- enum xe_sriov_vf_ccs_rw_ctxs;
+ #include <drm/drm_print.h>
  
- struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm);
--struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
--			    enum xe_sriov_vf_ccs_rw_ctxs ctx_id);
-+int xe_bb_ccs_new(struct xe_gt *gt, struct xe_bb *bb, struct drm_suballoc *sa,
-+		  u32 dwords, enum xe_sriov_vf_ccs_rw_ctxs ctx_id);
- struct xe_sched_job *xe_bb_create_job(struct xe_exec_queue *q,
- 				      struct xe_bb *bb);
- struct xe_sched_job *xe_bb_create_migration_job(struct xe_exec_queue *q,
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 078a9bc2821d..15d73814a08a 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -1109,6 +1109,7 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- 	struct xe_sriov_vf_ccs_ctx *ctx;
- 	struct xe_sa_manager *bb_pool;
- 	u64 size = xe_bo_size(src_bo);
-+	struct drm_suballoc *sa;
- 	struct xe_bb *bb = NULL;
- 	u64 src_L0, src_L0_ofs;
- 	u32 src_L0_pt;
-@@ -1148,15 +1149,28 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- 		size -= src_L0;
- 	}
- 
-+	bb = kmalloc(sizeof(*bb), GFP_KERNEL);
-+	if (!bb) {
-+		err = -ENOMEM;
-+		goto err_bb;
-+	}
-+
-+	sa = drm_suballoc_alloc(GFP_KERNEL);
-+	if (IS_ERR(sa)) {
-+		drm_err(&xe->drm, "Sub-allocator memory allocation failed with %ld\n",
-+			PTR_ERR(sa));
-+		err = PTR_ERR(sa);
-+		goto err_sa;
-+	}
-+
- 	bb_pool = ctx->mem.ccs_bb_pool;
- 	guard(mutex) (xe_sa_bo_swap_guard(bb_pool));
- 	xe_sa_bo_swap_shadow(bb_pool);
- 
--	bb = xe_bb_ccs_new(gt, batch_size, read_write);
--	if (IS_ERR(bb)) {
-+	err = xe_bb_ccs_new(gt, bb, sa, batch_size, read_write);
-+	if (err) {
- 		drm_err(&xe->drm, "BB allocation failed.\n");
--		err = PTR_ERR(bb);
--		return err;
-+		goto err_bb_ccs;
- 	}
- 
- 	batch_size_allocated = batch_size;
-@@ -1208,6 +1222,13 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- 	xe_sriov_vf_ccs_rw_update_bb_addr(ctx);
- 	xe_sa_bo_sync_shadow(bb->bo);
- 	return 0;
-+
-+err_bb_ccs:
-+	drm_suballoc_release(sa);
-+err_sa:
-+	kfree(bb);
-+err_bb:
-+	return err;
- }
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
-index 5efbb5a09f77..2cfe6a353299 100644
---- a/drivers/gpu/drm/xe/xe_sa.c
-+++ b/drivers/gpu/drm/xe/xe_sa.c
-@@ -181,6 +181,30 @@ struct drm_suballoc *__xe_sa_bo_new(struct xe_sa_manager *sa_manager, u32 size,
- 	return drm_suballoc_new(&sa_manager->base, size, gfp, true, 0);
- }
- 
-+/**
-+ * __xe_sa_bo_new_init() - Make a suballocation with given SA.
-+ * @sa_manager: the &xe_sa_manager
-+ * @sa : Uninitalized sub allocator
-+ * @size: number of bytes we want to suballocate
-+ * @timeout: Timeout in jiffies waiting for allocation.
-+ *
-+ * Try to make a suballocation of size @size.
-+ *
-+ * Return: zero on success, errno on failure.
-+ */
-+int __xe_sa_bo_new_init(struct xe_sa_manager *sa_manager, struct drm_suballoc *sa,
-+			u32 size, int timeout)
-+{
-+	/*
-+	 * BB to large, return -ENOBUFS indicating user should split
-+	 * array of binds into smaller chunks.
-+	 */
-+	if (size > sa_manager->base.size)
-+		return -ENOBUFS;
-+
-+	return drm_suballoc_init(&sa_manager->base, sa, size, true, 0, timeout);
-+}
-+
- /**
-  * xe_sa_bo_flush_write() - Copy the data from the sub-allocation to the GPU memory.
-  * @sa_bo: the &drm_suballoc to flush
-diff --git a/drivers/gpu/drm/xe/xe_sa.h b/drivers/gpu/drm/xe/xe_sa.h
-index 05e9a4e00e78..9cb8722779a4 100644
---- a/drivers/gpu/drm/xe/xe_sa.h
-+++ b/drivers/gpu/drm/xe/xe_sa.h
-@@ -18,6 +18,8 @@ struct xe_tile;
- struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size,
- 					      u32 guard, u32 align, u32 flags);
- struct drm_suballoc *__xe_sa_bo_new(struct xe_sa_manager *sa_manager, u32 size, gfp_t gfp);
-+int __xe_sa_bo_new_init(struct xe_sa_manager *sa_manager, struct drm_suballoc *sa,
-+			u32 size, int timeout);
- 
- static inline struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32 align)
+-#include "display/intel_overlay.h"
+ #include "gem/i915_gem_mman.h"
+ #include "gt/intel_engine_user.h"
+ #include "pxp/intel_pxp.h"
+@@ -18,7 +17,6 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
+ 			struct drm_file *file_priv)
  {
-@@ -38,6 +40,23 @@ static inline struct drm_suballoc *xe_sa_bo_new(struct xe_sa_manager *sa_manager
- 	return __xe_sa_bo_new(sa_manager, size, GFP_KERNEL);
- }
- 
-+/**
-+ * xe_sa_bo_new_init() - Make a suballocation.
-+ * @sa_manager: the &xe_sa_manager
-+ * @sa : Uninitialized sub-allocator
-+ * @size: number of bytes we want to suballocate
-+ * @timeout: Time to a wait suballocation to become available.
-+ *
-+ * Try to make a suballocation of size @size.
-+ *
-+ * Return: zero on success, errno on failure.
-+ */
-+static inline int xe_sa_bo_new_init(struct xe_sa_manager *sa_manager,
-+				    struct drm_suballoc *sa, u32 size, int timeout)
-+{
-+	return __xe_sa_bo_new_init(sa_manager, sa, size, timeout);
-+}
-+
- void xe_sa_bo_flush_write(struct drm_suballoc *sa_bo);
- void xe_sa_bo_sync_read(struct drm_suballoc *sa_bo);
- void xe_sa_bo_free(struct drm_suballoc *sa_bo, struct dma_fence *fence);
+ 	struct drm_i915_private *i915 = to_i915(dev);
+-	struct intel_display *display = i915->display;
+ 	struct pci_dev *pdev = to_pci_dev(dev->dev);
+ 	const struct sseu_dev_info *sseu = &to_gt(i915)->info.sseu;
+ 	drm_i915_getparam_t *param = data;
+@@ -41,7 +39,7 @@ int i915_getparam_ioctl(struct drm_device *dev, void *data,
+ 		value = to_gt(i915)->ggtt->num_fences;
+ 		break;
+ 	case I915_PARAM_HAS_OVERLAY:
+-		value = intel_overlay_available(display);
++		value = 0;
+ 		break;
+ 	case I915_PARAM_HAS_BSD:
+ 		value = !!intel_engine_lookup_user(i915,
 -- 
-2.43.0
+2.47.3
 
