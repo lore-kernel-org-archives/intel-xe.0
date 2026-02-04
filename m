@@ -4,27 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2281E83EF9
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 13:43:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70F16E83EF9
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 13:44:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CC9E10E641;
-	Wed,  4 Feb 2026 13:43:47 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1602610E641;
- Wed,  4 Feb 2026 13:43:46 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BF6810E649;
+	Wed,  4 Feb 2026 13:44:48 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="QRrsKnvR";
+	dkim-atps=neutral
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16CB210E642;
+ Wed,  4 Feb 2026 13:44:46 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 9E12D40D88;
+ Wed,  4 Feb 2026 13:44:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 001D6C4CEF7;
+ Wed,  4 Feb 2026 13:44:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1770212685;
+ bh=Dyc6QtrdtjDlD83Qzie+D8JQ8LWsKDR5MXLqpqkVovQ=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=QRrsKnvRdqKdZATXY6+5DepvbKibqh32QzaOqBkKLED5rSOW+W1SSMQ7GtroaGTWN
+ bTqvZm63QrYiq1cAxaqfLMLVlZ6R78Nf/Rz9I+zOM3S0VViSV3JKgGza+pEdNx8Tru
+ cV3QXA6p/a60qAO0JiK2roWgipETHpe8EovTlOb1+xCPB5YDtepsm64yiyM1wrWGtp
+ AZeVzMAQOAZQ5DUiYKOKl3w+bH9Oi3atxQBrkyrCQ0cWADXPcpWnuZj4HC+BYnXCZP
+ v0XvbnvjoIUKhhpsPXnCKi8MN/sDza76R9G1fwLlsQj1FRVqBabasNoyf09ZzFJM3m
+ 2IKIdP8n1QxPg==
+Date: Wed, 4 Feb 2026 14:44:42 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Leon Romanovsky <leon@kernel.org>
+Cc: Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>, 
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>, 
+ Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu <olvaffe@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, 
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>, 
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
+ Robin Murphy <robin.murphy@arm.com>, Felix Kuehling <Felix.Kuehling@amd.com>, 
+ Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>, 
+ Vivek Kasireddy <vivek.kasireddy@intel.com>, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, 
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, 
+ virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
+ linux-rdma@vger.kernel.org, iommu@lists.linux.dev, kvm@vger.kernel.org
+Subject: Re: [PATCH v7 0/8] dma-buf: Use revoke mechanism to invalidate
+ shared buffers
+Message-ID: <20260204-bloodhound-of-major-realization-9852ab@houat>
+References: <20260131-dmabuf-revoke-v7-0-463d956bd527@nvidia.com>
+ <20260202160425.GO34749@unreal> <20260204081630.GA6771@unreal>
+ <20260204-icy-classic-crayfish-68da6d@houat>
+ <20260204115212.GG6771@unreal>
+ <20260204-clever-butterfly-of-mastery-0cdc19@houat>
+ <20260204121354.GH6771@unreal>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/pf=3A_Fix_sysfs_in?=
- =?utf-8?q?itialization_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 04 Feb 2026 13:43:46 -0000
-Message-ID: <177021262607.223259.10419532563137351877@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260203235332.1350-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20260203235332.1350-1-michal.wajdeczko@intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="g57nfe3564yf6hls"
+Content-Disposition: inline
+In-Reply-To: <20260204121354.GH6771@unreal>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,77 +80,124 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/xe/pf: Fix sysfs initialization (rev2)
-URL   : https://patchwork.freedesktop.org/series/161112/
-State : warning
+--g57nfe3564yf6hls
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v7 0/8] dma-buf: Use revoke mechanism to invalidate
+ shared buffers
+MIME-Version: 1.0
 
-== Summary ==
+On Wed, Feb 04, 2026 at 02:13:54PM +0200, Leon Romanovsky wrote:
+> On Wed, Feb 04, 2026 at 01:01:54PM +0100, Maxime Ripard wrote:
+> > On Wed, Feb 04, 2026 at 01:52:12PM +0200, Leon Romanovsky wrote:
+> > > On Wed, Feb 04, 2026 at 09:56:08AM +0100, Maxime Ripard wrote:
+> > > > On Wed, Feb 04, 2026 at 10:16:30AM +0200, Leon Romanovsky wrote:
+> > > > > On Mon, Feb 02, 2026 at 06:04:25PM +0200, Leon Romanovsky wrote:
+> > > > > > On Sat, Jan 31, 2026 at 07:34:10AM +0200, Leon Romanovsky wrote:
+> > > > > > > Changelog:
+> > > > > > > v7:
+> > > > > >=20
+> > > > > > <...>
+> > > > > >=20
+> > > > > > > Leon Romanovsky (8):
+> > > > > > >       dma-buf: Rename .move_notify() callback to a clearer id=
+entifier
+> > > > > > >       dma-buf: Rename dma_buf_move_notify() to dma_buf_invali=
+date_mappings()
+> > > > > > >       dma-buf: Always build with DMABUF_MOVE_NOTIFY
+> > > > > > >       vfio: Wait for dma-buf invalidation to complete
+> > > > > > >       dma-buf: Make .invalidate_mapping() truly optional
+> > > > > > >       dma-buf: Add dma_buf_attach_revocable()
+> > > > > > >       vfio: Permit VFIO to work with pinned importers
+> > > > > > >       iommufd: Add dma_buf_pin()
+> > > > > > >=20
+> > > > > > >  drivers/dma-buf/Kconfig                     | 12 -----
+> > > > > > >  drivers/dma-buf/dma-buf.c                   | 69 +++++++++++=
++++++++++-----
+> > > > > > >  drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c | 14 ++---
+> > > > > > >  drivers/gpu/drm/amd/amdgpu/amdgpu_object.c  |  2 +-
+> > > > > > >  drivers/gpu/drm/amd/amdkfd/Kconfig          |  2 +-
+> > > > > > >  drivers/gpu/drm/virtio/virtgpu_prime.c      |  2 +-
+> > > > > > >  drivers/gpu/drm/xe/tests/xe_dma_buf.c       |  7 ++-
+> > > > > > >  drivers/gpu/drm/xe/xe_bo.c                  |  2 +-
+> > > > > > >  drivers/gpu/drm/xe/xe_dma_buf.c             | 14 ++---
+> > > > > > >  drivers/infiniband/core/umem_dmabuf.c       | 13 -----
+> > > > > > >  drivers/infiniband/hw/mlx5/mr.c             |  2 +-
+> > > > > > >  drivers/iommu/iommufd/pages.c               | 11 +++-
+> > > > > > >  drivers/iommu/iommufd/selftest.c            |  2 +-
+> > > > > > >  drivers/vfio/pci/vfio_pci_dmabuf.c          | 80 +++++++++++=
++++++++++++-------
+> > > > > > >  include/linux/dma-buf.h                     | 17 +++---
+> > > > > > >  15 files changed, 153 insertions(+), 96 deletions(-)
+> > > > > >=20
+> > > > > > Christian,
+> > > > > >=20
+> > > > > > Given the ongoing discussion around patch v5, I'm a bit unclear=
+ on the
+> > > > > > current state. Is the series ready for merging, or do you need =
+me to
+> > > > > > rework anything further?
+> > > > >=20
+> > > > > Christian,
+> > > > >=20
+> > > > > Let's not miss the merge window for work that is already ready.
+> > > >=20
+> > > > The cutoff date for the merge window was on 25/1, so it was already
+> > > > missed by the time you sent your series.
+> > >=20
+> > > The primary goal of this series is to update dma-buf. The changes in
+> > > drivers/gpu/drm are limited to straightforward renames.
+> >=20
+> > And yet, dma-buf is maintained through drm.
+> >=20
+> > Also, it's a general rule Linus has, it's nothing specific to DRM.
+>=20
+> Can you point me to that general rule?
+>=20
+> From what I have seen, subsystems such as netdev, the block layer, and RD=
+MA continue
+> to accept code that is ready for merging, especially when it has been tho=
+roughly
+> reviewed by multiple maintainers across different subsystems.
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-1f57ba1afceae32108bd24770069f764d940a0e4
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit f3994918cb215c3d75e1ca49b3cdedd1f73d8929
-Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Date:   Wed Feb 4 00:53:32 2026 +0100
+He said it multiple times, but here's one of such examples:
 
-    drm/xe/pf: Fix sysfs initialization
-    
-    In case of devm_add_action_or_reset() failure the provided cleanup
-    action will be run immediately on the not yet initialized kobject.
-    This may lead to errors like:
-    
-     [ ] kobject: '(null)' (ff110001393608e0): is not initialized, yet kobject_put() is being called.
-     [ ] WARNING: lib/kobject.c:734 at kobject_put+0xd9/0x250, CPU#0: kworker/0:0/9
-     [ ] RIP: 0010:kobject_put+0xdf/0x250
-     [ ] Call Trace:
-     [ ]  xe_sriov_pf_sysfs_init+0x21/0x100 [xe]
-     [ ]  xe_sriov_pf_init_late+0x87/0x2b0 [xe]
-     [ ]  xe_sriov_init_late+0x5f/0x2c0 [xe]
-     [ ]  xe_device_probe+0x5f2/0xc20 [xe]
-     [ ]  xe_pci_probe+0x396/0x610 [xe]
-     [ ]  local_pci_probe+0x47/0xb0
-    
-     [ ] refcount_t: underflow; use-after-free.
-     [ ] WARNING: lib/refcount.c:28 at refcount_warn_saturate+0x68/0xb0, CPU#0: kworker/0:0/9
-     [ ] RIP: 0010:refcount_warn_saturate+0x68/0xb0
-     [ ] Call Trace:
-     [ ]  kobject_put+0x174/0x250
-     [ ]  xe_sriov_pf_sysfs_init+0x21/0x100 [xe]
-     [ ]  xe_sriov_pf_init_late+0x87/0x2b0 [xe]
-     [ ]  xe_sriov_init_late+0x5f/0x2c0 [xe]
-     [ ]  xe_device_probe+0x5f2/0xc20 [xe]
-     [ ]  xe_pci_probe+0x396/0x610 [xe]
-     [ ]  local_pci_probe+0x47/0xb0
-    
-    Fix that by calling kobject_init() and kobject_add() separately
-    and register cleanup action after the kobject is initialized.
-    
-    Also make this cleanup registration a part of the create helper to
-    fix another mistake, as in the loop we were wronly passing parent
-    kobject while registering cleanup action, and this resulted in some
-    undetected leaks.
-    
-    Fixes: 5c170a4d9c53 ("drm/xe/pf: Prepare sysfs for SR-IOV admin attributes")
-    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-+ /mt/dim checkpatch 241994730989320c926da9f2d0a5ec80b48f993d drm-intel
-f3994918cb21 drm/xe/pf: Fix sysfs initialization
--:10: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#10: 
- [ ] kobject: '(null)' (ff110001393608e0): is not initialized, yet kobject_put() is being called.
+https://lore.kernel.org/all/CA+55aFwdd30eBsnMLB=3DncExY0-P=3DeAsxkn_O6ir10J=
+UyVSYdhA@mail.gmail.com/
 
-total: 0 errors, 1 warnings, 0 checks, 92 lines checked
+And quoting:
 
+> In particular, if you cannot follow the simple merge window rules
+> (this whole two-week merge window and linux-next process has been in
+> place over a decade), at least make the end result look good. Make it
+> all look easy and problem-free.
+>
+> [...]
+>
+> Next merge window I will not accept anything even remotely like that.
+> Things that haven't been in linux-next will be rejected
 
+So, yeah, we can make exceptions. But you should ask and justify for
+one, instead of expecting us to pick up a patch submission that was
+already late.
+
+Maxime
+
+--g57nfe3564yf6hls
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaYNNRQAKCRAnX84Zoj2+
+dmuQAYCiMJtoHGQb2aOEW2qSDKa03ZKmNzMoqgOSNMG7EToE3xlSy2KmWs0Yi5qs
+kqNhz7cBf20n8wxYB3DUANuC5PqYiFatABkIC9y0sRBwvKCN7+kvTj7IGiJzDnEy
+jpWCTHJODw==
+=cYsD
+-----END PGP SIGNATURE-----
+
+--g57nfe3564yf6hls--
