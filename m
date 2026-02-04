@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2029FEA7942
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 19:06:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 422A8EA7942
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 19:06:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5F3010E749;
-	Wed,  4 Feb 2026 19:06:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E29FB10E773;
+	Wed,  4 Feb 2026 19:06:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nUowGmDG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D500tjgi";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C440D10E749
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Feb 2026 19:06:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D8F910E767
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Feb 2026 19:06:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770232004; x=1801768004;
+ t=1770232010; x=1801768010;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9b8IJPf9CKd+zD8+oOtghPP5dMohxUE0l5sGqcQBax4=;
- b=nUowGmDGXFNRekupj5S3JeO1f7U6o1XEpHnOJb4PPj5HRv1Es3imDlND
- 4mizvKwTNJ5eJnvS/n/Ax8xk8YEUEpv2coUMKfxc7KQOWxTZ/u9RiKBAD
- PWmZpIh69ihhSTuYGtlAKeWCEfpVNyS3/EyDpKw9ljwlvYlx+5B0VfNEQ
- r3jIXChpOS6HmI/YhqlX7OHbz+/69ICca6YHR0oImqNA8GWnYDDmwrnkb
- DV6ceDtvqz/CEzOQtmMcBiHeeamHUXcPh6Mk0kRXE5Y3tzjHDz1ash/B5
- OZpF5nVtkv4gv+gdj2bxmmv9o2SmGxZZA0FOOm60UXqUCGgjnk8XfRNSR w==;
-X-CSE-ConnectionGUID: gFUHMpZGQROXv/y5QyFsag==
-X-CSE-MsgGUID: 2yxYwGoBQ0aI2XfHbh4QPQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="71322182"
-X-IronPort-AV: E=Sophos;i="6.21,273,1763452800"; d="scan'208";a="71322182"
+ bh=qee3NbiDFzmhbTxU754Xw3XfWaHvkXoidXnqo63msdQ=;
+ b=D500tjgitpSYdiWk+xtY+a1Gk3ctQL2dWMsDaIWdpacNH/dorISJ2K6o
+ c0vQZ/lmmluALy/d+QNfkPiK+j/K8VcAdqhPMstlbIQ9JuBUukTferlEk
+ vLfw79wPXyEVVi80kBt8ZOk7GxAwxnQ8hUi1vZXk04lXT/N1qkpGeahCP
+ NH/80phrfw1vBlPfozdAETnLsKv0O/g6F8vGO80LFuIKaV2T5deP4883N
+ uyYfS4hO8uytSvTZZptQpMO3+bW44ZimvWVIiZS4nrA6eoZeoVSCMuWX0
+ aHM19Ar1zNklScfIFeiiOytL7rCEOH95i+3bIKIOgYvmM0SAbpHOmxepQ w==;
+X-CSE-ConnectionGUID: zHmlBovnQOi9k/oTVN3phQ==
+X-CSE-MsgGUID: 7vSAft+LTGWTPF/J6fFfsw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="71322187"
+X-IronPort-AV: E=Sophos;i="6.21,273,1763452800"; d="scan'208";a="71322187"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2026 11:06:44 -0800
-X-CSE-ConnectionGUID: aOH+riw0TMm+hYMp4XORDA==
-X-CSE-MsgGUID: EuhZV+wfRAy8vQiyNwYrWQ==
+ 04 Feb 2026 11:06:50 -0800
+X-CSE-ConnectionGUID: cHqf6eJkSuuRIz+pDsOJXw==
+X-CSE-MsgGUID: A73Nhl83TcOY6KztCzOj5Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,273,1763452800"; d="scan'208";a="210249958"
+X-IronPort-AV: E=Sophos;i="6.21,273,1763452800"; d="scan'208";a="210249967"
 Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.39.23])
- by fmviesa010.fm.intel.com with ESMTP; 04 Feb 2026 11:06:43 -0800
+ by fmviesa010.fm.intel.com with ESMTP; 04 Feb 2026 11:06:50 -0800
 From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>,
  Badal Nilawar <badal.nilawar@intel.com>
-Subject: [PATCH v2 1/2] drm/xe: Add GSC to powergate_info
-Date: Wed,  4 Feb 2026 11:03:13 -0800
-Message-Id: <20260204190314.2904009-2-vinay.belgaumkar@intel.com>
+Subject: [PATCH v2 2/2] drm/xe: Add forcewake status to powergate_info
+Date: Wed,  4 Feb 2026 11:03:14 -0800
+Message-Id: <20260204190314.2904009-3-vinay.belgaumkar@intel.com>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20260204190314.2904009-1-vinay.belgaumkar@intel.com>
 References: <20260204190314.2904009-1-vinay.belgaumkar@intel.com>
@@ -66,39 +66,145 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add GSC powergate status to the existing debugfs.
+Dump forcewake status and ref counts for all domains as part
+of this debugfs. This is the sample output from gt1-
+
+$ cat /sys/kernel/debug/dri//0/gt1/powergate_info
+Media Power Gating Enabled: yes
+Media Slice0 Power Gate Status: down
+GSC Power Gate Status: down
+GT.ref_count=0, GT.forcewake=0x10000
+VDBox0.ref_count=0, VDBox0.forcewake=0x10000
+VEBox0.ref_count=0, VEBox0.forcewake=0x10000
+GSC.ref_count=0, GSC.forcewake=0x10000
+
+v2: Fix checkpatch issues
 
 Reviewed-by: Badal Nilawar <badal.nilawar@intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Signed-off-by: Vinay Belgaumkar<vinay.belgaumkar@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h | 1 +
- drivers/gpu/drm/xe/xe_gt_idle.c      | 5 +++++
- 2 files changed, 6 insertions(+)
+ drivers/gpu/drm/xe/xe_force_wake.c | 46 ++++++++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_force_wake.h | 11 +++++++
+ drivers/gpu/drm/xe/xe_gt_idle.c    | 20 +++++++++++++
+ 3 files changed, 71 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 24fc64fc832e..7d3ec1fe4f7f 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -367,6 +367,7 @@
- #define FORCEWAKE_RENDER			XE_REG(0xa278)
+diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
+index 76e054f314ee..197e2197bd0a 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake.c
++++ b/drivers/gpu/drm/xe/xe_force_wake.c
+@@ -148,12 +148,6 @@ static int domain_sleep_wait(struct xe_gt *gt,
+ 	return __domain_wait(gt, domain, false);
+ }
  
- #define POWERGATE_DOMAIN_STATUS			XE_REG(0xa2a0)
-+#define   GSC_AWAKE_STATUS			REG_BIT(8)
- #define   MEDIA_SLICE3_AWAKE_STATUS		REG_BIT(4)
- #define   MEDIA_SLICE2_AWAKE_STATUS		REG_BIT(3)
- #define   MEDIA_SLICE1_AWAKE_STATUS		REG_BIT(2)
+-#define for_each_fw_domain_masked(domain__, mask__, fw__, tmp__) \
+-	for (tmp__ = (mask__); tmp__; tmp__ &= ~BIT(ffs(tmp__) - 1)) \
+-		for_each_if((domain__ = ((fw__)->domains + \
+-					 (ffs(tmp__) - 1))) && \
+-					 domain__->reg_ctl.addr)
+-
+ /**
+  * xe_force_wake_get() : Increase the domain refcount
+  * @fw: struct xe_force_wake
+@@ -266,3 +260,43 @@ void xe_force_wake_put(struct xe_force_wake *fw, unsigned int fw_ref)
+ 	xe_gt_WARN(gt, ack_fail, "Forcewake domain%s %#x failed to acknowledge sleep request\n",
+ 		   str_plural(hweight_long(ack_fail)), ack_fail);
+ }
++
++const char *xe_force_wake_domain_to_str(enum xe_force_wake_domain_id id)
++{
++	switch (id) {
++	case XE_FW_DOMAIN_ID_GT:
++		return "GT";
++	case XE_FW_DOMAIN_ID_RENDER:
++		return "Render";
++	case XE_FW_DOMAIN_ID_MEDIA:
++		return "Media";
++	case XE_FW_DOMAIN_ID_MEDIA_VDBOX0:
++		return "VDBox0";
++	case XE_FW_DOMAIN_ID_MEDIA_VDBOX1:
++		return "VDBox1";
++	case XE_FW_DOMAIN_ID_MEDIA_VDBOX2:
++		return "VDBox2";
++	case XE_FW_DOMAIN_ID_MEDIA_VDBOX3:
++		return "VDBox3";
++	case XE_FW_DOMAIN_ID_MEDIA_VDBOX4:
++		return "VDBox4";
++	case XE_FW_DOMAIN_ID_MEDIA_VDBOX5:
++		return "VDBox5";
++	case XE_FW_DOMAIN_ID_MEDIA_VDBOX6:
++		return "VDBox6";
++	case XE_FW_DOMAIN_ID_MEDIA_VDBOX7:
++		return "VDBox7";
++	case XE_FW_DOMAIN_ID_MEDIA_VEBOX0:
++		return "VEBox0";
++	case XE_FW_DOMAIN_ID_MEDIA_VEBOX1:
++		return "VEBox1";
++	case XE_FW_DOMAIN_ID_MEDIA_VEBOX2:
++		return "VEBox2";
++	case XE_FW_DOMAIN_ID_MEDIA_VEBOX3:
++		return "VEBox3";
++	case XE_FW_DOMAIN_ID_GSC:
++		return "GSC";
++	default:
++		return "Unknown";
++	}
++}
+diff --git a/drivers/gpu/drm/xe/xe_force_wake.h b/drivers/gpu/drm/xe/xe_force_wake.h
+index 1e2198f6a007..e2721f205d6c 100644
+--- a/drivers/gpu/drm/xe/xe_force_wake.h
++++ b/drivers/gpu/drm/xe/xe_force_wake.h
+@@ -19,6 +19,17 @@ unsigned int __must_check xe_force_wake_get(struct xe_force_wake *fw,
+ 					    enum xe_force_wake_domains domains);
+ void xe_force_wake_put(struct xe_force_wake *fw, unsigned int fw_ref);
+ 
++const char *xe_force_wake_domain_to_str(enum xe_force_wake_domain_id id);
++
++#define for_each_fw_domain_masked(domain__, mask__, fw__, tmp__) \
++	for (tmp__ = (mask__); tmp__; tmp__ &= ~BIT(ffs(tmp__) - 1)) \
++		for_each_if(((domain__) = ((fw__)->domains + \
++					 (ffs(tmp__) - 1))) && \
++					 (domain__)->reg_ctl.addr)
++
++#define for_each_fw_domain(domain__, fw__, tmp__) \
++	for_each_fw_domain_masked((domain__), (fw__)->initialized_domains, (fw__), (tmp__))
++
+ static inline int
+ xe_force_wake_ref(struct xe_force_wake *fw,
+ 		  enum xe_force_wake_domains domain)
 diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
-index 7a569e1730a4..94d3403ec11e 100644
+index 94d3403ec11e..4a2d9edb6a4c 100644
 --- a/drivers/gpu/drm/xe/xe_gt_idle.c
 +++ b/drivers/gpu/drm/xe/xe_gt_idle.c
-@@ -254,6 +254,11 @@ int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p)
- 		drm_printf(p, "Media Samplers Power Gating Enabled: %s\n",
- 			   str_yes_no(pg_enabled & MEDIA_SAMPLERS_POWERGATE_ENABLE));
+@@ -168,6 +168,24 @@ void xe_gt_idle_disable_pg(struct xe_gt *gt)
+ 	xe_mmio_write32(&gt->mmio, POWERGATE_ENABLE, gtidle->powergate_enable);
+ }
  
-+	if (gt->info.engine_mask & BIT(XE_HW_ENGINE_GSCCS0)) {
-+		drm_printf(p, "GSC Power Gate Status: %s\n",
-+			   str_up_down(pg_status & GSC_AWAKE_STATUS));
++static void force_wake_domains_show(struct xe_gt *gt, struct drm_printer *p)
++{
++	struct xe_force_wake_domain *domain;
++	struct xe_force_wake *fw = gt_to_fw(gt);
++	unsigned int tmp;
++	unsigned long flags;
++
++	spin_lock_irqsave(&fw->lock, flags);
++	for_each_fw_domain(domain, fw, tmp) {
++		drm_printf(p, "%s.ref_count=%u, %s.fwake=0x%x\n",
++			   xe_force_wake_domain_to_str(domain->id),
++			   READ_ONCE(domain->ref),
++			   xe_force_wake_domain_to_str(domain->id),
++			   xe_mmio_read32(&gt->mmio, domain->reg_ctl));
 +	}
++	spin_unlock_irqrestore(&fw->lock, flags);
++}
++
+ /**
+  * xe_gt_idle_pg_print - Xe powergating info
+  * @gt: GT object
+@@ -259,6 +277,8 @@ int xe_gt_idle_pg_print(struct xe_gt *gt, struct drm_printer *p)
+ 			   str_up_down(pg_status & GSC_AWAKE_STATUS));
+ 	}
+ 
++	force_wake_domains_show(gt, p);
 +
  	return 0;
  }
