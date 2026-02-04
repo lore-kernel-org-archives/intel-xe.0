@@ -4,69 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1698BE83EF6
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 17:42:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A68CE9D40F
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 17:42:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF9C710E71F;
-	Wed,  4 Feb 2026 17:42:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Y5sNk7Yo";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD3B610E71F;
- Wed,  4 Feb 2026 17:42:03 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 4A711444D5;
- Wed,  4 Feb 2026 17:42:03 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4ABA4C116C6;
- Wed,  4 Feb 2026 17:42:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1770226923;
- bh=p787FwvtGxpTW7O+BZ6Vp7w3LWjZ2nLdxL1PN/deDRo=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Y5sNk7YoVaiqLlGkRnVYCRSjbVUtYvArX7zLCO0dq9LARndPLPkwL0xKjxvhVq2pl
- pgr4rff3JEaU3JLLY7edp68Rr5VjQNRFRIZw6ETH1AWCgHbDlIgcwwCbRdGpZq90He
- UBGguXZpA1L9b22GpsmfUiUI6FVFJHrnHxBSkzjTXt8+gPdExzOi/eNdc/MOnPKf+Q
- Aqee+/IUEM/rzCbcV2pID1uVCuOkkwM8e3efDB9obdYx+OCQEmWJ2i50cYE/5zVVM8
- c8QctwcWyxr4Q1eq9txWCJRRhfIJWW7V5DaeHqHDoUVdtavrJVOMe40HRuZ2LaARJz
- CejQKWN5h2JEg==
-Date: Wed, 4 Feb 2026 19:41:57 +0200
-From: Leon Romanovsky <leon@kernel.org>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: Re: [PATCH v7 7/8] vfio: Permit VFIO to work with pinned importers
-Message-ID: <20260204174157.GA12201@unreal>
-References: <20260131-dmabuf-revoke-v7-0-463d956bd527@nvidia.com>
- <20260131-dmabuf-revoke-v7-7-463d956bd527@nvidia.com>
- <fb9bf53a-7962-451a-bac2-c61eb52c7a0f@amd.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3A5910E037;
+	Wed,  4 Feb 2026 17:42:56 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52D9310E037;
+ Wed,  4 Feb 2026 17:42:55 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2564412705529944038=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <fb9bf53a-7962-451a-bac2-c61eb52c7a0f@amd.com>
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_drm/i915/ltphy=3A_Return_t?=
+ =?utf-8?q?rue_for_TBT_scenario_during_lt=5Fphy=5Fstate_compare_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 04 Feb 2026 17:42:55 -0000
+Message-ID: <177022697531.225549.14603168425491909255@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260203024141.1549517-1-suraj.kandpal@intel.com>
+In-Reply-To: <20260203024141.1549517-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,95 +36,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Feb 04, 2026 at 05:21:45PM +0100, Christian König wrote:
-> On 1/31/26 06:34, Leon Romanovsky wrote:
-> > From: Leon Romanovsky <leonro@nvidia.com>
-> > 
-> > Till now VFIO has rejected pinned importers, largely to avoid being used
-> > with the RDMA pinned importer that cannot handle a move_notify() to revoke
-> > access.
-> > 
-> > Using dma_buf_attach_revocable() it can tell the difference between pinned
-> > importers that support the flow described in dma_buf_invalidate_mappings()
-> > and those that don't.
-> > 
-> > Thus permit compatible pinned importers.
-> > 
-> > This is one of two items IOMMUFD requires to remove its private interface
-> > to VFIO's dma-buf.
-> > 
-> > Reviewed-by: Kevin Tian <kevin.tian@intel.com>
-> > Reviewed-by: Alex Williamson <alex@shazbot.org>
-> > Reviewed-by: Christian König <christian.koenig@amd.com>
-> > Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
-> > ---
-> >  drivers/vfio/pci/vfio_pci_dmabuf.c | 15 +++------------
-> >  1 file changed, 3 insertions(+), 12 deletions(-)
-> > 
-> > diff --git a/drivers/vfio/pci/vfio_pci_dmabuf.c b/drivers/vfio/pci/vfio_pci_dmabuf.c
-> > index 78d47e260f34..a5fb80e068ee 100644
-> > --- a/drivers/vfio/pci/vfio_pci_dmabuf.c
-> > +++ b/drivers/vfio/pci/vfio_pci_dmabuf.c
-> > @@ -22,16 +22,6 @@ struct vfio_pci_dma_buf {
-> >  	u8 revoked : 1;
-> >  };
-> >  
-> > -static int vfio_pci_dma_buf_pin(struct dma_buf_attachment *attachment)
-> > -{
-> > -	return -EOPNOTSUPP;
-> > -}
-> > -
-> > -static void vfio_pci_dma_buf_unpin(struct dma_buf_attachment *attachment)
-> > -{
-> > -	/* Do nothing */
-> > -}
-> > -
-> 
-> This chunk here doesn't want to apply to drm-misc-next, my educated guess is that the patch adding those lines is missing in that tree.
-> 
-> How should we handle that? Patches 1-3 have already been pushed to drm-misc-next and I would rather like to push patches 4-6 through that branch as well.
+--===============2564412705529944038==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-There is no need for a backmerge; it should go in through the shared
-branch. Alex has created the tag vfio-v6.19-rc8, which is v6.19-rc6 plus
-the VFIO pin patch.
+== Series Details ==
 
-You need to merge this tag into drm-misc-next. That will ensure that
-Linus, DRM, and VFIO all see the same SHA-1, and that patches 5–6 can be
-applied afterward.
+Series: drm/i915/ltphy: Return true for TBT scenario during lt_phy_state compare (rev2)
+URL   : https://patchwork.freedesktop.org/series/161045/
+State : failure
 
-Thanks
+== Summary ==
 
-> 
-> I can request a backmerge from the drm-misc-next maintainers, but then we clearly don't get that upstream this week.
-> 
-> Regards,
-> Christian.
-> 
-> >  static int vfio_pci_dma_buf_attach(struct dma_buf *dmabuf,
-> >  				   struct dma_buf_attachment *attachment)
-> >  {
-> > @@ -43,6 +33,9 @@ static int vfio_pci_dma_buf_attach(struct dma_buf *dmabuf,
-> >  	if (priv->revoked)
-> >  		return -ENODEV;
-> >  
-> > +	if (!dma_buf_attach_revocable(attachment))
-> > +		return -EOPNOTSUPP;
-> > +
-> >  	return 0;
-> >  }
-> >  
-> > @@ -107,8 +100,6 @@ static void vfio_pci_dma_buf_release(struct dma_buf *dmabuf)
-> >  }
-> >  
-> >  static const struct dma_buf_ops vfio_pci_dmabuf_ops = {
-> > -	.pin = vfio_pci_dma_buf_pin,
-> > -	.unpin = vfio_pci_dma_buf_unpin,
-> >  	.attach = vfio_pci_dma_buf_attach,
-> >  	.map_dma_buf = vfio_pci_dma_buf_map,
-> >  	.unmap_dma_buf = vfio_pci_dma_buf_unmap,
-> > 
-> 
-> 
+ERROR: The runconfig 'xe-4493-ff449f153b0966cfd7a7291670c927f6b6971d2a_FULL' does not exist in the database
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161045v2/index.html
+
+--===============2564412705529944038==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/ltphy: Return true for TBT scenario during lt_phy_state compare (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161045/">https://patchwork.freedesktop.org/series/161045/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161045v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161045v2/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-4493-ff449f153b0966cfd7a7291670c927f6b6971d2a_FULL' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============2564412705529944038==--
