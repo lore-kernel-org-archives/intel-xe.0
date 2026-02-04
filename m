@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11C36E95399
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 13:05:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55246E8307C
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 13:43:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C263E10E35F;
-	Wed,  4 Feb 2026 13:05:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1431910E640;
+	Wed,  4 Feb 2026 13:43:06 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD33C10E088;
- Wed,  4 Feb 2026 13:05:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3ACFE10E640;
+ Wed,  4 Feb 2026 13:43:05 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============0515066315816039844=="
+ boundary="===============6805283833778051289=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_drm/xe=3A_Add_bounds_check?=
- =?utf-8?q?_on_pat=5Findex_to_prevent_OOB_kernel_read_in_madvise_=28rev3=29?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_drm/xe/reg=5Fsr=3A_Fix_lea?=
+ =?utf-8?q?k_on_xa=5Fstore_failure_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jia Yao" <jia.yao@intel.com>
+To: "Lin, Shuicheng" <shuicheng.lin@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 04 Feb 2026 13:05:27 -0000
-Message-ID: <177021032775.225032.2912044596647152129@a3b018990fe9>
+Date: Wed, 04 Feb 2026 13:43:05 -0000
+Message-ID: <177021258522.223259.626192775389114279@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260203172045.1154546-1-jia.yao@intel.com>
-In-Reply-To: <20260203172045.1154546-1-jia.yao@intel.com>
+References: <20260203173639.1399354-2-shuicheng.lin@intel.com>
+In-Reply-To: <20260203173639.1399354-2-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,15 +40,15 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0515066315816039844==
+--===============6805283833778051289==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/xe: Add bounds check on pat_index to prevent OOB kernel read in madvise (rev3)
-URL   : https://patchwork.freedesktop.org/series/161100/
+Series: drm/xe/reg_sr: Fix leak on xa_store failure (rev2)
+URL   : https://patchwork.freedesktop.org/series/161102/
 State : failure
 
 == Summary ==
@@ -57,9 +57,9 @@ ERROR: The runconfig 'xe-4493-ff449f153b0966cfd7a7291670c927f6b6971d2a_FULL' doe
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161100v3/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161102v2/index.html
 
---===============0515066315816039844==
+--===============6805283833778051289==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -79,11 +79,11 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add bounds check on pat_index to prevent OOB kernel read in madvise (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161100/">https://patchwork.freedesktop.org/series/161100/</a></td></tr>
+<tr><td><b>Series:</b></td><td>drm/xe/reg_sr: Fix leak on xa_store failure (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161102/">https://patchwork.freedesktop.org/series/161102/</a></td></tr>
 <tr><td><b>State:</b></td><td>failure</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161100v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161100v3/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161102v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161102v2/index.html</a></td></tr>
 
 </table>
 
@@ -93,4 +93,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============0515066315816039844==--
+--===============6805283833778051289==--
