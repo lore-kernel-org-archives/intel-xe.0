@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55246E8307C
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 13:43:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2281E83EF9
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 13:43:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1431910E640;
-	Wed,  4 Feb 2026 13:43:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CC9E10E641;
+	Wed,  4 Feb 2026 13:43:47 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3ACFE10E640;
- Wed,  4 Feb 2026 13:43:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6805283833778051289=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1602610E641;
+ Wed,  4 Feb 2026 13:43:46 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_drm/xe/reg=5Fsr=3A_Fix_lea?=
- =?utf-8?q?k_on_xa=5Fstore_failure_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/pf=3A_Fix_sysfs_in?=
+ =?utf-8?q?itialization_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lin, Shuicheng" <shuicheng.lin@intel.com>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 04 Feb 2026 13:43:05 -0000
-Message-ID: <177021258522.223259.626192775389114279@a3b018990fe9>
+Date: Wed, 04 Feb 2026 13:43:46 -0000
+Message-ID: <177021262607.223259.10419532563137351877@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260203173639.1399354-2-shuicheng.lin@intel.com>
-In-Reply-To: <20260203173639.1399354-2-shuicheng.lin@intel.com>
+References: <20260203235332.1350-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20260203235332.1350-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,57 +40,73 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6805283833778051289==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/reg_sr: Fix leak on xa_store failure (rev2)
-URL   : https://patchwork.freedesktop.org/series/161102/
-State : failure
+Series: drm/xe/pf: Fix sysfs initialization (rev2)
+URL   : https://patchwork.freedesktop.org/series/161112/
+State : warning
 
 == Summary ==
 
-ERROR: The runconfig 'xe-4493-ff449f153b0966cfd7a7291670c927f6b6971d2a_FULL' does not exist in the database
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f3994918cb215c3d75e1ca49b3cdedd1f73d8929
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Wed Feb 4 00:53:32 2026 +0100
 
-== Logs ==
+    drm/xe/pf: Fix sysfs initialization
+    
+    In case of devm_add_action_or_reset() failure the provided cleanup
+    action will be run immediately on the not yet initialized kobject.
+    This may lead to errors like:
+    
+     [ ] kobject: '(null)' (ff110001393608e0): is not initialized, yet kobject_put() is being called.
+     [ ] WARNING: lib/kobject.c:734 at kobject_put+0xd9/0x250, CPU#0: kworker/0:0/9
+     [ ] RIP: 0010:kobject_put+0xdf/0x250
+     [ ] Call Trace:
+     [ ]  xe_sriov_pf_sysfs_init+0x21/0x100 [xe]
+     [ ]  xe_sriov_pf_init_late+0x87/0x2b0 [xe]
+     [ ]  xe_sriov_init_late+0x5f/0x2c0 [xe]
+     [ ]  xe_device_probe+0x5f2/0xc20 [xe]
+     [ ]  xe_pci_probe+0x396/0x610 [xe]
+     [ ]  local_pci_probe+0x47/0xb0
+    
+     [ ] refcount_t: underflow; use-after-free.
+     [ ] WARNING: lib/refcount.c:28 at refcount_warn_saturate+0x68/0xb0, CPU#0: kworker/0:0/9
+     [ ] RIP: 0010:refcount_warn_saturate+0x68/0xb0
+     [ ] Call Trace:
+     [ ]  kobject_put+0x174/0x250
+     [ ]  xe_sriov_pf_sysfs_init+0x21/0x100 [xe]
+     [ ]  xe_sriov_pf_init_late+0x87/0x2b0 [xe]
+     [ ]  xe_sriov_init_late+0x5f/0x2c0 [xe]
+     [ ]  xe_device_probe+0x5f2/0xc20 [xe]
+     [ ]  xe_pci_probe+0x396/0x610 [xe]
+     [ ]  local_pci_probe+0x47/0xb0
+    
+    Fix that by calling kobject_init() and kobject_add() separately
+    and register cleanup action after the kobject is initialized.
+    
+    Also make this cleanup registration a part of the create helper to
+    fix another mistake, as in the loop we were wronly passing parent
+    kobject while registering cleanup action, and this resulted in some
+    undetected leaks.
+    
+    Fixes: 5c170a4d9c53 ("drm/xe/pf: Prepare sysfs for SR-IOV admin attributes")
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 241994730989320c926da9f2d0a5ec80b48f993d drm-intel
+f3994918cb21 drm/xe/pf: Fix sysfs initialization
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#10: 
+ [ ] kobject: '(null)' (ff110001393608e0): is not initialized, yet kobject_put() is being called.
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161102v2/index.html
-
---===============6805283833778051289==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 92 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/reg_sr: Fix leak on xa_store failure (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161102/">https://patchwork.freedesktop.org/series/161102/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161102v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161102v2/index.html</a></td></tr>
-
-</table>
-
-
-    <p>ERROR: The runconfig 'xe-4493-ff449f153b0966cfd7a7291670c927f6b6971d2a_FULL' does not exist in the database</p>
-
-</body>
-</html>
-
---===============6805283833778051289==--
