@@ -4,57 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65546E9D3FF
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 15:33:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93326E9D404
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 15:44:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A57310E36E;
-	Wed,  4 Feb 2026 15:33:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4713F10E02F;
+	Wed,  4 Feb 2026 15:44:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Sspy+rfK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KySlF0Sx";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7D0E10E697
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Feb 2026 15:33:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4197E10E02F
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Feb 2026 15:44:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770219220; x=1801755220;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=rdZCNsn1Pt1WHYNodCnXZ2PADqBl0YHC4Qah+hqKNx4=;
- b=Sspy+rfK1XHQgX3sgUl9oay3/MtauX4s7jt4WBP1GVIznSz7XYCg3Zgd
- UJ7gfABul1Wh+IApPX8Fzcf9SFGfOLI3OTG/bnEqfKk9WlFhUUjiGZ2dH
- Ot9iLahFN8k0tPW3mxiL4xj8gfELNEDWsKXsBQ2PUnoeVogiuUV1n/jbS
- uZ9xaZ9IW7mr5oqY0hl2UbWYXmgxuvK9MzKP06E2lJ/9O+3QsKSik/YEk
- VYAjZcc3p86epHLUTMUF8Q/uXvdd8Cm8/QpCGSFb1kcfFlfDjAECXHsza
- rxIhLCHj7PtaX8Lc/+p76xki6Oq4ZfaxmDildaOKr+a2TOJDFYtk/Yb3x A==;
-X-CSE-ConnectionGUID: ZxgXTLNuRMyTf8mvXAVvqg==
-X-CSE-MsgGUID: m2RO3SWeQS6v8Dw7EVmOWA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="71573259"
-X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="71573259"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2026 07:33:40 -0800
-X-CSE-ConnectionGUID: qDhUqELQR+C9ru+Wqs9Tqw==
-X-CSE-MsgGUID: 95OJR47WTrqTMfrw+iTtFQ==
+ t=1770219849; x=1801755849;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=B1nzcDnL0dfxhLJww/gr1N9WMxpuYTOLMjmiuEU+cHM=;
+ b=KySlF0SxIBJupTZ7f6VAnb1fs8xzHu0DSfGOj1dFxiw+AHrkxTO/V0F5
+ hl3h1mypU4NRggGJ0z8kCARpf7CAr9dDeDpdZRVXIUF0mN+omDLwt8eAy
+ 2nJjz0LoXdMvrmAX2JXgibsPxmymAiTDNYO991h/gFga6/TcTcmU508HQ
+ HLtcM+9OsTJ3uqrP2OVHfTGTC4cN74Xufmq5l4wVWDmP21axVPhcwAwc9
+ VMQPTJpNwyiKMvJcVxC3fwOphVHMN4mCDXFxpVbpvoeaSafeuj0BAVuXX
+ cnjejIRJ30lsnC4QmJ6nvSxAfAUL/XIIDLBEdu7ND/b457ph7yptG0Y+Q A==;
+X-CSE-ConnectionGUID: L8bkkfNwQ7GnU94mue5dMQ==
+X-CSE-MsgGUID: gOAk8aM2TXCYlVLJjqqtGA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="75261523"
+X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="75261523"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2026 07:44:08 -0800
+X-CSE-ConnectionGUID: 8g88brcNT7G2EnygCAjp9A==
+X-CSE-MsgGUID: 7wLQrE5ISGSUO4bR/+EBEA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="209299033"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO fedora)
- ([10.245.245.210])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2026 07:33:38 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- John Falkowski <john.falkowski@intel.com>,
- Michal Mrozek <michal.mrozek@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH] drm/xe/uapi: Introduce a flag to disallow vm overcommit in
- fault mode
-Date: Wed,  4 Feb 2026 16:33:20 +0100
-Message-ID: <20260204153320.17989-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.52.0
+X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="214727538"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO [10.245.245.232])
+ ([10.245.245.232])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2026 07:44:06 -0800
+Message-ID: <fb29d021-a0ed-4b33-b6e9-07918e966b8f@intel.com>
+Date: Wed, 4 Feb 2026 15:44:04 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/xe: Add bounds check on pat_index to prevent OOB
+ kernel read in madvise
+To: Jia Yao <jia.yao@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ Shuicheng Lin <shuicheng.lin@intel.com>,
+ Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20260203172045.1154546-1-jia.yao@intel.com>
+ <20260203210659.1194480-1-jia.yao@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20260203210659.1194480-1-jia.yao@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,130 +75,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some compute applications may try to allocate device memory to probe
-how much device memory is actually available, assuming that the
-application will be the only one running on the particular GPU.
+On 03/02/2026 21:06, Jia Yao wrote:
+> When user provides a bogus pat_index value through the madvise IOCTL, the
+> xe_pat_index_get_coh_mode() function performs an array access without
+> validating bounds. This allows a malicious user to trigger an out-of-bounds
+> kernel read from the xe->pat.table array.
+> 
+> The vulnerability exists because the validation in madvise_args_are_sane()
+> directly calls xe_pat_index_get_coh_mode(xe, args->pat_index.val) without
+> first checking if pat_index is within [0, xe->pat.n_entries).
+> 
+> Although xe_pat_index_get_coh_mode() has a WARN_ON to catch this in debug
+> builds, it still performs the unsafe array access in production kernels.
+> 
+> v2(Matthew Auld)
+> - Using array_index_nospec() to mitigate spectre attacks when the value
+> is used
+> 
+> Fixes: ada7486c5668 ("drm/xe: Implement madvise ioctl for xe")
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Jia Yao <jia.yao@intel.com>
 
-That strategy fails in fault mode since it allows VM overcommit.
+I think you dropped the stable Cc.
 
-While this could be resolved in user-space it's further complicated
-by cgroups potentially restricting the amount of memory available
-to the application.
+> ---
+>   drivers/gpu/drm/xe/xe_vm_madvise.c | 7 ++++++-
+>   1 file changed, 6 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
+> index add9a6ca2390..3564e1442694 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
+> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+> @@ -291,7 +291,12 @@ static bool madvise_args_are_sane(struct xe_device *xe, const struct drm_xe_madv
+>   		break;
+>   	case DRM_XE_MEM_RANGE_ATTR_PAT:
+>   	{
+> -		u16 coh_mode = xe_pat_index_get_coh_mode(xe, args->pat_index.val);
+> +		if (XE_IOCTL_DBG(xe, args->pat_index.val >= xe->pat.n_entries))
+> +			return false;
+> +
+> +		u16 pat_index = array_index_nospec(args->pat_index.val, xe->pat.n_entries);
+> +
+> +		u16 coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
 
-Introduce a vm create flag, DRM_XE_VM_CREATE_NO_VM_OVERCOMMIT, that
-allows fault mode to mimic the behaviour of !fault mode WRT this. It
-blocks evicting same vm bos during VM_BIND processing. However,
-it does *not* block evicting same-vm bos during pagefault
-processing, preferring eviction rather than VM banning in
-OOM situations.
+nit: I think the normal coding style is to put the declarations at the 
+start of the block. The rest of this file seems to follow that.
 
-Cc: John Falkowski <john.falkowski@intel.com>
-Cc: Michal Mrozek <michal.mrozek@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c       | 11 +++++++++--
- drivers/gpu/drm/xe/xe_vm.h       |  7 +++++++
- drivers/gpu/drm/xe/xe_vm_types.h |  1 +
- include/uapi/drm/xe_drm.h        |  6 ++++++
- 4 files changed, 23 insertions(+), 2 deletions(-)
+Otherwise:
+Reviewed-by: Matthew Auld <matthew.auld@intel.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 8fe54a998385..cf92b6e13a16 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1938,7 +1938,8 @@ find_ufence_get(struct xe_sync_entry *syncs, u32 num_syncs)
- 
- #define ALL_DRM_XE_VM_CREATE_FLAGS (DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE | \
- 				    DRM_XE_VM_CREATE_FLAG_LR_MODE | \
--				    DRM_XE_VM_CREATE_FLAG_FAULT_MODE)
-+				    DRM_XE_VM_CREATE_FLAG_FAULT_MODE | \
-+				    DRM_XE_VM_CREATE_FLAG_NO_VM_OVERCOMMIT)
- 
- int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 		       struct drm_file *file)
-@@ -1977,12 +1978,18 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 			 args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE))
- 		return -EINVAL;
- 
-+	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE) &&
-+			 args->flags & DRM_XE_VM_CREATE_FLAG_NO_VM_OVERCOMMIT))
-+		return -EINVAL;
-+
- 	if (args->flags & DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE)
- 		flags |= XE_VM_FLAG_SCRATCH_PAGE;
- 	if (args->flags & DRM_XE_VM_CREATE_FLAG_LR_MODE)
- 		flags |= XE_VM_FLAG_LR_MODE;
- 	if (args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE)
- 		flags |= XE_VM_FLAG_FAULT_MODE;
-+	if (args->flags & DRM_XE_VM_CREATE_FLAG_NO_VM_OVERCOMMIT)
-+		flags |= XE_VM_FLAG_NO_VM_OVERCOMMIT;
- 
- 	vm = xe_vm_create(xe, flags, xef);
- 	if (IS_ERR(vm))
-@@ -2903,7 +2910,7 @@ static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
- 			err = drm_exec_lock_obj(exec, &bo->ttm.base);
- 		if (!err && validate)
- 			err = xe_bo_validate(bo, vm,
--					     !xe_vm_in_preempt_fence_mode(vm) &&
-+					     xe_vm_allow_vm_eviction(vm) &&
- 					     res_evict, exec);
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index 288115c7844a..f849e369432b 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -220,6 +220,13 @@ static inline bool xe_vm_in_preempt_fence_mode(struct xe_vm *vm)
- 	return xe_vm_in_lr_mode(vm) && !xe_vm_in_fault_mode(vm);
- }
- 
-+static inline bool xe_vm_allow_vm_eviction(struct xe_vm *vm)
-+{
-+	return !xe_vm_in_lr_mode(vm) ||
-+		(xe_vm_in_fault_mode(vm) &&
-+		 !(vm->flags & XE_VM_FLAG_NO_VM_OVERCOMMIT));
-+}
-+
- int xe_vm_add_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q);
- void xe_vm_remove_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q);
- 
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 43203e90ee3e..1f6f7e30e751 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -232,6 +232,7 @@ struct xe_vm {
- #define XE_VM_FLAG_TILE_ID(flags)	FIELD_GET(GENMASK(7, 6), flags)
- #define XE_VM_FLAG_SET_TILE_ID(tile)	FIELD_PREP(GENMASK(7, 6), (tile)->id)
- #define XE_VM_FLAG_GSC			BIT(8)
-+#define XE_VM_FLAG_NO_VM_OVERCOMMIT     BIT(9)
- 	unsigned long flags;
- 
- 	/**
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 077e66a682e2..e54f8e12acd9 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -975,6 +975,11 @@ struct drm_xe_gem_mmap_offset {
-  *    demand when accessed, and also allows per-VM overcommit of memory.
-  *    The xe driver internally uses recoverable pagefaults to implement
-  *    this.
-+ *  - %DRM_XE_VM_CREATE_FLAG_NO_VM_OVERCOMMIT - Requires also
-+ *    DRM_XE_VM_CREATE_FLAG_FAULT_MODE. This disallows per-VM overcommit
-+ *    but only during a &DRM_IOCTL_XE_VM_BIND operation with the
-+ *    %DRM_XE_VM_BIND_FLAG_IMMEDIATE flag set. This may be useful for
-+ *    user-space naively probing the amount of available memory.
-  */
- struct drm_xe_vm_create {
- 	/** @extensions: Pointer to the first extension struct, if any */
-@@ -983,6 +988,7 @@ struct drm_xe_vm_create {
- #define DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE	(1 << 0)
- #define DRM_XE_VM_CREATE_FLAG_LR_MODE	        (1 << 1)
- #define DRM_XE_VM_CREATE_FLAG_FAULT_MODE	(1 << 2)
-+#define DRM_XE_VM_CREATE_FLAG_NO_VM_OVERCOMMIT  (1 << 3)
- 	/** @flags: Flags */
- 	__u32 flags;
- 
--- 
-2.52.0
+>   
+>   		if (XE_IOCTL_DBG(xe, !coh_mode))
+>   			return false;
 
