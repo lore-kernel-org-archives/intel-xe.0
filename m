@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A68CE9D40F
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 17:42:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9B17E9D41E
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 17:46:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3A5910E037;
-	Wed,  4 Feb 2026 17:42:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7ECA810E0AD;
+	Wed,  4 Feb 2026 17:46:26 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52D9310E037;
- Wed,  4 Feb 2026 17:42:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C0C6510E0AD;
+ Wed,  4 Feb 2026 17:46:25 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============2564412705529944038=="
+ boundary="===============3688505358326731745=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_drm/i915/ltphy=3A_Return_t?=
- =?utf-8?q?rue_for_TBT_scenario_during_lt=5Fphy=5Fstate_compare_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/i915/ltphy=3A_Return_tr?=
+ =?utf-8?q?ue_for_TBT_scenario_during_lt=5Fphy=5Fstate_compare_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Suraj Kandpal" <suraj.kandpal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 04 Feb 2026 17:42:55 -0000
-Message-ID: <177022697531.225549.14603168425491909255@a3b018990fe9>
+Date: Wed, 04 Feb 2026 17:46:25 -0000
+Message-ID: <177022718576.225523.5691714223213299926@a3b018990fe9>
 X-Patchwork-Hint: ignore
 References: <20260203024141.1549517-1-suraj.kandpal@intel.com>
 In-Reply-To: <20260203024141.1549517-1-suraj.kandpal@intel.com>
@@ -40,26 +40,26 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2564412705529944038==
+--===============3688505358326731745==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/i915/ltphy: Return true for TBT scenario during lt_phy_state compare (rev2)
+Series: drm/i915/ltphy: Return true for TBT scenario during lt_phy_state compare (rev3)
 URL   : https://patchwork.freedesktop.org/series/161045/
 State : failure
 
 == Summary ==
 
-ERROR: The runconfig 'xe-4493-ff449f153b0966cfd7a7291670c927f6b6971d2a_FULL' does not exist in the database
+ERROR: The runconfig 'xe-4495-241994730989320c926da9f2d0a5ec80b48f993d_BAT' does not exist in the database
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161045v2/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161045v3/index.html
 
---===============2564412705529944038==
+--===============3688505358326731745==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -79,18 +79,18 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/i915/ltphy: Return true for TBT scenario during lt_phy_state compare (rev2)</td></tr>
+<tr><td><b>Series:</b></td><td>drm/i915/ltphy: Return true for TBT scenario during lt_phy_state compare (rev3)</td></tr>
 <tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161045/">https://patchwork.freedesktop.org/series/161045/</a></td></tr>
 <tr><td><b>State:</b></td><td>failure</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161045v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161045v2/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161045v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161045v3/index.html</a></td></tr>
 
 </table>
 
 
-    <p>ERROR: The runconfig 'xe-4493-ff449f153b0966cfd7a7291670c927f6b6971d2a_FULL' does not exist in the database</p>
+    <p>ERROR: The runconfig 'xe-4495-241994730989320c926da9f2d0a5ec80b48f993d_BAT' does not exist in the database</p>
 
 </body>
 </html>
 
---===============2564412705529944038==--
+--===============3688505358326731745==--
