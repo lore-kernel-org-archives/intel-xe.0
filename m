@@ -4,195 +4,171 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86965EA7942
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 18:55:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3E4BEA7940
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 18:56:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FEF210E74B;
-	Wed,  4 Feb 2026 18:55:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B051C10E37A;
+	Wed,  4 Feb 2026 18:56:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CNg8MVXZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VLXLLEW7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D4E810E740
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Feb 2026 18:55:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E1CD10E37A
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Feb 2026 18:56:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770231349; x=1801767349;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=PQpdcWdUrqnErgBkVgq/a2qRCxHU8Xx2dcaLNoGUHYw=;
- b=CNg8MVXZY4Z6kXont1v6OY/QlvBolagwaXvCKkJ7oz2n4mjQL3ANxDqK
- IDicJzzTb6F0dXbVMpBk0LJGMJ0uouBbZotE47CRyNnVMp/hcC6gW0+f0
- us1y07+AiocHB8iCU58xPuei4dR/UF7aTllVA+RBV3534PE3p+PBds48X
- 5C7BEs464c7go98L06CX56yDBba5IwAYcXCv/Y38pT+1lFkMt91ef9OQB
- bf9jmSa9MYqTAKvDoGFkxkBCxsxRnnZttk2AWy7L0/K1T83nIDdLJaCu5
- GRWKp3sttSmhWZAlxU2ntCP+Amhij2aRUejsr4O+rzgVnXlAODLLtVu3y g==;
-X-CSE-ConnectionGUID: Lcjl/KEASJ+yMiI4Nfz/2w==
-X-CSE-MsgGUID: G69rpvKVRg6uiU0i+60NrQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="82058276"
-X-IronPort-AV: E=Sophos;i="6.21,273,1763452800"; d="scan'208";a="82058276"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2026 10:55:48 -0800
-X-CSE-ConnectionGUID: Bl4vLa1kRbujhFjsuTZaIw==
-X-CSE-MsgGUID: DCAOr+shQ3WIxUM5MmZX+g==
+ t=1770231392; x=1801767392;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=iJ02cuFaL0g4Fv7zsF3DpiN96YZZunB4PNi/wYNIzdc=;
+ b=VLXLLEW7pa0HWRG26B/sUx+dNv7jsVbix1EAtZ5kBkt6n2lY8zX4Bp4w
+ InJlf3K+D+/WKY1YW/TF4hCHBkb0cUmbs3iTTPFVJBLCLcLLeEFShLSCd
+ OmVbFGhafX8JFtfwWVqoG0o1p2cwHOmZAva2o+CCsxbMBVW/ZA15Xzyc3
+ ohjGjRe3SQ3RdeVzFnaEo6iuAB0h/YKkvn2yhqe48FvWbvRejjt9Y7kFd
+ KY3n1nEuvwKhZa/gWle43VugsGRpN7dIiK3N7nchxiNqQNYT4JF8Pyflp
+ isrukHL/1dZU0dzMTTi+gUdSTXUaxicOgMMdOKRqRRwO+iqp1r51Bl6Y1 g==;
+X-CSE-ConnectionGUID: RIBSOiZLQwOjXkZFTe/Ytg==
+X-CSE-MsgGUID: Puvp6kvCRpOGA5cI+7Q7bA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="71483084"
+X-IronPort-AV: E=Sophos;i="6.21,273,1763452800"; d="scan'208";a="71483084"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2026 10:56:31 -0800
+X-CSE-ConnectionGUID: kbZxb35VQqm58QffvWMG0Q==
+X-CSE-MsgGUID: 5J9lCh5TT3yM2xgtEQElHQ==
 X-ExtLoop1: 1
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2026 10:55:47 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.21,273,1763452800"; d="scan'208";a="209538581"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2026 10:56:31 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 4 Feb 2026 10:55:40 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.35; Wed, 4 Feb 2026 10:56:30 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Wed, 4 Feb 2026 10:55:40 -0800
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.35) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.35 via Frontend Transport; Wed, 4 Feb 2026 10:56:30 -0800
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.13) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 4 Feb 2026 10:55:39 -0800
+ 15.2.2562.35; Wed, 4 Feb 2026 10:56:30 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WgGRKYNmMivSWBfvjh5Zft1wbmxiycTx/frz3/uuOjzlF16kP0iGqYMx53guLLezrviaNlIJe/XxzhvK19QmhccRYO3WkbFe7QWO9PucsKqG9VMn8L8EiR64WFe6NJuYOyLED5MfgWWOGpUHXTApLtk8QT5J1XVsDF4mnwSVKyqBBG74GRbHst7giOITmLeFSOI9WpXJge3cWNcMO0YF0Vi5+CglZsLTreI22zAV+fr7dQLikPqB3Ciy4R0NjsSLnzQgHT7JIg732GaZVW/t3F6slLWSUHcKaUEnOxZ9hyW23qq5idB4SROpmc/lHiroBr/RGW2iLIrMODxrQR0Sgg==
+ b=CpC6L11DcLw/U4D7NV6w+Z5AQK1xgzz+xMw50pr0BH4yfUnrsPFOEb0sHZQwPBBm2vHnIuKZtCHJfbjm2YuiOD4j6Db9WbZRPtdHtAGxosiKh+hR80cPq/Pg4SmQCqVOiOklRChJRkOB3duBg3gQBjtrqwTRtStjzCEuMyySiEYXUsuRv9aPUMagtsbcks8MA1iK85o8BRL6WweM4QXdZhdm0QUUdb/I433qvflQZT2T3WrITW26xsmQ3eaQ9/x2MoYoCI+GjEbeTwrTFeeGenrzQXwSUzd+VzGN9+qiOn2s/ka0pgTd8XindC7xjFPaZXkqoAS51RLN/KoGVjzUAg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a/uMPLUn473cpD8/7aOAqs03JvfqXLvTDeR2et3QgO4=;
- b=ic7Qtidf8ilHBNERx/CECIHUc5F+uep5fqeERMwG/hC4AYHyYAb3IEj04uG0Ckx3sh+RHroIA76NitBU897OcvOCbwdLnl5otgpjkqbaYr+yq3ljCzPtVjqPWIBk+4j4JWh0ZiutA6vPfBn2aB2Gk8yjGrPLvRPMAfkTiNk43AZWEtq6wFQgpg+myhLM1yrkqTCIse1sdx2WGOvSG/p02oZt1d7dbBilGPQUAyoilkCkOFwGbQPrr1dKO69OZylT18wo5W+Xs76TpN8LFkPRsWYqaRwJjDC1ZeL00JckUJFycfoZ1Cfqfkj8Suek+pCK9Z3s7XgXgOmtyaas0lub6A==
+ bh=KT4JpXF4Jf98L1WsaTcXzaAqmBC/UzdodzUb3TsBGTk=;
+ b=sGddyBZjoo6eRLLf6SFO+QRVJEdCX2AONhqcul8p7Sk/YadhTkQl2QYGnyFulbfwsA3QO3lBEk0QYcsoo8olb+p5yaXhGZoXqS2LO5K+QRI57ctog1VfRvTgjRmhqIX9RjLl9GWi3OuaUp1+Qmc62Ad7oo+pw2GOAunBbBAR0C3cZfRF1AEpsnFi1gJYMaP6zmpnV3bQbrsd+aPdS5YeMDr0rcoAcvXVL5GtzYXayqxfkX9sklgWu0JCYPtPuRF4PyEB+WPxGh2ryu3RXfknheWthYzv+8RCywm6bdN+lQOyTsrn9FePem+PmDSQZm5kMlLkuUlD8tZOhJKIsLtIeQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by MN0PR11MB6229.namprd11.prod.outlook.com (2603:10b6:208:3c6::13)
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
+ by PH3PPFF8C186950.namprd11.prod.outlook.com (2603:10b6:518:1::d62)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Wed, 4 Feb
- 2026 18:55:37 +0000
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::48d7:f2a6:b18:1b87]) by PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::48d7:f2a6:b18:1b87%4]) with mapi id 15.20.9587.013; Wed, 4 Feb 2026
- 18:55:37 +0000
-Message-ID: <a682a67a-be18-4d71-a3f9-6aa7971a9f63@intel.com>
-Date: Wed, 4 Feb 2026 10:55:36 -0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/1] drm/xe/guc: Add Wa_14025883347 for GuC DMA failure
- on reset
-To: Matt Roper <matthew.d.roper@intel.com>
-CC: Sk Anirban <sk.anirban@intel.com>, <intel-xe@lists.freedesktop.org>,
- <anshuman.gupta@intel.com>, <badal.nilawar@intel.com>,
- <riana.tauro@intel.com>, <karthik.poosa@intel.com>, <raag.jadav@intel.com>,
- <soham.purkait@intel.com>, <mallesh.koujalagi@intel.com>,
- <vinay.belgaumkar@intel.com>, <nishanth.p.reddy@intel.com>,
- <rodrigo.vivi@intel.com>, Gustavo Sousa <gustavo.sousa@intel.com>
-References: <20260202105313.3338094-3-sk.anirban@intel.com>
- <20260202105313.3338094-4-sk.anirban@intel.com>
- <1d343871-4872-4ad8-860c-6f75312eb9f0@intel.com>
- <20260203233600.GT458797@mdroper-desk1.amr.corp.intel.com>
-Content-Language: en-US
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20260203233600.GT458797@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR03CA0038.namprd03.prod.outlook.com
- (2603:10b6:a03:33e::13) To PH7PR11MB7605.namprd11.prod.outlook.com
- (2603:10b6:510:277::5)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.15; Wed, 4 Feb
+ 2026 18:56:28 +0000
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5%3]) with mapi id 15.20.9564.016; Wed, 4 Feb 2026
+ 18:56:27 +0000
+Date: Wed, 4 Feb 2026 10:56:24 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, John Falkowski
+ <john.falkowski@intel.com>, Michal Mrozek <michal.mrozek@intel.com>
+Subject: Re: [PATCH] drm/xe/uapi: Introduce a flag to disallow vm overcommit
+ in fault mode
+Message-ID: <aYOWWAg9O1KUhnpO@lstrano-desk.jf.intel.com>
+References: <20260204153320.17989-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260204153320.17989-1-thomas.hellstrom@linux.intel.com>
+X-ClientProxiedBy: SJ0PR05CA0010.namprd05.prod.outlook.com
+ (2603:10b6:a03:33b::15) To BL3PR11MB6508.namprd11.prod.outlook.com
+ (2603:10b6:208:38f::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|MN0PR11MB6229:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0db7f62c-3449-4f67-f8e9-08de641efbd1
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|PH3PPFF8C186950:EE_
+X-MS-Office365-Filtering-Correlation-Id: 25d021ff-3f28-41f1-c8e9-08de641f19f5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?RTdSQ3MwSVF5R2dsQ0sxSmUyVVIwU2VEYUZ0Q0hlU1RhK0hrS24vZ21TZE1U?=
- =?utf-8?B?YnBkREE4VFhBMWlMM2NPN0UyUjNqRG1WRG01NVFMa3BxbzJvUTZwRllOOXVw?=
- =?utf-8?B?SFNWcXloWXZ4OHVFc3EwUjF6TzhMRTNkY3Q4VExSSWUwYU5WUHpmL3dpeWVQ?=
- =?utf-8?B?S3RHZFVmYmlWRWpxMEhMenR3Q0VvT3Fsdm9lbmJ1V0tLaC9tRXJ5bU5DM3FW?=
- =?utf-8?B?THZFREhyMmZzOXV6QjJkSlROSDRrZC9QbWxRVGJCWGxFTHVJQUNkUjRMb2xm?=
- =?utf-8?B?anM3d0lPcjZOUlE5RE1VTGxqM0JMSG1WQzBmY2ZqUFVidkN6SWp6RGYzenp4?=
- =?utf-8?B?empuTW9EOFdYQVBtdjFicVY0OUtjZDg5K3FRc2daRFBNZ3JnbTM0UGZYeGQy?=
- =?utf-8?B?ankvYXd0eXRuVk5qaWVUWVhQSjk4cjlKbXN4bEdIdHoxajUwRnJwT3F4YktT?=
- =?utf-8?B?OTJpQlJmZlIyb25SMmx0WUM3MTVkcnpDaGNCRlpoRDBqV0ZnQVppaXA2OHdT?=
- =?utf-8?B?M3J3SEZaazNxblg1R2dUcmpRMDNyejFXU1d0NEIrWmNOTTcybTdlWSsySmQ2?=
- =?utf-8?B?UGRiMURaMFhPYUFVSFRzb044b3FDN1o0YlBVL0VxZUtDQXJjSmZnUzFQdTRD?=
- =?utf-8?B?WDNIcGd4b3UwOXVVNytsK1BPdDJqTlB2Rnc0UU1JK1hZVHUwR3FUUURGaUtK?=
- =?utf-8?B?V2V2elRRMzh6dzBWSmNkejRIMXgvK2RYMHlETTAxbTV0ZmVHOFg3aXZNVHRV?=
- =?utf-8?B?R3lJV2UyZWE2RnZnSXlLZlowYTFHT2cwaUg2NzFkRmNLSlM3N2wwc0FiS2JT?=
- =?utf-8?B?cHViY0t0c0E2Q0xmT3NLT1JxOXBmeExoSUUxUTNsMDUxYm5Wb2diQmQxalpL?=
- =?utf-8?B?VHNNbUVqYllyNXJXdlRoR2lCWnBUbFRHY1pUcFNVMTNmYmpIekU1L3gwWi9V?=
- =?utf-8?B?N1p3SFZoMEIzUWMwcG1BaDdDYU5yYXdwSUVKaER5d3F5WDBFdHUzV0Q4ZmE0?=
- =?utf-8?B?ZkJ5aWw0Y0dMNFc5a3VvcmZnS2dhYzRjb0RNSnNBWFdNRUVGYWN0MFAzVVZm?=
- =?utf-8?B?djNkQTdSdE53RFZRdzN6SG9TaXByZ2p4VVpTakd0U3lFNW9tZlJma0ZaYVBP?=
- =?utf-8?B?VUovYWp5Y3hPWDRWOXNmTlNBSXJ4UThPUlZ0RGZ4QjdsaG1ic1loeFdWZDhN?=
- =?utf-8?B?ZmJqTmx6VkRnQWF6azhmV3pJUTMvTkpxUldHVEJhYW5NVldJc0wwMEdnMTlm?=
- =?utf-8?B?aFArMmtXa0V2ems4cllTd041QTVYLzFVejVYOTh3Mk5UaHpnZklYS1FEbE5k?=
- =?utf-8?B?eHRXMTRZaTl6Mjd3dVh6SDRIUXlTMnhScTlMZzBrcThubDdabHh1NFEyY2xO?=
- =?utf-8?B?V04zZHEwMVAyUmVXZHdCWTNmS3pjekFrWmp1R1Z0UTJGK2g5Mmg1SGhIRXQ5?=
- =?utf-8?B?aSswSTVNZDBibXFVNkJza2d0UHR0cHZWMlh5WHorT01EZkZMY0lGSTUyU2s3?=
- =?utf-8?B?WUk4YW9yMFZpS2hudDVESVVJYTgrNXZQQ3Y3ZStZd3h5dnpmYVZDRk4ySGRi?=
- =?utf-8?B?bkNDZGxONG1sT2M2ck9JVElUUFVUNjRTQkV3MjRXM2pzVjg1V0JTMThLbjU5?=
- =?utf-8?B?bE9LRUlHaGNoQVdHQklwa0NHUFdiU0R3NVJndjRtS054bnRsTGFvU05ISE9W?=
- =?utf-8?B?d0pOTHQwRGd2S2UwaVh5UnNFSTgrU0FYMnJ5dW93U0dMbnJsZ1F2NW0reUxl?=
- =?utf-8?B?dTVlMXNBcGJrYXFnMmljQjVXM0tQNVo4dnFyVnYvTDhFMVlpSUZBaWxkcm53?=
- =?utf-8?B?Z1pTQ29UTHlWRkZTVk9GRSsyUFFKNDNvYXFaRjRmVXlURmlkOHVhSmIrYjly?=
- =?utf-8?B?cmxmTVR4QkI1My8rTWVCNzVsR3BYZmtjU2RpYkdLeGc3eWlMWnU1UUVtZ3JG?=
- =?utf-8?B?TXVpbXp2Y2FVQkQ3cmFIOGVMRFpGL0tQc3NGeFRoS0pLT2J1ei9CZHBJYkZE?=
- =?utf-8?B?VVZFUno0R2ZxRkI1eWR1SnZ5N0x5SzVwdlhSc2lvZGZxNHhjM2NlNms2RXF4?=
- =?utf-8?B?cTV5V0w3RVUwYmJTT1VWdTh5Ymg2ekI3S2FmK2JENkw0dFpWei9qRXRjQTlx?=
- =?utf-8?Q?MwWY=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?hnhz+0LhMoL2avmISEksV+52aTUs/Pz+9qZIkYcfZVjoPCNgm0xGb/fbdl?=
+ =?iso-8859-1?Q?2zttkmkdlh1D1TLCXKAYvKDoPzSEfV0yxYZfO67JewJSKaE+W6fmQIcS2F?=
+ =?iso-8859-1?Q?94qRJbaEunm0ubjXx1WprHCQ8knF0Jdo1gfVuuGKEQVL6aRMmhYNGYSDAI?=
+ =?iso-8859-1?Q?Bme0e/bJT+zHssEGjUJLFsdMCPT5Qodwlzzv37ROtPs9I/arL+3uxhMJCg?=
+ =?iso-8859-1?Q?NpbkmreKUl30UlZpxvOaYbH9hNXYun+mA3oiNoLip6+yyH4Eas4ebXHxHW?=
+ =?iso-8859-1?Q?yr2BEBkWQ/LyJUys485EYcBxuFuoQ0Oz3QjI0/cjtJq8pu9VLZVm/oyH1J?=
+ =?iso-8859-1?Q?pc5lrScwU4ZeTQEN9xInXWJd4eKCxY5cd5HfSspOurKpc6Im5LUUyGnGyp?=
+ =?iso-8859-1?Q?VhpW1HKDmDH5anFqQ5YNtI2UkMKy050GpRIjfwZCe960R8p455n0rKh1q4?=
+ =?iso-8859-1?Q?/UhrNB7fPy5iJAcYAjLZfzh0VH8fMrArtgoGaV+yy3H7NUnjY5AXZyU/Ql?=
+ =?iso-8859-1?Q?hDquFmwMBHzaFDWZBxdxHmD0dFYxUK4OwUvMWPHr9itAL8gpMuMykGrylV?=
+ =?iso-8859-1?Q?pizJmMhGBtbZ1qUDeBjFyKbqiy5dx+amGJNJB36/fqTS4pR2xKcensDO6c?=
+ =?iso-8859-1?Q?DML9h5kTu451Xl9VT29/42OGHfF5IIWegqBIZfvnEop6Q70v2AIBhoOCPo?=
+ =?iso-8859-1?Q?SiAkJfQdZD9ttZDSgn61n5kGoq6nkJiwCkNWE4QITM5iS5rLUzmFut/EBr?=
+ =?iso-8859-1?Q?engEk5diOPBXbOh2AgQZHz4CQp6uceDwC7wjzplafc1MgdPefjs5vRbuj/?=
+ =?iso-8859-1?Q?Qm10hvhp4cIE/NzfInGoR2pj1JwFSOrQXMR68JX12BrbVnvi4sj4tWsJCR?=
+ =?iso-8859-1?Q?SK4uC6OsBamHKtmMQah+ocHaezCBanUdBKhe4tI8BZbhqrP5uE8IYBXLlu?=
+ =?iso-8859-1?Q?xmSOdgewgPbnxOO4dcWIatQnVroMLbVNnRhp80+OjzUQJKSXI4t2bQBSDT?=
+ =?iso-8859-1?Q?ecKD91F9D8odjkIhxxchzkUoeGpjySqPA13ZEG9ttVEhfctAaEJZspoT5f?=
+ =?iso-8859-1?Q?Em2xu6lSgTMple17xU+74EPHFvh+JSJosCR/YENaVW/vYGNPdLHPYS+CJ3?=
+ =?iso-8859-1?Q?s9xbVv4/2FQQocK09Yz4WzLyvAXyiGWAVcEHItR7q1kaYvsVyJafApqEzo?=
+ =?iso-8859-1?Q?gtqTD+GpBGeaK2BwnZn56r0gES8TOvPNAEZOuMJ49sDiQe/WTynDI7hFHS?=
+ =?iso-8859-1?Q?h+6E0zMq7ktQJqe+uCHVotMFlHWSe/XvONvy80RodPuQ9GiGdso00XgNLV?=
+ =?iso-8859-1?Q?AhTTbQyBZdhTDT77jOgPJ7RG2qbK4YAGfxBquiBK4vCi6Asys9ymRMBMbZ?=
+ =?iso-8859-1?Q?J0QlFd3YY4OaylqtnDcFKY2xxzuRcte4f+UQD5sJERBcFBLy3M8GeHaHMR?=
+ =?iso-8859-1?Q?35mOwa0LwWa/YmopxWiAf8PoEkZaRyEEiio1z/tst9LomiMDFonX/ldq/j?=
+ =?iso-8859-1?Q?BavTfSaijCZYLdgU3Hv1qOzyeqF2K719MaGFcoI0yNsBXRhB2/jP0l2B+r?=
+ =?iso-8859-1?Q?naUp3JU8oWzQtEaNs8iw5f0WFfoSmfrm+zD+P+12TE4If4wDNmYmw8yb6i?=
+ =?iso-8859-1?Q?T/QwB0v2TH/I8=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(7053199007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZjVPaFZLZDZyc1VibDltYmJMT3BpQ0U5N1NYZnlZQk04eFltN3ZodUhJd3ly?=
- =?utf-8?B?RDEwM0JGcnpaUzVnZnRIeHdRNjZlUXBna3J5azJFTWhCbUJNaXdWeUxSano1?=
- =?utf-8?B?bVZKazd2Vk95K0V6cDhNMjZiRE5nRVVMeUFsSTM2MjRTbjJvYWxOdFVISG5S?=
- =?utf-8?B?d0tPWVozalE1MU9wSlJlTzNtNVJNWExtZDZ5M1J0cjVtM0EzZE9iQ0V5TFYv?=
- =?utf-8?B?WGJMN3lhaUQ1bUgxU2drQWNRbE1Lb0NSM1RTUmJRbGFCNldEM1hzQk1vWEVM?=
- =?utf-8?B?SXdJd2xiMkdMeiszNTlGYUthUHBQYjhqUzNpdjVhZW9uQkkyNEZQek9QZ09L?=
- =?utf-8?B?S3FEODBFTDNIL3ZkNFF4M0lURlh3cGVMNDVmRjUvRmpOaGYyUURFbmY2czE2?=
- =?utf-8?B?Q1BzTHcwSnVORHI0UEJ6YVhtQ1B0YTZLMjNuTXBweEliUWxnY0llWGFaVGF4?=
- =?utf-8?B?V2wwOFRTVTBoUjFBZjlqUjJUSDFoYlc0NkJFVUpQMWU0WEhnWW0xYy9ZY1Rv?=
- =?utf-8?B?TVhTN2tBWHArKzRtTjhPWmJpUGVOc2R5TzY4ZXdRN1UrcGthbFdDKzVDRWVx?=
- =?utf-8?B?TmYvaXlNMURMcFVCMWNpOGN3R2tnbEMrNEFrMTJsZllIcUdwYytwaDYwTEg3?=
- =?utf-8?B?a05GTG1pbkhRMFZWeW94cGRYNUp4OStPN2NnZFFtL25uUmZsdTEyQWoxOUky?=
- =?utf-8?B?Q1MyUSsrS2ZjQVoxVU9rVENtUVBwcU56TVl1ZWR2bW1hK1BDVUdKa21COXRL?=
- =?utf-8?B?bVdxVUprZ0tDYVA5L083cHAvUnAwK1lKSnJ2U2RzL0RzUTlpNytJd2ZZeERs?=
- =?utf-8?B?c0NpVmEzK3Vka3BrUlcxam92bEhPK3VDTFVGYk9SNDJHZEdubjB2MFEwcVVk?=
- =?utf-8?B?OVkwWm5BZ1FtdTU3M2QwdGpwT256a1NQSTcvREp6UEdvQmJrQXFOTy85RXE5?=
- =?utf-8?B?QTlIVlZQNk1xUktDMnFKaXNVSmd0bzVBVlg5WWNJRHJEa0ZDc1lPTC8reEJU?=
- =?utf-8?B?QXJMVkRkWFBmd2srclR1UHpFZVFlTzltZGZpVCtwaitrTzVUM0lobjJTRVg3?=
- =?utf-8?B?VVJZYXFrRmJuampSSU9mcU56VHVzZ2FTTitnMmcrN2UxOGxuVkFkbnVkYy91?=
- =?utf-8?B?N3E5MjIxYmY3c0JrNjFVbFhNWjR6ZFlSYkNnenlqemNnSUpZZEptcnZvMWJU?=
- =?utf-8?B?UzBFaUNpQy92YS83bzNncnE3cVg5TEFpTWpjd0RRc0xvUHJnM2pXWk8wdG9Q?=
- =?utf-8?B?dXRIRk10MlE5L2xoNmpNTDZCNk9CTmpXMlRjTkZPNWRrMnFqNW93VDNzNnNx?=
- =?utf-8?B?RmswUFE4R0ozRGhwbC8xejM5cFpieGNTSnAwN1RRYVRoVk5PS3J1b1dFeW5h?=
- =?utf-8?B?TkY4N3JIcytlU0ZxK2RsS2lqT2VLL2F2S3I2WlBOVmxxR2o0d3ZxNitIWWt0?=
- =?utf-8?B?WE1PU2V2elM4bE4yNTRyWHg0T2pvelBrOFNLLzFtd3ozbkxDOXpjU3lXOE9F?=
- =?utf-8?B?eEZYbHdTSitHQ09Ka2dZZThHWDVKRitTT0ptK0lLdzV2L2V2bFVlNkMrdk5U?=
- =?utf-8?B?bnJwZVI5cFBsYjhLN2kremV6KzhmK2F3ZSs0QUVmK1M2eTdVb2NReVptRWlW?=
- =?utf-8?B?aHBpcE5BUCt3T3FTQ3hSSHhTT1NWa2RQOW5MSmdtWlpUM3lZd2RGemhIVXVB?=
- =?utf-8?B?SzFHcG8vajJuc1VLRlVKbVRUVXh4WnkzNkdScDY5YWlRNUM0eXMxQUdnODNN?=
- =?utf-8?B?NHViS1FwUjNjVEhBYmI4MElrQ2xYUktzQmlXV2ROUGt5Z0N4Vyt1K2I4ZVdv?=
- =?utf-8?B?TW1vYW82anNNM01JUG96b1cxaytzbkFaOCs0MGFhZmlzUGQxMDhnRFJ5bmJj?=
- =?utf-8?B?bXpvSS84NTB6djkvaUFBVm5yeU1BYXhuZWF6VXpTY2tpdjV4Tk42bGJEZElh?=
- =?utf-8?B?NW96NktSV29zUDNHSFVJblE4SU9LQVV0MUt6K3liUks4UkVDSklIL3VYM1dG?=
- =?utf-8?B?TmFNYStlMmJYNmVET3ppY2RYRjc5anhEMTczQTV4dkYyenlJSS9JZXd2NkNr?=
- =?utf-8?B?aHgwTEdRcUdiaGhZK2ZYSkNBeWlXVnFOWXBPanhzbEtDSmpod2RvZzBhYXNP?=
- =?utf-8?B?cWYxczVXQVY4bG92YkRoa1UzN2xWR0pBd01uVVdGVUNaQ1FTcVgyeWJ1Z2s5?=
- =?utf-8?B?V1RyU09xRWRJZGwxcmRwMlVWU05zU0prZ2E4ZWxSaXg0aWpTNGF5dTVJdFNL?=
- =?utf-8?B?Q3ZTMmY2YlVCYUpMM2ZEOFM3QXNMS3A3bkFGYXR0ZDBRTTVrNTRyNG83cFQ5?=
- =?utf-8?B?TVlxRE5VOVNyQ2JuT1FwSEhQajE1REcybEZNSkVXSE5peVpCRGtqZm4zZVhw?=
- =?utf-8?Q?6sFJXr+yuBkKqsXI=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0db7f62c-3449-4f67-f8e9-08de641efbd1
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?M/PntLkqAUnmjYUP5G8lZSGx6ZEUgU8Oixzffcp7UqUsT2mKrkhfxkPXjP?=
+ =?iso-8859-1?Q?h7Vz373loE10MlXhO8PGW8lyCe2+Ad7OfA1FUEAGKtY0N57bm6hPwfgNSm?=
+ =?iso-8859-1?Q?u7BrrUKH+1mO832wpEpIbhEPMelzd+qwOBMVDioBKLNjqm+2csbgScRSrq?=
+ =?iso-8859-1?Q?SiNW/aIv1k08lIVPni6940cjRHSBIibo45g6RGqj89df9VTM86r9MQRHDt?=
+ =?iso-8859-1?Q?Xx/SQNevzJ6PWuFbvhsYRYX6C55F+ERunIkDrkQlqXfsCtTDPbmnJ5mGqP?=
+ =?iso-8859-1?Q?7vTPp2/d26ZzpylGt0yFVEPYtk0UHzfZ2zsH6YmxMHYGkZ8SB83y5ZNenA?=
+ =?iso-8859-1?Q?x8IsVhb5qsAWjINocTpXDTwGDXHaJUjRL+9ZleQhUwRCYjbOSNNu0Ll/J8?=
+ =?iso-8859-1?Q?CSVe0khUmQijTn0XmLshP6gNk7HUqyDxJzRuSY41VyD5VnmA6BHARaXT9C?=
+ =?iso-8859-1?Q?3R2qmCRSYrGD40ItwlYItgenrDNJmK0Yr8MSdlYgklKhkS8SkycE91GKVJ?=
+ =?iso-8859-1?Q?5IqAYklLcwS88eqO2wAu3T96fN8iNs+g13um6tTeqiYTLlCe3E4mQ4yW6i?=
+ =?iso-8859-1?Q?TVEareLuZkLU7UvIZW9AIcsYA/pHKYZ6VTIlApDg+9Nzs4VHSE4CY11zUj?=
+ =?iso-8859-1?Q?VNZv1a60GQdbsY9iwRIGPLSPZmjb7lGIcPyvt5z3WAFU1ha/DPq2WTgZgF?=
+ =?iso-8859-1?Q?yxeSnSLCPHapB/zka8x6T46LXpWfGAIBUZmTFJARKBIp7XIS6LlSuTXJBX?=
+ =?iso-8859-1?Q?Mb/PPGoIeQNm0k1HTpLeYtvRcd3xwFtF1mPTCQyrb2IbIO+JtP1lWj4X+e?=
+ =?iso-8859-1?Q?a1Ob4jlL72IQfmhor4Y4v8B3jt+fdpAyO1clSdbJsWz5stvFgpbWfq9wJ/?=
+ =?iso-8859-1?Q?/FJ2FZZekPQNmhWLg7QBQW+4jNbBuspEMwIl7im6zyK8NDfBifoqZrojs2?=
+ =?iso-8859-1?Q?5FJrWWa15iUU1N26R0TGGnxx4GX8irx3IcQk4Zlx3bSQv/Yjd3b63g1Yug?=
+ =?iso-8859-1?Q?Bo66hZuB6gPQ4qK5IMs4JrXCpu5r2z+DX/lRlnFfPqLJdH8YodIynyhBGu?=
+ =?iso-8859-1?Q?HW8Zm3x9JLIejStbkn7iITlxaW3zt05YXqL4LGzz93VQsvoXV+0hTCmmED?=
+ =?iso-8859-1?Q?XdPWd85PeD9hBxJBlT3rNHuqLsmZpaFomIBGaVCI+J1cH+yZAdOG8dEa+Z?=
+ =?iso-8859-1?Q?tGTB4/n+T9eiuVtQEC8CNvCp8GqK7iifyv+eSagVNXY3Ms2anAs6zJ1OIH?=
+ =?iso-8859-1?Q?O7CMTGP0/BH1Q2fi5enNndn/3KbQkFcgTnCjac0+rY0sepvqho/chKdESC?=
+ =?iso-8859-1?Q?ZX5h5nlgP9Q8aVPsZBiMbHg41k7hqBPQ8E/Ko+nBYX4qthAdrL76F9x9ma?=
+ =?iso-8859-1?Q?HlARN/HUKj+R/raS9Hm+WWqQ1UwOL5oUz21i9p9GeKwDwLytzAeRKoDRt/?=
+ =?iso-8859-1?Q?OTHCgg1WL4wxo8DYvido4Fts3GdlbTOc5V//HT+yXR8ua0QyxiSgvYIufZ?=
+ =?iso-8859-1?Q?BknxFbE9UuQnqAbrItLzFfAZXTKsy4np6YKPMbHCqYJ7Q9wEtM1CYU7Q53?=
+ =?iso-8859-1?Q?G4YEqU2y7iELD1Ip2PcSoy1tjo0flAwXobJb4LT4k5uhDHzi5BEqhdpqr7?=
+ =?iso-8859-1?Q?P7YcfL25DaTOiwZFfB+bMJU7r0g/OkuGSJge4cnwvn+MOuczYKFpXUsZPj?=
+ =?iso-8859-1?Q?dkfmrLJtjF+MEv5wqN7z0AHyYC9C9ZI7utLHMYtnTCnbNl8LJoUUUiQ7v7?=
+ =?iso-8859-1?Q?x238c5xNcBotlZMDNbFSGLeAMoA3iMqCkwqXgUXiy1XLHUpyBCiEuQh4W/?=
+ =?iso-8859-1?Q?Jc93ZFAj2w=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 25d021ff-3f28-41f1-c8e9-08de641f19f5
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2026 18:55:37.2042 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2026 18:56:27.8056 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 01B4I5AAyBd4Umq4IeOZmeTjJ5ncf7ZHnQOUy0AM+mAmyco1mbQ4d2p6dhMnfAJKVjmjpF4CatSD6NgRxDlv6MjggE4G1GSK4w+LAVJnC1o=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6229
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7VjR0Nzr5KcLZTRFYhKNHHTBwgIJZnRu/ltpEWCXkOdSg1e3Rupu/WxBs/G1q+7r6cnD+74+KqONlRl5PI78HA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPFF8C186950
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -208,157 +184,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, Feb 04, 2026 at 04:33:20PM +0100, Thomas Hellström wrote:
+> Some compute applications may try to allocate device memory to probe
+> how much device memory is actually available, assuming that the
+> application will be the only one running on the particular GPU.
+> 
+> That strategy fails in fault mode since it allows VM overcommit.
+> 
+> While this could be resolved in user-space it's further complicated
+> by cgroups potentially restricting the amount of memory available
+> to the application.
+> 
+> Introduce a vm create flag, DRM_XE_VM_CREATE_NO_VM_OVERCOMMIT, that
+> allows fault mode to mimic the behaviour of !fault mode WRT this. It
+> blocks evicting same vm bos during VM_BIND processing. However,
+> it does *not* block evicting same-vm bos during pagefault
+> processing, preferring eviction rather than VM banning in
+> OOM situations.
+> 
+> Cc: John Falkowski <john.falkowski@intel.com>
+> Cc: Michal Mrozek <michal.mrozek@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_vm.c       | 11 +++++++++--
+>  drivers/gpu/drm/xe/xe_vm.h       |  7 +++++++
+>  drivers/gpu/drm/xe/xe_vm_types.h |  1 +
+>  include/uapi/drm/xe_drm.h        |  6 ++++++
+>  4 files changed, 23 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 8fe54a998385..cf92b6e13a16 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -1938,7 +1938,8 @@ find_ufence_get(struct xe_sync_entry *syncs, u32 num_syncs)
+>  
+>  #define ALL_DRM_XE_VM_CREATE_FLAGS (DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE | \
+>  				    DRM_XE_VM_CREATE_FLAG_LR_MODE | \
+> -				    DRM_XE_VM_CREATE_FLAG_FAULT_MODE)
+> +				    DRM_XE_VM_CREATE_FLAG_FAULT_MODE | \
+> +				    DRM_XE_VM_CREATE_FLAG_NO_VM_OVERCOMMIT)
+>  
+>  int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+>  		       struct drm_file *file)
+> @@ -1977,12 +1978,18 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+>  			 args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE))
+>  		return -EINVAL;
+>  
+> +	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE) &&
+> +			 args->flags & DRM_XE_VM_CREATE_FLAG_NO_VM_OVERCOMMIT))
+> +		return -EINVAL;
+> +
+>  	if (args->flags & DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE)
+>  		flags |= XE_VM_FLAG_SCRATCH_PAGE;
+>  	if (args->flags & DRM_XE_VM_CREATE_FLAG_LR_MODE)
+>  		flags |= XE_VM_FLAG_LR_MODE;
+>  	if (args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE)
+>  		flags |= XE_VM_FLAG_FAULT_MODE;
+> +	if (args->flags & DRM_XE_VM_CREATE_FLAG_NO_VM_OVERCOMMIT)
+> +		flags |= XE_VM_FLAG_NO_VM_OVERCOMMIT;
+>  
+>  	vm = xe_vm_create(xe, flags, xef);
+>  	if (IS_ERR(vm))
+> @@ -2903,7 +2910,7 @@ static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
+>  			err = drm_exec_lock_obj(exec, &bo->ttm.base);
+>  		if (!err && validate)
+>  			err = xe_bo_validate(bo, vm,
+> -					     !xe_vm_in_preempt_fence_mode(vm) &&
+> +					     xe_vm_allow_vm_eviction(vm) &&
 
+One question. This is existing code but can you refresh my memory why we
+allow overcommit on dma-fencing VMs? Wouldn't the next exec IOCTL
+immediately fail?
 
-On 2/3/2026 3:36 PM, Matt Roper wrote:
-> On Mon, Feb 02, 2026 at 11:47:18AM -0800, Daniele Ceraolo Spurio wrote:
->>
->> On 2/2/2026 2:53 AM, Sk Anirban wrote:
->>> Prevent GuC firmware DMA failures during GuC-only reset by disabling
->>> idle flow and verifying SRAM handling completion. Without this, reset
->>> can be issued while SRAM handler is copying WOPCM to SRAM,
->>> causing GuC HW to get stuck.
->>>
->>> v2: Modify error message (Badal)
->>>       Rename reg bit name (Daniele)
->>>       Update WA skip condition (Daniele)
->>>       Update SRAM handling logic (Daniele)
->>> v3: Reorder WA call (Badal)
->>>       Wait for GuC ready status (Daniele)
->>> v4: Update reg name (Badal)
->>>       Add comment (Daniele)
->>>       Add extended graphics version (Daniele)
->>>       Modify rules
->>>
->>> Signed-off-by: Sk Anirban <sk.anirban@intel.com>
->>> ---
->>>    drivers/gpu/drm/xe/regs/xe_guc_regs.h |  8 ++++++
->>>    drivers/gpu/drm/xe/xe_guc.c           | 38 +++++++++++++++++++++++++++
->>>    drivers/gpu/drm/xe/xe_wa_oob.rules    |  3 +++
->>>    3 files changed, 49 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
->>> index 87984713dd12..5faac8316b66 100644
->>> --- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
->>> +++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
->>> @@ -40,6 +40,9 @@
->>>    #define   GS_BOOTROM_JUMP_PASSED		REG_FIELD_PREP(GS_BOOTROM_MASK, 0x76)
->>>    #define   GS_MIA_IN_RESET			REG_BIT(0)
->>> +#define BOOT_HASH_CHK				XE_REG(0xc010)
->>> +#define   GUC_BOOT_UKERNEL_VALID		REG_BIT(31)
->>> +
->>>    #define GUC_HEADER_INFO				XE_REG(0xc014)
->>>    #define GUC_WOPCM_SIZE				XE_REG(0xc050)
->>> @@ -83,7 +86,12 @@
->>>    #define   GUC_WOPCM_OFFSET_MASK			REG_GENMASK(31, GUC_WOPCM_OFFSET_SHIFT)
->>>    #define   HUC_LOADING_AGENT_GUC			REG_BIT(1)
->>>    #define   GUC_WOPCM_OFFSET_VALID		REG_BIT(0)
->>> +
->>> +#define GUC_SRAM_STATUS				XE_REG(0xc398)
->>> +#define   GUC_SRAM_HANDLING_MASK		REG_GENMASK(8, 7)
->>> +
->>>    #define GUC_MAX_IDLE_COUNT			XE_REG(0xc3e4)
->>> +#define   GUC_IDLE_FLOW_DISABLE			REG_BIT(31)
->>>    #define GUC_PMTIMESTAMP_LO			XE_REG(0xc3e8)
->>>    #define GUC_PMTIMESTAMP_HI			XE_REG(0xc3ec)
->>> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
->>> index 2efc4678fa73..369b5a8f129a 100644
->>> --- a/drivers/gpu/drm/xe/xe_guc.c
->>> +++ b/drivers/gpu/drm/xe/xe_guc.c
->>> @@ -911,6 +911,41 @@ int xe_guc_post_load_init(struct xe_guc *guc)
->>>    	return xe_guc_submit_enable(guc);
->>>    }
->>> +/*
->>> + * Wa_14025883347: Prevent GuC firmware DMA failures during GuC-only reset by ensuring
->>> + * SRAM save/restore operations are complete before reset.
->>> + */
->>> +static void guc_prevent_fw_dma_failure_on_reset(struct xe_guc *guc)
->>> +{
->>> +	struct xe_gt *gt = guc_to_gt(guc);
->>> +	u32 boot_hash_chk, guc_status, sram_status;
->>> +	int ret;
->>> +
->>> +	guc_status = xe_mmio_read32(&gt->mmio, GUC_STATUS);
->>> +	if (guc_status & GS_MIA_IN_RESET)
->>> +		return;
->>> +
->>> +	boot_hash_chk = xe_mmio_read32(&gt->mmio, BOOT_HASH_CHK);
->>> +	if (!(boot_hash_chk & GUC_BOOT_UKERNEL_VALID))
->>> +		return;
->>> +
->>> +	/* Disable idle flow during reset (GuC reset re-enables it automatically) */
->>> +	xe_mmio_rmw32(&gt->mmio, GUC_MAX_IDLE_COUNT, 0, GUC_IDLE_FLOW_DISABLE);
->>> +
->>> +	ret = xe_mmio_wait32(&gt->mmio, GUC_STATUS, GS_UKERNEL_MASK,
->>> +			     FIELD_PREP(GS_UKERNEL_MASK, XE_GUC_LOAD_STATUS_READY),
->>> +			     100000, &guc_status, false);
->>> +	if (ret)
->>> +		xe_gt_warn(gt, "GuC not ready after disabling idle flow (GUC_STATUS: 0x%x)\n",
->>> +			   guc_status);
->>> +
->>> +	ret = xe_mmio_wait32(&gt->mmio, GUC_SRAM_STATUS, GUC_SRAM_HANDLING_MASK,
->>> +			     0, 5000, &sram_status, false);
->>> +	if (ret)
->>> +		xe_gt_warn(gt, "SRAM handling not complete (GUC_SRAM_STATUS: 0x%x)\n",
->>> +			   sram_status);
->>> +}
->>> +
->>>    int xe_guc_reset(struct xe_guc *guc)
->>>    {
->>>    	struct xe_gt *gt = guc_to_gt(guc);
->>> @@ -923,6 +958,9 @@ int xe_guc_reset(struct xe_guc *guc)
->>>    	if (IS_SRIOV_VF(gt_to_xe(gt)))
->>>    		return xe_gt_sriov_vf_bootstrap(gt);
->>> +	if (XE_GT_WA(gt, 14025883347))
->>> +		guc_prevent_fw_dma_failure_on_reset(guc);
->>> +
->>>    	xe_mmio_write32(mmio, GDRST, GRDOM_GUC);
->>>    	ret = xe_mmio_wait32(mmio, GDRST, GRDOM_GUC, 0, 5000, &gdrst, false);
->>> diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
->>> index 5cd7fa6d2a5c..ac08f94f90a1 100644
->>> --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
->>> +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
->>> @@ -73,3 +73,6 @@
->>>    15015404425_disable	PLATFORM(PANTHERLAKE), MEDIA_STEP(B0, FOREVER)
->>>    16026007364    MEDIA_VERSION(3000)
->>>    14020316580    MEDIA_VERSION(1301)
->>> +
->>> +14025883347	MEDIA_VERSION_RANGE(1301, 3503)
->>> +		GRAPHICS_VERSION_RANGE(2004, 3005)
->> We usually avoid having these big ranges in the WA table, in case a new
->> derivative gets introduced that doesn't require the WA. If you think it is
->> justified in this case, please get an ack from the platform enabling side.
->> Apart from this the patch LGTM, so I'll give my r-b if you get the ack.
-> Yeah, in the past we've tried to avoid big ranges for this reason, but
-> I've heard suggestions from a few people lately that they'd like us to
-> revisit that policy.
->
-> Early in Xe development the driver didn't really support that many
-> different platforms / IP versions, so even when we had a rare workaround
-> that needed to hit them all, listing each separately wasn't much of a
-> hassle.  But now that we're a couple years down the road, the number of
-> platforms and IP versions has grown a lot, so it's a lot more painful on
-> workarounds like this to list them all out.  If we switch to ranges,
-> then we'll need to do more work when first enabling a new IP with an
-> "intermediate" number (like the Xe3p_LPG that just landed on the mailing
-> list) to make sure none of the existing workarounds need to be dropped
-> out for it.  But I think I'm okay with that now.
->
-> tl;dr: let's go ahead with the ranges
->
-> Acked-by: Matt Roper <matthew.d.roper@intel.com>
+Matt
 
-Sounds good.
-
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-
-Daniele
-
->
->
-> Matt
->
->> Daniele
->>
->>
-
+>  					     res_evict, exec);
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+> index 288115c7844a..f849e369432b 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.h
+> +++ b/drivers/gpu/drm/xe/xe_vm.h
+> @@ -220,6 +220,13 @@ static inline bool xe_vm_in_preempt_fence_mode(struct xe_vm *vm)
+>  	return xe_vm_in_lr_mode(vm) && !xe_vm_in_fault_mode(vm);
+>  }
+>  
+> +static inline bool xe_vm_allow_vm_eviction(struct xe_vm *vm)
+> +{
+> +	return !xe_vm_in_lr_mode(vm) ||
+> +		(xe_vm_in_fault_mode(vm) &&
+> +		 !(vm->flags & XE_VM_FLAG_NO_VM_OVERCOMMIT));
+> +}
+> +
+>  int xe_vm_add_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q);
+>  void xe_vm_remove_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q);
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+> index 43203e90ee3e..1f6f7e30e751 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -232,6 +232,7 @@ struct xe_vm {
+>  #define XE_VM_FLAG_TILE_ID(flags)	FIELD_GET(GENMASK(7, 6), flags)
+>  #define XE_VM_FLAG_SET_TILE_ID(tile)	FIELD_PREP(GENMASK(7, 6), (tile)->id)
+>  #define XE_VM_FLAG_GSC			BIT(8)
+> +#define XE_VM_FLAG_NO_VM_OVERCOMMIT     BIT(9)
+>  	unsigned long flags;
+>  
+>  	/**
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index 077e66a682e2..e54f8e12acd9 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -975,6 +975,11 @@ struct drm_xe_gem_mmap_offset {
+>   *    demand when accessed, and also allows per-VM overcommit of memory.
+>   *    The xe driver internally uses recoverable pagefaults to implement
+>   *    this.
+> + *  - %DRM_XE_VM_CREATE_FLAG_NO_VM_OVERCOMMIT - Requires also
+> + *    DRM_XE_VM_CREATE_FLAG_FAULT_MODE. This disallows per-VM overcommit
+> + *    but only during a &DRM_IOCTL_XE_VM_BIND operation with the
+> + *    %DRM_XE_VM_BIND_FLAG_IMMEDIATE flag set. This may be useful for
+> + *    user-space naively probing the amount of available memory.
+>   */
+>  struct drm_xe_vm_create {
+>  	/** @extensions: Pointer to the first extension struct, if any */
+> @@ -983,6 +988,7 @@ struct drm_xe_vm_create {
+>  #define DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE	(1 << 0)
+>  #define DRM_XE_VM_CREATE_FLAG_LR_MODE	        (1 << 1)
+>  #define DRM_XE_VM_CREATE_FLAG_FAULT_MODE	(1 << 2)
+> +#define DRM_XE_VM_CREATE_FLAG_NO_VM_OVERCOMMIT  (1 << 3)
+>  	/** @flags: Flags */
+>  	__u32 flags;
+>  
+> -- 
+> 2.52.0
+> 
