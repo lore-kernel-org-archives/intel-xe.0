@@ -4,28 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD54BE8B399
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 04:36:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 160C4E8B39C
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 05:18:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CC9210E14B;
-	Wed,  4 Feb 2026 04:36:44 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED9C810E14B;
- Wed,  4 Feb 2026 04:36:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0049155834530427763=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id C14EA10E0A1;
+	Wed,  4 Feb 2026 05:18:35 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V1mA5OfT";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53AB510E0A1;
+ Wed,  4 Feb 2026 05:18:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1770182314; x=1801718314;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=MBi1JAhXzFoAzvRq3X9c5JQLtLXfrNA2aOB+W/P3b6k=;
+ b=V1mA5OfT7wOzt81QWSZibQs+xBOWhV5wBF4Scbq962WuKl/kFmNPvzmn
+ qtgkyd36cKo0if22PhFHXQKb82ccubv7XAh1TClK4LZ4UbxTTwJYhlV3z
+ aacAYGHO5n3d3nHO7jqB8i6hbX6fadV5qUNMn/PJPe4MYWVDfFhoqkVpa
+ aJByD4dwHSQNuaU3BZydC9jXhmY3Ellx5fOEhENNWs33utJoXOyJOqS01
+ E/jBgdTetnJ55GbpDvmtaFiFD0rPdZOAQJ+RQrX7nmN51uMGhrlUanca/
+ dbuYEQpmTgeR8B3BX7C7YPa6CL3MFHoDGfaZ/Ixj2AY748OncNPTSHPj+ Q==;
+X-CSE-ConnectionGUID: yYQaYi3rRui0PYuqNY7iKQ==
+X-CSE-MsgGUID: Ebn0QXXTQJG8yLWrHpox3Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="82102817"
+X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="82102817"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2026 21:18:34 -0800
+X-CSE-ConnectionGUID: APMR2d+qRreukhL5+ObtuA==
+X-CSE-MsgGUID: EXELgwdKRxei0bTGRSzwgw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="210127464"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Feb 2026 21:18:32 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jouni.hogander@intel.com, ville.syrjala@linux.intel.com,
+ animesh.manna@intel.com, michal.grzelak@intel.com,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [RESEND 0/5] LOBF fixes
+Date: Wed,  4 Feb 2026 10:32:45 +0530
+Message-ID: <20260204050250.762718-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_series_starting_with_=5Bv3?=
- =?utf-8?q?=2C1/2=5D_drm/xe/cri=3A_Add_check_to_verify_if_CSC_is_a_PCIe_endp?=
- =?utf-8?q?oint?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 04 Feb 2026 04:36:42 -0000
-Message-ID: <177017980294.223259.16588869875422761127@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260203140639.2048912-3-balasubramani.vivekanandan@intel.com>
-In-Reply-To: <20260203140639.2048912-3-balasubramani.vivekanandan@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,61 +65,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0049155834530427763==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Fix lobf to use computed guardband and set context latency.
+Also disable LOBF while switching to LRR/seamlessMN modes.
 
-== Series Details ==
+Rev2:
+ - Use is_enabling/disabling macros for lobf checks and other suggested
+   changes from Ville.
 
-Series: series starting with [v3,1/2] drm/xe/cri: Add check to verify if CSC is a PCIe endpoint
-URL   : https://patchwork.freedesktop.org/series/161088/
-State : failure
+Rev3:
+ - Address comments from Michal.
 
-== Summary ==
+Rev4:
+ - Address comments from Jouni.
 
-ERROR: The runconfig 'xe-4490-9f5242e63f0bab74d47ae6792e0c25a324184a6b_FULL' does not exist in the database
+Rev5:
+ - Rebase
 
-== Logs ==
+Ankit Nautiyal (5):
+  drm/i915/alpm: Compute LOBF late after guardband is already determined
+  drm/i915/alpm: Allow LOBF only if window1 > alpm check_entry lines
+  drm/i915/alpm: Allow LOBF only for platform that have Always on VRR TG
+  drm/i915/alpm: Simplify and align LOBF checks in pre/post plane update
+  drm/i915/alpm: Disable LOBF around transitioning for LRR/seamless MN
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161088v1/index.html
+ drivers/gpu/drm/i915/display/intel_alpm.c    | 144 ++++++++++++-------
+ drivers/gpu/drm/i915/display/intel_alpm.h    |   9 +-
+ drivers/gpu/drm/i915/display/intel_display.c |  29 +++-
+ drivers/gpu/drm/i915/display/intel_dp.c      |   2 +
+ drivers/gpu/drm/i915/display/intel_vrr.c     |   2 +
+ 5 files changed, 129 insertions(+), 57 deletions(-)
 
---===============0049155834530427763==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+-- 
+2.45.2
 
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v3,1/2] drm/xe/cri: Add check to verify if CSC is a PCIe endpoint</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161088/">https://patchwork.freedesktop.org/series/161088/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161088v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161088v1/index.html</a></td></tr>
-
-</table>
-
-
-    <p>ERROR: The runconfig 'xe-4490-9f5242e63f0bab74d47ae6792e0c25a324184a6b_FULL' does not exist in the database</p>
-
-</body>
-</html>
-
---===============0049155834530427763==--
