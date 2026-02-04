@@ -4,69 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAF71E9537B
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 11:52:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83DDAE9538C
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 11:53:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 84B0210E179;
-	Wed,  4 Feb 2026 11:52:17 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="cLTSxgcI";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A583A10E60D;
- Wed,  4 Feb 2026 11:52:15 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 66B4E4341E;
- Wed,  4 Feb 2026 11:52:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4B99C2BC86;
- Wed,  4 Feb 2026 11:52:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1770205935;
- bh=IC8/pGvY0vfg3ue4Utkl8PDQmzQeaM3j/LsYQSH4/Y4=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=cLTSxgcIj+P2Us1I+pH6RM0skPGzQhFWPR9LveSvtrZvU2wE8iXmmuntq8miFGmCm
- idz7eX/3vfcs+O3wzJbT/S+vsJ1oS7qmO0U2l+0tlbOQHQwcsMcfJ6n/8PgKm71dIk
- 0uxPnxg/nw9/Zan2IPr3R0nxkf2lyo+dVI8njqTmwMRoyLpydbyYnCN/22hioqQlt5
- 3A7c/0Syb9Zwq9oyG7+breVWOABJH+jqbh+FF6laOvjHSBdgGIs+QLBq25Pk0Gzahx
- qHKqESlrHribLaJs13ARVq2l6xT7+l3ROD/Ko4JoHDXynKPCttMS5GpyxhyxlSA1Dt
- Sdu5aPEXQI3gA==
-Date: Wed, 4 Feb 2026 13:52:12 +0200
-From: Leon Romanovsky <leon@kernel.org>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: Re: [PATCH v7 0/8] dma-buf: Use revoke mechanism to invalidate
- shared buffers
-Message-ID: <20260204115212.GG6771@unreal>
-References: <20260131-dmabuf-revoke-v7-0-463d956bd527@nvidia.com>
- <20260202160425.GO34749@unreal> <20260204081630.GA6771@unreal>
- <20260204-icy-classic-crayfish-68da6d@houat>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40D2F10E613;
+	Wed,  4 Feb 2026 11:53:28 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3D48610E613;
+ Wed,  4 Feb 2026 11:53:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2082777134546203155=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260204-icy-classic-crayfish-68da6d@houat>
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/buddy=3A_Documentation_?=
+ =?utf-8?q?and_internal_helper_cleanup?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sanjay Yadav" <sanjay.kumar.yadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 04 Feb 2026 11:53:27 -0000
+Message-ID: <177020600722.223259.15634289233373041728@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260204104345.1980047-4-sanjay.kumar.yadav@intel.com>
+In-Reply-To: <20260204104345.1980047-4-sanjay.kumar.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,64 +36,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Feb 04, 2026 at 09:56:08AM +0100, Maxime Ripard wrote:
-> On Wed, Feb 04, 2026 at 10:16:30AM +0200, Leon Romanovsky wrote:
-> > On Mon, Feb 02, 2026 at 06:04:25PM +0200, Leon Romanovsky wrote:
-> > > On Sat, Jan 31, 2026 at 07:34:10AM +0200, Leon Romanovsky wrote:
-> > > > Changelog:
-> > > > v7:
-> > > 
-> > > <...>
-> > > 
-> > > > Leon Romanovsky (8):
-> > > >       dma-buf: Rename .move_notify() callback to a clearer identifier
-> > > >       dma-buf: Rename dma_buf_move_notify() to dma_buf_invalidate_mappings()
-> > > >       dma-buf: Always build with DMABUF_MOVE_NOTIFY
-> > > >       vfio: Wait for dma-buf invalidation to complete
-> > > >       dma-buf: Make .invalidate_mapping() truly optional
-> > > >       dma-buf: Add dma_buf_attach_revocable()
-> > > >       vfio: Permit VFIO to work with pinned importers
-> > > >       iommufd: Add dma_buf_pin()
-> > > > 
-> > > >  drivers/dma-buf/Kconfig                     | 12 -----
-> > > >  drivers/dma-buf/dma-buf.c                   | 69 ++++++++++++++++++++-----
-> > > >  drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c | 14 ++---
-> > > >  drivers/gpu/drm/amd/amdgpu/amdgpu_object.c  |  2 +-
-> > > >  drivers/gpu/drm/amd/amdkfd/Kconfig          |  2 +-
-> > > >  drivers/gpu/drm/virtio/virtgpu_prime.c      |  2 +-
-> > > >  drivers/gpu/drm/xe/tests/xe_dma_buf.c       |  7 ++-
-> > > >  drivers/gpu/drm/xe/xe_bo.c                  |  2 +-
-> > > >  drivers/gpu/drm/xe/xe_dma_buf.c             | 14 ++---
-> > > >  drivers/infiniband/core/umem_dmabuf.c       | 13 -----
-> > > >  drivers/infiniband/hw/mlx5/mr.c             |  2 +-
-> > > >  drivers/iommu/iommufd/pages.c               | 11 +++-
-> > > >  drivers/iommu/iommufd/selftest.c            |  2 +-
-> > > >  drivers/vfio/pci/vfio_pci_dmabuf.c          | 80 ++++++++++++++++++++++-------
-> > > >  include/linux/dma-buf.h                     | 17 +++---
-> > > >  15 files changed, 153 insertions(+), 96 deletions(-)
-> > > 
-> > > Christian,
-> > > 
-> > > Given the ongoing discussion around patch v5, I'm a bit unclear on the
-> > > current state. Is the series ready for merging, or do you need me to
-> > > rework anything further?
-> > 
-> > Christian,
-> > 
-> > Let's not miss the merge window for work that is already ready.
-> 
-> The cutoff date for the merge window was on 25/1, so it was already
-> missed by the time you sent your series.
+--===============2082777134546203155==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The primary goal of this series is to update dma-buf. The changes in
-drivers/gpu/drm are limited to straightforward renames.
+== Series Details ==
 
-Thanks
+Series: drm/buddy: Documentation and internal helper cleanup
+URL   : https://patchwork.freedesktop.org/series/161140/
+State : failure
 
-> 
-> Maxime
+== Summary ==
+
+ERROR: The runconfig 'xe-4495-241994730989320c926da9f2d0a5ec80b48f993d_BAT' does not exist in the database
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161140v1/index.html
+
+--===============2082777134546203155==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/buddy: Documentation and internal helper cleanup</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161140/">https://patchwork.freedesktop.org/series/161140/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161140v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161140v1/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-4495-241994730989320c926da9f2d0a5ec80b48f993d_BAT' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============2082777134546203155==--
