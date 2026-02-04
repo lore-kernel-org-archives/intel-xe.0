@@ -4,81 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7749CE83F05
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 14:08:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A862EC1EBE
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 14:08:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 33EE110E8D6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCB8F10E8D7;
 	Thu,  5 Feb 2026 14:08:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=shazbot.org header.i=@shazbot.org header.b="mi9xMhj7";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="sGJeihXB";
+	dkim=pass (2048-bit key; unprotected) header.d=shazbot.org header.i=@shazbot.org header.b="4E9zDR/3";
+	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="kUnfeGhB";
 	dkim-atps=neutral
-Received: from fhigh-b4-smtp.messagingengine.com
- (fhigh-b4-smtp.messagingengine.com [202.12.124.155])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE17510E100;
- Wed,  4 Feb 2026 14:56:44 +0000 (UTC)
-Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
- by mailfhigh.stl.internal (Postfix) with ESMTP id 39ADB7A00DC;
- Wed,  4 Feb 2026 09:49:59 -0500 (EST)
+Received: from fhigh-b5-smtp.messagingengine.com
+ (fhigh-b5-smtp.messagingengine.com [202.12.124.156])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 416FC10E6E5;
+ Wed,  4 Feb 2026 16:57:06 +0000 (UTC)
+Received: from phl-compute-11.internal (phl-compute-11.internal [10.202.2.51])
+ by mailfhigh.stl.internal (Postfix) with ESMTP id 56E537A00E6;
+ Wed,  4 Feb 2026 11:57:04 -0500 (EST)
 Received: from phl-frontend-03 ([10.202.2.162])
- by phl-compute-02.internal (MEProxy); Wed, 04 Feb 2026 09:50:00 -0500
+ by phl-compute-11.internal (MEProxy); Wed, 04 Feb 2026 11:57:05 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shazbot.org; h=
  cc:cc:content-transfer-encoding:content-type:content-type:date
  :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm2; t=1770216599;
- x=1770302999; bh=QL9sSVQuHUyiqNNTJS1cRzIO660sEsNkmSlJpdQIa7o=; b=
- mi9xMhj7D7QVZHhZAiU9VKOtKQC8hfwKHEV1GYiUwJ/vKTw3MKybuvhpvocGWH8O
- ewf0IHP5WCIsCdkETSsxiawgbu8U8Ln3q8u5A6j0l1WpPHcVZqXUbf78d98CdUiM
- /IKqdJz2j5iWqpqDqhm4lV0r1z2yblKVWo/XKIIS48JRCN8WvWKd+9fo9YVCQRcl
- WDBefUZrDuUCw4YCvCRys6oeir7MzfGqsiCrzNNF+z9gUQxDdikdIgcVqQLVJJGA
- 29vYJ4VhBWB9dOxWuTZALTQDzZMBUS6lPHTNaNL/TY+JA3Wi7AAhU2HH5Ycma9h2
- iZvPLo9ASafd4U5gTrgqJQ==
+ :references:reply-to:subject:subject:to:to; s=fm2; t=1770224224;
+ x=1770310624; bh=DMO79s1OU3juZ2+ahMo1gfPAr0s4Mn0ZEH9LRYL3vv0=; b=
+ 4E9zDR/3sr/FZ2Suz9hMpeD0Lnw9/HEY8CCWzuPTFUlCRgk/07X0XK4fG5aGG2li
+ 0fatEfbpn9z0k5kHRO4s/aH7Pm+5fLGf9Cu5wSPzt2+oFxUejLwYdnAo8+vTTtX0
+ ppcuN4ypbdJkwOnXruWUQfw/0GT3rbfK3qQN9Mnf08mCo5AQBaBvPSlPSoRMUoTj
+ iOXZEEkeA5xumAOiILKyx2I67bELe3qIddtsmC285w1VcTp+a7ofilThoTsvX+zx
+ pO0/xWe8ljTI1odRRCmkzLFYSCFSpo5gzpclcgcbTGb3ljTcYnxK7Y9V/wpzpMyn
+ zoAKW1DjfBti4jaWXz/GAg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
  messagingengine.com; h=cc:cc:content-transfer-encoding
  :content-type:content-type:date:date:feedback-id:feedback-id
  :from:from:in-reply-to:in-reply-to:message-id:mime-version
  :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1770216599; x=
- 1770302999; bh=QL9sSVQuHUyiqNNTJS1cRzIO660sEsNkmSlJpdQIa7o=; b=s
- GJeihXBk9DA4kr+BL+nNsg7zc5GMkdRCLjYJKk36zDGPac6Z7Moje8C4Gg96noVB
- fvzNyywNxA9I6qSs/ISvmhNult3u6YFp5A+Ak5O5WFOj4z5O9gjC6f0ph7vq3j/H
- nrd5wyg5KgPCM2bedm+0RVSCzt+R5z1nbbRxnE8jo4m4UXA748X6ZC52nPekwl5d
- hfOar7dY1pgUQWdNag+q5umeAcQEi9mIvXbo7DTN57R2xk3ZFNUvUKrf8rZmaJFl
- o6VAuTQcOkiTEpUlqQGmdX6f9sk7qvvXtn85KmfukgAViHuF50rkeqyEfQtmXkEf
- wB2zeq2JfVG/hI+46N9Kg==
-X-ME-Sender: <xms:llyDaZJmYGMjYnUmYVdxhVEDlr_O47dRinUwU0f6dKEXQvoB64o4vA>
- <xme:llyDaXBAuXkvQLS0ogkdqBg_K1u8VpwbUoDJ8l2mawpsOazzq99eL5AEeW9c2GuAR
- S2c8GrwPKH-y-GC8HJG7cPQrzEmN_18FnYzPmuwtGjwyLKlTtfp>
-X-ME-Received: <xmr:llyDaWVMxdX5QgxRsgefK1RHbav935eSzrLU1oHeIiUeob1gUxBD-IIfYUc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddukedvjedvucetufdoteggodetrf
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1770224224; x=
+ 1770310624; bh=DMO79s1OU3juZ2+ahMo1gfPAr0s4Mn0ZEH9LRYL3vv0=; b=k
+ UnfeGhB0XVIKkpNpr8r70uuFr+yVF4eXt8iIIRXXxj95qP0Utymcq8DPgYCYAIIU
+ rEZGNuaB9G2Hn8XWUbdjTJ7y+DRD46zwKbYrPKP6U88INPsxVMbH1degOaxJIodR
+ DKEX0B82teBXAIjtNB6G/+CBnk6SMyNskXcPOfYXJ9PCn1LgJrYuY33kwxQBiJSM
+ +bxQJpKCVUNBF6ZzDSvQpb+hCK42zD5zrqVNNoIJeD/wSgKP3zU2ZFszbQlu1ELm
+ Xs7ysqb+/GUvegntZfforGYZ/CMyDHerVQYaW4NKWptMZ1z+aeAET2E/KP/TYGkf
+ KeEnDgEP8FPVgaex9yV8Q==
+X-ME-Sender: <xms:X3qDaUU0AqgtEAaCCzgguyzs4VTVV-B9kuHBFv5L_ryHbFAQ9OwzZw>
+ <xme:X3qDaaencOx4yFHctpjA0hJGKxhuLLru0_1AbJdrHzSTklmYn0UWK3zvzB6INNMEb
+ CDFZESzmQYzf5ASb8dYI7zOBfA7lnegmkzmNWWr00fEDEliSgPN3QI>
+X-ME-Received: <xmr:X3qDadCoS01ZWLJgy9mJqR9Qk8BNz9b7GJi9TFpc7v-Xz0c9ZWRayowlhhQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddukedvleejucetufdoteggodetrf
  dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
  rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
  gurhepfffhvfevuffkjghfofggtgfgsehtqhertdertdejnecuhfhrohhmpeetlhgvgicu
  hghilhhlihgrmhhsohhnuceorghlvgigsehshhgriigsohhtrdhorhhgqeenucggtffrrg
- htthgvrhhnpeegudevhfejueefveduieeuueeifeettdekveekhffgvdetfeelueehgfdt
- heffhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
- grlhgvgiesshhhrgiisghothdrohhrghdpnhgspghrtghpthhtohepfeegpdhmohguvgep
- shhmthhpohhuthdprhgtphhtthhopehlvghonheskhgvrhhnvghlrdhorhhgpdhrtghpth
- htoheptghhrhhishhtihgrnhdrkhhovghnihhgsegrmhgurdgtohhmpdhrtghpthhtohep
- shhumhhithdrshgvmhifrghlsehlihhnrghrohdrohhrghdprhgtphhtthhopegrlhgvgi
- grnhguvghrrdguvghutghhvghrsegrmhgurdgtohhmpdhrtghpthhtoheprghirhhlihgv
- ugesghhmrghilhdrtghomhdprhgtphhtthhopehsihhmohhnrgesfhhffihllhdrtghhpd
- hrtghpthhtohepkhhrrgigvghlsehrvgguhhgrthdrtghomhdprhgtphhtthhopegumhhi
- thhrhidrohhsihhpvghnkhhosegtohhllhgrsghorhgrrdgtohhmpdhrtghpthhtohepgh
- hurhgthhgvthgrnhhsihhnghhhsegthhhrohhmihhumhdrohhrgh
-X-ME-Proxy: <xmx:llyDaY6NKd7bDMPwzDMtrcrglA0Q7txOe9i2cEfBbUnJh4H99P3BMA>
- <xmx:llyDaQZPU4E4Fm9axqtBaX-WLMNA4ScJrvmFQpdDiyZJd9HNbYKoEA>
- <xmx:llyDaaqq_FW_PxGHRUdmctm9S2ljoFVq-NcIFh50bdZjLOoV2jrdcA>
- <xmx:llyDaXL7AZ2xV6n4J6obLGjlreHCThd-WQGNqX770JaImsW7wESD1Q>
- <xmx:l1yDaYhCjTqzR9iSEa4wxIeg-VejF46Npe8P2GPeeU0DmGS4kQ10LlGd>
+ htthgvrhhnpeeuvdevudfhleehgfffiefggfevkefhfeffheetfeejffekteeffffgffek
+ ueeuteenucffohhmrghinhepghhithhhuhgsrdgtohhmnecuvehluhhsthgvrhfuihiivg
+ eptdenucfrrghrrghmpehmrghilhhfrhhomheprghlvgigsehshhgriigsohhtrdhorhhg
+ pdhnsggprhgtphhtthhopeefgedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtoheptg
+ hhrhhishhtihgrnhdrkhhovghnihhgsegrmhgurdgtohhmpdhrtghpthhtoheplhgvohhn
+ sehkvghrnhgvlhdrohhrghdprhgtphhtthhopehsuhhmihhtrdhsvghmfigrlheslhhinh
+ grrhhordhorhhgpdhrtghpthhtoheprghlvgigrghnuggvrhdruggvuhgthhgvrhesrghm
+ ugdrtghomhdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghpth
+ htohepshhimhhonhgrsehffhiflhhlrdgthhdprhgtphhtthhopehkrhgrgigvlhesrhgv
+ ughhrghtrdgtohhmpdhrtghpthhtohepughmihhtrhihrdhoshhiphgvnhhkohestgholh
+ hlrggsohhrrgdrtghomhdprhgtphhtthhopehguhhrtghhvghtrghnshhinhhghhestghh
+ rhhomhhiuhhmrdhorhhg
+X-ME-Proxy: <xmx:X3qDaR0JC3aeBgGCL3SOTruPcgJhXN56_tA0WN7RgTXmz9g5vEPb9w>
+ <xmx:X3qDaelkK6umwX2N7Cdn9igho2SY9UaXjO4UA7aD9BS4Prz5hLK1hg>
+ <xmx:X3qDaVHu61HKpx7M9FbvEcxQjBMz7-wYzb44ioDNXWX0Ucq2z4-t9w>
+ <xmx:X3qDaY3TnQgDqkgcBOz_No8JKgaBYtcvxf4UXBj0ym1YuPCsROzXHA>
+ <xmx:YHqDaYePnLUlo7-KxZzLGmru0GCtmPoyKuPCBDWjbJzvd7OHBc1kp6lU>
 Feedback-ID: i03f14258:Fastmail
 Received: by mail.messagingengine.com (Postfix) with ESMTPA; Wed,
- 4 Feb 2026 09:49:56 -0500 (EST)
-Date: Wed, 4 Feb 2026 07:49:55 -0700
+ 4 Feb 2026 11:57:00 -0500 (EST)
+Date: Wed, 4 Feb 2026 09:56:59 -0700
 From: Alex Williamson <alex@shazbot.org>
-To: Leon Romanovsky <leon@kernel.org>
-Cc: Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
+To: Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Cc: Leon Romanovsky <leon@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>,
  Alex Deucher <alexander.deucher@amd.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Gerd Hoffmann <kraxel@redhat.com>,
@@ -99,14 +99,12 @@ Cc: Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
  linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
  virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
  linux-rdma@vger.kernel.org, iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: Re: [PATCH v7 0/8] dma-buf: Use revoke mechanism to invalidate
- shared buffers
-Message-ID: <20260204074955.394a42e1@shazbot.org>
-In-Reply-To: <20260204114751.GF6771@unreal>
+Subject: Re: [PATCH v7 7/8] vfio: Permit VFIO to work with pinned importers
+Message-ID: <20260204095659.5a983af2@shazbot.org>
+In-Reply-To: <fb9bf53a-7962-451a-bac2-c61eb52c7a0f@amd.com>
 References: <20260131-dmabuf-revoke-v7-0-463d956bd527@nvidia.com>
- <20260202160425.GO34749@unreal> <20260204081630.GA6771@unreal>
- <6d5c392b-596b-4341-9992-aa4b26001804@amd.com>
- <20260204114751.GF6771@unreal>
+ <20260131-dmabuf-revoke-v7-7-463d956bd527@nvidia.com>
+ <fb9bf53a-7962-451a-bac2-c61eb52c7a0f@amd.com>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -126,73 +124,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 4 Feb 2026 13:47:51 +0200
-Leon Romanovsky <leon@kernel.org> wrote:
+On Wed, 4 Feb 2026 17:21:45 +0100
+Christian K=C3=B6nig <christian.koenig@amd.com> wrote:
 
-> On Wed, Feb 04, 2026 at 09:54:13AM +0100, Christian K=C3=B6nig wrote:
-> > On 2/4/26 09:16, Leon Romanovsky wrote: =20
-> > > On Mon, Feb 02, 2026 at 06:04:25PM +0200, Leon Romanovsky wrote: =20
-> > >> On Sat, Jan 31, 2026 at 07:34:10AM +0200, Leon Romanovsky wrote: =20
-> > >>> Changelog:
-> > >>> v7: =20
-> > >>
-> > >> <...>
-> > >> =20
-> > >>> Leon Romanovsky (8):
-> > >>>       dma-buf: Rename .move_notify() callback to a clearer identifi=
-er
-> > >>>       dma-buf: Rename dma_buf_move_notify() to dma_buf_invalidate_m=
-appings()
-> > >>>       dma-buf: Always build with DMABUF_MOVE_NOTIFY
-> > >>>       vfio: Wait for dma-buf invalidation to complete
-> > >>>       dma-buf: Make .invalidate_mapping() truly optional
-> > >>>       dma-buf: Add dma_buf_attach_revocable()
-> > >>>       vfio: Permit VFIO to work with pinned importers
-> > >>>       iommufd: Add dma_buf_pin()
-> > >>>
-> > >>>  drivers/dma-buf/Kconfig                     | 12 -----
-> > >>>  drivers/dma-buf/dma-buf.c                   | 69 +++++++++++++++++=
-+++-----
-> > >>>  drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c | 14 ++---
-> > >>>  drivers/gpu/drm/amd/amdgpu/amdgpu_object.c  |  2 +-
-> > >>>  drivers/gpu/drm/amd/amdkfd/Kconfig          |  2 +-
-> > >>>  drivers/gpu/drm/virtio/virtgpu_prime.c      |  2 +-
-> > >>>  drivers/gpu/drm/xe/tests/xe_dma_buf.c       |  7 ++-
-> > >>>  drivers/gpu/drm/xe/xe_bo.c                  |  2 +-
-> > >>>  drivers/gpu/drm/xe/xe_dma_buf.c             | 14 ++---
-> > >>>  drivers/infiniband/core/umem_dmabuf.c       | 13 -----
-> > >>>  drivers/infiniband/hw/mlx5/mr.c             |  2 +-
-> > >>>  drivers/iommu/iommufd/pages.c               | 11 +++-
-> > >>>  drivers/iommu/iommufd/selftest.c            |  2 +-
-> > >>>  drivers/vfio/pci/vfio_pci_dmabuf.c          | 80 +++++++++++++++++=
-+++++-------
-> > >>>  include/linux/dma-buf.h                     | 17 +++---
-> > >>>  15 files changed, 153 insertions(+), 96 deletions(-) =20
-> > >>
-> > >> Christian,
-> > >>
-> > >> Given the ongoing discussion around patch v5, I'm a bit unclear on t=
-he
-> > >> current state. Is the series ready for merging, or do you need me to
-> > >> rework anything further? =20
-> > >=20
-> > > Christian,
-> > >=20
-> > > Let's not miss the merge window for work that is already ready. =20
+> On 1/31/26 06:34, Leon Romanovsky wrote:
+> > From: Leon Romanovsky <leonro@nvidia.com>
 > >=20
-> > Mhm, sounds like AMDs mail servers never send my last mail out.
+> > Till now VFIO has rejected pinned importers, largely to avoid being used
+> > with the RDMA pinned importer that cannot handle a move_notify() to rev=
+oke
+> > access.
 > >=20
-> > As far as I can see all patches have an reviewed-by, I also gave an rb =
-on patch #6 (should that mail never got out as well). The discussion on pat=
-ch v5 is just orthogonal I think, the handling was there even completely be=
-fore this patch set.
+> > Using dma_buf_attach_revocable() it can tell the difference between pin=
+ned
+> > importers that support the flow described in dma_buf_invalidate_mapping=
+s()
+> > and those that don't.
 > >=20
-> > For upstreaming as long as the VFIO and infiniband folks don't object I=
- would like to take that through the drm-misc branch (like every other DMA-=
-buf change). =20
+> > Thus permit compatible pinned importers.
+> >=20
+> > This is one of two items IOMMUFD requires to remove its private interfa=
+ce
+> > to VFIO's dma-buf.
+> >=20
+> > Reviewed-by: Kevin Tian <kevin.tian@intel.com>
+> > Reviewed-by: Alex Williamson <alex@shazbot.org>
+> > Reviewed-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> > Signed-off-by: Leon Romanovsky <leonro@nvidia.com>
+> > ---
+> >  drivers/vfio/pci/vfio_pci_dmabuf.c | 15 +++------------
+> >  1 file changed, 3 insertions(+), 12 deletions(-)
+> >=20
+> > diff --git a/drivers/vfio/pci/vfio_pci_dmabuf.c b/drivers/vfio/pci/vfio=
+_pci_dmabuf.c
+> > index 78d47e260f34..a5fb80e068ee 100644
+> > --- a/drivers/vfio/pci/vfio_pci_dmabuf.c
+> > +++ b/drivers/vfio/pci/vfio_pci_dmabuf.c
+> > @@ -22,16 +22,6 @@ struct vfio_pci_dma_buf {
+> >  	u8 revoked : 1;
+> >  };
+> > =20
+> > -static int vfio_pci_dma_buf_pin(struct dma_buf_attachment *attachment)
+> > -{
+> > -	return -EOPNOTSUPP;
+> > -}
+> > -
+> > -static void vfio_pci_dma_buf_unpin(struct dma_buf_attachment *attachme=
+nt)
+> > -{
+> > -	/* Do nothing */
+> > -}
+> > - =20
 >=20
-> Infiniband folks don't object :).
+> This chunk here doesn't want to apply to drm-misc-next, my educated
+> guess is that the patch adding those lines is missing in that tree.
+>=20
+> How should we handle that? Patches 1-3 have already been pushed to
+> drm-misc-next and I would rather like to push patches 4-6 through
+> that branch as well.
+>=20
+> I can request a backmerge from the drm-misc-next maintainers, but
+> then we clearly don't get that upstream this week.
 
-No objection from vfio, I added one last R-b.  Thanks,
+Hmm, drm-next already has a backmerge up to v6.19-rc7, the patch here is
+based on a commit merged in rc8.  The tag for that change was based on
+rc6.  It can be found here:
+
+https://github.com/awilliam/linux-vfio.git tags/vfio-v6.19-rc8
+
+As the same tag Linus merged in:
+
+1f97d9dcf536 ("Merge tag 'vfio-v6.19-rc8' of https://github.com/awilliam/li=
+nux-vfio")
+
+drm-misc-next only seems to be based on v6.19-rc1 though, so I don't
+know that any of that helps.  Thanks,
 
 Alex
+
+> >  static int vfio_pci_dma_buf_attach(struct dma_buf *dmabuf,
+> >  				   struct dma_buf_attachment
+> > *attachment) {
+> > @@ -43,6 +33,9 @@ static int vfio_pci_dma_buf_attach(struct dma_buf
+> > *dmabuf, if (priv->revoked)
+> >  		return -ENODEV;
+> > =20
+> > +	if (!dma_buf_attach_revocable(attachment))
+> > +		return -EOPNOTSUPP;
+> > +
+> >  	return 0;
+> >  }
+> > =20
+> > @@ -107,8 +100,6 @@ static void vfio_pci_dma_buf_release(struct
+> > dma_buf *dmabuf) }
+> > =20
+> >  static const struct dma_buf_ops vfio_pci_dmabuf_ops =3D {
+> > -	.pin =3D vfio_pci_dma_buf_pin,
+> > -	.unpin =3D vfio_pci_dma_buf_unpin,
+> >  	.attach =3D vfio_pci_dma_buf_attach,
+> >  	.map_dma_buf =3D vfio_pci_dma_buf_map,
+> >  	.unmap_dma_buf =3D vfio_pci_dma_buf_unmap,
+> >  =20
+>=20
+>=20
+
