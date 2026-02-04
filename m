@@ -4,28 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1EF0E9D403
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 15:48:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26B46E9D407
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 15:54:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A528F10E4EB;
-	Wed,  4 Feb 2026 15:48:13 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BDF510E0A2;
- Wed,  4 Feb 2026 15:48:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2231755941635764910=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA4D610E6A3;
+	Wed,  4 Feb 2026 15:54:33 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KxHqbDL3";
+	dkim-atps=neutral
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 334DC10E0A2;
+ Wed,  4 Feb 2026 15:54:33 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id E0FEC43BBA;
+ Wed,  4 Feb 2026 15:54:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D388C4CEF7;
+ Wed,  4 Feb 2026 15:54:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1770220472;
+ bh=x3icpBvvX8hE/1nJfe0UBQcFgbUp9cP9zJMm3/3XEaY=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=KxHqbDL3n7bdE9UzsRk7XQac2TSqjA0spynqxf4kNsCT2S2xc4AJmT2jRbThrk/lj
+ zqM8Y7P0LKKrOuokzq9D5RsQtuvhu35s5XQQkaAHUFs5q+CQcSmyT3ut4GWK+o5OPI
+ 14SAJHJapBuGFmX7oxUDsIvhZsyGyB0YjlBiOxf6rN98kFtP+S2n4rZWYrcUgLJhmD
+ 9NcQ68nt9u8ix1446F6Kxs5wH71sz+4B5rPxsLE9qGk7hd7PqDsnHXpUVk9htPicfP
+ k2sqg8t4K+A8/NwJxyjtV+bc2Hucut1sgNP+GAgmZKl6q9A/sBoW/w3snteMjK3fK6
+ y1v60E3s628dQ==
+Date: Wed, 4 Feb 2026 17:54:29 +0200
+From: Leon Romanovsky <leon@kernel.org>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Maxime Ripard <mripard@kernel.org>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Gerd Hoffmann <kraxel@redhat.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>,
+ Chia-I Wu <olvaffe@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+ Felix Kuehling <Felix.Kuehling@amd.com>,
+ Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
+ Vivek Kasireddy <vivek.kasireddy@intel.com>,
+ linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
+ intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ iommu@lists.linux.dev, kvm@vger.kernel.org
+Subject: Re: [PATCH v7 0/8] dma-buf: Use revoke mechanism to invalidate
+ shared buffers
+Message-ID: <20260204155429.GJ6771@unreal>
+References: <20260131-dmabuf-revoke-v7-0-463d956bd527@nvidia.com>
+ <20260202160425.GO34749@unreal> <20260204081630.GA6771@unreal>
+ <20260204-icy-classic-crayfish-68da6d@houat>
+ <20260204115212.GG6771@unreal>
+ <20260204-clever-butterfly-of-mastery-0cdc19@houat>
+ <20260204121354.GH6771@unreal>
+ <20260204-bloodhound-of-major-realization-9852ab@houat>
+ <20260204135657.GE2328995@ziepe.ca>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_series_starting_with_=5B1/?=
- =?utf-8?q?2=5D_drm/xe=3A_Move_number_of_XeCore_fuse_registers_to_graphics_d?=
- =?utf-8?q?escriptor?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 04 Feb 2026 15:48:12 -0000
-Message-ID: <177022009261.225032.8924980102851819377@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260204002549.3888274-3-matthew.d.roper@intel.com>
-In-Reply-To: <20260204002549.3888274-3-matthew.d.roper@intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260204135657.GE2328995@ziepe.ca>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,61 +83,48 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2231755941635764910==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Feb 04, 2026 at 09:56:57AM -0400, Jason Gunthorpe wrote:
+> On Wed, Feb 04, 2026 at 02:44:42PM +0100, Maxime Ripard wrote:
+> > > From what I have seen, subsystems such as netdev, the block layer, and RDMA continue
+> > > to accept code that is ready for merging, especially when it has been thoroughly
+> > > reviewed by multiple maintainers across different subsystems.
+> > 
+> > He said it multiple times, but here's one of such examples:
+> > 
+> > https://lore.kernel.org/all/CA+55aFwdd30eBsnMLB=ncExY0-P=eAsxkn_O6ir10JUyVSYdhA@mail.gmail.com/
+> 
+> Woah, nobody is saying to skip linux-next. It is Wednesday, if it
+> lands in the public tree today it will be in linux next probably for a
+> week before a PR is sent. This is a fairly normal thing for many trees
+> in Linux.
+> 
+> Linus is specifically complaining about people *entirely* skipping
+> linux-next.
 
-== Series Details ==
+Yes and yes.
 
-Series: series starting with [1/2] drm/xe: Move number of XeCore fuse registers to graphics descriptor
-URL   : https://patchwork.freedesktop.org/series/161113/
-State : failure
+> 
+> > So, yeah, we can make exceptions. But you should ask and justify for
+> > one, instead of expecting us to pick up a patch submission that was
+> > already late.
+> 
+> I think Leon is only pointing out that a hard cut off two weeks before
+> the merge window even opens is a DRMism, not a kernel wide convention.
 
-== Summary ==
+Correct. I would like to see it in linux-next as soon as possible, and to
+ensure I do not need to constantly rebase the patches because DRM changed
+something in the .move_notify() area.
 
-ERROR: The runconfig 'xe-4493-ff449f153b0966cfd7a7291670c927f6b6971d2a_FULL' does not exist in the database
+BTW, the series is in my tree:
+https://git.kernel.org/pub/scm/linux/kernel/git/leon/linux-rdma.git/log/?h=dmabuf-revoke-v7
+and is monitored by the kbuild bot, so this is not a random or untested
+submission.
 
-== Logs ==
+Thanks
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161113v1/index.html
-
---===============2231755941635764910==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe: Move number of XeCore fuse registers to graphics descriptor</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161113/">https://patchwork.freedesktop.org/series/161113/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161113v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161113v1/index.html</a></td></tr>
-
-</table>
-
-
-    <p>ERROR: The runconfig 'xe-4493-ff449f153b0966cfd7a7291670c927f6b6971d2a_FULL' does not exist in the database</p>
-
-</body>
-</html>
-
---===============2231755941635764910==--
+> 
+> Jason
+> 
