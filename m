@@ -4,171 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B2A8E83F05
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 18:08:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5569BE8B388
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 18:08:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF20310E72A;
-	Wed,  4 Feb 2026 18:08:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yq0n2ou/";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAA2A10E72A;
- Wed,  4 Feb 2026 18:08:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770228493; x=1801764493;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=ueNkSWd5+PTsZZD91OeovslgWMF32hDFU/qrBeAmi7E=;
- b=Yq0n2ou/mLHyJTaKwZYF1S4xaGsDOLu84cOCZPV69Bt4qDBWMND1bi5U
- 4OVIYqkHDS42dhjH7Q0DDx6f3nu1W6++XW2EOFupMA01ahZyZHbk2JnpV
- VtSDZmJoKDQMqvNk6BNaaraAearurbsV89HnpVR8+PYdHwoaYYNC4kQsO
- Qbe6x0NNtLqeyKJZcYAiy4QDjAruYmBquglnRL0r9Yzmnk0DuO39nQvI5
- 0Xb/IeyLT76x+et7YCaTxTy/hNZWZvacFC56TSpxP6EEe+8Mpr/FB5GHV
- eFXC+Ey3lhyvQkiU0ntMkZYhqN3C/WVY9ynw/s+mmCVkgjzOopS4sbdx1 w==;
-X-CSE-ConnectionGUID: ygQuA052RYqPUBS2WjHXrg==
-X-CSE-MsgGUID: fQJx2kOqTJmqKW5JAtfosQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="82054234"
-X-IronPort-AV: E=Sophos;i="6.21,273,1763452800"; d="scan'208";a="82054234"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2026 10:08:13 -0800
-X-CSE-ConnectionGUID: Fm0RmgOtQR6eKP4mJf4fqw==
-X-CSE-MsgGUID: Je7qPTqeTI291gdgiu0KUg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,273,1763452800"; d="scan'208";a="209614512"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2026 10:08:12 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 4 Feb 2026 10:08:12 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Wed, 4 Feb 2026 10:08:12 -0800
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.46) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 4 Feb 2026 10:08:12 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ugt2p6pee78/LBca828HDze9+5ALIfDGNMzs1dw6GlL+nzRsE6GC4Uj/SCoF855ohlTedjs+50wpQNQz6kI6OWFslUFpHzGTJ+MG/kUMY9ZnAqV3FInIw1Yj+WOnmKbj5rWhhlxsI0AS305i0RqRwBygsumW/zD0Ps//wacER77HqSSi0pHPQbx0XPUcFo4NcsBPOTs6kb4Ua4ccu+Z/+MjzbVSUPBEz69j7F4Ja4bYxeszTpd/vLknvQxoekcMJ82qzxMEHO43Jgz1UOrKI4IUny3IMqwlPBXugR3PLemjgLQW2bWXmgz0E1KnRgMQf4fWKtuH6EisFBRRZTt1RTQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=tgY6lo73RnCSFlYEY+OLW77yuChPZ3pWJqMkh7UaaWE=;
- b=SY9d79/WdICJS9qt3mjMR+PQdOJoUbcsK4NVe47tWlbNwi4iVeGnH2YkC7/saHzyA1qPsyKigEsL2NYJ1LZRfvEl8XHWGXHgl2e53r5/uMjzeacHYIqHj7j1BrIKMyMDYZbamAzprIGxSoUNP6DzN5ryhkkn74bRjV3Zp1CinYi7JDB3nqTzH+kuIFR2DIrBbxGRKTxF9yWNi7l2fX/LyGc6jK2MGAg1j2N4S7QkG+UMpUWHrh3AIqcfgAYhbnFSqvZMPG2GUe0yUxrBaVG20QxUtgqwZGmXZzlfZryR2VJXZ0ESmYQ0xEOfHs5kI0A+VIE6HHym6wNYZXlgJj+Yig==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by DS0PR11MB7407.namprd11.prod.outlook.com (2603:10b6:8:135::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.12; Wed, 4 Feb
- 2026 18:08:10 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e%7]) with mapi id 15.20.9564.016; Wed, 4 Feb 2026
- 18:08:10 +0000
-Date: Wed, 4 Feb 2026 10:08:07 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- Shekhar Chauhan <shekhar.chauhan@intel.com>
-Subject: Re: [PATCH 13/16] drm/xe/nvlp: Add NVL-P platform definition
-Message-ID: <20260204180807.GV458797@mdroper-desk1.amr.corp.intel.com>
-References: <20260202-nvl-p-upstreaming-v1-0-653e4ff105dc@intel.com>
- <20260202-nvl-p-upstreaming-v1-13-653e4ff105dc@intel.com>
- <20260202234806.GP458797@mdroper-desk1.amr.corp.intel.com>
- <87fr7g7jh1.fsf@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <87fr7g7jh1.fsf@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0185.namprd05.prod.outlook.com
- (2603:10b6:a03:330::10) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1162F10E731;
+	Wed,  4 Feb 2026 18:08:37 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0597210E733;
+ Wed,  4 Feb 2026 18:08:36 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|DS0PR11MB7407:EE_
-X-MS-Office365-Filtering-Correlation-Id: cf3c99f6-2dab-4ba3-4f68-08de64185ac9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?SrO8JCpFLwSxo2idY6lgI7YePlZIjyhiMAInp4uBvIipKF84JFDNZaQQEpLy?=
- =?us-ascii?Q?4PE5oimCK0MJ0ZkZMtULYeWqcVCfycyLgpRZq/NAmnNihfh+Lriabsc4lPNz?=
- =?us-ascii?Q?JGX+g5q9ihN8Z7xD/JrgUJOwoO/tjddf3qv3i8/Iq6htXKTeKXffrOOCfTlY?=
- =?us-ascii?Q?TiNAD6lMXed020Y93qTI9bJQxjPL+3OF6cSxQFXjDmPMF6nlz2RQECqATkmJ?=
- =?us-ascii?Q?DP3TlLvgxxQQDZr2x2lBgbcjA2lc3PJ10vrMazmvnWY9bCnKIW3iIH2xDSBN?=
- =?us-ascii?Q?VGW6outTCshOp0AwvDtZdc9Ow49YwM83ZOEvx9SMmpwtmIifI4MDs+ikG/vU?=
- =?us-ascii?Q?1zUD0jnSw79h7OyfKOZ98FMgd+BlOhH0AHPRVHkIqmQvWC8uuwToZMo8LpFM?=
- =?us-ascii?Q?+upbb6GNpzOOIZV+Bju2llQ2H3qZptc2xS4O3wGYr8lBWHNlfy28mwIys6rf?=
- =?us-ascii?Q?XDJIoSLC3iLFPdVZvxLrKM6AsmqBcoxw9Id4IW2D4SC5KXDxhMB+pNgBgsho?=
- =?us-ascii?Q?4k8meuXVxYzanu6udvXIGwNio0Nidq48T10YlKkuE+kGuMaVKu1wA6h/pZ99?=
- =?us-ascii?Q?mMP3GNeT3Hqhzp7nkct7Gj8Ub0G1bW46TKbiwNC9/d+wF4jgst+H1Vqk2DOc?=
- =?us-ascii?Q?btHpTjbcXL5LlwUEwzZgEUFY4N4aEjZ3Ka8/jmDeOaXWt5fEmyT51nYDEXs/?=
- =?us-ascii?Q?NpS5LEhX7zWkDRZzNQnb+dKst/0wxxATjIlextkYQ2Tp2rk3zYbz0MVDaj3k?=
- =?us-ascii?Q?wlvxdn7MELDuUUhSt2W/FjHk6uMNsDEPdnPkHWIo2snl935KJqVtnS42SG/u?=
- =?us-ascii?Q?GRkVnVnAkHWr+HfJPQoVaAAJXyvgPieqKv1wHeU1ext85By+1O81dhbVOHvC?=
- =?us-ascii?Q?rw/oCsZTJIDHN/o8SjpirgymU9pFvqFLhOy5khhf5ZY6MsuWsy6WrKJpTz7r?=
- =?us-ascii?Q?9Qu6ow+0bRamAlwRj7SMfly4cLVmIHCrLzmAJKB7kOzhabxkBg8L1RnMawOI?=
- =?us-ascii?Q?zrlgSNAaUKI8tKnJMiDCfFAdkyzVDRcHXMczvvoHwV9BmVof/hiRVaI9EPmc?=
- =?us-ascii?Q?oanGmLsrA6zF2Peu9q3w/VgmypgXSwkeRm1R/fdBuJq+uzkeA2chfMSpsim4?=
- =?us-ascii?Q?XRi5JwlRXTFj6Ro2wcAMJnqd7XwdcKILaPc15HcG0imfB1/n3pnfWoth6AU7?=
- =?us-ascii?Q?iyA4HSjFK+/t4bLWmjNCh9cuf8Wm2aIDVw+cp+2pV8zMMH3xDMmjmJv4CA5H?=
- =?us-ascii?Q?ywn+XSI/yIX433byJdQeIpR+QrIAcF0VeuusL0OlmARheX6/flfMT1N8V7gp?=
- =?us-ascii?Q?u0EDI1vc2esx/I3O29QiNjI+KOoxd13AE65WOgutvgX9HdhcYUx4wlCSeIIZ?=
- =?us-ascii?Q?mqI2f9BVHYlGJvMwkr/B9Lsjgzn3kiSGW+IEnlh8BJAMtEjDh9Rgl7v/5rAG?=
- =?us-ascii?Q?xFzpYdYo3Q6c1gwG669Y+etaEc7dhrr2OEiSFcLXdbyMb8wzXIJ30UuGx/FL?=
- =?us-ascii?Q?kfV976ragXR+YVXp08HCXbL9TVIsJ8tubPyvo3wEFvrvDCJ3ePxvwWw6F3gR?=
- =?us-ascii?Q?oJs0enZZuvZciGkOW4A=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?mWdSNcEF8WPFNXvLhaTF+Z9B6To7JyDVTLgrX2KPXN1kzrOw5WCmJO/8n05V?=
- =?us-ascii?Q?mNqCqw5wfoOeHNPP9F1HA6x7bY+2WBaYt1GE6V1p3/BQRivCqdhlIcfvq8YP?=
- =?us-ascii?Q?1dyVn1jOIDtlmCJd/p/5zdUOm67Xa2j0YGxHzZLK+1CoWuOsOhEzCmxr1QFS?=
- =?us-ascii?Q?TYzWKPIRZ9HezO3xFYZB/yJ/X5MJxi018+sOTKKRnVvI89S3ZLYQa7cTiiy1?=
- =?us-ascii?Q?l7qSlsc0Ri7a09E2A+H+GamuOnwtR96zMyJ4N2xN+UwtyRZXNdcJR+x+Jej+?=
- =?us-ascii?Q?N1btjv15ij26hAfBF7SZoprkMNHne70AIR2YwfqC+Oday5Z9LsnVhPWYhBsd?=
- =?us-ascii?Q?e+NS0wnqPTps7A5LIObt6RVGeha2eELe4Mo0y0s2t3tBkdtB7RM2a2g9esCu?=
- =?us-ascii?Q?B9d2orBwe/ze1Wrpr8XfTUP+CzIwMNuCFncU4PTDP6ggNGP1R/94hJ65NM6o?=
- =?us-ascii?Q?T/4MtRfpwJcTbgTjy2ZyWZjd9JGqYVoBPKoUuSUwOhP71m1zLazgzoOLcwwp?=
- =?us-ascii?Q?KmpHnbgi/BGONid0nAMasUMI8WRhg0NXmSaJyeELSmQTW8RWEJ/Sy2zfr8Ap?=
- =?us-ascii?Q?TZQNsJ3siR02d3SL90NGnuai/9P50PWtIh6xRE0HUcGSBUIhdlkBmgHobxsD?=
- =?us-ascii?Q?eXkH3UEzfTziwVX4w28stqm7LlIDZkhKEx7UJttLcgkR3jkcmnpQy55988eL?=
- =?us-ascii?Q?JdXCt6SbdRbuQVw9bu6ile8qnR85McqJ5v8wmHY7pnRRQwvzsahFhxdZdMZY?=
- =?us-ascii?Q?x7Gn0NVWTVrZJC+UlQ+w8V/buLi6jRj2aTgbxyDIfI3R5BYrqOwfPEejVL2J?=
- =?us-ascii?Q?SoemOiMpDy7n0ehzDVV0RLzHWHyhH5L7NriiqspoaW868PsZ2eMFT7fHx3iP?=
- =?us-ascii?Q?unRZfdlQAaE5A0myAAgJBnz58NU9TQlTh/9ajk8fvlRf2VfgRN2PWsIk7F4a?=
- =?us-ascii?Q?HbHUGPAo7GVM3B3DiQwkPK7fFC1T4WRmJLHTr6zKatsEVeWDQ8qlQoBSCDqm?=
- =?us-ascii?Q?QueVp99hrBWzXIcsMDcr5s0dqx+nSyexwCprgy7Vm61AKb8By7Nsc1f0ipeE?=
- =?us-ascii?Q?pd5NfJ7cGNanhCwW3Nkb7dKT1BAFP/QccLhtZeXrsT0+7RbtEU68Wd4y4Je2?=
- =?us-ascii?Q?MBQJOqt0aOEiUr1Kru+E5QCZ3tZC90wZ531hI2CDO1c7fylsWOzHRHzRH3Ra?=
- =?us-ascii?Q?MSO5+Izild/lGcXjqNvkCbWT6l+RdMcH34G5KHGKOFNSe+te9JOiuBzm9YaR?=
- =?us-ascii?Q?X/R54ktMAxWpB/0AUzDd6FxjZzDv3Vi49LfMBjIs20A23KcySHUonE6QfwAo?=
- =?us-ascii?Q?hSn5/vA5A2IMplpKDDfomTNF3W/EqWrZ7ViBTGyGwJ9fgXYwkb+PBbBxYGBa?=
- =?us-ascii?Q?gYJY4NXWTReA/M4ZYYYQ5/b2Z9v41Zjzz08J3uYr6tpZCCshVqvqB+ojYNp2?=
- =?us-ascii?Q?UqtQ1tZSbLGluXbM29NktJYiZlMhoyMKzZPm7qXo3i8m+MlHIcPj/qMIkZlE?=
- =?us-ascii?Q?D3E/7SxuwKIHEyx4KmTLpkLCa+3BUfojIG6Wo04tpkrGie7PHvlJJnjWWtCn?=
- =?us-ascii?Q?BDvXkkuPwRmk6CxIh7d0+2Dktn9hEbGUQfDyjy4Rj3ArzGl7dpiQQO5XaIFs?=
- =?us-ascii?Q?W5B1hRB11OqbVwcizKfjPRVmgIQ58qBgfmgDa4KDpFzGK82mEEmhzJIcSoLw?=
- =?us-ascii?Q?6n/SOTqYANx2HatJXWXKSI7gU3HhsAfR5tg+x3ffKsftCHCLZp0EOykihnum?=
- =?us-ascii?Q?BHBztz+31kIUvw8iWJMZXQzCUriRgcc=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: cf3c99f6-2dab-4ba3-4f68-08de64185ac9
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2026 18:08:10.0119 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3I+UpebDqv/oo2f89SUy9UH0cFnWDd9wMQBXWBdkRbuR6ynebX5XuvVUjP0hWhTn3f0t4NwBWXaIJLm8q2TpInlz27SlnumnqbVa0/HOcdI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7407
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_CMTG_enablement_=28rev3?=
+ =?utf-8?q?=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Animesh Manna" <animesh.manna@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 04 Feb 2026 18:08:36 -0000
+Message-ID: <177022851600.225523.8341971986279480712@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260203134407.2823406-1-animesh.manna@intel.com>
+In-Reply-To: <20260203134407.2823406-1-animesh.manna@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,65 +36,297 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Feb 04, 2026 at 09:59:22AM -0300, Gustavo Sousa wrote:
-> Matt Roper <matthew.d.roper@intel.com> writes:
-> 
-> > On Mon, Feb 02, 2026 at 06:43:19PM -0300, Gustavo Sousa wrote:
-> >> From: Shekhar Chauhan <shekhar.chauhan@intel.com>
-> >> 
-> >> Add platform definition along with device IDs for NVL-P.
-> >
-> > Not sure if you wanted to add bspec references to this one like you had
-> > for the Xe3p_LPG descriptor, but the flags you have here look correct to
-> > me for now and the PCI IDs look correct so,
-> >
-> > Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-> 
-> Thanks!
-> 
-> I'll send v2 with the list of fields and Bspec references. I'm
-> copying/pasting them here as well, just in case you can spot any errors
-> before I post v2:
-> 
->       .dma_mask_size (Bspec 74198)
+== Series Details ==
 
-This matches the way we've justified this field on past platforms,
-although we've discovered that the "physical address range" value on
-that page doesn't necessarily directly translate to the dma_mask_size we
-need to use in software; there are cases like ADL-S where it isn't an
-exact match due to other characteristics of the base platform (MKTE and
-such).  But that extra information isn't really available in the
-graphics bspec, so I don't think we have any better reference that can
-be given.
+Series: CMTG enablement (rev3)
+URL   : https://patchwork.freedesktop.org/series/157663/
+State : warning
 
->       .has_cached_pt (Bspec 71582)
->       .has_display (Bspec 74196)
->       .has_flat_ccs (Bspec 65255)
+== Summary ==
 
-Not sure if this is the best page for FlatCCS since it doesn't really
-indicate that a platform does/doesn't support it (e.g., the page doesn't
-drop out when the bspec is filtered to platforms like CRI that lack
-compression).
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast 241994730989320c926da9f2d0a5ec80b48f993d
+Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
+Fast mode used, each commit won't be checked separately.
++drivers/gpu/drm/i915/display/dvo_ch7017.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/dvo_ch7xxx.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/dvo_ivch.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/dvo_ns2501.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/dvo_sil164.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/dvo_tfp410.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/g4x_dp.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/g4x_hdmi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/hsw_ips.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/i9xx_plane.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/i9xx_wm.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
++drivers/gpu/drm/i915/display/icl_dsi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_dsi.h):
++drivers/gpu/drm/i915/display/intel_acpi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_alpm.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_atomic.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_audio.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_backlight.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_bios.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_bw.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_casf.c:153:21: error: too long token expansion
++drivers/gpu/drm/i915/display/intel_casf.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_cdclk.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_cmtg.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_color.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_colorop.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_color_pipeline.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_combo_phy.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_connector.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_crtc.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
++drivers/gpu/drm/i915/display/intel_crtc_state_dump.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_cursor.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_cx0_phy.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dbuf_bw.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_display_debugfs.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_display_device.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_display_driver.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_display_irq.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
++drivers/gpu/drm/i915/display/intel_display_power.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_display_power_map.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_display_power_well.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_display_reset.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_display_rps.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dmc.c:131:1: error: bad constant expression
++drivers/gpu/drm/i915/display/intel_dmc.c:134:1: error: bad constant expression
++drivers/gpu/drm/i915/display/intel_dmc.c:137:1: error: bad constant expression
++drivers/gpu/drm/i915/display/intel_dmc.c:140:1: error: bad constant expression
++drivers/gpu/drm/i915/display/intel_dmc.c:143:1: error: bad constant expression
++drivers/gpu/drm/i915/display/intel_dmc.c:146:1: error: bad constant expression
++drivers/gpu/drm/i915/display/intel_dmc.c:149:1: error: bad constant expression
++drivers/gpu/drm/i915/display/intel_dmc.c:153:1: error: bad constant expression
++drivers/gpu/drm/i915/display/intel_dmc.c:154:1: error: bad constant expression
++drivers/gpu/drm/i915/display/intel_dmc.c:157:1: error: bad constant expression
++drivers/gpu/drm/i915/display/intel_dmc.c:160:1: error: bad constant expression
++drivers/gpu/drm/i915/display/intel_dmc.c:163:1: error: bad constant expression
++drivers/gpu/drm/i915/display/intel_dmc.c:166:1: error: bad constant expression
++drivers/gpu/drm/i915/display/intel_dmc.c:170:1: error: bad constant expression
++drivers/gpu/drm/i915/display/intel_dmc.c:174:1: error: bad constant expression
++drivers/gpu/drm/i915/display/intel_dmc.c:178:1: error: bad constant expression
++drivers/gpu/drm/i915/display/intel_dmc.c:182:1: error: bad constant expression
++drivers/gpu/drm/i915/display/intel_dmc.c:186:1: error: bad constant expression
++drivers/gpu/drm/i915/display/intel_dmc.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dp_aux.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dp.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dp_hdcp.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dpio_phy.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dp_link_training.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dpll.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dpll_mgr.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dp_mst.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dpt.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dpt_common.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dp_test.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_drrs.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dsb.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dsi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_dsi.h):
++drivers/gpu/drm/i915/display/intel_dsi_dcs_backlight.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dsi_vbt.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_dvo.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_encoder.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_fb_bo.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_fbc.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
++drivers/gpu/drm/i915/display/intel_fb.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_fb_pin.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_fdi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_fifo_underrun.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
++drivers/gpu/drm/i915/display/intel_flipq.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_frontbuffer.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
++drivers/gpu/drm/i915/display/intel_global_state.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_gmbus.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_hdcp.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_hdcp_gsc_message.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_hdmi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_hotplug.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_hotplug_irq.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_initial_plane.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_link_bw.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_load_detect.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_lspcon.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_lt_phy.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_lvds.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_modeset_lock.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_modeset_verify.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_opregion.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_overlay.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_panel.c: note: in included file:
++drivers/gpu/drm/i915/display/intel_pch_display.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_pch_refclk.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_pfit.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_pipe_crc.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_plane.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
++drivers/gpu/drm/i915/display/intel_pmdemand.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
++drivers/gpu/drm/i915/display/intel_pps.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_psr.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_quirks.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_sdvo.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_snps_hdmi_pll.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_snps_phy.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_sprite.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_sprite_uapi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_tc.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_tv.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_vblank.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_vdsc.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_vga.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_vrr.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/intel_wm.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/skl_prefill.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/skl_scaler.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
++drivers/gpu/drm/i915/display/skl_universal_plane.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/skl_watermark.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/vlv_clock.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/vlv_dsi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/vlv_dsi_pll.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/display/vlv_sideband.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/gem/i915_gem_pages.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/i915_initial_plane.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++drivers/gpu/drm/i915/i915_panic.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
++./include/linux/pwm.h:13:1: error: bad constant expression
 
-A better reference might be 74110 since it has a yes/no on compression
-support by platform.
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
-Matt
-
->       .has_page_reclaim_hw_assist (Bspec 73451)
->       .max_gt_per_tile (Bspec 74196)
->       .va_bits (Bspec 74198)
->       .vm_max_level (Bspec 59507)
-> 
-> --
-> Gustavo Sousa
-
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
