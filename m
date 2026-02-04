@@ -4,148 +4,172 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A046DE9537A
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 10:59:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DB3CE95385
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 11:24:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 588F810E5DE;
-	Wed,  4 Feb 2026 10:59:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75AC810E5D3;
+	Wed,  4 Feb 2026 11:24:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="V/CVfNsr";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JZ9CzEyv";
 	dkim-atps=neutral
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012067.outbound.protection.outlook.com
- [40.107.200.67])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C9EA10E5E3;
- Wed,  4 Feb 2026 10:59:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C57A710E5D3;
+ Wed,  4 Feb 2026 11:24:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1770204286; x=1801740286;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ in-reply-to:mime-version;
+ bh=oLDWoM9hWzTNoYbcar/V+RLZpnK//P+FS9QsDCJuRMs=;
+ b=JZ9CzEyvchfyBzCJhLYsMnLNWcb/onabeCPOXYtL0SUkOIQ01NpPRZoz
+ nkx0ZO9D0H9XBRmYVrQpfdgbSYFzRGzH7/vh+G4wctocRYGMgOKN8JKL3
+ BN9//T6c+vAC2Au2+fqoj1zJE3dYWoVmOcF2QiTUFeahHrLKGi9G8tKwD
+ 9FtDjXF2s+YiE92tij7nWk57Cnh1Sh57cxZbjOn/hk/QxmAlzh9lCusO+
+ TQAVyIurNVkQYTYA5+E9kaPpwOA1qRNw87DSL+Npb7rgBtX4L3/iZEwp8
+ QEecryoV/CWdxzb5wmzTMRemVlqhbUeD+Xg09fIaqSlmoodJkrIu4iAsT w==;
+X-CSE-ConnectionGUID: CgU4fgOFRX61x9bCVepwZg==
+X-CSE-MsgGUID: uGvseDS4TdWh+xKKEboSBA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="71551539"
+X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="71551539"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2026 03:24:45 -0800
+X-CSE-ConnectionGUID: WoJblExNQjK5MzFmcn6neQ==
+X-CSE-MsgGUID: Df7JMkrgRfm9vG0yheMThQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,272,1763452800"; d="scan'208";a="210187724"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2026 03:24:46 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Wed, 4 Feb 2026 03:24:44 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35 via Frontend Transport; Wed, 4 Feb 2026 03:24:44 -0800
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.30) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Wed, 4 Feb 2026 03:24:44 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Qa384mHba8ba7lRPh15xfNmuM3A4mddTw2Qsaocu4RPQED/ehJGnHhp1/tjFKvQ5cgnCDKLfsXrfIke5Q3ee5u3rV+sKEYBmTFBJ3q67VC2TcOnEphDn2zU2fCSb7EO89UR3FVtphx7XrqLX3aTsBDBNCBAGIM+DeQHnNx+YC2MN5KrplqLbIbE0FnC1zEOlER8m4mrDLu7XU6/ryb1IYexQFI1LmlVVcVoohiWOJvtiniaoOlgX6AfCVY9Dc+61f4hcQv8cE4cP51ZTEzDKAfrvCAo4YC1KKYI1TUHfOp2Hk/RA7/BHKKFrg9WZ3N8Xr+LJ43FKhah4Z64rfMsKfA==
+ b=ikQQTGlb5GTh7X+9F5f3N+D+MJYTk73GakexygewW9kDUgTtA4PPd5J9Jfuht7Rzbw9fx1tH5Rw8179aDwirkk7DUZiGdwWY84fpUJjGlJZ6607Uuf9R4HhPsKHJdYIT9uCDZkTihRzS+u3AhV2xI9XqOraBXWvlpCU2ywoR3jtaaKmNWLxKKsr1wc7jrGTpKtLs7Gg9SpjvVTETC02MtAnypt274gR+FboN1c/oqR4IjLDGeyK13gTstt1JNf8WZuphhmmfhFvOOL6JgVsN0P4BNWueTcZMXIi8frpv/cM1aOWtsvoE49llxUL8Ny6gpJuV1px2seZtnDjBYFrkyA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8jehpltHLsBoRmQxy434axTlFgBBafylWk0bWGmb9jA=;
- b=J+268eWlrlx8K8cwFfmNSVRr9FrRukW+IQJI/8OsHPpJP2UmG5/1W5YqtK2XVETeAtjl/sC46UoJHvi7ktvHAahSc/tPbtls6vV7WnxmDY3p6Iby7/vQmjQziAH1EDQnzIKzuE1tQMTpmzmu+PDtNXB3VpQ0F72D9IGUPqBXLKMK8EFDzOLSWpg2bSCyKAki2qrVnibEAc28Ce2xDV6+qSPafOOfc38IKiS0vfm1F3O0cm+Uyk/So4aPHxrSc6MwqBI4beBbYxaGuTN8zmg4gO34HjFPzeBkqknl7xWlTPZcMwGsjM4K4vwNfYRqWlrtj+5sR9cVeNYTm49RY+xR9g==
+ bh=MzLBvpZqPu4SfW5ekNqWEsJT4qzKmUifVtPOEa8Puko=;
+ b=jLtCy0UawBve+MfmAZpHAJtRKoKo5uoGTJeepwb3bmSJL/MXvF+ntvMhFu+syDD8uGrkb8Se4cSQdROTfbtZDP4OChFb/idmFXfVSCi5+ZlElZFz2KXwhsvAiUSZCBuztMr0WhDRPbgxoL/rhAzly+fDVuKc5eGocSoUVDzUIoFCmaB7ghkw3TVj8TvMAfENr5MNIbjdqMhuJ52hs992w/iBW07iPgn+v9HXHkA8NPLUKViCy7wB9mSfdKalnTnp0bwLbEoYEXWXzFJW1WWm6PMeBG3YN8uHJ3q8KAhRbXtFYrbYfLUTJc3Jw17NKnvNno4hIX7zFe5iiFyxzB6Aqw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8jehpltHLsBoRmQxy434axTlFgBBafylWk0bWGmb9jA=;
- b=V/CVfNsrXeC9N50buR4HhL7llIVrLbWWMlLVXFWYpkrlQXtybDfx+tGTIUugxMlBgul8jQCj6XfDXXVNm9C6neHTVBSZx2yKuPfc7M3R7gH/G49+S6o8HMbepoBwUDU8PjCoWuApcKGmr9y5SadiEgDskv9PMM1EuTbKoh7sHJJKwP5xh5KLBTsaqLvzzRDbROC/th7NJ5UUcA4Q6rmBi1kMZ34/OWFUQeKisvH23wf/JSdhEhPjNSJStQaOhqjhDNlYVh3wp48OPZ2y7utjJ2LyIt5mi6zA/peFkoIWr5dip5PJsfmqTf0F7LQ4mOAAoxnBBJayR+56WqAPbqzfUA==
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB7726.namprd12.prod.outlook.com (2603:10b6:8:130::6) by
- SN7PR12MB8027.namprd12.prod.outlook.com (2603:10b6:806:32a::7) with
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
+ by DM4PR11MB6552.namprd11.prod.outlook.com (2603:10b6:8:8f::7) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9587.13; Wed, 4 Feb 2026 10:59:07 +0000
-Received: from DS0PR12MB7726.namprd12.prod.outlook.com
- ([fe80::5807:8e24:69b0:f6c0]) by DS0PR12MB7726.namprd12.prod.outlook.com
- ([fe80::5807:8e24:69b0:f6c0%4]) with mapi id 15.20.9587.010; Wed, 4 Feb 2026
- 10:59:07 +0000
-Date: Wed, 4 Feb 2026 21:59:01 +1100
-From: Alistair Popple <apopple@nvidia.com>
-To: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, Ralph Campbell <rcampbell@nvidia.com>, 
- Christoph Hellwig <hch@lst.de>, Jason Gunthorpe <jgg@mellanox.com>, 
- Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>, 
- Andrew Morton <akpm@linux-foundation.org>,
- Matthew Brost <matthew.brost@intel.com>, 
- John Hubbard <jhubbard@nvidia.com>, linux-mm@kvack.org,
- dri-devel@lists.freedesktop.org, stable@vger.kernel.org
-Subject: Re: [PATCH v3] mm: Fix a hmm_range_fault() livelock / starvation
- problem
-Message-ID: <2mts4ijet6ezaqmqgzfljiptv6dgqduzhn6sfxvmec257j4beg@tuj322lx3j5y>
-References: <20260203143434.16349-1-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=iso-8859-1
+ 15.20.9587.12; Wed, 4 Feb 2026 11:24:42 +0000
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::9ca5:4d1d:db45:f523]) by SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::9ca5:4d1d:db45:f523%4]) with mapi id 15.20.9587.010; Wed, 4 Feb 2026
+ 11:24:42 +0000
+Date: Wed, 4 Feb 2026 13:24:37 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH v2] drm/i915/ltphy: Return true for TBT scenario during
+ lt_phy_state compare
+Message-ID: <aYMsdcUWpvF_DXgQ@ideak-desk.lan>
+References: <20260203024141.1549517-1-suraj.kandpal@intel.com>
+ <20260204023247.1560196-1-suraj.kandpal@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260203143434.16349-1-thomas.hellstrom@linux.intel.com>
-X-ClientProxiedBy: SYBPR01CA0185.ausprd01.prod.outlook.com
- (2603:10c6:10:52::29) To DS0PR12MB7726.namprd12.prod.outlook.com
- (2603:10b6:8:130::6)
+In-Reply-To: <20260204023247.1560196-1-suraj.kandpal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-ClientProxiedBy: GVX0EPF0005F72C.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:158:400::2ce) To SJ0PR11MB4845.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d1::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB7726:EE_|SN7PR12MB8027:EE_
-X-MS-Office365-Filtering-Correlation-Id: 82c0e199-2ead-4a1d-2740-08de63dc6b04
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|DM4PR11MB6552:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6a725a5d-644d-4125-c92a-08de63dffded
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|7416014|1800799024|7053199007; 
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?sNNPmEDNqHPLQL0LFzn2qsvb34tmhdVnthgrLmK1VGVLnmXV0eU8MJZnvI?=
- =?iso-8859-1?Q?cc4J6pgnKNpmVDH+qMY7ZMZaptC9KCDSm949RVSRSBifqCd1dcDJEGkz4Q?=
- =?iso-8859-1?Q?V9gSLcBRytv6LD3tzS6LemDjakHAA8BYxrZdAytqDJS7/OHhjlRDEEGLX4?=
- =?iso-8859-1?Q?k4km5PlJoVeKnLTBhWlpqAE1nbADbwdmmxYpeipz+6vPxTEWURi4XJC6+6?=
- =?iso-8859-1?Q?+L6vjH1Sf+f8zREzJDSnj3xGqaid9IanfW9hcoxgxINdCuKXZMII+NRVP6?=
- =?iso-8859-1?Q?knWCkTU87nyJVyuzcqAm9zEMUcKSOApixXvSxRQ6GpOAEcDRdODL23x5fj?=
- =?iso-8859-1?Q?OzRYbX+74olR2TpXSfrTW5ONo/2ndFFJdNgjDmLWmczQ3xdt/VIWRnl9tT?=
- =?iso-8859-1?Q?is7PaNKkRWU3AjVBTCoxobkzld4J0h6jMxkwslrotojJ/c8sIMtEE3XIQ+?=
- =?iso-8859-1?Q?qCSQ3Aw32wdYjjHD7qUQAgZQT90FBPjB72YrJAhVNDnmCeLec6BTnoyY9O?=
- =?iso-8859-1?Q?ESY/ePnUF+GeKvlQN1p6mgadLX4Nc+uTGet0V2sA3oZh5vinkXleqfp8VM?=
- =?iso-8859-1?Q?XINZNXSQee0EfVdWH1kMEbCk7Eq1PmPde93hBhzS+O1xemiQLFroQsX7Mt?=
- =?iso-8859-1?Q?QAzb2Qgku2KJ6oXVkQ0Rb7OloB7t+ytgVVEUWQIV+olIEijAjC8et6HuCB?=
- =?iso-8859-1?Q?cBlaIsOzw2CvVOjMafemCbjO4R6tyopqB/Yd/HphMGHenSyrKosTfxM1u9?=
- =?iso-8859-1?Q?enMs3qh2y5jbJ8Zjv4XFMxe9LMhtMxTp3MbXFSE0geS65pvMOhZhofh/q7?=
- =?iso-8859-1?Q?m7YpnfNZeXPHou118PIwiK5vf+tm3twaUuc5m13dZWS5ufT0Nq9HjuZ0E0?=
- =?iso-8859-1?Q?TfHhNvmavznS5KinULv7jj1WF01AW2nU28LEKAL+/FbE/wr3cRnxuvQf8a?=
- =?iso-8859-1?Q?BxFhquTXR+2bgNjoUxlF+TvS8uPLBN46qmINEmgpl9uFlEebgbyR2sb/C9?=
- =?iso-8859-1?Q?f4HwK2tTeD1KrP4gzfNasEp4xHobj49OaxPTdlrZUKb8Scm8eYDnq+vDrW?=
- =?iso-8859-1?Q?2GSKCBMCqiW7Kq2+1BHUkXFF4JGCVplAsU+zNnXY7pKNGimh7HTf9OLBN5?=
- =?iso-8859-1?Q?loGO6CwmNe9ubeND2L4xX0Zzb15MRuNbRkZ7LSMj1WDzOCsOaHPdWneTlI?=
- =?iso-8859-1?Q?SnxHUuEF9aJQX8/nCrNlsqa5d4DWWqqxM010F3cnc7bVY2DlMAXSS+rqIl?=
- =?iso-8859-1?Q?i679YyEhSKH6GLsoT76dwnb8+2ieLW9xLtxyeoT6jG+MHvKbu/6EoOracz?=
- =?iso-8859-1?Q?DV9+o/IWhDfrIHx6WCuHAIlS8x8QvyvJXyupvVnjPlhLYT+2O72AyG+tVN?=
- =?iso-8859-1?Q?XQlcTUHtLtqdfpwQQ3k1e17LSO6CbInQXKy/TP/A2O1QcDsAj9eSLyV5DS?=
- =?iso-8859-1?Q?coMS9zzPXEQuIPFLyct9Qk7wg0rW/zfiP8tqLvcbUmOhTsbXiIxbqTO27g?=
- =?iso-8859-1?Q?O6DcCcgSv5cdpkDkOHXNPE2PnVGuUjZP3kmH3arcr83HFpPao9P3OLYlgI?=
- =?iso-8859-1?Q?/zC+NFmZ2+5gVzn9es40pw4xymW6IuZ4lNUQnBhhWHDVSCrhhUm5CUIrxD?=
- =?iso-8859-1?Q?J5xA8/PqTRwYc=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?7TN5ko6klGaGq8++LK0XLJ+eW0d10fFqpW7TqvmH6PKHTT+4bQid3F4Ylfcj?=
+ =?us-ascii?Q?tNYStxCOmWLzKuwptn3+NELeCfwdXwKIlc0kRRq4SHy4AP1LWCTnrqlpTg2g?=
+ =?us-ascii?Q?F4fimNuvNAkj+2s2oYjogL6hw2x0367cgsnZHqOCs1BVS1tPYxYQInc0FgH+?=
+ =?us-ascii?Q?gpO2CjXDaEfxgXeYTwDpo+EBF/PwUWaDu2phnA0gWkd/tSzE6kL0kJ/gbFR8?=
+ =?us-ascii?Q?dL905PdbmA8vOOumWKNQjeyiqkVCgIRI9gDStv0TgoL+M5gXLTw2T6rd8SZc?=
+ =?us-ascii?Q?VYxiUkPdWcXlD58T0PMJ0KO+Vzx1oOAm14CoB92PES9/+w+k+kwPhowxg0bx?=
+ =?us-ascii?Q?KfjW2+3RKGztvEc7T3F6+YCkn7DXRDATUZz36jwh3LB17ipU2T2RxT3z1Pk+?=
+ =?us-ascii?Q?2tbyzkSqNEuG4GN7DJzkJXSAzE96/pnFNHibliU1cc61/NF3vilvCC1TL3cR?=
+ =?us-ascii?Q?3ppmihIEA5e4uaheslzG9cZwYdU0kJM/LP0kmFvncIjyGVU4+BrnaAQnH2sI?=
+ =?us-ascii?Q?s3UDYIhYM5+jXLSPvxGYRnr/3DB8w1A4yrewYELaZsP0ncoIp17qlRUf+3Mp?=
+ =?us-ascii?Q?SophS+8J31YpDjS+GA790DsiPMJRaoBgBjyMo4kSoluTdgXt89Mv0IQSNhdV?=
+ =?us-ascii?Q?Jsv8U8FuOdEFpMXXt8GlOm3PKx+KBOsll3y5T4f7SylYHoayb03mFFZtJTYi?=
+ =?us-ascii?Q?j08TFmAF27IIpgfovD14UsWwTRV4gNRNNya/gy4HMlp1H5RTLkqdAOYOYh/v?=
+ =?us-ascii?Q?FqvhL5zxZs094XNcgeVTZCcubKeA7jds+RJXX/MYQwmW298l/FbxLvMO1Zhw?=
+ =?us-ascii?Q?GK8Ikwh74LUM21LKamtzAvC12BR+tAaQiwgKp1CXYV38GenPIMnCg6mc7f3a?=
+ =?us-ascii?Q?q9oGBhJd4gnpvqJQT6lJfh/8JJ4ib0k4bg1eWbAJb6DSfBb17Je06oX9HJFJ?=
+ =?us-ascii?Q?LiVOzDusoCLyADCAe/jOxfeot2gICwftTuH+RJ+MsVxRAMF0QA2xa0fWVKsP?=
+ =?us-ascii?Q?cBexcUDVMCLfZ6f092mNjW1wV4g3yXaeG9rxlzD4TLgfIv3/kCrlB5PaSDEA?=
+ =?us-ascii?Q?YJaytHMcWS8YSm9alB3PaRNE0GOHKX3AWC/GFvvnbPvSEAoPBK1VNZ/U2kZM?=
+ =?us-ascii?Q?rg9jQNcLFi5ht+zfJGhg7TmqW9zvgurMUeQv0xjXwIQL8Tcb7saWtk6LfAyF?=
+ =?us-ascii?Q?DANxcqtwxPkGJuyIRX8I6f3y2uhKh8EmcRFXiUc2PBC/3DdYfj9dUOVI/Qnt?=
+ =?us-ascii?Q?C61ReTCHrjT0mucfTbumNufxaUcJDRL/RJBeVX4Ia6GKfzivtX0XtDjdYO44?=
+ =?us-ascii?Q?H9Q9/iRCEfsroTNhy5vmSzp1Qkx8yu5KwNqNgH06I6bGf726KQPNeRV9lXvl?=
+ =?us-ascii?Q?rGAwt8Z4KW2sOv5DDnHCDjyxffU131w2xCmipDS/12o3b9B0ESAhzHtzvbHq?=
+ =?us-ascii?Q?jw14DzYOyTjPGmhhYqeNT5safj/YRGYAB3PPsGHO1oKLk3qAGF5J4RqkX8JO?=
+ =?us-ascii?Q?se6UIjViRcMPh3FrFLmM7R3pFhr/zMxawGcOxOkPW3nlgVzidYizFlbzsibd?=
+ =?us-ascii?Q?0grh1/mQL6aQu9iWBFA=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB7726.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(7416014)(1800799024)(7053199007); DIR:OUT;
- SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?vxOcJyF0TUhxG2v9WgT72zkrs1gO3g7pfxV6/8UukjqaHBKlhvAj5ktEGu?=
- =?iso-8859-1?Q?Va685LFcywMZvofu9I2K79ANa7ym3seZuVWWrmMzLeO3tTVLT6XAgM2Psg?=
- =?iso-8859-1?Q?S9SUQEGNLkc5KKIN4yOhqYtPiQFhlIdyigLfgcBgtOXRtzkYYE78uvsnpP?=
- =?iso-8859-1?Q?Ppc6/0DH6EyvJ+ecF0TCBPjJ1GNIe1i6sKSOE8p2hNkq+CyTMiYBxWpks1?=
- =?iso-8859-1?Q?kET3KScJvhWNpxuaJ6dePzwXXfMFAeWYyBVu/sA6bweTf615fgrBmv7yFl?=
- =?iso-8859-1?Q?frFZ5ISlQe0nzxWsaouwhNzoaGxJI6XYqtZOgll3GfD9rmAnxulB0ZHT2n?=
- =?iso-8859-1?Q?CRv0+9YH8zk42OeMmqYmDLknhZsrpdIQhm8nd9XCrHUOLmWE6q9a8N3JXO?=
- =?iso-8859-1?Q?gCVJm4SZZ8FR/hdVcs3pGNExIXpLgl3/aSctM30Lk9/BuA8/Tfo1Qs209U?=
- =?iso-8859-1?Q?ljelUSjoXUzpOHUHu/nydg0iT+f+vx6yGi6e9dwyF60OZZBvTvjBO3heT/?=
- =?iso-8859-1?Q?yJyK8+eK+Hpu+wUzaBLp1f14dh2YdlLRh2yptTkErXMpGpvrD3JlSBZL1h?=
- =?iso-8859-1?Q?I9PKUaK98VCEW8/ZyDZMArifPitYD5CqDEp3sHaXzm/06DbKnR16ObEyNq?=
- =?iso-8859-1?Q?kbT0Pv5vqBLe0VlAwPIbDIRVnQiWZQYFk4It/afLIg8DyrcbtUQ/2BD0kj?=
- =?iso-8859-1?Q?2RnvDyqwyWxQeLRLyVsZhYhckrR2WdiSS4gsxC4FPR3FSphuvNUe7wnL/U?=
- =?iso-8859-1?Q?aDVwzrvtXAuwK/IuILcUXQ0MU0+bNaMGB88tWXOSTz/s8Qn6q714nGK9Hm?=
- =?iso-8859-1?Q?j6r8k0KrniuFC1DaX2y4xMDgZY1MapapsH7Amdo8o6uatOisNBKzfas9SU?=
- =?iso-8859-1?Q?9ZsmCuS7zQdOqVkwN44h1daIIzCqPeHS/+kM0GuX17EaIwkcKzvY2+PlEF?=
- =?iso-8859-1?Q?kZgSmofvOGTryf4OfEFSQiVRIA0Hqhz6jwGzv1/L9m9P0SvqhVcwJl61+S?=
- =?iso-8859-1?Q?/yL2RwI1VJPQWbmRl76dtrcCZJUcmYN4RHqlLusDPkqXQhVSfHWkx9hqU7?=
- =?iso-8859-1?Q?osLUzWfeJ+4+vHiDD5R6oKF66ysBLOtM9yYuxd80AW1Xm9vyCAtw6ecg/k?=
- =?iso-8859-1?Q?k2TOSOoWx4cgeeMSXaUl9kB+iI8aXOUdrs9X7Qd2v7rvPj/AxKBkD2EdaO?=
- =?iso-8859-1?Q?MzYlskeNiAQ4y0NeZoAZCIHuWObHf7cF+zNiTaZkIlBWYJpehx6UxJb4RZ?=
- =?iso-8859-1?Q?P9sTKtFsWggRqCoq6sxHNSga201pHoBWU7k4EwmIi/XeiwWS8YSL8DB7D8?=
- =?iso-8859-1?Q?m0SqbGxNaaQTul/OftCc/oy+sZKpt/nbSUtll9w0k9JNKs2FT9qgzA0Ayj?=
- =?iso-8859-1?Q?r/PQ6u+hUfidvpQs8fJLuIABKoSmuC8kHI0H5xMgKOEWxzFOQKn/06soHs?=
- =?iso-8859-1?Q?X3wcULv43XJHZq1w3PhC5oUQls8boMJAWEgkEjvMBcB+KgAVC4ipkvlFs+?=
- =?iso-8859-1?Q?cb0I33KvkC1xdIf0QHnan6o6yhO/gZVO3AQmRkeAyPspHyCu/jCVwHfsfE?=
- =?iso-8859-1?Q?1V9wV5sf3u8l9REo9UIej+m6hGN7KZoB8Y6FyP1OGw2dypXgWebj3Nx2hi?=
- =?iso-8859-1?Q?tbKedo6XL58Nu4mO8hkoK4wNjQMOlCJiZp01iIsHtTq2adSIDjpd8i9Cyo?=
- =?iso-8859-1?Q?a05+mNke/EseFKFkOjAPIMDIh5EWzFIkG5gSDYkM3xpIdcEOC+3Lt0CMfp?=
- =?iso-8859-1?Q?F3ICFSy+ibA6SR0Er34JM0hFJW1glt+XTk1FFJ2sLY/2ko6s0vlXX86KfB?=
- =?iso-8859-1?Q?eAreWo72+Q=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 82c0e199-2ead-4a1d-2740-08de63dc6b04
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB7726.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?dDoBBMv1uf5ETu2F3D0fDd0AL7L6aRhjhTVrtqx4QeaHw756fuKLuzJ5hki7?=
+ =?us-ascii?Q?7jAegMfLW3VCnfg82Tgw5dggQhb1StD7dbTdPhCzgN+Pb238rZhCzo7zBSxO?=
+ =?us-ascii?Q?2VkW4+T6v/yV5KjvR6pmIUN8FbehlVhao0dj0whG6K1AZWSJnZJtLGFW0rcY?=
+ =?us-ascii?Q?cALem1Wcq7Jnq1OxeIqil6Fl+CCbTvAjQh5f1sKnJYKCAxjcaxfkKtaQahgB?=
+ =?us-ascii?Q?IqDb4EuyJ61TwzO9ZtwdUW0WzN4wNgpqGSnUEZ6Z53E5/ju54e6dlzjQ4Bz1?=
+ =?us-ascii?Q?XEhNKjs3vctirHlr3dQugEPV+H7r531vRGKXl5E0NELnSzaA6evlD5b3bRGo?=
+ =?us-ascii?Q?xhKSdwEv18FQ++gLEExT0Yx+QYsIH9TD2RLFtsN+KjwfrKw337KGvHxhDMOA?=
+ =?us-ascii?Q?aMaylWbWrmzMHBJxxQ0eeyta4nlKkku6sPFLb1mR5HEtTo4tUODM40qQPhKg?=
+ =?us-ascii?Q?mnyy3svf819bTV3YrdANocepXKhHp8q/JbEGCiYUwhZxTKOyY9cOUNv7NCR1?=
+ =?us-ascii?Q?PxukbIunY3pzWU7QkKCr80GdOsCEfADQ4JgLMjO5R6iPBQQ3ua+SiUsbX9oI?=
+ =?us-ascii?Q?bOmU9A0aPCU0cRmx+U511KXSAcUWc854qNjmeYghL7onX0mZtAYNVzHI/LYd?=
+ =?us-ascii?Q?cAKjQ8TxpdFlipkAAUp7Vl2B4cZ+sUuaYkEaqH48Zyz8f8c8oktgw3xtP6Bg?=
+ =?us-ascii?Q?dVWQ9GgRhtOWC26MAId1REG/sn5WhRDdnGxFtIpKLlooAsileCPwetwSzmTW?=
+ =?us-ascii?Q?mSv/ICeQfIrLoFuhy62L0qXo77DvkIYFbK105QzWCI/kcYUZGAenxOITF78A?=
+ =?us-ascii?Q?9rdBY/FbYEyEjoDnjCxeEkKrtRhfcwR3+2nHbcCTT1ec1e2PDGdhfOFkral7?=
+ =?us-ascii?Q?46i3LibEfu0RBT92llbXbLKuVggM2o2VPXOD6cTRaEroK9kneGnMaxnij7gJ?=
+ =?us-ascii?Q?7bKZlhcQi/y+oMm9GgBzz70wMQ4A0bsLUNltMkoi0WL+eC1cPT3s6UTMgzUC?=
+ =?us-ascii?Q?C5wlYR+e9zZLTQRxR7cbGf6CbcWZG+MiOFu2/J+Slpe4AC5HbZPQ0FeQUH8M?=
+ =?us-ascii?Q?oWMu6E3fy050/+/mk3B5qygCsb9mNNX40R+luByFN6hcsPDnboZ4oCDOPIOK?=
+ =?us-ascii?Q?Nt9ssSaO8y4xK7KxRRHLlYqkBGC9TVt6BiXStUpPVJHP9aeFFv2G5IoLbfkN?=
+ =?us-ascii?Q?Ph/7y165xLjz9DmYOT+D7DLk54JbO91DL7PoEhEqfx7ghvziQKNWlM8f9YSc?=
+ =?us-ascii?Q?MxyTUxtRXbY5MeferjAK+brSPX03czSSkR+gQ1YClSPhQheugmWJqxDsjODv?=
+ =?us-ascii?Q?bQJMmUUxvzPaC8fIUhQQWbLmyynjjMqdvos/oPG2sYsa5PR4VG5f7nWA1ZIE?=
+ =?us-ascii?Q?R1JyFF4gpAQUaHOlNWfNq6yM+tST2ae604teX/cRWA53qWSCNu2109w9z2he?=
+ =?us-ascii?Q?PebPxwZuSQY0PxGH4zNZ0mCgcwzisD2y5fGmLByOORCmwjsLJFK6N0Bqeux7?=
+ =?us-ascii?Q?eb586bcKVv8nWa0ORcxTNTwTYbcyaaiGkxfWTzMUOR4qPWSwKnmxPboiIE1J?=
+ =?us-ascii?Q?3TzdVxo5dNDQwgLDXpttInL/z7bXnd6YUJqRNAEFHc9wAXvN7vOE9vqffnLp?=
+ =?us-ascii?Q?mwuiGsVnO7cVLzA6WF3kXGyhpMk8R9Y2IGsDj2eTQF1YjcgdNclrqrsz9J1b?=
+ =?us-ascii?Q?ivxIYn0kdkSjPJ7fzKi0IpwSb8HKibMZfykX/mH1AQdSKKLR/JFtS/Ez+ISP?=
+ =?us-ascii?Q?uKErn9sGcg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6a725a5d-644d-4125-c92a-08de63dffded
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2026 10:59:07.4386 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2026 11:24:42.4491 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CdOoOTRFtPvabNk+rAIcokcAMQpo7KztXHKRXHmFuYWNj2zdxcnlsxNJsROsSTy0wQLnn61W4Ug65ehNNhWuTw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8027
+X-MS-Exchange-CrossTenant-UserPrincipalName: XobfOJx7WUMlheWCTq9mETG7oGewEIupM1Gh5zsCgOPglEWq+p7RA8Q0dpuo0fgOPH2usEGJgK/SdveZSQCYyw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6552
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,129 +181,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2026-02-04 at 01:34 +1100, Thomas Hellström <thomas.hellstrom@linux.intel.com> wrote...
-> If hmm_range_fault() fails a folio_trylock() in do_swap_page,
-> trying to acquire the lock of a device-private folio for migration,
-> to ram, the function will spin until it succeeds grabbing the lock.
+On Wed, Feb 04, 2026 at 08:02:47AM +0530, Suraj Kandpal wrote:
+> TBT PHY is enablement/disablement is handled by its own TBT module.
+> We do not play a big part in it's state management, that being take care
+> by it's own TBT modeule.
+> The PHY/PLL TypeC mode (TBT, DP-alt) can change after the PLL state was
+> computed for a modeset, so the state verification after the modeset
+> sequence would indicate a mismatch in case the mode changed from DP-alt
+> to TBT, or from TBT to DP-alt mode. To avoid such a mismatch error the
+> verification is skipped if the mode for either the read-out or the
+> computed state is TBT (where that TBT PLL state doesn't reflect anyway
+> the PLL's actual HW state).
+> Simply return true when we are in tbt mode.
 > 
-> However, if the process holding the lock is depending on a work
-> item to be completed, which is scheduled on the same CPU as the
-> spinning hmm_range_fault(), that work item might be starved and
-> we end up in a livelock / starvation situation which is never
-> resolved.
-> 
-> This can happen, for example if the process holding the
-> device-private folio lock is stuck in
->    migrate_device_unmap()->lru_add_drain_all()
-> The lru_add_drain_all() function requires a short work-item
-> to be run on all online cpus to complete.
-> 
-> A prerequisite for this to happen is:
-> a) Both zone device and system memory folios are considered in
->    migrate_device_unmap(), so that there is a reason to call
->    lru_add_drain_all() for a system memory folio while a
->    folio lock is held on a zone device folio.
-> b) The zone device folio has an initial mapcount > 1 which causes
->    at least one migration PTE entry insertion to be deferred to
->    try_to_migrate(), which can happen after the call to
->    lru_add_drain_all().
-> c) No or voluntary only preemption.
-> 
-> This all seems pretty unlikely to happen, but indeed is hit by
-> the "xe_exec_system_allocator" igt test.
-> 
-> Resolve this by waiting for the folio to be unlocked if the
-> folio_trylock() fails in the do_swap_page() function.
-> 
-> Future code improvements might consider moving
-> the lru_add_drain_all() call in migrate_device_unmap() to be
-> called *after* all pages have migration entries inserted.
-> That would eliminate also b) above.
-> 
-> v2:
-> - Instead of a cond_resched() in the hmm_range_fault() function,
->   eliminate the problem by waiting for the folio to be unlocked
->   in do_swap_page() (Alistair Popple, Andrew Morton)
-> v3:
-> - Add a stub migration_entry_wait_on_locked() for the
->   !CONFIG_MIGRATION case. (Kernel Test Robot)
-> 
-> Suggested-by: Alistair Popple <apopple@nvidia.com>
-> Fixes: 1afaeb8293c9 ("mm/migrate: Trylock device page in do_swap_page")
-> Cc: Ralph Campbell <rcampbell@nvidia.com>
-> Cc: Christoph Hellwig <hch@lst.de>
-> Cc: Jason Gunthorpe <jgg@mellanox.com>
-> Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> Cc: Leon Romanovsky <leon@kernel.org>
-> Cc: Andrew Morton <akpm@linux-foundation.org>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: John Hubbard <jhubbard@nvidia.com>
-> Cc: Alistair Popple <apopple@nvidia.com>
-> Cc: linux-mm@kvack.org
-> Cc: <dri-devel@lists.freedesktop.org>
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: <stable@vger.kernel.org> # v6.15+
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+
+Reviewed-by: Imre Deak <imre.deak@intel.com>
+
 > ---
->  include/linux/migrate.h | 6 ++++++
->  mm/memory.c             | 3 ++-
->  2 files changed, 8 insertions(+), 1 deletion(-)
+> V1 -> V2:
+> - Reframe commit messgae with give the full explanation as to why we
+> skip verification (Imre)
 > 
-> diff --git a/include/linux/migrate.h b/include/linux/migrate.h
-> index 26ca00c325d9..800ec174b601 100644
-> --- a/include/linux/migrate.h
-> +++ b/include/linux/migrate.h
-> @@ -97,6 +97,12 @@ static inline int set_movable_ops(const struct movable_operations *ops, enum pag
->  	return -ENOSYS;
->  }
->  
-> +static inline void migration_entry_wait_on_locked(softleaf_t entry, spinlock_t *ptl)
-> +	__releases(ptl)
-> +{
-> +	spin_unlock(ptl);
-> +}
+>  drivers/gpu/drm/i915/display/intel_lt_phy.c | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> index 04f63bdd0b87..27ad8407606b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> @@ -2158,6 +2158,9 @@ bool
+>  intel_lt_phy_pll_compare_hw_state(const struct intel_lt_phy_pll_state *a,
+>  				  const struct intel_lt_phy_pll_state *b)
+>  {
+> +	if (a->tbt_mode || b->tbt_mode)
+> +		return true;
 > +
->  #endif /* CONFIG_MIGRATION */
->  
->  #ifdef CONFIG_NUMA_BALANCING
-> diff --git a/mm/memory.c b/mm/memory.c
-> index da360a6eb8a4..ed20da5570d5 100644
-> --- a/mm/memory.c
-> +++ b/mm/memory.c
-> @@ -4684,7 +4684,8 @@ vm_fault_t do_swap_page(struct vm_fault *vmf)
->  				unlock_page(vmf->page);
->  				put_page(vmf->page);
->  			} else {
-> -				pte_unmap_unlock(vmf->pte, vmf->ptl);
-> +				pte_unmap(vmf->pte);
-> +				migration_entry_wait_on_locked(entry, vmf->ptl);
-
-Code wise this looks fine to me, although it's confusing to see
-migration_entry_wait_on_locked() being called on a non-migration entry and
-ideally this would be renamed to something like softleaf_entry_wait_on_locked().
-
-Regardless though the documentation for migration_entry_wait_on_locked() needs
-updating to justify why calling this on device-private entries is valid (because
-it's also just waiting for the page to be unlocked). Along with some equivalent
-justification for how we know there is a reference on the device-private page:
-
-	 * If a migration entry exists for the page the migration path must hold
-	 * a valid reference to the page, and it must take the ptl to remove the
-	 * migration entry. So the page is valid until the ptl is dropped.
- 
-Which is basically just the page is mapped in the page table, therefore it must
-have a reference taken for the mapping and the mapping can't be removed while we
-hold the PTL.
-
-Thanks.
-
- - Alistair
-
->  			}
->  		} else if (softleaf_is_hwpoison(entry)) {
->  			ret = VM_FAULT_HWPOISON;
+>  	/*
+>  	 * With LT PHY values other than VDR0_CONFIG and VDR2_CONFIG are
+>  	 * unreliable. They cannot always be read back since internally
 > -- 
-> 2.52.0
+> 2.34.1
 > 
