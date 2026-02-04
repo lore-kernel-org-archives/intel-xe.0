@@ -4,123 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88F9BE8B396
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 03:55:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD54BE8B399
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 04:36:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4041410E700;
-	Wed,  4 Feb 2026 03:55:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="OIH1AelR";
-	dkim-atps=neutral
-Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com
- [209.85.219.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93C9B10E702
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Feb 2026 03:55:18 +0000 (UTC)
-Received: by mail-qv1-f43.google.com with SMTP id
- 6a1803df08f44-88a2fe9e200so60541256d6.0
- for <intel-xe@lists.freedesktop.org>; Tue, 03 Feb 2026 19:55:18 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1770177317; cv=none;
- d=google.com; s=arc-20240605;
- b=h+SWHLgViUus3OZBnCRZFPsWIobZC0idosk6qcDS9Rw3hDPu/3CvopRgx4OYKCpwdJ
- 8wwewuxc7rtgBPW3rcrjCYuGm6wATGyep1+nHZJLHf/f6Vv0deonf9Kea8UC2sQTKH9y
- hQT5t1SoLNa84dytTZky3pTwUvXCAlPfpCcp+CHJC17oSSAzuBACt9kX8/ArArWdoTxZ
- CZveAYwcL5jZFx7K4TJhc7GbsPzosxUNFiZXirC6Qlu+kUKB3KHox6h/WNvXmZTUtZki
- my/2Fl1tCXNH07hoKpWvy4ugECNMP3Zo+JlR1YPaW8bYAFNRIDgSIGs4HbA/bnK5Kk1v
- v28g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=tf5RbUuZBD7vAitiDxd/SxMvRKm2h5sg9P3f0WhMpEo=;
- fh=ahLOK7Ooi0vuwZqVYcGjNdPy7tH6Z9YwLFrUIdLgkgA=;
- b=OcsMtrMju5wKFNGtX7Y+Vj4X4krXJQe4GdV4GqMcN0oLJHGDvtZdwVn51BAyQIYHU/
- ypvRbsnsagyG+Ss6KJn0mLsJMc61wSJc8qa8Mq8f4G6i8Xat9ZK4O4A12083cS7GCWTJ
- xXUrLrHqokw7m9+gWXeUP45BIvk2FzRuoRrl7UaaK2NVfhLcFVX3ROQdiWomY+4qwr5F
- yC707pN40BZevM7a8jZMsu6maB+j3opEMWGX06RlElOZA4nesx4CBGZmG0EZR1zHRt3q
- WthrasKASzRdFbGxOaQ6zfJPCvW4PM4BMkvRxUx4bHxOTWAxd3gNNSgKKsTmVUsWfJA4
- /5gA==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1770177317; x=1770782117; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=tf5RbUuZBD7vAitiDxd/SxMvRKm2h5sg9P3f0WhMpEo=;
- b=OIH1AelRQuRLHF7yx4qnUmdl80k60rIk8cRXkjhEB9UqkppRYIyIpUAQDyIEugTGAA
- cmFOEXpK0EbcSNZ/yR3SMn2yqpKyIFywjwS/HLlf1TkwDRqImJ7wpXH85PZ16hyxv5yT
- 2rdHw09P6I2MlWXjUALYkazq0EsflJEgZ2HFBq4ocNHfhFeMx8bY8LVfOgwG49fEYvue
- 2Zxwsu9aUV4qgXxjloEqK8JOfhTP9ly7vzqu8HTOEtbRlzFEQ5VyMbL5jG9HcSsfE7Jk
- Syey57zYMCgxDz4FnPnwc0B6QjMqVe9icUrkRTMx4LimnyaqL56cRxqFXL06ug/uP+jt
- iXpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1770177317; x=1770782117;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=tf5RbUuZBD7vAitiDxd/SxMvRKm2h5sg9P3f0WhMpEo=;
- b=UcDeL2C8HpITfjqXbpnIePhfo49/5vYcWCP0NEStxtV1ePiKwwI+GKtwiZEDXAGV0O
- qgWf22jx7LlAQiz01vEUtrZW3JeUAR5pMZM9r8FQgh3k89SvXWby2PTcVPwJww4RVmgp
- mDcrnmMQC3B8Bz7He6ia6g9g6ZONNhJbnfw81QosD1cDDDr/YP3DvQkyCSwmj4kbPmEy
- ZxEKnuIrnfXFtMr8+CXbtNmWKw6GBjINEp/IfaR+b+qN88rE41FKcgSs88uNnuBzV9g8
- GztJKj+Xkkz3TMW7ILC+8H8Szot0kq3BSojM8JZ9wxaXSrF1Y5grdfggugoXEcqLPvkR
- Kelg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUVDDfDsvTYlFCX90wW7uoBmdhpIBWfGQZCd49dCLlz7LFQyyELvk7AwWLFQQHNtlGDAUqZNjxTsQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzn1dtRxd+xnS39jSSaOxWVs7jAlIhEyuURCAXmPlmllY/aLHsG
- Uzt/xFS/WfxnpLCJercvN0L9NeKIBZ0TUWZrSvvs3FpsYiWzov/cWjKtwwUxsap7hS4ySCQ17Hy
- tZos/mxnYxwTPC/TJXGcxSdj3NeJbh3U=
-X-Gm-Gg: AZuq6aIDgy64qqp29nMOPR+MXtvDpMpBEPd2+PY30V20kkqyvP8eyjqm3GOMfulGLH8
- hgi6ke2TSuTjFQBjjyezsfQVG5jMevmlCVhxazSADHScUgD4tITZOS/mdRjrTxSGdI8Ztk7ypKx
- BLsN8ZVYtSBVet2H/uIPoNaebibn5u1pG/CUB83x2IxW9tPGTEgCgwqz1RVeh0TUbaxwq/dDOwZ
- s8GOJceiyuej3cm3SEGlSwzqd6AoiWb5MGEeUfD4VIWl75m7poKb2btp6c5cdXG675INHSvb6HQ
- ZL43KzkZn/Wyc00bz1rgFBq6qO6sIu8bNw8w3JT9X0iQ+LeY4rhQd7s=
-X-Received: by 2002:a05:6214:1d29:b0:894:7eb9:ead2 with SMTP id
- 6a1803df08f44-895221a66d7mr25922916d6.32.1770177317310; Tue, 03 Feb 2026
- 19:55:17 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CC9210E14B;
+	Wed,  4 Feb 2026 04:36:44 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED9C810E14B;
+ Wed,  4 Feb 2026 04:36:42 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0049155834530427763=="
 MIME-Version: 1.0
-References: <20260120204303.3229303-1-joelagnelf@nvidia.com>
- <20260120204303.3229303-4-joelagnelf@nvidia.com>
-In-Reply-To: <20260120204303.3229303-4-joelagnelf@nvidia.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Wed, 4 Feb 2026 13:55:06 +1000
-X-Gm-Features: AZwV_QgqNJTzw-ZqXx5fJP-IeYh6sbx0Oiz2PE2A1U4oPqZRrSE9m3Umv0I5kN4
-Message-ID: <CAPM=9tyL_Cq3+qWc4A41p7eqnNDLS1APUEeUbaQyJ46YDkipVw@mail.gmail.com>
-Subject: Re: [PATCH RFC v6 03/26] rust: gpu: Add GPU buddy allocator bindings
-To: Joel Fernandes <joelagnelf@nvidia.com>
-Cc: linux-kernel@vger.kernel.org, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, 
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>, 
- Matthew Auld <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Helge Deller <deller@gmx.de>, Danilo Krummrich <dakr@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, 
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Trevor Gross <tmgross@umich.edu>, John Hubbard <jhubbard@nvidia.com>, 
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, 
- Alexandre Courbot <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>, 
- Andy Ritger <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
- Alexey Ivanov <alexeyi@nvidia.com>, 
- Balbir Singh <balbirs@nvidia.com>, Philipp Stanner <phasta@kernel.org>, 
- Elle Rhumsaa <elle@weathered-steel.dev>,
- Daniel Almeida <daniel.almeida@collabora.com>, 
- joel@joelfernandes.org, nouveau@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org, 
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_series_starting_with_=5Bv3?=
+ =?utf-8?q?=2C1/2=5D_drm/xe/cri=3A_Add_check_to_verify_if_CSC_is_a_PCIe_endp?=
+ =?utf-8?q?oint?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 04 Feb 2026 04:36:42 -0000
+Message-ID: <177017980294.223259.16588869875422761127@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260203140639.2048912-3-balasubramani.vivekanandan@intel.com>
+In-Reply-To: <20260203140639.2048912-3-balasubramani.vivekanandan@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -132,91 +37,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> +///
-> +/// These flags control the allocation behavior of the buddy allocator.
-> +#[derive(Clone, Copy, Default, PartialEq, Eq)]
-> +pub struct BuddyFlags(usize);
-> +
-> +impl BuddyFlags {
-> +    /// Range-based allocation from start to end addresses.
-> +    pub const RANGE_ALLOCATION: usize = bindings::GPU_BUDDY_RANGE_ALLOCATION;
-> +
-> +    /// Allocate from top of address space downward.
-> +    pub const TOPDOWN_ALLOCATION: usize = bindings::GPU_BUDDY_TOPDOWN_ALLOCATION;
-> +
-> +    /// Allocate physically contiguous blocks.
-> +    pub const CONTIGUOUS_ALLOCATION: usize = bindings::GPU_BUDDY_CONTIGUOUS_ALLOCATION;
-> +
-> +    /// Request allocation from the cleared (zeroed) memory. The zero'ing is not
-> +    /// done by the allocator, but by the caller before freeing old blocks.
-> +    pub const CLEAR_ALLOCATION: usize = bindings::GPU_BUDDY_CLEAR_ALLOCATION;
-> +
-> +    /// Disable trimming of partially used blocks.
-> +    pub const TRIM_DISABLE: usize = bindings::GPU_BUDDY_TRIM_DISABLE;
-> +
-> +    /// Mark blocks as cleared (zeroed) when freeing. When set during free,
-> +    /// indicates that the caller has already zeroed the memory.
-> +    pub const CLEARED: usize = bindings::GPU_BUDDY_CLEARED;
-> +
-> +    /// Create [`BuddyFlags`] from a raw value with validation.
-> +    ///
-> +    /// Use `|` operator to combine flags if needed, before calling this method.
-> +    pub fn try_new(flags: usize) -> Result<Self> {
-> +        // Flags must not exceed u32::MAX to satisfy the GPU buddy allocator C API.
-> +        if flags > u32::MAX as usize {
-> +            return Err(EINVAL);
-> +        }
-> +
-> +        // `TOPDOWN_ALLOCATION` only works without `RANGE_ALLOCATION`. When both are
-> +        // set, `TOPDOWN_ALLOCATION` is silently ignored by the allocator. Reject this.
-> +        if (flags & Self::RANGE_ALLOCATION) != 0 && (flags & Self::TOPDOWN_ALLOCATION) != 0 {
-> +            return Err(EINVAL);
-> +        }
-> +
-> +        Ok(Self(flags))
-> +    }
-> +
-> +    /// Get raw value of the flags.
-> +    pub(crate) fn as_raw(self) -> usize {
-> +        self.0
-> +    }
-> +}
-> +
-> +/// Parameters for creating a GPU buddy allocator.
-> +#[derive(Clone, Copy)]
-> +pub struct GpuBuddyParams {
-> +    /// Base offset in bytes where the managed memory region starts.
-> +    /// Allocations will be offset by this value.
-> +    pub base_offset_bytes: u64,
-> +    /// Total physical memory size managed by the allocator in bytes.
-> +    pub physical_memory_size_bytes: u64,
-> +    /// Minimum allocation unit / chunk size in bytes, must be >= 4KB.
-> +    pub chunk_size_bytes: u64,
-> +}
-> +
-> +/// Parameters for allocating blocks from a GPU buddy allocator.
-> +#[derive(Clone, Copy)]
-> +pub struct GpuBuddyAllocParams {
-> +    /// Start of allocation range in bytes. Use 0 for beginning.
-> +    pub start_range_address: u64,
-> +    /// End of allocation range in bytes. Use 0 for entire range.
-> +    pub end_range_address: u64,
-> +    /// Total size to allocate in bytes.
-> +    pub size_bytes: u64,
-> +    /// Minimum block size for fragmented allocations in bytes.
-> +    pub min_block_size_bytes: u64,
-> +    /// Buddy allocator behavior flags.
-> +    pub buddy_flags: BuddyFlags,
-> +}
-> +
+--===============0049155834530427763==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-(not a full review)
+== Series Details ==
 
-Any reason these two need Clone, Copy? I'm not seeing a use case for
-that, maybe we should pass them as non-mutable references, but I don't
-think there is any point in passing them by value ever.
+Series: series starting with [v3,1/2] drm/xe/cri: Add check to verify if CSC is a PCIe endpoint
+URL   : https://patchwork.freedesktop.org/series/161088/
+State : failure
 
-Dave.
+== Summary ==
+
+ERROR: The runconfig 'xe-4490-9f5242e63f0bab74d47ae6792e0c25a324184a6b_FULL' does not exist in the database
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161088v1/index.html
+
+--===============0049155834530427763==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v3,1/2] drm/xe/cri: Add check to verify if CSC is a PCIe endpoint</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161088/">https://patchwork.freedesktop.org/series/161088/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161088v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161088v1/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-4490-9f5242e63f0bab74d47ae6792e0c25a324184a6b_FULL' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============0049155834530427763==--
