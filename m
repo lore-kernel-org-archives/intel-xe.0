@@ -4,28 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAB88E9D407
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 15:59:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEC37E9D407
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 16:04:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88C0D10E6AD;
-	Wed,  4 Feb 2026 15:59:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BAA110E6B9;
+	Wed,  4 Feb 2026 16:04:08 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71A7110E6B9;
- Wed,  4 Feb 2026 15:59:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1144584273376690655=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C962510E6A7;
+ Wed,  4 Feb 2026 16:04:06 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_series_starting_with_=5B1/2?=
- =?utf-8?q?=5D_drm/xe=3A_Move_number_of_XeCore_fuse_registers_to_graphics_de?=
- =?utf-8?q?scriptor_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Separate_out_Gu?=
+ =?utf-8?q?C_RC_code_=28rev6=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
+To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 04 Feb 2026 15:59:09 -0000
-Message-ID: <177022074943.223259.11568041089285082468@a3b018990fe9>
+Date: Wed, 04 Feb 2026 16:04:06 -0000
+Message-ID: <177022104679.225491.16606480379047858124@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260204002549.3888274-3-matthew.d.roper@intel.com>
-In-Reply-To: <20260204002549.3888274-3-matthew.d.roper@intel.com>
+References: <20260204014234.2867763-1-vinay.belgaumkar@intel.com>
+In-Reply-To: <20260204014234.2867763-1-vinay.belgaumkar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -41,57 +40,47 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1144584273376690655==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [1/2] drm/xe: Move number of XeCore fuse registers to graphics descriptor (rev2)
-URL   : https://patchwork.freedesktop.org/series/161113/
-State : failure
+Series: drm/xe: Separate out GuC RC code (rev6)
+URL   : https://patchwork.freedesktop.org/series/158581/
+State : warning
 
 == Summary ==
 
-ERROR: The runconfig 'xe-4495-241994730989320c926da9f2d0a5ec80b48f993d_BAT' does not exist in the database
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 932c8beaa94a49937cb7942407123f8f25d69182
+Author: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Date:   Tue Feb 3 17:42:34 2026 -0800
 
-== Logs ==
+    drm/xe: Add a wrapper for SLPC set/unset params
+    
+    Also, extract out the GuC RC related set/unset param functions
+    into xe_guc_rc file. GuC still allows us to override GuC RC mode
+    using an SLPC H2G interface. Continue to use that interface, but
+    move the related code to the newly created xe_guc_rc file.
+    
+    Cc: Riana Tauro <riana.tauro@intel.com>
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+    Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
++ /mt/dim checkpatch 241994730989320c926da9f2d0a5ec80b48f993d drm-intel
+586c511b4521 drm/xe: Decouple GuC RC code from xe_guc_pc
+-:221: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#221: 
+new file mode 100644
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161113v2/index.html
-
---===============1144584273376690655==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe: Move number of XeCore fuse registers to graphics descriptor (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161113/">https://patchwork.freedesktop.org/series/161113/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161113v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161113v2/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 1 warnings, 0 checks, 345 lines checked
+e3fa2526f68f drm/xe: Use FORCEWAKE_GT in xe_guc_pc_fini_hw()
+932c8beaa94a drm/xe: Add a wrapper for SLPC set/unset params
 
 
-    <p>ERROR: The runconfig 'xe-4495-241994730989320c926da9f2d0a5ec80b48f993d_BAT' does not exist in the database</p>
-
-</body>
-</html>
-
---===============1144584273376690655==--
