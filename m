@@ -4,166 +4,173 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43320EA7941
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 19:35:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D245EEA7943
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 19:46:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ED1CF10E1FF;
-	Wed,  4 Feb 2026 19:35:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8779710E14A;
+	Wed,  4 Feb 2026 19:46:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PQjFEoNz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l1H4yzaQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 33FA210E1FF
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Feb 2026 19:35:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0855B10E14A
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Feb 2026 19:46:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770233708; x=1801769708;
+ t=1770234364; x=1801770364;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=yMQDGbB1P+2jC2aqfwhmqeWgiiQ+J6+fYRMTGuJl1QA=;
- b=PQjFEoNzs1u5ndnw35ZuCVqSMJ5wf5cje+EeG1ds3SLECbWrl7UiNKzI
- 0JhlDsna+iqszakBhxP+qMT6wMSsSB1o1go4Wf2+lmvJZtHwMI5itTvV4
- azAe3P6bLF/8KXqGp6hFtSn3cOD1VNSoafQzg+2IGkWVGhgBx6qWkO3hV
- sIA2znu7YtNDT+kBaHaslB937M48VPKKTo/AF248JhWhIlC34vNVBCa35
- 0W1bx+K2jAWYsHZ3nbwOpN8k3uKWH3xoGZ0zMm7+MM5wFb+d0mwm0M9xs
- cf0iiDBLUQx01LHpklxLBpeSmhAXOOs00TgIdF1u65AAkefocmQlcrn5i Q==;
-X-CSE-ConnectionGUID: kKDj1NIYSYOYwpPqvAiYIA==
-X-CSE-MsgGUID: XeHSeYSdSGCZA9WutCBQFA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="82864585"
-X-IronPort-AV: E=Sophos;i="6.21,273,1763452800"; d="scan'208";a="82864585"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2026 11:35:07 -0800
-X-CSE-ConnectionGUID: L0SHwGRcSUCbZHiV1gCmQw==
-X-CSE-MsgGUID: uNbQ5O2gTl+AIfptV8nFxA==
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=dZsj2gkGB9FSM5IZGv0ylSdxssSZYZCGjrKbSj3RCX8=;
+ b=l1H4yzaQKE2/zoPST/xx/nhqyJn0kHSJ8U5U8M24CP5TYFhIvlLWz8/C
+ /uQHNqFQLnfduhGVjHycSE7/LnPBEgGmlU5NXoPqOUcNUTmOfWSjsnYQ/
+ H0wqbqf2agzm1wBfC8pUSPwDUDaQ3KCTwUzVllaTXRIlPuq9PR8DN+wdf
+ nvZ/1yrRLgCbTkXmeaZUgZWRFuuYV+xb11c0rJrK7HmGxXeFhBkc/x3zc
+ Rkd1aZ1oGSNacHYfNrXA8OVYt5+1DwTL0Vq8iKGIscVsO5gOHDorfjWki
+ 691+PkSy/YJcoh3fMUq5EjRI2HjnKoFLO+SY7qbD+izrTtMNKhOcEHs0p Q==;
+X-CSE-ConnectionGUID: qxh8YTHZSdecUNlysR9Rnw==
+X-CSE-MsgGUID: jTsjziy+T4m6dqsnAZFU9A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="94079555"
+X-IronPort-AV: E=Sophos;i="6.21,273,1763452800"; d="scan'208";a="94079555"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2026 11:46:03 -0800
+X-CSE-ConnectionGUID: tdKFMOcqQd2UmmSQmn/AnA==
+X-CSE-MsgGUID: X4Zoy1O4SBOXzsF1s/x/Bg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,273,1763452800"; d="scan'208";a="214749718"
+X-IronPort-AV: E=Sophos;i="6.21,273,1763452800"; d="scan'208";a="209555670"
 Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Feb 2026 11:35:07 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Feb 2026 11:46:03 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 4 Feb 2026 11:35:07 -0800
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.35; Wed, 4 Feb 2026 11:46:03 -0800
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Wed, 4 Feb 2026 11:35:07 -0800
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.3) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.35 via Frontend Transport; Wed, 4 Feb 2026 11:46:03 -0800
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.1) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 4 Feb 2026 11:35:06 -0800
+ 15.2.2562.35; Wed, 4 Feb 2026 11:46:03 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bMMvbOoXx+DADFNIhy/sQeXY9FKKxT26FujnR3Mpm59RrbBvruCaGWYHb8f7VCVqKiRSK0nDX0ghQpC5EBotOZfb9Pm7qbNoCRox5BwAzO7LfiY+IFEqOSpvaVD6ZqZ1ShQz4FNiTLDGDGlUX6qQIZ9UYsodHMePoIXscinuk+em7D85mP+lONiLS597M2RlT3fSZpKQ+G2/cLE4zwa2t6XMmWo1v79KcHfn2rs4/uc/qj+zbdV02+OkU3gztAbU0LVXkYJ7+ltL63jLZG0cc9F5ZpgLSfpznKdkpxPKqQLVzm9LfwuQsZJ86yBJOVhgejgFiOlb2rYL0YHKkxLTiQ==
+ b=wP2UaMATWG+3S5mlNSLYWorMZHWbhvGGbA8dae89fRf7rMgNp8fLNWqLkyEMi9Ik0k1Gwb2FgrFtE4XfgwmwS6MGdlSH6AGJeN3qtJ2JVbqrmC8BUfHRs5pj1co/AM5u+qwoJx1bv9f/tOX2jyuE2kc6ZdEBs51VGhRilk2n03aV4a/GKcT/ak5McV9WTHC1Gya4JGbsK/nP67wLn3tT8lrfZWQ62R2vA5ccvrl93hVvU/8bj0WhkaPMM7rmwfKHYbYi4EtNgfjgW4DOOax0UPWGnnbdBMiHiPrnpX/H/guOMQS3KHdhhUCsOJ6gnbzMUBNrktrTYlNyfY7BUuLA6A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7EjBa69clLGF5sWLcdJMj/0ydCgnMRwCozMXX4XyIn4=;
- b=rsHYhhhEZ2EnSRiPelQlGwXyKrYFG+gue+TX0LEdjtMtWtamvb+wN4WI4HFOwQRNA4+b/DeIAPx+7Y4CEOhjQDjkqEf5Bi/gHS/clk5ruYMKO82ceoV8PviJfio3wBDaYQS4ph4CgNjacAMLYAGTbxNFE/anJRm6+WxLKmjS6hYNkFLKSldUt7bHLu2NvHkM9lLhGvK9IvzQPtrH0sBdJA7so0yzfsXQ+vAsytV6QXKLfnNs0AqBC4dptrLcT5E+GlEAf0ZZsritb83PguWTjpp2DLCqlmLnRs9SaQHw3nJ7bOqeg+ROYQvsaS4J3NQStPZTysveWG+bq3ghQM8uFA==
+ bh=14FyRP2VuBJMektSKf73JMLU9ii8VRjT46/7CPLAaoM=;
+ b=ROt8We9uZUQIOoRf5S6q/QLlY511a5wBoD+MNwQY8M7E44aijDLZCP/ZdYzg6rQI8JLqduKlPgAcwqyjGielCCQVj/L+6501UIO6AKLstUNbgG+v7QW5eP8TFft/rHP+gZME5RGl3pcE7eZ5haj1hzbi4454kEW3t4zepUhoehOcyHGy4JQsLjx9E+T7/p8vnCUR8glCwk+NNqepz1F3HDwIgYPTUH375PO+aHRKlix8+Pc3kiKXfTLRUZaLvzFvutmogjVvlLWeWcKjR8XV28gX8b7p2BYnI19fRkz0ks2RB5XSGb+++aSvvbZ1txvnsfsZdjCIJxGyJNwwT/EepA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
- by BL3PR11MB6459.namprd11.prod.outlook.com (2603:10b6:208:3be::11)
+ by CH3PR11MB8414.namprd11.prod.outlook.com (2603:10b6:610:17e::19)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9564.16; Wed, 4 Feb
- 2026 19:35:04 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.12; Wed, 4 Feb
+ 2026 19:45:59 +0000
 Received: from BL3PR11MB6508.namprd11.prod.outlook.com
  ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
  ([fe80::53c9:f6c2:ffa5:3cb5%3]) with mapi id 15.20.9564.016; Wed, 4 Feb 2026
- 19:35:03 +0000
-Date: Wed, 4 Feb 2026 11:35:00 -0800
+ 19:45:59 +0000
+Date: Wed, 4 Feb 2026 11:45:56 -0800
 From: Matthew Brost <matthew.brost@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/xe: Drop unnecessary goto in xe_device_create
-Message-ID: <aYOfZKjaGufsbN/+@lstrano-desk.jf.intel.com>
-References: <20260204191025.3957211-2-matthew.d.roper@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>, Michal Wajdeczko
+ <michal.wajdeczko@intel.com>, Matthew Auld <matthew.auld@intel.com>
+Subject: Re: [PATCH v2 1/3] drm/sa: Split drm_suballoc_new() into SA alloc
+ and init helpers
+Message-ID: <aYOh9AfqhMntB5MD@lstrano-desk.jf.intel.com>
+References: <20260204164642.3509298-5-satyanarayana.k.v.p@intel.com>
+ <20260204164642.3509298-6-satyanarayana.k.v.p@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20260204191025.3957211-2-matthew.d.roper@intel.com>
-X-ClientProxiedBy: BYAPR03CA0014.namprd03.prod.outlook.com
- (2603:10b6:a02:a8::27) To BL3PR11MB6508.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260204164642.3509298-6-satyanarayana.k.v.p@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0039.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c2::14) To BL3PR11MB6508.namprd11.prod.outlook.com
  (2603:10b6:208:38f::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|BL3PR11MB6459:EE_
-X-MS-Office365-Filtering-Correlation-Id: e6ca4c1f-5be4-47e2-4c19-08de64247e67
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|CH3PR11MB8414:EE_
+X-MS-Office365-Filtering-Correlation-Id: dd75c050-73ca-4c00-20fa-08de6426052c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?xz38ebt4L6CVt6vgtCLk/4NQ54cLaBXN8VVExD40dXMqhDPYOhjoD0yLb4B5?=
- =?us-ascii?Q?hyEPDOqYj4e/XqjUmO3/0x39x3QnYbb1qyccyy6bQ8eWFxbw4Xsmn3v+Gibu?=
- =?us-ascii?Q?p7Am/2ixbA+djEadq8kFfWebajWwOjHmp6UGR2EGq5m0+O0qrx4lXWN7hEdI?=
- =?us-ascii?Q?aSgCXuEOfxdYTijLErCy1ZeG/BjVISakIGQEdzKeHleOFrCSwUdS3zBtFefr?=
- =?us-ascii?Q?dXw1Ohgn5ltIhFsn+NcuOQS06pcxXnIp+Gzr6LRZjz1dyJ+RlPmpT8y8WOYc?=
- =?us-ascii?Q?/dCHKcTWjwABSiXVIg5OFWrRmQ5ZPvwnpaXPMxPOpP9lBlizK078CgEGeJYR?=
- =?us-ascii?Q?Pf/rYteGIfNMc4o12NnmcB+HMc0BLpZkF/Vc9aJg3H70BOIlbsc15Y0v50aB?=
- =?us-ascii?Q?YZc/XgM0szxL8xMdH8ancJMe4BZ20ldUy/nOPb5uXkXqHIl2IWTHtVsoAlWS?=
- =?us-ascii?Q?HBXLyrwB5KhZJWGSHCL595Db2r+2M0juqENi3dMD0Eehjdqjiu6B0KboQbVY?=
- =?us-ascii?Q?mtF+EFHfuZXLTi0I2jG3jIMVnJZxhiqLXhCDqy2wf1I3AzfW27yjxAuHUQ7x?=
- =?us-ascii?Q?s958w3yRogdKQna9T/FXVQDnAmxRfHsFM62IZ8RSE6ubMPxnt4IMPw05N+bE?=
- =?us-ascii?Q?CM7UqukELwoleRtf83Zw3r7dj4JiQmeVBJMVUr1O9LFi7jC/JmZyHTtjo3Rv?=
- =?us-ascii?Q?xWFI8r51h9Ibox63o9zaKjopEmwtp93W9jkbKUBFRvGU1cTYgE/Hjh68xQFD?=
- =?us-ascii?Q?LZ94lqv7HTXvUFe86aezGANf2GCgKvAJqjbNY2J32uS7xcdLXEsyje0oV+z5?=
- =?us-ascii?Q?a4B4ROqmopcm2o2aX/JissxcKcm6K3dwmnTw+p5MtgnLBz92XZouhhYwn0Kj?=
- =?us-ascii?Q?plWOAGS41n3ejdJpzu2mhRQJMt0D7RChnSsTJXT+NTyMWkp30IB3dzGKU3ng?=
- =?us-ascii?Q?jcePQ+uGxUuz98J0MU0eaikD4NzOcV/tFuLl1q57fZQ1Z2zlRAWAKyM3P8ol?=
- =?us-ascii?Q?kRqISWXLy9d9eHNU2dz3uWWLTGmudFmNnb3FRwbfsEHAPEmrgxHqLb4wKul+?=
- =?us-ascii?Q?gQW4cDaHtLD+biTU/d2gXE07TspHXk9c938F6uBC7m8QeDwRg9LpKRu8frsL?=
- =?us-ascii?Q?SnTbA/1j0TgkZc0sSNe/6aVAUd9F61DIHwK2KAroRAKabWhw6YPFJysOK5N1?=
- =?us-ascii?Q?JkZ3/9BcGsqoNZlzjxRpZaL2aIU3B+tIb9HqZ0Fkxy1X3xUCCMPQfWc64PYO?=
- =?us-ascii?Q?XcSP3YH2bAEtz7Lm+uBNdv+R6TA7lfLoporqFxUTyh61xV7LKOV982A2NCaR?=
- =?us-ascii?Q?PyyXafZJApyA4jd0Nn6T+peajBkFicHZAaXyIoLEX4dOkDlrrzzBGLrFmBr0?=
- =?us-ascii?Q?qGzsFM0iJuF4dkicm+SYmrifvM3GX5RUyRU5jZSvaOv2zOuJQ7+q4b04rdvk?=
- =?us-ascii?Q?2EoCIwRC3Zz0PbBhDpmCxki2u0jyX9y5//grKLqBEUAf6PjJK2WU30quqftD?=
- =?us-ascii?Q?yz3f3PDjbVUBEAmJoKJ65XquOHpm1xBFNSA8NC/jMj7Jzm0s2/QheZyZn09A?=
- =?us-ascii?Q?jeczbrd4Ff0TC7eT+0M=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?3qceJr8lpRNu849OcyHWJ0++ul9gyRROidSj5BjunmA3YGOgMni2ynQMPv?=
+ =?iso-8859-1?Q?MXoKzVINGfdh0i4uJxnSFInzwrpYsTOm6TAbLjyVI2zHO/f2kevO+1urJL?=
+ =?iso-8859-1?Q?xK6k/EpAcCTca3H0w2gjmWbw0bgPSU+A6zWAiyRInBZlSx5Ujt8ZDO5IVA?=
+ =?iso-8859-1?Q?WUZFM1dQ52rGesZOmLhQEr29vcaqywJlUgQWa7CCUK+4ep1jdwNmbaQAi7?=
+ =?iso-8859-1?Q?EXRXMRwn3x0f8YhiCfkhQCUFVKYcPwNxsFU9pcQLqV9/aHjiOg4b+sFS+y?=
+ =?iso-8859-1?Q?5bf+s4SYyrMUXvZq4u34FxbTN4XtE5Jm5D49Y6y/HwD+WehUrJ4jsWF1Fk?=
+ =?iso-8859-1?Q?7UlL32kNvetEt9mT/75+On1Fwcc9t6cdBrOLeEaec3zb111HLtL3lPDChC?=
+ =?iso-8859-1?Q?sOHqhINd0ma+hLoskXh5AFO7y5EGUZbC4HKkLXO7cZ1OxChdPaHJuvxr3k?=
+ =?iso-8859-1?Q?Esa/a1wAjcEvC4Gb6hu2GbqzOhrrCmwKueo9WefZA+nEgbn6+qJ1bLzkv0?=
+ =?iso-8859-1?Q?zgft9HGOmcBD92HRtYVDceErjSVL2aip+59Hvg/GyNrWuAKQJMVdkqwl8x?=
+ =?iso-8859-1?Q?vBZhRYsAPzEs9wyMvi2WSwSYgGM1sRUHBIBnrsDD3LQNb6H6P1yRDErxUs?=
+ =?iso-8859-1?Q?QjTw03Dals+sitZwm4dnDuadRralLvmpJx/3y9mm+oLaC8dK9yscM1bms/?=
+ =?iso-8859-1?Q?XiXiLJM7MP6a6AlLIIiqM1Jhg0YF2xJusVEFXzxjWD3EduOPzVGVH+2lcu?=
+ =?iso-8859-1?Q?SUaDVNsRK8xncRy4iGNyPuSSNUMHfJQ4kJWgx4iT4FPFydx/oro/EkaXeM?=
+ =?iso-8859-1?Q?X2laA8F/MDXm8bhxzngfTfcltNIbVNxjxQtHtrlGXrDu3xbzH7/YXUy/3A?=
+ =?iso-8859-1?Q?ToqezSM91SnDo/ASdX66AwoEbCLF7kZ77dRra+0wf/XBo/dQzsRhjV85l3?=
+ =?iso-8859-1?Q?8x0qmj0ILvSsKqkAO2PfahUOC77i9FCwpWFDLYzyDfowNJgXOwvrAuTg1J?=
+ =?iso-8859-1?Q?+TDriYF6z4JALSFAeO+FAYZ0pTHQYGjKyJ2z6DXh/s1cz5jF1Jwuw02eky?=
+ =?iso-8859-1?Q?DB2wzfTE03VhwRP7bDRM4nduLBTSCSVyWiPubggz5ypmF8ZZeUhfn5//6m?=
+ =?iso-8859-1?Q?CbPZKm+/9OrUM0zqN/NFfPUkCBG88e7XzMUZpyzeT59hlz6H96MZbEhUw6?=
+ =?iso-8859-1?Q?Dwt3FMeaD5DHP8gvhUUG8BhXV+VAvOYhX4/LJtBP84AkfnsZG+I34K0PSj?=
+ =?iso-8859-1?Q?BWUnnka5zZUsOgsK/YSS6aXHPHj1M2yaaZfwQZe0SC3fITZzbt3FUHJDWm?=
+ =?iso-8859-1?Q?ipxuBHwPqnyI6syeRDqi8+lh/ZftLsVFlf5Ous5pmLZFniuwMzl2B85X3t?=
+ =?iso-8859-1?Q?lmt7Egq5geM+/s9mEMSdTtBk7abLn6s6UTEF5DAueBW+GfVnNATg4hJXIN?=
+ =?iso-8859-1?Q?ytEY08CYa9Ogrl5qbI7GR9FlNAUSrTTJzQBSznhSewLXYScOcNhokdTjaN?=
+ =?iso-8859-1?Q?h94oY4FXn14c+dfA/5DQqSfySDGBAtqJDQ+Bvl6bHaq+DPOtQ0Cv7wIZxc?=
+ =?iso-8859-1?Q?9vEllXwhNNrzzIv3nIuXIj2EEZBRAFm1lknBsLjYmtGBgd/CVoctpp4j7y?=
+ =?iso-8859-1?Q?Qa6T5NiolD54Q=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wAqcSYjlKTvkJSFvBmB26aYfVK6foQW2VX52wa+aVI0WP7SevhcYuV9wdoeu?=
- =?us-ascii?Q?MKMWAoj2X/LmLbstLpB1XnvoMT+GS//km2EprcaDgNSYY5hVkr/hyEvjeDI+?=
- =?us-ascii?Q?15774PgW40KMdIMn1NXju+SOGgxQIR44JYjtN0f+lPVIpi477y8+tlrFRk2U?=
- =?us-ascii?Q?0Y3ZshPph7xk2qCCmPSwHsKFqqFq1qJCifrp1NUP+iJmZmibvuHSHlASAbWe?=
- =?us-ascii?Q?nIox0frfpy5Z7ho/BW2LuT9rMqEsVHtStuuYgJteOu05CrHbX+wH6SaedYyt?=
- =?us-ascii?Q?V6Yc78r8y+rukVtrN0yo29WHiWsN+eEoMb+eJKtCnChDtotVtDQOH8JIxP1r?=
- =?us-ascii?Q?cJRsJUQPfGZJumx40UFoluRmKd/SBrEtrRTXAfROA1mGWjSATPC8KiR6oTmb?=
- =?us-ascii?Q?PVnMkN00SXhkBIsfqzcaKkRQ1wz55yAbDA5vbQpioOvTxtEyn3HNJxcoeefL?=
- =?us-ascii?Q?pBmGv8YyEQ2fnHtaNW+B8+NP3uiHUB8162gGIwmHXTexoUr2NDc0qR2K54iw?=
- =?us-ascii?Q?AMzPFGOQAI2tH2j9ZqeWiJQ62TNw8+FXMCgHDyaYJJKXK1f8J8kc046zo+W+?=
- =?us-ascii?Q?U+3QfBtepTvqFSRoRUZbl3ce1FfVjZhTRd9vSsLhZx+cCL8t+yBsO/8dXnLy?=
- =?us-ascii?Q?eO4x01HdhaeDCucnHX/CRttVurTqTTonip7hLa8WsVn6JxH2Z8UO9jkRoTll?=
- =?us-ascii?Q?ULsGpRuc5AcNnDvPoLhjz5A0vYIsvnvhNnf4g6UWO0+LkjNU53zzI9EHVOpq?=
- =?us-ascii?Q?RjGBAaMRQMGpfaSAScaVZMozUPS3RTpoVjiCbi87gv3LulTpFiYA9BGTJDcq?=
- =?us-ascii?Q?wlRY+DSa1n+kxkgiGws0t2D6fZBmh80+pDnkYFJENl31j29S4FirqFZnBdRR?=
- =?us-ascii?Q?rS1G8LvoKlEWfb/E+MHkxEDqKeNQbzTtNpWg5smL5Zyn9USyu7cIZ7y42GXX?=
- =?us-ascii?Q?YgQYExghhUV86i6VEDuWj1cYsfHdsnJ/EkqfgRY4MXSvEf3y+uZknAkMqQJ4?=
- =?us-ascii?Q?SBSiBS3WRPfcZTiOoAX3oqmCbksXFTAcKFi5BVO5YjerZ3JSQwKfUnPJfjwv?=
- =?us-ascii?Q?L7jsqfvsu2BevoUck6YeMk2FIIF8Mbruso9GkU/r3/Ptr3HkD8RiBJwhtGn6?=
- =?us-ascii?Q?tvMJ0+6QaJryNEABefLkm+m+Lv1LyB5gEP2u4xtv51uKzbKYEGQQ0VSGxqhJ?=
- =?us-ascii?Q?2ZGqGpg0MBQ9lL4asU7AFtopxtNyGPPuxr/kAlAiIaPbotjYmlrPWRg8a3E9?=
- =?us-ascii?Q?NbgyAmEXJuoDOW8RsRJsPTNckSZX6hHn55XKjoTVQ8nMvy6r1FXFIehhYdjf?=
- =?us-ascii?Q?irt/GsxJ7YRLKMtszJIsSPh81W57VNKOhHvbj4GZA8wlNxBA2JEG+CIwAECm?=
- =?us-ascii?Q?TDYxDULkiJQETCCWF7+VsfeinS1PL0yQzP/VK6ZKABjP9ZblRxnTD9zv8sMm?=
- =?us-ascii?Q?xemrsYfATFKaxtS2UjDsxKVe7/qFbLyUgjFgtPSpq9d2j5jfdWitFX2AsG/4?=
- =?us-ascii?Q?NkXH/fqFy6KZtxLJAeBtBKnttwveZawN4lvKPT9UgTArHoUgjOBakDYLIm/r?=
- =?us-ascii?Q?k9w74qms1cN/zuDEBVxuH0fhLWJnbv/CaoRBZtEjhIbiFIEhbktEP3S+ltyx?=
- =?us-ascii?Q?kswb3thdJpZ6mB4+KOTAqd4/rX6IIJ3jX0HKr0wtLH92MfvPsNl22JfAO/OE?=
- =?us-ascii?Q?vfGM5HtjKnG4VoR4U89N5maP0cCTnkeLX2fpRBU82II0870BFCnxWZRHnS4w?=
- =?us-ascii?Q?ItS+BJi0eK2GbaSWmla0Qe2B4l0Oeuo=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e6ca4c1f-5be4-47e2-4c19-08de64247e67
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?SopJ0I9EJTqErgA9fNhjqVg03FZTM8y+nsTFxHk6PMtH+ACJ6O0evmmhiT?=
+ =?iso-8859-1?Q?xU9MsdbfzOakkVkJLcXAQyMXd6dxsL6mIeGn12Wrar3Ry+EVBT1Gsjxbn6?=
+ =?iso-8859-1?Q?E6PZzCE01Q/jAVwEHuSdGEMSEM2i3cJx611OJmwvudL6PVe+M9eKPMX21w?=
+ =?iso-8859-1?Q?uRkGf6hzJOflfX4o48Bx0A2Emu0r9Oqm6SUUfOQ+0qjapzfq5fNSt9Et3o?=
+ =?iso-8859-1?Q?pV7RL61J+PnCQXUIWUupiCkkFDGHIisI0rs1qw26BOVkqxxGvcQQEXUPuU?=
+ =?iso-8859-1?Q?OaS2QUS/GWq/G2eFWdGfCGimUm+f5K2Swv/bV6vhJ4ncmyBbFYXSsibWUJ?=
+ =?iso-8859-1?Q?KAQHSM8EsnqClusvgm9RpCSw2OuPdUzI4pfnfZT+J7TVt59pDEdOUht+Te?=
+ =?iso-8859-1?Q?jOF3YPTl2vBv9ZNpmS/7fhpv1fZJp6/jl4Zwwb3qkFYTslbVgHZv1Qxmhb?=
+ =?iso-8859-1?Q?KvSdNHPVV5W5EFR4U43LlDUWNYCeOfAmazkKYXGBu2eEe7HeiS0ZT0K7GZ?=
+ =?iso-8859-1?Q?Ue27SN7Hyz3brFNFGgYBTdSAZA7GV4PlxKDxf2lJqtAqW5KYIsQuqRwV2r?=
+ =?iso-8859-1?Q?7mJiRSwsxAgpdzkV4YZX9qpzUeTInc0965AR2zj8fhVJz566JNx2EUhRob?=
+ =?iso-8859-1?Q?/ygWwFMUxcbkHywsUVkH1UQWJo2Zw4/AyD9NIKFcvToS5k9YK+vDIJYARa?=
+ =?iso-8859-1?Q?ww77eF6YydikntLjtznRHRAcpGD6owsyhyvTDdSw1Ggn/97QpnRWkX/us9?=
+ =?iso-8859-1?Q?0wuZN3NZ1w1FXOUcyNFCREyiPJ0qzJ6nwaJsvjmk3tGZC+9VwMjyhogYjS?=
+ =?iso-8859-1?Q?1aBz4QbBtset38Lo3GdR4VPv621c0SKSOV+kIO0kBl5RMbmW519FzOP3j2?=
+ =?iso-8859-1?Q?bAs7o46tcX/V5i81IMH2ZioBQv5xDDPQTTIkwLaKnAYlSPp/P0NJqaGf95?=
+ =?iso-8859-1?Q?szwRHtoLGQe7ty5OXwnkOmcS6aT9O5mNa8Q7RlhyTIvpOHt/dfHoQbxJa5?=
+ =?iso-8859-1?Q?8kftTYqesICQKeKdeGckSstvFxMGcN0UUEExJ5xCORb+V0YxHWV2oEeumH?=
+ =?iso-8859-1?Q?LDuoXvrJNKpmdTSq4rgkRdxRIjJqbFxrc/r70nCXnzo3mKyz+CGZgne0th?=
+ =?iso-8859-1?Q?AbzLtP84Anij7EiYUe3mX9FKCaHCsNthsdaa8dgnSYDRxdVTVZ6kuG1APi?=
+ =?iso-8859-1?Q?Rh8C932JsOb/5QXUXFl0xMicCUAulj5sM3rEMifrYY9gCpsC0vCG04O58n?=
+ =?iso-8859-1?Q?7oWDEc/13stizel/ZpSWSIy9R65OpYMk7KihA3tvRXxfQ1CHn3VH0hkdhX?=
+ =?iso-8859-1?Q?6w0VLRqWlBDx5cfN8LyAd6Oed7evkZpc9cpoiRmyX3VJsjw5BEbuCAZSLo?=
+ =?iso-8859-1?Q?iJDEM/C5qP+KeIjw9CotL0/f7N2yiVsmeEeIHgYeMYspPvIeyHZsQjqURy?=
+ =?iso-8859-1?Q?fDJ509M8r4CJrJwYnfqNIEE4i4OAxRlAo0SeM8YSt1sLfrw6sMxg41H6T1?=
+ =?iso-8859-1?Q?hParTaAwEK/d5W1Tx+J7YHfbu6gFMYstIdJ41T4Qys5A2b9e80lPsfv7Y8?=
+ =?iso-8859-1?Q?iesZ4UadeLunMPISZBsmi7iZsCiA0/oKr8rRqPQeEzzuXvBOFIU/8tiL+g?=
+ =?iso-8859-1?Q?7+MWVMYajEwNbqKC+/5RGaONIlyhQo4UdMq4Dv2889+s/y92BNV4tQOCcD?=
+ =?iso-8859-1?Q?Yiyk2anTp6oPJIFXjgsYo/HUdVbo5ewHWnb5E+EkTQk7dMexlk9mPWMj/h?=
+ =?iso-8859-1?Q?l4BCFkAF5cclNQIG3chMK0EiTXEaee7D2QlYUiBQ0R6oCaNdBDJYo5++mA?=
+ =?iso-8859-1?Q?KA590lajzQDbtrA8EeWMQGeTj7xr2xQ=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: dd75c050-73ca-4c00-20fa-08de6426052c
 X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2026 19:35:03.8221 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Feb 2026 19:45:59.5403 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DhrQcQZWw+pHbu0nzQsQX2BtC7puqLvGh44mBwsSJYAo1t77L8pdqi7+mYTNLWl6pzp21ysklFEZTsn03a097Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6459
+X-MS-Exchange-CrossTenant-UserPrincipalName: ci9HdFOZrBhcEEny2XNa2pYBiEYgKzg7wWsI6FZnq8r2FZhj86S0BxIDsxOJdatIWTGkev2V3LeuVJPVEOwkMw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8414
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -179,91 +186,275 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Feb 04, 2026 at 11:10:26AM -0800, Matt Roper wrote:
-> The error label in this function just does an immediate return without
-> any further cleanup or processing.  Replace the goto statements with
-> returns.
+On Wed, Feb 04, 2026 at 04:46:44PM +0000, Satyanarayana K V P wrote:
+> drm_suballoc_new() currently both allocates the SA object using kmalloc()
+> and searches for a suitable hole in the sub-allocator for the requested
+> size. Since kmalloc() may take internal locks, performing memory
+> allocation while holding the sub-allocator mutex can trigger lockdep
+> deadlock warnings.
+
+The above isn't quite right. By spliting the kmalloc step outside of the
+init step, this allows kmalloc to be reclaim unsafe (GFP_KERNEL) and the
+enter a reclaim unsafe section (e.g., take a reclaim tainted lock)
+during init.
+
 > 
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> Fix this by splitting SA allocation from drm_suballoc_new(), separating
+> object allocation from sub-allocator initialization and hole selection.
+> 
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+I'd also mention that a timeout argument is provided in init too,
+with use cases in mind where the suballocator is sized to never fail
+finding a hole or if does, it won't hang forever.
 
+Matt
+
+> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+> Suggested-by: Matthew Brost <matthew.brost@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> 
 > ---
->  drivers/gpu/drm/xe/xe_device.c | 20 ++++++++------------
->  1 file changed, 8 insertions(+), 12 deletions(-)
+> V1 -> V2:
+> - Splitted drm_suballoc_new() into drm_suballoc_alloc() and
+> drm_suballoc_init() (Thomas).
+> ---
+>  drivers/gpu/drm/drm_suballoc.c | 135 +++++++++++++++++++++++++--------
+>  include/drm/drm_suballoc.h     |   8 ++
+>  2 files changed, 112 insertions(+), 31 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 055084fa50e5..743c18e0c580 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -456,16 +456,16 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
->  			      xe->drm.anon_inode->i_mapping,
->  			      xe->drm.vma_offset_manager, 0);
->  	if (WARN_ON(err))
-> -		goto err;
-> +		return ERR_PTR(err);
->  
->  	xe_bo_dev_init(&xe->bo_device);
->  	err = drmm_add_action_or_reset(&xe->drm, xe_device_destroy, NULL);
->  	if (err)
-> -		goto err;
-> +		return ERR_PTR(err);
->  
->  	err = xe_shrinker_create(xe);
->  	if (err)
-> -		goto err;
-> +		return ERR_PTR(err);
->  
->  	xe->info.devid = pdev->device;
->  	xe->info.revid = pdev->revision;
-> @@ -475,7 +475,7 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
->  
->  	err = xe_irq_init(xe);
->  	if (err)
-> -		goto err;
-> +		return ERR_PTR(err);
->  
->  	xe_validation_device_init(&xe->val);
->  
-> @@ -485,7 +485,7 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
->  
->  	err = xe_pagemap_shrinker_create(xe);
->  	if (err)
-> -		goto err;
-> +		return ERR_PTR(err);
->  
->  	xa_init_flags(&xe->usm.asid_to_vm, XA_FLAGS_ALLOC);
->  
-> @@ -504,7 +504,7 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
->  
->  	err = xe_bo_pinned_init(xe);
->  	if (err)
-> -		goto err;
-> +		return ERR_PTR(err);
->  
->  	xe->preempt_fence_wq = alloc_ordered_workqueue("xe-preempt-fence-wq",
->  						       WQ_MEM_RECLAIM);
-> @@ -518,18 +518,14 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
->  		 * drmm_add_action_or_reset register above
->  		 */
->  		drm_err(&xe->drm, "Failed to allocate xe workqueues\n");
-> -		err = -ENOMEM;
-> -		goto err;
-> +		return ERR_PTR(-ENOMEM);
->  	}
->  
->  	err = drmm_mutex_init(&xe->drm, &xe->pmt.lock);
->  	if (err)
-> -		goto err;
-> +		return ERR_PTR(err);
->  
->  	return xe;
-> -
-> -err:
-> -	return ERR_PTR(err);
+> diff --git a/drivers/gpu/drm/drm_suballoc.c b/drivers/gpu/drm/drm_suballoc.c
+> index 879ea33dbbc4..6f21f9e048d6 100644
+> --- a/drivers/gpu/drm/drm_suballoc.c
+> +++ b/drivers/gpu/drm/drm_suballoc.c
+> @@ -123,7 +123,7 @@ static void drm_suballoc_remove_locked(struct drm_suballoc *sa)
+>  	list_del_init(&sa->olist);
+>  	list_del_init(&sa->flist);
+>  	dma_fence_put(sa->fence);
+> -	kfree(sa);
+> +	drm_suballoc_release(sa);
 >  }
->  ALLOW_ERROR_INJECTION(xe_device_create, ERRNO); /* See xe_pci_probe() */
 >  
+>  static void drm_suballoc_try_free(struct drm_suballoc_manager *sa_manager)
+> @@ -293,45 +293,75 @@ static bool drm_suballoc_next_hole(struct drm_suballoc_manager *sa_manager,
+>  }
+>  
+>  /**
+> - * drm_suballoc_new() - Make a suballocation.
+> + * drm_suballoc_alloc() - Allocate uninitialized suballoc object.
+> + * @gfp: gfp flags used for memory allocation.
+> + *
+> + * Allocate memory for an uninitialized suballoc object. Intended usage is
+> + * allocate memory for suballoc object outside of a reclaim tainted context
+> + * and then be initialized at a later time in a reclaim tainted context.
+> + *
+> + * @drm_suballoc_release should be used to release the memory if returned
+> + * suballoc object is in uninitialized state.
+> + *
+> + * Return: a new uninitialized suballoc object, or an ERR_PTR(-ENOMEM).
+> + */
+> +struct drm_suballoc *drm_suballoc_alloc(gfp_t gfp)
+> +{
+> +	struct drm_suballoc *sa;
+> +
+> +	sa = kmalloc(sizeof(*sa), gfp);
+> +	if (!sa)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	return sa;
+> +}
+> +EXPORT_SYMBOL(drm_suballoc_alloc);
+> +
+> +/**
+> + * drm_suballoc_release() - Release memory for suballocation.
+> + * @sa: The struct drm_suballoc.
+> + */
+> +void drm_suballoc_release(struct drm_suballoc *sa)
+> +{
+> +	kfree(sa);
+> +}
+> +EXPORT_SYMBOL(drm_suballoc_release);
+> +
+> +/**
+> + * drm_suballoc_init() - Initialize a suballocation.
+>   * @sa_manager: pointer to the sa_manager
+> + * @sa: The struct drm_suballoc.
+>   * @size: number of bytes we want to suballocate.
+> - * @gfp: gfp flags used for memory allocation. Typically GFP_KERNEL but
+> - *       the argument is provided for suballocations from reclaim context or
+> - *       where the caller wants to avoid pipelining rather than wait for
+> - *       reclaim.
+>   * @intr: Whether to perform waits interruptible. This should typically
+>   *        always be true, unless the caller needs to propagate a
+>   *        non-interruptible context from above layers.
+>   * @align: Alignment. Must not exceed the default manager alignment.
+>   *         If @align is zero, then the manager alignment is used.
+> + * @timeout: Time to a wait suballocation to become available.
+>   *
+> - * Try to make a suballocation of size @size, which will be rounded
+> - * up to the alignment specified in specified in drm_suballoc_manager_init().
+> + * Try to make a suballocation on a pre-allocated suballoc object of size @size,
+> + * which will be rounded up to the alignment specified in specified in
+> + * drm_suballoc_manager_init().
+>   *
+> - * Return: a new suballocated bo, or an ERR_PTR.
+> + * Return: zero on success, errno on failure.
+>   */
+> -struct drm_suballoc *
+> -drm_suballoc_new(struct drm_suballoc_manager *sa_manager, size_t size,
+> -		 gfp_t gfp, bool intr, size_t align)
+> +int drm_suballoc_init(struct drm_suballoc_manager *sa_manager,
+> +		      struct drm_suballoc *sa, size_t size,
+> +		      bool intr, size_t align, signed long timeout)
+>  {
+>  	struct dma_fence *fences[DRM_SUBALLOC_MAX_QUEUES];
+>  	unsigned int tries[DRM_SUBALLOC_MAX_QUEUES];
+>  	unsigned int count;
+>  	int i, r;
+> -	struct drm_suballoc *sa;
+>  
+>  	if (WARN_ON_ONCE(align > sa_manager->align))
+> -		return ERR_PTR(-EINVAL);
+> +		return -EINVAL;
+>  	if (WARN_ON_ONCE(size > sa_manager->size || !size))
+> -		return ERR_PTR(-EINVAL);
+> +		return -EINVAL;
+>  
+>  	if (!align)
+>  		align = sa_manager->align;
+>  
+> -	sa = kmalloc(sizeof(*sa), gfp);
+> -	if (!sa)
+> -		return ERR_PTR(-ENOMEM);
+>  	sa->manager = sa_manager;
+>  	sa->fence = NULL;
+>  	INIT_LIST_HEAD(&sa->olist);
+> @@ -339,6 +369,8 @@ drm_suballoc_new(struct drm_suballoc_manager *sa_manager, size_t size,
+>  
+>  	spin_lock(&sa_manager->wq.lock);
+>  	do {
+> +		long t;
+> +
+>  		for (i = 0; i < DRM_SUBALLOC_MAX_QUEUES; ++i)
+>  			tries[i] = 0;
+>  
+> @@ -348,7 +380,7 @@ drm_suballoc_new(struct drm_suballoc_manager *sa_manager, size_t size,
+>  			if (drm_suballoc_try_alloc(sa_manager, sa,
+>  						   size, align)) {
+>  				spin_unlock(&sa_manager->wq.lock);
+> -				return sa;
+> +				return 0;
+>  			}
+>  
+>  			/* see if we can skip over some allocations */
+> @@ -359,34 +391,75 @@ drm_suballoc_new(struct drm_suballoc_manager *sa_manager, size_t size,
+>  				fences[count++] = dma_fence_get(fences[i]);
+>  
+>  		if (count) {
+> -			long t;
+> -
+>  			spin_unlock(&sa_manager->wq.lock);
+>  			t = dma_fence_wait_any_timeout(fences, count, intr,
+> -						       MAX_SCHEDULE_TIMEOUT,
+> -						       NULL);
+> +						       timeout, NULL);
+>  			for (i = 0; i < count; ++i)
+>  				dma_fence_put(fences[i]);
+>  
+> -			r = (t > 0) ? 0 : t;
+>  			spin_lock(&sa_manager->wq.lock);
+>  		} else if (intr) {
+> +			spin_unlock(&sa_manager->wq.lock);
+>  			/* if we have nothing to wait for block */
+> -			r = wait_event_interruptible_locked
+> +			r = wait_event_interruptible_timeout
+>  				(sa_manager->wq,
+> -				 __drm_suballoc_event(sa_manager, size, align));
+> +				 __drm_suballoc_event(sa_manager, size, align),
+> +				 timeout);
+> +			spin_lock(&sa_manager->wq.lock);
+>  		} else {
+>  			spin_unlock(&sa_manager->wq.lock);
+> -			wait_event(sa_manager->wq,
+> -				   drm_suballoc_event(sa_manager, size, align));
+> -			r = 0;
+> +			t = wait_event_timeout
+> +				(sa_manager->wq,
+> +				 drm_suballoc_event(sa_manager, size, align),
+> +				 timeout);
+>  			spin_lock(&sa_manager->wq.lock);
+>  		}
+> +		r = (t > 0) ? 0 : !r ? -ETIME : t;
+>  	} while (!r);
+>  
+>  	spin_unlock(&sa_manager->wq.lock);
+> -	kfree(sa);
+> -	return ERR_PTR(r);
+> +	return r;
+> +}
+> +EXPORT_SYMBOL(drm_suballoc_init);
+> +
+> +/**
+> + * drm_suballoc_new() - Make a suballocation.
+> + * @sa_manager: pointer to the sa_manager
+> + * @size: number of bytes we want to suballocate.
+> + * @gfp: gfp flags used for memory allocation. Typically GFP_KERNEL but
+> + *       the argument is provided for suballocations from reclaim context or
+> + *       where the caller wants to avoid pipelining rather than wait for
+> + *       reclaim.
+> + * @intr: Whether to perform waits interruptible. This should typically
+> + *        always be true, unless the caller needs to propagate a
+> + *        non-interruptible context from above layers.
+> + * @align: Alignment. Must not exceed the default manager alignment.
+> + *         If @align is zero, then the manager alignment is used.
+> + *
+> + * Try to make a suballocation of size @size, which will be rounded
+> + * up to the alignment specified in specified in drm_suballoc_manager_init().
+> + *
+> + * Return: a new suballocated bo, or an ERR_PTR.
+> + */
+> +struct drm_suballoc *
+> +drm_suballoc_new(struct drm_suballoc_manager *sa_manager, size_t size,
+> +		 gfp_t gfp, bool intr, size_t align)
+> +{
+> +	struct drm_suballoc *sa;
+> +	int err;
+> +
+> +	sa = drm_suballoc_alloc(gfp);
+> +	if (IS_ERR(sa))
+> +		return sa;
+> +
+> +	err = drm_suballoc_init(sa_manager, sa, size, intr, align,
+> +				MAX_SCHEDULE_TIMEOUT);
+> +	if (err) {
+> +		drm_suballoc_release(sa);
+> +		return ERR_PTR(err);
+> +	}
+> +
+> +	return sa;
+>  }
+>  EXPORT_SYMBOL(drm_suballoc_new);
+>  
+> diff --git a/include/drm/drm_suballoc.h b/include/drm/drm_suballoc.h
+> index 7ba72a81a808..cff0e14556d1 100644
+> --- a/include/drm/drm_suballoc.h
+> +++ b/include/drm/drm_suballoc.h
+> @@ -53,6 +53,14 @@ void drm_suballoc_manager_init(struct drm_suballoc_manager *sa_manager,
+>  
+>  void drm_suballoc_manager_fini(struct drm_suballoc_manager *sa_manager);
+>  
+> +struct drm_suballoc *drm_suballoc_alloc(gfp_t gfp);
+> +
+> +void drm_suballoc_release(struct drm_suballoc *sa);
+> +
+> +int drm_suballoc_init(struct drm_suballoc_manager *sa_manager,
+> +		      struct drm_suballoc *sa, size_t size, bool intr,
+> +		      size_t align, signed long timeout);
+> +
+>  struct drm_suballoc *
+>  drm_suballoc_new(struct drm_suballoc_manager *sa_manager, size_t size,
+>  		 gfp_t gfp, bool intr, size_t align);
 > -- 
-> 2.52.0
+> 2.43.0
 > 
