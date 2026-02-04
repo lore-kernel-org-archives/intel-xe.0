@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72A91EA7946
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 22:03:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46038EA7948
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Feb 2026 22:26:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11EB210E344;
-	Wed,  4 Feb 2026 22:03:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C608710E0FE;
+	Wed,  4 Feb 2026 22:26:34 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7D1510E322;
- Wed,  4 Feb 2026 22:03:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECAD110E0FE;
+ Wed,  4 Feb 2026 22:26:33 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============4188380422528473618=="
+ boundary="===============3945866919118452014=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_drm/buddy=3A_Documentation?=
- =?utf-8?q?_and_internal_helper_cleanup?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/configfs=3A_Fix_=27p?=
+ =?utf-8?q?arameter_name_omitted=27_errors_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sanjay Yadav" <sanjay.kumar.yadav@intel.com>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 04 Feb 2026 22:03:27 -0000
-Message-ID: <177024260766.225523.8214932006996260322@a3b018990fe9>
+Date: Wed, 04 Feb 2026 22:26:33 -0000
+Message-ID: <177024399392.225549.16764917734882472301@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260204104345.1980047-4-sanjay.kumar.yadav@intel.com>
-In-Reply-To: <20260204104345.1980047-4-sanjay.kumar.yadav@intel.com>
+References: <20260203193745.576-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20260203193745.576-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,26 +40,57 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4188380422528473618==
+--===============3945866919118452014==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/buddy: Documentation and internal helper cleanup
-URL   : https://patchwork.freedesktop.org/series/161140/
-State : failure
+Series: drm/xe/configfs: Fix 'parameter name omitted' errors (rev2)
+URL   : https://patchwork.freedesktop.org/series/161107/
+State : success
 
 == Summary ==
 
-ERROR: The runconfig 'xe-4495-241994730989320c926da9f2d0a5ec80b48f993d_FULL' does not exist in the database
+CI Bug Log - changes from xe-4499-766d92ea1d85ed3d5b5b8da4d29fbf1804f327cb_BAT -> xe-pw-161107v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4499-766d92ea1d85ed3d5b5b8da4d29fbf1804f327cb -> xe-pw-161107v2
+
+  IGT_8736: 8736
+  xe-4499-766d92ea1d85ed3d5b5b8da4d29fbf1804f327cb: 766d92ea1d85ed3d5b5b8da4d29fbf1804f327cb
+  xe-pw-161107v2: 161107v2
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161140v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161107v2/index.html
 
---===============4188380422528473618==
+--===============3945866919118452014==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -79,18 +110,32 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/buddy: Documentation and internal helper cleanup</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161140/">https://patchwork.freedesktop.org/series/161140/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+<tr><td><b>Series:</b></td><td>drm/xe/configfs: Fix &#x27;parameter name omitted&#x27; errors (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161107/">https://patchwork.freedesktop.org/series/161107/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161140v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161140v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161107v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161107v2/index.html</a></td></tr>
 
 </table>
 
 
-    <p>ERROR: The runconfig 'xe-4495-241994730989320c926da9f2d0a5ec80b48f993d_FULL' does not exist in the database</p>
+    <h1>CI Bug Log - changes from xe-4499-766d92ea1d85ed3d5b5b8da4d29fbf1804f327cb_BAT -&gt; xe-pw-161107v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4499-766d92ea1d85ed3d5b5b8da4d29fbf1804f327cb -&gt; xe-pw-161107v2</li>
+</ul>
+<p>IGT_8736: 8736<br />
+  xe-4499-766d92ea1d85ed3d5b5b8da4d29fbf1804f327cb: 766d92ea1d85ed3d5b5b8da4d29fbf1804f327cb<br />
+  xe-pw-161107v2: 161107v2</p>
 
 </body>
 </html>
 
---===============4188380422528473618==--
+--===============3945866919118452014==--
