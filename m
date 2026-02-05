@@ -4,27 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09607EC1E86
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 10:16:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B90BDEC1E96
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 10:21:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B3CBB10E83A;
-	Thu,  5 Feb 2026 10:16:42 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D9DD710E83A;
- Thu,  5 Feb 2026 10:16:40 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7971335854601483467=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 748A410E842;
+	Thu,  5 Feb 2026 10:21:29 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZHwVSQv6";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FDB310E834
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Feb 2026 10:21:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1770286888; x=1801822888;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=bsLhqFnGxcj2Rg2EIT2MJNl7JczF0rJRb2EqVolLTYA=;
+ b=ZHwVSQv6fHxb/K5wJtKSBJA0FTk+jFDCwyEW1SHdqYVAjHndL/RZCWh4
+ rZfiFaBj646AlAo+bBI36Y7t8vSoEHtKHieYjCe/zITsuBCw3dY7ChIze
+ 9MAPOcPqSVOUigwi+wCAjchFJHNec8u9/9umc3IKuyc1UkacY5bxSBfwP
+ kmxOogt5a/in1u5sIO8mZ1ZLOBVNzxcgoqCqZyScyxnXcNnNjCcnOIP8X
+ wpN8nIDRckSOGT2mHkcK1kinChjplozOa0GA0zH6ZEcfNI7mpzudt7YaD
+ qsbdjiMaH8KTa1EDqrBXkcQtnrM7SVE3xsNPapCh8y4qT9Mb2RBhqWQOg g==;
+X-CSE-ConnectionGUID: 1Hlgn0i3RdWhidgyKYvwuQ==
+X-CSE-MsgGUID: jBschI07Tl6Kp4lxPIdyyA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="75335700"
+X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="75335700"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2026 02:21:28 -0800
+X-CSE-ConnectionGUID: E5CgbKltQ/aeNQUEzJ91AQ==
+X-CSE-MsgGUID: tyAtP8upT0a0YJbbAtzg3w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="210355772"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.244.124])
+ ([10.245.244.124])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2026 02:21:26 -0800
+Message-ID: <86c575d3-a0a5-469f-b901-35ac83a68f4f@intel.com>
+Date: Thu, 5 Feb 2026 10:21:24 +0000
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_Joiner_clean?=
- =?utf-8?q?ups_and_fix?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 05 Feb 2026 10:16:40 -0000
-Message-ID: <177028660087.228151.8612963246536576965@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260205083623.793902-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20260205083623.793902-1-ankit.k.nautiyal@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/xe: Add bounds check on pat_index to prevent OOB
+ kernel read in madvise
+To: "Yao, Jia" <jia.yao@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: "Brost, Matthew" <matthew.brost@intel.com>,
+ "Lin, Shuicheng" <shuicheng.lin@intel.com>,
+ "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+References: <20260203172045.1154546-1-jia.yao@intel.com>
+ <20260203210659.1194480-1-jia.yao@intel.com>
+ <fb29d021-a0ed-4b33-b6e9-07918e966b8f@intel.com>
+ <PH8PR11MB8040896B4DF18BE1393ACC50F498A@PH8PR11MB8040.namprd11.prod.outlook.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <PH8PR11MB8040896B4DF18BE1393ACC50F498A@PH8PR11MB8040.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,124 +75,90 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7971335854601483467==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 04/02/2026 18:15, Yao, Jia wrote:
+> Thanks! May I add your Reviewed-by tag in the next revision?
 
-== Series Details ==
+Yes, with the comments addressed.
 
-Series: drm/i915/dp: Joiner cleanups and fix
-URL   : https://patchwork.freedesktop.org/series/161181/
-State : success
+> 
+>> -----Original Message-----
+>> From: Auld, Matthew <matthew.auld@intel.com>
+>> Sent: Wednesday, February 4, 2026 7:44 AM
+>> To: Yao, Jia <jia.yao@intel.com>; intel-xe@lists.freedesktop.org
+>> Cc: Brost, Matthew <matthew.brost@intel.com>; Lin, Shuicheng
+>> <shuicheng.lin@intel.com>; Ghimiray, Himal Prasad
+>> <himal.prasad.ghimiray@intel.com>; Thomas Hellström
+>> <thomas.hellstrom@linux.intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>
+>> Subject: Re: [PATCH v2] drm/xe: Add bounds check on pat_index to prevent
+>> OOB kernel read in madvise
+>>
+>> On 03/02/2026 21:06, Jia Yao wrote:
+>>> When user provides a bogus pat_index value through the madvise IOCTL,
+>>> the
+>>> xe_pat_index_get_coh_mode() function performs an array access without
+>>> validating bounds. This allows a malicious user to trigger an
+>>> out-of-bounds kernel read from the xe->pat.table array.
+>>>
+>>> The vulnerability exists because the validation in
+>>> madvise_args_are_sane() directly calls xe_pat_index_get_coh_mode(xe,
+>>> args->pat_index.val) without first checking if pat_index is within [0, xe-
+>>> pat.n_entries).
+>>>
+>>> Although xe_pat_index_get_coh_mode() has a WARN_ON to catch this in
+>>> debug builds, it still performs the unsafe array access in production kernels.
+>>>
+>>> v2(Matthew Auld)
+>>> - Using array_index_nospec() to mitigate spectre attacks when the
+>>> value is used
+>>>
+>>> Fixes: ada7486c5668 ("drm/xe: Implement madvise ioctl for xe")
+>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>> Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+>>> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+>>> Cc: "Thomas Hellström" <thomas.hellstrom@linux.intel.com>
+>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>> Cc: Matthew Auld <matthew.auld@intel.com>
+>>> Signed-off-by: Jia Yao <jia.yao@intel.com>
+>>
+>> I think you dropped the stable Cc.
+>>
+>>> ---
+>>>    drivers/gpu/drm/xe/xe_vm_madvise.c | 7 ++++++-
+>>>    1 file changed, 6 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c
+>>> b/drivers/gpu/drm/xe/xe_vm_madvise.c
+>>> index add9a6ca2390..3564e1442694 100644
+>>> --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
+>>> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+>>> @@ -291,7 +291,12 @@ static bool madvise_args_are_sane(struct
+>> xe_device *xe, const struct drm_xe_madv
+>>>    		break;
+>>>    	case DRM_XE_MEM_RANGE_ATTR_PAT:
+>>>    	{
+>>> -		u16 coh_mode = xe_pat_index_get_coh_mode(xe, args-
+>>> pat_index.val);
+>>> +		if (XE_IOCTL_DBG(xe, args->pat_index.val >= xe-
+>>> pat.n_entries))
+>>> +			return false;
+>>> +
+>>> +		u16 pat_index = array_index_nospec(args->pat_index.val,
+>>> +xe->pat.n_entries);
+>>> +
+>>> +		u16 coh_mode = xe_pat_index_get_coh_mode(xe,
+>> pat_index);
+>>
+>> nit: I think the normal coding style is to put the declarations at the start of the
+>> block. The rest of this file seems to follow that.
+>>
+>> Otherwise:
+>> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+>>
+>>>
+>>>    		if (XE_IOCTL_DBG(xe, !coh_mode))
+>>>    			return false;
+> 
 
-== Summary ==
-
-CI Bug Log - changes from xe-4504-461a70dd5bd9b765de46c7f57d299d6d92d2f441_BAT -> xe-pw-161181v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (10 -> 11)
-------------------------------
-
-  Additional (1): bat-bmg-3 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-161181v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:
-    - bat-bmg-3:          NOTRUN -> [SKIP][1] ([Intel XE#6566]) +3 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161181v1/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html
-
-  
-  [Intel XE#6566]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566
-
-
-Build changes
--------------
-
-  * Linux: xe-4504-461a70dd5bd9b765de46c7f57d299d6d92d2f441 -> xe-pw-161181v1
-
-  IGT_8738: b3fc8fb534a27517f2a49e63ef993e7550b9b959 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4504-461a70dd5bd9b765de46c7f57d299d6d92d2f441: 461a70dd5bd9b765de46c7f57d299d6d92d2f441
-  xe-pw-161181v1: 161181v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161181v1/index.html
-
---===============7971335854601483467==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: Joiner cleanups and fix</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161181/">https://patchwork.freedesktop.org/series/161181/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161181v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161181v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4504-461a70dd5bd9b765de46c7f57d299d6d92d2f441_BAT -&gt; xe-pw-161181v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (10 -&gt; 11)</h2>
-<p>Additional (1): bat-bmg-3 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-161181v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:<ul>
-<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161181v1/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566">Intel XE#6566</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4504-461a70dd5bd9b765de46c7f57d299d6d92d2f441 -&gt; xe-pw-161181v1</li>
-</ul>
-<p>IGT_8738: b3fc8fb534a27517f2a49e63ef993e7550b9b959 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4504-461a70dd5bd9b765de46c7f57d299d6d92d2f441: 461a70dd5bd9b765de46c7f57d299d6d92d2f441<br />
-  xe-pw-161181v1: 161181v1</p>
-
-</body>
-</html>
-
---===============7971335854601483467==--
