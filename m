@@ -4,57 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80D03E9129C
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 23:40:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA108ECD9BB
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 23:40:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 196A510E211;
-	Thu,  5 Feb 2026 23:40:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 547A710E1FF;
+	Thu,  5 Feb 2026 23:40:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W9yIggOD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jkrvbU/x";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD79610E1BE;
- Thu,  5 Feb 2026 23:40:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 551C710E177;
+ Thu,  5 Feb 2026 23:40:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770334837; x=1801870837;
+ t=1770334832; x=1801870832;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=BOImO+wNVQR4dbsiIQY9zLvgimuj5OCRS5eO5HJ/RVw=;
- b=W9yIggODa2TARy6PZ3AqWj47PJ/91mIarYSAomCDzcg7YPkzHhJ5FcFa
- OztKYgJ0bhbdbX36zsjmztJR5XayOjnJ7M+3GYI3iL01IZP81ssmL+ZSV
- DQ0zcgjUG1IsJpMx6pCW2gaqzg0OfwXa9eUwCFu3hRakXgFX1j2cQBrVj
- ItN5SPYP9mqJ4kcst3pwmFm7FAfNKc8KTJ06I0fEjc9RtFoEpyJH2L6J5
- xr2PTfVVHhvy86lEPIpKsTTpl1tUIgZYgeAAsYPgezdNv3JAKb4WUKu44
- mBIwAZuf4oI0RZj5xzazzSh0qlotKUeSLjaegPYvGOmK6980zNlK99KLD w==;
-X-CSE-ConnectionGUID: QPBeMHacTn6NrQ2ZM8H1Dg==
-X-CSE-MsgGUID: Zf6yyASkTbOYDAaUOqrH7g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="82658692"
-X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="82658692"
+ bh=RB06l5xnoFw1QNi9NkKegJfrjTVHh4paBvG9g+qAPFs=;
+ b=jkrvbU/xl2ArT+ezztSYYUZjXC4GzcGrMLsVWpEzROqvDhyydVcEg/yR
+ fMKTReoRsaVa+94dIlze2j++6t7n+wJAaP+wLGX8r1Fajvj0w74PBsO69
+ 4F6TvfApfS7E9aW6EwzUONlw1TXaLOzblvz7LPC6AeTlSmfF/ND8ArsFQ
+ Zpw2L1P+RXLAP83Me8mzuCfKaky/YJEj446l4sw6cxLIIl6Oi3HCX44Ug
+ 6VyWq78rVMEZZ17ijWKw3qEQvv8Zsalg7LiToV1G2G2MQq/qen0GnZ1d/
+ nF7wYhTJO+7Md/Ta2raZE7eh0qV1xKhf1LW6010W9G5MSnkeJNYc7n9c8 A==;
+X-CSE-ConnectionGUID: 823Vsn5fQTSS9ItlHLXguw==
+X-CSE-MsgGUID: /teXUoI3SAKts5oF7taL2Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="82658679"
+X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="82658679"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 15:40:37 -0800
-X-CSE-ConnectionGUID: GKq+52lMT9K/dcZeLGjJwg==
-X-CSE-MsgGUID: 35JgyOGVQ/ivYBsInrI5PA==
+ 05 Feb 2026 15:40:31 -0800
+X-CSE-ConnectionGUID: aZHm9c90R8SLeq3CE1uuVA==
+X-CSE-MsgGUID: tepD3cm4SamrlpRxXRk3mw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="210500152"
+X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="210500119"
 Received: from rfrazer-mobl3.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.222.82])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 15:40:35 -0800
+ 05 Feb 2026 15:40:16 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Thu, 05 Feb 2026 20:39:40 -0300
-Subject: [PATCH v2 12/15] drm/xe/nvlp: Add NVL-P platform definition
+Date: Thu, 05 Feb 2026 20:39:31 -0300
+Subject: [PATCH v2 03/15] drm/xe/pat: Differentiate between primary and
+ media for PTA
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260205-nvl-p-upstreaming-v2-12-9ec14f00cc6c@intel.com>
+Message-Id: <20260205-nvl-p-upstreaming-v2-3-9ec14f00cc6c@intel.com>
 References: <20260205-nvl-p-upstreaming-v2-0-9ec14f00cc6c@intel.com>
 In-Reply-To: <20260205-nvl-p-upstreaming-v2-0-9ec14f00cc6c@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
- Shekhar Chauhan <shekhar.chauhan@intel.com>, 
- Matt Roper <matthew.d.roper@intel.com>
+ Matt Roper <matthew.d.roper@intel.com>, 
+ Tejas Upadhyay <tejas.upadhyay@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,114 +71,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Shekhar Chauhan <shekhar.chauhan@intel.com>
+Differently from currently supported platforms, in upcoming changes we
+will need to have different PAT entries for PTA based on the GT type. As
+such, let's prepare the code to support that by having two separate
+PTA-specific members in the pat struct, one for each type of GT.
 
-Add platform definition along with device IDs for NVL-P.  Here is the
-list of device descriptor fields and associated Bspec references:
-
-  .dma_mask_size (Bspec 74198)
-  .has_cached_pt (Bspec 71582)
-  .has_display (Bspec 74196)
-  .has_flat_ccs (Bspec 74110)
-  .has_page_reclaim_hw_assist (Bspec 73451)
-  .max_gt_per_tile (Bspec 74196)
-  .va_bits (Bspec 74198)
-  .vm_max_level (Bspec 59507)
-
-v2:
-  - Add list of descriptor fields and Bspec references. (Matt)
+While at it, also fix the kerneldoc for pat_ats.
 
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+Co-developed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c             |  4 ++--
- drivers/gpu/drm/xe/xe_pci.c            | 15 +++++++++++++++
- drivers/gpu/drm/xe/xe_platform_types.h |  1 +
- include/drm/intel/pciids.h             | 12 ++++++++++++
- 4 files changed, 30 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h |  8 +++++---
+ drivers/gpu/drm/xe/xe_pat.c          | 27 ++++++++++++++++++---------
+ 2 files changed, 23 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 8bf16d60b9a5..9e998f9708df 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -512,8 +512,8 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
- 		/*
- 		 * Display scanout is always non-coherent with the CPU cache.
- 		 *
--		 * For Xe_LPG and beyond, PPGTT PTE lookups are also
--		 * non-coherent and require a CPU:WC mapping.
-+		 * For Xe_LPG and beyond up to NVL-P (excluding), PPGTT PTE
-+		 * lookups are also non-coherent and require a CPU:WC mapping.
- 		 */
- 		if ((!bo->cpu_caching && bo->flags & XE_BO_FLAG_SCANOUT) ||
- 		     (!xe->info.has_cached_pt && bo->flags & XE_BO_FLAG_PAGETABLE))
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 08e0ff9f75e8..a90129d8e15b 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -438,6 +438,20 @@ static const struct xe_device_desc cri_desc = {
- 	.vm_max_level = 4,
- };
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 14bf2c027f89..059f026e80d5 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -400,10 +400,12 @@ struct xe_device {
+ 		const struct xe_pat_table_entry *table;
+ 		/** @pat.n_entries: Number of PAT entries */
+ 		int n_entries;
+-		/** @pat.ats_entry: PAT entry for PCIe ATS responses */
++		/** @pat.pat_ats: PAT entry for PCIe ATS responses */
+ 		const struct xe_pat_table_entry *pat_ats;
+-		/** @pat.pta_entry: PAT entry for page table accesses */
+-		const struct xe_pat_table_entry *pat_pta;
++		/** @pat.pat_primary_pta: primary GT PAT entry for page table accesses */
++		const struct xe_pat_table_entry *pat_primary_pta;
++		/** @pat.pat_media_pta: media GT PAT entry for page table accesses */
++		const struct xe_pat_table_entry *pat_media_pta;
+ 		u32 idx[__XE_CACHE_LEVEL_COUNT];
+ 	} pat;
  
-+static const struct xe_device_desc nvlp_desc = {
-+	PLATFORM(NOVALAKE_P),
-+	.dma_mask_size = 46,
-+	.has_cached_pt = true,
-+	.has_display = true,
-+	.has_flat_ccs = 1,
-+	.has_page_reclaim_hw_assist = true,
-+	.has_pre_prod_wa = true,
-+	.max_gt_per_tile = 2,
-+	.require_force_probe = true,
-+	.va_bits = 48,
-+	.vm_max_level = 4,
-+};
-+
- #undef PLATFORM
- __diag_pop();
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index 2cd3fd1c3953..5ba650948a4a 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -285,8 +285,10 @@ static void program_pat(struct xe_gt *gt, const struct xe_pat_table_entry table[
  
-@@ -468,6 +482,7 @@ static const struct pci_device_id pciidlist[] = {
- 	INTEL_WCL_IDS(INTEL_VGA_DEVICE, &ptl_desc),
- 	INTEL_NVLS_IDS(INTEL_VGA_DEVICE, &nvls_desc),
- 	INTEL_CRI_IDS(INTEL_PCI_DEVICE, &cri_desc),
-+	INTEL_NVLP_IDS(INTEL_VGA_DEVICE, &nvlp_desc),
- 	{ }
- };
- MODULE_DEVICE_TABLE(pci, pciidlist);
-diff --git a/drivers/gpu/drm/xe/xe_platform_types.h b/drivers/gpu/drm/xe/xe_platform_types.h
-index f516dbddfd88..6cff385227ea 100644
---- a/drivers/gpu/drm/xe/xe_platform_types.h
-+++ b/drivers/gpu/drm/xe/xe_platform_types.h
-@@ -26,6 +26,7 @@ enum xe_platform {
- 	XE_PANTHERLAKE,
- 	XE_NOVALAKE_S,
- 	XE_CRESCENTISLAND,
-+	XE_NOVALAKE_P,
- };
+ 	if (xe->pat.pat_ats)
+ 		xe_mmio_write32(&gt->mmio, XE_REG(_PAT_ATS), xe->pat.pat_ats->value);
+-	if (xe->pat.pat_pta)
+-		xe_mmio_write32(&gt->mmio, XE_REG(_PAT_PTA), xe->pat.pat_pta->value);
++	if (xe->pat.pat_primary_pta && xe_gt_is_main_type(gt))
++		xe_mmio_write32(&gt->mmio, XE_REG(_PAT_PTA), xe->pat.pat_primary_pta->value);
++	if (xe->pat.pat_media_pta && xe_gt_is_media_type(gt))
++		xe_mmio_write32(&gt->mmio, XE_REG(_PAT_PTA), xe->pat.pat_media_pta->value);
+ }
  
- enum xe_subplatform {
-diff --git a/include/drm/intel/pciids.h b/include/drm/intel/pciids.h
-index 52520e684ab1..33b91cb2e684 100644
---- a/include/drm/intel/pciids.h
-+++ b/include/drm/intel/pciids.h
-@@ -900,4 +900,16 @@
- #define INTEL_CRI_IDS(MACRO__, ...) \
- 	MACRO__(0x674C, ## __VA_ARGS__)
+ static void program_pat_mcr(struct xe_gt *gt, const struct xe_pat_table_entry table[],
+@@ -302,8 +304,10 @@ static void program_pat_mcr(struct xe_gt *gt, const struct xe_pat_table_entry ta
  
-+/* NVL-P */
-+#define INTEL_NVLP_IDS(MACRO__, ...) \
-+	MACRO__(0xD750, ## __VA_ARGS__), \
-+	MACRO__(0xD751, ## __VA_ARGS__), \
-+	MACRO__(0xD752, ## __VA_ARGS__), \
-+	MACRO__(0xD753, ## __VA_ARGS__), \
-+	MACRO__(0XD754, ## __VA_ARGS__), \
-+	MACRO__(0XD755, ## __VA_ARGS__), \
-+	MACRO__(0XD756, ## __VA_ARGS__), \
-+	MACRO__(0XD757, ## __VA_ARGS__), \
-+	MACRO__(0xD75F, ## __VA_ARGS__)
-+
- #endif /* __PCIIDS_H__ */
+ 	if (xe->pat.pat_ats)
+ 		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_ATS), xe->pat.pat_ats->value);
+-	if (xe->pat.pat_pta)
+-		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_PTA), xe->pat.pat_pta->value);
++	if (xe->pat.pat_primary_pta && xe_gt_is_main_type(gt))
++		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_PTA), xe->pat.pat_primary_pta->value);
++	if (xe->pat.pat_media_pta && xe_gt_is_media_type(gt))
++		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_PTA), xe->pat.pat_media_pta->value);
+ }
+ 
+ static int xelp_dump(struct xe_gt *gt, struct drm_printer *p)
+@@ -498,7 +502,8 @@ void xe_pat_init_early(struct xe_device *xe)
+ 		xe->pat.ops = &xe3p_xpc_pat_ops;
+ 		xe->pat.table = xe3p_xpc_pat_table;
+ 		xe->pat.pat_ats = &xe3p_xpc_pat_ats;
+-		xe->pat.pat_pta = &xe3p_xpc_pat_pta;
++		xe->pat.pat_primary_pta = &xe3p_xpc_pat_pta;
++		xe->pat.pat_media_pta = &xe3p_xpc_pat_pta;
+ 		xe->pat.n_entries = ARRAY_SIZE(xe3p_xpc_pat_table);
+ 		xe->pat.idx[XE_CACHE_NONE] = 3;
+ 		xe->pat.idx[XE_CACHE_WT] = 3;	/* N/A (no display); use UC */
+@@ -512,8 +517,10 @@ void xe_pat_init_early(struct xe_device *xe)
+ 			xe->pat.table = xe2_pat_table;
+ 		}
+ 		xe->pat.pat_ats = &xe2_pat_ats;
+-		if (IS_DGFX(xe))
+-			xe->pat.pat_pta = &xe2_pat_pta;
++		if (IS_DGFX(xe)) {
++			xe->pat.pat_primary_pta = &xe2_pat_pta;
++			xe->pat.pat_media_pta = &xe2_pat_pta;
++		}
+ 
+ 		/* Wa_16023588340. XXX: Should use XE_WA */
+ 		if (GRAPHICS_VERx100(xe) == 2001)
+@@ -617,6 +624,8 @@ int xe_pat_dump(struct xe_gt *gt, struct drm_printer *p)
+ int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
++	const struct xe_pat_table_entry *pta_entry = xe_gt_is_main_type(gt) ?
++		xe->pat.pat_primary_pta : xe->pat.pat_media_pta;
+ 	char label[PAT_LABEL_LEN];
+ 
+ 	if (!xe->pat.table || !xe->pat.n_entries)
+@@ -640,8 +649,8 @@ int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
+ 		}
+ 	}
+ 
+-	if (xe->pat.pat_pta) {
+-		u32 pat = xe->pat.pat_pta->value;
++	if (pta_entry) {
++		u32 pat = pta_entry->value;
+ 
+ 		drm_printf(p, "Page Table Access:\n");
+ 		xe->pat.ops->entry_dump(p, "PTA_MODE", pat, false);
 
 -- 
 2.52.0
