@@ -4,59 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C122BE91294
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 08:53:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7780DE91297
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 09:09:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F42410E80C;
-	Thu,  5 Feb 2026 08:53:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1124A10E813;
+	Thu,  5 Feb 2026 09:09:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lFUST2Th";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="t3Do5o/M";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1714A10E80E;
- Thu,  5 Feb 2026 08:53:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770281598; x=1801817598;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=y/kinmPleRLUcQU4SNOjB7AlkvAmcGd4TAfip1hzsSE=;
- b=lFUST2ThCu5vSe4Vga4p6eyy0vGDUDrjZB+tkcmPuKrST9Py420K5/Fz
- QmwGDSWA+5M8NuFIJVCeH4BjwKxD5tviR2+UTRQUk54bFY7QpsjKSwjko
- Yol3kAH7vUoMeKgmPUGU1bZt1Am9S/Re+rKdr47n7IqZCMFyMZUY1s/HK
- HFs9JcSH+QKrJoF00IutirXY3PS751HBZrvK4OXhl1G2hDTVVtLf5brWW
- RG/recNm70rdx+Ch40mel9hBCRgCdYJIW3RzXar0olfXqOYJw+l5R2WMO
- PbHvFqcpVmz6sJPOsXoWH9qLoL7pPjcjrA/lnzEpHT/qHfrGTK68X3TGD g==;
-X-CSE-ConnectionGUID: TDKmNBIYQF6j7U78GTO5hQ==
-X-CSE-MsgGUID: oZfa7yQfRpa6G7NJ+Zm33Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="71373895"
-X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="71373895"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 00:53:18 -0800
-X-CSE-ConnectionGUID: 1QIOsK3TS3CHX8YvTh1dcw==
-X-CSE-MsgGUID: 71cj0UO9Sza+yU48qnBNVw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="214964889"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.69])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 00:53:15 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Animesh Manna <animesh.manna@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: dibin.moolakadan.subrahmanian@intel.com, Animesh Manna
- <animesh.manna@intel.com>
-Subject: Re: [PATCH v2 09/10] drm/i915/cmtg: enable cmtg in secondary mode
-In-Reply-To: <20260203134407.2823406-10-animesh.manna@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260203134407.2823406-1-animesh.manna@intel.com>
- <20260203134407.2823406-10-animesh.manna@intel.com>
-Date: Thu, 05 Feb 2026 10:53:12 +0200
-Message-ID: <942f84be55f37e861184d4dc5e4f57679dc8c720@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45B5C10E811;
+ Thu,  5 Feb 2026 09:09:43 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id D557A43CF5;
+ Thu,  5 Feb 2026 09:09:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32E74C4CEF7;
+ Thu,  5 Feb 2026 09:09:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1770282582;
+ bh=zl4sbHSqQvdTaC6HnQvBhEdXXeHWBp1tuYx5j590apM=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=t3Do5o/MafD9ehMBYLDcL6lkwnhLhq7e7CmVmXfx/72tZJIqUv0eb4X4EeXtXm6vR
+ RW63+1NuIBUrTq/eu2tKZJX7YOLZ4jCHshKJiDziCMI7d2kSZoMljOFXHIhL8er+PL
+ W0NP4t1bUDCB0r4tjLPDezoShXIZBslt6MlSwgXiNS/TfvuBrka/LlOGHMCiUg0J9B
+ I9/4K4mDBsgkY5QtcDjK1pxQyBBpl88WhiQ93+9sO1V7VsPbg0yxw4A8X9M0dD8+E7
+ ny/rIA++tFugaFGRpyADPPMod8asmBnydKD5SndU2jZkxE+f+ci7rQ0voN9C2YD9CD
+ IoEXJlcdZHU+A==
+Date: Thu, 5 Feb 2026 10:09:40 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Leon Romanovsky <leon@kernel.org>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>, 
+ Alex Deucher <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Gerd Hoffmann <kraxel@redhat.com>, 
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Gurchetan Singh <gurchetansingh@chromium.org>, 
+ Chia-I Wu <olvaffe@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, 
+ Robin Murphy <robin.murphy@arm.com>, Felix Kuehling <Felix.Kuehling@amd.com>, 
+ Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>, 
+ Vivek Kasireddy <vivek.kasireddy@intel.com>, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, 
+ linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, 
+ virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
+ linux-rdma@vger.kernel.org, iommu@lists.linux.dev, kvm@vger.kernel.org
+Subject: Re: [PATCH v7 0/8] dma-buf: Use revoke mechanism to invalidate
+ shared buffers
+Message-ID: <20260205-nocturnal-poetic-chamois-f566ad@houat>
+References: <20260131-dmabuf-revoke-v7-0-463d956bd527@nvidia.com>
+ <20260202160425.GO34749@unreal> <20260204081630.GA6771@unreal>
+ <20260204-icy-classic-crayfish-68da6d@houat>
+ <20260204115212.GG6771@unreal>
+ <20260204-clever-butterfly-of-mastery-0cdc19@houat>
+ <20260204121354.GH6771@unreal>
+ <20260204-bloodhound-of-major-realization-9852ab@houat>
+ <20260204135657.GE2328995@ziepe.ca>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="tnyg2jepdblvcibb"
+Content-Disposition: inline
+In-Reply-To: <20260204135657.GE2328995@ziepe.ca>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,50 +86,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 03 Feb 2026, Animesh Manna <animesh.manna@intel.com> wrote:
-> From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
->
-> Wait for CMTG_SYNC_TO_PORT bit clear in cmtg enable sequence
-> and then enable secondary mode for cmtg.
->
-> Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cmtg.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c b/drivers/gpu/drm/i915/display/intel_cmtg.c
-> index f7364c7408d5..d1ec9b79cef2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cmtg.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
-> @@ -277,4 +277,18 @@ void intel_cmtg_enable(const struct intel_crtc_state *crtc_state)
->  
->  	/* Program Enable Cmtg */
->  	intel_cmtg_ctl_enable(crtc_state);
-> +
-> +	if (intel_de_wait_for_clear_ms(display, TRANS_CMTG_CTL(cpu_transcoder),
-> +				       CMTG_SYNC_TO_PORT, 50)) {
-> +		drm_WARN(display->drm, 1, "CMTG:%d enable timeout\n", cpu_transcoder);
-> +		return;
-> +	}
 
-This should be part of the previous patch, right?
+--tnyg2jepdblvcibb
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v7 0/8] dma-buf: Use revoke mechanism to invalidate
+ shared buffers
+MIME-Version: 1.0
 
-> +
-> +	/*
-> +	 *  eDP transcoder registers as secondary to CMTG by setting
-> +	 *  TRANS_DDI_FUNC_CTL2[CMTG Secondary Mode].
+On Wed, Feb 04, 2026 at 09:56:57AM -0400, Jason Gunthorpe wrote:
+> On Wed, Feb 04, 2026 at 02:44:42PM +0100, Maxime Ripard wrote:
+> > > From what I have seen, subsystems such as netdev, the block layer, an=
+d RDMA continue
+> > > to accept code that is ready for merging, especially when it has been=
+ thoroughly
+> > > reviewed by multiple maintainers across different subsystems.
+> >=20
+> > He said it multiple times, but here's one of such examples:
+> >=20
+> > https://lore.kernel.org/all/CA+55aFwdd30eBsnMLB=3DncExY0-P=3DeAsxkn_O6i=
+r10JUyVSYdhA@mail.gmail.com/
+>=20
+> Woah, nobody is saying to skip linux-next. It is Wednesday, if it
+> lands in the public tree today it will be in linux next probably for a
+> week before a PR is sent. This is a fairly normal thing for many trees
+> in Linux.
+>=20
+> Linus is specifically complaining about people *entirely* skipping
+> linux-next.
+>=20
+> > So, yeah, we can make exceptions. But you should ask and justify for
+> > one, instead of expecting us to pick up a patch submission that was
+> > already late.
+>=20
+> I think Leon is only pointing out that a hard cut off two weeks before
+> the merge window even opens is a DRMism, not a kernel wide convention.
 
-What does this even mean?
+arm-soc has had the same kind of rule since pretty much forever too.
 
-> +	 */
-> +	intel_de_rmw(display, TRANS_DDI_FUNC_CTL2(display, cpu_transcoder), 0, CMTG_SECONDARY_MODE);
-> +
-> +	drm_dbg_kms(display->drm, "CMTG:%d enabled\n", cpu_transcoder);
+Maxime
 
-See transcoder_name().
+--tnyg2jepdblvcibb
+Content-Type: application/pgp-signature; name="signature.asc"
 
->  }
+-----BEGIN PGP SIGNATURE-----
 
--- 
-Jani Nikula, Intel
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaYReTwAKCRAnX84Zoj2+
+dplgAX9hHIFQbqLK+fxvL0TIdlxKHnC96b/mM0HwLMbHd0IAQvPbbGrZJ2/A2X06
+zK51PYIBgNEjofrl7KBPxkMocbEwYn4jvc85iFf17a3flZDzCXRl//ksV9ObDYVt
+vXboJHIz/Q==
+=MSKg
+-----END PGP SIGNATURE-----
+
+--tnyg2jepdblvcibb--
