@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4EEFEA794C
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 01:23:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7212EA794D
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 01:27:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C04010E0FF;
-	Thu,  5 Feb 2026 01:23:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BBCA10E78F;
+	Thu,  5 Feb 2026 01:27:50 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FAD910E0FF;
- Thu,  5 Feb 2026 01:23:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4554887151162062238=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06AC810E78F;
+ Thu,  5 Feb 2026 01:27:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/uapi=3A_Introduce_a_?=
- =?utf-8?q?flag_to_disallow_vm_overcommit_in_fault_mode?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/pf=3A_Fix_sysfs_in?=
+ =?utf-8?q?itialization_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 05 Feb 2026 01:23:04 -0000
-Message-ID: <177025458457.225549.6077133798422052361@a3b018990fe9>
+Date: Thu, 05 Feb 2026 01:27:49 -0000
+Message-ID: <177025486901.225523.18257935935413509833@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260204153320.17989-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20260204153320.17989-1-thomas.hellstrom@linux.intel.com>
+References: <20260203235332.1350-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20260203235332.1350-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,74 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4554887151162062238==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/uapi: Introduce a flag to disallow vm overcommit in fault mode
-URL   : https://patchwork.freedesktop.org/series/161148/
-State : success
+Series: drm/xe/pf: Fix sysfs initialization (rev3)
+URL   : https://patchwork.freedesktop.org/series/161112/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4500-55e3e3aeecf80d9fd2536acd8ed785282be5a7b3_BAT -> xe-pw-161148v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 23cd52100c9b8650265ea7b6cf73b3af4e46c674
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Wed Feb 4 00:53:32 2026 +0100
 
-Summary
--------
+    drm/xe/pf: Fix sysfs initialization
+    
+    In case of devm_add_action_or_reset() failure the provided cleanup
+    action will be run immediately on the not yet initialized kobject.
+    This may lead to errors like:
+    
+     [ ] kobject: '(null)' (ff110001393608e0): is not initialized, yet kobject_put() is being called.
+     [ ] WARNING: lib/kobject.c:734 at kobject_put+0xd9/0x250, CPU#0: kworker/0:0/9
+     [ ] RIP: 0010:kobject_put+0xdf/0x250
+     [ ] Call Trace:
+     [ ]  xe_sriov_pf_sysfs_init+0x21/0x100 [xe]
+     [ ]  xe_sriov_pf_init_late+0x87/0x2b0 [xe]
+     [ ]  xe_sriov_init_late+0x5f/0x2c0 [xe]
+     [ ]  xe_device_probe+0x5f2/0xc20 [xe]
+     [ ]  xe_pci_probe+0x396/0x610 [xe]
+     [ ]  local_pci_probe+0x47/0xb0
+    
+     [ ] refcount_t: underflow; use-after-free.
+     [ ] WARNING: lib/refcount.c:28 at refcount_warn_saturate+0x68/0xb0, CPU#0: kworker/0:0/9
+     [ ] RIP: 0010:refcount_warn_saturate+0x68/0xb0
+     [ ] Call Trace:
+     [ ]  kobject_put+0x174/0x250
+     [ ]  xe_sriov_pf_sysfs_init+0x21/0x100 [xe]
+     [ ]  xe_sriov_pf_init_late+0x87/0x2b0 [xe]
+     [ ]  xe_sriov_init_late+0x5f/0x2c0 [xe]
+     [ ]  xe_device_probe+0x5f2/0xc20 [xe]
+     [ ]  xe_pci_probe+0x396/0x610 [xe]
+     [ ]  local_pci_probe+0x47/0xb0
+    
+    Fix that by calling kobject_init() and kobject_add() separately
+    and register cleanup action after the kobject is initialized.
+    
+    Also make this cleanup registration a part of the create helper to
+    fix another mistake, as in the loop we were wronly passing parent
+    kobject while registering cleanup action, and this resulted in some
+    undetected leaks.
+    
+    Fixes: 5c170a4d9c53 ("drm/xe/pf: Prepare sysfs for SR-IOV admin attributes")
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Reviewed-by: Shuicheng Lin <shuicheng.lin@intel.com>
++ /mt/dim checkpatch 55e3e3aeecf80d9fd2536acd8ed785282be5a7b3 drm-intel
+23cd52100c9b drm/xe/pf: Fix sysfs initialization
+-:10: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#10: 
+ [ ] kobject: '(null)' (ff110001393608e0): is not initialized, yet kobject_put() is being called.
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4500-55e3e3aeecf80d9fd2536acd8ed785282be5a7b3 -> xe-pw-161148v1
-
-  IGT_8737: 8737
-  xe-4500-55e3e3aeecf80d9fd2536acd8ed785282be5a7b3: 55e3e3aeecf80d9fd2536acd8ed785282be5a7b3
-  xe-pw-161148v1: 161148v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161148v1/index.html
-
---===============4554887151162062238==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/uapi: Introduce a flag to disallow vm overcommit in fault mode</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161148/">https://patchwork.freedesktop.org/series/161148/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161148v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161148v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 1 warnings, 0 checks, 92 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-4500-55e3e3aeecf80d9fd2536acd8ed785282be5a7b3_BAT -&gt; xe-pw-161148v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4500-55e3e3aeecf80d9fd2536acd8ed785282be5a7b3 -&gt; xe-pw-161148v1</li>
-</ul>
-<p>IGT_8737: 8737<br />
-  xe-4500-55e3e3aeecf80d9fd2536acd8ed785282be5a7b3: 55e3e3aeecf80d9fd2536acd8ed785282be5a7b3<br />
-  xe-pw-161148v1: 161148v1</p>
-
-</body>
-</html>
-
---===============4554887151162062238==--
