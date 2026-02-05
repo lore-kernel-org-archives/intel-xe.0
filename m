@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71078E91290
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 08:21:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C25AE9128E
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 08:24:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A2FA10E38A;
-	Thu,  5 Feb 2026 08:21:34 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9755510E38A;
- Thu,  5 Feb 2026 08:21:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5915468543098645538=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A490410E365;
+	Thu,  5 Feb 2026 08:24:27 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cShmYA4g";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2A1710E365
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Feb 2026 08:24:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1770279866; x=1801815866;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=067jFYVB0lMSLUQRbPS/56WrL+xb43YpqAev9P0QjXU=;
+ b=cShmYA4gnkhQjE3NIX8Hu7H4qGIHS5cX0WqcSb0Ry2R9FZfI42OJ5vj7
+ 898MQP0/VWwle3NDV39ljAXEfRWSADRx56qAT8aIKfWkFv/xb1qHEJNn2
+ HA2Z/DeCERtkv7db7niCKGjXCCX/PJpeG9yWV8KSqgaT5g24C0l5kdAOu
+ 58/kWR6wDKPDyh0CNsUXo+lANo0sJAk55FVDvxSwkxUrxFB/IjhMNI1Ph
+ oU2YX1aG/SvVbT3rfuy2GvZiN6enkDhHarlSrpjNWJ8idjLrZzeCpyWbT
+ FQFtqWJUMzXumepFmq0GpdApKugoPPNHis6Ur4vK1bKAvGALYbEh2FYpY w==;
+X-CSE-ConnectionGUID: aoWgdtH+RmSWiiiT4a2+TQ==
+X-CSE-MsgGUID: xU+PVWooTA2ko45Du6b3pQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="70669055"
+X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="70669055"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2026 00:24:25 -0800
+X-CSE-ConnectionGUID: 0JPPV4vNTfmQiXc+WbmLkw==
+X-CSE-MsgGUID: T9bgKsMiR9evdjxRnrn70g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="214604684"
+Received: from yadavs-z690i-a-ultra-plus.iind.intel.com ([10.190.216.90])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2026 00:24:24 -0800
+From: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.auld@intel.com,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
+ Stuart Summers <stuart.summers@intel.com>
+Subject: [PATCH] drm/xe/query: Only advertise NO_COMPRESSION hint on devices
+ with flat CCS
+Date: Thu,  5 Feb 2026 13:50:49 +0530
+Message-ID: <20260205082048.2988738-2-sanjay.kumar.yadav@intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe2=5Fhpg=3A_Apply_W?=
- =?utf-8?q?a=5F14024997852?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arvind Yadav" <arvind.yadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 05 Feb 2026 08:21:32 -0000
-Message-ID: <177027969259.226816.17971821403869064311@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260205050818.2180756-1-arvind.yadav@intel.com>
-In-Reply-To: <20260205050818.2180756-1-arvind.yadav@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +65,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5915468543098645538==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Devices like CRI have GRAPHICS_VER >= 20 but don't have compression
+support their PAT table (xe3p_xpc_pat_table) has no compression-enabled
+entries.
 
-== Series Details ==
+Only advertise HAS_NO_COMPRESSION_HINT flag when the device actually has
+flat CCS and thus compression capability.
 
-Series: drm/xe/xe2_hpg: Apply Wa_14024997852
-URL   : https://patchwork.freedesktop.org/series/161176/
-State : success
+Fixes: 78d91ba6bd796 ("drm/xe/uapi: Add NO_COMPRESSION BO flag and query capability")
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Stuart Summers <stuart.summers@intel.com>
+Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+---
+ drivers/gpu/drm/xe/xe_query.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-== Summary ==
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 34db266b723f..c152ebfbd7d8 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -335,7 +335,7 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+ 	if (xe->info.has_usm && IS_ENABLED(CONFIG_DRM_XE_GPUSVM))
+ 		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+ 			DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR;
+-	if (GRAPHICS_VER(xe) >= 20)
++	if (GRAPHICS_VER(xe) >= 20 && xe_device_has_flat_ccs(xe))
+ 		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+ 			DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT;
+ 	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+-- 
+2.52.0
 
-CI Bug Log - changes from xe-4503-8883ec84c85819dacca94997b60371c3ed57ee29_BAT -> xe-pw-161176v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8737 -> IGT_8738
-  * Linux: xe-4503-8883ec84c85819dacca94997b60371c3ed57ee29 -> xe-pw-161176v1
-
-  IGT_8737: 8737
-  IGT_8738: b3fc8fb534a27517f2a49e63ef993e7550b9b959 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4503-8883ec84c85819dacca94997b60371c3ed57ee29: 8883ec84c85819dacca94997b60371c3ed57ee29
-  xe-pw-161176v1: 161176v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161176v1/index.html
-
---===============5915468543098645538==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe2_hpg: Apply Wa_14024997852</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161176/">https://patchwork.freedesktop.org/series/161176/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161176v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161176v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4503-8883ec84c85819dacca94997b60371c3ed57ee29_BAT -&gt; xe-pw-161176v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8737 -&gt; IGT_8738</li>
-<li>Linux: xe-4503-8883ec84c85819dacca94997b60371c3ed57ee29 -&gt; xe-pw-161176v1</li>
-</ul>
-<p>IGT_8737: 8737<br />
-  IGT_8738: b3fc8fb534a27517f2a49e63ef993e7550b9b959 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4503-8883ec84c85819dacca94997b60371c3ed57ee29: 8883ec84c85819dacca94997b60371c3ed57ee29<br />
-  xe-pw-161176v1: 161176v1</p>
-
-</body>
-</html>
-
---===============5915468543098645538==--
