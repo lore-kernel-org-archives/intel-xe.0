@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29D11EC1EA2
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 11:22:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7E34EC1EA1
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 11:27:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E264910E86B;
-	Thu,  5 Feb 2026 11:22:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZQD3o/GF";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7061210E86D
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Feb 2026 11:22:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770290565; x=1801826565;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=KWBD5IHaqTke/VhrnHDaiTek/JJuVjGB9QMiopjUeZk=;
- b=ZQD3o/GFaAxdGNcHmz/8TD6fmvfO5T5R3C16juvby8Yq7c1DoTyOsHFC
- JSQXKxOEgR+aSTHgL9G6cpyLWn5+/R+FIImfhI/eQ1mqHF+it+CCBd6gd
- G9Ypl5KZoQXRVVnyYvSS9IUIilf2dFxqclR2IzOoZJV6LX9vI5gPEB63d
- 376m+7jDxaGOcaXs0bfeF/l9bHDq7PCTeFC3UsfPeykuDrrv0eKtOSNKZ
- u1tD0b7QPxuKt7beI+Z4vLnMt2QOuajyt5ck2dp0Lyd7JQ1sdoH4oaNfn
- J+DgH30oODridV06uM9k44sjASFYqBh3rG3qLTaAxCJkgWkJplQAgOxjy A==;
-X-CSE-ConnectionGUID: JQM4vXQ9TVO4mtLhzqGJLg==
-X-CSE-MsgGUID: P1hq4z/WS8i32DCQqUxYIw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="75105892"
-X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="75105892"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 03:22:45 -0800
-X-CSE-ConnectionGUID: OwCmlwxBT1u5bAmgM6kpVA==
-X-CSE-MsgGUID: r1vLdka9RMy8AoxClOWkRg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="210572163"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by orviesa007.jf.intel.com with ESMTP; 05 Feb 2026 03:22:43 -0800
-From: Raag Jadav <raag.jadav@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com, riana.tauro@intel.com,
- michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
- lukasz.laguna@intel.com, Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v1] drm/xe: Send unknown recovery method for
- XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET
-Date: Thu,  5 Feb 2026 16:48:35 +0530
-Message-ID: <20260205111836.1628965-1-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6655710E0A7;
+	Thu,  5 Feb 2026 11:27:01 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E280310E877;
+ Thu,  5 Feb 2026 11:26:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9029745548070080229=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Make_Display_free_from_i915?=
+ =?utf-8?q?=5Freg=2Eh_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Uma Shankar" <uma.shankar@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 05 Feb 2026 11:26:59 -0000
+Message-ID: <177029081990.228376.15333811218061543690@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260205094341.1882816-1-uma.shankar@intel.com>
+In-Reply-To: <20260205094341.1882816-1-uma.shankar@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,39 +36,124 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET is intended for debugging hangs,
-so wedge the device without any recovery method (unknown) and have it
-available to the user for debugging.
+--===============9029745548070080229==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index b1241fa4c3d6..815f0b0c9dfd 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1326,8 +1326,15 @@ void xe_device_declare_wedged(struct xe_device *xe)
- 		xe_gt_declare_wedged(gt);
- 
- 	if (xe_device_wedged(xe)) {
-+		/*
-+		 * XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET is intended for debugging hangs,
-+		 * so wedge the device without any recovery method and have it available
-+		 * to the user for debugging.
-+		 */
-+		if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET)
-+			xe_device_set_wedged_method(xe, 0);
- 		/* If no wedge recovery method is set, use default */
--		if (!xe->wedged.method)
-+		else if (!xe->wedged.method)
- 			xe_device_set_wedged_method(xe, DRM_WEDGE_RECOVERY_REBIND |
- 						    DRM_WEDGE_RECOVERY_BUS_RESET);
- 
--- 
-2.43.0
+Series: Make Display free from i915_reg.h (rev4)
+URL   : https://patchwork.freedesktop.org/series/159130/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4504-461a70dd5bd9b765de46c7f57d299d6d92d2f441_BAT -> xe-pw-159130v4_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (10 -> 11)
+------------------------------
+
+  Additional (1): bat-bmg-3 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-159130v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:
+    - bat-bmg-3:          NOTRUN -> [SKIP][1] ([Intel XE#6566]) +3 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159130v4/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html
+
+  
+  [Intel XE#6566]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566
+
+
+Build changes
+-------------
+
+  * Linux: xe-4504-461a70dd5bd9b765de46c7f57d299d6d92d2f441 -> xe-pw-159130v4
+
+  IGT_8738: b3fc8fb534a27517f2a49e63ef993e7550b9b959 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4504-461a70dd5bd9b765de46c7f57d299d6d92d2f441: 461a70dd5bd9b765de46c7f57d299d6d92d2f441
+  xe-pw-159130v4: 159130v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159130v4/index.html
+
+--===============9029745548070080229==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Make Display free from i915_reg.h (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159130/">https://patchwork.freedesktop.org/series/159130/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159130v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159130v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4504-461a70dd5bd9b765de46c7f57d299d6d92d2f441_BAT -&gt; xe-pw-159130v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (10 -&gt; 11)</h2>
+<p>Additional (1): bat-bmg-3 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-159130v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159130v4/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566">Intel XE#6566</a>) +3 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4504-461a70dd5bd9b765de46c7f57d299d6d92d2f441 -&gt; xe-pw-159130v4</li>
+</ul>
+<p>IGT_8738: b3fc8fb534a27517f2a49e63ef993e7550b9b959 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4504-461a70dd5bd9b765de46c7f57d299d6d92d2f441: 461a70dd5bd9b765de46c7f57d299d6d92d2f441<br />
+  xe-pw-159130v4: 159130v4</p>
+
+</body>
+</html>
+
+--===============9029745548070080229==--
