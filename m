@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17A1FEC1E82
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 09:28:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28EB6EC1E81
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 09:28:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B649610E838;
-	Thu,  5 Feb 2026 09:28:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC5A010E839;
+	Thu,  5 Feb 2026 09:28:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eHtxBwXY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XoIfzknw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1147D10E835;
- Thu,  5 Feb 2026 09:28:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0644910E839;
+ Thu,  5 Feb 2026 09:28:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770283695; x=1801819695;
+ t=1770283699; x=1801819699;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=TGRR+P8Mp5uZLI5+4a6WplLdCr2+GG77pIDRBD4J2gU=;
- b=eHtxBwXY6hX6YURuM8WDwnPc4OuFk1OLKUDYx6fivuAXvaOA+/eOFVOS
- 6IBqL+JAMq7gxkA4Lw6xMBQhazB+kMJAOu0PQ7ZRpjAuHcm9spl1goZEE
- qKPBozjHUtReMgyw5IX8Wh1Li/JGuGB0be/J30yy61+RoFHWHbSbg2RXp
- AjqwCpgGrJY93lykNAk6JxAoT8YBYZ6+rcm2E9Zh+JSEB3o4LjO7yGVip
- KDseaNQV93c3wR3mpJoWCwnm/cDFiHRilc31kne/THMrxjdOu/fKXQ/GC
- 8EiEMoB4sQcYeVuUBy8N7zI1zdCfbYsOdp99fhzPOP6cxJAYLLgFu+Bwr A==;
-X-CSE-ConnectionGUID: Jxp96I0AQa6yCXOWaBvSAg==
-X-CSE-MsgGUID: ZDxAM/w/SeabQsNXlf2aWw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="89060119"
-X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="89060119"
+ bh=xoKo1lVsyQ/SvYmXGNzI3ZaRzRdQrEuEZPsT6S4kwAI=;
+ b=XoIfzknwRFg5MlNTOaVc8B1ZCRFBVDgH62FaaDtEewti9PCymZ6cMNUD
+ YSDTxMrpTjrDTjMhcC5E4lxdkFDxQaznl8HNjtMsYWg252KMQ3DuEpLAf
+ TS6C7SRGb6OIzJ91o/9nE5EDUQJIN0PrLVezoxF9V5ccUYrJOcwb/f01q
+ 3/chw7k8x6ylucYwBOidOqKy7JFB5L7DOygdQuV0vMDeRonee/PqwXqA8
+ 6yGr0BovCN9oPDYXDXreQUyVIzARLg8xzGSdruwa4mqUpVg0NTKhO3jht
+ JoqY9azoVGyNu6lCreTR6WsVspoub+Sqp1+Pg0QjgHPzf9WoGqjhL4Fb/ Q==;
+X-CSE-ConnectionGUID: 0fYah5DPT4mLxGOzTtZVTA==
+X-CSE-MsgGUID: ctZ6mYa9TmmXzdoDS6fCzg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11691"; a="89060123"
+X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="89060123"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 01:28:15 -0800
-X-CSE-ConnectionGUID: T0vbdpE0R+68V3JBl97Qjw==
-X-CSE-MsgGUID: fEB4Ifh6SZGr+JThtKPi5Q==
+ 05 Feb 2026 01:28:19 -0800
+X-CSE-ConnectionGUID: 77xRyZc3SCeIVhc+WQm0yA==
+X-CSE-MsgGUID: HfSNCdupRsiQZWAYHRnXRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="209807785"
+X-IronPort-AV: E=Sophos;i="6.21,274,1763452800"; d="scan'208";a="209807792"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmviesa007.fm.intel.com with ESMTP; 05 Feb 2026 01:28:13 -0800
+ by fmviesa007.fm.intel.com with ESMTP; 05 Feb 2026 01:28:17 -0800
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
  Uma Shankar <uma.shankar@intel.com>
-Subject: [v4 10/20] drm/i915: Remove i915_reg.h from intel_overlay.c
-Date: Thu,  5 Feb 2026 15:13:31 +0530
-Message-ID: <20260205094341.1882816-11-uma.shankar@intel.com>
+Subject: [v4 12/20] drm/i915: Remove i915_reg.h from i9xx_wm.c
+Date: Thu,  5 Feb 2026 15:13:33 +0530
+Message-ID: <20260205094341.1882816-13-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260205094341.1882816-1-uma.shankar@intel.com>
 References: <20260205094341.1882816-1-uma.shankar@intel.com>
@@ -68,210 +68,239 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move GEN2_ISR and some interrupt definitions to common header.
-This removes dependency of i915_reg.h from intel_overlay.c.
+Move FW_BLC_SELF to common header to make i9xx_wm.c
+free from i915_reg.h include. Introduce a common
+intel_gmd_misc_regs.h to define common miscellaneous
+register definitions across graphics and display.
 
-v3: Rename interrupt header with regs suffix (Jani)
+v3: MISC header included as needed, drop from i915_reg (Jani)
 
-v2: Create a separate file for common interrupts (Jani)
+v2: Introdue a common misc header for GMD
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_irq.c  |  1 +
- .../gpu/drm/i915/display/intel_display_regs.h |  2 +
- drivers/gpu/drm/i915/display/intel_overlay.c  |  2 +-
- drivers/gpu/drm/i915/gt/intel_gt.c            |  1 +
+ drivers/gpu/drm/i915/display/i9xx_wm.c        |  2 +-
+ .../drm/i915/display/intel_display_debugfs.c  |  1 +
+ .../gpu/drm/i915/display/intel_display_regs.h |  7 ++++++-
+ drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c  |  1 +
  .../gpu/drm/i915/gt/intel_ring_submission.c   |  1 +
- drivers/gpu/drm/i915/i915_irq.c               |  1 +
- drivers/gpu/drm/i915/i915_reg.h               | 37 ----------------
- include/drm/intel/intel_gmd_interrupt_regs.h  | 43 +++++++++++++++++++
- 8 files changed, 50 insertions(+), 38 deletions(-)
- create mode 100644 include/drm/intel/intel_gmd_interrupt_regs.h
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   |  2 ++
+ drivers/gpu/drm/i915/gvt/cmd_parser.c         |  1 +
+ drivers/gpu/drm/i915/gvt/mmio_context.c       |  1 +
+ drivers/gpu/drm/i915/i915_debugfs.c           |  1 +
+ drivers/gpu/drm/i915/i915_reg.h               | 19 -----------------
+ drivers/gpu/drm/i915/intel_clock_gating.c     |  1 +
+ drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |  1 +
+ include/drm/intel/intel_gmd_misc_regs.h       | 21 +++++++++++++++++++
+ 13 files changed, 38 insertions(+), 21 deletions(-)
+ create mode 100644 include/drm/intel/intel_gmd_misc_regs.h
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 0a71840041de..432a9c895c39 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -5,6 +5,7 @@
+diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
+index 39dfceb438ae..24f898efa9dd 100644
+--- a/drivers/gpu/drm/i915/display/i9xx_wm.c
++++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
+@@ -6,8 +6,8 @@
+ #include <linux/iopoll.h>
  
  #include <drm/drm_print.h>
- #include <drm/drm_vblank.h>
-+#include <drm/intel/intel_gmd_interrupt_regs.h>
++#include <drm/intel/intel_gmd_misc_regs.h>
  
- #include "i915_reg.h"
- #include "icl_dsi_regs.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 0ee7295e1d4e..d03f554ecd7e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -94,6 +94,8 @@
- #define   VLV_ERROR_PAGE_TABLE				(1 << 4)
- #define   VLV_ERROR_CLAIM				(1 << 0)
- 
-+#define GEN2_ISR	_MMIO(0x20ac)
-+
- #define VLV_ERROR_REGS		I915_ERROR_REGS(VLV_EMR, VLV_EIR)
- 
- #define _MBUS_ABOX0_CTL			0x45038
-diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-index 88eb7ae5765c..ed033e51f1d3 100644
---- a/drivers/gpu/drm/i915/display/intel_overlay.c
-+++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-@@ -28,6 +28,7 @@
- 
+-#include "i915_reg.h"
+ #include "i9xx_wm.h"
+ #include "i9xx_wm_regs.h"
+ #include "intel_atomic.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index aba13e8a9051..f041a7102317 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -13,6 +13,7 @@
+ #include <drm/drm_file.h>
  #include <drm/drm_fourcc.h>
  #include <drm/drm_print.h>
-+#include <drm/intel/intel_gmd_interrupt_regs.h>
++#include <drm/intel/intel_gmd_misc_regs.h>
  
- #include "gem/i915_gem_internal.h"
- #include "gem/i915_gem_object_frontbuffer.h"
-@@ -37,7 +38,6 @@
- #include "gt/intel_ring.h"
+ #include "hsw_ips.h"
+ #include "i915_reg.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index 5bc891f6de57..9f241655aa99 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -3132,6 +3132,11 @@ enum skl_power_gate {
+ #define   MTL_TRAS_MASK			REG_GENMASK(16, 8)
+ #define   MTL_TRDPRE_MASK		REG_GENMASK(7, 0)
  
+-
++#define FW_BLC		_MMIO(0x20d8)
++#define FW_BLC2		_MMIO(0x20dc)
++#define FW_BLC_SELF	_MMIO(0x20e0) /* 915+ only */
++#define   FW_BLC_SELF_EN_MASK      REG_BIT(31)
++#define   FW_BLC_SELF_FIFO_MASK    REG_BIT(16) /* 945 only */
++#define   FW_BLC_SELF_EN           REG_BIT(15) /* 945 only */
+ 
+ #endif /* __INTEL_DISPLAY_REGS_H__ */
+diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
+index 5eda98ebc1ae..ee90f5323da7 100644
+--- a/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
++++ b/drivers/gpu/drm/i915/gt/intel_ggtt_fencing.c
+@@ -6,6 +6,7 @@
+ #include <linux/highmem.h>
+ 
+ #include <drm/drm_print.h>
++#include <drm/intel/intel_gmd_misc_regs.h>
+ 
+ #include "display/intel_display.h"
  #include "i915_drv.h"
--#include "i915_reg.h"
- #include "intel_color_regs.h"
- #include "intel_de.h"
- #include "intel_display_regs.h"
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index ac527d878820..d76121e117e1 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -5,6 +5,7 @@
- 
- #include <drm/drm_managed.h>
- #include <drm/intel/intel-gtt.h>
-+#include <drm/intel/intel_gmd_interrupt_regs.h>
- 
- #include "gem/i915_gem_internal.h"
- #include "gem/i915_gem_lmem.h"
 diff --git a/drivers/gpu/drm/i915/gt/intel_ring_submission.c b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
-index 8314a4b0505e..c1797e49811d 100644
+index c1797e49811d..099453dd9cd5 100644
 --- a/drivers/gpu/drm/i915/gt/intel_ring_submission.c
 +++ b/drivers/gpu/drm/i915/gt/intel_ring_submission.c
+@@ -5,6 +5,7 @@
+ 
+ #include <drm/drm_cache.h>
+ #include <drm/intel/intel_gmd_interrupt_regs.h>
++#include <drm/intel/intel_gmd_misc_regs.h>
+ 
+ #include "gem/i915_gem_internal.h"
+ 
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index ece88c612e27..4427812b2438 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -3,6 +3,8 @@
+  * Copyright © 2014-2018 Intel Corporation
+  */
+ 
++#include <drm/intel/intel_gmd_misc_regs.h>
++
+ #include "i915_drv.h"
+ #include "i915_reg.h"
+ #include "i915_mmio_range.h"
+diff --git a/drivers/gpu/drm/i915/gvt/cmd_parser.c b/drivers/gpu/drm/i915/gvt/cmd_parser.c
+index bf7c3d3f5f8a..98c35c78a4ed 100644
+--- a/drivers/gpu/drm/i915/gvt/cmd_parser.c
++++ b/drivers/gpu/drm/i915/gvt/cmd_parser.c
+@@ -37,6 +37,7 @@
+ #include <linux/slab.h>
+ 
+ #include <drm/drm_print.h>
++#include <drm/intel/intel_gmd_misc_regs.h>
+ 
+ #include "display/i9xx_plane_regs.h"
+ #include "display/intel_display_regs.h"
+diff --git a/drivers/gpu/drm/i915/gvt/mmio_context.c b/drivers/gpu/drm/i915/gvt/mmio_context.c
+index d4e9d485d382..3eb442acdf8d 100644
+--- a/drivers/gpu/drm/i915/gvt/mmio_context.c
++++ b/drivers/gpu/drm/i915/gvt/mmio_context.c
+@@ -34,6 +34,7 @@
+  */
+ 
+ #include <drm/drm_print.h>
++#include <drm/intel/intel_gmd_misc_regs.h>
+ 
+ #include "gt/intel_context.h"
+ #include "gt/intel_engine_regs.h"
+diff --git a/drivers/gpu/drm/i915/i915_debugfs.c b/drivers/gpu/drm/i915/i915_debugfs.c
+index 42f6b44f0027..4778ba664ec7 100644
+--- a/drivers/gpu/drm/i915/i915_debugfs.c
++++ b/drivers/gpu/drm/i915/i915_debugfs.c
+@@ -33,6 +33,7 @@
+ 
+ #include <drm/drm_debugfs.h>
+ #include <drm/drm_print.h>
++#include <drm/intel/intel_gmd_misc_regs.h>
+ 
+ #include "gem/i915_gem_context.h"
+ #include "gt/intel_gt.h"
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index b808d1ec5387..2bac216bd2b9 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -393,24 +393,10 @@
+ 
+ #define GEN2_ERROR_REGS		I915_ERROR_REGS(EMR, EIR)
+ 
+-#define INSTPM	        _MMIO(0x20c0)
+-#define   INSTPM_SELF_EN (1 << 12) /* 915GM only */
+-#define   INSTPM_AGPBUSY_INT_EN (1 << 11) /* gen3: when disabled, pending interrupts
+-					will not assert AGPBUSY# and will only
+-					be delivered when out of C3. */
+-#define   INSTPM_FORCE_ORDERING				(1 << 7) /* GEN6+ */
+-#define   INSTPM_TLB_INVALIDATE	(1 << 9)
+-#define   INSTPM_SYNC_FLUSH	(1 << 5)
+ #define MEM_MODE	_MMIO(0x20cc)
+ #define   MEM_DISPLAY_B_TRICKLE_FEED_DISABLE (1 << 3) /* 830 only */
+ #define   MEM_DISPLAY_A_TRICKLE_FEED_DISABLE (1 << 2) /* 830/845 only */
+ #define   MEM_DISPLAY_TRICKLE_FEED_DISABLE (1 << 2) /* 85x only */
+-#define FW_BLC		_MMIO(0x20d8)
+-#define FW_BLC2		_MMIO(0x20dc)
+-#define FW_BLC_SELF	_MMIO(0x20e0) /* 915+ only */
+-#define   FW_BLC_SELF_EN_MASK      REG_BIT(31)
+-#define   FW_BLC_SELF_FIFO_MASK    REG_BIT(16) /* 945 only */
+-#define   FW_BLC_SELF_EN           REG_BIT(15) /* 945 only */
+ #define MM_BURST_LENGTH     0x00700000
+ #define MM_FIFO_WATERMARK   0x0001F000
+ #define LM_BURST_LENGTH     0x00000700
+@@ -833,11 +819,6 @@
+ #define   KVM_CONFIG_CHANGE_NOTIFICATION_SELECT	REG_BIT(14)
+ 
+ 
+-#define DISP_ARB_CTL	_MMIO(0x45000)
+-#define   DISP_FBC_MEMORY_WAKE		REG_BIT(31)
+-#define   DISP_TILE_SURFACE_SWIZZLING	REG_BIT(13)
+-#define   DISP_FBC_WM_DIS		REG_BIT(15)
+-
+ #define GEN8_CHICKEN_DCPR_1			_MMIO(0x46430)
+ #define   _LATENCY_REPORTING_REMOVED_PIPE_D	REG_BIT(31)
+ #define   SKL_SELECT_ALTERNATE_DC_EXIT		REG_BIT(30)
+diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
+index 4e18d5a22112..1ad31435bd3f 100644
+--- a/drivers/gpu/drm/i915/intel_clock_gating.c
++++ b/drivers/gpu/drm/i915/intel_clock_gating.c
+@@ -26,6 +26,7 @@
+  */
+ 
+ #include <drm/drm_print.h>
++#include <drm/intel/intel_gmd_misc_regs.h>
+ 
+ #include "display/i9xx_plane_regs.h"
+ #include "display/intel_display.h"
+diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
+index 8cfe9b56f1d0..c8a51e773086 100644
+--- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
++++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
 @@ -4,6 +4,7 @@
   */
  
- #include <drm/drm_cache.h>
-+#include <drm/intel/intel_gmd_interrupt_regs.h>
+ #include <drm/intel/intel_pcode_regs.h>
++#include <drm/intel/intel_gmd_misc_regs.h>
  
- #include "gem/i915_gem_internal.h"
- 
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 3fe978d4ea53..d4d8dd0a4174 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -34,6 +34,7 @@
- #include <drm/drm_drv.h>
- #include <drm/drm_print.h>
- #include <drm/intel/display_parent_interface.h>
-+#include <drm/intel/intel_gmd_interrupt_regs.h>
- 
- #include "display/intel_display_irq.h"
- #include "display/intel_hotplug.h"
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 2be799ffbc2b..1be8426b6a91 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -364,7 +364,6 @@
- #define GEN2_IER	_MMIO(0x20a0)
- #define GEN2_IIR	_MMIO(0x20a4)
- #define GEN2_IMR	_MMIO(0x20a8)
--#define GEN2_ISR	_MMIO(0x20ac)
- 
- #define GEN2_IRQ_REGS		I915_IRQ_REGS(GEN2_IMR, \
- 					      GEN2_IER, \
-@@ -521,42 +520,6 @@
- /* These are all the "old" interrupts */
- #define ILK_BSD_USER_INTERRUPT				(1 << 5)
- 
--#define I915_PM_INTERRUPT				(1 << 31)
--#define I915_ISP_INTERRUPT				(1 << 22)
--#define I915_LPE_PIPE_B_INTERRUPT			(1 << 21)
--#define I915_LPE_PIPE_A_INTERRUPT			(1 << 20)
--#define I915_MIPIC_INTERRUPT				(1 << 19)
--#define I915_MIPIA_INTERRUPT				(1 << 18)
--#define I915_PIPE_CONTROL_NOTIFY_INTERRUPT		(1 << 18)
--#define I915_DISPLAY_PORT_INTERRUPT			(1 << 17)
--#define I915_DISPLAY_PIPE_C_HBLANK_INTERRUPT		(1 << 16)
--#define I915_MASTER_ERROR_INTERRUPT			(1 << 15)
--#define I915_DISPLAY_PIPE_B_HBLANK_INTERRUPT		(1 << 14)
--#define I915_GMCH_THERMAL_SENSOR_EVENT_INTERRUPT	(1 << 14) /* p-state */
--#define I915_DISPLAY_PIPE_A_HBLANK_INTERRUPT		(1 << 13)
--#define I915_HWB_OOM_INTERRUPT				(1 << 13)
--#define I915_LPE_PIPE_C_INTERRUPT			(1 << 12)
--#define I915_SYNC_STATUS_INTERRUPT			(1 << 12)
--#define I915_MISC_INTERRUPT				(1 << 11)
--#define I915_DISPLAY_PLANE_A_FLIP_PENDING_INTERRUPT	(1 << 11)
--#define I915_DISPLAY_PIPE_C_VBLANK_INTERRUPT		(1 << 10)
--#define I915_DISPLAY_PLANE_B_FLIP_PENDING_INTERRUPT	(1 << 10)
--#define I915_DISPLAY_PIPE_C_EVENT_INTERRUPT		(1 << 9)
--#define I915_OVERLAY_PLANE_FLIP_PENDING_INTERRUPT	(1 << 9)
--#define I915_DISPLAY_PIPE_C_DPBM_INTERRUPT		(1 << 8)
--#define I915_DISPLAY_PLANE_C_FLIP_PENDING_INTERRUPT	(1 << 8)
--#define I915_DISPLAY_PIPE_A_VBLANK_INTERRUPT		(1 << 7)
--#define I915_DISPLAY_PIPE_A_EVENT_INTERRUPT		(1 << 6)
--#define I915_DISPLAY_PIPE_B_VBLANK_INTERRUPT		(1 << 5)
--#define I915_DISPLAY_PIPE_B_EVENT_INTERRUPT		(1 << 4)
--#define I915_DISPLAY_PIPE_A_DPBM_INTERRUPT		(1 << 3)
--#define I915_DISPLAY_PIPE_B_DPBM_INTERRUPT		(1 << 2)
--#define I915_DEBUG_INTERRUPT				(1 << 2)
--#define I915_WINVALID_INTERRUPT				(1 << 1)
--#define I915_USER_INTERRUPT				(1 << 1)
--#define I915_ASLE_INTERRUPT				(1 << 0)
--#define I915_BSD_USER_INTERRUPT				(1 << 25)
--
- #define GEN6_BSD_RNCID			_MMIO(0x12198)
- 
- #define GEN7_FF_THREAD_MODE		_MMIO(0x20a0)
-diff --git a/include/drm/intel/intel_gmd_interrupt_regs.h b/include/drm/intel/intel_gmd_interrupt_regs.h
+ #include "display/bxt_dpio_phy_regs.h"
+ #include "display/i9xx_plane_regs.h"
+diff --git a/include/drm/intel/intel_gmd_misc_regs.h b/include/drm/intel/intel_gmd_misc_regs.h
 new file mode 100644
-index 000000000000..dc9d5fc29ff6
+index 000000000000..763d7711f21c
 --- /dev/null
-+++ b/include/drm/intel/intel_gmd_interrupt_regs.h
-@@ -0,0 +1,43 @@
++++ b/include/drm/intel/intel_gmd_misc_regs.h
+@@ -0,0 +1,21 @@
 +/* SPDX-License-Identifier: MIT */
 +/* Copyright © 2026 Intel Corporation */
 +
-+#ifndef _INTEL_GMD_INTERRUPT_REGS_H_
-+#define _INTEL_GMD_INTERRUPT_REGS_H_
++#ifndef _INTEL_GMD_MISC_REGS_H_
++#define _INTEL_GMD_MISC_REGS_H_
 +
-+#define I915_PM_INTERRUPT				(1 << 31)
-+#define I915_ISP_INTERRUPT				(1 << 22)
-+#define I915_LPE_PIPE_B_INTERRUPT			(1 << 21)
-+#define I915_LPE_PIPE_A_INTERRUPT			(1 << 20)
-+#define I915_MIPIC_INTERRUPT				(1 << 19)
-+#define I915_MIPIA_INTERRUPT				(1 << 18)
-+#define I915_PIPE_CONTROL_NOTIFY_INTERRUPT		(1 << 18)
-+#define I915_DISPLAY_PORT_INTERRUPT			(1 << 17)
-+#define I915_DISPLAY_PIPE_C_HBLANK_INTERRUPT		(1 << 16)
-+#define I915_MASTER_ERROR_INTERRUPT			(1 << 15)
-+#define I915_DISPLAY_PIPE_B_HBLANK_INTERRUPT		(1 << 14)
-+#define I915_GMCH_THERMAL_SENSOR_EVENT_INTERRUPT	(1 << 14) /* p-state */
-+#define I915_DISPLAY_PIPE_A_HBLANK_INTERRUPT		(1 << 13)
-+#define I915_HWB_OOM_INTERRUPT				(1 << 13)
-+#define I915_LPE_PIPE_C_INTERRUPT			(1 << 12)
-+#define I915_SYNC_STATUS_INTERRUPT			(1 << 12)
-+#define I915_MISC_INTERRUPT				(1 << 11)
-+#define I915_DISPLAY_PLANE_A_FLIP_PENDING_INTERRUPT	(1 << 11)
-+#define I915_DISPLAY_PIPE_C_VBLANK_INTERRUPT		(1 << 10)
-+#define I915_DISPLAY_PLANE_B_FLIP_PENDING_INTERRUPT	(1 << 10)
-+#define I915_DISPLAY_PIPE_C_EVENT_INTERRUPT		(1 << 9)
-+#define I915_OVERLAY_PLANE_FLIP_PENDING_INTERRUPT	(1 << 9)
-+#define I915_DISPLAY_PIPE_C_DPBM_INTERRUPT		(1 << 8)
-+#define I915_DISPLAY_PLANE_C_FLIP_PENDING_INTERRUPT	(1 << 8)
-+#define I915_DISPLAY_PIPE_A_VBLANK_INTERRUPT		(1 << 7)
-+#define I915_DISPLAY_PIPE_A_EVENT_INTERRUPT		(1 << 6)
-+#define I915_DISPLAY_PIPE_B_VBLANK_INTERRUPT		(1 << 5)
-+#define I915_DISPLAY_PIPE_B_EVENT_INTERRUPT		(1 << 4)
-+#define I915_DISPLAY_PIPE_A_DPBM_INTERRUPT		(1 << 3)
-+#define I915_DISPLAY_PIPE_B_DPBM_INTERRUPT		(1 << 2)
-+#define I915_DEBUG_INTERRUPT				(1 << 2)
-+#define I915_WINVALID_INTERRUPT				(1 << 1)
-+#define I915_USER_INTERRUPT				(1 << 1)
-+#define I915_ASLE_INTERRUPT				(1 << 0)
-+#define I915_BSD_USER_INTERRUPT				(1 << 25)
++#define DISP_ARB_CTL	_MMIO(0x45000)
++#define   DISP_FBC_MEMORY_WAKE		REG_BIT(31)
++#define   DISP_TILE_SURFACE_SWIZZLING	REG_BIT(13)
++#define   DISP_FBC_WM_DIS		REG_BIT(15)
++
++#define INSTPM	        _MMIO(0x20c0)
++#define   INSTPM_SELF_EN (1 << 12) /* 915GM only */
++#define   INSTPM_AGPBUSY_INT_EN (1 << 11) /* gen3: when disabled, pending interrupts
++					will not assert AGPBUSY# and will only
++					be delivered when out of C3. */
++#define   INSTPM_FORCE_ORDERING				(1 << 7) /* GEN6+ */
++#define   INSTPM_TLB_INVALIDATE	(1 << 9)
++#define   INSTPM_SYNC_FLUSH	(1 << 5)
 +
 +#endif
 -- 
