@@ -4,58 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D153ECD9B7
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 23:40:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BC92ECD9BE
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 23:40:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7278010E1A0;
-	Thu,  5 Feb 2026 23:40:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A22B910E1B6;
+	Thu,  5 Feb 2026 23:40:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FgFMijIT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KOPbn6yf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6C3110E18D;
- Thu,  5 Feb 2026 23:40:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C73A410E1A5;
+ Thu,  5 Feb 2026 23:40:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770334833; x=1801870833;
+ t=1770334835; x=1801870835;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=Ab6Og3+1BDV/QHfPik/2Se/dwaJ9X2129+BgcVtkhJo=;
- b=FgFMijIT1N3pv7e51/j6eaa+uE7F9piAvU3+7lU0g+yYrLV2omw8LHXn
- MZS3kMTml+TfPqd8bOxuX9IAplqO3nkmakNTKjwWnvs+X1PHMDwwIN/jV
- DxNhfETwnuWuDzZ650l8idr/r5YXX4KbzLfijf5jzLcjn/+5KQavIpYkh
- ginO3oHlTSZW3F3Miw2e8kc/PXgXmD3jTsegN2mjL2zB7sOtScv+uBjur
- 5Q35FPpLEhj4yLE4OJM1/qvr4nm05pRQrErT2t0gD2ArqysG5QCfW5fjd
- 4jOPocE4FTU8OwiKSjZQGgHchcNZIvbX4AZF4vZ8SzbVePcnPBPO38YH7 w==;
-X-CSE-ConnectionGUID: FmlmwjZBSf+bEVV3c5ghhg==
-X-CSE-MsgGUID: zlhAYY9EQ0m3Cgv6UoTbVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="82658684"
-X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="82658684"
+ bh=iwBs/2VXBegilg5h0hAYyPiN3dmLTfqhXjFOUB6x0bw=;
+ b=KOPbn6yfYe3qpRbeKJtym76823vbWifiFzcogSVKd1BLbb22sqZb+8ak
+ m4Nn89jhhl5qi1lIa86xj3eBSyn1hkMrYmxyVorQYOogPV+/wc+MLvDNq
+ 9AqdxWr6lbHoNz3cc3sNWqTBxdJEEo2xt/BrxxOJPfWQf+p1JzNPgED1c
+ MQnfRnLruBKXZBL79QZEwb3yAnANEqPT3XfpoPa4pEqihogd49Pql4xSU
+ aqzRn8g8gKjLVJ+mfWb71k60LBoR+ZhVVMaDjY+4oVBwUXA2o1wjSJV2H
+ 7fEK3Ne8TveYmkZOPhIJLTsz2jlx5l071ASOFt/4wDWMHzFqXZ3ubfINX A==;
+X-CSE-ConnectionGUID: OktoNpuyQoKOm6HUI4eQPg==
+X-CSE-MsgGUID: u+9xJ61VS7m8i6vtrPeIUw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="82658688"
+X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="82658688"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 15:40:33 -0800
-X-CSE-ConnectionGUID: niSVcp0PR0qTQxymn6n7Cg==
-X-CSE-MsgGUID: YLtEtl7dSQCEZBtNsM72fg==
+ 05 Feb 2026 15:40:34 -0800
+X-CSE-ConnectionGUID: p0tBN22KQw+UsarigMr9zA==
+X-CSE-MsgGUID: caiVaiPXR6qJnCu+Mh85sw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="210500130"
+X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="210500140"
 Received: from rfrazer-mobl3.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.222.82])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 15:40:23 -0800
+ 05 Feb 2026 15:40:31 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Thu, 05 Feb 2026 20:39:34 -0300
-Subject: [PATCH v2 06/15] drm/xe/xe3p_lpg: Add LRC parsing for additional
- RCS engine state
+Date: Thu, 05 Feb 2026 20:39:38 -0300
+Subject: [PATCH v2 10/15] drm/xe/xe3p_lpg: Update LRC sizes
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260205-nvl-p-upstreaming-v2-6-9ec14f00cc6c@intel.com>
+Message-Id: <20260205-nvl-p-upstreaming-v2-10-9ec14f00cc6c@intel.com>
 References: <20260205-nvl-p-upstreaming-v2-0-9ec14f00cc6c@intel.com>
 In-Reply-To: <20260205-nvl-p-upstreaming-v2-0-9ec14f00cc6c@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
- Matt Roper <matthew.d.roper@intel.com>, 
- Matt Atwood <matthew.s.atwood@intel.com>
+ Matt Roper <matthew.d.roper@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,99 +69,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+Like with previous generations, the engine context images for of both
+RCS and CCS in Xe3p_LPG contain a common layout at the end for the
+context related to the "Compute Pipeline".
 
-Xe3p_LPG adds some additional state instructions to the RCS engine's
-LRC.  Add support for these to the debugfs LRC parser.
+The size of the memory area written to such section varies; it depends
+on the type of preemption has taken place during the execution and type
+of command streamer instruction that was used on the pipeline. For
+Xe3p_LPG, the maximum possible size, including NOOPs for cache line
+alignment, is 4368 dwords, which would be the case of a mid-thread
+preemption during the execution of a COMPUTE_WALKER_2 instruction.
 
-Note that the bspec's LRC description page seems to have a few mistakes
-in the name/spelling of these new instructions (e.g.,
-"3DSTATE_TASK_DATA_EXT" instead of "3DSTATE_TASK_SHADER_DATA_EXT" or
-"3DSTATE_VIEWPORT_STATE_POINTERS_CL_SF_2" instead of
-"3DSTATE_VIEWPORT_STATE_POINTERS_SF_CLIP_2").
+The maximum size has increased in such a way that we need to update
+xe_gt_lrc_size() to match the new sizing requirement. When we add that
+to the engine-specific parts, we have:
 
-Bspec: 65182
-Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+  - RCS context image: 6672 dwords = 26688 bytes -> 7 pages
+  - CCS context image: 5024 dwords = 20096 bytes -> 5 pages
+
+Bspec: 65182, 55793, 73590
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/instructions/xe_gfxpipe_commands.h | 10 ++++++++++
- drivers/gpu/drm/xe/xe_lrc.c                           | 10 ++++++++++
- 2 files changed, 20 insertions(+)
+ drivers/gpu/drm/xe/xe_lrc.c | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_gfxpipe_commands.h b/drivers/gpu/drm/xe/instructions/xe_gfxpipe_commands.h
-index 457881af8af9..4d854c85e588 100644
---- a/drivers/gpu/drm/xe/instructions/xe_gfxpipe_commands.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_gfxpipe_commands.h
-@@ -55,6 +55,7 @@
- #define PIPELINE_SELECT				GFXPIPE_SINGLE_DW_CMD(0x1, 0x4)
- 
- #define CMD_3DSTATE_DRAWING_RECTANGLE_FAST	GFXPIPE_3D_CMD(0x0, 0x0)
-+#define CMD_3DSTATE_CUSTOM_SAMPLE_PATTERN	GFXPIPE_3D_CMD(0x0, 0x2)
- #define CMD_3DSTATE_CLEAR_PARAMS		GFXPIPE_3D_CMD(0x0, 0x4)
- #define CMD_3DSTATE_DEPTH_BUFFER		GFXPIPE_3D_CMD(0x0, 0x5)
- #define CMD_3DSTATE_STENCIL_BUFFER		GFXPIPE_3D_CMD(0x0, 0x6)
-@@ -138,8 +139,16 @@
- #define CMD_3DSTATE_SBE_MESH			GFXPIPE_3D_CMD(0x0, 0x82)
- #define CMD_3DSTATE_CPSIZE_CONTROL_BUFFER	GFXPIPE_3D_CMD(0x0, 0x83)
- #define CMD_3DSTATE_COARSE_PIXEL		GFXPIPE_3D_CMD(0x0, 0x89)
-+#define CMD_3DSTATE_MESH_SHADER_DATA_EXT	GFXPIPE_3D_CMD(0x0, 0x8A)
-+#define CMD_3DSTATE_TASK_SHADER_DATA_EXT	GFXPIPE_3D_CMD(0x0, 0x8B)
-+#define CMD_3DSTATE_VIEWPORT_STATE_POINTERS_CC_2	GFXPIPE_3D_CMD(0x0, 0x8D)
-+#define CMD_3DSTATE_CC_STATE_POINTERS_2		GFXPIPE_3D_CMD(0x0, 0x8E)
-+#define CMD_3DSTATE_SCISSOR_STATE_POINTERS_2	GFXPIPE_3D_CMD(0x0, 0x8F)
-+#define CMD_3DSTATE_BLEND_STATE_POINTERS_2	GFXPIPE_3D_CMD(0x0, 0xA0)
-+#define CMD_3DSTATE_VIEWPORT_STATE_POINTERS_SF_CLIP_2	GFXPIPE_3D_CMD(0x0, 0xA1)
- 
- #define CMD_3DSTATE_DRAWING_RECTANGLE		GFXPIPE_3D_CMD(0x1, 0x0)
-+#define CMD_3DSTATE_URB_MEMORY			GFXPIPE_3D_CMD(0x1, 0x1)
- #define CMD_3DSTATE_CHROMA_KEY			GFXPIPE_3D_CMD(0x1, 0x4)
- #define CMD_3DSTATE_POLY_STIPPLE_OFFSET		GFXPIPE_3D_CMD(0x1, 0x6)
- #define CMD_3DSTATE_POLY_STIPPLE_PATTERN	GFXPIPE_3D_CMD(0x1, 0x7)
-@@ -160,5 +169,6 @@
- #define CMD_3DSTATE_SUBSLICE_HASH_TABLE		GFXPIPE_3D_CMD(0x1, 0x1F)
- #define CMD_3DSTATE_SLICE_TABLE_STATE_POINTERS	GFXPIPE_3D_CMD(0x1, 0x20)
- #define CMD_3DSTATE_PTBR_TILE_PASS_INFO		GFXPIPE_3D_CMD(0x1, 0x22)
-+#define CMD_3DSTATE_SLICE_TABLE_STATE_POINTER_2	GFXPIPE_3D_CMD(0x1, 0xA0)
- 
- #endif
 diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 3db7968aa5e2..e58eb8b9db78 100644
+index e58eb8b9db78..38f648b98868 100644
 --- a/drivers/gpu/drm/xe/xe_lrc.c
 +++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1966,6 +1966,7 @@ static int dump_gfxpipe_command(struct drm_printer *p,
- 	MATCH(PIPELINE_SELECT);
- 
- 	MATCH3D(3DSTATE_DRAWING_RECTANGLE_FAST);
-+	MATCH3D(3DSTATE_CUSTOM_SAMPLE_PATTERN);
- 	MATCH3D(3DSTATE_CLEAR_PARAMS);
- 	MATCH3D(3DSTATE_DEPTH_BUFFER);
- 	MATCH3D(3DSTATE_STENCIL_BUFFER);
-@@ -2049,8 +2050,16 @@ static int dump_gfxpipe_command(struct drm_printer *p,
- 	MATCH3D(3DSTATE_SBE_MESH);
- 	MATCH3D(3DSTATE_CPSIZE_CONTROL_BUFFER);
- 	MATCH3D(3DSTATE_COARSE_PIXEL);
-+	MATCH3D(3DSTATE_MESH_SHADER_DATA_EXT);
-+	MATCH3D(3DSTATE_TASK_SHADER_DATA_EXT);
-+	MATCH3D(3DSTATE_VIEWPORT_STATE_POINTERS_CC_2);
-+	MATCH3D(3DSTATE_CC_STATE_POINTERS_2);
-+	MATCH3D(3DSTATE_SCISSOR_STATE_POINTERS_2);
-+	MATCH3D(3DSTATE_BLEND_STATE_POINTERS_2);
-+	MATCH3D(3DSTATE_VIEWPORT_STATE_POINTERS_SF_CLIP_2);
- 
- 	MATCH3D(3DSTATE_DRAWING_RECTANGLE);
-+	MATCH3D(3DSTATE_URB_MEMORY);
- 	MATCH3D(3DSTATE_CHROMA_KEY);
- 	MATCH3D(3DSTATE_POLY_STIPPLE_OFFSET);
- 	MATCH3D(3DSTATE_POLY_STIPPLE_PATTERN);
-@@ -2070,6 +2079,7 @@ static int dump_gfxpipe_command(struct drm_printer *p,
- 	MATCH3D(3DSTATE_SUBSLICE_HASH_TABLE);
- 	MATCH3D(3DSTATE_SLICE_TABLE_STATE_POINTERS);
- 	MATCH3D(3DSTATE_PTBR_TILE_PASS_INFO);
-+	MATCH3D(3DSTATE_SLICE_TABLE_STATE_POINTER_2);
- 
- 	default:
- 		drm_printf(p, "[%#010x] unknown GFXPIPE command (pipeline=%#x, opcode=%#x, subopcode=%#x), likely %d dwords\n",
+@@ -113,13 +113,17 @@ size_t xe_gt_lrc_hang_replay_size(struct xe_gt *gt, enum xe_engine_class class)
+ 	/* Engine context image */
+ 	switch (class) {
+ 	case XE_ENGINE_CLASS_RENDER:
+-		if (GRAPHICS_VER(xe) >= 20)
++		if (GRAPHICS_VERx100(xe) >= 3510)
++			size += 7 * SZ_4K;
++		else if (GRAPHICS_VER(xe) >= 20)
+ 			size += 3 * SZ_4K;
+ 		else
+ 			size += 13 * SZ_4K;
+ 		break;
+ 	case XE_ENGINE_CLASS_COMPUTE:
+-		if (GRAPHICS_VER(xe) >= 20)
++		if (GRAPHICS_VERx100(xe) >= 3510)
++			size += 5 * SZ_4K;
++		else if (GRAPHICS_VER(xe) >= 20)
+ 			size += 2 * SZ_4K;
+ 		else
+ 			size += 13 * SZ_4K;
 
 -- 
 2.52.0
