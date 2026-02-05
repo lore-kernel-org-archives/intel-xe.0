@@ -4,187 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E214AECD9A6
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 21:10:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D8CDECD9AB
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 21:41:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A11410E0B7;
-	Thu,  5 Feb 2026 21:10:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AF0210E123;
+	Thu,  5 Feb 2026 21:41:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XNpzLPH3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ffZp4B+O";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56BB810E0B7
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Feb 2026 21:10:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2FF810E12F
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Feb 2026 21:41:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770325819; x=1801861819;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=1yiK5xtImrTRxae/guP5Wsye32FqLnFCorPQBhQe/RM=;
- b=XNpzLPH3c+Itdlgwdy0dhkETPUltLMqVZ8CLS3ir4qT1eDRJLwnRl5VT
- RGmm290wSwdkXRS2cHyXleYJ3daBTNARqclaQW1Zb3yVHz7y2AO3UFxaI
- LfsNblIsfwh4XcDcswchWhnkct6Fz24GIDqlq3eKZlIqXmn2GVmAWXPl8
- 75WCvtosmRODilWXE8hFYv3y9XsRyLEcPbwvJ6LP/+rDWq29xjaWOVcD2
- Dlw0bLZEJ+s7vT+albOxKFk50F3dOcHdsj9rSIapdxBsCJFbs+FebjvLW
- kzlfjwcfdf/hjeNaKViWZIT7bLswAq3/JMDWy8O1GNmbQker+0lkQ+Ckq g==;
-X-CSE-ConnectionGUID: PIcByCAsRBauttolITJQSQ==
-X-CSE-MsgGUID: 2npNx/IXR5W8zZskF1cnbw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="81849319"
-X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="81849319"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 13:10:18 -0800
-X-CSE-ConnectionGUID: gKcrnpvUTYarUrsIfyqETA==
-X-CSE-MsgGUID: 4oSyFTpfTp+8JbBInPPDKw==
+ t=1770327705; x=1801863705;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=2FMG2huSQ1hGcBj5Wk5SIsVagROyayyVLN6T1cM5rsE=;
+ b=ffZp4B+O50v3/vG1ooSgbKbci+HJcslASrss38tfGmUe0EQpLeX4uPlP
+ 1CL6fAzXIf3aoefLKHFPjYPy8BamSsJphXJv/IpeHrafAg9FNUSxFAeHV
+ IK4S60r+9OXVR3RUi+TceFVhDUwaZ0vRliioFJhwvPsFd/PhCNhYLjSJI
+ 6evAqa7750vh8gnumfD5uBMscBQnX2sbyHle8l15VBdKA1RYK9uiaO5ft
+ Y/cCQpxyDJUpJ7fCi31S0ML/ViYzlOC9dljyiISn0qumiQc2UOPdUlivA
+ HwWHHaiRHA0uzlAM5CdEtyYC5/d5489eoumQ6zX/T01EN6Vm0xgTgf6zW Q==;
+X-CSE-ConnectionGUID: qT2CETFwQrenZngGBHohbg==
+X-CSE-MsgGUID: zmwQ8i4+QISAkkGNnlbWbA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="75387984"
+X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="75387984"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2026 13:41:45 -0800
+X-CSE-ConnectionGUID: HP1tb787SFyRfnVGY7fjrQ==
+X-CSE-MsgGUID: +5vtVPm0Q4CbqCcCKnlDSA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="210619791"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 13:10:17 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Thu, 5 Feb 2026 13:10:17 -0800
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Thu, 5 Feb 2026 13:10:17 -0800
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.23) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Thu, 5 Feb 2026 13:10:16 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IjG5klhvI3Fd6rnzAJhtwVDimx9ogFuuJBQ7SLozguesLDESbby9+JWmPH+XGbTpgXN4TOJFJ5r1sJIzhgkh2zNi9uFBahFh96OiU6HMGr/rHQGkGUbx+yaOO4u4XyE7L8I8Pm+GV0cw++U24dAuPUA9VHngbJ7z3xCWDBfv7Jy5U17MNBwVoEutySPvZXh95nYNXBwMI+qT6oSBSHxNJ5ei9HexeMXKK1z8Vc5x8rfVMtULvqGZuE4dAnIipghwDWTIHczrd/i4uS8IRLbPnud7tjPRF09Y2VjTi/0HmWoVIp7sNs/ef/S/4Rkcvwnmbe5yWyy8OZhYH2jpIqqcgw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=szn1ubM8xrkO6HAYGPAMT9wGffLCggLgMFd/7AtYWPI=;
- b=Rua3bANhY60G8GT/VRl9Eg+l8fpuGJb7Xu2DfdvccW6TAunxZDW31VlQaoMzVTrrB5cSn1NVoLj55gITfT64ESLPX2dYaXElFFZEgkrlQWzjOBtJsbluYfPLP4/wQIBx0F2/w0z8qZghb4d2J8uk4VHzVG7whZXYwZYMTK2cijN+2SXLynnGF00x/9KqegfvRMA/KGXWgsyttAG2WYX7NrZ5mOtUDt6ZgcqMbMO5OBjL+zABkmb/LqjsRHYG8txI6DG0DiZiRcwDrKzYG6zu6ss27bbRNymemlj3aOB6yLF+MhwRGRTN5ReFZTtls0gQ+EzY0N20oPrUNcYX+Ms8Gg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by IA1PR11MB7679.namprd11.prod.outlook.com (2603:10b6:208:3f1::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.14; Thu, 5 Feb
- 2026 21:10:14 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811%3]) with mapi id 15.20.9587.013; Thu, 5 Feb 2026
- 21:10:14 +0000
-Message-ID: <dfcc7748-28db-4aec-9c95-23bcf0b88894@intel.com>
-Date: Thu, 5 Feb 2026 22:10:09 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/2] drm/xe:Mutual exclusivity between CCS-mode and PF
-To: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>,
- <intel-xe@lists.freedesktop.org>
-References: <20260202170810.1393147-4-naresh.kumar.g@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20260202170810.1393147-4-naresh.kumar.g@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VE1PR03CA0036.eurprd03.prod.outlook.com
- (2603:10a6:803:118::25) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
+X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="214844522"
+Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2026 13:41:44 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com,
+	Gustavo Sousa <gustavo.sousa@intel.com>
+Subject: [PATCH v2 1/2] drm/xe: Move number of XeCore fuse registers to
+ graphics descriptor
+Date: Thu,  5 Feb 2026 13:41:40 -0800
+Message-ID: <20260205214139.48515-3-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|IA1PR11MB7679:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8ee2cae4-64d1-4967-08f1-08de64faf48f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?REZMZVI3cmo1T2VWdityVmxkWDdzaTFBbFBWdVlJenVkRGpmWU0wNkNqUEwz?=
- =?utf-8?B?V1Nza2x6YXZDODBKWHozellmbHdDa2ZEd1FXSjIzUmJnNis5WTlTRDg4L1Z2?=
- =?utf-8?B?MzZtM1dERkRIKzQ2L3Q5TGE3a3lBR2gvVlp6ZkdzNE42b3ZKeG9qU0N6K0RL?=
- =?utf-8?B?MWZmcG1XV2gzTFVWSVpEQ3B2WkV3U2xmZHNSOHVCNy9BcTFRN3NodFR1NjNF?=
- =?utf-8?B?TnZhTE5uOUx0L1ZRMTNXYWVjUENyazhqTUhxT2tHVWkzYzVRT01DZEhaZW96?=
- =?utf-8?B?bEMzakRaZnlUajlNRExya0pPUUJCL2xwV1dvSWJuK2YxWFhrQTFndUhmZlJZ?=
- =?utf-8?B?TkZ0dlcySW45OWJSLzUyckxUeHZTS1pWSGo4dmVDWVVHOUQ5WEdKVnNqb3dP?=
- =?utf-8?B?ZFNBUlJ3dzJLZDNXaEU0NnNYTktPdUdNM1dNYWEvQWNSY3ZGMDFzY2NMU0wz?=
- =?utf-8?B?ZmdXOVRwTVIzK0ZQRjdjNmJqWkhWQ1RFY2ZtY2h2WjlHdjU3UDgyb1dMTXAy?=
- =?utf-8?B?dXArVlQ4d3JPN1FFdTB0R245OG1TUWpCV1Q0V2FFU2FBYU9ob2hQRnN1WjFn?=
- =?utf-8?B?V3ZvSDJxOGZWODE0UFVOVVBWYzFmeEUwa1BCVmMyN2F5R3BJazVackFKRXRG?=
- =?utf-8?B?TUhKejNGUUNxOTJFdlpRaEVaYnVnM0Fhd0pEd3BJSklmUWJEcVFNTkREN0NG?=
- =?utf-8?B?cnZGb01xOFZzcFR3dG9xcTJFY1hEejByMXMxQ0tCdUE4anRRbzBLOVRlcnh3?=
- =?utf-8?B?UEZFZWNBOVlkL1gvbFA5VHJ1dUs1ZkZJR0kvelVMVlJxYWluNmM3MlhLZGQ1?=
- =?utf-8?B?cG5qTVZFdlh5M2daYzJibTJHWit4SVNpaHRJNk9KVk5TYmtoSVQva2Y0Wmc4?=
- =?utf-8?B?SHJXRlVqV0ljb2s5MDZMcXVOUUluMlUxZ0IzMUNYSkdKS29tMElrRU1NdGJO?=
- =?utf-8?B?TVZ2MU5yM2RueVdHZXRlN1lZRzFIQkJVK25iZVVwQkNEcG5PcmFqQkRWMTFw?=
- =?utf-8?B?dUE4SlVVaHBnWitQalh4ZnV6ck82cDJaQWt3c0RIUnJBVC81dFBwZklQNzFN?=
- =?utf-8?B?TjlOdmhmQVdDd1Rvamt6bnFlZ1RVNWJnRm10K09pd3FnVFNMMG5Zd2p1azVV?=
- =?utf-8?B?M1BMaXVvYmhSRS9DNDNVYnluM0VXeDR3ei9XdE1WTE1OSDhndkNIU2J1Nms1?=
- =?utf-8?B?aExpeTRQOWxXMzdlYzJNTmpXUCtVd2pNSy92VnBOMWdETXRSQkpqY2FYT094?=
- =?utf-8?B?UlNJNjQxTUN6V25WaE5JOVA5VGZqZ2xVd3YrNlRBZUEwVUgxWEVZZktMV2xN?=
- =?utf-8?B?eFdqMXV2cG9KRjUrNW13YXZwcm9sWGNhRjdXQm9KZ2RyZzdkblVGZUk3Umha?=
- =?utf-8?B?QzcvVUhaWndjSmdqZDRZalZWb1JxcXBrVWY3Z1pMdWdjQzAya0lBWjZmNjdq?=
- =?utf-8?B?TDVLTFZ4T2V1YWF0MEJGSnVGUXFWUURrQkFnQ2JMVGdnUUF6QXFqV20zeWZu?=
- =?utf-8?B?N1Z5WjlwQUxFSllhV1dxWERpTFdkdm5KMXZWNXdXeitJTzc2T3lPMTl1d0h0?=
- =?utf-8?B?Y1ZSNUkvbzAxbXpOaXpna202UjZpTVF1STFyd1Q4RVVLczhoNC9OM1V0dk5U?=
- =?utf-8?B?NXZvZ0QyZ0Z2NlpFVURURmpNTW9mRmJPaWF5N0ROc2FhVzVZN2tEWGZsbjFn?=
- =?utf-8?B?QWl5RDRMMkhJYkp5Tk1vaG5pRHo3KzdYdzRHT0k2ajcyTGxheit1blJHV2t6?=
- =?utf-8?B?LzhnREExeW9VOTFEdnhhUXFwNUtpU2pEM1pReVNzWFdtNEgvWVFoMzZuMXZ5?=
- =?utf-8?B?eCtnUGEzOGxkdlkrR1NSTmNxVXl4MHhzRy9UMHJaY1lKQldZKytGRkZDR3VJ?=
- =?utf-8?B?RHlkMUd1LzRURE9SUjZ5ZXNKcHhLbm9rY3BqNG5zYnFHamoyQ29BRE9YNUFi?=
- =?utf-8?B?bWRacmRtUXFlVzE5UWl4WUY5U09rYlFIYzd5OEpSMVoyak9vS0JodmFadWhT?=
- =?utf-8?B?c2haZHVuRm1mNGl1OWpPb3FiTVZzQ1ZRcmExQld1SkY4Vk1BYWx4QS9jclFv?=
- =?utf-8?Q?a0Qsq8?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NDRTR2cvWlREMHlZeC9PMU9KYXRsdUwrdTJJTzRqbncrdDN1ZkpOWDZYRXEx?=
- =?utf-8?B?N21FejdpN3ZYOWFid2EvL1U5QjBqLzU2SW1pYkJ6OHh5azVua0RGVXZNL0Zn?=
- =?utf-8?B?bENvNjJNekRjVXExT1BFb0hxYmlSaUpzMnp2ejEyQTYzd1pOR3FVSWlqU0dD?=
- =?utf-8?B?S2VjM2FOK0NadW9Uc0NLRHJJNWNwamd6akIvVGxzdkZDU2YzQk9zc2RUV2hp?=
- =?utf-8?B?NnErRldBTzAySHBDVUU5cGJQS1gveVA0b3IrUXdVYUM1Y3RNdG5GS3YyV0w4?=
- =?utf-8?B?ZGcwSlhRNk15UERHWXRpQVRZY0twdkdDRTM3dGVaRmMyRlVyb2pnRm1QUUF5?=
- =?utf-8?B?bWlIZW9HVUlZRmNGUXJmY2lBK3RSbmpRU0hqT1cxeWpiSWZBbE1adkVkUm9K?=
- =?utf-8?B?OUhJRkNDejlaY1NDMkZ5UVF1VUNPTExGNjM3MWxKbkFuTXc2aGFNVFNhR2w4?=
- =?utf-8?B?OGRJWVFyR3BneEJad3ZjS25RNUQ2cW9aSVlaQ2IyZTNLSnhVTDZZbWRBMHNF?=
- =?utf-8?B?RkVmaE9saTVLb3FSUEVnQmhOaUtlSVlxTzVGUERKRkdqMU41cnV3d2R4UUtx?=
- =?utf-8?B?MmthcHpuSktVNHJvcTltREpEd1JtMkJaRXhrQ2g3OE9DYnlTcmYrYnA1cHJs?=
- =?utf-8?B?cWtOcXA3c25xQVBVVFR1UUN5bHdoaXJpTWVWL0ZGVmh3dVhpWENWUE9hN2Iz?=
- =?utf-8?B?N0lSTTFvdyszcEs5VStSdGEybUgxcVUyeWg0V1BqUUovWXZVbTBobmNWaWJs?=
- =?utf-8?B?b2JNY0FPdG90WEYxQ2FQZjVIY1cxNkFyMUx1SEYzeGxKOGlSb1pTZGQ2b211?=
- =?utf-8?B?djZZVU04V3RjVWduSnE3cXJ0RWs2aXRVUlVES05DYjRzdVJuOEJXN3lqa2RG?=
- =?utf-8?B?VDJuU3hJenpzclI4T0ozY2J1Szhwb1dveVAzQjNUUk45SlJhQ2dvdndhSkJ3?=
- =?utf-8?B?NWFPSFZXRnRpY1RlbFV2Tkc3Y3Q1WDhCa3R6dFUvYUIvejhNT3pLcDBYVWlp?=
- =?utf-8?B?WHowNCtCdzlwSklqWjU2eDVLOUZpc2Q5VE93alB6Y0pob2pqVVdPTzQ0OUtP?=
- =?utf-8?B?ck1LdlVKcFJ4eW40M1A4Y3BkMEpQS3Iwa0ZNUjRFU2g0OGx0RW1UTEJNVVJt?=
- =?utf-8?B?VnVOcDB1cFE2VW1tc2xxVkExRFMrOXdxLzJEOVNEYjBNM1M4cDFpblhGcTBV?=
- =?utf-8?B?QndkbU1mRXBSb1BUKzM1K01sSi8rZS96Z2o0R0p5SmJMc0tjMDduSXB0TEtz?=
- =?utf-8?B?TXk1UEM1TFpGRGFDc1drWlhxNHJyK2l6S2t4c3I3cno1cUhwTERnbm5lcHk1?=
- =?utf-8?B?d2Z5L1JLNGZMRjJVcmY2dU9uTmhQSms5TEVhUFJVY0lqeEFRWVZ2UFdEVUNV?=
- =?utf-8?B?d3FoMHozZThUYWVsR0N6YzVjS3Qwd2hhTHFQVnlJMjBaUXBuNHIyTFJCUGcz?=
- =?utf-8?B?S2pqYUVGRW9ZL2IySysrUlI1aFJxa2pLRTZtL0tzVGNoMW4va0hhQnhTK1ZD?=
- =?utf-8?B?K3FXdEJyaUx1SXJsOVY0TnRSMnUxcFh3bkYrSmVOTld0clZxZ24yOHZzN1Nq?=
- =?utf-8?B?STRKNEhNVzhvakl4V1JyckJSdnhoSU9Ic0NLa3ZTZ0JDTmNEWkdyMlBORXgr?=
- =?utf-8?B?K0FZVThOVnc0VitLZitEcVVzMTNndVpianFNOXMyN1VwUHlXRytXeXRINnUv?=
- =?utf-8?B?VEtVOE9rT0o1czJodDVxbzh1c1pDNEVvbzF6QjVJSkg3M1NTZDdXT1YyMHpP?=
- =?utf-8?B?a2dBTGNCYTdwL0R2MGFoR1NzcnJiY0dMd2ZDWk5TMGIzZzZWRkpsSjc2WkpO?=
- =?utf-8?B?ZHVJbkkyV2pzZlZTSHJ0cmVTS25DVGlHcFBOV1R0bUhCWTc2SzVVcHljUHNG?=
- =?utf-8?B?QVhPbmhEUUxKV2lOa0E1WU1US1JQVTFkYXlJcmRtNVJ4SXEwOG1kazFBcDg2?=
- =?utf-8?B?WGlrQUxXWmNLNkpSZXF2cHNCUFludkFFRjMzRUhoMWpKdDdyaHQvWDcwSm1l?=
- =?utf-8?B?K005VUorRno5TnRwd21zNWVtcklQZFFVYnF3YnorckVwRVBsMjV0U3JtMklT?=
- =?utf-8?B?NWVJY1VVaWpSM0gyTytjK3FuK3llWjVmVTRSWkVPY1NpYnN5QzVRMXRCVWJN?=
- =?utf-8?B?cUNON1pLS1Viajd0QkxXZ3crUFZPWWJlSGdaRzFlNzM5cjJ4NGpJSjU0VGV3?=
- =?utf-8?B?aUk5QVdSVjU4MHNRN3JuVlpDNk41M1UxUDUrYTI4VmlzMVNBTUpaZjVjSUhk?=
- =?utf-8?B?WWFkRXplUkZqaGlKSTNqZnhDa2wwa05sWlBxL29sc0MxS3AreSs4SXk0cG5E?=
- =?utf-8?B?dVdQWFBOZ0hZdnhtdWhGbGRWUkh4MUpKTjlMUnk5RCtHK3RKTnAvbUZFcUoy?=
- =?utf-8?Q?q2lQh8gyZtZX5PXM=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8ee2cae4-64d1-4967-08f1-08de64faf48f
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Feb 2026 21:10:14.4008 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2fmwy+CwBghdXytO//Q9Z4p+qJMrMzF9j1f4eQmch8TRDK25+xS6WpYfc4hEP23pe8xFRqKRbCUSwRHO6u1rfBab6HnltsXODh32MZgcQ1U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7679
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -199,39 +66,233 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+The number of registers used to express the XeCore mask has some
+"special cases" that don't always get inherited by later IP versions so
+it's cleaner and simpler to record the numbers in the IP descriptor
+rather than adding extra conditions to the standalone get_num_dss_regs()
+function.
 
+Note that a minor change here is that we now always treat the number of
+registers as 0 for the media GT.  Technically a copy of these fuse
+registers does exist in the media GT as well (at the usual
+0x380000+$offset location), but the value of those is always supposed to
+read back as 0 because media GTs never have any XeCores or EUs.
 
-On 2/2/2026 6:08 PM, Nareshkumar Gollakoti wrote:
-> Due to SLA agreement between PF and VFs, Currently we block CCS mode
-> changes if driver is running as PF, even if there are no VFs enabled yet.
-> Use lockdown mechanism provided by the PF to relax that limitation
-> and still enforce above VFs related requirements.Also skipping CCS-mode
-> sysfs entry in VF Mode.
-> 
-> ---
-> The previous change log can be referenced at the following link,
-> https://patchwork.freedesktop.org/series/154538/#rev9
-> 
-> v1:(Michal)
-> - Split into two patches with cover letter and subject of cover letter
->   refactored
-> 
-> v2:(Michal)
-> - Add direct code instead of gt_prepare_ccs_mode_enabling and
->   gt_finish_ccs_mode_enabling function's for readability
-> 
-> v3: (Michal)
-> - Remove Fix up tag in commit message
-> - Refactored Commit Message
-> 
-> Nareshkumar Gollakoti (2):
->   drm/xe: Fix Prevent VFs from exposing the CCS mode sysfs file
->   drm/xe: Mutual exclusivity between CCS-mode and PF
-> 
->  drivers/gpu/drm/xe/xe_gt_ccs_mode.c | 44 +++++++++++++++++++----------
->  1 file changed, 29 insertions(+), 15 deletions(-)
-> 
+v2:
+ - Add a kunit assertion to catch descriptors that forget to initialize
+   either count.  (Gustavo)
 
-Corrected commit messages and pushed to drm-xe-next.
-Thanks for the patches.
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/tests/xe_pci_test.c |  8 ++++++
+ drivers/gpu/drm/xe/xe_gt_topology.c    | 37 +++++---------------------
+ drivers/gpu/drm/xe/xe_gt_types.h       | 10 +++++++
+ drivers/gpu/drm/xe/xe_pci.c            | 12 +++++++++
+ drivers/gpu/drm/xe/xe_pci_types.h      |  2 ++
+ 5 files changed, 39 insertions(+), 30 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/tests/xe_pci_test.c b/drivers/gpu/drm/xe/tests/xe_pci_test.c
+index 4d10a7e2b570..acf5a5555130 100644
+--- a/drivers/gpu/drm/xe/tests/xe_pci_test.c
++++ b/drivers/gpu/drm/xe/tests/xe_pci_test.c
+@@ -19,6 +19,8 @@ static void check_graphics_ip(struct kunit *test)
+ 	const struct xe_ip *param = test->param_value;
+ 	const struct xe_graphics_desc *graphics = param->desc;
+ 	u64 mask = graphics->hw_engine_mask;
++	u8 fuse_regs = graphics->num_geometry_xecore_fuse_regs +
++		graphics->num_compute_xecore_fuse_regs;
+ 
+ 	/* RCS, CCS, and BCS engines are allowed on the graphics IP */
+ 	mask &= ~(XE_HW_ENGINE_RCS_MASK |
+@@ -27,6 +29,12 @@ static void check_graphics_ip(struct kunit *test)
+ 
+ 	/* Any remaining engines are an error */
+ 	KUNIT_ASSERT_EQ(test, mask, 0);
++
++	/*
++	 * All graphics IP should have at least one geometry and/or compute
++	 * XeCore fuse register.
++	 */
++	KUNIT_ASSERT_GE(test, fuse_regs, 1);
+ }
+ 
+ static void check_media_ip(struct kunit *test)
+diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
+index bd5260221d8d..575dcfd5eb9d 100644
+--- a/drivers/gpu/drm/xe/xe_gt_topology.c
++++ b/drivers/gpu/drm/xe/xe_gt_topology.c
+@@ -205,24 +205,6 @@ load_l3_bank_mask(struct xe_gt *gt, xe_l3_bank_mask_t l3_bank_mask)
+ 	}
+ }
+ 
+-static void
+-get_num_dss_regs(struct xe_device *xe, int *geometry_regs, int *compute_regs)
+-{
+-	if (GRAPHICS_VER(xe) > 20) {
+-		*geometry_regs = 3;
+-		*compute_regs = 3;
+-	} else if (GRAPHICS_VERx100(xe) == 1260) {
+-		*geometry_regs = 0;
+-		*compute_regs = 2;
+-	} else if (GRAPHICS_VERx100(xe) >= 1250) {
+-		*geometry_regs = 1;
+-		*compute_regs = 1;
+-	} else {
+-		*geometry_regs = 1;
+-		*compute_regs = 0;
+-	}
+-}
+-
+ void
+ xe_gt_topology_init(struct xe_gt *gt)
+ {
+@@ -236,23 +218,19 @@ xe_gt_topology_init(struct xe_gt *gt)
+ 		XEHPC_GT_COMPUTE_DSS_ENABLE_EXT,
+ 		XE2_GT_COMPUTE_DSS_2,
+ 	};
+-	int num_geometry_regs, num_compute_regs;
+-	struct xe_device *xe = gt_to_xe(gt);
+ 	struct drm_printer p;
+ 
+-	get_num_dss_regs(xe, &num_geometry_regs, &num_compute_regs);
+-
+ 	/*
+ 	 * Register counts returned shouldn't exceed the number of registers
+ 	 * passed as parameters below.
+ 	 */
+-	xe_gt_assert(gt, num_geometry_regs <= ARRAY_SIZE(geometry_regs));
+-	xe_gt_assert(gt, num_compute_regs <= ARRAY_SIZE(compute_regs));
++	xe_gt_assert(gt, gt->info.num_geometry_xecore_fuse_regs <= ARRAY_SIZE(geometry_regs));
++	xe_gt_assert(gt, gt->info.num_compute_xecore_fuse_regs <= ARRAY_SIZE(compute_regs));
+ 
+ 	load_dss_mask(gt, gt->fuse_topo.g_dss_mask,
+-		      num_geometry_regs, geometry_regs);
++		      gt->info.num_geometry_xecore_fuse_regs, geometry_regs);
+ 	load_dss_mask(gt, gt->fuse_topo.c_dss_mask,
+-		      num_compute_regs, compute_regs);
++		      gt->info.num_compute_xecore_fuse_regs, compute_regs);
+ 
+ 	load_eu_mask(gt, gt->fuse_topo.eu_mask_per_dss, &gt->fuse_topo.eu_type);
+ 	load_l3_bank_mask(gt, gt->fuse_topo.l3_bank_mask);
+@@ -330,15 +308,14 @@ xe_l3_bank_mask_ffs(const xe_l3_bank_mask_t mask)
+  */
+ bool xe_gt_topology_has_dss_in_quadrant(struct xe_gt *gt, int quad)
+ {
+-	struct xe_device *xe = gt_to_xe(gt);
+ 	xe_dss_mask_t all_dss;
+-	int g_dss_regs, c_dss_regs, dss_per_quad, quad_first;
++	int dss_per_quad, quad_first;
+ 
+ 	bitmap_or(all_dss, gt->fuse_topo.g_dss_mask, gt->fuse_topo.c_dss_mask,
+ 		  XE_MAX_DSS_FUSE_BITS);
+ 
+-	get_num_dss_regs(xe, &g_dss_regs, &c_dss_regs);
+-	dss_per_quad = 32 * max(g_dss_regs, c_dss_regs) / 4;
++	dss_per_quad = 32 * max(gt->info.num_geometry_xecore_fuse_regs,
++				gt->info.num_compute_xecore_fuse_regs) / 4;
+ 
+ 	quad_first = xe_dss_mask_group_ffs(all_dss, dss_per_quad, quad);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 1d7360b56ac6..44a4e7af11b1 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -144,6 +144,16 @@ struct xe_gt {
+ 		u8 id;
+ 		/** @info.has_indirect_ring_state: GT has indirect ring state support */
+ 		u8 has_indirect_ring_state:1;
++		/**
++		 * @info.num_geometry_xecore_fuse_regs: Number of 32b-bit fuse
++		 * registers the geometry XeCore mask spans.
++		 */
++		u8 num_geometry_xecore_fuse_regs;
++		/**
++		 * @info.num_compute_xecore_fuse_regs: Number of 32b-bit fuse
++		 * registers the compute XeCore mask spans.
++		 */
++		u8 num_compute_xecore_fuse_regs;
+ 	} info;
+ 
+ #if IS_ENABLED(CONFIG_DEBUG_FS)
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index b5e8935fff1d..e3a574835f35 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -52,6 +52,7 @@ __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
+ 
+ static const struct xe_graphics_desc graphics_xelp = {
+ 	.hw_engine_mask = BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0),
++	.num_geometry_xecore_fuse_regs = 1,
+ };
+ 
+ #define XE_HP_FEATURES \
+@@ -62,6 +63,8 @@ static const struct xe_graphics_desc graphics_xehpg = {
+ 		BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0) |
+ 		BIT(XE_HW_ENGINE_CCS0) | BIT(XE_HW_ENGINE_CCS1) |
+ 		BIT(XE_HW_ENGINE_CCS2) | BIT(XE_HW_ENGINE_CCS3),
++	.num_geometry_xecore_fuse_regs = 1,
++	.num_compute_xecore_fuse_regs = 1,
+ 
+ 	XE_HP_FEATURES,
+ };
+@@ -81,12 +84,15 @@ static const struct xe_graphics_desc graphics_xehpc = {
+ 	.has_asid = 1,
+ 	.has_atomic_enable_pte_bit = 1,
+ 	.has_usm = 1,
++	.num_compute_xecore_fuse_regs = 2,
+ };
+ 
+ static const struct xe_graphics_desc graphics_xelpg = {
+ 	.hw_engine_mask =
+ 		BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0) |
+ 		BIT(XE_HW_ENGINE_CCS0),
++	.num_geometry_xecore_fuse_regs = 1,
++	.num_compute_xecore_fuse_regs = 1,
+ 
+ 	XE_HP_FEATURES,
+ };
+@@ -104,6 +110,8 @@ static const struct xe_graphics_desc graphics_xelpg = {
+ 
+ static const struct xe_graphics_desc graphics_xe2 = {
+ 	XE2_GFX_FEATURES,
++	.num_geometry_xecore_fuse_regs = 3,
++	.num_compute_xecore_fuse_regs = 3,
+ };
+ 
+ static const struct xe_graphics_desc graphics_xe3p_xpc = {
+@@ -114,6 +122,8 @@ static const struct xe_graphics_desc graphics_xe3p_xpc = {
+ 		GENMASK(XE_HW_ENGINE_CCS3, XE_HW_ENGINE_CCS0),
+ 	.multi_queue_engine_class_mask = BIT(XE_ENGINE_CLASS_COPY) |
+ 					 BIT(XE_ENGINE_CLASS_COMPUTE),
++	.num_geometry_xecore_fuse_regs = 3,
++	.num_compute_xecore_fuse_regs = 3,
+ };
+ 
+ static const struct xe_media_desc media_xem = {
+@@ -783,6 +793,8 @@ static struct xe_gt *alloc_primary_gt(struct xe_tile *tile,
+ 	gt->info.has_indirect_ring_state = graphics_desc->has_indirect_ring_state;
+ 	gt->info.multi_queue_engine_class_mask = graphics_desc->multi_queue_engine_class_mask;
+ 	gt->info.engine_mask = graphics_desc->hw_engine_mask;
++	gt->info.num_geometry_xecore_fuse_regs = graphics_desc->num_geometry_xecore_fuse_regs;
++	gt->info.num_compute_xecore_fuse_regs = graphics_desc->num_compute_xecore_fuse_regs;
+ 
+ 	/*
+ 	 * Before media version 13, the media IP was part of the primary GT
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index 8b2ff3f25607..470d31a1f0d6 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -66,6 +66,8 @@ struct xe_device_desc {
+ struct xe_graphics_desc {
+ 	u64 hw_engine_mask;	/* hardware engines provided by graphics IP */
+ 	u16 multi_queue_engine_class_mask; /* bitmask of engine classes which support multi queue */
++	u8 num_geometry_xecore_fuse_regs;
++	u8 num_compute_xecore_fuse_regs;
+ 
+ 	u8 has_asid:1;
+ 	u8 has_atomic_enable_pte_bit:1;
+-- 
+2.52.0
 
