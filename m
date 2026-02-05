@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C03CEC1E81
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 09:29:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41D26EC1E83
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 09:37:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 118F210E854;
-	Thu,  5 Feb 2026 09:29:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E68FB10E38C;
+	Thu,  5 Feb 2026 09:37:10 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE75C10E842;
- Thu,  5 Feb 2026 09:29:48 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5402803930901626692=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8FFB10E16C;
+ Thu,  5 Feb 2026 09:37:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/query=3A_Only_advert?=
- =?utf-8?q?ise_NO=5FCOMPRESSION_hint_on_devices_with_flat_CCS?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/dp=3A_Joiner_cle?=
+ =?utf-8?q?anups_and_fix?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sanjay Yadav" <sanjay.kumar.yadav@intel.com>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 05 Feb 2026 09:29:48 -0000
-Message-ID: <177028378867.227557.5124352804535688404@a3b018990fe9>
+Date: Thu, 05 Feb 2026 09:37:09 -0000
+Message-ID: <177028422994.228132.7635399506555849090@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260205082048.2988738-2-sanjay.kumar.yadav@intel.com>
-In-Reply-To: <20260205082048.2988738-2-sanjay.kumar.yadav@intel.com>
+References: <20260205083623.793902-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260205083623.793902-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,57 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5402803930901626692==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/query: Only advertise NO_COMPRESSION hint on devices with flat CCS
-URL   : https://patchwork.freedesktop.org/series/161180/
-State : success
+Series: drm/i915/dp: Joiner cleanups and fix
+URL   : https://patchwork.freedesktop.org/series/161181/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4503-8883ec84c85819dacca94997b60371c3ed57ee29_BAT -> xe-pw-161180v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b5448059d389a7d844c4c76417cee5d1430541a7
+Author: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Date:   Thu Feb 5 14:06:23 2026 +0530
 
-Summary
--------
+    drm/i915/dp: Restore the missing check for intel_dp_has_joiner
+    
+    Commit ad121a62d566 ("drm/i915/dp: Rework pipe joiner logic in mode_valid")
+    replaced intel_dp_num_joined_pipes() with an explicit joiner candidate
+    iteration. The previous code implicitly checked for DP joiner capability
+    via intel_dp_has_joiner(), but this check was lost during the refactor.
+    
+    Restore the missing intel_dp_has_joiner() check in intel_dp_can_join() so
+    that DP specific joiner conditions are taken into account.
+    
+    This change also requires propagating struct intel_dp * from the callers
+    down to the new check.
+    
+    Fixes: ad121a62d566 ("drm/i915/dp: Rework pipe joiner logic in mode_valid")
+    Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+    Cc: Imre Deak <imre.deak@intel.com>
+    Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
++ /mt/dim checkpatch 943149d1a27f8b3b8e7a8a5b81d0381843fe9dce drm-intel
+fb8fa969c1eb drm/i915/dp: Make intel_dp_can_join() static
+b5448059d389 drm/i915/dp: Restore the missing check for intel_dp_has_joiner
+-:93: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__num_joined_pipes' - possible side-effects?
+#93: FILE: drivers/gpu/drm/i915/display/intel_dp.h:235:
++#define for_each_joiner_candidate(__intel_dp, __connector, __mode, __num_joined_pipes) \
+ 	for ((__num_joined_pipes) = 1; (__num_joined_pipes) <= (I915_MAX_PIPES); (__num_joined_pipes)++) \
++		for_each_if(intel_dp_joiner_candidate_valid(__intel_dp, __connector, (__mode)->hdisplay, __num_joined_pipes))
 
-  **SUCCESS**
+-:96: WARNING:LONG_LINE: line length of 125 exceeds 100 columns
+#96: FILE: drivers/gpu/drm/i915/display/intel_dp.h:237:
++		for_each_if(intel_dp_joiner_candidate_valid(__intel_dp, __connector, (__mode)->hdisplay, __num_joined_pipes))
 
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 10)
-------------------------------
-
-  Missing    (2): bat-dg2-oem2 bat-bmg-3 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8737 -> IGT_8738
-  * Linux: xe-4503-8883ec84c85819dacca94997b60371c3ed57ee29 -> xe-pw-161180v1
-
-  IGT_8737: 8737
-  IGT_8738: b3fc8fb534a27517f2a49e63ef993e7550b9b959 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4503-8883ec84c85819dacca94997b60371c3ed57ee29: 8883ec84c85819dacca94997b60371c3ed57ee29
-  xe-pw-161180v1: 161180v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161180v1/index.html
-
---===============5402803930901626692==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 1 checks, 79 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/query: Only advertise NO_COMPRESSION hint on devices with flat CCS</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161180/">https://patchwork.freedesktop.org/series/161180/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161180v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161180v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4503-8883ec84c85819dacca94997b60371c3ed57ee29_BAT -&gt; xe-pw-161180v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 10)</h2>
-<p>Missing    (2): bat-dg2-oem2 bat-bmg-3 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8737 -&gt; IGT_8738</li>
-<li>Linux: xe-4503-8883ec84c85819dacca94997b60371c3ed57ee29 -&gt; xe-pw-161180v1</li>
-</ul>
-<p>IGT_8737: 8737<br />
-  IGT_8738: b3fc8fb534a27517f2a49e63ef993e7550b9b959 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4503-8883ec84c85819dacca94997b60371c3ed57ee29: 8883ec84c85819dacca94997b60371c3ed57ee29<br />
-  xe-pw-161180v1: 161180v1</p>
-
-</body>
-</html>
-
---===============5402803930901626692==--
