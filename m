@@ -4,27 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72002ECD9B0
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 23:29:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D09A5ECD9AA
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 23:40:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D66810E0C7;
-	Thu,  5 Feb 2026 23:29:33 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 567F810E0C7;
- Thu,  5 Feb 2026 23:29:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4757036963112828785=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8008710E164;
+	Thu,  5 Feb 2026 23:40:26 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hmCLHEaQ";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6044D10E164;
+ Thu,  5 Feb 2026 23:40:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1770334826; x=1801870826;
+ h=from:subject:date:message-id:mime-version:
+ content-transfer-encoding:to:cc;
+ bh=FOPlRYrZfnHjGSHJ2vbhHl8AEcdjsKmk8Tz/HgW24CI=;
+ b=hmCLHEaQNvjR02mBolbd4rxcwJqWDfR3Cm73oVw/hx05svL6YokheWUz
+ DXkoKV6nydr4/f2z8U/yIkYsaCRN4PjUeVor7Anf2oNqLHezQgEl88uM7
+ 7rDNE02ILj43V7sAjFf/cgi2fDrZWt6gdBIanwVjFVqBC0crkuO89f8UO
+ w/oGhA5r5Gz8lbXpqHB1zMJ/tp01t9BCPjIDTt/EAi5/Iuqj2WkTM+3JJ
+ YqfUd3i6hGKdfoL+eqKroHA2Nk90zafTRdnczF+QcEKIQ65Z0Fz2y9nOC
+ ghlZXfAyF5y7N13l7g87NkAsyqJEaO+FDrFxhiNKpaK9r2PRBFOiVTski Q==;
+X-CSE-ConnectionGUID: RGhgcc6yS5q1Q7Nfq7SXAg==
+X-CSE-MsgGUID: z5QifuCiTOOeaZJtjAO5xQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="82658672"
+X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="82658672"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2026 15:40:25 -0800
+X-CSE-ConnectionGUID: F56NVMJQQ6KCyPd2x+hB6g==
+X-CSE-MsgGUID: 21bp/I6hQHGabEJkIxcy0A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="210499993"
+Received: from rfrazer-mobl3.amr.corp.intel.com (HELO [192.168.1.16])
+ ([10.124.222.82])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2026 15:40:05 -0800
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+Subject: [PATCH v2 00/15] Basic enabling patches for Xe3p_LPG and NVL-P
+Date: Thu, 05 Feb 2026 20:39:28 -0300
+Message-Id: <20260205-nvl-p-upstreaming-v2-0-9ec14f00cc6c@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe2=5Fhpg=3A_Fix_han?=
- =?utf-8?q?dling_of_Wa=5F14019988906_=26_Wa=5F14019877138?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 05 Feb 2026 23:29:32 -0000
-Message-ID: <177033417233.228376.7829428302775225681@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260205220508.51905-2-matthew.d.roper@intel.com>
-In-Reply-To: <20260205220508.51905-2-matthew.d.roper@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/22NwQqDMBBEf0X23C1JrAF76n8UDzbZ6IJGSWxok
+ fx7U3vtZeANzJsdIgWmCNdqh0CJIy++gDpVYMbeD4RsC4MSSgtZC/RpwhWfa9wC9TP7AUm35Ho
+ n7aOVUHZrIMevw3nvCo8ctyW8j4skv+3PVuKPLUkUqJuaLs5J0VhzY7/RdDbLDF3O+QOdv2Dos
+ gAAAA==
+X-Change-ID: 20260130-nvl-p-upstreaming-e69efaf1db91
+To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
+ Shekhar Chauhan <shekhar.chauhan@intel.com>, 
+ Matt Roper <matthew.d.roper@intel.com>, Nitin Gote <nitin.r.gote@intel.com>, 
+ Tangudu Tilak Tirumalesh <tilak.tirumalesh.tangudu@intel.com>, 
+ Mallesh Koujalagi <mallesh.koujalagi@intel.com>, 
+ Tejas Upadhyay <tejas.upadhyay@intel.com>, 
+ Matt Atwood <matthew.s.atwood@intel.com>, 
+ Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>, 
+ Aradhya Bhatia <aradhya.bhatia@intel.com>, 
+ Suraj Kandpal <suraj.kandpal@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +77,79 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4757036963112828785==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+NVL-P is a new Intel platform that comes with the following IPs:
 
-== Series Details ==
+- Xe3p_LPG graphics;
+- Xe3p_LPM media;
+- Xe3p_LPD display.
 
-Series: drm/xe/xe2_hpg: Fix handling of Wa_14019988906 & Wa_14019877138
-URL   : https://patchwork.freedesktop.org/series/161223/
-State : success
+Enabling patches for Xe3p_LPM and Xe3p_LPD are already integrated in our
+driver.  In this series we add patches enabling Xe3p_LPG and then follow
+up with patches enabling NVL-P as a platform in our driver.
 
-== Summary ==
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+---
+Changes in v2:
+- Added patch "drm/xe/nvlp: Bump maximum WOPCM size", which was missing
+  in v1.
+- Incorporated review feedback.  Please see the changelog in the
+  individual patches for details.
+- Dropped patch "drm/xe/nvlp: Define GuC firmware for NVL-P".  I'll
+  apply this separately to topic/xe-for-CI and decided to drop from v2
+  to avoid accidentally applying it to drm-xe-next.
+- Link to v1: https://patch.msgid.link/20260202-nvl-p-upstreaming-v1-0-653e4ff105dc@intel.com
 
-CI Bug Log - changes from xe-4512-59c0fb08bf06aca1ca138f7486028adcd94db7c4_BAT -> xe-pw-161223v1_BAT
-====================================================
+---
+Aradhya Bhatia (1):
+      drm/xe/xe3p_lpg: Set STLB bank hash mode to 4KB
 
-Summary
--------
+Dnyaneshwar Bhadane (1):
+      drm/xe/nvlp: Attach MOCS table for nvlp
 
-  **SUCCESS**
+Gustavo Sousa (3):
+      drm/xe/pat: Differentiate between primary and media for PTA
+      drm/xe/xe3p_lpg: Update LRC sizes
+      drm/xe/nvlp: Bump maximum WOPCM size
 
-  No regressions found.
+Matt Roper (7):
+      drm/xe/xe3p_lpg: Add new PAT table
+      drm/xe/xe3p_lpg: Add MCR steering
+      drm/xe/xe3p_lpg: Add LRC parsing for additional RCS engine state
+      drm/xe/xe3p_lpg: Disable reporting of context switch status to GHWSP
+      drm/xe/xe3p_lpg: Drop unnecessary tuning settings
+      drm/xe/xe3p_lpg: Extend 'group ID' mask size
+      drm/i915/nvlp: Hook up display support
 
-  
+Shekhar Chauhan (3):
+      drm/xe/xe3p_lpg: Add support for graphics IP 35.10
+      drm/xe/xe3p_lpg: Add initial workarounds for graphics version 35.10
+      drm/xe/nvlp: Add NVL-P platform definition
 
-Participating hosts (12 -> 11)
-------------------------------
+ .../gpu/drm/i915/display/intel_display_device.c    |  1 +
+ .../gpu/drm/xe/instructions/xe_gfxpipe_commands.h  | 10 +++
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h               | 20 +++++-
+ drivers/gpu/drm/xe/xe_bo.c                         |  4 +-
+ drivers/gpu/drm/xe/xe_device_types.h               |  8 ++-
+ drivers/gpu/drm/xe/xe_gt_mcr.c                     | 18 ++++-
+ drivers/gpu/drm/xe/xe_lrc.c                        | 18 ++++-
+ drivers/gpu/drm/xe/xe_mocs.c                       |  1 +
+ drivers/gpu/drm/xe/xe_pat.c                        | 82 +++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_pci.c                        | 21 ++++++
+ drivers/gpu/drm/xe/xe_platform_types.h             |  1 +
+ drivers/gpu/drm/xe/xe_reg_whitelist.c              |  8 +++
+ drivers/gpu/drm/xe/xe_tuning.c                     | 22 +++++-
+ drivers/gpu/drm/xe/xe_wa.c                         | 43 ++++++++++++
+ drivers/gpu/drm/xe/xe_wopcm.c                      | 15 +++-
+ include/drm/intel/pciids.h                         | 12 ++++
+ 16 files changed, 259 insertions(+), 25 deletions(-)
+---
+base-commit: 75acb0a8b6f69c6429941e6845df2af94ed15939
+change-id: 20260130-nvl-p-upstreaming-e69efaf1db91
 
-  Missing    (1): bat-bmg-3 
+Best regards,
+--  
+Gustavo Sousa <gustavo.sousa@intel.com>
 
-Known issues
-------------
-
-  Here are the changes found in xe-pw-161223v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_pat@pat-index-xe2@render:
-    - bat-ptl-vm:         [DMESG-WARN][1] ([Intel XE#7110]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4512-59c0fb08bf06aca1ca138f7486028adcd94db7c4/bat-ptl-vm/igt@xe_pat@pat-index-xe2@render.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161223v1/bat-ptl-vm/igt@xe_pat@pat-index-xe2@render.html
-
-  
-  [Intel XE#7110]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7110
-
-
-Build changes
--------------
-
-  * Linux: xe-4512-59c0fb08bf06aca1ca138f7486028adcd94db7c4 -> xe-pw-161223v1
-
-  IGT_8739: 8739
-  xe-4512-59c0fb08bf06aca1ca138f7486028adcd94db7c4: 59c0fb08bf06aca1ca138f7486028adcd94db7c4
-  xe-pw-161223v1: 161223v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161223v1/index.html
-
---===============4757036963112828785==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe2_hpg: Fix handling of Wa_14019988906 &amp; Wa_14019877138</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161223/">https://patchwork.freedesktop.org/series/161223/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161223v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161223v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4512-59c0fb08bf06aca1ca138f7486028adcd94db7c4_BAT -&gt; xe-pw-161223v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 11)</h2>
-<p>Missing    (1): bat-bmg-3 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-161223v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_pat@pat-index-xe2@render:<ul>
-<li>bat-ptl-vm:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4512-59c0fb08bf06aca1ca138f7486028adcd94db7c4/bat-ptl-vm/igt@xe_pat@pat-index-xe2@render.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7110">Intel XE#7110</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161223v1/bat-ptl-vm/igt@xe_pat@pat-index-xe2@render.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4512-59c0fb08bf06aca1ca138f7486028adcd94db7c4 -&gt; xe-pw-161223v1</li>
-</ul>
-<p>IGT_8739: 8739<br />
-  xe-4512-59c0fb08bf06aca1ca138f7486028adcd94db7c4: 59c0fb08bf06aca1ca138f7486028adcd94db7c4<br />
-  xe-pw-161223v1: 161223v1</p>
-
-</body>
-</html>
-
---===============4757036963112828785==--
