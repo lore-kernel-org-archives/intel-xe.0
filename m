@@ -4,50 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44DE2ECD999
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 19:59:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49A44ECD999
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 19:59:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E193710E02F;
-	Thu,  5 Feb 2026 19:59:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE60710E042;
+	Thu,  5 Feb 2026 19:59:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VCh7cono";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WM3cXetO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 56F7A10E02F
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Feb 2026 19:59:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53A0D10E030
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Feb 2026 19:59:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770321542; x=1801857542;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=T8Dj+Gl4tfznC1nStStNYxNHjxdbOkvidTegIeT3RWU=;
- b=VCh7conoy/p08h52MkWuy7s47mpllnA+Awnefo2f3zzG+zYzXY/XHN6E
- 0Ebr6IYSE+vzv15e/bJeO4SY1ThP4/ruqY6stsChs/GLEIVqgWniAhNOQ
- R3gRr0Wc+1P+9Skk2+LJ8YND0mDNOTzMi+ut2x+tLPUVnifhIRFrFrWWs
- EASYcuFYfqe7dJJ/4Rd6tHt+JJ5CVotnO3kr6IjyZ2Wm4ud78/WhMSO8K
- nzLJ1U06vLXSzv4wlM1r1xPElRqsO3fbdIfCNDOwSt6ahNFYpY7yteA2M
- ETldlVkOzDbael7x14d3c6V/9ay6wB3xe6SfAJO3npWDP9lRGhUM6buOf g==;
-X-CSE-ConnectionGUID: z3dcLzdESB+77VYk1w8Jnw==
-X-CSE-MsgGUID: B2qcU2XFT3+N00X4bnxICA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="70548510"
-X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="70548510"
+ t=1770321548; x=1801857548;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=AerRyeqNZbd+YEZuiXap1qJGXmogQ3yaWbljsOaV8qM=;
+ b=WM3cXetOGcawBvw1g6XeV1edfg9P8mqoCg5lPicdUbopVbEwphu5Jtrf
+ DQky2jWZdVPx7Ip5+QhVKFUMuz+GikwImlKzfZKGuC5Yjtbzcwd2Qlw+y
+ kk0+OA9eY/TVr6AXdm8gyiHW1hNh/Do7zJ+u8Eq3IBdNeTaIWUhUx1/uw
+ pMA3rpBrwUBAjR2vFtbC+jaNvoj8akK7umyGcJsfGMx+Wcq2ZWLcxd7XD
+ lMpxW/zK44YAGxOn5IsLZ6kwhlBMCj0kBiUnBZN05ws33kH/MmDsdyyRh
+ Cgm7+6Lgg/+lCAr1+xSe48o7g73qv9bJWhb5mZyPNQJpY2wiPNPIFC4tZ A==;
+X-CSE-ConnectionGUID: FVHC9YLCSxC7NnhMIeFA2g==
+X-CSE-MsgGUID: qegSOdT3RwiE0ge90JyH3w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="70548514"
+X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="70548514"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 11:59:02 -0800
-X-CSE-ConnectionGUID: 2+G56rzVRO2nklMshAYXIw==
-X-CSE-MsgGUID: uf5H/ViGQQOae45zHjbytw==
+ 05 Feb 2026 11:59:08 -0800
+X-CSE-ConnectionGUID: 4od/QsOnQq2deNnIQqlRHA==
+X-CSE-MsgGUID: SyF5uA3lRCOH7NOM5lu8LA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="210705466"
+X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="210705489"
 Received: from bfilipch-desk.jf.intel.com ([10.88.27.152])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 11:59:02 -0800
+ 05 Feb 2026 11:59:08 -0800
 From: Julia Filipchuk <julia.filipchuk@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH 0/7] drm/xe/guc: Recommend GuC v70.58.0 for LNL, BMG, PTL
-Date: Thu,  5 Feb 2026 11:57:47 -0800
-Message-ID: <20260205195833.2928038-9-julia.filipchuk@intel.com>
+Subject: [PATCH 1/7] Revert "topic/for-xe-CI: drm/xe/cri: Define GuC firmware
+ for CRI"
+Date: Thu,  5 Feb 2026 11:57:48 -0800
+Message-ID: <20260205195833.2928038-10-julia.filipchuk@intel.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260205195833.2928038-9-julia.filipchuk@intel.com>
+References: <20260205195833.2928038-9-julia.filipchuk@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,27 +67,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Recommend newer GuC firmware for BMG, PTL. UAPI version 1.30.1.
+This reverts commit 9192109a0891a7fd9a40e366c74222adcd75577d.
 
-Platforms PVC, NVL-S, CRI are not merged to upstream at present. The GuC
-definitions for those only exist in the for-ci topic branches
-drm-xe:topic/xe-for-ci and drm-intel:topic/core-for-ci. This patch set
-reverts those patches, updates the recommended GuC versions for fully
-upstream platforms, then re-adds the CI only platforms definitions.
+Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
+---
+ drivers/gpu/drm/xe/xe_uc_fw.c | 1 -
+ 1 file changed, 1 deletion(-)
 
-
-Julia INTEL (7):
-  Revert "topic/for-xe-CI: drm/xe/cri: Define GuC firmware for CRI"
-  Revert "drm/xe/nvls: Define GuC firmware for NVL-S"
-  Revert "drm/xe/pvc: Add GuC firmware definition"
-  drm/xe/guc: Recommend GuC v70.58.0 for BMG, LNL, PTL
-  Reapply "drm/xe/pvc: Add GuC firmware definition"
-  Reapply "drm/xe/nvls: Define GuC firmware for NVL-S"
-  Reapply "topic/for-xe-CI: drm/xe/cri: Define GuC firmware for CRI"
-
- drivers/gpu/drm/xe/xe_uc_fw.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index 6a8e692fd7a1..70e6276dd468 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -115,7 +115,6 @@ struct fw_blobs_by_type {
+ #define XE_GT_TYPE_ANY XE_GT_TYPE_UNINITIALIZED
+ 
+ #define XE_GUC_FIRMWARE_DEFS(fw_def, mmp_ver, major_ver)					\
+-	fw_def(CRESCENTISLAND,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	cri,	70, 55, 4))	\
+ 	fw_def(NOVALAKE_S,	GT_TYPE_ANY,	mmp_ver(xe,	guc,	nvl,	70, 55, 4))	\
+ 	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	major_ver(xe,	guc,	ptl,	70, 54, 0))	\
+ 	fw_def(BATTLEMAGE,	GT_TYPE_ANY,	major_ver(xe,	guc,	bmg,	70, 54, 0))	\
 -- 
 2.51.0
 
