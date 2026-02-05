@@ -4,58 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA108ECD9BB
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 23:40:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 245E5ECD9B0
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Feb 2026 23:40:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 547A710E1FF;
-	Thu,  5 Feb 2026 23:40:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C71CE10E1B2;
+	Thu,  5 Feb 2026 23:40:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jkrvbU/x";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="InixMJBj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 551C710E177;
- Thu,  5 Feb 2026 23:40:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8394510E19F;
+ Thu,  5 Feb 2026 23:40:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770334832; x=1801870832;
+ t=1770334839; x=1801870839;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=RB06l5xnoFw1QNi9NkKegJfrjTVHh4paBvG9g+qAPFs=;
- b=jkrvbU/xl2ArT+ezztSYYUZjXC4GzcGrMLsVWpEzROqvDhyydVcEg/yR
- fMKTReoRsaVa+94dIlze2j++6t7n+wJAaP+wLGX8r1Fajvj0w74PBsO69
- 4F6TvfApfS7E9aW6EwzUONlw1TXaLOzblvz7LPC6AeTlSmfF/ND8ArsFQ
- Zpw2L1P+RXLAP83Me8mzuCfKaky/YJEj446l4sw6cxLIIl6Oi3HCX44Ug
- 6VyWq78rVMEZZ17ijWKw3qEQvv8Zsalg7LiToV1G2G2MQq/qen0GnZ1d/
- nF7wYhTJO+7Md/Ta2raZE7eh0qV1xKhf1LW6010W9G5MSnkeJNYc7n9c8 A==;
-X-CSE-ConnectionGUID: 823Vsn5fQTSS9ItlHLXguw==
-X-CSE-MsgGUID: /teXUoI3SAKts5oF7taL2Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="82658679"
-X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="82658679"
+ bh=i6cchyq5BCZi7iB6ZhixQj2V/T+TOCQFe/bCL7kXrBg=;
+ b=InixMJBjWon8N4A9nbNICmFuIYFJxl3TQf2DgidPnPvkpdauMXRshCht
+ Vjt5kk9ed+IMGi6saHmjEjO4+fGhPl9ToPeSpck/Ya2YXDXo7dLK8mVxf
+ uuVznwRdfSncFFthmpuz5QOIsiydkbSxuXRthMEsw+V3JRsBd9wNRq6TT
+ J4TzWyOLJw8hQi/0F32vDUAPaes690yvMfNGXdpRWnUydvsKIaP+5R1Hs
+ MQ977MtYqtiKhOWf8lnTaScUVxjLEjjCYMUVaSwLmZ/ZIRyFSacDe1jGt
+ oOa7rsaHGdOona5SGaKLW864lFb4T+weP0dJITI0E039QPwxHGFco206B Q==;
+X-CSE-ConnectionGUID: 23rx5JyzQiiZJ7gaFj3fpw==
+X-CSE-MsgGUID: sCY8GS8sQsCrTG3Z057+5A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="82658693"
+X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="82658693"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 15:40:31 -0800
-X-CSE-ConnectionGUID: aZHm9c90R8SLeq3CE1uuVA==
-X-CSE-MsgGUID: tepD3cm4SamrlpRxXRk3mw==
+ 05 Feb 2026 15:40:39 -0800
+X-CSE-ConnectionGUID: We6b8XFBQ4Snj9AYL7R2TA==
+X-CSE-MsgGUID: KraBBVCeRfiqHh+TdDM+zw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="210500119"
+X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="210500156"
 Received: from rfrazer-mobl3.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.222.82])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Feb 2026 15:40:16 -0800
+ 05 Feb 2026 15:40:37 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Thu, 05 Feb 2026 20:39:31 -0300
-Subject: [PATCH v2 03/15] drm/xe/pat: Differentiate between primary and
- media for PTA
+Date: Thu, 05 Feb 2026 20:39:41 -0300
+Subject: [PATCH v2 13/15] drm/xe/nvlp: Attach MOCS table for nvlp
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260205-nvl-p-upstreaming-v2-3-9ec14f00cc6c@intel.com>
+Message-Id: <20260205-nvl-p-upstreaming-v2-13-9ec14f00cc6c@intel.com>
 References: <20260205-nvl-p-upstreaming-v2-0-9ec14f00cc6c@intel.com>
 In-Reply-To: <20260205-nvl-p-upstreaming-v2-0-9ec14f00cc6c@intel.com>
 To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
- Matt Roper <matthew.d.roper@intel.com>, 
- Tejas Upadhyay <tejas.upadhyay@intel.com>
+ Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>, 
+ Matt Roper <matthew.d.roper@intel.com>
 X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,115 +70,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Differently from currently supported platforms, in upcoming changes we
-will need to have different PAT entries for PTA based on the GT type. As
-such, let's prepare the code to support that by having two separate
-PTA-specific members in the pat struct, one for each type of GT.
+From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 
-While at it, also fix the kerneldoc for pat_ats.
+The MOCS table for NVL-P is same as for Xe2/Xe3 platforms.
 
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-Co-developed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h |  8 +++++---
- drivers/gpu/drm/xe/xe_pat.c          | 27 ++++++++++++++++++---------
- 2 files changed, 23 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_mocs.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 14bf2c027f89..059f026e80d5 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -400,10 +400,12 @@ struct xe_device {
- 		const struct xe_pat_table_entry *table;
- 		/** @pat.n_entries: Number of PAT entries */
- 		int n_entries;
--		/** @pat.ats_entry: PAT entry for PCIe ATS responses */
-+		/** @pat.pat_ats: PAT entry for PCIe ATS responses */
- 		const struct xe_pat_table_entry *pat_ats;
--		/** @pat.pta_entry: PAT entry for page table accesses */
--		const struct xe_pat_table_entry *pat_pta;
-+		/** @pat.pat_primary_pta: primary GT PAT entry for page table accesses */
-+		const struct xe_pat_table_entry *pat_primary_pta;
-+		/** @pat.pat_media_pta: media GT PAT entry for page table accesses */
-+		const struct xe_pat_table_entry *pat_media_pta;
- 		u32 idx[__XE_CACHE_LEVEL_COUNT];
- 	} pat;
- 
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 2cd3fd1c3953..5ba650948a4a 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -285,8 +285,10 @@ static void program_pat(struct xe_gt *gt, const struct xe_pat_table_entry table[
- 
- 	if (xe->pat.pat_ats)
- 		xe_mmio_write32(&gt->mmio, XE_REG(_PAT_ATS), xe->pat.pat_ats->value);
--	if (xe->pat.pat_pta)
--		xe_mmio_write32(&gt->mmio, XE_REG(_PAT_PTA), xe->pat.pat_pta->value);
-+	if (xe->pat.pat_primary_pta && xe_gt_is_main_type(gt))
-+		xe_mmio_write32(&gt->mmio, XE_REG(_PAT_PTA), xe->pat.pat_primary_pta->value);
-+	if (xe->pat.pat_media_pta && xe_gt_is_media_type(gt))
-+		xe_mmio_write32(&gt->mmio, XE_REG(_PAT_PTA), xe->pat.pat_media_pta->value);
- }
- 
- static void program_pat_mcr(struct xe_gt *gt, const struct xe_pat_table_entry table[],
-@@ -302,8 +304,10 @@ static void program_pat_mcr(struct xe_gt *gt, const struct xe_pat_table_entry ta
- 
- 	if (xe->pat.pat_ats)
- 		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_ATS), xe->pat.pat_ats->value);
--	if (xe->pat.pat_pta)
--		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_PTA), xe->pat.pat_pta->value);
-+	if (xe->pat.pat_primary_pta && xe_gt_is_main_type(gt))
-+		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_PTA), xe->pat.pat_primary_pta->value);
-+	if (xe->pat.pat_media_pta && xe_gt_is_media_type(gt))
-+		xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_PTA), xe->pat.pat_media_pta->value);
- }
- 
- static int xelp_dump(struct xe_gt *gt, struct drm_printer *p)
-@@ -498,7 +502,8 @@ void xe_pat_init_early(struct xe_device *xe)
- 		xe->pat.ops = &xe3p_xpc_pat_ops;
- 		xe->pat.table = xe3p_xpc_pat_table;
- 		xe->pat.pat_ats = &xe3p_xpc_pat_ats;
--		xe->pat.pat_pta = &xe3p_xpc_pat_pta;
-+		xe->pat.pat_primary_pta = &xe3p_xpc_pat_pta;
-+		xe->pat.pat_media_pta = &xe3p_xpc_pat_pta;
- 		xe->pat.n_entries = ARRAY_SIZE(xe3p_xpc_pat_table);
- 		xe->pat.idx[XE_CACHE_NONE] = 3;
- 		xe->pat.idx[XE_CACHE_WT] = 3;	/* N/A (no display); use UC */
-@@ -512,8 +517,10 @@ void xe_pat_init_early(struct xe_device *xe)
- 			xe->pat.table = xe2_pat_table;
- 		}
- 		xe->pat.pat_ats = &xe2_pat_ats;
--		if (IS_DGFX(xe))
--			xe->pat.pat_pta = &xe2_pat_pta;
-+		if (IS_DGFX(xe)) {
-+			xe->pat.pat_primary_pta = &xe2_pat_pta;
-+			xe->pat.pat_media_pta = &xe2_pat_pta;
-+		}
- 
- 		/* Wa_16023588340. XXX: Should use XE_WA */
- 		if (GRAPHICS_VERx100(xe) == 2001)
-@@ -617,6 +624,8 @@ int xe_pat_dump(struct xe_gt *gt, struct drm_printer *p)
- int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
-+	const struct xe_pat_table_entry *pta_entry = xe_gt_is_main_type(gt) ?
-+		xe->pat.pat_primary_pta : xe->pat.pat_media_pta;
- 	char label[PAT_LABEL_LEN];
- 
- 	if (!xe->pat.table || !xe->pat.n_entries)
-@@ -640,8 +649,8 @@ int xe_pat_dump_sw_config(struct xe_gt *gt, struct drm_printer *p)
- 		}
- 	}
- 
--	if (xe->pat.pat_pta) {
--		u32 pat = xe->pat.pat_pta->value;
-+	if (pta_entry) {
-+		u32 pat = pta_entry->value;
- 
- 		drm_printf(p, "Page Table Access:\n");
- 		xe->pat.ops->entry_dump(p, "PTA_MODE", pat, false);
+diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+index 54822497c21e..1d19df860bea 100644
+--- a/drivers/gpu/drm/xe/xe_mocs.c
++++ b/drivers/gpu/drm/xe/xe_mocs.c
+@@ -600,6 +600,7 @@ static unsigned int get_mocs_settings(struct xe_device *xe,
+ 		info->wb_index = 4;
+ 		info->unused_entries_index = 4;
+ 		break;
++	case XE_NOVALAKE_P:
+ 	case XE_NOVALAKE_S:
+ 	case XE_PANTHERLAKE:
+ 	case XE_LUNARLAKE:
 
 -- 
 2.52.0
