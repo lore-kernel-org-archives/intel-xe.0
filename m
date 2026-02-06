@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C55DEE6B6B
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 22:56:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58139EE6B6C
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 22:56:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2419D10E95A;
-	Fri,  6 Feb 2026 22:56:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 175FC10E95C;
+	Fri,  6 Feb 2026 22:56:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xwea8kPp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ePFi5fXd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7801210E958
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Feb 2026 22:56:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E896310E95A
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Feb 2026 22:56:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770418598; x=1801954598;
+ t=1770418599; x=1801954599;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6ZsU/tZH7XqvUd8xzFj5jmQQ6FHpmIzsk45idpCB+sQ=;
- b=Xwea8kPpwqt+qzvEnGQ0rvF/zQ5dGVW9j11j6o4Adt7LEIndHiSi5yBB
- Y8zjHkdK6FPHjCfldJNs3WnhKBxd1dZpz/TcPv7p3M5PkxB0Utt8a49ZU
- zrbJxIRyCrZNU4oCvx6WXJiPp3RVAhbdWVflnYeUJMpDfvsbbBjvQr8dR
- vP7VO2td07psyx0IEt7pDVY+1PHNkSgCanIAy0NTgqnfyvK/3ljd5lUbz
- 7Amg/zeldy+mbhI8bpqDBTZ174ktN59IQxTnv+KxK0TccDg3f6ZY0gZ6E
- btw6rAe8nSiA+h/AiGTzTvyEAbsex/RIT5yd64qNCpq4NNkvP5grEtdKU Q==;
-X-CSE-ConnectionGUID: 7SzDmKvyQ8S5kZlqm0Zu6w==
-X-CSE-MsgGUID: 64f59T7wTOeB9Ty9Hs6cDw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="71351664"
-X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; d="scan'208";a="71351664"
+ bh=WLXtzI/MEtLrp374CY2A3QQO0jicUj5eA0WIym0iucA=;
+ b=ePFi5fXdge0ky0NaWsc6A1fpB6f5aNavqsuddDzGI1V/9b2YTUDlcpOq
+ oTRiKzsDTXgFi005nKrr0Gziah6kfRQA5wd5QR1Q87MzlPj1RO4xgv7TW
+ u7/BVcXmc04qcRPMKkyARA+ehGeiyEIVToXairhzeX2/c0Xrlpt5NkCxx
+ Nt/JWyHf6bs5aN8vH6XHOm+rmIro4ihAeH+FaT4IhXmx7Ofv5nekTGx8M
+ d77XUJJClJQusCsI7Q2ULyQrCgf+e/qJl+Z9lqV1YOnFTNRhwMhIWU2my
+ 1nKCiCk31yUkAXlQpjB8vjSq75eNBHtbwmGV+XilxVJsiN5Kf1b0BdFcl Q==;
+X-CSE-ConnectionGUID: kZqQwZjSQdW63JqpcATcQA==
+X-CSE-MsgGUID: 3huVH3gGRMeQPn+a8JuPfA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="71351666"
+X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; d="scan'208";a="71351666"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 14:56:38 -0800
-X-CSE-ConnectionGUID: v/Wl7k4gQ9Wa/nj1npkfjA==
-X-CSE-MsgGUID: mqIr2/W0TLmvcIhA9gRF1g==
+ 06 Feb 2026 14:56:39 -0800
+X-CSE-ConnectionGUID: xQYcTBWCTva6iNTHDXuq5A==
+X-CSE-MsgGUID: 5EoOdCfVRfKIpF0Efhcglg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; d="scan'208";a="210762219"
+X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; d="scan'208";a="210762223"
 Received: from bfilipch-desk.jf.intel.com ([10.88.27.152])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 14:56:37 -0800
+ 06 Feb 2026 14:56:39 -0800
 From: Julia Filipchuk <julia.filipchuk@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH v3 2/3] Reapply "drm/xe/xe2: Enable Indirect Ring State
- support for Xe2"
-Date: Fri,  6 Feb 2026 14:55:23 -0800
-Message-ID: <20260206225610.3232909-7-julia.filipchuk@intel.com>
+Subject: [PATCH v3 3/3] Revert "drm/xe/xe3p_xpc: Enable Indirect Ring State
+ for xe3p_xpc"
+Date: Fri,  6 Feb 2026 14:55:24 -0800
+Message-ID: <20260206225610.3232909-8-julia.filipchuk@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260206225610.3232909-5-julia.filipchuk@intel.com>
 References: <20260206225610.3232909-5-julia.filipchuk@intel.com>
@@ -67,31 +67,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit 03d85ab36bcbcbe9dc962fccd3f8e54d7bb93b35.
+This reverts commit 81e77c028848b7131d7653dd443a4049334a920b.
 
-Previously this was reverted due to failures on LRC context switch.
-Issues should be root-caused and resolved with GuC WA 14025515070. Now
-setting indirect ring state is available by default.
-
-Note: Will be cleared if WA not available due to older GuC version.
+With indirect ring state now enabled for all XE2+ platforms this setting
+is already set by XE2_GFX_FEATURES macro.
 
 Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/xe/xe_pci.c | 1 -
+ 1 file changed, 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 42f15cd394f6..2b8d2a2e81d7 100644
+index 2b8d2a2e81d7..7dd50cabbb03 100644
 --- a/drivers/gpu/drm/xe/xe_pci.c
 +++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -100,6 +100,7 @@ static const struct xe_graphics_desc graphics_xelpg = {
- #define XE2_GFX_FEATURES \
- 	.has_asid = 1, \
- 	.has_atomic_enable_pte_bit = 1, \
-+	.has_indirect_ring_state = 1, \
- 	.has_range_tlb_inval = 1, \
- 	.has_usm = 1, \
- 	.has_64bit_timestamp = 1, \
+@@ -117,7 +117,6 @@ static const struct xe_graphics_desc graphics_xe2 = {
+ 
+ static const struct xe_graphics_desc graphics_xe3p_xpc = {
+ 	XE2_GFX_FEATURES,
+-	.has_indirect_ring_state = 1,
+ 	.hw_engine_mask =
+ 		GENMASK(XE_HW_ENGINE_BCS8, XE_HW_ENGINE_BCS1) |
+ 		GENMASK(XE_HW_ENGINE_CCS3, XE_HW_ENGINE_CCS0),
 -- 
 2.51.0
 
