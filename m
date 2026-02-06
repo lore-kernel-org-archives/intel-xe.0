@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 196D2EE6B68
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 23:15:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D77FEE6B68
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 23:19:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A86BE10E1BB;
-	Fri,  6 Feb 2026 23:15:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5773F10E1BB;
+	Fri,  6 Feb 2026 23:19:52 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3828A10E1BB;
- Fri,  6 Feb 2026 23:15:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7382664592403411672=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66ABE10E1BB;
+ Fri,  6 Feb 2026 23:19:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/wa=3A_Steer_RMW_of_M?=
- =?utf-8?q?CR_registers_while_building_default_LRC?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Enable_Wa=5F140?=
+ =?utf-8?q?25515070=2C_Enable_indirect_ring_state_for_XE2+_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
+To: "Julia Filipchuk" <julia.filipchuk@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 06 Feb 2026 23:15:16 -0000
-Message-ID: <177041971619.235359.15714116294103961937@a3b018990fe9>
+Date: Fri, 06 Feb 2026 23:19:51 -0000
+Message-ID: <177041999135.235359.8101580482649380959@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260206223058.387014-2-matthew.d.roper@intel.com>
-In-Reply-To: <20260206223058.387014-2-matthew.d.roper@intel.com>
+References: <20260206225610.3232909-5-julia.filipchuk@intel.com>
+In-Reply-To: <20260206225610.3232909-5-julia.filipchuk@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,146 +40,116 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7382664592403411672==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/wa: Steer RMW of MCR registers while building default LRC
-URL   : https://patchwork.freedesktop.org/series/161300/
-State : failure
+Series: drm/xe: Enable Wa_14025515070, Enable indirect ring state for XE2+ (rev3)
+URL   : https://patchwork.freedesktop.org/series/160812/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4520-ab5b6da7d4879640bce3197597e0bc707bd60ab5_BAT -> xe-pw-161300v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e8e78856a0f02299c0e871900e5338bb135375d9
+Author: Julia Filipchuk <julia.filipchuk@intel.com>
+Date:   Fri Feb 6 14:55:24 2026 -0800
 
-Summary
--------
+    Revert "drm/xe/xe3p_xpc: Enable Indirect Ring State for xe3p_xpc"
+    
+    This reverts commit 81e77c028848b7131d7653dd443a4049334a920b.
+    
+    With indirect ring state now enabled for all XE2+ platforms this setting
+    is already set by XE2_GFX_FEATURES macro.
+    
+    Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
++ /mt/dim checkpatch ab5b6da7d4879640bce3197597e0bc707bd60ab5 drm-intel
+c17b0cd1602d drm/xe: Enable Wa_14025515070
+-:40: CHECK:BRACES: Unbalanced braces around else statement
+#40: FILE: drivers/gpu/drm/xe/xe_guc_ads.c:367:
++		else {
 
-  **FAILURE**
+-:57: WARNING:LONG_LINE: line length of 167 exceeds 100 columns
+#57: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:69:
++#define XE_RTP_PASTE_13(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_12(prefix_, sep_, _XE_TUPLE_TAIL args_)
 
-  Serious unknown changes coming with xe-pw-161300v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-161300v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+-:57: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#57: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:69:
++#define XE_RTP_PASTE_13(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_12(prefix_, sep_, _XE_TUPLE_TAIL args_)
 
-  
+BUT SEE:
 
-Participating hosts (12 -> 11)
-------------------------------
+   do {} while (0) advice is over-stated in a few situations:
 
-  Missing    (1): bat-bmg-3 
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
 
-Possible new issues
--------------------
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
 
-  Here are the unknown changes that may have been introduced in xe-pw-161300v1_BAT:
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
 
-### IGT changes ###
+   Enjoy this qualification while we work to improve our heuristics.
 
-#### Possible regressions ####
+-:57: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'prefix_' - possible side-effects?
+#57: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:69:
++#define XE_RTP_PASTE_13(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_12(prefix_, sep_, _XE_TUPLE_TAIL args_)
 
-  * igt@sriov_basic@enable-vfs-autoprobe-on:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2] +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4520-ab5b6da7d4879640bce3197597e0bc707bd60ab5/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161300v1/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
+-:57: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'args_' - possible side-effects?
+#57: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:69:
++#define XE_RTP_PASTE_13(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_12(prefix_, sep_, _XE_TUPLE_TAIL args_)
 
-  * igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:
-    - bat-bmg-1:          [PASS][3] -> [ABORT][4] +1 other test abort
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4520-ab5b6da7d4879640bce3197597e0bc707bd60ab5/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161300v1/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-    - bat-atsm-2:         [PASS][5] -> [ABORT][6] +1 other test abort
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4520-ab5b6da7d4879640bce3197597e0bc707bd60ab5/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161300v1/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+-:58: WARNING:LONG_LINE: line length of 167 exceeds 100 columns
+#58: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:70:
++#define XE_RTP_PASTE_14(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_13(prefix_, sep_, _XE_TUPLE_TAIL args_)
 
-  
+-:58: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#58: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:70:
++#define XE_RTP_PASTE_14(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_13(prefix_, sep_, _XE_TUPLE_TAIL args_)
 
+BUT SEE:
 
-Build changes
--------------
+   do {} while (0) advice is over-stated in a few situations:
 
-  * Linux: xe-4520-ab5b6da7d4879640bce3197597e0bc707bd60ab5 -> xe-pw-161300v1
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
 
-  IGT_8742: 8742
-  xe-4520-ab5b6da7d4879640bce3197597e0bc707bd60ab5: ab5b6da7d4879640bce3197597e0bc707bd60ab5
-  xe-pw-161300v1: 161300v1
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
 
-== Logs ==
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161300v1/index.html
+   Enjoy this qualification while we work to improve our heuristics.
 
---===============7382664592403411672==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+-:58: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'prefix_' - possible side-effects?
+#58: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:70:
++#define XE_RTP_PASTE_14(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_13(prefix_, sep_, _XE_TUPLE_TAIL args_)
 
+-:58: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'args_' - possible side-effects?
+#58: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:70:
++#define XE_RTP_PASTE_14(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_13(prefix_, sep_, _XE_TUPLE_TAIL args_)
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+-:60: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#60: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:72:
++
++
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/wa: Steer RMW of MCR registers while building default LRC</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161300/">https://patchwork.freedesktop.org/series/161300/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161300v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161300v1/index.html</a></td></tr>
-
-</table>
+total: 2 errors, 2 warnings, 6 checks, 46 lines checked
+900a69af75da Reapply "drm/xe/xe2: Enable Indirect Ring State support for Xe2"
+e8e78856a0f0 Revert "drm/xe/xe3p_xpc: Enable Indirect Ring State for xe3p_xpc"
 
 
-    <h1>CI Bug Log - changes from xe-4520-ab5b6da7d4879640bce3197597e0bc707bd60ab5_BAT -&gt; xe-pw-161300v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-161300v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-161300v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (12 -&gt; 11)</h2>
-<p>Missing    (1): bat-bmg-3 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-161300v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-on:</p>
-<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4520-ab5b6da7d4879640bce3197597e0bc707bd60ab5/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161300v1/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:</p>
-<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4520-ab5b6da7d4879640bce3197597e0bc707bd60ab5/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161300v1/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">ABORT</a> +1 other test abort</li>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4520-ab5b6da7d4879640bce3197597e0bc707bd60ab5/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161300v1/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4520-ab5b6da7d4879640bce3197597e0bc707bd60ab5 -&gt; xe-pw-161300v1</li>
-</ul>
-<p>IGT_8742: 8742<br />
-  xe-4520-ab5b6da7d4879640bce3197597e0bc707bd60ab5: ab5b6da7d4879640bce3197597e0bc707bd60ab5<br />
-  xe-pw-161300v1: 161300v1</p>
-
-</body>
-</html>
-
---===============7382664592403411672==--
