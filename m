@@ -4,39 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39E34EE2084
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 11:21:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA177EE2084
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 11:25:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E44A910E189;
-	Fri,  6 Feb 2026 11:21:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="UIOXW7jp";
-	dkim-atps=neutral
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83A4A10E16F
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Feb 2026 11:21:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1770376892;
- bh=C1XhIr0WN35xIgzzLl2q55pau8pm8cYWwHFjwD35pSM=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=UIOXW7jpkOT2odDB7jgo2mfcaMymc2ZOQigGyBq7/MrM9yWGHsheRoiZMF37oZ04u
- wKQGL4v1XvCkuh5XijjjhEAIbhqXZFBv6FvryoZfIf5unztm4bc+C/j02f3y0py/c2
- PLkCR91VfuBzXomLdSxobcgr+SVd4nkMbB6qPVrlFd3MT9nCRHqGCAQnVauoypA3Al
- IFJD4EN5I0ZwnP3ayU81oE9X3LRVbUjlYDC6eb5+6hr3rJqnpzy1e07mNZkxT0E/mJ
- b/UdFC38w2Ke21dQqm0hnhpAh4jgHafvq7pcl0/ZF4uvvqanmBfviDmnqcjQpfzmbx
- K5DyvlAMOcUrQ==
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-xe@lists.freedesktop.org
-Cc: Maarten Lankhorst <dev@lankhorst.se>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v8 5/5] drm/xe: Remove xe_ggtt_node_allocated
-Date: Fri,  6 Feb 2026 12:21:14 +0100
-Message-ID: <20260206112108.1453809-12-dev@lankhorst.se>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260206112108.1453809-7-dev@lankhorst.se>
-References: <20260206112108.1453809-7-dev@lankhorst.se>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AF5910E083;
+	Fri,  6 Feb 2026 11:25:03 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5759D10E083;
+ Fri,  6 Feb 2026 11:25:02 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6051767372788825932=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
+ =?utf-8?q?=5D_drm/i915/dp=3A_Fix_pipe_BPP_clamping_due_to_HDR?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 06 Feb 2026 11:25:02 -0000
+Message-ID: <177037710233.232293.17070887362086333626@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260206104227.290231-1-imre.deak@intel.com>
+In-Reply-To: <20260206104227.290231-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,147 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With the intermediate state gone, no longer useful. Just check against
-NULL where needed.
+--===============6051767372788825932==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-After looking carefully, the check for allocated in xe_fb_pin.c is
-unneeded. vma->node is never NULL. The check is specifically only
-to check if vma->node == the bo's root tile ggtt_obj.
+== Series Details ==
 
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
-Changelog:
-- Update commit message to explain the change in xe_fb_pin.c
----
- drivers/gpu/drm/xe/display/xe_fb_pin.c     |  3 +--
- drivers/gpu/drm/xe/xe_ggtt.c               | 17 -----------------
- drivers/gpu/drm/xe/xe_ggtt.h               |  1 -
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 12 ++++++------
- 4 files changed, 7 insertions(+), 26 deletions(-)
+Series: series starting with [1/2] drm/i915/dp: Fix pipe BPP clamping due to HDR
+URL   : https://patchwork.freedesktop.org/series/161265/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 5ff583699325c..e1d29b6ba043e 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -352,8 +352,7 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
- 
- 	if (vma->dpt)
- 		xe_bo_unpin_map_no_vm(vma->dpt);
--	else if (!xe_ggtt_node_allocated(vma->bo->ggtt_node[tile_id]) ||
--		 vma->bo->ggtt_node[tile_id] != vma->node)
-+	else if (vma->bo->ggtt_node[tile_id] != vma->node)
- 		xe_ggtt_node_remove(vma->node, false);
- 
- 	ttm_bo_reserve(&vma->bo->ttm, false, false, NULL);
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index d2d00ba2aae6a..d162f617ca4c6 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -665,20 +665,6 @@ struct xe_ggtt_node *xe_ggtt_insert_node(struct xe_ggtt *ggtt, u32 size, u32 ali
- 	return node;
- }
- 
--/**
-- * xe_ggtt_node_allocated - Check if node is allocated in GGTT
-- * @node: the &xe_ggtt_node to be inspected
-- *
-- * Return: True if allocated, False otherwise.
-- */
--bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node)
--{
--	if (!node || !node->ggtt)
--		return false;
--
--	return drm_mm_node_allocated(&node->base);
--}
--
- /**
-  * xe_ggtt_node_pt_size() - Get the size of page table entries needed to map a GGTT node.
-  * @node: the &xe_ggtt_node
-@@ -971,9 +957,6 @@ static void xe_ggtt_assign_locked(const struct xe_ggtt_node *node, u16 vfid)
- 
- 	lockdep_assert_held(&ggtt->lock);
- 
--	if (!xe_ggtt_node_allocated(node))
--		return;
--
- 	while (start < end) {
- 		ggtt->pt_ops->ggtt_set_pte(ggtt, start, pte);
- 		start += XE_PAGE_SIZE;
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index 9e6210c6f44ea..c864cc975a695 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -30,7 +30,6 @@ xe_ggtt_insert_node_transform(struct xe_ggtt *ggtt,
- 			      u64 size, u32 align,
- 			      xe_ggtt_transform_cb transform, void *arg);
- void xe_ggtt_node_remove(struct xe_ggtt_node *node, bool invalidate);
--bool xe_ggtt_node_allocated(const struct xe_ggtt_node *node);
- size_t xe_ggtt_node_pt_size(const struct xe_ggtt_node *node);
- void xe_ggtt_map_bo_unlocked(struct xe_ggtt *ggtt, struct xe_bo *bo);
- int xe_ggtt_insert_bo(struct xe_ggtt *ggtt, struct xe_bo *bo, struct drm_exec *exec);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index 3fe664cd3b88c..888193e1d2c50 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -279,7 +279,7 @@ static u32 encode_config_ggtt(u32 *cfg, const struct xe_gt_sriov_config *config,
- {
- 	struct xe_ggtt_node *node = config->ggtt_region;
- 
--	if (!xe_ggtt_node_allocated(node))
-+	if (!node)
- 		return 0;
- 
- 	return encode_ggtt(cfg, xe_ggtt_node_addr(node), xe_ggtt_node_size(node), details);
-@@ -503,7 +503,7 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
- 
- 	size = round_up(size, alignment);
- 
--	if (xe_ggtt_node_allocated(config->ggtt_region)) {
-+	if (config->ggtt_region) {
- 		err = pf_distribute_config_ggtt(tile, vfid, 0, 0);
- 		if (unlikely(err))
- 			return err;
-@@ -514,7 +514,7 @@ static int pf_provision_vf_ggtt(struct xe_gt *gt, unsigned int vfid, u64 size)
- 		if (unlikely(err))
- 			return err;
- 	}
--	xe_gt_assert(gt, !xe_ggtt_node_allocated(config->ggtt_region));
-+	xe_gt_assert(gt, !config->ggtt_region);
- 
- 	if (!size)
- 		return 0;
-@@ -544,7 +544,7 @@ static u64 pf_get_vf_config_ggtt(struct xe_gt *gt, unsigned int vfid)
- 	struct xe_ggtt_node *node = config->ggtt_region;
- 
- 	xe_gt_assert(gt, xe_gt_is_main_type(gt));
--	return xe_ggtt_node_allocated(node) ? xe_ggtt_node_size(node) : 0;
-+	return node ? xe_ggtt_node_size(node) : 0;
- }
- 
- /**
-@@ -2558,7 +2558,7 @@ int xe_gt_sriov_pf_config_release(struct xe_gt *gt, unsigned int vfid, bool forc
- 
- static void pf_sanitize_ggtt(struct xe_ggtt_node *ggtt_region, unsigned int vfid)
- {
--	if (xe_ggtt_node_allocated(ggtt_region))
-+	if (ggtt_region)
- 		xe_ggtt_assign(ggtt_region, vfid);
- }
- 
-@@ -3017,7 +3017,7 @@ int xe_gt_sriov_pf_config_print_ggtt(struct xe_gt *gt, struct drm_printer *p)
- 
- 	for (n = 1; n <= total_vfs; n++) {
- 		config = &gt->sriov.pf.vfs[n].config;
--		if (!xe_ggtt_node_allocated(config->ggtt_region))
-+		if (!config->ggtt_region)
- 			continue;
- 
- 		string_get_size(xe_ggtt_node_size(config->ggtt_region), 1, STRING_UNITS_2,
--- 
-2.51.0
+== Summary ==
 
+CI Bug Log - changes from xe-4518-0082025812a31eda451fb14f13f52683ed375c49_BAT -> xe-pw-161265v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-161265v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#6506]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4518-0082025812a31eda451fb14f13f52683ed375c49/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161265v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+
+
+Build changes
+-------------
+
+  * Linux: xe-4518-0082025812a31eda451fb14f13f52683ed375c49 -> xe-pw-161265v1
+
+  IGT_8740: 36ebdc56b434bf330c44e96205f1fcefcf598651 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4518-0082025812a31eda451fb14f13f52683ed375c49: 0082025812a31eda451fb14f13f52683ed375c49
+  xe-pw-161265v1: 161265v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161265v1/index.html
+
+--===============6051767372788825932==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/dp: Fix pipe BPP clamping due to HDR</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161265/">https://patchwork.freedesktop.org/series/161265/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161265v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161265v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4518-0082025812a31eda451fb14f13f52683ed375c49_BAT -&gt; xe-pw-161265v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-161265v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@abstime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4518-0082025812a31eda451fb14f13f52683ed375c49/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161265v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4518-0082025812a31eda451fb14f13f52683ed375c49 -&gt; xe-pw-161265v1</li>
+</ul>
+<p>IGT_8740: 36ebdc56b434bf330c44e96205f1fcefcf598651 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4518-0082025812a31eda451fb14f13f52683ed375c49: 0082025812a31eda451fb14f13f52683ed375c49<br />
+  xe-pw-161265v1: 161265v1</p>
+
+</body>
+</html>
+
+--===============6051767372788825932==--
