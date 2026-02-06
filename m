@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59209EE6B49
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 18:37:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F83FEE6B46
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 18:42:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AA0410E8E5;
-	Fri,  6 Feb 2026 18:37:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WRdx3IO2";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B36610E8E8;
- Fri,  6 Feb 2026 18:37:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770403024; x=1801939024;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=jRk9zUO8K/65BHYu7uTAeL5qQGxD4xpM4JrDZx8CHd0=;
- b=WRdx3IO2TyKHvtbOZWj9j/WmuMdH8Zn6ltea/2d5qIY4+zsNm/dcMaQK
- pO/i9axyfBLD4kVLQMqRztdButnVWk16BDWbro59yzMLFzhLPUfQEPkGZ
- ITiMMRWB9uF8LyGmCK+1biUhuLMZI7R7OTpL9jBv07/aLfh3RFV1TopSn
- 3FbQyhBW0Z9J5B936pJLdGCURqluBOJPkh4eAT2GYPdc2ut2FDVr5nOkb
- 8R1p7yQ304AX2sXAtBexKhtKZlzxeNLyiiQ6N5JXCCi75q8CZD7q2Wsd/
- lBF6VQ8n4pbJhSTBqSCpobbiPHSiZPj45HOw7XDdoo9BO1q/Oe2zluJoU g==;
-X-CSE-ConnectionGUID: R9Ku8xniQMarzfSEBX36aA==
-X-CSE-MsgGUID: U6FNyAhxRV2fcvAa0ckBGg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="71516969"
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="71516969"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 10:36:52 -0800
-X-CSE-ConnectionGUID: qr2EYHmbRx2ZMQisLIlg9w==
-X-CSE-MsgGUID: 1PARiNNtRr+56RB/awp9FQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="210224790"
-Received: from vverma7-mobl3.amr.corp.intel.com (HELO [192.168.1.16])
- ([10.124.222.159])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 10:36:52 -0800
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Fri, 06 Feb 2026 15:36:11 -0300
-Subject: [PATCH v3 15/15] drm/xe/nvlp: Bump maximum WOPCM size
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FAB810E8B4;
+	Fri,  6 Feb 2026 18:42:58 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB94410E8C7;
+ Fri,  6 Feb 2026 18:42:56 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260206-nvl-p-upstreaming-v3-15-636e1ad32688@intel.com>
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Basic_enabling_patches_fo?=
+ =?utf-8?q?r_Xe3p=5FLPG_and_NVL-P_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Gustavo Sousa" <gustavo.sousa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 06 Feb 2026 18:42:56 -0000
+Message-ID: <177040337668.232294.14119781208661992900@a3b018990fe9>
+X-Patchwork-Hint: ignore
 References: <20260206-nvl-p-upstreaming-v3-0-636e1ad32688@intel.com>
 In-Reply-To: <20260206-nvl-p-upstreaming-v3-0-636e1ad32688@intel.com>
-To: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,69 +36,396 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On NVL-P, the primary GT's WOPCM gained an extra 8MiB for the Memory
-URB.  As such, we need to bump the maximum size in the driver so that
-the driver is able to load without erroring out thinking that the WOPCM
-is too small.
+== Series Details ==
 
-FIXME: The wopcm code in xe driver is a bit confusing.  For the case
-where the offsets for GUC WOPCM are already locked, it appears we are
-using the maximum overall WOPCM size instead of the sizes relative to
-each type of GT.  The function __check_layout() should be checking
-against the latter.
+Series: Basic enabling patches for Xe3p_LPG and NVL-P (rev3)
+URL   : https://patchwork.freedesktop.org/series/161037/
+State : warning
 
-Bspec: 67090
-Reviewed-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/xe/xe_wopcm.c | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_wopcm.c b/drivers/gpu/drm/xe/xe_wopcm.c
-index dde4f4967ca3..900daf1d1b1b 100644
---- a/drivers/gpu/drm/xe/xe_wopcm.c
-+++ b/drivers/gpu/drm/xe/xe_wopcm.c
-@@ -55,8 +55,6 @@
- #define MTL_WOPCM_SIZE			SZ_4M
- #define WOPCM_SIZE			SZ_2M
- 
--#define MAX_WOPCM_SIZE			SZ_8M
--
- /* 16KB WOPCM (RSVD WOPCM) is reserved from HuC firmware top. */
- #define WOPCM_RESERVED_SIZE		SZ_16K
- 
-@@ -186,6 +184,14 @@ u32 xe_wopcm_size(struct xe_device *xe)
- 		WOPCM_SIZE;
- }
- 
-+static u32 max_wopcm_size(struct xe_device *xe)
-+{
-+	if (xe->info.platform == XE_NOVALAKE_P)
-+		return SZ_16M;
-+	else
-+		return SZ_8M;
-+}
-+
- /**
-  * xe_wopcm_init() - Initialize the WOPCM structure.
-  * @wopcm: pointer to xe_wopcm.
-@@ -227,8 +233,11 @@ int xe_wopcm_init(struct xe_wopcm *wopcm)
- 		 * When the GuC wopcm base and size are preprogrammed by
- 		 * BIOS/IFWI, check against the max allowed wopcm size to
- 		 * validate if the programmed values align to the wopcm layout.
-+		 *
-+		 * FIXME: This is giving the maximum overall WOPCM size and not
-+		 * the size relative to each GT.
- 		 */
--		wopcm->size = MAX_WOPCM_SIZE;
-+		wopcm->size = max_wopcm_size(xe);
- 
- 		goto check;
- 	}
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 419d28db4957a3c4ce44c1d97e213cb15e512da5
+Author: Gustavo Sousa <gustavo.sousa@intel.com>
+Date:   Fri Feb 6 15:36:11 2026 -0300
 
--- 
-2.52.0
+    drm/xe/nvlp: Bump maximum WOPCM size
+    
+    On NVL-P, the primary GT's WOPCM gained an extra 8MiB for the Memory
+    URB.  As such, we need to bump the maximum size in the driver so that
+    the driver is able to load without erroring out thinking that the WOPCM
+    is too small.
+    
+    FIXME: The wopcm code in xe driver is a bit confusing.  For the case
+    where the offsets for GUC WOPCM are already locked, it appears we are
+    using the maximum overall WOPCM size instead of the sizes relative to
+    each type of GT.  The function __check_layout() should be checking
+    against the latter.
+    
+    Bspec: 67090
+    Reviewed-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+    Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
++ /mt/dim checkpatch ab5b6da7d4879640bce3197597e0bc707bd60ab5 drm-intel
+5ee4d285fa0a drm/xe/xe3p_lpg: Add support for graphics IP 35.10
+26ecc2829e82 drm/xe/xe3p_lpg: Add initial workarounds for graphics version 35.10
+518f7b952ed7 drm/xe/pat: Differentiate between primary and media for PTA
+a589107115ee drm/xe/xe3p_lpg: Add new PAT table
+-:46: ERROR:SPACING: space prohibited after that open square bracket '['
+#46: FILE: drivers/gpu/drm/xe/xe_pat.c:261:
++	[ 0] = XE2_PAT( 0, 0, 0, 0, 3, 0 ),
+
+-:46: ERROR:SPACING: space prohibited after that open parenthesis '('
+#46: FILE: drivers/gpu/drm/xe/xe_pat.c:261:
++	[ 0] = XE2_PAT( 0, 0, 0, 0, 3, 0 ),
+
+-:46: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#46: FILE: drivers/gpu/drm/xe/xe_pat.c:261:
++	[ 0] = XE2_PAT( 0, 0, 0, 0, 3, 0 ),
+
+-:47: ERROR:SPACING: space prohibited after that open square bracket '['
+#47: FILE: drivers/gpu/drm/xe/xe_pat.c:262:
++	[ 1] = XE2_PAT( 0, 0, 0, 0, 3, 2 ),
+
+-:47: ERROR:SPACING: space prohibited after that open parenthesis '('
+#47: FILE: drivers/gpu/drm/xe/xe_pat.c:262:
++	[ 1] = XE2_PAT( 0, 0, 0, 0, 3, 2 ),
+
+-:47: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#47: FILE: drivers/gpu/drm/xe/xe_pat.c:262:
++	[ 1] = XE2_PAT( 0, 0, 0, 0, 3, 2 ),
+
+-:48: ERROR:SPACING: space prohibited after that open square bracket '['
+#48: FILE: drivers/gpu/drm/xe/xe_pat.c:263:
++	[ 2] = XE2_PAT( 0, 0, 0, 0, 3, 3 ),
+
+-:48: ERROR:SPACING: space prohibited after that open parenthesis '('
+#48: FILE: drivers/gpu/drm/xe/xe_pat.c:263:
++	[ 2] = XE2_PAT( 0, 0, 0, 0, 3, 3 ),
+
+-:48: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#48: FILE: drivers/gpu/drm/xe/xe_pat.c:263:
++	[ 2] = XE2_PAT( 0, 0, 0, 0, 3, 3 ),
+
+-:49: ERROR:SPACING: space prohibited after that open square bracket '['
+#49: FILE: drivers/gpu/drm/xe/xe_pat.c:264:
++	[ 3] = XE2_PAT( 0, 0, 0, 3, 3, 0 ),
+
+-:49: ERROR:SPACING: space prohibited after that open parenthesis '('
+#49: FILE: drivers/gpu/drm/xe/xe_pat.c:264:
++	[ 3] = XE2_PAT( 0, 0, 0, 3, 3, 0 ),
+
+-:49: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#49: FILE: drivers/gpu/drm/xe/xe_pat.c:264:
++	[ 3] = XE2_PAT( 0, 0, 0, 3, 3, 0 ),
+
+-:50: ERROR:SPACING: space prohibited after that open square bracket '['
+#50: FILE: drivers/gpu/drm/xe/xe_pat.c:265:
++	[ 4] = XE2_PAT( 0, 0, 0, 3, 0, 2 ),
+
+-:50: ERROR:SPACING: space prohibited after that open parenthesis '('
+#50: FILE: drivers/gpu/drm/xe/xe_pat.c:265:
++	[ 4] = XE2_PAT( 0, 0, 0, 3, 0, 2 ),
+
+-:50: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#50: FILE: drivers/gpu/drm/xe/xe_pat.c:265:
++	[ 4] = XE2_PAT( 0, 0, 0, 3, 0, 2 ),
+
+-:51: ERROR:SPACING: space prohibited after that open square bracket '['
+#51: FILE: drivers/gpu/drm/xe/xe_pat.c:266:
++	[ 5] = XE2_PAT( 0, 0, 0, 3, 3, 2 ),
+
+-:51: ERROR:SPACING: space prohibited after that open parenthesis '('
+#51: FILE: drivers/gpu/drm/xe/xe_pat.c:266:
++	[ 5] = XE2_PAT( 0, 0, 0, 3, 3, 2 ),
+
+-:51: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#51: FILE: drivers/gpu/drm/xe/xe_pat.c:266:
++	[ 5] = XE2_PAT( 0, 0, 0, 3, 3, 2 ),
+
+-:52: ERROR:SPACING: space prohibited after that open square bracket '['
+#52: FILE: drivers/gpu/drm/xe/xe_pat.c:267:
++	[ 6] = XE2_PAT( 1, 0, 0, 1, 3, 0 ),
+
+-:52: ERROR:SPACING: space prohibited after that open parenthesis '('
+#52: FILE: drivers/gpu/drm/xe/xe_pat.c:267:
++	[ 6] = XE2_PAT( 1, 0, 0, 1, 3, 0 ),
+
+-:52: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#52: FILE: drivers/gpu/drm/xe/xe_pat.c:267:
++	[ 6] = XE2_PAT( 1, 0, 0, 1, 3, 0 ),
+
+-:53: ERROR:SPACING: space prohibited after that open square bracket '['
+#53: FILE: drivers/gpu/drm/xe/xe_pat.c:268:
++	[ 7] = XE2_PAT( 0, 0, 0, 3, 0, 3 ),
+
+-:53: ERROR:SPACING: space prohibited after that open parenthesis '('
+#53: FILE: drivers/gpu/drm/xe/xe_pat.c:268:
++	[ 7] = XE2_PAT( 0, 0, 0, 3, 0, 3 ),
+
+-:53: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#53: FILE: drivers/gpu/drm/xe/xe_pat.c:268:
++	[ 7] = XE2_PAT( 0, 0, 0, 3, 0, 3 ),
+
+-:54: ERROR:SPACING: space prohibited after that open square bracket '['
+#54: FILE: drivers/gpu/drm/xe/xe_pat.c:269:
++	[ 8] = XE2_PAT( 0, 0, 0, 3, 0, 0 ),
+
+-:54: ERROR:SPACING: space prohibited after that open parenthesis '('
+#54: FILE: drivers/gpu/drm/xe/xe_pat.c:269:
++	[ 8] = XE2_PAT( 0, 0, 0, 3, 0, 0 ),
+
+-:54: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#54: FILE: drivers/gpu/drm/xe/xe_pat.c:269:
++	[ 8] = XE2_PAT( 0, 0, 0, 3, 0, 0 ),
+
+-:55: ERROR:SPACING: space prohibited after that open square bracket '['
+#55: FILE: drivers/gpu/drm/xe/xe_pat.c:270:
++	[ 9] = XE2_PAT( 0, 1, 0, 0, 3, 0 ),
+
+-:55: ERROR:SPACING: space prohibited after that open parenthesis '('
+#55: FILE: drivers/gpu/drm/xe/xe_pat.c:270:
++	[ 9] = XE2_PAT( 0, 1, 0, 0, 3, 0 ),
+
+-:55: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#55: FILE: drivers/gpu/drm/xe/xe_pat.c:270:
++	[ 9] = XE2_PAT( 0, 1, 0, 0, 3, 0 ),
+
+-:56: ERROR:SPACING: space prohibited after that open parenthesis '('
+#56: FILE: drivers/gpu/drm/xe/xe_pat.c:271:
++	[10] = XE2_PAT( 0, 1, 0, 3, 0, 0 ),
+
+-:56: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#56: FILE: drivers/gpu/drm/xe/xe_pat.c:271:
++	[10] = XE2_PAT( 0, 1, 0, 3, 0, 0 ),
+
+-:57: ERROR:SPACING: space prohibited after that open parenthesis '('
+#57: FILE: drivers/gpu/drm/xe/xe_pat.c:272:
++	[11] = XE2_PAT( 1, 1, 0, 1, 3, 0 ),
+
+-:57: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#57: FILE: drivers/gpu/drm/xe/xe_pat.c:272:
++	[11] = XE2_PAT( 1, 1, 0, 1, 3, 0 ),
+
+-:58: ERROR:SPACING: space prohibited after that open parenthesis '('
+#58: FILE: drivers/gpu/drm/xe/xe_pat.c:273:
++	[12] = XE2_PAT( 0, 1, 0, 3, 3, 0 ),
+
+-:58: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#58: FILE: drivers/gpu/drm/xe/xe_pat.c:273:
++	[12] = XE2_PAT( 0, 1, 0, 3, 3, 0 ),
+
+-:59: ERROR:SPACING: space prohibited after that open parenthesis '('
+#59: FILE: drivers/gpu/drm/xe/xe_pat.c:274:
++	[13] = XE2_PAT( 0, 0, 0, 0, 0, 0 ),
+
+-:59: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#59: FILE: drivers/gpu/drm/xe/xe_pat.c:274:
++	[13] = XE2_PAT( 0, 0, 0, 0, 0, 0 ),
+
+-:60: ERROR:SPACING: space prohibited after that open parenthesis '('
+#60: FILE: drivers/gpu/drm/xe/xe_pat.c:275:
++	[14] = XE2_PAT( 0, 1, 0, 0, 0, 0 ),
+
+-:60: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#60: FILE: drivers/gpu/drm/xe/xe_pat.c:275:
++	[14] = XE2_PAT( 0, 1, 0, 0, 0, 0 ),
+
+-:61: ERROR:SPACING: space prohibited after that open parenthesis '('
+#61: FILE: drivers/gpu/drm/xe/xe_pat.c:276:
++	[15] = XE2_PAT( 1, 1, 0, 1, 1, 0 ),
+
+-:61: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#61: FILE: drivers/gpu/drm/xe/xe_pat.c:276:
++	[15] = XE2_PAT( 1, 1, 0, 1, 1, 0 ),
+
+-:62: ERROR:SPACING: space prohibited after that open parenthesis '('
+#62: FILE: drivers/gpu/drm/xe/xe_pat.c:277:
++	[16] = XE2_PAT( 0, 1, 0, 0, 3, 2 ),
+
+-:62: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#62: FILE: drivers/gpu/drm/xe/xe_pat.c:277:
++	[16] = XE2_PAT( 0, 1, 0, 0, 3, 2 ),
+
+-:64: ERROR:SPACING: space prohibited after that open parenthesis '('
+#64: FILE: drivers/gpu/drm/xe/xe_pat.c:279:
++	[18] = XE2_PAT( 1, 0, 0, 2, 3, 0 ),
+
+-:64: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#64: FILE: drivers/gpu/drm/xe/xe_pat.c:279:
++	[18] = XE2_PAT( 1, 0, 0, 2, 3, 0 ),
+
+-:65: ERROR:SPACING: space prohibited after that open parenthesis '('
+#65: FILE: drivers/gpu/drm/xe/xe_pat.c:280:
++	[19] = XE2_PAT( 1, 0, 0, 2, 3, 2 ),
+
+-:65: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#65: FILE: drivers/gpu/drm/xe/xe_pat.c:280:
++	[19] = XE2_PAT( 1, 0, 0, 2, 3, 2 ),
+
+-:66: ERROR:SPACING: space prohibited after that open parenthesis '('
+#66: FILE: drivers/gpu/drm/xe/xe_pat.c:281:
++	[20] = XE2_PAT( 0, 0, 1, 0, 3, 0 ),
+
+-:66: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#66: FILE: drivers/gpu/drm/xe/xe_pat.c:281:
++	[20] = XE2_PAT( 0, 0, 1, 0, 3, 0 ),
+
+-:67: ERROR:SPACING: space prohibited after that open parenthesis '('
+#67: FILE: drivers/gpu/drm/xe/xe_pat.c:282:
++	[21] = XE2_PAT( 0, 1, 1, 0, 3, 0 ),
+
+-:67: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#67: FILE: drivers/gpu/drm/xe/xe_pat.c:282:
++	[21] = XE2_PAT( 0, 1, 1, 0, 3, 0 ),
+
+-:68: ERROR:SPACING: space prohibited after that open parenthesis '('
+#68: FILE: drivers/gpu/drm/xe/xe_pat.c:283:
++	[22] = XE2_PAT( 0, 0, 1, 0, 3, 2 ),
+
+-:68: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#68: FILE: drivers/gpu/drm/xe/xe_pat.c:283:
++	[22] = XE2_PAT( 0, 0, 1, 0, 3, 2 ),
+
+-:69: ERROR:SPACING: space prohibited after that open parenthesis '('
+#69: FILE: drivers/gpu/drm/xe/xe_pat.c:284:
++	[23] = XE2_PAT( 0, 0, 1, 0, 3, 3 ),
+
+-:69: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#69: FILE: drivers/gpu/drm/xe/xe_pat.c:284:
++	[23] = XE2_PAT( 0, 0, 1, 0, 3, 3 ),
+
+-:70: ERROR:SPACING: space prohibited after that open parenthesis '('
+#70: FILE: drivers/gpu/drm/xe/xe_pat.c:285:
++	[24] = XE2_PAT( 0, 0, 2, 0, 3, 0 ),
+
+-:70: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#70: FILE: drivers/gpu/drm/xe/xe_pat.c:285:
++	[24] = XE2_PAT( 0, 0, 2, 0, 3, 0 ),
+
+-:71: ERROR:SPACING: space prohibited after that open parenthesis '('
+#71: FILE: drivers/gpu/drm/xe/xe_pat.c:286:
++	[25] = XE2_PAT( 0, 1, 2, 0, 3, 0 ),
+
+-:71: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#71: FILE: drivers/gpu/drm/xe/xe_pat.c:286:
++	[25] = XE2_PAT( 0, 1, 2, 0, 3, 0 ),
+
+-:72: ERROR:SPACING: space prohibited after that open parenthesis '('
+#72: FILE: drivers/gpu/drm/xe/xe_pat.c:287:
++	[26] = XE2_PAT( 0, 0, 2, 0, 3, 2 ),
+
+-:72: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#72: FILE: drivers/gpu/drm/xe/xe_pat.c:287:
++	[26] = XE2_PAT( 0, 0, 2, 0, 3, 2 ),
+
+-:73: ERROR:SPACING: space prohibited after that open parenthesis '('
+#73: FILE: drivers/gpu/drm/xe/xe_pat.c:288:
++	[27] = XE2_PAT( 0, 0, 2, 0, 3, 3 ),
+
+-:73: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#73: FILE: drivers/gpu/drm/xe/xe_pat.c:288:
++	[27] = XE2_PAT( 0, 0, 2, 0, 3, 3 ),
+
+-:74: ERROR:SPACING: space prohibited after that open parenthesis '('
+#74: FILE: drivers/gpu/drm/xe/xe_pat.c:289:
++	[28] = XE2_PAT( 0, 0, 3, 0, 3, 0 ),
+
+-:74: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#74: FILE: drivers/gpu/drm/xe/xe_pat.c:289:
++	[28] = XE2_PAT( 0, 0, 3, 0, 3, 0 ),
+
+-:75: ERROR:SPACING: space prohibited after that open parenthesis '('
+#75: FILE: drivers/gpu/drm/xe/xe_pat.c:290:
++	[29] = XE2_PAT( 0, 1, 3, 0, 3, 0 ),
+
+-:75: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#75: FILE: drivers/gpu/drm/xe/xe_pat.c:290:
++	[29] = XE2_PAT( 0, 1, 3, 0, 3, 0 ),
+
+-:76: ERROR:SPACING: space prohibited after that open parenthesis '('
+#76: FILE: drivers/gpu/drm/xe/xe_pat.c:291:
++	[30] = XE2_PAT( 0, 0, 3, 0, 3, 2 ),
+
+-:76: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#76: FILE: drivers/gpu/drm/xe/xe_pat.c:291:
++	[30] = XE2_PAT( 0, 0, 3, 0, 3, 2 ),
+
+-:77: ERROR:SPACING: space prohibited after that open parenthesis '('
+#77: FILE: drivers/gpu/drm/xe/xe_pat.c:292:
++	[31] = XE2_PAT( 0, 0, 3, 0, 3, 3 ),
+
+-:77: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#77: FILE: drivers/gpu/drm/xe/xe_pat.c:292:
++	[31] = XE2_PAT( 0, 0, 3, 0, 3, 3 ),
+
+total: 72 errors, 0 warnings, 0 checks, 73 lines checked
+bf360eb42c90 drm/xe/xe3p_lpg: Add MCR steering
+2df949e1fb1a drm/xe/xe3p_lpg: Add LRC parsing for additional RCS engine state
+f25fd14def84 drm/xe/xe3p_lpg: Disable reporting of context switch status to GHWSP
+6e8e6901ee6a drm/xe/xe3p_lpg: Drop unnecessary tuning settings
+2a6090984f06 drm/xe/xe3p_lpg: Extend 'group ID' mask size
+3b026475a834 drm/xe/xe3p_lpg: Update LRC sizes
+af316392a8a3 drm/xe/xe3p_lpg: Set STLB bank hash mode to 4KB
+585e7e676c17 drm/xe/nvlp: Add NVL-P platform definition
+-:94: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#94: FILE: include/drm/intel/pciids.h:904:
++#define INTEL_NVLP_IDS(MACRO__, ...) \
++	MACRO__(0xD750, ## __VA_ARGS__), \
++	MACRO__(0xD751, ## __VA_ARGS__), \
++	MACRO__(0xD752, ## __VA_ARGS__), \
++	MACRO__(0xD753, ## __VA_ARGS__), \
++	MACRO__(0XD754, ## __VA_ARGS__), \
++	MACRO__(0XD755, ## __VA_ARGS__), \
++	MACRO__(0XD756, ## __VA_ARGS__), \
++	MACRO__(0XD757, ## __VA_ARGS__), \
++	MACRO__(0xD75F, ## __VA_ARGS__)
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:94: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'MACRO__' - possible side-effects?
+#94: FILE: include/drm/intel/pciids.h:904:
++#define INTEL_NVLP_IDS(MACRO__, ...) \
++	MACRO__(0xD750, ## __VA_ARGS__), \
++	MACRO__(0xD751, ## __VA_ARGS__), \
++	MACRO__(0xD752, ## __VA_ARGS__), \
++	MACRO__(0xD753, ## __VA_ARGS__), \
++	MACRO__(0XD754, ## __VA_ARGS__), \
++	MACRO__(0XD755, ## __VA_ARGS__), \
++	MACRO__(0XD756, ## __VA_ARGS__), \
++	MACRO__(0XD757, ## __VA_ARGS__), \
++	MACRO__(0xD75F, ## __VA_ARGS__)
+
+total: 1 errors, 0 warnings, 1 checks, 60 lines checked
+0db3ff1ac9aa drm/xe/nvlp: Attach MOCS table for nvlp
+f78478bb6bd4 drm/i915/nvlp: Hook up display support
+419d28db4957 drm/xe/nvlp: Bump maximum WOPCM size
+
 
