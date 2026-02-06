@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C4DAEE20A6
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 14:49:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83C80EE20A8
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 14:49:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BCC110E7F6;
-	Fri,  6 Feb 2026 14:49:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 392B410E7FA;
+	Fri,  6 Feb 2026 14:49:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fPtItGVt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dd509JdQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C46BD10E008
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Feb 2026 14:49:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8BF010E7FA
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Feb 2026 14:49:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770389366; x=1801925366;
+ t=1770389369; x=1801925369;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CjAoELWCoyQNnT/3Dnv6v284zp8a8FnKj5ePSohVk9s=;
- b=fPtItGVtALwjlEYp5kTrgWwP+FsY/v9f1u8nce3an1ntBz5/K5m01WEw
- DRNcm5e+z6eJ12PO2VPocmHXHVqFZlFlrT7907EBJh7rV7yUkto9myhby
- C5o3bhngwNteuk9KIp5gLj/mUPiugzcOtqX5wrTi59WiwfjhNN6PetRGo
- TgcA9Kfp39qVMsTAaX82Z18hA1MroVZgrG9U734K7B1xo3BBp2sGoxOgV
- 0MK3/llltptyjH2rBUZPhf+aT9CxSXthayniVu4+FXMo3TamnJRvmI6e0
- d2VRr0xkGnySF22I+Y8tBz5fF52V+0fcZOuL4lwdPaBuivc/AQtanqFEM w==;
-X-CSE-ConnectionGUID: +zOngDfRR6qzcuCjDWr7cw==
-X-CSE-MsgGUID: K10wKBwZQDybC3YUecB8Fw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="70789723"
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="70789723"
+ bh=ipuWKJZHcwkuqpMSA3Bs8/4juEktcmHengaeaH7Dfsw=;
+ b=Dd509JdQqTCGhglUC1qQr/OyIG/LfqB0jJ7qP2gFRd9bh8QVoibfMaVA
+ ZCVHUP1Lw8K2Ht79V2ukFknz67CHT10JXxz0DeSXNwLdF8wRiI/oqqjJG
+ uM5vRikTrXuF5/APoLULzjHVP6Y6irakIAjdwpRdp6sCIV+bJ5eNVq+z2
+ /bxWq4McC5g7FH3OQzNdQwj0/QfY67X3TPtmQD1jr0TlQ0nl/oWWGDTyY
+ eScLaSsky54+GjBrDrbEsTsTLxzkOK0NIdcX4KHMh3y089djoMTxfapow
+ 5kO2TxJ19lAP4ZLrOc/M/EleMqFnYUT2yjn6X/oX0//4zxxuD8/Sp4Kfm g==;
+X-CSE-ConnectionGUID: j0cff570SMa/h3UKUk4bZg==
+X-CSE-MsgGUID: VLkin3FSSzGqlmgYgHAlIw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="70789725"
+X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="70789725"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 06:49:25 -0800
-X-CSE-ConnectionGUID: eDIUdhZmTFGFf3lis/36JA==
-X-CSE-MsgGUID: cslX5kkWRbW51HxTJO7rRg==
+ 06 Feb 2026 06:49:27 -0800
+X-CSE-ConnectionGUID: rOS84P+mRP++c6kQoKmEKg==
+X-CSE-MsgGUID: z7lSGtClRNGEFZmNSaRCDQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="210767429"
+X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="210767433"
 Received: from gkczarna.igk.intel.com ([10.211.131.163])
- by fmviesa008.fm.intel.com with ESMTP; 06 Feb 2026 06:49:24 -0800
+ by fmviesa008.fm.intel.com with ESMTP; 06 Feb 2026 06:49:25 -0800
 From: Tomasz Lis <tomasz.lis@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
@@ -47,9 +47,9 @@ Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Lucas De Marchi <lucas.demarchi@intel.com>
-Subject: [PATCH v1 1/4] drm/xe/queue: Call fini on exec queue creation fail
-Date: Fri,  6 Feb 2026 15:53:31 +0100
-Message-Id: <20260206145334.674679-2-tomasz.lis@intel.com>
+Subject: [PATCH v1 2/4] drm/xe/vf: Avoid LRC being freed while applying fixups
+Date: Fri,  6 Feb 2026 15:53:32 +0100
+Message-Id: <20260206145334.674679-3-tomasz.lis@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260206145334.674679-1-tomasz.lis@intel.com>
 References: <20260206145334.674679-1-tomasz.lis@intel.com>
@@ -69,34 +69,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Every call to queue init should have a corresponding fini call.
-Skipping this would mean skipping removal of the queue from GuC list
-(which is part of guc_id allocation). A damaged queue stored in
-exec_queue_lookup list would lead to invalid memory reference,
-sooner or later.
+There is a small but non-zero chance that fixups are running on
+a context during teardown. The chances are decreased by starting
+the teardown by releasing guc_id, but remain non-zero.
+On the other hand the sync between fixups and context creation
+drastically increases chance for such parallel teardown if
+context creation fails.
 
-Call fini to free guc_id. This must be done before any internal
-LRCs are freed.
+Prevent LRC teardown in parallel with fixups by getting a reference.
 
-Fixes: 3c1fa4aa60b1 ("drm/xe: Move queue init before LRC creation")
 Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/xe/xe_exec_queue.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 66d0e10ee2c4..42849be46166 100644
+index 42849be46166..e9396ad3390a 100644
 --- a/drivers/gpu/drm/xe/xe_exec_queue.c
 +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -324,6 +324,8 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
- 	return 0;
- 
- err_lrc:
-+	q->ops->fini(q);
-+
- 	for (i = i - 1; i >= 0; --i)
- 		xe_lrc_put(q->lrc[i]);
- 	return err;
+@@ -1669,10 +1669,11 @@ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch)
+ 		lrc = READ_ONCE(q->lrc[i]);
+ 		if (!lrc)
+ 			continue;
+-
++		xe_lrc_get(lrc);
+ 		xe_lrc_update_memirq_regs_with_address(lrc, q->hwe, scratch);
+ 		xe_lrc_update_hwctx_regs_with_address(lrc);
+ 		err = xe_lrc_setup_wa_bb_with_scratch(lrc, q->hwe, scratch);
++		xe_lrc_put(lrc);
+ 		if (err)
+ 			break;
+ 	}
 -- 
 2.25.1
 
