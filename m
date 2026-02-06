@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6335CEE6B68
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 22:56:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51759EE6B6A
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 22:56:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1153510E956;
-	Fri,  6 Feb 2026 22:56:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1014210E958;
+	Fri,  6 Feb 2026 22:56:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="he7M39Vj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oIR62iDg";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78E6610E956
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Feb 2026 22:56:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1292510E956
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Feb 2026 22:56:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770418595; x=1801954595;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=iVL0l0A4zIswIXG4odwzxB5OsfTz1/yQ4oEYK3DA6PM=;
- b=he7M39VjU0ECs7LwBKGf2j488p+n/FxfhNXXKvc8w4yrNhDgKDmkLzon
- 14T9LEYx6MbqVh+6dt1k1u8yQJzBSyBD0RblHFMHLmAF7qxD8zaqhUr3M
- CH8ns0trZNefaTKvxmMuWooLyEWg97aXEvbZmbPNyY3OnREvjWc+cfwm9
- pU1aV/0WkCI9aKTUYFruGCtATfGff7EV8UbJ2bxJpiHZoPhXHwd/BpD5Y
- OzeGv5PyFv3LuD6o0bOHl/HPN3fW3JZmTGd6s/mlVGwRTmP9JCWdK6zbP
- 8x5kXwTxs9Y78AZgWr3WgjlV6qaWh2Ebj7Gjto5cECMi8cQXTi6Vvj8w/ w==;
-X-CSE-ConnectionGUID: isZlrwjjSi2RI2uQOXmYyw==
-X-CSE-MsgGUID: GO7NKU2/SdqgDcYV8BUliA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="71351661"
-X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; d="scan'208";a="71351661"
+ t=1770418596; x=1801954596;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=/94l0u0ia9VklxBSa7fGY4V4/BwOMpzIRQlDFaoqyPs=;
+ b=oIR62iDgr5kGJSAe4JF++ATusVttom4n5ALGhmNm90kDR3+2G0HDa2xd
+ 8EDjqX4fzqfiICscwZCe43ulJ4TO9Er8Dhpk6TjW7xnk8+aHcij9EyALj
+ lnlLD6guz2FJRbHZ6hU+96cNvgH2oEoR3cCVP9Qa2HYDUiw90hHfqkKQ3
+ LYrqNq+OhPQJvUlkKSD03+IKuYBKyGKL7MPxo3eJvkYYrMKX9s3YtmiNX
+ 2jRz3ABi8W3liP2IdP8CVevpep+M4pp3NHiBWpg85eNzMcvDEb4EK/tIv
+ 9WoROzTImQK7U2z3NrKscgRh3CLkvWdQyzbXILJosu3cs0s+9ocVF45WX g==;
+X-CSE-ConnectionGUID: GhcTqchyTEmKP8n03nL4bA==
+X-CSE-MsgGUID: 8SV1K8k7SGaGsBrTb7LgWg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="71351663"
+X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; d="scan'208";a="71351663"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 14:56:34 -0800
-X-CSE-ConnectionGUID: mRp7Sos3Rv2C/w9IiiOEVw==
-X-CSE-MsgGUID: Cud2GdKcTIafri9Kt7v7IA==
+ 06 Feb 2026 14:56:36 -0800
+X-CSE-ConnectionGUID: NUk8ftRqSh+O2JjHIoC8qg==
+X-CSE-MsgGUID: Vm9CqwF5RdSq6o/LRBwkDA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; d="scan'208";a="210762197"
+X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; d="scan'208";a="210762214"
 Received: from bfilipch-desk.jf.intel.com ([10.88.27.152])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 14:56:34 -0800
+ 06 Feb 2026 14:56:36 -0800
 From: Julia Filipchuk <julia.filipchuk@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH v3 0/3] drm/xe: Enable Wa_14025515070,
- Enable indirect ring state for XE2+
-Date: Fri,  6 Feb 2026 14:55:21 -0800
-Message-ID: <20260206225610.3232909-5-julia.filipchuk@intel.com>
+Subject: [PATCH v3 1/3] drm/xe: Enable Wa_14025515070
+Date: Fri,  6 Feb 2026 14:55:22 -0800
+Message-ID: <20260206225610.3232909-6-julia.filipchuk@intel.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20260206225610.3232909-5-julia.filipchuk@intel.com>
+References: <20260206225610.3232909-5-julia.filipchuk@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,36 +66,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable workaround 14025515070 to fix idle command streamer state on
-context register. This allows user of indirect ring state on XE2+
-platforms. Previously this default was reverted, then added separately
-for XE3+ GTs. This patch Reverts and restores those previous patches
-after enabling the new workaround.
+Corrects a failure on context switch. On registration of context with
+indirect ring state will correct state of targeted and idle command
+streamers.
 
-indirect_ring_state will now be enabled by default for XE2+ platforms.
-When this workaround is not present indirect_ring_state will show as
-disabled with a notification.
+If Wa is unavailable, notify and disable indirect_ring_state.
 
-v2: Enable for GT 20.04. Use range for media versions.
-v3: Shorten KVL name, notice. Correct versions for WA. (Daniele)
-    Reorder revert and applies for correct bisect. Added explanations.
-    Add additional macros for XE_RTP_PASTE longer expansion.
+Added additional XE_RTP_PASTE macros for expansion of longer rules.
 
 Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
-
-
-Julia INTEL (3):
-  drm/xe: Enable Wa_14025515070
-  Reapply "drm/xe/xe2: Enable Indirect Ring State support for Xe2"
-  Revert "drm/xe/xe3p_xpc: Enable Indirect Ring State for xe3p_xpc"
-
+---
  drivers/gpu/drm/xe/abi/guc_klvs_abi.h |  1 +
  drivers/gpu/drm/xe/xe_guc_ads.c       | 10 ++++++++++
- drivers/gpu/drm/xe/xe_pci.c           |  2 +-
  drivers/gpu/drm/xe/xe_rtp_helpers.h   |  4 ++++
  drivers/gpu/drm/xe/xe_wa_oob.rules    |  7 +++++++
- 5 files changed, 23 insertions(+), 1 deletion(-)
+ 4 files changed, 22 insertions(+)
 
+diff --git a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+index e33bd622ab44..f0815500177b 100644
+--- a/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_klvs_abi.h
+@@ -496,6 +496,7 @@ enum xe_guc_klv_ids {
+ 	GUC_WA_KLV_WAKE_POWER_DOMAINS_FOR_OUTBOUND_MMIO					= 0x900a,
+ 	GUC_WA_KLV_RESET_BB_STACK_PTR_ON_VF_SWITCH					= 0x900b,
+ 	GUC_WA_KLV_RESTORE_UNSAVED_MEDIA_CONTROL_REG					= 0x900c,
++	GUC_WA_KLV_CLR_CS_INDIRECT_RING_STATE_IF_IDLE_AT_CTX_REG			= 0x900e,
+ };
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index f4cbc030f4c8..6a5863a54215 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -360,6 +360,16 @@ static void guc_waklv_init(struct xe_guc_ads *ads)
+ 	if (XE_GT_WA(gt, 14020001231))
+ 		guc_waklv_enable(ads, NULL, 0, &offset, &remain,
+ 				 GUC_WORKAROUND_KLV_DISABLE_PSMI_INTERRUPTS_AT_C6_ENTRY_RESTORE_AT_EXIT);
++	if (XE_GT_WA(gt, 14025515070)) {
++		if (GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 53))
++			guc_waklv_enable(ads, NULL, 0, &offset, &remain,
++					 GUC_WA_KLV_CLR_CS_INDIRECT_RING_STATE_IF_IDLE_AT_CTX_REG);
++		else {
++			/* Disable indirect_ring_state when workaround not available. */
++			gt->info.has_indirect_ring_state = 0;
++			xe_gt_notice(gt, "indirect ring state requires WA in GuC 70.53+\n");
++		}
++	}
+ 
+ 	size = guc_ads_waklv_size(ads) - remain;
+ 	if (!size)
+diff --git a/drivers/gpu/drm/xe/xe_rtp_helpers.h b/drivers/gpu/drm/xe/xe_rtp_helpers.h
+index a33b0ae98bbc..e462a4d5ad69 100644
+--- a/drivers/gpu/drm/xe/xe_rtp_helpers.h
++++ b/drivers/gpu/drm/xe/xe_rtp_helpers.h
+@@ -66,6 +66,10 @@
+ #define XE_RTP_PASTE_10(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_9(prefix_, sep_, _XE_TUPLE_TAIL args_)
+ #define XE_RTP_PASTE_11(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_10(prefix_, sep_, _XE_TUPLE_TAIL args_)
+ #define XE_RTP_PASTE_12(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_11(prefix_, sep_, _XE_TUPLE_TAIL args_)
++#define XE_RTP_PASTE_13(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_12(prefix_, sep_, _XE_TUPLE_TAIL args_)
++#define XE_RTP_PASTE_14(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_13(prefix_, sep_, _XE_TUPLE_TAIL args_)
++
++
+ 
+ /*
+  * XE_RTP_DROP_CAST - Drop cast to convert a compound statement to a initializer
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 5cd7fa6d2a5c..3e677c911960 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -69,6 +69,13 @@
+ 		MEDIA_VERSION(3002), FUNC(xe_rtp_match_psmi_enabled)
+ 16023683509	MEDIA_VERSION(2000), FUNC(xe_rtp_match_psmi_enabled)
+ 		MEDIA_VERSION(3000), MEDIA_STEP(A0, B0), FUNC(xe_rtp_match_psmi_enabled)
++14025515070	GRAPHICS_VERSION(2004)
++		MEDIA_VERSION_RANGE(1301, 3000)
++		MEDIA_VERSION(3002)
++		GRAPHICS_VERSION_RANGE(3000, 3001)
++		GRAPHICS_VERSION_RANGE(3003, 3005)
++		MEDIA_VERSION(3500)
++		GRAPHICS_VERSION(3510), GRAPHICS_STEP(A0, B0)
+ 
+ 15015404425_disable	PLATFORM(PANTHERLAKE), MEDIA_STEP(B0, FOREVER)
+ 16026007364    MEDIA_VERSION(3000)
 -- 
 2.51.0
 
