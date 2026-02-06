@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0974EECD9AA
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 01:09:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 034D2ECD9B5
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 01:37:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A405310E225;
-	Fri,  6 Feb 2026 01:09:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9349E10E22F;
+	Fri,  6 Feb 2026 01:37:48 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E5C310E18E;
- Fri,  6 Feb 2026 01:09:43 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E25F10E226;
+ Fri,  6 Feb 2026 01:37:47 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2892846511459310049=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_gpu=3A_Move_DRM_buddy_al?=
- =?utf-8?q?locator_one_level_up_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_gpu=3A_Move_DRM_buddy_alloc?=
+ =?utf-8?q?ator_one_level_up_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Joel Fernandes" <joelagnelf@nvidia.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 06 Feb 2026 01:09:43 -0000
-Message-ID: <177034018316.228151.6832009048328353441@a3b018990fe9>
+Date: Fri, 06 Feb 2026 01:37:47 -0000
+Message-ID: <177034186755.228151.9323784056532573603@a3b018990fe9>
 X-Patchwork-Hint: ignore
 References: <20260206003451.1914130-1-joelagnelf@nvidia.com>
 In-Reply-To: <20260206003451.1914130-1-joelagnelf@nvidia.com>
@@ -40,38 +40,102 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============2892846511459310049==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: gpu: Move DRM buddy allocator one level up (rev2)
 URL   : https://patchwork.freedesktop.org/series/158056/
-State : warning
+State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 75acb0a8b6f69c6429941e6845df2af94ed15939
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
--O:drivers/gpu/drm/drm_buddy.c:1335:1: error: bad constant expression
--O:drivers/gpu/drm/drm_buddy.c:1336:1: error: bad constant expression
--O:drivers/gpu/drm/drm_buddy.c:1336:1: error: bad constant expression
-+drivers/gpu/drm/drm_buddy.c:75:1: error: bad constant expression
-+drivers/gpu/drm/drm_buddy.c:76:1: error: bad constant expression
-+drivers/gpu/drm/drm_buddy.c:76:1: error: bad constant expression
+CI Bug Log - changes from xe-4513-75acb0a8b6f69c6429941e6845df2af94ed15939_BAT -> xe-pw-158056v2_BAT
+====================================================
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4513-75acb0a8b6f69c6429941e6845df2af94ed15939 -> xe-pw-158056v2
+
+  IGT_8739: 8739
+  xe-4513-75acb0a8b6f69c6429941e6845df2af94ed15939: 75acb0a8b6f69c6429941e6845df2af94ed15939
+  xe-pw-158056v2: 158056v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158056v2/index.html
+
+--===============2892846511459310049==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>gpu: Move DRM buddy allocator one level up (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/158056/">https://patchwork.freedesktop.org/series/158056/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158056v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-158056v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4513-75acb0a8b6f69c6429941e6845df2af94ed15939_BAT -&gt; xe-pw-158056v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4513-75acb0a8b6f69c6429941e6845df2af94ed15939 -&gt; xe-pw-158056v2</li>
+</ul>
+<p>IGT_8739: 8739<br />
+  xe-4513-75acb0a8b6f69c6429941e6845df2af94ed15939: 75acb0a8b6f69c6429941e6845df2af94ed15939<br />
+  xe-pw-158056v2: 158056v2</p>
+
+</body>
+</html>
+
+--===============2892846511459310049==--
