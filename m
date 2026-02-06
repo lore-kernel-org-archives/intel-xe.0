@@ -4,27 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33F5EEB28C8
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 05:25:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5025EB28C8
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 05:25:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D983610E34E;
-	Fri,  6 Feb 2026 05:25:32 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3D1810E34E;
- Fri,  6 Feb 2026 05:25:30 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/dp=3A_Joiner_cl?=
- =?utf-8?q?eanups_and_fix_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 994BF10E346;
+	Fri,  6 Feb 2026 05:25:49 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="csNukwa1";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 06FD610E346
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Feb 2026 05:25:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1770355547; x=1801891547;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=X7kGFqUBdwcFWOsOlSRFgtZoisHj6+HpvcKSctARl1U=;
+ b=csNukwa1IPBp6Tl8QQgn0tFJL+5SjjrsUJ7KoZAzpDpuTbFhkcFgsEDH
+ i2SJ5kQM8iBVd8rskFDcVhPXz6ZePmfe2bGg1z+9CcavgEGSXHLEOVCx9
+ AKul+68XhtS8OFjyitNkUuau8U2sAz8IcsgF5hWCSA54VG+Z8uWIh34yD
+ hV3BwkbM6tasV4XBP6o+hpS5Oeql5yrm3jKPmxd6V2X8TwleS42J6STZ7
+ N8tSjVH0a513hzpCrHR6WN/XtKWmFVp2FEdiYl2XBxnFFSS0cTzTNloM4
+ kCjtFU+feOV1qIuPQ0kCeJHgi1MxYcMo3dVv8havMfyG+40b8uWE1fQoQ w==;
+X-CSE-ConnectionGUID: REyMr9BZTeyvxsku/Dt/lQ==
+X-CSE-MsgGUID: KgmgUBH+Rvuacw1wl80oqA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11692"; a="82195762"
+X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="82195762"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Feb 2026 21:25:46 -0800
+X-CSE-ConnectionGUID: 7dqPKmFUR8SUEdrKAli5ew==
+X-CSE-MsgGUID: 2eu1WCN3QDyhxG73gjCE/Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,275,1763452800"; d="scan'208";a="210855665"
+Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
+ by orviesa007.jf.intel.com with ESMTP; 05 Feb 2026 21:25:45 -0800
+Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1voELe-00000000kSO-1KLR;
+ Fri, 06 Feb 2026 05:25:42 +0000
+Date: Fri, 06 Feb 2026 13:25:32 +0800
+From: kernel test robot <lkp@intel.com>
+To: "Thomas =?utf-8?Q?Hellstr=C3=B6m"?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 06 Feb 2026 05:25:30 -0000
-Message-ID: <177035553084.231560.11272238934251046547@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260205083623.793902-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20260205083623.793902-1-ankit.k.nautiyal@intel.com>
+Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
+ 4cb1b327135dddf3d0ec2544ea36ed05ba2252bc
+Message-ID: <202602061323.mRpkradW-lkp@intel.com>
+User-Agent: s-nail v14.9.25
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,88 +63,277 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
+branch HEAD: 4cb1b327135dddf3d0ec2544ea36ed05ba2252bc  drm/xe/guc: Fix CFI violation in debugfs access.
 
-Series: drm/i915/dp: Joiner cleanups and fix (rev2)
-URL   : https://patchwork.freedesktop.org/series/161181/
-State : warning
+elapsed time: 1220m
 
-== Summary ==
+configs tested: 255
+configs skipped: 2
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 18503db781aa426ceb6e5ca79de42c0c9a7462eb
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-+drivers/gpu/drm/i915/display/g4x_dp.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_alpm.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_cx0_phy.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_ddi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_display.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_display_debugfs.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_display_driver.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dp_aux.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dp_hdcp.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dpio_phy.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dp_link_training.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dp_mst.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_dp_test.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_fdi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_frontbuffer.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h, drivers/gpu/drm/i915/display/intel_display_trace.h):
-+drivers/gpu/drm/i915/display/intel_hdmi.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_hotplug.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_link_bw.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_lspcon.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_pps.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_psr.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_tc.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_vdsc.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+drivers/gpu/drm/i915/display/intel_vrr.c: note: in included file (through drivers/gpu/drm/i915/display/intel_display_types.h):
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
-+./include/linux/pwm.h:13:1: error: bad constant expression
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+tested configs:
+alpha                             allnoconfig    gcc-15.2.0
+alpha                            allyesconfig    gcc-15.2.0
+alpha                               defconfig    gcc-15.2.0
+arc                              allmodconfig    clang-16
+arc                               allnoconfig    gcc-15.2.0
+arc                              allyesconfig    clang-22
+arc                                 defconfig    gcc-15.2.0
+arc                   randconfig-001-20260205    gcc-8.5.0
+arc                   randconfig-001-20260206    gcc-8.5.0
+arc                   randconfig-002-20260205    gcc-8.5.0
+arc                   randconfig-002-20260206    gcc-8.5.0
+arm                               allnoconfig    clang-22
+arm                               allnoconfig    gcc-15.2.0
+arm                              allyesconfig    clang-16
+arm                         axm55xx_defconfig    gcc-15.2.0
+arm                         bcm2835_defconfig    gcc-15.2.0
+arm                                 defconfig    gcc-15.2.0
+arm                       multi_v4t_defconfig    gcc-15.2.0
+arm                           omap1_defconfig    gcc-15.2.0
+arm                   randconfig-001-20260205    gcc-8.5.0
+arm                   randconfig-001-20260206    gcc-8.5.0
+arm                   randconfig-002-20260205    gcc-8.5.0
+arm                   randconfig-002-20260206    gcc-8.5.0
+arm                   randconfig-003-20260205    gcc-8.5.0
+arm                   randconfig-003-20260206    gcc-8.5.0
+arm                   randconfig-004-20260205    gcc-8.5.0
+arm                   randconfig-004-20260206    gcc-8.5.0
+arm64                            allmodconfig    clang-22
+arm64                             allnoconfig    gcc-15.2.0
+arm64                               defconfig    gcc-15.2.0
+arm64                 randconfig-001-20260205    gcc-10.5.0
+arm64                 randconfig-001-20260206    gcc-13.4.0
+arm64                 randconfig-002-20260205    gcc-10.5.0
+arm64                 randconfig-002-20260206    gcc-13.4.0
+arm64                 randconfig-003-20260205    gcc-10.5.0
+arm64                 randconfig-003-20260206    gcc-13.4.0
+arm64                 randconfig-004-20260205    gcc-10.5.0
+arm64                 randconfig-004-20260206    gcc-13.4.0
+csky                             allmodconfig    gcc-15.2.0
+csky                              allnoconfig    gcc-15.2.0
+csky                                defconfig    gcc-15.2.0
+csky                  randconfig-001-20260205    gcc-10.5.0
+csky                  randconfig-001-20260206    gcc-13.4.0
+csky                  randconfig-002-20260205    gcc-10.5.0
+csky                  randconfig-002-20260206    gcc-13.4.0
+hexagon                          allmodconfig    gcc-15.2.0
+hexagon                           allnoconfig    clang-22
+hexagon                           allnoconfig    gcc-15.2.0
+hexagon                             defconfig    gcc-15.2.0
+hexagon               randconfig-001-20260205    gcc-15.2.0
+hexagon               randconfig-001-20260206    clang-22
+hexagon               randconfig-002-20260205    gcc-15.2.0
+hexagon               randconfig-002-20260206    clang-22
+i386                             allmodconfig    clang-20
+i386                             allmodconfig    gcc-14
+i386                              allnoconfig    gcc-14
+i386                              allnoconfig    gcc-15.2.0
+i386                             allyesconfig    clang-20
+i386                             allyesconfig    gcc-14
+i386        buildonly-randconfig-001-20260205    gcc-14
+i386        buildonly-randconfig-001-20260206    clang-20
+i386        buildonly-randconfig-002-20260205    gcc-14
+i386        buildonly-randconfig-002-20260206    clang-20
+i386        buildonly-randconfig-003-20260205    gcc-14
+i386        buildonly-randconfig-003-20260206    clang-20
+i386        buildonly-randconfig-004-20260205    gcc-14
+i386        buildonly-randconfig-004-20260206    clang-20
+i386        buildonly-randconfig-005-20260205    gcc-14
+i386        buildonly-randconfig-005-20260206    clang-20
+i386        buildonly-randconfig-006-20260205    gcc-14
+i386        buildonly-randconfig-006-20260206    clang-20
+i386                                defconfig    gcc-15.2.0
+i386                  randconfig-001-20260205    gcc-13
+i386                  randconfig-002-20260205    gcc-13
+i386                  randconfig-003-20260205    gcc-13
+i386                  randconfig-004-20260205    gcc-13
+i386                  randconfig-005-20260205    gcc-13
+i386                  randconfig-006-20260205    gcc-13
+i386                  randconfig-007-20260205    gcc-13
+i386                  randconfig-011-20260205    clang-20
+i386                  randconfig-011-20260206    clang-20
+i386                  randconfig-012-20260205    clang-20
+i386                  randconfig-012-20260206    clang-20
+i386                  randconfig-013-20260205    clang-20
+i386                  randconfig-013-20260206    clang-20
+i386                  randconfig-014-20260205    clang-20
+i386                  randconfig-014-20260206    clang-20
+i386                  randconfig-015-20260205    clang-20
+i386                  randconfig-015-20260206    clang-20
+i386                  randconfig-016-20260205    clang-20
+i386                  randconfig-016-20260206    clang-20
+i386                  randconfig-017-20260205    clang-20
+i386                  randconfig-017-20260206    clang-20
+loongarch                        allmodconfig    clang-22
+loongarch                         allnoconfig    clang-22
+loongarch                         allnoconfig    gcc-15.2.0
+loongarch                           defconfig    clang-19
+loongarch             randconfig-001-20260205    gcc-15.2.0
+loongarch             randconfig-001-20260206    clang-22
+loongarch             randconfig-002-20260205    gcc-15.2.0
+loongarch             randconfig-002-20260206    clang-22
+m68k                             allmodconfig    gcc-15.2.0
+m68k                              allnoconfig    gcc-15.2.0
+m68k                             allyesconfig    clang-16
+m68k                                defconfig    clang-19
+microblaze                        allnoconfig    gcc-15.2.0
+microblaze                       allyesconfig    gcc-15.2.0
+microblaze                          defconfig    clang-19
+mips                             allmodconfig    gcc-15.2.0
+mips                              allnoconfig    gcc-15.2.0
+mips                             allyesconfig    gcc-15.2.0
+mips                         db1xxx_defconfig    gcc-15.2.0
+mips                           ip28_defconfig    gcc-15.2.0
+mips                      maltasmvp_defconfig    gcc-15.2.0
+mips                        vocore2_defconfig    gcc-15.2.0
+nios2                            allmodconfig    clang-22
+nios2                            allmodconfig    gcc-11.5.0
+nios2                             allnoconfig    clang-22
+nios2                               defconfig    clang-19
+nios2                 randconfig-001-20260205    gcc-15.2.0
+nios2                 randconfig-001-20260206    clang-22
+nios2                 randconfig-002-20260205    gcc-15.2.0
+nios2                 randconfig-002-20260206    clang-22
+openrisc                         allmodconfig    clang-22
+openrisc                         allmodconfig    gcc-15.2.0
+openrisc                          allnoconfig    clang-22
+openrisc                            defconfig    gcc-15.2.0
+parisc                           allmodconfig    gcc-15.2.0
+parisc                            allnoconfig    clang-22
+parisc                           allyesconfig    clang-19
+parisc                              defconfig    gcc-15.2.0
+parisc                randconfig-001-20260205    gcc-9.5.0
+parisc                randconfig-001-20260206    gcc-8.5.0
+parisc                randconfig-002-20260205    gcc-9.5.0
+parisc                randconfig-002-20260206    gcc-8.5.0
+parisc64                            defconfig    clang-19
+powerpc                          allmodconfig    gcc-15.2.0
+powerpc                           allnoconfig    clang-22
+powerpc                 canyonlands_defconfig    gcc-15.2.0
+powerpc                   lite5200b_defconfig    gcc-15.2.0
+powerpc                 mpc8315_rdb_defconfig    gcc-15.2.0
+powerpc                  mpc866_ads_defconfig    gcc-15.2.0
+powerpc               randconfig-001-20260205    gcc-9.5.0
+powerpc               randconfig-001-20260206    gcc-8.5.0
+powerpc               randconfig-002-20260205    gcc-9.5.0
+powerpc               randconfig-002-20260206    gcc-8.5.0
+powerpc                     tqm8555_defconfig    gcc-15.2.0
+powerpc64             randconfig-001-20260205    gcc-9.5.0
+powerpc64             randconfig-001-20260206    gcc-8.5.0
+powerpc64             randconfig-002-20260205    gcc-9.5.0
+powerpc64             randconfig-002-20260206    gcc-8.5.0
+riscv                            allmodconfig    clang-22
+riscv                             allnoconfig    clang-22
+riscv                            allyesconfig    clang-16
+riscv                               defconfig    gcc-15.2.0
+riscv                 randconfig-001-20260205    clang-19
+riscv                 randconfig-001-20260206    clang-22
+riscv                 randconfig-002-20260205    clang-19
+riscv                 randconfig-002-20260206    clang-22
+s390                             allmodconfig    clang-19
+s390                              allnoconfig    clang-22
+s390                             allyesconfig    gcc-15.2.0
+s390                                defconfig    gcc-15.2.0
+s390                  randconfig-001-20260205    clang-19
+s390                  randconfig-001-20260206    clang-22
+s390                  randconfig-002-20260205    clang-19
+s390                  randconfig-002-20260206    clang-22
+sh                               allmodconfig    gcc-15.2.0
+sh                                allnoconfig    clang-22
+sh                               allyesconfig    clang-19
+sh                                  defconfig    gcc-14
+sh                    randconfig-001-20260205    clang-19
+sh                    randconfig-001-20260206    clang-22
+sh                    randconfig-002-20260205    clang-19
+sh                    randconfig-002-20260206    clang-22
+sh                           se7619_defconfig    gcc-15.2.0
+sh                           sh2007_defconfig    gcc-15.2.0
+sh                   sh7724_generic_defconfig    gcc-15.2.0
+sparc                             allnoconfig    clang-22
+sparc                               defconfig    gcc-15.2.0
+sparc                 randconfig-001-20260205    gcc-12.5.0
+sparc                 randconfig-001-20260206    gcc-12.5.0
+sparc                 randconfig-002-20260205    gcc-12.5.0
+sparc                 randconfig-002-20260206    gcc-12.5.0
+sparc64                          allmodconfig    clang-22
+sparc64                             defconfig    gcc-14
+sparc64               randconfig-001-20260205    gcc-12.5.0
+sparc64               randconfig-001-20260206    gcc-12.5.0
+sparc64               randconfig-002-20260205    gcc-12.5.0
+sparc64               randconfig-002-20260206    gcc-12.5.0
+um                               allmodconfig    clang-19
+um                                allnoconfig    clang-22
+um                               allyesconfig    gcc-15.2.0
+um                                  defconfig    gcc-14
+um                             i386_defconfig    gcc-14
+um                    randconfig-001-20260205    gcc-12.5.0
+um                    randconfig-001-20260206    gcc-12.5.0
+um                    randconfig-002-20260205    gcc-12.5.0
+um                    randconfig-002-20260206    gcc-12.5.0
+um                           x86_64_defconfig    gcc-14
+x86_64                           allmodconfig    clang-20
+x86_64                            allnoconfig    clang-22
+x86_64                           allyesconfig    clang-20
+x86_64      buildonly-randconfig-001-20260205    gcc-14
+x86_64      buildonly-randconfig-001-20260206    gcc-14
+x86_64      buildonly-randconfig-002-20260205    gcc-14
+x86_64      buildonly-randconfig-002-20260206    gcc-14
+x86_64      buildonly-randconfig-003-20260205    gcc-14
+x86_64      buildonly-randconfig-003-20260206    gcc-14
+x86_64      buildonly-randconfig-004-20260205    gcc-14
+x86_64      buildonly-randconfig-004-20260206    gcc-14
+x86_64      buildonly-randconfig-005-20260205    gcc-14
+x86_64      buildonly-randconfig-005-20260206    gcc-14
+x86_64      buildonly-randconfig-006-20260205    gcc-14
+x86_64      buildonly-randconfig-006-20260206    gcc-14
+x86_64                              defconfig    gcc-14
+x86_64                                  kexec    clang-20
+x86_64                randconfig-001-20260205    clang-20
+x86_64                randconfig-002-20260205    clang-20
+x86_64                randconfig-003-20260205    clang-20
+x86_64                randconfig-004-20260205    clang-20
+x86_64                randconfig-005-20260205    clang-20
+x86_64                randconfig-006-20260205    clang-20
+x86_64                randconfig-011-20260205    clang-20
+x86_64                randconfig-011-20260206    gcc-14
+x86_64                randconfig-012-20260205    clang-20
+x86_64                randconfig-012-20260206    gcc-14
+x86_64                randconfig-013-20260205    clang-20
+x86_64                randconfig-013-20260206    gcc-14
+x86_64                randconfig-014-20260205    clang-20
+x86_64                randconfig-014-20260206    gcc-14
+x86_64                randconfig-015-20260205    clang-20
+x86_64                randconfig-015-20260206    gcc-14
+x86_64                randconfig-016-20260205    clang-20
+x86_64                randconfig-016-20260206    gcc-14
+x86_64                randconfig-071-20260205    clang-20
+x86_64                randconfig-072-20260205    clang-20
+x86_64                randconfig-073-20260205    clang-20
+x86_64                randconfig-074-20260205    clang-20
+x86_64                randconfig-075-20260205    clang-20
+x86_64                randconfig-076-20260205    clang-20
+x86_64                               rhel-9.4    clang-20
+x86_64                           rhel-9.4-bpf    gcc-14
+x86_64                          rhel-9.4-func    clang-20
+x86_64                    rhel-9.4-kselftests    clang-20
+x86_64                         rhel-9.4-kunit    gcc-14
+x86_64                           rhel-9.4-ltp    gcc-14
+x86_64                          rhel-9.4-rust    clang-20
+xtensa                            allnoconfig    clang-22
+xtensa                           allyesconfig    clang-22
+xtensa                           allyesconfig    gcc-15.2.0
+xtensa                randconfig-001-20260205    gcc-12.5.0
+xtensa                randconfig-001-20260206    gcc-12.5.0
+xtensa                randconfig-002-20260205    gcc-12.5.0
+xtensa                randconfig-002-20260206    gcc-12.5.0
 
-
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
