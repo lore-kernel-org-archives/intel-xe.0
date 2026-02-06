@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3062EE20BD
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 16:47:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2A4EEE20B6
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 16:52:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3DDE10E850;
-	Fri,  6 Feb 2026 16:47:49 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MhteC+jI";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F2A410E839;
- Fri,  6 Feb 2026 16:47:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770396464; x=1801932464;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=bzqS8p4LCAomqcSpMiojEl6kjn+16TlH6cd5LQtxjWo=;
- b=MhteC+jIK9jVDFK7e90Ue6xP1933mJ96jdbozSgaJC7fYHcQpnlNyJw9
- eM03L1IA4GgCmffli06KbnlkJb26k6wDbdejF5XvddQsvLvbP273F6lIi
- Rv1qXUAmFJO3Cj51u1VkLG+SXUyW2ygw2rDnPyL7IHMbaoMvgNTJJDQdX
- QSqKO/zlrJHzvLkHkEWoaa1q6bTtx3WxdaG9R40Su231alKu7zO4HR5LO
- riGETQCgRc/qszLIhtF/3/u7h9LoIPldMxG6A1pGgutfB4ecJXDUNmkFx
- iRUljU4TUkTB761JWszR90R/sZpxOtachKnSKajzPqQU+X8p5bUByTxWf g==;
-X-CSE-ConnectionGUID: Yn0WkLOcSECcahI7cxuv2Q==
-X-CSE-MsgGUID: ZcLdyIHjTFyYugxr7Gqfwg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="71671680"
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="71671680"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 08:47:43 -0800
-X-CSE-ConnectionGUID: OeSsq+BRQeimfngcdboFAg==
-X-CSE-MsgGUID: LjgdIxLjQdWqRhHHw2wFBA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,276,1763452800"; d="scan'208";a="248540887"
-Received: from dut4086lnl.fm.intel.com ([10.105.10.85])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 08:47:41 -0800
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
- joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
- jianxun.zhang@intel.com, shuicheng.lin@intel.com,
- dri-devel@lists.freedesktop.org, Michal.Wajdeczko@intel.com,
- michal.mrozek@intel.com, raag.jadav@intel.com, ivan.briano@intel.com,
- matthew.auld@intel.com, dafna.hirschfeld@intel.com
-Subject: [PATCH v33 3/5] drm/xe/uapi: Define drm_xe_vm_get_property
-Date: Fri,  6 Feb 2026 16:47:35 +0000
-Message-ID: <20260206164731.8395-10-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260206164731.8395-7-jonathan.cavitt@intel.com>
-References: <20260206164731.8395-7-jonathan.cavitt@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9966B10E039;
+	Fri,  6 Feb 2026 16:52:35 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7D6910E039;
+ Fri,  6 Feb 2026 16:52:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/xe=5Fvm=3A_Impleme?=
+ =?utf-8?q?nt_xe=5Fvm=5Fget=5Fproperty=5Fioctl?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 06 Feb 2026 16:52:34 -0000
+Message-ID: <177039675492.232293.6910288794935561765@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260206164731.8395-7-jonathan.cavitt@intel.com>
+In-Reply-To: <20260206164731.8395-7-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,164 +36,156 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add initial declarations for the drm_xe_vm_get_property ioctl.
+== Series Details ==
 
-v2:
-- Expand kernel docs for drm_xe_vm_get_property (Jianxun)
+Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
+URL   : https://patchwork.freedesktop.org/series/161293/
+State : warning
 
-v3:
-- Remove address type external definitions (Jianxun)
-- Add fault type to xe_drm_fault struct (Jianxun)
+== Summary ==
 
-v4:
-- Remove engine class and instance (Ivan)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1a18cdcbf389e6e9cb20caa8bf559852bf46d556
+Author: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Date:   Fri Feb 6 16:47:37 2026 +0000
 
-v5:
-- Add declares for fault type, access type, and fault level (Matt Brost,
-  Ivan)
-
-v6:
-- Fix inconsistent use of whitespace in defines
-
-v7:
-- Rebase and refactor (jcavitt)
-
-v8:
-- Rebase (jcavitt)
-
+    drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
+    
+    Add support for userspace to request a list of observed faults
+    from a specified VM.
+    
+    v2:
+    - Only allow querying of failed pagefaults (Matt Brost)
+    
+    v3:
+    - Remove unnecessary size parameter from helper function, as it
+      is a property of the arguments. (jcavitt)
+    - Remove unnecessary copy_from_user (Jainxun)
+    - Set address_precision to 1 (Jainxun)
+    - Report max size instead of dynamic size for memory allocation
+      purposes.  Total memory usage is reported separately.
+    
+    v4:
+    - Return int from xe_vm_get_property_size (Shuicheng)
+    - Fix memory leak (Shuicheng)
+    - Remove unnecessary size variable (jcavitt)
+    
+    v5:
+    - Rename ioctl to xe_vm_get_faults_ioctl (jcavitt)
+    - Update fill_property_pfs to eliminate need for kzalloc (Jianxun)
+    
+    v6:
+    - Repair and move fill_faults break condition (Dan Carpenter)
+    - Free vm after use (jcavitt)
+    - Combine assertions (jcavitt)
+    - Expand size check in xe_vm_get_faults_ioctl (jcavitt)
+    - Remove return mask from fill_faults, as return is already -EFAULT or 0
+      (jcavitt)
+    
+    v7:
+    - Revert back to using xe_vm_get_property_ioctl
+    - Apply better copy_to_user logic (jcavitt)
+    
+    v8:
+    - Fix and clean up error value handling in ioctl (jcavitt)
+    - Reapply return mask for fill_faults (jcavitt)
+    
+    v9:
+    - Future-proof size logic for zero-size properties (jcavitt)
+    - Add access and fault types (Jianxun)
+    - Remove address type (Jianxun)
+    
+    v10:
+    - Remove unnecessary switch case logic (Raag)
+    - Compress size get, size validation, and property fill functions into a
+      single helper function (jcavitt)
+    - Assert valid size (jcavitt)
+    
+    v11:
+    - Remove unnecessary else condition
+    - Correct backwards helper function size logic (jcavitt)
+    
+    v12:
+    - Use size_t instead of int (Raag)
+    
+    v13:
+    - Remove engine class and instance (Ivan)
+    
+    v14:
+    - Map access type, fault type, and fault level to user macros (Matt
+      Brost, Ivan)
+    
+    v15:
+    - Remove unnecessary size assertion (jcavitt)
+    
+    v16:
+    - Nit fixes (Matt Brost)
+    
+    v17:
+    - Rebase and refactor (jcavitt)
+    
+    v18:
+    - Do not copy_to_user in critical section (Matt Brost)
+    - Assert args->size is multiple of sizeof(struct xe_vm_fault) (Matt
+      Brost)
+    
+    v19:
+    - Remove unnecessary memset (Matt Brost)
+    
+    uAPI: https://github.com/intel/compute-runtime/pull/878
+    Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+    Suggested-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+    Cc: Jainxun Zhang <jianxun.zhang@intel.com>
+    Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+    Cc: Raag Jadav <raag.jadav@intel.com>
+    Cc: Ivan Briano <ivan.briano@intel.com>
++ /mt/dim checkpatch d9124a6be3c7bdaeb14c3629013dde27929dbf04 drm-intel
+b73037bc504c drm/xe/xe_pagefault: Disallow writes to read-only VMAs
+4301f83a9b17 drm/xe/xe_pagefault: Track address precision per pagefault
+b5a1af7cd696 drm/xe/uapi: Define drm_xe_vm_get_property
+-:31: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'uAPI:', use 'Link:' or 'Closes:' instead
+#31: 
 uAPI: https://github.com/intel/compute-runtime/pull/878
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Reviewed-by: Shuicheng Lin <shuicheng.lin@intel.com>
-Acked-by: Matthew Brost <matthew.brost@intel.com>
-Acked-by: Ivan Briano <ivan.briano@intel.com>
-Cc: Zhang Jianxun <jianxun.zhang@intel.com>
-Cc: Ivan Briano <ivan.briano@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
----
- include/uapi/drm/xe_drm.h | 86 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 86 insertions(+)
 
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 077e66a682e2..3a7c2b925868 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -83,6 +83,7 @@ extern "C" {
-  *  - &DRM_IOCTL_XE_OBSERVATION
-  *  - &DRM_IOCTL_XE_MADVISE
-  *  - &DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS
-+ *  - &DRM_IOCTL_XE_VM_GET_PROPERTY
-  */
- 
- /*
-@@ -107,6 +108,7 @@ extern "C" {
- #define DRM_XE_MADVISE			0x0c
- #define DRM_XE_VM_QUERY_MEM_RANGE_ATTRS	0x0d
- #define DRM_XE_EXEC_QUEUE_SET_PROPERTY	0x0e
-+#define DRM_XE_VM_GET_PROPERTY		0x0f
- 
- /* Must be kept compact -- no holes */
- 
-@@ -125,6 +127,7 @@ extern "C" {
- #define DRM_IOCTL_XE_MADVISE			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_MADVISE, struct drm_xe_madvise)
- #define DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_QUERY_MEM_RANGE_ATTRS, struct drm_xe_vm_query_mem_range_attr)
- #define DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY	DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_SET_PROPERTY, struct drm_xe_exec_queue_set_property)
+-:64: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
+#64: FILE: include/uapi/drm/xe_drm.h:130:
 +#define DRM_IOCTL_XE_VM_GET_PROPERTY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_GET_PROPERTY, struct drm_xe_vm_get_property)
- 
- /**
-  * DOC: Xe IOCTL Extensions
-@@ -1249,6 +1252,89 @@ struct drm_xe_vm_bind {
- 	__u64 reserved[2];
- };
- 
-+/** struct xe_vm_fault - Describes faults for %DRM_XE_VM_GET_PROPERTY_FAULTS */
-+struct xe_vm_fault {
-+	/** @address: Address of the fault */
-+	__u64 address;
-+	/** @address_precision: Precision of faulted address */
-+	__u32 address_precision;
-+	/** @access_type: Type of address access that resulted in fault */
-+#define FAULT_ACCESS_TYPE_READ		0
-+#define FAULT_ACCESS_TYPE_WRITE		1
-+#define FAULT_ACCESS_TYPE_ATOMIC	2
-+	__u8 access_type;
-+	/** @fault_type: Type of fault reported */
-+#define FAULT_TYPE_NOT_PRESENT		0
-+#define FAULT_TYPE_WRITE_ACCESS		1
-+#define FAULT_TYPE_ATOMIC_ACCESS	2
-+	__u8 fault_type;
-+	/** @fault_level: fault level of the fault */
-+#define FAULT_LEVEL_PTE		0
-+#define FAULT_LEVEL_PDE		1
-+#define FAULT_LEVEL_PDP		2
-+#define FAULT_LEVEL_PML4	3
-+#define FAULT_LEVEL_PML5	4
-+	__u8 fault_level;
-+	/** @pad: MBZ */
-+	__u8 pad;
-+	/** @reserved: MBZ */
-+	__u64 reserved[4];
-+};
-+
-+/**
-+ * struct drm_xe_vm_get_property - Input of &DRM_IOCTL_XE_VM_GET_PROPERTY
-+ *
-+ * The user provides a VM and a property to query among DRM_XE_VM_GET_PROPERTY_*,
-+ * and sets the values in the vm_id and property members, respectively.  This
-+ * determines both the VM to get the property of, as well as the property to
-+ * report.
-+ *
-+ * If size is set to 0, the driver fills it with the required size for the
-+ * requested property.  The user is expected here to allocate memory for the
-+ * property structure and to provide a pointer to the allocated memory using the
-+ * data member.  For some properties, this may be zero, in which case, the
-+ * value of the property will be saved to the value member and size will remain
-+ * zero on return.
-+ *
-+ * If size is not zero, then the IOCTL will attempt to copy the requested
-+ * property into the data member.
-+ *
-+ * The IOCTL will return -ENOENT if the VM could not be identified from the
-+ * provided VM ID, or -EINVAL if the IOCTL fails for any other reason, such as
-+ * providing an invalid size for the given property or if the property data
-+ * could not be copied to the memory allocated to the data member.
-+ *
-+ * The property member can be:
-+ *  - %DRM_XE_VM_GET_PROPERTY_FAULTS
-+ */
-+struct drm_xe_vm_get_property {
-+	/** @extensions: Pointer to the first extension struct, if any */
-+	__u64 extensions;
-+
-+	/** @vm_id: The ID of the VM to query the properties of */
-+	__u32 vm_id;
-+
-+#define DRM_XE_VM_GET_PROPERTY_FAULTS		0
-+	/** @property: property to get */
-+	__u32 property;
-+
-+	/** @size: Size to allocate for @data */
-+	__u32 size;
-+
-+	/** @pad: MBZ */
-+	__u32 pad;
-+
-+	union {
-+		/** @data: Pointer to user-defined array of flexible size and type */
-+		__u64 data;
-+		/** @value: Return value for scalar queries */
-+		__u64 value;
-+	};
-+
-+	/** @reserved: MBZ */
-+	__u64 reserved[3];
-+};
-+
- /**
-  * struct drm_xe_exec_queue_create - Input of &DRM_IOCTL_XE_EXEC_QUEUE_CREATE
-  *
--- 
-2.43.0
+
+total: 0 errors, 2 warnings, 0 checks, 110 lines checked
+9361c3bc8eae drm/xe/xe_vm: Add per VM fault info
+-:75: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'uAPI:', use 'Link:' or 'Closes:' instead
+#75: 
+uAPI: https://github.com/intel/compute-runtime/pull/878
+
+-:170: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
+#170: FILE: drivers/gpu/drm/xe/xe_vm.c:604:
++	if (!e) {
++		drm_warn(&vm->xe->drm,
+
+total: 0 errors, 2 warnings, 0 checks, 203 lines checked
+1a18cdcbf389 drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
+-:87: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'uAPI:', use 'Link:' or 'Closes:' instead
+#87: 
+uAPI: https://github.com/intel/compute-runtime/pull/878
+
+-:221: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#221: FILE: drivers/gpu/drm/xe/xe_vm.c:4026:
++	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1] ||
++			     args->reserved[2]))
+
+total: 0 errors, 1 warnings, 1 checks, 140 lines checked
+
 
