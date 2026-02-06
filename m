@@ -4,27 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D501FEE20AB
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 15:29:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90874EE20B4
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 15:54:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 97C6B10E7FF;
-	Fri,  6 Feb 2026 15:29:36 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B062910E7FF;
- Fri,  6 Feb 2026 15:29:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0863778011992438419=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/vf=3A_Fix_exec_queue?=
- =?utf-8?q?_creation_during_post-migration_recovery?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tomasz Lis" <tomasz.lis@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 06 Feb 2026 15:29:35 -0000
-Message-ID: <177039177569.232294.10944340168035902823@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260206145334.674679-1-tomasz.lis@intel.com>
-In-Reply-To: <20260206145334.674679-1-tomasz.lis@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 073AD10E824;
+	Fri,  6 Feb 2026 15:54:01 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="FkZnrD/o";
+	dkim-atps=neutral
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA20810E812;
+ Fri,  6 Feb 2026 15:53:58 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 7A93640654;
+ Fri,  6 Feb 2026 15:53:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8AA6BC116C6;
+ Fri,  6 Feb 2026 15:53:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1770393238;
+ bh=ze8RjpWv8yTJ+WjIu3XKMrMfT9jYoz3Ax+Xr197aMQM=;
+ h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
+ b=FkZnrD/oa9GtTvMAdifPkms3Wa2QVBnFodZ7xitHhc1s9KkRwwcoYLF0ecmJSskB7
+ qeDNYKEQYz+l5Jcu3IxZBVpluiEeCGi5y6VjEYMLM3+KdVRzOnN7+/3BvItxTMM+Tz
+ JClwqsQv/MCqbahtuBihb6AijUCm3S7rIKYY3VIgb3140k6gtZsyyiUp7giy/FPqvQ
+ WxLb9xC9qzwJcB9LRPLhbkL3hYGTlu9jrv+9jwwpTFefk6U/jgDSGLvrlRyAaNCETU
+ erXhxJQ9whT6WQJUhkxpLOSCQygzOAyUC2J6h9/jl457b5Rcql9PmSSgT4ajwtk/oW
+ ZpzbSTyGfIvkw==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 06 Feb 2026 16:53:48 +0100
+Message-Id: <DG800TDA6OXQ.275PMMS19F1EX@kernel.org>
+Subject: Re: [PATCH -next v7 1/2] rust: clist: Add support to interface with
+ C linked lists
+Cc: "Joel Fernandes" <joelagnelf@nvidia.com>,
+ <linux-kernel@vger.kernel.org>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet"
+ <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
+ <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
+ "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
+ <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Helge Deller" <deller@gmx.de>, "Alice Ryhl" <aliceryhl@google.com>,
+ "Miguel Ojeda" <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>,
+ "Boqun Feng" <boqun.feng@gmail.com>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Trevor Gross" <tmgross@umich.edu>,
+ "John Hubbard" <jhubbard@nvidia.com>, "Alistair Popple"
+ <apopple@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>, "Edwin Peer"
+ <epeer@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>, "Andrea
+ Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>, "Zhi Wang"
+ <zhiw@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>, "Philipp Stanner"
+ <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>, "Daniel
+ Almeida" <daniel.almeida@collabora.com>, <joel@joelfernandes.org>,
+ <nouveau@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <rust-for-linux@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+ <amd-gfx@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <linux-fbdev@vger.kernel.org>
+To: "Gary Guo" <gary@garyguo.net>
+From: "Danilo Krummrich" <dakr@kernel.org>
+References: <20260206004110.1914814-1-joelagnelf@nvidia.com>
+ <20260206004110.1914814-2-joelagnelf@nvidia.com>
+ <DG7ZF1UT98RQ.3F42J3ULGV2OC@garyguo.net>
+In-Reply-To: <DG7ZF1UT98RQ.3F42J3ULGV2OC@garyguo.net>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +83,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0863778011992438419==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri Feb 6, 2026 at 4:25 PM CET, Gary Guo wrote:
+> On Fri Feb 6, 2026 at 12:41 AM GMT, Joel Fernandes wrote:
+>> diff --git a/drivers/gpu/Kconfig b/drivers/gpu/Kconfig
+>> index 22dd29cd50b5..2c3dec070645 100644
+>> --- a/drivers/gpu/Kconfig
+>> +++ b/drivers/gpu/Kconfig
+>> @@ -1,7 +1,14 @@
+>>  # SPDX-License-Identifier: GPL-2.0
+>> =20
+>> +config RUST_CLIST
+>> +	bool
+>> +	depends on RUST
+>> +	help
+>> +	  Rust abstraction for interfacing with C linked lists.
+>
+> I am not sure if we need extra config entry. This is fully generic so sho=
+uldn't
+> generate any code unless there is an user.
 
-== Series Details ==
+I also don't think we need a Kconfig for this.
 
-Series: drm/xe/vf: Fix exec queue creation during post-migration recovery
-URL   : https://patchwork.freedesktop.org/series/161287/
-State : success
+In any case, it shouln't be in drivers/gpu/Kconfig.
 
-== Summary ==
+>> +
+>>  config GPU_BUDDY
+>>  	bool
+>> +	select RUST_CLIST if RUST
 
-CI Bug Log - changes from xe-4519-d9124a6be3c7bdaeb14c3629013dde27929dbf04_BAT -> xe-pw-161287v1_BAT
-====================================================
+If we will have a Kconfig for this, this belongs in the GPU buddy patch.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8740 -> IGT_8741
-  * Linux: xe-4519-d9124a6be3c7bdaeb14c3629013dde27929dbf04 -> xe-pw-161287v1
-
-  IGT_8740: 36ebdc56b434bf330c44e96205f1fcefcf598651 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8741: 8741
-  xe-4519-d9124a6be3c7bdaeb14c3629013dde27929dbf04: d9124a6be3c7bdaeb14c3629013dde27929dbf04
-  xe-pw-161287v1: 161287v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161287v1/index.html
-
---===============0863778011992438419==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/vf: Fix exec queue creation during post-migration recovery</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161287/">https://patchwork.freedesktop.org/series/161287/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161287v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161287v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4519-d9124a6be3c7bdaeb14c3629013dde27929dbf04_BAT -&gt; xe-pw-161287v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8740 -&gt; IGT_8741</li>
-<li>Linux: xe-4519-d9124a6be3c7bdaeb14c3629013dde27929dbf04 -&gt; xe-pw-161287v1</li>
-</ul>
-<p>IGT_8740: 36ebdc56b434bf330c44e96205f1fcefcf598651 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8741: 8741<br />
-  xe-4519-d9124a6be3c7bdaeb14c3629013dde27929dbf04: d9124a6be3c7bdaeb14c3629013dde27929dbf04<br />
-  xe-pw-161287v1: 161287v1</p>
-
-</body>
-</html>
-
---===============0863778011992438419==--
+>>  	help
+>>  	  A page based buddy allocator for GPU memory.
