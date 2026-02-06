@@ -4,71 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C182EE20A6
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 14:08:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73DBAEE20A6
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Feb 2026 14:12:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4979610E7B8;
-	Fri,  6 Feb 2026 14:08:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="m4RMr14q";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7621210E7B8;
- Fri,  6 Feb 2026 14:08:50 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 59BB960122;
- Fri,  6 Feb 2026 14:08:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 831ACC19421;
- Fri,  6 Feb 2026 14:08:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1770386929;
- bh=+lIi82NYDZHy3722msFtnCnh1tdb9jn2hqegryuZsv4=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=m4RMr14qRzstPqItXkr/5OrxYDpSQG71tOjhHOic63cYTk2SvrNErOgO5dHJfp3e+
- w7mK5YUkXGNJsdh25Qt6kj+8LUHS80HPi0P5lONF4st4Nco+/Sofu1DKJuGM4rIyVK
- ++miMRAzAaKZ+aYUde9ZK/SSUFkNgF7GDYMJGbJidLXVGRq/X/9SvV68gm3Mm1OolL
- UQxfwaFyVy1yBltxH4sPXnnMsuuaLmfTlQtUHylW1jIt+1zqA6J+LKbJolNgvTMPSR
- kCEyA7JrZKZFYDLSIcn+HvgY63cZPo4nIIpoFQ/M8EaON7rZbm/BPoEFaso2y0rDs2
- OB1otDCYh9zwQ==
-Date: Fri, 6 Feb 2026 15:08:46 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- kernel@collabora.com, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org, Marius Vlad <marius.vlad@collabora.com>
-Subject: Re: [PATCH v7 03/22] drm: Add enum conversions between
- DRM_COLOR_FORMAT and HDMI_COLORSPACE
-Message-ID: <20260206-angelic-crimson-bug-aaab40@houat>
-References: <20260121-color-format-v7-0-ef790dae780c@collabora.com>
- <20260121-color-format-v7-3-ef790dae780c@collabora.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33CE810E7BA;
+	Fri,  6 Feb 2026 14:12:13 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D62810E7BA;
+ Fri,  6 Feb 2026 14:12:11 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7056932304318393848=="
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="7kyo6gozxaybulie"
-Content-Disposition: inline
-In-Reply-To: <20260121-color-format-v7-3-ef790dae780c@collabora.com>
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/i915/display=3A_change_?=
+ =?utf-8?q?pipe_allocation_order_for_discrete_platforms_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 06 Feb 2026 14:12:11 -0000
+Message-ID: <177038713162.232293.10821002839583209209@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260206123715.234245-1-jani.nikula@intel.com>
+In-Reply-To: <20260206123715.234245-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,116 +36,145 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
---7kyo6gozxaybulie
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v7 03/22] drm: Add enum conversions between
- DRM_COLOR_FORMAT and HDMI_COLORSPACE
+--===============7056932304318393848==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jan 21, 2026 at 03:45:10PM +0100, Nicolas Frattaroli wrote:
-> While the two enums have similar values, they're not identical, and
-> HDMI's enum is defined as per the HDMI standard.
->=20
-> Add a simple conversion function from DRM to HDMI. Unexpected inputs
-> aren't handled in any clever way, DRM_COLOR_FORMAT_AUTO and any other
-> value that doesn't cleanly map to HDMI just gets returned as
-> HDMI_COLORSPACE_RGB.
->=20
-> Add a second conversion function that gets a DRM_COLOR_FORMAT from an
-> HDMI_COLORSPACE as well. In this case, reserved HDMI values that can't
-> be converted will result in an -EINVAL return value.
->=20
-> Co-developed-by: Marius Vlad <marius.vlad@collabora.com>
-> Signed-off-by: Marius Vlad <marius.vlad@collabora.com>
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->  include/drm/drm_connector.h | 54 +++++++++++++++++++++++++++++++++++++++=
-++++++
->  1 file changed, 54 insertions(+)
->=20
-> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> index b5604dca728a..ffeb42f3b4a3 100644
-> --- a/include/drm/drm_connector.h
-> +++ b/include/drm/drm_connector.h
-> @@ -2612,6 +2612,60 @@ int drm_connector_attach_color_format_property(str=
-uct drm_connector *connector);
-> =20
->  const char *drm_get_color_format_name(enum drm_color_format color_fmt);
-> =20
-> +/**
-> + * drm_color_format_to_hdmi_colorspace - convert DRM color format to HDMI
-> + * @fmt: the &enum drm_color_format to convert
-> + *
-> + * Convert a given &enum drm_color_format to an equivalent
-> + * &enum hdmi_colorspace. For non-representable values and
-> + * %DRM_COLOR_FORMAT_AUTO, the value %HDMI_COLORSPACE_RGB is returned.
-> + *
-> + * Returns: the corresponding &enum hdmi_colorspace value
-> + */
-> +static inline enum hdmi_colorspace __pure
-> +drm_color_format_to_hdmi_colorspace(enum drm_color_format fmt)
-> +{
-> +	switch (fmt) {
-> +	default:
-> +	case DRM_COLOR_FORMAT_AUTO:
-> +	case DRM_COLOR_FORMAT_RGB444:
-> +		return HDMI_COLORSPACE_RGB;
+== Series Details ==
 
-I don't think that's correct. What auto ends up as totally depends on
-the atomic state it comes with.
+Series: drm/i915/display: change pipe allocation order for discrete platforms (rev2)
+URL   : https://patchwork.freedesktop.org/series/157782/
+State : failure
 
-At the very least, you should output a warning there, because that case
-should never happen.
+== Summary ==
 
-> +	case DRM_COLOR_FORMAT_YCBCR444:
-> +		return HDMI_COLORSPACE_YUV444;
-> +	case DRM_COLOR_FORMAT_YCBCR422:
-> +		return HDMI_COLORSPACE_YUV422;
-> +	case DRM_COLOR_FORMAT_YCBCR420:
-> +		return HDMI_COLORSPACE_YUV420;
-> +	}
-> +}
-> +
-> +/**
-> + * drm_color_format_from_hdmi_colorspace - convert HDMI color format to =
-DRM
-> + * @fmt: the &enum hdmi_colorspace to convert
-> + *
-> + * Convert a given &enum hdmi_colorspace to an equivalent
-> + * &enum drm_color_format. For non-representable values,
-> + * %-EINVAL is returned.
-> + *
-> + * Returns: the corresponding &enum drm_color_format value, or %-EINVAL
-> + */
-> +static inline enum drm_color_format __pure
-> +drm_color_format_from_hdmi_colorspace(enum hdmi_colorspace fmt)
-> +{
-> +	switch (fmt) {
-> +	default:
-> +		return -EINVAL;
+CI Bug Log - changes from xe-4519-d9124a6be3c7bdaeb14c3629013dde27929dbf04_BAT -> xe-pw-157782v2_BAT
+====================================================
 
-Wait, what?
+Summary
+-------
 
--EINVAL is not a valid value for your enum.
+  **FAILURE**
 
-Maxime
+  Serious unknown changes coming with xe-pw-157782v2_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-157782v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
---7kyo6gozxaybulie
-Content-Type: application/pgp-signature; name="signature.asc"
+  
 
------BEGIN PGP SIGNATURE-----
+Participating hosts (12 -> 12)
+------------------------------
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaYX17QAKCRAnX84Zoj2+
-dhqKAX9uCw/1iLG+7nCh7iWCwrhqxfm0JVwIRRQh/zjRf8Wet9GKZ9b66ZGwYC8M
-tXJZuowBgKH3e2XNrltRlENhX1pPWeDhYlezTP12g5E34y5OGMYep2YcNBUO0/Ck
-6YOwGJvwTQ==
-=PPqS
------END PGP SIGNATURE-----
+  No changes in participating hosts
 
---7kyo6gozxaybulie--
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-157782v2_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_module_load@load:
+    - bat-dg2-oem2:       [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4519-d9124a6be3c7bdaeb14c3629013dde27929dbf04/bat-dg2-oem2/igt@xe_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v2/bat-dg2-oem2/igt@xe_module_load@load.html
+    - bat-bmg-2:          [PASS][3] -> [ABORT][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4519-d9124a6be3c7bdaeb14c3629013dde27929dbf04/bat-bmg-2/igt@xe_module_load@load.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v2/bat-bmg-2/igt@xe_module_load@load.html
+    - bat-bmg-3:          [PASS][5] -> [ABORT][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4519-d9124a6be3c7bdaeb14c3629013dde27929dbf04/bat-bmg-3/igt@xe_module_load@load.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v2/bat-bmg-3/igt@xe_module_load@load.html
+    - bat-bmg-1:          [PASS][7] -> [ABORT][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4519-d9124a6be3c7bdaeb14c3629013dde27929dbf04/bat-bmg-1/igt@xe_module_load@load.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v2/bat-bmg-1/igt@xe_module_load@load.html
+
+  
+
+
+Build changes
+-------------
+
+  * Linux: xe-4519-d9124a6be3c7bdaeb14c3629013dde27929dbf04 -> xe-pw-157782v2
+
+  IGT_8740: 36ebdc56b434bf330c44e96205f1fcefcf598651 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4519-d9124a6be3c7bdaeb14c3629013dde27929dbf04: d9124a6be3c7bdaeb14c3629013dde27929dbf04
+  xe-pw-157782v2: 157782v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v2/index.html
+
+--===============7056932304318393848==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: change pipe allocation order for discrete platforms (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157782/">https://patchwork.freedesktop.org/series/157782/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4519-d9124a6be3c7bdaeb14c3629013dde27929dbf04_BAT -&gt; xe-pw-157782v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-157782v2_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-157782v2_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-157782v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4519-d9124a6be3c7bdaeb14c3629013dde27929dbf04/bat-dg2-oem2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v2/bat-dg2-oem2/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4519-d9124a6be3c7bdaeb14c3629013dde27929dbf04/bat-bmg-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v2/bat-bmg-2/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4519-d9124a6be3c7bdaeb14c3629013dde27929dbf04/bat-bmg-3/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v2/bat-bmg-3/igt@xe_module_load@load.html">ABORT</a></li>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4519-d9124a6be3c7bdaeb14c3629013dde27929dbf04/bat-bmg-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v2/bat-bmg-1/igt@xe_module_load@load.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4519-d9124a6be3c7bdaeb14c3629013dde27929dbf04 -&gt; xe-pw-157782v2</li>
+</ul>
+<p>IGT_8740: 36ebdc56b434bf330c44e96205f1fcefcf598651 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4519-d9124a6be3c7bdaeb14c3629013dde27929dbf04: d9124a6be3c7bdaeb14c3629013dde27929dbf04<br />
+  xe-pw-157782v2: 157782v2</p>
+
+</body>
+</html>
+
+--===============7056932304318393848==--
