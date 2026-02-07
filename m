@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 698B2EE6B6C
-	for <intel-xe@archiver.kernel.org>; Sat,  7 Feb 2026 00:14:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FC0FEE6B6C
+	for <intel-xe@archiver.kernel.org>; Sat,  7 Feb 2026 00:14:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2169110E1BB;
-	Sat,  7 Feb 2026 00:14:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E97210E1BB;
+	Sat,  7 Feb 2026 00:14:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gcmTQRbn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D0F259QV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58D2A10E1BB
- for <intel-xe@lists.freedesktop.org>; Sat,  7 Feb 2026 00:14:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91C4C10E956
+ for <intel-xe@lists.freedesktop.org>; Sat,  7 Feb 2026 00:14:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770423280; x=1801959280;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=j6Twjb+R5DypLXwfE5YioYtQJZcHMu/1fn+2t2ewJYk=;
- b=gcmTQRbnX1GkEYWX+0+KhFLMc3C+RrQ04MsG5pWMZNjyHO/XTapHLTcB
- aX2c9SbNjvSL21jSZbwiq9gSRslshJLSq/NAPa7Dh51MALmPzLUg33tYX
- FXQgKb5RfC2fs4f4IBodHfLC5x+ZHNhUPy/YVUGYREu50Yq66CRHZUNTM
- QUl9XeTUJ1JCIR4hc6MMEhibJA0P6a6vDaOc4r9T39IBzoJ08KkN4Sita
- lQMxJZ58lCxJdmVRa9ldMT85+qNO4wNOPVzhwbFGUKNpEQjZycvyMrtSo
- DwsFDAK85matzHOFeYGhdyumvVZutdp48gdCsOmTcB9D0OA9jWe/3+VhE Q==;
-X-CSE-ConnectionGUID: kjZKsaQbS6SkE+Zks62VlA==
-X-CSE-MsgGUID: j9pouGFnQQCKs7pQqKzsmw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="59202685"
-X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; d="scan'208";a="59202685"
+ t=1770423292; x=1801959292;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=mUy+IW6BiD+hzXFBZsSb31gOk5xquozll6k9FvxtYiU=;
+ b=D0F259QV7gqwzqOcOpn8EfY7airn34wFn/q75HY3gUBkD3bsJPH7g2yi
+ 3RX+52ICnDu7Pxl9lKhQBU3TYoxJLVi1+ceKWWAspTtFxGBHZfljTZxec
+ uWFSb/XNQIQEknfvH79hzGmpBAJlf0D41nUKGwbP6/kta/yDVjnkSiQzD
+ J1l0B9JZyyvoW/5vkuI2g9hpTRiN4GT2IPaMjV997RXl5B8nGn8nV3lAa
+ UVWBfEkWzq3CPA/AXxyzrWIsZeIOisMFNl92HkKBmqfQY+FMPY9Tu5ZWQ
+ 6mzZQyqtZ4ssBzmsRiI8wQxLETxEq/uG2/S/aSAOmuMbGx+dXGuLRkf8B w==;
+X-CSE-ConnectionGUID: gJas6z72RhmiNpzhByz5zA==
+X-CSE-MsgGUID: QLdmGTGtTFOMWWHhulZTrQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="59202691"
+X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; d="scan'208";a="59202691"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 16:14:39 -0800
-X-CSE-ConnectionGUID: DM8J+C8ASQO+sBtEK9a40w==
-X-CSE-MsgGUID: FpMUeafNQViC0lAljQCDpg==
+ 06 Feb 2026 16:14:51 -0800
+X-CSE-ConnectionGUID: H/es5Z9iTuSi/YD+sPA44A==
+X-CSE-MsgGUID: jmX0WslrTYWOxMCdWoHDPg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; d="scan'208";a="210807413"
+X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; d="scan'208";a="210807442"
 Received: from chu13-desk.fm.intel.com ([10.80.209.210])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 16:14:39 -0800
+ 06 Feb 2026 16:14:52 -0800
 From: Austin Hu <austin.hu@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/2] drm/i915/color: Add 3D LUT to color pipeline since Lunar
- Lake.
-Date: Fri,  6 Feb 2026 16:12:49 -0800
-Message-Id: <20260207001250.2448612-1-austin.hu@intel.com>
+Subject: [PATCH 2/2] drm/i915/color: Attach the 3D LUT block to required DE
+ Plane.
+Date: Fri,  6 Feb 2026 16:12:50 -0800
+Message-Id: <20260207001250.2448612-2-austin.hu@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260207001250.2448612-1-austin.hu@intel.com>
+References: <20260207001250.2448612-1-austin.hu@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -64,82 +66,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Verified on PTL, where IGT case kms_color_pipeline passes for PipeA
-and PipeB.
+Or attach to Pipe directly for the unsupported Plane(s).
 
 Signed-off-by: Austin Hu <austin.hu@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_color_pipeline.c | 5 ++---
- drivers/gpu/drm/i915/display/intel_display_device.c | 6 ++++++
- drivers/gpu/drm/i915/display/intel_display_device.h | 2 ++
- drivers/gpu/drm/i915/display/intel_display_regs.h   | 1 +
- 4 files changed, 11 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_color.c    | 29 ++++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_color.h    | 11 ++-----
+ drivers/gpu/drm/i915/display/intel_plane.c    |  4 +--
+ .../drm/i915/display/skl_universal_plane.c    |  2 +-
+ 4 files changed, 30 insertions(+), 16 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color_pipeline.c b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-index 04af552b3..d26b0f134 100644
---- a/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-+++ b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
-@@ -47,9 +47,8 @@ int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_en
- 	drm_colorop_set_next_property(prev_op, &colorop->base);
- 	prev_op = &colorop->base;
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+index e79506554..dff33c9c1 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -4090,7 +4090,10 @@ static void glk_load_lut_3d(struct intel_dsb *dsb,
+ 	intel_de_write_dsb(display, dsb, LUT_3D_INDEX(pipe), 0);
+ }
  
--	if (DISPLAY_VER(display) >= 35 &&
--	    intel_color_crtc_has_3dlut(display, pipe) &&
--	    plane->type == DRM_PLANE_TYPE_PRIMARY) {
-+	if ((DISPLAY_VER(display) >= 15) && HAS_3D_LUT(display) &&
-+			intel_color_crtc_has_3dlut(display, pipe)) {
- 		colorop = intel_colorop_create(INTEL_PLANE_CB_3DLUT);
- 
- 		ret = drm_plane_colorop_3dlut_init(dev, &colorop->base, plane, 17,
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index 1170afaa8..765fd08df 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -1903,6 +1903,12 @@ static void __intel_display_device_info_runtime_init(struct intel_display *displ
- 				if (display_runtime->num_scalers[pipe])
- 					display_runtime->num_scalers[pipe] = 1;
- 		}
-+
-+		if (REG_FIELD_GET(XE2LPD_DE_CAP_3DLUT_MASK, cap) ==
-+		    XE2LPD_DE_CAP_3DLUT_REMOVED)
-+			display_runtime->has_3d_lut = false;
-+		else
-+			display_runtime->has_3d_lut = true;
+-static void glk_lut_3d_commit(struct intel_dsb *dsb, struct intel_crtc *crtc, bool enable)
++static void glk_lut_3d_commit(struct intel_dsb *dsb,
++		struct intel_crtc *crtc,
++		struct intel_plane *plane,
++		bool enable)
+ {
+ 	struct intel_display *display = to_intel_display(crtc);
+ 	enum pipe pipe = crtc->pipe;
+@@ -4102,8 +4105,25 @@ static void glk_lut_3d_commit(struct intel_dsb *dsb, struct intel_crtc *crtc, bo
+ 		return;
  	}
  
- 	if (DISPLAY_VER(display) >= 30)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index b559ef43d..1dc24a86b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -171,6 +171,7 @@ struct intel_display_platforms {
- #define HAS_DSC(__display)		(DISPLAY_RUNTIME_INFO(__display)->has_dsc)
- #define HAS_DSC_3ENGINES(__display)	(DISPLAY_VERx100(__display) == 1401 && HAS_DSC(__display))
- #define HAS_DSC_MST(__display)		(DISPLAY_VER(__display) >= 12 && HAS_DSC(__display))
-+#define HAS_3D_LUT(__display)		(DISPLAY_RUNTIME_INFO(__display)->has_3d_lut)
- #define HAS_FBC(__display)		(DISPLAY_RUNTIME_INFO(__display)->fbc_mask != 0)
- #define HAS_FBC_DIRTY_RECT(__display)	(DISPLAY_VER(__display) >= 30)
- #define HAS_FPGA_DBG_UNCLAIMED(__display)	(DISPLAY_INFO(__display)->has_fpga_dbg)
-@@ -277,6 +278,7 @@ struct intel_display_runtime_info {
- 	bool has_hdcp;
- 	bool has_dmc;
- 	bool has_dsc;
-+	bool has_3d_lut;
- 	bool edp_typec_support;
- 	bool has_dbuf_overlap_detection;
- };
-diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 9d71e26a4..016bd2846 100644
---- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -1538,6 +1538,7 @@
+-	if (enable)
+-		val = LUT_3D_ENABLE | LUT_3D_READY | LUT_3D_BIND_PLANE_1;
++	if (enable) {
++		val = LUT_3D_ENABLE | LUT_3D_READY;
++
++		switch (plane->id) {
++		case PLANE_1:
++			val |= LUT_3D_BIND_PLANE_1;
++			break;
++		case PLANE_2:
++			val |= LUT_3D_BIND_PLANE_2;
++			break;
++		case PLANE_3:
++			val |= LUT_3D_BIND_PLANE_3;
++			break;
++		default:
++			/* Attached the 3D LUT block to Pipe. */
++			val |= LUT_3D_BIND_PIPE;
++			break;
++		}
++	}
  
- #define XE2LPD_DE_CAP			_MMIO(0x41100)
- #define   XE2LPD_DE_CAP_3DLUT_MASK	REG_GENMASK(31, 30)
-+#define   XE2LPD_DE_CAP_3DLUT_REMOVED	1
- #define   XE2LPD_DE_CAP_DSC_MASK	REG_GENMASK(29, 28)
- #define   XE2LPD_DE_CAP_DSC_REMOVED	1
- #define   XE2LPD_DE_CAP_SCALER_MASK	REG_GENMASK(27, 26)
+ 	intel_de_write_dsb(display, dsb, LUT_3D_CTL(pipe), val);
+ }
+@@ -4238,13 +4258,14 @@ static const struct intel_color_funcs ilk_color_funcs = {
+ };
+ 
+ void intel_color_plane_commit_arm(struct intel_dsb *dsb,
++				  struct intel_plane *plane,
+ 				  const struct intel_plane_state *plane_state)
+ {
+ 	struct intel_display *display = to_intel_display(plane_state);
+ 	struct intel_crtc *crtc = to_intel_crtc(plane_state->uapi.crtc);
+ 
+ 	if (crtc && intel_color_crtc_has_3dlut(display, crtc->pipe))
+-		glk_lut_3d_commit(dsb, crtc, !!plane_state->hw.lut_3d);
++		glk_lut_3d_commit(dsb, crtc, plane, !!plane_state->hw.lut_3d);
+ }
+ 
+ static void
+diff --git a/drivers/gpu/drm/i915/display/intel_color.h b/drivers/gpu/drm/i915/display/intel_color.h
+index c21b9bdf7..bc8192d75 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.h
++++ b/drivers/gpu/drm/i915/display/intel_color.h
+@@ -7,15 +7,7 @@
+ #define __INTEL_COLOR_H__
+ 
+ #include <linux/types.h>
+-
+-struct intel_atomic_state;
+-struct intel_crtc_state;
+-struct intel_crtc;
+-struct intel_display;
+-struct intel_dsb;
+-struct intel_plane_state;
+-struct drm_property_blob;
+-enum pipe;
++#include "intel_display_types.h"
+ 
+ void intel_color_init_hooks(struct intel_display *display);
+ int intel_color_init(struct intel_display *display);
+@@ -45,6 +37,7 @@ void intel_color_assert_luts(const struct intel_crtc_state *crtc_state);
+ void intel_color_plane_program_pipeline(struct intel_dsb *dsb,
+ 					const struct intel_plane_state *plane_state);
+ void intel_color_plane_commit_arm(struct intel_dsb *dsb,
++				  struct intel_plane *plane,
+ 				  const struct intel_plane_state *plane_state);
+ bool intel_color_crtc_has_3dlut(struct intel_display *display, enum pipe pipe);
+ #endif /* __INTEL_COLOR_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
+index ab6a58530..305e8e60f 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_plane.c
+@@ -345,11 +345,11 @@ intel_plane_colorop_replace_blob(struct intel_plane_state *plane_state,
+ 	if (intel_colorop->id == INTEL_PLANE_CB_CSC)
+ 		return drm_property_replace_blob(&plane_state->hw.ctm, blob);
+ 	else if (intel_colorop->id == INTEL_PLANE_CB_PRE_CSC_LUT)
+-		return	drm_property_replace_blob(&plane_state->hw.degamma_lut, blob);
++		return drm_property_replace_blob(&plane_state->hw.degamma_lut, blob);
+ 	else if (intel_colorop->id == INTEL_PLANE_CB_POST_CSC_LUT)
+ 		return drm_property_replace_blob(&plane_state->hw.gamma_lut, blob);
+ 	else if (intel_colorop->id == INTEL_PLANE_CB_3DLUT)
+-		return	drm_property_replace_blob(&plane_state->hw.lut_3d, blob);
++		return drm_property_replace_blob(&plane_state->hw.lut_3d, blob);
+ 
+ 	return false;
+ }
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index ee8e24497..b68e222c3 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -1673,7 +1673,7 @@ icl_plane_update_arm(struct intel_dsb *dsb,
+ 
+ 	icl_plane_update_sel_fetch_arm(dsb, plane, crtc_state, plane_state);
+ 
+-	intel_color_plane_commit_arm(dsb, plane_state);
++	intel_color_plane_commit_arm(dsb, plane, plane_state);
+ 
+ 	/*
+ 	 * In order to have FBC for fp16 formats pixel normalizer block must be
 -- 
 2.34.1
 
