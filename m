@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FC0FEE6B6C
-	for <intel-xe@archiver.kernel.org>; Sat,  7 Feb 2026 00:14:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 802EBEE6B6C
+	for <intel-xe@archiver.kernel.org>; Sat,  7 Feb 2026 00:23:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E97210E1BB;
-	Sat,  7 Feb 2026 00:14:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3976810E1BB;
+	Sat,  7 Feb 2026 00:23:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D0F259QV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CqIiizZU";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 91C4C10E956
- for <intel-xe@lists.freedesktop.org>; Sat,  7 Feb 2026 00:14:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AC7E10E1BB
+ for <intel-xe@lists.freedesktop.org>; Sat,  7 Feb 2026 00:23:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770423292; x=1801959292;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=mUy+IW6BiD+hzXFBZsSb31gOk5xquozll6k9FvxtYiU=;
- b=D0F259QV7gqwzqOcOpn8EfY7airn34wFn/q75HY3gUBkD3bsJPH7g2yi
- 3RX+52ICnDu7Pxl9lKhQBU3TYoxJLVi1+ceKWWAspTtFxGBHZfljTZxec
- uWFSb/XNQIQEknfvH79hzGmpBAJlf0D41nUKGwbP6/kta/yDVjnkSiQzD
- J1l0B9JZyyvoW/5vkuI2g9hpTRiN4GT2IPaMjV997RXl5B8nGn8nV3lAa
- UVWBfEkWzq3CPA/AXxyzrWIsZeIOisMFNl92HkKBmqfQY+FMPY9Tu5ZWQ
- 6mzZQyqtZ4ssBzmsRiI8wQxLETxEq/uG2/S/aSAOmuMbGx+dXGuLRkf8B w==;
-X-CSE-ConnectionGUID: gJas6z72RhmiNpzhByz5zA==
-X-CSE-MsgGUID: QLdmGTGtTFOMWWHhulZTrQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="59202691"
-X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; d="scan'208";a="59202691"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 16:14:51 -0800
-X-CSE-ConnectionGUID: H/es5Z9iTuSi/YD+sPA44A==
-X-CSE-MsgGUID: jmX0WslrTYWOxMCdWoHDPg==
+ t=1770423788; x=1801959788;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vZMScRabhY9YT5Y2rcY3aUG21/5D1gyemH5lFEEvPVo=;
+ b=CqIiizZUo3YzUb8XjtcZdS/R1+Ct6A8m0L7BvUBHMAJU8o5HvnzpV8jw
+ 1Pp//IeIMsm//MBSr7ZjYHZ9toaPtXAWV57BNsSVHS4wSN0UuOwA4LmJf
+ HH2OuvSaKOw4qE2a8PJwtBT4JDwS4KH1Q4IDH5OnJ9cbtgVRHTyJqVtXT
+ 0OYMxBGVNgwvwLFjeVo9h84PHc0Tzb7rskYRV79QM35ShygfP5UbQqyaF
+ QbQuJs2GMU1rsvkZ+lOAgb+2rqYsa6XHwTJlWZZH8MFzCb9e8kWzt/0pE
+ GEcVWHT83PD0lbS1CsUNuxkjIXQwdF2iG7KZOk0YE/DMI9Lt5xbf7PGb+ w==;
+X-CSE-ConnectionGUID: tnLuG0i9QO62kWxQRVEAMw==
+X-CSE-MsgGUID: qBMZlo6GRQqWeF/PyRzlhw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="70649427"
+X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; d="scan'208";a="70649427"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2026 16:23:07 -0800
+X-CSE-ConnectionGUID: cbP8GYQLR0edSDhMdKK59g==
+X-CSE-MsgGUID: mdtOqoBpTMqCMuO6lRKWyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; d="scan'208";a="210807442"
-Received: from chu13-desk.fm.intel.com ([10.80.209.210])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Feb 2026 16:14:52 -0800
-From: Austin Hu <austin.hu@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; d="scan'208";a="215530593"
+Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2026 16:23:06 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/i915/color: Attach the 3D LUT block to required DE
- Plane.
-Date: Fri,  6 Feb 2026 16:12:50 -0800
-Message-Id: <20260207001250.2448612-2-austin.hu@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260207001250.2448612-1-austin.hu@intel.com>
-References: <20260207001250.2448612-1-austin.hu@intel.com>
+Cc: matthew.d.roper@intel.com
+Subject: [PATCH] drm/xe/reg_sr: Add debugfs to verify status of reg_sr
+ programming
+Date: Fri,  6 Feb 2026 16:23:05 -0800
+Message-ID: <20260207002304.585103-2-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,136 +65,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Or attach to Pipe directly for the unsupported Plane(s).
+When applying save-restore register programming for workarounds, tuning
+settings, and general device configuration we assume the programming was
+successful.  However there are a number of cases where the desired
+reg_sr programming can become lost:
 
-Signed-off-by: Austin Hu <austin.hu@intel.com>
+ - workarounds implemented on the wrong RTP table might not get
+   saved/restored at the right time leading to, for example, failure to
+   re-apply the programming after engine resets
+ - some hardware registers become "locked" and can no longer be updated
+   after firmware or the driver finishes initializing them
+ - sometimes the hardware teams just made a mistake when documenting the
+   register and/or bits that needed to be programmed
+
+Add a debugfs entry that will read back the registers referenced on a
+GT's save-restore lists and print any cases where the desired
+programming is no longer in effect.  Such cases might indicate the
+presence of a driver/firmware bug, might indicate that the documentation
+we were following has a mistake, or might be benign (occasionally
+registers have broken read-back capability preventing verification, but
+previous writes were still successful and effective).
+
+For now we only verify the GT and engine reg_sr lists.  Verifying the
+LRC list will require checking the expected programming against the
+default_lrc contents, not the live registers (which may not reflect the
+reg_sr programming if no context is actively running).
+
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_color.c    | 29 ++++++++++++++++---
- drivers/gpu/drm/i915/display/intel_color.h    | 11 ++-----
- drivers/gpu/drm/i915/display/intel_plane.c    |  4 +--
- .../drm/i915/display/skl_universal_plane.c    |  2 +-
- 4 files changed, 30 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_debugfs.c | 26 +++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_reg_sr.c     | 34 ++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_reg_sr.h     |  3 +++
+ 3 files changed, 63 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index e79506554..dff33c9c1 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -4090,7 +4090,10 @@ static void glk_load_lut_3d(struct intel_dsb *dsb,
- 	intel_de_write_dsb(display, dsb, LUT_3D_INDEX(pipe), 0);
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index 4363bc9c3606..aa43427a9f4b 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -155,6 +155,30 @@ static int register_save_restore(struct xe_gt *gt, struct drm_printer *p)
+ 	return 0;
  }
  
--static void glk_lut_3d_commit(struct intel_dsb *dsb, struct intel_crtc *crtc, bool enable)
-+static void glk_lut_3d_commit(struct intel_dsb *dsb,
-+		struct intel_crtc *crtc,
-+		struct intel_plane *plane,
-+		bool enable)
- {
- 	struct intel_display *display = to_intel_display(crtc);
- 	enum pipe pipe = crtc->pipe;
-@@ -4102,8 +4105,25 @@ static void glk_lut_3d_commit(struct intel_dsb *dsb, struct intel_crtc *crtc, bo
- 		return;
- 	}
- 
--	if (enable)
--		val = LUT_3D_ENABLE | LUT_3D_READY | LUT_3D_BIND_PLANE_1;
-+	if (enable) {
-+		val = LUT_3D_ENABLE | LUT_3D_READY;
++/*
++ * Check the registers referenced on a save-restore list and report any
++ * save-restore entries that did not get applied.
++ */
++static int register_save_restore_check(struct xe_gt *gt, struct drm_printer *p)
++{
++	struct xe_hw_engine *hwe;
++	enum xe_hw_engine_id id;
 +
-+		switch (plane->id) {
-+		case PLANE_1:
-+			val |= LUT_3D_BIND_PLANE_1;
-+			break;
-+		case PLANE_2:
-+			val |= LUT_3D_BIND_PLANE_2;
-+			break;
-+		case PLANE_3:
-+			val |= LUT_3D_BIND_PLANE_3;
-+			break;
-+		default:
-+			/* Attached the 3D LUT block to Pipe. */
-+			val |= LUT_3D_BIND_PIPE;
-+			break;
-+		}
++	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FORCEWAKE_ALL)) {
++		drm_printf(p, "ERROR: Could not acquire forcewake\n");
++		return -ETIMEDOUT;
 +	}
- 
- 	intel_de_write_dsb(display, dsb, LUT_3D_CTL(pipe), val);
- }
-@@ -4238,13 +4258,14 @@ static const struct intel_color_funcs ilk_color_funcs = {
++
++	xe_reg_sr_readback_check(&gt->reg_sr, gt, p);
++	for_each_hw_engine(hwe, gt, id)
++		xe_reg_sr_readback_check(&hwe->reg_sr, gt, p);
++
++	/* TODO: Check hwe->reg_lrc against contents of default_lrc. */
++
++	return 0;
++}
++
+ static int rcs_default_lrc(struct xe_gt *gt, struct drm_printer *p)
+ {
+ 	xe_lrc_dump_default(p, gt, XE_ENGINE_CLASS_RENDER);
+@@ -209,6 +233,8 @@ static const struct drm_info_list vf_safe_debugfs_list[] = {
+ 	{ "default_lrc_vecs", .show = xe_gt_debugfs_show_with_rpm, .data = vecs_default_lrc },
+ 	{ "hwconfig", .show = xe_gt_debugfs_show_with_rpm, .data = hwconfig },
+ 	{ "pat_sw_config", .show = xe_gt_debugfs_simple_show, .data = xe_pat_dump_sw_config },
++	{ "register-save-restore-check",
++		.show = xe_gt_debugfs_show_with_rpm, .data = register_save_restore_check },
  };
  
- void intel_color_plane_commit_arm(struct intel_dsb *dsb,
-+				  struct intel_plane *plane,
- 				  const struct intel_plane_state *plane_state)
- {
- 	struct intel_display *display = to_intel_display(plane_state);
- 	struct intel_crtc *crtc = to_intel_crtc(plane_state->uapi.crtc);
- 
- 	if (crtc && intel_color_crtc_has_3dlut(display, crtc->pipe))
--		glk_lut_3d_commit(dsb, crtc, !!plane_state->hw.lut_3d);
-+		glk_lut_3d_commit(dsb, crtc, plane, !!plane_state->hw.lut_3d);
+ /* everything else should be added here */
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
+index d3e13ea33123..37555d5211d8 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr.c
++++ b/drivers/gpu/drm/xe/xe_reg_sr.c
+@@ -204,3 +204,37 @@ void xe_reg_sr_dump(struct xe_reg_sr *sr, struct drm_printer *p)
+ 			   str_yes_no(entry->reg.masked),
+ 			   str_yes_no(entry->reg.mcr));
  }
++
++static u32 readback_reg(struct xe_gt *gt, struct xe_reg reg)
++{
++	struct xe_reg_mcr mcr_reg = to_xe_reg_mcr(reg);
++
++	if (reg.mcr)
++		return xe_gt_mcr_unicast_read_any(gt, mcr_reg);
++	else
++		return xe_mmio_read32(&gt->mmio, reg);
++}
++
++/**
++ * xe_reg_sr_readback_check() - Readback registers referenced in save/restore
++ *     entries and check whether the programming is in place.
++ * @sr: Save/restore entries
++ * @gt: GT to read register from
++ * @p: DRM printer to report discrepancies on
++ */
++void xe_reg_sr_readback_check(struct xe_reg_sr *sr,
++			      struct xe_gt *gt,
++			      struct drm_printer *p)
++{
++	struct xe_reg_sr_entry *entry;
++	unsigned long offset;
++
++	xa_for_each(&sr->xa, offset, entry) {
++		u32 val = readback_reg(gt, entry->reg);
++		u32 mask = entry->clr_bits | entry->set_bits;
++
++		if ((val & mask) != entry->set_bits)
++			drm_printf(p, "%#8lx & %#10x :: expected %#10x got %#10x\n",
++				   offset, mask, entry->set_bits, val & mask);
++	}
++}
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr.h b/drivers/gpu/drm/xe/xe_reg_sr.h
+index 51fbba423e27..cd133a09aa9b 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr.h
++++ b/drivers/gpu/drm/xe/xe_reg_sr.h
+@@ -19,6 +19,9 @@ struct drm_printer;
  
- static void
-diff --git a/drivers/gpu/drm/i915/display/intel_color.h b/drivers/gpu/drm/i915/display/intel_color.h
-index c21b9bdf7..bc8192d75 100644
---- a/drivers/gpu/drm/i915/display/intel_color.h
-+++ b/drivers/gpu/drm/i915/display/intel_color.h
-@@ -7,15 +7,7 @@
- #define __INTEL_COLOR_H__
+ int xe_reg_sr_init(struct xe_reg_sr *sr, const char *name, struct xe_device *xe);
+ void xe_reg_sr_dump(struct xe_reg_sr *sr, struct drm_printer *p);
++void xe_reg_sr_readback_check(struct xe_reg_sr *sr,
++			      struct xe_gt *gt,
++			      struct drm_printer *p);
  
- #include <linux/types.h>
--
--struct intel_atomic_state;
--struct intel_crtc_state;
--struct intel_crtc;
--struct intel_display;
--struct intel_dsb;
--struct intel_plane_state;
--struct drm_property_blob;
--enum pipe;
-+#include "intel_display_types.h"
- 
- void intel_color_init_hooks(struct intel_display *display);
- int intel_color_init(struct intel_display *display);
-@@ -45,6 +37,7 @@ void intel_color_assert_luts(const struct intel_crtc_state *crtc_state);
- void intel_color_plane_program_pipeline(struct intel_dsb *dsb,
- 					const struct intel_plane_state *plane_state);
- void intel_color_plane_commit_arm(struct intel_dsb *dsb,
-+				  struct intel_plane *plane,
- 				  const struct intel_plane_state *plane_state);
- bool intel_color_crtc_has_3dlut(struct intel_display *display, enum pipe pipe);
- #endif /* __INTEL_COLOR_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
-index ab6a58530..305e8e60f 100644
---- a/drivers/gpu/drm/i915/display/intel_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_plane.c
-@@ -345,11 +345,11 @@ intel_plane_colorop_replace_blob(struct intel_plane_state *plane_state,
- 	if (intel_colorop->id == INTEL_PLANE_CB_CSC)
- 		return drm_property_replace_blob(&plane_state->hw.ctm, blob);
- 	else if (intel_colorop->id == INTEL_PLANE_CB_PRE_CSC_LUT)
--		return	drm_property_replace_blob(&plane_state->hw.degamma_lut, blob);
-+		return drm_property_replace_blob(&plane_state->hw.degamma_lut, blob);
- 	else if (intel_colorop->id == INTEL_PLANE_CB_POST_CSC_LUT)
- 		return drm_property_replace_blob(&plane_state->hw.gamma_lut, blob);
- 	else if (intel_colorop->id == INTEL_PLANE_CB_3DLUT)
--		return	drm_property_replace_blob(&plane_state->hw.lut_3d, blob);
-+		return drm_property_replace_blob(&plane_state->hw.lut_3d, blob);
- 
- 	return false;
- }
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index ee8e24497..b68e222c3 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -1673,7 +1673,7 @@ icl_plane_update_arm(struct intel_dsb *dsb,
- 
- 	icl_plane_update_sel_fetch_arm(dsb, plane, crtc_state, plane_state);
- 
--	intel_color_plane_commit_arm(dsb, plane_state);
-+	intel_color_plane_commit_arm(dsb, plane, plane_state);
- 
- 	/*
- 	 * In order to have FBC for fp16 formats pixel normalizer block must be
+ int xe_reg_sr_add(struct xe_reg_sr *sr, const struct xe_reg_sr_entry *e,
+ 		  struct xe_gt *gt);
 -- 
-2.34.1
+2.52.0
 
