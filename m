@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B0E0EE6B6C
-	for <intel-xe@archiver.kernel.org>; Sat,  7 Feb 2026 00:08:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 698B2EE6B6C
+	for <intel-xe@archiver.kernel.org>; Sat,  7 Feb 2026 00:14:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A9BF10E1BB;
-	Sat,  7 Feb 2026 00:08:18 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70B0F10E1BB;
- Sat,  7 Feb 2026 00:08:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5855659696127427724=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2169110E1BB;
+	Sat,  7 Feb 2026 00:14:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gcmTQRbn";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58D2A10E1BB
+ for <intel-xe@lists.freedesktop.org>; Sat,  7 Feb 2026 00:14:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1770423280; x=1801959280;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=j6Twjb+R5DypLXwfE5YioYtQJZcHMu/1fn+2t2ewJYk=;
+ b=gcmTQRbnX1GkEYWX+0+KhFLMc3C+RrQ04MsG5pWMZNjyHO/XTapHLTcB
+ aX2c9SbNjvSL21jSZbwiq9gSRslshJLSq/NAPa7Dh51MALmPzLUg33tYX
+ FXQgKb5RfC2fs4f4IBodHfLC5x+ZHNhUPy/YVUGYREu50Yq66CRHZUNTM
+ QUl9XeTUJ1JCIR4hc6MMEhibJA0P6a6vDaOc4r9T39IBzoJ08KkN4Sita
+ lQMxJZ58lCxJdmVRa9ldMT85+qNO4wNOPVzhwbFGUKNpEQjZycvyMrtSo
+ DwsFDAK85matzHOFeYGhdyumvVZutdp48gdCsOmTcB9D0OA9jWe/3+VhE Q==;
+X-CSE-ConnectionGUID: kjZKsaQbS6SkE+Zks62VlA==
+X-CSE-MsgGUID: j9pouGFnQQCKs7pQqKzsmw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11693"; a="59202685"
+X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; d="scan'208";a="59202685"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2026 16:14:39 -0800
+X-CSE-ConnectionGUID: DM8J+C8ASQO+sBtEK9a40w==
+X-CSE-MsgGUID: FpMUeafNQViC0lAljQCDpg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,277,1763452800"; d="scan'208";a="210807413"
+Received: from chu13-desk.fm.intel.com ([10.80.209.210])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Feb 2026 16:14:39 -0800
+From: Austin Hu <austin.hu@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH 1/2] drm/i915/color: Add 3D LUT to color pipeline since Lunar
+ Lake.
+Date: Fri,  6 Feb 2026 16:12:49 -0800
+Message-Id: <20260207001250.2448612-1-austin.hu@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_Enable_Wa=5F14025?=
- =?utf-8?q?515070=2C_Enable_indirect_ring_state_for_XE2+_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Julia Filipchuk" <julia.filipchuk@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 07 Feb 2026 00:08:16 -0000
-Message-ID: <177042289643.235304.6210317995932870735@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260206225610.3232909-5-julia.filipchuk@intel.com>
-In-Reply-To: <20260206225610.3232909-5-julia.filipchuk@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,133 +61,85 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5855659696127427724==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Verified on PTL, where IGT case kms_color_pipeline passes for PipeA
+and PipeB.
 
-== Series Details ==
+Signed-off-by: Austin Hu <austin.hu@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_color_pipeline.c | 5 ++---
+ drivers/gpu/drm/i915/display/intel_display_device.c | 6 ++++++
+ drivers/gpu/drm/i915/display/intel_display_device.h | 2 ++
+ drivers/gpu/drm/i915/display/intel_display_regs.h   | 1 +
+ 4 files changed, 11 insertions(+), 3 deletions(-)
 
-Series: drm/xe: Enable Wa_14025515070, Enable indirect ring state for XE2+ (rev3)
-URL   : https://patchwork.freedesktop.org/series/160812/
-State : failure
+diff --git a/drivers/gpu/drm/i915/display/intel_color_pipeline.c b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
+index 04af552b3..d26b0f134 100644
+--- a/drivers/gpu/drm/i915/display/intel_color_pipeline.c
++++ b/drivers/gpu/drm/i915/display/intel_color_pipeline.c
+@@ -47,9 +47,8 @@ int _intel_color_pipeline_plane_init(struct drm_plane *plane, struct drm_prop_en
+ 	drm_colorop_set_next_property(prev_op, &colorop->base);
+ 	prev_op = &colorop->base;
+ 
+-	if (DISPLAY_VER(display) >= 35 &&
+-	    intel_color_crtc_has_3dlut(display, pipe) &&
+-	    plane->type == DRM_PLANE_TYPE_PRIMARY) {
++	if ((DISPLAY_VER(display) >= 15) && HAS_3D_LUT(display) &&
++			intel_color_crtc_has_3dlut(display, pipe)) {
+ 		colorop = intel_colorop_create(INTEL_PLANE_CB_3DLUT);
+ 
+ 		ret = drm_plane_colorop_3dlut_init(dev, &colorop->base, plane, 17,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index 1170afaa8..765fd08df 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -1903,6 +1903,12 @@ static void __intel_display_device_info_runtime_init(struct intel_display *displ
+ 				if (display_runtime->num_scalers[pipe])
+ 					display_runtime->num_scalers[pipe] = 1;
+ 		}
++
++		if (REG_FIELD_GET(XE2LPD_DE_CAP_3DLUT_MASK, cap) ==
++		    XE2LPD_DE_CAP_3DLUT_REMOVED)
++			display_runtime->has_3d_lut = false;
++		else
++			display_runtime->has_3d_lut = true;
+ 	}
+ 
+ 	if (DISPLAY_VER(display) >= 30)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+index b559ef43d..1dc24a86b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.h
++++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+@@ -171,6 +171,7 @@ struct intel_display_platforms {
+ #define HAS_DSC(__display)		(DISPLAY_RUNTIME_INFO(__display)->has_dsc)
+ #define HAS_DSC_3ENGINES(__display)	(DISPLAY_VERx100(__display) == 1401 && HAS_DSC(__display))
+ #define HAS_DSC_MST(__display)		(DISPLAY_VER(__display) >= 12 && HAS_DSC(__display))
++#define HAS_3D_LUT(__display)		(DISPLAY_RUNTIME_INFO(__display)->has_3d_lut)
+ #define HAS_FBC(__display)		(DISPLAY_RUNTIME_INFO(__display)->fbc_mask != 0)
+ #define HAS_FBC_DIRTY_RECT(__display)	(DISPLAY_VER(__display) >= 30)
+ #define HAS_FPGA_DBG_UNCLAIMED(__display)	(DISPLAY_INFO(__display)->has_fpga_dbg)
+@@ -277,6 +278,7 @@ struct intel_display_runtime_info {
+ 	bool has_hdcp;
+ 	bool has_dmc;
+ 	bool has_dsc;
++	bool has_3d_lut;
+ 	bool edp_typec_support;
+ 	bool has_dbuf_overlap_detection;
+ };
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index 9d71e26a4..016bd2846 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -1538,6 +1538,7 @@
+ 
+ #define XE2LPD_DE_CAP			_MMIO(0x41100)
+ #define   XE2LPD_DE_CAP_3DLUT_MASK	REG_GENMASK(31, 30)
++#define   XE2LPD_DE_CAP_3DLUT_REMOVED	1
+ #define   XE2LPD_DE_CAP_DSC_MASK	REG_GENMASK(29, 28)
+ #define   XE2LPD_DE_CAP_DSC_REMOVED	1
+ #define   XE2LPD_DE_CAP_SCALER_MASK	REG_GENMASK(27, 26)
+-- 
+2.34.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-4520-ab5b6da7d4879640bce3197597e0bc707bd60ab5_BAT -> xe-pw-160812v3_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-160812v3_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-160812v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-160812v3_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4520-ab5b6da7d4879640bce3197597e0bc707bd60ab5/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160812v3/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-4520-ab5b6da7d4879640bce3197597e0bc707bd60ab5 -> xe-pw-160812v3
-
-  IGT_8742: 8742
-  xe-4520-ab5b6da7d4879640bce3197597e0bc707bd60ab5: ab5b6da7d4879640bce3197597e0bc707bd60ab5
-  xe-pw-160812v3: 160812v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160812v3/index.html
-
---===============5855659696127427724==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Enable Wa_14025515070, Enable indirect ring state for XE2+ (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160812/">https://patchwork.freedesktop.org/series/160812/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160812v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160812v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4520-ab5b6da7d4879640bce3197597e0bc707bd60ab5_BAT -&gt; xe-pw-160812v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-160812v3_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-160812v3_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-160812v3_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4520-ab5b6da7d4879640bce3197597e0bc707bd60ab5/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160812v3/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4520-ab5b6da7d4879640bce3197597e0bc707bd60ab5 -&gt; xe-pw-160812v3</li>
-</ul>
-<p>IGT_8742: 8742<br />
-  xe-4520-ab5b6da7d4879640bce3197597e0bc707bd60ab5: ab5b6da7d4879640bce3197597e0bc707bd60ab5<br />
-  xe-pw-160812v3: 160812v3</p>
-
-</body>
-</html>
-
---===============5855659696127427724==--
