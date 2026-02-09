@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFF64E81BCC
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Feb 2026 14:17:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E2BAE81BC8
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Feb 2026 14:18:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DD7A10E403;
-	Mon,  9 Feb 2026 14:17:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EcJWAuLL";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDF8910E403;
- Mon,  9 Feb 2026 14:17:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770646624; x=1802182624;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=XFTuM+4V1U46K5fxZNpIf9ZlqfQr3OYDBQ5J2k1ch+E=;
- b=EcJWAuLL32e514LGxA9b911KJA8ja0BjP7wqHrA3vfBI9kungh3ONAXn
- zexSL2LUJxClDgi3qJQYzQ5xfEdo3CkvrvkPkPBnhajWpr6mrf4ODnczQ
- /5aY62H+ZDgOqL8itLb/QAHOBWe0rfopgHY3ubx+h/dRPjM7jwnCM7LDx
- PiKPqUnyF0+SSgZqU9V12OR+Ry5DIEcqUBml9vKp1go3skiRouiRL/S5x
- aglcpOteMIu/PreYKb82VB9Hm66F86XJF/hKogPGCT5BsKQgHnQPZx55U
- lHlzianhsJ9TMmxf07/+aPQdYdrK2gLYtXs/bxU6TkaPTehzfimJyqIRr g==;
-X-CSE-ConnectionGUID: s0BATW7RRna4EutEtzJiQw==
-X-CSE-MsgGUID: jyvCGStDTlqFqzuoh35bFQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="71939996"
-X-IronPort-AV: E=Sophos;i="6.21,282,1763452800"; d="scan'208";a="71939996"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2026 06:17:04 -0800
-X-CSE-ConnectionGUID: 7MqqcNdyTYe7xT5XyhG3xw==
-X-CSE-MsgGUID: R4PfJ7c+RMy60gccUrjaFg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,282,1763452800"; d="scan'208";a="211424260"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.246.186])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Feb 2026 06:17:02 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH v5] drm/i915/display: change pipe allocation order for
- discrete platforms
-Date: Mon,  9 Feb 2026 16:16:57 +0200
-Message-ID: <20260209141657.629872-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
+	by gabe.freedesktop.org (Postfix) with ESMTP id C198E10E0E0;
+	Mon,  9 Feb 2026 14:18:47 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2516210E0E0;
+ Mon,  9 Feb 2026 14:18:46 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0295845680345783498=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv2?=
+ =?utf-8?q?=2C1/2=5D_drm/i915/dp=3A_Fix_pipe_BPP_clamping_due_to_HDR?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 09 Feb 2026 14:18:46 -0000
+Message-ID: <177064672613.238156.12484438903680322581@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260209133817.395823-1-imre.deak@intel.com>
+In-Reply-To: <20260209133817.395823-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,110 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When big joiner is enabled, it reserves the adjacent pipe as the
-secondary pipe. This happens without the user space knowing, and
-subsequent attempts at using the CRTC with that pipe will fail. If the
-user space does not have a coping mechanism, i.e. trying another CRTC,
-this leads to a black screen.
+--===============0295845680345783498==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Try to reduce the impact of the problem on discrete platforms by mapping
-the CRTCs to pipes in order A, C, B, and D. If the user space reserves
-CRTCs in order, this should trick it to using pipes that are more likely
-to be available for and after joining.
+== Series Details ==
 
-Limit this to discrete platforms, which have four pipes, and no eDP, a
-combination that should benefit the most with least drawbacks.
+Series: series starting with [v2,1/2] drm/i915/dp: Fix pipe BPP clamping due to HDR
+URL   : https://patchwork.freedesktop.org/series/161362/
+State : success
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+== Summary ==
 
----
+CI Bug Log - changes from xe-4527-c28055bfac6a7ef6c9e81c6e4e87cf290dba21ca_BAT -> xe-pw-161362v1_BAT
+====================================================
 
-v2: Also remove WARN_ON()
+Summary
+-------
 
-v3: Limit to discrete
+  **SUCCESS**
 
-v4: Revamp
+  No regressions found.
 
-v5: Don't screw up the loop variable, dummy
+  
 
-There are a number of issues in IGT with assuming CRTC index == pipe, at
-least with CRC and vblank waits. With them being used a lot in tests, we
-won't get enough test coverage until they're fixed.
----
- drivers/gpu/drm/i915/display/intel_crtc.c    | 29 ++++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_display.c |  2 ++
- 2 files changed, 28 insertions(+), 3 deletions(-)
+Participating hosts (12 -> 12)
+------------------------------
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index ed3c6c4ce025..2916209aea79 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -393,8 +393,6 @@ static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
- 
- 	cpu_latency_qos_add_request(&crtc->vblank_pm_qos, PM_QOS_DEFAULT_VALUE);
- 
--	drm_WARN_ON(display->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
--
- 	if (HAS_CASF(display) && crtc->num_scalers >= 2)
- 		drm_crtc_create_sharpness_strength_property(&crtc->base);
- 
-@@ -406,6 +404,31 @@ static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
- 	return ret;
- }
- 
-+#define HAS_PIPE(display, pipe) (DISPLAY_RUNTIME_INFO(display)->pipe_mask & BIT(pipe))
-+
-+/*
-+ * Expose the pipes in order A, C, B, D on discrete platforms to trick user
-+ * space into using pipes that are more likely to be available for both a) user
-+ * space if pipe B has been reserved for the joiner, and b) the joiner if pipe A
-+ * doesn't need the joiner.
-+ *
-+ * Swap pipes B and C only if both are available i.e. not fused off.
-+ */
-+static enum pipe reorder_pipe(struct intel_display *display, enum pipe pipe)
-+{
-+	if (!display->platform.dgfx || !HAS_PIPE(display, PIPE_B) || !HAS_PIPE(display, PIPE_C))
-+		return pipe;
-+
-+	switch (pipe) {
-+	case PIPE_B:
-+		return PIPE_C;
-+	case PIPE_C:
-+		return PIPE_B;
-+	default:
-+		return pipe;
-+	}
-+}
-+
- int intel_crtc_init(struct intel_display *display)
- {
- 	enum pipe pipe;
-@@ -415,7 +438,7 @@ int intel_crtc_init(struct intel_display *display)
- 		    INTEL_NUM_PIPES(display), str_plural(INTEL_NUM_PIPES(display)));
- 
- 	for_each_pipe(display, pipe) {
--		ret = __intel_crtc_init(display, pipe);
-+		ret = __intel_crtc_init(display, reorder_pipe(display, pipe));
- 		if (ret)
- 			return ret;
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 295f14416be7..2a7a9c5639ee 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5959,6 +5959,8 @@ static int intel_atomic_check_joiner(struct intel_atomic_state *state,
- 		 * This works because the crtcs are created in pipe order,
- 		 * and the hardware requires primary pipe < secondary pipe as well.
- 		 * Should that change we need to rethink the logic.
-+		 *
-+		 * FIXME: What about with reordered pipes?
- 		 */
- 		if (WARN_ON(drm_crtc_index(&primary_crtc->base) >
- 			    drm_crtc_index(&secondary_crtc->base)))
--- 
-2.47.3
+  No changes in participating hosts
 
+Known issues
+------------
+
+  Here are the changes found in xe-pw-161362v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#6506]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4527-c28055bfac6a7ef6c9e81c6e4e87cf290dba21ca/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161362v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8744 -> IGT_8745
+  * Linux: xe-4527-c28055bfac6a7ef6c9e81c6e4e87cf290dba21ca -> xe-pw-161362v1
+
+  IGT_8744: 8744
+  IGT_8745: 8745
+  xe-4527-c28055bfac6a7ef6c9e81c6e4e87cf290dba21ca: c28055bfac6a7ef6c9e81c6e4e87cf290dba21ca
+  xe-pw-161362v1: 161362v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161362v1/index.html
+
+--===============0295845680345783498==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v2,1/2] drm/i915/dp: Fix pipe BPP clamping due to HDR</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161362/">https://patchwork.freedesktop.org/series/161362/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161362v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161362v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4527-c28055bfac6a7ef6c9e81c6e4e87cf290dba21ca_BAT -&gt; xe-pw-161362v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-161362v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@abstime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4527-c28055bfac6a7ef6c9e81c6e4e87cf290dba21ca/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161362v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8744 -&gt; IGT_8745</li>
+<li>Linux: xe-4527-c28055bfac6a7ef6c9e81c6e4e87cf290dba21ca -&gt; xe-pw-161362v1</li>
+</ul>
+<p>IGT_8744: 8744<br />
+  IGT_8745: 8745<br />
+  xe-4527-c28055bfac6a7ef6c9e81c6e4e87cf290dba21ca: c28055bfac6a7ef6c9e81c6e4e87cf290dba21ca<br />
+  xe-pw-161362v1: 161362v1</p>
+
+</body>
+</html>
+
+--===============0295845680345783498==--
