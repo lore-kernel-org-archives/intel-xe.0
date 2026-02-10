@@ -4,73 +4,168 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0166EB26F2
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Feb 2026 17:24:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57EF9EB26F3
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Feb 2026 17:45:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C7E910E5C7;
-	Tue, 10 Feb 2026 17:24:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AB1810E5E6;
+	Tue, 10 Feb 2026 17:45:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ng5pmDJN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZgpNYEur";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18C2310E22A;
- Tue, 10 Feb 2026 17:24:50 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 4E13160141;
- Tue, 10 Feb 2026 17:24:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70CDBC19424;
- Tue, 10 Feb 2026 17:24:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1770744289;
- bh=AybflH6vCiFt0c5IgI0vjl85jJ21G95boT+74nEtcOk=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=ng5pmDJNkBc2/oSRx4pOQZtMwfVdnyLJCAe+kx5tWyYItYLMZQhdYN1JE+R3ufDCh
- Sg3MPeIvUefZiasC4ZD9NZ69q61KWUj9jJc70gTsT44q7Q7e4ruOwJ9x+J4guA4lYn
- 72mmOFfmlEJ0RoX0lX6wRJTTZMjmjgf1RWmc5JylLOP3m0B0ER3uqzfdJ0LU6yYr89
- 1my9GNZBbWW+nOuxJ33JuBoa0ELUcTqbIRdBPIMnuLKZOhptweV4AQdHhfv2b3RHOk
- fjvj7G/GuPv4VuzsnknEAcq+Hdt4sUa+ypgV+QzMPvpmipP+okDxfu9/sBzc27vkWV
- hV0aZRNUVvh5A==
-Date: Tue, 10 Feb 2026 18:24:46 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- kernel@collabora.com, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org, Marius Vlad <marius.vlad@collabora.com>
-Subject: Re: [PATCH v7 03/22] drm: Add enum conversions between
- DRM_COLOR_FORMAT and HDMI_COLORSPACE
-Message-ID: <20260210-prophetic-elk-of-superiority-b0ab03@houat>
-References: <20260121-color-format-v7-0-ef790dae780c@collabora.com>
- <20260121-color-format-v7-3-ef790dae780c@collabora.com>
- <20260206-angelic-crimson-bug-aaab40@houat>
- <2028270.PYKUYFuaPT@workhorse>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="3gcl4wmc7phuuk27"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F75E10E5E6
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Feb 2026 17:45:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1770745505; x=1802281505;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=uh4FIsKBMZ0Zl1YziIdqawfjeAliuAHC7hJ2OoThsAI=;
+ b=ZgpNYEurHO/6GvW9PLd8k3xgmLr6BHUR9T8325JA4lVDmJ/3jtHT8LI9
+ W6sbGADLYaELsSYzP9ReFP4amX/a8xmbfTI9ARE2GAUyyXGriPeGSCYeL
+ JqHJf2rbc0ahTR8tk8482ST/gwLNRqsu533HoxKz/r6t9r2ziu/OWFgla
+ SOxKDv4WDgzv2K0GEqQ9AGZwEQVOXt5i9wmBpMX46UvQYIplC0IEZ5xcB
+ idDTDUNdRrotQqLsdI1Ypp99VigebVxc8BSBzYD5CeRk4LIqt0UipSJMg
+ dQG7v03vmujvuSoENUOLb7zlqK2uBjlYgG1n1H5NCvhiNF9zQ885d6QVH A==;
+X-CSE-ConnectionGUID: P2KoPfVpQz+TeUP7kA+Cmg==
+X-CSE-MsgGUID: Ku3jsSTiQMq37Ju55CWpCA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11697"; a="70897921"
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="70897921"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2026 09:44:56 -0800
+X-CSE-ConnectionGUID: 9D1ohvkgQridWeHzvOd9Zw==
+X-CSE-MsgGUID: 5wBwL+3lSDGVr+bywaivyA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="211461600"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2026 09:44:56 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Tue, 10 Feb 2026 09:44:55 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35 via Frontend Transport; Tue, 10 Feb 2026 09:44:55 -0800
+Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.36) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Tue, 10 Feb 2026 09:44:48 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tP28WOsmXZA2kbgjYEhhnRE7gp9+FmpCRr1nzX2jh1LHLHos/4fLXYbKOejK8lYxPVG/XHoZAa28qM/DXKrnzz7n+z560BSijLstbL78/mB1HsA+HWeJefjIJuDfjMmDdYTO+UDsPjt+ZFwgEVPa/Iju2zcD0Tgs3d/JHOmtgo3fo4hO0/RhZSFWZVjofeRVlj3kl2XVImkBzng+g8Uu3LgmZVAdxlUxdVQwCWwatBvrQDI3Siicex7UpBltm2UKFFm9CrmFTZzQnITRO9ExGL6gexKS4hJvTV7G2fWBMxTMRfCHXR0ueUYQSeuUy5NtdCweN7fJ2qRyUUi6JzSh9w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RqPYwNUJvvc412TEoTnF8BafVxXqzyB7a0Ntmsrpmp4=;
+ b=cVn0e+bD6NeYzPJUsIVZmQa8I3PVzqA7ZBqP/hRYUcrZ6KABQzcNtZoaYucu/9OUS9i4+K6LihEzvQS+Fh12AsWF4B1DZo3M9A7ELme9SZaSUCO+iifHqTXfPsd5EHasA6Hk50n6iT3Z9JDhhW3nn4b28ssmQE7P1EmWEhW8BvG6TOso2GVCarSinOiRERN6xekv3UsxYKe5L38zvIX0joW1yYc3GbG5biFpkWyCw6w6byZm6ELFh8pXrdF3icUIh7Ql9A2lfv7vp/wIbaNRUT+BlkeYXEFcL/TziqrPfGugkhBAmymWUPLQDhlnfhivcEO8i+n+SFyf0RUmSdl/8w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by MW4PR11MB5869.namprd11.prod.outlook.com (2603:10b6:303:168::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.18; Tue, 10 Feb
+ 2026 17:44:45 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e%7]) with mapi id 15.20.9587.017; Tue, 10 Feb 2026
+ 17:44:44 +0000
+Date: Tue, 10 Feb 2026 09:44:41 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Arvind Yadav <arvind.yadav@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <nitin.r.gote@intel.com>, Tejas Upadhyay
+ <tejas.upadhyay@intel.com>
+Subject: Re: [PATCH v3] drm/xe/xe2: Apply Wa_14024997852
+Message-ID: <20260210174441.GB4694@mdroper-desk1.amr.corp.intel.com>
+References: <20260210055023.890477-1-arvind.yadav@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <2028270.PYKUYFuaPT@workhorse>
+In-Reply-To: <20260210055023.890477-1-arvind.yadav@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0174.namprd03.prod.outlook.com
+ (2603:10b6:a03:338::29) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|MW4PR11MB5869:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9d8a0ec1-9731-4f67-d62e-08de68cc13aa
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Fhpxn9bvW0+mX77UgPlnSMRVcywSZtOek8FbWIkfs4H8VXmmG7gX4d3p2Vpu?=
+ =?us-ascii?Q?B0Qcuva/VHYiQV05mxmmug3fUU4w6FvPUTFy6+RZqonqMHwfr7yjHBJdpjzn?=
+ =?us-ascii?Q?n44rjgy50gMwQk8qxwKFqt50uxpJJtwZv4fCxICwjzF5ig20UluOkdrBEuy2?=
+ =?us-ascii?Q?QKuWXJqANXCx1xDluFkD0DQeBLkyOn6M84zcMvTDcUK2diIqrMcLllE8tqOJ?=
+ =?us-ascii?Q?yehCJOIDxbvJNaoEGYlhTO+CWJxEFrnSUgvriBbIQSohpkdc1HpIbirLri6T?=
+ =?us-ascii?Q?DHCCUEz+wi3QfgcvZeBrEXRL/QRYxUcC6upgmbR6VNCUqyuPYjYxpR9vvR5z?=
+ =?us-ascii?Q?m6qw6gB+0AoI0PEEwtwAo/UN9eIVZliHeGIHF/svQL7shVJyp6eeyBkDskIT?=
+ =?us-ascii?Q?gocHWJiCEqP3KQJfMzy2i5CReNGVyOiGu7kcKifUuIOQ0bYQiV4yd4nq5rMI?=
+ =?us-ascii?Q?hVqktFJZf5cJRoBsemm9+neiX4z+2JgtNffbfrlhbv0WVa6dn3RdEcQwP8Dy?=
+ =?us-ascii?Q?49Ay3mhA7XoWgIa8WWqxKLq8OqtJtmdO+52C4s0e0XlvI0NOEIEwGzxK38Bv?=
+ =?us-ascii?Q?3XstjJh2a07LQq2JYi/4kxo4ZGiX5Fp0tx89EMkmQwyndROkMvr7Ioo4CDQt?=
+ =?us-ascii?Q?7tXVfggWnvAZ5XWns3co8RRNjDPUG/Y59ZCtMjyeEVXX6KZmiZ/MlWhhLOkE?=
+ =?us-ascii?Q?jLCHZjYf+7dIcS3zFZVIFB900sjF+aBpr7MnH3A6yYq4fKBBM8ph9GkdEtyN?=
+ =?us-ascii?Q?hQrPQ0+UsbjSrAgM2PhnVpA6z/Z/0XF11FYfYmtQ/1E/3fwrtf5dgE8jfd4l?=
+ =?us-ascii?Q?4Yy4KE8k6Haw4BqDTiCyB7sA7UBsCMwh3h4JhqRenPDKv+CrE9v9QPEVk3T+?=
+ =?us-ascii?Q?4++dXD2orzTiyQ/VwZHkzXRuDNcaLLjx5Q/WaQz/tOAgjQ2N++xeQ3b3Bbr7?=
+ =?us-ascii?Q?rCgHPMoY4jFTZpXlj8fHA+MD+GifSyRfQ9xEvYwtQSRvHMhLa18iww5SffBr?=
+ =?us-ascii?Q?vjYZj9v/a5jTOu2Bfm2il66chb3al2K8iY9rtjAaLv9IXpsCIeiC7WSQSXuM?=
+ =?us-ascii?Q?cKJWV/LG6QpXn6NnyE8DemQbSMiqrhOcoT09rlOGPW1UvUYD2HeTqWilUXYe?=
+ =?us-ascii?Q?q1qf3jFIxH/BDMcP40sEkG6GAd6NscqOi2V3hbdT7I2UJ3DKTUMJ9gRvNrqc?=
+ =?us-ascii?Q?xGgzc7Od6oSiPp5qI5GXKYBL+UPMZOk/JwqVCxLQoBfHIrCorwUrhoiyfSpz?=
+ =?us-ascii?Q?6WbMNXy5ERJ4u2uik0ucGH5bSHzXKLon9fqbpVcGhTezBDYhjj8YHtPLl31W?=
+ =?us-ascii?Q?xxAJN04m7B3zFz52ywzj6fpDQcv1Tp0wwGUGAKUGnvAcPbF1GGVPpHFTKTEM?=
+ =?us-ascii?Q?3lvTTyaYaTl0rN5IUvvPO4qOLh6Otz3OrPOWpyG9XuxozM76KFmJ85t8UnY8?=
+ =?us-ascii?Q?AgkRykpJMZkRjvKJYok2CPQUMjuYQIUF1WJygz0YyIPRqnI3QVkYTakuPS57?=
+ =?us-ascii?Q?godxivzACKN/mfQlI7LnM6aWgPjDxRwpg4LZ3Emiz3UhsPwkArr3OIK3qsVD?=
+ =?us-ascii?Q?qnOKmT9B+rcfqLVr//urFkXjYxABv6n8qobuHw5H?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?tzFKP5IR4CBPEdMGf4KZgZ/2HNQ0bltnVsCLzAO4ZoXrQbrO3ASvme8EpoZy?=
+ =?us-ascii?Q?1rErAhU35oruBJE9afR1K0W9l7M0fCfK9yavapqxrozA/3pqiisMV7EkAYaN?=
+ =?us-ascii?Q?UFut+1TzIQDyX/D/JoN+UsuqKwlBEKIGoshxma+VJVEduYLe6he2BKTsCpPV?=
+ =?us-ascii?Q?YVYCG0UenlpU2/lpNif1qxzMSP+IzJYxjlHlIPYOjij2j2X7Agvq0tFUfql7?=
+ =?us-ascii?Q?8vbuTipjfmiXKFM6Aj7n5SlGJHvGvm8cEHftimbe1X5hlb/L2PVAaDCqrxCO?=
+ =?us-ascii?Q?a4xOUl2qO3RgXlBUYHVoAG1bADgdlpiG9E2JK1Ptm3CE/TYIbw6CTB0N+ufP?=
+ =?us-ascii?Q?NdGPLqvWoA/NnwlT7qchnn2Ql3sQmffsfoBIJr3z0NOtPHKw//j1VK6xjp/U?=
+ =?us-ascii?Q?QQpWiReY9uom2fIMqdcCLM6Gyzhv9LWSmVnZY3i2y+B7HqJXvFkOo50ZqZ5Q?=
+ =?us-ascii?Q?oLjAcj7r0uez5Mz+yjNZOiIVv1Lo6aHBOgX4+rR/oWzS+Wl2NCyY9pQi//Uo?=
+ =?us-ascii?Q?smu8uusmmd6trrp9c60rMoSHTnjHSx0Xwd0Kz5piXAz6OyWhqGPjYml/wjv2?=
+ =?us-ascii?Q?WXnRhj5rM1xXPXvVuEz468WA8j8elBPfJNYYaRIQNHCFXtL35Jq1PS0Wmi1b?=
+ =?us-ascii?Q?6NnOwmf0wb/W0oSFPb2cPnRF0Wlrnkloi3+uUb7sWcK7dHb48ITk5wiZawQn?=
+ =?us-ascii?Q?OE0njND5xbmbw8jenypdwU8ydyYwsVIKENIlW9PBy8r4R3TSNrI9rx3Vh88R?=
+ =?us-ascii?Q?i5VJbuwGYkHHer80cetUpqcH70UFU9lmMhrPhsx9LthQxYZh6TaarE+CNMEx?=
+ =?us-ascii?Q?ID+3ifMgi6aqssxMVm6JofpIieFVnX0ODM6BJgIQmYODNolNd7Y7PMmRmohY?=
+ =?us-ascii?Q?x/laQmwP3JauFxX8dq5ILZjfJdMLK+vz4POCG/8SUSwer1d8OPUvXkrfI+Dk?=
+ =?us-ascii?Q?6AUV8uCFdQjYi2v67LXkecG0pN8779MVEo31+Vk8fQwWNMWE+T0AQI2ys8fo?=
+ =?us-ascii?Q?c21X0SkeHafb2AjeIVmM6WhfsopVoeqY7nMj6+9kD+1B24ys4j5C48XPii+C?=
+ =?us-ascii?Q?t4lr56lJTbaaUGdjuqgUxmROyj1AQ8l+AiB4ai8tYl54XzURch7zZP4teOsZ?=
+ =?us-ascii?Q?cfC2Uy2q+wGiY9Y+rlpQWp9ZAARQeXA5Ayspv3GmKiMKMCE0Tar1EjfaaTPI?=
+ =?us-ascii?Q?QGcrS7daN1jL+2AHid8ZB2z0nT8aMWjicX/tfJRTXTrNJpIqur6dyNrc0zFL?=
+ =?us-ascii?Q?ORK3EUo0k8lBTYc2Dn/7xSm20XkmdHKoRrIF4td4qI+OOZXkyLXOQbkHX+tO?=
+ =?us-ascii?Q?sMyx42NTKKD22Q6l41xDTmrcLtK62mnYLW4PDQhaM0/8o7Op+siUvSOg8YtD?=
+ =?us-ascii?Q?2BRBS6tepS6gFT4kGDhqbMdO4fRdHUelDBZXyuVBiahgQvXBAhP2sJe/lAw/?=
+ =?us-ascii?Q?bVFg29imCCRfoXRM6ECAKxUvux0Rbm2snAvWxmk3K2VgdEmekMc8Xu/IQh87?=
+ =?us-ascii?Q?7uPbBRcl8vtqMIEt4KB6EyNZcRiVotytees7sOaCSlbiNMnGfSVg4fIQ/Ot6?=
+ =?us-ascii?Q?7gVIXMOjYCbbLyvaA1C3OrzeTVjTlIQ8eHcvSyD6F7AeLwGYl981LjzOoN2/?=
+ =?us-ascii?Q?TjW08PgihL9AkUjeyFBtQUnL54uCwxqW4WGNDTKo3m8hBL7oHTMf0bssvhZO?=
+ =?us-ascii?Q?+kz3d1QcaFVC82/+Oqk2+ptDieoXGOSeNMPxHcS3MmmpMz2Xxq9lY46US46J?=
+ =?us-ascii?Q?rNBMdnYGgbJ6kUs3ijcCeMfyQJY2FzA=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9d8a0ec1-9731-4f67-d62e-08de68cc13aa
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2026 17:44:44.7559 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UIKp7JRG2MQgaJS2vngOCSGJtODCadpgv51uIa8Zpbg/nQKs20wZUxDF92oLA7gunogHwBTogv1+dLwRQCggt2KlHw/vrAYqCuBKfkBw5+k=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB5869
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,122 +180,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Tue, Feb 10, 2026 at 11:20:23AM +0530, Arvind Yadav wrote:
+> Applied Wa_14024997852 to Graphics version 20.01 to 20.04
+> Whitelist registers needed for userspace to control autostrip on xe2.
+> 
+> v2:
+>    - set Bit 31 of FF_MODE, for TE autostrip disable (Nitin)
+> v3:
+>   - Need to whitelist these for Xe2 IPs (MATT R)
+> 
+> Cc: Nitin Gote <nitin.r.gote@intel.com>
+> Cc: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_reg_whitelist.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> index 1d36c09681aa..9881a2d2f10c 100644
+> --- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> +++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+> @@ -75,7 +75,8 @@ static const struct xe_rtp_entry_sr register_whitelist[] = {
+>  	  XE_RTP_ACTIONS(WHITELIST(CSBE_DEBUG_STATUS(RENDER_RING_BASE), 0))
+>  	},
+>  	{ XE_RTP_NAME("14024997852"),
+> -	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3005), ENGINE_CLASS(RENDER)),
+> +	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 2004), ENGINE_CLASS(RENDER), OR,
+> +		       GRAPHICS_VERSION_RANGE(3000, 3005), ENGINE_CLASS(RENDER)),
 
---3gcl4wmc7phuuk27
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v7 03/22] drm: Add enum conversions between
- DRM_COLOR_FORMAT and HDMI_COLORSPACE
-MIME-Version: 1.0
+We can probably just combine these into a single range for simplicity:
+(2001, 3005).  We used to avoid doing that in case new IP versions
+showed up in and used the previously-unused version numbers, but after
+some other discussions (e.g., [1]) we've decided to relax that policy.
 
-Hi,
+Otherwise,
 
-On Sat, Feb 07, 2026 at 08:55:16PM +0100, Nicolas Frattaroli wrote:
-> On Friday, 6 February 2026 15:08:46 Central European Standard Time Maxime=
- Ripard wrote:
-> > On Wed, Jan 21, 2026 at 03:45:10PM +0100, Nicolas Frattaroli wrote:
-> > > While the two enums have similar values, they're not identical, and
-> > > HDMI's enum is defined as per the HDMI standard.
-> > >=20
-> > > Add a simple conversion function from DRM to HDMI. Unexpected inputs
-> > > aren't handled in any clever way, DRM_COLOR_FORMAT_AUTO and any other
-> > > value that doesn't cleanly map to HDMI just gets returned as
-> > > HDMI_COLORSPACE_RGB.
-> > >=20
-> > > Add a second conversion function that gets a DRM_COLOR_FORMAT from an
-> > > HDMI_COLORSPACE as well. In this case, reserved HDMI values that can't
-> > > be converted will result in an -EINVAL return value.
-> > >=20
-> > > Co-developed-by: Marius Vlad <marius.vlad@collabora.com>
-> > > Signed-off-by: Marius Vlad <marius.vlad@collabora.com>
-> > > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > > ---
-> > >  include/drm/drm_connector.h | 54 +++++++++++++++++++++++++++++++++++=
-++++++++++
-> > >  1 file changed, 54 insertions(+)
-> > >=20
-> > > diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> > > index b5604dca728a..ffeb42f3b4a3 100644
-> > > --- a/include/drm/drm_connector.h
-> > > +++ b/include/drm/drm_connector.h
-> > > @@ -2612,6 +2612,60 @@ int drm_connector_attach_color_format_property=
-(struct drm_connector *connector);
-> > > =20
-> > >  const char *drm_get_color_format_name(enum drm_color_format color_fm=
-t);
-> > > =20
-> > > +/**
-> > > + * drm_color_format_to_hdmi_colorspace - convert DRM color format to=
- HDMI
-> > > + * @fmt: the &enum drm_color_format to convert
-> > > + *
-> > > + * Convert a given &enum drm_color_format to an equivalent
-> > > + * &enum hdmi_colorspace. For non-representable values and
-> > > + * %DRM_COLOR_FORMAT_AUTO, the value %HDMI_COLORSPACE_RGB is returne=
-d.
-> > > + *
-> > > + * Returns: the corresponding &enum hdmi_colorspace value
-> > > + */
-> > > +static inline enum hdmi_colorspace __pure
-> > > +drm_color_format_to_hdmi_colorspace(enum drm_color_format fmt)
-> > > +{
-> > > +	switch (fmt) {
-> > > +	default:
-> > > +	case DRM_COLOR_FORMAT_AUTO:
-> > > +	case DRM_COLOR_FORMAT_RGB444:
-> > > +		return HDMI_COLORSPACE_RGB;
-> >=20
-> > I don't think that's correct. What auto ends up as totally depends on
-> > the atomic state it comes with.
-> >=20
-> > At the very least, you should output a warning there, because that case
-> > should never happen.
->=20
-> Yeah, my hope was to keep this function __pure so that the compiler
-> has maximum freedom to do whatever. With a WARN, it's got side-effects
-> now, and we're no longer pure. With a status return value and an output
-> parameter, it's no longer pure either, because the output parameter is
-> not local memory.
->=20
-> The limiting factor here is that as I understand correctly, I can't
-> really extend the hdmi_colorspace enum, as it's basically 1:1 from
-> the standard. Doing this would be the ideal solution, because we'd
-> keep the function pure and without surprise conversions happening.
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-I feel like this kind of loops back into the other two reviews I did:
-you paint yourself into a corner by having auto in the enum, and by
-passing it directly to that function.
 
-If, instead, you don't allow auto in the drm_color_format enum, and
-resolve auto in the hdmi_compute_config function instead of passing it
-directly, then we don't have to deal with it here.
+[1] https://lore.kernel.org/all/20260203233600.GT458797@mdroper-desk1.amr.corp.intel.com/
 
-> Looking at hdmi_colorspace_get_name in drivers/video/hdmi.c, it returns
-> "Invalid" for any value not in the enum itself. Would it be allowable
-> to tack an HDMI_COLORSPACE_INVALID at the end of the enum with perhaps
-> a negative value, or is there a different approach you'd prefer?
+>  	  XE_RTP_ACTIONS(WHITELIST(FF_MODE,
+>  				   RING_FORCE_TO_NONPRIV_ACCESS_RW),
+>  			 WHITELIST(VFLSKPD,
+> -- 
+> 2.43.0
+> 
 
-And again, if we only ever have to deal with RGB, YUV420, 444 or 422,
-then we always have valid values for HDMI_COLORSPACE.
-
-Plus, the hdmi_colorspace enum matches what the hdmi spec defines, so we
-can't really extend it, and most importantly, hdmi_colorspace_get_name()
-is only ever used for debugging / logging purposes, it's never in the
-"functional" path.
-
-Maxime
-
---3gcl4wmc7phuuk27
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaYtp3QAKCRAnX84Zoj2+
-dpXQAX9YW7+dFFercH/6Ci5pTtOduK0WFGtCE+czBS0MekL3hIR8Qk0XOe/wCQ0N
-lSl/1g0BfiBZVN1+rZWOQ89eweN9INWHQO3r4Uh4l9OvZzduZolxq+5q62yTdhYG
-QVZ10CHXHA==
-=jFA7
------END PGP SIGNATURE-----
-
---3gcl4wmc7phuuk27--
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
