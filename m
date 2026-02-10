@@ -4,169 +4,193 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B03EEB2711
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Feb 2026 20:09:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7E9CEB2711
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Feb 2026 20:12:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2E4F10E00C;
-	Tue, 10 Feb 2026 20:09:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82CBC89128;
+	Tue, 10 Feb 2026 20:12:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="rJ6ua7pj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iUZQMozn";
 	dkim-atps=neutral
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010053.outbound.protection.outlook.com [52.101.46.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25EEA10E00C;
- Tue, 10 Feb 2026 20:09:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A73710E092
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Feb 2026 20:12:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1770754334; x=1802290334;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=HRacQTfhG+eiInGAvJQn5dCIhvRfkCOg5eGv9ADjzRI=;
+ b=iUZQMoznjh4vZHVf7cd8aFo8zxzfhadDOQRK6x/QYuFsruOFfNUUlfal
+ 6EPdVDRAncL8rsdNcT22W9dJ24I0PzQ0IE6aE/5jH2pUIxTufMnx/z9VP
+ t0VGGVglm8ign0IZ4FTSsFRM8G6+ZoLFO4iXDZm7rfswpkVfwNem4sYSH
+ lYJN/J2I63vpgGPZ5YeKmcPutodrXD1YqW4suGbPrHRnSoz2xJAqS7qZE
+ oj0fMaFr6xUC4P/FFuRdHMStRqGWQIUPfeAqh8aaGb3G/u/MIOw/f5vEH
+ 6ha0yga56Aa6owFKuUhwvSmj0WY309pk4xF+k4MjuF+4ECUR7VDhTs2bz A==;
+X-CSE-ConnectionGUID: mAalYrO1THaTJSmlPfT2gA==
+X-CSE-MsgGUID: gTMX71emSx6rtD2ponGDDg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11697"; a="94536763"
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="94536763"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2026 12:11:58 -0800
+X-CSE-ConnectionGUID: LZAwIff0QUyYYsgrLu3wFQ==
+X-CSE-MsgGUID: x7KQc7kgRhSvlzxMPgoRKw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="216186163"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2026 12:11:58 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Tue, 10 Feb 2026 12:11:57 -0800
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35 via Frontend Transport; Tue, 10 Feb 2026 12:11:57 -0800
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.34) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Tue, 10 Feb 2026 12:11:57 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HFa6XEuQvY3YmfuSFaXyg8AKLvyDFOScsztvy5ZxpWQ21hhqfE/no5XFhQAFVYJQjuB/4kIZeyyszJV/6hqonP+pmY1DfyxVqLo1Fd19DhrKoE6Ys0kCVWCGWFi2qNX5x8y+GocSHadOku8nSsS2FR74fFMWYRdz9GSXZJttJuqcW54I/vU7nlwv6ERU+rSkXi9FD0Sfli+nPySNEGUEgM8ZZjOU/p2L2omZ9tDa3yf8OZcsht+OsIixy3b8ZJDk5BL5ciIMObQJkjpmTCye6DeNjwqe4Naba6myCB+oDxvHw83XamcYqQVq1UGV5GjtiWMf9lMke6RmU73xZ2AYiw==
+ b=qelx3Pobm9KYwKJxqegRFSpWQXNYivZwzJCLs2jdr8XnxNszhaMVsXZ+02QPBsKRI/seU+HDZmvfexkGH2iRW569R/gf6a7g65293mWurQ2+z4uj5b2XQn7ojkkYGowMmyKdN+fY1JxoZeGz1o+dDVUVHV8VVgY6jEyY1GjJfVGaRO8yfYJC7jTtBN37jizeGH1GlYtug8TpaplMezZPlqSE/ezPXVTLCjzo1e7dVpCbP1Hl5x4qLtI0bmSnK4zwTIt2Gi6Dq48xpgNF1KA4WGfEITKuZO1AzFooC9DJXu3Xyb9cUc4VXyWlWjFGQkToA799YOnXS3PJsscQc7G7FQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jZ4+chmas31OUL6N87u/D7q7qhVmMGBGoBxUWAe7d6g=;
- b=SOQBTLJdSV4D9CpVX+iBlloWk+hBNZYvUMECJ1xsrLEo3ycXaNl0TnMQ912CBUZ6uNf5fMtFAUAhyoj6oV4ONKRTYuBSiowE1kCv8mQCmqw5GIgr++OpmW8A8fKmrYH/xe+8Uf2a8IIMtY8LAF1oDBO0w2QunSngKplosKRs5ZRatQKlrrg7NoPs9d/5i3bX/CWdplEyut5EvuFJr+jYEiztF2OIkr61XKwBNKl9KZuX9vXXV+MF36sv4hRDdB5pZaL38es8e+OTcMN77J1yk/yZDZT9OvLePO3ZjAEoSeX2OVkLEisAlMQlSQY4RLCT5HrDz+FKzGuqKbGUK78mtA==
+ bh=aeN57rC14Z9Vvh5/XysQqKxuBVazzv9FuxSnluukxAs=;
+ b=nZQ9M0LGEwgoU2WGpQZrX3dZN30DeEvXxJTOdqLWBvihUdmrsW1tQI4z4WVdlnC3fB36jLEGiklk8MIqGldgAoKyKezy9HvIXcOg88YJxkq9b+6IFV8eDgJ8phAU1zG9UcyIBYwHLnDpnXwmPXk0hUH0RL8mpeh+FAeWlZAkVda0cJVvXuvxopamj6ExyID71WD1Vh83lGva7LFTUlAE8GF/oYz0oTTxYtYDe0ZdCf+cROEhw/2Dqpwyp0wYuyjela2NJq35lWMPZzUKmdoL/oE6t5lKtuyggUY1deVPT+rJUPJR0DPKcpp0JOnB/o4iMPAdL/fw7l/pYWHN13MjtA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jZ4+chmas31OUL6N87u/D7q7qhVmMGBGoBxUWAe7d6g=;
- b=rJ6ua7pj4rZrFNynK67jvdN/ZQsELudokWMOvddL69hFmwRLd8v0OqV9t5hnKOhJfEm09bWAafVn5C4wPTnEr0P7ifkhbKqGa5EbQCqMg2CoG4j261pjyDMfkcqE2Y0NBSJfJJRJXMfmv0X8cEnRz5ER8RZCYg8k9xAurSDWWiA+iuVf2BJnrpnmeisMa9FtlF2znid1CORXFu/PtnfB/Li7xn8xK/nmCxygsL4k3cfboarQaOMrRTU/k1/11AOiTFBYgeLGGDp5okQUu9C+XFZuZgRGeWy9io3SmAxe9jiNUG4N6ADRe1axKGiQsmUn9Cl3vJx74LWnID0TKYOE+A==
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- SJ5PPFCB5E1B8F5.namprd12.prod.outlook.com (2603:10b6:a0f:fc02::9a1)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA3PR11MB9226.namprd11.prod.outlook.com (2603:10b6:208:574::13)
+ by SA2PR11MB5212.namprd11.prod.outlook.com (2603:10b6:806:114::16)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.20; Tue, 10 Feb
- 2026 20:09:07 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9587.017; Tue, 10 Feb 2026
- 20:09:07 +0000
-Date: Tue, 10 Feb 2026 15:09:05 -0500
-From: Joel Fernandes <joelagnelf@nvidia.com>
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: linux-kernel@vger.kernel.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Vivi Rodrigo <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Rui Huang <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alice Ryhl <aliceryhl@google.com>,
- Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
- =?iso-8859-1?Q?Bj=F6rn?= Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>, John Hubbard <jhubbard@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>,
- Elle Rhumsaa <elle@weathered-steel.dev>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- joel@joelfernandes.org, nouveau@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH -next v8 2/3] rust: gpu: Add GPU buddy allocator bindings
-Message-ID: <1770754015.1979311.8126@nvidia.com>
-References: <20260209214246.2783990-1-joelagnelf@nvidia.com>
- <20260209214246.2783990-3-joelagnelf@nvidia.com>
- <DGB9G697GSWO.3VBFGU5MKFPMR@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DGB9G697GSWO.3VBFGU5MKFPMR@kernel.org>
-X-ClientProxiedBy: BL1PR13CA0197.namprd13.prod.outlook.com
- (2603:10b6:208:2be::22) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.19; Tue, 10 Feb
+ 2026 20:11:55 +0000
+Received: from IA3PR11MB9226.namprd11.prod.outlook.com
+ ([fe80::4efd:8324:f06f:5b70]) by IA3PR11MB9226.namprd11.prod.outlook.com
+ ([fe80::4efd:8324:f06f:5b70%6]) with mapi id 15.20.9587.013; Tue, 10 Feb 2026
+ 20:11:55 +0000
+Message-ID: <4f63d446-fe21-4c71-82a4-aef5c7acdcb3@intel.com>
+Date: Tue, 10 Feb 2026 21:11:50 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 3/4] drm/xe/vf: Wait for default LRCs fixups before
+ using
+To: Matthew Brost <matthew.brost@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, =?UTF-8?Q?Micha=C5=82_Winiarski?=
+ <michal.winiarski@intel.com>, =?UTF-8?Q?Micha=C5=82_Wajdeczko?=
+ <michal.wajdeczko@intel.com>, =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?=
+ <piotr.piorkowski@intel.com>, Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20260206145334.674679-1-tomasz.lis@intel.com>
+ <20260206145334.674679-4-tomasz.lis@intel.com>
+ <aYYu7wFpES1UXoWm@lstrano-desk.jf.intel.com>
+Content-Language: en-US
+From: "Lis, Tomasz" <tomasz.lis@intel.com>
+In-Reply-To: <aYYu7wFpES1UXoWm@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: VI1PR09CA0105.eurprd09.prod.outlook.com
+ (2603:10a6:803:78::28) To IA3PR11MB9226.namprd11.prod.outlook.com
+ (2603:10b6:208:574::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|SJ5PPFCB5E1B8F5:EE_
-X-MS-Office365-Filtering-Correlation-Id: 32f49907-22ed-4507-7e0f-08de68e03f24
+X-MS-TrafficTypeDiagnostic: IA3PR11MB9226:EE_|SA2PR11MB5212:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0706844f-a723-4bf7-e0e7-08de68e0a32f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?HrlNwSasCOdOCnrYsdptgDyluhHg/qik3SoA0EBMoLwPkhobCWnKT/MvS8b8?=
- =?us-ascii?Q?/+BoRLq4mK+EOYj1w7KiWgj+PNZiE+bQO06lV5xb2qiLd0AHUoCQl+F8Y5cF?=
- =?us-ascii?Q?h+8nqh51aMRJMrg1QMpOtMB41s+r9Zzps0+DhQdph7Q1yrN1dYRNIKPf3IKL?=
- =?us-ascii?Q?AjWC7BQzYjvZ/wkQr8CgrQJgP5aGewkmgQ9ZYCfyZ85vNDUoUoZt0duvv9WL?=
- =?us-ascii?Q?z9gQBU5wz7rxmMDle765pROYFUNuSpsocqZKSoLsx0OBSwC0xteLKlSm5D83?=
- =?us-ascii?Q?esFYkNHbmjXnxUZvvS0b9qws0UeJ/vpS/tZ6ufaYFQJOEkLxFI84olD5Wm1/?=
- =?us-ascii?Q?dRfeKrM3lQ4Dfey2U8NhWoAdmhtfbGbSdZSZ3rtXDtf81UczelaSclp33FWb?=
- =?us-ascii?Q?/Kx3M6l+TpIXaZhbm0B/nytos99dY1NltybwOrpS6+1BHy/nuxUXg08WIq/B?=
- =?us-ascii?Q?K8eDCjJFpSlHIt7tJUpGVZvDtYZu8hYpBUDlsLCHmVpuLMNwjGsFCm1ZgUS7?=
- =?us-ascii?Q?UNpZyYn78uYZEzYEgn8FANRQbF5O8tGE7ozMqgn7JQe/u7p5DE18pGcd2rXx?=
- =?us-ascii?Q?kJ+qov1nk1GRKbg9CPRJ7GMP72LDs+aHxH8blNtUemZKZwu9dZ/NUtdQyfb4?=
- =?us-ascii?Q?q0XQuZvdaDrdvw40UfSF0j5KyCaAXGn8d6WTqBHZDQeRlDXZgnSjDSBKtK7+?=
- =?us-ascii?Q?Mv6IEsCu1VVTUAfQe7bF+py3ssV54Brm3oNLhh8fpJRq5c1syvSE3X6p3uKx?=
- =?us-ascii?Q?jlnycV9Oi+ABNylHUhlf0YP/0jSH2/9ZhANteJndYZAy3aaf/GPEMk20AhMJ?=
- =?us-ascii?Q?J5XIBv8v9h4cfBASkhOLxCGV2GKESqE+I8vNd+mzV1Bs4TDP87e5DDJPKIoj?=
- =?us-ascii?Q?EtT+waZ7eVAcfqZAAav9qC+aXPNoW4Ce/liBXbiDG0TA6Rc7sR2MuCM/BZbU?=
- =?us-ascii?Q?45e5XPvg6b9ZPT2FY0yKbWnOOOJrPe/b7E8QICY9a9/iGswdvl74iCcS1NnQ?=
- =?us-ascii?Q?Mzp48eKKip4zy8m4xZeyvR8Qi9pbvr5qD7rAqegZOL5OdkeVyqtGk7gmiCxI?=
- =?us-ascii?Q?AR25x1AIOBzP9jKqVmk1x/XZ0yr29dS3M0Y5qUgpijgg7FJDQZdT8P3nosKj?=
- =?us-ascii?Q?2D8E9GUFUn2fUGDeVrIIFflJkY2ysHE1obNbKeCqyWBKw3BcjiKnCgtrUtbr?=
- =?us-ascii?Q?32JDA2N/XkmoLcxHtrmp+R7tiCLRFJIZNPnA21dR84jssZLQjuO7K4sTwNuR?=
- =?us-ascii?Q?4Nw7GMqIcG9mcRKpYGj+yIIGSmyHHRnT/UGXxjQKmGC9iZks1fsGLALkwnFY?=
- =?us-ascii?Q?RvVpAW1UZ3q1uQSSdWwG4oFV9m/w6BPziByR4ssc/pQCN87OD378XQ9rwhlr?=
- =?us-ascii?Q?vj0otiidOZXHOBWCCKfDmkVLtpRdkSh2+2fCdvbNGvpYhXeE5dbWmtRnuk7W?=
- =?us-ascii?Q?km2uUlksWXs/VY3ujDEclmX6MiNnJUfxp+NyfIflFenHDcGRTSuvTy8BmnXW?=
- =?us-ascii?Q?L322EA9yFUe3250HILNNpJePO9IYsqQziVuipa77o2wCfSBj1dSwF75f7NY/?=
- =?us-ascii?Q?LhrYZEbruEfw2VihT/I=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?Ry95K2NuVVdvbno0VHkySitJQUplemxHYzVmR0cvYllWR1NhWnJMV3pUTWhu?=
+ =?utf-8?B?QlRjdS9MRXZYdGtZbHk4REY4TWE2VW0zMXpjaXhMNHdVZWJDZko4VGRhMktP?=
+ =?utf-8?B?NlNBMVB0Yi9VZnhiblBpczlFZXVqWWJqZU5waGQ1OWhKWENFeExCTjY2MXVj?=
+ =?utf-8?B?U1NJaDFKVDB1dnFXY2NUTFVFMkJvenQ3em9zeHFFb3lMS3Z2OThLcHJyczJh?=
+ =?utf-8?B?cmdtQ3UwZVFKVjVqNjZ6OG5KM0QvWEJRRW03blhrbFQ0NWhxR1FjY0grcHpP?=
+ =?utf-8?B?Zm9lM2hlZCtBcTMxQXhTR1Y4aG9rMEcyVHBwS2I3dVUrbUVaTjhxTXNwcTVQ?=
+ =?utf-8?B?MU5xMlI0TFhZeS8wTTVlOUtYMDE5OHkzUjQxVVFBU3cwZ0JTcVd5WEZsZjJK?=
+ =?utf-8?B?WWNHUTFjSG1FRjFwbld6WGJTSjJqL3BOVWN4NmdoOWpZSlArdnN3bUZKNVRC?=
+ =?utf-8?B?WndidU9jOTUwNEdNZXFwb0ZvN2FzOFd5K1hScjBhWDdKVkNHRTd4NmJPVHVW?=
+ =?utf-8?B?MVhhUUE1VldpamQxZDFJRlBnMG5Cay9pYS8zaHBJdVRqOFhCeXk4OExsZmxX?=
+ =?utf-8?B?aEhxTmVxRTNQVnNRTlMzN2VQbWNjWnNhSStDL3RDak1aR0VZUzFJSVpHaUVo?=
+ =?utf-8?B?dTU5ZmRKWnhtamt5L3VEaWgrZDhyVzFnUGJhYVB5NWRVZDJoSVJ2Y2dESFNk?=
+ =?utf-8?B?a29aaGw5Z3FHdWR3VnRYUTl2c2p6Z1ZVWHpOSis4RGhyRmxwTTNmSG9zTSty?=
+ =?utf-8?B?S2RQUlNXenBtMWZsWloyaFdIU0IxZFdndTVBN0hNa0wwcyt5bFhqZ1hET24z?=
+ =?utf-8?B?Y1FhRnoyUE1MRUtQSXdmZnVJTkRWVzB3WUdQYVM1ams3OXZmbWtITWkrUzBY?=
+ =?utf-8?B?M0FwSE0zazg0NEdMa3RmN3FvdS8wWVBsNktqWDhzTlFMRStMWVRralZTaXMr?=
+ =?utf-8?B?OHRUMVQ5U3Uveld1T1VMRmwwTkt2MkVacjAzbGdEZllZdEFLSlpVbHdHVTBu?=
+ =?utf-8?B?ZVVKUEFXaThmODNxaTJXQ01McEFSbjNPcFN0TEYvVnhjbG4vd29OT2FqUnh2?=
+ =?utf-8?B?Q3paSHdBbjhoS1c3K1JTTG55S2NScDIxQy9JSFJlR1hiQkJZcDIzWVZQWUEr?=
+ =?utf-8?B?aHBlNGpxMDlLVWZZL0d6WjFLUGNvT1FhSGU4OWd5QmQ1YnUxa3IxcU1nQjlT?=
+ =?utf-8?B?SjlmYXY1S250VldudzAyNTdObFh4MDB6L3VTVzllRk5IcmJTZ2U0N01xVDFu?=
+ =?utf-8?B?MFIySTdxVW84eGd4TytYdGR0VStiUVF1bmxDUGh3eldyRDdNOE44V0dIVnVO?=
+ =?utf-8?B?SDRYRjdjN3FLU21kQUdXSkttMTJjVmF6cTdZbExWdC9QdS9Kb0ZWd1JBNW5P?=
+ =?utf-8?B?aC8wNk5IRmRqcWw0enV0VVQrdTd2U01haHJpdHVzVGM5Y29Tc3B0SmNWSnpw?=
+ =?utf-8?B?SE0rQ0xxSHoyT015bHdCNGFSN2x5SGN4OUFEdE10b1dUblVaRWIzaUFFVVlC?=
+ =?utf-8?B?dThjdXdtUVIzRzNsWVZTTU92SEpldHM2UXUvOUtDK3JxN0Ewa3I0aTVGeEVD?=
+ =?utf-8?B?aGErbkdHNEtQcW9kM3JHSDdRMC9QSHUzUUVUcjN2N01YZmhmVURQd3oyK0Zv?=
+ =?utf-8?B?Qm5BdDNqZjlld1hxb2c4bmdmeFlUK1Qxb1ZXOElWeDJiNWpIZmtMWkpOU0kx?=
+ =?utf-8?B?eExZUTQvMmhMK2hGT3hHTTNGZlppZFkyaDVySGJJb2xFYlgvZHBWeGRvME1y?=
+ =?utf-8?B?a3Q1SndaR2N6SUxYVXc3VHd2RTBzUHZLaW5GWDZmMjJiSkYzTFkrZXlLb2J2?=
+ =?utf-8?B?Slk0UlRGVFhUYVpxRFVPWEtFd2hvYkMxS3dsL1drSisrVW1icE83T1p6OTlO?=
+ =?utf-8?B?ZnkrZGtsNGFGSG85N0hMdHFUazRDRlNsMWpIQnFSM0dEWVpvSWlucTcxK1hP?=
+ =?utf-8?B?K0x6REc2OWJqRHRydEcrNmU1eXJOUmdoeHNTTG9xVHNaQUROVUlSbGc1SjFT?=
+ =?utf-8?B?aEZYNWoxZEZjV0gzTkJLbk5TQlJSUzkwQzM4TzMyVXllcDNwOCthL1ZlMWxB?=
+ =?utf-8?B?TkJwQm9jTktmR09WZ1hRNlZpT2JSUW8wTThFMFRWcXZGU1U5cFkyQ3NVL1dL?=
+ =?utf-8?Q?albs=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:IA3PR11MB9226.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?nYWuWvzSsbWVUV6DeyT3NXF9aNF3JWaV0w77vQ8b1RGTHiYDLkVx8wk5JpH9?=
- =?us-ascii?Q?2ZHvpBHj/mtI96xzWgAPVzNQ8TmBSdUVlhqJ2LIZYGqSS88nnCJ+9jvDpVha?=
- =?us-ascii?Q?/YXIzbxs7O2YS/y30h5x6wwFWe8jqSNMuspNHVifMdYRaVG/OFfblAEtvRIq?=
- =?us-ascii?Q?P+6ZWhwola2CJcrD7x3oevsMcPoC3IufGxL+nrLpeO3rFjdffMJFrHwr2VgL?=
- =?us-ascii?Q?wm61Ct27XlmRI4TlX2d7veAlaO2CIogP8T7lryMhlOgHdfb7xG35TIeou+Q5?=
- =?us-ascii?Q?mzfWHppLm/0LyLny834cShTXZjIU+kpE59fdx9VdpWgAN8oOG26pAh9EYZG/?=
- =?us-ascii?Q?bdBdXvVWmYCMqHGehTpvAWakN6VLZqL9h4WmCsowHQfau2n1vsTOHdhfHB0E?=
- =?us-ascii?Q?GQQHW6n9X6Py8Xzxc1SDzj/ru5lEk6TZHEpzinkUYplEldS8p12bu2oCWg3n?=
- =?us-ascii?Q?KZ7tV7fG4YEntyzjOZUf3ceO7Tb/AIw8kin1vnz2u1E/+mdjsgsSs3UEEPpl?=
- =?us-ascii?Q?Am03G+eFHBeCoCfbApTq51f4FLysQiWs5EWgdhAuvxizqKdu2lYIDNMxO5Aj?=
- =?us-ascii?Q?lwLC3nfUdkYlQTo4i1bS2ZZNI86DctkhB9qCa5QpKoNJKov6Aeq8M5uPabyc?=
- =?us-ascii?Q?LxohGx1vdGFR92r4Zu9lWM290CwKHmx4JDea9hVkBmylLBuVLLA869TTKQ8M?=
- =?us-ascii?Q?rNwgnZ8kO+iUqMzs4a5aH0VOFyN88CeS0F2DkKkm9RNC41B9aI8VaCtINhCB?=
- =?us-ascii?Q?woOhbEW0Amz9caZJXygRp6Kqqd0keMqDxsa2TnQoROVmmFig7fEm0nyTw/wL?=
- =?us-ascii?Q?FUrY35HKuGLQ0seKMVJ/f1lmTJrIFGU+NFgzM/YzzOybyXAAW138HCGf/5Ev?=
- =?us-ascii?Q?aNMxuxMEIv/TvqF6orKQQm6Y9UwM1vYQ/WW5qex2LK79thqr7ENpWoxmCpR1?=
- =?us-ascii?Q?ucQPkb5teR4XzLvqQR/oHjMhBLdl9NDgV/cvMShJPf4Ag7YGKMUMZAFdl9hF?=
- =?us-ascii?Q?lZ2Dz5KDeS7F4V6QgrKOGwtOWhm3MFhso7FRweYBJygzQbQPCZ4nCczFgkn+?=
- =?us-ascii?Q?MwkJ4f0BOrvSpk6C6DRihpIi6oU3tsMdqJgPOsZtxbAkzQW/tsdP3DIZeJxl?=
- =?us-ascii?Q?dEiyjC3hvKQ2y0oqZdURkmEjU5/hwBz+hh1uZLyGJ9/a221F37mP0ZDZaN/A?=
- =?us-ascii?Q?t1G0UWWdrvAcWsCeo2be6fNLmAU0rL/w/Bagh0y5VbnF0IboWKkWDL3hm1Xb?=
- =?us-ascii?Q?eYBqyWCprhZ1DHJfiviUDgtZBnSmf0D93/kA0XZ5PvVug0EFW5j2WxrsVquQ?=
- =?us-ascii?Q?EbxzD57Qg5paeMv3QhRb/nbmp3G8Kw2BNqm52v2gHffjJWBSKsl5Oz1EVDmk?=
- =?us-ascii?Q?CdlHFnQvbzJryIciXZf/J2y6b68X2wIHop8uKMmwbwUK43bUMEvTqs0hrPDj?=
- =?us-ascii?Q?w1Fn3cmIfT8RX4ZDGEv++FbIBvWPZrAuBj5gPN/WTmr8pi1mCN2xcxlYTW+i?=
- =?us-ascii?Q?YouP0xXR2gwJjsMCapkYFrUm81jZh5txry2J1KjZ2t3ESVsD66qTz3U2T7uM?=
- =?us-ascii?Q?hArRK5PJmxM28LLANrFgPWykjdRUud4BNffYuFSXVoMACB1VoIhhHqbuexI9?=
- =?us-ascii?Q?UfLc4zJ88Ey1K9N2D7B9nfLetV/y7rRuVA1eTo1icLlmXzht0MKEi9/2rrwy?=
- =?us-ascii?Q?nFsxyPo+RdNwB+lli1DUmFBZ8th7iGpkXJTwKT3mQdLrgb2NPd0Be9+sx/+4?=
- =?us-ascii?Q?w5V4cnjhOQ=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 32f49907-22ed-4507-7e0f-08de68e03f24
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Vjk0cVVqazZNMDNZNGx2M2hDVXV1Vm96Ri9UUzRJR1VLeUFYUHdoZE1Vd1F0?=
+ =?utf-8?B?aHQwMjRCZnZ1MnBOVG1BVHdsNDhsWnZQcnF2Vk5LbVhGUkdTMUxiaFI3cEY3?=
+ =?utf-8?B?TVZyVEUrRUNyeWZSK08wUUhKV0R5TUhORGoxWUVJYXYwTVJMeXhnWVFnV2Vy?=
+ =?utf-8?B?Ry9YVlE1ZFFZNnZBWjRJYlVMdWJ3bFFHUjRFUERKRVlxak5hVk9ObkpPOUth?=
+ =?utf-8?B?Qzk4K1VwTjFzRFFHZDJxRUl6Wkcrbm9XbGtsdGhPMTJWbC90OVJpNnBhQThm?=
+ =?utf-8?B?cU4rbVBOeEQwczJJdVgwVC9MUDVqMFdqWkdrQkNhVENhaEZPTFljaU9jWith?=
+ =?utf-8?B?aU41WnF3QTVOUnV5cFBFVGQxc3V6b2F2Q09OdzM3ekNrZUxkSlFheW9DMm9D?=
+ =?utf-8?B?TjNocE1PTVNlaVFVeHh6eUhxTG85Y3hvaUtRcTF1Q0pVZElnaG1YdDQwMXcx?=
+ =?utf-8?B?TE9jY1QxL05IeUxyOXZpU3dwajNjY1Rrcjl0NlZ0NEExelVVYkVpM1JnWWF5?=
+ =?utf-8?B?eE82WUxQUHVVN29aM3NjZUdwS2xNeEJUdXpwd3U5TzM5OHhOdC9BZ2pXdWV2?=
+ =?utf-8?B?VUg1YVU2UlJDeE9xUHZZYURmM2kvcmUxdC9RWWlESUoyYjJKcTZNSTFsUWoz?=
+ =?utf-8?B?R2Z6cFJEaXhaM1owamVRNEhIeml0UTRZb2lsT055b1dYaEhIRnhLUmJhcUJZ?=
+ =?utf-8?B?SGl5QkYxV29tbVBVOEhlWDBBYSs0NXZ2dldyZjdSZXVIQzJzdm1EV2k4S1dZ?=
+ =?utf-8?B?U1NhSGpoVTRGRTh0TWg2cnJMN004YVY1QUhLVHJUVnVKbExGZksvK05hcUxP?=
+ =?utf-8?B?VEQzZjJ0RFZqU21aWWNtVGdUMlQxVDhjZEZxanNoNmFKcXFTTEZ5OEtNOXVQ?=
+ =?utf-8?B?SzJPOFlSQjhYY1RRK0JNMmJMYWJMR1ovbGZQYnNKQ2JRbUZCVjBwd3B5eTFM?=
+ =?utf-8?B?TE5UNURRV3N6Z3ZlcmtHanFWNmV1Q3ByLzF2Z3N1Q09QdjA2V0tjcyttY0pT?=
+ =?utf-8?B?ajI2V2J1TStFb2RSeGNKZnA1T0NNZXJYTDJ3N2pMV0ErVlJoQlRxWmxoWkhT?=
+ =?utf-8?B?aXl4QjljeXRrTGdQYlFUaStXVURMeEZEbzd5RHNFZ1BUQWVYTDhZSkh2TGdV?=
+ =?utf-8?B?ZlZXZFpIVjFsc1gzVEc4OE9pZ1czTGp6VGJKRTh6cFpHQkgxL0J3MEE5a1lD?=
+ =?utf-8?B?NUhRbHNSekhBTXJKWk50bkoxZ1lUM2dtdHArekU5K05mYk1GcXdDa1ROOFlQ?=
+ =?utf-8?B?UHgyREl6K0Z0Z25ZemU1ajB2U3VsbHdEVkh4ai9xcE53UVhkN0E0YTZsOXBM?=
+ =?utf-8?B?UDhVTThRQlVUcnVENEJnMnFoTnBmRlpsbE4wK0tmcFNweXdnVThRZERObE9S?=
+ =?utf-8?B?Q2tNWUNSQ0NLSEtrWjVXY2k3QmdwcUI4MFlraHp2aGVWY1MzSzMrQlNnL0N3?=
+ =?utf-8?B?M1FzUUhZMFRWTjVqcFJRTHNGMzc2bnV3NDRreGJNNlp1Q2MwOFZnU0VXTVl4?=
+ =?utf-8?B?QUJZZExtR3NFNkxUVmpLcGxxUWlaOHovSTR6MzFsNGlaTFVVSnRzZ1Bpbmdv?=
+ =?utf-8?B?emt0YXBROEtSUk03cFA3QXNBeTR1eStONDI2OFgwOGp1NlErc1lTZlIxd2R3?=
+ =?utf-8?B?MnVDQ21ublBTdmp5bXUxV2VTV2k2WmZWdTZIRVVtckRjenllU2VtYmIzLy8v?=
+ =?utf-8?B?TkNlSFRjRVBoM0VDemM0RTFJWk5oU21HUlNUbzZEL3U2K0Q2a3hXa3k4Vnh0?=
+ =?utf-8?B?WnVSV0haNDJrbTFFTTBnUFV4UWRORUVOSkxvK2xFUytYd2xmbFFHeS9zTTJI?=
+ =?utf-8?B?WFc2L25HTmhyUHloeXJBMUpZMmhRTjUvME5mbGpVdjB1T05NS0xuUjd5Ylhp?=
+ =?utf-8?B?MHRzTUcyZVBjamlFWnVla2M0ZERvZUsvMW5LL212V3FmZlpKaU1ZN0tXeVQ1?=
+ =?utf-8?B?ZlNnMTNHcDJUU0NIT3lKNy9qSUZSZlcwOGdxQXprSG9DSzFSd0VnOGRXRGNo?=
+ =?utf-8?B?ZlVGWVEvaGhUUTViTEMvb3ZQR29qSzRWTC82ajVuNmV6cE5ENDhuZWtJYkFx?=
+ =?utf-8?B?RnphR0dsdXo3QmRHVk5hU3FPZXZYNW9OWEVBNWJQSmhpN2NQS1dmRVBiWGZX?=
+ =?utf-8?B?bjRkM2d0b1RpcVNrMVZxdm5YcFEwdy9BZUpUcjdNOHhGNXhRRnBUVVVueDdF?=
+ =?utf-8?B?SU5SVDZWNEtoYlFHMnZBWTB0MHVseVlBeTZ3TjNETFh6bkRESm9IZU1XZnpC?=
+ =?utf-8?B?L1JnNmRuZ2cyL1pKRzV6V000dTVJSGQ0UFFnTFY1L2s5TVdTQVBtUHBnV1Bu?=
+ =?utf-8?B?bEhGMDdqNGdUM1hkdGcvclhyQ1d6bFhtMmtQYlZXRXU2bSsvcjFSQT09?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0706844f-a723-4bf7-e0e7-08de68e0a32f
+X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9226.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2026 20:09:07.6663 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2026 20:11:55.4396 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nLoPllwMvM3kufJN7+6uY/Wsrpc0CIe4qJ+yS5kYuQaD3ZdWims9b6XGryzBorqJxsl9o2j4+9QXoXENx/Q9Cg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPFCB5E1B8F5
+X-MS-Exchange-CrossTenant-UserPrincipalName: OnknkNtZKQL38MBYMktdnGPNDyjtxSBaUjpq4qlpe9YCXkVSNI2tRJ/mtDsFPAfC7EYbBEGH1xZRk2fSnFrTWw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5212
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -181,101 +205,209 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Danilo,
 
-Thanks for the review!
+On 2/6/2026 7:11 PM, Matthew Brost wrote:
+> On Fri, Feb 06, 2026 at 03:53:33PM +0100, Tomasz Lis wrote:
+>> When a context is being created during save/restore, the LRC creation
+>> needs to wait for GGTT address space to be shifted. But it also needs
+>> to have fixed default LRCs. This is mandatory to avoid the situation
+>> where LRC will be created based on data from before the fixups, but
+>> reference within exec queue will be set too late for fixups.
+>>
+>> This fixes an issue where contexts created during save/restore have
+>> a large chance of having one unfixed LRC, due to the xe_lrc_create()
+>> being synced for equal start to race with default LRC fixups.
+>>
+> This indeed looks like a potential problem.
+>
+> This whole flow is a bit weak (my fault — I meant to fix this but lost
+> track of it). Maybe we should make this a bit more robust and ordered by
+> the GuC backend.
+>
+> Roughly:
+>
+> - In guc_exec_queue_unpause_prepare, if at least one job has been
+>    submitted, we fix the LRCs on the queue. This would happen prior to
+>    emit_job. I believe the 'at least one job has been submited check' is
+>    exec_queue_registered.
+>
+> - In guc_exec_queue_run_job, upon running the first job (hook in
+>    register_exec_queue) and if VF migration is enabled, we fix the LRC.
+>
+> What do you think? I believe this would work, provide stronger ordering
+> guarantees, and let us drop the READ_ONCE/WRITE_ONCE and wait‑queue
+> semantics, which are questionable at best. We could probably revert the
+> flipping of q->ops->init and the LRC creation order back to the original
+> flow as well.
 
-On Tue, Feb 10, 2026 at 12:55:01PM +0100, Danilo Krummrich wrote:
-> On Mon Feb 9, 2026 at 10:42 PM CET, Joel Fernandes wrote:
-> 
-> [...]
-> 
->> +//! params.size_bytes = SZ_8M as u64;
-> 
-> It looks there are ~30 occurences of `as u64` in this example code, which seems
-> quite inconvinient for drivers.
-> 
-> In nova-core I proposed to have FromSafeCast / IntoSafeCast for usize, u32 and
-> u64, which would help here as well, once factored out.
-> 
-> But even this seems pretty annoying. I wonder if we should just have separate
-> 64-bit size constants, as they'd be pretty useful in other places as well, e.g.
-> GPUVM.
+I have a vague suspicion that there maybe can be something more wrong 
+with the LRC
 
-Agreed, the `as u64` casts are verbose. Note that these are only in the doc
-examples -- actual driver code (e.g. nova-core) already uses
-FromSafeCast/IntoSafeCast from your nova-core patches [1]. Once those traits
-are factored out of nova-core into a shared kernel crate location, I can update
-the examples to use them instead.
+than the GGTT references, if being created at the moment of VF 
+migration. But maybe
 
-Since the doc examples live outside nova-core, I suggest let us keep it as using
-as for now. Thoughts?
+I'm misinterpreting stuff, I can't point to a mechanism which could 
+create such skewed LRCs.
 
-[1] https://lore.kernel.org/all/20251029-nova-as-v3-5-6a30c7333ad9@nvidia.com/
 
->> +#[pin_data(PinnedDrop)]
->> +struct GpuBuddyInner {
->> +    #[pin]
->> +    inner: Opaque<bindings::gpu_buddy>,
->> +    #[pin]
->> +    lock: Mutex<()>,
-> 
-> Why don't we have the mutex around the Opaque<bindings::gpu_buddy>? It's the
-> only field the mutex does protect.
-> 
-> Is it because mutex does not take an impl PinInit? If so, we should add a
-> comment with a proper TODO.
+We should create a POC, then do some intense testing. If it works, then 
+my "vague suspicions"
 
-Correct, that is the reason. I'll add a TODO comment in
-the next version explaining this limitation.
+were baseless. It does look like a good solution, even if less contained 
+to the recovery worker.
 
->> +impl GpuBuddyInner {
->> +    /// Create a pin-initializer for the buddy allocator.
->> +    fn new(params: &GpuBuddyParams) -> impl PinInit<Self, Error> {
-> 
-> I think we can just pass them by value, they shouldn't be needed anymore after
-> the GpuBuddy instance has been constructed.
+Performance impact should be next to none, due to the fixups only 
+happening once on new
 
-Dave Airlie specifically reviewed this in RFC v6 and recommended passing by
-reference rather than by value [2]:
+context during normal VF driver operations. Creating a lot of contexts 
+to do one, very small job
 
-  "maybe we should pass them as non-mutable references, but I don't think
-   there is any point in passing them by value ever."
+on each is not a flow used anywhere outside of tests (and even there, 
+the impact wouldn't be
 
-The params are also reused in practice -- the doc examples show the same
-`GpuBuddyParams` being used repeatedly. References
-avoid unnecessary copies for this reuse pattern.
+that noticeable).
 
-[2] https://lore.kernel.org/all/CAPM=9tyL_Cq3+qWc4A41p7eqnNDLS1APUEeUbaQyJ46YDkipVw@mail.gmail.com/
 
->> +    pub fn new(params: &GpuBuddyParams) -> Result<Self> {
-> 
-> Same here, we should be able to take this by value.
+Will work on the POC, and ping you in case of issues.
 
-Same reasoning as above.
+-Tomasz
 
->> +    pub fn alloc_blocks(&self, params: &GpuBuddyAllocParams) -> Result<Arc<AllocatedBlocks>> {
-> 
-> Why do we force a reference count here? I think we should just return
-> impl PinInit<AllocatedBlocks, Error> and let the driver decide where to
-> initialize the object, no?
-> 
-> I.e. what if the driver wants to store additional data in a driver private
-> structure? Then we'd need two allocations otherwise and another reference count
-> in the worst case.
 
-Good point. The reason I had `Arc` was to anticipate potential shared ownership
-use cases, but at the moment there is no such use case
-in nova-core -- each `AllocatedBlocks` has a single owner.
-
-I'll change this to return `impl PinInit<AllocatedBlocks, Error>` in the next
-version. If a shared ownership use case arises later, we
-can always add an `Arc`-returning convenience wrapper.
-
-For the nova-core side, the field would change from
-`KVec<Arc<AllocatedBlocks>>` to `KVec<Pin<KBox<AllocatedBlocks>>>`, which
-works fine I think.
-
--- 
-Joel Fernandes
-
+> Matt
+>
+>> Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_exec_queue.c        |  2 +-
+>>   drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 24 +++++++++++------------
+>>   drivers/gpu/drm/xe/xe_gt_sriov_vf.h       |  2 +-
+>>   drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  4 ++--
+>>   4 files changed, 15 insertions(+), 17 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+>> index e9396ad3390a..6eb561086e1c 100644
+>> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+>> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+>> @@ -309,7 +309,7 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
+>>   	for (i = 0; i < q->width; ++i) {
+>>   		struct xe_lrc *lrc;
+>>   
+>> -		xe_gt_sriov_vf_wait_valid_ggtt(q->gt);
+>> +		xe_gt_sriov_vf_wait_valid_default_lrc(q->gt);
+>>   		lrc = xe_lrc_create(q->hwe, q->vm, q->replay_state,
+>>   				    xe_lrc_ring_size(), q->msix_vec, flags);
+>>   		if (IS_ERR(lrc)) {
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+>> index 30e8c2cf5f09..1edccee84c76 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
+>> @@ -529,12 +529,6 @@ static int vf_get_ggtt_info(struct xe_gt *gt)
+>>   		xe_tile_sriov_vf_fixup_ggtt_nodes_locked(gt_to_tile(gt), shift);
+>>   	}
+>>   
+>> -	if (xe_sriov_vf_migration_supported(gt_to_xe(gt))) {
+>> -		WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, false);
+>> -		smp_wmb();	/* Ensure above write visible before wake */
+>> -		wake_up_all(&gt->sriov.vf.migration.wq);
+>> -	}
+>> -
+>>   	return 0;
+>>   }
+>>   
+>> @@ -837,6 +831,10 @@ static void xe_gt_sriov_vf_default_lrcs_hwsp_rebase(struct xe_gt *gt)
+>>   
+>>   	for_each_hw_engine(hwe, gt, id)
+>>   		xe_default_lrc_update_memirq_regs_with_address(hwe);
+>> +
+>> +	WRITE_ONCE(gt->sriov.vf.migration.default_lrcs_need_fixes, false);
+>> +	smp_wmb();	/* Ensure above write visible before wake */
+>> +	wake_up_all(&gt->sriov.vf.migration.wq);
+>>   }
+>>   
+>>   static void vf_start_migration_recovery(struct xe_gt *gt)
+>> @@ -851,7 +849,7 @@ static void vf_start_migration_recovery(struct xe_gt *gt)
+>>   	    !gt->sriov.vf.migration.recovery_teardown) {
+>>   		gt->sriov.vf.migration.recovery_queued = true;
+>>   		WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, true);
+>> -		WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, true);
+>> +		WRITE_ONCE(gt->sriov.vf.migration.default_lrcs_need_fixes, true);
+>>   		smp_wmb();	/* Ensure above writes visible before wake */
+>>   
+>>   		xe_guc_ct_wake_waiters(&gt->uc.guc.ct);
+>> @@ -1296,7 +1294,7 @@ static void vf_post_migration_abort(struct xe_gt *gt)
+>>   {
+>>   	spin_lock_irq(&gt->sriov.vf.migration.lock);
+>>   	WRITE_ONCE(gt->sriov.vf.migration.recovery_inprogress, false);
+>> -	WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, false);
+>> +	WRITE_ONCE(gt->sriov.vf.migration.default_lrcs_need_fixes, false);
+>>   	spin_unlock_irq(&gt->sriov.vf.migration.lock);
+>>   
+>>   	wake_up_all(&gt->sriov.vf.migration.wq);
+>> @@ -1492,7 +1490,7 @@ bool xe_gt_sriov_vf_recovery_pending(struct xe_gt *gt)
+>>   	return READ_ONCE(gt->sriov.vf.migration.recovery_inprogress);
+>>   }
+>>   
+>> -static bool vf_valid_ggtt(struct xe_gt *gt)
+>> +static bool vf_valid_default_lrc(struct xe_gt *gt)
+>>   {
+>>   	struct xe_memirq *memirq = &gt_to_tile(gt)->memirq;
+>>   	bool irq_pending = xe_device_uses_memirq(gt_to_xe(gt)) &&
+>> @@ -1500,17 +1498,17 @@ static bool vf_valid_ggtt(struct xe_gt *gt)
+>>   
+>>   	xe_gt_assert(gt, IS_SRIOV_VF(gt_to_xe(gt)));
+>>   
+>> -	if (irq_pending || READ_ONCE(gt->sriov.vf.migration.ggtt_need_fixes))
+>> +	if (irq_pending || READ_ONCE(gt->sriov.vf.migration.default_lrcs_need_fixes))
+>>   		return false;
+>>   
+>>   	return true;
+>>   }
+>>   
+>>   /**
+>> - * xe_gt_sriov_vf_wait_valid_ggtt() - VF wait for valid GGTT addresses
+>> + * xe_gt_sriov_vf_wait_valid_default_lrc() - wait for valid GGTT refs in default LRCs
+>>    * @gt: the &xe_gt
+>>    */
+>> -void xe_gt_sriov_vf_wait_valid_ggtt(struct xe_gt *gt)
+>> +void xe_gt_sriov_vf_wait_valid_default_lrc(struct xe_gt *gt)
+>>   {
+>>   	int ret;
+>>   
+>> @@ -1519,7 +1517,7 @@ void xe_gt_sriov_vf_wait_valid_ggtt(struct xe_gt *gt)
+>>   		return;
+>>   
+>>   	ret = wait_event_interruptible_timeout(gt->sriov.vf.migration.wq,
+>> -					       vf_valid_ggtt(gt),
+>> +					       vf_valid_default_lrc(gt),
+>>   					       HZ * 5);
+>>   	xe_gt_WARN_ON(gt, !ret);
+>>   }
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+>> index 7d97189c2d3d..70232dc38f9a 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.h
+>> @@ -39,6 +39,6 @@ void xe_gt_sriov_vf_print_config(struct xe_gt *gt, struct drm_printer *p);
+>>   void xe_gt_sriov_vf_print_runtime(struct xe_gt *gt, struct drm_printer *p);
+>>   void xe_gt_sriov_vf_print_version(struct xe_gt *gt, struct drm_printer *p);
+>>   
+>> -void xe_gt_sriov_vf_wait_valid_ggtt(struct xe_gt *gt);
+>> +void xe_gt_sriov_vf_wait_valid_default_lrc(struct xe_gt *gt);
+>>   
+>>   #endif
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+>> index 4ef881b9b662..8be181bf3cf3 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
+>> @@ -73,8 +73,8 @@ struct xe_gt_sriov_vf_migration {
+>>   	bool recovery_queued;
+>>   	/** @recovery_inprogress: VF post migration recovery in progress */
+>>   	bool recovery_inprogress;
+>> -	/** @ggtt_need_fixes: VF GGTT needs fixes */
+>> -	bool ggtt_need_fixes;
+>> +	/** @default_lrcs_need_fixes: GGTT refs within default LRCs need fixes */
+>> +	bool default_lrcs_need_fixes;
+>>   };
+>>   
+>>   /**
+>> -- 
+>> 2.25.1
+>>
