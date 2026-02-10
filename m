@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1637EA3F18
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Feb 2026 08:09:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FCE3EA3F26
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Feb 2026 08:48:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 969AB10E0CE;
-	Tue, 10 Feb 2026 08:09:59 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7F88310E0CE;
- Tue, 10 Feb 2026 08:09:58 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6389760095289663112=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FFAB10E284;
+	Tue, 10 Feb 2026 08:48:51 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AnO5DsX1";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1FAD10E284;
+ Tue, 10 Feb 2026 08:48:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1770713330; x=1802249330;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=hME6NGp8PSzwjSjhyXIsdhqFlAIB2lbW5qJj68gYEns=;
+ b=AnO5DsX1Vblgn/oJzmxQgzAUxEr1pwxIDOKScR9LhqzMzU7PpUYShV4g
+ t1p7PwD9T9OoquvOat6bzJ7pUCEICm8KxkG4bDkybXW8EkJqD6CtnxTsu
+ NUtD9Rjm7ngvPOQO/zhHyFJyOZOgu+ELNFlHoY/1cmS392UUaidlYfrcE
+ luxt9P9N0Vkt7qVsF1Grx/sSq/LJkOStulBklRBYsx7O2ZnWSyP7Gns/H
+ jjuQpgmKAyWy4ZgOYTc3avCQeYOtpJ4Yp+sR2UQemmu0H7yw7YY/D3T/H
+ WnDN43SUWKaWzj4aaqfoAzZu1ZMSeXvc2vDvsafNv1tBxjnQ4X2U4wOKW g==;
+X-CSE-ConnectionGUID: xhKIyIplRCex/+ABQo4OuQ==
+X-CSE-MsgGUID: apGfPjEPT+CtdR3bW/nvHw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="71878623"
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="71878623"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2026 00:48:49 -0800
+X-CSE-ConnectionGUID: OPBnJCQGQoG0S4XSG2er3w==
+X-CSE-MsgGUID: 35PtUuv5T0m5PxbhPuGyPg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="211689610"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.246])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2026 00:48:47 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>, Suraj Kandpal
+ <suraj.kandpal@intel.com>
+Subject: Re: [PATCH v3 14/15] drm/i915/nvlp: Hook up display support
+In-Reply-To: <87tsvp4bv1.fsf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260206-nvl-p-upstreaming-v3-0-636e1ad32688@intel.com>
+ <20260206-nvl-p-upstreaming-v3-14-636e1ad32688@intel.com>
+ <87tsvp4bv1.fsf@intel.com>
+Date: Tue, 10 Feb 2026 10:48:44 +0200
+Message-ID: <7959152f5fc1d5accf13e19bf26ed49330bbdf48@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Decouple_devcoredump_from_a?=
- =?utf-8?q?ccessing_core_driver_structures?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shekhar Chauhan" <shekhar.chauhan@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 10 Feb 2026 08:09:58 -0000
-Message-ID: <177071099850.240272.1375427850367698201@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260210072942.1864182-1-shekhar.chauhan@intel.com>
-In-Reply-To: <20260210072942.1864182-1-shekhar.chauhan@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,154 +70,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6389760095289663112==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 09 Feb 2026, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+> Gustavo Sousa <gustavo.sousa@intel.com> writes:
+>
+>> From: Matt Roper <matthew.d.roper@intel.com>
+>>
+>> Although NVL-S and NVL-P are quite different on the GT side, they use
+>> identical Xe3p_LPD display IP and should take all the same codepaths.
+>>
+>> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+>> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>
+> Jani or Rodrigo,
+>
+> Ack to apply this via drm-xe-next?
 
-== Series Details ==
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-Series: Decouple devcoredump from accessing core driver structures
-URL   : https://patchwork.freedesktop.org/series/161407/
-State : success
+>
+> --
+> Gustavo Sousa
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_display_device.c | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+>> index 471f236c9ddf..1a7f3ca079e8 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_device.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+>> @@ -1500,6 +1500,7 @@ static const struct {
+>>  	INTEL_PTL_IDS(INTEL_DISPLAY_DEVICE, &ptl_desc),
+>>  	INTEL_WCL_IDS(INTEL_DISPLAY_DEVICE, &ptl_desc),
+>>  	INTEL_NVLS_IDS(INTEL_DISPLAY_DEVICE, &nvl_desc),
+>> +	INTEL_NVLP_IDS(INTEL_DISPLAY_DEVICE, &nvl_desc),
+>>  };
+>>  
+>>  static const struct {
+>>
+>> -- 
+>> 2.52.0
 
-== Summary ==
-
-CI Bug Log - changes from xe-4533-b20f8b5666871e489718c540f9604999e43338ac_BAT -> xe-pw-161407v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (11 -> 12)
-------------------------------
-
-  Additional (1): bat-bmg-3 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-161407v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p:
-    - bat-bmg-3:          NOTRUN -> [SKIP][1] ([Intel XE#6566]) +3 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161407v1/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p.html
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [PASS][2] -> [TIMEOUT][3] ([Intel XE#6506])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4533-b20f8b5666871e489718c540f9604999e43338ac/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161407v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][4] ([Intel XE#6519]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4533-b20f8b5666871e489718c540f9604999e43338ac/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161407v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#6566]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566
-
-
-Build changes
--------------
-
-  * Linux: xe-4533-b20f8b5666871e489718c540f9604999e43338ac -> xe-pw-161407v1
-
-  IGT_8746: 8746
-  xe-4533-b20f8b5666871e489718c540f9604999e43338ac: b20f8b5666871e489718c540f9604999e43338ac
-  xe-pw-161407v1: 161407v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161407v1/index.html
-
---===============6389760095289663112==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Decouple devcoredump from accessing core driver structures</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161407/">https://patchwork.freedesktop.org/series/161407/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161407v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161407v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4533-b20f8b5666871e489718c540f9604999e43338ac_BAT -&gt; xe-pw-161407v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (11 -&gt; 12)</h2>
-<p>Additional (1): bat-bmg-3 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-161407v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p:</p>
-<ul>
-<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161407v1/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-vram01-p2p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566">Intel XE#6566</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@abstime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4533-b20f8b5666871e489718c540f9604999e43338ac/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161407v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4533-b20f8b5666871e489718c540f9604999e43338ac/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161407v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4533-b20f8b5666871e489718c540f9604999e43338ac -&gt; xe-pw-161407v1</li>
-</ul>
-<p>IGT_8746: 8746<br />
-  xe-4533-b20f8b5666871e489718c540f9604999e43338ac: b20f8b5666871e489718c540f9604999e43338ac<br />
-  xe-pw-161407v1: 161407v1</p>
-
-</body>
-</html>
-
---===============6389760095289663112==--
+-- 
+Jani Nikula, Intel
