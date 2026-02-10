@@ -4,54 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BB0CEA3F2B
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Feb 2026 09:15:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20A4EEA3F2A
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Feb 2026 09:23:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0134210E523;
-	Tue, 10 Feb 2026 09:15:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D46CB10E530;
+	Tue, 10 Feb 2026 09:23:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YOR4dr4x";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y+33NqKM";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5AD810E523
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Feb 2026 09:15:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BF2E10E51B;
+ Tue, 10 Feb 2026 09:23:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770714946; x=1802250946;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=bsXLrhjxvEdND4XxmNtsUTCoE9JLbdDJUjaLSxIiVhw=;
- b=YOR4dr4xcBYTS4cIBDTlF5VGpnYjBLeLUU1vk8zyxhvBAMtnwjZRd0Gy
- 2YjenH5l6dQfy5muvpSzG8nawCLSjSPmVU0Ap6dtmr1LYj1xTObF5bFdo
- hqOLV8JRoPeYwaYK1jeL0ndiaq3Zyi0Fop9CCQGXp9rDsFDOtxk+YD8a/
- hy2W0ukd6q3aQirKbWbrKgPhVY8Y3ncF8+cxmW4kYGRHpa5p/IzJ484IC
- qxCWKRJlB+XBVWUromLV7Mpb7E9JDDnF6jTCPOEMxTdjkHJxDYzZZ4Kkc
- rZtx1SaxOyNXH3dynxaJJc+qjhfHpy5j33raK9vayuIkxOGfHwPHZWkki A==;
-X-CSE-ConnectionGUID: 0NiHh4GsQkqWXL5HU4mQAQ==
-X-CSE-MsgGUID: nQeuY92+TJmiGMmKwCW8ew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="82568009"
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="82568009"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ t=1770715387; x=1802251387;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Dab3dVl5SxedR/PwPLgEmY+DSdRMhfNXtdR0mTBnfLA=;
+ b=Y+33NqKMgNVY6CDcE8iM1/9zhvfh6TCcsh2EA3uJ7zFML2NoQ9Cad5NY
+ wTJeMLreeHeS5VGsW+di88nHr8sIWZ7CavetooKSnOz8n9/VvUT7uJfZV
+ Q7lXW+sWShD/cCfnUB3yl89X7dWUjpMXd4tLXha4jW9ZMRsSa1pSDD2AA
+ ZzfWgBEIwcDlSVFEkXz4aSFWJbLlmI0aLNqiAGoxtIRJGTGF9RiUwdkFO
+ LMnPCOOY9Td/PGf25xD0jXD2We1LCS/xinc7X5Kiry9MXkoCw9tOPaPnI
+ YRQj70wL5fL3vh8PO8ezeqn6BvufbIubzjHIA3IN4Qob6BBaXFalpRakE Q==;
+X-CSE-ConnectionGUID: 5XypM0oySM2tSoNDuJ+vYQ==
+X-CSE-MsgGUID: Dlvvu7csQw6ar+MmHzmBvw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="82568788"
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="82568788"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2026 01:15:46 -0800
-X-CSE-ConnectionGUID: 9c4oVa4ISYuMK54iTCdYWw==
-X-CSE-MsgGUID: VwmeoaVjQtO5pRhAGUeFIA==
+ 10 Feb 2026 01:23:07 -0800
+X-CSE-ConnectionGUID: tPUbVQTLQMKTiU2QcJF8yQ==
+X-CSE-MsgGUID: pfiw3MXLSmGlbhLiIhZymw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="216030692"
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="211058607"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.246])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2026 01:15:45 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Austin Hu <austin.hu@intel.com>, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/2] drm/i915/color: Attach the 3D LUT block to required
- DE Plane.
-In-Reply-To: <20260207001250.2448612-2-austin.hu@intel.com>
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2026 01:23:05 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Samasth Norway Ananda <samasth.norway.ananda@oracle.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com, samasth.norway.ananda@oracle.com,
+ ville.syrjala@linux.intel.com
+Subject: Re: [PATCH] drm/i915/gmbus: fix spurious timeout on 512-byte burst
+ reads
+In-Reply-To: <20260206203044.3892925-1-samasth.norway.ananda@oracle.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260207001250.2448612-1-austin.hu@intel.com>
- <20260207001250.2448612-2-austin.hu@intel.com>
-Date: Tue, 10 Feb 2026 11:15:42 +0200
-Message-ID: <2cb9becbee22538f4230aa5f716337ed07a7e250@intel.com>
+References: <20260206203044.3892925-1-samasth.norway.ananda@oracle.com>
+Date: Tue, 10 Feb 2026 11:23:02 +0200
+Message-ID: <83ad67d411502b2e2ece666745b5209dae83e4f7@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,172 +71,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 06 Feb 2026, Austin Hu <austin.hu@intel.com> wrote:
-> Or attach to Pipe directly for the unsupported Plane(s).
+On Fri, 06 Feb 2026, Samasth Norway Ananda <samasth.norway.ananda@oracle.com> wrote:
+> When reading exactly 512 bytes with burst read enabled, the
+> extra_byte_added path breaks out of the inner do-while without
+> decrementing len. The outer while(len) then re-enters and gmbus_wait()
+> times out since all data has been delivered. Decrement len before the
+> break so the outer loop terminates correctly.
 
-Insufficient commit message. Please don't add a period at the end of the
-subject.
+Nice find, and the fix looks correct. How did you figure this out? Did
+you hit the issue?
 
->
-> Signed-off-by: Austin Hu <austin.hu@intel.com>
+I wonder if the whole extra byte thing is a workaround for some old
+hardware that shouldn't be needed on modern hardware... Ville, thoughts?
+
+> Also fix a typo in a nearby comment ("generata" -> "generate").
+
+"Also" is a good hint that it should be a separate patch. ;)
+
+BR,
+Jani
+
+> Fixes: d5dc0f43f268 ("drm/i915/gmbus: Enable burst read")
+> Signed-off-by: Samasth Norway Ananda <samasth.norway.ananda@oracle.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_color.c    | 29 ++++++++++++++++---
->  drivers/gpu/drm/i915/display/intel_color.h    | 11 ++-----
->  drivers/gpu/drm/i915/display/intel_plane.c    |  4 +--
->  .../drm/i915/display/skl_universal_plane.c    |  2 +-
->  4 files changed, 30 insertions(+), 16 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_gmbus.c | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-> index e79506554..dff33c9c1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color.c
-> +++ b/drivers/gpu/drm/i915/display/intel_color.c
-> @@ -4090,7 +4090,10 @@ static void glk_load_lut_3d(struct intel_dsb *dsb,
->  	intel_de_write_dsb(display, dsb, LUT_3D_INDEX(pipe), 0);
->  }
+> diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
+> index 2caff677600c..5fb3fee34af4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
+> +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+> @@ -496,8 +496,10 @@ gmbus_xfer_read_chunk(struct intel_display *display,
 >  
-> -static void glk_lut_3d_commit(struct intel_dsb *dsb, struct intel_crtc *crtc, bool enable)
-> +static void glk_lut_3d_commit(struct intel_dsb *dsb,
-> +		struct intel_crtc *crtc,
-> +		struct intel_plane *plane,
-> +		bool enable)
-
-Please fix the indentation, that's not a style used anywhere.
-
->  {
->  	struct intel_display *display = to_intel_display(crtc);
->  	enum pipe pipe = crtc->pipe;
-> @@ -4102,8 +4105,25 @@ static void glk_lut_3d_commit(struct intel_dsb *dsb, struct intel_crtc *crtc, bo
->  		return;
+>  		val = intel_de_read_fw(display, GMBUS3(display));
+>  		do {
+> -			if (extra_byte_added && len == 1)
+> +			if (extra_byte_added && len == 1) {
+> +				len--;
+>  				break;
+> +			}
+>  
+>  			*buf++ = val & 0xff;
+>  			val >>= 8;
+> @@ -693,7 +695,7 @@ do_gmbus_xfer(struct i2c_adapter *adapter, struct i2c_msg *msgs, int num,
+>  			goto clear_err;
 >  	}
 >  
-> -	if (enable)
-> -		val = LUT_3D_ENABLE | LUT_3D_READY | LUT_3D_BIND_PLANE_1;
-> +	if (enable) {
-> +		val = LUT_3D_ENABLE | LUT_3D_READY;
-> +
-> +		switch (plane->id) {
-> +		case PLANE_1:
-> +			val |= LUT_3D_BIND_PLANE_1;
-> +			break;
-> +		case PLANE_2:
-> +			val |= LUT_3D_BIND_PLANE_2;
-> +			break;
-> +		case PLANE_3:
-> +			val |= LUT_3D_BIND_PLANE_3;
-> +			break;
-> +		default:
-> +			/* Attached the 3D LUT block to Pipe. */
-
-Attached? Or Attach? There's no need to capitalize pipe.
-
-> +			val |= LUT_3D_BIND_PIPE;
-> +			break;
-> +		}
-> +	}
->  
->  	intel_de_write_dsb(display, dsb, LUT_3D_CTL(pipe), val);
->  }
-> @@ -4238,13 +4258,14 @@ static const struct intel_color_funcs ilk_color_funcs = {
->  };
->  
->  void intel_color_plane_commit_arm(struct intel_dsb *dsb,
-> +				  struct intel_plane *plane,
->  				  const struct intel_plane_state *plane_state)
->  {
->  	struct intel_display *display = to_intel_display(plane_state);
->  	struct intel_crtc *crtc = to_intel_crtc(plane_state->uapi.crtc);
->  
->  	if (crtc && intel_color_crtc_has_3dlut(display, crtc->pipe))
-> -		glk_lut_3d_commit(dsb, crtc, !!plane_state->hw.lut_3d);
-> +		glk_lut_3d_commit(dsb, crtc, plane, !!plane_state->hw.lut_3d);
-
-Just pass plane_state, and figure the rest out from that.
-
-	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
-
->  }
->  
->  static void
-> diff --git a/drivers/gpu/drm/i915/display/intel_color.h b/drivers/gpu/drm/i915/display/intel_color.h
-> index c21b9bdf7..bc8192d75 100644
-> --- a/drivers/gpu/drm/i915/display/intel_color.h
-> +++ b/drivers/gpu/drm/i915/display/intel_color.h
-> @@ -7,15 +7,7 @@
->  #define __INTEL_COLOR_H__
->  
->  #include <linux/types.h>
-> -
-> -struct intel_atomic_state;
-> -struct intel_crtc_state;
-> -struct intel_crtc;
-> -struct intel_display;
-> -struct intel_dsb;
-> -struct intel_plane_state;
-> -struct drm_property_blob;
-> -enum pipe;
-> +#include "intel_display_types.h"
-
-Absolutely not.
-
-Please never include header from headers unless you absolutely have
-to. Use forward declarations instead.
-
-We've put a lot of effort into reducing header interdependencies, which
-improves incremental build times quite nicely.
-
-Here, it would be sufficient to add
-
-struct intel_plane;
-
-forward declaration, *except* you can get the plane from the plane state
-with no changes in the API:
-
-	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
-
->  void intel_color_init_hooks(struct intel_display *display);
->  int intel_color_init(struct intel_display *display);
-> @@ -45,6 +37,7 @@ void intel_color_assert_luts(const struct intel_crtc_state *crtc_state);
->  void intel_color_plane_program_pipeline(struct intel_dsb *dsb,
->  					const struct intel_plane_state *plane_state);
->  void intel_color_plane_commit_arm(struct intel_dsb *dsb,
-> +				  struct intel_plane *plane,
->  				  const struct intel_plane_state *plane_state);
->  bool intel_color_crtc_has_3dlut(struct intel_display *display, enum pipe pipe);
->  #endif /* __INTEL_COLOR_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
-> index ab6a58530..305e8e60f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_plane.c
-> @@ -345,11 +345,11 @@ intel_plane_colorop_replace_blob(struct intel_plane_state *plane_state,
->  	if (intel_colorop->id == INTEL_PLANE_CB_CSC)
->  		return drm_property_replace_blob(&plane_state->hw.ctm, blob);
->  	else if (intel_colorop->id == INTEL_PLANE_CB_PRE_CSC_LUT)
-> -		return	drm_property_replace_blob(&plane_state->hw.degamma_lut, blob);
-> +		return drm_property_replace_blob(&plane_state->hw.degamma_lut, blob);
->  	else if (intel_colorop->id == INTEL_PLANE_CB_POST_CSC_LUT)
->  		return drm_property_replace_blob(&plane_state->hw.gamma_lut, blob);
->  	else if (intel_colorop->id == INTEL_PLANE_CB_3DLUT)
-> -		return	drm_property_replace_blob(&plane_state->hw.lut_3d, blob);
-> +		return drm_property_replace_blob(&plane_state->hw.lut_3d, blob);
-
-Unrelated changes that don't belong in this patch.
-
->  
->  	return false;
->  }
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index ee8e24497..b68e222c3 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -1673,7 +1673,7 @@ icl_plane_update_arm(struct intel_dsb *dsb,
->  
->  	icl_plane_update_sel_fetch_arm(dsb, plane, crtc_state, plane_state);
->  
-> -	intel_color_plane_commit_arm(dsb, plane_state);
-> +	intel_color_plane_commit_arm(dsb, plane, plane_state);
->  
->  	/*
->  	 * In order to have FBC for fp16 formats pixel normalizer block must be
+> -	/* Generate a STOP condition on the bus. Note that gmbus can't generata
+> +	/* Generate a STOP condition on the bus. Note that gmbus can't generate
+>  	 * a STOP on the very first cycle. To simplify the code we
+>  	 * unconditionally generate the STOP condition with an additional gmbus
+>  	 * cycle. */
 
 -- 
 Jani Nikula, Intel
