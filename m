@@ -4,49 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42DF0E7E0DB
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Feb 2026 10:59:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 709DCE7E0DB
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Feb 2026 10:59:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E964F10E550;
-	Tue, 10 Feb 2026 10:59:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30F1C10E555;
+	Tue, 10 Feb 2026 10:59:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lW5lKt7L";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DidKbVh4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D25D910E550
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Feb 2026 10:59:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9AC9010E553;
+ Tue, 10 Feb 2026 10:59:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770721180; x=1802257180;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=0UBA4uQscYsk/0zIgKy+U8p7aJOC3JNU+U85AhTCeZE=;
- b=lW5lKt7LsznffYPTlfKHSDA+qyaRAHPA6TtxHWemDkaVTvWWrNmT2SJo
- HFIY8E151uWlq0t7ZidSI8+s6YqtnHyayO5NIr9WeOTTwLEGS0q+VKz/H
- aIeiMIGDxV2xSLYephPS1gwvsxS2WTvRmvbSKJMC8vbDT6F1lzgXuafmq
- Wz2RZ3gmnfJGRiu1TFmKn0x2z3zElXqXr9Qu13ZVcONR0YYMG3pM4rGVF
- farCOqs7TB0Mf55CI0fRm7yoADiA4JO3QaIAHYFbgq5KLHeZls5FBxHkl
- BU8RkkoyfUXobUXaEV3mfM9hWrca1MPp6lVIlR6udPpLQSGCxJDERHen5 Q==;
-X-CSE-ConnectionGUID: MEoUPLpzQ82LHv7O4MCZxg==
-X-CSE-MsgGUID: OmGw+LyrSJyBYGWLDvXkxg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="71056497"
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="71056497"
+ t=1770721183; x=1802257183;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=HjfZKt2N5Iy8jy06a4rrs5QNfbyewK86eMhz0KYnd74=;
+ b=DidKbVh4wmN8T9+aeedRg3UsSePxImy0JTpTBA0lODvyi0iuxYXFkMyE
+ SMyf4huduORLfGfUS5eOSEDQYmPH/qB0cjdN7vRd8iWHdmxGm9UMAEL61
+ VhOtlBY2FqR0JUHF5vNBFqa5bQjKHNMrkMxBNlmHAlGIUBhLOcSsxC8ex
+ 3D0N8HW8FzrBrp+h3mJf0D+/Dp9GwSpUDpxGXpOjKjzGc/g7LtEAYW91T
+ rBmWMclQ97EnafPvc1xRuOqnuCvwL5eLVjyoBpJIJ/jHrUm3bE9b/FfJe
+ koedhMNbaSgzzaJTfWWOZrMXhnRUyCbkMGg2v/mKdiVs21ZHarVuwXbVk w==;
+X-CSE-ConnectionGUID: 4H4M5xQXQkSeFV6AGqSJRQ==
+X-CSE-MsgGUID: axS0PYOkQAiCfY7OQYEz+Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="71056502"
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="71056502"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2026 02:59:39 -0800
-X-CSE-ConnectionGUID: 5C94llh4TWKig5QWIkC2uw==
-X-CSE-MsgGUID: Gqy3WjbjTDaJ87PDs//0ew==
+ 10 Feb 2026 02:59:42 -0800
+X-CSE-ConnectionGUID: Ywz81OU6SsOiHAtdDvIlyg==
+X-CSE-MsgGUID: 1Wvgs7fwQTWNdbuz+8zvVw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="242510329"
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="242510345"
 Received: from gsd-build.iind.intel.com ([10.190.229.167])
- by orviesa002.jf.intel.com with ESMTP; 10 Feb 2026 02:59:38 -0800
+ by orviesa002.jf.intel.com with ESMTP; 10 Feb 2026 02:59:40 -0800
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Subject: [PATCH v3 0/3] Fix fs_reclaim deadlock caused by CCS save/restore
-Date: Tue, 10 Feb 2026 10:59:30 +0000
-Message-ID: <20260210105929.4089794-5-satyanarayana.k.v.p@intel.com>
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH v3 1/3] drm/sa: Split drm_suballoc_new() into SA alloc and
+ init helpers
+Date: Tue, 10 Feb 2026 10:59:31 +0000
+Message-ID: <20260210105929.4089794-6-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260210105929.4089794-5-satyanarayana.k.v.p@intel.com>
+References: <20260210105929.4089794-5-satyanarayana.k.v.p@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -64,60 +73,224 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-CCS save/restore batch buffers are attached during BO allocation and
-detached during BO teardown. The shrinker triggers xe_bo_move(), which is
-used for both allocation and deletion paths.
+drm_suballoc_new() currently both allocates the SA object using kmalloc()
+and searches for a suitable hole in the sub-allocator for the requested
+size. If SA allocation is done by holding sub-allocator mutex, this design
+can lead to reclaim safety issues.
 
-When BO allocation and shrinking occur concurrently, a circular locking
-dependency involving fs_reclaim and swap_guard can occur, leading to a
-deadlock such as:
+By splitting the kmalloc() step outside of the critical section, we allow
+the memory allocation to use GFP_KERNEL (reclaim-safe) while ensuring that
+the initialization step that holds reclaim-tainted locks (sub-allocator
+mutex) operates in a reclaim-unsafe context with pre-allocated memory.
 
-======================================================
-WARNING: possible circular locking dependency detected
-------------------------------------------------------
+This separation prevents potential deadlocks where memory reclaim could
+attempt to acquire locks that are already held during the sub-allocator
+operations.
 
-     CPU0                    CPU1
-     ----                    ----
-     lock(fs_reclaim);
-                                  lock(&sa_manager->swap_guard);
-                                  lock(fs_reclaim);
-     lock(&sa_manager->swap_guard);
+Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: dri-devel@lists.freedesktop.org
 
-     *** DEADLOCK ***
-=====================================================
-
-To avoid this, the BB pointer and SA are allocated using xe_bb_alloc()
-before taking lock and SA is initialized using xe_bb_init() preventing
-reclaim from being invoked in this context.
-
+---
 V2 -> V3:
-- Created new functions xe_sa_bo_alloc(), xe_sa_bo_release() and
-xe_sa_bo_init(). (Thomas)
-- Created new functions xe_bb_alloc(), xe_bb_release and
-xe_bb_init(). (Thomas)
-- Updated guard() to scoped_guard() in xe_migrate_ccs_rw_copy(). (Thomas)
+- Updated commit message (Matt, Thomas & Christian).
 - Removed timeout logic from drm_suballoc_init(). (Thomas & Christian).
 
 V1 -> V2:
-- Split drm_suballoc_new() into drm_suballoc_alloc() and
+- Splitted drm_suballoc_new() into drm_suballoc_alloc() and
 drm_suballoc_init() (Thomas).
-- Used drm_suballoc_alloc() and drm_suballoc_init() for BB allocation
-(Thomas).
+---
+ drivers/gpu/drm/drm_suballoc.c | 110 ++++++++++++++++++++++++++-------
+ include/drm/drm_suballoc.h     |   8 +++
+ 2 files changed, 97 insertions(+), 21 deletions(-)
 
-Satyanarayana K V P (3):
-  drm/sa: Split drm_suballoc_new() into SA alloc and init helpers
-  drm/xe/vf: Fix fs_reclaim warning with CCS save/restore BB allocation
-  drm/xe/sa: Add lockdep annotations for SA manager swap_guard
-
- drivers/gpu/drm/drm_suballoc.c  | 110 ++++++++++++++++++++++++++------
- drivers/gpu/drm/xe/xe_bb.c      |  49 +++++++++-----
- drivers/gpu/drm/xe/xe_bb.h      |   7 +-
- drivers/gpu/drm/xe/xe_migrate.c |  96 +++++++++++++++-------------
- drivers/gpu/drm/xe/xe_sa.c      |  46 +++++++++++++
- drivers/gpu/drm/xe/xe_sa.h      |   3 +
- include/drm/drm_suballoc.h      |   8 +++
- 7 files changed, 238 insertions(+), 81 deletions(-)
-
+diff --git a/drivers/gpu/drm/drm_suballoc.c b/drivers/gpu/drm/drm_suballoc.c
+index 879ea33dbbc4..b97ffcd98d45 100644
+--- a/drivers/gpu/drm/drm_suballoc.c
++++ b/drivers/gpu/drm/drm_suballoc.c
+@@ -123,7 +123,7 @@ static void drm_suballoc_remove_locked(struct drm_suballoc *sa)
+ 	list_del_init(&sa->olist);
+ 	list_del_init(&sa->flist);
+ 	dma_fence_put(sa->fence);
+-	kfree(sa);
++	drm_suballoc_release(sa);
+ }
+ 
+ static void drm_suballoc_try_free(struct drm_suballoc_manager *sa_manager)
+@@ -293,45 +293,74 @@ static bool drm_suballoc_next_hole(struct drm_suballoc_manager *sa_manager,
+ }
+ 
+ /**
+- * drm_suballoc_new() - Make a suballocation.
++ * drm_suballoc_alloc() - Allocate uninitialized suballoc object.
++ * @gfp: gfp flags used for memory allocation.
++ *
++ * Allocate memory for an uninitialized suballoc object. Intended usage is
++ * allocate memory for suballoc object outside of a reclaim tainted context
++ * and then be initialized at a later time in a reclaim tainted context.
++ *
++ * @drm_suballoc_release should be used to release the memory if returned
++ * suballoc object is in uninitialized state.
++ *
++ * Return: a new uninitialized suballoc object, or an ERR_PTR(-ENOMEM).
++ */
++struct drm_suballoc *drm_suballoc_alloc(gfp_t gfp)
++{
++	struct drm_suballoc *sa;
++
++	sa = kmalloc(sizeof(*sa), gfp);
++	if (!sa)
++		return ERR_PTR(-ENOMEM);
++
++	return sa;
++}
++EXPORT_SYMBOL(drm_suballoc_alloc);
++
++/**
++ * drm_suballoc_release() - Release memory for suballocation.
++ * @sa: The struct drm_suballoc.
++ */
++void drm_suballoc_release(struct drm_suballoc *sa)
++{
++	kfree(sa);
++}
++EXPORT_SYMBOL(drm_suballoc_release);
++
++/**
++ * drm_suballoc_init() - Initialize a suballocation.
+  * @sa_manager: pointer to the sa_manager
++ * @sa: The struct drm_suballoc.
+  * @size: number of bytes we want to suballocate.
+- * @gfp: gfp flags used for memory allocation. Typically GFP_KERNEL but
+- *       the argument is provided for suballocations from reclaim context or
+- *       where the caller wants to avoid pipelining rather than wait for
+- *       reclaim.
+  * @intr: Whether to perform waits interruptible. This should typically
+  *        always be true, unless the caller needs to propagate a
+  *        non-interruptible context from above layers.
+  * @align: Alignment. Must not exceed the default manager alignment.
+  *         If @align is zero, then the manager alignment is used.
+  *
+- * Try to make a suballocation of size @size, which will be rounded
+- * up to the alignment specified in specified in drm_suballoc_manager_init().
++ * Try to make a suballocation on a pre-allocated suballoc object of size @size,
++ * which will be rounded up to the alignment specified in specified in
++ * drm_suballoc_manager_init().
+  *
+- * Return: a new suballocated bo, or an ERR_PTR.
++ * Return: zero on success, errno on failure.
+  */
+-struct drm_suballoc *
+-drm_suballoc_new(struct drm_suballoc_manager *sa_manager, size_t size,
+-		 gfp_t gfp, bool intr, size_t align)
++int drm_suballoc_init(struct drm_suballoc_manager *sa_manager,
++		      struct drm_suballoc *sa, size_t size,
++		      bool intr, size_t align)
+ {
+ 	struct dma_fence *fences[DRM_SUBALLOC_MAX_QUEUES];
+ 	unsigned int tries[DRM_SUBALLOC_MAX_QUEUES];
+ 	unsigned int count;
+ 	int i, r;
+-	struct drm_suballoc *sa;
+ 
+ 	if (WARN_ON_ONCE(align > sa_manager->align))
+-		return ERR_PTR(-EINVAL);
++		return -EINVAL;
+ 	if (WARN_ON_ONCE(size > sa_manager->size || !size))
+-		return ERR_PTR(-EINVAL);
++		return -EINVAL;
+ 
+ 	if (!align)
+ 		align = sa_manager->align;
+ 
+-	sa = kmalloc(sizeof(*sa), gfp);
+-	if (!sa)
+-		return ERR_PTR(-ENOMEM);
+ 	sa->manager = sa_manager;
+ 	sa->fence = NULL;
+ 	INIT_LIST_HEAD(&sa->olist);
+@@ -348,7 +377,7 @@ drm_suballoc_new(struct drm_suballoc_manager *sa_manager, size_t size,
+ 			if (drm_suballoc_try_alloc(sa_manager, sa,
+ 						   size, align)) {
+ 				spin_unlock(&sa_manager->wq.lock);
+-				return sa;
++				return 0;
+ 			}
+ 
+ 			/* see if we can skip over some allocations */
+@@ -385,8 +414,47 @@ drm_suballoc_new(struct drm_suballoc_manager *sa_manager, size_t size,
+ 	} while (!r);
+ 
+ 	spin_unlock(&sa_manager->wq.lock);
+-	kfree(sa);
+-	return ERR_PTR(r);
++	return r;
++}
++EXPORT_SYMBOL(drm_suballoc_init);
++
++/**
++ * drm_suballoc_new() - Make a suballocation.
++ * @sa_manager: pointer to the sa_manager
++ * @size: number of bytes we want to suballocate.
++ * @gfp: gfp flags used for memory allocation. Typically GFP_KERNEL but
++ *       the argument is provided for suballocations from reclaim context or
++ *       where the caller wants to avoid pipelining rather than wait for
++ *       reclaim.
++ * @intr: Whether to perform waits interruptible. This should typically
++ *        always be true, unless the caller needs to propagate a
++ *        non-interruptible context from above layers.
++ * @align: Alignment. Must not exceed the default manager alignment.
++ *         If @align is zero, then the manager alignment is used.
++ *
++ * Try to make a suballocation of size @size, which will be rounded
++ * up to the alignment specified in specified in drm_suballoc_manager_init().
++ *
++ * Return: a new suballocated bo, or an ERR_PTR.
++ */
++struct drm_suballoc *
++drm_suballoc_new(struct drm_suballoc_manager *sa_manager, size_t size,
++		 gfp_t gfp, bool intr, size_t align)
++{
++	struct drm_suballoc *sa;
++	int err;
++
++	sa = drm_suballoc_alloc(gfp);
++	if (IS_ERR(sa))
++		return sa;
++
++	err = drm_suballoc_init(sa_manager, sa, size, intr, align);
++	if (err) {
++		drm_suballoc_release(sa);
++		return ERR_PTR(err);
++	}
++
++	return sa;
+ }
+ EXPORT_SYMBOL(drm_suballoc_new);
+ 
+diff --git a/include/drm/drm_suballoc.h b/include/drm/drm_suballoc.h
+index 7ba72a81a808..b8d1d5449fd8 100644
+--- a/include/drm/drm_suballoc.h
++++ b/include/drm/drm_suballoc.h
+@@ -53,6 +53,14 @@ void drm_suballoc_manager_init(struct drm_suballoc_manager *sa_manager,
+ 
+ void drm_suballoc_manager_fini(struct drm_suballoc_manager *sa_manager);
+ 
++struct drm_suballoc *drm_suballoc_alloc(gfp_t gfp);
++
++void drm_suballoc_release(struct drm_suballoc *sa);
++
++int drm_suballoc_init(struct drm_suballoc_manager *sa_manager,
++		      struct drm_suballoc *sa, size_t size, bool intr,
++		      size_t align);
++
+ struct drm_suballoc *
+ drm_suballoc_new(struct drm_suballoc_manager *sa_manager, size_t size,
+ 		 gfp_t gfp, bool intr, size_t align);
 -- 
 2.43.0
 
