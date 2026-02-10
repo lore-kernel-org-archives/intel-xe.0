@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C4F8EA8102
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Feb 2026 11:57:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28B67EA8104
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Feb 2026 11:59:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5C0210E563;
-	Tue, 10 Feb 2026 11:57:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G9QQ1Qr4";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1005510E563;
- Tue, 10 Feb 2026 11:57:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770724651; x=1802260651;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=pwErsOgwLbr3un5GzP9BcdCLJrLywj7KiDxutoyTg04=;
- b=G9QQ1Qr4Wq8xL20QuK9lLBsysKGfoYN1IK3Y9vM0eU3ftapEfERDfEsy
- ygQA4VSUKLlY6RyaA+vl+fC05m7GNqoQ+9RWSvJ8rDZJhzfMsibHu61GO
- 5kmbytSgHEzCScBkoihOmbihAjU+uKteErlVqOx7flCPD2dOqcVhcIpWn
- LoHOoeKbmgE0ADhtfpZZyuTqREVxCxQ7aJPy33VbgPW4yQqmP8AkSWA8j
- s4Cv3tT0FfwWm/O+d7sLJKhEtJE5RpBd5RJb5qSZQYGFuV9xcZBaLFbwm
- yV6CcEohoDg4TLLxlYY2q8sVd/qdqRekZ0/vfAvBp9Ji9ajGji5exHImD g==;
-X-CSE-ConnectionGUID: ptrbspwPTFKsS12izw5L+g==
-X-CSE-MsgGUID: qM63vD6JSQigut6Vi5gusg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="82173454"
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="82173454"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2026 03:57:31 -0800
-X-CSE-ConnectionGUID: FotHYaynQ8i5KDPZZW0qiw==
-X-CSE-MsgGUID: jDhgKCpJR7u9maQ00bUpdQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="211076283"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO fedora)
- ([10.245.244.80])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2026 03:57:27 -0800
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Alistair Popple <apopple@nvidia.com>,
- Ralph Campbell <rcampbell@nvidia.com>, Christoph Hellwig <hch@lst.de>,
- Jason Gunthorpe <jgg@mellanox.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- Leon Romanovsky <leon@kernel.org>,
- Andrew Morton <akpm@linux-foundation.org>,
- Matthew Brost <matthew.brost@intel.com>,
- John Hubbard <jhubbard@nvidia.com>, linux-mm@kvack.org,
- dri-devel@lists.freedesktop.org, stable@vger.kernel.org
-Subject: [PATCH v5] mm: Fix a hmm_range_fault() livelock / starvation problem
-Date: Tue, 10 Feb 2026 12:56:53 +0100
-Message-ID: <20260210115653.92413-1-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.52.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB01D10E568;
+	Tue, 10 Feb 2026 11:59:25 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01B0B10E568;
+ Tue, 10 Feb 2026 11:59:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1310131849955029950=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Fix_fs=5Freclaim_deadlock_c?=
+ =?utf-8?q?aused_by_CCS_save/restore_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 10 Feb 2026 11:59:23 -0000
+Message-ID: <177072476398.241779.14458221474702066835@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260210105929.4089794-5-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20260210105929.4089794-5-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,225 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If hmm_range_fault() fails a folio_trylock() in do_swap_page,
-trying to acquire the lock of a device-private folio for migration,
-to ram, the function will spin until it succeeds grabbing the lock.
+--===============1310131849955029950==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-However, if the process holding the lock is depending on a work
-item to be completed, which is scheduled on the same CPU as the
-spinning hmm_range_fault(), that work item might be starved and
-we end up in a livelock / starvation situation which is never
-resolved.
+== Series Details ==
 
-This can happen, for example if the process holding the
-device-private folio lock is stuck in
-   migrate_device_unmap()->lru_add_drain_all()
-sinc lru_add_drain_all() requires a short work-item
-to be run on all online cpus to complete.
+Series: Fix fs_reclaim deadlock caused by CCS save/restore (rev3)
+URL   : https://patchwork.freedesktop.org/series/160841/
+State : success
 
-A prerequisite for this to happen is:
-a) Both zone device and system memory folios are considered in
-   migrate_device_unmap(), so that there is a reason to call
-   lru_add_drain_all() for a system memory folio while a
-   folio lock is held on a zone device folio.
-b) The zone device folio has an initial mapcount > 1 which causes
-   at least one migration PTE entry insertion to be deferred to
-   try_to_migrate(), which can happen after the call to
-   lru_add_drain_all().
-c) No or voluntary only preemption.
+== Summary ==
 
-This all seems pretty unlikely to happen, but indeed is hit by
-the "xe_exec_system_allocator" igt test.
+CI Bug Log - changes from xe-4534-4963fa04cc7c2c68030bef5889b6210052f59061_BAT -> xe-pw-160841v3_BAT
+====================================================
 
-Resolve this by waiting for the folio to be unlocked if the
-folio_trylock() fails in do_swap_page().
+Summary
+-------
 
-Rename migration_entry_wait_on_locked() to
-softleaf_entry_wait_unlock() and update its documentation to
-indicate the new use-case.
+  **SUCCESS**
 
-Future code improvements might consider moving
-the lru_add_drain_all() call in migrate_device_unmap() to be
-called *after* all pages have migration entries inserted.
-That would eliminate also b) above.
+  No regressions found.
 
-v2:
-- Instead of a cond_resched() in hmm_range_fault(),
-  eliminate the problem by waiting for the folio to be unlocked
-  in do_swap_page() (Alistair Popple, Andrew Morton)
-v3:
-- Add a stub migration_entry_wait_on_locked() for the
-  !CONFIG_MIGRATION case. (Kernel Test Robot)
-v4:
-- Rename migrate_entry_wait_on_locked() to
-  softleaf_entry_wait_on_locked() and update docs (Alistair Popple)
-v5:
-- Add a WARN_ON_ONCE() for the !CONFIG_MIGRATION
-  version of softleaf_entry_wait_on_locked().
-- Modify wording around function names in the commit message
-  (Andrew Morton)
+  
 
-Suggested-by: Alistair Popple <apopple@nvidia.com>
-Fixes: 1afaeb8293c9 ("mm/migrate: Trylock device page in do_swap_page")
-Cc: Ralph Campbell <rcampbell@nvidia.com>
-Cc: Christoph Hellwig <hch@lst.de>
-Cc: Jason Gunthorpe <jgg@mellanox.com>
-Cc: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Leon Romanovsky <leon@kernel.org>
-Cc: Andrew Morton <akpm@linux-foundation.org>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: John Hubbard <jhubbard@nvidia.com>
-Cc: Alistair Popple <apopple@nvidia.com>
-Cc: linux-mm@kvack.org
-Cc: <dri-devel@lists.freedesktop.org>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: <stable@vger.kernel.org> # v6.15+
-Reviewed-by: John Hubbard <jhubbard@nvidia.com> #v3
----
- include/linux/migrate.h | 10 +++++++++-
- mm/filemap.c            | 15 ++++++++++-----
- mm/memory.c             |  3 ++-
- mm/migrate.c            |  8 ++++----
- mm/migrate_device.c     |  2 +-
- 5 files changed, 26 insertions(+), 12 deletions(-)
+Participating hosts (12 -> 12)
+------------------------------
 
-diff --git a/include/linux/migrate.h b/include/linux/migrate.h
-index 26ca00c325d9..d5af2b7f577b 100644
---- a/include/linux/migrate.h
-+++ b/include/linux/migrate.h
-@@ -65,7 +65,7 @@ bool isolate_folio_to_list(struct folio *folio, struct list_head *list);
- 
- int migrate_huge_page_move_mapping(struct address_space *mapping,
- 		struct folio *dst, struct folio *src);
--void migration_entry_wait_on_locked(softleaf_t entry, spinlock_t *ptl)
-+void softleaf_entry_wait_on_locked(softleaf_t entry, spinlock_t *ptl)
- 		__releases(ptl);
- void folio_migrate_flags(struct folio *newfolio, struct folio *folio);
- int folio_migrate_mapping(struct address_space *mapping,
-@@ -97,6 +97,14 @@ static inline int set_movable_ops(const struct movable_operations *ops, enum pag
- 	return -ENOSYS;
- }
- 
-+static inline void softleaf_entry_wait_on_locked(softleaf_t entry, spinlock_t *ptl)
-+	__releases(ptl)
-+{
-+	WARN_ON_ONCE(1);
-+
-+	spin_unlock(ptl);
-+}
-+
- #endif /* CONFIG_MIGRATION */
- 
- #ifdef CONFIG_NUMA_BALANCING
-diff --git a/mm/filemap.c b/mm/filemap.c
-index ebd75684cb0a..d98e4883f13d 100644
---- a/mm/filemap.c
-+++ b/mm/filemap.c
-@@ -1379,14 +1379,16 @@ static inline int folio_wait_bit_common(struct folio *folio, int bit_nr,
- 
- #ifdef CONFIG_MIGRATION
- /**
-- * migration_entry_wait_on_locked - Wait for a migration entry to be removed
-- * @entry: migration swap entry.
-+ * softleaf_entry_wait_on_locked - Wait for a migration entry or
-+ * device_private entry to be removed.
-+ * @entry: migration or device_private swap entry.
-  * @ptl: already locked ptl. This function will drop the lock.
-  *
-- * Wait for a migration entry referencing the given page to be removed. This is
-+ * Wait for a migration entry referencing the given page, or device_private
-+ * entry referencing a dvice_private page to be unlocked. This is
-  * equivalent to folio_put_wait_locked(folio, TASK_UNINTERRUPTIBLE) except
-  * this can be called without taking a reference on the page. Instead this
-- * should be called while holding the ptl for the migration entry referencing
-+ * should be called while holding the ptl for @entry referencing
-  * the page.
-  *
-  * Returns after unlocking the ptl.
-@@ -1394,7 +1396,7 @@ static inline int folio_wait_bit_common(struct folio *folio, int bit_nr,
-  * This follows the same logic as folio_wait_bit_common() so see the comments
-  * there.
-  */
--void migration_entry_wait_on_locked(softleaf_t entry, spinlock_t *ptl)
-+void softleaf_entry_wait_on_locked(softleaf_t entry, spinlock_t *ptl)
- 	__releases(ptl)
- {
- 	struct wait_page_queue wait_page;
-@@ -1428,6 +1430,9 @@ void migration_entry_wait_on_locked(softleaf_t entry, spinlock_t *ptl)
- 	 * If a migration entry exists for the page the migration path must hold
- 	 * a valid reference to the page, and it must take the ptl to remove the
- 	 * migration entry. So the page is valid until the ptl is dropped.
-+	 * Similarly any path attempting to drop the last reference to a
-+	 * device-private page needs to grab the ptl to remove the device-private
-+	 * entry.
- 	 */
- 	spin_unlock(ptl);
- 
-diff --git a/mm/memory.c b/mm/memory.c
-index da360a6eb8a4..20172476a57f 100644
---- a/mm/memory.c
-+++ b/mm/memory.c
-@@ -4684,7 +4684,8 @@ vm_fault_t do_swap_page(struct vm_fault *vmf)
- 				unlock_page(vmf->page);
- 				put_page(vmf->page);
- 			} else {
--				pte_unmap_unlock(vmf->pte, vmf->ptl);
-+				pte_unmap(vmf->pte);
-+				softleaf_entry_wait_on_locked(entry, vmf->ptl);
- 			}
- 		} else if (softleaf_is_hwpoison(entry)) {
- 			ret = VM_FAULT_HWPOISON;
-diff --git a/mm/migrate.c b/mm/migrate.c
-index 4688b9e38cd2..cf6449b4202e 100644
---- a/mm/migrate.c
-+++ b/mm/migrate.c
-@@ -499,7 +499,7 @@ void migration_entry_wait(struct mm_struct *mm, pmd_t *pmd,
- 	if (!softleaf_is_migration(entry))
- 		goto out;
- 
--	migration_entry_wait_on_locked(entry, ptl);
-+	softleaf_entry_wait_on_locked(entry, ptl);
- 	return;
- out:
- 	spin_unlock(ptl);
-@@ -531,10 +531,10 @@ void migration_entry_wait_huge(struct vm_area_struct *vma, unsigned long addr, p
- 		 * If migration entry existed, safe to release vma lock
- 		 * here because the pgtable page won't be freed without the
- 		 * pgtable lock released.  See comment right above pgtable
--		 * lock release in migration_entry_wait_on_locked().
-+		 * lock release in softleaf_entry_wait_on_locked().
- 		 */
- 		hugetlb_vma_unlock_read(vma);
--		migration_entry_wait_on_locked(entry, ptl);
-+		softleaf_entry_wait_on_locked(entry, ptl);
- 		return;
- 	}
- 
-@@ -552,7 +552,7 @@ void pmd_migration_entry_wait(struct mm_struct *mm, pmd_t *pmd)
- 	ptl = pmd_lock(mm, pmd);
- 	if (!pmd_is_migration_entry(*pmd))
- 		goto unlock;
--	migration_entry_wait_on_locked(softleaf_from_pmd(*pmd), ptl);
-+	softleaf_entry_wait_on_locked(softleaf_from_pmd(*pmd), ptl);
- 	return;
- unlock:
- 	spin_unlock(ptl);
-diff --git a/mm/migrate_device.c b/mm/migrate_device.c
-index 23379663b1e1..deab89fd4541 100644
---- a/mm/migrate_device.c
-+++ b/mm/migrate_device.c
-@@ -176,7 +176,7 @@ static int migrate_vma_collect_huge_pmd(pmd_t *pmdp, unsigned long start,
- 		}
- 
- 		if (softleaf_is_migration(entry)) {
--			migration_entry_wait_on_locked(entry, ptl);
-+			softleaf_entry_wait_on_locked(entry, ptl);
- 			spin_unlock(ptl);
- 			return -EAGAIN;
- 		}
--- 
-2.52.0
+  No changes in participating hosts
 
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4534-4963fa04cc7c2c68030bef5889b6210052f59061 -> xe-pw-160841v3
+
+  IGT_8746: 8746
+  xe-4534-4963fa04cc7c2c68030bef5889b6210052f59061: 4963fa04cc7c2c68030bef5889b6210052f59061
+  xe-pw-160841v3: 160841v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160841v3/index.html
+
+--===============1310131849955029950==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Fix fs_reclaim deadlock caused by CCS save/restore (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160841/">https://patchwork.freedesktop.org/series/160841/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160841v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160841v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4534-4963fa04cc7c2c68030bef5889b6210052f59061_BAT -&gt; xe-pw-160841v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4534-4963fa04cc7c2c68030bef5889b6210052f59061 -&gt; xe-pw-160841v3</li>
+</ul>
+<p>IGT_8746: 8746<br />
+  xe-4534-4963fa04cc7c2c68030bef5889b6210052f59061: 4963fa04cc7c2c68030bef5889b6210052f59061<br />
+  xe-pw-160841v3: 160841v3</p>
+
+</body>
+</html>
+
+--===============1310131849955029950==--
