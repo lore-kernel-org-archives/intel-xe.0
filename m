@@ -4,167 +4,167 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 227B7EA3F18
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Feb 2026 22:24:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A161EB2700
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Feb 2026 22:35:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C244410E120;
-	Tue, 10 Feb 2026 22:24:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9F2B10E071;
+	Tue, 10 Feb 2026 22:35:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gnOeClf1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UXB+Pwur";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C38F810E120
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Feb 2026 22:24:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48BD610E071
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Feb 2026 22:35:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770762272; x=1802298272;
+ t=1770762901; x=1802298901;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=D3NBMrat44g4IUhsRIVDYZi9UoQoSYMvSDwlLQef/lU=;
- b=gnOeClf179e/OFWtXaKBL3sZPusU5Y9Z9ptIpvjGSOqqzM/KTWgIlyhb
- JssOYgso9iLptHu6p3ZcZT7tBsD+DaARAaO0gVhx/FgE1OTRd0dtvzxvK
- VOwdZDlSMyXJn2Khrb8CYqOXyXlIrD7b2PWa1MPYi1VQfwS2FmuOM0dEX
- RCiXyRVVGhS7WYbmL4lMGS4+29zbbxfc6Fc3w9+xyF05D3EEika5A5erh
- IgpGqEVH/Mnepe/sNAlzX1909blxeg9VR2ihwKhu7CbP3iZtC5PZDHN9Z
- RhfFrbWtR+h1tbOM4V4zLmmG3n5cbrhG9+4SMH3vpxGtUSo1ygJWT1P0L g==;
-X-CSE-ConnectionGUID: OZKvNCN5RR6yM3xLPSvneA==
-X-CSE-MsgGUID: IDn5Pil7QTiyK9/AuoihTw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11697"; a="71796878"
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="71796878"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2026 14:24:32 -0800
-X-CSE-ConnectionGUID: LilDFW/rS1iAtBhoQHW/aw==
-X-CSE-MsgGUID: JWjL4hcJSEG49CQxJXt0WA==
+ bh=MklpYZ/DVe2C11zZiYm5UzsKcaS5VQzUDd/mca68dyw=;
+ b=UXB+Pwurz30Pf7bfhMLpZeb+ljJbn1bOQPQLHlK6eJBSNeg5VadX8FPy
+ /4NW6hpaThV3P1XTGpmnQFaen9AFIXwsXAxxFsppfMu4MD8Lj5KAKKYi7
+ dIwA26713unS/S6zcmSu2LIb2OKrHBq/mnasToavpqUzwopw+Uq+O93qm
+ OtTqa2gF/F9LIaiEov8G1LWhagN9jJIIUg5nsw2rgEgCgqETUDnnfbGLP
+ DXoS6n1l8wnkzF17sVeBs/mJGjCPDTc4iUHmdAi9mG/FMecStPA5RnUpT
+ 7mQPuQuuailugWDZW6Hd+kcuCGzpMoGVsGBxKN66sAppi06tygWKJnB/K w==;
+X-CSE-ConnectionGUID: R4HiH4X3ToC5xFUz7Mb+QQ==
+X-CSE-MsgGUID: /vOPC9SWR2CpV44NyA1fUA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11697"; a="89317765"
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="89317765"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2026 14:35:00 -0800
+X-CSE-ConnectionGUID: NoeK/1ZlRU6deIknw2uXlQ==
+X-CSE-MsgGUID: jQm5cwWpTEqscVswPa9irA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="216561102"
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="211057272"
 Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2026 14:24:32 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2026 14:34:59 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Tue, 10 Feb 2026 14:24:31 -0800
+ 15.2.2562.35; Tue, 10 Feb 2026 14:34:59 -0800
 Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Tue, 10 Feb 2026 14:24:31 -0800
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.39) by
+ 15.2.2562.35 via Frontend Transport; Tue, 10 Feb 2026 14:34:59 -0800
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.28) by
  edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Tue, 10 Feb 2026 14:24:31 -0800
+ 15.2.2562.35; Tue, 10 Feb 2026 14:34:59 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WmBx95FyaHoYTCHmryfB73/DPY8hid/dHgyuW08b+VtVSAfBeQlpjPlDEU5mzZK37VPHaWN1xnqOR1Sxog8nyC76Hy4YjqrQD0MvvbP3WwPTPLEWPC2KX/1ROCHyD/5qRL9j8FD2Iq/y87F2vV55ht17x1Kn8A2XaIlsTwK5dUN26V/5PU3LAKbkGd64kxO3Mh+vLHbt/gJlLXOl/MUjSNOKuHWXZgzOv8OKm3REcbFpHhmKVHhF7yJJIXtrgGYE5tPVvyn+RiyogXLLFCLgIPzhX7jaB2QsMmtcNE08VzVGY93AQBh5TrTnUMvv7znIHoKugGERIlYLVSFLDFUizA==
+ b=wWO12+FzWz/jWmxm2cWxzQMCuzcVVIsyUkjoF9PEgZixAKtf0Afx/cs0SBTcu1LHxViRs7dkPNZmYOY+Es1kkvDLRaqW0Km3caDNuoAHcf/SZ/OnjAg26eqi6+m1MgroLMx8O1EZAH23E+caUQooFmKYmEyHTBl8V/w7+5cAs7Ng4TJn/n1kfs+rR2Fgk9w577FaaxKGr7HXV8bK4mF/lnQQJuvh+dHeBtgHhCY71TFbwQdh1BLQT3iCvh6lhy8EFfupkP7IwIZtaxcj0R5PoH1TNAXSkXt9Yt4Tqi2WHS0nC8wnh2yHbLZZ1yVVM9WhtN/NSY6jmPTIjOlwRXd+yw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=esFwVymfM6Gn/dEK214PhPlPlHm2Imxha+B9h7xKFRA=;
- b=svh4vFLmdclqDw5WypTyvSvqtNJxvTxoefjP2ndgXhqfs54RbqzehSDZXwLt17usDWlNgr2wGjc/TrQ7FXHQGw9OuFQQJH/d5zZCPqiD3HXD26Q+Yiog/YG79Xo6pR5AIDKM0T19tTYe6TUXP/r9xh7XeOqTU5e+TaVnoWEz7sqKm2XRdokjl+d0UkZ+qyPJHESXFobRANI0ibbQKd0y3uwaNYr7we45h2ru4+303Q1hzBMUIwR6liYXLFxpuD7zctFS1HhVR2Z52YCGcUrG72RHO4xg6iNqQb4Vg4TNFYBNgX54WZx3BQ7eKH8RMp5yVXPgb8mcUWcKciYtB4kM8w==
+ bh=b56/V+F9X9+5t6tMCtEzlupx1k0Gph1dxtvhAITbxeM=;
+ b=N7w9SHoaK/sAacCJ5/pAGbZPntoOJzxN2GxwEz6VR9tdNluxbCUxYpb6LiIXKLxmzEThRcUC9lUbB61h2+/sIUp7IuYuf9t5bfTCH4K36D+fLv8L9I6JGX2ttocU13Nvs+4GT2mk1E9HdxOPbTbxBjkZCve2KbV9TLozdstpZeARlICqdzn9KJxvfXO3XYd8pcy8N3pyb+ggB8utpDyaFHNLRfRbCJZmorwGna4tyCoe6aZmawrStLdNpEqj2TU0hvPsLd6cMs8sEsip3Z67EfQvbr0yVuPDrRQ99LIhgZEKcj54WfyGdPfVTsUQUcrVHZ7BdMzSHIn85qrHjKwrNg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by CY8PR11MB7267.namprd11.prod.outlook.com (2603:10b6:930:9a::13) with
+ by SAVPR11MB9549.namprd11.prod.outlook.com (2603:10b6:806:4e9::8) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.17; Tue, 10 Feb
- 2026 22:24:27 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.13; Tue, 10 Feb
+ 2026 22:34:57 +0000
 Received: from DS0PR11MB8182.namprd11.prod.outlook.com
  ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
  ([fe80::7b65:81e6:c6c4:449e%7]) with mapi id 15.20.9587.017; Tue, 10 Feb 2026
- 22:24:27 +0000
-Date: Tue, 10 Feb 2026 14:24:25 -0800
+ 22:34:56 +0000
+Date: Tue, 10 Feb 2026 14:34:53 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Gustavo Sousa <gustavo.sousa@intel.com>
 CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 4/6] drm/xe/rtp: Extract rule_match_item()
-Message-ID: <20260210222425.GH4694@mdroper-desk1.amr.corp.intel.com>
+Subject: Re: [PATCH 5/6] drm/xe/rtp: Fully parse the ruleset
+Message-ID: <20260210223453.GI4694@mdroper-desk1.amr.corp.intel.com>
 References: <20260114-rtp-rule-parser-v1-0-fa9029586bff@intel.com>
- <20260114-rtp-rule-parser-v1-4-fa9029586bff@intel.com>
+ <20260114-rtp-rule-parser-v1-5-fa9029586bff@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20260114-rtp-rule-parser-v1-4-fa9029586bff@intel.com>
-X-ClientProxiedBy: BY5PR17CA0071.namprd17.prod.outlook.com
- (2603:10b6:a03:167::48) To DS0PR11MB8182.namprd11.prod.outlook.com
+In-Reply-To: <20260114-rtp-rule-parser-v1-5-fa9029586bff@intel.com>
+X-ClientProxiedBy: BY5PR13CA0017.namprd13.prod.outlook.com
+ (2603:10b6:a03:180::30) To DS0PR11MB8182.namprd11.prod.outlook.com
  (2603:10b6:8:163::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|CY8PR11MB7267:EE_
-X-MS-Office365-Filtering-Correlation-Id: 96141af3-e12a-4a6b-30a2-08de68f326d2
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|SAVPR11MB9549:EE_
+X-MS-Office365-Filtering-Correlation-Id: ffe7a2ae-82e2-4831-72d0-08de68f49dcb
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?GBzx2kvcTLoQPpRkmPHHD5gdVjnNOZ8U9LAH2GMp6aawWw7TcKX4sArP9kcM?=
- =?us-ascii?Q?yBIegXL2NDro5IuOflPE9oajyP9oDNgEC9oPTG9r+tc38SesYL8TdVKjf7Ig?=
- =?us-ascii?Q?7ad9F06KoNKoCTEWCi/RR/CcWO9w8vl7ita5U7fFIlVyfSkh4DlR9z0IIy6i?=
- =?us-ascii?Q?V87B5vUdCvoij5hp3FQZ+BCvY0+UB4PTTH00owjP4hZ5Ng/KV2dmTrb44o1z?=
- =?us-ascii?Q?VHbuBa+gXOd+bshSnS7WTPtRyeFzvAtJ3+1asAS4BaVfnZLG6Hcvh3ENdfCI?=
- =?us-ascii?Q?Xx3Zu8JYmr0RkUVaGY7WpAqFS6/uceYlsHbT9oEcmTAtgBtHHcpysXV1SEpG?=
- =?us-ascii?Q?4JVdjYMc9sPOuAfe44HAEUzY5XccCIIQT96nTVScL62Cbg559JEk4KUIQKn3?=
- =?us-ascii?Q?L4hCInAXT2XqTjvCo+UGzXYpJzzZ0gs2TfUwaRP3db+DPmIhG+G0ujIysQYR?=
- =?us-ascii?Q?bYX6bZM/P+X5GiyT95zxCIaR52Q7pqvXu3PgxJN8ADGULnWA8FC2qlxgHQIN?=
- =?us-ascii?Q?NvcT1olKnUtyvQnx6SFwIXFx621FmHqUWct2QOj/BVzAW4GmpIh6ya4ojhO1?=
- =?us-ascii?Q?3STiUTLTGVyBAHVhdK7BnZka01NNc2qIy/fiNxC5ZT/yjsghHwkkgNvE51m6?=
- =?us-ascii?Q?sLTzaXPGoL3OLdVLqpUDNkjDEDmTS5qACslc/C4jdLbVdvpIUOBYHQlLXTCf?=
- =?us-ascii?Q?6HQokQF5/4YqXWJ2OYX1NkyMgm7CLBrjW6RbbsqrkQO6OuqD7FGhfhm8pqEY?=
- =?us-ascii?Q?8kZAtB1mOyDnVR0ZbS4EFijLe264CyTK6ioT1NaA/hRfqQO6gbg8yZpySGD2?=
- =?us-ascii?Q?3O27/0SV7aNNRDhLfF6mwc+RcLGS7j0m/SPhF8pkGyxACbivTzD2sbSAMti9?=
- =?us-ascii?Q?bDHvVqaCPzLyzRrUunTFZDDHdQLjtkVWCcKMsKDOzMvNbvubuI+kOiHyZ5W0?=
- =?us-ascii?Q?+JUCIbwss3mgTFRov+OYVTetNwiGBfgHLCOCjkYCfPZvAz+bswBzqKPn6eBB?=
- =?us-ascii?Q?OA04FWSjC8opfrx63NgLOl1cqVA6L3yvQ7tbWqUjU7vZbmiEOyeBYnSK8irx?=
- =?us-ascii?Q?uOqWvV7Zo4CN8S8hD8aXFM6jw7nXzfi4z/jbpULGHbHDC6Nso4Bb5XtW04gv?=
- =?us-ascii?Q?NTPx8iJ2AEc7gSfAcaj9tbPXi/pK3RBq/G2XU/puzdtqe7FQpyWI9vOTue8i?=
- =?us-ascii?Q?jaehuS4J7D+m9EzyZw9mphsKwek6FH5r5HwGfs/v9Wxas9NOCGvw6MxCcLv2?=
- =?us-ascii?Q?zfmC6P1R3N7fO0UCu1Iuf2AL4WDXNnJgFhv6F//jb4UhcoPXZUUTNg6owFwL?=
- =?us-ascii?Q?T2LjL85vcwtflw2OE4nyIpvaKY4XjqZHv19o6xlcTfRCEA8X5W/iXjl4dO9I?=
- =?us-ascii?Q?drkA9hvATA+dl6rx8PReh0kkYKymm4qLEpikdakb09Dqq5SOxcabreLD3H0p?=
- =?us-ascii?Q?u7Q2fmrpm2MCSbkT1Xqp9HGP7Sn2XmVYJFvXvEGjOlmCPk4F3iQ69Qcr0cVp?=
- =?us-ascii?Q?H1vuZhDkQX/X/8+Qoi5p96mF7n59ESPDGEUgoA+Xh9CiPZvjyI9PMiX3f2Rw?=
- =?us-ascii?Q?dyTA0nQnoULmKG6DY34=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?W1yQyNmDpm3v4+f+8VURwy2nS/Pp6zqsDrJgkKhOwD5ZAoj68euHzposi8El?=
+ =?us-ascii?Q?KlOXogOLoqs+L6cJL4ieImyVUB4td5+BWjD/8rsBQu0+l+zYdQr2UOVgDR+c?=
+ =?us-ascii?Q?0ZjFKT+GmARo7YPd0DOe685rMfJGzZX8mKD8kz3wC+bxydp6B6LopEN3ourq?=
+ =?us-ascii?Q?+wiBuBcdkDjWyCR3iRo0h/ZiV4tPVCpApjcUcTZQPQNuZdS8D68GEAxQyVKj?=
+ =?us-ascii?Q?HkfqpU6YG5lTVb0hw7u0UN3dQZWwa/ywj40y/iZ640e+pz//VoK881S/DzPB?=
+ =?us-ascii?Q?z6Cb0gU5UniG8VuaIFYvynKS09XLRUSLw8bij9rXOHUUsoUk51t/pxWcvrlf?=
+ =?us-ascii?Q?KfztRCW6GvSKjzP/rl9Lra111T5dvHmx4TBSfFPQrZrTWDwefVx2Jwvesy+X?=
+ =?us-ascii?Q?7OTbg+TWs9RfpsxVTWRRzJ/RgXzGDe99EvhkfrQ3X0pFwSwpAd4dMuvo4Rid?=
+ =?us-ascii?Q?zHeTn4FtMB9cLUd7c5prqr1YBhp5o/mbSbtIhOPuKK8Szxy6oRGpdnduRG/F?=
+ =?us-ascii?Q?rX+x3T1hO26fCQ85vJBczZZX7VyiAzzgrpxV0jwEnZ91KF79r6DKY0qwWXmz?=
+ =?us-ascii?Q?E6LEph5WnwBAHeXVxO3XzLyhYaS9wwcMkcfuvhXvNevKi4gCzLzruoj3Zqgj?=
+ =?us-ascii?Q?MvOjfLwqeqFE0fZYEmKn+9hJYQ08FmLAXIbENI5hJUpVX+Q7NSMhJf2M7SsV?=
+ =?us-ascii?Q?q/66nLOBneBC9a8plYsgHHICtOlvTLvmO+CEceKFdUVg4ClkjP67i+mrhMDg?=
+ =?us-ascii?Q?LlQR8JR1pKW6gAOfKHv0NqTZLDYaYBLSn94S7G1PoQNNuaQMCLLC49TCvPol?=
+ =?us-ascii?Q?CxA+kyJ7oQ9KHg1mIfbi9QgS7Rv8aSMYq+6xuJu7opYLAduBBXOgwDpSxLKJ?=
+ =?us-ascii?Q?PaxqU9QHlTLngqQAwL+ZEafd5LH/rqziUXbuyBPFORQQTU0QNA50Rg+tN2Ha?=
+ =?us-ascii?Q?t6JoBXTYFTla23Do8qzAyQuazeB1KDZpa6a/r2qeSJNyUHNXAlZ5kFhRCpYo?=
+ =?us-ascii?Q?jJeW+BOMgcnc8D7xK4ILQNupNCeu6RnyeUFbD9UEnUjFPVjwsexBCYC68GRg?=
+ =?us-ascii?Q?X/dvg56k4xeDUXRWLA7JAWgF9aNQVOTVaI3rnnfIJ/uIJ5TXMXk5S8YxadeH?=
+ =?us-ascii?Q?5HRpnVgnSYLKCGDO5xX+FZGH5LZ5p1FGeHNPUI0ULLxUw47apmVt5/hVnae+?=
+ =?us-ascii?Q?X0c0D8zP7g3NcUwQ8M3s78/FFGEol2a8osl2mUfvNSxDa7KbURXUTLySh2q0?=
+ =?us-ascii?Q?SFPN2zN9Yqmr67+AhSkTyAJA6flNfAgTWRhi8uYXnu4jC8dMRH3VU202P9Lx?=
+ =?us-ascii?Q?blgPv8Cb6v+G+M+TKRqZMpFototnI4QbKeooKsJSuzwqgDb1p4NS39BS2QOz?=
+ =?us-ascii?Q?2cbQ9dYY1yc/nh6eYX9eSHTGux/uhTG8ezWEubrDgGfXPPIfjNpMsmEmpr1K?=
+ =?us-ascii?Q?+gHflm0u/TUHOgB+izUJwsYSsQw5teIAHMb8ttmADtvuI7k/3kuW3ddU74u6?=
+ =?us-ascii?Q?GmyZO20w9LBPZLlTk6dH3khV0doLkM8NNwUIuyUod30fBUjvZqlai107Bwk3?=
+ =?us-ascii?Q?Oh4aV0W59flS4oB/WL4=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?2b7eDKsk5dToqYJRuCBEN0GX7i80FSjSwbdozSddjEy72ShukNFiRy+fXYij?=
- =?us-ascii?Q?nx3setIhM1beEr4rrgqbOwa9FCRvbjuuDOjLa/ZHHv1JYiP7MQwpjOJ95bvT?=
- =?us-ascii?Q?yJPM4Mbd82CAgMWOdIkFI8nb22gioAt7wXTEPXl0U2ixB4j374Y8lXRIpbLF?=
- =?us-ascii?Q?0s15XrvKouPDu5680S7Tq1rOnalw+m+uocK4Zz/vs+feZSJU3/i5h+h/7aar?=
- =?us-ascii?Q?j9zA8wZhQyYB4Z8Vh3S+HJQG/wSLl19clB9hpfz4h/T6yo0VFzsZvmOXYjYC?=
- =?us-ascii?Q?oPazW0EBVMoTGih5rqGN7PrTm7YKo5wRgMniGqAJhEWUrmn6fweQ/S3K3xkX?=
- =?us-ascii?Q?TFW+iat8jHL5pMeuYaQtrAWiOppvv2jNY6VlEtIzr+CS1mVz427UsfkakVqy?=
- =?us-ascii?Q?S/Ye2otZI/8qNWJMKPZ+bCCj/n6rHz1xjlmp72vf/AR9PkOFj/2Ohyb2HGVz?=
- =?us-ascii?Q?DCB6gg+BrgplIAxssUIUMmBCQts5ECzIdU0jX/sUA4yIA/9ilUpmhJHCSKws?=
- =?us-ascii?Q?8CoToQQCbOa677NKx7n1myfvecV0l9S67ffe8cv28v5SJdb79/DgVmM8R9u6?=
- =?us-ascii?Q?9px5a9CihtKMHh0wm2KPNMifCij7TG6egYtp+Bf3qxSdAcXkpx902KG8KhsL?=
- =?us-ascii?Q?PTjC2FsZPZ1C/lbtr3uwagzw8d3cajc6QHzxfnb1dXPAA7nZ3NTSg2vF9EzQ?=
- =?us-ascii?Q?erfIVoFCRfFsN3lI7kzQ72Bjwx7wKMMjf9BNq0ah530PITDF8ncHgfSj7+Io?=
- =?us-ascii?Q?ucyr9Vv+BBbPqZpLWAUTQImS9Av48NwefprXUUhhVUfwwtdy1NW3kTER8Mgr?=
- =?us-ascii?Q?Tj5mT6tJc0HcwPPLNS0j5iR4jfOxBd5bi6Z37fSTpmsfRzcqguBiL3Txk4OQ?=
- =?us-ascii?Q?OfNOB4S5fPf5d7FKCExdpv+2KjYysFjfmiB+fG39WSGEkvOuYZH/1iEwafs/?=
- =?us-ascii?Q?neUI1qqJsinlI+yuuVUb+T0mILVaFeTIYV/8iLwxJJ4u3kNZ5URoGpHOLaj6?=
- =?us-ascii?Q?npyVTQX/xAIvmrAKzY64VsNo1aK1oq7lXbNTBpAKuib7cDkVRJFg7EGJ+f0i?=
- =?us-ascii?Q?BQsrGrbzLXZhPUrXmoldpmeOuQi1cUbwPOCZNJcs0oJeSKwaLtUggydA5Tbm?=
- =?us-ascii?Q?DikZVfFzPmn7PUJ51PWvKNKr2DWlrt+hjxiZPlX54Ms9nrGauzzkfAOJlg0t?=
- =?us-ascii?Q?u6KPxeFD68YIqvKMrTPoOS2Jc7xYK5L42XlEtbXz2H0YG5BA5fOK+/hT/iPv?=
- =?us-ascii?Q?UOJOQWHUXdx5+5t9iTNa2A30K0SXso0RyNZXN/gGdvz5B3zhwvgCpoWgSzhh?=
- =?us-ascii?Q?5xv9uI1DsqvmApB8U+1L0LTUHCcSsEEJJj/x1EA6+AL8nf2vsGBaRkb3o+S3?=
- =?us-ascii?Q?qvScrSyAzRYGX2tz/FZ/xy1gNgIf5uGoRwPNuU+yvmpvlSKH6pgSNrFxV9vi?=
- =?us-ascii?Q?rlX1eoMw7eA4/6+x7VKihtyMAR0teX/7kcVBKX0vTAi6kDC3gXCseyq68grm?=
- =?us-ascii?Q?v/fg/IodvCIelR/7f8srTzN+m0pBspYtLuRgT7TiQ00xYxX9WiYLNZclVmCy?=
- =?us-ascii?Q?njY2QhNUwBwW+e4tBwasQ+tM8Pg6WcHs5rkGxBua0VGFnn0THNtteF4+6o8i?=
- =?us-ascii?Q?H2ScePZRe1DBdhiKbCnJ2ARoxMAYYws6MG+8xPigux3n1NtpRAVG+/ZtJUl/?=
- =?us-ascii?Q?/L2/xg/hiRyWmbIgV4xgail+ryFiXOh5S0IXljzlQ7hfhSrdH4m8GFXu7r/+?=
- =?us-ascii?Q?LFEDOSae0ui2tDhcFLd7rVdJQwrcoUM=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 96141af3-e12a-4a6b-30a2-08de68f326d2
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?YVg8ExuwSn5xbk2zq9R5S6SMnsk67rayn6lDOWgszY12h24YMMyTu9Fab3wM?=
+ =?us-ascii?Q?9k7QJX6u/valmMutUMiJ7gUeCFq3PVtwX3R6TjXpE/2+DWiu9X71KU9oQFxF?=
+ =?us-ascii?Q?+F4wA9hDZ1wzU7uxF2RwUplduv+vaT57C5ZvEsGxMp5XW3uA9alekJ7JSZLz?=
+ =?us-ascii?Q?eGbflsYMTMeN6fbV8lazSt6+eELMO+fa55m1UizJP9Ehz3k0eB5qmNR2sawx?=
+ =?us-ascii?Q?Y/WXwVnBZzhkiP8LbSlkNrihJ9vqPFgOtwHCJIJSoum89vwzn8fFq6o5xwvZ?=
+ =?us-ascii?Q?NE5DBsVoRw7nLK/WcwD4dH7KpyMq+wxilOmuWfaHqt3m4NwpvR2h+qwU4S0E?=
+ =?us-ascii?Q?gfT8kjtvQThDoQS6s8ui/F0LZe2tx0tzWCLsPTaKI9BTqrahyBlRr0er7/53?=
+ =?us-ascii?Q?nu+WU1wPae7+e2mWqaH/vcXpFNl73wFc3+VEsYrfbVYL9dKJZPG9L4lMk7og?=
+ =?us-ascii?Q?sI1SpO22IEhTtLa75LVw2eLm5owLjx7Js84SPJzJ91MDyrUgbCZE8PzkzV2v?=
+ =?us-ascii?Q?46qKdbh72hmrh1Mp60gtQsJrHfOC1Z8B3LTySvc5Y6002TcWzQPgo3hxPmrx?=
+ =?us-ascii?Q?Gx8S0sBJJw/pu0PsIczlknpT8vxUEDFMlFWVHztKy567U6R96aKM9EIVPktO?=
+ =?us-ascii?Q?CcS43x53Ny3PiqmuqK76z752mqONFIQvUPimhAqttv+Hwr7LzUnLelCydRi1?=
+ =?us-ascii?Q?HMWSvuWY9OTcv79B96f34TsaAKBfHM4DtCQe4U6RYnVvTBRvQw3+wLXYQYv9?=
+ =?us-ascii?Q?CYVqZyF1ss1siKFCKQSXFYiZBRcPoh2Oz+wzAuD2xjFUUPMcIlG2XEM1x2Z1?=
+ =?us-ascii?Q?quPYE+eRJpBOAk+CM5Ktu8GXKbTs0VLM2gwBttgSD+TGMncNZHaaQBRi9JWo?=
+ =?us-ascii?Q?3LldCWmXws3Vv53o6+lOhNI5Z7pv7F46sip4C75+UqgvS7MOipTzQY19GzBk?=
+ =?us-ascii?Q?JHnmUZBXzQdEHUplDBAYkI5gQ8aBThtj8Gde2EuLoebYiNelazL4dJ5w5gNl?=
+ =?us-ascii?Q?9B8ysUBZiCaIgfgh9exY/29QoktIUTRiQcjvIAMNSPDdkGb/38oie44Q4Vb5?=
+ =?us-ascii?Q?KZIer5DMBpWIGSbb9h/cw9qeHL8LuOeAwBN/pa+um0JfjoBDN13zmjQHYJnc?=
+ =?us-ascii?Q?l1ZnzbFnv5Sp6IAtZ9dVnJAc3daYsBIboqdzqVttsMjD5NoLMIKR0pB0EhwK?=
+ =?us-ascii?Q?E3MbOlvLpAnhnMMpdogIE2ELIhfPGR5ufeLHq6QipEqnLKBTlmlqhL3psfRx?=
+ =?us-ascii?Q?sabievra7LSTRNfXPcEwFk4KWFbY14yFZyRTDNSW4i9eJsxY4IuD42cA3Ccj?=
+ =?us-ascii?Q?lvg/U2XNENRAaHINxHQQWssS3meDKIye9VCVdrnyS5lnxryxbdnPMBPDcbpl?=
+ =?us-ascii?Q?6bR8zcCrnekidAqbWHMhRJq01Q3K81lX3TbRuAS12E4S7qM5ybMFNvpzjU9z?=
+ =?us-ascii?Q?A/w82+mpUv7PDH4/8z25GhuVdzAxsUkl2SnpPerHt+x10sxAUjNeZQDCQep/?=
+ =?us-ascii?Q?pqWz2st5akEURC7hwZf4egLDlNlLk6Y+/jkQc7AMm/mqbbJoeqkw7g0H0l5/?=
+ =?us-ascii?Q?eUg2/gR66Iwmc/6xXTiKrJFI/wZ35scaQjjwiD40Hrc9rdQKad1NMN5HUzQg?=
+ =?us-ascii?Q?rZYuh966wEBXvSlnWSAdAHEc2UhkD7nNV3h+hWh05w7ca3tcb1jjil15lWqY?=
+ =?us-ascii?Q?U3f0DUR1B03XtpAxNEol1oKagNtqRwZ0Cus2bzLFNQsmtK8PeTcr/+N3DPrq?=
+ =?us-ascii?Q?gAjKXA8VGidI+/5cbpqGJ+bZej65lJI=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ffe7a2ae-82e2-4831-72d0-08de68f49dcb
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2026 22:24:27.2922 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Feb 2026 22:34:56.3617 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2k0GmwQLRiW1p/5pStjKAheYf8kSh5QEt7/hijN+T9nM9WoOSfnndrYclrckmEx647/zmVhL4p/J7ecw7aNDfTrWVFLViyGwNRo6peuQaBk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7267
+X-MS-Exchange-CrossTenant-UserPrincipalName: EqmPpCx28xY9545XeMXe/Ts1+7pZ6EVjjsl3EmaJlsRoZ/OkMDGyWnC5JwZeHX6VgtEoEfS3/enEfLK8aaihz5ngY9J+k3dDMZG1GLrbzz0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SAVPR11MB9549
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -180,262 +180,162 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Jan 14, 2026 at 07:49:54PM -0300, Gustavo Sousa wrote:
-> The currently logic in rule_matches() mixes individual rule matching
-> with the logic necessary for handling OR operations.  Let's simplify
-> rule_matches() to focus on the latter by extracting individual rule
-> matching into a separate function called rule_match_item().
+On Wed, Jan 14, 2026 at 07:49:55PM -0300, Gustavo Sousa wrote:
+> The function rule_matches() short-circuits evaluation of the implicit
+> conjunctions (each substring of rules not containing OR) and the
+> explicit disjunctions (implicit conjunctions joined by OR). In other
+> words:
+> 
+>   - in a conjunction, once a rule evaluate to false, we skip to the next
+>     OR (if any) to evaluate the next conjunction;
+>   - in a disjunction, once a conjunction evaluates to true, we return
+>     true and skip evaluating all the remaining rules.
+> 
+> While this behavior results in a correct logical value, it has the
+> side-effect that rule set does not get fully "parsed", allowing
+> incomplete constructs like (rule1, OR) to evaluate to true when rule1 is
+> true.  We should treat such constructs as invalid and treat them the
+> same way we do for stuff like (OR, rule1).
+> 
+> As such, update rule_matches() to "parse" the whole rule set, and that
+> while keeping the short-circuit aspect of evaluation.
+
+I took "keeping the short-circuit aspect of evaluation" to mean that a
+"yes-or" rule would still be treated as a match functionally, but
+flagged as an error for kunit checks.  But it seems we're also changing
+the behavior to reject the whole record in that case, which seems like
+it would just make the mistake worse in non-kunit settings.
+
+I think it would be better to treat "or-yes" and "yes-or" type mistakes
+as a match, but flag them as errors in kunit.  I'd expect the most
+common case we'd have such a mistake would be if someone is deleting
+something that no longer applies (e.g., a pre-production workaround set
+of rules) and they just forget to also remove the adjacent OR.  The
+remaining parts of the rule should still be valid with that kind of
+mistake, so treating the whole rule as not a match seems wrong.
+
+
+Matt
+
+> 
+> Let's also update the kunit test to include instances of those
+> incomplete constructs to reflect this change.
 > 
 > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-
 > ---
->  drivers/gpu/drm/xe/xe_rtp.c | 205 +++++++++++++++++++-------------------------
->  1 file changed, 88 insertions(+), 117 deletions(-)
+>  drivers/gpu/drm/xe/tests/xe_rtp_test.c | 12 +++++++
+>  drivers/gpu/drm/xe/xe_rtp.c            | 61 +++++++++++++++++++---------------
+>  2 files changed, 46 insertions(+), 27 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+> index 19c7142b2fe4..f0122553644e 100644
+> --- a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+> +++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
+> @@ -177,6 +177,18 @@ static const struct rtp_rules_test_case rtp_rules_cases[] = {
+>  		.expected_err = -EINVAL,
+>  		XE_RTP_RULES(OR, FUNC(match_yes)),
+>  	},
+> +	{
+> +		.name = "anything-or",
+> +		.expected_match = false,
+> +		.expected_err = -EINVAL,
+> +		XE_RTP_RULES(FUNC(match_yes), OR),
+> +	},
+> +	{
+> +		.name = "anything-or-or-anything",
+> +		.expected_match = false,
+> +		.expected_err = -EINVAL,
+> +		XE_RTP_RULES(FUNC(match_yes), OR, OR, FUNC(match_yes)),
+> +	},
+>  
+>  	/* No match because hwe is NULL. */
+>  	{
 > diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-> index e0bed5ac1369..dabc2e74e2ce 100644
+> index dabc2e74e2ce..55df9c16a3cc 100644
 > --- a/drivers/gpu/drm/xe/xe_rtp.c
 > +++ b/drivers/gpu/drm/xe/xe_rtp.c
-> @@ -30,6 +30,90 @@ static bool has_samedia(const struct xe_device *xe)
->  	return xe->info.media_verx100 >= 1300;
->  }
->  
-> +static bool rule_match_item(const struct xe_device *xe,
-> +			    struct xe_gt *gt,
-> +			    struct xe_hw_engine *hwe,
-> +			    const struct xe_rtp_rule *r)
-> +{
-> +	switch (r->match_type) {
-> +	case XE_RTP_MATCH_PLATFORM:
-> +		return xe->info.platform == r->platform;
-> +	case XE_RTP_MATCH_SUBPLATFORM:
-> +		return xe->info.platform == r->platform &&
-> +			xe->info.subplatform == r->subplatform;
-> +	case XE_RTP_MATCH_GRAPHICS_VERSION:
-> +		if (drm_WARN_ON(&xe->drm, !gt))
-> +			return false;
-> +
-> +		return xe->info.graphics_verx100 == r->ver_start &&
-> +			(!has_samedia(xe) || !xe_gt_is_media_type(gt));
-> +	case XE_RTP_MATCH_GRAPHICS_VERSION_RANGE:
-> +		if (drm_WARN_ON(&xe->drm, !gt))
-> +			return false;
-> +
-> +		return xe->info.graphics_verx100 >= r->ver_start &&
-> +			xe->info.graphics_verx100 <= r->ver_end &&
-> +			(!has_samedia(xe) || !xe_gt_is_media_type(gt));
-> +	case XE_RTP_MATCH_GRAPHICS_VERSION_ANY_GT:
-> +		if (drm_WARN_ON(&xe->drm, !gt))
-> +			return false;
-> +
-> +		return xe->info.graphics_verx100 == r->ver_start;
-> +	case XE_RTP_MATCH_GRAPHICS_STEP:
-> +		if (drm_WARN_ON(&xe->drm, !gt))
-> +			return false;
-> +
-> +		return xe->info.step.graphics >= r->step_start &&
-> +			xe->info.step.graphics < r->step_end &&
-> +			(!has_samedia(xe) || !xe_gt_is_media_type(gt));
-> +	case XE_RTP_MATCH_MEDIA_VERSION:
-> +		if (drm_WARN_ON(&xe->drm, !gt))
-> +			return false;
-> +
-> +		return xe->info.media_verx100 == r->ver_start &&
-> +			(!has_samedia(xe) || xe_gt_is_media_type(gt));
-> +	case XE_RTP_MATCH_MEDIA_VERSION_RANGE:
-> +		if (drm_WARN_ON(&xe->drm, !gt))
-> +			return false;
-> +
-> +		return xe->info.media_verx100 >= r->ver_start &&
-> +			xe->info.media_verx100 <= r->ver_end &&
-> +			(!has_samedia(xe) || xe_gt_is_media_type(gt));
-> +	case XE_RTP_MATCH_MEDIA_STEP:
-> +		if (drm_WARN_ON(&xe->drm, !gt))
-> +			return false;
-> +
-> +		return xe->info.step.media >= r->step_start &&
-> +			xe->info.step.media < r->step_end &&
-> +			(!has_samedia(xe) || xe_gt_is_media_type(gt));
-> +	case XE_RTP_MATCH_MEDIA_VERSION_ANY_GT:
-> +		if (drm_WARN_ON(&xe->drm, !gt))
-> +			return false;
-> +
-> +		return xe->info.media_verx100 == r->ver_start;
-> +	case XE_RTP_MATCH_INTEGRATED:
-> +		return !xe->info.is_dgfx;
-> +	case XE_RTP_MATCH_DISCRETE:
-> +		return xe->info.is_dgfx;
-> +	case XE_RTP_MATCH_ENGINE_CLASS:
-> +		if (drm_WARN_ON(&xe->drm, !hwe))
-> +			return false;
-> +
-> +		return hwe->class == r->engine_class;
-> +	case XE_RTP_MATCH_NOT_ENGINE_CLASS:
-> +		if (drm_WARN_ON(&xe->drm, !hwe))
-> +			return false;
-> +
-> +		return hwe->class != r->engine_class;
-> +	case XE_RTP_MATCH_FUNC:
-> +		return r->match_func(xe, gt, hwe);
-> +	default:
-> +		drm_warn(&xe->drm, "Invalid RTP match %u\n",
-> +			 r->match_type);
-> +		return false;
-> +	}
-> +}
-> +
->  static bool rule_matches_with_err(const struct xe_device *xe,
->  				  struct xe_gt *gt,
->  				  struct xe_hw_engine *hwe,
-> @@ -39,133 +123,22 @@ static bool rule_matches_with_err(const struct xe_device *xe,
+> @@ -123,47 +123,54 @@ static bool rule_matches_with_err(const struct xe_device *xe,
 >  {
 >  	const struct xe_rtp_rule *r;
 >  	unsigned int i, rcount = 0;
-> -	bool match;
+> +	bool parse_only = false;
+> +	bool match = false;
 >  
 >  	if (err)
 >  		*err = 0;
 >  
 >  	for (r = rules, i = 0; i < n_rules; r = &rules[++i]) {
-> -		switch (r->match_type) {
-> -		case XE_RTP_MATCH_OR:
-> +		if (r->match_type == XE_RTP_MATCH_OR)
->  			/*
->  			 * This is only reached if a complete set of
->  			 * rules passed or none were evaluated. For both cases,
->  			 * shortcut the other rules and return the proper value.
->  			 */
->  			goto done;
-> -		case XE_RTP_MATCH_PLATFORM:
-> -			match = xe->info.platform == r->platform;
-> -			break;
-> -		case XE_RTP_MATCH_SUBPLATFORM:
-> -			match = xe->info.platform == r->platform &&
-> -				xe->info.subplatform == r->subplatform;
-> -			break;
-> -		case XE_RTP_MATCH_GRAPHICS_VERSION:
-> -			if (drm_WARN_ON(&xe->drm, !gt)) {
-> -				match = false;
-> -				break;
-> -			}
-> -
-> -			match = xe->info.graphics_verx100 == r->ver_start &&
-> -				(!has_samedia(xe) || !xe_gt_is_media_type(gt));
-> -			break;
-> -		case XE_RTP_MATCH_GRAPHICS_VERSION_RANGE:
-> -			if (drm_WARN_ON(&xe->drm, !gt)) {
-> -				match = false;
-> -				break;
-> -			}
-> -
-> -			match = xe->info.graphics_verx100 >= r->ver_start &&
-> -				xe->info.graphics_verx100 <= r->ver_end &&
-> -				(!has_samedia(xe) || !xe_gt_is_media_type(gt));
-> -			break;
-> -		case XE_RTP_MATCH_GRAPHICS_VERSION_ANY_GT:
-> -			if (drm_WARN_ON(&xe->drm, !gt)) {
-> -				match = false;
-> -				break;
-> -			}
-> -
-> -			match = xe->info.graphics_verx100 == r->ver_start;
-> -			break;
-> -		case XE_RTP_MATCH_GRAPHICS_STEP:
-> -			if (drm_WARN_ON(&xe->drm, !gt)) {
-> -				match = false;
-> -				break;
-> -			}
-> -
-> -			match = xe->info.step.graphics >= r->step_start &&
-> -				xe->info.step.graphics < r->step_end &&
-> -				(!has_samedia(xe) || !xe_gt_is_media_type(gt));
-> -			break;
-> -		case XE_RTP_MATCH_MEDIA_VERSION:
-> -			if (drm_WARN_ON(&xe->drm, !gt)) {
-> -				match = false;
-> -				break;
-> -			}
-> -
-> -			match = xe->info.media_verx100 == r->ver_start &&
-> -				(!has_samedia(xe) || xe_gt_is_media_type(gt));
-> -			break;
-> -		case XE_RTP_MATCH_MEDIA_VERSION_RANGE:
-> -			if (drm_WARN_ON(&xe->drm, !gt)) {
-> -				match = false;
-> -				break;
-> -			}
-> -
-> -			match = xe->info.media_verx100 >= r->ver_start &&
-> -				xe->info.media_verx100 <= r->ver_end &&
-> -				(!has_samedia(xe) || xe_gt_is_media_type(gt));
-> -			break;
-> -		case XE_RTP_MATCH_MEDIA_STEP:
-> -			if (drm_WARN_ON(&xe->drm, !gt)) {
-> -				match = false;
-> -				break;
-> -			}
-> -
-> -			match = xe->info.step.media >= r->step_start &&
-> -				xe->info.step.media < r->step_end &&
-> -				(!has_samedia(xe) || xe_gt_is_media_type(gt));
-> -			break;
-> -		case XE_RTP_MATCH_MEDIA_VERSION_ANY_GT:
-> -			if (drm_WARN_ON(&xe->drm, !gt)) {
-> -				match = false;
-> -				break;
-> -			}
-> -
-> -			match = xe->info.media_verx100 == r->ver_start;
-> -			break;
-> -		case XE_RTP_MATCH_INTEGRATED:
-> -			match = !xe->info.is_dgfx;
-> -			break;
-> -		case XE_RTP_MATCH_DISCRETE:
-> -			match = xe->info.is_dgfx;
-> -			break;
-> -		case XE_RTP_MATCH_ENGINE_CLASS:
-> -			if (drm_WARN_ON(&xe->drm, !hwe)) {
-> -				match = false;
-> -				break;
-> -			}
-> -
-> -			match = hwe->class == r->engine_class;
-> -			break;
-> -		case XE_RTP_MATCH_NOT_ENGINE_CLASS:
-> -			if (drm_WARN_ON(&xe->drm, !hwe)) {
-> -				match = false;
-> -				break;
-> -			}
-> -
-> -			match = hwe->class != r->engine_class;
-> -			break;
-> -		case XE_RTP_MATCH_FUNC:
-> -			match = r->match_func(xe, gt, hwe);
-> -			break;
-> -		default:
-> -			drm_warn(&xe->drm, "Invalid RTP match %u\n",
-> -				 r->match_type);
-> -			match = false;
-> -		}
+> -		if (r->match_type == XE_RTP_MATCH_OR)
+> -			/*
+> -			 * This is only reached if a complete set of
+> -			 * rules passed or none were evaluated. For both cases,
+> -			 * shortcut the other rules and return the proper value.
+> -			 */
+> -			goto done;
+> +		if (r->match_type == XE_RTP_MATCH_OR) {
+> +			if (drm_WARN_ON(&xe->drm, !rcount)) {
+> +				parse_only = true;
+> +				match = false;
+> +				if (err)
+> +					*err = -EINVAL;
+> +			} else if (match) {
+> +				parse_only = true;
+> +			}
+> +
+> +			rcount = 0;
+> +
+> +			continue;
+> +		}
+> +
+> +		rcount++;
+> +
+> +		if (parse_only || !rule_match_item(xe, gt, hwe, r)) {
+> +			if (!parse_only)
+> +				match = false;
 >  
-> -		if (!match) {
-> +		if (rule_match_item(xe, gt, hwe, r)) {
-> +			rcount++;
-> +		} else {
+> -		if (rule_match_item(xe, gt, hwe, r)) {
+> -			rcount++;
+> -		} else {
 >  			/*
 >  			 * Advance rules until we find XE_RTP_MATCH_OR to check
 >  			 * if there's another set of conditions to check
-> @@ -177,8 +150,6 @@ static bool rule_matches_with_err(const struct xe_device *xe,
->  				return false;
->  
->  			rcount = 0;
-> -		} else {
-> -			rcount++;
+>  			 */
+> -			while (++i < n_rules && rules[i].match_type != XE_RTP_MATCH_OR)
+> -				;
+> -
+> -			if (i >= n_rules)
+> -				return false;
+> -
+> -			rcount = 0;
+> +			while (i + 1 < n_rules && rules[i + 1].match_type != XE_RTP_MATCH_OR) {
+> +				i++;
+> +				rcount++;
+> +			}
+> +		} else {
+> +			match = true;
 >  		}
 >  	}
 >  
+> -done:
+> -	if (drm_WARN_ON(&xe->drm, !rcount))
+> -		goto error;
+> -
+> -	return true;
+> -
+> -error:
+> -	if (err)
+> -		*err = -EINVAL;
+> +	if (drm_WARN_ON(&xe->drm, !rcount)) {
+> +		match = false;
+> +		if (err)
+> +			*err = -EINVAL;
+> +	}
+>  
+> -	return false;
+> +	return match;
+>  }
+>  
+>  static bool rule_matches(const struct xe_device *xe,
 > 
 > -- 
 > 2.52.0
