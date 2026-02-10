@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69994EA3F2A
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Feb 2026 09:00:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE143EA3F28
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Feb 2026 09:04:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0128910E284;
-	Tue, 10 Feb 2026 09:00:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C54110E284;
+	Tue, 10 Feb 2026 09:04:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PdDn4Zg8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P381P70z";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0233910E284
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Feb 2026 09:00:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6776F10E284
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Feb 2026 09:04:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770714006; x=1802250006;
+ t=1770714251; x=1802250251;
  h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=s8mMRNUZXTl2k5DSn9dHxjJbJh/gE63QA2HgSBL5tk8=;
- b=PdDn4Zg80hK4zIV7opfbthNtc7CNC7agiEXdwfdelhssLkaV9bBO7KYk
- Y7JSK7uEhHSfCthRq9CKC40ZqTWKbuXPGjVb+IpfU4s9ncSe84AJEcrCZ
- lV6sNOojuuyH1En3yNo3Bx2nFwXgm1c0kfpeWnAltFto3kcYlqhPmcdAc
- +q1APUURGalKsYoCE1n41/wDK7MnVsG4CyQZIhYsUYUgxueo0Mn5WNQDL
- n0lBYYlIk1fIBANMndfM3/LB4CNurdgFaSPKSwHrPng2wvvzYwun5lgzS
- TYzSmmDeQhUfcHZrqPjZKZLT3mcspCWwLwuRJ/hCxd6JwPR5fdRNuNCg6 g==;
-X-CSE-ConnectionGUID: 40aZ/P36Tae2gC7NkL2phw==
-X-CSE-MsgGUID: rfglDyMATIKjZNn/e2lLkA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="71879715"
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="71879715"
+ mime-version; bh=IsrVmpn2G7GBKXHYq0UtuGd0n+xmk6KuEymws+rPmHs=;
+ b=P381P70zaCO6dohSltEgXh7gVdZI2RmY6NVW99kDAE4RAf/Hlga1N4jQ
+ kflZfhZQL20rcBJdGEXg5gRd6BCxywVuaALZTTAOBDSyLBoMMPEdWCTAk
+ g7eQwbIiC/DXsFVjEzIM59WgqVKLKcWXPpupqRncDl50ywFFgbAxOUvMf
+ rikGxzG6RyG6v0y4ItoKJCSVeD+IAWj2Vw79882CnWGstpmkLcIEDT4Th
+ BcodcwGL4TpUJBoI8c+gqhVjXh/uxCXtAcSBVk0Gb4DBgn13QnA4kJRtI
+ WizLontsyuJBXw/sMnrjGhE8w2oqO4lAhQcj6Yc9c9axm2y+HjOmpIoj7 g==;
+X-CSE-ConnectionGUID: xucs0NfVT1GSS+FJvJbzcg==
+X-CSE-MsgGUID: 1ual1cEoTJqNW0jGu1EPwQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="82940908"
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="82940908"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2026 01:00:06 -0800
-X-CSE-ConnectionGUID: vvu9ycdoS1K/mLDgYOnT3w==
-X-CSE-MsgGUID: AxvNtNkgQmGlPGgrfc5p5g==
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2026 01:04:11 -0800
+X-CSE-ConnectionGUID: 7UwEPlTUTIq9DaqxNNOodA==
+X-CSE-MsgGUID: MJwCHsu2Q96+a4yfSvvvUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="211691099"
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="211691732"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.246])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2026 01:00:05 -0800
+ 10 Feb 2026 01:04:09 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Austin Hu <austin.hu@intel.com>, intel-xe@lists.freedesktop.org
 Subject: Re: [PATCH 1/2] drm/i915/color: Add 3D LUT to color pipeline since
@@ -49,8 +49,8 @@ In-Reply-To: <20260207001250.2448612-1-austin.hu@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260207001250.2448612-1-austin.hu@intel.com>
-Date: Tue, 10 Feb 2026 11:00:01 +0200
-Message-ID: <64e0a6952a6df72f3731d1023fc03b6f73b6f63e@intel.com>
+Date: Tue, 10 Feb 2026 11:04:06 +0200
+Message-ID: <c327006711a055e336788fe3c5c0c9588f07d939@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -70,6 +70,19 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 On Fri, 06 Feb 2026, Austin Hu <austin.hu@intel.com> wrote:
 > Verified on PTL, where IGT case kms_color_pipeline passes for PipeA
 > and PipeB.
+
+PS. The Subject should be a short description of the "what". But that
+subject does not really match what the patch does. Probably the patch
+needs to be split to handle adding the .has_3d_lut and fusing in one
+patch, and expanding the platforms separately.
+
+The commit message itself should expand on the "what", and include a
+"why". The details about verification and IGT are less relevant, and
+certainly that should not be the only part of the commit message.
+
+BR,
+Jani.
+
 >
 > Signed-off-by: Austin Hu <austin.hu@intel.com>
 > ---
@@ -92,15 +105,6 @@ On Fri, 06 Feb 2026, Austin Hu <austin.hu@intel.com> wrote:
 > -	    plane->type == DRM_PLANE_TYPE_PRIMARY) {
 > +	if ((DISPLAY_VER(display) >= 15) && HAS_3D_LUT(display) &&
 > +			intel_color_crtc_has_3dlut(display, pipe)) {
-
-intel_color_crtc_has_3dlut() should have the check for
-HAS_3D_LUT(). Basically:
-
-	if (HAS_3D_LUT())
-		return pipe == PIPE_A || pipe == PIPE_B;
-	else
-		return false;
-
 >  		colorop = intel_colorop_create(INTEL_PLANE_CB_3DLUT);
 >  
 >  		ret = drm_plane_colorop_3dlut_init(dev, &colorop->base, plane, 17,
@@ -118,22 +122,6 @@ HAS_3D_LUT(). Basically:
 > +			display_runtime->has_3d_lut = false;
 > +		else
 > +			display_runtime->has_3d_lut = true;
-
-This won't work.
-
-You'll need to initialize .has_3d_lut on the platforms that have it in
-.__runtime_defaults.has_3d_lut. We can't have multiple truths for
-whether a platform has a feature or not.
-
-Initially, that means replacing the DISPLAY_VER(display) >= 12 check in
-intel_color_crtc_has_3dlut() with .has_3d_lut. It could be a separate
-patch.
-
-Then disable the runtime value based on the capability.
-
-BR,
-Jani.
-
 >  	}
 >  
 >  	if (DISPLAY_VER(display) >= 30)
