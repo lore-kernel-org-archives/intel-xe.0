@@ -4,64 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5435EA3F28
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Feb 2026 09:06:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 244ACEA3F2F
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Feb 2026 09:11:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A62DA10E50E;
-	Tue, 10 Feb 2026 09:06:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HwEN0JPb";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5339F10E50E;
- Tue, 10 Feb 2026 09:06:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770714369; x=1802250369;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=ITHiJ8mV8MjBhrvl31MX8m6mVWmn+8bPpVNr5l5vxvo=;
- b=HwEN0JPbqkMPMr2a7AmJiuF0Q61Zc0sCr1vocgMyUXMa6SZfEI3Qm4+O
- 4lx8kMVu6Xq5ZQzq9e4ow66bcEAF0AgeQeaRjS1SHgnvhMt2BTqgtP+qC
- CPHM25OsorLAopzUasHrU64QHUNTvTvCexYj+jkJWIwWQqtmrU1YQZLvh
- O91SVovDaOPWgMfQfRoP3hPlLSxe/uuG2Zr4AM2cCIsbkvlrtpRB8QIaj
- WBvjW7T8YCKG/sVOJt8TSVlCfEA+OJjrOb+YVDDy6NPnxSvL67By0vLMB
- PQa2FZ10A3dT5fQeg0gCP4XNIRidmnVq9ggZXSqkLsrcpx/8Q2sZwPRQk w==;
-X-CSE-ConnectionGUID: F7Yg404ZR7SkQyGsFKs+7g==
-X-CSE-MsgGUID: Ej+wMFfqRmedt8NzrA5W9A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11696"; a="94479238"
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="94479238"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2026 01:06:09 -0800
-X-CSE-ConnectionGUID: wf+jMZ0KS96jsbIkGQsl0g==
-X-CSE-MsgGUID: 9czWtVkCQRCBwIkdPS8CbA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="242479060"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa002.jf.intel.com with ESMTP; 10 Feb 2026 01:06:04 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Tue, 10 Feb 2026 14:34:01 +0530
-Subject: [PATCH v9 7/7] drm: Introduce DRM_CAP_ATOMIC_ERROR_REPORTING
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0E5D10E515;
+	Tue, 10 Feb 2026 09:11:43 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77DDF10E514;
+ Tue, 10 Feb 2026 09:11:42 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260210-atomic-v9-7-525c88fd2402@intel.com>
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_User_readable_error_codes?=
+ =?utf-8?q?_on_atomic=5Fioctl_failure_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 10 Feb 2026 09:11:42 -0000
+Message-ID: <177071470246.241444.2536728390626993289@a3b018990fe9>
+X-Patchwork-Hint: ignore
 References: <20260210-atomic-v9-0-525c88fd2402@intel.com>
 In-Reply-To: <20260210-atomic-v9-0-525c88fd2402@intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, xaver.hugl@kde.org, 
- harry.wentland@amd.com, uma.shankar@intel.com, louis.chauvet@bootlin.com, 
- naveen1.kumar@intel.com, ramya.krishna.yella@intel.com
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, Arun R Murthy <arun.r.murthy@intel.com>, 
- Suraj Kandpal <suraj.kandpal@intel.com>
-X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,52 +36,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The new capability informs users that atomic_ioctl() supports
-failure reporting when an error occurs.
+== Series Details ==
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/drm_ioctl.c | 3 +++
- include/uapi/drm/drm.h      | 7 +++++++
- 2 files changed, 10 insertions(+)
+Series: User readable error codes on atomic_ioctl failure (rev8)
+URL   : https://patchwork.freedesktop.org/series/152277/
+State : warning
 
-diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
-index ff193155129e7e863888d8958458978566b144f8..59f2b5b53830fd3aadc6e18cf49f0660a99e9c96 100644
---- a/drivers/gpu/drm/drm_ioctl.c
-+++ b/drivers/gpu/drm/drm_ioctl.c
-@@ -304,6 +304,9 @@ static int drm_getcap(struct drm_device *dev, void *data, struct drm_file *file_
- 		req->value = drm_core_check_feature(dev, DRIVER_ATOMIC) &&
- 			     dev->mode_config.async_page_flip;
- 		break;
-+	case DRM_CAP_ATOMIC_ERROR_REPORTING:
-+		req->value = drm_core_check_feature(dev, DRIVER_ATOMIC) && 1;
-+		break;
- 	default:
- 		return -EINVAL;
- 	}
-diff --git a/include/uapi/drm/drm.h b/include/uapi/drm/drm.h
-index 27cc159c1d275c7a7fe057840ef792f30a582bb7..6082410bcabfb4aa37b85e5f03d3611e5aed4aa5 100644
---- a/include/uapi/drm/drm.h
-+++ b/include/uapi/drm/drm.h
-@@ -812,6 +812,13 @@ struct drm_gem_change_handle {
-  * commits.
-  */
- #define DRM_CAP_ATOMIC_ASYNC_PAGE_FLIP	0x15
-+/**
-+ * DRM_CAP_ATOMIC_ERROR_REPORTING
-+ *
-+ * If set to 1, the driver supports reporting of failure codes on error in
-+ * atomic ioctl().
-+ */
-+#define DRM_CAP_ATOMIC_ERROR_REPORTING	0x16
- 
- /* DRM_IOCTL_GET_CAP ioctl argument type */
- struct drm_get_cap {
+== Summary ==
 
--- 
-2.25.1
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d1b8359ba05bcc93ebd66190ec15ca869e184395
+Author: Arun R Murthy <arun.r.murthy@intel.com>
+Date:   Tue Feb 10 14:34:01 2026 +0530
+
+    drm: Introduce DRM_CAP_ATOMIC_ERROR_REPORTING
+    
+    The new capability informs users that atomic_ioctl() supports
+    failure reporting when an error occurs.
+    
+    Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+    Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
++ /mt/dim checkpatch 8f0fa64d0cca695724e2d2fbe4c61336de727b79 drm-intel
+be4d61669e77 drm: Define user readable error codes for atomic ioctl
+3eb443a6a3ee drm/atomic: Add error_code element in atomic_state
+055f2f7c751a drm/atomic: Allocate atomic_state at the beginning of atomic_ioctl
+e56f311ac5d7 drm/atomic: Call complete_signaling only if prepare_signaling is done
+e0081ceadcc7 drm/atomic: Return user readable error in atomic_ioctl
+-:52: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#52: FILE: drivers/gpu/drm/drm_atomic_uapi.c:1270:
++								      DRM_MODE_ATOMIC_INVALID_API_USAGE,
+
+total: 0 errors, 1 warnings, 0 checks, 123 lines checked
+e6b73cdc6a87 drm/i915/display: Error codes for async flip failures
+d1b8359ba05b drm: Introduce DRM_CAP_ATOMIC_ERROR_REPORTING
+
 
