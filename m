@@ -4,49 +4,73 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B817EB2711
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Feb 2026 21:08:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A93CBEB2718
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Feb 2026 21:10:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32EFB10E556;
-	Tue, 10 Feb 2026 21:08:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BB5610E5F3;
+	Tue, 10 Feb 2026 21:10:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jIdXy7jj";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="e3bgbA3B";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3EA310E556;
- Tue, 10 Feb 2026 21:08:12 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAC3310E556;
+ Tue, 10 Feb 2026 21:10:14 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 18F6860130;
- Tue, 10 Feb 2026 21:08:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C69D4C116C6;
- Tue, 10 Feb 2026 21:08:09 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 6CDC043E5E;
+ Tue, 10 Feb 2026 21:10:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5337C116C6;
+ Tue, 10 Feb 2026 21:10:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1770757691;
- bh=OblPFK1ZQykEJX8DgG0pIy1d4Voo7x64TN7Y5KELcvs=;
- h=Date:From:To:Cc:Subject:From;
- b=jIdXy7jj0KaIGqbIrmL3EHSGDUs24+Lqvaf2N6ho7am+wVR5GYngvUd1U8vsHjA/R
- jGLpcHIGs0XPNOJwlO5+XAqgl5f2NnBy1Wtqn5OB8kemZWRvAlTpu5/sPhhk1TO/Wy
- cCtkYi/3z2v8Jfm90EpsnENlixuoTDWL4CrHKnaxwOoU5SIYfrH4kuHfjFd9bqLG6c
- AtUowyaorxh83fdTo0NHK/vAZ2xicY4Cz69HumpiTLchX+qtmpCfhJImXNRM8skDE4
- Bdadp5i4KUYHLy7KaKuKODrOK+g/KGckE1Y7tI64qxqU4JzwdKyp98r7/kIWXMziJd
- fffrHBUt+n6iw==
-Date: Tue, 10 Feb 2026 21:08:06 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Alexander Usyskin <alexander.usyskin@intel.com>,
- Brian Nguyen <brian3.nguyen@intel.com>,
- Shuicheng Lin <shuicheng.lin@intel.com>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- DRM XE List <intel-xe@lists.freedesktop.org>,
- Dave Airlie <airlied@redhat.com>, DRI <dri-devel@lists.freedesktop.org>
-Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>
-Subject: linux-next: build failure after merge of the drm tree
-Message-ID: <aYueNunEXamKtZad@sirena.org.uk>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="VA1StljnN5CWdLYi"
-Content-Disposition: inline
+ s=k20201202; t=1770757814;
+ bh=UWSb7wjpHsusRVvieXLpHdxv/4zDaCUkIgy7QUYN+Qw=;
+ h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
+ b=e3bgbA3BYcAKRl8iwbdJVkgrkS7A1nttqBdEge3iUnUgQ4wnLXe5M9C/gQST9Vazx
+ mTI9eXXs9l8hK1+3phBxmaosKEOsPCLxUv5EoIxnCTNTBXSuoHSTgXEX0nmjSSlBZX
+ etqvR3ijBk3JxLIBdOJr71PBelaIdS29Pmh3twzOnqsJQaHHOvHi5vSYlOe+9p0kul
+ amTGI376pQKDV+W8QZ05JdpeYMoYXT6yjUSFUxUT538ypdEgXgY3IbkeRQMh1ipnz5
+ 4JBp6ySOVNWzst9QfT3XNGf2Nm6PjMXLJK3bbMV+LMDWQxjUetTaCqnbm7f9wN/NfH
+ NKHT6RpV1wiCA==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 10 Feb 2026 22:10:02 +0100
+Message-Id: <DGBL94I0E5UB.4LNH3JODOKPV@kernel.org>
+Subject: Re: [PATCH -next v8 2/3] rust: gpu: Add GPU buddy allocator bindings
+Cc: <linux-kernel@vger.kernel.org>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet"
+ <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
+ <joonas.lahtinen@linux.intel.com>, "Vivi Rodrigo" <rodrigo.vivi@intel.com>,
+ "Tvrtko Ursulin" <tursulin@ursulin.net>, "Rui Huang" <ray.huang@amd.com>,
+ "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
+ <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Helge Deller" <deller@gmx.de>, "Alice Ryhl" <aliceryhl@google.com>,
+ "Miguel Ojeda" <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>,
+ "Boqun Feng" <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
+ <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Trevor
+ Gross" <tmgross@umich.edu>, "John Hubbard" <jhubbard@nvidia.com>, "Alistair
+ Popple" <apopple@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>, "Edwin Peer"
+ <epeer@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>, "Andrea
+ Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>, "Zhi Wang"
+ <zhiw@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>, "Philipp Stanner"
+ <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>, "Daniel
+ Almeida" <daniel.almeida@collabora.com>, <joel@joelfernandes.org>,
+ <nouveau@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <rust-for-linux@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+ <amd-gfx@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <linux-fbdev@vger.kernel.org>
+To: "Joel Fernandes" <joelagnelf@nvidia.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
+References: <20260209214246.2783990-1-joelagnelf@nvidia.com>
+ <20260209214246.2783990-3-joelagnelf@nvidia.com>
+ <DGB9G697GSWO.3VBFGU5MKFPMR@kernel.org>
+ <1770754015.1979311.8126@nvidia.com>
+In-Reply-To: <1770754015.1979311.8126@nvidia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,47 +85,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Tue Feb 10, 2026 at 9:09 PM CET, Joel Fernandes wrote:
+>>> +impl GpuBuddyInner {
+>>> +    /// Create a pin-initializer for the buddy allocator.
+>>> +    fn new(params: &GpuBuddyParams) -> impl PinInit<Self, Error> {
+>>=20
+>> I think we can just pass them by value, they shouldn't be needed anymore=
+ after
+>> the GpuBuddy instance has been constructed.
+>
+> Dave Airlie specifically reviewed this in RFC v6 and recommended passing =
+by
+> reference rather than by value [2]:
+>
+>   "maybe we should pass them as non-mutable references, but I don't think
+>    there is any point in passing them by value ever."
+>
+> The params are also reused in practice -- the doc examples show the same
+> `GpuBuddyParams` being used repeatedly. References
+> avoid unnecessary copies for this reuse pattern.
 
---VA1StljnN5CWdLYi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Well, that's for GpuBuddyAllocParams, those are indeed reused and shouldn't=
+ be
+copied all the time.
 
-Hi all,
+But my comment was about GpuBuddyParams, I don't see a reason those are reu=
+sed
+(neither are they in the example), so it makes more sense to pass them by v=
+alue,
+such that they are consumed. (I.e.  I'm not asking for adding Copy/Clone.)
 
-After merging the drm tree, today's linux-next build (x86_64 allmodconfig)
-failed like this:
+>
+> [2] https://lore.kernel.org/all/CAPM=3D9tyL_Cq3+qWc4A41p7eqnNDLS1APUEeUba=
+QyJ46YDkipVw@mail.gmail.com/
+>
+>>> +    pub fn new(params: &GpuBuddyParams) -> Result<Self> {
+>>=20
+>> Same here, we should be able to take this by value.
+>
+> Same reasoning as above.
+>
+>>> +    pub fn alloc_blocks(&self, params: &GpuBuddyAllocParams) -> Result=
+<Arc<AllocatedBlocks>> {
+>>=20
+>> Why do we force a reference count here? I think we should just return
+>> impl PinInit<AllocatedBlocks, Error> and let the driver decide where to
+>> initialize the object, no?
+>>=20
+>> I.e. what if the driver wants to store additional data in a driver priva=
+te
+>> structure? Then we'd need two allocations otherwise and another referenc=
+e count
+>> in the worst case.
+>
+> Good point. The reason I had `Arc` was to anticipate potential shared own=
+ership
+> use cases, but at the moment there is no such use case
+> in nova-core -- each `AllocatedBlocks` has a single owner.
 
-/tmp/next/build/drivers/gpu/drm/xe/xe_survivability_mode.c: In function 'xe=
-_survivability_mode_fini':
-/tmp/next/build/drivers/gpu/drm/xe/xe_survivability_mode.c:241:17: error: i=
-mplicit declaration of function 'xe_nvm_fini'; did you mean 'xe_nvm_init'? =
-[-Wimplicit-function-declaration]
-  241 |                 xe_nvm_fini(xe);
-      |                 ^~~~~~~~~~~
-      |                 xe_nvm_init
+Sure, but drivers can always pass an impl PinInit to Arc::pin_init() themse=
+lves.
 
+> I'll change this to return `impl PinInit<AllocatedBlocks, Error>` in the =
+next
+> version. If a shared ownership use case arises later, we
+> can always add an `Arc`-returning convenience wrapper.
 
-Caused by the absence of commit
-
-  11035eab1b7d8 (drm/xe/nvm: Manage nvm aux cleanup with devres)
-
-=66rom the drm-xe tree.  I have ignored this for today, the relevant
-commits also seem to have been in the drm tree yesterday.
-
---VA1StljnN5CWdLYi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmLnjYACgkQJNaLcl1U
-h9DwzAf/RKul8XCpqU6sZ62Vdo7F/pPn9rGiPfnWd2bDRbHHgxkHxgEp9UDrCjo0
-AgfYF9J+q9L24ny4Fy1PiN7mt2MT5L8zAfoMQCTQi5TmqPt52ICeJvkq6TtxyF/E
-P8KFerg4n6KvfY3o8c5IS6JmrYQ6pCTnmBFwUS4jhjAEuzlB+8q8G7wFfWKol4sP
-JQ+zeSI4cnhYUqF5GX/sKEuYsTMSDtQ0s07kmdE9OckEAys0TYAc7JDgvp9xCp1R
-Q0aOBpkqWl/eWeQMYerDqqa1rWPJK/oUN2i79kWkeFey4+80P5ecdSgKtyz2/XuV
-WDiy/OyB25GgYcEFnuf+EHg2qKaDZQ==
-=Aosx
------END PGP SIGNATURE-----
-
---VA1StljnN5CWdLYi--
+I don't think we should, don't give drivers a reason to go for more allocat=
+ions
+they actually need for convinience.
