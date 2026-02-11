@@ -4,190 +4,167 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BE60EB5945
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Feb 2026 00:02:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A35E0EB5946
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Feb 2026 00:18:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C7D910E062;
-	Wed, 11 Feb 2026 00:02:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D45910E058;
+	Wed, 11 Feb 2026 00:18:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e17ghfXe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jwgRshcR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA39610E062
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Feb 2026 00:02:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5A7E10E058
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Feb 2026 00:18:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770768144; x=1802304144;
+ t=1770769094; x=1802305094;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=wdx5U5GKEoW4lKpCk6sB9tv89pjo6M5n/zFhONoFrPw=;
- b=e17ghfXefp3zb3U8cwUfldhXMmL98BaWPsPNSxp8CVqdEuIW91zM9gf0
- rqRv5Oj1Y/jQyD9kWvEESledTnkMMVWvOpEXkyampqZ+01EBc0losd+tY
- hN8S/OpOOX5jx2x8aXWjpjOe47EolOnTYOV7jrn6GJyDfeRdzZeKcwgA1
- /Sa0B0r8xCLF5nrF9YKst7jbSPTHC9BQ+/fhY18bDUPpNyZW2t/AMdTFi
- ArajhVSMq7uIDx0lVY0S1jMtqUtjj9kyNB1Pq7Qk1LGmecuFMuktS770c
- Hb6VyjsUb4jwZym1w4bf9eBWjWsPAhca+ZLwpsY4ts/0KQFMRHwSNExXV A==;
-X-CSE-ConnectionGUID: o7CyfzfEQcmBxt7HSQFa1w==
-X-CSE-MsgGUID: rfA5mfd5SMSeQfcDGzlI3Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11697"; a="71808327"
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="71808327"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2026 16:02:23 -0800
-X-CSE-ConnectionGUID: 9n2L3M+SRWCYSfHm3CvGZg==
-X-CSE-MsgGUID: adGagBrhQ2qosUJ0wg66sA==
+ in-reply-to:mime-version;
+ bh=FhLSd7lpaubsrkLZQZ68fW5mmStTOuefy/Q+uBm+Qn4=;
+ b=jwgRshcReL3VGwUazgOYnt/lxhbh3Mwa9DGgSTFlMlVzqBu+/7JJD2th
+ Yp7rjA7Ys2pp+qcpAQeR3FO+xgNJehHm/7p8DAlHtduQpOweBICWctQZU
+ FeZlzk6rwqtEVYue1Q322cK6797KfNWVS/O013xDj9mZja9HWiqQW6zxu
+ rImawA7GLg4+zRPOQpP3kD1XQak6BcbIUYxkbhKRlZ1vh3rrPSU8pTab5
+ i0/UMtqJA9GwznQ4zoT9JSO1SLd6nja5Y3Yqxj7PyjlVWNoPYuqmePQeQ
+ UqIkEfCkQbVwM2UDGinUGkzwqw1/J6dvjjY3eFHjN5y6ypz8vMa8SbBgV Q==;
+X-CSE-ConnectionGUID: uGEKfmc3RR22IqzU/KK62g==
+X-CSE-MsgGUID: nIde0rXoTEak9cRpWGqDMA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11697"; a="71628107"
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="71628107"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2026 16:18:05 -0800
+X-CSE-ConnectionGUID: GMcn4aHsSQC8o6/Go55/6Q==
+X-CSE-MsgGUID: o3s0+HsaSnu3F0tf1d3IaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="216391101"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2026 16:02:23 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="242688617"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2026 16:18:06 -0800
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Tue, 10 Feb 2026 16:02:22 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.35; Tue, 10 Feb 2026 16:18:04 -0800
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Tue, 10 Feb 2026 16:02:22 -0800
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.26)
- by edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.35 via Frontend Transport; Tue, 10 Feb 2026 16:18:04 -0800
+Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.60) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Tue, 10 Feb 2026 16:02:22 -0800
+ 15.2.2562.35; Tue, 10 Feb 2026 16:18:04 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rS7EiHl95fNKO9ZakUeNeRYETxVBFSZSnTfUtRk+meoWoA4HiRxzwQJP95lumJK1Y/K0RXp0irTc+jhfs8o/na+w6yJaXf+44LETJJRBig3UVPLdaZQdBI+LozBWVoCTtAhOWKPhB/HsfAZN1rl+Im6UFyHktwwZknKXfK5eVSj59Z/l22YEKO47cmk9sh4TQJR2ZONhWSUaAiyOlp0+HDNlHY5Nbe9Xe7IbZuo+orOG94xyphqWOFU4B1K+BfFw3ulAfpyKRi0vs9hcD0cbVDag8SfumbNXaSa1+bZne2s74QGvpxoLuRxn4ifTBhazEVDVxK4b8nDtHsHpwJ1j3A==
+ b=Q8DxdsdqigHLvovXnBLLKrjaqu8yXY10uBTdh/3dQHeW8/tkP8fIriosgM/N5f6fGTcSnlhD+xGT5O9geD6ZJMoM1lEd0QhelaZlLXs6HLKv00L9wjQrgaySPICFw+Dik66HOg+1rmUPGiU3/WWMXZz1Q6NY6mP7TAhDXJi8/PDiDpqTAjtGnUQPF0rTje2+MasOiAnLfBaXPDdFzfa0vmWVLHFt0jV3uwcRASWrkEX/5gB5k+QrhzdaHKVzfLV+eQ4PaV9IGifPOO9E7/FjxTglXU3XPzQH4rHncuO1VcU0plE16LFuGMEIBoMO0Vftv2jgDUT7uS110NI9HfobxA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4fRLnNaMZfbmaoK7oXDna1/OJnBsVjQdZLhW1Kqt+9o=;
- b=Xb51q1sUz5RqbR1SxUqyEXf0DPhOB67aFxTS3+8lQaPQFRTdXxch7Wh9RwNcCXIcWZOtH83HtuXMreTqIVrkvQye2Z0DJbxvY0twuZBASNd5FIaspV/OI4w4Pi/rEZBv/mrnBQhJnE3wDDcB0HtKX+jnw5XDrsWSrAuIK8l66vxWqQRr9T+uvl9xU7fN5rR8T9FzhkEt/Tpxdr9YfhdGCboYuREwSkbmz0MuvyeqdZm7Sf/tJuAYTRturconjymDcl32mqv0d4aqMcPNqHAZIa4eg/Zd+ahRHYL2uD+RF1gfZaaJEZstKBrNriw/IwGK0kZNfQSMzB1X7qhaqPva6w==
+ bh=G+GXGtvaiex49EDX6vK+2g7JKZcZjA/5hWqXLkJUnDA=;
+ b=amz4PnfjM/2kc2K22+BW4X2VirjRDX9rCuM1b+MbJD2T3NN4hqC6ZmRGDh6xzYx8uY3iBXPxKmhZdm1tbpvHp8BlSbB5x+9mF0NGxHNASfMCwC3mhHi2GOcv+A7e9bkR7Br/3kDHP8Bec2RNs1Ad8lDr8ttUwkx3/aoe6Dp289cS7/sA/SJ1vLHjuN2v1p/tZg8SYVJ6d5pNz974xdnXTkMvl48EeabRa6cGf7Td/Z0CzLEocDnq6FIb08f5SZ9lEJdhP11WBhdwWhpB1QbW77gd3KPvbTzPm9ts1CAr3NWgw3WqG2uXZQbyHUwRE/N4rskG4kVsjrghJ4mad/s6Dg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
+ by SJ2PR11MB7576.namprd11.prod.outlook.com (2603:10b6:a03:4c9::18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.18; Wed, 11 Feb
- 2026 00:02:20 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.19; Wed, 11 Feb
+ 2026 00:18:01 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::e0c5:6cd8:6e67:dc0c%6]) with mapi id 15.20.9587.017; Wed, 11 Feb 2026
- 00:02:20 +0000
-Date: Tue, 10 Feb 2026 16:02:17 -0800
+ 00:18:01 +0000
+Date: Tue, 10 Feb 2026 16:17:59 -0800
 From: Matthew Brost <matthew.brost@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-CC: Tejas Upadhyay <tejas.upadhyay@intel.com>,
- <intel-xe@lists.freedesktop.org>, <matthew.auld@intel.com>,
- <thomas.hellstrom@linux.intel.com>
-Subject: Re: [PATCH 1/3] drm/xe/xe3p_lpg: flush userptr/shrinker bo
- cachelines manually
-Message-ID: <aYvHCeTd5pOFo2p5@lstrano-desk.jf.intel.com>
-References: <20260210125120.1329411-5-tejas.upadhyay@intel.com>
- <20260210125120.1329411-6-tejas.upadhyay@intel.com>
- <20260210210525.GC4694@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset="utf-8"
+To: Shekhar Chauhan <shekhar.chauhan@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH] Decouple devcoredump from accessing core driver structures
+Message-ID: <aYvKt64AeBC6Nvj6@lstrano-desk.jf.intel.com>
+References: <20260210072942.1864182-1-shekhar.chauhan@intel.com>
+ <43de4a96-2aaa-4dc3-8c8d-0bce63385536@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260210210525.GC4694@mdroper-desk1.amr.corp.intel.com>
-X-ClientProxiedBy: MW4PR04CA0180.namprd04.prod.outlook.com
- (2603:10b6:303:85::35) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <43de4a96-2aaa-4dc3-8c8d-0bce63385536@intel.com>
+X-ClientProxiedBy: MW4PR03CA0100.namprd03.prod.outlook.com
+ (2603:10b6:303:b7::15) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|MN0PR11MB6135:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8ed0c8f5-60ea-40ad-5d78-08de6900d35a
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SJ2PR11MB7576:EE_
+X-MS-Office365-Filtering-Correlation-Id: 15c9fc81-c26a-46f6-d3c1-08de6903047a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?R1g1cDY3Zm5PbnZlN2pHNTFHMWkzN3h0S1FqT3M3Qk1CMzZqZlJxZjBJVko0?=
- =?utf-8?B?eFo2b1ArZVJoanE4aVdYdjFLVEFWaHgrZmIyVFlRNE1jVzZ5Y2pjRlVKUCtN?=
- =?utf-8?B?ZTBIbVpjT1ltUHFLRmg3c1B3aEVpTE1UN3FIU1cvc0xqYWE4RWpYZ3NBUWFr?=
- =?utf-8?B?eSs0WU5oRFY2dGs5TElrdFdZcHBFSkp3alFocVhrb2V0VmQxSHJaMGFGSE9D?=
- =?utf-8?B?bE54emppUkduOFc0K2h3YzVMMmNjcEdUN3NkaDJ2Vm1rcmFwOEZGUmRmb3dr?=
- =?utf-8?B?aXNDTkRuNFF3RXlhQTdrTTl4ZmhyQitocnI5UWFkYnNMV2FYTlQzOUh3SFp1?=
- =?utf-8?B?VnJDcWt2aHMrWUlXeGdtOUp2eHZ6SXJoNW5KQVN5Q2hYb1Ezakd0RXErcWI4?=
- =?utf-8?B?eG45dEdNRmNRY285cE9PVExUYlpMTkJDZ0oycnl6V3lESnRkNHc1NzlIb3RJ?=
- =?utf-8?B?bUdVNHpkMXV6aGFuR0ZlMG5hYUtueEFFU2xuejRtQkRLcjhPR213SXJXUkFE?=
- =?utf-8?B?S2ltWEY4ckVVZkNvNVJ4WVowNkNPS2FZc3BjWlpQRk1BY2FJYS9pVVZ6T0Vj?=
- =?utf-8?B?TUwzaUdLMVdJK2Z4dzJ5VEVwVlZiT2xSNk5OMEpzSkRYRTVwRlMyM1IrSmdy?=
- =?utf-8?B?dHFFaUhoVU9aYVdLZEVTbldCaEh1TTRjSjZQY3hBRHJ6YWVoaVJ6ZndJZG1M?=
- =?utf-8?B?TVJtUmM3SjVvODRuejFrNVJPeEdPM0ZCNVFKNEl2b1E3OVY1TnVxZHFoTEJY?=
- =?utf-8?B?SHYvZnZGd3EzRlIwTVF2RWhYK1Zmdnk2L3VrVWFvdlIzVVViWnNkYWd2VkxR?=
- =?utf-8?B?S2kyOUVyVkFKd0dESVBkcEhVbndKY25kd0cxeFV4c1dBcWt6aXJIZzIvdjdM?=
- =?utf-8?B?WmdNUWRXdlhZY0hycDM2Rit6SURDVlBsaWIvY3ZvVnZZS2ViMjhhZWxuWFVG?=
- =?utf-8?B?YThhNGhiaXEyUXBsV2U2dmxnR0lpMFdvVUZnWWQrWWwzdlNIeVZQRDlySEpv?=
- =?utf-8?B?Z2FuSmFvZXVWRlRhNnFLbjd0QnJmT3RNWW1CQnFFNk5YQXFnbEZjWFZqSHBp?=
- =?utf-8?B?eFdSanVPU0s4UUZtOTFGYjdNdU1Xd01jQ2Roc0JseVRTN0JFakVvczluMXIr?=
- =?utf-8?B?WEZ3MWg1WERCbGtsOHBRdmlURXpsSWxZQkU4MEtGNkZtdnBZMHk5eEt6RHl2?=
- =?utf-8?B?bmJkNFlFRGVFeDFqMmV5NWJSWWdma2wxbjAvakdWZmFKMU8wSGozNEI4QUE0?=
- =?utf-8?B?Vk5kOTkrZCtCNFRYSGZZRWJjMUdrazgxSjlyeGc0OHlqQzBGNml6ZWhSRlNn?=
- =?utf-8?B?R0xyUnNQUlVmTzlrYjJQYTllVjhxM1ZER0tkcW85NlhKTldxSVBRZTNGNGpU?=
- =?utf-8?B?YWNBMndudHNld0RBNGo0QnVBMHFDT094UUNGaEc0RUl1d2JzcmV0U25VeUFa?=
- =?utf-8?B?bHcwSnV0eHNJM1NTMi9yak5tRksrRzFwejJrTWlrTmJTZVQwcDlIQUVUOUNm?=
- =?utf-8?B?ZEFDNjI5YlVCM0M0bGsrRXNmck9Mb3ZJdzk4SVBIR0dCWkViNEppZkVnMU1l?=
- =?utf-8?B?eG5wTlViTUpVdmJwc2QvVVRoYi9yTjlLSlM3UjdldTlJTUxUb2I4NlFFRWt4?=
- =?utf-8?B?R3J2Tk5OVjNnYU05b2hyMEUxbk11Y1d0MVV1by9OSnFPUXRIQTZHL0VZQTVh?=
- =?utf-8?B?TU1iRjdUYzdjWWZJT2tISzlGYXliZ1lyUjlDWi8ycmNva1hWRXNyL2h4MnJm?=
- =?utf-8?B?VXpZZzNnTUZMOG5iV0N0T2dPUndTTzlOVUFwTjE3K1R4Qi9VRGVMaGc4Zlpo?=
- =?utf-8?B?NFBOUEpqY001SmpkejNFS0NJUTlUSGlnVWwrVFljeCtCM2FmOFIvQ2ZCMHR6?=
- =?utf-8?B?RG8rSkZhM1Bpb1dzWCtGZi8xSm1sYk80YkoxeDgyTFZBeHY3ZG93S2FuaDNN?=
- =?utf-8?B?RlFJRkl0NTQ4d3ZTMFBIREtuKzJBbnRmc21Pd0QyRWtsN01FM2t0NnJsQ1lp?=
- =?utf-8?B?Mkxtak4yN3RjaEUzZDhCMmtXei9GcWxVa2hkeE45cXJWL21XVzNzT3pTUjJW?=
- =?utf-8?B?L2dxeU04Zm53K3lldnFUOXgyY09FWWhWNnR6YUhFRnpBQVFWWHBmY2VId0x5?=
- =?utf-8?Q?xQxo=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?Ffccp5Bf4CHWx1/t5rfe39g0eK2Nasmfv4TPPHbIencesyvED3dSitGEuPqk?=
+ =?us-ascii?Q?gLrjcQMv/VhK8IMMHwrUwxYBMBv7wfDrfJVMMnJsw47X/+1acLYEjSttUuZT?=
+ =?us-ascii?Q?yA3DVuNqLro4DgSi+aftrYyhayeZUg1uuvq5Re3hHDE8HEaQG9WtgpknwQZQ?=
+ =?us-ascii?Q?1O29NOc8F13jQUy2PHUEqExABJk4wxz9TPjv6gf+ZE+SnYc7h7UY6dkKTCl0?=
+ =?us-ascii?Q?PpIsRvILcHMDkJmfzRcGrVHxQ+lBK6Fl9MkSut+04tGzX1MwObnyJhx1ZzJO?=
+ =?us-ascii?Q?mDLTSVXU75yhJsCu0vvJR8EXUYZaEAzDsOCBGnkRFcagSV57hSFWXcEdn7TR?=
+ =?us-ascii?Q?PRfcoAJ1i9AOZlwjR9J26qdLfddzCeVVElMJspmYzus5/INIQwk3AWYq58Uy?=
+ =?us-ascii?Q?OHWF+bnCkog5J9brz554yFCxF/eLCX1SMl5Gli3tYlZF293zKTnUfu+KiqiF?=
+ =?us-ascii?Q?ISZz94si/QwCVNfinZUqfs1F+J5MiHAq5wGlbD/+7CCkrJz5jlCwIEta3Orx?=
+ =?us-ascii?Q?x+3++HGm0J6i9n3nfv/1/GwmrBUnfDWA3LvsnSXX04DkFPXen7xUJvOhkk1o?=
+ =?us-ascii?Q?P27L8Y0DWERtYlqHt9jQpgScLjTAsIJFIy0lnOBvf5UUdQ1+RYwKxNHT8cyL?=
+ =?us-ascii?Q?diS7RJrYWC75rXSymwglSkrnBeg0C+gw/uKiYDB9VRPOaUHWKV6ve7R1sYZd?=
+ =?us-ascii?Q?AJGiXhKg1p1SC+az1mb2z/QbaeQLnjrTMUpCysVEm1b1+O89KpIzNtcUpkkr?=
+ =?us-ascii?Q?36jMojjPO+YWIW4W4rt7HSXl4a5z3eYdbLH0Zu62qXL0LX027etYelFPCKxd?=
+ =?us-ascii?Q?rAi1jS4iamU004lh5SmootWCgFeCtBch/F5o++CJUHgEa8pzCT77IqbVhL4d?=
+ =?us-ascii?Q?HojioDoGC4iTwetpYHfbAqIhDGEGSKuWsiOLEw6aTteRJk7c0XmKCdFo+0PN?=
+ =?us-ascii?Q?lPE6v7zICTB5je2OAWhPy2sKGnL7hbBeDmxKDfEqDZw4rXC72fLiVeuQBj5R?=
+ =?us-ascii?Q?5iTsliAQzIF28SbljIrmZOUlaw8KHFAqMmElup8j3JVImDjPPUPzEbne8oLc?=
+ =?us-ascii?Q?xC5e6T0tB0d3FG5hkWZXQPtCUzOHk5fgG3u7SXQ/JMoB0jmjWXj/oZcNZv1f?=
+ =?us-ascii?Q?oyyRMxqt+DGLrHqTPRsvTZad4zuj0FOSi9OkEgeZlkQ8LhuiKinVLLe3IRT8?=
+ =?us-ascii?Q?LfmhHoWY/TvDa0O9b7HNUxx9dotgnZaw2boc1Bz6rPGA6qfI6At7u0WmbZbU?=
+ =?us-ascii?Q?6aMfqx+RF18fmxpVpEvsCdU/ztGUWlfiL1VTCs20qzo+eMGLLQljpOtlDgyu?=
+ =?us-ascii?Q?uyRfT6CGP4xPt1URWjaNA6Azs3cHfkUsGNfqiL9753NKMPQ0j7K+qq86FzDp?=
+ =?us-ascii?Q?nj5zRJexr9bH8CDiPIXWQlskJ4hHoo62kg7UbOkpensM48+OGW9KuL9jSnYQ?=
+ =?us-ascii?Q?jHm5wGhuMLnHh41Q8TzE+/A1FD3ZMpP9kwI7IWGzNhw9P2Gh2g7WpyFbd3OZ?=
+ =?us-ascii?Q?MiFpmaiPlscs7BxkrrbXKFa2C4Da5DYyedm8Dx6TinZjfbFaVJMANm71PMSw?=
+ =?us-ascii?Q?aYDeG+96f5yFzVVsmO4=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VzZhanBMclhuUU1zZW54VnlTQy9zc3hRSmczekRFRWtLbGhHUGdvVXhuNFE3?=
- =?utf-8?B?ODFFYVR3dDlZUWFHZFFvQ2VmU0ZtdjlHNCt3alZJSm5JajkrSzBYR1gvdWxW?=
- =?utf-8?B?TDlmM3lLMUxISnFDMS9Dc3d2dEpIQndsZWdmamJzV2FrVTBBZFFya1BxYjlB?=
- =?utf-8?B?eWpRTFNObEtoaHhrR2haRSszYWQ2WUJqL0ZuOStoQ2VXK3pydkc4Z3lDTVZJ?=
- =?utf-8?B?YjFhVHJXcnEzbzZ0VllFeWtyQ0liWmJraGZOdVlDaXJrbWhTOFVwbWE3dHU4?=
- =?utf-8?B?VnFaaEhaOG9wYm5UVkcxdTdBNlpvamxRRk9XUzJjYUdtM2pWUjJYenhkODVB?=
- =?utf-8?B?M2lzVWtyVlhKWCt0cEdrOHAwVG5NKy9MbFQ0c3hrN2JZeEtmek9lYjlTNkxw?=
- =?utf-8?B?dXVhVllWSUFYUk5xZXVwMEVheGRVeEdwWVNoVERPeFZsVGQ1V0QxckhpWnpF?=
- =?utf-8?B?NUM2TXJIZ04wY0didnd6eTVQWm5xR3lZK29FcmEzcERBckk2dENEWHpiYmVE?=
- =?utf-8?B?YjJ4d0RPU2laVDd0YkpsNkJ4NUx6UzZnMHdSeE1FUjB6SlJ3SDVKVmdJMUZQ?=
- =?utf-8?B?VUd6aUZvd2ZQaGJOaHRQV28zZUpoRHR0dDlJY01sVW52M0kvcnpLUXdyQTFK?=
- =?utf-8?B?WE4xWG5wL2JvTmExeHFzZUEyZEI0OWgzYUdlM1VpOW9tMjRrTU45UHdXR2g2?=
- =?utf-8?B?U0N3SllVYlY1aVV6L2YwdlBsMGRyQXBuSlNNbjhoUmZ3OVUxVklNNlhPWmxL?=
- =?utf-8?B?eTRHTUFoYjRCUkFCaE14VENLM0dRaUxnWitiOFVYMExKTHp2NXRMckRmbEtu?=
- =?utf-8?B?WXN2VU81Nm1vbnoyVkhuQWRmeU5JOW5VT0tCdW9FamswUnpCTFNOVGd0VUlv?=
- =?utf-8?B?eHpoa29rcHRLWWRPdGhTc0tTTFBXNWk1V1N2eFdaUnQ2djk4djJRYkxlUzJr?=
- =?utf-8?B?RWVhMHZYZ216Rmp0Mndod04zUkxwQ3p6SmtOY2pvS1R0TnJKVWhrcFFJVUZs?=
- =?utf-8?B?ZURTVWpnRThtUkVnSy9UUWF6SlVpM2tRamRMcVliQ0J4Zy9vK0tNaTdBSElE?=
- =?utf-8?B?b01jUGRMYzNQcHY2cnZDQURndXBMUmZXalEwMVZIV0tvVzc2V2R3aWdoSTd3?=
- =?utf-8?B?OXhleUVHSU41MTVhaDFOQjVHN3ZuYWFPamFNT0JIZEN0Y0pDTzVHc2lWK1FZ?=
- =?utf-8?B?aFZSVGltTWVnNitBUzNhU1UvUDZzWThuQ1d0ZDFtL0Q1OVhMNG96K1UwaWZL?=
- =?utf-8?B?UVBTZXN3dDV2RHlseWNmaTd0UFByelM3VnFLZzJwbW5mOENuZW5SaS8xbnZk?=
- =?utf-8?B?NnVMK3psZjFMY1NlSE1lTmswUWwxa0ZDT0RYWXMxMGVHQ1V1QVdlQnVpOUVF?=
- =?utf-8?B?WVZuMzV0THVtOHhwRVB2Q2pkRURhOEdhdjUwUXQxT2xUTzBpN2JGVTc0c2I2?=
- =?utf-8?B?MFVPN3RoL2FZUU5mckg4VjdkNVFJTysvM1Y0QUhQZXc5T2VoWjBUUTBUaWk1?=
- =?utf-8?B?bnYyTWFFUnk3SWNJZzFodGVoUVlraVFpeUFqR2I1UDVUWGxibFprd3JxWEFT?=
- =?utf-8?B?dFZaUXVBZm1PZk1NcmxkaUJqRWw1N3RtN1o2ZWM3Ym4vbGd2VDFiY05RS0RR?=
- =?utf-8?B?cmdndHBOWHNpYVRFOEdQVjBacEFnMXQvbEpHanhVc1c2eG9jWk10U0ZkcE9Z?=
- =?utf-8?B?N2syeWk2S3cyWkVDR0pNZHA1c21XRzJjR1hsWkkvVlgvU0xsdGpHblV4M2di?=
- =?utf-8?B?S041em1VS3N3VVJjVktTc25WdU1TRlU3ckNDL2lKUzY3TE9KcndPSzM0ZE5N?=
- =?utf-8?B?OVV4NytweXEzYk9YVnJyaCtpdjZuWnJJRFdtRTRsZDljTlhCUmNOTjdLZWU1?=
- =?utf-8?B?K1lHWjA1QVUzRWVaL3M0TVRnZURJWGdWdXkwaWVQejFVMHI4VlFBeTQyc3Qz?=
- =?utf-8?B?UmFpVnpnZEhCQUtzTFhKK0U5L1JMdTlYSDdGQ2tYZFowbzJNUjk4RlQxSEVP?=
- =?utf-8?B?b3ZNb3RDSHNxamVQY1pDQklmdFFSS25SUFZZVlNubCtOQTN2TGJIN2o0Qk5v?=
- =?utf-8?B?cnhhNnl4cmlBdXJRNVNtbHNNY1ZFYWdYRXJuWTlibUhvWTRHMkRQY0wwRnpS?=
- =?utf-8?B?eEI4eFEzNFQ1aldtaHF2NXhhYWsvTGwvNTVKVmYvSlVBNnRZK2pBdVFmUXVl?=
- =?utf-8?B?OTVJcnRkd3dVaVQ4WDJRMjVURkE2aDg2RnYzTnM2ajR0c01QSmlWSUdVVlV0?=
- =?utf-8?B?bmxsUW5UR2QzZU92SStpbzdiRUpjbHd0VFZSTVZYdEhjeXZ2OFFIVE1ma0hU?=
- =?utf-8?B?VlF0ZFQyLzB1U2JBUkRGYk43eTRKS1pWTHMwUjR3VmpoU0l0dElHQT09?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8ed0c8f5-60ea-40ad-5d78-08de6900d35a
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?pksFCodmAodBtRvdFlYzK6BFHmYj3exWq10MezhcNQU8BVIB+WITDCDCCHQ9?=
+ =?us-ascii?Q?fZelasncgGUf3GAHe8vhQtQekL25puWuSQBX+PYoh3mZbgGWzEjVp0UCI5iQ?=
+ =?us-ascii?Q?CIywBlLyHOcicl9soII6WbcZUeep2IrW0aKsjMjVFd/VOudTyKax583LxbjL?=
+ =?us-ascii?Q?x4nIxWXdhTdFJCEmdv2p2s6UBC9XVnbHaAcd1vYV07Vq1bpTM1e2YSgiZ9cx?=
+ =?us-ascii?Q?X+GP+RxHM+ASZcvQJP52qLviU6cyffin1EdEVJqAzdhBNcepmxDBdhL/caq9?=
+ =?us-ascii?Q?KL66Agz3Liuq7mpPhOoK0Mh8ozNMNV4QDZSPE14IYPq6HxK0BMLD3K4z0lY/?=
+ =?us-ascii?Q?KKsPlk7B/X+PqCtWjStlCY0aZOwcT5OzKyvEUb+N0eP56TbUp4Akb9kY7AvS?=
+ =?us-ascii?Q?tmdq4OxtDaf97Ym77D6LMLlUe9PfZGtuzvynr57IbOIJlsHsblzexfaBDlH5?=
+ =?us-ascii?Q?WMGbV9+aOIbO+uXfUA29dwKoEn+/gYBgaUV3kq93QgLQx3iadAclc4Px9ZUi?=
+ =?us-ascii?Q?dEGSZvUB+SqpYM/zUbNvjKnFpirwVWANJxMU8HCmqHpEnE6oNuMPpzZZl2kI?=
+ =?us-ascii?Q?S+duBXcaxvRv6RKT5kay0G3dehWmPeC9qjmdExIb2CvLRvBsnCjczEgJ5VdN?=
+ =?us-ascii?Q?uz+Vw2tgcxpDCHNfswDdoqgqAzaHgYXogBGBANTLHPooadrFfakVRnp0Z1MR?=
+ =?us-ascii?Q?PFrNvR2QxPEOtHk52dflWHA0Lopq/+05Rtd65qjneRKUop44OrUYa3V8TPV7?=
+ =?us-ascii?Q?xzH0nbCEuzdcEjdc6TjAZbs+e4I5/lOBMTCuZT6EBhD/xMeEDYXHzF5FosZk?=
+ =?us-ascii?Q?aGyHOscyaXWpSFQGU3VXGMdGBpaY895+g5WR7BwFDp2Xsuu1IyyKDrQq4W9P?=
+ =?us-ascii?Q?IjEDVFVyf/3JBnKU8l5ktvVWkZsiwjU+8ewUPcBQaj3CUxz9ls8JpbehKY6P?=
+ =?us-ascii?Q?EkYPjNhlPGXSfcIxj+pB7iVSRt0PrtV5YalGZP6/R+esIrzEIvUmC7wzYIiv?=
+ =?us-ascii?Q?jo7U52D4FrhVAXTTfHkjHvb2r0l3F+7SA5zwh9sd4ttCT0ZPDWr8yUTAaXEo?=
+ =?us-ascii?Q?uyFAhVlOCnNnRuXAK8HCjJbCjTu/vvs84/pqAGxXqQ1kl3t3iDCO4vSZVwgB?=
+ =?us-ascii?Q?KxuYkPZo6deA/1k0jGau7DijdGXNJQyuWc4l3kXBDDYyrb5Z/G6txrDbaPys?=
+ =?us-ascii?Q?dqQFQAmG9pNshkz89ioWtAYu/EjNZKyQ09yfi7xS2Vbykw+Y36PMvIKPHYWW?=
+ =?us-ascii?Q?Im4PBeDa2MRHQ46QUTbGcY0VfoaUtLBRA8DYfPlNGR8bN9ojpuGLvI4Iba+q?=
+ =?us-ascii?Q?w7HKY9WmrJ+qA7PaYdiarhvUIPzH4cmmiT1Byd43Uq34KqmW86G5UTGsVjqW?=
+ =?us-ascii?Q?UWRq59d3BehFMBEqpiaU5ZxJcwAQPA/pIIsEB5dCKS4+/7PlmATrXOqCmZZS?=
+ =?us-ascii?Q?gFqVv8kmxdMbnMOdwqUUjbbbdJMUTp66JdNOtk55ZhYp8sX3SXl0yiYnuQu8?=
+ =?us-ascii?Q?kF4EbjYL8U0gOTjyTxfPfTeYsbonW12pk+mpsz/Lhw8D3IfTACslmfjcXOBc?=
+ =?us-ascii?Q?LKGEKvlpLvpnUyxaaffrXMsZlwDQP2nr7L0XOWCJuVKImJHjaI01xEb1yZOo?=
+ =?us-ascii?Q?mvqEFUT/gDAVrScLFtgA/9VdgDGyc40yS2tDd4qPPDtCGDr515oS1R1TACfn?=
+ =?us-ascii?Q?GisLefpOWGvcTYGabHIUY/QD/1pU8SsD8NFob5Ql4Qb1loIVbAinx1Ku84C5?=
+ =?us-ascii?Q?EP4/wLcBzA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 15c9fc81-c26a-46f6-d3c1-08de6903047a
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2026 00:02:20.2396 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2026 00:18:01.5460 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Tzavhr1WBXs53gQUFh8JhmPd+RF+VssuFL5r0AilWBr5acE8dvpQ7epq2OUYnQsvdGUz9KtGn8Q6DdI2vQEb+w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6135
+X-MS-Exchange-CrossTenant-UserPrincipalName: sAC7oZekB4Qr6L3SprTZL7l8UJMAFqu6i2hs0zZbhOzO2Sr2uQqjaE+EqM2fgj3mR+0l7WIctEoqpnbk2QW8AA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7576
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -203,193 +180,153 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Feb 10, 2026 at 01:05:25PM -0800, Matt Roper wrote:
-> On Tue, Feb 10, 2026 at 06:21:22PM +0530, Tejas Upadhyay wrote:
-> > "eXtended Architecture" (XA) tagged memory—memory shared between the CPU and GPU
+On Tue, Feb 10, 2026 at 10:48:09PM +0530, Shekhar Chauhan wrote:
+> The patch should have a 'drm/xe' prefix, missed it somehow. Will add it in
+> the next revision other feedback for the patch is provided!
 > 
-> I'm pretty sure this expansion of "XA" is wrong; where are you seeing
-> this definition?  Everything in the bspec indicates that XA means "wb -
-> transient app" (similar to how "XD" is 'wb - transient display").  I'm
-> not sure why exactly they picked "X" to refer to transient in both of
-> these cases, but I've never seen any documentation that refers to it as
-> "extended."
+> -shekhar
 > 
-> > is treated differently from other GPU memory when the Media engine is power-gated.
-> > 
-> > XA is *always* flushed, like at the end-of-submssion (and maybe other
-> 
-> I assume you're referring to the fact that the driver performs flushes
-> at the end of submission (via PIPE_CONTROL or MI_FLUSH_DW), and that
-> depending on other state/optimizations in the system, those flushes may
-> flush the entire device cache, or may only flush the subset of cache
-> data that is not marked as transient.  The way you worded this was
-> confusing since it makes it sound like cache flushes happen
-> automatically somewhere in hardware/firmware.
-> 
-> > places), just that internally as an optimisation hw doesn't need to make
-> > that a full flush (which will also include XA) when Media is
-> > off/powergated, since it doesn't need to worry about GT caches vs Media
-> > coherency, and only CPU vs GPU coherency, so can make that flush a
-> > targeted XA flush, since stuff tagged with XA now means it's shared with
-> > the CPU. The main implication is that we now need to somehow flush non-XA before
-> > freeing system memory pages, otherwise dirty cachelines could be flushed after the free
-> > (like if Media suddenly turns on and does a full flush)
-> 
-> This description seems really confusing.  My understanding is that
-> marking something as wb-transient-app indicates that it might be
-> accessed by something other than our graphics/media IP (i.e., accessed
-> from the CPU, exported to another device, etc.), so transient data truly
-> does need to be flushed at the points in the driver where a flush
-> typically happens.
-> 
-> However when something is _not_ transient, then either:
->  - it's "private" to the GPU and only our graphics/media IP will be
->    accessing it
->  - it's bound with a coherent PAT index so that outside observers like
->    the CPU can snoop the device cache, even when the cache hasn't been
->    flushed
-> 
-> If media is not active, then there's really no need to include
-> non-transient data when an device cache flush happens since there's no
-> real need for the data to get to RAM.  So that enables an optimization
-> (which comes in your next patch), that allows flushes to only operate on
-> the subset of the device cache tagged as "transient" if media is idle.
-> 
-> As you said, we eventually do want to force a flush of the non-transient
-> data as well once we're freeing the underlying pages.  So how do we do
-> that?  It's not clear to me how the changes below are accomplishing
-> that.  Is there a way to explicitly request a full device cache flush
-> (ignoring the transient vs non-transient tagging)?  Since the GuC
-> handles the optimization in the next patch (toggling whether flushes are
-> full flushes vs non-transient flushes depending on whether media is
-> active), I thought there might be some kind of GuC interface to request
-> "please do one full flush now, even if media is idle."
-> 
+> On 2/10/2026 12:59, Shekhar Chauhan wrote:
+> > During devcoredump, print should not access any live gt pointers.
 
-I’m not an expert here by any means, but everything above from Matt
-seems like valid concerns. Thomas also raised some concerns in the two
-previous revisions; again I’m not an expert, but reading through
-those, it doesn’t really seem like he received proper answers to his
-questions.
+Can you explain 'why'?
 
-A couple of comments below.
-
-> 
-> Matt
-> 
+> > Decouple the snapshot_print from accessing gt pointer by storing the
+> > captured data in a separate list and then print data from that list.
 > > 
-> > V2(MattA): Expand commit description
-> > 
-> > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> > Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
 > > ---
-> >  drivers/gpu/drm/xe/xe_bo.c      |  3 ++-
-> >  drivers/gpu/drm/xe/xe_device.c  | 23 +++++++++++++++++++++++
-> >  drivers/gpu/drm/xe/xe_device.h  |  1 +
-> >  drivers/gpu/drm/xe/xe_userptr.c |  3 ++-
-> >  4 files changed, 28 insertions(+), 2 deletions(-)
+> >   drivers/gpu/drm/xe/xe_guc_capture.c     | 25 +++++++------------------
+> >   drivers/gpu/drm/xe/xe_hw_engine.c       | 20 ++++++++++++++++++++
+> >   drivers/gpu/drm/xe/xe_hw_engine_types.h |  7 +++++++
+> >   3 files changed, 34 insertions(+), 18 deletions(-)
 > > 
-> > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> > index e9180b01a4e4..4455886b211e 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > @@ -689,7 +689,8 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
-> >  
-> >  		if (!xe_vm_in_fault_mode(vm)) {
-> >  			drm_gpuvm_bo_evict(vm_bo, true);
-> > -			continue;
-> > +			if (!xe_device_needs_cache_flush(xe))
-> > +				continue;
+> > diff --git a/drivers/gpu/drm/xe/xe_guc_capture.c b/drivers/gpu/drm/xe/xe_guc_capture.c
+> > index 2f5816c78fba..0555fb07c499 100644
+> > --- a/drivers/gpu/drm/xe/xe_guc_capture.c
+> > +++ b/drivers/gpu/drm/xe/xe_guc_capture.c
+> > @@ -1695,8 +1695,7 @@ static void
+> >   snapshot_print_by_list_order(struct xe_hw_engine_snapshot *snapshot, struct drm_printer *p,
+> >   			     u32 type, const struct __guc_mmio_reg_descr_group *list)
+> >   {
+> > -	struct xe_gt *gt = snapshot->hwe->gt;
+> > -	struct xe_device *xe = gt_to_xe(gt);
+> > +	struct xe_device *xe = snapshot->xe;
 
-This will trigger a TLB invalidation (and I assume a cache flush) every
-time we move or free memory in the 3D stack if it has a binding. It also
-performs a synchronous wait on the BO being idle. Both of these are very
-expensive operations. I can’t imagine the granularity we want here is to
-do this on every move/free with bindings.
+If an Xe object is available - so is a 'hwe' and 'gt'. All of these
+persistent objects created during driver load and the memory is free'd
+upin driver unload. i.e., It is not possible for a GT or HWE to invalid
+but to have a valid Xe object unless I'm missing something. 
 
-Also, for LR compute with preempt fences, we would trigger the preempt
-fences during the wait, so a TLB invalidation after this seems
-unnecessary, though perhaps the cache flush is still required?
+> >   	struct xe_devcoredump *devcoredump = &xe->devcoredump;
+> >   	struct xe_devcoredump_snapshot *devcore_snapshot = &devcoredump->snapshot;
+> >   	struct gcap_reg_list_info *reginfo = NULL;
+> > @@ -1806,7 +1805,6 @@ void xe_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot, struct drm
+> >   	};
+> >   	int type;
+> >   	const struct __guc_mmio_reg_descr_group *list;
+> > -	enum guc_capture_list_class_type capture_class;
+> >   	struct xe_gt *gt;
+> >   	struct xe_device *xe;
+> > @@ -1826,8 +1824,6 @@ void xe_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot, struct drm
+> >   	xe_gt_assert(gt, snapshot->hwe);
+> > -	capture_class = xe_engine_class_to_guc_capture_class(snapshot->hwe->class);
+> > -
+> >   	drm_printf(p, "%s (physical), logical instance=%d\n",
+> >   		   snapshot->name ? snapshot->name : "",
+> >   		   snapshot->logical_instance);
+> > @@ -1841,23 +1837,16 @@ void xe_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot, struct drm
+> >   		   str_yes_no(snapshot->kernel_reserved));
+> >   	for (type = GUC_STATE_CAPTURE_TYPE_GLOBAL; type < GUC_STATE_CAPTURE_TYPE_MAX; type++) {
+> > -		/*
+> > -		 * FIXME: During devcoredump print we should avoid accessing the
+> > -		 * driver pointers for gt or engine. Printing should be done only
+> > -		 * using the snapshot captured. Here we are accessing the gt
+> > -		 * pointer. It should be fixed.
+> > -		 */
+> > -		list = xe_guc_capture_get_reg_desc_list(gt, GUC_CAPTURE_LIST_INDEX_PF, type,
+> > -							capture_class, false);
 
-I think this needs a bit more explanation, because without knowing a lot
-about the exact requirements, the implementation does not look correct.
-
-> >  		}
-> >  
-> >  		if (!idle) {
-> > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> > index 743c18e0c580..da2abed94bc0 100644
-> > --- a/drivers/gpu/drm/xe/xe_device.c
-> > +++ b/drivers/gpu/drm/xe/xe_device.c
-> > @@ -1097,6 +1097,29 @@ static void tdf_request_sync(struct xe_device *xe)
-> >  	}
-> >  }
-> >  
-> > +/**
-> > + * xe_device_needs_cache_flush - Whether the cache needs to be flushed
-> > + * @xe: The device to check.
-> > + *
-> > + * Return: true if the device needs cache flush, false otherwise.
-> > + */
-> > +bool xe_device_needs_cache_flush(struct xe_device *xe)
-> > +{
-> > +	/* XA is *always* flushed, like at the end-of-submssion (and maybe other
-> > +	 * places), just that internally as an optimisation hw doesn't need to make
-> > +	 * that a full flush (which will also include XA) when Media is
-> > +	 * off/powergated, since it doesn't need to worry about GT caches vs Media
-> > +	 * coherency, and only CPU vs GPU coherency, so can make that flush a
-> > +	 * targeted XA flush, since stuff tagged with XA now means it's shared with
-> > +	 * the CPU. The main implication is that we now need to somehow flush non-XA before
-> > +	 * freeing system memory pages, otherwise dirty cachelines could be flushed after the free
-> > +	 * (like if Media suddenly turns on and does a full flush)
-> > +	 */
-> > +	if (GRAPHICS_VER(xe) >= 35 && !IS_DGFX(xe))
-> > +		return true;
-> > +	return false;
-> > +}
-> > +
-> >  void xe_device_l2_flush(struct xe_device *xe)
-> >  {
-> >  	struct xe_gt *gt;
-> > diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-> > index 39464650533b..baf386e0e037 100644
-> > --- a/drivers/gpu/drm/xe/xe_device.h
-> > +++ b/drivers/gpu/drm/xe/xe_device.h
-> > @@ -184,6 +184,7 @@ void xe_device_snapshot_print(struct xe_device *xe, struct drm_printer *p);
-> >  u64 xe_device_canonicalize_addr(struct xe_device *xe, u64 address);
-> >  u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64 address);
-> >  
-> > +bool xe_device_needs_cache_flush(struct xe_device *xe);
-> >  void xe_device_td_flush(struct xe_device *xe);
-> >  void xe_device_l2_flush(struct xe_device *xe);
-> >  
-> > diff --git a/drivers/gpu/drm/xe/xe_userptr.c b/drivers/gpu/drm/xe/xe_userptr.c
-> > index e120323c43bc..b435ea7f9b66 100644
-> > --- a/drivers/gpu/drm/xe/xe_userptr.c
-> > +++ b/drivers/gpu/drm/xe/xe_userptr.c
-> > @@ -114,7 +114,8 @@ static void __vma_userptr_invalidate(struct xe_vm *vm, struct xe_userptr_vma *uv
-> >  				    false, MAX_SCHEDULE_TIMEOUT);
-> >  	XE_WARN_ON(err <= 0);
-> >  
-> > -	if (xe_vm_in_fault_mode(vm) && userptr->initial_bind) {
-> > +	if ((xe_vm_in_fault_mode(vm) || xe_device_needs_cache_flush(vm->xe)) &&
-> > +	    userptr->initial_bind) {
-
-Same concern with the LR preempt fence as above — the hardware will be
-interrupted via preempt fences, so it doesn’t seem necessary to
-invalidate the TLBs but perhaps we need a cflush and TLB invalidation
-is the mechanism for that too?
+Again unless I'm completely missing something this is accessing driver
+persistent data which seems fine to access during
+xe_engine_snapshot_print... What we shouldn't do during print is access
+the hardware which is not what this is doing.
 
 Matt
 
-> >  		err = xe_vm_invalidate_vma(vma);
-> >  		XE_WARN_ON(err);
-> >  	}
-> > -- 
-> > 2.52.0
-> > 
-> 
-> -- 
-> Matt Roper
-> Graphics Software Engineer
-> Linux GPU Platform Enablement
-> Intel Corporation
+> > +
+> > +		list = snapshot->list[type];
+> > +
+> >   		snapshot_print_by_list_order(snapshot, p, type, list);
+> >   	}
+> > -	if (capture_class == GUC_CAPTURE_LIST_CLASS_RENDER_COMPUTE) {
+> > -		list = xe_guc_capture_get_reg_desc_list(gt, GUC_CAPTURE_LIST_INDEX_PF,
+> > -							GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS,
+> > -							capture_class, true);
+> > +	if (snapshot->render_compute_list) {
+> > +
+> >   		snapshot_print_by_list_order(snapshot, p, GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS,
+> > -					     list);
+> > +					     snapshot->render_compute_list);
+> >   	}
+> >   	drm_puts(p, "\n");
+> > diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+> > index 4d3ee5226e3a..a246b4f860e6 100644
+> > --- a/drivers/gpu/drm/xe/xe_hw_engine.c
+> > +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+> > @@ -923,6 +923,8 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe, struct xe_exec_queue *q)
+> >   {
+> >   	struct xe_hw_engine_snapshot *snapshot;
+> >   	struct __guc_capture_parsed_output *node;
+> > +	enum guc_capture_list_class_type capture_class;
+> > +	int type;
+> >   	if (!xe_hw_engine_is_valid(hwe))
+> >   		return NULL;
+> > @@ -941,6 +943,24 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe, struct xe_exec_queue *q)
+> >   	snapshot->mmio_base = hwe->mmio_base;
+> >   	snapshot->kernel_reserved = xe_hw_engine_is_reserved(hwe);
+> > +	snapshot->xe = gt_to_xe(hwe->gt);
+> > +
+> > +	capture_class = xe_engine_class_to_guc_capture_class(hwe->class);
+> > +
+> > +	/* Capture the register list */
+> > +	for (type = GUC_STATE_CAPTURE_TYPE_GLOBAL; type < GUC_STATE_CAPTURE_TYPE_MAX; type++) {
+> > +		snapshot->list[type] = xe_guc_capture_get_reg_desc_list(hwe->gt,
+> > +				GUC_CAPTURE_LIST_INDEX_PF, type, capture_class, false);
+> > +	}
+> > +
+> > +	/* Capture the register list from RENDER / COMPUTE */
+> > +	if (capture_class == GUC_CAPTURE_LIST_CLASS_RENDER_COMPUTE) {
+> > +		snapshot->render_compute_list = xe_guc_capture_get_reg_desc_list(hwe->gt,
+> > +				GUC_CAPTURE_LIST_INDEX_PF, GUC_STATE_CAPTURE_TYPE_ENGINE_CLASS,
+> > +				capture_class, true);
+> > +	}
+> > +
+> > +
+> >   	/* no more VF accessible data below this point */
+> >   	if (IS_SRIOV_VF(gt_to_xe(hwe->gt)))
+> >   		return snapshot;
+> > diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+> > index e4191a7a2c31..87ad1e68fb47 100644
+> > --- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+> > @@ -6,6 +6,7 @@
+> >   #ifndef _XE_HW_ENGINE_TYPES_H_
+> >   #define _XE_HW_ENGINE_TYPES_H_
+> > +#include "abi/guc_capture_abi.h"
+> >   #include "xe_force_wake_types.h"
+> >   #include "xe_lrc_types.h"
+> >   #include "xe_reg_sr_types.h"
+> > @@ -167,6 +168,12 @@ struct xe_hw_engine_snapshot {
+> >   	char *name;
+> >   	/** @hwe: hw engine */
+> >   	struct xe_hw_engine *hwe;
+> > +	/** @xe: device pointer */
+> > +	struct xe_device *xe;
+> > +	/** @list: register list */
+> > +	const struct __guc_mmio_reg_descr_group *list[GUC_STATE_CAPTURE_TYPE_MAX];
+> > +	/** @render_compute_list: render/compute list */
+> > +	const struct __guc_mmio_reg_descr_group *render_compute_list;
+> >   	/** @logical_instance: logical instance of this hw engine */
+> >   	u16 logical_instance;
+> >   	/** @forcewake: Force Wake information snapshot */
