@@ -4,53 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39545ECD6F6
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53985ECD6F7
 	for <intel-xe@archiver.kernel.org>; Wed, 11 Feb 2026 22:20:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF03889701;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF26889E69;
 	Wed, 11 Feb 2026 22:20:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yb8hrrPd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZElkvW19";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45A7610E150
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Feb 2026 22:20:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43CF389701
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Feb 2026 22:20:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770848425; x=1802384425;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=EN0Z2JzMQKs29e5k8AbiYy/12T0JEcNADkIG5aEOFeo=;
- b=Yb8hrrPdVkvzM41gL6o5UueyN1C4tXqi8aP07LhO2oCB62w9oY3gctRw
- dAP6DCN4loRbjTn2HErsSDkVIgDFABMbMWMT4xzOQtRtkggC5UuS6KYAH
- PKQsTGlmH8QS67S/YLYSxx2YFN42KUvtwuurl963AdQ8/HXZSc/pvY6Xn
- pcivJGdYvLVuBI8pt8sA5WlQdkzAJq+1k0ptuW6BUb5mZVOv+BDY5NECW
- D+V3XTm8uDoX14+IryLFoNVDuy+faoSmM3ByRKs8dHYO9edbxW3ioNE7c
- amCcRDX1wbAO2azmaFzOJWqGxVOf0uc9StdGwwCnpcqCdI3deP1qjx+XB g==;
-X-CSE-ConnectionGUID: laV6qWGRR1mkIyNpWGA9GA==
-X-CSE-MsgGUID: dKr6PdoOSHig5/gn0RdlXg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="89415216"
-X-IronPort-AV: E=Sophos;i="6.21,285,1763452800"; d="scan'208";a="89415216"
+ t=1770848424; x=1802384424;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4yDLDxXnxav1e/UzovE9SxYlwPPBxnW9m2+bfQVbWBw=;
+ b=ZElkvW19cdIRT2vNDYIaAt/B9nzhID1J2/JpLbwete4j0s/XsVzgsUdi
+ lfzZVwxzEhgRZT244b/b41PcStRSFs3Dv1gv4WL8e+KkUWM2TzGAtOcxK
+ 046T4lq5fSXzoqGzklgM6gC9JguWauLpmLzSfdSAj9SheWdUgaTvEygx9
+ 9/ih0QEe//RAGaJvfr3ouL02TIsP4Crt7ib8LVX4xO8gHszJbPdjm3pWd
+ 5aUOkQLY04op9p/frg/k0rHzHAmCCY6COzj8tAmRL3P3niGfDiD028iSD
+ /xQgbp8is6OSrIP4/IBXNu56EdkiB6yVmNGXR4ixE57diVLccB1+W4QAB A==;
+X-CSE-ConnectionGUID: XCgrxmtNTBWH3EwqdfJ+xw==
+X-CSE-MsgGUID: LYPFE3O9TjeQy/tXz/lTrw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="89415206"
+X-IronPort-AV: E=Sophos;i="6.21,285,1763452800"; d="scan'208";a="89415206"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2026 14:20:24 -0800
-X-CSE-ConnectionGUID: Hh4XPFw3THyo6XHeUlLHNw==
-X-CSE-MsgGUID: 6E0FETjeTtajjACmFYA0BQ==
+ 11 Feb 2026 14:20:23 -0800
+X-CSE-ConnectionGUID: LS1UyBqZQTyoeZXpacjHFw==
+X-CSE-MsgGUID: kUSRgJOFSDGmFtXcvZZGCA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,285,1763452800"; d="scan'208";a="212479593"
+X-IronPort-AV: E=Sophos;i="6.21,285,1763452800"; d="scan'208";a="212479568"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.39.24])
- by orviesa007.jf.intel.com with ESMTP; 11 Feb 2026 14:20:24 -0800
+ by orviesa007.jf.intel.com with ESMTP; 11 Feb 2026 14:20:23 -0800
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v6 6/6] drm/xe/uc: Drop xe_guc_sanitize in favor of managed
- cleanup
-Date: Wed, 11 Feb 2026 17:20:20 -0500
-Message-Id: <20260211222020.848341-7-zhanjun.dong@intel.com>
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: [PATCH v6 0/6] Attempt to fixup reset, wedge, unload corner cases
+Date: Wed, 11 Feb 2026 17:20:14 -0500
+Message-Id: <20260211222020.848341-1-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260211222020.848341-1-zhanjun.dong@intel.com>
-References: <20260211222020.848341-1-zhanjun.dong@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,35 +63,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the firmware fails to load in GT resets the device is wedged also
-initiating a GuC state cleanup.
+We have several bug reports [1], [2], [3] describing failures in reset,
+wedge, and unload corner cases where memory is not properly freed or
+fences fail to signal. This patch attempts to address the issue by
+forcefully killing any remaining queues on driver unload and wedging the
+device if not in mode 2.
 
-Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Zhanjun Dong
+
+[1] https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5466
+[2] https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5530
+[3] https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6029
+
 ---
- drivers/gpu/drm/xe/xe_uc.c | 2 --
- 1 file changed, 2 deletions(-)
+History started from v2 (v1 not found):
+v6:
+ - Split guc_submit_fini into 2 parts, device related by devm and software
+   only part by drmm
+v5:
+ - Removed redundant xe_guc_ct_stop() and __xe_guc_submit_reset_prepare()
+   calls (Michal and Matthew)
+ - Split patch 3 into 2 patches(new #3 and #4), #3 is for fixes old patch purpose,
+   #4 add as separate commit uses the enum for better code maintainability (Matthew)
+v4:
+ - Make guc_submit_fini a devm managed action
+ - Squash patch 2 with 6 from v3
+ - Commit message update (Matthew)
+v3:
+ - Add patch 3-6 in series
+ - For "Trigger queue cleanup if not in wedged mode 2":
+     Add guc_ct_stop and reset prepare in patch of:
+     Sync with baseline changes
 
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index d9aa845a308d..9db656b95bff 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -172,7 +172,6 @@ static int vf_uc_load_hw(struct xe_uc *uc)
- 	return 0;
- 
- err_out:
--	xe_guc_sanitize(&uc->guc);
- 	return err;
- }
- 
-@@ -234,7 +233,6 @@ int xe_uc_load_hw(struct xe_uc *uc)
- 	return 0;
- 
- err_out:
--	xe_guc_sanitize(&uc->guc);
- 	return ret;
- }
- 
+Matthew Brost (1):
+  drm/xe: Always kill exec queues in xe_guc_submit_pause_abort
+
+Zhanjun Dong (5):
+  drm/xe: Forcefully tear down exec queues in GuC submit fini
+  drm/xe: Trigger queue cleanup if not in wedged mode 2
+  drm/xe: Use XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET enum instead of
+    magic number
+  drm/xe/guc: Ensure CT state transitions via STOP before DISABLED
+  drm/xe/uc: Drop xe_guc_sanitize in favor of managed cleanup
+
+ drivers/gpu/drm/xe/xe_guc.c        | 18 ++++++-
+ drivers/gpu/drm/xe/xe_guc.h        |  1 +
+ drivers/gpu/drm/xe/xe_guc_ct.c     |  1 +
+ drivers/gpu/drm/xe/xe_guc_submit.c | 86 +++++++++++++++++++++---------
+ drivers/gpu/drm/xe/xe_uc.c         |  2 -
+ 5 files changed, 79 insertions(+), 29 deletions(-)
+
 -- 
 2.34.1
 
