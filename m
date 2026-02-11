@@ -4,59 +4,77 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47182ECD6C7
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Feb 2026 16:49:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4D14ECD6CA
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Feb 2026 17:10:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D925110E0B9;
-	Wed, 11 Feb 2026 16:49:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D02C10E62C;
+	Wed, 11 Feb 2026 17:10:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HZltZh4q";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="YQqrxTW8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88A7F10E0B9
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Feb 2026 16:49:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770828566; x=1802364566;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=c0mgjWU/+qBpRGX/SbJnj3zXNDK9uvUO7lHEazwskcE=;
- b=HZltZh4q5IhdtAEBhV502vkNcLip7+MHmq6xXub3LCdV470ZUDrNitGi
- sSRxox+1dUj8aejpa2QK18F2ZUJVy8gmCUeojVx5GLSdhfWAjptAhLL3X
- Q57JOB+OXpRyJ5ks8sKtPQ21l0ON1y0zl/Egv1JPVuDqZ/qBEnjwmx8Ym
- f3lAryifIHOxa/0SZPuRrPlTosyL8Q+uhdt1/G8XBPWPrs76KsqcwyA7Y
- uOhVicEGd4eDOlBsBZWCGytrDSEzLcieCiII68ZsqB3l7+WfmSsBSxpJ0
- +Cccp0MXNANvt3jpvdQtW35ewib1xdO2rYHvN09gaxjRkgd/kqe2bE932 w==;
-X-CSE-ConnectionGUID: V0ht6gPMTse6hzrzzYvdTQ==
-X-CSE-MsgGUID: /6GZauIaTsKMy3OipSpA0g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="71882564"
-X-IronPort-AV: E=Sophos;i="6.21,285,1763452800"; d="scan'208";a="71882564"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2026 08:49:25 -0800
-X-CSE-ConnectionGUID: wkKqaymBTjmARNzXf2xGSQ==
-X-CSE-MsgGUID: taCR8MePS9GQDRyBE/CjOQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,285,1763452800"; d="scan'208";a="212400669"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO [10.245.244.252])
- ([10.245.244.252])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2026 08:49:24 -0800
-Message-ID: <afaf02c0-0449-4931-9e32-4e30782ae88a@intel.com>
-Date: Wed, 11 Feb 2026 16:49:25 +0000
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0914810E62C;
+ Wed, 11 Feb 2026 17:10:44 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1770829830; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=GR7lKyC+ozaWg05oGsrqz0Z7rDS9ZIOYDtgmfUS9yF8SGsv5hLRBebSLLDot9wWTiPzrScyHd1uc1cH6tCAqkEaDLVlhG/9q//xhGaCZM5na149IiIrTOSzqQdfzSK0uZAQjX1MaL0OC2MNTBjUnA2K5ISt7h8ZObYSjndqEqQ0=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1770829830;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=0Dl0Z2RybvDxucJFvyk0rYh+K+gwu9CR8COPAfPaa6E=; 
+ b=NKYhL+OqEH99ViXECN4WyH9CMsuK1vCMRqR2WtwAdscA0R8g5M0y0c2e3RfqDb9jUC5IZaPlkG/OstQPMWZNl7RkNL1pI8qGhYOURVBChPmks2lej2W0Mt6+0hrkM+6nVTD4V5Is57RwzMY7Vx0JTTOawjmXP0WHC61ax4qiFQk=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1770829830; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+ bh=0Dl0Z2RybvDxucJFvyk0rYh+K+gwu9CR8COPAfPaa6E=;
+ b=YQqrxTW8kGhGYrH+a120mKUsZ4yMJMBXI1KYvdR3zSb+MvINyxPnAaGAThZTRNtV
+ XNtcgjNA6v8n4VOAUn7uY/ttvmgO3lGGIh1q9ZIZGdAsVHJuwFL7uzAIPH0SqdU3PgO
+ x6yJHpRLXjsytia4XH7HYMs7925RGM+XxwbVKn0A=
+Received: by mx.zohomail.com with SMTPS id 1770829827913685.3686734865292;
+ Wed, 11 Feb 2026 09:10:27 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, kernel@collabora.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v7 03/22] drm: Add enum conversions between
+ DRM_COLOR_FORMAT and HDMI_COLORSPACE
+Date: Wed, 11 Feb 2026 18:10:18 +0100
+Message-ID: <4732908.LvFx2qVVIh@workhorse>
+In-Reply-To: <20260210-prophetic-elk-of-superiority-b0ab03@houat>
+References: <20260121-color-format-v7-0-ef790dae780c@collabora.com>
+ <2028270.PYKUYFuaPT@workhorse>
+ <20260210-prophetic-elk-of-superiority-b0ab03@houat>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/xe: Only advertise NO_COMPRESSION hint on devices
- with flat CCS
-To: Sanjay Yadav <sanjay.kumar.yadav@intel.com>, intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?Q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>,
- Stuart Summers <stuart.summers@intel.com>
-References: <20260211114015.561461-2-sanjay.kumar.yadav@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260211114015.561461-2-sanjay.kumar.yadav@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,57 +89,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 11/02/2026 11:40, Sanjay Yadav wrote:
-> Devices like CRI have GRAPHICS_VER >= 20 but don't have compression
-> support their PAT table (xe3p_xpc_pat_table) has no compression-enabled
-> entries.
+On Tuesday, 10 February 2026 18:24:46 Central European Standard Time Maxime Ripard wrote:
+> Hi,
 > 
-> Only advertise HAS_NO_COMPRESSION_HINT flag when the device actually has
-> flat CCS and thus compression capability.
+> On Sat, Feb 07, 2026 at 08:55:16PM +0100, Nicolas Frattaroli wrote:
+> > On Friday, 6 February 2026 15:08:46 Central European Standard Time Maxime Ripard wrote:
+> > > On Wed, Jan 21, 2026 at 03:45:10PM +0100, Nicolas Frattaroli wrote:
+> > > > While the two enums have similar values, they're not identical, and
+> > > > HDMI's enum is defined as per the HDMI standard.
+> > > > 
+> > > > Add a simple conversion function from DRM to HDMI. Unexpected inputs
+> > > > aren't handled in any clever way, DRM_COLOR_FORMAT_AUTO and any other
+> > > > value that doesn't cleanly map to HDMI just gets returned as
+> > > > HDMI_COLORSPACE_RGB.
+> > > > 
+> > > > Add a second conversion function that gets a DRM_COLOR_FORMAT from an
+> > > > HDMI_COLORSPACE as well. In this case, reserved HDMI values that can't
+> > > > be converted will result in an -EINVAL return value.
+> > > > 
+> > > > Co-developed-by: Marius Vlad <marius.vlad@collabora.com>
+> > > > Signed-off-by: Marius Vlad <marius.vlad@collabora.com>
+> > > > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> > > > ---
+> > > >  include/drm/drm_connector.h | 54 +++++++++++++++++++++++++++++++++++++++++++++
+> > > >  1 file changed, 54 insertions(+)
+> > > > 
+> > > > diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> > > > index b5604dca728a..ffeb42f3b4a3 100644
+> > > > --- a/include/drm/drm_connector.h
+> > > > +++ b/include/drm/drm_connector.h
+> > > > @@ -2612,6 +2612,60 @@ int drm_connector_attach_color_format_property(struct drm_connector *connector);
+> > > >  
+> > > >  const char *drm_get_color_format_name(enum drm_color_format color_fmt);
+> > > >  
+> > > > +/**
+> > > > + * drm_color_format_to_hdmi_colorspace - convert DRM color format to HDMI
+> > > > + * @fmt: the &enum drm_color_format to convert
+> > > > + *
+> > > > + * Convert a given &enum drm_color_format to an equivalent
+> > > > + * &enum hdmi_colorspace. For non-representable values and
+> > > > + * %DRM_COLOR_FORMAT_AUTO, the value %HDMI_COLORSPACE_RGB is returned.
+> > > > + *
+> > > > + * Returns: the corresponding &enum hdmi_colorspace value
+> > > > + */
+> > > > +static inline enum hdmi_colorspace __pure
+> > > > +drm_color_format_to_hdmi_colorspace(enum drm_color_format fmt)
+> > > > +{
+> > > > +	switch (fmt) {
+> > > > +	default:
+> > > > +	case DRM_COLOR_FORMAT_AUTO:
+> > > > +	case DRM_COLOR_FORMAT_RGB444:
+> > > > +		return HDMI_COLORSPACE_RGB;
+> > > 
+> > > I don't think that's correct. What auto ends up as totally depends on
+> > > the atomic state it comes with.
+> > > 
+> > > At the very least, you should output a warning there, because that case
+> > > should never happen.
+> > 
+> > Yeah, my hope was to keep this function __pure so that the compiler
+> > has maximum freedom to do whatever. With a WARN, it's got side-effects
+> > now, and we're no longer pure. With a status return value and an output
+> > parameter, it's no longer pure either, because the output parameter is
+> > not local memory.
+> > 
+> > The limiting factor here is that as I understand correctly, I can't
+> > really extend the hdmi_colorspace enum, as it's basically 1:1 from
+> > the standard. Doing this would be the ideal solution, because we'd
+> > keep the function pure and without surprise conversions happening.
 > 
-> v2:
-> - Also reject NO_COMPRESSION flag in xe_gem_create_ioctl() when device
->    lacks flat CCS support (Matt A)
-> - Updated commit subject to reflect changes in both xe_query.c and xe_bo.c
+> I feel like this kind of loops back into the other two reviews I did:
+> you paint yourself into a corner by having auto in the enum, and by
+> passing it directly to that function.
 > 
-> Fixes: 78d91ba6bd796 ("drm/xe/uapi: Add NO_COMPRESSION BO flag and query capability")
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: José Roberto de Souza <jose.souza@intel.com>
-> Cc: Stuart Summers <stuart.summers@intel.com>
-> Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+> If, instead, you don't allow auto in the drm_color_format enum, and
+> resolve auto in the hdmi_compute_config function instead of passing it
+> directly, then we don't have to deal with it here.
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+You're right. Though that means I need to figure out how I'll handle
+the conversion from enum to bitfield for !HDMI cases. I guess for DP,
+I can do this in drm_dp_helper or something. I don't know if i915 or
+amdgpu call into that at all though, but it's as good of a time as any
+to start doing so now if not. Just also learned about the existence of
+`enum dp_pixelformat`, which imho has the best naming out of all of
+these enums. (I hope "HDMI Colorspace" to describe pixel formats is
+straight from the standard because if it's something we in the kernel
+came up with then I will put renaming it on my list of long-term
+kernel tasks to get around to some day.)
 
-> ---
->   drivers/gpu/drm/xe/xe_bo.c    | 3 ++-
->   drivers/gpu/drm/xe/xe_query.c | 2 +-
->   2 files changed, 3 insertions(+), 2 deletions(-)
+And yes I will add the necessary KUnit tests for the DP helper side of
+things as well. :)
+
+Nothing registers the property for DSI so we should be good on that front
+for now.
+
+Thanks for the reviews.
+
+Kind regards,
+Nicolas Frattaroli
+
+> > Looking at hdmi_colorspace_get_name in drivers/video/hdmi.c, it returns
+> > "Invalid" for any value not in the enum itself. Would it be allowable
+> > to tack an HDMI_COLORSPACE_INVALID at the end of the enum with perhaps
+> > a negative value, or is there a different approach you'd prefer?
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 8bf16d60b9a5..4b29a442de3e 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -3200,7 +3200,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
->   		bo_flags |= XE_BO_FLAG_SCANOUT;
->   
->   	if (args->flags & DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION) {
-> -		if (XE_IOCTL_DBG(xe, GRAPHICS_VER(xe) < 20))
-> +		if (XE_IOCTL_DBG(xe, GRAPHICS_VER(xe) < 20 ||
-> +				 !xe_device_has_flat_ccs(xe)))
->   			return -EOPNOTSUPP;
->   		bo_flags |= XE_BO_FLAG_NO_COMPRESSION;
->   	}
-> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-> index 34db266b723f..c152ebfbd7d8 100644
-> --- a/drivers/gpu/drm/xe/xe_query.c
-> +++ b/drivers/gpu/drm/xe/xe_query.c
-> @@ -335,7 +335,7 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
->   	if (xe->info.has_usm && IS_ENABLED(CONFIG_DRM_XE_GPUSVM))
->   		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
->   			DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR;
-> -	if (GRAPHICS_VER(xe) >= 20)
-> +	if (GRAPHICS_VER(xe) >= 20 && xe_device_has_flat_ccs(xe))
->   		config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
->   			DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT;
->   	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+> And again, if we only ever have to deal with RGB, YUV420, 444 or 422,
+> then we always have valid values for HDMI_COLORSPACE.
+> 
+> Plus, the hdmi_colorspace enum matches what the hdmi spec defines, so we
+> can't really extend it, and most importantly, hdmi_colorspace_get_name()
+> is only ever used for debugging / logging purposes, it's never in the
+> "functional" path.
+> 
+> Maxime
+> 
+
+
+
 
