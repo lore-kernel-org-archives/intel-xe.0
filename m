@@ -4,70 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64F00ECD6F0
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Feb 2026 21:18:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39545ECD6F6
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Feb 2026 22:20:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23CB610E65B;
-	Wed, 11 Feb 2026 21:18:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF03889701;
+	Wed, 11 Feb 2026 22:20:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="pvFSgP7e";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yb8hrrPd";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1C54E10E656;
- Wed, 11 Feb 2026 21:18:01 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 6C866419D9;
- Wed, 11 Feb 2026 21:18:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3614FC4CEF7;
- Wed, 11 Feb 2026 21:17:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1770844680;
- bh=Xk2na6235/6MdtkvIhpTRHZmnBktjn8EJsmkNHoHgrE=;
- h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
- b=pvFSgP7elG8OioKaof0a5y8V+UeqIvIJPG+ORj4CYPFr0S2UTkWWWbG0TeASObmAG
- ld/2Ev08iZ7H17laDT6HY+vl5c1KPccISOEmTY5yNnb0KHbHe7X7dwBH35O5Kj5V80
- I1nSWjqVMOy7jX1jsYA4lloLS+T/lz8JVK5hco0RhZ2RE3BYPtFbgpKTVxHX9+kKBm
- bOkKsO5SwTP3Vmc05Ti8merg7u0PtlDwVpPXxdTxMW62HnkGuhSqcsU9je/EYTJFW/
- Jahai5V1xcB29kEuBDG9/KadzI/EDX63FjALRne+JKjabdUH/sLG44pAVNU/YFu6cV
- VPb0rG16+zFrQ==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 11 Feb 2026 22:17:50 +0100
-Message-Id: <DGCG1MWY5SJC.1ZGMNKR8E2NPW@kernel.org>
-Subject: Re: [PATCH -next v8 1/3] rust: clist: Add support to interface with
- C linked lists
-Cc: <linux-kernel@vger.kernel.org>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet" <corbet@lwn.net>,
- "Alex Deucher" <alexander.deucher@amd.com>,
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
- <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
- <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
- "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
- "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
- <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Helge Deller" <deller@gmx.de>, "Alice Ryhl" <aliceryhl@google.com>,
- "Miguel Ojeda" <ojeda@kernel.org>, "Alex Gaynor" <alex.gaynor@gmail.com>,
- "Boqun Feng" <boqun.feng@gmail.com>, "Gary Guo" <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
- <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Trevor
- Gross" <tmgross@umich.edu>, "Alistair Popple" <apopple@nvidia.com>,
- "Alexandre Courbot" <acourbot@nvidia.com>, "Andrea Righi"
- <arighi@nvidia.com>, "Zhi Wang" <zhiw@nvidia.com>, "Philipp Stanner"
- <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>, "Daniel
- Almeida" <daniel.almeida@collabora.com>, <joel@joelfernandes.org>,
- <nouveau@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <rust-for-linux@vger.kernel.org>, <linux-doc@vger.kernel.org>,
- <amd-gfx@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <linux-fbdev@vger.kernel.org>
-To: "Joel Fernandes" <joelagnelf@nvidia.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20260209214246.2783990-1-joelagnelf@nvidia.com>
- <20260209214246.2783990-2-joelagnelf@nvidia.com>
- <DGB75XMWML8M.DFZY5L52EBQF@kernel.org> <20260211210952.GA3632639@joelbox2>
-In-Reply-To: <20260211210952.GA3632639@joelbox2>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45A7610E150
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Feb 2026 22:20:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1770848425; x=1802384425;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=EN0Z2JzMQKs29e5k8AbiYy/12T0JEcNADkIG5aEOFeo=;
+ b=Yb8hrrPdVkvzM41gL6o5UueyN1C4tXqi8aP07LhO2oCB62w9oY3gctRw
+ dAP6DCN4loRbjTn2HErsSDkVIgDFABMbMWMT4xzOQtRtkggC5UuS6KYAH
+ PKQsTGlmH8QS67S/YLYSxx2YFN42KUvtwuurl963AdQ8/HXZSc/pvY6Xn
+ pcivJGdYvLVuBI8pt8sA5WlQdkzAJq+1k0ptuW6BUb5mZVOv+BDY5NECW
+ D+V3XTm8uDoX14+IryLFoNVDuy+faoSmM3ByRKs8dHYO9edbxW3ioNE7c
+ amCcRDX1wbAO2azmaFzOJWqGxVOf0uc9StdGwwCnpcqCdI3deP1qjx+XB g==;
+X-CSE-ConnectionGUID: laV6qWGRR1mkIyNpWGA9GA==
+X-CSE-MsgGUID: dKr6PdoOSHig5/gn0RdlXg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="89415216"
+X-IronPort-AV: E=Sophos;i="6.21,285,1763452800"; d="scan'208";a="89415216"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2026 14:20:24 -0800
+X-CSE-ConnectionGUID: Hh4XPFw3THyo6XHeUlLHNw==
+X-CSE-MsgGUID: 6E0FETjeTtajjACmFYA0BQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,285,1763452800"; d="scan'208";a="212479593"
+Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.39.24])
+ by orviesa007.jf.intel.com with ESMTP; 11 Feb 2026 14:20:24 -0800
+From: Zhanjun Dong <zhanjun.dong@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v6 6/6] drm/xe/uc: Drop xe_guc_sanitize in favor of managed
+ cleanup
+Date: Wed, 11 Feb 2026 17:20:20 -0500
+Message-Id: <20260211222020.848341-7-zhanjun.dong@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260211222020.848341-1-zhanjun.dong@intel.com>
+References: <20260211222020.848341-1-zhanjun.dong@intel.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,52 +67,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed Feb 11, 2026 at 10:09 PM CET, Joel Fernandes wrote:
-> On Tue, Feb 10, 2026 at 11:07:37AM +0100, Danilo Krummrich wrote:
->> On Mon Feb 9, 2026 at 10:42 PM CET, Joel Fernandes wrote:
->> >  rust/kernel/clist.rs   | 320 ++++++++++++++++++++++++++++++++++++++++=
-+
->>=20
->> I think we should move this under rust/kernel/ffi/ to make it obvious th=
-at this
->> is FFI infrastructure.
->>=20
->> > diff --git a/rust/kernel/clist.rs b/rust/kernel/clist.rs
->> > new file mode 100644
->> > index 000000000000..8aa72b5d54be
->> > --- /dev/null
->> > +++ b/rust/kernel/clist.rs
->> > @@ -0,0 +1,320 @@
->> > +// SPDX-License-Identifier: GPL-2.0
->> > +
->> > +//! A C doubly circular intrusive linked list interface for rust code=
-.
->>=20
->> Here and in the struct documentation, I'd suggest to clearly point out t=
-he
->> use-cases, i.e. that this infrastructure is for FFI use-cases only and s=
-hould
->> not be used otherwise in drivers, etc
->
-> I am curious why we would not want to have drivers be able to use CList. =
-I
-> thought that was the point of making it pub at the module/item level as w=
-ell.
-> I think it is possible a rust driver may have a reference to a CList in t=
-he
-> future.
+If the firmware fails to load in GT resets the device is wedged also
+initiating a GuC state cleanup.
 
-It is a (partially) unsafe API built to support FFI interactions. The absol=
-ute
-majority of drivers should not have any FFI interactions themselves. nova-c=
-ore
-is the "odd one" as it will have an interface with a C driver (vGPU).
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_uc.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-Besides a few "odd" drivers, there may be quite some subsystem abstractions=
- that
-become users of the API. In the future build system, subsystems and drivers=
- will
-become individual crates.
+diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+index d9aa845a308d..9db656b95bff 100644
+--- a/drivers/gpu/drm/xe/xe_uc.c
++++ b/drivers/gpu/drm/xe/xe_uc.c
+@@ -172,7 +172,6 @@ static int vf_uc_load_hw(struct xe_uc *uc)
+ 	return 0;
+ 
+ err_out:
+-	xe_guc_sanitize(&uc->guc);
+ 	return err;
+ }
+ 
+@@ -234,7 +233,6 @@ int xe_uc_load_hw(struct xe_uc *uc)
+ 	return 0;
+ 
+ err_out:
+-	xe_guc_sanitize(&uc->guc);
+ 	return ret;
+ }
+ 
+-- 
+2.34.1
 
-> But I will update the current usecase above, as you suggested, good point=
-.
