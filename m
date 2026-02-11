@@ -4,57 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4231ECD6F9
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Feb 2026 23:25:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EBB1ECD6F7
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Feb 2026 23:33:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70B3810E669;
-	Wed, 11 Feb 2026 23:25:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF19210E669;
+	Wed, 11 Feb 2026 23:33:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UZaXbvOG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VRs8IloX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E4A410E182;
- Wed, 11 Feb 2026 23:25:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F36D210E66A
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Feb 2026 23:33:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770852344; x=1802388344;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=zS1YRams7qSS6058TiTy0+Pd9J937pPAEWkKlWKBc2c=;
- b=UZaXbvOGv1NBtIOB3ytEgom14mJuFahN1C3uh/b6D3eZYobZV27YQwB1
- e/7PHwq4/XWc7Qv0XxWmqQSaFbe9v8nqSjCJUYA0QJRtH2q34g7/LVT4I
- 23Q03Ss2r+M3jwMAlBtsY9ujOixS7vcO4eEvoKABSnJdryd5TelWZkouP
- pj1/Kxkaks9JIFEYBoVrU2kYDHE7LRd/BizYWlqTIN6+VcT9CdPDTtjH0
- tWLp70zot/+dElnJ49AE4Uqv9nuYzoxYaJerOmMEKSa5pqg6pZAZNrEmX
- lclvzm7x1QXVr0c3qLmPHlO3Sdpu4ElWy8Ix0mfCxC7Ktt/yUyk9nZc4o Q==;
-X-CSE-ConnectionGUID: 6/OIw9CvRSWGZbdB7Hh5rw==
-X-CSE-MsgGUID: 24AvCA4LRKWkKUotd1jpLg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="74613784"
-X-IronPort-AV: E=Sophos;i="6.21,285,1763452800"; d="scan'208";a="74613784"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2026 15:25:44 -0800
-X-CSE-ConnectionGUID: +GORWkbZSoG6bGhMeWB11g==
-X-CSE-MsgGUID: LPbYAbTUTISZRjFxXo4eEg==
+ t=1770852791; x=1802388791;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=r44AGhN9lO1M0gWpAzoZ9JoqzraI+DYHB0lXm9UK6Q4=;
+ b=VRs8IloX2OkyGv5BaipEv1u6gmBjCV3wnEP/xdxbUrji9b/eBPC5qjMe
+ Ryi5m/TPKDe92JDTh5eaQ1VUcfGkGgST8iEG2EEEPstfMB9N7cuEVy3PH
+ aOpPg1ZcBtvruAgGo8R/kUclkNzjgsrLfv75sxIy5EaCpGKR9YzREf7FN
+ ikGkzvXkKpQUyldipR5+kurlQ+pW+ZfZHZJsKN6D5j3yB8ld0+/4A6Tmb
+ /B66rZeY6GhdSzEvV4kS1GMjimQfIFwmbsjBDNFW/YQH2cdIzK8dZVnjP
+ ersBQMHf7BvHOc0igB9i5q0v7qHSs7BgighXsIpmiVsZJ63o93VZnXFJT g==;
+X-CSE-ConnectionGUID: jPXnkuGIRRe0MScC19nxQw==
+X-CSE-MsgGUID: 39yjWHbXRuutyUecjA0FVQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="71916310"
+X-IronPort-AV: E=Sophos;i="6.21,285,1763452800"; d="scan'208";a="71916310"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2026 15:33:10 -0800
+X-CSE-ConnectionGUID: hK7CG8ebR4+bVsry+4uLxw==
+X-CSE-MsgGUID: ziSBmFM4QQC3q1Sn8DTbSA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,285,1763452800"; d="scan'208";a="212420291"
-Received: from administrator-system-product-name.igk.intel.com
- ([10.91.214.181])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2026 15:25:43 -0800
-Date: Thu, 12 Feb 2026 00:25:40 +0100 (CET)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-cc: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/2] drm/i915/display: Clarify target pipe bpp variable
- name in compute_sink_pipe_bpp()<
-In-Reply-To: <394b5ad6-d8d5-0de8-1792-aac286a9446b@intel.com>
-Message-ID: <65c67843-fcfc-0e67-8b9f-5b25a58b8db1@intel.com>
-References: <20260211115811.508496-1-imre.deak@intel.com>
- <394b5ad6-d8d5-0de8-1792-aac286a9446b@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,285,1763452800"; d="scan'208";a="212495384"
+Received: from hchegond-desk.jf.intel.com ([10.88.27.198])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2026 15:33:11 -0800
+From: Harish Chegondi <harish.chegondi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Harish Chegondi <harish.chegondi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
+Subject: [PATCH 2/2] drm/xe: Do not process engine WAs and tunings for SRIOV VF
+Date: Wed, 11 Feb 2026 15:33:04 -0800
+Message-ID: <c6adbb6724e607902818b57bc3426004b87da49e.1770852521.git.harish.chegondi@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <e883c0cd98609066e7f7904128163a02105daf33.1770852521.git.harish.chegondi@intel.com>
+References: <e883c0cd98609066e7f7904128163a02105daf33.1770852521.git.harish.chegondi@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="1527428566-9239956-1770852343=:166563"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,156 +67,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Engine workarounds and tunings are not applied for SRIOV VF, so do not
+process them.
 
---1527428566-9239956-1770852343=:166563
-Content-Type: text/plain; charset=ISO-8859-2; format=flowed
-Content-Transfer-Encoding: 8BIT
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_hw_engine.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-On Wed, 11 Feb 2026, Micha³ Grzelak wrote:
-> Hello Imre,
->
-> Some comments below wrt commit messages. No functional change requested.
->
-> On Wed, 11 Feb 2026, Imre Deak wrote:
->> Clarify that the baseline pipe BPP - i.e. the non-DP specific
->> platform/EDID maximum BPP limited by any user-requested max-bpc setting
->> - set by compute_sink_pipe_bpp() is a baseline _target_ pipe BPP. This
->> target BPP can get either rejected or adjusted (lowering or increasing
->> it as needed) by the encoder state computation based on other
->> constrains, like a minimum pipe BPP dictated by a non-RGB output format
->
-> s/contrains/contraints
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 4d3ee5226e3a..7c5b4c1638ff 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -568,8 +568,10 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 	}
+ 
+ 	xe_reg_sr_init(&hwe->reg_sr, hwe->name, gt_to_xe(gt));
+-	xe_tuning_process_engine(hwe);
+-	xe_wa_process_engine(hwe);
++	if (!IS_SRIOV_VF(gt_to_xe(gt))) {
++		xe_tuning_process_engine(hwe);
++		xe_wa_process_engine(hwe);
++	}
+ 	hw_engine_setup_default_state(hwe);
+ 
+ 	xe_reg_sr_init(&hwe->reg_whitelist, hwe->name, gt_to_xe(gt));
+-- 
+2.43.0
 
-ironic, of course here should be:
-
-s/constrains/constraints
-
-BR,
-Micha³
-
->
->> (24 BPP) or a min/max DSC input BPP dictated by a DSC sink. Whether an
->> out-of-bound target BPP is adjusted or rejected depends on the max-bpc
->> property's semantic assumed by the driver, which is atm to reject such a
->
-> s/semantic/semantics
->
->> request.
->> 
->> A follow-up change will also compute the baseline _maximum_ pipe BPP,
->> which is the non-DP specific platform/EDID maximum BPP w/o the requested
->> max-bpc adjustment and as such is a hard limit: The encoder state
->
-> s/The/the
->
->> computation must ensure that the final BPP selected for the modeset is
->> below this maximum. Tracking the baseline maximum pipe BPP separately
->> will allow for adjusting the baseline target BPP as needed, clamping it
->> to the valid DP min/max pipe BPP range, instead of rejecting an
->> out-of-bound BPC/BPP request.
->> 
->> To clarify the above semantics rename bpp in compute_sink_bpp() to
->
-> s/compute_sink_bpp()/compute_sink_pipe_bpp()
->
->> target_pipe_bpp in this patch, preparing for a follow-up change also
->> computing max_pipe_bpp in the same function.
->> 
->> Signed-off-by: Imre Deak <imre.deak@intel.com>
->
-> Reviewed-by: Micha³ Grzelak <michal.grzelak@intel.com>
->
-> BR,
-> Micha³
->
->> ---
->
->> drivers/gpu/drm/i915/display/intel_display.c | 47 +++++++++++---------
->> 1 file changed, 25 insertions(+), 22 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c 
->> b/drivers/gpu/drm/i915/display/intel_display.c
->> index 295f14416be70..ab4b59916d2e7 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -4350,6 +4350,23 @@ static int intel_crtc_atomic_check(struct 
->> intel_atomic_state *state,
->> 	return 0;
->> }
->> 
->> +static int bpc_to_bpp(int bpc)
->> +{
->> +	switch (bpc) {
->> +	case 6 ... 7:
->> +		return 6 * 3;
->> +	case 8 ... 9:
->> +		return 8 * 3;
->> +	case 10 ... 11:
->> +		return 10 * 3;
->> +	case 12 ... 16:
->> +		return 12 * 3;
->> +	default:
->> +		MISSING_CASE(bpc);
->> +		return -EINVAL;
->> +	}
->> +}
->> +
->> static int
->> compute_sink_pipe_bpp(const struct drm_connector_state *conn_state,
->> 		      struct intel_crtc_state *crtc_state)
->> @@ -4357,36 +4374,22 @@ compute_sink_pipe_bpp(const struct 
->> drm_connector_state *conn_state,
->> 	struct intel_display *display = to_intel_display(crtc_state);
->> 	struct drm_connector *connector = conn_state->connector;
->> 	const struct drm_display_info *info = &connector->display_info;
->> -	int bpp;
->> +	int target_pipe_bpp;
->> 
->> -	switch (conn_state->max_bpc) {
->> -	case 6 ... 7:
->> -		bpp = 6 * 3;
->> -		break;
->> -	case 8 ... 9:
->> -		bpp = 8 * 3;
->> -		break;
->> -	case 10 ... 11:
->> -		bpp = 10 * 3;
->> -		break;
->> -	case 12 ... 16:
->> -		bpp = 12 * 3;
->> -		break;
->> -	default:
->> -		MISSING_CASE(conn_state->max_bpc);
->> -		return -EINVAL;
->> -	}
->> +	target_pipe_bpp = bpc_to_bpp(conn_state->max_bpc);
->> +	if (target_pipe_bpp < 0)
->> +		return target_pipe_bpp;
->> 
->> -	if (bpp < crtc_state->pipe_bpp) {
->> +	if (target_pipe_bpp < crtc_state->pipe_bpp) {
->> 		drm_dbg_kms(display->drm,
->> -			    "[CONNECTOR:%d:%s] Limiting display bpp to %d "
->> +			    "[CONNECTOR:%d:%s] Limiting target display pipe 
->> bpp to %d "
->> 			    "(EDID bpp %d, max requested bpp %d, max platform 
->> bpp %d)\n",
->> 			    connector->base.id, connector->name,
->> -			    bpp, 3 * info->bpc,
->> +			    target_pipe_bpp, 3 * info->bpc,
->> 			    3 * conn_state->max_requested_bpc,
->> 			    crtc_state->pipe_bpp);
->> 
->> -		crtc_state->pipe_bpp = bpp;
->> +		crtc_state->pipe_bpp = target_pipe_bpp;
->> 	}
->>
->> 	return 0;
->> -- 
->> 2.49.1
->> 
->> 
->
---1527428566-9239956-1770852343=:166563--
