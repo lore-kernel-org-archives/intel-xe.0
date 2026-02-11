@@ -4,55 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 026A3EB5965
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Feb 2026 05:02:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E937EB5967
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Feb 2026 05:35:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BBADD10E178;
-	Wed, 11 Feb 2026 05:02:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A60810E17A;
+	Wed, 11 Feb 2026 05:35:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UuW+vbMq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cYnQ0FR1";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9314810E178
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Feb 2026 05:02:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE43E10E093;
+ Wed, 11 Feb 2026 05:35:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770786176; x=1802322176;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=9ndMHy8OTpBIYiC5FQtf4MsoaVtqgWuB+wVJpcPdAbU=;
- b=UuW+vbMqhlq3i//coABJBO8+SrOiXHb01BehIqfKHMLlsp+CyaEcvtmg
- +dupdDdzjROvPzhgfeOgz+zuX1CJwt3J+MSDib1vISAU7+2IctK+Ziqqi
- N8fmZib2ZZhsmHRizRLerYTUPgV38Ki9m7KKyIUUE87ycHeNdxfsmnpEK
- ANDT2iRN24riVoyz9oD039irzvOknfLk7ppChaJehg//imi+LvUWkeHRD
- WGpxyHwimPzMMKrw92cy42FOPVrfVS2jxXBbSc+ip+TVT0BH01dYMLdXf
- OgiMYSOrnsg+QHsS1AgxlV+NDZAkoJlsFo8C7wqky/oNqtI13LGkzhmrD w==;
-X-CSE-ConnectionGUID: hsITEiYJR0mXRNiFn2kmhQ==
-X-CSE-MsgGUID: kcctK79eTA2rbWny/X23Nw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11697"; a="72113169"
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="72113169"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2026 21:02:56 -0800
-X-CSE-ConnectionGUID: SrFZT7sCQGyPB8wTYed79Q==
-X-CSE-MsgGUID: 7K/Y7bSPReOsbTiSn7NB9Q==
+ t=1770788115; x=1802324115;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Bh0NlbbVnKZb4a5UTsDOvuqt8Wo0Ooal+RmJgx3HKY0=;
+ b=cYnQ0FR1sKLsgZqiPaMN/jT1MonzCm+Ly7F7ZWyB4uQV1ZlEZr5qa9HB
+ AZAZLtnKV7VtNheYG6iMmzOmmqTFmk1bWga/ONhIaEnPOUj0j7nCPMjnw
+ hz0ID0rvffTUHanpC2thkNSnG3esxmRR9vj32qk96/j8s/hDbmu5yzNfD
+ 9CfKy3krBhFyMp5zTSyTRgPMpI2tMxjHrdOcikx+wl9sZCs4kNi13lWM0
+ N6rWDASoTQLL4Q1S3Mk+tplLRR00c2ioDWyHguWpLGHXMz1274DtysBWm
+ O1G13ScfZ8y+9ZTCvnffZOezwYOoT9vqvRTC1mH8lMVTsPP9giqxG3yGM A==;
+X-CSE-ConnectionGUID: MS8tDMbsQ3CjfQpF3zu0Hg==
+X-CSE-MsgGUID: aBcYwpqvS0SEjGE0j0kBAg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11697"; a="82248050"
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="82248050"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2026 21:35:14 -0800
+X-CSE-ConnectionGUID: Q1Rdjzh9Q2K7YprVqMEk3g==
+X-CSE-MsgGUID: e8GQjo+kSOygk2rdMMvX1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="216302601"
-Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
- ([10.190.239.37])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Feb 2026 21:02:54 -0800
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.auld@intel.com, matthew.brost@intel.com,
- himal.prasad.ghimiray@intel.com, Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [RFC PATCH 5/5] [DO NOT REVIEW]drm/xe/cri: Add sysfs interface for
- bad gpu vram pages
-Date: Wed, 11 Feb 2026 10:31:38 +0530
-Message-ID: <20260211050132.1332599-12-tejas.upadhyay@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,283,1763452800"; d="scan'208";a="211464601"
+Received: from yadavs-z690i-a-ultra-plus.iind.intel.com ([10.190.216.90])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Feb 2026 21:35:11 -0800
+From: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>
+Subject: [PATCH v2 0/2] drm/buddy: Documentation and internal helper cleanup
+Date: Wed, 11 Feb 2026 11:01:24 +0530
+Message-ID: <20260211053123.260037-4-sanjay.kumar.yadav@intel.com>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260211050132.1332599-7-tejas.upadhyay@intel.com>
-References: <20260211050132.1332599-7-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -70,169 +68,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Starting CRI, Include a sysfs interface designed to expose information
-about bad VRAM pages—those identified as having hardware faults
-(e.g., ECC errors). This interface allows userspace tools and
-administrators to monitor the health of the GPU's local memory and
-track the status of page retirement.To get details on bad gpu vram
-pages can be found under /sys/bus/pci/devices/bdf/vram_bad_pages.
+This series improves the GPU buddy allocator by adding missing
+documentation and cleaning up internal helpers.
 
-Where The format is, pfn : gpu page size : flags
+It adds kernel-doc for the allocator structures and flags, covering
+gpu_buddy, gpu_buddy_block, and the allocation flags (RANGE, TOPDOWN,
+CONTIGUOUS, CLEAR, TRIM_DISABLE) to make the allocator’s design and usage
+clearer for readers and contributors.
 
-flags:
-R: reserved, this gpu page is reserved.
-P: pending for reserve, this gpu page is marked as bad, will be reserved in next window of page_reserve.
-F: unable to reserve. this gpu page can’t be reserved due to some reasons.
+It also reduces the header surface by moving internal helpers from
+gpu_buddy.h into buddy.c as static functions, since they have no
+external users, and removes gpu_get_buddy(), an unused exported wrapper
+around the internal __get_buddy() helper. This clarifies the intended API
+and avoids exporting unused symbols.
 
-For example if you read using cat /sys/bus/pci/devices/bdf/vram_bad_pages,
-0x00000000 : 0x00001000 : R
-0x00001234 : 0x00001000 : P
+No functional changes.
 
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- drivers/gpu/drm/xe/xe_device_sysfs.c |  2 +
- drivers/gpu/drm/xe/xe_tile_sysfs.c   |  1 +
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 78 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |  1 +
- 4 files changed, 82 insertions(+)
+v2:
+- Rebased after DRM buddy allocator moved to drivers/gpu/
+- Keep gpu_buddy_block_is_free() in header since it's now
+  used by drm_buddy.c
+- Corrected GPU_BUDDY_CLEAR_TREE and GPU_BUDDY_DIRTY_TREE index values (Arun)
+- Updated commit message and cover letter to reflect changes
 
-diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
-index a73e0e957cb0..e6a017601428 100644
---- a/drivers/gpu/drm/xe/xe_device_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
-@@ -14,6 +14,7 @@
- #include "xe_pcode_api.h"
- #include "xe_pcode.h"
- #include "xe_pm.h"
-+#include "xe_ttm_vram_mgr.h"
- 
- /**
-  * DOC: Xe device sysfs
-@@ -284,6 +285,7 @@ int xe_device_sysfs_init(struct xe_device *xe)
- 		if (ret)
- 			return ret;
- 	}
-+	xe_ttm_vram_sysfs_init(xe);
- 
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c b/drivers/gpu/drm/xe/xe_tile_sysfs.c
-index 9e1236a9ec67..beaf20ecddb4 100644
---- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
-@@ -10,6 +10,7 @@
- #include "xe_pm.h"
- #include "xe_tile.h"
- #include "xe_tile_sysfs.h"
-+#include "xe_ttm_vram_mgr.h"
- #include "xe_vram_freq.h"
- 
- static void xe_tile_sysfs_kobj_release(struct kobject *kobj)
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index 1ad98ef8b54e..f06416b92962 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -296,6 +296,37 @@ static void xe_ttm_vram_free_bad_pages(struct drm_device *dev, struct xe_ttm_vra
- 	mutex_unlock(&mgr->lock);
- }
- 
-+static void xe_ttm_vram_dump_bad_pages_info(char *buf, struct xe_ttm_vram_mgr *mgr)
-+{
-+	const unsigned int element_size = sizeof("0xabcdabcd : 0x12345678 : R\n") - 1;
-+	struct xe_ttm_offline_resource *pos, *n;
-+	struct drm_buddy_block *block;
-+	ssize_t s = 0;
-+
-+	mutex_lock(&mgr->lock);
-+	list_for_each_entry_safe(pos, n, &mgr->offlined_pages, offlined_link) {
-+		block = list_first_entry(&pos->blocks,
-+					 struct drm_buddy_block,
-+					 link);
-+		s += scnprintf(&buf[s], element_size + 1,
-+			       "0x%08llx : 0x%08llx : %1s\n",
-+			       drm_buddy_block_offset(block) >> PAGE_SHIFT,
-+			       drm_buddy_block_size(&mgr->mm, block),
-+			       "R");
-+	}
-+	list_for_each_entry_safe(pos, n, &mgr->queued_pages, queued_link) {
-+		block = list_first_entry(&pos->blocks,
-+					 struct drm_buddy_block,
-+					 link);
-+		s += scnprintf(&buf[s], element_size + 1,
-+			       "0x%08llx : 0x%08llx : %1s\n",
-+			       drm_buddy_block_offset(block) >> PAGE_SHIFT,
-+			       drm_buddy_block_size(&mgr->mm, block),
-+			       "P");
-+	}
-+	mutex_unlock(&mgr->lock);
-+}
-+
- static void xe_ttm_vram_mgr_fini(struct drm_device *dev, void *arg)
- {
- 	struct xe_device *xe = to_xe_device(dev);
-@@ -755,3 +786,50 @@ int xe_ttm_tbo_handle_addr_fault(struct xe_tile *tile, unsigned long addr)
- 	return ret;
- }
- EXPORT_SYMBOL(xe_ttm_tbo_handle_addr_fault);
-+
-+static ssize_t vram_bad_pages_show(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	struct pci_dev *pdev = to_pci_dev(dev);
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	struct ttm_resource_manager *man;
-+	u8 mem_type = XE_PL_VRAM1;
-+
-+	do {
-+		man = ttm_manager_type(&xe->ttm, mem_type);
-+		struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
-+
-+		if (man)
-+			xe_ttm_vram_dump_bad_pages_info(buf, mgr);
-+		--mem_type;
-+	} while (mem_type >= XE_PL_VRAM0);
-+
-+	return sysfs_emit(buf, "%s\n", buf);
-+}
-+static DEVICE_ATTR_RO(vram_bad_pages);
-+
-+static void xe_ttm_vram_sysfs_fini(void *arg)
-+{
-+	struct xe_device *xe = arg;
-+
-+	device_remove_file(xe->drm.dev, &dev_attr_vram_bad_pages);
-+}
-+
-+/**
-+ * xe_ttm_vram_sysfs_init - Initialize vram sysfs component
-+ * @tile: Xe Tile object
-+ *
-+ * It needs to be initialized after the main tile component is ready
-+ *
-+ * Returns: 0 on success, negative error code on error.
-+ */
-+int xe_ttm_vram_sysfs_init(struct xe_device *xe)
-+{
-+	int err;
-+
-+	err = device_create_file(xe->drm.dev, &dev_attr_vram_bad_pages);
-+	if (err)
-+		return 0;
-+
-+	return devm_add_action_or_reset(xe->drm.dev, xe_ttm_vram_sysfs_fini, xe);
-+}
-+EXPORT_SYMBOL(xe_ttm_vram_sysfs_init);
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-index 5872e8b48779..6e69140c0be8 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-@@ -34,6 +34,7 @@ void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
- int xe_ttm_tbo_handle_addr_fault(struct xe_tile *tile, unsigned long addr);
- void xe_ttm_vram_dump_allocated_blocks(struct drm_device *dev, struct drm_buddy *mm,
- 				       struct drm_printer *p);
-+int xe_ttm_vram_sysfs_init(struct xe_device *xe);
- static inline struct xe_ttm_vram_mgr_resource *
- to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
- {
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+Suggested-by: Matthew Auld <matthew.auld@intel.com>
+
+Sanjay Yadav (2):
+  drm/buddy: Add kernel-doc for allocator structures and flags
+  drm/buddy: Move internal helpers to buddy.c
+
+ drivers/gpu/buddy.c       |  35 ++++-----
+ include/linux/gpu_buddy.h | 147 +++++++++++++++++++++++++++-----------
+ 2 files changed, 122 insertions(+), 60 deletions(-)
+
 -- 
 2.52.0
 
