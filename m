@@ -4,176 +4,168 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1E58ECD6D7
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Feb 2026 18:51:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0944ECD6E0
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Feb 2026 19:03:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DED110E63A;
-	Wed, 11 Feb 2026 18:51:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 479E110E642;
+	Wed, 11 Feb 2026 19:03:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KIAuxSS8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b/7QLJVw";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 372E210E0DB;
- Wed, 11 Feb 2026 18:51:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8F7810E63A
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Feb 2026 19:03:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770835899; x=1802371899;
+ t=1770836597; x=1802372597;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=WtBdm83HXunGSFm9namGFIUS2J8XHks08L5DPR/2wXc=;
- b=KIAuxSS8s17v/auUjpoR885TW6flB8swvLoz25lMi+4WlMqaNKPUeQTB
- VF0TKK5yB//ZnAtt4XAqZvY1Rx39hICMjg5rH8dnkxImA2uYpLgz0MFfE
- gQRl5yR50/jQfIV55+8jQ4jO2it6NUOXrnOqIqZr+dmxgEtWsm7HdUUEM
- tvwc4dfreaoc33OFkq5br0A0W1Sc5rxSlgXFABqyd+3sjKyiR44rEtINi
- uEGprtF6NM58scwGipDEsVLoB4BsIcGtaQeGQ9zNaGF1dJ02yjRp6+dAp
- T953TZVrNGylF74TdPEryGsFvftOffJ9USQENy5OeKBPPZjeQKedS8tlx A==;
-X-CSE-ConnectionGUID: TI84095vQDKnAPUQWdYkew==
-X-CSE-MsgGUID: jV1SuuvLSBmgqhijkigSFg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="89401630"
-X-IronPort-AV: E=Sophos;i="6.21,285,1763452800"; d="scan'208";a="89401630"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2026 10:51:38 -0800
-X-CSE-ConnectionGUID: A2fCh43hSk+/tDe3rlAaRg==
-X-CSE-MsgGUID: W5bqciMySuqi/K51yxKFmQ==
+ in-reply-to:mime-version;
+ bh=/MiQnaM/56HkaS77G9zQnir6kpGmtv9HU1O/TW3ET1w=;
+ b=b/7QLJVwclZnKOug2HK8pnCBN9M1uDIh0w/vXr9c3L55qjQUi6mOOipw
+ PfgCIKAgGCn/qMHXC7kMKlke5wX/OrwQbyqihtvhIu33hbymt+Ct+WNtp
+ Gp8FuaFXTuen3eZy4vfqOO6MWvyj2BhvfKtHbXZGuIIpnYiZKyHY3xfK0
+ moH9Kp+rtFcEHS7w0WhbDcie3kRDA29mBiUdcWnsQEi1ooCX9KIAxEMnt
+ wAFTJEzwTdfgsYXsuF4OjS1kTVrjNr0Cl4FFNM1+hI2sbCpz9lKwuuzJU
+ mGH2NYMwtwUxpbaA20SCDGOKaKjqXGHELqhwHxlntufWECqKPpM+xmt7e Q==;
+X-CSE-ConnectionGUID: TJ6uQ8WmSLe7R+RJDZCePg==
+X-CSE-MsgGUID: kWs8jwLWQea3o9IsIr0nSQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="75618805"
+X-IronPort-AV: E=Sophos;i="6.21,285,1763452800"; d="scan'208";a="75618805"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2026 11:03:16 -0800
+X-CSE-ConnectionGUID: uaWcagmtTFqKkyXp/a3Eag==
+X-CSE-MsgGUID: lK0Wv0XdTHGnk6I8ELrmwQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,285,1763452800"; d="scan'208";a="216837786"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2026 10:51:38 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.21,285,1763452800"; d="scan'208";a="211626582"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2026 11:03:16 -0800
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 11 Feb 2026 10:51:38 -0800
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.35; Wed, 11 Feb 2026 11:03:16 -0800
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Wed, 11 Feb 2026 10:51:38 -0800
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.70) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.35 via Frontend Transport; Wed, 11 Feb 2026 11:03:16 -0800
+Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.19)
+ by edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 11 Feb 2026 10:51:37 -0800
+ 15.2.2562.35; Wed, 11 Feb 2026 11:03:15 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YF1sX401VYc5qHSg4MygdukautBt9lJ61vjLcYo4WGsnTxwFXNmhuZbmVQ7JJhYwmglM/6XTjnV8DWisglxBAdx1jMQma8KqrnaqaFjKVDqGtfXAJ9RplCETUbXed/SyftaaA+umzm+OOkPU3NMl4Hh9cMZa/uwFBqE67yc7KGAhMEcqlGF9pz3jT1O1c3csuMixWTHGXPpImkIUqxFZLZ8Is3XNz9aAI4QTYMDPYygShEufCpYaB0g/CtS5v6mZOPsnVcPajaWFRNemF1EubB3EIvXgyOPdTVs+0gdKOMdU25l8GjY4GNc81qU8pHl94cPIUNAmoDzAwiAwrB7wPQ==
+ b=Hbal+HD9AQKPmaN2VOOodwwmLeLlUgLIwyabSbTbs3c7yEpl0GDsA7wBtlQM0mC4yae0VXurGiRNeqwQPjUtYHGRuUL2S1AM8GvKgJ5P/fFlIf5vxiZj/4WT+l4vNPaN4GLYgXqki40WZgPL5j8oA2241hdl/URyYAnhBWbKETHtrkWur3YsbayT+OWiY7xG6lSsm3xppzf5CNF0PvKcA4WxDaIa6HyKpdEF82jgCoeDVzOvoUme4PDzfGkVoLt/I0aqn5sEWpEiecvMwgNXTSHUkwsF/RjiCvwlQoptUI3n4u9SQVk41HlXodD3oa7RpX5JC0AaYwZwWjX4jf0oIQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BuAd6XBpMR7x+fetD3ww3ZDqb+asLk/omwJz98TcGNs=;
- b=jXUWZx4ipgpuYJrxQ2ZV7AtuzV2Sw8BycqzVKQpXRg5EJk82n0BVBbXzDckEbakHMdMOdnMdwRIXW1a/mZP9mKJ1rw32KMTOzpCJFYYxTyrAbCZXBPOQykG3DnC14wGIWcHGtoFOowaRBS7kmqh9yg8jBDnPo1fUYgXaqyAGZcOmK+YVG9kf6jzD9nAKm2Gga4iWDXO4UqoSig8dtYP8FrU38gYVatNr3YcjBqQnp1kfxmOkenjaNpZfYTp+pqQouqiGsLy3Ca1O5DDqdPfZVIM726CXT9vfBgrE5j2sfoP8i0tNdiAAtsnXer4FrWO4dj3LNnehwPclNsY51ZNlRw==
+ bh=fiYSDUQXf+MOuZ8UwEoQsRs7hQiB/sX01LSYsDfquLE=;
+ b=XMAXHXXO5Ei2l5DRCf3CvonadiaG1e1DoU/sDMOul95G1YMCRvOBhO3UB2/qOxStN7K/hCvy3gyWKG+HT2yST5C+PB3jMXafhLwNsFmU5DkGgy6CVOOHC1Re+CxNFHP+YUJftLtyTxq2V5Tkimuoa77RFsJi9xgnjPUn8sPvWdL3NdH/d2gL8sTggJNNkzJ/YK50Xn1p+esBV41fiPkU6vIf/0Hp4nxHhfFN8DPA0E9H+oQOhnXeOYJD2lRTHdStAUWV5lemUBtJ2YyjLNmz+ZS/MCOEVHO0n2JwETjK3etU+wiOhd8PmmO/DXou3JLLkN2W2aNcOSi4mpy2rSL7wg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SA1PR11MB6918.namprd11.prod.outlook.com (2603:10b6:806:2bf::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.10; Wed, 11 Feb
- 2026 18:51:35 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c%6]) with mapi id 15.20.9587.017; Wed, 11 Feb 2026
- 18:51:35 +0000
-Date: Wed, 11 Feb 2026 10:51:32 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <leonro@nvidia.com>, <jgg@ziepe.ca>, <francois.dugast@intel.com>,
- <himal.prasad.ghimiray@intel.com>
-Subject: Re: [PATCH v4 4/4] drm/pagemap: Use dma-map IOVA alloc, link, and
- sync API for DRM pagemap
-Message-ID: <aYzPtCisUdv6FPEC@lstrano-desk.jf.intel.com>
-References: <20260205041921.3781292-1-matthew.brost@intel.com>
- <20260205041921.3781292-5-matthew.brost@intel.com>
- <6289525edef2a1dca5d9de325ad0efbc1cb79a38.camel@linux.intel.com>
- <aYyiHQ0avcRcti8l@lstrano-desk.jf.intel.com>
- <1215d2ec94ecf13944d01bd4de29bf29bd4f8bf7.camel@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by PH8PR11MB9534.namprd11.prod.outlook.com (2603:10b6:510:39f::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9587.19; Wed, 11 Feb
+ 2026 19:03:13 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e%7]) with mapi id 15.20.9587.017; Wed, 11 Feb 2026
+ 19:03:13 +0000
+Date: Wed, 11 Feb 2026 11:03:10 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: "Lin, Shuicheng" <shuicheng.lin@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Wajdeczko, Michal" <Michal.Wajdeczko@intel.com>
+Subject: Re: [PATCH v2] drm/xe: Make xe_modparam.force_vram_bar_size signed
+Message-ID: <20260211190310.GK4694@mdroper-desk1.amr.corp.intel.com>
+References: <20260202181853.1095736-2-shuicheng.lin@intel.com>
+ <DM4PR11MB54563CF9131A7D951605DDDEEA62A@DM4PR11MB5456.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1215d2ec94ecf13944d01bd4de29bf29bd4f8bf7.camel@linux.intel.com>
-X-ClientProxiedBy: MW4PR03CA0309.namprd03.prod.outlook.com
- (2603:10b6:303:dd::14) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+In-Reply-To: <DM4PR11MB54563CF9131A7D951605DDDEEA62A@DM4PR11MB5456.namprd11.prod.outlook.com>
+X-ClientProxiedBy: BYAPR21CA0014.namprd21.prod.outlook.com
+ (2603:10b6:a03:114::24) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA1PR11MB6918:EE_
-X-MS-Office365-Filtering-Correlation-Id: 250fcfa5-fa66-4177-1b3e-08de699e94d1
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|PH8PR11MB9534:EE_
+X-MS-Office365-Filtering-Correlation-Id: aff8586d-e235-475e-f95f-08de69a0347a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?hpUNHkM6G3JStKIJaS9hm2j7fuQN5rftlWx7NozzvMVQnlAVFKnvHviV5C?=
- =?iso-8859-1?Q?NY+Fxj2lAKL+QOi5H7ysDagdqFs1NkqdntR34yR+N6KZetBchHI7rQO+cq?=
- =?iso-8859-1?Q?1Ir/fxUzLGCyyvAwPeuMcfjCkNN0Oef4smGD0nY8AkZoDJmRVnA7+GGgT+?=
- =?iso-8859-1?Q?4z+6wM2lHl0kw4+RMug/9XCHVMqwwQZS6/v/v0d0oh7L/3Q7C7iSMAC548?=
- =?iso-8859-1?Q?5cx7sbW74NTDuL60dPMQipDimBtf9z+5KEN3kBrDWKsFgYpw5OUqs5K5Hv?=
- =?iso-8859-1?Q?Qciewxiuib9cpSsO6oBGrsO/82PFOrO3euY+LNQ5A00/g4vsc2+fFMrjIM?=
- =?iso-8859-1?Q?mUj4eV0+DnieFYY1Zk40IyVAMLWr1y+uooL0K6ES4785jSna5VCQUG2ceK?=
- =?iso-8859-1?Q?+7f40x/yxURgIkj7ltcv1kb7qtWVmobE9J73Mb3WEerlPs46OVG4Vsvz88?=
- =?iso-8859-1?Q?E75Ty6MDRdOjwRiNqSbOtb3Cv8jvLEzv9bc4FOli/Ub4kDvU1+NboRvAGz?=
- =?iso-8859-1?Q?m3bqcrg6dQMBXAb9xqZoq8w9xt/X+uOLhloTwKOA685xyi2isdE1qkwPsE?=
- =?iso-8859-1?Q?HJtotoe5LG/BD6RKN63jbhNuP6cMSDwBXHWaeIWacYK7BNeapjNm8eVwea?=
- =?iso-8859-1?Q?o2tw3bPDp9nmPlfnwwp8eAjiSXhg2TU62C8ZcnunDLwTyX3zTcaClCHuFO?=
- =?iso-8859-1?Q?N/HSTJtgZgGMzzBfzAOxHTwwo8U3paNGgv9L7ZoSWzFyEj2Yr4qsYf4u/t?=
- =?iso-8859-1?Q?oOfftoHa0lG7ny2kFJprkOoe/92AuL0hcAt9+18M1GLNjgJjUEMHTWNj4k?=
- =?iso-8859-1?Q?GVJ4DE8aYj4Z7hF3ytWbKpwwtQ66lBddGSGC95YptT1IMkNA+OOSMHemFV?=
- =?iso-8859-1?Q?R8STkAWOMv4/7SQKiEEMMrieP2Sox5nN7Gr1NX9VJmqz16h4vaQJsMeOwP?=
- =?iso-8859-1?Q?rlESVBTJ02bqBCZhRHrv1cIHZKr82KH60zD1i4cK7y8cyYIcJd15vcmQx9?=
- =?iso-8859-1?Q?pdIacxVMpIhOPlgML/fJqu7FwbahATmbki89Y4dCGn1toaYwzZaYWZKHS4?=
- =?iso-8859-1?Q?mOlY8xJZ04PyGU13MxnnWOH+QGk3AN2zkQrLXIGwEx+rS4D1E1SFFSTO/W?=
- =?iso-8859-1?Q?LmxV1xoVw8Ee313t0vIDJtm2Ua11lFO0x+JYuJ17ArljdWKkhb3ztzZ4Qm?=
- =?iso-8859-1?Q?z5jaTvP/d/dL78m520u5PQg6x6v7uaQDVlaIwpQOIStvnBuZUfzVi0LuTJ?=
- =?iso-8859-1?Q?2a+6JS1VDY9m7TJVs95m8mMNNHVprWOuWTRt+OzgYTwhXQLFGkPkNRTbrK?=
- =?iso-8859-1?Q?9KfrEWc1yGVNd8oFUcGfliuFhsPId0OAnlzKHiLWPs5U1JJqxgtBSvo0jk?=
- =?iso-8859-1?Q?DZ6NHcKp8mq5c9QvHlIB5+AftXHGR6WLsgSEEtY+vyKJI60cLeqBQABIpk?=
- =?iso-8859-1?Q?1PriGviVudlRz58UoDy9TVg6Nf4zeh/ES0FHSqCtwsazkioVwKJ/Uif9C0?=
- =?iso-8859-1?Q?JL8hQ1iqFiVCOm+C6Qfv8Xg6i/pQZ3/Z/Ehy2oVGlQojvWPvmwGS1fTWMw?=
- =?iso-8859-1?Q?JfgOIog3qz51r1dC4H6jklM7cBcXY0le6EHl6qaYUfhIFSRlpL6ULkf+bN?=
- =?iso-8859-1?Q?ukrWCy+Ta0+I4=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?ugzQ5hDPrgZRcUpACi1mGCMtTAX49VhC8jFeJCU7T21fK0C7CMEysXt/TaNX?=
+ =?us-ascii?Q?R9RtEqIN6wz7dmhFAtinO/NgJYprhPRq6ejFMW5EacjsBNHGZkFAjh5wVlX9?=
+ =?us-ascii?Q?ur32tcW7OQByBrGZBtnMFE7RFBBhWzdwJgL7O23/qPY4INpJ63Vbt227Mi1B?=
+ =?us-ascii?Q?ovbaw3i6sde7kwJCL/DmOpn7v1CuDalEjUxsRv/qy7uIb1rhz8gRp/7HgyGv?=
+ =?us-ascii?Q?Njf+Z+NK9TyaA3XLj1rGuwN2e3DRI5COhZJtFatH0VS4ZyWd3IWEjTyISqBF?=
+ =?us-ascii?Q?xs0e1+ql1vCTWlER7speqto5dJbjwcQSb/M0+t+NQ9AIsULTo1hIH+2RHyfG?=
+ =?us-ascii?Q?DiclTZD8Syx5xqLVIm0dp97J8DR0kdHU+kUd6EGlj+u5UAaCzeD1p5hy9nf0?=
+ =?us-ascii?Q?sXHvOAAjVn/huf65TCRq4XzpP68+UxR65Ulyt/paahLnL4wDxK0bhV3qm/Bg?=
+ =?us-ascii?Q?LaRURMuP8RsGgGxb6Ury5NHdAlsqGEJpZ9exSVDPzsk9tgV7imeyI/15AP4q?=
+ =?us-ascii?Q?+5ZwovoSuUHb7XZcIcAibZNv830DxRwQRHsdR6MUDHfc8y8Wz2lreQCdxYSh?=
+ =?us-ascii?Q?P+tVVrEJIsGXtpcGul0qO7R2KpSbyB3xCoFIoZ43NbzBMstZYgOnXNkO3c64?=
+ =?us-ascii?Q?Vkp4FTX4NyAj6c5dqyQGLMMBGbgla59+JM49nz7lwyaQaRszGk+7YL+bc5Gi?=
+ =?us-ascii?Q?J+y/xoRX5tYI2o8M9K5cvMSMSpCUxIMYmh054WFZGKAxUFEB4dMeh0sX5zkl?=
+ =?us-ascii?Q?pD2ekKwhEu/w2jwWcH/dFhuNFscgaSsjVQK8ZhCzS53Y1g4H2Juxpzb2AtNA?=
+ =?us-ascii?Q?wW7OCmRNw42ge1nSPjxyrca4nZPIJeG/8LowL/9RWxT3SJMCFGeCsEUh2tIO?=
+ =?us-ascii?Q?rQf/lQN1LuQBcW5hscDzCef8rx5qpzijOahyaPn+armDB7s4qUDkfEeiAwED?=
+ =?us-ascii?Q?NQBqm9bMk6x0AnKG+cu0Ya1zcahBzSeuZlvW1bA1W7XAlS/yLX8EVVRPUafU?=
+ =?us-ascii?Q?sE1Pe4zphfpXuP4T2uTJl8k+h181ZG4eFmR5DD41xRczb86HBlaOAJiDSETG?=
+ =?us-ascii?Q?bsZMqCar1tHKgQHy7dvLiHRA4Hu5vMQscmnsomDI4gIW/klZ+Hia0FAptMXt?=
+ =?us-ascii?Q?lIdgv/MtpmoqICugXTKI9qG0BLY6T4a8D/FsI2hUflD0Ao+Y4W7qXlhfKbTF?=
+ =?us-ascii?Q?MxQ76aj0Hxfrv6AsqFqY2stcxDIpB6Sd5RMgCgTb3cJOFsxiB33RM3fpSoyu?=
+ =?us-ascii?Q?oaXqTClOjNES4cHkEy6LSJfO5HNkvUafWD8S656B8+70Y8iMUTGuBQD7KxJn?=
+ =?us-ascii?Q?TRId5kW6K+T4X+y399cC6InzBBP/CJgCM+0As90OhzRiPwfue3nGm+/6BCxH?=
+ =?us-ascii?Q?ucHhod2WbQ1x3saaaKW30lTswM+OUR7COTetSl/5Wsk3JR7jvxpvu7AD8OFf?=
+ =?us-ascii?Q?Z0nlgxdONG/Kh0OvmLYHxgXPPlEeW7HnHW8kypcSCP9u7enw7lu9rLobjiEy?=
+ =?us-ascii?Q?WWuHdEc64OHl/uFhR5wh6gAtVZlaZ2NgrTbmd5ZIdW9x0ZRwncD6Odaxbtgm?=
+ =?us-ascii?Q?YGZBYd/JcwlYKTXcZbk=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?hEgJnRPAtvv0ibtAXcThOscYB2Wg/Yc1f4wxSBK3Bw7f00anCn8aeF/SpR?=
- =?iso-8859-1?Q?s55KoJCoQi6ClP/wM/zXg2UqmkkZYWpjhytn3GFatM3nRskggil1Y18mux?=
- =?iso-8859-1?Q?s/zpClOOhcu0VF7BaaMwcLOVgl7VD4q4WP00nLjcedSVvxPBWVmpTgvr0V?=
- =?iso-8859-1?Q?2zSYKxUhVGZ3gx4oO8WpHdvyq3I6cP2OVoZdC/xyoxOJX2qYzQ4s+r8/XE?=
- =?iso-8859-1?Q?EjAAm0WMXhljGYs3bzqqD8S4TfHWTqQNtKarUM3zNm39RTLqFI/kOlba0q?=
- =?iso-8859-1?Q?lCTctAO1cGCSdaZNcKo6dz6PDLhOnNJjnJUflhOxMYskBFcqcWTuAsW86A?=
- =?iso-8859-1?Q?IMv0t7xClHq4oF3D218KswUrgDxSALNaWHmpTTPUyzm5DK2fYulbl9o2d/?=
- =?iso-8859-1?Q?7c4rdW7XlOTG+Ns0TE8gV9vC7IBar+CbiI8k8cj6HPhYuuu17Kb5/m46jy?=
- =?iso-8859-1?Q?PDlmPIZEVOys13clzMsD8Rf/nY9p7viDcaO6VMcH15JTs/lGEPMECueCKX?=
- =?iso-8859-1?Q?5/c7CPv8IPTdDNfL+0Vg21PU60OGSiiDkUebT23Lev1MCXaPz5786JOwtS?=
- =?iso-8859-1?Q?9gkNiscMGuciM39iwsufu6uEtdZGXpEYhRdBbiGuqnNI8z2bOWyzXWE+qD?=
- =?iso-8859-1?Q?H/Xf/PJNRF3JY/j9m7j/3+xrIMrgERHXx1U9flb8ioxTCHRljThgI7nlnR?=
- =?iso-8859-1?Q?WXuSVg/Efp/lKShbPlEphF0ymZC/ZvZ/02zi8vCj3aMCYsX217u8j8uj7T?=
- =?iso-8859-1?Q?EFiCevdHdetNVGzSciNFYAhw8++xl0ABU1efXDY6q2FC42xYeOc3PkznBU?=
- =?iso-8859-1?Q?5atjSIhIM/wmKzQtrYR56yKwFA6trzyHwrjYpH9afsi5LHQA4SBVXxvR28?=
- =?iso-8859-1?Q?WDte7c6dfa0lO42DyWQmRzJJlh5f70I0vtJ3OMHNbTCtaoK2VR85ECqa+R?=
- =?iso-8859-1?Q?qmQGEysqgEFaJmgyROsV4DXZrTNluj5dAOeOWxcUOHJKecjCU8OQbFZyB/?=
- =?iso-8859-1?Q?/Qy7YCNZjXvqd400fQxTeS9IJ4k/RYvQyeZPPiSujRaTwioMjW0ckqxS9O?=
- =?iso-8859-1?Q?3JRI71x+tkezwV6KceTGFNH4mfn05o8PgotTNvoBVSjl4L+BoPDBlNPdAi?=
- =?iso-8859-1?Q?zhpm1IarIxT+Oaet9DeokuwiRX+voFAetHRvd+oFMt9menm/vaVGAAw+4g?=
- =?iso-8859-1?Q?nATScby/f8MiGewkbz6SfvdNhI9n9vTFzZkdiyxU8UwVnnyRTrbSrDR2Ui?=
- =?iso-8859-1?Q?mieT3z+gHBCZlJBA6tMAeukPe3vvRTwsExTUXmema7JR4EAkFYpyjzX6xj?=
- =?iso-8859-1?Q?zIeeBg1pWXkpGPZF8cC+g6PZtpTJXULl7Hlhc4rTm7TM85ntbCEPzIEaJJ?=
- =?iso-8859-1?Q?AwDwrvIYOHu4o0Eb+Ujt9Z89zMJsgq2+bHLXzOrfcdI2Jx7Ijzyqwv7Tyg?=
- =?iso-8859-1?Q?NHJFNtPcnw4VT2NLMUPC5eTilknIQAGCDeUt9RTFnzY4agtRdwDp6BG2UW?=
- =?iso-8859-1?Q?6NVg0rKw6rV0FUiIGcrKkPF4ndGNY34xtTgyvDJE6Gicmo1253io5q6ywm?=
- =?iso-8859-1?Q?88XfhzszDOHb9ckY4xVYVim4+sXUfQ+6/JfZPV+wOtNeCg9JewJ7PiXXy7?=
- =?iso-8859-1?Q?EFyaFXHQwMiyLMbbbea6xRyGUs5Sh/29h44XxKiAGlIQzj5hBnS8MZ9sc1?=
- =?iso-8859-1?Q?fyfw4N1Ywk7c8yw5gXgVFJY6RaO4/B7+VWI3DO2ZUQfQRIWzKV6agzQPpi?=
- =?iso-8859-1?Q?xwlaNa4F3a/X9lwO2bIr8lXeKtbcT28U0U7JM21we9YjXJ4TJkXOi8H6Gw?=
- =?iso-8859-1?Q?x0NgjZNjyLrQNAD4WHT8HfztGAOqeiA=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 250fcfa5-fa66-4177-1b3e-08de699e94d1
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?XU4lQ7HcCqmRBsVYq+mc6Uv/7kuk/ZoafvXmkcMsG0yUz5grIOp4nfEw8nbm?=
+ =?us-ascii?Q?Xa6MHZ5WWbeZP8AMsrBD9wIPHyfpto6KHKMmmS5UpVapi2tKrBP8t65gb0aN?=
+ =?us-ascii?Q?XVgEHr4hBwUJiw/1wo2uwjSHpMVfVY+peJhzRnzvmIrN/mSuK7K3s3vbHglO?=
+ =?us-ascii?Q?TDGhjUHd0OJkrEvxNLtdIemjimd6Oxal03QqDijUL+bz7M7bQjfowjQBLxiN?=
+ =?us-ascii?Q?aYQdnAtgwwhaERH3zlTJm555iBvX/kCbD2Ieq1nh2c/XPLzskIs8kiKHoFZJ?=
+ =?us-ascii?Q?TcHljPhQMpBRDPeoZxNxLmY0kA/1cCJTo6EZFqP+YR40WnlpUAtu4liP2237?=
+ =?us-ascii?Q?tuvb0P4HbU4zLnjPaeibSEwaSzbPalp0G78lK9qp4chPNHbp7mbKPjoAI+jW?=
+ =?us-ascii?Q?kLwFepG6Kbd/pr5SLyrcXl7oG9fPbfBxDnCsjAmBG0w6cZKgi44GgrYzDeMJ?=
+ =?us-ascii?Q?XUS5j/oHGFWD2DIRkyt8AYjezw+3qac0Rx8S/aV0RL3QeqO+J8mBxHPHJMeo?=
+ =?us-ascii?Q?ovQNlnfXwlsIp4w4cuU8szmkmFQhGHG+o+jgSGTFG9UtgEf9CdRg89RTPgUp?=
+ =?us-ascii?Q?mlod7f5Mxzwwn0dpLJcy3BFq7Xt1TH+chfqcP+T55lNx9o6YqeNuXSkvciB7?=
+ =?us-ascii?Q?8PX7Tpow8OckTTfVD0f/AhyWNgmcv4gNyKI1xRzSgVvUEK60uPlEiDj5D0Hv?=
+ =?us-ascii?Q?Mmz8NcSGVyGGy0Y2YP9GHnpTbErvJkdG2NYSg4p4oc0upWKhAcQdoE+Cik3s?=
+ =?us-ascii?Q?P8CS/L6yxZ9cLhKGsZhZdxRsv7ySZZcGBdY5O4sCnF8uL35EN1w8cVgwhCKA?=
+ =?us-ascii?Q?fENIW6B71MOQAp71rZLf5McyQNphS+EH1PZeaN9nmnYNkl8N1vhapFjEv1xI?=
+ =?us-ascii?Q?5HKCdUrjUdb3yg5K7kLaC4obMwCIvJyujCI9KDnKXdrdacIKV1W0CyOgu37h?=
+ =?us-ascii?Q?236E4plIiBIv1BXwruz77Je9qC0NjF+yiV/X35lY7FLGKPSbIRlfVdb/zwEe?=
+ =?us-ascii?Q?hHm/SizL1HH/AzA47byo+kbVLZGhn87GQY5gBzVbUXWm49bD/U/tihNEgUln?=
+ =?us-ascii?Q?ciyQRAHGWqIfzPlus/m40j8Yvgs6wWfSUUhjTTPCtZ6gUq+RquwKzfvDMVpU?=
+ =?us-ascii?Q?GYUetddfhzSAI/fwnu8mT+u7N2nMEysEUkjaJwUqpQCnPECO0GRQ+ZBSgBfw?=
+ =?us-ascii?Q?qIi+qdEaKPyAwSuRyaV1yDPxu8CEbFqmXy/G2fl8AYCRugIooz71kx4sWSsP?=
+ =?us-ascii?Q?3/y4kLVVnWnr99igI0iEDUkdAFR5Rc1ViVZXztWYAYElqT0wIUwTdW3kJIx8?=
+ =?us-ascii?Q?4gET4FXtCGFumrPKBQJ+JXqeikcdBXUWpi3p4XcevOJ0rMw4na/HHn6psSKI?=
+ =?us-ascii?Q?IUYuewHirRhwOKtxOy1LcyJwu9SPrOpQSVh2AtSyKq7THK5EHOkUFpMKLIL9?=
+ =?us-ascii?Q?LWVj9n1U7V8qS8HlPg6Op/EfHA+4JH1gcYK5MjVZGsTE0mCraewetiK82u8O?=
+ =?us-ascii?Q?LG+EarWymuqwdtiGrgaapoPd1EQidt1MjsKPqf5UiZES4WIVfSySDmzREEir?=
+ =?us-ascii?Q?sXz62VOgrNxHs3pKLSF6vwqnQlydooZWHtDWbSNyO+tWKUXUmRnr9u19/esW?=
+ =?us-ascii?Q?hR5+qd5YHDspekpNllcCmxPsRZTmFYfHNWCsRkepJq9GyhbvOuuBYbxh4aew?=
+ =?us-ascii?Q?rwzVODH8Cb5H+aDlNwXclga4OJ7mpblWHS7kC7g0OOnG6nb33I7/dwOU5Sdu?=
+ =?us-ascii?Q?ATRADqlvOZ42xesjt29QGAOSvALiaC8=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: aff8586d-e235-475e-f95f-08de69a0347a
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2026 18:51:35.6891 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Feb 2026 19:03:13.1214 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1v10oJccOHSLuEvMn2G8CK2/o+7fm8NhcH+tWI1pyZ3MimmBNo+6pljjlbsfCVsMrpvpPz1mqaDhmE1TwptEag==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6918
+X-MS-Exchange-CrossTenant-UserPrincipalName: G5/5vJR51WAI4Z0XoUOEYJAZX5APtVTu43x3p9d7KNVgn4EUuwkoaZ5cfYdtu+kL3p/ZBkX3COmLoJRQK+mGKTWzK760joz0aeA8Y2fQC8o=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB9534
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -189,410 +181,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Feb 11, 2026 at 07:48:59PM +0100, Thomas Hellström wrote:
-> On Wed, 2026-02-11 at 07:37 -0800, Matthew Brost wrote:
-> > On Wed, Feb 11, 2026 at 12:34:12PM +0100, Thomas Hellström wrote:
-> > > On Wed, 2026-02-04 at 20:19 -0800, Matthew Brost wrote:
-> > > > The dma-map IOVA alloc, link, and sync APIs perform significantly
-> > > > better
-> > > > than dma-map / dma-unmap, as they avoid costly IOMMU
-> > > > synchronizations.
-> > > > This difference is especially noticeable when mapping a 2MB
-> > > > region in
-> > > > 4KB pages.
-> > > > 
-> > > > Use the IOVA alloc, link, and sync APIs for DRM pagemap, which
-> > > > create
-> > > > DMA
-> > > > mappings between the CPU and GPU for copying data.
-> > > > 
-> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > ---
-> > > > v4:
-> > > >  - Pack IOVA and drop dummy page (Jason)
-> > > > 
-> > > >  drivers/gpu/drm/drm_pagemap.c | 84
-> > > > +++++++++++++++++++++++++++++----
-> > > > --
-> > > >  1 file changed, 70 insertions(+), 14 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/drm_pagemap.c
-> > > > b/drivers/gpu/drm/drm_pagemap.c
-> > > > index 29677b19bb69..52a196bc8459 100644
-> > > > --- a/drivers/gpu/drm/drm_pagemap.c
-> > > > +++ b/drivers/gpu/drm/drm_pagemap.c
-> > > > @@ -280,6 +280,20 @@ drm_pagemap_migrate_map_device_pages(struct
-> > > > device *dev,
-> > > >  	return 0;
-> > > >  }
-> > > >  
-> > > > +/**
-> > > > + * struct drm_pagemap_iova_state - DRM pagemap IOVA state
-> > > > + *
-> > > 
-> > > No newline 
-> > > 
-> > 
-> > +1
-> > 
-> > > > + * @dma_state: DMA IOVA state.
-> > > > + * @offset: Current offset in IOVA.
-> > > > + *
-> > > > + * This structure acts as an iterator for packing all IOVA
-> > > > addresses
-> > > > within a
-> > > > + * contiguous range.
-> > > > + */
-> > > > +struct drm_pagemap_iova_state {
-> > > > +	struct dma_iova_state dma_state;
-> > > > +	unsigned long offset;
-> > > > +};
-> > > > +
-> > > >  /**
-> > > >   * drm_pagemap_migrate_map_system_pages() - Map system migration
-> > > > pages for GPU SVM migration
-> > > >   * @dev: The device performing the migration.
-> > > > @@ -287,6 +301,7 @@ drm_pagemap_migrate_map_device_pages(struct
-> > > > device *dev,
-> > > >   * @migrate_pfn: Array of page frame numbers of system pages or
-> > > > peer
-> > > > pages to map.
-> > > >   * @npages: Number of system pages or peer pages to map.
-> > > >   * @dir: Direction of data transfer (e.g., DMA_BIDIRECTIONAL)
-> > > > + * @state: DMA IOVA state for mapping.
-> > > >   *
-> > > >   * This function maps pages of memory for migration usage in GPU
-> > > > SVM. It
-> > > >   * iterates over each page frame number provided in
-> > > > @migrate_pfn,
-> > > > maps the
-> > > > @@ -300,9 +315,11 @@ drm_pagemap_migrate_map_system_pages(struct
-> > > > device *dev,
-> > > >  				     struct drm_pagemap_addr
-> > > > *pagemap_addr,
-> > > >  				     unsigned long *migrate_pfn,
-> > > >  				     unsigned long npages,
-> > > > -				     enum dma_data_direction
-> > > > dir)
-> > > > +				     enum dma_data_direction
-> > > > dir,
-> > > > +				     struct
-> > > > drm_pagemap_iova_state
-> > > > *state)
-> > > >  {
-> > > >  	unsigned long i;
-> > > > +	bool try_alloc = false;
-> > > >  
-> > > >  	for (i = 0; i < npages;) {
-> > > >  		struct page *page =
-> > > > migrate_pfn_to_page(migrate_pfn[i]);
-> > > > @@ -317,9 +334,31 @@ drm_pagemap_migrate_map_system_pages(struct
-> > > > device *dev,
-> > > >  		folio = page_folio(page);
-> > > >  		order = folio_order(folio);
-> > > >  
-> > > > -		dma_addr = dma_map_page(dev, page, 0,
-> > > > page_size(page), dir);
-> > > > -		if (dma_mapping_error(dev, dma_addr))
-> > > > -			return -EFAULT;
-> > > > +		if (!try_alloc) {
-> > > > +			dma_iova_try_alloc(dev, &state-
-> > > > >dma_state,
-> > > > +					   npages * PAGE_SIZE >=
-> > > > +					   HPAGE_PMD_SIZE ?
-> > > > +					   HPAGE_PMD_SIZE : 0,
-> > > > +					   npages * PAGE_SIZE);
-> > > > +			try_alloc = true;
-> > > > +		}
-> > > 
-> > > What happens if dma_iova_try_alloc() fails for all i < some value x
-> > > and
-> > > then suddenly succeeds for i == x? While the below code looks
-> > > correct,
-> > 
-> > We only try to alloc on the first valid page - 'i' may be any value
-> > based on the first page found  or we may never alloc if the number of
-> > pages found == 0 (possible, hence why it is inside the loop). This
-> > step
-> > is done at most once. If the allocation fails, we use the map_page
-> > path
-> > for the remaining loop iterations.
-> > 
-> > > I figure we'd allocate a too large IOVA region and possibly get the
-> > > alignment wrong?
-> > 
-> > The first and only IOVA allocation attempts an aligned allocation.
-> > What
-> > can happen is only a subset of the IOVA is used for the copy but we
-> > pack
-> > in the pages starting at IOVA[0] and end at IOVA[number valid pages -
-> > 1].
-> > 
-> > Matt
+On Tue, Feb 10, 2026 at 04:59:46PM +0000, Lin, Shuicheng wrote:
+> Hi XE committers,
+> It is an already reviewed patch. Could you please help me review and merge this patch?
+> Thanks.
+
+Applied to drm-xe-next.  Thanks for the patch and review.
+
+
+Matt
+
 > 
-> So to be a little nicer on the IOVA allocator we could use the below?
+> Best Regards
+> Shuicheng
 > 
-> 		dma_iova_try_alloc(dev, &state->dma_state,
-> 					   (npages - i) * PAGE_SIZE >=
-> 					   HPAGE_PMD_SIZE ?
-> 					   HPAGE_PMD_SIZE : 0,
-> 					   (npages - i) * PAGE_SIZE);
+> On Mon, Feb 2, 2026 10:19 AM Shuicheng Lin wrote:
+> > vram_bar_size is registered as an int module parameter and is documented to
+> > accept negative values to disable BAR resizing.
+> > Store it as an int in xe_modparam as well, so negative values work as intended
+> > and the module_param type matches.
+> > 
+> > Fixes: 80742a1aa26e ("drm/xe: Allow to drop vram resizing")
+> > Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> > Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_module.h | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_module.h
+> > b/drivers/gpu/drm/xe/xe_module.h index 1c75f38ca393..79cb9639c0f3
+> > 100644
+> > --- a/drivers/gpu/drm/xe/xe_module.h
+> > +++ b/drivers/gpu/drm/xe/xe_module.h
+> > @@ -12,7 +12,7 @@
+> >  struct xe_modparam {
+> >  	bool force_execlist;
+> >  	bool probe_display;
+> > -	u32 force_vram_bar_size;
+> > +	int force_vram_bar_size;
+> >  	int guc_log_level;
+> >  	char *guc_firmware_path;
+> >  	char *huc_firmware_path;
+> > --
+> > 2.50.1
 > 
 
-Yes, we can do that. No reason to force alignment if our copy code isn't
-going to try to use 2M GPU pages.
-
-Matt 
-
-> Thanks,
-> Thomas
-> 
-> > 
-> > > 
-> > > Otherwise LGTM.
-> > > 
-> > > 
-> > > > +
-> > > > +		if (dma_use_iova(&state->dma_state)) {
-> > > > +			int err = dma_iova_link(dev, &state-
-> > > > > dma_state,
-> > > > +						page_to_phys(pag
-> > > > e),
-> > > > +						state->offset,
-> > > > page_size(page),
-> > > > +						dir, 0);
-> > > > +			if (err)
-> > > > +				return err;
-> > > > +
-> > > > +			dma_addr = state->dma_state.addr +
-> > > > state-
-> > > > > offset;
-> > > > +			state->offset += page_size(page);
-> > > > +		} else {
-> > > > +			dma_addr = dma_map_page(dev, page, 0,
-> > > > page_size(page),
-> > > > +						dir);
-> > > > +			if (dma_mapping_error(dev, dma_addr))
-> > > > +				return -EFAULT;
-> > > > +		}
-> > > >  
-> > > >  		pagemap_addr[i] =
-> > > >  			drm_pagemap_addr_encode(dma_addr,
-> > > > @@ -330,6 +369,9 @@ drm_pagemap_migrate_map_system_pages(struct
-> > > > device *dev,
-> > > >  		i += NR_PAGES(order);
-> > > >  	}
-> > > >  
-> > > > +	if (dma_use_iova(&state->dma_state))
-> > > > +		return dma_iova_sync(dev, &state->dma_state, 0,
-> > > > state->offset);
-> > > > +
-> > > >  	return 0;
-> > > >  }
-> > > >  
-> > > > @@ -341,6 +383,7 @@ drm_pagemap_migrate_map_system_pages(struct
-> > > > device *dev,
-> > > >   * @pagemap_addr: Array of DMA information corresponding to
-> > > > mapped
-> > > > pages
-> > > >   * @npages: Number of pages to unmap
-> > > >   * @dir: Direction of data transfer (e.g., DMA_BIDIRECTIONAL)
-> > > > + * @state: DMA IOVA state for mapping.
-> > > >   *
-> > > >   * This function unmaps previously mapped pages of memory for
-> > > > GPU
-> > > > Shared Virtual
-> > > >   * Memory (SVM). It iterates over each DMA address provided in
-> > > > @dma_addr, checks
-> > > > @@ -350,10 +393,17 @@ static void
-> > > > drm_pagemap_migrate_unmap_pages(struct device *dev,
-> > > >  					    struct
-> > > > drm_pagemap_addr
-> > > > *pagemap_addr,
-> > > >  					    unsigned long
-> > > > *migrate_pfn,
-> > > >  					    unsigned long
-> > > > npages,
-> > > > -					    enum
-> > > > dma_data_direction
-> > > > dir)
-> > > > +					    enum
-> > > > dma_data_direction
-> > > > dir,
-> > > > +					    struct
-> > > > drm_pagemap_iova_state *state)
-> > > >  {
-> > > >  	unsigned long i;
-> > > >  
-> > > > +	if (state && dma_use_iova(&state->dma_state)) {
-> > > > +		dma_iova_unlink(dev, &state->dma_state, 0,
-> > > > state-
-> > > > > offset, dir, 0);
-> > > > +		dma_iova_free(dev, &state->dma_state);
-> > > > +		return;
-> > > > +	}
-> > > > +
-> > > >  	for (i = 0; i < npages;) {
-> > > >  		struct page *page =
-> > > > migrate_pfn_to_page(migrate_pfn[i]);
-> > > >  
-> > > > @@ -406,7 +456,7 @@ drm_pagemap_migrate_remote_to_local(struct
-> > > > drm_pagemap_devmem *devmem,
-> > > >  			       devmem->pre_migrate_fence);
-> > > >  out:
-> > > >  	drm_pagemap_migrate_unmap_pages(remote_device,
-> > > > pagemap_addr,
-> > > > local_pfns,
-> > > > -					npages,
-> > > > DMA_FROM_DEVICE);
-> > > > +					npages, DMA_FROM_DEVICE,
-> > > > NULL);
-> > > >  	return err;
-> > > >  }
-> > > >  
-> > > > @@ -416,11 +466,13 @@ drm_pagemap_migrate_sys_to_dev(struct
-> > > > drm_pagemap_devmem *devmem,
-> > > >  			       struct page *local_pages[],
-> > > >  			       struct drm_pagemap_addr
-> > > > pagemap_addr[],
-> > > >  			       unsigned long npages,
-> > > > -			       const struct
-> > > > drm_pagemap_devmem_ops
-> > > > *ops)
-> > > > +			       const struct
-> > > > drm_pagemap_devmem_ops
-> > > > *ops,
-> > > > +			       struct drm_pagemap_iova_state
-> > > > *state)
-> > > >  {
-> > > >  	int err = drm_pagemap_migrate_map_system_pages(devmem-
-> > > > >dev,
-> > > >  						      
-> > > > pagemap_addr,
-> > > > sys_pfns,
-> > > > -						       npages,
-> > > > DMA_TO_DEVICE);
-> > > > +						       npages,
-> > > > DMA_TO_DEVICE,
-> > > > +						       state);
-> > > >  
-> > > >  	if (err)
-> > > >  		goto out;
-> > > > @@ -429,7 +481,7 @@ drm_pagemap_migrate_sys_to_dev(struct
-> > > > drm_pagemap_devmem *devmem,
-> > > >  				  devmem->pre_migrate_fence);
-> > > >  out:
-> > > >  	drm_pagemap_migrate_unmap_pages(devmem->dev,
-> > > > pagemap_addr,
-> > > > sys_pfns, npages,
-> > > > -					DMA_TO_DEVICE);
-> > > > +					DMA_TO_DEVICE, state);
-> > > >  	return err;
-> > > >  }
-> > > >  
-> > > > @@ -457,6 +509,7 @@ static int drm_pagemap_migrate_range(struct
-> > > > drm_pagemap_devmem *devmem,
-> > > >  				     const struct
-> > > > migrate_range_loc
-> > > > *cur,
-> > > >  				     const struct
-> > > > drm_pagemap_migrate_details *mdetails)
-> > > >  {
-> > > > +	struct drm_pagemap_iova_state state = {};
-> > > >  	int ret = 0;
-> > > >  
-> > > >  	if (cur->start == 0)
-> > > > @@ -484,7 +537,7 @@ static int drm_pagemap_migrate_range(struct
-> > > > drm_pagemap_devmem *devmem,
-> > > >  						    
-> > > > &pages[last-
-> > > > > start],
-> > > >  						    
-> > > > &pagemap_addr[last->start],
-> > > >  						     cur->start
-> > > > -
-> > > > last->start,
-> > > > -						     last->ops);
-> > > > +						     last->ops,
-> > > > &state);
-> > > >  
-> > > >  out:
-> > > >  	*last = *cur;
-> > > > @@ -1001,6 +1054,7 @@ EXPORT_SYMBOL(drm_pagemap_put);
-> > > >  int drm_pagemap_evict_to_ram(struct drm_pagemap_devmem
-> > > > *devmem_allocation)
-> > > >  {
-> > > >  	const struct drm_pagemap_devmem_ops *ops =
-> > > > devmem_allocation->ops;
-> > > > +	struct drm_pagemap_iova_state state = {};
-> > > >  	unsigned long npages, mpages = 0;
-> > > >  	struct page **pages;
-> > > >  	unsigned long *src, *dst;
-> > > > @@ -1042,7 +1096,7 @@ int drm_pagemap_evict_to_ram(struct
-> > > > drm_pagemap_devmem *devmem_allocation)
-> > > >  	err =
-> > > > drm_pagemap_migrate_map_system_pages(devmem_allocation->dev,
-> > > >  						   pagemap_addr,
-> > > >  						   dst, npages,
-> > > > -						  
-> > > > DMA_FROM_DEVICE);
-> > > > +						  
-> > > > DMA_FROM_DEVICE,
-> > > > &state);
-> > > >  	if (err)
-> > > >  		goto err_finalize;
-> > > >  
-> > > > @@ -1059,7 +1113,7 @@ int drm_pagemap_evict_to_ram(struct
-> > > > drm_pagemap_devmem *devmem_allocation)
-> > > >  	migrate_device_pages(src, dst, npages);
-> > > >  	migrate_device_finalize(src, dst, npages);
-> > > >  	drm_pagemap_migrate_unmap_pages(devmem_allocation->dev,
-> > > > pagemap_addr, dst, npages,
-> > > > -					DMA_FROM_DEVICE);
-> > > > +					DMA_FROM_DEVICE,
-> > > > &state);
-> > > >  
-> > > >  err_free:
-> > > >  	kvfree(buf);
-> > > > @@ -1103,6 +1157,7 @@ static int
-> > > > __drm_pagemap_migrate_to_ram(struct
-> > > > vm_area_struct *vas,
-> > > >  		MIGRATE_VMA_SELECT_DEVICE_COHERENT,
-> > > >  		.fault_page	= page,
-> > > >  	};
-> > > > +	struct drm_pagemap_iova_state state = {};
-> > > >  	struct drm_pagemap_zdd *zdd;
-> > > >  	const struct drm_pagemap_devmem_ops *ops;
-> > > >  	struct device *dev = NULL;
-> > > > @@ -1162,7 +1217,7 @@ static int
-> > > > __drm_pagemap_migrate_to_ram(struct
-> > > > vm_area_struct *vas,
-> > > >  
-> > > >  	err = drm_pagemap_migrate_map_system_pages(dev,
-> > > > pagemap_addr,
-> > > >  						   migrate.dst,
-> > > > npages,
-> > > > -						  
-> > > > DMA_FROM_DEVICE);
-> > > > +						  
-> > > > DMA_FROM_DEVICE,
-> > > > &state);
-> > > >  	if (err)
-> > > >  		goto err_finalize;
-> > > >  
-> > > > @@ -1180,7 +1235,8 @@ static int
-> > > > __drm_pagemap_migrate_to_ram(struct
-> > > > vm_area_struct *vas,
-> > > >  	migrate_vma_finalize(&migrate);
-> > > >  	if (dev)
-> > > >  		drm_pagemap_migrate_unmap_pages(dev,
-> > > > pagemap_addr,
-> > > > migrate.dst,
-> > > > -						npages,
-> > > > DMA_FROM_DEVICE);
-> > > > +						npages,
-> > > > DMA_FROM_DEVICE,
-> > > > +						&state);
-> > > >  err_free:
-> > > >  	kvfree(buf);
-> > > >  err_out:
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
