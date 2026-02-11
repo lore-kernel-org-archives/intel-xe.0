@@ -4,77 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4D14ECD6CA
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Feb 2026 17:10:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64409ECD6C1
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Feb 2026 17:11:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D02C10E62C;
-	Wed, 11 Feb 2026 17:10:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="YQqrxTW8";
-	dkim-atps=neutral
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0914810E62C;
- Wed, 11 Feb 2026 17:10:44 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1770829830; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=GR7lKyC+ozaWg05oGsrqz0Z7rDS9ZIOYDtgmfUS9yF8SGsv5hLRBebSLLDot9wWTiPzrScyHd1uc1cH6tCAqkEaDLVlhG/9q//xhGaCZM5na149IiIrTOSzqQdfzSK0uZAQjX1MaL0OC2MNTBjUnA2K5ISt7h8ZObYSjndqEqQ0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1770829830;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=0Dl0Z2RybvDxucJFvyk0rYh+K+gwu9CR8COPAfPaa6E=; 
- b=NKYhL+OqEH99ViXECN4WyH9CMsuK1vCMRqR2WtwAdscA0R8g5M0y0c2e3RfqDb9jUC5IZaPlkG/OstQPMWZNl7RkNL1pI8qGhYOURVBChPmks2lej2W0Mt6+0hrkM+6nVTD4V5Is57RwzMY7Vx0JTTOawjmXP0WHC61ax4qiFQk=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1770829830; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
- bh=0Dl0Z2RybvDxucJFvyk0rYh+K+gwu9CR8COPAfPaa6E=;
- b=YQqrxTW8kGhGYrH+a120mKUsZ4yMJMBXI1KYvdR3zSb+MvINyxPnAaGAThZTRNtV
- XNtcgjNA6v8n4VOAUn7uY/ttvmgO3lGGIh1q9ZIZGdAsVHJuwFL7uzAIPH0SqdU3PgO
- x6yJHpRLXjsytia4XH7HYMs7925RGM+XxwbVKn0A=
-Received: by mx.zohomail.com with SMTPS id 1770829827913685.3686734865292;
- Wed, 11 Feb 2026 09:10:27 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, kernel@collabora.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org,
- Marius Vlad <marius.vlad@collabora.com>
-Subject: Re: [PATCH v7 03/22] drm: Add enum conversions between
- DRM_COLOR_FORMAT and HDMI_COLORSPACE
-Date: Wed, 11 Feb 2026 18:10:18 +0100
-Message-ID: <4732908.LvFx2qVVIh@workhorse>
-In-Reply-To: <20260210-prophetic-elk-of-superiority-b0ab03@houat>
-References: <20260121-color-format-v7-0-ef790dae780c@collabora.com>
- <2028270.PYKUYFuaPT@workhorse>
- <20260210-prophetic-elk-of-superiority-b0ab03@houat>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C28B10E62C;
+	Wed, 11 Feb 2026 17:11:06 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C040A10E62C;
+ Wed, 11 Feb 2026 17:11:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4125833573278084631=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/madvise=3A_Add_suppo?=
+ =?utf-8?q?rt_for_purgeable_buffer_objects_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arvind Yadav" <arvind.yadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 11 Feb 2026 17:11:04 -0000
+Message-ID: <177082986476.246446.2656159946189923530@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260211152644.1661165-1-arvind.yadav@intel.com>
+In-Reply-To: <20260211152644.1661165-1-arvind.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,124 +36,201 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tuesday, 10 February 2026 18:24:46 Central European Standard Time Maxime Ripard wrote:
-> Hi,
-> 
-> On Sat, Feb 07, 2026 at 08:55:16PM +0100, Nicolas Frattaroli wrote:
-> > On Friday, 6 February 2026 15:08:46 Central European Standard Time Maxime Ripard wrote:
-> > > On Wed, Jan 21, 2026 at 03:45:10PM +0100, Nicolas Frattaroli wrote:
-> > > > While the two enums have similar values, they're not identical, and
-> > > > HDMI's enum is defined as per the HDMI standard.
-> > > > 
-> > > > Add a simple conversion function from DRM to HDMI. Unexpected inputs
-> > > > aren't handled in any clever way, DRM_COLOR_FORMAT_AUTO and any other
-> > > > value that doesn't cleanly map to HDMI just gets returned as
-> > > > HDMI_COLORSPACE_RGB.
-> > > > 
-> > > > Add a second conversion function that gets a DRM_COLOR_FORMAT from an
-> > > > HDMI_COLORSPACE as well. In this case, reserved HDMI values that can't
-> > > > be converted will result in an -EINVAL return value.
-> > > > 
-> > > > Co-developed-by: Marius Vlad <marius.vlad@collabora.com>
-> > > > Signed-off-by: Marius Vlad <marius.vlad@collabora.com>
-> > > > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > > > ---
-> > > >  include/drm/drm_connector.h | 54 +++++++++++++++++++++++++++++++++++++++++++++
-> > > >  1 file changed, 54 insertions(+)
-> > > > 
-> > > > diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> > > > index b5604dca728a..ffeb42f3b4a3 100644
-> > > > --- a/include/drm/drm_connector.h
-> > > > +++ b/include/drm/drm_connector.h
-> > > > @@ -2612,6 +2612,60 @@ int drm_connector_attach_color_format_property(struct drm_connector *connector);
-> > > >  
-> > > >  const char *drm_get_color_format_name(enum drm_color_format color_fmt);
-> > > >  
-> > > > +/**
-> > > > + * drm_color_format_to_hdmi_colorspace - convert DRM color format to HDMI
-> > > > + * @fmt: the &enum drm_color_format to convert
-> > > > + *
-> > > > + * Convert a given &enum drm_color_format to an equivalent
-> > > > + * &enum hdmi_colorspace. For non-representable values and
-> > > > + * %DRM_COLOR_FORMAT_AUTO, the value %HDMI_COLORSPACE_RGB is returned.
-> > > > + *
-> > > > + * Returns: the corresponding &enum hdmi_colorspace value
-> > > > + */
-> > > > +static inline enum hdmi_colorspace __pure
-> > > > +drm_color_format_to_hdmi_colorspace(enum drm_color_format fmt)
-> > > > +{
-> > > > +	switch (fmt) {
-> > > > +	default:
-> > > > +	case DRM_COLOR_FORMAT_AUTO:
-> > > > +	case DRM_COLOR_FORMAT_RGB444:
-> > > > +		return HDMI_COLORSPACE_RGB;
-> > > 
-> > > I don't think that's correct. What auto ends up as totally depends on
-> > > the atomic state it comes with.
-> > > 
-> > > At the very least, you should output a warning there, because that case
-> > > should never happen.
-> > 
-> > Yeah, my hope was to keep this function __pure so that the compiler
-> > has maximum freedom to do whatever. With a WARN, it's got side-effects
-> > now, and we're no longer pure. With a status return value and an output
-> > parameter, it's no longer pure either, because the output parameter is
-> > not local memory.
-> > 
-> > The limiting factor here is that as I understand correctly, I can't
-> > really extend the hdmi_colorspace enum, as it's basically 1:1 from
-> > the standard. Doing this would be the ideal solution, because we'd
-> > keep the function pure and without surprise conversions happening.
-> 
-> I feel like this kind of loops back into the other two reviews I did:
-> you paint yourself into a corner by having auto in the enum, and by
-> passing it directly to that function.
-> 
-> If, instead, you don't allow auto in the drm_color_format enum, and
-> resolve auto in the hdmi_compute_config function instead of passing it
-> directly, then we don't have to deal with it here.
+--===============4125833573278084631==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-You're right. Though that means I need to figure out how I'll handle
-the conversion from enum to bitfield for !HDMI cases. I guess for DP,
-I can do this in drm_dp_helper or something. I don't know if i915 or
-amdgpu call into that at all though, but it's as good of a time as any
-to start doing so now if not. Just also learned about the existence of
-`enum dp_pixelformat`, which imho has the best naming out of all of
-these enums. (I hope "HDMI Colorspace" to describe pixel formats is
-straight from the standard because if it's something we in the kernel
-came up with then I will put renaming it on my list of long-term
-kernel tasks to get around to some day.)
+== Series Details ==
 
-And yes I will add the necessary KUnit tests for the DP helper side of
-things as well. :)
+Series: drm/xe/madvise: Add support for purgeable buffer objects (rev6)
+URL   : https://patchwork.freedesktop.org/series/156651/
+State : failure
 
-Nothing registers the property for DSI so we should be good on that front
-for now.
+== Summary ==
 
-Thanks for the reviews.
+CI Bug Log - changes from xe-4544-2938ce73d01357a5816ed7dbd041154b58635a37_BAT -> xe-pw-156651v6_BAT
+====================================================
 
-Kind regards,
-Nicolas Frattaroli
+Summary
+-------
 
-> > Looking at hdmi_colorspace_get_name in drivers/video/hdmi.c, it returns
-> > "Invalid" for any value not in the enum itself. Would it be allowable
-> > to tack an HDMI_COLORSPACE_INVALID at the end of the enum with perhaps
-> > a negative value, or is there a different approach you'd prefer?
-> 
-> And again, if we only ever have to deal with RGB, YUV420, 444 or 422,
-> then we always have valid values for HDMI_COLORSPACE.
-> 
-> Plus, the hdmi_colorspace enum matches what the hdmi spec defines, so we
-> can't really extend it, and most importantly, hdmi_colorspace_get_name()
-> is only ever used for debugging / logging purposes, it's never in the
-> "functional" path.
-> 
-> Maxime
-> 
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-156651v6_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-156651v6_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (9 -> 12)
+------------------------------
+
+  Additional (3): bat-wcl-1 bat-wcl-2 bat-bmg-3 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-156651v6_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_pipe_crc_basic@hang-read-crc:
+    - bat-wcl-2:          NOTRUN -> [SKIP][1] +43 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156651v6/bat-wcl-2/igt@kms_pipe_crc_basic@hang-read-crc.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-wcl-1:          NOTRUN -> [SKIP][2] +20 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156651v6/bat-wcl-1/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-156651v6_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_psr@psr-sprite-plane-onoff:
+    - bat-wcl-2:          NOTRUN -> [SKIP][3] ([Intel XE#1406]) +2 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156651v6/bat-wcl-2/igt@kms_psr@psr-sprite-plane-onoff.html
+
+  * igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:
+    - bat-bmg-3:          NOTRUN -> [SKIP][4] ([Intel XE#6566]) +3 other tests skip
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156651v6/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_waitfence@reltime:
+    - bat-ptl-1:          [FAIL][5] -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4544-2938ce73d01357a5816ed7dbd041154b58635a37/bat-ptl-1/igt@xe_waitfence@reltime.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156651v6/bat-ptl-1/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#1406]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406
+  [Intel XE#6566]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566
 
 
+Build changes
+-------------
+
+  * IGT: IGT_8749 -> IGT_8751
+  * Linux: xe-4544-2938ce73d01357a5816ed7dbd041154b58635a37 -> xe-pw-156651v6
+
+  IGT_8749: 195f101f25a7984686f36f340aa88d44a1716ec6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8751: af788251f1ef729d17c802aec2c4547b52059e58 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4544-2938ce73d01357a5816ed7dbd041154b58635a37: 2938ce73d01357a5816ed7dbd041154b58635a37
+  xe-pw-156651v6: 156651v6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156651v6/index.html
+
+--===============4125833573278084631==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/madvise: Add support for purgeable buffer objects (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/156651/">https://patchwork.freedesktop.org/series/156651/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156651v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156651v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4544-2938ce73d01357a5816ed7dbd041154b58635a37_BAT -&gt; xe-pw-156651v6_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-156651v6_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-156651v6_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (9 -&gt; 12)</h2>
+<p>Additional (3): bat-wcl-1 bat-wcl-2 bat-bmg-3 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-156651v6_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc:</p>
+<ul>
+<li>bat-wcl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156651v6/bat-wcl-2/igt@kms_pipe_crc_basic@hang-read-crc.html">SKIP</a> +43 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-wcl-1:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156651v6/bat-wcl-1/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> +20 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-156651v6_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_psr@psr-sprite-plane-onoff:</p>
+<ul>
+<li>bat-wcl-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156651v6/bat-wcl-2/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406">Intel XE#1406</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156651v6/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566">Intel XE#6566</a>) +3 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4544-2938ce73d01357a5816ed7dbd041154b58635a37/bat-ptl-1/igt@xe_waitfence@reltime.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-156651v6/bat-ptl-1/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8749 -&gt; IGT_8751</li>
+<li>Linux: xe-4544-2938ce73d01357a5816ed7dbd041154b58635a37 -&gt; xe-pw-156651v6</li>
+</ul>
+<p>IGT_8749: 195f101f25a7984686f36f340aa88d44a1716ec6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8751: af788251f1ef729d17c802aec2c4547b52059e58 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4544-2938ce73d01357a5816ed7dbd041154b58635a37: 2938ce73d01357a5816ed7dbd041154b58635a37<br />
+  xe-pw-156651v6: 156651v6</p>
+
+</body>
+</html>
+
+--===============4125833573278084631==--
