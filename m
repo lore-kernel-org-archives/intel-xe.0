@@ -4,52 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D44EEB48EE
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 09:47:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B23DFEB48F0
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 09:53:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5F0110E181;
-	Thu, 12 Feb 2026 09:47:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E06910E1AC;
+	Thu, 12 Feb 2026 09:53:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hAUqWP2O";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eySkHkNh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFCC010E181
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Feb 2026 09:47:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FFE510E1AC
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Feb 2026 09:53:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770889644; x=1802425644;
- h=date:from:to:cc:subject:message-id;
- bh=micO7RVwXCAuUowxs84aBg925lItO1B1Ew4IfpiuAJk=;
- b=hAUqWP2OHarB8ENG7Myz1V1wQyYPwrefnyBRSgFvIpHlPw8iqy3VmAoU
- 3hqtMW6dqbDdZD3qTgXh31/kYDkqRuRk6lgzm0r5HAvt1agBtxhStziL5
- z8LbKi9OQ+mCamhQ1ltw7lK21HxlpNUMDPueQHm79SlqDigs6GOx4G4od
- dFoz9KV0bPOE0niEMRz+WEVio2HhW7G7dzKIdaWrhuE/K7sVqvuxhbfez
- i6tSRNfCmloF3j/ohS4s9QVnNBtRqQ+hrlddX5p1Au1aIcm31NBRIpJXv
- QgFM1cVxHwYWUGFlxjo0fnbXdsVC3gSBhJnG8qi+qs76lABwn4R5SqzdT Q==;
-X-CSE-ConnectionGUID: 6vWubskoS46EtX1WotNVBQ==
-X-CSE-MsgGUID: bOK05JDfS1uQsucwMOY2oQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="89643103"
-X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; d="scan'208";a="89643103"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2026 01:47:24 -0800
-X-CSE-ConnectionGUID: K2ARkFr4Qpm2MXKUouo9QA==
-X-CSE-MsgGUID: LfioJ2R8RxGkyBgKs2KKaQ==
+ t=1770890016; x=1802426016;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=uBl6AbPtpfwPOnoVBWP2GGC9kD8kuCYwRwRC4efv6tA=;
+ b=eySkHkNhl18UBiIjkg2jAkthlrCMouJiXjZBIevBzrZRdFMSjbBxZS+F
+ 0P+CgbxSQkgqYIAF/TcECSPwAdrHSQnek5uhxfFSCxzX3B1xETYeb9Lvt
+ QihUk9vZKfhxbANWt/QtkxBqgiZbYEhVWMEkjfSvd6H3g73M6Y8dX2Qvh
+ Dn4njJ4lNV/ocRkzYdSf+z1V2YCa8aKprs6GbWS8Nw2vk3CW15i7nxYS9
+ 5LaTRz3xUrUgDInYGj66JJslrHw9ndMnb+Ac1aI0zVoCHGQ2wC+75AXcc
+ DPK62dakEv0Gib3JxmgxIf1SefN2mPsXQj1BCbzm8LE9KDm8hPbVpgdtf w==;
+X-CSE-ConnectionGUID: 7KIBmCJ/T6OHVoqme4ZXFQ==
+X-CSE-MsgGUID: HBLi/kAKTRKbN6VSXtfn0g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="71962181"
+X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; d="scan'208";a="71962181"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2026 01:53:36 -0800
+X-CSE-ConnectionGUID: fLAliNeCSa+efkGPThU9iA==
+X-CSE-MsgGUID: tos92QiTSimDGukbz0YpjA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; d="scan'208";a="235521441"
-Received: from lkp-server01.sh.intel.com (HELO 765f4a05e27f) ([10.239.97.150])
- by fmviesa002.fm.intel.com with ESMTP; 12 Feb 2026 01:47:22 -0800
-Received: from kbuild by 765f4a05e27f with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1vqTI8-00000000r0m-0FWt;
- Thu, 12 Feb 2026 09:47:20 +0000
-Date: Thu, 12 Feb 2026 17:47:18 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- 25c9aa4dcb5ef2ad9f354d19f8f1eeb690d1c161
-Message-ID: <202602121709.koRSlN9S-lkp@intel.com>
-User-Agent: s-nail v14.9.25
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO [10.245.245.140])
+ ([10.245.245.140])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2026 01:53:34 -0800
+Message-ID: <9848ee6e-a026-46d9-87e1-fa4a2f8a57d2@intel.com>
+Date: Thu, 12 Feb 2026 09:53:32 +0000
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] drm/xe/xe3p_lpg: flush userptr/shrinker bo cachelines
+ manually
+To: Matt Roper <matthew.d.roper@intel.com>,
+ "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+Cc: "Brost, Matthew" <matthew.brost@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>
+References: <20260210125120.1329411-5-tejas.upadhyay@intel.com>
+ <20260210125120.1329411-6-tejas.upadhyay@intel.com>
+ <20260210210525.GC4694@mdroper-desk1.amr.corp.intel.com>
+ <aYvHCeTd5pOFo2p5@lstrano-desk.jf.intel.com>
+ <SJ1PR11MB6204CD2B54AD51B175F96F298163A@SJ1PR11MB6204.namprd11.prod.outlook.com>
+ <20260211211125.GL4694@mdroper-desk1.amr.corp.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20260211211125.GL4694@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,266 +77,287 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: 25c9aa4dcb5ef2ad9f354d19f8f1eeb690d1c161  drm/xe: Make xe_modparam.force_vram_bar_size signed
+On 11/02/2026 21:11, Matt Roper wrote:
+> On Wed, Feb 11, 2026 at 07:06:05PM +0000, Upadhyay, Tejas wrote:
+>>
+>>
+>>> -----Original Message-----
+>>> From: Brost, Matthew <matthew.brost@intel.com>
+>>> Sent: 11 February 2026 05:32
+>>> To: Roper, Matthew D <matthew.d.roper@intel.com>
+>>> Cc: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
+>>> xe@lists.freedesktop.org; Auld, Matthew <matthew.auld@intel.com>;
+>>> thomas.hellstrom@linux.intel.com
+>>> Subject: Re: [PATCH 1/3] drm/xe/xe3p_lpg: flush userptr/shrinker bo
+>>> cachelines manually
+>>>
+>>> On Tue, Feb 10, 2026 at 01:05:25PM -0800, Matt Roper wrote:
+>>>> On Tue, Feb 10, 2026 at 06:21:22PM +0530, Tejas Upadhyay wrote:
+>>>>> "eXtended Architecture" (XA) tagged memory—memory shared between
+>>> the
+>>>>> CPU and GPU
+>>>>
+>>>> I'm pretty sure this expansion of "XA" is wrong; where are you seeing
+>>>> this definition?  Everything in the bspec indicates that XA means "wb
+>>>> - transient app" (similar to how "XD" is 'wb - transient display").
+>>>> I'm not sure why exactly they picked "X" to refer to transient in both
+>>>> of these cases, but I've never seen any documentation that refers to
+>>>> it as "extended."
+>>>>
+>>>>> is treated differently from other GPU memory when the Media engine is
+>>> power-gated.
+>>>>>
+>>>>> XA is *always* flushed, like at the end-of-submssion (and maybe
+>>>>> other
+>>>>
+>>>> I assume you're referring to the fact that the driver performs flushes
+>>>> at the end of submission (via PIPE_CONTROL or MI_FLUSH_DW), and that
+>>>> depending on other state/optimizations in the system, those flushes
+>>>> may flush the entire device cache, or may only flush the subset of
+>>>> cache data that is not marked as transient.  The way you worded this
+>>>> was confusing since it makes it sound like cache flushes happen
+>>>> automatically somewhere in hardware/firmware.
+>>>>
+>>>>> places), just that internally as an optimisation hw doesn't need to
+>>>>> make that a full flush (which will also include XA) when Media is
+>>>>> off/powergated, since it doesn't need to worry about GT caches vs
+>>>>> Media coherency, and only CPU vs GPU coherency, so can make that
+>>>>> flush a targeted XA flush, since stuff tagged with XA now means it's
+>>>>> shared with the CPU. The main implication is that we now need to
+>>>>> somehow flush non-XA before freeing system memory pages, otherwise
+>>>>> dirty cachelines could be flushed after the free (like if Media
+>>>>> suddenly turns on and does a full flush)
+>>>>
+>>>> This description seems really confusing.  My understanding is that
+>>>> marking something as wb-transient-app indicates that it might be
+>>>> accessed by something other than our graphics/media IP (i.e., accessed
+>>>> from the CPU, exported to another device, etc.), so transient data
+>>>> truly does need to be flushed at the points in the driver where a
+>>>> flush typically happens.
+>>>>
+>>>> However when something is _not_ transient, then either:
+>>>>   - it's "private" to the GPU and only our graphics/media IP will be
+>>>>     accessing it
+>>>>   - it's bound with a coherent PAT index so that outside observers like
+>>>>     the CPU can snoop the device cache, even when the cache hasn't been
+>>>>     flushed
+>>>>
+>>>> If media is not active, then there's really no need to include
+>>>> non-transient data when an device cache flush happens since there's no
+>>>> real need for the data to get to RAM.  So that enables an optimization
+>>>> (which comes in your next patch), that allows flushes to only operate
+>>>> on the subset of the device cache tagged as "transient" if media is idle.
+>>
+>> But what If we have stale non-XA marked pages for userptr, and that
+>> object moves out and at the same time media comes back, will end up in
+>> full flush and flush the stale entry to RAM.
+> 
+> What makes userptr special here?  During general, active usage, userptr
+> would be data that's accessible by the CPU, so it needs to either be
+> transient (so CPU can see the data in RAM after explicit flushes) or it
+> needs to be using a coherent PAT (so that the CPU can just snoop the GPU
+> cache).  If you marked userptr as both non-XA and non-coherent, then
+> that sounds likely to be a userspace bug (and probably something we can
+> catch and reject as an invalid case on any Xe3p or later platforms that
+> support this) since the CPU wouldn't have any reliable way of seeing GPU
+> updates.
+> 
+> If something happens that changes the GTT mapping of an object, then
+> doesn't that already trigger a TLB invalidation when necessary in the
+> driver today?  It was my understanding that "heavy" TLB invalidations
+> wait for data values to be globally observable before starting, so I
+> think that would ensure that any non-XA data makes it to RAM before any
+> binding changes, object, destruction, etc.?  Is there something special
+> about userptr that makes that case more of a problem?
+> 
+> I just found bspec page 74635 which gives an overview of the various
+> flush and invalidate cases, and I don't see anything there that makes it
+> obvious to me that userptr would be special.
+> 
+> 
+>>
+>>>>
+>>>> As you said, we eventually do want to force a flush of the
+>>>> non-transient data as well once we're freeing the underlying pages.
+>>>> So how do we do that?  It's not clear to me how the changes below are
+>>>> accomplishing that.  Is there a way to explicitly request a full
+>>>> device cache flush (ignoring the transient vs non-transient tagging)?
+>>>> Since the GuC handles the optimization in the next patch (toggling
+>>>> whether flushes are full flushes vs non-transient flushes depending on
+>>>> whether media is active), I thought there might be some kind of GuC
+>>>> interface to request "please do one full flush now, even if media is idle."
+>>>>
+>>>
+>>> I’m not an expert here by any means, but everything above from Matt seems
+>>> like valid concerns. Thomas also raised some concerns in the two previous
+>>> revisions; again I’m not an expert, but reading through those, it doesn’t really
+>>> seem like he received proper answers to his questions.
+>>
+>> Its forcing flush via tlb invalidation PPC flag under xe_invalidate_vma( ).
+> 
+> By the way, what is "PPC?"  It seems like it's another new synonym for
+> the device cache?  It's already really confusing that some of our
+> hardware docs use a mix of both "L2" and "L3" to refer to the same
+> device cache for historical reasons...
 
-elapsed time: 817m
+Private-physical-cache. It's just what hw side calls the device side 
+l2/l3 on newer igpu (I think LNL+). I assume it is quite different from 
+the implemetation on dgpu, from HW pov, which is maybe why is has a 
+special name. On dgpu they just refer to it as plain l2/l3, not PPC. On 
+dgpu there is also additional SMRO (system-memory-read-only) device 
+cache, which I assume is caching reads over pci to system memory from 
+GPU side, but that gets flushed at the usual places, like end of 
+submission etc. Setting the PPC bit on Guc TLB inval will only flush 
+SMRO on dgpu.
 
-configs tested: 247
-configs skipped: 7
+> 
+> 
+> Matt
+> 
+>>
+>>>
+>>> A couple of comments below.
+>>>
+>>>>
+>>>> Matt
+>>>>
+>>>>>
+>>>>> V2(MattA): Expand commit description
+>>>>>
+>>>>> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+>>>>> ---
+>>>>>   drivers/gpu/drm/xe/xe_bo.c      |  3 ++-
+>>>>>   drivers/gpu/drm/xe/xe_device.c  | 23 +++++++++++++++++++++++
+>>>>> drivers/gpu/drm/xe/xe_device.h  |  1 +
+>>>>> drivers/gpu/drm/xe/xe_userptr.c |  3 ++-
+>>>>>   4 files changed, 28 insertions(+), 2 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+>>>>> index e9180b01a4e4..4455886b211e 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_bo.c
+>>>>> +++ b/drivers/gpu/drm/xe/xe_bo.c
+>>>>> @@ -689,7 +689,8 @@ static int xe_bo_trigger_rebind(struct xe_device
+>>>>> *xe, struct xe_bo *bo,
+>>>>>
+>>>>>   		if (!xe_vm_in_fault_mode(vm)) {
+>>>>>   			drm_gpuvm_bo_evict(vm_bo, true);
+>>>>> -			continue;
+>>>>> +			if (!xe_device_needs_cache_flush(xe))
+>>>>> +				continue;
+>>>
+>>> This will trigger a TLB invalidation (and I assume a cache flush) every time we
+>>> move or free memory in the 3D stack if it has a binding. It also performs a
+>>> synchronous wait on the BO being idle. Both of these are very expensive
+>>> operations. I can’t imagine the granularity we want here is to do this on every
+>>> move/free with bindings.
+>>>
+>>> Also, for LR compute with preempt fences, we would trigger the preempt
+>>> fences during the wait, so a TLB invalidation after this seems unnecessary,
+>>> though perhaps the cache flush is still required?
+>>>
+>>> I think this needs a bit more explanation, because without knowing a lot about
+>>> the exact requirements, the implementation does not look correct.
+>>
+>> The thing is that we are trying to solve problem with userptr with non-XA pat, consider if that BO got moved while media is not active. As soon as media will come back active, stale cached entries of that object will be flushed as part of full flush , which may corrupt things.
+>> There was thinking that with this patch we would at least solve the problem of corruption and later when page_reclamation feature comes in will help in performance as well. But now when page reclamation feature is merged earlier and it tightly coupled with bind/unbind some cases like discussed above (which are not doing unbind immediately on move/free) are missed in reclamation.
+>>   
+>> So thought was to let this solution go in with little perf hit and discuss with page reclamation owner to come with cleaner solution together.
+>>
+>> Tejas
+>>>
+>>>>>   		}
+>>>>>
+>>>>>   		if (!idle) {
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_device.c
+>>>>> b/drivers/gpu/drm/xe/xe_device.c index 743c18e0c580..da2abed94bc0
+>>>>> 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_device.c
+>>>>> +++ b/drivers/gpu/drm/xe/xe_device.c
+>>>>> @@ -1097,6 +1097,29 @@ static void tdf_request_sync(struct xe_device
+>>> *xe)
+>>>>>   	}
+>>>>>   }
+>>>>>
+>>>>> +/**
+>>>>> + * xe_device_needs_cache_flush - Whether the cache needs to be
+>>>>> +flushed
+>>>>> + * @xe: The device to check.
+>>>>> + *
+>>>>> + * Return: true if the device needs cache flush, false otherwise.
+>>>>> + */
+>>>>> +bool xe_device_needs_cache_flush(struct xe_device *xe) {
+>>>>> +	/* XA is *always* flushed, like at the end-of-submssion (and maybe
+>>> other
+>>>>> +	 * places), just that internally as an optimisation hw doesn't need to
+>>> make
+>>>>> +	 * that a full flush (which will also include XA) when Media is
+>>>>> +	 * off/powergated, since it doesn't need to worry about GT caches vs
+>>> Media
+>>>>> +	 * coherency, and only CPU vs GPU coherency, so can make that flush
+>>> a
+>>>>> +	 * targeted XA flush, since stuff tagged with XA now means it's shared
+>>> with
+>>>>> +	 * the CPU. The main implication is that we now need to somehow
+>>> flush non-XA before
+>>>>> +	 * freeing system memory pages, otherwise dirty cachelines could be
+>>> flushed after the free
+>>>>> +	 * (like if Media suddenly turns on and does a full flush)
+>>>>> +	 */
+>>>>> +	if (GRAPHICS_VER(xe) >= 35 && !IS_DGFX(xe))
+>>>>> +		return true;
+>>>>> +	return false;
+>>>>> +}
+>>>>> +
+>>>>>   void xe_device_l2_flush(struct xe_device *xe)  {
+>>>>>   	struct xe_gt *gt;
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_device.h
+>>>>> b/drivers/gpu/drm/xe/xe_device.h index 39464650533b..baf386e0e037
+>>>>> 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_device.h
+>>>>> +++ b/drivers/gpu/drm/xe/xe_device.h
+>>>>> @@ -184,6 +184,7 @@ void xe_device_snapshot_print(struct xe_device
+>>>>> *xe, struct drm_printer *p);
+>>>>>   u64 xe_device_canonicalize_addr(struct xe_device *xe, u64 address);
+>>>>>   u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64
+>>>>> address);
+>>>>>
+>>>>> +bool xe_device_needs_cache_flush(struct xe_device *xe);
+>>>>>   void xe_device_td_flush(struct xe_device *xe);  void
+>>>>> xe_device_l2_flush(struct xe_device *xe);
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_userptr.c
+>>>>> b/drivers/gpu/drm/xe/xe_userptr.c index e120323c43bc..b435ea7f9b66
+>>>>> 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_userptr.c
+>>>>> +++ b/drivers/gpu/drm/xe/xe_userptr.c
+>>>>> @@ -114,7 +114,8 @@ static void __vma_userptr_invalidate(struct xe_vm
+>>> *vm, struct xe_userptr_vma *uv
+>>>>>   				    false, MAX_SCHEDULE_TIMEOUT);
+>>>>>   	XE_WARN_ON(err <= 0);
+>>>>>
+>>>>> -	if (xe_vm_in_fault_mode(vm) && userptr->initial_bind) {
+>>>>> +	if ((xe_vm_in_fault_mode(vm) || xe_device_needs_cache_flush(vm-
+>>>> xe)) &&
+>>>>> +	    userptr->initial_bind) {
+>>>
+>>> Same concern with the LR preempt fence as above — the hardware will be
+>>> interrupted via preempt fences, so it doesn’t seem necessary to invalidate the
+>>> TLBs but perhaps we need a cflush and TLB invalidation is the mechanism for
+>>> that too?
+>>>
+>>> Matt
+>>>
+>>>>>   		err = xe_vm_invalidate_vma(vma);
+>>>>>   		XE_WARN_ON(err);
+>>>>>   	}
+>>>>> --
+>>>>> 2.52.0
+>>>>>
+>>>>
+>>>> --
+>>>> Matt Roper
+>>>> Graphics Software Engineer
+>>>> Linux GPU Platform Enablement
+>>>> Intel Corporation
+> 
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
-
-tested configs:
-alpha                             allnoconfig    gcc-15.2.0
-alpha                            allyesconfig    gcc-15.2.0
-alpha                               defconfig    gcc-15.2.0
-arc                              allmodconfig    clang-16
-arc                              allmodconfig    gcc-15.2.0
-arc                               allnoconfig    gcc-15.2.0
-arc                              allyesconfig    clang-22
-arc                              allyesconfig    gcc-15.2.0
-arc                                 defconfig    gcc-15.2.0
-arc                   randconfig-001-20260212    gcc-10.5.0
-arc                   randconfig-001-20260212    gcc-9.5.0
-arc                   randconfig-002-20260212    gcc-10.5.0
-arc                   randconfig-002-20260212    gcc-8.5.0
-arm                               allnoconfig    clang-22
-arm                               allnoconfig    gcc-15.2.0
-arm                              allyesconfig    clang-16
-arm                              allyesconfig    gcc-15.2.0
-arm                                 defconfig    gcc-15.2.0
-arm                           omap1_defconfig    gcc-15.2.0
-arm                          pxa3xx_defconfig    gcc-15.2.0
-arm                   randconfig-001-20260212    gcc-10.5.0
-arm                   randconfig-001-20260212    gcc-8.5.0
-arm                   randconfig-002-20260212    gcc-10.5.0
-arm                   randconfig-003-20260212    clang-22
-arm                   randconfig-003-20260212    gcc-10.5.0
-arm                   randconfig-004-20260212    gcc-10.5.0
-arm                   randconfig-004-20260212    gcc-8.5.0
-arm64                            allmodconfig    clang-19
-arm64                            allmodconfig    clang-22
-arm64                             allnoconfig    gcc-15.2.0
-arm64                               defconfig    gcc-15.2.0
-arm64                 randconfig-001-20260212    clang-22
-arm64                 randconfig-001-20260212    gcc-10.5.0
-arm64                 randconfig-002-20260212    gcc-10.5.0
-arm64                 randconfig-003-20260212    clang-22
-arm64                 randconfig-003-20260212    gcc-10.5.0
-arm64                 randconfig-004-20260212    clang-22
-arm64                 randconfig-004-20260212    gcc-10.5.0
-csky                             allmodconfig    gcc-15.2.0
-csky                              allnoconfig    gcc-15.2.0
-csky                                defconfig    gcc-15.2.0
-csky                  randconfig-001-20260212    gcc-10.5.0
-csky                  randconfig-001-20260212    gcc-15.2.0
-csky                  randconfig-002-20260212    gcc-10.5.0
-hexagon                          allmodconfig    clang-17
-hexagon                          allmodconfig    gcc-15.2.0
-hexagon                           allnoconfig    clang-22
-hexagon                           allnoconfig    gcc-15.2.0
-hexagon                             defconfig    gcc-15.2.0
-hexagon               randconfig-001-20260212    clang-18
-hexagon               randconfig-001-20260212    clang-22
-hexagon               randconfig-002-20260212    clang-18
-i386                             allmodconfig    clang-20
-i386                             allmodconfig    gcc-14
-i386                              allnoconfig    gcc-14
-i386                              allnoconfig    gcc-15.2.0
-i386                             allyesconfig    clang-20
-i386                             allyesconfig    gcc-14
-i386        buildonly-randconfig-001-20260212    gcc-14
-i386        buildonly-randconfig-002-20260212    gcc-14
-i386        buildonly-randconfig-003-20260212    clang-20
-i386        buildonly-randconfig-003-20260212    gcc-14
-i386        buildonly-randconfig-004-20260212    gcc-13
-i386        buildonly-randconfig-004-20260212    gcc-14
-i386        buildonly-randconfig-005-20260212    gcc-14
-i386        buildonly-randconfig-006-20260212    gcc-14
-i386                                defconfig    gcc-15.2.0
-i386                  randconfig-001-20260212    clang-20
-i386                  randconfig-002-20260212    clang-20
-i386                  randconfig-003-20260212    clang-20
-i386                  randconfig-004-20260212    clang-20
-i386                  randconfig-005-20260212    clang-20
-i386                  randconfig-006-20260212    clang-20
-i386                  randconfig-007-20260212    clang-20
-i386                  randconfig-011-20260212    gcc-12
-i386                  randconfig-011-20260212    gcc-14
-i386                  randconfig-012-20260212    gcc-12
-i386                  randconfig-013-20260212    clang-20
-i386                  randconfig-013-20260212    gcc-12
-i386                  randconfig-014-20260212    clang-20
-i386                  randconfig-014-20260212    gcc-12
-i386                  randconfig-015-20260212    clang-20
-i386                  randconfig-015-20260212    gcc-12
-i386                  randconfig-016-20260212    gcc-12
-i386                  randconfig-016-20260212    gcc-14
-i386                  randconfig-017-20260212    clang-20
-i386                  randconfig-017-20260212    gcc-12
-loongarch                        allmodconfig    clang-22
-loongarch                         allnoconfig    clang-22
-loongarch                         allnoconfig    gcc-15.2.0
-loongarch                           defconfig    clang-19
-loongarch             randconfig-001-20260212    clang-18
-loongarch             randconfig-002-20260212    clang-18
-loongarch             randconfig-002-20260212    clang-22
-m68k                             allmodconfig    gcc-15.2.0
-m68k                              allnoconfig    gcc-15.2.0
-m68k                             allyesconfig    clang-16
-m68k                             allyesconfig    gcc-15.2.0
-m68k                                defconfig    clang-19
-m68k                        mvme147_defconfig    gcc-15.2.0
-microblaze                        allnoconfig    gcc-15.2.0
-microblaze                       allyesconfig    gcc-15.2.0
-microblaze                          defconfig    clang-19
-mips                             allmodconfig    gcc-15.2.0
-mips                              allnoconfig    gcc-15.2.0
-mips                             allyesconfig    gcc-15.2.0
-mips                   sb1250_swarm_defconfig    gcc-15.2.0
-nios2                            allmodconfig    clang-22
-nios2                            allmodconfig    gcc-11.5.0
-nios2                             allnoconfig    clang-22
-nios2                             allnoconfig    gcc-11.5.0
-nios2                               defconfig    clang-19
-nios2                 randconfig-001-20260212    clang-18
-nios2                 randconfig-001-20260212    gcc-11.5.0
-nios2                 randconfig-002-20260212    clang-18
-nios2                 randconfig-002-20260212    gcc-8.5.0
-openrisc                         allmodconfig    clang-22
-openrisc                         allmodconfig    gcc-15.2.0
-openrisc                          allnoconfig    clang-22
-openrisc                          allnoconfig    gcc-15.2.0
-openrisc                            defconfig    gcc-15.2.0
-parisc                           allmodconfig    gcc-15.2.0
-parisc                            allnoconfig    clang-22
-parisc                            allnoconfig    gcc-15.2.0
-parisc                           allyesconfig    clang-19
-parisc                           allyesconfig    gcc-15.2.0
-parisc                              defconfig    gcc-15.2.0
-parisc                randconfig-001-20260212    gcc-10.5.0
-parisc                randconfig-001-20260212    gcc-8.5.0
-parisc                randconfig-002-20260212    gcc-10.5.0
-parisc                randconfig-002-20260212    gcc-8.5.0
-parisc64                            defconfig    clang-19
-powerpc                          allmodconfig    gcc-15.2.0
-powerpc                           allnoconfig    clang-22
-powerpc                           allnoconfig    gcc-15.2.0
-powerpc                     powernv_defconfig    gcc-15.2.0
-powerpc               randconfig-001-20260212    clang-22
-powerpc               randconfig-001-20260212    gcc-10.5.0
-powerpc               randconfig-002-20260212    gcc-10.5.0
-powerpc                     stx_gp3_defconfig    gcc-15.2.0
-powerpc                     tqm8541_defconfig    gcc-15.2.0
-powerpc                     tqm8555_defconfig    gcc-15.2.0
-powerpc64                        alldefconfig    gcc-15.2.0
-powerpc64             randconfig-001-20260212    clang-22
-powerpc64             randconfig-001-20260212    gcc-10.5.0
-powerpc64             randconfig-002-20260212    gcc-10.5.0
-powerpc64             randconfig-002-20260212    gcc-11.5.0
-riscv                            allmodconfig    clang-22
-riscv                             allnoconfig    clang-22
-riscv                             allnoconfig    gcc-15.2.0
-riscv                            allyesconfig    clang-16
-riscv                               defconfig    gcc-15.2.0
-riscv                 randconfig-001-20260212    gcc-9.5.0
-riscv                 randconfig-002-20260212    clang-18
-riscv                 randconfig-002-20260212    gcc-9.5.0
-s390                             allmodconfig    clang-18
-s390                             allmodconfig    clang-19
-s390                              allnoconfig    clang-22
-s390                             allyesconfig    gcc-15.2.0
-s390                                defconfig    gcc-15.2.0
-s390                  randconfig-001-20260212    gcc-15.2.0
-s390                  randconfig-001-20260212    gcc-9.5.0
-s390                  randconfig-002-20260212    clang-22
-s390                  randconfig-002-20260212    gcc-9.5.0
-sh                               allmodconfig    gcc-15.2.0
-sh                                allnoconfig    clang-22
-sh                                allnoconfig    gcc-15.2.0
-sh                               allyesconfig    clang-19
-sh                               allyesconfig    gcc-15.2.0
-sh                                  defconfig    gcc-14
-sh                          kfr2r09_defconfig    gcc-15.2.0
-sh                    randconfig-001-20260212    gcc-10.5.0
-sh                    randconfig-001-20260212    gcc-9.5.0
-sh                    randconfig-002-20260212    gcc-12.5.0
-sh                    randconfig-002-20260212    gcc-9.5.0
-sh                           se7712_defconfig    gcc-15.2.0
-sh                        sh7763rdp_defconfig    gcc-15.2.0
-sparc                            alldefconfig    gcc-15.2.0
-sparc                             allnoconfig    clang-22
-sparc                             allnoconfig    gcc-15.2.0
-sparc                               defconfig    gcc-15.2.0
-sparc                 randconfig-001-20260212    gcc-13.4.0
-sparc                 randconfig-002-20260212    gcc-13.4.0
-sparc64                          allmodconfig    clang-22
-sparc64                             defconfig    gcc-14
-sparc64               randconfig-001-20260212    gcc-13.4.0
-sparc64               randconfig-002-20260212    gcc-13.4.0
-um                               allmodconfig    clang-19
-um                                allnoconfig    clang-22
-um                               allyesconfig    gcc-14
-um                               allyesconfig    gcc-15.2.0
-um                                  defconfig    gcc-14
-um                             i386_defconfig    gcc-14
-um                    randconfig-001-20260212    gcc-13.4.0
-um                    randconfig-002-20260212    gcc-13.4.0
-um                           x86_64_defconfig    gcc-14
-x86_64                           allmodconfig    clang-20
-x86_64                            allnoconfig    clang-20
-x86_64                            allnoconfig    clang-22
-x86_64                           allyesconfig    clang-20
-x86_64      buildonly-randconfig-001-20260212    clang-20
-x86_64      buildonly-randconfig-002-20260212    clang-20
-x86_64      buildonly-randconfig-003-20260212    clang-20
-x86_64      buildonly-randconfig-003-20260212    gcc-14
-x86_64      buildonly-randconfig-004-20260212    clang-20
-x86_64      buildonly-randconfig-005-20260212    clang-20
-x86_64      buildonly-randconfig-006-20260212    clang-20
-x86_64                              defconfig    gcc-14
-x86_64                                  kexec    clang-20
-x86_64                randconfig-001-20260212    clang-20
-x86_64                randconfig-002-20260212    clang-20
-x86_64                randconfig-003-20260212    clang-20
-x86_64                randconfig-004-20260212    clang-20
-x86_64                randconfig-005-20260212    clang-20
-x86_64                randconfig-006-20260212    clang-20
-x86_64                randconfig-011-20260212    clang-20
-x86_64                randconfig-011-20260212    gcc-14
-x86_64                randconfig-012-20260212    gcc-14
-x86_64                randconfig-013-20260212    clang-20
-x86_64                randconfig-013-20260212    gcc-14
-x86_64                randconfig-014-20260212    gcc-13
-x86_64                randconfig-014-20260212    gcc-14
-x86_64                randconfig-015-20260212    gcc-14
-x86_64                randconfig-016-20260212    clang-20
-x86_64                randconfig-016-20260212    gcc-14
-x86_64                randconfig-071-20260212    clang-20
-x86_64                randconfig-071-20260212    gcc-14
-x86_64                randconfig-072-20260212    gcc-14
-x86_64                randconfig-073-20260212    gcc-14
-x86_64                randconfig-074-20260212    gcc-14
-x86_64                randconfig-075-20260212    gcc-14
-x86_64                randconfig-076-20260212    clang-20
-x86_64                randconfig-076-20260212    gcc-14
-x86_64                               rhel-9.4    clang-20
-x86_64                           rhel-9.4-bpf    gcc-14
-x86_64                          rhel-9.4-func    clang-20
-x86_64                    rhel-9.4-kselftests    clang-20
-x86_64                         rhel-9.4-kunit    gcc-14
-x86_64                           rhel-9.4-ltp    gcc-14
-x86_64                          rhel-9.4-rust    clang-20
-xtensa                            allnoconfig    clang-22
-xtensa                            allnoconfig    gcc-15.2.0
-xtensa                           allyesconfig    clang-22
-xtensa                           allyesconfig    gcc-15.2.0
-xtensa                generic_kc705_defconfig    gcc-15.2.0
-xtensa                randconfig-001-20260212    gcc-13.4.0
-xtensa                randconfig-002-20260212    gcc-13.4.0
-
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
