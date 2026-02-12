@@ -4,65 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B23DFEB48F0
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 09:53:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FDFCEB48F3
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 10:10:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E06910E1AC;
-	Thu, 12 Feb 2026 09:53:36 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eySkHkNh";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FFE510E1AC
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Feb 2026 09:53:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770890016; x=1802426016;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=uBl6AbPtpfwPOnoVBWP2GGC9kD8kuCYwRwRC4efv6tA=;
- b=eySkHkNhl18UBiIjkg2jAkthlrCMouJiXjZBIevBzrZRdFMSjbBxZS+F
- 0P+CgbxSQkgqYIAF/TcECSPwAdrHSQnek5uhxfFSCxzX3B1xETYeb9Lvt
- QihUk9vZKfhxbANWt/QtkxBqgiZbYEhVWMEkjfSvd6H3g73M6Y8dX2Qvh
- Dn4njJ4lNV/ocRkzYdSf+z1V2YCa8aKprs6GbWS8Nw2vk3CW15i7nxYS9
- 5LaTRz3xUrUgDInYGj66JJslrHw9ndMnb+Ac1aI0zVoCHGQ2wC+75AXcc
- DPK62dakEv0Gib3JxmgxIf1SefN2mPsXQj1BCbzm8LE9KDm8hPbVpgdtf w==;
-X-CSE-ConnectionGUID: 7KIBmCJ/T6OHVoqme4ZXFQ==
-X-CSE-MsgGUID: HBLi/kAKTRKbN6VSXtfn0g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="71962181"
-X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; d="scan'208";a="71962181"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2026 01:53:36 -0800
-X-CSE-ConnectionGUID: fLAliNeCSa+efkGPThU9iA==
-X-CSE-MsgGUID: tos92QiTSimDGukbz0YpjA==
-X-ExtLoop1: 1
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO [10.245.245.140])
- ([10.245.245.140])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2026 01:53:34 -0800
-Message-ID: <9848ee6e-a026-46d9-87e1-fa4a2f8a57d2@intel.com>
-Date: Thu, 12 Feb 2026 09:53:32 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF21310E71D;
+	Thu, 12 Feb 2026 10:10:41 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A65810E71D;
+ Thu, 12 Feb 2026 10:10:40 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5945032942535512065=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] drm/xe/xe3p_lpg: flush userptr/shrinker bo cachelines
- manually
-To: Matt Roper <matthew.d.roper@intel.com>,
- "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-Cc: "Brost, Matthew" <matthew.brost@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>
-References: <20260210125120.1329411-5-tejas.upadhyay@intel.com>
- <20260210125120.1329411-6-tejas.upadhyay@intel.com>
- <20260210210525.GC4694@mdroper-desk1.amr.corp.intel.com>
- <aYvHCeTd5pOFo2p5@lstrano-desk.jf.intel.com>
- <SJ1PR11MB6204CD2B54AD51B175F96F298163A@SJ1PR11MB6204.namprd11.prod.outlook.com>
- <20260211211125.GL4694@mdroper-desk1.amr.corp.intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260211211125.GL4694@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/buddy=3A_Documentation_?=
+ =?utf-8?q?and_internal_helper_cleanup_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sanjay Yadav" <sanjay.kumar.yadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 12 Feb 2026 10:10:40 -0000
+Message-ID: <177089104002.249681.14727301441240459889@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260212092527.718455-4-sanjay.kumar.yadav@intel.com>
+In-Reply-To: <20260212092527.718455-4-sanjay.kumar.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,290 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 11/02/2026 21:11, Matt Roper wrote:
-> On Wed, Feb 11, 2026 at 07:06:05PM +0000, Upadhyay, Tejas wrote:
->>
->>
->>> -----Original Message-----
->>> From: Brost, Matthew <matthew.brost@intel.com>
->>> Sent: 11 February 2026 05:32
->>> To: Roper, Matthew D <matthew.d.roper@intel.com>
->>> Cc: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
->>> xe@lists.freedesktop.org; Auld, Matthew <matthew.auld@intel.com>;
->>> thomas.hellstrom@linux.intel.com
->>> Subject: Re: [PATCH 1/3] drm/xe/xe3p_lpg: flush userptr/shrinker bo
->>> cachelines manually
->>>
->>> On Tue, Feb 10, 2026 at 01:05:25PM -0800, Matt Roper wrote:
->>>> On Tue, Feb 10, 2026 at 06:21:22PM +0530, Tejas Upadhyay wrote:
->>>>> "eXtended Architecture" (XA) tagged memory—memory shared between
->>> the
->>>>> CPU and GPU
->>>>
->>>> I'm pretty sure this expansion of "XA" is wrong; where are you seeing
->>>> this definition?  Everything in the bspec indicates that XA means "wb
->>>> - transient app" (similar to how "XD" is 'wb - transient display").
->>>> I'm not sure why exactly they picked "X" to refer to transient in both
->>>> of these cases, but I've never seen any documentation that refers to
->>>> it as "extended."
->>>>
->>>>> is treated differently from other GPU memory when the Media engine is
->>> power-gated.
->>>>>
->>>>> XA is *always* flushed, like at the end-of-submssion (and maybe
->>>>> other
->>>>
->>>> I assume you're referring to the fact that the driver performs flushes
->>>> at the end of submission (via PIPE_CONTROL or MI_FLUSH_DW), and that
->>>> depending on other state/optimizations in the system, those flushes
->>>> may flush the entire device cache, or may only flush the subset of
->>>> cache data that is not marked as transient.  The way you worded this
->>>> was confusing since it makes it sound like cache flushes happen
->>>> automatically somewhere in hardware/firmware.
->>>>
->>>>> places), just that internally as an optimisation hw doesn't need to
->>>>> make that a full flush (which will also include XA) when Media is
->>>>> off/powergated, since it doesn't need to worry about GT caches vs
->>>>> Media coherency, and only CPU vs GPU coherency, so can make that
->>>>> flush a targeted XA flush, since stuff tagged with XA now means it's
->>>>> shared with the CPU. The main implication is that we now need to
->>>>> somehow flush non-XA before freeing system memory pages, otherwise
->>>>> dirty cachelines could be flushed after the free (like if Media
->>>>> suddenly turns on and does a full flush)
->>>>
->>>> This description seems really confusing.  My understanding is that
->>>> marking something as wb-transient-app indicates that it might be
->>>> accessed by something other than our graphics/media IP (i.e., accessed
->>>> from the CPU, exported to another device, etc.), so transient data
->>>> truly does need to be flushed at the points in the driver where a
->>>> flush typically happens.
->>>>
->>>> However when something is _not_ transient, then either:
->>>>   - it's "private" to the GPU and only our graphics/media IP will be
->>>>     accessing it
->>>>   - it's bound with a coherent PAT index so that outside observers like
->>>>     the CPU can snoop the device cache, even when the cache hasn't been
->>>>     flushed
->>>>
->>>> If media is not active, then there's really no need to include
->>>> non-transient data when an device cache flush happens since there's no
->>>> real need for the data to get to RAM.  So that enables an optimization
->>>> (which comes in your next patch), that allows flushes to only operate
->>>> on the subset of the device cache tagged as "transient" if media is idle.
->>
->> But what If we have stale non-XA marked pages for userptr, and that
->> object moves out and at the same time media comes back, will end up in
->> full flush and flush the stale entry to RAM.
-> 
-> What makes userptr special here?  During general, active usage, userptr
-> would be data that's accessible by the CPU, so it needs to either be
-> transient (so CPU can see the data in RAM after explicit flushes) or it
-> needs to be using a coherent PAT (so that the CPU can just snoop the GPU
-> cache).  If you marked userptr as both non-XA and non-coherent, then
-> that sounds likely to be a userspace bug (and probably something we can
-> catch and reject as an invalid case on any Xe3p or later platforms that
-> support this) since the CPU wouldn't have any reliable way of seeing GPU
-> updates.
-> 
-> If something happens that changes the GTT mapping of an object, then
-> doesn't that already trigger a TLB invalidation when necessary in the
-> driver today?  It was my understanding that "heavy" TLB invalidations
-> wait for data values to be globally observable before starting, so I
-> think that would ensure that any non-XA data makes it to RAM before any
-> binding changes, object, destruction, etc.?  Is there something special
-> about userptr that makes that case more of a problem?
-> 
-> I just found bspec page 74635 which gives an overview of the various
-> flush and invalidate cases, and I don't see anything there that makes it
-> obvious to me that userptr would be special.
-> 
-> 
->>
->>>>
->>>> As you said, we eventually do want to force a flush of the
->>>> non-transient data as well once we're freeing the underlying pages.
->>>> So how do we do that?  It's not clear to me how the changes below are
->>>> accomplishing that.  Is there a way to explicitly request a full
->>>> device cache flush (ignoring the transient vs non-transient tagging)?
->>>> Since the GuC handles the optimization in the next patch (toggling
->>>> whether flushes are full flushes vs non-transient flushes depending on
->>>> whether media is active), I thought there might be some kind of GuC
->>>> interface to request "please do one full flush now, even if media is idle."
->>>>
->>>
->>> I’m not an expert here by any means, but everything above from Matt seems
->>> like valid concerns. Thomas also raised some concerns in the two previous
->>> revisions; again I’m not an expert, but reading through those, it doesn’t really
->>> seem like he received proper answers to his questions.
->>
->> Its forcing flush via tlb invalidation PPC flag under xe_invalidate_vma( ).
-> 
-> By the way, what is "PPC?"  It seems like it's another new synonym for
-> the device cache?  It's already really confusing that some of our
-> hardware docs use a mix of both "L2" and "L3" to refer to the same
-> device cache for historical reasons...
+--===============5945032942535512065==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Private-physical-cache. It's just what hw side calls the device side 
-l2/l3 on newer igpu (I think LNL+). I assume it is quite different from 
-the implemetation on dgpu, from HW pov, which is maybe why is has a 
-special name. On dgpu they just refer to it as plain l2/l3, not PPC. On 
-dgpu there is also additional SMRO (system-memory-read-only) device 
-cache, which I assume is caching reads over pci to system memory from 
-GPU side, but that gets flushed at the usual places, like end of 
-submission etc. Setting the PPC bit on Guc TLB inval will only flush 
-SMRO on dgpu.
+== Series Details ==
 
-> 
-> 
-> Matt
-> 
->>
->>>
->>> A couple of comments below.
->>>
->>>>
->>>> Matt
->>>>
->>>>>
->>>>> V2(MattA): Expand commit description
->>>>>
->>>>> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
->>>>> ---
->>>>>   drivers/gpu/drm/xe/xe_bo.c      |  3 ++-
->>>>>   drivers/gpu/drm/xe/xe_device.c  | 23 +++++++++++++++++++++++
->>>>> drivers/gpu/drm/xe/xe_device.h  |  1 +
->>>>> drivers/gpu/drm/xe/xe_userptr.c |  3 ++-
->>>>>   4 files changed, 28 insertions(+), 2 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
->>>>> index e9180b01a4e4..4455886b211e 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_bo.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_bo.c
->>>>> @@ -689,7 +689,8 @@ static int xe_bo_trigger_rebind(struct xe_device
->>>>> *xe, struct xe_bo *bo,
->>>>>
->>>>>   		if (!xe_vm_in_fault_mode(vm)) {
->>>>>   			drm_gpuvm_bo_evict(vm_bo, true);
->>>>> -			continue;
->>>>> +			if (!xe_device_needs_cache_flush(xe))
->>>>> +				continue;
->>>
->>> This will trigger a TLB invalidation (and I assume a cache flush) every time we
->>> move or free memory in the 3D stack if it has a binding. It also performs a
->>> synchronous wait on the BO being idle. Both of these are very expensive
->>> operations. I can’t imagine the granularity we want here is to do this on every
->>> move/free with bindings.
->>>
->>> Also, for LR compute with preempt fences, we would trigger the preempt
->>> fences during the wait, so a TLB invalidation after this seems unnecessary,
->>> though perhaps the cache flush is still required?
->>>
->>> I think this needs a bit more explanation, because without knowing a lot about
->>> the exact requirements, the implementation does not look correct.
->>
->> The thing is that we are trying to solve problem with userptr with non-XA pat, consider if that BO got moved while media is not active. As soon as media will come back active, stale cached entries of that object will be flushed as part of full flush , which may corrupt things.
->> There was thinking that with this patch we would at least solve the problem of corruption and later when page_reclamation feature comes in will help in performance as well. But now when page reclamation feature is merged earlier and it tightly coupled with bind/unbind some cases like discussed above (which are not doing unbind immediately on move/free) are missed in reclamation.
->>   
->> So thought was to let this solution go in with little perf hit and discuss with page reclamation owner to come with cleaner solution together.
->>
->> Tejas
->>>
->>>>>   		}
->>>>>
->>>>>   		if (!idle) {
->>>>> diff --git a/drivers/gpu/drm/xe/xe_device.c
->>>>> b/drivers/gpu/drm/xe/xe_device.c index 743c18e0c580..da2abed94bc0
->>>>> 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_device.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_device.c
->>>>> @@ -1097,6 +1097,29 @@ static void tdf_request_sync(struct xe_device
->>> *xe)
->>>>>   	}
->>>>>   }
->>>>>
->>>>> +/**
->>>>> + * xe_device_needs_cache_flush - Whether the cache needs to be
->>>>> +flushed
->>>>> + * @xe: The device to check.
->>>>> + *
->>>>> + * Return: true if the device needs cache flush, false otherwise.
->>>>> + */
->>>>> +bool xe_device_needs_cache_flush(struct xe_device *xe) {
->>>>> +	/* XA is *always* flushed, like at the end-of-submssion (and maybe
->>> other
->>>>> +	 * places), just that internally as an optimisation hw doesn't need to
->>> make
->>>>> +	 * that a full flush (which will also include XA) when Media is
->>>>> +	 * off/powergated, since it doesn't need to worry about GT caches vs
->>> Media
->>>>> +	 * coherency, and only CPU vs GPU coherency, so can make that flush
->>> a
->>>>> +	 * targeted XA flush, since stuff tagged with XA now means it's shared
->>> with
->>>>> +	 * the CPU. The main implication is that we now need to somehow
->>> flush non-XA before
->>>>> +	 * freeing system memory pages, otherwise dirty cachelines could be
->>> flushed after the free
->>>>> +	 * (like if Media suddenly turns on and does a full flush)
->>>>> +	 */
->>>>> +	if (GRAPHICS_VER(xe) >= 35 && !IS_DGFX(xe))
->>>>> +		return true;
->>>>> +	return false;
->>>>> +}
->>>>> +
->>>>>   void xe_device_l2_flush(struct xe_device *xe)  {
->>>>>   	struct xe_gt *gt;
->>>>> diff --git a/drivers/gpu/drm/xe/xe_device.h
->>>>> b/drivers/gpu/drm/xe/xe_device.h index 39464650533b..baf386e0e037
->>>>> 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_device.h
->>>>> +++ b/drivers/gpu/drm/xe/xe_device.h
->>>>> @@ -184,6 +184,7 @@ void xe_device_snapshot_print(struct xe_device
->>>>> *xe, struct drm_printer *p);
->>>>>   u64 xe_device_canonicalize_addr(struct xe_device *xe, u64 address);
->>>>>   u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64
->>>>> address);
->>>>>
->>>>> +bool xe_device_needs_cache_flush(struct xe_device *xe);
->>>>>   void xe_device_td_flush(struct xe_device *xe);  void
->>>>> xe_device_l2_flush(struct xe_device *xe);
->>>>>
->>>>> diff --git a/drivers/gpu/drm/xe/xe_userptr.c
->>>>> b/drivers/gpu/drm/xe/xe_userptr.c index e120323c43bc..b435ea7f9b66
->>>>> 100644
->>>>> --- a/drivers/gpu/drm/xe/xe_userptr.c
->>>>> +++ b/drivers/gpu/drm/xe/xe_userptr.c
->>>>> @@ -114,7 +114,8 @@ static void __vma_userptr_invalidate(struct xe_vm
->>> *vm, struct xe_userptr_vma *uv
->>>>>   				    false, MAX_SCHEDULE_TIMEOUT);
->>>>>   	XE_WARN_ON(err <= 0);
->>>>>
->>>>> -	if (xe_vm_in_fault_mode(vm) && userptr->initial_bind) {
->>>>> +	if ((xe_vm_in_fault_mode(vm) || xe_device_needs_cache_flush(vm-
->>>> xe)) &&
->>>>> +	    userptr->initial_bind) {
->>>
->>> Same concern with the LR preempt fence as above — the hardware will be
->>> interrupted via preempt fences, so it doesn’t seem necessary to invalidate the
->>> TLBs but perhaps we need a cflush and TLB invalidation is the mechanism for
->>> that too?
->>>
->>> Matt
->>>
->>>>>   		err = xe_vm_invalidate_vma(vma);
->>>>>   		XE_WARN_ON(err);
->>>>>   	}
->>>>> --
->>>>> 2.52.0
->>>>>
->>>>
->>>> --
->>>> Matt Roper
->>>> Graphics Software Engineer
->>>> Linux GPU Platform Enablement
->>>> Intel Corporation
-> 
+Series: drm/buddy: Documentation and internal helper cleanup (rev4)
+URL   : https://patchwork.freedesktop.org/series/161140/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68_BAT -> xe-pw-161140v4_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-161140v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#6506]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161140v4/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8751 -> IGT_8752
+  * Linux: xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68 -> xe-pw-161140v4
+
+  IGT_8751: af788251f1ef729d17c802aec2c4547b52059e58 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8752: 8752
+  xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68: b4bfe7d753afaf6ea4950111a309a4e2ef5aef68
+  xe-pw-161140v4: 161140v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161140v4/index.html
+
+--===============5945032942535512065==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/buddy: Documentation and internal helper cleanup (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161140/">https://patchwork.freedesktop.org/series/161140/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161140v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161140v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68_BAT -&gt; xe-pw-161140v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-161140v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@abstime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161140v4/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8751 -&gt; IGT_8752</li>
+<li>Linux: xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68 -&gt; xe-pw-161140v4</li>
+</ul>
+<p>IGT_8751: af788251f1ef729d17c802aec2c4547b52059e58 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8752: 8752<br />
+  xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68: b4bfe7d753afaf6ea4950111a309a4e2ef5aef68<br />
+  xe-pw-161140v4: 161140v4</p>
+
+</body>
+</html>
+
+--===============5945032942535512065==--
