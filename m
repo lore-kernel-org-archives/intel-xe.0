@@ -4,57 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CF31EEA845
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 18:36:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A41FEEA845
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 18:48:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 004F610E289;
-	Thu, 12 Feb 2026 18:36:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B970810E28E;
+	Thu, 12 Feb 2026 18:48:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hr+uDNwv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cKKNiqZl";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 522EB10E289
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Feb 2026 18:36:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DFA510E289;
+ Thu, 12 Feb 2026 18:48:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770921362; x=1802457362;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=ZAuaNudUE19KTZApYXQIWbiO1xva5kgx5kEBpAc0H04=;
- b=hr+uDNwvA2oQFqngKYI9CpuEUHhPpR0Hiq8TL8wI63Z9PHgBQsr5Iar9
- jcbjzT5X3Qr1RyqdeL0FDPQektxXmG2IRi5u2BHO73OUlPMLTU0CENrc5
- KLx6PTBnGFk3ulC9huclRL+R7jz/sTU0iA/bAkcIULW3nhP5ciknM46Iu
- Hug21NaayFT44xeq+1YVWWQZC0Af4sxuzP9B0y8N1HBximiLC1tyWEX1K
- yf4dzohKe6n4JKG9wlSyEtlgMBbuypRGXtQ6eQhmdI4NVrTT6Fd8fYUwz
- KyMtL9qsgECeUJ2BL6/4vYrrEy4j30wNHUEQbFDU9mNWey/a71lyk5AQI Q==;
-X-CSE-ConnectionGUID: LkvTgmTgSfq0VuSddDGlkA==
-X-CSE-MsgGUID: ba5yeg7FQICXG695D6OhdQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="82429206"
-X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; d="scan'208";a="82429206"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2026 10:36:01 -0800
-X-CSE-ConnectionGUID: 1XrJa4eKTcayK0SwYTNUkA==
-X-CSE-MsgGUID: vfX2aixcRsyag9nZeMMjmA==
+ t=1770922103; x=1802458103;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=tNlBaglZ2un3woa2RpJSVT+Y4WohjUmstN3DsXNWUfo=;
+ b=cKKNiqZlIoygOgaWIRbogMbIHFv0hT0yaX2jlwA/E3lHWY7e4jhWTsKJ
+ Pl4M7Qp6+PbhBuAOPrSZrmlolBs8tEeiw5F3GL5y4Ha6iV8S+BQCsJtSb
+ L4B7ZQ4DF1EiNhKXMZk3NrodlPwmp/AKjl+jzKklQpwHUFkGr01BzGwqS
+ DGmBya5TcEirKQTI1ymYqEwPMGMWDxxXqZ1tk6I1gU7VH00mnPvOIwoX/
+ ZDGh+ZEh3Uh6zkCIwmtIKjTYX/MOaJWG7t0n8roFt1AS7GV7YP3aitz1z
+ PF6i+oS/x0EVtxRVJhnZyb1L9kQiQVHsKBasZCU+SdQc2AhXThAR+dgSt A==;
+X-CSE-ConnectionGUID: JjG+khrVRH6woSPgvuXzxw==
+X-CSE-MsgGUID: yBv3FR27ToGL0APyOtnGxw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="72204100"
+X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; d="scan'208";a="72204100"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2026 10:48:23 -0800
+X-CSE-ConnectionGUID: PhSWmBxBQOGc3HCV3wneqQ==
+X-CSE-MsgGUID: BAjSZZ2NTF2Uz1tguJ37EQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; d="scan'208";a="212527968"
-Received: from unknown (HELO [10.241.240.207]) ([10.241.240.207])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2026 10:36:02 -0800
-Message-ID: <cf5e06e4-39e2-4b49-afed-4964a639ba6f@linux.intel.com>
-Date: Thu, 12 Feb 2026 10:35:55 -0800
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO hazy.intel.com)
+ ([10.245.245.217])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2026 10:48:22 -0800
+From: Luca Coelho <luciano.coelho@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH v2 00/15] drm/i915/display: convert a bunch of W/A checks to
+ the new framework
+Date: Thu, 12 Feb 2026 20:45:58 +0200
+Message-ID: <20260212184737.352515-1-luciano.coelho@intel.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/xe3p_xpc: Add new XeCore fuse registers to VF
- runtime regs
-To: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-References: <20260210182519.206952-2-matthew.d.roper@intel.com>
-Content-Language: en-US
-From: Ngai-Mint Kwan <ngai-mint.kwan@linux.intel.com>
-In-Reply-To: <20260210182519.206952-2-matthew.d.roper@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,41 +65,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Matt,
+Hi,
 
-On 2026-02-10 10:25, Matt Roper wrote:
-> SRIOV VFs do not automatically have access to the XeCore fuse registers.
-> Add the two new registers that show up on Xe3p_XPC to the runtime
-> register list to grant VFs access.  Since there's a single runtime
-> register list for all Xe3p, this will technically also grant access on
-> Xe3p_LPG platforms where the registers don't exist, but that should be
-> harmless since even if a VF tries to read a non-existent register on
-> those platforms it will just get back a sensible value of 0x0.
->
-> Fixes: e8100643ff01 ("drm/xe/xe3p_xpc: XeCore mask spans four registers")
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-This looks good to me.
+This series convert the "low hanging fruits" of workaround checks to
+the new framework.  Some of the workarounds check other values that
+are not in the intel_display structure, so they don't directly fit in
+the workaround framework and will be left for later.
 
-Reviewed-by: Ngai-Mint Kwan <ngai-mint.kwan@linux.intel.com>
+In v2:
+   * Added intel-xe in Cc for xe CI (Jani);
+   * Removed NOP intel-overlay.c patch (Jani).
 
-Thanks,
-Ngai-Mint Kwan
-> ---
->   drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c | 2 ++
->   1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-> index b5e0a5b7723e..6586df2fcb91 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_service.c
-> @@ -111,6 +111,8 @@ static const struct xe_reg ver_35_runtime_regs[] = {
->   	XE2_GT_COMPUTE_DSS_2,		/* _MMIO(0x914c) */
->   	XE2_GT_GEOMETRY_DSS_1,		/* _MMIO(0x9150) */
->   	XE2_GT_GEOMETRY_DSS_2,		/* _MMIO(0x9154) */
-> +	XE3P_XPC_GT_GEOMETRY_DSS_3,	/* _MMIO(0x915c) */
-> +	XE3P_XPC_GT_COMPUTE_DSS_3,	/* _MMIO(0x9160) */
->   	SERVICE_COPY_ENABLE,		/* _MMIO(0x9170) */
->   };
->   
+Please review.
+
+Cheers,
+Luca.
+
+
+Luca Coelho (15):
+  drm/i915/display: convert audio workaround to new framework
+  drm/i915/display: convert W/As in intel_display_power.c to new
+    framework
+  drm/i915/display: convert W/As in intel_cdclk.c to new framework
+  drm/i915/display: convert W/As in intel_cursor.c to new framework
+  drm/i915/display: convert W/As in intel_ddi.c to new framework
+  drm/i915/display: convert W/As in intel_display.c to new framework
+  drm/i915/display: convert W/As in intel_display_device.c to new
+    framework
+  drm/i915/display: convert W/As in intel_dp_mst.c to new framework
+  drm/i915/display: convert W/As in intel_fbc.c to new framework
+  drm/i915/display: convert W/As in intel_flipq.c to new framework
+  drm/i915/display: convert W/As in intel_modeset_setup.c to new
+    framework
+  drm/i915/display: convert W/As in intel_pmdemand.c to new framework
+  drm/i915/display: convert W/As in intel_psr.c to new framework
+  drm/i915/display: convert W/As in skl_universal_plane.c to new
+    framework
+  drm/i915/display: convert W/As in skl_watermark.c to new framework
+
+ drivers/gpu/drm/i915/display/intel_audio.c    | 16 +----
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  3 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  4 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  4 +-
+ .../drm/i915/display/intel_display_device.c   |  3 +-
+ .../drm/i915/display/intel_display_power.c    | 22 +++----
+ .../gpu/drm/i915/display/intel_display_wa.c   | 65 +++++++++++++++++++
+ .../gpu/drm/i915/display/intel_display_wa.h   | 25 +++++++
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  3 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  4 +-
+ drivers/gpu/drm/i915/display/intel_flipq.c    | 13 +---
+ .../drm/i915/display/intel_modeset_setup.c    |  3 +-
+ drivers/gpu/drm/i915/display/intel_pmdemand.c |  8 ++-
+ drivers/gpu/drm/i915/display/intel_psr.c      | 20 +++---
+ .../drm/i915/display/skl_universal_plane.c    |  6 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  3 +-
+ 17 files changed, 140 insertions(+), 64 deletions(-)
+
+-- 
+2.51.0
 
