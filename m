@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 702FDECD6FF
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 00:48:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 753E4E9E2E8
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 01:05:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02C3F10E6C3;
-	Thu, 12 Feb 2026 00:48:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="apKmZjQt";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 550BF10E6BF;
- Thu, 12 Feb 2026 00:48:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770857335; x=1802393335;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=jPnEFah/ajzpPWlxK47PANZ6xlZJZ8S8TK8qhSIEwdg=;
- b=apKmZjQtE6zYCA5iVA9Jief//6WBA4RNBOxxTnYmw7opXBlSMwwWeaO3
- V62nN2iMCNglw9mLiPBa1SLaZtDXV1zQet225UGB9gTo/jFYcja/VA33F
- YQcaFvXHssRqgTkApj9bfgCmNsQPCsXfOzo5R045TaSyDb6xH0X36qUnU
- Xivq6vKuDCeQOR8sHW7QHzM4Ya6x/XPy4j4rxf9Rr44xvea64TprN/Cnp
- f7NL7KDqxei1boGYTVn1YCt8jGdNnl6NSBv7hnHINvrllxCKSFaq+awtD
- cTmn8PV3xiTXB59ZKHvsg0lDOIcsE5lu3Lzz3mnh9XvZoAdTFCRn4EDYM g==;
-X-CSE-ConnectionGUID: a1mr/xudSG6I6l1UhoDn0A==
-X-CSE-MsgGUID: izAm6DXNR4qCx770zHjogw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="72116821"
-X-IronPort-AV: E=Sophos;i="6.21,285,1763452800"; d="scan'208";a="72116821"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2026 16:48:55 -0800
-X-CSE-ConnectionGUID: ZcxUZZZzSS6M/Sm+LvsmqQ==
-X-CSE-MsgGUID: +WeHUEaETumFHMfA9Lpbtw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,285,1763452800"; d="scan'208";a="211707001"
-Received: from kialmah1-desk5.jf.intel.com ([10.23.33.174])
- by orviesa010.jf.intel.com with ESMTP; 11 Feb 2026 16:48:54 -0800
-From: Khaled Almahallawy <khaled.almahallawy@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>,
- Uma Shankar <uma.shankar@intel.com>, Jani Nikula <jani.nikula@intel.com>,
- Ville Syrjala <ville.syrjala@linux.intel.com>
-Subject: [RFC PATCH] drm/i915/display: Prevent NV12 Y-plane allocation from
- stealing userspace planes
-Date: Wed, 11 Feb 2026 16:48:52 -0800
-Message-ID: <20260212004852.1920270-1-khaled.almahallawy@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C40410E15A;
+	Thu, 12 Feb 2026 01:05:59 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08AD210E15A;
+ Thu, 12 Feb 2026 01:05:57 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0947307667606531094=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Add_debugfs_facility_to_cat?=
+ =?utf-8?q?ch_RTP_mistakes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 12 Feb 2026 01:05:57 -0000
+Message-ID: <177085835701.247860.15395884856381752331@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260211233411.614951-6-matthew.d.roper@intel.com>
+In-Reply-To: <20260211233411.614951-6-matthew.d.roper@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,93 +36,196 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The driver automatically allocates a Y-plane (4A/5A) when userspace
-configures an NV12 surface. The allocation loop doesn't check if a
-candidate plane is already configured by userspace in the same atomic
-commit, causing conflict as observed in this i915_display_info:
+--===============0947307667606531094==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-  [PLANE:124:plane 4A]: type=OVL
-      uapi: [FB:566] AB24 little-endian (0x34324241),0x0,1920x1280, visible=visible
-      planar: Linked to [PLANE:34:plane 1A] as a Y plane
-      hw: [FB:564] NV12 little-endian (0x3231564e),0x0,1920x1080, visible=yes
+== Series Details ==
 
-Plane 4A's uapi state shows userspace's AB24 framebuffer, but the hw
-state shows it was reprogrammed with the NV12 Y-plane.
+Series: Add debugfs facility to catch RTP mistakes
+URL   : https://patchwork.freedesktop.org/series/161517/
+State : failure
 
-Example triggered by experiment with IGT test to commit NV12 + multiple
-AB24 planes:
+== Summary ==
 
-  === Testing with NV12 primary + 3 ABGR8888 overlays ===
-    Plane 0 (Primary): NV12 1920x1080 at (0, 0)
-    Plane 1 (Overlay 0): ABGR8888 1920x1280 (fullscreen) at (0, 0)
-    Plane 2 (Overlay 1): ABGR8888 1920x1280 (fullscreen) at (0, 0)
-    Plane 3 (Overlay 2): ABGR8888 1920x1280 (fullscreen) at (0, 0)
-    TEST_ONLY passed, committing...
-    Atomic commit SUCCEEDED
+CI Bug Log - changes from xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68_BAT -> xe-pw-161517v1_BAT
+====================================================
 
-The bug triggers a kernel WARNING in unlink_nv12_plane():
-  WARNING: drivers/gpu/drm/i915/display/intel_plane.c:1521
-  drm_WARN_ON(plane_state->uapi.visible)
+Summary
+-------
 
-Fix by checking uapi.fb before allocating a Y-plane. If set, userspace
-configured this plane, so skip to the next candidate. This enables
-graceful fallback (4A busy -> try 5A) rather than the current
-behavior that steals planes from userspace.
+  **FAILURE**
 
-IGT test and kernel fix generated with assistance from Claude Sonnet 4.5
-through an iterative process. The following is a summary of the prompts
-used:
+  Serious unknown changes coming with xe-pw-161517v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-161517v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-IGT test generation prompt:
-Need an IGT test to:
-1. Reproduce the NV12 + multiple AB24 plane allocation conflict
-2. Work across different GPU vendors (not Intel-specific)
-3. Discover hardware limits through iteration (not hardcoded)
-4. Test atomic commit behavior with mixed formats
-5. Validate driver properly rejects invalid configurations
-6. Help debug plane allocation issues (interactive inspection)
+  
 
-Kernel fix debug process:
-1. Explained NV12 UV->Y plane linking mechanism (link_nv12_planes)
-2. Traced Y-plane selection algorithm and hardware constraints
-3. Analyzed i915_display_info output showing uapi vs hw state mismatch
-4. Triggered kernel WARNING in unlink_nv12_plane() confirming the bug
-5. Traced kernel logs through atomic commit sequence
-6. Identified root cause: Y-plane allocation checks uapi.crtc, but that's
-   set later during plane validation. uapi.fb is set earlier during state
-   setup, making it the correct indicator of userspace configuration
-7. Evaluated uapi.fb vs uapi.visible for detection timing
-8. Initially suggested rejecting commit with -EINVAL, but decided graceful
-   fallback with continue is better - allows trying alternate Y-planes
-   (4A busy -> 5A) instead of failing entire atomic commit
-9. Validated fix prevents plane stealing while allowing alternate Y-plane
+Participating hosts (12 -> 12)
+------------------------------
 
-Cc: Uma Shankar <uma.shankar@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_plane.c | 4 ++++
- 1 file changed, 4 insertions(+)
+  No changes in participating hosts
 
-diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
-index 3dc2ed52147f..57d1a9cd226e 100644
---- a/drivers/gpu/drm/i915/display/intel_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_plane.c
-@@ -1578,6 +1578,10 @@ static int icl_check_nv12_planes(struct intel_atomic_state *state,
- 			if (IS_ERR(y_plane_state))
- 				return PTR_ERR(y_plane_state);
- 
-+			/* Reject if this Y-plane is being configured by userspace */
-+			if (y_plane_state->uapi.fb)
-+				continue;
-+
- 			break;
- 		}
- 
--- 
-2.43.0
+Possible new issues
+-------------------
 
+  Here are the unknown changes that may have been introduced in xe-pw-161517v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@sriov_basic@enable-vfs-autoprobe-on:
+    - bat-ptl-1:          [PASS][1] -> [ABORT][2] +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
+    - bat-wcl-2:          [PASS][3] -> [ABORT][4] +1 other test abort
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-wcl-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/bat-wcl-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
+    - bat-bmg-2:          [PASS][5] -> [ABORT][6] +1 other test abort
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
+    - bat-adlp-7:         [PASS][7] -> [ABORT][8] +1 other test abort
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html
+
+  * igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:
+    - bat-bmg-1:          [PASS][9] -> [ABORT][10] +1 other test abort
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+    - bat-ptl-2:          [PASS][11] -> [ABORT][12] +1 other test abort
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+    - bat-atsm-2:         [PASS][13] -> [ABORT][14] +1 other test abort
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+    - bat-wcl-1:          [PASS][15] -> [ABORT][16] +1 other test abort
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-wcl-1/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/bat-wcl-1/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-161517v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [TIMEOUT][17] ([Intel XE#6506]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+
+
+Build changes
+-------------
+
+  * Linux: xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68 -> xe-pw-161517v1
+
+  IGT_8751: af788251f1ef729d17c802aec2c4547b52059e58 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68: b4bfe7d753afaf6ea4950111a309a4e2ef5aef68
+  xe-pw-161517v1: 161517v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/index.html
+
+--===============0947307667606531094==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add debugfs facility to catch RTP mistakes</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161517/">https://patchwork.freedesktop.org/series/161517/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68_BAT -&gt; xe-pw-161517v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-161517v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-161517v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-161517v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-on:</p>
+<ul>
+<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/bat-ptl-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
+<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-wcl-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/bat-wcl-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/bat-adlp-7/igt@sriov_basic@enable-vfs-autoprobe-on.html">ABORT</a> +1 other test abort</li>
+</ul>
+</li>
+<li>
+<p>igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1:</p>
+<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">ABORT</a> +1 other test abort</li>
+<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/bat-ptl-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">ABORT</a> +1 other test abort</li>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/bat-atsm-2/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">ABORT</a> +1 other test abort</li>
+<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-wcl-1/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/bat-wcl-1/igt@sriov_basic@enable-vfs-autoprobe-on@numvfs-1.html">ABORT</a> +1 other test abort</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-161517v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@abstime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68 -&gt; xe-pw-161517v1</li>
+</ul>
+<p>IGT_8751: af788251f1ef729d17c802aec2c4547b52059e58 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68: b4bfe7d753afaf6ea4950111a309a4e2ef5aef68<br />
+  xe-pw-161517v1: 161517v1</p>
+
+</body>
+</html>
+
+--===============0947307667606531094==--
