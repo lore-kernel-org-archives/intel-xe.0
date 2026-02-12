@@ -4,56 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 312E2EE3698
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 17:26:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28762EE36AE
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 17:32:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCEE010E779;
-	Thu, 12 Feb 2026 17:26:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E227910E286;
+	Thu, 12 Feb 2026 17:32:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e7yXCKKr";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="mSbKzM+w";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 937D710E77B
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Feb 2026 17:26:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770917193; x=1802453193;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=knaf0/ylJHbUzSbGA8kAOvQG8rqw1pmUxs2gY4uU3Uk=;
- b=e7yXCKKrbWragpcPu6JCXhbXKMxFzAPLwtBE12nFromvOebHRHRkNJ0z
- TKkvOQVBsk+w8DfE20FMo1sNXmnltl3FErO8nipqxHWZFBTE6RTWm8omA
- 2Dv5LVsgWO3C5JEJBl4NoKB7bW0nULs7nsL/ahfUjj/gFhUDpGAr93r8r
- QdYIS+bB82jBuBIMkX06ttkK+2u2Gp8vDjXTsTnZ9iVsxtrux4RPOLIRC
- cNjN1sN4GxEeHVNFw2r5/n0lHDxFBLKoRNIotpuxduVmPW6iOjo0CP9ST
- uM8f1rBqXD3p8SdPyw8w6Ajm2ju9Wd6ematmD4sguo+J/IUMFv1T5cXW0 A==;
-X-CSE-ConnectionGUID: MlDFTLNdRIaFcxn9klRhlg==
-X-CSE-MsgGUID: D/DNywRYRwuwibh/OdSJaA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="72000014"
-X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; d="scan'208";a="72000014"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2026 09:26:33 -0800
-X-CSE-ConnectionGUID: ndin+J3TSOCuEGoA/o8TyA==
-X-CSE-MsgGUID: bgZ1GqlLTbGuR6p5Lka9Mw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; d="scan'208";a="217627313"
-Received: from dut6245dg2frd.fm.intel.com ([10.80.54.109])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2026 09:26:29 -0800
-From: Sobin Thomas <sobin.thomas@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: thomas.hellstrom@intel.com, nishit.sharma@intel.com,
- Sobin Thomas <sobin.thomas@intel.com>
-Subject: [PATCH i-g-t 2/2] test/intel/xe_vm: Test to check no overcommit flag
- in fault mode
-Date: Thu, 12 Feb 2026 17:25:42 +0000
-Message-ID: <20260212172546.794257-3-sobin.thomas@intel.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260212172546.794257-1-sobin.thomas@intel.com>
-References: <20260212172546.794257-1-sobin.thomas@intel.com>
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com
+ [209.85.214.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F88F10E787
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Feb 2026 17:32:39 +0000 (UTC)
+Received: by mail-pl1-f169.google.com with SMTP id
+ d9443c01a7336-2a7bced39cfso647685ad.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Feb 2026 09:32:39 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1770917559; cv=none;
+ d=google.com; s=arc-20240605;
+ b=dWAJ/5iWLGeOxFEu61elhusFfHn7St2pU1ieWSUW2dc6IwI3nMayIlAmxC4h3NxQKS
+ x7EQy91HOrJ+D80qHpN02Tn1w258RpK2fLBDYiWL/efIsXg6l2LG0MWCDa+EOQ5vUpQC
+ JAJ8XUajEgnwhhYb+iMHyPT2y6k8YmeLXLFt95J6PdVmq2u1oz3+1A9fireMNCEvlDcX
+ VITeEBQViWUNitbzdRYjM3Q5TJO39nDjWQ6XEhq/PWFtVMDjdeAj8Gn7b62cVYyEzZSv
+ z6OhoPPsguJKPipNRNRCPCEIUyiWq22ITBzmSbRXc7BMRSRBdwojI3NEyD/6YSaInfn6
+ hR2Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=KJWO+CWz2+ZX1hwrogxjvfwO0uyUciYnaKJTLU1x3oY=;
+ fh=RFppEzO4elKhGEbrAkH0pVrVCwuXjdpbMgvSHH9pWZc=;
+ b=WIhLGvCZ2xTUe2XlPiAuR08henKtAGb3doy8Rl2aev8DPipWbqS9Ammb028jlcH+8C
+ RyCGx32ZlBYHDSn8vFapFIoEEG3wHhqsyxveS44SV80+NJ0Am0+WMvy6RWaL+eXVP5zn
+ 2URUKaspJ7gnQcY/ZHgweFg+SDiB4w/RqpAs7ZqcpzNQ3pzATiaUDZYu+YNiKDlulMX6
+ 1ulWfH5+BD9P/sbjvZHmHQKskR8huAQzn+ldhJOMh7olFlvMxi32LsUFBk3cUx3b5TSX
+ vdPLLzanW3N158To/eQaeLcQJvyzqOPRm/Sa8ycET2r3KSN7Gm1yOuLJMQg5dwaR5pYJ
+ vevA==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1770917559; x=1771522359; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=KJWO+CWz2+ZX1hwrogxjvfwO0uyUciYnaKJTLU1x3oY=;
+ b=mSbKzM+w/Boi49/ccyMoUtgk6U+QYiUcaC3amaoDs6hF0sjcDUxaMzEHUZn6MiVezL
+ jOaUqazxh+PUz4ztQYcRPq4z/JYAigEKNS8C7ecPFn8kHY0eYtYmZk2Vnn5Bjd3oBaNP
+ KuirHhwlUhYVCeDuskFzreTSltNzSnygp1pbTVBsBr98NCcY9IqWCVHH1yxucw8tIPC9
+ q8bC8rZaXxfJXMeX+eaJ4N1iohwft9Ah2GS0c7pcMXICUDCByu1++7w8XN12uUuARi/C
+ T4Gqc2ixuvRHMjD4H78p4t0PoQepWnvXFNQ0mYDgUzAYJndwmJQwroAgqN4JlLAbQFHs
+ xaeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1770917559; x=1771522359;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=KJWO+CWz2+ZX1hwrogxjvfwO0uyUciYnaKJTLU1x3oY=;
+ b=t6pJ2H0D4nHxyEVjfn8xlub3Mc6rZ0bfZ9VDyEhN0BfTUkUVTjfNb3UDpgC95r45NN
+ pwK/KolEi17tL0d9vgzB8p4XWqT8CWRfJWFFgjNVvZg0W0Lxl22q/ocCduufth6vFdg2
+ t+oo2mdSQLYdI7epJKD1+8yuK8SgJ210zIb4g0AdTm65qs2QQyyym5Li6RkxU7ESXn6+
+ AaWyZkI869r3wj2c6Cl+jAmA5AgL3VpDuhHPNU+FQ5l23cmVfLK4CclJ+vtWgFJ6CPNR
+ ILDCwVSY67VADaLgxdYxys4YZc4G0iMd+v6xeuloZ+i8ZMpWKZOjOUHu1jnralAib1/+
+ 9N3w==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVF1tcaJTXlDZL2quwH4UW5BUBtr+AJoDeP3aO78X7icghvqO2xpyBGm10zCBnq3hdNn7EefIBUNQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzjiaZUaFWM20Wjf9pzyMS7rxKdqOxMoh/AEQ5pAHh3P5Ldt1he
+ gtvs1zXwzmXS1nlxmp+rraNytml3NpFxwRVmRFrS34EXcZL6YnbdjbjnqtHBdENzPh5qRrVx3/R
+ fJehngmM5mb/KHQVN+g/3A7w0s+6+uUFNlVqz+Qk=
+X-Gm-Gg: AZuq6aI8tTSmgqFvdCRtPPyGwmmmzI5414GvgU6pBF1EEuMpUtIdajLZTkcASq2KaWX
+ C3zWBnVzp9rKjqSq+Q+lCrQH10E6hobHhu/exaUgqeQ+CKAX3Bp9VIAl5TaMrRePRAxrECTsltM
+ 6cnnp35ilcz8Xwd+iUEyBQL2XgAAH20fzadXISd7KQ0NKoSCci76ort8wBtqoOuJBRLEuV5Y/tg
+ 6vWsW6TXBnLjW5NtuM9V3AcE7Yf+TdIz7i6aOYZWDlIDy17f4U75/sujbB5yOBmy3fFbPrlpwQP
+ CjXDCLCFOSS9zspwCwq8HCCyhqqsftbEkfyVVN8IMQ==
+X-Received: by 2002:a17:902:d4c8:b0:2aa:d320:e969 with SMTP id
+ d9443c01a7336-2ab3b18986fmr26218815ad.8.1770917558647; Thu, 12 Feb 2026
+ 09:32:38 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <cover.1770379986.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1770379986.git.jani.nikula@intel.com>
+From: =?UTF-8?Q?Juha=2DPekka_Heikkil=C3=A4?= <juhapekka.heikkila@gmail.com>
+Date: Thu, 12 Feb 2026 19:32:27 +0200
+X-Gm-Features: AZwV_QiZn4TfGQHluDXPNcwCixx5hFSZrHcH64ZJp433UqxfD81wtNyyp1Vdtdk
+Message-ID: <CAJ=qYWSJ8n71Y0tE=dqGcwib1Fq7mq=4NKnFsD0sODiUhmcVrA@mail.gmail.com>
+Subject: Re: [PATCH 00/10] drm/i915/dpt: refactoring, move to parent interface
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,198 +103,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In existing tests there is no support to check no overcommit flag
-(DRM_XE_VM_CREATE_NO_VM_OVERCOMMIT) which will disallow overcommit
-during bind
+I didn't spot anything special on these other than maybe patch
+"drm/i915/dpt: switch to i915 runtime pm calls" could use better
+commit message.
 
-- test_vm_fault_mode_no_overcommit(): Tests that fault-mode VMs with
-  DRM_XE_VM_CREATE_NO_VM_OVERCOMMIT enabled properly prevent eviction
-  and validate OOM error handling.
+set is
+Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 
-These tests ensure deterministic VM behavior and prevent unpredictable
-eviction-related performance degradation in memory-constrained scenarios.
-
-Signed-off-by: Sobin Thomas <sobin.thomas@intel.com>
----
- include/drm-uapi/xe_drm.h |   1 +
- tests/intel/xe_vm.c       | 131 ++++++++++++++++++++++++++++++++++++--
- 2 files changed, 128 insertions(+), 4 deletions(-)
-
-diff --git a/include/drm-uapi/xe_drm.h b/include/drm-uapi/xe_drm.h
-index 077e66a68..2efe27ad5 100644
---- a/include/drm-uapi/xe_drm.h
-+++ b/include/drm-uapi/xe_drm.h
-@@ -983,6 +983,7 @@ struct drm_xe_vm_create {
- #define DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE	(1 << 0)
- #define DRM_XE_VM_CREATE_FLAG_LR_MODE	        (1 << 1)
- #define DRM_XE_VM_CREATE_FLAG_FAULT_MODE	(1 << 2)
-+#define DRM_XE_VM_CREATE_FLAG_NO_VM_OVERCOMMIT  (1 << 3)
- 	/** @flags: Flags */
- 	__u32 flags;
- 
-diff --git a/tests/intel/xe_vm.c b/tests/intel/xe_vm.c
-index cf45d1051..d908f6005 100644
---- a/tests/intel/xe_vm.c
-+++ b/tests/intel/xe_vm.c
-@@ -21,7 +21,9 @@
- #include "xe/xe_spin.h"
- #include <string.h>
- 
--
-+#define USER_FENCE_VALUE 0xdeadbeefdeadbeefull
-+#define BO_SIZE xe_bb_size(fd, SZ_512M)
-+#define MAX_BUFS ((int)(xe_visible_vram_size(fd, 0) / BO_SIZE))
- 
- static uint32_t
- addr_low(uint64_t addr)
-@@ -2387,9 +2389,6 @@ static void invalid_vm_id(int fd)
-  */
- static void test_oom(int fd)
- {
--#define USER_FENCE_VALUE 0xdeadbeefdeadbeefull
--#define BO_SIZE xe_bb_size(fd, SZ_512M)
--#define MAX_BUFS ((int)(xe_visible_vram_size(fd, 0) / BO_SIZE))
- 	uint64_t addr = 0x1a0000;
- 	uint64_t vm_sync;
- 	uint32_t bo[MAX_BUFS + 1];
-@@ -2934,6 +2933,125 @@ gpu_done:
- 	xe_vm_destroy(fd, vm);
- }
- 
-+/**
-+ * SUBTEST: evict-vm-fault-no-overcommit
-+ * Description: Test if vm fault mode with NO_VM_OVERCOMMIT flag prevents overcommit
-+ * Functionality: NO_VM_OVERCOMMIT flag prevents per-VM overcommit in fault mode
-+ * Test category: functionality test
-+ */
-+static void test_vm_fault_no_overcommit(int fd, struct drm_xe_engine_class_instance *eci,
-+					uint64_t system_size, uint64_t vram_size,
-+					uint64_t overcommit_multiplier)
-+{
-+	uint64_t overcommit_size;
-+	uint32_t vm;
-+	uint32_t *bos;
-+	int num_bos;
-+	size_t nf_bo_size = 64 * 1024 * 1024;  // 64MB per BO
-+	int i;
-+	int create_ret;
-+	int bind_err;
-+	bool overcommit_detected = false;
-+	uint32_t bind_exec_queue;
-+	uint64_t data_addr = 0x300000000;
-+
-+	struct drm_xe_sync bind_sync[1] = {
-+		{
-+		.type = DRM_XE_SYNC_TYPE_USER_FENCE,
-+		.flags = DRM_XE_SYNC_FLAG_SIGNAL,
-+		.timeline_value = USER_FENCE_VALUE
-+		},
-+	};
-+
-+	igt_debug("Starting fault-mode NO_VM_OVERCOMMIT test");
-+
-+	overcommit_size = ALIGN(vram_size * overcommit_multiplier, 4096);
-+
-+	if (overcommit_size > system_size) {
-+		igt_debug("Limiting overcommit size from %llu MB to %llu MB",
-+			  (unsigned long long)(overcommit_size >> 20),
-+			  (unsigned long long)(system_size >> 20));
-+		overcommit_size = ALIGN(system_size, 4096);
-+	}
-+
-+	num_bos = (overcommit_size / nf_bo_size) + 1;
-+	bos = calloc(num_bos, sizeof(*bos));
-+	igt_assert(bos);
-+
-+	igt_debug("Fault mode NO_OVERCOMMIT: allocating %d BOs of %llu MB each, "
-+		  "target overcommit=%llu MB, vram=%llu MB",
-+		  num_bos, (unsigned long long)(nf_bo_size >> 20),
-+		  (unsigned long long)(overcommit_size >> 20),
-+		  (unsigned long long)(vram_size >> 20));
-+
-+	/* Create fault-mode VM with NO_VM_OVERCOMMIT flag */
-+	vm = xe_vm_create(fd, DRM_XE_VM_CREATE_FLAG_LR_MODE |
-+		       DRM_XE_VM_CREATE_FLAG_FAULT_MODE |
-+		       DRM_XE_VM_CREATE_FLAG_NO_VM_OVERCOMMIT, 0);
-+	igt_assert(vm);
-+
-+	bind_exec_queue = xe_bind_exec_queue_create(fd, vm, 0);
-+
-+	/* Try to create and bind BOs - should eventually fail or limit overcommit */
-+	for (i = 0; i < num_bos; i++) {
-+		struct {
-+			uint64_t vm_sync;
-+		} *data;
-+
-+		/* CREATE BO */
-+		create_ret = __xe_bo_create(fd, 0, nf_bo_size,
-+					    vram_if_possible(fd, eci->gt_id),
-+					    DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM,
-+					    NULL, &bos[i]);
-+		if (create_ret) {
-+			igt_debug("BO create failed with error %d (%s)",
-+				  -create_ret, strerror(-create_ret));
-+			overcommit_detected = true;
-+			num_bos = i;
-+			break;
-+		}
-+
-+		igt_debug("BO created successfully - %llu MB",
-+			  (unsigned long long)(nf_bo_size >> 20));
-+
-+		/* MAP BO */
-+		data = xe_bo_map(fd, bos[i], 4096);
-+		memset(data, 0, 4096);
-+		bind_sync[0].addr = to_user_pointer(&data->vm_sync);
-+
-+		/* Try to bind with IMMEDIATE flag - subject to no overcommit check */
-+		bind_err = __xe_vm_bind(fd, vm, bind_exec_queue, bos[i], 0,
-+					data_addr + (i * nf_bo_size), nf_bo_size,
-+					DRM_XE_VM_BIND_OP_MAP, DRM_XE_VM_BIND_FLAG_IMMEDIATE,
-+					bind_sync, 1, 0, 0, 0);
-+		if (bind_err) {
-+			igt_debug("Bind failed at %d/%d with error %d (%s)",
-+				  i, num_bos, -bind_err, strerror(-bind_err));
-+			igt_assert_f(bind_err == -ENOMEM || bind_err == -ENOSPC,
-+				     "Unexpected bind error %d (%s)", -bind_err,
-+				     strerror(-bind_err));
-+			overcommit_detected = true;
-+			num_bos = i;
-+			break;
-+		}
-+
-+		munmap(data, 4096);
-+	}
-+
-+	igt_debug("NO_VM_OVERCOMMIT test: overcommit %s (created %d BOs)",
-+		  overcommit_detected ? "limited" : "completed",
-+		  num_bos);
-+
-+	/* Cleanup */
-+	xe_exec_queue_destroy(fd, bind_exec_queue);
-+	for (i = 0; i < num_bos; i++) {
-+		if (bos[i])
-+			gem_close(fd, bos[i]);
-+	}
-+	free(bos);
-+	xe_vm_destroy(fd, vm);
-+}
-+
- int igt_main()
- {
- 	struct drm_xe_engine_class_instance *hwe, *hwe_non_copy = NULL;
-@@ -3350,6 +3468,11 @@ int igt_main()
- 		igt_assert(xe_visible_vram_size(fd, 0));
- 		test_oom(fd);
- 	}
-+	igt_subtest("evict-vm-fault-no-overcommit") {
-+		igt_require(xe_has_vram(fd));
-+		igt_assert(xe_visible_vram_size(fd, 0));
-+		test_vm_fault_no_overcommit(fd, hwe, system_size, vram_size, 2);
-+	}
- 
- 	igt_fixture()
- 		drm_close_driver(fd);
--- 
-2.52.0
-
+On Fri, Feb 6, 2026 at 2:13=E2=80=AFPM Jani Nikula <jani.nikula@intel.com> =
+wrote:
+>
+>
+> Jani Nikula (10):
+>   drm/i915/dpt: move display/intel_dpt.c to i915_dpt.c
+>   drm/i915/dpt: pass obj, size instead of framebuffer to
+>     intel_dpt_create()
+>   drm/i915/dpt: move create/destroy to parent interface
+>   drm/i915/dpt: move suspend/resume to parent interface
+>   drm/i915/dpt: remove display/intel_dpt.h
+>   drm/i915/dpt: drop _common from the DPT file names
+>   drm/i915/dpt: switch to i915 runtime pm calls
+>   drm/i915/dpt: rename i915 specific functions to i915_dpt_ prefix
+>   drm/i915/dpt: rename struct i915_dpt to intel_dpt
+>   drm/i915/dpt: pass opaque struct intel_dpt around instead of
+>     i915_address_space
+>
+>  drivers/gpu/drm/i915/Makefile                 |   2 +-
+>  drivers/gpu/drm/i915/display/intel_display.c  |   1 -
+>  .../drm/i915/display/intel_display_types.h    |   2 +-
+>  drivers/gpu/drm/i915/display/intel_dpt.c      | 316 +++---------------
+>  drivers/gpu/drm/i915/display/intel_dpt.h      |  22 +-
+>  .../gpu/drm/i915/display/intel_dpt_common.c   |  35 --
+>  .../gpu/drm/i915/display/intel_dpt_common.h   |  13 -
+>  drivers/gpu/drm/i915/display/intel_fb.c       |  21 +-
+>  drivers/gpu/drm/i915/display/intel_fb_pin.c   |  15 +-
+>  drivers/gpu/drm/i915/display/intel_parent.c   |  28 ++
+>  drivers/gpu/drm/i915/display/intel_parent.h   |   9 +
+>  .../drm/i915/display/skl_universal_plane.c    |   1 -
+>  drivers/gpu/drm/i915/i915_dpt.c               | 277 +++++++++++++++
+>  drivers/gpu/drm/i915/i915_dpt.h               |  20 ++
+>  drivers/gpu/drm/i915/i915_driver.c            |   2 +
+>  drivers/gpu/drm/xe/Makefile                   |   2 +-
+>  drivers/gpu/drm/xe/display/xe_fb_pin.c        |  20 --
+>  include/drm/intel/display_parent_interface.h  |  11 +
+>  18 files changed, 419 insertions(+), 378 deletions(-)
+>  delete mode 100644 drivers/gpu/drm/i915/display/intel_dpt_common.c
+>  delete mode 100644 drivers/gpu/drm/i915/display/intel_dpt_common.h
+>  create mode 100644 drivers/gpu/drm/i915/i915_dpt.c
+>  create mode 100644 drivers/gpu/drm/i915/i915_dpt.h
+>
+> --
+> 2.47.3
+>
