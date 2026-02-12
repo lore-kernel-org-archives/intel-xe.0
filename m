@@ -4,57 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DA8DEE369F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C716EE36A0
 	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 16:35:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EA1910E789;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A21D710E78C;
 	Thu, 12 Feb 2026 16:35:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P8yY8xEi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PpGCmPVU";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E706B10E77B
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Feb 2026 16:35:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6510710E771
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Feb 2026 16:35:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770914111; x=1802450111;
+ t=1770914110; x=1802450110;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ik+Z2kowxJU0SCyXKHGpO0oaoL3ZO1FwEYFC0/ACDI8=;
- b=P8yY8xEiXNd/UA8Ls8woqITKeiJAvXIoy3JNrux297oDwxHsEOkAwDDL
- 87UEcYZ41Q7oI7Pcvuuc+vdyoWrvUg4tPGQRVDN04XVcIbnqxfL8TnxQm
- h25kZuSN5xqgZuBMU19vtKMekdcm2PnAEIAGZaBZ1ZvUF6GvZvIMpllbg
- qBlCvBsJtlYy73N23PKpbleld7A3BMc5kQUQP3C9OSHer8f2GKjgkBy6l
- YYIZya38QpTGYu4sB1TAuJ51AU13IaoEvFlfUIiqmcCkWzIvczanialso
- /5SA+ZpPdufjUXmOsZ4BIDMOxFlfVRKY3pWKnQN/Qcd/xLcGMvz9rSKEy Q==;
-X-CSE-ConnectionGUID: qgShJaxNQNiGOzkk7VVhyA==
-X-CSE-MsgGUID: +LIq70NgQpGN96fSbntUJA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="89498591"
-X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; d="scan'208";a="89498591"
+ bh=IoSD4WMCGxmN7jS+8EocE1sCFkJUZ17AfiNdbQ3waa4=;
+ b=PpGCmPVUBQgeZlWjSYegbWY+gcZyNhhlV2BCWm0gY8WQzlUSwUz/pgRa
+ bfCrfhBw11T6OJXCu+0tcZKU2Rp8ZSL86VIackuMpx5WHxmrgEeqP7QO9
+ MoYTzjPV30lEuQcJkk7vDjqw+4V4wccXDr1dsJuE/gYkUslpUht7Bf112
+ yGqe933Ne6ymIKqKWlfEnIz03HaWOkzZi+t66z5r5xM3QWnzM/gkHto6v
+ fno6cZrczlDDFU037UNZmmmggx1AsnHEHdW9GQh8tGnals0fVsEYWv5fC
+ 2LBNLQ6S85bFOQgGpmeWsZXDdXkoHr9Q7wRFPhF+rbTVzNd5NH2OlzC7e w==;
+X-CSE-ConnectionGUID: Z+SE3jQjRICOP8inols0SQ==
+X-CSE-MsgGUID: jbVIiT/LSAifmH7+6YQyPw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="89498563"
+X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; d="scan'208";a="89498563"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2026 08:35:11 -0800
-X-CSE-ConnectionGUID: AKjYbW2oTvaRJD4G0lVccw==
-X-CSE-MsgGUID: Lr17xDQjSySPstzUwcY7og==
+ 12 Feb 2026 08:35:06 -0800
+X-CSE-ConnectionGUID: 268DDHh+S9m8m5BVby3DqA==
+X-CSE-MsgGUID: bXfYu5qNSrSayAzqYJrBZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; d="scan'208";a="235634050"
+X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; d="scan'208";a="235634026"
 Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
  ([10.190.239.37])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2026 08:35:09 -0800
+ 12 Feb 2026 08:35:03 -0800
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.auld@intel.com, matthew.brost@intel.com,
  himal.prasad.ghimiray@intel.com, Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [RFC PATCH 7/7] [DO NOT REVIEW]drm/xe/cri: Add sysfs interface for
- bad gpu vram pages
-Date: Thu, 12 Feb 2026 22:04:47 +0530
-Message-ID: <20260212163439.1514363-16-tejas.upadhyay@intel.com>
+Subject: [RFC PATCH 4/7] drm/xe: Handle physical memory address error
+Date: Thu, 12 Feb 2026 22:04:44 +0530
+Message-ID: <20260212163439.1514363-13-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260212163439.1514363-9-tejas.upadhyay@intel.com>
 References: <20260212163439.1514363-9-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,149 +68,302 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Starting CRI, Include a sysfs interface designed to expose information
-about bad VRAM pages—those identified as having hardware faults
-(e.g., ECC errors). This interface allows userspace tools and
-administrators to monitor the health of the GPU's local memory and
-track the status of page retirement.To get details on bad gpu vram
-pages can be found under /sys/bus/pci/devices/bdf/vram_bad_pages.
+This functionality represents a significant step in making
+the xe driver gracefully handle hardware memory degradation.
+By integrating with the DRM Buddy allocator, the driver
+can permanently "carve out" faulty memory so it isn't reused
+by subsequent allocations.
 
-Where The format is, pfn : gpu page size : flags
+Buddy Block Reservation:
+----------------------
+When a memory address is reported as faulty, the driver instructs
+the DRM Buddy allocator to reserve a block of the specific page
+size (typically 4KB). This marks the memory as "dirty/used"
+indefinitely.
 
-flags:
-R: reserved, this gpu page is reserved.
-P: pending for reserve, this gpu page is marked as bad, will be reserved in next window of page_reserve.
-F: unable to reserve. this gpu page can’t be reserved due to some reasons.
+Two-Stage Tracking:
+-----------------
+Offlined Pages:
+Pages that have been successfully isolated and removed from the
+available memory pool.
 
-For example if you read using cat /sys/bus/pci/devices/bdf/vram_bad_pages,
-0x00000000 : 0x00001000 : R
-0x00001234 : 0x00001000 : P
+Queued Pages:
+Addresses that have been flagged as faulty but are currently in
+use by a process. These are tracked until the associated buffer
+object (BO) is released or migrated, at which point they move
+to the "offlined" state.
+
+Sysfs Reporting:
+--------------
+The patch exposes these metrics through a standard interface,
+allowing administrators to monitor VRAM health:
+/sys/bus/pci/devices/<device_id>/vram_bad_bad_pages
+
+V2:
+- Fix mm->avail counter issue
+- Remove unused code and handle clean up in case of error
 
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_sysfs.c |  2 +
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 78 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |  1 +
- 3 files changed, 81 insertions(+)
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 184 ++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |  21 +++
+ 2 files changed, 199 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
-index a73e0e957cb0..e6a017601428 100644
---- a/drivers/gpu/drm/xe/xe_device_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
-@@ -14,6 +14,7 @@
- #include "xe_pcode_api.h"
- #include "xe_pcode.h"
- #include "xe_pm.h"
-+#include "xe_ttm_vram_mgr.h"
- 
- /**
-  * DOC: Xe device sysfs
-@@ -284,6 +285,7 @@ int xe_device_sysfs_init(struct xe_device *xe)
- 		if (ret)
- 			return ret;
- 	}
-+	xe_ttm_vram_sysfs_init(xe);
- 
- 	return 0;
- }
 diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index cb3394000e83..c6a81ccaa9d2 100644
+index 4e852eed5170..82d11348e5ce 100644
 --- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
 +++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -744,3 +744,81 @@ int xe_ttm_tbo_handle_addr_fault(struct xe_tile *tile, unsigned long addr)
- 	return ret;
- }
- EXPORT_SYMBOL(xe_ttm_tbo_handle_addr_fault);
-+
-+static void xe_ttm_vram_dump_bad_pages_info(char *buf, struct xe_ttm_vram_mgr *mgr)
+@@ -276,6 +276,26 @@ static const struct ttm_resource_manager_func xe_ttm_vram_mgr_func = {
+ 	.debug	= xe_ttm_vram_mgr_debug
+ };
+ 
++static void xe_ttm_vram_free_bad_pages(struct drm_device *dev, struct xe_ttm_vram_mgr *mgr)
 +{
-+	const unsigned int element_size = sizeof("0xabcdabcd : 0x12345678 : R\n") - 1;
 +	struct xe_ttm_offline_resource *pos, *n;
-+	struct drm_buddy_block *block;
-+	ssize_t s = 0;
 +
 +	mutex_lock(&mgr->lock);
 +	list_for_each_entry_safe(pos, n, &mgr->offlined_pages, offlined_link) {
-+		block = list_first_entry(&pos->blocks,
-+					 struct drm_buddy_block,
-+					 link);
-+		s += scnprintf(&buf[s], element_size + 1,
-+			       "0x%08llx : 0x%08llx : %1s\n",
-+			       drm_buddy_block_offset(block) >> PAGE_SHIFT,
-+			       drm_buddy_block_size(&mgr->mm, block),
-+			       "R");
++		--mgr->n_offlined_pages;
++		drm_buddy_free_list(&mgr->mm, &pos->blocks, 0);
++		mgr->visible_avail += pos->used_visible_size;
++		list_del(&pos->offlined_link);
++		kfree(pos);
 +	}
 +	list_for_each_entry_safe(pos, n, &mgr->queued_pages, queued_link) {
-+		block = list_first_entry(&pos->blocks,
-+					 struct drm_buddy_block,
-+					 link);
-+		s += scnprintf(&buf[s], element_size + 1,
-+			       "0x%08llx : 0x%08llx : %1s\n",
-+			       drm_buddy_block_offset(block) >> PAGE_SHIFT,
-+			       drm_buddy_block_size(&mgr->mm, block),
-+			       "P");
++		list_del(&pos->queued_link);
++		mgr->n_queued_pages--;
++		kfree(pos);
 +	}
 +	mutex_unlock(&mgr->lock);
 +}
 +
-+static ssize_t vram_bad_pages_show(struct device *dev, struct device_attribute *attr, char *buf)
-+{
-+	struct pci_dev *pdev = to_pci_dev(dev);
-+	struct xe_device *xe = pdev_to_xe_device(pdev);
-+	struct ttm_resource_manager *man;
-+	u8 mem_type = XE_PL_VRAM1;
+ static void xe_ttm_vram_mgr_fini(struct drm_device *dev, void *arg)
+ {
+ 	struct xe_device *xe = to_xe_device(dev);
+@@ -287,6 +307,8 @@ static void xe_ttm_vram_mgr_fini(struct drm_device *dev, void *arg)
+ 	if (ttm_resource_manager_evict_all(&xe->ttm, man))
+ 		return;
+ 
++	xe_ttm_vram_free_bad_pages(dev, mgr);
 +
-+	do {
-+		man = ttm_manager_type(&xe->ttm, mem_type);
-+		struct xe_ttm_vram_mgr *mgr = to_xe_ttm_vram_mgr(man);
+ 	WARN_ON_ONCE(mgr->visible_avail != mgr->visible_size);
+ 
+ 	drm_buddy_fini(&mgr->mm);
+@@ -315,6 +337,8 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+ 	man->func = &xe_ttm_vram_mgr_func;
+ 	mgr->mem_type = mem_type;
+ 	mutex_init(&mgr->lock);
++	INIT_LIST_HEAD(&mgr->offlined_pages);
++	INIT_LIST_HEAD(&mgr->queued_pages);
+ 	mgr->default_page_size = default_page_size;
+ 	mgr->visible_size = io_size;
+ 	mgr->visible_avail = io_size;
+@@ -531,14 +555,162 @@ static struct ttm_buffer_object *xe_ttm_vram_addr_to_tbo(struct drm_buddy *mm, u
+ 	return NULL;
+ }
+ 
+-int xe_ttm_tbo_handle_addr_fault(struct xe_tile *tile, unsigned long addr)
++static int xe_ttm_vram_reserve_page_at_addr(struct xe_device *xe, unsigned long addr,
++					    struct xe_ttm_vram_mgr *vram_mgr, struct drm_buddy *mm)
+ {
+-	struct xe_ttm_vram_mgr *vram_mgr = &tile->mem.vram->ttm;
+-	struct drm_buddy mm = vram_mgr->mm;
+-	struct ttm_buffer_object *tbo;
++	int ret = 0;
++	u64 size = SZ_4K;
++	struct ttm_buffer_object *tbo = NULL;
++	struct xe_ttm_offline_resource *nentry;
+ 
+-	tbo = xe_ttm_vram_addr_to_tbo(&mm, addr);
++	mutex_lock(&vram_mgr->lock);
++	tbo = xe_ttm_vram_addr_to_tbo(mm, addr);
+ 
+-	return 0;
++	nentry = kzalloc(sizeof(*nentry), GFP_KERNEL);
++	if (!nentry)
++		return -ENOMEM;
++	INIT_LIST_HEAD(&nentry->blocks);
 +
-+		if (man)
-+			xe_ttm_vram_dump_bad_pages_info(buf, mgr);
-+		--mem_type;
-+	} while (mem_type >= XE_PL_VRAM0);
++	if (tbo) {
++		struct xe_ttm_vram_mgr_resource *pvres;
++		struct ttm_placement place = {};
++		struct ttm_operation_ctx ctx = {
++			.interruptible = false,
++			.gfp_retry_mayfail = false,
++		};
++		bool locked;
++		struct xe_ttm_offline_resource *pos, *n;
++		struct xe_bo *pbo = ttm_to_xe_bo(tbo);
 +
-+	return sysfs_emit(buf, "%s\n", buf);
-+}
-+static DEVICE_ATTR_RO(vram_bad_pages);
++		xe_bo_get(pbo);
++		/* Critical kernel BO? */
++		if (pbo->ttm.type == ttm_bo_type_kernel &&
++		    !(pbo->flags & XE_BO_FLAG_FORCE_USER_VRAM)) {
++			mutex_unlock(&vram_mgr->lock);
++			kfree(nentry);
++			xe_ttm_vram_free_bad_pages(&xe->drm, vram_mgr);
++			xe_bo_put(pbo);
++			drm_warn(&xe->drm,
++				 "%s: corrupt addr: 0x%lx in critical kernel bo, wedge now\n",
++				__func__, addr);
++			/* Wedge the device */
++			xe_device_declare_wedged(xe);
++			return -EIO;
++		}
++		pvres = to_xe_ttm_vram_mgr_resource(pbo->ttm.resource);
++		nentry->id = ++vram_mgr->n_queued_pages;
++		nentry->blocks = pvres->blocks;
++		list_add(&nentry->queued_link, &vram_mgr->queued_pages);
++		mutex_unlock(&vram_mgr->lock);
 +
-+static void xe_ttm_vram_sysfs_fini(void *arg)
-+{
-+	struct xe_device *xe = arg;
++		/* Purge BO containing address */
++		spin_lock(&pbo->ttm.bdev->lru_lock);
++		locked = dma_resv_trylock(pbo->ttm.base.resv);
++		spin_unlock(&pbo->ttm.bdev->lru_lock);
++		WARN_ON(!locked);
++		ret = ttm_bo_validate(&pbo->ttm, &place, &ctx);
++		drm_WARN_ON(&xe->drm, ret);
++		xe_bo_put(pbo);
++		if (locked)
++			dma_resv_unlock(pbo->ttm.base.resv);
 +
-+	device_remove_file(xe->drm.dev, &dev_attr_vram_bad_pages);
++		/* Reserve page at address addr*/
++		mutex_lock(&vram_mgr->lock);
++		ret = drm_buddy_alloc_blocks(mm, addr, addr + size,
++					     size, size, &nentry->blocks,
++					     DRM_BUDDY_RANGE_ALLOCATION);
++
++		if (ret) {
++			drm_warn(&xe->drm, "Could not reserve page at addr:0x%lx, ret:%d\n",
++				 addr, ret);
++			mutex_unlock(&vram_mgr->lock);
++			return ret;
++		}
++		if ((addr + size) <= vram_mgr->visible_size) {
++			nentry->used_visible_size = size;
++		} else {
++			struct drm_buddy_block *block;
++
++			list_for_each_entry(block, &nentry->blocks, link) {
++				u64 start = drm_buddy_block_offset(block);
++
++				if (start < vram_mgr->visible_size) {
++					u64 end = start + drm_buddy_block_size(mm, block);
++
++					nentry->used_visible_size +=
++						min(end, vram_mgr->visible_size) - start;
++				}
++			}
++		}
++		vram_mgr->visible_avail -= nentry->used_visible_size;
++		list_for_each_entry_safe(pos, n, &vram_mgr->queued_pages, queued_link) {
++			if (pos->id == nentry->id) {
++				--vram_mgr->n_queued_pages;
++				list_del(&pos->queued_link);
++				break;
++			}
++		}
++		list_add(&nentry->offlined_link, &vram_mgr->offlined_pages);
++		++vram_mgr->n_offlined_pages;
++		mutex_unlock(&vram_mgr->lock);
++		return ret;
++
++	} else {
++		ret = drm_buddy_alloc_blocks(mm, addr, addr + size,
++					     size, size, &nentry->blocks,
++					     DRM_BUDDY_RANGE_ALLOCATION);
++		if (ret) {
++			drm_warn(&xe->drm, "Could not reserve page at addr:0x%lx, ret:%d\n",
++				 addr, ret);
++			kfree(nentry);
++			mutex_unlock(&vram_mgr->lock);
++			return ret;
++		}
++		if ((addr + size) <= vram_mgr->visible_size) {
++			nentry->used_visible_size = size;
++		} else {
++			struct drm_buddy_block *block;
++
++			list_for_each_entry(block, &nentry->blocks, link) {
++				u64 start = drm_buddy_block_offset(block);
++
++				if (start < vram_mgr->visible_size) {
++					u64 end = start + drm_buddy_block_size(mm, block);
++
++					nentry->used_visible_size +=
++						min(end, vram_mgr->visible_size) - start;
++				}
++			}
++		}
++		vram_mgr->visible_avail -= nentry->used_visible_size;
++		nentry->id = ++vram_mgr->n_offlined_pages;
++		list_add(&nentry->offlined_link, &vram_mgr->offlined_pages);
++		mutex_unlock(&vram_mgr->lock);
++	}
++	/* Success */
++	return ret;
 +}
 +
 +/**
-+ * xe_ttm_vram_sysfs_init - Initialize vram sysfs component
-+ * @tile: Xe Tile object
++ * xe_ttm_tbo_handle_addr_fault - Handle vram physical address error flaged
++ * @tile: pointer to tile where address belongs
++ * @addr: physical faulty address
 + *
-+ * It needs to be initialized after the main tile component is ready
++ * Handle the physcial faulty address error on specific tile.
 + *
-+ * Returns: 0 on success, negative error code on error.
++ * Returns 0 for success, negative error code otherwise.
 + */
-+int xe_ttm_vram_sysfs_init(struct xe_device *xe)
++int xe_ttm_tbo_handle_addr_fault(struct xe_tile *tile, unsigned long addr)
 +{
-+	int err;
++	struct xe_ttm_vram_mgr *vram_mgr = &tile->mem.vram->ttm;
++	struct xe_device *xe = tile_to_xe(tile);
++	struct drm_buddy *mm = &vram_mgr->mm;
++	int ret;
 +
-+	err = device_create_file(xe->drm.dev, &dev_attr_vram_bad_pages);
-+	if (err)
-+		return 0;
++	 /* Reserve page at address */
++	ret = xe_ttm_vram_reserve_page_at_addr(xe, addr, vram_mgr, mm);
++	if (ret == -EIO)
++		return 0; /* success, wedged by kernel. */
++	return ret;
+ }
+ EXPORT_SYMBOL(xe_ttm_tbo_handle_addr_fault);
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+index a71e14818ec2..85511b51af75 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+@@ -19,6 +19,14 @@ struct xe_ttm_vram_mgr {
+ 	struct ttm_resource_manager manager;
+ 	/** @mm: DRM buddy allocator which manages the VRAM */
+ 	struct drm_buddy mm;
++	/** @offlined_pages: List of offlined pages */
++	struct list_head offlined_pages;
++	/** @n_offlined_pages: Number of offlined pages */
++	u16 n_offlined_pages;
++	/** @queued_pages: List of queued pages */
++	struct list_head queued_pages;
++       /** @n_queued_pages: Number of queued pages */
++	u16 n_queued_pages;
+ 	/** @visible_size: Proped size of the CPU visible portion */
+ 	u64 visible_size;
+ 	/** @visible_avail: CPU visible portion still unallocated */
+@@ -45,4 +53,17 @@ struct xe_ttm_vram_mgr_resource {
+ 	unsigned long flags;
+ };
+ 
++struct xe_ttm_offline_resource {
++	/** @offlined_link: Link to offlined pages */
++	struct list_head offlined_link;
++	/** @queued_link: Link to queued pages */
++	struct list_head queued_link;
++	/** @blocks: list of DRM buddy blocks */
++	struct list_head blocks;
++	/** @used_visible_size: How many CPU visible bytes this resource is using */
++	u64 used_visible_size;
++	/** @id: The id of an offline resource */
++	u16 id;
++};
 +
-+	return devm_add_action_or_reset(xe->drm.dev, xe_ttm_vram_sysfs_fini, xe);
-+}
-+EXPORT_SYMBOL(xe_ttm_vram_sysfs_init);
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-index 5872e8b48779..6e69140c0be8 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-@@ -34,6 +34,7 @@ void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
- int xe_ttm_tbo_handle_addr_fault(struct xe_tile *tile, unsigned long addr);
- void xe_ttm_vram_dump_allocated_blocks(struct drm_device *dev, struct drm_buddy *mm,
- 				       struct drm_printer *p);
-+int xe_ttm_vram_sysfs_init(struct xe_device *xe);
- static inline struct xe_ttm_vram_mgr_resource *
- to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
- {
+ #endif
 -- 
 2.52.0
 
