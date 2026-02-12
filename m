@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2A3BEE369E
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 16:35:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA7E8EE369F
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 16:35:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63C2910E76C;
-	Thu, 12 Feb 2026 16:35:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 727A010E76D;
+	Thu, 12 Feb 2026 16:35:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OW6Cezow";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fk9u4Cyd";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CDDE10E29C
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Feb 2026 16:34:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2661310E76C
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Feb 2026 16:35:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770914100; x=1802450100;
+ t=1770914102; x=1802450102;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=39NyruODG779TBfoNYseSQrowg1ZGccrQ6up+++nw6U=;
- b=OW6CezowekHIxp7agzH6UG1DiJoXHUTIsZh8DxvKBQ6nYnZqoPAASYK2
- AA7w8ZGUHBOv6KDbSj9KlXhJxsMiuOyPohZPEEfrPlWZ5FONmla0nqHmh
- ODiwAG3lF4o6SmwKgU8PUrlhVyJTOQSYq2nN8MHvGKM+3jlaM1XW/skz6
- pZoAQNMtSwWDVKsqK+T1tEoHSHK5mwFShIUan697nTtJOZxGBglkvUL/h
- 2u+Rz+yzh4q7hE7QFH0O2fVJB0noQjaZBehtgJ4jh/DQ+tjAg8QtA+awr
- DeAESYkDkGvP2SXrbpgdSrxee80+WYu7gXDPb/m5ZCpfgXkrmaRf/4KIi w==;
-X-CSE-ConnectionGUID: 48/l9mNzRni+aM+/H1oGAg==
-X-CSE-MsgGUID: uqzqunh/TMOkJI9UpOPFPQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="89498519"
-X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; d="scan'208";a="89498519"
+ bh=SyHKh+CWqkO1L9cNEn5eO8NkfW3uuw2YEdhxQhwYqvA=;
+ b=fk9u4CydmLJaDLe6/0G4oEio6/ZcertPxdvRcf9Gyd4qMhmwXP0VuqQz
+ UlaaBw7ScJ7sCJLO62tfhqZB8rp+dYPUmt6dc2GcHU/bTK7G7uC7QzndO
+ tIUNM/GDIKkecwXqenStZR4i2NXvOe5n2mbNlcXzvD7i3+PWDNN0PZkK6
+ zOD5fz7sxBchxx+Ck3pAiTx52ddD94Vne+y5ep7oqWVssZg/s2iJiDuYe
+ jIyakKDbpIPLUovci2Pudlbsrrpi7OgjbWS4VlABV7mI9u1GoiqmntQCe
+ ZM2Gih9FBdUkiYZ/p6m4E/vnEs5RT/Q7dbGVSeFT4kqjvbk3Gi6wY4Aht A==;
+X-CSE-ConnectionGUID: CDNqq3MQT+m9W1a57Ps1vw==
+X-CSE-MsgGUID: Yc2jSBamRmOrFAyRv+GiQg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="89498540"
+X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; d="scan'208";a="89498540"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2026 08:34:59 -0800
-X-CSE-ConnectionGUID: ka9y5AF7TcW1Qjc4AwLcSw==
-X-CSE-MsgGUID: JDloskRrTdSMDFJbmZsIew==
+ 12 Feb 2026 08:35:01 -0800
+X-CSE-ConnectionGUID: u81Dd6X0TyC2KuEWpfSD7A==
+X-CSE-MsgGUID: ZR+di+WpT9yJx0rElrrzFw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; d="scan'208";a="235634007"
+X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; d="scan'208";a="235634010"
 Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
  ([10.190.239.37])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2026 08:34:57 -0800
+ 12 Feb 2026 08:34:59 -0800
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.auld@intel.com, matthew.brost@intel.com,
  himal.prasad.ghimiray@intel.com, Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [RFC PATCH 1/7] drm/xe: Add a helper to get vram region from physical
- address
-Date: Thu, 12 Feb 2026 22:04:41 +0530
-Message-ID: <20260212163439.1514363-10-tejas.upadhyay@intel.com>
+Subject: [RFC PATCH 2/7] drm/xe/svm: Use xe_vram_addr_to_region
+Date: Thu, 12 Feb 2026 22:04:42 +0530
+Message-ID: <20260212163439.1514363-11-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260212163439.1514363-9-tejas.upadhyay@intel.com>
 References: <20260212163439.1514363-9-tejas.upadhyay@intel.com>
@@ -69,51 +68,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Adding a helper function to retrieve a VRAM region from a physical address
-is a necessary enhancement for supporting shared virtual memory (SVM) and
-advanced memory management features like memory offlining.
+Replace the direct use of block->private with the helper function
+xe_vram_addr_to_region to get vram region.
 
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vram.c | 16 ++++++++++++++++
- drivers/gpu/drm/xe/xe_vram.h |  1 +
- 2 files changed, 17 insertions(+)
+ drivers/gpu/drm/xe/xe_svm.c | 9 ++-------
+ 1 file changed, 2 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vram.c b/drivers/gpu/drm/xe/xe_vram.c
-index 0538dcb8b18c..0768b4075bc9 100644
---- a/drivers/gpu/drm/xe/xe_vram.c
-+++ b/drivers/gpu/drm/xe/xe_vram.c
-@@ -365,3 +365,19 @@ resource_size_t xe_vram_region_actual_physical_size(const struct xe_vram_region
- 	return vram ? vram->actual_physical_size : 0;
- }
- EXPORT_SYMBOL_IF_KUNIT(xe_vram_region_actual_physical_size);
-+
-+struct xe_vram_region *xe_vram_addr_to_region(struct xe_device *xe, resource_size_t addr)
-+{
-+	struct xe_vram_region *vr;
-+	struct xe_tile *tile;
-+	int id;
-+
-+	for_each_tile(tile, xe, id) {
-+		vr = tile->mem.vram;
-+		if ((addr <= vr->dpa_base + vr->actual_physical_size) &&
-+		    (addr + SZ_4K >= vr->dpa_base))
-+			return vr;
-+	}
-+	return NULL;
-+}
-+EXPORT_SYMBOL(xe_vram_addr_to_region);
-diff --git a/drivers/gpu/drm/xe/xe_vram.h b/drivers/gpu/drm/xe/xe_vram.h
-index 72860f714fc6..49ef89acba1c 100644
---- a/drivers/gpu/drm/xe/xe_vram.h
-+++ b/drivers/gpu/drm/xe/xe_vram.h
-@@ -20,5 +20,6 @@ resource_size_t xe_vram_region_io_size(const struct xe_vram_region *vram);
- resource_size_t xe_vram_region_dpa_base(const struct xe_vram_region *vram);
- resource_size_t xe_vram_region_usable_size(const struct xe_vram_region *vram);
- resource_size_t xe_vram_region_actual_physical_size(const struct xe_vram_region *vram);
-+struct xe_vram_region *xe_vram_addr_to_region(struct xe_device *xe, resource_size_t addr);
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 213f0334518a..e773456af040 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -762,7 +762,8 @@ static int xe_svm_populate_devmem_pfn(struct drm_pagemap_devmem *devmem_allocati
+ 	int j = 0;
  
- #endif
+ 	list_for_each_entry(block, blocks, link) {
+-		struct xe_vram_region *vr = block->private;
++		u64 block_start = drm_buddy_block_offset(block);
++		struct xe_vram_region *vr = xe_vram_addr_to_region(bo->tile->xe, block_start);
+ 		struct drm_buddy *buddy = vram_to_buddy(vr);
+ 		u64 block_pfn = block_offset_to_pfn(devmem_allocation->dpagemap,
+ 						    drm_buddy_block_offset(block));
+@@ -1033,9 +1034,7 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+ 	struct dma_fence *pre_migrate_fence = NULL;
+ 	struct xe_device *xe = vr->xe;
+ 	struct device *dev = xe->drm.dev;
+-	struct drm_buddy_block *block;
+ 	struct xe_validation_ctx vctx;
+-	struct list_head *blocks;
+ 	struct drm_exec exec;
+ 	struct xe_bo *bo;
+ 	int err = 0, idx;
+@@ -1072,10 +1071,6 @@ static int xe_drm_pagemap_populate_mm(struct drm_pagemap *dpagemap,
+ 					&dpagemap_devmem_ops, dpagemap, end - start,
+ 					pre_migrate_fence);
+ 
+-		blocks = &to_xe_ttm_vram_mgr_resource(bo->ttm.resource)->blocks;
+-		list_for_each_entry(block, blocks, link)
+-			block->private = vr;
+-
+ 		xe_bo_get(bo);
+ 
+ 		/* Ensure the device has a pm ref while there are device pages active. */
 -- 
 2.52.0
 
