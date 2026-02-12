@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1EDCEDF04D
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 06:35:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA884EDF045
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 06:43:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4AC810E6EB;
-	Thu, 12 Feb 2026 06:35:53 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gKrzIEb5";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD2E610E6E6;
- Thu, 12 Feb 2026 06:35:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770878152; x=1802414152;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=47MAfgVy33HiZplpX8HQkF2EutU3fokF53UkfRJlzSg=;
- b=gKrzIEb5TJMYpXncwxf+ejOf6gFpvPZR5t7kp20rVwCCOzWk6wIDMzxR
- piGI3JkD0oFu34BsdYsRVKHlxDFXp9IlYFWXv+E6zhgfGlG5EX3If640r
- sP7QvFFdaraDSKkQp9px2aZmRn1MxFSx5/atVKHdIbOcUoEO+TEzdGsm7
- N2NQzVXAA831996dCCsPMir5oZaAtXMxmstzOvgcPnrc5KY6Hr+/0+yZG
- aq0eFwJvna8EDIodRjxVDb43ReiQzjBB0LfXL/8wCiynj0YFUxGa8jD87
- tG9khp2NyXsGXYaRixQj1fwJgyLMigRnItI04XVDbm2MRAaZGrWwnxH0v g==;
-X-CSE-ConnectionGUID: S7C4d2o0Rui/+eC0gNwr0Q==
-X-CSE-MsgGUID: 036AgPZCQyewTwx6ETwUnA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="74642601"
-X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; d="scan'208";a="74642601"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2026 22:35:52 -0800
-X-CSE-ConnectionGUID: HjKdjeLLRs+ks+d1k+3vTQ==
-X-CSE-MsgGUID: CEOiKAj8Q6i2waCElLzbGA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; d="scan'208";a="212591668"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa007.jf.intel.com with ESMTP; 11 Feb 2026 22:35:50 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Thu, 12 Feb 2026 12:04:22 +0530
-Subject: [PATCH v2 2/2] drm/i915/lt_phy_regs: Add SoC/OS turnaround time
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1F3810E6DF;
+	Thu, 12 Feb 2026 06:43:35 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F05A110E6DF;
+ Thu, 12 Feb 2026 06:43:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1682372044463195617=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260212-timeout-v2-2-74bccad5018d@intel.com>
-References: <20260212-timeout-v2-0-74bccad5018d@intel.com>
-In-Reply-To: <20260212-timeout-v2-0-74bccad5018d@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, uma.shankar@intel.com, 
- suraj.kandpal@intel.com, ankit.k.nautiyal@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Arun R Murthy <arun.r.murthy@intel.com>
-X-Mailer: b4 0.15-dev
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/bo=3A_Redirect_fault?=
+ =?utf-8?q?s_to_dummy_page_for_wedged_device_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 12 Feb 2026 06:43:33 -0000
+Message-ID: <177087861394.249007.17649448483970622701@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260212055622.2054991-1-raag.jadav@intel.com>
+In-Reply-To: <20260212055622.2054991-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,42 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On top the timeouts mentioned in the spec which includes only the PHY
-timeouts include the SoC and the OS turnaround time.
-The overhead value is based on the stress test results with multiple
-available panels.
+--===============1682372044463195617==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_lt_phy_regs.h | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-index 37e46fb9abde4156ebd7ad1eb6cbbc12e7026b23..ff6d7829dbb9c50b2001d079b435b894faf9659e 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-@@ -6,12 +6,12 @@
- #ifndef __INTEL_LT_PHY_REGS_H__
- #define __INTEL_LT_PHY_REGS_H__
- 
--#define XE3PLPD_MSGBUS_TIMEOUT_FAST_US	500
-+#define XE3PLPD_MSGBUS_TIMEOUT_FAST_US		500
- #define XE3PLPD_MACCLK_TURNON_LATENCY_MS	2
--#define XE3PLPD_MACCLK_TURNOFF_LATENCY_US	1
-+#define XE3PLPD_MACCLK_TURNOFF_LATENCY_US	10
- #define XE3PLPD_RATE_CALIB_DONE_LATENCY_MS	1
--#define XE3PLPD_RESET_START_LATENCY_US	10
--#define XE3PLPD_PWRDN_TO_RDY_LATENCY_US	4
-+#define XE3PLPD_RESET_START_LATENCY_US		10
-+#define XE3PLPD_PWRDN_TO_RDY_LATENCY_US		10
- #define XE3PLPD_RESET_END_LATENCY_MS		2
- 
- /* LT Phy MAC Register */
+Series: drm/xe/bo: Redirect faults to dummy page for wedged device (rev2)
+URL   : https://patchwork.freedesktop.org/series/161507/
+State : success
 
--- 
-2.25.1
+== Summary ==
 
+CI Bug Log - changes from xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68_BAT -> xe-pw-161507v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (12 -> 12)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-161507v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#6506]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161507v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+
+
+Build changes
+-------------
+
+  * Linux: xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68 -> xe-pw-161507v2
+
+  IGT_8751: af788251f1ef729d17c802aec2c4547b52059e58 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68: b4bfe7d753afaf6ea4950111a309a4e2ef5aef68
+  xe-pw-161507v2: 161507v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161507v2/index.html
+
+--===============1682372044463195617==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/bo: Redirect faults to dummy page for wedged device (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161507/">https://patchwork.freedesktop.org/series/161507/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161507v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161507v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68_BAT -&gt; xe-pw-161507v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (12 -&gt; 12)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-161507v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@abstime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161507v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68 -&gt; xe-pw-161507v2</li>
+</ul>
+<p>IGT_8751: af788251f1ef729d17c802aec2c4547b52059e58 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68: b4bfe7d753afaf6ea4950111a309a4e2ef5aef68<br />
+  xe-pw-161507v2: 161507v2</p>
+
+</body>
+</html>
+
+--===============1682372044463195617==--
