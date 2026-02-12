@@ -4,87 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B479EE3695
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 15:33:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49F3BEE369C
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 15:54:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEFEF10E761;
-	Thu, 12 Feb 2026 15:33:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=invisiblethingslab.com header.i=@invisiblethingslab.com header.b="RfRQL2c5";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="k/YJier4";
-	dkim-atps=neutral
-Received: from fhigh-b3-smtp.messagingengine.com
- (fhigh-b3-smtp.messagingengine.com [202.12.124.154])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F189D10E761
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Feb 2026 15:32:59 +0000 (UTC)
-Received: from phl-compute-03.internal (phl-compute-03.internal [10.202.2.43])
- by mailfhigh.stl.internal (Postfix) with ESMTP id 4E9CE7A0087;
- Thu, 12 Feb 2026 10:32:59 -0500 (EST)
-Received: from phl-frontend-04 ([10.202.2.163])
- by phl-compute-03.internal (MEProxy); Thu, 12 Feb 2026 10:32:59 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- invisiblethingslab.com; h=cc:cc:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm3; t=1770910379;
- x=1770996779; bh=pzE9KKW6qafWHwPYCp/i7IiR/YM3KW7UQdsEwQKUmS8=; b=
- RfRQL2c5ZgjDgxF6+X5wPK+KDnZVtt7x8F7sn+L3jmyhGYq5vZ0Nj4NnqVhcBeXz
- 3b3ZL3GlRS4RLWjw8xOBoQKo7Zus2rNqiWhXgZzov3WlafFUK3GQOmfa40L0spZ/
- wLcwMr9P2UAjtl08vtSUDkTrhnBi0ipOHRi/s2AhzzOKGvFVqDYzE12KFf0uBKjm
- qhRQrySBcYhg8zSwZifS4sj6tw0tPaUagQleu1cWn9B2v49LOrIHtVp3wHWCxZDI
- tgjkPhjwYsp5/9/htXKiXl3PVbdJX6nL3wCaPM1nNvo7vG1h7OlCEo31MkpJ/0uJ
- voiS3batfyjsip3F1wqcyQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:content-type:date:date
- :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:subject:subject:to
- :to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
- 1770910379; x=1770996779; bh=pzE9KKW6qafWHwPYCp/i7IiR/YM3KW7UQds
- EwQKUmS8=; b=k/YJier428BKIWUIKaTE1jGxgEiyoNTJ1m/OLB06XTXad9qVakj
- i9X07Xe0kd5b+wjZfiKRSVJri/nEoO+VN/FCkFCMUkjOYZAu7i8mD5Mazq97TSGq
- MSAMqvTBzEKo12TzElaOTQj5nIl+HNPmGcBsd6nQY1sc4FM4U2XDnW32bRKAVrXw
- /DsAkIZFAls6l6ZEbOMkhnL4ib6oLSbOauKF/zr1wY8ICVp+5+l/oknioshVI2Ue
- HWkGEf0c2cs567xjX1RKNqAg70jP5vkVecLJDNLOwmDhnixA8LE0Ja+mOGKlwkVj
- 1JbPuVMliZqo5D83EoQjkJsrQ9azRZXjuyA==
-X-ME-Sender: <xms:qvKNabg2ZyWCBbMOojXR5MSrzhPRbhBuB9VjyxUnYOTVea3mYmXCzA>
- <xme:qvKNafwfhpKv22dPbOag1ORwTDYT1PD-cKnIMM9K9kLVTKexRgfS92RJiQq2wjVDo
- XHEuDoNXj_7dCxjXmBqomfy9eyhTcjTOaQl7pYYJaCr6qzzaA>
-X-ME-Received: <xmr:qvKNaeKBiVLR1UlBJpP0znOkVEjQYHqakWWYlO6WA9y7U2SIbw5Dw7wc7U_jw8y7x6xT9uoBJ_Se-PU20YmRMqGFaogExIWwFJk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddvtdehjeegucetufdoteggodetrf
- dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
- rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
- gurhepfffhvfevuffkfhggtggujgesghdtreertddtjeenucfhrhhomhepofgrrhgvkhcu
- ofgrrhgtiiihkhhofihskhhiqdfikphrvggtkhhiuceomhgrrhhmrghrvghksehinhhvih
- hsihgslhgvthhhihhnghhslhgrsgdrtghomheqnecuggftrfgrthhtvghrnhepgfduleet
- feevhfefheeiteeliefhjefhleduveetteekveettddvgeeuteefjedunecuvehluhhsth
- gvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrrhhmrghrvghksehi
- nhhvihhsihgslhgvthhhihhnghhslhgrsgdrtghomhdpnhgspghrtghpthhtohepfedpmh
- houggvpehsmhhtphhouhhtpdhrtghpthhtoheprhhoghgvrhdrphgruhestghithhrihig
- rdgtohhmpdhrtghpthhtohepgigvnhdquggvvhgvlheslhhishhtshdrgigvnhhprhhojh
- gvtghtrdhorhhgpdhrtghpthhtohepihhnthgvlhdqgigvsehlihhsthhsrdhfrhgvvggu
- vghskhhtohhprdhorhhg
-X-ME-Proxy: <xmx:qvKNaWTaJnIu7td7tTrWxMsFwcNNNFEuFoP7MF0RmjvuxxZHZAV_6g>
- <xmx:qvKNaWrew_yWRZvXbXOSJjhOirLuQQgN7n3MF78-1QgLSb7_RmuPCw>
- <xmx:qvKNabqvH_JWvWFqooDybznYqw1CEyCelmOt1PYT-kiekrEM0jtlVA>
- <xmx:qvKNaQP8wEjJQ5WULMsNQpDrj2Z0g_SOvzlFVZXnYuLfINddiV378A>
- <xmx:q_KNad37uCiWeRSuB-JhMmzXvpbu3C8YJq2e5WZbNSp2glKt-nNv3iBF>
-Feedback-ID: i1568416f:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 12 Feb 2026 10:32:58 -0500 (EST)
-Date: Thu, 12 Feb 2026 16:32:56 +0100
-From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?=
- <marmarek@invisiblethingslab.com>
-To: Roger Pau =?utf-8?B?TW9ubsOp?= <roger.pau@citrix.com>
-Cc: xen-devel <xen-devel@lists.xenproject.org>, intel-xe@lists.freedesktop.org
-Subject: Re: Graphical glitches (not refreshing?) with Linux's xe driver +
- Xen 4.19
-Message-ID: <aY3yqOTn9EQfO4rF@mail-itl>
-References: <aYtznP_tT6xNPwf-@mail-itl>
- <aY3ttvtxGCPTNgsj@Mac.lan>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 054CB10E769;
+	Thu, 12 Feb 2026 15:54:01 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 791C010E76A;
+ Thu, 12 Feb 2026 15:53:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4251598226147450310=="
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature"; boundary="vmipi+t4vizlqmlG"
-Content-Disposition: inline
-In-Reply-To: <aY3ttvtxGCPTNgsj@Mac.lan>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/aux=3A_use_polling?=
+ =?utf-8?q?_when_irqs_are_unavailable_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 12 Feb 2026 15:53:59 -0000
+Message-ID: <177091163947.250235.2930552520171223906@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260210111952.4138954-1-michal.grzelak@intel.com>
+In-Reply-To: <20260210111952.4138954-1-michal.grzelak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,57 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============4251598226147450310==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---vmipi+t4vizlqmlG
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Date: Thu, 12 Feb 2026 16:32:56 +0100
-From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?= <marmarek@invisiblethingslab.com>
-To: Roger Pau =?utf-8?B?TW9ubsOp?= <roger.pau@citrix.com>
-Cc: xen-devel <xen-devel@lists.xenproject.org>,
-	intel-xe@lists.freedesktop.org
-Subject: Re: Graphical glitches (not refreshing?) with Linux's xe driver +
- Xen 4.19
+== Series Details ==
 
-On Thu, Feb 12, 2026 at 04:11:50PM +0100, Roger Pau Monn=C3=A9 wrote:
-> On Tue, Feb 10, 2026 at 07:06:20PM +0100, Marek Marczykowski-G=C3=B3recki=
- wrote:
-> > Hi,
-> >=20
-> > Recently I started testing compatibility with Intel Lunar Lake. This is
-> > the first one that uses "xe" instead of "i915" Linux driver for iGPU.
-> > I test it with Qubes OS 4.3, which uses Xen 4.19.4 and PV dom0 running
-> > Linux 6.17.9 in this test.
->=20
-> Not sure it's going to help a lot, but does using a PVH dom0 make any
-> difference?
+Series: drm/i915/aux: use polling when irqs are unavailable (rev2)
+URL   : https://patchwork.freedesktop.org/series/161431/
+State : success
 
-Yes, it makes a difference. I end up with black screen as soon as dom0
-starts... And due to unrelated bug (in xhci console code?), I don't have
-kernel messages :/
+== Summary ==
 
---=20
-Best Regards,
-Marek Marczykowski-G=C3=B3recki
-Invisible Things Lab
+CI Bug Log - changes from xe-4549-3d7aee9ade34df29041a249fe10c9f5326d2a337_BAT -> xe-pw-161431v2_BAT
+====================================================
 
---vmipi+t4vizlqmlG
-Content-Type: application/pgp-signature; name=signature.asc
+Summary
+-------
 
------BEGIN PGP SIGNATURE-----
+  **SUCCESS**
 
-iQEzBAEBCAAdFiEEhrpukzGPukRmQqkK24/THMrX1ywFAmmN8qgACgkQ24/THMrX
-1yzIigf8DClXXn/Ct3Uin0Vtdqw1ArhHRlBp17Xrhbde9xjRAMtiof9tkY8P+Fd8
-/bDr68vAmiMoUQhIQXEuO8gwC9aYa+j4U3oArcf56dxInnH2T5HCEnC/YA/WVmn5
-rp3NK/m7pTeUiWxuISi18zi9du+ifpR+BclQcAOq/zJft3OhpxWxknFs7Z4rpN7B
-KiCSpHYPAZmi9Pevh/ewooN5Zw5FWAXmX15M+zNArIBTu+R2LhzDN6lhEHF5SBZw
-mWlUK5ad18B1LJEAMhD17V5mxPlD1Msh4dJqtB2Zd/vGv6ExA7E8QKCY6QcF1Vm/
-CylDBDUSU/eQtzGvCk/kgwfOKxf/tw==
-=zCHo
------END PGP SIGNATURE-----
+  No regressions found.
 
---vmipi+t4vizlqmlG--
+  
+
+Participating hosts (11 -> 11)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4549-3d7aee9ade34df29041a249fe10c9f5326d2a337 -> xe-pw-161431v2
+
+  IGT_8753: 8753
+  xe-4549-3d7aee9ade34df29041a249fe10c9f5326d2a337: 3d7aee9ade34df29041a249fe10c9f5326d2a337
+  xe-pw-161431v2: 161431v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161431v2/index.html
+
+--===============4251598226147450310==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/aux: use polling when irqs are unavailable (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161431/">https://patchwork.freedesktop.org/series/161431/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161431v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161431v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4549-3d7aee9ade34df29041a249fe10c9f5326d2a337_BAT -&gt; xe-pw-161431v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (11 -&gt; 11)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4549-3d7aee9ade34df29041a249fe10c9f5326d2a337 -&gt; xe-pw-161431v2</li>
+</ul>
+<p>IGT_8753: 8753<br />
+  xe-4549-3d7aee9ade34df29041a249fe10c9f5326d2a337: 3d7aee9ade34df29041a249fe10c9f5326d2a337<br />
+  xe-pw-161431v2: 161431v2</p>
+
+</body>
+</html>
+
+--===============4251598226147450310==--
