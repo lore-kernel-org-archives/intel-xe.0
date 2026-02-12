@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FDFCEB48F3
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 10:10:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1768EB4912
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 11:47:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF21310E71D;
-	Thu, 12 Feb 2026 10:10:41 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A65810E71D;
- Thu, 12 Feb 2026 10:10:40 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5945032942535512065=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E322410E728;
+	Thu, 12 Feb 2026 11:47:47 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f+sz5N02";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C4BF10E24C;
+ Thu, 12 Feb 2026 11:47:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1770896866; x=1802432866;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=6SVRaUMGv6t03OYjxw3Ml/GB2LC7QX8cU5GcreY0M1w=;
+ b=f+sz5N02izJyZyvyWWdXHKBUgdLcJroCfmnUpzQUpHAHi/8Mc3ez8mbM
+ kb9fskXZUxDPiEIh66eSKgOFRa9fgN+mSUtVpNygSWwQY+5aqA26XsJH2
+ 7cf6qtUQ79RthsU+JPG8cTWQER96Gbhr9+M9Iqf5hXApwRLs/xHvmY7FN
+ LipwcVaqzFJhjfZlqFCZVeCZ/Db/0mVbwptr/e8XyYT1eLs9/LdrmY3JQ
+ 8eywA3jW9/M8EtPR8zg3brVmAlEl4VD9NKTfMvcFuobsjHDJIOLjlM6C3
+ JZZiD9v6FR3uABXY4+V51NjQuTD04SqWDwBX4s7OTr0WdZlFQP/N9DvXI g==;
+X-CSE-ConnectionGUID: 7GoHESDTTvmn2cHefyhP3A==
+X-CSE-MsgGUID: 2S6GU5T8TnSkvySTrj8NfQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="71781252"
+X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; d="scan'208";a="71781252"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2026 03:47:46 -0800
+X-CSE-ConnectionGUID: 6nf6NSBOTSGU0yCkaOQkEQ==
+X-CSE-MsgGUID: tS2lotzoS0i7W+jxP9VJFA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; d="scan'208";a="212605500"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.141])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Feb 2026 03:47:44 -0800
+Date: Thu, 12 Feb 2026 13:47:41 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Khaled Almahallawy <khaled.almahallawy@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Uma Shankar <uma.shankar@intel.com>, Jani Nikula <jani.nikula@intel.com>
+Subject: Re: [RFC PATCH] drm/i915/display: Prevent NV12 Y-plane allocation
+ from stealing userspace planes
+Message-ID: <aY293Q8lcThgXIds@intel.com>
+References: <20260212004852.1920270-1-khaled.almahallawy@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/buddy=3A_Documentation_?=
- =?utf-8?q?and_internal_helper_cleanup_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sanjay Yadav" <sanjay.kumar.yadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 12 Feb 2026 10:10:40 -0000
-Message-ID: <177089104002.249681.14727301441240459889@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260212092527.718455-4-sanjay.kumar.yadav@intel.com>
-In-Reply-To: <20260212092527.718455-4-sanjay.kumar.yadav@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260212004852.1920270-1-khaled.almahallawy@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,129 +70,150 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5945032942535512065==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Feb 11, 2026 at 04:48:52PM -0800, Khaled Almahallawy wrote:
+> The driver automatically allocates a Y-plane (4A/5A) when userspace
+> configures an NV12 surface. The allocation loop doesn't check if a
+> candidate plane is already configured by userspace in the same atomic
+> commit, causing conflict as observed in this i915_display_info:
+> 
+>   [PLANE:124:plane 4A]: type=OVL
+>       uapi: [FB:566] AB24 little-endian (0x34324241),0x0,1920x1280, visible=visible
+>       planar: Linked to [PLANE:34:plane 1A] as a Y plane
+>       hw: [FB:564] NV12 little-endian (0x3231564e),0x0,1920x1080, visible=yes
+> 
+> Plane 4A's uapi state shows userspace's AB24 framebuffer, but the hw
+> state shows it was reprogrammed with the NV12 Y-plane.
+> 
+> Example triggered by experiment with IGT test to commit NV12 + multiple
+> AB24 planes:
+> 
+>   === Testing with NV12 primary + 3 ABGR8888 overlays ===
+>     Plane 0 (Primary): NV12 1920x1080 at (0, 0)
+>     Plane 1 (Overlay 0): ABGR8888 1920x1280 (fullscreen) at (0, 0)
+>     Plane 2 (Overlay 1): ABGR8888 1920x1280 (fullscreen) at (0, 0)
+>     Plane 3 (Overlay 2): ABGR8888 1920x1280 (fullscreen) at (0, 0)
+>     TEST_ONLY passed, committing...
+>     Atomic commit SUCCEEDED
+> 
+> The bug triggers a kernel WARNING in unlink_nv12_plane():
+>   WARNING: drivers/gpu/drm/i915/display/intel_plane.c:1521
+>   drm_WARN_ON(plane_state->uapi.visible)
+>
 
-== Series Details ==
+I think the actual bug is that we unlink the nv12 planes after
+plane_atomic_check(). unlink_nv12_plane() will then clobber
+some things in the crtc state that was set up by 
+plane_atomic_check().
 
-Series: drm/buddy: Documentation and internal helper cleanup (rev4)
-URL   : https://patchwork.freedesktop.org/series/161140/
-State : success
+So we perhaps want something like this:
 
-== Summary ==
+diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
+index 3dc2ed52147f..98d0255b8b18 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_plane.c
+@@ -441,6 +441,8 @@ void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
+ {
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 
++	unlink_nv12_plane(crtc_state, plane_state);
++
+ 	crtc_state->active_planes &= ~BIT(plane->id);
+ 	crtc_state->scaled_planes &= ~BIT(plane->id);
+ 	crtc_state->nv12_planes &= ~BIT(plane->id);
+@@ -1513,6 +1515,9 @@ static void unlink_nv12_plane(struct intel_crtc_state *crtc_state,
+ 	struct intel_display *display = to_intel_display(plane_state);
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 
++	if (!plane_state->planar_linked_plane)
++		return;
++
+ 	plane_state->planar_linked_plane = NULL;
+ 
+ 	if (!plane_state->is_y_plane)
+@@ -1550,8 +1555,7 @@ static int icl_check_nv12_planes(struct intel_atomic_state *state,
+ 		if (plane->pipe != crtc->pipe)
+ 			continue;
+ 
+-		if (plane_state->planar_linked_plane)
+-			unlink_nv12_plane(crtc_state, plane_state);
++		unlink_nv12_plane(crtc_state, plane_state);
+ 	}
+ 
+ 	if (!crtc_state->nv12_planes)
 
-CI Bug Log - changes from xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68_BAT -> xe-pw-161140v4_BAT
-====================================================
+With that we could perhaps even drop the second unlink_nv12_plane()
+call, but haven't really thought through the details...
 
-Summary
--------
+> Fix by checking uapi.fb before allocating a Y-plane. If set, userspace
+> configured this plane, so skip to the next candidate. This enables
+> graceful fallback (4A busy -> try 5A) rather than the current
+> behavior that steals planes from userspace.
 
-  **SUCCESS**
+I do have a patch in some branch that changes the Y plane
+selection to use 'enabled_planes' instead of 'active_planes'
+which is equivalent to this. It is perhaps the slightly more
+logical approach but it could result some specific usage
+scenarios losing NV12 scanout capability. IIRC I also had
+some unsolved issue with that approach, which is why I never
+even sent out the patch.
 
-  No regressions found.
+> IGT test and kernel fix generated with assistance from Claude Sonnet 4.5
+> through an iterative process. The following is a summary of the prompts
+> used:
+> 
+> IGT test generation prompt:
+> Need an IGT test to:
+> 1. Reproduce the NV12 + multiple AB24 plane allocation conflict
+> 2. Work across different GPU vendors (not Intel-specific)
+> 3. Discover hardware limits through iteration (not hardcoded)
+> 4. Test atomic commit behavior with mixed formats
+> 5. Validate driver properly rejects invalid configurations
+> 6. Help debug plane allocation issues (interactive inspection)
+> 
+> Kernel fix debug process:
+> 1. Explained NV12 UV->Y plane linking mechanism (link_nv12_planes)
+> 2. Traced Y-plane selection algorithm and hardware constraints
+> 3. Analyzed i915_display_info output showing uapi vs hw state mismatch
+> 4. Triggered kernel WARNING in unlink_nv12_plane() confirming the bug
+> 5. Traced kernel logs through atomic commit sequence
+> 6. Identified root cause: Y-plane allocation checks uapi.crtc, but that's
+>    set later during plane validation. uapi.fb is set earlier during state
+>    setup, making it the correct indicator of userspace configuration
+> 7. Evaluated uapi.fb vs uapi.visible for detection timing
+> 8. Initially suggested rejecting commit with -EINVAL, but decided graceful
+>    fallback with continue is better - allows trying alternate Y-planes
+>    (4A busy -> 5A) instead of failing entire atomic commit
+> 9. Validated fix prevents plane stealing while allowing alternate Y-plane
+> 
+> Cc: Uma Shankar <uma.shankar@intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+> Signed-off-by: Khaled Almahallawy <khaled.almahallawy@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_plane.c | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
+> index 3dc2ed52147f..57d1a9cd226e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_plane.c
+> +++ b/drivers/gpu/drm/i915/display/intel_plane.c
+> @@ -1578,6 +1578,10 @@ static int icl_check_nv12_planes(struct intel_atomic_state *state,
+>  			if (IS_ERR(y_plane_state))
+>  				return PTR_ERR(y_plane_state);
+>  
+> +			/* Reject if this Y-plane is being configured by userspace */
+> +			if (y_plane_state->uapi.fb)
+> +				continue;
+> +
+>  			break;
+>  		}
+>  
+> -- 
+> 2.43.0
 
-  
-
-Participating hosts (12 -> 12)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-161140v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#6506]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161140v4/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-
-
-Build changes
--------------
-
-  * IGT: IGT_8751 -> IGT_8752
-  * Linux: xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68 -> xe-pw-161140v4
-
-  IGT_8751: af788251f1ef729d17c802aec2c4547b52059e58 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8752: 8752
-  xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68: b4bfe7d753afaf6ea4950111a309a4e2ef5aef68
-  xe-pw-161140v4: 161140v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161140v4/index.html
-
---===============5945032942535512065==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/buddy: Documentation and internal helper cleanup (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161140/">https://patchwork.freedesktop.org/series/161140/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161140v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161140v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68_BAT -&gt; xe-pw-161140v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (12 -&gt; 12)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-161140v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@abstime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161140v4/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8751 -&gt; IGT_8752</li>
-<li>Linux: xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68 -&gt; xe-pw-161140v4</li>
-</ul>
-<p>IGT_8751: af788251f1ef729d17c802aec2c4547b52059e58 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8752: 8752<br />
-  xe-4545-b4bfe7d753afaf6ea4950111a309a4e2ef5aef68: b4bfe7d753afaf6ea4950111a309a4e2ef5aef68<br />
-  xe-pw-161140v4: 161140v4</p>
-
-</body>
-</html>
-
---===============5945032942535512065==--
+-- 
+Ville Syrjälä
+Intel
