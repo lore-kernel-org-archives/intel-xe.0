@@ -4,197 +4,191 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F888EDF020
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 03:25:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78E7AEDF028
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Feb 2026 04:14:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C1F6310E1FD;
-	Thu, 12 Feb 2026 03:25:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 181F410E152;
+	Thu, 12 Feb 2026 04:14:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mpm1h/ks";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZbyT4r4J";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC04510E1FD;
- Thu, 12 Feb 2026 03:25:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4A9910E152;
+ Thu, 12 Feb 2026 04:14:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770866746; x=1802402746;
+ t=1770869671; x=1802405671;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=ZwGf860yFeQcWY/2r8GPx1r1iV3T+9VbWtWoiZYAEKo=;
- b=mpm1h/ksYKJzX+Rmu4/JHERi5H4IH9LYFoTVQkSPHpbVwnIRFowCzgXz
- ptCN2Hd2QOQvQwB3Me2iDBKTbkoY4gtut1g++3q5hYMGA8NhhkI7nZzAK
- H9z8QSy/8/ThE+ajE978nsG7atGKzz9mSyqqdmltgDyVmPdFNrDnO4R1T
- WNqlU5hhmKGp+PmiIOY9tYcyMTIRTfeTh0sBiewkm3QgyXU2dtXhdVii9
- V4CvStSG+PBQf90TEb2fpAwtATdgZbX84qQNoP5y5OkEgTkKdOUF4QUqA
- M0pCAufhVcHuA7IQ/rHMod+mpPMimI3N8UVZCNCOq3sQ36GB7fmOXRGjs w==;
-X-CSE-ConnectionGUID: osdAXAKIRl2+X2RwvqdvwQ==
-X-CSE-MsgGUID: Qmn1fhoKQku06J7OCaUvLg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="89618406"
-X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; d="scan'208";a="89618406"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2026 19:25:46 -0800
-X-CSE-ConnectionGUID: Ymr2/wVIRiyPqf0ypKrI/w==
-X-CSE-MsgGUID: TmwkiunPQIa6DAUnnVNRHg==
+ bh=sOOJbFTlnUqN5b3mV9vJ4W3CFSQ9Wx63F1JVcpLihgg=;
+ b=ZbyT4r4J2cTHTaI/UIKyUjaoG+B13eaQIKQNXa9OdSCRTRYRhv+/W1UU
+ fRpK53sbGD1nyqFSAomp5jTyOOmr3PufklqELhd7JpAn6y8Yii7JY22lv
+ vMeyaymRgPeP9YeNDai/NEtCUtq8AdldulhPrIXj+hq3lE+/Lg+g8SpoF
+ BbpZqr/HAaGk+Nx0EFCK0SljkCI2x3tNqJugVyQ9xqqg6diWQda12OG+M
+ YmV2Qem3YhhX0aBL50Vr3YrvJNmbGQbYFOykPVe7vjW6gWMuctBNoUlo6
+ qnfF3B5LqrBUUDpMBmDJb8UnHcRR1JGarUoIxUuXVUpCtE2OBJWIRSvbx g==;
+X-CSE-ConnectionGUID: 1nv6RemkRpO9/fJH4obqkA==
+X-CSE-MsgGUID: NG1GibWHTseQX7uO9to3Og==
+X-IronPort-AV: E=McAfee;i="6800,10657,11698"; a="82360340"
+X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; d="scan'208";a="82360340"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2026 20:14:31 -0800
+X-CSE-ConnectionGUID: atoozDxTQD6Cf6OYBb7EDg==
+X-CSE-MsgGUID: rZ5+GZZuQnKXk4azedkTUQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; d="scan'208";a="216938112"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Feb 2026 19:25:46 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 11 Feb 2026 19:25:45 -0800
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+X-IronPort-AV: E=Sophos;i="6.21,286,1763452800"; d="scan'208";a="211756012"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Feb 2026 20:14:30 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Wed, 11 Feb 2026 19:25:45 -0800
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.54)
- by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.35; Wed, 11 Feb 2026 20:14:29 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 11 Feb 2026 19:25:45 -0800
+ 15.2.2562.35 via Frontend Transport; Wed, 11 Feb 2026 20:14:29 -0800
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.9) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Wed, 11 Feb 2026 20:14:29 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RbmV546zt/FpiRP4qbZwC1DNQ/B/JyjgUQkhAyQ/JIHWkz56ZNrQ95DB72mi654MqPawngwBKtGlM6hO0KuDlxZsnaJ3NwAmin9e1+r2wGAXyFHbuqoNjMBcGJPSUgKwVVNfLbclwf2t0jJRdp8+MSR5K9yNxovjNJA3UKrLmlGSACJapFKkQVXYf2zjviS/0eYbGfFwFAGaa/PWfVtZJKxZb2kFU3HTYB4g6rbPxnzUiy6qzMrPqaS4ceN/KM1FHFKCNNe5e9FkVzWF/hRBnfCoY5LMxeNYkdgHXYPfP23JHGNLBLrO5P0ouxJEIsONCPRP7wT9u6oysAvbDsNRaQ==
+ b=QFywubIzX5smIqzspyzg1CuMMFs3uvKapMnd/CDi+Oq6xkw8YVNKlQ3iGccEe3ItpPasS9AlzdX6uTwIDqPedeJjYa8Zjhf5aqR6zjJFoayBdnoRCsvO+eSkPM/0sajyL1Y6NylHKyelU5FNJNBiGXaGi2Lkq94l7IumOY8nccxRdLREC6KeJPqaJWdOUidzcoZKc00cYIC58Yql31pQkMy66ZUoZXlWx8Mu5W/0W8iEJd62ly0dT3ySBuD114ajV9ZcU2oYOlB7/D8l79RYVN7sxq2NmMBJ8V6rkwPx73b3QTk24rKPOlKmJooOMgBGkoSAIBhIdzpJCwzw4oyhhQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h1Z7CCiiBnTHVmTW6b3HxERZzX8T64c4UTNz86duUz8=;
- b=f7vGHZW3PGlXU9BYv7E6ThwqEVahLKW9iKkyTkcPqgr4SLXl1C1uoTCZKedTcRUoX2nATP70m+RFSp2CqAMZ3Qa7fFlkDamZIF1tMKl2LabBPAnAXTkcTH4ZOMYLKKL9JCZMGQdld0xCTHdNHR5dDIi/kj5DdoHb2EyN2mTd7mOe3xOmMWHz4ic81K7/6bBYj1xFyfNjUgX62v0VZyD+AexZr7YwLp0M3woTfZL58os0OY9whLwU6l4lZYz3nE21ktoXyqUMDP/Cu9KFP8cq5O0meurT4pfwSnZqJY82fEwZu+7scCn/SlJJ6MIFG80wqtK1FZCeDNdCgVU/p/qyxw==
+ bh=hLXlylJ5ohiRy0QiYHi7c91L95wvrO9OUPCl/F3umfo=;
+ b=KTJgPmMazf4G+qbULv9pW3xnoDVN5Bhvmj2r8oycziU+miBPkWkH8lTHdXYAhRaMsAb8czHgbmsRK5NY2sRJjVkLKfWz998rdhS8POMxithtQIvuj942ZLGYsTRhcZxByO8s0oXvZX25IfBqORIPEOs/wshy9R1Cd3bfpUuuz1iKP3EHG8CVvrGl/ZYm9DfAJaj667u5YohqmKRagerPL2600aAAbLc8NTtfno15dbpAbO7x3CxtFZPztQb5EmLAnO1oZCmXL4Fc5CJNE+i6cWSwVj182hXcCWiCL+Nb+mXRcsA2BUaJioBi6fy2CZ0W1cs/EbtEiK/+Oau44rzrig==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- MW3PR11MB4746.namprd11.prod.outlook.com (2603:10b6:303:5f::15) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9611.10; Thu, 12 Feb 2026 03:25:41 +0000
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99]) by DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99%6]) with mapi id 15.20.9611.008; Thu, 12 Feb 2026
- 03:25:41 +0000
-Message-ID: <ae9a0aee-d81b-4532-ab36-8025c50ae69a@intel.com>
-Date: Thu, 12 Feb 2026 08:55:30 +0530
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by SAWPR11MB9546.namprd11.prod.outlook.com (2603:10b6:806:4e4::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.10; Thu, 12 Feb
+ 2026 04:14:23 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::397:7566:d626:e839%3]) with mapi id 15.20.9542.010; Thu, 12 Feb 2026
+ 04:14:22 +0000
+Message-ID: <c25c9c1b-636a-4fd7-8494-807cd9d40ecf@intel.com>
+Date: Thu, 12 Feb 2026 09:44:15 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/5] drm/xe/xe_hw_error: Add support for Core-Compute
- errors
-To: Raag Jadav <raag.jadav@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- <aravind.iddamsetty@linux.intel.com>, <anshuman.gupta@intel.com>,
- <rodrigo.vivi@intel.com>, <joonas.lahtinen@linux.intel.com>,
- <simona.vetter@ffwll.ch>, <airlied@gmail.com>, <pratik.bari@intel.com>,
- <joshua.santosh.ranjan@intel.com>, <ashwin.kumar.kulkarni@intel.com>,
- <shubham.kumar@intel.com>, <ravi.kishore.koppuravuri@intel.com>, "Himal
- Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-References: <20260202064356.286243-7-riana.tauro@intel.com>
- <20260202064356.286243-11-riana.tauro@intel.com>
- <aYS3sm6QO0d947hM@black.igk.intel.com>
- <90eaf920-2bc3-4d33-9a64-f6373d704dc0@intel.com>
- <aYsaWAUauWg0XIJl@black.igk.intel.com>
+Subject: Re: [PATCH 2/2] drm/i915/dp: Clamp the connector max_bpc request to
+ the valid pipe bpp range
+To: <imre.deak@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+References: <20260211115811.508496-1-imre.deak@intel.com>
+ <20260211115811.508496-2-imre.deak@intel.com>
+ <86fd3cf3-f6fb-4baf-815b-5013dc177ab4@intel.com>
+ <aYy4grqce26G5sw0@ideak-desk.lan>
 Content-Language: en-US
-From: Riana Tauro <riana.tauro@intel.com>
-In-Reply-To: <aYsaWAUauWg0XIJl@black.igk.intel.com>
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <aYy4grqce26G5sw0@ideak-desk.lan>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA0PR01CA0062.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:ac::20) To DS0PR11MB7958.namprd11.prod.outlook.com
- (2603:10b6:8:f9::19)
+X-ClientProxiedBy: MA5P287CA0023.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:179::16) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|MW3PR11MB4746:EE_
-X-MS-Office365-Filtering-Correlation-Id: 46caf8b6-4a79-42e0-26af-08de69e665e5
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SAWPR11MB9546:EE_
+X-MS-Office365-Filtering-Correlation-Id: 22bdf76f-5aa6-4db5-80f1-08de69ed337c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?TTl2YUU5aGRURGM3WDU4K2lQZXptVlo0Rlcvd3BMNlc0aFJKN2VYOG40N1Fa?=
- =?utf-8?B?aVF1c0VDT2IzR3dDVlJqc0ZoSFVya3M5OFl6RlNPM0V5d0Ivc1ZNSlJkeFJS?=
- =?utf-8?B?OU1UV2taRlNmMk8yWE5ITHI2TDZpb3VDYXpwN2pWd0Y4SXFxYTFIUnVldTNV?=
- =?utf-8?B?UGJlS1BpZmo2TWR0OWkrR3JNTGVjUTdFVXlPSHZjZmpkTW4vWmxBR1pNYUZq?=
- =?utf-8?B?V2dMRGQ5eHpvbTJNdHVTZkdqSk5uTG5yakpHb3hZWlhYME90ZGlqQW5Ma2ti?=
- =?utf-8?B?UUpRTkpRV2Uzd0lYN3JYRzRZZi8wYTViZ01VZi9Na2dubVFVd2MzTG03ZjRR?=
- =?utf-8?B?UE5xT2N4SHhRcTBIV3hWRFRQdVV6dmRCT3Awc2VOOEUrZXQzSFljMHZwa0Vv?=
- =?utf-8?B?RXd0eUIzdGduTEZ0Vko1RXBZbkhncmJWaHlvNTkwM2RMZTcveGVya0R4Ni93?=
- =?utf-8?B?YWJBWG1QeXNGYUpRTFVscGlndEQvMHNaS3JnUUozRFppVlVyNlRDdldweXhy?=
- =?utf-8?B?RUNkTVdsL2d3NEZ5NzZvcW9aTGoxUExTbnRVM2JFMWFGRDduNjRxVGNrd3Z4?=
- =?utf-8?B?cjJjVnZ3WWRGTlRiYk90RjBQR1plb0VBTFg4L2V6YTViR0xKNEhyN2VURVk2?=
- =?utf-8?B?K0xDTjdTSk5QUHE3NmNWZHJMZVplZHdtSVgvZFB5d2RtR2hHci9lUFBndjZx?=
- =?utf-8?B?OXJ6YzlxRkJRZFcxQm9aV1hGY1UrdnEwS2o0Ri9EU3kwZUVjMERmK0x1cXNX?=
- =?utf-8?B?TTlIQnR4UFdpR2w5WUpvMXhEV216cUV4M0lvWmxSRkRlczNYalhVcjdIYWdv?=
- =?utf-8?B?U2VlMGpERUlORnF2QjBPUTV6dm9RYUJvbXgwQU9NejRRS1RYT0dyT0NxdHM0?=
- =?utf-8?B?UHVaeVJxVWN1bWg2WkxVaHdBUnBubzd3ek9SK1BWM20rNUI1Z0wrT1ZGcFNo?=
- =?utf-8?B?enRVL1VDYlFzYlRSRFZKNlJ1a0FoMWJSUUc2V3BiR0x2NGVXN2g1WUMreHhW?=
- =?utf-8?B?VUNuY2NJR0NabndEY3pyVkx4NUlDM3NsVFQreGZMRzNpNUtCakU3MW5HcnJZ?=
- =?utf-8?B?bjNXajlVaXpJL3BkZ1lIaHgxZENUZi9rd3BVai9NL2F0ektxWjFZRFBRdkox?=
- =?utf-8?B?ZjdEWnB3UVFhMU1aYVhBdDlQZDBnUldPVlVNcDlMRkp6K0dUSE9nbDAwcitZ?=
- =?utf-8?B?V2NsWStuWk5lbXhvbTU1Z2VLMUtKeVNJYlpGY2I3cGwvWkF1REI5YkpWTmFz?=
- =?utf-8?B?YWZHRkpzUUUvdUJuMXZaL25NS1FRY0FSWmdLbzU3YzlIdTEwMUc4aE5memlH?=
- =?utf-8?B?U1k2cjNaMytaSUlxN2RmNWNPUllDWGU1YmhveEVUaFpVMTMzRUp0eFdmckFP?=
- =?utf-8?B?QkN1SXFCTCtudlJoNXE3QVFMQVNpYmhiczNtVzdDdTJWSWQ5RzZHdDRJbE5w?=
- =?utf-8?B?MlNQMytGSFJqVEZSclpFa0FOQnpjZEpWeU5qMzhwS1RoTkl2cXpDMm1aem51?=
- =?utf-8?B?TkJTTjdEWWpyVnJRdy9RaCtmYkV4OE1SZEpNdTBIcnlPTWFXMWtYUmtlNmgy?=
- =?utf-8?B?Q09FVjR5WjNjUzBUSmxUamgreXZlTkpTbTAyR3VOemhvbEpEL1A0WmFocXlF?=
- =?utf-8?B?UEl4YThoazA0azFtem9DZ3hONWhKQlg0T3Z2ZFEwc3ZkNnViZFdmQSsyTGZt?=
- =?utf-8?B?U1ZpcGdVcTUxNFJLRnk4bi9SWTVSNVhMaHF0NXlOTEhnNEU0ak1ldncvQzVJ?=
- =?utf-8?B?M25CaWd0TTRBUHBodk5kWWhpNlZ4a1QvZFZmQnFZc3drQ0RZbktyZ2VCdzMw?=
- =?utf-8?B?YmMzRGxtbzBmSjJBZnlmbEdSSS93M1VGZkVoZ0dybUVUQVowcis1cTFyYUsr?=
- =?utf-8?B?NXlaMEczbXBZelNYUmNnMWIwVnJ2cjZMTUc0QkFkMWh6M1RRT1JITGN0dTA4?=
- =?utf-8?B?TmdQU3Bhc0QzQ2R3UHN3ZUhobkxZUDV3S1BUd0xJbjRzMitwMVF2KzJiSjlv?=
- =?utf-8?B?L05jelVLWEdoTGFKNkdjYUVqNWNnbVJHVEFCcHBEQUwvL0JiakF4QWthQW5I?=
- =?utf-8?B?eHlDRjhWdjFhN3R3bXkxUnNTMDhBMWJzVlZGOEN5US9yaTZ4MURET21yMWlF?=
- =?utf-8?Q?wtgc=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dTlkUWZIdFMzUE1UWTkzUFJNcVRENlF6bFZSRldwbG5yZld6UzUvK1lCN2N3?=
+ =?utf-8?B?SDcrVUFnOEZzM3B6QmhmakhVYUNjNXpYbDErcmp2Zzh5TEVFTkNSMDV0L2ti?=
+ =?utf-8?B?aGd2WG9YbkNJeGpqbDc2RTRmTE9sWnQwQncvNzVHWG5BbFZZWlhyT3VuY3dw?=
+ =?utf-8?B?L21EQVFWMnNuUjdYMnVjVzZGSFZxSitxMm54RERFOUp2dFRUdzIyVGdSTy9p?=
+ =?utf-8?B?K2RFWmJKSHhKQkxxMTQyVDAyZTZ1Tzllb1JMVXNhVTdzVlRzamdTZFVNSmU4?=
+ =?utf-8?B?VW03SWdaYmtOWGZaRXFhb0ZsZnpSVm12Q2Q4WUN5SWkwOFA5ZDVORXRRd0h2?=
+ =?utf-8?B?Qjc4a0pzSWczTjVWNEdXUVZyZjU2SktVMzNNcGlnbUNBQXRUWVVuaFUrVkJz?=
+ =?utf-8?B?Mm1zVlNXeVRmaWx4blgzYTJSQ1ZNMG9HcWlpa0hVNWFTajFxWFkxRmlXeWhP?=
+ =?utf-8?B?TEtiK2R6UTgzN3NHZ0VPTDdtZUtXa0tkRVlKVHlLTlBMYzZjUFRKSkNlY2xJ?=
+ =?utf-8?B?ZWhCMEw2cVlFTUJvd2lQc3ZwU056aWFudG5tdks1WFNCYkY0Q2hBa2Fybko4?=
+ =?utf-8?B?TXQvcHlNWXVNRE1ld05KTDd4bm83OUJYSUxhek53NXc3UlQvZ3ZVWXNkWUlU?=
+ =?utf-8?B?TnZ1OENJK1orQmZKbDluVHJRMkRyQ3c0eFRNbWgyZnhWckhpYVJDVkt0TWRY?=
+ =?utf-8?B?TDgxLzMwdmNVbnB5a0V3Yy9idGRYRjN5cno1ZVRMT0V4czJLSUdXU25JNHZF?=
+ =?utf-8?B?cmR0S1NxUkgvRWl1ZzFtTlJzeWxIVFpEdXA3VG92dkFTdzJZNGp0cnJmOTVV?=
+ =?utf-8?B?M2lOd0NIVHZYWWFweDRnbFFRdXBmczNyT3pDSUF6TVl5MVRaajROSXdyWXlP?=
+ =?utf-8?B?WHBsNjVMTDg2VU5pNzRzTkJJeGFSMi90YlZGVWg2VGszallvZEYyaUtPd1M5?=
+ =?utf-8?B?YkN2bGRPd2c2YTI0WDUxUXVPbGRibWhtMGxBNVY5cVh0Q2FEMXo5K3JuU21I?=
+ =?utf-8?B?dEFjdkxVRitDaXlGQ0dYZG1RTC9URHJPUENiaVk3aFVwY3FQRUpwT1c4UTlE?=
+ =?utf-8?B?WnpYRW1SbUNCMnY2N0ttMDJjWTBDcXpYSDdESCtodmQrOUFIZENGMGVaSGp4?=
+ =?utf-8?B?YWE5bnMreXNjNzNhazd6T2hiVFFDTVA3cEkwK1d3TGVqTmMzVnlreWZES2tj?=
+ =?utf-8?B?ZUoza1NvV0tGTmQ5cTBSRXFyTWpHcjhRT3g4MFhCNVIzUHlXZzQ4V2NzQVh2?=
+ =?utf-8?B?bDBtS3BGUE1sZ2xnamd5RURZZU5Ha0pNdWlHMTlyUjhUdU1GTVY4elFDWWlD?=
+ =?utf-8?B?eHNhUmdwQ0YzeXpBZ0xWS0NpVVY1UmpkaWtGZ0c1cWFja2N5VWpMYXNyUmU3?=
+ =?utf-8?B?bjJOSmZlWWVlcmd0TTAvY0NLOWpIRFRnSzBTSnFRYWozZE5XVWZsZkRzVmZK?=
+ =?utf-8?B?c2E2UzlJUjg4cWRad0RZZGJOditBV05OeDNIS1dEa0hFc2hkV09obnE2bWdE?=
+ =?utf-8?B?ekpkT1lEbEdNQ1FWb0l5N21NVDg0dlBNYjYyOUhwY3FkMXFtZ3Z6WGcwUldl?=
+ =?utf-8?B?M2ZmMWlnczRWVHFiL2JTR2s4VUQ2UEZlUktZUnI1QU9KYlAyenp1cmNrcFJW?=
+ =?utf-8?B?QlI5eityZjZyK0lTekpkSVl0Nk9kNURSa3pPMGs5bXh1UGdISTJTQWh3Q1pm?=
+ =?utf-8?B?R0d3SXQxRk1qaVljUXhaRDZQZE9DZnEzbzBIbVNzc0hkRzNrZ253Y0hRSUNa?=
+ =?utf-8?B?Vk5iN0k1OXFJUHpZTWZNdnMwcUlIYmtMSGh6STVLc3Y5by9iWGwybkp4amEz?=
+ =?utf-8?B?WmtnVEcxM2tOMm40ekJsOVR1Zm53QWFJdlNvTDRMZ2N2RWtZYlhFd3ZOaTc0?=
+ =?utf-8?B?TUNXdXNGWC9RemMrd0VqZ3ZhUXk5UlZlWlFHTHlGSFl3elNUUldqWDQwQkY0?=
+ =?utf-8?B?Y0FHb2ViVTlyRWM1U0lVZVhxT0lYY2Uxc0d5b3hIYjNkbDhIVjdVMjMrUTky?=
+ =?utf-8?B?aHRHYUg1UWszc1I5K1J2Q2ROZm4xcElhdXI1TlhSTUR3ak5VLzNlaC9JMWg3?=
+ =?utf-8?B?VFZNY2lkTjJqZU1McUt5cFNzc2RsNnhVSUtRNzRQUkk5WWdvYWRjaUFBNTJQ?=
+ =?utf-8?Q?6iVs=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aEhWYlRWU08zN21xN3lFRWl3OXhaZGVmTi9NcVdML2hKMzlTdXZ3OVlobXNw?=
- =?utf-8?B?RTJUdEI4OEl3ZTFEOGE1VnE5OUUycE9oZ2VRNVQ3cWRIdUVnUjN4VjQwa2ZO?=
- =?utf-8?B?NXlWTTRuY1ZQaTBOV2grN3VvRkl6b3dCSzB0aEM3K1Z4UU5XemxTbzhyd1Ev?=
- =?utf-8?B?aU1hSVFielJXTXVmWEV4cWxuMmZZYzZhaGk4dURXYWJ6aHdlYkRtWDJmOHM4?=
- =?utf-8?B?dnY3cGhqa2JjN3F2RlVGRnB1bkVUK1BxVVRycDFGRlMxTERpL042MEdtODdq?=
- =?utf-8?B?dHd6SE9ycE85dEVnVXlYMVZ6cmJDcmFFMHdabnJrZmVtcFkxbWJWeGU5Z2tq?=
- =?utf-8?B?TnlXZ1NmMXo5WExQejBucS9HUW9JaFRDdDRzd0RjS0ppMU1HNVNYQTN0aVd5?=
- =?utf-8?B?aCtkRUNIWGpDdWtRQnFJODdGNHdYVmt6TVlsdHJOWVdOTElaenNKcktZdzdx?=
- =?utf-8?B?SXBvNktsYVg4Y2lySG9NSW1heXVJTWltSlc0SURxeHJXeUNVQmdvUVBxMDky?=
- =?utf-8?B?TmdEOHhrYTkzL0lnSGdPS3Vzd3plVk9ZZFdqQitnblAvTHp1T3Q5RmdtOUoz?=
- =?utf-8?B?Zm50bFVhUzlIRklPUEJ0WFdLSlUyK212cEFEMWFENDlUWkZpY3RmaGtWWUNp?=
- =?utf-8?B?NzRvaytxTktQMjNGYTlNMVNhbXZxZ3l2NVk5ME5Pb0RFTnVFRDJqMnlMSG5W?=
- =?utf-8?B?dW1BSWowZzJoRy9CLzRQczAzY25YWG5ocjk1YXZoTUNZUFJnSnFucWpFVHlt?=
- =?utf-8?B?MEZDb0MycGtPdlAxanNZYjE5Qys2RHBqblhhUCtEbFRDU1h2cnQyUWhadUo5?=
- =?utf-8?B?dHIyTTNuZWtsaW1CVld5MjJ5K1FBNGszTExLUkdjc0pBd0NRZUtybm5mcVpL?=
- =?utf-8?B?ZlNrbXFYYjlCd3BXRTNHOEd4K2VGbW41d0NSb21aOFNrd05FRkxKNXliOFQ5?=
- =?utf-8?B?aEsvWExGTWJVR08yV3dNNzFHU3VPUnJWWWJNRSt5M2hKNnMvRHppQ2orMUhH?=
- =?utf-8?B?ZnRCbWdieVBJaEhxQjZHVGNWd1VleW5EMCt5L01qcXM0WXFDbnBiKzlnMzBp?=
- =?utf-8?B?R3Vhc0pEd0p3VjBZODROK0gxTjVnU1JMdVlSYjV3eXcrbTR1L3pONW9iUDJ0?=
- =?utf-8?B?VFBLRXh6MGZpZWFsaGs5SVJtVXRTMHFXZUVGM2hMa1F6Y0lxSXc3Slo2TFFS?=
- =?utf-8?B?TENXc25Pa1U1dlQ5VS9ybDBKbkJxSFZmVVBGUmExdzFVZ0tUaUFFcTRMbUdC?=
- =?utf-8?B?TW4zdzFIQ1JEWTRrTzlKL21DZ2UxUWNvRGQ4R2pnZFJJZGJrM3JaK3pYZnhw?=
- =?utf-8?B?UWF1ZjdJWEFlcEpzbWs4R2N4c29GelFINXMyKzVtVC9YOG9scS9XSlVlNjhx?=
- =?utf-8?B?VWZtY29EWC9CYTdNakZlK0pqUjA4MHZDaDhMWW5iZWkrTnk2Rk96RnJvZ2ps?=
- =?utf-8?B?Wk1sSnhYQVhQYXNCdjdqTnZmWHFsMXd1NGI1Q3dSVWgrakJZZldSQnpNSThk?=
- =?utf-8?B?SzBLb0hocFpJUHNkTUhmR2N0T1p5OVk4ZGRjbHduOVRCMzN1OVBiVmhXV0V3?=
- =?utf-8?B?ajYvRHJ6T3l4Z0VualgrU3U5VzEyb3JQTWFoWEVoc20zRSszNDkwaWhBdXVG?=
- =?utf-8?B?Yy94MENXaUV2ZUxlQm40ZFdlcmFKUnNSMGRBclJBVHl4R0xZbFRqUkZ5T21x?=
- =?utf-8?B?MjhMQXE3ZXFkdU4xQWV2QlpzUk43NUNGZFR1UFd5dW44K0EvOHpPMWxmSXFq?=
- =?utf-8?B?Z1Z1Z2FGTWc3WmE0TlJDMk5UK2dGVXJWNzhycGI5a2Z4aWEyQzUrQVE3Z0N1?=
- =?utf-8?B?OGhSemcyWVp6MTlMcW9EeE5qaFhtdTE1UUsyZm5DSDQwUkpWRWMyaGlnU3Bz?=
- =?utf-8?B?T21UYXBOSFdVVnJ4cUdWVXJDN0tQZ1YxeGppNHJ3dHZJenVWMC9qWVZQbVYy?=
- =?utf-8?B?d2c3THhwQ2RJR3dLYy83dUxnZU41RitVdUhjcjJ0ZGlIZkZzMWF5eTNiMkVY?=
- =?utf-8?B?LzhndVM1cFFwcXJhTEZiVFlWUEY2M2xxQklackI4S0tqaEpUYnZCR2ppOVJH?=
- =?utf-8?B?LzdpVVRzV0Q5aTRhelNtMEVtd2IyM1lOTVpYeFJucGVZclRISm9WRCtrbklo?=
- =?utf-8?B?MVRyYVB1amxUUDAxZkdjM1FMSW1UNHVEdGgyM0JzYTNMNFVsZElsTmhTN05O?=
- =?utf-8?B?SnlqaFVSWlFaNHRTUGpXNFk2MmlzU2RUVFJVZHU0NEFQQ2l0OTFCdDU1Z2FH?=
- =?utf-8?B?Mm41NS9BeVA2NVcwWUJJbTNkWWRYOTBtWk94U3E0blRBZG9BT1VnNGFBbEI3?=
- =?utf-8?B?WDVOYlhFU2x6WGprNG44YmZGaEF6TDhST25ROUN1QllwTnFEV0p3Zz09?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 46caf8b6-4a79-42e0-26af-08de69e665e5
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cFVLMWdvaGJkZm83SGRLWkZhZ05BNDFsL0k3MG5oK25sTTlzVSswWlFyaWl4?=
+ =?utf-8?B?Y3NnamdicVBqREtQSmlsK3ByMjk0M1p6WGFFZ040TzAxNDU5VG5BY2dWc1Fw?=
+ =?utf-8?B?cDJHd0s4d0xnMWRDQzRldHF1UkFLL3VrUkdISlNUSTB2Tk1YaEMvaDRqWXRP?=
+ =?utf-8?B?WVVVdi9RaDhVZlM5M3ZONUplQjVEbEZucEVlSFU0VHozSVZvOEJUTklKeVY4?=
+ =?utf-8?B?SFNsVGJHOWdZQ2lnSUkxOGZYQkZsOEdhUlVXR25ISGVhbnNoeGt0VFhZYkR4?=
+ =?utf-8?B?S2Q5alNXUWlPdkIxaURObDFnMGQ3MC8vL1MwVUh5YUI2UDV1VWg1ckd4Z0o5?=
+ =?utf-8?B?bnNDMkdWazQ5VjhYNm1rS0dEVVh3UHBLd1B0SXIxQkQ4NlJGS3lmV2JBeXJN?=
+ =?utf-8?B?WTlMYWhwWmk5T3A3ZjRGdUlGSXd2TUpQRUhwM1JFY3ZtYTlVQ2MwcHQzNmRI?=
+ =?utf-8?B?WWR3blBRbHBFc09uZFlqU0U0YmZGWFZiR1k3M2lUMWNEd295cGJxNnQ0VVI2?=
+ =?utf-8?B?TmczK2FFN1hIQjFpYTFwNFYxSFB5RGlmUmgvMVpQR24vWGVZc0U2RnlnNWRk?=
+ =?utf-8?B?R25YY3o5bk9LSkRKNUgxcWM4NXVvM3R6a09iMEhldCtXak0reXV4bHlZNVAy?=
+ =?utf-8?B?aEgzRnJvMG90dEJpVjZEMjJMMk51VTY5TWtIemwvSkJTakxsU2tONzdnTitM?=
+ =?utf-8?B?ekdDWHB1b0xIR3d1OVpTNVo4VEdiZGE0Zlc2Njd1eXhGcDFBSmZlU2ltVUtr?=
+ =?utf-8?B?VTF3QzRicU9LbEhBMkJONkJwTW0zSENLcGlnbHh5TWZtbnNBZmd3NlNpQ2RF?=
+ =?utf-8?B?RFJlUjUydTVUMWNBODlOZFIvREZrd1pJZlhnN0FwRHdVRnBUcTRhRDFXT1I3?=
+ =?utf-8?B?aEJ1cmdXc2xsRGh4QUFKdkd4Q3lHbitpemhNazhKNS9PYnJGN09VYVBsbGRU?=
+ =?utf-8?B?TmNqdEppSEpOaVZqMm42UjAwbzEzbmtBeVRseDB6VmtnbkxncDJ4OWkwVVVZ?=
+ =?utf-8?B?TnlwTGdtenp3MjljcG5OK045Y0RwR1VvUml2SGZhejFSa2lkejFNc2lwYWpn?=
+ =?utf-8?B?Q0NudWszQlRoNXhyOVlJaFN2TzNZdjBDYTZIRzljenZNRHNFZ3RjVTk4ZEQy?=
+ =?utf-8?B?VGNCVHQrZHkyYnRJQ2hYd1R6Z3VubzdBMUdPeFY4dTF4eElxSkJnSHd1bm15?=
+ =?utf-8?B?RDhNcE1QZXp3USt4SHFuU3NEcTcrc04raklqMEJDeE9tYUZ1SXpHSkUyZitZ?=
+ =?utf-8?B?TmdwcmhLUnFyZ3A4cDRuMjNJQXNqeW90bGc5MTV5UU9hZkhlU2hhK3EwbTBi?=
+ =?utf-8?B?YlFNYTVGb0Z5Z0NDbGdueHRhNU9ZQ0V3S1lPcWVPQksrSzkyanUvVGpLTXlo?=
+ =?utf-8?B?Ui9ST1Nxc0VkMG9RYU0yWlcxWUN1M0pqT2xtOXFLNGdFalVxdkg5M0pFdEVT?=
+ =?utf-8?B?dzZhSWIxa0pKVkdCbUViWWJvYlFTUExiSzVHSzBaWEJmWGtvdWhValRGdEE0?=
+ =?utf-8?B?YlJNTVRua1gySVFUdmF0bU4vUzh6Y2hhaGdFTHlNekgyUThPcndlZFNYQWM5?=
+ =?utf-8?B?b3Bzb0ZONjcxc25GdUVEUXlSQVhJK1hnK1FSRkJZbG0rWklEaFhYQ084NjZj?=
+ =?utf-8?B?K0FxcXQzbnB2VjlOc3pmdFNjMkpzek1wL3o0NGRNazd4MCtJbnFRR2paYmtt?=
+ =?utf-8?B?TUxVS2g5cFl3aGtDbDlSZUVnZWpZekJYQnZiQ3lhOHU2Y3hCZWp5b1JaZmpS?=
+ =?utf-8?B?RzhaSm9pWGhDQU1lSExhNi84UmFkY1h5VHQ3MEhWWHR6QThZT0JXWUFNc1dJ?=
+ =?utf-8?B?Y3FrR2ZmUVhOcUQxYURUeExsRitrRVgrZFFiQ1lmYWUzMkIyMVNjRTljTU9C?=
+ =?utf-8?B?VGdMQmpxNzNrTVRmZVBmaWxvZ213WWVQK1Q2WkdSUEpDUlVMa2NxaWdFUlQ4?=
+ =?utf-8?B?emdQT20yODNrUU5NY1N6bHk1ZEJHZmNIUHhnWlJnNU51YnZoTWJhQU03ZW53?=
+ =?utf-8?B?WVJQN0Y4eDYxZ29aeDBxNzdQcXd4ejAxT1YzbFk4UXpjM0VwaWEyR2t2K1Rw?=
+ =?utf-8?B?SEMzNUpVZ3kvanRuNEMxOFE1Y0x3RWpaT1VHMEN3ckZ1WHRxYUduMllhQmYy?=
+ =?utf-8?B?bGVLZm5zY0l6eVNaVDVCSkF2VmZTVjZSaWZyanhoQnhhdGM1UHBLWkZtV3ov?=
+ =?utf-8?B?enlZbk5zcHJaeWd6eFRzYzVvVDRvQ3BBa1dqekoxRHA2MC9vbzlhWjRpbHNN?=
+ =?utf-8?B?ZmpaOGtDTys1bmN3S3BURExMZzQ0RjVyVGtGMzdNaHlVc3BuQlFZTk1tUWc4?=
+ =?utf-8?B?cE1JL0hzT2RLN29FZmVIUFZ3QjIvYnR3cURpNTc5TDJmSG50YWZ0dW9jd3hT?=
+ =?utf-8?Q?cEjjzjkOGvIdPB6Q=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 22bdf76f-5aa6-4db5-80f1-08de69ed337c
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2026 03:25:41.0100 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Feb 2026 04:14:22.8374 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZtGGQM1g5luI5XqkmJHIMHtxqeoPIICYOjDF31ytz8X8+8aK5NcB2pKEjv0CsKGxt542ynlEYVHkSuWGIcim8Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4746
+X-MS-Exchange-CrossTenant-UserPrincipalName: t/9MXFqtY1YKZM/DDYd5fYnGE1WEbm3aqQViapB6CYujzbxmzuR3EhO3e2RzXAdjcfF6B6pEFxQAVKRdcWGS/M34AB6DnAx3KTHAzvdh6AM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SAWPR11MB9546
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -211,268 +205,224 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
+On 2/11/2026 10:42 PM, Imre Deak wrote:
+> On Wed, Feb 11, 2026 at 09:36:55PM +0530, Nautiyal, Ankit K wrote:
+>> On 2/11/2026 5:28 PM, Imre Deak wrote:
+>>> The user's request for a maximum BPC - via the max-bpc connector
+>>> property - determines the pipe BPP selected by the encoder, which is in
+>>> turn used either as the uncompressed output BPP or as the input BPP for
+>>> the DSC engine. This user-requested BPC->BPP can be outside of the
+>>> source/sink's supported valid min/max pipe BPP range and atm such an
+>>> out-of-bound request will be rejected by the encoder's state
+>>> computation.
+>>>
+>>> As opposed to the above, the semantic for the max-bpc connector property
+>>> - which the user may reasonably expect - is not to fail the modeset in
+>>> case of an out-of-bound max BPC request, rather to adjust the request
+>>> clamping it to the valid BPP range.
+>>>
+>>> Based on the above, calculate the baseline (i.e. the non-DP specific
+>>> platform/EDID) _maximum_ pipe BPP, storing it in
+>>> intel_crtc_state::max_pipe_bpp, separately from the baseline _target_
+>>> pipe BPP (which is the lower BPP of the baseline maximum and requested
+>>> BPP, stored in intel_crtc_state::pipe_bpp). This allows the encoder
+>>> state computation to use the baseline maximum pipe BPP as a hard limit
+>>> for the selected pipe BPP, while also letting it use the baseline target
+>>> pipe BPP only as a preference, clamping this target BPP to the valid
+>>> DP pipe BPP range.
+>>>
+>>> Signed-off-by: Imre Deak <imre.deak@intel.com>
+>>> ---
+>>>    drivers/gpu/drm/i915/display/intel_display.c  | 12 ++++++++++
+>>>    .../drm/i915/display/intel_display_types.h    |  1 +
+>>>    drivers/gpu/drm/i915/display/intel_dp.c       | 24 +++++++++++++++++--
+>>>    3 files changed, 35 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>>> index ab4b59916d2e7..dae7a7d11cb84 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>>> @@ -4374,12 +4374,24 @@ compute_sink_pipe_bpp(const struct drm_connector_state *conn_state,
+>>>    	struct intel_display *display = to_intel_display(crtc_state);
+>>>    	struct drm_connector *connector = conn_state->connector;
+>>>    	const struct drm_display_info *info = &connector->display_info;
+>>> +	int edid_bpc = info->bpc ? : 8;
+>>>    	int target_pipe_bpp;
+>>> +	int max_edid_bpp;
+>>> +
+>>> +	max_edid_bpp = bpc_to_bpp(edid_bpc);
+>>> +	if (max_edid_bpp < 0)
+>>> +		return max_edid_bpp;
+>>>    	target_pipe_bpp = bpc_to_bpp(conn_state->max_bpc);
+>>>    	if (target_pipe_bpp < 0)
+>>>    		return target_pipe_bpp;
+>>> +	/*
+>>> +	 * The maximum pipe BPP is the minimum of the max platform BPP and
+>>> +	 * the max EDID BPP.
+>>> +	 */
+>>> +	crtc_state->max_pipe_bpp = min(crtc_state->pipe_bpp, max_edid_bpp);
+>> The function compute_sink_pipe_bpp() is actually just limiting the pipe_bpp
+>> to sink max limits.
+> It limits the platform maximum pipe BPP passed to the function via
+> intel_crtc_state::pipe_bpp to the maximum EDID BPP _and_ the connector's
+> requested max-bpc x 3.
 
-On 2/10/2026 5:15 PM, Raag Jadav wrote:
-> On Tue, Feb 10, 2026 at 11:28:39AM +0530, Riana Tauro wrote:
->> On 2/5/2026 9:00 PM, Raag Jadav wrote:
->>> On Mon, Feb 02, 2026 at 12:14:00PM +0530, Riana Tauro wrote:
->>>> PVC supports GT error reporting via vector registers along with
->>>> error status register. Add support to report these errors and
->>>> update respective counters. Incase of Subslice error reported
->>>> by vector register, process the error status register
->>>> for applicable bits.
->>>>
->>>> The counter is embedded in the xe drm ras structure and is
->>>> exposed to the userspace using the drm_ras generic netlink
->>>> interface.
->>>>
->>>> $ sudo ynl --family drm_ras --do query-error-counter  --json
->>>
->>> We usually add '\' at the end for wrapping commands so that they're easy
->>> to apply directly (and same for all other patches where applicable).
->>>
->>>>     '{"node-id":0, "error-id":1}'
->>>
->>> Ditto.
+Yes right thats true.
+
+
+>
+>> Instead of filling the crtc_state->max_pipe_bpp in this function itself, can
+>> we have a separate function only to set the crtc_state->max_pipe_bpp from
+>> the edid max:
+>> compute_max_pipe_bpp(const struct drm_connector_state *conn_state,
+>>                       struct intel_crtc_state *crtc_state)
 >>
->> Will fix this
-> 
-> Thank you.
-> 
->>>> {'error-id': 1, 'error-name': 'core-compute', 'error-value': 0}
->>>>
->>>> Co-developed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
->>>> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
->>>> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
->>>> ---
->>>> v2: Add ID's and names as uAPI (Rodrigo)
->>>>       Add documentation
->>>>       Modify commit message
->>>>
->>>> v3: remove 'error' from counters
->>>>       use drmm_kcalloc
->>>>       add a for_each for severity
->>>>       differentitate error classes and severity in UAPI(Raag)
->>>>       Use correctable and uncorrectable in uapi (Pratik / Aravind)
->>>>
->>>> v4: modify enums in UAPI
->>>>       improve comments
->>>>       add bounds check in handler
->>>>       add error mask macro (Raag)
->>>>       use atomic_t
->>>>       add null pointer checks
->>>> ---
->>>>    drivers/gpu/drm/xe/regs/xe_hw_error_regs.h |  62 ++++++-
->>>>    drivers/gpu/drm/xe/xe_hw_error.c           | 199 +++++++++++++++++++--
->>>>    2 files changed, 241 insertions(+), 20 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h b/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
->>>> index c146b9ef44eb..17982a335941 100644
->>>> --- a/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
->>>> +++ b/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
->>>> @@ -6,15 +6,59 @@
->>>>    #ifndef _XE_HW_ERROR_REGS_H_
->>>>    #define _XE_HW_ERROR_REGS_H_
->>>> -#define HEC_UNCORR_ERR_STATUS(base)                    XE_REG((base) + 0x118)
->>>> -#define    UNCORR_FW_REPORTED_ERR                      BIT(6)
->>>> +#define HEC_UNCORR_ERR_STATUS(base)			XE_REG((base) + 0x118)
->>>> +#define   UNCORR_FW_REPORTED_ERR			REG_BIT(6)
->>>> -#define HEC_UNCORR_FW_ERR_DW0(base)                    XE_REG((base) + 0x124)
->>>> +#define HEC_UNCORR_FW_ERR_DW0(base)			XE_REG((base) + 0x124)
->>>> +
->>>> +#define ERR_STAT_GT_COR					0x100160
->>>> +#define   EU_GRF_COR_ERR				REG_BIT(15)
->>>> +#define   EU_IC_COR_ERR					REG_BIT(14)
->>>> +#define   SLM_COR_ERR					REG_BIT(13)
->>>> +#define   GUC_COR_ERR					REG_BIT(1)
->>>> +
->>>> +#define ERR_STAT_GT_NONFATAL				0x100164
->>>> +#define ERR_STAT_GT_FATAL				0x100168
->>>> +#define   EU_GRF_FAT_ERR				REG_BIT(15)
->>>> +#define   SLM_FAT_ERR					REG_BIT(13)
->>>> +#define   GUC_FAT_ERR					REG_BIT(6)
->>>> +#define   FPU_FAT_ERR					REG_BIT(3)
->>>> +
->>>> +#define ERR_STAT_GT_REG(x)				XE_REG(_PICK_EVEN((x), \
->>>> +									  ERR_STAT_GT_COR, \
->>>> +									  ERR_STAT_GT_NONFATAL))
->>>> +
->>>> +#define PVC_COR_ERR_MASK				(GUC_COR_ERR | SLM_COR_ERR | \
->>>> +							 EU_IC_COR_ERR | EU_GRF_COR_ERR)
->>>> +
->>>> +#define PVC_FAT_ERR_MASK				(FPU_FAT_ERR | GUC_FAT_ERR | \
->>>> +							EU_GRF_FAT_ERR | SLM_FAT_ERR)
->>>
->>> Nit: Whitespace please!
+>> This can be called separately from compute_baseline_pipe_bpp:
 >>
->> alignment?
-> 
-> Yes please!
-> 
->>>> +#define DEV_ERR_STAT_NONFATAL				0x100178
->>>> +#define DEV_ERR_STAT_CORRECTABLE			0x10017c
->>>> +#define DEV_ERR_STAT_REG(x)				XE_REG(_PICK_EVEN((x), \
->>>> +									  DEV_ERR_STAT_CORRECTABLE, \
->>>> +									  DEV_ERR_STAT_NONFATAL))
->>>
->>> I know it was already like this but how does this evaluate for FATAL?
+>> ret = compute_max_pipe_bpp(connector_state, crtc_state);
+>> if (ret)
+>>      return ret;
 >>
->> #define _PICK_EVEN(__index, __a, __b) ((__a) + (__index) * ((__b) - (__a)))
->> (index, 0x10017c, 0x100178)  = (0x10017c + index * (0x100178 - 0x10017c));
->> 0 =  0x10017c
->> 1 =  0x100178
->> 2 =  0x100174
-> 
-> The addresses are usually unsigned, so I got lost there a bit.
-> 
->>>> +#define   XE_CSC_ERROR					17
->>>> +#define   XE_GT_ERROR					0
->>>> +
->>>> +#define ERR_STAT_GT_FATAL_VECTOR_0			0x100260
->>>> +#define ERR_STAT_GT_FATAL_VECTOR_1			0x100264
->>>> +
->>>> +#define ERR_STAT_GT_FATAL_VECTOR_REG(x)			XE_REG(_PICK_EVEN((x), \
->>>> +								  ERR_STAT_GT_FATAL_VECTOR_0, \
->>>> +								  ERR_STAT_GT_FATAL_VECTOR_1))
->>>> +
->>>> +#define ERR_STAT_GT_COR_VECTOR_0			0x1002a0
->>>> +#define ERR_STAT_GT_COR_VECTOR_1			0x1002a4
->>>> +
->>>> +#define ERR_STAT_GT_COR_VECTOR_REG(x)			XE_REG(_PICK_EVEN((x), \
->>>> +									  ERR_STAT_GT_COR_VECTOR_0, \
->>>> +									  ERR_STAT_GT_COR_VECTOR_1))
->>>> +
->>>> +#define ERR_STAT_GT_VECTOR_REG(hw_err, x)		(hw_err == HARDWARE_ERROR_CORRECTABLE ? \
->>>> +							ERR_STAT_GT_COR_VECTOR_REG(x) : \
->>>> +							ERR_STAT_GT_FATAL_VECTOR_REG(x))
->>>
->>> Ditto for whitespace.
->>>
->>>> -#define DEV_ERR_STAT_NONFATAL			0x100178
->>>> -#define DEV_ERR_STAT_CORRECTABLE		0x10017c
->>>> -#define DEV_ERR_STAT_REG(x)			XE_REG(_PICK_EVEN((x), \
->>>> -								  DEV_ERR_STAT_CORRECTABLE, \
->>>> -								  DEV_ERR_STAT_NONFATAL))
->>>> -#define   XE_CSC_ERROR				BIT(17)
->>>>    #endif
->>>> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
->>>> index 2019aaaa1ebe..ff31fb322c8a 100644
->>>> --- a/drivers/gpu/drm/xe/xe_hw_error.c
->>>> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
->>>> @@ -3,6 +3,7 @@
->>>>     * Copyright © 2025 Intel Corporation
->>>>     */
->>>> +#include <linux/bitmap.h>
->>>>    #include <linux/fault-inject.h>
->>>>    #include "regs/xe_gsc_regs.h"
->>>> @@ -15,7 +16,13 @@
->>>>    #include "xe_mmio.h"
->>>>    #include "xe_survivability_mode.h"
->>>> -#define  HEC_UNCORR_FW_ERR_BITS 4
->>>> +#define  GT_HW_ERROR_MAX_ERR_BITS	16
->>>> +#define  HEC_UNCORR_FW_ERR_BITS		4
->>>> +#define  XE_RAS_REG_SIZE		32
->>>> +
->>>> +#define  PVC_ERROR_MASK_SET(hw_err, err_bit) \
->>>> +	((hw_err == HARDWARE_ERROR_CORRECTABLE) ? (BIT(err_bit) & PVC_COR_ERR_MASK) : \
->>>> +	(BIT(err_bit) & PVC_FAT_ERR_MASK))
->>>
->>> I'd write this as below and move it to xe_hw_error_regs.h
+>> ret = compute_sink_pipe_bpp(connector_state, crtc_state);
+>> ...
 >>
->> This is not specific to register selection or defining bits. It's related to
->> mask. So .c should be the right place
-> 
-> Don't the mask bits come from register def?
-
-yeah masks are already defined in register header. But this is a 
-comparison. I don't see these in the register headers
-
-> 
->>> #define PVC_COR_ERR_MASK_SET(err_bit)			(PVC_COR_ERR_MASK & REG_BIT(err_bit))
->>> #define PVC_FAT_ERR_MASK_SET(err_bit)			(PVC_FAT_ERR_MASK & REG_BIT(err_bit))
->>>
->>> #define PVC_ERR_MASK_SET(hw_err, err_bit)		((hw_err == HARDWARE_ERROR_CORRECTABLE) ? \
->>> 								PVC_COR_ERR_MASK_SET(err_bit) : \
->>> 								PVC_FAT_ERR_MASK_SET(err_bit)
->>>
->>> ...
->>>
->>>> +static void gt_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err,
->>>> +				u32 error_id)
->>>> +{
->>>> +	const enum drm_xe_ras_error_severity severity = hw_err_to_severity(hw_err);
->>>> +	struct xe_device *xe = tile_to_xe(tile);
->>>> +	struct xe_drm_ras *ras = &xe->ras;
->>>> +	struct xe_drm_ras_counter *info = ras->info[severity];
->>>> +	struct xe_mmio *mmio = &tile->mmio;
->>>> +	unsigned long err_stat = 0;
->>>> +	int i, len;
->>>> +
->>>> +	if (xe->info.platform != XE_PVC)
->>>> +		return;
->>>> +
->>>> +	if (!info)
->>>> +		return;
->>>
->>> Since info allocation is not related to hardware, we shouldn't even be
->>> at this point without it. So let's not hide bugs and fail probe instead.
+>> This way the compute_sink_pipe_bpp will only do one thing(adjusting the
+>> pipe_bpp to sink limits).
 >>
->> yes currently it is supported only on PVC. I can remove this here as there
->> is a PVC check but cannot remove the one suggested below.
-> 
-> Fair, but please also return the allocation failure. With that perhaps
-> xe_hw_error_init() will be int now.
+>> ˚oO(Perhaps we should name it to adjust_pipe_bpp_for_sink()).
+> Not sure. It's also good to see in one place how the debug-printed
+> max/target/edid BPPs are calculated.
 
-That's present. We just log it as an error and not fail probe.
+Hmm yes indeed make sense.
 
-Thanks
-Riana
 
-> 
-> Raag
-> 
->>>> +	if (hw_err == HARDWARE_ERROR_NONFATAL) {
->>>> +		atomic_inc(&info[error_id].counter);
->>>> +		log_hw_error(tile, info[error_id].name, severity);
->>>> +		return;
->>>> +	}
->>>
->>> ...
->>>
->>>>    static void hw_error_source_handler(struct xe_tile *tile, const enum hardware_error hw_err)
->>>>    {
->>>>    	const enum drm_xe_ras_error_severity severity = hw_err_to_severity(hw_err);
->>>>    	const char *severity_str = error_severity[severity];
->>>>    	struct xe_device *xe = tile_to_xe(tile);
->>>> -	unsigned long flags;
->>>> -	u32 err_src;
->>>> +	struct xe_drm_ras *ras = &xe->ras;
->>>> +	struct xe_drm_ras_counter *info = ras->info[severity];
->>>> +	unsigned long flags, err_src;
->>>> +	u32 err_bit;
->>>> -	if (xe->info.platform != XE_BATTLEMAGE)
->>>> +	if (!IS_DGFX(xe))
->>>>    		return;
->>>>    	spin_lock_irqsave(&xe->irq.lock, flags);
->>>> @@ -108,11 +242,53 @@ static void hw_error_source_handler(struct xe_tile *tile, const enum hardware_er
->>>>    		goto unlock;
->>>>    	}
->>>> -	if (err_src & XE_CSC_ERROR)
->>>> +	/*
->>>> +	 * On encountering CSC firmware errors, the graphics device becomes unrecoverable
->>>> +	 * so return immediately on error. The only way to recover from these errors is
->>>> +	 * firmware flash. The device will enter Runtime Survivability mode when such
->>>> +	 * errors are detected.
->>>> +	 */
->>>> +	if (err_src & XE_CSC_ERROR) {
->>>>    		csc_hw_error_handler(tile, hw_err);
->>>> +		goto clear_reg;
->>>> +	}
->>>> -	xe_mmio_write32(&tile->mmio, DEV_ERR_STAT_REG(hw_err), err_src);
->>>> +	if (!info)
->>>> +		goto clear_reg;
->>>
->>> Same as above.
->>>
->>> Raag
+>
+> In any case compute_sink_pipe_bpp() did compute both the target and max
+> BPPs implicitly even before, combining these to
+> intel_crtc_state::pipe_bpp, and this patch didn't change that. If
+> separate functions make more sense that should be a separate follow-up
+> change imo.
 
+You can ignore the comment. It seems better to have 
+ctrc_state->max_pipe_bpp set and the relevant debug message in same 
+place for now.
+
+
+>
+>>> +
+>>>    	if (target_pipe_bpp < crtc_state->pipe_bpp) {
+>>>    		drm_dbg_kms(display->drm,
+>>>    			    "[CONNECTOR:%d:%s] Limiting target display pipe bpp to %d "
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+>>> index e6298279dc892..e8e4af03a6a6c 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+>>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+>>> @@ -1163,6 +1163,7 @@ struct intel_crtc_state {
+>>>    	} dsi_pll;
+>>>    	int max_link_bpp_x16;	/* in 1/16 bpp units */
+>>> +	int max_pipe_bpp;	/* in 1 bpp units */
+>>>    	int pipe_bpp;		/* in 1 bpp units */
+>>>    	int min_hblank;
+>>>    	struct intel_link_m_n dp_m_n;
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+>>> index 48845899298e4..4018b0122e8e0 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>>> @@ -1769,7 +1769,7 @@ static int intel_dp_max_bpp(struct intel_dp *intel_dp,
+>>>    	struct intel_connector *connector = intel_dp->attached_connector;
+>>>    	int bpp, bpc;
+>>> -	bpc = crtc_state->pipe_bpp / 3;
+>>> +	bpc = crtc_state->max_pipe_bpp / 3;
+>>>    	if (intel_dp->dfp.max_bpc)
+>>>    		bpc = min_t(int, bpc, intel_dp->dfp.max_bpc);
+>>> @@ -2726,7 +2726,7 @@ intel_dp_compute_config_limits(struct intel_dp *intel_dp,
+>>>    		 * previously. This hack should be removed once we have the
+>>>    		 * proper retry logic in place.
+>>>    		 */
+>>> -		limits->pipe.max_bpp = min(crtc_state->pipe_bpp, 24);
+>>> +		limits->pipe.max_bpp = min(crtc_state->max_pipe_bpp, 24);
+>>>    	} else {
+>>>    		limits->pipe.max_bpp = intel_dp_max_bpp(intel_dp, crtc_state,
+>>>    							respect_downstream_limits);
+>>> @@ -2757,6 +2757,26 @@ intel_dp_compute_config_limits(struct intel_dp *intel_dp,
+>>>    	if (dsc && !intel_dp_dsc_compute_pipe_bpp_limits(connector, limits))
+>>>    		return false;
+>>> +	/*
+>>> +	 * crtc_state->pipe_bpp is the non-DP specific baseline (platform/EDID)
+>>> +	 * maximum pipe BPP limited by the max-BPC connector property request.
+>>> +	 * Since by now pipe.max_bpp is <= the above baseline BPP, the only
+>> Hmm I think I am missing something. Till now we have set pipe.max_bpp using
+>> crtc_state->max_pipe_bpp.
+> Yes and then also reducing pipe.max_bpp further by every other source
+> and sink maximum BPP limits.
+>
+>> This is set using min of max platform Bpp and the max edid bpp (and DP dfp
+>> considerations, DSC sink input bpp cap).
+>>
+>> So the relationship between pipe.max_bpp and the crtc_state->max_pipe_bpp is
+
+
+sorry I meant about pipe.max_bpp and the baseline BPP i.e. 
+crtc_state->pipe_bpp (not crtc_state->max_pip_bpp).
+
+
+>> not yet clear.
+> The relationship is:
+>
+> crtc_state->max_pipe_bpp = min(platform_max_bpp, sink_edid_max_bpp);
+> limits->pipe.max_bpp = min(crtc_state->max_pipe_bpp,
+> 			   dfp_max_bpp, vbt_edp_max_bpp,
+> 			   sink_dsc_input_max_bpp,
+> 			   src_dsc_input_max_bpp,
+> 			   mst_max_24bpp);
+>
+>> I do agree with the rest of the below: we need to clamp the
+>> limits.pipe.max_bpp between crtc_state->pipe_bpp  and limit.pipe->min_bpp.
+> crtc_state->pipe_bpp = min(crtc_state->max_pipe_bpp, requested_bpc * 3);
+
+Sorry, I am unable to find this line.. perhaps you mean that we intend 
+to make sure that crtc_state->pipe_bpp is in the range 
+(crtc_state->max_pipe_bpp, requested_bpc * 3)?
+
+OR, is there any place we are using crtc_state->max_pipe_bpp to set 
+crtc_state->pipe_bpp, till this point?
+
+So, I am still not getting the line:
+
+"Since by now pipe.max_bpp is <= the above baseline BPP"
+
+
+Regards,
+
+Ankit
+
+
+>
+> and so
+>
+> limits->pipe.max_bpp should be set to crtc_state->pipe_bpp clamped
+> between limits->pipe.min_bpp and limits->pipe.max_bpp.
+>
+>> Regards,
+>>
+>> Ankit
+>>
+>>> +	 * remaining reason for adjusting pipe.max_bpp is the max-BPC connector
+>>> +	 * property request. Adjust pipe.max_bpp to this request within the
+>>> +	 * current valid pipe.min_bpp .. pipe.max_bpp range.
+>>> +	 */
+>>> +	limits->pipe.max_bpp = clamp(crtc_state->pipe_bpp, limits->pipe.min_bpp,
+>>> +				     limits->pipe.max_bpp);
+>>> +	if (dsc)
+>>> +		limits->pipe.max_bpp = align_max_sink_dsc_input_bpp(connector,
+>>> +								    limits->pipe.max_bpp);
+>>> +
+>>> +	if (limits->pipe.max_bpp != crtc_state->pipe_bpp)
+>>> +		drm_dbg_kms(display->drm,
+>>> +			    "[CONNECTOR:%d:%s] Adjusting requested max pipe bpp %d -> %d\n",
+>>> +			    connector->base.base.id, connector->base.name,
+>>> +			    crtc_state->pipe_bpp, limits->pipe.max_bpp);
+>>> +
+>>>    	if (is_mst || intel_dp->use_max_params) {
+>>>    		/*
+>>>    		 * For MST we always configure max link bw - the spec doesn't
