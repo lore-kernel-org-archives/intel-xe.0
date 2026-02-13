@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A43C3EF99DD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55A08EF99D3
 	for <intel-xe@archiver.kernel.org>; Fri, 13 Feb 2026 21:16:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26EC210E31A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1237510E319;
 	Fri, 13 Feb 2026 21:16:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j4McM1rQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MiIrBzad";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2006010E31A
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Feb 2026 21:16:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 018E410E319
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Feb 2026 21:16:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1771017390; x=1802553390;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bN82YSK0NNmMmWYJYnF4jpcOMqd4olzVu+uguheJ+PI=;
- b=j4McM1rQk38UBgBpwQG8/VTh/umACZWL8zxtPT+dGq5rWTKk1tD90Rd+
- 3LKTTgzIhNKf+Ju7Jqit3SOujMZJmyDwh3cy5v7tOz9cl45tevrCPjPsm
- H8oSh5j50oRQA2diIRCSUqXdJ0WvCm3RFZ2oxBjYWVY+t+88FbQUnaINS
- Ma1KSzrekS/0L12DpFcEdCEd163SWyEdlXJuvyo6in4uN6jJDKlW5QnCh
- S4AN7GTdDVkkzxgcJfNEGdXOPi/G2WBxGwQHxZDUqpEMEqPLzs9XwbVbK
- zk5UNHzVlXneq+X9gLDUNDcdwPM2eXPfk+ZyaID2vL3XMb7XTV7BWudfF Q==;
-X-CSE-ConnectionGUID: QdPNjMLwRBqoIHwuxsdUxw==
-X-CSE-MsgGUID: mGFuFBBJSAuGfVBpltKr8w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11700"; a="82533868"
-X-IronPort-AV: E=Sophos;i="6.21,289,1763452800"; d="scan'208";a="82533868"
+ bh=vsthKc1OAmrfK9Jr/5UHrlUmnMWNdci6TK+1EqJZW/U=;
+ b=MiIrBzadSLjteiFQZA4jwxOBvFjTyDte8FZPX0addq6/tWNaakSPTxxt
+ bHKEtC5kl1TUReelogKrMKsPgeLpMXi17Qx8K8cIxudC5JF1Xs1vpUUwF
+ R0b3y1rW0ZWUX39ms4bhd6ykamGCD2iGv7esDzL8783WO9wmu1MCS+Sd0
+ JavM2jDBlcpaMg60bOocKC1SIQOY/bge+arH4MDnjQ+DdJDXRXIhQmN56
+ DPwqLr+dQR5Y6yFoelqGs8a0eCJPZ0BaELydd1SCa4+du4kh03IWOFzjE
+ 5+7cs2w2wBsAlXmnNVNyWA6E8ZSnLZYYCvi+Ln8pYjMkkctz7nkTkP1Qq w==;
+X-CSE-ConnectionGUID: CVW9dKZVQv2O3aN9H9p0iQ==
+X-CSE-MsgGUID: C8/EZ77vQrWwPpGlk50dnA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11700"; a="82533867"
+X-IronPort-AV: E=Sophos;i="6.21,289,1763452800"; d="scan'208";a="82533867"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Feb 2026 13:16:30 -0800
-X-CSE-ConnectionGUID: L6rU7DVFQkau8W4HDYLf+A==
-X-CSE-MsgGUID: htqcqbJMS1abFJXG7CxiQw==
+X-CSE-ConnectionGUID: BKHhqB5wSMKqqyk6kfW7MQ==
+X-CSE-MsgGUID: Ikz6Gq1qToK00dBPq+XsSA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,289,1763452800"; d="scan'208";a="217172463"
+X-IronPort-AV: E=Sophos;i="6.21,289,1763452800"; d="scan'208";a="217172460"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Feb 2026 13:16:29 -0800
@@ -45,10 +45,9 @@ From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: francois.dugast@intel.com, daniele.ceraolospurio@intel.com,
  michal.wajdeczko@intel.com
-Subject: [PATCH v2 2/2] drm/xe: Remove H2G reads in CT send path in non-debug
- builds
-Date: Fri, 13 Feb 2026 13:16:25 -0800
-Message-Id: <20260213211625.3117729-3-matthew.brost@intel.com>
+Subject: [PATCH v2 1/2] drm/xe: Split H2G and G2H into separate buffer objects
+Date: Fri, 13 Feb 2026 13:16:24 -0800
+Message-Id: <20260213211625.3117729-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260213211625.3117729-1-matthew.brost@intel.com>
 References: <20260213211625.3117729-1-matthew.brost@intel.com>
@@ -69,50 +68,201 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A single VRAM read on BMG can take over 1µs. While small, this is a
-non-trivial amount of time in a hot path. Remove the descriptor H2G read
-(potentially a VRAM access) from non-debug builds, as this
-error-checking code is not needed outside of debug configurations.
+H2G and G2H buffers have different access patterns (H2G is CPU-write,
+GuC-read, while G2H is GPU-write, CPU-read). On dGPU, these patterns
+benefit from different memory placements: H2G in VRAM and G2H in system
+memory. Split the CT buffer into two separate buffers—one for H2G and
+one for G2H—and select the optimal placement for each.
 
+This provides a significant performance improvement on the G2H read
+path, reducing a single read from ~20 µs to under 1 µs on BMG.
+
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_ct.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_ct.c       | 66 ++++++++++++++++++----------
+ drivers/gpu/drm/xe/xe_guc_ct_types.h |  6 ++-
+ 2 files changed, 48 insertions(+), 24 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index 6a96bea40720..f200d3ee9d22 100644
+index 8a45573f8812..6a96bea40720 100644
 --- a/drivers/gpu/drm/xe/xe_guc_ct.c
 +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -939,22 +939,22 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 	u32 full_len;
- 	struct iosys_map map = IOSYS_MAP_INIT_OFFSET(&h2g->cmds,
- 							 tail * sizeof(u32));
--	u32 desc_status;
+@@ -255,6 +255,7 @@ static bool g2h_fence_needs_alloc(struct g2h_fence *g2h_fence)
  
- 	full_len = len + GUC_CTB_HDR_LEN;
+ #define CTB_DESC_SIZE		ALIGN(sizeof(struct guc_ct_buffer_desc), SZ_2K)
+ #define CTB_H2G_BUFFER_OFFSET	(CTB_DESC_SIZE * 2)
++#define CTB_G2H_BUFFER_OFFSET	(CTB_DESC_SIZE * 2)
+ #define CTB_H2G_BUFFER_SIZE	(SZ_4K)
+ #define CTB_H2G_BUFFER_DWORDS	(CTB_H2G_BUFFER_SIZE / sizeof(u32))
+ #define CTB_G2H_BUFFER_SIZE	(SZ_128K)
+@@ -279,10 +280,14 @@ long xe_guc_ct_queue_proc_time_jiffies(struct xe_guc_ct *ct)
+ 	return (CTB_H2G_BUFFER_SIZE / SZ_4K) * HZ;
+ }
  
- 	lockdep_assert_held(&ct->lock);
- 	xe_gt_assert(gt, full_len <= GUC_CTB_MSG_MAX_LEN);
- 
--	desc_status = desc_read(xe, h2g, status);
--	if (desc_status) {
--		xe_gt_err(gt, "CT write: non-zero status: %u\n", desc_status);
--		goto corrupted;
--	}
--
- 	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
- 		u32 desc_tail = desc_read(xe, h2g, tail);
- 		u32 desc_head = desc_read(xe, h2g, head);
-+		u32 desc_status;
+-static size_t guc_ct_size(void)
++static size_t guc_h2g_size(void)
+ {
+-	return CTB_H2G_BUFFER_OFFSET + CTB_H2G_BUFFER_SIZE +
+-		CTB_G2H_BUFFER_SIZE;
++	return CTB_H2G_BUFFER_OFFSET + CTB_H2G_BUFFER_SIZE;
++}
 +
-+		desc_status = desc_read(xe, h2g, status);
-+		if (desc_status) {
-+			xe_gt_err(gt, "CT write: non-zero status: %u\n", desc_status);
-+			goto corrupted;
-+		}
++static size_t guc_g2h_size(void)
++{
++	return CTB_G2H_BUFFER_OFFSET + CTB_G2H_BUFFER_SIZE;
+ }
  
- 		if (tail != desc_tail) {
- 			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_MISMATCH);
+ static void guc_ct_fini(struct drm_device *drm, void *arg)
+@@ -311,7 +316,8 @@ int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct)
+ 	struct xe_gt *gt = ct_to_gt(ct);
+ 	int err;
+ 
+-	xe_gt_assert(gt, !(guc_ct_size() % PAGE_SIZE));
++	xe_gt_assert(gt, !(guc_h2g_size() % PAGE_SIZE));
++	xe_gt_assert(gt, !(guc_g2h_size() % PAGE_SIZE));
+ 
+ 	err = drmm_mutex_init(&xe->drm, &ct->lock);
+ 	if (err)
+@@ -356,7 +362,17 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+ 	struct xe_tile *tile = gt_to_tile(gt);
+ 	struct xe_bo *bo;
+ 
+-	bo = xe_managed_bo_create_pin_map(xe, tile, guc_ct_size(),
++	bo = xe_managed_bo_create_pin_map(xe, tile, guc_h2g_size(),
++					  XE_BO_FLAG_SYSTEM |
++					  XE_BO_FLAG_GGTT |
++					  XE_BO_FLAG_GGTT_INVALIDATE |
++					  XE_BO_FLAG_PINNED_NORESTORE);
++	if (IS_ERR(bo))
++		return PTR_ERR(bo);
++
++	ct->bo_h2g = bo;
++
++	bo = xe_managed_bo_create_pin_map(xe, tile, guc_g2h_size(),
+ 					  XE_BO_FLAG_SYSTEM |
+ 					  XE_BO_FLAG_GGTT |
+ 					  XE_BO_FLAG_GGTT_INVALIDATE |
+@@ -364,7 +380,7 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
+ 
+-	ct->bo = bo;
++	ct->bo_g2h = bo;
+ 
+ 	return devm_add_action_or_reset(xe->drm.dev, guc_action_disable_ct, ct);
+ }
+@@ -389,7 +405,7 @@ int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct *ct)
+ 	xe_assert(xe, !xe_guc_ct_enabled(ct));
+ 
+ 	if (IS_DGFX(xe)) {
+-		ret = xe_managed_bo_reinit_in_vram(xe, tile, &ct->bo);
++		ret = xe_managed_bo_reinit_in_vram(xe, tile, &ct->bo_h2g);
+ 		if (ret)
+ 			return ret;
+ 	}
+@@ -439,8 +455,7 @@ static void guc_ct_ctb_g2h_init(struct xe_device *xe, struct guc_ctb *g2h,
+ 	g2h->desc = IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE);
+ 	xe_map_memset(xe, &g2h->desc, 0, 0, sizeof(struct guc_ct_buffer_desc));
+ 
+-	g2h->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_H2G_BUFFER_OFFSET +
+-					    CTB_H2G_BUFFER_SIZE);
++	g2h->cmds = IOSYS_MAP_INIT_OFFSET(map, CTB_G2H_BUFFER_OFFSET);
+ }
+ 
+ static int guc_ct_ctb_h2g_register(struct xe_guc_ct *ct)
+@@ -449,8 +464,8 @@ static int guc_ct_ctb_h2g_register(struct xe_guc_ct *ct)
+ 	u32 desc_addr, ctb_addr, size;
+ 	int err;
+ 
+-	desc_addr = xe_bo_ggtt_addr(ct->bo);
+-	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_H2G_BUFFER_OFFSET;
++	desc_addr = xe_bo_ggtt_addr(ct->bo_h2g);
++	ctb_addr = xe_bo_ggtt_addr(ct->bo_h2g) + CTB_H2G_BUFFER_OFFSET;
+ 	size = ct->ctbs.h2g.info.size * sizeof(u32);
+ 
+ 	err = xe_guc_self_cfg64(guc,
+@@ -476,9 +491,8 @@ static int guc_ct_ctb_g2h_register(struct xe_guc_ct *ct)
+ 	u32 desc_addr, ctb_addr, size;
+ 	int err;
+ 
+-	desc_addr = xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE;
+-	ctb_addr = xe_bo_ggtt_addr(ct->bo) + CTB_H2G_BUFFER_OFFSET +
+-		CTB_H2G_BUFFER_SIZE;
++	desc_addr = xe_bo_ggtt_addr(ct->bo_g2h) + CTB_DESC_SIZE;
++	ctb_addr = xe_bo_ggtt_addr(ct->bo_g2h) + CTB_G2H_BUFFER_OFFSET;
+ 	size = ct->ctbs.g2h.info.size * sizeof(u32);
+ 
+ 	err = xe_guc_self_cfg64(guc,
+@@ -605,9 +619,12 @@ static int __xe_guc_ct_start(struct xe_guc_ct *ct, bool needs_register)
+ 	xe_gt_assert(gt, !xe_guc_ct_enabled(ct));
+ 
+ 	if (needs_register) {
+-		xe_map_memset(xe, &ct->bo->vmap, 0, 0, xe_bo_size(ct->bo));
+-		guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo->vmap);
+-		guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo->vmap);
++		xe_map_memset(xe, &ct->bo_h2g->vmap, 0, 0,
++			      xe_bo_size(ct->bo_h2g));
++		xe_map_memset(xe, &ct->bo_g2h->vmap, 0, 0,
++			      xe_bo_size(ct->bo_g2h));
++		guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo_h2g->vmap);
++		guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo_g2h->vmap);
+ 
+ 		err = guc_ct_ctb_h2g_register(ct);
+ 		if (err)
+@@ -624,7 +641,7 @@ static int __xe_guc_ct_start(struct xe_guc_ct *ct, bool needs_register)
+ 		ct->ctbs.h2g.info.broken = false;
+ 		ct->ctbs.g2h.info.broken = false;
+ 		/* Skip everything in H2G buffer */
+-		xe_map_memset(xe, &ct->bo->vmap, CTB_H2G_BUFFER_OFFSET, 0,
++		xe_map_memset(xe, &ct->bo_h2g->vmap, CTB_H2G_BUFFER_OFFSET, 0,
+ 			      CTB_H2G_BUFFER_SIZE);
+ 	}
+ 
+@@ -1963,8 +1980,9 @@ static struct xe_guc_ct_snapshot *guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bo
+ 	if (!snapshot)
+ 		return NULL;
+ 
+-	if (ct->bo && want_ctb) {
+-		snapshot->ctb_size = xe_bo_size(ct->bo);
++	if (ct->bo_h2g && ct->bo_g2h && want_ctb) {
++		snapshot->ctb_size = xe_bo_size(ct->bo_h2g) +
++			xe_bo_size(ct->bo_g2h);
+ 		snapshot->ctb = kmalloc(snapshot->ctb_size, atomic ? GFP_ATOMIC : GFP_KERNEL);
+ 	}
+ 
+@@ -2012,8 +2030,12 @@ static struct xe_guc_ct_snapshot *guc_ct_snapshot_capture(struct xe_guc_ct *ct,
+ 		guc_ctb_snapshot_capture(xe, &ct->ctbs.g2h, &snapshot->g2h);
+ 	}
+ 
+-	if (ct->bo && snapshot->ctb)
+-		xe_map_memcpy_from(xe, snapshot->ctb, &ct->bo->vmap, 0, snapshot->ctb_size);
++	if (ct->bo_h2g && ct->bo_g2h && snapshot->ctb) {
++		xe_map_memcpy_from(xe, snapshot->ctb, &ct->bo_h2g->vmap, 0,
++				   xe_bo_size(ct->bo_h2g));
++		xe_map_memcpy_from(xe, snapshot->ctb + xe_bo_size(ct->bo_h2g),
++				   &ct->bo_g2h->vmap, 0, xe_bo_size(ct->bo_g2h));
++	}
+ 
+ 	return snapshot;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct_types.h b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+index 09d7ff1ef42a..385a607e4777 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+@@ -126,8 +126,10 @@ struct xe_fast_req_fence {
+  * for the H2G and G2H requests sent and received through the buffers.
+  */
+ struct xe_guc_ct {
+-	/** @bo: Xe BO for CT */
+-	struct xe_bo *bo;
++	/** @bo_h2g: Xe BO for H2G */
++	struct xe_bo *bo_h2g;
++	/** @bo_g2h: Xe BO for G2H */
++	struct xe_bo *bo_g2h;
+ 	/** @lock: protects everything in CT layer */
+ 	struct mutex lock;
+ 	/** @fast_lock: protects G2H channel and credits */
 -- 
 2.34.1
 
