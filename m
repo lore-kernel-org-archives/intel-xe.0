@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D292EDF154
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Feb 2026 12:26:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56637EDF15D
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Feb 2026 12:26:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D49BE10E803;
-	Fri, 13 Feb 2026 12:26:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C69110E7E8;
+	Fri, 13 Feb 2026 12:26:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WnJvZZAG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CyJhjVSw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99AFE10E7F8;
- Fri, 13 Feb 2026 12:26:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D535410E805;
+ Fri, 13 Feb 2026 12:26:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770985587; x=1802521587;
+ t=1770985591; x=1802521591;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=HrFLxu0YRIxksrygVDdq6TubQXHWevIbDZfE4hJ3MyE=;
- b=WnJvZZAGu9xN2ar5nK1Ic3baw4TQoFOfkEk3VtTcJveTuNXe75Ct3sOF
- I+jTq188SdU+kENTjtKm2BnoIoZkXMleqwr4jtF2eIzAd8f+F/Av+523u
- r6v43QjS5lfN9icmE4842tuYo4Ziw+QtslL7MM0EOEc5maVlne69zQiFp
- burc3mgDyMJov1cbn/LtZBV+SSkaddW2WL1eqiqJRP5Zm0bNVkFFR8ayo
- vNeRBAlrqeYRAygYRfVRkIxvJL5FpCHVk3MvW/Cql1z6SK+VuBm1xEyob
- cNp1qoWbTwu+vF+VgvEs/74CsmQemtF2WEPHMyWFRrkVV8/zbo4n00LPF Q==;
-X-CSE-ConnectionGUID: ZR6BOjMPRI+1ApfBB4Mxag==
-X-CSE-MsgGUID: j7rxduhQQWOo4nfWe26yzQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="72158113"
-X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="72158113"
+ bh=rRNRmS+iwtEvjn8MSJXVsZiic2j5KBzh0QJCMIU7Qvk=;
+ b=CyJhjVSwpYxtqvTJRUxLciEl3XA/aBLE/t5MGBpnRGzAPrVWUirBu0lL
+ egwCQMMT/YAcw1oy6jnkGmUA37jyQX6iLgiTFfga+MTbVNDO1LA2ngShB
+ Ok/7YiBgJGEjkIOwbCwSiqAuk9MUSGD1Af2X43quPjguP5IOeYT8A7LUw
+ 1BbdZ39t5YJvoiGb9BSxai6O28b1Epnvx8D3gSSBNbmP6mjvAsAS/AXRn
+ V9yMosBXDvd0U/Xll/KtEWC4phughAYT61sibaFNRAk6YUZJEvzw91OUT
+ kBM9p3PNig3cxtuL6M6myiRuv2MZz98U2W6TGlpDg0JVxY42rAKjlUP8s w==;
+X-CSE-ConnectionGUID: oiU9GHciR7GggVHlqYEdNg==
+X-CSE-MsgGUID: +/YBJ/+SQk+n/KKzSRqehQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="72158118"
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="72158118"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2026 04:26:27 -0800
-X-CSE-ConnectionGUID: cmWMLpXpQD6RKW/WeE7Itg==
-X-CSE-MsgGUID: sM9T7ieCRP2iZkTfiVSWwQ==
+ 13 Feb 2026 04:26:31 -0800
+X-CSE-ConnectionGUID: WjVXSAJoRd2JwPRktMzS8w==
+X-CSE-MsgGUID: VPiCDcT3QoGY8w/cq3Uj6Q==
 X-ExtLoop1: 1
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa003.fm.intel.com with ESMTP; 13 Feb 2026 04:26:25 -0800
+ by fmviesa003.fm.intel.com with ESMTP; 13 Feb 2026 04:26:29 -0800
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH 06/19] drm/i915/lt_phy: Add xe3plpd .put_dplls hook
-Date: Fri, 13 Feb 2026 12:26:02 +0000
-Message-ID: <20260213122615.1083654-7-mika.kahola@intel.com>
+Subject: [PATCH 10/19] drm/i915/lt_phy: Add xe3pldp .compare_hw_state hook
+Date: Fri, 13 Feb 2026 12:26:06 +0000
+Message-ID: <20260213122615.1083654-11-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260213122615.1083654-1-mika.kahola@intel.com>
 References: <20260213122615.1083654-1-mika.kahola@intel.com>
@@ -65,23 +65,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add .put_dplls function pointer to support xe3plpd platform
-on dpll framework. Reuse ICL function pointer.
+Add .compare_hw_state function pointer for xe3plpd platform
+to support dpll framework.
 
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 9aa8eb0a7d4a..af2613eeaf92 100644
+index 26b78063dd94..c1d7d9909544 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
 +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -4654,6 +4654,7 @@ static const struct intel_dpll_mgr xe3plpd_pll_mgr = {
+@@ -4655,6 +4655,15 @@ static void xe3plpd_dump_hw_state(struct drm_printer *p,
+ 	intel_lt_phy_dump_hw_state(p, &dpll_hw_state->ltpll);
+ }
+ 
++static bool xe3plpd_compare_hw_state(const struct intel_dpll_hw_state *_a,
++				     const struct intel_dpll_hw_state *_b)
++{
++	const struct intel_lt_phy_pll_state *a = &_a->ltpll;
++	const struct intel_lt_phy_pll_state *b = &_b->ltpll;
++
++	return intel_lt_phy_pll_compare_hw_state(a, b);
++}
++
+ __maybe_unused
+ static const struct intel_dpll_mgr xe3plpd_pll_mgr = {
  	.dpll_info = xe3plpd_plls,
- 	.compute_dplls = xe3plpd_compute_dplls,
- 	.get_dplls = mtl_get_dplls,
-+	.put_dplls = icl_put_dplls,
+@@ -4664,6 +4673,7 @@ static const struct intel_dpll_mgr xe3plpd_pll_mgr = {
+ 	.update_active_dpll = icl_update_active_dpll,
+ 	.update_ref_clks = icl_update_dpll_ref_clks,
+ 	.dump_hw_state = xe3plpd_dump_hw_state,
++	.compare_hw_state = xe3plpd_compare_hw_state,
  };
  
  /**
