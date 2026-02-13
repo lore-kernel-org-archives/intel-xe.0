@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 571C3EDF14F
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Feb 2026 10:25:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 796D3EDF151
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Feb 2026 10:32:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1703610E7FA;
-	Fri, 13 Feb 2026 10:25:43 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GpARUkcS";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 998D610E7F3;
- Fri, 13 Feb 2026 10:25:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770978339; x=1802514339;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1EOVqHdaRSXWe6D4PFf7StqEnloqiJuFxxYmHOdLzh4=;
- b=GpARUkcS/8PoJVOtXsgKh9S96+oWPpVUhLf9sLrV4Iis9XI7WEglMaua
- 8P3phDdcwtiQq1D8ewzOiwqOZyaeblorATFaPFCQqQZfHXpV6Dyuxc0N2
- VwtL5rI16ESRGKpRTqk4FjKOEaIrBMMj9ZEVHMPsqAhaY1GL6WsP/1PHW
- Hwjxn+L5gRqR8qRo99Ccw4CQipeoRRSF0lh2Qtq0h5NLoMg9Pb9dhtvTV
- 8F33V5S3ycB4qtRu06TKhwPLiwlPqMqPZY4JBVmIr2YqdqTfnd3yx9Wq4
- noNbUGUBohKOGzP8LFurH63xfMeYqmY9kHU8cDcsQoyLW46CIcS3ocQs3 w==;
-X-CSE-ConnectionGUID: jU5Fp/0ITdKvsG1YvxhX7A==
-X-CSE-MsgGUID: xpcMLfzMRVSAUaoM4TNEwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="72150728"
-X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="72150728"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2026 02:25:39 -0800
-X-CSE-ConnectionGUID: c59HlldVQxSHG7qZE8ojLg==
-X-CSE-MsgGUID: vb1kykn2Td2GDSdAicEErQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="212919786"
-Received: from abityuts-desk.ger.corp.intel.com (HELO hazy.intel.com)
- ([10.245.244.16])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2026 02:25:38 -0800
-From: Luca Coelho <luciano.coelho@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 15/16] drm/i915/display: convert W/As in
- skl_universal_plane.c to new framework
-Date: Fri, 13 Feb 2026 12:23:43 +0200
-Message-ID: <20260213102500.406925-16-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260213102500.406925-1-luciano.coelho@intel.com>
-References: <20260213102500.406925-1-luciano.coelho@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A9C210E7FE;
+	Fri, 13 Feb 2026 10:32:02 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C5D610E7FE;
+ Fri, 13 Feb 2026 10:32:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_conve?=
+ =?utf-8?q?rt_a_bunch_of_W/A_checks_to_the_new_framework_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Luca Coelho" <luciano.coelho@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 13 Feb 2026 10:32:01 -0000
+Message-ID: <177097872109.252230.3118921269822977825@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260213102500.406925-1-luciano.coelho@intel.com>
+In-Reply-To: <20260213102500.406925-1-luciano.coelho@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,80 +36,67 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Convert the low-hanging fruits of workaround checks to the workaround
-framework.  Instead of having display structure checks for the
-workarounds all over, concentrate the checks in intel_display_wa.c.
+== Series Details ==
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display_wa.c    | 4 ++++
- drivers/gpu/drm/i915/display/intel_display_wa.h    | 1 +
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 6 +++---
- 3 files changed, 8 insertions(+), 3 deletions(-)
+Series: drm/i915/display: convert a bunch of W/A checks to the new framework (rev2)
+URL   : https://patchwork.freedesktop.org/series/161555/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-index 73c7b87d5ecd..f05d96b4b35f 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-@@ -79,6 +79,10 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
- 	case INTEL_DISPLAY_WA_13012396614:
- 		return DISPLAY_VERx100(display) == 3000 ||
- 			DISPLAY_VERx100(display) == 3500;
-+	case INTEL_DISPLAY_WA_14010477008:
-+		return display->platform.dg1 || display->platform.rocketlake ||
-+			(display->platform.tigerlake &&
-+			 IS_DISPLAY_STEP(display, STEP_A0, STEP_D0));
- 	case INTEL_DISPLAY_WA_14010480278:
- 		return (IS_DISPLAY_VER(display, 10, 12));
- 	case INTEL_DISPLAY_WA_14010547955:
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-index 0e9959760b9f..1f664366847d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-@@ -30,6 +30,7 @@ enum intel_display_wa {
- 	INTEL_DISPLAY_WA_1409120013,
- 	INTEL_DISPLAY_WA_1409767108,
- 	INTEL_DISPLAY_WA_13012396614,
-+	INTEL_DISPLAY_WA_14010477008,
- 	INTEL_DISPLAY_WA_14010480278,
- 	INTEL_DISPLAY_WA_14010547955,
- 	INTEL_DISPLAY_WA_14010685332,
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 746e942cafd2..ec7d00e0cf04 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -17,6 +17,7 @@
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
- #include "intel_display_utils.h"
-+#include "intel_display_wa.h"
- #include "intel_dpt.h"
- #include "intel_fb.h"
- #include "intel_fbc.h"
-@@ -1217,7 +1218,7 @@ static u32 skl_plane_ctl(const struct intel_plane_state *plane_state)
- 		plane_ctl |= PLANE_CTL_KEY_ENABLE_SOURCE;
- 
- 	/* Wa_22012358565:adl-p */
--	if (DISPLAY_VER(display) == 13)
-+	if (intel_display_wa(display, INTEL_DISPLAY_WA_22012358565))
- 		plane_ctl |= adlp_plane_ctl_arb_slots(plane_state);
- 
- 	return plane_ctl;
-@@ -2793,8 +2794,7 @@ static bool tgl_plane_has_mc_ccs(struct intel_display *display,
- 				 enum plane_id plane_id)
- {
- 	/* Wa_14010477008 */
--	if (display->platform.dg1 || display->platform.rocketlake ||
--	    (display->platform.tigerlake && IS_DISPLAY_STEP(display, STEP_A0, STEP_D0)))
-+	if (intel_display_wa(display, INTEL_DISPLAY_WA_14010477008))
- 		return false;
- 
- 	return plane_id < PLANE_6;
--- 
-2.51.0
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a9773ffebef9b8921fb183379275b9791b4d250b
+Author: Luca Coelho <luciano.coelho@intel.com>
+Date:   Fri Feb 13 12:23:44 2026 +0200
+
+    drm/i915/display: convert W/As in skl_watermark.c to new framework
+    
+    Convert the low-hanging fruits of workaround checks to the workaround
+    framework.  Instead of having display structure checks for the
+    workarounds all over, concentrate the checks in intel_display_wa.c.
+    
+    Acked-by: Jani Nikula <jani.nikula@intel.com>
+    Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+    Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
++ /mt/dim checkpatch cd76e45b9a192aa3d4f7a2efb8ee46767f098e07 drm-intel
+fc22fe775a54 drm/i915/display: remove enum macro magic in intel_display_wa()
+4e93a7ef4b24 drm/i915/display: convert audio workaround to new framework
+-:51: WARNING:BLOCK_COMMENT_STYLE: Block comments should align the * on each line
+#51: FILE: drivers/gpu/drm/i915/display/intel_audio.c:436:
++	 * Corner case with Min Hblank Fix can cause audio hang
++	*/
+
+-:64: WARNING:BLOCK_COMMENT_STYLE: Block comments should align the * on each line
+#64: FILE: drivers/gpu/drm/i915/display/intel_audio.c:572:
++	 * Corner case with Min Hblank Fix can cause audio hang
++	*/
+
+total: 0 errors, 2 warnings, 0 checks, 65 lines checked
+6f182f183256 drm/i915/display: convert W/As in intel_display_power.c to new framework
+9bbfa2693fe2 drm/i915/display: convert W/As in intel_cdclk.c to new framework
+d1edeae7a2c6 drm/i915/display: convert W/As in intel_cursor.c to new framework
+2b952ae81235 drm/i915/display: convert W/As in intel_ddi.c to new framework
+151e5ea440fa drm/i915/display: convert W/As in intel_display.c to new framework
+05def617c99d drm/i915/display: convert W/As in intel_display_device.c to new framework
+f115a6abe1fb drm/i915/display: convert W/As in intel_dp_mst.c to new framework
+502f05a3edae drm/i915/display: convert W/As in intel_fbc.c to new framework
+2289efdb1b7f drm/i915/display: convert W/As in intel_flipq.c to new framework
+eb268bcc7411 drm/i915/display: convert W/As in intel_modeset_setup.c to new framework
+ba75e1734603 drm/i915/display: convert W/As in intel_pmdemand.c to new framework
+c762a226b309 drm/i915/display: convert W/As in intel_psr.c to new framework
+b2302c4e10c8 drm/i915/display: convert W/As in skl_universal_plane.c to new framework
+a9773ffebef9 drm/i915/display: convert W/As in skl_watermark.c to new framework
+
 
