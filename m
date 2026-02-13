@@ -4,51 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2424EF99D3
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Feb 2026 20:50:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A3BEEF99DF
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Feb 2026 20:50:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 115CD10E318;
-	Fri, 13 Feb 2026 20:50:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AF1610E319;
+	Fri, 13 Feb 2026 20:50:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U86ZdOsn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fkfk7tpl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7587310E2C2
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Feb 2026 20:50:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B22810E2C2
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Feb 2026 20:50:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1771015849; x=1802551849;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=oJroJAfUCzANXKRjF+wS9nbNdxeXx8dNj1BOK4YDmfw=;
- b=U86ZdOsn8Vds3mW6odRbVFL42dON5on7YGeFkwckOMA9pzwY4kXIyIRE
- SXDn5LnTc9YauBq0aJtFnGvmS63+VXrT5ts2/WFB5qNcA1ulsAOM14TA7
- UVfNo/LBDio/zSv7t1nz9T8+3z7V6YxeHQ6zBIjP/D5IpWlDxFhPK5U3O
- B9VugCgvMtj9AYuWJp1GvMxPRe540kgxJuXvMPZdoF3m7VWGQUYEa7Lti
- ducrwHoldRX+5UvipxndHhZUIo//5BSZvR4Rh4xjO4JFqo9pM2BLFWJev
- iCr18upN7QLcJpCxXLMQRYZJbO1Ol2vyoC/Myjl+aRoiNYz9ntYbF5OXg Q==;
-X-CSE-ConnectionGUID: adoZIqW8TbOSMr4RhWkLuQ==
-X-CSE-MsgGUID: 4e+UgHAyQRybC/7SzeqHQg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11700"; a="72109735"
-X-IronPort-AV: E=Sophos;i="6.21,289,1763452800"; d="scan'208";a="72109735"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=S/u1iq+bYh+lacxL7cvOxLMniIaZIcKoiSIf5bBuRS8=;
+ b=Fkfk7tpl7V05pZDKokjHwShftjjOcImUcYB6RkCflcgLmbMlHDVNZ/dx
+ Um2E+KirX0eO2+7TZdRBEHrs3i6/EKxkKBYrkNGoq4yVb3IcZGWfgIVSw
+ MpG07gYjGL5Kcbyc1dkp3ZjdtKOdIiWIwDsGui5S1qsBe2ZjzO9rIuuHm
+ 4bGzcxh1F22cY11EEQRLIPb0QKXw7AUHdAt7nb1sM7UhYMwBypeUaMugG
+ SGHsFkTIsxFriFzPGpIZvKMMnRTMcNH4QgzZDrmkng3HNqbb1NOyEteLW
+ GELoB7sQq3oxA7yLQ3KU30RdM92ufDN3zOwmD14vAR4QHsZfbWLwAuclL Q==;
+X-CSE-ConnectionGUID: /I1Y/Y4qRZe61qnLVSEZXg==
+X-CSE-MsgGUID: g7OzCoiOQa282sw73rKtag==
+X-IronPort-AV: E=McAfee;i="6800,10657,11700"; a="72109740"
+X-IronPort-AV: E=Sophos;i="6.21,289,1763452800"; d="scan'208";a="72109740"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Feb 2026 12:50:48 -0800
-X-CSE-ConnectionGUID: PUOVIsjPRf2PFloFl7wIjA==
-X-CSE-MsgGUID: qeXbabCUQdmoOc2Z8toyTg==
+X-CSE-ConnectionGUID: awmNQo7BSB6kdf0lRKVdjA==
+X-CSE-MsgGUID: pQbY2xPzTRycuHF2ZgHmrQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,289,1763452800"; d="scan'208";a="212131361"
+X-IronPort-AV: E=Sophos;i="6.21,289,1763452800"; d="scan'208";a="212131367"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2026 12:50:47 -0800
+ 13 Feb 2026 12:50:48 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: francois.dugast@intel.com, daniele.ceraolospurio@intel.com,
  michal.wajdeczko@intel.com
-Subject: [PATCH 0/2] GuC CT memory optimizations 
-Date: Fri, 13 Feb 2026 12:50:41 -0800
-Message-Id: <20260213205043.3111176-1-matthew.brost@intel.com>
+Subject: [PATCH 2/2] drm/xe: Remove H2G reads in CT send path in non-debug
+ builds
+Date: Fri, 13 Feb 2026 12:50:43 -0800
+Message-Id: <20260213205043.3111176-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260213205043.3111176-1-matthew.brost@intel.com>
+References: <20260213205043.3111176-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -66,27 +69,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Profiling has shown that reading from VRAM on BMG is very slow and
-introduces significant latency in GuC CT operations. To address this,
-CPU-side read buffers (G2H) are moved to system memory, and unnecessary
-CPU reads of VRAM in hot paths are removed. This is marked as a fixes
-change due to the dramatic improvement in G2H performance, which affects
-hot paths such as TLB invalidation fences and fault-storm handling.
+A single VRAM read on BMG can take over 1µs. While small, this is a
+non-trivial amount of time in a hot path. Remove the descriptor H2G read
+(potentially a VRAM access) from non-debug builds, as this
+error-checking code is not needed outside of debug configurations.
 
-We likely have similar issues in hardware fence signaling paths that
-currently read from VRAM. A follow-up will move the LRC fence seqno (and
-possibly other CPU-side LRC reads) to system memory as well.
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_ct.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
-Matt
-
-Matthew Brost (2):
-  drm/xe: Split H2G and G2H into separate buffer objects
-  drm/xe: Remove H2G reads in CT send path in non-debug builds
-
- drivers/gpu/drm/xe/xe_guc_ct.c       | 80 ++++++++++++++++++----------
- drivers/gpu/drm/xe/xe_guc_ct_types.h |  6 ++-
- 2 files changed, 55 insertions(+), 31 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 5d8d90a4f879..333a621825d3 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -939,22 +939,22 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 	u32 full_len;
+ 	struct iosys_map map = IOSYS_MAP_INIT_OFFSET(&h2g->cmds,
+ 							 tail * sizeof(u32));
+-	u32 desc_status;
+ 
+ 	full_len = len + GUC_CTB_HDR_LEN;
+ 
+ 	lockdep_assert_held(&ct->lock);
+ 	xe_gt_assert(gt, full_len <= GUC_CTB_MSG_MAX_LEN);
+ 
+-	desc_status = desc_read(xe, h2g, status);
+-	if (desc_status) {
+-		xe_gt_err(gt, "CT write: non-zero status: %u\n", desc_status);
+-		goto corrupted;
+-	}
+-
+ 	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
+ 		u32 desc_tail = desc_read(xe, h2g, tail);
+ 		u32 desc_head = desc_read(xe, h2g, head);
++		u32 desc_status;
++
++		desc_status = desc_read(xe, h2g, status);
++		if (desc_status) {
++			xe_gt_err(gt, "CT write: non-zero status: %u\n", desc_status);
++			goto corrupted;
++		}
+ 
+ 		if (tail != desc_tail) {
+ 			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_MISMATCH);
 -- 
 2.34.1
 
