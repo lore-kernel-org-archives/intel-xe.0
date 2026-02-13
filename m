@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BBF5EEA871
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BFECEEA870
 	for <intel-xe@archiver.kernel.org>; Fri, 13 Feb 2026 00:09:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDCD910E6CC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E827C10E161;
 	Fri, 13 Feb 2026 00:09:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nrPAegZ3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GKMDoDre";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4892610E161
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Feb 2026 00:09:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 100DD10E161
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Feb 2026 00:09:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770941375; x=1802477375;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Zave7NEa39pS9K3jIB8hIjz1a1uJzGhITQ8hZbi7iS0=;
- b=nrPAegZ3+cnxdJrIIWThmDAgWZlfpeshbjjZCU68IBfxKTQzpOUtQRSS
- Y4fxkiDsh15xOPQvMrHb8Ewn8pTLY702vM5Txi9ZSc5vlNeXZvKBf6SHy
- bbmDFYE6/Ct+drQaOsdsa2iFYWiysiUZfnDEsQB0SzWuGLbhxP6ufRLQQ
- SQqwQzGfnsZ7Nto15YbdmjbfQkRDaE01gIGWhiaIK87dgCLV57BVHBrG3
- QcHiJxmMSdP0d1Yg3/HS+szsfKKjewkhQ2Evl1ri5xIrXRo8yrSXmEHof
- EiRc2ebnEJYtnuSvBGGxtOBSVU8q3E3WuWdVqu57FxibJGj3nHKkwZXtJ g==;
-X-CSE-ConnectionGUID: jYShCGZCRkWudS4szlrXGg==
-X-CSE-MsgGUID: 3xKCLjuySOmu2Yg7W+/2UQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="94764094"
-X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; d="scan'208";a="94764094"
+ t=1770941376; x=1802477376;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=nPEIOda/KaVdJZGm9QnS6pyTj0lB9kxZpvyGh9d1UTE=;
+ b=GKMDoDre678LO/PgOMIm13xkZleGU7MD1DBbuGHncwhD++LR4TUSdf4n
+ osJsCuJcbOO5tpMvxcZq1bxjl5mDn9IZMvXvw7TAjQ+3rC+g1UyKDKQkl
+ YC5npoXAxDdkIBMB4GpcABDgswsdaf+B34ysVf2rEF2+qakTfxSvIv41F
+ 9zbeUcri0OdoDyi31a+fnhkRy2oYziokam1fEjjfrFX4jhGXJXF4oNxy6
+ doqK1MtjW3k5YisYS7koqcZUzPRL1LdVKWDtStTFGZamWk4a7SpYhhxLM
+ Jl9qzHhb+jRUpxO9auoQtpPhRWG+jvIkbv+e2sGqQMzi7um7vKco9+ud1 Q==;
+X-CSE-ConnectionGUID: 0RwJqh4MSteEkxoCUV3FDg==
+X-CSE-MsgGUID: I71kRA/mTIuLxFL1Z4Lv7A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="94764098"
+X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; d="scan'208";a="94764098"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2026 16:09:35 -0800
-X-CSE-ConnectionGUID: 2lVwx4doQ1qGfnxOXbfhzA==
-X-CSE-MsgGUID: WV+KltxSRk+QcgmFBpFG/g==
+ 12 Feb 2026 16:09:36 -0800
+X-CSE-ConnectionGUID: h4ERAKtqQqiMuznXrPpSHg==
+X-CSE-MsgGUID: r9OT6+E6RJ+PS+NL9VYR9g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; d="scan'208";a="212595820"
+X-IronPort-AV: E=Sophos;i="6.21,287,1763452800"; d="scan'208";a="212595827"
 Received: from mdroper-desk1.fm.intel.com ([10.1.39.133])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Feb 2026 16:09:35 -0800
+ 12 Feb 2026 16:09:36 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: matthew.d.roper@intel.com, Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Ashutosh Dixit <ashutosh.dixit@intel.com>
-Subject: [PATCH v3 0/4] Add debugfs facility to catch RTP mistakes
-Date: Thu, 12 Feb 2026 16:09:30 -0800
-Message-ID: <20260213000929.732113-6-matthew.d.roper@intel.com>
+Cc: matthew.d.roper@intel.com,
+	Michal Wajdeczko <michal.wajdeczko@intel.com>
+Subject: [PATCH v3 1/4] drm/xe/reg_sr: Don't process gt/hwe lists in VF
+Date: Thu, 12 Feb 2026 16:09:31 -0800
+Message-ID: <20260213000929.732113-7-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260213000929.732113-6-matthew.d.roper@intel.com>
+References: <20260213000929.732113-6-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,67 +67,164 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Unlike i915, Xe doesn't currently do any readback verification of
-workaround/tuning settings that it tries to program.  If an entry gets
-placed on the wrong table, or applied to the wrong platform/IP, the
-programming may be silently ineffective without anyone noticing.
+There are a few different reg_sr lists managed by the driver for
+workarounds/tuning:
 
-i915's solution of doing verification at application time was
-problematic because raising warnings during probe would be treated by CI
-as a fatal problem and would prevent CI from even attempting any other
-testing until the issue was dealt with.  Let's avoid that with Xe and
-instead perform the verification on-demand when a debugfs entry is read.
-This makes it very easy to do verification at various times during
-manual debugging.  It should also be simply to wrap a dedicated IGT test
-around the debugfs entry such that any unexpected failures are reported
-against that one test rather than bringing down the entire CI system.
+ - gt->reg_sr
+ - hwe->reg_sr
+ - hwe->reg_lrc
 
-Note that verification of LRC programming is a bit more complicated than
-verification of GT/engine programming since we can't just blindly read
-the register values from the CPU and expect the RTP values to be in
-effect.  Applying LRC progamming ensures that every GPU context created
-should have the updated values in the LRC, and those values will get
-loaded into the register when the hardware context switches to it.
-However when no context is running on the hardware, the register values
-may revert to their hardware defaults which do not have the programming
-applied.  Instead, we should verify LRC programming by parsing the
-engine's 'default LRC' image and making sure the desired programming
-appears somewhere in one of the MI_LOAD_REGISTER_IMM state emission
-commands.
+The first two are not relevant to SRIOV VFs; a VF KMD does not have
+access to the registers that appear on this list and it is the PF KMD's
+responsibility to apply such programming on behalf of the entire system.
+However the third list contains per-client values that the VF KMD needs
+to ensure are incorporated whenever a new LRC is created.
 
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Handling of reg_sr lists comes in two steps: processing an RTP table to
+build a reg_sr from the relevant entries, and then applying the contents
+of the reg_sr.  Skipping the RTP processing (resulting in an empty
+reg_sr) or skipping the application of a reg_sr are both valid ways to
+avoid having a VF accidentally try to write registers it doesn't have
+access to.  In commit c19e705ec981 ("drm/xe/vf: Stop applying
+save-restore MMIOs if VF") and commit 92a5bd302458 ("drm/xe/vf: Unblock
+xe_rtp_process_to_sr for VFs") we adjusted the drivers behavior to
+always process the RTP table into a reg_sr and just skipped the
+application step.  This works fine functionally, but can lead to
+confusion during debugging since facilities like the debugfs
+'register-save-restore' will still report a bunch of registers that the
+VF KMD isn't actually trying to handle.  It will also mislead other
+upcoming debug changes.
+
+Let's go back to skipping the RTP => reg_sr processing step, but only
+for GT / hwe tables this time.  This will allow LRC reg_sr handling to
+continue to work, but will ensure that gt->reg_sr and hwe->reg_sr remain
+empty and that debugfs reporting more accurately reflects the KMD's
+behavior.
 
 v2:
- - Avoid processing RTP -> SR for gt/hwe lists in VF to ensure the
-   debugfs entry is safe to use in an SR-IOV VF.  (Ashutosh)
- - Add verification of LRC adjustments by searching engine type's
-   default LRC.
-
-v3:
- - Add missing checks to avoid SR-IOV VF processing of RTP -> SR in
-   hw_engine_setup_default_state() and
+ - Also skip the hwe processing in hw_engine_setup_default_state() and
    xe_reg_whitelist_process_engine().
 
-Matt Roper (4):
-  drm/xe/reg_sr: Don't process gt/hwe lists in VF
-  drm/xe/reg_sr: Add debugfs to verify status of reg_sr programming
-  drm/xe: Add facility to lookup the value of a register in a default
-    LRC
-  drm/xe/reg_sr: Allow register_save_restore_check debugfs to verify LRC
-    values
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/xe_hw_engine.c     | 3 +++
+ drivers/gpu/drm/xe/xe_reg_sr.c        | 8 ++++++--
+ drivers/gpu/drm/xe/xe_reg_whitelist.c | 3 +++
+ drivers/gpu/drm/xe/xe_tuning.c        | 7 +++++++
+ drivers/gpu/drm/xe/xe_wa.c            | 6 ++++++
+ 5 files changed, 25 insertions(+), 2 deletions(-)
 
- drivers/gpu/drm/xe/xe_gt_debugfs.c    | 26 ++++++++
- drivers/gpu/drm/xe/xe_hw_engine.c     |  3 +
- drivers/gpu/drm/xe/xe_lrc.c           | 96 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_lrc.h           |  4 ++
- drivers/gpu/drm/xe/xe_reg_sr.c        | 71 +++++++++++++++++++-
- drivers/gpu/drm/xe/xe_reg_sr.h        |  7 ++
- drivers/gpu/drm/xe/xe_reg_whitelist.c |  3 +
- drivers/gpu/drm/xe/xe_tuning.c        |  7 ++
- drivers/gpu/drm/xe/xe_wa.c            |  6 ++
- 9 files changed, 221 insertions(+), 2 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 4d3ee5226e3a..7061312ce6b5 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -472,6 +472,9 @@ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
+ 		},
+ 	};
+ 
++	if (IS_SRIOV_VF(gt_to_xe(gt)))
++		return;
++
+ 	xe_rtp_process_to_sr(&ctx, engine_entries, ARRAY_SIZE(engine_entries), &hwe->reg_sr);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
+index d3e13ea33123..1ac911fc6e94 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr.c
++++ b/drivers/gpu/drm/xe/xe_reg_sr.c
+@@ -13,6 +13,7 @@
+ #include <drm/drm_managed.h>
+ #include <drm/drm_print.h>
+ 
++#include "xe_assert.h"
+ #include "xe_device.h"
+ #include "xe_device_types.h"
+ #include "xe_force_wake.h"
+@@ -169,8 +170,11 @@ void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt)
+ 	if (xa_empty(&sr->xa))
+ 		return;
+ 
+-	if (IS_SRIOV_VF(gt_to_xe(gt)))
+-		return;
++	/*
++	 * We don't process non-LRC reg_sr lists in VF, so they should have
++	 * been empty in the check above.
++	 */
++	xe_gt_assert(gt, !IS_SRIOV_VF(gt_to_xe(gt)));
+ 
+ 	xe_gt_dbg(gt, "Applying %s save-restore MMIOs\n", sr->name);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+index 9c513778d370..83b2d1c68acf 100644
+--- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
++++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
+@@ -188,6 +188,9 @@ void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe)
+ {
+ 	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
+ 
++	if (IS_SRIOV_VF(gt_to_xe(hwe->gt)))
++		return;
++
+ 	xe_rtp_process_to_sr(&ctx, register_whitelist, ARRAY_SIZE(register_whitelist),
+ 			     &hwe->reg_whitelist);
+ 	whitelist_apply_to_hwe(hwe);
+diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
+index 316f5e2b2e48..ddd8519f3f19 100644
+--- a/drivers/gpu/drm/xe/xe_tuning.c
++++ b/drivers/gpu/drm/xe/xe_tuning.c
+@@ -15,6 +15,7 @@
+ #include "xe_gt_types.h"
+ #include "xe_platform_types.h"
+ #include "xe_rtp.h"
++#include "xe_sriov.h"
+ 
+ #undef XE_REG_MCR
+ #define XE_REG_MCR(...)     XE_REG(__VA_ARGS__, .mcr = 1)
+@@ -197,6 +198,9 @@ void xe_tuning_process_gt(struct xe_gt *gt)
+ {
+ 	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(gt);
+ 
++	if (IS_SRIOV_VF(gt_to_xe(gt)))
++		return;
++
+ 	xe_rtp_process_ctx_enable_active_tracking(&ctx,
+ 						  gt->tuning_active.gt,
+ 						  ARRAY_SIZE(gt_tunings));
+@@ -208,6 +212,9 @@ void xe_tuning_process_engine(struct xe_hw_engine *hwe)
+ {
+ 	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
+ 
++	if (IS_SRIOV_VF(gt_to_xe(hwe->gt)))
++		return;
++
+ 	xe_rtp_process_ctx_enable_active_tracking(&ctx,
+ 						  hwe->gt->tuning_active.engine,
+ 						  ARRAY_SIZE(engine_tunings));
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 843ce9fe7aab..92547280a5b6 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -1003,6 +1003,9 @@ void xe_wa_process_gt(struct xe_gt *gt)
+ {
+ 	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(gt);
+ 
++	if (IS_SRIOV_VF(gt_to_xe(gt)))
++		return;
++
+ 	xe_rtp_process_ctx_enable_active_tracking(&ctx, gt->wa_active.gt,
+ 						  ARRAY_SIZE(gt_was));
+ 	xe_rtp_process_to_sr(&ctx, gt_was, ARRAY_SIZE(gt_was), &gt->reg_sr);
+@@ -1021,6 +1024,9 @@ void xe_wa_process_engine(struct xe_hw_engine *hwe)
+ {
+ 	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
+ 
++	if (IS_SRIOV_VF(gt_to_xe(hwe->gt)))
++		return;
++
+ 	xe_rtp_process_ctx_enable_active_tracking(&ctx, hwe->gt->wa_active.engine,
+ 						  ARRAY_SIZE(engine_was));
+ 	xe_rtp_process_to_sr(&ctx, engine_was, ARRAY_SIZE(engine_was), &hwe->reg_sr);
 -- 
 2.53.0
 
