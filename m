@@ -4,56 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DAE1EDF027
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Feb 2026 09:17:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52030EDF027
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Feb 2026 09:19:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D700810E7D3;
-	Fri, 13 Feb 2026 09:17:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QijdIumr";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C3EA10E7CD;
- Fri, 13 Feb 2026 09:17:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770974238; x=1802510238;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=RjfGb8LhDjK1zSEpcJNhgfyl76DmtgPzY28cuZqN8I0=;
- b=QijdIumrvnpwojX4er3IFMzdBBtR9X9JFeOR31GnrFPdUTdvakdOLuDR
- BGJnTOBltwewesGRfjkximiAilVCErPiqYfgEoWao31UN1pZFkrbhM8Ho
- +AryL8lhO0xrFlM/v70WXlcq6MnVrvZVA/mViprq5c7N+tyfSUYd8yiXF
- yfh+tcVPGM/Z69cwWVitgnpiyPhb5IKcS7fWjiDKsviUjgB+F5HOimqp0
- My7+hm3v1oBg8+lq1fLgcUxd1Pfijp7r+4yWK/i6xv3nAP6cxnDcPc4Qg
- vdiORQHyKup0W4l2BgOB5ivgklVDKb9GdYmhW8v2gaYhpL741hpZIaKeV A==;
-X-CSE-ConnectionGUID: s47FKs0XQliU+GtH1DLrvg==
-X-CSE-MsgGUID: EHWQ6NJiSsujE6XZCyYRvw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="72146721"
-X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="72146721"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2026 01:17:18 -0800
-X-CSE-ConnectionGUID: UXgUkvgNTHeCVe9uv/80uA==
-X-CSE-MsgGUID: IVvGDHRrS/q71YLzjYLB4w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="211778849"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa007.fm.intel.com with ESMTP; 13 Feb 2026 01:17:15 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 7/8] drm/i915/backlight: Provide clear description on how
- backlight level is controlled
-Date: Fri, 13 Feb 2026 14:46:52 +0530
-Message-Id: <20260213091653.2250887-8-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260213091653.2250887-1-suraj.kandpal@intel.com>
-References: <20260213091653.2250887-1-suraj.kandpal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D6AD10E7CE;
+	Fri, 13 Feb 2026 09:19:17 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3903710E7D7;
+ Fri, 13 Feb 2026 09:19:16 +0000 (UTC)
+Received: from 37-33-41-57.bb.dnainternet.fi ([37.33.41.57]
+ helo=[192.168.101.110])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1vqpKS-00000002Lac-0GqZ; Fri, 13 Feb 2026 11:19:13 +0200
+Message-ID: <5ab22c377338056ee8a195481229817cb2849673.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>, Ville
+ =?ISO-8859-1?Q?Syrj=E4l=E4?=	 <ville.syrjala@linux.intel.com>, "Coelho,
+ Luciano" <luciano.coelho@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Date: Fri, 13 Feb 2026 11:19:10 +0200
+In-Reply-To: <DM3PPF208195D8DD2E52F76AE768BF86C3AE361A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+References: <20260212184737.352515-1-luciano.coelho@intel.com>
+ <20260212184737.352515-12-luciano.coelho@intel.com>
+ <aY6w7FuoIi0TydHB@intel.com>
+ <2358502e438f28e734c65a55364a437b0291e956.camel@coelho.fi>
+ <DM3PPF208195D8DD2E52F76AE768BF86C3AE361A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-8 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2 11/15] drm/i915/display: convert W/As in
+ intel_modeset_setup.c to new framework
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,60 +51,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently it takes us multiple log prints to arrive at the conclusion
-on how we are actually controlling backlight level. Make the logging
-concise.
+On Fri, 2026-02-13 at 08:24 +0000, Kandpal, Suraj wrote:
+> > Subject: Re: [PATCH v2 11/15] drm/i915/display: convert W/As in
+> > intel_modeset_setup.c to new framework
+> >=20
+> > On Fri, 2026-02-13 at 07:04 +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
+> > > On Thu, Feb 12, 2026 at 08:46:09PM +0200, Luca Coelho wrote:
+> > > > Convert the low-hanging fruits of workaround checks to the
+> > > > workaround framework.  Instead of having display structure checks
+> > > > for the workarounds all over, concentrate the checks in intel_wa.c.
+> > > >=20
+> > > > Acked-by: Jani Nikula <jani.nikula@intel.com>
+> > > > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+> > > > ---
+> > > > =C2=A0drivers/gpu/drm/i915/display/intel_display_wa.c    | 2 ++
+> > > > =C2=A0drivers/gpu/drm/i915/display/intel_display_wa.h    | 1 +
+> > > > =C2=A0drivers/gpu/drm/i915/display/intel_modeset_setup.c | 3 ++-
+> > > > =C2=A03 files changed, 5 insertions(+), 1 deletion(-)
+> > > >=20
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c
+> > > > b/drivers/gpu/drm/i915/display/intel_display_wa.c
+> > > > index 3aa79e607bf8..72f645686efd 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+> > > > @@ -79,6 +79,8 @@ bool __intel_display_wa(struct intel_display *dis=
+play,
+> > enum intel_display_wa wa,
+> > > > =C2=A0	case INTEL_DISPLAY_WA_13012396614:
+> > > > =C2=A0		return DISPLAY_VERx100(display) =3D=3D 3000 ||
+> > > > =C2=A0			DISPLAY_VERx100(display) =3D=3D 3500;
+> > > > +	case INTEL_DISPLAY_WA_14010480278:
+> > > > +		return (IS_DISPLAY_VER(display, 10, 12));
+> > >=20
+> > > This is now quite confusing. That w/a number only means something for
+> > > tgl+. I think if we want to start converting this kind of places
+> > > tgl+someone
+> > > needs to come up with an actual plan how to deal with older platforms=
+.
+> >=20
+> > If there are more numbers from other platforms, I think they should jus=
+t have
+> > their own cases, like in some later patches in this series,
+> > eg.:
+> >=20
+> > 	case INTEL_DISPLAY_WA_<tgl+_wa_number>:
+> > 	case INTEL_DISPLAY_WA_<lnl_wa_number>:
+> >=20
+> > ...but this was a problem before my series already, and it's not someth=
+ing I'm
+> > trying to address here.
+> >=20
+> >=20
+> > > Also I'm pretty sure that even among the new platforms some w/a's are
+> > > listed with different numbers for different platforms. Has anyone
+> > > thought what we should do about that?
+> >=20
+> > Yeah, and there's also the case where more than workaround has the same
+> > check, we'll end up with many fallthrough cases.
+> >=20
+>=20
+>=20
+> My two cents here:
+> Maybe we first get all the WA's here into this framework then work on how=
+ to optimize it later.
+> Perhaps documenting how and where WA's can be placed, their numbering and=
+ version checking.
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- .../drm/i915/display/intel_dp_aux_backlight.c | 19 ++++++++++++++-----
- 1 file changed, 14 insertions(+), 5 deletions(-)
+Yes, I agree with moving the "low-hanging fruits" to the new framework
+and continue to improve it from there.  That was the intention of this
+series, a first step that hopefully makes it easier to continue with
+subsequent clean-ups.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index 217747aedd16..8f86b368612e 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -368,6 +368,16 @@ static const char *dpcd_vs_pwm_str(bool aux)
- 	return aux ? "DPCD" : "PWM";
- }
- 
-+static const char *backlight_unit_str(struct intel_panel *panel)
-+{
-+	if (panel->backlight.edp.vesa.info.luminance_set)
-+		return "NITS";
-+	else if (panel->backlight.edp.vesa.info.aux_set)
-+		return "Brightness %";
-+	else
-+		return "PWM";
-+}
-+
- static void
- intel_dp_aux_write_panel_luminance_override(struct intel_connector *connector)
- {
-@@ -545,9 +555,11 @@ static int intel_dp_aux_vesa_setup_backlight(struct intel_connector *connector,
- 		    dpcd_vs_pwm_str(panel->backlight.edp.vesa.info.aux_enable ||
- 				    panel->backlight.edp.vesa.info.luminance_set));
- 	drm_dbg_kms(display->drm,
--		    "[CONNECTOR:%d:%s] AUX VESA backlight level is controlled through %s\n",
-+		    "[CONNECTOR:%d:%s] AUX VESA backlight level is controlled through %s using %s values\n",
- 		    connector->base.base.id, connector->base.name,
--		    dpcd_vs_pwm_str(panel->backlight.edp.vesa.info.aux_set));
-+		    dpcd_vs_pwm_str(panel->backlight.edp.vesa.info.aux_set ||
-+				    panel->backlight.edp.vesa.info.luminance_set),
-+		    backlight_unit_str(panel));
- 
- 	if (!panel->backlight.edp.vesa.info.aux_set ||
- 	    !panel->backlight.edp.vesa.info.aux_enable) {
-@@ -574,9 +586,6 @@ static int intel_dp_aux_vesa_setup_backlight(struct intel_connector *connector,
- 		}
- 		panel->backlight.level = intel_dp_aux_vesa_get_backlight(connector, 0);
- 		panel->backlight.enabled = panel->backlight.level != 0;
--		drm_dbg_kms(display->drm,
--			    "[CONNECTOR:%d:%s] AUX VESA Nits backlight level is controlled through DPCD\n",
--			    connector->base.base.id, connector->base.name);
- 	} else if (panel->backlight.edp.vesa.info.aux_set) {
- 		panel->backlight.max = panel->backlight.edp.vesa.info.max;
- 		panel->backlight.min = 0;
--- 
-2.34.1
+--
+Cheers,
+Luca.
 
+
+
+> Regards,
+> Suraj Kandpal
+>=20
+> > --
+> > Cheers,
+> > Luca.
+> >=20
+> >=20
+> > > > =C2=A0	case INTEL_DISPLAY_WA_14010547955:
+> > > > =C2=A0		return display->platform.dg2;
+> > > > =C2=A0	case INTEL_DISPLAY_WA_14010685332:
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h
+> > > > b/drivers/gpu/drm/i915/display/intel_display_wa.h
+> > > > index 57345d0abe1c..d8359f88de29 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
+> > > > @@ -30,6 +30,7 @@ enum intel_display_wa {
+> > > > =C2=A0	INTEL_DISPLAY_WA_1409120013,
+> > > > =C2=A0	INTEL_DISPLAY_WA_1409767108,
+> > > > =C2=A0	INTEL_DISPLAY_WA_13012396614,
+> > > > +	INTEL_DISPLAY_WA_14010480278,
+> > > > =C2=A0	INTEL_DISPLAY_WA_14010547955,
+> > > > =C2=A0	INTEL_DISPLAY_WA_14010685332,
+> > > > =C2=A0	INTEL_DISPLAY_WA_14011294188,
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > > > b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > > > index 9b0becee221c..7ee1494a67af 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > > > @@ -25,6 +25,7 @@
+> > > > =C2=A0#include "intel_display_power.h"
+> > > > =C2=A0#include "intel_display_regs.h"
+> > > > =C2=A0#include "intel_display_types.h"
+> > > > +#include "intel_display_wa.h"
+> > > > =C2=A0#include "intel_dmc.h"
+> > > > =C2=A0#include "intel_fifo_underrun.h"
+> > > > =C2=A0#include "intel_modeset_setup.h"
+> > > > @@ -913,7 +914,7 @@ static void intel_early_display_was(struct
+> > intel_display *display)
+> > > > =C2=A0	 * Display WA #1185 WaDisableDARBFClkGating:glk,icl,ehl,tgl
+> > > > =C2=A0	 * Also known as Wa_14010480278.
+> > > > =C2=A0	 */
+> > > > -	if (IS_DISPLAY_VER(display, 10, 12))
+> > > > +	if (intel_display_wa(display, 14010480278))
+> > >=20
+> > > > =C2=A0		intel_de_rmw(display, GEN9_CLKGATE_DIS_0, 0,
+> > DARBF_GATING_DIS);
+> > > >=20
+> > > > =C2=A0	/*
+> > > > --
+> > > > 2.51.0
