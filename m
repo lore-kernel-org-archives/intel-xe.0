@@ -4,72 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D7C7EF99EC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61AB4EF99F0
 	for <intel-xe@archiver.kernel.org>; Fri, 13 Feb 2026 22:32:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6303310E851;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F61910E854;
 	Fri, 13 Feb 2026 22:32:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S2kMVpGn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RhKf06Bl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B71A510E849
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF66610E844
  for <intel-xe@lists.freedesktop.org>; Fri, 13 Feb 2026 22:32:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1771021959; x=1802557959;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=FbZerdTjcUHACtXN87JIS1YoGu2BO4GW6q3xBohhFKo=;
- b=S2kMVpGnKGH3a5g9ghiWrJjdY1a5pu/y8ha6mNq+RKxktUzmbz+kSj8M
- nEEMM6FD6hvWSNW7Iy8ZP6WfZv2RHD7OMjVfmegiODX6eXyQWe/8Sta2d
- 53+nrCUZSJr+zzyk50jzDc/7odh0ocVByv2DINJP1vdKOuvfMQA9UTo3q
- 8Gni9jrOKQI4TOsOaNF6c8vMZtWKCT7NOPij8BoLd1t33YE3j3/5RZdz9
- 7hC7H4xjQTc+vpVLoDXmuqdelJxKZ0CG/uPnSk4Ry4J5uop4iCWGiI+Dm
- /D7JCDdhyMly1/dPaAdksliWPrh0LjQyyxUiOx2jKYfEZUgV8xAZm3Ury w==;
-X-CSE-ConnectionGUID: xSSEDwavS6yzsUVl8/PQDQ==
-X-CSE-MsgGUID: 3Q75lKwXTZiO0CChyIJTvQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11700"; a="83654445"
-X-IronPort-AV: E=Sophos;i="6.21,289,1763452800"; d="scan'208";a="83654445"
+ bh=EpIum5GoKyLPV+06xSTaZGo9748pFqBnkafP4NCtd0E=;
+ b=RhKf06BlrJ1O9DLbUKNg30LblIqZLc5ZSou22e/lNa3gd0sYWHQQjaUK
+ FoQI21Eejrr3JyJsJD0WWnUNP7dzuZDa2LKjFqnKYUyNsUSzZB+oqEECu
+ be9OMQk+e6BaJ5QroILrhB9W4kJwz5CdTKOGdgKWFpSf/NS/Eg7133Eu9
+ GRrvZH7RJskL8TsXwOjtuTmzWQje1Eb3DVEkwcfK6m0klAH3yJCT28V4E
+ kjjPutknafKcgnByBPr8xwp8oP8Ury/kQ9rNCc6KkJEMdCr3HvIUTgif5
+ pcUV5PUaBnLrYCU1zFOmgttIG/FrhqR/0IH9ffDtKDyLJ0odG9kXNiPoY w==;
+X-CSE-ConnectionGUID: iWUjanP7RHeJCNhR8Cwt5Q==
+X-CSE-MsgGUID: loJosBRkQFip9EfeppSlSA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11700"; a="83654450"
+X-IronPort-AV: E=Sophos;i="6.21,289,1763452800"; d="scan'208";a="83654450"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2026 14:32:37 -0800
-X-CSE-ConnectionGUID: aLZuLXQJSImxM8fZSfeC9Q==
-X-CSE-MsgGUID: H5F5r4sxQwaQQWr+f7GYVQ==
+ 13 Feb 2026 14:32:38 -0800
+X-CSE-ConnectionGUID: BTB9jvAURq2JBv6LWJsPfQ==
+X-CSE-MsgGUID: eCVAzuKvSfmtIu2Yyq7QBQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,289,1763452800"; d="scan'208";a="211705671"
+X-IronPort-AV: E=Sophos;i="6.21,289,1763452800"; d="scan'208";a="211705685"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.39.133])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Feb 2026 14:32:36 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
-Date: Fri, 13 Feb 2026 14:31:52 -0800
-Subject: [PATCH 17/22] drm/xe: Consolidate workaround entries for
- Wa_14019386621
+Date: Fri, 13 Feb 2026 14:31:57 -0800
+Subject: [PATCH 22/22] drm/xe/wa_oob: Consolidate some OOB rules
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260213-forupstream-wa_cleanup-v1-17-961f2dd3a8e9@intel.com>
+Message-Id: <20260213-forupstream-wa_cleanup-v1-22-961f2dd3a8e9@intel.com>
 References: <20260213-forupstream-wa_cleanup-v1-0-961f2dd3a8e9@intel.com>
 In-Reply-To: <20260213-forupstream-wa_cleanup-v1-0-961f2dd3a8e9@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1994;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2888;
  i=matthew.d.roper@intel.com; h=from:subject:message-id;
- bh=FbZerdTjcUHACtXN87JIS1YoGu2BO4GW6q3xBohhFKo=;
- b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBpj6aDqf8cSKbdC4FgjaWF4RCqGI8DCDgsmSJIy
- +cUhW2OqlqJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaY+mgwAKCRBNeSQFyHKQ
- BL86D/4hqbbP7sdjSh9L5CjOuaWxzBEr61moKwL1qo45c47upnoqWJnAWKMLZ3bLP/xf97m8zR7
- 6YZ7KKsDErTvSkPQB7FPXN5QP3cD9teTMwV7L3XP7nhTcIVjnnArQq+2x+H/AhBkxYLUkl2eWMy
- vwWYFFG1CeUVlOMBo6mZ3fPlDXfMLD3mUxWnQP6pc2+0uBCZa/mkCpKeEAnG/tU9dPWQ+y/9eMm
- puP7ZoC7YmIs0YcBGEpZkXuew1NoRwUmdembMeBS+/N1YVKaRfbPjMSlS8cqLXd3Ohvz65jUdHY
- WwoH+eCeeP6ljId15RdPh1u9DBZTnGHZOT33izZFwaBtsWrghhP9WzcKXFd1ZHGqRm6cirx1vnu
- fbLVxoHg+B2F1kvvocMtzaHji6VVkZGShS3NC7mDl/qNh+7rI2xDyKoc/rjKdtjCMdzgkuHZkwn
- H4FI1MgDuqLrIyaAbzt0hwhdTv3srkdFfR4HiLsDluKcCGf+HTpc6BMWeU+lwfWrCJu4RT90qoX
- WficBACBMtv7dL4c4d3e3oz7Z1hMjoSSYOnlQdupQ1A7MlqhySVWvHOiiyD0AkP/2tn2q+V/tXb
- RI+zMy4yqzOKewaKr5RXFxsEsb8imz/FYK+yxmtk9MM9CxcbuFe5fRzuw81qDPorZvBPsXaLzzp
- fYLSvbigMnZ9/iA==
+ bh=EpIum5GoKyLPV+06xSTaZGo9748pFqBnkafP4NCtd0E=;
+ b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBpj6aEYuPCcK1zJd5q3VhD7tNOzAImvVEzS5LCa
+ iq3X9YlqG6JAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaY+mhAAKCRBNeSQFyHKQ
+ BH6eD/4r0U8GiMizn7vn6kCBGf8bC1AQ64/biriWXrTlR0ywlgOJS02j7RYfQ449FlZEqRP8F2/
+ g7p3KleiUwEk3gR3drIWx3vEjEDtyZ5bfP5zAwLBvBEIEgAht1R3dwsv2V1zgdquHC+vk21HGoR
+ DOzr+f/UA3iBNw2Ll/ZT9b41EJM4fJZ345HympFSpl7Gj5Uq6GFG877i6cN9ijSxmWCBpeSeNVC
+ eG35eZjFMVu8gUS8YUdsmcW6PcdoM80VhVbGkmNxuAd/PpyagKns34uiBcnkzWnzRUsK0L0CJpZ
+ /VtAjurXdlZ/Z0JW65isgRpYAhqw+i+2nmVGa++c2rmCOB2CkIXPCOa5ZG8QrgP23TM9su8k47C
+ 0E/WarbQXPp3g6EeMNrRGV2yRw5EosBq8qVG1yrwg/AYkooCuGvROYPacF3BffzgTyC6bYmobvb
+ zJouXoH6psup1ziOlFN8m8UxdAA7SMXJ3xlj6LIqu5jeLQ1+b0690jjcxeYrpZMpcjTfkUvf67K
+ u/DPR8zrAFcU9ZFSH3VlAojKE7uUiN+xAX0N3BqaF3Jd4S2Ciw7I9yOBbzCx5CXVbrBYKfzmbgi
+ LVacGTTiJulJLxmwjKlXDI0TKOZ0t5orG7bZs93knILKXpY9c8KyKDLhEE51+stbDdaY7lNeMOD
+ KZ9XdHBvGTID5dg==
 X-Developer-Key: i=matthew.d.roper@intel.com; a=openpgp;
  fpr=C267C309447FEB4F3F216DAC4D792405C8729004
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -86,51 +85,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Wa_14019386621 applies to all graphics versions from 20.01 through 20.04
-(inclusive).  Consolidate the RTP entries into a single range-based entry.
+Given the new policy of allowing graphics/media IP ranges to extend over
+unused IP versions, we can consolidate some of the OOB workaround rules
+and simplify the table.  If new IP variants eventually show up that use
+these unused versions (e.g., media version 30.01, graphics versions
+20.03 / 30.02, etc.), and if an existing workaround does not extend to
+that new intermediate version, the ranges will be split back apart as
+part of the enablement work for that new IP version.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_wa.c | 12 ++++--------
- 1 file changed, 4 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_wa_oob.rules | 31 ++++++++-----------------------
+ 1 file changed, 8 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index af1cbdc1d273576ba4500e5b863f26133447c7fc..63403ebfa2a6efad6e589dcd71b397f17a83c3e2 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -641,6 +641,10 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1255, 2004), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(XEHP_PSS_CHICKEN, FD_END_COLLECT))
- 	},
-+	{ XE_RTP_NAME("14019386621"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 2004), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(VF_SCRATCHPAD, XE2_VFG_TED_CREDIT_INTERFACE_DISABLE))
-+	},
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index c3222d9504889b5175fdfa73db0bf4e9910a277d..80b54b195f20c372a6816ce988b5e7e0b75270c2 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -24,18 +24,9 @@
+ 		MEDIA_VERSION(2000)
+ 16022287689	GRAPHICS_VERSION(2001)
+ 		GRAPHICS_VERSION(2004)
+-13011645652	GRAPHICS_VERSION(2004)
+-		GRAPHICS_VERSION_RANGE(3000, 3001)
+-		GRAPHICS_VERSION(3003)
+-		GRAPHICS_VERSION_RANGE(3004, 3005)
+-14022293748	GRAPHICS_VERSION_RANGE(2001, 2002)
+-		GRAPHICS_VERSION(2004)
+-		GRAPHICS_VERSION_RANGE(3000, 3005)
+-22019794406	GRAPHICS_VERSION_RANGE(2001, 2002)
+-		GRAPHICS_VERSION(2004)
+-		GRAPHICS_VERSION_RANGE(3000, 3001)
+-		GRAPHICS_VERSION(3003)
+-		GRAPHICS_VERSION_RANGE(3004, 3005)
++13011645652	GRAPHICS_VERSION_RANGE(2004, 3005)
++14022293748	GRAPHICS_VERSION_RANGE(2001, 3005)
++22019794406	GRAPHICS_VERSION_RANGE(2001, 3005)
+ 22019338487	MEDIA_VERSION(2000)
+ 		GRAPHICS_VERSION(2001), FUNC(xe_rtp_match_not_sriov_vf)
+ 		MEDIA_VERSION(3000), MEDIA_STEP(A0, B0), FUNC(xe_rtp_match_not_sriov_vf)
+@@ -52,18 +43,12 @@
+ 18013179988	GRAPHICS_VERSION(1255)
+ 		GRAPHICS_VERSION_RANGE(1270, 1274)
+ 1508761755	GRAPHICS_VERSION(1255)
+-16023105232	GRAPHICS_VERSION_RANGE(2001, 3001)
+-		MEDIA_VERSION_RANGE(1301, 3000)
+-		MEDIA_VERSION(3002)
+-		GRAPHICS_VERSION_RANGE(3003, 3005)
+-16026508708	GRAPHICS_VERSION_RANGE(1200, 3001)
+-		MEDIA_VERSION_RANGE(1300, 3000)
+-		MEDIA_VERSION(3002)
+-		GRAPHICS_VERSION_RANGE(3003, 3005)
++16023105232	GRAPHICS_VERSION_RANGE(2001, 3005)
++		MEDIA_VERSION_RANGE(1301, 3002)
++16026508708	GRAPHICS_VERSION_RANGE(1200, 3005)
++		MEDIA_VERSION_RANGE(1300, 3002)
+ 14020001231	GRAPHICS_VERSION_RANGE(2001,2004), FUNC(xe_rtp_match_psmi_enabled)
+-		MEDIA_VERSION(2000), FUNC(xe_rtp_match_psmi_enabled)
+-		MEDIA_VERSION(3000), FUNC(xe_rtp_match_psmi_enabled)
+-		MEDIA_VERSION(3002), FUNC(xe_rtp_match_psmi_enabled)
++		MEDIA_VERSION_RANGE(2000, 3002), FUNC(xe_rtp_match_psmi_enabled)
+ 16023683509	MEDIA_VERSION(2000), FUNC(xe_rtp_match_psmi_enabled)
+ 		MEDIA_VERSION(3000), MEDIA_STEP(A0, B0), FUNC(xe_rtp_match_psmi_enabled)
  
- 	/* DG1 */
- 
-@@ -697,10 +701,6 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
- 
- 	/* Xe2_LPG */
- 
--	{ XE_RTP_NAME("14019386621"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(VF_SCRATCHPAD, XE2_VFG_TED_CREDIT_INTERFACE_DISABLE))
--	},
- 	{ XE_RTP_NAME("14019988906"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(XEHP_PSS_CHICKEN, FLSH_IGNORES_PSD))
-@@ -738,10 +738,6 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2001), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(CHICKEN_RASTER_1, DIS_SF_ROUND_NEAREST_EVEN))
- 	},
--	{ XE_RTP_NAME("14019386621"),
--	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 2002), ENGINE_CLASS(RENDER)),
--	  XE_RTP_ACTIONS(SET(VF_SCRATCHPAD, XE2_VFG_TED_CREDIT_INTERFACE_DISABLE))
--	},
- 	{ XE_RTP_NAME("14020756599"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2001), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(WM_CHICKEN3, HIZ_PLANE_COMPRESSION_DIS))
 
 -- 
 2.53.0
