@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49A96EE369A
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E817EE36A0
 	for <intel-xe@archiver.kernel.org>; Fri, 13 Feb 2026 09:26:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0909410E7E8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3082810E7EB;
 	Fri, 13 Feb 2026 09:26:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HGS0yjB7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HZvZruzG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E3CD10E7E8
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Feb 2026 09:26:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67BC910E7E8
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Feb 2026 09:26:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770974788; x=1802510788;
+ t=1770974790; x=1802510790;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=YPU+AoOs6ofJK05rDyAvIY2YWyohGdg95CrE6Wka8Vg=;
- b=HGS0yjB7amC7HoyY7Zufx1cL0Il8M1fOjBxe9gDjp+Hyud+QsymWJGoD
- PLpFiRZVRUdjimco6+pEs/g1bzJ/ltFRS7mwvFhfxfdQc6tjQIcu9dHER
- W1gspvk9C0YNgYgpNH3AlhiFha5J8wtI0CzdChhhJZ6UrQlLgp5l+AS9B
- Tag7ucnjio2EdsD/tFFEQbUz/IRgoCuIOHYaaYlBh1EDxNAJ6w2SpdPoA
- JZGO5h5+ATPLUkj+XpV7BtB1SH8h3Moz5wfQB4eVFPIP4kQ946+TG1ZCV
- 8aNFnxAH0Km88F3kmrS5Anq3tH6cxlhjiewIiQhIk9D+sjoC8NSTaIBxH w==;
-X-CSE-ConnectionGUID: qL2eFR8fTNSn80c3dxDYcA==
-X-CSE-MsgGUID: pC6wwaS0RyizH3lgGMQIHw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="97615848"
-X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="97615848"
+ bh=KqHx4DCBrwKNvFYcP1EXutjAojMCrcKwPWZkyxBOlzI=;
+ b=HZvZruzGCdYfH0BCUnyZaFuca1Qhz0wCQQ/Mc8KCkshCeH8mBD2aKCbB
+ uamdMyNfiequdKkw+RL1js8IjbqJCYc1iqpKLP4+MvXeRO8Nxu1xbcwqd
+ DLS4JX9cvQPxqfkthchI8oodyjWTzEZAAoz85rJEfSBLtZ3Wb+LE89n2Y
+ MUciJO0PTWnmsRlsE25rhIfUMrfMVN4FXIeNoKV8Zz22QpRn2FwDp/+84
+ gD/QEvTaz+RRqAL7KKXWXvSHNJCN7B/QRd6beDIjd0vgwRYmY0TTxlqXO
+ BimWqEH2D1HAI0RH+BmmEqTxcMrbpVUiusb3stossmMRLy8Eac36RYdAq g==;
+X-CSE-ConnectionGUID: pM8rSCRKSRqhrPUWHfhxew==
+X-CSE-MsgGUID: a/CpA3QLQACeBBvPM3ZTEA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="97615850"
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="97615850"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2026 01:26:28 -0800
-X-CSE-ConnectionGUID: x1ocPeeqTAS15MgvLPlicw==
-X-CSE-MsgGUID: /dovNSQUQpizre6PU4PNBw==
+ 13 Feb 2026 01:26:30 -0800
+X-CSE-ConnectionGUID: gKISdHgqSumWB+Qt2VbUBg==
+X-CSE-MsgGUID: c78q1xdRTsSVtKe/DFGSww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="212121257"
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="212121264"
 Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
  ([10.190.239.37])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2026 01:26:27 -0800
+ 13 Feb 2026 01:26:29 -0800
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.auld@intel.com, matthew.brost@intel.com,
  himal.prasad.ghimiray@intel.com, Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [RFC PATCH 4/6] [DO NOT REVIEW]drm/xe/cri: Add debugfs to inject
- faulty vram address
-Date: Fri, 13 Feb 2026 14:55:57 +0530
-Message-ID: <20260213092552.1527799-12-tejas.upadhyay@intel.com>
+Subject: [RFC PATCH 5/6] drm/xe: Add routine to dump allocated VRAM blocks
+Date: Fri, 13 Feb 2026 14:55:58 +0530
+Message-ID: <20260213092552.1527799-13-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260213092552.1527799-8-tejas.upadhyay@intel.com>
 References: <20260213092552.1527799-8-tejas.upadhyay@intel.com>
@@ -69,117 +68,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add debugfs which can help testing feature with manual error injection.
-Adding a debugfs interface to the drm/xe driver allows manual injection
-of faulty VRAM addresses, facilitating the testing of the CRI memory
-page offline feature before it is fully functional. The implementation
-involves creating a debugfs entry, likely under
-/sys/kernel/debug/dri/bdf/invalid_addr_vram0,
-to accept specific faulty addresses for validation.
+To implement the ability to see allocated blocks under a specific VRAM
+instance in the drm/xe driver, new api is introduced. While existing structs
+often show the free block list, this addition provides a comprehensive view
+of all currently resident VRAM allocations.
 
-For example,
-echo 0x1000 > /sys/kernel/debug/dri/bdf/invalid_addr_vram0
-where 0x1000 is faulty adress being injected.
+Dump will look like,
+
+[  +0.000003] xe 0000:03:00.0: [drm] 0x00000002f8000000-0x00000002f8800000: 8388608
+[  +0.000005] xe 0000:03:00.0: [drm] 0x00000002f8800000-0x00000002f8840000: 262144
+[  +0.000004] xe 0000:03:00.0: [drm] 0x00000002f8840000-0x00000002f8860000: 131072
+[  +0.000004] xe 0000:03:00.0: [drm] 0x00000002f8860000-0x00000002f8870000: 65536
+[  +0.000005] xe 0000:03:00.0: [drm] 0x00000002f9000000-0x00000002f9800000: 8388608
+[  +0.000004] xe 0000:03:00.0: [drm] 0x00000002f9800000-0x00000002f9880000: 524288
+[  +0.000005] xe 0000:03:00.0: [drm] 0x00000002f9880000-0x00000002f9884000: 16384
+[  +0.000004] xe 0000:03:00.0: [drm] 0x00000002f9900000-0x00000002f9980000: 524288
+[  +0.000005] xe 0000:03:00.0: [drm] 0x00000002f9980000-0x00000002f9988000: 32768
+[  +0.000004] xe 0000:03:00.0: [drm] 0x00000002f9988000-0x00000002f998c000: 16384
+
+V2: remove unused code
 
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_debugfs.c            | 49 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |  2 +
- 2 files changed, 51 insertions(+)
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 30 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.h |  3 +++
+ 2 files changed, 33 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 844cfafe1ec7..d9dc1acebbce 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -27,6 +27,7 @@
- #include "xe_sriov_vf.h"
- #include "xe_step.h"
- #include "xe_tile_debugfs.h"
-+#include "xe_ttm_vram_mgr.h"
- #include "xe_vsec.h"
- #include "xe_wa.h"
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 82d11348e5ce..cb3394000e83 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -505,6 +505,36 @@ static inline bool contains(u64 s1, u64 e1, u64 s2, u64 e2)
+ 	return s1 <= s2 && e1 <= e2;
+ }
  
-@@ -509,12 +510,48 @@ static const struct file_operations disable_late_binding_fops = {
- 	.write = disable_late_binding_set,
- };
- 
-+static ssize_t addr_fault_reporting_show(struct file *f, char __user *ubuf,
-+					 size_t size, loff_t *pos)
++void xe_ttm_vram_dump_allocated_blocks(struct drm_device *dev, struct drm_buddy *mm,
++				       struct drm_printer *p)
 +{
-+	struct xe_device *xe = file_inode(f)->i_private;
-+	char buf[32];
-+	int len;
++	struct drm_buddy_block *block;
++	LIST_HEAD(dfs);
++	int i;
 +
-+	len = scnprintf(buf, sizeof(buf), "%lld\n", xe->mem.vram->ttm.fault_addr);
++	for (i = 0; i < mm->n_roots; ++i)
++		list_add_tail(&mm->roots[i]->tmp_link, &dfs);
 +
-+	return simple_read_from_buffer(ubuf, size, pos, buf, len);
-+}
-+
-+static ssize_t addr_fault_reporting_set(struct file *f, const char __user *ubuf,
-+					size_t size, loff_t *pos)
-+{
-+	struct xe_device *xe = file_inode(f)->i_private;
-+	u64 addr;
-+	int ret;
-+
-+	ret = kstrtou64_from_user(ubuf, size, 0, &addr);
-+	if (ret)
-+		return ret;
-+
-+	xe->mem.vram->ttm.fault_addr = addr;
-+	xe_ttm_tbo_handle_addr_fault(xe_device_get_root_tile(xe), xe->mem.vram->ttm.fault_addr);
-+
-+	return size;
-+}
-+
-+static const struct file_operations addr_fault_reporting_fops = {
-+	.owner = THIS_MODULE,
-+	.read = addr_fault_reporting_show,
-+	.write = addr_fault_reporting_set,
-+};
-+
- void xe_debugfs_register(struct xe_device *xe)
- {
- 	struct ttm_device *bdev = &xe->ttm;
- 	struct drm_minor *minor = xe->drm.primary;
- 	struct dentry *root = minor->debugfs_root;
- 	struct ttm_resource_manager *man;
-+	u8 mem_type = XE_PL_VRAM1;
- 	struct xe_tile *tile;
- 	struct xe_gt *gt;
- 	u8 tile_id;
-@@ -565,6 +602,18 @@ void xe_debugfs_register(struct xe_device *xe)
- 	if (man)
- 		ttm_resource_manager_create_debugfs(man, root, "stolen_mm");
- 
 +	do {
-+		man = ttm_manager_type(bdev, mem_type);
-+		if (man) {
-+			char name[20];
++		block = list_first_entry_or_null(&dfs,
++						 struct drm_buddy_block,
++						 tmp_link);
++		if (!block)
++			break;
 +
-+			snprintf(name, sizeof(name), "invalid_addr_vram%d", mem_type - XE_PL_VRAM0);
-+			debugfs_create_file(name, 0600, root, xe,
-+					    &addr_fault_reporting_fops);
++		list_del(&block->tmp_link);
++
++		if (drm_buddy_block_is_allocated(block))
++			drm_buddy_block_print(mm, block, p);
++
++		if (drm_buddy_block_is_split(block)) {
++			list_add(&block->right->tmp_link, &dfs);
++			list_add(&block->left->tmp_link, &dfs);
 +		}
-+		--mem_type;
-+	} while (mem_type >= XE_PL_VRAM0);
++	} while (1);
++}
++EXPORT_SYMBOL(xe_ttm_vram_dump_allocated_blocks);
 +
- 	for_each_tile(tile, xe, tile_id)
- 		xe_tile_debugfs_register(tile);
+ static struct ttm_buffer_object *xe_ttm_vram_addr_to_tbo(struct drm_buddy *mm, u64 start)
+ {
+ 	struct drm_buddy_block *block;
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+index 1d6075411ebf..5872e8b48779 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+@@ -12,6 +12,7 @@ enum dma_data_direction;
+ struct xe_device;
+ struct xe_tile;
+ struct xe_vram_region;
++struct drm_device;
  
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-index 85511b51af75..c93573b9aab2 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-@@ -37,6 +37,8 @@ struct xe_ttm_vram_mgr {
- 	struct mutex lock;
- 	/** @mem_type: The TTM memory type */
- 	u32 mem_type;
-+	/** @fault_addr: debugfs hook for setting faulty address */
-+	u64 fault_addr;
- };
- 
- /**
+ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+ 			   u32 mem_type, u64 size, u64 io_size,
+@@ -31,6 +32,8 @@ u64 xe_ttm_vram_get_cpu_visible_size(struct ttm_resource_manager *man);
+ void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
+ 			  u64 *used, u64 *used_visible);
+ int xe_ttm_tbo_handle_addr_fault(struct xe_tile *tile, unsigned long addr);
++void xe_ttm_vram_dump_allocated_blocks(struct drm_device *dev, struct drm_buddy *mm,
++				       struct drm_printer *p);
+ static inline struct xe_ttm_vram_mgr_resource *
+ to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
+ {
 -- 
 2.52.0
 
