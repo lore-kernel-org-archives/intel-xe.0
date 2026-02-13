@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E5AFEF99E0
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Feb 2026 22:34:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 646B0EF99E4
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Feb 2026 22:34:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CDDE910E862;
-	Fri, 13 Feb 2026 22:34:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 134BF10E865;
+	Fri, 13 Feb 2026 22:34:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NTNJhhcK";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KQDw3atq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6FA310E858;
- Fri, 13 Feb 2026 22:34:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFF1310E859;
+ Fri, 13 Feb 2026 22:34:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771022054; x=1802558054;
+ t=1771022055; x=1802558055;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=m3n/PxRy4zheNZQJS7oIbI7QwHbljPYk56Zz1da4Ipg=;
- b=NTNJhhcKRRvmZih+NJV8Nd7EkgGcmXSDQzSoUPqWu7vIzhLrMgkXbJLO
- 9EP8RxJzF1WlwuL+E7dI45+sKRyhxGJnN5LQkXho+GYusGNFixNRsZGm5
- sgyLwiN2PHF8BTIyBShgxYx0P8yE+zOjboD8BK5OPEbYKsEXM2T2VCqcR
- VywzFqXe5lQ6FDm/x6aYjC9pCthIjsJm+UFLBwPLq2If4QRd7Nywsaj+Z
- RsbJwF+8I8z+ACl8617WmIZ2hVontHCOeaqckn1ruKfAqQ2mROthNK88j
- pys/49GVaJua5aEh8HJCcoVh290Ri/sJ5zUlISfc1bstTLw6uR/gJF2c8 g==;
-X-CSE-ConnectionGUID: IxFwQtC9RZuBMua77UUcxg==
-X-CSE-MsgGUID: OTdiY8AtRTaC8L+1FAHbpA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11700"; a="94844920"
-X-IronPort-AV: E=Sophos;i="6.21,289,1763452800"; d="scan'208";a="94844920"
+ bh=0RNI1pTxPcKp6axRnQbPgsO1Ff6jj7GlBAvKiCgdHZU=;
+ b=KQDw3atqTNhRi/LBDLXchZuzxuMgus28YYq6Ze8c9WPiLoGsqjq/8O5m
+ kejrZLJkOtpJvsV7O+4+WFNYbQR2b/n9FFUmFh7aJX2+a2BiE9max3Ofy
+ jpetSyYu3LcZRkIhUGZ/M9prxrWrkQ8zmjsUCq5hpXIyBdjbVc/KK0XHm
+ WxPAjX/pp5bNa9CeKzWOPrhcfpLZzXhVQg4fraOuuwABeXs/PB+fjQXdG
+ sON4UEp4sS436uImiw3XB0/VBmjwyno/bvWDgOfy03Y+FfoCRXpbVrQjV
+ k272eGegzNHyiduizmxogRJxJ4pXlY8rMuDfr5PgybJDWJD3wEkrBL5BZ A==;
+X-CSE-ConnectionGUID: J6rIVfxVROqxrmNs4OshtQ==
+X-CSE-MsgGUID: oSoaiY+BQQqhPsPkpTL1nw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11700"; a="94844924"
+X-IronPort-AV: E=Sophos;i="6.21,289,1763452800"; d="scan'208";a="94844924"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2026 14:34:14 -0800
-X-CSE-ConnectionGUID: 6cw1mYwnQFCqQhHICle7jw==
-X-CSE-MsgGUID: bYxQGCsAQ8CUCmzwshYbJA==
+ 13 Feb 2026 14:34:15 -0800
+X-CSE-ConnectionGUID: QeMVJK5bT8KwyvnFYT1Q5g==
+X-CSE-MsgGUID: rt9dWLsPT3yFHixKkiAxUg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,289,1763452800"; d="scan'208";a="250698299"
+X-IronPort-AV: E=Sophos;i="6.21,289,1763452800"; d="scan'208";a="250698316"
 Received: from dut4086lnl.fm.intel.com ([10.105.11.7])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2026 14:34:14 -0800
+ 13 Feb 2026 14:34:15 -0800
 From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
@@ -49,10 +49,9 @@ Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  dri-devel@lists.freedesktop.org, Michal.Wajdeczko@intel.com,
  michal.mrozek@intel.com, raag.jadav@intel.com, ivan.briano@intel.com,
  matthew.auld@intel.com, dafna.hirschfeld@intel.com
-Subject: [PATCH v34 2/6] drm/xe/xe_pagefault: Pack engine class instance into
- u8
-Date: Fri, 13 Feb 2026 22:34:13 +0000
-Message-ID: <20260213223410.99613-10-jonathan.cavitt@intel.com>
+Subject: [PATCH v34 6/6] drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
+Date: Fri, 13 Feb 2026 22:34:17 +0000
+Message-ID: <20260213223410.99613-14-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260213223410.99613-8-jonathan.cavitt@intel.com>
 References: <20260213223410.99613-8-jonathan.cavitt@intel.com>
@@ -72,98 +71,256 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Pack the engine class and instance fields into a single u8 to save space
-in struct xe_pagefault.  The saved space will be used later to store
-something else.
+Add support for userspace to request a list of observed faults
+from a specified VM.
 
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
+v2:
+- Only allow querying of failed pagefaults (Matt Brost)
+
+v3:
+- Remove unnecessary size parameter from helper function, as it
+  is a property of the arguments. (jcavitt)
+- Remove unnecessary copy_from_user (Jainxun)
+- Set address_precision to 1 (Jainxun)
+- Report max size instead of dynamic size for memory allocation
+  purposes.  Total memory usage is reported separately.
+
+v4:
+- Return int from xe_vm_get_property_size (Shuicheng)
+- Fix memory leak (Shuicheng)
+- Remove unnecessary size variable (jcavitt)
+
+v5:
+- Rename ioctl to xe_vm_get_faults_ioctl (jcavitt)
+- Update fill_property_pfs to eliminate need for kzalloc (Jianxun)
+
+v6:
+- Repair and move fill_faults break condition (Dan Carpenter)
+- Free vm after use (jcavitt)
+- Combine assertions (jcavitt)
+- Expand size check in xe_vm_get_faults_ioctl (jcavitt)
+- Remove return mask from fill_faults, as return is already -EFAULT or 0
+  (jcavitt)
+
+v7:
+- Revert back to using xe_vm_get_property_ioctl
+- Apply better copy_to_user logic (jcavitt)
+
+v8:
+- Fix and clean up error value handling in ioctl (jcavitt)
+- Reapply return mask for fill_faults (jcavitt)
+
+v9:
+- Future-proof size logic for zero-size properties (jcavitt)
+- Add access and fault types (Jianxun)
+- Remove address type (Jianxun)
+
+v10:
+- Remove unnecessary switch case logic (Raag)
+- Compress size get, size validation, and property fill functions into a
+  single helper function (jcavitt)
+- Assert valid size (jcavitt)
+
+v11:
+- Remove unnecessary else condition
+- Correct backwards helper function size logic (jcavitt)
+
+v12:
+- Use size_t instead of int (Raag)
+
+v13:
+- Remove engine class and instance (Ivan)
+
+v14:
+- Map access type, fault type, and fault level to user macros (Matt
+  Brost, Ivan)
+
+v15:
+- Remove unnecessary size assertion (jcavitt)
+
+v16:
+- Nit fixes (Matt Brost)
+
+v17:
+- Rebase and refactor (jcavitt)
+
+v18:
+- Do not copy_to_user in critical section (Matt Brost)
+- Assert args->size is multiple of sizeof(struct xe_vm_fault) (Matt
+  Brost)
+
+v19:
+- Remove unnecessary memset (Matt Brost)
+
+uAPI: https://github.com/intel/compute-runtime/pull/878
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Cc: Jainxun Zhang <jianxun.zhang@intel.com>
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Cc: Raag Jadav <raag.jadav@intel.com>
+Cc: Ivan Briano <ivan.briano@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_pagefault.c   |  7 +++++--
- drivers/gpu/drm/xe/xe_pagefault.c       | 11 +++++++----
- drivers/gpu/drm/xe/xe_pagefault_types.h | 16 ++++++++++++----
- 3 files changed, 24 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c |   2 +
+ drivers/gpu/drm/xe/xe_vm.c     | 117 +++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm.h     |   3 +
+ 3 files changed, 122 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_pagefault.c b/drivers/gpu/drm/xe/xe_guc_pagefault.c
-index d48f6ed103bb..8eaa1dfc1e66 100644
---- a/drivers/gpu/drm/xe/xe_guc_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pagefault.c
-@@ -85,8 +85,11 @@ int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len)
- 				   FIELD_GET(PFD_FAULT_LEVEL, msg[0])) |
- 			FIELD_PREP(XE_PAGEFAULT_TYPE_MASK,
- 				   FIELD_GET(PFD_FAULT_TYPE, msg[2]));
--	pf.consumer.engine_class = FIELD_GET(PFD_ENG_CLASS, msg[0]);
--	pf.consumer.engine_instance = FIELD_GET(PFD_ENG_INSTANCE, msg[0]);
-+	pf.consumer.engine_class_instance =
-+		FIELD_PREP(XE_PAGEFAULT_ENGINE_CLASS_MASK,
-+			   FIELD_GET(PFD_ENG_CLASS, msg[0])) |
-+		FIELD_PREP(XE_PAGEFAULT_ENGINE_INSTANCE_MASK,
-+			   FIELD_GET(PFD_ENG_INSTANCE, msg[0]));
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 4b68a2d55651..15b488ff6404 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -211,6 +211,8 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
+ 			  DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(XE_EXEC_QUEUE_SET_PROPERTY, xe_exec_queue_set_property_ioctl,
+ 			  DRM_RENDER_ALLOW),
++	DRM_IOCTL_DEF_DRV(XE_VM_GET_PROPERTY, xe_vm_get_property_ioctl,
++			  DRM_RENDER_ALLOW),
+ };
  
- 	pf.producer.private = guc;
- 	pf.producer.ops = &guc_pagefault_ops;
-diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-index 0281b5b6d4ab..47b6a7628dc1 100644
---- a/drivers/gpu/drm/xe/xe_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_pagefault.c
-@@ -229,13 +229,15 @@ static bool xe_pagefault_queue_pop(struct xe_pagefault_queue *pf_queue,
- 
- static void xe_pagefault_print(struct xe_pagefault *pf)
- {
-+	enum xe_engine_class class = FIELD_GET(XE_PAGEFAULT_ENGINE_CLASS_MASK,
-+					       pf->consumer.engine_class_instance);
- 	xe_gt_info(pf->gt, "\n\tASID: %d\n"
- 		   "\tFaulted Address: 0x%08x%08x\n"
- 		   "\tFaultType: %lu\n"
- 		   "\tAccessType: %d\n"
- 		   "\tFaultLevel: %lu\n"
- 		   "\tEngineClass: %d %s\n"
--		   "\tEngineInstance: %d\n",
-+		   "\tEngineInstance: %lu\n",
- 		   pf->consumer.asid,
- 		   upper_32_bits(pf->consumer.page_addr),
- 		   lower_32_bits(pf->consumer.page_addr),
-@@ -244,9 +246,10 @@ static void xe_pagefault_print(struct xe_pagefault *pf)
- 		   pf->consumer.access_type,
- 		   FIELD_GET(XE_PAGEFAULT_LEVEL_MASK,
- 			     pf->consumer.fault_type_level),
--		   pf->consumer.engine_class,
--		   xe_hw_engine_class_to_str(pf->consumer.engine_class),
--		   pf->consumer.engine_instance);
-+		   class,
-+		   xe_hw_engine_class_to_str(class),
-+		   FIELD_GET(XE_PAGEFAULT_ENGINE_INSTANCE_MASK,
-+			     pf->consumer.engine_class_instance));
+ static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index d9004f9aae8a..e86b63cda0ba 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -3929,6 +3929,123 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	return err;
  }
  
- static void xe_pagefault_queue_work(struct work_struct *w)
-diff --git a/drivers/gpu/drm/xe/xe_pagefault_types.h b/drivers/gpu/drm/xe/xe_pagefault_types.h
-index 0e378f41ede6..a14725a02f39 100644
---- a/drivers/gpu/drm/xe/xe_pagefault_types.h
-+++ b/drivers/gpu/drm/xe/xe_pagefault_types.h
-@@ -80,10 +80,18 @@ struct xe_pagefault {
- #define XE_PAGEFAULT_TYPE_LEVEL_NACK		0xff	/* Producer indicates nack fault */
- #define XE_PAGEFAULT_LEVEL_MASK			GENMASK(3, 0)
- #define XE_PAGEFAULT_TYPE_MASK			GENMASK(7, 4)
--		/** @consumer.engine_class: engine class */
--		u8 engine_class;
--		/** @consumer.engine_instance: engine instance */
--		u8 engine_instance;
-+		/**
-+		 * @consumer.engine_class_instance: engine class and instance, packed
-+		 * into a single u8 to keep compact
++/*
++ * Map access type, fault type, and fault level from current bspec
++ * specification to user spec abstraction.  The current mapping is
++ * 1-to-1, but if there is ever a hardware change, we will need
++ * this abstraction layer to maintain API stability through the
++ * hardware change.
++ */
++static u8 xe_to_user_access_type(u8 access_type)
++{
++	return access_type;
++}
++
++static u8 xe_to_user_fault_type(u8 fault_type)
++{
++	return fault_type;
++}
++
++static u8 xe_to_user_fault_level(u8 fault_level)
++{
++	return fault_level;
++}
++
++static int fill_faults(struct xe_vm *vm,
++		       struct drm_xe_vm_get_property *args)
++{
++	struct xe_vm_fault __user *usr_ptr = u64_to_user_ptr(args->data);
++	struct xe_vm_fault *fault_list, fault_entry = { 0 };
++	struct xe_vm_fault_entry *entry;
++	int ret = 0, i = 0, count, entry_size;
++
++	entry_size = sizeof(struct xe_vm_fault);
++	count = args->size / entry_size;
++
++	fault_list = kcalloc(count, sizeof(struct xe_vm_fault), GFP_KERNEL);
++	if (!fault_list)
++		return -ENOMEM;
++
++	spin_lock(&vm->faults.lock);
++	list_for_each_entry(entry, &vm->faults.list, list) {
++		if (i == count)
++			break;
++
++		fault_entry.address = entry->address;
++		fault_entry.address_precision = entry->address_precision;
++
++		fault_entry.access_type = xe_to_user_access_type(entry->access_type);
++		fault_entry.fault_type = xe_to_user_fault_type(entry->fault_type);
++		fault_entry.fault_level = xe_to_user_fault_level(entry->fault_level);
++
++		memcpy(&fault_list[i], &fault_entry, entry_size);
++
++		i++;
++	}
++	spin_unlock(&vm->faults.lock);
++
++	ret = copy_to_user(usr_ptr, fault_list, args->size);
++
++	kfree(fault_list);
++	return ret ? -EFAULT : 0;
++}
++
++static int xe_vm_get_property_helper(struct xe_vm *vm,
++				     struct drm_xe_vm_get_property *args)
++{
++	size_t size;
++
++	switch (args->property) {
++	case DRM_XE_VM_GET_PROPERTY_FAULTS:
++		spin_lock(&vm->faults.lock);
++		size = size_mul(sizeof(struct xe_vm_fault), vm->faults.len);
++		spin_unlock(&vm->faults.lock);
++
++		if (!args->size) {
++			args->size = size;
++			return 0;
++		}
++
++		/*
++		 * Number of faults may increase between calls to
++		 * xe_vm_get_property_ioctl, so just report the number of
++		 * faults the user requests if it's less than or equal to
++		 * the number of faults in the VM fault array.
++		 *
++		 * We should also at least assert that the args->size value
++		 * is a multiple of the xe_vm_fault struct size.
 +		 */
-+		u8 engine_class_instance;
-+#define XE_PAGEFAULT_ENGINE_CLASS_MASK		GENMASK(3, 0)
-+#define XE_PAGEFAULT_ENGINE_INSTANCE_MASK	GENMASK(7, 4)
-+		/**
-+		 * consumer.align: buffer u8 to keep struct aligned to u64.
-+		 * Will be used later to store data.
-+		 */
-+		u8 align;
- 		/** consumer.reserved: reserved bits for future expansion */
- 		u64 reserved;
- 	} consumer;
++		if (args->size > size || args->size % sizeof(struct xe_vm_fault))
++			return -EINVAL;
++
++		return fill_faults(vm, args);
++	}
++	return -EINVAL;
++}
++
++int xe_vm_get_property_ioctl(struct drm_device *drm, void *data,
++			     struct drm_file *file)
++{
++	struct xe_device *xe = to_xe_device(drm);
++	struct xe_file *xef = to_xe_file(file);
++	struct drm_xe_vm_get_property *args = data;
++	struct xe_vm *vm;
++	int ret = 0;
++
++	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1] ||
++			     args->reserved[2]))
++		return -EINVAL;
++
++	vm = xe_vm_lookup(xef, args->vm_id);
++	if (XE_IOCTL_DBG(xe, !vm))
++		return -ENOENT;
++
++	ret = xe_vm_get_property_helper(vm, args);
++
++	xe_vm_put(vm);
++	return ret;
++}
++
+ /**
+  * xe_vm_bind_kernel_bo - bind a kernel BO to a VM
+  * @vm: VM to bind the BO to
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index fd3fc60f92bb..0412391265dc 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -210,6 +210,9 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
+ int xe_vm_bind_ioctl(struct drm_device *dev, void *data,
+ 		     struct drm_file *file);
+ int xe_vm_query_vmas_attrs_ioctl(struct drm_device *dev, void *data, struct drm_file *file);
++int xe_vm_get_property_ioctl(struct drm_device *dev, void *data,
++			     struct drm_file *file);
++
+ void xe_vm_close_and_put(struct xe_vm *vm);
+ 
+ static inline bool xe_vm_in_fault_mode(struct xe_vm *vm)
 -- 
 2.43.0
 
