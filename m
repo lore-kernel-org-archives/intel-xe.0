@@ -4,59 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0F6FEF99E5
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Feb 2026 22:34:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 577A6EF99DF
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Feb 2026 22:39:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34FCB10E867;
-	Fri, 13 Feb 2026 22:34:16 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R6gqLo2L";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48A9B10E858;
- Fri, 13 Feb 2026 22:34:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771022055; x=1802558055;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=z6uJ2eHv4fsZjCuisFiKdkgXRUwwRf2ilkArWWw/660=;
- b=R6gqLo2LEnf739F7h+bH8lTcVS/lPxEEma16ER8y4O5XLKow8fpUj57X
- q1XfUfnxzDOQMacBJ1x001+Xm/8noALNfSzvZzDavIGR2dGpnnPAurHEa
- nZe17M+LLosxtHYx3Giq/6iJaSq0XvgLL9EIDZE36UBdR1WUYm7JT7h/a
- B+q/uTj/p65iTLfmNqKQ8oloEHH6agQoqmB7Iig+TCU6/SbOdJiL6VSzS
- XeFS2Z32UtdiYt/1jtsnkBI0wFi5ksv0CpQ5bmPUD56PYQNBH5QCW3x7m
- wO5ZI8SDlDgreX2GsTQJGi2FEj+SK6YpELNMQGo1OPC0yTGYhBlNtlNTM Q==;
-X-CSE-ConnectionGUID: l4KnSuSdQx+uFwmTKOM6PA==
-X-CSE-MsgGUID: W4W2dwSdQzqk5i/ZGWXU4g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11700"; a="94844922"
-X-IronPort-AV: E=Sophos;i="6.21,289,1763452800"; d="scan'208";a="94844922"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2026 14:34:15 -0800
-X-CSE-ConnectionGUID: fnaTQ0dkQWum4ODLAQ1mew==
-X-CSE-MsgGUID: YXTlLsK2T/2+uIzeXP5G/w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,289,1763452800"; d="scan'208";a="250698306"
-Received: from dut4086lnl.fm.intel.com ([10.105.11.7])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2026 14:34:14 -0800
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
- joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
- jianxun.zhang@intel.com, shuicheng.lin@intel.com,
- dri-devel@lists.freedesktop.org, Michal.Wajdeczko@intel.com,
- michal.mrozek@intel.com, raag.jadav@intel.com, ivan.briano@intel.com,
- matthew.auld@intel.com, dafna.hirschfeld@intel.com
-Subject: [PATCH v34 4/6] drm/xe/uapi: Define drm_xe_vm_get_property
-Date: Fri, 13 Feb 2026 22:34:15 +0000
-Message-ID: <20260213223410.99613-12-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260213223410.99613-8-jonathan.cavitt@intel.com>
-References: <20260213223410.99613-8-jonathan.cavitt@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13BA210E85C;
+	Fri, 13 Feb 2026 22:39:15 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 718AF10E85C;
+ Fri, 13 Feb 2026 22:39:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0160311048846018645=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_GuC_CT_memory_optimizations?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 13 Feb 2026 22:39:14 -0000
+Message-ID: <177102235443.253305.13132765143913546959@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260213211625.3117729-1-matthew.brost@intel.com>
+In-Reply-To: <20260213211625.3117729-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,164 +35,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add initial declarations for the drm_xe_vm_get_property ioctl.
+--===============0160311048846018645==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2:
-- Expand kernel docs for drm_xe_vm_get_property (Jianxun)
+== Series Details ==
 
-v3:
-- Remove address type external definitions (Jianxun)
-- Add fault type to xe_drm_fault struct (Jianxun)
+Series: GuC CT memory optimizations
+URL   : https://patchwork.freedesktop.org/series/161604/
+State : success
 
-v4:
-- Remove engine class and instance (Ivan)
+== Summary ==
 
-v5:
-- Add declares for fault type, access type, and fault level (Matt Brost,
-  Ivan)
+CI Bug Log - changes from xe-4556-69686d26e229ebcd8068fd86b7c39bc0832e8288_BAT -> xe-pw-161604v1_BAT
+====================================================
 
-v6:
-- Fix inconsistent use of whitespace in defines
+Summary
+-------
 
-v7:
-- Rebase and refactor (jcavitt)
+  **SUCCESS**
 
-v8:
-- Rebase (jcavitt)
+  No regressions found.
 
-uAPI: https://github.com/intel/compute-runtime/pull/878
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Reviewed-by: Shuicheng Lin <shuicheng.lin@intel.com>
-Acked-by: Matthew Brost <matthew.brost@intel.com>
-Acked-by: Ivan Briano <ivan.briano@intel.com>
-Cc: Zhang Jianxun <jianxun.zhang@intel.com>
-Cc: Ivan Briano <ivan.briano@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
----
- include/uapi/drm/xe_drm.h | 86 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 86 insertions(+)
+  
 
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index c9e70f78e723..56a7482ebd79 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -83,6 +83,7 @@ extern "C" {
-  *  - &DRM_IOCTL_XE_OBSERVATION
-  *  - &DRM_IOCTL_XE_MADVISE
-  *  - &DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS
-+ *  - &DRM_IOCTL_XE_VM_GET_PROPERTY
-  */
- 
- /*
-@@ -107,6 +108,7 @@ extern "C" {
- #define DRM_XE_MADVISE			0x0c
- #define DRM_XE_VM_QUERY_MEM_RANGE_ATTRS	0x0d
- #define DRM_XE_EXEC_QUEUE_SET_PROPERTY	0x0e
-+#define DRM_XE_VM_GET_PROPERTY		0x0f
- 
- /* Must be kept compact -- no holes */
- 
-@@ -125,6 +127,7 @@ extern "C" {
- #define DRM_IOCTL_XE_MADVISE			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_MADVISE, struct drm_xe_madvise)
- #define DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_QUERY_MEM_RANGE_ATTRS, struct drm_xe_vm_query_mem_range_attr)
- #define DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY	DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_SET_PROPERTY, struct drm_xe_exec_queue_set_property)
-+#define DRM_IOCTL_XE_VM_GET_PROPERTY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_GET_PROPERTY, struct drm_xe_vm_get_property)
- 
- /**
-  * DOC: Xe IOCTL Extensions
-@@ -1243,6 +1246,89 @@ struct drm_xe_vm_bind {
- 	__u64 reserved[2];
- };
- 
-+/** struct xe_vm_fault - Describes faults for %DRM_XE_VM_GET_PROPERTY_FAULTS */
-+struct xe_vm_fault {
-+	/** @address: Address of the fault */
-+	__u64 address;
-+	/** @address_precision: Precision of faulted address */
-+	__u32 address_precision;
-+	/** @access_type: Type of address access that resulted in fault */
-+#define FAULT_ACCESS_TYPE_READ		0
-+#define FAULT_ACCESS_TYPE_WRITE		1
-+#define FAULT_ACCESS_TYPE_ATOMIC	2
-+	__u8 access_type;
-+	/** @fault_type: Type of fault reported */
-+#define FAULT_TYPE_NOT_PRESENT		0
-+#define FAULT_TYPE_WRITE_ACCESS		1
-+#define FAULT_TYPE_ATOMIC_ACCESS	2
-+	__u8 fault_type;
-+	/** @fault_level: fault level of the fault */
-+#define FAULT_LEVEL_PTE		0
-+#define FAULT_LEVEL_PDE		1
-+#define FAULT_LEVEL_PDP		2
-+#define FAULT_LEVEL_PML4	3
-+#define FAULT_LEVEL_PML5	4
-+	__u8 fault_level;
-+	/** @pad: MBZ */
-+	__u8 pad;
-+	/** @reserved: MBZ */
-+	__u64 reserved[4];
-+};
-+
-+/**
-+ * struct drm_xe_vm_get_property - Input of &DRM_IOCTL_XE_VM_GET_PROPERTY
-+ *
-+ * The user provides a VM and a property to query among DRM_XE_VM_GET_PROPERTY_*,
-+ * and sets the values in the vm_id and property members, respectively.  This
-+ * determines both the VM to get the property of, as well as the property to
-+ * report.
-+ *
-+ * If size is set to 0, the driver fills it with the required size for the
-+ * requested property.  The user is expected here to allocate memory for the
-+ * property structure and to provide a pointer to the allocated memory using the
-+ * data member.  For some properties, this may be zero, in which case, the
-+ * value of the property will be saved to the value member and size will remain
-+ * zero on return.
-+ *
-+ * If size is not zero, then the IOCTL will attempt to copy the requested
-+ * property into the data member.
-+ *
-+ * The IOCTL will return -ENOENT if the VM could not be identified from the
-+ * provided VM ID, or -EINVAL if the IOCTL fails for any other reason, such as
-+ * providing an invalid size for the given property or if the property data
-+ * could not be copied to the memory allocated to the data member.
-+ *
-+ * The property member can be:
-+ *  - %DRM_XE_VM_GET_PROPERTY_FAULTS
-+ */
-+struct drm_xe_vm_get_property {
-+	/** @extensions: Pointer to the first extension struct, if any */
-+	__u64 extensions;
-+
-+	/** @vm_id: The ID of the VM to query the properties of */
-+	__u32 vm_id;
-+
-+#define DRM_XE_VM_GET_PROPERTY_FAULTS		0
-+	/** @property: property to get */
-+	__u32 property;
-+
-+	/** @size: Size to allocate for @data */
-+	__u32 size;
-+
-+	/** @pad: MBZ */
-+	__u32 pad;
-+
-+	union {
-+		/** @data: Pointer to user-defined array of flexible size and type */
-+		__u64 data;
-+		/** @value: Return value for scalar queries */
-+		__u64 value;
-+	};
-+
-+	/** @reserved: MBZ */
-+	__u64 reserved[3];
-+};
-+
- /**
-  * struct drm_xe_exec_queue_create - Input of &DRM_IOCTL_XE_EXEC_QUEUE_CREATE
-  *
--- 
-2.43.0
+Participating hosts (14 -> 14)
+------------------------------
 
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4556-69686d26e229ebcd8068fd86b7c39bc0832e8288 -> xe-pw-161604v1
+
+  IGT_8753: 8753
+  xe-4556-69686d26e229ebcd8068fd86b7c39bc0832e8288: 69686d26e229ebcd8068fd86b7c39bc0832e8288
+  xe-pw-161604v1: 161604v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161604v1/index.html
+
+--===============0160311048846018645==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>GuC CT memory optimizations</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161604/">https://patchwork.freedesktop.org/series/161604/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161604v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161604v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4556-69686d26e229ebcd8068fd86b7c39bc0832e8288_BAT -&gt; xe-pw-161604v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4556-69686d26e229ebcd8068fd86b7c39bc0832e8288 -&gt; xe-pw-161604v1</li>
+</ul>
+<p>IGT_8753: 8753<br />
+  xe-4556-69686d26e229ebcd8068fd86b7c39bc0832e8288: 69686d26e229ebcd8068fd86b7c39bc0832e8288<br />
+  xe-pw-161604v1: 161604v1</p>
+
+</body>
+</html>
+
+--===============0160311048846018645==--
