@@ -4,137 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 304B7EDF17E
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Feb 2026 17:27:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57FFAEEA860
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Feb 2026 17:29:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E197E10E2FB;
-	Fri, 13 Feb 2026 17:27:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12DB810E301;
+	Fri, 13 Feb 2026 17:29:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="MmRvBvKT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d+EebsoJ";
 	dkim-atps=neutral
-Received: from CH1PR05CU001.outbound.protection.outlook.com
- (mail-northcentralusazon11010007.outbound.protection.outlook.com
- [52.101.193.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5620810E23E;
- Fri, 13 Feb 2026 17:27:48 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UFpjHhbgpFabQuH/Llt2iraP/utu4k19//03aLGuWWpu147+ok090DsKbev+48Nt2on9QFEskqJGMqMvkMlKYPuJ/4N6EpGObRYPGcI2CK2E8u5HlUViYsljpZdejmJ7SnDZjzP/XaMhbdzF3ly+KvcQ6ty4tAQ1Y0dFSq+xVxClZ3EZh0seNP3lHyYQGCUNfAXWnPjyHarslDtpMlH3jaJl0NbQHGcPvIv1xlMvN+YwyvRhBUh3FG+3IUAq5Am3LiXaWyTBctCZlVJm1X0vXuO5dttBOsahIX/SHplmqXPw/2oo8Q/uiljlu/T8Jw44unNHvTkPSzWeZhJ/ch4/tA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8nAjHvQ3sMuURgUglLyjMM89quJ2NBvOF8Y5hhkw7NQ=;
- b=EyUMae5CxZReUSiRXb2CuoecyJciJSD/FaVZIca0C7UnqgWLO2D+fKYVbElYX6iuPM+gHFJR8QqPvWo7r2TPqqouz9nl0D8NfnntZVh8uG3xspnU6Pr7mrkTtRnWkw92N+5vrdRTJgi7OQneJ7/ipTee2GjJy+VsARPs2d5AAjFSIB8EeDndofRa6Tb5I5i28NqYx2kYhhlzxriJq4+mIet+Spy+PIg3pCAPjYlDYC3cibDc40IjWOt/GmqsDKrpsPvMWxkZVi1txwUzL9aDCT+4tHdFvWnDMehN/eHPBwpBhugtAhmj7SPf4Nbmyo0ZVeR4lWVVfTek33zKAdNGEw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8nAjHvQ3sMuURgUglLyjMM89quJ2NBvOF8Y5hhkw7NQ=;
- b=MmRvBvKTDIqggBJaXvB11OBPItU9Dje6WAVb6Pj7qFyg0EewMu7l/J/w/xftd9G587iqXnZniaX+X96N9XCLpCr7oHgXYCkTOFDa4M3Gg+mSYcDX2nMCb8RFoU7uC+pMANQArzybUVzkIeARFE4LLyT9jxf9RuvxwX4cO+drSUiLZ49K3oGVUaglHstDi1gqZavK4XgDY3akOO2F+5YQkzm8kmt6tMPH91/t73YkQ/22FwYN895xD16eTmUMdQXCK0anilPEgJCBCSJPzXfX/HpUykocnsTxX4i4AEQLCSDtWfvJ+gRgFqznOclVLE6dN4bdix4JuiHPwG7I8Cge6g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- DS0PR12MB7945.namprd12.prod.outlook.com (2603:10b6:8:153::19) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9611.10; Fri, 13 Feb 2026 17:27:44 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9611.008; Fri, 13 Feb 2026
- 17:27:44 +0000
-Date: Fri, 13 Feb 2026 12:27:41 -0500
-From: Joel Fernandes <joelagnelf@nvidia.com>
-To: Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org
-Cc: Dave Airlie <airlied@redhat.com>, intel-xe@lists.freedesktop.org,
- Peter Senna Tschudin <peter.senna@linux.intel.com>
-Subject: Re: [PATCH] gpu: Fix uninitialized buddy for built-in drivers
-Message-ID: <77fc0550-cbb4-4796-85ea-c552e12125c1@nvidia.com>
-References: <20260213152047.179628-1-koen.koning@linux.intel.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260213152047.179628-1-koen.koning@linux.intel.com>
-X-ClientProxiedBy: BL1PR13CA0298.namprd13.prod.outlook.com
- (2603:10b6:208:2bc::33) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FBE810E305
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Feb 2026 17:29:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1771003796; x=1802539796;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=vQsVfBla+37IdFLoLg6P3acNGbAfzBYkKk4F3fvEo9o=;
+ b=d+EebsoJwnLiGVJX52M1+jRKxapoK/56rN+YROr5Sn8xUrY/l1klmMLB
+ IGJxLsZ0LBYRXSApuCqi52vw5wvtZsIr1JcsM1P8D+oDx/WouH7Y0yuG+
+ b3VA7mBmw0xX8kz303k+wwFC53jX/P5mCf7EL5HiL4e5ZCJ9FG6qM4CgM
+ p76cjRNjkLTygo9HFa4tc+Vi+pcKVybH/aVklWiuz/nwz9foSlNZdnN2M
+ wQoisnHzBrWynq4mZUapuWjLzUTejaE0n0A0ITTfFfFHIDy3Ibhk1bF9s
+ C6kJSYqHoo7iFdBhqw490lvwkHX+6KWWxfEcrh/Iz2G6kOQ4i63KyXQea w==;
+X-CSE-ConnectionGUID: nbAdjBP5TQ6prcCIkN/dEg==
+X-CSE-MsgGUID: W/4j2hq+S2+O2cbvHXfHPg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11700"; a="83558342"
+X-IronPort-AV: E=Sophos;i="6.21,289,1763452800"; d="scan'208";a="83558342"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2026 09:29:55 -0800
+X-CSE-ConnectionGUID: V8DOovP2SnC56Kzo6fKeoA==
+X-CSE-MsgGUID: 2npHT0iISfuCi8p4hD55yg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="243574597"
+Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.244.47])
+ ([10.245.244.47])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Feb 2026 09:29:55 -0800
+Message-ID: <5657d6e8-ab61-482f-9e84-74e4b2ff244b@intel.com>
+Date: Fri, 13 Feb 2026 17:29:51 +0000
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|DS0PR12MB7945:EE_
-X-MS-Office365-Filtering-Correlation-Id: 23d8d89c-571b-4c98-1ad4-08de6b2532a4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7053199007;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?0l66DXV8LNH7jjsqW7UhCV4gqEGLI4jFOUSp3t5tlkLgRXMFrKb0sf9M2k3l?=
- =?us-ascii?Q?h/N6p2shIvpC7NxBUKrmAVwpbFAxtrQ3oBLItpJQGfl3mlIUsH6tSsBH0i2t?=
- =?us-ascii?Q?8jUz7qNDJRnnzl5qPwHpaTZuh6P9ciDBs+p9IskvycJVheYV6/Ikk/UyXuBH?=
- =?us-ascii?Q?vGJ+VRbpUaTcdmJ3U9XGXWlVVlDCtQqFnuuJBEyvG7b94NG7mtMSbO3FZVmR?=
- =?us-ascii?Q?NVFDBek/InCy5ZMmYMgg/9NpXfhwewNeWCPbZJmZYA73tu32TwGuBhymxVOE?=
- =?us-ascii?Q?pXeOZH3zAEZS4OJqmiv5i9rcasy6x5K1cYRzTfoOMYApMoTBeHPcRNRQ3IAa?=
- =?us-ascii?Q?2C1HypFI0uGSUPzXaf/omMVsNBs7bzX8JxRtf9UQT3IrYNgSWMbbzbMzwZ+v?=
- =?us-ascii?Q?R794uc+jNeKw874Nm+ZxVPt3QxsQeXDgCf0TMvSA/14ipSnVumbUcBP6IrL6?=
- =?us-ascii?Q?KcU6UFyLMSklhD45qlmAhU1FD3wo+q0KMiMR6lLhMml7KqQkMmDsCa5pRehD?=
- =?us-ascii?Q?MVjaCL2DLkwZwygHFH/pZbDKurkvoDjj/cXgaJOeaSj7PTY52N1aP1b3uVDW?=
- =?us-ascii?Q?xx24Ob3fh3+jUelfhHO2kN+i4ynPkm55NIWOskpVGvSzZhoyMigUqrPo/V8X?=
- =?us-ascii?Q?r+JxW49AoLSuOULo+UUQktnN8AJhleWRwEcos0HkZ3kafAY/+eVmAGIWnd+l?=
- =?us-ascii?Q?Iw7sigD9E9vn5b9ba+kf7pB4J5aCFSgb7pplnJpzwJeIdOGd1UXFh/alh1KX?=
- =?us-ascii?Q?s3FWaC7e2RoNt4PRQ4Ofi/yf1a+uSIJhgHcIc+flS+tyBWQC7LRzfGHBV4Ko?=
- =?us-ascii?Q?f7LmdoOafJIeEffpa/VstChoJu5rcr2bcw/rtY7HxvhTl29q/aEktf4zxc/w?=
- =?us-ascii?Q?jp5BspyfWLZtt9IF7Q2R5M07fKMMNtF5U6TxJGyhxZCb+YBCvGLVc8qJ/LkW?=
- =?us-ascii?Q?D+eraHztJyI7fWE4a+4ZqXo2TvOmajyY3g4UbvF+fgHO7exSga0bkzijDBdX?=
- =?us-ascii?Q?x/PnMNjzwZ/jAaIeoeKFXk4s7D6+zWRAzuML65xUNA7SVld3hYu6ktzsajA7?=
- =?us-ascii?Q?fRo690SsbAQOW1/YU+JEodhkuUrhFI1r0+LnuY8PzQNbXqDqNAEwTLKOkFAj?=
- =?us-ascii?Q?3Fz/M+yn4PKqMjyNUY85I3e9Qa1+3JkTBb89YTUGQwrLTH+a+ZRieQUQ8OXd?=
- =?us-ascii?Q?JqmJ078J9zDIRJ1vs6rjw3Wz+qIkrUDbcjjhtaCSB9b/1ns7tfRVIxUn/FPw?=
- =?us-ascii?Q?DJoHkBmrYoYzzfXPeHIbR/Oa/HGzFuMSAb4b5hAv1BC6JW/5wcLhn89oWHMS?=
- =?us-ascii?Q?M8ILrl48tcxYE3RZtydBgdjidW0FlSXoCDQboNwWbXxSsuEhR0HXFtFd97f2?=
- =?us-ascii?Q?2v6eQX70Ak97qMXMKF4Nt7LRMZ4EdFqpqgRLX0OFUTSbBJJvw6reFLUjt0nv?=
- =?us-ascii?Q?lR1NixgGljaHmhl2xZkWYNYBt9V97xv6tFI4PwyESkxbmocJLc1Rr5NIfQIY?=
- =?us-ascii?Q?gocfwH25jSkyx6rJjq5yCw1Tr1/nxAhpwYnwP+Q2WdRj5PcrZ+NyIoSoQxbY?=
- =?us-ascii?Q?fBrJ8/3ykRD9s2XNzCk=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?BsQJD9kfJYbiskkSTRf1rtl1VvvORXInY0MBOJlWe0Ror+8kLzbGeTwCrGZW?=
- =?us-ascii?Q?L+I4JWV+usxtKu5Z4djztx+caOPv4zNj388twmauVa7whx3i3fIAl9QaoDv/?=
- =?us-ascii?Q?3RgkHfDZs7LWOFP7Ln8vUexUom/+mtzl0zAdD94ykfQpRSR5oJzzINMBXhfT?=
- =?us-ascii?Q?haVhYk7zNItW2s+IRi12c7d5rt2GNKhGd0UWCUtdsFA8hZCTIbKpNNOV193h?=
- =?us-ascii?Q?vem4OdjoixIAee1gtjLVFA3fkZwKOp93r2NLS4qyteMXrKNn1uC63kguOsxd?=
- =?us-ascii?Q?8bdjNnBWhFpQuxM0IElgsuvzTVUToSPs/1Eiw7qYLa2odY6o7Ebom4ImZSBt?=
- =?us-ascii?Q?AB8xNGLICw6c9iDxwB1IZwwpu5i+PpYCfdlIxln/GH8aXxpLyuuwP7JYKzxd?=
- =?us-ascii?Q?vjhLqvszeWCHQIbcwTsDEmprFHGqUVKAogWRd1YysahfnZ8rvU7TEyAXDnpM?=
- =?us-ascii?Q?kuvgACpJDHgOSxwWsVEYX64D/+UISVghNR/EViY83Zu80P/DG1BCqOVb6mur?=
- =?us-ascii?Q?K/uWXraB9N0KJsNdjjjfqTZneFL0yMIhB0C2Eu1hLwOMEAxAPaxTuGolaRW/?=
- =?us-ascii?Q?j3P024BQSSOG25NZdqz2XPMhkHBUuyCo5kybXBd82iKAQUtbsMEpCDW5prRi?=
- =?us-ascii?Q?cKR4OAUC5pQgf1ghHZxUhvHpW6KoLS25B9UH1/gm6muBWwSQWjgv6eU++v5v?=
- =?us-ascii?Q?oTUsgSeZuXFqzvvMkNTaE0ALvD5seSI6qQs9QVn2L3co81QIxwT2r70vAU03?=
- =?us-ascii?Q?6Z4cP5PMNOtK/fAnGaSPQHcvpGJ6irgrA0Dgk62rTaGW3hOLJyuRVEZEgB9N?=
- =?us-ascii?Q?rnlQlEtrfpZb4l+ic87gF0abHTJsUML4/6wDb/Qua4aRcnD3DxTpqAw1tHkk?=
- =?us-ascii?Q?YC8SkljKfdVXV40LCvjMscPHY95+p+eVqnMNhf6MZIUJPGruhxRwscJu7flW?=
- =?us-ascii?Q?Sp8fX01BTxujLA+chidPFmKVfKQDdGDZMlw9DFdZNz162ajfgiX437uLwvDA?=
- =?us-ascii?Q?cc0aF4QEEeoKiU5cFP3ndFrenqfJKUYOUlZvrT7JfR195Taw1XhiOuyYSRcJ?=
- =?us-ascii?Q?uv8NQUilEdi+wxYw8ZzxMrq6qYf43uiDewWFvB1nu0H7vjSbI23BQkk277wZ?=
- =?us-ascii?Q?d7cfwaDiV8a574Xh5mjyWVZ6aGxcgtaRiBIap3Ep5o72/4IzyL0hcy9N/GiY?=
- =?us-ascii?Q?qLVRr6F+hoBzv5KPty3q0AI7L15v1vUgokwdfnmSSGoIPNyXAiEc3ZQl4teY?=
- =?us-ascii?Q?2XbRa6VZXHIbbqaUsCM3A4Fwy4pLjDnsUBDZCeB1dKi4wxZHWdBwJ3kqrK0c?=
- =?us-ascii?Q?yfylLCaTtHPwXm5Nxt75uCB8uPDv6cYXBqfC9mzhZKf1NOgKRsNqXqXv3RgS?=
- =?us-ascii?Q?1RXK64ZgfiTMQq016NmiCmFMcalwtu+ACrWXIkhmxkLbhot1os7xWEUb+6Ns?=
- =?us-ascii?Q?2SlDlC4NBeBdmDpQuCVMZQoHHJfoF2wXekPq8m8HPEZg32VxMt5K34gcFyGO?=
- =?us-ascii?Q?+iVf3hQC2CB5DSpu0IbG0BrvU0InFxS2xflQFWnrgi5/mZz8LRrX/yZAZ3Un?=
- =?us-ascii?Q?qqOWP7Nfv6Ihx5l9Rq5S7IiHEBrAGddq1qXRnji8poQOMKDe2ztloxWeKDFD?=
- =?us-ascii?Q?r5B9lvBR67u9h5ulQG8EOwDcrgHKsbcQ41Qhrm1mQjiU8O+5n3SCWLmx2M9T?=
- =?us-ascii?Q?OFA3CDHg75/2zIzH0F3JhxU6x7LwcimlQ/U/e0K657ypzJTkAblQc3TyUzSz?=
- =?us-ascii?Q?ClCT0e91Jw=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 23d8d89c-571b-4c98-1ad4-08de6b2532a4
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Feb 2026 17:27:44.3155 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: F445eNGrTbAjLKbEL+pxv0ZnqhynWIyhZOfHETy2R+p1GieIX0md0u6eBe0q4M7opiHpbXAKTDdzFP02uueuKA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR12MB7945
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] drm/xe/xe3p_lpg: flush userptr/shrinker bo cachelines
+ manually
+To: Matt Roper <matthew.d.roper@intel.com>,
+ "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+Cc: "Brost, Matthew" <matthew.brost@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "thomas.hellstrom@linux.intel.com" <thomas.hellstrom@linux.intel.com>
+References: <20260210125120.1329411-5-tejas.upadhyay@intel.com>
+ <20260210125120.1329411-6-tejas.upadhyay@intel.com>
+ <20260210210525.GC4694@mdroper-desk1.amr.corp.intel.com>
+ <aYvHCeTd5pOFo2p5@lstrano-desk.jf.intel.com>
+ <SJ1PR11MB6204CD2B54AD51B175F96F298163A@SJ1PR11MB6204.namprd11.prod.outlook.com>
+ <20260211211125.GL4694@mdroper-desk1.amr.corp.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20260211211125.GL4694@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,40 +78,300 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2/13/2026 10:20 AM, Koen Koning wrote:
-> Move buddy to the start of the link order, so its __init runs before any
-> other built-in drivers that may depend on it. Otherwise, a built-in
-> driver that tries to use the buddy allocator will run into a kernel NULL
-> pointer dereference because slab_blocks is uninitialized.
+On 11/02/2026 21:11, Matt Roper wrote:
+> On Wed, Feb 11, 2026 at 07:06:05PM +0000, Upadhyay, Tejas wrote:
+>>
+>>
+>>> -----Original Message-----
+>>> From: Brost, Matthew <matthew.brost@intel.com>
+>>> Sent: 11 February 2026 05:32
+>>> To: Roper, Matthew D <matthew.d.roper@intel.com>
+>>> Cc: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
+>>> xe@lists.freedesktop.org; Auld, Matthew <matthew.auld@intel.com>;
+>>> thomas.hellstrom@linux.intel.com
+>>> Subject: Re: [PATCH 1/3] drm/xe/xe3p_lpg: flush userptr/shrinker bo
+>>> cachelines manually
+>>>
+>>> On Tue, Feb 10, 2026 at 01:05:25PM -0800, Matt Roper wrote:
+>>>> On Tue, Feb 10, 2026 at 06:21:22PM +0530, Tejas Upadhyay wrote:
+>>>>> "eXtended Architecture" (XA) tagged memory—memory shared between
+>>> the
+>>>>> CPU and GPU
+>>>>
+>>>> I'm pretty sure this expansion of "XA" is wrong; where are you seeing
+>>>> this definition?  Everything in the bspec indicates that XA means "wb
+>>>> - transient app" (similar to how "XD" is 'wb - transient display").
+>>>> I'm not sure why exactly they picked "X" to refer to transient in both
+>>>> of these cases, but I've never seen any documentation that refers to
+>>>> it as "extended."
+>>>>
+>>>>> is treated differently from other GPU memory when the Media engine is
+>>> power-gated.
+>>>>>
+>>>>> XA is *always* flushed, like at the end-of-submssion (and maybe
+>>>>> other
+>>>>
+>>>> I assume you're referring to the fact that the driver performs flushes
+>>>> at the end of submission (via PIPE_CONTROL or MI_FLUSH_DW), and that
+>>>> depending on other state/optimizations in the system, those flushes
+>>>> may flush the entire device cache, or may only flush the subset of
+>>>> cache data that is not marked as transient.  The way you worded this
+>>>> was confusing since it makes it sound like cache flushes happen
+>>>> automatically somewhere in hardware/firmware.
+>>>>
+>>>>> places), just that internally as an optimisation hw doesn't need to
+>>>>> make that a full flush (which will also include XA) when Media is
+>>>>> off/powergated, since it doesn't need to worry about GT caches vs
+>>>>> Media coherency, and only CPU vs GPU coherency, so can make that
+>>>>> flush a targeted XA flush, since stuff tagged with XA now means it's
+>>>>> shared with the CPU. The main implication is that we now need to
+>>>>> somehow flush non-XA before freeing system memory pages, otherwise
+>>>>> dirty cachelines could be flushed after the free (like if Media
+>>>>> suddenly turns on and does a full flush)
+>>>>
+>>>> This description seems really confusing.  My understanding is that
+>>>> marking something as wb-transient-app indicates that it might be
+>>>> accessed by something other than our graphics/media IP (i.e., accessed
+>>>> from the CPU, exported to another device, etc.), so transient data
+>>>> truly does need to be flushed at the points in the driver where a
+>>>> flush typically happens.
+>>>>
+>>>> However when something is _not_ transient, then either:
+>>>>   - it's "private" to the GPU and only our graphics/media IP will be
+>>>>     accessing it
+>>>>   - it's bound with a coherent PAT index so that outside observers like
+>>>>     the CPU can snoop the device cache, even when the cache hasn't been
+>>>>     flushed
+>>>>
+>>>> If media is not active, then there's really no need to include
+>>>> non-transient data when an device cache flush happens since there's no
+>>>> real need for the data to get to RAM.  So that enables an optimization
+>>>> (which comes in your next patch), that allows flushes to only operate
+>>>> on the subset of the device cache tagged as "transient" if media is idle.
+>>
+>> But what If we have stale non-XA marked pages for userptr, and that
+>> object moves out and at the same time media comes back, will end up in
+>> full flush and flush the stale entry to RAM.
 > 
-> Specifically, this fixes drm/xe (as built-in) running into a kernel
-> panic during boot, because it uses buddy during device probe.
+> What makes userptr special here?  During general, active usage, userptr
+> would be data that's accessible by the CPU, so it needs to either be
+> transient (so CPU can see the data in RAM after explicit flushes) or it
+> needs to be using a coherent PAT (so that the CPU can just snoop the GPU
+> cache).  If you marked userptr as both non-XA and non-coherent, then
+> that sounds likely to be a userspace bug (and probably something we can
+> catch and reject as an invalid case on any Xe3p or later platforms that
+> support this) since the CPU wouldn't have any reliable way of seeing GPU
+> updates.
+
+Yes, we have always rejected coh_none + useptr, if someone tries that 
+with vm_bind.
+
+My understanding is that you can now no longer use vanilla 1WAY and 
+expect it to always be flushed from the GPU caches when the fence has 
+signalled i.e end of submission, like when media is off. So you have to 
+only allow 2WAY or XA for userptr, or you need a manual sync flush here, 
+for security, before the pages potentially vanish.
+
 > 
-> Fixes: ba110db8e1bc ("gpu: Move DRM buddy allocator one level up (part two)")
-> Cc: Joel Fernandes <joelagnelf@nvidia.com>
-> Cc: Dave Airlie <airlied@redhat.com>
-> Cc: intel-xe@lists.freedesktop.org
-> Tested-by: Peter Senna Tschudin <peter.senna@linux.intel.com>
-> Signed-off-by: Koen Koning <koen.koning@linux.intel.com>
-> ---
->  drivers/gpu/Makefile | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+> If something happens that changes the GTT mapping of an object, then
+> doesn't that already trigger a TLB invalidation when necessary in the
+> driver today?  It was my understanding that "heavy" TLB invalidations
+
+Right, but the driver is clever and in some cases postpones that TLB 
+flush (with PPC bit set) to the next re-bind, so when you next call the 
+exec() ioctl, for example. I think the idea is you then only need one 
+flush, instead of two. But that is way too late for this, as we need to 
+do the flush before the memory is potentially freed. Otherwise the 
+memory can be freed and when media next wakes up or you trigger full GPU 
+flush on next exec() you potentially corrupt the next user of that memory.
+
+For useptr case, this patch was just trying to make that TLB flush (with 
+PPC bit) happen immediately before we dma unmap the physical pages, and 
+before the memory is potentially freed.
+
+
+> wait for data values to be globally observable before starting, so I
+> think that would ensure that any non-XA data makes it to RAM before any
+> binding changes, object, destruction, etc.?  Is there something special
+> about userptr that makes that case more of a problem?
 > 
-> diff --git a/drivers/gpu/Makefile b/drivers/gpu/Makefile
-> index 5cd54d06e262..b4e5e338efa2 100644
-> --- a/drivers/gpu/Makefile
-> +++ b/drivers/gpu/Makefile
-> @@ -2,8 +2,9 @@
->  # drm/tegra depends on host1x, so if both drivers are built-in care must be
->  # taken to initialize them in the correct order. Link order is the only way
->  # to ensure this currently.
-> +# Similarly, buddy must come first since it is used by other drivers.
-> +obj-$(CONFIG_GPU_BUDDY)	+= buddy.o
+> I just found bspec page 74635 which gives an overview of the various
+> flush and invalidate cases, and I don't see anything there that makes it
+> obvious to me that userptr would be special.
+> 
+> 
+>>
+>>>>
+>>>> As you said, we eventually do want to force a flush of the
+>>>> non-transient data as well once we're freeing the underlying pages.
+>>>> So how do we do that?  It's not clear to me how the changes below are
+>>>> accomplishing that.  Is there a way to explicitly request a full
+>>>> device cache flush (ignoring the transient vs non-transient tagging)?
+>>>> Since the GuC handles the optimization in the next patch (toggling
+>>>> whether flushes are full flushes vs non-transient flushes depending on
+>>>> whether media is active), I thought there might be some kind of GuC
+>>>> interface to request "please do one full flush now, even if media is idle."
+>>>>
+>>>
+>>> I’m not an expert here by any means, but everything above from Matt seems
+>>> like valid concerns. Thomas also raised some concerns in the two previous
+>>> revisions; again I’m not an expert, but reading through those, it doesn’t really
+>>> seem like he received proper answers to his questions.
+>>
+>> Its forcing flush via tlb invalidation PPC flag under xe_invalidate_vma( ).
+> 
+> By the way, what is "PPC?"  It seems like it's another new synonym for
+> the device cache?  It's already really confusing that some of our
+> hardware docs use a mix of both "L2" and "L3" to refer to the same
+> device cache for historical reasons...
+> 
+> 
+> Matt
+> 
+>>
+>>>
+>>> A couple of comments below.
+>>>
+>>>>
+>>>> Matt
+>>>>
+>>>>>
+>>>>> V2(MattA): Expand commit description
+>>>>>
+>>>>> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+>>>>> ---
+>>>>>   drivers/gpu/drm/xe/xe_bo.c      |  3 ++-
+>>>>>   drivers/gpu/drm/xe/xe_device.c  | 23 +++++++++++++++++++++++
+>>>>> drivers/gpu/drm/xe/xe_device.h  |  1 +
+>>>>> drivers/gpu/drm/xe/xe_userptr.c |  3 ++-
+>>>>>   4 files changed, 28 insertions(+), 2 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+>>>>> index e9180b01a4e4..4455886b211e 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_bo.c
+>>>>> +++ b/drivers/gpu/drm/xe/xe_bo.c
+>>>>> @@ -689,7 +689,8 @@ static int xe_bo_trigger_rebind(struct xe_device
+>>>>> *xe, struct xe_bo *bo,
+>>>>>
+>>>>>   		if (!xe_vm_in_fault_mode(vm)) {
+>>>>>   			drm_gpuvm_bo_evict(vm_bo, true);
+>>>>> -			continue;
+>>>>> +			if (!xe_device_needs_cache_flush(xe))
+>>>>> +				continue;
+>>>
+>>> This will trigger a TLB invalidation (and I assume a cache flush) every time we
+>>> move or free memory in the 3D stack if it has a binding. It also performs a
+>>> synchronous wait on the BO being idle. Both of these are very expensive
+>>> operations. I can’t imagine the granularity we want here is to do this on every
+>>> move/free with bindings.
+>>>
+>>> Also, for LR compute with preempt fences, we would trigger the preempt
+>>> fences during the wait, so a TLB invalidation after this seems unnecessary,
+>>> though perhaps the cache flush is still required?
+>>>
+>>> I think this needs a bit more explanation, because without knowing a lot about
+>>> the exact requirements, the implementation does not look correct.
+>>
+>> The thing is that we are trying to solve problem with userptr with non-XA pat, consider if that BO got moved while media is not active. As soon as media will come back active, stale cached entries of that object will be flushed as part of full flush , which may corrupt things.
+>> There was thinking that with this patch we would at least solve the problem of corruption and later when page_reclamation feature comes in will help in performance as well. But now when page reclamation feature is merged earlier and it tightly coupled with bind/unbind some cases like discussed above (which are not doing unbind immediately on move/free) are missed in reclamation.
+>>   
+>> So thought was to let this solution go in with little perf hit and discuss with page reclamation owner to come with cleaner solution together.
+>>
+>> Tejas
+>>>
+>>>>>   		}
+>>>>>
+>>>>>   		if (!idle) {
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_device.c
+>>>>> b/drivers/gpu/drm/xe/xe_device.c index 743c18e0c580..da2abed94bc0
+>>>>> 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_device.c
+>>>>> +++ b/drivers/gpu/drm/xe/xe_device.c
+>>>>> @@ -1097,6 +1097,29 @@ static void tdf_request_sync(struct xe_device
+>>> *xe)
+>>>>>   	}
+>>>>>   }
+>>>>>
+>>>>> +/**
+>>>>> + * xe_device_needs_cache_flush - Whether the cache needs to be
+>>>>> +flushed
+>>>>> + * @xe: The device to check.
+>>>>> + *
+>>>>> + * Return: true if the device needs cache flush, false otherwise.
+>>>>> + */
+>>>>> +bool xe_device_needs_cache_flush(struct xe_device *xe) {
+>>>>> +	/* XA is *always* flushed, like at the end-of-submssion (and maybe
+>>> other
+>>>>> +	 * places), just that internally as an optimisation hw doesn't need to
+>>> make
+>>>>> +	 * that a full flush (which will also include XA) when Media is
+>>>>> +	 * off/powergated, since it doesn't need to worry about GT caches vs
+>>> Media
+>>>>> +	 * coherency, and only CPU vs GPU coherency, so can make that flush
+>>> a
+>>>>> +	 * targeted XA flush, since stuff tagged with XA now means it's shared
+>>> with
+>>>>> +	 * the CPU. The main implication is that we now need to somehow
+>>> flush non-XA before
+>>>>> +	 * freeing system memory pages, otherwise dirty cachelines could be
+>>> flushed after the free
+>>>>> +	 * (like if Media suddenly turns on and does a full flush)
+>>>>> +	 */
+>>>>> +	if (GRAPHICS_VER(xe) >= 35 && !IS_DGFX(xe))
+>>>>> +		return true;
+>>>>> +	return false;
+>>>>> +}
+>>>>> +
+>>>>>   void xe_device_l2_flush(struct xe_device *xe)  {
+>>>>>   	struct xe_gt *gt;
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_device.h
+>>>>> b/drivers/gpu/drm/xe/xe_device.h index 39464650533b..baf386e0e037
+>>>>> 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_device.h
+>>>>> +++ b/drivers/gpu/drm/xe/xe_device.h
+>>>>> @@ -184,6 +184,7 @@ void xe_device_snapshot_print(struct xe_device
+>>>>> *xe, struct drm_printer *p);
+>>>>>   u64 xe_device_canonicalize_addr(struct xe_device *xe, u64 address);
+>>>>>   u64 xe_device_uncanonicalize_addr(struct xe_device *xe, u64
+>>>>> address);
+>>>>>
+>>>>> +bool xe_device_needs_cache_flush(struct xe_device *xe);
+>>>>>   void xe_device_td_flush(struct xe_device *xe);  void
+>>>>> xe_device_l2_flush(struct xe_device *xe);
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/xe/xe_userptr.c
+>>>>> b/drivers/gpu/drm/xe/xe_userptr.c index e120323c43bc..b435ea7f9b66
+>>>>> 100644
+>>>>> --- a/drivers/gpu/drm/xe/xe_userptr.c
+>>>>> +++ b/drivers/gpu/drm/xe/xe_userptr.c
+>>>>> @@ -114,7 +114,8 @@ static void __vma_userptr_invalidate(struct xe_vm
+>>> *vm, struct xe_userptr_vma *uv
+>>>>>   				    false, MAX_SCHEDULE_TIMEOUT);
+>>>>>   	XE_WARN_ON(err <= 0);
+>>>>>
+>>>>> -	if (xe_vm_in_fault_mode(vm) && userptr->initial_bind) {
+>>>>> +	if ((xe_vm_in_fault_mode(vm) || xe_device_needs_cache_flush(vm-
+>>>> xe)) &&
+>>>>> +	    userptr->initial_bind) {
+>>>
+>>> Same concern with the LR preempt fence as above — the hardware will be
+>>> interrupted via preempt fences, so it doesn’t seem necessary to invalidate the
+>>> TLBs but perhaps we need a cflush and TLB invalidation is the mechanism for
+>>> that too?
+>>>
+>>> Matt
+>>>
+>>>>>   		err = xe_vm_invalidate_vma(vma);
+>>>>>   		XE_WARN_ON(err);
+>>>>>   	}
+>>>>> --
+>>>>> 2.52.0
+>>>>>
+>>>>
+>>>> --
+>>>> Matt Roper
+>>>> Graphics Software Engineer
+>>>> Linux GPU Platform Enablement
+>>>> Intel Corporation
+> 
 
-Rather than relying on fragile link ordering, would it be better to use an
-earlier initcall level for the buddy allocator?
-
-Thanks,
-
--- 
-Joel Fernandes
