@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56637EDF15D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0D5EEDF15E
 	for <intel-xe@archiver.kernel.org>; Fri, 13 Feb 2026 12:26:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C69110E7E8;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65E3910E800;
 	Fri, 13 Feb 2026 12:26:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CyJhjVSw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SyVdbxWG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D535410E805;
- Fri, 13 Feb 2026 12:26:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 115EC10E802;
+ Fri, 13 Feb 2026 12:26:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1770985591; x=1802521591;
+ t=1770985593; x=1802521593;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rRNRmS+iwtEvjn8MSJXVsZiic2j5KBzh0QJCMIU7Qvk=;
- b=CyJhjVSwpYxtqvTJRUxLciEl3XA/aBLE/t5MGBpnRGzAPrVWUirBu0lL
- egwCQMMT/YAcw1oy6jnkGmUA37jyQX6iLgiTFfga+MTbVNDO1LA2ngShB
- Ok/7YiBgJGEjkIOwbCwSiqAuk9MUSGD1Af2X43quPjguP5IOeYT8A7LUw
- 1BbdZ39t5YJvoiGb9BSxai6O28b1Epnvx8D3gSSBNbmP6mjvAsAS/AXRn
- V9yMosBXDvd0U/Xll/KtEWC4phughAYT61sibaFNRAk6YUZJEvzw91OUT
- kBM9p3PNig3cxtuL6M6myiRuv2MZz98U2W6TGlpDg0JVxY42rAKjlUP8s w==;
-X-CSE-ConnectionGUID: oiU9GHciR7GggVHlqYEdNg==
-X-CSE-MsgGUID: +/YBJ/+SQk+n/KKzSRqehQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="72158118"
-X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="72158118"
+ bh=o7R2Ai3a/g3aH4D+yxav3PCAa1SOvwZjR1kMmEKZz4s=;
+ b=SyVdbxWGkCRQczsmsp3/7ERPvCWd+BXr97Bxt/cz9z/z1L76t9gQiG2t
+ k50Txu32q4vi8LAT1SSeJYOtPD0nYX4pP+SXH27Us3jLh2mXmVPIzAgRk
+ 1pmSYeX5drkiy5zT4nxfheFZR7r7/LILLvJVUaMWy6ujowbeF25t/4Rdy
+ /e4xuaDV7vINgYpiDHkZgnA9yPh4b0jVTXWP1PveFUr/P0vedp8Czzu/o
+ AYE/XxB/1EJfDLrOom7qMBQ+Pz4tdZU40nA5XlJGcdy5aFbJAh0PANgWV
+ 1wqEQUjpor6LOMNxCP0ZafWQAa4M/m8kctm0v9hDFK0SxQTTNVXT70g6e g==;
+X-CSE-ConnectionGUID: UcWYZuNySqeZM3kcSUXFuw==
+X-CSE-MsgGUID: bCaPwPSkSLahU1l1Sy5BbA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11699"; a="72158123"
+X-IronPort-AV: E=Sophos;i="6.21,288,1763452800"; d="scan'208";a="72158123"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Feb 2026 04:26:31 -0800
-X-CSE-ConnectionGUID: WjVXSAJoRd2JwPRktMzS8w==
-X-CSE-MsgGUID: VPiCDcT3QoGY8w/cq3Uj6Q==
+ 13 Feb 2026 04:26:33 -0800
+X-CSE-ConnectionGUID: d9t33ushSAm4GAT7gdpNxA==
+X-CSE-MsgGUID: odTX5djETYC+Nsh3pc6gRA==
 X-ExtLoop1: 1
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa003.fm.intel.com with ESMTP; 13 Feb 2026 04:26:29 -0800
+ by fmviesa003.fm.intel.com with ESMTP; 13 Feb 2026 04:26:32 -0800
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH 10/19] drm/i915/lt_phy: Add xe3pldp .compare_hw_state hook
-Date: Fri, 13 Feb 2026 12:26:06 +0000
-Message-ID: <20260213122615.1083654-11-mika.kahola@intel.com>
+Subject: [PATCH 12/19] drm/i915/lt_phy: Add xe3plpd .get_freq hook
+Date: Fri, 13 Feb 2026 12:26:08 +0000
+Message-ID: <20260213122615.1083654-13-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260213122615.1083654-1-mika.kahola@intel.com>
 References: <20260213122615.1083654-1-mika.kahola@intel.com>
@@ -65,42 +65,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add .compare_hw_state function pointer for xe3plpd platform
-to support dpll framework.
+Add .get_freq function hook to support dpll framework for xe3plpd
+platform.
 
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dpll.c     |  5 -----
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 13 +++++++++++++
+ 2 files changed, 13 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+index 147baa777856..88f11cb8c5e1 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+@@ -1219,17 +1219,12 @@ static int xe3plpd_crtc_compute_clock(struct intel_atomic_state *state,
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	struct intel_encoder *encoder =
+ 		intel_get_crtc_new_encoder(state, crtc_state);
+-	struct intel_display *display = to_intel_display(encoder);
+ 	int ret;
+ 
+ 	ret = intel_lt_phy_pll_calc_state(crtc_state, encoder, &crtc_state->dpll_hw_state);
+ 	if (ret)
+ 		return ret;
+ 
+-	/* TODO: Do the readback via intel_compute_shared_dplls() */
+-	crtc_state->port_clock =
+-			intel_lt_phy_calc_port_clock(display, &crtc_state->dpll_hw_state.ltpll);
+-
+ 	crtc_state->hw.adjusted_mode.crtc_clock = intel_crtc_dotclock(crtc_state);
+ 
+ 	return 0;
 diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 26b78063dd94..c1d7d9909544 100644
+index 6502916793f5..412582e29ca6 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
 +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -4655,6 +4655,15 @@ static void xe3plpd_dump_hw_state(struct drm_printer *p,
- 	intel_lt_phy_dump_hw_state(p, &dpll_hw_state->ltpll);
+@@ -4583,8 +4583,21 @@ static bool xe3plpd_pll_get_hw_state(struct intel_display *display,
+ 	return intel_lt_phy_pll_readout_hw_state(encoder, &dpll_hw_state->ltpll);
  }
  
-+static bool xe3plpd_compare_hw_state(const struct intel_dpll_hw_state *_a,
-+				     const struct intel_dpll_hw_state *_b)
++static int xe3plpd_pll_get_freq(struct intel_display *display,
++				const struct intel_dpll *pll,
++				const struct intel_dpll_hw_state *dpll_hw_state)
 +{
-+	const struct intel_lt_phy_pll_state *a = &_a->ltpll;
-+	const struct intel_lt_phy_pll_state *b = &_b->ltpll;
++	struct intel_encoder *encoder = get_intel_encoder(display, pll);
 +
-+	return intel_lt_phy_pll_compare_hw_state(a, b);
++	if (drm_WARN_ON(display->drm, !encoder))
++		return -EINVAL;
++
++	return intel_lt_phy_calc_port_clock(display, &dpll_hw_state->ltpll);
 +}
 +
- __maybe_unused
- static const struct intel_dpll_mgr xe3plpd_pll_mgr = {
- 	.dpll_info = xe3plpd_plls,
-@@ -4664,6 +4673,7 @@ static const struct intel_dpll_mgr xe3plpd_pll_mgr = {
- 	.update_active_dpll = icl_update_active_dpll,
- 	.update_ref_clks = icl_update_dpll_ref_clks,
- 	.dump_hw_state = xe3plpd_dump_hw_state,
-+	.compare_hw_state = xe3plpd_compare_hw_state,
+ static const struct intel_dpll_funcs xe3plpd_pll_funcs = {
+ 	.get_hw_state = xe3plpd_pll_get_hw_state,
++	.get_freq = xe3plpd_pll_get_freq,
  };
  
- /**
+ static const struct dpll_info xe3plpd_plls[] = {
 -- 
 2.43.0
 
