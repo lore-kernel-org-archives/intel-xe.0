@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DC98EF99EB
-	for <intel-xe@archiver.kernel.org>; Sat, 14 Feb 2026 01:03:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 882BDEF99EB
+	for <intel-xe@archiver.kernel.org>; Sat, 14 Feb 2026 01:03:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEE6110E844;
-	Sat, 14 Feb 2026 01:03:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3DD9110E84F;
+	Sat, 14 Feb 2026 01:03:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="exSiechR";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dW7rIQfh";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5694B10E844
- for <intel-xe@lists.freedesktop.org>; Sat, 14 Feb 2026 01:03:06 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93BA510E84F
+ for <intel-xe@lists.freedesktop.org>; Sat, 14 Feb 2026 01:03:48 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 9DF0E60144;
- Sat, 14 Feb 2026 01:03:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79FFBC16AAE;
- Sat, 14 Feb 2026 01:03:04 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 79A3B43706;
+ Sat, 14 Feb 2026 01:03:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81F96C19424;
+ Sat, 14 Feb 2026 01:03:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1771030985;
- bh=SQImZMhCTVZnM1Yiox7tTnc0iVVS1xw8KwjmrbjwgfU=;
+ s=k20201202; t=1771031028;
+ bh=hPlRERp8e3a9mf1CRq/xjD5rlY6nXdliey2/9dXtfhw=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=exSiechRTZLkqWZwmYGGsz3oUP3JFAp2YpgUgBpfhlzuKCVWtn/8mts/w5CKqEOGk
- +VNbQNsSgD6GzaIW0OV4HOK8O+eN4Z6p37A7Bkl/TxNA4q2qbUbO1hSrclrysREMSa
- Fm6NurJzEZ9sahH/XYybq+08UOQSWYgfiRKU/wslhYK8hxvyeVNBB50lTLZRiB9x2k
- 5yzf2QMpp7rKSDm7ILQO44BN8EDCu9pWTj5WtXdmEQZRJlrQFAg9J53DOqxI/o1Qby
- QwL28mIU3qX10TaLfLoKPOIsExlXah6bDY03QmZ5WBI9UJqprRzHPf6j/2Kv0b1m21
- VZrE632OTpo5g==
+ b=dW7rIQfhvpb7N/oHEHqA4MKR+Cg+a4gW95akkUQqHaz3UpIU5/vfzecZKmSWI95x+
+ ucE0OU+nfXbPG+ALWYGZxOpBYcP8aEjV9JvYJbn9f8hO2nIv5LZH0a8Y1l0s+1Rr30
+ b7G17WxKJIaaPscCenjsNU4rg/eJrhUyCLE/ehrFGvFY3wE20jAxCTvCPGR8iaJCcO
+ 2GuwfLAlATTcRDNEIZNCU4wAxrIeXdl6ptxNEJtlMa96pLaDJEC6d8vNUxfzF5XE3t
+ Z9JY1UVGLAjFALBtCs149xifpJ6uLDsy9PDLevfK591XjiGz63BIZHuNPtPd4IqFad
+ z2ntDbnFoU+Pw==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
 Cc: Matthew Brost <matthew.brost@intel.com>,
- Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>,
- Sasha Levin <sashal@kernel.org>, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.19-6.12] drm/xe: Only toggle scheduling in TDR if
- GuC is running
-Date: Fri, 13 Feb 2026 19:58:11 -0500
-Message-ID: <20260214010245.3671907-11-sashal@kernel.org>
+ Tejas Upadhyay <tejas.upadhyay@intel.com>, Sasha Levin <sashal@kernel.org>,
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ intel-xe@lists.freedesktop.org
+Subject: [PATCH AUTOSEL 6.19-6.18] drm/xe: Covert return of -EBUSY to -ENOMEM
+ in VM bind IOCTL
+Date: Fri, 13 Feb 2026 19:58:29 -0500
+Message-ID: <20260214010245.3671907-29-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260214010245.3671907-1-sashal@kernel.org>
 References: <20260214010245.3671907-1-sashal@kernel.org>
@@ -48,7 +48,6 @@ MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.19
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,204 +65,162 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matthew Brost <matthew.brost@intel.com>
 
-[ Upstream commit dd1ef5e2456558876244795bb22a4d90cb24f160 ]
+[ Upstream commit 6028f59620927aee2e15a424004012ae05c50684 ]
 
-If the firmware is not running during TDR (e.g., when the driver is
-unloading), there's no need to toggle scheduling in the GuC. In such
-cases, skip this step.
-
-v4:
- - Bail on wait UC not running (Niranjana)
+xe_vma_userptr_pin_pages can return -EBUSY but -EBUSY has special
+meaning in VM bind IOCTLs that user fence is pending that is attached to
+the VMA. Convert -EBUSY to -ENOMEM in this case as -EBUSY in practice
+means we are low or out of memory.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Link: https://patch.msgid.link/20260110012739.2888434-4-matthew.brost@intel.com
+Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Link: https://patch.msgid.link/20251122012502.382587-2-matthew.brost@intel.com
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
 
 LLM Generated explanations, may be completely bogus:
 
-Now I have a comprehensive understanding of this commit. Let me
-summarize my analysis.
+The v6.18 code exactly matches the "before" state of the diff. The patch
+would apply cleanly to v6.18.y.
 
 ---
 
-## Comprehensive Analysis
+## Complete Analysis
 
 ### 1. COMMIT MESSAGE ANALYSIS
 
-The commit message states: "If the firmware is not running during TDR
-(e.g., when the driver is unloading), there's no need to toggle
-scheduling in the GuC. In such cases, skip this step."
+The subject "drm/xe: Covert return of -EBUSY to -ENOMEM in VM bind
+IOCTL" (note: "Covert" is a typo for "Convert") describes a fix for
+incorrect error code semantics. The commit message explains that
+`xe_vma_userptr_pin_pages` can return -EBUSY, but -EBUSY has a
+**dedicated meaning** in VM bind IOCTLs: it signals that a user fence
+attached to the VMA is pending. Returning -EBUSY from a memory
+allocation failure path causes userspace to misinterpret the error.
 
-This is clearly a bug fix for a race condition during driver unloading.
-The "v4" tag and review from Niranjana Vishwanathapura confirm this went
-through review iterations. The specific mention of "Bail on wait UC not
-running" in v4 notes shows the second hunk was specifically requested by
-reviewers.
+The commit has a "Reviewed-by:" tag from Tejas Upadhyay and is authored
+by Matthew Brost, a key Intel Xe driver developer. No "Reported-by:"
+tags, suggesting this was found through code review/development rather
+than user reports.
 
 ### 2. CODE CHANGE ANALYSIS
 
-The patch makes exactly **two** small, surgical changes in
-`guc_exec_queue_timedout_job()`:
+The change is minimal (10 lines added, 1 changed in a single file). It
+wraps the `xe_vma_userptr_pin_pages` call in the `new_vma()` function
+with a brace block, adds a check for `err == -EBUSY`, and converts it to
+`-ENOMEM` with a well-documented comment explaining the rationale.
 
-**Change 1 (line 1307):** Adds `&& xe_uc_fw_is_running(&guc->fw)` to the
-condition guarding `disable_scheduling()`:
+The bug mechanism:
+1. `new_vma()` is called during VM bind IOCTL operations for MAP
+   operations
+2. For userptr VMAs, it calls `xe_vma_userptr_pin_pages()`
+3. This function calls `drm_gpusvm_get_pages()` which calls
+   `hmm_range_fault()`
+4. `hmm_range_fault()` can return -EBUSY when there's contention/memory
+   pressure
+5. After retries with timeout, `drm_gpusvm_get_pages` propagates -EBUSY
+   out
+6. This -EBUSY bubbles up to userspace through `new_vma` ->
+   `vm_bind_ioctl_ops_parse` -> `xe_vm_bind_ioctl`
+7. BUT -EBUSY in VM bind means "user fence is still pending" (see
+   `check_ufence()` at line 2862-2875)
+8. Userspace interprets -EBUSY as a fence pending signal, not an OOM
+   condition
 
-```c
-// Before:
-if (!exec_queue_destroyed(q)) {
-// After:
-if (!exec_queue_destroyed(q) && xe_uc_fw_is_running(&guc->fw)) {
-```
+### 3. CLASSIFICATION
 
-This prevents `disable_scheduling()` from being called when the GuC
-firmware is not running. `disable_scheduling()` sends a command to the
-GuC via `xe_guc_ct_send()` and sets the `exec_queue_pending_disable`
-flag. If the firmware is dead, the send will fail (return `-ECANCELED`
-from `__guc_ct_send_locked` when `ct->state ==
-XE_GUC_CT_STATE_STOPPED`), but the `pending_disable` flag is already
-set. This means the subsequent `wait_event_timeout` will wait a full 5
-seconds for a G2H response that will **never** come, then trigger a
-spurious GT reset via `trigger_reset`.
+This is a **bug fix** that corrects incorrect IOCTL error semantics.
+When a VM bind fails because HMM couldn't fault pages due to memory
+pressure, userspace should receive -ENOMEM (indicating memory pressure)
+rather than -EBUSY (which implies "try again later, fence is pending").
+Returning the wrong error code could cause userspace GPU drivers (like
+Mesa) to enter incorrect error recovery paths.
 
-**Change 2 (line 1341):** Adds `!xe_uc_fw_is_running(&guc->fw) ||` to
-the wait condition:
+### 4. SCOPE AND RISK ASSESSMENT
 
-```c
-// Before:
-ret = wait_event_timeout(guc->ct.wq,
-                         !exec_queue_pending_disable(q) ||
-                         xe_guc_read_stopped(guc) ||
-                         vf_recovery(guc), HZ * 5);
-// After:
-ret = wait_event_timeout(guc->ct.wq,
-                         !xe_uc_fw_is_running(&guc->fw) ||
-                         !exec_queue_pending_disable(q) ||
-                         xe_guc_read_stopped(guc) ||
-                         vf_recovery(guc), HZ * 5);
-```
+- **Lines changed**: +10/-1 in a single file
+- **Risk**: Very low. The change is purely error code translation on a
+  specific error path
+- **Subsystem**: Intel Xe GPU driver - a newer driver with an active
+  user base
+- **Could this break something?** Extremely unlikely. If userspace was
+  incorrectly handling -EBUSY from this path by waiting for a fence, the
+  fix actually improves behavior by returning a more actionable error
+  code
 
-This is a safety net: even if `disable_scheduling` was somehow called
-before firmware went down (a TOCTOU race between the first check and the
-CT send), the wait will immediately resolve when firmware goes down
-rather than hanging for 5 seconds.
+### 5. USER IMPACT
 
-### 3. BUG MECHANISM
+- Users of Intel Xe GPUs (discrete and integrated, newer Intel hardware)
+- Impact when triggered: Under memory pressure, the VM bind IOCTL
+  returns wrong error code. Userspace may enter incorrect error handling
+  path (expecting fence completion rather than memory pressure recovery)
+- Trigger condition: Memory pressure causing HMM range fault timeouts -
+  uncommon but possible under real workloads with heavy GPU usage
 
-Without this fix, during driver unloading:
-1. TDR (Timeout Detection and Recovery) fires for a pending job
-2. GuC firmware has already been stopped (driver is unloading)
-3. `disable_scheduling()` sends a command to the dead GuC
-4. The CT send fails but `exec_queue_pending_disable` is already set
-5. The `wait_event_timeout` waits 5 full seconds for a response that
-   never arrives
-6. Timeout triggers `trigger_reset` path → spurious
-   `xe_gt_reset_async()` + `xe_devcoredump()`
-7. This causes unnecessary GT resets, devcoredumps, and potentially
-   warnings/errors during teardown
+### 6. STABILITY INDICATORS
 
-### 4. COMPANION COMMIT
+- Reviewed-by: Tejas Upadhyay (Intel)
+- Author: Matthew Brost (Intel, core xe developer)
+- Part of a 2-patch series, but this patch is self-contained (the
+  companion commit 9fb1f1256e419 adds additional timeout, but -EBUSY
+  already can happen without it)
 
-Commit `9b42321a02c50` ("drm/xe/guc: Check GuC running state before
-deregistering exec queue") by Shuicheng Lin already fixed the
-**identical** issue in the `__guc_exec_queue_process_msg_cleanup()`
-path. That commit has `Fixes: dd08ebf6c352` and `Cc:
-stable@vger.kernel.org` tags and is already in the tree. The commit
-being analyzed is the same type of fix but for the TDR path — it's a
-parallel fix for the same class of bug in a different code path.
+### 7. DEPENDENCY CHECK
 
-### 5. DEPENDENCY CHECK
+- The commit modifies `new_vma()` in `xe_vm.c`. The code structure
+  matches v6.18 but NOT v6.12-v6.17 (different `new_vma` structure)
+- The underlying `drm_gpusvm_get_pages` was introduced in v6.18 (via the
+  drm_gpusvm move to xe_userptr.c)
+- For v6.12.y (the most relevant LTS), the same bug exists but via
+  `xe_hmm_userptr_populate_range`, and the fix would need manual
+  adaptation
+- For v6.18.y, the fix applies cleanly
 
-The patch depends on:
-- `#include "xe_uc_fw.h"` being present — **already added** by
-  `9b42321a02c50`
-- The `xe_uc_fw_is_running()` function — **already exists** in
-  `xe_uc_fw.h`
-- The `guc->fw` field — **always existed** in `struct xe_guc`
+### 8. ADDITIONAL OBSERVATIONS
 
-The patch applies cleanly to the current tree. No additional
-dependencies.
+The PREFETCH path at line 2740 has the same unhandled -EBUSY issue but
+is NOT fixed by this commit. This is a minor concern but doesn't
+invalidate the fix's value for the MAP path.
 
-### 6. SCOPE AND RISK
+### VERDICT
 
-- **Lines changed:** 2 lines modified (one condition added, one wait
-  condition added)
-- **Files affected:** 1 (`xe_guc_submit.c`)
-- **Risk:** Very low — both changes are additive conditions that skip
-  operations when firmware is not running. They can never make things
-  worse because if firmware IS running, behavior is identical.
-- **Subsystem:** GPU driver (xe), limited blast radius
-
-### 7. USER IMPACT
-
-This affects Intel Xe GPU users who experience:
-- Spurious GT resets and warnings during driver unload/unbind
-- 5-second hangs in TDR path when GuC firmware isn't running
-- Unnecessary devcoredumps during teardown
-
-Without the fix, the driver teardown sequence can be disrupted by TDR
-firing at the wrong time, leading to error messages and potentially
-slower/buggy driver unload.
-
-### 8. STABILITY ASSESSMENT
-
-- **Reviewed-by:** Niranjana Vishwanathapura (Intel)
-- **Author:** Matthew Brost (Intel Xe maintainer and key contributor)
-- **Pattern:** Identical to the already-accepted companion fix
-  `9b42321a02c50`
-- The fix is purely defensive — it adds a "firmware running" guard
-  before sending commands
-
-### 9. CLASSIFICATION
-
-This is a **bug fix** that prevents:
-- Spurious GT resets during driver unload
-- Unnecessary 5-second timeouts/hangs
-- False "Schedule disable failed to respond" warnings
-- Unneeded devcoredumps
-
-It is NOT a feature addition — it's a guard against calling into dead
-firmware.
-
-### Verdict
-
-This commit fixes a real bug in the TDR path of the Xe GPU driver where
-attempting to communicate with dead GuC firmware during driver unloading
-causes spurious timeouts, unnecessary GT resets, and error messages. The
-fix is small (2 line changes), surgically targeted, obviously correct,
-reviewed by Intel engineers, and follows the exact same pattern as the
-companion commit `9b42321a02c50` that is already accepted for stable.
-The dependency on `xe_uc_fw.h` include is satisfied by the companion
-commit. Risk is minimal as the change only skips operations when
-firmware is not running.
+This is a real bug fix that corrects incorrect IOCTL error semantics in
+the Xe GPU driver. The wrong error code (-EBUSY vs -ENOMEM) could cause
+userspace to mishandle memory pressure situations by thinking a fence is
+pending. The fix is small, well-contained, low-risk, and has been
+reviewed. It applies cleanly to v6.18.y (and conceptually to older trees
+with adaptation). While the trigger condition (HMM timeout under memory
+pressure) is not extremely common, the consequences of wrong error
+handling in userspace can be significant (infinite waits, incorrect
+retry behavior).
 
 **YES**
 
- drivers/gpu/drm/xe/xe_guc_submit.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_vm.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index f6ba2b0f074d2..ced13f17fb720 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1304,7 +1304,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 		if (exec_queue_reset(q))
- 			err = -EIO;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 095bb197e8b05..9781209dd26ed 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2451,8 +2451,17 @@ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
+ 		if (IS_ERR(vma))
+ 			return vma;
  
--		if (!exec_queue_destroyed(q)) {
-+		if (!exec_queue_destroyed(q) && xe_uc_fw_is_running(&guc->fw)) {
- 			/*
- 			 * Wait for any pending G2H to flush out before
- 			 * modifying state
-@@ -1339,6 +1339,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 		 */
- 		smp_rmb();
- 		ret = wait_event_timeout(guc->ct.wq,
-+					 !xe_uc_fw_is_running(&guc->fw) ||
- 					 !exec_queue_pending_disable(q) ||
- 					 xe_guc_read_stopped(guc) ||
- 					 vf_recovery(guc), HZ * 5);
+-		if (xe_vma_is_userptr(vma))
++		if (xe_vma_is_userptr(vma)) {
+ 			err = xe_vma_userptr_pin_pages(to_userptr_vma(vma));
++			/*
++			 * -EBUSY has dedicated meaning that a user fence
++			 * attached to the VMA is busy, in practice
++			 * xe_vma_userptr_pin_pages can only fail with -EBUSY if
++			 * we are low on memory so convert this to -ENOMEM.
++			 */
++			if (err == -EBUSY)
++				err = -ENOMEM;
++		}
+ 	}
+ 	if (err) {
+ 		prep_vma_destroy(vm, vma, false);
 -- 
 2.51.0
 
