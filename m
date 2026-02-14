@@ -4,51 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEBDEEF99EA
-	for <intel-xe@archiver.kernel.org>; Sat, 14 Feb 2026 01:07:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6718EF99EA
+	for <intel-xe@archiver.kernel.org>; Sat, 14 Feb 2026 01:07:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E51F10E866;
-	Sat, 14 Feb 2026 01:07:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JirlZPFH";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 875A110E866
- for <intel-xe@lists.freedesktop.org>; Sat, 14 Feb 2026 01:07:26 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 6CD794071F;
- Sat, 14 Feb 2026 01:07:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 321EFC16AAE;
- Sat, 14 Feb 2026 01:07:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1771031246;
- bh=+9UmGzjUre24ZnoJ9X++17ykycRzExGyAIhkJPnrGxI=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=JirlZPFHWdDMaEPmqpHwZbq3hE15LCmMpGD7ILgQr5FVULBgVDYsePzsp1rZO7W0t
- puNDRuuvrnRB5Y+A/C9Kb+jHVxtLVfyQKdg3gLPzIswtitCUu4MSUAwKjWMey2Hcd8
- JDJJOG+03trJf2i1hO/hWfiB5MRsQj3whaDpOf7UCpB9CPuSjg3aiLhHohoTfIpQNZ
- uAwdaIBgsNoL7u7tl6WAGBqRhhizlpnUzxizjq7PZpVM26NjmbqpET2tlj0EfD9oaM
- V6MbS+2iL9i44VxDxw1NdzBPTBypPioag2DAY+XSOeJE+qDkxDjcUxznAbF39WEQF5
- obB10aTAxk2qw==
-From: Sasha Levin <sashal@kernel.org>
-To: patches@lists.linux.dev,
-	stable@vger.kernel.org
-Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, Sasha Levin <sashal@kernel.org>,
- matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, neil.armstrong@linaro.org,
- yelangyan@huaqin.corp-partner.google.com, intel-xe@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.19-6.18] drm/xe/xe3_lpg: Apply Wa_16028005424
-Date: Fri, 13 Feb 2026 19:59:57 -0500
-Message-ID: <20260214010245.3671907-117-sashal@kernel.org>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260214010245.3671907-1-sashal@kernel.org>
-References: <20260214010245.3671907-1-sashal@kernel.org>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6771610E86A;
+	Sat, 14 Feb 2026 01:07:35 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16AA110E86B;
+ Sat, 14 Feb 2026 01:07:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8888073406518219392=="
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.19
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_Add_debugfs_facility_to_ca?=
+ =?utf-8?q?tch_RTP_mistakes_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Sat, 14 Feb 2026 01:07:34 -0000
+Message-ID: <177103125407.254191.11437874168762129573@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260213000929.732113-6-matthew.d.roper@intel.com>
+In-Reply-To: <20260213000929.732113-6-matthew.d.roper@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,179 +36,355 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+--===============8888073406518219392==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-[ Upstream commit 9d94c1cf6ef938abd4b849b66f8eab11e3c537ef ]
+== Series Details ==
 
-Applied Wa_16028005424 to Graphics version from 30.00 to 30.05
+Series: Add debugfs facility to catch RTP mistakes (rev2)
+URL   : https://patchwork.freedesktop.org/series/161517/
+State : failure
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Link: https://patch.msgid.link/20251121100822.20076-2-balasubramani.vivekanandan@intel.com
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
+== Summary ==
 
-LLM Generated explanations, may be completely bogus:
+CI Bug Log - changes from xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2_FULL -> xe-pw-161517v2_FULL
+====================================================
 
-Here is my complete analysis:
+Summary
+-------
 
-## Commit Analysis: drm/xe/xe3_lpg: Apply Wa_16028005424
+  **FAILURE**
 
-### 1. Commit Message Analysis
+  Serious unknown changes coming with xe-pw-161517v2_FULL absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-161517v2_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-The commit adds hardware workaround Wa_16028005424 for Intel Xe3_LPG
-GPUs targeting graphics versions 30.00 through 30.05. The commit message
-is sparse (typical for Intel HW workaround additions), referencing only
-the internal workaround number. It has `Reviewed-by: Matt Roper` (a
-senior Intel GPU developer), which provides confidence in its
-correctness.
+  
 
-### 2. Code Change Analysis
+Participating hosts (2 -> 2)
+------------------------------
 
-The change is small and consists of three parts:
+  No changes in participating hosts
 
-**a) Register definition** (`regs/xe_guc_regs.h`): Adds
-`GUC_INTR_CHICKEN` register at offset 0xc50c and defines
-`DISABLE_SIGNALING_ENGINES` as bit 1. This is a GuC (Graphics
-microController) interrupt "chicken register" - Intel terminology for a
-hardware debug/workaround register.
+Possible new issues
+-------------------
 
-**b) Include addition** (`xe_wa.c`): Adds `#include
-"regs/xe_guc_regs.h"` so the new register definition is accessible.
+  Here are the unknown changes that may have been introduced in xe-pw-161517v2_FULL:
 
-**c) Workaround entry** (`xe_wa.c` in `gt_was[]` table):
+### IGT changes ###
 
-```c
-{ XE_RTP_NAME("16028005424"),
-  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3005)),
-  XE_RTP_ACTIONS(SET(GUC_INTR_CHICKEN, DISABLE_SIGNALING_ENGINES))
-},
-```
+#### Possible regressions ####
 
-This uses the well-tested `xe_rtp_entry_sr` workaround infrastructure to
-set the chicken bit during GT initialization. This is the exact same
-infrastructure used by every other GT-level workaround in the driver.
+  * igt@xe_pm@s4-basic:
+    - shard-lnl:          [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-lnl-4/igt@xe_pm@s4-basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-lnl-5/igt@xe_pm@s4-basic.html
 
-### 3. Classification: Hardware Workaround / Quirk
+  
+Known issues
+------------
 
-This is a textbook hardware workaround. Intel's numbered "Wa_XXXXXXXX"
-entries represent documented hardware errata tracked in their internal
-systems. The name "DISABLE_SIGNALING_ENGINES" in the "GUC_INTR_CHICKEN"
-register indicates this disables incorrect engine-to-GuC interrupt
-signaling behavior. Without this workaround, Xe3_LPG GPUs could
-experience:
-- GPU hangs from incorrect GuC interrupt handling
-- Spurious engine interrupts causing instability
-- Work completion notification failures
+  Here are the changes found in xe-pw-161517v2_FULL that come from known issues:
 
-### 4. Scope and Risk Assessment
+### IGT changes ###
 
-- **Lines changed**: ~10 total (3 register defs, 1 include, 4 workaround
-  entry lines)
-- **Files touched**: 2 (`xe_guc_regs.h`, `xe_wa.c`)
-- **Affected hardware**: Only Xe3_LPG GPUs (graphics versions
-  30.00-30.05)
-- **Risk**: Very low - uses established infrastructure, hardware-
-  specific, no behavioral change for other platforms
-- **Self-contained**: Yes - no dependencies on other patches
+#### Issues hit ####
 
-### 5. Platform Availability in Stable Trees
+  * igt@kms_ccs@crc-primary-suspend-4-tiled-lnl-ccs@pipe-a-dp-2:
+    - shard-bmg:          NOTRUN -> [SKIP][3] ([Intel XE#2652] / [Intel XE#787]) +3 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-6/igt@kms_ccs@crc-primary-suspend-4-tiled-lnl-ccs@pipe-a-dp-2.html
 
-Xe3_LPG (graphics version 3000) was introduced in kernel 6.13
-(`800d75bf20ae`). Versions 3004/3005 were added in 6.19
-(`4fde66699f1c`). The workaround's `GRAPHICS_VERSION_RANGE(3000, 3005)`
-covers all variants. In older stable trees (6.13-6.18), it would still
-correctly match the supported versions (3000, 3001, 3003).
+  * igt@kms_chamelium_hpd@dp-hpd-enable-disable-mode:
+    - shard-bmg:          NOTRUN -> [SKIP][4] ([Intel XE#2252])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-7/igt@kms_chamelium_hpd@dp-hpd-enable-disable-mode.html
 
-### 6. Pattern Consistency
+  * igt@kms_content_protection@lic-type-0-hdcp14@pipe-a-dp-1:
+    - shard-bmg:          NOTRUN -> [FAIL][5] ([Intel XE#3304]) +1 other test fail
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-5/igt@kms_content_protection@lic-type-0-hdcp14@pipe-a-dp-1.html
 
-Numerous similar Xe3_LPG workaround additions have been merged into
-stable trees:
-- `Wa_15016589081` for xe3lpg
-- `Wa_14023061436` for Xe3
-- `WA_14024681466` for Xe3_LPG
-- `Wa_18041344222` for Xe3 30.00/30.01
-- `Wa_13012615864` for xe3lpg
-- `Wa_16024792527` for xe3lpg
-- `Wa_14022293748`, `Wa_22019794406` for xe3lpg (cherry-picked)
+  * igt@kms_flip@flip-vs-expired-vblank@a-edp1:
+    - shard-lnl:          [PASS][6] -> [FAIL][7] ([Intel XE#301]) +1 other test fail
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-lnl-2/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html
 
-All follow the identical pattern of small, self-contained workaround
-table entries.
+  * igt@kms_flip@flip-vs-suspend-interruptible:
+    - shard-bmg:          [PASS][8] -> [INCOMPLETE][9] ([Intel XE#2049] / [Intel XE#2597]) +1 other test incomplete
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-bmg-5/igt@kms_flip@flip-vs-suspend-interruptible.html
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-8/igt@kms_flip@flip-vs-suspend-interruptible.html
 
-### 7. Stability Indicators
+  * igt@kms_hdr@invalid-hdr:
+    - shard-bmg:          [PASS][10] -> [SKIP][11] ([Intel XE#1503])
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-bmg-7/igt@kms_hdr@invalid-hdr.html
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-4/igt@kms_hdr@invalid-hdr.html
 
-- Reviewed-by: Matt Roper (senior Intel GPU developer)
-- Well-established infrastructure (`gt_was[]` table, `xe_rtp_entry_sr`)
-- Follows identical patterns to dozens of other workaround additions
-- Commit from Intel internal developers maintaining the driver
+  * igt@kms_setmode@basic:
+    - shard-bmg:          [PASS][12] -> [FAIL][13] ([Intel XE#6361]) +3 other tests fail
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-bmg-7/igt@kms_setmode@basic.html
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-4/igt@kms_setmode@basic.html
 
-### 8. Concerns
+  * igt@kms_vrr@cmrr@pipe-a-edp-1:
+    - shard-lnl:          [PASS][14] -> [FAIL][15] ([Intel XE#4459]) +1 other test fail
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-lnl-5/igt@kms_vrr@cmrr@pipe-a-edp-1.html
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-lnl-1/igt@kms_vrr@cmrr@pipe-a-edp-1.html
 
-- No explicit description of the bug symptom (typical for Intel WA
-  additions)
-- No `Fixes:` tag or `Cc: stable` (expected - that's why we're reviewing
-  it)
-- Xe3_LPG is relatively new hardware (6.13+)
+  * igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma:
+    - shard-lnl:          [PASS][16] -> [FAIL][17] ([Intel XE#5625])
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-lnl-1/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-lnl-5/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html
 
-### Decision
+  * igt@xe_exec_threads@threads-multi-queue-fd-userptr-invalidate-race:
+    - shard-bmg:          NOTRUN -> [SKIP][18] ([Intel XE#7138])
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-7/igt@xe_exec_threads@threads-multi-queue-fd-userptr-invalidate-race.html
 
-This commit is a standard Intel GPU hardware workaround that fits
-squarely within the "quirks and workarounds" exception for stable
-kernels. It is small (10 lines total), self-contained, hardware-
-specific, uses proven infrastructure, and addresses a documented
-hardware errata in the GuC interrupt subsystem. The risk of regression
-is near zero because it only affects Xe3_LPG hardware and uses the same
-mechanism as dozens of other successfully backported workarounds.
-Without it, Xe3_LPG GPUs may experience interrupt-related issues
-affecting GPU stability.
+  
+#### Possible fixes ####
 
-**YES**
+  * igt@kms_cursor_legacy@flip-vs-cursor-atomic:
+    - shard-bmg:          [FAIL][19] ([Intel XE#6715]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-bmg-5/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-6/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html
 
- drivers/gpu/drm/xe/regs/xe_guc_regs.h | 3 +++
- drivers/gpu/drm/xe/xe_wa.c            | 5 +++++
- 2 files changed, 8 insertions(+)
+  * igt@xe_evict@evict-mixed-many-threads-small:
+    - shard-bmg:          [INCOMPLETE][21] ([Intel XE#6321]) -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-bmg-9/igt@xe_evict@evict-mixed-many-threads-small.html
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-5/igt@xe_evict@evict-mixed-many-threads-small.html
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
-index 2118f7dec287f..87984713dd126 100644
---- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
-@@ -90,6 +90,9 @@
- #define GUC_SEND_INTERRUPT			XE_REG(0xc4c8)
- #define   GUC_SEND_TRIGGER			REG_BIT(0)
- 
-+#define GUC_INTR_CHICKEN			XE_REG(0xc50c)
-+#define   DISABLE_SIGNALING_ENGINES		REG_BIT(1)
-+
- #define GUC_BCS_RCS_IER				XE_REG(0xc550)
- #define GUC_VCS2_VCS1_IER			XE_REG(0xc554)
- #define GUC_WD_VECS_IER				XE_REG(0xc558)
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index e32dd2fde6f1c..d606b058d588e 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -15,6 +15,7 @@
- 
- #include "regs/xe_engine_regs.h"
- #include "regs/xe_gt_regs.h"
-+#include "regs/xe_guc_regs.h"
- #include "regs/xe_regs.h"
- #include "xe_device_types.h"
- #include "xe_force_wake.h"
-@@ -315,6 +316,10 @@ static const struct xe_rtp_entry_sr gt_was[] = {
- 	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F10(0), RAMDFTUNIT_CLKGATE_DIS)),
- 	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
- 	},
-+	{ XE_RTP_NAME("16028005424"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3005)),
-+	  XE_RTP_ACTIONS(SET(GUC_INTR_CHICKEN, DISABLE_SIGNALING_ENGINES))
-+	},
- };
- 
- static const struct xe_rtp_entry_sr engine_was[] = {
--- 
-2.51.0
+  * igt@xe_pm_residency@aspm_link_residency:
+    - shard-bmg:          [SKIP][23] -> [PASS][24]
+   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-bmg-6/igt@xe_pm_residency@aspm_link_residency.html
+   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-1/igt@xe_pm_residency@aspm_link_residency.html
 
+  
+#### Warnings ####
+
+  * igt@kms_cursor_legacy@short-flip-before-cursor-toggle:
+    - shard-bmg:          [ABORT][25] ([Intel XE#2705] / [Intel XE#4760] / [Intel XE#7169]) -> [ABORT][26] ([Intel XE#1727] / [Intel XE#2705] / [Intel XE#4760] / [Intel XE#7169])
+   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-bmg-1/igt@kms_cursor_legacy@short-flip-before-cursor-toggle.html
+   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-8/igt@kms_cursor_legacy@short-flip-before-cursor-toggle.html
+
+  * igt@kms_hdr@brightness-with-hdr:
+    - shard-bmg:          [SKIP][27] ([Intel XE#3544]) -> [SKIP][28] ([Intel XE#3374] / [Intel XE#3544])
+   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-bmg-10/igt@kms_hdr@brightness-with-hdr.html
+   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-7/igt@kms_hdr@brightness-with-hdr.html
+
+  * igt@xe_fault_injection@probe-fail-guc-xe_guc_ct_send_recv:
+    - shard-bmg:          [ABORT][29] ([Intel XE#5466] / [Intel XE#6652]) -> [ABORT][30] ([Intel XE#5466])
+   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-bmg-2/igt@xe_fault_injection@probe-fail-guc-xe_guc_ct_send_recv.html
+   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-3/igt@xe_fault_injection@probe-fail-guc-xe_guc_ct_send_recv.html
+
+  
+  [Intel XE#1503]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1503
+  [Intel XE#1727]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1727
+  [Intel XE#2049]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2049
+  [Intel XE#2252]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2252
+  [Intel XE#2597]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2597
+  [Intel XE#2652]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2652
+  [Intel XE#2705]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2705
+  [Intel XE#301]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/301
+  [Intel XE#3304]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3304
+  [Intel XE#3374]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3374
+  [Intel XE#3544]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3544
+  [Intel XE#4459]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4459
+  [Intel XE#4760]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4760
+  [Intel XE#5466]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5466
+  [Intel XE#5625]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5625
+  [Intel XE#6321]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6321
+  [Intel XE#6361]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6361
+  [Intel XE#6652]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6652
+  [Intel XE#6715]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6715
+  [Intel XE#7138]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7138
+  [Intel XE#7169]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7169
+  [Intel XE#787]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/787
+
+
+Build changes
+-------------
+
+  * Linux: xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2 -> xe-pw-161517v2
+
+  IGT_8753: 8753
+  xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2: 8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2
+  xe-pw-161517v2: 161517v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/index.html
+
+--===============8888073406518219392==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add debugfs facility to catch RTP mistakes (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161517/">https://patchwork.freedesktop.org/series/161517/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2_FULL -&gt; xe-pw-161517v2_FULL</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-161517v2_FULL absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-161517v2_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (2 -&gt; 2)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-161517v2_FULL:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_pm@s4-basic:<ul>
+<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-lnl-4/igt@xe_pm@s4-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-lnl-5/igt@xe_pm@s4-basic.html">DMESG-WARN</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-161517v2_FULL that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_ccs@crc-primary-suspend-4-tiled-lnl-ccs@pipe-a-dp-2:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-6/igt@kms_ccs@crc-primary-suspend-4-tiled-lnl-ccs@pipe-a-dp-2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2652">Intel XE#2652</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/787">Intel XE#787</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_chamelium_hpd@dp-hpd-enable-disable-mode:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-7/igt@kms_chamelium_hpd@dp-hpd-enable-disable-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2252">Intel XE#2252</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_content_protection@lic-type-0-hdcp14@pipe-a-dp-1:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-5/igt@kms_content_protection@lic-type-0-hdcp14@pipe-a-dp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3304">Intel XE#3304</a>) +1 other test fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-expired-vblank@a-edp1:</p>
+<ul>
+<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-lnl-2/igt@kms_flip@flip-vs-expired-vblank@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a>) +1 other test fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@flip-vs-suspend-interruptible:</p>
+<ul>
+<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-bmg-5/igt@kms_flip@flip-vs-suspend-interruptible.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-8/igt@kms_flip@flip-vs-suspend-interruptible.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2049">Intel XE#2049</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2597">Intel XE#2597</a>) +1 other test incomplete</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdr@invalid-hdr:</p>
+<ul>
+<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-bmg-7/igt@kms_hdr@invalid-hdr.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-4/igt@kms_hdr@invalid-hdr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1503">Intel XE#1503</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic:</p>
+<ul>
+<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-bmg-7/igt@kms_setmode@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-4/igt@kms_setmode@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6361">Intel XE#6361</a>) +3 other tests fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_vrr@cmrr@pipe-a-edp-1:</p>
+<ul>
+<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-lnl-5/igt@kms_vrr@cmrr@pipe-a-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-lnl-1/igt@kms_vrr@cmrr@pipe-a-edp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4459">Intel XE#4459</a>) +1 other test fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma:</p>
+<ul>
+<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-lnl-1/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-lnl-5/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5625">Intel XE#5625</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_threads@threads-multi-queue-fd-userptr-invalidate-race:</p>
+<ul>
+<li>shard-bmg:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-7/igt@xe_exec_threads@threads-multi-queue-fd-userptr-invalidate-race.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7138">Intel XE#7138</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_cursor_legacy@flip-vs-cursor-atomic:</p>
+<ul>
+<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-bmg-5/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6715">Intel XE#6715</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-6/igt@kms_cursor_legacy@flip-vs-cursor-atomic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict@evict-mixed-many-threads-small:</p>
+<ul>
+<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-bmg-9/igt@xe_evict@evict-mixed-many-threads-small.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6321">Intel XE#6321</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-5/igt@xe_evict@evict-mixed-many-threads-small.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pm_residency@aspm_link_residency:</p>
+<ul>
+<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-bmg-6/igt@xe_pm_residency@aspm_link_residency.html">SKIP</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-1/igt@xe_pm_residency@aspm_link_residency.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@kms_cursor_legacy@short-flip-before-cursor-toggle:</p>
+<ul>
+<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-bmg-1/igt@kms_cursor_legacy@short-flip-before-cursor-toggle.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2705">Intel XE#2705</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4760">Intel XE#4760</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7169">Intel XE#7169</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-8/igt@kms_cursor_legacy@short-flip-before-cursor-toggle.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1727">Intel XE#1727</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2705">Intel XE#2705</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4760">Intel XE#4760</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7169">Intel XE#7169</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdr@brightness-with-hdr:</p>
+<ul>
+<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-bmg-10/igt@kms_hdr@brightness-with-hdr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3544">Intel XE#3544</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-7/igt@kms_hdr@brightness-with-hdr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3374">Intel XE#3374</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3544">Intel XE#3544</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_fault_injection@probe-fail-guc-xe_guc_ct_send_recv:</p>
+<ul>
+<li>shard-bmg:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2/shard-bmg-2/igt@xe_fault_injection@probe-fail-guc-xe_guc_ct_send_recv.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5466">Intel XE#5466</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6652">Intel XE#6652</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161517v2/shard-bmg-3/igt@xe_fault_injection@probe-fail-guc-xe_guc_ct_send_recv.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5466">Intel XE#5466</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2 -&gt; xe-pw-161517v2</li>
+</ul>
+<p>IGT_8753: 8753<br />
+  xe-4551-8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2: 8a3c5ed4673e2028f1fbfc55bdf121e0647f1ca2<br />
+  xe-pw-161517v2: 161517v2</p>
+
+</body>
+</html>
+
+--===============8888073406518219392==--
