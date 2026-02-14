@@ -4,47 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 882BDEF99EB
-	for <intel-xe@archiver.kernel.org>; Sat, 14 Feb 2026 01:03:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6381EF99E5
+	for <intel-xe@archiver.kernel.org>; Sat, 14 Feb 2026 01:04:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DD9110E84F;
-	Sat, 14 Feb 2026 01:03:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A880E10E852;
+	Sat, 14 Feb 2026 01:04:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dW7rIQfh";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="gXGgAL0O";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 93BA510E84F
- for <intel-xe@lists.freedesktop.org>; Sat, 14 Feb 2026 01:03:48 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D65C410E852
+ for <intel-xe@lists.freedesktop.org>; Sat, 14 Feb 2026 01:04:13 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 79A3B43706;
- Sat, 14 Feb 2026 01:03:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81F96C19424;
- Sat, 14 Feb 2026 01:03:47 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 3849460054;
+ Sat, 14 Feb 2026 01:04:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18833C16AAE;
+ Sat, 14 Feb 2026 01:04:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1771031028;
- bh=hPlRERp8e3a9mf1CRq/xjD5rlY6nXdliey2/9dXtfhw=;
+ s=k20201202; t=1771031052;
+ bh=p71mMz0IC1MIscie+d7MkQBSyCRrnzfcrjqGsOqFv8A=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=dW7rIQfhvpb7N/oHEHqA4MKR+Cg+a4gW95akkUQqHaz3UpIU5/vfzecZKmSWI95x+
- ucE0OU+nfXbPG+ALWYGZxOpBYcP8aEjV9JvYJbn9f8hO2nIv5LZH0a8Y1l0s+1Rr30
- b7G17WxKJIaaPscCenjsNU4rg/eJrhUyCLE/ehrFGvFY3wE20jAxCTvCPGR8iaJCcO
- 2GuwfLAlATTcRDNEIZNCU4wAxrIeXdl6ptxNEJtlMa96pLaDJEC6d8vNUxfzF5XE3t
- Z9JY1UVGLAjFALBtCs149xifpJ6uLDsy9PDLevfK591XjiGz63BIZHuNPtPd4IqFad
- z2ntDbnFoU+Pw==
+ b=gXGgAL0OoexfiPMUcAohbp50QEEBGph1c8C8xwe5MhCQ6/xNbSs3S62glfb9P7beW
+ tIc89t7cpdk/xacxxTns3k4+J6ycARV0YX0FpdpJIcS/loj0Eb8Ju2mzWEHdBQw5qp
+ ywjtAK9OnprJ3fqUw163PwWIzWnYA7tyFdCsMnwsNI1W5kSOugSKy0C+OiJKhK9ncr
+ PYJSicZMPM/WH9h+riIRh48kj55+saXFBEPEp490k+EfOE2wrkuMcAggBx5zpODHbP
+ svQccXTTEscNEdv1diO3yVM65EsYn6scPO8b66YEpyDKHHzLNl/L2Oo3cYaxSU1tRt
+ miCmEIhOaGcoA==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Tejas Upadhyay <tejas.upadhyay@intel.com>, Sasha Levin <sashal@kernel.org>,
- thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Sasha Levin <sashal@kernel.org>, rodrigo.vivi@intel.com,
  intel-xe@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.19-6.18] drm/xe: Covert return of -EBUSY to -ENOMEM
- in VM bind IOCTL
-Date: Fri, 13 Feb 2026 19:58:29 -0500
-Message-ID: <20260214010245.3671907-29-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.19-6.18] drm/xe/vm: Skip ufence association for CPU
+ address mirror VMA during MAP
+Date: Fri, 13 Feb 2026 19:58:40 -0500
+Message-ID: <20260214010245.3671907-40-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260214010245.3671907-1-sashal@kernel.org>
 References: <20260214010245.3671907-1-sashal@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.19
@@ -63,164 +65,152 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Brost <matthew.brost@intel.com>
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
-[ Upstream commit 6028f59620927aee2e15a424004012ae05c50684 ]
+[ Upstream commit 7f08cc5b3cc3bf6416f8b55bff906f67ed75637d ]
 
-xe_vma_userptr_pin_pages can return -EBUSY but -EBUSY has special
-meaning in VM bind IOCTLs that user fence is pending that is attached to
-the VMA. Convert -EBUSY to -ENOMEM in this case as -EBUSY in practice
-means we are low or out of memory.
+The MAP operation for a CPU address mirror VMA does not require ufence
+association because such mappings are not GPU-synchronized and do not
+participate in GPU job completion signaling.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Link: https://patch.msgid.link/20251122012502.382587-2-matthew.brost@intel.com
+Remove the unnecessary ufence addition for this case to avoid -EBUSY
+failure in check_ufence of unbind ops.
+
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Link: https://patch.msgid.link/20251125075628.1182481-6-himal.prasad.ghimiray@intel.com
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
 
 LLM Generated explanations, may be completely bogus:
 
-The v6.18 code exactly matches the "before" state of the diff. The patch
-would apply cleanly to v6.18.y.
+The code structure in v6.15 is identical to the code being patched. The
+fix would apply cleanly.
 
 ---
 
 ## Complete Analysis
 
-### 1. COMMIT MESSAGE ANALYSIS
+### 1. Commit Message Analysis
 
-The subject "drm/xe: Covert return of -EBUSY to -ENOMEM in VM bind
-IOCTL" (note: "Covert" is a typo for "Convert") describes a fix for
-incorrect error code semantics. The commit message explains that
-`xe_vma_userptr_pin_pages` can return -EBUSY, but -EBUSY has a
-**dedicated meaning** in VM bind IOCTLs: it signals that a user fence
-attached to the VMA is pending. Returning -EBUSY from a memory
-allocation failure path causes userspace to misinterpret the error.
+The subject "drm/xe/vm: Skip ufence association for CPU address mirror
+VMA during MAP" clearly describes a fix that avoids an unnecessary
+operation that causes failures. The key phrase is "avoid -EBUSY failure
+in check_ufence of unbind ops" - this explicitly identifies the user-
+visible bug.
 
-The commit has a "Reviewed-by:" tag from Tejas Upadhyay and is authored
-by Matthew Brost, a key Intel Xe driver developer. No "Reported-by:"
-tags, suggesting this was found through code review/development rather
-than user reports.
+### 2. Code Change Analysis
 
-### 2. CODE CHANGE ANALYSIS
+The change is minimal - a 2-line modification adding a condition:
 
-The change is minimal (10 lines added, 1 changed in a single file). It
-wraps the `xe_vma_userptr_pin_pages` call in the `new_vma()` function
-with a brace block, adds a check for `err == -EBUSY`, and converts it to
-`-ENOMEM` with a well-documented comment explaining the rationale.
+```c
+case DRM_GPUVA_OP_MAP:
+- vma_add_ufence(op->map.vma, ufence);
++   if (!xe_vma_is_cpu_addr_mirror(op->map.vma))
++       vma_add_ufence(op->map.vma, ufence);
+    break;
+```
 
-The bug mechanism:
-1. `new_vma()` is called during VM bind IOCTL operations for MAP
-   operations
-2. For userptr VMAs, it calls `xe_vma_userptr_pin_pages()`
-3. This function calls `drm_gpusvm_get_pages()` which calls
-   `hmm_range_fault()`
-4. `hmm_range_fault()` can return -EBUSY when there's contention/memory
-   pressure
-5. After retries with timeout, `drm_gpusvm_get_pages` propagates -EBUSY
-   out
-6. This -EBUSY bubbles up to userspace through `new_vma` ->
-   `vm_bind_ioctl_ops_parse` -> `xe_vm_bind_ioctl`
-7. BUT -EBUSY in VM bind means "user fence is still pending" (see
-   `check_ufence()` at line 2862-2875)
-8. Userspace interprets -EBUSY as a fence pending signal, not an OOM
-   condition
+### 3. Bug Mechanism (Detailed)
 
-### 3. CLASSIFICATION
+The bug flow is:
 
-This is a **bug fix** that corrects incorrect IOCTL error semantics.
-When a VM bind fails because HMM couldn't fault pages due to memory
-pressure, userspace should receive -ENOMEM (indicating memory pressure)
-rather than -EBUSY (which implies "try again later, fence is pending").
-Returning the wrong error code could cause userspace GPU drivers (like
-Mesa) to enter incorrect error recovery paths.
+1. **User performs MAP on a CPU address mirror VMA with a user fence
+   sync**: The MAP operation goes through `vm_bind_ioctl_ops_execute()`
+   → `ops_execute()`. Since CPU address mirror VMAs don't produce GPU
+   page table updates at MAP time (they use fault-based binding),
+   `vm_ops_setup_tile_args()` returns `number_tiles == 0`, and
+   `ops_execute()` returns `-ENODATA`.
 
-### 4. SCOPE AND RISK ASSESSMENT
+2. **Ufence erroneously stored on VMA**: On the `-ENODATA` path,
+   `vm_bind_ioctl_ops_fini(vm, vops, NULL)` is called. This calls
+   `op_add_ufence()` → `vma_add_ufence()`, storing a ufence reference on
+   the VMA. The ufence is eventually signaled asynchronously via
+   `vm_bind_ioctl_signal_fences()`, but there's a window where it hasn't
+   signaled yet.
 
-- **Lines changed**: +10/-1 in a single file
-- **Risk**: Very low. The change is purely error code translation on a
-  specific error path
-- **Subsystem**: Intel Xe GPU driver - a newer driver with an active
-  user base
-- **Could this break something?** Extremely unlikely. If userspace was
-  incorrectly handling -EBUSY from this path by waiting for a fence, the
-  fix actually improves behavior by returning a more actionable error
-  code
+3. **Subsequent unbind fails with -EBUSY**: When a subsequent UNMAP or
+   REMAP targets this VMA, `op_lock_and_prep()` calls `check_ufence()`
+   (lines 2947, 2962 of `xe_vm.c`). If the ufence hasn't been signaled
+   yet, `xe_sync_ufence_get_status()` returns 0, and `check_ufence()`
+   returns `-EBUSY`, blocking the entire unbind operation.
 
-### 5. USER IMPACT
+4. **Root cause**: CPU address mirror VMAs "are not GPU-synchronized and
+   do not participate in GPU job completion signaling." Associating a
+   ufence with them is semantically incorrect - there's no GPU work to
+   protect against, so the ufence guard on unbind is meaningless and
+   harmful.
 
-- Users of Intel Xe GPUs (discrete and integrated, newer Intel hardware)
-- Impact when triggered: Under memory pressure, the VM bind IOCTL
-  returns wrong error code. Userspace may enter incorrect error handling
-  path (expecting fence completion rather than memory pressure recovery)
-- Trigger condition: Memory pressure causing HMM range fault timeouts -
-  uncommon but possible under real workloads with heavy GPU usage
+### 4. Classification
 
-### 6. STABILITY INDICATORS
+This is a **logic error/bug fix** that prevents spurious `-EBUSY` errors
+returned to userspace. It is NOT a feature, cleanup, or refactoring.
 
-- Reviewed-by: Tejas Upadhyay (Intel)
-- Author: Matthew Brost (Intel, core xe developer)
-- Part of a 2-patch series, but this patch is self-contained (the
-  companion commit 9fb1f1256e419 adds additional timeout, but -EBUSY
-  already can happen without it)
+### 5. Scope and Risk
 
-### 7. DEPENDENCY CHECK
+- **Lines changed**: 2 (adding a condition check)
+- **Files touched**: 1 (`drivers/gpu/drm/xe/xe_vm.c`)
+- **Risk**: Very low. The condition `xe_vma_is_cpu_addr_mirror()` is
+  already used extensively in this file (23 call sites). The change only
+  affects CPU address mirror VMAs during MAP; all other VMA types and
+  operations are completely unaffected.
+- **Reviewed-by**: Matthew Brost (Intel Xe driver maintainer), providing
+  high confidence.
 
-- The commit modifies `new_vma()` in `xe_vm.c`. The code structure
-  matches v6.18 but NOT v6.12-v6.17 (different `new_vma` structure)
-- The underlying `drm_gpusvm_get_pages` was introduced in v6.18 (via the
-  drm_gpusvm move to xe_userptr.c)
-- For v6.12.y (the most relevant LTS), the same bug exists but via
-  `xe_hmm_userptr_populate_range`, and the fix would need manual
-  adaptation
-- For v6.18.y, the fix applies cleanly
+### 6. User Impact
 
-### 8. ADDITIONAL OBSERVATIONS
+- **Who is affected**: All users of Intel Xe GPU driver SVM (Shared
+  Virtual Memory / CPU address mirror) functionality. This is the Intel
+  discrete GPU driver used in modern Intel GPUs (Arc, etc.).
+- **Severity**: Medium-High. The `-EBUSY` error causes bind ioctls to
+  fail, blocking GPU memory management operations. This could cause
+  application failures or require workarounds.
 
-The PREFETCH path at line 2740 has the same unhandled -EBUSY issue but
-is NOT fixed by this commit. This is a minor concern but doesn't
-invalidate the fix's value for the MAP path.
+### 7. Stability in Stable Trees
 
-### VERDICT
+- The CPU address mirror VMA feature exists since v6.15 (commit
+  `6fd979c2f3315`).
+- The `op_add_ufence()` function has identical code in v6.15, v6.18, and
+  v6.19.
+- The `xe_vma_is_cpu_addr_mirror()` helper exists in all these versions.
+- The fix applies cleanly with no dependencies on other patches.
 
-This is a real bug fix that corrects incorrect IOCTL error semantics in
-the Xe GPU driver. The wrong error code (-EBUSY vs -ENOMEM) could cause
-userspace to mishandle memory pressure situations by thinking a fence is
-pending. The fix is small, well-contained, low-risk, and has been
-reviewed. It applies cleanly to v6.18.y (and conceptually to older trees
-with adaptation). While the trigger condition (HMM timeout under memory
-pressure) is not extremely common, the consequences of wrong error
-handling in userspace can be significant (infinite waits, incorrect
-retry behavior).
+### 8. Dependencies
+
+The fix is **self-contained**. While it's patch 6 of a series (from the
+message-id), this specific change only adds a condition to an existing
+function using an existing helper. It does not depend on any other
+patches in the series.
+
+### Verdict
+
+This is a small, surgical fix for a real user-visible bug (-EBUSY
+failures on SVM VMA unbind operations). It meets all stable kernel
+criteria: obviously correct, fixes a real bug, small scope, well-
+reviewed, no new features, and applies cleanly to stable trees
+(v6.15.y+).
 
 **YES**
 
- drivers/gpu/drm/xe/xe_vm.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_vm.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 095bb197e8b05..9781209dd26ed 100644
+index 9781209dd26ed..612fc5b2539cd 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2451,8 +2451,17 @@ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
- 		if (IS_ERR(vma))
- 			return vma;
- 
--		if (xe_vma_is_userptr(vma))
-+		if (xe_vma_is_userptr(vma)) {
- 			err = xe_vma_userptr_pin_pages(to_userptr_vma(vma));
-+			/*
-+			 * -EBUSY has dedicated meaning that a user fence
-+			 * attached to the VMA is busy, in practice
-+			 * xe_vma_userptr_pin_pages can only fail with -EBUSY if
-+			 * we are low on memory so convert this to -ENOMEM.
-+			 */
-+			if (err == -EBUSY)
-+				err = -ENOMEM;
-+		}
- 	}
- 	if (err) {
- 		prep_vma_destroy(vm, vma, false);
+@@ -3223,7 +3223,8 @@ static void op_add_ufence(struct xe_vm *vm, struct xe_vma_op *op,
+ {
+ 	switch (op->base.op) {
+ 	case DRM_GPUVA_OP_MAP:
+-		vma_add_ufence(op->map.vma, ufence);
++		if (!xe_vma_is_cpu_addr_mirror(op->map.vma))
++			vma_add_ufence(op->map.vma, ufence);
+ 		break;
+ 	case DRM_GPUVA_OP_REMAP:
+ 		if (op->remap.prev)
 -- 
 2.51.0
 
