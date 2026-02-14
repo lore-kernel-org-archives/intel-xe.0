@@ -4,42 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1BABEF99E5
-	for <intel-xe@archiver.kernel.org>; Sat, 14 Feb 2026 01:04:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEBDEEF99EA
+	for <intel-xe@archiver.kernel.org>; Sat, 14 Feb 2026 01:07:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A292210E852;
-	Sat, 14 Feb 2026 01:04:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E51F10E866;
+	Sat, 14 Feb 2026 01:07:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="QZSM+Xeu";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JirlZPFH";
 	dkim-atps=neutral
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B99A10E852
- for <intel-xe@lists.freedesktop.org>; Sat, 14 Feb 2026 01:04:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 875A110E866
+ for <intel-xe@lists.freedesktop.org>; Sat, 14 Feb 2026 01:07:26 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 16EA94381B;
- Sat, 14 Feb 2026 01:04:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EB6CC16AAE;
- Sat, 14 Feb 2026 01:04:34 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 6CD794071F;
+ Sat, 14 Feb 2026 01:07:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 321EFC16AAE;
+ Sat, 14 Feb 2026 01:07:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1771031076;
- bh=j2tHpRfH2AXto0QuNBhQC0zyM0XVJryZRltGbvGtj20=;
+ s=k20201202; t=1771031246;
+ bh=+9UmGzjUre24ZnoJ9X++17ykycRzExGyAIhkJPnrGxI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=QZSM+XeuNpkOmtLzMZGpxQqiYvT/oQoehHYgsqA7W91Lti7QYiVAvUv3EyngnaB3w
- D4yGVEELCg/2WRXaz7vzyPBJRO4gsVsSgK0IDzQd9fDUdriEEJQxs/o8joSC1PN6rn
- z5AG+I6KtEF1EfVmvvrOIcNVMFR3Egm9KZWEuz32UjQz2QyDPMfM4TJ4Gzs/7zmM0e
- AGXxKciXeFPypqMIBwfnKfcRV3rYpK2CTYuOM/B/vYUlKlJoR5py1Y0cir4vGydODD
- j8NCu58x3xN7oPLKbXJN3iHut2K2KFluT97cI14j92C0cDue/tc5Eq4SUzA8kKL98H
- dRzZ1no4hBjiA==
+ b=JirlZPFHWdDMaEPmqpHwZbq3hE15LCmMpGD7ILgQr5FVULBgVDYsePzsp1rZO7W0t
+ puNDRuuvrnRB5Y+A/C9Kb+jHVxtLVfyQKdg3gLPzIswtitCUu4MSUAwKjWMey2Hcd8
+ JDJJOG+03trJf2i1hO/hWfiB5MRsQj3whaDpOf7UCpB9CPuSjg3aiLhHohoTfIpQNZ
+ uAwdaIBgsNoL7u7tl6WAGBqRhhizlpnUzxizjq7PZpVM26NjmbqpET2tlj0EfD9oaM
+ V6MbS+2iL9i44VxDxw1NdzBPTBypPioag2DAY+XSOeJE+qDkxDjcUxznAbF39WEQF5
+ obB10aTAxk2qw==
 From: Sasha Levin <sashal@kernel.org>
 To: patches@lists.linux.dev,
 	stable@vger.kernel.org
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>, Sasha Levin <sashal@kernel.org>,
+Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, Sasha Levin <sashal@kernel.org>,
  matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, intel-xe@lists.freedesktop.org
-Subject: [PATCH AUTOSEL 6.19-6.18] drm/xe/ggtt: Use scope-based runtime pm
-Date: Fri, 13 Feb 2026 19:58:51 -0500
-Message-ID: <20260214010245.3671907-51-sashal@kernel.org>
+ rodrigo.vivi@intel.com, neil.armstrong@linaro.org,
+ yelangyan@huaqin.corp-partner.google.com, intel-xe@lists.freedesktop.org
+Subject: [PATCH AUTOSEL 6.19-6.18] drm/xe/xe3_lpg: Apply Wa_16028005424
+Date: Fri, 13 Feb 2026 19:59:57 -0500
+Message-ID: <20260214010245.3671907-117-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260214010245.3671907-1-sashal@kernel.org>
 References: <20260214010245.3671907-1-sashal@kernel.org>
@@ -62,41 +63,176 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 
-[ Upstream commit 8a579f4b2476fd1df07e2bca9fedc82a39a56a65 ]
+[ Upstream commit 9d94c1cf6ef938abd4b849b66f8eab11e3c537ef ]
 
-Switch the GGTT code to scope-based runtime PM for consistency with
-other parts of the driver.
+Applied Wa_16028005424 to Graphics version from 30.00 to 30.05
 
-Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Link: https://patch.msgid.link/20251118164338.3572146-51-matthew.d.roper@intel.com
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Link: https://patch.msgid.link/20251121100822.20076-2-balasubramani.vivekanandan@intel.com
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
 
 LLM Generated explanations, may be completely bogus:
 
+Here is my complete analysis:
 
+## Commit Analysis: drm/xe/xe3_lpg: Apply Wa_16028005424
 
- drivers/gpu/drm/xe/xe_ggtt.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+### 1. Commit Message Analysis
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 793d7324a395d..9e6b4e9835424 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -396,9 +396,8 @@ static void ggtt_node_remove_work_func(struct work_struct *work)
- 						 delayed_removal_work);
- 	struct xe_device *xe = tile_to_xe(node->ggtt->tile);
+The commit adds hardware workaround Wa_16028005424 for Intel Xe3_LPG
+GPUs targeting graphics versions 30.00 through 30.05. The commit message
+is sparse (typical for Intel HW workaround additions), referencing only
+the internal workaround number. It has `Reviewed-by: Matt Roper` (a
+senior Intel GPU developer), which provides confidence in its
+correctness.
+
+### 2. Code Change Analysis
+
+The change is small and consists of three parts:
+
+**a) Register definition** (`regs/xe_guc_regs.h`): Adds
+`GUC_INTR_CHICKEN` register at offset 0xc50c and defines
+`DISABLE_SIGNALING_ENGINES` as bit 1. This is a GuC (Graphics
+microController) interrupt "chicken register" - Intel terminology for a
+hardware debug/workaround register.
+
+**b) Include addition** (`xe_wa.c`): Adds `#include
+"regs/xe_guc_regs.h"` so the new register definition is accessible.
+
+**c) Workaround entry** (`xe_wa.c` in `gt_was[]` table):
+
+```c
+{ XE_RTP_NAME("16028005424"),
+  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3005)),
+  XE_RTP_ACTIONS(SET(GUC_INTR_CHICKEN, DISABLE_SIGNALING_ENGINES))
+},
+```
+
+This uses the well-tested `xe_rtp_entry_sr` workaround infrastructure to
+set the chicken bit during GT initialization. This is the exact same
+infrastructure used by every other GT-level workaround in the driver.
+
+### 3. Classification: Hardware Workaround / Quirk
+
+This is a textbook hardware workaround. Intel's numbered "Wa_XXXXXXXX"
+entries represent documented hardware errata tracked in their internal
+systems. The name "DISABLE_SIGNALING_ENGINES" in the "GUC_INTR_CHICKEN"
+register indicates this disables incorrect engine-to-GuC interrupt
+signaling behavior. Without this workaround, Xe3_LPG GPUs could
+experience:
+- GPU hangs from incorrect GuC interrupt handling
+- Spurious engine interrupts causing instability
+- Work completion notification failures
+
+### 4. Scope and Risk Assessment
+
+- **Lines changed**: ~10 total (3 register defs, 1 include, 4 workaround
+  entry lines)
+- **Files touched**: 2 (`xe_guc_regs.h`, `xe_wa.c`)
+- **Affected hardware**: Only Xe3_LPG GPUs (graphics versions
+  30.00-30.05)
+- **Risk**: Very low - uses established infrastructure, hardware-
+  specific, no behavioral change for other platforms
+- **Self-contained**: Yes - no dependencies on other patches
+
+### 5. Platform Availability in Stable Trees
+
+Xe3_LPG (graphics version 3000) was introduced in kernel 6.13
+(`800d75bf20ae`). Versions 3004/3005 were added in 6.19
+(`4fde66699f1c`). The workaround's `GRAPHICS_VERSION_RANGE(3000, 3005)`
+covers all variants. In older stable trees (6.13-6.18), it would still
+correctly match the supported versions (3000, 3001, 3003).
+
+### 6. Pattern Consistency
+
+Numerous similar Xe3_LPG workaround additions have been merged into
+stable trees:
+- `Wa_15016589081` for xe3lpg
+- `Wa_14023061436` for Xe3
+- `WA_14024681466` for Xe3_LPG
+- `Wa_18041344222` for Xe3 30.00/30.01
+- `Wa_13012615864` for xe3lpg
+- `Wa_16024792527` for xe3lpg
+- `Wa_14022293748`, `Wa_22019794406` for xe3lpg (cherry-picked)
+
+All follow the identical pattern of small, self-contained workaround
+table entries.
+
+### 7. Stability Indicators
+
+- Reviewed-by: Matt Roper (senior Intel GPU developer)
+- Well-established infrastructure (`gt_was[]` table, `xe_rtp_entry_sr`)
+- Follows identical patterns to dozens of other workaround additions
+- Commit from Intel internal developers maintaining the driver
+
+### 8. Concerns
+
+- No explicit description of the bug symptom (typical for Intel WA
+  additions)
+- No `Fixes:` tag or `Cc: stable` (expected - that's why we're reviewing
+  it)
+- Xe3_LPG is relatively new hardware (6.13+)
+
+### Decision
+
+This commit is a standard Intel GPU hardware workaround that fits
+squarely within the "quirks and workarounds" exception for stable
+kernels. It is small (10 lines total), self-contained, hardware-
+specific, uses proven infrastructure, and addresses a documented
+hardware errata in the GuC interrupt subsystem. The risk of regression
+is near zero because it only affects Xe3_LPG hardware and uses the same
+mechanism as dozens of other successfully backported workarounds.
+Without it, Xe3_LPG GPUs may experience interrupt-related issues
+affecting GPU stability.
+
+**YES**
+
+ drivers/gpu/drm/xe/regs/xe_guc_regs.h | 3 +++
+ drivers/gpu/drm/xe/xe_wa.c            | 5 +++++
+ 2 files changed, 8 insertions(+)
+
+diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+index 2118f7dec287f..87984713dd126 100644
+--- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
+@@ -90,6 +90,9 @@
+ #define GUC_SEND_INTERRUPT			XE_REG(0xc4c8)
+ #define   GUC_SEND_TRIGGER			REG_BIT(0)
  
--	xe_pm_runtime_get(xe);
-+	guard(xe_pm_runtime)(xe);
- 	ggtt_node_remove(node);
--	xe_pm_runtime_put(xe);
- }
++#define GUC_INTR_CHICKEN			XE_REG(0xc50c)
++#define   DISABLE_SIGNALING_ENGINES		REG_BIT(1)
++
+ #define GUC_BCS_RCS_IER				XE_REG(0xc550)
+ #define GUC_VCS2_VCS1_IER			XE_REG(0xc554)
+ #define GUC_WD_VECS_IER				XE_REG(0xc558)
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index e32dd2fde6f1c..d606b058d588e 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -15,6 +15,7 @@
  
- /**
+ #include "regs/xe_engine_regs.h"
+ #include "regs/xe_gt_regs.h"
++#include "regs/xe_guc_regs.h"
+ #include "regs/xe_regs.h"
+ #include "xe_device_types.h"
+ #include "xe_force_wake.h"
+@@ -315,6 +316,10 @@ static const struct xe_rtp_entry_sr gt_was[] = {
+ 	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F10(0), RAMDFTUNIT_CLKGATE_DIS)),
+ 	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
+ 	},
++	{ XE_RTP_NAME("16028005424"),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3000, 3005)),
++	  XE_RTP_ACTIONS(SET(GUC_INTR_CHICKEN, DISABLE_SIGNALING_ENGINES))
++	},
+ };
+ 
+ static const struct xe_rtp_entry_sr engine_was[] = {
 -- 
 2.51.0
 
