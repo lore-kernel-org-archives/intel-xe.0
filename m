@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 278AFE63F17
-	for <intel-xe@archiver.kernel.org>; Sun, 15 Feb 2026 20:33:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34D32E63F14
+	for <intel-xe@archiver.kernel.org>; Sun, 15 Feb 2026 20:33:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBF7110E095;
-	Sun, 15 Feb 2026 20:33:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E737210E241;
+	Sun, 15 Feb 2026 20:33:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IotYNyaO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TgSd1nQA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8D7C10E079
- for <intel-xe@lists.freedesktop.org>; Sun, 15 Feb 2026 20:33:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AC8C10E241
+ for <intel-xe@lists.freedesktop.org>; Sun, 15 Feb 2026 20:33:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771187621; x=1802723621;
+ t=1771187627; x=1802723627;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wVZvlElcqFlASsrcnLD739QLWxX4MQyfC4+AlrsmySU=;
- b=IotYNyaOdL+BHTuABdwRlp68qH/CV3KwK3aJiuCpWUjypU0y/GXoDLNa
- PO2EhMyZgECh32Uyh7iDyWatLVnItqHO7WR6zj7SeRgx/ZYwQx7xE1Xur
- X8hE0I4qeeyBhBMY0yGn8b0kgy8LF9Lg6ceOHm9xjAY2sEuXn7+LPRjXl
- aK8eG1nMAgIG4UHmf587COfDJujJzKerL1mLJ7peYwjfmP5YAJf0lWXUr
- smu95orhlaLYBAWp7Wat+g2f5UjZAGCcrFUmno/hEbuwQyvqMbJnnxhrW
- 4WtT2Ob4ethsxl2k0NGWQZ1Nu7hZeWwKVL+1iLhM8Vx64JOFINChprYoU A==;
-X-CSE-ConnectionGUID: frlOhe51RU2b8fts+hDERg==
-X-CSE-MsgGUID: Uk+DgUOHQoyCbPmeaw/TAg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11702"; a="71996388"
-X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; d="scan'208";a="71996388"
+ bh=4zfpUC7HsSXhzgXwl8YdzLqGlpk1R/62DHtQuBjdxDA=;
+ b=TgSd1nQAe+oaBP6zb6Ee6HK0MLyxr9od9QwWUH63a2Ad3rhP1Sr1l4CZ
+ dgbwAR9p3otCm4PJ0w22P+nOk9P78j5iDOkSbHNq4dLZqDUalkl8JBb09
+ MZ9HL00j/ECsd0RnjVhIwTXSJMF6wlNpqqtSDQsjduNIT2G6M04tLpbAI
+ 2nPSAe6ODXnXYmBAua//6UxoXC1F1HZdmuBege73frmVN0B5MROoDJFVz
+ DtVqmFLPJAWq2uHZzOYrB3xh5ktFqnsOCvrB55S/2a48mMvwA7CNGGQkV
+ s4+FYHkxVMyMc1DzKU654VaVM3+TQB+74Xu9GVVMY5mJ7l/owq3lB3L6U w==;
+X-CSE-ConnectionGUID: W9VkVo2WS5+peq6NKH8LPA==
+X-CSE-MsgGUID: jm1oM7UoRJ2BmmSg7WAGhg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11702"; a="71996392"
+X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; d="scan'208";a="71996392"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2026 12:33:41 -0800
-X-CSE-ConnectionGUID: 2te15FbEQp+8VgFz3AU4Yw==
-X-CSE-MsgGUID: 3/B82v8tSJyX3QF6SU4hmQ==
+ 15 Feb 2026 12:33:47 -0800
+X-CSE-ConnectionGUID: 63eQGTp6QHqyvfWBDlO2Cg==
+X-CSE-MsgGUID: z2mDhBlTQneGtmFuRCfrrw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; d="scan'208";a="251096592"
+X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; d="scan'208";a="251096609"
 Received: from shealy-mobl3.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.64.17])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2026 12:33:41 -0800
+ 15 Feb 2026 12:33:46 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 2/9] drm/xe/pf: Add functions for VRAM provisioning
-Date: Sun, 15 Feb 2026 21:33:16 +0100
-Message-ID: <20260215203323.595-3-michal.wajdeczko@intel.com>
+Subject: [PATCH 6/9] drm/xe/pf: Don't check for empty config
+Date: Sun, 15 Feb 2026 21:33:20 +0100
+Message-ID: <20260215203323.595-7-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260215203323.595-1-michal.wajdeczko@intel.com>
 References: <20260215203323.595-1-michal.wajdeczko@intel.com>
@@ -67,150 +67,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We already have functions to configure VF LMEM (aka VRAM) on the
-tile/GT level, used by the auto-provisioning and debugfs, but we
-also need functions that will work on the device level that will
-configure VRAM on all tiles at once.
-
-We will use these new functions in upcoming patch.
+We already turn off VFs auto-provisioning once we detect manual VFs
+provisioning over the debugfs, so we can skip additional check for
+all VFs configs being still empty.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_sriov_pf_provision.c | 108 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sriov_pf_provision.h |   4 +
- 2 files changed, 112 insertions(+)
+ drivers/gpu/drm/xe/xe_sriov_pf_provision.c | 13 -------------
+ 1 file changed, 13 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
-index 01470c42e8a7..e7187d03fe1b 100644
+index e7187d03fe1b..95c8f01e0264 100644
 --- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
 +++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
-@@ -436,3 +436,111 @@ int xe_sriov_pf_provision_query_vf_priority(struct xe_device *xe, unsigned int v
- 
- 	return !count ? -ENODATA : 0;
+@@ -32,17 +32,6 @@ static bool pf_auto_provisioning_mode(struct xe_device *xe)
+ 	return xe->sriov.pf.provision.mode == XE_SRIOV_PROVISIONING_MODE_AUTO;
  }
-+
-+static u64 vram_alignment(struct xe_device *xe)
-+{
-+	/* this might be platform dependent */
-+	return SZ_2M;
-+}
-+
-+static u64 vram_per_tile(struct xe_tile *tile, u64 total)
-+{
-+	struct xe_device *xe = tile->xe;
-+	unsigned int tcount = xe->info.tile_count;
-+	u64 alignment = vram_alignment(xe);
-+
-+	total = round_up(total, tcount * alignment);
-+	return div_u64(total, tcount);
-+}
-+
-+/**
-+ * xe_sriov_pf_provision_bulk_apply_vram() - Change VRAM provisioning for all VFs.
-+ * @xe: the PF &xe_device
-+ * @size: the VRAM size in [bytes] to set
-+ *
-+ * Change all VFs VRAM (LMEM) provisioning on all tiles.
-+ *
-+ * This function can only be called on PF.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_sriov_pf_provision_bulk_apply_vram(struct xe_device *xe, u64 size)
-+{
-+	unsigned int num_vfs = xe_sriov_pf_get_totalvfs(xe);
-+	struct xe_tile *tile;
-+	unsigned int id;
-+	int result = 0;
-+	int err;
-+
-+	guard(mutex)(xe_sriov_pf_master_mutex(xe));
-+
-+	for_each_tile(tile, xe, id) {
-+		err = xe_gt_sriov_pf_config_bulk_set_lmem_locked(tile->primary_gt,
-+								 VFID(1), num_vfs,
-+								 vram_per_tile(tile, size));
-+		result = result ?: err;
-+	}
-+
-+	return result;
-+}
-+
-+/**
-+ * xe_sriov_pf_provision_apply_vf_vram() - Change single VF VRAM allocatio.
-+ * @xe: the PF &xe_device
-+ * @vfid: the VF identifier (can't be 0 == PFID)
-+ * @size: VRAM size to set
-+ *
-+ * Change VF's VRAM provisioning on all tiles/GTs.
-+ *
-+ * This function can only be called on PF.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_sriov_pf_provision_apply_vf_vram(struct xe_device *xe, unsigned int vfid, u64 size)
-+{
-+	struct xe_tile *tile;
-+	unsigned int id;
-+	int result = 0;
-+	int err;
-+
-+	xe_assert(xe, vfid);
-+
-+	guard(mutex)(xe_sriov_pf_master_mutex(xe));
-+
-+	for_each_tile(tile, xe, id) {
-+		err = xe_gt_sriov_pf_config_set_lmem_locked(tile->primary_gt, vfid,
-+							    vram_per_tile(tile, size));
-+		result = result ?: err;
-+	}
-+
-+	return result;
-+}
-+
-+/**
-+ * xe_sriov_pf_provision_query_vf_vram() - Query VF's VRAM allocation.
-+ * @xe: the PF &xe_device
-+ * @vfid: the VF identifier (can't be 0 == PFID)
-+ * @prio: placeholder for the returned VRAM size
-+ *
-+ * Query VF's VRAM provisioning from all tiles/GTs.
-+ *
-+ * This function can only be called on PF.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_sriov_pf_provision_query_vf_vram(struct xe_device *xe, unsigned int vfid, u64 *size)
-+{
-+	struct xe_tile *tile;
-+	unsigned int id;
-+	u64 total = 0;
-+
-+	xe_assert(xe, vfid);
-+
-+	guard(mutex)(xe_sriov_pf_master_mutex(xe));
-+
-+	for_each_tile(tile, xe, id)
-+		total += xe_gt_sriov_pf_config_get_lmem_locked(tile->primary_gt, vfid);
-+
-+	*size = total;
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.h b/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
-index bccf23d51396..f26f49539697 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.h
-@@ -24,6 +24,10 @@ int xe_sriov_pf_provision_bulk_apply_priority(struct xe_device *xe, u32 prio);
- int xe_sriov_pf_provision_apply_vf_priority(struct xe_device *xe, unsigned int vfid, u32 prio);
- int xe_sriov_pf_provision_query_vf_priority(struct xe_device *xe, unsigned int vfid, u32 *prio);
  
-+int xe_sriov_pf_provision_bulk_apply_vram(struct xe_device *xe, u64 size);
-+int xe_sriov_pf_provision_apply_vf_vram(struct xe_device *xe, unsigned int vfid, u64 size);
-+int xe_sriov_pf_provision_query_vf_vram(struct xe_device *xe, unsigned int vfid, u64 *size);
-+
- int xe_sriov_pf_provision_vfs(struct xe_device *xe, unsigned int num_vfs);
- int xe_sriov_pf_unprovision_vfs(struct xe_device *xe, unsigned int num_vfs);
+-static bool pf_needs_provisioning(struct xe_gt *gt, unsigned int num_vfs)
+-{
+-	unsigned int n;
+-
+-	for (n = 1; n <= num_vfs; n++)
+-		if (!xe_gt_sriov_pf_config_is_empty(gt, n))
+-			return false;
+-
+-	return true;
+-}
+-
+ static int pf_provision_vfs(struct xe_device *xe, unsigned int num_vfs)
+ {
+ 	struct xe_gt *gt;
+@@ -51,8 +40,6 @@ static int pf_provision_vfs(struct xe_device *xe, unsigned int num_vfs)
+ 	int err;
  
+ 	for_each_gt(gt, xe, id) {
+-		if (!pf_needs_provisioning(gt, num_vfs))
+-			return -EUCLEAN;
+ 		err = xe_gt_sriov_pf_config_set_fair(gt, VFID(1), num_vfs);
+ 		result = result ?: err;
+ 	}
 -- 
 2.47.1
 
