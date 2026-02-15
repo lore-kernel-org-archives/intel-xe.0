@@ -4,55 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D9D1E63F14
-	for <intel-xe@archiver.kernel.org>; Sun, 15 Feb 2026 20:33:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2787CE63F12
+	for <intel-xe@archiver.kernel.org>; Sun, 15 Feb 2026 20:33:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA4C710E00C;
-	Sun, 15 Feb 2026 20:33:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D61BC10E079;
+	Sun, 15 Feb 2026 20:33:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aTt/sNsl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VGIS8Lsz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BAC410E00C
- for <intel-xe@lists.freedesktop.org>; Sun, 15 Feb 2026 20:33:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2982C10E079
+ for <intel-xe@lists.freedesktop.org>; Sun, 15 Feb 2026 20:33:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771187620; x=1802723620;
+ t=1771187623; x=1802723623;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=F4p6xdQTKjrl9PW5tkJtjOKEYWI2KY9mg4Pi2xmyxWI=;
- b=aTt/sNslciLIIqndQXR9LM3LQmde8FbDBHOZf0LkORbnf1ZsWmsfYVHk
- pNau4H53fzjyb5C2tijg6Wtj+OicHInbxEi5OghjMuFHwevOJjRto3d/S
- RyInsTgmPmkN7ROrzQtMYEpB0fRgKVfbfPexRmsJeN/v3h3mhWHGhihCq
- 5eSSOiiBAm3yddOJvo8eu6kdqyggSgolSmgKM5alyTtWoMvqDBgiskgJM
- kM9oqIgx2PE/8nsNChHJj0yORmSW98VOqqxxvDSMRez+IgpZfivX5IOsg
- O6yow3in/RU0ft/4lLnVNpoKCisOKL5bs5t5dgnjcjuQ1UKWaI6NSB2x+ w==;
-X-CSE-ConnectionGUID: QZDV4DafSzC4nJKI8OOzrw==
-X-CSE-MsgGUID: AoY1RFLzThKXjuF6uPJA4w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11702"; a="71996387"
-X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; d="scan'208";a="71996387"
+ bh=okYCLFkTXt/YZYRQ4+eg4UingGQ9bPQKAGnFzC9DwzU=;
+ b=VGIS8LszAqs5bkE8Jg841Vwd3/ibmY6lUg13pnkNwbCnc2BymqbQPNb/
+ 6AK2Cj8+jK6zqhy8XpgOC/Oq+aVgoTMsYR2O/20ksXg0zu79sjQ1Mpf02
+ hdujlalMqiHvzMdBtVfzY6cTgQiLaKU15Bbnwu0CokhievIlXie50p0zG
+ mi9ybY/q6HPzZnaCET4C+UtY3yEVz5ioHeJVnRtJRL32RqBeaQN8wHvG/
+ 0esYKss+0I6AeOzoFMU/X46q1X15C7QbbsPvFTF87RbEe3J/qRi3Edqfq
+ WAqTSTVjAh200TqX6GF/r1JOz6cZQmLtVr6FUsfvMLcIzZen5LMWkfcWN Q==;
+X-CSE-ConnectionGUID: AFmwh6lQS8KFQmAImYBYkw==
+X-CSE-MsgGUID: qyLPVnqTRKGm7TcOwCl4mw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11702"; a="71996389"
+X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; d="scan'208";a="71996389"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2026 12:33:40 -0800
-X-CSE-ConnectionGUID: q0tzY78gSZmBrD1jOrLG4w==
-X-CSE-MsgGUID: z3CUXgPoQ1y6TeqNyu/COg==
+ 15 Feb 2026 12:33:43 -0800
+X-CSE-ConnectionGUID: Dm81T2elRny9k1jgOf5lfg==
+X-CSE-MsgGUID: uqOJmCizQKmYktbdHZ2SGQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; d="scan'208";a="251096588"
+X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; d="scan'208";a="251096596"
 Received: from shealy-mobl3.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.64.17])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2026 12:33:40 -0800
+ 15 Feb 2026 12:33:42 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 1/9] drm/xe/pf: Add locked variants of VRAM configuration
- functions
-Date: Sun, 15 Feb 2026 21:33:15 +0100
-Message-ID: <20260215203323.595-2-michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH 3/9] drm/xe/pf: Allow to change VFs VRAM quota using sysfs
+Date: Sun, 15 Feb 2026 21:33:17 +0100
+Message-ID: <20260215203323.595-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260215203323.595-1-michal.wajdeczko@intel.com>
 References: <20260215203323.595-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,145 +69,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We already have few functions to configure LMEM (aka VRAM) but they
-all are taking master mutex. Split them and expose locked variants
-to allow use by the caller who already hold this mutex.
+On current discrete platforms, PF will provision all VFs with a fair
+amount of the VRAM (LMEM) during VFs enabling. However, in some cases
+this automatic VRAM provisioning might be either non-reproducible or
+sub-optimal. This could break VF's migration or impact performance.
+
+Expose per-VF VRAM quota read-write sysfs attributes to allow admin
+change default VRAM provisioning performed by the PF.
+
+ /sys/bus/pci/drivers/xe/BDF/
+ ├── sriov_admin/
+     ├── .bulk_profile
+     │   └── vram_quota                 [RW] unsigned integer
+     ├── vf1/
+     │   └── profile
+     │       └── vram_quota             [RW] unsigned integer
+     ├── vf2/
+     │   └── profile
+     │       └── vram_quota             [RW] unsigned integer
+
+Above values represent total provisioned VRAM from all tiles where
+VFs were assigned, and currently it's from all tiles always.
+
+Note that changing VRAM provisioning is only possible when VF is
+not running, otherwise GuC will complain. To make sure that given
+VF is idle, triggering VF FLR might be needed.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 77 ++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |  4 ++
- 2 files changed, 74 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c | 26 ++++++++++++++++++++++++--
+ 1 file changed, 24 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index 23601ce79348..23af49dc1bfa 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -1754,7 +1754,7 @@ int xe_gt_sriov_pf_config_set_lmem(struct xe_gt *gt, unsigned int vfid, u64 size
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
+index 82a1055985ba..09deda2fd8b2 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
+@@ -44,7 +44,8 @@ static int emit_choice(char *buf, int choice, const char * const *array, size_t
+  *     ├── .bulk_profile
+  *     │   ├── exec_quantum_ms
+  *     │   ├── preempt_timeout_us
+- *     │   └── sched_priority
++ *     │   ├── sched_priority
++ *     │   └── vram_quota
+  *     ├── pf/
+  *     │   ├── ...
+  *     │   ├── device -> ../../../BDF
+@@ -59,7 +60,8 @@ static int emit_choice(char *buf, int choice, const char * const *array, size_t
+  *     │   └── profile
+  *     │       ├── exec_quantum_ms
+  *     │       ├── preempt_timeout_us
+- *     │       └── sched_priority
++ *     │       ├── sched_priority
++ *     │       └── vram_quota
+  *     ├── vf2/
+  *     :
+  *     └── vfN/
+@@ -132,6 +134,7 @@ static XE_SRIOV_DEV_ATTR_WO(NAME)
+ 
+ DEFINE_SIMPLE_BULK_PROVISIONING_SRIOV_DEV_ATTR_WO(exec_quantum_ms, eq, u32);
+ DEFINE_SIMPLE_BULK_PROVISIONING_SRIOV_DEV_ATTR_WO(preempt_timeout_us, pt, u32);
++DEFINE_SIMPLE_BULK_PROVISIONING_SRIOV_DEV_ATTR_WO(vram_quota, vram, u64);
+ 
+ static const char * const sched_priority_names[] = {
+ 	[GUC_SCHED_PRIORITY_LOW] = "low",
+@@ -181,12 +184,25 @@ static struct attribute *bulk_profile_dev_attrs[] = {
+ 	&xe_sriov_dev_attr_exec_quantum_ms.attr,
+ 	&xe_sriov_dev_attr_preempt_timeout_us.attr,
+ 	&xe_sriov_dev_attr_sched_priority.attr,
++	&xe_sriov_dev_attr_vram_quota.attr,
+ 	NULL
+ };
+ 
++static umode_t profile_dev_attr_is_visible(struct kobject *kobj,
++					   struct attribute *attr, int index)
++{
++	struct xe_sriov_kobj *vkobj = to_xe_sriov_kobj(kobj);
++
++	if (attr == &xe_sriov_dev_attr_vram_quota.attr && !IS_DGFX(vkobj->xe))
++		return 0;
++
++	return attr->mode;
++}
++
+ static const struct attribute_group bulk_profile_dev_attr_group = {
+ 	.name = ".bulk_profile",
+ 	.attrs = bulk_profile_dev_attrs,
++	.is_visible = profile_dev_attr_is_visible,
+ };
+ 
+ static const struct attribute_group *xe_sriov_dev_attr_groups[] = {
+@@ -228,6 +244,7 @@ static XE_SRIOV_VF_ATTR(NAME)
+ 
+ DEFINE_SIMPLE_PROVISIONING_SRIOV_VF_ATTR(exec_quantum_ms, eq, u32, "%u\n");
+ DEFINE_SIMPLE_PROVISIONING_SRIOV_VF_ATTR(preempt_timeout_us, pt, u32, "%u\n");
++DEFINE_SIMPLE_PROVISIONING_SRIOV_VF_ATTR(vram_quota, vram, u64, "%llu\n");
+ 
+ static ssize_t xe_sriov_vf_attr_sched_priority_show(struct xe_device *xe, unsigned int vfid,
+ 						    char *buf)
+@@ -274,6 +291,7 @@ static struct attribute *profile_vf_attrs[] = {
+ 	&xe_sriov_vf_attr_exec_quantum_ms.attr,
+ 	&xe_sriov_vf_attr_preempt_timeout_us.attr,
+ 	&xe_sriov_vf_attr_sched_priority.attr,
++	&xe_sriov_vf_attr_vram_quota.attr,
+ 	NULL
+ };
+ 
+@@ -286,6 +304,10 @@ static umode_t profile_vf_attr_is_visible(struct kobject *kobj,
+ 	    !sched_priority_change_allowed(vkobj->vfid))
+ 		return attr->mode & 0444;
+ 
++	if (attr == &xe_sriov_vf_attr_vram_quota.attr &&
++	    (!IS_DGFX(vkobj->xe) || vkobj->vfid == PFID))
++		return 0;
++
+ 	return attr->mode;
  }
  
- /**
-- * xe_gt_sriov_pf_config_bulk_set_lmem - Provision many VFs with LMEM.
-+ * xe_gt_sriov_pf_config_bulk_set_lmem_locked() - Provision many VFs with LMEM.
-  * @gt: the &xe_gt (can't be media)
-  * @vfid: starting VF identifier (can't be 0)
-  * @num_vfs: number of VFs to provision
-@@ -1764,31 +1764,94 @@ int xe_gt_sriov_pf_config_set_lmem(struct xe_gt *gt, unsigned int vfid, u64 size
-  *
-  * Return: 0 on success or a negative error code on failure.
-  */
--int xe_gt_sriov_pf_config_bulk_set_lmem(struct xe_gt *gt, unsigned int vfid,
--					unsigned int num_vfs, u64 size)
-+int xe_gt_sriov_pf_config_bulk_set_lmem_locked(struct xe_gt *gt, unsigned int vfid,
-+					       unsigned int num_vfs, u64 size)
- {
- 	unsigned int n;
- 	int err = 0;
- 
--	xe_gt_assert(gt, vfid);
-+	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
-+	xe_gt_assert(gt, xe_device_has_lmtt(gt_to_xe(gt)));
-+	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
- 	xe_gt_assert(gt, xe_gt_is_main_type(gt));
-+	xe_gt_assert(gt, vfid);
- 
- 	if (!num_vfs)
- 		return 0;
- 
--	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
- 	for (n = vfid; n < vfid + num_vfs; n++) {
- 		err = pf_provision_vf_lmem(gt, n, size);
- 		if (err)
- 			break;
- 	}
--	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
- 
- 	return pf_config_bulk_set_u64_done(gt, vfid, num_vfs, size,
--					   xe_gt_sriov_pf_config_get_lmem,
-+					   pf_get_vf_config_lmem,
- 					   "LMEM", n, err);
- }
- 
-+/**
-+ * xe_gt_sriov_pf_config_bulk_set_lmem() - Provision many VFs with LMEM.
-+ * @gt: the &xe_gt (can't be media)
-+ * @vfid: starting VF identifier (can't be 0)
-+ * @num_vfs: number of VFs to provision
-+ * @size: requested LMEM size
-+ *
-+ * This function can only be called on PF.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_gt_sriov_pf_config_bulk_set_lmem(struct xe_gt *gt, unsigned int vfid,
-+					unsigned int num_vfs, u64 size)
-+{
-+	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
-+
-+	return xe_gt_sriov_pf_config_bulk_set_lmem_locked(gt, vfid, num_vfs, size);
-+}
-+
-+/**
-+ * xe_gt_sriov_pf_config_get_lmem_locked() - Get VF's LMEM quota.
-+ * @gt: the &xe_gt
-+ * @vfid: the VF identifier (can't be 0 == PFID)
-+ *
-+ * This function can only be called on PF.
-+ *
-+ * Return: VF's LMEM quota.
-+ */
-+u64 xe_gt_sriov_pf_config_get_lmem_locked(struct xe_gt *gt, unsigned int vfid)
-+{
-+	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
-+	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-+	xe_gt_assert(gt, vfid);
-+
-+	return pf_get_vf_config_lmem(gt, vfid);
-+}
-+
-+/**
-+ * xe_gt_sriov_pf_config_set_lmem_locked() - Provision VF with LMEM.
-+ * @gt: the &xe_gt (can't be media)
-+ * @vfid: the VF identifier (can't be 0 == PFID)
-+ * @size: requested LMEM size
-+ *
-+ * This function can only be called on PF.
-+ */
-+int xe_gt_sriov_pf_config_set_lmem_locked(struct xe_gt *gt, unsigned int vfid, u64 size)
-+{
-+	int err;
-+
-+	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
-+	xe_gt_assert(gt, xe_device_has_lmtt(gt_to_xe(gt)));
-+	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-+	xe_gt_assert(gt, xe_gt_is_main_type(gt));
-+	xe_gt_assert(gt, vfid);
-+
-+	err = pf_provision_vf_lmem(gt, vfid, size);
-+
-+	return pf_config_set_u64_done(gt, vfid, size,
-+				      pf_get_vf_config_lmem(gt, vfid),
-+				      "LMEM", err);
-+}
-+
- static struct xe_bo *pf_get_vf_config_lmem_obj(struct xe_gt *gt, unsigned int vfid)
- {
- 	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-index 3c6c8b6655af..4a004ecd6140 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-@@ -36,6 +36,10 @@ int xe_gt_sriov_pf_config_set_lmem(struct xe_gt *gt, unsigned int vfid, u64 size
- int xe_gt_sriov_pf_config_set_fair_lmem(struct xe_gt *gt, unsigned int vfid, unsigned int num_vfs);
- int xe_gt_sriov_pf_config_bulk_set_lmem(struct xe_gt *gt, unsigned int vfid, unsigned int num_vfs,
- 					u64 size);
-+u64 xe_gt_sriov_pf_config_get_lmem_locked(struct xe_gt *gt, unsigned int vfid);
-+int xe_gt_sriov_pf_config_set_lmem_locked(struct xe_gt *gt, unsigned int vfid, u64 size);
-+int xe_gt_sriov_pf_config_bulk_set_lmem_locked(struct xe_gt *gt, unsigned int vfid,
-+					       unsigned int num_vfs, u64 size);
- struct xe_bo *xe_gt_sriov_pf_config_get_lmem_obj(struct xe_gt *gt, unsigned int vfid);
- 
- u32 xe_gt_sriov_pf_config_get_exec_quantum(struct xe_gt *gt, unsigned int vfid);
 -- 
 2.47.1
 
