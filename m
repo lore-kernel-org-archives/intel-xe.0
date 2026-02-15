@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34D32E63F14
-	for <intel-xe@archiver.kernel.org>; Sun, 15 Feb 2026 20:33:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36ED2E63F12
+	for <intel-xe@archiver.kernel.org>; Sun, 15 Feb 2026 20:33:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E737210E241;
-	Sun, 15 Feb 2026 20:33:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFC5710E231;
+	Sun, 15 Feb 2026 20:33:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TgSd1nQA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YEdfZE4F";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AC8C10E241
- for <intel-xe@lists.freedesktop.org>; Sun, 15 Feb 2026 20:33:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66ABF10E0A3
+ for <intel-xe@lists.freedesktop.org>; Sun, 15 Feb 2026 20:33:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771187627; x=1802723627;
+ t=1771187624; x=1802723624;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4zfpUC7HsSXhzgXwl8YdzLqGlpk1R/62DHtQuBjdxDA=;
- b=TgSd1nQAe+oaBP6zb6Ee6HK0MLyxr9od9QwWUH63a2Ad3rhP1Sr1l4CZ
- dgbwAR9p3otCm4PJ0w22P+nOk9P78j5iDOkSbHNq4dLZqDUalkl8JBb09
- MZ9HL00j/ECsd0RnjVhIwTXSJMF6wlNpqqtSDQsjduNIT2G6M04tLpbAI
- 2nPSAe6ODXnXYmBAua//6UxoXC1F1HZdmuBege73frmVN0B5MROoDJFVz
- DtVqmFLPJAWq2uHZzOYrB3xh5ktFqnsOCvrB55S/2a48mMvwA7CNGGQkV
- s4+FYHkxVMyMc1DzKU654VaVM3+TQB+74Xu9GVVMY5mJ7l/owq3lB3L6U w==;
-X-CSE-ConnectionGUID: W9VkVo2WS5+peq6NKH8LPA==
-X-CSE-MsgGUID: jm1oM7UoRJ2BmmSg7WAGhg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11702"; a="71996392"
-X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; d="scan'208";a="71996392"
+ bh=JEnG4WhiNRBhzr1XikuIfIyWA6tUnJ6ZZKZy8mO71OQ=;
+ b=YEdfZE4FefGv6um8l+4vdeqDYMZHbE6fIY2KOcRGxP2w5nq9nZfVNC06
+ PQgAJeSkrCwW2T6gr1ihaGW1xWHK1qT/y8tgqIjFeOxWPwFoAF7VJzP6s
+ /fc6Af9Axg85BOhw9nh2y2jFhMqrSjTtxnUDOYhN5qCwqaVzKkFBn9Vvd
+ 2HvXHoysiJ6EWtkMAsU/XwYmmppKDJ4gSNV2R1OLc+w3ip9Cf1c3+urD/
+ 3sa1k43n+gwDtASi8yvNzbP/ceD3ipsNJmd0MX4AJtr4PDDMa9o05AaiP
+ 4+1eVnnNHU0V2H6zVhUGluDQ6DDsOni/4uuBxju5fMJsBL6O1L0gjdPd6 Q==;
+X-CSE-ConnectionGUID: E0N5R+TIRgucnPqVcU7wfg==
+X-CSE-MsgGUID: w0o0heRmR7CzocgJQMJKUA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11702"; a="71996390"
+X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; d="scan'208";a="71996390"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2026 12:33:47 -0800
-X-CSE-ConnectionGUID: 63eQGTp6QHqyvfWBDlO2Cg==
-X-CSE-MsgGUID: z2mDhBlTQneGtmFuRCfrrw==
+ 15 Feb 2026 12:33:44 -0800
+X-CSE-ConnectionGUID: 5je+01wcTSSMzmtT0PLJMA==
+X-CSE-MsgGUID: TLSL7vWyRv+ueR7AJ46ZfQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; d="scan'208";a="251096609"
+X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; d="scan'208";a="251096599"
 Received: from shealy-mobl3.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.64.17])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2026 12:33:46 -0800
+ 15 Feb 2026 12:33:44 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 6/9] drm/xe/pf: Don't check for empty config
-Date: Sun, 15 Feb 2026 21:33:20 +0100
-Message-ID: <20260215203323.595-7-michal.wajdeczko@intel.com>
+Subject: [PATCH 4/9] drm/xe/pf: Use migration-friendly VRAM auto-provisioning
+Date: Sun, 15 Feb 2026 21:33:18 +0100
+Message-ID: <20260215203323.595-5-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260215203323.595-1-michal.wajdeczko@intel.com>
 References: <20260215203323.595-1-michal.wajdeczko@intel.com>
@@ -67,46 +67,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We already turn off VFs auto-provisioning once we detect manual VFs
-provisioning over the debugfs, so we can skip additional check for
-all VFs configs being still empty.
+Instead of trying very hard to find the largest fair VRAM (aka LMEM)
+size that could be allocated for VFs on the current tile, pick some
+smaller rounded down to power-of-two value that is more likely to be
+provisioned in the same manner by the other PF instances.
+
+In some cases, the outcome of above calculation might not be optimal,
+but it's expected that admin will do fine-tuning using sysfs files.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_sriov_pf_provision.c | 13 -------------
- 1 file changed, 13 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 27 ++++++++++++++++++++++
+ 1 file changed, 27 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
-index e7187d03fe1b..95c8f01e0264 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
-@@ -32,17 +32,6 @@ static bool pf_auto_provisioning_mode(struct xe_device *xe)
- 	return xe->sriov.pf.provision.mode == XE_SRIOV_PROVISIONING_MODE_AUTO;
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index 23af49dc1bfa..43041af81518 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -1919,6 +1919,26 @@ static u64 pf_estimate_fair_lmem(struct xe_gt *gt, unsigned int num_vfs)
+ 	return fair;
  }
  
--static bool pf_needs_provisioning(struct xe_gt *gt, unsigned int num_vfs)
--{
--	unsigned int n;
--
--	for (n = 1; n <= num_vfs; n++)
--		if (!xe_gt_sriov_pf_config_is_empty(gt, n))
--			return false;
--
--	return true;
--}
--
- static int pf_provision_vfs(struct xe_device *xe, unsigned int num_vfs)
++static u64 pf_profile_fair_lmem(struct xe_gt *gt, unsigned int num_vfs)
++{
++	struct xe_tile *tile = gt_to_tile(gt);
++	bool admin_only_pf = xe_sriov_pf_admin_only(tile->xe);
++	u64 usable = xe_vram_region_usable_size(tile->mem.vram);
++	u64 shareable = ALIGN_DOWN(usable, SZ_1G);
++	u64 alignment = pf_get_lmem_alignment(gt);
++	u64 fair;
++
++	if (admin_only_pf)
++		fair = div_u64(shareable, num_vfs);
++	else
++		fair = div_u64(shareable, 1 + num_vfs);
++
++	if (!admin_only_pf && fair)
++		fair = rounddown_pow_of_two(fair);
++
++	return ALIGN_DOWN(fair, alignment);
++}
++
+ /**
+  * xe_gt_sriov_pf_config_set_fair_lmem - Provision many VFs with fair LMEM.
+  * @gt: the &xe_gt (can't be media)
+@@ -1932,6 +1952,7 @@ static u64 pf_estimate_fair_lmem(struct xe_gt *gt, unsigned int num_vfs)
+ int xe_gt_sriov_pf_config_set_fair_lmem(struct xe_gt *gt, unsigned int vfid,
+ 					unsigned int num_vfs)
  {
- 	struct xe_gt *gt;
-@@ -51,8 +40,6 @@ static int pf_provision_vfs(struct xe_device *xe, unsigned int num_vfs)
- 	int err;
++	u64 profile;
+ 	u64 fair;
  
- 	for_each_gt(gt, xe, id) {
--		if (!pf_needs_provisioning(gt, num_vfs))
--			return -EUCLEAN;
- 		err = xe_gt_sriov_pf_config_set_fair(gt, VFID(1), num_vfs);
- 		result = result ?: err;
- 	}
+ 	xe_gt_assert(gt, vfid);
+@@ -1948,6 +1969,12 @@ int xe_gt_sriov_pf_config_set_fair_lmem(struct xe_gt *gt, unsigned int vfid,
+ 	if (!fair)
+ 		return -ENOSPC;
+ 
++	profile = pf_profile_fair_lmem(gt, num_vfs);
++	fair = min(fair, profile);
++	if (fair < profile)
++		xe_gt_sriov_info(gt, "Using non-profile provisioning (%s %llu vs %llu)\n",
++				 "VRAM", fair, profile);
++
+ 	return xe_gt_sriov_pf_config_bulk_set_lmem(gt, vfid, num_vfs, fair);
+ }
+ 
 -- 
 2.47.1
 
