@@ -4,56 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B134E63F2E
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Feb 2026 05:01:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBD69E63F25
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Feb 2026 06:16:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BB1B10E153;
-	Mon, 16 Feb 2026 05:01:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C20810E009;
+	Mon, 16 Feb 2026 06:16:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VSnjiuY4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ULc2GWC8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E813E10E142;
- Mon, 16 Feb 2026 05:01:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE93310E009;
+ Mon, 16 Feb 2026 06:16:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771218063; x=1802754063;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=47MAfgVy33HiZplpX8HQkF2EutU3fokF53UkfRJlzSg=;
- b=VSnjiuY4ZP38swGEohQ2NO4k7gCuOm1ZqG7Q7T9UwyfuiBFPT/fOtj4S
- bZVyDwAGG96ollBrxred7wiA9H+pcFY9vugEp/LQbDK9Vfi+PcTg5eVKf
- hvaDdVDK17/5MdlVrusSHX4qCGA6G839eVZ0eDZR6aTR3F7SQyEyALRnA
- hpsQsBd/3QEe3iWuuAug1vtC3/thJj58SAKytPBQ9s8LpryNeSeEKcqeS
- lfPMPF7GqXiHINn8f+ri8Rhisyb07CMhp1bo+LP7E/Y/a8P3A1l4yboL9
- I65xdgHNIWlX9Xf7z/gePqMJ76kQ+U0wYrzYdZSwUdjiUfHRssgeWm1fK A==;
-X-CSE-ConnectionGUID: 3Qv5Yh/+SsqxEI6ncDkPVw==
-X-CSE-MsgGUID: 6u4ZAuTeSGCZobI7Tt18oA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11702"; a="94929091"
-X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; d="scan'208";a="94929091"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Feb 2026 21:01:03 -0800
-X-CSE-ConnectionGUID: QnIoxcs5Rqqns3PTI7LaZg==
-X-CSE-MsgGUID: 8yZVACsQRPe6XQFE6PtZmg==
+ t=1771222603; x=1802758603;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zvcXt9MN4GKPEz3KQuXj2I1bR5fGlkMnKatc0eg6Etc=;
+ b=ULc2GWC8KI8ysZXEcTrNU4fsL7VXA8+8uUXnPd5HkdTqHmWZBtLggrN6
+ eJuO5lfja7QVxlQAaiCMTr+rFhDdAJXj9Lv/rjXyhZlYIs1uYY5Vtvtwy
+ 1SkB1fcQhnubBTeoC00+aaYeyUYgVBgCJuo2TM0tU3Q4f62TQx7A9BZIu
+ SHodx6MdRWV8SdG+naXyp7KhThDQpcCiSAJQum/GwUNxOqSMng0sPuZGO
+ zyxkoecGhERBIdAn4JmlLnTCylX18d5g0LdwjnPcEZptqH5YK78OjIDub
+ RaNRwhsOvSbBrowQYFeElgF2kxW5jeLl6QgP+ioy4OdTGHjAVyj41MX5p w==;
+X-CSE-ConnectionGUID: PL57P1tmSTy6Op+QrrA96w==
+X-CSE-MsgGUID: afC135R3TBmHYOjq5P0pYA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11702"; a="72291995"
+X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; d="scan'208";a="72291995"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2026 22:16:43 -0800
+X-CSE-ConnectionGUID: RgB51ZaUQkuP3rPFjV0WkQ==
+X-CSE-MsgGUID: 2v98bsGES2GOYenJbKuDJg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; d="scan'208";a="212818525"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa008.fm.intel.com with ESMTP; 15 Feb 2026 21:00:59 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Mon, 16 Feb 2026 10:29:40 +0530
-Subject: [PATCH v3 2/2] drm/i915/lt_phy_regs: Add SoC/OS turnaround time
+X-IronPort-AV: E=Sophos;i="6.21,293,1763452800"; d="scan'208";a="212087443"
+Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Feb 2026 22:16:38 -0800
+From: Riana Tauro <riana.tauro@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
+ rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
+ simona.vetter@ffwll.ch, airlied@gmail.com, pratik.bari@intel.com,
+ joshua.santosh.ranjan@intel.com, ashwin.kumar.kulkarni@intel.com,
+ shubham.kumar@intel.com, ravi.kishore.koppuravuri@intel.com,
+ raag.jadav@intel.com, Riana Tauro <riana.tauro@intel.com>
+Subject: [PATCH v6 0/5] Introduce DRM_RAS using generic netlink for RAS
+Date: Mon, 16 Feb 2026 12:17:26 +0530
+Message-ID: <20260216064726.2542819-7-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260216-timeout-v3-2-055522c22560@intel.com>
-References: <20260216-timeout-v3-0-055522c22560@intel.com>
-In-Reply-To: <20260216-timeout-v3-0-055522c22560@intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, uma.shankar@intel.com, 
- suraj.kandpal@intel.com, ankit.k.nautiyal@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Arun R Murthy <arun.r.murthy@intel.com>
-X-Mailer: b4 0.15-dev
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,39 +70,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On top the timeouts mentioned in the spec which includes only the PHY
-timeouts include the SoC and the OS turnaround time.
-The overhead value is based on the stress test results with multiple
-available panels.
+This work is a continuation of the great work started by Aravind ([1] and [2])
+in order to fulfill the RAS requirements and proposal as previously discussed
+and agreed in the Linux Plumbers accelerator's bof of 2022 [3].
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_lt_phy_regs.h | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+[1]: https://lore.kernel.org/dri-devel/20250730064956.1385855-1-aravind.iddamsetty@linux.intel.com/
+[2]: https://lore.kernel.org/all/4cbdfcc5-5020-a942-740e-a602d4c00cc2@linux.intel.com/
+[3]: https://airlied.blogspot.com/2022/09/accelerators-bof-outcomes-summary.html
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-index 37e46fb9abde4156ebd7ad1eb6cbbc12e7026b23..ff6d7829dbb9c50b2001d079b435b894faf9659e 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-@@ -6,12 +6,12 @@
- #ifndef __INTEL_LT_PHY_REGS_H__
- #define __INTEL_LT_PHY_REGS_H__
- 
--#define XE3PLPD_MSGBUS_TIMEOUT_FAST_US	500
-+#define XE3PLPD_MSGBUS_TIMEOUT_FAST_US		500
- #define XE3PLPD_MACCLK_TURNON_LATENCY_MS	2
--#define XE3PLPD_MACCLK_TURNOFF_LATENCY_US	1
-+#define XE3PLPD_MACCLK_TURNOFF_LATENCY_US	10
- #define XE3PLPD_RATE_CALIB_DONE_LATENCY_MS	1
--#define XE3PLPD_RESET_START_LATENCY_US	10
--#define XE3PLPD_PWRDN_TO_RDY_LATENCY_US	4
-+#define XE3PLPD_RESET_START_LATENCY_US		10
-+#define XE3PLPD_PWRDN_TO_RDY_LATENCY_US		10
- #define XE3PLPD_RESET_END_LATENCY_MS		2
- 
- /* LT Phy MAC Register */
+During the past review round, Lukas pointed out that netlink had evolved
+in parallel during these years and that now, any new usage of netlink families
+would require the usage of the YAML description and scripts.
+
+With this new requirement in place, the family name is hardcoded in the yaml file,
+so we are forced to have a single family name for the entire drm, and then we now
+we are forced to have a registration.
+
+So, while doing the registration, we now created the concept of drm-ras-node.
+For now the only node type supported is the agreed error-counter. But that could
+be expanded for other cases like telemetry, requested by Zack for the qualcomm accel
+driver.
+
+In this first version, only querying counter is supported. But also this is expandable
+to future introduction of multicast notification and also clearing the counters.
+
+This design with multiple nodes per device is already flexible enough for driver
+to decide if it wants to handle error per device, or per IP block, or per error
+category. I believe this fully attend to the requested AMD feedback in the earlier
+reviews.
+
+So, my proposal is to start simple with this case as is, and then iterate over
+with the drm-ras in tree so we evolve together according to various driver's RAS
+needs.
+
+I have provided a documentation and the first Xe implementation of the counter
+as reference.
+
+Also, it is worth to mention that we have a in-tree pyynl/cli.py tool that entirely
+exercises this new API, hence I hope this can be the reference code for the uAPI
+usage, while we continue with the plan of introducing IGT tests and tools for this
+and adjusting the internal vendor tools to open with open source developments and
+changing them to support these flows.
+
+Example:
+
+List Nodes:
+
+$ sudo ynl --family drm_ras --dump list-nodes
+[{'device-name': '0000:03:00.0',
+  'node-id': 0,
+  'node-name': 'correctable-errors',
+  'node-type': 'error-counter'},
+ {'device-name': '0000:03:00.0',
+  'node-id': 1,
+  'node-name': 'uncorrectable-errors',
+  'node-type': 'error-counter'}]
+
+Get Error counters:
+
+$ sudo ynl --family drm_ras  --dump get-error-counters --json '{"node-id":1}'
+[{'error-id': 1, 'error-name': 'core-compute', 'error-value': 0},
+ {'error-id': 2, 'error-name': 'soc-internal', 'error-value': 0}]
+
+Query Error counter:
+
+$ sudo ynl --family drm_ras --do query-error-counter  --json '{"node-id":1, "error-id":2}'
+{'error-id': 2, 'error-name': 'soc-internal', 'error-value': 0}
+
+
+IGT : https://patchwork.freedesktop.org/patch/689729/?series=157409&rev=3
+
+Rev2: Fix review comments
+      Add support for GT and SOC errors
+
+Rev3: Add uAPI for errors and nodes
+      Update documentation
+
+Rev4: Use only correctable and uncorrectable error nodes
+      use REG_BIT
+      remove redundant error strings
+
+Rev5: Split patch 2
+      use atomic_t
+      fix memory leaks
+      fix logs
+      fix hook failure
+      change component and severity UAPI
+
+Rev6: fix alignment
+      fix comparison in CSC error
+      add severity string to csc error
+      rename soc error handler base register variables
+      deallocate info if drm ras registeration fails
+      rename init function to xe_drm_ras_init()
+      fix htmldocs errors
+      Add 'depends on NET' for drm ras netlink
+
+Riana Tauro (4):
+  drm/xe/xe_drm_ras: Add support for XE DRM RAS
+  drm/xe/xe_hw_error: Integrate DRM RAS with hardware error handling
+  drm/xe/xe_hw_error: Add support for Core-Compute errors
+  drm/xe/xe_hw_error: Add support for PVC SoC errors
+
+Rodrigo Vivi (1):
+  drm/ras: Introduce the DRM RAS infrastructure over generic netlink
+
+ Documentation/gpu/drm-ras.rst              | 107 +++++
+ Documentation/gpu/index.rst                |   1 +
+ Documentation/netlink/specs/drm_ras.yaml   | 130 ++++++
+ drivers/gpu/drm/Kconfig                    |  10 +
+ drivers/gpu/drm/Makefile                   |   1 +
+ drivers/gpu/drm/drm_drv.c                  |   6 +
+ drivers/gpu/drm/drm_ras.c                  | 354 ++++++++++++++++
+ drivers/gpu/drm/drm_ras_genl_family.c      |  42 ++
+ drivers/gpu/drm/drm_ras_nl.c               |  54 +++
+ drivers/gpu/drm/xe/Makefile                |   1 +
+ drivers/gpu/drm/xe/regs/xe_hw_error_regs.h |  86 +++-
+ drivers/gpu/drm/xe/xe_device_types.h       |   4 +
+ drivers/gpu/drm/xe/xe_drm_ras.c            | 186 +++++++++
+ drivers/gpu/drm/xe/xe_drm_ras.h            |  15 +
+ drivers/gpu/drm/xe/xe_drm_ras_types.h      |  48 +++
+ drivers/gpu/drm/xe/xe_hw_error.c           | 451 +++++++++++++++++++--
+ include/drm/drm_ras.h                      |  76 ++++
+ include/drm/drm_ras_genl_family.h          |  17 +
+ include/drm/drm_ras_nl.h                   |  24 ++
+ include/uapi/drm/drm_ras.h                 |  49 +++
+ include/uapi/drm/xe_drm.h                  |  79 ++++
+ 21 files changed, 1699 insertions(+), 42 deletions(-)
+ create mode 100644 Documentation/gpu/drm-ras.rst
+ create mode 100644 Documentation/netlink/specs/drm_ras.yaml
+ create mode 100644 drivers/gpu/drm/drm_ras.c
+ create mode 100644 drivers/gpu/drm/drm_ras_genl_family.c
+ create mode 100644 drivers/gpu/drm/drm_ras_nl.c
+ create mode 100644 drivers/gpu/drm/xe/xe_drm_ras.c
+ create mode 100644 drivers/gpu/drm/xe/xe_drm_ras.h
+ create mode 100644 drivers/gpu/drm/xe/xe_drm_ras_types.h
+ create mode 100644 include/drm/drm_ras.h
+ create mode 100644 include/drm/drm_ras_genl_family.h
+ create mode 100644 include/drm/drm_ras_nl.h
+ create mode 100644 include/uapi/drm/drm_ras.h
 
 -- 
-2.25.1
+2.47.1
 
