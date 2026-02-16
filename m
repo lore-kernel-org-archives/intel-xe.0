@@ -4,76 +4,103 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C00DE7BDBE
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Feb 2026 13:04:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70BA8E7BDB4
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Feb 2026 13:06:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1527710E3A0;
-	Mon, 16 Feb 2026 13:04:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CCBD10E3A0;
+	Mon, 16 Feb 2026 13:06:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="TpI+HGfu";
+	dkim=pass (2048-bit key; unprotected) header.d=arndb.de header.i=@arndb.de header.b="nyBlN9vA";
+	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="t3MArVV7";
 	dkim-atps=neutral
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15D0D10E3A1;
- Mon, 16 Feb 2026 13:04:11 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1771247041; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=aO0ol4Xm+xfSjJiCg+KyUrIbHnPu1MP5NQXAn+fpRSArMd6fOLQYeoPXXZFu4kXkCkYHWZ/uwS5YarOe+IAmPSz197YyErZu17YYGSpslD0YqZWnZ7Q+EUb5RVM+pN3oQ030629G6+VWS1/ebTo36oot4cFbqDhTC21a2bcVHyA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1771247041;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=BLlh5tMdDTOTAyn9YXs6jsTluhyEk/QVY+om/HYDdXE=; 
- b=ZlUC/2ufWjGMMl2ldxRbthgi1flf0CzzrE4/v7aIbmaaFtLfdRT7cmUjVC1qZw4BaiBEW/dqAeGBgOkOkIshe40sd+6cumfi6FN6IXsT5Hr1MD/gBgzM7fdKwFyIAeZm9WTdlauOfOdebp/ME/Z8EDfIUwAjLvIxzzOhE1qmB5g=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1771247041; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=BLlh5tMdDTOTAyn9YXs6jsTluhyEk/QVY+om/HYDdXE=;
- b=TpI+HGfux3uM6fju3juoVVawKSOOV0jpAVViySf0ijaf9LfryH8gpsfApa/jfs0T
- njFbv9/MpcCNi+e8oDL4aWVI2hIGx8j144YeGxhN3L1qbcrC4xWk/HQtHdGy0hP5Gw/
- cA/WBxu0VwXUvswYeqwv2/Pu6eSbpDxt2oqfnkSo=
-Received: by mx.zohomail.com with SMTPS id 1771247040667463.91219852265397;
- Mon, 16 Feb 2026 05:04:00 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Mon, 16 Feb 2026 14:01:34 +0100
-Subject: [PATCH v8 20/20] drm/bridge: Document bridge chain format
- selection
+X-Greylist: delayed 597 seconds by postgrey-1.36 at gabe;
+ Mon, 16 Feb 2026 13:06:10 UTC
+Received: from fhigh-a6-smtp.messagingengine.com
+ (fhigh-a6-smtp.messagingengine.com [103.168.172.157])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFA3C10E39A;
+ Mon, 16 Feb 2026 13:06:10 +0000 (UTC)
+Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
+ by mailfhigh.phl.internal (Postfix) with ESMTP id 1B6B4140018A;
+ Mon, 16 Feb 2026 07:56:13 -0500 (EST)
+Received: from phl-imap-02 ([10.202.2.81])
+ by phl-compute-04.internal (MEProxy); Mon, 16 Feb 2026 07:56:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+ :cc:content-transfer-encoding:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to; s=fm2; t=1771246573;
+ x=1771332973; bh=L2fHeGjfwbnAs6/88xqNLW9dwkh7TGnJ+IYK71dxH0w=; b=
+ nyBlN9vAr0Ri60k+o09Pvq4MAnyxPhV3AHD8hy37mGT63tlwgqKhK1xaI84d4D/7
+ aG0kukRCnAeZdavxrIBSz3CU5E/aj7Fkj47iY/B4ABaXg6Npkxb5KYu/CXIDzSRb
+ l4E5j4B4PZrGOI9n7phO6zzC+kscb/IFQGgijL1HCJvxDfWymCA2lPPxX3tVXoRv
+ 9RiU0MUxP+J6R4ThqHiKPIaw0NVjf6AGzIUtaE+RAprKrYvTkUOPvqbV3J8mNQhL
+ nl+bmC/y73vaX2IiNnj2yzgAep1zlETEJke4Alz+GIKJXeCmCEeKPg8JVV9nBZtt
+ cvNJVDmxWAlk2i3fn77JJQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:content-type:date:date:feedback-id:feedback-id
+ :from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1771246573; x=
+ 1771332973; bh=L2fHeGjfwbnAs6/88xqNLW9dwkh7TGnJ+IYK71dxH0w=; b=t
+ 3MArVV7kFx5oAjXVa2MSw5rMH7wgMzw3WS5FCAdy0NFG9ZAtrrEmrcdJ3eOfMlB8
+ oiff89v1QAhbt8L5BF9KBP8qdQTDesDpOLnlM0GzM/rB52BUozEyx8+9xlr2atPK
+ 6/kRUA3HtMz+rJgsyJcKh9q6nbnlnup2dRB4txEGZoUOVgLvJ8rOcTc7o9l4xpS4
+ 6pWq2c/uXEFMs2HUMJuaOGegOBtkcw/TUeL0nduL5lsMc6jRaF3s7tU8p84ojAg6
+ CLeusLNGjKSEV35ZCqrcVxmEJg2H0LE5mW8NDMWE5jGhUsvYZ6XldDVr/t7F9WhD
+ ka0LdzuFxvoQmGK0WovkA==
+X-ME-Sender: <xms:7BOTabZl4olFUi6r6hzO-0mOMupxPLXqD7HZ8HzYV6t6Qqsp4jnFTw>
+ <xme:7BOTaVOmHZAHArn2jHP36q8oLYYmgBPsedIgkeXJnNb-GJWwyIbngATKLyKSlXGC3
+ 8KPoSgMRooFbalcfY5TsgsSsFK_GoHnl1l13f7Zop8JIPxuOXfFL9k>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddvudeileefucetufdoteggodetrf
+ dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+ rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+ gurhepofggfffhvfevkfgjfhfutgfgsehtqhertdertdejnecuhfhrohhmpedftehrnhgu
+ uceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrthhtvg
+ hrnhepvdfhvdekueduveffffetgfdvveefvdelhedvvdegjedvfeehtdeggeevheefleej
+ necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnh
+ gusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohepudejpdhmohguvgepshhmthhpohhu
+ thdprhgtphhtthhopehsihhmohhnrgesfhhffihllhdrtghhpdhrtghpthhtoheprghirh
+ hlihgvugesghhmrghilhdrtghomhdprhgtphhtthhopegurghfnhgrrdhhihhrshgthhhf
+ vghlugesihhnthgvlhdrtghomhdprhgtphhtthhopehfrhgrnhgtohhishdrughughgrsh
+ htsehinhhtvghlrdgtohhmpdhrtghpthhtohephhhimhgrlhdrphhrrghsrggurdhghhhi
+ mhhirhgrhiesihhnthgvlhdrtghomhdprhgtphhtthhopehmrghtthhhvgifrdgruhhlug
+ esihhnthgvlhdrtghomhdprhgtphhtthhopehmrghtthhhvgifrdgsrhhoshhtsehinhht
+ vghlrdgtohhmpdhrtghpthhtoheprhhoughrihhgohdrvhhivhhisehinhhtvghlrdgtoh
+ hmpdhrtghpthhtoheprghrnhgusehkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:7BOTaTw3tFbHK7bqLIPUhHEEMejvd7XTxUlEJck5vQXDrACtnBOmcA>
+ <xmx:7BOTaV9FUeof93fgHQBFKf8ruVWECSHHY1DBtpm_Znkkqt3goFq26w>
+ <xmx:7BOTaT-WQSt_oxq8xFVKRxwrWx0yvbTpwa8k4z8fTwi4ypNRcWvodA>
+ <xmx:7BOTaYcuJhnJM-q6VBPduOsTc1efyEHfVGY9kOrJ1zHBYc4qsxUPkA>
+ <xmx:7ROTaSX-YGAC2IOl10B2jTYiguYoCAW5gymZ1_HHYRDeOvaYksoEtY1n>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+ id 8287C700065; Mon, 16 Feb 2026 07:56:12 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260216-color-format-v8-20-5722ce175dd5@collabora.com>
-References: <20260216-color-format-v8-0-5722ce175dd5@collabora.com>
-In-Reply-To: <20260216-color-format-v8-0-5722ce175dd5@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-doc@vger.kernel.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.14.3
+X-ThreadId: A8fugOliEBiw
+Date: Mon, 16 Feb 2026 13:55:51 +0100
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Arnd Bergmann" <arnd@kernel.org>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
+ "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "Dave Airlie" <airlied@gmail.com>, 
+ "Simona Vetter" <simona@ffwll.ch>, "Matthew Brost" <matthew.brost@intel.com>, 
+ "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+Cc: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>,
+ "Lucas De Marchi" <demarchi@kernel.org>,
+ "Matthew Auld" <matthew.auld@intel.com>,
+ "Dafna Hirschfeld" <dafna.hirschfeld@intel.com>,
+ "Francois Dugast" <francois.dugast@intel.com>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-xe@lists.freedesktop.org
+Message-Id: <45dee0c0-f0c4-444e-a478-1e1c7212fe03@app.fastmail.com>
+In-Reply-To: <dca855eb1de92fce96f6be418c8646705564cf69.camel@linux.intel.com>
+References: <20260216121709.2345721-1-arnd@kernel.org>
+ <dca855eb1de92fce96f6be418c8646705564cf69.camel@linux.intel.com>
+Subject: Re: [PATCH] drm/pagemap: pass pagemap_addr by reference
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,90 +115,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The bridge chain format selection behaviour was, until now,
-undocumented. With the addition of the "color format" DRM property, it's
-not sufficiently complex enough that documentation is warranted,
-especially for driver authors trying to do the right thing.
+On Mon, Feb 16, 2026, at 13:32, Thomas Hellstr=C3=B6m wrote:
+> On Mon, 2026-02-16 at 13:16 +0100, Arnd Bergmann wrote:
+>> From: Arnd Bergmann <arnd@arndb.de>
+>>=20
+>> Passing a structure by reference into a function is sometimes
+>> problematic,
+>
+> Do you mean passing by *value* is problematic?
 
-Add a high-level overview of how the process is supposed to work, and
-mention what the display driver is supposed to do if it wants to make
-use of this functionality.
+Yes
 
-Reviewed-by: Maxime Ripard <mripard@kernel.org>
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- Documentation/gpu/drm-kms-helpers.rst |  6 ++++++
- drivers/gpu/drm/drm_bridge.c          | 39 +++++++++++++++++++++++++++++++++++
- 2 files changed, 45 insertions(+)
+>> =C2=A0static void xe_pagemap_destroy_work(struct work_struct *work)
+>> diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
+>> index 2baf0861f78f..74a32d0dacd8 100644
+>> --- a/include/drm/drm_pagemap.h
+>> +++ b/include/drm/drm_pagemap.h
+>> @@ -95,7 +95,7 @@ struct drm_pagemap_ops {
+>> =C2=A0	 */
+>> =C2=A0	void (*device_unmap)(struct drm_pagemap *dpagemap,
+>> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 struct device *dev,
+>> -			=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_pagemap_addr addr);
+>> +			=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_pagemap_addr *addr);
+>
+> Makes sense, although this should preferrably be
+>
+> const struct drm_pagemap_addr *addr;
+>
 
-diff --git a/Documentation/gpu/drm-kms-helpers.rst b/Documentation/gpu/drm-kms-helpers.rst
-index 781129f78b06..47c4f593cf9d 100644
---- a/Documentation/gpu/drm-kms-helpers.rst
-+++ b/Documentation/gpu/drm-kms-helpers.rst
-@@ -181,6 +181,12 @@ Bridge Operations
- .. kernel-doc:: drivers/gpu/drm/drm_bridge.c
-    :doc: bridge operations
- 
-+Bridge Chain Format Selection
-+-----------------------------
-+
-+.. kernel-doc:: drivers/gpu/drm/drm_bridge.c
-+   :doc: bridge chain format selection
-+
- Bridge Connector Helper
- -----------------------
- 
-diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-index 36a5158f0554..93ef52c37e2c 100644
---- a/drivers/gpu/drm/drm_bridge.c
-+++ b/drivers/gpu/drm/drm_bridge.c
-@@ -198,6 +198,45 @@
-  * driver.
-  */
- 
-+/**
-+ * DOC: bridge chain format selection
-+ *
-+ * A bridge chain, from display output processor to connector, may contain
-+ * bridges capable of converting between bus formats on their inputs, and
-+ * output formats on their outputs. For example, a bridge may be able to convert
-+ * from RGB to YCbCr 4:4:4, and pass through YCbCr 4:2:0 as-is, but not convert
-+ * from RGB to YCbCr 4:2:0. This means not all input formats map to all output
-+ * formats.
-+ *
-+ * Further adding to this, a desired output color format, as specified with the
-+ * "color format" DRM property, might not correspond to what the display driver
-+ * should set at its output 1:1. The bridge chain it feeds into may only be able
-+ * to reach the desired output format, if a conversion from a different starting
-+ * format is performed.
-+ *
-+ * To deal with this complexity, the recursive bridge chain bus format selection
-+ * logic starts with the last bridge in the chain, usually the connector, and
-+ * then recursively walks the chain of bridges backwards to the first bridge,
-+ * trying to find a path.
-+ *
-+ * For a display driver to work in such a scenario, it should read the first
-+ * bridge's bridge state to figure out which bus format the chain resolved to.
-+ * If the first bridge's input format resolved to %MEDIA_BUS_FMT_FIXED, then its
-+ * output format should be used.
-+ *
-+ * Special handling is done for HDMI as it relates to format selection. Instead
-+ * of directly using the "color format" DRM property for bridge chains that end
-+ * in HDMI bridges, the bridge chain format selection logic will trust the logic
-+ * that set the HDMI output format. For the common HDMI state helper
-+ * functionality, this means that %DRM_COLOR_FORMAT_ENUM_AUTO will allow
-+ * fallbacks to YCBCr 4:2:0 if the bandwidth requirements would otherwise be too
-+ * high but the mode and connector allow it.
-+ *
-+ * For bridge chains that do not end in an HDMI bridge,
-+ * %DRM_COLOR_FORMAT_ENUM_AUTO will be satisfied with the first output format on
-+ * the last bridge for which it can find a path back to the first bridge.
-+ */
-+
- /* Protect bridge_list and bridge_lingering_list */
- static DEFINE_MUTEX(bridge_lock);
- static LIST_HEAD(bridge_list);
+Good point, I'll send a v2 with both changes after some more testing.
 
--- 
-2.53.0
-
+     Arnd
