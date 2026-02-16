@@ -4,174 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85293E7BDB8
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Feb 2026 12:52:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 451E8E7BDB4
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Feb 2026 13:01:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43DE710E35D;
-	Mon, 16 Feb 2026 12:52:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC37B10E19E;
+	Mon, 16 Feb 2026 13:01:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BpcTR2na";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="Y6IHf9gq";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E438710E35D
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Feb 2026 12:52:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771246328; x=1802782328;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=JQiPJGrQ5clzHfqq1lwcEn5ykbLUez6Lysjp5UOgzzQ=;
- b=BpcTR2naFapPiOPbNubx9O2MkwY0lMYBiDKve+WfC+adsffZS/SVUZIr
- S9PkuCIqEqPQI2wpjKaSytjyoLsVSKNTW90lTDz35o0II5GnhdCm97qNm
- G4c0Wgt8zvyfnLagpzXue0Q5Xb90xJbfbz1mHBKQ7ddFEC9PBq9u1E4sl
- Sx7NvbSswU9y17PM6SHmCTqRAhNVj4ML1kFQerblF2Zk9U1LdJ+2Ekj/X
- VCYSMwjXlcy3Q3UTEzpoE0m78b4XGXkARMh9zmJvVZNL9rFQONOnoebmv
- YRkS6Bo/UV4mD9Nb4KwrNoNCsVI4P0RdI3AX92awMwK5lQdM/MNvtfeMY A==;
-X-CSE-ConnectionGUID: RMRPCsuLQJOChoXUqaimIg==
-X-CSE-MsgGUID: VlvW8fR+TZ+PmAYHfQWdvw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11702"; a="83048885"
-X-IronPort-AV: E=Sophos;i="6.21,294,1763452800"; d="scan'208";a="83048885"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2026 04:52:07 -0800
-X-CSE-ConnectionGUID: pK75mKwYRC6sArsqf9eakw==
-X-CSE-MsgGUID: DUbI5dYPQHyZ4stQ98ia9w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,294,1763452800"; d="scan'208";a="217601256"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2026 04:52:07 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Mon, 16 Feb 2026 04:52:07 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Mon, 16 Feb 2026 04:52:07 -0800
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.13) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Mon, 16 Feb 2026 04:52:06 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JgkJXhO/rKS/dryqvCDf4qHeAuft3Dwfqu2k70lsIkZfdCjZLwEa8woIlg/F4+l5dm8ODm/3Icn3GS1nt74XHLndxrrV1vKYLshsgp/EXvXsQXCHAk+J1BY6gENxSXXBbFL7N3ieBs3tCDfOAnjYxfMoo2rt6oNOd8Qfzov0XIKR8U6xqIgViPhdGeYuoe0bXcjGYal7QpisxNvUoiDXcsn8TGL5Xjgr3Mzfn2GzTo3QIHaV02fEDNDJKnJx/U+JG+/ALbZY8ZXgcxOEjf9Mj0MSI58yS0tiDzCb+whDm0U/+nFqsIpGNLUTKLunEc3NSqWrQ66z/5fSTNyN/nDuJQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=h9SoGSI5K5X7tsfbxCwtHa93gVy3yh/zjxWgH7xsxus=;
- b=g4eDHSD3n8KPht/OXl/7j4E1srQv9UhqYtopVNh45Q/vRwfAyDkAblL9cdiA1ryOKxixVZjsxFpmEM/Tk3QLIc9KWfWirOcpSZMAXGLEoTqWojOy8EwkK4koKo+BXq8k073gDlV4GoTlEbBrJ5aUyqHnIexs1XDma1to9c2Q1kulSTTpuQAf/NC1aehDVIX/ixHcvrViokqp3nK3ymiYNe+Sth27hJ3Z12mJ5Se9SLN9KbjIV9XmIgBxiHosxE8D9k9jvhptXrzjbuUOSv2r6OwzMd7RGNPc0m4GAOrfIcz2svY0XO4LlpAP0AIlqFhl8gcAwXB/haL9KU2Tw4uEtA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com (2603:10b6:930:78::8)
- by SJ2PR11MB8297.namprd11.prod.outlook.com (2603:10b6:a03:539::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.16; Mon, 16 Feb
- 2026 12:52:05 +0000
-Received: from CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::1171:db4d:d6ad:3277]) by CY8PR11MB7828.namprd11.prod.outlook.com
- ([fe80::1171:db4d:d6ad:3277%3]) with mapi id 15.20.9611.013; Mon, 16 Feb 2026
- 12:52:04 +0000
-Date: Mon, 16 Feb 2026 13:51:57 +0100
-From: Francois Dugast <francois.dugast@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <daniele.ceraolospurio@intel.com>,
- <michal.wajdeczko@intel.com>
-Subject: Re: [PATCH v2 2/2] drm/xe: Remove H2G reads in CT send path in
- non-debug builds
-Message-ID: <aZMS7Qg5AvFRE_Zb@fdugast-desk>
-References: <20260213211625.3117729-1-matthew.brost@intel.com>
- <20260213211625.3117729-3-matthew.brost@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260213211625.3117729-3-matthew.brost@intel.com>
-Organization: Intel Corporation
-X-ClientProxiedBy: DU2PR04CA0319.eurprd04.prod.outlook.com
- (2603:10a6:10:2b5::24) To CY8PR11MB7828.namprd11.prod.outlook.com
- (2603:10b6:930:78::8)
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A5C489C29;
+ Mon, 16 Feb 2026 13:01:52 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1771246901; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=aqwflEEqWy+UMtIwpzANuwSiv/fLNKhEw8pxOm1tDaG6dPBMIUKpOYyvq+6q//wIVHMuzwABvO8+e92NTSF2ShzoIpNTqJ47+LifiE7ufrnWzD4VV00rzhziKg1fu4qs3wDiSFps4X2Xk1Yc6cEIjPeWSJy99ccmkYIp99rWRsY=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1771246901;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=kBBFaFSoSfH60LrLCQNLPElgnZby6jwc9r08YJz1XEg=; 
+ b=K4vkoHn+2bCD52QahLPcFtyJOvXUZjBFm5jkr/l1O/kjMAN4YcS2a4GRnn4t2rD3vJNWyb9iAwyCpiCTzvYZo7Z5vOdkt3+Ev3R3WK64BKAqJJBhkQ24H0+1nSMXKC8BK9BP2ViRLr4mahcmXIc3+fFtv/tqc57HfK2e4E3UxVc=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1771246901; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+ bh=kBBFaFSoSfH60LrLCQNLPElgnZby6jwc9r08YJz1XEg=;
+ b=Y6IHf9gqryBIEG5boznDt/QMrI6NqbAmtlqrqT3J08sgqSINsNPnMGq3N/wysFw1
+ yGySh5/QKpwPm5fuZMCORSDUTwzGv6FMVPGqO74mxPRdd9r5IxI+FWiXDRPtY9OB5oX
+ NmN4kMAm7FbgJY29tRloIKKGACyukrEEIN+L6lhk=
+Received: by mx.zohomail.com with SMTPS id 1771246898996134.97705115586757;
+ Mon, 16 Feb 2026 05:01:38 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: [PATCH v8 00/20] Add new general DRM property "color format"
+Date: Mon, 16 Feb 2026 14:01:14 +0100
+Message-Id: <20260216-color-format-v8-0-5722ce175dd5@collabora.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY8PR11MB7828:EE_|SJ2PR11MB8297:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9532e848-ccc2-422e-2ec5-08de6d5a2fa5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?1A0BtRIU+bJxaQ4dnunv9R6JwqSb8TGHUcXfZkgjEyfcxc3uE9XNcEfznV?=
- =?iso-8859-1?Q?uLGjlLYBbmbdH7RsQf7TpWhUTY9gHe51NRRPvTQyvArRYCk9MsPl7y3Gro?=
- =?iso-8859-1?Q?3WDIVjCvlmWEb/5Q0F/JaGunqVMfI5pFwT0+Usy4zfRdGCnuBxqTiTpp5f?=
- =?iso-8859-1?Q?6Pm/WY33CrKDBP3bcTaANXV/mY4DrSo4NTNiNPWkr4UBS3wKLgB0K5YFZX?=
- =?iso-8859-1?Q?D5GrXNPNZnI4Bzg3PlldfCuiiYrmy0JREaSm18dNpaF1+PSG1HELuyrz+x?=
- =?iso-8859-1?Q?Z6FVYtnJFszvkQv2qluxBs4OswIpu0f6eU5ZJzaTlB5gckuxnPI0OpQ0gF?=
- =?iso-8859-1?Q?zuk/5nuwTfmxEWti5e1OFNO3qVF3X4lcR4kM8aPGrUPsoVobvdUVG+T5Nl?=
- =?iso-8859-1?Q?fi5GsJ5j8lD++b5+2o116Z5yyh6Bu2sXC84sl2QzpOqBSPRTWoUV3PTs0T?=
- =?iso-8859-1?Q?VjpFZaPog9gVNo+neuq0agI4dzRnmawoQjWTiAtalbIB5YEiv1bcDwF5Y7?=
- =?iso-8859-1?Q?StGF/prfk+igCaSzwyxlS/nInoCG5mHuC47jrv7ufhsHbb6drnZWCdukQO?=
- =?iso-8859-1?Q?pFa9mbJ7wcw8dV0YUT9MhUi5wNwrXc5shO1IxJ6ge+6IvHam5bpM9BPhaZ?=
- =?iso-8859-1?Q?ptm8uK9IIocYMx4TTlAamUdMK7uHp9uOru9fnZEJKB6IZ5D0ZQE7ftCtQ+?=
- =?iso-8859-1?Q?hHzsDnNO2zIecC0pRmlckyW/G/tTXyzfe71/wfP8hHxEpsPQwgvbNDr6KZ?=
- =?iso-8859-1?Q?nwk48XHSHzJLaErvUSGQzSBznpSkU19Flhc3IGGSxHnucLGYFkfDwfvHdS?=
- =?iso-8859-1?Q?5R7DSMvkEMSidudqO1AxMAdORoTntwCuQvQNIT3zRSan9saS8EGOD2NHiy?=
- =?iso-8859-1?Q?e9GF4/h3rsTJkyxaQarH6+Cp370qcKst3MWmsjTj8dEKw0k6lxZ6yJ7xiz?=
- =?iso-8859-1?Q?2yAGm9ziC189FP8vzo8mWp3sX0lQvqdh914h0BMVXJCpYO7+T/4EAZ/L6r?=
- =?iso-8859-1?Q?7VgTO9SjAjG/jkHAjkp5s8Fb1u7aZAbGe/EJvCPBR7uKYhPULhEdRLxOJ/?=
- =?iso-8859-1?Q?9YDRaaa2sdJLTebSzWLSGH5zW598uLjb/Q41mQinagnkbMKgDjrwr7iRBo?=
- =?iso-8859-1?Q?/uAbtz+CL0CD5eGh/eLc4f6Y+G4sVnPI3ylK3t46rr9eyiU2vwzUcqZcPU?=
- =?iso-8859-1?Q?3EyiAHZdQrvnVlQMjyFJ7wPyt/xuWskZQLWqOTs3qjGiMi1M8Q0yVUjRRT?=
- =?iso-8859-1?Q?E7pRCLot057gwQuE3AYoJCiqqm3uw5ADW4ESYIvKIiuF29CliKFKBvDwUT?=
- =?iso-8859-1?Q?FqbCWoaZfFm6RI+UW3BxWJKItEJVvrfsDbDJM+Prqp9s8Dfbjq6Nm/1k0c?=
- =?iso-8859-1?Q?+bNlqrsSrGK35oXAtYk0pODXJGDhmJKkUCpB1A+g3WX8lqiTnzeaA1enI1?=
- =?iso-8859-1?Q?I9KOPh710WpPCCAIDCMjhWx0Ll6AhdJkgn2aPai0QCaSxm2hH7T4atPHi7?=
- =?iso-8859-1?Q?kXymcO7K0MItNfzsrQHiK2iow7LG1tuQJZcErbZo4Fvf1v2tuM4IWTzQsa?=
- =?iso-8859-1?Q?HCE278LR5aPa4McTeC1Sb0kfC0/dkuZPfwBlGXp5QZP+QmGcrt3CM/Nyk9?=
- =?iso-8859-1?Q?+4oboZeFTz6UQ=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR11MB7828.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?YdbW10j61rgddJbrPdcmnSCb4xX8ODY1t1pd83yZ+Bxi6SV2mFiWQx1uk2?=
- =?iso-8859-1?Q?QVLuLrdKLq2bW+eJApAg6zDoKv7w0b820/24DnpTguNaDEGY+f5reiBS2n?=
- =?iso-8859-1?Q?ANv4F1jPF+fgfCC//F/hHc77HNd6lEMlPKnoznnOJ1KYGvG1tC3uP7kkHi?=
- =?iso-8859-1?Q?AAMd6Zc3KrsOzTrGteASG4oGrsje6tUdhBGrlRKR0V4GxmkiYJE5pqYeat?=
- =?iso-8859-1?Q?5enDml+fruYIvzU7t9uGZsuWM8QniiPur+1RoIEGbfmUESVcMWOdchk9FM?=
- =?iso-8859-1?Q?TUwLbo1yi832VLIO7q2f5/69lLqyMgS07SPcaNZnOpwpPFAeReclOj6C0m?=
- =?iso-8859-1?Q?1cYtqEqOQ8NAXNIG2ZscHKQK6TsTuG9RdSAKMGhOcNV7NeEGjiIcb/prbz?=
- =?iso-8859-1?Q?kyvetLabrftGtjbci/mf2ty0UJ1Ahdb0egryAqLvuTMAlIo4P0fv3e1hPU?=
- =?iso-8859-1?Q?mVbKgNWZ5aYEiv9xYznH4Qc46M5WOWJLVs43+OMNswtTu2qMilRzTY3dvX?=
- =?iso-8859-1?Q?xP8tUnkqsMt5lpDDINIHbzQ98fIbHQzITu4Q89xQW5puXg8Of/wYXC1eP6?=
- =?iso-8859-1?Q?ScWSgbXoiWKZAif6uSJWutrKmi8GZGgXF07KhEs+MQwDEUM6kISKELEM6/?=
- =?iso-8859-1?Q?sqbZHQffY3MMB+tW6GhJhp1bbL7Mf1Q9HedUl+Sx+PqEEexjvqNhGtUXGO?=
- =?iso-8859-1?Q?ThCWTyC11ksj+25zbFUOD0f52cTy6URHwHjbBDdGM3IZ86x7eCHmz3FxIq?=
- =?iso-8859-1?Q?gXDtBiW0oOi7GJgzRtv12+WluwvEwUcqMP1jqCZI9frnNPSlPTw9H9vWUy?=
- =?iso-8859-1?Q?iEsOlgUJJFQyr9zac52q9sjCmXSoH52vDU7t/TCddMcVMzM6/DJbr/+MaB?=
- =?iso-8859-1?Q?+9IvrjGibsjrEHNSgHwLLVEW1lkdYI1S2F57/By1dFxWfo1tO7qcZWGmmh?=
- =?iso-8859-1?Q?mezlpmtwxir2jqijWBfkQ18ytAeMXEhvqHyDYEaw5askQpoY2Le3lhpptV?=
- =?iso-8859-1?Q?XK3Kx6x3zbu0FvOHE5KCR6oPqFNm+8Y3soAGXOCVExeLF6W1Gli++0BTQM?=
- =?iso-8859-1?Q?Pf/rMI1XIzpfr6v1eiOuPI56bi5Hw6Gzv1SFj09DjwDk5DKxoglvkB/Trs?=
- =?iso-8859-1?Q?70vUhXwRE64a6+l2s70UgICLsMUbQQANo4EKKjA2HWV2DV6BC1sDcmEZvk?=
- =?iso-8859-1?Q?Ov+uF7KrHfJIYK5xdP30Nx/+aPf1SrOUTjwbaDbUp/bqItF+9RroneDst5?=
- =?iso-8859-1?Q?NIC0XviBl0HyyeqsV0g0vWfXq3TeYQWGzSwhfYo14t1CiFW48SBiSRGTC3?=
- =?iso-8859-1?Q?af4B/486TDHT1b9R6yTHWEJJ/vJST1wn9y2NkJjnqsMBjK3icmhad7yroJ?=
- =?iso-8859-1?Q?Nf0JkeuARYNRsIU2lOYKFMy99BLKarP8xYeWQjloa0HMHEJ9+2VpMEVTR3?=
- =?iso-8859-1?Q?Z7t/vUB82bKTXDjgu9KunvUwfjdFEkBlJc4c6NbUo+yrg3l6yE/toQADUE?=
- =?iso-8859-1?Q?Pd75zoaVdwnYrkZi/sSgvtGylDwxj5obKD8bzlTx27KtX9Y7N5S24lHHpK?=
- =?iso-8859-1?Q?gIMPZj5jxpHNsEJVOb/y5KHDIpwpoKUgRmMk53+GreMRzThjrDQLkGl6SN?=
- =?iso-8859-1?Q?+rHjZLDQjsnNzUOAiona1BhNiNDcFvfj2XSkS6weSYIZKziqdwQlb48H7o?=
- =?iso-8859-1?Q?N4/PH4eLagR+0O6zbGihXjYlLu8lg+UTI4nu3prYFDitkYUPn0+qgcZ9Hs?=
- =?iso-8859-1?Q?FuWNq0i7yp/2QahA4vmWpzLr+IegQjZnb/z7+l4r4Z+xjGSGDXjjAeusd3?=
- =?iso-8859-1?Q?M0+KOeWZpkMTJrauyaTX0vSNRPw0SDQ=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9532e848-ccc2-422e-2ec5-08de6d5a2fa5
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7828.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Feb 2026 12:52:04.9045 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oWi83qYpigYj6msqaOzrlYtccVKOCdGLWMqIxZyxCFCMoWtBWRGQ0PIQsaBn4LnYNIYDeu0FakxCRu1w4q0ZV8vz4d+gSpQgTtEKtmBPsWA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8297
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/33P3U7EIBAF4FdpuJbK0B/oXvkexgsogyUpywpdo
+ tn03WXrarTZeEVOyHxz5kISRoeJHKoLiZhdcuFYgnyoyDip4ytSZ0omnPEOGJd0DHOI1Ibo1UL
+ bwZryowXIhpSRU0Tr3jfu+aVkG4OnyxRR/SBsAICGiWao26HpKVCvojunOs/KPBV9VjpEVY/B3
+ 8SIb+fSa/liiVYJSwvv3XKoTCy+Oz3eXnJdOrm0hPixnZTbbWZrDyD+ts8tZZQZNIJrA5qx3fo
+ rlrtfwP783BWgb1ByC0YDwj2g/wZ6Bhx2QF8AoSUoIWA0TN8DxH+AKABaMTCjUEg27oF1XT8Bt
+ Tumw+QBAAA=
+X-Change-ID: 20251028-color-format-49fd202b7183
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Jonathan Corbet <corbet@lwn.net>
+Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-doc@vger.kernel.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ Werner Sembach <wse@tuxedocomputers.com>, 
+ Andri Yngvason <andri@yngvason.is>, Marius Vlad <marius.vlad@collabora.com>, 
+ Andy Yan <andyshrk@163.com>
+X-Mailer: b4 0.14.3
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -186,62 +95,295 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-mOn Fri, Feb 13, 2026 at 01:16:25PM -0800, Matthew Brost wrote:
-> A single VRAM read on BMG can take over 1µs. While small, this is a
-> non-trivial amount of time in a hot path. Remove the descriptor H2G read
-> (potentially a VRAM access) from non-debug builds, as this
-> error-checking code is not needed outside of debug configurations.
+Hello,
 
-About the change itself: I understand the performance benefit and this would
-make the code consistent with the 2 other reads.
+this is a follow-up to
+https://lore.kernel.org/all/20250911130739.4936-1-marius.vlad@collabora.com/
+which in of itself is a follow-up to
+https://lore.kernel.org/dri-devel/20240115160554.720247-1-andri@yngvason.is/ where
+a new DRM connector property has been added allowing users to
+force a particular color format.
 
-But the existing block under "if (IS_ENABLED(CONFIG_DRM_XE_DEBUG))" seems wrong
-because it is not just about optionally printing some debug statements, in case
-of error the function actually returns a different value if CONFIG_DRM_XE_DEBUG
-is enabled or not (goto), and this return value is used in __guc_ct_send_locked.
+That in turn was actually also a follow-up from Werner Sembach's posted at
+https://lore.kernel.org/dri-devel/20210630151018.330354-1-wse@tuxedocomputers.com/
 
-Francois
+As the number of cooks have reached critical mass, I'm hoping I'll be
+the last person to touch this particular series.
 
-> 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_guc_ct.c | 14 +++++++-------
->  1 file changed, 7 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index 6a96bea40720..f200d3ee9d22 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -939,22 +939,22 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  	u32 full_len;
->  	struct iosys_map map = IOSYS_MAP_INIT_OFFSET(&h2g->cmds,
->  							 tail * sizeof(u32));
-> -	u32 desc_status;
->  
->  	full_len = len + GUC_CTB_HDR_LEN;
->  
->  	lockdep_assert_held(&ct->lock);
->  	xe_gt_assert(gt, full_len <= GUC_CTB_MSG_MAX_LEN);
->  
-> -	desc_status = desc_read(xe, h2g, status);
-> -	if (desc_status) {
-> -		xe_gt_err(gt, "CT write: non-zero status: %u\n", desc_status);
-> -		goto corrupted;
-> -	}
-> -
->  	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
->  		u32 desc_tail = desc_read(xe, h2g, tail);
->  		u32 desc_head = desc_read(xe, h2g, head);
-> +		u32 desc_status;
-> +
-> +		desc_status = desc_read(xe, h2g, status);
-> +		if (desc_status) {
-> +			xe_gt_err(gt, "CT write: non-zero status: %u\n", desc_status);
-> +			goto corrupted;
-> +		}
->  
->  		if (tail != desc_tail) {
->  			desc_write(xe, h2g, status, desc_status | GUC_CTB_STATUS_MISMATCH);
-> -- 
-> 2.34.1
-> 
+We have an implementation in Weston at
+https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/1825 that
+adds support for this property. This patch series has been tested
+against that MR on i915 (HDMI, DP), amdgpu (HDMI, DP) and on rockchip
+(HDMI).
+
+You can also manually test this with modetest like so, but beware that
+this is a non-atomic invocation, so testing YUV420 like this will result
+in weird outcomes if only some of the modes support YUV420:
+
+  $ modetest -s 115:1920x1080-60@NV12 -w 115:'color format':4
+
+where 115 is the connector ID and '4' is the enum value for a particular
+color format.
+
+General notes on the approach taken by me: instead of silently switching
+to a different format than was explicitly requested, or even worse,
+outputting something to the sink the sink doesn't support, bubble up an
+error to userspace instead. "color format" is a "I want this" type
+property, not a "force this" type property, i.e. the kernel will respect
+the limits imposed by the hardware.
+
+I'm not sure if my drm_bridge change actually achieves what I want in a
+more complex bridge setup. I'd need to either come up with a virtual
+bridge to test these scenarios, or spend some time making a flat flex
+cable adapter for the DSI-HDMI bridge board I have here. Before I invest
+too much time into either of those, I'd like to get some feedback on
+this approach however.
+
+Things I've tested:
+- HDMI (YCbCr 4:4:4 + YCbCr 4:2:2 (8-bit) + RGB + Auto) on RK3588
+- HDMI (YCbCr 4:4:4 + YCbCr 4:2:2 (8-bit) + RGB + Auto) on RK3576
+- HDMI + DP (YCbCr 4:4:4, YCbCr 4:2:0, RGB, Auto) on Intel N97 (i915)
+  DP-MST is untested, and no longer trivially equivalent.
+- HDMI (YCbCr 4:4:4, YCbCr 4:2:2, YCbCr 4:2:0, RGB, Auto) + DP (YCbCr
+  4:4:4, RGB, Auto) on an AMD Radeon RX 550 (amdgpu). DP-MST is
+  untested.
+
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+Changes in v8:
+- Drop "drm/rockchip: vop2: Fix YUV444 output", as the original problem
+  could not be reproduced anymore, and the justification did not make
+  sense.
+- Remove the 12-bit format from "drm/rockchip: vop2: Recognise 10/12-bit
+  YUV422 as YUV formats".
+- Refactor to keep the original DRM_COLOR_FORMAT bitshifted defines
+  as-is, but introduce a new drm_color_format_enum enum.
+- Adjust conversion functions for the newly refactored enum, ensuring
+  they only return valid enum values, and only convert in directions
+  that open up no error value cans of worms.
+- Rework the property uapi code for the newly refactored enum, since
+  it no longer needs to do any bitshifting or ffs().
+- Rework all the device drivers for the new enum.
+- Rework all the tests for the refactored enum.
+- Rework the hdmi state helper for the new enum, and also make it more
+  explicit about the auto behaviour by not relying on a conversion
+  function to map AUTO to RGB, but do this in the framework itself.
+- rockchip dw_hdmi_qp: Fix the GRF value to check for color >= 0 instead
+  of color > 0, as the latter broke switching back to RGB.
+- Rebase onto a recent drm-tip. This necessitated blindly reworking some
+  of the i915 dp-mst code.
+- Drop the __maybe_unused edid test patch, as I could no longer
+  reproduce the build warnings I added it for. I blame ghosts.
+- drm_bridge tests: remove "destroyed" member from struct
+  drm_bridge_chain_priv and all associated code, as it was not used in
+  any test.
+- Link to v7: https://lore.kernel.org/r/20260121-color-format-v7-0-ef790dae780c@collabora.com
+
+Changes in v7:
+- Fix drm_bridge kunit test build failure caused by rebasing across an
+  API change.
+- Make compilers shut up about unused EDID definitions in the test
+  suites.
+- Empty line checkpatch fixes that b4 prep --check didn't catch.
+- Link to v6: https://lore.kernel.org/r/20260121-color-format-v6-0-7b81a771cd0b@collabora.com
+
+Changes in v6:
+- Checkpatch fixes
+- Add drm_bridge.c kerneldoc fix patch to b4 deps so the kernel docs
+  required for every contribution to the subsystem can be built
+- dw-hdmi-qp core has gained the atomic_get_output_bus_fmts bridge func,
+  which allows it to participate in the drm_bridge chain recursive format
+  selection code properly.
+- The Rockchip dw-hdmi-qp integration now no longer reimplements the
+  color format logic (improperly), but reads the bus format of the first
+  bridge as set by the recursive bridge format selection. If the input
+  format is FIXED, it'll use the output format. Otherwise, the input
+  format is used.
+- In the synopsys drivers, YUV422 uses the same bus format as the non-qp
+  hdmi encoder driver. Probably correcter this way. The Rockchip vop2
+  is_yuv function has been extended to recognise this format as well.
+- KUnit tests for drm_bridge chains are now included, which exercise the
+  chain's recursive bus format selection.
+- On HDMI connectors, the drm_bridge bus format selection will try to target
+  the color format that the HDMI layer came up with. This means the AUTO
+  logic is not duplicated for HDMI connectors.
+- The enum conversion function commit gained a function for converting
+  from hdmi_colorspace to drm_color_format, and its author changed as no
+  original code remains anyway. Marius is still included as a
+  Co-developer.
+- Some tests for the HDMI state helper's mode_valid have been written.
+  They are incomplete as we lack a test EDID for a 420-also mode that
+  would violate the clock constraints on RGB. I hacked one together with
+  a hex editor, but it reports a too high of a clock rate, and there's
+  no EDID editor I could find which supports these extension blocks.
+- The color_format KUnit tests have been more heavily parameterised, the
+  auto case absorbed into other tests, and the comments around them
+  rewritten.
+- Add a few paragraphs of documentation that explain the bridge format
+  selection, and how to make use of it in a display driver.
+- Link to v5: https://lore.kernel.org/r/20251128-color-format-v5-0-63e82f1db1e1@collabora.com
+
+Changes in v5:
+- Rebase onto drm-tip
+- Drop DRM_MODE_COLOR_FORMAT_* as an enum
+- Unify DRM_COLOR_FORMAT_NONE and DRM_COLOR_FORMAT_AUTO, with AUTO being
+  0. This makes conversion and general logic much easier.
+- Adjust the drm_color_format enum to not needlessly renumber the
+  existing defines, as it doesn't need to correspond to how HDMI numbers
+  them.
+- Make the DRM-to-HDMI conversion function static inline __pure, because
+  the assembly it generates is tiny, and the function is pure.
+- Don't accept nothing as the list of supported color formats for
+  registration of the property.
+- Drop the per-connector variants of the color format registration
+  function, as it's not needed.
+- drm_hdmi_state_helper: Fix mode_valid rejecting 420-only modes.
+- drm_hdmi_state_helper: Only fall back to YUV420 with
+  DRM_COLOR_FORMAT_AUTO.
+- drm_hdmi_state_helper: Remove redundant AUTO->RGB condition, as the
+  conversion already does this.
+- Add KUnit tests for hdmi_compute_config.
+- drm/bridge: Refactor bus_format_is_color_fmt and add a few more YUV422
+  formats.
+- Register the color format property in drmm_connector_hdmi_init based
+  on the supported HDMI formats passed to it. This means rockchip
+  dw_hdmi_qp no longer needs to register it.
+- amdgpu: Simplify YUV420 logic
+- amdgpu: Don't try to pick YUV444 on YUV420-only modes
+- i915: Try to make behaviour more or less the same as that of the drm
+  hdmi state helper.
+- rockchip dw_hdmi_qp: Set supported HDMI formats
+- rockchip dw_hdmi_qp: Set the right VO GRF values depending on color
+  format.
+- rockchip dw_hdmi_qp: Act on the color format property in this driver,
+  rather than in VOP2, by setting the bus_format appropriately.
+- rockchip VOP2: Can the BCSH-based implementation. BCSH isn't available
+  on all video ports of the hardware, and the code was extremely
+  suspect. Instead, plug into the existing YUV-to-RGB/RGB-to-YUV code,
+  which can be done now that the HDMI driver sets the bus format.
+- A whole bunch of Rockchip VOP2 fixes.
+- Link to v4: https://lore.kernel.org/r/20251117-color-format-v4-0-0ded72bd1b00@collabora.com
+
+Changes in v4:
+- Rebase onto next-20251117
+- Get rid of HDMI_COLORSPACE_AUTO
+- Split hdmi_compute_config change into separate patch
+- Add missing symbol export for color_format_to_hdmi_colorspace to fix
+  builds in certain configurations
+- Drop "drm: Pass supported color formats straight onto drm_bridge"
+- Make dw-hdmi-qp set the platform data's supported color formats as
+  the bridge's supported HDMI color formats
+- drm_hdmi_state_helper: pass requested color format to
+  hdmi_compute_format_bpc if set.
+- drm_bridge: limit the bus formats to those explicitly requested with
+  the color format property during the atomic bridge check call,
+  specifically in drm_atomic_bridge_chain_select_bus_fmts.
+- i915: Remove INTEL_OUTPUT_FORMAT_AUTO, as automatic format selection
+  does not need to involve the hardware state
+- i915: Deduplicate ntel_output_format_to_drm_color_format code by
+  moving it as a static inline __pure function into a shared header
+- i915: rework logic in HDMI, DP and DP-MST output config functions to
+  remove redundant locals, simplify execution flow, and return an error
+  to userspace if an explicit color_format request can't be satisfied.
+- i915: assign myself as the author and make the others Co-developers,
+  so that they don't get the blame for any of my bugs.
+- amdgpu: refactor fill_stream_properties_from_drm_display_mode to
+  improve readability and ensure that impossible color format requests
+  get bubbled up to userspace as errors
+- amdgpu: don't pick YUV444 over RGB.
+- amdgpu: assign authorship to myself, with others as Co-developers, as
+  logic was modified and the blame should fall on me
+- dw_hdmi_qp-rockchip: set the supported color formats platform data
+  member
+- rockchip: remove drm property registration for rk3066_hdmi and
+  inno_hdmi. None of the platforms that use these use vop2 as the
+  video output processor.
+- Link to v3: https://lore.kernel.org/all/20250911130739.4936-1-marius.vlad@collabora.com/
+
+Changes in v3 by mvlad compared to Andri's v2 series:
+- renamed the property to just 'color format'
+- the property is added dynamically similar to the Colorspace property
+- a key point from previous comments was that drivers should advertise
+  the color formats they support and userspace would query EDID and
+  perform an intersection from those color formats which users can
+  further use. With this patch set each driver that adds this property
+  has such list of hard-coded color formats, but fundamentally the idea
+  is that driver can query the HW and do that on its own. The
+  infrastructure is now in place to allow to do that
+- by default the 'AUTO' color format is set. With this patch series that
+  has been introduced as a fallback to RGB. Drivers could further
+  customize this behavour and could perform additional checks on the sink
+  to pick another suitable color format they'd like for AUTO
+- drm_bridge bridge code has been improved to allow initialization with
+  the same color formats list as the DRM connector property. Similarly, bpc
+  pick-up now takes the color format into consideration when deciding
+  which bpc to choose from
+- The new DRM color format re-uses HDMI_COLORPSACE enum and provides an
+  enum translations between the two to avoid touching all other drivers that
+  use HDMI_COLORPSACE enum. I believe at this point that this allows the
+  least amount of disruption and avoids a massive bike shedding around
+  that part
+- a rockchip implementation has been by my colleague Derek Foreman
+- YUV444 color format has been added in i915
+- address comment about "Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A
+  check" where aconnector might be invalid
+- Link to v2: https://lore.kernel.org/dri-devel/20240115160554.720247-1-andri@yngvason.is/
+
+---
+Andri Yngvason (1):
+      drm: Add new general DRM property "color format"
+
+Nicolas Frattaroli (18):
+      drm: Add enum conversions for drm_color_format_enum
+      drm/bridge: Act on the DRM color format property
+      drm/display: hdmi-state-helper: Act on color format DRM property
+      drm/display: hdmi-state-helper: Try subsampling in mode_valid
+      drm/i915: Implement the "color format" DRM property
+      drm/amdgpu: Implement "color format" DRM property
+      drm/rockchip: Add YUV422 output mode constants for VOP2
+      drm/rockchip: vop2: Add RK3576 to the RG swap special case
+      drm/rockchip: vop2: Recognise 10-bit YUV422 as YUV format
+      drm/rockchip: vop2: Set correct output format for RK3576 YUV422
+      drm/bridge: dw-hdmi-qp: Implement atomic_get_output_bus_fmts
+      drm/rockchip: dw_hdmi_qp: Implement "color format" DRM property
+      drm/rockchip: dw_hdmi_qp: Set supported_formats platdata
+      drm/connector: Register color format property on HDMI connectors
+      drm/tests: hdmi: Add tests for the color_format property
+      drm/tests: hdmi: Add tests for HDMI helper's mode_valid
+      drm/tests: bridge: Add KUnit tests for bridge chain format selection
+      drm/bridge: Document bridge chain format selection
+
+Werner Sembach (1):
+      drm/amd/display: Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A check
+
+ Documentation/gpu/drm-kms-helpers.rst              |   6 +
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |  88 ++-
+ .../amd/display/amdgpu_dm/amdgpu_dm_mst_types.c    |  13 +
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c       | 178 +++++
+ drivers/gpu/drm/display/drm_hdmi_state_helper.c    |  43 +-
+ drivers/gpu/drm/drm_atomic_helper.c                |   5 +
+ drivers/gpu/drm/drm_atomic_uapi.c                  |  11 +
+ drivers/gpu/drm/drm_bridge.c                       | 117 ++-
+ drivers/gpu/drm/drm_connector.c                    | 163 +++++
+ drivers/gpu/drm/i915/display/intel_connector.c     |  11 +
+ drivers/gpu/drm/i915/display/intel_connector.h     |   1 +
+ drivers/gpu/drm/i915/display/intel_display_types.h |  15 +
+ drivers/gpu/drm/i915/display/intel_dp.c            |  58 +-
+ drivers/gpu/drm/i915/display/intel_dp.h            |   4 +
+ drivers/gpu/drm/i915/display/intel_dp_mst.c        |  34 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c          |  57 +-
+ drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c     | 111 ++-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h        |   4 +
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       |  21 +-
+ drivers/gpu/drm/tests/drm_bridge_test.c            | 786 +++++++++++++++++++++
+ drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c | 300 ++++++++
+ include/drm/drm_connector.h                        | 169 ++++-
+ 22 files changed, 2136 insertions(+), 59 deletions(-)
+---
+base-commit: 61f9012482333d2ee4749de5a493993211a28671
+change-id: 20251028-color-format-49fd202b7183
+
+Best regards,
+-- 
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+
