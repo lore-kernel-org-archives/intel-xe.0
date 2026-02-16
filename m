@@ -4,103 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70BA8E7BDB4
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Feb 2026 13:06:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E4D9E7BDBA
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Feb 2026 13:08:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CCBD10E3A0;
-	Mon, 16 Feb 2026 13:06:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=arndb.de header.i=@arndb.de header.b="nyBlN9vA";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="t3MArVV7";
-	dkim-atps=neutral
-X-Greylist: delayed 597 seconds by postgrey-1.36 at gabe;
- Mon, 16 Feb 2026 13:06:10 UTC
-Received: from fhigh-a6-smtp.messagingengine.com
- (fhigh-a6-smtp.messagingengine.com [103.168.172.157])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CFA3C10E39A;
- Mon, 16 Feb 2026 13:06:10 +0000 (UTC)
-Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
- by mailfhigh.phl.internal (Postfix) with ESMTP id 1B6B4140018A;
- Mon, 16 Feb 2026 07:56:13 -0500 (EST)
-Received: from phl-imap-02 ([10.202.2.81])
- by phl-compute-04.internal (MEProxy); Mon, 16 Feb 2026 07:56:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm2; t=1771246573;
- x=1771332973; bh=L2fHeGjfwbnAs6/88xqNLW9dwkh7TGnJ+IYK71dxH0w=; b=
- nyBlN9vAr0Ri60k+o09Pvq4MAnyxPhV3AHD8hy37mGT63tlwgqKhK1xaI84d4D/7
- aG0kukRCnAeZdavxrIBSz3CU5E/aj7Fkj47iY/B4ABaXg6Npkxb5KYu/CXIDzSRb
- l4E5j4B4PZrGOI9n7phO6zzC+kscb/IFQGgijL1HCJvxDfWymCA2lPPxX3tVXoRv
- 9RiU0MUxP+J6R4ThqHiKPIaw0NVjf6AGzIUtaE+RAprKrYvTkUOPvqbV3J8mNQhL
- nl+bmC/y73vaX2IiNnj2yzgAep1zlETEJke4Alz+GIKJXeCmCEeKPg8JVV9nBZtt
- cvNJVDmxWAlk2i3fn77JJQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=1771246573; x=
- 1771332973; bh=L2fHeGjfwbnAs6/88xqNLW9dwkh7TGnJ+IYK71dxH0w=; b=t
- 3MArVV7kFx5oAjXVa2MSw5rMH7wgMzw3WS5FCAdy0NFG9ZAtrrEmrcdJ3eOfMlB8
- oiff89v1QAhbt8L5BF9KBP8qdQTDesDpOLnlM0GzM/rB52BUozEyx8+9xlr2atPK
- 6/kRUA3HtMz+rJgsyJcKh9q6nbnlnup2dRB4txEGZoUOVgLvJ8rOcTc7o9l4xpS4
- 6pWq2c/uXEFMs2HUMJuaOGegOBtkcw/TUeL0nduL5lsMc6jRaF3s7tU8p84ojAg6
- CLeusLNGjKSEV35ZCqrcVxmEJg2H0LE5mW8NDMWE5jGhUsvYZ6XldDVr/t7F9WhD
- ka0LdzuFxvoQmGK0WovkA==
-X-ME-Sender: <xms:7BOTabZl4olFUi6r6hzO-0mOMupxPLXqD7HZ8HzYV6t6Qqsp4jnFTw>
- <xme:7BOTaVOmHZAHArn2jHP36q8oLYYmgBPsedIgkeXJnNb-GJWwyIbngATKLyKSlXGC3
- 8KPoSgMRooFbalcfY5TsgsSsFK_GoHnl1l13f7Zop8JIPxuOXfFL9k>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddvudeileefucetufdoteggodetrf
- dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
- rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
- gurhepofggfffhvfevkfgjfhfutgfgsehtqhertdertdejnecuhfhrohhmpedftehrnhgu
- uceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrthhtvg
- hrnhepvdfhvdekueduveffffetgfdvveefvdelhedvvdegjedvfeehtdeggeevheefleej
- necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnh
- gusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohepudejpdhmohguvgepshhmthhpohhu
- thdprhgtphhtthhopehsihhmohhnrgesfhhffihllhdrtghhpdhrtghpthhtoheprghirh
- hlihgvugesghhmrghilhdrtghomhdprhgtphhtthhopegurghfnhgrrdhhihhrshgthhhf
- vghlugesihhnthgvlhdrtghomhdprhgtphhtthhopehfrhgrnhgtohhishdrughughgrsh
- htsehinhhtvghlrdgtohhmpdhrtghpthhtohephhhimhgrlhdrphhrrghsrggurdhghhhi
- mhhirhgrhiesihhnthgvlhdrtghomhdprhgtphhtthhopehmrghtthhhvgifrdgruhhlug
- esihhnthgvlhdrtghomhdprhgtphhtthhopehmrghtthhhvgifrdgsrhhoshhtsehinhht
- vghlrdgtohhmpdhrtghpthhtoheprhhoughrihhgohdrvhhivhhisehinhhtvghlrdgtoh
- hmpdhrtghpthhtoheprghrnhgusehkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:7BOTaTw3tFbHK7bqLIPUhHEEMejvd7XTxUlEJck5vQXDrACtnBOmcA>
- <xmx:7BOTaV9FUeof93fgHQBFKf8ruVWECSHHY1DBtpm_Znkkqt3goFq26w>
- <xmx:7BOTaT-WQSt_oxq8xFVKRxwrWx0yvbTpwa8k4z8fTwi4ypNRcWvodA>
- <xmx:7BOTaYcuJhnJM-q6VBPduOsTc1efyEHfVGY9kOrJ1zHBYc4qsxUPkA>
- <xmx:7ROTaSX-YGAC2IOl10B2jTYiguYoCAW5gymZ1_HHYRDeOvaYksoEtY1n>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
- id 8287C700065; Mon, 16 Feb 2026 07:56:12 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+	by gabe.freedesktop.org (Postfix) with ESMTP id 530CB10E0A0;
+	Mon, 16 Feb 2026 13:08:28 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 191DD10E0A0;
+ Mon, 16 Feb 2026 13:08:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8635846805381495124=="
 MIME-Version: 1.0
-X-ThreadId: A8fugOliEBiw
-Date: Mon, 16 Feb 2026 13:55:51 +0100
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Arnd Bergmann" <arnd@kernel.org>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>,
- "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "Dave Airlie" <airlied@gmail.com>, 
- "Simona Vetter" <simona@ffwll.ch>, "Matthew Brost" <matthew.brost@intel.com>, 
- "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Cc: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>,
- "Lucas De Marchi" <demarchi@kernel.org>,
- "Matthew Auld" <matthew.auld@intel.com>,
- "Dafna Hirschfeld" <dafna.hirschfeld@intel.com>,
- "Francois Dugast" <francois.dugast@intel.com>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- intel-xe@lists.freedesktop.org
-Message-Id: <45dee0c0-f0c4-444e-a478-1e1c7212fe03@app.fastmail.com>
-In-Reply-To: <dca855eb1de92fce96f6be418c8646705564cf69.camel@linux.intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/pagemap=3A_pass_pagemap?=
+ =?utf-8?q?=5Faddr_by_reference?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arnd Bergmann" <arnd@kernel.org>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 16 Feb 2026 13:08:27 -0000
+Message-ID: <177124730707.255575.15604108651112577359@a3b018990fe9>
+X-Patchwork-Hint: ignore
 References: <20260216121709.2345721-1-arnd@kernel.org>
- <dca855eb1de92fce96f6be418c8646705564cf69.camel@linux.intel.com>
-Subject: Re: [PATCH] drm/pagemap: pass pagemap_addr by reference
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20260216121709.2345721-1-arnd@kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,37 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Feb 16, 2026, at 13:32, Thomas Hellstr=C3=B6m wrote:
-> On Mon, 2026-02-16 at 13:16 +0100, Arnd Bergmann wrote:
->> From: Arnd Bergmann <arnd@arndb.de>
->>=20
->> Passing a structure by reference into a function is sometimes
->> problematic,
->
-> Do you mean passing by *value* is problematic?
+--===============8635846805381495124==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yes
+== Series Details ==
 
->> =C2=A0static void xe_pagemap_destroy_work(struct work_struct *work)
->> diff --git a/include/drm/drm_pagemap.h b/include/drm/drm_pagemap.h
->> index 2baf0861f78f..74a32d0dacd8 100644
->> --- a/include/drm/drm_pagemap.h
->> +++ b/include/drm/drm_pagemap.h
->> @@ -95,7 +95,7 @@ struct drm_pagemap_ops {
->> =C2=A0	 */
->> =C2=A0	void (*device_unmap)(struct drm_pagemap *dpagemap,
->> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 struct device *dev,
->> -			=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_pagemap_addr addr);
->> +			=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_pagemap_addr *addr);
->
-> Makes sense, although this should preferrably be
->
-> const struct drm_pagemap_addr *addr;
->
+Series: drm/pagemap: pass pagemap_addr by reference
+URL   : https://patchwork.freedesktop.org/series/161644/
+State : success
 
-Good point, I'll send a v2 with both changes after some more testing.
+== Summary ==
 
-     Arnd
+CI Bug Log - changes from xe-4561-eac0d1b8d00bd336f2db6f0a45f6c35cdac374bc_BAT -> xe-pw-161644v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 13)
+------------------------------
+
+  Missing    (1): bat-adlp-7 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-161644v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [TIMEOUT][1] ([Intel XE#6506]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4561-eac0d1b8d00bd336f2db6f0a45f6c35cdac374bc/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161644v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+
+
+Build changes
+-------------
+
+  * Linux: xe-4561-eac0d1b8d00bd336f2db6f0a45f6c35cdac374bc -> xe-pw-161644v1
+
+  IGT_8753: 8753
+  xe-4561-eac0d1b8d00bd336f2db6f0a45f6c35cdac374bc: eac0d1b8d00bd336f2db6f0a45f6c35cdac374bc
+  xe-pw-161644v1: 161644v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161644v1/index.html
+
+--===============8635846805381495124==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/pagemap: pass pagemap_addr by reference</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161644/">https://patchwork.freedesktop.org/series/161644/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161644v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161644v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4561-eac0d1b8d00bd336f2db6f0a45f6c35cdac374bc_BAT -&gt; xe-pw-161644v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 13)</h2>
+<p>Missing    (1): bat-adlp-7 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-161644v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@abstime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4561-eac0d1b8d00bd336f2db6f0a45f6c35cdac374bc/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161644v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4561-eac0d1b8d00bd336f2db6f0a45f6c35cdac374bc -&gt; xe-pw-161644v1</li>
+</ul>
+<p>IGT_8753: 8753<br />
+  xe-4561-eac0d1b8d00bd336f2db6f0a45f6c35cdac374bc: eac0d1b8d00bd336f2db6f0a45f6c35cdac374bc<br />
+  xe-pw-161644v1: 161644v1</p>
+
+</body>
+</html>
+
+--===============8635846805381495124==--
