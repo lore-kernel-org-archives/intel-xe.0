@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 748A3E81A30
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Feb 2026 14:52:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82B84E81A2B
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Feb 2026 14:52:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BE8010E19A;
-	Mon, 16 Feb 2026 14:52:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43AB510E13F;
+	Mon, 16 Feb 2026 14:52:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hwoqxmzz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V9f2kfB5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4189110E19A
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Feb 2026 14:52:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9924910E13F
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Feb 2026 14:52:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771253570; x=1802789570;
+ t=1771253573; x=1802789573;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dRYskaSul2NjgpvcivvwC8fbSxS8U1jZad6VcUB6gMg=;
- b=hwoqxmzzJs1pGYC0kmkazt6R5ntO5/+HjTea9tgpPJRd8IRonI786LiR
- mFPbKVffTy1SArjAH6Sy15mjJtFzUgLszluVqCqyQNzcB+MW7J+IidU/a
- 4spBXslw3/xLXQm/pECyidUGhV/MLSDH/sU3t2BT7zSeAPnmgE7QRwQtT
- vdv8/Izbuc21b6+StxAofz5qbAILToOkrl1iutS2XKTS0vB5t431ncx2V
- q/foEqzldKQbkGnjksIjc9FtvzgCHVpfqU3obEkwCYmz/ZPsnYM+B8u+f
- pFhjUbDVHHmmpzmr/BqKOTkBgAaAMUXsSLtCSiKELQ9F7lA78AaeQIAyT Q==;
-X-CSE-ConnectionGUID: 9hPWaQZpREaK1u58a066/w==
-X-CSE-MsgGUID: x2YVbovYRky/cWCh8FBvOQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11702"; a="82663117"
-X-IronPort-AV: E=Sophos;i="6.21,294,1763452800"; d="scan'208";a="82663117"
+ bh=rYvo3qbhBcTi+QJiQS1OkDLXQH9XRRzSGmJoR8rFBKY=;
+ b=V9f2kfB5GCL7femGnOFzWIYC8EuKRBEw1oVlV3zCUr18CFVsZSmVBxOW
+ dB0fkyms3tDz+9fbO+I1RuuczQBNvPBPo8ocEUu1ZeXnNnSXLhQ2RAw0b
+ vIodA5Nu4Co1tWV0DLSjsZuhuwiXRNRgHTnp8lfg7DWoP0mxAGNfcED4N
+ 0pG8f50y8/753kAKo1F1kPH0LetcpmkmFOJdN+3dkfUYNtYuOFy+wdO22
+ Z2O/y2oyySha3Jq1R+Q1TFU0r+X/eh3m1twyim4R8Wa1rpRMjgKqPSfwj
+ h0yq5oD9kSz2Wn2LHQa53KQQnc8pCUZdE6nNvx4q1w/B8VPSNLcFC+Jpu A==;
+X-CSE-ConnectionGUID: abIbrLLVSa6ZTwggTL85sw==
+X-CSE-MsgGUID: JzCX+pQOTTOY1rpvKOS9NQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11702"; a="82663125"
+X-IronPort-AV: E=Sophos;i="6.21,294,1763452800"; d="scan'208";a="82663125"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2026 06:52:50 -0800
-X-CSE-ConnectionGUID: HkwULX1hScK7FfdlHXXZwg==
-X-CSE-MsgGUID: bnIY96xGTzehjMGWLEpBnw==
+ 16 Feb 2026 06:52:53 -0800
+X-CSE-ConnectionGUID: QXFgqGnHSYe5D/2czVjqCw==
+X-CSE-MsgGUID: uC5FFD4qS4+V5M6bM7F7Bw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,294,1763452800"; d="scan'208";a="211961495"
+X-IronPort-AV: E=Sophos;i="6.21,294,1763452800"; d="scan'208";a="211961502"
 Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Feb 2026 06:52:46 -0800
+ 16 Feb 2026 06:52:50 -0800
 From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
@@ -48,14 +48,13 @@ Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
  riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
  michael.j.ruhl@intel.com, paul.e.luse@intel.com,
  mohamed.mansoor.v@intel.com, kam.nasim@intel.com
-Subject: [PATCH v2 3/4] drm/xe/sysctrl: Add loopback test debugfs interface
-Date: Mon, 16 Feb 2026 06:52:35 -0800
-Message-ID: <20260216145232.3942399-9-anoop.c.vijay@intel.com>
+Subject: [PATCH v2 4/4] drm/xe/sysctrl: Add RAS error injection interface
+Date: Mon, 16 Feb 2026 06:52:36 -0800
+Message-ID: <20260216145232.3942399-10-anoop.c.vijay@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260216145232.3942399-6-anoop.c.vijay@intel.com>
 References: <20260216145232.3942399-6-anoop.c.vijay@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -73,235 +72,50 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Add debugfs interface for testing sysctrl mailbox loopback
-functionality. This allows userspace to send test payloads
-and verify firmware communication.
+Add debugfs interface for RAS error injection testing.
+This allows validation of error detection and recovery paths.
 
 Command details:
-- Group ID: 0xFF (core group)
-- Command ID: 0x01 (loopback)
-- Command ID: 0x03 (Inverted loopback)
-- Usage: echo "0x11 0x22 0x33 0x44" > /sys/kernel/debug/dri/0/sc/loopback
-         cat /sys/kernel/debug/dri/0/sc/loopback
-         echo "0x11 0x22 0x33 0x44" > /sys/kernel/debug/dri/0/sc/loopback_inv
-         cat /sys/kernel/debug/dri/0/sc/loopback_inv
+- Group ID: 0x02 (Diag group)
+- Command ID: 0xFC (error injection)
+- Usage: echo "0x01 0x02 0x03" > /sys/kernel/debug/dri/0/sc/ras_error_inject
+         cat /sys/kernel/debug/dri/0/sc/ras_error_inject
 
 Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_sysctrl.c         |  10 ++
- drivers/gpu/drm/xe/xe_sysctrl.h         |   2 +
- drivers/gpu/drm/xe/xe_sysctrl_debugfs.c | 222 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl_debugfs.h |  35 ++++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.c |   6 -
- drivers/gpu/drm/xe/xe_sysctrl_types.h   |   6 +
- 6 files changed, 275 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_sysctrl_debugfs.c | 55 +++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl_debugfs.h |  3 ++
+ drivers/gpu/drm/xe/xe_sysctrl_types.h   |  3 ++
+ 3 files changed, 61 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
-index 430bccbdc3b9..ff84080fb580 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl.c
-+++ b/drivers/gpu/drm/xe/xe_sysctrl.c
-@@ -35,6 +35,16 @@ static void xe_sysctrl_fini(void *arg)
- 	xe->soc_remapper.set_sysctrl_region(xe, 0);
- }
- 
-+/**
-+ * sc_to_xe - Get xe device from sysctrl pointer
-+ * @sc: System Controller pointer
-+ * Return: Pointer to xe device containing given system controller pointer
-+ */
-+struct xe_device *sc_to_xe(struct xe_sysctrl *sc)
-+{
-+	return container_of(sc, struct xe_device, sc);
-+}
-+
- /**
-  * xe_sysctrl_init - Initialize System Controller subsystem
-  * @xe: xe device instance
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
-index ee7826fe4c98..1261e9b0d388 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl.h
-@@ -6,8 +6,10 @@
- #ifndef _XE_SYSCTRL_H_
- #define _XE_SYSCTRL_H_
- 
-+struct xe_sysctrl;
- struct xe_device;
- 
-+struct xe_device *sc_to_xe(struct xe_sysctrl *sc);
- int xe_sysctrl_init(struct xe_device *xe);
- 
- #endif /* _XE_SYSCTRL_H_ */
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
-index 0238ff093831..28e46695c900 100644
+index 28e46695c900..d6ffd8a8185f 100644
 --- a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
 +++ b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.c
-@@ -3,12 +3,206 @@
-  * Copyright © 2026 Intel Corporation
-  */
+@@ -136,6 +136,38 @@ static ssize_t xe_sysctrl_cmd_write(struct xe_sysctrl_debugfs_entry *entry,
+ 	return len;
+ }
  
-+#include <linux/bitfield.h>
- #include <linux/debugfs.h>
-+#include <linux/seq_file.h>
-+#include <linux/string.h>
- 
- #include "xe_device.h"
-+#include "xe_printk.h"
- #include "xe_sysctrl.h"
- #include "xe_sysctrl_debugfs.h"
-+#include "xe_sysctrl_mailbox.h"
-+#include "xe_sysctrl_mailbox_types.h"
- #include "xe_sysctrl_types.h"
-+#include "regs/xe_sysctrl_regs.h"
-+
-+static size_t xe_sysctrl_calculate_resp_len(const struct xe_sysctrl_debugfs_entry *entry,
-+					    size_t input_len)
-+{
-+	size_t resp_len;
-+
-+	switch (entry->resp_len_type) {
-+	case XE_SYSCTRL_RESP_LEN_NONE:
-+		resp_len = 0;
-+		break;
-+
-+	case XE_SYSCTRL_RESP_LEN_FIXED:
-+		resp_len = entry->fixed_resp_len;
-+		break;
-+
-+	case XE_SYSCTRL_RESP_LEN_MATCH_CMD:
-+		resp_len = input_len;
-+		break;
-+
-+	case XE_SYSCTRL_RESP_LEN_USER_CFG:
-+		resp_len = entry->user_resp_len ?: SYSCTRL_MB_MAX_MESSAGE_SIZE;
-+		break;
-+	}
-+
-+	return min_t(size_t, resp_len, SYSCTRL_MB_MAX_MESSAGE_SIZE);
-+}
-+
-+static ssize_t xe_sysctrl_cmd_write(struct xe_sysctrl_debugfs_entry *entry,
-+				    const char __user *ubuf, size_t len)
-+{
-+	struct xe_sysctrl *sc = entry->sc;
-+	struct xe_device *xe = sc_to_xe(sc);
-+	struct xe_sysctrl_mailbox_command cmd = {0};
-+	char *token, *tmp;
-+	unsigned long val;
-+	size_t input_len = 0;
-+	size_t expected_resp_len;
-+	ssize_t ret;
-+	u32 hdr;
-+
-+	if (len == 0 || len > PAGE_SIZE)
-+		return -EINVAL;
-+
-+	u8 *input __free(kfree) = NULL;
-+	input = kmalloc(SYSCTRL_MB_MAX_MESSAGE_SIZE, GFP_KERNEL);
-+	if (!input)
-+		return -ENOMEM;
-+
-+	char *kbuf __free(kfree) = NULL;
-+	kbuf = kmalloc(len + 1, GFP_KERNEL);
-+	if (!kbuf)
-+		return -ENOMEM;
-+
-+	if (copy_from_user(kbuf, ubuf, len))
-+		return -EFAULT;
-+
-+	kbuf[len] = '\0';
-+
-+	tmp = kbuf;
-+	while ((token = strsep(&tmp, " \t\n")) != NULL) {
-+		if (*token == '\0')
-+			continue;
-+
-+		if (input_len >= SYSCTRL_MB_MAX_MESSAGE_SIZE) {
-+			xe_err(xe, "sysctrl: Payload too large (%zu > %d)\n",
-+			       input_len, SYSCTRL_MB_MAX_MESSAGE_SIZE);
-+			return -EINVAL;
-+		}
-+
-+		if (kstrtoul(token, 0, &val) || val > 0xFF) {
-+			xe_err(xe, "sysctrl: Invalid token '%s'\n", token);
-+			return -EINVAL;
-+		}
-+
-+		input[input_len++] = (u8)val;
-+	}
-+
-+	if (input_len == 0) {
-+		xe_err(xe, "sysctrl: No valid input data\n");
-+		return -EINVAL;
-+	}
-+
-+	expected_resp_len = xe_sysctrl_calculate_resp_len(entry, input_len);
-+
-+	memset(entry->response_buf, 0, sizeof(entry->response_buf));
-+	entry->response_len = 0;
-+	entry->status = 0;
-+
-+	hdr = FIELD_PREP(APP_HDR_GROUP_ID_MASK, entry->group) |
-+		  FIELD_PREP(APP_HDR_COMMAND_MASK, entry->command) |
-+		  FIELD_PREP(APP_HDR_VERSION_MASK, 0) |
-+		  FIELD_PREP(APP_HDR_RESERVED_MASK, 0);
-+	cmd.header.data = cpu_to_le32(hdr);
-+	cmd.data_in = input;
-+	cmd.data_in_len = input_len;
-+	cmd.data_out = entry->response_buf;
-+	cmd.data_out_len = expected_resp_len;
-+
-+	if (cmd.data_in && cmd.data_in_len > 0) {
-+		size_t i;
-+		char buf[128];
-+		size_t pos = 0;
-+		u8 *data_ptr = (u8 *)cmd.data_in;
-+
-+		for (i = 0; i < cmd.data_in_len && pos < sizeof(buf) - 4; i++)
-+			pos += scnprintf(buf + pos, sizeof(buf) - pos, "%02x ", data_ptr[i]);
-+		buf[pos] = '\0';
-+	}
-+
-+	ret = xe_sysctrl_send_command(xe, &cmd, &entry->response_len);
-+	entry->status = ret;
-+
-+	if (ret) {
-+		xe_err(xe, "sysctrl: Command failed with error %zd\n", ret);
-+		return ret;
-+	}
-+
-+	return len;
-+}
-+
-+static int xe_sysctrl_loopback_show(struct seq_file *m, void *data)
++static int xe_sysctrl_ras_error_inject_show(struct seq_file *m, void *data)
 +{
 +	struct xe_sysctrl_debugfs_entry *entry = m->private;
-+	size_t i;
 +
-+	seq_puts(m, "System Controller loopback_test\n");
-+	seq_puts(m, "===========================\n");
++	seq_puts(m, "System Controller RAS Error Injection\n");
++	seq_puts(m, "======================================\n");
 +	seq_printf(m, "Command: group=0x%02x cmd=0x%02x\n",
 +		   entry->group, entry->command);
 +	seq_printf(m, "Status: %d (%s)\n",
 +		   entry->status, entry->status ? "FAILED" : "SUCCESS");
-+	seq_printf(m, "Response: %zu bytes\n\n", entry->response_len);
-+
-+	if (entry->response_len > 0) {
-+		seq_puts(m, "Response data:\n");
-+		for (i = 0; i < entry->response_len; i++) {
-+			if (i > 0 && (i % 16) == 0)
-+				seq_putc(m, '\n');
-+			seq_printf(m, "%02x ", entry->response_buf[i]);
-+		}
-+		seq_puts(m, "\n\n");
-+	}
++	seq_puts(m, "\nUsage:\n");
++	seq_puts(m, "  echo \"<ras block> <sub block> <Injection Type> [params]>\" > ras_error_inject\n");
++	seq_puts(m, "  cat ras_error_inject  # Check injection status\n");
 +
 +	return 0;
 +}
 +
-+static ssize_t xe_sysctrl_loopback_write(struct file *file,
-+					 const char __user *ubuf,
-+					 size_t len, loff_t *offp)
++static ssize_t xe_sysctrl_ras_error_inject_write(struct file *file,
++						 const char __user *ubuf,
++						 size_t len, loff_t *offp)
 +{
 +	struct seq_file *m = file->private_data;
 +	struct xe_sysctrl_debugfs_entry *entry = m->private;
@@ -309,165 +123,85 @@ index 0238ff093831..28e46695c900 100644
 +	return xe_sysctrl_cmd_write(entry, ubuf, len);
 +}
 +
-+static int xe_sysctrl_loopback_open(struct inode *inode, struct file *file)
++static int xe_sysctrl_ras_error_inject_open(struct inode *inode, struct file *file)
 +{
-+	return single_open(file, xe_sysctrl_loopback_show, inode->i_private);
++	return single_open(file, xe_sysctrl_ras_error_inject_show, inode->i_private);
 +}
 +
-+static const struct file_operations xe_sysctrl_loopback_fops = {
+ static int xe_sysctrl_loopback_show(struct seq_file *m, void *data)
+ {
+ 	struct xe_sysctrl_debugfs_entry *entry = m->private;
+@@ -186,6 +218,15 @@ static const struct file_operations xe_sysctrl_loopback_fops = {
+ 	.release = single_release,
+ };
+ 
++static const struct file_operations xe_sysctrl_ras_error_inject_fops = {
 +	.owner = THIS_MODULE,
-+	.open = xe_sysctrl_loopback_open,
++	.open = xe_sysctrl_ras_error_inject_open,
 +	.read = seq_read,
-+	.write = xe_sysctrl_loopback_write,
++	.write = xe_sysctrl_ras_error_inject_write,
 +	.llseek = seq_lseek,
 +	.release = single_release,
 +};
 +
-+static void xe_sysctrl_register_cmd(struct dentry *root,
-+				    struct xe_sysctrl_debugfs_entry *entry,
-+				    struct xe_sysctrl *sc,
-+				    const struct xe_sysctrl_cmd_desc *desc)
-+{
-+	entry->sc = sc;
-+	entry->name = desc->name;
-+	entry->group = desc->group;
-+	entry->command = desc->command;
-+	entry->resp_len_type = desc->resp_len_type;
-+	entry->fixed_resp_len = desc->fixed_resp_len;
-+	entry->user_resp_len = 0;
-+	entry->response_len = 0;
-+	entry->status = 0;
-+
-+	debugfs_create_file(desc->name, desc->mode, root, entry, desc->fops);
-+}
+ static void xe_sysctrl_register_cmd(struct dentry *root,
+ 				    struct xe_sysctrl_debugfs_entry *entry,
+ 				    struct xe_sysctrl *sc,
+@@ -235,6 +276,17 @@ void xe_sysctrl_debugfs_register(struct xe_sysctrl *sc, struct dentry *parent)
+ 		.mode = 0644,
+ 	};
  
- /**
-  * xe_sysctrl_debugfs_register - Register debugfs entries for System Controller
-@@ -19,9 +213,37 @@ void xe_sysctrl_debugfs_register(struct xe_sysctrl *sc, struct dentry *parent)
- {
- 	struct dentry *root;
- 
-+	static const struct xe_sysctrl_cmd_desc loopback_desc = {
-+		.name = "loopback",
-+		.group = XE_SYSCTRL_GROUP_CORE,
-+		.command = XE_SYSCTRL_LOOPBACK_CMD,
-+		.resp_len_type = XE_SYSCTRL_RESP_LEN_MATCH_CMD,
++	static const struct xe_sysctrl_cmd_desc ras_error_inject_desc = {
++		.name = "ras_error_inject",
++		.group = XE_SYSCTRL_GROUP_DIAG,
++		.command = XE_SYSCTRL_RAS_ERROR_INJECT_CMD,
++		.resp_len_type = XE_SYSCTRL_RESP_LEN_NONE,
 +		.fixed_resp_len = 0,
 +		.user_resp_len = 0,
-+		.fops = &xe_sysctrl_loopback_fops,
-+		.mode = 0644,
-+	};
-+
-+	static const struct xe_sysctrl_cmd_desc loopback_inv_desc = {
-+		.name = "loopback_inv",
-+		.group = XE_SYSCTRL_GROUP_CORE,
-+		.command = XE_SYSCTRL_LOOPBACK_INV_CMD,
-+		.resp_len_type = XE_SYSCTRL_RESP_LEN_MATCH_CMD,
-+		.fixed_resp_len = 0,
-+		.user_resp_len = 0,
-+		.fops = &xe_sysctrl_loopback_fops,
++		.fops = &xe_sysctrl_ras_error_inject_fops,
 +		.mode = 0644,
 +	};
 +
  	root = debugfs_create_dir("sc", parent);
  	if (IS_ERR(root))
  		return;
+@@ -246,4 +298,7 @@ void xe_sysctrl_debugfs_register(struct xe_sysctrl *sc, struct dentry *parent)
  
- 	sc->debugfs.root = root;
+ 	xe_sysctrl_register_cmd(root, &sc->debugfs.loopback_inv, sc,
+ 				&loopback_inv_desc);
 +
-+	xe_sysctrl_register_cmd(root, &sc->debugfs.loopback, sc,
-+				&loopback_desc);
-+
-+	xe_sysctrl_register_cmd(root, &sc->debugfs.loopback_inv, sc,
-+				&loopback_inv_desc);
++	xe_sysctrl_register_cmd(root, &sc->debugfs.ras_error_inject, sc,
++				&ras_error_inject_desc);
  }
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.h b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.h
-index a393eaa42404..26bd8c62b916 100644
+index 26bd8c62b916..374aa73b180a 100644
 --- a/drivers/gpu/drm/xe/xe_sysctrl_debugfs.h
 +++ b/drivers/gpu/drm/xe/xe_sysctrl_debugfs.h
-@@ -6,9 +6,44 @@
- #ifndef _XE_SYSCTRL_DEBUGFS_H_
- #define _XE_SYSCTRL_DEBUGFS_H_
- 
-+#include <linux/types.h>
-+
-+#include "xe_sysctrl_types.h"
-+
- struct dentry;
+@@ -14,10 +14,13 @@ struct dentry;
  struct xe_sysctrl;
  
-+#define XE_SYSCTRL_GROUP_CORE		0xFF
-+
-+#define XE_SYSCTRL_LOOPBACK_CMD		0x01
-+#define XE_SYSCTRL_LOOPBACK_INV_CMD	0x03
-+
-+struct xe_sysctrl_cmd_desc {
-+	/** @name: Command name for debugfs file */
-+	const char *name;
-+
-+	/** @group: Command group ID */
-+	u8 group;
-+
-+	/** @command: Command ID within group */
-+	u8 command;
-+
-+	/** @resp_len_type: Response length determination policy */
-+	enum xe_sysctrl_resp_len_type resp_len_type;
-+
-+	/** @fixed_resp_len: Fixed response length (for RESP_LEN_FIXED mode) */
-+	size_t fixed_resp_len;
-+
-+	/** @user_resp_len: User-specified response length (for RESP_LEN_USER_CFG mode) */
-+	size_t user_resp_len;
-+
-+	/** @fops: File operations for debugfs entry */
-+	const struct file_operations *fops;
-+
-+	/** @mode: File permissions for debugfs entry (e.g., 0644) */
-+	umode_t mode;
-+};
-+
- void xe_sysctrl_debugfs_register(struct xe_sysctrl *sc, struct dentry *parent);
+ #define XE_SYSCTRL_GROUP_CORE		0xFF
++#define XE_SYSCTRL_GROUP_DIAG		0x02
  
- #endif /* _XE_SYSCTRL_DEBUGFS_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-index 15a186a6f057..c0e8790d200b 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
-@@ -5,7 +5,6 @@
+ #define XE_SYSCTRL_LOOPBACK_CMD		0x01
+ #define XE_SYSCTRL_LOOPBACK_INV_CMD	0x03
  
- #include <linux/bitfield.h>
- #include <linux/cleanup.h>
--#include <linux/container_of.h>
- #include <linux/errno.h>
- #include <linux/minmax.h>
- #include <linux/mutex.h>
-@@ -42,11 +41,6 @@
- #define XE_SYSCTRL_MKHI_HDR_RESULT(hdr) \
- 	FIELD_GET(MKHI_HDR_RESULT_MASK, le32_to_cpu((hdr)->data))
- 
--static struct xe_device *sc_to_xe(struct xe_sysctrl *sc)
--{
--	return container_of(sc, struct xe_device, sc);
--}
--
- static bool xe_sysctrl_mailbox_wait_bit_clear(struct xe_sysctrl *sc, u32 bit_mask,
- 					      unsigned int timeout_ms)
- {
++#define XE_SYSCTRL_RAS_ERROR_INJECT_CMD	0xFC
++
+ struct xe_sysctrl_cmd_desc {
+ 	/** @name: Command name for debugfs file */
+ 	const char *name;
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl_types.h b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-index ede945a33ea3..30d8b34dee47 100644
+index 30d8b34dee47..46e68ea3a32f 100644
 --- a/drivers/gpu/drm/xe/xe_sysctrl_types.h
 +++ b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-@@ -85,6 +85,12 @@ struct xe_sysctrl {
- 	struct {
- 		/** @root: Root debugfs directory */
- 		struct dentry *root;
+@@ -91,6 +91,9 @@ struct xe_sysctrl {
+ 
+ 		/** @loopback_inv: Loopback test entry (inverted) */
+ 		struct xe_sysctrl_debugfs_entry loopback_inv;
 +
-+		/** @loopback: Loopback test entry */
-+		struct xe_sysctrl_debugfs_entry loopback;
-+
-+		/** @loopback_inv: Loopback test entry (inverted) */
-+		struct xe_sysctrl_debugfs_entry loopback_inv;
++		/** @ras_error_inject: RAS error injection entry */
++		struct xe_sysctrl_debugfs_entry ras_error_inject;
  	} debugfs;
  };
  
