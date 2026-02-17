@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08979E909A3
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Feb 2026 13:52:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5229DE909A5
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Feb 2026 13:56:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0F5F10E25E;
-	Tue, 17 Feb 2026 13:52:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED39710E20E;
+	Tue, 17 Feb 2026 13:56:52 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C79410E25E;
- Tue, 17 Feb 2026 13:52:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4002714943791081511=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6488510E20E;
+ Tue, 17 Feb 2026 13:56:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Hardware_Error_handling_for?=
- =?utf-8?q?_Crescent_Island?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Fix_fs=5Freclaim_deadlock?=
+ =?utf-8?q?_caused_by_CCS_save/restore_=28rev5=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 17 Feb 2026 13:52:00 -0000
-Message-ID: <177133632062.258831.7620870631840897161@a3b018990fe9>
+Date: Tue, 17 Feb 2026 13:56:51 -0000
+Message-ID: <177133661139.258851.2988559563829959530@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260217114656.2546878-1-raag.jadav@intel.com>
-In-Reply-To: <20260217114656.2546878-1-raag.jadav@intel.com>
+References: <20260217120745.1074232-5-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20260217120745.1074232-5-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,138 +40,48 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4002714943791081511==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Hardware Error handling for Crescent Island
-URL   : https://patchwork.freedesktop.org/series/161709/
-State : failure
+Series: Fix fs_reclaim deadlock caused by CCS save/restore (rev5)
+URL   : https://patchwork.freedesktop.org/series/160841/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4565-32b409741f18c54cd98f942836d1f7bd9bc15366_BAT -> xe-pw-161709v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c26319d55188b536dcc04e30bf398df30f4377b6
+Author: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Date:   Tue Feb 17 12:07:49 2026 +0000
 
-Summary
--------
+    drm/xe/sa: Add lockdep annotations for SA manager swap_guard
+    
+    Annotate the SA manager init path to model taking swap_guard while under
+    reclaim context. This helps lockdep catch potential circular dependencies
+    between fs_reclaim and swap_guard in debug builds. Without this annotation,
+    lockdep is unaware of this chain until the shrinker runs.
+    
+    Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+    Suggested-by: Matthew Brost <matthew.brost@intel.com>
+    Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Cc: Matthew Auld <matthew.auld@intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch 29942dc4e7d82b945c6c424bbb8af6ff572e235c drm-intel
+4ebb94892b66 drm/sa: Split drm_suballoc_new() into SA alloc and init helpers
+9f33e97d6a5e drm/xe/vf: Fix fs_reclaim warning with CCS save/restore BB allocation
+-:43: WARNING:BAD_SIGN_OFF: Duplicate signature
+#43: 
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-  **WARNING**
-
-  Minor unknown changes coming with xe-pw-161709v1_BAT need to be verified
-  manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-161709v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-161709v1_BAT:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:
-    - bat-wcl-2:          [SKIP][1] ([Intel XE#7238]) -> [SKIP][2] +1 other test skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4565-32b409741f18c54cd98f942836d1f7bd9bc15366/bat-wcl-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161709v1/bat-wcl-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
-    - bat-wcl-1:          [SKIP][3] ([Intel XE#7238]) -> [SKIP][4] +1 other test skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4565-32b409741f18c54cd98f942836d1f7bd9bc15366/bat-wcl-1/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161709v1/bat-wcl-1/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
-
-  
-  [Intel XE#7238]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7238
+total: 0 errors, 1 warnings, 0 checks, 289 lines checked
+c26319d55188 drm/xe/sa: Add lockdep annotations for SA manager swap_guard
 
 
-Build changes
--------------
-
-  * IGT: IGT_8754 -> IGT_8755
-  * Linux: xe-4565-32b409741f18c54cd98f942836d1f7bd9bc15366 -> xe-pw-161709v1
-
-  IGT_8754: 8754
-  IGT_8755: 8755
-  xe-4565-32b409741f18c54cd98f942836d1f7bd9bc15366: 32b409741f18c54cd98f942836d1f7bd9bc15366
-  xe-pw-161709v1: 161709v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161709v1/index.html
-
---===============4002714943791081511==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Hardware Error handling for Crescent Island</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161709/">https://patchwork.freedesktop.org/series/161709/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161709v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161709v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4565-32b409741f18c54cd98f942836d1f7bd9bc15366_BAT -&gt; xe-pw-161709v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>WARNING</strong></p>
-<p>Minor unknown changes coming with xe-pw-161709v1_BAT need to be verified<br />
-  manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-161709v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-161709v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:<ul>
-<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4565-32b409741f18c54cd98f942836d1f7bd9bc15366/bat-wcl-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7238">Intel XE#7238</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161709v1/bat-wcl-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">SKIP</a> +1 other test skip</li>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4565-32b409741f18c54cd98f942836d1f7bd9bc15366/bat-wcl-1/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7238">Intel XE#7238</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161709v1/bat-wcl-1/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">SKIP</a> +1 other test skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8754 -&gt; IGT_8755</li>
-<li>Linux: xe-4565-32b409741f18c54cd98f942836d1f7bd9bc15366 -&gt; xe-pw-161709v1</li>
-</ul>
-<p>IGT_8754: 8754<br />
-  IGT_8755: 8755<br />
-  xe-4565-32b409741f18c54cd98f942836d1f7bd9bc15366: 32b409741f18c54cd98f942836d1f7bd9bc15366<br />
-  xe-pw-161709v1: 161709v1</p>
-
-</body>
-</html>
-
---===============4002714943791081511==--
