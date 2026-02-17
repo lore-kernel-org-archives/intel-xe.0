@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD7C6E9A026
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Feb 2026 17:42:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5543E9A026
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Feb 2026 17:47:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 537B289221;
-	Tue, 17 Feb 2026 17:42:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46BA910E1C2;
+	Tue, 17 Feb 2026 17:47:00 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4DB089221;
- Tue, 17 Feb 2026 17:42:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1229802384841562939=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5D2510E1C2;
+ Tue, 17 Feb 2026 17:46:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Avoid_oops_on_illegal_VGA_r?=
- =?utf-8?q?egister_access?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_bridges_without_VGA_suppo?=
+ =?utf-8?q?rt?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Simon Richter" <simon.richter@hogyros.de>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 17 Feb 2026 17:42:13 -0000
-Message-ID: <177135013377.260407.680291371158308325@a3b018990fe9>
+Date: Tue, 17 Feb 2026 17:46:58 -0000
+Message-ID: <177135041872.260407.10682664616080856256@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260217165214.236482-1-Simon.Richter@hogyros.de>
-In-Reply-To: <20260217165214.236482-1-Simon.Richter@hogyros.de>
+References: <20260217170419.236739-1-Simon.Richter@hogyros.de>
+In-Reply-To: <20260217170419.236739-1-Simon.Richter@hogyros.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,100 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1229802384841562939==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Avoid oops on illegal VGA register access
-URL   : https://patchwork.freedesktop.org/series/161721/
-State : success
+Series: bridges without VGA support
+URL   : https://patchwork.freedesktop.org/series/161722/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4567-21602e0acae89588aa74d70eacda16812e3ad2a0_BAT -> xe-pw-161721v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 778e63d100f001fd5fd9534a2defa31b9ea59b9b
+Author: Simon Richter <Simon.Richter@hogyros.de>
+Date:   Wed Feb 18 02:04:19 2026 +0900
 
-Summary
--------
+    pci: mark return value of pci_set_vga_state as __must_check
+    
+    This function can return an error, which should be checked.
+    
+    The only caller so far is __vga_tryget in vgaarb, which did not check.
+    
+    Signed-off-by: Simon Richter <Simon.Richter@hogyros.de>
++ /mt/dim checkpatch e66c64e4f12e55cad35c680f1e328a7c7ee92cab drm-intel
+47f637fc4b80 vgaarb: pass vga_get errors to userspace
+-:28: ERROR:OPEN_BRACE: that open brace { should be on the previous line
+#28: FILE: drivers/pci/vgaarb.c:1170:
++		if (unlikely(err))
++		{
 
-  **SUCCESS**
+total: 1 errors, 0 warnings, 0 checks, 20 lines checked
+9f7e28bdecf3 vgaarb: pass errors from pci_set_vga_state up
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+pci_set_vga_state returns an error code, which so far has been ignored. Pass
 
-  No regressions found.
+-:49: ERROR:OPEN_BRACE: that open brace { should be on the previous line
+#49: FILE: drivers/pci/vgaarb.c:463:
++		if (IS_ERR(conflict))
++		{
 
-  
+total: 1 errors, 1 warnings, 0 checks, 38 lines checked
+2de0bad5367d vgaarb: mark vga_get family as __must_check
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+These functions can return an error, but some callers expect they don't, and
 
-Participating hosts (14 -> 14)
-------------------------------
+-:21: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#21: FILE: include/linux/vgaarb.h:31:
++int __must_check vga_get(struct pci_dev *pdev, unsigned int rsrc,
++		int interruptible);
 
-  No changes in participating hosts
+-:30: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#30: FILE: include/linux/vgaarb.h:43:
+ };
++static inline int __must_check vga_get(struct pci_dev *pdev, unsigned int rsrc,
 
+-:31: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#31: FILE: include/linux/vgaarb.h:44:
++static inline int __must_check vga_get(struct pci_dev *pdev, unsigned int rsrc,
+ 		int interruptible)
 
-Changes
--------
+-:40: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#40: FILE: include/linux/vgaarb.h:79:
++static inline int __must_check vga_get_interruptible(struct pci_dev *pdev,
+ 					unsigned int rsrc)
 
-  No changes found
+-:49: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#49: FILE: include/linux/vgaarb.h:94:
++static inline int __must_check vga_get_uninterruptible(struct pci_dev *pdev,
+ 					  unsigned int rsrc)
 
+total: 0 errors, 1 warnings, 5 checks, 33 lines checked
+cde677910267 pci: check if VGA decoding was really activated
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+PCI bridges are allowed to refuse activating VGA decoding, by simply ignoring
 
-Build changes
--------------
+-:25: ERROR:SPACING: space required before the open parenthesis '('
+#25: FILE: drivers/pci/pci.c:6133:
++				if(!(cmd & PCI_BRIDGE_CTL_VGA))
 
-  * Linux: xe-4567-21602e0acae89588aa74d70eacda16812e3ad2a0 -> xe-pw-161721v1
+total: 1 errors, 1 warnings, 0 checks, 12 lines checked
+778e63d100f0 pci: mark return value of pci_set_vga_state as __must_check
+-:22: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#22: FILE: include/linux/pci.h:1701:
++int __must_check pci_set_vga_state(struct pci_dev *pdev, bool decode,
+ 		      unsigned int command_bits, u32 flags);
 
-  IGT_8756: 8756
-  xe-4567-21602e0acae89588aa74d70eacda16812e3ad2a0: 21602e0acae89588aa74d70eacda16812e3ad2a0
-  xe-pw-161721v1: 161721v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161721v1/index.html
-
---===============1229802384841562939==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Avoid oops on illegal VGA register access</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161721/">https://patchwork.freedesktop.org/series/161721/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161721v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161721v1/index.html</a></td></tr>
-
-</table>
+total: 0 errors, 0 warnings, 1 checks, 8 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-4567-21602e0acae89588aa74d70eacda16812e3ad2a0_BAT -&gt; xe-pw-161721v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4567-21602e0acae89588aa74d70eacda16812e3ad2a0 -&gt; xe-pw-161721v1</li>
-</ul>
-<p>IGT_8756: 8756<br />
-  xe-4567-21602e0acae89588aa74d70eacda16812e3ad2a0: 21602e0acae89588aa74d70eacda16812e3ad2a0<br />
-  xe-pw-161721v1: 161721v1</p>
-
-</body>
-</html>
-
---===============1229802384841562939==--
