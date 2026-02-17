@@ -4,174 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C46CE68157
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Feb 2026 09:52:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0462FE68156
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Feb 2026 09:53:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 142FD10E4B7;
-	Tue, 17 Feb 2026 09:52:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAABC10E4B5;
+	Tue, 17 Feb 2026 09:53:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="ESHq+4wT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mOjWi1F+";
 	dkim-atps=neutral
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010027.outbound.protection.outlook.com [52.101.46.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C55710E176;
- Tue, 17 Feb 2026 09:52:40 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lgt3ApHVgXrMimv7toOMJIXMOy9427ixiqgrZ2FDaFAWrWMSK+M1nfgijjmjR4r33pa9+K/ff88fJA5Fl0M80QKL+JqPI+KMYs+u28aIuMx+FKVyXlf29WkEjvA00xqHrHcdcUBRGzyTvQ/mwt3gXcz3F1D3r5uGWn++gBL4dJxUo7FGoCJhDSgY/xPUjF5schp3g5wGHN84YyjwH4dRd5EJut41F/u8OHCl3klgC9awGUSveL4eYiotgY7EtLdyXEmFWbGckj9RrpbPpYtrUWcf9tw93/08isNcTpSL3TqVIdQ0MPeHzyttZvSjw0ibC9JrxU6UG/RvxFi1nrv+aw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=p//N4G0Wn8uuX8gbFSUtGmW3yTk9hr7sN6oQ4alXK2E=;
- b=G7Q9OSz53cXIPbkbIkfEo3k+rBWpvNwHxCCMpfjQVe5rhMV8xXUdLmcXjCxUnw8Eg0pEzAi9B4c5S7iggfrkN8U/IjHwmFhbb7Bre1bzUK8hfi4RJH72CxYZNo3nk/fm3ldO8si25KYypIfse+pMJGlNCLMOc4Bqk88FOdgIhVNevyxubBMGj05d1hyKN+i+C7wXuIXgF3D8/kRm2esZOp6RBr7mekNakjrLvA5ASRVvkrBASDJqVcBTUxGa110l9owHOXjmCphm/rhetPLc1CNNna25gdnZD7/OYQuNm0G53BPKJjDTdC12MK+wuwPnko8reLl5A/wfV5/g3X+ahA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=p//N4G0Wn8uuX8gbFSUtGmW3yTk9hr7sN6oQ4alXK2E=;
- b=ESHq+4wTk9BHIKutNyeLOS8lwuCRKPGdKJAZ76TnZkGq4915A7wrTg0FKhRMB8dFZ5jb+LGxVqzYbgUTi6UgwJCdtfvttXyqnaWskRKjmmJHIWKvVPcub3WqZYM6dph5ofRaw8el2qZlMY/rBoiIfDPGhFF8gXEKTFY2F1X+Sag=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by PH7PR12MB5806.namprd12.prod.outlook.com (2603:10b6:510:1d2::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.16; Tue, 17 Feb
- 2026 09:52:36 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9611.008; Tue, 17 Feb 2026
- 09:52:36 +0000
-Message-ID: <0aa8147c-254d-4a1c-89ee-9dc4d4b6b022@amd.com>
-Date: Tue, 17 Feb 2026 10:52:25 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 0/8] dma-buf: Use revoke mechanism to invalidate shared
- buffers
-To: Leon Romanovsky <leon@kernel.org>, David Airlie <airlied@gmail.com>
-Cc: Sumit Semwal <sumit.semwal@linaro.org>,
- Alex Deucher <alexander.deucher@amd.com>, Simona Vetter <simona@ffwll.ch>,
- Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>, Chia-I Wu
- <olvaffe@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Jason Gunthorpe <jgg@ziepe.ca>,
- Kevin Tian <kevin.tian@intel.com>, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>, Alex Williamson <alex@shazbot.org>,
- Ankit Agrawal <ankita@nvidia.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- linux-kernel@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
- linux-rdma@vger.kernel.org, iommu@lists.linux.dev, kvm@vger.kernel.org
-References: <20260131-dmabuf-revoke-v7-0-463d956bd527@nvidia.com>
- <20260217080206.GJ12989@unreal>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260217080206.GJ12989@unreal>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YT3PR01CA0076.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:84::19) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B33710E4B5
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Feb 2026 09:53:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1771322029; x=1802858029;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=X4NY0MXKyzm5KuYPRHevz9JBFHOYFOxFNkunQ9QZ5aw=;
+ b=mOjWi1F+Tv3o14PHlYPIBX5W/ua0S83Wa5oaSbXFFg0urfM/PaB+qq4D
+ SgHk49WC2xJtPPKd/u42i8HW1P04ND0EROdps1CJcL0wsWW1sT7zLhAdq
+ IZOJT+evZh2bze4k/bEZSQALBV6xd+scLSmaCRCC5cWLTmHm2DJJi5BOI
+ b9rh06axg7qm4DaaLIGDXdoqrS+WxOweLPn3KkgLyeA5RXq31yclCo6Ca
+ yZaMb/Aq1JG6DVciFjKIn3itPAKowzixMROxytrtMLBEDuvhFEnLJENP1
+ 8yTMEn72bW33RCCW4r4hAmcUUiRJp5Py4uJkX4UpKYHirViH/naRoPpmi A==;
+X-CSE-ConnectionGUID: 9uLy6Yu+TkKX5qYaCD4FWg==
+X-CSE-MsgGUID: 2ctp54sCQHa3QtNVAh3CSQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11703"; a="72561080"
+X-IronPort-AV: E=Sophos;i="6.21,296,1763452800"; d="scan'208";a="72561080"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2026 01:53:48 -0800
+X-CSE-ConnectionGUID: 9oHo9zkgSL2ZOlqe8x4CDg==
+X-CSE-MsgGUID: MH6+StNvT/2G21cuscTKuA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,296,1763452800"; d="scan'208";a="212324155"
+Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.245.127])
+ ([10.245.245.127])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2026 01:53:47 -0800
+Message-ID: <edc9d10bc6cbcf22a1661b535d144a74dd7f1002.camel@linux.intel.com>
+Subject: Re: [PATCH 1/3] drm/xe/xe3p_lpg: flush userptr/shrinker bo
+ cachelines manually
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>, "Auld, Matthew"
+ <matthew.auld@intel.com>, "Roper, Matthew D" <matthew.d.roper@intel.com>, 
+ "Souza, Jose" <jose.souza@intel.com>
+Cc: "Mrozek, Michal" <michal.mrozek@intel.com>, 
+ "intel-xe@lists.freedesktop.org"	 <intel-xe@lists.freedesktop.org>, "Brost,
+ Matthew" <matthew.brost@intel.com>
+Date: Tue, 17 Feb 2026 10:53:19 +0100
+In-Reply-To: <SJ1PR11MB620450500088AA17377A9B18816DA@SJ1PR11MB6204.namprd11.prod.outlook.com>
+References: <20260210125120.1329411-5-tejas.upadhyay@intel.com>
+ <20260210125120.1329411-6-tejas.upadhyay@intel.com>
+ <20260210210525.GC4694@mdroper-desk1.amr.corp.intel.com>
+ <aYvHCeTd5pOFo2p5@lstrano-desk.jf.intel.com>
+ <SJ1PR11MB6204CD2B54AD51B175F96F298163A@SJ1PR11MB6204.namprd11.prod.outlook.com>
+ <20260211211125.GL4694@mdroper-desk1.amr.corp.intel.com>
+ <SJ1PR11MB6204B6489254C702FB9A9D478161A@SJ1PR11MB6204.namprd11.prod.outlook.com>
+ <f57d25f0131d124bdee35411d15513739c7d17c3.camel@intel.com>
+ <20260213171638.GC52346@mdroper-desk1.amr.corp.intel.com>
+ <a62d59e4-c77d-4e28-8227-be253733dd7b@intel.com>
+ <75dcc80b39ed33a7abc620b2614b0e81586a6299.camel@linux.intel.com>
+ <8ce35a23-b639-4c4f-acfd-993c4f9d5008@intel.com>
+ <9ce0acf02e8ef63bf81cfbb9e1053bfa1437362f.camel@linux.intel.com>
+ <3da2dfce-9bbf-42cd-a178-24a6c44b18c3@intel.com>
+ <0d069a41599695c4c8fa0093fb1a4edb4017e600.camel@linux.intel.com>
+ <d3156c1a-7490-46e1-8ca1-a7e4f946a908@intel.com>
+ <SJ1PR11MB620450500088AA17377A9B18816DA@SJ1PR11MB6204.namprd11.prod.outlook.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|PH7PR12MB5806:EE_
-X-MS-Office365-Filtering-Correlation-Id: 527060c9-33c9-481f-d635-08de6e0a4740
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|7416014|376014|366016;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?WW1Keis0TjZ2K3hpcUNpZXJnNkFnOGh0TG91UDFqODJNRVpONlV3TGF6Y0ZM?=
- =?utf-8?B?Rm95ZE55S3JDUTlRbzRtYXdCTmZ5eXdTU1ZOL2tWRDRqbE5rWklFUWlVOCtx?=
- =?utf-8?B?Mks3dWg2S3poWjU4QWVQRjZCY0xtb0V0ZTJuRkdnYTFRdEJMWFZVVUYyeTN4?=
- =?utf-8?B?bkcyaVVSRmlVRjFYSlFZY3dKUFd3ak5DZTJPVmdzeUZ1R2oyTW0xOENCSmsw?=
- =?utf-8?B?MlYyNXd2dkZLMEUvN2pxWFFtUDQwQ2VhRUNRQ0t1bi85Wnp2d2dtZHliMmMr?=
- =?utf-8?B?b0hFYlNQTCt5N3NXZzVBd0Jtcm91d1dUNUZPQmx0UXNwbWlhSTZVZE1tejIv?=
- =?utf-8?B?Tk5SZE94Y3VQNHR2L1h5Sm9lRzN4bUFwZCtwdU5FNDZrVHNtbmhyUHo1bUdj?=
- =?utf-8?B?anpmc0E3NE1iSUM3bm9vMzl6S1BEUXE4aVRXU2R4ZkhCUGNTTU0zd0RPN3cy?=
- =?utf-8?B?UTJ0b1NTZnVZNHdxcmxNYkNROHN3eDJ3eW5aV1VPK1NHWS9zYTcwQk9GZGRQ?=
- =?utf-8?B?dk0wdUYzbVFWMzduRlVzQWVpSllES29RTEFuZjRrQ28vUGtDYmtNYytIdlFP?=
- =?utf-8?B?eDdseXlXblJqdkRTVUNrTFdEL29KR1o5cG50eFRjNVptZzBNSDRQK2NmSlk1?=
- =?utf-8?B?VDB5OXFGYng5VllmNXJEd3pxallOMlpiNFBDVndXU2M4bnNiWmlOMzN1bWdQ?=
- =?utf-8?B?dTUvdElkc1Rxc3gxeFMxZUFTSEMxdUwvTVdrYnhpelRrSmphV0N4eXQrQll0?=
- =?utf-8?B?YmlTS1g3MDRHdDUyY2VEZTMreWVlNWk1YVJCMGdaNGN6R1Uzelc0dnV5aDMv?=
- =?utf-8?B?cnVudGxuMTZhNzkyNlpCb2ROdDZWWUwzTE5TSzVQVHVaakN5aWlyNDhxbWEz?=
- =?utf-8?B?TE1wZ09EVHgvZ0pzT2pkVEtnNEtRaFJ2WlI3VkNFWTNLVWtuR3BQQnRrZzJV?=
- =?utf-8?B?cHJqdWpFQmJVM3F6Wk95UTFBekhWZHBwTEgzSlp5d1VONXpiaWR5b1VOV0tx?=
- =?utf-8?B?MXJHNmJVM0pkcnpaUnpncVBIeTJQUWVXSUhrWmxEZFZERFRQeUdyS09VTkx5?=
- =?utf-8?B?a3lpYjRhRS9hajhMdmVFVkJaMXI4UUtwR0xiV3grMHdwVWU5MjNsTGR4cVI1?=
- =?utf-8?B?MlVKUjNrSnkzVml5WU96YXRJUm5ScWtodlg1ZGVHQTMxNUM2aW5mUUFvT09o?=
- =?utf-8?B?dENQNVVPVHZOOW10V1YwNHlVc2wzZnpXU0JjVWk4cXQyY01NUWFKT1ZxdnRy?=
- =?utf-8?B?WHN1Z0FBamUxckNqa01ETW9IOUJCWG5OU3lhNTRPNWR6YUJFbWRmZElsL2dR?=
- =?utf-8?B?Z1hHNk1WSmhvMFRpeXFLNHo5azEzUENieTYvSXZwWGpRQU9jcmVseDlPU3hm?=
- =?utf-8?B?L3d5ZzdsMnlmVjlJSzFUZkFUZHR5Qk1GdFlLYytLSUUxK0JpaElETXcxWm53?=
- =?utf-8?B?cFJtbDZkN2NhVHF0MUg0MEtvNE5LSGY2amxsTmRoeWVoQWdaeVFMSFptd0lK?=
- =?utf-8?B?M3ArR3NMNmlOU3ptTWhObGpmdDlUNkY4Q3dlM0tucFJhWlhRQm5LV1R4R2ZB?=
- =?utf-8?B?MEZrYkU1ZU5TSzNmTnVHMzRLVjd3aFQ2VnAwTGhRbU5ScXlQMDdidWdBTGR5?=
- =?utf-8?B?amVvZEZoa3UydDNoano2djRJbXJqZmVKSTZUZklMMFVOZ2lINjZUSFdGSldu?=
- =?utf-8?B?YUJYZ2hWMmVMb3MrSVMxTlFUSHFKUG1SM1VUa3U2SUI0enZRd2d4QThMWDlN?=
- =?utf-8?B?YklFT2xFOWlLcDAzYWFqVkxKbFJLdHY4U0szZTk4aE1CV3AvbENJU2gxRUMx?=
- =?utf-8?B?TGlUZ21XMWw4bmRxTy9wWlJoL2pjRnpWRmxuTHIwZ25FblVteDgxU2h3K0tG?=
- =?utf-8?B?NjJ1aUtuNlJibHBkY1ZpdGZySFZZeUxxYy91MlVPWHk1c1poT2hDUWd5YW9R?=
- =?utf-8?B?aHZEMkVBUktyb1dOMUIwOXNNVjhzRnhHcFVGSkZNZVhudlhkRTB5c1dGR0Zs?=
- =?utf-8?B?akh4YUpPdUtvT3JKTnRDZkNRaEVIYmkxaEdVSlErTDVmNml1MEV5VmR3SDgx?=
- =?utf-8?B?Z0Q4T0xiQWt1SStvb2QzVFVKTUQ3NmtGcGZDMFQ3OEFGdlRUT2MrSElNbitN?=
- =?utf-8?Q?SYvU=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(7416014)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M0Rjc2xYL3pWRXl4OXpHcG43Y05xWnZOVnFEOW1UdUtyRGlEdTJBeHBwUzBD?=
- =?utf-8?B?dDVVMzlKRXc0akVNR3ZSc1phYy9PVDBzYzhVUEtFYlBRVGJQL3Z3Zytnc0Vv?=
- =?utf-8?B?K09INmpUdmduSVN0Yy9NRkdwUWFkSW9xSkNVdDhtM3dybHhOOEU0TExtS1BN?=
- =?utf-8?B?SVcwZ1JMb3dVM3dmdEh4M1dLWUowN21jaDhCbVdBdzM1MFZHR2lRTXNCZm1W?=
- =?utf-8?B?akF3ZWd4ZmZxUFlwK1hlYnBlN0h4VTkxU0puQXJTZ1c5cUovQWdWS09RUzAw?=
- =?utf-8?B?MndoTkJVc1AvUnJTVkZRUzVleXNWTXg5WUttY3FZRjdhL3dMWlhuQjlOQnFq?=
- =?utf-8?B?WVFaa1JuaEVvaVFSaTdTU0VubUE1SDlSTTQzRHFlajlSWFIwbUhzMUxYWDMx?=
- =?utf-8?B?TGxIY2djVm5NTGd6ZWxOOUI2bkdsUjlOZUJld0pDSXNwS2laU0ZlZzNqc3JQ?=
- =?utf-8?B?ZFVDbVc2YmR6WktZOFIvVFNMTUU5VDFCMzhzKzBPQURnQWRqcGswWjRsejk1?=
- =?utf-8?B?Z0JqTEFBNWtaekJ5aE5aNS95Ukl4c3p5eHVYU0lFSFIwZzhjd05TVXVPeWJK?=
- =?utf-8?B?S0hwMzQ2M1hQVWZ2eGNYeW1OekRTZ29qYS9BK2Q5UFZlcEEweWRmSldDdXF4?=
- =?utf-8?B?ZEZVVWc3eHNIblFmNVVKclN3ZEJhZWNwWEJiSlhtVkVLQ0Z6UDZHdXRteGsv?=
- =?utf-8?B?amhkTi96S0lvbnozc3pqVDZkY3g5aC9ZWFF3emR3NmI0MStCSndRRHBOR1E1?=
- =?utf-8?B?RGtEcklac1Z4c2ViYnRnL0Y0ZnJ0RlNod0cxMGlMWjd4dWJrQ0dkazZhZ3pQ?=
- =?utf-8?B?ZTN1RitmSXVleVBDZGNLQXBMVmJCTGU1cGJlNHhDcS9aVU9lQkgvaUhVMU8w?=
- =?utf-8?B?aWluSG9pQzVnQjRRWjVMV0VISXhZU0FpVHA4U2JZbWVDOWJtZE9QR2g4V3Bu?=
- =?utf-8?B?dEhsTUl0Ky81dWlPN3RVRUUvUGVTT2lORlRhV01JTklzQnFmRU1BMkl2YnBM?=
- =?utf-8?B?MGRZbm9DaFJKSmFrdDg4K0l6b3ZqTnZ2QWtKa01XZEg1MmJMeUI1c0NnSmps?=
- =?utf-8?B?UzJvdUsxTU8rU1JCQkhzT3lkdW5MUUY5NGNQZEdsRmZXZlNSdkxabEpVbUIv?=
- =?utf-8?B?NDNtZi9SanRGR1ppRUpuYUdsM2luYjIyTTQxSU14MVB1WFR3ZXhOUkFvMllP?=
- =?utf-8?B?NHFOVkd3T01PanJvb3pWRFQ1VEFzU1VYZlJYZERIclViV3MybHZXTFMranRv?=
- =?utf-8?B?ZHZidDg2M0JlN3Q4NFl1Tnl6bS9GWnJIbEdPNkF2SUNlTVQ5Y0hIdEh1S0Nk?=
- =?utf-8?B?T2pyd3B4cXBLYTd6MDNLZGdSenFudTE0dEYvTyt5WHFuK1Uwb1ZvV250L0VT?=
- =?utf-8?B?NWVFQ2R0am5RZW1yRENUVTgwbXZob2xwZ0dqOFhvbFRzcEVrdWlQbklNT01D?=
- =?utf-8?B?QVVKM2ExRzg0d1JRY0ZWRmlWT0hqbmlhc1UzcTIzOVZ0a2NtYlRCYmJvbVF0?=
- =?utf-8?B?dWhQT0pZUWJGRDdpRHEvRGdsOUxKY0hQaWw2bzFFUzRjRTJNbG1JcFBtd1J5?=
- =?utf-8?B?R0JmRUlRT1dNMW5NMElJQllFSGQyNVhEd3drWFFOSm1MbnRRZXR4RHRHOGpu?=
- =?utf-8?B?RFpvZjFtbW9jV25jZjA3cVgrRkk3T3RmNVdxbFk4dWZIaHI4OTVIdWZkb1hw?=
- =?utf-8?B?S1IzTUNJTmltM083elJXdmNSbVBsTkVrVXF6TGxDa2hKdjA3WVVWbk9lOEo1?=
- =?utf-8?B?MWM2U0dZZnVGNzF1a2Jva1BGQWltUlhzNk1kYXBBVUlIcXFRc2kreG4yeUp3?=
- =?utf-8?B?cndWZTZOWVpBUnNPU2FpVHRLNDJHUGp2V0N1cWxsM2Z1SFlqNWVjbGpYNGpR?=
- =?utf-8?B?SDZsenpIdENiMkNmUEJ6NHpveGludEhQb3RaSzk0QmtDeTdnOWxCZ0lHYmV3?=
- =?utf-8?B?aE1KNnJxaHRwa09rMGZTVmJhbnNTclhoMTNzcDUxZXBHUitmS0J5cGVieGcx?=
- =?utf-8?B?RUNaV0FMaEp2REZVdWxsRW5nMEN6ZjVjSzBQc0Z4QjY0YnphT1F0VVlhUVpV?=
- =?utf-8?B?UVUyK2RDMFowV01iWGxSMVlMZ1kyRVJpaVJ0SnpvM0FBYW4vYVJjaUxZU04w?=
- =?utf-8?B?eFVqRXd1emxQOEo2MnZQVlRxQ2pnSzh4OWxoaktkMUVJZUVtdWdDUUgyMVRm?=
- =?utf-8?B?K3p1NVlDZjUvbDRkSHNqWHp2RjVwRWRmUlEwbkNUUG1uRzZUTy80QXF6VFkr?=
- =?utf-8?B?bzNJTlpUcmxxM0lpc2JjUUxNbTBMcjZhRlhHOWU1eTdjSHlaMUVDd1BpWkVn?=
- =?utf-8?Q?7okPGCHrs8NPesyjlK?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 527060c9-33c9-481f-d635-08de6e0a4740
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2026 09:52:35.9201 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RGGjcgu+EvjxLbcEw7qdJEsFzNBu3OgNERcY6SrD2IRZa/IJAAPd1ofCEQ47GdsE
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5806
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -186,25 +90,931 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2/17/26 09:02, Leon Romanovsky wrote:
-> On Sat, Jan 31, 2026 at 07:34:10AM +0200, Leon Romanovsky wrote:
->> Changelog:
->> v7:
->>  * Fixed messed VFIO patch due to rebase.
-> 
-> <...>
-> 
-> Christian,
-> 
-> What should be my next step? Should I resubmit it?
+On Tue, 2026-02-17 at 06:19 +0000, Upadhyay, Tejas wrote:
+>=20
+>=20
+> > -----Original Message-----
+> > From: Auld, Matthew <matthew.auld@intel.com>
+> > Sent: 16 February 2026 22:12
+> > To: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>; Roper,
+> > Matthew
+> > D <matthew.d.roper@intel.com>; Souza, Jose <jose.souza@intel.com>
+> > Cc: Upadhyay, Tejas <tejas.upadhyay@intel.com>; Mrozek, Michal
+> > <michal.mrozek@intel.com>; intel-xe@lists.freedesktop.org; Brost,
+> > Matthew
+> > <matthew.brost@intel.com>
+> > Subject: Re: [PATCH 1/3] drm/xe/xe3p_lpg: flush userptr/shrinker bo
+> > cachelines manually
+> >=20
+> > On 16/02/2026 15:38, Thomas Hellstr=C3=B6m wrote:
+> > > On Mon, 2026-02-16 at 14:55 +0000, Matthew Auld wrote:
+> > > > On 16/02/2026 12:07, Thomas Hellstr=C3=B6m wrote:
+> > > > > On Mon, 2026-02-16 at 10:58 +0000, Matthew Auld wrote:
+> > > > > > On 16/02/2026 10:23, Thomas Hellstr=C3=B6m wrote:
+> > > > > > > On Fri, 2026-02-13 at 17:31 +0000, Matthew Auld wrote:
+> > > > > > > > On 13/02/2026 17:16, Matt Roper wrote:
+> > > > > > > > > On Fri, Feb 13, 2026 at 04:48:39PM +0000, Souza, Jose
+> > > > > > > > > wrote:
+> > > > > > > > > > On Fri, 2026-02-13 at 16:23 +0000, Upadhyay, Tejas
+> > > > > > > > > > wrote:
+> > > > > > > > > > >=20
+> > > > > > > > > > >=20
+> > > > > > > > > > > > -----Original Message-----
+> > > > > > > > > > > > From: Roper, Matthew D
+> > > > > > > > > > > > <matthew.d.roper@intel.com>
+> > > > > > > > > > > > Sent: 12 February 2026 02:41
+> > > > > > > > > > > > To: Upadhyay, Tejas <tejas.upadhyay@intel.com>
+> > > > > > > > > > > > Cc: Brost, Matthew <matthew.brost@intel.com>;
+> > > > > > > > > > > > intel-
+> > > > > > > > > > > > xe@lists.freedesktop.org; Auld, Matthew
+> > > > > > > > > > > > <matthew.auld@intel.com>;
+> > > > > > > > > > > > thomas.hellstrom@linux.intel.com
+> > > > > > > > > > > > Subject: Re: [PATCH 1/3] drm/xe/xe3p_lpg: flush
+> > > > > > > > > > > > userptr/shrinker bo cachelines manually
+> > > > > > > > > > > >=20
+> > > > > > > > > > > > On Wed, Feb 11, 2026 at 07:06:05PM +0000,
+> > > > > > > > > > > > Upadhyay, Tejas
+> > > > > > > > > > > > wrote:
+> > > > > > > > > > > > >=20
+> > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > -----Original Message-----
+> > > > > > > > > > > > > > From: Brost, Matthew
+> > > > > > > > > > > > > > <matthew.brost@intel.com>
+> > > > > > > > > > > > > > Sent: 11 February 2026 05:32
+> > > > > > > > > > > > > > To: Roper, Matthew D
+> > > > > > > > > > > > > > <matthew.d.roper@intel.com>
+> > > > > > > > > > > > > > Cc: Upadhyay, Tejas
+> > > > > > > > > > > > > > <tejas.upadhyay@intel.com>;
+> > > > > > > > > > > > > > intel-
+> > > > > > > > > > > > > > xe@lists.freedesktop.org; Auld, Matthew
+> > > > > > > > > > > > > > <matthew.auld@intel.com>;
+> > > > > > > > > > > > > > thomas.hellstrom@linux.intel.com
+> > > > > > > > > > > > > > Subject: Re: [PATCH 1/3] drm/xe/xe3p_lpg:
+> > > > > > > > > > > > > > flush
+> > > > > > > > > > > > > > userptr/shrinker bo cachelines manually
+> > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > On Tue, Feb 10, 2026 at 01:05:25PM -0800,
+> > > > > > > > > > > > > > Matt Roper
+> > > > > > > > > > > > > > wrote:
+> > > > > > > > > > > > > > > On Tue, Feb 10, 2026 at 06:21:22PM +0530,
+> > > > > > > > > > > > > > > Tejas Upadhyay
+> > > > > > > > > > > > > > > wrote:
+> > > > > > > > > > > > > > > > "eXtended Architecture" (XA) tagged
+> > > > > > > > > > > > > > > > memory=E2=80=94memory
+> > shared
+> > > > > > > > > > > > between
+> > > > > > > > > > > > > > the
+> > > > > > > > > > > > > > > > CPU and GPU
+> > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > I'm pretty sure this expansion of "XA" is
+> > > > > > > > > > > > > > > wrong; where are
+> > > > > > > > > > > > > > > you seeing this definition?=C2=A0 Everything
+> > > > > > > > > > > > > > > in the bspec
+> > > > > > > > > > > > > > > indicates that XA means "wb
+> > > > > > > > > > > > > > > - transient app" (similar to how "XD" is
+> > > > > > > > > > > > > > > 'wb - transient
+> > > > > > > > > > > > > > > display").
+> > > > > > > > > > > > > > > I'm not sure why exactly they picked "X"
+> > > > > > > > > > > > > > > to refer to
+> > > > > > > > > > > > > > > transient in both of these cases, but
+> > > > > > > > > > > > > > > I've never seen any
+> > > > > > > > > > > > > > > documentation that refers to it as
+> > > > > > > > > > > > > > > "extended."
+> > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > > is treated differently from other GPU
+> > > > > > > > > > > > > > > > memory when the
+> > > > > > > > > > > > > > > > Media engine is
+> > > > > > > > > > > > > > power-gated.
+> > > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > > XA is *always* flushed, like at the
+> > > > > > > > > > > > > > > > end-of- submssion
+> > > > > > > > > > > > > > > > (and maybe other
+> > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > I assume you're referring to the fact
+> > > > > > > > > > > > > > > that the driver
+> > > > > > > > > > > > > > > performs flushes at the end of submission
+> > > > > > > > > > > > > > > (via
+> > > > > > > > > > > > > > > PIPE_CONTROL or MI_FLUSH_DW), and that
+> > > > > > > > > > > > > > > depending on
+> > other
+> > > > > > > > > > > > > > > state/optimizations in the system, those
+> > > > > > > > > > > > > > > flushes may flush
+> > > > > > > > > > > > > > > the entire device cache, or may only
+> > > > > > > > > > > > > > > flush the subset of
+> > > > > > > > > > > > > > > cache data that is not marked as
+> > > > > > > > > > > > > > > transient.=C2=A0 The way you
+> > > > > > > > > > > > > > > worded this was confusing since it makes
+> > > > > > > > > > > > > > > it sound like
+> > > > > > > > > > > > > > > cache flushes happen automatically
+> > > > > > > > > > > > > > > somewhere in
+> > > > > > > > > > > > hardware/firmware.
+> > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > > places), just that internally as an
+> > > > > > > > > > > > > > > > optimisation hw
+> > > > > > > > > > > > > > > > doesn't need to make that a full flush
+> > > > > > > > > > > > > > > > (which will also
+> > > > > > > > > > > > > > > > include
+> > > > > > > > > > > > > > > > XA) when
+> > > > > > > > > > > > > > > > Media is off/powergated, since it
+> > > > > > > > > > > > > > > > doesn't need to worry
+> > > > > > > > > > > > > > > > about GT caches vs Media coherency, and
+> > > > > > > > > > > > > > > > only CPU vs GPU
+> > > > > > > > > > > > > > > > coherency, so can make that flush a
+> > > > > > > > > > > > > > > > targeted XA flush,
+> > > > > > > > > > > > > > > > since stuff tagged with XA now means
+> > > > > > > > > > > > > > > > it's shared with the
+> > > > > > > > > > > > > > > > CPU. The main implication is that we
+> > > > > > > > > > > > > > > > now need to somehow
+> > > > > > > > > > > > > > > > flush non-XA before freeing system
+> > > > > > > > > > > > > > > > memory pages,
+> > > > > > > > > > > > > > > > otherwise dirty cachelines could be
+> > > > > > > > > > > > > > > > flushed after the
+> > > > > > > > > > > > > > > > free (like if Media suddenly turns on
+> > > > > > > > > > > > > > > > and does a full
+> > > > > > > > > > > > > > > > flush)
+> > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > This description seems really confusing.=C2=
+=A0
+> > > > > > > > > > > > > > > My understanding
+> > > > > > > > > > > > > > > is that marking something as wb-
+> > > > > > > > > > > > > > > transient-app indicates
+> > > > > > > > > > > > > > > that it might be accessed by something
+> > > > > > > > > > > > > > > other than our
+> > > > > > > > > > > > > > > graphics/media IP (i.e., accessed from
+> > > > > > > > > > > > > > > the CPU, exported
+> > > > > > > > > > > > > > > to another device, etc.), so transient
+> > > > > > > > > > > > > > > data truly does
+> > > > > > > > > > > > > > > need to be flushed at the points in the
+> > > > > > > > > > > > > > > driver where a
+> > > > > > > > > > > > > > > flush typically happens.
+> > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > However when something is _not_
+> > > > > > > > > > > > > > > transient, then
+> > > > > > > > > > > > > > > either:
+> > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0- it's "private=
+" to the GPU and only
+> > > > > > > > > > > > > > > our
+> > > > > > > > > > > > > > > graphics/media IP will be
+> > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 accessin=
+g it
+> > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0- it's bound wi=
+th a coherent PAT
+> > > > > > > > > > > > > > > index so that
+> > > > > > > > > > > > > > > outside observers like
+> > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 the CPU =
+can snoop the device
+> > > > > > > > > > > > > > > cache, even when the
+> > > > > > > > > > > > > > > cache hasn't been
+> > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 flushed
+> > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > If media is not active, then there's
+> > > > > > > > > > > > > > > really no need to
+> > > > > > > > > > > > > > > include non-transient data when an device
+> > > > > > > > > > > > > > > cache flush
+> > > > > > > > > > > > > > > happens since there's no real need for
+> > > > > > > > > > > > > > > the data to get to
+> > > > > > > > > > > > > > > RAM.
+> > > > > > > > > > > > > > > So
+> > > > > > > > > > > > > > > that
+> > > > > > > > > > > > > > > enables
+> > > > > > > > > > > > > > > an optimization (which comes in your next
+> > > > > > > > > > > > > > > patch), that
+> > > > > > > > > > > > > > > allows flushes to only operate on the
+> > > > > > > > > > > > > > > subset of the device
+> > > > > > > > > > > > > > > cache tagged as
+> > > > > > > > > > > > "transient" if media is idle.
+> > > > > > > > > > > > >=20
+> > > > > > > > > > > > > But what If we have stale non-XA marked pages
+> > > > > > > > > > > > > for userptr,
+> > > > > > > > > > > > > and that object moves out and at the same
+> > > > > > > > > > > > > time media comes
+> > > > > > > > > > > > > back, will end up in full flush and flush the
+> > > > > > > > > > > > > stale entry to
+> > > > > > > > > > > > > RAM.
+> > > > > > > > > > > >=20
+> > > > > > > > > > > > What makes userptr special here?=C2=A0 During
+> > > > > > > > > > > > general, active
+> > > > > > > > > > > > usage, userptr would be data that's accessible
+> > > > > > > > > > > > by the CPU, so
+> > > > > > > > > > > > it needs to either be transient (so CPU can see
+> > > > > > > > > > > > the data in
+> > > > > > > > > > > > RAM after explicit flushes) or it needs to be
+> > > > > > > > > > > > using a
+> > > > > > > > > > > > coherent PAT (so that the CPU can just snoop
+> > > > > > > > > > > > the GPU cache).
+> > > > > > > > > > > > If
+> > > > > > > > > > > > you marked
+> > > > > > > > > > > > userptr as both non-XA and non-coherent, then
+> > > > > > > > > > > > that sounds
+> > > > > > > > > > > > likely to be a userspace bug (and probably
+> > > > > > > > > > > > something we can
+> > > > > > > > > > > > catch and reject as an invalid case on any Xe3p
+> > > > > > > > > > > > or later
+> > > > > > > > > > > > platforms that support
+> > > > > > > > > > > > this)
+> > > > > > > > > > > > since
+> > > > > > > > > > > > the
+> > > > > > > > > > > > CPU wouldn't
+> > > > > > > > > > > > have any reliable way of seeing GPU updates.
+> > > > > > > > > > >=20
+> > > > > > > > > > > Right. FYI @Mrozek, Michal @Souza, Jose For
+> > > > > > > > > > > userptr, as
+> > > > > > > > > > > explained above, it needs to be either coherent
+> > > > > > > > > > > or XA pat
+> > > > > > > > > > > index, or else KMD will reject as invalid case.
+> > > > > > > > > > >=20
+> > > > > > > > > > >=20
+> > > > > > > > > > The coherency restriction is already in the uAPI:
+> > > > > > > > > >=20
+> > > > > > > > > > "Note: For userptr and externally imported dma-buf
+> > > > > > > > > > the kernel
+> > > > > > > > > > expects either 1WAY or 2WAY for the @pat_index."
+> > > > > > > > > >=20
+> > > > > > > > > > Using 1 way is enough as Xe KMD does a PIPE_CONTROL
+> > > > > > > > > > flushing
+> > > > > > > > > > GPU caches at the end of batch buffers.
+> > > > > > > > >=20
+> > > > > > > > > But isn't that what we're discussing here?=C2=A0 1-way
+> > > > > > > > > *won't*
+> > > > > > > > > necessarily be enough anymore because PIPE_CONTROL
+> > > > > > > > > instructions
+> > > > > > > > > don't flush the entire cache anymore.=C2=A0 Whenever the
+> > > > > > > > > GuC
+> > > > > > > > > determines that media is inactive and activates the
+> > > > > > > > > optimization, PIPE_CONTROL, MI_FLUSH_DW, etc.
+> > > > > > > > > change
+> > > > > > > > > behavior to only flush out the subset of data that
+> > > > > > > > > was marked as
+> > > > > > > > > app-transient; anything not marked that way doesn't
+> > > > > > > > > get flushed
+> > > > > > > > > now.=C2=A0 So there's a new requirement here that you
+> > > > > > > > > ensure you're
+> > > > > > > > > using an XA PAT index, or you switch to use 2-way
+> > > > > > > > > coherency
+> > > > > > > > > which will allow the CPU to snoop the GPU's caches.
+> > > > > > > >=20
+> > > > > > > > That exactly matches my understanding also.
+> > > > > > >=20
+> > > > > > > This only ever affects IGFX, right? Since AFAIU we don't
+> > > > > > > have
+> > > > > > > 2-way coherency with DGFX?
+> > > > > >=20
+> > > > > > Yeah, this should be igpu only. I seem to also recall that
+> > > > > > on dgpu,
+> > > > > > Media is coherent with l2/l3, but also I don't think system
+> > > > > > memory
+> > > > > > can be cached in l2/l3 (only VRAM), which I assume is why
+> > > > > > there is
+> > > > > > the special SMRO (system-memory-read-only) cache only on
+> > > > > > dgpu,
+> > > > > > which is flushed when the fence signals, unlike the l2/l3.
+> > > > >=20
+> > > > > Yes that sounds reasonable.
+> > > > >=20
+> > > > > >=20
+> > > > > > >=20
+> > > > > > > It sounds like the same PAT restriction is needed also
+> > > > > > > for
+> > > > > > > imported dma-buf, right?
+> > > > > >=20
+> > > > > > Good point. Looks like we are missing that still. Otherwise
+> > > > > > we can
+> > > > > > run into the same issues with stale l2/l3/ppc.
+> > > > >=20
+> > > > > So if this affects only system memory could we instead of
+> > > > > relying on
+> > > > > 2- way coherency or XA, just flush at dma unmap time, because
+> > > > > that's
+> > > > > typically just before releasing the pages.
+> > > >=20
+> > > > Yeah, I think we could make it work, from security pov, similar
+> > > > to
+> > > > userptr, with the right manual flushes in KMD. Maybe just a
+> > > > question
+> > > > if userspace wants such a model? Anything cached in l2/l3 might
+> > > > require manual flushing by userspace (if that is even
+> > > > possible)?
+> > >=20
+> > > So that would mean if user-space wants gpu-cpu coherency at fence
+> > > synchronization points, they'd have to use either 2-way or XA pat
+> > > indices, but not enforced by KMD.
+> >=20
+> > Yeah, looking at BSpec 74635 (Media off case), I'm only really
+> > seeing
+> > MEM_SET which userspace could potentially use by itself? But then
+> > it's unclear
+> > if they mean to actually clear-the-memory (which is not what we
+> > want) or using the special evict mode, but that seems to be talking
+> > more about
+> > flushing to local memory, so not completely sure what that does on
+> > igpu. If it's
+> > the evict mode then should in theory be possible for userpace to do
+> > a manual
+> > flush, but that would have to be done per-bo/vma?
+>=20
+> MEM_SET says, range needs to be specified as part of command with
+> evict mode.
+>=20
+> >=20
+> > >=20
+> > > For imported dma-buf kernel requires 2-way or XA for security due
+> > > to
+> > > the relaxed dma-buf unmap.
+> > >=20
+> > > For SVM/System allocator we'd require 2-way or XA.
+> > >=20
+> > > Otherwise KMD security is enforced by flush at dma-unmap time?
+> >=20
+> > Yeah, that is my understanding. Otherwise I don't currently see
+> > what prevents
+> > the dirty non-XA cache lines being flushed at some random point
+> > later, after
+> > we have already freed the corresponding system memory, potentially
+> > nuking
+> > the next user who allocates those pages.
+>=20
+> Hmm, so it means we can drop this patch completely and do something
+> like below :
+>=20
+> In, xe_migrate_dma_unmap(),
+>=20
+> dma_unmap_page()
+> if (pat_index !=3D 18 or 19 && coh_mode !=3D 2_way)
+> 	/* manual_flush */
 
-No, the patches are fine as they are. I'm just waiting for the backmerge of upstream to apply them.
+I think for userptr you'd want to add this in
+__vma_userptr_invalidate(), just before drm_gpusvm_unmap_pages().
 
-@Dave can we get 6.19 merged into drm-next (and then drm-next into drm-misc-next) ?
+For bos you'd want to add it in xe_tt_unmap_sg() just before
+dma_unmap_sgtable(). But if you want to do it conditionally, you would
+need a flag in the struct xe_ttm_tt that is set whenever the owning bo
+is mapped in such a way that content has not been flushed.
 
-Thanks in advance,
-Christian.
+/Thomas
 
-> 
-> Thanks
-
+>=20
+> Tejas
+>=20
+> >=20
+> > >=20
+> > > /Thomas
+> > >=20
+> > > >=20
+> > > > >=20
+> > > > > The exception, though, is dma-buf where the exporter can
+> > > > > actually
+> > > > > release memory before all importers have given up their dma-
+> > > > > mappings.
+> > > > >=20
+> > > > > /Thomas
+> > > > >=20
+> > > > > >=20
+> > > > > > >=20
+> > > > > > > /Thomas
+> > > > > > >=20
+> > > > > > >=20
+> > > > > > > >=20
+> > > > > > > > >=20
+> > > > > > > > >=20
+> > > > > > > > > Matt
+> > > > > > > > >=20
+> > > > > > > > > >=20
+> > > > > > > > > > >=20
+> > > > > > > > > > > >=20
+> > > > > > > > > > > > If something happens that changes the GTT
+> > > > > > > > > > > > mapping of
+> > > > > > > > > > > > an
+> > > > > > > > > > > > object,
+> > > > > > > > > > > > then
+> > > > > > > > > > > > doesn't that already trigger a TLB invalidation
+> > > > > > > > > > > > when
+> > > > > > > > > > > > necessary in
+> > > > > > > > > > > > the driver
+> > > > > > > > > > > > today?=C2=A0 It was my understanding that "heavy"
+> > > > > > > > > > > > TLB
+> > > > > > > > > > > > invalidations wait
+> > > > > > > > > > > > for data
+> > > > > > > > > > > > values to be globally observable before
+> > > > > > > > > > > > starting, so
+> > > > > > > > > > > > I
+> > > > > > > > > > > > think
+> > > > > > > > > > > > that
+> > > > > > > > > > > > would ensure
+> > > > > > > > > > > > that any non-XA data makes it to RAM before any
+> > > > > > > > > > > > binding
+> > > > > > > > > > > > changes,
+> > > > > > > > > > > > object,
+> > > > > > > > > > > > destruction, etc.?=C2=A0 Is there something special
+> > > > > > > > > > > > about
+> > > > > > > > > > > > userptr
+> > > > > > > > > > > > that
+> > > > > > > > > > > > makes that
+> > > > > > > > > > > > case more of a problem?
+> > > > > > > > > > > >=20
+> > > > > > > > > > > > I just found bspec page 74635 which gives an
+> > > > > > > > > > > > overview
+> > > > > > > > > > > > of
+> > > > > > > > > > > > the
+> > > > > > > > > > > > various flush
+> > > > > > > > > > > > and invalidate cases, and I don't see anything
+> > > > > > > > > > > > there
+> > > > > > > > > > > > that
+> > > > > > > > > > > > makes it
+> > > > > > > > > > > > obvious to
+> > > > > > > > > > > > me that userptr would be special.
+> > > > > > > > > > > >=20
+> > > > > > > > > > > >=20
+> > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > As you said, we eventually do want to
+> > > > > > > > > > > > > > > force a
+> > > > > > > > > > > > > > > flush
+> > > > > > > > > > > > > > > of
+> > > > > > > > > > > > > > > the
+> > > > > > > > > > > > > > > non-transient data as well once we're
+> > > > > > > > > > > > > > > freeing
+> > > > > > > > > > > > > > > the
+> > > > > > > > > > > > > > > underlying
+> > > > > > > > > > > > > > > pages.
+> > > > > > > > > > > > > > > So how do we do that?=C2=A0 It's not clear to
+> > > > > > > > > > > > > > > me how
+> > > > > > > > > > > > > > > the
+> > > > > > > > > > > > > > > changes
+> > > > > > > > > > > > > > > below
+> > > > > > > > > > > > > > > are accomplishing that.=C2=A0 Is there a way
+> > > > > > > > > > > > > > > to
+> > > > > > > > > > > > > > > explicitly
+> > > > > > > > > > > > > > > request
+> > > > > > > > > > > > > > > a
+> > > > > > > > > > > > > > > full device cache flush (ignoring the
+> > > > > > > > > > > > > > > transient
+> > > > > > > > > > > > > > > vs
+> > > > > > > > > > > > > > > non-
+> > > > > > > > > > > > > > > transient tagging)?
+> > > > > > > > > > > > > > > Since the GuC handles the optimization in
+> > > > > > > > > > > > > > > the
+> > > > > > > > > > > > > > > next
+> > > > > > > > > > > > > > > patch
+> > > > > > > > > > > > > > > (toggling
+> > > > > > > > > > > > > > > whether flushes are full flushes vs non-
+> > > > > > > > > > > > > > > transient
+> > > > > > > > > > > > > > > flushes
+> > > > > > > > > > > > > > > depending on whether media is active), I
+> > > > > > > > > > > > > > > thought
+> > > > > > > > > > > > > > > there
+> > > > > > > > > > > > > > > might
+> > > > > > > > > > > > > > > be
+> > > > > > > > > > > > > > > some kind of GuC interface to request
+> > > > > > > > > > > > > > > "please
+> > > > > > > > > > > > > > > do
+> > > > > > > > > > > > > > > one
+> > > > > > > > > > > > > > > full
+> > > > > > > > > > > > > > > flush now, even
+> > > > > > > > > > > > if media is idle."
+> > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > I=E2=80=99m not an expert here by any means, bu=
+t
+> > > > > > > > > > > > > > everything
+> > > > > > > > > > > > > > above
+> > > > > > > > > > > > > > from
+> > > > > > > > > > > > > > Matt
+> > > > > > > > > > > > > > seems like valid concerns. Thomas also
+> > > > > > > > > > > > > > raised
+> > > > > > > > > > > > > > some
+> > > > > > > > > > > > > > concerns in
+> > > > > > > > > > > > > > the
+> > > > > > > > > > > > > > two previous revisions; again I=E2=80=99m not a=
+n
+> > > > > > > > > > > > > > expert,
+> > > > > > > > > > > > > > but
+> > > > > > > > > > > > > > reading
+> > > > > > > > > > > > > > through
+> > > > > > > > > > > > > > those, it doesn=E2=80=99t really seem like he
+> > > > > > > > > > > > > > received
+> > > > > > > > > > > > > > proper
+> > > > > > > > > > > > > > answers
+> > > > > > > > > > > > > > to his
+> > > > > > > > > > > > questions.
+> > > > > > > > > > > > >=20
+> > > > > > > > > > > > > Its forcing flush via tlb invalidation PPC
+> > > > > > > > > > > > > flag
+> > > > > > > > > > > > > under
+> > > > > > > > > > > > > xe_invalidate_vma( ).
+> > > > > > > > > > > >=20
+> > > > > > > > > > > > By the way, what is "PPC?"=C2=A0 It seems like it's
+> > > > > > > > > > > > another
+> > > > > > > > > > > > new
+> > > > > > > > > > > > synonym
+> > > > > > > > > > > > for the
+> > > > > > > > > > > > device cache?=C2=A0 It's already really confusing
+> > > > > > > > > > > > that
+> > > > > > > > > > > > some of
+> > > > > > > > > > > > our
+> > > > > > > > > > > > hardware docs use
+> > > > > > > > > > > > a mix of both "L2" and "L3" to refer to the
+> > > > > > > > > > > > same
+> > > > > > > > > > > > device
+> > > > > > > > > > > > cache
+> > > > > > > > > > > > for
+> > > > > > > > > > > > historical
+> > > > > > > > > > > > reasons...
+> > > > > > > > > > > >=20
+> > > > > > > > > > > >=20
+> > > > > > > > > > > > Matt
+> > > > > > > > > > > >=20
+> > > > > > > > > > > > >=20
+> > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > A couple of comments below.
+> > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > Matt
+> > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > > V2(MattA): Expand commit description
+> > > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > > Signed-off-by: Tejas Upadhyay
+> > > > > > > > > > > > > > > > <tejas.upadhyay@intel.com>
+> > > > > > > > > > > > > > > > ---
+> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drivers/gpu/d=
+rm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0
+> > > > > > > > > > > > > > > > 3 ++-
+> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drivers/gpu/d=
+rm/xe/xe_device.c=C2=A0 |
+> > > > > > > > > > > > > > > > 23
+> > > > > > > > > > > > > > > > +++++++++++++++++++++++
+> > > > > > > > > > > > > > > > drivers/gpu/drm/xe/xe_device.h=C2=A0 |=C2=
+=A0 1 +
+> > > > > > > > > > > > > > > > drivers/gpu/drm/xe/xe_userptr.c |=C2=A0 3
+> > > > > > > > > > > > > > > > ++-
+> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A04 files chang=
+ed, 28 insertions(+),
+> > > > > > > > > > > > > > > > 2
+> > > > > > > > > > > > > > > > deletions(-)
+> > > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
+> > > > > > > > > > > > > > > > b/drivers/gpu/drm/xe/xe_bo.c index
+> > > > > > > > > > > > > > > > e9180b01a4e4..4455886b211e
+> > > > > > > > > > > > > > > > 100644
+> > > > > > > > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > > > > > > > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > > > > > > > > > > > > > > > @@ -689,7 +689,8 @@ static int
+> > > > > > > > > > > > > > > > xe_bo_trigger_rebind(struct
+> > > > > > > > > > > > > > > > xe_device *xe, struct xe_bo *bo,
+> > > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0		if
+> > > > > > > > > > > > > > > > (!xe_vm_in_fault_mode(vm)) {
+> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0			drm_gpuvm_=
+bo_e
+> > > > > > > > > > > > > > > > vict(v
+> > > > > > > > > > > > > > > > m_bo
+> > > > > > > > > > > > > > > > ,
+> > > > > > > > > > > > > > > > true);
+> > > > > > > > > > > > > > > > -			continue;
+> > > > > > > > > > > > > > > > +			if
+> > > > > > > > > > > > > > > > (!xe_device_needs_cache_flush(xe))
+> > > > > > > > > > > > > > > > +				contin
+> > > > > > > > > > > > > > > > ue;
+> > > > > > > > > > >=20
+> > > > > > > > > > > Matt R,
+> > > > > > > > > > > This flush will be still needed as there can be
+> > > > > > > > > > > non-xa
+> > > > > > > > > > > buffers
+> > > > > > > > > > > which
+> > > > > > > > > > > can be evicted while media was off and stale
+> > > > > > > > > > > entries
+> > > > > > > > > > > can be
+> > > > > > > > > > > flushed
+> > > > > > > > > > > when media comes back on. Which was not case
+> > > > > > > > > > > earlier as
+> > > > > > > > > > > full
+> > > > > > > > > > > flush
+> > > > > > > > > > > was happening at regular sync points and that=E2=80=
+=99s
+> > > > > > > > > > > where
+> > > > > > > > > > > this
+> > > > > > > > > > > feature is
+> > > > > > > > > > > bringing optimization now.
+> > > > > > > > > > >=20
+> > > > > > > > > > > Tejas
+> > > > > > > > > > >=20
+> > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > This will trigger a TLB invalidation (and I
+> > > > > > > > > > > > > > assume a
+> > > > > > > > > > > > > > cache
+> > > > > > > > > > > > > > flush)
+> > > > > > > > > > > > > > every time we move or free memory in the 3D
+> > > > > > > > > > > > > > stack
+> > > > > > > > > > > > > > if
+> > > > > > > > > > > > > > it
+> > > > > > > > > > > > > > has a
+> > > > > > > > > > > > > > binding. It also performs a synchronous
+> > > > > > > > > > > > > > wait on
+> > > > > > > > > > > > > > the
+> > > > > > > > > > > > > > BO
+> > > > > > > > > > > > > > being
+> > > > > > > > > > > > > > idle.
+> > > > > > > > > > > > > > Both of these are very expensive
+> > > > > > > > > > > > > > operations. I
+> > > > > > > > > > > > > > can=E2=80=99t
+> > > > > > > > > > > > > > imagine
+> > > > > > > > > > > > > > the
+> > > > > > > > > > > > > > granularity we want here is to do this on
+> > > > > > > > > > > > > > every
+> > > > > > > > > > > > > > move/free
+> > > > > > > > > > > > > > with
+> > > > > > > > > > > > > > bindings.
+> > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > Also, for LR compute with preempt fences,
+> > > > > > > > > > > > > > we
+> > > > > > > > > > > > > > would
+> > > > > > > > > > > > > > trigger the
+> > > > > > > > > > > > > > preempt fences during the wait, so a TLB
+> > > > > > > > > > > > > > invalidation
+> > > > > > > > > > > > > > after
+> > > > > > > > > > > > > > this
+> > > > > > > > > > > > > > seems unnecessary, though perhaps the cache
+> > > > > > > > > > > > > > flush
+> > > > > > > > > > > > > > is
+> > > > > > > > > > > > > > still
+> > > > > > > > > > > > > > required?
+> > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > I think this needs a bit more explanation,
+> > > > > > > > > > > > > > because
+> > > > > > > > > > > > > > without
+> > > > > > > > > > > > > > knowing a
+> > > > > > > > > > > > > > lot about the exact requirements, the
+> > > > > > > > > > > > > > implementation
+> > > > > > > > > > > > > > does
+> > > > > > > > > > > > > > not
+> > > > > > > > > > > > > > look
+> > > > > > > > > > > > correct.
+> > > > > > > > > > > > >=20
+> > > > > > > > > > > > > The thing is that we are trying to solve
+> > > > > > > > > > > > > problem
+> > > > > > > > > > > > > with
+> > > > > > > > > > > > > userptr
+> > > > > > > > > > > > > with non-XA
+> > > > > > > > > > > > pat, consider if that BO got moved while media
+> > > > > > > > > > > > is not
+> > > > > > > > > > > > active.
+> > > > > > > > > > > > As
+> > > > > > > > > > > > soon as media
+> > > > > > > > > > > > will come back active, stale cached entries of
+> > > > > > > > > > > > that
+> > > > > > > > > > > > object
+> > > > > > > > > > > > will be
+> > > > > > > > > > > > flushed as part
+> > > > > > > > > > > > of full flush , which may corrupt things.
+> > > > > > > > > > > > > There was thinking that with this patch we
+> > > > > > > > > > > > > would at
+> > > > > > > > > > > > > least
+> > > > > > > > > > > > > solve
+> > > > > > > > > > > > > the problem
+> > > > > > > > > > > > of corruption and later when page_reclamation
+> > > > > > > > > > > > feature
+> > > > > > > > > > > > comes
+> > > > > > > > > > > > in will
+> > > > > > > > > > > > help in
+> > > > > > > > > > > > performance as well. But now when page
+> > > > > > > > > > > > reclamation
+> > > > > > > > > > > > feature is
+> > > > > > > > > > > > merged earlier
+> > > > > > > > > > > > and it tightly coupled with bind/unbind some
+> > > > > > > > > > > > cases
+> > > > > > > > > > > > like
+> > > > > > > > > > > > discussed
+> > > > > > > > > > > > above
+> > > > > > > > > > > > (which are not doing unbind immediately on
+> > > > > > > > > > > > move/free)
+> > > > > > > > > > > > are
+> > > > > > > > > > > > missed in
+> > > > > > > > > > > > reclamation.
+> > > > > > > > > > > > >=20
+> > > > > > > > > > > > > So thought was to let this solution go in
+> > > > > > > > > > > > > with
+> > > > > > > > > > > > > little
+> > > > > > > > > > > > > perf
+> > > > > > > > > > > > > hit
+> > > > > > > > > > > > > and discuss with
+> > > > > > > > > > > > page reclamation owner to come with cleaner
+> > > > > > > > > > > > solution
+> > > > > > > > > > > > together.
+> > > > > > > > > > > > >=20
+> > > > > > > > > > > > > Tejas
+> > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0		}
+> > > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0		if (!idle) =
+{
+> > > > > > > > > > > > > > > > diff --git
+> > > > > > > > > > > > > > > > a/drivers/gpu/drm/xe/xe_device.c
+> > > > > > > > > > > > > > > > b/drivers/gpu/drm/xe/xe_device.c index
+> > > > > > > > > > > > > > > > 743c18e0c580..da2abed94bc0
+> > > > > > > > > > > > > > > > 100644
+> > > > > > > > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_device.c
+> > > > > > > > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > > > > > > > > > > > > > > > @@ -1097,6 +1097,29 @@ static void
+> > > > > > > > > > > > > > > > tdf_request_sync(struct
+> > > > > > > > > > > > > > > > xe_device
+> > > > > > > > > > > > > > *xe)
+> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0	}
+> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
+> > > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > > +/**
+> > > > > > > > > > > > > > > > + * xe_device_needs_cache_flush -
+> > > > > > > > > > > > > > > > Whether the
+> > > > > > > > > > > > > > > > cache
+> > > > > > > > > > > > > > > > needs
+> > > > > > > > > > > > > > > > to be
+> > > > > > > > > > > > > > > > +flushed
+> > > > > > > > > > > > > > > > + * @xe: The device to check.
+> > > > > > > > > > > > > > > > + *
+> > > > > > > > > > > > > > > > + * Return: true if the device needs
+> > > > > > > > > > > > > > > > cache
+> > > > > > > > > > > > > > > > flush,
+> > > > > > > > > > > > > > > > false
+> > > > > > > > > > > > > > > > otherwise.
+> > > > > > > > > > > > > > > > + */
+> > > > > > > > > > > > > > > > +bool
+> > > > > > > > > > > > > > > > xe_device_needs_cache_flush(struct
+> > > > > > > > > > > > > > > > xe_device
+> > > > > > > > > > > > > > > > *xe) {
+> > > > > > > > > > > > > > > > +	/* XA is *always* flushed,
+> > > > > > > > > > > > > > > > like at
+> > > > > > > > > > > > > > > > the
+> > > > > > > > > > > > > > > > end-
+> > > > > > > > > > > > > > > > of-
+> > > > > > > > > > > > > > > > submssion (and
+> > > > > > > > > > > > > > > > +maybe
+> > > > > > > > > > > > > > other
+> > > > > > > > > > > > > > > > +	 * places), just that
+> > > > > > > > > > > > > > > > internally as
+> > > > > > > > > > > > > > > > an
+> > > > > > > > > > > > > > > > optimisation hw doesn't
+> > > > > > > > > > > > > > > > +need to
+> > > > > > > > > > > > > > make
+> > > > > > > > > > > > > > > > +	 * that a full flush (which
+> > > > > > > > > > > > > > > > will
+> > > > > > > > > > > > > > > > also
+> > > > > > > > > > > > > > > > include XA)
+> > > > > > > > > > > > > > > > when Media is
+> > > > > > > > > > > > > > > > +	 * off/powergated, since it
+> > > > > > > > > > > > > > > > doesn't
+> > > > > > > > > > > > > > > > need
+> > > > > > > > > > > > > > > > to
+> > > > > > > > > > > > > > > > worry
+> > > > > > > > > > > > > > > > about GT
+> > > > > > > > > > > > > > > > +caches vs
+> > > > > > > > > > > > > > Media
+> > > > > > > > > > > > > > > > +	 * coherency, and only CPU vs
+> > > > > > > > > > > > > > > > GPU
+> > > > > > > > > > > > > > > > coherency,
+> > > > > > > > > > > > > > > > so
+> > > > > > > > > > > > > > > > can make
+> > > > > > > > > > > > that
+> > > > > > > > > > > > > > > > +flush
+> > > > > > > > > > > > > > a
+> > > > > > > > > > > > > > > > +	 * targeted XA flush, since
+> > > > > > > > > > > > > > > > stuff
+> > > > > > > > > > > > > > > > tagged
+> > > > > > > > > > > > > > > > with XA
+> > > > > > > > > > > > > > > > now means
+> > > > > > > > > > > > > > > > +it's shared
+> > > > > > > > > > > > > > with
+> > > > > > > > > > > > > > > > +	 * the CPU. The main
+> > > > > > > > > > > > > > > > implication is
+> > > > > > > > > > > > > > > > that
+> > > > > > > > > > > > > > > > we
+> > > > > > > > > > > > > > > > now
+> > > > > > > > > > > > > > > > need to
+> > > > > > > > > > > > > > > > +somehow
+> > > > > > > > > > > > > > flush non-XA before
+> > > > > > > > > > > > > > > > +	 * freeing system memory
+> > > > > > > > > > > > > > > > pages,
+> > > > > > > > > > > > > > > > otherwise
+> > > > > > > > > > > > > > > > dirty
+> > > > > > > > > > > > > > > > cachelines
+> > > > > > > > > > > > > > > > +could be
+> > > > > > > > > > > > > > flushed after the free
+> > > > > > > > > > > > > > > > +	 * (like if Media suddenly
+> > > > > > > > > > > > > > > > turns on
+> > > > > > > > > > > > > > > > and
+> > > > > > > > > > > > > > > > does
+> > > > > > > > > > > > > > > > a
+> > > > > > > > > > > > > > > > full flush)
+> > > > > > > > > > > > > > > > +	 */
+> > > > > > > > > > > > > > > > +	if (GRAPHICS_VER(xe) >=3D 35 &&
+> > > > > > > > > > > > > > > > !IS_DGFX(xe))
+> > > > > > > > > > > > > > > > +		return true;
+> > > > > > > > > > > > > > > > +	return false;
+> > > > > > > > > > > > > > > > +}
+> > > > > > > > > > > > > > > > +
+> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0void xe_devic=
+e_l2_flush(struct
+> > > > > > > > > > > > > > > > xe_device
+> > > > > > > > > > > > > > > > *xe)
+> > > > > > > > > > > > > > > > {
+> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0	struct xe_gt=
+ *gt;
+> > > > > > > > > > > > > > > > diff --git
+> > > > > > > > > > > > > > > > a/drivers/gpu/drm/xe/xe_device.h
+> > > > > > > > > > > > > > > > b/drivers/gpu/drm/xe/xe_device.h index
+> > > > > > > > > > > > > > > > 39464650533b..baf386e0e037
+> > > > > > > > > > > > > > > > 100644
+> > > > > > > > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_device.h
+> > > > > > > > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_device.h
+> > > > > > > > > > > > > > > > @@ -184,6 +184,7 @@ void
+> > > > > > > > > > > > > > > > xe_device_snapshot_print(struct
+> > > > > > > > > > > > > > > > xe_device *xe, struct drm_printer *p);
+> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u64
+> > > > > > > > > > > > > > > > xe_device_canonicalize_addr(struct
+> > > > > > > > > > > > > > > > xe_device
+> > > > > > > > > > > > > > > > *xe, u64
+> > > > > > > > > > > > > > > > address);
+> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u64
+> > > > > > > > > > > > > > > > xe_device_uncanonicalize_addr(struct
+> > > > > > > > > > > > > > > > xe_device
+> > > > > > > > > > > > > > > > *xe,
+> > > > > > > > > > > > > > > > u64
+> > > > > > > > > > > > > > > > address);
+> > > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > > +bool
+> > > > > > > > > > > > > > > > xe_device_needs_cache_flush(struct
+> > > > > > > > > > > > > > > > xe_device
+> > > > > > > > > > > > > > > > *xe);
+> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0void xe_devic=
+e_td_flush(struct
+> > > > > > > > > > > > > > > > xe_device
+> > > > > > > > > > > > > > > > *xe);
+> > > > > > > > > > > > > > > > void
+> > > > > > > > > > > > > > > > xe_device_l2_flush(struct xe_device
+> > > > > > > > > > > > > > > > *xe);
+> > > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > > diff --git
+> > > > > > > > > > > > > > > > a/drivers/gpu/drm/xe/xe_userptr.c
+> > > > > > > > > > > > > > > > b/drivers/gpu/drm/xe/xe_userptr.c index
+> > > > > > > > > > > > > > > > e120323c43bc..b435ea7f9b66
+> > > > > > > > > > > > > > > > 100644
+> > > > > > > > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_userptr.c
+> > > > > > > > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_userptr.c
+> > > > > > > > > > > > > > > > @@ -114,7 +114,8 @@ static void
+> > > > > > > > > > > > > > > > __vma_userptr_invalidate(struct
+> > > > > > > > > > > > > > > > xe_vm
+> > > > > > > > > > > > > > *vm, struct xe_userptr_vma *uv
+> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0				=C2=A0=C2=
+=A0=C2=A0
+> > > > > > > > > > > > > > > > false,
+> > > > > > > > > > > > > > > > MAX_SCHEDULE_TIMEOUT);
+> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0	XE_WARN_ON(e=
+rr <=3D 0);
+> > > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > > -	if (xe_vm_in_fault_mode(vm) &&
+> > > > > > > > > > > > > > > > userptr-
+> > > > > > > > > > > > > > > > > initial_bind) {
+> > > > > > > > > > > > > > > > +	if ((xe_vm_in_fault_mode(vm)
+> > > > > > > > > > > > > > > > ||
+> > > > > > > > > > > > > > > > +xe_device_needs_cache_flush(vm-
+> > > > > > > > > > > > > > > xe)) &&
+> > > > > > > > > > > > > > > > +	=C2=A0=C2=A0=C2=A0 userptr->initial_bind)=
+ {
+> > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > Same concern with the LR preempt fence as
+> > > > > > > > > > > > > > above =E2=80=94
+> > > > > > > > > > > > > > the
+> > > > > > > > > > > > > > hardware
+> > > > > > > > > > > > > > will
+> > > > > > > > > > > > > > be interrupted via preempt fences, so it
+> > > > > > > > > > > > > > doesn=E2=80=99t
+> > > > > > > > > > > > > > seem
+> > > > > > > > > > > > > > necessary
+> > > > > > > > > > > > > > to
+> > > > > > > > > > > > > > invalidate the TLBs but perhaps we need a
+> > > > > > > > > > > > > > cflush
+> > > > > > > > > > > > > > and
+> > > > > > > > > > > > > > TLB
+> > > > > > > > > > > > > > invalidation is the mechanism for that too?
+> > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > Matt
+> > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0		err =3D
+> > > > > > > > > > > > > > > > xe_vm_invalidate_vma(vma);
+> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0		XE_WARN_ON(=
+err);
+> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0	}
+> > > > > > > > > > > > > > > > --
+> > > > > > > > > > > > > > > > 2.52.0
+> > > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > >=20
+> > > > > > > > > > > > > > > --
+> > > > > > > > > > > > > > > Matt Roper
+> > > > > > > > > > > > > > > Graphics Software Engineer
+> > > > > > > > > > > > > > > Linux GPU Platform Enablement
+> > > > > > > > > > > > > > > Intel Corporation
+> > > > > > > > > > > >=20
+> > > > > > > > > > > > --
+> > > > > > > > > > > > Matt Roper
+> > > > > > > > > > > > Graphics Software Engineer
+> > > > > > > > > > > > Linux GPU Platform Enablement
+> > > > > > > > > > > > Intel Corporation
+> > > > > > > > >=20
