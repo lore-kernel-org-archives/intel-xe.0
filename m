@@ -4,78 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0462FE68156
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Feb 2026 09:53:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC6D0E68155
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Feb 2026 10:01:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAABC10E4B5;
-	Tue, 17 Feb 2026 09:53:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7080310E4B9;
+	Tue, 17 Feb 2026 10:01:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mOjWi1F+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AW3TwmHl";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B33710E4B5
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Feb 2026 09:53:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 192F810E4B6;
+ Tue, 17 Feb 2026 10:01:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771322029; x=1802858029;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=X4NY0MXKyzm5KuYPRHevz9JBFHOYFOxFNkunQ9QZ5aw=;
- b=mOjWi1F+Tv3o14PHlYPIBX5W/ua0S83Wa5oaSbXFFg0urfM/PaB+qq4D
- SgHk49WC2xJtPPKd/u42i8HW1P04ND0EROdps1CJcL0wsWW1sT7zLhAdq
- IZOJT+evZh2bze4k/bEZSQALBV6xd+scLSmaCRCC5cWLTmHm2DJJi5BOI
- b9rh06axg7qm4DaaLIGDXdoqrS+WxOweLPn3KkgLyeA5RXq31yclCo6Ca
- yZaMb/Aq1JG6DVciFjKIn3itPAKowzixMROxytrtMLBEDuvhFEnLJENP1
- 8yTMEn72bW33RCCW4r4hAmcUUiRJp5Py4uJkX4UpKYHirViH/naRoPpmi A==;
-X-CSE-ConnectionGUID: 9uLy6Yu+TkKX5qYaCD4FWg==
-X-CSE-MsgGUID: 2ctp54sCQHa3QtNVAh3CSQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11703"; a="72561080"
-X-IronPort-AV: E=Sophos;i="6.21,296,1763452800"; d="scan'208";a="72561080"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2026 01:53:48 -0800
-X-CSE-ConnectionGUID: 9oHo9zkgSL2ZOlqe8x4CDg==
-X-CSE-MsgGUID: MH6+StNvT/2G21cuscTKuA==
+ t=1771322509; x=1802858509;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=EZOVFbmqVwpfx8emY+CPAv7obRPc6FIef+3lq8i7RE0=;
+ b=AW3TwmHlwgz1VMje5wKCx3yjOx5FebxyZ2zikWw0C/plRudOB0KRG8fW
+ 8WfuxMnPYD09gHJDxyWC3KYrhi5+UWYRzQmVA9WMAYxQpajsj4YSHzKpF
+ m59rPJ17UugrECJNEUhFBvGps7yJqjvyL0/js2NF1wlPfD6gLiJCUJ1OZ
+ RnNqxYQv32ZAaDuikhA5OdiE3e7kIcI+EEt35eF4H3tQYHS6vE/D55B/K
+ 2P+tTYoBitHm+CnzZTn5z1OM5cqYTyBEfUQSNElbOxFp5rv8Eahp0NRKL
+ acojWmEcB6vsijXZlzrRtU2Ghxb7A/gZqvnSow5rzTPPHRKFCkhYWU/lq A==;
+X-CSE-ConnectionGUID: An61C2isS5+skPGMUpDwSQ==
+X-CSE-MsgGUID: ZP5PCi7tQX+azl5ufR7Sxg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11703"; a="72454743"
+X-IronPort-AV: E=Sophos;i="6.21,296,1763452800"; d="scan'208";a="72454743"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2026 02:01:49 -0800
+X-CSE-ConnectionGUID: ye+HiEVnQp+E/joUV8iNgQ==
+X-CSE-MsgGUID: +daWLWxIQFK2EfaHWjAHzg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,296,1763452800"; d="scan'208";a="212324155"
-Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.245.127])
- ([10.245.245.127])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2026 01:53:47 -0800
-Message-ID: <edc9d10bc6cbcf22a1661b535d144a74dd7f1002.camel@linux.intel.com>
-Subject: Re: [PATCH 1/3] drm/xe/xe3p_lpg: flush userptr/shrinker bo
- cachelines manually
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>, "Auld, Matthew"
- <matthew.auld@intel.com>, "Roper, Matthew D" <matthew.d.roper@intel.com>, 
- "Souza, Jose" <jose.souza@intel.com>
-Cc: "Mrozek, Michal" <michal.mrozek@intel.com>, 
- "intel-xe@lists.freedesktop.org"	 <intel-xe@lists.freedesktop.org>, "Brost,
- Matthew" <matthew.brost@intel.com>
-Date: Tue, 17 Feb 2026 10:53:19 +0100
-In-Reply-To: <SJ1PR11MB620450500088AA17377A9B18816DA@SJ1PR11MB6204.namprd11.prod.outlook.com>
-References: <20260210125120.1329411-5-tejas.upadhyay@intel.com>
- <20260210125120.1329411-6-tejas.upadhyay@intel.com>
- <20260210210525.GC4694@mdroper-desk1.amr.corp.intel.com>
- <aYvHCeTd5pOFo2p5@lstrano-desk.jf.intel.com>
- <SJ1PR11MB6204CD2B54AD51B175F96F298163A@SJ1PR11MB6204.namprd11.prod.outlook.com>
- <20260211211125.GL4694@mdroper-desk1.amr.corp.intel.com>
- <SJ1PR11MB6204B6489254C702FB9A9D478161A@SJ1PR11MB6204.namprd11.prod.outlook.com>
- <f57d25f0131d124bdee35411d15513739c7d17c3.camel@intel.com>
- <20260213171638.GC52346@mdroper-desk1.amr.corp.intel.com>
- <a62d59e4-c77d-4e28-8227-be253733dd7b@intel.com>
- <75dcc80b39ed33a7abc620b2614b0e81586a6299.camel@linux.intel.com>
- <8ce35a23-b639-4c4f-acfd-993c4f9d5008@intel.com>
- <9ce0acf02e8ef63bf81cfbb9e1053bfa1437362f.camel@linux.intel.com>
- <3da2dfce-9bbf-42cd-a178-24a6c44b18c3@intel.com>
- <0d069a41599695c4c8fa0093fb1a4edb4017e600.camel@linux.intel.com>
- <d3156c1a-7490-46e1-8ca1-a7e4f946a908@intel.com>
- <SJ1PR11MB620450500088AA17377A9B18816DA@SJ1PR11MB6204.namprd11.prod.outlook.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+X-IronPort-AV: E=Sophos;i="6.21,296,1763452800"; d="scan'208";a="213848019"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO [10.245.245.125])
+ ([10.245.245.125])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2026 02:01:46 -0800
+Message-ID: <1c753753-ced2-41c9-bad1-c9a172003d2f@intel.com>
+Date: Tue, 17 Feb 2026 10:01:43 +0000
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] drm/buddy: Improve offset-aligned allocation
+ handling
+To: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>,
+ christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com
+References: <20260209083051.13376-1-Arunpravin.PaneerSelvam@amd.com>
+ <ce9833ef-8cfa-4b1a-b4d5-eda0158cb19d@intel.com>
+ <08987287-ce6a-452f-a1aa-080562afe7bd@amd.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <08987287-ce6a-452f-a1aa-080562afe7bd@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,931 +75,510 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2026-02-17 at 06:19 +0000, Upadhyay, Tejas wrote:
->=20
->=20
-> > -----Original Message-----
-> > From: Auld, Matthew <matthew.auld@intel.com>
-> > Sent: 16 February 2026 22:12
-> > To: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>; Roper,
-> > Matthew
-> > D <matthew.d.roper@intel.com>; Souza, Jose <jose.souza@intel.com>
-> > Cc: Upadhyay, Tejas <tejas.upadhyay@intel.com>; Mrozek, Michal
-> > <michal.mrozek@intel.com>; intel-xe@lists.freedesktop.org; Brost,
-> > Matthew
-> > <matthew.brost@intel.com>
-> > Subject: Re: [PATCH 1/3] drm/xe/xe3p_lpg: flush userptr/shrinker bo
-> > cachelines manually
-> >=20
-> > On 16/02/2026 15:38, Thomas Hellstr=C3=B6m wrote:
-> > > On Mon, 2026-02-16 at 14:55 +0000, Matthew Auld wrote:
-> > > > On 16/02/2026 12:07, Thomas Hellstr=C3=B6m wrote:
-> > > > > On Mon, 2026-02-16 at 10:58 +0000, Matthew Auld wrote:
-> > > > > > On 16/02/2026 10:23, Thomas Hellstr=C3=B6m wrote:
-> > > > > > > On Fri, 2026-02-13 at 17:31 +0000, Matthew Auld wrote:
-> > > > > > > > On 13/02/2026 17:16, Matt Roper wrote:
-> > > > > > > > > On Fri, Feb 13, 2026 at 04:48:39PM +0000, Souza, Jose
-> > > > > > > > > wrote:
-> > > > > > > > > > On Fri, 2026-02-13 at 16:23 +0000, Upadhyay, Tejas
-> > > > > > > > > > wrote:
-> > > > > > > > > > >=20
-> > > > > > > > > > >=20
-> > > > > > > > > > > > -----Original Message-----
-> > > > > > > > > > > > From: Roper, Matthew D
-> > > > > > > > > > > > <matthew.d.roper@intel.com>
-> > > > > > > > > > > > Sent: 12 February 2026 02:41
-> > > > > > > > > > > > To: Upadhyay, Tejas <tejas.upadhyay@intel.com>
-> > > > > > > > > > > > Cc: Brost, Matthew <matthew.brost@intel.com>;
-> > > > > > > > > > > > intel-
-> > > > > > > > > > > > xe@lists.freedesktop.org; Auld, Matthew
-> > > > > > > > > > > > <matthew.auld@intel.com>;
-> > > > > > > > > > > > thomas.hellstrom@linux.intel.com
-> > > > > > > > > > > > Subject: Re: [PATCH 1/3] drm/xe/xe3p_lpg: flush
-> > > > > > > > > > > > userptr/shrinker bo cachelines manually
-> > > > > > > > > > > >=20
-> > > > > > > > > > > > On Wed, Feb 11, 2026 at 07:06:05PM +0000,
-> > > > > > > > > > > > Upadhyay, Tejas
-> > > > > > > > > > > > wrote:
-> > > > > > > > > > > > >=20
-> > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > -----Original Message-----
-> > > > > > > > > > > > > > From: Brost, Matthew
-> > > > > > > > > > > > > > <matthew.brost@intel.com>
-> > > > > > > > > > > > > > Sent: 11 February 2026 05:32
-> > > > > > > > > > > > > > To: Roper, Matthew D
-> > > > > > > > > > > > > > <matthew.d.roper@intel.com>
-> > > > > > > > > > > > > > Cc: Upadhyay, Tejas
-> > > > > > > > > > > > > > <tejas.upadhyay@intel.com>;
-> > > > > > > > > > > > > > intel-
-> > > > > > > > > > > > > > xe@lists.freedesktop.org; Auld, Matthew
-> > > > > > > > > > > > > > <matthew.auld@intel.com>;
-> > > > > > > > > > > > > > thomas.hellstrom@linux.intel.com
-> > > > > > > > > > > > > > Subject: Re: [PATCH 1/3] drm/xe/xe3p_lpg:
-> > > > > > > > > > > > > > flush
-> > > > > > > > > > > > > > userptr/shrinker bo cachelines manually
-> > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > On Tue, Feb 10, 2026 at 01:05:25PM -0800,
-> > > > > > > > > > > > > > Matt Roper
-> > > > > > > > > > > > > > wrote:
-> > > > > > > > > > > > > > > On Tue, Feb 10, 2026 at 06:21:22PM +0530,
-> > > > > > > > > > > > > > > Tejas Upadhyay
-> > > > > > > > > > > > > > > wrote:
-> > > > > > > > > > > > > > > > "eXtended Architecture" (XA) tagged
-> > > > > > > > > > > > > > > > memory=E2=80=94memory
-> > shared
-> > > > > > > > > > > > between
-> > > > > > > > > > > > > > the
-> > > > > > > > > > > > > > > > CPU and GPU
-> > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > I'm pretty sure this expansion of "XA" is
-> > > > > > > > > > > > > > > wrong; where are
-> > > > > > > > > > > > > > > you seeing this definition?=C2=A0 Everything
-> > > > > > > > > > > > > > > in the bspec
-> > > > > > > > > > > > > > > indicates that XA means "wb
-> > > > > > > > > > > > > > > - transient app" (similar to how "XD" is
-> > > > > > > > > > > > > > > 'wb - transient
-> > > > > > > > > > > > > > > display").
-> > > > > > > > > > > > > > > I'm not sure why exactly they picked "X"
-> > > > > > > > > > > > > > > to refer to
-> > > > > > > > > > > > > > > transient in both of these cases, but
-> > > > > > > > > > > > > > > I've never seen any
-> > > > > > > > > > > > > > > documentation that refers to it as
-> > > > > > > > > > > > > > > "extended."
-> > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > > is treated differently from other GPU
-> > > > > > > > > > > > > > > > memory when the
-> > > > > > > > > > > > > > > > Media engine is
-> > > > > > > > > > > > > > power-gated.
-> > > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > > XA is *always* flushed, like at the
-> > > > > > > > > > > > > > > > end-of- submssion
-> > > > > > > > > > > > > > > > (and maybe other
-> > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > I assume you're referring to the fact
-> > > > > > > > > > > > > > > that the driver
-> > > > > > > > > > > > > > > performs flushes at the end of submission
-> > > > > > > > > > > > > > > (via
-> > > > > > > > > > > > > > > PIPE_CONTROL or MI_FLUSH_DW), and that
-> > > > > > > > > > > > > > > depending on
-> > other
-> > > > > > > > > > > > > > > state/optimizations in the system, those
-> > > > > > > > > > > > > > > flushes may flush
-> > > > > > > > > > > > > > > the entire device cache, or may only
-> > > > > > > > > > > > > > > flush the subset of
-> > > > > > > > > > > > > > > cache data that is not marked as
-> > > > > > > > > > > > > > > transient.=C2=A0 The way you
-> > > > > > > > > > > > > > > worded this was confusing since it makes
-> > > > > > > > > > > > > > > it sound like
-> > > > > > > > > > > > > > > cache flushes happen automatically
-> > > > > > > > > > > > > > > somewhere in
-> > > > > > > > > > > > hardware/firmware.
-> > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > > places), just that internally as an
-> > > > > > > > > > > > > > > > optimisation hw
-> > > > > > > > > > > > > > > > doesn't need to make that a full flush
-> > > > > > > > > > > > > > > > (which will also
-> > > > > > > > > > > > > > > > include
-> > > > > > > > > > > > > > > > XA) when
-> > > > > > > > > > > > > > > > Media is off/powergated, since it
-> > > > > > > > > > > > > > > > doesn't need to worry
-> > > > > > > > > > > > > > > > about GT caches vs Media coherency, and
-> > > > > > > > > > > > > > > > only CPU vs GPU
-> > > > > > > > > > > > > > > > coherency, so can make that flush a
-> > > > > > > > > > > > > > > > targeted XA flush,
-> > > > > > > > > > > > > > > > since stuff tagged with XA now means
-> > > > > > > > > > > > > > > > it's shared with the
-> > > > > > > > > > > > > > > > CPU. The main implication is that we
-> > > > > > > > > > > > > > > > now need to somehow
-> > > > > > > > > > > > > > > > flush non-XA before freeing system
-> > > > > > > > > > > > > > > > memory pages,
-> > > > > > > > > > > > > > > > otherwise dirty cachelines could be
-> > > > > > > > > > > > > > > > flushed after the
-> > > > > > > > > > > > > > > > free (like if Media suddenly turns on
-> > > > > > > > > > > > > > > > and does a full
-> > > > > > > > > > > > > > > > flush)
-> > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > This description seems really confusing.=C2=
-=A0
-> > > > > > > > > > > > > > > My understanding
-> > > > > > > > > > > > > > > is that marking something as wb-
-> > > > > > > > > > > > > > > transient-app indicates
-> > > > > > > > > > > > > > > that it might be accessed by something
-> > > > > > > > > > > > > > > other than our
-> > > > > > > > > > > > > > > graphics/media IP (i.e., accessed from
-> > > > > > > > > > > > > > > the CPU, exported
-> > > > > > > > > > > > > > > to another device, etc.), so transient
-> > > > > > > > > > > > > > > data truly does
-> > > > > > > > > > > > > > > need to be flushed at the points in the
-> > > > > > > > > > > > > > > driver where a
-> > > > > > > > > > > > > > > flush typically happens.
-> > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > However when something is _not_
-> > > > > > > > > > > > > > > transient, then
-> > > > > > > > > > > > > > > either:
-> > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0- it's "private=
-" to the GPU and only
-> > > > > > > > > > > > > > > our
-> > > > > > > > > > > > > > > graphics/media IP will be
-> > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 accessin=
-g it
-> > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0- it's bound wi=
-th a coherent PAT
-> > > > > > > > > > > > > > > index so that
-> > > > > > > > > > > > > > > outside observers like
-> > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 the CPU =
-can snoop the device
-> > > > > > > > > > > > > > > cache, even when the
-> > > > > > > > > > > > > > > cache hasn't been
-> > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 flushed
-> > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > If media is not active, then there's
-> > > > > > > > > > > > > > > really no need to
-> > > > > > > > > > > > > > > include non-transient data when an device
-> > > > > > > > > > > > > > > cache flush
-> > > > > > > > > > > > > > > happens since there's no real need for
-> > > > > > > > > > > > > > > the data to get to
-> > > > > > > > > > > > > > > RAM.
-> > > > > > > > > > > > > > > So
-> > > > > > > > > > > > > > > that
-> > > > > > > > > > > > > > > enables
-> > > > > > > > > > > > > > > an optimization (which comes in your next
-> > > > > > > > > > > > > > > patch), that
-> > > > > > > > > > > > > > > allows flushes to only operate on the
-> > > > > > > > > > > > > > > subset of the device
-> > > > > > > > > > > > > > > cache tagged as
-> > > > > > > > > > > > "transient" if media is idle.
-> > > > > > > > > > > > >=20
-> > > > > > > > > > > > > But what If we have stale non-XA marked pages
-> > > > > > > > > > > > > for userptr,
-> > > > > > > > > > > > > and that object moves out and at the same
-> > > > > > > > > > > > > time media comes
-> > > > > > > > > > > > > back, will end up in full flush and flush the
-> > > > > > > > > > > > > stale entry to
-> > > > > > > > > > > > > RAM.
-> > > > > > > > > > > >=20
-> > > > > > > > > > > > What makes userptr special here?=C2=A0 During
-> > > > > > > > > > > > general, active
-> > > > > > > > > > > > usage, userptr would be data that's accessible
-> > > > > > > > > > > > by the CPU, so
-> > > > > > > > > > > > it needs to either be transient (so CPU can see
-> > > > > > > > > > > > the data in
-> > > > > > > > > > > > RAM after explicit flushes) or it needs to be
-> > > > > > > > > > > > using a
-> > > > > > > > > > > > coherent PAT (so that the CPU can just snoop
-> > > > > > > > > > > > the GPU cache).
-> > > > > > > > > > > > If
-> > > > > > > > > > > > you marked
-> > > > > > > > > > > > userptr as both non-XA and non-coherent, then
-> > > > > > > > > > > > that sounds
-> > > > > > > > > > > > likely to be a userspace bug (and probably
-> > > > > > > > > > > > something we can
-> > > > > > > > > > > > catch and reject as an invalid case on any Xe3p
-> > > > > > > > > > > > or later
-> > > > > > > > > > > > platforms that support
-> > > > > > > > > > > > this)
-> > > > > > > > > > > > since
-> > > > > > > > > > > > the
-> > > > > > > > > > > > CPU wouldn't
-> > > > > > > > > > > > have any reliable way of seeing GPU updates.
-> > > > > > > > > > >=20
-> > > > > > > > > > > Right. FYI @Mrozek, Michal @Souza, Jose For
-> > > > > > > > > > > userptr, as
-> > > > > > > > > > > explained above, it needs to be either coherent
-> > > > > > > > > > > or XA pat
-> > > > > > > > > > > index, or else KMD will reject as invalid case.
-> > > > > > > > > > >=20
-> > > > > > > > > > >=20
-> > > > > > > > > > The coherency restriction is already in the uAPI:
-> > > > > > > > > >=20
-> > > > > > > > > > "Note: For userptr and externally imported dma-buf
-> > > > > > > > > > the kernel
-> > > > > > > > > > expects either 1WAY or 2WAY for the @pat_index."
-> > > > > > > > > >=20
-> > > > > > > > > > Using 1 way is enough as Xe KMD does a PIPE_CONTROL
-> > > > > > > > > > flushing
-> > > > > > > > > > GPU caches at the end of batch buffers.
-> > > > > > > > >=20
-> > > > > > > > > But isn't that what we're discussing here?=C2=A0 1-way
-> > > > > > > > > *won't*
-> > > > > > > > > necessarily be enough anymore because PIPE_CONTROL
-> > > > > > > > > instructions
-> > > > > > > > > don't flush the entire cache anymore.=C2=A0 Whenever the
-> > > > > > > > > GuC
-> > > > > > > > > determines that media is inactive and activates the
-> > > > > > > > > optimization, PIPE_CONTROL, MI_FLUSH_DW, etc.
-> > > > > > > > > change
-> > > > > > > > > behavior to only flush out the subset of data that
-> > > > > > > > > was marked as
-> > > > > > > > > app-transient; anything not marked that way doesn't
-> > > > > > > > > get flushed
-> > > > > > > > > now.=C2=A0 So there's a new requirement here that you
-> > > > > > > > > ensure you're
-> > > > > > > > > using an XA PAT index, or you switch to use 2-way
-> > > > > > > > > coherency
-> > > > > > > > > which will allow the CPU to snoop the GPU's caches.
-> > > > > > > >=20
-> > > > > > > > That exactly matches my understanding also.
-> > > > > > >=20
-> > > > > > > This only ever affects IGFX, right? Since AFAIU we don't
-> > > > > > > have
-> > > > > > > 2-way coherency with DGFX?
-> > > > > >=20
-> > > > > > Yeah, this should be igpu only. I seem to also recall that
-> > > > > > on dgpu,
-> > > > > > Media is coherent with l2/l3, but also I don't think system
-> > > > > > memory
-> > > > > > can be cached in l2/l3 (only VRAM), which I assume is why
-> > > > > > there is
-> > > > > > the special SMRO (system-memory-read-only) cache only on
-> > > > > > dgpu,
-> > > > > > which is flushed when the fence signals, unlike the l2/l3.
-> > > > >=20
-> > > > > Yes that sounds reasonable.
-> > > > >=20
-> > > > > >=20
-> > > > > > >=20
-> > > > > > > It sounds like the same PAT restriction is needed also
-> > > > > > > for
-> > > > > > > imported dma-buf, right?
-> > > > > >=20
-> > > > > > Good point. Looks like we are missing that still. Otherwise
-> > > > > > we can
-> > > > > > run into the same issues with stale l2/l3/ppc.
-> > > > >=20
-> > > > > So if this affects only system memory could we instead of
-> > > > > relying on
-> > > > > 2- way coherency or XA, just flush at dma unmap time, because
-> > > > > that's
-> > > > > typically just before releasing the pages.
-> > > >=20
-> > > > Yeah, I think we could make it work, from security pov, similar
-> > > > to
-> > > > userptr, with the right manual flushes in KMD. Maybe just a
-> > > > question
-> > > > if userspace wants such a model? Anything cached in l2/l3 might
-> > > > require manual flushing by userspace (if that is even
-> > > > possible)?
-> > >=20
-> > > So that would mean if user-space wants gpu-cpu coherency at fence
-> > > synchronization points, they'd have to use either 2-way or XA pat
-> > > indices, but not enforced by KMD.
-> >=20
-> > Yeah, looking at BSpec 74635 (Media off case), I'm only really
-> > seeing
-> > MEM_SET which userspace could potentially use by itself? But then
-> > it's unclear
-> > if they mean to actually clear-the-memory (which is not what we
-> > want) or using the special evict mode, but that seems to be talking
-> > more about
-> > flushing to local memory, so not completely sure what that does on
-> > igpu. If it's
-> > the evict mode then should in theory be possible for userpace to do
-> > a manual
-> > flush, but that would have to be done per-bo/vma?
->=20
-> MEM_SET says, range needs to be specified as part of command with
-> evict mode.
->=20
-> >=20
-> > >=20
-> > > For imported dma-buf kernel requires 2-way or XA for security due
-> > > to
-> > > the relaxed dma-buf unmap.
-> > >=20
-> > > For SVM/System allocator we'd require 2-way or XA.
-> > >=20
-> > > Otherwise KMD security is enforced by flush at dma-unmap time?
-> >=20
-> > Yeah, that is my understanding. Otherwise I don't currently see
-> > what prevents
-> > the dirty non-XA cache lines being flushed at some random point
-> > later, after
-> > we have already freed the corresponding system memory, potentially
-> > nuking
-> > the next user who allocates those pages.
->=20
-> Hmm, so it means we can drop this patch completely and do something
-> like below :
->=20
-> In, xe_migrate_dma_unmap(),
->=20
-> dma_unmap_page()
-> if (pat_index !=3D 18 or 19 && coh_mode !=3D 2_way)
-> 	/* manual_flush */
+On 17/02/2026 06:03, Arunpravin Paneer Selvam wrote:
+> Hi Matthew,
+> 
+> On 2/10/2026 9:56 PM, Matthew Auld wrote:
+>> On 09/02/2026 08:30, Arunpravin Paneer Selvam wrote:
+>>> Large alignment requests previously forced the buddy allocator to 
+>>> search by
+>>> alignment order, which often caused higher-order free blocks to be 
+>>> split even
+>>> when a suitably aligned smaller region already existed within them. 
+>>> This led
+>>> to excessive fragmentation, especially for workloads requesting small 
+>>> sizes
+>>> with large alignment constraints.
+>>>
+>>> This change prioritizes the requested allocation size during the 
+>>> search and
+>>> uses an augmented RB-tree field (subtree_max_alignment) to 
+>>> efficiently locate
+>>> free blocks that satisfy both size and offset-alignment requirements. 
+>>> As a
+>>> result, the allocator can directly select an aligned sub-region without
+>>> splitting larger blocks unnecessarily.
+>>>
+>>> A practical example is the VKCTS test
+>>> dEQP-VK.memory.allocation.basic.size_8KiB.reverse.count_4000, which 
+>>> repeatedly
+>>> allocates 8 KiB buffers with a 256 KiB alignment. Previously, such 
+>>> allocations
+>>> caused large blocks to be split aggressively, despite smaller aligned 
+>>> regions
+>>> being sufficient. With this change, those aligned regions are reused 
+>>> directly,
+>>> significantly reducing fragmentation.
+>>>
+>>> This improvement is visible in the amdgpu VRAM buddy allocator state
+>>> (/sys/kernel/debug/dri/1/amdgpu_vram_mm). After the change, higher- 
+>>> order blocks
+>>> are preserved and the number of low-order fragments is substantially 
+>>> reduced.
+>>>
+>>> Before:
+>>>    order- 5 free: 1936 MiB, blocks: 15490
+>>>    order- 4 free:  967 MiB, blocks: 15486
+>>>    order- 3 free:  483 MiB, blocks: 15485
+>>>    order- 2 free:  241 MiB, blocks: 15486
+>>>    order- 1 free:  241 MiB, blocks: 30948
+>>>
+>>> After:
+>>>    order- 5 free:  493 MiB, blocks:  3941
+>>>    order- 4 free:  246 MiB, blocks:  3943
+>>>    order- 3 free:  123 MiB, blocks:  4101
+>>>    order- 2 free:   61 MiB, blocks:  4101
+>>>    order- 1 free:   61 MiB, blocks:  8018
+>>>
+>>> By avoiding unnecessary splits, this change improves allocator 
+>>> efficiency and
+>>> helps maintain larger contiguous free regions under heavy offset-aligned
+>>> allocation workloads.
+>>>
+>>> v2:(Matthew)
+>>>    - Update augmented information along the path to the inserted node.
+>>>
+>>> v3:
+>>>    - Move the patch to gpu/buddy.c file.
+>>>
+>>> Signed-off-by: Arunpravin Paneer Selvam 
+>>> <Arunpravin.PaneerSelvam@amd.com>
+>>> Suggested-by: Christian König <christian.koenig@amd.com>
+>>> ---
+>>>   drivers/gpu/buddy.c       | 271 +++++++++++++++++++++++++++++++-------
+>>>   include/linux/gpu_buddy.h |   2 +
+>>>   2 files changed, 228 insertions(+), 45 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+>>> index 603c59a2013a..3a25eed050ba 100644
+>>> --- a/drivers/gpu/buddy.c
+>>> +++ b/drivers/gpu/buddy.c
+>>> @@ -14,6 +14,16 @@
+>>>     static struct kmem_cache *slab_blocks;
+>>>   +static unsigned int gpu_buddy_block_offset_alignment(struct 
+>>> gpu_buddy_block *block)
+>>> +{
+>>> +    return __ffs(gpu_buddy_block_offset(block));
+>>
+>> __ffs() will be undefined for offset zero it seems, so might blow up 
+>> in some strange way. I guess just return the max possible alignment 
+>> here if offset is zero? Also are we meant to use __ffs64() here?
+> Yes, I had the same concern about __ffs() being undefined when the 
+> offset is zero. My initial thought was to derive the maximum possible 
+> alignment from the allocator size using ilog2(mm->size) and return that 
+> value for the zero-offset case.
+> 
+> But, RB_DECLARE_CALLBACKS_MAX() requires the compute callback 
+> (gpu_buddy_block_offset_alignment()) to accept only a single struct 
+> gpu_buddy_block * argument. It does not provide a mechanism to pass 
+> additional context such as the associated struct gpu_buddy *mm. As a 
+> result, deriving the alignment from allocator state (e.g., via ilog2(mm- 
+>  >size)) is not directly feasible within this callback. When I tested 
+> the zero-offset case locally, __ffs() returned 64, which effectively 
+> corresponds to the maximum alignment for a u64 offset. Based on that 
+> observation, I initially left the __ffs() call unchanged for the zero 
+> case as well.
+> 
+> One possible alternative would be to store a pointer to struct gpu_buddy 
+> inside each gpu_buddy_block.
+> 
+> All other review comments have been addressed, and I will send a v4 once 
+> this point is clarified.
 
-I think for userptr you'd want to add this in
-__vma_userptr_invalidate(), just before drm_gpusvm_unmap_pages().
+Yeah, I was thinking we just return the max theoretical value, so 64, or 
+perhaps 64+1. It just needs to be a value that will be larger than any 
+other possible alignment, since zero is special. It shouldn't matter if 
+that is larger than the actual real max for the region, I think.
 
-For bos you'd want to add it in xe_tt_unmap_sg() just before
-dma_unmap_sgtable(). But if you want to do it conditionally, you would
-need a flag in the struct xe_ttm_tt that is set whenever the owning bo
-is mapped in such a way that content has not been flushed.
+if (!offset)
+	return 64 + 1;
 
-/Thomas
+return __ffs64(offset);
 
->=20
-> Tejas
->=20
-> >=20
-> > >=20
-> > > /Thomas
-> > >=20
-> > > >=20
-> > > > >=20
-> > > > > The exception, though, is dma-buf where the exporter can
-> > > > > actually
-> > > > > release memory before all importers have given up their dma-
-> > > > > mappings.
-> > > > >=20
-> > > > > /Thomas
-> > > > >=20
-> > > > > >=20
-> > > > > > >=20
-> > > > > > > /Thomas
-> > > > > > >=20
-> > > > > > >=20
-> > > > > > > >=20
-> > > > > > > > >=20
-> > > > > > > > >=20
-> > > > > > > > > Matt
-> > > > > > > > >=20
-> > > > > > > > > >=20
-> > > > > > > > > > >=20
-> > > > > > > > > > > >=20
-> > > > > > > > > > > > If something happens that changes the GTT
-> > > > > > > > > > > > mapping of
-> > > > > > > > > > > > an
-> > > > > > > > > > > > object,
-> > > > > > > > > > > > then
-> > > > > > > > > > > > doesn't that already trigger a TLB invalidation
-> > > > > > > > > > > > when
-> > > > > > > > > > > > necessary in
-> > > > > > > > > > > > the driver
-> > > > > > > > > > > > today?=C2=A0 It was my understanding that "heavy"
-> > > > > > > > > > > > TLB
-> > > > > > > > > > > > invalidations wait
-> > > > > > > > > > > > for data
-> > > > > > > > > > > > values to be globally observable before
-> > > > > > > > > > > > starting, so
-> > > > > > > > > > > > I
-> > > > > > > > > > > > think
-> > > > > > > > > > > > that
-> > > > > > > > > > > > would ensure
-> > > > > > > > > > > > that any non-XA data makes it to RAM before any
-> > > > > > > > > > > > binding
-> > > > > > > > > > > > changes,
-> > > > > > > > > > > > object,
-> > > > > > > > > > > > destruction, etc.?=C2=A0 Is there something special
-> > > > > > > > > > > > about
-> > > > > > > > > > > > userptr
-> > > > > > > > > > > > that
-> > > > > > > > > > > > makes that
-> > > > > > > > > > > > case more of a problem?
-> > > > > > > > > > > >=20
-> > > > > > > > > > > > I just found bspec page 74635 which gives an
-> > > > > > > > > > > > overview
-> > > > > > > > > > > > of
-> > > > > > > > > > > > the
-> > > > > > > > > > > > various flush
-> > > > > > > > > > > > and invalidate cases, and I don't see anything
-> > > > > > > > > > > > there
-> > > > > > > > > > > > that
-> > > > > > > > > > > > makes it
-> > > > > > > > > > > > obvious to
-> > > > > > > > > > > > me that userptr would be special.
-> > > > > > > > > > > >=20
-> > > > > > > > > > > >=20
-> > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > As you said, we eventually do want to
-> > > > > > > > > > > > > > > force a
-> > > > > > > > > > > > > > > flush
-> > > > > > > > > > > > > > > of
-> > > > > > > > > > > > > > > the
-> > > > > > > > > > > > > > > non-transient data as well once we're
-> > > > > > > > > > > > > > > freeing
-> > > > > > > > > > > > > > > the
-> > > > > > > > > > > > > > > underlying
-> > > > > > > > > > > > > > > pages.
-> > > > > > > > > > > > > > > So how do we do that?=C2=A0 It's not clear to
-> > > > > > > > > > > > > > > me how
-> > > > > > > > > > > > > > > the
-> > > > > > > > > > > > > > > changes
-> > > > > > > > > > > > > > > below
-> > > > > > > > > > > > > > > are accomplishing that.=C2=A0 Is there a way
-> > > > > > > > > > > > > > > to
-> > > > > > > > > > > > > > > explicitly
-> > > > > > > > > > > > > > > request
-> > > > > > > > > > > > > > > a
-> > > > > > > > > > > > > > > full device cache flush (ignoring the
-> > > > > > > > > > > > > > > transient
-> > > > > > > > > > > > > > > vs
-> > > > > > > > > > > > > > > non-
-> > > > > > > > > > > > > > > transient tagging)?
-> > > > > > > > > > > > > > > Since the GuC handles the optimization in
-> > > > > > > > > > > > > > > the
-> > > > > > > > > > > > > > > next
-> > > > > > > > > > > > > > > patch
-> > > > > > > > > > > > > > > (toggling
-> > > > > > > > > > > > > > > whether flushes are full flushes vs non-
-> > > > > > > > > > > > > > > transient
-> > > > > > > > > > > > > > > flushes
-> > > > > > > > > > > > > > > depending on whether media is active), I
-> > > > > > > > > > > > > > > thought
-> > > > > > > > > > > > > > > there
-> > > > > > > > > > > > > > > might
-> > > > > > > > > > > > > > > be
-> > > > > > > > > > > > > > > some kind of GuC interface to request
-> > > > > > > > > > > > > > > "please
-> > > > > > > > > > > > > > > do
-> > > > > > > > > > > > > > > one
-> > > > > > > > > > > > > > > full
-> > > > > > > > > > > > > > > flush now, even
-> > > > > > > > > > > > if media is idle."
-> > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > I=E2=80=99m not an expert here by any means, bu=
-t
-> > > > > > > > > > > > > > everything
-> > > > > > > > > > > > > > above
-> > > > > > > > > > > > > > from
-> > > > > > > > > > > > > > Matt
-> > > > > > > > > > > > > > seems like valid concerns. Thomas also
-> > > > > > > > > > > > > > raised
-> > > > > > > > > > > > > > some
-> > > > > > > > > > > > > > concerns in
-> > > > > > > > > > > > > > the
-> > > > > > > > > > > > > > two previous revisions; again I=E2=80=99m not a=
-n
-> > > > > > > > > > > > > > expert,
-> > > > > > > > > > > > > > but
-> > > > > > > > > > > > > > reading
-> > > > > > > > > > > > > > through
-> > > > > > > > > > > > > > those, it doesn=E2=80=99t really seem like he
-> > > > > > > > > > > > > > received
-> > > > > > > > > > > > > > proper
-> > > > > > > > > > > > > > answers
-> > > > > > > > > > > > > > to his
-> > > > > > > > > > > > questions.
-> > > > > > > > > > > > >=20
-> > > > > > > > > > > > > Its forcing flush via tlb invalidation PPC
-> > > > > > > > > > > > > flag
-> > > > > > > > > > > > > under
-> > > > > > > > > > > > > xe_invalidate_vma( ).
-> > > > > > > > > > > >=20
-> > > > > > > > > > > > By the way, what is "PPC?"=C2=A0 It seems like it's
-> > > > > > > > > > > > another
-> > > > > > > > > > > > new
-> > > > > > > > > > > > synonym
-> > > > > > > > > > > > for the
-> > > > > > > > > > > > device cache?=C2=A0 It's already really confusing
-> > > > > > > > > > > > that
-> > > > > > > > > > > > some of
-> > > > > > > > > > > > our
-> > > > > > > > > > > > hardware docs use
-> > > > > > > > > > > > a mix of both "L2" and "L3" to refer to the
-> > > > > > > > > > > > same
-> > > > > > > > > > > > device
-> > > > > > > > > > > > cache
-> > > > > > > > > > > > for
-> > > > > > > > > > > > historical
-> > > > > > > > > > > > reasons...
-> > > > > > > > > > > >=20
-> > > > > > > > > > > >=20
-> > > > > > > > > > > > Matt
-> > > > > > > > > > > >=20
-> > > > > > > > > > > > >=20
-> > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > A couple of comments below.
-> > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > Matt
-> > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > > V2(MattA): Expand commit description
-> > > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > > Signed-off-by: Tejas Upadhyay
-> > > > > > > > > > > > > > > > <tejas.upadhyay@intel.com>
-> > > > > > > > > > > > > > > > ---
-> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drivers/gpu/d=
-rm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0
-> > > > > > > > > > > > > > > > 3 ++-
-> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drivers/gpu/d=
-rm/xe/xe_device.c=C2=A0 |
-> > > > > > > > > > > > > > > > 23
-> > > > > > > > > > > > > > > > +++++++++++++++++++++++
-> > > > > > > > > > > > > > > > drivers/gpu/drm/xe/xe_device.h=C2=A0 |=C2=
-=A0 1 +
-> > > > > > > > > > > > > > > > drivers/gpu/drm/xe/xe_userptr.c |=C2=A0 3
-> > > > > > > > > > > > > > > > ++-
-> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A04 files chang=
-ed, 28 insertions(+),
-> > > > > > > > > > > > > > > > 2
-> > > > > > > > > > > > > > > > deletions(-)
-> > > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > > diff --git a/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > > > > > > > > > > > b/drivers/gpu/drm/xe/xe_bo.c index
-> > > > > > > > > > > > > > > > e9180b01a4e4..4455886b211e
-> > > > > > > > > > > > > > > > 100644
-> > > > > > > > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > > > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > > > > > > > > > > > > > > > @@ -689,7 +689,8 @@ static int
-> > > > > > > > > > > > > > > > xe_bo_trigger_rebind(struct
-> > > > > > > > > > > > > > > > xe_device *xe, struct xe_bo *bo,
-> > > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0		if
-> > > > > > > > > > > > > > > > (!xe_vm_in_fault_mode(vm)) {
-> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0			drm_gpuvm_=
-bo_e
-> > > > > > > > > > > > > > > > vict(v
-> > > > > > > > > > > > > > > > m_bo
-> > > > > > > > > > > > > > > > ,
-> > > > > > > > > > > > > > > > true);
-> > > > > > > > > > > > > > > > -			continue;
-> > > > > > > > > > > > > > > > +			if
-> > > > > > > > > > > > > > > > (!xe_device_needs_cache_flush(xe))
-> > > > > > > > > > > > > > > > +				contin
-> > > > > > > > > > > > > > > > ue;
-> > > > > > > > > > >=20
-> > > > > > > > > > > Matt R,
-> > > > > > > > > > > This flush will be still needed as there can be
-> > > > > > > > > > > non-xa
-> > > > > > > > > > > buffers
-> > > > > > > > > > > which
-> > > > > > > > > > > can be evicted while media was off and stale
-> > > > > > > > > > > entries
-> > > > > > > > > > > can be
-> > > > > > > > > > > flushed
-> > > > > > > > > > > when media comes back on. Which was not case
-> > > > > > > > > > > earlier as
-> > > > > > > > > > > full
-> > > > > > > > > > > flush
-> > > > > > > > > > > was happening at regular sync points and that=E2=80=
-=99s
-> > > > > > > > > > > where
-> > > > > > > > > > > this
-> > > > > > > > > > > feature is
-> > > > > > > > > > > bringing optimization now.
-> > > > > > > > > > >=20
-> > > > > > > > > > > Tejas
-> > > > > > > > > > >=20
-> > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > This will trigger a TLB invalidation (and I
-> > > > > > > > > > > > > > assume a
-> > > > > > > > > > > > > > cache
-> > > > > > > > > > > > > > flush)
-> > > > > > > > > > > > > > every time we move or free memory in the 3D
-> > > > > > > > > > > > > > stack
-> > > > > > > > > > > > > > if
-> > > > > > > > > > > > > > it
-> > > > > > > > > > > > > > has a
-> > > > > > > > > > > > > > binding. It also performs a synchronous
-> > > > > > > > > > > > > > wait on
-> > > > > > > > > > > > > > the
-> > > > > > > > > > > > > > BO
-> > > > > > > > > > > > > > being
-> > > > > > > > > > > > > > idle.
-> > > > > > > > > > > > > > Both of these are very expensive
-> > > > > > > > > > > > > > operations. I
-> > > > > > > > > > > > > > can=E2=80=99t
-> > > > > > > > > > > > > > imagine
-> > > > > > > > > > > > > > the
-> > > > > > > > > > > > > > granularity we want here is to do this on
-> > > > > > > > > > > > > > every
-> > > > > > > > > > > > > > move/free
-> > > > > > > > > > > > > > with
-> > > > > > > > > > > > > > bindings.
-> > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > Also, for LR compute with preempt fences,
-> > > > > > > > > > > > > > we
-> > > > > > > > > > > > > > would
-> > > > > > > > > > > > > > trigger the
-> > > > > > > > > > > > > > preempt fences during the wait, so a TLB
-> > > > > > > > > > > > > > invalidation
-> > > > > > > > > > > > > > after
-> > > > > > > > > > > > > > this
-> > > > > > > > > > > > > > seems unnecessary, though perhaps the cache
-> > > > > > > > > > > > > > flush
-> > > > > > > > > > > > > > is
-> > > > > > > > > > > > > > still
-> > > > > > > > > > > > > > required?
-> > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > I think this needs a bit more explanation,
-> > > > > > > > > > > > > > because
-> > > > > > > > > > > > > > without
-> > > > > > > > > > > > > > knowing a
-> > > > > > > > > > > > > > lot about the exact requirements, the
-> > > > > > > > > > > > > > implementation
-> > > > > > > > > > > > > > does
-> > > > > > > > > > > > > > not
-> > > > > > > > > > > > > > look
-> > > > > > > > > > > > correct.
-> > > > > > > > > > > > >=20
-> > > > > > > > > > > > > The thing is that we are trying to solve
-> > > > > > > > > > > > > problem
-> > > > > > > > > > > > > with
-> > > > > > > > > > > > > userptr
-> > > > > > > > > > > > > with non-XA
-> > > > > > > > > > > > pat, consider if that BO got moved while media
-> > > > > > > > > > > > is not
-> > > > > > > > > > > > active.
-> > > > > > > > > > > > As
-> > > > > > > > > > > > soon as media
-> > > > > > > > > > > > will come back active, stale cached entries of
-> > > > > > > > > > > > that
-> > > > > > > > > > > > object
-> > > > > > > > > > > > will be
-> > > > > > > > > > > > flushed as part
-> > > > > > > > > > > > of full flush , which may corrupt things.
-> > > > > > > > > > > > > There was thinking that with this patch we
-> > > > > > > > > > > > > would at
-> > > > > > > > > > > > > least
-> > > > > > > > > > > > > solve
-> > > > > > > > > > > > > the problem
-> > > > > > > > > > > > of corruption and later when page_reclamation
-> > > > > > > > > > > > feature
-> > > > > > > > > > > > comes
-> > > > > > > > > > > > in will
-> > > > > > > > > > > > help in
-> > > > > > > > > > > > performance as well. But now when page
-> > > > > > > > > > > > reclamation
-> > > > > > > > > > > > feature is
-> > > > > > > > > > > > merged earlier
-> > > > > > > > > > > > and it tightly coupled with bind/unbind some
-> > > > > > > > > > > > cases
-> > > > > > > > > > > > like
-> > > > > > > > > > > > discussed
-> > > > > > > > > > > > above
-> > > > > > > > > > > > (which are not doing unbind immediately on
-> > > > > > > > > > > > move/free)
-> > > > > > > > > > > > are
-> > > > > > > > > > > > missed in
-> > > > > > > > > > > > reclamation.
-> > > > > > > > > > > > >=20
-> > > > > > > > > > > > > So thought was to let this solution go in
-> > > > > > > > > > > > > with
-> > > > > > > > > > > > > little
-> > > > > > > > > > > > > perf
-> > > > > > > > > > > > > hit
-> > > > > > > > > > > > > and discuss with
-> > > > > > > > > > > > page reclamation owner to come with cleaner
-> > > > > > > > > > > > solution
-> > > > > > > > > > > > together.
-> > > > > > > > > > > > >=20
-> > > > > > > > > > > > > Tejas
-> > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0		}
-> > > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0		if (!idle) =
-{
-> > > > > > > > > > > > > > > > diff --git
-> > > > > > > > > > > > > > > > a/drivers/gpu/drm/xe/xe_device.c
-> > > > > > > > > > > > > > > > b/drivers/gpu/drm/xe/xe_device.c index
-> > > > > > > > > > > > > > > > 743c18e0c580..da2abed94bc0
-> > > > > > > > > > > > > > > > 100644
-> > > > > > > > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_device.c
-> > > > > > > > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_device.c
-> > > > > > > > > > > > > > > > @@ -1097,6 +1097,29 @@ static void
-> > > > > > > > > > > > > > > > tdf_request_sync(struct
-> > > > > > > > > > > > > > > > xe_device
-> > > > > > > > > > > > > > *xe)
-> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0	}
-> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
-> > > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > > +/**
-> > > > > > > > > > > > > > > > + * xe_device_needs_cache_flush -
-> > > > > > > > > > > > > > > > Whether the
-> > > > > > > > > > > > > > > > cache
-> > > > > > > > > > > > > > > > needs
-> > > > > > > > > > > > > > > > to be
-> > > > > > > > > > > > > > > > +flushed
-> > > > > > > > > > > > > > > > + * @xe: The device to check.
-> > > > > > > > > > > > > > > > + *
-> > > > > > > > > > > > > > > > + * Return: true if the device needs
-> > > > > > > > > > > > > > > > cache
-> > > > > > > > > > > > > > > > flush,
-> > > > > > > > > > > > > > > > false
-> > > > > > > > > > > > > > > > otherwise.
-> > > > > > > > > > > > > > > > + */
-> > > > > > > > > > > > > > > > +bool
-> > > > > > > > > > > > > > > > xe_device_needs_cache_flush(struct
-> > > > > > > > > > > > > > > > xe_device
-> > > > > > > > > > > > > > > > *xe) {
-> > > > > > > > > > > > > > > > +	/* XA is *always* flushed,
-> > > > > > > > > > > > > > > > like at
-> > > > > > > > > > > > > > > > the
-> > > > > > > > > > > > > > > > end-
-> > > > > > > > > > > > > > > > of-
-> > > > > > > > > > > > > > > > submssion (and
-> > > > > > > > > > > > > > > > +maybe
-> > > > > > > > > > > > > > other
-> > > > > > > > > > > > > > > > +	 * places), just that
-> > > > > > > > > > > > > > > > internally as
-> > > > > > > > > > > > > > > > an
-> > > > > > > > > > > > > > > > optimisation hw doesn't
-> > > > > > > > > > > > > > > > +need to
-> > > > > > > > > > > > > > make
-> > > > > > > > > > > > > > > > +	 * that a full flush (which
-> > > > > > > > > > > > > > > > will
-> > > > > > > > > > > > > > > > also
-> > > > > > > > > > > > > > > > include XA)
-> > > > > > > > > > > > > > > > when Media is
-> > > > > > > > > > > > > > > > +	 * off/powergated, since it
-> > > > > > > > > > > > > > > > doesn't
-> > > > > > > > > > > > > > > > need
-> > > > > > > > > > > > > > > > to
-> > > > > > > > > > > > > > > > worry
-> > > > > > > > > > > > > > > > about GT
-> > > > > > > > > > > > > > > > +caches vs
-> > > > > > > > > > > > > > Media
-> > > > > > > > > > > > > > > > +	 * coherency, and only CPU vs
-> > > > > > > > > > > > > > > > GPU
-> > > > > > > > > > > > > > > > coherency,
-> > > > > > > > > > > > > > > > so
-> > > > > > > > > > > > > > > > can make
-> > > > > > > > > > > > that
-> > > > > > > > > > > > > > > > +flush
-> > > > > > > > > > > > > > a
-> > > > > > > > > > > > > > > > +	 * targeted XA flush, since
-> > > > > > > > > > > > > > > > stuff
-> > > > > > > > > > > > > > > > tagged
-> > > > > > > > > > > > > > > > with XA
-> > > > > > > > > > > > > > > > now means
-> > > > > > > > > > > > > > > > +it's shared
-> > > > > > > > > > > > > > with
-> > > > > > > > > > > > > > > > +	 * the CPU. The main
-> > > > > > > > > > > > > > > > implication is
-> > > > > > > > > > > > > > > > that
-> > > > > > > > > > > > > > > > we
-> > > > > > > > > > > > > > > > now
-> > > > > > > > > > > > > > > > need to
-> > > > > > > > > > > > > > > > +somehow
-> > > > > > > > > > > > > > flush non-XA before
-> > > > > > > > > > > > > > > > +	 * freeing system memory
-> > > > > > > > > > > > > > > > pages,
-> > > > > > > > > > > > > > > > otherwise
-> > > > > > > > > > > > > > > > dirty
-> > > > > > > > > > > > > > > > cachelines
-> > > > > > > > > > > > > > > > +could be
-> > > > > > > > > > > > > > flushed after the free
-> > > > > > > > > > > > > > > > +	 * (like if Media suddenly
-> > > > > > > > > > > > > > > > turns on
-> > > > > > > > > > > > > > > > and
-> > > > > > > > > > > > > > > > does
-> > > > > > > > > > > > > > > > a
-> > > > > > > > > > > > > > > > full flush)
-> > > > > > > > > > > > > > > > +	 */
-> > > > > > > > > > > > > > > > +	if (GRAPHICS_VER(xe) >=3D 35 &&
-> > > > > > > > > > > > > > > > !IS_DGFX(xe))
-> > > > > > > > > > > > > > > > +		return true;
-> > > > > > > > > > > > > > > > +	return false;
-> > > > > > > > > > > > > > > > +}
-> > > > > > > > > > > > > > > > +
-> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0void xe_devic=
-e_l2_flush(struct
-> > > > > > > > > > > > > > > > xe_device
-> > > > > > > > > > > > > > > > *xe)
-> > > > > > > > > > > > > > > > {
-> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0	struct xe_gt=
- *gt;
-> > > > > > > > > > > > > > > > diff --git
-> > > > > > > > > > > > > > > > a/drivers/gpu/drm/xe/xe_device.h
-> > > > > > > > > > > > > > > > b/drivers/gpu/drm/xe/xe_device.h index
-> > > > > > > > > > > > > > > > 39464650533b..baf386e0e037
-> > > > > > > > > > > > > > > > 100644
-> > > > > > > > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_device.h
-> > > > > > > > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_device.h
-> > > > > > > > > > > > > > > > @@ -184,6 +184,7 @@ void
-> > > > > > > > > > > > > > > > xe_device_snapshot_print(struct
-> > > > > > > > > > > > > > > > xe_device *xe, struct drm_printer *p);
-> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u64
-> > > > > > > > > > > > > > > > xe_device_canonicalize_addr(struct
-> > > > > > > > > > > > > > > > xe_device
-> > > > > > > > > > > > > > > > *xe, u64
-> > > > > > > > > > > > > > > > address);
-> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0u64
-> > > > > > > > > > > > > > > > xe_device_uncanonicalize_addr(struct
-> > > > > > > > > > > > > > > > xe_device
-> > > > > > > > > > > > > > > > *xe,
-> > > > > > > > > > > > > > > > u64
-> > > > > > > > > > > > > > > > address);
-> > > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > > +bool
-> > > > > > > > > > > > > > > > xe_device_needs_cache_flush(struct
-> > > > > > > > > > > > > > > > xe_device
-> > > > > > > > > > > > > > > > *xe);
-> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0void xe_devic=
-e_td_flush(struct
-> > > > > > > > > > > > > > > > xe_device
-> > > > > > > > > > > > > > > > *xe);
-> > > > > > > > > > > > > > > > void
-> > > > > > > > > > > > > > > > xe_device_l2_flush(struct xe_device
-> > > > > > > > > > > > > > > > *xe);
-> > > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > > diff --git
-> > > > > > > > > > > > > > > > a/drivers/gpu/drm/xe/xe_userptr.c
-> > > > > > > > > > > > > > > > b/drivers/gpu/drm/xe/xe_userptr.c index
-> > > > > > > > > > > > > > > > e120323c43bc..b435ea7f9b66
-> > > > > > > > > > > > > > > > 100644
-> > > > > > > > > > > > > > > > --- a/drivers/gpu/drm/xe/xe_userptr.c
-> > > > > > > > > > > > > > > > +++ b/drivers/gpu/drm/xe/xe_userptr.c
-> > > > > > > > > > > > > > > > @@ -114,7 +114,8 @@ static void
-> > > > > > > > > > > > > > > > __vma_userptr_invalidate(struct
-> > > > > > > > > > > > > > > > xe_vm
-> > > > > > > > > > > > > > *vm, struct xe_userptr_vma *uv
-> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0				=C2=A0=C2=
-=A0=C2=A0
-> > > > > > > > > > > > > > > > false,
-> > > > > > > > > > > > > > > > MAX_SCHEDULE_TIMEOUT);
-> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0	XE_WARN_ON(e=
-rr <=3D 0);
-> > > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > > -	if (xe_vm_in_fault_mode(vm) &&
-> > > > > > > > > > > > > > > > userptr-
-> > > > > > > > > > > > > > > > > initial_bind) {
-> > > > > > > > > > > > > > > > +	if ((xe_vm_in_fault_mode(vm)
-> > > > > > > > > > > > > > > > ||
-> > > > > > > > > > > > > > > > +xe_device_needs_cache_flush(vm-
-> > > > > > > > > > > > > > > xe)) &&
-> > > > > > > > > > > > > > > > +	=C2=A0=C2=A0=C2=A0 userptr->initial_bind)=
- {
-> > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > Same concern with the LR preempt fence as
-> > > > > > > > > > > > > > above =E2=80=94
-> > > > > > > > > > > > > > the
-> > > > > > > > > > > > > > hardware
-> > > > > > > > > > > > > > will
-> > > > > > > > > > > > > > be interrupted via preempt fences, so it
-> > > > > > > > > > > > > > doesn=E2=80=99t
-> > > > > > > > > > > > > > seem
-> > > > > > > > > > > > > > necessary
-> > > > > > > > > > > > > > to
-> > > > > > > > > > > > > > invalidate the TLBs but perhaps we need a
-> > > > > > > > > > > > > > cflush
-> > > > > > > > > > > > > > and
-> > > > > > > > > > > > > > TLB
-> > > > > > > > > > > > > > invalidation is the mechanism for that too?
-> > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > Matt
-> > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0		err =3D
-> > > > > > > > > > > > > > > > xe_vm_invalidate_vma(vma);
-> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0		XE_WARN_ON(=
-err);
-> > > > > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0	}
-> > > > > > > > > > > > > > > > --
-> > > > > > > > > > > > > > > > 2.52.0
-> > > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > >=20
-> > > > > > > > > > > > > > > --
-> > > > > > > > > > > > > > > Matt Roper
-> > > > > > > > > > > > > > > Graphics Software Engineer
-> > > > > > > > > > > > > > > Linux GPU Platform Enablement
-> > > > > > > > > > > > > > > Intel Corporation
-> > > > > > > > > > > >=20
-> > > > > > > > > > > > --
-> > > > > > > > > > > > Matt Roper
-> > > > > > > > > > > > Graphics Software Engineer
-> > > > > > > > > > > > Linux GPU Platform Enablement
-> > > > > > > > > > > > Intel Corporation
-> > > > > > > > >=20
+?
+
+> 
+> Regards,
+> Arun.
+>>
+>>> +}
+>>> +
+>>> +RB_DECLARE_CALLBACKS_MAX(static, gpu_buddy_augment_cb,
+>>> +             struct gpu_buddy_block, rb,
+>>> +             unsigned int, subtree_max_alignment,
+>>> +             gpu_buddy_block_offset_alignment);
+>>> +
+>>>   static struct gpu_buddy_block *gpu_block_alloc(struct gpu_buddy *mm,
+>>>                              struct gpu_buddy_block *parent,
+>>>                              unsigned int order,
+>>> @@ -31,6 +41,9 @@ static struct gpu_buddy_block 
+>>> *gpu_block_alloc(struct gpu_buddy *mm,
+>>>       block->header |= order;
+>>>       block->parent = parent;
+>>>   +    block->subtree_max_alignment =
+>>> +        gpu_buddy_block_offset_alignment(block);
+>>> +
+>>>       RB_CLEAR_NODE(&block->rb);
+>>>         BUG_ON(block->header & GPU_BUDDY_HEADER_UNUSED);
+>>> @@ -67,26 +80,42 @@ static bool rbtree_is_empty(struct rb_root *root)
+>>>       return RB_EMPTY_ROOT(root);
+>>>   }
+>>>   -static bool gpu_buddy_block_offset_less(const struct 
+>>> gpu_buddy_block *block,
+>>> -                    const struct gpu_buddy_block *node)
+>>> -{
+>>> -    return gpu_buddy_block_offset(block) < 
+>>> gpu_buddy_block_offset(node);
+>>> -}
+>>> -
+>>> -static bool rbtree_block_offset_less(struct rb_node *block,
+>>> -                     const struct rb_node *node)
+>>> -{
+>>> -    return gpu_buddy_block_offset_less(rbtree_get_free_block(block),
+>>> -                       rbtree_get_free_block(node));
+>>> -}
+>>> -
+>>>   static void rbtree_insert(struct gpu_buddy *mm,
+>>>                 struct gpu_buddy_block *block,
+>>>                 enum gpu_buddy_free_tree tree)
+>>>   {
+>>> -    rb_add(&block->rb,
+>>> - &mm->free_trees[tree][gpu_buddy_block_order(block)],
+>>> -           rbtree_block_offset_less);
+>>> +    struct rb_node **link, *parent = NULL;
+>>> +    unsigned int block_alignment, order;
+>>> +    struct gpu_buddy_block *node;
+>>> +    struct rb_root *root;
+>>> +
+>>> +    order = gpu_buddy_block_order(block);
+>>> +    block_alignment = gpu_buddy_block_offset_alignment(block);
+>>> +
+>>> +    root = &mm->free_trees[tree][order];
+>>> +    link = &root->rb_node;
+>>> +
+>>> +    while (*link) {
+>>> +        parent = *link;
+>>> +        node = rbtree_get_free_block(parent);
+>>> +        /*
+>>> +         * Manual augmentation update during insertion traversal. 
+>>> Required
+>>> +         * because rb_insert_augmented() only calls rotate callback 
+>>> during
+>>> +         * rotations. This ensures all ancestors on the insertion 
+>>> path have
+>>> +         * correct subtree_max_alignment values.
+>>> +         */
+>>> +        if (node->subtree_max_alignment < block_alignment)
+>>> +            node->subtree_max_alignment = block_alignment;
+>>> +
+>>> +        if (gpu_buddy_block_offset(block) < 
+>>> gpu_buddy_block_offset(node))
+>>> +            link = &parent->rb_left;
+>>> +        else
+>>> +            link = &parent->rb_right;
+>>> +    }
+>>> +
+>>> +    block->subtree_max_alignment = block_alignment;
+>>> +    rb_link_node(&block->rb, parent, link);
+>>> +    rb_insert_augmented(&block->rb, root, &gpu_buddy_augment_cb);
+>>>   }
+>>>     static void rbtree_remove(struct gpu_buddy *mm,
+>>> @@ -99,7 +128,7 @@ static void rbtree_remove(struct gpu_buddy *mm,
+>>>       tree = get_block_tree(block);
+>>>       root = &mm->free_trees[tree][order];
+>>>   -    rb_erase(&block->rb, root);
+>>> +    rb_erase_augmented(&block->rb, root, &gpu_buddy_augment_cb);
+>>>       RB_CLEAR_NODE(&block->rb);
+>>>   }
+>>>   @@ -790,6 +819,132 @@ alloc_from_freetree(struct gpu_buddy *mm,
+>>>       return ERR_PTR(err);
+>>>   }
+>>>   +static bool
+>>> +gpu_buddy_can_offset_align(u64 size, u64 min_block_size)
+>>> +{
+>>> +    return size < min_block_size && is_power_of_2(size);
+>>> +}
+>>> +
+>>> +static bool gpu_buddy_subtree_can_satisfy(struct rb_node *node,
+>>> +                      unsigned int alignment)
+>>> +{
+>>> +    struct gpu_buddy_block *block;
+>>> +
+>>> +    if (!node)
+>>> +        return false;
+>>
+>> All callers seem to handle null case already, so could potentially 
+>> drop this?
+>>
+>>> +
+>>> +    block = rbtree_get_free_block(node);
+>>> +    return block->subtree_max_alignment >= alignment;
+>>> +}
+>>> +
+>>> +static struct gpu_buddy_block *
+>>> +gpu_buddy_find_block_aligned(struct gpu_buddy *mm,
+>>> +                 enum gpu_buddy_free_tree tree,
+>>> +                 unsigned int order,
+>>> +                 unsigned int tmp,
+>>> +                 unsigned int alignment,
+>>> +                 unsigned long flags)
+>>> +{
+>>> +    struct rb_root *root = &mm->free_trees[tree][tmp];
+>>> +    struct rb_node *rb = root->rb_node;
+>>> +
+>>> +    while (rb) {
+>>> +        struct gpu_buddy_block *block = rbtree_get_free_block(rb);
+>>> +        struct rb_node *left_node = rb->rb_left, *right_node = rb- 
+>>> >rb_right;
+>>> +
+>>> +        if (right_node) {
+>>> +            if (gpu_buddy_subtree_can_satisfy(right_node, alignment)) {
+>>> +                rb = right_node;
+>>> +                continue;
+>>> +            }
+>>> +        }
+>>> +
+>>> +        if (gpu_buddy_block_order(block) >= order &&
+>>
+>> Is this not always true? With that we can drop order, or better yet s/ 
+>> tmp/order/ ?
+>>
+>>> + __ffs(gpu_buddy_block_offset(block)) >= alignment)
+>>
+>> Same here with undefined offset zero case. I guess also use the helper.
+>>
+>>> +            return block;
+>>> +
+>>> +        if (left_node) {
+>>> +            if (gpu_buddy_subtree_can_satisfy(left_node, alignment)) {
+>>> +                rb = left_node;
+>>> +                continue;
+>>> +            }
+>>> +        }
+>>> +
+>>> +        break;
+>>> +    }
+>>> +
+>>> +    return NULL;
+>>> +}
+>>> +
+>>> +static struct gpu_buddy_block *
+>>> +gpu_buddy_offset_aligned_allocation(struct gpu_buddy *mm,
+>>> +                    u64 size,
+>>> +                    u64 min_block_size,
+>>> +                    unsigned long flags)
+>>> +{
+>>> +    struct gpu_buddy_block *block = NULL;
+>>> +    unsigned int order, tmp, alignment;
+>>> +    struct gpu_buddy_block *buddy;
+>>> +    enum gpu_buddy_free_tree tree;
+>>> +    unsigned long pages;
+>>> +    int err;
+>>> +
+>>> +    alignment = ilog2(min_block_size);
+>>> +    pages = size >> ilog2(mm->chunk_size);
+>>> +    order = fls(pages) - 1;
+>>> +
+>>> +    tree = (flags & GPU_BUDDY_CLEAR_ALLOCATION) ?
+>>> +        GPU_BUDDY_CLEAR_TREE : GPU_BUDDY_DIRTY_TREE;
+>>> +
+>>> +    for (tmp = order; tmp <= mm->max_order; ++tmp) {
+>>> +        block = gpu_buddy_find_block_aligned(mm, tree, order,
+>>> +                             tmp, alignment, flags);
+>>> +        if (!block) {
+>>> +            tree = (tree == GPU_BUDDY_CLEAR_TREE) ?
+>>> +                GPU_BUDDY_DIRTY_TREE : GPU_BUDDY_CLEAR_TREE;
+>>> +            block = gpu_buddy_find_block_aligned(mm, tree, order,
+>>> +                                 tmp, alignment, flags);
+>>> +        }
+>>> +
+>>> +        if (block)
+>>> +            break;
+>>> +    }
+>>> +
+>>> +    if (!block)
+>>> +        return ERR_PTR(-ENOSPC);
+>>> +
+>>> +    while (gpu_buddy_block_order(block) > order) {
+>>> +        struct gpu_buddy_block *left, *right;
+>>> +
+>>> +        err = split_block(mm, block);
+>>> +        if (unlikely(err))
+>>> +            goto err_undo;
+>>> +
+>>> +        left  = block->left;
+>>> +        right = block->right;
+>>> +
+>>> +        if (__ffs(gpu_buddy_block_offset(right)) >= alignment)
+>>
+>> Might be better to use the helper for this?
+>>
+>>> +            block = right;
+>>> +        else
+>>> +            block = left;
+>>> +    }
+>>> +
+>>> +    return block;
+>>> +
+>>> +err_undo:
+>>> +    /*
+>>> +     * We really don't want to leave around a bunch of split blocks, 
+>>> since
+>>> +     * bigger is better, so make sure we merge everything back 
+>>> before we
+>>> +     * free the allocated blocks.
+>>> +     */
+>>> +    buddy = __get_buddy(block);
+>>> +    if (buddy &&
+>>> +        (gpu_buddy_block_is_free(block) &&
+>>> +         gpu_buddy_block_is_free(buddy)))
+>>> +        __gpu_buddy_free(mm, block, false);
+>>> +    return ERR_PTR(err);
+>>> +}
+>>> +
+>>>   static int __alloc_range(struct gpu_buddy *mm,
+>>>                struct list_head *dfs,
+>>>                u64 start, u64 size,
+>>> @@ -1059,6 +1214,7 @@ EXPORT_SYMBOL(gpu_buddy_block_trim);
+>>>   static struct gpu_buddy_block *
+>>>   __gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+>>>                u64 start, u64 end,
+>>> +             u64 size, u64 min_block_size,
+>>>                unsigned int order,
+>>>                unsigned long flags)
+>>>   {
+>>> @@ -1066,6 +1222,11 @@ __gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+>>>           /* Allocate traversing within the range */
+>>>           return  __gpu_buddy_alloc_range_bias(mm, start, end,
+>>>                                order, flags);
+>>> +    else if (size < min_block_size)
+>>> +        /* Allocate from an offset-aligned region without size 
+>>> rounding */
+>>> +        return gpu_buddy_offset_aligned_allocation(mm, size,
+>>> +                               min_block_size,
+>>> +                               flags);
+>>>       else
+>>>           /* Allocate from freetree */
+>>>           return alloc_from_freetree(mm, order, flags);
+>>> @@ -1137,8 +1298,11 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy *mm,
+>>>       if (flags & GPU_BUDDY_CONTIGUOUS_ALLOCATION) {
+>>>           size = roundup_pow_of_two(size);
+>>>           min_block_size = size;
+>>> -    /* Align size value to min_block_size */
+>>> -    } else if (!IS_ALIGNED(size, min_block_size)) {
+>>> +        /*
+>>> +         * Normalize the requested size to min_block_size for 
+>>> regular allocations.
+>>> +         * Offset-aligned allocations intentionally skip size rounding.
+>>> +         */
+>>> +    } else if (!gpu_buddy_can_offset_align(size, min_block_size)) {
+>>>           size = round_up(size, min_block_size);
+>>>       }
+>>>   @@ -1158,43 +1322,60 @@ int gpu_buddy_alloc_blocks(struct gpu_buddy 
+>>> *mm,
+>>>       do {
+>>>           order = min(order, (unsigned int)fls(pages) - 1);
+>>>           BUG_ON(order > mm->max_order);
+>>> -        BUG_ON(order < min_order);
+>>> +        /*
+>>> +         * Regular allocations must not allocate blocks smaller than 
+>>> min_block_size.
+>>> +         * Offset-aligned allocations deliberately bypass this 
+>>> constraint.
+>>> +         */
+>>> +        BUG_ON(size >= min_block_size && order < min_order);
+>>>             do {
+>>> +            unsigned int fallback_order;
+>>> +
+>>>               block = __gpu_buddy_alloc_blocks(mm, start,
+>>>                                end,
+>>> +                             size,
+>>> +                             min_block_size,
+>>>                                order,
+>>>                                flags);
+>>>               if (!IS_ERR(block))
+>>>                   break;
+>>>   -            if (order-- == min_order) {
+>>> -                /* Try allocation through force merge method */
+>>> -                if (mm->clear_avail &&
+>>> -                    !__force_merge(mm, start, end, min_order)) {
+>>> -                    block = __gpu_buddy_alloc_blocks(mm, start,
+>>> -                                     end,
+>>> -                                     min_order,
+>>> -                                     flags);
+>>> -                    if (!IS_ERR(block)) {
+>>> -                        order = min_order;
+>>> -                        break;
+>>> -                    }
+>>> -                }
+>>> +            if (size < min_block_size) {
+>>> +                fallback_order = order;
+>>> +            } else if (order == min_order) {
+>>> +                fallback_order = min_order;
+>>> +            } else {
+>>> +                order--;
+>>> +                continue;
+>>> +            }
+>>>   -                /*
+>>> -                 * Try contiguous block allocation through
+>>> -                 * try harder method.
+>>> -                 */
+>>> -                if (flags & GPU_BUDDY_CONTIGUOUS_ALLOCATION &&
+>>> -                    !(flags & GPU_BUDDY_RANGE_ALLOCATION))
+>>> -                    return __alloc_contig_try_harder(mm,
+>>> -                                     original_size,
+>>> -                                     original_min_size,
+>>> -                                     blocks);
+>>> -                err = -ENOSPC;
+>>> -                goto err_free;
+>>> +            /* Try allocation through force merge method */
+>>> +            if (mm->clear_avail &&
+>>> +                !__force_merge(mm, start, end, fallback_order)) {
+>>> +                block = __gpu_buddy_alloc_blocks(mm, start,
+>>> +                                 end,
+>>> +                                 size,
+>>> +                                 min_block_size,
+>>> +                                 fallback_order,
+>>> +                                 flags);
+>>> +                if (!IS_ERR(block)) {
+>>> +                    order = fallback_order;
+>>> +                    break;
+>>> +                }
+>>>               }
+>>> +
+>>> +            /*
+>>> +             * Try contiguous block allocation through
+>>> +             * try harder method.
+>>> +             */
+>>> +            if (flags & GPU_BUDDY_CONTIGUOUS_ALLOCATION &&
+>>> +                !(flags & GPU_BUDDY_RANGE_ALLOCATION))
+>>> +                return __alloc_contig_try_harder(mm,
+>>> +                                 original_size,
+>>> +                                 original_min_size,
+>>> +                                 blocks);
+>>> +            err = -ENOSPC;
+>>> +            goto err_free;
+>>>           } while (1);
+>>>             mark_allocated(mm, block);
+>>> diff --git a/include/linux/gpu_buddy.h b/include/linux/gpu_buddy.h
+>>> index 07ac65db6d2e..7ad817c69ec6 100644
+>>> --- a/include/linux/gpu_buddy.h
+>>> +++ b/include/linux/gpu_buddy.h
+>>> @@ -11,6 +11,7 @@
+>>>   #include <linux/slab.h>
+>>>   #include <linux/sched.h>
+>>>   #include <linux/rbtree.h>
+>>> +#include <linux/rbtree_augmented.h>
+>>>     #define GPU_BUDDY_RANGE_ALLOCATION        BIT(0)
+>>>   #define GPU_BUDDY_TOPDOWN_ALLOCATION        BIT(1)
+>>> @@ -58,6 +59,7 @@ struct gpu_buddy_block {
+>>>       };
+>>>         struct list_head tmp_link;
+>>> +    unsigned int subtree_max_alignment;
+>>>   };
+>>>     /* Order-zero must be at least SZ_4K */
+>>>
+>>> base-commit: 9d757669b2b22cd224c334924f798393ffca537c
+>>
+> 
+
