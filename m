@@ -4,29 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40884E909DA
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21634E909DE
 	for <intel-xe@archiver.kernel.org>; Tue, 17 Feb 2026 17:04:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F247710E528;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D99B210E527;
 	Tue, 17 Feb 2026 17:04:53 +0000 (UTC)
 Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66CE210E528;
- Tue, 17 Feb 2026 17:04:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91FA910E51F;
+ Tue, 17 Feb 2026 17:04:48 +0000 (UTC)
 Received: from localhost.localdomain (unknown
  [IPv6:2400:2410:b120:f200:2e09:4dff:fe00:2e9])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id B3CBD48ADA;
- Tue, 17 Feb 2026 18:04:49 +0100 (CET)
+ by psionic.psi5.com (Postfix) with ESMTPSA id EE5CE3F213;
+ Tue, 17 Feb 2026 18:04:45 +0100 (CET)
 From: Simon Richter <Simon.Richter@hogyros.de>
 To: linux-pci@vger.kernel.org
 Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  Simon Richter <Simon.Richter@hogyros.de>
-Subject: [PATCH 5/5] pci: mark return value of pci_set_vga_state as
- __must_check
-Date: Wed, 18 Feb 2026 02:04:19 +0900
-Message-ID: <20260217170419.236739-6-Simon.Richter@hogyros.de>
+Subject: [PATCH 3/5] vgaarb: mark vga_get family as __must_check
+Date: Wed, 18 Feb 2026 02:04:17 +0900
+Message-ID: <20260217170419.236739-4-Simon.Richter@hogyros.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260217170419.236739-1-Simon.Richter@hogyros.de>
 References: <20260217170419.236739-1-Simon.Richter@hogyros.de>
@@ -46,28 +45,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This function can return an error, which should be checked.
-
-The only caller so far is __vga_tryget in vgaarb, which did not check.
+These functions can return an error, but some callers expect they don't, and
+unconditionally access VGA registers afterwards and call vga_put.
 
 Signed-off-by: Simon Richter <Simon.Richter@hogyros.de>
 ---
- include/linux/pci.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ include/linux/vgaarb.h | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/include/linux/pci.h b/include/linux/pci.h
-index 1c270f1d5123..08d7c1ae33b5 100644
---- a/include/linux/pci.h
-+++ b/include/linux/pci.h
-@@ -1720,7 +1720,7 @@ resource_size_t pcibios_window_alignment(struct pci_bus *bus,
- #define PCI_VGA_STATE_CHANGE_BRIDGE (1 << 0)
- #define PCI_VGA_STATE_CHANGE_DECODES (1 << 1)
+diff --git a/include/linux/vgaarb.h b/include/linux/vgaarb.h
+index 97129a1bbb7d..de683d499dfa 100644
+--- a/include/linux/vgaarb.h
++++ b/include/linux/vgaarb.h
+@@ -27,7 +27,8 @@ struct pci_dev;
  
--int pci_set_vga_state(struct pci_dev *pdev, bool decode,
-+int __must_check pci_set_vga_state(struct pci_dev *pdev, bool decode,
- 		      unsigned int command_bits, u32 flags);
- 
- /*
+ #ifdef CONFIG_VGA_ARB
+ void vga_set_legacy_decoding(struct pci_dev *pdev, unsigned int decodes);
+-int vga_get(struct pci_dev *pdev, unsigned int rsrc, int interruptible);
++int __must_check vga_get(struct pci_dev *pdev, unsigned int rsrc,
++		int interruptible);
+ void vga_put(struct pci_dev *pdev, unsigned int rsrc);
+ struct pci_dev *vga_default_device(void);
+ void vga_set_default_device(struct pci_dev *pdev);
+@@ -39,7 +40,7 @@ static inline void vga_set_legacy_decoding(struct pci_dev *pdev,
+ 		unsigned int decodes)
+ {
+ };
+-static inline int vga_get(struct pci_dev *pdev, unsigned int rsrc,
++static inline int __must_check vga_get(struct pci_dev *pdev, unsigned int rsrc,
+ 		int interruptible)
+ {
+ 	return 0;
+@@ -74,7 +75,7 @@ static inline int vga_client_register(struct pci_dev *pdev,
+  *
+  * On success, release the VGA resource again with vga_put().
+  */
+-static inline int vga_get_interruptible(struct pci_dev *pdev,
++static inline int __must_check vga_get_interruptible(struct pci_dev *pdev,
+ 					unsigned int rsrc)
+ {
+ 	return vga_get(pdev, rsrc, 1);
+@@ -89,7 +90,7 @@ static inline int vga_get_interruptible(struct pci_dev *pdev,
+  *
+  * On success, release the VGA resource again with vga_put().
+  */
+-static inline int vga_get_uninterruptible(struct pci_dev *pdev,
++static inline int __must_check vga_get_uninterruptible(struct pci_dev *pdev,
+ 					  unsigned int rsrc)
+ {
+ 	return vga_get(pdev, rsrc, 0);
 -- 
 2.47.3
 
