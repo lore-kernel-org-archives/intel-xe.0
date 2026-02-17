@@ -4,55 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEE13E6816B
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Feb 2026 12:08:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC2BEE6816B
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Feb 2026 12:08:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82BFA10E4C1;
-	Tue, 17 Feb 2026 12:08:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A25BF10E4C4;
+	Tue, 17 Feb 2026 12:08:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RkTvF5p0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HYRJWodJ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8350110E4C1;
- Tue, 17 Feb 2026 12:07:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C97C10E4C4
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Feb 2026 12:08:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771330080; x=1802866080;
+ t=1771330082; x=1802866082;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=YwxEXvDEC1pyxVNIUoP/h4TexZO7NaJyK71yndpiZZM=;
- b=RkTvF5p0EAgvCPFWu/TcD5N9puzS46POFtk/QkYnhLUHlS4XHca7NrUD
- bwVTooc+TbWT3xLCnkticg9xiej7JRhiyONtilyL+cWKwpaWX4CzIITNU
- lMO4a3icVmW8hpyNM1RSQyBB+oBiByUMf20IGIaV0arEaY3wZ3UcDNWKn
- hkZbxPJGkdoK2vsKRMZleHdodYZg89umS7DFWKt2CsVdFCA96fBifbE0W
- WXzM4k8Spe7ejOw73L7ar92uzsEH5gJ1gZtncpM6vmCkVzHOF7mIjn35e
- cVjbXdI6DnwqjZdY8ilTO50/816LxG01jaRyFlS2bRdE+eJAHXZqhutcd g==;
-X-CSE-ConnectionGUID: dcO5kz3ESQ+6m2wwO7qtXA==
-X-CSE-MsgGUID: vQiiMj5cQqiD2PCV+LdgKg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11703"; a="89980945"
-X-IronPort-AV: E=Sophos;i="6.21,296,1763452800"; d="scan'208";a="89980945"
+ bh=x30Rluguu8onmAImz5FeAJPbCYnWirfPEpvHCVMkTGg=;
+ b=HYRJWodJ0IonTCF4/CKw/Fp+cjbxM+g0akbgOWHfl7ctRvFvYG4u49vC
+ Yrv3xdN0U+tTL61hCeC91yb/shEi8jccmYZNiJnq2tFrOCdr1hZnHijpa
+ GVxX/E85KvBowuWu/KnfrYPLVOPwNwimaehcFmLJCNjpPCClFZkU7DIR1
+ rTH70UQuQ5tC3+lu80oOn/q+pq6LRUd+kZVi15vggkqC6fXDKhkWCIvi1
+ X+XfYyjTi4FWyzs+X7BDlCfHqTjhZkMms2Y4lpu5Xzldf0U3TEVVriAH2
+ 7n5xTz+zhUjAMsHzLTYCEnYqOg+lRmieKNg2WB1v+13LGXGH6uLrMU7TU A==;
+X-CSE-ConnectionGUID: kaWWqN2QQg6PlOGUB+UmLQ==
+X-CSE-MsgGUID: vQ7X5gI0Sv6feuAWwfllMA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11703"; a="89980949"
+X-IronPort-AV: E=Sophos;i="6.21,296,1763452800"; d="scan'208";a="89980949"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Feb 2026 04:07:59 -0800
-X-CSE-ConnectionGUID: sWv8Wc4OQPKmxzaSAEeRXA==
-X-CSE-MsgGUID: FybM/rXjTXy3L0CJBH/Wtg==
+ 17 Feb 2026 04:08:02 -0800
+X-CSE-ConnectionGUID: CjN67/ooQYyqmgu8iaQrcQ==
+X-CSE-MsgGUID: SZuOh+kQRoOeLjZcasvINg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,296,1763452800"; d="scan'208";a="244460072"
+X-IronPort-AV: E=Sophos;i="6.21,296,1763452800"; d="scan'208";a="244460109"
 Received: from gsd-build.iind.intel.com ([10.190.229.167])
- by orviesa002.jf.intel.com with ESMTP; 17 Feb 2026 04:07:57 -0800
+ by orviesa002.jf.intel.com with ESMTP; 17 Feb 2026 04:08:00 -0800
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Matthew Auld <matthew.auld@intel.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH v5 1/3] drm/sa: Split drm_suballoc_new() into SA alloc and
- init helpers
-Date: Tue, 17 Feb 2026 12:07:47 +0000
-Message-ID: <20260217120745.1074232-6-satyanarayana.k.v.p@intel.com>
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v5 2/3] drm/xe/vf: Fix fs_reclaim warning with CCS
+ save/restore BB allocation
+Date: Tue, 17 Feb 2026 12:07:48 +0000
+Message-ID: <20260217120745.1074232-7-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260217120745.1074232-5-satyanarayana.k.v.p@intel.com>
 References: <20260217120745.1074232-5-satyanarayana.k.v.p@intel.com>
@@ -73,37 +71,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-drm_suballoc_new() currently both allocates the SA object using kmalloc()
-and searches for a suitable hole in the sub-allocator for the requested
-size. If SA allocation is done by holding sub-allocator mutex, this design
-can lead to reclaim safety issues.
+CCS save/restore batch buffers are attached during BO allocation and
+detached during BO teardown. The shrinker triggers xe_bo_move(), which is
+used for both allocation and deletion paths.
 
-By splitting the kmalloc() step outside of the critical section, we allow
-the memory allocation to use GFP_KERNEL (reclaim-safe) while ensuring that
-the initialization step that holds reclaim-tainted locks (sub-allocator
-mutex) operates in a reclaim-unsafe context with pre-allocated memory.
+When BO allocation and shrinking occur concurrently, a circular locking
+dependency involving fs_reclaim and swap_guard can occur, leading to a
+deadlock such as:
+======================================================
+WARNING: possible circular locking dependency detected
+------------------------------------------------------
 
-This separation prevents potential deadlocks where memory reclaim could
-attempt to acquire locks that are already held during the sub-allocator
-operations.
+      CPU0                    CPU1
+      ----                    ----
+ lock(fs_reclaim);
+                              lock(&sa_manager->swap_guard);
+                              lock(fs_reclaim);
+ lock(&sa_manager->swap_guard);
 
+ *** DEADLOCK ***
+=====================================================
+
+To avoid this, the BB pointer and SA are allocated using xe_bb_alloc()
+before taking lock and SA is initialized using xe_bb_init() preventing
+reclaim from being invoked in this context.
+
+Fixes: 864690cf4dd62 ("drm/xe/vf: Attach and detach CCS copy commands with BO")
 Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: dri-devel@lists.freedesktop.org
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
 
 ---
 V4 -> V5:
-- None.
+- Removed enum xe_sriov_vf_ccs_rw_ctxs from xe_bb.h as it is not used
+  any more (Michal).
 
 V3 -> V4:
-- None.
+- Fixed some nits (Michal).
 
 V2 -> V3:
 - Updated commit message (Matt, Thomas & Christian).
@@ -113,193 +120,329 @@ V1 -> V2:
 - Splitted drm_suballoc_new() into drm_suballoc_alloc() and
 drm_suballoc_init() (Thomas).
 ---
- drivers/gpu/drm/drm_suballoc.c | 110 ++++++++++++++++++++++++++-------
- include/drm/drm_suballoc.h     |   8 +++
- 2 files changed, 97 insertions(+), 21 deletions(-)
+ drivers/gpu/drm/xe/xe_bb.c      | 72 ++++++++++++++++++------
+ drivers/gpu/drm/xe/xe_bb.h      |  7 ++-
+ drivers/gpu/drm/xe/xe_migrate.c | 99 ++++++++++++++++++---------------
+ drivers/gpu/drm/xe/xe_sa.c      | 39 +++++++++++++
+ drivers/gpu/drm/xe/xe_sa.h      |  3 +
+ 5 files changed, 156 insertions(+), 64 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_suballoc.c b/drivers/gpu/drm/drm_suballoc.c
-index 879ea33dbbc4..b97ffcd98d45 100644
---- a/drivers/gpu/drm/drm_suballoc.c
-+++ b/drivers/gpu/drm/drm_suballoc.c
-@@ -123,7 +123,7 @@ static void drm_suballoc_remove_locked(struct drm_suballoc *sa)
- 	list_del_init(&sa->olist);
- 	list_del_init(&sa->flist);
- 	dma_fence_put(sa->fence);
--	kfree(sa);
-+	drm_suballoc_release(sa);
+diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
+index 8b678297aaa2..a991d9db8164 100644
+--- a/drivers/gpu/drm/xe/xe_bb.c
++++ b/drivers/gpu/drm/xe/xe_bb.c
+@@ -59,16 +59,64 @@ struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm)
+ 	return ERR_PTR(err);
  }
  
- static void drm_suballoc_try_free(struct drm_suballoc_manager *sa_manager)
-@@ -293,45 +293,74 @@ static bool drm_suballoc_next_hole(struct drm_suballoc_manager *sa_manager,
+-struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
+-			    enum xe_sriov_vf_ccs_rw_ctxs ctx_id)
++/**
++ * xe_bb_alloc() - Allocate a new batch buffer structure
++ * @gt: the &xe_gt
++ *
++ * Allocates and initializes a new xe_bb structure with an associated
++ * uninitialized suballoc object.
++ *
++ * Returns: Batch buffer structure or an ERR_PTR(-ENOMEM).
++ */
++struct xe_bb *xe_bb_alloc(struct xe_gt *gt)
+ {
+ 	struct xe_bb *bb = kmalloc(sizeof(*bb), GFP_KERNEL);
+-	struct xe_device *xe = gt_to_xe(gt);
+-	struct xe_sa_manager *bb_pool;
+ 	int err;
+ 
+ 	if (!bb)
+ 		return ERR_PTR(-ENOMEM);
++
++	bb->bo = xe_sa_bo_alloc(GFP_KERNEL);
++	if (IS_ERR(bb->bo)) {
++		err = PTR_ERR(bb->bo);
++		goto err;
++	}
++
++	return bb;
++
++err:
++	kfree(bb);
++	return ERR_PTR(err);
++}
++
++/**
++ * xe_bb_release() - Release and free a batch buffer structure
++ * @bb: Batch buffer structure to release
++ *
++ * Releases the sub-allocated buffer object associated with the batch buffer
++ * and frees the xe_bb structure memory.
++ */
++void xe_bb_release(struct xe_bb *bb)
++{
++	xe_sa_bo_release(bb->bo);
++	kfree(bb);
++}
++
++/**
++ * xe_bb_init() - Initialize a batch buffer with memory from a sub-allocator pool
++ * @bb: Batch buffer structure to initialize
++ * @bb_pool: Suballoc memory pool to allocate from
++ * @dwords: Number of dwords to be allocated
++ *
++ * Initializes the batch buffer by allocating memory from the specified
++ * suballoc pool.
++ *
++ * Return: 0 on success, negative error code on failure.
++ */
++int xe_bb_init(struct xe_bb *bb, struct xe_sa_manager *bb_pool, u32 dwords)
++{
++	int err;
++
+ 	/*
+ 	 * We need to allocate space for the requested number of dwords &
+ 	 * one additional MI_BATCH_BUFFER_END dword. Since the whole SA
+@@ -76,22 +124,14 @@ struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
+ 	 * is not over written when the last chunk of SA is allocated for BB.
+ 	 * So, this extra DW acts as a guard here.
+ 	 */
+-
+-	bb_pool = xe->sriov.vf.ccs.contexts[ctx_id].mem.ccs_bb_pool;
+-	bb->bo = xe_sa_bo_new(bb_pool, 4 * (dwords + 1));
+-
+-	if (IS_ERR(bb->bo)) {
+-		err = PTR_ERR(bb->bo);
+-		goto err;
+-	}
++	err = xe_sa_bo_init(bb_pool, bb->bo, 4 * (dwords + 1));
++	if (err)
++		return err;
+ 
+ 	bb->cs = xe_sa_bo_cpu_addr(bb->bo);
+ 	bb->len = 0;
+ 
+-	return bb;
+-err:
+-	kfree(bb);
+-	return ERR_PTR(err);
++	return 0;
  }
  
- /**
-- * drm_suballoc_new() - Make a suballocation.
-+ * drm_suballoc_alloc() - Allocate uninitialized suballoc object.
+ static struct xe_sched_job *
+diff --git a/drivers/gpu/drm/xe/xe_bb.h b/drivers/gpu/drm/xe/xe_bb.h
+index 2a8adc9a6dee..5778699149ec 100644
+--- a/drivers/gpu/drm/xe/xe_bb.h
++++ b/drivers/gpu/drm/xe/xe_bb.h
+@@ -12,12 +12,13 @@ struct dma_fence;
+ 
+ struct xe_gt;
+ struct xe_exec_queue;
++struct xe_sa_manager;
+ struct xe_sched_job;
+-enum xe_sriov_vf_ccs_rw_ctxs;
+ 
+ struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm);
+-struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
+-			    enum xe_sriov_vf_ccs_rw_ctxs ctx_id);
++struct xe_bb *xe_bb_alloc(struct xe_gt *gt);
++void xe_bb_release(struct xe_bb *bb);
++int xe_bb_init(struct xe_bb *bb, struct xe_sa_manager *bb_pool, u32 dwords);
+ struct xe_sched_job *xe_bb_create_job(struct xe_exec_queue *q,
+ 				      struct xe_bb *bb);
+ struct xe_sched_job *xe_bb_create_migration_job(struct xe_exec_queue *q,
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 078a9bc2821d..d4cfc54d614b 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -25,6 +25,7 @@
+ #include "xe_exec_queue.h"
+ #include "xe_ggtt.h"
+ #include "xe_gt.h"
++#include "xe_gt_printk.h"
+ #include "xe_hw_engine.h"
+ #include "xe_lrc.h"
+ #include "xe_map.h"
+@@ -1148,65 +1149,73 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
+ 		size -= src_L0;
+ 	}
+ 
++	bb = xe_bb_alloc(gt);
++	if (IS_ERR(bb))
++		return PTR_ERR(bb);
++
+ 	bb_pool = ctx->mem.ccs_bb_pool;
+-	guard(mutex) (xe_sa_bo_swap_guard(bb_pool));
+-	xe_sa_bo_swap_shadow(bb_pool);
++	scoped_guard(mutex, xe_sa_bo_swap_guard(bb_pool)) {
++		xe_sa_bo_swap_shadow(bb_pool);
++
++		err = xe_bb_init(bb, bb_pool, batch_size);
++		if (err) {
++			xe_gt_err(gt, "BB allocation failed.\n");
++			xe_bb_release(bb);
++			return err;
++		}
+ 
+-	bb = xe_bb_ccs_new(gt, batch_size, read_write);
+-	if (IS_ERR(bb)) {
+-		drm_err(&xe->drm, "BB allocation failed.\n");
+-		err = PTR_ERR(bb);
+-		return err;
+-	}
++		batch_size_allocated = batch_size;
++		size = xe_bo_size(src_bo);
++		batch_size = 0;
+ 
+-	batch_size_allocated = batch_size;
+-	size = xe_bo_size(src_bo);
+-	batch_size = 0;
++		/*
++		 * Emit PTE and copy commands here.
++		 * The CCS copy command can only support limited size. If the size to be
++		 * copied is more than the limit, divide copy into chunks. So, calculate
++		 * sizes here again before copy command is emitted.
++		 */
+ 
+-	/*
+-	 * Emit PTE and copy commands here.
+-	 * The CCS copy command can only support limited size. If the size to be
+-	 * copied is more than the limit, divide copy into chunks. So, calculate
+-	 * sizes here again before copy command is emitted.
+-	 */
+-	while (size) {
+-		batch_size += 10; /* Flush + ggtt addr + 2 NOP */
+-		u32 flush_flags = 0;
+-		u64 ccs_ofs, ccs_size;
+-		u32 ccs_pt;
++		while (size) {
++			batch_size += 10; /* Flush + ggtt addr + 2 NOP */
++			u32 flush_flags = 0;
++			u64 ccs_ofs, ccs_size;
++			u32 ccs_pt;
+ 
+-		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
++			u32 avail_pts = max_mem_transfer_per_pass(xe) /
++					LEVEL0_PAGE_TABLE_ENCODE_SIZE;
+ 
+-		src_L0 = xe_migrate_res_sizes(m, &src_it);
++			src_L0 = xe_migrate_res_sizes(m, &src_it);
+ 
+-		batch_size += pte_update_size(m, false, src, &src_it, &src_L0,
+-					      &src_L0_ofs, &src_L0_pt, 0, 0,
+-					      avail_pts);
++			batch_size += pte_update_size(m, false, src, &src_it, &src_L0,
++						      &src_L0_ofs, &src_L0_pt, 0, 0,
++						      avail_pts);
+ 
+-		ccs_size = xe_device_ccs_bytes(xe, src_L0);
+-		batch_size += pte_update_size(m, 0, NULL, &ccs_it, &ccs_size, &ccs_ofs,
+-					      &ccs_pt, 0, avail_pts, avail_pts);
+-		xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
+-		batch_size += EMIT_COPY_CCS_DW;
++			ccs_size = xe_device_ccs_bytes(xe, src_L0);
++			batch_size += pte_update_size(m, 0, NULL, &ccs_it, &ccs_size, &ccs_ofs,
++						      &ccs_pt, 0, avail_pts, avail_pts);
++			xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
++			batch_size += EMIT_COPY_CCS_DW;
+ 
+-		emit_pte(m, bb, src_L0_pt, false, true, &src_it, src_L0, src);
++			emit_pte(m, bb, src_L0_pt, false, true, &src_it, src_L0, src);
+ 
+-		emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
++			emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
+ 
+-		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
+-		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
+-						  src_L0_ofs, dst_is_pltt,
+-						  src_L0, ccs_ofs, true);
+-		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
++			bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
++			flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
++							  src_L0_ofs, dst_is_pltt,
++							  src_L0, ccs_ofs, true);
++			bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
+ 
+-		size -= src_L0;
+-	}
++			size -= src_L0;
++		}
+ 
+-	xe_assert(xe, (batch_size_allocated == bb->len));
+-	src_bo->bb_ccs[read_write] = bb;
++		xe_assert(xe, (batch_size_allocated == bb->len));
++		src_bo->bb_ccs[read_write] = bb;
++
++		xe_sriov_vf_ccs_rw_update_bb_addr(ctx);
++		xe_sa_bo_sync_shadow(bb->bo);
++	}
+ 
+-	xe_sriov_vf_ccs_rw_update_bb_addr(ctx);
+-	xe_sa_bo_sync_shadow(bb->bo);
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
+index b738102575d4..4b3dcc7e5ae0 100644
+--- a/drivers/gpu/drm/xe/xe_sa.c
++++ b/drivers/gpu/drm/xe/xe_sa.c
+@@ -175,6 +175,45 @@ struct drm_suballoc *__xe_sa_bo_new(struct xe_sa_manager *sa_manager, u32 size,
+ 	return drm_suballoc_new(&sa_manager->base, size, gfp, true, 0);
+ }
+ 
++/**
++ * xe_sa_bo_alloc() - Allocate uninitialized suballoc object.
 + * @gfp: gfp flags used for memory allocation.
 + *
 + * Allocate memory for an uninitialized suballoc object. Intended usage is
 + * allocate memory for suballoc object outside of a reclaim tainted context
 + * and then be initialized at a later time in a reclaim tainted context.
 + *
-+ * @drm_suballoc_release should be used to release the memory if returned
-+ * suballoc object is in uninitialized state.
-+ *
 + * Return: a new uninitialized suballoc object, or an ERR_PTR(-ENOMEM).
 + */
-+struct drm_suballoc *drm_suballoc_alloc(gfp_t gfp)
++struct drm_suballoc *xe_sa_bo_alloc(gfp_t gfp)
 +{
-+	struct drm_suballoc *sa;
-+
-+	sa = kmalloc(sizeof(*sa), gfp);
-+	if (!sa)
-+		return ERR_PTR(-ENOMEM);
-+
-+	return sa;
++	return drm_suballoc_alloc(gfp);
 +}
-+EXPORT_SYMBOL(drm_suballoc_alloc);
 +
 +/**
-+ * drm_suballoc_release() - Release memory for suballocation.
++ * xe_sa_bo_release() - Release memory for suballocation.
 + * @sa: The struct drm_suballoc.
 + */
-+void drm_suballoc_release(struct drm_suballoc *sa)
++void xe_sa_bo_release(struct drm_suballoc *sa)
 +{
-+	kfree(sa);
++	drm_suballoc_release(sa);
 +}
-+EXPORT_SYMBOL(drm_suballoc_release);
 +
 +/**
-+ * drm_suballoc_init() - Initialize a suballocation.
-  * @sa_manager: pointer to the sa_manager
-+ * @sa: The struct drm_suballoc.
-  * @size: number of bytes we want to suballocate.
-- * @gfp: gfp flags used for memory allocation. Typically GFP_KERNEL but
-- *       the argument is provided for suballocations from reclaim context or
-- *       where the caller wants to avoid pipelining rather than wait for
-- *       reclaim.
-  * @intr: Whether to perform waits interruptible. This should typically
-  *        always be true, unless the caller needs to propagate a
-  *        non-interruptible context from above layers.
-  * @align: Alignment. Must not exceed the default manager alignment.
-  *         If @align is zero, then the manager alignment is used.
-  *
-- * Try to make a suballocation of size @size, which will be rounded
-- * up to the alignment specified in specified in drm_suballoc_manager_init().
-+ * Try to make a suballocation on a pre-allocated suballoc object of size @size,
-+ * which will be rounded up to the alignment specified in specified in
-+ * drm_suballoc_manager_init().
-  *
-- * Return: a new suballocated bo, or an ERR_PTR.
-+ * Return: zero on success, errno on failure.
-  */
--struct drm_suballoc *
--drm_suballoc_new(struct drm_suballoc_manager *sa_manager, size_t size,
--		 gfp_t gfp, bool intr, size_t align)
-+int drm_suballoc_init(struct drm_suballoc_manager *sa_manager,
-+		      struct drm_suballoc *sa, size_t size,
-+		      bool intr, size_t align)
- {
- 	struct dma_fence *fences[DRM_SUBALLOC_MAX_QUEUES];
- 	unsigned int tries[DRM_SUBALLOC_MAX_QUEUES];
- 	unsigned int count;
- 	int i, r;
--	struct drm_suballoc *sa;
- 
- 	if (WARN_ON_ONCE(align > sa_manager->align))
--		return ERR_PTR(-EINVAL);
-+		return -EINVAL;
- 	if (WARN_ON_ONCE(size > sa_manager->size || !size))
--		return ERR_PTR(-EINVAL);
-+		return -EINVAL;
- 
- 	if (!align)
- 		align = sa_manager->align;
- 
--	sa = kmalloc(sizeof(*sa), gfp);
--	if (!sa)
--		return ERR_PTR(-ENOMEM);
- 	sa->manager = sa_manager;
- 	sa->fence = NULL;
- 	INIT_LIST_HEAD(&sa->olist);
-@@ -348,7 +377,7 @@ drm_suballoc_new(struct drm_suballoc_manager *sa_manager, size_t size,
- 			if (drm_suballoc_try_alloc(sa_manager, sa,
- 						   size, align)) {
- 				spin_unlock(&sa_manager->wq.lock);
--				return sa;
-+				return 0;
- 			}
- 
- 			/* see if we can skip over some allocations */
-@@ -385,8 +414,47 @@ drm_suballoc_new(struct drm_suballoc_manager *sa_manager, size_t size,
- 	} while (!r);
- 
- 	spin_unlock(&sa_manager->wq.lock);
--	kfree(sa);
--	return ERR_PTR(r);
-+	return r;
-+}
-+EXPORT_SYMBOL(drm_suballoc_init);
-+
-+/**
-+ * drm_suballoc_new() - Make a suballocation.
++ * xe_sa_bo_init() - Initialize a suballocation.
 + * @sa_manager: pointer to the sa_manager
++ * @sa: The struct drm_suballoc.
 + * @size: number of bytes we want to suballocate.
-+ * @gfp: gfp flags used for memory allocation. Typically GFP_KERNEL but
-+ *       the argument is provided for suballocations from reclaim context or
-+ *       where the caller wants to avoid pipelining rather than wait for
-+ *       reclaim.
-+ * @intr: Whether to perform waits interruptible. This should typically
-+ *        always be true, unless the caller needs to propagate a
-+ *        non-interruptible context from above layers.
-+ * @align: Alignment. Must not exceed the default manager alignment.
-+ *         If @align is zero, then the manager alignment is used.
 + *
-+ * Try to make a suballocation of size @size, which will be rounded
-+ * up to the alignment specified in specified in drm_suballoc_manager_init().
++ * Try to make a suballocation on a pre-allocated suballoc object of size @size.
 + *
-+ * Return: a new suballocated bo, or an ERR_PTR.
++ * Return: zero on success, errno on failure.
 + */
-+struct drm_suballoc *
-+drm_suballoc_new(struct drm_suballoc_manager *sa_manager, size_t size,
-+		 gfp_t gfp, bool intr, size_t align)
++int xe_sa_bo_init(struct xe_sa_manager *sa_manager, struct drm_suballoc *sa, size_t size)
 +{
-+	struct drm_suballoc *sa;
-+	int err;
++	return drm_suballoc_init(&sa_manager->base, sa, size, true, 0);
++}
 +
-+	sa = drm_suballoc_alloc(gfp);
-+	if (IS_ERR(sa))
-+		return sa;
-+
-+	err = drm_suballoc_init(sa_manager, sa, size, intr, align);
-+	if (err) {
-+		drm_suballoc_release(sa);
-+		return ERR_PTR(err);
-+	}
-+
-+	return sa;
+ /**
+  * xe_sa_bo_flush_write() - Copy the data from the sub-allocation to the GPU memory.
+  * @sa_bo: the &drm_suballoc to flush
+diff --git a/drivers/gpu/drm/xe/xe_sa.h b/drivers/gpu/drm/xe/xe_sa.h
+index 05e9a4e00e78..156b6e6fa14b 100644
+--- a/drivers/gpu/drm/xe/xe_sa.h
++++ b/drivers/gpu/drm/xe/xe_sa.h
+@@ -38,6 +38,9 @@ static inline struct drm_suballoc *xe_sa_bo_new(struct xe_sa_manager *sa_manager
+ 	return __xe_sa_bo_new(sa_manager, size, GFP_KERNEL);
  }
- EXPORT_SYMBOL(drm_suballoc_new);
  
-diff --git a/include/drm/drm_suballoc.h b/include/drm/drm_suballoc.h
-index 7ba72a81a808..b8d1d5449fd8 100644
---- a/include/drm/drm_suballoc.h
-+++ b/include/drm/drm_suballoc.h
-@@ -53,6 +53,14 @@ void drm_suballoc_manager_init(struct drm_suballoc_manager *sa_manager,
- 
- void drm_suballoc_manager_fini(struct drm_suballoc_manager *sa_manager);
- 
-+struct drm_suballoc *drm_suballoc_alloc(gfp_t gfp);
-+
-+void drm_suballoc_release(struct drm_suballoc *sa);
-+
-+int drm_suballoc_init(struct drm_suballoc_manager *sa_manager,
-+		      struct drm_suballoc *sa, size_t size, bool intr,
-+		      size_t align);
-+
- struct drm_suballoc *
- drm_suballoc_new(struct drm_suballoc_manager *sa_manager, size_t size,
- 		 gfp_t gfp, bool intr, size_t align);
++struct drm_suballoc *xe_sa_bo_alloc(gfp_t gfp);
++void xe_sa_bo_release(struct drm_suballoc *sa);
++int xe_sa_bo_init(struct xe_sa_manager *sa_manager, struct drm_suballoc *sa, size_t size);
+ void xe_sa_bo_flush_write(struct drm_suballoc *sa_bo);
+ void xe_sa_bo_sync_read(struct drm_suballoc *sa_bo);
+ void xe_sa_bo_free(struct drm_suballoc *sa_bo, struct dma_fence *fence);
 -- 
 2.43.0
 
