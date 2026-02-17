@@ -4,69 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 784E6EF5877
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Feb 2026 13:34:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08979E909A3
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Feb 2026 13:52:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26C6110E25E;
-	Tue, 17 Feb 2026 13:34:36 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Z9hIeX24";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4858310E25E;
- Tue, 17 Feb 2026 13:34:35 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id F2D1B41932;
- Tue, 17 Feb 2026 13:34:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38DEAC19423;
- Tue, 17 Feb 2026 13:34:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1771335274;
- bh=5Ve2lFhJ0cDQLZhhoB8VGy9HpsXLE/NXmcWc43kIado=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=Z9hIeX24hquUJ4wdZrCAVMv/v+w7DswfB9yd2z01qBeU9SwSfFcRLINuYxFLbTbWy
- nCaHOAy2bOHsxsSLnW36or7B1egpaZTiFbaplu1tu9fczmu8yYgPRzu0HEQQjipBKj
- wF7yVRXjtqgUQEAKhMvSCNQYs0EgfDfTt4ZgnPiQ253vkvearAzcMUCmugprktCoY4
- 15q3WwfNIPyVkj8jz85EqiJL+k1gvJaO43mU0XhZYY+dC/maR+PBJXZAnxCGK+V3Yq
- go65AH1Vp25BN4+5W6xdN9xTmNgn8I6z9KxJG8Ld2oDvMIelDF5KLf34AawQ3xnki3
- M3MQrm9ffvLfw==
-Date: Tue, 17 Feb 2026 15:34:31 +0200
-From: Leon Romanovsky <leon@kernel.org>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: David Airlie <airlied@gmail.com>, Sumit Semwal <sumit.semwal@linaro.org>,
- Alex Deucher <alexander.deucher@amd.com>,
- Simona Vetter <simona@ffwll.ch>, Gerd Hoffmann <kraxel@redhat.com>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Gurchetan Singh <gurchetansingh@chromium.org>,
- Chia-I Wu <olvaffe@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Kevin Tian <kevin.tian@intel.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>,
- Felix Kuehling <Felix.Kuehling@amd.com>,
- Alex Williamson <alex@shazbot.org>, Ankit Agrawal <ankita@nvidia.com>,
- Vivek Kasireddy <vivek.kasireddy@intel.com>,
- linux-media@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linaro-mm-sig@lists.linaro.org, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, linux-rdma@vger.kernel.org,
- iommu@lists.linux.dev, kvm@vger.kernel.org
-Subject: Re: [PATCH v7 0/8] dma-buf: Use revoke mechanism to invalidate
- shared buffers
-Message-ID: <20260217133431.GN12989@unreal>
-References: <20260131-dmabuf-revoke-v7-0-463d956bd527@nvidia.com>
- <20260217080206.GJ12989@unreal>
- <0aa8147c-254d-4a1c-89ee-9dc4d4b6b022@amd.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0F5F10E25E;
+	Tue, 17 Feb 2026 13:52:01 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C79410E25E;
+ Tue, 17 Feb 2026 13:52:00 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4002714943791081511=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0aa8147c-254d-4a1c-89ee-9dc4d4b6b022@amd.com>
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Hardware_Error_handling_for?=
+ =?utf-8?q?_Crescent_Island?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 17 Feb 2026 13:52:00 -0000
+Message-ID: <177133632062.258831.7620870631840897161@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260217114656.2546878-1-raag.jadav@intel.com>
+In-Reply-To: <20260217114656.2546878-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,22 +36,142 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Feb 17, 2026 at 10:52:25AM +0100, Christian König wrote:
-> On 2/17/26 09:02, Leon Romanovsky wrote:
-> > On Sat, Jan 31, 2026 at 07:34:10AM +0200, Leon Romanovsky wrote:
-> >> Changelog:
-> >> v7:
-> >>  * Fixed messed VFIO patch due to rebase.
-> > 
-> > <...>
-> > 
-> > Christian,
-> > 
-> > What should be my next step? Should I resubmit it?
-> 
-> No, the patches are fine as they are. I'm just waiting for the backmerge of upstream to apply them.
+--===============4002714943791081511==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks
+== Series Details ==
+
+Series: Hardware Error handling for Crescent Island
+URL   : https://patchwork.freedesktop.org/series/161709/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from xe-4565-32b409741f18c54cd98f942836d1f7bd9bc15366_BAT -> xe-pw-161709v1_BAT
+====================================================
+
+Summary
+-------
+
+  **WARNING**
+
+  Minor unknown changes coming with xe-pw-161709v1_BAT need to be verified
+  manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-161709v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-161709v1_BAT:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:
+    - bat-wcl-2:          [SKIP][1] ([Intel XE#7238]) -> [SKIP][2] +1 other test skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4565-32b409741f18c54cd98f942836d1f7bd9bc15366/bat-wcl-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161709v1/bat-wcl-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
+    - bat-wcl-1:          [SKIP][3] ([Intel XE#7238]) -> [SKIP][4] +1 other test skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4565-32b409741f18c54cd98f942836d1f7bd9bc15366/bat-wcl-1/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161709v1/bat-wcl-1/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
+
+  
+  [Intel XE#7238]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7238
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8754 -> IGT_8755
+  * Linux: xe-4565-32b409741f18c54cd98f942836d1f7bd9bc15366 -> xe-pw-161709v1
+
+  IGT_8754: 8754
+  IGT_8755: 8755
+  xe-4565-32b409741f18c54cd98f942836d1f7bd9bc15366: 32b409741f18c54cd98f942836d1f7bd9bc15366
+  xe-pw-161709v1: 161709v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161709v1/index.html
+
+--===============4002714943791081511==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Hardware Error handling for Crescent Island</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161709/">https://patchwork.freedesktop.org/series/161709/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161709v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161709v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4565-32b409741f18c54cd98f942836d1f7bd9bc15366_BAT -&gt; xe-pw-161709v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>WARNING</strong></p>
+<p>Minor unknown changes coming with xe-pw-161709v1_BAT need to be verified<br />
+  manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-161709v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-161709v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:<ul>
+<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4565-32b409741f18c54cd98f942836d1f7bd9bc15366/bat-wcl-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7238">Intel XE#7238</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161709v1/bat-wcl-2/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">SKIP</a> +1 other test skip</li>
+<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4565-32b409741f18c54cd98f942836d1f7bd9bc15366/bat-wcl-1/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7238">Intel XE#7238</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161709v1/bat-wcl-1/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html">SKIP</a> +1 other test skip</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8754 -&gt; IGT_8755</li>
+<li>Linux: xe-4565-32b409741f18c54cd98f942836d1f7bd9bc15366 -&gt; xe-pw-161709v1</li>
+</ul>
+<p>IGT_8754: 8754<br />
+  IGT_8755: 8755<br />
+  xe-4565-32b409741f18c54cd98f942836d1f7bd9bc15366: 32b409741f18c54cd98f942836d1f7bd9bc15366<br />
+  xe-pw-161709v1: 161709v1</p>
+
+</body>
+</html>
+
+--===============4002714943791081511==--
