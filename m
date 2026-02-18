@@ -4,61 +4,189 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88ACEE9A047
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 11:48:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96E53E9A047
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 11:50:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EF6D10E5B1;
-	Wed, 18 Feb 2026 11:48:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5768410E5AC;
+	Wed, 18 Feb 2026 11:50:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SvB8KT9o";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K3oTJAHh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAA6910E5AC;
- Wed, 18 Feb 2026 11:48:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C09F10E5AC;
+ Wed, 18 Feb 2026 11:50:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771415311; x=1802951311;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rCoHTa9z3VXOIO+JfbS8w+8Wf4PT64o+1q1SJFzSTpk=;
- b=SvB8KT9obgWO/bH+L19wYBo/9l/I5rysyPTtREaagFehrT4g8E4ukZ1Q
- czk8Y+a1jLnVELqaMrzcuYBjW6oK/A9E5O/59q6OB+Cxxc2GNm/+IsweM
- a/tCeaKTfr2l4+7uDxtKhWoEzk1hqqPjkcB5fbG3TpPCsvvDAATDBeMXt
- XtWWznzJlE/dZR28oZgujxbSOWQUEdqwqCCmnL8uvaIsWpljop8KcYC7u
- APeiK4ZAursosQLcSPtCYMQR3gDbs9bOSNLlc6Ar/fiJyYOM/G+zR/324
- 2nZdOzEB+HUUwJyJsSHqQhBHn1jm7KJBBZId49mSBwY73pH2EkkhwRz+z w==;
-X-CSE-ConnectionGUID: BvMA23aDT7mROFOK4wpaqQ==
-X-CSE-MsgGUID: S2PqbaDXRFisvbWH7QQEBA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11704"; a="72665256"
-X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="72665256"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 03:48:30 -0800
-X-CSE-ConnectionGUID: EVEJf8KuRCaQGOlqCrxYvw==
-X-CSE-MsgGUID: XxIm06QpQ4OCu27nYWUc5g==
+ t=1771415452; x=1802951452;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=f57ZMMOe8GzGEOgqzckrn2vNtErBytpDkx7c1YXpQjA=;
+ b=K3oTJAHhIT7BhzCl4NLpACAbQbrUB/OnB4m6sCWfnnGVoWuaKL3aEkN6
+ kWuf66BucwzQs/VxmBu6A6NmC6MS8eTi6znPhjPmzzCtDu5WIvi7jn4B2
+ 1oS208tMX7nY8NvUMqzVjypxWBCrWplhAGyJuZ3oQ0YK/ZDQTGhtUi+HC
+ We0J4Ygio2HdEeQNHOrFSs2O/rJhwTF8CHFRP3bKtfeST6ZyvTZe4qVyl
+ K9isxUwuRHO+QLR1FDyog0vBzh9cmJOkb3jkv/UAPJMTtUJeyS6XFJ7mx
+ /+muRyyd7Z3xBqcHBIHmGxYZBqjRDcn8Xfq/9xn1AriFJboEUfOJmcMvn Q==;
+X-CSE-ConnectionGUID: pCe6gKFeRAOJ6GkUrAJ18A==
+X-CSE-MsgGUID: 87XFY1UEQRm2XcEYRQjRiQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11704"; a="72378166"
+X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="72378166"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2026 03:50:51 -0800
+X-CSE-ConnectionGUID: fCo93HLgRWKvMf0+TGLodQ==
+X-CSE-MsgGUID: sZf1K5j+Td+/F3fRdx2Rjg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="212537928"
-Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 03:48:25 -0800
-From: Riana Tauro <riana.tauro@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
- rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
- simona.vetter@ffwll.ch, airlied@gmail.com, pratik.bari@intel.com,
- joshua.santosh.ranjan@intel.com, ashwin.kumar.kulkarni@intel.com,
- shubham.kumar@intel.com, ravi.kishore.koppuravuri@intel.com,
- raag.jadav@intel.com, Riana Tauro <riana.tauro@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v7 5/5] drm/xe/xe_hw_error: Add support for PVC SoC errors
-Date: Wed, 18 Feb 2026 17:49:07 +0530
-Message-ID: <20260218121904.157295-12-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20260218121904.157295-7-riana.tauro@intel.com>
-References: <20260218121904.157295-7-riana.tauro@intel.com>
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="218701876"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2026 03:50:50 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Wed, 18 Feb 2026 03:50:50 -0800
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35 via Frontend Transport; Wed, 18 Feb 2026 03:50:50 -0800
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.33) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Wed, 18 Feb 2026 03:50:50 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=EKNaP/+jyIfkORcGr0w1BrJfJez7u8ZdPkZuElbW6LPn15FASUIxmuoNZ8hVBXzgLawPK0IccAZjr0Ov2ZQ5ydnAWsZvD60+QZOLswVidLfK0R1VhrHgJKJoo42O3GkNRLY0Q+QAkbOSauld9x4Pcw9CVAzwkWjxv7/VjY07bon2zDO+CE6B5KIYxnV+0vpow6mFRRwXUHsnKkx0BL8D6gnO3UurAWaR8RMm28VFEP7+ohesOpPHh7QqniYBN7TLfhi5aNQumWKWZ6iisBR/miVkiZWSy37Kzbi/fPtgrybGD45YeBWddHiucDoEJdbiipqeluT994bhccm+WVn94Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=X0P8EvP8IgdQdv3dsEXbT0Tfu9+PgfYUxvhPxZrvKJY=;
+ b=srqDFJ4z7qkjHFLqF5co1bAqn+mKXUBlxR5Wv9hQMVvB7wcdsxu1OJ2UNOmYGGuBMSBz+ImvpgDGRoKEQ9MFGHOUuoItDw46gAKo7LwZVih1KL+zOv/3rpOyAnfn553rQ5Ga6DdoMGpwxz3kqF6LLCTmrDWku9Vx1d38n9URRSXBzXkNUG1wdvLQsvWq7NTdH8mhjP5ADoqVnLzyjBCphVyXeA6mUuyhzil4ZJi1OvdDjpw0Egl6yLVGn1ZGdlqOdiSdUpHEiCbJ9Gdd9poHylzrJpN2kA6e5o31sdSlFA1/wezweoooXiPjCadMRAWG5HDEA8aYVr/F+EAI+VQWuQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by PH7PR11MB6746.namprd11.prod.outlook.com (2603:10b6:510:1b4::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.13; Wed, 18 Feb
+ 2026 11:50:42 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::68b9:ea3c:8166:3cc4]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::68b9:ea3c:8166:3cc4%4]) with mapi id 15.20.9611.013; Wed, 18 Feb 2026
+ 11:50:42 +0000
+Message-ID: <4454b4e0-4a12-4cbd-9a57-514049c6a070@intel.com>
+Date: Wed, 18 Feb 2026 17:20:35 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] drm/i915/dp: Fix ww mutex lock failure in
+ for_each_joiner_candidate() loop
+To: Imre Deak <imre.deak@intel.com>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>
+References: <20260218105708.845161-1-imre.deak@intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260218105708.845161-1-imre.deak@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5PR01CA0118.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1a7::8) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|PH7PR11MB6746:EE_
+X-MS-Office365-Filtering-Correlation-Id: b275e5d3-a81c-43fc-3d39-08de6ee3f163
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?cnpUenRyWlhTd29yM1VPVytWZ1ovd2RFb1RMa09aUVlWWVh4Z1ZkQWZqSFJh?=
+ =?utf-8?B?MHN0MnRtd2hKc2lmWWw1ZFErcDVGa1U3ZUhscGlDYlQ5aXRHVkxsT3FtOWVw?=
+ =?utf-8?B?RmRGNEJyUzNCbzAyNVhYMFRqRVpFeHdibDJpaWN4QnZQejBPai91dWdHbHVR?=
+ =?utf-8?B?dkc5QWVoU045NUFHVnRaUlNCd0N5NEhVTDEvT3JoVlJsZlJobGpQZk5LNHht?=
+ =?utf-8?B?VE5OUDM3UHRiakpOekZSTjl0T2lEa0VxZWxOUkNRVmg5QzFLRjNraFk5ZWdP?=
+ =?utf-8?B?US9uK0twSWl4YTdEa3BrZmpSTTRYSWNiUTlaa3U5ekZaQnl6akdoaTdPeUo0?=
+ =?utf-8?B?ZjBnKzlaL0FvK0R0a2VybnY3RGttemxBSWlrY01BMk56Y2JNZ1lXTEpOZDJo?=
+ =?utf-8?B?ZkxrdTJHd3lZYzNCSWdjL2w0dnNqRmU0bTdiVXR5QnZVTVNrdVVScnJNdk5P?=
+ =?utf-8?B?ZTJqblo3Njl6Qy9XT3pST01ZRGlCQnFNVHNjUjhjaFBuQURJL2FXYWZ6QzVU?=
+ =?utf-8?B?bk0zQjhsVlk1S2pLdkNhN1hRMExQN0l3bm1Gd3l1QVphYVBsZGx5c3c1eEFV?=
+ =?utf-8?B?Q0RSZG5rSmFXUEJZWkxrU3ZCMlhBc0NJbi9QYjdEUUJMVEhJQ0JFRVNmdlVx?=
+ =?utf-8?B?NFZCNDdJdWNzT2NzQTVuazc4bTNnYjcyQ2xjbTBKbm5SQzlSS0x0MFhjMWZz?=
+ =?utf-8?B?b0tTQjJkam1ma2ZyaG04ZnpRK3NKQ0R6M3RaSGpSWFdYWTczUlpUS1p6aU9B?=
+ =?utf-8?B?dzgyMDRpUEgxNWttdWtodGQ5eWs3cE9jVGVkcmwwWVZNaVBLM3pUNVFOVlZa?=
+ =?utf-8?B?dml6T051aG9OblFkRFVOUzVva3gyRlg2ZXVJL3cwM2p2OHByNHhMUFZyczdo?=
+ =?utf-8?B?TnhOV0FQN3YwMUpXejZTU0lrU3N4NUJpWTZWYTNYMzl2WXYvTEN6UW0zZG1k?=
+ =?utf-8?B?VU1FT1pwV2VQWld2clh4bGFBNS9QVlc1OSs3N3phMkU3RGE3NGppdzZoT25T?=
+ =?utf-8?B?b05oLzJiS2tyU2dMQ2h3WElDWVJxZ2RtckQyRDB2STdFSndEbFlPbUV0Q3Ux?=
+ =?utf-8?B?ZTNkK1BlNnFjRmpIakVVWEMvVllPOFQyS1l5dGtaMlRORk40Vmt6RUNRNlJH?=
+ =?utf-8?B?aEkrQmZway9RTFpqaXV1am91K3ZBUlhxbCtidXRia1NpdmRiWjVieE9MSGhR?=
+ =?utf-8?B?b3pNYWJDcG15Wkp2aElOMGhzTzRpUzFyaG1kdWtoM2tvRXZTVGRYK2tWQzQv?=
+ =?utf-8?B?UEhsK0Z0QTc4RHlTYTVrSVVualh3SmVQRUJMQTdldUJkYXptbXE1aTdXL05a?=
+ =?utf-8?B?YnpNWklyMTVvL2tGdFFiazVtTG5IbGlqNmYrclZhRkNqdFRDRmpES1k0Mmpi?=
+ =?utf-8?B?SUtranpWZjdTZ0JiMU1xUFJYZEJpWlZNT2c3dDJGMGNaa3lLZklURnRGVnFa?=
+ =?utf-8?B?RERPZ3hFcm1hZGlOU2hYeVFCZFE2RjRWMWNEcWJMMGtNaFZWOVgzMUZHWmVO?=
+ =?utf-8?B?YlpJSWxibzNmTG1VSGNUbjUydGhmTEZKU05jVlhDcFZEM0FsdDBBeWJnN0JI?=
+ =?utf-8?B?NmExRlRLaUdUSTF5YWVIclN6dDlOOE5MU1AwMGVwdUdTMjlDcHpENW4zc3Rk?=
+ =?utf-8?B?WEx2NFAwSGNlQzBtMDY3YmVoU2UvUElEMXprZy9zcnJDK0NkSlRWSTBVL2hv?=
+ =?utf-8?B?SXVkNm9ISlN0ZW1rZ0o2TGtUaW5YRWVINWxmWVFXcDZYZHJiaE44VzE4V1Zw?=
+ =?utf-8?B?WjhiMjVUUnNtbERhYW1jczREMjFhS1hUZXkza1JGWDdjUGVWTy9rMTVxa0Ev?=
+ =?utf-8?B?VXI0bjk2T2lEVUxYZG16WnM5b1JlV1RUNC8rdE9RWVI4emM5TXo5VWJ4bG5N?=
+ =?utf-8?B?R1l6YXQ3YjlVNittQkNDbzk3bEZKMFl1dnNFR0xmbDJqdzJZVzdBb3NERlNC?=
+ =?utf-8?B?QnpOaFZzVS9oZC9YRkVKQUVQNm9haUt3VmRuM0FGajRUdCt3bi9HNGFYMldk?=
+ =?utf-8?B?TUdnNndRLzNRUUdiVFd0VU9pRWxIZEk3NHgyby9nZFp4SVV6OWE2MHdoWlpu?=
+ =?utf-8?B?aFhvWGNaOUkzS3FGQUpOUlRWQmlrUDgrMVplUno1Wmdabk5aTHVmTW1FOFps?=
+ =?utf-8?Q?/8RA=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Zi91Q1N1RlRkLzVZd2xBNVZBa3JONG5EVGhhd2doUmg3MHlDT1E2WVNVNGJm?=
+ =?utf-8?B?TlliMDI5S2FzZWRXakJienpSVHdEM3ZKR0dENWdMR3hIdTVMQVYydmJteXVh?=
+ =?utf-8?B?WXJqNENCUXA5SGxjeCtNaEdCNTg2R25FZk5rQXVHTmQrRzRhY3U4bjZRTkFm?=
+ =?utf-8?B?T0hrVFJaOGszV3JhMGk4cGtHUG92KzBTd3Q4NWlnTjAyZTBteDN4THdFQSsr?=
+ =?utf-8?B?eEF4ZkJUZmpLQ1FZRERPL0FNOENxS20vdVUyUmI0UTNxSzdHN291bzJuRDRr?=
+ =?utf-8?B?aHRtdTZ1eWlVaktJUDdQOEl5RVBGY0FxbXFvdi9GY2JEVU5qa2prTzFha0tX?=
+ =?utf-8?B?U1hBUUtSRWlBTkRONlRSZEVraExPd3AzaG41STk5K2czVGNNcjRTbUFJQnZn?=
+ =?utf-8?B?V2lFSXdXa0xsT3dYN0tBTTg1NENCZ1JZZzFKUElRTy80bnAydkdDbkg2d0hD?=
+ =?utf-8?B?eTNBaFlObGJGdldPeXFnSnBacld3UEU0THpEc3pid1ZsanFTM2NoeGlBbzRE?=
+ =?utf-8?B?MVFBZEdHRlZ2MkJpMUhMWmhLdVRnZ0pXa0RQSmZNNVBpazd5dkhXdWhUSkw3?=
+ =?utf-8?B?YllyVjdiU3BMVDVUUVNGS1RJV1JCRWVOVUtiVmo4TkMxNTBEL2dFMEpXbnlR?=
+ =?utf-8?B?cVRWYThPZkY3VTlIUGhyZGpsSHliQTZCR2xxWUtYWHo4U09GaXJDZklwOFYy?=
+ =?utf-8?B?N1dEMWI5V1VCbWkreU9laGdZTG9ta0FVQWJKU1V3ZWdPZzNyMDN3WkttTjJX?=
+ =?utf-8?B?K2w1cDB0cHg4YkVpbVlEcE8vRDdqZFVkMVBjYy9FK0IrTG5nUFBEcWhkblZa?=
+ =?utf-8?B?aHhOcWdsYUNoN3VwUHVjcmRUVVhwTGNGMG43NnVBdnN0VTA2dVlRR3dVQ3Vx?=
+ =?utf-8?B?UkRYK3VoOWhUL3E3NlFLem9KT0tKeWM5K0JQc0pYVFY3RG5oMjFIQjlhYzEv?=
+ =?utf-8?B?cTlDRVlJaW9adTY5MmRia3l4SlkvVzYydEhNZzRkRUljcTRDTTVyRWhjUm5O?=
+ =?utf-8?B?THZxQldQTzRVcmVibHZ4STFDS3k1M2FZcVdYN25obEZoektpNDR4WklBU2Nj?=
+ =?utf-8?B?VSt1Mm4ycjJxNWNXamd4Q3NhTjFFUHdxYUFjTWl1NU5hVzdxWlRDS2RmSXdI?=
+ =?utf-8?B?SmFZNms1WVNkYWdLMDFMc0JJeVgvQ0ZuZ2htR2lPTEpKQ3RrREdJKy96c1cz?=
+ =?utf-8?B?UGluN2gyMWZGR2FaM3FMb2NxVXFzMitGU0dHVURzU2ZyNnY4b2x5OUIyU0ly?=
+ =?utf-8?B?RVJrd0pJNWk4aG9DaVdkQ3R3aFlGam1hMXFxczdjOHVOdnJjaVMvTGx3Ym5I?=
+ =?utf-8?B?b2RmaTZDdnZMUUo0L3BpVWJQYzBDUWpoMWhQVlRBUm43cmZrV1BUMmtadU5N?=
+ =?utf-8?B?ckhhU2Y5djNQNHo4Q0NVUXh3RDhNaTNiUFZvZHZDU2l3akxvZGNoVTNvV1hr?=
+ =?utf-8?B?cWdhQXVjbkRUa1NPeVMwQ3hqcTR2Yyt6UXhYVVFudk1BU0RTSi9zN0VGUXlY?=
+ =?utf-8?B?WkF4RnNJZllUTTJIWUtJZXNFdnZFajNaNFBCSEYzQkxPdy82ZE5wRGZnM1VP?=
+ =?utf-8?B?dzVvbEF3M2lpeWI3dk1Ib0drQ2RkQVc5K2wwMFFTWHUwb2tzS2N5VmwwVU5n?=
+ =?utf-8?B?YmNLMndlTkR0NGh6Q3M1RTFJZW42a3ZGbEZwc3Yxc1QyMzhZVnhFM2R2RFM1?=
+ =?utf-8?B?d2xUVndObWZuQm1heHMveXN0cEZLby9lVHVWTEQwYkFNYnZPUlpVdTc2eEhP?=
+ =?utf-8?B?blEwVDNVTW5vb2dqanZ1R3N2WUlmT1VwbDE4cFVGT3lYSFVsSUNEa3ZMbXkv?=
+ =?utf-8?B?T1ZRb3paVDM2RnV5Ynhoazc0TWlOL0gwNTRici8vRjI1MmZEaEQrbjZIN0pa?=
+ =?utf-8?B?Vzd2MjZmWmZwVWthNysyTkFLUnQzRUlkdStBaThnSzQ1UFVsekMxV3J1dXhi?=
+ =?utf-8?B?S3BWa0ZMMHAydS9QcGVlMlZHTW90YXg1RWNOaDh5OE1DY1JPeUFqVFg5RDFj?=
+ =?utf-8?B?QzFKNzdMU083a3pEZkM2WTdGK3FrcERYUWZiZWRuMlRVa3o1OEVmcXBOVllv?=
+ =?utf-8?B?T2VCUDQ2WGY0WHhDVUtNTUdTUGdJb3M1dGl3SjFIS3Fhb1VQa3N5dmlGZjJU?=
+ =?utf-8?B?UkswOEFrUWEyL0dCZzRqV3BwZk5hdnp1a1NLQW1IWTl5dys1T2QySHBOMXl1?=
+ =?utf-8?B?SnZxZjZDT1Q3YTZvVlBaay9UVyswQ0h3SnpTTnZ3YW1JU2p5NGFHUUtYd05X?=
+ =?utf-8?B?OVM5V1BFRitRcEtjb0E1Ky9QNU1rTkRiTHZ6RFlDMFVxY2tPWnRFV29sci9n?=
+ =?utf-8?B?TzZtMmw2djQzekNuSGh2OFg1emUrMWVZdXk4ZzJmbzM4bktyZlM5aUZLckIz?=
+ =?utf-8?Q?ocRu813OcIh4pmBw=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b275e5d3-a81c-43fc-3d39-08de6ee3f163
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2026 11:50:42.3064 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pAowMnUwFG1Wm42OBHT2rxg+F1E/iPVLaBkEUmyN4wmjY9hcMJVgtjUlds8OFL2YfVR5KY0DFUTZ6dfCyBM67unHNj7wF0IkPjApUEOqCCM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB6746
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,334 +201,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Report the SoC nonfatal/fatal hardware error and update the counters.
 
-$ sudo ynl --family drm_ras --do query-error-counter  --json '{"node-id":0, "error-id":2}'
-{'error-id': 2, 'error-name': 'soc-internal', 'error-value': 0}
+On 2/18/2026 4:27 PM, Imre Deak wrote:
+> Handle modeset WW mutex lock failures due to contention properly.
+> Return -EDEADLK to the caller instead of attempting to lock the same
+> mutex again in a subsequent joiner candidate iteration, where the WW
+> mutex is already in a contended state.
+>
+> This fixes the following warning:
+>
+> WARNING: drivers/gpu/drm/drm_modeset_lock.c:298 at modeset_lock+0x1c0/0x210
+>
+> triggered by ctx->contended.
+>
+> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> Fixes: 1f1e3e5c65f6d ("drm/i915/dp: Rework pipe joiner logic in compute_config")
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 454e6144ee4e2..025e906b63a97 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -2969,7 +2969,7 @@ intel_dp_compute_link_config(struct intel_encoder *encoder,
+>   
+>   		ret = intel_dp_compute_link_for_joined_pipes(encoder, crtc_state, conn_state,
+>   							     respect_downstream_limits);
+> -		if (ret == 0)
+> +		if (ret == 0 || ret == -EDEADLK)
 
-Co-developed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
----
-v2: Add ID's and names as uAPI (Rodrigo)
 
-v3: reorder and align arrays
-    remove redundant string err
-    use REG_BIT
-    fix aesthic review comments (Raag)
-    use only correctable/uncorrectable error severity (Aravind)
+Seems like I had missed that intel_dp_mtp_tu_compute_config() and 
+mst_stream_compute_link_for_joined_pipes() can also return -EDEADLK.
 
-v4: fix comments
-    use master as variable name
-    add static_assert (Raag)
+Earlier we would just return any non‑zero error and the IOCTL would fail.
 
-v5: remove blank lines
-    fix alignment
-    rename variables of base registers
-    move register initialization outside loop (Raag)
+But now this code runs inside the iteration loop, so we try the next 
+joiner candidate for normal errors.
 
-v6: add macro for master local reg (Raag)
----
- drivers/gpu/drm/xe/regs/xe_hw_error_regs.h |  25 +++
- drivers/gpu/drm/xe/xe_hw_error.c           | 206 +++++++++++++++++++++
- 2 files changed, 231 insertions(+)
+However, for -EDEADLK we need to break out of the loop and let the IOCTL 
+fail, since the lock retry sequence has to be handled by the upper layers.
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h b/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
-index cd17d7d7372c..046e1756c698 100644
---- a/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
-@@ -41,6 +41,7 @@
- 									  DEV_ERR_STAT_NONFATAL))
- 
- #define   XE_CSC_ERROR					17
-+#define   XE_SOC_ERROR					16
- #define   XE_GT_ERROR					0
- 
- #define ERR_STAT_GT_FATAL_VECTOR_0			0x100260
-@@ -60,4 +61,28 @@
- #define ERR_STAT_GT_VECTOR_REG(hw_err, x)		(hw_err == HARDWARE_ERROR_CORRECTABLE ? \
- 							 ERR_STAT_GT_COR_VECTOR_REG(x) : \
- 							 ERR_STAT_GT_FATAL_VECTOR_REG(x))
-+
-+#define SOC_PVC_MASTER_BASE				0x282000
-+#define SOC_PVC_SLAVE_BASE				0x283000
-+
-+#define SOC_GCOERRSTS					0x200
-+#define SOC_GNFERRSTS					0x210
-+#define SOC_GLOBAL_ERR_STAT_REG(base, x)		XE_REG(_PICK_EVEN((x), \
-+									  (base) + SOC_GCOERRSTS, \
-+									  (base) + SOC_GNFERRSTS))
-+#define   SOC_SLAVE_IEH					REG_BIT(1)
-+#define   SOC_IEH0_LOCAL_ERR_STATUS			REG_BIT(0)
-+#define   SOC_IEH1_LOCAL_ERR_STATUS			REG_BIT(0)
-+
-+#define SOC_GSYSEVTCTL					0x264
-+#define SOC_GSYSEVTCTL_REG(master, slave, x)		XE_REG(_PICK_EVEN((x), \
-+									  (master) + SOC_GSYSEVTCTL, \
-+									  (slave) + SOC_GSYSEVTCTL))
-+
-+#define SOC_LERRUNCSTS					0x280
-+#define SOC_LERRCORSTS					0x294
-+#define SOC_LOCAL_ERR_STAT_REG(base, hw_err)		XE_REG(hw_err == HARDWARE_ERROR_CORRECTABLE ? \
-+							       (base) + SOC_LERRCORSTS : \
-+							       (base) + SOC_LERRUNCSTS)
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-index f27773ffdb59..72dd3c7f2ef5 100644
---- a/drivers/gpu/drm/xe/xe_hw_error.c
-+++ b/drivers/gpu/drm/xe/xe_hw_error.c
-@@ -19,6 +19,7 @@
- #define GT_HW_ERROR_MAX_ERR_BITS		16
- #define HEC_UNCORR_FW_ERR_BITS			4
- #define XE_RAS_REG_SIZE				32
-+#define XE_SOC_NUM_IEH				2
- 
- #define PVC_ERROR_MASK_SET(hw_err, err_bit)	((hw_err == HARDWARE_ERROR_CORRECTABLE) ? \
- 						 (PVC_COR_ERR_MASK & REG_BIT(err_bit)) : \
-@@ -37,6 +38,7 @@ static const char * const hec_uncorrected_fw_errors[] = {
- 
- static const unsigned long xe_hw_error_map[] = {
- 	[XE_GT_ERROR]	= DRM_XE_RAS_ERR_COMP_CORE_COMPUTE,
-+	[XE_SOC_ERROR]	= DRM_XE_RAS_ERR_COMP_SOC_INTERNAL,
- };
- 
- enum gt_vector_regs {
-@@ -63,6 +65,101 @@ static enum drm_xe_ras_error_severity hw_err_to_severity(enum hardware_error hw_
- 	return DRM_XE_RAS_ERR_SEV_UNCORRECTABLE;
- }
- 
-+static const char * const pvc_master_global_err_reg[] = {
-+	[0 ... 1]	= "Undefined",
-+	[2]		= "HBM SS0: Channel0",
-+	[3]		= "HBM SS0: Channel1",
-+	[4]		= "HBM SS0: Channel2",
-+	[5]		= "HBM SS0: Channel3",
-+	[6]		= "HBM SS0: Channel4",
-+	[7]		= "HBM SS0: Channel5",
-+	[8]		= "HBM SS0: Channel6",
-+	[9]		= "HBM SS0: Channel7",
-+	[10]		= "HBM SS1: Channel0",
-+	[11]		= "HBM SS1: Channel1",
-+	[12]		= "HBM SS1: Channel2",
-+	[13]		= "HBM SS1: Channel3",
-+	[14]		= "HBM SS1: Channel4",
-+	[15]		= "HBM SS1: Channel5",
-+	[16]		= "HBM SS1: Channel6",
-+	[17]		= "HBM SS1: Channel7",
-+	[18 ... 31]	= "Undefined",
-+};
-+static_assert(ARRAY_SIZE(pvc_master_global_err_reg) == XE_RAS_REG_SIZE);
-+
-+static const char * const pvc_slave_global_err_reg[] = {
-+	[0]		= "Undefined",
-+	[1]		= "HBM SS2: Channel0",
-+	[2]		= "HBM SS2: Channel1",
-+	[3]		= "HBM SS2: Channel2",
-+	[4]		= "HBM SS2: Channel3",
-+	[5]		= "HBM SS2: Channel4",
-+	[6]		= "HBM SS2: Channel5",
-+	[7]		= "HBM SS2: Channel6",
-+	[8]		= "HBM SS2: Channel7",
-+	[9]		= "HBM SS3: Channel0",
-+	[10]		= "HBM SS3: Channel1",
-+	[11]		= "HBM SS3: Channel2",
-+	[12]		= "HBM SS3: Channel3",
-+	[13]		= "HBM SS3: Channel4",
-+	[14]		= "HBM SS3: Channel5",
-+	[15]		= "HBM SS3: Channel6",
-+	[16]		= "HBM SS3: Channel7",
-+	[17]		= "Undefined",
-+	[18]		= "ANR MDFI",
-+	[19 ... 31]	= "Undefined",
-+};
-+static_assert(ARRAY_SIZE(pvc_slave_global_err_reg) == XE_RAS_REG_SIZE);
-+
-+static const char * const pvc_slave_local_fatal_err_reg[] = {
-+	[0]		= "Local IEH: Malformed PCIe AER",
-+	[1]		= "Local IEH: Malformed PCIe ERR",
-+	[2]		= "Local IEH: UR conditions in IEH",
-+	[3]		= "Local IEH: From SERR Sources",
-+	[4 ... 19]	= "Undefined",
-+	[20]		= "Malformed MCA error packet (HBM/Punit)",
-+	[21 ... 31]	= "Undefined",
-+};
-+static_assert(ARRAY_SIZE(pvc_slave_local_fatal_err_reg) == XE_RAS_REG_SIZE);
-+
-+static const char * const pvc_master_local_fatal_err_reg[] = {
-+	[0]		= "Local IEH: Malformed IOSF PCIe AER",
-+	[1]		= "Local IEH: Malformed IOSF PCIe ERR",
-+	[2]		= "Local IEH: UR RESPONSE",
-+	[3]		= "Local IEH: From SERR SPI controller",
-+	[4]		= "Base Die MDFI T2T",
-+	[5]		= "Undefined",
-+	[6]		= "Base Die MDFI T2C",
-+	[7]		= "Undefined",
-+	[8]		= "Invalid CSC PSF Command Parity",
-+	[9]		= "Invalid CSC PSF Unexpected Completion",
-+	[10]		= "Invalid CSC PSF Unsupported Request",
-+	[11]		= "Invalid PCIe PSF Command Parity",
-+	[12]		= "PCIe PSF Unexpected Completion",
-+	[13]		= "PCIe PSF Unsupported Request",
-+	[14 ... 19]	= "Undefined",
-+	[20]		= "Malformed MCA error packet (HBM/Punit)",
-+	[21 ... 31]	= "Undefined",
-+};
-+static_assert(ARRAY_SIZE(pvc_master_local_fatal_err_reg) == XE_RAS_REG_SIZE);
-+
-+static const char * const pvc_master_local_nonfatal_err_reg[] = {
-+	[0 ... 3]	= "Undefined",
-+	[4]		= "Base Die MDFI T2T",
-+	[5]		= "Undefined",
-+	[6]		= "Base Die MDFI T2C",
-+	[7]		= "Undefined",
-+	[8]		= "Invalid CSC PSF Command Parity",
-+	[9]		= "Invalid CSC PSF Unexpected Completion",
-+	[10]		= "Invalid PCIe PSF Command Parity",
-+	[11 ... 31]	= "Undefined",
-+};
-+static_assert(ARRAY_SIZE(pvc_master_local_nonfatal_err_reg) == XE_RAS_REG_SIZE);
-+
-+#define PVC_MASTER_LOCAL_REG_INFO(hw_err)	((hw_err == HARDWARE_ERROR_FATAL) ? \
-+						 pvc_master_local_fatal_err_reg : \
-+						 pvc_master_local_nonfatal_err_reg)
-+
- static bool fault_inject_csc_hw_error(void)
- {
- 	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&inject_csc_hw_error, 1);
-@@ -141,6 +238,26 @@ static void log_gt_err(struct xe_tile *tile, const char *name, int i, u32 err,
- 				    name, severity_str, i, err);
- }
- 
-+static void log_soc_error(struct xe_tile *tile, const char * const *reg_info,
-+			  const enum drm_xe_ras_error_severity severity, u32 err_bit, u32 index)
-+{
-+	const char *severity_str = error_severity[severity];
-+	struct xe_device *xe = tile_to_xe(tile);
-+	struct xe_drm_ras *ras = &xe->ras;
-+	struct xe_drm_ras_counter *info = ras->info[severity];
-+	const char *name;
-+
-+	name = reg_info[err_bit];
-+
-+	if (strcmp(name, "Undefined")) {
-+		if (severity == DRM_XE_RAS_ERR_SEV_CORRECTABLE)
-+			drm_warn(&xe->drm, "%s SOC %s detected", name, severity_str);
-+		else
-+			drm_err_ratelimited(&xe->drm, "%s SOC %s detected", name, severity_str);
-+		atomic_inc(&info[index].counter);
-+	}
-+}
-+
- static void gt_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err,
- 				u32 error_id)
- {
-@@ -217,6 +334,92 @@ static void gt_hw_error_handler(struct xe_tile *tile, const enum hardware_error
- 	}
- }
- 
-+static void soc_slave_ieh_handler(struct xe_tile *tile, const enum hardware_error hw_err, u32 error_id)
-+{
-+	const enum drm_xe_ras_error_severity severity = hw_err_to_severity(hw_err);
-+	unsigned long slave_global_errstat, slave_local_errstat;
-+	struct xe_mmio *mmio = &tile->mmio;
-+	u32 regbit, slave;
-+
-+	slave = SOC_PVC_SLAVE_BASE;
-+	slave_global_errstat = xe_mmio_read32(mmio, SOC_GLOBAL_ERR_STAT_REG(slave, hw_err));
-+
-+	if (slave_global_errstat & SOC_IEH1_LOCAL_ERR_STATUS) {
-+		slave_local_errstat = xe_mmio_read32(mmio, SOC_LOCAL_ERR_STAT_REG(slave, hw_err));
-+
-+		if (hw_err == HARDWARE_ERROR_FATAL) {
-+			for_each_set_bit(regbit, &slave_local_errstat, XE_RAS_REG_SIZE)
-+				log_soc_error(tile, pvc_slave_local_fatal_err_reg, severity,
-+					      regbit, error_id);
-+		}
-+
-+		xe_mmio_write32(mmio, SOC_LOCAL_ERR_STAT_REG(slave, hw_err),
-+				slave_local_errstat);
-+	}
-+
-+	for_each_set_bit(regbit, &slave_global_errstat, XE_RAS_REG_SIZE)
-+		log_soc_error(tile, pvc_slave_global_err_reg, severity, regbit, error_id);
-+
-+	xe_mmio_write32(mmio, SOC_GLOBAL_ERR_STAT_REG(slave, hw_err), slave_global_errstat);
-+}
-+
-+static void soc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err,
-+				 u32 error_id)
-+{
-+	const enum drm_xe_ras_error_severity severity = hw_err_to_severity(hw_err);
-+	struct xe_device *xe = tile_to_xe(tile);
-+	struct xe_mmio *mmio = &tile->mmio;
-+	unsigned long master_global_errstat, master_local_errstat;
-+	u32 master, slave, regbit;
-+	int i;
-+
-+	if (xe->info.platform != XE_PVC)
-+		return;
-+
-+	master = SOC_PVC_MASTER_BASE;
-+	slave = SOC_PVC_SLAVE_BASE;
-+
-+	/* Mask error type in GSYSEVTCTL so that no new errors of the type will be reported */
-+	for (i = 0; i < XE_SOC_NUM_IEH; i++)
-+		xe_mmio_write32(mmio, SOC_GSYSEVTCTL_REG(master, slave, i), ~REG_BIT(hw_err));
-+
-+	if (hw_err == HARDWARE_ERROR_CORRECTABLE) {
-+		xe_mmio_write32(mmio, SOC_GLOBAL_ERR_STAT_REG(master, hw_err), REG_GENMASK(31, 0));
-+		xe_mmio_write32(mmio, SOC_LOCAL_ERR_STAT_REG(master, hw_err), REG_GENMASK(31, 0));
-+		xe_mmio_write32(mmio, SOC_GLOBAL_ERR_STAT_REG(slave, hw_err), REG_GENMASK(31, 0));
-+		xe_mmio_write32(mmio, SOC_LOCAL_ERR_STAT_REG(slave, hw_err), REG_GENMASK(31, 0));
-+		goto unmask_gsysevtctl;
-+	}
-+
-+	/*
-+	 * Read the master global IEH error register, if BIT(1) is set then process
-+	 * the slave IEH first. If BIT(0) in global error register is set then process
-+	 * the corresponding local error registers.
-+	 */
-+	master_global_errstat = xe_mmio_read32(mmio, SOC_GLOBAL_ERR_STAT_REG(master, hw_err));
-+	if (master_global_errstat & SOC_SLAVE_IEH)
-+		soc_slave_ieh_handler(tile, hw_err, error_id);
-+
-+	if (master_global_errstat & SOC_IEH0_LOCAL_ERR_STATUS) {
-+		master_local_errstat = xe_mmio_read32(mmio, SOC_LOCAL_ERR_STAT_REG(master, hw_err));
-+
-+		for_each_set_bit(regbit, &master_local_errstat, XE_RAS_REG_SIZE)
-+			log_soc_error(tile, PVC_MASTER_LOCAL_REG_INFO(hw_err), severity, regbit, error_id);
-+
-+		xe_mmio_write32(mmio, SOC_LOCAL_ERR_STAT_REG(master, hw_err), master_local_errstat);
-+	}
-+
-+	for_each_set_bit(regbit, &master_global_errstat, XE_RAS_REG_SIZE)
-+		log_soc_error(tile, pvc_master_global_err_reg, severity, regbit, error_id);
-+
-+	xe_mmio_write32(mmio, SOC_GLOBAL_ERR_STAT_REG(master, hw_err), master_global_errstat);
-+
-+unmask_gsysevtctl:
-+	for (i = 0; i < XE_SOC_NUM_IEH; i++)
-+		xe_mmio_write32(mmio, SOC_GSYSEVTCTL_REG(master, slave, i),
-+				(HARDWARE_ERROR_MAX << 1) + 1);
-+}
-+
- static void hw_error_source_handler(struct xe_tile *tile, const enum hardware_error hw_err)
- {
- 	const enum drm_xe_ras_error_severity severity = hw_err_to_severity(hw_err);
-@@ -279,8 +482,11 @@ static void hw_error_source_handler(struct xe_tile *tile, const enum hardware_er
- 					    "TILE%d reported %s %s, bit[%d] is set\n",
- 					    tile->id, name, severity_str, err_bit);
- 		}
-+
- 		if (err_bit == XE_GT_ERROR)
- 			gt_hw_error_handler(tile, hw_err, error_id);
-+		if (err_bit == XE_SOC_ERROR)
-+			soc_hw_error_handler(tile, hw_err, error_id);
- 	}
- 
- clear_reg:
--- 
-2.47.1
+The fix LGTM.
 
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+
+
+>   			break;
+>   	}
+>   
