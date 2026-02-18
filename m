@@ -4,34 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6DD4E9A049
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 13:47:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A635E9A02C
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 13:51:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8551F10E5CA;
-	Wed, 18 Feb 2026 13:47:12 +0000 (UTC)
-Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C709110E5C7;
- Wed, 18 Feb 2026 13:47:05 +0000 (UTC)
-Received: from localhost.localdomain (unknown
- [IPv6:2400:2410:b120:f200:2e09:4dff:fe00:2e9])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id 23D173F1F5;
- Wed, 18 Feb 2026 14:47:02 +0100 (CET)
-From: Simon Richter <Simon.Richter@hogyros.de>
-To: linux-pci@vger.kernel.org
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Simon Richter <Simon.Richter@hogyros.de>
-Subject: [PATCH v2 4/5] pci: check if VGA decoding was really activated
-Date: Wed, 18 Feb 2026 22:46:32 +0900
-Message-ID: <20260218134633.461181-5-Simon.Richter@hogyros.de>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260218134633.461181-1-Simon.Richter@hogyros.de>
-References: <20260217170419.236739-1-Simon.Richter@hogyros.de>
- <20260218134633.461181-1-Simon.Richter@hogyros.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C61410E2F2;
+	Wed, 18 Feb 2026 13:51:21 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0F2D10E2F2;
+ Wed, 18 Feb 2026 13:51:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7330313746055142840=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_gpu=3A_Fix_uninitialized_bu?=
+ =?utf-8?q?ddy_for_built-in_drivers_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Koen Koning" <koen.koning@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 18 Feb 2026 13:51:19 -0000
+Message-ID: <177142267989.262554.17655577858509911517@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260213152047.179628-1-koen.koning@linux.intel.com>
+In-Reply-To: <20260213152047.179628-1-koen.koning@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,37 +36,143 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PCI bridges are allowed to refuse activating VGA decoding, by simply
-ignoring attempts to set the bit that enables it, so after setting the bit,
-read it back to verify.
+--===============7330313746055142840==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-One example of such a bridge is the root bridge in IBM PowerNV.
+== Series Details ==
 
-Signed-off-by: Simon Richter <Simon.Richter@hogyros.de>
----
- drivers/pci/pci.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+Series: gpu: Fix uninitialized buddy for built-in drivers (rev4)
+URL   : https://patchwork.freedesktop.org/series/161596/
+State : success
 
-diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
-index f3244630bfd0..0984a0aefb88 100644
---- a/drivers/pci/pci.c
-+++ b/drivers/pci/pci.c
-@@ -6198,6 +6198,12 @@ int pci_set_vga_state(struct pci_dev *dev, bool decode,
- 				cmd &= ~PCI_BRIDGE_CTL_VGA;
- 			pci_write_config_word(bridge, PCI_BRIDGE_CONTROL,
- 					      cmd);
-+			if (decode) {
-+				pci_read_config_word(bridge, PCI_BRIDGE_CONTROL,
-+						     &cmd);
-+				if(!(cmd & PCI_BRIDGE_CTL_VGA))
-+					return -EIO;
-+			}
- 		}
- 		bus = bus->parent;
- 	}
--- 
-2.47.3
+== Summary ==
 
+CI Bug Log - changes from xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d_BAT -> xe-pw-161596v4_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-161596v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161596v4/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6519])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161596v4/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8758 -> IGT_8760
+  * Linux: xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d -> xe-pw-161596v4
+
+  IGT_8758: 8758
+  IGT_8760: 8760
+  xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d: fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d
+  xe-pw-161596v4: 161596v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161596v4/index.html
+
+--===============7330313746055142840==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>gpu: Fix uninitialized buddy for built-in drivers (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161596/">https://patchwork.freedesktop.org/series/161596/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161596v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161596v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d_BAT -&gt; xe-pw-161596v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-161596v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_waitfence@abstime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161596v4/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161596v4/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8758 -&gt; IGT_8760</li>
+<li>Linux: xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d -&gt; xe-pw-161596v4</li>
+</ul>
+<p>IGT_8758: 8758<br />
+  IGT_8760: 8760<br />
+  xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d: fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d<br />
+  xe-pw-161596v4: 161596v4</p>
+
+</body>
+</html>
+
+--===============7330313746055142840==--
