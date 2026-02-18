@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E22EE9A04C
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 19:17:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65AF6E9A02C
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 19:17:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D0DE10E302;
-	Wed, 18 Feb 2026 19:17:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 266A510E30B;
+	Wed, 18 Feb 2026 19:17:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HNoq5Sw+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nSIF7unk";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD01810E302
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Feb 2026 19:17:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E76A10E30B
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Feb 2026 19:17:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771442222; x=1802978222;
+ t=1771442223; x=1802978223;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=sqWzEe45Afd/19zQCuawiiZtiEydKJFqPkQymHKp1zg=;
- b=HNoq5Sw+X2aeCLDo5WR5tdaK9EfQZXQGannE9yuHWvMd8pTWA4lSO/ky
- WWVMTUd4xnKBoOSHhzEQTTdsbrHdj5sJF2nV37hIbAe/qmR7K4usk5ynM
- 7Jutek14AL+TD5goQykVmBUEh5Sc/nL/eUC6gv8SIKsiy5kcIynl1nrHb
- /Un7Gz/CaaIqoCuYMXSFD3x5houdlzHntN+uYxOFwpbiyxIQEpkanCVcF
- 0m4EZlUvIZPLPc3/ml86q9NCajT8Z9aqAuz7ffLWj9kA/Gi5C4GCxJRdA
- nCWG7wSnFdWpkS0R/x4jGzN8vr8PyNHkvDhEeVozVuVlAK/BxYVQQES2M Q==;
-X-CSE-ConnectionGUID: Q2HZ7LBfQ3yOXVggDYjl1Q==
-X-CSE-MsgGUID: aWAL5YhbRxep9E81w3sy2A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="83629852"
-X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="83629852"
+ bh=Cx0U99au+NfI2H19aHsE/mvm01shoSAdkyY9HIFPkUY=;
+ b=nSIF7unkOJTFgE5vOZRGGBG8SsDOh5hOrwj7h/gOo0FbtHIqPFvtmk2F
+ PacbbJpvbcFW0tdhD1PjU65/fPpT2fHi2mtKuQnC9jE1Uu1EVvFji3yWq
+ YVQNhNwqVSJ8trdU5Lf5MosiDzqMw79yeyyKMV0+UeHt3dhD1y6rP/sc5
+ lRFbGpzoW6kobvBKK/+uxESkWExAFslWWzSinIjZvClRI2hrBlYfxe+h8
+ 7U80vffXShs+MIv/UGFA+pAbOm+rlwiaWKIOYW7MSGoLD5EMBdgOnEk4y
+ ZBthWusgJd1dEl0wSUzI9jzDTHVcKzzPA2KHSBVHkKpZjRji1OXAqR+st g==;
+X-CSE-ConnectionGUID: 39rzj1UwS1ibFBybTECnJw==
+X-CSE-MsgGUID: rbE+MYgDQ2K1yzRo0FTIWg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="83629853"
+X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="83629853"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 11:17:01 -0800
-X-CSE-ConnectionGUID: iBK/7e2fRfKVdWldlITNHg==
-X-CSE-MsgGUID: t3Uns6AiQy2X/a3M4nxI5Q==
+ 18 Feb 2026 11:17:03 -0800
+X-CSE-ConnectionGUID: 0oLzzcTWRj+rObtLOhAKKg==
+X-CSE-MsgGUID: HUGHQHx6RZiRscDmfTFrRw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="212603362"
+X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="212603369"
 Received: from bfilipch-desk.jf.intel.com ([10.88.27.152])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 11:17:02 -0800
+ 18 Feb 2026 11:17:03 -0800
 From: Julia Filipchuk <julia.filipchuk@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Julia Filipchuk <julia.filipchuk@intel.com>,
  Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Subject: [PATCH v5 2/3] Reapply "drm/xe/xe2: Enable Indirect Ring State
- support for Xe2"
-Date: Wed, 18 Feb 2026 11:15:48 -0800
-Message-ID: <20260218191643.4130621-7-julia.filipchuk@intel.com>
+Subject: [PATCH v5 3/3] Revert "drm/xe/xe3p_xpc: Enable Indirect Ring State
+ for xe3p_xpc"
+Date: Wed, 18 Feb 2026 11:15:49 -0800
+Message-ID: <20260218191643.4130621-8-julia.filipchuk@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260218191643.4130621-5-julia.filipchuk@intel.com>
 References: <20260218191643.4130621-5-julia.filipchuk@intel.com>
@@ -68,31 +68,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit 03d85ab36bcbcbe9dc962fccd3f8e54d7bb93b35.
+This reverts commit 81e77c028848b7131d7653dd443a4049334a920b.
 
-Previously this was reverted due to failures on LRC context switch.
-Issues should be root-caused and resolved with GuC WA 14025515070. Now
-setting indirect ring state is available by default.
-
-Note: Will be cleared if WA not available due to older GuC version.
+With indirect ring state now enabled for all XE2+ platforms this setting
+is already set by XE2_GFX_FEATURES macro.
 
 Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/xe/xe_pci.c | 1 -
+ 1 file changed, 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index e1f569235d8a..ff8039198da1 100644
+index ff8039198da1..6f85cb1ec662 100644
 --- a/drivers/gpu/drm/xe/xe_pci.c
 +++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -100,6 +100,7 @@ static const struct xe_graphics_desc graphics_xelpg = {
- #define XE2_GFX_FEATURES \
- 	.has_asid = 1, \
- 	.has_atomic_enable_pte_bit = 1, \
-+	.has_indirect_ring_state = 1, \
- 	.has_range_tlb_inval = 1, \
- 	.has_usm = 1, \
- 	.has_64bit_timestamp = 1, \
+@@ -124,7 +124,6 @@ static const struct xe_graphics_desc graphics_xe3p_lpg = {
+ 
+ static const struct xe_graphics_desc graphics_xe3p_xpc = {
+ 	XE2_GFX_FEATURES,
+-	.has_indirect_ring_state = 1,
+ 	.hw_engine_mask =
+ 		GENMASK(XE_HW_ENGINE_BCS8, XE_HW_ENGINE_BCS1) |
+ 		GENMASK(XE_HW_ENGINE_CCS3, XE_HW_ENGINE_CCS0),
 -- 
 2.51.0
 
