@@ -4,192 +4,186 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13A81E9A02C
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 15:52:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFD7AE9A047
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 15:58:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFDAA10E5EB;
-	Wed, 18 Feb 2026 15:52:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A12C510E085;
+	Wed, 18 Feb 2026 15:58:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xi9MdjRC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q8XIp7NY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0EB010E5EA
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Feb 2026 15:52:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38BC110E085
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Feb 2026 15:58:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771429935; x=1802965935;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:mime-version;
- bh=epe3GVQ+FrNa6S5k78FUVbVJjNKqz6KW4fUxtthlYw4=;
- b=Xi9MdjRCpbggw4ZYLXQ44RnQFbfuEle8B+QmVks7rzRnvaVlyR5a4Wse
- vLl/u9Jlfj9bVXMkj0Jywy1ihn6ieftEILqVX0jUuL0FiA+nYp46fNKM4
- 9lpl30VEZQK47qW9s9ZgNY8+a9kRq8gan0ttmi8IAvO4c9Fv/x3F5cNaj
- 7AitpOFS764tmUyu5YM5yXPpAKC0xG2El0/xB4/GTCipAnF2HnSGLsO3A
- t0NwVjw0QajgOVix9+cBAedTTISRQs59QRDIzF177EzY9XJ0H8TW6pPrz
- 4WubSh+psi3Pxb3e9vgzwfsNHAYpperzSLx+JHfpCqDEEughsXoI941RP A==;
-X-CSE-ConnectionGUID: zuH+iC+zR2y2VrMAUPFVEg==
-X-CSE-MsgGUID: iPHKSTcuSlOSuu5Ofwi7ew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="97967679"
-X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208,217";a="97967679"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 07:52:15 -0800
-X-CSE-ConnectionGUID: HzsYUokdQCSPKkQvHfFtsg==
-X-CSE-MsgGUID: bKlclSi1T/WMwbm0EdRljA==
+ t=1771430314; x=1802966314;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=fj0MmHanPDrbZTX0W+mrNPyGt5+S9NM6kj8ryfge5Zs=;
+ b=Q8XIp7NYfmVV9CqznsCIMA/qo3cEKglFJf8OgGw1Y+5U3+TJkAeDLvKq
+ ElU1eGhVwQsSwASPFekx9Q4EUbhXailSXOirX7Zpw5+7eUXBzgJ/Zzycv
+ 9nBeqilRxeY6VrC4mXYP7qlzx03IxtloV8ILSZkqLoDI+YVMqKVpQCA+q
+ RPuddip7So/Y7WkwkiKMzOg5lt+JasGD19Bm8vfN4anaqDu93+Lt6wLRv
+ CJQqLmWCtRPUcQ4SdvNFOl9fkr6sCVo35SljxUMsyZyPOauRaWxMvjB0+
+ sJVx4565xpwG1NOwXON4JGLj0hIMrAacah4JsEHNUEtkLa1ZEXxSo79DI A==;
+X-CSE-ConnectionGUID: lVt30Q05QKKoPjPdZKgVwg==
+X-CSE-MsgGUID: 3mn7c2xCTky1TsuG/6ZOxQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="72686476"
+X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="72686476"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2026 07:58:34 -0800
+X-CSE-ConnectionGUID: pvajQrBMSYyhsvZK6KQs3w==
+X-CSE-MsgGUID: HOwS1vKzRdK4cig2y3u3fQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; 
- d="scan'208,217";a="214072587"
+X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="214227897"
 Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 07:52:15 -0800
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2026 07:58:34 -0800
 Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
  fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 18 Feb 2026 07:52:14 -0800
+ 15.2.2562.35; Wed, 18 Feb 2026 07:58:33 -0800
 Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
  FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Wed, 18 Feb 2026 07:52:14 -0800
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.40)
- by edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.35 via Frontend Transport; Wed, 18 Feb 2026 07:58:33 -0800
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.41) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 18 Feb 2026 07:52:14 -0800
+ 15.2.2562.35; Wed, 18 Feb 2026 07:58:33 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pxeGsT3d/m9g22e7XYXevOnqCWvB1jiM9lFIa1q699QpYiVhl1p8qytP1TTa5+TRU7MFcvRMGp4IYOpQAGtBv5mFS05r0KQ6qDassak281k8nk08qGV18UayQOTdertggwm9Q84HOTuejVMyPSAIsC/xZvL5RGz4yiS8Bj1QrwGAQg2aqhwdiA0sFPt2AiUpRYYHc0auazE/O5nZJamKixQW0yptUt6+5zNzsprIv8LrtOyS5DNBnaS/2wTgh7aWbhJX3iO13qnm5XqtLU9cBNCph+z184eMDdxgv0Q4cZdhyKKhJk6XP/zGylWuGq8VgznCMQi7O3v07L6yAhIJPg==
+ b=OLzLcir5XVHGrPu9lmQkLIpl3SwmWJzxzk9Yi/UMBiw4JFO3uB/Y2LxOre/Ir1WhgGa+bXBbzIhOqfdPDkV9iY+EolcM5usTgBuNlGatz3fX0+z7XSuHB/fW4CNNTTkt7wCMB9oENtgc1zXEt81Sn1WXMYDz5Wl9PUl2ehSsM9ogQhuNTCxRglpV79okUQa+goP3Sk5Ozm3fmf9GYxVTDePd0vjAznJpMmqSlzqeLXkSEgMzJiPn19vuS1oKyNNArqYRlAqW8rlXUmrdD2XCA5OZamuB1B0ydfdNQ37W1ESu6yE/d3iuASvNN70NJ7R5BO2pHaBnKl7WE0iP3BmmjQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6k8SiSa44umwppeEYtRBuOc5UmWJjOoz4IaZOT6P2W8=;
- b=MOnTn0tJDhSlulK8OhREhNjtV6dISbHc9ZZL07cXAqjvyDmwSWMcwE+vC43KI6i2TN9TA09VWb5X685tC1/YZuJ6riQWs9RDP9Jn1xLU/nIns44P+Wq/LPttGaACV3zH8ERTlpm2omAn54/Hdr7XYAwyDsw2rDsgclCSWk4lM1qXeEUweeEfARRJakQxyzpRwZ7mW0G7hdcNlyAiwXadKN2LM/giIBwPh8nAMdeBgw77d88Ut2562gW4rOCoIEXFY1liIuEWnTC+fIQ7aJTnhXGu6cqJFM8zsedd1pdSBKZE7yOU/cMX3Qv8ErDym2p1eVeD/9VZeETiTQoEJO3sVQ==
+ bh=1Cm9iYKbChqvCNnt0YwcibVIERlxGHnPDNRUOaqHekc=;
+ b=Z48p8b2fH6t02mglDaAxxIldWy5Ij5+wX0YxdSZcKgI3FV2HAHmZtNnhfyrOFcrKmjBEPAGBq+SZ+j2X6BOjAAWsjZKrQhsRoQsnqdOWD1h6V4UgBiMmnELsRB/+NHe7ukYjs22Wo+K8feHwyXKKEisWGnNnVOJzwpr2mVsQqqvTeIN4o4tPmVQCzNsJWIGvjlstEXncElyKdt91W476X16uL5DQpdkYkueI3/N0VO6+tAM6BRqdq8dpJXvSUySYkqvJIucCt7bXSDjXvUCX/C7O38vkGYEeUQc90dgOKZeRyBhjmfVEiV96p8b0UpUG6zyzM9O/UmrF2F7/r/o89g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from LV3PR11MB8695.namprd11.prod.outlook.com (2603:10b6:408:211::15)
- by CO1PR11MB4802.namprd11.prod.outlook.com (2603:10b6:303:94::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.14; Wed, 18 Feb
- 2026 15:52:11 +0000
-Received: from LV3PR11MB8695.namprd11.prod.outlook.com
- ([fe80::ccc3:3fd6:58f5:927]) by LV3PR11MB8695.namprd11.prod.outlook.com
- ([fe80::ccc3:3fd6:58f5:927%3]) with mapi id 15.20.9632.010; Wed, 18 Feb 2026
- 15:52:11 +0000
-Content-Type: multipart/alternative;
- boundary="------------lYniKR073CmRxGs8DkoY0gHh"
-Message-ID: <8f0f751d-da58-4c8e-80e2-6e6bff27424a@intel.com>
-Date: Wed, 18 Feb 2026 21:22:03 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [v5, 2/3] drm/xe/vf: Fix fs_reclaim warning with CCS save/restore
- BB allocation
-To: Maarten Lankhorst <dev@lankhorst.se>, <intel-xe@lists.freedesktop.org>
-CC: Matthew Brost <matthew.brost@intel.com>, Michal Wajdeczko
- <michal.wajdeczko@intel.com>, Matthew Auld <matthew.auld@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-References: <20260217120745.1074232-7-satyanarayana.k.v.p@intel.com>
- <4215aa02-6854-4be1-9ae7-418af0752482@lankhorst.se>
-Content-Language: en-US
-From: "K V P, Satyanarayana" <satyanarayana.k.v.p@intel.com>
-In-Reply-To: <4215aa02-6854-4be1-9ae7-418af0752482@lankhorst.se>
-X-ClientProxiedBy: MA5P287CA0015.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:179::15) To LV3PR11MB8695.namprd11.prod.outlook.com
- (2603:10b6:408:211::15)
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
+ by MW3PR11MB4713.namprd11.prod.outlook.com (2603:10b6:303:2f::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.16; Wed, 18 Feb
+ 2026 15:58:28 +0000
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::1d86:a34:519a:3b0d]) by CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::1d86:a34:519a:3b0d%5]) with mapi id 15.20.9632.010; Wed, 18 Feb 2026
+ 15:58:28 +0000
+Date: Wed, 18 Feb 2026 10:58:25 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [v2] drm/xe: Allow per queue programming of
+ COMMON_SLICE_CHICKEN3 bit13
+Message-ID: <aZXhoXWY8tDl63Lw@intel.com>
+References: <20260217083436.1101287-1-lionel.g.landwerlin@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260217083436.1101287-1-lionel.g.landwerlin@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0022.namprd05.prod.outlook.com
+ (2603:10b6:a03:33b::27) To CYYPR11MB8430.namprd11.prod.outlook.com
+ (2603:10b6:930:c6::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV3PR11MB8695:EE_|CO1PR11MB4802:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2215c4d1-a18c-4460-b14d-08de6f05ad2d
+X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|MW3PR11MB4713:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7d6b87cb-6c88-4c93-b459-08de6f068e3d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|8096899003;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?NlBVQko4YjlKUEUvc1pjK1R3dDVSYmJMNVhCOTIyTWFrcEpWZElySnlKcDFv?=
- =?utf-8?B?NUU3RW56d2QyaFFWSzFXZ0FzNENJTUlQYWhaSlJiYXJqWjhPV29NSC9KdndC?=
- =?utf-8?B?VHI3Zm1FOE9RU1RXWVduQ0dTZG1FTFpmMUdMQmtmdXU0aEkxS0NxelpmUmhX?=
- =?utf-8?B?R3VZSHZQWGRkS0pLaUtrTmRsNkg5RUV5akJNOURuY3dWRzMwaExsRkdCdHZp?=
- =?utf-8?B?Sk04SFF5ZnZHUk9zeTFhUDBMM0xxckFFdCs2T2RhU0J2TXV1b1ZkY0tNS2xE?=
- =?utf-8?B?dHZCTTNDaEFkTVo2bkpBOWZLRXNmaUNmbURvb2d1NDNoQjJMdmhOaDExdDRV?=
- =?utf-8?B?UmkrekZqam1NTnY1bjI5UjVzMXhhTjZoQzdCQTlzQjhCRUVSMjhqUkJrK2NL?=
- =?utf-8?B?V0FJZlBmUHdSMGZHeDdTREN2clBzWXJkKy9lT1JJc3JaUS90STlSaFFPamZr?=
- =?utf-8?B?b2hobDA3SU5IUjh0bDE0RU1DcURmelRLWEd4ZHBRN1dCeG9sZnMxSVFOcS9a?=
- =?utf-8?B?bDFRQ0RadXYwL0h2eUlNYmlML0d2dXY3Q1JaaU1jb3FSeGM4TzN3azlBa20y?=
- =?utf-8?B?NURhaU1RZjJUSjcrR3h6N1ptSUZTZ1RtMGtVTkpLSk5wTURzZGVld2xpMHFN?=
- =?utf-8?B?bHRaTkpQR3Vqc2NCYTNJMmp2dXpmbUZUa3duKzM5V2tzVTk0VWxld21KTGYw?=
- =?utf-8?B?RkJGWTBCRUM4VncrZjdBeW5mbW5RMzJseHp5cktGYWRVRzhPZXNNbTRrSTk4?=
- =?utf-8?B?Qy9GR2lNTGlTMHI4NFRDdGYvMFpaQ2IrOEtGY2JlNVhJZzA3bE1FOGg4L1Uy?=
- =?utf-8?B?dUZTK1o1UjRmemV0N1NGUkJaL09BaG9KL1lvallYeXJ0Y2tsYWRObU4wN29i?=
- =?utf-8?B?am1vby9aazhoM1pOSVRHUWN3b0FTbWdmaWl0K0g5TkpuMzU2cENGclNjaGY4?=
- =?utf-8?B?TThlUHZ4cnNKSG1xQnRkTWZsOEJlcGs4VHUvckNnaW5xeGg2LzZCYk1TWFc1?=
- =?utf-8?B?a3E1RTRsclRUcFQvbTRGdWlMV3NlaWkrQWNlNzAwblRBZmdOS1ZLcnovcVdp?=
- =?utf-8?B?ZStVQXBvOEpjdUttU3pReTlvNlJPQjBudVQ1dCtlM2VZYUVkT0xNN2hvb3Ny?=
- =?utf-8?B?UjB1eFRTaU9tejA1VUExME04dmplRkNTNlRRTzJ5MUNGc3ZheFVUUWR5Y0Zt?=
- =?utf-8?B?T1J4UUE5MmRUb0YyOGpuWGhPbDkxaEEzSWhaM2pNcG9hQ2lCQ0U4cHNRT2xn?=
- =?utf-8?B?Tno3QXNUQk50MEJ2d1RUVFJnSnNwbjVHZHpjR0lTQnZvMGRuV2g4R1N4SDZR?=
- =?utf-8?B?WEVXc2tNS1AzKzNGd2t0OG05NUlxbFM1Sk52ZzQ3Rjh5VllGOEtGTm00Q0g5?=
- =?utf-8?B?L0hiSnMvRm9EZDNPQUJlTUYzRkpJeWNrajJJRlQzYWZiN0tEeUNUeFZhOUti?=
- =?utf-8?B?OGc4aWRhRXlZU1pVSCtpdjZBTDZVc3VjUW1aY2doaHprR2JIT2gwSWFNZFFl?=
- =?utf-8?B?Nk40SmhXSW9ydytMSVRnSXk1K1VGR1VnMWhHbkg3SHo3ZUdnV3lTOXpqcTNB?=
- =?utf-8?B?MUdleGpGVTNoc3g3ckRiRW1IN29wRlpsdHF6VjVvRDZWZ205ZE9BYVJiN0lC?=
- =?utf-8?B?TGR0YjdUdzFKVTZQUS9vVkJKMUo3bXBVMGdQZDN4L0d1ZDJBdGg1V3ZsaXd5?=
- =?utf-8?B?SkRZWFZ2dkp1cG53N2FMMXpTSE9pUFg4NTMvS1JiTE9MMmVBN25IcVRQTW9S?=
- =?utf-8?B?QWM2Zi8zRHJCZkNJbk5UcUVNWjNEYVRENThlaytQbkUzdUNGVjcwNEVFQlJz?=
- =?utf-8?B?Sy9qWnRYUWJLaUdOSnBocjR3ZkFFL25JcTJMZ055QzhZM2FaM0xET1p6cWUz?=
- =?utf-8?B?WGt3R2ZuMUxwNXVUQnBlSUNLd1pPbEZTWXNadnNxUDB3TGRlMFR2NWZReEM0?=
- =?utf-8?B?b0pEdlE1TkFiUWQreC85RkplbGRGZExyU0Z2Mk01U3BtSUh0YXovdTVnN0dt?=
- =?utf-8?B?c1NFMFgvSnQ4S3prMTdFQis0b251eEc3R3dLeWFHUFpkN3VzdmFvZ0xvV2Yx?=
- =?utf-8?B?MGxqTVgyaVdEMXYvOTZXMCs3THFGUFJGbVg0dHordG91VGx0YnNOKzVJTWlD?=
- =?utf-8?Q?MqCk=3D?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?bFh3c2QrMWNZZ1E4bUV6M1BMY1dBMHdHZXlQVys1ME0xeGpWWWVCU0FkbUNi?=
+ =?utf-8?B?SHdjdGJOYTVMeXJDUnpZQWFlMitTTDdxS1lWcGJ6VmF3ZVpqS1ZmcFhReWov?=
+ =?utf-8?B?dDBUMTZNSVlheldYOUhMempTT0dqNlE3dTVpUGF6aHlQNm56ZnVweVpkNldZ?=
+ =?utf-8?B?MEplcFk0KzJSVDJZcDZnSG5GUEtIMmRZNU16SWh5ZTdJT1VEMFluVW5iT0lT?=
+ =?utf-8?B?anpCSGRhWEEyRSsxaE5mMW1TaXVmSS9mVVhyZ05rWnoyVHdEazR2a29mL2c0?=
+ =?utf-8?B?dW4rYkwzSkNQNlk4cGk0b0hycnBtRHJyRFMxTVJpRlNPaW03UWM4MUxSZG5T?=
+ =?utf-8?B?RlFUcytFVmpaWGZuamNqai82a1JrMy83dkV4SUxRZFRWWXF0bmwxOVlocFRL?=
+ =?utf-8?B?QS9nU0ZSVGxDWVBqWjlodWlpZm9Mb1ZvWkcxbC96K2VsVkliODF3aEVOQTVt?=
+ =?utf-8?B?b1RDSGNLUWNvQk1jOElzVUY3OTBuSXd5Q0E5Z09VT0RjZVo5aUZQQ2w0NkR2?=
+ =?utf-8?B?Uk1teGZyZnFkOHBkbVpheXpEa2NkKzAwanlneEdwVHNkRWRjTDcvTCsvcjc4?=
+ =?utf-8?B?bFkzNk9kVEhDSDRVb3A0WFljVThsMnFOU29PaFk4QnRZQVcybGlMY1BGajlu?=
+ =?utf-8?B?ZFA5dGR4NitWUFhOR2s0SjU5U1pOeXBQaVd5aTJZc0xnSGpqZUJsdE5yT0hY?=
+ =?utf-8?B?dldWRTdybE5vYVRuUmQrU21oM092c2U4d1dHdGNValhOZnNHZkRGdlFLdWRq?=
+ =?utf-8?B?K1lyQUcxLzRzdE9FVVk2NVVyRlluU1RpTWxoM1haSnhiNXNReEthZE92Rzk1?=
+ =?utf-8?B?STNPQ1JacXRqSVpkWUw5SnJ3V0tWakZhdDhoMGtwd2VPajN3RnNXc1laWFNG?=
+ =?utf-8?B?VjV2Sm9tMno5ekZZNklCdW1qLzcva1FQZjFtdjZFRFVkcjE4ZFlRc1dBcUh4?=
+ =?utf-8?B?dCtPRklVeUVEdmdJVUtYR3JsdlFBT1BzUTBDWnNjaGRZYVo4Ti82QkZ0Ym84?=
+ =?utf-8?B?UlhLNmZob0E2bTlCRTlXWEs2L3MzK25wT2F6blBWQXl1MGgxS3BjdkREOWIz?=
+ =?utf-8?B?bHN5SzIxY0tIV0J2Y1ZxaTJQaVlTS2lDNFVWRW45ZHRUYVB1NGZ4aWZvWXNi?=
+ =?utf-8?B?Yk5HM3NhUnVDcjZrNmxHdzdlM0k3NGFQOVV0eVpIOWkyWVZkWHlYQ1Rka2x6?=
+ =?utf-8?B?RUVYdEhUR2FjNUE0aStSbTNqc24za3RzTVZWSzgxRWx4bTF3OC9qMkdhTTZD?=
+ =?utf-8?B?QkQ0cGVzanByK3hhdGYvUFY2eGVGZ0xJcHlZaXZud0FOaTJ6Ymk0N21pbUpN?=
+ =?utf-8?B?cXNwV0RhVE51TG1WNTFtTnlmc2QzMTg0OU1FZ3E2bUdjL3RFMnV1MncxUXh6?=
+ =?utf-8?B?ZGxzOTBCYUFJc0U3ODdrM0E1RkQyK1VnUjQwT3JoaTNyV0ZaTGN1UCszZ2J2?=
+ =?utf-8?B?emZRNklwd2NORG1maEFHQkV6VTZ6a1ZHa0NCQmRLTldJaFdYSjFHb3FNMVN6?=
+ =?utf-8?B?ZmN6S2lmbExRUks0dUtpMVlKN25tWmJnME9iY0tkV0lFb0xOZ1pIbFZadE9G?=
+ =?utf-8?B?b1BVL2pJTGptV0lJcmtVdUdNcCtQS3JHdEtxczVaYmZMZ0Y0YTBKRVlNTENH?=
+ =?utf-8?B?SkZOZTdvM1dqVE5XcGpOa0RkQk83S1pSSFVtdHZIODV5dnFBY2FqcGE5N3ZD?=
+ =?utf-8?B?VzU5WFp5REY1azRCcUZFelZPSm50M2NRYU9JUGx0Vmd6UG5VWGNKZkhhL1k2?=
+ =?utf-8?B?NEZCRWVjM0ZaYkp1ZDhlZzNBV1dDWXVGcTZzV01oRnI1WVdXTFE3MUxGWHJN?=
+ =?utf-8?B?YnlOM0hGeHlmU1lwMGpBSlMyS240Qk1Ea1lnc2x1ZlFPWjhYcDVjdjF1SVZO?=
+ =?utf-8?B?bWh1VmJ2QnNxZUF3MEFjSHlwR0p6aDRqNzk4OWFIR2lqcjBPKzd5S0l5OUpi?=
+ =?utf-8?B?Ykhwb3RJRjJwdDY4V2NVTlFaSHdLSTloNnRBbmg5R0M1WEpTU1FsMkE0Mm1M?=
+ =?utf-8?B?QVZvbTZybUpTQmJheFppdDhZaG5ZdHFCVEhqZTFpZDVNSWIvc2RmNldpRU15?=
+ =?utf-8?B?Mmh3K2tYUWIvcWlGd3krOG5zRFFQTG5PSkhyUkRhaFNsbXpDQ3Z4NVZSMFNi?=
+ =?utf-8?Q?aXNI=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV3PR11MB8695.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(8096899003); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N0JjYk9VUk9ObitLUWRqajkwS1pkUHV2UFFZM3ZpSEIzQlptUlQzMGM5Vi9F?=
- =?utf-8?B?aWpFdXhuVVFzSHBZNXVORGtKVFZVNzAzQ0dOOG5VdHhYaEdvbGwzRmhDUzhS?=
- =?utf-8?B?a0RKVUsyaUVxa21FaEpSTDBqbXB3TnpldDM4VHBhNDVUMStWa1UyTytHTmlQ?=
- =?utf-8?B?b1J6aGpENlRmSG9qSjlUZk1NbjJYNEdzWStqV3NXc1ZDUFdLQzMxZlJRSTJv?=
- =?utf-8?B?UXc5UmEzZUhOYWwva3Q5RjEveDlYbHZBNlMwVG1ZNE0rRU9CeHlmdXJpN05j?=
- =?utf-8?B?S0w3dXVoUWs5Z24rcVh6VU14Wm0zZG54ZXg2bXl5Z0FYVHlVWXMzRHBOcFF0?=
- =?utf-8?B?N2pwWTE5UVljSlZlOTNVbUhZT1JwazNuRmo0UThhQ0N3bmUwTStTay9Zc3pE?=
- =?utf-8?B?aGxuSGZvVDhhR2sxN2p2MlU3L29zZE5yTUxJeVJlUGxxcVM5djVsL0VjRzVw?=
- =?utf-8?B?aDV3M01OMStnOXdlc21MQmJmMDBLNjY2cEhDTk5tOGdsVjVmUWxYNHJqWHpi?=
- =?utf-8?B?dUpIZUlsTHdDdVlSM05mNU8wa0RKY2ExVHA5ZHN5WTVmZ0JJRkw5QkwzNll1?=
- =?utf-8?B?Y05INjl5eE5nSlFGL3MwbnpaMHNXR21mbWcvN0RGTDFTVDRJZ2tZbHNZaXpy?=
- =?utf-8?B?RmF2aWtrTVNFQ3JMb3IySDFRV0duaFMwVlBLTDM4dEtxUkNDZEluRXNJTmM1?=
- =?utf-8?B?K0FOSldVRzBKQTB4TVk0M29IZnVXK3BBOExhempvV3F3Z0l2eUg0WGR5RzFW?=
- =?utf-8?B?YXB4ejZRT1lCZVkwdXoxb3pla0RkTUw4TzJPNERMdGhxUnQzaXNCenpwTTQ3?=
- =?utf-8?B?ajB3aitNdEUvYVVtUEM0dTFQSk53SU5sc1FtNVpMZ0c5N204NWhVUGpqL0l3?=
- =?utf-8?B?R0h5aWVyYkRkeDloT1pnUjRzdUhVNzlQaTNBV2hlSzhEUkg3WEVra0xqdnZi?=
- =?utf-8?B?Vkd6eWVUc1c1bWw3NVdHK2JlWmJGR1ZnRHVWSHVFbEduMktTdVhEWDF5WW13?=
- =?utf-8?B?a3ZuaFc2U0JKODVmY1hGUk84dmY0dTJOVisxMGZmUWxzNDJDUHpqYUlra0tZ?=
- =?utf-8?B?bVhQK2hYeGJBUjJkOEVlOE1Mb1ZGMmlMSm5HemZqOEdIanBnSy8zMWtpZDhD?=
- =?utf-8?B?UUdTby9qQW1EdFBCa0l1RnJRWm04bmYwUkZQR2s3Y3VWbjdCeDRXL2FmNHQv?=
- =?utf-8?B?c1V5Y2hUK1BpVDRaZjAxM09IRFFZVjhFR3Jja1YxUGZwNmlOMndmYlpXT1Jm?=
- =?utf-8?B?dEc4VzIyTVBCK3R3Q2xPaHV2K3AxYWxxZU9yZHZ5UWJDcmdhWEdLcXgxT3JO?=
- =?utf-8?B?U3ZiN1ArejR3S3VSakJoZEJrY2g3WjdrbFVPaVF0M3VRY0p3bDhBVG1nK3pw?=
- =?utf-8?B?Zk1JTm1MUWV2MnMwZ1pteWxsUS9mZjJYQkN2czk4TW5nVFZtMVRoSUx3anpJ?=
- =?utf-8?B?Y09LajZTQVF6cG0ycXA3M0RzVVpTNndpWGJIaWc4YXlJcnR6UDNoTDI0RU91?=
- =?utf-8?B?UU1FYStzK0JObjNPYkFRQ0ROemxmbmQ1czhXbi9lMzhtQS85UU5DN3d6U1Zz?=
- =?utf-8?B?SGdNWnM2bTR4cWVCaXYvTEF5Z3loWU54RTVMb3NYcnRhMjNLb1hScW1pRldJ?=
- =?utf-8?B?dDBLNGhKMHJQT0ZBaHdNVkRUMUdzK0QxTkpPbzlJSEJzUVJZMmZtckF4L2pV?=
- =?utf-8?B?RGZSVXBuYXp0eEl5T3R6S3I3TzhKNFdhTFZBY29NTmtpNytTNXJveFJ6V2cw?=
- =?utf-8?B?Y251UzAvWTNmNUt3VFg3YkNzNGkzV1prY0d0RVAxWHVmN1FYTllDRmdwU205?=
- =?utf-8?B?WUhkajlMWFJZZHNWM09ueTBnZitKR2x2THdub21MenZ4ZDNLcDFMdHlQdFd5?=
- =?utf-8?B?VmpUOVBocC82WHg5dFJWMWVQT1VuMm1tUmxVMXN3cHRUNnRBSWo3V0NqYXdV?=
- =?utf-8?B?TitOd3pPUTlBVUdIWWRnQVUxNWNYeVd3QjdTaEpwbG5KRURsVWtCbHZPcFhO?=
- =?utf-8?B?N2pseVFTbFo3RkJ4UzBFTDRnSTJxS0dzYU9mTkFrKzdzcjExOXNvZmQvV0lY?=
- =?utf-8?B?YTd4UnVkMnpuWUlKbUY1eEdhOEtpeGZGb2ZUclpydVpzSlhTd3FxNU5qU2hr?=
- =?utf-8?B?RkM2SGpTaGFZVlJwKzRrQUw3Y2dZQXVIcVhTbGRYWWp0SWp0b05yZlhRVVlk?=
- =?utf-8?B?YU9VTDFNakNKQk9EalBKSW5qQXROUjhEbU95QWZySlVqbUJWRFFlRitBbVlD?=
- =?utf-8?B?SVNkUlZhMDJtRkNHeWk5cENSRGJYaDQxSFJCcHpGckFZS2VNQzJENGtZcmhC?=
- =?utf-8?B?YmZFMXY0OTRMNlFRVmVrdmQ0eWZ5S3RDWGlwRmhZaXNlUm82aEphcytOUm16?=
- =?utf-8?Q?PVtNpRYvNP0CiqqA=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2215c4d1-a18c-4460-b14d-08de6f05ad2d
-X-MS-Exchange-CrossTenant-AuthSource: LV3PR11MB8695.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SVF2bC9TTHZoVEg3ZjhBYzFjOXBjUk1oaE5ETjlTVVdCNVZTWTMxa1BUL0pw?=
+ =?utf-8?B?NWM1VnF5YTBsOFdVTUQ2a0J5THFMdmVzMGJxZ0ZyR3ZLYVErdDdMOHlPa2Nj?=
+ =?utf-8?B?VmJwQmxVUDRycm5ZbVlBRUxpVUhYZjZwN1dzcVBqTS9uR1BEaGwzaURTNHdL?=
+ =?utf-8?B?SjYxaGFUVGdjSmQrNHFsSER6UjJhTXptdnRTL2tuS0RkU0NoRzZ2RGYzbklI?=
+ =?utf-8?B?S0U4RFg0OXRCK3htNlpLbWVNVFZiM1NpNTlmQ0dYS2NZKzZQcDJzUGMxTFJR?=
+ =?utf-8?B?RkdkR0pBWnd4N3JmOFlhWU0yOVNqakRldWxsZzl6MlpYT3BXejBzaDIvMEk4?=
+ =?utf-8?B?UHJySitnL2tyVHRVM3BYRThlMDgycXNvb281QTZNWk15ME1wTDk2aWdtMjlk?=
+ =?utf-8?B?WlpQWjFJVnc2QkdaZ2tLQVVKZDU5NGVHLzEvT2oyVlU4Tlg1eEw4R3Z3aWI1?=
+ =?utf-8?B?ekNtaEhMV0h4N1c4aEFBb1FNZ3lFcTczbDNJM045K2pYY0lTckcyaW10cjJx?=
+ =?utf-8?B?YnVkWXhLZC85TENtekdNdEI0R1pyVFQ0YncyQ3FSeFZuajBWTmJhcE9mZnlN?=
+ =?utf-8?B?WC9YT2daM0l1MzV5RzA4b2NYYU14d2tWZXdPc2pUdGJOME4vaXRZUk9tRFRW?=
+ =?utf-8?B?VlN5QkxtQ0tEZGhrZDB1aWFpK1I0eXZzNUdqcmw2SmRHa1BoV1lPc1dTcXc3?=
+ =?utf-8?B?ZmtWM0FhYlRLNDlMNndDWnhoeDNPUWZMbFJPa1hlTjZrejhXMDJqVFZ3VHJp?=
+ =?utf-8?B?UWcraElzaUliWm82cndnNmxkb1FqeDFOQVJkaXlJVVRTRnhNTzQzckNIVTJP?=
+ =?utf-8?B?dkxUOGZrTUlNVThoazNySFZnL0xQZDZUVzVlM1dIYUNvZkxsMjBDazhkSzEv?=
+ =?utf-8?B?N0VMblo3cmJNNGgyUERCeit2b3Fyb1lRM3dXM2NDWmlURFRiN3ZoSjJVRjRp?=
+ =?utf-8?B?dXZCdTVGV0hsbmNDbjJIWmdmQ3VWWTlmZm1xeU5jMEo3OXBNTkppZml1S2pz?=
+ =?utf-8?B?VXgxVXhDNHZVSG0xUWY0UTZtN0NnVHpydk5JWlJHeFhSRXFybHU2Y3JLSGto?=
+ =?utf-8?B?d0toNVdaNUlPdHN0UTVZcmczL3R5SzhMS0pJS0hqWkRvMDMwbVZkMitVUTRL?=
+ =?utf-8?B?NlVXdVlIdTdZcFhyZTV0eFhoVXB6bk5rT1dhMk1xaWZXME40ZlVMNkcxQ0Z0?=
+ =?utf-8?B?QlhxZzhHSDNPdEMyQWZoY2RTc3R1V1E0UWZNcWo3ZXhIUk1FWFdnVjBMbDVR?=
+ =?utf-8?B?eTVSVU5JcVVaZWY2bHpwSjJZdnBMNElhOUFGQ2pNTHZXOEM5MjJuK2tiQm02?=
+ =?utf-8?B?cTRBUHAyejQ2VU9PcFhQMVBsN0FFR210WmpucjVPMzN6ZHlKOWkwUmFZSmJ1?=
+ =?utf-8?B?WkxPbERTWU1MdGZCYUJrdVBwdTA2b3l0S0ZjOG1UQnhxczZhY1BEUWtuaGNi?=
+ =?utf-8?B?N0xrRGtPRDF2Zm45RW1vVVE3bkFBYlp4VXdoc3lYUjlUbnlyNTQ5OVlGQkZK?=
+ =?utf-8?B?ejRoMVlHcGp2cWVMZ0FqTm0zZUNDdnFlTlA4VHVjOE01V2dZQkk5UmlVcDRn?=
+ =?utf-8?B?eExoSXhRV2IvUEkvNHBmOGRoQ0d0ZGx1WEdpMlBGazlVVm9EeTB6ZUpMaWZq?=
+ =?utf-8?B?RCtvZUIycDJiR0F4akJPWnlNNFM0VnJkTld6VWxBV2l5VUJQMHh1L09TZFh4?=
+ =?utf-8?B?NUE5dXYxTWtNRitSUjUxWHdLKzBDbllvbXdTMU1rK3BmNWhzdENHcXZtK0xa?=
+ =?utf-8?B?bWRCdjlFVzhpempIcGFTNDRRcUF5d3JNY2RmKzA2R3RpOEJUMEZFYldxRkVo?=
+ =?utf-8?B?aGU0SXMweSttTER2WHpCazUxUFUrYmJKcDFTZk1sR2Vxa1JDUWJDdHJhbXJU?=
+ =?utf-8?B?WG1EWFpGdldsd3pSUTM2cmVBUlJPKzZYTVlSOXFDUXROaVliRCtnUFVhWEI2?=
+ =?utf-8?B?UXZqMm4yMWdDTlQ1cHBsVDhZcFo4aE1raGxOMXhldmFzWW1vREgvbDVuVlNh?=
+ =?utf-8?B?ekxtbnJMbUVVRExrOE94L3ZKZE5Zak9HanNzU2djMElhaGVqTGk3RHFna2lh?=
+ =?utf-8?B?YVYyVUhrbW5FNGxtNHZBTVRVVlppeFJGUDJtc1BLZFg0dGJlbDRMWXNzREFO?=
+ =?utf-8?B?Q3phemtXbzJZb2xZTW4rODM5eHdicnJMNWxWUFJnRkdEUlVVZWZBTlRQYUxo?=
+ =?utf-8?B?MzN2VG5UNkRQb2VWaWhCTEZSaWkzMm1MWi9JZ0hnaTlrZWRTbmxPQlczeGk0?=
+ =?utf-8?B?dFlYdkR5VUxRczB3V3RIZGN0SVJOQVZqZGNMekpOQnM0aXUwdW9qRlJMZVU2?=
+ =?utf-8?B?OUdZVFRwM0JhMURaU0cwRTBJbGtib2x4UG1DdXRQUm96VzN2a1RSQT09?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7d6b87cb-6c88-4c93-b459-08de6f068e3d
+X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2026 15:52:11.0360 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2026 15:58:28.2731 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NhP4j6C7hglL3FdGtgwZ4fs60s0ISpTzobxR14vsJBX8d0mzjUwutMdm6RsrYK6w+rWuX+LFY9rPqYGW5bfq3Ldk7Qm/zwi+FdP5YlHyB+0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4802
+X-MS-Exchange-CrossTenant-UserPrincipalName: LeA4/+MDy6m4nvfodoQSJSSQrx2YAe/nZRcXivuU11bPZB/GhVJHg1yID5dub6eCfQRLj6jz4UlHr3aUrJ9/IA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4713
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -205,852 +199,218 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---------------lYniKR073CmRxGs8DkoY0gHh
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+On Tue, Feb 17, 2026 at 10:34:28AM +0200, Lionel Landwerlin wrote:
+> Similar to i915's commit cebc13de7e704b1355bea208a9f9cdb042c74588
+> ("drm/i915: Whitelist COMMON_SLICE_CHICKEN3 for UMD access"), except
+> people have decided to not rely on putting the register on the
+> allowlist for UMD to program and instead have context/queue creation
+> flag.
 
+Again, please change this to something like:
 
-On 18-Feb-26 3:21 PM, Maarten Lankhorst wrote:
-> Hey,
->
-> A quick look at the series. It's a good idea to separate allocation from insertion
-> in this case, but it seems some small issues with the API remain.
->
-> The first one is that you introduce another free function. It would be better to set
-> sa->manager = NULL in drm_suballoc_alloc(), and check for that in drm_suballoc_free().
-> That removes the requirement of adding another free function, and making a mistake there.
-> And it nicely pairs alloc() with free()
->
-> Additionally, you now have both drm_suballoc_init() and drm_suballoc_new().
->
-> I'd recommend renaming drm_suballoc_init() to drm_suballoc_insert(), and optionally
-> convert all existing users to use drm_suballoc_insert()
-> After that you only have a single API, and made the usage of it slightly more comprehensible. :-)
->
-> With these changes, the flow is really nice:
-> - drm_suballoc_alloc()
-> - drm_suballoc_insert()
-> - Error checking, do some stuff here, finally
-> - drm_suballoc_free()
->
-> And then you convert the existing users 1 by 1, until you can finally remove drm_suballoc_init().
+Similar to i915's commit cebc13de7e704b1355bea208a9f9cdb042c74588
+("drm/i915: Whitelist COMMON_SLICE_CHICKEN3 for UMD access"), except
+that instead of whitelisting the entire register, it restricts
+access to only the needed bit when requested.
 
-Sent new version with drm_suballoc_init() updated to drm_suballoc_insert().
-
-Will send a new series to remove drm_suballoc_new() later as this series 
-is to fix an issue.
-
--Satya.
-
-> Kind regards,
-> ~Maarten Lankhorst
->
-> Den 2026-02-17 kl. 13:07, skrev Satyanarayana K V P:
->> CCS save/restore batch buffers are attached during BO allocation and
->> detached during BO teardown. The shrinker triggers xe_bo_move(), which is
->> used for both allocation and deletion paths.
->>
->> When BO allocation and shrinking occur concurrently, a circular locking
->> dependency involving fs_reclaim and swap_guard can occur, leading to a
->> deadlock such as:
->> Reviewed-by: Thomas Hellström<thomas.hellstrom@linux.intel.com>
->>
->> ======================================================
->> WARNING: possible circular locking dependency detected
->> ------------------------------------------------------
->>
->>        CPU0                    CPU1
->>        ----                    ----
->>   lock(fs_reclaim);
->>                                lock(&sa_manager->swap_guard);
->>                                lock(fs_reclaim);
->>   lock(&sa_manager->swap_guard);
->>
->>   *** DEADLOCK ***
->> =====================================================
->>
->> To avoid this, the BB pointer and SA are allocated using xe_bb_alloc()
->> before taking lock and SA is initialized using xe_bb_init() preventing
->> reclaim from being invoked in this context.
->>
->> Fixes: 864690cf4dd62 ("drm/xe/vf: Attach and detach CCS copy commands with BO")
->> Signed-off-by: Satyanarayana K V P<satyanarayana.k.v.p@intel.com>
->> Cc: Matthew Brost<matthew.brost@intel.com>
->> Cc: Michal Wajdeczko<michal.wajdeczko@intel.com>
->> Cc: Matthew Auld<matthew.auld@intel.com>
->> Cc: Thomas Hellström<thomas.hellstrom@linux.intel.com>
->> Reviewed-by: Thomas Hellström<thomas.hellstrom@linux.intel.com>
->>
->> ---
->> V4 -> V5:
->> - Removed enum xe_sriov_vf_ccs_rw_ctxs from xe_bb.h as it is not used
->>    any more (Michal).
->>
->> V3 -> V4:
->> - Fixed some nits (Michal).
->>
->> V2 -> V3:
->> - Updated commit message (Matt, Thomas & Christian).
->> - Removed timeout logic from drm_suballoc_init(). (Thomas & Christian).
->>
->> V1 -> V2:
->> - Splitted drm_suballoc_new() into drm_suballoc_alloc() and
->> drm_suballoc_init() (Thomas).
->> ---
->>   drivers/gpu/drm/xe/xe_bb.c      | 72 ++++++++++++++++++------
->>   drivers/gpu/drm/xe/xe_bb.h      |  7 ++-
->>   drivers/gpu/drm/xe/xe_migrate.c | 99 ++++++++++++++++++---------------
->>   drivers/gpu/drm/xe/xe_sa.c      | 39 +++++++++++++
->>   drivers/gpu/drm/xe/xe_sa.h      |  3 +
->>   5 files changed, 156 insertions(+), 64 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
->> index 8b678297aaa2..a991d9db8164 100644
->> --- a/drivers/gpu/drm/xe/xe_bb.c
->> +++ b/drivers/gpu/drm/xe/xe_bb.c
->> @@ -59,16 +59,64 @@ struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm)
->>   	return ERR_PTR(err);
->>   }
->>   
->> -struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
->> -			    enum xe_sriov_vf_ccs_rw_ctxs ctx_id)
->> +/**
->> + * xe_bb_alloc() - Allocate a new batch buffer structure
->> + * @gt: the &xe_gt
->> + *
->> + * Allocates and initializes a new xe_bb structure with an associated
->> + * uninitialized suballoc object.
->> + *
->> + * Returns: Batch buffer structure or an ERR_PTR(-ENOMEM).
->> + */
->> +struct xe_bb *xe_bb_alloc(struct xe_gt *gt)
->>   {
->>   	struct xe_bb *bb = kmalloc(sizeof(*bb), GFP_KERNEL);
->> -	struct xe_device *xe = gt_to_xe(gt);
->> -	struct xe_sa_manager *bb_pool;
->>   	int err;
->>   
->>   	if (!bb)
->>   		return ERR_PTR(-ENOMEM);
->> +
->> +	bb->bo = xe_sa_bo_alloc(GFP_KERNEL);
->> +	if (IS_ERR(bb->bo)) {
->> +		err = PTR_ERR(bb->bo);
->> +		goto err;
->> +	}
->> +
->> +	return bb;
->> +
->> +err:
->> +	kfree(bb);
->> +	return ERR_PTR(err);
->> +}
->> +
->> +/**
->> + * xe_bb_release() - Release and free a batch buffer structure
->> + * @bb: Batch buffer structure to release
->> + *
->> + * Releases the sub-allocated buffer object associated with the batch buffer
->> + * and frees the xe_bb structure memory.
->> + */
->> +void xe_bb_release(struct xe_bb *bb)
->> +{
->> +	xe_sa_bo_release(bb->bo);
->> +	kfree(bb);
->> +}
->> +
->> +/**
->> + * xe_bb_init() - Initialize a batch buffer with memory from a sub-allocator pool
->> + * @bb: Batch buffer structure to initialize
->> + * @bb_pool: Suballoc memory pool to allocate from
->> + * @dwords: Number of dwords to be allocated
->> + *
->> + * Initializes the batch buffer by allocating memory from the specified
->> + * suballoc pool.
->> + *
->> + * Return: 0 on success, negative error code on failure.
->> + */
->> +int xe_bb_init(struct xe_bb *bb, struct xe_sa_manager *bb_pool, u32 dwords)
->> +{
->> +	int err;
->> +
->>   	/*
->>   	 * We need to allocate space for the requested number of dwords &
->>   	 * one additional MI_BATCH_BUFFER_END dword. Since the whole SA
->> @@ -76,22 +124,14 @@ struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
->>   	 * is not over written when the last chunk of SA is allocated for BB.
->>   	 * So, this extra DW acts as a guard here.
->>   	 */
->> -
->> -	bb_pool = xe->sriov.vf.ccs.contexts[ctx_id].mem.ccs_bb_pool;
->> -	bb->bo = xe_sa_bo_new(bb_pool, 4 * (dwords + 1));
->> -
->> -	if (IS_ERR(bb->bo)) {
->> -		err = PTR_ERR(bb->bo);
->> -		goto err;
->> -	}
->> +	err = xe_sa_bo_init(bb_pool, bb->bo, 4 * (dwords + 1));
->> +	if (err)
->> +		return err;
->>   
->>   	bb->cs = xe_sa_bo_cpu_addr(bb->bo);
->>   	bb->len = 0;
->>   
->> -	return bb;
->> -err:
->> -	kfree(bb);
->> -	return ERR_PTR(err);
->> +	return 0;
->>   }
->>   
->>   static struct xe_sched_job *
->> diff --git a/drivers/gpu/drm/xe/xe_bb.h b/drivers/gpu/drm/xe/xe_bb.h
->> index 2a8adc9a6dee..5778699149ec 100644
->> --- a/drivers/gpu/drm/xe/xe_bb.h
->> +++ b/drivers/gpu/drm/xe/xe_bb.h
->> @@ -12,12 +12,13 @@ struct dma_fence;
->>   
->>   struct xe_gt;
->>   struct xe_exec_queue;
->> +struct xe_sa_manager;
->>   struct xe_sched_job;
->> -enum xe_sriov_vf_ccs_rw_ctxs;
->>   
->>   struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm);
->> -struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
->> -			    enum xe_sriov_vf_ccs_rw_ctxs ctx_id);
->> +struct xe_bb *xe_bb_alloc(struct xe_gt *gt);
->> +void xe_bb_release(struct xe_bb *bb);
->> +int xe_bb_init(struct xe_bb *bb, struct xe_sa_manager *bb_pool, u32 dwords);
->>   struct xe_sched_job *xe_bb_create_job(struct xe_exec_queue *q,
->>   				      struct xe_bb *bb);
->>   struct xe_sched_job *xe_bb_create_migration_job(struct xe_exec_queue *q,
->> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
->> index 078a9bc2821d..d4cfc54d614b 100644
->> --- a/drivers/gpu/drm/xe/xe_migrate.c
->> +++ b/drivers/gpu/drm/xe/xe_migrate.c
->> @@ -25,6 +25,7 @@
->>   #include "xe_exec_queue.h"
->>   #include "xe_ggtt.h"
->>   #include "xe_gt.h"
->> +#include "xe_gt_printk.h"
->>   #include "xe_hw_engine.h"
->>   #include "xe_lrc.h"
->>   #include "xe_map.h"
->> @@ -1148,65 +1149,73 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
->>   		size -= src_L0;
->>   	}
->>   
->> +	bb = xe_bb_alloc(gt);
->> +	if (IS_ERR(bb))
->> +		return PTR_ERR(bb);
->> +
->>   	bb_pool = ctx->mem.ccs_bb_pool;
->> -	guard(mutex) (xe_sa_bo_swap_guard(bb_pool));
->> -	xe_sa_bo_swap_shadow(bb_pool);
->> +	scoped_guard(mutex, xe_sa_bo_swap_guard(bb_pool)) {
->> +		xe_sa_bo_swap_shadow(bb_pool);
->> +
->> +		err = xe_bb_init(bb, bb_pool, batch_size);
->> +		if (err) {
->> +			xe_gt_err(gt, "BB allocation failed.\n");
->> +			xe_bb_release(bb);
->> +			return err;
->> +		}
->>   
->> -	bb = xe_bb_ccs_new(gt, batch_size, read_write);
->> -	if (IS_ERR(bb)) {
->> -		drm_err(&xe->drm, "BB allocation failed.\n");
->> -		err = PTR_ERR(bb);
->> -		return err;
->> -	}
->> +		batch_size_allocated = batch_size;
->> +		size = xe_bo_size(src_bo);
->> +		batch_size = 0;
->>   
->> -	batch_size_allocated = batch_size;
->> -	size = xe_bo_size(src_bo);
->> -	batch_size = 0;
->> +		/*
->> +		 * Emit PTE and copy commands here.
->> +		 * The CCS copy command can only support limited size. If the size to be
->> +		 * copied is more than the limit, divide copy into chunks. So, calculate
->> +		 * sizes here again before copy command is emitted.
->> +		 */
->>   
->> -	/*
->> -	 * Emit PTE and copy commands here.
->> -	 * The CCS copy command can only support limited size. If the size to be
->> -	 * copied is more than the limit, divide copy into chunks. So, calculate
->> -	 * sizes here again before copy command is emitted.
->> -	 */
->> -	while (size) {
->> -		batch_size += 10; /* Flush + ggtt addr + 2 NOP */
->> -		u32 flush_flags = 0;
->> -		u64 ccs_ofs, ccs_size;
->> -		u32 ccs_pt;
->> +		while (size) {
->> +			batch_size += 10; /* Flush + ggtt addr + 2 NOP */
->> +			u32 flush_flags = 0;
->> +			u64 ccs_ofs, ccs_size;
->> +			u32 ccs_pt;
->>   
->> -		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
->> +			u32 avail_pts = max_mem_transfer_per_pass(xe) /
->> +					LEVEL0_PAGE_TABLE_ENCODE_SIZE;
->>   
->> -		src_L0 = xe_migrate_res_sizes(m, &src_it);
->> +			src_L0 = xe_migrate_res_sizes(m, &src_it);
->>   
->> -		batch_size += pte_update_size(m, false, src, &src_it, &src_L0,
->> -					      &src_L0_ofs, &src_L0_pt, 0, 0,
->> -					      avail_pts);
->> +			batch_size += pte_update_size(m, false, src, &src_it, &src_L0,
->> +						      &src_L0_ofs, &src_L0_pt, 0, 0,
->> +						      avail_pts);
->>   
->> -		ccs_size = xe_device_ccs_bytes(xe, src_L0);
->> -		batch_size += pte_update_size(m, 0, NULL, &ccs_it, &ccs_size, &ccs_ofs,
->> -					      &ccs_pt, 0, avail_pts, avail_pts);
->> -		xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
->> -		batch_size += EMIT_COPY_CCS_DW;
->> +			ccs_size = xe_device_ccs_bytes(xe, src_L0);
->> +			batch_size += pte_update_size(m, 0, NULL, &ccs_it, &ccs_size, &ccs_ofs,
->> +						      &ccs_pt, 0, avail_pts, avail_pts);
->> +			xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
->> +			batch_size += EMIT_COPY_CCS_DW;
->>   
->> -		emit_pte(m, bb, src_L0_pt, false, true, &src_it, src_L0, src);
->> +			emit_pte(m, bb, src_L0_pt, false, true, &src_it, src_L0, src);
->>   
->> -		emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
->> +			emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
->>   
->> -		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
->> -		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
->> -						  src_L0_ofs, dst_is_pltt,
->> -						  src_L0, ccs_ofs, true);
->> -		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
->> +			bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
->> +			flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
->> +							  src_L0_ofs, dst_is_pltt,
->> +							  src_L0, ccs_ofs, true);
->> +			bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
->>   
->> -		size -= src_L0;
->> -	}
->> +			size -= src_L0;
->> +		}
->>   
->> -	xe_assert(xe, (batch_size_allocated == bb->len));
->> -	src_bo->bb_ccs[read_write] = bb;
->> +		xe_assert(xe, (batch_size_allocated == bb->len));
->> +		src_bo->bb_ccs[read_write] = bb;
->> +
->> +		xe_sriov_vf_ccs_rw_update_bb_addr(ctx);
->> +		xe_sa_bo_sync_shadow(bb->bo);
->> +	}
->>   
->> -	xe_sriov_vf_ccs_rw_update_bb_addr(ctx);
->> -	xe_sa_bo_sync_shadow(bb->bo);
->>   	return 0;
->>   }
->>   
->> diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
->> index b738102575d4..4b3dcc7e5ae0 100644
->> --- a/drivers/gpu/drm/xe/xe_sa.c
->> +++ b/drivers/gpu/drm/xe/xe_sa.c
->> @@ -175,6 +175,45 @@ struct drm_suballoc *__xe_sa_bo_new(struct xe_sa_manager *sa_manager, u32 size,
->>   	return drm_suballoc_new(&sa_manager->base, size, gfp, true, 0);
->>   }
->>   
->> +/**
->> + * xe_sa_bo_alloc() - Allocate uninitialized suballoc object.
->> + * @gfp: gfp flags used for memory allocation.
->> + *
->> + * Allocate memory for an uninitialized suballoc object. Intended usage is
->> + * allocate memory for suballoc object outside of a reclaim tainted context
->> + * and then be initialized at a later time in a reclaim tainted context.
->> + *
->> + * Return: a new uninitialized suballoc object, or an ERR_PTR(-ENOMEM).
->> + */
->> +struct drm_suballoc *xe_sa_bo_alloc(gfp_t gfp)
->> +{
->> +	return drm_suballoc_alloc(gfp);
->> +}
->> +
->> +/**
->> + * xe_sa_bo_release() - Release memory for suballocation.
->> + * @sa: The struct drm_suballoc.
->> + */
->> +void xe_sa_bo_release(struct drm_suballoc *sa)
->> +{
->> +	drm_suballoc_release(sa);
->> +}
->> +
->> +/**
->> + * xe_sa_bo_init() - Initialize a suballocation.
->> + * @sa_manager: pointer to the sa_manager
->> + * @sa: The struct drm_suballoc.
->> + * @size: number of bytes we want to suballocate.
->> + *
->> + * Try to make a suballocation on a pre-allocated suballoc object of size @size.
->> + *
->> + * Return: zero on success, errno on failure.
->> + */
->> +int xe_sa_bo_init(struct xe_sa_manager *sa_manager, struct drm_suballoc *sa, size_t size)
->> +{
->> +	return drm_suballoc_init(&sa_manager->base, sa, size, true, 0);
->> +}
->> +
->>   /**
->>    * xe_sa_bo_flush_write() - Copy the data from the sub-allocation to the GPU memory.
->>    * @sa_bo: the &drm_suballoc to flush
->> diff --git a/drivers/gpu/drm/xe/xe_sa.h b/drivers/gpu/drm/xe/xe_sa.h
->> index 05e9a4e00e78..156b6e6fa14b 100644
->> --- a/drivers/gpu/drm/xe/xe_sa.h
->> +++ b/drivers/gpu/drm/xe/xe_sa.h
->> @@ -38,6 +38,9 @@ static inline struct drm_suballoc *xe_sa_bo_new(struct xe_sa_manager *sa_manager
->>   	return __xe_sa_bo_new(sa_manager, size, GFP_KERNEL);
->>   }
->>   
->> +struct drm_suballoc *xe_sa_bo_alloc(gfp_t gfp);
->> +void xe_sa_bo_release(struct drm_suballoc *sa);
->> +int xe_sa_bo_init(struct xe_sa_manager *sa_manager, struct drm_suballoc *sa, size_t size);
->>   void xe_sa_bo_flush_write(struct drm_suballoc *sa_bo);
->>   void xe_sa_bo_sync_read(struct drm_suballoc *sa_bo);
->>   void xe_sa_bo_free(struct drm_suballoc *sa_bo, struct dma_fence *fence);
---------------lYniKR073CmRxGs8DkoY0gHh
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 18-Feb-26 3:21 PM, Maarten Lankhorst
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:4215aa02-6854-4be1-9ae7-418af0752482@lankhorst.se">
-      <pre wrap="" class="moz-quote-pre">Hey,
-
-A quick look at the series. It's a good idea to separate allocation from insertion
-in this case, but it seems some small issues with the API remain.
-
-The first one is that you introduce another free function. It would be better to set
-sa-&gt;manager = NULL in&nbsp;drm_suballoc_alloc(), and check for that in drm_suballoc_free().
-That removes the requirement of adding another free function, and making a mistake there.
-And it nicely pairs alloc() with free()
-
-Additionally, you now have both drm_suballoc_init() and drm_suballoc_new().
-
-I'd recommend renaming drm_suballoc_init() to drm_suballoc_insert(), and optionally
-convert all existing users to use drm_suballoc_insert()
-After that you only have a single API, and made the usage of it slightly more comprehensible. :-)
-
-With these changes, the flow is really nice:
-- drm_suballoc_alloc()
-- drm_suballoc_insert()
-- Error checking, do some stuff here, finally
-- drm_suballoc_free()
-
-And then you convert the existing users 1 by 1, until you can finally remove drm_suballoc_init().
-</pre>
-    </blockquote>
-    <p>Sent new version with&nbsp;<span style="white-space: pre-wrap">drm_suballoc_init</span>()
-      updated to&nbsp;<span style="white-space: pre-wrap">drm_suballoc_insert().</span></p>
-    <p><span style="white-space: pre-wrap">Will send a new series to remove </span><span style="white-space: pre-wrap">drm_suballoc_new() later as this series is to fix an issue.</span></p>
-    <p><span style="white-space: pre-wrap">-Satya.</span></p>
-    <blockquote type="cite" cite="mid:4215aa02-6854-4be1-9ae7-418af0752482@lankhorst.se">
-      <pre wrap="" class="moz-quote-pre">
-Kind regards,
-~Maarten Lankhorst
-
-Den 2026-02-17 kl. 13:07, skrev Satyanarayana K V P:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">CCS save/restore batch buffers are attached during BO allocation and
-detached during BO teardown. The shrinker triggers xe_bo_move(), which is
-used for both allocation and deletion paths.
-
-When BO allocation and shrinking occur concurrently, a circular locking
-dependency involving fs_reclaim and swap_guard can occur, leading to a
-deadlock such as:
-Reviewed-by: Thomas Hellström <a class="moz-txt-link-rfc2396E" href="mailto:thomas.hellstrom@linux.intel.com">&lt;thomas.hellstrom@linux.intel.com&gt;</a>
-
-======================================================
-WARNING: possible circular locking dependency detected
-------------------------------------------------------
-
-      CPU0                    CPU1
-      ----                    ----
- lock(fs_reclaim);
-                              lock(&amp;sa_manager-&gt;swap_guard);
-                              lock(fs_reclaim);
- lock(&amp;sa_manager-&gt;swap_guard);
-
- *** DEADLOCK ***
-=====================================================
-
-To avoid this, the BB pointer and SA are allocated using xe_bb_alloc()
-before taking lock and SA is initialized using xe_bb_init() preventing
-reclaim from being invoked in this context.
-
-Fixes: 864690cf4dd62 (&quot;drm/xe/vf: Attach and detach CCS copy commands with BO&quot;)
-Signed-off-by: Satyanarayana K V P <a class="moz-txt-link-rfc2396E" href="mailto:satyanarayana.k.v.p@intel.com">&lt;satyanarayana.k.v.p@intel.com&gt;</a>
-Cc: Matthew Brost <a class="moz-txt-link-rfc2396E" href="mailto:matthew.brost@intel.com">&lt;matthew.brost@intel.com&gt;</a>
-Cc: Michal Wajdeczko <a class="moz-txt-link-rfc2396E" href="mailto:michal.wajdeczko@intel.com">&lt;michal.wajdeczko@intel.com&gt;</a>
-Cc: Matthew Auld <a class="moz-txt-link-rfc2396E" href="mailto:matthew.auld@intel.com">&lt;matthew.auld@intel.com&gt;</a>
-Cc: Thomas Hellström <a class="moz-txt-link-rfc2396E" href="mailto:thomas.hellstrom@linux.intel.com">&lt;thomas.hellstrom@linux.intel.com&gt;</a>
-Reviewed-by: Thomas Hellström <a class="moz-txt-link-rfc2396E" href="mailto:thomas.hellstrom@linux.intel.com">&lt;thomas.hellstrom@linux.intel.com&gt;</a>
-
----
-V4 -&gt; V5:
-- Removed enum xe_sriov_vf_ccs_rw_ctxs from xe_bb.h as it is not used
-  any more (Michal).
-
-V3 -&gt; V4:
-- Fixed some nits (Michal).
-
-V2 -&gt; V3:
-- Updated commit message (Matt, Thomas &amp; Christian).
-- Removed timeout logic from drm_suballoc_init(). (Thomas &amp; Christian).
-
-V1 -&gt; V2:
-- Splitted drm_suballoc_new() into drm_suballoc_alloc() and
-drm_suballoc_init() (Thomas).
----
- drivers/gpu/drm/xe/xe_bb.c      | 72 ++++++++++++++++++------
- drivers/gpu/drm/xe/xe_bb.h      |  7 ++-
- drivers/gpu/drm/xe/xe_migrate.c | 99 ++++++++++++++++++---------------
- drivers/gpu/drm/xe/xe_sa.c      | 39 +++++++++++++
- drivers/gpu/drm/xe/xe_sa.h      |  3 +
- 5 files changed, 156 insertions(+), 64 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
-index 8b678297aaa2..a991d9db8164 100644
---- a/drivers/gpu/drm/xe/xe_bb.c
-+++ b/drivers/gpu/drm/xe/xe_bb.c
-@@ -59,16 +59,64 @@ struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm)
- 	return ERR_PTR(err);
- }
- 
--struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
--			    enum xe_sriov_vf_ccs_rw_ctxs ctx_id)
-+/**
-+ * xe_bb_alloc() - Allocate a new batch buffer structure
-+ * @gt: the &amp;xe_gt
-+ *
-+ * Allocates and initializes a new xe_bb structure with an associated
-+ * uninitialized suballoc object.
-+ *
-+ * Returns: Batch buffer structure or an ERR_PTR(-ENOMEM).
-+ */
-+struct xe_bb *xe_bb_alloc(struct xe_gt *gt)
- {
- 	struct xe_bb *bb = kmalloc(sizeof(*bb), GFP_KERNEL);
--	struct xe_device *xe = gt_to_xe(gt);
--	struct xe_sa_manager *bb_pool;
- 	int err;
- 
- 	if (!bb)
- 		return ERR_PTR(-ENOMEM);
-+
-+	bb-&gt;bo = xe_sa_bo_alloc(GFP_KERNEL);
-+	if (IS_ERR(bb-&gt;bo)) {
-+		err = PTR_ERR(bb-&gt;bo);
-+		goto err;
-+	}
-+
-+	return bb;
-+
-+err:
-+	kfree(bb);
-+	return ERR_PTR(err);
-+}
-+
-+/**
-+ * xe_bb_release() - Release and free a batch buffer structure
-+ * @bb: Batch buffer structure to release
-+ *
-+ * Releases the sub-allocated buffer object associated with the batch buffer
-+ * and frees the xe_bb structure memory.
-+ */
-+void xe_bb_release(struct xe_bb *bb)
-+{
-+	xe_sa_bo_release(bb-&gt;bo);
-+	kfree(bb);
-+}
-+
-+/**
-+ * xe_bb_init() - Initialize a batch buffer with memory from a sub-allocator pool
-+ * @bb: Batch buffer structure to initialize
-+ * @bb_pool: Suballoc memory pool to allocate from
-+ * @dwords: Number of dwords to be allocated
-+ *
-+ * Initializes the batch buffer by allocating memory from the specified
-+ * suballoc pool.
-+ *
-+ * Return: 0 on success, negative error code on failure.
-+ */
-+int xe_bb_init(struct xe_bb *bb, struct xe_sa_manager *bb_pool, u32 dwords)
-+{
-+	int err;
-+
- 	/*
- 	 * We need to allocate space for the requested number of dwords &amp;
- 	 * one additional MI_BATCH_BUFFER_END dword. Since the whole SA
-@@ -76,22 +124,14 @@ struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
- 	 * is not over written when the last chunk of SA is allocated for BB.
- 	 * So, this extra DW acts as a guard here.
- 	 */
--
--	bb_pool = xe-&gt;sriov.vf.ccs.contexts[ctx_id].mem.ccs_bb_pool;
--	bb-&gt;bo = xe_sa_bo_new(bb_pool, 4 * (dwords + 1));
--
--	if (IS_ERR(bb-&gt;bo)) {
--		err = PTR_ERR(bb-&gt;bo);
--		goto err;
--	}
-+	err = xe_sa_bo_init(bb_pool, bb-&gt;bo, 4 * (dwords + 1));
-+	if (err)
-+		return err;
- 
- 	bb-&gt;cs = xe_sa_bo_cpu_addr(bb-&gt;bo);
- 	bb-&gt;len = 0;
- 
--	return bb;
--err:
--	kfree(bb);
--	return ERR_PTR(err);
-+	return 0;
- }
- 
- static struct xe_sched_job *
-diff --git a/drivers/gpu/drm/xe/xe_bb.h b/drivers/gpu/drm/xe/xe_bb.h
-index 2a8adc9a6dee..5778699149ec 100644
---- a/drivers/gpu/drm/xe/xe_bb.h
-+++ b/drivers/gpu/drm/xe/xe_bb.h
-@@ -12,12 +12,13 @@ struct dma_fence;
- 
- struct xe_gt;
- struct xe_exec_queue;
-+struct xe_sa_manager;
- struct xe_sched_job;
--enum xe_sriov_vf_ccs_rw_ctxs;
- 
- struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm);
--struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
--			    enum xe_sriov_vf_ccs_rw_ctxs ctx_id);
-+struct xe_bb *xe_bb_alloc(struct xe_gt *gt);
-+void xe_bb_release(struct xe_bb *bb);
-+int xe_bb_init(struct xe_bb *bb, struct xe_sa_manager *bb_pool, u32 dwords);
- struct xe_sched_job *xe_bb_create_job(struct xe_exec_queue *q,
- 				      struct xe_bb *bb);
- struct xe_sched_job *xe_bb_create_migration_job(struct xe_exec_queue *q,
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 078a9bc2821d..d4cfc54d614b 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -25,6 +25,7 @@
- #include &quot;xe_exec_queue.h&quot;
- #include &quot;xe_ggtt.h&quot;
- #include &quot;xe_gt.h&quot;
-+#include &quot;xe_gt_printk.h&quot;
- #include &quot;xe_hw_engine.h&quot;
- #include &quot;xe_lrc.h&quot;
- #include &quot;xe_map.h&quot;
-@@ -1148,65 +1149,73 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- 		size -= src_L0;
- 	}
- 
-+	bb = xe_bb_alloc(gt);
-+	if (IS_ERR(bb))
-+		return PTR_ERR(bb);
-+
- 	bb_pool = ctx-&gt;mem.ccs_bb_pool;
--	guard(mutex) (xe_sa_bo_swap_guard(bb_pool));
--	xe_sa_bo_swap_shadow(bb_pool);
-+	scoped_guard(mutex, xe_sa_bo_swap_guard(bb_pool)) {
-+		xe_sa_bo_swap_shadow(bb_pool);
-+
-+		err = xe_bb_init(bb, bb_pool, batch_size);
-+		if (err) {
-+			xe_gt_err(gt, &quot;BB allocation failed.\n&quot;);
-+			xe_bb_release(bb);
-+			return err;
-+		}
- 
--	bb = xe_bb_ccs_new(gt, batch_size, read_write);
--	if (IS_ERR(bb)) {
--		drm_err(&amp;xe-&gt;drm, &quot;BB allocation failed.\n&quot;);
--		err = PTR_ERR(bb);
--		return err;
--	}
-+		batch_size_allocated = batch_size;
-+		size = xe_bo_size(src_bo);
-+		batch_size = 0;
- 
--	batch_size_allocated = batch_size;
--	size = xe_bo_size(src_bo);
--	batch_size = 0;
-+		/*
-+		 * Emit PTE and copy commands here.
-+		 * The CCS copy command can only support limited size. If the size to be
-+		 * copied is more than the limit, divide copy into chunks. So, calculate
-+		 * sizes here again before copy command is emitted.
-+		 */
- 
--	/*
--	 * Emit PTE and copy commands here.
--	 * The CCS copy command can only support limited size. If the size to be
--	 * copied is more than the limit, divide copy into chunks. So, calculate
--	 * sizes here again before copy command is emitted.
--	 */
--	while (size) {
--		batch_size += 10; /* Flush + ggtt addr + 2 NOP */
--		u32 flush_flags = 0;
--		u64 ccs_ofs, ccs_size;
--		u32 ccs_pt;
-+		while (size) {
-+			batch_size += 10; /* Flush + ggtt addr + 2 NOP */
-+			u32 flush_flags = 0;
-+			u64 ccs_ofs, ccs_size;
-+			u32 ccs_pt;
- 
--		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
-+			u32 avail_pts = max_mem_transfer_per_pass(xe) /
-+					LEVEL0_PAGE_TABLE_ENCODE_SIZE;
- 
--		src_L0 = xe_migrate_res_sizes(m, &amp;src_it);
-+			src_L0 = xe_migrate_res_sizes(m, &amp;src_it);
- 
--		batch_size += pte_update_size(m, false, src, &amp;src_it, &amp;src_L0,
--					      &amp;src_L0_ofs, &amp;src_L0_pt, 0, 0,
--					      avail_pts);
-+			batch_size += pte_update_size(m, false, src, &amp;src_it, &amp;src_L0,
-+						      &amp;src_L0_ofs, &amp;src_L0_pt, 0, 0,
-+						      avail_pts);
- 
--		ccs_size = xe_device_ccs_bytes(xe, src_L0);
--		batch_size += pte_update_size(m, 0, NULL, &amp;ccs_it, &amp;ccs_size, &amp;ccs_ofs,
--					      &amp;ccs_pt, 0, avail_pts, avail_pts);
--		xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
--		batch_size += EMIT_COPY_CCS_DW;
-+			ccs_size = xe_device_ccs_bytes(xe, src_L0);
-+			batch_size += pte_update_size(m, 0, NULL, &amp;ccs_it, &amp;ccs_size, &amp;ccs_ofs,
-+						      &amp;ccs_pt, 0, avail_pts, avail_pts);
-+			xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
-+			batch_size += EMIT_COPY_CCS_DW;
- 
--		emit_pte(m, bb, src_L0_pt, false, true, &amp;src_it, src_L0, src);
-+			emit_pte(m, bb, src_L0_pt, false, true, &amp;src_it, src_L0, src);
- 
--		emit_pte(m, bb, ccs_pt, false, false, &amp;ccs_it, ccs_size, src);
-+			emit_pte(m, bb, ccs_pt, false, false, &amp;ccs_it, ccs_size, src);
- 
--		bb-&gt;len = emit_flush_invalidate(bb-&gt;cs, bb-&gt;len, flush_flags);
--		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
--						  src_L0_ofs, dst_is_pltt,
--						  src_L0, ccs_ofs, true);
--		bb-&gt;len = emit_flush_invalidate(bb-&gt;cs, bb-&gt;len, flush_flags);
-+			bb-&gt;len = emit_flush_invalidate(bb-&gt;cs, bb-&gt;len, flush_flags);
-+			flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
-+							  src_L0_ofs, dst_is_pltt,
-+							  src_L0, ccs_ofs, true);
-+			bb-&gt;len = emit_flush_invalidate(bb-&gt;cs, bb-&gt;len, flush_flags);
- 
--		size -= src_L0;
--	}
-+			size -= src_L0;
-+		}
- 
--	xe_assert(xe, (batch_size_allocated == bb-&gt;len));
--	src_bo-&gt;bb_ccs[read_write] = bb;
-+		xe_assert(xe, (batch_size_allocated == bb-&gt;len));
-+		src_bo-&gt;bb_ccs[read_write] = bb;
-+
-+		xe_sriov_vf_ccs_rw_update_bb_addr(ctx);
-+		xe_sa_bo_sync_shadow(bb-&gt;bo);
-+	}
- 
--	xe_sriov_vf_ccs_rw_update_bb_addr(ctx);
--	xe_sa_bo_sync_shadow(bb-&gt;bo);
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
-index b738102575d4..4b3dcc7e5ae0 100644
---- a/drivers/gpu/drm/xe/xe_sa.c
-+++ b/drivers/gpu/drm/xe/xe_sa.c
-@@ -175,6 +175,45 @@ struct drm_suballoc *__xe_sa_bo_new(struct xe_sa_manager *sa_manager, u32 size,
- 	return drm_suballoc_new(&amp;sa_manager-&gt;base, size, gfp, true, 0);
- }
- 
-+/**
-+ * xe_sa_bo_alloc() - Allocate uninitialized suballoc object.
-+ * @gfp: gfp flags used for memory allocation.
-+ *
-+ * Allocate memory for an uninitialized suballoc object. Intended usage is
-+ * allocate memory for suballoc object outside of a reclaim tainted context
-+ * and then be initialized at a later time in a reclaim tainted context.
-+ *
-+ * Return: a new uninitialized suballoc object, or an ERR_PTR(-ENOMEM).
-+ */
-+struct drm_suballoc *xe_sa_bo_alloc(gfp_t gfp)
-+{
-+	return drm_suballoc_alloc(gfp);
-+}
-+
-+/**
-+ * xe_sa_bo_release() - Release memory for suballocation.
-+ * @sa: The struct drm_suballoc.
-+ */
-+void xe_sa_bo_release(struct drm_suballoc *sa)
-+{
-+	drm_suballoc_release(sa);
-+}
-+
-+/**
-+ * xe_sa_bo_init() - Initialize a suballocation.
-+ * @sa_manager: pointer to the sa_manager
-+ * @sa: The struct drm_suballoc.
-+ * @size: number of bytes we want to suballocate.
-+ *
-+ * Try to make a suballocation on a pre-allocated suballoc object of size @size.
-+ *
-+ * Return: zero on success, errno on failure.
-+ */
-+int xe_sa_bo_init(struct xe_sa_manager *sa_manager, struct drm_suballoc *sa, size_t size)
-+{
-+	return drm_suballoc_init(&amp;sa_manager-&gt;base, sa, size, true, 0);
-+}
-+
- /**
-  * xe_sa_bo_flush_write() - Copy the data from the sub-allocation to the GPU memory.
-  * @sa_bo: the &amp;drm_suballoc to flush
-diff --git a/drivers/gpu/drm/xe/xe_sa.h b/drivers/gpu/drm/xe/xe_sa.h
-index 05e9a4e00e78..156b6e6fa14b 100644
---- a/drivers/gpu/drm/xe/xe_sa.h
-+++ b/drivers/gpu/drm/xe/xe_sa.h
-@@ -38,6 +38,9 @@ static inline struct drm_suballoc *xe_sa_bo_new(struct xe_sa_manager *sa_manager
- 	return __xe_sa_bo_new(sa_manager, size, GFP_KERNEL);
- }
- 
-+struct drm_suballoc *xe_sa_bo_alloc(gfp_t gfp);
-+void xe_sa_bo_release(struct drm_suballoc *sa);
-+int xe_sa_bo_init(struct xe_sa_manager *sa_manager, struct drm_suballoc *sa, size_t size);
- void xe_sa_bo_flush_write(struct drm_suballoc *sa_bo);
- void xe_sa_bo_sync_read(struct drm_suballoc *sa_bo);
- void xe_sa_bo_free(struct drm_suballoc *sa_bo, struct dma_fence *fence);
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------lYniKR073CmRxGs8DkoY0gHh--
+> 
+> This is a recommended tuning setting for both gen12 and Xe_HP
+> platforms.
+> 
+> If a render queue is created with
+> DRM_XE_EXEC_QUEUE_SET_STATE_CACHE_PERF_FIX, COMMON_SLICE_CHICKEN3 will
+> be programmed at initialization to enable the render color cache to
+> key with BTP+BTI (binding table pool + binding table entry) instead of
+> just BTI (binding table entry). This enables the UMD to avoid emitting
+> render-target-cache-flush + stall-at-pixel-scoreboard every time a
+> binding table entry pointing to a render target is changed.
+> 
+> Bspec: 73993, 73994, 72161, 31870, 68331
+> Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+> ---
+>  drivers/gpu/drm/xe/regs/xe_gt_regs.h     |  1 +
+>  drivers/gpu/drm/xe/xe_exec_queue.c       | 18 +++++++++++++++++-
+>  drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 ++
+>  drivers/gpu/drm/xe/xe_lrc.c              |  9 +++++++++
+>  drivers/gpu/drm/xe/xe_lrc.h              |  1 +
+>  drivers/gpu/drm/xe/xe_query.c            |  2 ++
+>  include/uapi/drm/xe_drm.h                |  8 ++++++++
+>  7 files changed, 40 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> index a375ffd666ba2..80a438e51419f 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> @@ -178,6 +178,7 @@
+>  
+>  #define COMMON_SLICE_CHICKEN3				XE_REG(0x7304, XE_REG_OPTION_MASKED)
+>  #define XEHP_COMMON_SLICE_CHICKEN3			XE_REG_MCR(0x7304, XE_REG_OPTION_MASKED)
+> +#define   STATE_CACHE_PERF_FIX_DISABLED			REG_BIT(13)
+>  #define   DG1_FLOAT_POINT_BLEND_OPT_STRICT_MODE_EN	REG_BIT(12)
+>  #define   XEHP_DUAL_SIMD8_SEQ_MERGE_DISABLE		REG_BIT(12)
+>  #define   BLEND_EMB_FIX_DISABLE_IN_RCC			REG_BIT(11)
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+> index 66d0e10ee2c4a..d3168353fcaaf 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> @@ -292,6 +292,9 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
+>  	if (!(exec_queue_flags & EXEC_QUEUE_FLAG_KERNEL))
+>  		flags |= XE_LRC_CREATE_USER_CTX;
+>  
+> +	if (q->flags & EXEC_QUEUE_FLAG_STATE_CACHE_PERF_FIX)
+> +		flags |= XE_LRC_STATE_CACHE_PERF_FIX;
+> +
+>  	err = q->ops->init(q);
+>  	if (err)
+>  		return err;
+> @@ -850,6 +853,17 @@ static int exec_queue_set_multi_queue_priority(struct xe_device *xe, struct xe_e
+>  	return q->ops->set_multi_queue_priority(q, value);
+>  }
+>  
+> +static int exec_queue_set_state_cache_perf_fix(struct xe_device *xe, struct xe_exec_queue *q,
+> +					       u64 value)
+> +{
+> +	if (XE_IOCTL_DBG(xe, q->class != XE_ENGINE_CLASS_RENDER))
+> +		return -EOPNOTSUPP;
+> +
+> +	q->flags |= value != 0 ? EXEC_QUEUE_FLAG_STATE_CACHE_PERF_FIX : 0;
+> +
+> +	return 0;
+> +}
+> +
+>  typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
+>  					     struct xe_exec_queue *q,
+>  					     u64 value);
+> @@ -862,6 +876,7 @@ static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
+>  	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP] = exec_queue_set_multi_group,
+>  	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY] =
+>  							exec_queue_set_multi_queue_priority,
+> +	[DRM_XE_EXEC_QUEUE_SET_STATE_CACHE_PERF_FIX] = exec_queue_set_state_cache_perf_fix,
+>  };
+>  
+>  int xe_exec_queue_set_property_ioctl(struct drm_device *dev, void *data,
+> @@ -946,7 +961,8 @@ static int exec_queue_user_ext_set_property(struct xe_device *xe,
+>  			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE &&
+>  			 ext.property != DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE &&
+>  			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP &&
+> -			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY))
+> +			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY &&
+> +			 ext.property != DRM_XE_EXEC_QUEUE_SET_STATE_CACHE_PERF_FIX))
+>  		return -EINVAL;
+>  
+>  	idx = array_index_nospec(ext.property, ARRAY_SIZE(exec_queue_set_property_funcs));
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> index 3791fed34ffa5..f4f72d01eb8c8 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> @@ -134,6 +134,8 @@ struct xe_exec_queue {
+>  #define EXEC_QUEUE_FLAG_LOW_LATENCY		BIT(5)
+>  /* for migration (kernel copy, clear, bind) jobs */
+>  #define EXEC_QUEUE_FLAG_MIGRATE			BIT(6)
+> +/* for programming COMMON_SLICE_CHICKEN2 on first submission */
+> +#define EXEC_QUEUE_FLAG_STATE_CACHE_PERF_FIX	BIT(7)
+>  
+>  	/**
+>  	 * @flags: flags for this exec queue, should statically setup aside from ban
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> index 38f648b98868d..a962ac2bb7ca2 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.c
+> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> @@ -14,6 +14,7 @@
+>  #include "instructions/xe_gfxpipe_commands.h"
+>  #include "instructions/xe_gfx_state_commands.h"
+>  #include "regs/xe_engine_regs.h"
+> +#include "regs/xe_gt_regs.h"
+>  #include "regs/xe_lrc_layout.h"
+>  #include "xe_bb.h"
+>  #include "xe_bo.h"
+> @@ -1447,6 +1448,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+>  	struct xe_device *xe = gt_to_xe(gt);
+>  	struct iosys_map map;
+>  	u32 arb_enable;
+> +	u32 state_cache_perf_fix[3];
+>  	u32 bo_flags;
+>  	int err;
+>  
+> @@ -1579,6 +1581,13 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+>  	arb_enable = MI_ARB_ON_OFF | MI_ARB_ENABLE;
+>  	xe_lrc_write_ring(lrc, &arb_enable, sizeof(arb_enable));
+>  
+> +	if (init_flags & XE_LRC_STATE_CACHE_PERF_FIX) {
+> +		state_cache_perf_fix[0] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1);
+> +		state_cache_perf_fix[1] = COMMON_SLICE_CHICKEN3.addr;
+> +		state_cache_perf_fix[2] = _MASKED_BIT_ENABLE(STATE_CACHE_PERF_FIX_DISABLED);
+> +		xe_lrc_write_ring(lrc, state_cache_perf_fix, sizeof(state_cache_perf_fix));
+> +	}
+> +
+>  	map = __xe_lrc_seqno_map(lrc);
+>  	xe_map_write32(lrc_to_xe(lrc), &map, lrc->fence_ctx.next_seqno - 1);
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+> index c307a3fd9ea28..083a2167aeef8 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.h
+> +++ b/drivers/gpu/drm/xe/xe_lrc.h
+> @@ -49,6 +49,7 @@ struct xe_lrc_snapshot {
+>  #define XE_LRC_CREATE_RUNALONE		BIT(0)
+>  #define XE_LRC_CREATE_PXP		BIT(1)
+>  #define XE_LRC_CREATE_USER_CTX		BIT(2)
+> +#define XE_LRC_STATE_CACHE_PERF_FIX	BIT(3)
+>  
+>  struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
+>  			     void *replay_state, u32 ring_size, u16 msix_vec, u32 flags);
+> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+> index 34db266b723fa..5927eaf792efe 100644
+> --- a/drivers/gpu/drm/xe/xe_query.c
+> +++ b/drivers/gpu/drm/xe/xe_query.c
+> @@ -340,6 +340,8 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+>  			DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT;
+>  	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+>  			DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY;
+> +	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+> +		DRM_XE_QUERY_CONFIG_FLAG_HAS_STATE_CACHE_PERF_FIX;
+>  	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
+>  		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
+>  	config->info[DRM_XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index c9e70f78e7238..856838fcadd89 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -406,6 +406,9 @@ struct drm_xe_query_mem_regions {
+>   *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT - Flag is set if the
+>   *      device supports the userspace hint %DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION.
+>   *      This is exposed only on Xe2+.
+> + *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_STATE_CACHE_PERF_FIX - Flag is set
+> + *      if a queue can be creaed with
+> + *      %DRM_XE_EXEC_QUEUE_SET_STATE_CACHE_PERF_FIX
+>   *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment
+>   *    required by this device, typically SZ_4K or SZ_64K
+>   *  - %DRM_XE_QUERY_CONFIG_VA_BITS - Maximum bits of a virtual address
+> @@ -425,6 +428,7 @@ struct drm_xe_query_config {
+>  	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY	(1 << 1)
+>  	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR	(1 << 2)
+>  	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT (1 << 3)
+> +	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_STATE_CACHE_PERF_FIX	(1 << 4)
+>  #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
+>  #define DRM_XE_QUERY_CONFIG_VA_BITS			3
+>  #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
+> @@ -1279,6 +1283,9 @@ struct drm_xe_vm_bind {
+>   *  - %DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY - Set the queue
+>   *    priority within the multi-queue group. Current valid priority values are 0–2
+>   *    (default is 1), with higher values indicating higher priority.
+> + *  - %DRM_XE_EXEC_QUEUE_SET_STATE_CACHE_PERF_FIX - Set the queue to
+> + *    enable render color cache keying on BTP+BTI instead of just BTI
+> + *    (only valid for render queues).
+>   *
+>   * The example below shows how to use @drm_xe_exec_queue_create to create
+>   * a simple exec_queue (no parallel submission) of class
+> @@ -1323,6 +1330,7 @@ struct drm_xe_exec_queue_create {
+>  #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP		4
+>  #define     DRM_XE_MULTI_GROUP_CREATE				(1ull << 63)
+>  #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY	5
+> +#define   DRM_XE_EXEC_QUEUE_SET_STATE_CACHE_PERF_FIX		6
+>  	/** @extensions: Pointer to the first extension struct, if any */
+>  	__u64 extensions;
+>  
+> -- 
+> 2.43.0
+> 
