@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3601E9A02C
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 20:56:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55C15E9A02C
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 20:56:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83C3710E5D1;
-	Wed, 18 Feb 2026 20:56:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 099B810E626;
+	Wed, 18 Feb 2026 20:56:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RNwnT/Ev";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jFwpLOcK";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D469E10E626
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Feb 2026 20:56:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5DD310E626
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Feb 2026 20:56:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771448198; x=1802984198;
+ t=1771448199; x=1802984199;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nqwE/62oHQtFGnzqZPA53lSc5hTszx+qvzhi3aqNHFQ=;
- b=RNwnT/Evenw3tOMJcqwI6b0y6vSYwMdAKATVM3J8VrwMvoEMG7zDORx7
- DCEBVMtFpcH5OvkT5ZLuzMpDZqoIHHIA7TLf/sA4C2nJmfeuMv/U6s0Sg
- PmaK9/fpTz6KFMF5maEVFEDtmJ1GeqwrGUNQ4exrpuBE3qOVV8nXVO6ko
- RhLu3AF+JiTozDvxP0vMlgFluAYc77eJKeYETJ2g7aVC32OorqTJqoDgQ
- gj/jy5L2NtUNUfB1TMKLZ7sKO2mZa+yZ5+tBv/UqO5QZm/g7BuK0WCxqA
- znbLq8lxHXCQxrm0fJ00LT4orNcA0yZo844ybGqFbs6qJjLJ8Jxg88ml5 g==;
-X-CSE-ConnectionGUID: UJdN80uRTNqNo89u9AM/eA==
-X-CSE-MsgGUID: giUgBgDwSpCKhzoUuNjAkA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="72710604"
-X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="72710604"
+ bh=U08rf5fJ4d64xJKpsDJvuKx0VsQgURfE6DcPcPvjDUo=;
+ b=jFwpLOcK1atcTyGJ8hYAFayBIgn7edabclaN/Kz3IAJynEAOKWocM5Fo
+ 7uVZhnK/kelI02VMx706qdjaTI5QCU8hM3YGIzmG7M6NBc8IuzyNbJKHj
+ 0kW9aRzzQmQ8M24+88e5Cpzm9B9A2kqU0TrL4j+n+KuPD9Jcp4T2ohU4d
+ er3daVF4CBoKWPtdRG3TeDsX1Fb4F/ILzmux41Kl1wQBJXbCNVTbZDj9S
+ zRFMpVUF8i3ktuJQYRi+kI0QiUzpmHnvZ5t8eD/NVAG/toSKlmgoZ8m+n
+ EJMx81i4HBWGit+jJbZibGcbAKFm+Q1HDdRJd7Z66vDWu2DIBLAt6Tou0 w==;
+X-CSE-ConnectionGUID: h2gTTpdVTWSw8PZ0dsqaKw==
+X-CSE-MsgGUID: Ubb4WGFpROKP7TYP8+Xdiw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="72710605"
+X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="72710605"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 12:56:37 -0800
-X-CSE-ConnectionGUID: o8nFgD/wQ12JKf4KjzBoIw==
-X-CSE-MsgGUID: qeXaObAkT8C8edsnSd3zbA==
+ 18 Feb 2026 12:56:39 -0800
+X-CSE-ConnectionGUID: AhxUreaOS6+18nYu1K4Bkw==
+X-CSE-MsgGUID: /E5obOCCQqG+7fsX9bwJ5g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="213548276"
+X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="213548283"
 Received: from unknown (HELO mwajdecz-hp.clients.intel.com) ([10.246.18.5])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 12:56:36 -0800
+ 18 Feb 2026 12:56:38 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH v2 09/10] drm/xe/pf: Skip VRAM auto-provisioning if already
- provisioned
-Date: Wed, 18 Feb 2026 21:55:51 +0100
-Message-ID: <20260218205553.3561-10-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 10/10] drm/xe/pf: Add documentation for vram_quota
+Date: Wed, 18 Feb 2026 21:55:52 +0100
+Message-ID: <20260218205553.3561-11-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260218205553.3561-1-michal.wajdeczko@intel.com>
 References: <20260218205553.3561-1-michal.wajdeczko@intel.com>
@@ -69,96 +69,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In case VF's VRAM provisioning using sysfs is done by the admin
-prior to VFs enabling, this provisioning will be lost as PF will
-run VRAM auto-provisioning anyway. To avoid that skip this auto-
-provisioning if any VF has been already provisioned with VRAM.
-
-To help admin find any mistakes, add diagnostics messages about
-which VFs were provisioned with VRAM and which were missed.
+Add initial documentation for recently added VRAM provisioning
+Xe driver specific SR-IOV sysfs files under device/sriov_admin.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 ---
-v2: use VFID (Piotr)
+v2: fix typo (Piotr)
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 56 ++++++++++++++++++++++
- 1 file changed, 56 insertions(+)
+ .../ABI/testing/sysfs-driver-intel-xe-sriov   | 31 +++++++++++++++++++
+ 1 file changed, 31 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index d2a2201440b8..cba20eb6b36b 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -1922,6 +1922,59 @@ static u64 pf_profile_fair_lmem(struct xe_gt *gt, unsigned int num_vfs)
- 	return ALIGN_DOWN(fair, alignment);
- }
+diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-sriov b/Documentation/ABI/testing/sysfs-driver-intel-xe-sriov
+index 7f5ef9eada53..1d6eaff6882f 100644
+--- a/Documentation/ABI/testing/sysfs-driver-intel-xe-sriov
++++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-sriov
+@@ -129,6 +129,37 @@ Description:
+ 			-EIO if FW refuses to change the provisioning.
  
-+static void __pf_show_provisioning_lmem(struct xe_gt *gt, unsigned int first_vf,
-+					unsigned int num_vfs, bool provisioned)
-+{
-+	unsigned int allvfs = 1 + xe_gt_sriov_pf_get_totalvfs(gt); /* PF plus VFs */
-+	unsigned long *bitmap __free(bitmap) = bitmap_zalloc(allvfs, GFP_KERNEL);
-+	unsigned int weight;
-+	unsigned int n;
-+
-+	if (!bitmap)
-+		return;
-+
-+	for (n = first_vf; n < first_vf + num_vfs; n++) {
-+		if (!!pf_get_vf_config_lmem(gt, VFID(n)) == provisioned)
-+			bitmap_set(bitmap, n, 1);
-+	}
-+
-+	weight = bitmap_weight(bitmap, allvfs);
-+	if (!weight)
-+		return;
-+
-+	xe_gt_sriov_info(gt, "VF%s%*pbl %s provisioned with VRAM\n",
-+			 weight > 1 ? "s " : "", allvfs, bitmap,
-+			 provisioned ? "already" : "not");
-+}
-+
-+static void pf_show_all_provisioned_lmem(struct xe_gt *gt)
-+{
-+	__pf_show_provisioning_lmem(gt, VFID(1), xe_gt_sriov_pf_get_totalvfs(gt), true);
-+}
-+
-+static void pf_show_unprovisioned_lmem(struct xe_gt *gt, unsigned int first_vf,
-+				       unsigned int num_vfs)
-+{
-+	__pf_show_provisioning_lmem(gt, first_vf, num_vfs, false);
-+}
-+
-+static bool pf_needs_provision_lmem(struct xe_gt *gt, unsigned int first_vf,
-+				    unsigned int num_vfs)
-+{
-+	unsigned int vfid;
-+
-+	for (vfid = first_vf; vfid < first_vf + num_vfs; vfid++) {
-+		if (pf_get_vf_config_lmem(gt, vfid)) {
-+			pf_show_all_provisioned_lmem(gt);
-+			pf_show_unprovisioned_lmem(gt, first_vf, num_vfs);
-+			return false;
-+		}
-+	}
-+
-+	pf_show_all_provisioned_lmem(gt);
-+	return true;
-+}
-+
- /**
-  * xe_gt_sriov_pf_config_set_fair_lmem - Provision many VFs with fair LMEM.
-  * @gt: the &xe_gt (can't be media)
-@@ -1947,6 +2000,9 @@ int xe_gt_sriov_pf_config_set_fair_lmem(struct xe_gt *gt, unsigned int vfid,
  
- 	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
- 
-+	if (!pf_needs_provision_lmem(gt, vfid, num_vfs))
-+		return 0;
++What:		/sys/bus/pci/drivers/xe/.../sriov_admin/.bulk_profile/vram_quota
++What:		/sys/bus/pci/drivers/xe/.../sriov_admin/vf<n>/profile/vram_quota
++Date:		February 2026
++KernelVersion:	7.0
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		These files allow to perform initial VFs VRAM provisioning prior to VFs
++		enabling or to change VFs VRAM provisioning once the VFs are enabled.
++		Any non-zero initial VRAM provisioning will block VFs auto-provisioning.
++		Without initial VRAM provisioning those files will show result of the
++		VRAM auto-provisioning performed by the PF once the VFs are enabled.
++		Once the VFs are disabled, all VRAM provisioning will be released.
++		These files are visible only on discrete Intel Xe platforms with VRAM
++		and are writeable only if dynamic VFs VRAM provisioning is supported.
 +
- 	fair = pf_estimate_fair_lmem(gt, num_vfs);
- 	if (!fair)
- 		return -ENOSPC;
++		.bulk_profile/vram_quota: (WO) unsigned integer
++			The amount of the provisioned VRAM in [bytes] for each VF.
++			Actual quota value might be aligned per HW/FW requirements.
++
++		profile/vram_quota: (RW) unsigned integer
++			The amount of the provisioned VRAM in [bytes] for this VF.
++			Actual quota value might be aligned per HW/FW requirements.
++
++			Default is 0 (unprovisioned).
++
++		Writes to these attributes may fail with errors like:
++			-EINVAL if provided input is malformed or not recognized,
++			-EPERM if change is not applicable on given HW/FW,
++			-EIO if FW refuses to change the provisioning.
++
++
+ What:		/sys/bus/pci/drivers/xe/.../sriov_admin/vf<n>/stop
+ Date:		October 2025
+ KernelVersion:	6.19
 -- 
 2.47.1
 
