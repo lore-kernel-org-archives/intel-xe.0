@@ -4,28 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EA67E9A04B
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 13:47:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63F0DE9A04D
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 13:47:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E971B10E5C3;
-	Wed, 18 Feb 2026 13:47:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19F7210E5C6;
+	Wed, 18 Feb 2026 13:47:05 +0000 (UTC)
 Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D849010E5C3;
- Wed, 18 Feb 2026 13:47:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E8FA10E5BF;
+ Wed, 18 Feb 2026 13:47:00 +0000 (UTC)
 Received: from localhost.localdomain (unknown
  [IPv6:2400:2410:b120:f200:2e09:4dff:fe00:2e9])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id 398093F213;
- Wed, 18 Feb 2026 14:47:00 +0100 (CET)
+ by psionic.psi5.com (Postfix) with ESMTPSA id 6444E3F204;
+ Wed, 18 Feb 2026 14:46:57 +0100 (CET)
 From: Simon Richter <Simon.Richter@hogyros.de>
 To: linux-pci@vger.kernel.org
 Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  Simon Richter <Simon.Richter@hogyros.de>
-Subject: [PATCH v2 3/5] vgaarb: mark vga_get family as __must_check
-Date: Wed, 18 Feb 2026 22:46:31 +0900
-Message-ID: <20260218134633.461181-4-Simon.Richter@hogyros.de>
+Subject: [PATCH v2 1/5] vgaarb: pass vga_get errors to userspace
+Date: Wed, 18 Feb 2026 22:46:29 +0900
+Message-ID: <20260218134633.461181-2-Simon.Richter@hogyros.de>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <20260218134633.461181-1-Simon.Richter@hogyros.de>
 References: <20260217170419.236739-1-Simon.Richter@hogyros.de>
@@ -46,61 +46,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-These functions can return an error, but some callers expect they don't,
-and unconditionally access VGA registers afterwards and call vga_put.
+If vga_get fails, return the error code via the write syscall.
 
 Signed-off-by: Simon Richter <Simon.Richter@hogyros.de>
 ---
- include/linux/vgaarb.h | 15 ++++++++-------
- 1 file changed, 8 insertions(+), 7 deletions(-)
+ drivers/pci/vgaarb.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/include/linux/vgaarb.h b/include/linux/vgaarb.h
-index 97129a1bbb7d..eed524c67c22 100644
---- a/include/linux/vgaarb.h
-+++ b/include/linux/vgaarb.h
-@@ -27,7 +27,8 @@ struct pci_dev;
+diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
+index 87143e235033..188885d30d41 100644
+--- a/drivers/pci/vgaarb.c
++++ b/drivers/pci/vgaarb.c
+@@ -1134,6 +1134,7 @@ static ssize_t vga_arb_write(struct file *file, const char __user *buf,
+ 	char kbuf[64], *curr_pos;
+ 	size_t remaining = count;
  
- #ifdef CONFIG_VGA_ARB
- void vga_set_legacy_decoding(struct pci_dev *pdev, unsigned int decodes);
--int vga_get(struct pci_dev *pdev, unsigned int rsrc, int interruptible);
-+int __must_check vga_get(struct pci_dev *pdev, unsigned int rsrc,
-+			 int interruptible);
- void vga_put(struct pci_dev *pdev, unsigned int rsrc);
- struct pci_dev *vga_default_device(void);
- void vga_set_default_device(struct pci_dev *pdev);
-@@ -39,8 +40,8 @@ static inline void vga_set_legacy_decoding(struct pci_dev *pdev,
- 		unsigned int decodes)
- {
- };
--static inline int vga_get(struct pci_dev *pdev, unsigned int rsrc,
--		int interruptible)
-+static inline int __must_check vga_get(struct pci_dev *pdev, unsigned int rsrc,
-+				       int interruptible)
- {
- 	return 0;
- }
-@@ -74,8 +75,8 @@ static inline int vga_client_register(struct pci_dev *pdev,
-  *
-  * On success, release the VGA resource again with vga_put().
-  */
--static inline int vga_get_interruptible(struct pci_dev *pdev,
--					unsigned int rsrc)
-+static inline int __must_check vga_get_interruptible(struct pci_dev *pdev,
-+						     unsigned int rsrc)
- {
- 	return vga_get(pdev, rsrc, 1);
- }
-@@ -89,8 +90,8 @@ static inline int vga_get_interruptible(struct pci_dev *pdev,
-  *
-  * On success, release the VGA resource again with vga_put().
-  */
--static inline int vga_get_uninterruptible(struct pci_dev *pdev,
--					  unsigned int rsrc)
-+static inline int __must_check vga_get_uninterruptible(struct pci_dev *pdev,
-+						       unsigned int rsrc)
- {
- 	return vga_get(pdev, rsrc, 0);
- }
++	int err;
+ 	int ret_val;
+ 	int i;
+ 
+@@ -1165,7 +1166,11 @@ static ssize_t vga_arb_write(struct file *file, const char __user *buf,
+ 			goto done;
+ 		}
+ 
+-		vga_get_uninterruptible(pdev, io_state);
++		err = vga_get_uninterruptible(pdev, io_state);
++		if (unlikely(err)) {
++			ret_val = err;
++			goto done;
++		}
+ 
+ 		/* Update the client's locks lists */
+ 		for (i = 0; i < MAX_USER_CARDS; i++) {
 -- 
 2.47.3
 
