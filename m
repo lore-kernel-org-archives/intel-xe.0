@@ -4,76 +4,168 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33028E9A04E
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 22:09:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F02DDE9A02C
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 22:25:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAC7910E639;
-	Wed, 18 Feb 2026 22:09:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B179D10E325;
+	Wed, 18 Feb 2026 22:25:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d1zACwV8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kd3cRTIO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0776910E630
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Feb 2026 22:09:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7562C10E325
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Feb 2026 22:25:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771452590; x=1802988590;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=oKk6HfRnzVjVrwwZhd6hT7VDRN8lfWT1ioBK+5PJQ2I=;
- b=d1zACwV85EI0nSoGKSYLUbBOOp/3q4V2DlWBofSi962TrS2Da24E2d6+
- DjweHccQwBnisTjV0JjWVIZnxPLh9z9M+9YV3DQW0uNCbqdz/jTp5ExSa
- P4CJF+6uJbJFQuqOoBuSInv72v8QtYnq5Y2dq06LQD/k21mRWlyZ05n/B
- s4porlD/aw8UCrZjafjc6+U8k2X6fSN0o2Y0DS2e7AinrS7wTHh6GBSnt
- hMEmjHdijW1o6FmuvXJSZFEwKn6zCRkDtFvfr4BubaHM5H93kHdGHcZwm
- jEjX0IE23lb4EVTNcuLLJwYb+o70rGQEqxvaw3dkypm+6w7+uDI2t1+g+ A==;
-X-CSE-ConnectionGUID: mTgVICeERA6fl63LiqtWBw==
-X-CSE-MsgGUID: zpncHj3wSjOnMMm9dr+p5A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="76399065"
-X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="76399065"
+ t=1771453511; x=1802989511;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=HH6zOuKr2L9o6jroOXdVZk8BcwzPxIHiYt6bFaAe8Pw=;
+ b=kd3cRTIOx2LAqqlzQHXM8RSP7I9CB2aOXh0TzPAUihuVQ7spx6n0ZiSS
+ t+wEW8708imV+DA4w5Rl97UHv9fFVRx1u/9Kah5uiADdRDjjcRyWzITwC
+ n3fNpE0fX3CO7YGfwuhWppMSDC62cf1AVcPEb7gZQNtEDj46AxS2yb6QN
+ Ek0+nhc9ftBRl41TbkEw/1KNYyElYYzxreqpbn91obH/MkPrKwRFEQxWb
+ QTQ9mVwPWqdCCnmW+TBLx5Y7VdgVDX0ukCEC2ttDplAfREcscsZLGDgv6
+ eLV+wn52zVvbUfsrOt223+ZLFHxujlv2EtaW/B7Tdr4mE6HW4CS/tYvgz Q==;
+X-CSE-ConnectionGUID: bnzjR/VtS/ylSooWdHMWzg==
+X-CSE-MsgGUID: EPg4GzoORwi1la9nIa74Wg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="83903321"
+X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="83903321"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 14:09:49 -0800
-X-CSE-ConnectionGUID: oRlEIJdIRr6LXfCFPrAt/w==
-X-CSE-MsgGUID: nkQhlz2qSV+NUd+0KNs44g==
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2026 14:25:10 -0800
+X-CSE-ConnectionGUID: 7DPfKNgRS+WMzG4wbCBrVA==
+X-CSE-MsgGUID: OyJsL8S/Sl2atn9ijOHKjg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="214329409"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.39.133])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 14:09:49 -0800
+X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="214333453"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2026 14:25:10 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Wed, 18 Feb 2026 14:25:09 -0800
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35 via Frontend Transport; Wed, 18 Feb 2026 14:25:09 -0800
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.9) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Wed, 18 Feb 2026 14:25:09 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=vs3Tw8YMandnMfmVxVT9ZIHAqqE2L6AdB3MmI2RS7ieYXP5redGkwhqVcpJBn+a0uZyrC+ZwOYlqNfmOQTL4QoTAkvOrkLvZ4ZrKbfapEv7gpWIKOuIBJj088cowfH/9TepJHMzM0jAmAk81KgPsWYgLRon2Ppok4Wwfbio5l+SMnVp0IPmoJryuZbkuO+ii+SkibOipZ8HOkE0JJhAedF6NL7F4VTRBFI7SARmGQkPgmnPR8Au3Zz6S44WKZ8O6Ka1in+qC81F4iyRdWf53YWgV0Hreso5V19QHJ104x724sv/aJq1iYGjFaFLSrZxb4cixPlct/Ts83n1eBatoCA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ocR3zBx0dGBHKxlbXl3xU9ZHugfrGemOBQYh2xcSsAE=;
+ b=UgUjUUqFkb0JsBGNyvFZnIxUgtVjJbiiw0yIHVbsNbiql6nQJum4ofsBGabtyWJ/rzcVqFMdgf9peLGTu6adTAYX3P1w0rpaxPJKitIuNkcb0htv3D9YpbR9qKrsCCqBPBOJDTIiLLE6gABAZqA76KqR4bV7QTpwJx37pFSoZeUZmwuK9VJbz2FOZ4vQrLah3ouLYeYpA6K5eIAnfx/T9/IsegYSOYLUKCy/4YZTcMuXHXVpXD+ZM+tn3IrYUx03agkQfjfOcWvpJgtWmzN5LFTA6TKVwVFSfMw18puJ/+xQBrZ0jtQlwQr1pTUczupHVzNwa/S01QksabGy7JiHTw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by BL4PR11MB8871.namprd11.prod.outlook.com (2603:10b6:208:5a8::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.13; Wed, 18 Feb
+ 2026 22:25:06 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e%7]) with mapi id 15.20.9632.010; Wed, 18 Feb 2026
+ 22:25:06 +0000
+Date: Wed, 18 Feb 2026 14:25:04 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
-Date: Wed, 18 Feb 2026 14:09:12 -0800
-Subject: [PATCH v4 1/4] drm/xe/reg_sr: Don't process gt/hwe lists in VF
+To: Harish Chegondi <harish.chegondi@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 1/3] drm/xe/xe2hpg: Remove SRIOV VF check for
+ Wa_18041344222
+Message-ID: <20260218222504.GV4694@mdroper-desk1.amr.corp.intel.com>
+References: <4043a30d6a971cda3c13145e081e4eed7cc4e440.1770760591.git.harish.chegondi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <4043a30d6a971cda3c13145e081e4eed7cc4e440.1770760591.git.harish.chegondi@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0067.namprd03.prod.outlook.com
+ (2603:10b6:a03:331::12) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260218-sr_verify-v4-1-35d6deeb3421@intel.com>
-References: <20260218-sr_verify-v4-0-35d6deeb3421@intel.com>
-In-Reply-To: <20260218-sr_verify-v4-0-35d6deeb3421@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>, 
- Ashutosh Dixit <ashutosh.dixit@intel.com>, 
- Harish Chegondi <harish.chegondi@intel.com>, 
- Matt Roper <matthew.d.roper@intel.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=10995;
- i=matthew.d.roper@intel.com; h=from:subject:message-id;
- bh=oKk6HfRnzVjVrwwZhd6hT7VDRN8lfWT1ioBK+5PJQ2I=;
- b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBpljisqthUrPq4aFKxqwqtuNfZBZ3/XeYzLr6lf
- 4kATEuyBA2JAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaZY4rAAKCRBNeSQFyHKQ
- BDGqD/9VyI+xYoRuPsTkCLY3MaKPvgXPqIlx6ACQSlwmxjig1VNmAACC+wXXbzCzwPZjv361k6i
- jCbSSRjZTTgEhvbFewtte1CcxnBjgjd85skevZQhxXfew1rQNEcwNjnLrsbCC/7+yIzBEBiMy4P
- 24FKkUVJ44SyEwYm7gyVVtfohBApwEQqzb5cG7rH+zM68iVKPpMshpgm2UvzdX1MuK/YLs/shUz
- G4U/yQwOEUtzmugQhFUfPat9b0pkZjzS2r5s5Zk8xblFXDYWebOpSJg9VSXhwwfvIR6t2+QJwvV
- p9BDJNjXUKMG34c/7CVsK3wT3JxmCjQRNZwh2lcMAUFoosVR8IWftLi/Qx9Rqq1v2w8poi0N+ZC
- Y2KWM0u4ceuRSSv9JpnkSeTh4ruGLDbjk3TqQ5VkddAH8NsPOFKTABo4BJXAQg/4LX3qu23Izmn
- xBF1TPKijLIxa2CMSTnHiiAIWzhSgqzh5TdWi+S+AOs90yIIm3isAJSYnzcRzPIh+XKynSnWkRD
- +gJMDJY7c8/fFJ40Fq2NdWZMBAaPB4Ej9d/Wqfgvng3uZ3jFPXXrJNsg+y0gnIN5nUjHBnx0mAT
- 3NrnukVsHz92b69Ul4ddbaE7+JJ4U+JG4wSYyMYWrT7UFJUBxN2Jle4CQoawXcZ1P4+2ozvwlK0
- QSh5gKOBvjmTPzQ==
-X-Developer-Key: i=matthew.d.roper@intel.com; a=openpgp;
- fpr=C267C309447FEB4F3F216DAC4D792405C8729004
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|BL4PR11MB8871:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5fd97917-77ce-473b-5747-08de6f3c9193
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?2GfBldx7hEVLfkocSov9I+klV1NC3NwoL3qJyJQxmVTtdpUTQ0MiwRYLAUiy?=
+ =?us-ascii?Q?L1dxOrQ2c2uXyG09FsYwFzmwD89z8uuWqtivavNbGLmjE2FLlJpeS4NSIleg?=
+ =?us-ascii?Q?zOvcIPvivYSzj2kYyvb9GyXL3Bgm9mBViorPx998lW9cAHKG9pvUR89yeJOX?=
+ =?us-ascii?Q?VR1nkJHsE+t+uXuw0XfeatCYcQnQY4Ra92GfVCHuT4H58Jg9j3F87EN70yxx?=
+ =?us-ascii?Q?9NwgqjKUhcL8to90Vsu6syv0Vm0Z77UIBw6V+Q94cEUMSHrjQZ1tr5BGnRtz?=
+ =?us-ascii?Q?rYwslmCEmnaPWhmmntgNCdSaiz5EVJbGQRQF8EcK7zcolu4QDtO3a5bFwtLS?=
+ =?us-ascii?Q?wnfgnn8E/29Suy4e9sdqZhOTKzOE6iECM3FnnISdofaDDxbyld09s3OrjIkR?=
+ =?us-ascii?Q?vEekVYjLJ3a+KahGLL+/DgAnJoJxaWJcuoNrcHlg1SxXGWtn9azOR+qNV0G7?=
+ =?us-ascii?Q?wNszEsTQvj1ehM47ZuHm4Jl+R5QTYKRDA6LOOlcb6g3tmV1/Xap9WoYL8ZDf?=
+ =?us-ascii?Q?J7aVvxO3nXdvdY+I+/R1U3Dosq5Ylcpl9sAj7dfg2PwwQwrFA8wYY7AuVpBA?=
+ =?us-ascii?Q?KJDfOAx60f3WJRKzvK3rAbt2MHnI322F6gp1tOEc+9L2WjpGXR+fVFlWXuMf?=
+ =?us-ascii?Q?MNNankqpZzkFOGqtVZ846NJg4LFKetCvfWQ5MTwjH5lGd6Us8znaJxi8UAzy?=
+ =?us-ascii?Q?dI9+4JEMgIJf0O+waAAHPoOxXsUAuO+YAd7UMx70oA5fz1Fq3uCxa8m/NsOS?=
+ =?us-ascii?Q?HSL7sPvS3yc+QxG+ieTSdWxzkimDAvlmq61ikw2yEw90INrZ0uoFc5K7z1yl?=
+ =?us-ascii?Q?gORtmZXY+pmayOMfCjdW3hIBiw9IqNZlEV0whlLJjkChgFmS1ImvjawdMKKO?=
+ =?us-ascii?Q?+ehfyu335I/cIs+hdgCytK/P8AO1U7KFpnn3fevVlx5DYRq4TMd9UmSiZreR?=
+ =?us-ascii?Q?yzFf6m9EG6QPcc34uJRI58S7lmvZzlnA3xn0+lgXhpjC8HHpIIbZvgiODbcY?=
+ =?us-ascii?Q?TyK7oebpKG7YTj8+NzhFKfzg3ZNUTrQApMDIQJpbuqDG0fhFTiPNpQlts93J?=
+ =?us-ascii?Q?0PnkU4VCO1f+wUcEM8a0RDGuJ2yMp1MdxPsfVP2YfrPzPkmNG7euhFZKO0k7?=
+ =?us-ascii?Q?gIF3Dx/uTPZj/lI7yh8DnukavZKOEV94kCbychjt6bqCBSsUhaRaXDPbWl5r?=
+ =?us-ascii?Q?8G4pZcWDo2nWwyWllHsETbzk9/gkDGLkKejBq7SvaZ4fk+ihmwZW5mcrL6qP?=
+ =?us-ascii?Q?vyOAz9CvgCbKj691Xry10YssCVZIPpEbHhgTSujLwSHfrOGE1i5u/TGmYlYV?=
+ =?us-ascii?Q?3lWLy6/L/XPSzOCifEjZlvNFAtmNOsFykkjon2tMXSzzPC2iDiEUiV0sfMXJ?=
+ =?us-ascii?Q?cKcSh30Gq3vus/5V3rrL8jNRAIrfsLVNs+u2ZEu0TTwBa6BI5Grs5JDln4fk?=
+ =?us-ascii?Q?gqbl0kyHnIFZ2/3whklScPWezBcZHMICPWvP3WA55AcZysRknakggSZH8oLg?=
+ =?us-ascii?Q?zcwrDHWWFmIEIFOI7SoRA6doRRV0y6ZZxC6XuA36ATI4jMqoekxfcY8Exjxc?=
+ =?us-ascii?Q?Fs+5tEkADNmAetdQ0Qc=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Oh+Ogg4zVsQNcpwCVY6V8hW4pIA9agKiwj0V9ZjNGDMm700mnQN+iWO3bMNb?=
+ =?us-ascii?Q?k+jkr/14XlcOC4wIIGF/A6JGGB9w6Fq+KFrooCQky5gj4cvx3XGjs0W6hmjO?=
+ =?us-ascii?Q?Supf3CgxWUTxm4VF3G5Zo1rISCwQTh+lXAmuYkAhTqHXnW+WMJV1O4UdLePj?=
+ =?us-ascii?Q?CvnfcgaaTJalJXV3m9YU9sSp8nWfoX/X6xT/X+nTuWTPM6P+Zzhv7vVRchzI?=
+ =?us-ascii?Q?mMSUkORzyc41DyzR8yVGLYeY8u6EfQK50yNp/KJ5SY5JOCzQHysZvYdtB/TI?=
+ =?us-ascii?Q?owPPUdrb9KZHmAa+fvwhzGAA4Yt2//ZANxGq291C2a20sXHwzpnBcFa7oTg1?=
+ =?us-ascii?Q?5sv7M7+mkEq2KAAfyLrkfgezaP+VpVLOGSI+LXfhOs2Onv0iJ3+wtSOfVVwY?=
+ =?us-ascii?Q?PsLIRe0sEADpcNauUgFvt6rFv1/N9X7iCqjg3NVGVdRD7jvH9yj1DAYWdyiN?=
+ =?us-ascii?Q?I7QwKiO+ApTcsRDDGtLlKJpWCJzhQoHlUBFuRBrgyuqHxamkI3gyHkH2y5ih?=
+ =?us-ascii?Q?jeYsgc3SRkQ6wM9B3JifdZAPpwOx/9moR/rdR5gA7yFUHvYX9CwNCtV2Fxzj?=
+ =?us-ascii?Q?8mRg+H5e0N//N+XltWXz+nJ4lucyWHaj6+Dz74mznFQIcIItNBig5ytvwShq?=
+ =?us-ascii?Q?+5IL6ahFR3hZ5hgjtGosEZP6gPW6t5LqK6AW5uWlzfS7X7Z+FXKePoMf20PL?=
+ =?us-ascii?Q?p2NMMH7YL0/GvhTGUSAgxm6d9KQy4HS+NeAnv2vnvLPktSDGOrjAFgunt/hS?=
+ =?us-ascii?Q?EwTUTkKFPqyAUOc8nPvGJHEDqwWQYO70exDrXu9/AzMer1rabGdBcXqpj8xM?=
+ =?us-ascii?Q?O0jrfb7AXINY5x21aC75X/ZyOdeVo6C8Jk4DEAZhVyEIHEWko4Ghr6oQDZ0X?=
+ =?us-ascii?Q?gUrB51kjdZbzgUMV3dN1xLu3Jo91BpX99qjTwG4TQSW1abJ4JE2UxY6vJyqW?=
+ =?us-ascii?Q?5zlFesIu7MYdOhxg9qUhd7D8MxBqsBDCKD/IRnglS1Dav9aliaW3APJ3H/mG?=
+ =?us-ascii?Q?hugqOAztUWlQy0jcFEfkot2GHUw5L0vjEdbNZHTzIN+P9DuLSmtw/gl8mlLq?=
+ =?us-ascii?Q?mgcRmzuboz/9X6LHrdleALr8iPpzhNfsMMa9kxUhBX5a1qoeqp+KXzJcU4SB?=
+ =?us-ascii?Q?dCXx8B4jLm3Mmdqq0vxziykrQJXYe74Ygm46JGmzkGKvJydR7AUoMN6+AH1b?=
+ =?us-ascii?Q?hCaKI10sOdgVOQ4IafboGVXjdH0wbtIiz/i4Yex+p/x1XkMfbSAYRfJ0l3nO?=
+ =?us-ascii?Q?RrW4plGxoPQyq03lpZ6gvhvJK7ZHBtRA4bi5TpQ345q3BdVmDFaiTmkDXhF7?=
+ =?us-ascii?Q?VBaimsadRzBibeFn/+eK9FdFDIv9MeaN9H3Zy7g4fmkI8cc1INW1ui2HoRB2?=
+ =?us-ascii?Q?rLYIC911dTJYw/oLRh5z9eFL40k3JVvqW0IF5TyLyx/JcAMYYNefDD/ATWFo?=
+ =?us-ascii?Q?ntb0OoNUWv9tq9qujHR/QVG4GR277sX1eAYZbDLjBtM29TQ2m/eHFHaYIilr?=
+ =?us-ascii?Q?DuV2khPiy/5QGb8gRaX+BguTA183HXIrc7SRn3AYBwNNZ0xYf8gsYTVWRLh6?=
+ =?us-ascii?Q?zgnZD4GHuiI2hPtUM4NmtChIe93ORVvl+E3k1+V+Jt7sCVGo8C9FpBdaRIGt?=
+ =?us-ascii?Q?Qfr2ba/3sVV/IkI6ovKHL1VMHVjHPue4Q5Is13H/uIdFSLEv0e+/Z8Yy01+Q?=
+ =?us-ascii?Q?bIr7uw3x6aCSuJUjLaOYoZLYe+WzW3n7IHDyImJildeUiMYUzxLZSonb/HbZ?=
+ =?us-ascii?Q?h4ZWUj85M1tYf0gRo9Q+4wZTuQCaoC8=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5fd97917-77ce-473b-5747-08de6f3c9193
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2026 22:25:06.5840 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LTG74jq2f4y6JMpYz8cH1j6jIj42Jybi1UrbbFQMCpmmH/JGn3OtXfGVbldIT3WbpQYu7oZz0kLGJQpM7hzwe6TTijAtip2frhSjGZV+9dE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL4PR11MB8871
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,264 +180,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There are a few different reg_sr lists managed by the driver for
-workarounds/tuning:
+On Tue, Feb 10, 2026 at 01:58:25PM -0800, Harish Chegondi wrote:
+> Engine WAs are not applied for SRIOV VF, even though they are processed.
+> Remove the SRIOV VF check.
+> 
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
 
- - gt->reg_sr
- - hwe->reg_sr
- - hwe->reg_lrc
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-The first two are not relevant to SRIOV VFs; a VF KMD does not have
-access to the registers that appear on this list and it is the PF KMD's
-responsibility to apply such programming on behalf of the entire system.
-However the third list contains per-client values that the VF KMD needs
-to ensure are incorporated whenever a new LRC is created.
-
-Handling of reg_sr lists comes in two steps: processing an RTP table to
-build a reg_sr from the relevant entries, and then applying the contents
-of the reg_sr.  Skipping the RTP processing (resulting in an empty
-reg_sr) or skipping the application of a reg_sr are both valid ways to
-avoid having a VF accidentally try to write registers it doesn't have
-access to.  In commit c19e705ec981 ("drm/xe/vf: Stop applying
-save-restore MMIOs if VF") and commit 92a5bd302458 ("drm/xe/vf: Unblock
-xe_rtp_process_to_sr for VFs") we adjusted the drivers behavior to
-always process the RTP table into a reg_sr and just skipped the
-application step.  This works fine functionally, but can lead to
-confusion during debugging since facilities like the debugfs
-'register-save-restore' will still report a bunch of registers that the
-VF KMD isn't actually trying to handle.  It will also mislead other
-upcoming debug changes.
-
-Let's go back to skipping the RTP => reg_sr processing step, but only
-for GT / hwe tables this time.  This will allow LRC reg_sr handling to
-continue to work, but will ensure that gt->reg_sr and hwe->reg_sr remain
-empty and that debugfs reporting more accurately reflects the KMD's
-behavior.
-
-v2:
- - Also skip the hwe processing in hw_engine_setup_default_state() and
-   xe_reg_whitelist_process_engine().
-
-v3:
- - Handle skipping via an additional parameter passed to
-   xe_rtp_process_to_sr() rather than adding conditions at each
-   callsite.  (Ashutosh)
-
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Cc: Harish Chegondi <harish.chegondi@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/tests/xe_rtp_test.c | 3 ++-
- drivers/gpu/drm/xe/xe_hw_engine.c      | 6 ++++--
- drivers/gpu/drm/xe/xe_reg_sr.c         | 8 ++++++--
- drivers/gpu/drm/xe/xe_reg_whitelist.c  | 2 +-
- drivers/gpu/drm/xe/xe_rtp.c            | 8 +++++++-
- drivers/gpu/drm/xe/xe_rtp.h            | 3 ++-
- drivers/gpu/drm/xe/xe_tuning.c         | 9 ++++++---
- drivers/gpu/drm/xe/xe_wa.c             | 9 ++++++---
- 8 files changed, 34 insertions(+), 14 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/tests/xe_rtp_test.c b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-index d2255a59e58f919fa9a09e8a383a29d60dab9527..e5a0f985a700b8b69024c1f3ddec267f45cf7ddc 100644
---- a/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-+++ b/drivers/gpu/drm/xe/tests/xe_rtp_test.c
-@@ -322,7 +322,8 @@ static void xe_rtp_process_to_sr_tests(struct kunit *test)
- 		count_rtp_entries++;
- 
- 	xe_rtp_process_ctx_enable_active_tracking(&ctx, &active, count_rtp_entries);
--	xe_rtp_process_to_sr(&ctx, param->entries, count_rtp_entries, reg_sr);
-+	xe_rtp_process_to_sr(&ctx, param->entries, count_rtp_entries,
-+			     reg_sr, false);
- 
- 	xa_for_each(&reg_sr->xa, idx, sre) {
- 		if (idx == param->expected_reg.addr)
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index 4d3ee5226e3ac7f2d539f9aac0df9f2b16410a8d..05810428236e8ceddad2e13e28b42daa4790b6c3 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -408,7 +408,8 @@ xe_hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe)
- 		},
- 	};
- 
--	xe_rtp_process_to_sr(&ctx, lrc_setup, ARRAY_SIZE(lrc_setup), &hwe->reg_lrc);
-+	xe_rtp_process_to_sr(&ctx, lrc_setup, ARRAY_SIZE(lrc_setup),
-+			     &hwe->reg_lrc, true);
- }
- 
- static void
-@@ -472,7 +473,8 @@ hw_engine_setup_default_state(struct xe_hw_engine *hwe)
- 		},
- 	};
- 
--	xe_rtp_process_to_sr(&ctx, engine_entries, ARRAY_SIZE(engine_entries), &hwe->reg_sr);
-+	xe_rtp_process_to_sr(&ctx, engine_entries, ARRAY_SIZE(engine_entries),
-+			     &hwe->reg_sr, false);
- }
- 
- static const struct engine_info *find_engine_info(enum xe_engine_class class, int instance)
-diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-index d3e13ea33123c2030eb3d16d9b8da00b081441db..1ac911fc6e943ce05b8ac7cef33bc23d872d5ec4 100644
---- a/drivers/gpu/drm/xe/xe_reg_sr.c
-+++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-@@ -13,6 +13,7 @@
- #include <drm/drm_managed.h>
- #include <drm/drm_print.h>
- 
-+#include "xe_assert.h"
- #include "xe_device.h"
- #include "xe_device_types.h"
- #include "xe_force_wake.h"
-@@ -169,8 +170,11 @@ void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt)
- 	if (xa_empty(&sr->xa))
- 		return;
- 
--	if (IS_SRIOV_VF(gt_to_xe(gt)))
--		return;
-+	/*
-+	 * We don't process non-LRC reg_sr lists in VF, so they should have
-+	 * been empty in the check above.
-+	 */
-+	xe_gt_assert(gt, !IS_SRIOV_VF(gt_to_xe(gt)));
- 
- 	xe_gt_dbg(gt, "Applying %s save-restore MMIOs\n", sr->name);
- 
-diff --git a/drivers/gpu/drm/xe/xe_reg_whitelist.c b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-index 728aba8dbd958740b1711db9a1aa78fe2efc8d43..80577e4b7437ca2e65d1a94f6869446a3de0b4b0 100644
---- a/drivers/gpu/drm/xe/xe_reg_whitelist.c
-+++ b/drivers/gpu/drm/xe/xe_reg_whitelist.c
-@@ -189,7 +189,7 @@ void xe_reg_whitelist_process_engine(struct xe_hw_engine *hwe)
- 	struct xe_rtp_process_ctx ctx = XE_RTP_PROCESS_CTX_INITIALIZER(hwe);
- 
- 	xe_rtp_process_to_sr(&ctx, register_whitelist, ARRAY_SIZE(register_whitelist),
--			     &hwe->reg_whitelist);
-+			     &hwe->reg_whitelist, false);
- 	whitelist_apply_to_hwe(hwe);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index b7c26e2fb411ea75fbd484b55f48019fc09f0581..7bfdc6795ce6fd3d2c8c9d1398c7b72ff476b96d 100644
---- a/drivers/gpu/drm/xe/xe_rtp.c
-+++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -270,6 +270,8 @@ static void rtp_mark_active(struct xe_device *xe,
-  * @sr: Save-restore struct where matching rules execute the action. This can be
-  *      viewed as the "coalesced view" of multiple the tables. The bits for each
-  *      register set are expected not to collide with previously added entries
-+ * @process_in_vf: Whether this RTP table should get processed for SR-IOV VF
-+ *      devices.  Should generally only be 'true' for LRC tables.
-  *
-  * Walk the table pointed by @entries (with an empty sentinel) and add all
-  * entries with matching rules to @sr. If @hwe is not NULL, its mmio_base is
-@@ -278,7 +280,8 @@ static void rtp_mark_active(struct xe_device *xe,
- void xe_rtp_process_to_sr(struct xe_rtp_process_ctx *ctx,
- 			  const struct xe_rtp_entry_sr *entries,
- 			  size_t n_entries,
--			  struct xe_reg_sr *sr)
-+			  struct xe_reg_sr *sr,
-+			  bool process_in_vf)
- {
- 	const struct xe_rtp_entry_sr *entry;
- 	struct xe_hw_engine *hwe = NULL;
-@@ -287,6 +290,9 @@ void xe_rtp_process_to_sr(struct xe_rtp_process_ctx *ctx,
- 
- 	rtp_get_context(ctx, &hwe, &gt, &xe);
- 
-+	if (!process_in_vf && IS_SRIOV_VF(xe))
-+		return;
-+
- 	xe_assert(xe, entries);
- 
- 	for (entry = entries; entry - entries < n_entries; entry++) {
-diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
-index ba5f940c0a961e10effd457c6d631de2170aa39e..be4195264286378d390540fea97b030166df4172 100644
---- a/drivers/gpu/drm/xe/xe_rtp.h
-+++ b/drivers/gpu/drm/xe/xe_rtp.h
-@@ -431,7 +431,8 @@ void xe_rtp_process_ctx_enable_active_tracking(struct xe_rtp_process_ctx *ctx,
- 
- void xe_rtp_process_to_sr(struct xe_rtp_process_ctx *ctx,
- 			  const struct xe_rtp_entry_sr *entries,
--			  size_t n_entries, struct xe_reg_sr *sr);
-+			  size_t n_entries, struct xe_reg_sr *sr,
-+			  bool process_in_vf);
- 
- void xe_rtp_process(struct xe_rtp_process_ctx *ctx,
- 		    const struct xe_rtp_entry *entries);
-diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
-index 316f5e2b2e481e5ef0502001ba9ffb9bb0e8abcb..ea90e8c9975488dc191aca87047e79bac86346f1 100644
---- a/drivers/gpu/drm/xe/xe_tuning.c
-+++ b/drivers/gpu/drm/xe/xe_tuning.c
-@@ -15,6 +15,7 @@
- #include "xe_gt_types.h"
- #include "xe_platform_types.h"
- #include "xe_rtp.h"
-+#include "xe_sriov.h"
- 
- #undef XE_REG_MCR
- #define XE_REG_MCR(...)     XE_REG(__VA_ARGS__, .mcr = 1)
-@@ -200,7 +201,8 @@ void xe_tuning_process_gt(struct xe_gt *gt)
- 	xe_rtp_process_ctx_enable_active_tracking(&ctx,
- 						  gt->tuning_active.gt,
- 						  ARRAY_SIZE(gt_tunings));
--	xe_rtp_process_to_sr(&ctx, gt_tunings, ARRAY_SIZE(gt_tunings), &gt->reg_sr);
-+	xe_rtp_process_to_sr(&ctx, gt_tunings, ARRAY_SIZE(gt_tunings),
-+			     &gt->reg_sr, false);
- }
- EXPORT_SYMBOL_IF_KUNIT(xe_tuning_process_gt);
- 
-@@ -212,7 +214,7 @@ void xe_tuning_process_engine(struct xe_hw_engine *hwe)
- 						  hwe->gt->tuning_active.engine,
- 						  ARRAY_SIZE(engine_tunings));
- 	xe_rtp_process_to_sr(&ctx, engine_tunings, ARRAY_SIZE(engine_tunings),
--			     &hwe->reg_sr);
-+			     &hwe->reg_sr, false);
- }
- EXPORT_SYMBOL_IF_KUNIT(xe_tuning_process_engine);
- 
-@@ -231,7 +233,8 @@ void xe_tuning_process_lrc(struct xe_hw_engine *hwe)
- 	xe_rtp_process_ctx_enable_active_tracking(&ctx,
- 						  hwe->gt->tuning_active.lrc,
- 						  ARRAY_SIZE(lrc_tunings));
--	xe_rtp_process_to_sr(&ctx, lrc_tunings, ARRAY_SIZE(lrc_tunings), &hwe->reg_lrc);
-+	xe_rtp_process_to_sr(&ctx, lrc_tunings, ARRAY_SIZE(lrc_tunings),
-+			     &hwe->reg_lrc, true);
- }
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 61c4187dc0aee2e86010af36536eff56041f982f..e6b7f65f2fc1105966064567930ede100341709d 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -1005,7 +1005,8 @@ void xe_wa_process_gt(struct xe_gt *gt)
- 
- 	xe_rtp_process_ctx_enable_active_tracking(&ctx, gt->wa_active.gt,
- 						  ARRAY_SIZE(gt_was));
--	xe_rtp_process_to_sr(&ctx, gt_was, ARRAY_SIZE(gt_was), &gt->reg_sr);
-+	xe_rtp_process_to_sr(&ctx, gt_was, ARRAY_SIZE(gt_was),
-+			     &gt->reg_sr, false);
- }
- EXPORT_SYMBOL_IF_KUNIT(xe_wa_process_gt);
- 
-@@ -1023,7 +1024,8 @@ void xe_wa_process_engine(struct xe_hw_engine *hwe)
- 
- 	xe_rtp_process_ctx_enable_active_tracking(&ctx, hwe->gt->wa_active.engine,
- 						  ARRAY_SIZE(engine_was));
--	xe_rtp_process_to_sr(&ctx, engine_was, ARRAY_SIZE(engine_was), &hwe->reg_sr);
-+	xe_rtp_process_to_sr(&ctx, engine_was, ARRAY_SIZE(engine_was),
-+			     &hwe->reg_sr, false);
- }
- 
- /**
-@@ -1040,7 +1042,8 @@ void xe_wa_process_lrc(struct xe_hw_engine *hwe)
- 
- 	xe_rtp_process_ctx_enable_active_tracking(&ctx, hwe->gt->wa_active.lrc,
- 						  ARRAY_SIZE(lrc_was));
--	xe_rtp_process_to_sr(&ctx, lrc_was, ARRAY_SIZE(lrc_was), &hwe->reg_lrc);
-+	xe_rtp_process_to_sr(&ctx, lrc_was, ARRAY_SIZE(lrc_was),
-+			     &hwe->reg_lrc, true);
- }
- 
- /**
+> ---
+>  drivers/gpu/drm/xe/xe_wa.c | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+> index 1e8d61ac581b..c9ca74cb77f1 100644
+> --- a/drivers/gpu/drm/xe/xe_wa.c
+> +++ b/drivers/gpu/drm/xe/xe_wa.c
+> @@ -626,7 +626,6 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+>  	{ XE_RTP_NAME("18041344222"),
+>  	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 2002),
+>  		       FUNC(xe_rtp_match_first_render_or_compute),
+> -		       FUNC(xe_rtp_match_not_sriov_vf),
+>  		       FUNC(xe_rtp_match_gt_has_discontiguous_dss_groups)),
+>  	  XE_RTP_ACTIONS(SET(TDL_CHICKEN, EUSTALL_PERF_SAMPLING_DISABLE))
+>  	},
+> -- 
+> 2.43.0
+> 
 
 -- 
-2.53.0
-
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
