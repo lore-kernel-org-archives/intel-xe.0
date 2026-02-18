@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E7D1E9A02C
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 15:28:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57903E9A02C
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 15:28:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05EB210E0F8;
-	Wed, 18 Feb 2026 15:28:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15B7010E5D2;
+	Wed, 18 Feb 2026 15:28:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yse2d71K";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kZkMgKW7";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9494110E0F8;
- Wed, 18 Feb 2026 15:28:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 95F1510E2F7;
+ Wed, 18 Feb 2026 15:28:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771428491; x=1802964491;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=aEOPKcYceOkY3P0UI3fDpZA26VpXWiqTOPgXT8DXaEg=;
- b=Yse2d71K6j1tyhHj0LqONII6AtDsdizcVBg8eQBL9K72awDxmsTTAuZi
- 29E0qk2VSF/RDP89zgUqmOhOKqaVMQTzuANVRR60c+TIG9QzERV8ythOZ
- D7Sk6KI62TmQfYv15Q/MTcXQ4U0Kn82TKWm9dxofhXGReZ8GtbpwAIMY2
- bN2wROH+bA4ilpl0r/NSM9pS6DK0sExT3Bc1m5BR3l6hrkV43/kEoXNYg
- 7US0KkF/14N7aqeSoQxXDwwkK10SJoa4LksKFOUZnyC69EQnddRw6c3cZ
- 3C5W0mc45qrZ9EupNdkfpf19K2eVKIsHzD3vR/FX4w9ppnhM8gOiFYra2 g==;
-X-CSE-ConnectionGUID: Uk0uu1EUQwuw0OtlWd+GOA==
-X-CSE-MsgGUID: zdhRSoUdSnuOHHQVjps/QA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="72420142"
-X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="72420142"
+ t=1771428495; x=1802964495;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=g94edSlO9F6wjXDCpEvw4+94+e0kDGo/rNbgPHuN7gA=;
+ b=kZkMgKW7EyOPVz891jVVKA4AglsUgtPu3wNYpyCBW+qGj6yBkLN+/b/Q
+ sSIOs/QbJEDMzH9x2IfXe2oAxTXfvRAjii8NRIeqqmZ+zZjnht9loVHWu
+ u/lIiOutMTlK4BeCuGdOa/3j/lrlYLmrhtL8awZd9V7PGHiJr2IWmOloP
+ vPCHIb0Lahpyc+GWEH/xcVpUdh+crNG1hz35JrqrNmKQPj36rsqme0SA1
+ Pu95FTTnvOTSmfRvJYmM6W4ZM+ZzlykvVZAVQtGmRpz1+muPsyXnuewT5
+ wpvGXYGWNVdZjwzcd/MIDVcB+MN556c69KHlAmcUNTZBk4lZ5w8g+98jZ g==;
+X-CSE-ConnectionGUID: 9ZYNRC2WThKk2wyCkPyz2g==
+X-CSE-MsgGUID: CyQfVvo+S12cycuGt5XJjg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="72420147"
+X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="72420147"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 07:28:11 -0800
-X-CSE-ConnectionGUID: WwdoTs4uTM2QQyEL2j03XQ==
-X-CSE-MsgGUID: dBpQFWsTTcOcn43oF6PVHw==
+ 18 Feb 2026 07:28:15 -0800
+X-CSE-ConnectionGUID: 8ClMZVA4SmWn1/KsuQL2XQ==
+X-CSE-MsgGUID: vffumlgNRL2x8Ib+Jwaiyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="214335047"
+X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="214335071"
 Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.244.66])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 07:28:10 -0800
+ 18 Feb 2026 07:28:14 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 00/19] drm/i915/overlay: Convert to parent interface
-Date: Wed, 18 Feb 2026 17:27:47 +0200
-Message-ID: <20260218152806.18885-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH 01/19] drm/i915/overlay: Remove GPU hang snapshot stuff
+Date: Wed, 18 Feb 2026 17:27:48 +0200
+Message-ID: <20260218152806.18885-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260218152806.18885-1-ville.syrjala@linux.intel.com>
+References: <20260218152806.18885-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
@@ -70,57 +72,188 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Split the overlay code into i915 vs. display parts and introduce
-and new parent interface for the display->i915 calls.
+The overlay snapshot stuff is a bit annoying because some of
+it more or less of belongs on the gt side, and some on the
+display side. Remove the whole thing to avoid having to deal
+with it when splitting the overlay code around the i915
+vs. display boundary. I don't think I've ever actually used
+this for anything, so no real loss from my POV. And it can
+always be resurrected later should the need arise.
 
-The interface is rather verbose due to the interruptible ioctl
-design of the overlay code. Ideally we'd implement the overlay
-as a drm plane and tell it to flip via MMIO writes to OVADD,
-at which point the parent interface could be limited to just
-two functions to repartition the render cache as needed.
-Maybe one day...
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ .../drm/i915/display/intel_display_snapshot.c |  4 -
+ drivers/gpu/drm/i915/display/intel_overlay.c  | 89 -------------------
+ drivers/gpu/drm/i915/display/intel_overlay.h  | 18 ----
+ 3 files changed, 111 deletions(-)
 
-Smoke tested on i830 and i965gm.
-
-Ville Syrjälä (19):
-  drm/i915/overlay: Remove GPU hang snapshot stuff
-  drm/i915/overlay: Track current frontbuffer_bits
-  drm/i915/overlay: Extract i915_overlay_is_active()
-  drm/i915/overlay: Remove redundant overlay->active
-  drm/i915/overlay: Relocate the underrun check
-  drm/i915/overlay: Introduce i915_overlay_obj_lookup()
-  drm/i915/overlay: Use struct drm_gem_object as the type
-  drm/i915/overlay: Extract i915_overlay_reset()
-  drm/i915/overlay: Extract i915_overlay_setup()
-  drm/i915/overlay: Extract i915_overlay_cleanup()
-  drm/i915/overlay: Abstract buffer (un)pinning
-  drm/i915/overlay: Rename low level i915 specific functions
-  drm/i915/overlay: Adjust i915 specific interfaces
-  drm/i915/overlay: Make i830_overlay_clock_gating() i915 specific
-  drm/i915/overlay: s/dev_priv/i915/
-  drm/i915/overlay: Split 'struct intel_overlay'
-  drm/i915/overlay: Don't use fetch_and_zero() in display code
-  drm/i915/overlay: Move i915 specific code into i915_overlay.c
-  drm/i915/overlay: Convert overlay to parent interface
-
- drivers/gpu/drm/i915/Makefile                 |   1 +
- .../gpu/drm/i915/display/intel_display_regs.h |   2 -
- .../drm/i915/display/intel_display_snapshot.c |   4 -
- drivers/gpu/drm/i915/display/intel_overlay.c  | 584 ++----------------
- drivers/gpu/drm/i915/display/intel_overlay.h  |  48 --
- drivers/gpu/drm/i915/display/intel_parent.c   |  76 +++
- drivers/gpu/drm/i915/display/intel_parent.h   |  26 +
- drivers/gpu/drm/i915/i915_driver.c            |   2 +
- drivers/gpu/drm/i915/i915_drv.h               |   3 +
- drivers/gpu/drm/i915/i915_overlay.c           | 517 ++++++++++++++++
- drivers/gpu/drm/i915/i915_overlay.h           |  11 +
- drivers/gpu/drm/i915/i915_reg.h               |   4 +
- drivers/gpu/drm/xe/Makefile                   |   1 +
- include/drm/intel/display_parent_interface.h  |  33 +
- 14 files changed, 726 insertions(+), 586 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/i915_overlay.c
- create mode 100644 drivers/gpu/drm/i915/i915_overlay.h
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_snapshot.c b/drivers/gpu/drm/i915/display/intel_display_snapshot.c
+index 66087302fdbc..74072562af8f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_snapshot.c
++++ b/drivers/gpu/drm/i915/display/intel_display_snapshot.c
+@@ -19,7 +19,6 @@ struct intel_display_snapshot {
+ 	struct intel_display_device_info info;
+ 	struct intel_display_runtime_info runtime_info;
+ 	struct intel_display_params params;
+-	struct intel_overlay_snapshot *overlay;
+ 	struct intel_dmc_snapshot *dmc;
+ 	struct intel_display_irq_snapshot *irq;
+ };
+@@ -41,7 +40,6 @@ struct intel_display_snapshot *intel_display_snapshot_capture(struct intel_displ
+ 	intel_display_params_copy(&snapshot->params);
+ 
+ 	snapshot->irq = intel_display_irq_snapshot_capture(display);
+-	snapshot->overlay = intel_overlay_snapshot_capture(display);
+ 	snapshot->dmc = intel_dmc_snapshot_capture(display);
+ 
+ 	return snapshot;
+@@ -61,7 +59,6 @@ void intel_display_snapshot_print(const struct intel_display_snapshot *snapshot,
+ 	intel_display_params_dump(&snapshot->params, display->drm->driver->name, p);
+ 
+ 	intel_display_irq_snapshot_print(snapshot->irq, p);
+-	intel_overlay_snapshot_print(snapshot->overlay, p);
+ 	intel_dmc_snapshot_print(snapshot->dmc, p);
+ }
+ 
+@@ -73,7 +70,6 @@ void intel_display_snapshot_free(struct intel_display_snapshot *snapshot)
+ 	intel_display_params_free(&snapshot->params);
+ 
+ 	kfree(snapshot->irq);
+-	kfree(snapshot->overlay);
+ 	kfree(snapshot->dmc);
+ 	kfree(snapshot);
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
+index e7838f4d2dac..33a38d116c90 100644
+--- a/drivers/gpu/drm/i915/display/intel_overlay.c
++++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+@@ -1464,92 +1464,3 @@ void intel_overlay_cleanup(struct intel_display *display)
+ 
+ 	kfree(overlay);
+ }
+-
+-#if IS_ENABLED(CONFIG_DRM_I915_CAPTURE_ERROR)
+-
+-struct intel_overlay_snapshot {
+-	struct overlay_registers regs;
+-	unsigned long base;
+-	u32 dovsta;
+-	u32 isr;
+-};
+-
+-struct intel_overlay_snapshot *
+-intel_overlay_snapshot_capture(struct intel_display *display)
+-{
+-	struct intel_overlay *overlay = display->overlay;
+-	struct intel_overlay_snapshot *error;
+-
+-	if (!overlay || !overlay->active)
+-		return NULL;
+-
+-	error = kmalloc(sizeof(*error), GFP_ATOMIC);
+-	if (error == NULL)
+-		return NULL;
+-
+-	error->dovsta = intel_de_read(display, DOVSTA);
+-	error->isr = intel_de_read(display, GEN2_ISR);
+-	error->base = overlay->flip_addr;
+-
+-	memcpy_fromio(&error->regs, overlay->regs, sizeof(error->regs));
+-
+-	return error;
+-}
+-
+-void
+-intel_overlay_snapshot_print(const struct intel_overlay_snapshot *error,
+-			     struct drm_printer *p)
+-{
+-	if (!error)
+-		return;
+-
+-	drm_printf(p, "Overlay, status: 0x%08x, interrupt: 0x%08x\n",
+-		   error->dovsta, error->isr);
+-	drm_printf(p, "  Register file at 0x%08lx:\n", error->base);
+-
+-#define P(x) drm_printf(p, "    " #x ": 0x%08x\n", error->regs.x)
+-	P(OBUF_0Y);
+-	P(OBUF_1Y);
+-	P(OBUF_0U);
+-	P(OBUF_0V);
+-	P(OBUF_1U);
+-	P(OBUF_1V);
+-	P(OSTRIDE);
+-	P(YRGB_VPH);
+-	P(UV_VPH);
+-	P(HORZ_PH);
+-	P(INIT_PHS);
+-	P(DWINPOS);
+-	P(DWINSZ);
+-	P(SWIDTH);
+-	P(SWIDTHSW);
+-	P(SHEIGHT);
+-	P(YRGBSCALE);
+-	P(UVSCALE);
+-	P(OCLRC0);
+-	P(OCLRC1);
+-	P(DCLRKV);
+-	P(DCLRKM);
+-	P(SCLRKVH);
+-	P(SCLRKVL);
+-	P(SCLRKEN);
+-	P(OCONFIG);
+-	P(OCMD);
+-	P(OSTART_0Y);
+-	P(OSTART_1Y);
+-	P(OSTART_0U);
+-	P(OSTART_0V);
+-	P(OSTART_1U);
+-	P(OSTART_1V);
+-	P(OTILEOFF_0Y);
+-	P(OTILEOFF_1Y);
+-	P(OTILEOFF_0U);
+-	P(OTILEOFF_0V);
+-	P(OTILEOFF_1U);
+-	P(OTILEOFF_1V);
+-	P(FASTHSCALE);
+-	P(UVSCALEV);
+-#undef P
+-}
+-
+-#endif
+diff --git a/drivers/gpu/drm/i915/display/intel_overlay.h b/drivers/gpu/drm/i915/display/intel_overlay.h
+index d259e4c74b03..4ef6882b9acb 100644
+--- a/drivers/gpu/drm/i915/display/intel_overlay.h
++++ b/drivers/gpu/drm/i915/display/intel_overlay.h
+@@ -13,7 +13,6 @@ struct drm_file;
+ struct drm_printer;
+ struct intel_display;
+ struct intel_overlay;
+-struct intel_overlay_snapshot;
+ 
+ #ifdef I915
+ void intel_overlay_setup(struct intel_display *display);
+@@ -55,21 +54,4 @@ static inline void intel_overlay_reset(struct intel_display *display)
+ }
+ #endif
+ 
+-#if IS_ENABLED(CONFIG_DRM_I915_CAPTURE_ERROR) && defined(I915)
+-struct intel_overlay_snapshot *
+-intel_overlay_snapshot_capture(struct intel_display *display);
+-void intel_overlay_snapshot_print(const struct intel_overlay_snapshot *error,
+-				  struct drm_printer *p);
+-#else
+-static inline struct intel_overlay_snapshot *
+-intel_overlay_snapshot_capture(struct intel_display *display)
+-{
+-	return NULL;
+-}
+-static inline void intel_overlay_snapshot_print(const struct intel_overlay_snapshot *error,
+-						struct drm_printer *p)
+-{
+-}
+-#endif
+-
+ #endif /* __INTEL_OVERLAY_H__ */
 -- 
 2.52.0
 
