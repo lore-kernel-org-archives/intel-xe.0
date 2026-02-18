@@ -4,201 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41065E9A03B
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 09:04:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C49E3E9A03E
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 09:51:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2D7F10E59B;
-	Wed, 18 Feb 2026 09:04:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CDFA10E59E;
+	Wed, 18 Feb 2026 09:51:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hHfLRhhm";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="PW2pe7u4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DBE9910E5A2
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Feb 2026 09:04:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771405482; x=1802941482;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=CWtCtNHAFbJvS099kiUlBko7/CqLhJs2sFzKDpHdQH8=;
- b=hHfLRhhmmAUem4mtLWfx6Q3Jtf6FnZylWAnSlp4ofAUTgSE/oOGPRVpm
- YBaSlCXdVLPcqZT4wNfXflMdubAkK0WtcN0Jx49fxUlUd4AmryGLnD4lo
- KZ7JbvFUzNjhyVR/7FgQJx0A6Fq9s4CYeK4xC3Fgexu0oriIeDJeaV5J0
- 29cJvavZfiim5lUekFDS4oLEzGpMAh6VkIyPJw0q+ti2VCqqblik5QHYv
- 8zC7kXfr2jlrq7ZILa8aJgIyH9ZwZimNr1PGmbC6LcGNaDIvMIN6vwPKM
- tq8m8BXGAyd2sVWVrsyDqKQRpiuN2gDZj7i7U4oYOKrJS6NIqLdtHo90n w==;
-X-CSE-ConnectionGUID: gLxxijhMTGebTsPyGolBcQ==
-X-CSE-MsgGUID: es7yXZopTTaoYftJZDbRtQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11704"; a="72468512"
-X-IronPort-AV: E=Sophos;i="6.21,297,1763452800"; d="scan'208";a="72468512"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 01:04:41 -0800
-X-CSE-ConnectionGUID: 0uMmwXdMTGe4wyHNm+ralw==
-X-CSE-MsgGUID: 4FnFXZCySjiNLRIrn1700g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,297,1763452800"; d="scan'208";a="213382597"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 01:04:41 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 18 Feb 2026 01:04:41 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Wed, 18 Feb 2026 01:04:40 -0800
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.65) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 18 Feb 2026 01:04:40 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UU7sY5gKj+vpZoNVjs2kNyIu4hhy8Cyqj4Sid0MmNAC9RJcgWO/YSRFj1aj5LWzBn89oaQdcKAMtPFWW9+GD0KVxGgQEvkLkQGtod3qg6hfuu2hmThH/7L5D/f3neLUFjO0b+HzXRQhCJ/MuojkAwtA7ArNTn8NreiMRGQSwXwQNfUciqy2n98TglYZ7wThd1aTs/AoLA2vb7unnFUwgYo6SD3cnhzWMW6B12x5wgXlT0AbOcddfouwftZX2agQSutmxrEttQ8qfZ7zVgDU9k1viDOL8/nwGW+Hn/O6yZJC9LkaNQGUhIWujY3ZuHfTvkz8XQqV2WwNGJbdfh+kCuA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CWtCtNHAFbJvS099kiUlBko7/CqLhJs2sFzKDpHdQH8=;
- b=uXPV3yDzY/fXXmo3/OE8u/8I/n0917HhxHta49W7nz7hTGDeLvg3S4/sBX4DdoJt67TejPY1Sfwdp/Z0CCWPQaEqe2cLLDNEkM+2zh26p3Nbx1W79QzevFOddoakqM7U0eAoWsr8zZVzCmY7Gr6XNjgrMhi8QWWc+mWv5AhwNanIGINbnIcfiCtLJrp8j75jDY46LE2B6iT5e4MAYoCBDXYALbMBtxhSHyV6dBpSzeEzopAs0zIEWoB1pO4JOvCKSVHYOIDuWj01z2yn9YnBqeNnDYWpUF7RwoAJlr47ZgyGUS94MW9j5B8l6t/+bXIeiE+eOzn4Bx7AsmX82dgJdA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB7733.namprd11.prod.outlook.com (2603:10b6:8:dc::19) by
- SA1PR11MB6821.namprd11.prod.outlook.com (2603:10b6:806:29d::5) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9632.13; Wed, 18 Feb 2026 09:04:38 +0000
-Received: from DS0PR11MB7733.namprd11.prod.outlook.com
- ([fe80::3e49:3435:98fa:130f]) by DS0PR11MB7733.namprd11.prod.outlook.com
- ([fe80::3e49:3435:98fa:130f%3]) with mapi id 15.20.9632.010; Wed, 18 Feb 2026
- 09:04:37 +0000
-From: "Hellstrom, Thomas" <thomas.hellstrom@intel.com>
-To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Kumar
- G, Naresh" <naresh.kumar.g@intel.com>
-CC: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>, "Shah, Ankur N"
- <ankur.n.shah@intel.com>, "Ghimiray, Himal Prasad"
- <himal.prasad.ghimiray@intel.com>, "Mrozek, Michal" <michal.mrozek@intel.com>
-Subject: Re: [PATCH 1/1] drm/xe: Set GT rp min frequency as 1.2GHz default for
- BMG/CRI
-Thread-Topic: [PATCH 1/1] drm/xe: Set GT rp min frequency as 1.2GHz default
- for BMG/CRI
-Thread-Index: AQHcn0w0JZUjpGabA0yL08Ptn+mIFLWILJ0A
-Date: Wed, 18 Feb 2026 09:04:37 +0000
-Message-ID: <4603e26486bdeeafac19dc8a4d0c64aa3fa988bb.camel@intel.com>
-References: <20260216135107.3148167-3-naresh.kumar.g@intel.com>
- <20260216135107.3148167-4-naresh.kumar.g@intel.com>
-In-Reply-To: <20260216135107.3148167-4-naresh.kumar.g@intel.com>
-Accept-Language: en-SE, en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.58.3 (3.58.3-1.fc43) 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB7733:EE_|SA1PR11MB6821:EE_
-x-ms-office365-filtering-correlation-id: e275ded3-4b27-4f54-8866-08de6eccbe46
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|10070799003|366016|38070700021; 
-x-microsoft-antispam-message-info: =?utf-8?B?RTlqVzgreEI5V0NXNGVKbm1HL0RNKzhxS2ovVXF3dXl1VGg0c2IxVkphTEQ5?=
- =?utf-8?B?a2lBQm5aNDBqVXp4Y1c2bzRaZkRhS0hjdGd6SWF6L3poc1E1dmZ5RXE2YVZS?=
- =?utf-8?B?VDRxMkhhVGdkMDhQditQYlFQMkR3emZZRmJvTWhtcjZSOC9ma2ludG1yNXF3?=
- =?utf-8?B?UHpQTk9waUE3VUFmMm5Zby9mdGVueC9jT203RVpiVXRJa0hndEJVdDBTWTBv?=
- =?utf-8?B?K3R3NlNBUEhQbW9QNGFZYU5QSXI2VGJiYjJEcVNOaURwNDkvVlVySXF1N0JS?=
- =?utf-8?B?VG5SMG0yZXlRVnJrUXE0dDhETkZ1d1F2R0ZtN0U3VS9mOSttenJieXUxaWZw?=
- =?utf-8?B?eXNxVU9Nd1NyVWpmeC9IQzY2S0dJZFZzdCt0TXNVZUR3a2JDTmV4SEJDaGFR?=
- =?utf-8?B?RnFHcDJhQmVWT3ZyeHdOM1RPdjR1ei9uZ09ydWovYzVzUjNoQnMvWFY4NG5u?=
- =?utf-8?B?Y1RXKzVPakRWNWhCZ25DbUI2cW9ZN1FUSTNkNEZXQ1FMZjE1WVlBQnlOMlNV?=
- =?utf-8?B?aWJHMUJKMGNHUlFkeDN6WStLTVRTSjVqakpYYlA3UHdiMTRwMlBPM0pQUFp5?=
- =?utf-8?B?cGVET0JHaWFzd3UyUkZXRk4xMldOWkppdGtlWi94d2JJV3QxTUZ3dEhHL0ZD?=
- =?utf-8?B?NCt2T2p2d2hkRkt4RW83bUhpamlkUkRhL0VjREIvVXorUksyS0Q2ZjFjZ2l1?=
- =?utf-8?B?WWZVUXZWcmFDQmtzcHgwV1JGNkN6Y0ZDTzFCbTU0UXprUGR6RHZrejdGZXZq?=
- =?utf-8?B?d1JlZEdvcFY3S1F1VGpQNm51bW5RTENYNHVsR1lGQ1Z6YW5sckRSOGRnZ0VL?=
- =?utf-8?B?SC9IUncwc1pGTExoak5hQnh3NzJWQnJITWprRnJpM1JOc3VUUXZETS9ac2ox?=
- =?utf-8?B?dklmNXptQjk1SERnQXp6MUp4dEpsSTczMUxia0psbWNxbWZQNGdwdEhYWTF3?=
- =?utf-8?B?bDhPb0lIZDJxbjRNTytZaDU3a3N1QnRscWIwSEtPOWY2YWFVb0sxbGZoQ2FZ?=
- =?utf-8?B?ekRJTWlaTHgxNDFTL3pQWGpHb3ZYTC9uemFlR29hUllVdkdzazgxclQvYjN3?=
- =?utf-8?B?cE45eFRaQSt6OGZPMzNKRnlHRldzMHB0MWtGTExncjRYanRZZ2xFb0FXaVBZ?=
- =?utf-8?B?WmNNb0ZNaWRzN2lyMFRpY3JyTlBzbndRMDZwUzUvbjZFQlRRdEY0by9vWmRn?=
- =?utf-8?B?RThhaExmOFN6T3hsWnlONm05T1JJUFJjekZyK1JrMnNpQ3plY21lMGZsbm9E?=
- =?utf-8?B?RUVwNElDNGVRWk1vNG51NVNkaVBNYitkS2hpMndoazBabmlLZmRUdGRMNzZy?=
- =?utf-8?B?ek1GeEhtby9ZZDFCekxHOGx6MWdaZ0swU2tWUU5tanp3NlNVUDNyVHl2OTAw?=
- =?utf-8?B?Y3N3M01Ld0FLaHFNUklDcWp3NDQyRTBvTHRabkdpa21OSTU1UTBZTW5INXBa?=
- =?utf-8?B?LzVYWmp4V2NIdUhsNFNiSlZCN05FOXI4a3Q1SGhvQTMvRkpnUkZwOXU3d0p4?=
- =?utf-8?B?OWVIV3lIR1pzV29meUtHSmRqQ2JvZDJQY2ppbmY4OUk5cGM1b2RxTFNhTDVj?=
- =?utf-8?B?SmIxRGVhMGcvVldPM04rNjJJSTBJYnNpMkF6ZE5KODlEdzRRQmlMT2t3aXpN?=
- =?utf-8?B?TE9FY3VWb3BYTHhVc1pMSURKbG1OMEM0MG9Td1d5d2FqWGpkMHo4NUViVlkr?=
- =?utf-8?B?Yjc4MXNveWhSUGJBMU0yTVRHWEh6RDNGRVhvbDlrTURPTGp2WnZtSVhmWUx4?=
- =?utf-8?B?VXE3MVc0bUN4T05tWUJyeURycXF6cjdtVXNPVlJldE03aU12STJZMEJyeG5G?=
- =?utf-8?B?cWFoa01nUFpUWUg2cWhQRHVUby8yZzdxTFhqRnI2QkJod2xHSkxpeHV4Umwv?=
- =?utf-8?B?K3h5SC9LbEJTZDE1V1FaQm1xbXlWM2RhS2Y3akdNT0djODVzMDBCb00vU2Q5?=
- =?utf-8?B?TnpCYXVESW5OUTg5bm1QOEp4Yk1RQ1NrSzBWVVRsTlpnRUJxVjdxSExueU5P?=
- =?utf-8?B?N2FFSjl5S3M5d25QM0Q1Y1VFbHN5NmNZTksybmpaNTRDcTRqVDJzWUhENzRj?=
- =?utf-8?B?MkJnbmZqdStYcDJMRXRtZVNMeVZMeHRiRjg0cGRkMGxMSmY4N2VySnVUZU5i?=
- =?utf-8?B?WFVvVXdsaUxaalN5QVY2ODBzZnBnZEJkZktlSFRYZlFoZi83eEFhSXdSelFC?=
- =?utf-8?Q?vBsM4KMN0fSV06I0DQ7sqjU=3D?=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7733.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(10070799003)(366016)(38070700021); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 2
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?anJxNEs4cExBUmk4SkxycU9KRmcrS0RZVGsyZXpRZnVKbG9NdVZsWml3Z1hL?=
- =?utf-8?B?ZlQxV3IvbWhBd1hmL1lRK1VWT1V6K0lBbXFrQXZHOUpvR0Z2RUcwdEVyZnRW?=
- =?utf-8?B?bFowaU1GZkt5clg4aUx2YmRETWVkaTk5Zm4raktDNWpteWFSaytJNzJ6WWlT?=
- =?utf-8?B?UGw5bE43eTVjU3pralVkRnZvYWo5VWZqaW9QdW53Rk9FUnlteUd2Sk1CQnBZ?=
- =?utf-8?B?MGF0SmFLd0g1YWwxMGhrSUZtK1FuV2VxMjhDY1pralRQQ3F0ZGlwL2lEbkZw?=
- =?utf-8?B?YTQxaFJUMit5VnBzZHFHK1lOVVQvcjFVNmhjd294cUtWWG94T1FSV0wyS21M?=
- =?utf-8?B?Wm1yS0dTSGxvajBISmhYeVZhZUVnT1hWeUMvY0RvMkl1SlJzd0tEd29WNUpk?=
- =?utf-8?B?ZlFIMDN4Tm1IWkx2S0xhMTc4WVljaldLendVSVczdWc3ZFFvQmJjUHJyVFla?=
- =?utf-8?B?aHl0OUhqZlEyS0Q1SW9MTG5xalBONXZIQ1U3TVRhM2NwSitZMWQrQ3BHNVg4?=
- =?utf-8?B?QUx4WGh5TVVnOTU3bzBmWkJJRkpVdUJxNEp1R0IralJha001S1dIWFZEeUxS?=
- =?utf-8?B?Y3FMRFZSKzF0N2xPdDJyeXE3Z2NFM3VqQVRpZ2YxRVFCWDBEYXRkZFhBc3Br?=
- =?utf-8?B?T1VBRFlmSG1nZlhTb00wMjBRd0xIV1FHNlBZd2FHQTdKYkNRaitwektHbitJ?=
- =?utf-8?B?cEhzRzFNQVZPTGZrZE5MVG43ajk4ejF5WERKY29YRWY5WCtHWm1QVTBWKzFO?=
- =?utf-8?B?SlJoRytHSUhodllnSXI0OExBdS9ScktaZlV6QVJPTC9RbW8vTnd4M0pLVXBu?=
- =?utf-8?B?eUk3by9DQWVWZEVSUGoyNWw2dFdBN1I1ZDl0dWZPVldCay9ZODZHLzZvNmxD?=
- =?utf-8?B?SVpCd0MrdFFpcHZYZENYajlkNlVJVkxoUmN0cWtBM1AzVlgzMUltSVg0cUFW?=
- =?utf-8?B?TjNuSFdqQzFqMExRUTlQQ08yNmRtZlR4VEhZSnpEMGpmcG4yVGZ1T2JBU1Fz?=
- =?utf-8?B?UTV3NjQ3djZhQzFyaEZzUmZjTDlyNjdKU200c3Jvb3FadEx3R3I2cXpxaTVx?=
- =?utf-8?B?dWRkMGlnOHdZOHpPblFLMTBVY1BpNFJUOUlFbkdTdnpWVWVxcmFsNU1yaEV6?=
- =?utf-8?B?NEViZTYyY29vNDhDYWxDWWRTY0J3NEZRd0t1TXdPSk1zK3BPVHBucXI2MnFI?=
- =?utf-8?B?eit1Z25DRisrcnlQT1dETFJLUENLYU90UUw2SzhnVDJ3cXZSSjZibVE2blBU?=
- =?utf-8?B?M0VuN2I2TzV1SDViT1dQbTkrRzFqeDc2WTUzd0RuSEs4TkFlLzgyN0pNZ2Z5?=
- =?utf-8?B?bUU5eVgwRnBXcC94VEhmRGtmbTdHZjQxTlRuMUM2OUJjWm5mT3kzaVR1emRv?=
- =?utf-8?B?RW9kR2tQcTJlallpclpsSHNWUzVRdUpPbFhaUFVJTFVhRS9YSTFCSkVhUHNo?=
- =?utf-8?B?eUxUMXNlTmprQmxnVCtSNVU2cklKRm1IMlI2S1BHb1BIQ1EvQzg4OGRtY0tI?=
- =?utf-8?B?VGJCNXQyeTJ1SzlZM3N5dEFrQ25rcC8weTJrNkl6OUl4SVI1SjdKUnJ2Tmgy?=
- =?utf-8?B?dEhaMDBFUSt2cVN4T0p0czM3MXNwdlVQMnRGYTZ0WlN3cnpFRXQwdmtSNmdx?=
- =?utf-8?B?djFSNlNIeEZIKzJuTSsrMzJwVTJzc0NyRkYyK3lJekZpYXRSNGtQKzNTaTky?=
- =?utf-8?B?TWZQQVdCMVlRYUZkcWVpY3diTXc0NnJmTVdndzZES01Ld01ybHNFZVRnNXhC?=
- =?utf-8?B?QS95K0p1QWdtZ0tnMmE2ZWUwSzY4djNJbXMxSkRLRnlBckVrdGxCL0ZmM0Mv?=
- =?utf-8?B?YW9yVHVvZ0RoUXJSUEJCYzNSK0cyV3VueHdqRWVzOE4wTGttMXllbjZBMU9P?=
- =?utf-8?B?YXUrc1loTzM1NGF5d3dvOFZNQTg4SUhoZVdLZ1F1Wlh4NzhxODJUS1ROWWNN?=
- =?utf-8?B?RC9Da2tjcDVMSWNxZ1RUM0d4ZldoSFcwazMzQ3YzQ0VMV1k2UllsV1JtYjdj?=
- =?utf-8?B?dllyMUorbzJ5YUVpYVBFSTNSZUhRVmV0ZDhnb2doNENCeEU5bndoUkhGSkdx?=
- =?utf-8?B?QkR3dlJGM1ZOUFF2KzFyNWtmZUp2K2V4SkxsRFByWlFoTkRaNHZabUF6RTlG?=
- =?utf-8?B?WDZ2THBRMWhZdWtJbHZjK1k0bUdzUkJHMHNKNmd3ZEpXV2YwMGo3WndLL291?=
- =?utf-8?B?dGh3TlJFeDlBUWVlcDVwZHowUVRIT2I4Z3cxeWlob3ZFSUNtcmxMcmFRcjZK?=
- =?utf-8?B?WWwyVjdDKzVGSUlYVzBab2U5Zy9lOGFiOFVFRGJPOWN1UFpTWk45Z1AwRzNU?=
- =?utf-8?B?S0l3bmRsSGFuVTB0WGZ0SDFOTXVEdE00b0xZWmI2NlhBM09DRitqVHBEdTlr?=
- =?utf-8?Q?LVh6tfeKPGsVOnVLqmJhbp0k9CamllBeJ8iOSBE7PYLXj?=
-x-ms-exchange-antispam-messagedata-1: idLSnuuFPIi/MQ==
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <F20B38240CC1514A931B1604C1F6BBCD@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4333310E59E
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Feb 2026 09:51:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1771408276;
+ bh=TGy0IfmeyMynrUiJgl1r3V3PAi8Y69XiXPzSKLIr8zY=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=PW2pe7u41mdNdYCUXEvLQdPJ95xpzVfBoRRUBgDR5CT9WlOvju5wNRWKcSMemnPAB
+ QA6G2+hcOQY0nInj7pah0bDXcYjXaLbCoJKXxbWzQrpCbSPnb4WOQYTsEJtz6VDAZk
+ 0sqToKjleU3uknLu55WduShjzGflp4bS+e4LtkQXbWe1Q9X+uxA7PzFdIC3JtlCnme
+ no8uu2Rlkm/if2k7MKb7Fp3mR//KWqq13Trg4EqrUfGQin/a98Y8RA0oTZ9bo/wSV8
+ QfAAKPrup3vsstkvSN1U4fJSFc8TZVSG7nuQxfzJArMMzDMSNXUwNr72TmtMKN2Dt7
+ uZl0Iph6rLOzg==
+Message-ID: <4215aa02-6854-4be1-9ae7-418af0752482@lankhorst.se>
+Date: Wed, 18 Feb 2026 10:51:14 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7733.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e275ded3-4b27-4f54-8866-08de6eccbe46
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Feb 2026 09:04:37.7531 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: VBiHRrDpHK+HpjxvCs1+E3I91mK1qBJQHlA3cjXAiBZjAgQ2KYtuSNnGFGP3U2grD67mcIZoZwbGbDyjYdbHeQZ1BPcaKBpGMYW0rrOnrvQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6821
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [v5, 2/3] drm/xe/vf: Fix fs_reclaim warning with CCS save/restore
+ BB allocation
+To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+References: <20260217120745.1074232-7-satyanarayana.k.v.p@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <20260217120745.1074232-7-satyanarayana.k.v.p@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -213,37 +57,406 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyMDI2LTAyLTE2IGF0IDE5OjIxICswNTMwLCBOYXJlc2hrdW1hciBHb2xsYWtvdGkg
-d3JvdGU6DQo+IMKgV2hpbGUgcHJldmlvdXNseSBhcHBsaWVkIG9ubHkgdG8gdGhlIEJNRyBHMjEo
-QmF0dGxlIGltYWdlKSBwbGF0Zm9ybQ0KPiDCoHZpYSB3b3JrYXJvdW5kIFdhXzE0MDIyMDg1ODkw
-LHRoaXMgMS4yIEdIeiBtaW5pbXVtIGlzIG5vdyB0aGUNCj4gZGVmYXVsdA0KPiDCoGZvciBCTUcg
-YW5kIENSSSBwbGF0Zm9ybXMuDQo+IA0KPiDCoFNldHRpbmcgdGhpcyBmcmVxdWVuY3kgZmxvb3Io
-MS4yR0h6KSBkZWZhdWx0IGlzIGNyaXRpY2FsIGluIG11bHRpDQo+IEdQVQ0KPiDCoGVudmlyb25t
-ZW50IGZvciBzdXBwb3J0aW5nIGVmZmVjdGl2ZSBQZWVyLXRvLVBlZXIoUDJQKSB0cmFuc2FjdGlv
-bnMuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBOYXJlc2hrdW1hciBHb2xsYWtvdGkgPG5hcmVzaC5r
-dW1hci5nQGludGVsLmNvbT4NCj4gLS0tDQo+IMKgZHJpdmVycy9ncHUvZHJtL3hlL3hlX2d1Y19w
-Yy5jIHwgOSArKysrKysrKy0NCj4gwqAxIGZpbGUgY2hhbmdlZCwgOCBpbnNlcnRpb25zKCspLCAx
-IGRlbGV0aW9uKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2d1
-Y19wYy5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2d1Y19wYy5jDQo+IGluZGV4IDVlNTQ5
-NWEzOWEzYy4uODgxMDU0YzljZjkyIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUv
-eGVfZ3VjX3BjLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2d1Y19wYy5jDQo+IEBA
-IC04NjAsNiArODYwLDcgQEAgc3RhdGljIGludCBwY19hZGp1c3RfZnJlcV9ib3VuZHMoc3RydWN0
-IHhlX2d1Y19wYw0KPiAqcGMpDQo+IMKgew0KPiDCoAlzdHJ1Y3QgeGVfdGlsZSAqdGlsZSA9IGd0
-X3RvX3RpbGUocGNfdG9fZ3QocGMpKTsNCj4gwqAJaW50IHJldDsNCj4gKwlzdHJ1Y3QgeGVfZGV2
-aWNlICp4ZSA9IHBjX3RvX3hlKHBjKTsNCj4gwqANCj4gwqAJbG9ja2RlcF9hc3NlcnRfaGVsZCgm
-cGMtPmZyZXFfbG9jayk7DQo+IMKgDQo+IEBAIC04ODUsNyArODg2LDEzIEBAIHN0YXRpYyBpbnQg
-cGNfYWRqdXN0X2ZyZXFfYm91bmRzKHN0cnVjdA0KPiB4ZV9ndWNfcGMgKnBjKQ0KPiDCoAlpZiAo
-cGNfZ2V0X21pbl9mcmVxKHBjKSA+IHBjLT5ycDBfZnJlcSkNCj4gwqAJCXJldCA9IHBjX3NldF9t
-aW5fZnJlcShwYywgcGMtPnJwMF9mcmVxKTsNCj4gwqANCj4gLQlpZiAoWEVfREVWSUNFX1dBKHRp
-bGVfdG9feGUodGlsZSksIDE0MDIyMDg1ODkwKSkNCj4gKwkvKg0KPiArCSAqIFNldHRpbmcgR1Qg
-UlAgbWluIGZyZXF1ZW5jeSB0byAxLjJHSHogYnkgZGVmYXVsdCBmb3INCj4gKwkgKiBhbGwgQk1H
-IGFuZCBDUkkoRm9yIEJNRyBHMjEgV0EgZG8gdGhlIHNhbWUpLg0KPiArCSAqLw0KPiArCWlmIChY
-RV9ERVZJQ0VfV0EodGlsZV90b194ZSh0aWxlKSwgMTQwMjIwODU4OTApIHx8DQo+ICsJwqDCoMKg
-ICh4ZS0+aW5mby5wbGF0Zm9ybSA9PSBYRV9CQVRUTEVNQUdFIHx8DQo+ICsJCQkgeGUtPmluZm8u
-cGxhdGZvcm0gPT0gWEVfQ1JFU0NFTlRJU0xBTkQpKQ0KPiDCoAkJcmV0ID0gcGNfc2V0X21pbl9m
-cmVxKHBjLCBtYXgoQk1HX01JTl9GUkVRLA0KPiBwY19nZXRfbWluX2ZyZXEocGMpKSk7DQoNCkNv
-cHlpbmcgdGhlIHJlcGx5IGdpdmVuIHRvIHRoZSBjb3ZlciBsZXR0ZXIgZm9yIGNvbXBsZXRlbmVz
-czoNCg0KV2Fzbid0IHRoZSBpZGVhIHRvIGRvIHRoaXMgb25seSBmb3IgdGhlIEFyYyBQUk8gQk1H
-cyAoc2VydmVyIFNLVXMpPw0KUGVyaGFwcyB0aGUgY29tcHV0ZSB0ZWFtIHdvdWxkIHdhbnQgdG8g
-Y2hpbWUgaW4gaGVyZSBmb3IgdGhlIHNjb3BlIG9mDQp0aGlzIHdvcmthcm91bmQuDQoNClRoYW5r
-cywNClRob21hcw0KDQoNCg0KDQoNCj4gwqANCj4gwqBvdXQ6DQo=
+Hey,
+
+A quick look at the series. It's a good idea to separate allocation from insertion
+in this case, but it seems some small issues with the API remain.
+
+The first one is that you introduce another free function. It would be better to set
+sa->manager = NULL in drm_suballoc_alloc(), and check for that in drm_suballoc_free().
+That removes the requirement of adding another free function, and making a mistake there.
+And it nicely pairs alloc() with free()
+
+Additionally, you now have both drm_suballoc_init() and drm_suballoc_new().
+
+I'd recommend renaming drm_suballoc_init() to drm_suballoc_insert(), and optionally
+convert all existing users to use drm_suballoc_insert()
+After that you only have a single API, and made the usage of it slightly more comprehensible. :-)
+
+With these changes, the flow is really nice:
+- drm_suballoc_alloc()
+- drm_suballoc_insert()
+- Error checking, do some stuff here, finally
+- drm_suballoc_free()
+
+And then you convert the existing users 1 by 1, until you can finally remove drm_suballoc_init().
+
+Kind regards,
+~Maarten Lankhorst
+
+Den 2026-02-17 kl. 13:07, skrev Satyanarayana K V P:
+> CCS save/restore batch buffers are attached during BO allocation and
+> detached during BO teardown. The shrinker triggers xe_bo_move(), which is
+> used for both allocation and deletion paths.
+>
+> When BO allocation and shrinking occur concurrently, a circular locking
+> dependency involving fs_reclaim and swap_guard can occur, leading to a
+> deadlock such as:
+> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>
+> ======================================================
+> WARNING: possible circular locking dependency detected
+> ------------------------------------------------------
+>
+>       CPU0                    CPU1
+>       ----                    ----
+>  lock(fs_reclaim);
+>                               lock(&sa_manager->swap_guard);
+>                               lock(fs_reclaim);
+>  lock(&sa_manager->swap_guard);
+>
+>  *** DEADLOCK ***
+> =====================================================
+>
+> To avoid this, the BB pointer and SA are allocated using xe_bb_alloc()
+> before taking lock and SA is initialized using xe_bb_init() preventing
+> reclaim from being invoked in this context.
+>
+> Fixes: 864690cf4dd62 ("drm/xe/vf: Attach and detach CCS copy commands with BO")
+> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Matthew Auld <matthew.auld@intel.com>
+> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>
+> ---
+> V4 -> V5:
+> - Removed enum xe_sriov_vf_ccs_rw_ctxs from xe_bb.h as it is not used
+>   any more (Michal).
+>
+> V3 -> V4:
+> - Fixed some nits (Michal).
+>
+> V2 -> V3:
+> - Updated commit message (Matt, Thomas & Christian).
+> - Removed timeout logic from drm_suballoc_init(). (Thomas & Christian).
+>
+> V1 -> V2:
+> - Splitted drm_suballoc_new() into drm_suballoc_alloc() and
+> drm_suballoc_init() (Thomas).
+> ---
+>  drivers/gpu/drm/xe/xe_bb.c      | 72 ++++++++++++++++++------
+>  drivers/gpu/drm/xe/xe_bb.h      |  7 ++-
+>  drivers/gpu/drm/xe/xe_migrate.c | 99 ++++++++++++++++++---------------
+>  drivers/gpu/drm/xe/xe_sa.c      | 39 +++++++++++++
+>  drivers/gpu/drm/xe/xe_sa.h      |  3 +
+>  5 files changed, 156 insertions(+), 64 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
+> index 8b678297aaa2..a991d9db8164 100644
+> --- a/drivers/gpu/drm/xe/xe_bb.c
+> +++ b/drivers/gpu/drm/xe/xe_bb.c
+> @@ -59,16 +59,64 @@ struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm)
+>  	return ERR_PTR(err);
+>  }
+>  
+> -struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
+> -			    enum xe_sriov_vf_ccs_rw_ctxs ctx_id)
+> +/**
+> + * xe_bb_alloc() - Allocate a new batch buffer structure
+> + * @gt: the &xe_gt
+> + *
+> + * Allocates and initializes a new xe_bb structure with an associated
+> + * uninitialized suballoc object.
+> + *
+> + * Returns: Batch buffer structure or an ERR_PTR(-ENOMEM).
+> + */
+> +struct xe_bb *xe_bb_alloc(struct xe_gt *gt)
+>  {
+>  	struct xe_bb *bb = kmalloc(sizeof(*bb), GFP_KERNEL);
+> -	struct xe_device *xe = gt_to_xe(gt);
+> -	struct xe_sa_manager *bb_pool;
+>  	int err;
+>  
+>  	if (!bb)
+>  		return ERR_PTR(-ENOMEM);
+> +
+> +	bb->bo = xe_sa_bo_alloc(GFP_KERNEL);
+> +	if (IS_ERR(bb->bo)) {
+> +		err = PTR_ERR(bb->bo);
+> +		goto err;
+> +	}
+> +
+> +	return bb;
+> +
+> +err:
+> +	kfree(bb);
+> +	return ERR_PTR(err);
+> +}
+> +
+> +/**
+> + * xe_bb_release() - Release and free a batch buffer structure
+> + * @bb: Batch buffer structure to release
+> + *
+> + * Releases the sub-allocated buffer object associated with the batch buffer
+> + * and frees the xe_bb structure memory.
+> + */
+> +void xe_bb_release(struct xe_bb *bb)
+> +{
+> +	xe_sa_bo_release(bb->bo);
+> +	kfree(bb);
+> +}
+> +
+> +/**
+> + * xe_bb_init() - Initialize a batch buffer with memory from a sub-allocator pool
+> + * @bb: Batch buffer structure to initialize
+> + * @bb_pool: Suballoc memory pool to allocate from
+> + * @dwords: Number of dwords to be allocated
+> + *
+> + * Initializes the batch buffer by allocating memory from the specified
+> + * suballoc pool.
+> + *
+> + * Return: 0 on success, negative error code on failure.
+> + */
+> +int xe_bb_init(struct xe_bb *bb, struct xe_sa_manager *bb_pool, u32 dwords)
+> +{
+> +	int err;
+> +
+>  	/*
+>  	 * We need to allocate space for the requested number of dwords &
+>  	 * one additional MI_BATCH_BUFFER_END dword. Since the whole SA
+> @@ -76,22 +124,14 @@ struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
+>  	 * is not over written when the last chunk of SA is allocated for BB.
+>  	 * So, this extra DW acts as a guard here.
+>  	 */
+> -
+> -	bb_pool = xe->sriov.vf.ccs.contexts[ctx_id].mem.ccs_bb_pool;
+> -	bb->bo = xe_sa_bo_new(bb_pool, 4 * (dwords + 1));
+> -
+> -	if (IS_ERR(bb->bo)) {
+> -		err = PTR_ERR(bb->bo);
+> -		goto err;
+> -	}
+> +	err = xe_sa_bo_init(bb_pool, bb->bo, 4 * (dwords + 1));
+> +	if (err)
+> +		return err;
+>  
+>  	bb->cs = xe_sa_bo_cpu_addr(bb->bo);
+>  	bb->len = 0;
+>  
+> -	return bb;
+> -err:
+> -	kfree(bb);
+> -	return ERR_PTR(err);
+> +	return 0;
+>  }
+>  
+>  static struct xe_sched_job *
+> diff --git a/drivers/gpu/drm/xe/xe_bb.h b/drivers/gpu/drm/xe/xe_bb.h
+> index 2a8adc9a6dee..5778699149ec 100644
+> --- a/drivers/gpu/drm/xe/xe_bb.h
+> +++ b/drivers/gpu/drm/xe/xe_bb.h
+> @@ -12,12 +12,13 @@ struct dma_fence;
+>  
+>  struct xe_gt;
+>  struct xe_exec_queue;
+> +struct xe_sa_manager;
+>  struct xe_sched_job;
+> -enum xe_sriov_vf_ccs_rw_ctxs;
+>  
+>  struct xe_bb *xe_bb_new(struct xe_gt *gt, u32 dwords, bool usm);
+> -struct xe_bb *xe_bb_ccs_new(struct xe_gt *gt, u32 dwords,
+> -			    enum xe_sriov_vf_ccs_rw_ctxs ctx_id);
+> +struct xe_bb *xe_bb_alloc(struct xe_gt *gt);
+> +void xe_bb_release(struct xe_bb *bb);
+> +int xe_bb_init(struct xe_bb *bb, struct xe_sa_manager *bb_pool, u32 dwords);
+>  struct xe_sched_job *xe_bb_create_job(struct xe_exec_queue *q,
+>  				      struct xe_bb *bb);
+>  struct xe_sched_job *xe_bb_create_migration_job(struct xe_exec_queue *q,
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+> index 078a9bc2821d..d4cfc54d614b 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> @@ -25,6 +25,7 @@
+>  #include "xe_exec_queue.h"
+>  #include "xe_ggtt.h"
+>  #include "xe_gt.h"
+> +#include "xe_gt_printk.h"
+>  #include "xe_hw_engine.h"
+>  #include "xe_lrc.h"
+>  #include "xe_map.h"
+> @@ -1148,65 +1149,73 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
+>  		size -= src_L0;
+>  	}
+>  
+> +	bb = xe_bb_alloc(gt);
+> +	if (IS_ERR(bb))
+> +		return PTR_ERR(bb);
+> +
+>  	bb_pool = ctx->mem.ccs_bb_pool;
+> -	guard(mutex) (xe_sa_bo_swap_guard(bb_pool));
+> -	xe_sa_bo_swap_shadow(bb_pool);
+> +	scoped_guard(mutex, xe_sa_bo_swap_guard(bb_pool)) {
+> +		xe_sa_bo_swap_shadow(bb_pool);
+> +
+> +		err = xe_bb_init(bb, bb_pool, batch_size);
+> +		if (err) {
+> +			xe_gt_err(gt, "BB allocation failed.\n");
+> +			xe_bb_release(bb);
+> +			return err;
+> +		}
+>  
+> -	bb = xe_bb_ccs_new(gt, batch_size, read_write);
+> -	if (IS_ERR(bb)) {
+> -		drm_err(&xe->drm, "BB allocation failed.\n");
+> -		err = PTR_ERR(bb);
+> -		return err;
+> -	}
+> +		batch_size_allocated = batch_size;
+> +		size = xe_bo_size(src_bo);
+> +		batch_size = 0;
+>  
+> -	batch_size_allocated = batch_size;
+> -	size = xe_bo_size(src_bo);
+> -	batch_size = 0;
+> +		/*
+> +		 * Emit PTE and copy commands here.
+> +		 * The CCS copy command can only support limited size. If the size to be
+> +		 * copied is more than the limit, divide copy into chunks. So, calculate
+> +		 * sizes here again before copy command is emitted.
+> +		 */
+>  
+> -	/*
+> -	 * Emit PTE and copy commands here.
+> -	 * The CCS copy command can only support limited size. If the size to be
+> -	 * copied is more than the limit, divide copy into chunks. So, calculate
+> -	 * sizes here again before copy command is emitted.
+> -	 */
+> -	while (size) {
+> -		batch_size += 10; /* Flush + ggtt addr + 2 NOP */
+> -		u32 flush_flags = 0;
+> -		u64 ccs_ofs, ccs_size;
+> -		u32 ccs_pt;
+> +		while (size) {
+> +			batch_size += 10; /* Flush + ggtt addr + 2 NOP */
+> +			u32 flush_flags = 0;
+> +			u64 ccs_ofs, ccs_size;
+> +			u32 ccs_pt;
+>  
+> -		u32 avail_pts = max_mem_transfer_per_pass(xe) / LEVEL0_PAGE_TABLE_ENCODE_SIZE;
+> +			u32 avail_pts = max_mem_transfer_per_pass(xe) /
+> +					LEVEL0_PAGE_TABLE_ENCODE_SIZE;
+>  
+> -		src_L0 = xe_migrate_res_sizes(m, &src_it);
+> +			src_L0 = xe_migrate_res_sizes(m, &src_it);
+>  
+> -		batch_size += pte_update_size(m, false, src, &src_it, &src_L0,
+> -					      &src_L0_ofs, &src_L0_pt, 0, 0,
+> -					      avail_pts);
+> +			batch_size += pte_update_size(m, false, src, &src_it, &src_L0,
+> +						      &src_L0_ofs, &src_L0_pt, 0, 0,
+> +						      avail_pts);
+>  
+> -		ccs_size = xe_device_ccs_bytes(xe, src_L0);
+> -		batch_size += pte_update_size(m, 0, NULL, &ccs_it, &ccs_size, &ccs_ofs,
+> -					      &ccs_pt, 0, avail_pts, avail_pts);
+> -		xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
+> -		batch_size += EMIT_COPY_CCS_DW;
+> +			ccs_size = xe_device_ccs_bytes(xe, src_L0);
+> +			batch_size += pte_update_size(m, 0, NULL, &ccs_it, &ccs_size, &ccs_ofs,
+> +						      &ccs_pt, 0, avail_pts, avail_pts);
+> +			xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
+> +			batch_size += EMIT_COPY_CCS_DW;
+>  
+> -		emit_pte(m, bb, src_L0_pt, false, true, &src_it, src_L0, src);
+> +			emit_pte(m, bb, src_L0_pt, false, true, &src_it, src_L0, src);
+>  
+> -		emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
+> +			emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
+>  
+> -		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
+> -		flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
+> -						  src_L0_ofs, dst_is_pltt,
+> -						  src_L0, ccs_ofs, true);
+> -		bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
+> +			bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
+> +			flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
+> +							  src_L0_ofs, dst_is_pltt,
+> +							  src_L0, ccs_ofs, true);
+> +			bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
+>  
+> -		size -= src_L0;
+> -	}
+> +			size -= src_L0;
+> +		}
+>  
+> -	xe_assert(xe, (batch_size_allocated == bb->len));
+> -	src_bo->bb_ccs[read_write] = bb;
+> +		xe_assert(xe, (batch_size_allocated == bb->len));
+> +		src_bo->bb_ccs[read_write] = bb;
+> +
+> +		xe_sriov_vf_ccs_rw_update_bb_addr(ctx);
+> +		xe_sa_bo_sync_shadow(bb->bo);
+> +	}
+>  
+> -	xe_sriov_vf_ccs_rw_update_bb_addr(ctx);
+> -	xe_sa_bo_sync_shadow(bb->bo);
+>  	return 0;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
+> index b738102575d4..4b3dcc7e5ae0 100644
+> --- a/drivers/gpu/drm/xe/xe_sa.c
+> +++ b/drivers/gpu/drm/xe/xe_sa.c
+> @@ -175,6 +175,45 @@ struct drm_suballoc *__xe_sa_bo_new(struct xe_sa_manager *sa_manager, u32 size,
+>  	return drm_suballoc_new(&sa_manager->base, size, gfp, true, 0);
+>  }
+>  
+> +/**
+> + * xe_sa_bo_alloc() - Allocate uninitialized suballoc object.
+> + * @gfp: gfp flags used for memory allocation.
+> + *
+> + * Allocate memory for an uninitialized suballoc object. Intended usage is
+> + * allocate memory for suballoc object outside of a reclaim tainted context
+> + * and then be initialized at a later time in a reclaim tainted context.
+> + *
+> + * Return: a new uninitialized suballoc object, or an ERR_PTR(-ENOMEM).
+> + */
+> +struct drm_suballoc *xe_sa_bo_alloc(gfp_t gfp)
+> +{
+> +	return drm_suballoc_alloc(gfp);
+> +}
+> +
+> +/**
+> + * xe_sa_bo_release() - Release memory for suballocation.
+> + * @sa: The struct drm_suballoc.
+> + */
+> +void xe_sa_bo_release(struct drm_suballoc *sa)
+> +{
+> +	drm_suballoc_release(sa);
+> +}
+> +
+> +/**
+> + * xe_sa_bo_init() - Initialize a suballocation.
+> + * @sa_manager: pointer to the sa_manager
+> + * @sa: The struct drm_suballoc.
+> + * @size: number of bytes we want to suballocate.
+> + *
+> + * Try to make a suballocation on a pre-allocated suballoc object of size @size.
+> + *
+> + * Return: zero on success, errno on failure.
+> + */
+> +int xe_sa_bo_init(struct xe_sa_manager *sa_manager, struct drm_suballoc *sa, size_t size)
+> +{
+> +	return drm_suballoc_init(&sa_manager->base, sa, size, true, 0);
+> +}
+> +
+>  /**
+>   * xe_sa_bo_flush_write() - Copy the data from the sub-allocation to the GPU memory.
+>   * @sa_bo: the &drm_suballoc to flush
+> diff --git a/drivers/gpu/drm/xe/xe_sa.h b/drivers/gpu/drm/xe/xe_sa.h
+> index 05e9a4e00e78..156b6e6fa14b 100644
+> --- a/drivers/gpu/drm/xe/xe_sa.h
+> +++ b/drivers/gpu/drm/xe/xe_sa.h
+> @@ -38,6 +38,9 @@ static inline struct drm_suballoc *xe_sa_bo_new(struct xe_sa_manager *sa_manager
+>  	return __xe_sa_bo_new(sa_manager, size, GFP_KERNEL);
+>  }
+>  
+> +struct drm_suballoc *xe_sa_bo_alloc(gfp_t gfp);
+> +void xe_sa_bo_release(struct drm_suballoc *sa);
+> +int xe_sa_bo_init(struct xe_sa_manager *sa_manager, struct drm_suballoc *sa, size_t size);
+>  void xe_sa_bo_flush_write(struct drm_suballoc *sa_bo);
+>  void xe_sa_bo_sync_read(struct drm_suballoc *sa_bo);
+>  void xe_sa_bo_free(struct drm_suballoc *sa_bo, struct dma_fence *fence);
+
