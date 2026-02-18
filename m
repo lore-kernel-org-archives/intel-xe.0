@@ -4,31 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 267B6E9A02C
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 13:47:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53AC0E9A047
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 13:47:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4B6210E2F2;
-	Wed, 18 Feb 2026 13:46:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6DB010E5C4;
+	Wed, 18 Feb 2026 13:47:03 +0000 (UTC)
 Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F25510E2F2;
- Wed, 18 Feb 2026 13:46:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB0FC10E5BF;
+ Wed, 18 Feb 2026 13:47:01 +0000 (UTC)
 Received: from localhost.localdomain (unknown
  [IPv6:2400:2410:b120:f200:2e09:4dff:fe00:2e9])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
  (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id 15B983F1F5;
- Wed, 18 Feb 2026 14:46:54 +0100 (CET)
+ by psionic.psi5.com (Postfix) with ESMTPSA id 4EE843F206;
+ Wed, 18 Feb 2026 14:46:59 +0100 (CET)
 From: Simon Richter <Simon.Richter@hogyros.de>
 To: linux-pci@vger.kernel.org
 Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  Simon Richter <Simon.Richter@hogyros.de>
-Subject: [PATCH v2 0/5] Bridges without VGA support
-Date: Wed, 18 Feb 2026 22:46:28 +0900
-Message-ID: <20260218134633.461181-1-Simon.Richter@hogyros.de>
+Subject: [PATCH v2 2/5] vgaarb: pass errors from pci_set_vga_state up
+Date: Wed, 18 Feb 2026 22:46:30 +0900
+Message-ID: <20260218134633.461181-3-Simon.Richter@hogyros.de>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260217170419.236739-1-Simon.Richter@hogyros.de>
+In-Reply-To: <20260218134633.461181-1-Simon.Richter@hogyros.de>
 References: <20260217170419.236739-1-Simon.Richter@hogyros.de>
+ <20260218134633.461181-1-Simon.Richter@hogyros.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -45,33 +46,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+pci_set_vga_state returns an error code, which so far has been ignored.
+Pass this code through __vga_tryget (via ERR_PTR).
 
-v2 fixes the formatting errors.
+Signed-off-by: Simon Richter <Simon.Richter@hogyros.de>
+---
+ drivers/pci/vgaarb.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
-This allows bridges to refuse forwarding VGA, and reports this upwards as an
-error, because we cannot set up valid decoding for the requested device in this
-case.
-
-I think it should be fine to leave VGA forwarding enabled on lower bridges if a
-bridge closer to the root refused to enable forwarding, because no accesses can
-reach there anyway.
-
-   Simon
-
-Simon Richter (5):
-  vgaarb: pass vga_get errors to userspace
-  vgaarb: pass errors from pci_set_vga_state up
-  vgaarb: mark vga_get family as __must_check
-  pci: check if VGA decoding was really activated
-  pci: mark return value of pci_set_vga_state as __must_check
-
- drivers/pci/pci.c      |  6 ++++++
- drivers/pci/vgaarb.c   | 20 +++++++++++++++++---
- include/linux/pci.h    |  4 ++--
- include/linux/vgaarb.h | 15 ++++++++-------
- 4 files changed, 33 insertions(+), 12 deletions(-)
-
+diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
+index 188885d30d41..93f695f9d768 100644
+--- a/drivers/pci/vgaarb.c
++++ b/drivers/pci/vgaarb.c
+@@ -215,6 +215,7 @@ static struct vga_device *__vga_tryget(struct vga_device *vgadev,
+ 	struct vga_device *conflict;
+ 	unsigned int pci_bits;
+ 	u32 flags = 0;
++	int err = 0;
+ 
+ 	/*
+ 	 * Account for "normal" resources to lock. If we decode the legacy,
+@@ -307,7 +308,9 @@ static struct vga_device *__vga_tryget(struct vga_device *vgadev,
+ 		if (change_bridge)
+ 			flags |= PCI_VGA_STATE_CHANGE_BRIDGE;
+ 
+-		pci_set_vga_state(conflict->pdev, false, pci_bits, flags);
++		err = pci_set_vga_state(conflict->pdev, false, pci_bits, flags);
++		if (unlikely(err))
++			return ERR_PTR(err);
+ 		conflict->owns &= ~match;
+ 
+ 		/* If we disabled normal decoding, reflect it in owns */
+@@ -337,7 +340,9 @@ static struct vga_device *__vga_tryget(struct vga_device *vgadev,
+ 	if (wants & VGA_RSRC_LEGACY_MASK)
+ 		flags |= PCI_VGA_STATE_CHANGE_BRIDGE;
+ 
+-	pci_set_vga_state(vgadev->pdev, true, pci_bits, flags);
++	err = pci_set_vga_state(vgadev->pdev, true, pci_bits, flags);
++	if (unlikely(err))
++		return ERR_PTR(err);
+ 
+ 	vgadev->owns |= wants;
+ lock_them:
+@@ -455,6 +460,10 @@ int vga_get(struct pci_dev *pdev, unsigned int rsrc, int interruptible)
+ 		}
+ 		conflict = __vga_tryget(vgadev, rsrc);
+ 		spin_unlock_irqrestore(&vga_lock, flags);
++		if (IS_ERR(conflict)) {
++			rc = PTR_ERR(conflict);
++			break;
++		}
+ 		if (conflict == NULL)
+ 			break;
+ 
 -- 
 2.47.3
 
