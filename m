@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B0A9E9A04C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7817E9A02C
 	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 20:56:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7D2510E627;
-	Wed, 18 Feb 2026 20:56:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E0CB10E62E;
+	Wed, 18 Feb 2026 20:56:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KqZtYM2k";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TUt732nb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C16710E627
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Feb 2026 20:56:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09DA210E627
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Feb 2026 20:56:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771448188; x=1802984188;
+ t=1771448190; x=1802984190;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4vIIIf+0YQh/+UWdrzkyGW0t/TLCtGcpIkLbBNP7oic=;
- b=KqZtYM2ksgjGk7Ez0QSHKSba7YyKVuNL2Oa9abrzDeBr+QMJcJnSsEnU
- uZkTuvGYHHkJsZFRHYgr5WsOKEwQGeUKFq2IvCrtKRd1irWXpmTh2b9Ib
- 1suQzMmcYYNojcLklgyXPkI3+96wBLx2+ecm97Eg18yubfovb9shgplBQ
- MI7RRBs5aezQVtj/yhhvPaDueihgPboOZVshBINm3wuPmQuFAAn5ENl0g
- 7P42kZTNuB84uTh98Ln6c8KQw0bOjSXSn8ekDzAwf22Z1DhQsmF27+YrB
- b7aZ0hg8Fp00Vp1G4wbD22wgozUHks8nwJ//RNhzdUfbvI+8nQ2d97MQ0 g==;
-X-CSE-ConnectionGUID: EdVWTQIMRlWJLKnfcyuESA==
-X-CSE-MsgGUID: +5xwG88tTQOhhJTgfPabdw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="72710587"
-X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="72710587"
+ bh=pVeXEwBRqDDhKkQ81Ymk1YJ54mHlTHiDr11IcwYyifQ=;
+ b=TUt732nbBf+oty+y6VLRYCuogswsoFWqe2WDWVqqtGle4s2sE6+yd9RD
+ xcHiKbdXpGtx5vRc2C24PLqGHhsopguzPSI5lLRp3JA+qBxhHFqBmk3Cp
+ pQcgSHtL0MyJUOI9akDfGBLcstwieqKMR2UNTcnqjNYdc9ZzG7jCOhdPX
+ HIePIB7dTIf/gdsS9DqGvnmVcWLkHt2EuzWiG34v5yHzP7xOsDezzuqlm
+ I7Fd6ayiV+vQPIs8rEVEWJHAgOl9x2iIQ5e6JtCKUkBoYiRfs8Zbf78Ji
+ UB9trZiWsHVzgT12DxfgGSbCQokUkegQYHQ32TV4Lgl9A+RSWpDi9Bx79 w==;
+X-CSE-ConnectionGUID: dz1bURZGSSyViwrp1nUr7Q==
+X-CSE-MsgGUID: ewtrl0XlRcO18vtNhPrajg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="72710596"
+X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="72710596"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 12:56:28 -0800
-X-CSE-ConnectionGUID: gboHyIF3SM+r0mWib5tDnA==
-X-CSE-MsgGUID: Q4k2YY+QQEi4eWWsb6PXjg==
+ 18 Feb 2026 12:56:30 -0800
+X-CSE-ConnectionGUID: 1ONmSDyAQturf9U/kt7FPw==
+X-CSE-MsgGUID: NDh0mSBoRYiyXhGQkEfxSw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="213548247"
+X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="213548258"
 Received: from unknown (HELO mwajdecz-hp.clients.intel.com) ([10.246.18.5])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 12:56:25 -0800
+ 18 Feb 2026 12:56:28 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH v2 04/10] drm/xe/pf: Allow to change VFs VRAM quota using sysfs
-Date: Wed, 18 Feb 2026 21:55:46 +0100
-Message-ID: <20260218205553.3561-5-michal.wajdeczko@intel.com>
+Subject: [PATCH v2 05/10] drm/xe/pf: Use migration-friendly VRAM
+ auto-provisioning
+Date: Wed, 18 Feb 2026 21:55:47 +0100
+Message-ID: <20260218205553.3561-6-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260218205553.3561-1-michal.wajdeczko@intel.com>
 References: <20260218205553.3561-1-michal.wajdeczko@intel.com>
@@ -69,136 +69,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On current discrete platforms, PF will provision all VFs with a fair
-amount of the VRAM (LMEM) during VFs enabling. However, in some cases
-this automatic VRAM provisioning might be either non-reproducible or
-sub-optimal. This could break VF's migration or impact performance.
+Instead of trying very hard to find the largest fair VRAM (aka LMEM)
+size that could be allocated for VFs on the current tile, pick some
+smaller rounded down to power-of-two value that is more likely to be
+provisioned in the same manner by the other PF instances.
 
-Expose per-VF VRAM quota read-write sysfs attributes to allow admin
-change default VRAM provisioning performed by the PF.
-
- /sys/bus/pci/drivers/xe/BDF/
- ├── sriov_admin/
-     ├── .bulk_profile
-     │   └── vram_quota                 [RW] unsigned integer
-     ├── vf1/
-     │   └── profile
-     │       └── vram_quota             [RW] unsigned integer
-     ├── vf2/
-     │   └── profile
-     │       └── vram_quota             [RW] unsigned integer
-
-Above values represent total provisioned VRAM from all tiles where
-VFs were assigned, and currently it's from all tiles always.
-
-Note that changing VRAM provisioning is only possible when VF is
-not running, otherwise GuC will complain. To make sure that given
-VF is idle, triggering VF FLR might be needed.
+In some cases, the outcome of above calculation might not be optimal,
+but it's expected that admin will do fine-tuning using sysfs files.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
 ---
-v2: allow VRAM change only if LMTT (Piotr)
+v2: account for min_spare for PF (Piotr)
 ---
- drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c | 31 ++++++++++++++++++++++++--
- 1 file changed, 29 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 29 ++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
-index 82a1055985ba..aa05c143a4d6 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf_sysfs.c
-@@ -9,6 +9,7 @@
- #include <drm/drm_managed.h>
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index f67c8822e592..72cd46554230 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -1900,6 +1900,28 @@ static u64 pf_estimate_fair_lmem(struct xe_gt *gt, unsigned int num_vfs)
+ 	return fair;
+ }
  
- #include "xe_assert.h"
-+#include "xe_device.h"
- #include "xe_pci_sriov.h"
- #include "xe_pm.h"
- #include "xe_sriov.h"
-@@ -44,7 +45,8 @@ static int emit_choice(char *buf, int choice, const char * const *array, size_t
-  *     ├── .bulk_profile
-  *     │   ├── exec_quantum_ms
-  *     │   ├── preempt_timeout_us
-- *     │   └── sched_priority
-+ *     │   ├── sched_priority
-+ *     │   └── vram_quota
-  *     ├── pf/
-  *     │   ├── ...
-  *     │   ├── device -> ../../../BDF
-@@ -59,7 +61,8 @@ static int emit_choice(char *buf, int choice, const char * const *array, size_t
-  *     │   └── profile
-  *     │       ├── exec_quantum_ms
-  *     │       ├── preempt_timeout_us
-- *     │       └── sched_priority
-+ *     │       ├── sched_priority
-+ *     │       └── vram_quota
-  *     ├── vf2/
-  *     :
-  *     └── vfN/
-@@ -132,6 +135,7 @@ static XE_SRIOV_DEV_ATTR_WO(NAME)
- 
- DEFINE_SIMPLE_BULK_PROVISIONING_SRIOV_DEV_ATTR_WO(exec_quantum_ms, eq, u32);
- DEFINE_SIMPLE_BULK_PROVISIONING_SRIOV_DEV_ATTR_WO(preempt_timeout_us, pt, u32);
-+DEFINE_SIMPLE_BULK_PROVISIONING_SRIOV_DEV_ATTR_WO(vram_quota, vram, u64);
- 
- static const char * const sched_priority_names[] = {
- 	[GUC_SCHED_PRIORITY_LOW] = "low",
-@@ -181,12 +185,26 @@ static struct attribute *bulk_profile_dev_attrs[] = {
- 	&xe_sriov_dev_attr_exec_quantum_ms.attr,
- 	&xe_sriov_dev_attr_preempt_timeout_us.attr,
- 	&xe_sriov_dev_attr_sched_priority.attr,
-+	&xe_sriov_dev_attr_vram_quota.attr,
- 	NULL
- };
- 
-+static umode_t profile_dev_attr_is_visible(struct kobject *kobj,
-+					   struct attribute *attr, int index)
++static u64 pf_profile_fair_lmem(struct xe_gt *gt, unsigned int num_vfs)
 +{
-+	struct xe_sriov_kobj *vkobj = to_xe_sriov_kobj(kobj);
++	struct xe_tile *tile = gt_to_tile(gt);
++	bool admin_only_pf = xe_sriov_pf_admin_only(tile->xe);
++	u64 usable = xe_vram_region_usable_size(tile->mem.vram);
++	u64 spare = pf_get_min_spare_lmem(gt);
++	u64 available = usable > spare ? usable - spare : 0;
++	u64 shareable = ALIGN_DOWN(available, SZ_1G);
++	u64 alignment = pf_get_lmem_alignment(gt);
++	u64 fair;
 +
-+	if (attr == &xe_sriov_dev_attr_vram_quota.attr &&
-+	    !xe_device_has_lmtt(vkobj->xe))
-+		return 0;
++	if (admin_only_pf)
++		fair = div_u64(shareable, num_vfs);
++	else
++		fair = div_u64(shareable, 1 + num_vfs);
 +
-+	return attr->mode;
++	if (!admin_only_pf && fair)
++		fair = rounddown_pow_of_two(fair);
++
++	return ALIGN_DOWN(fair, alignment);
 +}
 +
- static const struct attribute_group bulk_profile_dev_attr_group = {
- 	.name = ".bulk_profile",
- 	.attrs = bulk_profile_dev_attrs,
-+	.is_visible = profile_dev_attr_is_visible,
- };
+ /**
+  * xe_gt_sriov_pf_config_set_fair_lmem - Provision many VFs with fair LMEM.
+  * @gt: the &xe_gt (can't be media)
+@@ -1913,6 +1935,7 @@ static u64 pf_estimate_fair_lmem(struct xe_gt *gt, unsigned int num_vfs)
+ int xe_gt_sriov_pf_config_set_fair_lmem(struct xe_gt *gt, unsigned int vfid,
+ 					unsigned int num_vfs)
+ {
++	u64 profile;
+ 	u64 fair;
  
- static const struct attribute_group *xe_sriov_dev_attr_groups[] = {
-@@ -228,6 +246,7 @@ static XE_SRIOV_VF_ATTR(NAME)
+ 	xe_gt_assert(gt, vfid);
+@@ -1929,6 +1952,12 @@ int xe_gt_sriov_pf_config_set_fair_lmem(struct xe_gt *gt, unsigned int vfid,
+ 	if (!fair)
+ 		return -ENOSPC;
  
- DEFINE_SIMPLE_PROVISIONING_SRIOV_VF_ATTR(exec_quantum_ms, eq, u32, "%u\n");
- DEFINE_SIMPLE_PROVISIONING_SRIOV_VF_ATTR(preempt_timeout_us, pt, u32, "%u\n");
-+DEFINE_SIMPLE_PROVISIONING_SRIOV_VF_ATTR(vram_quota, vram, u64, "%llu\n");
- 
- static ssize_t xe_sriov_vf_attr_sched_priority_show(struct xe_device *xe, unsigned int vfid,
- 						    char *buf)
-@@ -274,6 +293,7 @@ static struct attribute *profile_vf_attrs[] = {
- 	&xe_sriov_vf_attr_exec_quantum_ms.attr,
- 	&xe_sriov_vf_attr_preempt_timeout_us.attr,
- 	&xe_sriov_vf_attr_sched_priority.attr,
-+	&xe_sriov_vf_attr_vram_quota.attr,
- 	NULL
- };
- 
-@@ -286,6 +306,13 @@ static umode_t profile_vf_attr_is_visible(struct kobject *kobj,
- 	    !sched_priority_change_allowed(vkobj->vfid))
- 		return attr->mode & 0444;
- 
-+	if (attr == &xe_sriov_vf_attr_vram_quota.attr) {
-+		if (!IS_DGFX(vkobj->xe) || vkobj->vfid == PFID)
-+			return 0;
-+		if (!xe_device_has_lmtt(vkobj->xe))
-+			return attr->mode & 0444;
-+	}
++	profile = pf_profile_fair_lmem(gt, num_vfs);
++	fair = min(fair, profile);
++	if (fair < profile)
++		xe_gt_sriov_info(gt, "Using non-profile provisioning (%s %llu vs %llu)\n",
++				 "VRAM", fair, profile);
 +
- 	return attr->mode;
+ 	return xe_gt_sriov_pf_config_bulk_set_lmem(gt, vfid, num_vfs, fair);
  }
  
 -- 
