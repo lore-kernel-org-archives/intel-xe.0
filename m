@@ -4,76 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30C73E9A04D
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 22:09:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 572ADE9A02C
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 22:09:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7D2410E323;
-	Wed, 18 Feb 2026 22:09:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D2C410E630;
+	Wed, 18 Feb 2026 22:09:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="io75LsMm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="im8wSdUb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 854C610E323
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Feb 2026 22:09:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 539F510E630
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Feb 2026 22:09:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771452589; x=1802988589;
- h=from:subject:date:message-id:mime-version:
- content-transfer-encoding:to:cc;
- bh=Rof9GyUUaMo/uM3Su+V5iaGVCYhRPRITaBJ1XfaTSnM=;
- b=io75LsMmlR8uTzPDtra4GEN0nGp1CspGjGGDMkCmKZsfQZYN2M7aIBy5
- bWI7k2THMZ7m5NawrKEI7IW+tig89K1o36OgvrsMXVTXx6ggDfELPUfBN
- 1KrSmCEliE04PD7Mara85tEqWYXiS7DS4nkaHSGLQpNBGfP0D+GAM4V8a
- ED+s+IG7EMwzwCb/4LZ4jvxyMGWy+oCmFSbDY5RY8qg14TKHXKi/Z6zxs
- XLzWCFfB/W6R5gQTR8qSwPXsBAzZm2saD1uRdWjSD+BynOlMdn6N69GIn
- EtO7PMaPGP++lkycnc14pQOhsbUICLW/7jwpgFO3pYt901cao87dOB6nM w==;
-X-CSE-ConnectionGUID: uDNzJqknTye+tnO7ZdQrHA==
-X-CSE-MsgGUID: v+gdFFSQTeOlvs3VBS6udw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="76399064"
-X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="76399064"
+ t=1771452590; x=1802988590;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to:cc;
+ bh=3k5lPcbqzKT3mSB/y1iogsLNSngCOnxsB3Jsi55V2yo=;
+ b=im8wSdUbCpjIX1YcHpZ5uqDS5Qeu7KVh3mJAX/WdkNBuboEIWzR4+kQT
+ RB74gs0nBVSSVvW4ec/aic0NFqw+Dt8dhwZYSMAuc2aLSFc0ydGKnOH2b
+ zOKCxTx8P1nMVd9pbse5EGmZCPzaHuQDmsYk7VAxgdlfSeTEwsH4J8Jk5
+ rEpEbS8djGwsBjhw1o3o6Bz2lOyZi+rycMF3fhpjecQrMzih7CYjyt+DD
+ W78GaTDD5Ct2ajeXyudOkfs4hoaOvBZM9sxlial/pe4u/D9cWCf5GFlRc
+ 213evKbKY2XGqJEoWcnj1rr4LObl2N+c/K+TsGjvL+aHfy1HDUoiLOVao w==;
+X-CSE-ConnectionGUID: iFo66mLmSi6aA9lPkMR3EQ==
+X-CSE-MsgGUID: 3/Z7PxcpQtam5uImCufxNA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="76399068"
+X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="76399068"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Feb 2026 14:09:49 -0800
-X-CSE-ConnectionGUID: XWV4NhKJSK24b4weDAVtXA==
-X-CSE-MsgGUID: 8sgwPJqfRdSX3zh5z+1beQ==
+X-CSE-ConnectionGUID: 41fdcmeOThaikRXSwump+Q==
+X-CSE-MsgGUID: 1/x5d7B5QaS+Ml6oaT2NqQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="214329406"
+X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="214329415"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.39.133])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Feb 2026 14:09:49 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
-Subject: [PATCH v4 0/4] Add debugfs facility to catch RTP mistakes
-Date: Wed, 18 Feb 2026 14:09:11 -0800
-Message-Id: <20260218-sr_verify-v4-0-35d6deeb3421@intel.com>
+Date: Wed, 18 Feb 2026 14:09:14 -0800
+Subject: [PATCH v4 3/4] drm/xe: Add facility to lookup the value of a
+ register in a default LRC
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAIg4lmkC/03MywrCMBCF4VcpszZhkkgvrvoeIpKmExuwTZmEq
- pS+u8GVyw/O+XdIxIESXKodmLaQQlwKzqcK3GSXB4kwFoNGXaNWrUh838rFf0TTDtrgoNA6D2W
- /Mvnw/rWut2LPcRZ5YrL/BYOIne5kY7RSRtRitjlP9JKj5LgS92HJ9JQuznAcX9JFVF2fAAAA
-X-Change-ID: 20260218-sr_verify-78b230b10acf
+Message-Id: <20260218-sr_verify-v4-3-35d6deeb3421@intel.com>
+References: <20260218-sr_verify-v4-0-35d6deeb3421@intel.com>
+In-Reply-To: <20260218-sr_verify-v4-0-35d6deeb3421@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>, 
  Ashutosh Dixit <ashutosh.dixit@intel.com>, 
- Harish Chegondi <harish.chegondi@intel.com>, 
  Matt Roper <matthew.d.roper@intel.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4630;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4556;
  i=matthew.d.roper@intel.com; h=from:subject:message-id;
- bh=Rof9GyUUaMo/uM3Su+V5iaGVCYhRPRITaBJ1XfaTSnM=;
- b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBpljisf5k+Qi30vBOQyg3grc5uCLudtA2XVivxr
- fEuhDXqBYeJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaZY4rAAKCRBNeSQFyHKQ
- BEuGEACuEMssdOewYr9BLd0EooICJzwqGwhRCYqPSslYy8i9fvBa4lfW3ZxLrVxPTVEgapF18WK
- ZRKPivG12OQh6aC8D5Qsyk/Oc2mkh3XQ4MNo3W72aU5ZzQi3PXOlqKSw3ms0WlcrsO2bhG6mjsM
- VDd4MFgz1Ii8MI8K2X0ukFalsqpo758hD4G7luWy9/GQ1bGuG9RZVg6bcSpZ/RTgRW6CPn1DkVF
- QQDgnEUTSCV9gHMNURNGOgMyuFYDGpcArVeGrnxTyWUBnJtyJVixaXzpKKZ/u/1I3E8pcefj4H+
- RYl5HOQakU7D5SqRq+8ZibNEGnmbckdE1jbUvMtwTXuqS2CUIWR0TplrBcJ03fb0ylrp0Y5H3SC
- GXfRiUvUV4aHopUXo0jEguBLGW0ivz6qMlber0tOyrA0tMFP3LkjY/lWdstS6jY3H4KvDxiiLF9
- fdUau6Ugk7wlivi6NJvqBAqQnZvSdDIzlIohmSAvyBYrrcLhVRqoUieoL9R1xArfZ01amOIVCSo
- e0axYehVFDDmVqnzpxOrN/EDp5U/NMqBXjA+LRG3PsunH6GVEKNjCR9skeQpRjAagm/NRFqqhuR
- f+8052BwzX5UMA+DLoP0U0fqNCGbYCvrPTqNIokqzzdavsK8A2zeNCNyLxhUowaJQaw8SNVtyHF
- KbJWDmp/DW3r8qw==
+ bh=3k5lPcbqzKT3mSB/y1iogsLNSngCOnxsB3Jsi55V2yo=;
+ b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBpljisUhogPjwEASrfQKUpWjufcFoCJ4j9SrmiC
+ Da8dj4COXGJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaZY4rAAKCRBNeSQFyHKQ
+ BFxcD/0QIPUJVua8ISKwUHevnDDmLapbus821J1eHYnyPjxbzcYesJ7Yg7KcRbQ3HlauYFcCyYJ
+ wKd30zKEYKd925tILlO1O7YvvWc74Ivzrdqo+xWQ50FxaduqbjEYSPhp+j3LKdtQwElQQvJD1R+
+ 4mdLE1GENoWuckrq+DOqLEmJkvCcgohgRX9nRN8WBJ9kGYP9DyxMJrqn12W8JUOo5CMbEdX4uMc
+ eRn5h3f26o38HT/CH4bZC/Wl5YtV9HoMiL4M+t1zGT7gn3ZI4I+EZnA2PdkLkv/er1BAIvIxBBj
+ UBDN0Mb1MuM8dXRX+tm3ufZuc+HUNhR/uCxptzq26L8pvzgKGqzU747H6k95eoFQVwQco/mIvLA
+ cM+hlg1XtmTFXlCFGgyT4gtTj3FePGT1cf9u6kxTBmB+EvyXdMhoJF0V3SjcEFrp9gnoJcxMhGQ
+ ZCoCQE3peJAiDfl/mHO2ZEjKEutfVxJXkbzO2wq0CFNmy2h11xVj13kXSB2jWkFErrjzzduoXNA
+ NwLRLz7tnh53QxmM07wgXHf/3jDa2Q3kCfbNArnOVTHIi+hqozaK8alN5QPVenG/APpO5c60IQ4
+ 95nQRp7tUg6RPB6VL5F3Z9DtXCuTwbRYd4DAtJ+VbB57weJ1XO5Ehmbt13tqiFrJHHVoUR4y7kV
+ nY8ul2TtBWtIl7Q==
 X-Developer-Key: i=matthew.d.roper@intel.com; a=openpgp;
  fpr=C267C309447FEB4F3F216DAC4D792405C8729004
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -90,107 +88,153 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Unlike i915, Xe doesn't currently do any readback verification of
-workaround/tuning settings that it tries to program.  If an entry gets
-placed on the wrong table, or applied to the wrong platform/IP, the
-programming may be silently ineffective without anyone noticing.
+An LRC is stored in memory as a special batchbuffer that hardware will
+execute to re-load state when switching to the context; it's a
+collection of register values (encoded as MI_LOAD_REGISTER_IMM commands)
+and other state instructions (e.g., 3DSTATE_*).  The value that will be
+loaded for a given register can be determined by parsing the batchbuffer
+to find MI_LRI commands and extracting the value from the offset/value
+pairs it contains.  Add functions to do this, which will be used in a
+future patch to help verify that our expected reg_sr programming is in
+place.
 
-i915's solution of doing verification at application time was
-problematic because raising warnings during probe would be treated by CI
-as a fatal problem and would prevent CI from even attempting any other
-testing until the issue was dealt with.  Let's avoid that with Xe and
-instead perform the verification on-demand when a debugfs entry is read.
-This makes it very easy to do verification at various times during
-manual debugging.  It should also be simply to wrap a dedicated IGT test
-around the debugfs entry such that any unexpected failures are reported
-against that one test rather than bringing down the entire CI system.
+The implementation here returns the value as soon as it finds a match in
+the LRC.  Technically a register could appear multiple times (either due
+to memory corruption or a hardware defect) and the last value
+encountered would be the one in effect when the context resumes
+execution.  We can adjust the logic to keep looking and return the last
+match instead of first in the future if we encounter real-world cases
+where this would assist with debugging.
 
-Note that verification of LRC programming is a bit more complicated than
-verification of GT/engine programming since we can't just blindly read
-the register values from the CPU and expect the RTP values to be in
-effect.  Applying LRC programming ensures that every GPU context created
-should have the updated values in the LRC, and those values will get
-loaded into the register when the hardware context switches to it.
-However when no context is running on the hardware, the register values
-may revert to their hardware defaults which do not have the programming
-applied.  Instead, we should verify LRC programming by parsing the
-engine's 'default LRC' image and making sure the desired programming
-appears somewhere in one of the MI_LOAD_REGISTER_IMM state emission
-commands.
-
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-
-v2:
- - Avoid processing RTP -> SR for gt/hwe lists in VF to ensure the
-   debugfs entry is safe to use in an SR-IOV VF.  (Ashutosh)
- - Add verification of LRC adjustments by searching engine type's
-   default LRC.
-
-v3:
- - Add missing checks to avoid SR-IOV VF processing of RTP -> SR in
-   hw_engine_setup_default_state() and
-   xe_reg_whitelist_process_engine().
-
-v4:
- - Add an extra parameter to xe_rtp_process_to_sr() to determine whether
-   the RTP -> sr processing should be performed for SR-IOV VF devices or
-   not, rather than adding the VF conditional checks to the callsites.
-   (Ashutosh)
- - Fix a missing parameter to kerneldoc for xe_reg_sr_lrc_check.
-
-Matt Roper (4):
-  drm/xe/reg_sr: Don't process gt/hwe lists in VF
-  drm/xe/reg_sr: Add debugfs to verify status of reg_sr programming
-  drm/xe: Add facility to lookup the value of a register in a default
-    LRC
-  drm/xe/reg_sr: Allow register_save_restore_check debugfs to verify LRC
-    values
-
- drivers/gpu/drm/xe/xe_gt_debugfs.c    | 26 ++++++++
- drivers/gpu/drm/xe/xe_hw_engine.c     |  3 +
- drivers/gpu/drm/xe/xe_lrc.c           | 96 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_lrc.h           |  4 ++
- drivers/gpu/drm/xe/xe_reg_sr.c        | 71 +++++++++++++++++++-
- drivers/gpu/drm/xe/xe_reg_sr.h        |  7 ++
- drivers/gpu/drm/xe/xe_reg_whitelist.c |  3 +
- drivers/gpu/drm/xe/xe_tuning.c        |  7 ++
- drivers/gpu/drm/xe/xe_wa.c            |  6 ++
- 9 files changed, 221 insertions(+), 2 deletions(-)
-
-To: intel-xe@lists.freedesktop.org
-
---
-2.53.0
-
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
-Matt Roper (4):
-      drm/xe/reg_sr: Don't process gt/hwe lists in VF
-      drm/xe/reg_sr: Add debugfs to verify status of reg_sr programming
-      drm/xe: Add facility to lookup the value of a register in a default LRC
-      drm/xe/reg_sr: Allow register_save_restore_check debugfs to verify LRC values
+ drivers/gpu/drm/xe/xe_lrc.c | 96 +++++++++++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_lrc.h |  4 ++
+ 2 files changed, 100 insertions(+)
 
- drivers/gpu/drm/xe/tests/xe_rtp_test.c |  3 +-
- drivers/gpu/drm/xe/xe_gt_debugfs.c     | 26 +++++++++
- drivers/gpu/drm/xe/xe_hw_engine.c      |  6 ++-
- drivers/gpu/drm/xe/xe_lrc.c            | 96 ++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_lrc.h            |  4 ++
- drivers/gpu/drm/xe/xe_reg_sr.c         | 72 ++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_reg_sr.h         |  7 +++
- drivers/gpu/drm/xe/xe_reg_whitelist.c  |  2 +-
- drivers/gpu/drm/xe/xe_rtp.c            |  8 ++-
- drivers/gpu/drm/xe/xe_rtp.h            |  3 +-
- drivers/gpu/drm/xe/xe_tuning.c         |  9 ++--
- drivers/gpu/drm/xe/xe_wa.c             |  9 ++--
- 12 files changed, 231 insertions(+), 14 deletions(-)
----
-base-commit: 7ee0795cb4f30c9ccc2b8a580faebcefbdf150c5
-change-id: 20260218-sr_verify-78b230b10acf
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 38f648b98868d8a6caa038e2d940f72783f2074b..57ef4f527ed0d142ad382ba17c020d8f8c241bfd 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -2155,6 +2155,102 @@ void xe_lrc_dump_default(struct drm_printer *p,
+ 	}
+ }
+ 
++/*
++ * Lookup the value of a register within the offset/value pairs of an
++ * MI_LOAD_REGISTER_IMM instruction.
++ *
++ * Return -ENOENT if the register is not present in the MI_LRI instruction.
++ */
++static int lookup_reg_in_mi_lri(u32 offset, u32 *value,
++				const u32 *dword_pair, int num_regs)
++{
++	for (int i = 0; i < num_regs; i++) {
++		if (dword_pair[2 * i] == offset) {
++			*value = dword_pair[2 * i + 1];
++			return 0;
++		}
++	}
++
++	return -ENOENT;
++}
++
++/*
++ * Lookup the value of a register in a specific engine type's default LRC.
++ *
++ * Return -EINVAL if the default LRC doesn't exist, or ENOENT if the register
++ * cannot be found in the default LRC.
++ */
++int xe_lrc_lookup_default_reg_value(struct xe_gt *gt,
++				    enum xe_engine_class hwe_class,
++				    u32 offset,
++				    u32 *value)
++{
++	u32 *dw;
++	int remaining_dw, ret;
++
++	if (!gt->default_lrc[hwe_class])
++		return -EINVAL;
++
++	/*
++	 * Skip the beginning of the LRC since it contains the per-process
++	 * hardware status page.
++	 */
++	dw = gt->default_lrc[hwe_class] + LRC_PPHWSP_SIZE;
++	remaining_dw = (xe_gt_lrc_size(gt, hwe_class) - LRC_PPHWSP_SIZE) / 4;
++
++	while (remaining_dw > 0) {
++		u32 num_dw = instr_dw(*dw);
++
++		if (num_dw > remaining_dw)
++			num_dw = remaining_dw;
++
++		switch (*dw & XE_INSTR_CMD_TYPE) {
++		case XE_INSTR_MI:
++			switch (*dw & MI_OPCODE) {
++			case MI_BATCH_BUFFER_END:
++				/* End of LRC; register not found */
++				return -ENOENT;
++
++			case MI_NOOP:
++			case MI_TOPOLOGY_FILTER:
++				/*
++				 * MI_NOOP and MI_TOPOLOGY_FILTER don't have
++				 * a length field and are always 1-dword
++				 * instructions.
++				 */
++				remaining_dw--;
++				dw++;
++				break;
++
++			case MI_LOAD_REGISTER_IMM:
++				ret = lookup_reg_in_mi_lri(offset, value,
++							   dw + 1, (num_dw - 1) / 2);
++				if (ret == 0)
++					return 0;
++
++				fallthrough;
++
++			default:
++				/*
++				 * Jump to next instruction based on length
++				 * field.
++				 */
++				remaining_dw -= num_dw;
++				dw += num_dw;
++				break;
++			}
++			break;
++
++		default:
++			/* Jump to next instruction based on length field. */
++			remaining_dw -= num_dw;
++			dw += num_dw;
++		}
++	}
++
++	return -ENOENT;
++}
++
+ struct instr_state {
+ 	u32 instr;
+ 	u16 num_dw;
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index c307a3fd9ea287d54f2d211cdb688e1143a43d03..3e500004f1ae449befaf4cbcefef36dc4c92bdec 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -133,6 +133,10 @@ size_t xe_lrc_skip_size(struct xe_device *xe);
+ void xe_lrc_dump_default(struct drm_printer *p,
+ 			 struct xe_gt *gt,
+ 			 enum xe_engine_class);
++int xe_lrc_lookup_default_reg_value(struct xe_gt *gt,
++				    enum xe_engine_class hwe_class,
++				    u32 offset,
++				    u32 *value);
+ 
+ u32 *xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, u32 *cs);
+ 
 
-Best regards,
 -- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+2.53.0
 
