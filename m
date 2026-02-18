@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0E12E9A03B
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 07:18:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A1C6E9A03B
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 07:22:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1A4A10E2E1;
-	Wed, 18 Feb 2026 07:18:52 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2D8510E2E1;
- Wed, 18 Feb 2026 07:18:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3430524558958983623=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC55710E569;
+	Wed, 18 Feb 2026 07:22:23 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VluP5KnL";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C092910E2E2;
+ Wed, 18 Feb 2026 07:22:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1771399343; x=1802935343;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=gjnKdCZ4v6NKS1Ua9hQ4cf8K7q4wGogSui2GXqQG478=;
+ b=VluP5KnLcThkpJXAlKbm7nQNufYV6h7ayMuUWzOaHKKlBZKhqWMHvFll
+ DHsmuBNjioLCVC851g9ED8iKLisMiy8cCecc9lvmikfC3SIJbpvyUy1Xd
+ IRgrCJLju1cdkgDdPteKyqnL/CnBD+1V/Zde554nGjuim3CxEPAzC8nv+
+ siJlks/lesXz0wp4dfPkXNGTtIb30POOgEnU9ICCZiS2QeNv5dEo480Sq
+ x54eb7fq2hrw3n5YmFyhC3DmQi9Xgf7yOvml7R1pw/1PrNQ9LJiwK0Nqo
+ YkeRGpci3CBypWB6IY8jNDAypUe16Dmd/aIdQtdYwRSaw9HZcuzFOhYRA g==;
+X-CSE-ConnectionGUID: 80W16FLoQ46cDlM0DZSe3A==
+X-CSE-MsgGUID: AzGbCsU0SRutoz0fgcXMcA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11704"; a="72519033"
+X-IronPort-AV: E=Sophos;i="6.21,297,1763452800"; d="scan'208";a="72519033"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2026 23:22:23 -0800
+X-CSE-ConnectionGUID: mMRvToXyRey7KPCa7bk7NQ==
+X-CSE-MsgGUID: MpeeHAJhTk67uOgFJ9r8mg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,297,1763452800"; d="scan'208";a="213208222"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by orviesa006.jf.intel.com with ESMTP; 17 Feb 2026 23:22:18 -0800
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: contact@emersion.fr, alex.hung@amd.com, harry.wentland@amd.com,
+ daniels@collabora.com, mwen@igalia.com, sebastian.wick@redhat.com,
+ uma.shankar@intel.com, ville.syrjala@linux.intel.com,
+ maarten.lankhorst@linux.intel.com, jani.nikula@intel.com,
+ louis.chauvet@bootlin.com, stable@vger.kernel.org,
+ chaitanya.kumar.borah@intel.com
+Subject: [PATCH 0/2] drm/colorop: Keep colorop state consistent across atomic
+ commits
+Date: Wed, 18 Feb 2026 12:27:11 +0530
+Message-Id: <20260218065713.326417-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFULL=3A_success_for_gpu=3A_Fix_uninitialized_b?=
- =?utf-8?q?uddy_for_built-in_drivers_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Koen Koning" <koen.koning@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 18 Feb 2026 07:18:50 -0000
-Message-ID: <177139913090.261581.6213591232017656571@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260213152047.179628-1-koen.koning@linux.intel.com>
-In-Reply-To: <20260213152047.179628-1-koen.koning@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +68,99 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3430524558958983623==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This series aims to keep colorop state consistent across atomic
+transactions by ensuring it accurately reflects committed hardware
+state and remains part of the atomic update whenever its associated
+plane is involved.
 
-== Series Details ==
+It contains two changes:
+- Preserves the bypass value in duplicated colorop state.
 
-Series: gpu: Fix uninitialized buddy for built-in drivers (rev3)
-URL   : https://patchwork.freedesktop.org/series/161596/
-State : success
+_drm_atomic_helper_colorop_duplicate_state() unconditionally reset
+bypass to true, which means the duplicated state no longer reflects the
+committed hardware state. Since bypass directly controls whether the
+colorop is active in hardware, this can lead to an unintended disable
+during subsequent commits.
 
-== Summary ==
+This could potentially be a problem also for colorops where bypass value
+is immutably false.
 
-CI Bug Log - changes from xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d_FULL -> xe-pw-161596v3_FULL
-====================================================
+Conceptually, I consider 'bypass' to behave similar to 'visible' in plane 
+state - it represents current HW state and should therefore be preserved
+across duplication.
 
-Summary
--------
+- Add affected colorops with affected plane
 
-  **SUCCESS**
+Colorops are unique in the DRM model. While they are DRM objects with their
+own states, they are logically attached to a plane and exposed through
+a plane property. In some sense, they share the same hierarchy as CRTC and
+planes while following a different 'ownership' model.
 
-  No regressions found.
+Given that enabling a CRTC pulls in all its affected planes into the atomic
+state, it follows that when a plane is added, its associated colorops are
+also included. Otherwise, during modesets or internal commits, colorop state
+may be missing from the transaction, resulting in inconsistent or incomplete
+state updates.
 
-  
+That said, I do have a concern about potentially inflating the atomic
+state by automatically pulling in colorops from the core. It is not
+entirely clear to me whether inclusion of affected colorops should be
+handled in core, or left to individual drivers.
 
-Participating hosts (0 -> 0)
-------------------------------
+My understanding of the atomic framework is still evolving, so
+I would appreciate feedback from those more familiar with the intended
+design direction.
 
-  No changes in participating hosts
+==
+Chaitanya
 
+P.S/Background/TL;DR:
 
-Changes
--------
+I discovered inconsistency with the colorop state while analysing CRC mismatches
+in kms_color_pipeline test cases[1]. Visual inspection reveals that while CRC is
+being collected degamma block has been reset. This was traced back to the internal
+commit that the driver does to disable PSR2 and selective fetch for CRC collection.
 
-  No changes found
+crtc_crc_open
+    -> intel_crtc_set_crc_source
+        -> intel_crtc_crc_setup_workarounds
+            -> drm_atomic_commit
 
+During this flow colorop states are never added to the atomic state which in turn
+makes intel_plane_color_copy_uapi_to_hw_state() disable the colorops.
 
-Build changes
--------------
+If we add the colorops, to the atomic state, the problem still persisted because
+while duplicating the colorop state, 'bypass' was getting reset to true.
 
-  * Linux: xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d -> xe-pw-161596v3
+The two changes made in this series fixes the issue.
 
-  IGT_8758: 8758
-  xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d: fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d
-  xe-pw-161596v3: 161596v3
+[1] https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18001/shard-mtlp-6/igt@kms_color_pipeline@plane-lut1d.html
 
-== Logs ==
+Cc: Simon Ser <contact@emersion.fr>
+Cc: Alex Hung <alex.hung@amd.com>
+Cc: Harry Wentland <harry.wentland@amd.com>
+Cc: Daniel Stone <daniels@collabora.com>
+Cc: Melissa Wen <mwen@igalia.com>
+Cc: Sebastian Wick <sebastian.wick@redhat.com>
+Cc: Alex Hung <alex.hung@amd.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Louis Chauvet <louis.chauvet@bootlin.com>
+Cc: <stable@vger.kernel.org> #v6.19+
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161596v3/index.html
+Chaitanya Kumar Borah (2):
+  drm/colorop: Preserve bypass value in duplicate_state()
+  drm/atomic: Add affected colorops with affected planes
 
---===============3430524558958983623==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+ drivers/gpu/drm/drm_atomic.c  | 5 +++++
+ drivers/gpu/drm/drm_colorop.c | 2 --
+ 2 files changed, 5 insertions(+), 2 deletions(-)
 
+-- 
+2.25.1
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>gpu: Fix uninitialized buddy for built-in drivers (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161596/">https://patchwork.freedesktop.org/series/161596/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161596v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161596v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d_FULL -&gt; xe-pw-161596v3_FULL</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (0 -&gt; 0)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d -&gt; xe-pw-161596v3</li>
-</ul>
-<p>IGT_8758: 8758<br />
-  xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d: fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d<br />
-  xe-pw-161596v3: 161596v3</p>
-
-</body>
-</html>
-
---===============3430524558958983623==--
