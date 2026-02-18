@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 572ADE9A02C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A58F0E9A04F
 	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 22:09:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D2C410E630;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6AB2510E633;
 	Wed, 18 Feb 2026 22:09:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="im8wSdUb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mX3rrOHR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 539F510E630
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FB7F10E323
  for <intel-xe@lists.freedesktop.org>; Wed, 18 Feb 2026 22:09:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1771452590; x=1802988590;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=3k5lPcbqzKT3mSB/y1iogsLNSngCOnxsB3Jsi55V2yo=;
- b=im8wSdUbCpjIX1YcHpZ5uqDS5Qeu7KVh3mJAX/WdkNBuboEIWzR4+kQT
- RB74gs0nBVSSVvW4ec/aic0NFqw+Dt8dhwZYSMAuc2aLSFc0ydGKnOH2b
- zOKCxTx8P1nMVd9pbse5EGmZCPzaHuQDmsYk7VAxgdlfSeTEwsH4J8Jk5
- rEpEbS8djGwsBjhw1o3o6Bz2lOyZi+rycMF3fhpjecQrMzih7CYjyt+DD
- W78GaTDD5Ct2ajeXyudOkfs4hoaOvBZM9sxlial/pe4u/D9cWCf5GFlRc
- 213evKbKY2XGqJEoWcnj1rr4LObl2N+c/K+TsGjvL+aHfy1HDUoiLOVao w==;
-X-CSE-ConnectionGUID: iFo66mLmSi6aA9lPkMR3EQ==
-X-CSE-MsgGUID: 3/Z7PxcpQtam5uImCufxNA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="76399068"
-X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="76399068"
+ bh=3YpEuaKZmyBGkx3dallxD/grKD+v9WvEC19vLe5CqdY=;
+ b=mX3rrOHRhwRlLyR7NBWrLkOjcadkY4uZOMk4JVOwQnNdXV3RPB14nQgy
+ f2VA7zhnORTlrcxJ4DqS/lBKN+EGmYhc0d164C5hUlvYq1vnFWnqez8NE
+ rAD6tXVk9M0NUfxI+EY65AO3sUlNxGBptOkyaiS1kZpudoQZqdggKa37g
+ Rz2rurNtQg0bYOWnyIH8oEa6YWYg2RRTndHSgIqH24GfZbdGXMk22thcv
+ AYRmnKDqxW4ondtAXX4M+DSPKbftmTHf1vXGYAn86OZk/55/NWexQYY0H
+ VY/fHdMeqRNAJ/gCBAZTchRhrjyaUVfxv0gJlkSYsIhY9l0E0QjSapkOo w==;
+X-CSE-ConnectionGUID: GdP2TpHIQ7eeogIwHhvF3w==
+X-CSE-MsgGUID: ph0A7Q8rSGOIgOQ9XtqxLA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="76399066"
+X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="76399066"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Feb 2026 14:09:49 -0800
-X-CSE-ConnectionGUID: 41fdcmeOThaikRXSwump+Q==
-X-CSE-MsgGUID: 1/x5d7B5QaS+Ml6oaT2NqQ==
+X-CSE-ConnectionGUID: tlYfy++ZSPiExCDdsewFPg==
+X-CSE-MsgGUID: QAbHbg5HTaCoKoYMhI2rFw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="214329415"
+X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="214329412"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.39.133])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Feb 2026 14:09:49 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
-Date: Wed, 18 Feb 2026 14:09:14 -0800
-Subject: [PATCH v4 3/4] drm/xe: Add facility to lookup the value of a
- register in a default LRC
+Date: Wed, 18 Feb 2026 14:09:13 -0800
+Subject: [PATCH v4 2/4] drm/xe/reg_sr: Add debugfs to verify status of
+ reg_sr programming
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260218-sr_verify-v4-3-35d6deeb3421@intel.com>
+Message-Id: <20260218-sr_verify-v4-2-35d6deeb3421@intel.com>
 References: <20260218-sr_verify-v4-0-35d6deeb3421@intel.com>
 In-Reply-To: <20260218-sr_verify-v4-0-35d6deeb3421@intel.com>
 To: intel-xe@lists.freedesktop.org
@@ -57,21 +57,21 @@ Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
  Ashutosh Dixit <ashutosh.dixit@intel.com>, 
  Matt Roper <matthew.d.roper@intel.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4556;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5660;
  i=matthew.d.roper@intel.com; h=from:subject:message-id;
- bh=3k5lPcbqzKT3mSB/y1iogsLNSngCOnxsB3Jsi55V2yo=;
- b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBpljisUhogPjwEASrfQKUpWjufcFoCJ4j9SrmiC
- Da8dj4COXGJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaZY4rAAKCRBNeSQFyHKQ
- BFxcD/0QIPUJVua8ISKwUHevnDDmLapbus821J1eHYnyPjxbzcYesJ7Yg7KcRbQ3HlauYFcCyYJ
- wKd30zKEYKd925tILlO1O7YvvWc74Ivzrdqo+xWQ50FxaduqbjEYSPhp+j3LKdtQwElQQvJD1R+
- 4mdLE1GENoWuckrq+DOqLEmJkvCcgohgRX9nRN8WBJ9kGYP9DyxMJrqn12W8JUOo5CMbEdX4uMc
- eRn5h3f26o38HT/CH4bZC/Wl5YtV9HoMiL4M+t1zGT7gn3ZI4I+EZnA2PdkLkv/er1BAIvIxBBj
- UBDN0Mb1MuM8dXRX+tm3ufZuc+HUNhR/uCxptzq26L8pvzgKGqzU747H6k95eoFQVwQco/mIvLA
- cM+hlg1XtmTFXlCFGgyT4gtTj3FePGT1cf9u6kxTBmB+EvyXdMhoJF0V3SjcEFrp9gnoJcxMhGQ
- ZCoCQE3peJAiDfl/mHO2ZEjKEutfVxJXkbzO2wq0CFNmy2h11xVj13kXSB2jWkFErrjzzduoXNA
- NwLRLz7tnh53QxmM07wgXHf/3jDa2Q3kCfbNArnOVTHIi+hqozaK8alN5QPVenG/APpO5c60IQ4
- 95nQRp7tUg6RPB6VL5F3Z9DtXCuTwbRYd4DAtJ+VbB57weJ1XO5Ehmbt13tqiFrJHHVoUR4y7kV
- nY8ul2TtBWtIl7Q==
+ bh=3YpEuaKZmyBGkx3dallxD/grKD+v9WvEC19vLe5CqdY=;
+ b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBpljisWVzBJv/Vhg3m5rPhVSBbkex/lMeCg8IFO
+ Sc+6N2V9TqJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaZY4rAAKCRBNeSQFyHKQ
+ BDK/D/oC4OvGWGklWR+/Lwr+jPBicd+nyThh/RmFjfzgjKhRyyfmdZkXmQyKe4hHdEljAvJ4u1a
+ KXwoynVQriYlovKRg7yS7ZvhtN6FIvo7GdhJVSi00DbUg1r9ijGOb/894xFzXlwzwQ2lgOvr9AG
+ Q2DY90L4I2Hez6lH19+CuyZkycqjy+r+M1HMLxZ1fDzIoUbfDOUrO7jM6wnQk1Bc964xDD9K4/9
+ 1Vxra9d9bCW8CTjza6QsvB3S7LU+PE0lyhjTNY4YZHJOygIEIFsFZBIrfkgvQ13jD0y/d4c9IVH
+ ysbFGWSbW8574cHLzLoDz+HEvZbHKw4tXM/tgBBWGb92os6F1wmpRiFcaprMYEU+g4Ye/0YmCDb
+ 6j7A2lemhWQMZdtfEes432GQVJtZbLJk/LBANJWoIzmz/JfbR/KwlfuEJ4JjpETM4O0BsWwWwKB
+ 3jFTUaMV/SWkxNBN6wKmFLK371K/oAUdLuGMr4RJirOQQvGMg4R3ZrbnJQo0UGk+glpNjeePt9B
+ 9WTX3MvCpxiyFo7T9zClWHIWvZCCY0so+ygr84U+7EM3yAMOnXiCe7ikszIP3mt2AN6TwwUXyTz
+ qgURBQCiFvfeEYkiW372QS76sIsoKXmZnBilaz0YXueMRnmrdOCFQF4mkagkAlyKmbLQJPbBEbd
+ awwM7kbybteoklQ==
 X-Developer-Key: i=matthew.d.roper@intel.com; a=openpgp;
  fpr=C267C309447FEB4F3F216DAC4D792405C8729004
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -88,152 +88,140 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-An LRC is stored in memory as a special batchbuffer that hardware will
-execute to re-load state when switching to the context; it's a
-collection of register values (encoded as MI_LOAD_REGISTER_IMM commands)
-and other state instructions (e.g., 3DSTATE_*).  The value that will be
-loaded for a given register can be determined by parsing the batchbuffer
-to find MI_LRI commands and extracting the value from the offset/value
-pairs it contains.  Add functions to do this, which will be used in a
-future patch to help verify that our expected reg_sr programming is in
-place.
+When applying save-restore register programming for workarounds, tuning
+settings, and general device configuration we assume the programming was
+successful.  However there are a number of cases where the desired
+reg_sr programming can become lost:
 
-The implementation here returns the value as soon as it finds a match in
-the LRC.  Technically a register could appear multiple times (either due
-to memory corruption or a hardware defect) and the last value
-encountered would be the one in effect when the context resumes
-execution.  We can adjust the logic to keep looking and return the last
-match instead of first in the future if we encounter real-world cases
-where this would assist with debugging.
+ - workarounds implemented on the wrong RTP table might not get
+   saved/restored at the right time leading to, for example, failure to
+   re-apply the programming after engine resets
+ - some hardware registers become "locked" and can no longer be updated
+   after firmware or the driver finishes initializing them
+ - sometimes the hardware teams just made a mistake when documenting the
+   register and/or bits that needed to be programmed
+
+Add a debugfs entry that will read back the registers referenced on a
+GT's save-restore lists and print any cases where the desired
+programming is no longer in effect.  Such cases might indicate the
+presence of a driver/firmware bug, might indicate that the documentation
+we were following has a mistake, or might be benign (occasionally
+registers have broken read-back capability preventing verification, but
+previous writes were still successful and effective).
+
+For now we only verify the GT and engine reg_sr lists.  Verifying the
+LRC list will require checking the expected programming against the
+default_lrc contents, not the live registers (which may not reflect the
+reg_sr programming if no context is actively running).
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 96 +++++++++++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_lrc.h |  4 ++
- 2 files changed, 100 insertions(+)
+ drivers/gpu/drm/xe/xe_gt_debugfs.c | 26 ++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_reg_sr.c     | 34 ++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_reg_sr.h     |  3 +++
+ 3 files changed, 63 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 38f648b98868d8a6caa038e2d940f72783f2074b..57ef4f527ed0d142ad382ba17c020d8f8c241bfd 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -2155,6 +2155,102 @@ void xe_lrc_dump_default(struct drm_printer *p,
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+index 4363bc9c36067f3b22ff9f8fa5d64dece31cbe3b..aa43427a9f4b824b8ad41d02f634c07c76d989b2 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+@@ -155,6 +155,30 @@ static int register_save_restore(struct xe_gt *gt, struct drm_printer *p)
+ 	return 0;
  }
  
 +/*
-+ * Lookup the value of a register within the offset/value pairs of an
-+ * MI_LOAD_REGISTER_IMM instruction.
-+ *
-+ * Return -ENOENT if the register is not present in the MI_LRI instruction.
++ * Check the registers referenced on a save-restore list and report any
++ * save-restore entries that did not get applied.
 + */
-+static int lookup_reg_in_mi_lri(u32 offset, u32 *value,
-+				const u32 *dword_pair, int num_regs)
++static int register_save_restore_check(struct xe_gt *gt, struct drm_printer *p)
 +{
-+	for (int i = 0; i < num_regs; i++) {
-+		if (dword_pair[2 * i] == offset) {
-+			*value = dword_pair[2 * i + 1];
-+			return 0;
-+		}
++	struct xe_hw_engine *hwe;
++	enum xe_hw_engine_id id;
++
++	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++	if (!xe_force_wake_ref_has_domain(fw_ref.domains, XE_FORCEWAKE_ALL)) {
++		drm_printf(p, "ERROR: Could not acquire forcewake\n");
++		return -ETIMEDOUT;
 +	}
 +
-+	return -ENOENT;
++	xe_reg_sr_readback_check(&gt->reg_sr, gt, p);
++	for_each_hw_engine(hwe, gt, id)
++		xe_reg_sr_readback_check(&hwe->reg_sr, gt, p);
++
++	/* TODO: Check hwe->reg_lrc against contents of default_lrc. */
++
++	return 0;
 +}
 +
-+/*
-+ * Lookup the value of a register in a specific engine type's default LRC.
-+ *
-+ * Return -EINVAL if the default LRC doesn't exist, or ENOENT if the register
-+ * cannot be found in the default LRC.
-+ */
-+int xe_lrc_lookup_default_reg_value(struct xe_gt *gt,
-+				    enum xe_engine_class hwe_class,
-+				    u32 offset,
-+				    u32 *value)
+ static int rcs_default_lrc(struct xe_gt *gt, struct drm_printer *p)
+ {
+ 	xe_lrc_dump_default(p, gt, XE_ENGINE_CLASS_RENDER);
+@@ -209,6 +233,8 @@ static const struct drm_info_list vf_safe_debugfs_list[] = {
+ 	{ "default_lrc_vecs", .show = xe_gt_debugfs_show_with_rpm, .data = vecs_default_lrc },
+ 	{ "hwconfig", .show = xe_gt_debugfs_show_with_rpm, .data = hwconfig },
+ 	{ "pat_sw_config", .show = xe_gt_debugfs_simple_show, .data = xe_pat_dump_sw_config },
++	{ "register-save-restore-check",
++		.show = xe_gt_debugfs_show_with_rpm, .data = register_save_restore_check },
+ };
+ 
+ /* everything else should be added here */
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
+index 1ac911fc6e943ce05b8ac7cef33bc23d872d5ec4..75aa4426b3ec6026bc13095df3c3f9cb0a794b97 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr.c
++++ b/drivers/gpu/drm/xe/xe_reg_sr.c
+@@ -208,3 +208,37 @@ void xe_reg_sr_dump(struct xe_reg_sr *sr, struct drm_printer *p)
+ 			   str_yes_no(entry->reg.masked),
+ 			   str_yes_no(entry->reg.mcr));
+ }
++
++static u32 readback_reg(struct xe_gt *gt, struct xe_reg reg)
 +{
-+	u32 *dw;
-+	int remaining_dw, ret;
++	struct xe_reg_mcr mcr_reg = to_xe_reg_mcr(reg);
 +
-+	if (!gt->default_lrc[hwe_class])
-+		return -EINVAL;
-+
-+	/*
-+	 * Skip the beginning of the LRC since it contains the per-process
-+	 * hardware status page.
-+	 */
-+	dw = gt->default_lrc[hwe_class] + LRC_PPHWSP_SIZE;
-+	remaining_dw = (xe_gt_lrc_size(gt, hwe_class) - LRC_PPHWSP_SIZE) / 4;
-+
-+	while (remaining_dw > 0) {
-+		u32 num_dw = instr_dw(*dw);
-+
-+		if (num_dw > remaining_dw)
-+			num_dw = remaining_dw;
-+
-+		switch (*dw & XE_INSTR_CMD_TYPE) {
-+		case XE_INSTR_MI:
-+			switch (*dw & MI_OPCODE) {
-+			case MI_BATCH_BUFFER_END:
-+				/* End of LRC; register not found */
-+				return -ENOENT;
-+
-+			case MI_NOOP:
-+			case MI_TOPOLOGY_FILTER:
-+				/*
-+				 * MI_NOOP and MI_TOPOLOGY_FILTER don't have
-+				 * a length field and are always 1-dword
-+				 * instructions.
-+				 */
-+				remaining_dw--;
-+				dw++;
-+				break;
-+
-+			case MI_LOAD_REGISTER_IMM:
-+				ret = lookup_reg_in_mi_lri(offset, value,
-+							   dw + 1, (num_dw - 1) / 2);
-+				if (ret == 0)
-+					return 0;
-+
-+				fallthrough;
-+
-+			default:
-+				/*
-+				 * Jump to next instruction based on length
-+				 * field.
-+				 */
-+				remaining_dw -= num_dw;
-+				dw += num_dw;
-+				break;
-+			}
-+			break;
-+
-+		default:
-+			/* Jump to next instruction based on length field. */
-+			remaining_dw -= num_dw;
-+			dw += num_dw;
-+		}
-+	}
-+
-+	return -ENOENT;
++	if (reg.mcr)
++		return xe_gt_mcr_unicast_read_any(gt, mcr_reg);
++	else
++		return xe_mmio_read32(&gt->mmio, reg);
 +}
 +
- struct instr_state {
- 	u32 instr;
- 	u16 num_dw;
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index c307a3fd9ea287d54f2d211cdb688e1143a43d03..3e500004f1ae449befaf4cbcefef36dc4c92bdec 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -133,6 +133,10 @@ size_t xe_lrc_skip_size(struct xe_device *xe);
- void xe_lrc_dump_default(struct drm_printer *p,
- 			 struct xe_gt *gt,
- 			 enum xe_engine_class);
-+int xe_lrc_lookup_default_reg_value(struct xe_gt *gt,
-+				    enum xe_engine_class hwe_class,
-+				    u32 offset,
-+				    u32 *value);
++/**
++ * xe_reg_sr_readback_check() - Readback registers referenced in save/restore
++ *     entries and check whether the programming is in place.
++ * @sr: Save/restore entries
++ * @gt: GT to read register from
++ * @p: DRM printer to report discrepancies on
++ */
++void xe_reg_sr_readback_check(struct xe_reg_sr *sr,
++			      struct xe_gt *gt,
++			      struct drm_printer *p)
++{
++	struct xe_reg_sr_entry *entry;
++	unsigned long offset;
++
++	xa_for_each(&sr->xa, offset, entry) {
++		u32 val = readback_reg(gt, entry->reg);
++		u32 mask = entry->clr_bits | entry->set_bits;
++
++		if ((val & mask) != entry->set_bits)
++			drm_printf(p, "%#8lx & %#10x :: expected %#10x got %#10x\n",
++				   offset, mask, entry->set_bits, val & mask);
++	}
++}
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr.h b/drivers/gpu/drm/xe/xe_reg_sr.h
+index 51fbba423e27f3f3eab737221270e43aba56f54e..cd133a09aa9b3f046dbd913aa9711250e771ee1a 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr.h
++++ b/drivers/gpu/drm/xe/xe_reg_sr.h
+@@ -19,6 +19,9 @@ struct drm_printer;
  
- u32 *xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, u32 *cs);
+ int xe_reg_sr_init(struct xe_reg_sr *sr, const char *name, struct xe_device *xe);
+ void xe_reg_sr_dump(struct xe_reg_sr *sr, struct drm_printer *p);
++void xe_reg_sr_readback_check(struct xe_reg_sr *sr,
++			      struct xe_gt *gt,
++			      struct drm_printer *p);
  
+ int xe_reg_sr_add(struct xe_reg_sr *sr, const struct xe_reg_sr_entry *e,
+ 		  struct xe_gt *gt);
 
 -- 
 2.53.0
