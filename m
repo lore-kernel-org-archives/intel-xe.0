@@ -4,26 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8266DE9A03B
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 05:23:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AB21E9A04A
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 05:50:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CFCD10E554;
-	Wed, 18 Feb 2026 05:23:43 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A1F5710E2DC;
- Wed, 18 Feb 2026 05:23:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8230144250277693904=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B4E410E197;
+	Wed, 18 Feb 2026 05:50:53 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qh+GvorB";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61FAE10E197
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Feb 2026 05:50:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1771393851; x=1802929851;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=9zwy/tmcDMEzXrEAwjhgGx5kdLVnlC4UiC3lnwPKzmg=;
+ b=Qh+GvorBUISqmFa8wNpu6Ng+yJn7g3H826DFKjEFjjXc58jxFZ8p2aDd
+ nkt3mSmnN066mGnExJjDvShTbcY/PEaRAVLjThpt1cYWdcAwVUbRQChhk
+ L/7Ni+0Us0SOXtW9nGHWpDwwINloc5G2XeJKVlJzEm+xQabJgYB0xP5hD
+ XJIID5B3qbPsBf3QOzrNo7cVv2bAgMnwj1dgrxH2LiX4C77sx0V9s0cEt
+ ChuzPmEQbzBrzitfkGiBSwYSJaslXwNei6CyirDG0c4BPpA+99Iuctsez
+ 1AUEpk04Oq0c6WTNLR/vjLpjLPXzB0KpQUC7GY9AOlnMjBdjTj5Ftm0q6 w==;
+X-CSE-ConnectionGUID: wD2ckHPNTaWyRG1i192epg==
+X-CSE-MsgGUID: kh8eSumiTIWgnT4/E88zNg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11704"; a="72534769"
+X-IronPort-AV: E=Sophos;i="6.21,297,1763452800"; d="scan'208";a="72534769"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Feb 2026 21:50:51 -0800
+X-CSE-ConnectionGUID: 84K+bPNRTo6vge5xwwlyCQ==
+X-CSE-MsgGUID: f3yZCNxGRV2ueUUcszZQ+g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,297,1763452800"; d="scan'208";a="242965060"
+Received: from dut6304bmgfrd.fm.intel.com ([10.36.21.42])
+ by fmviesa001.fm.intel.com with ESMTP; 17 Feb 2026 21:50:51 -0800
+From: Xin Wang <x.wang@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Xin Wang <x.wang@intel.com>
+Subject: [PATCH] drm/xe: restric multi-lrc to VCS/VECS engines
+Date: Wed, 18 Feb 2026 05:50:33 +0000
+Message-ID: <20260218055033.327926-1-x.wang@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_dGPU_memory_optimizations?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 18 Feb 2026 05:23:42 -0000
-Message-ID: <177139222262.261581.6548283617985922816@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260218043319.809548-1-matthew.brost@intel.com>
-In-Reply-To: <20260218043319.809548-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,122 +61,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8230144250277693904==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Remove multi-lrc support on non‑media engines for ModSched
+platforms, since GuC firmware no longer supports this and
+there’s no valid use case.
 
-== Series Details ==
+Signed-off-by: Xin Wang <x.wang@intel.com>
+---
+ drivers/gpu/drm/xe/xe_exec_queue.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-Series: dGPU memory optimizations
-URL   : https://patchwork.freedesktop.org/series/161737/
-State : failure
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 66d0e10ee2c4..9f5e9d78c8c6 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -1200,6 +1200,15 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 			return -ENOENT;
+ 		}
+ 
++		/* multi-lrc is only supported on VIDEO_DECODE and VIDEO_ENHANCE engines */
++		if (XE_IOCTL_DBG(xe, args->width > 1 && GRAPHICS_VER(xe) > 20 &&
++				 !(eci[0].engine_class == DRM_XE_ENGINE_CLASS_VIDEO_DECODE ||
++				   eci[0].engine_class == DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE))) {
++			up_read(&vm->lock);
++			xe_vm_put(vm);
++			return -EOPNOTSUPP;
++		}
++
+ 		/* SRIOV sched groups are not compatible with multi-lrc */
+ 		if (XE_IOCTL_DBG(xe, args->width > 1 && has_sched_groups(hwe->gt))) {
+ 			up_read(&vm->lock);
+-- 
+2.43.0
 
-== Summary ==
-
-CI Bug Log - changes from xe-4571-c8daef66f8603b6216e5fa70288998d7f0357e3d_BAT -> xe-pw-161737v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-161737v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-161737v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (14 -> 0)
-------------------------------
-
-  ERROR: It appears as if the changes made in xe-pw-161737v1_BAT prevented too many machines from booting.
-
-  Missing    (14): bat-bmg-1 bat-lnl-2 bat-lnl-1 bat-ptl-1 bat-ptl-vm bat-ptl-2 bat-dg2-oem2 bat-atsm-2 bat-bmg-3 bat-wcl-1 bat-wcl-2 bat-bmg-2 bat-adlp-vm bat-adlp-7 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8757 -> IGT_8758
-  * Linux: xe-4571-c8daef66f8603b6216e5fa70288998d7f0357e3d -> xe-pw-161737v1
-
-  IGT_8757: 8757
-  IGT_8758: 8758
-  xe-4571-c8daef66f8603b6216e5fa70288998d7f0357e3d: c8daef66f8603b6216e5fa70288998d7f0357e3d
-  xe-pw-161737v1: 161737v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161737v1/index.html
-
---===============8230144250277693904==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>dGPU memory optimizations</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161737/">https://patchwork.freedesktop.org/series/161737/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161737v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161737v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4571-c8daef66f8603b6216e5fa70288998d7f0357e3d_BAT -&gt; xe-pw-161737v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-161737v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-161737v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (14 -&gt; 0)</h2>
-<p>ERROR: It appears as if the changes made in xe-pw-161737v1_BAT prevented too many machines from booting.</p>
-<p>Missing    (14): bat-bmg-1 bat-lnl-2 bat-lnl-1 bat-ptl-1 bat-ptl-vm bat-ptl-2 bat-dg2-oem2 bat-atsm-2 bat-bmg-3 bat-wcl-1 bat-wcl-2 bat-bmg-2 bat-adlp-vm bat-adlp-7 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8757 -&gt; IGT_8758</li>
-<li>Linux: xe-4571-c8daef66f8603b6216e5fa70288998d7f0357e3d -&gt; xe-pw-161737v1</li>
-</ul>
-<p>IGT_8757: 8757<br />
-  IGT_8758: 8758<br />
-  xe-4571-c8daef66f8603b6216e5fa70288998d7f0357e3d: c8daef66f8603b6216e5fa70288998d7f0357e3d<br />
-  xe-pw-161737v1: 161737v1</p>
-
-</body>
-</html>
-
---===============8230144250277693904==--
