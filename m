@@ -4,58 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A39BE9A047
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 15:29:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72583E9A02C
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 15:32:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF44610E600;
-	Wed, 18 Feb 2026 15:29:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SjuN60K8";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EBE210E610;
- Wed, 18 Feb 2026 15:29:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771428579; x=1802964579;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=eFOLifOV0GsU/E6dusHZHhIqFFiewC7KEQFEiHdWx8A=;
- b=SjuN60K8hs8JkhWH4zvEmI7JbndPZ5pZEj7CPa+Yf96avzAgS/8hL+Kq
- 2vwi+yf1U5q5bXjjca30sqGs8JjsbLIf1hAPtsOXGGQNjoO2+LCZUpQvS
- zF9WQFDmTA+ChmNA87BULgK23rd4zgmx5qUg0YOKl5T3E+4NDEo6yjprw
- TfaNCxf/6siXJ+76SM6tkSiGGrGp9TLg4vVKAwpG8bLNYYM5++3/3AXJ2
- A/QQfnsrqwKrBXPGe2HIa5KobLThG5WBngFEW6OYZ7njPUe9ScpQHk+yd
- sLD70uZZb1gAwQvixIoBlqPMTErffIBk68HveBOadJLvuQQKufB55+c3t Q==;
-X-CSE-ConnectionGUID: Uqe2iMDwQCeNxvn2Rxqliw==
-X-CSE-MsgGUID: SrvHi9FNTpK+EXuf/OlCDw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="72495545"
-X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="72495545"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 07:29:39 -0800
-X-CSE-ConnectionGUID: YYtOZFDRS0eThMgfsgnMiQ==
-X-CSE-MsgGUID: 6oKJyiXGS4WY1cYaObNUcw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="213303062"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.244.66])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 07:29:34 -0800
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 19/19] drm/i915/overlay: Convert overlay to parent interface
-Date: Wed, 18 Feb 2026 17:28:06 +0200
-Message-ID: <20260218152806.18885-20-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260218152806.18885-1-ville.syrjala@linux.intel.com>
-References: <20260218152806.18885-1-ville.syrjala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3184B10E603;
+	Wed, 18 Feb 2026 15:32:31 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5147810E604;
+ Wed, 18 Feb 2026 15:32:29 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1659468312289190327=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5B1/2?=
+ =?utf-8?q?=5D_drm/i915/dp=3A_Fix_ww_mutex_lock_failure_in_for=5Feach=5Fjoin?=
+ =?utf-8?q?er=5Fcandidate=28=29_loop?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 18 Feb 2026 15:32:29 -0000
+Message-ID: <177142874931.262680.9002011577103719006@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260218105708.845161-1-imre.deak@intel.com>
+In-Reply-To: <20260218105708.845161-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,649 +37,143 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============1659468312289190327==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Convert the direct i915_overlay_*() calls from the display
-side to go over a new parent interface instead.
+== Series Details ==
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_overlay.c | 36 +++++-----
- drivers/gpu/drm/i915/display/intel_overlay.h | 30 --------
- drivers/gpu/drm/i915/display/intel_parent.c  | 76 ++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_parent.h  | 26 +++++++
- drivers/gpu/drm/i915/i915_driver.c           |  2 +
- drivers/gpu/drm/i915/i915_overlay.c          | 57 +++++++++------
- drivers/gpu/drm/i915/i915_overlay.h          | 34 +--------
- drivers/gpu/drm/xe/Makefile                  |  1 +
- include/drm/intel/display_parent_interface.h | 33 +++++++++
- 9 files changed, 194 insertions(+), 101 deletions(-)
+Series: series starting with [1/2] drm/i915/dp: Fix ww mutex lock failure in for_each_joiner_candidate() loop
+URL   : https://patchwork.freedesktop.org/series/161757/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-index bc7e2b3cbda1..9fa753aa8790 100644
---- a/drivers/gpu/drm/i915/display/intel_overlay.c
-+++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-@@ -30,13 +30,13 @@
- #include <drm/drm_gem.h>
- #include <drm/drm_print.h>
- 
--#include "i915_overlay.h"
- #include "intel_color_regs.h"
- #include "intel_de.h"
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
- #include "intel_frontbuffer.h"
- #include "intel_overlay.h"
-+#include "intel_parent.h"
- #include "intel_pfit_regs.h"
- 
- /* Limits for overlay size. According to intel doc, the real limits are:
-@@ -199,7 +199,7 @@ void intel_overlay_reset(struct intel_display *display)
- 	overlay->old_yscale = 0;
- 	overlay->crtc = NULL;
- 
--	i915_overlay_reset(display->drm);
-+	intel_parent_overlay_reset(display);
- }
- 
- static int packed_depth_bytes(u32 format)
-@@ -477,19 +477,19 @@ static int intel_overlay_do_put_image(struct intel_overlay *overlay,
- 	drm_WARN_ON(display->drm,
- 		    !drm_modeset_is_locked(&display->drm->mode_config.connection_mutex));
- 
--	ret = i915_overlay_release_old_vid(display->drm);
-+	ret = intel_parent_overlay_release_old_vid(display);
- 	if (ret != 0)
- 		return ret;
- 
- 	atomic_inc(&display->restore.pending_fb_pin);
- 
--	vma = i915_overlay_pin_fb(display->drm, obj, &offset);
-+	vma = intel_parent_overlay_pin_fb(display, obj, &offset);
- 	if (IS_ERR(vma)) {
- 		ret = PTR_ERR(vma);
- 		goto out_pin_section;
- 	}
- 
--	if (!i915_overlay_is_active(display->drm)) {
-+	if (!intel_parent_overlay_is_active(display)) {
- 		const struct intel_crtc_state *crtc_state =
- 			overlay->crtc->config;
- 		u32 oconfig = 0;
-@@ -505,7 +505,7 @@ static int intel_overlay_do_put_image(struct intel_overlay *overlay,
- 			OCONF_PIPE_A : OCONF_PIPE_B;
- 		iowrite32(oconfig, &regs->OCONFIG);
- 
--		ret = i915_overlay_on(display->drm, INTEL_FRONTBUFFER_OVERLAY(pipe));
-+		ret = intel_parent_overlay_on(display, INTEL_FRONTBUFFER_OVERLAY(pipe));
- 		if (ret != 0)
- 			goto out_unpin;
- 	}
-@@ -563,14 +563,14 @@ static int intel_overlay_do_put_image(struct intel_overlay *overlay,
- 	if (tmp & (1 << 17))
- 		drm_dbg(display->drm, "overlay underrun, DOVSTA: %x\n", tmp);
- 
--	ret = i915_overlay_continue(display->drm, vma, scale_changed);
-+	ret = intel_parent_overlay_continue(display, vma, scale_changed);
- 	if (ret)
- 		goto out_unpin;
- 
- 	return 0;
- 
- out_unpin:
--	i915_overlay_unpin_fb(display->drm, vma);
-+	intel_parent_overlay_unpin_fb(display, vma);
- out_pin_section:
- 	atomic_dec(&display->restore.pending_fb_pin);
- 
-@@ -585,14 +585,14 @@ int intel_overlay_switch_off(struct intel_overlay *overlay)
- 	drm_WARN_ON(display->drm,
- 		    !drm_modeset_is_locked(&display->drm->mode_config.connection_mutex));
- 
--	ret = i915_overlay_recover_from_interrupt(display->drm);
-+	ret = intel_parent_overlay_recover_from_interrupt(display);
- 	if (ret != 0)
- 		return ret;
- 
--	if (!i915_overlay_is_active(display->drm))
-+	if (!intel_parent_overlay_is_active(display))
- 		return 0;
- 
--	ret = i915_overlay_release_old_vid(display->drm);
-+	ret = intel_parent_overlay_release_old_vid(display);
- 	if (ret != 0)
- 		return ret;
- 
-@@ -601,7 +601,7 @@ int intel_overlay_switch_off(struct intel_overlay *overlay)
- 	overlay->crtc->overlay = NULL;
- 	overlay->crtc = NULL;
- 
--	return i915_overlay_off(display->drm);
-+	return intel_parent_overlay_off(display);
- }
- 
- static int check_overlay_possible_on_crtc(struct intel_overlay *overlay,
-@@ -822,13 +822,13 @@ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
- 		return -ENOENT;
- 	crtc = to_intel_crtc(drmmode_crtc);
- 
--	obj = i915_overlay_obj_lookup(dev, file_priv, params->bo_handle);
-+	obj = intel_parent_overlay_obj_lookup(display, file_priv, params->bo_handle);
- 	if (!obj)
- 		return PTR_ERR(obj);
- 
- 	drm_modeset_lock_all(dev);
- 
--	ret = i915_overlay_recover_from_interrupt(dev);
-+	ret = intel_parent_overlay_recover_from_interrupt(display);
- 	if (ret != 0)
- 		goto out_unlock;
- 
-@@ -998,7 +998,7 @@ int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
- 			if (DISPLAY_VER(display) == 2)
- 				goto out_unlock;
- 
--			if (i915_overlay_is_active(display->drm)) {
-+			if (intel_parent_overlay_is_active(display)) {
- 				ret = -EBUSY;
- 				goto out_unlock;
- 			}
-@@ -1036,8 +1036,8 @@ void intel_overlay_setup(struct intel_display *display)
- 	if (!overlay)
- 		return;
- 
--	regs = i915_overlay_setup(display->drm,
--				  OVERLAY_NEEDS_PHYSICAL(display));
-+	regs = intel_parent_overlay_setup(display,
-+					  OVERLAY_NEEDS_PHYSICAL(display));
- 	if (IS_ERR(regs))
- 		goto out_free;
- 
-@@ -1068,7 +1068,7 @@ bool intel_overlay_available(struct intel_display *display)
- 
- void intel_overlay_cleanup(struct intel_display *display)
- {
--	i915_overlay_cleanup(display->drm);
-+	intel_parent_overlay_cleanup(display);
- 
- 	kfree(display->overlay);
- 	display->overlay = NULL;
-diff --git a/drivers/gpu/drm/i915/display/intel_overlay.h b/drivers/gpu/drm/i915/display/intel_overlay.h
-index 4ef6882b9acb..a4291d6dd528 100644
---- a/drivers/gpu/drm/i915/display/intel_overlay.h
-+++ b/drivers/gpu/drm/i915/display/intel_overlay.h
-@@ -14,7 +14,6 @@ struct drm_printer;
- struct intel_display;
- struct intel_overlay;
- 
--#ifdef I915
- void intel_overlay_setup(struct intel_display *display);
- bool intel_overlay_available(struct intel_display *display);
- void intel_overlay_cleanup(struct intel_display *display);
-@@ -24,34 +23,5 @@ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
- int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
- 			      struct drm_file *file_priv);
- void intel_overlay_reset(struct intel_display *display);
--#else
--static inline void intel_overlay_setup(struct intel_display *display)
--{
--}
--static inline bool intel_overlay_available(struct intel_display *display)
--{
--	return false;
--}
--static inline void intel_overlay_cleanup(struct intel_display *display)
--{
--}
--static inline int intel_overlay_switch_off(struct intel_overlay *overlay)
--{
--	return 0;
--}
--static inline int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
--						struct drm_file *file_priv)
--{
--	return 0;
--}
--static inline int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
--					    struct drm_file *file_priv)
--{
--	return 0;
--}
--static inline void intel_overlay_reset(struct intel_display *display)
--{
--}
--#endif
- 
- #endif /* __INTEL_OVERLAY_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/drm/i915/display/intel_parent.c
-index 7f73695a0444..77c9fd259ed0 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.c
-+++ b/drivers/gpu/drm/i915/display/intel_parent.c
-@@ -59,6 +59,82 @@ void intel_parent_irq_synchronize(struct intel_display *display)
- 	display->parent->irq->synchronize(display->drm);
- }
- 
-+/* overlay */
-+bool intel_parent_overlay_is_active(struct intel_display *display)
-+{
-+	return display->parent->overlay->is_active(display->drm);
-+}
-+
-+int intel_parent_overlay_on(struct intel_display *display,
-+			    u32 frontbuffer_bits)
-+{
-+	return display->parent->overlay->overlay_on(display->drm,
-+						    frontbuffer_bits);
-+}
-+
-+int intel_parent_overlay_continue(struct intel_display *display,
-+				  struct i915_vma *vma,
-+				  bool load_polyphase_filter)
-+{
-+	return display->parent->overlay->overlay_continue(display->drm, vma,
-+							  load_polyphase_filter);
-+}
-+
-+int intel_parent_overlay_off(struct intel_display *display)
-+{
-+	return display->parent->overlay->overlay_off(display->drm);
-+}
-+
-+int intel_parent_overlay_recover_from_interrupt(struct intel_display *display)
-+{
-+	return display->parent->overlay->recover_from_interrupt(display->drm);
-+}
-+
-+int intel_parent_overlay_release_old_vid(struct intel_display *display)
-+{
-+	return display->parent->overlay->release_old_vid(display->drm);
-+}
-+
-+void intel_parent_overlay_reset(struct intel_display *display)
-+{
-+	display->parent->overlay->reset(display->drm);
-+}
-+
-+struct i915_vma *intel_parent_overlay_pin_fb(struct intel_display *display,
-+					     struct drm_gem_object *obj,
-+					     u32 *offset)
-+{
-+	return display->parent->overlay->pin_fb(display->drm, obj, offset);
-+}
-+
-+void intel_parent_overlay_unpin_fb(struct intel_display *display,
-+				   struct i915_vma *vma)
-+{
-+	return display->parent->overlay->unpin_fb(display->drm, vma);
-+}
-+
-+struct drm_gem_object *intel_parent_overlay_obj_lookup(struct intel_display *display,
-+						       struct drm_file *filp,
-+						       u32 handle)
-+{
-+	return display->parent->overlay->obj_lookup(display->drm,
-+						    filp, handle);
-+}
-+
-+void __iomem *intel_parent_overlay_setup(struct intel_display *display,
-+					 bool needs_physical)
-+{
-+	if (drm_WARN_ON_ONCE(display->drm, !display->parent->overlay))
-+		return ERR_PTR(-ENODEV);
-+
-+	return display->parent->overlay->setup(display->drm, needs_physical);
-+}
-+
-+void intel_parent_overlay_cleanup(struct intel_display *display)
-+{
-+	display->parent->overlay->cleanup(display->drm);
-+}
-+
- /* panic */
- struct intel_panic *intel_parent_panic_alloc(struct intel_display *display)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/drm/i915/display/intel_parent.h
-index 04782bb26b61..91c37d68348a 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.h
-+++ b/drivers/gpu/drm/i915/display/intel_parent.h
-@@ -7,7 +7,10 @@
- #include <linux/types.h>
- 
- struct dma_fence;
-+struct drm_file;
-+struct drm_gem_object;
- struct drm_scanout_buffer;
-+struct i915_vma;
- struct intel_display;
- struct intel_hdcp_gsc_context;
- struct intel_panic;
-@@ -27,6 +30,29 @@ void intel_parent_hdcp_gsc_context_free(struct intel_display *display,
- bool intel_parent_irq_enabled(struct intel_display *display);
- void intel_parent_irq_synchronize(struct intel_display *display);
- 
-+/* overlay */
-+bool intel_parent_overlay_is_active(struct intel_display *display);
-+int intel_parent_overlay_on(struct intel_display *display,
-+			    u32 frontbuffer_bits);
-+int intel_parent_overlay_continue(struct intel_display *display,
-+				  struct i915_vma *vma,
-+				  bool load_polyphase_filter);
-+int intel_parent_overlay_off(struct intel_display *display);
-+int intel_parent_overlay_recover_from_interrupt(struct intel_display *display);
-+int intel_parent_overlay_release_old_vid(struct intel_display *display);
-+void intel_parent_overlay_reset(struct intel_display *display);
-+struct i915_vma *intel_parent_overlay_pin_fb(struct intel_display *display,
-+					     struct drm_gem_object *obj,
-+					     u32 *offset);
-+void intel_parent_overlay_unpin_fb(struct intel_display *display,
-+				   struct i915_vma *vma);
-+struct drm_gem_object *intel_parent_overlay_obj_lookup(struct intel_display *display,
-+						       struct drm_file *filp,
-+						       u32 handle);
-+void __iomem *intel_parent_overlay_setup(struct intel_display *display,
-+					 bool needs_physical);
-+void intel_parent_overlay_cleanup(struct intel_display *display);
-+
- /* panic */
- struct intel_panic *intel_parent_panic_alloc(struct intel_display *display);
- int intel_parent_panic_setup(struct intel_display *display, struct intel_panic *panic, struct drm_scanout_buffer *sb);
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 6d8fbf845bc2..5a3b0309216f 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -106,6 +106,7 @@
- #include "i915_ioctl.h"
- #include "i915_irq.h"
- #include "i915_memcpy.h"
-+#include "i915_overlay.h"
- #include "i915_panic.h"
- #include "i915_perf.h"
- #include "i915_query.h"
-@@ -765,6 +766,7 @@ static const struct intel_display_parent_interface parent = {
- 	.hdcp = &i915_display_hdcp_interface,
- 	.initial_plane = &i915_display_initial_plane_interface,
- 	.irq = &i915_display_irq_interface,
-+	.overlay = &i915_display_overlay_interface,
- 	.panic = &i915_display_panic_interface,
- 	.pc8 = &i915_display_pc8_interface,
- 	.pcode = &i915_display_pcode_interface,
-diff --git a/drivers/gpu/drm/i915/i915_overlay.c b/drivers/gpu/drm/i915/i915_overlay.c
-index e87b0a4f7ef4..d154cce59d95 100644
---- a/drivers/gpu/drm/i915/i915_overlay.c
-+++ b/drivers/gpu/drm/i915/i915_overlay.c
-@@ -5,6 +5,7 @@
- 
- #include <drm/drm_print.h>
- 
-+#include <drm/intel/display_parent_interface.h>
- #include <drm/intel/intel_gmd_interrupt_regs.h>
- 
- #include "gem/i915_gem_internal.h"
-@@ -88,7 +89,7 @@ alloc_request(struct i915_overlay *overlay, void (*fn)(struct i915_overlay *))
- 	return rq;
- }
- 
--bool i915_overlay_is_active(struct drm_device *drm)
-+static bool i915_overlay_is_active(struct drm_device *drm)
- {
- 	struct drm_i915_private *i915 = to_i915(drm);
- 	struct i915_overlay *overlay = i915->overlay;
-@@ -97,8 +98,8 @@ bool i915_overlay_is_active(struct drm_device *drm)
- }
- 
- /* overlay needs to be disable in OCMD reg */
--int i915_overlay_on(struct drm_device *drm,
--		    u32 frontbuffer_bits)
-+static int i915_overlay_on(struct drm_device *drm,
-+			   u32 frontbuffer_bits)
- {
- 	struct drm_i915_private *i915 = to_i915(drm);
- 	struct i915_overlay *overlay = i915->overlay;
-@@ -159,9 +160,9 @@ static void i915_overlay_flip_prepare(struct i915_overlay *overlay,
- }
- 
- /* overlay needs to be enabled in OCMD reg */
--int i915_overlay_continue(struct drm_device *drm,
--			  struct i915_vma *vma,
--			  bool load_polyphase_filter)
-+static int i915_overlay_continue(struct drm_device *drm,
-+				 struct i915_vma *vma,
-+				 bool load_polyphase_filter)
- {
- 	struct drm_i915_private *i915 = to_i915(drm);
- 	struct i915_overlay *overlay = i915->overlay;
-@@ -210,7 +211,8 @@ static void i915_overlay_release_old_vma(struct i915_overlay *overlay)
- 	i915_vma_put(vma);
- }
- 
--static void i915_overlay_release_old_vid_tail(struct i915_overlay *overlay)
-+static void
-+i915_overlay_release_old_vid_tail(struct i915_overlay *overlay)
- {
- 	i915_overlay_release_old_vma(overlay);
- }
-@@ -237,7 +239,7 @@ static void i915_overlay_last_flip_retire(struct i915_active *active)
- }
- 
- /* overlay needs to be disabled in OCMD reg */
--int i915_overlay_off(struct drm_device *drm)
-+static int i915_overlay_off(struct drm_device *drm)
- {
- 	struct drm_i915_private *i915 = to_i915(drm);
- 	struct i915_overlay *overlay = i915->overlay;
-@@ -286,7 +288,7 @@ int i915_overlay_off(struct drm_device *drm)
-  * Recover from an interruption due to a signal.
-  * We have to be careful not to repeat work forever an make forward progress.
-  */
--int i915_overlay_recover_from_interrupt(struct drm_device *drm)
-+static int i915_overlay_recover_from_interrupt(struct drm_device *drm)
- {
- 	struct drm_i915_private *i915 = to_i915(drm);
- 	struct i915_overlay *overlay = i915->overlay;
-@@ -299,7 +301,7 @@ int i915_overlay_recover_from_interrupt(struct drm_device *drm)
-  * Needs to be called before the overlay register are changed
-  * via intel_overlay_(un)map_regs.
-  */
--int i915_overlay_release_old_vid(struct drm_device *drm)
-+static int i915_overlay_release_old_vid(struct drm_device *drm)
- {
- 	struct drm_i915_private *i915 = to_i915(drm);
- 	struct i915_overlay *overlay = i915->overlay;
-@@ -337,7 +339,7 @@ int i915_overlay_release_old_vid(struct drm_device *drm)
- 	return i915_active_wait(&overlay->last_flip);
- }
- 
--void i915_overlay_reset(struct drm_device *drm)
-+static void i915_overlay_reset(struct drm_device *drm)
- {
- 	struct drm_i915_private *i915 = to_i915(drm);
- 	struct i915_overlay *overlay = i915->overlay;
-@@ -348,9 +350,9 @@ void i915_overlay_reset(struct drm_device *drm)
- 	overlay->frontbuffer_bits = 0;
- }
- 
--struct i915_vma *i915_overlay_pin_fb(struct drm_device *drm,
--				     struct drm_gem_object *obj,
--				     u32 *offset)
-+static struct i915_vma *i915_overlay_pin_fb(struct drm_device *drm,
-+					    struct drm_gem_object *obj,
-+					    u32 *offset)
- {
- 	struct drm_i915_gem_object *new_bo = to_intel_bo(obj);
- 	struct i915_gem_ww_ctx ww;
-@@ -379,13 +381,13 @@ struct i915_vma *i915_overlay_pin_fb(struct drm_device *drm,
- 	return vma;
- }
- 
--void i915_overlay_unpin_fb(struct drm_device *drm,
--			   struct i915_vma *vma)
-+static void i915_overlay_unpin_fb(struct drm_device *drm,
-+				  struct i915_vma *vma)
- {
- 	i915_vma_unpin(vma);
- }
- 
--struct drm_gem_object *
-+static struct drm_gem_object *
- i915_overlay_obj_lookup(struct drm_device *drm,
- 			struct drm_file *file_priv,
- 			u32 handle)
-@@ -444,8 +446,8 @@ static int get_registers(struct i915_overlay *overlay, bool use_phys)
- 	return err;
- }
- 
--void __iomem *i915_overlay_setup(struct drm_device *drm,
--				 bool needs_physical)
-+static void __iomem *i915_overlay_setup(struct drm_device *drm,
-+					bool needs_physical)
- {
- 	struct drm_i915_private *i915 = to_i915(drm);
- 	struct intel_engine_cs *engine;
-@@ -477,7 +479,7 @@ void __iomem *i915_overlay_setup(struct drm_device *drm,
- 	return overlay->regs;
- }
- 
--void i915_overlay_cleanup(struct drm_device *drm)
-+static void i915_overlay_cleanup(struct drm_device *drm)
- {
- 	struct drm_i915_private *i915 = to_i915(drm);
- 	struct i915_overlay *overlay;
-@@ -498,3 +500,18 @@ void i915_overlay_cleanup(struct drm_device *drm)
- 
- 	kfree(overlay);
- }
-+
-+const struct intel_display_overlay_interface i915_display_overlay_interface = {
-+	.is_active = i915_overlay_is_active,
-+	.overlay_on = i915_overlay_on,
-+	.overlay_continue = i915_overlay_continue,
-+	.overlay_off = i915_overlay_off,
-+	.recover_from_interrupt = i915_overlay_recover_from_interrupt,
-+	.release_old_vid = i915_overlay_release_old_vid,
-+	.reset = i915_overlay_reset,
-+	.obj_lookup = i915_overlay_obj_lookup,
-+	.pin_fb = i915_overlay_pin_fb,
-+	.unpin_fb = i915_overlay_unpin_fb,
-+	.setup = i915_overlay_setup,
-+	.cleanup = i915_overlay_cleanup,
-+};
-diff --git a/drivers/gpu/drm/i915/i915_overlay.h b/drivers/gpu/drm/i915/i915_overlay.h
-index f553de2abeaa..f8053eb8d189 100644
---- a/drivers/gpu/drm/i915/i915_overlay.h
-+++ b/drivers/gpu/drm/i915/i915_overlay.h
-@@ -6,38 +6,6 @@
- #ifndef __I915_OVERLAY_H__
- #define __I915_OVERLAY_H__
- 
--#include <linux/types.h>
--
--struct drm_device;
--struct drm_file;
--struct drm_gem_object;
--struct i915_vma;
--
--bool i915_overlay_is_active(struct drm_device *drm);
--int i915_overlay_on(struct drm_device *drm,
--		    u32 frontbuffer_bits);
--int i915_overlay_continue(struct drm_device *drm,
--			  struct i915_vma *vma,
--			  bool load_polyphase_filter);
--int i915_overlay_off(struct drm_device *drm);
--int i915_overlay_recover_from_interrupt(struct drm_device *drm);
--int i915_overlay_release_old_vid(struct drm_device *drm);
--
--void i915_overlay_reset(struct drm_device *drm);
--
--struct i915_vma *i915_overlay_pin_fb(struct drm_device *drm,
--				     struct drm_gem_object *obj,
--				     u32 *offset);
--void i915_overlay_unpin_fb(struct drm_device *drm,
--			   struct i915_vma *vma);
--
--struct drm_gem_object *
--i915_overlay_obj_lookup(struct drm_device *drm,
--			struct drm_file *file_priv,
--			u32 handle);
--
--void __iomem *i915_overlay_setup(struct drm_device *drm,
--				 bool needs_physical);
--void i915_overlay_cleanup(struct drm_device *drm);
-+extern const struct intel_display_overlay_interface i915_display_overlay_interface;
- 
- #endif /* __I915_OVERLAY_H__ */
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 41ec698b3cc1..119e830498a8 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -304,6 +304,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/intel_modeset_lock.o \
- 	i915-display/intel_modeset_setup.o \
- 	i915-display/intel_modeset_verify.o \
-+	i915-display/intel_overlay.o \
- 	i915-display/intel_panel.o \
- 	i915-display/intel_parent.o \
- 	i915-display/intel_pch.o \
-diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-index 41f4afe7928c..8b248b914b88 100644
---- a/include/drm/intel/display_parent_interface.h
-+++ b/include/drm/intel/display_parent_interface.h
-@@ -9,6 +9,7 @@
- struct dma_fence;
- struct drm_crtc;
- struct drm_device;
-+struct drm_file;
- struct drm_framebuffer;
- struct drm_gem_object;
- struct drm_plane_state;
-@@ -55,6 +56,35 @@ struct intel_display_irq_interface {
- 	void (*synchronize)(struct drm_device *drm);
- };
- 
-+struct intel_display_overlay_interface {
-+	bool (*is_active)(struct drm_device *drm);
-+
-+	int (*overlay_on)(struct drm_device *drm,
-+			  u32 frontbuffer_bits);
-+	int (*overlay_continue)(struct drm_device *drm,
-+				struct i915_vma *vma,
-+				bool load_polyphase_filter);
-+	int (*overlay_off)(struct drm_device *drm);
-+	int (*recover_from_interrupt)(struct drm_device *drm);
-+	int (*release_old_vid)(struct drm_device *drm);
-+
-+	void (*reset)(struct drm_device *drm);
-+
-+	struct i915_vma *(*pin_fb)(struct drm_device *drm,
-+				   struct drm_gem_object *obj,
-+				   u32 *offset);
-+	void (*unpin_fb)(struct drm_device *drm,
-+			 struct i915_vma *vma);
-+
-+	struct drm_gem_object *(*obj_lookup)(struct drm_device *drm,
-+					     struct drm_file *filp,
-+					     u32 handle);
-+
-+	void __iomem *(*setup)(struct drm_device *drm,
-+			       bool needs_physical);
-+	void (*cleanup)(struct drm_device *drm);
-+};
-+
- struct intel_display_panic_interface {
- 	struct intel_panic *(*alloc)(void);
- 	int (*setup)(struct intel_panic *panic, struct drm_scanout_buffer *sb);
-@@ -139,6 +169,9 @@ struct intel_display_parent_interface {
- 	/** @panic: Panic interface */
- 	const struct intel_display_panic_interface *panic;
- 
-+	/** @overlay: Overlay. Optional. */
-+	const struct intel_display_overlay_interface *overlay;
-+
- 	/** @pc8: PC8 interface. Optional. */
- 	const struct intel_display_pc8_interface *pc8;
- 
--- 
-2.52.0
+== Summary ==
 
+CI Bug Log - changes from xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d_BAT -> xe-pw-161757v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-161757v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6519])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161757v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-bmg-2:          [PASS][3] -> [FAIL][4] ([Intel XE#6520])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d/bat-bmg-2/igt@xe_waitfence@reltime.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161757v1/bat-bmg-2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8758 -> IGT_8760
+  * Linux: xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d -> xe-pw-161757v1
+
+  IGT_8758: 8758
+  IGT_8760: 8760
+  xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d: fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d
+  xe-pw-161757v1: 161757v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161757v1/index.html
+
+--===============1659468312289190327==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/i915/dp: Fix ww mutex lock failure in for_each_joiner_candidate() loop</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161757/">https://patchwork.freedesktop.org/series/161757/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161757v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161757v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d_BAT -&gt; xe-pw-161757v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-161757v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161757v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d/bat-bmg-2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161757v1/bat-bmg-2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8758 -&gt; IGT_8760</li>
+<li>Linux: xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d -&gt; xe-pw-161757v1</li>
+</ul>
+<p>IGT_8758: 8758<br />
+  IGT_8760: 8760<br />
+  xe-4572-fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d: fc9512d31fa2c190f58c85dbdf7313d2d0ad4b0d<br />
+  xe-pw-161757v1: 161757v1</p>
+
+</body>
+</html>
+
+--===============1659468312289190327==--
