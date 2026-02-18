@@ -4,45 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D87DC531D2
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 21:21:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9A46E9A04D
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 21:21:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7386610E696;
-	Wed, 18 Feb 2026 21:21:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D83010E690;
+	Wed, 18 Feb 2026 21:21:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="LLxCETzc";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="c3jQdkLz";
 	dkim-atps=neutral
 Received: from CH1PR05CU001.outbound.protection.outlook.com
  (mail-northcentralusazon11010005.outbound.protection.outlook.com
  [52.101.193.5])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6159010E656;
- Wed, 18 Feb 2026 21:21:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22D8810E682;
+ Wed, 18 Feb 2026 21:21:45 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ixwrc/i/oSiiOIDkxjBkV4JjFaZk4wqOr8F+oTFeqzHPiKeh1W1AuWSYh7WGk90LpjxKlBwO614L4eioWVsJbOhyAViPyeXMyZ6v/XT85fCM8eu5ctssvsdoL4XKHnKeJ5UUCrJpkcypqiKLw+yUoxsO7Z78R+JbxvElh0E/XlPFuli1dMLe/2KcR9yHoG0cd+U4WQBPho2jYt7pQh4b4kbJoVSr0T76CHJeEVICWyda3ZDDaItdV588jjo5K1P6SYuhnKAu+VoZMBn9Q0kMr8IB/eYGlBq4DJn6yZsnHhaIws1yp8kI6Y+yykAZPqkHzSGJdgzsbO7YpY3bs9zgNA==
+ b=YQb/5rXXUwlP+led4Nxcnm478Zvu4qj+38OeYRsRWy55PBYX2csoXGD2UK0kRVNNv9lfOM6jZ1IfoM5qWv9OQIUGRIvRS+Kxedz+m1yJ7GCJVSHbkJkzfKXGzaamFlU0rIK9waXQRxnMQC0sY5Wax4rt39UW/k56lkWR60ew7FZ5OPhnQprE02l4p4Sqb8oqfe+E9faMc2jNOanzJG20WwipGGpd/mxXNFVRSAVYmMmWcrJiYAryni6bClTukBd7W2gl8XNgcVWACdGqHtQoBMF4RiJpYyQBg//rprUJ/5Mc2L4+zXvilBsKVzUlBldqE6kVNgro8ymSZBLwyYSLyA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AP/tTN8kLDgeIPbQETr9YklpKScVQYyx7Sl+BIJMw9c=;
- b=G0Z6/bCGoqoSFVFIgD06zlvly+IvxL1JHV4HxFjFtQPqb5yFAmaUL6mMvMzYFID+5Iu35421eKvD1WydqrAngF3+fS0cPMvTTU1lCqwjqk0NKGo5er7izXBu2/RsHi6qruiko5ft5xcGqnZr7f6330nj1Ox4yTMrrCmYO14q1OaQImBjwVEXgIN9wv6M1ohKkI/Y7DqhMhVaicYBDR2zC7qejEb2c6ugfBVIliLALPcI4U6dBWeWmitjskjnem0EWhIxWrGhslSD0t09Lo7QcmfKLpMmalq6sbkb2b6v2gEx2XHGBmnMrApgwKtmQ5AwVbU1fVNnD+53yoNCooSeuw==
+ bh=uC5xqeRpKePwkM8gzGQTJz9rgA0jif1S/46rGUE3Z9Y=;
+ b=JW0NuPcwQEN/xKnwIaINmrP0hqzzj5dIYFg5iQOrXJWrojIV+K8HHEkfx3pbczDQwoVsVOB8BOGISf12QdCoL43fFwxcpd9uelxJ8HoNbBCJDQ3sADUJptDRXVvg9StvH3uPoASuohYpq/kYizNTMgAZmyO+NiFlCefIquivG7Oze5Plt621mLWFKdUTw39FRvB5U2Mjem6b44EKyZFeOIXSKamQntoPLPhLExwc7TB03ljZscn+3fZLi51RIlqBQ56qNc4UEV9Do+KvBBbWDRTx7nd0odWLJ9ic0n631sIDrIvh71DSQ8Yv159G5sEJIfb2iuVsybNPpY87sCFlvQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AP/tTN8kLDgeIPbQETr9YklpKScVQYyx7Sl+BIJMw9c=;
- b=LLxCETzcQ8FuRMK/ECN9ZL+Akdh2f6KRYSgjrLhYpfsEIIKuf5ikPVHFOUTrscPrMi+S0eUeSA+IUNmuXmY5YR+thbGxDm5/urNSNoOclewfQgyT4YC0e/lBhOkrTSaluYcQjBBaLgdUMKXbeMz38n1CzFF0VjXhS92zAJZx4R+xGr/Khtz30Jxb0v39F/SlTP+t3hENkF2RENI/XFcIDLLe4G/6ykv7mn8nlGBTa41YEomrlkwiZW/me/ASOSECmq9amTjQs4Vf9USMV03XI5Rk5RuG0ATAsMy1FYJadAuCDEeliw5l8M3Fp6uAAMkH4/QFy57F+1k89B1X6uTGng==
+ bh=uC5xqeRpKePwkM8gzGQTJz9rgA0jif1S/46rGUE3Z9Y=;
+ b=c3jQdkLzxetiBuHDjjVaOvJAIIskL3baet+Yxm93lLTLjL/WIBjF4JzXfOmQntF3LoG/l1epIM1WwKW1vgImD2ikiWlL63TBikB4FMr8k82bY6HpzZKp85zsc+rxvkKMjMGz0wxR43GHq0gORdJ8KGeh5gjHIIKc2/5RIwz1i29wR/7v1EIzjg3sIYi9ABqxOKQ8AKT5zrLFewEZ4zOKGmwH1BDttHQ0/U8Sz0q709Hcj8FoxPhTTz09krQn2YNOclWlR0gTbWOILQf7cwpTEbLdzdfWLWyVF7uPKeCUyxD8JyS8ODXpGtzWa5LVrZwz38ZKn9WGPVvEGuKSkEpk2g==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
  SJ0PR12MB6805.namprd12.prod.outlook.com (2603:10b6:a03:44f::5) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9611.16; Wed, 18 Feb 2026 21:21:36 +0000
+ 15.20.9611.16; Wed, 18 Feb 2026 21:21:38 +0000
 Received: from DS0PR12MB6486.namprd12.prod.outlook.com
  ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
  ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9632.010; Wed, 18 Feb 2026
- 21:21:35 +0000
+ 21:21:38 +0000
 From: Joel Fernandes <joelagnelf@nvidia.com>
 To: linux-kernel@vger.kernel.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -79,94 +79,94 @@ Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
  Joel Fernandes <joelagnelf@nvidia.com>, Nikola Djukic <ndjukic@nvidia.com>
-Subject: [PATCH v7 19/23] nova-core: mm: Add PRAMIN aperture self-tests
-Date: Wed, 18 Feb 2026 16:20:16 -0500
-Message-Id: <20260218212020.800836-20-joelagnelf@nvidia.com>
+Subject: [PATCH v7 21/23] nova-core: fb: Add usable_vram field to FbLayout
+Date: Wed, 18 Feb 2026 16:20:18 -0500
+Message-Id: <20260218212020.800836-22-joelagnelf@nvidia.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260218212020.800836-1-joelagnelf@nvidia.com>
 References: <20260218212020.800836-1-joelagnelf@nvidia.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: MN2PR20CA0066.namprd20.prod.outlook.com
- (2603:10b6:208:235::35) To DS0PR12MB6486.namprd12.prod.outlook.com
+X-ClientProxiedBy: BL1P221CA0043.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:208:5b5::13) To DS0PR12MB6486.namprd12.prod.outlook.com
  (2603:10b6:8:c5::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|SJ0PR12MB6805:EE_
-X-MS-Office365-Filtering-Correlation-Id: 57f46851-7e4b-4824-adeb-08de6f33b232
+X-MS-Office365-Filtering-Correlation-Id: 5b825681-d8f1-4f0b-c1c9-08de6f33b3ed
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|7416014|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?YSHcc+cUIz62bAxLlPjf/9hbwK08QI3zc6M0xhQRlkYvDjwA+NLRoliUF+Kn?=
- =?us-ascii?Q?5EFXdfCQrJTf5JlkSufhdj/ejJhcsBmWItIfcMoH8BL+mwps0EzgPsywDKiB?=
- =?us-ascii?Q?5Fg/7BFHhbyJl6oKk7Ic2w1XkVL5xXendJ/ROLM/wLSzswBy4gXs9kivBPBV?=
- =?us-ascii?Q?Yi/rkGRCmgm4mrPqFk3Hibuc/Aw35ld97OWc1Szw19eihF14ZMqA2rP3s689?=
- =?us-ascii?Q?zOh9N0MNz3xLygBDyOBlJYXHBFz3qRvqCfroqxyq/dU4GLpltie+J/kLlNUX?=
- =?us-ascii?Q?BViq5grO2jbIKLLv/5Kr7urE7DUlbH9fiu9BnpbeOX/Vg0FkBHxMDDcOKGqo?=
- =?us-ascii?Q?0cutgIbfLgl6WRKa3nCAaIw8UTDGAO3IlosZvLzSA3jKtbFuq5zj5ZiJPHIU?=
- =?us-ascii?Q?rz00d2WM7GPSP/DIbOeqp8dRVQ+hlM8cIeXqm0XMXa65z2jSoNK+WGOsJ6fg?=
- =?us-ascii?Q?ui28sdmobGFmqo+dEyrvhul0qNvLaB9xkeA/dJLchOVtMhkki+M4VTmGhP49?=
- =?us-ascii?Q?ULYq9sripQ/YIdBEQbfydL/A2VJR9eZZ1BLRHM+go9+HL4Bw+/RbLZoPolfb?=
- =?us-ascii?Q?jQLKfz39yx7xU2UuyuOJr8LP6RR/u4ys6pU6REHXK2jNIEEOTIjoZj2Lr5pN?=
- =?us-ascii?Q?9PeEZ3qC/fPrXwm3kjAam4CdpDyfyi2Xu5sw6yAw70llulmFzkK7+WJEOIOx?=
- =?us-ascii?Q?PPk4zNERl/ZPqS5ZwaZlE2+gLYtMKCJS9t/sk+3sae5FbSo6dsCR7Rg6y6od?=
- =?us-ascii?Q?mJ4NltJIq4ZWfv0UJ2G1uLdIS5vBWEmTVsWcZ3uoz6F2ItoNgPaS2JYTnmHS?=
- =?us-ascii?Q?oMxHYlj/jYq65mwXvWRhowm3w7kz+qZ6YXhhm4o0eTDvyYdPC1H10jQZcgXC?=
- =?us-ascii?Q?V4ZBv1faF1EDBfORlYfzY8MoMOVt1lFqFyEINOwUOXf20UQ6UDH/CKEuyN8d?=
- =?us-ascii?Q?YjPaKQJGx9DWJqw1ZXt+aBk5uFeh2ysPj2Q0IIeRtBKY3cGwLKfhAZTSCPhT?=
- =?us-ascii?Q?KdpIqonbn/rLDmPYEOJ0An7LCz4OKGn0e4Jae/P/m8vIP3lhxHU7Gh8GDwdi?=
- =?us-ascii?Q?41yJW8dVzgc0SczoxATQJxALF1eub0er5y8JzlQzsrikg3g8dbB4aP1WhGqI?=
- =?us-ascii?Q?Y3yAJ2vBuAPcYGqzySdPS3kemCSVxVHpiN8IMsBt4mt4p/0xiCZI/a8YxJtB?=
- =?us-ascii?Q?TLk9Xd51blyBNi5zEultYKUua3Rieg38V8F5+ouVdNiuZcqPGd3aPPtMX+3f?=
- =?us-ascii?Q?hEnL6KUspevuMN01K251VIPqxfCIlxdlTWsXjNYSi+WN044ocmdqobS1fCOP?=
- =?us-ascii?Q?+yD0LWY+NveYLRLE9FmFa6Aoq9syryEWSvrTPjVvySxbCnRTprhpX0QwamzS?=
- =?us-ascii?Q?K3l6BhfpbOSZTKFpnU5kmudqt4xWeki03PFKDdlAkMoJUb5Ezj2Pf1zwaLTy?=
- =?us-ascii?Q?Q7NBePTmk79pHkn/SVQVbYNgwve9p0a/RSmdIbEyOKrZISdHo8EPUwp1ImaN?=
- =?us-ascii?Q?2wCk03OrsuiOAfsXGfSU08lpJ2WXhWDyeIK/L/8moWgbwxtxGTdgxqHFUtHX?=
- =?us-ascii?Q?O41/DoTnzCa2JvUESdA=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?LWjguJrYKFADJXqSVDTST7cRj0JaYQNDTUDgMv9jSwAgHXuHfnK1ipwJsg/Y?=
+ =?us-ascii?Q?BIK8eYJ7kBfBSMvQmtxpTaaN35/YzfrL2qW+WDGm4BYijFQ1jprU+Gm7tRCb?=
+ =?us-ascii?Q?VDhw3tASLwCSTvGOgFpOIhctllK89Nmowwzsg9xEFe/TXuTi7YTzgNZs3B3L?=
+ =?us-ascii?Q?+ZIKalaPdLLNI46J10Rr3RyCWQp3GE8FnNqQd89jb+C3GT3gwig/MfuJq2sB?=
+ =?us-ascii?Q?skJmV4JOpPXmp9PUd+Z0LmZ+MO1ExcsMorxbu/9+KzjxlANIquOyDEaHOPFA?=
+ =?us-ascii?Q?Hb5bfTVEpz+J0fKk/RwlVxcJc85FWfszyV9D8IppDvnpUeyDE/a3VXR5cZ79?=
+ =?us-ascii?Q?P93LYDDcfczR1yLT4UPqpzySmdCLI/hB6f3wlWhDzqqAxiUHhtafRpcT0NzC?=
+ =?us-ascii?Q?EPw8EAMgRE92/mkGRSd+YGPG1tkUWuV3Kbrdy82srCa5C02DhCx+ic37eFVE?=
+ =?us-ascii?Q?DUbXhMaj6Tusc4AX7eri91cp0e+5E0PirSseiUzYLI/ApENLdEwCaTQNJzc/?=
+ =?us-ascii?Q?AXjmwZmcXSOpGp3Syo+Apnr+W18PJCOlwc3BNW0vPQS74pwp/s9z6AWreRg8?=
+ =?us-ascii?Q?/U42ubZsIsx4H18YZkRqw8oj7pfqWgyNeZpijE2X/AsE4efFkDfGldUzwOEP?=
+ =?us-ascii?Q?Pal4fRM3UtfaeJadq/PHJwKzZBTFWSJqVTOzjZP8rpaTB6ZN1tkf6CMjK+TR?=
+ =?us-ascii?Q?qFPmJOC32lU7bFpxTzVKNAPBAYscHlvgdP68SO9WrTDp9OnpKUavKOvwim3R?=
+ =?us-ascii?Q?qzR3pH3GBtJ4Rf4snO5hKcrJnl5vb4SIOsND/EF1I0fQUaMDctbZe9GNMyfm?=
+ =?us-ascii?Q?zm6jtxRDvHkSFIpXTWIdmDwZE9HLMYeoxk7wvvrC92DY53kiROD/rzjtbCOx?=
+ =?us-ascii?Q?gk+D4kHJGKGNDNs3qfloPpBvHyixYBNmPXXGdBTortsnJfVOsOT3Uh7uX5g4?=
+ =?us-ascii?Q?TM7ukakMaX16bXkZVYJYnET6I0t2CAlgFeTQPyyUMi93OhFNfySXD6vkMKK+?=
+ =?us-ascii?Q?niockTKjijtJbi0IO176q6RbrerJNT5knzH8XA9Q52pk590qUm1T+tp9hcqR?=
+ =?us-ascii?Q?AeaUGR/AwK/sEbH1d8tUCj9Ng/aJixFIsZAQ56vcaelaYzvFOrkOt46yCaqu?=
+ =?us-ascii?Q?9WjuMQL3EXqvf7A4AHaSEWC9s86DTAHZeDaGgMFSMdDtG37vzXMc+lnzklDh?=
+ =?us-ascii?Q?FLjcixbJpyWY27PuCpScRkZNKLbf+rU/6hHZceF/l1n2oyWxwb3WluyBleme?=
+ =?us-ascii?Q?3IzwtN4sIRUeauOi/KopbSLOV+nLbcPT/Cbj9wKmMzvFnbFC9oTaJznhoj6h?=
+ =?us-ascii?Q?tjtZwAf7wqHXUWeQ8lyNKXyaghDwQP9Lw8NOVvHME7WZqYu7XhiMtMnZnCDL?=
+ =?us-ascii?Q?MlM+rZsHaVx3Mdk54qCOaw4rxYqLw4nrjmJ6C6FC9Uy1Ab32yGlWCrEUWCyh?=
+ =?us-ascii?Q?/vfBmprzhjks1UCzqC9gL1E/l7Oe6OzMaVvAyh/klH0apWt9D5+bNxUyofb4?=
+ =?us-ascii?Q?KxEebepQIGHf8r3i33/IX06Bho0HUAOh8gTWQW+erH66goKgAz9s7AKeaCDV?=
+ =?us-ascii?Q?yGsTyM9Z+/eTPavBshE=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(376014)(7416014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?w9j8jlv5xKSdyRyvzZCGD328NJVsA/fUqwpZZ6kZm+7sLe1pnedBC6sfYddg?=
- =?us-ascii?Q?OQUrx6kdHMIhNJxOaR6sKtgHSEYlq/L/+z6L557w+RFBXbINI8z4linoFFHh?=
- =?us-ascii?Q?Uf/oCLKs9FAd8JszEcDIuENouEG9YgRdedryOtxloG4ZPSy2dAzf9nAs5DNH?=
- =?us-ascii?Q?PQjENaPOsOO3hsTDSroRULiMHUCGHw0w/uleRGbDogadQvc4IwCJp77o2gRj?=
- =?us-ascii?Q?j3TEPAlIfkQsOKzDOnyQeuL43+zTHmLw+fXj9V9/piAPzA1AWPvdvrn4Cr1Z?=
- =?us-ascii?Q?KpkawLCj6A6fTEN9v0ZoHEpDu2HQGG10AfCKeV4dMKstOPa4Dq7BsQaQhO6I?=
- =?us-ascii?Q?wQbhPl5AFbLF3NQK+I4Wfn8ZW85UUFLufZ3VWgNglVuEKgRUgjMgYIJrjvQg?=
- =?us-ascii?Q?4Z9JTT+Zz6yoRv8iXGosWt2bC5KcRkKJOVJlUC2BxYzzZDF8IM/vxwq3JXhi?=
- =?us-ascii?Q?nDwXdSyGjxcFvnELm/1AFq83FMqI5RwlrhKLoGIr9aC3nshwLbOXbIUOmC2k?=
- =?us-ascii?Q?tX48z1r7Alo5YvRxyuGd+Axfy9UTxDYLrvtJHI6PMvFDBPMsPqWKkJP/Zre4?=
- =?us-ascii?Q?4JcMXgF9E0dVIbB0v73NXoJU0Y4kWm1ezgA7JbWO0SgbScf/RU34lNKnDOkw?=
- =?us-ascii?Q?yedKzAp9mQ3WPN9PuUPu7aqhCsWFI876UlTEC9hFkxzgSuvQHBcfTB+dEfwb?=
- =?us-ascii?Q?mdB3oYb1ITQxY1IPJSxKb6arysIR36OWAxzMcRbaGOq0k71N0HwhwlW3R1eO?=
- =?us-ascii?Q?BDjlqQfMpMku07Dtkiw6mKDF1qAls7giE95v0W3pC0VET4X4JrBzx8ylPDth?=
- =?us-ascii?Q?NrTFfO+92HakMDBPbuI2RIjR+Xh645OGAVQ6bTiL9PWK92SVM46U5vqdUACh?=
- =?us-ascii?Q?/4r9mBrmz32CTrNTf1kuHv6bbJ498LqgbQvh/3vP4Y45pYqHc2fqK1AlZGfl?=
- =?us-ascii?Q?3RslDfUE4mGt8Y5uG32LUj/VdjU6d18lCiNTMKNW9T175Jfs+rbgeIdkQd68?=
- =?us-ascii?Q?7vPJSToLsjKY4o9tLToVn/wigUZsIfhnE4rdnwKMzier4F0LM8MO6CyElia8?=
- =?us-ascii?Q?sFIMmH6kPu9a27SynrIvT2TaurtghHebEupT/ro51wJuOc2IqI3Amf101Ve/?=
- =?us-ascii?Q?g9LGKR5Gge9JsVsuw6pZeazpHOdrCJAjrU7TOP5DaA7qd64LtqQxwCECQLt7?=
- =?us-ascii?Q?DU4C5+cZaY5eKe0NJvovwMhUkDk8snQsxKCcYKHbjDALHM8qDryLdaZvp+ya?=
- =?us-ascii?Q?vph79LbDk0LqLuY563WHMTunizD3yyr2qzgObLw44K1aR5vS+GoQwvepCVkc?=
- =?us-ascii?Q?iWw1qO1l/a7jHpuU6oa2UA5056kaLZXFZ7EEKadJZS+O2sjIWK8ltUEAE7GX?=
- =?us-ascii?Q?+yjgN+hos9lE/Gl8TPXKYILBz3jFlIjur0bZeH1e8DLY6Oeg61LCNPAzJ1M6?=
- =?us-ascii?Q?yAt+e8xtQetlgYR4uvIH+tboblQ6pSy7HZB1r8x62GT3jSZz2XscnlguuHnG?=
- =?us-ascii?Q?NI9TimJo7w9DFZEIf4IDGilcef38CS0TXburgIWNY9xdw7MuqGoHYgOQjtbK?=
- =?us-ascii?Q?wgaz+Yh4DC4L2y5ZbUsx50MsfwQjEfFRhLfiZd+qUb8454Uarsb10mTl13C/?=
- =?us-ascii?Q?VDMvXr7HLu33cJGYPtp7tJrTqexHtFLXbFPq6chxjlgv5CAoHxq48XMM85Zs?=
- =?us-ascii?Q?PaByK3ZzGjDTAHwoibTHp0AWzHhJE2DN/TRpq9nIgZ3VHbHNJKn1NUQaL29f?=
- =?us-ascii?Q?6tuzXzft6A=3D=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Y0KsSnfpifeBJlPneN6ReXG1MX3NFhFVihs/TnIm88V3BIZsDm2IDg/fQWbB?=
+ =?us-ascii?Q?1ZZn5dvOHxcTPJYyEezF8geXQ/yQR5LXjimGiJlVU/TcfD18lL8FPxOYbuMv?=
+ =?us-ascii?Q?Jdl2zMwsPq3XJw3HVzACjDIEIxsOI48Oo4wB89ocusO4Ool8C0CCV22RMB1r?=
+ =?us-ascii?Q?AmE4LaEJKkGKizapigqoshi0GmSjXMHwzh6GllsAlqfX3MMnFv56kRQFEEdL?=
+ =?us-ascii?Q?CIBnJKzYBuqGwVJRyH09Yj9c5MFzSMZXbhJC2qTyiIZ7gQnKA4hDvEilxFrb?=
+ =?us-ascii?Q?UUr4PxFMY2piEo2vzH5voZYH7YkKcZ9HakY6oiiX+vzc53kJTXRujNUab3TG?=
+ =?us-ascii?Q?fI7r8r5YbJSZTS0Ihl+WYRFiNComr1JaTU+9i6G6PBgWHQx4czrrSotkO4w5?=
+ =?us-ascii?Q?KNgvjWOY0rHA0siX59FNwNQ8jY9XshGfwDlzRW3JJ8R3is/DM7B0QJN5WsO4?=
+ =?us-ascii?Q?TgMNCy2P/vWNYECm7gvRwFfp9WW2UJmSNl3url3kr4MH33nGRuiqoHlLWlQD?=
+ =?us-ascii?Q?CIM3dxUTjO0M6DkgdyMr/vzLbIi/V+GSwY0gSd4MCgJzcEcNvmD9yzT5RqkG?=
+ =?us-ascii?Q?X+dlSqBgcE5bGqLoEBQ+pw/N2tIXpGpyu601NnfI+BCchZqkYX9q3UH5SVj4?=
+ =?us-ascii?Q?2c0vBn462FyTN14jixPWywXEHvSnwLEf008l9tsIi4ZeJevTeTGjoxIGw4T4?=
+ =?us-ascii?Q?PLUuXO6ddzeqQAZn0uxtCWC193gqPrCpaRhV4k6MR9EdYplpsQapHantuaZR?=
+ =?us-ascii?Q?YhIY2g8WF90oqhpQjB0lX1parvujIECgyliZnzWVKIjJLW1tgCgdzx7v1FDs?=
+ =?us-ascii?Q?gDINNGNI/p202P5+MZ+snonCsRAbbgGqFaCpN47gQ2rW2Lfw13jm1oEwzmZ5?=
+ =?us-ascii?Q?cNsYQG08Gw9+OPV/Vs3IC+Qd6XictCOzUrgPw79L3Mwl6n9QZwg1Pwwr66wW?=
+ =?us-ascii?Q?Vqz0H3CUE0YocBZAjKcQp4ze2bAfLbY6sZMIZ2XMmHAluaqd5VpGTROnCp3X?=
+ =?us-ascii?Q?1uH4VVNimjnPmztk5jb2t4TLh81PrUdYfGJ35QiVGA6BQgXLksDKw5QOUGir?=
+ =?us-ascii?Q?++o+EDtYxViyhEe3VbIdqbTxYAHhW64jPeZgahCX9CP8APWMIS0fs8zSOY9t?=
+ =?us-ascii?Q?VBeSXGf0xsTd7wh7GGs3K6uVf7YN6hWzv79A1P0FxpbdtptrvvZMapOlhf2D?=
+ =?us-ascii?Q?dHZWFDW65VFL0cnlJHYtgH8jDCURYOQyVPYe7+utvobiNAPwo0soHXJku6op?=
+ =?us-ascii?Q?0WvwvNkDGjnmWsZZcIpIDSJ0FqEnnkBfchsltKLvpZHKi1lyNDWfrHlihIpy?=
+ =?us-ascii?Q?hFEXpp+5yXZB8B7gei5pW1tvmBl/yywbctBXPvojzxEzppH2Sx6aLUFka5Az?=
+ =?us-ascii?Q?d5It2+CcjcGFgVLOTr0YeLxImNKQ647sDNC6wd5AN23br3+hrCxAgq/y03IK?=
+ =?us-ascii?Q?4KFgDnBwUfPtYlu9NHOid33Q/6927GQrHI99qhGXebTWH9UIVDO1M9kzXFjr?=
+ =?us-ascii?Q?Kbx4HK5FPYW4ckmRbI2rnIG8abnUodbfkk8iZ/h7OD6SFbanNjcTi1OGw4lI?=
+ =?us-ascii?Q?vLYQ0+/RK7IxoF+OoCZbYqsFiDNo6TfMvvGh+wLl2kSNW9tqG17j2gtCXOx9?=
+ =?us-ascii?Q?Yl/R/Ny68bfPonYbdzPz0H0yiq0N0hH8DlWfIfgCBj69ZAswUvs7wmcbOZww?=
+ =?us-ascii?Q?BChGPVGbYdpellXPVAHByjzV8rj2drgp6Dh7ynd5BFmcmqPnqi6W+O9nORSW?=
+ =?us-ascii?Q?XfBtJik3iQ=3D=3D?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 57f46851-7e4b-4824-adeb-08de6f33b232
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5b825681-d8f1-4f0b-c1c9-08de6f33b3ed
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2026 21:21:35.8778 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Feb 2026 21:21:38.7510 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cuM+aOZW0US//qjK0af7J+Xd8aYFhOTkMHqi9Ui09e3lvl/uSdy/uKavZUsfZuI5JYgbOKF0syqVP3Hjyobp7w==
+X-MS-Exchange-CrossTenant-UserPrincipalName: MlljmiwNWpPyrbZ5m7M21rdPQBiXPtVbFMFR76P5E8roY8ASvIY903iF9lVTtJaG/qJBoXOI/UvY0M5/rMYpog==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB6805
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -182,218 +182,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add self-tests for the PRAMIN aperture mechanism to verify correct
-operation during GPU probe. The tests validate various alignment
-requirements and corner cases.
+Add usable_vram field to FbLayout to store the usable VRAM region for
+driver allocations. This is populated after GSP boot with the region
+extracted from GSP's fbRegionInfoParams.
 
-The tests are default disabled and behind CONFIG_NOVA_PRAMIN_SELFTESTS.
-When enabled, tests run after GSP boot during probe.
+FbLayout is now a two-phase structure:
+1. new() computes firmware layout from hardware
+2. set_usable_vram() populates usable region from GSP
+
+The new usable_vram field represents the actual usable VRAM region
+(~23.7GB on a 24GB GPU GA102 Ampere GPU).
 
 Cc: Nikola Djukic <ndjukic@nvidia.com>
 Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
 ---
- drivers/gpu/nova-core/Kconfig      |   4 +-
- drivers/gpu/nova-core/gpu.rs       |   3 +
- drivers/gpu/nova-core/mm/pramin.rs | 161 +++++++++++++++++++++++++++++
- 3 files changed, 166 insertions(+), 2 deletions(-)
+ drivers/gpu/nova-core/fb.rs | 23 ++++++++++++++++++++++-
+ 1 file changed, 22 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/nova-core/Kconfig b/drivers/gpu/nova-core/Kconfig
-index d0d4177adb1b..35de55aabcfc 100644
---- a/drivers/gpu/nova-core/Kconfig
-+++ b/drivers/gpu/nova-core/Kconfig
-@@ -21,7 +21,7 @@ config NOVA_MM_SELFTESTS
- 	depends on NOVA_CORE
- 	help
- 	  Enable self-tests for the memory management subsystem. When enabled,
--	  tests are run during GPU probe to verify page table walking, and BAR1
--	  virtual memory mapping functionality.
-+	  tests are run during GPU probe to verify PRAMIN aperture access,
-+	  page table walking, and BAR1 virtual memory mapping functionality.
- 
- 	  This is a testing option and is default-disabled.
-diff --git a/drivers/gpu/nova-core/gpu.rs b/drivers/gpu/nova-core/gpu.rs
-index f17bf1bf0b12..af5a0ffe78aa 100644
---- a/drivers/gpu/nova-core/gpu.rs
-+++ b/drivers/gpu/nova-core/gpu.rs
-@@ -338,6 +338,9 @@ fn run_mm_selftests(
- 
-         let mmu_version = MmuVersion::from(self.spec.chipset.arch());
- 
-+        // PRAMIN aperture self-tests.
-+        crate::mm::pramin::run_self_test(pdev.as_ref(), self.bar.clone(), mmu_version)?;
-+
-         // BAR1 self-tests.
-         let bar1 = Arc::pin_init(
-             pdev.iomap_region_sized::<BAR1_SIZE>(1, c"nova-core/bar1"),
-diff --git a/drivers/gpu/nova-core/mm/pramin.rs b/drivers/gpu/nova-core/mm/pramin.rs
-index 77916f5b231e..da98208b9cb7 100644
---- a/drivers/gpu/nova-core/mm/pramin.rs
-+++ b/drivers/gpu/nova-core/mm/pramin.rs
-@@ -291,3 +291,164 @@ fn drop(&mut self) {
-         // MutexGuard drops automatically, releasing the lock.
-     }
+diff --git a/drivers/gpu/nova-core/fb.rs b/drivers/gpu/nova-core/fb.rs
+index c62abcaed547..779447952b19 100644
+--- a/drivers/gpu/nova-core/fb.rs
++++ b/drivers/gpu/nova-core/fb.rs
+@@ -97,6 +97,10 @@ pub(crate) fn unregister(&self, bar: &Bar0) {
+ /// Layout of the GPU framebuffer memory.
+ ///
+ /// Contains ranges of GPU memory reserved for a given purpose during the GSP boot process.
++///
++/// This structure is populated in 2 steps:
++/// 1. [`FbLayout::new()`] computes firmware layout from hardware.
++/// 2. [`FbLayout::set_usable_vram()`] populates usable region from GSP response.
+ #[derive(Debug)]
+ pub(crate) struct FbLayout {
+     /// Range of the framebuffer. Starts at `0`.
+@@ -111,10 +115,14 @@ pub(crate) struct FbLayout {
+     pub(crate) elf: Range<u64>,
+     /// WPR2 heap.
+     pub(crate) wpr2_heap: Range<u64>,
+-    /// WPR2 region range, starting with an instance of `GspFwWprMeta`.
++    /// WPR2 region range, starting with an instance of [`GspFwWprMeta`].
+     pub(crate) wpr2: Range<u64>,
++    /// Non-WPR heap carved before WPR2, used by GSP firmware.
+     pub(crate) heap: Range<u64>,
+     pub(crate) vf_partition_count: u8,
++    /// Usable VRAM region for driver allocations (from GSP `fbRegionInfoParams`).
++    /// Initially [`None`], populated after GSP boot with usable region info.
++    pub(crate) usable_vram: Option<Range<u64>>,
  }
+ 
+ impl FbLayout {
+@@ -212,6 +220,19 @@ pub(crate) fn new(chipset: Chipset, bar: &Bar0, gsp_fw: &GspFirmware) -> Result<
+             wpr2,
+             heap,
+             vf_partition_count: 0,
++            usable_vram: None,
+         })
+     }
 +
-+/// Run PRAMIN self-tests during boot if self-tests are enabled.
-+#[cfg(CONFIG_NOVA_MM_SELFTESTS)]
-+pub(crate) fn run_self_test(
-+    dev: &kernel::device::Device,
-+    bar: Arc<Devres<Bar0>>,
-+    mmu_version: super::pagetable::MmuVersion,
-+) -> Result {
-+    use super::pagetable::MmuVersion;
-+
-+    // PRAMIN support is only for MMU v2 for now (Turing/Ampere/Ada).
-+    if mmu_version != MmuVersion::V2 {
-+        dev_info!(
-+            dev,
-+            "PRAMIN: Skipping self-tests for MMU {:?} (only V2 supported)\n",
-+            mmu_version
-+        );
-+        return Ok(());
++    /// Set the usable VRAM region from GSP response.
++    ///
++    /// Called after GSP boot with the first usable region extracted from
++    /// GSP's `fbRegionInfoParams`. Usable regions are those that:
++    /// - Are not reserved for firmware internal use.
++    /// - Are not protected (hardware-enforced access restrictions).
++    /// - Support compression (can use GPU memory compression for bandwidth).
++    /// - Support ISO (isochronous memory for display requiring guaranteed bandwidth).
++    pub(crate) fn set_usable_vram(&mut self, base: u64, size: u64) {
++        self.usable_vram = Some(base..base.saturating_add(size));
 +    }
-+
-+    dev_info!(dev, "PRAMIN: Starting self-test...\n");
-+
-+    let pramin = Arc::pin_init(Pramin::new(bar)?, GFP_KERNEL)?;
-+    let mut win = pramin.window()?;
-+
-+    // Use offset 0x1000 as test area.
-+    let base: usize = 0x1000;
-+
-+    // Test 1: Read/write at byte-aligned locations.
-+    for i in 0u8..4 {
-+        let offset = base + 1 + usize::from(i); // Offsets 0x1001, 0x1002, 0x1003, 0x1004
-+        let val = 0xA0 + i;
-+        win.try_write8(offset, val)?;
-+        let read_val = win.try_read8(offset)?;
-+        if read_val != val {
-+            dev_err!(
-+                dev,
-+                "PRAMIN: FAIL - offset {:#x}: wrote {:#x}, read {:#x}\n",
-+                offset,
-+                val,
-+                read_val
-+            );
-+            return Err(EIO);
-+        }
-+    }
-+
-+    // Test 2: Write `u32` and read back as `u8`s.
-+    let test2_offset = base + 0x10;
-+    let test2_val: u32 = 0xDEADBEEF;
-+    win.try_write32(test2_offset, test2_val)?;
-+
-+    // Read back as individual bytes (little-endian: EF BE AD DE).
-+    let expected_bytes: [u8; 4] = [0xEF, 0xBE, 0xAD, 0xDE];
-+    for (i, &expected) in expected_bytes.iter().enumerate() {
-+        let read_val = win.try_read8(test2_offset + i)?;
-+        if read_val != expected {
-+            dev_err!(
-+                dev,
-+                "PRAMIN: FAIL - offset {:#x}: expected {:#x}, read {:#x}\n",
-+                test2_offset + i,
-+                expected,
-+                read_val
-+            );
-+            return Err(EIO);
-+        }
-+    }
-+
-+    // Test 3: Window repositioning across 1MB boundaries.
-+    // Write to offset > 1MB to trigger window slide, then verify.
-+    let test3_offset_a: usize = base; // First 1MB region.
-+    let test3_offset_b: usize = 0x200000 + base; // 2MB + base (different 1MB region).
-+    let val_a: u32 = 0x11111111;
-+    let val_b: u32 = 0x22222222;
-+
-+    // Write to first region.
-+    win.try_write32(test3_offset_a, val_a)?;
-+
-+    // Write to second region (triggers window reposition).
-+    win.try_write32(test3_offset_b, val_b)?;
-+
-+    // Read back from second region.
-+    let read_b = win.try_read32(test3_offset_b)?;
-+    if read_b != val_b {
-+        dev_err!(
-+            dev,
-+            "PRAMIN: FAIL - offset {:#x}: expected {:#x}, read {:#x}\n",
-+            test3_offset_b,
-+            val_b,
-+            read_b
-+        );
-+        return Err(EIO);
-+    }
-+
-+    // Read back from first region (triggers window reposition again).
-+    let read_a = win.try_read32(test3_offset_a)?;
-+    if read_a != val_a {
-+        dev_err!(
-+            dev,
-+            "PRAMIN: FAIL - offset {:#x}: expected {:#x}, read {:#x}\n",
-+            test3_offset_a,
-+            val_a,
-+            read_a
-+        );
-+        return Err(EIO);
-+    }
-+
-+    // Test 4: Invalid offset rejection (beyond 40-bit address space).
-+    {
-+        // 40-bit address space limit check.
-+        let invalid_offset: usize = MAX_VRAM_OFFSET + 1;
-+        let result = win.try_read32(invalid_offset);
-+        if result.is_ok() {
-+            dev_err!(
-+                dev,
-+                "PRAMIN: FAIL - read at invalid offset {:#x} should have failed\n",
-+                invalid_offset
-+            );
-+            return Err(EIO);
-+        }
-+    }
-+
-+    // Test 5: Misaligned multi-byte access rejection.
-+    // Verify that misaligned `u16`/`u32`/`u64` accesses are properly rejected.
-+    {
-+        // `u16` at odd offset (not 2-byte aligned).
-+        let offset_u16 = base + 0x21;
-+        if win.try_write16(offset_u16, 0xABCD).is_ok() {
-+            dev_err!(
-+                dev,
-+                "PRAMIN: FAIL - misaligned u16 write at {:#x} should have failed\n",
-+                offset_u16
-+            );
-+            return Err(EIO);
-+        }
-+
-+        // `u32` at 2-byte-aligned (not 4-byte-aligned) offset.
-+        let offset_u32 = base + 0x32;
-+        if win.try_write32(offset_u32, 0x12345678).is_ok() {
-+            dev_err!(
-+                dev,
-+                "PRAMIN: FAIL - misaligned u32 write at {:#x} should have failed\n",
-+                offset_u32
-+            );
-+            return Err(EIO);
-+        }
-+
-+        // `u64` read at 4-byte-aligned (not 8-byte-aligned) offset.
-+        let offset_u64 = base + 0x44;
-+        if win.try_read64(offset_u64).is_ok() {
-+            dev_err!(
-+                dev,
-+                "PRAMIN: FAIL - misaligned u64 read at {:#x} should have failed\n",
-+                offset_u64
-+            );
-+            return Err(EIO);
-+        }
-+    }
-+
-+    dev_info!(dev, "PRAMIN: All self-tests PASSED\n");
-+    Ok(())
-+}
+ }
 -- 
 2.34.1
 
