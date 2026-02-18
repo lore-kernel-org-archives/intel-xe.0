@@ -4,51 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 50F48E9A03B
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 11:41:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5A5CE9A047
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Feb 2026 11:47:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0AC6210E5A7;
-	Wed, 18 Feb 2026 11:41:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C51810E5A8;
+	Wed, 18 Feb 2026 11:47:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bZciYsAW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AQbfpSam";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA2AF10E5A7
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Feb 2026 11:41:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A17CA10E173;
+ Wed, 18 Feb 2026 11:47:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771414879; x=1802950879;
+ t=1771415257; x=1802951257;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=6O9+2teCuGLX9KLaBJ+uqFBr4Ye1iORnM5SgCFkSwNo=;
- b=bZciYsAW5/7nLpnTXsEixFWO02Znu0YPY5L/AQ6biJJ8jBt5y7Ohlnud
- kSmLKM8LkVSdO1nQ7zYSoPY9qVXKC/1QHyFxg6j68fAku0h4ksSrWNjPY
- PO6TTrTbCL3vOdKMrPnycLcp6v+0iye7NBQXvUNv//ox6U+piRmJF552I
- qFsgEe5YajeF25SjnCgLL0PBWzM3EPvxBG+Vb+LjbWa1+lHVtCHquxSg/
- odIZG7jlB2vXC9uSqnCYDmlPXQ49Op0mm53l9ohbjqOsFfr95aF1mlxPc
- Ks5JoMYTtRKvsRQhXO2hgLM43O6gzKsw617Cj5plOdf8EFIw6rx3PFKuN Q==;
-X-CSE-ConnectionGUID: dsRhoettRcCkw3ya4HOyOg==
-X-CSE-MsgGUID: pvpMN7iXT7ON+QAlnci/3A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11704"; a="71688760"
-X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="71688760"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 03:41:18 -0800
-X-CSE-ConnectionGUID: ckniX+PyQCaMqU6Zb/8wfQ==
-X-CSE-MsgGUID: 3MaZKmLFTwapIPhfGGPQ7w==
+ bh=MAH7TGbnVRFc2KBkwqmBjV/HGAENwXt73MADjlj2FKM=;
+ b=AQbfpSamMg/tZ7ZE10Pxf2RyJ5xMsZMc2deXMVkbser8YeeRpwpJsmC8
+ VoHd8lKx2eATLhGdx5S1pOoIbJPNRol7TyaTUM1jDRCu3jyOfhzBKPrXN
+ V13LfRzbq3YT9+gyYuax2nJMv2oWWwWl66Z4Xu65SIpj3wbQVEcIdWcYn
+ Z0V/nEkPXoZYA/3eJPCXQjL37s3mXbZWsnDi11tqPtix0XgcshO3rtDl6
+ d5emJG0nvdvN3kjr8L5QOoNXZ4XH79BsvC1iYLIzo5t0QKGmLBH85Xupp
+ cM9Y3vZOAQhz57Bn5PnElzoByJrU4HJJgCwl2HcotZHC1SO/oSw7FPqrq w==;
+X-CSE-ConnectionGUID: NKE0aay0ScWvl+Y4DrUsZw==
+X-CSE-MsgGUID: i43IP5SGSfyw9yEDXx1Ocw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11704"; a="72665151"
+X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="72665151"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2026 03:47:37 -0800
+X-CSE-ConnectionGUID: Yii22dsWRemMktBgOuh/Zg==
+X-CSE-MsgGUID: /uAG1LQXQMasKEn0IhtM0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="237169414"
-Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 03:41:16 -0800
-From: Karthik Poosa <karthik.poosa@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, rodrigo.vivi@intel.com,
- raag.jadav@intel.com, Karthik Poosa <karthik.poosa@intel.com>
-Subject: [PATCH] drm/xe/hwmon: Read accepted power limit for CRI
-Date: Wed, 18 Feb 2026 17:17:22 +0530
-Message-Id: <20260218114722.2215386-1-karthik.poosa@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=Sophos;i="6.21,298,1763452800"; d="scan'208";a="212537837"
+Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Feb 2026 03:47:32 -0800
+From: Riana Tauro <riana.tauro@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Cc: aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
+ rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
+ simona.vetter@ffwll.ch, airlied@gmail.com, pratik.bari@intel.com,
+ joshua.santosh.ranjan@intel.com, ashwin.kumar.kulkarni@intel.com,
+ shubham.kumar@intel.com, ravi.kishore.koppuravuri@intel.com,
+ raag.jadav@intel.com, Riana Tauro <riana.tauro@intel.com>
+Subject: [PATCH v7 0/5] Introduce DRM_RAS using generic netlink for RAS
+Date: Wed, 18 Feb 2026 17:49:02 +0530
+Message-ID: <20260218121904.157295-7-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.47.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,46 +70,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Update xe_hwmon_pcode_read_power_limit to read the accepted
-power limit using the new mailbox param introduced from CRI.
+This work is a continuation of the great work started by Aravind ([1] and [2])
+in order to fulfill the RAS requirements and proposal as previously discussed
+and agreed in the Linux Plumbers accelerator's bof of 2022 [3].
 
-Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
----
- drivers/gpu/drm/xe/xe_hwmon.c     | 5 +++--
- drivers/gpu/drm/xe/xe_pcode_api.h | 3 ++-
- 2 files changed, 5 insertions(+), 3 deletions(-)
+[1]: https://lore.kernel.org/dri-devel/20250730064956.1385855-1-aravind.iddamsetty@linux.intel.com/
+[2]: https://lore.kernel.org/all/4cbdfcc5-5020-a942-740e-a602d4c00cc2@linux.intel.com/
+[3]: https://airlied.blogspot.com/2022/09/accelerators-bof-outcomes-summary.html
 
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index baf277955b33..8e1cbf7afed0 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -192,8 +192,9 @@ static int xe_hwmon_pcode_read_power_limit(const struct xe_hwmon *hwmon, u32 att
- 						  READ_PSYSGPU_POWER_LIMIT :
- 						  READ_PACKAGE_POWER_LIMIT,
- 						  hwmon->boot_power_limit_read ?
--						  READ_PL_FROM_PCODE : READ_PL_FROM_FW),
--						  &val0, &val1);
-+						  (hwmon->xe->info.platform >= XE_CRESCENTISLAND ?
-+						   READ_PL_RESOLVED : READ_PL_FROM_PCODE) :
-+						  READ_PL_FROM_FW), &val0, &val1);
- 
- 	if (ret) {
- 		drm_dbg(&hwmon->xe->drm, "read failed ch %d val0 0x%08x, val1 0x%08x, ret %d\n",
-diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
-index 85cc7478b787..636b9dfb11da 100644
---- a/drivers/gpu/drm/xe/xe_pcode_api.h
-+++ b/drivers/gpu/drm/xe/xe_pcode_api.h
-@@ -47,8 +47,9 @@
- #define	WRITE_PSYSGPU_POWER_LIMIT		0x7
- #define	READ_PACKAGE_POWER_LIMIT		0x8
- #define	WRITE_PACKAGE_POWER_LIMIT		0x9
--#define	READ_PL_FROM_FW				0x1
- #define	READ_PL_FROM_PCODE			0x0
-+#define	READ_PL_FROM_FW				0x1
-+#define	READ_PL_RESOLVED			0x2
- 
- #define   PCODE_THERMAL_INFO			0x25
- #define     READ_THERMAL_LIMITS			0x0
+During the past review round, Lukas pointed out that netlink had evolved
+in parallel during these years and that now, any new usage of netlink families
+would require the usage of the YAML description and scripts.
+
+With this new requirement in place, the family name is hardcoded in the yaml file,
+so we are forced to have a single family name for the entire drm, and then we now
+we are forced to have a registration.
+
+So, while doing the registration, we now created the concept of drm-ras-node.
+For now the only node type supported is the agreed error-counter. But that could
+be expanded for other cases like telemetry, requested by Zack for the qualcomm accel
+driver.
+
+In this first version, only querying counter is supported. But also this is expandable
+to future introduction of multicast notification and also clearing the counters.
+
+This design with multiple nodes per device is already flexible enough for driver
+to decide if it wants to handle error per device, or per IP block, or per error
+category. I believe this fully attend to the requested AMD feedback in the earlier
+reviews.
+
+So, my proposal is to start simple with this case as is, and then iterate over
+with the drm-ras in tree so we evolve together according to various driver's RAS
+needs.
+
+I have provided a documentation and the first Xe implementation of the counter
+as reference.
+
+Also, it is worth to mention that we have a in-tree pyynl/cli.py tool that entirely
+exercises this new API, hence I hope this can be the reference code for the uAPI
+usage, while we continue with the plan of introducing IGT tests and tools for this
+and adjusting the internal vendor tools to open with open source developments and
+changing them to support these flows.
+
+Example:
+
+List Nodes:
+
+$ sudo ynl --family drm_ras --dump list-nodes
+[{'device-name': '0000:03:00.0',
+  'node-id': 0,
+  'node-name': 'correctable-errors',
+  'node-type': 'error-counter'},
+ {'device-name': '0000:03:00.0',
+  'node-id': 1,
+  'node-name': 'uncorrectable-errors',
+  'node-type': 'error-counter'}]
+
+Get Error counters:
+
+$ sudo ynl --family drm_ras  --dump get-error-counters --json '{"node-id":1}'
+[{'error-id': 1, 'error-name': 'core-compute', 'error-value': 0},
+ {'error-id': 2, 'error-name': 'soc-internal', 'error-value': 0}]
+
+Query Error counter:
+
+$ sudo ynl --family drm_ras --do query-error-counter  --json '{"node-id":1, "error-id":2}'
+{'error-id': 2, 'error-name': 'soc-internal', 'error-value': 0}
+
+
+IGT : https://patchwork.freedesktop.org/patch/689729/?series=157409&rev=3
+
+Rev2: Fix review comments
+      Add support for GT and SOC errors
+
+Rev3: Add uAPI for errors and nodes
+      Update documentation
+
+Rev4: Use only correctable and uncorrectable error nodes
+      use REG_BIT
+      remove redundant error strings
+
+Rev5: Split patch 2
+      use atomic_t
+      fix memory leaks
+      fix logs
+      fix hook failure
+      change component and severity UAPI
+
+Rev6: fix alignment
+      fix comparison in CSC error
+      add severity string to csc error
+      rename soc error handler base register variables
+      deallocate info if drm ras registeration fails
+      rename init function to xe_drm_ras_init()
+      fix htmldocs errors
+      Add 'depends on NET' for drm ras netlink
+
+Rev7: add macro for gt vector length and master local registers
+      print errors on failure
+
+Riana Tauro (4):
+  drm/xe/xe_drm_ras: Add support for XE DRM RAS
+  drm/xe/xe_hw_error: Integrate DRM RAS with hardware error handling
+  drm/xe/xe_hw_error: Add support for Core-Compute errors
+  drm/xe/xe_hw_error: Add support for PVC SoC errors
+
+Rodrigo Vivi (1):
+  drm/ras: Introduce the DRM RAS infrastructure over generic netlink
+
+ Documentation/gpu/drm-ras.rst              | 107 +++++
+ Documentation/gpu/index.rst                |   1 +
+ Documentation/netlink/specs/drm_ras.yaml   | 130 ++++++
+ drivers/gpu/drm/Kconfig                    |  10 +
+ drivers/gpu/drm/Makefile                   |   1 +
+ drivers/gpu/drm/drm_drv.c                  |   6 +
+ drivers/gpu/drm/drm_ras.c                  | 354 ++++++++++++++++
+ drivers/gpu/drm/drm_ras_genl_family.c      |  42 ++
+ drivers/gpu/drm/drm_ras_nl.c               |  54 +++
+ drivers/gpu/drm/xe/Makefile                |   1 +
+ drivers/gpu/drm/xe/regs/xe_hw_error_regs.h |  86 +++-
+ drivers/gpu/drm/xe/xe_device_types.h       |   4 +
+ drivers/gpu/drm/xe/xe_drm_ras.c            | 186 +++++++++
+ drivers/gpu/drm/xe/xe_drm_ras.h            |  15 +
+ drivers/gpu/drm/xe/xe_drm_ras_types.h      |  48 +++
+ drivers/gpu/drm/xe/xe_hw_error.c           | 451 +++++++++++++++++++--
+ include/drm/drm_ras.h                      |  76 ++++
+ include/drm/drm_ras_genl_family.h          |  17 +
+ include/drm/drm_ras_nl.h                   |  24 ++
+ include/uapi/drm/drm_ras.h                 |  49 +++
+ include/uapi/drm/xe_drm.h                  |  79 ++++
+ 21 files changed, 1699 insertions(+), 42 deletions(-)
+ create mode 100644 Documentation/gpu/drm-ras.rst
+ create mode 100644 Documentation/netlink/specs/drm_ras.yaml
+ create mode 100644 drivers/gpu/drm/drm_ras.c
+ create mode 100644 drivers/gpu/drm/drm_ras_genl_family.c
+ create mode 100644 drivers/gpu/drm/drm_ras_nl.c
+ create mode 100644 drivers/gpu/drm/xe/xe_drm_ras.c
+ create mode 100644 drivers/gpu/drm/xe/xe_drm_ras.h
+ create mode 100644 drivers/gpu/drm/xe/xe_drm_ras_types.h
+ create mode 100644 include/drm/drm_ras.h
+ create mode 100644 include/drm/drm_ras_genl_family.h
+ create mode 100644 include/drm/drm_ras_nl.h
+ create mode 100644 include/uapi/drm/drm_ras.h
+
 -- 
-2.25.1
+2.47.1
 
