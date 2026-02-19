@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 509A2E9A059
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3987DE9A05A
 	for <intel-xe@archiver.kernel.org>; Thu, 19 Feb 2026 18:07:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0753210E737;
-	Thu, 19 Feb 2026 18:07:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D43BF10E736;
+	Thu, 19 Feb 2026 18:07:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hHVQ9Dpj";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SLauXnai";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC49210E72C
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Feb 2026 18:07:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 179CF10E72C
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Feb 2026 18:07:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1771524424; x=1803060424;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/s1GMi7gWg1IrYbZAWLEg5F8cSQRD1dV7Z5nj5e3yds=;
- b=hHVQ9DpjN+Ls8ir7bX8SLn6EEZguRk3wLSR2xsukCEqO9g76fB+kEE3V
- 7N+LVcKb+tLkhW1pQR/+WT+Srw71n28XojAHtk3LmGy+L7Bhgq7mJI5K7
- FYuKKX9Tp1phYlcgIU9AkHfOCdMf/UYmh5iV6uwqtiRPXff4x6hCGqknv
- L1NEYbEAhpIb29rBV1pYyYZ27ezXFHJFvuxe2Eynx741REl91hc1kqAgp
- FFB3WtCzgTKEp23oJUp9u6pQgpFfnRlkdftQBfoHrOAp/YP6jtOCX8IJX
- XsVAsmz0Ui1F3+cEcNRRgC3aGzwPWddrc4LV6wcHK01oJog3pcmgbi13z A==;
-X-CSE-ConnectionGUID: SqTIsPlvRviEYwRjkbo7Tg==
-X-CSE-MsgGUID: WFKSxzDBSm+6xnk1dYVgGg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11706"; a="76482816"
-X-IronPort-AV: E=Sophos;i="6.21,300,1763452800"; d="scan'208";a="76482816"
+ bh=EN0Z2JzMQKs29e5k8AbiYy/12T0JEcNADkIG5aEOFeo=;
+ b=SLauXnaitPYtA7AFyi0b5cLJ0LAKjeqQmDqcC4YtXLwhU5ix1Ds8IEau
+ BhtsDQCHdyrJmLMIE4GFOO6EWccIs/QI0+sfrDWDDsUNzEiQhVkcYTVM7
+ Lu8kLt024e+hC9ULYeJpYvL2FqNERhPH2wFeWg/WunTld0uLh6GxtcjrO
+ zzCZoCFQrylSk0gcmOydLz9CpzUd0JF3h8rKt1dpSBeio7YBCF2R6cxIU
+ CM6DljsI9fP/uvURV1oPy3sTOApOarXXCWkg+UnLK4kQt1Znp91LoCi4p
+ dU8udYlcaxXZ6c4ty6pP1kM/6YDF32B5JOPlAXC+f4PPv/6cPBfppAK2/ Q==;
+X-CSE-ConnectionGUID: 52QxyuGwQaaZHIepw3Powg==
+X-CSE-MsgGUID: mrIxvVDsQQ+G0ybyX8KNUA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11706"; a="76482820"
+X-IronPort-AV: E=Sophos;i="6.21,300,1763452800"; d="scan'208";a="76482820"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2026 10:07:03 -0800
-X-CSE-ConnectionGUID: Brvct34kTduYaFvnFF6KaA==
-X-CSE-MsgGUID: BEvPGeyjSeS4t7mTCAzPPg==
+ 19 Feb 2026 10:07:04 -0800
+X-CSE-ConnectionGUID: UDSm5MM/Sz6dWSMsQ8c2Pw==
+X-CSE-MsgGUID: P69v2hGPRYCazrsumSWRnQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,300,1763452800"; d="scan'208";a="245189028"
+X-IronPort-AV: E=Sophos;i="6.21,300,1763452800"; d="scan'208";a="245189036"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.39.24])
  by orviesa002.jf.intel.com with ESMTP; 19 Feb 2026 10:07:04 -0800
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Wajdeczko@freedesktop.org, Michal <Michal.Wajdeczko@intel.com>,
-	Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: [PATCH v7 4/7] drm/xe: Use XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET enum
- instead of magic number
-Date: Thu, 19 Feb 2026 13:06:58 -0500
-Message-Id: <20260219180701.2418453-5-zhanjun.dong@intel.com>
+	Zhanjun Dong <zhanjun.dong@intel.com>,
+	Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v7 6/7] drm/xe/uc: Drop xe_guc_sanitize in favor of managed
+ cleanup
+Date: Thu, 19 Feb 2026 13:07:00 -0500
+Message-Id: <20260219180701.2418453-7-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260219180701.2418453-1-zhanjun.dong@intel.com>
 References: <20260219180701.2418453-1-zhanjun.dong@intel.com>
@@ -67,35 +68,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace the magic number 2 with the proper enum value
-XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET for better code readability
-and maintainability.
+If the firmware fails to load in GT resets the device is wedged also
+initiating a GuC state cleanup.
 
 Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_uc.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 91c7600a59f5..cd434caec9c2 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1334,12 +1334,13 @@ void xe_guc_submit_wedge(struct xe_guc *guc)
- 	if (!guc->submission_state.initialized)
- 		return;
+diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+index d9aa845a308d..9db656b95bff 100644
+--- a/drivers/gpu/drm/xe/xe_uc.c
++++ b/drivers/gpu/drm/xe/xe_uc.c
+@@ -172,7 +172,6 @@ static int vf_uc_load_hw(struct xe_uc *uc)
+ 	return 0;
  
--	if (xe->wedged.mode == 2) {
-+	if (xe->wedged.mode == XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET) {
- 		err = devm_add_action_or_reset(guc_to_xe(guc)->drm.dev,
- 					       guc_submit_wedged_fini, guc);
- 		if (err) {
--			xe_gt_err(gt, "Failed to register clean-up on wedged.mode=2; "
--				  "Although device is wedged.\n");
-+			xe_gt_err(gt, "Failed to register clean-up on wedged.mode=%s; "
-+				  "Although device is wedged.\n",
-+				  xe_wedged_mode_to_string(XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET));
- 			return;
- 		}
+ err_out:
+-	xe_guc_sanitize(&uc->guc);
+ 	return err;
+ }
+ 
+@@ -234,7 +233,6 @@ int xe_uc_load_hw(struct xe_uc *uc)
+ 	return 0;
+ 
+ err_out:
+-	xe_guc_sanitize(&uc->guc);
+ 	return ret;
+ }
  
 -- 
 2.34.1
