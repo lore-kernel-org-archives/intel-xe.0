@@ -4,53 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3565E9A03B
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Feb 2026 08:33:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DA0DE9A03B
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Feb 2026 08:36:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D91210E0D1;
-	Thu, 19 Feb 2026 08:33:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF83110E07F;
+	Thu, 19 Feb 2026 08:36:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VcFhE2Y/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HCogAVmK";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1CF3410E0D1;
- Thu, 19 Feb 2026 08:33:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FCC710E07F
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Feb 2026 08:36:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771490016; x=1803026016;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=iPzD1yVq7RudhIWMyC/sCYcnZKK6Buj3b2o1VZl8O70=;
- b=VcFhE2Y/eUE32aj0BZ7sKXKkDYx7h7mqylC4mmn/O6OXjodvhS6Qo6ks
- eDhUzcfqF77O9o6q+cYPsT7ETIYCVNiGW636ZQbO+cMXvLUZdQf9tXT3l
- U3Y6xZ/RmYZ9H5ARZ6EVTY1DeMyUlHby19zULiIARXC8hYdb0pJrWyPXp
- gmxZ0d04un8bjCg/SZYO6UHWwnBgTcqCyBdZgqGfroi0m5hr2JxzM/x8w
- GP0H3ModHAmtQ9be7trwXhgJ9+8dtwmCsbmbpmpMlPNWfQoYbNx243zek
- KnC5dg3tnsqNezgo4/tEx9vJCgnMUHFCUogcUBikUPCFuaVphJlY3iG1v g==;
-X-CSE-ConnectionGUID: biaDmS99TpacuKvfiyMYew==
-X-CSE-MsgGUID: 0tEU7+ydQ4+TFT2viHkScg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="72666597"
-X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="72666597"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2026 00:33:36 -0800
-X-CSE-ConnectionGUID: 94YnVToxRiSl5oBP0pmsSw==
-X-CSE-MsgGUID: k/QXeCikRl+gtSGTb+9saw==
+ t=1771490170; x=1803026170;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=x5Gw+hOI/O+eN+56BpcAMU2Am7inRouazP24BU8LnhM=;
+ b=HCogAVmKgWglg0h6l6/IsEnsD5On4A9DTo3wnsR7Hvw7uF2+G22AKoJ4
+ F+0DQ5gfbLNjPivBJstPkVuyGr18BSgb4cnfqV7Sva5SlEc5cbMSO5fNF
+ rQtSU6EaPpjV84+FS3bKEeyAXJSITWIi81r7PBkPQUf10plKbjw20uhX8
+ NCM9WKOtMVHqQ9wOpv44fQPAnAiMWjwgSU35BLdKfS+fdsPAbUVO6k1WU
+ iTxNEkZFwFP7NyjkG4pNhrUcbmg+0M+7IV0M1kdBUguYg9jsmlLS6WuYp
+ x5OyvTIHmo6gpUcS2mSKpCqUVHGAYDqRDJAdSec/i4ZaqA/7FFHpviS3d w==;
+X-CSE-ConnectionGUID: 3uZLalGWQ5yAvhsDvnZPbQ==
+X-CSE-MsgGUID: u0ph6XePS4mEJowphUBvIw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="76406100"
+X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="76406100"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2026 00:36:10 -0800
+X-CSE-ConnectionGUID: d5g6Q2ZWRwi0TdsEVlAjlQ==
+X-CSE-MsgGUID: CfmrXN7lSf6LEqTPAaKYjQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="213076659"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa007.fm.intel.com with ESMTP; 19 Feb 2026 00:33:34 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: suraj.kandpal@intel.com,
-	Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCH] drm/i915/display/dp: On dpcd init/caps wake the dprx
-Date: Thu, 19 Feb 2026 14:02:19 +0530
-Message-Id: <20260219083219.32256-1-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="218232208"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2026 00:36:07 -0800
+Date: Thu, 19 Feb 2026 09:36:04 +0100
+From: Raag Jadav <raag.jadav@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
+ rodrigo.vivi@intel.com, riana.tauro@intel.com,
+ michal.wajdeczko@intel.com, umesh.nerlige.ramappa@intel.com,
+ mallesh.koujalagi@intel.com
+Subject: Re: [PATCH v1 1/3] drm/xe/cri: Setup hardware error routing
+Message-ID: <aZbLdKls0XRHIOOo@black.igk.intel.com>
+References: <20260217114656.2546878-1-raag.jadav@intel.com>
+ <20260217114656.2546878-2-raag.jadav@intel.com>
+ <20260217214751.GE52346@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260217214751.GE52346@mdroper-desk1.amr.corp.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,89 +71,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Before reading the dpcd caps for eDP wake the sink device and for DP
-after reading the lttpr caps and before reading the dpcd caps wake up
-the sink device.
+On Tue, Feb 17, 2026 at 01:47:51PM -0800, Matt Roper wrote:
+> On Tue, Feb 17, 2026 at 05:16:31PM +0530, Raag Jadav wrote:
+> > Setup hardware error routing based on XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c       | 28 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.h       |  1 +
- .../drm/i915/display/intel_dp_link_training.c |  3 ++
- 3 files changed, 32 insertions(+)
+...
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 454e6144ee4e..4d86826dba1b 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4705,6 +4705,32 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
- 	intel_edp_set_data_override_rates(intel_dp);
- }
- 
-+void intel_dp_wake_sink(struct intel_dp *intel_dp)
-+{
-+	u8 value = 0;
-+	int ret = 0, try = 0;
-+
-+	intel_dp_dpcd_set_probe(intel_dp, false);
-+
-+	/*
-+	 * Wake the sink device
-+	 * Spec section 2.3.1.2 if AUX CH is powered down by writing 0x02 to
-+	 * DP_SET_POWER dpcd reg, 1ms time would be required to wake it up
-+	 */
-+	while (try < 10 && ret < 0) {
-+		ret = drm_dp_dpcd_readb(&intel_dp->aux, DP_SET_POWER, &value);
-+		if (value)
-+			break;
-+		fsleep(1000);
-+		try++;
-+	}
-+	/* After setting to D0 need a min of 1ms to wake(Spec sec 2.3.1.2) */
-+	drm_dp_dpcd_writeb(&intel_dp->aux, DP_SET_POWER, DP_SET_POWER_D0);
-+	fsleep(1000);
-+
-+	intel_dp_dpcd_set_probe(intel_dp, true);
-+}
-+
- static bool
- intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector)
- {
-@@ -4713,6 +4739,8 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector
- 	/* this function is meant to be called only once */
- 	drm_WARN_ON(display->drm, intel_dp->dpcd[DP_DPCD_REV] != 0);
- 
-+	intel_dp_wake_sink(intel_dp);
-+
- 	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd) != 0)
- 		return false;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index b0bbd5981f57..3f16077c0cc7 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -232,6 +232,7 @@ bool intel_dp_dotclk_valid(struct intel_display *display,
- bool intel_dp_joiner_candidate_valid(struct intel_connector *connector,
- 				     int hdisplay,
- 				     int num_joined_pipes);
-+void intel_dp_wake_sink(struct intel_dp *intel_dp);
- 
- #define for_each_joiner_candidate(__connector, __mode, __num_joined_pipes) \
- 	for ((__num_joined_pipes) = 1; (__num_joined_pipes) <= (I915_MAX_PIPES); (__num_joined_pipes)++) \
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 54c585c59b90..cbb712ea9f60 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -270,6 +270,9 @@ int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp)
- 		lttpr_count = intel_dp_init_lttpr(intel_dp, dpcd);
- 	}
- 
-+	/* After reading LTTPR wake up the sink before reading DPRX caps */
-+	intel_dp_wake_sink(intel_dp);
-+
- 	/*
- 	 * The DPTX shall read the DPRX caps after LTTPR detection, so re-read
- 	 * it here.
--- 
-2.25.1
+> > +	if (xe->info.platform == XE_CRESCENTISLAND)
+> > +		xe_hw_error_irq_route(xe);
+> 
+> What makes this CRI-only?  The DEV_ERR_ROUTING_CTRL register exists on
+> every platform supported by the Xe driver so there doesn't appear to be
+> any specific hardware dependency here.
+> 
+> Even if there was a hardware dependency, we generally don't want to tie
+> behavior to platforms; better to set a feature flag in the device
+> descriptor that indicates which platforms can/can't support it.
 
+This will be replaced with if (xe->info.has_sysctrl) once the original
+series lands.
+
+[1] https://patchwork.freedesktop.org/series/159554/
+
+Raag
