@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E86E6E9A03B
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Feb 2026 09:13:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53677E9A03B
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Feb 2026 09:35:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6A1C10E6A1;
-	Thu, 19 Feb 2026 09:13:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hU/uOIAB";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B3FDC10E69E
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Feb 2026 09:13:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771492417; x=1803028417;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=fg+rBC1/FFtu0xh5Cb+Lu/w3H1gyg7HvioMD6I5oyEg=;
- b=hU/uOIABBPPU2T+w3uRue75//6Jq3XnWdPnyVaBJtslvPexI3HKi4BO3
- RbwAOa3CKKCEwh8B2qnJgm8cq8X/y+47yshoVeSOuvASF61xsxAZWnBAg
- axJYIPACBNRKLLUhHSl39wCaxOiqs/o7tE6FCSUQQgEBLWFmcK8P5JmIZ
- xP4XN8rr0kAu0knvmqUz2Z8RLVKj8BeJ5TgHm1jMN3Qo/IQryf3bPSEVJ
- 3VkKUJncnmq01hqvordP9NpWOZILKK9S4GVqfhvEd0Flk/v+97Rh5q0uI
- XMvvuqCj3j5IYlJ94MXEglEgaosVrGrtd5qBPQ9Wq2BNNka07cNihojK/ A==;
-X-CSE-ConnectionGUID: IlgF93XzTiGvtyTNTftGvQ==
-X-CSE-MsgGUID: DOfOkCGLQHOcpsH/9VkgSw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="72637317"
-X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="72637317"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2026 01:13:37 -0800
-X-CSE-ConnectionGUID: tASphlgHTkGXb/Qn0ExzuA==
-X-CSE-MsgGUID: XJ2BOWphS1uqxfcohudQow==
-X-ExtLoop1: 1
-Received: from varungup-desk.iind.intel.com ([10.190.238.71])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2026 01:13:36 -0800
-From: Arvind Yadav <arvind.yadav@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
- thomas.hellstrom@linux.intel.com
-Subject: [RFC 7/7] drm/xe/svm: Correct memory attribute reset for partial unmap
-Date: Thu, 19 Feb 2026 14:43:12 +0530
-Message-ID: <20260219091312.796749-8-arvind.yadav@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260219091312.796749-1-arvind.yadav@intel.com>
-References: <20260219091312.796749-1-arvind.yadav@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10F5A10E6AA;
+	Thu, 19 Feb 2026 09:35:53 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDFA610E280;
+ Thu, 19 Feb 2026 09:35:51 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7681360297913868011=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display/dp=3A_On_d?=
+ =?utf-8?q?pcd_init/caps_wake_the_dprx?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 19 Feb 2026 09:35:51 -0000
+Message-ID: <177149375175.265880.9772088377113863114@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260219083219.32256-1-arun.r.murthy@intel.com>
+In-Reply-To: <20260219083219.32256-1-arun.r.murthy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,150 +36,145 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+--===============7681360297913868011==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-When performing a partial unmap of an SVM range, the memory attributes
-were being reset for the entire range instead of just the portion
-being unmapped. This could lead to unintended side effects and behaviour.
+== Series Details ==
 
-Fix this by restricting the attribute reset to only the affected subrange
-that is being unmapped.
+Series: drm/i915/display/dp: On dpcd init/caps wake the dprx
+URL   : https://patchwork.freedesktop.org/series/161813/
+State : success
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
----
- drivers/gpu/drm/xe/xe_svm.c | 56 +++++++++++++++++++++++++++----------
- drivers/gpu/drm/xe/xe_svm.h | 10 +++++++
- 2 files changed, 52 insertions(+), 14 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-index 8335fdc976b5..3c833e6d6b2c 100644
---- a/drivers/gpu/drm/xe/xe_svm.c
-+++ b/drivers/gpu/drm/xe/xe_svm.c
-@@ -57,6 +57,8 @@ void *xe_svm_private_page_owner(struct xe_vm *vm, bool force_smem)
- 	return force_smem ? NULL : vm->svm.peer.owner;
- }
- 
-+#define XE_SVM_ATTR_RETRY_MAX 3
-+
- static bool xe_svm_range_in_vram(struct xe_svm_range *range)
- {
- 	/*
-@@ -126,15 +128,23 @@ static void xe_svm_range_free(struct drm_gpusvm_range *range)
- 	kfree(range);
- }
- 
-+static void xe_svm_range_set_unmapped(struct xe_svm_range *range,
-+				      const struct mmu_notifier_range *mmu_range)
-+{
-+	drm_gpusvm_range_set_unmapped(&range->base, mmu_range);
-+	if (range->base.pages.flags.partial_unmap) {
-+		range->partial_unmap.start = max(xe_svm_range_start(range), mmu_range->start);
-+		range->partial_unmap.end = min(xe_svm_range_end(range), mmu_range->end);
-+	}
-+}
-+
- static void
- xe_svm_garbage_collector_add_range(struct xe_vm *vm, struct xe_svm_range *range,
- 				   const struct mmu_notifier_range *mmu_range)
- {
- 	struct xe_device *xe = vm->xe;
- 
--	range_debug(range, "GARBAGE COLLECTOR ADD");
--
--	drm_gpusvm_range_set_unmapped(&range->base, mmu_range);
-+	xe_svm_range_set_unmapped(range, mmu_range);
- 
- 	spin_lock(&vm->svm.garbage_collector.lock);
- 	if (list_empty(&range->garbage_collector_link))
-@@ -375,9 +385,10 @@ static int xe_svm_range_set_default_attr(struct xe_vm *vm, u64 start, u64 end)
- static int xe_svm_garbage_collector(struct xe_vm *vm)
- {
- 	struct xe_svm_range *range;
--	u64 range_start;
--	u64 range_end;
-+	u64 unmap_start;
-+	u64 unmap_end;
- 	int err, ret = 0;
-+	int retry_count;
- 
- 	lockdep_assert_held_write(&vm->lock);
- 
-@@ -392,8 +403,13 @@ static int xe_svm_garbage_collector(struct xe_vm *vm)
- 		if (!range)
- 			break;
- 
--		range_start = xe_svm_range_start(range);
--		range_end = xe_svm_range_end(range);
-+		if (range->base.pages.flags.partial_unmap) {
-+			unmap_start = range->partial_unmap.start;
-+			unmap_end = range->partial_unmap.end;
-+		} else {
-+			unmap_start = xe_svm_range_start(range);
-+			unmap_end = xe_svm_range_end(range);
-+		}
- 
- 		list_del(&range->garbage_collector_link);
- 		spin_unlock(&vm->svm.garbage_collector.lock);
-@@ -407,13 +423,25 @@ static int xe_svm_garbage_collector(struct xe_vm *vm)
- 			return err;
- 		}
- 
--		err = xe_svm_range_set_default_attr(vm, range_start, range_end);
--		if (err) {
--			if (err == -EAGAIN)
--				ret = -EAGAIN;
--			else
--				return err;
--		}
-+		/*
-+		 * Retry set_default_attr on -EAGAIN (VMA was recreated).
-+		 * Limit retries to prevent infinite loop.
-+		 */
-+		retry_count = 0;
-+
-+		do {
-+			err = xe_svm_range_set_default_attr(vm, unmap_start, unmap_end);
-+			if (err == -EAGAIN && ++retry_count > XE_SVM_ATTR_RETRY_MAX) {
-+				drm_err(&vm->xe->drm,
-+					"SET_ATTR retry limit exceeded for [0x%llx-0x%llx]\n",
-+					unmap_start, unmap_end);
-+				xe_vm_kill(vm, true);
-+				return -EIO;
-+			}
-+		} while (err == -EAGAIN);
-+
-+		if (err)
-+			return err;
- 	}
- 	spin_unlock(&vm->svm.garbage_collector.lock);
- 
-diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
-index b7b8eeacf196..4651e044cf53 100644
---- a/drivers/gpu/drm/xe/xe_svm.h
-+++ b/drivers/gpu/drm/xe/xe_svm.h
-@@ -46,6 +46,16 @@ struct xe_svm_range {
- 	 * range. Protected by GPU SVM notifier lock.
- 	 */
- 	u8 tile_invalidated;
-+	/**
-+	 * @partial_unmap: Structure to hold partial unmap range info.
-+	 * Valid only if partial unmap is in effect.
-+	 */
-+	struct {
-+		/** @start: Start address of the partial unmap range */
-+		u64 start;
-+		/** @end: End address of the partial unmap range */
-+		u64 end;
-+	} partial_unmap;
- };
- 
- /**
--- 
-2.43.0
+CI Bug Log - changes from xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857_BAT -> xe-pw-161813v1_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-161813v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161813v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#6519]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161813v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8760 -> IGT_8761
+  * Linux: xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857 -> xe-pw-161813v1
+
+  IGT_8760: 8760
+  IGT_8761: 8761
+  xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857: e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857
+  xe-pw-161813v1: 161813v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161813v1/index.html
+
+--===============7681360297913868011==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display/dp: On dpcd init/caps wake the dprx</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161813/">https://patchwork.freedesktop.org/series/161813/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161813v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161813v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857_BAT -&gt; xe-pw-161813v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-161813v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@abstime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161813v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@engine:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161813v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8760 -&gt; IGT_8761</li>
+<li>Linux: xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857 -&gt; xe-pw-161813v1</li>
+</ul>
+<p>IGT_8760: 8760<br />
+  IGT_8761: 8761<br />
+  xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857: e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857<br />
+  xe-pw-161813v1: 161813v1</p>
+
+</body>
+</html>
+
+--===============7681360297913868011==--
