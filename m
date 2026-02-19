@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E827E9A048
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4742E9A03B
 	for <intel-xe@archiver.kernel.org>; Thu, 19 Feb 2026 11:38:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6383E10E6E2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71CFE10E6E9;
 	Thu, 19 Feb 2026 11:38:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NWeJkfP3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nNXOrUHv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8749610E6DB
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Feb 2026 11:38:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD1F610E012
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Feb 2026 11:38:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771501103; x=1803037103;
+ t=1771501101; x=1803037101;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qfBnrgSVM0lHlMHidbwuMnLGstrk6TzYOCC1zOzUzds=;
- b=NWeJkfP3+p1hYpFV2feEjQabOLBTc4/E+/M27olf96g5njmvGGb/HkyP
- iaC8dVbQbVCEZt19ziDs8RFNyKzDqH4Y3rh4bxIzWSye5Dz28JfFpmbDI
- XgPqaPDE5Ttv16de0z+xaVjYT2SpreHnHRzT3qirXeg5fkDZLuqgPsgso
- 7LmC99V11kc5aqBbiP95ZX0GABIUM7F3OVmYICZeWzFnLgaCgxyrEEI66
- PrsB+IdK3kDHhiP15XSBZzOAiTZfgbbcK6akyagRa2sItXfx89et2xnAq
- yQuSQqz7u4d9ZxMNLL/oaNe1/vLMjfd9n/J9wkNjbh/P4BHTMmCv51eh1 Q==;
-X-CSE-ConnectionGUID: YE/Z+xPRTV2ZTL1hxsw2vA==
-X-CSE-MsgGUID: LOP+EIatRayLUHTQVzCA5w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="76199668"
-X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="76199668"
+ bh=y8Qk2OT8dKEjoHQPUTopLN7YWwDj1xFZmuaAxr/ENXU=;
+ b=nNXOrUHvLt/ua+TmxPjchdb3OTZqrRaMpvhi0XEeBNAC165hvNj6X+Zb
+ u8RXK4uPmem6wZny3UfCsD9OP9oVhHGYT7F1NAok0Iqt0qH17o1PzHUQK
+ xsmbKVPWNCf39AzI2/V+gab0fPl3ClURm6Fr7+VZk3uUh6cvP8bYL38FU
+ p36WB/iAset1mXzpdZBocpNTMBcFOSqu6nu+2CmGwvlhnv453BGD5MErp
+ 9MTUIRxvV+vxBJkJDsGS4+OYloD6IjpJ7+QqUvBPYbaNe+0xm34guXCZ8
+ cCRfyRHuvjB0DH4uir+vvCs7/N5Ia+kyFgt/Q93AYE8VOKem6GdO2iw2a w==;
+X-CSE-ConnectionGUID: XP9SEMORTkuXka9TnY1VvQ==
+X-CSE-MsgGUID: RMpADBtCSfuKL9w61u48Aw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="76199664"
+X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="76199664"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2026 03:38:23 -0800
-X-CSE-ConnectionGUID: o3YYSKDRSn2m5f7pSODB5w==
-X-CSE-MsgGUID: mUx67vVbRZiVd+Zg9gdYHw==
+ 19 Feb 2026 03:38:21 -0800
+X-CSE-ConnectionGUID: HAoXchzaSuWjt2EtbCNSnw==
+X-CSE-MsgGUID: ob4mZrt5S2+mGgsCvBhmzw==
 X-ExtLoop1: 1
 Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
  ([10.190.239.37])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2026 03:38:21 -0800
+ 19 Feb 2026 03:38:19 -0800
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.auld@intel.com, thomas.hellstrom@linux.intel.com,
  Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [PATCH V2 3/4] drm/xe/xe3p_lpg: Enable L2 flush optimization feature
-Date: Thu, 19 Feb 2026 17:07:47 +0530
-Message-ID: <20260219113743.1588081-9-tejas.upadhyay@intel.com>
+Subject: [PATCH V2 2/4] drm/xe/pat: define coh_mode 2way
+Date: Thu, 19 Feb 2026 17:07:46 +0530
+Message-ID: <20260219113743.1588081-8-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260219113743.1588081-6-tejas.upadhyay@intel.com>
 References: <20260219113743.1588081-6-tejas.upadhyay@intel.com>
@@ -67,84 +67,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When set, the L2 flush optimization feature will control
-whether L2 is in Persistent or Transient mode through
-monitoring of media activity.
+Defining 2way (two-way coherency) is critical for
+Xe3p_LPG (Nova Lake P) platforms to support L2 flush
+optimization safely.
 
-To enable L2 flush optimization include new feature flag
-GUC_CTL_ENABLE_L2FLUSH_OPT for Novalake platforms when
-media type is detected.
-
-Also, restrict userptr, svm and dmabuf mappings to be
-either 2WAY or XA+1WAY
+This mode allows the driver to skip certain manual cache
+flushes (L2 flush optimization) without risking memory
+corruption because the hardware ensures the most recent
+data is visible to both entities.
 
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc.c        | 3 +++
- drivers/gpu/drm/xe/xe_guc_fwif.h   | 1 +
- drivers/gpu/drm/xe/xe_vm.c         | 7 +++++++
- drivers/gpu/drm/xe/xe_vm_madvise.c | 4 ++++
- 4 files changed, 15 insertions(+)
+ drivers/gpu/drm/xe/xe_pat.c        | 14 +++++++-------
+ drivers/gpu/drm/xe/xe_pat.h        |  5 +++--
+ drivers/gpu/drm/xe/xe_vm.c         |  2 +-
+ drivers/gpu/drm/xe/xe_vm_madvise.c |  2 +-
+ 4 files changed, 12 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index cbbb4d665b8f..97c33c3dd520 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -98,6 +98,9 @@ static u32 guc_ctl_feature_flags(struct xe_guc *guc)
- 	if (xe_guc_using_main_gamctrl_queues(guc))
- 		flags |= GUC_CTL_MAIN_GAMCTRL_QUEUES;
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index f840d9a58740..bf581afd4d60 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -92,7 +92,7 @@ struct xe_pat_ops {
+ };
  
-+	if (GRAPHICS_VER(xe) >= 35 && !IS_DGFX(xe) && xe_gt_is_media_type(guc_to_gt(guc)))
-+		flags |= GUC_CTL_ENABLE_L2FLUSH_OPT;
-+
- 	return flags;
- }
+ static const struct xe_pat_table_entry xelp_pat_table[] = {
+-	[0] = { XELP_PAT_WB, XE_COH_AT_LEAST_1WAY },
++	[0] = { XELP_PAT_WB, XE_COH_1WAY },
+ 	[1] = { XELP_PAT_WC, XE_COH_NONE },
+ 	[2] = { XELP_PAT_WT, XE_COH_NONE },
+ 	[3] = { XELP_PAT_UC, XE_COH_NONE },
+@@ -102,19 +102,19 @@ static const struct xe_pat_table_entry xehpc_pat_table[] = {
+ 	[0] = { XELP_PAT_UC, XE_COH_NONE },
+ 	[1] = { XELP_PAT_WC, XE_COH_NONE },
+ 	[2] = { XELP_PAT_WT, XE_COH_NONE },
+-	[3] = { XELP_PAT_WB, XE_COH_AT_LEAST_1WAY },
++	[3] = { XELP_PAT_WB, XE_COH_1WAY },
+ 	[4] = { XEHPC_PAT_CLOS(1) | XELP_PAT_WT, XE_COH_NONE },
+-	[5] = { XEHPC_PAT_CLOS(1) | XELP_PAT_WB, XE_COH_AT_LEAST_1WAY },
++	[5] = { XEHPC_PAT_CLOS(1) | XELP_PAT_WB, XE_COH_1WAY },
+ 	[6] = { XEHPC_PAT_CLOS(2) | XELP_PAT_WT, XE_COH_NONE },
+-	[7] = { XEHPC_PAT_CLOS(2) | XELP_PAT_WB, XE_COH_AT_LEAST_1WAY },
++	[7] = { XEHPC_PAT_CLOS(2) | XELP_PAT_WB, XE_COH_1WAY },
+ };
  
-diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
-index a33ea288b907..39ff7b3e960b 100644
---- a/drivers/gpu/drm/xe/xe_guc_fwif.h
-+++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
-@@ -67,6 +67,7 @@ struct guc_update_exec_queue_policy {
- #define   GUC_CTL_ENABLE_PSMI_LOGGING	BIT(7)
- #define   GUC_CTL_MAIN_GAMCTRL_QUEUES	BIT(9)
- #define   GUC_CTL_DISABLE_SCHEDULER	BIT(14)
-+#define   GUC_CTL_ENABLE_L2FLUSH_OPT	BIT(15)
+ static const struct xe_pat_table_entry xelpg_pat_table[] = {
+ 	[0] = { XELPG_PAT_0_WB, XE_COH_NONE },
+ 	[1] = { XELPG_PAT_1_WT, XE_COH_NONE },
+ 	[2] = { XELPG_PAT_3_UC, XE_COH_NONE },
+-	[3] = { XELPG_PAT_0_WB | XELPG_2_COH_1W, XE_COH_AT_LEAST_1WAY },
+-	[4] = { XELPG_PAT_0_WB | XELPG_3_COH_2W, XE_COH_AT_LEAST_1WAY },
++	[3] = { XELPG_PAT_0_WB | XELPG_2_COH_1W, XE_COH_1WAY },
++	[4] = { XELPG_PAT_0_WB | XELPG_3_COH_2W, XE_COH_2WAY },
+ };
  
- #define GUC_CTL_DEBUG			3
- #define   GUC_LOG_VERBOSITY		REG_GENMASK(1, 0)
+ /*
+@@ -147,7 +147,7 @@ static const struct xe_pat_table_entry xelpg_pat_table[] = {
+ 			REG_FIELD_PREP(XE2_L3_POLICY, l3_policy) | \
+ 			REG_FIELD_PREP(XE2_L4_POLICY, l4_policy) | \
+ 			REG_FIELD_PREP(XE2_COH_MODE, __coh_mode), \
+-		.coh_mode = __coh_mode ? XE_COH_AT_LEAST_1WAY : XE_COH_NONE, \
++		.coh_mode = __coh_mode ? __coh_mode : XE_COH_NONE, \
+ 		.valid = 1 \
+ 	}
+ 
+diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
+index c7e2a53d8cee..a1e287c08f57 100644
+--- a/drivers/gpu/drm/xe/xe_pat.h
++++ b/drivers/gpu/drm/xe/xe_pat.h
+@@ -28,8 +28,9 @@ struct xe_pat_table_entry {
+ 	/**
+ 	 * @coh_mode: The GPU coherency mode that @value maps to.
+ 	 */
+-#define XE_COH_NONE          1
+-#define XE_COH_AT_LEAST_1WAY 2
++#define XE_COH_NONE		1
++#define XE_COH_1WAY		2
++#define XE_COH_2WAY		3
+ 	u16 coh_mode;
+ 
+ 	/**
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index c06fd250e037..091825a34138 100644
+index a46f11a71c37..c06fd250e037 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3474,6 +3474,13 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
- 				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
- 		    XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE &&
- 				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
-+		    XE_IOCTL_DBG(xe, xe_device_is_l2_flush_optimized(xe) &&
-+				 (op == DRM_XE_VM_BIND_OP_MAP_USERPTR ||
-+				  /* dmabuf */
-+				  op == DRM_XE_VM_BIND_OP_MAP ||
-+				  /* svm */
-+				  op == (DRM_XE_VM_BIND_OP_MAP && is_cpu_addr_mirror)) &&
-+				 (pat_index != 19 || coh_mode != XE_COH_2WAY)) ||
- 		    XE_IOCTL_DBG(xe, comp_en &&
- 				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
- 		    XE_IOCTL_DBG(xe, op == DRM_XE_VM_BIND_OP_MAP_USERPTR &&
+@@ -3449,7 +3449,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
+ 			goto free_bind_ops;
+ 		}
+ 
+-		if (XE_WARN_ON(coh_mode > XE_COH_AT_LEAST_1WAY)) {
++		if (XE_WARN_ON(coh_mode > XE_COH_2WAY)) {
+ 			err = -EINVAL;
+ 			goto free_bind_ops;
+ 		}
 diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index 1a1ad8c07d49..e68ee5b092d6 100644
+index 52147f5eaaa0..1a1ad8c07d49 100644
 --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
 +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -304,6 +304,10 @@ static bool madvise_args_are_sane(struct xe_device *xe, const struct drm_xe_madv
- 		if (XE_WARN_ON(coh_mode > XE_COH_2WAY))
+@@ -301,7 +301,7 @@ static bool madvise_args_are_sane(struct xe_device *xe, const struct drm_xe_madv
+ 		if (XE_IOCTL_DBG(xe, !coh_mode))
  			return false;
  
-+		if (XE_IOCTL_DBG(xe, xe_device_is_l2_flush_optimized(xe) &&
-+				 (pat_index != 19 || coh_mode != XE_COH_2WAY)))
-+			return false;
-+
+-		if (XE_WARN_ON(coh_mode > XE_COH_AT_LEAST_1WAY))
++		if (XE_WARN_ON(coh_mode > XE_COH_2WAY))
+ 			return false;
+ 
  		if (XE_IOCTL_DBG(xe, args->pat_index.pad))
- 			return false;
- 
 -- 
 2.52.0
 
