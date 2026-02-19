@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53677E9A03B
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Feb 2026 09:35:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4EBDE9A048
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Feb 2026 09:40:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10F5A10E6AA;
-	Thu, 19 Feb 2026 09:35:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A8B8A10E1D5;
+	Thu, 19 Feb 2026 09:40:54 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDFA610E280;
- Thu, 19 Feb 2026 09:35:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7681360297913868011=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F08F10E1D5;
+ Thu, 19 Feb 2026 09:40:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display/dp=3A_On_d?=
- =?utf-8?q?pcd_init/caps_wake_the_dprx?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/svm=3A_Add_MMU_not?=
+ =?utf-8?q?ifier-based_madvise_autoreset_on_munmap?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+To: "Arvind Yadav" <arvind.yadav@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 19 Feb 2026 09:35:51 -0000
-Message-ID: <177149375175.265880.9772088377113863114@a3b018990fe9>
+Date: Thu, 19 Feb 2026 09:40:54 -0000
+Message-ID: <177149405423.265813.9564669961484491636@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260219083219.32256-1-arun.r.murthy@intel.com>
-In-Reply-To: <20260219083219.32256-1-arun.r.murthy@intel.com>
+References: <20260219091312.796749-1-arvind.yadav@intel.com>
+In-Reply-To: <20260219091312.796749-1-arvind.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,141 +40,58 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7681360297913868011==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/display/dp: On dpcd init/caps wake the dprx
-URL   : https://patchwork.freedesktop.org/series/161813/
-State : success
+Series: drm/xe/svm: Add MMU notifier-based madvise autoreset on munmap
+URL   : https://patchwork.freedesktop.org/series/161815/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857_BAT -> xe-pw-161813v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 393b6abb9054a363e87a0069a949522b9609db75
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Thu Feb 19 14:43:12 2026 +0530
 
-Summary
--------
+    drm/xe/svm: Correct memory attribute reset for partial unmap
+    
+    When performing a partial unmap of an SVM range, the memory attributes
+    were being reset for the entire range instead of just the portion
+    being unmapped. This could lead to unintended side effects and behaviour.
+    
+    Fix this by restricting the attribute reset to only the affected subrange
+    that is being unmapped.
+    
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
++ /mt/dim checkpatch c81e41f7aca96f583296a2a875f0179484b7a81f drm-intel
+9fb1b93d7755 drm/xe/vm: Add CPU_AUTORESET_ACTIVE VMA flag
+86281920bd68 drm/xe/vm: Preserve CPU_AUTORESET_ACTIVE across GPUVA operations
+3940f3524f81 drm/xe/svm: Clear CPU_AUTORESET_ACTIVE on first GPU fault
+556333ace830 drm/xe/vm: Add madvise autoreset interval notifier worker infrastructure
+-:294: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#294: FILE: drivers/gpu/drm/xe/xe_vm_madvise.c:753:
++		mempool_create_kmalloc_pool(64,
++					     sizeof(struct xe_madvise_work_item));
 
-  **SUCCESS**
+-:348: WARNING:NEEDLESS_IF: mempool_destroy(NULL) is safe and this check is probably not required
+#348: FILE: drivers/gpu/drm/xe/xe_vm_madvise.c:807:
++	if (pool)
++		mempool_destroy(pool);
 
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-161813v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161813v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#6519]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161813v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * IGT: IGT_8760 -> IGT_8761
-  * Linux: xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857 -> xe-pw-161813v1
-
-  IGT_8760: 8760
-  IGT_8761: 8761
-  xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857: e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857
-  xe-pw-161813v1: 161813v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161813v1/index.html
-
---===============7681360297913868011==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 1 checks, 483 lines checked
+e5596e3e2f2b drm/xe/vm: Deactivate madvise notifier on GPU touch
+ea7b3c47d3a8 drm/xe/vm: Wire MADVISE_AUTORESET notifiers into VM lifecycle
+393b6abb9054 drm/xe/svm: Correct memory attribute reset for partial unmap
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display/dp: On dpcd init/caps wake the dprx</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161813/">https://patchwork.freedesktop.org/series/161813/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161813v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161813v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857_BAT -&gt; xe-pw-161813v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-161813v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@abstime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161813v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161813v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8760 -&gt; IGT_8761</li>
-<li>Linux: xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857 -&gt; xe-pw-161813v1</li>
-</ul>
-<p>IGT_8760: 8760<br />
-  IGT_8761: 8761<br />
-  xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857: e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857<br />
-  xe-pw-161813v1: 161813v1</p>
-
-</body>
-</html>
-
---===============7681360297913868011==--
