@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB100E9A04D
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Feb 2026 02:25:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA903E9A02C
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Feb 2026 02:38:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18C7C10E243;
-	Thu, 19 Feb 2026 02:25:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UlM/WePF";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1123D10E243;
- Thu, 19 Feb 2026 02:25:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771467900; x=1803003900;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=NJ4Oni6HSx4i1hd4ONxEih2IpRNJ/QY1wi095R7As48=;
- b=UlM/WePFzSmlWs0MquIkUIj3IObbT+/nKmLczxonvBInl61NvccCThwL
- C3wZqc57Id53k5wRyeaVtblstS6yVgEJWLE0X+n3iO0ZW+wjbl9rZIX0c
- GsKAp+UgGkULkHdg/4h1dObP0YZqk+xHiCHT3OHv6ivmVSjRpBAmo1xrV
- DqV6k9vhEMfoHAYW1lRSplw58FigfEP7z08l4CHHZRfiyq2Q0cNIjIVs+
- 8bu3KBWXKaxwGuGsiE5BS5rDdiqNF0rxkEwkQgPX9gt7HGUIzIfBUVWOE
- ZpyOV0tepTWXw5Ijs71eVlYBjTgeNPUjTWb2U/jt6H47NLp4v4EGJsfG0 w==;
-X-CSE-ConnectionGUID: w7wPAiIrT6W5fgsDtFV34A==
-X-CSE-MsgGUID: UZyJfY+oQlWvVlUnsuL9yg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11705"; a="89962309"
-X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="89962309"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Feb 2026 18:25:00 -0800
-X-CSE-ConnectionGUID: yQQSuatWR3CUaqXfezH27g==
-X-CSE-MsgGUID: j8iXubPYTpSqQhs5NrowpQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,299,1763452800"; d="scan'208";a="244979204"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa002.jf.intel.com with ESMTP; 18 Feb 2026 18:24:59 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: arun.r.murthy@intel.com,
-	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 2/2] drm/i915/backlight: Cleanup try_vesa_interface assignments
-Date: Thu, 19 Feb 2026 07:54:54 +0530
-Message-Id: <20260219022454.2417063-2-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260219022454.2417063-1-suraj.kandpal@intel.com>
-References: <20260219022454.2417063-1-suraj.kandpal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 888BB10E243;
+	Thu, 19 Feb 2026 02:38:39 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CD9A10E243;
+ Thu, 19 Feb 2026 02:38:38 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0272660373302492680=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/sync=3A_Fix_user_fen?=
+ =?utf-8?q?ce_leak_on_alloc_failure?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 19 Feb 2026 02:38:38 -0000
+Message-ID: <177146871847.264667.5886058719190034929@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260219014216.2893391-2-shuicheng.lin@intel.com>
+In-Reply-To: <20260219014216.2893391-2-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,42 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that try_vesa_interface is the default fallback mechanism it
-need not be reassigned to true based on certain checks.
+--===============0272660373302492680==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 8 --------
- 1 file changed, 8 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index f14abc48a2a7..e0d0eee30ef4 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -668,20 +668,12 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
- 		if (panel->vbt.backlight.type != INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE)
- 			try_intel_interface = true;
- 
--		try_vesa_interface = true;
--		break;
--	case INTEL_DP_AUX_BACKLIGHT_FORCE_VESA:
--		try_vesa_interface = true;
- 		break;
- 	case INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL:
- 		try_intel_interface = true;
- 		break;
- 	}
- 
--	/* For eDP 1.5 and above we are supposed to use VESA interface for brightness control */
--	if (intel_dp->edp_dpcd[0] >= DP_EDP_15)
--		try_vesa_interface = true;
--
- 	/*
- 	 * Since Intel has their own backlight control interface, the majority of machines out there
- 	 * using DPCD backlight controls with Intel GPUs will be using this interface as opposed to
--- 
-2.34.1
+Series: drm/xe/sync: Fix user fence leak on alloc failure
+URL   : https://patchwork.freedesktop.org/series/161802/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857_BAT -> xe-pw-161802v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857 -> xe-pw-161802v1
+
+  IGT_8760: 8760
+  xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857: e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857
+  xe-pw-161802v1: 161802v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161802v1/index.html
+
+--===============0272660373302492680==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/sync: Fix user fence leak on alloc failure</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161802/">https://patchwork.freedesktop.org/series/161802/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161802v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161802v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857_BAT -&gt; xe-pw-161802v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857 -&gt; xe-pw-161802v1</li>
+</ul>
+<p>IGT_8760: 8760<br />
+  xe-4574-e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857: e1032fc6a7b99e9b2c4c97829d1fb0dde9d61857<br />
+  xe-pw-161802v1: 161802v1</p>
+
+</body>
+</html>
+
+--===============0272660373302492680==--
