@@ -4,54 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC91EC531E2
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Feb 2026 21:39:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DE70C531E2
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Feb 2026 21:39:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 681CF10E759;
-	Thu, 19 Feb 2026 21:39:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0358F10E760;
+	Thu, 19 Feb 2026 21:39:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h8ktcXdj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B2flk37b";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 984AD10E759;
- Thu, 19 Feb 2026 21:39:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6069910E75D;
+ Thu, 19 Feb 2026 21:39:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771537153; x=1803073153;
+ t=1771537162; x=1803073162;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wK+Scgt8j3rIrrQZOnPqpfwtY7Bs7Ykzl2GsolcF4pE=;
- b=h8ktcXdjIlG6AF1vs7IBpAZYGtWhVKbw9iWdQYicVcDHCuU5EWNLcBsT
- seR65hkHAogxXtWutO3Zr6MZjS0LVZ/ox55ZV4kXURnbsHU/rY60hjpb5
- 1t47fI7DEhpCIdHD3grktbJB4O2nhfVpavbtI3/LrpEDnxS6zXmPwmMr3
- YjSAggUueWXzuSKvn4Ng1UqiOSc7C39rSTBLcA9kSRIuEP6Ewo8q/CNQi
- Yz3aNTfjwW0vfTrlBGuzcIUOHd+NKNk6hzPVrxmGFIfx7IJqz8Fnf3Epf
- FhgyLFsbEUqdEkw7EY/Gn6/HD7dQ7Vo5rzBYxYwm0zjVBM/eCrAwvDwET Q==;
-X-CSE-ConnectionGUID: cNlmCDBcTIepLhp21QvyqA==
-X-CSE-MsgGUID: dTXnw7pcTaSuIwY9gjZzdg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11706"; a="90044683"
-X-IronPort-AV: E=Sophos;i="6.21,300,1763452800"; d="scan'208";a="90044683"
+ bh=WtnDJwX/pMQemQrDyDg0DXhWdic2fIlYGsxKS3DACwY=;
+ b=B2flk37bKHja1P5DlIPn1GbYDPCdzXq3rqrBPsSNjXGjgeI4soYGk5Sm
+ vErCwCa6q1ifcxWMg4M5frP/L0Ps+xOLhm1evKVkGwqc2sbl/bGDUwJrn
+ 0JyPC5E54y0LIYrs8Zf6JLecuQWSyJu5YDhFiu3wYa/wr0z+CS/NbCGDh
+ r8w5iy4pMwjyuX0JxzZg76NGuVarImPhxZveQlOBJTYbNnt/OQZVV+gCi
+ Whk7CXKwgLCDT8DY74EgsoEBrd7tyka6++dANQRmF/D2J9X/pSo+HNZ2b
+ 2YbJVMf+6fHWN+O08xMC9b9B99wZgfrfu1mXFPGNJnUje/Y0g9rmH8b35 Q==;
+X-CSE-ConnectionGUID: 7RJZWwVSTWKExsWvkHGHZQ==
+X-CSE-MsgGUID: k7gh+DaQTRyPzB4p6PnH6w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11706"; a="90044707"
+X-IronPort-AV: E=Sophos;i="6.21,300,1763452800"; d="scan'208";a="90044707"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2026 13:39:13 -0800
-X-CSE-ConnectionGUID: gtHPjQtoSJa3b1uR+5so7A==
-X-CSE-MsgGUID: 61cknzkbQLKQNQi5iZHX6Q==
+ 19 Feb 2026 13:39:22 -0800
+X-CSE-ConnectionGUID: /BuVJnkERZK8tGkW508cLw==
+X-CSE-MsgGUID: KgtKa5SdRie9p2ExHpb0zA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,300,1763452800"; d="scan'208";a="212526345"
+X-IronPort-AV: E=Sophos;i="6.21,300,1763452800"; d="scan'208";a="212526351"
 Received: from vpanait-mobl.ger.corp.intel.com (HELO
  kkoning-desktop.intel.com) ([10.245.244.197])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2026 13:39:10 -0800
+ 19 Feb 2026 13:39:18 -0800
 From: Koen Koning <koen.koning@linux.intel.com>
 To: dri-devel@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, Joel Fernandes <joelagnelf@nvidia.com>,
  Matthew Auld <matthew.auld@intel.com>, Danilo Krummrich <dakr@kernel.org>,
  Koen Koning <koen.koning@linux.intel.com>,
- Dave Airlie <airlied@redhat.com>,
- Peter Senna Tschudin <peter.senna@linux.intel.com>, stable@vger.kernel.org
-Subject: [PATCH v3 1/3] gpu/buddy: fix module_init() usage
-Date: Thu, 19 Feb 2026 22:38:56 +0100
-Message-ID: <20260219213858.370675-2-koen.koning@linux.intel.com>
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Subject: [PATCH v3 3/3] drm/drv: fix module_init() usage
+Date: Thu, 19 Feb 2026 22:38:58 +0100
+Message-ID: <20260219213858.370675-4-koen.koning@linux.intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20260219213858.370675-1-koen.koning@linux.intel.com>
 References: <20260216111902.110286-1-koen.koning@linux.intel.com>
@@ -73,42 +75,34 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Use subsys_initcall() instead of module_init() (which compiles to
-device_initcall() for built-ins) for buddy, so its initialization code
+device_initcall() for built-ins) for drm_drv, so its initialization code
 always runs before any (built-in) drivers.
 This happened to work correctly so far due to the order of linking in
 the Makefiles, but this should not be relied upon.
 
-An incorrect initialization order could lead to built-in drivers that
-use the buddy allocator to run into NULL pointer dereferences due to
-slab_blocks being uninitialized.
-
-Fixes: 6387a3c4b0c4 ("drm: move the buddy allocator from i915 into common drm")
-Fixes: ba110db8e1bc ("gpu: Move DRM buddy allocator one level up (part two)")
-Cc: Joel Fernandes <joelagnelf@nvidia.com>
-Cc: Dave Airlie <airlied@redhat.com>
 Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Peter Senna Tschudin <peter.senna@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Cc: stable@vger.kernel.org
-Reviewed-by: Joel Fernandes <joelagnelf@nvidia.com>
+Cc: Danilo Krummrich <dakr@kernel.org>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona@ffwll.ch>
 Signed-off-by: Koen Koning <koen.koning@linux.intel.com>
 ---
- drivers/gpu/buddy.c | 2 +-
+ drivers/gpu/drm/drm_drv.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
-index 603c59a2013a..81f57fdf913b 100644
---- a/drivers/gpu/buddy.c
-+++ b/drivers/gpu/buddy.c
-@@ -1315,7 +1315,7 @@ static int __init gpu_buddy_module_init(void)
- 	return 0;
+diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+index 2915118436ce..db974f769692 100644
+--- a/drivers/gpu/drm/drm_drv.c
++++ b/drivers/gpu/drm/drm_drv.c
+@@ -1271,5 +1271,5 @@ static int __init drm_core_init(void)
+ 	return ret;
  }
 
--module_init(gpu_buddy_module_init);
-+subsys_initcall(gpu_buddy_module_init);
- module_exit(gpu_buddy_module_exit);
-
- MODULE_DESCRIPTION("GPU Buddy Allocator");
+-module_init(drm_core_init);
++subsys_initcall(drm_core_init);
+ module_exit(drm_core_exit);
 --
 2.48.1
 
