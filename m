@@ -4,187 +4,176 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A11DC531EA
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Feb 2026 00:33:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FFD7C531FC
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Feb 2026 02:39:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2815C10E08F;
-	Fri, 20 Feb 2026 00:33:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEF7010E6D9;
+	Fri, 20 Feb 2026 02:39:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nNntHwLj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RIkuChwH";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA1FF10E08F
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Feb 2026 00:33:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9347610E6D9;
+ Fri, 20 Feb 2026 02:39:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771547633; x=1803083633;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=mRZ/lWlGdQPZprenbzo3jxGzMfkvDWhaouiivLnm1RE=;
- b=nNntHwLjBFi4FGlO6GRKblfTbQ7i0xRIamECHQL70yNx9MEGTkjlcGLM
- kRZESOnDQrZEwkchEV5rb+qxNgXfTGc4GLqBoMot8GCIUCrmHMkoEcBUa
- jBVzSTHkueuVeokFOsM1yJt7jRgQ97nf3gBclinOHGbUVbqvPkJjAJ2Wd
- dPMt16LKUFlaNtusfN3SNyrO1v0MQwXhUDKKQ02BW1Moglb98J9ULe38X
- X2NTUkFaAv2g0oB6dYLD4aI+qWfl9rQtQGYWHBrBl9j0POlctGvWQM+NT
- OZEpAdqerP6StUn8MgjPHYLC2ezre1mAu6ZPKBWWMR+IRpmq7rciXmgHJ w==;
-X-CSE-ConnectionGUID: O11vMtkSTK+WUrizBgGC3A==
-X-CSE-MsgGUID: K/Glyc0DRH2OpSEBkfGrow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11706"; a="84008958"
-X-IronPort-AV: E=Sophos;i="6.21,300,1763452800"; d="scan'208";a="84008958"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2026 16:33:32 -0800
-X-CSE-ConnectionGUID: H2mJftERToCQlWU053RbPA==
-X-CSE-MsgGUID: xrS9gFhrSSq9SXnWyt+1/Q==
+ t=1771555187; x=1803091187;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=U/84Bx5YIcL+3WvcOB16BMZ1VKLZ1DADpF8aUz60G+s=;
+ b=RIkuChwHuEIJbLlKlF+ExwG+r9HVKzJyC2YofpWqvkqwO95BQ9MHqeVN
+ YZtA5RfK79yNaZIVF234WF0jY3f16xO9w3nm4XcMDlKfis3BJKcap2G7D
+ EH2Yf7mhO0qSV6UG5maOLn80PNwIx/Qi4QONwg2uDvFil7WqC1phmR5xs
+ 9X/HHG/RrgyfqQG2zjjKxlUyV0k3vpzZSefoK9pbgk64xq+UUsm+fFyZA
+ pcIjIm6hJ8e0jXOWezLl3GrgHEAD5UlwCKf5G2c5h8zl0wKr/QeP0hA0k
+ 8cxki0Goe0ZllNymXDctRlkz9WYBKuBqNUvI/3aau31dgm5Ez84P8qm10 A==;
+X-CSE-ConnectionGUID: TjUwj2CFSIWxuzgBrAhA7w==
+X-CSE-MsgGUID: Yte5RnFhS+OKydlwIpwG3g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11706"; a="72752053"
+X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; d="scan'208";a="72752053"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2026 18:39:46 -0800
+X-CSE-ConnectionGUID: DFd1YHnXSHGn4O+HUp6G2g==
+X-CSE-MsgGUID: +a3Hk0cHQ+KkjTkMFKcwzQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,300,1763452800"; d="scan'208";a="243246071"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2026 16:33:32 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; d="scan'208";a="219734269"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2026 18:39:46 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Thu, 19 Feb 2026 16:33:31 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.35; Thu, 19 Feb 2026 18:39:45 -0800
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Thu, 19 Feb 2026 16:33:31 -0800
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.8) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.35 via Frontend Transport; Thu, 19 Feb 2026 18:39:45 -0800
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.66) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Thu, 19 Feb 2026 16:33:31 -0800
+ 15.2.2562.35; Thu, 19 Feb 2026 18:39:45 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=wJ3ZBqby5YORRoJKaRZzabdmPR7iq+sukEFyBo+0ntAQ2d3eZlhrBVZilGPFk/cRtBcOXJ88pBupPNWtu/508ZMKN5x/ophJ6muiGPZulcCeOskQaJICXqTQwJD8SnsVZg8yQXv/ehzHNXbaE621MMm/NRCHVHZ11Uky9VWTueK4Jl9eWuXcX89oAaSpJfL9xvHuFLF+ytiDd7qOMiVbOhVYRDLmOk43+lsdhT6F+FMoJJPOIMglyFJ+zz/RiaUhdRu/uiWyhVZYcPLvUiO8rwO+zwybvp3HfuhTrRwZOn1qJkCGuetW24tjjDPYL+gLaZaNzdqUkLHETlQIfZauLg==
+ b=Rnx811Z07JSVneG7OR4hgMfa8XmNGtBO8vg+SrZkl6LcvdGX8X5XxFNzs2+0/L4q+I8A1+sJ4ouJW2jV7x8zU7QdQ4qTMxXBqJ8l8Dwc14utQya24hTADHFekbLwHb78AXoVYNFR/pHDVI4nVND0y09LuUe/6nZVZru4r1PNExtEcgjz9h0VAQ+3EYMjky8dMfXdyw8tjqQLBI17Vfkk4wEdtpTKbUKcc+6AGUhiu/iUG4OY6RNGdG4TGoOlyd9jg0ogfbUAd4KLSVDBtHR5RZ5I+4JLL7/4vN0cE0kVPxEY8NAuNT9ms9t9azA6fpEiBHg2t182+yqJrxDFoaAmFw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RISyJYgZq1MxkZmY0U19mdGVdRK7M3T7gA/wTAZ9lvM=;
- b=KYZhvgLTdgPrXC2MOVBo9ta8Flr8IDx+ceNks+PATIJNAZw08N3uk7BVn/SDuQQfDVjMqXYH2lzQTptjSuricyt26ox0Rby8z0Mpy2GEik4jA3DLtrMFkhGQOQm80zHslcIdfc5mILc0r7gAvLcuGSo59MgDyI2R66fx75TlqkjKGt6HHgASsPw3aTKlBKx05g/C+7Lk6UjjFAnmjRVZGeBkEZkc4G8xN0nSsorA0coYOWXGrq/X0yf5mwKvqOxpRwVTdp52gXDhbTkAgbHjDste6Cr5jXt+5MzsQUJXmI5+J5oOuV2UVCXbFpmsmx7aU7KNiP6XqOsYHH0i4h/Teg==
+ bh=MG90MbMP7sj1NcdkmSc9USRSmZu2+4mosyHNd5o7KHo=;
+ b=eVDPH+JjCr51Goy1WW6Wijiz15MXunTGbbWUMYKy/Ff6sQemVJrX2Sey13fDuVzekXWIcTDIbiNpT3NrTSt4IMwUjPssxg5wfmWOyvuc5sTwh12dnoEfD0okDtM+QdA1zePGz251566m61+zOvMZpzl3fAQG9ikT+xJwI98Xv8/FkOiwjoyAir4SX/hwN55vm5mdxaMgoUJoRISfvGYU3iRX+DiqNVEYKHLgAGufnnlbdlW7ld2To9gWCmGGsOfzZfLc1dwUAJLEc9+y2nAXCJLKQpHisCiRa7GwsEpmyZzVZO5yvAoTo9WkuycTsh4QFPa+2+XtbXGzFqys2+fNrg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by SA0PR11MB4591.namprd11.prod.outlook.com (2603:10b6:806:9c::23)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.16; Fri, 20 Feb
- 2026 00:33:24 +0000
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::48d7:f2a6:b18:1b87]) by PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::48d7:f2a6:b18:1b87%4]) with mapi id 15.20.9632.010; Fri, 20 Feb 2026
- 00:33:24 +0000
-Message-ID: <8c9cbab0-2315-469a-84c0-033806ead0a2@intel.com>
-Date: Thu, 19 Feb 2026 16:33:23 -0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/1] drm/xe/gsc: Fix GSC proxy cleanup on early
- initialization failure
-To: Zhanjun Dong <zhanjun.dong@intel.com>, <intel-xe@lists.freedesktop.org>
-References: <20260219173128.2414504-1-zhanjun.dong@intel.com>
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ (2603:10b6:f:fc00::f13) by SN7PR11MB7419.namprd11.prod.outlook.com
+ (2603:10b6:806:34d::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.13; Fri, 20 Feb
+ 2026 02:39:42 +0000
+Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::a3d9:7cb3:f6e8:1035]) by DM3PPF208195D8D.namprd11.prod.outlook.com
+ ([fe80::a3d9:7cb3:f6e8:1035%5]) with mapi id 15.20.9611.012; Fri, 20 Feb 2026
+ 02:39:42 +0000
+From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+To: "Kahola, Mika" <mika.kahola@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>
+CC: "Kahola, Mika" <mika.kahola@intel.com>
+Subject: RE: [PATCH 14/19] drm/i915/lt_phy: Add .enable_clock/disable clock on
+ DDI for xe3plpd platform
+Thread-Topic: [PATCH 14/19] drm/i915/lt_phy: Add .enable_clock/disable clock
+ on DDI for xe3plpd platform
+Thread-Index: AQHcnOTZbGeoS8avmEef6ff7Hl5B0bWJdUfwgAF1FEA=
+Date: Fri, 20 Feb 2026 02:39:42 +0000
+Message-ID: <DM3PPF208195D8D7DDD5B127C2429FCAAA4E368A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+References: <20260213122615.1083654-1-mika.kahola@intel.com>
+ <20260213122615.1083654-15-mika.kahola@intel.com>
+ <DM3PPF208195D8D8A331BA39D677E3327C8E36BA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+In-Reply-To: <DM3PPF208195D8D8A331BA39D677E3327C8E36BA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <20260219173128.2414504-1-zhanjun.dong@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR05CA0057.namprd05.prod.outlook.com
- (2603:10b6:a03:33f::32) To PH7PR11MB7605.namprd11.prod.outlook.com
- (2603:10b6:510:277::5)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|SN7PR11MB7419:EE_
+x-ms-office365-filtering-correlation-id: dc446671-126e-4f42-2b8d-08de70294d1b
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|1800799024|366016|376014|38070700021;
+x-microsoft-antispam-message-info: =?us-ascii?Q?8WhWf/begtEVBBI8xXwDHmfYouQ6tV75xHilTQv1rHptiSHAt7RMLOw+q5iK?=
+ =?us-ascii?Q?JnQmfaCjU/wYHQL70Gh0l1CK3vbuSNcC9li4Xyy+KC/zrGUdsjfkZu+3uoi9?=
+ =?us-ascii?Q?T56Pd9hMzE5q5xSN6m9k2E/L44tpxflfgYq0Jhjyyz3CZDbe8XNhNjsAXZuZ?=
+ =?us-ascii?Q?i/o1+JFNBRPdsg5brHUk0TOf3x/TjWk8wfUBXxe10fE9EIyQlIKlgo3l/bLP?=
+ =?us-ascii?Q?SbPorVUjT9AXHJ+ZdvK6GzhB7kGJqnJVsHItH7OxTlbbv1p4LvOe+rTUr3bx?=
+ =?us-ascii?Q?fguSwS/gO0nagVOh2aJTE1nF9rviUX6ogTlJndg9dNSeau2bc4gzDk+zCRX7?=
+ =?us-ascii?Q?9fNBV8fqlKWH43a9uxHTaMZLvcrQzKSNYgizJY7oqqa0t6HeHqo9C26/y7gs?=
+ =?us-ascii?Q?itXbVPlV/PyMNZyCVLumaqCuxTL9y5hxb/SoCWYrNb0zCh+m8rizR9ZbrQAk?=
+ =?us-ascii?Q?qz9FRzMrybg4v59cTgPIlqcoj5wcuoQNfCA1ijRHdQ19uffrKOAJdylVcVUE?=
+ =?us-ascii?Q?DqDOlgWqPdshU4yzFFGOYextLT0wFn9E+PxU5NiLXLFqm9n02/by02p39eB1?=
+ =?us-ascii?Q?4wBRCzJ2x00njUlIz84S3PlQAS1ykLNECremOhPL2VGKkz4w2vPiu338JMjB?=
+ =?us-ascii?Q?LQ0PQ+uwKLORxG6Aijpp19WSVsV1MdD27q7xyPgrHV0v/uIqO7AoMPQfxuhS?=
+ =?us-ascii?Q?iPKM+L53sDWE1X2EHcaYcz94aMEpP08mb7jYPkEAdshCo1mKzCbIoOTRiFF3?=
+ =?us-ascii?Q?infa5Bu3KsulIKMFZcd6ov3m91BINSnRgh1MMyaMjxgKtRDQUACL4sKGrTPP?=
+ =?us-ascii?Q?iQNyE9bjQiOw4SMJ4sdAv/lrA9Fy+2BPdR1Tlswnynt7Jl0ArBZY0mYkrRMV?=
+ =?us-ascii?Q?cMoVT8khdXs9X36G9tcfidVYK1Z0bBOHxWWBnAamjzyKvtFR+nC5qoqA79Bl?=
+ =?us-ascii?Q?T38yXmv7SkXeDlXRaTdaWD1RRAL4AerLvacS3uD47bt5YlgE7VT02XVSDW8u?=
+ =?us-ascii?Q?JoQR5ozlOII91FeYzfiC/ruzJzpyUNZr8NywWaLJl122E/VDoszSb999WNdj?=
+ =?us-ascii?Q?KFQH0DtvrFcTqKh1CD5H2TZN4VS9LbSBPpNjgW2NnyhqZQSK4MYx6bjeJKg7?=
+ =?us-ascii?Q?a4awkYHYEoXl2H8D8sEOEqsXZeBLc3ECJKImxfdFj2LGpT3QS196jsPRQKiq?=
+ =?us-ascii?Q?KODGxF2JkdMcpUblG0R48OVodOIQAgVGkkyI01zNJGpVApXsafmxcx4CoXmo?=
+ =?us-ascii?Q?a1XNVp7xBOoiOOvcgZMLqW/MPT9AEU8dZ9rgHiq7VSc04MaFH7CVJDvIlkxa?=
+ =?us-ascii?Q?7s1OuGBhhvTNlEqcEeJwJPVdVHPtkMeZ1jLAUegOvQji5rwPklPPCiWNVoZM?=
+ =?us-ascii?Q?1HP8M3HoKKcHx6ALfINPW3IefdO7Hu2Ng1KfOw7jzaBv+KDNJxjH9id/JLqX?=
+ =?us-ascii?Q?P8F9Gh3/cumGZkiljLfUl1S63bWF+HHAENuCw7Dbz/rbijMM724UMhkkKZqC?=
+ =?us-ascii?Q?6f9FuS3jWdLxom9G36O+DA+dJPNuxoew1raRXyw35CcqT7hFYgHj5qT9JTCi?=
+ =?us-ascii?Q?/BAHt+HAUa7YpXGgO2/3S4abe+EfXJfDy1G6E5faBmkZ5hDaKVFCOYa3xzji?=
+ =?us-ascii?Q?7QwnLMdlah8zIDYB59d+P8M=3D?=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(38070700021); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?tEAjXOiYOyBgGAFci9N9GOwg3WU1MXOIfUBNKxsfNB0yX+SZstv/uC4CT8D/?=
+ =?us-ascii?Q?BW+0ITBd1fUtXo38OhWMUI9aY1DcNVFGsRpumFPC9s444JtumGoMaxMQg3uF?=
+ =?us-ascii?Q?9ra4tuv7VndF+9qcSGmQyJXS5kLU+vqCGmD59To7iEbPHOXVlz0y/qDQO0mv?=
+ =?us-ascii?Q?rxFYCdqAKxR1oL0J1ODXGwpYbJWafeiVVJ3oE2aTJyaJZ4ynDWgBu7wGQXgT?=
+ =?us-ascii?Q?Y5rzMN6ThMXFpetZkYSdgm+2JzHWNfUWd1sUFTXHK5cwiYlJ30xJ0aC1UZyd?=
+ =?us-ascii?Q?sLiHv9iMrRDDV4Dr20aYn5iWMXTvE/LROL+EJe5xEve2FFbQ8RFu+S4Y6rWp?=
+ =?us-ascii?Q?Y6BYczatjxC1DyXJcOUS8jChjP2XsHZPJ/TQHQnRYNSDvhe4qnoTMXouqCut?=
+ =?us-ascii?Q?5rlOuptCGEYE2hQw8lZ+rIw4gKiA21I5RH2kAW0wq1Dis1z1xp4Q03a+cIrj?=
+ =?us-ascii?Q?RNFcajrE9hlwMp24ksdDqE+zsKZfMgWbArbBO7FVKBVJy2Utls8qlqcEu4LR?=
+ =?us-ascii?Q?CnTv/ww8xuQpm7ilwRcWPtIV7xwW+TD8ETk6MD2zUNrGY485accWvwH5GOK8?=
+ =?us-ascii?Q?T11acs8W7rHdK3vNRD8yv5uynk600hlsffLdN9mfaREaUL48zIdx9Wg0MSz3?=
+ =?us-ascii?Q?hBnhng2ejK8PgBFN9801eUeSVx5BcjAQLJ7Nwa8o9DMUVJjZQO7ciOsyakK7?=
+ =?us-ascii?Q?nDJkgcERkk8sKlmiBBTY0eIY0i6Vb8rgQT+/FpFpF+74srVdaUwGJD+/64v8?=
+ =?us-ascii?Q?pEQ38A9GlFHLDMSfVN3teHaGB3SAPnXaNLkncdgYptjS+FUaFRR14bP9w16Q?=
+ =?us-ascii?Q?9FsYZtmAsP83uax5MMmm+RX1RtIFBDaEWyBJVTgqKJbn9J7uqlZOrk9EgRdk?=
+ =?us-ascii?Q?9fxtDa38BEwXO+jpji//7S9M8l3hH93p88NU05SlwGMaqt27VoRn/ht9dCrA?=
+ =?us-ascii?Q?70UalNzzPDkMQo73Gi5aMTo6Gr6MPKMAsxTrhP8SgTUvV1iYZCTNdbS6K5JD?=
+ =?us-ascii?Q?fEJtusQMssY5pm9fiUZMLtnfARhzxBJBJdFgvBtbldMjzozYm3VKGI0txBkw?=
+ =?us-ascii?Q?Z0Dm10mzcTZoEYj8Tg41qqQn6ltEiJ8uYE2MvqaTl8YwZ0vKlwaFcMje2qPl?=
+ =?us-ascii?Q?YrrjiZtB0g8jXRja2Vu9Wfy5HDiA404kOyxNzO7mY9q++tvYmEDinP7Ww+Hu?=
+ =?us-ascii?Q?tukR13VKNtPVJwlX3j8m1kAeWqsLGavgw5LY9ShJD674XcdZ1+OpxZ0oBPTn?=
+ =?us-ascii?Q?WXZiRm2+DAqzQnXvLIIlH6BeIXfrUljoXhKKFaxe3M5347BM1iPiqS5b87wx?=
+ =?us-ascii?Q?84nJmWpFCLzysHVZDAaCI6REnksx4XS8b6wvZku+QPZw3QhC7vQ87akFJOwW?=
+ =?us-ascii?Q?qF02/o94W8NRr1LGPQMxj1GFx83yZHMc0wP/00YQ5vGNLXWQWefXaudjaV4s?=
+ =?us-ascii?Q?VQHiR4+F2n+Ws0IvXd0CwFOJNOadBbTuDDpna/jEfMFA6GD0khjUwVnJQkDQ?=
+ =?us-ascii?Q?eGIDZfeD6QXSaXmaP1M4GfWCrJ4HoKQZeok1pzzAW6X7YuHBTyygXmAt0CCG?=
+ =?us-ascii?Q?44wB19Jhfr7INluTThBGrsb5iVdV2TZlvf3OexFxQzYzBUQqCvg7UUVHzIfm?=
+ =?us-ascii?Q?2NGug7ayY7T7vSpttQ8UDZVg1AAGei8T1rAISYPXmHUexsPrwgwEPPr3r2Co?=
+ =?us-ascii?Q?v99eq5qLVTzqS5PSlg9ChO2lKynileqqvIn7r2hs2L8F8TwtJLYJ+d2DIU/b?=
+ =?us-ascii?Q?c7ZUYSnQ7Q=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|SA0PR11MB4591:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2379d495-a870-4a9e-4b9d-08de7017a871
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: =?utf-8?B?Tk15UTdKcmRuY3NsZVFYdmpRbnl5bmwzbno1ZG51MlhMY3JNY2VEdDhMNnBR?=
- =?utf-8?B?VS9JNlhodnhBbHBENVhRbXIrRUZjTWswdFFjMXM3Q2t3cUxUS1Z3NmpDaFJY?=
- =?utf-8?B?b1JZWlNKYXBEQUVxQVlNWUI3RnoyUjRpUjhRWkc5Q2hMTWFLV1c0bG0wRTE4?=
- =?utf-8?B?ZVkwM1R3NkNDOTRLdmpKcGcwS0hxTG5FQmJYdk5uVTUxZk80UGc2MlBmVDFj?=
- =?utf-8?B?VUVrSnhQcE5MQVVQcWtPWTcydnh4NjA0ZVpIWEJuNXBYVzUvUVVwR29tSGQ1?=
- =?utf-8?B?Wm9MaFhLN3o3a1BSRDNYWlBRbmVHZDQ5bGY1aW93aEVPVjc0Qmx6aFhRd2RO?=
- =?utf-8?B?SFh1bllXODB5eUt0T081T1pndkFMMmNYTVZGZzg5TlBNODdwSEErZit0T1Ny?=
- =?utf-8?B?d1J6VitaaEpremlxRktsK1VZdnF3c2Z5RUF1M1I4MnBQd3loNnU5YTBIM0ZU?=
- =?utf-8?B?Uk9YSitmbTB0K2FJSTVjSU5COWJ5Szd0dG40My9jU2pLZzI0OGltSmMxUStr?=
- =?utf-8?B?NnRNNkNLOU5rSVMwU3dzWlRWUFByM2wvWW9KUzMxdDM4SnQyWnArZHNHZm9V?=
- =?utf-8?B?Ty9WaEVWbzNIZExNQ1JUQ0lXRTBxTWVCallWRjNSYjBhWjU3TTBiYjQ4Q3RL?=
- =?utf-8?B?WC9ndU1XQ053NEI2T2pUN1BlbnJDSlNqendhRnhzRFFPSFRYRHAzbE1DWHpt?=
- =?utf-8?B?Ly9RVVV3aGpNYjc3VFJhUnRRMnRBMGx4SnVGamVIYTlING9DTFZJR1RkTGh0?=
- =?utf-8?B?VU01VTFNTUl4bnQ2eCtTd3R6U2xCcmFWMldXbG9KdjUxU2tTdE05L3J0QzIv?=
- =?utf-8?B?SVI5ZFZvVnVhbXlRT3pBYW45R0tsRjBaMkFjRDR5MUNTK3JJWFo5ZXF5TWdG?=
- =?utf-8?B?TVVkVXB4cFBYaFgyMFZsMUpkZ2Z0RGtoRG5IRDNCa0RJL2lhVFluZWJrbzYw?=
- =?utf-8?B?ZUl6dU1yeE9qaHpIdlpMUGt0NC9NWGl4TGNjWDJPcUxCTzR3Q2dhUmVFYWJx?=
- =?utf-8?B?SEZIdEpLSzNFNGlSTU0rM0NUVnNNVk0zbm5wbnNFOERXN2p3VDVRN3VLWXVJ?=
- =?utf-8?B?bVZKR1I4SnZ4Q2d1cVdFalcrV2RzTFN0SW45cU02bC9hSHlZV3ZqMkZTWFZh?=
- =?utf-8?B?dlFMcFE4RGlzQjR3Vi9hakxUVWlFeEZncTNYK09ZMmQ2OHR3YWI2NTF4UEY0?=
- =?utf-8?B?OENpR1E2UlZ1cnB0RDFyNEJoYldrTExEaG9nM0hnVlhad1RRNmFSdmNvQXRY?=
- =?utf-8?B?YTE1dllXZkhVWmZUYjZTcys5K2VxSlRTdXRmZWJaeUlNVGw0cUlaVGV2SWF2?=
- =?utf-8?B?Y2RQNWVCR1ZiU1Z1SFFoS1Q1K3VHdzhMcTYwUURWekdBWXl1dndKVytZeW0y?=
- =?utf-8?B?M29QaWxGN2gvOThVaHdjNS9YOE1qWWYxWjh4UGR4VGh6WkQ4SUhOcUlZSGdX?=
- =?utf-8?B?NjFHcHcwSE51UGNlem1rTXVVaHVFYndmRnd5RVR6bG05TDNXM2hqcDVzelFu?=
- =?utf-8?B?OWRMTTBwdkViZjFmZDY3Z01hOW4zQktDdTBPN3M4OCtNOXowYy9xZXR6VEtk?=
- =?utf-8?B?M25NK0wvY1BtL3dKUy9ubFVBYWNTL2xvTVhsSXp6V0RiM3g5NElISlJWV2lH?=
- =?utf-8?B?VC9qaUNranc4VDMyVzZoUytseGtWaXpaSUUzcDYrbnU0S08rVVZIVEtObHVw?=
- =?utf-8?B?NVBCTXR2cm0yem1LcVZSSU9wd3FadHBVT2tzTmVTU3BENUwzRHd5alNGbUlN?=
- =?utf-8?B?QXdWTm5KajJxOXlZU3FQTUU3Uy81blhtNkZFZnRUZTAzZS9kTG4zL3VPL1Z3?=
- =?utf-8?B?VkxycC9SYWpRemNkSWdHMkdLazBGSThUUzltSnZCVlRoelVxd25ydzZoNGhD?=
- =?utf-8?B?dlh6MGRWaWZ4bmpPaDNjVFYwQ2xldnExNE9zQjIwTTZSWVRFa29HdDA2aGV5?=
- =?utf-8?B?b0x6T1hrNUJoOEtrQlRod2d2ZVRSczVLWlVXZHNJYXdua3RCQkh1cnRLT3RZ?=
- =?utf-8?B?N3NRbjROVVB3TmMvaUFzY0M4UnVqVXhCZWRnU3VEanlITmZmeVFrRk03SDFy?=
- =?utf-8?B?Nmt3L1AxTXFLUE43VkdSaU56eFJtRnVXY2VjQ1lJbVd2aEFmQzhSOTFuUk5X?=
- =?utf-8?Q?HH+A=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aTJsd3QvVGpoRlNnckgwTjJjRzhUWWdBRU5pUlRNZ1BIL0dxckN0WTNJbXdO?=
- =?utf-8?B?SVZwcm1sTXExd09rNnF4UHoyV3djMlljT05pejc4cDd4YmhKNlBkZ1lVTVlM?=
- =?utf-8?B?VEk2dmIvV1Z3cU5yejk5Qi9WQWEvVHd4ZnE2Q2ZMQTM2VnczZVhiQVlJbTlW?=
- =?utf-8?B?L1dYNEpsQjhPMHJuU0dSYWlaRjAvZGhWUVhmQWVyNjJQZUxtYnJuY3ZnRWlH?=
- =?utf-8?B?VDVvMWYxbHVkU3Bjdjl0WXVwZFZKc3dtVWZyVkkvTUNBcmZuMG52UjduOG5n?=
- =?utf-8?B?dXVCekZUQk0zemcvWmdNODhWZ2V4QklLdTFyZ1QzWk1XM05EbUgrNnFoZW9B?=
- =?utf-8?B?Rll2V1QwbXNpbEhFOXN4NFdPeXBQRUNFMW9JcWM1SHVON2FHUG1hcFVuUU0y?=
- =?utf-8?B?Wno5bUc1YzRTNmtFSFFsb3BPMklRVkFMMUY4TlZMbWhHN2Vtc2tMNTRycnFY?=
- =?utf-8?B?elVyeFdMOGt5dVpxV1g1aDJBRGhvT0JySVVsTmZ1b2hpR2JKVEF3ZE9iTzdi?=
- =?utf-8?B?YkxvRDIrWjd6cW5YTUQycEVxVmRLRnFaNEdaMjkwRkdmQjVWWHIrRHV6S1RV?=
- =?utf-8?B?TFdtTXd4QW1ZM3pWQkVkM1IzSjFnNHZ0Uk1FanJSZ0tIZVpxSVp1RmRWc2U1?=
- =?utf-8?B?WVAwTm9wem45VEwvRGx3MmZUaEJQdng2YU1VMlZOQkgxeDNkS2k5SzBDbXJI?=
- =?utf-8?B?eGVRMVZkenowTG9JOTA5YWRhaXNPQ2Y0bzJTbzJyd0xNMTlndmFkdldIMjZi?=
- =?utf-8?B?MVVOQUFFN0ZzaDV5U0hoT3ZzUnI4endzclVtZlgxb0NJaVppaEEyUGI4VUFH?=
- =?utf-8?B?YXdReGtvT3N6YjMzY0c3RUg1bHFWRzVlZjhwRS90Y2ZCZXlPSFNqem90NHpT?=
- =?utf-8?B?ZmV5ZW1sM3BLQ2ZVdlpKdGRidXlSaUVDZTY5Ymd1dS9BSXdvS1A5RkQyNEdI?=
- =?utf-8?B?OFdIODZBVmducGVGZWl0U3IvTm03UFBqd2tBelZHU2lrSm5nZWRlbk41Q1Rz?=
- =?utf-8?B?Zi9pWlYwK3cxeUZPbTZDd2R1MHQrbWEwdWZLZjZLMmdhVDZpdFZXSXNLendh?=
- =?utf-8?B?QU9SVFhwbHp4U29SZ20xWXZlSlNCTUgrWXpobzhkTVVkZzc4TUZOWVgva0dP?=
- =?utf-8?B?TlJldXRtZm03OHVIOEVMYmdkczNIV1RhNGxGSng1K05BR0JzYks0RzRVc0lv?=
- =?utf-8?B?NE1OVmhDK1V6bG5ZYy8wVkN2K3BNL1pNNjRnemJpOFJianp6QzllSitYa2Nl?=
- =?utf-8?B?UWlMNFNYQWpObkpvaEwyOWlYMzF6bk9EdHprbHR6dTFOUXRIMW1yTGl3OG5x?=
- =?utf-8?B?RWxQK3pwOVk3bWNvdmlkUU50aFJraytjM1JFK2NXejVHWEdjY016VU5YaHpE?=
- =?utf-8?B?eWZTeExVN0NXMFI0VE5iZEc3NHRZZWJ3eVozWHFkcXFsOC9sMks5dFlZcjI0?=
- =?utf-8?B?UzNkeEdKTGpqODAvOFdKU3hMcW1GQTR0d1FET2xXeFJNRXd6T2tFZ2R6WXpL?=
- =?utf-8?B?bVEwQk5Pb2w3bFZRL1ZrSGUxd3cwZGkxMm4xWTg0K01YQ0I0K0dXemt1S2VO?=
- =?utf-8?B?VkcveERCaGNhYzdvdEkxUGt5UHVGN0RmekhmRnBTZlg1Sk1iYm1DSHRDY0hF?=
- =?utf-8?B?Yy9Nanl5MDIvRk5ZWGowTmRndk13ZktTdVdXWDZGYStHMy9wbnYwRGJic2xU?=
- =?utf-8?B?WC9HaTJRV3VicGNNZVJlVDI1c0J3cldNNXFpRmk3TDhKRWtubmF6b2taeWlK?=
- =?utf-8?B?V2hQWjRMRGgwUkgyemhDY2lIcVZtci9ubm1FUkltN21ORkJ3ZDVkRXE2eE1S?=
- =?utf-8?B?Y1pRN0x5N3pwbHBERmx4KytIM0J3UDRPYVo3QkRBUDlBMFg0YmgzMW1TM1FV?=
- =?utf-8?B?NktyZFJBUzByYk1GL1JnL25NU2MwQW1wa0pDRFltaHlueGcwelFkOEI1bytV?=
- =?utf-8?B?cTh4My9Ebm5pbXVBVnpuWENiNVh1d2FnR25ENFN3RUtxa0hZbUtUc0doY3N6?=
- =?utf-8?B?YkIwTmgrV3Jtam9zZlN3Mm9Hd2tCWU4vbTA2RXVCZzRQazhLMEI1bDBYSlhp?=
- =?utf-8?B?b1MrVnlPa1RReFJqVitIc2VaWXNUaklvcDBXVjlLSTBHR1lzMTlHc1NCa1BM?=
- =?utf-8?B?RDhwVEx3alB6V1F6QjhzN1dTa05YaDBUQ3hkVytvUlpLaVBpVlFCcW5ZemIy?=
- =?utf-8?B?QWJpeWV6SVE3OFhCMjlqdVhhcWpNa004WnRZRXlJMmY4MWVMS3MrMy9nWDZl?=
- =?utf-8?B?dGdPM1JOK0cyMFQrbkZUbDZTSkhXTm90OUJ1OTRDN3VFeUczZTNCd0w2UUtl?=
- =?utf-8?B?Z3p3K3lHMkM0QzNlSjNoTVlwOVUrcWMzRFJ0dEI1YUx0MVYxd1A4SlFzbkdR?=
- =?utf-8?Q?CFfERnO70pXFKHyI=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2379d495-a870-4a9e-4b9d-08de7017a871
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2026 00:33:24.7782 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PdFHXc0xIbH13qaIdJ8Kv5fGxrXhacwveQGF5rHJa4qC3TPt8daL/xzLDtNTF34TyCT0mAdhZLZ0g7+f/tkrjUXpK8dlJinDjlKHkhNypqE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4591
+X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc446671-126e-4f42-2b8d-08de70294d1b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Feb 2026 02:39:42.1882 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 0yr8wwmnUjRZBH4xNJqOniLmsot6/bO7zvT6jD9z2/HacqncXmXGuQP/QS09sneU91y8lvQRmG2jhrksUpZlWA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7419
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -200,164 +189,499 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+> Subject: RE: [PATCH 14/19] drm/i915/lt_phy: Add .enable_clock/disable clo=
+ck
+> on DDI for xe3plpd platform
+>=20
+>=20
+> > Subject: [PATCH 14/19] drm/i915/lt_phy: Add .enable_clock/disable
+> > clock on DDI for xe3plpd platform
+> >
+> > To enable pll clock on DDI move part of the pll enabling sequence into
+> > a ddi clock enabling function.
+>=20
+> *PLL
+>=20
+> >
+> > Simililarly, do the same for pll disabling sequence.
+>=20
+> * PLL
+> >
+> > Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+>=20
+> A lot of things are going on in this patch can we break it down into 2, 3=
+ patches
+> basically hookinh everything up in the 3rd patch And the initial patches =
+just
+> doing changes in function params/ breaking functions into two.
+>=20
 
+To add to this these 3/4 patch should be the last of series=20
 
-On 2/19/2026 9:31 AM, Zhanjun Dong wrote:
-> xe_gsc_proxy_remove undoes what is done in both xe_gsc_proxy_init and
-> xe_gsc_proxy_start; however, if we fail between those 2 calls, it is
-> possible that the HW forcewake access hasn't been initialized yet and so
-> we hit errors when the cleanup code tries to write GSC register. To
-> avoid that, split the cleanup in 2 functions so that the HW cleanup is
-> only called if the HW setup was completed successfully.
->
-> Since the HW cleanup (interrupt disabling) is now removed from
-> xe_gsc_proxy_remove, the cleanup on error paths in xe_gsc_proxy_start
-> must be updated to disable interrupts before returning.
->
-> Fixes: ff6cd29b690b ("drm/xe: Cleanup unwind of gt initialization")
-> Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
-> Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> ---
-> v4:
-> - Replace devm-managed cleanup action for xe_gsc_proxy_stop() with a
->    manual flag-based approach using a 'started' flag. This avoids a race
->    condition where module unload could start while the async GSC proxy
->    initialization is still in progress, potentially causing the devm
->    cleanup to be called at the wrong time.
-> - Set gsc->proxy.started = true at the end of xe_gsc_proxy_start() when
->    initialization completes successfully.
-> - Check gsc->proxy.started in xe_gsc_proxy_remove() to conditionally
->    call xe_gsc_proxy_stop() only if the proxy was actually started.
->
-> v3:
-> - Move xe_gsc_wait_for_worker_completion() to xe_gsc_proxy_stop() after
->    disabling interrupts, since the worker shouldn't be queued anymore
->    after interrupts are disabled.
-> - Update commit message to clarify that the error handling changes in
->    xe_gsc_proxy_start() are necessary due to the cleanup refactoring,
->    not a separate fix.
->
-> v2:
-> - Split cleanup into two functions: xe_gsc_proxy_remove() for SW cleanup
->    and xe_gsc_proxy_stop() for HW cleanup that requires forcewake access.
-> - Add error handling in xe_gsc_proxy_start to disable interrupts on
->    early error exits.
-> ---
->   drivers/gpu/drm/xe/xe_gsc_proxy.c | 42 +++++++++++++++++++++++++------
->   drivers/gpu/drm/xe/xe_gsc_types.h |  2 ++
->   2 files changed, 36 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_gsc_proxy.c b/drivers/gpu/drm/xe/xe_gsc_proxy.c
-> index 42438b21f235..afafe8b41e65 100644
-> --- a/drivers/gpu/drm/xe/xe_gsc_proxy.c
-> +++ b/drivers/gpu/drm/xe/xe_gsc_proxy.c
-> @@ -435,15 +435,11 @@ static int proxy_channel_alloc(struct xe_gsc *gsc)
->   	return 0;
->   }
->   
-> -static void xe_gsc_proxy_remove(void *arg)
-> +static void xe_gsc_proxy_stop(struct xe_gsc *gsc)
->   {
-> -	struct xe_gsc *gsc = arg;
->   	struct xe_gt *gt = gsc_to_gt(gsc);
->   	struct xe_device *xe = gt_to_xe(gt);
->   
-> -	if (!gsc->proxy.component_added)
-> -		return;
-> -
->   	/* disable HECI2 IRQs */
->   	scoped_guard(xe_pm_runtime, xe) {
->   		CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FW_GSC);
-> @@ -455,6 +451,29 @@ static void xe_gsc_proxy_remove(void *arg)
->   	}
->   
->   	xe_gsc_wait_for_worker_completion(gsc);
-> +	gsc->proxy.started = false;
-> +}
-> +
-> +static void xe_gsc_proxy_remove(void *arg)
-> +{
-> +	struct xe_gsc *gsc = arg;
-> +	struct xe_gt *gt = gsc_to_gt(gsc);
-> +	struct xe_device *xe = gt_to_xe(gt);
-> +
-> +	if (!gsc->proxy.component_added)
-> +		return;
-> +
-> +	/*
-> +	 * GSC proxy init is an async process that can be ongoing during
+Regards,
+Suraj Kandpal
 
-"proxy init" is ambiguous here, because the xe_gsc_proxy_init() function 
-is called synchronously. Maybe use "proxy start", because that is the 
-part that is called asynchronously.
-
-> +	 * Xe module load/unload. Using devm managed action to register
-> +	 * xe_gsc_proxy_stop could cause issues if Xe module unload has
-> +	 * already started when the action is registered, potentially leading
-> +	 * to the cleanup being called at the wrong time. The 'started' flag
-> +	 * is used to avoid this race condition by ensuring we only stop the
-> +	 * proxy if it was actually started.
-
-This last sentence about the "started" flag is a bit confusing, because 
-it doesn't directly avoid a race condition. I'd replace it with 
-something like:
-"Therefore, instead of registering a separate devm action to undo what 
-is done in proxy start, we call it from here, but only if the start has 
-completed successfully (tracked with the 'started' flag)."
-
-with those changes:
-
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-
-Daniele
-
-> +	 */
-> +	if (gsc->proxy.started)
-> +		xe_gsc_proxy_stop(gsc);
->   
->   	component_del(xe->drm.dev, &xe_gsc_proxy_component_ops);
->   	gsc->proxy.component_added = false;
-> @@ -510,6 +529,7 @@ int xe_gsc_proxy_init(struct xe_gsc *gsc)
->    */
->   int xe_gsc_proxy_start(struct xe_gsc *gsc)
->   {
-> +	struct xe_gt *gt = gsc_to_gt(gsc);
->   	int err;
->   
->   	/* enable the proxy interrupt in the GSC shim layer */
-> @@ -521,12 +541,18 @@ int xe_gsc_proxy_start(struct xe_gsc *gsc)
->   	 */
->   	err = xe_gsc_proxy_request_handler(gsc);
->   	if (err)
-> -		return err;
-> +		goto err_irq_disable;
->   
->   	if (!xe_gsc_proxy_init_done(gsc)) {
-> -		xe_gt_err(gsc_to_gt(gsc), "GSC FW reports proxy init not completed\n");
-> -		return -EIO;
-> +		xe_gt_err(gt, "GSC FW reports proxy init not completed\n");
-> +		err = -EIO;
-> +		goto err_irq_disable;
->   	}
->   
-> +	gsc->proxy.started = true;
->   	return 0;
-> +
-> +err_irq_disable:
-> +	gsc_proxy_irq_toggle(gsc, false);
-> +	return err;
->   }
-> diff --git a/drivers/gpu/drm/xe/xe_gsc_types.h b/drivers/gpu/drm/xe/xe_gsc_types.h
-> index 97c056656df0..5aaa2a75861f 100644
-> --- a/drivers/gpu/drm/xe/xe_gsc_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gsc_types.h
-> @@ -58,6 +58,8 @@ struct xe_gsc {
->   		struct mutex mutex;
->   		/** @proxy.component_added: whether the component has been added */
->   		bool component_added;
-> +		/** @proxy.started: whether the proxy has been started */
-> +		bool started;
->   		/** @proxy.bo: object to store message to and from the GSC */
->   		struct xe_bo *bo;
->   		/** @proxy.to_gsc: map of the memory used to send messages to the GSC */
+> Regards,
+> Suraj Kandpal
+>=20
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_ddi.c      |  4 +-
+> >  drivers/gpu/drm/i915/display/intel_dpll.c     | 20 +----
+> >  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 25 ++++++
+> > drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  1 +
+> >  drivers/gpu/drm/i915/display/intel_lt_phy.c   | 86 ++++++++++++-------
+> >  drivers/gpu/drm/i915/display/intel_lt_phy.h   | 10 ++-
+> >  6 files changed, 93 insertions(+), 53 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > index 57de15fe3446..532d7d4e3b27 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > @@ -5299,8 +5299,8 @@ void intel_ddi_init(struct intel_display *display=
+,
+> >  	encoder->pipe_mask =3D ~0;
+> >
+> >  	if (HAS_LT_PHY(display)) {
+> > -		encoder->enable_clock =3D intel_xe3plpd_pll_enable;
+> > -		encoder->disable_clock =3D intel_xe3plpd_pll_disable;
+> > +		encoder->enable_clock =3D intel_xe3plpd_pll_enable_clock;
+> > +		encoder->disable_clock =3D intel_xe3plpd_pll_disable_clock;
+> >  		encoder->port_pll_type =3D intel_mtl_port_pll_type;
+> >  		encoder->get_config =3D xe3plpd_ddi_get_config;
+> >  	} else if (DISPLAY_VER(display) >=3D 14) { diff --git
+> > a/drivers/gpu/drm/i915/display/intel_dpll.c
+> > b/drivers/gpu/drm/i915/display/intel_dpll.c
+> > index abc85ee9b832..c7d37e74fbe9 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dpll.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+> > @@ -1212,24 +1212,6 @@ static int dg2_crtc_compute_clock(struct
+> > intel_atomic_state *state,
+> >  	return 0;
+> >  }
+> >
+> > -static int xe3plpd_crtc_compute_clock(struct intel_atomic_state *state=
+,
+> > -				      struct intel_crtc *crtc)
+> > -{
+> > -	struct intel_crtc_state *crtc_state =3D
+> > -		intel_atomic_get_new_crtc_state(state, crtc);
+> > -	struct intel_encoder *encoder =3D
+> > -		intel_get_crtc_new_encoder(state, crtc_state);
+> > -	int ret;
+> > -
+> > -	ret =3D intel_lt_phy_pll_calc_state(crtc_state, encoder, &crtc_state-
+> > >dpll_hw_state);
+> > -	if (ret)
+> > -		return ret;
+> > -
+> > -	crtc_state->hw.adjusted_mode.crtc_clock =3D
+> > intel_crtc_dotclock(crtc_state);
+> > -
+> > -	return 0;
+> > -}
+> > -
+> >  static int ilk_fb_cb_factor(const struct intel_crtc_state *crtc_state)=
+  {
+> >  	struct intel_display *display =3D to_intel_display(crtc_state); @@ -
+> > 1690,7 +1672,7 @@ static int i8xx_crtc_compute_clock(struct
+> > intel_atomic_state *state,  }
+> >
+> >  static const struct intel_dpll_global_funcs xe3plpd_dpll_funcs =3D {
+> > -	.crtc_compute_clock =3D xe3plpd_crtc_compute_clock,
+> > +	.crtc_compute_clock =3D hsw_crtc_compute_clock,
+> >  	.crtc_get_dpll =3D hsw_crtc_get_dpll,
+> >  };
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > index 412582e29ca6..28c560417409 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> > @@ -4595,7 +4595,32 @@ static int xe3plpd_pll_get_freq(struct
+> > intel_display *display,
+> >  	return intel_lt_phy_calc_port_clock(display, &dpll_hw_state->ltpll);
+> > }
+> >
+> > +static void xe3plpd_pll_enable(struct intel_display *display,
+> > +			       struct intel_dpll *pll,
+> > +			       const struct intel_dpll_hw_state *dpll_hw_state) {
+> > +	struct intel_encoder *encoder =3D get_intel_encoder(display, pll);
+> > +
+> > +	if (drm_WARN_ON(display->drm, !encoder))
+> > +		return;
+> > +
+> > +	intel_xe3plpd_pll_enable(encoder, pll, dpll_hw_state); }
+> > +
+> > +static void xe3plpd_pll_disable(struct intel_display *display,
+> > +				struct intel_dpll *pll)
+> > +{
+> > +	struct intel_encoder *encoder =3D get_intel_encoder(display, pll);
+> > +
+> > +	if (drm_WARN_ON(display->drm, !encoder))
+> > +		return;
+> > +
+> > +	intel_xe3plpd_pll_disable(encoder);
+> > +}
+> > +
+> >  static const struct intel_dpll_funcs xe3plpd_pll_funcs =3D {
+> > +	.enable =3D xe3plpd_pll_enable,
+> > +	.disable =3D xe3plpd_pll_disable,
+> >  	.get_hw_state =3D xe3plpd_pll_get_hw_state,
+> >  	.get_freq =3D xe3plpd_pll_get_freq,
+> >  };
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> > b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> > index 4cc14ce5eebe..d408ccf6f902 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
+> > @@ -278,6 +278,7 @@ struct intel_lt_phy_pll_state {
+> >  	u8 config[3];
+> >  	bool ssc_enabled;
+> >  	bool tbt_mode;
+> > +	int lane_count;
+> >  };
+> >
+> >  struct intel_dpll_hw_state {
+> > diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> > b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> > index b1d95eb897db..365c6e07a257 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+> > @@ -1179,7 +1179,8 @@ intel_lt_phy_lane_reset(struct intel_encoder
+> > *encoder,
+> >
+> >  static void
+> >  intel_lt_phy_program_port_clock_ctl(struct intel_encoder *encoder,
+> > -				    const struct intel_crtc_state *crtc_state,
+> > +				    const struct intel_lt_phy_pll_state *ltpll,
+> > +				    int port_clock,
+> >  				    bool lane_reversal)
+> >  {
+> >  	struct intel_display *display =3D to_intel_display(encoder); @@ -
+> > 1196,17 +1197,17 @@ intel_lt_phy_program_port_clock_ctl(struct
+> > intel_encoder *encoder,
+> >  	 * but since the register bits still remain the same we use
+> >  	 * the same definition
+> >  	 */
+> > -	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) &&
+> > -	    intel_hdmi_is_frl(crtc_state->port_clock))
+> > +	if (encoder->type =3D=3D INTEL_OUTPUT_HDMI &&
+> > +	    intel_hdmi_is_frl(port_clock))
+> >  		val |=3D XELPDP_DDI_CLOCK_SELECT_PREP(display,
+> > XELPDP_DDI_CLOCK_SELECT_DIV18CLK);
+> >  	else
+> >  		val |=3D XELPDP_DDI_CLOCK_SELECT_PREP(display,
+> > XELPDP_DDI_CLOCK_SELECT_MAXPCLK);
+> >
+> >  	 /* DP2.0 10G and 20G rates enable MPLLA*/
+> > -	if (crtc_state->port_clock =3D=3D 1000000 || crtc_state->port_clock =
+=3D=3D
+> > 2000000)
+> > +	if (port_clock =3D=3D 1000000 || port_clock =3D=3D 2000000)
+> >  		val |=3D XELPDP_SSC_ENABLE_PLLA;
+> >  	else
+> > -		val |=3D crtc_state->dpll_hw_state.ltpll.ssc_enabled ?
+> > XELPDP_SSC_ENABLE_PLLB : 0;
+> > +		val |=3D ltpll->ssc_enabled ? XELPDP_SSC_ENABLE_PLLB : 0;
+> >
+> >  	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder-
+> > >port),
+> >  		     XELPDP_LANE1_PHY_CLOCK_SELECT |
+> XELPDP_FORWARD_CLOCK_UNGATE |
+> > @@ -1249,10 +1250,12 @@ static
+> > u32 intel_lt_phy_get_dp_clock(u8 rate)
+> >
+> >  static bool
+> >  intel_lt_phy_config_changed(struct intel_encoder *encoder,
+> > -			    const struct intel_crtc_state *crtc_state)
+> > +			    const struct intel_lt_phy_pll_state *ltpll)
+> >  {
+> > +	struct intel_display *display =3D to_intel_display(encoder);
+> >  	u8 val, rate;
+> >  	u32 clock;
+> > +	u32 port_clock =3D intel_lt_phy_calc_port_clock(display, ltpll);
+> >
+> >  	val =3D intel_lt_phy_read(encoder, INTEL_LT_PHY_LANE0,
+> >  				LT_PHY_VDR_0_CONFIG);
+> > @@ -1263,9 +1266,10 @@ intel_lt_phy_config_changed(struct
+> > intel_encoder *encoder,
+> >  	 * using 1.62 Gbps clock since PHY PLL defaults to that
+> >  	 * otherwise we always need to reconfigure it.
+> >  	 */
+> > -	if (intel_crtc_has_dp_encoder(crtc_state)) {
+> > +	if (encoder->type =3D=3D INTEL_OUTPUT_DP ||
+> > +	    encoder->type =3D=3D INTEL_OUTPUT_EDP) {
+> >  		clock =3D intel_lt_phy_get_dp_clock(rate);
+> > -		if (crtc_state->port_clock =3D=3D 1620000 && crtc_state-
+> > >port_clock =3D=3D clock)
+> > +		if (port_clock =3D=3D 1620000 && port_clock =3D=3D clock)
+> >  			return false;
+> >  	}
+> >
+> > @@ -1749,11 +1753,13 @@ intel_lt_phy_pll_calc_state(struct
+> > intel_crtc_state *crtc_state,
+> >  			}
+> >  			hw_state->ltpll.ssc_enabled =3D
+> >  				intel_lt_phy_pll_is_ssc_enabled(crtc_state,
+> > encoder);
+> > +			hw_state->ltpll.lane_count =3D crtc_state->lane_count;
+> >  			return 0;
+> >  		}
+> >  	}
+> >
+> >  	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
+> > +		hw_state->ltpll.lane_count =3D crtc_state->lane_count;
+> >  		return intel_lt_phy_calculate_hdmi_state(&hw_state->ltpll,
+> >  							 crtc_state-
+> > >port_clock);
+> >  	}
+> > @@ -1763,41 +1769,41 @@ intel_lt_phy_pll_calc_state(struct
+> > intel_crtc_state *crtc_state,
+> >
+> >  static void
+> >  intel_lt_phy_program_pll(struct intel_encoder *encoder,
+> > -			 const struct intel_crtc_state *crtc_state)
+> > +			 const struct intel_lt_phy_pll_state *ltpll)
+> >  {
+> >  	u8 owned_lane_mask =3D
+> > intel_lt_phy_get_owned_lane_mask(encoder);
+> >  	int i, j, k;
+> >
+> >  	intel_lt_phy_write(encoder, owned_lane_mask,
+> LT_PHY_VDR_0_CONFIG,
+> > -			   crtc_state->dpll_hw_state.ltpll.config[0],
+> > MB_WRITE_COMMITTED);
+> > +			   ltpll->config[0], MB_WRITE_COMMITTED);
+> >  	intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0,
+> LT_PHY_VDR_1_CONFIG,
+> > -			   crtc_state->dpll_hw_state.ltpll.config[1],
+> > MB_WRITE_COMMITTED);
+> > +			   ltpll->config[1], MB_WRITE_COMMITTED);
+> >  	intel_lt_phy_write(encoder, owned_lane_mask,
+> LT_PHY_VDR_2_CONFIG,
+> > -			   crtc_state->dpll_hw_state.ltpll.config[2],
+> > MB_WRITE_COMMITTED);
+> > +			   ltpll->config[2], MB_WRITE_COMMITTED);
+> >
+> >  	for (i =3D 0; i <=3D 12; i++) {
+> >  		intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0,
+> > LT_PHY_VDR_X_ADDR_MSB(i),
+> > -				   crtc_state->dpll_hw_state.ltpll.addr_msb[i],
+> > +				   ltpll->addr_msb[i],
+> >  				   MB_WRITE_COMMITTED);
+> >  		intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0,
+> > LT_PHY_VDR_X_ADDR_LSB(i),
+> > -				   crtc_state->dpll_hw_state.ltpll.addr_lsb[i],
+> > +				   ltpll->addr_lsb[i],
+> >  				   MB_WRITE_COMMITTED);
+> >
+> >  		for (j =3D 3, k =3D 0; j >=3D 0; j--, k++)
+> >  			intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0,
+> >  					   LT_PHY_VDR_X_DATAY(i, j),
+> > -					   crtc_state-
+> > >dpll_hw_state.ltpll.data[i][k],
+> > +					   ltpll->data[i][k],
+> >  					   MB_WRITE_COMMITTED);
+> >  	}
+> >  }
+> >
+> >  static void
+> >  intel_lt_phy_enable_disable_tx(struct intel_encoder *encoder,
+> > -			       const struct intel_crtc_state *crtc_state)
+> > +			       const struct intel_lt_phy_pll_state *ltpll)
+> >  {
+> >  	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
+> >  	bool lane_reversal =3D dig_port->lane_reversal;
+> > -	u8 lane_count =3D crtc_state->lane_count;
+> > +	u8 lane_count =3D ltpll->lane_count;
+> >  	bool is_dp_alt =3D
+> >  		intel_tc_port_in_dp_alt_mode(dig_port);
+> >  	enum intel_tc_pin_assignment tc_pin =3D @@ -1878,9 +1884,11 @@
+> > intel_lt_phy_enable_disable_tx(struct
+> > intel_encoder *encoder,  }
+> >
+> >  void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+> > -			     const struct intel_crtc_state *crtc_state)
+> > +			     struct intel_dpll *pll,
+> > +			     const struct intel_dpll_hw_state *dpll_hw_state)
+> >  {
+> >  	struct intel_display *display =3D to_intel_display(encoder);
+> > +	int port_clock =3D intel_lt_phy_calc_port_clock(display,
+> > +&dpll_hw_state->ltpll);
+> >  	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
+> >  	bool lane_reversal =3D dig_port->lane_reversal;
+> >  	u8 owned_lane_mask =3D
+> > intel_lt_phy_get_owned_lane_mask(encoder);
+> > @@ -1896,10 +1904,10 @@ void intel_lt_phy_pll_enable(struct
+> > intel_encoder *encoder,
+> >  	wakeref =3D intel_lt_phy_transaction_begin(encoder);
+> >
+> >  	/* 1. Enable MacCLK at default 162 MHz frequency. */
+> > -	intel_lt_phy_lane_reset(encoder, crtc_state->lane_count);
+> > +	intel_lt_phy_lane_reset(encoder, dpll_hw_state->ltpll.lane_count);
+> >
+> >  	/* 2. Program PORT_CLOCK_CTL register to configure clock muxes,
+> > gating, and SSC. */
+> > -	intel_lt_phy_program_port_clock_ctl(encoder, crtc_state,
+> > lane_reversal);
+> > +	intel_lt_phy_program_port_clock_ctl(encoder, &dpll_hw_state->ltpll,
+> > +port_clock, lane_reversal);
+> >
+> >  	/* 3. Change owned PHY lanes power to Ready state. */
+> >  	intel_lt_phy_powerdown_change_sequence(encoder,
+> > owned_lane_mask, @@ -1909,12 +1917,12 @@ void
+> > intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+> >  	 * 4. Read the PHY message bus VDR register PHY_VDR_0_Config check
+> > enabled PLL type,
+> >  	 * encoded rate and encoded mode.
+> >  	 */
+> > -	if (intel_lt_phy_config_changed(encoder, crtc_state)) {
+> > +	if (intel_lt_phy_config_changed(encoder, &dpll_hw_state->ltpll)) {
+> >  		/*
+> >  		 * 5. Program the PHY internal PLL registers over PHY message
+> bus
+> > for the desired
+> >  		 * frequency and protocol type
+> >  		 */
+> > -		intel_lt_phy_program_pll(encoder, crtc_state);
+> > +		intel_lt_phy_program_pll(encoder, &dpll_hw_state->ltpll);
+> >
+> >  		/* 6. Use the P2P transaction flow */
+> >  		/*
+> > @@ -1946,8 +1954,7 @@ void intel_lt_phy_pll_enable(struct
+> > intel_encoder *encoder,
+> >  		 * Change. We handle this step in bxt_set_cdclk().
+> >  		 */
+> >  		/* 10. Program DDI_CLK_VALFREQ to match intended DDI clock
+> > frequency. */
+> > -		intel_de_write(display, DDI_CLK_VALFREQ(encoder->port),
+> > -			       crtc_state->port_clock);
+> > +		intel_de_write(display, DDI_CLK_VALFREQ(encoder->port),
+> > port_clock);
+> >
+> >  		/* 11. Program PORT_CLOCK_CTL[PCLK PLL Request LN0] =3D 1.
+> */
+> >  		intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display,
+> port), @@
+> > -1994,7 +2001,7 @@ void intel_lt_phy_pll_enable(struct intel_encoder
+> > *encoder,
+> >  			     lane_phy_pulse_status,
+> >  			     lane_phy_pulse_status);
+> >  	} else {
+> > -		intel_de_write(display, DDI_CLK_VALFREQ(encoder->port),
+> > crtc_state->port_clock);
+> > +		intel_de_write(display, DDI_CLK_VALFREQ(encoder->port),
+> > port_clock);
+> >  	}
+> >
+> >  	/*
+> > @@ -2005,7 +2012,7 @@ void intel_lt_phy_pll_enable(struct
+> > intel_encoder *encoder,
+> >  	intel_lt_phy_powerdown_change_sequence(encoder,
+> > owned_lane_mask,
+> >  					       XELPDP_P0_STATE_ACTIVE);
+> >
+> > -	intel_lt_phy_enable_disable_tx(encoder, crtc_state);
+> > +	intel_lt_phy_enable_disable_tx(encoder, &dpll_hw_state->ltpll);
+> >  	intel_lt_phy_transaction_end(encoder, wakeref);  }
+> >
+> > @@ -2145,8 +2152,8 @@ void intel_lt_phy_dump_hw_state(struct
+> > drm_printer *p,  {
+> >  	int i, j;
+> >
+> > -	drm_printf(p, "lt_phy_pll_hw_state: ssc enabled: %d, tbt mode:
+> > %d\n",
+> > -		   hw_state->ssc_enabled, hw_state->tbt_mode);
+> > +	drm_printf(p, "lt_phy_pll_hw_state: lane count: %d, ssc enabled: %d,
+> > tbt mode: %d\n",
+> > +		   hw_state->lane_count, hw_state->ssc_enabled, hw_state-
+> > >tbt_mode);
+> >
+> >  	for (i =3D 0; i <=3D 12; i++)
+> >  		drm_printf(p, "addr [%d] msb =3D 0x%.4x, lsb =3D 0x%.4x\n", @@
+> > -2283,14 +2290,22 @@ void intel_lt_phy_pll_state_verify(struct
+> > intel_atomic_state *state,  }
+> >
+> >  void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
+> > -			      const struct intel_crtc_state *crtc_state)
+> > +			      struct intel_dpll *pll,
+> > +			      const struct intel_dpll_hw_state *dpll_hw_state) {
+> > +	intel_lt_phy_pll_enable(encoder, pll, dpll_hw_state); }
+> > +
+> > +void intel_xe3plpd_pll_enable_clock(struct intel_encoder *encoder,
+> > +				    const struct intel_crtc_state *crtc_state)
+> >  {
+> >  	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
+> >
+> >  	if (intel_tc_port_in_tbt_alt_mode(dig_port))
+> >  		intel_mtl_tbt_pll_enable_clock(encoder, crtc_state-
+> > >port_clock);
+> >  	else
+> > -		intel_lt_phy_pll_enable(encoder, crtc_state);
+> > +		/* TODO: remove when PLL mgr is in place. */
+> > +		intel_xe3plpd_pll_enable(encoder, NULL, &crtc_state-
+> > >dpll_hw_state);
+> >  }
+> >
+> >  void intel_xe3plpd_pll_disable(struct intel_encoder *encoder) @@
+> > -2301,6
+> > +2316,17 @@ void intel_xe3plpd_pll_disable(struct intel_encoder
+> > +*encoder)
+> >  		intel_mtl_tbt_pll_disable_clock(encoder);
+> >  	else
+> >  		intel_lt_phy_pll_disable(encoder);
+> > +}
+> > +
+> > +void intel_xe3plpd_pll_disable_clock(struct intel_encoder *encoder) {
+> > +	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
+> > +
+> > +	if (intel_tc_port_in_tbt_alt_mode(dig_port))
+> > +		intel_mtl_tbt_pll_disable_clock(encoder);
+> > +	else
+> > +		/* TODO: remove when PLL mgr is in place. */
+> > +		intel_xe3plpd_pll_disable(encoder);
+> >
+> >  }
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h
+> > b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+> > index ff3896a2cebe..3838e9326773 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+> > @@ -11,6 +11,7 @@
+> >  struct drm_printer;
+> >  struct intel_atomic_state;
+> >  struct intel_display;
+> > +struct intel_dpll;
+> >  struct intel_dpll_hw_state;
+> >  struct intel_encoder;
+> >  struct intel_crtc_state;
+> > @@ -18,7 +19,8 @@ struct intel_crtc;
+> >  struct intel_lt_phy_pll_state;
+> >
+> >  void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+> > -			     const struct intel_crtc_state *crtc_state);
+> > +			     struct intel_dpll *pll,
+> > +			     const struct intel_dpll_hw_state *dpll_hw_state);
+> >  void intel_lt_phy_pll_disable(struct intel_encoder *encoder);  int
+> > intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state, @@
+> > -41,8
+> > +43,12 @@ int  intel_lt_phy_calculate_hdmi_state(struct
+> > intel_lt_phy_pll_state *lt_state,
+> >  				  u32 frequency_khz);
+> >  void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
+> > -			      const struct intel_crtc_state *crtc_state);
+> > +			      struct intel_dpll *pll,
+> > +			      const struct intel_dpll_hw_state *dpll_hw_state);
+> >  void intel_xe3plpd_pll_disable(struct intel_encoder *encoder);  void
+> > intel_lt_phy_verify_plls(struct intel_display *display);
+> > +void intel_xe3plpd_pll_enable_clock(struct intel_encoder *encoder,
+> > +				    const struct intel_crtc_state *crtc_state);
+> > void
+> > +intel_xe3plpd_pll_disable_clock(struct intel_encoder *encoder);
+> >
+> >  #endif /* __INTEL_LT_PHY_H__ */
+> > --
+> > 2.43.0
 
