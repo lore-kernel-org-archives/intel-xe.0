@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9D211C5AD69
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Feb 2026 20:19:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4145C5AD69
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Feb 2026 20:19:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A1DF10E83E;
-	Fri, 20 Feb 2026 20:19:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C59B10E839;
+	Fri, 20 Feb 2026 20:19:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NRH/o+hN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="naLh+taE";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AEAC910E83A
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Feb 2026 20:19:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3735010E83A
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Feb 2026 20:19:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771618751; x=1803154751;
+ t=1771618754; x=1803154754;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/3157a0rTf2RfjFGHIo+YhSSaSYBFRPCu2SvFOw3wJc=;
- b=NRH/o+hNYEzkQP45ux8/PtVXGj26SUACtQ+b4K4p8SRJw5/fmDk+hmtD
- yV93zi6E6+MTRrSpqvKZpt7qx52RzhjYhASHGaYmfQWVfSSKAVjLfC3Ek
- YcnWqJwMuXc9u0CDIG7LO2EJUSqP4X8ztCF6BMs27s3cHyHnQ1G8ZMnY+
- glWSFIQWXaupx2jgDzIHfmLMZuNB/Hd4ZWMmocz7TekjYVrAiBISr/a7M
- ACli9rujJUNAW1SmCcH8gTUUTfgaHeHRoudIUVyIHew6kjxF67fw+tlF5
- WS5Xanv8NDJxeZpc88UEWqNatOd2AdJkHqabVCFdNqAOJJZ9UaK+K4u1+ Q==;
-X-CSE-ConnectionGUID: dprS8Ma3T0K+qH1LlPWs8Q==
-X-CSE-MsgGUID: gMfB+EySSDSEXiLdmKWGkA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11707"; a="84169541"
-X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; d="scan'208";a="84169541"
+ bh=tRGSzOMcEqQRH0ewQzoRWp6J5l2TkuxBMRtvoVCya6Q=;
+ b=naLh+taEgF/ZH213qOrkXjpCZHkmML030YxmPgppiQhUUhw14K0BzsR+
+ sGmPKWsG28ySPL9lOiYCe8EYUJGlcoJcofNhrdZPkbcqQ0ZAuxIbEBMiB
+ PJF4LPWwsAP7mYPnSMAIcRv1+J1CZ5OgR0dU83W/msN1kZsj8wwO7cSPl
+ 2mUBoHM7Ot9Y7yYspONCzyZ+wjZUR8lV6NiuLImSsDIhvouOvwHIIQtLW
+ mC1EYoYyqIYwEdFeFEFQJwXiVhdv0KqdH+L+7IVe+vBT+AGHeI5ln+2uZ
+ nwN8IloPS3Cm134tmRmbTo0KlNcAL4di0B/zwASzk5qXy+rkyGeKsAoxv A==;
+X-CSE-ConnectionGUID: cU/59LEMT6WsnA3F9uvC7A==
+X-CSE-MsgGUID: jtlHS1HVSf6cJYRTBsROcQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11707"; a="84169543"
+X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; d="scan'208";a="84169543"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2026 12:19:11 -0800
-X-CSE-ConnectionGUID: XcYi1kRZSMKLuEvmaCKkdQ==
-X-CSE-MsgGUID: G+vQycsyQZWpIegqciSPxQ==
+ 20 Feb 2026 12:19:14 -0800
+X-CSE-ConnectionGUID: RT4uOnh7QOO0NcK5AInEQg==
+X-CSE-MsgGUID: fxWKX0U3T3CXzeDG4CT8xw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; d="scan'208";a="214182102"
+X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; d="scan'208";a="214182105"
 Received: from ngusev-mobl1.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.98.92])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2026 12:19:10 -0800
+ 20 Feb 2026 12:19:12 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 1/3] drm/xe/pf: Use explicit VRAM BO flag for VRAM provisioning
-Date: Fri, 20 Feb 2026 21:18:53 +0100
-Message-ID: <20260220201857.6113-2-michal.wajdeczko@intel.com>
+Subject: [PATCH 2/3] drm/xe/pf: Don't use LMTT page size if no LMTT
+Date: Fri, 20 Feb 2026 21:18:54 +0100
+Message-ID: <20260220201857.6113-3-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260220201857.6113-1-michal.wajdeczko@intel.com>
 References: <20260220201857.6113-1-michal.wajdeczko@intel.com>
@@ -67,27 +67,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When we are about to provision VRAM/LMEM for VF, there is no point
-in using semi-automatic flag that supports fallback to the SMEM.
+While today all our DGFX platforms have LMTT, we already started
+preparation to do not rely on this assumption. Add check for the
+LMTT presence and return default page size as VRAM/LMEM alignment
+if there is no LMTT.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index cba20eb6b36b..6383763d02ab 100644
+index 6383763d02ab..3ae83cffe925 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -1652,7 +1652,7 @@ static int pf_provision_vf_lmem(struct xe_gt *gt, unsigned int vfid, u64 size)
- 	bo = xe_bo_create_pin_range_novm(xe, tile,
- 					 ALIGN(size, PAGE_SIZE), 0, ~0ull,
- 					 ttm_bo_type_kernel,
--					 XE_BO_FLAG_VRAM_IF_DGFX(tile) |
-+					 XE_BO_FLAG_VRAM(tile->mem.vram) |
- 					 XE_BO_FLAG_NEEDS_2M |
- 					 XE_BO_FLAG_PINNED |
- 					 XE_BO_FLAG_PINNED_LATE_RESTORE |
+@@ -1451,7 +1451,8 @@ int xe_gt_sriov_pf_config_set_fair_dbs(struct xe_gt *gt, unsigned int vfid,
+ 
+ static u64 pf_get_lmem_alignment(struct xe_gt *gt)
+ {
+-	return xe_lmtt_page_size(&gt->tile->sriov.pf.lmtt);
++	return xe_device_has_lmtt(gt_to_xe(gt)) ?
++		xe_lmtt_page_size(&gt_to_tile(gt)->sriov.pf.lmtt) : XE_PAGE_SIZE;
+ }
+ 
+ static u64 pf_get_min_spare_lmem(struct xe_gt *gt)
 -- 
 2.47.1
 
