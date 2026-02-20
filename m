@@ -4,72 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47F9AC5AD48
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Feb 2026 17:28:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B355BC5AD55
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Feb 2026 17:28:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C28C10E82B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC10810E82E;
 	Fri, 20 Feb 2026 17:28:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ihfDe6Xg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gyRohhEF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DD8310E81F
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Feb 2026 17:28:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F04010E81C
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Feb 2026 17:28:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771608498; x=1803144498;
+ t=1771608497; x=1803144497;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=Q85DtVStZoNWcO5w/dBtB3T8eLZ/zodLSI+mr/Xtwyg=;
- b=ihfDe6XgFm3sCAjMNlmlS8lfEW1rB9WU5yLcCN/CTeTBPYMa9I8YKzOv
- OrZLOIyT3DDXORQLM9d/I9orwEOvw/pUUjAZfvucmJ41W55/JJc1JwEXR
- Z3oeyIJIyLQZww0xvNdTjUphwc1OMgHNJ9rh7m7RkOW95Ujg4hGHMU/Yb
- xWBbKLC9FFJvWK57+c5r2HDM+obC7mw+3edCmT9O/O19qhCxQFTkypX5n
- t+70XqdflKyLM06TA7MD2+l/OSTDt9RJuslnU1f2hGU+TSws975ut9Wdb
- PYUzdFiw6CraSe6Fqqww5sp9InLo1nfKpypBOF/y48TA1KvwiXenjV3JV w==;
-X-CSE-ConnectionGUID: qH9loTCcQm2RAdc0+lLUhw==
-X-CSE-MsgGUID: rDcF8yrTTvaJ4RU3bwm2Bg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11707"; a="72606744"
-X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; d="scan'208";a="72606744"
+ bh=fEnBqmMCfuVPMcRqxi5UQrSGHahp2f2qpj1gA/4LTmU=;
+ b=gyRohhEFwlrWWoqbnqrs/SMZwy/bZnEnTUc58D+wzdJ3jrteuoJk4kDX
+ Zw4Cd3h05OPqetrijtU7pPK/pEz0MtSBieowuFcS2Xlz22WajWf+Ece+P
+ G2r9lo0MN6vQsl1oNdwgW/2ZkBKCaTYUKvObIJGW7L0VPqkw35bLBEaaC
+ 5jp3rjZv1LhuuukJkL4TGNtOwNTfq+Cll3LwLtHwsobc+/HYXyPTomHLq
+ Ge0Jm4EMgWvJdjN8Gjj9ZDG71BEmnpW43QdVLHhK1sI/t1NmovKko/ta/
+ VkzDCTDPuiIs/a+H/N7ZYufn6Lb85bQt1R+i93PMNhPTNj+n5gzCqoHDz A==;
+X-CSE-ConnectionGUID: ClrLI3pnRfevvoVol0QpNg==
+X-CSE-MsgGUID: 2wjHHGFGS0W/LfAL5DeLXw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11707"; a="72606731"
+X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; d="scan'208";a="72606731"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2026 09:28:17 -0800
-X-CSE-ConnectionGUID: Ywc/D4KIQeu7DE9DawMOKw==
-X-CSE-MsgGUID: ltKnRcYHRpOblyM9wbWAlg==
+ 20 Feb 2026 09:28:16 -0800
+X-CSE-ConnectionGUID: xiigAQD2TSK49ZgaTrElBA==
+X-CSE-MsgGUID: vHkn+iBpTvyUYpV9buRkxg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; d="scan'208";a="214138715"
+X-IronPort-AV: E=Sophos;i="6.21,302,1763452800"; d="scan'208";a="214138677"
 Received: from mdroper-desk1.fm.intel.com (HELO
  mdroper-desk1.amr.corp.intel.com) ([10.1.39.133])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2026 09:28:18 -0800
+ 20 Feb 2026 09:28:17 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
-Date: Fri, 20 Feb 2026 09:27:37 -0800
-Subject: [PATCH v2 15/23] drm/xe: Consolidate workaround entries for
- Wa_18041344222
+Date: Fri, 20 Feb 2026 09:27:26 -0800
+Subject: [PATCH v2 04/23] drm/xe: Consolidate workaround entries for
+ Wa_16021867713
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260220-forupstream-wa_cleanup-v2-15-b12005a05af6@intel.com>
+Message-Id: <20260220-forupstream-wa_cleanup-v2-4-b12005a05af6@intel.com>
 References: <20260220-forupstream-wa_cleanup-v2-0-b12005a05af6@intel.com>
 In-Reply-To: <20260220-forupstream-wa_cleanup-v2-0-b12005a05af6@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Matt Roper <matthew.d.roper@intel.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2621;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3888;
  i=matthew.d.roper@intel.com; h=from:subject:message-id;
- bh=Q85DtVStZoNWcO5w/dBtB3T8eLZ/zodLSI+mr/Xtwyg=;
- b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBpmJmuO7y/6Auc2WF90ImsJWHTdZLvDGKH0Um/A
- rvCEAVcNiCJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaZiZrgAKCRBNeSQFyHKQ
- BCQWEACqd/QeSLOGBYMubCDsH+PHoFFZOIXAto1U8KhkkhtkJTZUfAdQl8qSJhZVrPB8Exs0Siq
- QA6gKJ1UHcbM+YyEHc/QH3KbYumrsmLuEBSTRVlnNosubIS6gRYtAWJTBLMdo3TUJq7elv5Sci/
- WpdH6WQbyCL5KL3d1nYTIgrNSwa+CwSRYrYNQ3MohFEil9A+izefRmqDhlledE1OG2R7kovtjm8
- Qz1OG+mifTMiJw8FlolxUm/GUMXxMfAyC2jeNzKZ552S3GfG0YrY9foCcufd4IxTLL72ht2/pnh
- bnnCJm3v21HJKPyAM2fxJEZzI5afpSOjY1xvf256qQnbdQp+0FdQ2Zz+uRes1zJb4/Y+K4MWbZl
- YMDd4rrvHUlS1ijGhKEndPq9jsnEMQs+HtSOy/jq6PFWDWEBR6dDnfpwjAXh0EHu/jtBJJRU4S5
- Pleko//2p9RSEiPqQ95HAo95NmPTS9EBzR3SK/qvmsb5f1zOHlawEakcxLVnyR97Y1DYH9+8Fu8
- uZYA68wU/5yb7PhDY8QwyUQNqmytaLnlNh5HMeHzCaTQfPaGQECejjn0h2h6c0Dfb3BtPBgagPx
- PmmWdKrWIHh4csX4SM0G4ZW17GYDRA6lQMBgeDgWfGUk1xcSpkfyTv54Y2slC9i8B8D0wvkVzoM
- S4Tae+ED8Ky3Xzw==
+ bh=fEnBqmMCfuVPMcRqxi5UQrSGHahp2f2qpj1gA/4LTmU=;
+ b=owEBbAKT/ZANAwAKAU15JAXIcpAEAcsmYgBpmJmsUFqIW2ulJ9hDMGzMmadXhKFtwOIruQwc3
+ x+vIXefDsuJAjIEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCaZiZrAAKCRBNeSQFyHKQ
+ BCr1D/YjUv24RYVATsfm5OB9+3yZ9xSvs4+10/Rs9Mf2VHPReBV9aUCQy9xo0M7o2OupRBmsqWf
+ O4CXu5eOv3mR1pTwI83wZtkj0lm2JIqZqCOR+KlsAWoxO5LtkncjZoxo1DAIcX8cVG31balh+Ue
+ /+ToLxXxkec8oTIO6Y5CiZNihY237ys7KgBPvuhIH675oZUVCY9G9N2OGzqPL/85bmi9aHah7ej
+ KG6vBdMP/fP74wtbsQpaqD03aSkqhIj2tZ5PaT8u3CTllxUsf9pVi+66yO/tFxWYfnAnCqwFbJz
+ va68kG6R7IIHtHTdcIc6nNYeRg2cisdPDeHcvW2s0j6DleOljUihDuz3hTh+lKyU0RfqBOHfIWT
+ 8/qVV7/kknZPDOelhGMbO5p7h/RfkYQv/ekFu4aQJnx+K9GTyH0V6Cl7t4AlUkrBCP8qEVVvlKI
+ vYW4HICpDxpfO6M/Rg+B1pPUGmitksGV1EpZ9sm2aID7/WfzKy2aPl51/2vAps6fd2kqnfUT9uY
+ hB6eX7Jbm++q2dPNLDNdLyrU2GlKPCEpvfYPH1RgnOCv6EPMu6PCzX+YbJdjXXe4Q8tCSkJJZZs
+ u4ACJqHR2tgNB3wu9I4qu8IVMbvna2HMjcCdQZFr0k6QJsCGUy9OuKmok3EsyVKDJ+Tf12j29xb
+ NZJ8aC+LUYoFs
 X-Developer-Key: i=matthew.d.roper@intel.com; a=openpgp;
  fpr=C267C309447FEB4F3F216DAC4D792405C8729004
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -86,72 +86,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Wa_18041344222 applies to all graphics versions from 20.01 through 30.00
-(inclusive).  Consolidate the RTP entries into a single range-based
-entry.
+Wa_16021867713 applies to every single media IP from 13.00 to 30.02
+(inclusive).  We can consolidate the multiple per-version entries down
+to a single range entry.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_wa.c | 25 +++++++------------------
- 1 file changed, 7 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/xe/xe_wa.c | 38 ++++++++------------------------------
+ 1 file changed, 8 insertions(+), 30 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 190b31a9d49d33e7fb80174be7ba9cbf726a8224..83318a4ebcb51e004497e2cb9460e95691b5d9ff 100644
+index c3d694947bd5d2b178e9da08bb937dc6a171b326..4a8685f2ea985cb67b21bdf8a043ad1dfdfc816d 100644
 --- a/drivers/gpu/drm/xe/xe_wa.c
 +++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -385,6 +385,13 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 		       FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, RES_CHK_SPR_DIS))
+@@ -131,6 +131,8 @@ __diag_push();
+ __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
+ 
+ static const struct xe_rtp_entry_sr gt_was[] = {
++	/* Workarounds applying over a range of IPs */
++
+ 	{ XE_RTP_NAME("14011060649"),
+ 	  XE_RTP_RULES(MEDIA_VERSION_RANGE(1200, 1255),
+ 		       ENGINE_CLASS(VIDEO_DECODE),
+@@ -146,6 +148,12 @@ static const struct xe_rtp_entry_sr gt_was[] = {
+ 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1260)),
+ 	  XE_RTP_ACTIONS(CLR(MISCCPCTL, DOP_CLOCK_GATE_RENDER_ENABLE))
  	},
-+	{ XE_RTP_NAME("18041344222"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 3000),
-+		       FUNC(xe_rtp_match_first_render_or_compute),
-+		       FUNC(xe_rtp_match_not_sriov_vf),
-+		       FUNC(xe_rtp_match_gt_has_discontiguous_dss_groups)),
-+	  XE_RTP_ACTIONS(SET(TDL_CHICKEN, EUSTALL_PERF_SAMPLING_DISABLE))
++	{ XE_RTP_NAME("16021867713"),
++	  XE_RTP_RULES(MEDIA_VERSION_RANGE(1300, 3002),
++		       ENGINE_CLASS(VIDEO_DECODE)),
++	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F1C(0), MFXPIPE_CLKGATE_DIS)),
++	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
 +	},
  
- 	/* TGL */
+ 	/* DG1 */
  
-@@ -531,12 +538,6 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 	  XE_RTP_RULES(GRAPHICS_VERSION(2004), FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, SLM_WMTP_RESTORE))
- 	},
--	{ XE_RTP_NAME("18041344222"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(2004),
--		       FUNC(xe_rtp_match_first_render_or_compute),
--		       FUNC(xe_rtp_match_gt_has_discontiguous_dss_groups)),
--	  XE_RTP_ACTIONS(SET(TDL_CHICKEN, EUSTALL_PERF_SAMPLING_DISABLE))
+@@ -213,12 +221,6 @@ static const struct xe_rtp_entry_sr gt_was[] = {
+ 
+ 	/* Xe_LPM+ */
+ 
+-	{ XE_RTP_NAME("16021867713"),
+-	  XE_RTP_RULES(MEDIA_VERSION(1300),
+-		       ENGINE_CLASS(VIDEO_DECODE)),
+-	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F1C(0), MFXPIPE_CLKGATE_DIS)),
+-	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
 -	},
- 
- 	/* Xe2_HPG */
- 
-@@ -555,12 +556,6 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 		       FUNC(xe_rtp_match_first_render_or_compute)),
- 	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN, STK_ID_RESTRICT))
+ 	{ XE_RTP_NAME("22016670082"),
+ 	  XE_RTP_RULES(MEDIA_VERSION(1300)),
+ 	  XE_RTP_ACTIONS(SET(XELPMP_SQCNT1, ENFORCE_RAR))
+@@ -232,12 +234,6 @@ static const struct xe_rtp_entry_sr gt_was[] = {
+ 	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F10(0), IECPUNIT_CLKGATE_DIS)),
+ 	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
  	},
--	{ XE_RTP_NAME("18041344222"),
--	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(2001, 2002),
--		       FUNC(xe_rtp_match_first_render_or_compute),
--		       FUNC(xe_rtp_match_gt_has_discontiguous_dss_groups)),
--	  XE_RTP_ACTIONS(SET(TDL_CHICKEN, EUSTALL_PERF_SAMPLING_DISABLE))
+-	{ XE_RTP_NAME("16021867713"),
+-	  XE_RTP_RULES(MEDIA_VERSION(2000),
+-		       ENGINE_CLASS(VIDEO_DECODE)),
+-	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F1C(0), MFXPIPE_CLKGATE_DIS)),
+-	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
 -	},
+ 	{ XE_RTP_NAME("14019449301"),
+ 	  XE_RTP_RULES(MEDIA_VERSION(2000), ENGINE_CLASS(VIDEO_DECODE)),
+ 	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F08(0), CG3DDISHRS_CLKGATE_DIS)),
+@@ -262,12 +258,6 @@ static const struct xe_rtp_entry_sr gt_was[] = {
  
- 	/* Xe3_LPG */
+ 	/* Xe2_HPM */
  
-@@ -588,12 +583,6 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 	  XE_RTP_ACTIONS(SET(RING_PSMI_CTL(0), RC_SEMA_IDLE_MSG_DISABLE,
- 			     XE_RTP_ACTION_FLAG(ENGINE_BASE)))
+-	{ XE_RTP_NAME("16021867713"),
+-	  XE_RTP_RULES(MEDIA_VERSION(1301),
+-		       ENGINE_CLASS(VIDEO_DECODE)),
+-	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F1C(0), MFXPIPE_CLKGATE_DIS)),
+-	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
+-	},
+ 	{ XE_RTP_NAME("14019449301"),
+ 	  XE_RTP_RULES(MEDIA_VERSION(1301), ENGINE_CLASS(VIDEO_DECODE)),
+ 	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F08(0), CG3DDISHRS_CLKGATE_DIS)),
+@@ -291,12 +281,6 @@ static const struct xe_rtp_entry_sr gt_was[] = {
+ 
+ 	/* Xe3_LPM */
+ 
+-	{ XE_RTP_NAME("16021867713"),
+-	  XE_RTP_RULES(MEDIA_VERSION(3000),
+-		       ENGINE_CLASS(VIDEO_DECODE)),
+-	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F1C(0), MFXPIPE_CLKGATE_DIS)),
+-	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
+-	},
+ 	{ XE_RTP_NAME("16021865536"),
+ 	  XE_RTP_RULES(MEDIA_VERSION(3000),
+ 		       ENGINE_CLASS(VIDEO_DECODE)),
+@@ -309,12 +293,6 @@ static const struct xe_rtp_entry_sr gt_was[] = {
+ 	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F10(0), IECPUNIT_CLKGATE_DIS)),
+ 	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
  	},
--	{ XE_RTP_NAME("18041344222"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(3000),
--		       FUNC(xe_rtp_match_first_render_or_compute),
--		       FUNC(xe_rtp_match_gt_has_discontiguous_dss_groups)),
--	  XE_RTP_ACTIONS(SET(TDL_CHICKEN, EUSTALL_PERF_SAMPLING_DISABLE))
+-	{ XE_RTP_NAME("16021867713"),
+-	  XE_RTP_RULES(MEDIA_VERSION(3002),
+-		       ENGINE_CLASS(VIDEO_DECODE)),
+-	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F1C(0), MFXPIPE_CLKGATE_DIS)),
+-	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
 -	},
- 
- 	/* Xe3p_LPG*/
- 
+ 	{ XE_RTP_NAME("14021486841"),
+ 	  XE_RTP_RULES(MEDIA_VERSION(3000), MEDIA_STEP(A0, B0),
+ 		       ENGINE_CLASS(VIDEO_DECODE)),
 
 -- 
 2.53.0
