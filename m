@@ -4,42 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 422B8C55163
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Feb 2026 08:37:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFFCAC54FCC
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Feb 2026 08:37:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC6DB10E7EE;
-	Fri, 20 Feb 2026 08:37:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="dTbDBlkA";
-	dkim-atps=neutral
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17D4F10E7E0;
- Fri, 20 Feb 2026 08:37:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1771576664;
- bh=Qyjkrg23NvqAtrZ6SXaT7ACN9JWfiY1iU+ZEiaE5bX4=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=dTbDBlkAOP9Y0rUXJm+jhDhi4QywsUXy8ZAKZU4ZFWSsh40c9d1cVsdhUXCB2hWTD
- uRkkenPEXyNbLZW8M96f6NF5ZPkoI1yP3Nnwzs4JkUHz4vExNC7io4dmatomg/rUEY
- 0pmZ9cz8Ubk+EzCV+wCJce2mm9lkRAGHE+r3EQ5qres5Y3C9eCpnLhP45fW5pOrJxJ
- jlK4kEta6ULj/j4JpJXPVbsDyDmm+GPOiRsh58sVgONUk7tDsz9QghkvtFqtGDHE1e
- lAITtTy2/yepcOORQfiV08n0wmr9/OAOWnwukgvJw17RZaUWNH6sjwcR7YvfosPzxt
- 0nL0cBNYWsnRA==
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: linux-rt-devel@lists.linux.dev, dri-devel@lists.freedesktop.org,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Maarten Lankhorst <dev@lankhorst.se>
-Subject: [i915-rt v6 22/24] Revert "drm/i915: Depend on !PREEMPT_RT."
-Date: Fri, 20 Feb 2026 09:37:20 +0100
-Message-ID: <20260220083657.28815-48-dev@lankhorst.se>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20260220083657.28815-26-dev@lankhorst.se>
-References: <20260220083657.28815-26-dev@lankhorst.se>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85D5110E7F3;
+	Fri, 20 Feb 2026 08:37:55 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B36D10E7F1;
+ Fri, 20 Feb 2026 08:37:54 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0548607664124769304=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Attempt_to_fixup_reset=2C_w?=
+ =?utf-8?q?edge=2C_unload_corner_cases?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zhanjun Dong" <zhanjun.dong@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 20 Feb 2026 08:37:54 -0000
+Message-ID: <177157667421.269206.14160924052781401922@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260219180701.2418453-1-zhanjun.dong@intel.com>
+In-Reply-To: <20260219180701.2418453-1-zhanjun.dong@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -51,33 +36,143 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+--===============0548607664124769304==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Once the known issues are addressed, it should be safe to enable the
-driver.
+== Series Details ==
 
-Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/i915/Kconfig | 1 -
- 1 file changed, 1 deletion(-)
+Series: Attempt to fixup reset, wedge, unload corner cases
+URL   : https://patchwork.freedesktop.org/series/161847/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-index 5e939004b6463..40a9234e6e5dc 100644
---- a/drivers/gpu/drm/i915/Kconfig
-+++ b/drivers/gpu/drm/i915/Kconfig
-@@ -3,7 +3,6 @@ config DRM_I915
- 	tristate "Intel 8xx/9xx/G3x/G4x/HD Graphics"
- 	depends on DRM
- 	depends on X86 && PCI
--	depends on !PREEMPT_RT
- 	select INTEL_GTT if X86
- 	select INTERVAL_TREE
- 	# we need shmfs for the swappable backing store, and in particular
--- 
-2.51.0
+== Summary ==
 
+CI Bug Log - changes from xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c_BAT -> xe-pw-161847v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-161847v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#7249])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161847v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6519])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161847v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+  [Intel XE#7249]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8762 -> IGT_8763
+  * Linux: xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c -> xe-pw-161847v1
+
+  IGT_8762: d3c67e0f1fa76ac3d71095825bbc9df0d307e4fc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8763: 8763
+  xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c: cc2c646d39200973cc76d0fa0851d73c9636c27c
+  xe-pw-161847v1: 161847v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161847v1/index.html
+
+--===============0548607664124769304==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Attempt to fixup reset, wedge, unload corner cases</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161847/">https://patchwork.freedesktop.org/series/161847/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161847v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161847v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c_BAT -&gt; xe-pw-161847v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-161847v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161847v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249">Intel XE#7249</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161847v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8762 -&gt; IGT_8763</li>
+<li>Linux: xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c -&gt; xe-pw-161847v1</li>
+</ul>
+<p>IGT_8762: d3c67e0f1fa76ac3d71095825bbc9df0d307e4fc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8763: 8763<br />
+  xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c: cc2c646d39200973cc76d0fa0851d73c9636c27c<br />
+  xe-pw-161847v1: 161847v1</p>
+
+</body>
+</html>
+
+--===============0548607664124769304==--
