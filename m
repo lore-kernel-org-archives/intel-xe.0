@@ -4,63 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B973C55162
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Feb 2026 08:31:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11922C54FCC
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Feb 2026 08:33:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E73A810E209;
-	Fri, 20 Feb 2026 08:31:38 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TRTzkVfe";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59AB510E209;
- Fri, 20 Feb 2026 08:31:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771576299; x=1803112299;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=CLd+jDq+JY8wl40+mKzVQ42ndGvdMUR60X6IjH9vRNc=;
- b=TRTzkVfe2rb5saTbdDlwgkIGeRFohcXE1NRtxLv96lBXE/Cc7wi34iFs
- xoDtlfpTY+/oe48hz+NvCPK8CLDceSK+/+l01nppGvY28rm/LPooumYWt
- AcI85L/92ddG+eMv7sLBgPJ9anRvwfueq7Q2mu6xoyVTKg9EGw+ktGW1N
- RacWeq53Ythrrn+p93WhmDGbJ6M+d8CcngcdSe7FLJuw1hPsEzgZvR54i
- nFWFJqeHPo79elfcKDfgAJ6m0CTIQxG10Q9kV7lMXJSv/e+M5cnzT0N/i
- axEqUSDw4T2Xy2ZhLOw7eSLRSuni8uU+jbHO1ORXfuhsZKQl1UkhpON84 Q==;
-X-CSE-ConnectionGUID: ROvk64FETxKwzadxx+5dxQ==
-X-CSE-MsgGUID: JIZhhX00TeyroPC+o3kG/A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11706"; a="71693391"
-X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; d="scan'208";a="71693391"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2026 00:31:38 -0800
-X-CSE-ConnectionGUID: dLsxdRtyRmSbRxyT7HJe/w==
-X-CSE-MsgGUID: ov8T7BZNSAC7UU586oczYg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; d="scan'208";a="219342577"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.24])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Feb 2026 00:31:34 -0800
-Date: Fri, 20 Feb 2026 10:31:31 +0200
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-next-fixes
-Message-ID: <aZgb43cDcTPBYssk@jlahtine-mobl>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A85B110E209;
+	Fri, 20 Feb 2026 08:33:08 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B7AB10E209;
+ Fri, 20 Feb 2026 08:33:07 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8530470235225582771=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv4?=
+ =?utf-8?q?=2C1/1=5D_drm/xe/gsc=3A_Fix_GSC_proxy_cleanup_on_early_initializa?=
+ =?utf-8?q?tion_failure?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Zhanjun Dong" <zhanjun.dong@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 20 Feb 2026 08:33:07 -0000
+Message-ID: <177157638715.269145.14596770415126879745@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260219173128.2414504-1-zhanjun.dong@intel.com>
+In-Reply-To: <20260219173128.2414504-1-zhanjun.dong@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,41 +37,142 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave & Sima,
+--===============8530470235225582771==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Here's drm-intel-next-fixes PR towards 7.0-rc1.
+== Series Details ==
 
-Just one display fix to DP mode validation.
+Series: series starting with [v4,1/1] drm/xe/gsc: Fix GSC proxy cleanup on early initialization failure
+URL   : https://patchwork.freedesktop.org/series/161846/
+State : success
 
-Regards, Joonas
+== Summary ==
 
-***
+CI Bug Log - changes from xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c_BAT -> xe-pw-161846v1_BAT
+====================================================
 
-drm-intel-next-fixes-2026-02-20:
+Summary
+-------
 
-- Add missing slice count check during DP mode validation
+  **SUCCESS**
 
-The following changes since commit 57b85fd53fccfdf14ce7b36d919c31aa752255f8:
+  No regressions found.
 
-  drm/i915/acpi: free _DSM package when no connectors (2026-02-12 08:03:11 +0200)
+  
 
-are available in the Git repository at:
+Participating hosts (13 -> 14)
+------------------------------
 
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-fixes-2026-02-20
+  Additional (1): bat-bmg-3 
 
-for you to fetch changes up to 777a02812f739af9e349cd0f695400a1d84053f4:
+Known issues
+------------
 
-  drm/i915/dp: Add missing slice count check during mode validation (2026-02-17 18:31:16 +0200)
+  Here are the changes found in xe-pw-161846v1_BAT that come from known issues:
 
-----------------------------------------------------------------
-- Add missing slice count check during DP mode validation
+### IGT changes ###
 
-----------------------------------------------------------------
-Imre Deak (1):
-      drm/i915/dp: Add missing slice count check during mode validation
+#### Issues hit ####
 
- drivers/gpu/drm/i915/display/intel_dp.c | 3 +++
- 1 file changed, 3 insertions(+)
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#7249])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161846v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:
+    - bat-bmg-3:          NOTRUN -> [SKIP][3] ([Intel XE#6566]) +3 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161846v1/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html
+
+  
+  [Intel XE#6566]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566
+  [Intel XE#7249]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8762 -> IGT_8763
+  * Linux: xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c -> xe-pw-161846v1
+
+  IGT_8762: d3c67e0f1fa76ac3d71095825bbc9df0d307e4fc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8763: 8763
+  xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c: cc2c646d39200973cc76d0fa0851d73c9636c27c
+  xe-pw-161846v1: 161846v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161846v1/index.html
+
+--===============8530470235225582771==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [v4,1/1] drm/xe/gsc: Fix GSC proxy cleanup on early initialization failure</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161846/">https://patchwork.freedesktop.org/series/161846/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161846v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161846v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c_BAT -&gt; xe-pw-161846v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 14)</h2>
+<p>Additional (1): bat-bmg-3 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-161846v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161846v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249">Intel XE#7249</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:</p>
+<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161846v1/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566">Intel XE#6566</a>) +3 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8762 -&gt; IGT_8763</li>
+<li>Linux: xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c -&gt; xe-pw-161846v1</li>
+</ul>
+<p>IGT_8762: d3c67e0f1fa76ac3d71095825bbc9df0d307e4fc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8763: 8763<br />
+  xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c: cc2c646d39200973cc76d0fa0851d73c9636c27c<br />
+  xe-pw-161846v1: 161846v1</p>
+
+</body>
+</html>
+
+--===============8530470235225582771==--
