@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49476C53214
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED3E8C53215
 	for <intel-xe@archiver.kernel.org>; Fri, 20 Feb 2026 05:02:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0931B10E786;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE4DB10E788;
 	Fri, 20 Feb 2026 05:02:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HuoJFl1w";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="StJ1hVgV";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48B0010E783;
- Fri, 20 Feb 2026 05:02:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 82CE310E78D;
+ Fri, 20 Feb 2026 05:02:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771563751; x=1803099751;
+ t=1771563761; x=1803099761;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8RZ96fL0F6NTlriwPhUCyBXq5ZSRIYw/RzPsEmHQkQQ=;
- b=HuoJFl1w523l4QyXarqtXUNHYPU5GZjPNxjbGD8BRWPjDEVMq2m1HrUb
- eijzXBJs0Pf6C85v4/bL4AqMob6q7J2gJoFJt1g7ZJn4nYuZPOYjQTZ4r
- rQHpCs5Z5Oplp33IkeTzQQuTARJ53faVnvrgse58xx5SBrFeBGyLltEZH
- pAhIueDgd6drkIvsGLQoFucjgJ0QC3DKIiG3QWJOaCdDCbwoHZpg/ZHBA
- BQjZRgtTQPcXhJvMBoo8n1f3HmjKBlx9d3RCyl8705zr+xO2TA+Y6UPnh
- j+kdtTaipmXhtPzzOp3xpMcokf08pJ8fRENFMe+KFy6Yi/gJqxwy8KvY3 Q==;
-X-CSE-ConnectionGUID: KL+yNrUUT+GPMHKnam87CQ==
-X-CSE-MsgGUID: pqtiTEVaQcGquoUB8da7Rg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11706"; a="72758230"
-X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; d="scan'208";a="72758230"
+ bh=TA+JSycETjy4/xeKnU2NvMg/OsivTbPmvketng5e4+4=;
+ b=StJ1hVgVeKq5WjZhVsXuAI9CDXhC8MjMqwUdkZ9QRpTVkfgiBcFQrTKC
+ PL/5zPRNThpLD52DTnAUs9fKJSn75Dbccw2tvVpl5r7JlKtvQlua57+E0
+ tJD+/CWe6O7cYerbziSY6TmNuYJ26eDkk5cP3z0DBgfs9oO4BExFfMF/S
+ VIBsLEfL186qd37X6oA5xAeJVs2d15R7zQFSy5Hs4yPUIGQsHZqYAUN10
+ UPgAyM/Kv97cjq1OsnCa5wosCEBsICSXEWjqeuNY7E7YklbypxbqLi3V/
+ 91q9bpI0BEZLsvPV7Z3FmbA4NQZYsYtfcn9i/WqSWkWLZ6+A403SiaTIG w==;
+X-CSE-ConnectionGUID: +x+WOBiHR1qcpoXOsMsHeg==
+X-CSE-MsgGUID: xnV3mtPZTmSw/K47ZMUwwg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11706"; a="72758243"
+X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; d="scan'208";a="72758243"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2026 21:02:31 -0800
-X-CSE-ConnectionGUID: sT3d2AXjQ8iYam4jKT0M+Q==
-X-CSE-MsgGUID: liWzZJ7hRQS9pb6qT7Vy/w==
+ 19 Feb 2026 21:02:41 -0800
+X-CSE-ConnectionGUID: EiK6AGhjQYmwwj99Zywgtw==
+X-CSE-MsgGUID: nhu++IWZQh+3yEvqQpK1Iw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; d="scan'208";a="218894639"
+X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; d="scan'208";a="218894660"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa003.jf.intel.com with ESMTP; 19 Feb 2026 21:02:29 -0800
+ by orviesa003.jf.intel.com with ESMTP; 19 Feb 2026 21:02:39 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 3/8] drm/i915/backlight: Take luminance_set into account for
- VESA backlight
-Date: Fri, 20 Feb 2026 10:32:12 +0530
-Message-Id: <20260220050217.2453681-4-suraj.kandpal@intel.com>
+Subject: [PATCH 8/8] drm/i915/backlight: Avoid 0 brightness for INTEL AUX HDR
+ backlight by default
+Date: Fri, 20 Feb 2026 10:32:17 +0530
+Message-Id: <20260220050217.2453681-9-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260220050217.2453681-1-suraj.kandpal@intel.com>
 References: <20260220050217.2453681-1-suraj.kandpal@intel.com>
@@ -68,31 +68,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When deciding what functions to enable to help control backlight we
-used to only check aux_enable. Now with PANEL_LUMINANCE_OVERRIDE in
-picture we need to take care that we do not enable PWM function if
-luminance_set is set.
+Whenever the minimum brightness is reported as 0 there are chances
+we maybe sometimes end up with blank screen. This confuses the user
+into thinking the display is acting weird. This occurs in eDP 1.4b
+when we use proprietary INTEL AUX HDR DPCD registers to manipulate
+brightness via luminance values. Make sure if minimum luminance
+range is 0 we program the default luminance value to max, if
+brightness level is reported as 0.
 
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15671
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+v1 -> v2:
+- Let users set brightness to 0, make it so that it's just not
+done by default (Arun)
+
+ drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index 05d6d033f60b..cb39696491a1 100644
+index aac6cdb5b69b..725370bcfa3b 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -486,7 +486,8 @@ intel_dp_aux_vesa_enable_backlight(const struct intel_crtc_state *crtc_state,
- 	struct intel_panel *panel = &connector->panel;
- 	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
+@@ -442,6 +442,8 @@ intel_dp_aux_hdr_setup_backlight(struct intel_connector *connector, enum pipe pi
  
--	if (!panel->backlight.edp.vesa.info.aux_enable) {
-+	if (!(panel->backlight.edp.vesa.info.aux_enable ||
-+	      panel->backlight.edp.vesa.info.luminance_set)) {
- 		u32 pwm_level;
+ 	panel->backlight.level = intel_dp_aux_hdr_get_backlight(connector, pipe);
+ 	panel->backlight.enabled = panel->backlight.level != 0;
++	if (!panel->backlight.level)
++		panel->backlight.level = panel->backlight.max;
  
- 		if (!panel->backlight.edp.vesa.info.aux_set)
+ 	return 0;
+ }
 -- 
 2.34.1
 
