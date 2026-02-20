@@ -4,36 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1190C55162
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Feb 2026 08:37:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 449AEC54FCC
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Feb 2026 08:37:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03EDA10E7A5;
-	Fri, 20 Feb 2026 08:37:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA5C610E7AA;
+	Fri, 20 Feb 2026 08:37:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Ev9nFH96";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="lC8IysW3";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76A2510E7A2;
- Fri, 20 Feb 2026 08:37:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00AAE10E7A6;
+ Fri, 20 Feb 2026 08:37:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1771576629;
- bh=3DZgJsq9cXtJcxxoTli6qqSG9rAnN2F4n5NlIb7zR3g=;
+ s=default; t=1771576632;
+ bh=Pr02vlxwRsiizKg8kzf2j4MUH4jROzjEfn4Qba2lZTM=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Ev9nFH96B0fcrZCQaMktJQZ93UahbVulRs+oZwk0wGheiSa40qhf9WA8eT6oLEa0A
- T2oGwvKadV/9H8NjLGqpMf2nqGiIQXe94x/1/qK+nrsY1iCNkytRJ96knjIOy6uiMF
- tS9j00EUx51o+ySYcLjgjAtHA2x3RZIplySH+XGq4zXYOtYGUNCokiIVG75cM/0PFf
- fKhrTNTfcMMCNfRkVW6JdOkRQMXUZxhvfNmQFjwlnO3nljZt7wvMWbvXhpbcO6VeTO
- bcW0/UwGCqcTUE9xha6yYjWCNIJuVM6/EIY9+j+cmBRFUKb4W0Pkrkt+Xq6Ovhc3vz
- bYce+XaKjvGdg==
+ b=lC8IysW3ql49x62SjytARusiUasK9Uy52FxhHNSfnNjOl/Enn7DkfpKkjjsISTlYA
+ eDGrElIZMtmzHZAvPpCR/5BkbEqKvlDSN5GuzlnxYKSKhZQ5AgnutMfeugIUPxE9rS
+ 8CjP5DNkfkdwlZJQHy6x4T3QVNoCeNJgkZqOxbIVjD21BecY5IkKdF1uPCQDKvMA64
+ xj6OVk250nCn/HPg2MSZIgYqNbDSJh4erYUAbFg31h9oncOxDz5Y40UsGTBBSXGsyn
+ 5e0GfUnZtJ+WqTpt0jdalnJEMr282/JoSqKlZtTU0X6+XUTdqtPmbqrMGJ53YlJP7M
+ kv3/VwKc87ogw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: linux-rt-devel@lists.linux.dev, dri-devel@lists.freedesktop.org,
  Maarten Lankhorst <dev@lankhorst.se>
-Subject: [i915-rt v6 02/24] drm/vblank: Add a 2-stage version of
- drm_crtc_arm_vblank_event
-Date: Fri, 20 Feb 2026 09:37:00 +0100
-Message-ID: <20260220083657.28815-28-dev@lankhorst.se>
+Subject: [i915-rt v6 04/24] drm/intel/display: Convert vblank event handling
+ to 2-stage arming
+Date: Fri, 20 Feb 2026 09:37:02 +0100
+Message-ID: <20260220083657.28815-30-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260220083657.28815-26-dev@lankhorst.se>
 References: <20260220083657.28815-26-dev@lankhorst.se>
@@ -53,144 +53,153 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When trying to fix the hardware programming in intel/display, I had
-to take all the vblank locks with local_irqs_disabled(). This
-required converting the entire vblank code to raw spinlocks.
+This is converts the vblank functions to be called with interrupts
+disabled, even on PREEMPT_RT kernels.
 
-In the alternative approach, do all preparations in advance, and only
-enable the vblank_event with interrupts disabled, this requires only
-a simple write and prevents a complete re-architecture of the code.
+Because the PREEMPT_RT kernel converts all spinlocks to rt-mutexes,
+the normal vblank functions cannot be used inside the critical section.
+
+Instead, prepare the vblank at the start, and then enable the vblank
+work after the hardware programming is completed.
+
+This allows us to keep programming the hardware with interrupts
+disabled, and still schedule completion on PREEMPT_RT on next vblank.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/drm_vblank.c | 61 +++++++++++++++++++++++++++++++++++-
- include/drm/drm_vblank.h     | 14 ++++++++-
- 2 files changed, 73 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crtc.c | 84 ++++++++++++-----------
+ 1 file changed, 44 insertions(+), 40 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index 42fe11cc139b9..1a84a69e99810 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -1118,12 +1118,68 @@ void drm_crtc_arm_vblank_event(struct drm_crtc *crtc,
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index 663011af37e95..36a9685958bad 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -480,6 +480,10 @@ static void intel_crtc_vblank_work_init(struct intel_crtc_state *crtc_state)
  
- 	assert_spin_locked(&dev->event_lock);
- 
-+	WARN_ON(e->postponed);
- 	e->pipe = pipe;
- 	e->sequence = drm_crtc_accurate_vblank_count(crtc) + 1;
- 	list_add_tail(&e->base.link, &dev->vblank_event_list);
+ 	drm_vblank_work_init(&crtc_state->vblank_work, &crtc->base,
+ 			     intel_crtc_vblank_work);
++
++	drm_vblank_work_schedule_disabled(&crtc_state->vblank_work,
++					  drm_crtc_accurate_vblank_count(&crtc->base) + 1);
++
+ 	/*
+ 	 * Interrupt latency is critical for getting the vblank
+ 	 * work executed as early as possible during the vblank.
+@@ -525,6 +529,21 @@ int intel_scanlines_to_usecs(const struct drm_display_mode *adjusted_mode,
+ 				adjusted_mode->crtc_clock);
  }
- EXPORT_SYMBOL(drm_crtc_arm_vblank_event);
  
-+/**
-+ * drm_crtc_prepare_arm_vblank_event - arm vblank event *before* pageflip.
-+ * @crtc: the source CRTC of the vblank event
-+ * @e: the event to send
-+ *
-+ * See drm_crtc_arm_vblank_event(). This function is a 2-stage version of
-+ * that call. This function is called *BEFORE* programming the hardware.
-+ *
-+ * After programming, call drm_crtc_arm_prepared_vblank_event() and the
-+ * event will be scheduled on the next vblank.
-+ *
-+ * This is mainly useful for code that has to run on PREEMPT_RT kernels,
-+ * with interrupts disabled, since all vblank spinlocks are converted to
-+ * rtmutexes, and code running with irqs disabled cannot take any vblank lock.
-+ *
-+ * It also increases determinism for any hardware
-+ * programming, since no vblank related locks are taking when arming.
-+ */
-+void drm_crtc_prepare_arm_vblank_event(struct drm_crtc *crtc,
-+				       struct drm_pending_vblank_event *e)
++static void intel_crtc_arm_vblank_event(struct intel_crtc_state *crtc_state)
 +{
-+	drm_crtc_arm_vblank_event(crtc, e);
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	unsigned long irqflags;
 +
-+	/* Set the flag, so that the event is not fired yet */
-+	e->postponed = true;
++	if (!crtc_state->uapi.event)
++		return;
++
++	drm_WARN_ON(crtc->base.dev, drm_crtc_vblank_get(&crtc->base) != 0);
++
++	spin_lock_irqsave(&crtc->base.dev->event_lock, irqflags);
++	drm_crtc_prepare_arm_vblank_event(&crtc->base, crtc_state->uapi.event);
++	spin_unlock_irqrestore(&crtc->base.dev->event_lock, irqflags);
 +}
-+EXPORT_SYMBOL(drm_crtc_prepare_arm_vblank_event);
-+
-+/**
-+ * drm_crtc_arm_prepared_vblank_event - arm prepared vblank event *after* pageflip.
-+ * @crtc: the source CRTC of the vblank event
-+ * @e: the event to send
-+ *
-+ * See drm_crtc_prepare_arm_vblank_event(). This function is a 2-stage version of
-+ * that call. This function is called directly *AFTER* programming the hardware.
-+ *
-+ * Before this function is called, drm_crtc_prepare_arm_vblank_event() should be
-+ * called instead.
-+ *
-+ * This is mainly useful for code that has to run on PREEMPT_RT kernels,
-+ * with interrupts disabled, since all vblank spinlocks are converted to
-+ * rtmutexes, and code running with irqs disabled cannot take any vblank lock.
-+ *
-+ * It also increases determinism for any hardware
-+ * programming, since no vblank related locks are taking when arming.
-+ */
-+void drm_crtc_arm_prepared_vblank_event(struct drm_pending_vblank_event *e)
-+{
-+	WARN_ON(!e->postponed);
-+
-+	/* remove the flag to be processed as a normal event */
-+	WRITE_ONCE(e->postponed, false);
-+}
-+EXPORT_SYMBOL(drm_crtc_arm_prepared_vblank_event);
 +
  /**
-  * drm_crtc_send_vblank_event - helper to send vblank event after pageflip
-  * @crtc: the source CRTC of the vblank event
-@@ -1381,6 +1437,8 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc)
- 	list_for_each_entry_safe(e, t, &dev->vblank_event_list, base.link) {
- 		if (e->pipe != pipe)
- 			continue;
-+
-+		WARN_ON(e->postponed);
- 		drm_dbg_core(dev, "Sending premature vblank event on disable: "
- 			     "wanted %llu, current %llu\n",
- 			     e->sequence, seq);
-@@ -1886,7 +1944,8 @@ static void drm_handle_vblank_events(struct drm_device *dev, unsigned int pipe)
- 	seq = drm_vblank_count_and_time(dev, pipe, &now);
+  * intel_pipe_update_start() - start update of a set of display registers
+  * @state: the atomic state
+@@ -561,6 +580,8 @@ void intel_pipe_update_start(struct intel_atomic_state *state,
  
- 	list_for_each_entry_safe(e, t, &dev->vblank_event_list, base.link) {
--		if (e->pipe != pipe)
-+		/* Matches WRITE_ONCE in drm_crtc_arm_prepared_vblank_event() */
-+		if (e->pipe != pipe || READ_ONCE(e->postponed))
- 			continue;
- 		if (!drm_vblank_passed(seq, e->sequence))
- 			continue;
-diff --git a/include/drm/drm_vblank.h b/include/drm/drm_vblank.h
-index 2fcef9c0f5b1b..956d5621eb7f9 100644
---- a/include/drm/drm_vblank.h
-+++ b/include/drm/drm_vblank.h
-@@ -53,6 +53,13 @@ struct drm_pending_vblank_event {
- 	 * @sequence: frame event should be triggered at
- 	 */
- 	u64 sequence;
+ 	if (intel_crtc_needs_vblank_work(new_crtc_state))
+ 		intel_crtc_vblank_work_init(new_crtc_state);
++	else
++		intel_crtc_arm_vblank_event(new_crtc_state);
+ 
+ 	if (state->base.legacy_cursor_update) {
+ 		struct intel_plane *plane;
+@@ -638,23 +659,6 @@ static void dbg_vblank_evade(struct intel_crtc *crtc, ktime_t end)
+ static void dbg_vblank_evade(struct intel_crtc *crtc, ktime_t end) {}
+ #endif
+ 
+-static void intel_crtc_arm_vblank_event(struct intel_crtc_state *crtc_state)
+-{
+-	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+-	unsigned long irqflags;
+-
+-	if (!crtc_state->uapi.event)
+-		return;
+-
+-	drm_WARN_ON(crtc->base.dev, drm_crtc_vblank_get(&crtc->base) != 0);
+-
+-	spin_lock_irqsave(&crtc->base.dev->event_lock, irqflags);
+-	drm_crtc_arm_vblank_event(&crtc->base, crtc_state->uapi.event);
+-	spin_unlock_irqrestore(&crtc->base.dev->event_lock, irqflags);
+-
+-	crtc_state->uapi.event = NULL;
+-}
+-
+ void intel_crtc_prepare_vblank_event(struct intel_crtc_state *crtc_state,
+ 				     struct drm_pending_vblank_event **event)
+ {
+@@ -708,29 +712,10 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
+ 	 * event outside of the critical section - the spinlock might spin for a
+ 	 * while ... */
+ 	if (intel_crtc_needs_vblank_work(new_crtc_state)) {
+-		drm_vblank_work_schedule(&new_crtc_state->vblank_work,
+-					 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
+-					 false);
+-	} else {
+-		intel_crtc_arm_vblank_event(new_crtc_state);
+-	}
+-
+-	if (state->base.legacy_cursor_update) {
+-		struct intel_plane *plane;
+-		struct intel_plane_state *old_plane_state;
+-		int i;
+-
+-		for_each_old_intel_plane_in_state(state, plane, old_plane_state, i) {
+-			if (old_plane_state->hw.crtc == &crtc->base &&
+-			    old_plane_state->unpin_work.vblank) {
+-				drm_vblank_work_schedule(&old_plane_state->unpin_work,
+-							 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
+-							 false);
+-
+-				/* Remove plane from atomic state, cleanup/free is done from vblank worker. */
+-				memset(&state->base.planes[i], 0, sizeof(state->base.planes[i]));
+-			}
+-		}
++		drm_vblank_work_enable(&new_crtc_state->vblank_work);
++	} else if (new_crtc_state->uapi.event) {
++		drm_crtc_arm_prepared_vblank_event(new_crtc_state->uapi.event);
++		new_crtc_state->uapi.event = NULL;
+ 	}
+ 
+ 	/*
+@@ -754,6 +739,25 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
+ 
+ 	local_irq_enable();
+ 
++	/* Run after local_irq_enable(), not timing sensitive */
++	if (state->base.legacy_cursor_update) {
++		struct intel_plane *plane;
++		struct intel_plane_state *old_plane_state;
++		int i;
 +
-+	/**
-+	 * @postponed: whether drm_crtc_prepare_arm_vblank_event() is called,
-+	 * and drm_crtc_arm_prepared_vblank_event has yet to be called to arm.
-+	 */
-+	bool postponed;
++		for_each_old_intel_plane_in_state(state, plane, old_plane_state, i) {
++			if (old_plane_state->hw.crtc == &crtc->base &&
++			    old_plane_state->unpin_work.vblank) {
++				drm_vblank_work_schedule(&old_plane_state->unpin_work,
++							 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
++							 false);
 +
- 	/**
- 	 * @event: Actual event which will be sent to userspace.
- 	 */
-@@ -294,7 +301,12 @@ int drm_crtc_next_vblank_start(struct drm_crtc *crtc, ktime_t *vblanktime);
- void drm_crtc_send_vblank_event(struct drm_crtc *crtc,
- 			       struct drm_pending_vblank_event *e);
- void drm_crtc_arm_vblank_event(struct drm_crtc *crtc,
--			      struct drm_pending_vblank_event *e);
-+			       struct drm_pending_vblank_event *e);
++				/* Remove plane from atomic state, cleanup/free is done from vblank worker. */
++				memset(&state->base.planes[i], 0, sizeof(state->base.planes[i]));
++			}
++		}
++	}
 +
-+void drm_crtc_prepare_arm_vblank_event(struct drm_crtc *crtc,
-+				       struct drm_pending_vblank_event *e);
-+void drm_crtc_arm_prepared_vblank_event(struct drm_pending_vblank_event *e);
-+
- void drm_vblank_set_event(struct drm_pending_vblank_event *e,
- 			  u64 *seq,
- 			  ktime_t *now);
+ 	if (intel_parent_vgpu_active(display))
+ 		goto out;
+ 
 -- 
 2.51.0
 
