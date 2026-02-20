@@ -4,28 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11922C54FCC
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Feb 2026 08:33:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49744C54FCC
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Feb 2026 08:37:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A85B110E209;
-	Fri, 20 Feb 2026 08:33:08 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B7AB10E209;
- Fri, 20 Feb 2026 08:33:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8530470235225582771=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 018DA10E209;
+	Fri, 20 Feb 2026 08:37:11 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="h2SWT7nM";
+	dkim-atps=neutral
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80B7D10E209;
+ Fri, 20 Feb 2026 08:37:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1771576627;
+ bh=ribdt2XKZLFzHEjet/mJhvsCBSi9vQGY9MjGkJmA/HM=;
+ h=From:To:Cc:Subject:Date:From;
+ b=h2SWT7nM4N0zAYlOZ/RkzO6qEIRDBg8bBgzGbjuW2JbOyU62tT/q2u6HEWQO/kmwf
+ cXX0KsWP2BDypx6B6+eMhaMBb/Fbt2FIEmN9jO6d8tdv1elSIB9QmQPKt1f4iPPceO
+ gQ6Qeka7raP5+TVuDCkfoR/HA4Sy6u7L6UQnMreWEe4nkrXV1sGAf/zK43qwHYNsUv
+ iT5osqkMbqXq3XtEXh8h2k3n+HU8gXUjvbtzNSRJPY4yR+UKtDtZGrHzcZ2vo9cake
+ m2Uq58xDRbn3qtxLEKvG4RRTTqCF8nRu39Dx1Ll/bn/Qgy1fK7jdc0qkqhjDQKFAjR
+ 0Glsc74GdREfA==
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: linux-rt-devel@lists.linux.dev, dri-devel@lists.freedesktop.org,
+ Maarten Lankhorst <dev@lankhorst.se>
+Subject: [i915-rt v6 00/24] drm/i915/display: All patches to make PREEMPT_RT
+ work on i915 + xe.
+Date: Fri, 20 Feb 2026 09:36:58 +0100
+Message-ID: <20260220083657.28815-26-dev@lankhorst.se>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5Bv4?=
- =?utf-8?q?=2C1/1=5D_drm/xe/gsc=3A_Fix_GSC_proxy_cleanup_on_early_initializa?=
- =?utf-8?q?tion_failure?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Zhanjun Dong" <zhanjun.dong@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 20 Feb 2026 08:33:07 -0000
-Message-ID: <177157638715.269145.14596770415126879745@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260219173128.2414504-1-zhanjun.dong@intel.com>
-In-Reply-To: <20260219173128.2414504-1-zhanjun.dong@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,142 +48,96 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8530470235225582771==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+New version, new approach!
 
-== Series Details ==
+A lot of the problems with PREEMPT_RT happen because of the current vblank
+handling. The real solution is making it more deterministic.
 
-Series: series starting with [v4,1/1] drm/xe/gsc: Fix GSC proxy cleanup on early initialization failure
-URL   : https://patchwork.freedesktop.org/series/161846/
-State : success
+After calling local_irq_disable(), all kinds of register reads/writes are
+done until interrupts are enabled again, without any lock used at all.
 
-== Summary ==
+Patch 1-10 fixes all code related to vblank handling.
+Patch 11-14 fixes all accidental locking in the atomic commit path.
+Patch 15 is a standalone fix for interrupts, will probably push if xe results are clean.
+Patch 16-20 fix problems in i915 specific driver code.
+Patch 21, 23 and 24 are broken, but silences i915 in CI, should not be upstreamed.
+Finally, patch 22 enables PREEMPT_RT on i915 too.
 
-CI Bug Log - changes from xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c_BAT -> xe-pw-161846v1_BAT
-====================================================
+There are still failures on CI because of the uncore lock being problematic.
 
-Summary
--------
+Still, I hope this series makes both the PREEMPT_RT devs and intel/display
+folk equally (un)happy with this sequence:
 
-  **SUCCESS**
+local_irq_disable()
+bunch of timing sensitive register writes without a single lock
+local_irq_enable()
 
-  No regressions found.
+Maarten Lankhorst (19):
+  drm/vblank_work: Add methods to schedule vblank_work in 2 stages
+  drm/vblank: Add a 2-stage version of drm_crtc_arm_vblank_event
+  drm/intel/display: Make intel_crtc_arm_vblank_event static
+  drm/intel/display: Convert vblank event handling to 2-stage arming
+  drm/i915/display: Move vblank put until after critical section
+  drm/i915/display: Remove locking from intel_vblank_evade critical
+    section
+  drm/i915/display: Handle vlv dsi workaround in scanline_in_safe_range
+    too
+  drm/i915/display: Make get_vblank_counter use intel_de_read_fw()
+  drm/i915/display: Do not take uncore lock in i915_get_vblank_counter
+  drm/i915/display: Make icl_dsi_frame_update use _fw too
+  drm/i915/display: Use intel_de_read/write_fw in colorops
+  drm/i915/display: Use intel_de_write_fw in intel_pipe_fastset
+  drm/i915/display: Make set_pipeconf use the fw variants
+  drm/i915/display: Fix intel_lpe_audio_irq_handler for PREEMPT-RT
+  drm/i915/gt: Fix selftests on PREEMPT_RT
+  drm/i915/gt: Set stop_timeout() correctly on PREEMPT-RT
+  drm/i915/display: Remove uncore lock from vlv_atomic_update_fifo
+  PREEMPT_RT injection
+  FOR-CI: bump MAX_STACK_TRACE_ENTRIES
 
-  
+Mike Galbraith (1):
+  drm/i915: Use preempt_disable/enable_rt() where recommended
 
-Participating hosts (13 -> 14)
-------------------------------
+Sebastian Andrzej Siewior (4):
+  drm/i915/gt: Use spin_lock_irq() instead of local_irq_disable() +
+    spin_lock()
+  drm/i915: Drop the irqs_disabled() check
+  drm/i915/guc: Consider also RCU depth in busy loop.
+  Revert "drm/i915: Depend on !PREEMPT_RT."
 
-  Additional (1): bat-bmg-3 
+ drivers/gpu/drm/drm_vblank.c                  |  61 +++++++++-
+ drivers/gpu/drm/drm_vblank_work.c             | 106 ++++++++++++----
+ drivers/gpu/drm/i915/Kconfig                  |   1 -
+ drivers/gpu/drm/i915/Kconfig.debug            |  15 ---
+ drivers/gpu/drm/i915/display/i9xx_wm.c        |   4 -
+ drivers/gpu/drm/i915/display/icl_dsi.c        |   4 +-
+ drivers/gpu/drm/i915/display/intel_color.c    |   6 +-
+ drivers/gpu/drm/i915/display/intel_crtc.c     |  86 ++++++-------
+ drivers/gpu/drm/i915/display/intel_crtc.h     |   1 -
+ drivers/gpu/drm/i915/display/intel_cursor.c   |   8 +-
+ drivers/gpu/drm/i915/display/intel_de.h       |   8 ++
+ drivers/gpu/drm/i915/display/intel_display.c  |  46 +++----
+ .../gpu/drm/i915/display/intel_lpe_audio.c    |   2 +-
+ drivers/gpu/drm/i915/display/intel_vblank.c   | 115 ++++++++++--------
+ drivers/gpu/drm/i915/display/intel_vblank.h   |   1 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      |  18 +--
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   2 +-
+ .../drm/i915/gt/intel_execlists_submission.c  |  17 +--
+ drivers/gpu/drm/i915/gt/selftest_engine_pm.c  |   8 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   2 +-
+ drivers/gpu/drm/i915/i915_request.c           |   2 -
+ drivers/gpu/drm/i915/intel_uncore.h           |  26 ++--
+ drivers/gpu/drm/xe/Kconfig.debug              |   5 +
+ .../drm/xe/compat-i915-headers/intel_uncore.h |   7 ++
+ include/drm/drm_vblank.h                      |  14 ++-
+ include/drm/drm_vblank_work.h                 |  12 ++
+ kernel/Kconfig.preempt                        |   4 +-
+ lib/Kconfig.debug                             |   4 +-
+ 28 files changed, 376 insertions(+), 209 deletions(-)
 
-Known issues
-------------
+-- 
+2.51.0
 
-  Here are the changes found in xe-pw-161846v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#7249])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161846v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:
-    - bat-bmg-3:          NOTRUN -> [SKIP][3] ([Intel XE#6566]) +3 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161846v1/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html
-
-  
-  [Intel XE#6566]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566
-  [Intel XE#7249]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249
-
-
-Build changes
--------------
-
-  * IGT: IGT_8762 -> IGT_8763
-  * Linux: xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c -> xe-pw-161846v1
-
-  IGT_8762: d3c67e0f1fa76ac3d71095825bbc9df0d307e4fc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8763: 8763
-  xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c: cc2c646d39200973cc76d0fa0851d73c9636c27c
-  xe-pw-161846v1: 161846v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161846v1/index.html
-
---===============8530470235225582771==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v4,1/1] drm/xe/gsc: Fix GSC proxy cleanup on early initialization failure</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161846/">https://patchwork.freedesktop.org/series/161846/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161846v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161846v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c_BAT -&gt; xe-pw-161846v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 14)</h2>
-<p>Additional (1): bat-bmg-3 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-161846v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161846v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249">Intel XE#7249</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:</p>
-<ul>
-<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161846v1/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566">Intel XE#6566</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8762 -&gt; IGT_8763</li>
-<li>Linux: xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c -&gt; xe-pw-161846v1</li>
-</ul>
-<p>IGT_8762: d3c67e0f1fa76ac3d71095825bbc9df0d307e4fc @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8763: 8763<br />
-  xe-4576-cc2c646d39200973cc76d0fa0851d73c9636c27c: cc2c646d39200973cc76d0fa0851d73c9636c27c<br />
-  xe-pw-161846v1: 161846v1</p>
-
-</body>
-</html>
-
---===============8530470235225582771==--
