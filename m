@@ -4,62 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CA6DC531FC
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Feb 2026 03:11:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11EDCC531E4
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Feb 2026 04:35:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32AA510E771;
-	Fri, 20 Feb 2026 03:11:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46FE310E14E;
+	Fri, 20 Feb 2026 04:35:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QQPF5aR5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IS6SDgZ6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A855010E771;
- Fri, 20 Feb 2026 03:11:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92EF810E14E
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Feb 2026 04:35:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771557075; x=1803093075;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=LtXojTxWUXHRfADAI0q8OrSPhK4G22bem2gV0RNmID4=;
- b=QQPF5aR5d715CrCt0TtYDVlaJuvusD/ntG1AHZdI9WuU3UlI56s1UWp2
- 2LYrpTumkA89V+wWq+xq7+fHpULnYDphq69QlRgIjCAePI+/ZXVOJGzpo
- uKgd10qdTC7WHYmTxfx9OLH+Ru4uUVQgS31mQA9Nu7sv3umo1YXahHaXF
- elZwYxg6d/QW0TkFh/dpNqfwxN1pBWSTBt5LoA8HDN46ZiKulv42MdBwk
- 7ytnqs31sn/9eSUDMPaFeJR/znpXr1/5Cy7gl1ZlPWkNeVIdjV7DlsDjW
- wkm2B2SL7ddl265ba2S+aRjGquXREPDmQmHiK2vxy1ZSue9Mqw96QYlxX A==;
-X-CSE-ConnectionGUID: JSlt1f65RKSE5flgJVzrxQ==
-X-CSE-MsgGUID: aqCGyKocTpaBYH0Exzvkrg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11706"; a="72715579"
-X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; d="scan'208";a="72715579"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2026 19:11:15 -0800
-X-CSE-ConnectionGUID: 7CWuCvVwSQKaTATw/mikwQ==
-X-CSE-MsgGUID: WST+IfSsSLKJOiFQly4axw==
+ t=1771562117; x=1803098117;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=JHn8fQQqGzO0glk1OR2A9aVBN2UMR0YDrgrcAVrZCzo=;
+ b=IS6SDgZ6M2q61QMyea+rcnqa+oek5PedxTWoZ5uCdRgevbTF+GG13fg3
+ sP9ySaWxp27I3GtEq8lGArOxxis9Y6I0L5Gg5eZizusC/r7QndO3GJeJH
+ ZJ+N+tizyp0GSYh4FDDZghjrwWmMuL8jSrfc6HH1E+54C725bmOjVGrhI
+ USVe9b7XdxpLQFmmwY271JgdqAbakhmMQmqBuMJaYKCgwSXQgKvptLokU
+ Q3BGPlCQLQmjrTkirNRKiwovix7aDmoY/WiJMjKFJTIXKullyxRpZTTcK
+ 3/IJMqPFHPfVo8lChKjXSkbgiCjGzPCJg9h6bMBI3QVEqS1iKhrlpb4Re A==;
+X-CSE-ConnectionGUID: 6w4p0i/JRyG5wRhb+vccGQ==
+X-CSE-MsgGUID: h3Zc3QrUSUWT79GjXeE81Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11706"; a="84019080"
+X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; d="scan'208";a="84019080"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2026 20:35:17 -0800
+X-CSE-ConnectionGUID: FgvGTsr1Q/SvcwG7KlzYSA==
+X-CSE-MsgGUID: eBBRUMNDS86qWI5sJFz06g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; d="scan'208";a="212897530"
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.244.247])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Feb 2026 19:11:14 -0800
-Date: Fri, 20 Feb 2026 05:11:10 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- imre.deak@intel.com, suraj.kandpal@intel.com
-Subject: Re: [PATCH] drm/i915/dp: On DPCD init/caps wake the DPRx
-Message-ID: <aZfQzqdS0koZQVwg@intel.com>
-References: <20260219094326.34922-1-arun.r.murthy@intel.com>
- <aZcj08k5dG4lxRNE@intel.com>
- <2f2a155d-3b2c-4cf9-b8cd-8116fe84f85a@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,301,1763452800"; d="scan'208";a="214592694"
+Received: from varungup-desk.iind.intel.com ([10.190.238.71])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Feb 2026 20:35:15 -0800
+From: Varun Gupta <varun.gupta@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, matthew.d.roper@intel.com,
+ himal.prasad.ghimiray@intel.com, priyanka.dandamudi@intel.com,
+ stuart.summers@intel.com
+Subject: [PATCH v4 0/2] drm/xe: Add prefetch pagefault support for Xe3p
+Date: Fri, 20 Feb 2026 10:05:00 +0530
+Message-ID: <20260220043502.1060473-1-varun.gupta@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <2f2a155d-3b2c-4cf9-b8cd-8116fe84f85a@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,157 +66,49 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Feb 19, 2026 at 08:42:49PM +0530, Murthy, Arun R wrote:
-> 
-> On 19-02-2026 20:23, Ville Syrjälä wrote:
-> > On Thu, Feb 19, 2026 at 03:13:26PM +0530, Arun R Murthy wrote:
-> >> Before reading the DPCD caps for eDP wake the sink device and for DP
-> >> after reading the lttpr caps and before reading the dpcd caps wake up
-> >> the sink device.
-> > Why?
-> Just to ensure that sink is awake.
-> On eDP init, as part of reading the DPCD caps during the AUX transaction 
-> its sometimes observed that the AUX tx fails with timeout. In those 
-> scenarios even if the retry is increased to 1000 AUX tx will not 
-> succeed. May be that sink is in sleep or unknown state.
-> Spec DP2.1 sec 2.11.7.1.5.8 says if there is a NO REPLY for AUX tx this 
-> can be due to illegal cmd or sink in low power state.
+Xe3p hardware prefetches memory ranges and notifies software via an
+additional bit (bit 11) in the page fault descriptor that the fault
+was caused by prefetch.
 
-That section is specifically about i2c-over-aux.
+Patch 1 adds a dedicated stats counter to track invalid prefetch
+pagefaults separately from regular faults.
 
-Generally we have retries and appropriate timeouts to deal with AUX
-having to wake up from low power state.
+Patch 2 implements the prefetch support by extracting the prefetch bit
+from the fault descriptor and echoing it in the response (bit 6) only
+when handling fails. This prevents CAT errors for prefetch faults.
+For failed prefetch faults, the error is logged at debug level to
+avoid excessive logging in production settings.
 
-Although, I suppose we might consider switching to D0 for eg. duration
-of the detection to make sure none of the AUX transactions there take
-too long. That *might* make things a bit faster (but we'd need actual
-numbers to show that). And once we're done we should switch back to D3
-to save power. Perhaps we could then also use a larger timeout just for
-the DP_SET_POWER AUX accesses, and all other AUX accesses could assume
-that the thing is awake and use a smaller timeout. Although the LTTPR
-mess probably means we can't actually reduce the timeouts :/
+Based on original patches by Brian Welty and Priyanka Dandamudi.
 
-Another slight snag in the current way of doing things is that IIRC
-we never put a device into D3 after the initial detection, unless we
-actually turned the main link on and off again. That's also something
-that could get fixed by always putting the device into D3 after
-detection. But to do that stuff safely we'd need some way to make sure
-nothing else (eg. the main link) requires the D0 at that time. So some
-kind of D0 vs. D3 reference counting scheme might be needed.
+v4:
+ - Downgrade prefetch error log to xe_gt_dbg to avoid spam (Matt Brost/ Stuart)
 
-I did consider implementing something like that years ago, but dealing
-with the reference counting seemed too messy at the time. And since I
-never implemented it I never measured it either. Perhaps things are a
-bit cleaner these days to make that easier. Dunno.
+v3:
+ - Split stats counter into separate patch (Matt Brost)
+ - Drop xe_guc_pagefault_types.h rename patch (Matt Brost)
+ - Move prefetch check to caller of xe_pagefault_print (Matt Brost)
+ - Rename XE3P_PFD_PREFETCH/PFR_PREFETCH to remove XE3P_ prefix,
+   add comments about Xe3+ platform support (Matt Brost)
+ - Rename PREFETCH_PAGEFAULT_COUNT to INVALID_PREFETCH_PAGEFAULT_COUNT
+   for clarity (Matt Brost)
+ - Include prefetch bit value in error message (Matt Brost)
 
-> 
-> So in this patch we are trying to wake the sink device.
+v2:
+ - Initial implementation combining all changes
 
-Still the same question remains: Why? What *exactly* is the problem
-you're trying to solve here?
+Varun Gupta (2):
+  drm/xe: Add counter for invalid prefetch pagefaults
+  drm/xe: Add prefetch fault support for Xe3p
 
-> 
-> Thanks and Regards,
-> Arun R Murthy
-> -------------------
-> 
-> >
-> >> Closes: https://issues.redhat.com/browse/RHEL-120913
-> >> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> >> ---
-> >>   drivers/gpu/drm/i915/display/intel_dp.c       | 41 +++++++++++++++++++
-> >>   drivers/gpu/drm/i915/display/intel_dp.h       |  1 +
-> >>   .../drm/i915/display/intel_dp_link_training.c |  3 ++
-> >>   3 files changed, 45 insertions(+)
-> >>
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> >> index 454e6144ee4e..2fbb947e6cc8 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> >> @@ -4705,6 +4705,45 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
-> >>   	intel_edp_set_data_override_rates(intel_dp);
-> >>   }
-> >>   
-> >> +void intel_dp_wake_sink(struct intel_dp *intel_dp)
-> >> +{
-> >> +	u8 value = 0;
-> >> +	int ret = 0, try = 0;
-> >> +
-> >> +	intel_dp_dpcd_set_probe(intel_dp, false);
-> >> +
-> >> +	/*
-> >> +	 * Wake the sink device
-> >> +	 * Spec DP2.1 section 2.3.1.2 if AUX CH is powered down by writing 0x02
-> >> +	 * to DP_SET_POWER dpcd reg, 1ms time would be required to wake it up
-> >> +	 */
-> >> +	while (try < 10 && ret < 0) {
-> >> +		ret = drm_dp_dpcd_readb(&intel_dp->aux, DP_SET_POWER, &value);
-> >> +		/*
-> >> +		 * If sink is in D3 then it may not respond to the AUX tx so
-> >> +		 * wake it up to D3_AUX_ON state
-> >> +		 */
-> >> +		if (value == DP_SET_POWER_D3) {
-> >> +			/* After setting to D0 need a min of 1ms to wake(Spec DP2.1 sec 2.3.1.2) */
-> >> +			drm_dp_dpcd_writeb(&intel_dp->aux, DP_SET_POWER,
-> >> +					   DP_SET_POWER_D0);
-> >> +			fsleep(1000);
-> >> +			drm_dp_dpcd_writeb(&intel_dp->aux, DP_SET_POWER,
-> >> +					   DP_SET_POWER_D3_AUX_ON);
-> >> +			break;
-> >> +		} else if ((value == DP_SET_POWER_D0) ||
-> >> +			   (value == DP_SET_POWER_D3_AUX_ON)) {
-> >> +			/* if in D0 or D3_AUX_ON exit */
-> >> +			break;
-> >> +		}
-> >> +		/* Sink in D0 or even if read fails a minimum of 1ms is required to wake and respond */
-> >> +		fsleep(1000);
-> >> +		try++;
-> >> +	}
-> >> +
-> >> +	intel_dp_dpcd_set_probe(intel_dp, true);
-> >> +}
-> >> +
-> >>   static bool
-> >>   intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector)
-> >>   {
-> >> @@ -4713,6 +4752,8 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector
-> >>   	/* this function is meant to be called only once */
-> >>   	drm_WARN_ON(display->drm, intel_dp->dpcd[DP_DPCD_REV] != 0);
-> >>   
-> >> +	intel_dp_wake_sink(intel_dp);
-> >> +
-> >>   	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd) != 0)
-> >>   		return false;
-> >>   
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-> >> index b0bbd5981f57..3f16077c0cc7 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> >> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> >> @@ -232,6 +232,7 @@ bool intel_dp_dotclk_valid(struct intel_display *display,
-> >>   bool intel_dp_joiner_candidate_valid(struct intel_connector *connector,
-> >>   				     int hdisplay,
-> >>   				     int num_joined_pipes);
-> >> +void intel_dp_wake_sink(struct intel_dp *intel_dp);
-> >>   
-> >>   #define for_each_joiner_candidate(__connector, __mode, __num_joined_pipes) \
-> >>   	for ((__num_joined_pipes) = 1; (__num_joined_pipes) <= (I915_MAX_PIPES); (__num_joined_pipes)++) \
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> >> index 54c585c59b90..cbb712ea9f60 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> >> @@ -270,6 +270,9 @@ int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp)
-> >>   		lttpr_count = intel_dp_init_lttpr(intel_dp, dpcd);
-> >>   	}
-> >>   
-> >> +	/* After reading LTTPR wake up the sink before reading DPRX caps */
-> >> +	intel_dp_wake_sink(intel_dp);
-> >> +
-> >>   	/*
-> >>   	 * The DPTX shall read the DPRX caps after LTTPR detection, so re-read
-> >>   	 * it here.
-> >> -- 
-> >> 2.25.1
+ drivers/gpu/drm/xe/xe_gt_stats.c        |  1 +
+ drivers/gpu/drm/xe/xe_gt_stats_types.h  |  1 +
+ drivers/gpu/drm/xe/xe_guc_fwif.h        |  5 +++--
+ drivers/gpu/drm/xe/xe_guc_pagefault.c   |  2 ++
+ drivers/gpu/drm/xe/xe_pagefault.c       | 18 +++++++++++++++---
+ drivers/gpu/drm/xe/xe_pagefault_types.h |  6 ++++++
+ 6 files changed, 28 insertions(+), 5 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.43.0
+
