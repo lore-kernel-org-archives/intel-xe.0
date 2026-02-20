@@ -4,93 +4,184 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5432EC54FD2
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5437EC55ABF
 	for <intel-xe@archiver.kernel.org>; Fri, 20 Feb 2026 13:43:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB0F710E774;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7C5A10E77E;
 	Fri, 20 Feb 2026 13:43:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="XV+i1bJ1";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="BZUZmVh3";
 	dkim-atps=neutral
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com
- [209.85.208.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 948BF10E05E
- for <intel-xe@lists.freedesktop.org>; Sat, 14 Feb 2026 16:17:18 +0000 (UTC)
-Received: by mail-ed1-f52.google.com with SMTP id
- 4fb4d7f45d1cf-659428faa2bso3234858a12.0
- for <intel-xe@lists.freedesktop.org>; Sat, 14 Feb 2026 08:17:18 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1771085837; cv=none;
- d=google.com; s=arc-20240605;
- b=MjK4AGRkNalfByHGTtSCGsEYm4LG32KH/yU8iXXXPBqXiBzwFU2M1ob/OVbQji4bkd
- 5uJALrhl5pXBkLb+JAKlFqJkV/E8CWKnrRINkoNXLeJOrJs9wayWeRm1y+fVxBUzadpy
- WsapwYLZWS8YA6UzhbuNbJ7+JMePLDdVOKaGzjDpo3FPovC0FWZOQ0eEcW9mK1QhXfZH
- 3mRmB9chhECez2RbYZ0xi8Qgcz7FPPT4OL2vkx89R5Y/kmiI1kKzQHehTNvhfY6S1bFm
- ecZZlerI5j5ixZpimuvFL7GwcF0eKPxVJlSE2v8SVFwb06qBkp1I38S/MavWWsRi8R62
- 117g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=3jNf5hA3G7dX7rUPtYDRMnLMnt9ZofhzHc3WPWH09/U=;
- fh=txufk7/kBXai5Ma6H0TirJW7i7QoiwdEUY9Wba9dMrY=;
- b=J/xQqB+/DWaueJY+TaFugQsNnLp3IxWalRlYKa5IZv4Y2Gpx28Q8OH6D28MyQJx5No
- e7x1S/ayI7xPXGNV1HKYeU4UlaBt79fFfxunPKlAuqNHCVTtUJNo6hF0pseyjQVLepF8
- gzKO8utu+A+XVJHlKSWb55X59cvnFmZEs98MlwgDNRHI8mgSgnBv/v+M7ZudaIGTjBWA
- xH5FGRjNF0Zjm5DpbMrjcPkpuwGFp/9PFsidSaN89dlmZ6VACFk+WHjCmY0jJCFmllQG
- mVMD04NBNA8m12KbTRlmmeePe6QOuMHo8iyiJzXxF5ZhZCwMQCQqHEUZnM1veFYdZA14
- Gpsg==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1771085837; x=1771690637; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=3jNf5hA3G7dX7rUPtYDRMnLMnt9ZofhzHc3WPWH09/U=;
- b=XV+i1bJ11oZShNmJpWD7tflHrrOhkEWmm6OgfqYjdD6fJO736pr3W0j9Zsjq5ivgPO
- S8axtg5r0MDaSu6KunHUEYeVEjPWwL0tVcp8tiAkhm7yFzZm7JKpd1POqx8HnSlh1dnG
- s/xum4mw4FIGcMbwK7UGHIk9Fi0E8AWVnyZMZ5CHaUxJVfiitrYIoeMqdHbVSPdwci3r
- H9GnywvF1p0zp2UBw2rmZCmftNcwjKPCztNiF0djzH22zqkjnYdfa+Dmh9bWcduhbcUZ
- XIn7s79sR8FkXTdUv33aPEH9JfooQXlSKTt49842qliA3Bu9tCF+4PCDfE7TaICnKTYR
- sU9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1771085837; x=1771690637;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=3jNf5hA3G7dX7rUPtYDRMnLMnt9ZofhzHc3WPWH09/U=;
- b=JVMYqx4pzByVaQpp6Kj2JVHxPrD0dvqna5qFFZPPBO3TSitjRBHJSm6cQEU1NCilVb
- 2jKhGHyOXqvc2+i5XXIQVEFYQwHn5eR0hyp1ntYYWod4PIQSLxIuw4zZ3NN3TPMT4z6G
- mNSKXGfbUxi5SZNCpCpVJ+kYVa0todqm+5Q5AmZmvuCGoxDTW3x5OUIUqujbh9tSv8E0
- 2NYqecsHpEzifnSkOZSSiovRR6UdgU+eRoQi7eD4pFyb+GW0Rld8NCyITcHA1p9x0cFR
- NspRMesLjAFaJxT3S+eVP7KQNa94m6QitBqjrZkAjehySI90nG0qJp4c+Jp7m0tVXcaN
- tAAg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCU5FO/QHFKLrBr+V7Ge2wn6IwtMNapYSMLCzM5y1XgoOd5dNCCh8OVBDgUQSqeFlpfmnOAA0Jl7rg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yye8SwsWmY40oGq6ZFVl/oTOgCQutYn8p2MNomflYvrpCt0wq6i
- RzJmSS7bEnyOZVqfrmode0/y7HVrXv0lJZudiAutXhQmGJM3jOFuMtoVVwn8uBpmD5XIa5SrfOy
- Q2kYYDFiyvY0vcJbJthiTND8Q7qge5vg=
-X-Gm-Gg: AZuq6aLVxwUB3PxA2mxDplHidaIvg91W3izuuMIroKMG+y8tDdv2nl7RK8nJuy4txcs
- 39R8CjGm4MsCF9Zeu9SzUMiMAgmCGQI9FWBhho+5nVWxegZLSysYNtUzrzcsrGw0PyU+f+ps1w/
- M5bs3Ll+Xm7KfAk0FfU8kpG+GkNm37uc/4RttlR/VNa7q82vv1Qu55qLGzDXgY2GY59tYh1+5S4
- CoHRrdw0mMr8PQiZHD+LLSpp8trOGZjyXLmEwhyPKgQ1Yg0h3us+v3vEpJ7pa2O+YNOYZXrR6jG
- 9Z/5
-X-Received: by 2002:a17:907:961f:b0:b87:1e94:ef6a with SMTP id
- a640c23a62f3a-b8fc3cb95b1mr139267166b.47.1771085836705; Sat, 14 Feb 2026
- 08:17:16 -0800 (PST)
-MIME-Version: 1.0
-References: <CADN_a6Ne4Vr6knCXdKtCnB8=et6OK7PEZ8F5bpyGamwyv1K9GA@mail.gmail.com>
- <CADN_a6O6-iL+BS+0gy_AisiJTYQ6NGqSKXv608MxxETCawD0jg@mail.gmail.com>
-In-Reply-To: <CADN_a6O6-iL+BS+0gy_AisiJTYQ6NGqSKXv608MxxETCawD0jg@mail.gmail.com>
-From: =?UTF-8?B?SsOpcsO0bWUgVG9sbGV0?= <jerome.tollet@gmail.com>
-Date: Sat, 14 Feb 2026 17:17:05 +0100
-X-Gm-Features: AZwV_QgoPtJoqfTQwqXeF7vwHMzD8Jj5TCuQtbCQbOhcp5vKNM8SP_YYAiwmjg8
-Message-ID: <CADN_a6NjO=x=bn=yTMJcgbb41_HUAHMS3G5U3jD20TyLvmGHRw@mail.gmail.com>
-Subject: Re: [RESEND] drm/i915/hdmi: Poll for 200 msec for
- TMDS_Scrambler_Status
-To: intel-gfx@lists.freedesktop.org, ville.syrjala@linux.intel.com
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>, intel-xe@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011033.outbound.protection.outlook.com
+ [40.93.194.33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2C8810E186;
+ Fri, 20 Feb 2026 03:26:05 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ha5u77YNaE7wrrzvJYDpkINeMYoe58R7krTvFkbgv01FwODl1O3dX2hIyO8j1WflzpxDkozVd6cj5mCWbdi51+Qy6Xkp45da2H9SdaT7K4tswMD58RH2Tr64FHJGj5LMhvmLv1ReHNEcuiPY833gwLa4EN8Jm2hFNdw3DqF84X2gRSEkOuW68JPIQ9jUaNZ8p1EUrvNOtmiZpIprMBQYgihMYimoaO49whri1GQNk4tZPxAGTeN/7LeIYHr3IkiDpCrRscXlqujxQtF+WwQwB7K6Of6BN5db5asiznvayLt8CFzUBZlcIVVn42RTn9kLMJYclbt9DFUofZFjYQkS5w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cCWc9HamYXViX/dSkAj4lzbMEIYIIMN4TgYf7zbB5T4=;
+ b=HRJn5jAUxM+4gt0KV7nWZeGaE2hNu/yO5JszyyQCfEYYvn3UqxgA178Fmz5IasrHeKYXxLCfF98afx7zrX9rqXhhnDMPv5zqbJmjUubntIyuXRqy+77vhrStVmCi+8Bo2val7ajanGuQ7lxmfbRjftSFAqpdjYPE4F/2UpU3xzOUK6yR+Blz4gTIOx+k3j6gBeAYp7pHVJk6si8LHC4yeWDXrfJa4u1P4Zb6k0IkVQHFJs42QEzRnd6y71mIZ//oGBovE1AV7kKmeVMFWSfplgZPS1SX7Bw6kkF2A/ONhMuerk21TiO89lXtdwSXfmZg9MUMRiBqD13P3Bjs/dQGuA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cCWc9HamYXViX/dSkAj4lzbMEIYIIMN4TgYf7zbB5T4=;
+ b=BZUZmVh3x6P+ABi7BzrjDX2kgCAp9fFU6QDwvZvaqtn4YHZuC0mOKstgwzfI+n75HCl8BmyFmDmaDy3gSqkkqGFE53/hgw/TGpplmSMxDVSmZcOxm1J0VRBFtL5oH48hyqFl/RfnT8amZ/uPuZiQfDDD9RursayK+ZfbfqL4m2Q5aRL2Lsn4DApwPMwC7v+6UJBExM6vvNLr4uZjSdA2Z+tUGSFj30/ujt9zmCzZfQWpUj+GWdhnv0NwT97CHxAKE7X3fRqnmPjk/ZxNIAIw5BfcdS0k7ZEe3m6GKE4LZV2DfbHwPWr9CDtnv1ll/v1gvYDpFPF4gWLdDerWf6OKmQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
+ by PH7PR12MB5619.namprd12.prod.outlook.com (2603:10b6:510:136::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9611.14; Fri, 20 Feb
+ 2026 03:25:59 +0000
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989%3]) with mapi id 15.20.9632.015; Fri, 20 Feb 2026
+ 03:25:59 +0000
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 20 Feb 2026 12:25:55 +0900
+Message-Id: <DGJGVTN5H1L7.2IJTSNK4BINNQ@nvidia.com>
+Cc: <linux-kernel@vger.kernel.org>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet" <corbet@lwn.net>,
+ "Alex Deucher" <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
+ <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
+ "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
+ <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Helge Deller" <deller@gmx.de>, "Danilo Krummrich" <dakr@kernel.org>,
+ "Alice Ryhl" <aliceryhl@google.com>, "Miguel Ojeda" <ojeda@kernel.org>,
+ "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng" <boqun.feng@gmail.com>,
+ "Gary Guo" <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Trevor Gross" <tmgross@umich.edu>,
+ "Alistair Popple" <apopple@nvidia.com>, "Andrea Righi" <arighi@nvidia.com>,
+ "Zhi Wang" <zhiw@nvidia.com>, "Philipp Stanner" <phasta@kernel.org>, "Elle
+ Rhumsaa" <elle@weathered-steel.dev>, "Daniel Almeida"
+ <daniel.almeida@collabora.com>, "Eliot Courtney" <ecourtney@nvidia.com>,
+ <joel@joelfernandes.org>, <nouveau@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>,
+ <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <linux-fbdev@vger.kernel.org>
+Subject: Re: [PATCH v7 00/23] nova-core: Add memory management support
+From: "Alexandre Courbot" <acourbot@nvidia.com>
+To: "Joel Fernandes" <joelagnelf@nvidia.com>
+References: <DGJ1G3D32OMK.30HANB1W46XVL@nvidia.com>
+ <20260219194838.GA1013545@joelbox2>
+In-Reply-To: <20260219194838.GA1013545@joelbox2>
+X-ClientProxiedBy: TYWP286CA0032.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:262::16) To CH2PR12MB3990.namprd12.prod.outlook.com
+ (2603:10b6:610:28::18)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|PH7PR12MB5619:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2348485e-395f-457f-a4f7-08de702fc446
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|7416014|376014|366016|1800799024|10070799003; 
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?dG9YWXg1T1k5N1JiWEQ4eUZPTVZBUkpJdmRNTndLUXhoUGZxdVZ5ZVh2a2VG?=
+ =?utf-8?B?UTEvdEhZRlJEYzlIRmhWRUhySU9PSkVBL0VBcTVNUzVZTkZsVUwwRGR5VGxi?=
+ =?utf-8?B?NmV2b3pOQU90ZjRUNVIyY0xNRVcxQ0JuaUQ3REZ0d2JkWGYrZnlVUjJROFRM?=
+ =?utf-8?B?UElHZGhZSmRQcFExNklob0djbWpLZEE2SUw2NkFhT2xiSU9oR3BpYUpndWFH?=
+ =?utf-8?B?YXRwWDNvNVF4eDFMQ2dieDVBc0kzVHZLaXhieXI1UWdKcDNJTXdxdXNnTWtV?=
+ =?utf-8?B?Z09WRWtWOFdyMFcwcnI0clRxUFNtSEFQSnhYdGlja3NXdEtHK2drbjN3ZnBj?=
+ =?utf-8?B?dnpoYWo3VS9TMG1DMnJDMmY0cTNWK2haTzJITGNLdG5LTmZCTldORkU5anNT?=
+ =?utf-8?B?YmtQTFhMUS9NbE9JYlkreVZIOC9JVHlUemllU2M5UVc3UlF2WGFNN2hnbzNV?=
+ =?utf-8?B?WnlOSllFTCtaSVZRSnpmTTRONUowWTdseVA2YnpLZWt4bnVFbll2K0dMV2RR?=
+ =?utf-8?B?WTFlbUROTFJHTTdzQW8veGlmblFRV2NnVit2RzVSNnpHQnhESllCSjdQQnZ6?=
+ =?utf-8?B?TFpEWWJ3amdqZGpza01zOUYvbTYwVmVHVFQrNlJaTTN0aGxHVkJNZTMzVG9M?=
+ =?utf-8?B?Tk41bTh5ZW5EZ2MrR3hRSVNUN3JiU2pLaC9ITUV5dGRPbU1kYTIxbEhrdjVk?=
+ =?utf-8?B?eHhpRmhaQ1AveXl5RDFQMm9DS0doZmF1TG0rbkZTN1RXVHFoK0RWQkNDRlZB?=
+ =?utf-8?B?RHZxVFgyQ2oyMXNGR05KMmFyeXpEeTRHeE84MjZJcnlaSitsaXRoR1E1c0Mw?=
+ =?utf-8?B?MUNwSnpEZmVwOFRkUXBHT1A0Ky96QjM2U2lPNjRJWHZJdU1XMmVIdnZITmE4?=
+ =?utf-8?B?UkVhVjQxMmVmN1JOUWZMeVdURkZoNXdZV3hsSmhtVll3N2ZpTVJFSWJQclBo?=
+ =?utf-8?B?Zm16VDdLME9RMGt0akY5YzhKSjk3cDFFSmg1NDQzYm4rb09ydGY5YTBXblB6?=
+ =?utf-8?B?cVUyR1IxTVI1aS8vU2xNb2FTYWFVakZFYTczZUlyZkViRmpMNTREcGhjdExl?=
+ =?utf-8?B?OVdreGNuZVF0ekgySlRqSHUxWU9YYW5Yak9weHF6K3UyZU1EU3E1UW90WWdj?=
+ =?utf-8?B?RFg1Wm05L2pLTDRMV2VZZ0Z0MlRxTDAzTmIxazF5dm1kb0lzczQxNlhFaElZ?=
+ =?utf-8?B?eTlCZ21EcUgrdndka1pnOVJXUlJPWkY1bVlPU0RLaHE1YkY2V2tGV0tQV2Ix?=
+ =?utf-8?B?ZFprdWtLSmJNcDdSbVNFYjNaSEtkSXc4VVUwbjhGNVQwb3cyV0h6KzdEeDMw?=
+ =?utf-8?B?MjFpZ1BLQTRzTzZXbkxXRXJjUkFvNHkrcVY5WlNENWNNYVZpd1lDZ1lxZ0dM?=
+ =?utf-8?B?ZjFoSDlkbDB0M3dUM3pHdTlobktQcnArVGNNSUdOZXUwaGNPcmdZQ09WQ2dP?=
+ =?utf-8?B?a2RZcitwVTVQSHkrb1Vja3hOeFFJcDN6NUE3aXRpUEFrbzk5cFBRWEZVZnN3?=
+ =?utf-8?B?THpGS3hBbi94bHJSTHpXQ0JzK0ZEbHZwSGJQdDB6b3VpN3JCb2FaNFFIUGNu?=
+ =?utf-8?B?N2JLYksydHNpbkJnL0t4ZWNPeEY1VmR1ZTFJd0poYUpMek5EVU02aUQwZ0R4?=
+ =?utf-8?B?M2N0UHNzMWltWTVWaHI3akJ3YnVyRmowcFVSM2p1RFB0OUxyc3BpTUJDbFo1?=
+ =?utf-8?B?V2NxUXJuZVJXWHdWNXBPSWpCdVFnQi9NYTJzYk91alFyNU9ZOUdYVGg5VHY5?=
+ =?utf-8?B?azBnVUNGYVhsN1Vyci9uOVQvVjhFL2IzUUhhbVNpWGNSb0t2MWFyZEVJRmdh?=
+ =?utf-8?B?UWhmSlByMjZqZGpJSUhNN3cvcDV3YWhWcEpYZE9vMDhEdzZza0d3dEF4U2d0?=
+ =?utf-8?B?SzZWZmNkRmRza2lGSTRFR1UzanZ6Q3M0RVJlMlMvS0VuZHJBWVRyMlJtUjhk?=
+ =?utf-8?B?R0Jjbi8wcElLbm9BOUIwYWdNVUJ5WFlTWEIxc2dyZ0huSVdkbTlqQ09DMkcy?=
+ =?utf-8?B?elZERGR4UE8xRm4rTHE5QkFvUE1KTUREVVl5YnZOVmJhNlpOVEtrQ3lKL09t?=
+ =?utf-8?B?K0pTZ0ZJMGh2alAvOWhlejg4RzRYZWFWNmJsazZpcko1UWtaMFVSWDJVV1hv?=
+ =?utf-8?Q?MQ3M=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH2PR12MB3990.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(366016)(1800799024)(10070799003); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MkQxMDVxVEU5eGNyc20vZUxWU09scFNUUHFWRkFVc01YRmk4WkwrLzBHcFdP?=
+ =?utf-8?B?VlZpQmVWVWtqYm01Tmx2RVJNL1UyZGdYVWlRN3hUdXB6SjhudmZNRHBMcVFQ?=
+ =?utf-8?B?NCtjT01QZWNPSnlIVVFuRkVoNGo1V01NdnN3NlhKQ0k4ZjV1Uy9kT3NWQ1VE?=
+ =?utf-8?B?ZHh5d2hFaHNQbGw2Skwra1hvL1ZySkFqaE9MMTdLYWJRNnErMjVZUkVrQzFM?=
+ =?utf-8?B?UUR5M2JBSkk5YkErZkIrUWVtNXhOei9lTjJvL2xrRjBreFpUVmZmd2NpVDho?=
+ =?utf-8?B?TXh5NDF0bGdmVFRieWtudWVtR2xOOFJ6VW8zc1hMbmZWMWFuZzlJM3N5V3V3?=
+ =?utf-8?B?bGRpb3R6NHZQbGZXa2FMTldWUGREOVlyWUVJMjFDZUVEcytYKzAybHdOTFRQ?=
+ =?utf-8?B?dHNPRnpuMG5jZVRnTTFWS1VuTDFFcE1YY2lXaEE5UnNzMmV6MTk2THN6eC9Z?=
+ =?utf-8?B?a2p2MEMvRWZEMkd3dmFETkF4dGlWdDNkN1J4MWpqWWdGYk1heE9rS1ZwSzJW?=
+ =?utf-8?B?SmNjMlBNYUtWa0VrLzBvcWU5QzltejFIdUhHazd0bHJoUVFkV3JvcndOVHNx?=
+ =?utf-8?B?YjlVRXM3WW1EREZWb2EwdHl3aS91UlRYMkVUc01FYUJMekFvQXpER0RFaTA4?=
+ =?utf-8?B?cFZmSHBtcmhjRGVUbFBRN2xncG15bEhlNnY5WUVJbTN2MHM1QkhTRHEzSThz?=
+ =?utf-8?B?Z3lWeFhvNGJkM21tUzN3UFlDMzBtQ0p1OXBmMjFCbHpMbHpoRE9LR0l2OXdU?=
+ =?utf-8?B?RThDeHArYXBpSVBlNXhDU2NDL2F0NFQ2elMrU3d6eUQzN2RvQ0xYdjV2NGoy?=
+ =?utf-8?B?Z1dFYVNyQzRHQ29xZlhJMCtEOGZYcGlPVW96Y3J6d3pES2g3dHpZUUJGR2R5?=
+ =?utf-8?B?YmVyeENUelo5WFM0TE1XT3dwL0pGaGlBVE4vU24zbCtzcjNiQW1nd2laSXpM?=
+ =?utf-8?B?emRrVkM4TEUwVWhmUW1DK1hIaFdyYVRHbmJyT2FhMExvVmNuNFQxOVhRRUNB?=
+ =?utf-8?B?QlB0Nnc1NkQ1Tm5Uc1VCR1FpNGhRdVV0aU5ZazlFVEpCVCtObVljMHBNWVpo?=
+ =?utf-8?B?N0ZBalBWdnNhQmVEaHRYNVBRbElhTlNuWlc1N0t1WktQbG1hSmllMlkyeFNh?=
+ =?utf-8?B?YVgzZ3dpRStlYUpvYlk3eTdQek5RR2hpSFp5RXBGNzhPN0RHTnVDWG8ySGxM?=
+ =?utf-8?B?djIwaWYvT0N6ei9pRFpIVms4bTZTV250Mk1aZFhqR0JsNnhrT1RuOStkeC9k?=
+ =?utf-8?B?MlFldXNWUlVteEFzaXRlc1VmdmpPV1p0bkc2NDc4RjhzT0RvbmJDd0tOeEkx?=
+ =?utf-8?B?d2NwS1ZEWTRCeklNekwyUUZMcGg2SXBQMDI2OGF4RmFmQVNQVmRSUzc4dE9s?=
+ =?utf-8?B?WVpyc0c2SXZMRzYvYVV3M29vMmhHai9wVEk4aTE3Q0Z2TTNQcDcvd1BZN01k?=
+ =?utf-8?B?d2pjRlhaVVVGRXFnRGUzSlFPdVBrZEZCZjZVV0ZiQ3VDM1gyeDU0VXdIeGFm?=
+ =?utf-8?B?akVpd0NpRjU1cEVFUWhWRHlDS0hvV2VYVVVFL0poYkRjUmNUZmpnMk5QZWZP?=
+ =?utf-8?B?N3c5SmJVSVZ6WTdBRk53YUJnVWQvOWM4Qy9sWEJ0bEVwMmkySnFsQnpyYnR6?=
+ =?utf-8?B?Z3JzdFVlSEx3eEZ2ak43UXBnNXVFZ0hvY0kxT2VNREVOc3JGejc3UFc5c3JW?=
+ =?utf-8?B?OUUvUEZHQzRCeW5PNDRwOG53L050WXFSNnlBaFJsYlAyQmVZV3RnUXBidDYy?=
+ =?utf-8?B?OE9TQjFyRkFaMDVOTnhwUm5WTmRNZ3lSUDcvRng0RFhJKzVCdGpmdWhRUmt1?=
+ =?utf-8?B?YjV2KzFBRnYyUyt2Mks3RGk5Wi9nM1R2WnRFK2tFMGRBVlBjTEhGUmZ5V3Er?=
+ =?utf-8?B?U09JWlk3LzdOWUQ5Q0xNTzVSYUU2QkNONkczYjVwcGs4RlRKYlhlNVU4aktr?=
+ =?utf-8?B?Y2xScGNyR0F5eGxQTk1VN3paTjl6YnVtWitvRnMrY29EVk1SdFJoWGlSTVRr?=
+ =?utf-8?B?aTdaSkFOZjd4Y0QwTG5wVnY5SjlZZ1BqVkI5cHo3SHhqVlZpUmw2WnFkYmlP?=
+ =?utf-8?B?d2h3cTFVc2w3OHRUZzY1MW9FRDhUcldCRFlHdndINXVWQVNta3dJWktWOW9w?=
+ =?utf-8?B?ZkRmN2l5NTFYTDU5azlXOHBIMFIvdW8ySVh4bk5pMlhlOHRoeVJ6SkZxMkNk?=
+ =?utf-8?B?VGxLMFQ5aTcvQXUyQnJaVGVINDJTaVIwa2FxblpuVzdKQnROck52T1hDQ1FD?=
+ =?utf-8?B?SkNRUy9ITkpIakFHelljZDMxZVNtN0FiN3RhUGowV3FOU05LZDNmL3lCUGJt?=
+ =?utf-8?B?a0hhT3NpNlJnRE1DcU4yNlErcnljMkdVYXI5Ti9sVUVaekpYMklWVVhEejFH?=
+ =?utf-8?Q?Txy1JTQuHr/aQtQoN5TQyH7v6wTsFgQcl8tbA7LP2cbJu?=
+X-MS-Exchange-AntiSpam-MessageData-1: n+0+5mepwY6WBQ==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2348485e-395f-457f-a4f7-08de702fc446
+X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Feb 2026 03:25:59.3746 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: p1FrK6q49faN6aRQQCTms6pzcomrNymmwev3i/JE14emgq6P0kB8P8V2B53f/xaXc8BgXTYqDlhRQNc0259s2g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5619
 X-Mailman-Approved-At: Fri, 20 Feb 2026 13:43:49 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -106,71 +197,16 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Ville, Ankit,
-
-Update on testing (Feb 14):
-After isolated testing of each patch on kernel 6.18.7, I can now
-definitively confirm:
-
-- SCDC polling patch ALONE: Works perfectly =E2=9C=93
-- delay patch (150ms) ALONE: Screen remains black =E2=9C=97
-- Both patches together: Works (but delay is unnecessary)
-
-This definitively answers the question: approach #1 (Generic SCDC
-polling after port enable) is the correct solution. The v2 delay patch
-is NOT needed and should be disregarded.
-
-The SCDC polling aligns with HDMI 2.0 spec requirements and Windows
-behavior, making it the proper generic solution.
-
-Sorry for any confusion from my earlier messages.
-
-Thanks,
-Jerome
-
-Le sam. 7 f=C3=A9vr. 2026 =C3=A0 04:14, J=C3=A9r=C3=B4me Tollet <jerome.tol=
-let@gmail.com> a =C3=A9crit :
+On Fri Feb 20, 2026 at 4:48 AM JST, Joel Fernandes wrote:
+> Hi Alex,
 >
-> Hi Ville, Ankit,
->
-> Gentle ping on this thread - it's been about 10 days since my last
-> message in the thread (Jan 28).
->
-> To recap, we have three potential approaches for this fix:
-> 1. Generic SCDC polling after port enable (current patch) - aligns
-> with Windows behavior
-> 2. Panel-specific quirk for affected displays (Cisco Desk Pro in my case)
-> 3. Fixed delay after SCDC config (my v2 patch from Jan 14)
->
-> Testing showed the delay works at any placement in the modeset
-> sequence, suggesting this is a timing issue rather than
-> operation-specific.
-> I'm happy to implement whichever approach you prefer. Please let me
-> know which direction you'd like me to take this.
->
-> Thanks,
-> Jerome
->
->
-> Le mer. 28 janv. 2026 =C3=A0 15:42, J=C3=A9r=C3=B4me Tollet <jerome.tolle=
-t@gmail.com> a =C3=A9crit :
-> >
-> > Hi Ville,
-> > Following Ankit's response on January 21st where he suggested
-> > considering a panel-specific quirk instead of a generic solution, I
-> > wanted to get your input on the preferred approach.
-> > As a reminder, testing showed the delay works at any placement in the
-> > modeset sequence (all 4 test positions succeeded), suggesting this is
-> > a timing issue rather than being tied to a specific operation.
-> >
-> > Three approaches are available:
-> > 1. Generic SCDC polling after port enable - aligns with Windows
-> > behavior which also performs ~200ms SCDC poll post-enable
-> > 2. Panel-specific quirk for affected displays (Cisco Desk Pro in my cas=
-e)
-> > 3. Fixed delay after SCDC config (my v2 patch from Jan 14)
-> >
-> > I'm happy with any approach that gets merged.
-> >
-> > Thanks
-> > Jerome
+> Thanks for taking the time to go through the series and for the effort
+> of doing the reordering. Just to clarify, do you mean I should be
+> sending each of the phases separately for review instead of in one
+> series?
+
+Sorry, forgot to reply to this. I think one series is fine now that
+CList/buddy have been moved out, as it only spans one component
+(nova-core) and forces us to keep the big picture in mind. The
+reordering is just to enable a more granular review process and identify
+the moving pieces more clearly.
