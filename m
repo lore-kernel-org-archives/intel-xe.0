@@ -4,168 +4,100 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68E10EA4FC2
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 13:53:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87FD5EA4FC2
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 13:54:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 171CC10E2EF;
-	Mon, 23 Feb 2026 13:53:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 44E5610E3D1;
+	Mon, 23 Feb 2026 13:54:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AQET8/zo";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dqrpuXO2";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFA0B10E2EF
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Feb 2026 13:53:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771854802; x=1803390802;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=Jfp14Fhh1Rs1zhUER11u8t5QnNWZyK7Eef64uGikRfE=;
- b=AQET8/zoq1ZarquufaOv9tpNsljS9wWb8deev9lr0WntyHfXAzpy/TMs
- m+H2Yad2OcWLIjU/Eo4q/xrqS7U32GBHj19J8mX7tTLhlJqxReO1Ys6Ag
- EDr1WX0mzluGJ84b3VEm+Pejt88YSyL9esfY+af3Jun2SNur2U9SzSl+L
- VKLNSfSp5zCKoe17KtQkSFwzT8G9l8yJQVN5MzL6QSRF33orwePaihMnE
- cEJWQ65/teDFEmA3GcyQb7pjwNOvm8yt43oPeaPXiNB4sL9i6Wov5zyNw
- wh5wpEHFXX7WBeza0aE2Z7783ghCTDk+JCaB7lrW/YnAM+pC9RJa11jpd g==;
-X-CSE-ConnectionGUID: iwH70GZGQ/G63dA6221ZwQ==
-X-CSE-MsgGUID: AVmsb7CQS+mktFIqf4vC7A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="90433381"
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="90433381"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 05:53:21 -0800
-X-CSE-ConnectionGUID: gpMPd4zMTwSz8z3p9UgJTw==
-X-CSE-MsgGUID: 0NUOusGET2eNb96aIEyqYQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="219112550"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 05:53:21 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Mon, 23 Feb 2026 05:53:21 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Mon, 23 Feb 2026 05:53:21 -0800
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.41) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Mon, 23 Feb 2026 05:53:18 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JFs5ABTet+zsHPXU1sFncIGHO+I0/Atye6CBfV/Igylnm+EAqjO/61zD7rhabDX53eBuQL75/M4aKSFvwU60rLV3NsGlBvxPORxgNh9nYpzQrYab+9WpTzS4kQ7GZbSzV++u6HgfWthaPG91n+SfPNcXyVqDcohaH6yU+r17OpvXrc+8mSo3x60riUarpTgnarnjLCkLbJ86+J/1cDIzpkF4CYGczGV4D8XuER+OCO6QD/jDmVWZG4K1NOrd2MLeCg2PFShmgBolgXd6nSRCIlHcSwtfPwlZ/3ohe3T3ofkBn2bD5b32/i4qN9CC6lPc8lQs2XYc3tKuyszwNQf1Ew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=t5n841qaf7WyWp9wQImE7Al1HTiuFbZrbCWSAh9qkYo=;
- b=TNE8vsObcoq2ONhpRt8S/ZD6w+Bq8ddXnYd3WJEgLcNg0WSWBHo9ok0YSGKNCCyxb3PdM2Us9a9jnd6X7uieKQSthdnueWdYeebJaSAQz0LkAfyU9t7k2qKdBtTY+LS4tik8m6P8Z5r1uvKXQGtlo7/C2b8yY7v7+vkQSJbFTkK4559cK4ceBxYqwueUJCnSyg+DFIMwcb0kIYTpF6oZLvmov1P+oAXPCHgM+73URSL9T2sPr4ljURGTQBz7F/q9MMxIXEO2YdJwgZpF9wyVL6l1hHG8JvJXWWqyKswiDlYxSqsPgMRoIb8Z/3xLeZr4nRvucHdR3CT970Ms189fpQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by LV2PR11MB5997.namprd11.prod.outlook.com (2603:10b6:408:17f::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.21; Mon, 23 Feb
- 2026 13:53:14 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::1d86:a34:519a:3b0d]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::1d86:a34:519a:3b0d%5]) with mapi id 15.20.9632.017; Mon, 23 Feb 2026
- 13:53:13 +0000
-Date: Mon, 23 Feb 2026 08:53:09 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/xe: Don't expose display modparam if no display
- support
-Message-ID: <aZxbxdG50DlbWW6N@intel.com>
-References: <20260216183240.1308-1-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260216183240.1308-1-michal.wajdeczko@intel.com>
-X-ClientProxiedBy: BYAPR05CA0045.namprd05.prod.outlook.com
- (2603:10b6:a03:74::22) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com
+ [209.85.221.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D3A410E119
+ for <intel-xe@lists.freedesktop.org>; Sun, 22 Feb 2026 21:56:15 +0000 (UTC)
+Received: by mail-vk1-f176.google.com with SMTP id
+ 71dfb90a1353d-5674d8be45eso1461043e0c.1
+ for <intel-xe@lists.freedesktop.org>; Sun, 22 Feb 2026 13:56:15 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1771797374; cv=none;
+ d=google.com; s=arc-20240605;
+ b=Rk97sCBl7iuRmKF/sG8Pd0j9VbF+M3j4lY2UPyTYTHFleOqKDXRLWD1SfDpTEnLQEl
+ NqMScw3pTzfWtqsogMtN/ElD4xL2Uz6tQRdDMBFkmNMTXAttzVGCl0VdGeX7Tv3mohi5
+ 1b22g4TDOgFmL9RSOJFmkPKu7q/ZXPn4ouny2hXrHYxs2YJ7zJ3bdcQjksAnTYTjfQBg
+ fuH4NG3U+AMT+8mGsLJxrlfIGOnwq2ZaPuda7n/qgtAXVlIf1ZsK7+0BrHcisVk2Pu9d
+ RYSz5Jk9yn1GT0Tso6CGGV+4JG0L3ScSsE3cl5AdP+JJPERrrned/u0tQMVLEFgNJpw6
+ ZrLw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :mime-version:dkim-signature;
+ bh=fvZFs6ZWQcArHoivTdoRPMVBttlGZZKU4uro3YAyvz8=;
+ fh=TaBWBeC0/hP4sUjv6lhnDOdQWRNC+voSErmqNVTnuzA=;
+ b=FcknuaM1ZAZ/QZII6LAIjCJLhFs7am3S86Bg1v9QsHFgMnD+vHI661BZ0Qx21U6Smc
+ rUzt5MhUI7ibmYhUYR3Ji/rz2Hf1zCmnzuSWrcVXo2oMWuceSn+jBCxmaV7IW47lcpE7
+ GQOwScVjlggrpSk10cL02uOaZruzl9C3nf6PKbd4ATOSmY3wwrVMwCd1JUr9D6RFud2T
+ /+m4SMzjZMHqK10XzOxRC8t1q0HD9JPPvJQFG+OcPgoiO8b56EDwn5TKUIW5B8G79iGK
+ al3JpyQAOZp8oxdZfo36HcdKo9dBv2C459EawKv1JrRPU73Go7BiF4R2Vo49DBfTuENU
+ lqlQ==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1771797374; x=1772402174; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=fvZFs6ZWQcArHoivTdoRPMVBttlGZZKU4uro3YAyvz8=;
+ b=dqrpuXO2bzP066N7t5u+ofclK/cIW9s+evU6PH8UmFeJi43jC21Ghm5YNacNinTHT2
+ lOkCAbeRtgyeATfIZSTjtAb0Zqf9C+tG9YojFsrx2w/uZ+LTNPSoNwp2rJa0AzqTLXD2
+ 6Ir5r90pQqVqrdGZz6asBsGG79f9IIbyzKZzdQ6N1qln4PoPIKIIxPvRT+6mzHLsHPV5
+ hy2HumTI5Jmj8i/oKQspUNQU5SFkjqKnPcZW0hfVLoEn74EHNl9uLbRLK8Aw14HV7BDg
+ 879NyRl+NMkQyTQZ6c2zC4WclRFGGLvJ5oFqEIEFQM81LhKRWGoo8dpJ5YTFxGZgeVYD
+ BsXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1771797374; x=1772402174;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=fvZFs6ZWQcArHoivTdoRPMVBttlGZZKU4uro3YAyvz8=;
+ b=BWU+6j8GRY0+e2E6T2hr1jJ4dWZQp2vTSyNNUmyaNqb/NMuM7ruDKHxp2ezOhRHurP
+ 9+nBGBPG13/hFXC1DM//qng9Am+EJZ6QHtrZyDKnQww3w2pdghafY1YmxpkAmacJCIkY
+ qtSw9iT9v2aSGHKWCxzfRlkkw1N6DsM3a431kL9uaJ9bxt8UvacPhZwkJ+AKYNjbcNK+
+ NWB6XJmuRy9xNPkk2+Gcl68tINB/e7M90o/yM4uUMQZpYnlVBFWUpcs7EPeAAh1UAU/z
+ LUL1l48zvJgAYH6E8VIk9F/S9uSc39sqHb/+SRGyqI0aWGlep9MWB53YSw5bZXkMqBAf
+ iksg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXP/yhV6hko4z7MeJP0l4BYDUBHvRIQTIPyMHuUY6QScXEmU5FlOtv9pnpLWFHEjjp/m3SmheEmvA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyP0p22Q0jm2KydFp0jXs4OEvm5YPVGEOtV7MPuPq5hkGQ9rGbQ
+ Spcir8CIHs2UGCt5d8JotEAayBe3wpMH++WB3iEfIUe35hed+kU9Yikf0tDKwf0YuvfjuJNr1pD
+ zZ7kNB6kvM3ll1Svx41pUk+autVyO7k8=
+X-Gm-Gg: AZuq6aIlewq5JCChSxbSACkvvucDtZ67Cn6nfeIXkm8MBfMmeAAiGUr3kj9LM/YJouk
+ NJWmN0WvX2IgyFgY0yLqUrvB1sm5rFvvfS/0XbUCwZ9h2nAd2UlLd29YVLIq//d8Ih9wfzotCd7
+ Jph3cD1+6w0mqLNJCD2TlU3ClQEvk6/dG2kAmevs4QV0hlfdIQAH+vdb3yXQqLSLcVGgj5JOgE2
+ xL5SKnVqRbSwksOEQghEmzQOcNxzb1mTqGsjQiX/1G8KEPyqtThmfZb4dJDYwIJ199e1KTdJRqx
+ cCiTtfTrOzIJMXj/BkvgvpX6RS72+FYlhMUUZWMQeXLHEmYxs8AG0B5uoq3E9vdZuBu/RsNaNH5
+ vE5WtzaeB0w==
+X-Received: by 2002:a05:6122:469b:b0:55b:1a1b:3273 with SMTP id
+ 71dfb90a1353d-568e47abec3mr2195110e0c.6.1771797374061; Sun, 22 Feb 2026
+ 13:56:14 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|LV2PR11MB5997:EE_
-X-MS-Office365-Filtering-Correlation-Id: 304991f4-e391-4103-694b-08de72e2e31b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?9QUgZu10oIF3S4IKaz2HxFORVbI/c2nvXJ/bastEhYCdA4QJRSOnoyNiaJNK?=
- =?us-ascii?Q?ukgy/qjV27iZ0gTXWbfiesh38qrBOGaVcA0J1TuFYbdtQV3g835SQfYzBjrO?=
- =?us-ascii?Q?B3YLGf9ynR4W+KX2qVk8YpCB+y9xajvb+4bdBzBvK8cPe0cf0NQEZFTwZjZp?=
- =?us-ascii?Q?fbKYC1HKa5UoxkLEGQvq3pGoA8mYCgqKgyGT/HuEFy46fsIOBxL/7NOro9r4?=
- =?us-ascii?Q?YfxcClCw3/TzrPbF0u4XDTpf71r8eDbTd5ZwzWkc188n4FCfsQBwLxZZRRZx?=
- =?us-ascii?Q?fHrS4I0NI1rkzgjcdSsGo7zIfNHrP/cQ1nf0seMSHWlHGWo+UAvnwQeykI+b?=
- =?us-ascii?Q?abW4Gg/nrMfV4irUd9lvNVjg9BdPjjb4YIYzopE2haeCYeS0TW8C0hXqJ6hc?=
- =?us-ascii?Q?pKCO0sw3EST8hCq8f2s4U1hRzQGAKFHox0UWXYNe1OsyNoT/3d6eLAsoCNrs?=
- =?us-ascii?Q?rnbv+V3kj+d2u9SrEnX8cXNx6davGTYw80Y/sDVDKbKeXsj7fw1w/vrNm1k5?=
- =?us-ascii?Q?40zTTT5Nrzuen3+oWbFxuCW6Q0y9zGhI90Z0PW8pMpTJ5Q9kW3oEqXrDBGCE?=
- =?us-ascii?Q?nvsITimsJNngBsFTZuhZrx1fULAX2jupB4Kr5jI7OxSZ3/apfX/clnZtErwO?=
- =?us-ascii?Q?JLC1gVQ3Q7saOUr+j2h71/KXl6TGQy1Win9Qw077AHYAIYZhQA52ZOSINkSN?=
- =?us-ascii?Q?/44BJPiYBLT+ySVlj1R5Ag5Fh3iBKuMj8xvhBStTHjA6/g9nA77XzJzkvu+Z?=
- =?us-ascii?Q?tSFwtKO3FIiRlHJKZojxGeD3BShw/D7x/abyAh0eaGLPaoam0tavvGhVH3Yk?=
- =?us-ascii?Q?eEMdsb0Ltf74iDLKqY1LNKIw3MrbTbSKLcLRPIyIXwkWCXMLn+OTf2kxOYMC?=
- =?us-ascii?Q?Iv+jCl1fM6bUgPQFxBSFnqhXAGdYZu3RdzAkY9uoMO9JYYWt8nTA0noH2u9T?=
- =?us-ascii?Q?MbksGUFS5ayBMrMuj7iEljr4SXR3ubYMQY2bADbeo2OTNCFLvLijQTs3JInZ?=
- =?us-ascii?Q?C1UlMGv7zqt+HgeKAW90m7q/NlV6WOOJCVrqZDOuZKZcRJQFXoLQwyJIEVoJ?=
- =?us-ascii?Q?cQ9nwB7mbaAPfkENXbJp1nFg7KILa/rEe77bW2/Oy1cy8VztEzHOfhwtvctF?=
- =?us-ascii?Q?BYUQ6H9MurV4TdcSHgH/Lvk89NTc6Yn7n1gheTcy9MP5rGUrzwSO9HfJUbfB?=
- =?us-ascii?Q?Ohnn761CIcUyR8AHnouNOYXUPlt2df9uOfcNYDezGvxm+eoNAEfEXgx/uwnn?=
- =?us-ascii?Q?BTGbxFruYykwLGbyfX60YZWX7lA4WFMhiqLhcZCdMrtqSyS6tkFsnqlWXgf+?=
- =?us-ascii?Q?E72f9VB167He/jJBl+Z9fTM4dlEjzjWcMZbX0PP373gEGH2RvDbZuLrSojrI?=
- =?us-ascii?Q?Dz516TXYcHG5rejb/ayTTS9gEszYqj5VuYLPS3rnN+CFg7/MfqKS00tRBAk3?=
- =?us-ascii?Q?wkDRQrE9h0+5IA036w8b5gF63h4rn6CGbqcyOCMiuSNMNcG7s5K7WMOsdFLM?=
- =?us-ascii?Q?1uaNhTnn10ZT7Z5M2FYlywo8kAECV26mWoo3kwNMZrXXqKXwgusSUMp5V29o?=
- =?us-ascii?Q?PN88HOAD/sW7tE5N4eI=3D?=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Z0rT5vpMR3Fsh54QQNg+MWdnXowWAs+XdxBJpfZou578Fy9DmZamj+26jKrr?=
- =?us-ascii?Q?+Kcz72Zfn7UHJa86DNGd4kHMBJeAJ8RpYSpWQxGynIl6eMAxeN2m7JFMpldB?=
- =?us-ascii?Q?WpLFYX6YNSiHSK3b9V/65KzzrxksRt6fc9FkEgR9zxuZ+cvAd8HdVz+CtTrn?=
- =?us-ascii?Q?liGsMG9bZzZS0R3eyhkJpXv/FVhKFq/0+c9SxjyBi7kfDjci36fTodIyXeGa?=
- =?us-ascii?Q?N8nSPwIul9jiq9ggU28IinycogGUSGPhf31RD6yFVrJFT1wAbsvavo/5n8lL?=
- =?us-ascii?Q?PdpJiNA84rDf7RsPZKI4MdWNnn5CImWprwhlhq3BK926+BM7Q6Z8ZUEIzWMk?=
- =?us-ascii?Q?fX8qlhL3a7UF7Rphee4GK/C65URv6gHASWsp3Zi5Rslm/HNjBowO0uX1ibL3?=
- =?us-ascii?Q?swhTtbSgXkJpSjz7DXl76QiKwuNvPDbCKjBXgQEgNhdOFtywnS6bq/6a2POo?=
- =?us-ascii?Q?WY4kmmSWZipPx3qHLH0fe/cewEk6ncZ4+XMojuJYyeebjhGOO+6iToxcPnV5?=
- =?us-ascii?Q?HPdNNAz9fbBGhmHkT/I3C8ep9N75+Ftnu4k5uCPE6XmsL78dLqkAJPGw6N/a?=
- =?us-ascii?Q?FtRlmzb/h4VmwwQSDvqphC8dRhRSu4miIpcBInOysSPXGTxDQ2wjyPrpVSwW?=
- =?us-ascii?Q?FOuwHbPT152D9JltaIazouLv/7DHjpzdM7RJxEhr/SVWbfsXonOreO5rF/oG?=
- =?us-ascii?Q?YRH2W+SsZpr5sQgAx75ckiv0dagwhIO7B3slMDoMI0qfVRI0J5v55pzheUEs?=
- =?us-ascii?Q?g1WSihCxMT7DdokfK0JXhI7klMPsAY4vU3DA2plOzkjixXd5sNALIC3gAGlB?=
- =?us-ascii?Q?H9PcHE/6JT6jeSTijRFkbAPovYXZes4ap53jNhRZeGy6hMtxOQRGfpOD5M5U?=
- =?us-ascii?Q?316oBiMVJ3VLY/jkbiNVsHVGQwRHLdWsZcy43YE17/C58LFpHa7ur6MQ/X0T?=
- =?us-ascii?Q?bJGAPZQsAxc3gs8RJ/ukRzMZCe5gWmM7e3JkECvodNlFsjbEYZdLoaLq+tJp?=
- =?us-ascii?Q?1g7ahj8d40fmOIkj0zUn8pXyXGeL5G9vxRRWcxAtOP1BiDusI/ElRtNfWHar?=
- =?us-ascii?Q?mzThh/c3cWXrPar8e0OkcSfGasyhmevUx+YS/LtBRfkN8drmeF/0z3n87zEP?=
- =?us-ascii?Q?XcGpf2avz1nQXmeuSutznhZIGpLj0KVL551NG0vValdNOFycSBv3SnRKJ6ct?=
- =?us-ascii?Q?RmLtwU3aMU7VMYSlOzwMuEqJ7iLBa2fer3p+P9Axq19LAFIiFycCGljImV+Y?=
- =?us-ascii?Q?vLFYFmm3J8ToLK27yr8j8gV4qh7qKFoQT9mtDcr8yehnWNJe/ZX8Xzt+TE5F?=
- =?us-ascii?Q?DKYsRgbRMQ2tRI0j73iLgSx/VzDGPx2bur2QIt8oIBrqkXehPB8Jw00BIt33?=
- =?us-ascii?Q?bMiSPEAAY0rwb2gRGdAtI/VTwiXVVYjkmiIYeHnIiB8xUhUPmCdhT6Gljm04?=
- =?us-ascii?Q?lPhjo9JFP4YwbVwqlIUyatADL8JxRDZFefoTOhqj3AnapwiiptmFqZjUHpjt?=
- =?us-ascii?Q?Gq3BpCmeezrw7lGKH8QGrgCJvZxVPfdtYiMHtlgl8NYWH3I17udAaOLS+qzz?=
- =?us-ascii?Q?k8/D7Hray/a470eBQyQZQbH1ASpKZA+OWQsyFj1sx1kfQw2phTLwn2g2PJ55?=
- =?us-ascii?Q?eMpI22C2TGhRKLgWDg/aLlrmMo8fZjuzuFf9MXwXvbxJtXzH9GGmn9gMcaU6?=
- =?us-ascii?Q?gPuWI8RCjiuE0nflUC6Q8lPAKdQlKL4sJ/qza5Lz62yk1S9Imvo8fCnH6ikk?=
- =?us-ascii?Q?JBM+7Eao+w=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 304991f4-e391-4103-694b-08de72e2e31b
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Feb 2026 13:53:13.4796 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pK1VUeWfTiuJcHOhweAxlC7mJ8f708pxNE1R3LirufDArZ3B99etqxyMQGOBP2Yr1uHcA1OfABK8JEYUPAhW6g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB5997
-X-OriginatorOrg: intel.com
+From: =?UTF-8?B?QW5kcsOpcyBQw6lyZXo=?= <andres.f.perez@gmail.com>
+Date: Sun, 22 Feb 2026 21:55:54 +0000
+X-Gm-Features: AaiRm50d7jLgPyD4kdVKiyrm9CHXFWwo9PDyCMT5qvyZh7PMRFS6zqm3NMkVBvk
+Message-ID: <CAD0gVBsyzYNA6ydPwg9mJ9VQzYg4zPAi24JQ13-=0KtdbQ039A@mail.gmail.com>
+Subject: [REGRESSION] Display freeze on VT switch back to X11 since v6.16
+To: stable@vger.kernel.org, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Hans de Goede <hansg@kernel.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-media@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: regressions@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 23 Feb 2026 13:54:35 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,50 +112,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Feb 16, 2026 at 07:32:40PM +0100, Michal Wajdeczko wrote:
-> With CONFIG_DRM_XE_DISPLAY=n the display support will be compiled
-> out, so exposing probe_display modparam is pointless.
-> 
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+# OVERVIEW
 
-thanks for confirming the command is ignored when not declared.
+Since kernel v6.16.1, switching from an X11 session to a text VT and back
+freezes the display on a ThinkPad P15 Gen 2. The system remains responsive
+over SSH; only the display is frozen. Bisecting identified commit
+d1b618e7954802fe ("media: uvcvideo: Do not turn on the camera for some
+ioctls") as the trigger. Reverting the logic change in that commit
+fixes VT switching
+on v6.16.1, v6.17.9, and v6.18.9, but that is not an actual solution. Wayla=
+nd
+compositors (e.g., river and sway) are not affected.
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Last good:  v6.15.9
+First bad:  v6.16.1
+Bisect result: d1b618e7954802fe media: uvcvideo: Do not turn on the
+camera for some ioctls
 
-> ---
->  drivers/gpu/drm/xe/xe_defaults.h | 2 +-
->  drivers/gpu/drm/xe/xe_module.c   | 2 ++
->  2 files changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_defaults.h b/drivers/gpu/drm/xe/xe_defaults.h
-> index 5d5d41d067c5..c8ae1d5f3d60 100644
-> --- a/drivers/gpu/drm/xe/xe_defaults.h
-> +++ b/drivers/gpu/drm/xe/xe_defaults.h
-> @@ -13,7 +13,7 @@
->  #define XE_DEFAULT_GUC_LOG_LEVEL		1
->  #endif
->  
-> -#define XE_DEFAULT_PROBE_DISPLAY		true
-> +#define XE_DEFAULT_PROBE_DISPLAY		IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->  #define XE_DEFAULT_VRAM_BAR_SIZE		0
->  #define XE_DEFAULT_FORCE_PROBE			CONFIG_DRM_XE_FORCE_PROBE
->  #define XE_DEFAULT_MAX_VFS			~0
-> diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-> index 903d3b433421..4cb578182912 100644
-> --- a/drivers/gpu/drm/xe/xe_module.c
-> +++ b/drivers/gpu/drm/xe/xe_module.c
-> @@ -39,9 +39,11 @@ MODULE_PARM_DESC(svm_notifier_size, "Set the svm notifier size in MiB, must be p
->  module_param_named_unsafe(force_execlist, xe_modparam.force_execlist, bool, 0444);
->  MODULE_PARM_DESC(force_execlist, "Force Execlist submission");
->  
-> +#if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
->  module_param_named(probe_display, xe_modparam.probe_display, bool, 0444);
->  MODULE_PARM_DESC(probe_display, "Probe display HW, otherwise it's left untouched "
->  		 "[default=" __stringify(XE_DEFAULT_PROBE_DISPLAY) "])");
-> +#endif
->  
->  module_param_named(vram_bar_size, xe_modparam.force_vram_bar_size, int, 0600);
->  MODULE_PARM_DESC(vram_bar_size, "Set the vram bar size in MiB (<0=disable-resize, 0=max-needed-size, >0=force-size "
-> -- 
-> 2.47.1
-> 
+## Hardware:   Lenovo ThinkPad P15 Gen 2i (20YQ0031US)
+CPU:        Intel Core i7-11800H (Tiger Lake-H)
+iGPU:        Intel UHD Graphics (TGL GT1)
+dGPU:       NVIDIA T1200 (not involved in eDP output; driver: nvidia-open)
+Display:    15.6" 1920x1080 eDP, 10 bpc capable (EDID 1.4)
+Webcam:     Integrated Camera on PCH xHCI (Bus 003 Port 004)
+Firmware:   LENOVO N37ET61W (1.97)
+OS:         Arch Linux, Nix home-manager, X11 + xmonad, no display manager
+
+## Symptoms and reproduction steps:
+1. Boot, start X11 on tty1 (startx).
+2. Switch to tty2 (Ctrl+Alt+F2): works.
+3. Switch back to tty1 (Ctrl+Alt+F1): display freezes.
+   - Frozen on the last frame shown before switching away.
+   - System is fully responsive over SSH.
+   - Other VTs switch normally between each other as long as X11 is
+not active on them.
+   - Killing X does not recover the display. A reboot is required.
+
+# DEBUG ANALYSIS
+
+On v6.16.1, the VT switch back to X triggers a full modeset due to pipe
+configuration mismatches detected by intel_pipe_config_compare:
+
+[drm:intel_pipe_config_compare] fastset requirement not met in pipe_bpp
+  (expected 30, found 24)
+[drm:intel_pipe_config_compare] fastset requirement not met in dp_m_n
+  (expected link 269484/524288, found link 336855/524288)
+[drm:intel_pipe_config_compare] fastset requirement not met in dpll_hw_stat=
+e
+  (expected cfgcr0: 0xe001a5, found cfgcr0: 0x1c2)
+[drm:intel_pipe_config_compare] fastset requirement not met in port_clock
+  (expected 270000, found 216000)
+[drm:intel_atomic_check] forcing full modeset
+
+On v6.15.9, the same VT switch shows no such messages.
+no pipe_config_compare runs, no modeset, no freeze.
+
+# BISECT AND VERIFICATION
+
+The bisect converged on d1b618e7954802fe in the uvcvideo driver. This
+commit adds a switch statement to uvc_v4l2_unlocked_ioctl that allows
+certain V4L2 IOCTLS to call video_ioctl2 directly without first calling
+uvc_pm_get/uvc_pm_put. Prior to this commit, all ioctls called uvc_pm_get
+before video_ioctl2.
+
+## VT switching verification across kernel versions:
+
+  v6.12.74 arch pkg:   WORKS
+  v6.15.9 arch pkg:    WORKS
+  v6.15.9 from source: WORKS
+  v6.16.1 with d1b618e reverted:     WORKS
+  v6.17.9 with PM wrapping restored: WORKS
+  v6.18.9 with PM wrapping restored: WORKS
+
+  v6.16.1 from source:  FREEZES
+  v6.16.1 arch pkg:     FREEZES
+  v6.17.9 arch pkg:     FREEZES
+  v6.18.9 from source:  FREEZES
+  v6.18.9 arch pkg:     FREEZES
+
+## Things that do not eliminate the freeze
+
+  - module_blacklist=3Duvcvideo on boot
+  - CONFIG_USB_VIDEO_CLASS=3Dn (compiled out)
+  - i915.enable_psr=3D0
+  - Bypassing intel_vrr_transcoder_enable/disable (no-op)
+  - xrandr --output eDP-1 --set "max bpc" 10
+  - Xorg config FBDepth 30 (No effect on pipe_bpp)
+
+## Workaround patch
+
+Reverting the optimization from d1b618e to restore the unconditional
+uvc_pm_get/put wrapping for all ioctls. This is not a proper fix.
+
+diff --git a/drivers/media/usb/uvc/uvc_v4l2.c b/drivers/media/usb/uvc/uvc_v=
+4l2.c
+index 9e4a251eca88..15057b47ec4f 100644
+--- a/drivers/media/usb/uvc/uvc_v4l2.c
++++ b/drivers/media/usb/uvc/uvc_v4l2.c
+@@ -1199,33 +1199,12 @@ static long uvc_v4l2_unlocked_ioctl(struct file *fi=
+le,
+  unsigned int converted_cmd =3D v4l2_translate_cmd(cmd);
+  int ret;
+
+- /* The following IOCTLs need to turn on the camera. */
+- switch (converted_cmd) {
+- case UVCIOC_CTRL_MAP:
+- case UVCIOC_CTRL_QUERY:
+- case VIDIOC_G_CTRL:
+- case VIDIOC_G_EXT_CTRLS:
+- case VIDIOC_G_INPUT:
+- case VIDIOC_QUERYCTRL:
+- case VIDIOC_QUERYMENU:
+- case VIDIOC_QUERY_EXT_CTRL:
+- case VIDIOC_S_CTRL:
+- case VIDIOC_S_EXT_CTRLS:
+- case VIDIOC_S_FMT:
+- case VIDIOC_S_INPUT:
+- case VIDIOC_S_PARM:
+- case VIDIOC_TRY_EXT_CTRLS:
+- case VIDIOC_TRY_FMT:
+- ret =3D uvc_pm_get(handle->stream->dev);
+- if (ret)
+- return ret;
+- ret =3D video_ioctl2(file, cmd, arg);
+- uvc_pm_put(handle->stream->dev);
++ ret =3D uvc_pm_get(handle->stream->dev);
++ if (ret)
+  return ret;
+- }
+-
+- /* The other IOCTLs can run with the camera off. */
+- return video_ioctl2(file, cmd, arg);
++ ret =3D video_ioctl2(file, cmd, arg);
++ uvc_pm_put(handle->stream->dev);
++ return ret;
+ }
+
+ const struct v4l2_ioctl_ops uvc_ioctl_ops =3D {
+
+Andr=C3=A9s
