@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38CCFEA4FBE
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 13:35:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DEF2EA4FBA
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 13:35:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01BF510E3FA;
-	Mon, 23 Feb 2026 13:35:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 636C610E3FC;
+	Mon, 23 Feb 2026 13:35:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VcUiBrIh";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Q0VjTwzY";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC08A10E3FA
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Feb 2026 13:34:58 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30B9410E3FC
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Feb 2026 13:35:09 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id EFD3660054;
- Mon, 23 Feb 2026 13:34:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22C36C116C6;
- Mon, 23 Feb 2026 13:34:55 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id E5DAD44148;
+ Mon, 23 Feb 2026 13:35:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C380C116C6;
+ Mon, 23 Feb 2026 13:35:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1771853697;
- bh=G4fv3oqiIpZGsbhmrOEgxtUbmzhG1zxRuwGCElZSSoo=;
+ s=k20201202; t=1771853708;
+ bh=dc4chM5pXaUeNrc25W70o5mL45cO3uPvsoqluPBXjqA=;
  h=Date:From:To:Cc:Subject:From;
- b=VcUiBrIhGVWcXCl0CC41RpL9wpqGHRoEGLzfC/vJR6eTOvkk7A/0g0NsZtnRprVDl
- tOJvcEgnK1gxNuNwwYnGe5JxgXX4em4NzXcEJVO99HY/pwuNiRvsHi9al0gnrapvLf
- ZoIpgPZqLoNPPZJ41a1ff4kbKmWdfaED8eD4aoDhtmQURP0OKoGWIoByNzfi8ikMii
- SffwQjIsdEj/zmS8Wqym3gVmfwtrKZedT8IoXAniS9Nuvp9z6+tCluK0qtRkh80d+Y
- paxiWD1tkQKkb5ep3zfkNT46MC8wWQdcR56M0OIE/6MIyZFqb7rFanV25S6vi7zHSU
- EosRLHueOpgpg==
-Date: Mon, 23 Feb 2026 13:34:53 +0000
+ b=Q0VjTwzY9PC1rD2dQ4/6IO8iE4+GHoRcYgYWYsA9M2ox1yrusf9wVjzdJjxNmw24w
+ 8EZQu1Ixhez4p+PbRaK/PFXNSmSBDP94ltZDhC4sINNXzzhQMmKBqdb4n/ixmbonJr
+ WLpH7RnjjlXS5yAO1joB/z0gTR5xCReHWDRkZxTJthNi0WorU2pcUzDIo4iCCoLvND
+ xEqtS1vnP4pe3IvBGYBb0NO/A88AIevSQBfqDqwwltwZvnxem3GHIrEjxLOzsl3hbW
+ TXDNf2nk3krCPwin3XtJGaP7e/8w+LGhgBknx3EyBpas3QB/+Ew7x8EZREdffoaCPA
+ lK80Qg4EtJfkA==
+Date: Mon, 23 Feb 2026 13:35:04 +0000
 From: Mark Brown <broonie@kernel.org>
 To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
  DRM XE List <intel-xe@lists.freedesktop.org>
-Cc: Kees Cook <kees@kernel.org>,
+Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>, Kees Cook <kees@kernel.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
  Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
  Linux Next Mailing List <linux-next@vger.kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+ Shuicheng Lin <shuicheng.lin@intel.com>
 Subject: linux-next: manual merge of the drm-xe tree with the origin tree
-Message-ID: <aZxXfTCmjfTd-lUL@sirena.org.uk>
+Message-ID: <aZxXiB3_4AqBNjRV@sirena.org.uk>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="Z73fIjOklE8xTSlG"
+ protocol="application/pgp-signature"; boundary="QwkZ2tSRS3VHvgJT"
 Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,7 +60,7 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
---Z73fIjOklE8xTSlG
+--QwkZ2tSRS3VHvgJT
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
@@ -69,17 +69,20 @@ Hi all,
 
 Today's linux-next merge of the drm-xe tree got a conflict in:
 
-  drivers/gpu/drm/drm_suballoc.c
+  drivers/gpu/drm/xe/xe_nvm.c
 
-between commit:
+between commits:
 
   69050f8d6d075 ("treewide: Replace kmalloc with kmalloc_obj for non-scalar=
  types")
+  bf4afc53b77ae ("Convert 'alloc_obj' family to use the new default GFP_KER=
+NEL argument")
 
-=66rom the origin tree and commit:
+=66rom the origin tree and commits:
 
-  16843e6638b74 ("drm/sa: Split drm_suballoc_new() into SA alloc and init h=
-elpers")
+  8a44241b0b83a ("drm/xe/nvm: Fix double-free on aux add failure")
+  7755ed58a49f4 ("drm/xe/nvm: Defer xe->nvm assignment until init succeeds")
+  a3187c0c2bbd9 ("drm/xe/nvm: Fix double-free on aux add failure")
 
 =66rom the drm-xe tree.
 
@@ -90,70 +93,40 @@ is submitted for merging.  You may also want to consider cooperating
 with the maintainer of the conflicting tree to minimise any particularly
 complex conflicts.
 
-diff --cc drivers/gpu/drm/drm_suballoc.c
-index e44ad39e310cd,dc9bef3c0419d..0000000000000
---- a/drivers/gpu/drm/drm_suballoc.c
-+++ b/drivers/gpu/drm/drm_suballoc.c
-@@@ -293,13 -293,37 +293,37 @@@ static bool drm_suballoc_next_hole(stru
-  }
+diff --cc drivers/gpu/drm/xe/xe_nvm.c
+index 9c4ccd3b39d4d,1fdfb690ea3d3..0000000000000
+--- a/drivers/gpu/drm/xe/xe_nvm.c
++++ b/drivers/gpu/drm/xe/xe_nvm.c
+@@@ -133,12 -133,10 +133,10 @@@ int xe_nvm_init(struct xe_device *xe
+  	if (WARN_ON(xe->nvm))
+  		return -EFAULT;
  =20
-  /**
--  * drm_suballoc_new() - Make a suballocation.
-+  * drm_suballoc_alloc() - Allocate uninitialized suballoc object.
-+  * @gfp: gfp flags used for memory allocation.
-+  *
-+  * Allocate memory for an uninitialized suballoc object. Intended usage is
-+  * allocate memory for suballoc object outside of a reclaim tainted conte=
-xt
-+  * and then be initialized at a later time in a reclaim tainted context.
-+  *
-+  * @drm_suballoc_free() should be used to release the memory if returned
-+  * suballoc object is in uninitialized state.
-+  *
-+  * Return: a new uninitialized suballoc object, or an ERR_PTR(-ENOMEM).
-+  */
-+ struct drm_suballoc *drm_suballoc_alloc(gfp_t gfp)
-+ {
-+ 	struct drm_suballoc *sa;
-+=20
- -	sa =3D kmalloc(sizeof(*sa), gfp);
-++	sa =3D kmalloc_obj(*sa, gfp);
-+ 	if (!sa)
-+ 		return ERR_PTR(-ENOMEM);
-+=20
-+ 	sa->manager =3D NULL;
-+=20
-+ 	return sa;
-+ }
-+ EXPORT_SYMBOL(drm_suballoc_alloc);
-+=20
-+ /**
-+  * drm_suballoc_insert() - Initialize a suballocation and insert a hole.
-   * @sa_manager: pointer to the sa_manager
-+  * @sa: The struct drm_suballoc.
-   * @size: number of bytes we want to suballocate.
--  * @gfp: gfp flags used for memory allocation. Typically GFP_KERNEL but
--  *       the argument is provided for suballocations from reclaim context=
- or
--  *       where the caller wants to avoid pipelining rather than wait for
--  *       reclaim.
-   * @intr: Whether to perform waits interruptible. This should typically
-   *        always be true, unless the caller needs to propagate a
-   *        non-interruptible context from above layers.
+- 	xe->nvm =3D kzalloc_obj(*nvm);
+- 	if (!xe->nvm)
+ -	nvm =3D kzalloc(sizeof(*nvm), GFP_KERNEL);
+++	nvm =3D kzalloc_obj(*nvm);
++ 	if (!nvm)
+  		return -ENOMEM;
+ =20
+- 	nvm =3D xe->nvm;
+-=20
+  	nvm->writable_override =3D xe_nvm_writable_override(xe);
+  	nvm->non_posted_erase =3D xe_nvm_non_posted_erase(xe);
+  	nvm->bar.parent =3D &pdev->resource[0];
 
---Z73fIjOklE8xTSlG
+--QwkZ2tSRS3VHvgJT
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmcV3wACgkQJNaLcl1U
-h9DeGAf8DaNc9rGM/7tR9Zl8JDunw1txc54ITcHZm6LQ/Ma8wQ5C8XbD/hfJd5JX
-zOjuYxoQ+Qc6mHoGw/IaiO+IzC8Nz5aTmCoAKyXtFJK/8Xa1sU4a/2GRvaKOzbNY
-sEVef19Cn57OcojZ/odQs2iEbPVkBBapDsGTdcd2gpcuSqCNnC1PaVGYbijBck9S
-P4ZaWbhrOnYnQbCSwEP+UL5gd/yOND8G65LRS+jSZrrUu4CBHwSjx8SlhvkSSCz/
-Y17esPYdhy764cyArk7uULilJQ2zqkQQe2lKUGkl/7GYlTeZxjN5y1AyTkVRPvjR
-+0lTWnpjCpUNFic4aAuhGxjA8t+zxw==
-=eo9O
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmcV4cACgkQJNaLcl1U
+h9AFnAf9HvCwiWhiCS68k6Sf9IAfXaU9QMGeFxiRRhlc67P3jB8PCTX2nxXrIWTD
+8GT3l7VoqgnfDaSXRw7LonLL2KgnIo3K5Hb/tqAWQze6feJ/WUyeiQT18GxZbnxE
+wi9n5+ZKw/ylXGo1eh4ZY19SjyQR7Q2tk7vXtIgpmxfJqXay5pQx/iFQQQkHpNHb
+KDuuo7QfeHlNCqKMQiwZoRl3X8gdl49/9NnopjeK8Q+B72bTBO3D7Bl7ej3F0dpp
+MF6ApmA88eNKwoYggGtMVPLBb8eVRJIPfwg1SnqLCz9r43kDRn9hFHoJZIVAv+k+
+KGzgHNRacJ4vgXcQxAgEg8p2LTg4Gw==
+=x9+W
 -----END PGP SIGNATURE-----
 
---Z73fIjOklE8xTSlG--
+--QwkZ2tSRS3VHvgJT--
