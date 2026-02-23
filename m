@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23718EA4FC2
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 14:04:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBB02EA4FC2
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 14:04:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4EC410E44D;
-	Mon, 23 Feb 2026 14:04:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98E7210E449;
+	Mon, 23 Feb 2026 14:04:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O6N4x7xc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qf7PON2V";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7009010E44A
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Feb 2026 14:04:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B9A910E449
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Feb 2026 14:04:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771855491; x=1803391491;
+ t=1771855495; x=1803391495;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Zwh3d94pgziRyR7r7h7s+tMGI/g2qcuz4cCskH7xGSU=;
- b=O6N4x7xcphJjvUV+GRr6jsR7NhlJI4NTXf72m+9J/KjyOrnVItM5+1fY
- 8Aj5fCPIOMuvwYLkxrmNT8DtKwvjBVHWZZvCfxDySD2OGH+257cLmo2lY
- +GaR+QX4NPbhYskRHkdBlLuVs8c4yCE0vnJF5NlTSDqzM0uIKqYQkEeJh
- BAUzny0so+0nPynHq9PXMBcMawnZEVfTcTcylU2JOQ3Mvzv48ZWLZjXfY
- +xCTCa4HyAy7p1UewO6wXiOSiaF8scb/K8pRDSdU/kh3PbH7YnhYW3wY7
- gaiJ8FZhyVeBfU4I1k/owP5/HxO00z8zPH5sPkCtGJ2E+bH3gfgoxdke1 g==;
-X-CSE-ConnectionGUID: wxUvpmWuRsGdp4NTYhnBTQ==
-X-CSE-MsgGUID: As1EXaxqT4C5kgg/O/H+LQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="76460957"
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="76460957"
+ bh=KpYzII2g7Tg0g6eAYvtraesnyh0YGewqvdi7fKNSrUc=;
+ b=Qf7PON2VRjGWhlTvicXInL1WqIfAr88HwfbmMVLGDag2tHmqjUj6E1DF
+ ziLPncX0eXVr8zk1vLnFjaGsb9UkX0fTRo2kC2DHo7+YgKdv33mWrORPu
+ l/wnOkVfBI8h6FxWoid/pjE7wbyzeWYA7tTC/AnI6KCLcLn5MoVZc1ftP
+ nK6h9nenN0HBR/zTHEG4Tzgn9jiTd4ESqIOEksuFhG/fxdUTx2CbSPurg
+ 18JA7v0l7skIp9v2FFRVW+MLk8sMWP7NjppLHWUQqmvQ/obi7Hk1jkfnF
+ p9gC6MNtZ+TnB22kY+1rha1FwAYmCqbY9dVG7q3VTz6/mZtAPO3oDDzVF Q==;
+X-CSE-ConnectionGUID: jVo0uyabQWO+BqwNzEMYjg==
+X-CSE-MsgGUID: GfmjcW92QEO4/gDItuHBzg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="76460964"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="76460964"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 06:04:51 -0800
-X-CSE-ConnectionGUID: AqW0PA5LTp6cmfxHdyRotQ==
-X-CSE-MsgGUID: C3QNI//PSxyHbt9quU/WoA==
+ 23 Feb 2026 06:04:55 -0800
+X-CSE-ConnectionGUID: 3tCW+nxbS2iw4zW0eMBsMg==
+X-CSE-MsgGUID: U15Dl16lQ9WzkIc02Y5Kww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="214656485"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="214656505"
 Received: from ettammin-mobl3.ger.corp.intel.com (HELO
  mkuoppal-desk.intel.com) ([10.245.246.3])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 06:04:47 -0800
+ 23 Feb 2026 06:04:51 -0800
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
@@ -49,12 +49,11 @@ Cc: simona.vetter@ffwll.ch, matthew.brost@intel.com, christian.koenig@amd.com,
  christoph.manszewski@intel.com, rodrigo.vivi@intel.com,
  andrzej.hajda@intel.com, matthew.auld@intel.com,
  maciej.patelczyk@intel.com, gwan-gyeong.mun@intel.com,
- Sunil Khatri <sunil.khatri@amd.com>,
  Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Subject: [PATCH 18/22] drm/xe: Add xe_client_debugfs and introduce debug_data
- file
-Date: Mon, 23 Feb 2026 16:03:13 +0200
-Message-ID: <20260223140318.1822138-19-mika.kuoppala@linux.intel.com>
+Subject: [PATCH 19/22] drm/xe/eudebug: Add read/count/compare helper for eu
+ attention
+Date: Mon, 23 Feb 2026 16:03:14 +0200
+Message-ID: <20260223140318.1822138-20-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260223140318.1822138-1-mika.kuoppala@linux.intel.com>
 References: <20260223140318.1822138-1-mika.kuoppala@linux.intel.com>
@@ -75,210 +74,162 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Christoph Manszewski <christoph.manszewski@intel.com>
+From: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 
-Create a debug_data file for each xe file/client which is supposed to
-list all mapped debug data and attempts to mimic '/proc/pid/maps'.
-Each line represents a single mapping and has the following format:
+Add xe_eu_attentions structure to capture and store eu attention bits.
+Add a function to count the number of eu threads that have turned on from
+eu attentions, and add a function to count the number of eu threads that
+have changed on a state between eu attentions.
 
-  <vm id> <begin>-<end> <flags> <offset> <pathname>
+v2: fix array size calculation (Christoph)
 
-Cc: Sunil Khatri <sunil.khatri@amd.com>
-Signed-off-by: Christoph Manszewski <christoph.manszewski@intel.com>
+Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
 Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/Makefile            |   3 +-
- drivers/gpu/drm/xe/xe_client_debugfs.c | 118 +++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_client_debugfs.h |  19 ++++
- drivers/gpu/drm/xe/xe_device.c         |   3 +
- 4 files changed, 142 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/xe/xe_client_debugfs.c
- create mode 100644 drivers/gpu/drm/xe/xe_client_debugfs.h
+ drivers/gpu/drm/xe/xe_gt_debug.c       | 65 ++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_debug.h       |  7 +++
+ drivers/gpu/drm/xe/xe_gt_debug_types.h | 23 +++++++++
+ 3 files changed, 95 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_debug_types.h
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index f3e113f801d0..34db797ef8fc 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -343,7 +343,8 @@ ifeq ($(CONFIG_DRM_FBDEV_EMULATION),y)
- endif
+diff --git a/drivers/gpu/drm/xe/xe_gt_debug.c b/drivers/gpu/drm/xe/xe_gt_debug.c
+index 314eef6734c3..bf2ca95c7389 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debug.c
++++ b/drivers/gpu/drm/xe/xe_gt_debug.c
+@@ -3,12 +3,14 @@
+  * Copyright © 2023 Intel Corporation
+  */
  
- ifeq ($(CONFIG_DEBUG_FS),y)
--	xe-y += xe_debugfs.o \
-+	xe-y += xe_client_debugfs.o \
-+		xe_debugfs.o \
- 		xe_gt_debugfs.o \
- 		xe_gt_sriov_vf_debugfs.o \
- 		xe_gt_stats.o \
-diff --git a/drivers/gpu/drm/xe/xe_client_debugfs.c b/drivers/gpu/drm/xe/xe_client_debugfs.c
-new file mode 100644
-index 000000000000..0b952038e698
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_client_debugfs.c
-@@ -0,0 +1,118 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2025 Intel Corporation
-+ */
++#include <linux/delay.h>
+ #include "regs/xe_gt_regs.h"
+ #include "xe_device.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt.h"
+ #include "xe_gt_topology.h"
+ #include "xe_gt_debug.h"
++#include "xe_gt_debug_types.h"
+ #include "xe_gt_mcr.h"
+ #include "xe_pm.h"
+ #include "xe_macros.h"
+@@ -177,3 +179,66 @@ int xe_gt_eu_threads_needing_attention(struct xe_gt *gt)
+ 
+ 	return err < 0 ? 0 : err;
+ }
 +
-+#include "xe_client_debugfs.h"
-+
-+#include <linux/debugfs.h>
-+
-+#include "xe_debug_data.h"
-+#include "xe_debug_data_types.h"
-+#include "xe_device_types.h"
-+#include "xe_vm_types.h"
-+
-+#define MAX_LINE_LEN (64 + PATH_MAX)
-+
-+static ssize_t debug_data_read(struct file *file, char __user *buf, size_t count,
-+			       loff_t *ppos)
++static inline unsigned int
++xe_eu_attentions_count(const struct xe_eu_attentions *a)
 +{
-+	struct xe_debug_data *dd;
-+	unsigned long vm_index;
-+	const char *path;
-+	char *kbuf;
-+	struct xe_vm *vm;
++	return bitmap_weight((void *)a->att, a->size * BITS_PER_BYTE);
++}
 +
-+	struct xe_file *xef = file->private_data;
-+	ssize_t total = 0;
-+	loff_t pos = 0;
++void xe_gt_eu_attentions_read(struct xe_gt *gt,
++			      struct xe_eu_attentions *a,
++			      const unsigned int settle_time_ms)
++{
++	unsigned int prev = 0;
++	ktime_t end, now;
 +
-+	if (!xef || !buf)
++	now = ktime_get_raw();
++	end = ktime_add_ms(now, settle_time_ms);
++
++	a->ts = 0;
++	a->size = min_t(int,
++			xe_gt_eu_attention_bitmap_size(gt),
++			sizeof(a->att));
++
++	do {
++		unsigned int attn;
++
++		xe_gt_eu_attention_bitmap(gt, a->att, a->size);
++		attn = xe_eu_attentions_count(a);
++
++		now = ktime_get_raw();
++
++		if (a->ts == 0)
++			a->ts = now;
++		else if (attn && attn != prev)
++			a->ts = now;
++
++		prev = attn;
++
++		if (settle_time_ms)
++			udelay(5);
++
++		/*
++		 * XXX We are gathering data for production SIP to find
++		 * the upper limit of settle time. For now, we wait full
++		 * timeout value regardless.
++		 */
++	} while (ktime_before(now, end));
++}
++
++unsigned int xe_eu_attentions_xor_count(const struct xe_eu_attentions *a,
++					const struct xe_eu_attentions *b)
++{
++	unsigned int count = 0;
++	unsigned int i;
++
++	if (XE_WARN_ON(a->size != b->size))
 +		return -EINVAL;
 +
-+	kbuf = kmalloc(MAX_LINE_LEN, GFP_KERNEL);
-+	if (!kbuf)
-+		return -ENOMEM;
++	for (i = 0; i < a->size; i++)
++		if (a->att[i] ^ b->att[i])
++			count++;
 +
-+	mutex_lock(&xef->vm.lock);
-+
-+	xa_for_each(&xef->vm.xa, vm_index, vm) {
-+		mutex_lock(&vm->debug_data.lock);
-+		list_for_each_entry(dd, &vm->debug_data.list, link) {
-+			int len;
-+
-+			path = dd->flags & DRM_XE_VM_BIND_DEBUG_DATA_FLAG_PSEUDO ?
-+				xe_debug_data_pseudo_path_to_string(dd->pseudopath) :
-+				dd->pathname;
-+
-+			/* Format: <vm id> <begin>-<end> <flags> <offset> <pathname> */
-+			len = snprintf(kbuf, MAX_LINE_LEN, "%lu 0x%llx-0x%llx 0x%llx 0x%x\t%s\n",
-+				vm_index,
-+				dd->addr,
-+				dd->addr + dd->range,
-+				dd->flags,
-+				dd->offset,
-+				path);
-+
-+			if (pos + len <= *ppos) {
-+				pos += len;
-+				continue;
-+			}
-+
-+			if (pos < *ppos) {
-+				const int skip = *ppos - pos;
-+
-+				len -= skip;
-+				memmove(kbuf, kbuf + skip, len);
-+				pos = *ppos;
-+			}
-+
-+			if (total + len > count)
-+				len = count - total;
-+
-+			if (copy_to_user(buf + total, kbuf, len)) {
-+				mutex_unlock(&vm->debug_data.lock);
-+				mutex_unlock(&xef->vm.lock);
-+				kfree(kbuf);
-+				return -EFAULT;
-+			}
-+
-+			total += len;
-+			pos += len;
-+
-+			if (total >= count) {
-+				mutex_unlock(&vm->debug_data.lock);
-+				mutex_unlock(&xef->vm.lock);
-+				kfree(kbuf);
-+				*ppos = pos;
-+				return total;
-+			}
-+		}
-+		mutex_unlock(&vm->debug_data.lock);
-+	}
-+
-+	mutex_unlock(&xef->vm.lock);
-+	kfree(kbuf);
-+	*ppos = pos;
-+	return total;
++	return count;
 +}
+diff --git a/drivers/gpu/drm/xe/xe_gt_debug.h b/drivers/gpu/drm/xe/xe_gt_debug.h
+index 9dabe9cc1d25..0d03565195b4 100644
+--- a/drivers/gpu/drm/xe/xe_gt_debug.h
++++ b/drivers/gpu/drm/xe/xe_gt_debug.h
+@@ -9,6 +9,7 @@
+ #include <linux/bits.h>
+ #include <linux/math.h>
+ 
++struct xe_eu_attentions;
+ struct xe_gt;
+ 
+ #define XE_GT_ATTENTION_TIMEOUT_MS 100
+@@ -29,4 +30,10 @@ int xe_gt_eu_attention_bitmap_size(struct xe_gt *gt);
+ int xe_gt_eu_attention_bitmap(struct xe_gt *gt, u8 *bits,
+ 			      unsigned int bitmap_size);
+ 
++void xe_gt_eu_attentions_read(struct xe_gt *gt,
++			      struct xe_eu_attentions *a,
++			      const unsigned int settle_time_ms);
 +
-+static int debug_data_open(struct inode *inode, struct file *file)
-+{
-+	struct xe_file *xef = inode->i_private;
-+
-+	file->private_data = xef;
-+	return 0;
-+}
-+
-+static const struct file_operations maps_fops = {
-+	.owner = THIS_MODULE,
-+	.open = debug_data_open,
-+	.read = debug_data_read,
-+	.llseek = default_llseek,
-+};
-+
-+void xe_client_debugfs_register(struct xe_file *xef)
-+{
-+	debugfs_create_file("debug_data", 0444, xef->drm->debugfs_client, xef, &maps_fops);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_client_debugfs.h b/drivers/gpu/drm/xe/xe_client_debugfs.h
++unsigned int xe_eu_attentions_xor_count(const struct xe_eu_attentions *a,
++					const struct xe_eu_attentions *b);
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_gt_debug_types.h b/drivers/gpu/drm/xe/xe_gt_debug_types.h
 new file mode 100644
-index 000000000000..9eace15c0a49
+index 000000000000..35a0e822f20a
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_client_debugfs.h
-@@ -0,0 +1,19 @@
++++ b/drivers/gpu/drm/xe/xe_gt_debug_types.h
+@@ -0,0 +1,23 @@
 +/* SPDX-License-Identifier: MIT */
 +/*
 + * Copyright © 2025 Intel Corporation
 + */
 +
-+#ifndef _XE_CLIENT_DEBUGFS_H_
-+#define _XE_CLIENT_DEBUGFS_H_
++#ifndef __XE_GT_DEBUG_TYPES_
++#define __XE_GT_DEBUG_TYPES_
 +
-+#include <linux/debugfs.h>
++#include <linux/types.h>
 +
-+struct xe_file;
++#define XE_GT_EU_ATT_ROWS 2u
++#define XE_GT_EU_ATT_MAX_THREADS 16
++#define XE_GT_EU_MAX_NUM  1024
 +
-+#ifdef CONFIG_DEBUG_FS
-+void xe_client_debugfs_register(struct xe_file *xef);
-+#else
-+static inline void xe_client_debugfs_register(struct xe_file *xef) { }
++struct xe_eu_attentions {
++	u8 att[XE_GT_EU_MAX_NUM *
++	       XE_GT_EU_ATT_ROWS *
++	       XE_GT_EU_ATT_MAX_THREADS/8];
++	unsigned int size;
++	ktime_t ts;
++};
++
 +#endif
-+
-+#endif // _XE_CLIENT_DEBUGFS_H_
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 39a70aaaa253..b4480e07e0f4 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -25,6 +25,7 @@
- #include "regs/xe_regs.h"
- #include "xe_bo.h"
- #include "xe_bo_evict.h"
-+#include "xe_client_debugfs.h"
- #include "xe_debugfs.h"
- #include "xe_defaults.h"
- #include "xe_devcoredump.h"
-@@ -124,6 +125,8 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
- 		put_task_struct(task);
- 	}
- 
-+	xe_client_debugfs_register(xef);
-+
- 	return 0;
- }
- 
 -- 
 2.43.0
 
