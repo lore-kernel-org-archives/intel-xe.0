@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9153EA4FCF
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 15:08:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F837EA4FCF
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 15:09:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A653C10E2F1;
-	Mon, 23 Feb 2026 15:08:43 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A3AA10E2F1;
- Mon, 23 Feb 2026 15:08:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7815508327453157887=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0164310E2F1;
+	Mon, 23 Feb 2026 15:09:26 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U6laZ7jP";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DBD210E2F1
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Feb 2026 15:09:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1771859364; x=1803395364;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5OXbw7+0+ut+xHSygQQBlRxDSuVzX4W21pRvhy/7jT0=;
+ b=U6laZ7jPpGfwyE7SYu2dhabCJJbk4xI7BdV4QefMzaLyXnj266VgKXjC
+ 2wLvTrBJ6HW+7MXQEIDFG2SUeQRPssNJ7TUGyHQgh7KKlwlXI6R5269Ga
+ fuiZvNZ+BJMmAUy0wx/5kWndQRVHfKYt+74GqfuKKk6Vi5+T6WhkQ2WhL
+ mxJhRzVthU6OX/83dNZiPeQzi01OEJQl3JE62ySGZZzQ9BotEeD6EWpK2
+ QjCtUq/vMtsO9Of2qPzIz0laZwPExXKwduqJ7g4Ujvx5Qx2QF0RxB4SeU
+ JErptUqi3dMoaxrpFdsC8ssscGGRNZP3DajfRJYwf64+w1h3TIvB0hAGM A==;
+X-CSE-ConnectionGUID: a9a2oFShSnaal/WwWkXvGw==
+X-CSE-MsgGUID: I8+oGBldRpGKHvRdgIKosA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="72918988"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="72918988"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2026 07:09:24 -0800
+X-CSE-ConnectionGUID: iMhWT4iXRs+XzLUysgyFgA==
+X-CSE-MsgGUID: t50MWEssSmW68sNLBKoWeA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="219136605"
+Received: from ksatya-dev.iind.intel.com ([10.190.229.161])
+ by fmviesa004.fm.intel.com with ESMTP; 23 Feb 2026 07:09:23 -0800
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Subject: [RFC v2 0/1] Do not create drm device for PF only admin mode
+Date: Mon, 23 Feb 2026 15:09:50 +0000
+Message-ID: <20260223150951.1834063-1-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Fix_Adaptive_Sync_SDP_for_P?=
- =?utf-8?q?R_with_Link_ON_+_Auxless_ALPM?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 23 Feb 2026 15:08:42 -0000
-Message-ID: <177185932254.276161.6394100210491090638@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260223134431.1639308-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20260223134431.1639308-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,106 +61,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7815508327453157887==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+When the PF is configured for admin‑only mode, it is restricted to
+management functions and should not expose a device node that would allow
+users to run workloads.
 
-== Series Details ==
+In this mode, no DRM device entry is created; however, sysfs and debugfs
+interfaces for the PF remain available at:
 
-Series: Fix Adaptive Sync SDP for PR with Link ON + Auxless ALPM
-URL   : https://patchwork.freedesktop.org/series/161978/
-State : success
+sysfs: /sys/devices/pci0000:00/<B:D:F>
+debugfs: /sys/kernel/debug/dri/<B:D:F>
 
-== Summary ==
+V2 -> V3:
+- Introduced new helper function xe_debugfs_create_files() to create
+debugfs entries based on admin_only_pf mode or normal mode.
 
-CI Bug Log - changes from xe-4590-616fe8160929511b0679615cda09751043490b18_BAT -> xe-pw-161978v1_BAT
-====================================================
+V1 -> V2:
+- Rebased to latest drm-tip.
+- Update update_minor_dev() to debugfs_minor_dev().
 
-Summary
--------
+Satyanarayana K V P (1):
+  drm/xe/pf: Skip creating DRM device entries in PF admin‑only mode
 
-  **SUCCESS**
+ drivers/gpu/drm/xe/Makefile                   |  1 +
+ drivers/gpu/drm/xe/xe_debugfs.c               | 18 +++--
+ drivers/gpu/drm/xe/xe_debugfs_helpers.c       | 78 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_debugfs_helpers.h       | 27 +++++++
+ drivers/gpu/drm/xe/xe_device.c                | 20 +++--
+ drivers/gpu/drm/xe/xe_gsc_debugfs.c           |  8 +-
+ drivers/gpu/drm/xe/xe_gt_debugfs.c            | 20 +++--
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   |  5 +-
+ drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c   |  5 +-
+ drivers/gpu/drm/xe/xe_guc_debugfs.c           | 20 ++---
+ drivers/gpu/drm/xe/xe_huc_debugfs.c           |  8 +-
+ drivers/gpu/drm/xe/xe_pxp_debugfs.c           | 23 ++++--
+ drivers/gpu/drm/xe/xe_sriov.h                 |  8 ++
+ drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c      |  5 +-
+ drivers/gpu/drm/xe/xe_sriov_vf.c              |  5 +-
+ drivers/gpu/drm/xe/xe_tile_debugfs.c          | 10 +--
+ drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c | 14 ++--
+ 17 files changed, 202 insertions(+), 73 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_debugfs_helpers.c
+ create mode 100644 drivers/gpu/drm/xe/xe_debugfs_helpers.h
 
-  No regressions found.
+-- 
+2.43.0
 
-  
-
-Participating hosts (14 -> 13)
-------------------------------
-
-  Missing    (1): bat-bmg-3 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4590-616fe8160929511b0679615cda09751043490b18 -> xe-pw-161978v1
-
-  IGT_8765: 8765
-  xe-4590-616fe8160929511b0679615cda09751043490b18: 616fe8160929511b0679615cda09751043490b18
-  xe-pw-161978v1: 161978v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161978v1/index.html
-
---===============7815508327453157887==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fix Adaptive Sync SDP for PR with Link ON + Auxless ALPM</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161978/">https://patchwork.freedesktop.org/series/161978/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161978v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161978v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4590-616fe8160929511b0679615cda09751043490b18_BAT -&gt; xe-pw-161978v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 13)</h2>
-<p>Missing    (1): bat-bmg-3 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4590-616fe8160929511b0679615cda09751043490b18 -&gt; xe-pw-161978v1</li>
-</ul>
-<p>IGT_8765: 8765<br />
-  xe-4590-616fe8160929511b0679615cda09751043490b18: 616fe8160929511b0679615cda09751043490b18<br />
-  xe-pw-161978v1: 161978v1</p>
-
-</body>
-</html>
-
---===============7815508327453157887==--
