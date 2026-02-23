@@ -4,58 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1783E7C700
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 00:52:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8271EEF5861
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 04:07:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5478310E155;
-	Mon, 23 Feb 2026 00:52:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3224110E129;
+	Mon, 23 Feb 2026 04:07:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kRqJTC7i";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LIGe6yqB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B5B910E155;
- Mon, 23 Feb 2026 00:52:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 30DB310E129
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Feb 2026 04:07:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771807973; x=1803343973;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=v3O/hJRhtaAfIBGB6kmmYnPZnpbQ1I1GcL6Vp1dZWrE=;
- b=kRqJTC7iXrE/YYDZCXeBo2rbN+M/x9GpF2Z5JM6vNxYZV50HecatDuDC
- L+anv1DJzqNh8tpJmsbdmT0rAkG77/huV17ARaaJpKJwYJsier8hr6mlN
- JxovYrYmxl5dCRl1P9nqAcLvBSKKCs+ZuXP3m0VUUuoJM3Vu5WnTJ0yuu
- ylIUg1DDk4FsDPvurryJ755fvF+E0AnRpVaxmtX/hKPr2mA3w7xKWRDvS
- G4qAO1xpLeNXxi7mf7DOitw1u99GaMdGFpHp+V+1/bg4SvYJFKKraXOY2
- ECnWDyWS3JgmgVxqt2Dz1kz461TyjopeMmp7Rc3wrwm4umz5YIAq6l0H4 w==;
-X-CSE-ConnectionGUID: hltwGbEzThuXLYX5i2GJVQ==
-X-CSE-MsgGUID: U7T6MfeSSWazjdd9JISjHw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="75410492"
-X-IronPort-AV: E=Sophos;i="6.21,305,1763452800"; d="scan'208";a="75410492"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2026 16:52:52 -0800
-X-CSE-ConnectionGUID: LDlkWnofToWijWfQSBvBGA==
-X-CSE-MsgGUID: V8Xq84WXR6yJFnoAkA+ScA==
+ t=1771819664; x=1803355664;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=we3vQFHVIdFDGVsMzfR1UT91DLD6seyqAxIMtjMzrN8=;
+ b=LIGe6yqB0pJUjZ+pPEZz8FbGGgud9zhOt8/nixva2ycnUrpBlJkAUJTd
+ sJj6W9WnxWRvwd9wtQsjTNFX5Mozh03S5rsgJrOrnNe7+vXW3QRZ3a8wu
+ A7yuJ48ipZeLlq5uj8LPg1Ufd2mFJv2sxLc5EUtcEqqibc9hkteHr09UE
+ gManliL6X8h+54KjZzPj3bJ2sueBcClDaK4AZxNvFnt+CaTF41/clPu+j
+ ZSImgdx3T9cAMjSMh4b2Wiek/WPEBrUvE00bi7Q8H5ehoPt5Wpbio5Kss
+ /zJ8rOw0ur4v88upGGEEZTEzlNhSOq34eJ5rrT9Geqjz6mJZKBbSSsqZi g==;
+X-CSE-ConnectionGUID: zv4EJClmRy+eiD9Bp48U7g==
+X-CSE-MsgGUID: ZoWKqeSbS6aY33g91FYKwg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="72515864"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="72515864"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2026 20:07:43 -0800
+X-CSE-ConnectionGUID: Ta/UQiwHRj2qG1bZqoHtaA==
+X-CSE-MsgGUID: 8V9Me7OXTFqniZDdXP0wNw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,305,1763452800"; d="scan'208";a="238365912"
-Received: from lkp-server01.sh.intel.com (HELO c63097897875) ([10.239.97.150])
- by fmviesa002.fm.intel.com with ESMTP; 22 Feb 2026 16:52:51 -0800
-Received: from kbuild by c63097897875 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1vuKBs-000000000Dx-3dpO;
- Mon, 23 Feb 2026 00:52:48 +0000
-Date: Mon, 23 Feb 2026 08:52:05 +0800
-From: kernel test robot <lkp@intel.com>
-To: Simon Richter <Simon.Richter@hogyros.de>, linux-pci@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Simon Richter <Simon.Richter@hogyros.de>
-Subject: Re: [PATCH v2 3/5] vgaarb: mark vga_get family as __must_check
-Message-ID: <202602230802.stvvFCIZ-lkp@intel.com>
-References: <20260218134633.461181-4-Simon.Richter@hogyros.de>
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="246031947"
+Received: from varungup-desk.iind.intel.com ([10.190.238.71])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Feb 2026 20:07:41 -0800
+From: Varun Gupta <varun.gupta@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, matthew.d.roper@intel.com,
+ himal.prasad.ghimiray@intel.com, priyanka.dandamudi@intel.com,
+ stuart.summers@intel.com
+Subject: [PATCH v5 0/2] drm/xe: Add prefetch pagefault support for Xe3p
+Date: Mon, 23 Feb 2026 09:37:27 +0530
+Message-ID: <20260223040729.1157739-1-varun.gupta@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260218134633.461181-4-Simon.Richter@hogyros.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,81 +66,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Simon,
+Xe3p hardware prefetches memory ranges and notifies software via an
+additional bit (bit 11) in the page fault descriptor that the fault
+was caused by prefetch.
 
-kernel test robot noticed the following build errors:
+Patch 1 adds a dedicated stats counter to track invalid prefetch
+pagefaults separately from regular faults.
 
-[auto build test ERROR on pci/next]
-[also build test ERROR on pci/for-linus drm-misc/drm-misc-next drm/drm-next linus/master v6.19 next-20260220]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Patch 2 implements the prefetch support by extracting the prefetch bit
+from the fault descriptor and echoing it in the response (bit 6) only
+when handling fails. This prevents CAT errors for prefetch faults.
+For failed prefetch faults, the error is logged at debug level to
+avoid excessive logging in production settings. The prefetch flag is
+packed into BIT(7) of the existing access_type field to avoid growing
+the consumer struct.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Simon-Richter/vgaarb-pass-vga_get-errors-to-userspace/20260218-214939
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
-patch link:    https://lore.kernel.org/r/20260218134633.461181-4-Simon.Richter%40hogyros.de
-patch subject: [PATCH v2 3/5] vgaarb: mark vga_get family as __must_check
-config: x86_64-randconfig-072-20250919 (https://download.01.org/0day-ci/archive/20260223/202602230802.stvvFCIZ-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260223/202602230802.stvvFCIZ-lkp@intel.com/reproduce)
+Based on original patches by Brian Welty and Priyanka Dandamudi.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602230802.stvvFCIZ-lkp@intel.com/
+v5:
+ - Read prefetch from producer msg in guc_ack_fault, not consumer field (Matt Brost)
+ - Pack prefetch flag into BIT(7) of access_type instead of separate u8 field (Matt Brost)
 
-All errors (new ones prefixed by >>):
+v4:
+ - Downgrade prefetch error log to xe_gt_dbg to avoid spam (Matt Brost/ Stuart)
 
-   drivers/gpu/drm/i915/display/intel_vga.c: In function 'intel_vga_disable':
->> drivers/gpu/drm/i915/display/intel_vga.c:68:9: error: ignoring return value of 'vga_get_uninterruptible' declared with attribute 'warn_unused_result' [-Werror=unused-result]
-      68 |         vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_vga.c: In function 'intel_vga_reset_io_mem':
-   drivers/gpu/drm/i915/display/intel_vga.c:93:9: error: ignoring return value of 'vga_get_uninterruptible' declared with attribute 'warn_unused_result' [-Werror=unused-result]
-      93 |         vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
-         |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   cc1: all warnings being treated as errors
+v3:
+ - Split stats counter into separate patch (Matt Brost)
+ - Drop xe_guc_pagefault_types.h rename patch (Matt Brost)
+ - Move prefetch check to caller of xe_pagefault_print (Matt Brost)
+ - Rename XE3P_PFD_PREFETCH/PFR_PREFETCH to remove XE3P_ prefix,
+   add comments about Xe3+ platform support (Matt Brost)
+ - Rename PREFETCH_PAGEFAULT_COUNT to INVALID_PREFETCH_PAGEFAULT_COUNT
+   for clarity (Matt Brost)
+ - Include prefetch bit value in error message (Matt Brost)
 
+v2:
+ - Initial implementation combining all changes
 
-vim +68 drivers/gpu/drm/i915/display/intel_vga.c
+Varun Gupta (2):
+  drm/xe: Add counter for invalid prefetch pagefaults
+  drm/xe: Add prefetch fault support for Xe3p
 
-0c80d60ae63461 Ville Syrjälä 2025-04-17  43  
-4fb8783165b7c6 Jani Nikula   2019-10-01  44  /* Disable the VGA plane that we never use */
-4b6e05c43b7542 Ville Syrjälä 2024-09-06  45  void intel_vga_disable(struct intel_display *display)
-4fb8783165b7c6 Jani Nikula   2019-10-01  46  {
-4b6e05c43b7542 Ville Syrjälä 2024-09-06  47  	struct pci_dev *pdev = to_pci_dev(display->drm->dev);
-4b6e05c43b7542 Ville Syrjälä 2024-09-06  48  	i915_reg_t vga_reg = intel_vga_cntrl_reg(display);
-0c80d60ae63461 Ville Syrjälä 2025-04-17  49  	enum pipe pipe;
-0c80d60ae63461 Ville Syrjälä 2025-04-17  50  	u32 tmp;
-4fb8783165b7c6 Jani Nikula   2019-10-01  51  	u8 sr1;
-4fb8783165b7c6 Jani Nikula   2019-10-01  52  
-0c80d60ae63461 Ville Syrjälä 2025-04-17  53  	tmp = intel_de_read(display, vga_reg);
-0c80d60ae63461 Ville Syrjälä 2025-04-17  54  	if (tmp & VGA_DISP_DISABLE)
-a3af0140663dc3 Emil Velikov  2021-06-04  55  		return;
-a3af0140663dc3 Emil Velikov  2021-06-04  56  
-0c80d60ae63461 Ville Syrjälä 2025-04-17  57  	if (display->platform.cherryview)
-0c80d60ae63461 Ville Syrjälä 2025-04-17  58  		pipe = REG_FIELD_GET(VGA_PIPE_SEL_MASK_CHV, tmp);
-0c80d60ae63461 Ville Syrjälä 2025-04-17  59  	else if (has_vga_pipe_sel(display))
-0c80d60ae63461 Ville Syrjälä 2025-04-17  60  		pipe = REG_FIELD_GET(VGA_PIPE_SEL_MASK, tmp);
-0c80d60ae63461 Ville Syrjälä 2025-04-17  61  	else
-0c80d60ae63461 Ville Syrjälä 2025-04-17  62  		pipe = PIPE_A;
-0c80d60ae63461 Ville Syrjälä 2025-04-17  63  
-0c80d60ae63461 Ville Syrjälä 2025-04-17  64  	drm_dbg_kms(display->drm, "Disabling VGA plane on pipe %c\n",
-0c80d60ae63461 Ville Syrjälä 2025-04-17  65  		    pipe_name(pipe));
-0c80d60ae63461 Ville Syrjälä 2025-04-17  66  
-4fb8783165b7c6 Jani Nikula   2019-10-01  67  	/* WaEnableVGAAccessThroughIOPort:ctg,elk,ilk,snb,ivb,vlv,hsw */
-4fb8783165b7c6 Jani Nikula   2019-10-01 @68  	vga_get_uninterruptible(pdev, VGA_RSRC_LEGACY_IO);
-f0bb41fad02e03 Jani Nikula   2022-02-02  69  	outb(0x01, VGA_SEQ_I);
-f0bb41fad02e03 Jani Nikula   2022-02-02  70  	sr1 = inb(VGA_SEQ_D);
-f0bb41fad02e03 Jani Nikula   2022-02-02  71  	outb(sr1 | VGA_SR01_SCREEN_OFF, VGA_SEQ_D);
-4fb8783165b7c6 Jani Nikula   2019-10-01  72  	vga_put(pdev, VGA_RSRC_LEGACY_IO);
-4fb8783165b7c6 Jani Nikula   2019-10-01  73  	udelay(300);
-4fb8783165b7c6 Jani Nikula   2019-10-01  74  
-4b6e05c43b7542 Ville Syrjälä 2024-09-06  75  	intel_de_write(display, vga_reg, VGA_DISP_DISABLE);
-4b6e05c43b7542 Ville Syrjälä 2024-09-06  76  	intel_de_posting_read(display, vga_reg);
-4fb8783165b7c6 Jani Nikula   2019-10-01  77  }
-4fb8783165b7c6 Jani Nikula   2019-10-01  78  
+ drivers/gpu/drm/xe/xe_gt_stats.c        |  1 +
+ drivers/gpu/drm/xe/xe_gt_stats_types.h  |  1 +
+ drivers/gpu/drm/xe/xe_guc_fwif.h        |  5 +++--
+ drivers/gpu/drm/xe/xe_guc_pagefault.c   |  6 +++++-
+ drivers/gpu/drm/xe/xe_pagefault.c       | 16 +++++++++++-----
+ drivers/gpu/drm/xe/xe_pagefault_types.h |  6 ++++--
+ 6 files changed, 25 insertions(+), 10 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.43.0
+
