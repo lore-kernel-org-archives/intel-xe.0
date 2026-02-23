@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D45DBEA4FBA
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 14:00:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D461EA4FC2
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 14:00:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8876510E3F7;
-	Mon, 23 Feb 2026 14:00:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8C6110E3F5;
+	Mon, 23 Feb 2026 14:00:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cftpISH8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ixitv65a";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64E5610E3E2;
- Mon, 23 Feb 2026 14:00:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD0B110E3FC;
+ Mon, 23 Feb 2026 14:00:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771855216; x=1803391216;
+ t=1771855221; x=1803391221;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=iN10Zuaw+iwCV7z39BBsMssX9DVXGvxQU/QGqe6kZ54=;
- b=cftpISH8vxr4/D7nDjAaAsfQmTtK2bcSIy8+4fDA4tb8M4VSWf/IrdhX
- fzms/eh7goXcggPbJqbrijQcAtwSmro6mUNIp+KOelr1g0bywN533PDLF
- Ho/TFhyn53TWGxAMQ/b5xeVf/yLHMor0m5sY+tKXl8XmlARDBjy2AxoBQ
- INlyJ91tKYDwV18DkTcsKKOQW7jGTM88X6DenpYIyM83uovfjjamBoJVq
- lJjhWQe/N/JD2V3bpUfAHjRoFGtFckKj+3PN/tNMEXGNxOgYGfgXsw61+
- CeNTHuOlBAou+FK2DKL43fMJW8xXTqooFr8n9bjdYoJ9IyU0+PutrWdWq w==;
-X-CSE-ConnectionGUID: /S3oph6eR3yteDAs1424xw==
-X-CSE-MsgGUID: fCKnODGBTdGcKrUhxInnuA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="72827049"
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="72827049"
+ bh=+ZCisIoRDwyhylzqDMrbHHCN9fNBs5sJ7toNcoqtL+w=;
+ b=ixitv65aKQDerAq8ivlOf7LDhqxROegJUhvDtSgWByZeRYinQf/P0omX
+ 78B5RaM3YIRpUvNeAF0iC0WjJ/oCTdCeKYdqRxKsacUtQLrFb4Q4jBqof
+ wzlu+XDapoaVjO0a1PLMxGgSZ5qz2o1E8EHjpNv9FmTZXXwJXFks3NGau
+ zkL3Ay2xM3oYAf8gIAxqgZtFH3KduaAH0xrls8xaZ7xNsO4bxUePiNpDM
+ exTMPAYzKH5TfwBVqfbPB/P5QZmsEmsug2rlDmomD68oAUV/DwVJ9aXAS
+ TTi5eCi2ShNbRh/wieH+a5wH58RmDMLxZxrnO5YNhBHV8iQtWxoHPRZle Q==;
+X-CSE-ConnectionGUID: 9KjmcEbBT/OHFR8Cgubd7g==
+X-CSE-MsgGUID: dUPspRsDSdqyxtVrAcg+rA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="72827055"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="72827055"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 06:00:16 -0800
-X-CSE-ConnectionGUID: ZjfFr8RFR+SEsnPxbLvPGA==
-X-CSE-MsgGUID: qUZepNgJQSaUoYjV+5EjSg==
+ 23 Feb 2026 06:00:20 -0800
+X-CSE-ConnectionGUID: lLuWHLyrRAWPK8ZxYknKqw==
+X-CSE-MsgGUID: 7+mG58uESgSEtxUGHplO6w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="212961196"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="212961207"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 06:00:14 -0800
+ 23 Feb 2026 06:00:18 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 07/14] drm/i915/dp: Compute AS SDP after PSR and LOBF
-Date: Mon, 23 Feb 2026 19:14:24 +0530
-Message-ID: <20260223134431.1639308-8-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 09/14] drm/i915/psr: Add helper to check if PR is with link OFF
+Date: Mon, 23 Feb 2026 19:14:26 +0530
+Message-ID: <20260223134431.1639308-10-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260223134431.1639308-1-ankit.k.nautiyal@intel.com>
 References: <20260223134431.1639308-1-ankit.k.nautiyal@intel.com>
@@ -68,32 +68,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To enable AS SDP support for Panel Replay (PR) with Link ON and
-Auxless-ALPM, we need to compute AS SDP after
-intel_{psr, alpm_lobf}_compute_config().
-
-Move call for intel_dp_compute_as_sdp() after the above two helpers.
+Introduce a helper intel_psr_is_pr_with_link_off() to check if the Panel
+Replay feature needs to be enabled with link off.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 6 ++++++
+ drivers/gpu/drm/i915/display/intel_psr.h | 1 +
+ 2 files changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 5d173553a646..d08db4938638 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3608,9 +3608,9 @@ intel_dp_compute_config(struct intel_encoder *encoder,
- 		pipe_config->dp_m_n.data_m *= pipe_config->splitter.link_count;
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 5bea2eda744b..e0e6ddbfaa2d 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -4575,3 +4575,9 @@ bool intel_psr_use_trans_push(const struct intel_crtc_state *crtc_state)
  
- 	intel_vrr_compute_config(pipe_config, conn_state);
--	intel_dp_compute_as_sdp(intel_dp, pipe_config);
- 	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
- 	intel_alpm_lobf_compute_config(intel_dp, pipe_config, conn_state);
-+	intel_dp_compute_as_sdp(intel_dp, pipe_config);
- 	intel_dp_drrs_compute_config(connector, pipe_config, link_bpp_x16);
- 	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
- 	intel_dp_compute_hdr_metadata_infoframe_sdp(intel_dp, pipe_config, conn_state);
+ 	return HAS_PSR_TRANS_PUSH_FRAME_CHANGE(display) && crtc_state->has_psr;
+ }
++
++bool intel_psr_is_pr_with_link_off(const struct intel_crtc_state *crtc_state)
++{
++	return crtc_state->has_panel_replay &&
++		crtc_state->link_off_after_as_sdp_when_pr_active;
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
+index 394b641840b3..6764bcb13f9b 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.h
++++ b/drivers/gpu/drm/i915/display/intel_psr.h
+@@ -86,5 +86,6 @@ void intel_psr_compute_config_late(struct intel_dp *intel_dp,
+ 				   struct intel_crtc_state *crtc_state);
+ int intel_psr_min_guardband(struct intel_crtc_state *crtc_state);
+ bool intel_psr_use_trans_push(const struct intel_crtc_state *crtc_state);
++bool intel_psr_is_pr_with_link_off(const struct intel_crtc_state *crtc_state);
+ 
+ #endif /* __INTEL_PSR_H__ */
 -- 
 2.45.2
 
