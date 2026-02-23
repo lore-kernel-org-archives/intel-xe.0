@@ -4,77 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70BA7EA4FB0
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 11:22:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C2A1EA4FB0
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 11:23:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F10710E36A;
-	Mon, 23 Feb 2026 11:22:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="ey8Oc4N/";
-	dkim-atps=neutral
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B588510E36A;
- Mon, 23 Feb 2026 11:22:19 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1771845726; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=S2IB7ZD6DSdp0K9Cc0NBmF40o2LhuWVfCMBxDrxcFijbXLcaH0Lyf5O+2kZkLiznNdkANWcE+BWKHonsRq9KrsrbjcrODuvcKSNxIqKHvtuAbvhQuY8SR2HXpfIgKNQxPAR0kwT3+1adyLsr7+PsZ0/XmR6FDUPRTzuOt2Q3rRg=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1771845726;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=zE1zLu6pL3uqgPGPzZfTY/83E+cY4Cd10iRFX9/SaOs=; 
- b=Po53vDPX65HL6NClbbr3hhqP5yF7v8feEJRZ4aacu/eltttbeEFv2plJ6LJDIZFQ3ye/Yf/DnnD0kAORtkCD42bluLAxEQFl4MrlEVKBONaQE3/CtleL1546UG23I8FrPP7I7OKil6TwHw40C4Q84Y58qH6kwlEbMoRxjwnYajw=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1771845726; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
- bh=zE1zLu6pL3uqgPGPzZfTY/83E+cY4Cd10iRFX9/SaOs=;
- b=ey8Oc4N/ijwyIwISAsnqyuzxwVpaDXPyWdOQrkVUmuNLUqcBICMAqwTs8Zyvf7Uk
- V3SFa2egcB4yao+jcsR4TTgjiNmrdjggG0klVO2zrceXcT92E/POQQ6LygQdb1+w9tA
- wV1bodCAlzCCpYR9uF+d/exsYpJDZf2sbF9djF+0=
-Received: by mx.zohomail.com with SMTPS id 1771845725129427.58768335061166;
- Mon, 23 Feb 2026 03:22:05 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>,
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org
-Subject: Re: [PATCH v8 13/20] drm/bridge: dw-hdmi-qp: Implement
- atomic_get_output_bus_fmts
-Date: Mon, 23 Feb 2026 12:21:56 +0100
-Message-ID: <5968719.DvuYhMxLoT@workhorse>
-In-Reply-To: <ff7b531a-77c1-4c7d-b09d-47779b640193@collabora.com>
-References: <20260216-color-format-v8-0-5722ce175dd5@collabora.com>
- <20260216-color-format-v8-13-5722ce175dd5@collabora.com>
- <ff7b531a-77c1-4c7d-b09d-47779b640193@collabora.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DC3910E36A;
+	Mon, 23 Feb 2026 11:23:05 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B82AF10E36A;
+ Mon, 23 Feb 2026 11:23:03 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7295467851691252475=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_memory_leak_i?=
+ =?utf-8?q?n_xe=5Fvm=5Fmadvise=5Fioctl_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Varun Gupta" <varun.gupta@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 23 Feb 2026 11:23:03 -0000
+Message-ID: <177184578369.274619.3791530112272825080@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260223092815.1500739-1-varun.gupta@intel.com>
+In-Reply-To: <20260223092815.1500739-1-varun.gupta@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,170 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sunday, 22 February 2026 11:42:39 Central European Standard Time Cristian Ciocaltea wrote:
-> Hi Nicolas,
-> 
-> On 2/16/26 3:01 PM, Nicolas Frattaroli wrote:
-> > The atomic_get_output_bus_fmts callback is used by the DRM bridge layer
-> > to recursively select a suitable output format in a bridge chain.
-> > 
-> > As a bridge that outputs to HDMI, dw-hdmi-qp will have its output
-> > formats determined by which formats the platform-specific integration of
-> > the hardware supports, and the chosen HDMI output bit depth.
-> > 
-> > Implement this callback. The returned u32* buffer is supposed to be
-> > freed by the caller of this callback, as specified by the callback's
-> > documentation.
-> > 
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > ---
-> >  drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c | 178 +++++++++++++++++++++++++++
-> >  1 file changed, 178 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
-> > index d649a1cf07f5..4c00218e5fd7 100644
-> > --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
-> > +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
-> > @@ -11,6 +11,7 @@
-> >  #include <linux/export.h>
-> >  #include <linux/i2c.h>
-> >  #include <linux/irq.h>
-> > +#include <linux/media-bus-format.h>
-> >  #include <linux/minmax.h>
-> >  #include <linux/module.h>
-> >  #include <linux/mutex.h>
-> > @@ -749,6 +750,182 @@ static struct i2c_adapter *dw_hdmi_qp_i2c_adapter(struct dw_hdmi_qp *hdmi)
-> >  	return adap;
-> >  }
-> >  
-> > +static int dw_hdmi_qp_config_avi_infoframe(struct dw_hdmi_qp *hdmi,
-> > +					   const u8 *buffer, size_t len)
-> > +{
-> > +	u32 val, i, j;
-> > +
-> > +	if (len != HDMI_INFOFRAME_SIZE(AVI)) {
-> > +		dev_err(hdmi->dev, "failed to configure avi infoframe\n");
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	/*
-> > +	 * DW HDMI QP IP uses a different byte format from standard AVI info
-> > +	 * frames, though generally the bits are in the correct bytes.
-> > +	 */
-> > +	val = buffer[1] << 8 | buffer[2] << 16;
-> > +	dw_hdmi_qp_write(hdmi, val, PKT_AVI_CONTENTS0);
-> > +
-> > +	for (i = 0; i < 4; i++) {
-> > +		for (j = 0; j < 4; j++) {
-> > +			if (i * 4 + j >= 14)
-> > +				break;
-> > +			if (!j)
-> > +				val = buffer[i * 4 + j + 3];
-> > +			val |= buffer[i * 4 + j + 3] << (8 * j);
-> > +		}
-> > +
-> > +		dw_hdmi_qp_write(hdmi, val, PKT_AVI_CONTENTS1 + i * 4);
-> > +	}
-> > +
-> > +	dw_hdmi_qp_mod(hdmi, 0, PKTSCHED_AVI_FIELDRATE, PKTSCHED_PKT_CONFIG1);
-> > +
-> > +	dw_hdmi_qp_mod(hdmi, PKTSCHED_AVI_TX_EN | PKTSCHED_GCP_TX_EN,
-> > +		       PKTSCHED_AVI_TX_EN | PKTSCHED_GCP_TX_EN, PKTSCHED_PKT_EN);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int dw_hdmi_qp_config_drm_infoframe(struct dw_hdmi_qp *hdmi,
-> > +					   const u8 *buffer, size_t len)
-> > +{
-> > +	u32 val, i;
-> > +
-> > +	if (len != HDMI_INFOFRAME_SIZE(DRM)) {
-> > +		dev_err(hdmi->dev, "failed to configure drm infoframe\n");
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	dw_hdmi_qp_mod(hdmi, 0, PKTSCHED_DRMI_TX_EN, PKTSCHED_PKT_EN);
-> > +
-> > +	val = buffer[1] << 8 | buffer[2] << 16;
-> > +	dw_hdmi_qp_write(hdmi, val, PKT_DRMI_CONTENTS0);
-> > +
-> > +	for (i = 0; i <= buffer[2]; i++) {
-> > +		if (i % 4 == 0)
-> > +			val = buffer[3 + i];
-> > +		val |= buffer[3 + i] << ((i % 4) * 8);
-> > +
-> > +		if ((i % 4 == 3) || i == buffer[2])
-> > +			dw_hdmi_qp_write(hdmi, val,
-> > +					 PKT_DRMI_CONTENTS1 + ((i / 4) * 4));
-> > +	}
-> > +
-> > +	dw_hdmi_qp_mod(hdmi, 0, PKTSCHED_DRMI_FIELDRATE, PKTSCHED_PKT_CONFIG1);
-> > +	dw_hdmi_qp_mod(hdmi, PKTSCHED_DRMI_TX_EN, PKTSCHED_DRMI_TX_EN,
-> > +		       PKTSCHED_PKT_EN);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +/*
-> > + * Static values documented in the TRM
-> > + * Different values are only used for debug purposes
-> > + */
-> > +#define DW_HDMI_QP_AUDIO_INFOFRAME_HB1	0x1
-> > +#define DW_HDMI_QP_AUDIO_INFOFRAME_HB2	0xa
-> > +
-> > +static int dw_hdmi_qp_config_audio_infoframe(struct dw_hdmi_qp *hdmi,
-> > +					     const u8 *buffer, size_t len)
-> > +{
-> > +	/*
-> > +	 * AUDI_CONTENTS0: { RSV, HB2, HB1, RSV }
-> > +	 * AUDI_CONTENTS1: { PB3, PB2, PB1, PB0 }
-> > +	 * AUDI_CONTENTS2: { PB7, PB6, PB5, PB4 }
-> > +	 *
-> > +	 * PB0: CheckSum
-> > +	 * PB1: | CT3    | CT2  | CT1  | CT0  | F13  | CC2 | CC1 | CC0 |
-> > +	 * PB2: | F27    | F26  | F25  | SF2  | SF1  | SF0 | SS1 | SS0 |
-> > +	 * PB3: | F37    | F36  | F35  | F34  | F33  | F32 | F31 | F30 |
-> > +	 * PB4: | CA7    | CA6  | CA5  | CA4  | CA3  | CA2 | CA1 | CA0 |
-> > +	 * PB5: | DM_INH | LSV3 | LSV2 | LSV1 | LSV0 | F52 | F51 | F50 |
-> > +	 * PB6~PB10: Reserved
-> > +	 *
-> > +	 * AUDI_CONTENTS0 default value defined by HDMI specification,
-> > +	 * and shall only be changed for debug purposes.
-> > +	 */
-> > +	u32 header_bytes = (DW_HDMI_QP_AUDIO_INFOFRAME_HB1 << 8) |
-> > +			  (DW_HDMI_QP_AUDIO_INFOFRAME_HB2 << 16);
-> > +
-> > +	regmap_bulk_write(hdmi->regm, PKT_AUDI_CONTENTS0, &header_bytes, 1);
-> > +	regmap_bulk_write(hdmi->regm, PKT_AUDI_CONTENTS1, &buffer[3], 1);
-> > +	regmap_bulk_write(hdmi->regm, PKT_AUDI_CONTENTS2, &buffer[4], 1);
-> > +
-> > +	/* Enable ACR, AUDI, AMD */
-> > +	dw_hdmi_qp_mod(hdmi,
-> > +		       PKTSCHED_ACR_TX_EN | PKTSCHED_AUDI_TX_EN | PKTSCHED_AMD_TX_EN,
-> > +		       PKTSCHED_ACR_TX_EN | PKTSCHED_AUDI_TX_EN | PKTSCHED_AMD_TX_EN,
-> > +		       PKTSCHED_PKT_EN);
-> > +
-> > +	/* Enable AUDS */
-> > +	dw_hdmi_qp_mod(hdmi, PKTSCHED_AUDS_TX_EN, PKTSCHED_AUDS_TX_EN, PKTSCHED_PKT_EN);
-> > +
-> > +	return 0;
-> > +}
-> 
-> Something's wrong with this patch as all the functions above have been dropped
-> since the HDMI VSI & SPD InfoFrames series [1] got merged.  The previous
-> revision was fine though, hence that's likely an unexpected artifact of the
-> latest rebase.
+--===============7295467851691252475==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Oops, yeah, I think I messed this up during rebase. Thanks for letting me know!
+== Series Details ==
 
-> 
-> [1] https://lore.kernel.org/all/20260129-dw-hdmi-qp-iframe-v2-0-0157ad05232c@collabora.com/
-> 
+Series: drm/xe: Fix memory leak in xe_vm_madvise_ioctl (rev2)
+URL   : https://patchwork.freedesktop.org/series/161938/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-4588-cec43d5c2696af219fc2ef71dd7e93db48c80f66_BAT -> xe-pw-161938v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-161938v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6520]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4588-cec43d5c2696af219fc2ef71dd7e93db48c80f66/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161938v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
 
 
+Build changes
+-------------
+
+  * Linux: xe-4588-cec43d5c2696af219fc2ef71dd7e93db48c80f66 -> xe-pw-161938v2
+
+  IGT_8765: 8765
+  xe-4588-cec43d5c2696af219fc2ef71dd7e93db48c80f66: cec43d5c2696af219fc2ef71dd7e93db48c80f66
+  xe-pw-161938v2: 161938v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161938v2/index.html
+
+--===============7295467851691252475==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Fix memory leak in xe_vm_madvise_ioctl (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161938/">https://patchwork.freedesktop.org/series/161938/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161938v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161938v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4588-cec43d5c2696af219fc2ef71dd7e93db48c80f66_BAT -&gt; xe-pw-161938v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-161938v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4588-cec43d5c2696af219fc2ef71dd7e93db48c80f66/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161938v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4588-cec43d5c2696af219fc2ef71dd7e93db48c80f66 -&gt; xe-pw-161938v2</li>
+</ul>
+<p>IGT_8765: 8765<br />
+  xe-4588-cec43d5c2696af219fc2ef71dd7e93db48c80f66: cec43d5c2696af219fc2ef71dd7e93db48c80f66<br />
+  xe-pw-161938v2: 161938v2</p>
+
+</body>
+</html>
+
+--===============7295467851691252475==--
