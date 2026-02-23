@@ -4,80 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49AD8E98E06
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 08:32:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42E5BE98E12
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 09:17:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BBA510E297;
-	Mon, 23 Feb 2026 08:32:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBEBC10E29E;
+	Mon, 23 Feb 2026 09:17:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=leemhuis.info header.i=@leemhuis.info header.b="YuCSGlnB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h+NJ0f9X";
 	dkim-atps=neutral
-X-Greylist: delayed 359 seconds by postgrey-1.36 at gabe;
- Mon, 23 Feb 2026 08:32:43 UTC
-Received: from relay.yourmailgateway.de (relay.yourmailgateway.de
- [188.68.63.98])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F10910E279;
- Mon, 23 Feb 2026 08:32:43 +0000 (UTC)
-Received: from mors-relay-2501.netcup.net (localhost [127.0.0.1])
- by mors-relay-2501.netcup.net (Postfix) with ESMTPS id 4fKDTt3tKQz6D9H;
- Mon, 23 Feb 2026 09:26:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
- s=key2; t=1771835202;
- bh=sm6q1+ERW/BaOcu2jshdc2Eho9GqqWDTk0xMpvA9awk=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=YuCSGlnBs6uo8rYhCNuWFT1c8Nrr5ASloi7qT7mF6rEETrT6fqzQHm1PppOlqRB3X
- /Z1dVLkH0NnDHaSlzHB7FdKSQAwWemcUnvBA2IAHVtad4JDZ65JoU80wgT5yNU+AtR
- +KSwtgqRpEYlWRx+SMK+CaRrmKXQUt2eNkSvSjCVnz31bzIxkneAxxPYNhDWe8Iw2F
- EEmyuRfpdh3e+udFOCA5NoYmj/ROMlLX69rcUYGqvXTu/MEy95St7o41h7ZXdngRWv
- KGkXt5WIFJMSo0v65jT1fak9S8UFFwSde+LDO40KhyDdbql1RzAW/RwFsjncHy2Xzc
- cmwLen2M2f33A==
-Received: from policy02-mors.netcup.net (unknown [46.38.225.35])
- by mors-relay-2501.netcup.net (Postfix) with ESMTPS id 4fKDTt36vWz4xZG;
- Mon, 23 Feb 2026 09:26:42 +0100 (CET)
-Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
- SHA256) (No client certificate requested)
- by policy02-mors.netcup.net (Postfix) with ESMTPS id 4fKDTp6ryqz8sWT;
- Mon, 23 Feb 2026 09:26:38 +0100 (CET)
-Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown
- [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
- by mxe9fb.netcup.net (Postfix) with ESMTPSA id E600866F46;
- Mon, 23 Feb 2026 09:26:37 +0100 (CET)
-Authentication-Results: mxe9fb;
- spf=pass (sender IP is 2a02:8108:8984:1d00:a0cf:1912:4be:477f)
- smtp.mailfrom=regressions@leemhuis.info
- smtp.helo=[IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f]
-Received-SPF: pass (mxe9fb: connection is authenticated)
-Message-ID: <068a5363-de97-4d67-94a9-c9a2baed68b0@leemhuis.info>
-Date: Mon, 23 Feb 2026 09:26:37 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 387F210E002;
+ Mon, 23 Feb 2026 09:17:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1771838251; x=1803374251;
+ h=from:subject:date:message-id:mime-version:
+ content-transfer-encoding:to:cc;
+ bh=0VK4EVZXFLjefrMu9t3uUsITlIa2enHw8hOgoelLOrQ=;
+ b=h+NJ0f9X8AZYVsiiYBgnEJPIt0am2mUeDE8WFeYAyOI5f3TwbhJ54DXc
+ m8NIHbakd6h0kNByU4mWuvYcJwuvZ1ixqZf5Cp6NpsrwtGiNDySJ6Pwfd
+ ycnq2UzyDd/9v0r8c1t0b2ydNRh/N7scMhkDjsMf2rp5Cgyl28G3Q8UpW
+ akr64ry0bZ0z5v5JoWd3/LGEH+UX9SOKEb7hRCK1awU1EzrfP0tn/b8Pt
+ lIH7Xb6HDAtkfN6aBt26ieY03TyQYE0oIXlPUtsVgNJlGQgTsyg+rHo8a
+ w9PlbFVW7gCCPLh4+t746hLyqDzuBRK8Asy88+wqkyYVV8PwrWxh4vhIw A==;
+X-CSE-ConnectionGUID: nU1c6nMCQmmpL7KbcMLuNw==
+X-CSE-MsgGUID: ZPIukUWQRnahU5WdSFevMw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="76690738"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="76690738"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2026 01:17:31 -0800
+X-CSE-ConnectionGUID: O5sPO9vKRaGhyJ7Dp3CTyA==
+X-CSE-MsgGUID: mJLFvm63SCCE4IyLeZeJfA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="220048770"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa005.fm.intel.com with ESMTP; 23 Feb 2026 01:17:25 -0800
+From: Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCH v10 0/7] User readable error codes on atomic_ioctl failure
+Date: Mon, 23 Feb 2026 14:45:58 +0530
+Message-Id: <20260223-atomic-v10-0-f59c8def2e70@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [REGRESSION] Display freeze on VT switch back to X11 since v6.16
-To: Ricardo Ribalda <ribalda@chromium.org>,
- =?UTF-8?B?QW5kcsOpcyBQw6lyZXo=?= <andres.f.perez@gmail.com>
-Cc: stable@vger.kernel.org,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Hans de Goede <hansg@kernel.org>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- regressions@lists.linux.dev
-References: <CAD0gVBsyzYNA6ydPwg9mJ9VQzYg4zPAi24JQ13-=0KtdbQ039A@mail.gmail.com>
- <CANiDSCsMVE7qAcjcjbjhYSMoyypkR5Nq-ZA-e=CJVY5CUGAG7Q@mail.gmail.com>
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-Content-Language: de-DE, en-US
-In-Reply-To: <CANiDSCsMVE7qAcjcjbjhYSMoyypkR5Nq-ZA-e=CJVY5CUGAG7Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-PPP-Message-ID: <177183519851.1298619.12932841076943444255@mxe9fb.netcup.net>
-X-Rspamd-Server: rspamd-worker-8404
-X-Rspamd-Queue-Id: E600866F46
-X-NC-CID: AQ3l18WOcfyVsWr3MsuKtObqMCjuDgmJUet3MF1F4RC9SMhvp/U=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAM8anGkC/03OTQqDMBAF4KuUrDslicZoV71HcRGTSR2opiQiL
+ eLdG4X+LN9j3scsLGEkTOx8WFjEmRKFMQfBjwdmezPeEMjlgkkuFdeyBjOFgSzYRovCu0JpLFk
+ +fkT09Nyla5uzj2GAqY9ofvNK6s98FiCgMo01QrjCqfJC44T3kw3DpvWUphBf+1tzvZmbUHEhm
+ 69QA4fSdrrj3hiuxJ/Qruv6Btq5CALbAAAA
+X-Change-ID: 20250728-atomic-c9713fd357e4
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, xaver.hugl@kde.org, 
+ harry.wentland@amd.com, uma.shankar@intel.com, louis.chauvet@bootlin.com, 
+ naveen1.kumar@intel.com, ramya.krishna.yella@intel.com
+Cc: "Imported from f20260210-atomic-v9-5-525c88fd2402"@intel.com, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, Arun R Murthy <arun.r.murthy@intel.com>, 
+ Suraj Kandpal <suraj.kandpal@intel.com>
+X-Mailer: b4 0.15-dev
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,164 +80,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+EDITME: Imported from f20260210-atomic-v9-5-525c88fd2402@intel.com
+        Please review before sending.
 
+The series focuses on providing a user readable error value on a failure
+in drm_atomic_ioctl(). Usually -EINVAL is returned in most of the error
+cases and it is difficult for the user to decode the error and get to
+know the real cause for the error. If user gets to know the reason for
+the error then corrective measurements can be taken up.
 
-On 2/23/26 09:10, Ricardo Ribalda wrote:
-> Hi Andrés
-> 
-> Thanks for doing the bisecting
-> 
-> On Sun, 22 Feb 2026 at 22:56, Andrés Pérez <andres.f.perez@gmail.com> wrote:
->>
->> # OVERVIEW
->>
->> Since kernel v6.16.1, switching from an X11 session to a text VT and back
->> freezes the display on a ThinkPad P15 Gen 2. The system remains responsive
->> over SSH; only the display is frozen. Bisecting identified commit
->> d1b618e7954802fe ("media: uvcvideo: Do not turn on the camera for some
->> ioctls") as the trigger. Reverting the logic change in that commit
->> fixes VT switching
->> on v6.16.1, v6.17.9, and v6.18.9, but that is not an actual solution. Wayland
->> compositors (e.g., river and sway) are not affected.
->>
->> Last good:  v6.15.9
->> First bad:  v6.16.1
->> Bisect result: d1b618e7954802fe media: uvcvideo: Do not turn on the
->> camera for some ioctls
->>
->> ## Hardware:   Lenovo ThinkPad P15 Gen 2i (20YQ0031US)
->> CPU:        Intel Core i7-11800H (Tiger Lake-H)
->> iGPU:        Intel UHD Graphics (TGL GT1)
->> dGPU:       NVIDIA T1200 (not involved in eDP output; driver: nvidia-open)
+User will have to check for the capability
+DRM_CAP_ATOMIC_ERROR_REPORTING before using this feature so as to ensure
+that the driver supports failure reporting.
 
-Could this be caused by nvidia's own driver, even if it is not supposed
-to be involved? Might be worth ruling out with a proper vanilla kernel,
-ideally really fresh, so 7.0-rc1.
+TODO: driver specific error codes are to be added and will be done in
+the follow-up patches.
 
-Ciao, Thorsten
+TODO: Once the series is merged the element 'reserved' used for sending
+the failure code in struct drm_mode_atomic is to changed to err_code.
 
->> Display:    15.6" 1920x1080 eDP, 10 bpc capable (EDID 1.4)
->> Webcam:     Integrated Camera on PCH xHCI (Bus 003 Port 004)
->> Firmware:   LENOVO N37ET61W (1.97)
->> OS:         Arch Linux, Nix home-manager, X11 + xmonad, no display manager
->>
->> ## Symptoms and reproduction steps:
->> 1. Boot, start X11 on tty1 (startx).
->> 2. Switch to tty2 (Ctrl+Alt+F2): works.
->> 3. Switch back to tty1 (Ctrl+Alt+F1): display freezes.
->>    - Frozen on the last frame shown before switching away.
->>    - System is fully responsive over SSH.
->>    - Other VTs switch normally between each other as long as X11 is
->> not active on them.
->>    - Killing X does not recover the display. A reboot is required.
->>
->> # DEBUG ANALYSIS
->>
->> On v6.16.1, the VT switch back to X triggers a full modeset due to pipe
->> configuration mismatches detected by intel_pipe_config_compare:
->>
->> [drm:intel_pipe_config_compare] fastset requirement not met in pipe_bpp
->>   (expected 30, found 24)
->> [drm:intel_pipe_config_compare] fastset requirement not met in dp_m_n
->>   (expected link 269484/524288, found link 336855/524288)
->> [drm:intel_pipe_config_compare] fastset requirement not met in dpll_hw_state
->>   (expected cfgcr0: 0xe001a5, found cfgcr0: 0x1c2)
->> [drm:intel_pipe_config_compare] fastset requirement not met in port_clock
->>   (expected 270000, found 216000)
->> [drm:intel_atomic_check] forcing full modeset
->>
->> On v6.15.9, the same VT switch shows no such messages.
->> no pipe_config_compare runs, no modeset, no freeze.
->>
->> # BISECT AND VERIFICATION
->>
->> The bisect converged on d1b618e7954802fe in the uvcvideo driver. This
->> commit adds a switch statement to uvc_v4l2_unlocked_ioctl that allows
->> certain V4L2 IOCTLS to call video_ioctl2 directly without first calling
->> uvc_pm_get/uvc_pm_put. Prior to this commit, all ioctls called uvc_pm_get
->> before video_ioctl2.
->>
->> ## VT switching verification across kernel versions:
->>
->>   v6.12.74 arch pkg:   WORKS
->>   v6.15.9 arch pkg:    WORKS
->>   v6.15.9 from source: WORKS
->>   v6.16.1 with d1b618e reverted:     WORKS
->>   v6.17.9 with PM wrapping restored: WORKS
->>   v6.18.9 with PM wrapping restored: WORKS
->>
->>   v6.16.1 from source:  FREEZES
->>   v6.16.1 arch pkg:     FREEZES
->>   v6.17.9 arch pkg:     FREEZES
->>   v6.18.9 from source:  FREEZES
->>   v6.18.9 arch pkg:     FREEZES
->>
->> ## Things that do not eliminate the freeze
->>
->>   - module_blacklist=uvcvideo on boot
->>   - CONFIG_USB_VIDEO_CLASS=n (compiled out)
-> 
-> This is puzzling me a bit... You are saying that if you do not build
-> the uvc driver, the freeze is still happening?
-> 
-> Am I understanding this correctly?
-> 
->>   - i915.enable_psr=0
->>   - Bypassing intel_vrr_transcoder_enable/disable (no-op)
->>   - xrandr --output eDP-1 --set "max bpc" 10
->>   - Xorg config FBDepth 30 (No effect on pipe_bpp)
->>
->> ## Workaround patch
->>
->> Reverting the optimization from d1b618e to restore the unconditional
->> uvc_pm_get/put wrapping for all ioctls. This is not a proper fix.
->>
->> diff --git a/drivers/media/usb/uvc/uvc_v4l2.c b/drivers/media/usb/uvc/uvc_v4l2.c
->> index 9e4a251eca88..15057b47ec4f 100644
->> --- a/drivers/media/usb/uvc/uvc_v4l2.c
->> +++ b/drivers/media/usb/uvc/uvc_v4l2.c
->> @@ -1199,33 +1199,12 @@ static long uvc_v4l2_unlocked_ioctl(struct file *file,
->>   unsigned int converted_cmd = v4l2_translate_cmd(cmd);
->>   int ret;
->>
->> - /* The following IOCTLs need to turn on the camera. */
->> - switch (converted_cmd) {
->> - case UVCIOC_CTRL_MAP:
->> - case UVCIOC_CTRL_QUERY:
->> - case VIDIOC_G_CTRL:
->> - case VIDIOC_G_EXT_CTRLS:
->> - case VIDIOC_G_INPUT:
->> - case VIDIOC_QUERYCTRL:
->> - case VIDIOC_QUERYMENU:
->> - case VIDIOC_QUERY_EXT_CTRL:
->> - case VIDIOC_S_CTRL:
->> - case VIDIOC_S_EXT_CTRLS:
->> - case VIDIOC_S_FMT:
->> - case VIDIOC_S_INPUT:
->> - case VIDIOC_S_PARM:
->> - case VIDIOC_TRY_EXT_CTRLS:
->> - case VIDIOC_TRY_FMT:
->> - ret = uvc_pm_get(handle->stream->dev);
->> - if (ret)
->> - return ret;
->> - ret = video_ioctl2(file, cmd, arg);
->> - uvc_pm_put(handle->stream->dev);
->> + ret = uvc_pm_get(handle->stream->dev);
->> + if (ret)
->>   return ret;
->> - }
->> -
->> - /* The other IOCTLs can run with the camera off. */
->> - return video_ioctl2(file, cmd, arg);
->> + ret = video_ioctl2(file, cmd, arg);
->> + uvc_pm_put(handle->stream->dev);
->> + return ret;
->>  }
->>
->>  const struct v4l2_ioctl_ops uvc_ioctl_ops = {
->>
->> Andrés
->>
-> 
-> 
+The IGT related changes are pushed for review @
+https://patchwork.freedesktop.org/series/153330/
+
+[RFC] changes for libdrm pushed for review @
+https://gitlab.freedesktop.org/mesa/libdrm/-/merge_requests/450
+
+    To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+    To: suraj.kandpal@intel.com>
+    To: Maxime Ripard <mripard@kernel.org>
+    To: Thomas Zimmermann <tzimmermann@suse.de>
+    To: David Airlie <airlied@gmail.com>
+    To: Simona Vetter <simona@ffwll.ch>
+    To: Jani Nikula <jani.nikula@linux.intel.com>
+    To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+    To: Tvrtko Ursulin <tursulin@ursulin.net>
+    To: xaver.hugl@kde.org
+    To: harry.wentland@amd.com
+    To: uma.shankar@intel.com
+    To: louis.chauvet@bootlin.com
+    To: naveen1.kumar@intel.com
+    To: ramya.krishna.yella@intel.com
+    Cc: dri-devel@lists.freedesktop.org
+    Cc: intel-gfx@lists.freedesktop.org
+    Cc: intel-xe@lists.freedesktop.org
+    Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+Changes in v9:
+- EDITME: describe what is new in this series revision.
+- EDITME: use bulletpoints and terse descriptions.
+- Link to v8: https://lore.kernel.org/r/20260129-atomic-v8-0-4cb7b0faa051@intel.com
+
+---
+Arun R Murthy (7):
+      drm: Define user readable error codes for atomic ioctl
+      drm/atomic: Add error_code element in atomic_state
+      drm/atomic: Call complete_signaling only if prepare_signaling is done
+      drm/atomic: Allocate atomic_state at the beginning of atomic_ioctl
+      drm/atomic: Return user readable error in atomic_ioctl
+      drm/i915/display: Error codes for async flip failures
+      drm: Introduce DRM_CAP_ATOMIC_ERROR_REPORTING
+
+ drivers/gpu/drm/drm_atomic.c                 | 31 ++++++++++
+ drivers/gpu/drm/drm_atomic_uapi.c            | 89 ++++++++++++++++++++--------
+ drivers/gpu/drm/drm_ioctl.c                  |  3 +
+ drivers/gpu/drm/i915/display/intel_display.c | 25 ++++----
+ include/drm/drm_atomic.h                     | 10 ++++
+ include/uapi/drm/drm.h                       |  7 +++
+ include/uapi/drm/drm_mode.h                  | 37 ++++++++++++
+ 7 files changed, 165 insertions(+), 37 deletions(-)
+---
+base-commit: cec43d5c2696af219fc2ef71dd7e93db48c80f66
+change-id: 20250728-atomic-c9713fd357e4
+
+Best regards,
+-- 
+Arun R Murthy <arun.r.murthy@intel.com>
 
