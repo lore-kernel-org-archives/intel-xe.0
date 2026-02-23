@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B0F5EA4FC3
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 14:00:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D45DBEA4FBA
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 14:00:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 185B010E3EE;
-	Mon, 23 Feb 2026 14:00:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8876510E3F7;
+	Mon, 23 Feb 2026 14:00:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LpnUo3NE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cftpISH8";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AA0810E3E0;
- Mon, 23 Feb 2026 14:00:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64E5610E3E2;
+ Mon, 23 Feb 2026 14:00:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771855212; x=1803391212;
+ t=1771855216; x=1803391216;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=AagpAJJ9IVwA2esuYj993NoDdSnC4QUj+YjLBE7x7I0=;
- b=LpnUo3NEU0xoPOTltGGP6ccewYecV6d913auzSWf6USY2XwwhfA1f0yO
- ApLYWwEHQhxS1dx00caENhPuMMMJI2aQ/e3zb9+mgci69JfBsIbbb0Qhi
- VoljLIzLfAKSCc7jXr2vN6hMCw+Wv1OGHXOof/9DcWEFPBlM62LUf6bWd
- miHXrOhBV62xgkH7c6hMRa79qnmBO+fK604Tl2u46GrwJjy7HPIrdvgmH
- NUFxCnenDZnWhvxvBfhQkqWRPIZnrGXtxZvWrvxUYDQOms3o0QPc/jWie
- RfaTKAVjLg7GRaVRNJgkBgHH3tlptDInTA5N8lRv9vGw0zQB2u2gjzs2+ Q==;
-X-CSE-ConnectionGUID: clWDveylTTGMlFiosY2y/g==
-X-CSE-MsgGUID: B8WXUPC+QySDbB+m7S1Qvw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="72827042"
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="72827042"
+ bh=iN10Zuaw+iwCV7z39BBsMssX9DVXGvxQU/QGqe6kZ54=;
+ b=cftpISH8vxr4/D7nDjAaAsfQmTtK2bcSIy8+4fDA4tb8M4VSWf/IrdhX
+ fzms/eh7goXcggPbJqbrijQcAtwSmro6mUNIp+KOelr1g0bywN533PDLF
+ Ho/TFhyn53TWGxAMQ/b5xeVf/yLHMor0m5sY+tKXl8XmlARDBjy2AxoBQ
+ INlyJ91tKYDwV18DkTcsKKOQW7jGTM88X6DenpYIyM83uovfjjamBoJVq
+ lJjhWQe/N/JD2V3bpUfAHjRoFGtFckKj+3PN/tNMEXGNxOgYGfgXsw61+
+ CeNTHuOlBAou+FK2DKL43fMJW8xXTqooFr8n9bjdYoJ9IyU0+PutrWdWq w==;
+X-CSE-ConnectionGUID: /S3oph6eR3yteDAs1424xw==
+X-CSE-MsgGUID: fCKnODGBTdGcKrUhxInnuA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="72827049"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="72827049"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 06:00:12 -0800
-X-CSE-ConnectionGUID: kS0q6rRfTY6ikzgfVlPOOA==
-X-CSE-MsgGUID: wMuviWWqRj6VLjqt6idJLA==
+ 23 Feb 2026 06:00:16 -0800
+X-CSE-ConnectionGUID: ZjfFr8RFR+SEsnPxbLvPGA==
+X-CSE-MsgGUID: qUZepNgJQSaUoYjV+5EjSg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="212961184"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="212961196"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 06:00:10 -0800
+ 23 Feb 2026 06:00:14 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 05/14] include/drm/display/dp: Add field for storing AS SDP
- version
-Date: Mon, 23 Feb 2026 19:14:22 +0530
-Message-ID: <20260223134431.1639308-6-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 07/14] drm/i915/dp: Compute AS SDP after PSR and LOBF
+Date: Mon, 23 Feb 2026 19:14:24 +0530
+Message-ID: <20260223134431.1639308-8-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260223134431.1639308-1-ankit.k.nautiyal@intel.com>
 References: <20260223134431.1639308-1-ankit.k.nautiyal@intel.com>
@@ -69,39 +68,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a new member to store Adaptive Sync SDP version and include it in AS
-SDP logs.
+To enable AS SDP support for Panel Replay (PR) with Link ON and
+Auxless-ALPM, we need to compute AS SDP after
+intel_{psr, alpm_lobf}_compute_config().
+
+Move call for intel_dp_compute_as_sdp() after the above two helpers.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/display/drm_dp_helper.c | 1 +
- include/drm/display/drm_dp_helper.h     | 1 +
- 2 files changed, 2 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-index a697cc227e28..9469943d8194 100644
---- a/drivers/gpu/drm/display/drm_dp_helper.c
-+++ b/drivers/gpu/drm/display/drm_dp_helper.c
-@@ -3507,6 +3507,7 @@ void drm_dp_as_sdp_log(struct drm_printer *p, const struct drm_dp_as_sdp *as_sdp
- {
- 	drm_printf(p, "DP SDP: AS_SDP, revision %u, length %u\n",
- 		   as_sdp->revision, as_sdp->length);
-+	drm_printf(p, "    version: %d\n", as_sdp->version);
- 	drm_printf(p, "    vtotal: %d\n", as_sdp->vtotal);
- 	drm_printf(p, "    target_rr: %d\n", as_sdp->target_rr);
- 	drm_printf(p, "    duration_incr_ms: %d\n", as_sdp->duration_incr_ms);
-diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-index 1d0acd58f486..c71787fc31c1 100644
---- a/include/drm/display/drm_dp_helper.h
-+++ b/include/drm/display/drm_dp_helper.h
-@@ -120,6 +120,7 @@ struct drm_dp_as_sdp {
- 	unsigned char sdp_type;
- 	unsigned char revision;
- 	unsigned char length;
-+	int version;
- 	int vtotal;
- 	int target_rr;
- 	int duration_incr_ms;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 5d173553a646..d08db4938638 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3608,9 +3608,9 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+ 		pipe_config->dp_m_n.data_m *= pipe_config->splitter.link_count;
+ 
+ 	intel_vrr_compute_config(pipe_config, conn_state);
+-	intel_dp_compute_as_sdp(intel_dp, pipe_config);
+ 	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
+ 	intel_alpm_lobf_compute_config(intel_dp, pipe_config, conn_state);
++	intel_dp_compute_as_sdp(intel_dp, pipe_config);
+ 	intel_dp_drrs_compute_config(connector, pipe_config, link_bpp_x16);
+ 	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
+ 	intel_dp_compute_hdr_metadata_infoframe_sdp(intel_dp, pipe_config, conn_state);
 -- 
 2.45.2
 
