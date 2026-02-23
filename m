@@ -4,56 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6EBEEA4FBF
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 13:20:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87DF9EA4FBE
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 13:29:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81C0710E2EB;
-	Mon, 23 Feb 2026 13:20:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4440F10E306;
+	Mon, 23 Feb 2026 13:29:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T/M1crss";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Co7hihAk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62B2610E2EB;
- Mon, 23 Feb 2026 13:20:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ABDF610E2EB;
+ Mon, 23 Feb 2026 13:29:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771852835; x=1803388835;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=y/rSdGH7T84H87TDHdsRlckNukfxfCLgXK5Ye+LlBFM=;
- b=T/M1crssu7ZS6p9isU5Via3G9LpPbL6AEkGGHuL5lmFpNzbywSJyAvdU
- mAYJiMu7oUs9c3tO+w/w43fzbLrFbQQlwN+W6jjBg81BC5k/958F5VDF9
- fX59LxMeCT8XkoLtI6QeBKVIwiAd6pAT0RMk+SRUyVi7h1YXoRpfpzFkm
- j/Zy4ZIEITO4cAfeKdnItbnPoYi4JnjfXMCjdURRpM460qkbvRR3MtZ6V
- F6edk/djR5E3oqB1524T/OxMp9JjVLuff5JIBvX6VzdeTc0Ms84a9jA9x
- sXeW699MnHRyNACLxU+BOyiL0F2EVSp3Psds5Du9qwoO3SWGD42p2ADG7 g==;
-X-CSE-ConnectionGUID: ISMhusM1RPGCl/RrUe8AoQ==
-X-CSE-MsgGUID: 5BDGiyQSTUqC2yn7w+9FpA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="76709300"
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="76709300"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 05:20:35 -0800
-X-CSE-ConnectionGUID: Y0tKyZyXRoCkYB5yf0FBYg==
-X-CSE-MsgGUID: zmdfvRUqTDqnSJQKHIfp1g==
+ t=1771853399; x=1803389399;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=3+7xUhc1W9JJ++JdbK1rsozQS+muhpPU/WqLzeX8uq0=;
+ b=Co7hihAkkolNeB/cVBuygzacTuBe4SkpH2v8c1ERcIAXirUKiHwWkRqL
+ yPcCMyeJ6veoRmCG0LOwg+RRsmnKNcWmmcpnCyKwRKigx5UbFfh5oChZ+
+ LXDb07vdcwjPj1vBGrJwhj44zhoxB9aGcl8I8t3JF+Iz+gArig3+ZqdJB
+ qhdTz+af1PiMzIwjSkfPT7I3QmDOmAO67PS6luP6Ql2YcOgizBGVyeqzb
+ sU4WFAUOYF/If0laIqZpetgNS+YtSNKEq1HdfCz+vQHiwIm5rR8rBi+9y
+ +k9bSe6C8X/XwjwgSP2q0RhJfJMEDzDlZZIWodr/hM4Nxs1Lef8nCz+di g==;
+X-CSE-ConnectionGUID: KJYI3LihT5e4pobW+h88FA==
+X-CSE-MsgGUID: J/7VysVZRHu1wipn74NUeQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="72724134"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="72724134"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2026 05:29:59 -0800
+X-CSE-ConnectionGUID: jhjbT01gQ3OyBKwf/C3XGg==
+X-CSE-MsgGUID: LBq5Adj4QZqgwwGXD/2VNA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="219673695"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO vgovind2-mobl4.intel.com)
- ([10.245.245.209])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 05:20:33 -0800
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com
-Subject: [PATCH v2] drm/i915/fbc: remove uint16 from supported fbc formats in
- xe3plpd
-Date: Mon, 23 Feb 2026 15:20:11 +0200
-Message-ID: <20260223132011.245620-1-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="215580176"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2026 05:29:56 -0800
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
+ animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH 01/14] drm/i915/dp: Fix readback for target_rr in Adaptive
+ Sync SDP
+Date: Mon, 23 Feb 2026 18:44:13 +0530
+Message-ID: <20260223131426.1638946-2-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20260223131426.1638946-1-ankit.k.nautiyal@intel.com>
+References: <20251111093007.3771409-3-ankit.k.nautiyal@intel.com>
+ <20260223131426.1638946-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,47 +72,33 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As UINT16 pixel formats are not listed as supported formats in any
-of the display versions so far, there is no point is having these
-formats listed as supported for FBC. So remove the UINT16 formats
-from the supported formats for FBC.
+Correct the bit-shift logic to properly readback the 10 bit target_rr from
+DB3 and DB4.
 
-v2: removed an unused variable
+v2: Align the style with readback for vtotal. (Ville)
 
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Fixes: 12ea89291603 ("drm/i915/dp: Add Read/Write support for Adaptive Sync SDP")
+Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c | 12 +-----------
- 1 file changed, 1 insertion(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 9f39b6990bbd..e85a0fa8b24d 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1196,23 +1196,13 @@ xe3p_lpd_fbc_fp16_format_is_valid(const struct intel_plane_state *plane_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 025e906b63a9..b999d8c085c7 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5187,7 +5187,7 @@ int intel_dp_as_sdp_unpack(struct drm_dp_as_sdp *as_sdp,
+ 	as_sdp->length = sdp->sdp_header.HB3 & DP_ADAPTIVE_SYNC_SDP_LENGTH;
+ 	as_sdp->mode = sdp->db[0] & DP_ADAPTIVE_SYNC_SDP_OPERATION_MODE;
+ 	as_sdp->vtotal = (sdp->db[2] << 8) | sdp->db[1];
+-	as_sdp->target_rr = (u64)sdp->db[3] | ((u64)sdp->db[4] & 0x3);
++	as_sdp->target_rr = ((sdp->db[4] & 0x3) << 8) | sdp->db[3];
+ 	as_sdp->target_rr_divider = sdp->db[4] & 0x20 ? true : false;
  
- static bool xe3p_lpd_fbc_pixel_format_is_valid(const struct intel_plane_state *plane_state)
- {
--	const struct drm_framebuffer *fb = plane_state->hw.fb;
--
- 	if (lnl_fbc_pixel_format_is_valid(plane_state))
- 		return true;
- 
- 	if (xe3p_lpd_fbc_fp16_format_is_valid(plane_state))
- 		return true;
- 
--	switch (fb->format->format) {
--	case DRM_FORMAT_XRGB16161616:
--	case DRM_FORMAT_XBGR16161616:
--	case DRM_FORMAT_ARGB16161616:
--	case DRM_FORMAT_ABGR16161616:
--		return true;
--	default:
--		return false;
--	}
-+	return false;
- }
- 
- bool intel_fbc_need_pixel_normalizer(const struct intel_plane_state *plane_state)
+ 	return 0;
 -- 
-2.43.0
+2.45.2
 
