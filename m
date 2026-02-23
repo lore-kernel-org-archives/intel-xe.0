@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CDBBE98DE1
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 05:34:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D17D0E98DE1
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 05:40:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32A9D10E227;
-	Mon, 23 Feb 2026 05:34:38 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VBzKKu9W";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06EC210E227;
- Mon, 23 Feb 2026 05:34:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771824877; x=1803360877;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=yVoc3mJ+Q5b4Wfd6+pE7K5mwGiwxUT7RMHWPzkqq5T0=;
- b=VBzKKu9WXL6MBm+OHaFg1RDIrBm6fipuS2kUMZrXOHu5oQkAXThxqknp
- doLcosjrGnLaM4lVqaiG8uCH6u2L6S7+cfJgishUl6XKP37zWZ9kMKrzi
- khE9QYzDLDwTDZXb0y9hBYTJSVw7oB9SiJLLZ+fst7bo7UKUfYJWn7b8R
- IhlhHE5w1AadpIqFRglGcAH1tnIXMsVRuRGRvMXsm/jVVrwBDoblPsa3X
- 3Wlpf7yRxzSR+f8LnoKV5va0xApRRS58aKSDgzNKCvJOFHVYlLzO2VxMg
- mfS9vWL6oWjkYLuxslu2hAOVE6OhR8yaxKSVNoExJanc9c2zQWDe9n3Bh w==;
-X-CSE-ConnectionGUID: z1sNfihIQsW+48KguczaTQ==
-X-CSE-MsgGUID: 1ueXKym1RiiY0dFFlu/s+A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="72991526"
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="72991526"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2026 21:34:37 -0800
-X-CSE-ConnectionGUID: MvkO0kCMTomfXneX/itHZQ==
-X-CSE-MsgGUID: v2LlcGutS/2/i0mXROXkXQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="253175166"
-Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Feb 2026 21:34:32 -0800
-From: Riana Tauro <riana.tauro@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: aravind.iddamsetty@linux.intel.com, anshuman.gupta@intel.com,
- rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
- simona.vetter@ffwll.ch, airlied@gmail.com, pratik.bari@intel.com,
- joshua.santosh.ranjan@intel.com, ashwin.kumar.kulkarni@intel.com,
- shubham.kumar@intel.com, ravi.kishore.koppuravuri@intel.com,
- raag.jadav@intel.com, anvesh.bakwad@intel.com,
- Riana Tauro <riana.tauro@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v8 5/5] drm/xe/xe_hw_error: Add support for PVC SoC errors
-Date: Mon, 23 Feb 2026 11:35:45 +0530
-Message-ID: <20260223060541.526397-12-riana.tauro@intel.com>
-X-Mailer: git-send-email 2.47.1
-In-Reply-To: <20260223060541.526397-7-riana.tauro@intel.com>
-References: <20260223060541.526397-7-riana.tauro@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F2E710E225;
+	Mon, 23 Feb 2026 05:40:12 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 541E910E225;
+ Mon, 23 Feb 2026 05:40:11 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Introduce_DRM=5FRAS_using?=
+ =?utf-8?q?_generic_netlink_for_RAS_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 23 Feb 2026 05:40:11 -0000
+Message-ID: <177182521132.273416.2106830345119895930@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260223060541.526397-7-riana.tauro@intel.com>
+In-Reply-To: <20260223060541.526397-7-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,338 +36,191 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Report the SoC nonfatal/fatal hardware error and update the counters.
+== Series Details ==
 
-$ sudo ynl --family drm_ras --do get-error-counter \
---json '{"node-id":0, "error-id":2}'
-{'error-id': 2, 'error-name': 'soc-internal', 'error-value': 0}
+Series: Introduce DRM_RAS using generic netlink for RAS (rev8)
+URL   : https://patchwork.freedesktop.org/series/155188/
+State : warning
 
-Co-developed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: Riana Tauro <riana.tauro@intel.com>
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
----
-v2: Add ID's and names as uAPI (Rodrigo)
+== Summary ==
 
-v3: reorder and align arrays
-    remove redundant string err
-    use REG_BIT
-    fix aesthic review comments (Raag)
-    use only correctable/uncorrectable error severity (Aravind)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit dbdf54996568bbb2f5189b2b38b43ff0e493ead9
+Author: Riana Tauro <riana.tauro@intel.com>
+Date:   Mon Feb 23 11:35:45 2026 +0530
 
-v4: fix comments
-    use master as variable name
-    add static_assert (Raag)
+    drm/xe/xe_hw_error: Add support for PVC SoC errors
+    
+    Report the SoC nonfatal/fatal hardware error and update the counters.
+    
+    $ sudo ynl --family drm_ras --do get-error-counter \
+    --json '{"node-id":0, "error-id":2}'
+    {'error-id': 2, 'error-name': 'soc-internal', 'error-value': 0}
+    
+    Co-developed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+    Reviewed-by: Raag Jadav <raag.jadav@intel.com>
++ /mt/dim checkpatch 05fc8dd26df5c1cae18b1d5b9de791a9a332433c drm-intel
+35aba7c32a4b drm/ras: Introduce the DRM RAS infrastructure over generic netlink
+-:58: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#58: 
+new file mode 100644
 
-v5: remove blank lines
-    fix alignment
-    rename variables of base registers
-    move register initialization outside loop (Raag)
+-:791: WARNING:LONG_LINE: line length of 117 exceeds 100 columns
+#791: FILE: drivers/gpu/drm/drm_ras_nl.c:14:
++static const struct nla_policy drm_ras_get_error_counter_do_nl_policy[DRM_RAS_A_ERROR_COUNTER_ATTRS_ERROR_ID + 1] = {
 
-v6: add macro for master local reg (Raag)
----
- drivers/gpu/drm/xe/regs/xe_hw_error_regs.h |  25 +++
- drivers/gpu/drm/xe/xe_hw_error.c           | 206 +++++++++++++++++++++
- 2 files changed, 231 insertions(+)
+-:797: WARNING:LONG_LINE: line length of 118 exceeds 100 columns
+#797: FILE: drivers/gpu/drm/drm_ras_nl.c:20:
++static const struct nla_policy drm_ras_get_error_counter_dump_nl_policy[DRM_RAS_A_ERROR_COUNTER_ATTRS_NODE_ID + 1] = {
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h b/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
-index cd17d7d7372c..046e1756c698 100644
---- a/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_hw_error_regs.h
-@@ -41,6 +41,7 @@
- 									  DEV_ERR_STAT_NONFATAL))
- 
- #define   XE_CSC_ERROR					17
-+#define   XE_SOC_ERROR					16
- #define   XE_GT_ERROR					0
- 
- #define ERR_STAT_GT_FATAL_VECTOR_0			0x100260
-@@ -60,4 +61,28 @@
- #define ERR_STAT_GT_VECTOR_REG(hw_err, x)		(hw_err == HARDWARE_ERROR_CORRECTABLE ? \
- 							 ERR_STAT_GT_COR_VECTOR_REG(x) : \
- 							 ERR_STAT_GT_FATAL_VECTOR_REG(x))
-+
-+#define SOC_PVC_MASTER_BASE				0x282000
-+#define SOC_PVC_SLAVE_BASE				0x283000
-+
-+#define SOC_GCOERRSTS					0x200
-+#define SOC_GNFERRSTS					0x210
+total: 0 errors, 3 warnings, 0 checks, 890 lines checked
+9a7cc02d40ce drm/xe/xe_drm_ras: Add support for XE DRM RAS
+-:27: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#27: 
+    $ sudo ynl --family drm_ras --dump get-error-counter --json '{"node-id":0}'
+
+-:74: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#74: 
+new file mode 100644
+
+-:181: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#181: FILE: drivers/gpu/drm/xe/xe_drm_ras.c:103:
++static void cleanup_node_param(struct xe_drm_ras *ras, const enum drm_xe_ras_error_severity severity)
+
+-:280: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'i' - possible side-effects?
+#280: FILE: drivers/gpu/drm/xe/xe_drm_ras.h:10:
++#define for_each_error_severity(i)	\
++	for (i = 0; i < DRM_XE_RAS_ERR_SEV_MAX; i++)
+
+total: 0 errors, 3 warnings, 1 checks, 349 lines checked
+556326372930 drm/xe/xe_hw_error: Integrate DRM RAS with hardware error handling
+dd89cbb3ca1d drm/xe/xe_hw_error: Add support for Core-Compute errors
+-:73: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#73: FILE: drivers/gpu/drm/xe/regs/xe_hw_error_regs.h:40:
++									  DEV_ERR_STAT_CORRECTABLE, \
+
+-:83: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#83: FILE: drivers/gpu/drm/xe/regs/xe_hw_error_regs.h:50:
++									  ERR_STAT_GT_FATAL_VECTOR_0, \
+
+-:84: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#84: FILE: drivers/gpu/drm/xe/regs/xe_hw_error_regs.h:51:
++									  ERR_STAT_GT_FATAL_VECTOR_1))
+
+-:90: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
+#90: FILE: drivers/gpu/drm/xe/regs/xe_hw_error_regs.h:57:
++									  ERR_STAT_GT_COR_VECTOR_0, \
+
+-:93: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'hw_err' may be better as '(hw_err)' to avoid precedence issues
+#93: FILE: drivers/gpu/drm/xe/regs/xe_hw_error_regs.h:60:
++#define ERR_STAT_GT_VECTOR_REG(hw_err, x)		(hw_err == HARDWARE_ERROR_CORRECTABLE ? \
++							 ERR_STAT_GT_COR_VECTOR_REG(x) : \
++							 ERR_STAT_GT_FATAL_VECTOR_REG(x))
+
+-:93: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'x' - possible side-effects?
+#93: FILE: drivers/gpu/drm/xe/regs/xe_hw_error_regs.h:60:
++#define ERR_STAT_GT_VECTOR_REG(hw_err, x)		(hw_err == HARDWARE_ERROR_CORRECTABLE ? \
++							 ERR_STAT_GT_COR_VECTOR_REG(x) : \
++							 ERR_STAT_GT_FATAL_VECTOR_REG(x))
+
+-:118: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'hw_err' may be better as '(hw_err)' to avoid precedence issues
+#118: FILE: drivers/gpu/drm/xe/xe_hw_error.c:23:
++#define PVC_ERROR_MASK_SET(hw_err, err_bit)	((hw_err == HARDWARE_ERROR_CORRECTABLE) ? \
++						 (PVC_COR_ERR_MASK & REG_BIT(err_bit)) : \
++						 (PVC_FAT_ERR_MASK & REG_BIT(err_bit)))
+
+-:118: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'err_bit' - possible side-effects?
+#118: FILE: drivers/gpu/drm/xe/xe_hw_error.c:23:
++#define PVC_ERROR_MASK_SET(hw_err, err_bit)	((hw_err == HARDWARE_ERROR_CORRECTABLE) ? \
++						 (PVC_COR_ERR_MASK & REG_BIT(err_bit)) : \
++						 (PVC_FAT_ERR_MASK & REG_BIT(err_bit)))
+
+-:148: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'hw_err' may be better as '(hw_err)' to avoid precedence issues
+#148: FILE: drivers/gpu/drm/xe/xe_hw_error.c:54:
++#define PVC_GT_VECTOR_LEN(hw_err)	((hw_err == HARDWARE_ERROR_CORRECTABLE) ? \
++					 ERR_STAT_GT_VECTOR4 : ERR_STAT_GT_VECTOR_MAX)
+
+total: 0 errors, 4 warnings, 5 checks, 315 lines checked
+dbdf54996568 drm/xe/xe_hw_error: Add support for PVC SoC errors
+-:39: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'base' - possible side-effects?
+#39: FILE: drivers/gpu/drm/xe/regs/xe_hw_error_regs.h:70:
 +#define SOC_GLOBAL_ERR_STAT_REG(base, x)		XE_REG(_PICK_EVEN((x), \
 +									  (base) + SOC_GCOERRSTS, \
 +									  (base) + SOC_GNFERRSTS))
-+#define   SOC_SLAVE_IEH					REG_BIT(1)
-+#define   SOC_IEH0_LOCAL_ERR_STATUS			REG_BIT(0)
-+#define   SOC_IEH1_LOCAL_ERR_STATUS			REG_BIT(0)
-+
-+#define SOC_GSYSEVTCTL					0x264
-+#define SOC_GSYSEVTCTL_REG(master, slave, x)		XE_REG(_PICK_EVEN((x), \
+
+-:48: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#48: FILE: drivers/gpu/drm/xe/regs/xe_hw_error_regs.h:79:
 +									  (master) + SOC_GSYSEVTCTL, \
-+									  (slave) + SOC_GSYSEVTCTL))
-+
-+#define SOC_LERRUNCSTS					0x280
-+#define SOC_LERRCORSTS					0x294
+
+-:53: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#53: FILE: drivers/gpu/drm/xe/regs/xe_hw_error_regs.h:84:
++#define SOC_LOCAL_ERR_STAT_REG(base, hw_err)		XE_REG(hw_err == HARDWARE_ERROR_CORRECTABLE ? \
+
+-:53: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'base' - possible side-effects?
+#53: FILE: drivers/gpu/drm/xe/regs/xe_hw_error_regs.h:84:
 +#define SOC_LOCAL_ERR_STAT_REG(base, hw_err)		XE_REG(hw_err == HARDWARE_ERROR_CORRECTABLE ? \
 +							       (base) + SOC_LERRCORSTS : \
 +							       (base) + SOC_LERRUNCSTS)
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-index 8062a6ff98a4..2a31b430570e 100644
---- a/drivers/gpu/drm/xe/xe_hw_error.c
-+++ b/drivers/gpu/drm/xe/xe_hw_error.c
-@@ -19,6 +19,7 @@
- #define GT_HW_ERROR_MAX_ERR_BITS		16
- #define HEC_UNCORR_FW_ERR_BITS			4
- #define XE_RAS_REG_SIZE				32
-+#define XE_SOC_NUM_IEH				2
- 
- #define PVC_ERROR_MASK_SET(hw_err, err_bit)	((hw_err == HARDWARE_ERROR_CORRECTABLE) ? \
- 						 (PVC_COR_ERR_MASK & REG_BIT(err_bit)) : \
-@@ -37,6 +38,7 @@ static const char * const hec_uncorrected_fw_errors[] = {
- 
- static const unsigned long xe_hw_error_map[] = {
- 	[XE_GT_ERROR]	= DRM_XE_RAS_ERR_COMP_CORE_COMPUTE,
-+	[XE_SOC_ERROR]	= DRM_XE_RAS_ERR_COMP_SOC_INTERNAL,
- };
- 
- enum gt_vector_regs {
-@@ -63,6 +65,101 @@ static enum drm_xe_ras_error_severity hw_err_to_severity(const enum hardware_err
- 	return DRM_XE_RAS_ERR_SEV_UNCORRECTABLE;
- }
- 
-+static const char * const pvc_master_global_err_reg[] = {
-+	[0 ... 1]	= "Undefined",
-+	[2]		= "HBM SS0: Channel0",
-+	[3]		= "HBM SS0: Channel1",
-+	[4]		= "HBM SS0: Channel2",
-+	[5]		= "HBM SS0: Channel3",
-+	[6]		= "HBM SS0: Channel4",
-+	[7]		= "HBM SS0: Channel5",
-+	[8]		= "HBM SS0: Channel6",
-+	[9]		= "HBM SS0: Channel7",
-+	[10]		= "HBM SS1: Channel0",
-+	[11]		= "HBM SS1: Channel1",
-+	[12]		= "HBM SS1: Channel2",
-+	[13]		= "HBM SS1: Channel3",
-+	[14]		= "HBM SS1: Channel4",
-+	[15]		= "HBM SS1: Channel5",
-+	[16]		= "HBM SS1: Channel6",
-+	[17]		= "HBM SS1: Channel7",
-+	[18 ... 31]	= "Undefined",
+
+-:53: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'hw_err' may be better as '(hw_err)' to avoid precedence issues
+#53: FILE: drivers/gpu/drm/xe/regs/xe_hw_error_regs.h:84:
++#define SOC_LOCAL_ERR_STAT_REG(base, hw_err)		XE_REG(hw_err == HARDWARE_ERROR_CORRECTABLE ? \
++							       (base) + SOC_LERRCORSTS : \
++							       (base) + SOC_LERRUNCSTS)
+
+-:102: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#102: FILE: drivers/gpu/drm/xe/xe_hw_error.c:88:
 +};
 +static_assert(ARRAY_SIZE(pvc_master_global_err_reg) == XE_RAS_REG_SIZE);
-+
-+static const char * const pvc_slave_global_err_reg[] = {
-+	[0]		= "Undefined",
-+	[1]		= "HBM SS2: Channel0",
-+	[2]		= "HBM SS2: Channel1",
-+	[3]		= "HBM SS2: Channel2",
-+	[4]		= "HBM SS2: Channel3",
-+	[5]		= "HBM SS2: Channel4",
-+	[6]		= "HBM SS2: Channel5",
-+	[7]		= "HBM SS2: Channel6",
-+	[8]		= "HBM SS2: Channel7",
-+	[9]		= "HBM SS3: Channel0",
-+	[10]		= "HBM SS3: Channel1",
-+	[11]		= "HBM SS3: Channel2",
-+	[12]		= "HBM SS3: Channel3",
-+	[13]		= "HBM SS3: Channel4",
-+	[14]		= "HBM SS3: Channel5",
-+	[15]		= "HBM SS3: Channel6",
-+	[16]		= "HBM SS3: Channel7",
-+	[17]		= "Undefined",
-+	[18]		= "ANR MDFI",
-+	[19 ... 31]	= "Undefined",
+
+-:126: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#126: FILE: drivers/gpu/drm/xe/xe_hw_error.c:112:
 +};
 +static_assert(ARRAY_SIZE(pvc_slave_global_err_reg) == XE_RAS_REG_SIZE);
-+
-+static const char * const pvc_slave_local_fatal_err_reg[] = {
-+	[0]		= "Local IEH: Malformed PCIe AER",
-+	[1]		= "Local IEH: Malformed PCIe ERR",
-+	[2]		= "Local IEH: UR conditions in IEH",
-+	[3]		= "Local IEH: From SERR Sources",
-+	[4 ... 19]	= "Undefined",
-+	[20]		= "Malformed MCA error packet (HBM/Punit)",
-+	[21 ... 31]	= "Undefined",
+
+-:137: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#137: FILE: drivers/gpu/drm/xe/xe_hw_error.c:123:
 +};
 +static_assert(ARRAY_SIZE(pvc_slave_local_fatal_err_reg) == XE_RAS_REG_SIZE);
-+
-+static const char * const pvc_master_local_fatal_err_reg[] = {
-+	[0]		= "Local IEH: Malformed IOSF PCIe AER",
-+	[1]		= "Local IEH: Malformed IOSF PCIe ERR",
-+	[2]		= "Local IEH: UR RESPONSE",
-+	[3]		= "Local IEH: From SERR SPI controller",
-+	[4]		= "Base Die MDFI T2T",
-+	[5]		= "Undefined",
-+	[6]		= "Base Die MDFI T2C",
-+	[7]		= "Undefined",
-+	[8]		= "Invalid CSC PSF Command Parity",
-+	[9]		= "Invalid CSC PSF Unexpected Completion",
-+	[10]		= "Invalid CSC PSF Unsupported Request",
-+	[11]		= "Invalid PCIe PSF Command Parity",
-+	[12]		= "PCIe PSF Unexpected Completion",
-+	[13]		= "PCIe PSF Unsupported Request",
-+	[14 ... 19]	= "Undefined",
-+	[20]		= "Malformed MCA error packet (HBM/Punit)",
-+	[21 ... 31]	= "Undefined",
+
+-:158: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#158: FILE: drivers/gpu/drm/xe/xe_hw_error.c:144:
 +};
 +static_assert(ARRAY_SIZE(pvc_master_local_fatal_err_reg) == XE_RAS_REG_SIZE);
-+
-+static const char * const pvc_master_local_nonfatal_err_reg[] = {
-+	[0 ... 3]	= "Undefined",
-+	[4]		= "Base Die MDFI T2T",
-+	[5]		= "Undefined",
-+	[6]		= "Base Die MDFI T2C",
-+	[7]		= "Undefined",
-+	[8]		= "Invalid CSC PSF Command Parity",
-+	[9]		= "Invalid CSC PSF Unexpected Completion",
-+	[10]		= "Invalid PCIe PSF Command Parity",
-+	[11 ... 31]	= "Undefined",
+
+-:171: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#171: FILE: drivers/gpu/drm/xe/xe_hw_error.c:157:
 +};
 +static_assert(ARRAY_SIZE(pvc_master_local_nonfatal_err_reg) == XE_RAS_REG_SIZE);
-+
+
+-:173: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'hw_err' may be better as '(hw_err)' to avoid precedence issues
+#173: FILE: drivers/gpu/drm/xe/xe_hw_error.c:159:
 +#define PVC_MASTER_LOCAL_REG_INFO(hw_err)	((hw_err == HARDWARE_ERROR_FATAL) ? \
 +						 pvc_master_local_fatal_err_reg : \
 +						 pvc_master_local_nonfatal_err_reg)
-+
- static bool fault_inject_csc_hw_error(void)
- {
- 	return IS_ENABLED(CONFIG_DEBUG_FS) && should_fail(&inject_csc_hw_error, 1);
-@@ -141,6 +238,26 @@ static void log_gt_err(struct xe_tile *tile, const char *name, int i, u32 err,
- 				    name, severity_str, i, err);
- }
- 
-+static void log_soc_error(struct xe_tile *tile, const char * const *reg_info,
-+			  const enum drm_xe_ras_error_severity severity, u32 err_bit, u32 index)
-+{
-+	const char *severity_str = error_severity[severity];
-+	struct xe_device *xe = tile_to_xe(tile);
-+	struct xe_drm_ras *ras = &xe->ras;
-+	struct xe_drm_ras_counter *info = ras->info[severity];
-+	const char *name;
-+
-+	name = reg_info[err_bit];
-+
-+	if (strcmp(name, "Undefined")) {
-+		if (severity == DRM_XE_RAS_ERR_SEV_CORRECTABLE)
-+			drm_warn(&xe->drm, "%s SOC %s detected", name, severity_str);
-+		else
-+			drm_err_ratelimited(&xe->drm, "%s SOC %s detected", name, severity_str);
-+		atomic_inc(&info[index].counter);
-+	}
-+}
-+
- static void gt_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err,
- 				u32 error_id)
- {
-@@ -217,6 +334,92 @@ static void gt_hw_error_handler(struct xe_tile *tile, const enum hardware_error
- 	}
- }
- 
+
+-:211: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#211: FILE: drivers/gpu/drm/xe/xe_hw_error.c:337:
 +static void soc_slave_ieh_handler(struct xe_tile *tile, const enum hardware_error hw_err, u32 error_id)
-+{
-+	const enum drm_xe_ras_error_severity severity = hw_err_to_severity(hw_err);
-+	unsigned long slave_global_errstat, slave_local_errstat;
-+	struct xe_mmio *mmio = &tile->mmio;
-+	u32 regbit, slave;
-+
-+	slave = SOC_PVC_SLAVE_BASE;
-+	slave_global_errstat = xe_mmio_read32(mmio, SOC_GLOBAL_ERR_STAT_REG(slave, hw_err));
-+
-+	if (slave_global_errstat & SOC_IEH1_LOCAL_ERR_STATUS) {
-+		slave_local_errstat = xe_mmio_read32(mmio, SOC_LOCAL_ERR_STAT_REG(slave, hw_err));
-+
-+		if (hw_err == HARDWARE_ERROR_FATAL) {
-+			for_each_set_bit(regbit, &slave_local_errstat, XE_RAS_REG_SIZE)
-+				log_soc_error(tile, pvc_slave_local_fatal_err_reg, severity,
-+					      regbit, error_id);
-+		}
-+
-+		xe_mmio_write32(mmio, SOC_LOCAL_ERR_STAT_REG(slave, hw_err),
-+				slave_local_errstat);
-+	}
-+
-+	for_each_set_bit(regbit, &slave_global_errstat, XE_RAS_REG_SIZE)
-+		log_soc_error(tile, pvc_slave_global_err_reg, severity, regbit, error_id);
-+
-+	xe_mmio_write32(mmio, SOC_GLOBAL_ERR_STAT_REG(slave, hw_err), slave_global_errstat);
-+}
-+
-+static void soc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err,
-+				 u32 error_id)
-+{
-+	const enum drm_xe_ras_error_severity severity = hw_err_to_severity(hw_err);
-+	struct xe_device *xe = tile_to_xe(tile);
-+	struct xe_mmio *mmio = &tile->mmio;
-+	unsigned long master_global_errstat, master_local_errstat;
-+	u32 master, slave, regbit;
-+	int i;
-+
-+	if (xe->info.platform != XE_PVC)
-+		return;
-+
-+	master = SOC_PVC_MASTER_BASE;
-+	slave = SOC_PVC_SLAVE_BASE;
-+
-+	/* Mask error type in GSYSEVTCTL so that no new errors of the type will be reported */
-+	for (i = 0; i < XE_SOC_NUM_IEH; i++)
-+		xe_mmio_write32(mmio, SOC_GSYSEVTCTL_REG(master, slave, i), ~REG_BIT(hw_err));
-+
-+	if (hw_err == HARDWARE_ERROR_CORRECTABLE) {
-+		xe_mmio_write32(mmio, SOC_GLOBAL_ERR_STAT_REG(master, hw_err), REG_GENMASK(31, 0));
-+		xe_mmio_write32(mmio, SOC_LOCAL_ERR_STAT_REG(master, hw_err), REG_GENMASK(31, 0));
-+		xe_mmio_write32(mmio, SOC_GLOBAL_ERR_STAT_REG(slave, hw_err), REG_GENMASK(31, 0));
-+		xe_mmio_write32(mmio, SOC_LOCAL_ERR_STAT_REG(slave, hw_err), REG_GENMASK(31, 0));
-+		goto unmask_gsysevtctl;
-+	}
-+
-+	/*
-+	 * Read the master global IEH error register, if BIT(1) is set then process
-+	 * the slave IEH first. If BIT(0) in global error register is set then process
-+	 * the corresponding local error registers.
-+	 */
-+	master_global_errstat = xe_mmio_read32(mmio, SOC_GLOBAL_ERR_STAT_REG(master, hw_err));
-+	if (master_global_errstat & SOC_SLAVE_IEH)
-+		soc_slave_ieh_handler(tile, hw_err, error_id);
-+
-+	if (master_global_errstat & SOC_IEH0_LOCAL_ERR_STATUS) {
-+		master_local_errstat = xe_mmio_read32(mmio, SOC_LOCAL_ERR_STAT_REG(master, hw_err));
-+
-+		for_each_set_bit(regbit, &master_local_errstat, XE_RAS_REG_SIZE)
+
+-:281: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#281: FILE: drivers/gpu/drm/xe/xe_hw_error.c:407:
 +			log_soc_error(tile, PVC_MASTER_LOCAL_REG_INFO(hw_err), severity, regbit, error_id);
-+
-+		xe_mmio_write32(mmio, SOC_LOCAL_ERR_STAT_REG(master, hw_err), master_local_errstat);
-+	}
-+
-+	for_each_set_bit(regbit, &master_global_errstat, XE_RAS_REG_SIZE)
-+		log_soc_error(tile, pvc_master_global_err_reg, severity, regbit, error_id);
-+
-+	xe_mmio_write32(mmio, SOC_GLOBAL_ERR_STAT_REG(master, hw_err), master_global_errstat);
-+
-+unmask_gsysevtctl:
-+	for (i = 0; i < XE_SOC_NUM_IEH; i++)
-+		xe_mmio_write32(mmio, SOC_GSYSEVTCTL_REG(master, slave, i),
-+				(HARDWARE_ERROR_MAX << 1) + 1);
-+}
-+
- static void hw_error_source_handler(struct xe_tile *tile, const enum hardware_error hw_err)
- {
- 	const enum drm_xe_ras_error_severity severity = hw_err_to_severity(hw_err);
-@@ -279,8 +482,11 @@ static void hw_error_source_handler(struct xe_tile *tile, const enum hardware_er
- 					    "TILE%d reported %s %s, bit[%d] is set\n",
- 					    tile->id, name, severity_str, err_bit);
- 		}
-+
- 		if (err_bit == XE_GT_ERROR)
- 			gt_hw_error_handler(tile, hw_err, error_id);
-+		if (err_bit == XE_SOC_ERROR)
-+			soc_hw_error_handler(tile, hw_err, error_id);
- 	}
- 
- clear_reg:
--- 
-2.47.1
+
+total: 0 errors, 4 warnings, 9 checks, 279 lines checked
+
 
