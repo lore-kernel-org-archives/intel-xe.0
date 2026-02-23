@@ -4,58 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F15B7EC1113
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 17:21:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C79CEC1112
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 17:26:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 63D5810E42A;
-	Mon, 23 Feb 2026 17:21:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0635B10E2FA;
+	Mon, 23 Feb 2026 17:26:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YsTLLu9u";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="my4Z9WGe";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 41C3910E419;
- Mon, 23 Feb 2026 17:21:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7ECAB10E085;
+ Mon, 23 Feb 2026 17:25:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771867283; x=1803403283;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=z6uJ2eHv4fsZjCuisFiKdkgXRUwwRf2ilkArWWw/660=;
- b=YsTLLu9uvp7RoXiCmlVX6gvQXpsU8cZOA1jlaxfy9QvhBXAKR8TzYpR6
- eMVzzwnS/HKdu0Q0F3W+NGJWHvAwBz3kRRvw4iHmHEmQjleE+ZyFZQevF
- b1yGhfgGyE/jy7RubDLmapbC90D0HruAO0paKiTlF1Sk/uFLYny2Vhf20
- 5T8VZxUikwVN2SbX74zwsqOiie0LDVuBzmQqHRSjBOMQ7f9k1EnUT5zvt
- Sg/54ySeKWEUzyljZNqLuyseNCFMNCTiznWA7BUgl5DgSIueKuEu1JvSC
- dcfnYcCIIuCbFr773RmsdaGUrWIa607Lkw+zdWuFD23i1gM0Er1cTZykV Q==;
-X-CSE-ConnectionGUID: 6jE51F99QBqjD8uFIa623w==
-X-CSE-MsgGUID: 1eh65TitTECSes0AHki96A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="83189014"
-X-IronPort-AV: E=Sophos;i="6.21,307,1763452800"; d="scan'208";a="83189014"
+ t=1771867559; x=1803403559;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Mt6a1bGaBkfwcx86mxJBvKi5TNIFAjm/uHANPLwQk10=;
+ b=my4Z9WGe7Rpq264qKeiX7A59FNBMpxqgNS8Nrb+VOUJSbvcnEg6WDlv1
+ JVeb8UKtwVxeBxC2o0QvtNRkKiGvOMsWhUmUaXyRuxrocdDkY2aotlU1p
+ pupKq6Bn3BUAYWvRAB98VAqAB9XIlbLozPZFK3snTcDYFHtnqfWjxSYVg
+ 8iSCims7z2vWenFRTfRYhcAZbp88ZnXCnJJ/h7JDm9ZwzMEFV3P1Ppnhm
+ HbHtuuRFyC3ZZGpljalrTD1y53DbYq4l+fpQQsBl6xTFylDSUtRH9x3O3
+ IUWytYL+YqY8RQ1K0kpMI1xpLjI9df7zl2wBaj/lmWNMZVES5l5/7dKVT Q==;
+X-CSE-ConnectionGUID: 16NKTkACQLKkNPP/Sqn/Tg==
+X-CSE-MsgGUID: SKarxq0kS2W84xil0M1/JA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="83189896"
+X-IronPort-AV: E=Sophos;i="6.21,307,1763452800"; d="scan'208";a="83189896"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 09:21:22 -0800
-X-CSE-ConnectionGUID: sFlg3QobScituLIehRK3SQ==
-X-CSE-MsgGUID: gi1wCIqMSkeM6z7X+Eqn7w==
+ 23 Feb 2026 09:25:59 -0800
+X-CSE-ConnectionGUID: mCHH8IAYRJi1qS/Rq5z7xg==
+X-CSE-MsgGUID: SaYoXXaIRsGK144dR5FRvQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,307,1763452800"; d="scan'208";a="220622800"
-Received: from dut4086lnl.fm.intel.com ([10.105.10.85])
+X-IronPort-AV: E=Sophos;i="6.21,307,1763452800"; d="scan'208";a="220624129"
+Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 09:21:21 -0800
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
- joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
- jianxun.zhang@intel.com, shuicheng.lin@intel.com,
- dri-devel@lists.freedesktop.org, Michal.Wajdeczko@intel.com,
- michal.mrozek@intel.com, raag.jadav@intel.com, ivan.briano@intel.com,
- matthew.auld@intel.com, dafna.hirschfeld@intel.com
-Subject: [PATCH v35 2/4] drm/xe/uapi: Define drm_xe_vm_get_property
-Date: Mon, 23 Feb 2026 17:21:22 +0000
-Message-ID: <20260223172120.98961-8-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260223172120.98961-6-jonathan.cavitt@intel.com>
-References: <20260223172120.98961-6-jonathan.cavitt@intel.com>
+ 23 Feb 2026 09:25:58 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
+Subject: [PATCH] drm/i915/selftests: Fix build after dma-fence locking rework
+Date: Mon, 23 Feb 2026 09:25:53 -0800
+Message-Id: <20260223172553.1663749-1-matthew.brost@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,161 +66,34 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add initial declarations for the drm_xe_vm_get_property ioctl.
+The i915_active selftest no longer builds after the dma-fence locking
+rework because it directly accessed the fence’s spinlock. The helper
+dma_fence_spinlock() must now be used to obtain the spinlock. Update the
+selftest to use dma_fence_spinlock() accordingly.
 
-v2:
-- Expand kernel docs for drm_xe_vm_get_property (Jianxun)
-
-v3:
-- Remove address type external definitions (Jianxun)
-- Add fault type to xe_drm_fault struct (Jianxun)
-
-v4:
-- Remove engine class and instance (Ivan)
-
-v5:
-- Add declares for fault type, access type, and fault level (Matt Brost,
-  Ivan)
-
-v6:
-- Fix inconsistent use of whitespace in defines
-
-v7:
-- Rebase and refactor (jcavitt)
-
-v8:
-- Rebase (jcavitt)
-
-uAPI: https://github.com/intel/compute-runtime/pull/878
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Reviewed-by: Shuicheng Lin <shuicheng.lin@intel.com>
-Acked-by: Matthew Brost <matthew.brost@intel.com>
-Acked-by: Ivan Briano <ivan.briano@intel.com>
-Cc: Zhang Jianxun <jianxun.zhang@intel.com>
-Cc: Ivan Briano <ivan.briano@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
+Fixes: 1f32f310a13c ("dma-buf: inline spinlock for fence protection v5")
+Cc: Christian König <christian.koenig@amd.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 86 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 86 insertions(+)
+ drivers/gpu/drm/i915/selftests/i915_active.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index c9e70f78e723..56a7482ebd79 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -83,6 +83,7 @@ extern "C" {
-  *  - &DRM_IOCTL_XE_OBSERVATION
-  *  - &DRM_IOCTL_XE_MADVISE
-  *  - &DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS
-+ *  - &DRM_IOCTL_XE_VM_GET_PROPERTY
-  */
+diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/drm/i915/selftests/i915_active.c
+index 52345073b409..9fea2fabeac4 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_active.c
++++ b/drivers/gpu/drm/i915/selftests/i915_active.c
+@@ -323,9 +323,9 @@ static void active_flush(struct i915_active *ref,
+ 	if (!fence)
+ 		return;
  
- /*
-@@ -107,6 +108,7 @@ extern "C" {
- #define DRM_XE_MADVISE			0x0c
- #define DRM_XE_VM_QUERY_MEM_RANGE_ATTRS	0x0d
- #define DRM_XE_EXEC_QUEUE_SET_PROPERTY	0x0e
-+#define DRM_XE_VM_GET_PROPERTY		0x0f
+-	spin_lock_irq(fence->lock);
++	spin_lock_irq(dma_fence_spinlock(fence));
+ 	__list_del_entry(&active->cb.node);
+-	spin_unlock_irq(fence->lock); /* serialise with fence->cb_list */
++	spin_unlock_irq(dma_fence_spinlock(fence)); /* serialise with fence->cb_list */
+ 	atomic_dec(&ref->count);
  
- /* Must be kept compact -- no holes */
- 
-@@ -125,6 +127,7 @@ extern "C" {
- #define DRM_IOCTL_XE_MADVISE			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_MADVISE, struct drm_xe_madvise)
- #define DRM_IOCTL_XE_VM_QUERY_MEM_RANGE_ATTRS	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_QUERY_MEM_RANGE_ATTRS, struct drm_xe_vm_query_mem_range_attr)
- #define DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY	DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_SET_PROPERTY, struct drm_xe_exec_queue_set_property)
-+#define DRM_IOCTL_XE_VM_GET_PROPERTY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_GET_PROPERTY, struct drm_xe_vm_get_property)
- 
- /**
-  * DOC: Xe IOCTL Extensions
-@@ -1243,6 +1246,89 @@ struct drm_xe_vm_bind {
- 	__u64 reserved[2];
- };
- 
-+/** struct xe_vm_fault - Describes faults for %DRM_XE_VM_GET_PROPERTY_FAULTS */
-+struct xe_vm_fault {
-+	/** @address: Address of the fault */
-+	__u64 address;
-+	/** @address_precision: Precision of faulted address */
-+	__u32 address_precision;
-+	/** @access_type: Type of address access that resulted in fault */
-+#define FAULT_ACCESS_TYPE_READ		0
-+#define FAULT_ACCESS_TYPE_WRITE		1
-+#define FAULT_ACCESS_TYPE_ATOMIC	2
-+	__u8 access_type;
-+	/** @fault_type: Type of fault reported */
-+#define FAULT_TYPE_NOT_PRESENT		0
-+#define FAULT_TYPE_WRITE_ACCESS		1
-+#define FAULT_TYPE_ATOMIC_ACCESS	2
-+	__u8 fault_type;
-+	/** @fault_level: fault level of the fault */
-+#define FAULT_LEVEL_PTE		0
-+#define FAULT_LEVEL_PDE		1
-+#define FAULT_LEVEL_PDP		2
-+#define FAULT_LEVEL_PML4	3
-+#define FAULT_LEVEL_PML5	4
-+	__u8 fault_level;
-+	/** @pad: MBZ */
-+	__u8 pad;
-+	/** @reserved: MBZ */
-+	__u64 reserved[4];
-+};
-+
-+/**
-+ * struct drm_xe_vm_get_property - Input of &DRM_IOCTL_XE_VM_GET_PROPERTY
-+ *
-+ * The user provides a VM and a property to query among DRM_XE_VM_GET_PROPERTY_*,
-+ * and sets the values in the vm_id and property members, respectively.  This
-+ * determines both the VM to get the property of, as well as the property to
-+ * report.
-+ *
-+ * If size is set to 0, the driver fills it with the required size for the
-+ * requested property.  The user is expected here to allocate memory for the
-+ * property structure and to provide a pointer to the allocated memory using the
-+ * data member.  For some properties, this may be zero, in which case, the
-+ * value of the property will be saved to the value member and size will remain
-+ * zero on return.
-+ *
-+ * If size is not zero, then the IOCTL will attempt to copy the requested
-+ * property into the data member.
-+ *
-+ * The IOCTL will return -ENOENT if the VM could not be identified from the
-+ * provided VM ID, or -EINVAL if the IOCTL fails for any other reason, such as
-+ * providing an invalid size for the given property or if the property data
-+ * could not be copied to the memory allocated to the data member.
-+ *
-+ * The property member can be:
-+ *  - %DRM_XE_VM_GET_PROPERTY_FAULTS
-+ */
-+struct drm_xe_vm_get_property {
-+	/** @extensions: Pointer to the first extension struct, if any */
-+	__u64 extensions;
-+
-+	/** @vm_id: The ID of the VM to query the properties of */
-+	__u32 vm_id;
-+
-+#define DRM_XE_VM_GET_PROPERTY_FAULTS		0
-+	/** @property: property to get */
-+	__u32 property;
-+
-+	/** @size: Size to allocate for @data */
-+	__u32 size;
-+
-+	/** @pad: MBZ */
-+	__u32 pad;
-+
-+	union {
-+		/** @data: Pointer to user-defined array of flexible size and type */
-+		__u64 data;
-+		/** @value: Return value for scalar queries */
-+		__u64 value;
-+	};
-+
-+	/** @reserved: MBZ */
-+	__u64 reserved[3];
-+};
-+
- /**
-  * struct drm_xe_exec_queue_create - Input of &DRM_IOCTL_XE_EXEC_QUEUE_CREATE
-  *
+ 	GEM_BUG_ON(!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags));
 -- 
-2.43.0
+2.34.1
 
