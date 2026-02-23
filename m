@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C79CEC1112
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 17:26:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF4E0EC110E
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 17:27:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0635B10E2FA;
-	Mon, 23 Feb 2026 17:26:00 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="my4Z9WGe";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7ECAB10E085;
- Mon, 23 Feb 2026 17:25:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771867559; x=1803403559;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Mt6a1bGaBkfwcx86mxJBvKi5TNIFAjm/uHANPLwQk10=;
- b=my4Z9WGe7Rpq264qKeiX7A59FNBMpxqgNS8Nrb+VOUJSbvcnEg6WDlv1
- JVeb8UKtwVxeBxC2o0QvtNRkKiGvOMsWhUmUaXyRuxrocdDkY2aotlU1p
- pupKq6Bn3BUAYWvRAB98VAqAB9XIlbLozPZFK3snTcDYFHtnqfWjxSYVg
- 8iSCims7z2vWenFRTfRYhcAZbp88ZnXCnJJ/h7JDm9ZwzMEFV3P1Ppnhm
- HbHtuuRFyC3ZZGpljalrTD1y53DbYq4l+fpQQsBl6xTFylDSUtRH9x3O3
- IUWytYL+YqY8RQ1K0kpMI1xpLjI9df7zl2wBaj/lmWNMZVES5l5/7dKVT Q==;
-X-CSE-ConnectionGUID: 16NKTkACQLKkNPP/Sqn/Tg==
-X-CSE-MsgGUID: SKarxq0kS2W84xil0M1/JA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="83189896"
-X-IronPort-AV: E=Sophos;i="6.21,307,1763452800"; d="scan'208";a="83189896"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 09:25:59 -0800
-X-CSE-ConnectionGUID: mCHH8IAYRJi1qS/Rq5z7xg==
-X-CSE-MsgGUID: SaYoXXaIRsGK144dR5FRvQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,307,1763452800"; d="scan'208";a="220624129"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 09:25:58 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
-Subject: [PATCH] drm/i915/selftests: Fix build after dma-fence locking rework
-Date: Mon, 23 Feb 2026 09:25:53 -0800
-Message-Id: <20260223172553.1663749-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACAEF10E2FA;
+	Mon, 23 Feb 2026 17:27:06 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0C0310E2FA;
+ Mon, 23 Feb 2026 17:27:04 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/xe=5Fvm=3A_Impleme?=
+ =?utf-8?q?nt_xe=5Fvm=5Fget=5Fproperty=5Fioctl?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 23 Feb 2026 17:27:04 -0000
+Message-ID: <177186762483.277322.13518767353387538942@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260223172120.98961-6-jonathan.cavitt@intel.com>
+In-Reply-To: <20260223172120.98961-6-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,37 +36,159 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The i915_active selftest no longer builds after the dma-fence locking
-rework because it directly accessed the fence’s spinlock. The helper
-dma_fence_spinlock() must now be used to obtain the spinlock. Update the
-selftest to use dma_fence_spinlock() accordingly.
+== Series Details ==
 
-Fixes: 1f32f310a13c ("dma-buf: inline spinlock for fence protection v5")
-Cc: Christian König <christian.koenig@amd.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/i915/selftests/i915_active.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
+URL   : https://patchwork.freedesktop.org/series/161997/
+State : warning
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/drm/i915/selftests/i915_active.c
-index 52345073b409..9fea2fabeac4 100644
---- a/drivers/gpu/drm/i915/selftests/i915_active.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_active.c
-@@ -323,9 +323,9 @@ static void active_flush(struct i915_active *ref,
- 	if (!fence)
- 		return;
- 
--	spin_lock_irq(fence->lock);
-+	spin_lock_irq(dma_fence_spinlock(fence));
- 	__list_del_entry(&active->cb.node);
--	spin_unlock_irq(fence->lock); /* serialise with fence->cb_list */
-+	spin_unlock_irq(dma_fence_spinlock(fence)); /* serialise with fence->cb_list */
- 	atomic_dec(&ref->count);
- 
- 	GEM_BUG_ON(!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags));
--- 
-2.34.1
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d8460b2f11e61eba707b73bc21e44d1129e25c3b
+Author: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Date:   Mon Feb 23 17:21:24 2026 +0000
+
+    drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
+    
+    Add support for userspace to request a list of observed faults
+    from a specified VM.
+    
+    v2:
+    - Only allow querying of failed pagefaults (Matt Brost)
+    
+    v3:
+    - Remove unnecessary size parameter from helper function, as it
+      is a property of the arguments. (jcavitt)
+    - Remove unnecessary copy_from_user (Jainxun)
+    - Set address_precision to 1 (Jainxun)
+    - Report max size instead of dynamic size for memory allocation
+      purposes.  Total memory usage is reported separately.
+    
+    v4:
+    - Return int from xe_vm_get_property_size (Shuicheng)
+    - Fix memory leak (Shuicheng)
+    - Remove unnecessary size variable (jcavitt)
+    
+    v5:
+    - Rename ioctl to xe_vm_get_faults_ioctl (jcavitt)
+    - Update fill_property_pfs to eliminate need for kzalloc (Jianxun)
+    
+    v6:
+    - Repair and move fill_faults break condition (Dan Carpenter)
+    - Free vm after use (jcavitt)
+    - Combine assertions (jcavitt)
+    - Expand size check in xe_vm_get_faults_ioctl (jcavitt)
+    - Remove return mask from fill_faults, as return is already -EFAULT or 0
+      (jcavitt)
+    
+    v7:
+    - Revert back to using xe_vm_get_property_ioctl
+    - Apply better copy_to_user logic (jcavitt)
+    
+    v8:
+    - Fix and clean up error value handling in ioctl (jcavitt)
+    - Reapply return mask for fill_faults (jcavitt)
+    
+    v9:
+    - Future-proof size logic for zero-size properties (jcavitt)
+    - Add access and fault types (Jianxun)
+    - Remove address type (Jianxun)
+    
+    v10:
+    - Remove unnecessary switch case logic (Raag)
+    - Compress size get, size validation, and property fill functions into a
+      single helper function (jcavitt)
+    - Assert valid size (jcavitt)
+    
+    v11:
+    - Remove unnecessary else condition
+    - Correct backwards helper function size logic (jcavitt)
+    
+    v12:
+    - Use size_t instead of int (Raag)
+    
+    v13:
+    - Remove engine class and instance (Ivan)
+    
+    v14:
+    - Map access type, fault type, and fault level to user macros (Matt
+      Brost, Ivan)
+    
+    v15:
+    - Remove unnecessary size assertion (jcavitt)
+    
+    v16:
+    - Nit fixes (Matt Brost)
+    
+    v17:
+    - Rebase and refactor (jcavitt)
+    
+    v18:
+    - Do not copy_to_user in critical section (Matt Brost)
+    - Assert args->size is multiple of sizeof(struct xe_vm_fault) (Matt
+      Brost)
+    
+    v19:
+    - Remove unnecessary memset (Matt Brost)
+    
+    uAPI: https://github.com/intel/compute-runtime/pull/878
+    Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+    Suggested-by: Matthew Brost <matthew.brost@intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+    Cc: Jainxun Zhang <jianxun.zhang@intel.com>
+    Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+    Cc: Raag Jadav <raag.jadav@intel.com>
+    Cc: Ivan Briano <ivan.briano@intel.com>
++ /mt/dim checkpatch e9608351c5e8a0e220e84786a36eca5cd9f4fdd6 drm-intel
+c3cfda537749 drm/xe/xe_pagefault: Disallow writes to read-only VMAs
+5014720a0cf0 drm/xe/uapi: Define drm_xe_vm_get_property
+-:31: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'uAPI:', use 'Link:' or 'Closes:' instead
+#31: 
+uAPI: https://github.com/intel/compute-runtime/pull/878
+
+-:64: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
+#64: FILE: include/uapi/drm/xe_drm.h:130:
++#define DRM_IOCTL_XE_VM_GET_PROPERTY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_GET_PROPERTY, struct drm_xe_vm_get_property)
+
+total: 0 errors, 2 warnings, 0 checks, 110 lines checked
+76a40cd6ff61 drm/xe/xe_vm: Add per VM fault info
+-:78: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'uAPI:', use 'Link:' or 'Closes:' instead
+#78: 
+uAPI: https://github.com/intel/compute-runtime/pull/878
+
+-:171: WARNING:ALLOC_WITH_SIZEOF: Prefer kzalloc_obj over kzalloc with sizeof
+#171: FILE: drivers/gpu/drm/xe/xe_vm.c:602:
++	e = kzalloc(sizeof(*e), GFP_KERNEL);
+
+-:173: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
+#173: FILE: drivers/gpu/drm/xe/xe_vm.c:604:
++	if (!e) {
++		drm_warn(&vm->xe->drm,
+
+total: 0 errors, 3 warnings, 0 checks, 210 lines checked
+d8460b2f11e6 drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
+-:87: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'uAPI:', use 'Link:' or 'Closes:' instead
+#87: 
+uAPI: https://github.com/intel/compute-runtime/pull/878
+
+-:221: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#221: FILE: drivers/gpu/drm/xe/xe_vm.c:4033:
++	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1] ||
++			     args->reserved[2]))
+
+total: 0 errors, 1 warnings, 1 checks, 140 lines checked
+
 
