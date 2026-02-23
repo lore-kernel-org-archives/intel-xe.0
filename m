@@ -4,58 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3192EA4FC2
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 14:00:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E247FEA4FBA
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 14:00:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9620910E3DD;
-	Mon, 23 Feb 2026 14:00:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99F0510E3DC;
+	Mon, 23 Feb 2026 14:00:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mayoWK12";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gjousx5L";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84FB010E3DA;
- Mon, 23 Feb 2026 14:00:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C21FB10E3D3;
+ Mon, 23 Feb 2026 14:00:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771855203; x=1803391203;
+ t=1771855208; x=1803391208;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3+7xUhc1W9JJ++JdbK1rsozQS+muhpPU/WqLzeX8uq0=;
- b=mayoWK12kGKxq64kliS3XO79hQt5Vnav32nBKKGm9dfNUpaalOlHq0yF
- 19H4snaECYQ19ZbwYHURKkDjRkbYYYrMZm/IjE/qNjkwsYfeN8Jb/gAGX
- kxxizWuGBmLQUKwo6TzFsQbDuBHq2Run2IH2rhZLgN7q96+PT5CPWFWb1
- DYQhRFDWh7P/AZnRtVan19IjqZBO0bwA1KcIH3FQf6Ce7Vjh43u/KjK51
- jl/jxv8uI5CBAxocLsxvTnZaQYiLCZe9fnFLl658pH8QJzLWMsTYZJD4L
- jVL+VnIXCDMwD3t8YUU8JMaIMP0u2rFjB3AvFjTPe9zwgUEi1OQeZkwex Q==;
-X-CSE-ConnectionGUID: b95hBXcQTr6BbzlCP+cykg==
-X-CSE-MsgGUID: 86yLowVUR6Wrbui3lvQ/pw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="72827030"
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="72827030"
+ bh=ISgBmKYvPcFaEiuc7pAW0ah8Gp2xY71Ezy3GhG5pHb4=;
+ b=gjousx5LG3U04urGVYOja+T8WqY5aO8lFlinUx3VQghvQ6BbWnwVjNlh
+ LwpxA0oAEZ1qSlVUeo4JUf63lKCMNeaI6Z/2rEcForMklRE9FUKvAIrTa
+ Sl7yjJNYn9dAsKBg93TTGDw/d8RTRthwJY+c36twA1j/WLJvD5GRrL+5n
+ 5w0c11Q4xE7rv3j7M4tBRff4+8h03JzmRHOUl+ACkbxrsBY5OSBkC+m8b
+ Wh+kbLxctDzVDk6RJ+aPvp9hdie9I8U71yZauv/W//xUQ4bpzMnL7kj9A
+ qb0+sfyZme1vbQSHD/a9LtB6NPuTvb7adGTJ2DgtAoDBTHnkFLcmOLJLw A==;
+X-CSE-ConnectionGUID: WoqEPjzlTL21ULfjp5BKKg==
+X-CSE-MsgGUID: BjvC0UqFSoOMAghs78iurQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="72827039"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="72827039"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 06:00:03 -0800
-X-CSE-ConnectionGUID: OaSuOJdhRjiZ/+SZPdgY5w==
-X-CSE-MsgGUID: hmHzLgNrTWuk9Oo0Eg++RQ==
+ 23 Feb 2026 06:00:07 -0800
+X-CSE-ConnectionGUID: GryBmEE4R2KrXU7mod2RdA==
+X-CSE-MsgGUID: 4DjINXDCSvit/Ydtz1CkOQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="212961162"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="212961178"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 06:00:00 -0800
+ 23 Feb 2026 06:00:05 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
- animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Subject: [PATCH 01/14] drm/i915/dp: Fix readback for target_rr in Adaptive
- Sync SDP
-Date: Mon, 23 Feb 2026 19:14:18 +0530
-Message-ID: <20260223134431.1639308-2-ankit.k.nautiyal@intel.com>
+ animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 03/14] drm/i915/dp: Add a helper to decide if AS SDP is needed
+Date: Mon, 23 Feb 2026 19:14:20 +0530
+Message-ID: <20260223134431.1639308-4-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260223134431.1639308-1-ankit.k.nautiyal@intel.com>
 References: <20260223134431.1639308-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,33 +68,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Correct the bit-shift logic to properly readback the 10 bit target_rr from
-DB3 and DB4.
+Add a helper to check if AS SDP is needed. Currently AS SDP is only
+required when VRR is enabled. However, there are other use cases, along
+with the missing case of CMRR, dealt in subsequent changes.
 
-v2: Align the style with readback for vtotal. (Ville)
-
-Fixes: 12ea89291603 ("drm/i915/dp: Add Read/Write support for Adaptive Sync SDP")
-Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 025e906b63a9..b999d8c085c7 100644
+index b999d8c085c7..65764ab0bb9b 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5187,7 +5187,7 @@ int intel_dp_as_sdp_unpack(struct drm_dp_as_sdp *as_sdp,
- 	as_sdp->length = sdp->sdp_header.HB3 & DP_ADAPTIVE_SYNC_SDP_LENGTH;
- 	as_sdp->mode = sdp->db[0] & DP_ADAPTIVE_SYNC_SDP_OPERATION_MODE;
- 	as_sdp->vtotal = (sdp->db[2] << 8) | sdp->db[1];
--	as_sdp->target_rr = (u64)sdp->db[3] | ((u64)sdp->db[4] & 0x3);
-+	as_sdp->target_rr = ((sdp->db[4] & 0x3) << 8) | sdp->db[3];
- 	as_sdp->target_rr_divider = sdp->db[4] & 0x20 ? true : false;
+@@ -3111,6 +3111,12 @@ static void intel_dp_compute_vsc_colorimetry(const struct intel_crtc_state *crtc
+ 	vsc->content_type = DP_CONTENT_TYPE_NOT_DEFINED;
+ }
  
- 	return 0;
++static bool intel_dp_needs_as_sdp(struct intel_dp *intel_dp,
++				  struct intel_crtc_state *crtc_state)
++{
++	return crtc_state->vrr.enable;
++}
++
+ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+ 				    struct intel_crtc_state *crtc_state)
+ {
+@@ -3118,7 +3124,10 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
+ 
+-	if (!crtc_state->vrr.enable || !intel_dp->as_sdp_supported)
++	if (!intel_dp->as_sdp_supported)
++		return;
++
++	if (!intel_dp_needs_as_sdp(intel_dp, crtc_state))
+ 		return;
+ 
+ 	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
 -- 
 2.45.2
 
