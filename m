@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DEABEA4FD1
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 15:09:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A628EEA4FCF
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 15:14:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0532710E3AA;
-	Mon, 23 Feb 2026 15:09:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DE6U5u91";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDA5810E3AA;
- Mon, 23 Feb 2026 15:09:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771859366; x=1803395366;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=jX4YDxdn5hgR786f9PadjSz7+ZrPnN0iXe5hkhrN2PA=;
- b=DE6U5u91HgqxWM0LOnbzvN8aBN3/q3pcduo+C7cfiOfu7D7rzjz9SuO5
- 9s+6R7LpZ4LcKi4rbORyRC9OeRpHzfn1yiAEusIo/a4JdvTUCc/OSxAMv
- /SI/7ocN5cUC10lbJbhGY/PDNPzBfDuxuSVYxHmjt7td2PsSDx2oW1qeX
- LEp1kKQgzMBXq/Ctjr/EdRBc2BJGTe+MUspDZO+RpMlCPrBCqEahcoSHD
- Co/EqdGhWgiJcAuy6zqroXi2pnGNPvvMd6u51zXOhE8mM4folZmMR4V9D
- 3e5ttFVklsnGuQmuubmKLVoMl+d04BmNxvbBjSIQun2JXPBWSjNCi9bCq A==;
-X-CSE-ConnectionGUID: E3GI4kRfQ1WcLJUd/Zsi4g==
-X-CSE-MsgGUID: bFCFZ948TtiXkNnvd2w4Jg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="72918990"
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="72918990"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 07:09:26 -0800
-X-CSE-ConnectionGUID: tvW/PNJnQRKPmCsweOOppg==
-X-CSE-MsgGUID: ZAYvV9BHSjqu7ioibYv9HA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="219136621"
-Received: from ksatya-dev.iind.intel.com ([10.190.229.161])
- by fmviesa004.fm.intel.com with ESMTP; 23 Feb 2026 07:09:24 -0800
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
- dri-devel@lists.freedesktop.org
-Subject: [RFC v2 1/1] =?UTF-8?q?drm/xe/pf:=20Skip=20creating=20DRM=20devic?=
- =?UTF-8?q?e=20entries=20in=20PF=20admin=E2=80=91only=20mode?=
-Date: Mon, 23 Feb 2026 15:09:51 +0000
-Message-ID: <20260223150951.1834063-2-satyanarayana.k.v.p@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260223150951.1834063-1-satyanarayana.k.v.p@intel.com>
-References: <20260223150951.1834063-1-satyanarayana.k.v.p@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6767310E2F1;
+	Mon, 23 Feb 2026 15:14:53 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE68710E2F1;
+ Mon, 23 Feb 2026 15:14:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Intel_Xe_GPU_Debug_Suppor?=
+ =?utf-8?q?t_=28eudebug=29_v7?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 23 Feb 2026 15:14:51 -0000
+Message-ID: <177185969176.275505.10950513504324041033@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260223140318.1822138-1-mika.kuoppala@linux.intel.com>
+In-Reply-To: <20260223140318.1822138-1-mika.kuoppala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,692 +36,375 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When the PF is configured for admin‑only mode, it is restricted to
-management functions and should not expose a device node that would
-allow users to run workloads.
+== Series Details ==
 
-In this mode, no DRM device entry is created; however, sysfs and debugfs
-interfaces for the PF remain available at:
+Series: Intel Xe GPU Debug Support (eudebug) v7
+URL   : https://patchwork.freedesktop.org/series/161979/
+State : warning
 
-sysfs: /sys/devices/pci0000:00/<B:D:F>
-debugfs: /sys/kernel/debug/dri/<B:D:F>
+== Summary ==
 
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
-Cc: dri-devel@lists.freedesktop.org
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4356dbe33a5eb3ae829a1911e21aa2712b055693
+Author: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+Date:   Mon Feb 23 16:03:17 2026 +0200
 
----
-V2 -> V3:
-- Introduced new helper function xe_debugfs_create_files() to create
-debugfs entries based on admin_only_pf mode or normal mode.
-
-V1 -> V2:
-- Rebased to latest drm-tip.
-- Update update_minor_dev() to debugfs_minor_dev().
----
- drivers/gpu/drm/xe/Makefile                   |  1 +
- drivers/gpu/drm/xe/xe_debugfs.c               | 18 +++--
- drivers/gpu/drm/xe/xe_debugfs_helpers.c       | 78 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_debugfs_helpers.h       | 27 +++++++
- drivers/gpu/drm/xe/xe_device.c                | 20 +++--
- drivers/gpu/drm/xe/xe_gsc_debugfs.c           |  8 +-
- drivers/gpu/drm/xe/xe_gt_debugfs.c            | 20 +++--
- drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c   |  5 +-
- drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c   |  5 +-
- drivers/gpu/drm/xe/xe_guc_debugfs.c           | 20 ++---
- drivers/gpu/drm/xe/xe_huc_debugfs.c           |  8 +-
- drivers/gpu/drm/xe/xe_pxp_debugfs.c           | 23 ++++--
- drivers/gpu/drm/xe/xe_sriov.h                 |  8 ++
- drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c      |  5 +-
- drivers/gpu/drm/xe/xe_sriov_vf.c              |  5 +-
- drivers/gpu/drm/xe/xe_tile_debugfs.c          | 10 +--
- drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c | 14 ++--
- 17 files changed, 202 insertions(+), 73 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_debugfs_helpers.c
- create mode 100644 drivers/gpu/drm/xe/xe_debugfs_helpers.h
-
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 41ec698b3cc1..31901da1eff2 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -35,6 +35,7 @@ $(obj)/generated/%_device_wa_oob.c $(obj)/generated/%_device_wa_oob.h: $(obj)/xe
- xe-y += xe_bb.o \
- 	xe_bo.o \
- 	xe_bo_evict.o \
-+	xe_debugfs_helpers.o \
- 	xe_dep_scheduler.o \
- 	xe_devcoredump.o \
- 	xe_device.o \
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 844cfafe1ec7..b560c170aaf1 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -13,6 +13,7 @@
- 
- #include "regs/xe_pmt.h"
- #include "xe_bo.h"
-+#include "xe_debugfs_helpers.h"
- #include "xe_device.h"
- #include "xe_force_wake.h"
- #include "xe_gt_debugfs.h"
-@@ -512,22 +513,23 @@ static const struct file_operations disable_late_binding_fops = {
- void xe_debugfs_register(struct xe_device *xe)
- {
- 	struct ttm_device *bdev = &xe->ttm;
--	struct drm_minor *minor = xe->drm.primary;
--	struct dentry *root = minor->debugfs_root;
- 	struct ttm_resource_manager *man;
- 	struct xe_tile *tile;
-+	struct dentry *root;
- 	struct xe_gt *gt;
- 	u8 tile_id;
- 	u8 id;
- 
--	drm_debugfs_create_files(debugfs_list,
--				 ARRAY_SIZE(debugfs_list),
--				 root, minor);
-+	root = xe_debugfs_root_dir(xe);
-+
-+	xe_debugfs_create_files(debugfs_list,
-+				ARRAY_SIZE(debugfs_list),
-+				root, xe);
- 
- 	if (xe->info.platform == XE_BATTLEMAGE && !IS_SRIOV_VF(xe)) {
--		drm_debugfs_create_files(debugfs_residencies,
--					 ARRAY_SIZE(debugfs_residencies),
--					 root, minor);
-+		xe_debugfs_create_files(debugfs_residencies,
-+					ARRAY_SIZE(debugfs_residencies),
-+					root, xe);
- 		fault_create_debugfs_attr("inject_csc_hw_error", root,
- 					  &inject_csc_hw_error);
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_debugfs_helpers.c b/drivers/gpu/drm/xe/xe_debugfs_helpers.c
+    drm/xe/eudebug: Enable EU pagefault handling
+    
+    The XE2 (and PVC) HW has a limitation that the pagefault due to invalid
+    access will halt the corresponding EUs. To solve this problem, enable
+    EU pagefault handling functionality, which allows to unhalt pagefaulted
+    eu threads and to EU debugger to get inform about the eu attentions state
+    of EU threads during execution.
+    
+    If a pagefault occurs, send the DRM_XE_EUDEBUG_EVENT_PAGEFAULT event
+    after handling the pagefault.
+    
+    The pagefault handling is a mechanism that allows a stalled EU thread to
+    enter SIP mode by installing a temporal null page to the page table entry
+    where the pagefault happened.
+    
+    A brief description of the page fault handling mechanism flow between KMD
+    and the eu thread is as follows
+    
+    (1) eu thread accesses unallocated address
+    (2) pagefault happens and eu thread stalls
+    (3) XE kmd set an force eu thread exception to allow the running eu thread
+        to enter SIP mode (kmd set ForceException / ForceExternalHalt bit of
+        TD_CTL register)
+        Not stalled (none-pagefaulted) eu threads enter SIP mode
+    (4) XE kmd installs temporal null page to the pagetable entry of the
+        address where pagefault happened.
+    (5) XE kmd replies pagefault successful message to GUC
+    (6) stalled eu thread resumes as per pagefault condition has resolved
+    (7) resumed eu thread enters SIP mode due to force exception set by (3)
+    (8) adapted to consumer/produced pagefaults
+    
+    As designed this feature to only work when eudbug is enabled, it should
+    have no impact to regular recoverable pagefault code path.
+    
+    v2: - pf->q holds the vm ref so drop it (Mika)
+        - streamline uapi (Mika)
+        - cleanup the pagefault through producer if (Mika)
+    
+    Signed-off-by: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>
+    Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
++ /mt/dim checkpatch 45a3045fc0dc46a893cb8bbe304afafd4120c904 drm-intel
+c1065702b0ff drm/xe/eudebug: Introduce eudebug interface
+-:226: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#226: 
 new file mode 100644
-index 000000000000..c8b4a088cf28
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_debugfs_helpers.c
-@@ -0,0 +1,78 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#include <drm/drm_debugfs.h>
-+#include <drm/drm_drv.h>
-+#include <drm/drm_managed.h>
-+
-+#include <linux/debugfs.h>
-+
-+#include "xe_debugfs_helpers.h"
-+
-+static int xe_debugfs_open(struct inode *inode, struct file *file)
-+{
-+	struct drm_info_node *node = inode->i_private;
-+
-+	return single_open(file, node->info_ent->show, node);
-+}
-+
-+static const struct file_operations xe_debugfs_fops = {
-+	.owner = THIS_MODULE,
-+	.open = xe_debugfs_open,
-+	.read = seq_read,
-+	.llseek = seq_lseek,
-+	.release = single_release,
-+};
-+
-+/**
-+ * xe_debugfs_create_files - Initialize a given set of debugfs files.
-+ * @files: The array of files to create.
-+ * @count: The number of files given.
-+ * @root: debugfs dir root entry.
-+ * @xe: the &xe_device to register
-+ *
-+ * Create a given set of debugfs files represented by an array of
-+ * &struct drm_info_list in the given root directory. These files will be
-+ * removed automatically on drm_debugfs_dev_fini().
-+ *
-+ * Returns 0 on success, negative error code on failure.
-+ */
-+int xe_debugfs_create_files(const struct drm_info_list *files, int count,
-+			    struct dentry *root, struct xe_device *xe)
-+{
-+	struct drm_device *dev = &xe->drm;
-+	struct drm_info_node *tmp;
-+	struct drm_minor *minor;
-+	int i;
-+
-+	if (!xe_device_is_admin_only(xe)) {
-+		minor = dev->primary;
-+		drm_debugfs_create_files(files, count, root, minor);
-+		return 0;
-+	}
-+
-+	for (i = 0; i < count; i++) {
-+		u32 features = files[i].driver_features;
-+
-+		if (features && !drm_core_check_all_features(dev, features))
-+			continue;
-+
-+		tmp = drmm_kzalloc(dev, sizeof(*tmp), GFP_KERNEL);
-+		if (!tmp)
-+			return -ENOMEM;
-+
-+		tmp->minor = drmm_kzalloc(dev, sizeof(*tmp->minor), GFP_KERNEL);
-+		if (!tmp->minor)
-+			return -ENOMEM;
-+
-+		tmp->minor->dev = dev;
-+		tmp->dent = debugfs_create_file(files[i].name,
-+						0444, root, tmp,
-+						&xe_debugfs_fops);
-+		tmp->info_ent = &files[i];
-+	}
-+
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_debugfs_helpers.h b/drivers/gpu/drm/xe/xe_debugfs_helpers.h
+
+-:284: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!READ_ONCE"
+#284: FILE: drivers/gpu/drm/xe/xe_eudebug.c:54:
++	return READ_ONCE(d->target.xef) == NULL;
+
+-:467: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_d' - possible side-effects?
+#467: FILE: drivers/gpu/drm/xe/xe_eudebug.c:237:
++#define xe_eudebug_disconnect(_d, _err) ({ \
++	if (_xe_eudebug_disconnect((_d), (_err))) { \
++		if ((_err) == 0 || (_err) == -ETIMEDOUT) \
++			eu_dbg((_d), "Session closed (%d)", (_err));	\
++		else \
++			eu_err((_d), "Session disconnected, err = %d (%s:%d)", \
++			       (_err), __func__, __LINE__); \
++	} \
++})
+
+-:467: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_err' - possible side-effects?
+#467: FILE: drivers/gpu/drm/xe/xe_eudebug.c:237:
++#define xe_eudebug_disconnect(_d, _err) ({ \
++	if (_xe_eudebug_disconnect((_d), (_err))) { \
++		if ((_err) == 0 || (_err) == -ETIMEDOUT) \
++			eu_dbg((_d), "Session closed (%d)", (_err));	\
++		else \
++			eu_err((_d), "Session disconnected, err = %d (%s:%d)", \
++			       (_err), __func__, __LINE__); \
++	} \
++})
+
+-:819: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_d' - possible side-effects?
+#819: FILE: drivers/gpu/drm/xe/xe_eudebug.c:589:
++#define xe_eudebug_event_put(_d, _err) ({ \
++	if ((_err)) \
++		xe_eudebug_disconnect((_d), (_err)); \
++	xe_eudebug_put((_d)); \
++	})
+
+-:819: CHECK:MACRO_ARG_REUSE: Macro argument reuse '_err' - possible side-effects?
+#819: FILE: drivers/gpu/drm/xe/xe_eudebug.c:589:
++#define xe_eudebug_event_put(_d, _err) ({ \
++	if ((_err)) \
++		xe_eudebug_disconnect((_d), (_err)); \
++	xe_eudebug_put((_d)); \
++	})
+
+-:1283: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#1283: FILE: drivers/gpu/drm/xe/xe_eudebug.h:20:
++#define XE_EUDEBUG_DBG_ARGS(d) (d)->session, \
++		atomic_long_read(&(d)->events.seqno), \
++		!READ_ONCE(d->target.xef) ? "disconnected" : "", \
++		current->pid, \
++		task_tgid_nr(current), \
++		READ_ONCE(d->target.xef) ? d->target.xef->pid : -1
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:1283: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'd' - possible side-effects?
+#1283: FILE: drivers/gpu/drm/xe/xe_eudebug.h:20:
++#define XE_EUDEBUG_DBG_ARGS(d) (d)->session, \
++		atomic_long_read(&(d)->events.seqno), \
++		!READ_ONCE(d->target.xef) ? "disconnected" : "", \
++		current->pid, \
++		task_tgid_nr(current), \
++		READ_ONCE(d->target.xef) ? d->target.xef->pid : -1
+
+-:1290: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'd' - possible side-effects?
+#1290: FILE: drivers/gpu/drm/xe/xe_eudebug.h:27:
++#define eu_err(d, fmt, ...) drm_err(&(d)->xe->drm, XE_EUDEBUG_DBG_STR # fmt, \
++				    XE_EUDEBUG_DBG_ARGS(d), ##__VA_ARGS__)
+
+-:1292: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'd' - possible side-effects?
+#1292: FILE: drivers/gpu/drm/xe/xe_eudebug.h:29:
++#define eu_warn(d, fmt, ...) drm_warn(&(d)->xe->drm, XE_EUDEBUG_DBG_STR # fmt, \
++				      XE_EUDEBUG_DBG_ARGS(d), ##__VA_ARGS__)
+
+-:1294: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'd' - possible side-effects?
+#1294: FILE: drivers/gpu/drm/xe/xe_eudebug.h:31:
++#define eu_dbg(d, fmt, ...) drm_dbg(&(d)->xe->drm, XE_EUDEBUG_DBG_STR # fmt, \
++				    XE_EUDEBUG_DBG_ARGS(d), ##__VA_ARGS__)
+
+-:1505: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
+#1505: FILE: include/uapi/drm/xe_drm.h:129:
++#define DRM_IOCTL_XE_EUDEBUG_CONNECT		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EUDEBUG_CONNECT, struct drm_xe_eudebug_connect)
+
+total: 1 errors, 2 warnings, 9 checks, 1491 lines checked
+b6a8216a1b6d drm/xe/eudebug: Add documentation
+-:21: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#21: 
 new file mode 100644
-index 000000000000..15f9e51e0d27
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_debugfs_helpers.h
-@@ -0,0 +1,27 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026-2027 Intel Corporation
-+ */
-+
-+#ifndef _XE_DEBUGFS_HELPERS_H_
-+#define _XE_DEBUGFS_HELPERS_H_
-+
-+#include "xe_gt_types.h"
-+#include "xe_sriov.h"
-+
-+struct drm_info_list;
-+
-+int xe_debugfs_create_files(const struct drm_info_list *files, int count,
-+			    struct dentry *root, struct xe_device *xe);
-+
-+static inline struct dentry *xe_debugfs_root_dir(struct xe_device *xe)
+
+total: 0 errors, 1 warnings, 0 checks, 108 lines checked
+c942cff65862 drm/xe/eudebug: Add connection establishment documentation
+4614d5180fcc drm/xe/eudebug: Introduce discovery for resources
+7d1a7be2ee3c drm/xe/eudebug: Introduce exec_queue events
+feff6753f4d3 drm/xe: Add EUDEBUG_ENABLE exec queue property
+52ec38632a8c drm/xe/eudebug: Mark guc contexts as debuggable
+6adca595de2d drm/xe: Introduce ADD_DEBUG_DATA and REMOVE_DEBUG_DATA vm bind ops
+-:44: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#44: 
+new file mode 100644
+
+-:617: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#617: FILE: drivers/gpu/drm/xe/xe_vm.c:3478:
++		if (XE_IOCTL_DBG(xe, operation != DRM_XE_VM_BIND_OP_ADD_DEBUG_DATA &&
++				     operation != DRM_XE_VM_BIND_OP_REMOVE_DEBUG_DATA &&
+
+-:620: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#620: FILE: drivers/gpu/drm/xe/xe_vm.c:3481:
++		    XE_IOCTL_DBG(xe, ext.name == XE_VM_BIND_OP_EXTENSIONS_DEBUG_DATA &&
++				     ++debug_data_count > 1))
+
+-:740: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
+#740: FILE: drivers/gpu/drm/xe/xe_vm_types.h:372:
++		struct mutex lock;
+
+total: 0 errors, 1 warnings, 3 checks, 787 lines checked
+63c125f233b9 drm/xe/eudebug: Introduce vm bind and vm bind debug data events
+-:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#7: 
+This patch adds events to track the bind ioctl and associated debug data add
+
+-:414: WARNING:LONG_LINE_COMMENT: line length of 102 exceeds 100 columns
+#414: FILE: include/uapi/drm/xe_drm_eudebug.h:112:
++ *  │  EVENT_VM_BIND        ├──────────────────┬─┬┄┐
+
+-:415: WARNING:LONG_LINE_COMMENT: line length of 108 exceeds 100 columns
+#415: FILE: include/uapi/drm/xe_drm_eudebug.h:113:
++ *  └───────────────────────┘                  │ │ ┊
+
+-:416: WARNING:LONG_LINE_COMMENT: line length of 130 exceeds 100 columns
+#416: FILE: include/uapi/drm/xe_drm_eudebug.h:114:
++ *      ┌──────────────────────────────────┐   │ │ ┊
+
+-:418: WARNING:LONG_LINE_COMMENT: line length of 128 exceeds 100 columns
+#418: FILE: include/uapi/drm/xe_drm_eudebug.h:116:
++ *      └──────────────────────────────────┘     │ ┊
+
+-:420: WARNING:LONG_LINE_COMMENT: line length of 128 exceeds 100 columns
+#420: FILE: include/uapi/drm/xe_drm_eudebug.h:118:
++ *      ┌──────────────────────────────────┐     │ ┊
+
+-:422: WARNING:LONG_LINE_COMMENT: line length of 126 exceeds 100 columns
+#422: FILE: include/uapi/drm/xe_drm_eudebug.h:120:
++ *      └──────────────────────────────────┘       ┊
+
+-:424: WARNING:LONG_LINE_COMMENT: line length of 126 exceeds 100 columns
+#424: FILE: include/uapi/drm/xe_drm_eudebug.h:122:
++ *      ┌┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┐       ┊
+
+-:426: WARNING:LONG_LINE_COMMENT: line length of 116 exceeds 100 columns
+#426: FILE: include/uapi/drm/xe_drm_eudebug.h:124:
++ *      └┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┘
+
+total: 0 errors, 9 warnings, 0 checks, 427 lines checked
+ca09231b0e9e drm/xe/eudebug: Add UFENCE events with acks
+-:320: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!ufence"
+#320: FILE: drivers/gpu/drm/xe/xe_eudebug.c:1273:
++			xe_assert(vm->xe, ufence == NULL);
+
+-:621: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#621: FILE: drivers/gpu/drm/xe/xe_sync_types.h:26:
++		spinlock_t lock;
+
+total: 0 errors, 0 warnings, 2 checks, 640 lines checked
+19cb953494c2 drm/xe/eudebug: vm open/pread/pwrite
+-:138: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
+#138: FILE: drivers/gpu/drm/xe/xe_eudebug.c:747:
 +{
-+	struct drm_minor *minor = xe->drm.primary;
 +
-+	if (xe_device_is_admin_only(xe))
-+		return xe->drm.debugfs_root;
-+	else
-+		return minor->debugfs_root;
-+}
-+#endif
+
+-:161: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#161: FILE: drivers/gpu/drm/xe/xe_eudebug.c:770:
 +
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 3462645ca13c..e6df3091659f 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -971,15 +971,17 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		return err;
- 
--	err = drm_dev_register(&xe->drm, 0);
--	if (err)
--		return err;
-+	if (!xe_device_is_admin_only(xe)) {
-+		err = drm_dev_register(&xe->drm, 0);
-+		if (err)
-+			return err;
- 
--	xe_display_register(xe);
-+		err = xe_oa_register(xe);
-+		if (err)
-+			goto err_drm_dev_unregister;
-+	}
- 
--	err = xe_oa_register(xe);
--	if (err)
--		goto err_unregister_display;
-+	xe_display_register(xe);
- 
- 	err = xe_pmu_register(&xe->pmu);
- 	if (err)
-@@ -1014,6 +1016,7 @@ int xe_device_probe(struct xe_device *xe)
- 
- err_unregister_display:
- 	xe_display_unregister(xe);
-+err_drm_dev_unregister:
- 	drm_dev_unregister(&xe->drm);
- 
- 	return err;
-@@ -1023,7 +1026,8 @@ void xe_device_remove(struct xe_device *xe)
- {
- 	xe_display_unregister(xe);
- 
--	drm_dev_unplug(&xe->drm);
-+	if (!xe_device_is_admin_only(xe))
-+		drm_dev_unplug(&xe->drm);
- 
- 	xe_bo_pci_dev_remove_all(xe);
- }
-diff --git a/drivers/gpu/drm/xe/xe_gsc_debugfs.c b/drivers/gpu/drm/xe/xe_gsc_debugfs.c
-index d4977e666946..cbd057ce8571 100644
---- a/drivers/gpu/drm/xe/xe_gsc_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gsc_debugfs.c
-@@ -9,6 +9,7 @@
- #include <drm/drm_managed.h>
- #include <drm/drm_print.h>
- 
-+#include "xe_debugfs_helpers.h"
- #include "xe_gt_types.h"
- #include "xe_gsc.h"
- #include "xe_pm.h"
-@@ -48,7 +49,6 @@ static const struct drm_info_list debugfs_list[] = {
- 
- void xe_gsc_debugfs_register(struct xe_gsc *gsc, struct dentry *parent)
- {
--	struct drm_minor *minor = gsc_to_xe(gsc)->drm.primary;
- 	struct drm_info_list *local;
- 	int i;
- 
-@@ -63,7 +63,7 @@ void xe_gsc_debugfs_register(struct xe_gsc *gsc, struct dentry *parent)
- 	for (i = 0; i < ARRAY_SIZE(debugfs_list); ++i)
- 		local[i].data = gsc;
- 
--	drm_debugfs_create_files(local,
--				 ARRAY_SIZE(debugfs_list),
--				 parent, minor);
-+	xe_debugfs_create_files(local,
-+				ARRAY_SIZE(debugfs_list),
-+				parent, gsc_to_xe(gsc));
- }
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index f45306308cd6..24db5aef56a2 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -10,6 +10,7 @@
- #include <drm/drm_debugfs.h>
- #include <drm/drm_managed.h>
- 
-+#include "xe_debugfs_helpers.h"
- #include "xe_device.h"
- #include "xe_force_wake.h"
- #include "xe_gt.h"
-@@ -339,11 +340,13 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
- 	struct xe_device *xe = gt_to_xe(gt);
- 	struct drm_minor *minor = gt_to_xe(gt)->drm.primary;
- 	struct dentry *parent = gt->tile->debugfs;
-+	struct dentry *xe_debugfs_root;
- 	struct dentry *root;
- 	char symlink[16];
- 	char name[8];
- 
--	xe_gt_assert(gt, minor->debugfs_root);
-+	if (!xe_device_is_admin_only(xe))
-+		xe_gt_assert(gt, minor->debugfs_root);
- 
- 	if (IS_ERR(parent))
- 		return;
-@@ -367,14 +370,14 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
- 	debugfs_create_file("force_reset", 0600, root, gt, &force_reset_fops);
- 	debugfs_create_file("force_reset_sync", 0600, root, gt, &force_reset_sync_fops);
- 
--	drm_debugfs_create_files(vf_safe_debugfs_list,
--				 ARRAY_SIZE(vf_safe_debugfs_list),
--				 root, minor);
-+	xe_debugfs_create_files(vf_safe_debugfs_list,
-+				ARRAY_SIZE(vf_safe_debugfs_list),
-+				root, xe);
- 
- 	if (!IS_SRIOV_VF(xe))
--		drm_debugfs_create_files(pf_only_debugfs_list,
--					 ARRAY_SIZE(pf_only_debugfs_list),
--					 root, minor);
-+		xe_debugfs_create_files(pf_only_debugfs_list,
-+					ARRAY_SIZE(pf_only_debugfs_list),
-+					root, xe);
- 
- 	xe_uc_debugfs_register(&gt->uc, root);
- 
-@@ -388,5 +391,6 @@ void xe_gt_debugfs_register(struct xe_gt *gt)
- 	 * who may expect gt/ directory at the root level, not the tile level.
- 	 */
- 	snprintf(symlink, sizeof(symlink), "tile%u/%s", gt->tile->id, name);
--	debugfs_create_symlink(name, minor->debugfs_root, symlink);
-+	xe_debugfs_root = xe_debugfs_root_dir(xe);
-+	debugfs_create_symlink(name, xe_debugfs_root, symlink);
- }
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-index ffa27f66bba7..a8892fd9cf4c 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_debugfs.c
-@@ -8,7 +8,7 @@
- #include <drm/drm_print.h>
- #include <drm/drm_debugfs.h>
- 
--#include "xe_debugfs.h"
-+#include "xe_debugfs_helpers.h"
- #include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_gt_debugfs.h"
-@@ -806,7 +806,6 @@ static void pf_add_compat_attrs(struct xe_gt *gt, struct dentry *dent, unsigned
- static void pf_populate_gt(struct xe_gt *gt, struct dentry *dent, unsigned int vfid)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
--	struct drm_minor *minor = xe->drm.primary;
- 
- 	if (vfid) {
- 		pf_add_config_attrs(gt, dent, vfid);
-@@ -826,7 +825,7 @@ static void pf_populate_gt(struct xe_gt *gt, struct dentry *dent, unsigned int v
- 		pf_add_policy_attrs(gt, dent);
- 		pf_add_sched_groups(gt, dent, PFID);
- 
--		drm_debugfs_create_files(pf_info, ARRAY_SIZE(pf_info), dent, minor);
-+		xe_debugfs_create_files(pf_info, ARRAY_SIZE(pf_info), dent, xe);
- 	}
- 
- 	/* for backward compatibility only */
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c
-index 507718326e1f..5d6ee9728f68 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_debugfs.c
-@@ -7,11 +7,11 @@
- 
- #include <drm/drm_debugfs.h>
- 
-+#include "xe_debugfs_helpers.h"
- #include "xe_gt_debugfs.h"
- #include "xe_gt_sriov_vf.h"
- #include "xe_gt_sriov_vf_debugfs.h"
- #include "xe_gt_types.h"
--#include "xe_sriov.h"
- 
- /*
-  *      /sys/kernel/debug/dri/0/
-@@ -52,7 +52,6 @@ static const struct drm_info_list vf_info[] = {
- void xe_gt_sriov_vf_debugfs_register(struct xe_gt *gt, struct dentry *root)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
--	struct drm_minor *minor = xe->drm.primary;
- 	struct dentry *vfdentry;
- 
- 	xe_assert(xe, IS_SRIOV_VF(xe));
-@@ -68,7 +67,7 @@ void xe_gt_sriov_vf_debugfs_register(struct xe_gt *gt, struct dentry *root)
- 		return;
- 	vfdentry->d_inode->i_private = gt;
- 
--	drm_debugfs_create_files(vf_info, ARRAY_SIZE(vf_info), vfdentry, minor);
-+	xe_debugfs_create_files(vf_info, ARRAY_SIZE(vf_info), vfdentry, xe);
- 
- 	/*
- 	 *      /sys/kernel/debug/dri/BDF/
-diff --git a/drivers/gpu/drm/xe/xe_guc_debugfs.c b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-index 2f23119686d4..ddd3d209328a 100644
---- a/drivers/gpu/drm/xe/xe_guc_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_guc_debugfs.c
-@@ -8,6 +8,7 @@
- #include <drm/drm_debugfs.h>
- #include <drm/drm_managed.h>
- 
-+#include "xe_debugfs_helpers.h"
- #include "xe_device_types.h"
- #include "xe_gt_types.h"
- #include "xe_guc.h"
-@@ -129,20 +130,19 @@ static const struct drm_info_list pf_only_debugfs_list[] = {
- void xe_guc_debugfs_register(struct xe_guc *guc, struct dentry *parent)
- {
- 	struct xe_device *xe =  guc_to_xe(guc);
--	struct drm_minor *minor = xe->drm.primary;
- 
--	drm_debugfs_create_files(vf_safe_debugfs_list,
--				 ARRAY_SIZE(vf_safe_debugfs_list),
--				 parent, minor);
-+	xe_debugfs_create_files(vf_safe_debugfs_list,
-+				ARRAY_SIZE(vf_safe_debugfs_list),
-+				parent, xe);
- 
- 	if (!IS_SRIOV_VF(xe)) {
--		drm_debugfs_create_files(pf_only_debugfs_list,
--					 ARRAY_SIZE(pf_only_debugfs_list),
--					 parent, minor);
-+		xe_debugfs_create_files(pf_only_debugfs_list,
-+					ARRAY_SIZE(pf_only_debugfs_list),
-+					parent, xe);
- 
- 		if (!xe->info.skip_guc_pc)
--			drm_debugfs_create_files(slpc_debugfs_list,
--						 ARRAY_SIZE(slpc_debugfs_list),
--						 parent, minor);
-+			xe_debugfs_create_files(slpc_debugfs_list,
-+						ARRAY_SIZE(slpc_debugfs_list),
-+						parent, xe);
- 	}
- }
-diff --git a/drivers/gpu/drm/xe/xe_huc_debugfs.c b/drivers/gpu/drm/xe/xe_huc_debugfs.c
-index 80829967b3d7..59de78355eee 100644
---- a/drivers/gpu/drm/xe/xe_huc_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_huc_debugfs.c
-@@ -9,6 +9,7 @@
- #include <drm/drm_managed.h>
- #include <drm/drm_print.h>
- 
-+#include "xe_debugfs_helpers.h"
- #include "xe_gt_types.h"
- #include "xe_huc.h"
- #include "xe_pm.h"
-@@ -48,7 +49,6 @@ static const struct drm_info_list debugfs_list[] = {
- 
- void xe_huc_debugfs_register(struct xe_huc *huc, struct dentry *parent)
- {
--	struct drm_minor *minor = huc_to_xe(huc)->drm.primary;
- 	struct drm_info_list *local;
- 	int i;
- 
-@@ -63,7 +63,7 @@ void xe_huc_debugfs_register(struct xe_huc *huc, struct dentry *parent)
- 	for (i = 0; i < ARRAY_SIZE(debugfs_list); ++i)
- 		local[i].data = huc;
- 
--	drm_debugfs_create_files(local,
--				 ARRAY_SIZE(debugfs_list),
--				 parent, minor);
-+	xe_debugfs_create_files(local,
-+				ARRAY_SIZE(debugfs_list),
-+				parent, huc_to_xe(huc));
- }
-diff --git a/drivers/gpu/drm/xe/xe_pxp_debugfs.c b/drivers/gpu/drm/xe/xe_pxp_debugfs.c
-index d6e2e41bc88c..c807f992ed6a 100644
---- a/drivers/gpu/drm/xe/xe_pxp_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_pxp_debugfs.c
-@@ -11,6 +11,7 @@
- #include <drm/drm_managed.h>
- #include <drm/drm_print.h>
- 
-+#include "xe_debugfs_helpers.h"
- #include "xe_device_types.h"
- #include "xe_pxp.h"
- #include "xe_pxp_types.h"
-@@ -96,17 +97,22 @@ static const struct drm_info_list debugfs_list[] = {
- 
- void xe_pxp_debugfs_register(struct xe_pxp *pxp)
- {
--	struct drm_minor *minor;
- 	struct drm_info_list *local;
-+	struct drm_minor *minor;
-+	struct xe_device *xe;
- 	struct dentry *root;
- 	int i;
- 
- 	if (!xe_pxp_is_enabled(pxp))
- 		return;
- 
--	minor = pxp->xe->drm.primary;
--	if (!minor->debugfs_root)
--		return;
-+	xe = pxp->xe;
 +
-+	if (!xe_device_is_admin_only(xe)) {
-+		minor = xe->drm.primary;
-+		if (!minor->debugfs_root)
-+			return;
-+	}
- 
- #define DEBUGFS_SIZE	(ARRAY_SIZE(debugfs_list) * sizeof(struct drm_info_list))
- 	local = drmm_kmalloc(&pxp->xe->drm, DEBUGFS_SIZE, GFP_KERNEL);
-@@ -119,11 +125,12 @@ void xe_pxp_debugfs_register(struct xe_pxp *pxp)
- 	for (i = 0; i < ARRAY_SIZE(debugfs_list); ++i)
- 		local[i].data = pxp;
- 
--	root = debugfs_create_dir("pxp", minor->debugfs_root);
-+	root = xe_debugfs_root_dir(xe);
-+	root = debugfs_create_dir("pxp", root);
- 	if (IS_ERR(root))
- 		return;
- 
--	drm_debugfs_create_files(local,
--				 ARRAY_SIZE(debugfs_list),
--				 root, minor);
-+	xe_debugfs_create_files(local,
-+				ARRAY_SIZE(debugfs_list),
-+				root, xe);
- }
-diff --git a/drivers/gpu/drm/xe/xe_sriov.h b/drivers/gpu/drm/xe/xe_sriov.h
-index 72e55543c30e..be426afa90b1 100644
---- a/drivers/gpu/drm/xe/xe_sriov.h
-+++ b/drivers/gpu/drm/xe/xe_sriov.h
-@@ -37,6 +37,14 @@ static inline bool xe_device_is_sriov_vf(const struct xe_device *xe)
- 	return xe_device_sriov_mode(xe) == XE_SRIOV_MODE_VF;
- }
- 
-+static inline bool xe_device_is_admin_only(const struct xe_device *xe)
-+{
-+	if (xe_device_is_sriov_pf(xe) && xe->sriov.pf.admin_only)
-+		return true;
-+	else
-+		return false;
-+}
-+
- #define IS_SRIOV_PF(xe) xe_device_is_sriov_pf(xe)
- #define IS_SRIOV_VF(xe) xe_device_is_sriov_vf(xe)
- 
-diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c
-index 81b377830d6d..68afcd5a0dc4 100644
---- a/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_pf_debugfs.c
-@@ -6,6 +6,7 @@
- #include <linux/debugfs.h>
- #include <drm/drm_debugfs.h>
- 
-+#include "xe_debugfs_helpers.h"
- #include "xe_device.h"
- #include "xe_device_types.h"
- #include "xe_pm.h"
-@@ -152,9 +153,7 @@ static const struct drm_info_list debugfs_list[] = {
- 
- static void pf_populate_pf(struct xe_device *xe, struct dentry *pfdent)
- {
--	struct drm_minor *minor = xe->drm.primary;
--
--	drm_debugfs_create_files(debugfs_list, ARRAY_SIZE(debugfs_list), pfdent, minor);
-+	xe_debugfs_create_files(debugfs_list, ARRAY_SIZE(debugfs_list), pfdent, xe);
- }
- 
- /*
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf.c b/drivers/gpu/drm/xe/xe_sriov_vf.c
-index 29894bd081c0..61c8d199f18b 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf.c
-@@ -6,6 +6,7 @@
- #include <drm/drm_debugfs.h>
- #include <drm/drm_managed.h>
- 
-+#include "xe_debugfs_helpers.h"
- #include "xe_gt_sriov_vf.h"
- #include "xe_guc.h"
- #include "xe_sriov_printk.h"
-@@ -281,6 +282,6 @@ static const struct drm_info_list debugfs_list[] = {
-  */
- void xe_sriov_vf_debugfs_register(struct xe_device *xe, struct dentry *root)
- {
--	drm_debugfs_create_files(debugfs_list, ARRAY_SIZE(debugfs_list),
--				 root, xe->drm.primary);
-+	xe_debugfs_create_files(debugfs_list, ARRAY_SIZE(debugfs_list),
-+				root, xe);
- }
-diff --git a/drivers/gpu/drm/xe/xe_tile_debugfs.c b/drivers/gpu/drm/xe/xe_tile_debugfs.c
-index 5df2f461b7b7..79bd87c9fe67 100644
---- a/drivers/gpu/drm/xe/xe_tile_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_tile_debugfs.c
-@@ -6,6 +6,7 @@
- #include <linux/debugfs.h>
- #include <drm/drm_debugfs.h>
- 
-+#include "xe_debugfs_helpers.h"
- #include "xe_ggtt.h"
- #include "xe_pm.h"
- #include "xe_sa.h"
-@@ -123,8 +124,7 @@ static void tile_debugfs_create_vram_mm(struct xe_tile *tile)
- void xe_tile_debugfs_register(struct xe_tile *tile)
- {
- 	struct xe_device *xe = tile_to_xe(tile);
--	struct drm_minor *minor = xe->drm.primary;
--	struct dentry *root = minor->debugfs_root;
-+	struct dentry *root = xe_debugfs_root_dir(xe);
- 	char name[8];
- 
- 	snprintf(name, sizeof(name), "tile%u", tile->id);
-@@ -139,9 +139,9 @@ void xe_tile_debugfs_register(struct xe_tile *tile)
- 	 */
- 	tile->debugfs->d_inode->i_private = tile;
- 
--	drm_debugfs_create_files(vf_safe_debugfs_list,
--				 ARRAY_SIZE(vf_safe_debugfs_list),
--				 tile->debugfs, minor);
-+	xe_debugfs_create_files(vf_safe_debugfs_list,
-+				ARRAY_SIZE(vf_safe_debugfs_list),
-+				tile->debugfs, xe);
- 
- 	tile_debugfs_create_vram_mm(tile);
- }
-diff --git a/drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c b/drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c
-index 7f97db2f89bb..fd352be6840d 100644
---- a/drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_tile_sriov_pf_debugfs.c
-@@ -8,6 +8,7 @@
- 
- #include "xe_device.h"
- #include "xe_device_types.h"
-+#include "xe_debugfs_helpers.h"
- #include "xe_gt_sriov_pf_config.h"
- #include "xe_gt_sriov_pf_debugfs.h"
- #include "xe_pm.h"
-@@ -183,20 +184,19 @@ static void pf_add_config_attrs(struct xe_tile *tile, struct dentry *dent, unsig
- static void pf_populate_tile(struct xe_tile *tile, struct dentry *dent, unsigned int vfid)
- {
- 	struct xe_device *xe = tile->xe;
--	struct drm_minor *minor = xe->drm.primary;
- 	struct xe_gt *gt;
- 	unsigned int id;
- 
- 	pf_add_config_attrs(tile, dent, vfid);
- 
- 	if (!vfid) {
--		drm_debugfs_create_files(pf_ggtt_info,
--					 ARRAY_SIZE(pf_ggtt_info),
--					 dent, minor);
-+		xe_debugfs_create_files(pf_ggtt_info,
-+					ARRAY_SIZE(pf_ggtt_info),
-+					dent, xe);
- 		if (IS_DGFX(xe))
--			drm_debugfs_create_files(pf_vram_info,
--						 ARRAY_SIZE(pf_vram_info),
--						 dent, minor);
-+			xe_debugfs_create_files(pf_vram_info,
-+						ARRAY_SIZE(pf_vram_info),
-+						dent, xe);
- 	}
- 
- 	for_each_gt_on_tile(gt, tile, id)
--- 
-2.43.0
+
+-:201: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#201: FILE: drivers/gpu/drm/xe/xe_eudebug.h:42:
++#define xe_eudebug_for_each_hw_engine(__hwe, __gt, __id) \
++	for_each_hw_engine(__hwe, __gt, __id)	       \
++		if (xe_hw_engine_has_eudebug(__hwe))
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:201: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__hwe' - possible side-effects?
+#201: FILE: drivers/gpu/drm/xe/xe_eudebug.h:42:
++#define xe_eudebug_for_each_hw_engine(__hwe, __gt, __id) \
++	for_each_hw_engine(__hwe, __gt, __id)	       \
++		if (xe_hw_engine_has_eudebug(__hwe))
+
+-:251: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#251: 
+new file mode 100644
+
+total: 1 errors, 1 warnings, 3 checks, 642 lines checked
+43418d456fb5 drm/xe/eudebug: userptr vm pread/pwrite
+bf5b27b0ca3f drm/xe/eudebug: hw enablement for eudebug
+-:107: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#107: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 452 lines checked
+fc993f381517 drm/xe/eudebug: Introduce EU control interface
+-:297: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#297: FILE: drivers/gpu/drm/xe/xe_eudebug_hw.c:183:
++static bool engine_has_runalone_set(const struct xe_hw_engine * const hwe,
++				   u32 rcu_debug1)
+
+-:303: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#303: FILE: drivers/gpu/drm/xe/xe_eudebug_hw.c:189:
++static bool engine_has_context_set(const struct xe_hw_engine * const hwe,
++				  u32 rcu_debug1)
+
+total: 0 errors, 0 warnings, 2 checks, 912 lines checked
+94daf711b082 drm/xe/eudebug: Introduce per device attention scan worker
+f8c8e4cfbf22 drm/xe/eudebug_test: Introduce xe_eudebug wa kunit test
+-:16: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#16: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 201 lines checked
+6a1fb3c4be57 drm/xe: Implement SR-IOV and eudebug exclusivity
+d4023d6256f3 drm/xe: Add xe_client_debugfs and introduce debug_data file
+-:31: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#31: 
+new file mode 100644
+
+-:85: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#85: FILE: drivers/gpu/drm/xe/xe_client_debugfs.c:50:
++			len = snprintf(kbuf, MAX_LINE_LEN, "%lu 0x%llx-0x%llx 0x%llx 0x%x\t%s\n",
++				vm_index,
+
+total: 0 errors, 1 warnings, 1 checks, 161 lines checked
+bf32a13c5225 drm/xe/eudebug: Add read/count/compare helper for eu attention
+-:127: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#127: 
+new file mode 100644
+
+-:149: CHECK:SPACING: spaces preferred around that '/' (ctx:VxV)
+#149: FILE: drivers/gpu/drm/xe/xe_gt_debug_types.h:18:
++	       XE_GT_EU_ATT_MAX_THREADS/8];
+ 	                               ^
+
+total: 0 errors, 1 warnings, 1 checks, 120 lines checked
+29924ce91f73 drm/xe/vm: Support for adding null page VMA to VM on request
+-:15: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#15: 
+[1] https://lore.kernel.org/intel-xe/20230829231648.4438-1-yu.bruce.chang@intel.com/
+
+total: 0 errors, 1 warnings, 0 checks, 43 lines checked
+c4c56069ef09 drm/xe/eudebug: Introduce EU pagefault handling interface
+-:338: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#338: 
+new file mode 100644
+
+-:455: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
+#455: FILE: drivers/gpu/drm/xe/xe_eudebug_pagefault.c:113:
++	spinlock_t lock;
+
+-:463: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!fence"
+#463: FILE: drivers/gpu/drm/xe/xe_eudebug_pagefault.c:121:
++	if (fence == NULL)
+
+-:559: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see function description of usleep_range() and udelay().
+#559: FILE: drivers/gpu/drm/xe/xe_eudebug_pagefault.c:217:
++		udelay(200);
+
+total: 0 errors, 1 warnings, 3 checks, 857 lines checked
+4356dbe33a5e drm/xe/eudebug: Enable EU pagefault handling
+
 
