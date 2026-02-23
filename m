@@ -4,27 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E05D1EA4FAE
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 12:07:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA455EA4FBB
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Feb 2026 13:11:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9345D10E35F;
-	Mon, 23 Feb 2026 12:07:22 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD94710E35F;
- Mon, 23 Feb 2026 12:07:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8820129718485412778=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC7CF10E39F;
+	Mon, 23 Feb 2026 13:11:14 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MxMViMXn";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27DEE10E39E;
+ Mon, 23 Feb 2026 13:11:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1771852273; x=1803388273;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=J2vhozv/YvZShZIfb1naQVw5qy+u2SyNnAYnmLriOrc=;
+ b=MxMViMXnyQ2x2LV2QRqvPgpkFBnSbd4MIk9uMlhW/naUWrN+LlWJ9apT
+ F5nUdkf4WK9ycUuzOGNr15Uuf72JQ8jzShnxfkf7nkqEYb02MNe0CSgco
+ oTTy3OL3Uok3cggI4y/eJ9JlBYD7Ou87dpWcgU0oqGFvOiz8E4RR9DKPe
+ PYicqgZGgxGhe5LlBMU3lwYt6yBwZpVm6LJNyOcNnIc0B+8Yq0QnQZael
+ CNK+C7C3c01YXeWXqGtKeUSZHYFNpTO0ADmPNaxmPLyvL3liRa2pV82ry
+ PVRflY1fvPNsHnK3BMB833ZpPS6YDi2k5Zg9UOMOTpbyXXpYdSVWVzYac Q==;
+X-CSE-ConnectionGUID: Z1ggkM3ARyOJZS8taSRZYw==
+X-CSE-MsgGUID: 9RHXMVRTSKGt53CrhAp6fw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11709"; a="72723026"
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="72723026"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2026 05:11:13 -0800
+X-CSE-ConnectionGUID: tbfHqhOVSJWs7wd0ahR3HQ==
+X-CSE-MsgGUID: 5nAm8neYR9yiVKCECValrQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,306,1763452800"; d="scan'208";a="215575372"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO vgovind2-mobl4.intel.com)
+ ([10.245.245.209])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2026 05:11:11 -0800
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com
+Subject: [PATCH] drm/i915/fbc: remove uint16 from supported fbc formats in
+ xe3plpd
+Date: Mon, 23 Feb 2026 15:10:51 +0200
+Message-ID: <20260223131051.180311-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/compat=3A_remove_com?=
- =?utf-8?q?pat_i915=5Freg=2Eh?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 23 Feb 2026 12:07:21 -0000
-Message-ID: <177184844169.274619.5849510781221393228@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260223110438.279074-1-jani.nikula@intel.com>
-In-Reply-To: <20260223110438.279074-1-jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,125 +66,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8820129718485412778==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+As UINT16 pixel formats are not listed as supported formats in any
+of the display versions so far, there is no point is having these
+formats listed as supported for FBC. So remove the UINT16 formats
+from the supported formats for FBC.
 
-== Series Details ==
+Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_fbc.c | 10 +---------
+ 1 file changed, 1 insertion(+), 9 deletions(-)
 
-Series: drm/xe/compat: remove compat i915_reg.h
-URL   : https://patchwork.freedesktop.org/series/161960/
-State : success
+diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
+index 9f39b6990bbd..cf4d145d6a8c 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbc.c
++++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+@@ -1204,15 +1204,7 @@ static bool xe3p_lpd_fbc_pixel_format_is_valid(const struct intel_plane_state *p
+ 	if (xe3p_lpd_fbc_fp16_format_is_valid(plane_state))
+ 		return true;
+ 
+-	switch (fb->format->format) {
+-	case DRM_FORMAT_XRGB16161616:
+-	case DRM_FORMAT_XBGR16161616:
+-	case DRM_FORMAT_ARGB16161616:
+-	case DRM_FORMAT_ABGR16161616:
+-		return true;
+-	default:
+-		return false;
+-	}
++	return false;
+ }
+ 
+ bool intel_fbc_need_pixel_normalizer(const struct intel_plane_state *plane_state)
+-- 
+2.43.0
 
-== Summary ==
-
-CI Bug Log - changes from xe-4589-4e1956bfdd4937741e5779a3d5743efec6acf57f_BAT -> xe-pw-161960v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-161960v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6519])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4589-4e1956bfdd4937741e5779a3d5743efec6acf57f/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161960v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-
-
-Build changes
--------------
-
-  * Linux: xe-4589-4e1956bfdd4937741e5779a3d5743efec6acf57f -> xe-pw-161960v1
-
-  IGT_8765: 8765
-  xe-4589-4e1956bfdd4937741e5779a3d5743efec6acf57f: 4e1956bfdd4937741e5779a3d5743efec6acf57f
-  xe-pw-161960v1: 161960v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161960v1/index.html
-
---===============8820129718485412778==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/compat: remove compat i915_reg.h</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161960/">https://patchwork.freedesktop.org/series/161960/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161960v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161960v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4589-4e1956bfdd4937741e5779a3d5743efec6acf57f_BAT -&gt; xe-pw-161960v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-161960v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4589-4e1956bfdd4937741e5779a3d5743efec6acf57f/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161960v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4589-4e1956bfdd4937741e5779a3d5743efec6acf57f -&gt; xe-pw-161960v1</li>
-</ul>
-<p>IGT_8765: 8765<br />
-  xe-4589-4e1956bfdd4937741e5779a3d5743efec6acf57f: 4e1956bfdd4937741e5779a3d5743efec6acf57f<br />
-  xe-pw-161960v1: 161960v1</p>
-
-</body>
-</html>
-
---===============8820129718485412778==--
