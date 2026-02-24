@@ -4,54 +4,189 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09403F3C9AF
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Feb 2026 16:59:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 065F2F3C9BC
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Feb 2026 17:04:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4D5810E5E8;
-	Tue, 24 Feb 2026 16:59:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 916D410E5ED;
+	Tue, 24 Feb 2026 17:04:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="lnzJEWV5";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="J7lyvhNv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kul4wNQ6";
 	dkim-atps=neutral
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B97810E5E8;
- Tue, 24 Feb 2026 16:59:06 +0000 (UTC)
-Date: Tue, 24 Feb 2026 17:59:03 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1771952344;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=6Iy7ZEO55Jhhl31ZvbYVjantUPH52WNb/3cgiUFVx5I=;
- b=lnzJEWV5mu7cDRXITe5q4AvyphtfzSvJwT/0379YgIYtVOvqpoqd7Drhqi3PJJKkeK9r9p
- FtGyKAlqeE7Dpv6Xo2LvTPY0BwjWYaao4ydd78DQiJsEafcbG+4pi5pxVcFwjrDUmA4T4B
- EVIYGp5Vt68qmKUbXupmVdss2frhTQwu52Becc+agtFWApgYqjhlX0EVJTZ3VzLn+a8MES
- dgJCQMGyWiILwHz9xdxfJnJsW0jTGSqKtKP8WVHM/VqwQXlmJE1I+wNV7CxTw+GcNF7XK1
- xnRIr+HKgxjdmPkmwpWRN/wnEF2QiW8TWNs3ty5UlhhLY+c6bKeqA3qk0a9Smg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1771952344;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=6Iy7ZEO55Jhhl31ZvbYVjantUPH52WNb/3cgiUFVx5I=;
- b=J7lyvhNvXOl1NGoA1Ee/0QYdZ0Coz4zSeS0uPmrfAKFwb+apDoDo8nxc/z1RpKhqRODlf2
- +qM+3vQ7i/Dp9+Dg==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Maarten Lankhorst <dev@lankhorst.se>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-rt-devel@lists.linux.dev, dri-devel@lists.freedesktop.org
-Subject: Re: [i915-rt v6 00/24] drm/i915/display: All patches to make
- PREEMPT_RT work on i915 + xe.
-Message-ID: <20260224165903.2mn24oQy@linutronix.de>
-References: <20260220083657.28815-26-dev@lankhorst.se>
- <20260224162703.Q_taYjEC@linutronix.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99D2710E5ED
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Feb 2026 17:04:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1771952646; x=1803488646;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=FpbD/UtigfDMgdH3Akp5mJZmIH20OcJkTXcAAsGxfX8=;
+ b=Kul4wNQ6ScZj5jGndWOsF4t8XIvFO1+eyvNSCt20q44oVXq6tLo2JKl0
+ RXRmbzIfPChJQcYVJgwQclwY9rpo61BYgCL4lvrN4YKJuo11ozFMPKPMN
+ VptIdMp591E02pVFcpHaxEjlQ3iakZKn9okI3KNPPSzkwYlZ87Wp7rYcM
+ oGVo3cW41LbkH91C0/II/MgwDMtIkL8nuBkJGLbahtNkfdsxVs6r3D63E
+ c7cZUJzMjJUFujrWsrlyceWqyVFpr6zikLSRVdYV8Trt1TtqM5IlrDIoX
+ i6DNEN5a485sEo23hoiJ/TyQon3mKf8hP95V6Q5B1xl3ppSRxUIHhF2zK g==;
+X-CSE-ConnectionGUID: B1ogeGMsQPio+/gYa6gxHQ==
+X-CSE-MsgGUID: qumkfsaaT3S5JupsH0kK8Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="84068953"
+X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; d="scan'208";a="84068953"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2026 09:04:06 -0800
+X-CSE-ConnectionGUID: 8i1d1wQVSFe0wcPEuSnl+g==
+X-CSE-MsgGUID: 8d0NpPuQTuSmFjJaO6Fxlg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; d="scan'208";a="220955984"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2026 09:04:06 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Tue, 24 Feb 2026 09:04:04 -0800
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35 via Frontend Transport; Tue, 24 Feb 2026 09:04:04 -0800
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.34) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Tue, 24 Feb 2026 09:04:04 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tuk2LbzBwX7kUsfZ9t1vXgyi8337QR2mkMW9XxjJn9+lsGWBPBI3qF9EtgpEpY+aikv5kUtnrvvwzxEmYIwVAVjhm++xoLVSHLCZ9plNjPSI96/6XoPl22H9dJkZJEKPQ/sQ4Rk7gFjskDqO6/y7WUO9hfatVqvQeUB5XsHqCNSgPv2ogCc2PprFD79SgQstkfFeLG7zMYh5TGqlxijNQZzOwhaxVX+tMSsken60AkZQ0vnkxmqAwfhTbRTYt4ppZFbjwyFoOtvaJcNSOodUb9+1P6CVkZhOqK9kWsklA5RJw4kVUd0xhpgBZ7aUUwqnzSqMWuqOXKaABdyNA5MXMA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Is9NdnBQ77XRPMZgKNFbxRBMjjpx5bmWjmIX+mAQFvk=;
+ b=jEtbJr95GR+wK9hPKUJXkv9MPsmFFBy3kFzyBCZqBuxNratdiwryUbn6PnoT2VwCdjttuEJpsw0IkWHxevlx8elHKbYr7wmeiOtQODMlV4MqomC/A3sjNzso9lbQTw8uCc9m+Gq1Kyo1o0tSA4MolO2fT9klo0Q0vAjhkq4QXWV2f3J2eCpk3Dfh6W6j2JDpEsaqV0vL7LAh3aOCOO8/ijuu7o1Gxrcc0hmkvix4o/V1t/ahxxNd+pwa/5jXUa8u5Lp/5t/2BHIu7UKJA73XWkeYcKZtej8ZNIR1UTLN/7B662wVHGQVq6UJWh5iv9xm05PSG8YLIafGhtx1ZwfWwQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by DS4PPF93A1BBECD.namprd11.prod.outlook.com (2603:10b6:f:fc02::3c)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.21; Tue, 24 Feb
+ 2026 17:04:02 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c%6]) with mapi id 15.20.9632.017; Tue, 24 Feb 2026
+ 17:04:00 +0000
+Date: Tue, 24 Feb 2026 09:03:57 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Varun Gupta <varun.gupta@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <himal.prasad.ghimiray@intel.com>,
+ <oak.zeng@intel.com>
+Subject: Re: [PATCH] drm/xe: Skip BO migration when platform supports CPU
+ atomics on VRAM
+Message-ID: <aZ3Z/fGBaTBtyd2K@lstrano-desk.jf.intel.com>
+References: <20260224092758.1880683-1-varun.gupta@intel.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20260224162703.Q_taYjEC@linutronix.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260224092758.1880683-1-varun.gupta@intel.com>
+X-ClientProxiedBy: MW4P220CA0004.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:303:115::9) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DS4PPF93A1BBECD:EE_
+X-MS-Office365-Filtering-Correlation-Id: 829dd61a-fc83-4d39-0872-08de73c6b49a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?utf-8?B?b3ZRQmpOQytER3FIUmZzYjFSYURqSWhpV2E4ZElZS1pBcUMydFZ2ZS9UMkM1?=
+ =?utf-8?B?SXE0NDVoMU5oZVpOei83eis0eUtnVkYwWmpwSklUTWYvVnVJRzUrYjVkSTI5?=
+ =?utf-8?B?SFM0R2hBUWg5M3lIRzdhVUgvYVlIMVRpYlFiTlhpWnF2RlJwdmlrUW5naCtM?=
+ =?utf-8?B?Vi9obzlKK2g2eG9oRGF0RVZLdWxVZ1hhRWErTThKTlBZUndRY3ZxeUJCdVNE?=
+ =?utf-8?B?Z1NnS2Znd1h4VlpDTHZ4eUMvT1RMSDM5dlVtR1hkMzNKZEdSOHdFQmhna2Z6?=
+ =?utf-8?B?RVlZQ2FncWtYT3VTRzY1dDBpZUZTTkVNZmYzL0laUVUwdnV0Tjc3MzNzNHBS?=
+ =?utf-8?B?OG5TMU1PSUhna3BIdUhaT08yRUtNbEpZTkdXM3BkVDBjNldNM0d1R0J3NUVK?=
+ =?utf-8?B?VVdtOVJBbmptellyUHVRelhJNTBqaGN6WE5oamJzcitxcXNKVmtYOUlub3Bm?=
+ =?utf-8?B?QjRXdW5lOTMyT0lrWEpValBOSWQ2R3grOHFpM2l5TzRrN1RQNThwVFNhU0lS?=
+ =?utf-8?B?YjNraDUzd2U5SDFNbDRHWWFpNGUzMWhpU3llTTdYT2hoc2F0cldNMStUVldy?=
+ =?utf-8?B?NWp1T0dRYXpha2QwVmdxSVFNcVVVeTg5WFZ2dWZkelRXVUdJK0cwTGRvbXpp?=
+ =?utf-8?B?VFhCYmFHNUlKVFNVZ0dxMktMVlJMRjlRQ3kxdjF3UE1waUJadC91MnRMeWI3?=
+ =?utf-8?B?cDBhd2N5bWtpS1VnY2tCVUF3STV2N0VHTmxjWFhDR0xhVytVd09mMGRRS01B?=
+ =?utf-8?B?d3NEdG05ZFNsUnovcFFDbnRmMTM4UnR5bmttN0xrY0RNcXBiZmFqSjNVSks4?=
+ =?utf-8?B?ZjIzTy9xQkRXR05sUThod25qendqZjRzUW9ZNXJUY1FsYlhIVE9GN2thbGd3?=
+ =?utf-8?B?SnozSnRldEVwUWhSVWRVWlBhZ0dTaStZVjZicUhWYXNXUXo2VnB2cjkvenNP?=
+ =?utf-8?B?c2l1NzVKNjBWZDlqaTBGQmdIYnRmZUMyUDN1MFg4ZEVwbmR6NDBlb0FzNlFL?=
+ =?utf-8?B?NjZIYkRpZXFWMCs4ZVB2UGFic1lsMUpYVUVodG1obmZNRDFqb0JHL2tma0dj?=
+ =?utf-8?B?VWx4R1R0bU9haE9HZXJ4NnFHZ3h1R012Z3EvS04va2VudkVJdVVsb2Zab1h1?=
+ =?utf-8?B?OGdiN1dvc0JxWE5nVkxWSGE1WDQxODRUcGtzZWQ3SEF1ckIyMEJtQVBDY24x?=
+ =?utf-8?B?K0J3c2pveDYyWkd3ZWdabXc3WmU1K3pULy9BMGRmWHVIUmZjUVlBN2JuMW13?=
+ =?utf-8?B?ejBWZGl3SytBVE5PQzB4ajk2RTE1M21wQjlMTzJONHgxa2k4ekVuVXUyUnhY?=
+ =?utf-8?B?bmJsOXVTbEp3Q2FKMDdWZENrY0s0QUMzczBwWS9pMTVqd3VSVGlDcTk0bk53?=
+ =?utf-8?B?K2ZKb1JQeWFkUW9MYlE3UE1pcWVYcEw4RitHOFB5Uk8wNGcwSjdNVzBWbkh2?=
+ =?utf-8?B?VmtDcUpKY21CTVdlMkI5SUc1UDVLT1FETnNVNkhOSTdKdjhWb21rZTRybXg2?=
+ =?utf-8?B?b1EyclNOZU55N2hxcms3L0xXSWI1L1pVVVNORVBjYWpRRUJHREZVV0lKMDBJ?=
+ =?utf-8?B?Q3R3czIwMFZnWnNFUTZSNGV1ZG5udFZpdmM3ZHlqU2YycmduZ3NIbUNBa1p4?=
+ =?utf-8?B?OXNnTTZKYURrcHlqNk90cmdnUmZXbS9zQURQdHFDQktxTTdOTnpCeEhoOVoz?=
+ =?utf-8?B?Q0lER1dFSVVvdHZQQTJSVmtFZXBvbkZGNEpKdFpaNmFwT2RmQmF6RWs5K2tD?=
+ =?utf-8?B?SUkrYlpBUEYxNGdTbWM2U1Yxa0hNS3VYNU5tQWlaM0tVd0xQQ1R2SDJPM25t?=
+ =?utf-8?B?ckFnRitlSXB4U283MHBlazMwNDNsOGtQQVZFdTRGTTNTSUFTK0p5WjdVTGIx?=
+ =?utf-8?B?K1l6TDB5d2hjdld3Z2hDK2pHSldlVm5va3k2T0RqWTFIYTFsNDBHVG1oZGJa?=
+ =?utf-8?B?YkxnUkhiODNCSGJuK1A4ek12QUR4cWVPeU43UUt1N1YzTWJTT1MvQnM5VEx2?=
+ =?utf-8?B?eW13cCtqckdFUmJybVZ4ZkdYelg3cnZjSGZqbWpycFovMVIrMHpZaW40cTgy?=
+ =?utf-8?B?V1ZZbFo1dHJmdis0d0JZb1c1bTErckZwa3FLSU9tSHBPdTJQRCtXVHZEYk5m?=
+ =?utf-8?Q?xlP4=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?KzVXWW9kUitBMS9uRkMwTnBNSG52dmpGWHFwUUF0ZC9JUW9LMkZ6OUtrcHNa?=
+ =?utf-8?B?YnNqTFd4d1VCNklhMGU4TmNkblBzdUhBZTdYSWJPemtQWlY1SXJSRVlpU0RG?=
+ =?utf-8?B?Z1hyOFRzdU1CWkN0a1orbGNWZThYQ2dBNFRXQWFGQVVLc1BnZklNRTV6Q3lq?=
+ =?utf-8?B?SXJ4ZFppODMrTm9yaXFoeWdsckU4M2wzVElRZS9NTXBZem1nTzl6UXIyY1pN?=
+ =?utf-8?B?ZnBMMVZ1dnlBOFNVSTlPeE9WQmpBZWlFQnVGZ1hlQ2RJam1CbVNlWGRHaFpE?=
+ =?utf-8?B?eU1CaG45Vk5jNHNKU0FXaXdKenFxM3QwUUdDdXVuTlFFNmxKZ3VZK3hZRXcx?=
+ =?utf-8?B?bklSOWltQlJJdkJVaEFRLzRaTFc4cEdJRzNBVDh4SHhaNk9NVWs4MGVrM0J5?=
+ =?utf-8?B?NkhmQlRnZi9LWFJQL3JuSkZVQUZmMUFqQ0IxTnJVR3JBdzZWNGxzSDh5OC9n?=
+ =?utf-8?B?LzB0Y2g0WlBOUEdsYVZ5TzBLRWs0em5HcTBmdWYyZXVkL05mQm12K1VwNjFC?=
+ =?utf-8?B?NnRFRk9XWUR5dFVEMTYrWWNuWVFjdkZkd0tDaE5rTnVncWc0ZWV2aEtjVjdp?=
+ =?utf-8?B?bzdqNHl1ZXNUU2FmaktJdzViRUtXU2FwQW8yNGFYK09uSWlzSGxTU0ZPeEpG?=
+ =?utf-8?B?VkthSE9JVW5FUjJBTDlGZEJQV3d6VEY2M2VqblgwZEs5ak4wK1ZHK1hneVBI?=
+ =?utf-8?B?QVk1eUVXOGg5L2N4YU5GUHVyZnk1ZUpPSm5WbDNjRjMxeG81RFhHUjNQSVBJ?=
+ =?utf-8?B?S0ZSQXcvUVJkeVdZUWpvay9rcEFLZnkrMDBrdVlqRnRqWTlOaHM3RmFzdnB5?=
+ =?utf-8?B?a0ExZXl6N1h4c0ROZ01lOUFybkVkVE52TkhBaHdTVUZleUtzT08razZHM0No?=
+ =?utf-8?B?cGdoNWIva3U5YzBBL21xRlpHb2FlRGtkK0FQcHNDQXpkbFJ1SmRLUlI3Q3RP?=
+ =?utf-8?B?eXRTUGM3b2tpRTdjNkU3VnVTbjEwZ1hQU2VaN2ZKS1lYUXhzU3J4bS9KeGFI?=
+ =?utf-8?B?eGJqL09TdFFqSzM0NVlhSWdXVjg5MVpIMkFuRmtNV0ZVR0ZxQ1ZkOGdJVkZ5?=
+ =?utf-8?B?bXBOVFQya3N2MEkxZWdENEx3VG1Wb3ZET3hlRzNHYXFyN1JHSmdhSjVoeDVX?=
+ =?utf-8?B?ZVJ4WUJORzY3cGpjVDVEeG1MSVA3aWpKQlFxSDZKT3ZrQm83OFRwenVkdEdl?=
+ =?utf-8?B?NnBPMGFJb0Vlb1h0MldGa0o4RERsazZxMjRhWjUrczlseXpGVVlqbmhxOHM2?=
+ =?utf-8?B?d1dockdEMkpKY0puaUlBZ3ZLUy9rTytHYmJHVGtLeUlWdXJMQ28wUkFJVm5m?=
+ =?utf-8?B?Um1sU0dOTVBYdVBTWUpLT3NmengvQzd6blhVLzNLMERXV2pnK3ozL3VYSUN1?=
+ =?utf-8?B?Ti9US2JHWC9BbTdETHVoSGtlSHU5cldYTVRuTndrcGFENndlMVR2VmdtMFZt?=
+ =?utf-8?B?MEVUbjhqWXNMOW9CU0dTMU5ka2ZYUUErbGRLZk95dThTS09pUjVMWnBZWk00?=
+ =?utf-8?B?WVNicHhIUmNhSHRkWW95QWlrM3RLL3Q4RE1BL1lzaGI2STNPeGJ0V1VLZk9X?=
+ =?utf-8?B?bUUwbS9TOGxSRmJPYnhGL1ptOXNQaGNpVldHTSs2eEQ4T0tOYk8zUEFVSTMx?=
+ =?utf-8?B?ZVFhOEpOWHJsSW1UQkVaR1phRk5ZMmFKUWNrZE1YMEhra01vRWpWVDQ1WFdS?=
+ =?utf-8?B?enhkVmhwOXdMZlFjWVlpSXVNcHdrYXNaV1BaVmlUcVV0Wi9SaWpralpxQU5i?=
+ =?utf-8?B?Q2pPRENXYjlmdkdiZi8rQXBOVWpyY0RmemJkNXk5Mk5uSlpZc051Q1ZFNGsv?=
+ =?utf-8?B?NlN4YkIrc1ZsYVgraEh1aXM0MHY3N1FPb3k5SXZSdTliMmRZUnFvem4wM0Ja?=
+ =?utf-8?B?VmhYLzBqcnZHS0V1SG9lTzlSVXVSZG1yUU1DckExNHF0MVZTYTZRSUlvR2Uy?=
+ =?utf-8?B?ODJyUXJIWi9LSmxIZUJOVDVseUNld3pTNUM1WUttaWxtZWhFYzBnMm1PTXNm?=
+ =?utf-8?B?dnI4VytQWWhhS3gvNFN5MSs4cW9PQXJmWVhNUWR6TWdOZXBCSTRVRWM2WEoz?=
+ =?utf-8?B?M2dKdXNlOEVXeXg4end3YkNBdFNickRCMUk5d0lZS1N5THFFQUhmSWtzQzhi?=
+ =?utf-8?B?dWFicWE1NkZjak94TEhtVHI1SFhHcG5LRW1LZHhUNFlJU2drK2IzZnJXcU5W?=
+ =?utf-8?B?N01La0Z1T2Jva2ZTVDhKNWcyVmpvMWZZQlAyektSaFNRSzR5cjBWQzg3RWZM?=
+ =?utf-8?B?QmZzeEw4NFBHTXM0ZTRNVWNyREJMTGowUHRNaFVIMk4wdWs5ZjdDeFRlVFBU?=
+ =?utf-8?B?MHFCL0t0Y2pMNDZrbXBranNYbTQ2MUtmcFF5L09GRllBVlk2KzFYUXllVFFM?=
+ =?utf-8?Q?fFmkURQC94gzjO1g=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 829dd61a-fc83-4d39-0872-08de73c6b49a
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2026 17:04:00.5643 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: t3QM0tfRLjDYs/ypV8JvLmZLByug3JeuBoo4d8mXlrDmMfRn4a3Oqv49Uf2muPj4AaHv/46pqyLcQaOYMBR3pw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS4PPF93A1BBECD
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,65 +201,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2026-02-24 17:27:03 [+0100], To Maarten Lankhorst wrote:
->=20
-> There is nothing else, that popped up. So far no objections from my side
-> ;) Thank you.
+On Tue, Feb 24, 2026 at 02:57:58PM +0530, Varun Gupta wrote:
 
-different HW.
+Are you sure about this? CPUs supporting atomics (i.e., CPU instructions
+with a LOCK prefix) over PCIe is news to me. Why do you think this is
+supported on Xe2? Also, wouldn’t the CPU factor in here too if it were
+supported?
 
-|  i915 0000:00:02.0: [drm] *ERROR* [CRTC:170:pipe A] flip_done timed out
-|  rcu: INFO: rcu_preempt self-detected stall on CPU
-|  rcu: 	7-....: (1 GPs behind) idle=3Dbc04/1/0x4000000000000000 softirq=3D=
-0/0 fqs=3D3084 rcuc=3D6502 jiffies(starved)
-|  rcu: 	(t=3D6500 jiffies g=3D46813 q=3D13322 ncpus=3D8)
-|  CPU: 7 UID: 0 PID: 12616 Comm: irq/182-i915 Tainted: G     U      E     =
-  7.0.0-rc1-lockdep+ #2 PREEMPT_{RT,(lazy)}
-|  Tainted: [U]=3DUSER, [E]=3DUNSIGNED_MODULE
-|  Hardware name: LENOVO 20TD00GLGE/20TD00GLGE, BIOS R1EET64W(1.64 ) 03/18/=
-2025
-|  RIP: 0010:intel_context_remove_breadcrumbs+0x14a/0x1a0 [i915]
-|  Code: 00 00 48 8b 50 70 b8 ff ff ff ff f0 41 0f c1 06 83 f8 01 74 58 85 =
-c0 7f 11 be 03 00 00 00 4c 89 f7 e8 fa 65 db e7 eb 02 f3 90 <41> 8b 84 24 a=
-0 00 00 00 85 c0 75 f2 48 83 c4 08 5b 5d 41 5c 41 5d
-|  RSP: 0018:ffffd2aa007d7c48 EFLAGS: 00000202
-|  RAX: 0000000000000001 RBX: 0000000000000001 RCX: 0000000000000001
-|  RDX: ffffffffc282ab20 RSI: ffffffffab33e33f RDI: 00000000ffffffff
-|  RBP: ffff8f1247401680 R08: 0000000000000001 R09: 0000000000000000
-|  R10: 0000000000000000 R11: 0000000000000000 R12: ffff8f104f3b6200
-|  R13: ffff8f12474017e0 R14: ffff8f1247401798 R15: ffff8f119e89e3a8
-|  FS:  0000000000000000(0000) GS:ffff8f140318b000(0000) knlGS:000000000000=
-0000
-|  CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-|  CR2: 00007f5409dc6000 CR3: 000000029ea56006 CR4: 0000000000f72ef0
-|  PKRU: 55555554
-|  Call Trace:
-|   <TASK>
-|   __execlists_schedule_out+0x1a6/0x340 [i915]
-|   execlists_submission_tasklet+0x178/0x1bb0 [i915]
-|   tasklet_action_common+0x1e9/0x410
-|   handle_softirqs.isra.0+0xbd/0x3f0
-|   __local_bh_enable_ip+0xe0/0x170
-|   irq_forced_thread_fn+0x41/0x50
-|   irq_thread+0x20d/0x360
-|   kthread+0x103/0x140
-|   ret_from_fork+0x34d/0x480
-|   ret_from_fork_asm+0x1a/0x30
-|   </TASK>
+If this somehow works—which I doubt—I think we’d need a test case where
+the CPU issues atomics and the GPU does too. Then verify the result,
+e.g., both sides perform 10,000 atomic increments on a VRAM page and we
+confirm the final value is 20,000. Maybe we already have an IGT madvise
+test for this; I’m not sure.
 
-It seems to be always stuck in intel_context_remove_breadcrumbs.
+Matt
 
-and top shows
-|     42 root      20   0       0      0      0 R 100,0   0,0   3:21.62 kso=
-ftirqd/2
-|  12616 root     -51   0       0      0      0 R 100,0   0,0   3:34.61 irq=
-/182-i915
-
-seems busy. The NMI backtrace reports always
-intel_context_remove_breadcrumbs() on CPU, don't see the irq handler.
-
-This one I can reproduce while opening a browser and surfing a bit. Let
-me try step by step without lockdep, without RT and maybe just play
-v7.0-rc1 to figure out where this is from=E2=80=A6
-
-Sebastian
+> should_migrate_to_smem() forced any BO marked ATOMIC_GLOBAL
+> or ATOMIC_CPU out of VRAM on a CPU fault, regardless of whether the
+> platform actually requires it.
+> 
+> Introduce has_system_atomics_on_vram to the device capability flags.
+> should_migrate_to_smem() now gates migration on this flag, eliminating
+> redundant evictions on capable hardware.
+> 
+> Signed-off-by: Varun Gupta <varun.gupta@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_bo.c           | 16 +++++++++-------
+>  drivers/gpu/drm/xe/xe_device_types.h |  2 ++
+>  drivers/gpu/drm/xe/xe_pci.c          |  5 ++++-
+>  3 files changed, 15 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index d6c2cb959cdd..848467ca6700 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -1771,14 +1771,15 @@ static void xe_gem_object_close(struct drm_gem_object *obj,
+>  
+>  static bool should_migrate_to_smem(struct xe_bo *bo)
+>  {
+> +	struct xe_device *xe = xe_bo_device(bo);
+> +
+>  	/*
+> -	 * NOTE: The following atomic checks are platform-specific. For example,
+> -	 * if a device supports CXL atomics, these may not be necessary or
+> -	 * may behave differently.
+> +	 * Migrate to system memory only if the platform does not support
+> +	 * CPU atomics on VRAM.
+>  	 */
+> -
+> -	return bo->attr.atomic_access == DRM_XE_ATOMIC_GLOBAL ||
+> -	       bo->attr.atomic_access == DRM_XE_ATOMIC_CPU;
+> +	return (bo->attr.atomic_access == DRM_XE_ATOMIC_GLOBAL ||
+> +		bo->attr.atomic_access == DRM_XE_ATOMIC_CPU) &&
+> +	       !xe->info.has_system_atomics_on_vram;
+>  }
+>  
+>  static int xe_bo_wait_usage_kernel(struct xe_bo *bo, struct ttm_operation_ctx *ctx)
+> @@ -1804,6 +1805,7 @@ static int xe_bo_fault_migrate(struct xe_bo *bo, struct ttm_operation_ctx *ctx,
+>  			       struct drm_exec *exec)
+>  {
+>  	struct ttm_buffer_object *tbo = &bo->ttm;
+> +	struct xe_device *xe = xe_bo_device(bo);
+>  	int err = 0;
+>  
+>  	if (ttm_manager_type(tbo->bdev, tbo->resource->mem_type)->use_tt) {
+> @@ -1811,7 +1813,7 @@ static int xe_bo_fault_migrate(struct xe_bo *bo, struct ttm_operation_ctx *ctx,
+>  		if (!err)
+>  			err = ttm_bo_populate(&bo->ttm, ctx);
+>  	} else if (should_migrate_to_smem(bo)) {
+> -		xe_assert(xe_bo_device(bo), bo->flags & XE_BO_FLAG_SYSTEM);
+> +		xe_assert(xe, bo->flags & XE_BO_FLAG_SYSTEM);
+>  		err = xe_bo_migrate(bo, XE_PL_TT, ctx, exec);
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index 8f3ef836541e..2fe643c179fe 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -205,6 +205,8 @@ struct xe_device {
+>  		u8 has_usm:1;
+>  		/** @info.has_64bit_timestamp: Device supports 64-bit timestamps */
+>  		u8 has_64bit_timestamp:1;
+> +		/** @info.has_system_atomics_on_vram: Supports CPU atomics on VRAM */
+> +		u8 has_system_atomics_on_vram:1;
+>  		/** @info.is_dgfx: is discrete device */
+>  		u8 is_dgfx:1;
+>  		/** @info.needs_scratch: needs scratch page for oob prefetch to work */
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> index 56a768f2cfca..f2d86e08e190 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -925,8 +925,11 @@ static int xe_info_init(struct xe_device *xe,
+>  
+>  	xe->info.has_asid = graphics_desc->has_asid;
+>  	xe->info.has_atomic_enable_pte_bit = graphics_desc->has_atomic_enable_pte_bit;
+> -	if (xe->info.platform != XE_PVC)
+> +	if (xe->info.platform != XE_PVC) {
+>  		xe->info.has_device_atomics_on_smem = 1;
+> +		/* PVC doesn't support CPU atomics on VRAM, Xe2+ platforms do */
+> +		xe->info.has_system_atomics_on_vram = 1;
+> +	}
+>  
+>  	xe->info.has_range_tlb_inval = graphics_desc->has_range_tlb_inval;
+>  	xe->info.has_ctx_tlb_inval = graphics_desc->has_ctx_tlb_inval;
+> -- 
+> 2.43.0
+> 
