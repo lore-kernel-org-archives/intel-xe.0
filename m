@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3111EEC2B5
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Feb 2026 16:36:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2253F3C9BC
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Feb 2026 16:36:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B49AB10E5E4;
-	Tue, 24 Feb 2026 16:36:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A441410E5E5;
+	Tue, 24 Feb 2026 16:36:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eavspBNh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q0bGFhpu";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9737D10E5ED
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 625D810E5ED
  for <intel-xe@lists.freedesktop.org>; Tue, 24 Feb 2026 16:35:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771950960; x=1803486960;
+ t=1771950959; x=1803486959;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=frkGv9Kwx3fviav7KeIrEc+9YX6MNaqwEqXTKakrgfY=;
- b=eavspBNhw8YbWpZH0GDzyHE8ex0KUwuCUbmb29gp5ayixrKXHoIxl4qg
- C/NENADN4b0fSL+8XR8o8adBkVtgjAQopzOeoJGHoDow+BNGfUyG1OJIY
- FhSJXHC8P635Urw1awCAapuNat2Jfn+WDd+zu7VZJZpaR5/irAZYn/19g
- W9bBVM6nWhEdtKW2A97jf8Gijl+7vk1QF6CPMKqJSRBHiEX6SYqYePBgd
- n7yQszh/et4dKIFk36/fKm8CopOQuH52a8CNhPsWlnTNA77gNNQm5ZHyH
- ygg9PiYP5XuKXiFTB/NdhBoUnWwnyPXou6ytSEee/UMX14dypA3G0n2qE Q==;
-X-CSE-ConnectionGUID: ogxJihogQrmrDm//3dmC5A==
-X-CSE-MsgGUID: rzYekY6iRIeuc4QH7xy/hw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="73040149"
-X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="73040149"
+ bh=7NsKUzYRGP4BbWXIF3AUxIKKqcoz50r28mvkV2vjuQc=;
+ b=Q0bGFhpuxgsGyoqqHdzI0qSpuzrUY/0eRkx7HlKqsmptfOJWayz561OM
+ A4EEiyMj8L5YBHKszMzaIDzgshBSVOe2uxt4jKgoEztHEv0J90Km5ULXR
+ IxuDw6aFTXFQrJEUisLPP1wb7yktpdi9KzB7uW+NMafu0KUvyHwVtmezp
+ BM2NSv8/8SWks4WRHYkPNFKfR54Of0j5mTFTm66xjzRsI18ESQ9+OwCEv
+ gTIe8mFJruA5ljz0DcHV/+YIh5eEgtdQmjv/1cwa2vU/4M11/pMt4DQ9I
+ pzap9TKi/sTJNj+PnTsT9ZW/wVf2nxkQI9Mka+5yj+5RnL0LvbgGsl3Dw Q==;
+X-CSE-ConnectionGUID: lcMHUhq8Q0GzDMCtqqvdNQ==
+X-CSE-MsgGUID: wx2NgWraRBGAknfbD4yiSA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="73040144"
+X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="73040144"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Feb 2026 08:35:58 -0800
-X-CSE-ConnectionGUID: XRSoR1mgTOG0e16k7q/sPw==
-X-CSE-MsgGUID: r7hAkgkuREKMAzlnouHnHA==
+X-CSE-ConnectionGUID: WqRlrXRnSFSLnXZw+N7ogg==
+X-CSE-MsgGUID: Qv2OjhzvRX6LMJBxz/3f6Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="220555635"
+X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="220555626"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.39.24])
  by fmviesa005.fm.intel.com with ESMTP; 24 Feb 2026 08:35:58 -0800
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: [PATCH v8 6/7] drm/xe/uc: Drop xe_guc_sanitize in favor of managed
- cleanup
-Date: Tue, 24 Feb 2026 11:35:54 -0500
-Message-Id: <20260224163555.218750-7-zhanjun.dong@intel.com>
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>, stable@vger.kernel.org,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v8 3/7] drm/xe: Trigger queue cleanup if not in wedged mode 2
+Date: Tue, 24 Feb 2026 11:35:51 -0500
+Message-Id: <20260224163555.218750-4-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260224163555.218750-1-zhanjun.dong@intel.com>
 References: <20260224163555.218750-1-zhanjun.dong@intel.com>
@@ -66,80 +66,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the firmware fails to load in GT resets the device is wedged also
-initiating a GuC state cleanup.
+The intent of wedging a device is to allow queues to continue running
+only in wedged mode 2. In other modes, queues should initiate cleanup
+and signal all remaining fences. Fix xe_guc_submit_wedge to correctly
+clean up queues when wedge mode != 2.
 
+Fixes: 7dbe8af13c18 ("drm/xe: Wedge the entire device")
+Cc: stable@vger.kernel.org
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
 ---
- drivers/gpu/drm/xe/xe_uc.c | 22 +++++++---------------
- 1 file changed, 7 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 35 +++++++++++++++++++-----------
+ 1 file changed, 22 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index d9aa845a308d..75091bde0d50 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -157,23 +157,19 @@ static int vf_uc_load_hw(struct xe_uc *uc)
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index c8b59e662c9e..04a575221528 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -1319,6 +1319,7 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
+  */
+ void xe_guc_submit_wedge(struct xe_guc *guc)
+ {
++	struct xe_device *xe = guc_to_xe(guc);
+ 	struct xe_gt *gt = guc_to_gt(guc);
+ 	struct xe_exec_queue *q;
+ 	unsigned long index;
+@@ -1333,20 +1334,28 @@ void xe_guc_submit_wedge(struct xe_guc *guc)
+ 	if (!guc->submission_state.initialized)
+ 		return;
  
- 	err = xe_gt_sriov_vf_connect(uc_to_gt(uc));
- 	if (err)
--		goto err_out;
-+		return err;
+-	err = devm_add_action_or_reset(guc_to_xe(guc)->drm.dev,
+-				       guc_submit_wedged_fini, guc);
+-	if (err) {
+-		xe_gt_err(gt, "Failed to register clean-up in wedged.mode=%s; "
+-			  "Although device is wedged.\n",
+-			  xe_wedged_mode_to_string(XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET));
+-		return;
+-	}
++	if (xe->wedged.mode == 2) {
++		err = devm_add_action_or_reset(guc_to_xe(guc)->drm.dev,
++					       guc_submit_wedged_fini, guc);
++		if (err) {
++			xe_gt_err(gt, "Failed to register clean-up on wedged.mode=2; "
++				  "Although device is wedged.\n");
++			return;
++		}
  
- 	uc->guc.submission_state.enabled = true;
- 
- 	err = xe_guc_opt_in_features_enable(&uc->guc);
- 	if (err)
--		goto err_out;
-+		return err;
- 
- 	err = xe_gt_record_default_lrcs(uc_to_gt(uc));
- 	if (err)
--		goto err_out;
-+		return err;
- 
- 	return 0;
--
--err_out:
--	xe_guc_sanitize(&uc->guc);
--	return err;
+-	mutex_lock(&guc->submission_state.lock);
+-	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
+-		if (xe_exec_queue_get_unless_zero(q))
+-			set_exec_queue_wedged(q);
+-	mutex_unlock(&guc->submission_state.lock);
++		mutex_lock(&guc->submission_state.lock);
++		xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
++			if (xe_exec_queue_get_unless_zero(q))
++				set_exec_queue_wedged(q);
++		mutex_unlock(&guc->submission_state.lock);
++	} else {
++		/* Forcefully kill any remaining exec queues, signal fences */
++		guc_submit_reset_prepare(guc);
++		xe_guc_submit_stop(guc);
++		xe_guc_softreset(guc);
++		xe_uc_fw_sanitize(&guc->fw);
++		xe_guc_submit_pause_abort(guc);
++	}
  }
  
- /*
-@@ -205,19 +201,19 @@ int xe_uc_load_hw(struct xe_uc *uc)
- 
- 	ret = xe_gt_record_default_lrcs(uc_to_gt(uc));
- 	if (ret)
--		goto err_out;
-+		return ret;
- 
- 	ret = xe_guc_post_load_init(&uc->guc);
- 	if (ret)
--		goto err_out;
-+		return ret;
- 
- 	ret = xe_guc_pc_start(&uc->guc.pc);
- 	if (ret)
--		goto err_out;
-+		return ret;
- 
- 	ret = xe_guc_rc_enable(&uc->guc);
- 	if (ret)
--		goto err_out;
-+		return ret;
- 
- 	xe_guc_engine_activity_enable_stats(&uc->guc);
- 
-@@ -232,10 +228,6 @@ int xe_uc_load_hw(struct xe_uc *uc)
- 	xe_gsc_load_start(&uc->gsc);
- 
- 	return 0;
--
--err_out:
--	xe_guc_sanitize(&uc->guc);
--	return ret;
- }
- 
- int xe_uc_reset_prepare(struct xe_uc *uc)
+ static bool guc_submit_hint_wedged(struct xe_guc *guc)
 -- 
 2.34.1
 
