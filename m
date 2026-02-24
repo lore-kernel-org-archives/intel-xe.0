@@ -4,88 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C82BF3C9A8
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Feb 2026 15:58:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D660F3C9A9
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Feb 2026 15:58:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B928610E5C8;
-	Tue, 24 Feb 2026 15:58:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C014410E5CB;
+	Tue, 24 Feb 2026 15:58:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=invisiblethingslab.com header.i=@invisiblethingslab.com header.b="SpYM58I3";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="burfKRW5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Qo0ExYDn";
 	dkim-atps=neutral
-Received: from fhigh-b7-smtp.messagingengine.com
- (fhigh-b7-smtp.messagingengine.com [202.12.124.158])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71A1B10E5C8
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Feb 2026 15:58:29 +0000 (UTC)
-Received: from phl-compute-02.internal (phl-compute-02.internal [10.202.2.42])
- by mailfhigh.stl.internal (Postfix) with ESMTP id CF26B7A0113;
- Tue, 24 Feb 2026 10:58:28 -0500 (EST)
-Received: from phl-frontend-04 ([10.202.2.163])
- by phl-compute-02.internal (MEProxy); Tue, 24 Feb 2026 10:58:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- invisiblethingslab.com; h=cc:cc:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm3; t=1771948708;
- x=1772035108; bh=Bna20Bj12AiheVoYQJIu6dwrne7lv6IBmdPM2U/hwhQ=; b=
- SpYM58I3T8gObDAgO+m3GFt57tBIq6J0puEA+Us0k0mJ59+7j+rrtoswZhnXVwnt
- UvbpXaKwhD5HNbvjAlL1UiCF7gPQgKGXwHtWtrpvoKDFPra9Y+wfKhtL1d1E0IIq
- yxxXQ2WvnTd85Ua/cHfnJIIKCFqAxAwBHxDx7IaFYGyBttaLIAStMoN4VF0HCiZx
- T2xOeBOpoT+3/1GaSD/f00KDbfMYlTkjzzhqJTyeGUHlaLkGTK8bKlZ7Z9WvX1gA
- yyWAyb1ag3ImN493MBM79OX7vvSTDmev4bTSwXqyR5ZxGe4SeqV8m2NSHTUHTX42
- lh2ml349RMuNYBBExxHGyA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:content-type:date:date
- :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:subject:subject:to
- :to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
- 1771948708; x=1772035108; bh=Bna20Bj12AiheVoYQJIu6dwrne7lv6IBmdP
- M2U/hwhQ=; b=burfKRW5ZaM1YXiFZ8wd9dTe1d6cVRm8QFlhcpycNOfy0qQ2a1c
- X7naXtkQNgYOEIlvqIsj4Psb+a1OJCX9UEDUC2ByHX92v8jaiYlrbJbAmlTDAqpW
- l0bttOQmOYVTXED4pdAwW/cbcA6UgRyJFZSVIKVjrq71Xyq9nqP8W8TzvVHdJfz3
- 8iixgB97qArRaJyyH6IiqVz2SqO74yvDMPcv0JbLHkr2e6PbZAs/wAM0J1Mqu2WW
- 1WzitX5ehvw7wqK2Fpd9l/WT/UuTBNVK4kDt5hJEMpZUMNVXOB/w4hOB3DgFpFX3
- 7h8F0PjwkcnSzQezyzAfAI+Sezc3V72mO0g==
-X-ME-Sender: <xms:pMqdacs4xumYRFYXULbLrQ83Xa6Lp5q3NmU7ou0uGmgcQToeX4VWOw>
- <xme:pMqdaRMUW-5OT2sWnccXkbJIUfd5iGKCS61_T5QSlXpjxJaNswnS-1D-WpSsGK1Le
- 7gKkFlV5GO_hV0-oMvhrjK0UDCa0rh0Bt143nY8QLfmizqnug>
-X-ME-Received: <xmr:pMqdaa0ZtrZHhLDJlfjJdzcsvWm7RA8ieNC1AuvQedyoqJIp5D98CCutJEuhRQ_2QKMkKll_8HS1rFL28fEEpq351h6LQP-v258>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddvgedtheekucetufdoteggodetrf
- dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
- rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
- gurhepfffhvfevuffkfhggtggujgesghdtreertddtjeenucfhrhhomhepofgrrhgvkhcu
- ofgrrhgtiiihkhhofihskhhiqdfikphrvggtkhhiuceomhgrrhhmrghrvghksehinhhvih
- hsihgslhgvthhhihhnghhslhgrsgdrtghomheqnecuggftrfgrthhtvghrnheptdehvedt
- ffeggeffgeetieevfeelvdfhjeekvdfhgfffvedvuedviedugefguedvnecuffhomhgrih
- hnpehgihhthhhusgdrtghomhdpqhhusggvshdqohhsrdhorhhgnecuvehluhhsthgvrhfu
- ihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrrhhmrghrvghksehinhhvih
- hsihgslhgvthhhihhnghhslhgrsgdrtghomhdpnhgspghrtghpthhtohepfedpmhhouggv
- pehsmhhtphhouhhtpdhrtghpthhtoheprhhoghgvrhdrphgruhestghithhrihigrdgtoh
- hmpdhrtghpthhtohepgigvnhdquggvvhgvlheslhhishhtshdrgigvnhhprhhojhgvtght
- rdhorhhgpdhrtghpthhtohepihhnthgvlhdqgigvsehlihhsthhsrdhfrhgvvgguvghskh
- htohhprdhorhhg
-X-ME-Proxy: <xmx:pMqdadPdpyJOVHrinY0wT42bJHVMsropT2Y_12z8vP_e09p-LDRuuA>
- <xmx:pMqdaa0OHHl7N3qcQ3UbCpafnZd03c1YmrbCAelwDCP-aRWu5xL7SQ>
- <xmx:pMqdaUFuzLYIZXUWhRJNlUcVBzhekcFXkeubMLjrtfGz0eXF4Z8ZgA>
- <xmx:pMqdaX5l7-_1Eo00mW6_KPwjwcglI2E9ZKV-79yIRBwDJqyB1fYoHg>
- <xmx:pMqdaRTP4OLmehqNqTlviki1o78K7fG_a_rjMpEam2Enc4SiH5uQPI-F>
-Feedback-ID: i1568416f:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 24 Feb 2026 10:58:27 -0500 (EST)
-Date: Tue, 24 Feb 2026 16:58:25 +0100
-From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?=
- <marmarek@invisiblethingslab.com>
-To: Roger Pau =?utf-8?B?TW9ubsOp?= <roger.pau@citrix.com>
-Cc: xen-devel <xen-devel@lists.xenproject.org>, intel-xe@lists.freedesktop.org
-Subject: Re: Graphical glitches (not refreshing?) with Linux's xe driver +
- Xen 4.19
-Message-ID: <aZ3KoSlIzru0Uumu@mail-itl>
-References: <aYtznP_tT6xNPwf-@mail-itl> <aY3ttvtxGCPTNgsj@Mac.lan>
- <aY58-gyarcVoBS2a@mail-itl>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A132610E5CB
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Feb 2026 15:58:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1771948719; x=1803484719;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=b/o12MGYi/I3Kk9ziIdGBkI/7b1jQwfaKZdX8LGDVfo=;
+ b=Qo0ExYDn0kSABtOXyLn4UNPYyhZQEVrZoLtcTi8wU8e1F4P/txlzEv9u
+ hSM114tQH2glrEd2vLJnao6w5gvE8s+pT9AOSLPAKjFJr+B5HyIb99fst
+ ZHnGqiNrNKuJ2ctU1rnQpieufGgwCMH4QMyTc65qb870/nIptNlwKyK3N
+ mHWIi/ryR5xXDHBYN+1r0TX/g1saFbLGcSR0UuxMZAW5LHD0VrBlzzvAT
+ zNBx+1rib8nQjQed3ax4I4RQXA/VTCaQl/8fWdovvi0aPyVSknPPJF+tE
+ UArlKn6H8pf68Ku7Yseb/p9ecK773H2sIOWvPAI/lo3QTeeFWLQVvtJ4g g==;
+X-CSE-ConnectionGUID: o5xS1I1YTWKuqhKwYyDyNg==
+X-CSE-MsgGUID: GVMhr6GiT26eTuba6Ov5Lw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="76832089"
+X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="76832089"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2026 07:58:39 -0800
+X-CSE-ConnectionGUID: bfLZ7XcLTm6tUkaBJZuSvg==
+X-CSE-MsgGUID: F+/LEBFnS3KkWbjJO3rWew==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="253696009"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.244.148])
+ ([10.245.244.148])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2026 07:58:37 -0800
+Message-ID: <3033abb2dfe6755ff3559a480e0d21b5665436d5.camel@linux.intel.com>
+Subject: Re: [PATCH v3 1/3] drm/xe: Split H2G and G2H into separate buffer
+ objects
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+Cc: stuart.summers@intel.com, francois.dugast@intel.com, 
+ daniele.ceraolospurio@intel.com, michal.wajdeczko@intel.com
+Date: Tue, 24 Feb 2026 16:58:35 +0100
+In-Reply-To: <20260218043319.809548-2-matthew.brost@intel.com>
+References: <20260218043319.809548-1-matthew.brost@intel.com>
+ <20260218043319.809548-2-matthew.brost@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature"; boundary="z+Qs3uEx07rIKHpf"
-Content-Disposition: inline
-In-Reply-To: <aY58-gyarcVoBS2a@mail-itl>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,109 +72,264 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
---z+Qs3uEx07rIKHpf
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 24 Feb 2026 16:58:25 +0100
-From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?= <marmarek@invisiblethingslab.com>
-To: Roger Pau =?utf-8?B?TW9ubsOp?= <roger.pau@citrix.com>
-Cc: xen-devel <xen-devel@lists.xenproject.org>,
-	intel-xe@lists.freedesktop.org
-Subject: Re: Graphical glitches (not refreshing?) with Linux's xe driver +
- Xen 4.19
-
-On Fri, Feb 13, 2026 at 02:23:06AM +0100, Marek Marczykowski-G=C3=B3recki w=
-rote:
-> On Thu, Feb 12, 2026 at 04:11:50PM +0100, Roger Pau Monn=C3=A9 wrote:
-> > On Tue, Feb 10, 2026 at 07:06:20PM +0100, Marek Marczykowski-G=C3=B3rec=
-ki wrote:
-> > > Hi,
-> > >=20
-> > > Recently I started testing compatibility with Intel Lunar Lake. This =
-is
-> > > the first one that uses "xe" instead of "i915" Linux driver for iGPU.
-> > > I test it with Qubes OS 4.3, which uses Xen 4.19.4 and PV dom0 running
-> > > Linux 6.17.9 in this test.
-> >=20
-> > Not sure it's going to help a lot, but does using a PVH dom0 make any
-> > difference?
+On Tue, 2026-02-17 at 20:33 -0800, Matthew Brost wrote:
+> H2G and G2H buffers have different access patterns (H2G is CPU-write,
+> GuC-read, while G2H is GPU-write, CPU-read). On dGPU, these patterns
+> benefit from different memory placements: H2G in VRAM and G2H in
+> system
+> memory. Split the CT buffer into two separate buffers=E2=80=94one for H2G=
+ and
+> one for G2H=E2=80=94and select the optimal placement for each.
 >=20
-> Ok, now with the correct Xen version, it's better with PVH dom0. At
-> least on the login screen and few applications (from both dom0 and domU)
-> I don't see the glitches anymore. I can't do a full test, because PCI
-> passthrough doesn't seem to work with PVH dom0 on Xen 4.19 - and I need
-> it to start most VMs.
+> This provides a significant performance improvement on the G2H read
+> path, reducing a single read from ~20 =C2=B5s to under 1 =C2=B5s on BMG.
 >=20
-> So, if the above test is representative, it's only about PV dom0.
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-Some further observations:
+Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
-1. My initial impression that Xen 4.17.6 is not affected is false.
-Apparently I got lucky and didn't waited long enough for glitches to
-appear. Unfortunately this means I have no way to bisect this...
+Perhaps one could experiment with reading the data from the g2h bo
+using MOVNTDQA, like the write-combining memcopy. That would avoid
+caching the data and the GuC having to invalidate the cache line while
+snooping on the next write.
 
-1a. Updated test procedure - either:
-  - start Qubes OS in full (including default system domUs) and try to
-    open an app in one of them (for example file manager or pdf viewer)
-  - start Linux up to lightdm login page, log in, log out, click on a
-    few lightdm menus (session type selector, poewroff menu etc)
+But that should probably have a less impact, but perhaps speeding up
+GuC writes.
 
-The second version works even if toolstack version in dom0 doesn't match
-Xen version. If no glitches are observed after doing either of those
-procedures, assume it's good.
+/Thomas
 
-2. Xen staging is affected too. As well as Xen staging-4.19 without
-any qubes patches.
 
-3. After enabling CONFIG_DEBUG in Xen, the xe.ko fails to load firmware:
-
-    xe 0000:00:02.0: [drm] Tile0: GT0: Using GuC firmware from xe/lnl_guc_7=
-0.bin version 70.53.0
-    xe 0000:00:02.0: [drm] *ERROR* Tile0: GT0: load failed: status =3D 0x40=
-000056, time =3D 0ms, freq =3D 1850MHz (req 1850MHz), done =3D -1
-    xe 0000:00:02.0: [drm] *ERROR* Tile0: GT0: load failed: status: Reset =
-=3D 0, BootROM =3D 0x2B, UKernel =3D 0x00, MIA =3D 0x00, Auth =3D 0x01
-    xe 0000:00:02.0: [drm] *ERROR* Tile0: GT0: firmware production part che=
-ck failure
-    xe 0000:00:02.0: [drm] *ERROR* Tile0: GT0: Failed to initialize uC (-EP=
-ROTO)
-    xe 0000:00:02.0: probe with driver xe failed with error -71
-
-CONFIG_DEBUG is the only change between "xe.ko loads fine but there are
-glitches later on" and "xe.ko fails to load at all". Full console logs:
-https://gist.github.com/marmarek/47b5e62a2cdbae6678c2aecc5283cd3f, there
-are 3 files:
-  - CONFIG_DEBUG=3Dn
-  - CONFIG_DEBUG=3Dy
-  - CONFIG_DEBUG=3Dy + iommu=3Ddebug
-
-4. Updating to Linux 7.0-rc1 doesn't help, for example:
-https://openqa.qubes-os.org/tests/168119#step/desktop_linux_manager_create_=
-qube/11
-
-Generally, it does feel like a bug in xe.ko, but I can't exclude some issue
-on Xen side too (especially given point 3 above).
-
---=20
-Best Regards,
-Marek Marczykowski-G=C3=B3recki
-Invisible Things Lab
-
---z+Qs3uEx07rIKHpf
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEhrpukzGPukRmQqkK24/THMrX1ywFAmmdyqEACgkQ24/THMrX
-1yz3NAf/Ss4zXqST+hrVe6//Y8nAtTjAfSKUnpUzjknj9A02rhVJMq7H4VTiQV91
-ZM2lHu3JR+ye6J51t+fBtc27eJ1kBWWkPguco5pEaLm3UzlIAzDDTBntLg2M3qTe
-XSLl2lc3L9cYmXpS2It1jTj+QnoATccFG1Y90SiypjL/yZQwL8lRFZVgdmHHbN9k
-+Ts7gnNfSLXV22Wj/HKJPpn9v+rZLPFoXYT2ECMoOU4L8GcihAQ07kfyG9Zk0scE
-Fay2icmTVi3NjBlYSn/UZvfIKDXTT/KuRuL43TVuqKA7OuVoAM+WVWxhf7FfZMf+
-fOIDtJsnT+0Q2tPqAbT8100EC1ndGg==
-=gWO7
------END PGP SIGNATURE-----
-
---z+Qs3uEx07rIKHpf--
+>=20
+> ---
+> v3:
+> =C2=A0- Move BO to ctbs h2g or g2h structure (Michal)
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_guc_ct.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
+| 67 +++++++++++++++++++-------
+> --
+> =C2=A0drivers/gpu/drm/xe/xe_guc_ct_types.h |=C2=A0 4 +-
+> =C2=A02 files changed, 47 insertions(+), 24 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c
+> b/drivers/gpu/drm/xe/xe_guc_ct.c
+> index 8a45573f8812..ea07a27757d5 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> @@ -255,6 +255,7 @@ static bool g2h_fence_needs_alloc(struct
+> g2h_fence *g2h_fence)
+> =C2=A0
+> =C2=A0#define CTB_DESC_SIZE		ALIGN(sizeof(struct
+> guc_ct_buffer_desc), SZ_2K)
+> =C2=A0#define CTB_H2G_BUFFER_OFFSET	(CTB_DESC_SIZE * 2)
+> +#define CTB_G2H_BUFFER_OFFSET	(CTB_DESC_SIZE * 2)
+> =C2=A0#define CTB_H2G_BUFFER_SIZE	(SZ_4K)
+> =C2=A0#define CTB_H2G_BUFFER_DWORDS	(CTB_H2G_BUFFER_SIZE / sizeof(u32))
+> =C2=A0#define CTB_G2H_BUFFER_SIZE	(SZ_128K)
+> @@ -279,10 +280,14 @@ long xe_guc_ct_queue_proc_time_jiffies(struct
+> xe_guc_ct *ct)
+> =C2=A0	return (CTB_H2G_BUFFER_SIZE / SZ_4K) * HZ;
+> =C2=A0}
+> =C2=A0
+> -static size_t guc_ct_size(void)
+> +static size_t guc_h2g_size(void)
+> =C2=A0{
+> -	return CTB_H2G_BUFFER_OFFSET + CTB_H2G_BUFFER_SIZE +
+> -		CTB_G2H_BUFFER_SIZE;
+> +	return CTB_H2G_BUFFER_OFFSET + CTB_H2G_BUFFER_SIZE;
+> +}
+> +
+> +static size_t guc_g2h_size(void)
+> +{
+> +	return CTB_G2H_BUFFER_OFFSET + CTB_G2H_BUFFER_SIZE;
+> =C2=A0}
+> =C2=A0
+> =C2=A0static void guc_ct_fini(struct drm_device *drm, void *arg)
+> @@ -311,7 +316,8 @@ int xe_guc_ct_init_noalloc(struct xe_guc_ct *ct)
+> =C2=A0	struct xe_gt *gt =3D ct_to_gt(ct);
+> =C2=A0	int err;
+> =C2=A0
+> -	xe_gt_assert(gt, !(guc_ct_size() % PAGE_SIZE));
+> +	xe_gt_assert(gt, !(guc_h2g_size() % PAGE_SIZE));
+> +	xe_gt_assert(gt, !(guc_g2h_size() % PAGE_SIZE));
+> =C2=A0
+> =C2=A0	err =3D drmm_mutex_init(&xe->drm, &ct->lock);
+> =C2=A0	if (err)
+> @@ -356,7 +362,17 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+> =C2=A0	struct xe_tile *tile =3D gt_to_tile(gt);
+> =C2=A0	struct xe_bo *bo;
+> =C2=A0
+> -	bo =3D xe_managed_bo_create_pin_map(xe, tile, guc_ct_size(),
+> +	bo =3D xe_managed_bo_create_pin_map(xe, tile, guc_h2g_size(),
+> +					=C2=A0 XE_BO_FLAG_SYSTEM |
+> +					=C2=A0 XE_BO_FLAG_GGTT |
+> +					=C2=A0 XE_BO_FLAG_GGTT_INVALIDATE
+> |
+> +					=C2=A0
+> XE_BO_FLAG_PINNED_NORESTORE);
+> +	if (IS_ERR(bo))
+> +		return PTR_ERR(bo);
+> +
+> +	ct->ctbs.h2g.bo =3D bo;
+> +
+> +	bo =3D xe_managed_bo_create_pin_map(xe, tile, guc_g2h_size(),
+> =C2=A0					=C2=A0 XE_BO_FLAG_SYSTEM |
+> =C2=A0					=C2=A0 XE_BO_FLAG_GGTT |
+> =C2=A0					=C2=A0 XE_BO_FLAG_GGTT_INVALIDATE
+> |
+> @@ -364,7 +380,7 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+> =C2=A0	if (IS_ERR(bo))
+> =C2=A0		return PTR_ERR(bo);
+> =C2=A0
+> -	ct->bo =3D bo;
+> +	ct->ctbs.g2h.bo =3D bo;
+> =C2=A0
+> =C2=A0	return devm_add_action_or_reset(xe->drm.dev,
+> guc_action_disable_ct, ct);
+> =C2=A0}
+> @@ -389,7 +405,7 @@ int xe_guc_ct_init_post_hwconfig(struct xe_guc_ct
+> *ct)
+> =C2=A0	xe_assert(xe, !xe_guc_ct_enabled(ct));
+> =C2=A0
+> =C2=A0	if (IS_DGFX(xe)) {
+> -		ret =3D xe_managed_bo_reinit_in_vram(xe, tile, &ct-
+> >bo);
+> +		ret =3D xe_managed_bo_reinit_in_vram(xe, tile, &ct-
+> >ctbs.h2g.bo);
+> =C2=A0		if (ret)
+> =C2=A0			return ret;
+> =C2=A0	}
+> @@ -439,8 +455,7 @@ static void guc_ct_ctb_g2h_init(struct xe_device
+> *xe, struct guc_ctb *g2h,
+> =C2=A0	g2h->desc =3D IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE);
+> =C2=A0	xe_map_memset(xe, &g2h->desc, 0, 0, sizeof(struct
+> guc_ct_buffer_desc));
+> =C2=A0
+> -	g2h->cmds =3D IOSYS_MAP_INIT_OFFSET(map, CTB_H2G_BUFFER_OFFSET
+> +
+> -					=C2=A0=C2=A0=C2=A0 CTB_H2G_BUFFER_SIZE);
+> +	g2h->cmds =3D IOSYS_MAP_INIT_OFFSET(map,
+> CTB_G2H_BUFFER_OFFSET);
+> =C2=A0}
+> =C2=A0
+> =C2=A0static int guc_ct_ctb_h2g_register(struct xe_guc_ct *ct)
+> @@ -449,8 +464,8 @@ static int guc_ct_ctb_h2g_register(struct
+> xe_guc_ct *ct)
+> =C2=A0	u32 desc_addr, ctb_addr, size;
+> =C2=A0	int err;
+> =C2=A0
+> -	desc_addr =3D xe_bo_ggtt_addr(ct->bo);
+> -	ctb_addr =3D xe_bo_ggtt_addr(ct->bo) + CTB_H2G_BUFFER_OFFSET;
+> +	desc_addr =3D xe_bo_ggtt_addr(ct->ctbs.h2g.bo);
+> +	ctb_addr =3D xe_bo_ggtt_addr(ct->ctbs.h2g.bo) +
+> CTB_H2G_BUFFER_OFFSET;
+> =C2=A0	size =3D ct->ctbs.h2g.info.size * sizeof(u32);
+> =C2=A0
+> =C2=A0	err =3D xe_guc_self_cfg64(guc,
+> @@ -476,9 +491,8 @@ static int guc_ct_ctb_g2h_register(struct
+> xe_guc_ct *ct)
+> =C2=A0	u32 desc_addr, ctb_addr, size;
+> =C2=A0	int err;
+> =C2=A0
+> -	desc_addr =3D xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE;
+> -	ctb_addr =3D xe_bo_ggtt_addr(ct->bo) + CTB_H2G_BUFFER_OFFSET +
+> -		CTB_H2G_BUFFER_SIZE;
+> +	desc_addr =3D xe_bo_ggtt_addr(ct->ctbs.g2h.bo) +
+> CTB_DESC_SIZE;
+> +	ctb_addr =3D xe_bo_ggtt_addr(ct->ctbs.g2h.bo) +
+> CTB_G2H_BUFFER_OFFSET;
+> =C2=A0	size =3D ct->ctbs.g2h.info.size * sizeof(u32);
+> =C2=A0
+> =C2=A0	err =3D xe_guc_self_cfg64(guc,
+> @@ -605,9 +619,12 @@ static int __xe_guc_ct_start(struct xe_guc_ct
+> *ct, bool needs_register)
+> =C2=A0	xe_gt_assert(gt, !xe_guc_ct_enabled(ct));
+> =C2=A0
+> =C2=A0	if (needs_register) {
+> -		xe_map_memset(xe, &ct->bo->vmap, 0, 0,
+> xe_bo_size(ct->bo));
+> -		guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo-
+> >vmap);
+> -		guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo-
+> >vmap);
+> +		xe_map_memset(xe, &ct->ctbs.h2g.bo->vmap, 0, 0,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_bo_size(ct->ctbs.h2g.bo));
+> +		xe_map_memset(xe, &ct->ctbs.g2h.bo->vmap, 0, 0,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_bo_size(ct->ctbs.g2h.bo));
+> +		guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct-
+> >ctbs.h2g.bo->vmap);
+> +		guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct-
+> >ctbs.g2h.bo->vmap);
+> =C2=A0
+> =C2=A0		err =3D guc_ct_ctb_h2g_register(ct);
+> =C2=A0		if (err)
+> @@ -624,7 +641,7 @@ static int __xe_guc_ct_start(struct xe_guc_ct
+> *ct, bool needs_register)
+> =C2=A0		ct->ctbs.h2g.info.broken =3D false;
+> =C2=A0		ct->ctbs.g2h.info.broken =3D false;
+> =C2=A0		/* Skip everything in H2G buffer */
+> -		xe_map_memset(xe, &ct->bo->vmap,
+> CTB_H2G_BUFFER_OFFSET, 0,
+> +		xe_map_memset(xe, &ct->ctbs.h2g.bo->vmap,
+> CTB_H2G_BUFFER_OFFSET, 0,
+> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 CTB_H2G_BUFFER_SIZE);
+> =C2=A0	}
+> =C2=A0
+> @@ -1963,8 +1980,9 @@ static struct xe_guc_ct_snapshot
+> *guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bo
+> =C2=A0	if (!snapshot)
+> =C2=A0		return NULL;
+> =C2=A0
+> -	if (ct->bo && want_ctb) {
+> -		snapshot->ctb_size =3D xe_bo_size(ct->bo);
+> +	if (ct->ctbs.h2g.bo && ct->ctbs.g2h.bo && want_ctb) {
+> +		snapshot->ctb_size =3D xe_bo_size(ct->ctbs.h2g.bo) +
+> +			xe_bo_size(ct->ctbs.g2h.bo);
+> =C2=A0		snapshot->ctb =3D kmalloc(snapshot->ctb_size, atomic ?
+> GFP_ATOMIC : GFP_KERNEL);
+> =C2=A0	}
+> =C2=A0
+> @@ -2012,8 +2030,13 @@ static struct xe_guc_ct_snapshot
+> *guc_ct_snapshot_capture(struct xe_guc_ct *ct,
+> =C2=A0		guc_ctb_snapshot_capture(xe, &ct->ctbs.g2h,
+> &snapshot->g2h);
+> =C2=A0	}
+> =C2=A0
+> -	if (ct->bo && snapshot->ctb)
+> -		xe_map_memcpy_from(xe, snapshot->ctb, &ct->bo->vmap,
+> 0, snapshot->ctb_size);
+> +	if (ct->ctbs.h2g.bo && ct->ctbs.g2h.bo && snapshot->ctb) {
+> +		xe_map_memcpy_from(xe, snapshot->ctb, &ct-
+> >ctbs.h2g.bo->vmap, 0,
+> +				=C2=A0=C2=A0 xe_bo_size(ct->ctbs.h2g.bo));
+> +		xe_map_memcpy_from(xe, snapshot->ctb +
+> xe_bo_size(ct->ctbs.h2g.bo),
+> +				=C2=A0=C2=A0 &ct->ctbs.g2h.bo->vmap, 0,
+> +				=C2=A0=C2=A0 xe_bo_size(ct->ctbs.g2h.bo));
+> +	}
+> =C2=A0
+> =C2=A0	return snapshot;
+> =C2=A0}
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct_types.h
+> b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+> index 09d7ff1ef42a..46ad1402347d 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct_types.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+> @@ -39,6 +39,8 @@ struct guc_ctb_info {
+> =C2=A0 * struct guc_ctb - GuC command transport buffer (CTB)
+> =C2=A0 */
+> =C2=A0struct guc_ctb {
+> +	/** @bo: Xe BO for CTB */
+> +	struct xe_bo *bo;
+> =C2=A0	/** @desc: dma buffer map for CTB descriptor */
+> =C2=A0	struct iosys_map desc;
+> =C2=A0	/** @cmds: dma buffer map for CTB commands */
+> @@ -126,8 +128,6 @@ struct xe_fast_req_fence {
+> =C2=A0 * for the H2G and G2H requests sent and received through the
+> buffers.
+> =C2=A0 */
+> =C2=A0struct xe_guc_ct {
+> -	/** @bo: Xe BO for CT */
+> -	struct xe_bo *bo;
+> =C2=A0	/** @lock: protects everything in CT layer */
+> =C2=A0	struct mutex lock;
+> =C2=A0	/** @fast_lock: protects G2H channel and credits */
