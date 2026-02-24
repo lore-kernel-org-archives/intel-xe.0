@@ -4,166 +4,170 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D5C6F4BB95
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Feb 2026 22:25:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F4A3F4BB95
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Feb 2026 22:27:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B75910E207;
-	Tue, 24 Feb 2026 22:25:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACC0210E338;
+	Tue, 24 Feb 2026 22:27:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JQxgSAWs";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="pQDQ8n9s";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43E0B10E207
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Feb 2026 22:25:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771971901; x=1803507901;
- h=date:from:to:subject:message-id:references:in-reply-to:
- mime-version; bh=sztiBBK/SgOOSCFeB8yDT2jrK1+VXjkUkVtUxrcCkxw=;
- b=JQxgSAWskXzDYwCeAoGhjN+xs05ztPfpYX6CDickjeAlIgSChdUSRHu4
- p/HZgC1Cq4Gf+6awOvR6JdqWtRi6wi8xLq3hasIOF9rAwsYUu9JAYfAC+
- ZxNGN7x3c8rO0z1pMR8E+khqzYu8DEp2K/Uf8cTIIMN8allhX17qs3EiE
- JEAzyEASWoZrLm1dIdeqjlvh0hmZ9ivh73E9CO72FisUUWZPp0fBxWY4E
- 5JnKaX8ubNycG27Bq8JCCrvrglx9rRygrCiK9hgo9W5T1f93wmeDqoE+m
- DlJHy+x6+NRUnp28BzSt62+8T+cDbOzKjRT3XT49tY8YtyfW+iwUEAfS7 g==;
-X-CSE-ConnectionGUID: kxczHy7QRU6chRQrUiR4AA==
-X-CSE-MsgGUID: afJuYjZtSnKm05v/kSjYXA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="76610721"
-X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; d="scan'208";a="76610721"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2026 14:25:01 -0800
-X-CSE-ConnectionGUID: f4wfb3EgR5e6vMarir56Yw==
-X-CSE-MsgGUID: UoRR5ioHR/acSroSDvvEGQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; d="scan'208";a="214226113"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2026 14:25:00 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Tue, 24 Feb 2026 14:25:00 -0800
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Tue, 24 Feb 2026 14:25:00 -0800
-Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.8) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Tue, 24 Feb 2026 14:24:59 -0800
+Received: from CH1PR05CU001.outbound.protection.outlook.com
+ (mail-northcentralusazon11010002.outbound.protection.outlook.com
+ [52.101.193.2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8809B10E207;
+ Tue, 24 Feb 2026 22:27:51 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gurGXfKvebwSI6zi2C6RKKWvp+oMpHtt46rTh+qW59FJZg74CRCbS/B5dqlTzMddjh6SGIGcyB8U+3MSiIybw32oMiYnWi//+YjyGIaGhw13ebHdU4+Biz9B+tjTf4JdADFFCgSMZoQThbU8Lcx557qz+FtSayaTeaiSgP655RDwiVkm0utaiMoxFmqequ/Ml0tlirOzgKboREEq2369k/76EUSD6TZ9T99gUtSymWMNhbXbbHqgh2M1zfqz96quLaCNuuAQ5oe1VwyRg0RJrQMIGa1qUyrxevHHaYjHT543KZ7jutisCdf95Qoe6ZBQksDzq4GWOZ+9hsDH0MQxzA==
+ b=jsDiTwGyzxlryii4KY9vFprNhIAcS0O1rEieIKxAMNaHP406u4mnGRcVLiXrf9dxObeyY2sigf5bF0HDOg89r1FU338F6vdMdcuisrzVgITP6bZz3b6qiAl+HZtDATJK9lXDMY4BqSSbD9f1/CF4e0lW1bjSiayWF1HiGcXBR0C3RrzEGmtpU7hAghsRqXlMn680AQcBvLYVLX0385M69EjkidnqnSYVFiiml5GWIoACtECfxHO9rnVxSG8ruSm4twq0q5DLIoN0S2XNklmvevWlkC6PH4/rmOVuOfa+ICB9M4qOjAdNlwCciVljSUqpxnoUht7NEnKphJOAq4Fqkw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QykxgxhxWd/9vi7Y7GOv2OIBWsKmP0p/d7yTR0foqjg=;
- b=iNa2HSlVGgAm/tRGvDErQSlT9BptDJwJSTjnjbqrgdR5T5ZDOjkY9q0Hpf7xQ1rsGSilUU+cbpL9kR+G4ha8sEiYPONbI81PosmCpgxcyL8Dt3UE4GoC8Cj11CZi+UgWpOecWfzvGKw/omfIOg/nw4TAS3QLztffFYufG3OG7RAl4+/JdBhLqZcUpcv0jfWYvXalWNCFvSPsgfcADPRMrJPut8DYSd32SwfK4M99kPEizcBxb22UUn9NONAhRUKbp23LlMaJqz7XvdFvdeVwk1wtg+hgsu2kk0oFnqpzhoC+Bb0ANEuWSoLftI/xpA6z4A07pUIjIhFyf8eti4bDqA==
+ bh=4UrcmxwL+HkPLudSy5CbQmCLYE+AgG1twDbGtchtVmg=;
+ b=kKAni6gzf1hhdoj1OmiYypDntGXnw6qOHPAtiAC/yGdw2TltNYxk3fA6mQolbbGcjqq/GlYCGpZQmfHARfYTDPRPaXdFTtCzsbb69739CWgUfEjVrFVrYb8QUOGSkMRpNSVAEvCKeJf6v4l4zzx18XiM1vIsObQnEWjVf8gVSSUEKlykhEeVyDBPmDk2ewauhPK7SBv97KG+YhfO303tGv1NqDA8t7/Mw3AYLQPjJXudaijAKNygiX+T0YjmKqvDUlCVXUyaXcz3bOmxKSGvTIIDgBqH+Ov4gd1725KNnqmVtjSIfQB2oMMnoqcKijdJZ/bsB+lQb6i2JHCOaY/+Mg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4UrcmxwL+HkPLudSy5CbQmCLYE+AgG1twDbGtchtVmg=;
+ b=pQDQ8n9sSEtGNa7W0N9wCVhmTkYLjN8GIrG8pIj1F5s7ygXVMKu0Di8qc5yO91Z9pBh9eBKQ0c9RcxFyP7ByUo6Z4HDFRY2K7+3ALlMQtihljMXJZb9qvLS1ZouIkGG8zGbbd7VmYH/i0gZeTqyoDbRhSQ4gTTDgs+DeAbNoLAYHedCmaywFDBh/9+Q5RHnkr3LHTfizwtdTcT+CxnhgPmfC5q5SgyHG6f95TJXH8BjqSRnIY0xxJk+WelvYq0npTaPrj/Mw77exPCwaxF8Mmahe+dI3VkprOsvHqRE+EgfEyzhuv4qhNfcJHbIBzhwdP2l5EUSmlxDGmkHGIAcSzg==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by SA1PR11MB7109.namprd11.prod.outlook.com (2603:10b6:806:2ba::17) with
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
+ PH7PR12MB5855.namprd12.prod.outlook.com (2603:10b6:510:1d6::11) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.22; Tue, 24 Feb
- 2026 22:24:52 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e%7]) with mapi id 15.20.9632.017; Tue, 24 Feb 2026
- 22:24:52 +0000
-Date: Tue, 24 Feb 2026 14:24:50 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Subject: Re: =?utf-8?B?4pyXIFhlLkNJLkJBVA==?= =?utf-8?Q?=3A?= failure for
- Workaround cleanup & simplification (rev5)
-Message-ID: <20260224222450.GM4694@mdroper-desk1.amr.corp.intel.com>
-References: <20260223-forupstream-wa_cleanup-v3-0-7f201eb2f172@intel.com>
- <177196560610.283382.16016286757924731189@a3b018990fe9>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <177196560610.283382.16016286757924731189@a3b018990fe9>
-X-ClientProxiedBy: BY3PR05CA0025.namprd05.prod.outlook.com
- (2603:10b6:a03:254::30) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+ 2026 22:27:41 +0000
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9632.017; Tue, 24 Feb 2026
+ 22:27:41 +0000
+From: Joel Fernandes <joelagnelf@nvidia.com>
+To: linux-kernel@vger.kernel.org
+Cc: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Danilo Krummrich <dakr@kernel.org>,
+ Dave Airlie <airlied@redhat.com>, David Airlie <airlied@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Koen Koning <koen.koning@linux.intel.com>,
+ Nikola Djukic <ndjukic@nvidia.com>,
+ Alexandre Courbot <acourbot@nvidia.com>,
+ Philipp Stanner <phasta@kernel.org>,
+ Elle Rhumsaa <elle@weathered-steel.dev>, Jonathan Corbet <corbet@lwn.net>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Helge Deller <deller@gmx.de>, John Hubbard <jhubbard@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ Edwin Peer <epeer@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
+ Andy Ritger <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
+ Balbir Singh <balbirs@nvidia.com>, alexeyi@nvidia.com,
+ Eliot Courtney <ecourtney@nvidia.com>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-fbdev@vger.kernel.org, Joel Fernandes <joelagnelf@nvidia.com>
+Subject: [PATCH v11 0/2] rust: clist patches for nova-core memory management
+Date: Tue, 24 Feb 2026 17:27:32 -0500
+Message-Id: <20260224222734.3153931-1-joelagnelf@nvidia.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: CYXPR03CA0020.namprd03.prod.outlook.com
+ (2603:10b6:930:d0::26) To DS0PR12MB6486.namprd12.prod.outlook.com
+ (2603:10b6:8:c5::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|SA1PR11MB7109:EE_
-X-MS-Office365-Filtering-Correlation-Id: 09557ca2-c252-47ab-89a0-08de73f387c3
+X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|PH7PR12MB5855:EE_
+X-MS-Office365-Filtering-Correlation-Id: a26ad792-d3ba-4d88-1d10-08de73f3ec2d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?N69E6gnwpfCiEZLb0vH9E1frJSK9xZHOKfmqGxbdQzDmgg2oi/s1/4tnhovF?=
- =?us-ascii?Q?U/i4jnRM3qDbtaY+bfh6jsULqVnMQJtErI6j5SDOxDgPVd+DXyTeQt/FYbuK?=
- =?us-ascii?Q?NsgxYp1lwaQGUkndOFY8EH2BGfGEgHsa+6KQtMCKTiwwVHkdNutdWrrjxaKQ?=
- =?us-ascii?Q?vQ8TkJlbm7eUjeaz8o7zgvx9TKUhAlE364LrBGwd6djPg46Wx764zz4R7708?=
- =?us-ascii?Q?77EEz/HcFLIlZeeU9smDl17ylxQKojTdd5Uy6gTpH8ONtWDFSv20+ZwXuDpx?=
- =?us-ascii?Q?bBbMdPyyXIGLumKhk31gkjfsx/XnsklQxaeNZfkuMvIMqpQOQAgFoON0oV4N?=
- =?us-ascii?Q?JP28sqQsQxAsMpnTw3pFxDm1oXMEQlm0T0StsNxthX/iw3TKQ5UXXl1VRkYQ?=
- =?us-ascii?Q?uPtWMEHec+1eHyVpy9ymalsjK1l15Em1B0bNUhC8jKX5jkhIx9cym74FcHNg?=
- =?us-ascii?Q?3FNCZhBmz96Dr7+gu2c0s2Wu9nPjIuKM4ttvtku3Emm+31NzMUAqCbxNuTga?=
- =?us-ascii?Q?wkYZq5ZiX5Flak29Z5F8aGBi0KUjn0duKVzK39DT4FRXxdIeQiiOu86PJAvS?=
- =?us-ascii?Q?CnnPD9r9eQI8ve5llOeVOct+/a7VKlX4Y97vs6T81p4ZZXKKmpb5ouFzVNe9?=
- =?us-ascii?Q?EMOz7X9Xg+6HEJqOTfzN0HxHyJLt2V2pj7l0+wP3+eb6GCqQwYQx8vme8fyc?=
- =?us-ascii?Q?i68iU8dvVhX8ujB7Lej4hoUCzKUB78kF0BeIWGmMxC7NJn1WyxtSKGX5YTi4?=
- =?us-ascii?Q?4YhS9uQhUoUU+SiTTMjut3/li5B1+lF80R9tw/xiY0jx8RKSfVGVrlrnmvdr?=
- =?us-ascii?Q?Zo+LXOsPArSWCXO5pt68LuR9zXRWU7AyXI28AjcWyZKHFS7t1nWSwGzp1jPr?=
- =?us-ascii?Q?vreUeMiCDVoEXbwBtYhKzrkqOvDCLCIrwG/TlWlx9eKbIIN7dhUzmVdSrSoD?=
- =?us-ascii?Q?mDHcRZpsi8iEEGYp3zoBO8Xjw17EyGgccHKJmaUpuTsdUFIGSta59fph+Ueg?=
- =?us-ascii?Q?YojPLlkRTKr9E1P70B/ZIzHFEd/jwGf5bGWG6nIrVBKRdifBxjePQXVMwhx2?=
- =?us-ascii?Q?R0FR8nzcEs0H3EV2Hdz4yrTjq3OLytoVdxhR5Wq707rEsAEj5lfNNFfnig2x?=
- =?us-ascii?Q?2tibpMfSj92VxAXfw3/1qcVqA8CY4P6XZeohhux+qQSIv28eRZgmd4ZI0Oqx?=
- =?us-ascii?Q?ftc/1AjgHX610bGz5xLgwQv7G9Nk5nn8GrYiqMC2WeOpIgb0Gs2yEH5gD97F?=
- =?us-ascii?Q?7yeG/OGmqVAdsGu/6lOnOvfd2K38kxQ47ywA7tuq8YfHEJwbvdQyEZtLmKIf?=
- =?us-ascii?Q?pAdBVRpQcpJ2dsZAsyUg4uwW88wAZdYvrR1vljRu+LCD6vMCx2rGUOUZ98Bv?=
- =?us-ascii?Q?htl3/GGRjnm0HuKN2bqSWQf8GA+tTQesylsVjCOQmgsPpxqJQzfth3gkz63c?=
- =?us-ascii?Q?Hth9lwpmAW5ZZE6vGOAuMgvNcIGZlkpJtMB1kZmDmRvTSbb6fB0Yjt8zUWa7?=
- =?us-ascii?Q?P2oVb9qtPRvkuqT4nHmXmDLFVJCAADYmk68r?=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024;
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?5Ehk5iQWOM7VvuHW9PJrk3BzubcJmWWPbrKlYVfSrABrXSqD1Rw5DH2HAH4T?=
+ =?us-ascii?Q?L6InJjBm/7DP+2cj+MI1HEI3OGPPRllmgbkp+OGHKcnSBqa4LmOwykE0M4vp?=
+ =?us-ascii?Q?TC0MRhpc3ZIF8pR1XeusWjaQ6cODojm9M364vvyaqLZ03eCnX/7OET533z1I?=
+ =?us-ascii?Q?+4NO14zT5CZ0W68pZ0zR39leI/0DcjKP3cHaSG8lTM6moAVjSUNPZq5owLPG?=
+ =?us-ascii?Q?+/gg2W18AsS4lMVIZfEFWkrXTSOaXkKZhVlVQheXTr1E3fqvtU+oJ4F69WlR?=
+ =?us-ascii?Q?bnDyqalaNZnw2x8LY2tR2OWIcSUhCt+G3rqMd1GCFNT6KaS0ByluqXnZo6zq?=
+ =?us-ascii?Q?P8w0NPx45e+UwQq8vp0H7E4mJsmqORvKZnuoDaQ26Dephe+mC0tZ00zaoc1z?=
+ =?us-ascii?Q?aJ5TAHkSflIa/dQ2K71PSiez4Pb+UZdGv9swG0//Py91xkb5Kzz60AFnVGYb?=
+ =?us-ascii?Q?h+h2FGmv6/pz9hpQYb1EkHBGBoYeGo0cu0upHrTAXAy6DaLp4szEYjv7SGuf?=
+ =?us-ascii?Q?FXXwxdo06dgy8LfbwqCntJd/2EW0UjU1eWaYBaYE0hR34tf3ZXTedidYDr4d?=
+ =?us-ascii?Q?YyxsphbrYVUW22IzavewABezYh5BR1Xfn1fpu4F+3hfm7Nun0a5bgKRQsGka?=
+ =?us-ascii?Q?bhp8RF5s8lVVt62txn0hs8hmoW9e9WM0tI1GZAwjG9l1QsD91sVsJwBTgRZb?=
+ =?us-ascii?Q?H8/vetoseC1MFAFvKicjRlVP6eHhMye3HCAgJIaGJzMv1xRuaiOgsFAns1dG?=
+ =?us-ascii?Q?mtGcaV0m9OelRmVF77Wt4kZ1SkhTyh2/RVInA+xkyjAUMZFCJ602QT2+YJMO?=
+ =?us-ascii?Q?2O0sPLaXahFNeLsMap+GGtJyXnvgZAQnCCrGo3RimujTruh6cpe/12e3w/1B?=
+ =?us-ascii?Q?iMRwjyVkrDBmxTsn/KysDBeICEP2fG1siIFFZs0W4n2pjH8MLQtuBg9pbusA?=
+ =?us-ascii?Q?RbXyzjhDGAIp4sOdJAYsOfF7NWTEnfu37avRBsUIQawF21DE19nT9CIfgD5m?=
+ =?us-ascii?Q?Haj6H936aFMd21lHFEArCx9WBpknXemnuhw4y5SlPbTjv4bHTNPKVKvjxLCE?=
+ =?us-ascii?Q?uHe9vgJ8gdUODq6lPa/1FsvWXyn0QGaj6C1kAqyRwmKMqbMw/09bsMLGvVlx?=
+ =?us-ascii?Q?ImZztSawd0kLrRKj3jMhbd3SZbnryEnanT+0zQBaupSnTNiEjRSJYhKjX+T4?=
+ =?us-ascii?Q?NrleDhAaahMiLgX0gxkV8tnyECoPIOeXlkVQv8E4HFjKbMLk0EVljs5mC2Wd?=
+ =?us-ascii?Q?+3CpO1WFWQR9O1X56Pd6ESvo86swyOKENeM9h82HG7R/U6wD73odFM8ELz5W?=
+ =?us-ascii?Q?mxjFHnU8d2i+z3gFZx5XxnPCNjoWpH/QQinl0mV5B9AnHeW6d97rjmllgMh4?=
+ =?us-ascii?Q?bj1l/218AuE60pj9i2nsEws7H2gF/vDJC5T4HAgL3KuPQV1K5Ywuw9fvIo1D?=
+ =?us-ascii?Q?fNwVoVFKbrsB9InKMuOlsVcNKdUl4tUfp45vtJpxhv8QegTdOGN0c4WFpupZ?=
+ =?us-ascii?Q?4sACFrl+Dlk5zLb5zXCxw4vXL8EkU3wo0LQikbEwFIAAlNt8Dv51No85W61T?=
+ =?us-ascii?Q?LKUbGzbRi5RhsD3ZC4E=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(7416014)(376014)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?9z6U1yerq4Q+sZvXutVEi1TtjrBx+F5ZpX1W3yQv/EF6Slc9ZmOU/Q1AkXU/?=
- =?us-ascii?Q?D7URZF6Rd8f6DPNQC5vld5hsKtKAvFNXGuBr1uuqP+JVMy26QKzDXMcIaCqp?=
- =?us-ascii?Q?3ChXTAiV4ti7QccFrACmyPmejUrwzCajJ6CytY78Qf3Mzb2k5Ga43StYiZIt?=
- =?us-ascii?Q?KbLBxKce4SJ9fPpKqo3LMmDEKmA8MC5aOmyZEWCEb+4qRa9Gb7KUN5Hd/bA5?=
- =?us-ascii?Q?5/xpGbXMJjYAUL/KHsYMBySYX30VCkMLAmxyJMMb+/8ixjU8YWgsRqnAtYbA?=
- =?us-ascii?Q?qWBZenj5WnUBu+pq7fnTk2HSFNd+GFEFbO9ZD3aQ67hozH1yHhk3SM0aIcG8?=
- =?us-ascii?Q?lU0/mi+m+0BhFfjYLLlsymEONjsvuW6bR62M8qXNRZ9NSmvztV+ne25K2xSQ?=
- =?us-ascii?Q?GrE8nDjlXYqCTGZz8RVOLYlpCuPCtfph5uvSI/8Co1yikbsa7yCwHjFlA3m9?=
- =?us-ascii?Q?4cXFLaWBbTxJCcqnrYOxWTPZIIq/ZO8x/E/6qEDhMaS3/IC3ykGP1IYavkdh?=
- =?us-ascii?Q?dkX4RyNrxzN238VagO6cGcyfvr312EX+yfPX60FVv1gXfhINY+TX+myr7KbT?=
- =?us-ascii?Q?1d5o06IVkzwzWVBFdLXb3qPQB+kWbvapDXB65uuh/usfO7iVG1tymU+kXO/l?=
- =?us-ascii?Q?0oA7YwIQd4TGm/iHk9GZ1nX2Pk1h8pwZKjaHehYu1E8zpm7TwSFFbeHZhHLE?=
- =?us-ascii?Q?gIIKthuey63xBXwZwqdjDtFwVTgzJI3SsRzwRVWEKz0T+tIJwl5lT4zDfbXw?=
- =?us-ascii?Q?NJ67RCbNWMiMXzfOCvSRTrU6oNoUGjPoWlaeJ6pSa8GFtMTz9juXhcu51hYY?=
- =?us-ascii?Q?ak8yUhL/5MdQ8QQDFjXcz2t+dga3MjbtVU/ypbDRQfjRe9ifSbZ2rFAg/D7F?=
- =?us-ascii?Q?gyDFmQrgu9kFUHgzHLAmfJWZJKszvODrBsb70IuGQDN97q6BZxZnmbL9yXSc?=
- =?us-ascii?Q?ofnoPZLEaleU5d21gVP5MP2idHWv/9fx6sNFRMOLuMaXp+qu6WJCjv8ottbx?=
- =?us-ascii?Q?qp5iH9LXo7tzmiOrgt83P49L9x+KIqAbZgU5QNP2svyeghlD4N/RaG7q8AHx?=
- =?us-ascii?Q?ExUpHKZV5NtAB7DuYsIWF669dT8k3YyqzgJFBaV0oe65pMJfOrTe7EeKk+H9?=
- =?us-ascii?Q?QweAFPYskYolHDXzs/INse5lQx+9B4mKI3Fi/KOnGnZf2OJTNp63X6crRNSo?=
- =?us-ascii?Q?SVB0NVCKi67Ji9m+vAV/s0AU5vdgXA2X+WrCyvfz7e9n1F6GdfnQx8QKe5uE?=
- =?us-ascii?Q?Z58P/kRCIDUdU9pUENEBS14daRzlebELBYcrtnjaIvGAyPliejJp+xyxkMqY?=
- =?us-ascii?Q?Z5YjZUqLXJyJtYfJkbpB66GYzbEZRs2Wau3dIYgocn9+rNXOlPPeSjECJukc?=
- =?us-ascii?Q?AR0wBTtwXomoANbD4Amfh08r6YnXbOBtOPYr5HWeIj3myDUldBo9BuwQBYWx?=
- =?us-ascii?Q?5mgSXpT0ffWpRKjsWgOvoY50OLft7bavBdxy7OQWyaS+GwQAjdXD3ImG8oBY?=
- =?us-ascii?Q?c4HGPLP+6Z2rhSxSe8NaF9/HDKHZJJqrgIo1x9MpAOAAmVL6APLv3KHwPrGJ?=
- =?us-ascii?Q?R3RCH7o/SVVW/yiIXFMUx2yTLZigeOqr5lQvCQYCS+rqxlysxk2ChmcrO6v1?=
- =?us-ascii?Q?LQdCS3UMtighJ0kZt0hMX0qx5QsmLAnlbO5bmNyj26Kr65eXMZiOR/WfM97B?=
- =?us-ascii?Q?IVN/H4qH945sww4ID/oF8ibqOHWyNajgXoofciDQx8iCPhpTtY+Tu6NJe3Rp?=
- =?us-ascii?Q?Dbx5P0ykyM6ArVAssq31Oj0fDgMnz94=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 09557ca2-c252-47ab-89a0-08de73f387c3
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?EMvGvgb+vpnySA9ehHDzxqOIylie8s6UGTah0sSpK+ZtX5U9p/Q4LqEUfB6e?=
+ =?us-ascii?Q?rOjVQTOEynidNQSQGY+TfqVke8k+QXQnLJzoAXgBeaDgiKhVo4VdqytQpwVq?=
+ =?us-ascii?Q?5zgMaJPj4qYMoW2SLfwwt0zgOL6Z8eq6jmQHd2kfYExyyv4+azmI1J7tpLoE?=
+ =?us-ascii?Q?GoRRz7fovoZWTytuh5m6vKhHo+LEJ2xeeNuyG4qRUpnfXB7rfoJsFrhXwp5P?=
+ =?us-ascii?Q?X+LABPv4Wc6B/zkik0BUwQdze5Jxw/EqXJBIwdq6BB2FVwWR9DR7WPqIwgj6?=
+ =?us-ascii?Q?zTrqbvOjPN6TviKRBeX12nGtmTWWEWuclI086Z3aHza84Qdu90bqChGVDiSx?=
+ =?us-ascii?Q?USNS/BwMBU5L/EDe/xTsJB1SeFQRVIfizwGbvLAzCfWI4Igd8O+dxCGVDSBO?=
+ =?us-ascii?Q?7gKk7M549z4W5pFv2gs13pphccmCoAU5pvST7sDr5nvpo3dqyluBLyP0brct?=
+ =?us-ascii?Q?kVo1YM9Do1N5geyFunGp4s/00831FIkl3aXgTNaZXOzFdszYIXO/Rb06YqI5?=
+ =?us-ascii?Q?Ewmr2ALOtjVhGekOrTNWG/CE7xfGSGRThWoGIFmVylweZ7roQDHRF07cSk6i?=
+ =?us-ascii?Q?gVqvYePd/1aLIUNsjoMcyrj27Tid4+mTbXQl4K2rvKP9lC0t23e1EqFA3tqq?=
+ =?us-ascii?Q?WSG5/ap5R9aeeVa1h/cHmf8ZHWR4alBsGjN5maMZN3isVYfCXdua4F+mrPZg?=
+ =?us-ascii?Q?f/woL+sFdG30R7P+qUpXEr1XIbHFEboWPWjRtlI5Om70/xTnqF26cwgeCmMT?=
+ =?us-ascii?Q?W4nhPvh3lORNv0b5oP3p/aUh2aCtD3/MGH+9ME55sx1HKnVbowfI0SsILSgT?=
+ =?us-ascii?Q?cZE72fAFVFRIfK6p8MMMhthwI9DBI3uga5J9ZrPCRebuRJzFVTgQuNaXvwbp?=
+ =?us-ascii?Q?cLpNU2IahCiUZNSvYRZ2CpI3e/yivXxCIjUK+RhLgXLMmg0J6fsjfPSdNWgZ?=
+ =?us-ascii?Q?FKMb0qCdVf3iFKhYo8EogjVC39D0QORqNnTjRM5l0/BIXvbvnyDlgdAGjwJ9?=
+ =?us-ascii?Q?TlCqYaRUKr+M5p8GcxpH+0G4Fg/+RyMIFrP8andLc77n4Ew8K9TpyfdB5fd2?=
+ =?us-ascii?Q?EpkQTkfr4OGGWo0us2Au613D/InnSX3L1fO+zEe3fOnACIHykBm6j2YHR5l+?=
+ =?us-ascii?Q?vwW1SFl5S29Zyj5ZdgPdIH5Fnb5XyoIWuGagrMLxABlGNm5w0vd2/xeUjEQr?=
+ =?us-ascii?Q?gHbxiDCb3ulhowG+Kk4IBJT9qHUDYoRdbxR0hyTo7fvVgkjO8qFs8UYGqtqS?=
+ =?us-ascii?Q?Iu/YIUHcUMhWCnP3P+zCnm2vfdrdn+QgQ+8kTDHc9uxZpylLf82+G7oeQy2H?=
+ =?us-ascii?Q?SYFt+Jlz+XRPe1qGgno0S+NGI++xwhBzjeBkzDfl38QdGSkf89q8kuD7bXVj?=
+ =?us-ascii?Q?gsuBMWTQ8wEcdsXXhqKc5m3HiHRrM+LBDDaJIcDyUneldXCjjMa6YspVRVR5?=
+ =?us-ascii?Q?9Mk6k3zgk0IWnGS7y6cLLl15J14fFPn6sM2yKhOibjOwkWcZgAgcLJBx+WfD?=
+ =?us-ascii?Q?z1PBQrcmQTyZvNRL+hVAUZV2E2DXJAxeFnBBFM9MKCZ93zbK2zqwflCJtktk?=
+ =?us-ascii?Q?aB0p1eI5/1q7bPvRl+VsBYDNI3T6yz02sRny1v0BhZG0vZRq8LDz0Yq6vqUB?=
+ =?us-ascii?Q?UjizBotJQxfNxRKuYn92yUInBPQt01lQgKb21Q7uzzB4OnSy8fWGWbmyGzmQ?=
+ =?us-ascii?Q?MW/qw4Iz4OnKL8SjHgi6ImtVWxy5AstI+cdoE/Sbeohc3elCIo6hOXjSXHfd?=
+ =?us-ascii?Q?WMBuOOBlCw=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a26ad792-d3ba-4d88-1d10-08de73f3ec2d
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2026 22:24:52.6102 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2026 22:27:41.1817 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PhPMzyfFoDMAhfUqrzM4GAnqMIwSFhe9Qr2ferjCLcTdB9Z71ylqHaMYYNLzNz/x7YWBLvlMqduck7m6CtQPGGvnrWpDzoJ1rFjSX8CmVVo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB7109
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8mhhbPQSQ/hQR8IPFdGop32UNsX26WemhMKd1+jNS0/6rmdi77qL3vgWhhjKiO0dH+o6QwH5H6FQfjbW2OicXA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5855
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -178,100 +182,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Feb 24, 2026 at 08:40:06PM +0000, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: Workaround cleanup & simplification (rev5)
-> URL   : https://patchwork.freedesktop.org/series/161606/
-> State : failure
-> 
-> == Summary ==
-> 
-> CI Bug Log - changes from xe-4607-189174b3312588d97dc467dca7cfb9dce42ab81b_BAT -> xe-pw-161606v5_BAT
-> ====================================================
-> 
-> Summary
-> -------
-> 
->   **FAILURE**
-> 
->   Serious unknown changes coming with xe-pw-161606v5_BAT absolutely need to be
->   verified manually.
->   
->   If you think the reported changes have nothing to do with the changes
->   introduced in xe-pw-161606v5_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
->   to document this new failure mode, which will reduce false positives in CI.
-> 
->   
-> 
-> Participating hosts (13 -> 14)
-> ------------------------------
-> 
->   Additional (1): bat-bmg-3 
-> 
-> Possible new issues
-> -------------------
-> 
->   Here are the unknown changes that may have been introduced in xe-pw-161606v5_BAT:
-> 
-> ### IGT changes ###
-> 
-> #### Possible regressions ####
-> 
->   * igt@xe_multigpu_svm@mgpu-xgpu-access-basic:
->     - bat-bmg-3:          NOTRUN -> [ABORT][1]
->    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161606v5/bat-bmg-3/igt@xe_multigpu_svm@mgpu-xgpu-access-basic.html
+This series provides the clist module needed for nova-core memory management.
+These patches are being sent separately from the rest of the preparatory
+patches (DRM buddy movement, GPU buddy bindings, etc.) as they can go in
+independently.
 
-<4> [180.346927] ============================================
-<4> [180.346929] WARNING: possible recursive locking detected
-<4> [180.346931] 7.0.0-rc1-lgci-xe-xe-pw-161606v5-debug+ #1 Tainted: G S   U             
-<4> [180.346935] --------------------------------------------
-<4> [180.346936] xe_multigpu_svm/13144 is trying to acquire lock:
-<4> [180.346939] ffff8881645a3818 (&fence->inline_lock){-.-.}-{2:2}, at: dma_fence_add_callback+0x46/0x110
-<4> [180.346947] 
-but task is already holding lock:
-<4> [180.346949] ffff888105441cd8 (&fence->inline_lock){-.-.}-{2:2}, at: dma_fence_add_callback+0x46/0x110
-<4> [180.346955] 
-other info that might help us debug this:
-<4> [180.346957]  Possible unsafe locking scenario:
-<4> [180.346959]        CPU0
-<4> [180.346960]        ----
-<4> [180.346962]   lock(&fence->inline_lock);
-<4> [180.346964]   lock(&fence->inline_lock);
-<4> [180.346966] 
- *** DEADLOCK ***
+The clist module provides Rust abstractions for iterating over C
+list_head-based linked lists. The primary use-case is iterating over GPU buddy
+allocator blocks.
 
-This lockdep splat has already been seen elsewhere and is believed to be
-a real bug in dma_fence_chain_enable_signaling() that's just become
-visible recently due to other changes.  Reference:
-https://lore.kernel.org/all/7b3811c5-1086-42a6-8324-b7ec927a74a5@amd.com/
+The git tree with all patches can be found at:
+git://git.kernel.org/pub/scm/linux/kernel/git/jfern/linux.git (tag: clist-v11-20260224)
 
-It's not caused by these workaround change.
+Detailed changelog
+------------------
+Changes from v10 to v11:
+- Sending only the ffi/clist patches separately from the rest of the
+  preparatory series, as these can go in independently.
+- MAINTAINERS entry: Renamed from "RUST TO C LIST INTERFACES" to
+  "RUST [FFI HELPER]" with (CLIST) scope annotations for maintainers,
+  following Danilo's suggestion. Note: There is still an ongoing
+  discussion about the MAINTAINER file entry naming between Miguel and
+  Danilo: https://lore.kernel.org/all/DGJXYEXCYIII.Z6FOAA8YYMAZ@kernel.org/
+- Updated clist.rs module documentation per Danilo's review: generalized
+  the FFI usage description and added explicit note directing Rust-only
+  users to kernel::list::List instead.
+- Implemented suggestions from Alice related to safety of CList wrt
+  concurrent modifications.
+- Removed unnecessary trailing comment markers from example imports.
+- Added feature guard for offset_of_nested (Eliot).
 
-Applied to drm-xe-next.  Thanks Bala and Shuicheng for the reviews.
+Changes from v9 to v10:
+- Combined clist/ffi patches into the larger "Preparatory patches for
+  nova-core memory management" series (8 patches total).
+- Added new ffi module patch: Convert pub use to pub mod and create
+  rust/kernel/ffi/mod.rs to host clist as a sub-module.
+- Moved clist from rust/kernel/clist.rs to rust/kernel/ffi/clist.rs.
+- Added Reviewed-by and Acked-by tags from Gary and Daniel.
+
+Changes from v8 to v9:
+- Added nova-core Kconfig change to select GPU_BUDDY.
+- Minor fixups.
+
+Changes from v7 to v8:
+- Various changes suggested by Danilo, Gary, Daniel. Added tags.
+
+Changes from v6 to v7:
+- Extracted clist and GPU buddy patches from the larger RFC v6 nova-core
+  memory management series into a standalone series.
+- Changes based on suggestions by Gary and Dave.
+
+Changes from v5 to v6:
+- Part of the larger RFC v6 nova-core memory management series
+  (26 patches).
+
+Changes from v4 to v5:
+- Part of the larger RFC v5 nova-core memory management series
+  (6 patches).
+
+Changes from v3 to v4:
+- Combined the clist and DRM buddy series back together.
+- Added Rust bindings for the GPU buddy allocator.
+- Moved DRM buddy allocator one level up to drivers/gpu/ so it can be
+  used by GPU drivers (e.g. nova-core) that have non-DRM usecases.
+
+Changes from v2 to v3:
+- Consolidated 3 patches into a single patch.
+
+Changes from v1 to v2:
+- Dropped the DRM buddy allocator patches. Series now focuses solely on
+  the clist module.
+- Dropped samples and added doctests.
+- Added proper lifetime management similar to scatterlist.
+
+Link to v10: https://lore.kernel.org/all/20260218205507.689429-1-joelagnelf@nvidia.com/
+Link to v9: https://lore.kernel.org/all/20260210233204.790524-1-joelagnelf@nvidia.com/
+Link to v8: https://lore.kernel.org/all/20260209214246.2783990-1-joelagnelf@nvidia.com/
+Link to v7: https://lore.kernel.org/all/20260206004110.1914814-1-joelagnelf@nvidia.com/
+
+Joel Fernandes (2):
+  rust: ffi: Convert pub use to pub mod and create ffi module
+  rust: clist: Add support to interface with C linked lists
+
+ MAINTAINERS              |   8 +
+ rust/helpers/helpers.c   |   1 +
+ rust/helpers/list.c      |  17 ++
+ rust/kernel/ffi/clist.rs | 338 +++++++++++++++++++++++++++++++++++++++
+ rust/kernel/ffi/mod.rs   |   9 ++
+ rust/kernel/lib.rs       |   4 +-
+ 6 files changed, 375 insertions(+), 2 deletions(-)
+ create mode 100644 rust/helpers/list.c
+ create mode 100644 rust/kernel/ffi/clist.rs
+ create mode 100644 rust/kernel/ffi/mod.rs
 
 
-Matt
-
-> 
->   
-> 
-> 
-> Build changes
-> -------------
-> 
->   * Linux: xe-4607-189174b3312588d97dc467dca7cfb9dce42ab81b -> xe-pw-161606v5
-> 
->   IGT_8768: 8768
->   xe-4607-189174b3312588d97dc467dca7cfb9dce42ab81b: 189174b3312588d97dc467dca7cfb9dce42ab81b
->   xe-pw-161606v5: 161606v5
-> 
-> == Logs ==
-> 
-> For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161606v5/index.html
-
+base-commit: 2961f841b025fb234860bac26dfb7fa7cb0fb122
 -- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+2.34.1
+
