@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D601FF4BB9A
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Feb 2026 22:54:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B1C6F55421
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Feb 2026 22:54:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A04610E654;
-	Tue, 24 Feb 2026 22:54:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70E4E10E6BB;
+	Tue, 24 Feb 2026 22:54:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="NhyiBT3a";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="MIoHxg2h";
 	dkim-atps=neutral
 Received: from DM5PR21CU001.outbound.protection.outlook.com
- (mail-centralusazon11011004.outbound.protection.outlook.com [52.101.62.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71CAC10E6B5;
- Tue, 24 Feb 2026 22:54:07 +0000 (UTC)
+ (mail-centralusazon11011038.outbound.protection.outlook.com [52.101.62.38])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4289D10E68F;
+ Tue, 24 Feb 2026 22:54:09 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ls22ViGBvsK653UdTcOiz2NXyOqao8h93IDLzeACNP3al7yN14xl5ogmGq7HrqfhJddD3o7X6FMwqN2Caq1Pnn7YFRRKV1/wnr6SboCgWPkQNz5+BGcWLO/hBJGIyCFcjBdcIyuHZe/m+Q6ZVkBKTwovbnW7LhD/+GNYAAQ+I1ZhePZ/3ylZy9q2OrIHnBKYVVCJ/TJaGiTwAYdIq14+Z9q5MXJ676IvigOwr/fSN6fsbCFC2rOhTzqCbZSWa4zZPRTUX3uEE/D/ghe3cm6xPF8+pJIvEfVON8kEBDgHCaqt2UYdcaYHTyR6DaxrCa4+mkfETN58oTyyalT8qmP5uQ==
+ b=RAw2JPlY+GkINlThDXW4EtHQoi5P+IRAnrCOz4OTeyFo6NR1t5SRGQXcLl56WptcmwD8A2kBkOiugU4j2ud2OQQC2nF/c18TCAzq5sKJtn9eES2ifqbgW36oNvCsa9rbqakP36sVGGlbVPAjhaqgMtShychdkb0SExv8rRmvIEAnsSvC6cSUFT1s77rMf4ojR7B6zSDtyTAm3Gvzwe+cTsBaDK340BiLotZ6AuooC2m8BQWjW6lrANE/WvLBK0l4TW/oDVcO/8TGDMeGwVPQH/Qgy43F0lRkKOycyk/D14mbJn/Dp6Dr1Ro9CdtcDAmEUJejYk2CSkBKyfQ7uRI+Gg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HFw+WNHc8Av9B2RbCFxOS840z/XHizG8MRocBJ7NORo=;
- b=PmEfWy1dGImQKFutVq6RFBqe/SQORlqD34Ysu4CwU/QjkqTfyShhz3Fb2KV1V0PntjquW8esz9+J3X1nYIluGejyXejH62biZ0u2J496f+N1pHN5OXPaMU7nBSY3gUp9Eieh3h0Yv/XCSoS48Bd1MeQCox6qbH0jRqyfP2siy6986iFrPErqrGmcSH41K1k/xlyms4q7i6onKD8vFXGe2XVunmw3xpHSJ6PEuimRV3v8CNtNIfcy485ROJP4YLpXXZh28TNnH6QL8zzBdE9NrwhS/BoM6jfKV9jp4IaumMl2W3FpwTv9R5Z9RSbY0w40u0AZZO5kgIsRLu6sWqIUWg==
+ bh=KfK/pXk9gj7CZHYPuQ0xEvz+/6jE8AU0gSqiE0ShTwA=;
+ b=mEZdsC2a4XKD650RxfwQylG12iwMpOuiAZdxxR+GgM3DtKB8co4KvgtB7EiTQYBo5MPUl1gQHF5kEAOk6MnYl1YWFafxc7kVLY78244wtAYWZDQ4GyditcK+TBVbvdEStu90zMMGyWQYx0mQ0Y3otJAd0JL28CX5pxJrpjFyL3qosm47ot0JzAoht0LcFQ1s9qDTQTjNC06MOwCCROXn6iEI06j4qoQCkLUbaN1Mw05g6fETC1ZI/ClYR8PCb9lbTMzE3gWXQrMS9aeITUtTTIm3YMpBaNXOlpfmHtcK4ZG0onx9F/5g3UeAlYQbzTDa9gexTo6b/s427sfmBv47pg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HFw+WNHc8Av9B2RbCFxOS840z/XHizG8MRocBJ7NORo=;
- b=NhyiBT3anAU4S9Wm5HaRpLli9d15c6rRM+7U3Yv4pQg+F3/wrHHytuN9MLels1W7UcM1w4yRJW/Bpgk6s5a1nw9kabH9kjIKofmPJ6cSam1gOso46HnjmYqMQr10u8bRv8aKqrR3pU05/gZteGSfVyIQKaIiGz+IV1xpNCDS/Q/JSM6nBd2mT4ZuZcxG6wQ/5TAmYE+t5ZRf6JdbJeYkB8yiGMofMmwZ8wSWURfguvfiaDsEoj8N+tYBzNCzHrTBx8cjXf4m+DB8P3U+b8hNxZOOEpQB/Dgdh+s9kkqGRb4AYH9JcLaoz+Rf4RSsC9xH2U+Kz7FxGMlzuug4vKtV1A==
+ bh=KfK/pXk9gj7CZHYPuQ0xEvz+/6jE8AU0gSqiE0ShTwA=;
+ b=MIoHxg2h3+4tWXiRcLN1Ub8ZLsAUO6ZH5EK8rOzsXIJrjagDAOZ2/utRii3O7wR39BXps2Qe7g/CrsT2ZlEoBaRfdvnWbqdQtmjISGqRwHnvrnZCphbkQ6QiSvbKuhnZZLMo+8Jdkof8sXPMnjF9l7DgkT5WYjRYKxroPkEGUvNgzcRsXxSIIVzoxmAriFPlqvXT/4XMnz4sYZZpzAfDuhPHWokW5/YVTyjzZrj7J3CVJwvoJVGRs+RtaRcjLGiGeL8Sg0gqLSrQxvDtcCwwjCt6zKVHVQnWKCc2oYWYJiYAmlWW1JCACXaOtHgR4KXTSps2JLSuQU2Eour0DzFfoA==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
  SN7PR12MB6885.namprd12.prod.outlook.com (2603:10b6:806:263::8) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9632.21; Tue, 24 Feb 2026 22:53:56 +0000
+ 15.20.9632.21; Tue, 24 Feb 2026 22:54:03 +0000
 Received: from DS0PR12MB6486.namprd12.prod.outlook.com
  ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
  ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9632.017; Tue, 24 Feb 2026
- 22:53:56 +0000
+ 22:54:03 +0000
 From: Joel Fernandes <joelagnelf@nvidia.com>
 To: linux-kernel@vger.kernel.org
 Cc: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
@@ -80,95 +80,94 @@ Cc: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
  linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  linux-fbdev@vger.kernel.org, Joel Fernandes <joelagnelf@nvidia.com>
-Subject: [PATCH v8 15/25] gpu: nova-core: mm: Add unified page table entry
- wrapper enums
-Date: Tue, 24 Feb 2026 17:53:13 -0500
-Message-Id: <20260224225323.3312204-16-joelagnelf@nvidia.com>
+Subject: [PATCH v8 21/25] gpu: nova-core: gsp: Add BAR1 PDE base accessors
+Date: Tue, 24 Feb 2026 17:53:19 -0500
+Message-Id: <20260224225323.3312204-22-joelagnelf@nvidia.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260224225323.3312204-1-joelagnelf@nvidia.com>
 References: <20260224225323.3312204-1-joelagnelf@nvidia.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: MN2PR16CA0042.namprd16.prod.outlook.com
- (2603:10b6:208:234::11) To DS0PR12MB6486.namprd12.prod.outlook.com
+X-ClientProxiedBy: MN0PR04CA0026.namprd04.prod.outlook.com
+ (2603:10b6:208:52d::17) To DS0PR12MB6486.namprd12.prod.outlook.com
  (2603:10b6:8:c5::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|SN7PR12MB6885:EE_
-X-MS-Office365-Filtering-Correlation-Id: 263199bd-54a3-4dee-f0f4-08de73f796e0
+X-MS-Office365-Filtering-Correlation-Id: 14187b71-6664-4d1b-a920-08de73f79b6d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?yRkMkfcTK+C+XXSnqwAeS3gGIb/5X/UfswL9XHAmJ5psN4yEgoEDOAKcQQTp?=
- =?us-ascii?Q?HvMBTDOcCjPR6Xlr5jOQKhPlpc2IQMBK2maHbdUKNMrRZnFcHV58FadC3pF4?=
- =?us-ascii?Q?xoljgt6ebWiTurhgYcN/NGZAkO81hqP5S17TZkgWB1orZxnCZ4M1QTGuy/8o?=
- =?us-ascii?Q?DyR7XxaXF+udJgr8AuzLbpyFCzRUh4DPgmcNMrUo9xoHdY79dab9A2dCj/Dz?=
- =?us-ascii?Q?h01eioh08oYFwJadzLBzUmFfHGmxicWQIlD8I6kcoQ6OpRYPEAmQOCiGYIk5?=
- =?us-ascii?Q?QGs97gIz5L+z9xm9hXTrtug1ZSRXuQw5vlwwN60IqN5O6oNq17rXHWUAqkC4?=
- =?us-ascii?Q?8RcO+ifpWZNdElF3MSp4cDwTdpPOfs7m6wGJ7ZehpMtYLbIk9KeID2+9YjhU?=
- =?us-ascii?Q?v4ssvTZ5CpkR7uyYS+v0iK8eeBa/sKOCdorx2fTRpEtINg/bClni1Gxio88F?=
- =?us-ascii?Q?U2PkdjI1712TRO6/Fgx4njdSLB5OTRfM2ja3jxV3r/a84uwIuLKOkKYtjA49?=
- =?us-ascii?Q?/hAUFfD6j1C+5LnlIRcYHpzm0kuGU2HRvZKxw5SybDeFp/egGOsatc8OjG+0?=
- =?us-ascii?Q?oQ9UCFPzCAWqfg5KqUbTxkhBGlyEFbgwW7pkhZwM5xd2j9gMAAj7Y7ex/QJg?=
- =?us-ascii?Q?m04pqfhHyevrcks21prY5Grxk1okXQeguybuYP4V5g0YYZZdsy/F4z0FcDsm?=
- =?us-ascii?Q?Xa/cYqpTgUERP9l+Mv5SkW/EDqXHmOpRSnbCLmHxn3tdV0ETTgUqs9fUSUL4?=
- =?us-ascii?Q?ufveCRVE/xiUjSUcpaXAf08VnTZAf3IXUQaahPhvkTwC0kocOXjRxyQ6Jjce?=
- =?us-ascii?Q?laIiXwbi5JW755227WZUOjzxhLRp21iIh5TXQLTLiL3QTfs9IXGU/mgFD84z?=
- =?us-ascii?Q?6sO72tpaHKf6j+5XxiV1KULyKNCP6qb73eJyFQg03gVulBGOy89JVtAM8G5I?=
- =?us-ascii?Q?Unclv+bKdmWnL3Uc5FB2ZjvVjLrZbSnu8ufUPhHXA4trOyaX0GOukwdl5fjk?=
- =?us-ascii?Q?fzcJsO6f66tpuHNajOI/KRl8dozPnoKRGM3MhjyiFOsDZK3JmGKco3Ipeq5J?=
- =?us-ascii?Q?qTpO2mDF9sKjRkNiof004Tm21bDsIayA4oSjtBBMbspRdJi6AFICeDcTpwHJ?=
- =?us-ascii?Q?sz2A8EgZGxYu87nSyT61G53KkL9cWV9qkQkyvRLyv2uLlbdfn4KBYt3b8u+q?=
- =?us-ascii?Q?rvGjMRDfwxDsgHSs5TFCoKmmBVmAQoIiJ1ca6xojQSOOamgAWPbnO7pZr2bC?=
- =?us-ascii?Q?CQXg78AUJnUzrEE5x2XIsVmyfU9ilxxMt+u9p05ZWAyIL9l37Mxaka2z1Rkl?=
- =?us-ascii?Q?1OiNK+UqtZsSAR0cqJKSFfky3H8tKAbKMHVvIy5OdlVSrKm7YzWV0O/37GoZ?=
- =?us-ascii?Q?cp/4vi5pyrClmqtpPQ+DuupK8cGCtNWcUO7o0ASucbhTY9vZIn0prc6RmXsE?=
- =?us-ascii?Q?eCVyORHyjD0nYXnpn5yxfnc/Z0ajVG5hgH82vDkdu9qq3nzltYJkLQVHDEP3?=
- =?us-ascii?Q?3XI6I5TKHisNHSM6CjkACTr/z85ANbtJLJf87cyB4UeoibParlYDFXNMQuiv?=
- =?us-ascii?Q?vsQVsIPOtg3GC3/mcX8=3D?=
+X-Microsoft-Antispam-Message-Info: =?us-ascii?Q?QEx/dwMIwscfeA0HCQ/X3GLOPAaVCm5vtrCvKqWREWlzAhEO3WLhqRS+K6b9?=
+ =?us-ascii?Q?UZj7mINM2Po83YV5N1+P+6LNP5NonOc6ZxbfgviP6HS9geOQbA64ZQskXavl?=
+ =?us-ascii?Q?hvwFBXTgWWOxMaf7TQ2UB1jgjBhNe1fmJolmpPS5l/0wra7Bt+SPjaTqNMtT?=
+ =?us-ascii?Q?195+/2McWMJPo383T4iBoeLd3p/MIiKNxklZX1zf+yZbZzDYFa3c0VkI74xr?=
+ =?us-ascii?Q?aquMQ/p3TvLqrQBXaAaYNZB/qWnarICX10UsHtsYiQM0jEgo0yukDB+/ylCc?=
+ =?us-ascii?Q?U+U6xz5YH+9GuBpl14PKE/7DkMsjX3YnRPn1dDoRJMDXhpXcekEuMRyR/+Ug?=
+ =?us-ascii?Q?iZTEX6fA7kz/Z5uWDIoZzlEVcVdlUCVqs5KfBMmJ7wl6+wpBkf0ZMcnM89Fy?=
+ =?us-ascii?Q?MKUzT+HEdq816J3rIcseSR2sZAnHt960bECouxoGMNNkCHtiX/RqNPIjX4uI?=
+ =?us-ascii?Q?IvLeURg5A0++gy+t3vKovb9qKWUn/O9jts3QJWEh0ZSfmX/GfREyswq33UI0?=
+ =?us-ascii?Q?Hdlgx1K1bRB6e8rQf+aM0NzT7B2BO0qOKfqnM23Gcial+igVNxkBmQ5WVL0E?=
+ =?us-ascii?Q?jSe5FWi9zlJh9Qs7WACPomiOh+nV/6uCxl4Uh4RjcpCCp1a6COX5/WkYYcH3?=
+ =?us-ascii?Q?LJ7x65cqrKTD7OtKa6ER98sPziq+0/TxUMhu8WP+Lv+ztNo1yGfWFE4gL7VU?=
+ =?us-ascii?Q?k4PddGbnK6d0va80f9j/j5deNXvaEKKb4sEQrLGTahFuXS4RSZNDoDx+37/h?=
+ =?us-ascii?Q?acoMDSHH1y6pyhDwzLQ5EsBqjjcddp3Lm4NlUC2uK6EXpSqsRJw7P0seUW/u?=
+ =?us-ascii?Q?WuYADeOQLZsdMqYfFyKO4spZ2kX1D91xl2dRtfHN1VaycaU+qdmNDcR0lEbq?=
+ =?us-ascii?Q?0FGr4X0S5BDIG150ws1W+Puuv7K1CYisbvR86HbvaljnHkqAlq7SE8mSflLj?=
+ =?us-ascii?Q?koNcA5VLVLGl+xyfZcsKV0yR5Al1mLz27a0dO5BFrePUHinRdNkTPeaSW+Bt?=
+ =?us-ascii?Q?hWR5/R1lwHeDmVOT29yHEpaWjjp2hvDpLC4rdGlEU0B2oecQSMIfn5kgkI+a?=
+ =?us-ascii?Q?AuLn2S/ZM2tjXXNruXfgh+UZ4nUZSJVZlYqPqcGj8dRYFIXmDBjMjth9s4lu?=
+ =?us-ascii?Q?5V46hcRCNY/2oqq3lOW8RtjyS2RNRgGt2gcURxNYaLCWf45zViE/2DtCoHky?=
+ =?us-ascii?Q?DzSdjcsKjntIDVc8/g5/IJ9seG5xMtetHrz9RG1THRGUl/aQOqYRJU86M/zg?=
+ =?us-ascii?Q?p4bgkjBuv+/ZojTPJwEsE5dy7uDInPIpUux5igDeVEYePRE1CIZ//jVbXqJc?=
+ =?us-ascii?Q?PPvE0T2/X19mFFF4/jvVFDOgUe0CBaKi5NCb+OgNu0HgTbxcQAsgoMhh5jl8?=
+ =?us-ascii?Q?tgEeSCmSCWYHWPnAFm4Vv8O1PgClgA02vnS7k5zBZeINoLARFfUiGtx1LKAR?=
+ =?us-ascii?Q?6sG+hpUIyAw+Rz4nP5XacScpRt64MVUOJBWh3eXyGyS1B109mUT3nR9Eoox3?=
+ =?us-ascii?Q?hmg5Ftreg3DwrZpwNIODP73wlWqiUQhMyD5pzJRfkTy+ur2x1phs0PdeQCcG?=
+ =?us-ascii?Q?EhWvTZH/+h8Lc8FmdaQ=3D?=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(7416014)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?tvVCKEksd6Hjvn2prUB8IMhC+SpCvhhMO39o+cJVW+RjH5fLXx3VLqdj3v0x?=
- =?us-ascii?Q?FCbzfiVRe4WyrV2V+/fpX50Lq+nZt45LWBjHN94N8w+9wBywus3p/lWzb8kM?=
- =?us-ascii?Q?kfUQLBARHfO0ZulJrPgZ0VH95tMNTRy7SG/bUXHz8R5rx3k/Oqj0OGqbkyqN?=
- =?us-ascii?Q?Zt46Jl5Ziav42p3Ry+Fcj9NJcNqRhrguBdVEWcpPurb6Up2EYH0HciQG7Zfn?=
- =?us-ascii?Q?ffmpVK7AK7ToKblfmXYG3zXfcdh/DMYS5tCO3s6+ordO2RJe3rnKN3QCjjl3?=
- =?us-ascii?Q?F22xZP3UV7nVG8kx8NwW15Ww5BCYS7YLycQUDkIY18kbX4Bm5Ri/FohFdMLa?=
- =?us-ascii?Q?kjk32VDecHOgLXHafSzp3NgTuA+V1F18pNlSFWq96zlGf3EHkh/Zt93wVpqq?=
- =?us-ascii?Q?Pf0oHh5NI1ttBHkm3k+i2Oung2p7rMxKO5s0fMbXMzcV4/7MlEUN6fLFCmQe?=
- =?us-ascii?Q?5gHsNnctFszNX4VwopXSOIYf3yiEfGmpXI3ADAyyT9covKhCrXDA2Yg+dKfW?=
- =?us-ascii?Q?SGXG5H8Ya+gVKtX0OS6VNStXZKnG0YjhyTIDxgWwHxdUWHA07Mtr5GFWB4ED?=
- =?us-ascii?Q?ut9reQ5QyIUxY6BNBJzZ5JdC5apDXCXD27YlG57nPqPn17dRX4GeclweYcT1?=
- =?us-ascii?Q?kNnAgC6nRvX6hTHcrBIqT9QnbmIof948GBnCBXHTYDMj16fZPBLqfCIKFV4h?=
- =?us-ascii?Q?Um704CRiEYAC8jSSGGk1/xZaaqTTOc+2CC+Hm62vU3yaIErgy6H9DiIdElDE?=
- =?us-ascii?Q?XIZoapG9JABzF69eYX2cBL76JGvPWf60gvn9TvDxVhr3wAVZ/3C8P3JxeDdN?=
- =?us-ascii?Q?1DWXFLC+JezhkwcHO83DQcRJsUxNW1gASZsKd/x2sW+NP0EdBeFRNq0lsbip?=
- =?us-ascii?Q?xNkbKzuCNBsSgVsrRgY24BeBKopOgPuGeCR6oy2U2FLcTcOylSyNX0uUJUwE?=
- =?us-ascii?Q?EE0j3JnXYiRbExST/cb4dUY1rMv4q3e4L6bzl0MCo3aWeX3GQ7xdf7BkF8yV?=
- =?us-ascii?Q?Y03fu3znPqR0C4QPBNnvawTQB910L4+lc+9mK9fgtOXrntRZvgNbCNxHdzVZ?=
- =?us-ascii?Q?HNY8R+nNvUb0anLX6HAqFWCxxOTTNDLy4sJ18HgRrN0n6t6yJQxNNUVaTfaI?=
- =?us-ascii?Q?X2q5PQNOifiwTOzWR7WfR6Vxg65ssMTp6Vaecc+fINpYolqLdvPGClFt+1VN?=
- =?us-ascii?Q?veb5lYSbBwq71cvq6Ct7lESHY3WO65T3gxuu5azPLecsdkwT5vzurZSr7lhO?=
- =?us-ascii?Q?TMKnLgNVtqD7WRHTVaENEZ1UkqvvEOfrUO8hXPewNZ4c+9x2rQnkHAfgqBzH?=
- =?us-ascii?Q?TfYUnkPk/+2LQ7awGsSgvkgn2beaQHxYpSN74ZnmcUMN/6RFZdbJido8yzDw?=
- =?us-ascii?Q?dAgloyJchIcYKXUme71rc20fV++rmeZE2uzkp7PVvjnP553nnNVk5RkCSvzq?=
- =?us-ascii?Q?vsxAag+zONvCA0Ejcyw5qjwRSdWfER4xU8rNeGUKhFbtvmFpv6cS7cgpVt3G?=
- =?us-ascii?Q?AIdSAPDvIBLYowdNyrfACGjzP/mLhNKGOxrk/dFxpb9cMPKr/7jIyYGroBGU?=
- =?us-ascii?Q?qc8duH+ozstF6yoYcroMxFU32aHvr4lVuln6GBeSYpr2PftvEVLbXmk+1/Z7?=
- =?us-ascii?Q?FNQkZpUGYzLIcuEuH5xNIFOKvtibQen47lYty5Lv77c2JsW5RX1eEmY4kJcO?=
- =?us-ascii?Q?idD6LI2137iZhQm8MjWQZuMZLfPnZ24mvRjm2+J4KYRHRQUKdZjZtJtzvela?=
- =?us-ascii?Q?VwZM7etxaw=3D=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?DsEkvB+38epr1FCf1/1jvoV+A8w7LzQy2iaKzn6/BhnEkPKLJaiRGShr0xUD?=
+ =?us-ascii?Q?NLgIvouFuhO2PPgOV7kbo9GmOfFTZFemV2UVSBIohOhxGyyvm9empigdl1B7?=
+ =?us-ascii?Q?azcqZqrHaP2UGxxMeTdIrOIkjokgrbO6L0R48xgwINxF2KHL/aUcDXgn8zlb?=
+ =?us-ascii?Q?eZdNXumvw/nCTX5mNzCUMks5Wr97NInkdxIXIEQkE64KWAq4SLAcWFHKQLQM?=
+ =?us-ascii?Q?ppscY+ybl4EtFAnJjKsEp+nDIiVg0qy8GUloGN7J4OPU24RImVxr3AEmy+ZT?=
+ =?us-ascii?Q?oe5fzaPvdAMMId+k9SRwr3xGY51jylASy0DjACWdw1zB1/UO4WbOSDlUv2qK?=
+ =?us-ascii?Q?am2+EZnsojCjCbeSqhuMZxzm/iKqDUx0f53ou3f7qcJNyk58svoDq1PCXAyE?=
+ =?us-ascii?Q?xfJRfUKTg0kagZ0+4qQXsVmSAtwK3SrA/vKj8Vj0OGqjwY0or70AAm1USJ9r?=
+ =?us-ascii?Q?aRSGSLZVqBM0eRBMQKPKElphf/byX+V/UvJQRlulmf2yPOBXtJoQP+jk5Vx9?=
+ =?us-ascii?Q?wc8yWyhpkXcYzZVTvUcQfYmnfBeszORbIMXq6gKgUeGaxRIhOjG6Ll6uyIVN?=
+ =?us-ascii?Q?YLE40JhxYl+nxWEFBjBkgWCvCn9TpSOKtLj2c7jultjBUguiabEVftQ5d/cz?=
+ =?us-ascii?Q?zCKgk13vRT5jOAxzEnOTQBGjjx4GSWcwyuytwEsCLL0d0SOPFXuCYlau7SUm?=
+ =?us-ascii?Q?5VqkMxzXE95AlJ3o5RQ3VL3H1TzTeotIDn2Ek2DsCt9gFA6T1FwdOIMRzK82?=
+ =?us-ascii?Q?HT7T5M6ci9B4Uq5vLWThnWD2HjD+7zXM2xBb85Y9bw6xajHAsc8t0WGEJJjJ?=
+ =?us-ascii?Q?rBIUPfO3K7flFKHiUHfzIzKswtlktAtE/gcvVIC102jG6pH53EXXbkgLjUXc?=
+ =?us-ascii?Q?RY/ofUzfYaYLRWHxZfnl/pt4KdtHeaQyQz4I1lGAfOO2/wSLkTU1K1NvtTqh?=
+ =?us-ascii?Q?P2Xnf/Qf6YoMVzr0xG9HxF+8f9e8LgKnPZNgcDwmEj3zXeISLPIhvfiU+foh?=
+ =?us-ascii?Q?rHFA2uGL88ehOHaFb1ymplftXXDF4rf0IltKIP2a0ywFZDDRf3hPk3O2bjvw?=
+ =?us-ascii?Q?SAe0GB2Jgnc7hqP+o/GwpVA8EowNuZfb9vzPudzrOS17Gu3lyPFtSpMfNGjq?=
+ =?us-ascii?Q?y49V/OcUGuJCczgspq6wzrksKsC3PCSZoqvQ4IM7cSMzdiUu7IsQkB0dRdQo?=
+ =?us-ascii?Q?hoHI+eZ90XMkl166GZNlIpOfYGvSlDHSwL4eASwkmiTbvZD642psf3Uh8F6I?=
+ =?us-ascii?Q?tPcsqbuN33p6dJirEPgr14jct+CSRfz3vZtei4mA8AKt4xzK+hOobeIVtMk+?=
+ =?us-ascii?Q?a0KvE6OyyAzEv9cxPArE5DucwY2hdgCbDY8ptQkPWDK+tDvSVAnOLy9W4I77?=
+ =?us-ascii?Q?GsmbAJsp5kB32AuPO1gjEeb/nEBu0BKaTGNjZHuRQjh4ByZa4RmlltxNhoEX?=
+ =?us-ascii?Q?l4QDwgi++hHdISGzfz5cuqk1H4Om7k0xf83eZO3eSXC2KXx35AuYGzgHrGZQ?=
+ =?us-ascii?Q?AWCLFug8y53tvOvp3JWk7IBIN8LDGXjaXSEitwXkdT335iG588zwYoFrC7I4?=
+ =?us-ascii?Q?RgKcoRzvTPndvuluhps2czc4bnAzG1kKOh0IcUUg/cybP5LlLELTdAqaD+sW?=
+ =?us-ascii?Q?OGbaI87wg5NVmIsgNK6/4+H7+etwwcLOFMxn3ZLGVnqwlNLHpnI0ycuBGnJ8?=
+ =?us-ascii?Q?IP4ax/8TZB2cXUNeBzNZp8DqT6k+3DQrNXKV2oIG/9a7F4ucH40ToOpfbH5U?=
+ =?us-ascii?Q?2DRKOQ7Qlg=3D=3D?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 263199bd-54a3-4dee-f0f4-08de73f796e0
+X-MS-Exchange-CrossTenant-Network-Message-Id: 14187b71-6664-4d1b-a920-08de73f79b6d
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2026 22:53:56.0222 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2026 22:54:03.6113 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pHkPj7/WOQgQEorSRnfsHXCMW+TQwAH81Nl45LIJbk/d961VTlYK45S53SGhKeFgp95Lr0a8BqVy6VkRJamt3Q==
+X-MS-Exchange-CrossTenant-UserPrincipalName: apEPaet67p4PVsev5Di7GJeo5zjf2cCjrExVdPYJQ8/Ix616VoKzBRnZF1vSOe7y01IWWMshSAArLbZTNRK1kw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6885
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -184,348 +183,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add unified Pte, Pde, and DualPde wrapper enums that abstract over
-MMU v2 and v3 page table entry formats. These enums allow the page
-table walker and VMM to work with both MMU versions.
+Add accessor methods to GspStaticConfigInfo for retrieving the BAR1 Page
+Directory Entry base addresses from GSP-RM firmware.
 
-Each unified type:
-- Takes MmuVersion parameter in constructors
-- Wraps both ver2 and ver3 variants
-- Delegates method calls to the appropriate variant
-
-This enables version-agnostic page table operations while keeping
-version-specific implementation details encapsulated in the ver2
-and ver3 modules.
+These addresses point to the root page tables for BAR1 virtual memory spaces.
+The page tables are set up by GSP-RM during GPU initialization.
 
 Cc: Nikola Djukic <ndjukic@nvidia.com>
 Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
 ---
- drivers/gpu/nova-core/mm/pagetable.rs | 301 ++++++++++++++++++++++++++
- 1 file changed, 301 insertions(+)
+ drivers/gpu/nova-core/gsp/commands.rs    | 8 ++++++++
+ drivers/gpu/nova-core/gsp/fw/commands.rs | 8 ++++++++
+ 2 files changed, 16 insertions(+)
 
-diff --git a/drivers/gpu/nova-core/mm/pagetable.rs b/drivers/gpu/nova-core/mm/pagetable.rs
-index 5263a8f56529..33acb7053fbe 100644
---- a/drivers/gpu/nova-core/mm/pagetable.rs
-+++ b/drivers/gpu/nova-core/mm/pagetable.rs
-@@ -10,6 +10,14 @@
- pub(crate) mod ver2;
- pub(crate) mod ver3;
- 
-+use kernel::prelude::*;
-+
-+use super::{
-+    pramin,
-+    Pfn,
-+    VramAddress,
-+    PAGE_SIZE, //
-+};
- use crate::gpu::Architecture;
- 
- /// MMU version enumeration.
-@@ -77,6 +85,74 @@ pub(crate) const fn as_index(&self) -> u64 {
-     }
+diff --git a/drivers/gpu/nova-core/gsp/commands.rs b/drivers/gpu/nova-core/gsp/commands.rs
+index fc9ba08f9f8d..22bd61e2a67e 100644
+--- a/drivers/gpu/nova-core/gsp/commands.rs
++++ b/drivers/gpu/nova-core/gsp/commands.rs
+@@ -189,6 +189,7 @@ fn init(&self) -> impl Init<Self::Command, Self::InitError> {
+ /// The reply from the GSP to the [`GetGspStaticInfo`] command.
+ pub(crate) struct GetGspStaticInfoReply {
+     gpu_name: [u8; 64],
++    bar1_pde_base: u64,
+     /// First usable FB region `(base, size)` for memory allocation.
+     usable_fb_region: Option<(u64, u64)>,
  }
+@@ -204,6 +205,7 @@ fn read(
+     ) -> Result<Self, Self::InitError> {
+         Ok(GetGspStaticInfoReply {
+             gpu_name: msg.gpu_name_str(),
++            bar1_pde_base: msg.bar1_pde_base(),
+             usable_fb_region: msg.first_usable_fb_region(),
+         })
+     }
+@@ -232,6 +234,12 @@ pub(crate) fn gpu_name(&self) -> core::result::Result<&str, GpuNameError> {
+             .map_err(GpuNameError::InvalidUtf8)
+     }
  
-+impl MmuVersion {
-+    /// Get the `PDE` levels (excluding PTE level) for page table walking.
-+    pub(crate) fn pde_levels(&self) -> &'static [PageTableLevel] {
-+        match self {
-+            Self::V2 => ver2::PDE_LEVELS,
-+            Self::V3 => ver3::PDE_LEVELS,
-+        }
++    /// Returns the BAR1 Page Directory Entry base address.
++    #[expect(dead_code)]
++    pub(crate) fn bar1_pde_base(&self) -> u64 {
++        self.bar1_pde_base
 +    }
 +
-+    /// Get the PTE level for this MMU version.
-+    pub(crate) fn pte_level(&self) -> PageTableLevel {
-+        match self {
-+            Self::V2 => ver2::PTE_LEVEL,
-+            Self::V3 => ver3::PTE_LEVEL,
-+        }
-+    }
-+
-+    /// Get the dual PDE level (128-bit entries) for this MMU version.
-+    pub(crate) fn dual_pde_level(&self) -> PageTableLevel {
-+        match self {
-+            Self::V2 => ver2::DUAL_PDE_LEVEL,
-+            Self::V3 => ver3::DUAL_PDE_LEVEL,
-+        }
-+    }
-+
-+    /// Get the number of PDE levels for this MMU version.
-+    pub(crate) fn pde_level_count(&self) -> usize {
-+        self.pde_levels().len()
-+    }
-+
-+    /// Get the entry size in bytes for a given level.
-+    pub(crate) fn entry_size(&self, level: PageTableLevel) -> usize {
-+        if level == self.dual_pde_level() {
-+            16 // 128-bit dual PDE
-+        } else {
-+            8 // 64-bit PDE/PTE
-+        }
-+    }
-+
-+    /// Get the number of entries per page table page for a given level.
-+    pub(crate) fn entries_per_page(&self, level: PageTableLevel) -> usize {
-+        PAGE_SIZE / self.entry_size(level)
-+    }
-+
-+    /// Compute upper bound on page table pages needed for `num_virt_pages`.
+     /// Returns the usable FB region `(base, size)` for driver allocation which is
+     /// already retrieved from the GSP.
+     pub(crate) fn usable_fb_region(&self) -> Option<(u64, u64)> {
+diff --git a/drivers/gpu/nova-core/gsp/fw/commands.rs b/drivers/gpu/nova-core/gsp/fw/commands.rs
+index ff771a4aba4f..307f48670e6d 100644
+--- a/drivers/gpu/nova-core/gsp/fw/commands.rs
++++ b/drivers/gpu/nova-core/gsp/fw/commands.rs
+@@ -116,6 +116,14 @@ impl GspStaticConfigInfo {
+         self.0.gpuNameString
+     }
+ 
++    /// Returns the BAR1 Page Directory Entry base address.
 +    ///
-+    /// Walks from PTE level up through PDE levels, accumulating the tree.
-+    pub(crate) fn pt_pages_upper_bound(&self, num_virt_pages: usize) -> usize {
-+        let mut total = 0;
-+
-+        // PTE pages at the leaf level.
-+        let pte_epp = self.entries_per_page(self.pte_level());
-+        let mut pages_at_level = num_virt_pages.div_ceil(pte_epp);
-+        total += pages_at_level;
-+
-+        // Walk PDE levels bottom-up (reverse of pde_levels()).
-+        for &level in self.pde_levels().iter().rev() {
-+            let epp = self.entries_per_page(level);
-+            // How many pages at this level do we need to point to
-+            // the previous pages_at_level?
-+            pages_at_level = pages_at_level.div_ceil(epp);
-+            total += pages_at_level;
-+        }
-+
-+        total
-+    }
-+}
-+
- /// Memory aperture for Page Table Entries (`PTE`s).
- ///
- /// Determines which memory region the `PTE` points to.
-@@ -149,3 +225,228 @@ fn from(val: AperturePde) -> Self {
-         val as u8
-     }
- }
-+
-+/// Unified Page Table Entry wrapper for both MMU v2 and v3 `PTE`
-+/// types, allowing the walker to work with either format.
-+#[derive(Debug, Clone, Copy)]
-+pub(crate) enum Pte {
-+    /// MMU v2 `PTE` (Turing/Ampere/Ada).
-+    V2(ver2::Pte),
-+    /// MMU v3 `PTE` (Hopper+).
-+    V3(ver3::Pte),
-+}
-+
-+impl Pte {
-+    /// Create a `PTE` from a raw `u64` value for the given MMU version.
-+    pub(crate) fn new(version: MmuVersion, val: u64) -> Self {
-+        match version {
-+            MmuVersion::V2 => Self::V2(ver2::Pte::new(val)),
-+            MmuVersion::V3 => Self::V3(ver3::Pte::new(val)),
-+        }
++    /// This is the root page table address for BAR1 virtual memory,
++    /// set up by GSP-RM firmware.
++    pub(crate) fn bar1_pde_base(&self) -> u64 {
++        self.0.bar1PdeBase
 +    }
 +
-+    /// Create an invalid `PTE` for the given MMU version.
-+    pub(crate) fn invalid(version: MmuVersion) -> Self {
-+        match version {
-+            MmuVersion::V2 => Self::V2(ver2::Pte::invalid()),
-+            MmuVersion::V3 => Self::V3(ver3::Pte::invalid()),
-+        }
-+    }
-+
-+    /// Create a valid `PTE` for video memory.
-+    pub(crate) fn new_vram(version: MmuVersion, pfn: Pfn, writable: bool) -> Self {
-+        match version {
-+            MmuVersion::V2 => Self::V2(ver2::Pte::new_vram(pfn, writable)),
-+            MmuVersion::V3 => Self::V3(ver3::Pte::new_vram(pfn, writable)),
-+        }
-+    }
-+
-+    /// Check if this `PTE` is valid.
-+    pub(crate) fn is_valid(&self) -> bool {
-+        match self {
-+            Self::V2(p) => p.valid(),
-+            Self::V3(p) => p.valid(),
-+        }
-+    }
-+
-+    /// Get the physical frame number.
-+    pub(crate) fn frame_number(&self) -> Pfn {
-+        match self {
-+            Self::V2(p) => p.frame_number(),
-+            Self::V3(p) => p.frame_number(),
-+        }
-+    }
-+
-+    /// Get the raw `u64` value.
-+    pub(crate) fn raw_u64(&self) -> u64 {
-+        match self {
-+            Self::V2(p) => p.raw_u64(),
-+            Self::V3(p) => p.raw_u64(),
-+        }
-+    }
-+
-+    /// Read a `PTE` from VRAM.
-+    pub(crate) fn read(
-+        window: &mut pramin::PraminWindow<'_>,
-+        addr: VramAddress,
-+        mmu_version: MmuVersion,
-+    ) -> Result<Self> {
-+        let val = window.try_read64(addr.raw())?;
-+        Ok(Self::new(mmu_version, val))
-+    }
-+
-+    /// Write this `PTE` to VRAM.
-+    pub(crate) fn write(&self, window: &mut pramin::PraminWindow<'_>, addr: VramAddress) -> Result {
-+        window.try_write64(addr.raw(), self.raw_u64())
-+    }
-+}
-+
-+/// Unified Page Directory Entry wrapper for both MMU v2 and v3 `PDE`.
-+#[derive(Debug, Clone, Copy)]
-+pub(crate) enum Pde {
-+    /// MMU v2 `PDE` (Turing/Ampere/Ada).
-+    V2(ver2::Pde),
-+    /// MMU v3 `PDE` (Hopper+).
-+    V3(ver3::Pde),
-+}
-+
-+impl Pde {
-+    /// Create a `PDE` from a raw `u64` value for the given MMU version.
-+    pub(crate) fn new(version: MmuVersion, val: u64) -> Self {
-+        match version {
-+            MmuVersion::V2 => Self::V2(ver2::Pde::new(val)),
-+            MmuVersion::V3 => Self::V3(ver3::Pde::new(val)),
-+        }
-+    }
-+
-+    /// Create a valid `PDE` pointing to a page table in video memory.
-+    pub(crate) fn new_vram(version: MmuVersion, table_pfn: Pfn) -> Self {
-+        match version {
-+            MmuVersion::V2 => Self::V2(ver2::Pde::new_vram(table_pfn)),
-+            MmuVersion::V3 => Self::V3(ver3::Pde::new_vram(table_pfn)),
-+        }
-+    }
-+
-+    /// Create an invalid `PDE` for the given MMU version.
-+    pub(crate) fn invalid(version: MmuVersion) -> Self {
-+        match version {
-+            MmuVersion::V2 => Self::V2(ver2::Pde::invalid()),
-+            MmuVersion::V3 => Self::V3(ver3::Pde::invalid()),
-+        }
-+    }
-+
-+    /// Check if this `PDE` is valid.
-+    pub(crate) fn is_valid(&self) -> bool {
-+        match self {
-+            Self::V2(p) => p.is_valid(),
-+            Self::V3(p) => p.is_valid(),
-+        }
-+    }
-+
-+    /// Get the VRAM address of the page table.
-+    pub(crate) fn table_vram_address(&self) -> VramAddress {
-+        match self {
-+            Self::V2(p) => p.table_vram_address(),
-+            Self::V3(p) => p.table_vram_address(),
-+        }
-+    }
-+
-+    /// Get the raw `u64` value.
-+    pub(crate) fn raw_u64(&self) -> u64 {
-+        match self {
-+            Self::V2(p) => p.raw_u64(),
-+            Self::V3(p) => p.raw_u64(),
-+        }
-+    }
-+
-+    /// Read a `PDE` from VRAM.
-+    pub(crate) fn read(
-+        window: &mut pramin::PraminWindow<'_>,
-+        addr: VramAddress,
-+        mmu_version: MmuVersion,
-+    ) -> Result<Self> {
-+        let val = window.try_read64(addr.raw())?;
-+        Ok(Self::new(mmu_version, val))
-+    }
-+
-+    /// Write this `PDE` to VRAM.
-+    pub(crate) fn write(&self, window: &mut pramin::PraminWindow<'_>, addr: VramAddress) -> Result {
-+        window.try_write64(addr.raw(), self.raw_u64())
-+    }
-+}
-+
-+/// Unified Dual Page Directory Entry wrapper for both MMU v2 and v3 [`DualPde`].
-+#[derive(Debug, Clone, Copy)]
-+pub(crate) enum DualPde {
-+    /// MMU v2 [`DualPde`] (Turing/Ampere/Ada).
-+    V2(ver2::DualPde),
-+    /// MMU v3 [`DualPde`] (Hopper+).
-+    V3(ver3::DualPde),
-+}
-+
-+impl DualPde {
-+    /// Create a [`DualPde`] from raw 128-bit value (two `u64`s) for the given MMU version.
-+    pub(crate) fn new(version: MmuVersion, big: u64, small: u64) -> Self {
-+        match version {
-+            MmuVersion::V2 => Self::V2(ver2::DualPde::new(big, small)),
-+            MmuVersion::V3 => Self::V3(ver3::DualPde::new(big, small)),
-+        }
-+    }
-+
-+    /// Create a [`DualPde`] with only the small page table pointer set.
-+    pub(crate) fn new_small(version: MmuVersion, table_pfn: Pfn) -> Self {
-+        match version {
-+            MmuVersion::V2 => Self::V2(ver2::DualPde::new_small(table_pfn)),
-+            MmuVersion::V3 => Self::V3(ver3::DualPde::new_small(table_pfn)),
-+        }
-+    }
-+
-+    /// Check if the small page table pointer is valid.
-+    pub(crate) fn has_small(&self) -> bool {
-+        match self {
-+            Self::V2(d) => d.has_small(),
-+            Self::V3(d) => d.has_small(),
-+        }
-+    }
-+
-+    /// Get the small page table VRAM address.
-+    pub(crate) fn small_vram_address(&self) -> VramAddress {
-+        match self {
-+            Self::V2(d) => d.small.table_vram_address(),
-+            Self::V3(d) => d.small.table_vram_address(),
-+        }
-+    }
-+
-+    /// Get the raw `u64` value of the big PDE.
-+    pub(crate) fn big_raw_u64(&self) -> u64 {
-+        match self {
-+            Self::V2(d) => d.big.raw_u64(),
-+            Self::V3(d) => d.big.raw_u64(),
-+        }
-+    }
-+
-+    /// Get the raw `u64` value of the small PDE.
-+    pub(crate) fn small_raw_u64(&self) -> u64 {
-+        match self {
-+            Self::V2(d) => d.small.raw_u64(),
-+            Self::V3(d) => d.small.raw_u64(),
-+        }
-+    }
-+
-+    /// Read a dual PDE (128-bit) from VRAM.
-+    pub(crate) fn read(
-+        window: &mut pramin::PraminWindow<'_>,
-+        addr: VramAddress,
-+        mmu_version: MmuVersion,
-+    ) -> Result<Self> {
-+        let lo = window.try_read64(addr.raw())?;
-+        let hi = window.try_read64(addr.raw() + 8)?;
-+        Ok(Self::new(mmu_version, lo, hi))
-+    }
-+
-+    /// Write this dual PDE (128-bit) to VRAM.
-+    pub(crate) fn write(&self, window: &mut pramin::PraminWindow<'_>, addr: VramAddress) -> Result {
-+        window.try_write64(addr.raw(), self.big_raw_u64())?;
-+        window.try_write64(addr.raw() + 8, self.small_raw_u64())
-+    }
-+}
+     /// Extract the first usable FB region from GSP firmware data.
+     ///
+     /// Returns the first region suitable for driver memory allocation as a `(base, size)` tuple.
 -- 
 2.34.1
 
