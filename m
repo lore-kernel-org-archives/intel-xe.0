@@ -4,53 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D72C6F3C9A8
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Feb 2026 16:27:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA9E3F3C9BC
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Feb 2026 16:35:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F88D10E5DC;
-	Tue, 24 Feb 2026 16:27:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 881BC10E5F2;
+	Tue, 24 Feb 2026 16:35:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="cfiQt0He";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="66Bbl3q0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gRu4+aRL";
 	dkim-atps=neutral
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C9D010E5CF;
- Tue, 24 Feb 2026 16:27:42 +0000 (UTC)
-Date: Tue, 24 Feb 2026 17:27:03 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1771950424;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=An2SQY23Mr6grh1u+6lgyPcn0Zz3R+IhJ6v+DJueH1Q=;
- b=cfiQt0He8yYtaUTvGLsnMwDTKjcxz2M15npsQrismFviaM2Zr2aGwgYfS2x3dugsgtvNzw
- 85zy0TZTbM5wsuy6+mwyPn8EIxpHRQkJtifJR4lqdu6htkTOpuFkmE6gmO8PqiC4jiXAdl
- K1vt8D+0Dri9FetxquT+xkOLXYqqvh+Gnqh4Ptt5kWONxCLoFbSHDRYJbvFZdoI83F9Ea3
- lvrqJmKHOdqttkEQk0rgLVgU0K3GazpxePyLYVKzJ6sDv7OVRgBIJsJjYs3H25ORmI6mz8
- hL+U1pU0dXpzaX0aHhajkSFTdCiPwNHTIZzVsWaPq2cXpZ0+TYDYPbJMYRwAWQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1771950424;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=An2SQY23Mr6grh1u+6lgyPcn0Zz3R+IhJ6v+DJueH1Q=;
- b=66Bbl3q008upA/iOrHg032B+K6rOfOyFXHc0FRThzHwlVEik9P3aWvxJCzirbZ67pCTLox
- w3hzNXhtyJ/t/+Aw==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Maarten Lankhorst <dev@lankhorst.se>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-rt-devel@lists.linux.dev, dri-devel@lists.freedesktop.org
-Subject: Re: [i915-rt v6 00/24] drm/i915/display: All patches to make
- PREEMPT_RT work on i915 + xe.
-Message-ID: <20260224162703.Q_taYjEC@linutronix.de>
-References: <20260220083657.28815-26-dev@lankhorst.se>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16C0910E5ED
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Feb 2026 16:35:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1771950959; x=1803486959;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=QIdzlmeRuW02yxleV9RXkd4SZV/3Vp/4Ei7AIjsUXLo=;
+ b=gRu4+aRLiuO4BgMLywNuLNZPbduM8rnEhRbHir2EbEoQ4u0NkjVSyYS1
+ oLli3zi+5z5BFZ+IgoYc556dt26belHJuavW6+WP8wfwd0y7wTn2Ls5Ck
+ Fcgq/EPtf5261nNvGMzi2k89i1ENB1sx+jYVTACH4v9GgBLu6/l8w1VFp
+ N0oZwDggyb89MKfqPQm+y66dgW68KPPKMEuHFDTltX9MKZiewdd+qGg+u
+ +BUJvjvjgSTD8Qd6ZnJ8HUGrc6ras9FLCYgDlKv8pVoHm+84X29iseouI
+ 8MAhHjQPngJKkPs8mQn4i74ADcebMokQ1Of9dI22e4/6flp8GO0LhjIeG g==;
+X-CSE-ConnectionGUID: yKoIWcN8Qq6PNwOepBafSg==
+X-CSE-MsgGUID: KwNV1htqTNGajY8HNaLbtw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="73040139"
+X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="73040139"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2026 08:35:58 -0800
+X-CSE-ConnectionGUID: D9tES4ESQF+bKfsYQROrqg==
+X-CSE-MsgGUID: z/V3sXsKTrWHrT/UAXTMGw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="220555619"
+Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.39.24])
+ by fmviesa005.fm.intel.com with ESMTP; 24 Feb 2026 08:35:58 -0800
+From: Zhanjun Dong <zhanjun.dong@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org,
+ Zhanjun Dong <zhanjun.dong@intel.com>,
+ Stuart Summers <stuart.summers@intel.com>
+Subject: [PATCH v8 1/7] drm/xe: Always kill exec queues in
+ xe_guc_submit_pause_abort
+Date: Tue, 24 Feb 2026 11:35:49 -0500
+Message-Id: <20260224163555.218750-2-zhanjun.dong@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260224163555.218750-1-zhanjun.dong@intel.com>
+References: <20260224163555.218750-1-zhanjun.dong@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20260220083657.28815-26-dev@lankhorst.se>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,116 +68,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2026-02-20 09:36:58 [+0100], Maarten Lankhorst wrote:
-> New version, new approach!
->=20
-> A lot of the problems with PREEMPT_RT happen because of the current vblank
-> handling. The real solution is making it more deterministic.
->=20
-=E2=80=A6
+From: Matthew Brost <matthew.brost@intel.com>
 
-I applied this on top of drm-tip because nothing else I had around
-applied cleanly. I had to tell the selftests to use
-dma_fence_lock_irqsave() instead of spin_lock_irq() but I guess you are
-aware of it.
-I've been using it a bit and haven't noticed any big spikes while doing
-this and that. The help message for CONFIG_DRM_I915_SELFTEST refers to
-i915.selftest but this seems to have been replaced by
-{mock|live|perf}_selftests. Using mock_selftest I get
+xe_guc_submit_pause_abort is intended to be called after something
+disastrous occurs (e.g., VF migration fails, device wedging, or driver
+unload) and should immediately trigger the teardown of remaining
+submission state. With that, kill any remaining queues in this function.
 
-| i915: Running i915_sw_fence_mock_selftests/test_timer
-| BUG: sleeping function called from invalid context at kernel/locking/spin=
-lock_rt.c:48
-| in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 4667, name: modpro=
-be
-| preempt_count: 1, expected: 0
-| RCU nest depth: 0, expected: 0
-| 1 lock held by modprobe/4667:
-|  #0: ffffd06703d0ba58 (&tf->fence/1){+.+.}-{2:2}, at: __i915_sw_fence_wak=
-e_up_all+0x122/0x1d0 [i915]
-| Preemption disabled at:
-| [<ffffffffc1a1990e>] test_timer+0x2e/0x230 [i915]
-^
-| CPU: 2 UID: 0 PID: 4667 Comm: modprobe Tainted: G     U              7.0.=
-0-rc1+ #1 PREEMPT_{RT,(lazy)}
-| Tainted: [U]=3DUSER
-| Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./Z68 Pro3-M, =
-BIOS P2.30 06/29/2012
-| Call Trace:
-|  <TASK>
-|  dump_stack_lvl+0x68/0x90
-|  __might_resched.cold+0xf0/0x12b
-|  rt_spin_lock_nested+0x5d/0x200
-|  __i915_sw_fence_wake_up_all+0x122/0x1d0 [i915]
-|  i915_sw_fence_complete+0x3e/0x60 [i915]
-|  test_timer+0x42/0x230 [i915]
-^ has a preempt_disable()
+Fixes: 7c4b7e34c83b ("drm/xe/vf: Abort VF post migration recovery on failure")
+Cc: stable@vger.kernel.org
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Stuart Summers <stuart.summers@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_submit.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-|  __i915_subtests.cold+0x22/0x71 [i915]
-|  __run_selftests.cold+0x89/0xb8 [i915]
-|  i915_mock_selftests+0x30/0x70 [i915]
-|  i915_init+0x22/0x80 [i915]
-|
-| i915: Running i915_sw_fence_mock_selftests/test_dma_fence
-| Asynchronous wait on fence mock:mock:0 timed out (hint:fence_notify [i915=
-])
-| BUG: sleeping function called from invalid context at kernel/locking/spin=
-lock_rt.c:48
-| in_atomic(): 0, irqs_disabled(): 1, non_block: 0, pid: 86, name: ktimers/7
-| preempt_count: 0, expected: 0
-| RCU nest depth: 2, expected: 2
-| 6 locks held by ktimers/7/86:
-|  #0: ffffffff8f881700 (local_bh){.+.+}-{1:2}, at: __local_bh_disable_ip+0=
-x23/0x230
-|  #1: ffffffff8f909440 (rcu_read_lock){....}-{1:2}, at: __local_bh_disable=
-_ip+0x124/0x230
-|  #2: ffff8acf9751fce0 (&base->expiry_lock){+...}-{2:2}, at: timer_expire_=
-remote+0x37/0x60
-|  #3: ffffffff8f909440 (rcu_read_lock){....}-{1:2}, at: rt_spin_lock+0xf6/=
-0x200
-|  #4: ffffd0670031fc58 ((&timer->timer)){....}-{0:0}, at: call_timer_fn+0x=
-7e/0x280
-|  #5: ffff8acf857eb7d8 (fence/1){+.+.}-{2:2}, at: __i915_sw_fence_wake_up_=
-all+0x122/0x1d0 [i915]
-| irq event stamp: 729273
-| hardirqs last  enabled at (729272): [<ffffffff8f0df4dc>] _raw_spin_unlock=
-_irqrestore+0x4c/0x70
-| hardirqs last disabled at (729273): [<ffffffff8f0df162>] _raw_spin_lock_i=
-rq+0x52/0x60
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index de716c1fb18e..42712acf2ec2 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2763,8 +2763,7 @@ void xe_guc_submit_pause_abort(struct xe_guc *guc)
+ 			continue;
+ 
+ 		xe_sched_submission_start(sched);
+-		if (exec_queue_killed_or_banned_or_wedged(q))
+-			xe_guc_exec_queue_trigger_cleanup(q);
++		guc_exec_queue_kill(q);
+ 	}
+ 	mutex_unlock(&guc->submission_state.lock);
+ }
+-- 
+2.34.1
 
-I guess this could be improved=E2=80=A6
-
-| softirqs last  enabled at (729252): [<ffffffff8e50da42>] run_ktimerd+0x72=
-/0xb0
-| softirqs last disabled at (729256): [<ffffffff8e50d9db>] run_ktimerd+0xb/=
-0xb0
-| CPU: 7 UID: 0 PID: 86 Comm: ktimers/7 Tainted: G     U  W           7.0.0=
--rc1+ #1 PREEMPT_{RT,(lazy)}
-| Tainted: [U]=3DUSER, [W]=3DWARN
-| Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./Z68 Pro3-M, =
-BIOS P2.30 06/29/2012
-| Call Trace:
-|  <TASK>
-|  dump_stack_lvl+0x68/0x90
-|  __might_resched.cold+0xf0/0x12b
-|  rt_spin_lock_nested+0x5d/0x200
-|  __i915_sw_fence_wake_up_all+0x122/0x1d0 [i915]
-|  i915_sw_fence_complete+0x3e/0x60 [i915]
-|  call_timer_fn+0xaa/0x280
-|  __run_timers+0x1e8/0x340
-|  timer_expire_remote+0x47/0x60
-|  tmigr_handle_remote+0x381/0x500
-|  handle_softirqs.isra.0+0xc0/0x3f0
-|  run_ktimerd+0x50/0xb0
-|  smpboot_thread_fn+0x12d/0x2e0
-| i915: Running scatterlist
-| i915: Running scatterlist_mock_selftests/igt_sg_alloc
-| sg_alloc_table timed out
-| i915: Running scatterlist_mock_selftests/igt_sg_trim
-| i915_sg_trim timed out
-=E2=80=A6
-
-There is nothing else, that popped up. So far no objections from my side
-;) Thank you.
-
-Sebastian
