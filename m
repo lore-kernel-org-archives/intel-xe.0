@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED0C2EFB810
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Feb 2026 08:39:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09DE2EFB810
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Feb 2026 08:39:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9545310E503;
-	Tue, 24 Feb 2026 08:39:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7F5B10E50D;
+	Tue, 24 Feb 2026 08:39:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UAxXwo4j";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XmWnc2cy";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB4C810E315;
- Tue, 24 Feb 2026 08:39:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70A6B10E504;
+ Tue, 24 Feb 2026 08:39:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771922383; x=1803458383;
+ t=1771922393; x=1803458393;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=f+fbDZJkTJG76OeEhxBE72HwpuoS13FQ84M4mISounw=;
- b=UAxXwo4j9Q5QrKLA74sOAwVBYDxX5NPXRV/4yfScxfgRUjv7hBoHhIic
- dJ5vriTbuH8HDWSMTLsrBmqaANKl4anbUL2UfYmCOCFe4VSdY+ZjqWO6t
- MSg5kKKTUB2IklEdwYglSAE0U1eIAE7NQosyoepbnXspbr+mY5ogCKxyI
- PnOoTFD05ym2tadHacBgnrMrLierOE+N2j2brtqdLTtYi1B+VyVeXNbOU
- 4RlFrymZnYSmvjsTJs2EMuoKbG7jiRyYOe4PjHW2h4TdkraNvy/EktrCv
- xP9mTSaSIJ4JaPdufTG/CV5oHseJiQqIW/++FSRQYo/KH1M5u+OmgmUSH Q==;
-X-CSE-ConnectionGUID: POf7HgJbQX6jeCfaC66kMg==
-X-CSE-MsgGUID: aRewR/fzQW6DshfayySJiQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="72807571"
-X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="72807571"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2026 00:39:43 -0800
-X-CSE-ConnectionGUID: 6a8vVDFPQeKZqy5Q6SdUVQ==
-X-CSE-MsgGUID: znkk8sdqTh28yYi72+beOw==
+ bh=M1EfgSvb1bQqWg3xZKIqJqK3buXxyFujIFlziayWl/A=;
+ b=XmWnc2cyhrnOIIQwtF7ZIGWw1wfzayNZ6VCf8hOnqy5O2YqcTv0lStDS
+ Q8b/F9u5MTGEgfJIQkrTSnAYlsEHD2s1Wq1r0mYZvXMFf5Dx96EB4EuPd
+ L302uCPipVJCnuM6r+4OrmMsRiA45eQIVuHmUdOArhQug7jsG7XC8x2d1
+ B9tn322TtDwBmZ5Qg6+8/lrOwnEWUdryR8aniMPiYzmfHR0PSY9q7rSLs
+ 3xOuqfpg1DLCVkYdq5pjwooY9p6gtef86bMZKnNA5qgUWvCQclhd0CFfX
+ LRtVXMjSF0nYPc/9WN5KBMKWk1sPxM47toYIvAAgzp16Q7ybSZnY8y9Mv g==;
+X-CSE-ConnectionGUID: zEWzhn+YTg2MueM9ZMgxMg==
+X-CSE-MsgGUID: 9OijkUCTRr+NwjV1LRZJmA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="72995855"
+X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="72995855"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2026 00:39:53 -0800
+X-CSE-ConnectionGUID: natRpWH1TneeGzw4e+vDPw==
+X-CSE-MsgGUID: SqqPs6m4T7Obv48/1wzGLA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="215689712"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by orviesa009.jf.intel.com with ESMTP; 24 Feb 2026 00:39:41 -0800
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Animesh Manna <animesh.manna@intel.com>,
- Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [RESEND_V3] drm/i915/display: Panel Replay BW optimization for DP2.0
- tunneling
-Date: Tue, 24 Feb 2026 13:40:09 +0530
-Message-Id: <20260224081009.3120480-1-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
+X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="214928028"
+Received: from bilal-nuc7i7bnh.iind.intel.com ([10.190.239.45])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2026 00:39:52 -0800
+From: Mohammed Bilal <mohammed.bilal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: suraj.kandpal@intel.com,
+	Mohammed Bilal <mohammed.bilal@intel.com>
+Subject: [PATCH v1] drm/i915/debugfs: Add i915_extended_wakeup_timeout debugfs
+ entry
+Date: Tue, 24 Feb 2026 14:07:34 +0530
+Message-ID: <20260224083734.2947885-1-mohammed.bilal@intel.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,98 +67,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Unused bandwidth can be used by external display agents for Panel Replay
-enabled DP panel during idleness with link on. Enable source to replace
-dummy data from the display with data from another agent by programming
-TRANS_DP2_CTL [Panel Replay Tunneling Enable].
+Add debugfs interface to expose extended wakeup timeout information for
+DP connectors. This shows whether a retimer is present, the
+current mode (transparent vs non-transparent), and the wakeup timeout
+value in milliseconds.
+This helps verify whether the extended wakeup timeout is functioning
+as expected.
 
-v2:
-- Enable pr bw optimization along with panel replay enable. [Jani]
-
-v3:
-- Write TRANS_DP2_CTL once for both bw optimization and panel replay
-enable. [Jani]
-
-Bspec: 68920
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+Signed-off-by: Mohammed Bilal <mohammed.bilal@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_regs.h |  1 +
- drivers/gpu/drm/i915/display/intel_psr.c      | 26 +++++++++++++++++--
- 2 files changed, 25 insertions(+), 2 deletions(-)
+ .../drm/i915/display/intel_display_debugfs.c  | 78 +++++++++++++++++++
+ 1 file changed, 78 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 49e2a9e3ee0e..71411b26e918 100644
---- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -2265,6 +2265,7 @@
- #define TRANS_DP2_CTL(trans)			_MMIO_TRANS(trans, _TRANS_DP2_CTL_A, _TRANS_DP2_CTL_B)
- #define  TRANS_DP2_128B132B_CHANNEL_CODING	REG_BIT(31)
- #define  TRANS_DP2_PANEL_REPLAY_ENABLE		REG_BIT(30)
-+#define  TRANS_DP2_PR_TUNNELING_ENABLE		REG_BIT(26)
- #define  TRANS_DP2_DEBUG_ENABLE			REG_BIT(23)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index 2614c4863c87..292ee71643da 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -1310,6 +1310,78 @@ static const struct file_operations i915_joiner_fops = {
+ 	.write = i915_joiner_write
+ };
  
- #define _TRANS_DP2_VFREQHIGH_A			0x600a4
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 5bea2eda744b..ca2415eddcaf 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -43,6 +43,7 @@
- #include "intel_dmc.h"
- #include "intel_dp.h"
- #include "intel_dp_aux.h"
-+#include "intel_dp_tunnel.h"
- #include "intel_dsb.h"
- #include "intel_frontbuffer.h"
- #include "intel_hdmi.h"
-@@ -1022,11 +1023,30 @@ static u8 frames_before_su_entry(struct intel_dp *intel_dp)
- 	return frames_before_su_entry;
- }
- 
-+static bool intel_psr_allow_pr_bw_optimization(struct intel_dp *intel_dp)
++static int i915_extended_wakeup_timeout_show(struct seq_file *m, void *data)
 +{
-+	struct intel_display *display = to_intel_display(intel_dp);
++	struct intel_connector *connector = m->private;
++	struct intel_display *display = to_intel_display(connector);
++	struct intel_encoder *encoder = intel_attached_encoder(connector);
++	struct intel_dp *intel_dp;
++	bool retimer_present = false;
++	bool transparent_mode = true;
++	int wakeup_timeout_ms = 1;
++	int lttpr_count;
 +	u8 val;
++	int ret;
 +
-+	if (DISPLAY_VER(display) < 35)
-+		return false;
++	if (!encoder)
++		return -ENODEV;
 +
-+	if (!intel_dp_tunnel_bw_alloc_is_enabled(intel_dp))
-+		return false;
++	ret = drm_modeset_lock_single_interruptible(&display->drm->mode_config.connection_mutex);
++	if (ret)
++		return ret;
++	if (connector->base.status != connector_status_connected) {
++		ret = -ENODEV;
++		goto out;
++	}
 +
-+	drm_dp_dpcd_readb(&intel_dp->aux, DP_TUNNELING_CAPABILITIES, &val);
-+	if (!(val & DP_PANEL_REPLAY_OPTIMIZATION_SUPPORT))
-+		return false;
++	intel_dp = enc_to_intel_dp(encoder);
++	lttpr_count = drm_dp_lttpr_count(intel_dp->lttpr_common_caps);
++	retimer_present = (lttpr_count > 0);
++	transparent_mode = intel_dp_lttpr_transparent_mode_enabled(intel_dp);
 +
-+	return true;
++	if (transparent_mode) {
++		ret = drm_dp_dpcd_read_data(&intel_dp->aux,
++					    DP_EXTENDED_DPRX_SLEEP_WAKE_TIMEOUT_REQUEST,
++					    &val, 1);
++		if (!ret) {
++			static const u8 timeout_mapping[] = {
++				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_1_MS] = 1,
++				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_20_MS] = 20,
++				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_40_MS] = 40,
++				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_60_MS] = 60,
++				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_80_MS] = 80,
++				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_100_MS] = 100,
++			};
++
++			if (val < ARRAY_SIZE(timeout_mapping) && timeout_mapping[val])
++				wakeup_timeout_ms = timeout_mapping[val];
++		}
++	} else {
++		ret = drm_dp_dpcd_read_data(&intel_dp->aux,
++					    DP_PHY_REPEATER_EXTENDED_WAIT_TIMEOUT,
++					    &val, 1);
++
++		if (!ret) {
++
++			int timeout_val = val & DP_EXTENDED_WAKE_TIMEOUT_REQUEST_MASK;
++
++			wakeup_timeout_ms = timeout_val ? (timeout_val * 10) : 1;
++		}
++	}
++
++	if (ret)
++		wakeup_timeout_ms = -1;
++
++	seq_printf(m, "retimer_present: %s\n", retimer_present ? "yes" : "no");
++	seq_printf(m, "mode: %s\n", transparent_mode ? "transparent" : "non-transparent");
++	seq_printf(m, "wakeup_timeout_ms: %d\n", wakeup_timeout_ms);
++
++out:
++	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
++	return ret;
 +}
++DEFINE_SHOW_ATTRIBUTE(i915_extended_wakeup_timeout);
 +
- static void dg2_activate_panel_replay(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_psr *psr = &intel_dp->psr;
- 	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
-+	u32 dp2_ctl_val = TRANS_DP2_PANEL_REPLAY_ENABLE;
+ /**
+  * intel_connector_debugfs_add - add i915 specific connector debugfs files
+  * @connector: pointer to a registered intel_connector
+@@ -1335,6 +1407,12 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
+ 	intel_dp_link_training_debugfs_add(connector);
+ 	intel_link_bw_connector_debugfs_add(connector);
  
- 	if (intel_dp_is_edp(intel_dp) && psr->sel_update_enabled) {
- 		u32 val = psr->su_region_et_enabled ?
-@@ -1039,12 +1059,14 @@ static void dg2_activate_panel_replay(struct intel_dp *intel_dp)
- 			       val);
- 	}
- 
-+	if (!intel_dp_is_edp(intel_dp) && intel_psr_allow_pr_bw_optimization(intel_dp))
-+		dp2_ctl_val |= TRANS_DP2_PR_TUNNELING_ENABLE;
++	if (DISPLAY_VER(display) >= 30 &&
++	    connector_type == DRM_MODE_CONNECTOR_DisplayPort && !connector->mst.dp) {
++		debugfs_create_file("i915_extended_wakeup_timeout", 0444, root,
++				    connector, &i915_extended_wakeup_timeout_fops);
++	}
 +
- 	intel_de_rmw(display,
- 		     PSR2_MAN_TRK_CTL(display, intel_dp->psr.transcoder),
- 		     0, ADLP_PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME);
- 
--	intel_de_rmw(display, TRANS_DP2_CTL(intel_dp->psr.transcoder), 0,
--		     TRANS_DP2_PANEL_REPLAY_ENABLE);
-+	intel_de_rmw(display, TRANS_DP2_CTL(intel_dp->psr.transcoder), 0, dp2_ctl_val);
- }
- 
- static void hsw_activate_psr2(struct intel_dp *intel_dp)
+ 	if (DISPLAY_VER(display) >= 11 &&
+ 	    ((connector_type == DRM_MODE_CONNECTOR_DisplayPort && !connector->mst.dp) ||
+ 	     connector_type == DRM_MODE_CONNECTOR_eDP)) {
 -- 
-2.29.0
+2.48.1
 
