@@ -4,90 +4,175 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31813F3C99B
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Feb 2026 15:31:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F3CEF3C99F
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Feb 2026 15:52:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5E6010E5AE;
-	Tue, 24 Feb 2026 15:31:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21CF210E5C7;
+	Tue, 24 Feb 2026 15:52:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=invisiblethingslab.com header.i=@invisiblethingslab.com header.b="oVE6/5Xw";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="t6nf7Rig";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NxrDZtBj";
 	dkim-atps=neutral
-Received: from fout-b4-smtp.messagingengine.com
- (fout-b4-smtp.messagingengine.com [202.12.124.147])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DFDA10E5AE
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Feb 2026 15:31:14 +0000 (UTC)
-Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
- by mailfout.stl.internal (Postfix) with ESMTP id DE7611D00115;
- Tue, 24 Feb 2026 10:31:13 -0500 (EST)
-Received: from phl-frontend-04 ([10.202.2.163])
- by phl-compute-04.internal (MEProxy); Tue, 24 Feb 2026 10:31:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- invisiblethingslab.com; h=cc:cc:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm3; t=1771947073;
- x=1772033473; bh=lKRkqd72j0u5hpzvO3/RwcP4EA2Ot8NNWLi4+dgfm6A=; b=
- oVE6/5Xwe5jNM8GPeWL6Kdoq7dqLzVIdBK8gxe1TG/Cak6kQfI/KsxhXIQ3k1hkC
- 7oYgRLq/qVIzoBKyKcPTRR7u/FEmTVyk1m1Kvv9M4NOL1zQKk+gXY2FxquWFtbkb
- 816fpnfPYltnTcnFOzavB8kdYpf0XjGhHGLBi3L59OYOtG+pzN0WVNx2BKxJydr2
- 4F4owH+ZJgf9oKEdSfpHLfrbslANMJFVY3AltWpiM7RPXzwU3nqpCNAR5me47Ivc
- Ozjyeh7I7q6lQ8Mrt356tSxIWYXaRwZwyhWb5TrfEiUWFdebreausDozLyVZEsro
- aRs1MH9/7PaSR+ztsYsIpw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:content-type:date:date
- :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:subject:subject:to
- :to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; t=
- 1771947073; x=1772033473; bh=lKRkqd72j0u5hpzvO3/RwcP4EA2Ot8NNWLi
- 4+dgfm6A=; b=t6nf7Righ/qRfsAMjNNlJGXsqFpzfZv+3Gtdc605yaclLYrzJyx
- Bduswn8ipx2XP2R6F0v/34T0QIBwXJ2BRpQ2Lr6cfDwAiL77a0uvg9DDDSPZSSlO
- d18XJyatU1GwejGtBhmv78Bt9+OxM8z8DYnowUDsl4AoY6JI7r9hl+9FTRh6xfC6
- PPvOwYGkTRoQ8F22tpBPNpyy6xo+g6gfTaBbQ8Ifh75nIo3yzelIZ8C01qx3krY5
- yzQAaqJw1Gwm+3mCjG5fRQsEQho1E04gQek9nBzgsmfyARrVcYO1tIm4r+57eqWf
- 4mDbyXQwnGpFqHhSxIH/OhjKm22sg7H8rTQ==
-X-ME-Sender: <xms:QcSdadl5eIIQyFKkMomFMhZ2tLRkYlSjRSrKpZoSUECrub2zJJAozw>
- <xme:QcSdaWrl8CXG5C0HysU0-8PGFkArd4evE-iuFGs4xrbrPbqlqOHsCExc6ANkwYUDg
- 0h83q6RgQjnc5vzKthcXzD8g0YlqNdvs0z57w0PSR5jPUn_VQ>
-X-ME-Received: <xmr:QcSdaeEfqKz0_zuDY8XtXvdPrg5CUr4SQioaGcVS6FRYV6iRNeRUvX7KFP4p3mf3oLF82OYgolKDHPBLJy__ZJ-VOC61z0xpYvU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddvgedtheefucetufdoteggodetrf
- dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
- rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
- gurhepfffhvfevuffkfhggtggujgesghdtreertddtjeenucfhrhhomhepofgrrhgvkhcu
- ofgrrhgtiiihkhhofihskhhiqdfikphrvggtkhhiuceomhgrrhhmrghrvghksehinhhvih
- hsihgslhgvthhhihhnghhslhgrsgdrtghomheqnecuggftrfgrthhtvghrnhepgfduleet
- feevhfefheeiteeliefhjefhleduveetteekveettddvgeeuteefjedunecuvehluhhsth
- gvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrrhhmrghrvghksehi
- nhhvihhsihgslhgvthhhihhnghhslhgrsgdrtghomhdpnhgspghrtghpthhtohepgedpmh
- houggvpehsmhhtphhouhhtpdhrtghpthhtohepuggvmhhiohgsvghnohhurhesghhmrghi
- lhdrtghomhdprhgtphhtthhopehrohhgvghrrdhprghusegtihhtrhhigidrtghomhdprh
- gtphhtthhopeigvghnqdguvghvvghlsehlihhsthhsrdigvghnphhrohhjvggtthdrohhr
- ghdprhgtphhtthhopehinhhtvghlqdigvgeslhhishhtshdrfhhrvggvuggvshhkthhoph
- drohhrgh
-X-ME-Proxy: <xmx:QcSdaawGPGD10mkm8wjsnc0O6am0DqaJ3w4DYx2i424Znjrjc6onjw>
- <xmx:QcSdabpyCL4UwwqjaMnxxDzA_4XYOnkA0lpHcrMKuTZQ4Fgm389nOQ>
- <xmx:QcSdacjbUKshq0O37aWG_yFxkXHduLVfOul0SDeGFidGP4FlPe4C0w>
- <xmx:QcSdaQjXVUa19R39aTFcNlhal6X3NwsnWGZ1cSaHD6EBsVKSpb7vEQ>
- <xmx:QcSdadWzjAt3Mi_yT-Bns2wXYky6v8b99gL8ZD2aonCZg04bxhunkgT->
-Feedback-ID: i1568416f:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
- 24 Feb 2026 10:31:12 -0500 (EST)
-Date: Tue, 24 Feb 2026 16:31:10 +0100
-From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?=
- <marmarek@invisiblethingslab.com>
-To: Demi Marie Obenour <demiobenour@gmail.com>
-Cc: Roger Pau =?utf-8?B?TW9ubsOp?= <roger.pau@citrix.com>,
- xen-devel <xen-devel@lists.xenproject.org>, intel-xe@lists.freedesktop.org
-Subject: Re: Graphical glitches (not refreshing?) with Linux's xe driver +
- Xen 4.19
-Message-ID: <aZ3EPnJD_KunoQh-@mail-itl>
-References: <aYtznP_tT6xNPwf-@mail-itl> <aY3ttvtxGCPTNgsj@Mac.lan>
- <aY58-gyarcVoBS2a@mail-itl>
- <a41a15ca-b26e-482a-9084-fc61645fb24e@gmail.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature"; boundary="Hjkw3E9BoIh06IIo"
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4752410E5C6;
+ Tue, 24 Feb 2026 15:52:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1771948342; x=1803484342;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=SbomczRmu+scLL7+gkINfWmEp/+4S7H+KBMKz+QXWPM=;
+ b=NxrDZtBjPrtoqFBFXz1Kys04Xc5yNAz4UL9DxDHgHclkpuPQwqdlWN6c
+ MExxwyxQKi6BqOK7r1j/Qn64NhzY7KSTDNFThkQZ9ymD0xeBZlXdSVRPV
+ wgjVCKTXDRzxCxQj1CznTDi7TEk113CZWwW/Yt5Vi/bbhBBoDEmsUgQbn
+ Rb3yLNJ5zqJERU0WT2g1woAWLQx++57r8IdWi0LIho5WcUS38jBV4t8u1
+ 4PkiJe8WK3gnj+WQBfBF9rxjKe0SoajBdHAClYEmvj61TSN1SfRY3BIcC
+ 0DnOiaSlgomutoL9K3hiTq5u5L5Ep5XIBou7S8f4O14His7o5aF/St6nB w==;
+X-CSE-ConnectionGUID: /AeZISFSTpKx73GyQ2mSlA==
+X-CSE-MsgGUID: cNw/QTPiRBicziCwQiDSFQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="60545471"
+X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="60545471"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2026 07:52:22 -0800
+X-CSE-ConnectionGUID: 6ZBNi3iCROuZGFfNRZMMag==
+X-CSE-MsgGUID: 8jIUp37bRrilbHp7XrnGjA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="220536940"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2026 07:52:21 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Tue, 24 Feb 2026 07:52:20 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35 via Frontend Transport; Tue, 24 Feb 2026 07:52:20 -0800
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.62) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.35; Tue, 24 Feb 2026 07:52:20 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IUWT4kbjp9x4nGGqVzvPbTee0mKq4CCXwfQMf3OoTJ+bL5agtQuwHVdHJWahgLf2yzFVOQD6GZz97Lz0d0WXArj+MFBGQlGGny5P0JlZLLRhZgXwdNTIjvVqxkI5qjg7rh5djbKsE2pHZB+avp+x+BAUlOWj/m2YwaBabDfHS1kx+uv1fmeGS2UvMJMHacC+3YXgDPU9+W+EI5NnpnGCBJcmpP3eBQqAEjH+SiHBdefqEB3PfFa6y6a28fo1/AQbCmK/uCg9H4ueg6Q5R4dMWAtIED8J23/6wE3mwr/s5krVrhZfakTMqFlW/MqZwqn+n+YLlqvy8H+nqQdXpg2xig==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=32GD9YskQ3tVRratDYFrgdZXvbt6E6HCagPW8Extkc4=;
+ b=Xc3BYtaCy690zRE7JeapVYSgZ7AUb8mKoEMQQRy+NBpztpL7ZZAWBFpEWq10Ebq8sq2PWCrjAq9xnFhQcsJWrMJzS6Hr3mcIbBC8Mrg88GFRTbZoyvH8I1dL/tjFIrq1VQEu+YBD94mkRoPYT+BNkl5qq1qnHQ8L1p/UuNqiyjRA7+hrA6ewg/xol188map2J2B+wbA3zoEG+hqFqUY1qIC60fV0jKASJ3+KiIlTxSl6npHVWH49KmFZ/AAWxn7Nr2ci4DsBu68qbopj5UHZ/DfFCP8EyzZ1IZhb2bpTJFEjT4TFzRoB7oW91aHZ/9Q7XsP0T1qJjc7E7FPmNU8ZRw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by PH8PR11MB9605.namprd11.prod.outlook.com (2603:10b6:510:3a0::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.22; Tue, 24 Feb
+ 2026 15:52:18 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c%6]) with mapi id 15.20.9632.017; Tue, 24 Feb 2026
+ 15:52:18 +0000
+Date: Tue, 24 Feb 2026 07:52:15 -0800
+From: Matthew Brost <matthew.brost@intel.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>, "Bart
+ Van Assche" <bvanassche@acm.org>, Maxime Ripard <mripard@kernel.org>,
+ "Thomas
+ Zimmermann" <tzimmermann@suse.de>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
+ <thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCH] drm/pagemap: Unlock cache->lock before freeing it
+Message-ID: <aZ3JL1u1HVogDPeo@lstrano-desk.jf.intel.com>
+References: <20260223222937.2008492-1-matthew.brost@intel.com>
+ <8001c470-ca46-4390-be3c-f078b5fce498@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <a41a15ca-b26e-482a-9084-fc61645fb24e@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <8001c470-ca46-4390-be3c-f078b5fce498@linux.intel.com>
+X-ClientProxiedBy: MW3PR06CA0007.namprd06.prod.outlook.com
+ (2603:10b6:303:2a::12) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH8PR11MB9605:EE_
+X-MS-Office365-Filtering-Correlation-Id: af54d6a7-6d94-482f-0720-08de73bcb06e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024|7053199007;
+X-Microsoft-Antispam-Message-Info: =?iso-8859-1?Q?8SozaacbFEo7HMw+KdMhOaYA77LalrEHskGUcB7w1aS4d07BasJFTNeo2o?=
+ =?iso-8859-1?Q?TzFmVFTK9OUReaZ3F4np/aJupIU0gUcWGSXDNea6EWMNFBHpXIEsBso6Qz?=
+ =?iso-8859-1?Q?EgCfYOLrLi7SLyBDxORo9DjUvLHzsq8qcsesJPFQ61mBds705+1zlRq42Q?=
+ =?iso-8859-1?Q?POzTE+m1BBPtm3xJMRm1F88vtSNm7wUS9HB3uddwGktf1cU0LyE9NVlpwl?=
+ =?iso-8859-1?Q?X1kyV+awwIBCPoIoqMHS8xwv6nsHYNZKBAFxcjq5GAB2BQJ5wptLsSKz7u?=
+ =?iso-8859-1?Q?YqeuuQ1v3QMdUNXDNFA3b5wwQGHJuPBHHUzk/JsYdnBg0AvxdgQktmmwTF?=
+ =?iso-8859-1?Q?yRwAr58KHjGIW+kMIXcuUEGpzOao4TxNEBGjxOV8/G7kAZP1Di4uuICGuh?=
+ =?iso-8859-1?Q?LXwUkunSyw77ASxmivZ4Yr2QSWbupbiprKTBmSH9/YRa94ssPFHhvW/DHj?=
+ =?iso-8859-1?Q?4vbaZp53g66I5SeCBYAgofPoG+cpy8k4kHbzZdb2He/LuEe/FQa0dx1dpa?=
+ =?iso-8859-1?Q?E/iIm2p8y2dyKWNKChkG87EMevG84SPklWkeQyO2zuDLQ4QA+9mv6dUBiF?=
+ =?iso-8859-1?Q?1JrTpJSGlBHHu2Jl8evEYUTUL6eSgNBhNUF/XVoT63OX2pVKcqirorxoIC?=
+ =?iso-8859-1?Q?Xkk+MsCR8U2P1LVmiFRAtcRTX4cIy8bH5Vo5oeLeOtUi49DV4g6BFqeucL?=
+ =?iso-8859-1?Q?JLQ2ao3cIa6wrrxOJHXXnbyrd3c6IhrHctZBCJ5QD3qHmNshMaXXYjoCxT?=
+ =?iso-8859-1?Q?5qIEogkDtja42LrkdAQ2I9lrMGjWtdQj/k7TVo/NThJcMyFJjtkLT6XBKR?=
+ =?iso-8859-1?Q?hm11JR5bb53Pd2+MvlTchpQ4aIjDRysgVby2UeihlhBj6cRtb7zhyWTw9i?=
+ =?iso-8859-1?Q?Jxw71LsFMYUSnSRiPfa13VqFZQ9BflVRtpVBMQMyxv7gmzw+7JtUX8DXk1?=
+ =?iso-8859-1?Q?lM352a91rfG6x3rROm39UpvqihJhblzyiz+D0MDjz9mOQ2H1+o0S+FjxEm?=
+ =?iso-8859-1?Q?rzzC1MWPHWHeP8XCpsIjPpxqqAVtsxKJ5kq5ZpNCntWx54wYz8tmOz7KGy?=
+ =?iso-8859-1?Q?dbkmut/YB106dNt+URmSUHUo+T5jZF8ynuP+eiLeAB0/kgL3hCbpiLKXsc?=
+ =?iso-8859-1?Q?pnr22oHQd27pu+vAEMLsyS9MKGzpSPtw9brTP0RSWoV1DRKkfsyfxkzN8D?=
+ =?iso-8859-1?Q?H/nDeyIG16iczXj/VfScZfIrpjJvj2IQBK03+XrXCnPlMnrMPEK8WOzUMk?=
+ =?iso-8859-1?Q?H+JBYOpjEGaEKFDIg1/x9TUVM+WEwlH9gMkXEUUwh/cTA0gNFqaL8Bxkhs?=
+ =?iso-8859-1?Q?E5nNHG54YLFfdpkgjh8ufBTxSS8FlE0Sr1dnhE4eH75Y69mraRjFXqp9/+?=
+ =?iso-8859-1?Q?026bA2SKkYeLVn8LMILPt5+g+2Q+6ki34T7u3il0Tb5bynUGfo3rFF6t15?=
+ =?iso-8859-1?Q?VaOn1VhLoUtDFEVfTiVwGsq39j98161cvOFy7n1HOq6XbHGICe9GfsUool?=
+ =?iso-8859-1?Q?gvQx3CDJ35jEI44j2K+bnvZUEXdwUJqb0hkDhf9zaZt4odOEX3GaUTANOV?=
+ =?iso-8859-1?Q?5mJ23jyG2erW1gnHN/f9l+EramUGEmx8vpVz7iflkE+yTBO9y3kdKovcVw?=
+ =?iso-8859-1?Q?3YegN4ofj5oJA=3D?=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?O7wvHBBhGkLsZ1LHygC/HHwU0T9NZ7D7ITAgvxVtZQttGzmENz7Lb1KLsh?=
+ =?iso-8859-1?Q?zBmPVypDrVRoFH5feutycGqagFflW7sVZMnZ58ucv8orIyt6ZN14MeDh7R?=
+ =?iso-8859-1?Q?SZMqZuYpoFDgh20xoG+js2dEIijrTcKzFZKvyhXVxGGyIHuyNKV70eGtAC?=
+ =?iso-8859-1?Q?ptXwA2t4eMzrem/wncxk79AeZU6PP2mTrrmo3gNsuGqoRwM7T7qHS/i9ON?=
+ =?iso-8859-1?Q?zxX4j4FKxNsA2IidXFQBPKU/QBpVKEt2MaU9ByaaW5II1NpM61ejnB3FeD?=
+ =?iso-8859-1?Q?WN2J5zhOhho1LIPrLprpZBfrtqxQ6gqF4LwPhoeLw4wa4hTQrk0YVqZLI5?=
+ =?iso-8859-1?Q?zhQp9+TPPBSPWlf+ps4IOCqIoahVsa+z/kaWVPAQUXwcAYJWXc9JU/yxv1?=
+ =?iso-8859-1?Q?rj4juCVWWq9XHKHMW4/r1uuJpZLQS/1BLxvrME+wdQaiksqui1SiZKCXdt?=
+ =?iso-8859-1?Q?cwBDUYl8xYs0Vo6frwRdCGNQ31yB4kqgEpkhuOLBQc9nGmjrix3/OIFDR9?=
+ =?iso-8859-1?Q?xEE0uZR7BZiCY0qIPaNSiDxKyyg87qejk+CY5DbFhlkYjm8/bdCYRx1Gvu?=
+ =?iso-8859-1?Q?QYDncer7gT8qn4ANMEWW1qCmbDNodBJzrTJuSA9gRtfHGEtTFefKYBMUuv?=
+ =?iso-8859-1?Q?T4Yvl5cOHZ5VsJc3kt+VfwKhpOt5NTlZ5HjsXT3eWi8jpNrHn6cJ4S9Jlf?=
+ =?iso-8859-1?Q?DPPXIMy+FpFfLBHa+rjDEsR8cvJincbzuV/8ZmPieprzXDX/VXHobQ1xoN?=
+ =?iso-8859-1?Q?CN26SVzCk7e1c/idiVd9H8rmz6/wUahLawW33ruzrs+Kig84xd9PiVqkcV?=
+ =?iso-8859-1?Q?7NWn2yNISgC9BrBdhrQhiCgMnZXq+y0/v0Qd4Wzaz8MLXLDCQQP/ZBQ5DT?=
+ =?iso-8859-1?Q?LnuQNnia2XDj+eY7hOfl2dmYj2CE+ToI1MbGkiTzqQUDw+CeIc84r5+26K?=
+ =?iso-8859-1?Q?Dav5m+SPjTsL0+HjAOYlkub2O8I76S+iNspQl07w5OkOL1XgdncG9biXCz?=
+ =?iso-8859-1?Q?CBwaNEqlpGCYy7bUCDA2lXI5A5PWxnZA7b4HixsdvUwfs2Np2PO00mEetB?=
+ =?iso-8859-1?Q?0Ai5uS+GenJqoUYkh/Ls4M+uwQzsc8wHcBzJsC2HH8JzXOuXcOOrtBOlnl?=
+ =?iso-8859-1?Q?cJrwtdv7+3n+u6ZJMsuH+P2+x4XkAlodRPeCMZcI0S2qL+QMWGiKUNZpLU?=
+ =?iso-8859-1?Q?KUXzsb4AtLV5lCPdDtgnehL6MejI0Ui169I3JwFx9Ko+HlLmVIoW+whgU4?=
+ =?iso-8859-1?Q?xwwznUgCDpWyjCklpie2kE8TQxSHQP+LPmw1Dmx4bFY7gT8eYuF6wfEQcB?=
+ =?iso-8859-1?Q?3XivkMX65SlirJJkcUgEBIxDJP4oRGf3gigQLAX9BiJie+2MAtcfPUNEgv?=
+ =?iso-8859-1?Q?aJFVCyy2pDWk447bHmzPt/aEHqOBi5C11vjk6/dZLc7Wtjy7W7ztBObXh/?=
+ =?iso-8859-1?Q?o+/KKoSso8QjSTS6NI4K2DXYhzUA7UBvBoWSerAZEbiA7xZ8YPzfZFnVun?=
+ =?iso-8859-1?Q?EHHHwts1zOFmoNJXMI7ks0lRGixKDhadNulnc4XAkAc1lOS1bV8Th0CAlv?=
+ =?iso-8859-1?Q?Hd33wRy2WO+enJWnqrVVNxzXLboyVVZ+IQp2oyjXg58kYDY9+7ruo4NHVz?=
+ =?iso-8859-1?Q?Y6uPN/L/IswxgQ4KWFYNceXd5Y2po5S/D4M6vI+8gmT34AfeIse/KrPKsb?=
+ =?iso-8859-1?Q?Y3XI9o9bDcdUBC58I7QhNdI3bSABa4kJ88RIcyyj4uFBeUsEyi+Z4jbpLp?=
+ =?iso-8859-1?Q?Sk6hLmoKz5wL896yXcEK7cRyStArb12OuLDLmfzli1b3jA8fyxwN4OliXx?=
+ =?iso-8859-1?Q?g13k7SxwVrO7qLlKyaI0gHlfMtbMXyE=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: af54d6a7-6d94-482f-0720-08de73bcb06e
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Feb 2026 15:52:18.5524 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pbbt9A2kgwXAxp6lyru+IX+FrQ6ebu6loKsyxFCbXhBFCQ2k0jlgJ2hmObcnePuJbV8wLRnUOuJNZ/6Bs7OC6w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB9605
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,80 +187,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Tue, Feb 24, 2026 at 02:39:17PM +0100, Maarten Lankhorst wrote:
+> Hey,
+> 
+> Den 2026-02-23 kl. 23:29, skrev Matthew Brost:
+> > From: Bart Van Assche <bvanassche@acm.org>
+> > 
+> > Although freeing a spinlock without unlocking it is fine, this confuses
+> > static analyzers. Hence this patch.
+> > 
+> > Fixes: 77f14f2f2d73 ("drm/pagemap: Add a drm_pagemap cache and shrinker")
+> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Cc: Maxime Ripard <mripard@kernel.org>
+> > Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> > Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> > Cc: Matthew Brost <matthew.brost@intel.com>
+> > Signed-off-by: Bart Van Assche <bvanassche@acm.org>
+> > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >  drivers/gpu/drm/drm_pagemap_util.c | 2 ++
+> >  1 file changed, 2 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/drm_pagemap_util.c b/drivers/gpu/drm/drm_pagemap_util.c
+> > index 14ddb948a32e..50cb5f9cdac5 100644
+> > --- a/drivers/gpu/drm/drm_pagemap_util.c
+> > +++ b/drivers/gpu/drm/drm_pagemap_util.c
+> > @@ -74,6 +74,8 @@ static void drm_pagemap_cache_fini(void *arg)
+> >  		cache->dpagemap = NULL;
+> >  		spin_unlock(&cache->lock);
+> >  		drm_pagemap_destroy(dpagemap, false);
+> > +	} else {
+> > +		spin_unlock(&cache->lock);
+> >  	}
+> >  
+> >  out:
+> 
+> What about this idea?
+> 
+> https://lore.kernel.org/all/791538fb-56e5-4ca5-9484-1180cc928a70@linux.intel.com/
 
---Hjkw3E9BoIh06IIo
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Date: Tue, 24 Feb 2026 16:31:10 +0100
-From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?= <marmarek@invisiblethingslab.com>
-To: Demi Marie Obenour <demiobenour@gmail.com>
-Cc: Roger Pau =?utf-8?B?TW9ubsOp?= <roger.pau@citrix.com>,
-	xen-devel <xen-devel@lists.xenproject.org>,
-	intel-xe@lists.freedesktop.org
-Subject: Re: Graphical glitches (not refreshing?) with Linux's xe driver +
- Xen 4.19
+Yes, that's better - I reposted this yesterday while a bit overloaded to
+make sure this didn't get lost. Let's use the a version posted in the
+above link.
 
-On Fri, Feb 13, 2026 at 12:31:47AM -0500, Demi Marie Obenour wrote:
-> On 2/12/26 20:23, Marek Marczykowski-G=C3=B3recki wrote:
-> > On Thu, Feb 12, 2026 at 04:11:50PM +0100, Roger Pau Monn=C3=A9 wrote:
-> >> On Tue, Feb 10, 2026 at 07:06:20PM +0100, Marek Marczykowski-G=C3=B3re=
-cki wrote:
-> >>> Hi,
-> >>>
-> >>> Recently I started testing compatibility with Intel Lunar Lake. This =
-is
-> >>> the first one that uses "xe" instead of "i915" Linux driver for iGPU.
-> >>> I test it with Qubes OS 4.3, which uses Xen 4.19.4 and PV dom0 running
-> >>> Linux 6.17.9 in this test.
-> >>
-> >> Not sure it's going to help a lot, but does using a PVH dom0 make any
-> >> difference?
-> >=20
-> > Ok, now with the correct Xen version, it's better with PVH dom0. At
-> > least on the login screen and few applications (from both dom0 and domU)
-> > I don't see the glitches anymore. I can't do a full test, because PCI
-> > passthrough doesn't seem to work with PVH dom0 on Xen 4.19 - and I need
-> > it to start most VMs.
-> >=20
-> > So, if the above test is representative, it's only about PV dom0.
->=20
-> This reminds me of a problem that I helped debug a while back,
-> and which also affected Qubes OS.  That one was due to some part
-> of Linux core MM clobbering the high bit of the PAT part of PTEs.
-> As a result, a PTE that should have referenced entry X in the PAT
-> wound up referencing entry (X & 3).
->=20
-> On native Linux, the bug was mostly harmless, which is why nobody
-> found it earlier.  However, on Xen PV, the different PAT caused memory
-> to be cached that should not be.  The resulting symptoms were very
-> similar to what Marek described, though a bit less dramatic.
->=20
-> Can you try removing the Qubes downstream patch that changes the PAT?
-
-I'd assume removing such patch would make things only worse (it either
-shouldn't matter, or if the driver assumes Linux version, changing it
-would actually break stuff).
-Anyway, removing the patch didn't change anything.
-
---=20
-Best Regards,
-Marek Marczykowski-G=C3=B3recki
-Invisible Things Lab
-
---Hjkw3E9BoIh06IIo
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEhrpukzGPukRmQqkK24/THMrX1ywFAmmdxD4ACgkQ24/THMrX
-1yzNKwf8D5XRQrqlh3kLHY4RnTkKDpzpidlSTt0P3ifmwdqFCR42vBkbdX7qE1+5
-l0f6EjapaDSAj/Yx3+4yUztyiXLW+zsu6ashquVN6CzTJU9Q0mrRKqC229TYgi6k
-SGyy0glmFlOfBYLklhF51jFO2r1NKp9ok736zecSYjg1KdwNHgpQgITnEEQxhCcw
-/b4ajkkKZ6of0ulhxoEIHA5P7m/kg7I63jQapborsL0PHwdzEgTLqjpwBV0CqZ+W
-9uZgRdUVfU0urRblL6/tFKj8/seQTBSiYoUT6bP0u3cIeIfF5r9bYaWC2xOFPfBh
-sFX4fVag7XkIoeAwH/szlikJ4qdI8w==
-=4qyA
------END PGP SIGNATURE-----
-
---Hjkw3E9BoIh06IIo--
+Matt
