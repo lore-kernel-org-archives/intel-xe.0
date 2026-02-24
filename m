@@ -4,92 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D839EFB7F3
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Feb 2026 03:42:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26BA4EFB7F1
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Feb 2026 03:45:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAF0610E49A;
-	Tue, 24 Feb 2026 03:42:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08D0310E49B;
+	Tue, 24 Feb 2026 03:45:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="O62caR/b";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kafez3U3";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F64810E49A
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Feb 2026 03:42:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1771904521;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=ZfGi+rTpkYSFnpVCfQmyET1TglGZ7PTVeu2IkOlJh3U=;
- b=O62caR/bgXfQUXOMO1Aq6DWNgZVPJmDGB3wmGydzIDcbT1KDKJYtxHFauTpyLRlZF10ddV
- ISOgxMD74r4/KLqZXRxnzNyoRk5E/iUOE8SsrnudubEk/2uXZDFWbK8Y4+P4RQAlnR4N15
- Uju2uAaMT7S7QCmDQe+e59fYTKDQVl4=
-Received: from mail-dl1-f70.google.com (mail-dl1-f70.google.com
- [74.125.82.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-288-TEozwSbdPmeHIc0jv2ZIvA-1; Mon, 23 Feb 2026 22:41:57 -0500
-X-MC-Unique: TEozwSbdPmeHIc0jv2ZIvA-1
-X-Mimecast-MFC-AGG-ID: TEozwSbdPmeHIc0jv2ZIvA_1771904517
-Received: by mail-dl1-f70.google.com with SMTP id
- a92af1059eb24-1275c6fc58aso9198240c88.0
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Feb 2026 19:41:57 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1771904517; x=1772509317;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=ZfGi+rTpkYSFnpVCfQmyET1TglGZ7PTVeu2IkOlJh3U=;
- b=Ze3IsYd3zE+UwKil61y9v/QkM4KJdQbXHJGCz/ttrmpcbRBROLodAFBCCWEDiotRw4
- deYMY5BcL+GFCJf1pM7EPdEYEyvibb8vVzJQ7rF85Q5PlPDcTNmfYuxgsHv+H4yzZ+Ta
- uZoClOUWFeZyH5L/14yZj15ZJIb4r+8jwE+NAdWqJRKUoGBwpZrn4H6VmFzml7q26TOQ
- Eoj/AfuGwezay2r1d3dC/iSvzjPwHhDWK6jOqu+Z+OedmyrgB86Z9iO6E3Di32O/gZHJ
- FKi6MII2dfjTQKdGMcT6VICoatqbjTfLShjLNptQRNn0numpKDLKUZoo+3fYQTrCG0Ro
- Y43A==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXCTzwvzqmbI6BSAXUiU6pRrZNQkuzRE6D6IdPWrekvo/9/VAB/CKCELYOB+Xyj7T1M9pimcYCwNQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwogXDz+K6gYWdYKDB/t7wI0XyKqjcz+3/zzx0PbQh+fJZ8w4Oj
- oZSg5r9+31GbTgwKQgWgGUaJEytEJxKOCct6lZCH2GGQKvGSjggc/dTgPmngwXVpVAmalX5iv36
- th+NL/75Qnsj9e6/+0Ysd7o6bRplICbWawQCcT2dRKdt3ULMBHqA/3X6pG5YG31TaaGaPlb8pkR
- IwRNO9V4G/M3FOeZRDt5WQdvlyPRK/s2S7Xax1ldK1sio=
-X-Gm-Gg: AZuq6aLS9fmNJ6dAocPjQyIbsA0BGE3eR3TBAqCoJp0wUSKfLRni8iGate+tlGiXQjG
- 6rGXxzlmR/hMydvZ+nqAPxgiGWxHUPRjBj65j05ISh3NDA9hhrn9XaibPWA6wFMmuKjjJ58XseG
- YCyRMFJJVNZ3AmhqoZ+7VMxVWFtCk+giSNAtTBN6TK2V38GEOvCWFgK9txp6dJPBUlNBXDeXpop
- cFXrwgRVxE/CL/+izCradEJ/nIDAnUlyvLl
-X-Received: by 2002:a05:7022:6986:b0:11b:923d:773f with SMTP id
- a92af1059eb24-1276acb7fe9mr4491844c88.5.1771904516618; 
- Mon, 23 Feb 2026 19:41:56 -0800 (PST)
-X-Received: by 2002:a05:7022:6986:b0:11b:923d:773f with SMTP id
- a92af1059eb24-1276acb7fe9mr4491833c88.5.1771904516247; Mon, 23 Feb 2026
- 19:41:56 -0800 (PST)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD78610E49A;
+ Tue, 24 Feb 2026 03:45:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1771904731; x=1803440731;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WD0sSj6ItF8usOSlNlmfE6zIVM0FEauJUHDs4tpZBp4=;
+ b=Kafez3U3IxZ8jo9XkUUIyJNghMMlL/37p6mCBFwQNHSSgFvMdWgIaghd
+ 6QQ9Gs9rd2wQZJ7/hTVpVyHd+qqgNnD9/p8H7pId6aFLgRshoHXhuCrGm
+ gcNsNzWSebL71X5s9ryFmLiYrdqhvnkhtDOy4yDYIsUc9fDJFdHuzydzU
+ QuZufDALkstXSIxgK8nD3IrcHR7r+dZTcQMRAFheCUQUcVoWDjKx1FYbS
+ W3luS3TKmdeo/1Xd21q7ShPN62EmSS2adyvFzNqt2P4QYPZvxAvVEcsU3
+ cdAlEggwTJzkz7lxnNokyFcU4c6F0ktsIvHETg2CRvpGYdrlVq13KozmH g==;
+X-CSE-ConnectionGUID: 1Ct34PPBTU6gApllA/Lm5w==
+X-CSE-MsgGUID: ytJOtQ8rR6yvmI0+GW5wjw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="72817848"
+X-IronPort-AV: E=Sophos;i="6.21,307,1763452800"; d="scan'208";a="72817848"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Feb 2026 19:45:30 -0800
+X-CSE-ConnectionGUID: 2K/2l+7yTnGIvkekDoV2hw==
+X-CSE-MsgGUID: jld4lhOlTJ2VfjN4gaOQdg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,307,1763452800"; d="scan'208";a="215010613"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa010.jf.intel.com with ESMTP; 23 Feb 2026 19:45:29 -0800
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: arun.r.murthy@intel.com,
+	Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH v3 0/8] Fixes and updates when using AUX backlight using
+ Luminance 
+Date: Tue, 24 Feb 2026 09:15:18 +0530
+Message-Id: <20260224034526.2730130-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <DGJPMOESHINC.1NGNT8LLY8DKW@kernel.org>
- <1771594440.99434@nvidia.com>
- <2026022156-citizen-shredding-5d6d@gregkh>
- <cdc31857-c9a0-4d05-a243-780dc9819cb7@nvidia.com>
- <b45a50ce-de96-42ee-90c1-0a6cd7a78cc0@linux.intel.com>
- <DGMAUQLZGPZB.FWELZM9GYP0Z@kernel.org>
- <DGMP4FBY8958.1KNWJH7IW7M3I@kernel.org>
-In-Reply-To: <DGMP4FBY8958.1KNWJH7IW7M3I@kernel.org>
-From: David Airlie <airlied@redhat.com>
-Date: Tue, 24 Feb 2026 13:41:45 +1000
-X-Gm-Features: AaiRm50BDo_t3xPlwTJEEpGzOePwAdIFv9N6YtS43JfkuKqEUHkSqaC-olJg6xU
-Message-ID: <CAMwc25q4hXq-ztUHRnMaiWV4aqZeNypU0c_9hatsU_Pyov1G2Q@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] gpu/buddy: fix module_init() usage
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: Koen Koning <koen.koning@linux.intel.com>,
- Joel Fernandes <joelagnelf@nvidia.com>, 
- Greg KH <gregkh@linuxfoundation.org>, dri-devel@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>, 
- Peter Senna Tschudin <peter.senna@linux.intel.com>, stable@vger.kernel.org, 
- dri-devel <dri-devel-bounces@lists.freedesktop.org>, 
- Arun Pravin <arunpravin.paneerselvam@amd.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: Q-v2E7ZHLejxV1DI8SZZfcpJF8CNk5PL9pHgUqziQRs_1771904517
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,37 +66,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Feb 24, 2026 at 8:31=E2=80=AFAM Danilo Krummrich <dakr@kernel.org> =
-wrote:
->
-> (Cc: Arun)
->
-> On Mon Feb 23, 2026 at 12:20 PM CET, Danilo Krummrich wrote:
-> > On Mon Feb 23, 2026 at 12:17 PM CET, Koen Koning wrote:
-> >> Thanks that makes sense, then let's just stick to addressing the curre=
-nt
-> >> regression with gpu/buddy in the drm-tip tree.
-> >
-> > The patch should go into drm-misc-next.
-> >
-> >> Joel, could you grab the v1 of this patchset (or the v2 with with
-> >> subsys_initcall, either works) and try to get it applied to drm-tip?
-> >> Since this is my first time submitting patches, I'm not really sure ho=
-w
-> >> to proceed from here, and it will probably be faster if you have a loo=
-k.
-> >
-> > I think we should land your original v1; I don't know if Joel can push =
-to
-> > drm-misc-next, if not please let me know, I can pick it up then.
->
-> Actually, since GPU buddy has a separate maintainers entry, I will leave =
-it to
-> Matthew and Arun.
->
-> (Cc'd you both on v1.)
+This series aims to fix/update some code with respect to AUX backlight
+via luminance values for both VESA and INTEL HDR codepaths.
+The below are the major changes made in this series.
+- Do not allow 0 brightness  by default which makes the screen go blank
+leaving user with no way to see the screen and increase brightness.
+- Take into account luminance_set variable when we decide which funcs
+need to be enabled
+- Update debug logs to make them more concise and help debug which
+code path was taken
 
-Since I pushed the original damage, I've pushed this fix.
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-Dave.
+Suraj Kandpal (8):
+  drm/i915/backlight: Use default/max brightness for VESA AUX backlight
+    init
+  drm/i915/backlight: Use intel_panel variable instead of
+    intel_connector
+  drm/i915/backlight: Take luminance_set into account for VESA backlight
+  drm/i915/backlight: Check luminance_set when disabling PWM via AUX
+    VESA backlight
+  drm/i915/backlight: Short circuit intel_dp_aux_supports_hdr_backlight
+  drm/i915/backlight: Update debug log during backlight setup
+  drm/i915/backlight: Provide clear description on how backlight level
+    is controlled
+  drm/i915/backlight: Use default/max brightness for INTEL AUX HDR
+    backlight init
+
+ .../drm/i915/display/intel_dp_aux_backlight.c | 40 ++++++++++++++-----
+ 1 file changed, 29 insertions(+), 11 deletions(-)
+
+-- 
+2.34.1
 
