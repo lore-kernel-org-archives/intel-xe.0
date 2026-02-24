@@ -4,60 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A55CE9B25B
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Feb 2026 12:21:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E58D2E9B25B
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Feb 2026 12:26:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5991610E56C;
-	Tue, 24 Feb 2026 12:21:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CD8510E57F;
+	Tue, 24 Feb 2026 12:26:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZeGHYg2u";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m8wrkI+t";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7F4510E56C
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Feb 2026 12:21:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E41010E56C;
+ Tue, 24 Feb 2026 12:26:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771935667; x=1803471667;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=5J6ASYOncZXPuvPbcaqwUF84l4K5CD63Z+9fKnJveIM=;
- b=ZeGHYg2uUZFdxRnXddRrEZxXLBJs0VxHFDTVze47mPXmb+/+VasOd3L7
- z+JL2mpmR+kSCg4tp12tQY/az91MaMI9lixp89c1eF5yLgDhEYkC0gvj3
- wFqclxaFDP0edj66JkC+jVc40gTHAyD4vdlUn1ykxGzDe3fXW5hfoJChC
- DgXmzrrmmVsUZ9l+7+FHGnCMBEC2MyUirg5ZEbMI2W0NjDn0v/SyzsFt2
- nCMtuJdxAS0hbyFzYQpUpC0Vpjx/tOxFuu0d2yLe7YaUibey+zfjeVCeR
- DPAqhlhor5R1sclPZLI6pFZOmylR4MB6/FA4zU244JkY1lDNGI7lZe1/+ w==;
-X-CSE-ConnectionGUID: hVps8rlwQPCcAEq+zy1MNA==
-X-CSE-MsgGUID: +Agj7kAhQR6J8q4mzQw+ZA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="83271100"
-X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="83271100"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2026 04:21:07 -0800
-X-CSE-ConnectionGUID: LPGwOQdXTTKIpfHN3V6UPg==
-X-CSE-MsgGUID: BHIKFkRfQVmCbbX9a3p0Pw==
+ t=1771935981; x=1803471981;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=apTYfIVjKcd/H6HYCxu6UdrBd5CxjlUBhHU1gt8ZlG0=;
+ b=m8wrkI+tK/+5YpMtKUT+zPkMjltXe2kIcJeplPLm/84mAteahj5O+VhQ
+ 8EeErWmtIso2FL6UBZLnUabko4xDz6CBrKg0y/dsBnU2kdbv6ooMgzB/t
+ MvYorE29raErY3Mos7mhiVnwPCNIhjA/VPeLZvYpbFua2QcD+rLKWL1yj
+ GR1G5eprt8+3Iqqc5HyaAA0nCmrpfyMQFC708j2r3tEMkKlXde796wT1f
+ sCIjoU1scVEmVoWhJa8wDN/rUu1POmtaa+Sc3lvO2Zlpr4meFjnWaz2SL
+ 8WQp2NPHjOetDqTpeyUdZRdvzCwqMyXabOI0CguyvxI3dMxE4UBaS5hcI g==;
+X-CSE-ConnectionGUID: nJvSLcjOTK6uVHC2xqFLqA==
+X-CSE-MsgGUID: BgeIHM28Q12FzR+pS3ZCrw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="84405285"
+X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="84405285"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2026 04:26:21 -0800
+X-CSE-ConnectionGUID: C4pHIvERRLGEEzqI4k9M4Q==
+X-CSE-MsgGUID: g8hZO8TKQ3OxNqnAhV0Utw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="214980110"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.244.148])
- ([10.245.244.148])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2026 04:21:04 -0800
-Message-ID: <932bd347295960286b9a30db776ac3e2e24cdd2d.camel@linux.intel.com>
-Subject: Re: [PATCH v5 3/9] drm/xe/madvise: Implement purgeable buffer
- object support
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Arvind Yadav <arvind.yadav@intel.com>, intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com, 
- pallavi.mishra@intel.com
-Date: Tue, 24 Feb 2026 13:21:03 +0100
-In-Reply-To: <20260211152644.1661165-4-arvind.yadav@intel.com>
-References: <20260211152644.1661165-1-arvind.yadav@intel.com>
- <20260211152644.1661165-4-arvind.yadav@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="213705129"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.20])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2026 04:26:18 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Mohammed Bilal <mohammed.bilal@intel.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: suraj.kandpal@intel.com, Mohammed Bilal <mohammed.bilal@intel.com>
+Subject: Re: [PATCH v1] drm/i915/debugfs: Add i915_extended_wakeup_timeout
+ debugfs entry
+In-Reply-To: <20260224083734.2947885-1-mohammed.bilal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260224083734.2947885-1-mohammed.bilal@intel.com>
+Date: Tue, 24 Feb 2026 14:26:16 +0200
+Message-ID: <cc5493055fc914166fc4b2395ca0370f53332a9d@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,240 +70,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2026-02-11 at 20:56 +0530, Arvind Yadav wrote:
-> This allows userspace applications to provide memory usage hints to
-> the kernel for better memory management under pressure:
->=20
-> Add the core implementation for purgeable buffer objects, enabling
-> memory
-> reclamation of user-designated DONTNEED buffers during eviction.
->=20
-> This patch implements the purge operation and state machine
-> transitions:
->=20
-> Purgeable States (from xe_madv_purgeable_state):
-> =C2=A0- WILLNEED (0): BO should be retained, actively used
-> =C2=A0- DONTNEED (1): BO eligible for purging, not currently needed
-> =C2=A0- PURGED (2): BO backing store reclaimed, permanently invalid
->=20
-> Design Rationale:
-> =C2=A0 - Async TLB invalidation via trigger_rebind (no blocking
-> xe_vm_invalidate_vma)
-> =C2=A0 - i915 compatibility: retained field, "once purged always purged"
-> semantics
-> =C2=A0 - Shared BO protection prevents multi-process memory corruption
-> =C2=A0 - Scratch PTE reuse avoids new infrastructure, safe for fault mode
->=20
-> Note: The madvise_purgeable() function is implemented but not hooked
-> into
-> the IOCTL handler (madvise_funcs[] entry is NULL) to maintain
-> bisectability.
-> The feature will be enabled in the final patch when all supporting
-> infrastructure (shrinker, per-VMA tracking) is complete.
->=20
-> v2:
-> =C2=A0 - Use xe_bo_trigger_rebind() for async TLB invalidation (Thomas
-> Hellstr=C3=B6m)
-> =C2=A0 - Add NULL rebind with scratch PTEs for fault mode (Thomas
-> Hellstr=C3=B6m)
-> =C2=A0 - Implement i915-compatible retained field logic (Thomas Hellstr=
-=C3=B6m)
-> =C2=A0 - Skip BO validation for purged BOs in page fault handler (crash
-> fix)
-> =C2=A0 - Add scratch VM check in page fault path (non-scratch VMs fail
-> fault)
-> =C2=A0 - Force clear_pt for non-scratch VMs to avoid phys addr 0 mapping
-> (review fix)
-> =C2=A0 - Add !is_purged check to resource cursor setup to prevent stale
-> access
->=20
-> v3:
-> =C2=A0 - Rebase as xe_gt_pagefault.c is gone upstream and replaced
-> =C2=A0=C2=A0=C2=A0 with xe_pagefault.c (Matthew Brost)
-> =C2=A0 - Xe specific warn on (Matthew Brost)
-> =C2=A0 - Call helpers for madv_purgeable access(Matthew Brost)
-> =C2=A0 - Remove bo NULL check(Matthew Brost)
-> =C2=A0 - Use xe_bo_assert_held instead of dma assert(Matthew Brost)
-> =C2=A0 - Move the xe_bo_is_purged check under the dma-resv lock( by Matt)
-> =C2=A0 - Drop is_purged from xe_pt_stage_bind_entry and just set is_null
-> to true
-> =C2=A0=C2=A0=C2=A0 for purged BO rename s/is_null/is_null_or_purged (by M=
-att)
-> =C2=A0 - UAPI rule should not be changed.(Matthew Brost)
-> =C2=A0 - Make 'retained' a userptr (Matthew Brost)
->=20
-> v4:
-> =C2=A0 - @madv_purgeable atomic_t =E2=86=92 u32 change across all relevan=
-t patches
-> (Matt)
->=20
-> v5:
-> =C2=A0 - Introduce xe_bo_set_purgeable_state() helper (void return) to
-> centralize
-> =C2=A0=C2=A0=C2=A0 madv_purgeable updates with xe_bo_assert_held() and st=
-ate
-> transition
-> =C2=A0=C2=A0=C2=A0 validation using explicit enum checks (no transition o=
-ut of
-> PURGED) (Matt)
-> =C2=A0 - Make xe_ttm_bo_purge() return int and propagate failures from
-> =C2=A0=C2=A0=C2=A0 xe_bo_move(); handle xe_bo_trigger_rebind() failures (=
-e.g.
-> no_wait_gpu
-> =C2=A0=C2=A0=C2=A0 paths) rather than silently ignoring (Matt)
-> =C2=A0 - Replace drm_WARN_ON with xe_assert for better Xe-specific
-> assertions (Matt)
-> =C2=A0 - Hook purgeable handling into
-> madvise_funcs[DRM_XE_VMA_ATTR_PURGEABLE_STATE]
-> =C2=A0=C2=A0=C2=A0 instead of special-case path in xe_vm_madvise_ioctl() =
-(Matt)
-> =C2=A0 - Track purgeable retained return via xe_madvise_details and
-> perform
-> =C2=A0=C2=A0=C2=A0 copy_to_user() from xe_madvise_details_fini() after lo=
-cks are
-> dropped (Matt)
-> =C2=A0 - Set madvise_funcs[DRM_XE_VMA_ATTR_PURGEABLE_STATE] to NULL with
-> =C2=A0=C2=A0=C2=A0 __maybe_unused on madvise_purgeable() to maintain bise=
-ctability
-> until
-> =C2=A0=C2=A0=C2=A0 shrinker integration is complete in final patch (Matt)
-> =C2=A0 - Use put_user() instead of copy_to_user() for single u32 retained
-> value (Thomas)
-> =C2=A0 - Return -EFAULT from ioctl if put_user() fails (Thomas)
-> =C2=A0 - Validate userspace initialized retained to 0 before ioctl,
-> ensuring safe
-> =C2=A0=C2=A0=C2=A0 default (0 =3D "assume purged") if put_user() fails (T=
-homas)
-> =C2=A0 - Refactor error handling: separate fallible put_user from
-> infallible cleanup
-> =C2=A0 - xe_madvise_purgeable_retained_to_user(): separate helper for
-> fallible put_user
-> =C2=A0 - Call put_user() after releasing all locks to avoid circular
-> dependencies
-> =C2=A0 - Use xe_bo_move_notify() instead of xe_bo_trigger_rebind() in
-> xe_ttm_bo_purge()
-> =C2=A0=C2=A0=C2=A0 for proper abstraction - handles vunmap, dma-buf notif=
-ications,
-> and VRAM
-> =C2=A0=C2=A0=C2=A0 userfault cleanup (Thomas)
-> =C2=A0 - Fix LRU crash while running shrink test
-> =C2=A0 - Skip xe_bo_validate() for purged BOs in xe_gpuvm_validate()
->=20
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+On Tue, 24 Feb 2026, Mohammed Bilal <mohammed.bilal@intel.com> wrote:
+> Add debugfs interface to expose extended wakeup timeout information for
+> DP connectors. This shows whether a retimer is present, the
+> current mode (transparent vs non-transparent), and the wakeup timeout
+> value in milliseconds.
+> This helps verify whether the extended wakeup timeout is functioning
+> as expected.
+>
+> Signed-off-by: Mohammed Bilal <mohammed.bilal@intel.com>
+
+Do we really have to add debugfs for things that are just DPCD reads? We
+have the DP AUX device exposed, and a userspace tool could read all of
+this through that. It's much more pain to maintain this in the kernel.
+
+BR,
+Jani.
+
 > ---
-> =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 | 106 ++++++++++++++++++++---
-> =C2=A0drivers/gpu/drm/xe/xe_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0=C2=A0 2 +
-> =C2=A0drivers/gpu/drm/xe/xe_pagefault.c=C2=A0 |=C2=A0 12 +++
-> =C2=A0drivers/gpu/drm/xe/xe_pt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 40 +++++++--
-> =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 20 ++++-
-> =C2=A0drivers/gpu/drm/xe/xe_vm_madvise.c | 133
-> +++++++++++++++++++++++++++++
-> =C2=A06 files changed, 292 insertions(+), 21 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 8bf16d60b9a5..87cde4b2fe59 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -835,6 +835,83 @@ static int xe_bo_move_notify(struct xe_bo *bo,
-> =C2=A0	return 0;
-> =C2=A0}
-> =C2=A0
-> +/**
-> + * xe_bo_set_purgeable_state() - Set BO purgeable state with
-> validation
-> + * @bo: Buffer object
-> + * @new_state: New purgeable state
-> + *
-> + * Sets the purgeable state with lockdep assertions and validates
-> state
-> + * transitions. Once a BO is PURGED, it cannot transition to any
-> other state.
-> + * Invalid transitions are caught with xe_assert().
-> + */
-> +void xe_bo_set_purgeable_state(struct xe_bo *bo,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum xe_madv_purgeable_state
-> new_state)
+>  .../drm/i915/display/intel_display_debugfs.c  | 78 +++++++++++++++++++
+>  1 file changed, 78 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index 2614c4863c87..292ee71643da 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -1310,6 +1310,78 @@ static const struct file_operations i915_joiner_fops = {
+>  	.write = i915_joiner_write
+>  };
+>  
+> +static int i915_extended_wakeup_timeout_show(struct seq_file *m, void *data)
 > +{
-> +	struct xe_device *xe =3D xe_bo_device(bo);
-> +
-> +	xe_bo_assert_held(bo);
-> +
-> +	/* Validate state is one of the known values */
-> +	xe_assert(xe, new_state =3D=3D XE_MADV_PURGEABLE_WILLNEED ||
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 new_state =3D=3D XE_MADV_PURGEABLE_DONT=
-NEED ||
-> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 new_state =3D=3D XE_MADV_PURGEABLE_PURG=
-ED);
-> +
-> +	/* Once purged, always purged - cannot transition out */
-> +	xe_assert(xe, !(bo->madv_purgeable =3D=3D
-> XE_MADV_PURGEABLE_PURGED &&
-> +			new_state !=3D XE_MADV_PURGEABLE_PURGED));
-> +
-> +	bo->madv_purgeable =3D new_state;
-> +}
-> +
-> +/**
-> + * xe_ttm_bo_purge() - Purge buffer object backing store
-> + * @ttm_bo: The TTM buffer object to purge
-> + * @ctx: TTM operation context
-> + *
-> + * This function purges the backing store of a BO marked as DONTNEED
-> and
-> + * triggers rebind to invalidate stale GPU mappings. For fault-mode
-> VMs,
-> + * this zaps the PTEs. The next GPU access will trigger a page fault
-> and
-> + * perform NULL rebind (scratch pages or clear PTEs based on VM
-> config).
-> + *
-> + * Return: 0 on success, negative error code on failure
-> + */
-> +static int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct
-> ttm_operation_ctx *ctx)
-> +{
-> +	struct xe_bo *bo =3D ttm_to_xe_bo(ttm_bo);
-> +	struct ttm_placement place =3D {};
+> +	struct intel_connector *connector = m->private;
+> +	struct intel_display *display = to_intel_display(connector);
+> +	struct intel_encoder *encoder = intel_attached_encoder(connector);
+> +	struct intel_dp *intel_dp;
+> +	bool retimer_present = false;
+> +	bool transparent_mode = true;
+> +	int wakeup_timeout_ms = 1;
+> +	int lttpr_count;
+> +	u8 val;
 > +	int ret;
 > +
-> +	xe_bo_assert_held(bo);
+> +	if (!encoder)
+> +		return -ENODEV;
 > +
-> +	if (!ttm_bo->ttm)
-> +		return 0;
-> +
-> +	if (!xe_bo_madv_is_dontneed(bo))
-> +		return 0;
-> +
-> +	ret =3D ttm_bo_validate(ttm_bo, &place, ctx);
+> +	ret = drm_modeset_lock_single_interruptible(&display->drm->mode_config.connection_mutex);
 > +	if (ret)
 > +		return ret;
+> +	if (connector->base.status != connector_status_connected) {
+> +		ret = -ENODEV;
+> +		goto out;
+> +	}
 > +
-> +	/*
-> +	 * Use the standard pre-move hook so we share the same
-> cleanup/invalidate
-> +	 * path as migrations: drop any CPU vmap and schedule the
-> necessary GPU
-> +	 * unbind/rebind work.
-> +	 *
-> +	 * This may fail in no-wait contexts (fault/shrinker) or if
-> the BO is
-> +	 * pinned. Keep state unchanged on failure so we don't end
-> up "PURGED"
-> +	 * with stale mappings.
-> +	 */
-> +	ret =3D xe_bo_move_notify(bo, ctx);
+> +	intel_dp = enc_to_intel_dp(encoder);
+> +	lttpr_count = drm_dp_lttpr_count(intel_dp->lttpr_common_caps);
+> +	retimer_present = (lttpr_count > 0);
+> +	transparent_mode = intel_dp_lttpr_transparent_mode_enabled(intel_dp);
+> +
+> +	if (transparent_mode) {
+> +		ret = drm_dp_dpcd_read_data(&intel_dp->aux,
+> +					    DP_EXTENDED_DPRX_SLEEP_WAKE_TIMEOUT_REQUEST,
+> +					    &val, 1);
+> +		if (!ret) {
+> +			static const u8 timeout_mapping[] = {
+> +				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_1_MS] = 1,
+> +				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_20_MS] = 20,
+> +				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_40_MS] = 40,
+> +				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_60_MS] = 60,
+> +				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_80_MS] = 80,
+> +				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_100_MS] = 100,
+> +			};
+> +
+> +			if (val < ARRAY_SIZE(timeout_mapping) && timeout_mapping[val])
+> +				wakeup_timeout_ms = timeout_mapping[val];
+> +		}
+> +	} else {
+> +		ret = drm_dp_dpcd_read_data(&intel_dp->aux,
+> +					    DP_PHY_REPEATER_EXTENDED_WAIT_TIMEOUT,
+> +					    &val, 1);
+> +
+> +		if (!ret) {
+> +
+> +			int timeout_val = val & DP_EXTENDED_WAKE_TIMEOUT_REQUEST_MASK;
+> +
+> +			wakeup_timeout_ms = timeout_val ? (timeout_val * 10) : 1;
+> +		}
+> +	}
+> +
 > +	if (ret)
-> +		return ret;
+> +		wakeup_timeout_ms = -1;
+> +
+> +	seq_printf(m, "retimer_present: %s\n", retimer_present ? "yes" : "no");
+> +	seq_printf(m, "mode: %s\n", transparent_mode ? "transparent" : "non-transparent");
+> +	seq_printf(m, "wakeup_timeout_ms: %d\n", wakeup_timeout_ms);
+> +
+> +out:
+> +	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+> +	return ret;
+> +}
+> +DEFINE_SHOW_ATTRIBUTE(i915_extended_wakeup_timeout);
+> +
+>  /**
+>   * intel_connector_debugfs_add - add i915 specific connector debugfs files
+>   * @connector: pointer to a registered intel_connector
+> @@ -1335,6 +1407,12 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
+>  	intel_dp_link_training_debugfs_add(connector);
+>  	intel_link_bw_connector_debugfs_add(connector);
+>  
+> +	if (DISPLAY_VER(display) >= 30 &&
+> +	    connector_type == DRM_MODE_CONNECTOR_DisplayPort && !connector->mst.dp) {
+> +		debugfs_create_file("i915_extended_wakeup_timeout", 0444, root,
+> +				    connector, &i915_extended_wakeup_timeout_fops);
+> +	}
+> +
+>  	if (DISPLAY_VER(display) >= 11 &&
+>  	    ((connector_type == DRM_MODE_CONNECTOR_DisplayPort && !connector->mst.dp) ||
+>  	     connector_type == DRM_MODE_CONNECTOR_eDP)) {
 
-move_notify() must be called *before* pages are actually freed, that is
-before ttm_bo_validate().
-
-Other than that LGTM.
-
+-- 
+Jani Nikula, Intel
