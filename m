@@ -4,27 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD567FD45E4
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 19:45:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 730C9FD45E8
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 20:06:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FC9D10E376;
-	Wed, 25 Feb 2026 19:45:36 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6900610E376;
- Wed, 25 Feb 2026 19:45:35 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31B8C10E82F;
+	Wed, 25 Feb 2026 20:06:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="KLcHkTGB";
+	dkim-atps=neutral
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E9DB10E827;
+ Wed, 25 Feb 2026 20:06:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1772049966;
+ bh=m0jI+91ZfLMP+Bf2OhJVOZYQ73gUlZTgUnjRJsTmi04=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=KLcHkTGBMUGND86ai4aFWFeAjsLPti++nW7JDWlKH+BQNsiodRppa8+u0WdJZ0+l8
+ bGko4om0ckOPqghTw7mAYTihVNP4aNHyfdLD5nEPI5+F3cqVZfSvTkAs8xcGlw5J7a
+ plExoI4dFGc1uKlUL1d8r3LcXGPoNydB06w+QV9vMp/R+ui/tLvVvWrh8x4m4ksfYO
+ de9JHs66rjkPRcFygnfusWlMwpkBQx1Xx9uRcF5/xS8BkcjVl0yhwEHfNXvEiR2VkL
+ moKlYzmi4WY2zDPO3z0yRKaFtCcw3JgAnylFUERYYh8y9VGjPWbx5zMAADJ1wAELpI
+ HW5uMgTVwflfg==
+Message-ID: <7ee8b784-a714-4329-aab2-a571f25c3baa@lankhorst.se>
+Date: Wed, 25 Feb 2026 21:06:05 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [i915-rt v6 00/24] drm/i915/display: All patches to make
+ PREEMPT_RT work on i915 + xe.
+To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-rt-devel@lists.linux.dev, dri-devel@lists.freedesktop.org
+References: <20260220083657.28815-26-dev@lankhorst.se>
+ <20260224162703.Q_taYjEC@linutronix.de>
+ <20260224165903.2mn24oQy@linutronix.de>
+ <20260225075806.XNtXjZ5E@linutronix.de>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <20260225075806.XNtXjZ5E@linutronix.de>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Fine_grained_fault_locking=2C_?=
- =?utf-8?q?threaded_prefetch=2C_storm_cache?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 25 Feb 2026 19:45:35 -0000
-Message-ID: <177204873541.286940.5445645560631794811@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260225184713.2606772-1-matthew.brost@intel.com>
-In-Reply-To: <20260225184713.2606772-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,66 +54,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hey,
 
-Series: Fine grained fault locking, threaded prefetch, storm cache
-URL   : https://patchwork.freedesktop.org/series/162167/
-State : failure
+Den 2026-02-25 kl. 08:58, skrev Sebastian Andrzej Siewior:
+> On 2026-02-24 17:59:04 [+0100], To Maarten Lankhorst wrote:
+> …
+>> This one I can reproduce while opening a browser and surfing a bit. Let
+>> me try step by step without lockdep, without RT and maybe just play
+>> v7.0-rc1 to figure out where this is from…
+> 
+> It triggers without lockdep but takes longer. It does not trigger
+> without RT so far. I will try to narrow it down later unless it is
+> obvious where this is coming from.
+>  
+> Sebastian
 
-== Summary ==
+After realizing the uncore lock only needed to be converted to a raw spinlock
+because the testcase was broken, I tested the alternative fix of using
+sleeping context only in the selftests:
+https://patchwork.freedesktop.org/patch/707063/?series=162145&rev=1
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../drivers/gpu/drm/xe/xe_pagefault.c: In function ‘xe_pagefault_service’:
-../drivers/gpu/drm/xe/xe_pagefault.c:274:56: error: passing argument 3 of ‘xe_svm_handle_pagefault’ from incompatible pointer type [-Werror=incompatible-pointer-types]
-  274 |                 err = xe_svm_handle_pagefault(vm, vma, pf, gt,
-      |                                                        ^~
-      |                                                        |
-      |                                                        struct xe_pagefault *
-In file included from ../drivers/gpu/drm/xe/xe_pagefault.c:19:
-../drivers/gpu/drm/xe/xe_svm.h:299:43: note: expected ‘struct xe_gt *’ but argument is of type ‘struct xe_pagefault *’
-  299 |                             struct xe_gt *gt, u64 fault_addr,
-      |                             ~~~~~~~~~~~~~~^~
-../drivers/gpu/drm/xe/xe_pagefault.c:274:60: warning: passing argument 4 of ‘xe_svm_handle_pagefault’ makes integer from pointer without a cast [-Wint-conversion]
-  274 |                 err = xe_svm_handle_pagefault(vm, vma, pf, gt,
-      |                                                            ^~
-      |                                                            |
-      |                                                            struct xe_gt *
-../drivers/gpu/drm/xe/xe_svm.h:299:51: note: expected ‘u64’ {aka ‘long long unsigned int’} but argument is of type ‘struct xe_gt *’
-  299 |                             struct xe_gt *gt, u64 fault_addr,
-      |                                               ~~~~^~~~~~~~~~
-../drivers/gpu/drm/xe/xe_pagefault.c:274:23: error: too many arguments to function ‘xe_svm_handle_pagefault’
-  274 |                 err = xe_svm_handle_pagefault(vm, vma, pf, gt,
-      |                       ^~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_svm.h:298:5: note: declared here
-  298 | int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
-      |     ^~~~~~~~~~~~~~~~~~~~~~~
-cc1: some warnings being treated as errors
-make[7]: *** [../scripts/Makefile.build:289: drivers/gpu/drm/xe/xe_pagefault.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:546: drivers/gpu/drm/xe] Error 2
-make[5]: *** [../scripts/Makefile.build:546: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:546: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:546: drivers] Error 2
-make[2]: *** [/kernel/Makefile:2101: .] Error 2
-make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
+With that the reset selftest works as expected.
 
-[19:45:01] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[19:45:05] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+But I do see some weird lockdep splats and aborts after that fixed the uncore lock testcases:
+https://patchwork.freedesktop.org/series/162145/
 
+I believe it could be a different instance of:
+https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162145v1/bat-dg2-9/igt@gem_lmem_swapping@parallel-random-engines.html#dmesg-warnings904
 
+Which is tracked under:
+
+https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15759
+
+Perhaps those are related to what you are seeing?
+
+Also don't use that series for anything but CI results, I rather want to submit
+a new version of this series.
+
+Kind regards,
+~Maarten Lankhorst
