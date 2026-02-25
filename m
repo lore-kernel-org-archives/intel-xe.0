@@ -4,28 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C61B3FD374E
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 12:13:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 541ADFD374D
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 12:15:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83A1110E74C;
-	Wed, 25 Feb 2026 12:13:14 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB4BF10E74C;
- Wed, 25 Feb 2026 12:13:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8522695808909103448=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1CC810E74C;
+	Wed, 25 Feb 2026 12:15:13 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="m5rL2tlG";
+	dkim-atps=neutral
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 25BAD10E753;
+ Wed, 25 Feb 2026 12:15:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1772021710;
+ bh=PJiUDFQ1DQQRZwqKOW72XNDSnj66CFtkXC+fGy1J9rU=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=m5rL2tlGFQZ+wBp4VoGsrmq6W3b4cvSwTo07KIORZPboWl7VGRWisLl1IaeRI5nPQ
+ L9wAc93rlKMr3BnXJ342Cm0fgN6lbPBuj/OAvyV+D0Llvuaoe0V769CXkq9PYRU83Y
+ Bqwxk5CVIIh6U03QExSQWVEnkLKoB3HYd1RVbkJeVsme3covhWs61L8GK5ObP3qrZa
+ urQHxZbkq/NK5j3qp9/bOHv0ixRQnDyaqq0derSbOWttD+c6z16psNeo76q1Sdw7jZ
+ wLTddEat62yFlrN7KW34m4RrL/gy4hc9HRV3op4JKVfovu8gef76d674e5MZNtlBOK
+ HzTJKaGOsQkBw==
+Message-ID: <d5039bbd-0eee-4057-b643-67633150eb24@lankhorst.se>
+Date: Wed, 25 Feb 2026 13:15:09 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFULL=3A_success_for_series_starting_with_=5B1/?=
- =?utf-8?q?2=5D_drm/dp=3A_Add_definition_for_Panel_Replay_full-line_granular?=
- =?utf-8?q?ity?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 25 Feb 2026 12:13:13 -0000
-Message-ID: <177202159374.284987.1968233375283711416@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260225074221.1744330-1-jouni.hogander@intel.com>
-In-Reply-To: <20260225074221.1744330-1-jouni.hogander@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [i915-rt v6 00/24] drm/i915/display: All patches to make
+ PREEMPT_RT work on i915 + xe.
+To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-rt-devel@lists.linux.dev, dri-devel@lists.freedesktop.org
+References: <20260220083657.28815-26-dev@lankhorst.se>
+ <20260224162703.Q_taYjEC@linutronix.de>
+ <20260224165903.2mn24oQy@linutronix.de>
+ <20260225075806.XNtXjZ5E@linutronix.de>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <20260225075806.XNtXjZ5E@linutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,137 +54,41 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8522695808909103448==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hey,
 
-== Series Details ==
+Den 2026-02-25 kl. 08:58, skrev Sebastian Andrzej Siewior:
+> On 2026-02-24 17:59:04 [+0100], To Maarten Lankhorst wrote:
+> …
+>> This one I can reproduce while opening a browser and surfing a bit. Let
+>> me try step by step without lockdep, without RT and maybe just play
+>> v7.0-rc1 to figure out where this is from…
+> 
+> It triggers without lockdep but takes longer. It does not trigger
+> without RT so far. I will try to narrow it down later unless it is
+> obvious where this is coming from.
+>  
+> Sebastian
+Personally I've been running this entirely on xe, and it in stability
+it is comparable to !PREEMPT_RT.
 
-Series: series starting with [1/2] drm/dp: Add definition for Panel Replay full-line granularity
-URL   : https://patchwork.freedesktop.org/series/162120/
-State : success
+I didn't entirely fix i915 yet. The changes I've made are the changes
+from the PREEMPT_RT tree, plus what I found when running the submissions
+against CI.
 
-== Summary ==
+The most likely problem is that the uncore lock needs to be converted to
+a raw spinlock. I postponed this, as I have been focused mostly on
+display and then especially the vblank bits.
 
-CI Bug Log - changes from xe-4610-4a8ef58307bfc096873745fbb27d0bbc5454676d_FULL -> xe-pw-162120v1_FULL
-====================================================
+The selftests failing are very likely related, GPU reset is probably
+broken on i915 if I look at the CI results.
 
-Summary
--------
+GPU reset failure:
+https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_159035v12/fi-cfl-8700k/igt@i915_selftest@live@reset.html#dmesg-warnings533
 
-  **SUCCESS**
+I'll check what happens if I convert the spinlock to a raw_spinlock.
 
-  No regressions found.
-
-  
-
-Participating hosts (2 -> 2)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-162120v1_FULL that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_big_fb@yf-tiled-64bpp-rotate-180:
-    - shard-lnl:          NOTRUN -> [SKIP][1] ([Intel XE#1124])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162120v1/shard-lnl-7/igt@kms_big_fb@yf-tiled-64bpp-rotate-180.html
-
-  * igt@xe_exec_system_allocator@process-many-large-execqueues-mmap-free-race-nomemset:
-    - shard-lnl:          NOTRUN -> [ABORT][2] ([Intel XE#7414])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162120v1/shard-lnl-7/igt@xe_exec_system_allocator@process-many-large-execqueues-mmap-free-race-nomemset.html
-
-  
-  [Intel XE#1124]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124
-  [Intel XE#7414]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7414
-
-
-Build changes
--------------
-
-  * Linux: xe-4610-4a8ef58307bfc096873745fbb27d0bbc5454676d -> xe-pw-162120v1
-
-  IGT_8770: 8770
-  xe-4610-4a8ef58307bfc096873745fbb27d0bbc5454676d: 4a8ef58307bfc096873745fbb27d0bbc5454676d
-  xe-pw-162120v1: 162120v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162120v1/index.html
-
---===============8522695808909103448==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/dp: Add definition for Panel Replay full-line granularity</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162120/">https://patchwork.freedesktop.org/series/162120/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162120v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162120v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4610-4a8ef58307bfc096873745fbb27d0bbc5454676d_FULL -&gt; xe-pw-162120v1_FULL</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (2 -&gt; 2)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-162120v1_FULL that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_big_fb@yf-tiled-64bpp-rotate-180:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162120v1/shard-lnl-7/igt@kms_big_fb@yf-tiled-64bpp-rotate-180.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124">Intel XE#1124</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_system_allocator@process-many-large-execqueues-mmap-free-race-nomemset:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162120v1/shard-lnl-7/igt@xe_exec_system_allocator@process-many-large-execqueues-mmap-free-race-nomemset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7414">Intel XE#7414</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4610-4a8ef58307bfc096873745fbb27d0bbc5454676d -&gt; xe-pw-162120v1</li>
-</ul>
-<p>IGT_8770: 8770<br />
-  xe-4610-4a8ef58307bfc096873745fbb27d0bbc5454676d: 4a8ef58307bfc096873745fbb27d0bbc5454676d<br />
-  xe-pw-162120v1: 162120v1</p>
-
-</body>
-</html>
-
---===============8522695808909103448==--
+Kind regards,
+~Maarten Lankhorst
