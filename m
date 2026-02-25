@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 179CFF55438
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 01:50:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E9A9F55437
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 02:18:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA1CA10E66D;
-	Wed, 25 Feb 2026 01:50:39 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FqVT5KWx";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E63110E347;
- Wed, 25 Feb 2026 01:50:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771984223; x=1803520223;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=GC/Hu/VJ+L1b3YDqDnkFTi/Ce0twW+nnPiiAy1N2KEE=;
- b=FqVT5KWx5wpMKISloiG84DApIuYiGtqNegri19mr6X+561IIoqgk9PgO
- EQc+IxS3NYDhF1+2wBIoBLnWcc0ci2D1lha03buP4h7cbbwuFpHk0KvGf
- 2BzFhUvt7e9QYWlE7xMdkRRnx2LJGZP/IYicNEVP1cL8rbVXATVSUMffm
- UI/G89XG744Lej9yPxyQG3HseIKJkvxxDPl1ogZvQSDwyPONFHL8z1We1
- q96ix3dHtYXykHEsiOUDvmKeavSu78AKEHTzU/sZZWlf+9wuhWUkDuSHJ
- U2i5BXTeRSiVfUQtnz84xhtA0dZYb1m0gaCx/cDVARXjIpkDLuPivT4qJ A==;
-X-CSE-ConnectionGUID: Wb1KwWBUTD2AJtjZOjUatQ==
-X-CSE-MsgGUID: Bhn1nsliS2K+Y2CLcshKSg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="76622912"
-X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; d="scan'208";a="76622912"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2026 17:50:22 -0800
-X-CSE-ConnectionGUID: G6JV7iySRzKYF2MlQpOWDw==
-X-CSE-MsgGUID: b94Aa4C7Tk2bH1nqK120LQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; d="scan'208";a="216096174"
-Received: from debox1-desk4.jf.intel.com ([10.88.27.138])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2026 17:50:20 -0800
-From: "David E. Box" <david.e.box@linux.intel.com>
-To: thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
- irenic.rajneesh@gmail.com, ilpo.jarvinen@linux.intel.com,
- srinivas.pandruvada@linux.intel.com, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, xi.pardee@linux.intel.com
-Cc: david.e.box@linux.intel.com, hansg@kernel.org,
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
-Subject: [PATCH v5 1/6] platform/x86/intel/vsec: Refactor base_addr handling
-Date: Tue, 24 Feb 2026 17:50:07 -0800
-Message-ID: <20260224-upstream-pmt-acpi-v5-v5-1-8dd73bcf049c@linux.intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260224-upstream-pmt-acpi-v5-v5-0-8dd73bcf049c@linux.intel.com>
-References: <20260224-upstream-pmt-acpi-v5-v5-0-8dd73bcf049c@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB44210E66D;
+	Wed, 25 Feb 2026 02:18:18 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FED210E669;
+ Wed, 25 Feb 2026 02:18:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1094737902473863353=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/configfs=3A_Free_ctx?=
+ =?utf-8?q?=5Frestore=5Fmid=5Fbb_in_release?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 25 Feb 2026 02:18:17 -0000
+Message-ID: <177198589737.284662.14273908805636971035@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260225013448.3547687-2-shuicheng.lin@intel.com>
+In-Reply-To: <20260225013448.3547687-2-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,137 +36,132 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The base_addr field in intel_vsec_platform_info was originally added to
-support devices that emulate PCI VSEC capabilities in MMIO. Previously,
-the code would check at registration time whether base_addr was set,
-falling back to the PCI BAR if not.
+--===============1094737902473863353==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Refactor this by making base_addr an explicit function parameter. This
-clarifies ownership of the value and removes conditional logic from
-intel_vsec_add_dev(). It also enables making intel_vsec_platform_info
-const in a later patch, since the function no longer needs to write to
-info->base_addr.
+== Series Details ==
 
-No functional change intended.
+Series: drm/xe/configfs: Free ctx_restore_mid_bb in release
+URL   : https://patchwork.freedesktop.org/series/162105/
+State : failure
 
-Signed-off-by: David E. Box <david.e.box@linux.intel.com>
----
-Changes in v5:
-- No change
+== Summary ==
 
-Changes in v4:
-- No change
+CI Bug Log - changes from xe-4609-4caa4c7d4ff7bd4d24bca8e795773e460eb8bbfe_BAT -> xe-pw-162105v1_BAT
+====================================================
 
-Changes in v3:
-- No change
+Summary
+-------
 
-Changes in v2:
-- Use pci_resource_start() macro instead of direct pdev->resource array acc=
-ess
-  (suggested by Ilpo)
+  **FAILURE**
 
- drivers/platform/x86/intel/vsec.c | 23 ++++++++++-------------
- 1 file changed, 10 insertions(+), 13 deletions(-)
+  Serious unknown changes coming with xe-pw-162105v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-162105v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-diff --git a/drivers/platform/x86/intel/vsec.c b/drivers/platform/x86/intel=
-/vsec.c
-index 5059d320edf8..46966edca03b 100644
---- a/drivers/platform/x86/intel/vsec.c
-+++ b/drivers/platform/x86/intel/vsec.c
-@@ -271,14 +271,13 @@ EXPORT_SYMBOL_NS_GPL(intel_vsec_add_aux, "INTEL_VSEC"=
-);
-=20
- static int intel_vsec_add_dev(struct pci_dev *pdev, struct intel_vsec_head=
-er *header,
- 			      struct intel_vsec_platform_info *info,
--			      unsigned long cap_id)
-+			      unsigned long cap_id, u64 base_addr)
- {
- 	struct intel_vsec_device __free(kfree) *intel_vsec_dev =3D NULL;
- 	struct resource __free(kfree) *res =3D NULL;
- 	struct resource *tmp;
- 	struct device *parent;
- 	unsigned long quirks =3D info->quirks;
--	u64 base_addr;
- 	int i;
-=20
- 	if (info->parent)
-@@ -310,11 +309,6 @@ static int intel_vsec_add_dev(struct pci_dev *pdev, st=
-ruct intel_vsec_header *he
- 	if (quirks & VSEC_QUIRK_TABLE_SHIFT)
- 		header->offset >>=3D TABLE_OFFSET_SHIFT;
-=20
--	if (info->base_addr)
--		base_addr =3D info->base_addr;
--	else
--		base_addr =3D pdev->resource[header->tbir].start;
--
- 	/*
- 	 * The DVSEC/VSEC contains the starting offset and count for a block of
- 	 * discovery tables. Create a resource array of these tables to the
-@@ -412,7 +406,8 @@ static int get_cap_id(u32 header_id, unsigned long *cap=
-_id)
-=20
- static int intel_vsec_register_device(struct pci_dev *pdev,
- 				      struct intel_vsec_header *header,
--				      struct intel_vsec_platform_info *info)
-+				      struct intel_vsec_platform_info *info,
-+				      u64 base_addr)
- {
- 	const struct vsec_feature_dependency *consumer_deps;
- 	struct vsec_priv *priv;
-@@ -428,7 +423,7 @@ static int intel_vsec_register_device(struct pci_dev *p=
-dev,
- 	 * For others using the exported APIs, add the device directly.
- 	 */
- 	if (!pci_match_id(intel_vsec_pci_ids, pdev))
--		return intel_vsec_add_dev(pdev, header, info, cap_id);
-+		return intel_vsec_add_dev(pdev, header, info, cap_id, base_addr);
-=20
- 	priv =3D pci_get_drvdata(pdev);
- 	if (priv->state[cap_id] =3D=3D STATE_REGISTERED ||
-@@ -444,7 +439,7 @@ static int intel_vsec_register_device(struct pci_dev *p=
-dev,
-=20
- 	consumer_deps =3D get_consumer_dependencies(priv, cap_id);
- 	if (!consumer_deps || suppliers_ready(priv, consumer_deps, cap_id)) {
--		ret =3D intel_vsec_add_dev(pdev, header, info, cap_id);
-+		ret =3D intel_vsec_add_dev(pdev, header, info, cap_id, base_addr);
- 		if (ret)
- 			priv->state[cap_id] =3D STATE_SKIP;
- 		else
-@@ -464,7 +459,7 @@ static bool intel_vsec_walk_header(struct pci_dev *pdev,
- 	int ret;
-=20
- 	for ( ; *header; header++) {
--		ret =3D intel_vsec_register_device(pdev, *header, info);
-+		ret =3D intel_vsec_register_device(pdev, *header, info, info->base_addr);
- 		if (!ret)
- 			have_devices =3D true;
- 	}
-@@ -512,7 +507,8 @@ static bool intel_vsec_walk_dvsec(struct pci_dev *pdev,
- 		pci_read_config_dword(pdev, pos + PCI_DVSEC_HEADER2, &hdr);
- 		header.id =3D PCI_DVSEC_HEADER2_ID(hdr);
-=20
--		ret =3D intel_vsec_register_device(pdev, &header, info);
-+		ret =3D intel_vsec_register_device(pdev, &header, info,
-+						 pci_resource_start(pdev, header.tbir));
- 		if (ret)
- 			continue;
-=20
-@@ -557,7 +553,8 @@ static bool intel_vsec_walk_vsec(struct pci_dev *pdev,
- 		header.tbir =3D INTEL_DVSEC_TABLE_BAR(table);
- 		header.offset =3D INTEL_DVSEC_TABLE_OFFSET(table);
-=20
--		ret =3D intel_vsec_register_device(pdev, &header, info);
-+		ret =3D intel_vsec_register_device(pdev, &header, info,
-+						 pci_resource_start(pdev, header.tbir));
- 		if (ret)
- 			continue;
-=20
+  
 
---=20
-2.43.0
+Participating hosts (13 -> 14)
+------------------------------
+
+  Additional (1): bat-bmg-3 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-162105v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_multigpu_svm@mgpu-xgpu-access-basic:
+    - bat-bmg-3:          NOTRUN -> [ABORT][1]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162105v1/bat-bmg-3/igt@xe_multigpu_svm@mgpu-xgpu-access-basic.html
+
+  
+
+
+Build changes
+-------------
+
+  * Linux: xe-4609-4caa4c7d4ff7bd4d24bca8e795773e460eb8bbfe -> xe-pw-162105v1
+
+  IGT_8769: 8769
+  xe-4609-4caa4c7d4ff7bd4d24bca8e795773e460eb8bbfe: 4caa4c7d4ff7bd4d24bca8e795773e460eb8bbfe
+  xe-pw-162105v1: 162105v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162105v1/index.html
+
+--===============1094737902473863353==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/configfs: Free ctx_restore_mid_bb in release</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162105/">https://patchwork.freedesktop.org/series/162105/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162105v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162105v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4609-4caa4c7d4ff7bd4d24bca8e795773e460eb8bbfe_BAT -&gt; xe-pw-162105v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-162105v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-162105v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (13 -&gt; 14)</h2>
+<p>Additional (1): bat-bmg-3 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-162105v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_multigpu_svm@mgpu-xgpu-access-basic:<ul>
+<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162105v1/bat-bmg-3/igt@xe_multigpu_svm@mgpu-xgpu-access-basic.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4609-4caa4c7d4ff7bd4d24bca8e795773e460eb8bbfe -&gt; xe-pw-162105v1</li>
+</ul>
+<p>IGT_8769: 8769<br />
+  xe-4609-4caa4c7d4ff7bd4d24bca8e795773e460eb8bbfe: 4caa4c7d4ff7bd4d24bca8e795773e460eb8bbfe<br />
+  xe-pw-162105v1: 162105v1</p>
+
+</body>
+</html>
+
+--===============1094737902473863353==--
