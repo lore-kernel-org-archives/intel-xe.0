@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3ED3F5543B
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 01:50:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20764F5543D
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 01:50:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7610810E67D;
-	Wed, 25 Feb 2026 01:50:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A790210E680;
+	Wed, 25 Feb 2026 01:50:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wdd9ntbp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K/TLtspw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68A4210E676;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CBFE10E347;
  Wed, 25 Feb 2026 01:50:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1771984223; x=1803520223;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zkr/TNpT38rWj6NCsWdUY9VzNU4dK69T3qZk3voE1CI=;
- b=Wdd9ntbp4hagoa82dMILdPljBfLaXIoq/wt2k7rUNdwPf3IfpmtzKIqC
- LxrQ5F5VEsxEdWESaCmUmXMcMNFzi6AoAYVrfsIQM6uD/8CoJB7Y35w/w
- Z6+hOThI5zDkDXf0MBYvzYmshAOLPGq35huAe6xEbipPNH9H5uMR2P3ds
- 1y21/EK9m2QW/YerY1/fie5Ft124BtQUtHoEGAd+Tagj5pHzD64Uj/SyS
- MxNxLXmTTCrCNf5mIfOJ+beW2RaHmYBQNMhz2vqKSSQJsLN0f17q1tzPV
- DykO3C9KTNGlMDrd9VMTAu26Ry5go+tCSL6DjOTGyFirAluq1NqmGjlxa g==;
-X-CSE-ConnectionGUID: 7QqZXpbGSN2iJbpFQqG+aQ==
-X-CSE-MsgGUID: HaMAqKgLShKX0pVs6NlkwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="76622908"
-X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; d="scan'208";a="76622908"
+ bh=c8tQnAuBGs7bM67IBBJmoizCB0seMcK4yaQsJbqR4Jk=;
+ b=K/TLtspwSHRXwU2n4kmXmTCpwAvnGAVrt3+hEac1XbP2RDFjsaZCp+t4
+ 8TGz3YYIe6RyLTPjiHPc8hKQ2U/w/NhsAs2KRYRAYWrloDezPHA35WX8K
+ Gk4LLXe1XzbMryxOgArHG4NQd73auePY6C/juz8/8NJ/7ei0z/rqVijVY
+ 8yY9JceaibGwOgjiJVg5YQL+Gh4xbQPimkVNr/1WNVvVup/jDNceP03/B
+ P47GFn4oRz+Pklnt8d+0CkOkjiX+u/gsUtv59BDGv0z2lMn2OqJykWmqe
+ bH+xtcrgND6HK9+fMcwBD10qEsGPJ9lRCXlUwFJnPZfCDfAJsyexZA+4d w==;
+X-CSE-ConnectionGUID: 8/l6nliORyqzbK0xmKGbzw==
+X-CSE-MsgGUID: FeAyE/TqQXWywkOO5V8MkA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="76622924"
+X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; d="scan'208";a="76622924"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2026 17:50:21 -0800
-X-CSE-ConnectionGUID: zaID+INzR7CS5/Kyodsynw==
-X-CSE-MsgGUID: Br46YNjtRZipy3hkTnuMSw==
+ 24 Feb 2026 17:50:22 -0800
+X-CSE-ConnectionGUID: hWWpPTLcTiO0vRDRld4vhg==
+X-CSE-MsgGUID: yikhzuInQUGs7uEmCt1mFQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; d="scan'208";a="216096180"
+X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; d="scan'208";a="216096189"
 Received: from debox1-desk4.jf.intel.com ([10.88.27.138])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2026 17:50:20 -0800
+ 24 Feb 2026 17:50:21 -0800
 From: "David E. Box" <david.e.box@linux.intel.com>
 To: thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
  irenic.rajneesh@gmail.com, ilpo.jarvinen@linux.intel.com,
@@ -48,15 +48,15 @@ To: thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
  dri-devel@lists.freedesktop.org, xi.pardee@linux.intel.com
 Cc: david.e.box@linux.intel.com, hansg@kernel.org,
  linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
-Subject: [PATCH v5 3/6] platform/x86/intel/vsec: Decouple add/link helpers
- from PCI
-Date: Tue, 24 Feb 2026 17:50:09 -0800
-Message-ID: <20260224-upstream-pmt-acpi-v5-v5-3-8dd73bcf049c@linux.intel.com>
+Subject: [PATCH v5 6/6] platform/x86/intel/vsec: Plumb ACPI PMT discovery
+ tables through vsec
+Date: Tue, 24 Feb 2026 17:50:12 -0800
+Message-ID: <20260224-upstream-pmt-acpi-v5-v5-6-8dd73bcf049c@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260224-upstream-pmt-acpi-v5-v5-0-8dd73bcf049c@linux.intel.com>
 References: <20260224-upstream-pmt-acpi-v5-v5-0-8dd73bcf049c@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,124 +72,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This refactor is prepares for adding ACPI-enumerated PMT endpoints. While
-intel_vsec is bound to PCI today, some helpers are used by code that will
-also register PMT endpoints from non-PCI (ACPI) paths. Clean up
-PCI-specific plumbing where it isn=E2=80=99t strictly required and rely on
-generic struct device where possible.
+Some platforms expose PMT discovery via ACPI instead of PCI BARs. Add a
+generic discovery source flag and carry ACPI discovery entries alongside
+the existing PCI resource path so PMT clients can consume either.
 
-Reviewed-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
+Changes:
+  - Add enum intel_vsec_disc_source { _PCI, _ACPI }.
+  - Extend intel_vsec_platform_info and intel_vsec_device with source enum
+    and ACPI discovery table pointer/
+  - When src=3D=3DACPI, skip BAR resource setup and copy the ACPI discovery
+    entries into the aux device.
+
+No user-visible behavior change yet; this only wires ACPI data through vsec
+in preparation for ACPI-enumerated PMT clients.
+
 Signed-off-by: David E. Box <david.e.box@linux.intel.com>
 ---
 Changes in v5:
 - No change
 
 Changes in v4:
-- No change
+- Use check_mul_overflow() instead of array_size() which was
+  incorrectly checking for 0 anyway.
 
 Changes in v3:
-- No change
+- Re-send with all changes intended for v2 which was sent without them
+  being applied.
 
 Changes in v2:
-- No chnage (previous patch 1)
+- Improve comment to clarify BAR resource setup doesn't apply to ACPI
+  discovery
+- Add missing #include for kmemdup()
+- Use array_size() for overflow protection
+  (review comments by Ilpo J=C3=A4rvinen)
 
- drivers/platform/x86/intel/vsec.c      | 13 +++++++++----
- drivers/platform/x86/intel/vsec_tpmi.c |  2 +-
- include/linux/intel_vsec.h             |  2 +-
- 3 files changed, 11 insertions(+), 6 deletions(-)
+ drivers/platform/x86/intel/vsec.c | 23 +++++++++++++++++++++++
+ include/linux/intel_vsec.h        | 20 +++++++++++++++++++-
+ 2 files changed, 42 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/platform/x86/intel/vsec.c b/drivers/platform/x86/intel=
 /vsec.c
-index e0096be605d9..938648b9ef09 100644
+index 34b2c19ecff0..7907505a365c 100644
 --- a/drivers/platform/x86/intel/vsec.c
 +++ b/drivers/platform/x86/intel/vsec.c
-@@ -158,18 +158,23 @@ static bool vsec_driver_present(int cap_id)
-  */
- static const struct pci_device_id intel_vsec_pci_ids[];
+@@ -24,7 +24,9 @@
+ #include <linux/intel_vsec.h>
+ #include <linux/kernel.h>
+ #include <linux/module.h>
++#include <linux/overflow.h>
+ #include <linux/pci.h>
++#include <linux/string.h>
+ #include <linux/types.h>
 =20
--static int intel_vsec_link_devices(struct pci_dev *pdev, struct device *de=
-v,
-+static int intel_vsec_link_devices(struct device *parent, struct device *d=
-ev,
- 				   int consumer_id)
- {
- 	const struct vsec_feature_dependency *deps;
- 	enum vsec_device_state *state;
- 	struct device **suppliers;
- 	struct vsec_priv *priv;
-+	struct pci_dev *pdev;
- 	int supplier_id;
+ #define PMT_XA_START			0
+@@ -109,6 +111,7 @@ static void intel_vsec_dev_release(struct device *dev)
 =20
- 	if (!consumer_id)
- 		return 0;
+ 	ida_free(intel_vsec_dev->ida, intel_vsec_dev->auxdev.id);
 =20
-+	if (!dev_is_pci(parent))
-+		return 0;
++	kfree(intel_vsec_dev->acpi_disc);
+ 	kfree(intel_vsec_dev->resource);
+ 	kfree(intel_vsec_dev);
+ }
+@@ -320,6 +323,13 @@ static int intel_vsec_add_dev(struct device *dev, stru=
+ct intel_vsec_header *head
+ 	 * auxiliary device driver.
+ 	 */
+ 	for (i =3D 0, tmp =3D res; i < header->num_entries; i++, tmp++) {
++		/*
++		 * Skip resource mapping check for ACPI-based discovery
++		 * since those tables are read from _DSD, not MMIO.
++		 */
++		if (info->src =3D=3D INTEL_VSEC_DISC_ACPI)
++			break;
 +
-+	pdev =3D to_pci_dev(parent);
- 	if (!pci_match_id(intel_vsec_pci_ids, pdev))
- 		return 0;
+ 		tmp->start =3D base_addr + header->offset + i * (header->entry_size * si=
+zeof(u32));
+ 		tmp->end =3D tmp->start + (header->entry_size * sizeof(u32)) - 1;
+ 		tmp->flags =3D IORESOURCE_MEM;
+@@ -338,6 +348,19 @@ static int intel_vsec_add_dev(struct device *dev, stru=
+ct intel_vsec_header *head
+ 	intel_vsec_dev->base_addr =3D info->base_addr;
+ 	intel_vsec_dev->priv_data =3D info->priv_data;
+ 	intel_vsec_dev->cap_id =3D cap_id;
++	intel_vsec_dev->src =3D info->src;
++
++	if (info->src =3D=3D INTEL_VSEC_DISC_ACPI) {
++		size_t bytes;
++
++		if (check_mul_overflow(intel_vsec_dev->num_resources,
++			sizeof(*info->acpi_disc), &bytes))
++			return -EOVERFLOW;
++
++		intel_vsec_dev->acpi_disc =3D kmemdup(info->acpi_disc, bytes, GFP_KERNEL=
+);
++		if (!intel_vsec_dev->acpi_disc)
++			return -ENOMEM;
++	}
 =20
-@@ -204,7 +209,7 @@ static int intel_vsec_link_devices(struct pci_dev *pdev=
-, struct device *dev,
- 	return 0;
- }
-=20
--int intel_vsec_add_aux(struct pci_dev *pdev, struct device *parent,
-+int intel_vsec_add_aux(struct device *parent,
- 		       struct intel_vsec_device *intel_vsec_dev,
- 		       const char *name)
- {
-@@ -252,7 +257,7 @@ int intel_vsec_add_aux(struct pci_dev *pdev, struct dev=
-ice *parent,
- 	if (ret)
- 		goto cleanup_aux;
-=20
--	ret =3D intel_vsec_link_devices(pdev, &auxdev->dev, intel_vsec_dev->cap_i=
-d);
-+	ret =3D intel_vsec_link_devices(parent, &auxdev->dev, intel_vsec_dev->cap=
-_id);
- 	if (ret)
- 		goto cleanup_aux;
-=20
-@@ -343,7 +348,7 @@ static int intel_vsec_add_dev(struct pci_dev *pdev, str=
-uct intel_vsec_header *he
- 	 * Pass the ownership of intel_vsec_dev and resource within it to
- 	 * intel_vsec_add_aux()
- 	 */
--	return intel_vsec_add_aux(pdev, parent, no_free_ptr(intel_vsec_dev),
-+	return intel_vsec_add_aux(parent, no_free_ptr(intel_vsec_dev),
- 				  intel_vsec_name(header->id));
- }
-=20
-diff --git a/drivers/platform/x86/intel/vsec_tpmi.c b/drivers/platform/x86/=
-intel/vsec_tpmi.c
-index 98846e88d3d0..e08af071fe87 100644
---- a/drivers/platform/x86/intel/vsec_tpmi.c
-+++ b/drivers/platform/x86/intel/vsec_tpmi.c
-@@ -655,7 +655,7 @@ static int tpmi_create_device(struct intel_tpmi_info *t=
-pmi_info,
- 	 * feature_vsec_dev and res memory are also freed as part of
- 	 * device deletion.
- 	 */
--	return intel_vsec_add_aux(vsec_dev->pcidev, &vsec_dev->auxdev.dev,
-+	return intel_vsec_add_aux(&vsec_dev->pcidev->dev,
- 				  feature_vsec_dev, feature_id_name);
- }
-=20
+ 	if (header->id =3D=3D VSEC_ID_SDSI)
+ 		intel_vsec_dev->ida =3D &intel_vsec_sdsi_ida;
 diff --git a/include/linux/intel_vsec.h b/include/linux/intel_vsec.h
-index d551174b0049..49a746ec0128 100644
+index 4eecb2a6bac4..1fe5665a9d02 100644
 --- a/include/linux/intel_vsec.h
 +++ b/include/linux/intel_vsec.h
-@@ -184,7 +184,7 @@ struct pmt_feature_group {
- 	struct telemetry_region	regions[];
- };
+@@ -33,6 +33,11 @@ struct device;
+ struct pci_dev;
+ struct resource;
 =20
--int intel_vsec_add_aux(struct pci_dev *pdev, struct device *parent,
-+int intel_vsec_add_aux(struct device *parent,
- 		       struct intel_vsec_device *intel_vsec_dev,
- 		       const char *name);
-=20
++enum intel_vsec_disc_source {
++	INTEL_VSEC_DISC_PCI,	/* PCI, default */
++	INTEL_VSEC_DISC_ACPI,	/* ACPI */
++};
++
+ enum intel_vsec_id {
+ 	VSEC_ID_TELEMETRY	=3D 2,
+ 	VSEC_ID_WATCHER		=3D 3,
+@@ -103,6 +108,10 @@ struct vsec_feature_dependency {
+  * @parent:    parent device in the auxbus chain
+  * @headers:   list of headers to define the PMT client devices to create
+  * @deps:      array of feature dependencies
++ * @acpi_disc: ACPI discovery tables, each entry is two QWORDs
++ *             in little-endian format as defined by the PMT ACPI spec.
++ *             Valid only when @provider =3D=3D INTEL_VSEC_DISC_ACPI.
++ * @src:       source of discovery table data
+  * @priv_data: private data, usable by parent devices, currently a callback
+  * @caps:      bitmask of PMT capabilities for the given headers
+  * @quirks:    bitmask of VSEC device quirks
+@@ -113,6 +122,8 @@ struct intel_vsec_platform_info {
+ 	struct device *parent;
+ 	struct intel_vsec_header **headers;
+ 	const struct vsec_feature_dependency *deps;
++	u32 (*acpi_disc)[4];
++	enum intel_vsec_disc_source src;
+ 	void *priv_data;
+ 	unsigned long caps;
+ 	unsigned long quirks;
+@@ -124,7 +135,12 @@ struct intel_vsec_platform_info {
+  * struct intel_vsec_device - Auxbus specific device information
+  * @auxdev:        auxbus device struct for auxbus access
+  * @dev:           struct device associated with the device
+- * @resource:      any resources shared by the parent
++ * @resource:      PCI discovery resources (BAR windows), one per discovery
++ *                 instance. Valid only when @src =3D=3D INTEL_VSEC_DISC_P=
+CI
++ * @acpi_disc:     ACPI discovery tables, each entry is two QWORDs
++ *                 in little-endian format as defined by the PMT ACPI spec.
++ *                 Valid only when @src =3D=3D INTEL_VSEC_DISC_ACPI.
++ * @src:           source of discovery table data
+  * @ida:           id reference
+  * @num_resources: number of resources
+  * @id:            xarray id
+@@ -138,6 +154,8 @@ struct intel_vsec_device {
+ 	struct auxiliary_device auxdev;
+ 	struct device *dev;
+ 	struct resource *resource;
++	u32 (*acpi_disc)[4];
++	enum intel_vsec_disc_source src;
+ 	struct ida *ida;
+ 	int num_resources;
+ 	int id; /* xa */
 
 --=20
 2.43.0
