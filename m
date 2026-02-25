@@ -4,58 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07E2EFCEE84
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 11:19:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E6E7FCEE80
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 11:19:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE75410E73C;
-	Wed, 25 Feb 2026 11:19:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BF0610E73C;
+	Wed, 25 Feb 2026 11:19:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eDFN/PCQ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="tw3mHg6y";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12A2110E737;
- Wed, 25 Feb 2026 11:19:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772018352; x=1803554352;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=EumsiuhtDvgkIHFRq6hQDCyQ98GaWhPwco5n7jYZF6w=;
- b=eDFN/PCQb9W8FIDHNMviZgE6nqbNcyFv2iHAAyvoHSmnmemcf3rhLsK3
- im0wpqPSdwTPYIUTjQRpLLO5zkV7CpuI9S8bIgeEV5i6EZn7WcysEL15T
- 6aU2aOr0hnc7NWaYMbFk16cN0+wNn/CqzvA9MIrFhf4kTbashD1Tcb2RV
- WNAEqqBl4kBgo+ZC/vJiITXXMDC09v/luAsS0pQUNeKGKFJk+zpFIo86B
- aN+t8CGDViKinq1q9mxuFR9GLozWp003v05+rnFiyZOlDiF4Z68s7mZDd
- s8z6HneWITjJG2mdfK9iee2O094XDTUsFqrk2/pInFxQKnrdMwPiZQ3WE A==;
-X-CSE-ConnectionGUID: mLIR4hEtTSKCVxmPxC1jvw==
-X-CSE-MsgGUID: csGuNmrsQ62Un83XrspTIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="76886559"
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="76886559"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 03:19:11 -0800
-X-CSE-ConnectionGUID: WrZj4NZ1QSOsAPgQ8PGa3g==
-X-CSE-MsgGUID: ATgkCkGTStGv2QyBBqg15Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="253962917"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.68])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 03:19:10 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 00/19] drm/i915/overlay: Convert to parent interface
-In-Reply-To: <20260218152806.18885-1-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260218152806.18885-1-ville.syrjala@linux.intel.com>
-Date: Wed, 25 Feb 2026 13:19:07 +0200
-Message-ID: <fb7caf29eb98ab56697d9b9d8f14d2a1d0f62006@intel.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 001D010E73C
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Feb 2026 11:19:54 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 54EB860053;
+ Wed, 25 Feb 2026 11:19:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7E79C116D0;
+ Wed, 25 Feb 2026 11:19:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1772018394;
+ bh=oMuppjpDBgU6CMU7H6oG+tWecofTBvxD/WKOn1hqjrk=;
+ h=Date:From:To:Cc:Subject:From;
+ b=tw3mHg6yNS5mxDNrd9YUuo3UEhV/Dd2dunOiJt9gkYKfwRCzYtgkZeFMrOSDE9ikr
+ bCwbG/LnWZJRc0qVtiK6U4Q/Rmkau+VlFvosf3uulyPnp8My5b6Edx4JDWsgIod1CO
+ FA3Hn5JfYXyM4SUfe3Q1qxCE0AjiKl3Pj/Hlq5ZWvGQut1eiKlOxacra6sBrXwLhkI
+ MqYnMOAco+deUfhNFKaA6YBbiY9a6VQa2M6h3oozMZAfp8+aucLFqexP2/BYzDdtKo
+ IyNheveUhcCaaqcrnvaftA4AfX13qKX0oGfxiXzTOZKCZxTMPKrVlKyelZBRAyYijv
+ mm7kk+OdaWZgQ==
+Date: Wed, 25 Feb 2026 11:19:50 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ DRM XE List <intel-xe@lists.freedesktop.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+ Davidlohr Bueso <dave@stgolabs.net>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+Subject: linux-next: manual merge of the drm-xe tree with the mm-unstable tree
+Message-ID: <aZ7a1vc2xSClNEZi@sirena.org.uk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="atUZthrJSehvIAKY"
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,83 +58,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 18 Feb 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Split the overlay code into i915 vs. display parts and introduce
-> and new parent interface for the display->i915 calls.
->
-> The interface is rather verbose due to the interruptible ioctl
-> design of the overlay code. Ideally we'd implement the overlay
-> as a drm plane and tell it to flip via MMIO writes to OVADD,
-> at which point the parent interface could be limited to just
-> two functions to repartition the render cache as needed.
-> Maybe one day...
->
-> Smoke tested on i830 and i965gm.
 
-I'm a bit sad how verbose the interface ended up being, especially
-considering I was prepared to nuke the entire thing [1].
+--atUZthrJSehvIAKY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I reviewed this fairly lightly, commented in a few places, and I'm happy
-enough with the end result, even if not thrilled. As always, I'm pretty
-much trusting you to maintain and test this, as we don't have relevant
-tests in IGT nor machines in CI, and we're not really getting bug
-reports for the oldest platform anymore either.
+Hi all,
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Today's linux-next merge of the drm-xe tree got a conflict in:
 
-Along with the error pointer fix, the whole thing needs a rebase due to:
+  mm/migrate_device.c
 
-69050f8d6d07 ("treewide: Replace kmalloc with kmalloc_obj for non-scalar ty=
-pes")
-bf4afc53b77a ("Convert 'alloc_obj' family to use the new default GFP_KERNEL=
- argument")
+between commit:
 
-from upstream.
+  1de80c790c979 ("mm/migrate_device: remove dead migration entry check in m=
+igrate_vma_collect_huge_pmd()")
 
-[1] https://lore.kernel.org/r/20260204164827.807502-1-jani.nikula@intel.com
+=66rom the mm-unstable tree and commit:
 
+  a69d1ab971a62 ("mm: Fix a hmm_range_fault() livelock / starvation problem=
+")
 
->
-> Ville Syrj=C3=A4l=C3=A4 (19):
->   drm/i915/overlay: Remove GPU hang snapshot stuff
->   drm/i915/overlay: Track current frontbuffer_bits
->   drm/i915/overlay: Extract i915_overlay_is_active()
->   drm/i915/overlay: Remove redundant overlay->active
->   drm/i915/overlay: Relocate the underrun check
->   drm/i915/overlay: Introduce i915_overlay_obj_lookup()
->   drm/i915/overlay: Use struct drm_gem_object as the type
->   drm/i915/overlay: Extract i915_overlay_reset()
->   drm/i915/overlay: Extract i915_overlay_setup()
->   drm/i915/overlay: Extract i915_overlay_cleanup()
->   drm/i915/overlay: Abstract buffer (un)pinning
->   drm/i915/overlay: Rename low level i915 specific functions
->   drm/i915/overlay: Adjust i915 specific interfaces
->   drm/i915/overlay: Make i830_overlay_clock_gating() i915 specific
->   drm/i915/overlay: s/dev_priv/i915/
->   drm/i915/overlay: Split 'struct intel_overlay'
->   drm/i915/overlay: Don't use fetch_and_zero() in display code
->   drm/i915/overlay: Move i915 specific code into i915_overlay.c
->   drm/i915/overlay: Convert overlay to parent interface
->
->  drivers/gpu/drm/i915/Makefile                 |   1 +
->  .../gpu/drm/i915/display/intel_display_regs.h |   2 -
->  .../drm/i915/display/intel_display_snapshot.c |   4 -
->  drivers/gpu/drm/i915/display/intel_overlay.c  | 584 ++----------------
->  drivers/gpu/drm/i915/display/intel_overlay.h  |  48 --
->  drivers/gpu/drm/i915/display/intel_parent.c   |  76 +++
->  drivers/gpu/drm/i915/display/intel_parent.h   |  26 +
->  drivers/gpu/drm/i915/i915_driver.c            |   2 +
->  drivers/gpu/drm/i915/i915_drv.h               |   3 +
->  drivers/gpu/drm/i915/i915_overlay.c           | 517 ++++++++++++++++
->  drivers/gpu/drm/i915/i915_overlay.h           |  11 +
->  drivers/gpu/drm/i915/i915_reg.h               |   4 +
->  drivers/gpu/drm/xe/Makefile                   |   1 +
->  include/drm/intel/display_parent_interface.h  |  33 +
->  14 files changed, 726 insertions(+), 586 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/i915_overlay.c
->  create mode 100644 drivers/gpu/drm/i915/i915_overlay.h
+=66rom the drm-xe tree.
 
---=20
-Jani Nikula, Intel
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+diff --combined mm/migrate_device.c
+index 78c7acf024615,deab89fd45419..0000000000000
+--- a/mm/migrate_device.c
++++ b/mm/migrate_device.c
+@@@ -175,6 -175,12 +175,6 @@@ static int migrate_vma_collect_huge_pmd
+  			return migrate_vma_collect_skip(start, end, walk);
+  		}
+ =20
+ -		if (softleaf_is_migration(entry)) {
+ -			softleaf_entry_wait_on_locked(entry, ptl);
+ -			spin_unlock(ptl);
+ -			return -EAGAIN;
+ -		}
+ -
+  		if (softleaf_is_device_private_write(entry))
+  			write =3D MIGRATE_PFN_WRITE;
+  	} else {
+@@@ -265,7 -271,7 +265,7 @@@ again
+  	ptep =3D pte_offset_map_lock(mm, pmdp, start, &ptl);
+  	if (!ptep)
+  		goto again;
+ -	arch_enter_lazy_mmu_mode();
+ +	lazy_mmu_mode_enable();
+  	ptep +=3D (addr - start) / PAGE_SIZE;
+ =20
+  	for (; addr < end; addr +=3D PAGE_SIZE, ptep++) {
+@@@ -307,7 -313,7 +307,7 @@@
+  			if (folio_test_large(folio)) {
+  				int ret;
+ =20
+ -				arch_leave_lazy_mmu_mode();
+ +				lazy_mmu_mode_disable();
+  				pte_unmap_unlock(ptep, ptl);
+  				ret =3D migrate_vma_split_folio(folio,
+  							  migrate->fault_page);
+@@@ -350,7 -356,7 +350,7 @@@
+  			if (folio && folio_test_large(folio)) {
+  				int ret;
+ =20
+ -				arch_leave_lazy_mmu_mode();
+ +				lazy_mmu_mode_disable();
+  				pte_unmap_unlock(ptep, ptl);
+  				ret =3D migrate_vma_split_folio(folio,
+  							  migrate->fault_page);
+@@@ -479,7 -485,7 +479,7 @@@ next
+  	if (unmapped)
+  		flush_tlb_range(walk->vma, start, end);
+ =20
+ -	arch_leave_lazy_mmu_mode();
+ +	lazy_mmu_mode_disable();
+  	pte_unmap_unlock(ptep - 1, ptl);
+ =20
+  	return 0;
+@@@ -1413,10 -1419,10 +1413,10 @@@ EXPORT_SYMBOL(migrate_device_range)
+ =20
+  /**
+   * migrate_device_pfns() - migrate device private pfns to normal memory.
+ - * @src_pfns: pre-popluated array of source device private pfns to migrat=
+e.
+ + * @src_pfns: pre-populated array of source device private pfns to migrat=
+e.
+   * @npages: number of pages to migrate.
+   *
+ - * Similar to migrate_device_range() but supports non-contiguous pre-popl=
+uated
+ + * Similar to migrate_device_range() but supports non-contiguous pre-popu=
+lated
+   * array of device pages to migrate.
+   */
+  int migrate_device_pfns(unsigned long *src_pfns, unsigned long npages)
+
+--atUZthrJSehvIAKY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmme2tUACgkQJNaLcl1U
+h9APYAf/c1n3dha5gJrR6x3Cp7LmblVDopR/Zk6ipqli8jtkkrWTknk5fu2KIo5K
+bDLOPFXO+r8irmj3ULk28LA31/Yyz6jKCMS9D6wa5YCze1U2/2u3S+lVsd3kpHW2
+TjgosWq50InLx2GQNjECZPMX5ytr9HOpK9xqyhCG4Jmn/mPrimBW0qRckdlVVGgM
+CK7PPYf52wEH3UAlpEms0cAT7OEx8FwiUHtOoCayco6mk9uN7vVqxeH7jecbfowk
+4c2CQZwiBr7c4LmcOwlynlBXb24L5WzDniSUfAB5IBMtlc+ybbL1xemQUBq12s6a
+6E9d4awGlAvD+F9Ku1xS8ADcj74RZQ==
+=PZS+
+-----END PGP SIGNATURE-----
+
+--atUZthrJSehvIAKY--
