@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 215BDFD3775
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 16:29:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25087FD3773
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 16:29:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D240A10E7DE;
-	Wed, 25 Feb 2026 16:29:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD66A10E7E3;
+	Wed, 25 Feb 2026 16:29:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G+hiuQhX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y01mpoFh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 851AF10E7D9;
- Wed, 25 Feb 2026 16:29:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80F2110E7D3;
+ Wed, 25 Feb 2026 16:29:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772036951; x=1803572951;
+ t=1772036946; x=1803572946;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=bnrx5ZhxpwtmooJA9q59nDSvO/kcpLRUDK0aGmWiGZ8=;
- b=G+hiuQhXF24DQ6e1Z5AQDf9cdyvoqnXHaNgD851+oEAmfM2VX4v8oIOj
- 04Yo50i0CiPOQRh8/JPO6gI10pkc/1AeEtxHCKxqgQFysC4r3YXEV72Ee
- K4xIgY38uOE2g9p2VieFemPQdKEPT8BdKrzvK3oGi7i6Yu0Hq7O0VzYaU
- h9m2iVdXIGLTd8Jh5yfwNS/b04o9M/fBIUSB2J/P9KHMWPVlfEjh869Hn
- eX+qlMBfgm1+1b33uuV21GN+Nqgf9107j1r4ZxCC3aX6Xd4i7tE8ZcQpb
- vnNU85UfV1K/2MBSJFqF/18nUviGtlIZY1bVyaxUW+1nkWXO90KMfJ5g3 g==;
-X-CSE-ConnectionGUID: b3KtJvkoQbmhFsH5lvGgRw==
-X-CSE-MsgGUID: Si3Qn2BWR3+XY0Z8wQR+Bg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="76917450"
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="76917450"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 08:29:11 -0800
-X-CSE-ConnectionGUID: W6bgo03vThOxuFHNUSJ6Wg==
-X-CSE-MsgGUID: c5F58KtfRAGgpZCGYvRalQ==
+ bh=WAddwR+7OP7+j9vBi9kgxE6GZmVcvH2A8dZnyxyyOKI=;
+ b=Y01mpoFhlMRLYDh6tsUxCniTUMnWSSi4Usj0KbfjUvhYWgMuUv8UZOur
+ I/N5TCZKDPpOxaD2Y39xDm1wmLz8M7Mt4AXpRvB6ieT4OBT8czcP9Y6Z+
+ ++qhAnOFOFfRxyGpxw7HARTnfS9dDXLE0+9vC8NJM9XZKTUXi9U7ixpPA
+ DhoWQ7VdNex/DRO/9rT0LeVQ+kQrnuf9lwKdws+XREt7FaokIk8BKZ/nT
+ KHOOK1SDChfGCp9ic0GaqWqeYD1C8GvlJe8M+bQYXz9EAdrDPv7JpMapm
+ 07Dhucb+C9jKMMKAXSa2McgIHpXE+DXoUsD/yHGH0WIf7C6vGE6a8/nuV A==;
+X-CSE-ConnectionGUID: lNRbsv5OSCqyxuNArnoR2w==
+X-CSE-MsgGUID: tAX1YzwNTfah81sL+9PHFw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="84175893"
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="84175893"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2026 08:29:05 -0800
+X-CSE-ConnectionGUID: dUiw9NmYSp6X4f26u17ZwQ==
+X-CSE-MsgGUID: 51062cB5Q2i88iDaLFeZuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="254039610"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 08:29:11 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="216425955"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2026 08:29:06 -0800
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 25 Feb 2026 08:29:10 -0800
+ 15.2.2562.35; Wed, 25 Feb 2026 08:29:04 -0800
 Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Wed, 25 Feb 2026 08:29:10 -0800
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.5) by
+ 15.2.2562.35 via Frontend Transport; Wed, 25 Feb 2026 08:29:04 -0800
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.22) by
  edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 25 Feb 2026 08:29:10 -0800
+ 15.2.2562.35; Wed, 25 Feb 2026 08:29:04 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vL0EsgKJsT0Nn/vceQPTsW7JZbRPMYL+BuSliEK+XwofwuIBiIAkkor7NRBbAohhsYbtUiD7t6wkq+Tgo9lRAVkUMUeKwaDGx6UODvEBlnNxcnf+Sap9LFTPwacKeFvxWofzaYvKPQ1fyChJ6O3ACqegq7xsh+kE2CVdKbud/YBoEnjYsN+m9bVSSNW+bGjvD1xh/Lsast75PUyfkBaCW0UUuLs0QiziSEgPHJysg/HjImPOJz54L2JxhGHvpqMcc2LdNNTeVtk2AF8Nn9tP9GLH7DqfH1WzLj6L1gqYxEpeddZAR2LiNqegDTS/PLXYfUXkGz+CkjskwSZm2oVG1A==
+ b=UivzxB8QgnWiXfS9iVErAQhfU3T20oO1jIGMZPc4l+J4YwoQkeenuSS+amsYj+sOoCK5GJs5Q2DoaN/Q30sgVlI/PEwdqSKGG+XxnQldmgck7OJ5GPhVSCz8ojsOqerKPsKl+1LwKcte6WRUZRl+F36V1ao2zq9xghmJXrJb54gni/Bxxt8QSRaYrIiUjbfMXB9CD1lGERRYuYJWiBPJr8bP7hO9cscXl42dm5sJs5b1y8P+4CDgk1YCMWIKB6w0YGwq9L2AbhVUaZLDeOVq2k7TCViHBrRpmX2hHZlaXHvO2TakEAY8KbWD+pCGbnSiuFCIlIyzcoPC20+BXZBPOA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QEUtxyvUxL0c6BxuMbI4RRydHetLOrKJNZTWjm/HxnM=;
- b=Wjltj/oc8D1GwiOACD5CG6WwpHly4oK3l9/Vgn9nuVb+nCydb8YDumd2QdLcW4L8YGUsAECJf4Iun2eNv1ajKhws3YDzN/9mH8mnw0aGwb3b/4qcZsTE+5+Z6zTjH2d1oRF1k0XJzS3CItBZa3X+BYWh9TuwsMdUUeYRA9F4WJUE9gWjr/TG5XMO+n2OUALsMzLsR5+3WBj1lhWQxWMTJdRozf1a0DmfQq+NY+Oam1yCyBR0xrFg16CR6H/+7lrS1+o5/ICq+4E66URWPm1OPac+XJYH4++au3zVAWwPXa6JuE4Ovlq6TDbRaGYQCX6GisA6YFD6+yYiV4YeesVh4w==
+ bh=CqoYXpnoeENijG2wQOyIi7ZSVGeAwqlLovYPAKHpKnQ=;
+ b=YhlFiPJrg9+xqDUUFCAtOPfs8OtsgXlLT8tV3D5UCUybHcNrrXbN+nA+5O1NbMxlNNtCYDr+Gcinij6rlzY1Vs9xkT5jQytOr1i+5rHCnyXSD1w0Bs2V+s9QsKarIcOkZouuFZrCdgubbaGl4wEv7jIH7m6fAOoRwQEFTCO49N35gE/8kaJw1Lvd9Zj6ukbfGTlktzmjFXTkPmivctfZQoVsZ7qjjG420Sz/i+k0tQ1kldDhd96zE8gEqKoRLYsUcRIivt9GN+RbnCG+nt9kLkdrLwrJ5Akmh+eQXhIhyreJ/Lt18vBWd8k/1IPTJBYCZQwBM4esROac8RsO+EyZZA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,17 +69,18 @@ Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
  by CY5PR11MB6365.namprd11.prod.outlook.com (2603:10b6:930:3b::5) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.13; Wed, 25 Feb
- 2026 16:29:07 +0000
+ 2026 16:29:00 +0000
 Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
  ([fe80::9ca5:4d1d:db45:f523]) by SJ0PR11MB4845.namprd11.prod.outlook.com
  ([fe80::9ca5:4d1d:db45:f523%5]) with mapi id 15.20.9632.017; Wed, 25 Feb 2026
- 16:29:07 +0000
+ 16:29:00 +0000
 From: Imre Deak <imre.deak@intel.com>
 To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
 CC: Imre Deak <imre.deak@gmail.com>
-Subject: [PATCH v2 19/20] drm/i915/dp: Ack only the handled device service IRQs
-Date: Wed, 25 Feb 2026 18:27:50 +0200
-Message-ID: <20260225162751.1255913-20-imre.deak@intel.com>
+Subject: [PATCH v2 15/20] drm/i915/dp: Read/ack sink count and sink IRQs for
+ SST as it's done for MST
+Date: Wed, 25 Feb 2026 18:27:46 +0200
+Message-ID: <20260225162751.1255913-16-imre.deak@intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20260225162751.1255913-1-imre.deak@intel.com>
 References: <20260225162751.1255913-1-imre.deak@intel.com>
@@ -93,53 +94,53 @@ X-ClientProxiedBy: GV3PEPF0001DC1A.SWEP280.PROD.OUTLOOK.COM
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|CY5PR11MB6365:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3c6ea189-4549-4c6e-e5ae-08de748aff9a
+X-MS-Office365-Filtering-Correlation-Id: 2425dd87-c6d7-4a16-5ee0-08de748afb19
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: H9ylqAVFgHv6JYc4oqNDLJCOJRYhsehYEKdpgjn1Ih9CfH0rwTKOY5HnMosr70NNUcSGHcDfuQYzMtlX2tb9N4Az5sVvrKg4VssA6fGgV6BC40pi3iP0XKjt3bAsBtNMTprM/vakSxb3shvEr9t3z6J3aR9L4jGl0QiBJc98EO6zqYe1eklHn7RZeTPGrwhlp4GIGedPmHCUTLzRqaqwmdkMJOUOcEbQmSvzZKOjkBqWHHFL7oXMDVo38hVgr/tfFLSLGyLXYfY1rU6LqQG3Xrim0aSW26weVEv4dZ4igICiFJRN8gXZratYen4+z3RfvReC6Qpe6/Bp+n1zi+YInqCazWhYojSomBGaJQx+2UNt2rEqLtGgSsdPhTLk29Dr8mCau8VVR/DVY0OzEwdPhndIoitLdOwiQ3kURK9Xn7vjWRowUy+bV3/xFCASDcoMLPpa1VlpjLOO6VhkUrbht86ScfwTpS9uYnooU/IuS5bdNpHXW4I1EVmLz4N0RMAcmyRpHMt6+2KwqNlm5UmI6QzH6kyY46rYlSHu5K424YHW2cxG7kXPiNVrzaki3rAB03MzzFEgnG2j3/gxBUWHUg2e0TcO3hs8ZT3jmz0pr629RqfPc9BM+KmBbCgfSwd5HRIqAAWEr3ZvYfCKwO2ZbH/mOZHvXyskQ8QFsepD5JBHhwBgbrPjiYt056BWvi68VNXFeEwNsRQHjCULthrfaoiV+gqZPGexBAyEcf5LUWU=
+X-Microsoft-Antispam-Message-Info: gVfNjsu/mFTtRmv+WYgmyjHvFqRQf9Mh8FMzvWW+2f/grCugwg2EsuGi/7yzotTSjw47HWsg4QU67aZX2OE45RIuXCAmGIiDYtKb2tYkWAYo+6uS42YcIN6/uDnIb1q6AtbqlPV8Fol0RTS2j4iu7aVCb5RNl+f0TmJNFMtmDnCpv5z2SDyHLTFiFbqEaNratoEkhyCuuTRedRFoFan8SL7mMTerxgof3eXYEKGg+0Cs89/7n7FK2EqrDyIqDB/tw6nAP2Q+gO5OowL20zBgJmqEv9t8IQq3tl2XiijEwOXx+0l5EOjpG7Gso9pgWTDkpZVhWJwj+VM0RxVLTO6+L1wm2tx+vcRgZ2p+VXvNTQQFOn8jxvo+0qJWO8v3MpmOCnI/tf1ILskflq+1igK5+tfzwmYijhdAXHEOvRY4iNCQ6+UzroB1X9QjTtkIaHdahbbM5lfcbApNlKiGuHkJtTojhp/OqBnoiUeX6BcBrStRbal1T3xK4ZERak1SoJ4qDPClggTlcu2oO7QwWlSGNKlxSuU7PAknVFVUAnOdjA/JmFEpImfMTdljWJn2N95jA7RkVGFc3a62sOTs9KhRuwgivUhqpCYdMqGf9LTCCForieTQtgAAlLQdHub2KqoXvCHWMfd2ffs/n3HMzPprB2qePzflyljTpabDrLZanfUWqaasOUQXG0IOqq/SqQ230cTxwIstHLZZL8c4mbAOe0ET9nW5g7GlJtM+RuyTOro=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Jb10XC/IthVaKwW2BHJspHl7zraDbnkYZqawBJEObG1iSkvEiDPNidZgeRgb?=
- =?us-ascii?Q?wbi+q9rP7Ksif1bAtRBspOWSAbaldEmO+TJlSyQkcqMiEjTk1ua8XLOxlIP7?=
- =?us-ascii?Q?/22jjUclbQEY10nB6esaPK92/+8whJJhi7l3twA7JzlUM77RhA19T8NNkXSU?=
- =?us-ascii?Q?WKWZrEZfRk1K8PhW/tIVziBc4tK11KVZah0CGF2+3BnyC3Iw9nwb7t2yw3X4?=
- =?us-ascii?Q?JaMjlbGP7EnNTXjGF5pAP5EquqGzNcagEVsZSsB9T7bGXLKMSOXHyW3MiKgX?=
- =?us-ascii?Q?XPRcMxAvmWt5Xp9vAHb7xe7x1kbLM3m2inzLIH76HIEdWjabsv0nyBQRfZve?=
- =?us-ascii?Q?9S1LboRfpUloSXBrXucE0IY0V/b+VrKjVZk8SPoVTfinFGYoossWxpBj7GBW?=
- =?us-ascii?Q?0fDnLYLwmZLnK6PXs75P0LcZ+9stKK3j6HokY1X3HZDmLge9MdxJikNLsh93?=
- =?us-ascii?Q?UR8v64EczqJ+o0dTBThppL8zsmEsWyKyMl1+dZ655y32fSifTQ8gdFb/LBmQ?=
- =?us-ascii?Q?VIwQCiYx7og10eQJcomw4txi1+363iHhq+hOmQzva+7JiZMrk8V0VmSKFI3M?=
- =?us-ascii?Q?NrgbKP3DF3RUWdJjnRMH6/Fc5die7MFYTNz2oxfSPN0zvtluZjg9QJ3dCcda?=
- =?us-ascii?Q?KTMy/moqVF835qq6yZsaRMlcIVnL8cfk4G67a0lAIEQsxW7TA7sgPSh4ghBu?=
- =?us-ascii?Q?pdBn0Pz+Oj/7puaH+00veX8ScMiDVmcxeFVvBmzOPcIvGpnAvO85sR2IoBeq?=
- =?us-ascii?Q?ynJgDdiP8y4/fh2buEcCDVWiumhuo5xrBF4cHE/3H3qnSP6mRf6h3PMzUrxB?=
- =?us-ascii?Q?vTcHw/PvvibCrZOoJ1irAgdzF42paYSKKZO+rRORGrigAUdWRX0yHnkXsXwO?=
- =?us-ascii?Q?E2DAbWQZtL/4Yc0RC785Sw7QqNbgRefgMfLxojkoTZjO+Ct5G99f+w+nnvsE?=
- =?us-ascii?Q?k2JJxuQAtEBYU5PJa+JzuQmEGCAbiJTPcqZMiod+vn++f3IWSLANR1XeffFS?=
- =?us-ascii?Q?Go0+Pfci2b8NszB1NiuB7wpAzZCj4jjc4jtKJxcb9VLhgGMreUHluZj3GdZB?=
- =?us-ascii?Q?cwVkkSgJD2T8Yzm6eOs6tKXBXhmA4Df47akYFMqiPBwsfmISqrAwnoMTBec/?=
- =?us-ascii?Q?1l2uqAWo7LnFvrIhMTO097bSF75/wvt+QrB2YQ9vM7Y7K+OUyithQNkgyKfv?=
- =?us-ascii?Q?d/7Sj0bH4WlnylT+qdhptVqgUQ2ZusoRsvq/HgfjjgI+1EF4FXmR4dQzzZ2L?=
- =?us-ascii?Q?Ofc9CRegSX0/4Bg495rXvNM8cZDh+o9INQHq6TaA1YYJVATAI50KHnji2QGS?=
- =?us-ascii?Q?PlrF7Ihpx3Fhw+kykV8RC2z1mEKJi3n813wGcHMYBsGf8KzdWS9nVGbH1iFp?=
- =?us-ascii?Q?u6vTVo6i/1ptcofGAdVLdN86LJ72Un47H2UzxdzICyRqEqipO0C3cKAc5XT7?=
- =?us-ascii?Q?pAD8Bg6JChQq7EaKzfRUuN5JqlEbr0nnNT4RMo0xO0oYCp3FZAwOwSUctV4g?=
- =?us-ascii?Q?F0Q5KbBFTMl1adcmiy2m7SnT55KOUb9rttB5IG8Yez9UZz8vPbltNhHGx1JH?=
- =?us-ascii?Q?SYPqhco5Sq+cMpLCZrbwD/myWWD/7MkZ5V1gL5Z4P/0w5eO9ansgWVYCq+Ju?=
- =?us-ascii?Q?TRh+ibpHmrQPo8Ly5u7lcTXi3aZsMx4zxQCbZagDoG+rwxwKcG2Y3yaeEF/V?=
- =?us-ascii?Q?InZYVCIa37An1CU98MuHWb7xwBpYTUZzrP8AZqmHulD+VkEvIqKl4w3Y8cEl?=
- =?us-ascii?Q?abaEFm/+ag=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3c6ea189-4549-4c6e-e5ae-08de748aff9a
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?RGKpwi3SjbYbbUCP381q0eOnSuAUk/gXnR6XDcaFuQ7TDpU5tSLOMqCCupX2?=
+ =?us-ascii?Q?qimEDWj80NLU6eCV9f6VPKmPACi8q4N7NZzNPEdQ73curYw1VYFgMqGgnhKj?=
+ =?us-ascii?Q?22UGOOFZMys8w85kvgTPSe8vxBCJO9cWdMkikPGVPJoSfVXdbM+lrd02oFEV?=
+ =?us-ascii?Q?KKR86W+nXGM67fIAHb2MKyOQJVNsWTGCG5NB1XvG78DER8N+YkgABz0MY3p/?=
+ =?us-ascii?Q?BRv4DH4H930qvu1Emc2mIjiMN1GSBhZXTORvTmfJXW78Ic+Rmk0aehmRItH+?=
+ =?us-ascii?Q?OW2D9m3G/irbPIYpsr52/9hrxa6qaXk88j3b3OeaDBL7NYDeteraTr2OYv4y?=
+ =?us-ascii?Q?9aesqFnYYok7m6fptWeUDA7LMa7VQNcVXSDVTYHhHNyNba5PDxZwuk/1roW/?=
+ =?us-ascii?Q?lbXr4tiD3HnXNy74wabulzimy0kuIZB3b8zRU6uCdCDeYiW0RBpSTTaH81zR?=
+ =?us-ascii?Q?kIOluLKcNJYnJUtcCrA/H/pnz+lz3Uhq0vdUkitM5bcmVDYrTsQa//jbAZTP?=
+ =?us-ascii?Q?JJp+9C1MZWkolvTXDzioAtxYUjo9l19peKhfobf+SpRt0Tqviedc3NjJXmMJ?=
+ =?us-ascii?Q?hA+s4iWHMkS4mSbmaLjyYeTPjVP59PbbIOZoDFi2XWyeHHoLuvMGCrYH/8tf?=
+ =?us-ascii?Q?ynMdv41pYvSW4IuUCRQppmaVdUN4FWAG3ln7NcX8jUQWezbB4e/E8dzjHdhC?=
+ =?us-ascii?Q?/rSxsoqDIgvs+aAxN0k1fYClIls+sQX9uc6ielsZz7gReSrpmD+/tnDk0xgK?=
+ =?us-ascii?Q?Yb7p2YqxPlkJUzDNEzhucHUC2y5w+uvZe1DrwAfLzkgD8MdDYVHMeYjDIwlv?=
+ =?us-ascii?Q?+msK7/L7ysqXyk4qUPz90ivPu6wyVu5tvhhIqmBwyTAvQG+eWW2Ofe8/PYNQ?=
+ =?us-ascii?Q?NC3/d/njttdTSQ0d2OF61tYaZRDtA43CcKJQ4HfEbxiC8zXsi3bkPDOuA2jn?=
+ =?us-ascii?Q?3gMaKn8hRCl/0Lc2nUDvRkDYY8PMobvJMKpPo1e7HBopATrY79DXMBuFHefF?=
+ =?us-ascii?Q?i4gdQ1bMiEufumCoVctQEwxVXNxWt9+/fUUUCEagcRWubNiA+CE/ke1mCQFb?=
+ =?us-ascii?Q?gE7uvROtmNinnbtU3IaMEybKhVpEH0PTMSDTpAFY23BVy9+VX4gGQT2tDtQM?=
+ =?us-ascii?Q?zgVnTXXJo36GmrbqE10bx5rxDMS2AX6cKkbfEQvdOuDLhw1J5oTflcPyJELF?=
+ =?us-ascii?Q?G7QzVuC1VTlceUaPPDz+ZcNpzlGn7lRROvWtT1y1Od3awNAOuX/p9USWZM4E?=
+ =?us-ascii?Q?1XS98X7DS3WF5w9CO/LwJxLQW9qrF0aGmV/xTpp3prbCifbQQXIT/AlTmaku?=
+ =?us-ascii?Q?/3Li7dPfpBacpqFTXIwMBheoWJNO7HTmKJTxZIITfz5+tQL+z9I6Tuc/MGee?=
+ =?us-ascii?Q?yMmCOFmt9lt33gShbbGvx6NQ0vFqGX3k7NyFpdncf+qGV2bkX564CO1EV1o9?=
+ =?us-ascii?Q?r2S+vnoYz86F/C2++hEXvXSNI4uHp+yRnGQZUAruriey9uyxlM8vXt6du5Nv?=
+ =?us-ascii?Q?G3PZMtaHWfBLXPgQ4Pkh9dxL0gAlGhFDShgK9eqjV3pmKtCsfbtJlnsMval3?=
+ =?us-ascii?Q?I4RWj1bJ2/MQyQVhI8GJIEzSch1cpMED8XaB7f7mPY1py/ysiaG0mL0kmEUV?=
+ =?us-ascii?Q?lNjIH/UD6bOXQOmwE9kHzTfzsaWnPrbOr31OB1zcmBE8Nmjd36ECknpttEcS?=
+ =?us-ascii?Q?6c95O9L6htrRkQWFoxxHt9Alr/HOY2rOwAe36VBtbigWCTwLCC9Mwg9PGI5J?=
+ =?us-ascii?Q?q/xExZcOaA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2425dd87-c6d7-4a16-5ee0-08de748afb19
 X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2026 16:29:07.8414 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2026 16:29:00.4561 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GTMv/ZQj4TPIdcbfN530KPDEZDtb6VbYiaZNkwAvUU290GI/8JNyiFsA0CBd+FNVFfwqhlJfnb1sNbGpCzirSw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: zf1Wiy/FYv8MEj5/rH0Mn2YSMreK+mvpQo6dYxJiKUHa2o6ITNcOFEaIxPgYKEzzB00yaf8JmcaEK3EF8ZOLDQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6365
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -158,66 +159,200 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Imre Deak <imre.deak@gmail.com>
 
-Only those IRQs should be acked that are handled, however for SST all
-IRQs triggered by the sink are acked. This can be a problem for flags
-that are reserved/reading zero at a given moment, but become used for
-some purpose - with a side-effect if set - in a future DPCD revision.
+Read and ack the sink count, sink device and link service IRQs for SST
+the same way this is done for MST, the read/ack happening in separate
+steps via an ESI (Event Status Indicator) vector.
 
-Fix the above by acking only those device service IRQs that will be
-handled. While at it add asserts that only the known/acked device
-service IRQs are handled both in the MST and SST case.
+The above way is more efficient, since on newer (DPCD_REV >= 1.2) sinks
+the DP_SINK_COUNT_ESI..DP_LINK_SERVICE_IRQ_VECTOR_ESI0 registers can be
+read out in one AUX transaction - and the 3 last one written in one
+transaction. Also this allows sharing more of the SST and MST IRQ
+handling code (done as a follow-up).
+
+For now keep the current behavior of always reading the legacy
+DP_SINK_COUNT, DP_DEVICE_SERVICE_IRQ_VECTOR registers and not reading
+the DP_DEVICE_SERVICE_IRQ_VECTOR_ESI1 register.
 
 Signed-off-by: Imre Deak <imre.deak@gmail.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp.c | 132 +++++++++++++-----------
+ 1 file changed, 73 insertions(+), 59 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 27eea2cc0c301..52f3b1e88599c 100644
+index 6156fd91b13c5..749bcb4dfe4e7 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4916,6 +4916,14 @@ intel_dp_mst_disconnect(struct intel_dp *intel_dp)
- 	drm_dp_mst_topology_mgr_set_mst(&intel_dp->mst.mgr, intel_dp->is_mst);
+@@ -4952,6 +4952,70 @@ static bool intel_dp_ack_sink_irq_esi(struct intel_dp *intel_dp, u8 esi[4])
+ 	return false;
  }
  
-+#define INTEL_DP_DEVICE_SERVICE_IRQ_MASK_SST	(DP_AUTOMATED_TEST_REQUEST | \
-+						 DP_CP_IRQ | \
-+						 DP_SINK_SPECIFIC_IRQ)
++static bool intel_dp_get_sink_irq_esi_sst(struct intel_dp *intel_dp, u8 esi[4])
++{
++	memset(esi, 0, 4);
 +
-+#define INTEL_DP_DEVICE_SERVICE_IRQ_MASK_MST	(DP_CP_IRQ | \
-+						 DP_DOWN_REP_MSG_RDY | \
-+						 DP_UP_REQ_MSG_RDY)
++	/*
++	 * TODO: For DP_DPCD_REV >= 0x12 read
++	 * DP_SINK_COUNT_ESI and DP_DEVICE_SERVICE_IRQ_VECTOR_ESI0.
++	 */
++	if (drm_dp_dpcd_read_data(&intel_dp->aux, DP_SINK_COUNT, esi, 2) != 0)
++		return false;
 +
- static bool
- intel_dp_get_sink_irq_esi(struct intel_dp *intel_dp, u8 *esi)
- {
-@@ -5007,6 +5015,8 @@ static bool intel_dp_get_and_ack_sink_irq_esi_sst(struct intel_dp *intel_dp, u8
- 		    encoder->base.base.id, encoder->base.name,
- 		    esi);
- 
-+	esi[1] &= INTEL_DP_DEVICE_SERVICE_IRQ_MASK_SST;
++	if (intel_dp->dpcd[DP_DPCD_REV] < DP_DPCD_REV_12)
++		return true;
 +
- 	if (mem_is_zero(&esi[1], 3))
- 		return true;
- 
-@@ -5551,6 +5561,8 @@ intel_dp_check_mst_status(struct intel_dp *intel_dp)
- 		if (mem_is_zero(ack, sizeof(ack)))
- 			break;
- 
-+		drm_WARN_ON(display->drm, ack[1] & ~INTEL_DP_DEVICE_SERVICE_IRQ_MASK_MST);
++	/* TODO: Read DP_DEVICE_SERVICE_IRQ_VECTOR_ESI1 as well */
++	if (drm_dp_dpcd_read_byte(&intel_dp->aux, DP_LINK_SERVICE_IRQ_VECTOR_ESI0, &esi[3]) != 0)
++		return false;
 +
- 		if (!intel_dp_ack_sink_irq_esi(intel_dp, ack))
- 			drm_dbg_kms(display->drm, "Failed to ack ESI\n");
++	return true;
++}
++
++static bool intel_dp_ack_sink_irq_esi_sst(struct intel_dp *intel_dp, u8 esi[4])
++{
++	/*
++	 * TODO: For DP_DPCD_REV >= 0x12 write
++	 * DP_DEVICE_SERVICE_IRQ_VECTOR_ESI0
++	 */
++	if (drm_dp_dpcd_write_byte(&intel_dp->aux, DP_DEVICE_SERVICE_IRQ_VECTOR, esi[1]) != 0)
++		return false;
++
++	if (intel_dp->dpcd[DP_DPCD_REV] < DP_DPCD_REV_12)
++		return true;
++
++	/* TODO: Read DP_DEVICE_SERVICE_IRQ_VECTOR_ESI1 as well */
++	if (drm_dp_dpcd_write_byte(&intel_dp->aux, DP_LINK_SERVICE_IRQ_VECTOR_ESI0, esi[3]) != 0)
++		return false;
++
++	return true;
++}
++
++static bool intel_dp_get_and_ack_sink_irq_esi_sst(struct intel_dp *intel_dp, u8 esi[4])
++{
++	struct intel_display *display = to_intel_display(intel_dp);
++	struct intel_connector *connector = intel_dp->attached_connector;
++	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
++
++	if (!intel_dp_get_sink_irq_esi_sst(intel_dp, esi))
++		return false;
++
++	drm_dbg_kms(display->drm,
++		    "[CONNECTOR:%d:%s][ENCODER:%d:%s] DPRX ESI: %4ph\n",
++		    connector->base.base.id, connector->base.name,
++		    encoder->base.base.id, encoder->base.name,
++		    esi);
++
++	if (mem_is_zero(&esi[1], 3))
++		return true;
++
++	if (!intel_dp_ack_sink_irq_esi_sst(intel_dp, esi))
++		return false;
++
++	return true;
++}
++
+ bool
+ intel_dp_needs_vsc_sdp(const struct intel_crtc_state *crtc_state,
+ 		       const struct drm_connector_state *conn_state)
+@@ -5772,27 +5836,6 @@ void intel_dp_check_link_state(struct intel_dp *intel_dp)
+ 	intel_encoder_link_check_queue_work(encoder, 0);
+ }
  
-@@ -5835,6 +5847,8 @@ static void intel_dp_handle_device_service_irq(struct intel_dp *intel_dp, u8 irq
+-static bool intel_dp_get_and_ack_device_service_irq(struct intel_dp *intel_dp, u8 *irq_mask)
+-{
+-	u8 val;
+-
+-	*irq_mask = 0;
+-
+-	if (drm_dp_dpcd_readb(&intel_dp->aux,
+-			      DP_DEVICE_SERVICE_IRQ_VECTOR, &val) != 1)
+-		return false;
+-
+-	if (!val)
+-		return true;
+-
+-	if (drm_dp_dpcd_writeb(&intel_dp->aux, DP_DEVICE_SERVICE_IRQ_VECTOR, val) != 1)
+-		return false;
+-
+-	*irq_mask = val;
+-
+-	return true;
+-}
+-
+ static void intel_dp_handle_device_service_irq(struct intel_dp *intel_dp, u8 irq_mask)
  {
  	struct intel_display *display = to_intel_display(intel_dp);
+@@ -5807,31 +5850,6 @@ static void intel_dp_handle_device_service_irq(struct intel_dp *intel_dp, u8 irq
+ 		drm_dbg_kms(display->drm, "Sink specific irq unhandled\n");
+ }
  
-+	drm_WARN_ON(display->drm, irq_mask & ~INTEL_DP_DEVICE_SERVICE_IRQ_MASK_SST);
+-static bool intel_dp_get_and_ack_link_service_irq(struct intel_dp *intel_dp, u8 *irq_mask)
+-{
+-	u8 val;
+-
+-	*irq_mask = 0;
+-
+-	if (intel_dp->dpcd[DP_DPCD_REV] < DP_DPCD_REV_12)
+-		return true;
+-
+-	if (drm_dp_dpcd_readb(&intel_dp->aux,
+-			      DP_LINK_SERVICE_IRQ_VECTOR_ESI0, &val) != 1)
+-		return false;
+-
+-	if (!val)
+-		return true;
+-
+-	if (drm_dp_dpcd_writeb(&intel_dp->aux,
+-			       DP_LINK_SERVICE_IRQ_VECTOR_ESI0, val) != 1)
+-		return false;
+-
+-	*irq_mask = val;
+-
+-	return true;
+-}
+-
+ static bool intel_dp_handle_link_service_irq(struct intel_dp *intel_dp, u8 irq_mask)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+@@ -5868,30 +5886,26 @@ static bool
+ intel_dp_short_pulse(struct intel_dp *intel_dp)
+ {
+ 	bool reprobe_needed = false;
+-	u8 irq_mask;
++	u8 esi[4] = {};
+ 
+ 	intel_dp_test_reset(intel_dp);
+ 
++	if (!intel_dp_get_and_ack_sink_irq_esi_sst(intel_dp, esi))
++		return false;
 +
- 	if (irq_mask & DP_AUTOMATED_TEST_REQUEST)
- 		intel_dp_test_request(intel_dp);
+ 	/*
+-	 * Now read the DPCD to see if it's actually running
+ 	 * If the current value of sink count doesn't match with
+-	 * the value that was stored earlier or dpcd read failed
+-	 * we need to do full detection
++	 * the value that was stored earlier we need to do full
++	 * detection.
+ 	 */
+ 	if (intel_dp_has_sink_count(intel_dp) &&
+-	    drm_dp_read_sink_count(&intel_dp->aux) != intel_dp->sink_count)
++	    DP_GET_SINK_COUNT(esi[0]) != intel_dp->sink_count)
+ 		/* No need to proceed if we are going to do full detect */
+ 		return false;
  
+-	if (!intel_dp_get_and_ack_device_service_irq(intel_dp, &irq_mask))
+-		return false;
++	intel_dp_handle_device_service_irq(intel_dp, esi[1]);
+ 
+-	intel_dp_handle_device_service_irq(intel_dp, irq_mask);
+-
+-	if (!intel_dp_get_and_ack_link_service_irq(intel_dp, &irq_mask))
+-		return false;
+-
+-	if (intel_dp_handle_link_service_irq(intel_dp, irq_mask))
++	if (intel_dp_handle_link_service_irq(intel_dp, esi[3]))
+ 		reprobe_needed = true;
+ 
+ 	/* Handle CEC interrupts, if any */
 -- 
 2.49.1
 
