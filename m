@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 341FFFD3760
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B146FD3767
 	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 14:50:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF43710E7A4;
-	Wed, 25 Feb 2026 14:50:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CB6910E7AB;
+	Wed, 25 Feb 2026 14:50:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mklffmf7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rt2ADO/q";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 088E910E1AB;
- Wed, 25 Feb 2026 14:49:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 582AF10E798;
+ Wed, 25 Feb 2026 14:50:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772030992; x=1803566992;
+ t=1772031002; x=1803567002;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VxoviG3mjs3DhL7X5bagqmfQ4dOTgmYoiMRTz8SEEqQ=;
- b=mklffmf7iEtP+4lGC7CWiTV7DYZ1z2E6Ht8o1iuTh/Gv4dZas6LSy1m6
- 3nusyshXiiGhPX2p29GxWtxpe9Sb9xnFvHElNc2dOErd1crHSckEpXYnx
- auXak+pLwQy2OvdWC4Sn63s0I+R2FZeEDceVVhImN1K2xxTiOkluioFjC
- l/EqEduZytKGwBEcbjVY00bmKvzLyEbzEvPhxqjRnlQofgL73bUSjd4Kl
- NbuUK/Kpov50OrcFS5AJCZ8mc1lGvJhZ6QKcCKvbX7rYFwBekokCaa+Lh
- FfyxafiYQRsfGPAGhHbzVGBvBsMoj5uRyoBLMc3Y3hU5TkRRGJpJbn6by A==;
-X-CSE-ConnectionGUID: 9oWodsG2QlK6CUhB/jAM1g==
-X-CSE-MsgGUID: OUdG+lj9TMi8iLBS708rug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="95686376"
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="95686376"
+ bh=U/xB7A+jYHD2CPmNsuVHNvNMPzA1J3/EvNbH8DM7l+c=;
+ b=Rt2ADO/qYGZN1cpYQohg9Y3HZMdkh+78L7QSmnLgRf28Ev3Z/NG2iAwV
+ HHS6QcOjNzDTimJoyP8SnzYmtQZL14eZE8c08ABoGX/9dBFStQZGOmHmI
+ ksMkqA4mrnWdeVUjBsp7Zw+whYogDzaX1IZul7fxd2SzjHCzHlSIAGNRs
+ snLbrz/Se9AV6I6rotwp8kEEkJ+j+M2OJ3T49xEZKIEAJDcLCIHa/MuHV
+ y7VsS777O/eaaZbMweRiCnLVlSjcBqjxDVRnzOIaj9Rwagwr3y8dnknwP
+ KuKvJS3pNB7Ywa7SdNiCx+h/80PHJEifH1NqyKt8/gQV0pLnmmnU2rs3v w==;
+X-CSE-ConnectionGUID: 2KHuk6Z1RpmrOlpK5RdK6w==
+X-CSE-MsgGUID: EMjb0baLSW6mDLWzu0Euxw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="95686386"
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="95686386"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 06:49:52 -0800
-X-CSE-ConnectionGUID: E73dDv8QTCWmeoNszkZD3w==
-X-CSE-MsgGUID: FJcDL2WSR76JvB5pd6gEmg==
+ 25 Feb 2026 06:50:02 -0800
+X-CSE-ConnectionGUID: ZQCDi44+Sn62HmRSrjw/TQ==
+X-CSE-MsgGUID: YNmLbo3xRzWWQg0sH+j1IA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="216387406"
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="216387425"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.68])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 06:49:50 -0800
+ 25 Feb 2026 06:50:00 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Subject: [PATCH 06/10] drm/i915/dpt: drop _common from the DPT file names
-Date: Wed, 25 Feb 2026 16:49:12 +0200
-Message-ID: <3f2da737a26bb71a7bc05a3e6c456302e3c72656.1772030909.git.jani.nikula@intel.com>
+Subject: [PATCH 08/10] drm/i915/dpt: rename i915 specific functions to
+ i915_dpt_ prefix
+Date: Wed, 25 Feb 2026 16:49:14 +0200
+Message-ID: <9bb94942ed4a15bcdd89be3f0029a2cb6cdf170d.1772030909.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1772030909.git.jani.nikula@intel.com>
 References: <cover.1772030909.git.jani.nikula@intel.com>
@@ -70,94 +71,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-With the intel_dpt.[ch] file names vacated, and i915 specific code moved
-away, we can rename the intel_dpt_common.[ch] files to the simpler name.
+Follow the common convention of naming functions by file name, in this
+case also clarifying which functions are i915 specific.
 
 Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/Makefile                                   | 2 +-
- drivers/gpu/drm/i915/display/intel_display.c                    | 2 +-
- .../gpu/drm/i915/display/{intel_dpt_common.c => intel_dpt.c}    | 2 +-
- .../gpu/drm/i915/display/{intel_dpt_common.h => intel_dpt.h}    | 0
- drivers/gpu/drm/i915/i915_driver.c                              | 2 +-
- drivers/gpu/drm/xe/Makefile                                     | 2 +-
- 6 files changed, 5 insertions(+), 5 deletions(-)
- rename drivers/gpu/drm/i915/display/{intel_dpt_common.c => intel_dpt.c} (98%)
- rename drivers/gpu/drm/i915/display/{intel_dpt_common.h => intel_dpt.h} (100%)
+ drivers/gpu/drm/i915/display/intel_fb_pin.c | 8 ++++----
+ drivers/gpu/drm/i915/i915_dpt.c             | 7 +++----
+ drivers/gpu/drm/i915/i915_dpt.h             | 7 +++----
+ 3 files changed, 10 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index f1f504b36374..1c7c7687033c 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -271,7 +271,7 @@ i915-y += \
- 	display/intel_dpio_phy.o \
- 	display/intel_dpll.o \
- 	display/intel_dpll_mgr.o \
--	display/intel_dpt_common.o \
-+	display/intel_dpt.o \
- 	display/intel_dram.o \
- 	display/intel_drrs.o \
- 	display/intel_dsb.o \
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 24ea9c2b28ad..27354585ba92 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -84,7 +84,7 @@
- #include "intel_dp_tunnel.h"
- #include "intel_dpll.h"
- #include "intel_dpll_mgr.h"
--#include "intel_dpt_common.h"
-+#include "intel_dpt.h"
- #include "intel_drrs.h"
- #include "intel_dsb.h"
- #include "intel_dsi.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_dpt_common.c b/drivers/gpu/drm/i915/display/intel_dpt.c
-similarity index 98%
-rename from drivers/gpu/drm/i915/display/intel_dpt_common.c
-rename to drivers/gpu/drm/i915/display/intel_dpt.c
-index 6551318b037b..dffd500d378e 100644
---- a/drivers/gpu/drm/i915/display/intel_dpt_common.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpt.c
-@@ -6,7 +6,7 @@
- #include "intel_de.h"
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
--#include "intel_dpt_common.h"
-+#include "intel_dpt.h"
- #include "intel_parent.h"
- #include "skl_universal_plane_regs.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+index 5d4ae8be5ca6..d2e4200f2cef 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+@@ -284,7 +284,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
+ 	} else {
+ 		unsigned int alignment = intel_plane_fb_min_alignment(plane_state);
  
-diff --git a/drivers/gpu/drm/i915/display/intel_dpt_common.h b/drivers/gpu/drm/i915/display/intel_dpt.h
-similarity index 100%
-rename from drivers/gpu/drm/i915/display/intel_dpt_common.h
-rename to drivers/gpu/drm/i915/display/intel_dpt.h
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 570626f8a554..31a608ccab00 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -59,7 +59,7 @@
- #include "display/intel_display_power.h"
- #include "display/intel_dmc.h"
- #include "display/intel_dp.h"
--#include "display/intel_dpt_common.h"
-+#include "display/intel_dpt.h"
- #include "display/intel_dram.h"
- #include "display/intel_encoder.h"
- #include "display/intel_fbdev.h"
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 41ec698b3cc1..8fc0c3678944 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -275,7 +275,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/intel_dp_test.o \
- 	i915-display/intel_dpll.o \
- 	i915-display/intel_dpll_mgr.o \
--	i915-display/intel_dpt_common.o \
-+	i915-display/intel_dpt.o \
- 	i915-display/intel_dram.o \
- 	i915-display/intel_drrs.o \
- 	i915-display/intel_dsb.o \
+-		vma = intel_dpt_pin_to_ggtt(fb->dpt_vm, alignment / 512);
++		vma = i915_dpt_pin_to_ggtt(fb->dpt_vm, alignment / 512);
+ 		if (IS_ERR(vma))
+ 			return PTR_ERR(vma);
+ 
+@@ -294,7 +294,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
+ 					  alignment, &plane_state->flags,
+ 					  fb->dpt_vm);
+ 		if (IS_ERR(vma)) {
+-			intel_dpt_unpin_from_ggtt(fb->dpt_vm);
++			i915_dpt_unpin_from_ggtt(fb->dpt_vm);
+ 			plane_state->ggtt_vma = NULL;
+ 			return PTR_ERR(vma);
+ 		}
+@@ -307,7 +307,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
+ 		 * The DPT object contains only one vma, and there is no VT-d
+ 		 * guard, so the VMA's offset within the DPT is always 0.
+ 		 */
+-		drm_WARN_ON(display->drm, intel_dpt_offset(plane_state->dpt_vma));
++		drm_WARN_ON(display->drm, i915_dpt_offset(plane_state->dpt_vma));
+ 	}
+ 
+ 	/*
+@@ -346,7 +346,7 @@ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state)
+ 
+ 		vma = fetch_and_zero(&old_plane_state->ggtt_vma);
+ 		if (vma)
+-			intel_dpt_unpin_from_ggtt(fb->dpt_vm);
++			i915_dpt_unpin_from_ggtt(fb->dpt_vm);
+ 	}
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/i915_dpt.c b/drivers/gpu/drm/i915/i915_dpt.c
+index 8b49ebeecff7..b8a03c0498d2 100644
+--- a/drivers/gpu/drm/i915/i915_dpt.c
++++ b/drivers/gpu/drm/i915/i915_dpt.c
+@@ -121,8 +121,7 @@ static void dpt_cleanup(struct i915_address_space *vm)
+ 	i915_gem_object_put(dpt->obj);
+ }
+ 
+-struct i915_vma *intel_dpt_pin_to_ggtt(struct i915_address_space *vm,
+-				       unsigned int alignment)
++struct i915_vma *i915_dpt_pin_to_ggtt(struct i915_address_space *vm, unsigned int alignment)
+ {
+ 	struct drm_i915_private *i915 = vm->i915;
+ 	struct intel_display *display = i915->display;
+@@ -174,7 +173,7 @@ struct i915_vma *intel_dpt_pin_to_ggtt(struct i915_address_space *vm,
+ 	return err ? ERR_PTR(err) : vma;
+ }
+ 
+-void intel_dpt_unpin_from_ggtt(struct i915_address_space *vm)
++void i915_dpt_unpin_from_ggtt(struct i915_address_space *vm)
+ {
+ 	struct i915_dpt *dpt = i915_vm_to_dpt(vm);
+ 
+@@ -265,7 +264,7 @@ static void i915_dpt_resume(struct i915_address_space *vm)
+ 	i915_ggtt_resume_vm(vm, true);
+ }
+ 
+-u64 intel_dpt_offset(struct i915_vma *dpt_vma)
++u64 i915_dpt_offset(struct i915_vma *dpt_vma)
+ {
+ 	return i915_vma_offset(dpt_vma);
+ }
+diff --git a/drivers/gpu/drm/i915/i915_dpt.h b/drivers/gpu/drm/i915/i915_dpt.h
+index 9b765bc8d88b..3b76e9760600 100644
+--- a/drivers/gpu/drm/i915/i915_dpt.h
++++ b/drivers/gpu/drm/i915/i915_dpt.h
+@@ -9,10 +9,9 @@
+ struct i915_address_space;
+ struct i915_vma;
+ 
+-struct i915_vma *intel_dpt_pin_to_ggtt(struct i915_address_space *vm,
+-				       unsigned int alignment);
+-void intel_dpt_unpin_from_ggtt(struct i915_address_space *vm);
+-u64 intel_dpt_offset(struct i915_vma *dpt_vma);
++struct i915_vma *i915_dpt_pin_to_ggtt(struct i915_address_space *vm, unsigned int alignment);
++void i915_dpt_unpin_from_ggtt(struct i915_address_space *vm);
++u64 i915_dpt_offset(struct i915_vma *dpt_vma);
+ 
+ extern const struct intel_display_dpt_interface i915_display_dpt_interface;
+ 
 -- 
 2.47.3
 
