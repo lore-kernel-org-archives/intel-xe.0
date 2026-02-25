@@ -4,46 +4,122 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E6E7FCEE80
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 11:19:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C1EAFCEE80
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 11:19:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2BF0610E73C;
-	Wed, 25 Feb 2026 11:19:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2465210E73F;
+	Wed, 25 Feb 2026 11:19:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="tw3mHg6y";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="r/4fPbC/";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 001D010E73C
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Feb 2026 11:19:54 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 54EB860053;
- Wed, 25 Feb 2026 11:19:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7E79C116D0;
- Wed, 25 Feb 2026 11:19:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772018394;
- bh=oMuppjpDBgU6CMU7H6oG+tWecofTBvxD/WKOn1hqjrk=;
- h=Date:From:To:Cc:Subject:From;
- b=tw3mHg6yNS5mxDNrd9YUuo3UEhV/Dd2dunOiJt9gkYKfwRCzYtgkZeFMrOSDE9ikr
- bCwbG/LnWZJRc0qVtiK6U4Q/Rmkau+VlFvosf3uulyPnp8My5b6Edx4JDWsgIod1CO
- FA3Hn5JfYXyM4SUfe3Q1qxCE0AjiKl3Pj/Hlq5ZWvGQut1eiKlOxacra6sBrXwLhkI
- MqYnMOAco+deUfhNFKaA6YBbiY9a6VQa2M6h3oozMZAfp8+aucLFqexP2/BYzDdtKo
- IyNheveUhcCaaqcrnvaftA4AfX13qKX0oGfxiXzTOZKCZxTMPKrVlKyelZBRAyYijv
- mm7kk+OdaWZgQ==
-Date: Wed, 25 Feb 2026 11:19:50 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- DRM XE List <intel-xe@lists.freedesktop.org>
-Cc: Andrew Morton <akpm@linux-foundation.org>,
- Davidlohr Bueso <dave@stgolabs.net>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>
-Subject: linux-next: manual merge of the drm-xe tree with the mm-unstable tree
-Message-ID: <aZ7a1vc2xSClNEZi@sirena.org.uk>
+Received: from DM5PR21CU001.outbound.protection.outlook.com
+ (mail-centralusazon11011040.outbound.protection.outlook.com [52.101.62.40])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C9D610E73D;
+ Wed, 25 Feb 2026 11:19:56 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=H15wEcWkhFHe+EKZbsF3dq/ea3IVK9hcB9Xb2smuYRxfjuBsV9lOY+mUZL8AeqTqwLXrWns6H7WuHNf1go31nHdhtGGju6u3MdG76bk5YjZVNeQeZDzaBPa4Z7WfI4fRMo/vX9J2TLwPPOKuFmba1hZKXRkKDMK6Zrhe6qodZfcCvJ6aTRbI4h7mdtLslFtJyyeRq/gkVooJt8oR9N1xpvVGmjDrNenPGVkMtAhJuxZCHeqvfg0m2ZwmbakZxesUvKSe4Q5FvjcIwoJPuwHMORH4M4rQsieFyJs4wFJsXjarqodlG6Y4tgKj/ppJZL6Aps1l9q/Oi6kk0rp/ilMQ/Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TUP4FZstw42Zlnggq5EYY58XCMeTnTiVx76a8hbWYuo=;
+ b=IG9Ga2ggNu53osqPTCjs0ItrKudAZjljRz5QPpUvKfHWf+3v8CoSSjbWa3gJCWXtazZLa4FXzLWT7jpwTAgsVh3gfA1adXDj1ZFj1fH6lJbPOzgRBE1hRz/0QeBXyLBxSKCNEJXh0yfONck91WFliCSVGbAYfXynKzHqKNrDxM5tNw7Wb8iIDimdmn9aVqP/g3eLutIOwC+hgWvUDfoawY4GDBdNQb7DRMKCn1ssWVD8+n0/qNBbXv/PxLmkeVRrnIXEWcrESJMBFVSfMhVCenYy0RT+HZu++ANJVCPMTWFHdg9DX+m8leqMh7L4O6HIW8mGJwd30GiVKmSoRiKlEw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TUP4FZstw42Zlnggq5EYY58XCMeTnTiVx76a8hbWYuo=;
+ b=r/4fPbC/yQFJZNj/0FXmJScXe5f0h6lS7VemDi2ug5FwAS0jD/BpD5wH6uy62JX6JBtdjP267PtdbuRm4KOI6MBjQG2eftmamvBc6r/eDRUZksUfAwdGOuxDU9sg6QRVXbIR7fz2lEP2djW65iRGYK199QEInGbgswuHNrctiKw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH8PR12MB7301.namprd12.prod.outlook.com (2603:10b6:510:222::12)
+ by PH7PR12MB7892.namprd12.prod.outlook.com (2603:10b6:510:27e::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.22; Wed, 25 Feb
+ 2026 11:19:53 +0000
+Received: from PH8PR12MB7301.namprd12.prod.outlook.com
+ ([fe80::8434:dc50:a68d:7bdd]) by PH8PR12MB7301.namprd12.prod.outlook.com
+ ([fe80::8434:dc50:a68d:7bdd%4]) with mapi id 15.20.9632.017; Wed, 25 Feb 2026
+ 11:19:53 +0000
+Message-ID: <abaebf29-1459-4ae9-bc59-e46f8b7c767a@amd.com>
+Date: Wed, 25 Feb 2026 16:49:43 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] gpu/buddy: Introduce gpu_buddy_assert() for kunit-aware
+ assertions
+To: Sanjay Yadav <sanjay.kumar.yadav@intel.com>,
+ dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, =?UTF-8?Q?Christian_K=C3=B6nig?=
+ <christian.koenig@amd.com>, Matthew Auld <matthew.auld@intel.com>
+References: <20260224132506.2631528-2-sanjay.kumar.yadav@intel.com>
+Content-Language: en-US
+From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
+In-Reply-To: <20260224132506.2631528-2-sanjay.kumar.yadav@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5PR01CA0140.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b9::9) To PH8PR12MB7301.namprd12.prod.outlook.com
+ (2603:10b6:510:222::12)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="atUZthrJSehvIAKY"
-Content-Disposition: inline
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR12MB7301:EE_|PH7PR12MB7892:EE_
+X-MS-Office365-Filtering-Correlation-Id: cb23ef1b-de14-41c2-fdb3-08de745fcc26
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7053199007;
+X-Microsoft-Antispam-Message-Info: C7pQQ89UtJ2sknAw+DnyfCHzG10/gDFQoFYC6yPL2JYy954XPPNzvqdij5J/k4XcvcHQAlkV3T4lF5FszPvoVElXkzE1geq/fNUUnmGCs/NlzE8DNZzn/1d5qzArp5PdwKTKxSZ83hGfgI6oWM7U1DeuY2qJPjRO3U6wpCckoid/fS1GumKPG5JJrbsViZ1yx07zEGybFb0kCkyoIyOD2K9cOqSD55Yt/+C2y79vM7Xsx9lNMxXZayLEwLJCcWZp9sPU/NmqkoMwF/YW9nbFoZRpKcABbi+Eqwm6yId0FR6FhgXGVDgn1CXa0YDApPCTt71Xjc6jlj6LGcB9Qq0n8MATXsZO+Yo77pQE0r8uKnmgx3cHWSUaXhdxe2f6Gfm7gJSCd98cOMXbOFF5yPr5PLHaaxWg3lUA/tZiBQ6g7OhC/wP0PIFhcAqxKITwjNOgQppYACeOSwbY5wWSevx9vXwZwtilj8RIHYcHsSLmmnktKfKcaJI9C3cVhakvUSDE3hS2H38bVwFPK/u3eR6gY+MAX486ZOP1PVtOkfH8VTIbkZFFvf0TLO8TyqaqVc+D3MFf5iyv5POV2tvXs0mOdRFVUPadXycLwZBy2IQ8KFkHye5c5Tbf7ip98JG0aewVBMq5qfLMtszCK9IxvwsY5JGxrZEUrH2ie5tIrk5DYfPHKI2pKlYgEA/PYkKH0l285IZthWU/lTXtIJMk7NrCl5rixAXyrG60DwutmcUsW5g=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR12MB7301.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TGVwcWRZb3JSd3JwSzlFSE9RZWVUNjhiSFJyVjNIR0pHQnR4YmVoV2ZOQ05n?=
+ =?utf-8?B?WW5vZHU0d0x3WUZ2dk9PR0xHR2t3QW9NbGEwcTJTbXh6UzBqQ2Z4WUFJdVNv?=
+ =?utf-8?B?eURGVU9UWEpHMmZ5dEthZ1JOdFprSWpiMEI4ZVhRZ3l2Z0F3cnkxNEhjWGNt?=
+ =?utf-8?B?WU5QemtXcmlXZFBCdFVTZXRlSVdFSklvbnhFd2NnalZMMkFEcUdRTDFlUmFJ?=
+ =?utf-8?B?aWhJRnhLcEM4QUcxUzRSTEViWGZiZVlkMW9QZFVrZjJjQ2xqalIzc3hqVElK?=
+ =?utf-8?B?MjNEMFp4UVhsUjdRVTdTaE1hVGdIK0IxTW13RmF4N0FoR0k3cU1adVpRcTMy?=
+ =?utf-8?B?Zk1wb2lUTEtZZEFHVnJwVU1WVGNzSWpieXBYVnJvcEh2RkQzeHFkOVF3YkpC?=
+ =?utf-8?B?ZXZvQSszd0RMSFJicFRwYjQzWE5nZnA2VjRvdmpPMzRld3pMWVVucTYyVk95?=
+ =?utf-8?B?NzQySlF4YU1vWFhueFR3dDllRFN4TU95eC94Q1d1Z1A3WWFOenBoN0orVUF0?=
+ =?utf-8?B?OFN0Wm9zRWRLTHlFeFNsNHJBMEpiVGwvdXdQdlkxd3NaTGlUdDFlRTlxa2RP?=
+ =?utf-8?B?TnIrNUc0TVp0ck5iSXdYcmVZa3hSaUlXVlgyV1M0L0dheEVwU1RtYTJsU3hX?=
+ =?utf-8?B?U0RRaDRwZS9IcWRwRVlJSXFxRFdsVjNjRENuaTFYOUNZUWVyR05URnVFcEZ0?=
+ =?utf-8?B?RFVwdGFrZE83Z3pobjdtVmwvUzlyN1B1c2pPM3E1em1WWk4xeTdnVjMyYVlB?=
+ =?utf-8?B?UURCNzV2OUhBL1ozM1hmL0xsR2FYajJEejNMM2ZnTEFwaGZUTjBNbWtSNUNa?=
+ =?utf-8?B?WVpoWENUVnVCWjE0VmRLcklxNDhiWFJ5dkNjVGZMR0VDdjd0ajVUV2JMaXJx?=
+ =?utf-8?B?aHpEcjY2cU03Z21TYUl3ZkpuWnYzVG80OEVlSjRXMlVRajJaMkVRRzZUVjFx?=
+ =?utf-8?B?VmY2ektsVEpGNDFPQ1dyWUJZNi9iQURhT1dKMDN1Unh5eVJ6RHBqMk9QTE84?=
+ =?utf-8?B?V1FSakRZOFZEU1NEN2V2TVhpR0FGd1NYTlltOG9rQXZLa3lUUHB1eGxjOEtB?=
+ =?utf-8?B?R3dVYVFaVCtPVXBTcEg2S0IyV3ZPMnAxNFZIUXpFNkNBTVk4MURNZloxNkoz?=
+ =?utf-8?B?a2hOWVRYUzVBSUlaN0NLRzlwcHlLL1NYbEdlS1NXdG9rL0VYRG9qcFlpTFBs?=
+ =?utf-8?B?OUNrODZsd0JLb3Evc0NyMjZTdlVXcE9lbjYzQm1tN2JWQVFPeEdBdnB2TTc1?=
+ =?utf-8?B?RjJ3dUFtY1NiTEtSUTZCZTZPYzErRzVpZ0FheWJLc1hJejZOTjRCcmxxd2Z6?=
+ =?utf-8?B?eER3TGkvaEV5VWZGenVuNnRvQnhjbTNZU0ZIZ0s1WGl5b09ZYmN1UlNWYU41?=
+ =?utf-8?B?ZDVyUVNHcFNPZXhRdXVIWnQzRitnZVVWeXNJZ2hRZy9CRDMzTDhYMEtkMlNx?=
+ =?utf-8?B?enJRMHBYbWwvQnBsc1RVWm5QR21XekkrbVZUK1BMRmpkSUhnVGp6eDNjKzhE?=
+ =?utf-8?B?MlJZcFMxNzJCaE5CMVdXcWY4eC9Bc01sQ2hBTjNoRWgzazFVZG5HVUpYWWtU?=
+ =?utf-8?B?OVlwa0dZR1lNOWU5SHlISXV2Q2YrM2xVUG5DQVJSdFVYNFNxMHk5bzR4U1hC?=
+ =?utf-8?B?U1JtQUlBWUQ0Rjd6b3J6WlZtQkpJK2prZ0NydjVDU3MrVnozcnMzUjVxVi9N?=
+ =?utf-8?B?VDlNSS80Z0lvaHVvdzN6aDhUVkF1SEZLZkoyS0t4NnlsNkl3dnlQd1ZLTm1G?=
+ =?utf-8?B?bnF1bVpkaVRiM2V5a3BwMkNsdWdBQ2hISE93SWdRVGl2cVVSejdLUE44Y1pT?=
+ =?utf-8?B?NnJaaVdCOGhvT0ZtUW1xVUl6YmVuMXJTNkxGeVVzdkVicDlPa0xNcEtqYnJR?=
+ =?utf-8?B?VFMxTHFWWk1zS1FiZExucFcrTHNzOHJDK3RudVhzelJRN0VEbS9peEgwNzF0?=
+ =?utf-8?B?MWluQjhrMWRSNEtxMUxKTXF2TzZzUXdEV2w5dlFxek4vcS9wWHRaQm02d2xB?=
+ =?utf-8?B?MjRzZ1VRN2pGSE1ZVlZwdnhMbHkzMHB2Q3YyOEdQcm1nMEIzR2NHYTFFS1NR?=
+ =?utf-8?B?VHQ5QXhnZUZWMzVENlNpS1Q3aUhxdEVYeGFiNlJ5UHNlTUt2S0xNbWNIeGQz?=
+ =?utf-8?B?R3kzQm0wT2VneThiM1N3djdXdEFwbzZ3SVVaL0JTS3JFUGFrN3RvelFqMURi?=
+ =?utf-8?B?RUcrWnZlUVFHQWJCdTFzYkR4eGxqV0M1M2o4Mlh0aFgyRFdNMHkzV1lxVzR1?=
+ =?utf-8?B?VG5jRGNsaWg4VmFsOFN0L01vZG9hSUh1M0JlYjhrVWJqYWV0ajRDQVBzS2RK?=
+ =?utf-8?B?VmtQWmVvTzY4OU11VGVIcmRRV01ZdmVCKzdsNFppem5Pd3RFWEt6dz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cb23ef1b-de14-41c2-fdb3-08de745fcc26
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR12MB7301.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2026 11:19:53.4429 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: l6AJRt6E+ol/9iyNPbTh+yxheAtU2HDxIcgTrz9TFZmht30Aq+nrpdhv4Zep83i9l/SMoXn58y6Ce+s3cOEwag==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB7892
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,121 +134,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Reviewed-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
 
---atUZthrJSehvIAKY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 2/24/2026 6:55 PM, Sanjay Yadav wrote:
+> Introduce gpu_buddy_assert(), a small helper that wraps WARN_ON() and,
+> when CONFIG_KUNIT is enabled, also calls kunit_fail_current_test() so
+> that any active KUnit test is marked as failed. In non-KUnit builds
+> the macro reduces to WARN_ON(), preserving existing behaviour.
+>
+> Stringify the asserted condition in the failure message to make it easy
+> to identify which assertion fired. Leave the WARN_ON() in
+> gpu_buddy_block_trim() unchanged, as it returns -EINVAL and the caller
+> already observes the failure via the return code.
+>
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+> Suggested-by: Matthew Auld <matthew.auld@intel.com>
+> Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+> ---
+>   drivers/gpu/buddy.c | 36 ++++++++++++++++++++++++++++--------
+>   1 file changed, 28 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
+> index b27761246d4b..da5a1222f46b 100644
+> --- a/drivers/gpu/buddy.c
+> +++ b/drivers/gpu/buddy.c
+> @@ -3,8 +3,7 @@
+>    * Copyright © 2021 Intel Corporation
+>    */
+>   
+> -#include <kunit/test-bug.h>
+> -
+> +#include <linux/bug.h>
+>   #include <linux/export.h>
+>   #include <linux/kmemleak.h>
+>   #include <linux/module.h>
+> @@ -12,6 +11,28 @@
+>   
+>   #include <linux/gpu_buddy.h>
+>   
+> +/**
+> + * gpu_buddy_assert - assert a condition in the buddy allocator
+> + * @condition: condition expected to be true
+> + *
+> + * When CONFIG_KUNIT is enabled, evaluates @condition and, if false, triggers
+> + * a WARN_ON() and also calls kunit_fail_current_test() so that any running
+> + * kunit test is properly marked as failed. The stringified condition is
+> + * included in the failure message for easy identification.
+> + *
+> + * When CONFIG_KUNIT is not enabled, this reduces to WARN_ON() so production
+> + * builds retain the same warning semantics as before.
+> + */
+> +#if IS_ENABLED(CONFIG_KUNIT)
+> +#include <kunit/test-bug.h>
+> +#define gpu_buddy_assert(condition) do {						\
+> +	if (WARN_ON(!(condition)))						\
+> +		kunit_fail_current_test("gpu_buddy_assert(" #condition ")");	\
+> +} while (0)
+> +#else
+> +#define gpu_buddy_assert(condition) WARN_ON(!(condition))
+> +#endif
+> +
+>   static struct kmem_cache *slab_blocks;
+>   
+>   static unsigned int
+> @@ -268,8 +289,8 @@ static int __force_merge(struct gpu_buddy *mm,
+>   				if (!gpu_buddy_block_is_free(buddy))
+>   					continue;
+>   
+> -				WARN_ON(gpu_buddy_block_is_clear(block) ==
+> -					gpu_buddy_block_is_clear(buddy));
+> +				gpu_buddy_assert(gpu_buddy_block_is_clear(block) !=
+> +						 gpu_buddy_block_is_clear(buddy));
+>   
+>   				/*
+>   				 * Advance to the next node when the current node is the buddy,
+> @@ -415,8 +436,7 @@ void gpu_buddy_fini(struct gpu_buddy *mm)
+>   		start = gpu_buddy_block_offset(mm->roots[i]);
+>   		__force_merge(mm, start, start + size, order);
+>   
+> -		if (WARN_ON(!gpu_buddy_block_is_free(mm->roots[i])))
+> -			kunit_fail_current_test("buddy_fini() root");
+> +		gpu_buddy_assert(gpu_buddy_block_is_free(mm->roots[i]));
+>   
+>   		gpu_block_free(mm, mm->roots[i]);
+>   
+> @@ -424,7 +444,7 @@ void gpu_buddy_fini(struct gpu_buddy *mm)
+>   		size -= root_size;
+>   	}
+>   
+> -	WARN_ON(mm->avail != mm->size);
+> +	gpu_buddy_assert(mm->avail == mm->size);
+>   
+>   	for_each_free_tree(i)
+>   		kfree(mm->free_trees[i]);
+> @@ -541,7 +561,7 @@ static void __gpu_buddy_free_list(struct gpu_buddy *mm,
+>   {
+>   	struct gpu_buddy_block *block, *on;
+>   
+> -	WARN_ON(mark_dirty && mark_clear);
+> +	gpu_buddy_assert(!(mark_dirty && mark_clear));
+>   
+>   	list_for_each_entry_safe(block, on, objects, link) {
+>   		if (mark_clear)
 
-Hi all,
-
-Today's linux-next merge of the drm-xe tree got a conflict in:
-
-  mm/migrate_device.c
-
-between commit:
-
-  1de80c790c979 ("mm/migrate_device: remove dead migration entry check in m=
-igrate_vma_collect_huge_pmd()")
-
-=66rom the mm-unstable tree and commit:
-
-  a69d1ab971a62 ("mm: Fix a hmm_range_fault() livelock / starvation problem=
-")
-
-=66rom the drm-xe tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
-diff --combined mm/migrate_device.c
-index 78c7acf024615,deab89fd45419..0000000000000
---- a/mm/migrate_device.c
-+++ b/mm/migrate_device.c
-@@@ -175,6 -175,12 +175,6 @@@ static int migrate_vma_collect_huge_pmd
-  			return migrate_vma_collect_skip(start, end, walk);
-  		}
- =20
- -		if (softleaf_is_migration(entry)) {
- -			softleaf_entry_wait_on_locked(entry, ptl);
- -			spin_unlock(ptl);
- -			return -EAGAIN;
- -		}
- -
-  		if (softleaf_is_device_private_write(entry))
-  			write =3D MIGRATE_PFN_WRITE;
-  	} else {
-@@@ -265,7 -271,7 +265,7 @@@ again
-  	ptep =3D pte_offset_map_lock(mm, pmdp, start, &ptl);
-  	if (!ptep)
-  		goto again;
- -	arch_enter_lazy_mmu_mode();
- +	lazy_mmu_mode_enable();
-  	ptep +=3D (addr - start) / PAGE_SIZE;
- =20
-  	for (; addr < end; addr +=3D PAGE_SIZE, ptep++) {
-@@@ -307,7 -313,7 +307,7 @@@
-  			if (folio_test_large(folio)) {
-  				int ret;
- =20
- -				arch_leave_lazy_mmu_mode();
- +				lazy_mmu_mode_disable();
-  				pte_unmap_unlock(ptep, ptl);
-  				ret =3D migrate_vma_split_folio(folio,
-  							  migrate->fault_page);
-@@@ -350,7 -356,7 +350,7 @@@
-  			if (folio && folio_test_large(folio)) {
-  				int ret;
- =20
- -				arch_leave_lazy_mmu_mode();
- +				lazy_mmu_mode_disable();
-  				pte_unmap_unlock(ptep, ptl);
-  				ret =3D migrate_vma_split_folio(folio,
-  							  migrate->fault_page);
-@@@ -479,7 -485,7 +479,7 @@@ next
-  	if (unmapped)
-  		flush_tlb_range(walk->vma, start, end);
- =20
- -	arch_leave_lazy_mmu_mode();
- +	lazy_mmu_mode_disable();
-  	pte_unmap_unlock(ptep - 1, ptl);
- =20
-  	return 0;
-@@@ -1413,10 -1419,10 +1413,10 @@@ EXPORT_SYMBOL(migrate_device_range)
- =20
-  /**
-   * migrate_device_pfns() - migrate device private pfns to normal memory.
- - * @src_pfns: pre-popluated array of source device private pfns to migrat=
-e.
- + * @src_pfns: pre-populated array of source device private pfns to migrat=
-e.
-   * @npages: number of pages to migrate.
-   *
- - * Similar to migrate_device_range() but supports non-contiguous pre-popl=
-uated
- + * Similar to migrate_device_range() but supports non-contiguous pre-popu=
-lated
-   * array of device pages to migrate.
-   */
-  int migrate_device_pfns(unsigned long *src_pfns, unsigned long npages)
-
---atUZthrJSehvIAKY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmme2tUACgkQJNaLcl1U
-h9APYAf/c1n3dha5gJrR6x3Cp7LmblVDopR/Zk6ipqli8jtkkrWTknk5fu2KIo5K
-bDLOPFXO+r8irmj3ULk28LA31/Yyz6jKCMS9D6wa5YCze1U2/2u3S+lVsd3kpHW2
-TjgosWq50InLx2GQNjECZPMX5ytr9HOpK9xqyhCG4Jmn/mPrimBW0qRckdlVVGgM
-CK7PPYf52wEH3UAlpEms0cAT7OEx8FwiUHtOoCayco6mk9uN7vVqxeH7jecbfowk
-4c2CQZwiBr7c4LmcOwlynlBXb24L5WzDniSUfAB5IBMtlc+ybbL1xemQUBq12s6a
-6E9d4awGlAvD+F9Ku1xS8ADcj74RZQ==
-=PZS+
------END PGP SIGNATURE-----
-
---atUZthrJSehvIAKY--
