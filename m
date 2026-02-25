@@ -4,59 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CA7BFD377A
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 17:58:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D19CFD377D
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 17:58:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3348710E7E5;
-	Wed, 25 Feb 2026 17:58:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CD1310E871;
+	Wed, 25 Feb 2026 17:58:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D8+18FZS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aSJ9xNIR";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2539710E81D;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9588B10E80E;
  Wed, 25 Feb 2026 17:57:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1772042279; x=1803578279;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+k0T+8SMUGGVHG2/ySYpSmWDYN9a0AHBmT3/Z/TfOww=;
- b=D8+18FZSS2qsYwkFtVMpdKtFs+pSfyhn8wVxJP2xXvCaTmfFpk7vUZki
- uUA8YUXd59hrd95NkoXzdAkjny1ZLghG5rp814jld9NHxfWLET4ciFfZ1
- sNhKY7WVI6qHYJjRTF4ctEgUOrMDAgDkzJTZgkKtzFdnXMfbGXpWLGiw4
- tyoUV1EI3hY63mKdiD6bLXKIkNLtosjSsXR8zGRwIsM0WjcySPwGiqx/e
- XYDNS3PtEygL+7A+UDYO/ldR3gKuVFX1xlkejvPpM25Us8WZCl1yxiUmj
- YX0vGXPsOtqJxanuR0lVrYhlB4QsSYwpVjOaAEg8cwNSRD3+geM24lirz w==;
-X-CSE-ConnectionGUID: eZBPDVqqTPeuIijLwQ5XoA==
-X-CSE-MsgGUID: +/2ChLn/SiW4NH72IEiEWA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="72793836"
-X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="72793836"
+ bh=jjdulGPqdsrS949JcTkMZoD1J18rnAj6L8VzBzXAxrg=;
+ b=aSJ9xNIR5Iz3+tWjfuNrl7UxOyBw0g7rrKVAncfaG6eni2nzqa9HDHE0
+ FF6RHto0JRwxZIYgFO75LYSZ2Qw/uhxVWt9MbZbv9HW5RZInt6Lb4IO6s
+ P1LEMxEPOnZHo53As5P6NhOlcHPcgp3ENw5J3zms8XMI3gE4sA8yuXXdx
+ f3wlENk9qvCqtympnKi5hQiksdEklyDpPj0ohYyqX3adgfRMcs27a/6jS
+ PFthsFP5W4cyttzSMVXfwvuRnTUhTKodkKJA398bZGfYjlF+tszQW7Pvh
+ WyLSLYKSGLFXYSUjqOr7cz2LJrfj22PmjViL8NzDssBgq8ODI49jtxUpj w==;
+X-CSE-ConnectionGUID: 2kR5nq8lQYO3dleJ5ac3Cw==
+X-CSE-MsgGUID: W1AyKfkYTcubKaL6p/ej8Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="72793842"
+X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="72793842"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 09:57:42 -0800
-X-CSE-ConnectionGUID: dk4naQxASgykJ0V3WJs6Tg==
-X-CSE-MsgGUID: MpS0Da9GSEG4O3DltIs2dQ==
+ 25 Feb 2026 09:57:51 -0800
+X-CSE-ConnectionGUID: wv+NCNwpT+OevDwz0dxv2w==
+X-CSE-MsgGUID: rn4Bv+zlSQOzw8HwWO1/ig==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="214394502"
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="214394515"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.68])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 09:57:40 -0800
+ 25 Feb 2026 09:57:49 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	rodrigo.vivi@intel.com
-Subject: [PATCH 5/8] drm/xe/oa: prefer REG_MASKED_FIELD_ENABLE() and
- REG_MASKED_FIELD_DISABLE()
-Date: Wed, 25 Feb 2026 19:57:07 +0200
-Message-ID: <a9b0151d82b1622daa0625fc8ea2c41d233e4318.1772042022.git.jani.nikula@intel.com>
+Subject: [PATCH 7/8] drm/intel: add pick.h for the various "picker" helpers
+Date: Wed, 25 Feb 2026 19:57:09 +0200
+Message-ID: <fcd70f3317755bf98a6e7ae88974aa8ba06efd1e.1772042022.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1772042022.git.jani.nikula@intel.com>
 References: <cover.1772042022.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,83 +72,168 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Using REG_MASKED_FIELD_ENABLE() and REG_MASKED_FIELD_DISABLE() is more
-obvious to the reader than having the ternary expression inside
-REG_MASKED_FIELD().
+Add a shared header that's used by i915, xe, and i915 display.
+
+This allows us to drop the compat-i915-headers/i915_reg_defs.h include
+from xe_reg_defs.h. All the register macro helpers were subtly pulled in
+from i915 to all of xe through this.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c | 32 ++++++++++++++++++--------------
- 1 file changed, 18 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/i915/i915_reg_defs.h          | 45 +---------------
+ .../drm/xe/compat-i915-headers/intel_uncore.h |  1 +
+ drivers/gpu/drm/xe/regs/xe_reg_defs.h         |  5 +-
+ include/drm/intel/pick.h                      | 51 +++++++++++++++++++
+ 4 files changed, 56 insertions(+), 46 deletions(-)
+ create mode 100644 include/drm/intel/pick.h
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 9266a6ef9b1a..c176a61febb2 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -758,8 +758,9 @@ static int xe_oa_configure_oar_context(struct xe_oa_stream *stream, bool enable)
- 		},
- 		{
- 			RING_CONTEXT_CONTROL(stream->hwe->mmio_base),
--			REG_MASKED_FIELD(CTX_CTRL_OAC_CONTEXT_ENABLE,
--					 enable ? CTX_CTRL_OAC_CONTEXT_ENABLE : 0)
-+			enable ?
-+			REG_MASKED_FIELD_ENABLE(CTX_CTRL_OAC_CONTEXT_ENABLE) :
-+			REG_MASKED_FIELD_DISABLE(CTX_CTRL_OAC_CONTEXT_ENABLE)
- 		},
- 	};
+diff --git a/drivers/gpu/drm/i915/i915_reg_defs.h b/drivers/gpu/drm/i915/i915_reg_defs.h
+index a1dc7ff2bef7..e897d3ccbf9e 100644
+--- a/drivers/gpu/drm/i915/i915_reg_defs.h
++++ b/drivers/gpu/drm/i915/i915_reg_defs.h
+@@ -6,52 +6,9 @@
+ #ifndef __I915_REG_DEFS__
+ #define __I915_REG_DEFS__
  
-@@ -782,9 +783,9 @@ static int xe_oa_configure_oac_context(struct xe_oa_stream *stream, bool enable)
- 		},
- 		{
- 			RING_CONTEXT_CONTROL(stream->hwe->mmio_base),
--			REG_MASKED_FIELD(CTX_CTRL_OAC_CONTEXT_ENABLE,
--					 enable ? CTX_CTRL_OAC_CONTEXT_ENABLE : 0) |
--			REG_MASKED_FIELD(CTX_CTRL_RUN_ALONE, enable ? CTX_CTRL_RUN_ALONE : 0),
-+			enable ?
-+			REG_MASKED_FIELD_ENABLE(CTX_CTRL_OAC_CONTEXT_ENABLE | CTX_CTRL_RUN_ALONE) :
-+			REG_MASKED_FIELD_DISABLE(CTX_CTRL_OAC_CONTEXT_ENABLE | CTX_CTRL_RUN_ALONE),
- 		},
- 	};
++#include <drm/intel/pick.h>
+ #include <drm/intel/reg_bits.h>
  
-@@ -812,9 +813,10 @@ static int xe_oa_configure_oa_context(struct xe_oa_stream *stream, bool enable)
+-/*
+- * Given the first two numbers __a and __b of arbitrarily many evenly spaced
+- * numbers, pick the 0-based __index'th value.
+- *
+- * Always prefer this over _PICK() if the numbers are evenly spaced.
+- */
+-#define _PICK_EVEN(__index, __a, __b) ((__a) + (__index) * ((__b) - (__a)))
+-
+-/*
+- * Like _PICK_EVEN(), but supports 2 ranges of evenly spaced address offsets.
+- * @__c_index corresponds to the index in which the second range starts to be
+- * used. Using math interval notation, the first range is used for indexes [ 0,
+- * @__c_index), while the second range is used for [ @__c_index, ... ). Example:
+- *
+- * #define _FOO_A			0xf000
+- * #define _FOO_B			0xf004
+- * #define _FOO_C			0xf008
+- * #define _SUPER_FOO_A			0xa000
+- * #define _SUPER_FOO_B			0xa100
+- * #define FOO(x)			_MMIO(_PICK_EVEN_2RANGES(x, 3,		\
+- *					      _FOO_A, _FOO_B,			\
+- *					      _SUPER_FOO_A, _SUPER_FOO_B))
+- *
+- * This expands to:
+- *	0: 0xf000,
+- *	1: 0xf004,
+- *	2: 0xf008,
+- *	3: 0xa000,
+- *	4: 0xa100,
+- *	5: 0xa200,
+- *	...
+- */
+-#define _PICK_EVEN_2RANGES(__index, __c_index, __a, __b, __c, __d)		\
+-	(BUILD_BUG_ON_ZERO(!__is_constexpr(__c_index)) +			\
+-	 ((__index) < (__c_index) ? _PICK_EVEN(__index, __a, __b) :		\
+-				   _PICK_EVEN((__index) - (__c_index), __c, __d)))
+-
+-/*
+- * Given the arbitrary numbers in varargs, pick the 0-based __index'th number.
+- *
+- * Always prefer _PICK_EVEN() over this if the numbers are evenly spaced.
+- */
+-#define _PICK(__index, ...) (((const u32 []){ __VA_ARGS__ })[__index])
+-
+ typedef struct {
+ 	u32 reg;
+ } i915_reg_t;
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+index c5e198ace7bc..a8cfd65119e0 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+@@ -6,6 +6,7 @@
+ #ifndef __INTEL_UNCORE_H__
+ #define __INTEL_UNCORE_H__
  
- static u32 oag_configure_mmio_trigger(const struct xe_oa_stream *stream, bool enable)
- {
--	return REG_MASKED_FIELD(OAG_OA_DEBUG_DISABLE_MMIO_TRG,
--				enable && stream && stream->sample ?
--				0 : OAG_OA_DEBUG_DISABLE_MMIO_TRG);
-+	if (enable && stream && stream->sample)
-+		return REG_MASKED_FIELD_DISABLE(OAG_OA_DEBUG_DISABLE_MMIO_TRG);
-+	else
-+		return REG_MASKED_FIELD_ENABLE(OAG_OA_DEBUG_DISABLE_MMIO_TRG);
- }
++#include "i915_reg_defs.h"
+ #include "xe_device.h"
+ #include "xe_device_types.h"
+ #include "xe_mmio.h"
+diff --git a/drivers/gpu/drm/xe/regs/xe_reg_defs.h b/drivers/gpu/drm/xe/regs/xe_reg_defs.h
+index c39aab843e35..27ac0bf1f6cd 100644
+--- a/drivers/gpu/drm/xe/regs/xe_reg_defs.h
++++ b/drivers/gpu/drm/xe/regs/xe_reg_defs.h
+@@ -6,12 +6,13 @@
+ #ifndef _XE_REG_DEFS_H_
+ #define _XE_REG_DEFS_H_
  
- static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
-@@ -1055,16 +1057,18 @@ static int xe_oa_emit_oa_config(struct xe_oa_stream *stream, struct xe_oa_config
- static u32 oag_report_ctx_switches(const struct xe_oa_stream *stream)
- {
- 	/* If user didn't require OA reports, ask HW not to emit ctx switch reports */
--	return REG_MASKED_FIELD(OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS,
--				stream->sample ?
--				0 : OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS);
-+	if (stream->sample)
-+		return REG_MASKED_FIELD_DISABLE(OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS);
-+	else
-+		return REG_MASKED_FIELD_ENABLE(OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS);
- }
++#include <drm/intel/pick.h>
++#include <drm/intel/reg_bits.h>
++
+ #include <linux/build_bug.h>
+ #include <linux/log2.h>
+ #include <linux/sizes.h>
  
- static u32 oag_buf_size_select(const struct xe_oa_stream *stream)
- {
--	return REG_MASKED_FIELD(OAG_OA_DEBUG_BUF_SIZE_SELECT,
--				xe_bo_size(stream->oa_buffer.bo) > SZ_16M ?
--				OAG_OA_DEBUG_BUF_SIZE_SELECT : 0);
-+	if (xe_bo_size(stream->oa_buffer.bo) > SZ_16M)
-+		return REG_MASKED_FIELD_ENABLE(OAG_OA_DEBUG_BUF_SIZE_SELECT);
-+	else
-+		return REG_MASKED_FIELD_DISABLE(OAG_OA_DEBUG_BUF_SIZE_SELECT);
- }
- 
- static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
+-#include "compat-i915-headers/i915_reg_defs.h"
+-
+ /**
+  * XE_REG_ADDR_MAX - The upper limit on MMIO register address
+  *
+diff --git a/include/drm/intel/pick.h b/include/drm/intel/pick.h
+new file mode 100644
+index 000000000000..d976fab8f270
+--- /dev/null
++++ b/include/drm/intel/pick.h
+@@ -0,0 +1,51 @@
++/* SPDX-License-Identifier: MIT */
++/* Copyright © 2026 Intel Corporation */
++
++#ifndef _PICK_H_
++#define _PICK_H_
++
++/*
++ * Given the first two numbers __a and __b of arbitrarily many evenly spaced
++ * numbers, pick the 0-based __index'th value.
++ *
++ * Always prefer this over _PICK() if the numbers are evenly spaced.
++ */
++#define _PICK_EVEN(__index, __a, __b) ((__a) + (__index) * ((__b) - (__a)))
++
++/*
++ * Like _PICK_EVEN(), but supports 2 ranges of evenly spaced address offsets.
++ * @__c_index corresponds to the index in which the second range starts to be
++ * used. Using math interval notation, the first range is used for indexes [ 0,
++ * @__c_index), while the second range is used for [ @__c_index, ... ). Example:
++ *
++ * #define _FOO_A			0xf000
++ * #define _FOO_B			0xf004
++ * #define _FOO_C			0xf008
++ * #define _SUPER_FOO_A			0xa000
++ * #define _SUPER_FOO_B			0xa100
++ * #define FOO(x)			_MMIO(_PICK_EVEN_2RANGES(x, 3,		\
++ *					      _FOO_A, _FOO_B,			\
++ *					      _SUPER_FOO_A, _SUPER_FOO_B))
++ *
++ * This expands to:
++ *	0: 0xf000,
++ *	1: 0xf004,
++ *	2: 0xf008,
++ *	3: 0xa000,
++ *	4: 0xa100,
++ *	5: 0xa200,
++ *	...
++ */
++#define _PICK_EVEN_2RANGES(__index, __c_index, __a, __b, __c, __d)		\
++	(BUILD_BUG_ON_ZERO(!__is_constexpr(__c_index)) +			\
++	 ((__index) < (__c_index) ? _PICK_EVEN(__index, __a, __b) :		\
++				   _PICK_EVEN((__index) - (__c_index), __c, __d)))
++
++/*
++ * Given the arbitrary numbers in varargs, pick the 0-based __index'th number.
++ *
++ * Always prefer _PICK_EVEN() over this if the numbers are evenly spaced.
++ */
++#define _PICK(__index, ...) (((const u32 []){ __VA_ARGS__ })[__index])
++
++#endif
 -- 
 2.47.3
 
