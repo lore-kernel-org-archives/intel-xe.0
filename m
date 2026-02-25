@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71379FD3766
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 14:50:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8127AFD3762
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 14:50:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CB9710E7AA;
-	Wed, 25 Feb 2026 14:50:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AC9D10E7B1;
+	Wed, 25 Feb 2026 14:50:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ASOHGvpm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H4k2Q8BZ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A4F010E7C8;
- Wed, 25 Feb 2026 14:49:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C97510E798;
+ Wed, 25 Feb 2026 14:50:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772030998; x=1803566998;
+ t=1772031007; x=1803567007;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4/W6hNwJLOJ/sQQUwozcjSFtZAuZedGs+wOnQAeuFNQ=;
- b=ASOHGvpme+0HPLk+k/V9yiyogIPcK7ZoE/IPncakE+VFiBo99FaqxG6q
- rskvMpBZNzqVNVzltXsjXYgXUM8mOw0JuH0PHSioU1Fum7MuzREmnHbrM
- fYYh8WSYM6yzVc7eUewyzFvFCViMNB6QqGA+9UywaK8EMxBziWJoqArAQ
- vace5phfeJDzmfBiEHmOAs4NspDlXS4d0czEEk5JfBJssh8yQnbIznqkV
- UigLRSWnGpG3skElUB1NLN074NrxLZTMLthDO/fnsPiaa/EjJ/bR8ETPG
- DParHlJP9pWvGxu/6fmn1WP/jJpgHpq6is5m4ZXQ86aR5iBvdcqpaHu01 Q==;
-X-CSE-ConnectionGUID: KRGq7OszQZ6mKKXBBiy5wg==
-X-CSE-MsgGUID: s1COCVAnQcy59/bWQnrKcQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="83398670"
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="83398670"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 06:49:57 -0800
-X-CSE-ConnectionGUID: Pw73uHcrSnm3Nof7KjlV+Q==
-X-CSE-MsgGUID: 4AAMZ2gITKaY/vXw/iLhtw==
+ bh=g8+C5qL6c9yutrN2Nh9s1mExugePnClrgKSHmLTgsT4=;
+ b=H4k2Q8BZaNyHgJlWRtOj/m4RyMdlOuSCE4bRFQH+cZSjpp4oHE4/wxyA
+ gBWw8cYU10QeL128BiRSyrYl1oI/I0olTMb3tT7XjH0ibxcMKnJhqpAag
+ om7QPqI/O0WYNMFGjfL3p1b/RF2+EP4D0dPwAV7F1+4w5+/YDp9RnE07q
+ Z/OkkfebWa1XQriaDl0jYmpxA7rAEO8dtXTwFmh52sQmCVhzIGZPw4ALl
+ mVvxlvjk/pkxitX8uopEjzd4VbA5wRSjzD2XLDMSb8DPWcNEWp69vcpQd
+ MOco0EdeLYN6yMcmYxD9A0XGbSCvQzUUIAWxtqVlet4C1izPS821hUR+n w==;
+X-CSE-ConnectionGUID: 8j2LanWGQLGV4So6FaEoMw==
+X-CSE-MsgGUID: 23FoqJm5TnuBqvRkGxVJ3g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="95686394"
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="95686394"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2026 06:50:07 -0800
+X-CSE-ConnectionGUID: s+3sChvRSzOU7UV1Bue5bA==
+X-CSE-MsgGUID: FID0xMy/Sw6XXxdb2ll3nA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="213369305"
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="216387571"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.68])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 06:49:55 -0800
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2026 06:50:05 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Subject: [PATCH 07/10] drm/i915/dpt: switch to i915 runtime pm calls
-Date: Wed, 25 Feb 2026 16:49:13 +0200
-Message-ID: <e8e00552ebf439b5f7b5d293014cce950c9c2999.1772030909.git.jani.nikula@intel.com>
+Subject: [PATCH 09/10] drm/i915/dpt: rename struct i915_dpt to intel_dpt
+Date: Wed, 25 Feb 2026 16:49:15 +0200
+Message-ID: <afb89dcce35c5b0cff2007b58d6ee20fd3200c24.1772030909.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1772030909.git.jani.nikula@intel.com>
 References: <cover.1772030909.git.jani.nikula@intel.com>
@@ -70,46 +70,110 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The i915 specific code doesn't need to, and should not, call the display
-runtime pm functions. Just call the i915 functions directly, instead of
-routing through the parent interface.
+Rename struct i915_dpt to intel_dpt. This may seem rather inconsistent
+considering we just renamed the functions the other way round, but the
+intent here is to lift struct intel_dpt to the display parent interface
+as the generic opaque type for DPT instead of the very specific struct
+i915_address_space.
 
 Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_dpt.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/i915_dpt.c | 22 +++++++++++-----------
+ 1 file changed, 11 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_dpt.c b/drivers/gpu/drm/i915/i915_dpt.c
-index f33e886f3316..8b49ebeecff7 100644
+index b8a03c0498d2..baf45d70c152 100644
 --- a/drivers/gpu/drm/i915/i915_dpt.c
 +++ b/drivers/gpu/drm/i915/i915_dpt.c
-@@ -7,7 +7,6 @@
- #include <drm/intel/display_parent_interface.h>
+@@ -15,7 +15,7 @@
+ #include "i915_dpt.h"
+ #include "i915_drv.h"
  
- #include "display/intel_display_core.h"
--#include "display/intel_display_rpm.h"
- #include "gem/i915_gem_domain.h"
- #include "gem/i915_gem_internal.h"
- #include "gem/i915_gem_lmem.h"
-@@ -138,7 +137,7 @@ struct i915_vma *intel_dpt_pin_to_ggtt(struct i915_address_space *vm,
- 	if (i915_gem_object_is_stolen(dpt->obj))
- 		pin_flags |= PIN_MAPPABLE;
+-struct i915_dpt {
++struct intel_dpt {
+ 	struct i915_address_space vm;
  
--	wakeref = intel_display_rpm_get(display);
-+	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
- 	atomic_inc(&display->restore.pending_fb_pin);
+ 	struct drm_i915_gem_object *obj;
+@@ -25,12 +25,12 @@ struct i915_dpt {
  
- 	for_i915_gem_ww(&ww, err, true) {
-@@ -170,7 +169,7 @@ struct i915_vma *intel_dpt_pin_to_ggtt(struct i915_address_space *vm,
- 	dpt->obj->mm.dirty = true;
+ #define i915_is_dpt(vm) ((vm)->is_dpt)
  
- 	atomic_dec(&display->restore.pending_fb_pin);
--	intel_display_rpm_put(display, wakeref);
-+	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
- 
- 	return err ? ERR_PTR(err) : vma;
+-static inline struct i915_dpt *
++static inline struct intel_dpt *
+ i915_vm_to_dpt(struct i915_address_space *vm)
+ {
+-	BUILD_BUG_ON(offsetof(struct i915_dpt, vm));
++	BUILD_BUG_ON(offsetof(struct intel_dpt, vm));
+ 	drm_WARN_ON(&vm->i915->drm, !i915_is_dpt(vm));
+-	return container_of(vm, struct i915_dpt, vm);
++	return container_of(vm, struct intel_dpt, vm);
  }
+ 
+ static void gen8_set_pte(void __iomem *addr, gen8_pte_t pte)
+@@ -44,7 +44,7 @@ static void dpt_insert_page(struct i915_address_space *vm,
+ 			    unsigned int pat_index,
+ 			    u32 flags)
+ {
+-	struct i915_dpt *dpt = i915_vm_to_dpt(vm);
++	struct intel_dpt *dpt = i915_vm_to_dpt(vm);
+ 	gen8_pte_t __iomem *base = dpt->iomem;
+ 
+ 	gen8_set_pte(base + offset / I915_GTT_PAGE_SIZE,
+@@ -56,7 +56,7 @@ static void dpt_insert_entries(struct i915_address_space *vm,
+ 			       unsigned int pat_index,
+ 			       u32 flags)
+ {
+-	struct i915_dpt *dpt = i915_vm_to_dpt(vm);
++	struct intel_dpt *dpt = i915_vm_to_dpt(vm);
+ 	gen8_pte_t __iomem *base = dpt->iomem;
+ 	const gen8_pte_t pte_encode = vm->pte_encode(0, pat_index, flags);
+ 	struct sgt_iter sgt_iter;
+@@ -116,7 +116,7 @@ static void dpt_unbind_vma(struct i915_address_space *vm,
+ 
+ static void dpt_cleanup(struct i915_address_space *vm)
+ {
+-	struct i915_dpt *dpt = i915_vm_to_dpt(vm);
++	struct intel_dpt *dpt = i915_vm_to_dpt(vm);
+ 
+ 	i915_gem_object_put(dpt->obj);
+ }
+@@ -125,7 +125,7 @@ struct i915_vma *i915_dpt_pin_to_ggtt(struct i915_address_space *vm, unsigned in
+ {
+ 	struct drm_i915_private *i915 = vm->i915;
+ 	struct intel_display *display = i915->display;
+-	struct i915_dpt *dpt = i915_vm_to_dpt(vm);
++	struct intel_dpt *dpt = i915_vm_to_dpt(vm);
+ 	struct ref_tracker *wakeref;
+ 	struct i915_vma *vma;
+ 	void __iomem *iomem;
+@@ -175,7 +175,7 @@ struct i915_vma *i915_dpt_pin_to_ggtt(struct i915_address_space *vm, unsigned in
+ 
+ void i915_dpt_unpin_from_ggtt(struct i915_address_space *vm)
+ {
+-	struct i915_dpt *dpt = i915_vm_to_dpt(vm);
++	struct intel_dpt *dpt = i915_vm_to_dpt(vm);
+ 
+ 	i915_vma_unpin_iomap(dpt->vma);
+ 	i915_vma_put(dpt->vma);
+@@ -186,7 +186,7 @@ static struct i915_address_space *i915_dpt_create(struct drm_gem_object *obj, si
+ 	struct drm_i915_private *i915 = to_i915(obj->dev);
+ 	struct drm_i915_gem_object *dpt_obj;
+ 	struct i915_address_space *vm;
+-	struct i915_dpt *dpt;
++	struct intel_dpt *dpt;
+ 	int ret;
+ 
+ 	if (!size)
+@@ -248,7 +248,7 @@ static struct i915_address_space *i915_dpt_create(struct drm_gem_object *obj, si
+ 
+ static void i915_dpt_destroy(struct i915_address_space *vm)
+ {
+-	struct i915_dpt *dpt = i915_vm_to_dpt(vm);
++	struct intel_dpt *dpt = i915_vm_to_dpt(vm);
+ 
+ 	dpt->obj->is_dpt = false;
+ 	i915_vm_put(&dpt->vm);
 -- 
 2.47.3
 
