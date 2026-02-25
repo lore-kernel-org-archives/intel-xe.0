@@ -4,80 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5DD1FEFB51
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Feb 2026 13:40:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2B17FEFB50
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Feb 2026 13:40:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8924710E0FA;
-	Fri, 27 Feb 2026 13:40:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A39EE10EB5F;
+	Fri, 27 Feb 2026 13:40:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="XNfvb3gN";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZRahhQ0+";
 	dkim-atps=neutral
-X-Greylist: delayed 386 seconds by postgrey-1.36 at gabe;
- Thu, 26 Feb 2026 16:30:35 UTC
-Received: from out-180.mta0.migadu.com (out-180.mta0.migadu.com
- [91.218.175.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1B08110E9C4;
- Thu, 26 Feb 2026 16:30:35 +0000 (UTC)
-Message-ID: <dbbb1a93-93fc-4ea6-bd6f-6f7fbfcc4710@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1772123046;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Mot2vauLG07vA2kiO70W8m+1wIvRmpWaKTQPNgejD+E=;
- b=XNfvb3gNCQYVnDPdOX4cgYnYDectI0KeFSjLMjAl64DNssi19dgYuSfMaP8KG4MPGM70wI
- /Cx/++mtEKJjl6Y2E3LIwM9cmNehjx7aaUd4aRIKFIWg07iwAv94BE11CxqyfubAdNrr99
- 8/PNQg9ZeCjOyYa8jk8uPVP302WIxBA=
-Date: Fri, 27 Feb 2026 00:23:34 +0800
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com
+ [209.85.222.54])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 336AC10E76F
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Feb 2026 13:01:21 +0000 (UTC)
+Received: by mail-ua1-f54.google.com with SMTP id
+ a1e0cc1a2514c-948029fb1f2so1838295241.0
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Feb 2026 05:01:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772024480; cv=none;
+ d=google.com; s=arc-20240605;
+ b=VNyIL6IEKBD6C51wJXk9buJNsOlS2aua6qrmayocbmYoibMXtsSMu+BR7I+Ephan+v
+ 3ZFwx1c1O5KBp5whGY1cOOy+hWd/QaFSx2wzjpdPzWQGAlEhjrUw2OhxN51W4K86ekoA
+ 5RxZ56q8AcxkwiL3GBte1qlnRjKBG5HGNkPKAmTmYZfKS2P9Lnj8xPu17D6zMVA/DhVJ
+ asN9mDsf00ziBis7yANdbQfxtccOmaZloEicUi5F7el8CsSLrOyTrgYdNp1i/b0CIbMU
+ lIBit1Tseyqy9FkTJyDU9q9qOdOQdMbneCmuii+WlaDRb21ZIEWB5IMFSO41F2dj/tex
+ 6Sdw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=Gdcuy9iaPpeMvNyOTp4uTsufvW1t3dj/0T0Nt9nk9jk=;
+ fh=RptNElEckXbqsjpN+aSTUvGolWY1zMG9J8ATl1CmWJk=;
+ b=FslXpOju5ojBesHTNcL3jSTwvaGSX+PLv2u+my3rc7WkLRL/JnNVxkeQNkV2zQ2w35
+ vE4Ay8XMhMsfbjL8U0zq2jqmWeVL6pfVp1jQPbVfzGAd1pmB+XUZzjEvNG4BGj6wNyTl
+ hXPlGpdvTMi0XQShgTz2vaqtPV0rWg4XIfF4zhCv+PtoT+L5XAl7D0nGaljiK7uh461D
+ 6f4nL6XpZvwlpPO2TqGcAVkb3SL7hZkmOW6vVvt5op/igALdWHjvnatEji3tHH2s0ZpJ
+ YizaPNMmJXP34JcH/dQiJd0W4RomzSgUm8l2TblRrwiv9sby/IZfahTHAdhZK7lqykRp
+ jVZA==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1772024480; x=1772629280; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Gdcuy9iaPpeMvNyOTp4uTsufvW1t3dj/0T0Nt9nk9jk=;
+ b=ZRahhQ0+ACEgMCM+crn02npT1O+ESZYwQTlGuex3CaUjMQwoHpnUw76iKcfmHuHmwr
+ eRA+9eZHIY6ry9v+vTT7GjqiJJEvznOunKw7Mzak6Omux69OAtRm+ZM9v1HBI5WIxPF/
+ 7DyJb/t2KHl1NHmHGozm1RDYhINkUQmaHWGQn2WQhtZGg7kUfwS/R1bLx8dRGkc8Cihi
+ 5OTpWxYBKRh2VeSo9xg01dUapYr8i1H+bRfmkDyFyCIiqI/zJe6dcWtqOysF150zfQXJ
+ dRY/g/5hU5PxaGsSCOiR1nwdB2697jEzWzXcpPMYlpRSE9a5EqZY3kfhjkBgFsxdU+P2
+ bnAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1772024480; x=1772629280;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=Gdcuy9iaPpeMvNyOTp4uTsufvW1t3dj/0T0Nt9nk9jk=;
+ b=C/RNfixmJlw137qWb8jkQTB7C95R2y6F5O1iX8h52l3M2WFvbSDDQqCkOR5HPx07wL
+ xPvZ0pGQcGKJKNMxZKpaGnkeOLHz10bF3aByPTyNTRrNCPZPtH/HiR1W/e6xHy92ckV+
+ osIuSq80FbCWCvmtFScNDfhA8TlYpvdu6nWwsS/s2nsm2QnGnI4g7p4vyZ9a1pRie/gm
+ NpQn/leR3ojNTn0AE5iPbVedFhdTfEB6ng51/p6S+pyh+g0/T2z7VkUZiI1AkSwHJXwD
+ 5AVmrjScAdpxk1Vh/9L+OxCh3n8zVzXz7mwNV+/L6OghOkm+DGzllva4bD5MaoUTejiY
+ m/NQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVGBMrY2HODqnY0lQXhXVUSSGDNQhVG+bf9uW49DKEc+wpMvNeYFJazBeHpDdn8Izs5Ic7ie6XyTg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyGFunIOOYz7+PAcn2frkZLJkCHhsuq7//UTu5O85C1P6F+Hc7f
+ hewA2fW70dX9KapUDvN5rtxjzsA5Kh4oMyY8j30/PDBBbCIIqr4XpXut0JGvxv1mj8HI7KMhkR9
+ jpVELweye3bQHl/2MgTXmtjlUoQuJQO4=
+X-Gm-Gg: ATEYQzy0n3P8bVevlXC7wm5xpw3hRWtFCpuTcw96YUp5rPtuqUsHkhZHLJi//nuO+IK
+ +kxxpIYWVKkUiJnP+7FwzicnN0/pHZBZLoddiDJ+JwczD5N1zJn5ZRwJJkJ1DC9cmQrRUiVTd62
+ QO17q2HfVlqBvpNkd44Rupi2z02eZPzntYFJ5D8C2hhubcZg5W2QdXW+3VjciTLfI/vQG93mLRs
+ 2Mp+LGtU/UgIz6d5HvlR6i5ywCLL6R2CP9+g0sbogYJAHfahMq2KtUD9xaB/NPzxPUJQ6sCvBeV
+ zK4LYVgB9vjw5uFsjiyhfgxSFOOzJeKCpKpZ32FhxdnYxX6hE1jSdr7+cGTadOOzo/esOYpqJBQ
+ de3YYbvv5Cw==
+X-Received: by 2002:a05:6102:c48:b0:5fe:13bc:f13a with SMTP id
+ ada2fe7eead31-5feb30f2f8bmr6491053137.36.1772024478156; Wed, 25 Feb 2026
+ 05:01:18 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: [PATCH v11 2/2] rust: clist: Add support to interface with C
- linked lists
-To: Joel Fernandes <joelagnelf@nvidia.com>, linux-kernel@vger.kernel.org
-Cc: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross <tmgross@umich.edu>, Alex Gaynor <alex.gaynor@gmail.com>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- David Airlie <airlied@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Simona Vetter <simona@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, Nikola Djukic
- <ndjukic@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
- <elle@weathered-steel.dev>, Jonathan Corbet <corbet@lwn.net>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, John Hubbard <jhubbard@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
- Andy Ritger <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
- Balbir Singh <balbirs@nvidia.com>, alexeyi@nvidia.com,
- Eliot Courtney <ecourtney@nvidia.com>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org
-References: <20260224222734.3153931-1-joelagnelf@nvidia.com>
- <20260224222734.3153931-3-joelagnelf@nvidia.com>
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-From: Alvin Sun <alvin.sun@linux.dev>
-In-Reply-To: <20260224222734.3153931-3-joelagnelf@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
+References: <CAD0gVBsyzYNA6ydPwg9mJ9VQzYg4zPAi24JQ13-=0KtdbQ039A@mail.gmail.com>
+ <CANiDSCsMVE7qAcjcjbjhYSMoyypkR5Nq-ZA-e=CJVY5CUGAG7Q@mail.gmail.com>
+ <068a5363-de97-4d67-94a9-c9a2baed68b0@leemhuis.info>
+In-Reply-To: <068a5363-de97-4d67-94a9-c9a2baed68b0@leemhuis.info>
+From: =?UTF-8?B?QW5kcsOpcyBQw6lyZXo=?= <andres.f.perez@gmail.com>
+Date: Wed, 25 Feb 2026 13:00:55 +0000
+X-Gm-Features: AaiRm53w9VqfdeuFM3tO4rVuI77Og9DiXXronH78foC19VF0BgkGYZqa119Jqws
+Message-ID: <CAD0gVBvB6grt+Px_KV15eFFp8akuttEk6XY_r6L1yyuP75K+7A@mail.gmail.com>
+Subject: Re: [REGRESSION] Display freeze on VT switch back to X11 since v6.16
+To: Thorsten Leemhuis <regressions@leemhuis.info>
+Cc: Ricardo Ribalda <ribalda@chromium.org>, stable@vger.kernel.org, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Hans de Goede <hansg@kernel.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ regressions@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Fri, 27 Feb 2026 13:40:28 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -93,470 +118,236 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Thorsten,
 
-On 2/25/26 06:27, Joel Fernandes wrote:
-> Add a new module `clist` for working with C's doubly circular linked
-> lists. Provide low-level iteration over list nodes.
+So I built vanilla 7.0-rc1. I also added these kernel params:
+    nvidia-drm.modeset=3D0
+    modprobe.blacklist=3Dnvidia,nvidia_drm,nvidia_modeset,nvidia_uvm
+    rd.driver.blacklist=3Dnvidia,nvidia_drm,nvidia_modeset,nvidia_uvm
+
+then I booted into it. this is what my nvidia loadout looks like on my
+usual 6.18.9:
+    + uname -r
+    6.18.9-arch1-2
+    + lsmod
+    + grep -E nvidia|nouveau
+    nvidia_drm            147456  3
+    nvidia_modeset       2121728  3 nvidia_drm
+    nvidia_uvm           2568192  0
+    nvidia              16306176  34 nvidia_uvm,nvidia_modeset
+    drm_ttm_helper         16384  2 nvidia_drm,xe
+    video                  81920  4 thinkpad_acpi,xe,i915,nvidia_modeset
+    + lspci -nnk
+    + grep -iA2 VGA\|3D\|Display
+    00:02.0 VGA compatible controller [0300]: Intel Corporation
+TigerLake-H GT1 [UHD Graphics] [8086:9a60] (rev 01)
+        Subsystem: Lenovo Device [17aa:22d8]
+        Kernel driver in use: i915
+    --
+    01:00.0 VGA compatible controller [0300]: NVIDIA Corporation
+TU117GLM [T1200 Laptop GPU] [10de:1fbc] (rev a1)
+        Subsystem: Lenovo Device [17aa:22d8]
+        Kernel driver in use: nvidia
+
+and this is what it looked like in vanilla 7.0-rc1 with blacklisted nvidia:
+    + uname -r
+    7.0.0-rc1-dirty
+    + lsmod
+    + grep -E nvidia|nouveau
+    + lspci -nnk
+    + grep -iA2 VGA\|3D\|Display
+    00:02.0 VGA compatible controller [0300]: Intel Corporation
+TigerLake-H GT1 [UHD Graphics] [8086:9a60] (rev 01)
+        Subsystem: Lenovo Device [17aa:22d8]
+        Kernel driver in use: i915
+    --
+    01:00.0 VGA compatible controller [0300]: NVIDIA Corporation
+TU117GLM [T1200 Laptop GPU] [10de:1fbc] (rev a1)
+        Subsystem: Lenovo Device [17aa:22d8]
+        Kernel modules: nouveau
+
+when I did a VT switch, it froze. my 90s failsafe triggered and rebooted me=
+.
+then I rebuilt 7.0-rc1 with my patch, rebooted with the same efi
+loader, and was able to perform VT switching without any issues.
+
+Andr=C3=A9s
+
+On Mon, Feb 23, 2026 at 8:26=E2=80=AFAM Thorsten Leemhuis
+<regressions@leemhuis.info> wrote:
 >
-> Typed iteration over actual items is provided with a `clist_create`
-> macro to assist in creation of the `CList` type.
 >
-> Cc: Nikola Djukic <ndjukic@nvidia.com>
-> Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
-> Acked-by: Gary Guo <gary@garyguo.net>
-> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
-> ---
->   MAINTAINERS              |   8 +
->   rust/helpers/helpers.c   |   1 +
->   rust/helpers/list.c      |  17 ++
->   rust/kernel/ffi/clist.rs | 338 +++++++++++++++++++++++++++++++++++++++
->   rust/kernel/ffi/mod.rs   |   2 +
->   rust/kernel/lib.rs       |   1 +
->   6 files changed, 367 insertions(+)
->   create mode 100644 rust/helpers/list.c
->   create mode 100644 rust/kernel/ffi/clist.rs
 >
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index dc82a6bd1a61..0dc318c94c99 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -23181,6 +23181,14 @@ T:	git https://github.com/Rust-for-Linux/linux.git alloc-next
->   F:	rust/kernel/alloc.rs
->   F:	rust/kernel/alloc/
->   
-> +RUST [FFI HELPER]
-> +M:	Joel Fernandes <joelagnelf@nvidia.com> (CLIST)
-> +M:	Alexandre Courbot <acourbot@nvidia.com> (CLIST)
-> +L:	rust-for-linux@vger.kernel.org
-> +S:	Maintained
-> +T:	git https://github.com/Rust-for-Linux/linux.git ffi-next
-> +F:	rust/kernel/ffi/
-> +
->   RUST [NUM]
->   M:	Alexandre Courbot <acourbot@nvidia.com>
->   R:	Yury Norov <yury.norov@gmail.com>
-> diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
-> index a3c42e51f00a..724fcb8240ac 100644
-> --- a/rust/helpers/helpers.c
-> +++ b/rust/helpers/helpers.c
-> @@ -35,6 +35,7 @@
->   #include "io.c"
->   #include "jump_label.c"
->   #include "kunit.c"
-> +#include "list.c"
->   #include "maple_tree.c"
->   #include "mm.c"
->   #include "mutex.c"
-> diff --git a/rust/helpers/list.c b/rust/helpers/list.c
-> new file mode 100644
-> index 000000000000..18095a5593c5
-> --- /dev/null
-> +++ b/rust/helpers/list.c
-> @@ -0,0 +1,17 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +/*
-> + * Helpers for C circular doubly linked list implementation.
-> + */
-> +
-> +#include <linux/list.h>
-> +
-> +__rust_helper void rust_helper_INIT_LIST_HEAD(struct list_head *list)
-> +{
-> +	INIT_LIST_HEAD(list);
-> +}
-> +
-> +__rust_helper void rust_helper_list_add_tail(struct list_head *new, struct list_head *head)
-> +{
-> +	list_add_tail(new, head);
-> +}
-> diff --git a/rust/kernel/ffi/clist.rs b/rust/kernel/ffi/clist.rs
-> new file mode 100644
-> index 000000000000..a645358eee58
-> --- /dev/null
-> +++ b/rust/kernel/ffi/clist.rs
-> @@ -0,0 +1,338 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! FFI interface for C doubly circular intrusive linked lists.
-> +//!
-> +//! This module provides Rust abstractions for iterating over C `list_head`-based
-> +//! linked lists. It should only be used for cases where C and Rust code share
-> +//! direct access to the same linked list through an FFI interface.
-> +//!
-> +//! Note: This *must not* be used by Rust components that just need a linked list
-> +//! primitive. Use [`kernel::list::List`] instead.
-> +//!
-> +//! # Examples
-> +//!
-> +//! ```
-> +//! use kernel::{
-> +//!     bindings,
-> +//!     clist_create,
-> +//!     types::Opaque,
-> +//! };
-> +//! # // Create test list with values (0, 10, 20) - normally done by C code but it is
-> +//! # // emulated here for doctests using the C bindings.
-> +//! # use core::mem::MaybeUninit;
-> +//! #
-> +//! # /// C struct with embedded `list_head` (typically will be allocated by C code).
-> +//! # #[repr(C)]
-> +//! # pub struct SampleItemC {
-> +//! #     pub value: i32,
-> +//! #     pub link: bindings::list_head,
-> +//! # }
-> +//! #
-> +//! # let mut head = MaybeUninit::<bindings::list_head>::uninit();
-> +//! #
-> +//! # let head = head.as_mut_ptr();
-> +//! # // SAFETY: head and all the items are test objects allocated in this scope.
-> +//! # unsafe { bindings::INIT_LIST_HEAD(head) };
-> +//! #
-> +//! # let mut items = [
-> +//! #     MaybeUninit::<SampleItemC>::uninit(),
-> +//! #     MaybeUninit::<SampleItemC>::uninit(),
-> +//! #     MaybeUninit::<SampleItemC>::uninit(),
-> +//! # ];
-> +//! #
-> +//! # for (i, item) in items.iter_mut().enumerate() {
-> +//! #     let ptr = item.as_mut_ptr();
-> +//! #     // SAFETY: `ptr` points to a valid `MaybeUninit<SampleItemC>`.
-> +//! #     unsafe { (*ptr).value = i as i32 * 10 };
-> +//! #     // SAFETY: `&raw mut` creates a pointer valid for `INIT_LIST_HEAD`.
-> +//! #     unsafe { bindings::INIT_LIST_HEAD(&raw mut (*ptr).link) };
-> +//! #     // SAFETY: `link` was just initialized and `head` is a valid list head.
-> +//! #     unsafe { bindings::list_add_tail(&mut (*ptr).link, head) };
-> +//! # }
-> +//!
-> +//! // Rust wrapper for the C struct.
-> +//! // The list item struct in this example is defined in C code as:
-> +//! //   struct SampleItemC {
-> +//! //       int value;
-> +//! //       struct list_head link;
-> +//! //   };
-> +//! //
-> +//! #[repr(transparent)]
-> +//! pub struct Item(Opaque<SampleItemC>);
-> +//!
-> +//! impl Item {
-> +//!     pub fn value(&self) -> i32 {
-> +//!         // SAFETY: [`Item`] has same layout as [`SampleItemC`].
-> +//!         unsafe { (*self.0.get()).value }
-> +//!     }
-> +//! }
-> +//!
-> +//! // Create typed [`CList`] from sentinel head.
-> +//! // SAFETY: head is valid and initialized, items are `SampleItemC` with
-> +//! // embedded `link` field, and `Item` is `#[repr(transparent)]` over `SampleItemC`.
-> +//! let list = clist_create!(unsafe { head, Item, SampleItemC, link });
-> +//!
-> +//! // Iterate directly over typed items.
-> +//! let mut found_0 = false;
-> +//! let mut found_10 = false;
-> +//! let mut found_20 = false;
-> +//!
-> +//! for item in list.iter() {
-> +//!     let val = item.value();
-> +//!     if val == 0 { found_0 = true; }
-> +//!     if val == 10 { found_10 = true; }
-> +//!     if val == 20 { found_20 = true; }
-> +//! }
-> +//!
-> +//! assert!(found_0 && found_10 && found_20);
-> +//! ```
-> +
-> +use core::{
-> +    iter::FusedIterator,
-> +    marker::PhantomData, //
-> +};
-> +
-> +use crate::{
-> +    bindings,
-> +    types::Opaque, //
-> +};
-> +
-> +use pin_init::{
-> +    pin_data,
-> +    pin_init,
-> +    PinInit, //
-> +};
-> +
-> +/// FFI wrapper for a C `list_head` object used in intrusive linked lists.
-> +///
-> +/// # Invariants
-> +///
-> +/// - The underlying `list_head` has been initialized (e.g. via `INIT_LIST_HEAD()`) and its
-> +///   `next`/`prev` pointers are valid and non-NULL.
-> +#[pin_data]
-> +#[repr(transparent)]
-> +pub struct CListHead {
-> +    #[pin]
-> +    inner: Opaque<bindings::list_head>,
-> +}
-> +
-> +impl CListHead {
-> +    /// Create a `&CListHead` reference from a raw `list_head` pointer.
-> +    ///
-> +    /// # Safety
-> +    ///
-> +    /// - `ptr` must be a valid pointer to an initialized `list_head` (e.g. via
-> +    ///   `INIT_LIST_HEAD()`), with valid non-NULL `next`/`prev` pointers.
-> +    /// - `ptr` must remain valid for the lifetime `'a`.
-> +    /// - The list and all linked `list_head` nodes must not be modified from
-> +    ///   anywhere for the lifetime `'a`, unless done so via any [`CListHead`] APIs.
-> +    #[inline]
-> +    pub unsafe fn from_raw<'a>(ptr: *mut bindings::list_head) -> &'a Self {
-> +        // SAFETY:
-> +        // - [`CListHead`] has same layout as `list_head`.
-> +        // - `ptr` is valid and unmodified for 'a per caller guarantees.
-> +        unsafe { &*ptr.cast() }
-> +    }
-> +
-> +    /// Get the raw `list_head` pointer.
-> +    #[inline]
-> +    pub fn as_raw(&self) -> *mut bindings::list_head {
-> +        self.inner.get()
-> +    }
-> +
-> +    /// Get the next [`CListHead`] in the list.
-> +    #[inline]
-> +    pub fn next(&self) -> &Self {
-> +        let raw = self.as_raw();
-> +        // SAFETY:
-> +        // - `self.as_raw()` is valid and initialized per type invariants.
-> +        // - The `next` pointer is valid and non-NULL per type invariants
-> +        //   (initialized via `INIT_LIST_HEAD()` or equivalent).
-> +        unsafe { Self::from_raw((*raw).next) }
-> +    }
-> +
-> +    /// Check if this node is linked in a list (not isolated).
-> +    #[inline]
-> +    pub fn is_linked(&self) -> bool {
-> +        let raw = self.as_raw();
-> +        // SAFETY: self.as_raw() is valid per type invariants.
-> +        unsafe { (*raw).next != raw && (*raw).prev != raw }
-> +    }
-> +
-> +    /// Pin-initializer that initializes the list head.
-> +    pub fn new() -> impl PinInit<Self> {
-> +        pin_init!(Self {
-> +            // SAFETY: `INIT_LIST_HEAD` initializes `slot` to a valid empty list.
-> +            inner <- Opaque::ffi_init(|slot| unsafe { bindings::INIT_LIST_HEAD(slot) }),
-> +        })
-> +    }
-> +}
-> +
-> +// SAFETY: `list_head` contains no thread-bound state; it only holds
-> +// `next`/`prev` pointers.
-> +unsafe impl Send for CListHead {}
-> +
-> +// SAFETY: `CListHead` can be shared among threads as modifications are
-> +// not allowed at the moment.
-> +unsafe impl Sync for CListHead {}
-> +
-> +impl PartialEq for CListHead {
-> +    #[inline]
-> +    fn eq(&self, other: &Self) -> bool {
-> +        core::ptr::eq(self, other)
-> +    }
-> +}
-> +
-> +impl Eq for CListHead {}
-> +
-> +/// Low-level iterator over `list_head` nodes.
-> +///
-> +/// An iterator used to iterate over a C intrusive linked list (`list_head`). Caller has to
-> +/// perform conversion of returned [`CListHead`] to an item (using `container_of` macro or similar).
-> +///
-> +/// # Invariants
-> +///
-> +/// [`CListHeadIter`] is iterating over an initialized and valid list.
-> +struct CListHeadIter<'a> {
-Hi,
-Joel
-
-Thanks for the clist abstraction. The Tyr debugfs [1] I'm implementing
-needs to iterate over a GpuVm's VA list, and I'd like to switch that to
-a CList-based implementation.
-
-Could you make CListHeadIter public and expose a public constructor?
-Or do you have a better suggestion?
-
-The VA list mixes two node types in one list — GpuVa (with driver-specific
-data) and KernelGpuVa — so we have to filter/skip nodes and can't use
-CList as-is. With a public CListHeadIter and new(), we can implement a
-custom iterator (like our current GpuVaIter) on top of CListHeadIter and 
-then
-migrate that code to clist instead of hand-rolled list traversal.
-
-[1] 
-https://gitlab.freedesktop.org/panfrost/linux/-/merge_requests/59/diffs?commit_id=0853a7b69a42b32832c8e57da63272a8585cb76b#23581e10c8b583e85ebde61a1675ac3a70e37c14_84_148
-
-Thanks,
-Alvin Sun
-
-
-> +    /// Current position in the list.
-> +    current: &'a CListHead,
-> +    /// The sentinel head (used to detect end of iteration).
-> +    sentinel: &'a CListHead,
-> +}
-> +
-> +impl<'a> Iterator for CListHeadIter<'a> {
-> +    type Item = &'a CListHead;
-> +
-> +    #[inline]
-> +    fn next(&mut self) -> Option<Self::Item> {
-> +        // Check if we've reached the sentinel (end of list).
-> +        if self.current == self.sentinel {
-> +            return None;
-> +        }
-> +
-> +        let item = self.current;
-> +        self.current = item.next();
-> +        Some(item)
-> +    }
-> +}
-> +
-> +impl<'a> FusedIterator for CListHeadIter<'a> {}
-> +
-> +/// A typed C linked list with a sentinel head intended for FFI use-cases where
-> +/// C subsystem manages a linked list that Rust code needs to read. Generally
-> +/// required only for special cases.
-> +///
-> +/// A sentinel head [`CListHead`] represents the entire linked list and can be used
-> +/// for iteration over items of type `T`, it is not associated with a specific item.
-> +///
-> +/// The const generic `OFFSET` specifies the byte offset of the `list_head` field within
-> +/// the struct that `T` wraps.
-> +///
-> +/// # Invariants
-> +///
-> +/// - The sentinel [`CListHead`] has been initialized (e.g. via `INIT_LIST_HEAD()`) with valid
-> +///   non-NULL `next`/`prev` pointers.
-> +/// - `OFFSET` is the byte offset of the `list_head` field within the struct that `T` wraps.
-> +/// - All the list's `list_head` nodes have been initialized with valid non-NULL `next`/`prev`
-> +///   pointers.
-> +#[repr(transparent)]
-> +pub struct CList<T, const OFFSET: usize>(CListHead, PhantomData<T>);
-> +
-> +impl<T, const OFFSET: usize> CList<T, OFFSET> {
-> +    /// Create a typed [`CList`] reference from a raw sentinel `list_head` pointer.
-> +    ///
-> +    /// # Safety
-> +    ///
-> +    /// - `ptr` must be a valid pointer to an initialized sentinel `list_head` (e.g. via
-> +    ///   `INIT_LIST_HEAD()`), with valid non-NULL `next`/`prev` pointers.
-> +    /// - `ptr` must remain valid for the lifetime `'a`.
-> +    /// - The list and all linked nodes must not be concurrently modified for the lifetime `'a`.
-> +    /// - The list must contain items where the `list_head` field is at byte offset `OFFSET`.
-> +    /// - `T` must be `#[repr(transparent)]` over the C struct.
-> +    #[inline]
-> +    pub unsafe fn from_raw<'a>(ptr: *mut bindings::list_head) -> &'a Self {
-> +        // SAFETY:
-> +        // - [`CList`] has same layout as [`CListHead`] due to repr(transparent).
-> +        // - Caller guarantees `ptr` is a valid, sentinel `list_head` object.
-> +        unsafe { &*ptr.cast() }
-> +    }
-> +
-> +    /// Check if the list is empty.
-> +    #[inline]
-> +    pub fn is_empty(&self) -> bool {
-> +        !self.0.is_linked()
-> +    }
-> +
-> +    /// Create an iterator over typed items.
-> +    #[inline]
-> +    pub fn iter(&self) -> CListIter<'_, T, OFFSET> {
-> +        let head = &self.0;
-> +        CListIter {
-> +            head_iter: CListHeadIter {
-> +                current: head.next(),
-> +                sentinel: head,
-> +            },
-> +            _phantom: PhantomData,
-> +        }
-> +    }
-> +}
-> +
-> +/// High-level iterator over typed list items.
-> +pub struct CListIter<'a, T, const OFFSET: usize> {
-> +    head_iter: CListHeadIter<'a>,
-> +    _phantom: PhantomData<&'a T>,
-> +}
-> +
-> +impl<'a, T, const OFFSET: usize> Iterator for CListIter<'a, T, OFFSET> {
-> +    type Item = &'a T;
-> +
-> +    #[inline]
-> +    fn next(&mut self) -> Option<Self::Item> {
-> +        let head = self.head_iter.next()?;
-> +
-> +        // Convert to item using OFFSET.
-> +        // SAFETY: `item_ptr` calculation from `OFFSET` (calculated using offset_of!)
-> +        // is valid per invariants.
-> +        Some(unsafe { &*head.as_raw().byte_sub(OFFSET).cast::<T>() })
-> +    }
-> +}
-> +
-> +impl<'a, T, const OFFSET: usize> FusedIterator for CListIter<'a, T, OFFSET> {}
-> +
-> +/// Create a C doubly-circular linked list interface `CList` from a raw `list_head` pointer.
-> +///
-> +/// This macro creates a `CList<T, OFFSET>` that can iterate over items of type `$rust_type`
-> +/// linked via the `$field` field in the underlying C struct `$c_type`.
-> +///
-> +/// # Arguments
-> +///
-> +/// - `$head`: Raw pointer to the sentinel `list_head` object (`*mut bindings::list_head`).
-> +/// - `$rust_type`: Each item's rust wrapper type.
-> +/// - `$c_type`: Each item's C struct type that contains the embedded `list_head`.
-> +/// - `$field`: The name of the `list_head` field within the C struct.
-> +///
-> +/// # Safety
-> +///
-> +/// The caller must ensure:
-> +///
-> +/// - `$head` is a valid, initialized sentinel `list_head` (e.g. via `INIT_LIST_HEAD()`)
-> +///   pointing to a list that is not concurrently modified for the lifetime of the `CList`.
-> +/// - The list contains items of type `$c_type` linked via an embedded `$field`.
-> +/// - `$rust_type` is `#[repr(transparent)]` over `$c_type` or has compatible layout.
-> +///
-> +/// # Examples
-> +///
-> +/// Refer to the examples in this module's documentation.
-> +#[macro_export]
-> +macro_rules! clist_create {
-> +    (unsafe { $head:expr, $rust_type:ty, $c_type:ty, $($field:tt).+ }) => {{
-> +        // Compile-time check that field path is a list_head.
-> +        let _: fn(*const $c_type) -> *const $crate::bindings::list_head =
-> +            |p| unsafe { &raw const (*p).$($field).+ };
-> +
-> +        // Calculate offset and create `CList`.
-> +        const OFFSET: usize = ::core::mem::offset_of!($c_type, $($field).+);
-> +        // SAFETY: The caller of this macro is responsible for ensuring safety.
-> +        unsafe { $crate::ffi::clist::CList::<$rust_type, OFFSET>::from_raw($head) }
-> +    }};
-> +}
-> diff --git a/rust/kernel/ffi/mod.rs b/rust/kernel/ffi/mod.rs
-> index 7d844e9cb339..8c235ca0d1e3 100644
-> --- a/rust/kernel/ffi/mod.rs
-> +++ b/rust/kernel/ffi/mod.rs
-> @@ -5,3 +5,5 @@
->   // Re-export C type definitions from the `ffi` crate so that existing
->   // `kernel::ffi::c_int` etc. paths continue to work.
->   pub use ::ffi::*;
-> +
-> +pub mod clist;
-> diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
-> index 0a77b4c0ffeb..58dbb02c5197 100644
-> --- a/rust/kernel/lib.rs
-> +++ b/rust/kernel/lib.rs
-> @@ -28,6 +28,7 @@
->   #![feature(lint_reasons)]
->   //
->   // Stable since Rust 1.82.0.
-> +#![feature(offset_of_nested)]
->   #![feature(raw_ref_op)]
->   //
->   // Stable since Rust 1.83.0.
+> On 2/23/26 09:10, Ricardo Ribalda wrote:
+> > Hi Andr=C3=A9s
+> >
+> > Thanks for doing the bisecting
+> >
+> > On Sun, 22 Feb 2026 at 22:56, Andr=C3=A9s P=C3=A9rez <andres.f.perez@gm=
+ail.com> wrote:
+> >>
+> >> # OVERVIEW
+> >>
+> >> Since kernel v6.16.1, switching from an X11 session to a text VT and b=
+ack
+> >> freezes the display on a ThinkPad P15 Gen 2. The system remains respon=
+sive
+> >> over SSH; only the display is frozen. Bisecting identified commit
+> >> d1b618e7954802fe ("media: uvcvideo: Do not turn on the camera for some
+> >> ioctls") as the trigger. Reverting the logic change in that commit
+> >> fixes VT switching
+> >> on v6.16.1, v6.17.9, and v6.18.9, but that is not an actual solution. =
+Wayland
+> >> compositors (e.g., river and sway) are not affected.
+> >>
+> >> Last good:  v6.15.9
+> >> First bad:  v6.16.1
+> >> Bisect result: d1b618e7954802fe media: uvcvideo: Do not turn on the
+> >> camera for some ioctls
+> >>
+> >> ## Hardware:   Lenovo ThinkPad P15 Gen 2i (20YQ0031US)
+> >> CPU:        Intel Core i7-11800H (Tiger Lake-H)
+> >> iGPU:        Intel UHD Graphics (TGL GT1)
+> >> dGPU:       NVIDIA T1200 (not involved in eDP output; driver: nvidia-o=
+pen)
+>
+> Could this be caused by nvidia's own driver, even if it is not supposed
+> to be involved? Might be worth ruling out with a proper vanilla kernel,
+> ideally really fresh, so 7.0-rc1.
+>
+> Ciao, Thorsten
+>
+> >> Display:    15.6" 1920x1080 eDP, 10 bpc capable (EDID 1.4)
+> >> Webcam:     Integrated Camera on PCH xHCI (Bus 003 Port 004)
+> >> Firmware:   LENOVO N37ET61W (1.97)
+> >> OS:         Arch Linux, Nix home-manager, X11 + xmonad, no display man=
+ager
+> >>
+> >> ## Symptoms and reproduction steps:
+> >> 1. Boot, start X11 on tty1 (startx).
+> >> 2. Switch to tty2 (Ctrl+Alt+F2): works.
+> >> 3. Switch back to tty1 (Ctrl+Alt+F1): display freezes.
+> >>    - Frozen on the last frame shown before switching away.
+> >>    - System is fully responsive over SSH.
+> >>    - Other VTs switch normally between each other as long as X11 is
+> >> not active on them.
+> >>    - Killing X does not recover the display. A reboot is required.
+> >>
+> >> # DEBUG ANALYSIS
+> >>
+> >> On v6.16.1, the VT switch back to X triggers a full modeset due to pip=
+e
+> >> configuration mismatches detected by intel_pipe_config_compare:
+> >>
+> >> [drm:intel_pipe_config_compare] fastset requirement not met in pipe_bp=
+p
+> >>   (expected 30, found 24)
+> >> [drm:intel_pipe_config_compare] fastset requirement not met in dp_m_n
+> >>   (expected link 269484/524288, found link 336855/524288)
+> >> [drm:intel_pipe_config_compare] fastset requirement not met in dpll_hw=
+_state
+> >>   (expected cfgcr0: 0xe001a5, found cfgcr0: 0x1c2)
+> >> [drm:intel_pipe_config_compare] fastset requirement not met in port_cl=
+ock
+> >>   (expected 270000, found 216000)
+> >> [drm:intel_atomic_check] forcing full modeset
+> >>
+> >> On v6.15.9, the same VT switch shows no such messages.
+> >> no pipe_config_compare runs, no modeset, no freeze.
+> >>
+> >> # BISECT AND VERIFICATION
+> >>
+> >> The bisect converged on d1b618e7954802fe in the uvcvideo driver. This
+> >> commit adds a switch statement to uvc_v4l2_unlocked_ioctl that allows
+> >> certain V4L2 IOCTLS to call video_ioctl2 directly without first callin=
+g
+> >> uvc_pm_get/uvc_pm_put. Prior to this commit, all ioctls called uvc_pm_=
+get
+> >> before video_ioctl2.
+> >>
+> >> ## VT switching verification across kernel versions:
+> >>
+> >>   v6.12.74 arch pkg:   WORKS
+> >>   v6.15.9 arch pkg:    WORKS
+> >>   v6.15.9 from source: WORKS
+> >>   v6.16.1 with d1b618e reverted:     WORKS
+> >>   v6.17.9 with PM wrapping restored: WORKS
+> >>   v6.18.9 with PM wrapping restored: WORKS
+> >>
+> >>   v6.16.1 from source:  FREEZES
+> >>   v6.16.1 arch pkg:     FREEZES
+> >>   v6.17.9 arch pkg:     FREEZES
+> >>   v6.18.9 from source:  FREEZES
+> >>   v6.18.9 arch pkg:     FREEZES
+> >>
+> >> ## Things that do not eliminate the freeze
+> >>
+> >>   - module_blacklist=3Duvcvideo on boot
+> >>   - CONFIG_USB_VIDEO_CLASS=3Dn (compiled out)
+> >
+> > This is puzzling me a bit... You are saying that if you do not build
+> > the uvc driver, the freeze is still happening?
+> >
+> > Am I understanding this correctly?
+> >
+> >>   - i915.enable_psr=3D0
+> >>   - Bypassing intel_vrr_transcoder_enable/disable (no-op)
+> >>   - xrandr --output eDP-1 --set "max bpc" 10
+> >>   - Xorg config FBDepth 30 (No effect on pipe_bpp)
+> >>
+> >> ## Workaround patch
+> >>
+> >> Reverting the optimization from d1b618e to restore the unconditional
+> >> uvc_pm_get/put wrapping for all ioctls. This is not a proper fix.
+> >>
+> >> diff --git a/drivers/media/usb/uvc/uvc_v4l2.c b/drivers/media/usb/uvc/=
+uvc_v4l2.c
+> >> index 9e4a251eca88..15057b47ec4f 100644
+> >> --- a/drivers/media/usb/uvc/uvc_v4l2.c
+> >> +++ b/drivers/media/usb/uvc/uvc_v4l2.c
+> >> @@ -1199,33 +1199,12 @@ static long uvc_v4l2_unlocked_ioctl(struct fil=
+e *file,
+> >>   unsigned int converted_cmd =3D v4l2_translate_cmd(cmd);
+> >>   int ret;
+> >>
+> >> - /* The following IOCTLs need to turn on the camera. */
+> >> - switch (converted_cmd) {
+> >> - case UVCIOC_CTRL_MAP:
+> >> - case UVCIOC_CTRL_QUERY:
+> >> - case VIDIOC_G_CTRL:
+> >> - case VIDIOC_G_EXT_CTRLS:
+> >> - case VIDIOC_G_INPUT:
+> >> - case VIDIOC_QUERYCTRL:
+> >> - case VIDIOC_QUERYMENU:
+> >> - case VIDIOC_QUERY_EXT_CTRL:
+> >> - case VIDIOC_S_CTRL:
+> >> - case VIDIOC_S_EXT_CTRLS:
+> >> - case VIDIOC_S_FMT:
+> >> - case VIDIOC_S_INPUT:
+> >> - case VIDIOC_S_PARM:
+> >> - case VIDIOC_TRY_EXT_CTRLS:
+> >> - case VIDIOC_TRY_FMT:
+> >> - ret =3D uvc_pm_get(handle->stream->dev);
+> >> - if (ret)
+> >> - return ret;
+> >> - ret =3D video_ioctl2(file, cmd, arg);
+> >> - uvc_pm_put(handle->stream->dev);
+> >> + ret =3D uvc_pm_get(handle->stream->dev);
+> >> + if (ret)
+> >>   return ret;
+> >> - }
+> >> -
+> >> - /* The other IOCTLs can run with the camera off. */
+> >> - return video_ioctl2(file, cmd, arg);
+> >> + ret =3D video_ioctl2(file, cmd, arg);
+> >> + uvc_pm_put(handle->stream->dev);
+> >> + return ret;
+> >>  }
+> >>
+> >>  const struct v4l2_ioctl_ops uvc_ioctl_ops =3D {
+> >>
+> >> Andr=C3=A9s
+> >>
+> >
+> >
+>
