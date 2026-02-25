@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1B66FD377E
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 18:47:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63025EFB7F2
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 18:47:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 933D110E80D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2B9D10E80E;
 	Wed, 25 Feb 2026 18:47:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NdVB90SX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LmhTA3lb";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5451210E807
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Feb 2026 18:47:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8251310E7ED
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Feb 2026 18:47:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772045241; x=1803581241;
+ t=1772045240; x=1803581240;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=OKQrAceQA5KX6dLbczzJmqefu+fBVKPbQYs1u54IRss=;
- b=NdVB90SXlcL5NZRPb4MmuNE5Dcymyl77NrVm5ABEQBl/25uPv6gHoHxk
- CFVAIMfWha7wLQ8cRDhbR72RR9Nt3ipOqUy/KAglicGFGCO2LQjeHCIAD
- hhfjo8EjkFpXp+v2V/MqZUaIEGCUXNkFWCWDW5UJE69URicxy/TOXo48l
- RS06bJntB5schOxPxnnwmcGkwxSTi2iDaYILNj1hwNa8vmc+BjbICGapY
- gA8BqwBpY+gVq4CFchkKsrSL45Vx2dr80QGWKAaN3j8eiIm5ojnaeDUoI
- uV2rtVCUXUErwySYLmzWFYuUdk0+nWatSIr5n6x7pPaUjKVkO4EhaklUj g==;
-X-CSE-ConnectionGUID: V1t1iJygRtis7u4UBw6q9A==
-X-CSE-MsgGUID: v+7y/qu3SmyLMRVOl8rQBw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="76700332"
-X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="76700332"
+ bh=qwy3YcaIG4R+AoUh+yRgV1bchkF6layiJt5Ftxu1/24=;
+ b=LmhTA3lbXNSEN0gkrc/aL0ntbfmDYHadOOV/asEFora31wqsnPySy+w6
+ NMZqmJH+84Lhcv8o+FJ43EKGJCaT5JyqRlL0gI5U7RjzKifLpW5N5rQVZ
+ jYv7muzTKKTwkMyPrM2CFo2Ly7GRldnX/FigdUlatDe0Fc5KhvGznOvm7
+ /i05x759DcK0wEQyb9RZY4tCt/6TAA+z/6C8wReMV7H0OMFMxOAy9HCvM
+ uey63k6vTLAA+jEkKwj3XmF0c40KrvnurewWC/Yu9x9QUw5ShaGydvYZa
+ P9ede2G39NPodhqDD8dH5b6QVKwbBy8OK9hlDcG+1Z0yiaAom1C9EMfkk A==;
+X-CSE-ConnectionGUID: 02mt6ytVQVSR/Rl1+o5Qxg==
+X-CSE-MsgGUID: BGsTOY9mQ1WzdAA6cqapYQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="76700322"
+X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="76700322"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 10:47:21 -0800
-X-CSE-ConnectionGUID: OVrb6GKkR/aZ4KZLRMTZ6w==
-X-CSE-MsgGUID: 28VD88fCQJeZInneUllx6Q==
+ 25 Feb 2026 10:47:20 -0800
+X-CSE-ConnectionGUID: 7aCSUDfzT2uQaOLmz9JenQ==
+X-CSE-MsgGUID: VFdmyQCuS6GoUzBRObOGKQ==
 X-ExtLoop1: 1
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 10:47:20 -0800
+ 25 Feb 2026 10:47:19 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: stuart.summers@intel.com, arvind.yadav@intel.com,
  himal.prasad.ghimiray@intel.com, thomas.hellstrom@linux.intel.com,
  francois.dugast@intel.com
-Subject: [PATCH v2 10/12] drm/xe: Add debugfs pagefault_info
-Date: Wed, 25 Feb 2026 10:47:11 -0800
-Message-Id: <20260225184713.2606772-11-matthew.brost@intel.com>
+Subject: [PATCH v2 03/12] drm/xe: Thread prefetch of SVM ranges
+Date: Wed, 25 Feb 2026 10:47:04 -0800
+Message-Id: <20260225184713.2606772-4-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260225184713.2606772-1-matthew.brost@intel.com>
 References: <20260225184713.2606772-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,156 +68,416 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a debugfs entry to dump Xe page fault queue state. The output
-includes queue geometry (entry size, total size, head/tail), per-entry
-allocation state counts, and whether each page fault worker cache is
-currently valid.
+The migrate_vma_* functions are very CPU-intensive; as a result,
+prefetching SVM ranges is limited by CPU performance rather than paging
+copy engine bandwidth. To accelerate SVM range prefetching, the step
+that calls migrate_vma_* is now threaded. Reuses the page fault work
+queue for threading.
 
-This is intended to help debug page fault storms, chaining, and retry
-behaviour without needing tracing.
+Running xe_exec_system_allocator --r prefetch-benchmark, which tests
+64MB prefetches, shows an increase from ~4.35 GB/s to 12.25 GB/s with
+this patch on drm-tip. Enabling high SLPC further increases throughput
+to ~15.25 GB/s, and combining SLPC with ULLS raises it to ~16 GB/s. Both
+of these optimizations are upcoming.
 
-Assisted-by: Chat-GPT # Documentation
+v2:
+ - Use dedicated prefetch workqueue
+ - Pick dedicated prefetch thread count based on profiling
+ - Skip threaded prefetch for only 1 range or if prefetching to SRAM
+ - Fully tested
+v3:
+ - Use page fault work queue
+
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_debugfs.c   | 11 ++++++
- drivers/gpu/drm/xe/xe_pagefault.c | 62 +++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_pagefault.h |  3 ++
- 3 files changed, 76 insertions(+)
+ drivers/gpu/drm/xe/xe_pagefault.c |  31 +++++-
+ drivers/gpu/drm/xe/xe_svm.c       |  23 ++++-
+ drivers/gpu/drm/xe/xe_svm.h       |   3 +-
+ drivers/gpu/drm/xe/xe_vm.c        | 150 +++++++++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_vm_types.h  |  15 +--
+ 5 files changed, 173 insertions(+), 49 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 844cfafe1ec7..f02481be2501 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -19,6 +19,7 @@
- #include "xe_gt_printk.h"
- #include "xe_guc_ads.h"
- #include "xe_mmio.h"
-+#include "xe_pagefault.h"
- #include "xe_pm.h"
- #include "xe_psmi.h"
- #include "xe_pxp_debugfs.h"
-@@ -109,6 +110,15 @@ static int sriov_info(struct seq_file *m, void *data)
+diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
+index 421262c2a63a..a372db7cd839 100644
+--- a/drivers/gpu/drm/xe/xe_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_pagefault.c
+@@ -173,7 +173,17 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
+ 	if (IS_ERR(vm))
+ 		return PTR_ERR(vm);
+ 
+-	down_read(&vm->lock);
++	/*
++	 * We can't block threaded prefetches from completing. down_read() can
++	 * block on a pending down_write(), so without a trylock here, we could
++	 * deadlock, since the page fault workqueue is shared with prefetches,
++	 * prefetches flush work items onto the same workqueue, and a
++	 * down_write() could be pending.
++	 */
++	if (!down_read_trylock(&vm->lock)) {
++		err = -EAGAIN;
++		goto put_vm;
++	}
+ 
+ 	if (xe_vm_is_closed(vm)) {
+ 		err = -ENOENT;
+@@ -198,11 +208,23 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
+ 	if (!err)
+ 		vm->usm.last_fault_vma = vma;
+ 	up_read(&vm->lock);
++put_vm:
+ 	xe_vm_put(vm);
+ 
+ 	return err;
+ }
+ 
++static void xe_pagefault_queue_retry(struct xe_pagefault_queue *pf_queue,
++				     struct xe_pagefault *pf)
++{
++	spin_lock_irq(&pf_queue->lock);
++	if (!pf_queue->tail)
++		pf_queue->tail = pf_queue->size - xe_pagefault_entry_size();
++	else
++		pf_queue->tail -= xe_pagefault_entry_size();
++	spin_unlock_irq(&pf_queue->lock);
++}
++
+ static bool xe_pagefault_queue_pop(struct xe_pagefault_queue *pf_queue,
+ 				   struct xe_pagefault *pf)
+ {
+@@ -260,7 +282,12 @@ static void xe_pagefault_queue_work(struct work_struct *w)
+ 			continue;
+ 
+ 		err = xe_pagefault_service(&pf);
+-		if (err) {
++
++		if (err == -EAGAIN) {
++			xe_pagefault_queue_retry(pf_queue, &pf);
++			queue_work(gt_to_xe(pf.gt)->usm.pf_wq, w);
++			break;
++		} else if (err) {
+ 			if (!(pf.consumer.access_type & XE_PAGEFAULT_ACCESS_PREFETCH)) {
+ 				xe_pagefault_print(&pf);
+ 				xe_gt_info(pf.gt, "Fault response: Unsuccessful %pe\n",
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index 3e59695e0c01..66eee490a0c3 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -436,8 +436,19 @@ static void xe_svm_garbage_collector_work_func(struct work_struct *w)
+ 	struct xe_vm *vm = container_of(w, struct xe_vm,
+ 					svm.garbage_collector.work);
+ 
+-	guard(rwsem_read)(&vm->lock);
+-	xe_svm_garbage_collector(vm);
++	/*
++	 * We can't block threaded prefetches from completing. down_read() can
++	 * block on a pending down_write(), so without a trylock here, we could
++	 * deadlock, since the page fault workqueue is shared with prefetches,
++	 * prefetches flush work items onto the same workqueue, and a
++	 * down_write() could be pending.
++	 */
++	if (down_read_trylock(&vm->lock)) {
++		xe_svm_garbage_collector(vm);
++		up_read(&vm->lock);
++	} else {
++		queue_work(vm->xe->usm.pf_wq, &vm->svm.garbage_collector.work);
++	}
+ }
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
+@@ -988,6 +999,7 @@ void xe_svm_range_migrate_to_smem(struct xe_vm *vm, struct xe_svm_range *range)
+  * @tile_mask: Mask representing the tiles to be checked
+  * @dpagemap: if !%NULL, the range is expected to be present
+  * in device memory identified by this parameter.
++ * @valid_pages: Pages are valid, result written back to caller
+  *
+  * The xe_svm_range_validate() function checks if a range is
+  * valid and located in the desired memory region.
+@@ -996,7 +1008,8 @@ void xe_svm_range_migrate_to_smem(struct xe_vm *vm, struct xe_svm_range *range)
+  */
+ bool xe_svm_range_validate(struct xe_vm *vm,
+ 			   struct xe_svm_range *range,
+-			   u8 tile_mask, const struct drm_pagemap *dpagemap)
++			   u8 tile_mask, const struct drm_pagemap *dpagemap,
++			   bool *valid_pages)
+ {
+ 	bool ret;
+ 
+@@ -1008,6 +1021,8 @@ bool xe_svm_range_validate(struct xe_vm *vm,
+ 	else
+ 		ret = ret && !range->base.pages.dpagemap;
+ 
++	*valid_pages = xe_svm_range_pages_valid(range);
++
+ 	xe_svm_notifier_unlock(vm);
+ 
+ 	return ret;
+@@ -2064,5 +2079,5 @@ struct drm_pagemap *xe_drm_pagemap_from_fd(int fd, u32 region_instance)
+ void xe_svm_flush(struct xe_vm *vm)
+ {
+ 	if (xe_vm_in_fault_mode(vm))
+-		flush_work(&vm->svm.garbage_collector.work);
++		__flush_workqueue(vm->xe->usm.pf_wq);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_svm.h b/drivers/gpu/drm/xe/xe_svm.h
+index 7dcf8b084692..4fe6b846aca8 100644
+--- a/drivers/gpu/drm/xe/xe_svm.h
++++ b/drivers/gpu/drm/xe/xe_svm.h
+@@ -132,7 +132,8 @@ void xe_svm_range_migrate_to_smem(struct xe_vm *vm, struct xe_svm_range *range);
+ 
+ bool xe_svm_range_validate(struct xe_vm *vm,
+ 			   struct xe_svm_range *range,
+-			   u8 tile_mask, const struct drm_pagemap *dpagemap);
++			   u8 tile_mask, const struct drm_pagemap *dpagemap,
++			   bool *valid_pages);
+ 
+ u64 xe_svm_find_vma_start(struct xe_vm *vm, u64 addr, u64 end,  struct xe_vma *vma);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 204a89ca3397..06669e9c500d 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2399,6 +2399,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+ 			struct drm_pagemap *dpagemap = NULL;
+ 			u8 id, tile_mask = 0;
+ 			u32 i;
++			bool valid_pages;
+ 
+ 			if (xe_vma_is_userptr(vma))
+ 				vops->flags |= XE_VMA_OPS_FLAG_MODIFIES_GPUVA;
+@@ -2446,8 +2447,10 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+ 				goto unwind_prefetch_ops;
+ 			}
+ 
+-			if (xe_svm_range_validate(vm, svm_range, tile_mask, dpagemap)) {
++			if (xe_svm_range_validate(vm, svm_range, tile_mask,
++						  dpagemap, &valid_pages)) {
+ 				xe_svm_range_debug(svm_range, "PREFETCH - RANGE IS VALID");
++				xe_assert(vm->xe, valid_pages);
+ 				goto check_next_range;
+ 			}
+ 
+@@ -2460,6 +2463,8 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_vma_ops *vops,
+ 
+ 			op->prefetch_range.ranges_count++;
+ 			vops->flags |= XE_VMA_OPS_FLAG_HAS_SVM_PREFETCH;
++			if (valid_pages)
++				vops->flags |= XE_VMA_OPS_FLAG_HAS_SVM_VALID_RANGE;
+ 			xe_svm_range_debug(svm_range, "PREFETCH - RANGE CREATED");
+ check_next_range:
+ 			if (range_end > xe_svm_range_end(svm_range) &&
+@@ -2976,16 +2981,83 @@ static int check_ufence(struct xe_vma *vma)
  	return 0;
  }
  
-+static int pagefault_info(struct seq_file *m, void *data)
+-static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
++struct prefetch_thread {
++	struct work_struct work;
++	struct drm_gpusvm_ctx *ctx;
++	struct xe_vma *vma;
++	struct xe_svm_range *svm_range;
++	struct drm_pagemap *dpagemap;
++	int err;
++};
++
++static void prefetch_thread_func(struct prefetch_thread *thread)
 +{
-+	struct xe_device *xe = node_to_xe(m->private);
-+	struct drm_printer p = drm_seq_file_printer(m);
++	struct xe_vma *vma = thread->vma;
++	struct xe_vm *vm = xe_vma_vm(vma);
++	struct xe_svm_range *svm_range = thread->svm_range;
++	struct drm_pagemap *dpagemap = thread->dpagemap;
++	int err = 0;
 +
-+	xe_pagefault_print_info(xe, &p);
-+	return 0;
-+}
++	guard(mutex)(&svm_range->lock);
 +
- static int workarounds(struct xe_device *xe, struct drm_printer *p)
- {
- 	guard(xe_pm_runtime)(xe);
-@@ -184,6 +194,7 @@ static const struct drm_info_list debugfs_list[] = {
- 	{"info", info, 0},
- 	{ .name = "sriov_info", .show = sriov_info, },
- 	{ .name = "workarounds", .show = workaround_info, },
-+	{ .name = "pagefault_info", .show = pagefault_info, },
- };
- 
- static const struct drm_info_list debugfs_residencies[] = {
-diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-index c497dd8d9724..2cfda29321c9 100644
---- a/drivers/gpu/drm/xe/xe_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_pagefault.c
-@@ -97,6 +97,7 @@ enum xe_pagefault_alloc_state {
- 	XE_PAGEFAULT_ALLOC_STATE_QUEUED		= 1,
- 	XE_PAGEFAULT_ALLOC_STATE_CHAINED	= 2,
- 	XE_PAGEFAULT_ALLOC_STATE_ACTIVE		= 3,
-+	XE_PAGEFAULT_ALLOC_STATE_COUNT		= 4,
- };
- 
- static int xe_pagefault_entry_size(void)
-@@ -846,3 +847,64 @@ int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf)
- 
- 	return full ? -ENOSPC : 0;
- }
++	if (xe_svm_range_is_removed(svm_range)) {
++		thread->err = -ENODATA;
++		return;
++	}
 +
-+/**
-+ * xe_pagefault_print_info() - dump page fault queue/cache debug information
-+ * @xe: Xe device
-+ * @p: DRM printer to emit output to
-+ *
-+ * Print a snapshot of the page fault queue state for debugging. The output
-+ * includes queue parameters (entry size, total size, head/tail), a histogram
-+ * of per-entry allocation state values, and the validity of each per-worker
-+ * page fault cache.
-+ *
-+ * This function is intended for debugfs and similar diagnostics. It acquires
-+ * the page fault queue spinlock internally to serialize against IRQ-side
-+ * producers and the worker consumer path, so callers must not hold the queue
-+ * lock.
-+ */
-+void xe_pagefault_print_info(struct xe_device *xe, struct drm_printer *p)
-+{
-+	struct xe_pagefault_queue *pf_queue = &xe->usm.pf_queue;
-+	struct xe_pagefault_work *pf_work;
-+	static const char * const alloc_state_names[] = {
-+		[XE_PAGEFAULT_ALLOC_STATE_FREE] = "free",
-+		[XE_PAGEFAULT_ALLOC_STATE_QUEUED] = "queued",
-+		[XE_PAGEFAULT_ALLOC_STATE_CHAINED] = "chained",
-+		[XE_PAGEFAULT_ALLOC_STATE_ACTIVE] = "active",
-+	};
-+	u32 i, counts[XE_PAGEFAULT_ALLOC_STATE_COUNT] = {};
++	if (!dpagemap)
++		xe_svm_range_migrate_to_smem(vm, svm_range);
 +
-+	guard(spinlock_irq)(&pf_queue->lock);
++	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG_VM)) {
++		drm_dbg(&vm->xe->drm,
++			"Prefetch pagemap is %s start 0x%016lx end 0x%016lx\n",
++			dpagemap ? dpagemap->drm->unique : "system",
++			xe_svm_range_start(svm_range), xe_svm_range_end(svm_range));
++	}
 +
-+	drm_printf(p, "pagefault size: %u\n", xe_pagefault_entry_size());
-+	drm_printf(p, "pagefault queue size: %u\n", pf_queue->size);
-+	drm_printf(p, "pagefault queue head: %u\n", pf_queue->head);
-+	drm_printf(p, "pagefault queue tail: %u\n", pf_queue->tail);
-+
-+	for (i = 0; i < pf_queue->size; i += xe_pagefault_entry_size()) {
-+		struct xe_pagefault *pf = pf_queue->data + i;
-+
-+		if (pf->consumer.alloc_state >=
-+		    XE_PAGEFAULT_ALLOC_STATE_COUNT) {
-+			drm_printf(p, "pagefault[%u] corrupted alloc_state=%u\n",
-+				   i, pf->consumer.alloc_state);
-+			continue;
++	if (xe_svm_range_needs_migrate_to_vram(svm_range, vma, dpagemap)) {
++		err = xe_svm_alloc_vram(svm_range, thread->ctx, dpagemap);
++		if (err) {
++			drm_dbg(&vm->xe->drm, "VRAM allocation failed, retry from userspace, asid=%u, gpusvm=%p, errno=%pe\n",
++				vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
++			thread->err = -ENODATA;
++			return;
 +		}
-+
-+		counts[pf->consumer.alloc_state]++;
++		xe_svm_range_debug(svm_range, "PREFETCH - RANGE MIGRATED TO VRAM");
 +	}
 +
-+	for (i = 0; i < XE_PAGEFAULT_ALLOC_STATE_COUNT; ++i)
-+		drm_printf(p, "pagefault queue %s count: %u\n",
-+			   alloc_state_names[i], counts[i]);
-+
-+	for (i = 0, pf_work = xe->usm.pf_workers;
-+	     i < xe->info.num_pf_work; ++i, ++pf_work) {
-+		if (pf_work->cache.start == XE_PAGEFAULT_CACHE_START_INVALID)
-+			drm_printf(p, "pagefault work[%u] cache invalid\n", i);
-+		else
-+			drm_printf(p, "pagefault work[%u] cache valid\n", i);
-+
++	err = xe_svm_range_get_pages(vm, svm_range, thread->ctx);
++	if (err) {
++		drm_dbg(&vm->xe->drm, "Get pages failed, asid=%u, gpusvm=%p, errno=%pe\n",
++			vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
++		if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM)
++			err = -ENODATA;
++		thread->err = -ENODATA;
++		return;
 +	}
++	xe_svm_range_debug(svm_range, "PREFETCH - RANGE GET PAGES DONE");
 +}
-diff --git a/drivers/gpu/drm/xe/xe_pagefault.h b/drivers/gpu/drm/xe/xe_pagefault.h
-index feaf2a69674a..e9c5d1f03760 100644
---- a/drivers/gpu/drm/xe/xe_pagefault.h
-+++ b/drivers/gpu/drm/xe/xe_pagefault.h
-@@ -8,6 +8,7 @@
- 
- #include "xe_pagefault_types.h"
- 
-+struct drm_printer;
- struct xe_device;
- struct xe_gt;
- struct xe_pagefault;
-@@ -18,6 +19,8 @@ void xe_pagefault_reset(struct xe_device *xe, struct xe_gt *gt);
- 
- int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf);
- 
-+void xe_pagefault_print_info(struct xe_device *xe, struct drm_printer *p);
 +
- #define XE_PAGEFAULT_END_ADDR_MASK	(~0xfffull)
++static void prefetch_work_func(struct work_struct *w)
++{
++	struct prefetch_thread *thread =
++		container_of(w, struct prefetch_thread, work);
++
++	prefetch_thread_func(thread);
++}
++
++static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_ops *vops,
++			   struct xe_vma_op *op)
+ {
+ 	bool devmem_possible = IS_DGFX(vm->xe) && IS_ENABLED(CONFIG_DRM_XE_PAGEMAP);
+ 	struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
+ 	struct drm_pagemap *dpagemap = op->prefetch_range.dpagemap;
+-	int err = 0;
+-
+ 	struct xe_svm_range *svm_range;
+ 	struct drm_gpusvm_ctx ctx = {};
++	struct prefetch_thread stack_thread, *thread, *prefetches;
+ 	unsigned long i;
++	int err = 0, idx = 0;
++	bool skip_threads;
  
- /**
+ 	if (!xe_vma_is_cpu_addr_mirror(vma))
+ 		return 0;
+@@ -2995,42 +3067,49 @@ static int prefetch_ranges(struct xe_vm *vm, struct xe_vma_op *op)
+ 	ctx.check_pages_threshold = devmem_possible ? SZ_64K : 0;
+ 	ctx.device_private_page_owner = xe_svm_private_page_owner(vm, !dpagemap);
+ 
+-	/* TODO: Threading the migration */
+-	xa_for_each(&op->prefetch_range.range, i, svm_range) {
+-		guard(mutex)(&svm_range->lock);
+-
+-		if (xe_svm_range_is_removed(svm_range))
+-			return -ENODATA;
++	skip_threads =  op->prefetch_range.ranges_count == 1 ||
++		(!dpagemap && !(vops->flags &
++				XE_VMA_OPS_FLAG_HAS_SVM_VALID_RANGE)) ||
++		!(vops->flags & XE_VMA_OPS_FLAG_DOWNGRADE_LOCK);
++	thread = skip_threads ? &stack_thread : NULL;
+ 
+-		if (!dpagemap)
+-			xe_svm_range_migrate_to_smem(vm, svm_range);
++	if (!skip_threads) {
++		prefetches = kvmalloc_array(op->prefetch_range.ranges_count,
++					    sizeof(*prefetches), GFP_KERNEL);
++		if (!prefetches)
++			return -ENOMEM;
++	}
+ 
+-		if (IS_ENABLED(CONFIG_DRM_XE_DEBUG_VM)) {
+-			drm_dbg(&vm->xe->drm,
+-				"Prefetch pagemap is %s start 0x%016lx end 0x%016lx\n",
+-				dpagemap ? dpagemap->drm->unique : "system",
+-				xe_svm_range_start(svm_range), xe_svm_range_end(svm_range));
++	xa_for_each(&op->prefetch_range.range, i, svm_range) {
++		if (!skip_threads) {
++			thread = prefetches + idx++;
++			INIT_WORK(&thread->work, prefetch_work_func);
+ 		}
+ 
+-		if (xe_svm_range_needs_migrate_to_vram(svm_range, vma, dpagemap)) {
+-			err = xe_svm_alloc_vram(svm_range, &ctx, dpagemap);
+-			if (err) {
+-				drm_dbg(&vm->xe->drm, "VRAM allocation failed, retry from userspace, asid=%u, gpusvm=%p, errno=%pe\n",
+-					vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+-				return -ENODATA;
+-			}
+-			xe_svm_range_debug(svm_range, "PREFETCH - RANGE MIGRATED TO VRAM");
++		thread->ctx = &ctx;
++		thread->vma = vma;
++		thread->svm_range = svm_range;
++		thread->dpagemap = dpagemap;
++		thread->err = 0;
++
++		if (skip_threads) {
++			prefetch_thread_func(thread);
++			if (thread->err)
++				return thread->err;
++		} else {
++			queue_work(vm->xe->usm.pf_wq, &thread->work);
+ 		}
++	}
+ 
+-		err = xe_svm_range_get_pages(vm, svm_range, &ctx);
+-		if (err) {
+-			drm_dbg(&vm->xe->drm, "Get pages failed, asid=%u, gpusvm=%p, errno=%pe\n",
+-				vm->usm.asid, &vm->svm.gpusvm, ERR_PTR(err));
+-			if (err == -EOPNOTSUPP || err == -EFAULT || err == -EPERM)
+-				err = -ENODATA;
+-			return err;
++	if (!skip_threads) {
++		for (i = 0; i < idx; ++i) {
++			thread = prefetches + i;
++
++			flush_work(&thread->work);
++			if (thread->err && (!err || err == -ENODATA))
++				err = thread->err;
+ 		}
+-		xe_svm_range_debug(svm_range, "PREFETCH - RANGE GET PAGES DONE");
++		kvfree(prefetches);
+ 	}
+ 
+ 	return err;
+@@ -3109,7 +3188,8 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
+ 	return err;
+ }
+ 
+-static int vm_bind_ioctl_ops_prefetch_ranges(struct xe_vm *vm, struct xe_vma_ops *vops)
++static int vm_bind_ioctl_ops_prefetch_ranges(struct xe_vm *vm,
++					     struct xe_vma_ops *vops)
+ {
+ 	struct xe_vma_op *op;
+ 	int err;
+@@ -3119,7 +3199,7 @@ static int vm_bind_ioctl_ops_prefetch_ranges(struct xe_vm *vm, struct xe_vma_ops
+ 
+ 	list_for_each_entry(op, &vops->list, link) {
+ 		if (op->base.op  == DRM_GPUVA_OP_PREFETCH) {
+-			err = prefetch_ranges(vm, op);
++			err = prefetch_ranges(vm, vops, op);
+ 			if (err)
+ 				return err;
+ 		}
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index db6e8e22a69f..7d5a82b2b64f 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -513,13 +513,14 @@ struct xe_vma_ops {
+ 	/** @pt_update_ops: page table update operations */
+ 	struct xe_vm_pgtable_update_ops pt_update_ops[XE_MAX_TILES_PER_DEVICE];
+ 	/** @flag: signify the properties within xe_vma_ops*/
+-#define XE_VMA_OPS_FLAG_HAS_SVM_PREFETCH BIT(0)
+-#define XE_VMA_OPS_FLAG_MADVISE          BIT(1)
+-#define XE_VMA_OPS_ARRAY_OF_BINDS	 BIT(2)
+-#define XE_VMA_OPS_FLAG_SKIP_TLB_WAIT	 BIT(3)
+-#define XE_VMA_OPS_FLAG_ALLOW_SVM_UNMAP  BIT(4)
+-#define XE_VMA_OPS_FLAG_MODIFIES_GPUVA	 BIT(5)
+-#define XE_VMA_OPS_FLAG_DOWNGRADE_LOCK	 BIT(6)
++#define XE_VMA_OPS_FLAG_HAS_SVM_PREFETCH	BIT(0)
++#define XE_VMA_OPS_FLAG_MADVISE			BIT(1)
++#define XE_VMA_OPS_ARRAY_OF_BINDS		BIT(2)
++#define XE_VMA_OPS_FLAG_SKIP_TLB_WAIT		BIT(3)
++#define XE_VMA_OPS_FLAG_ALLOW_SVM_UNMAP		BIT(4)
++#define XE_VMA_OPS_FLAG_MODIFIES_GPUVA		BIT(5)
++#define XE_VMA_OPS_FLAG_DOWNGRADE_LOCK		BIT(6)
++#define XE_VMA_OPS_FLAG_HAS_SVM_VALID_RANGE	BIT(7)
+ 	u32 flags;
+ #ifdef TEST_VM_OPS_ERROR
+ 	/** @inject_error: inject error to test error handling */
 -- 
 2.34.1
 
