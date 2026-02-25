@@ -4,27 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 412FCFCEE8A
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 11:38:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93FACFCEE93
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 11:59:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0569010E741;
-	Wed, 25 Feb 2026 11:38:28 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEC4F10E740;
- Wed, 25 Feb 2026 11:38:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0062608046056834946=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F09B10E748;
+	Wed, 25 Feb 2026 11:59:37 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="GSR4sYTM";
+	dkim-atps=neutral
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C65C110E744;
+ Wed, 25 Feb 2026 11:59:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1772020774;
+ bh=0Lz7uZRTXCWj/J+aEommdk6N7FhzZohw5kJNaec9mzY=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=GSR4sYTMP6QN+rF38uAsipmaRY+lwOiR8UdQHXC3/xOo7jq1E18WBF2bv7R2lDMmI
+ KJHS2KrA8euWPpJibK6Ml5f8jZsEw7pwumyADpd27kUSbg06dBekw0scC/IsXGTcGi
+ lV6zUPQTkFqSH8Thd8mprYZQAPAzmvgXT8e+TLB81UKQQICK88Z8SLCBS6BNoiHAiT
+ GHZWRv0RrwpiIKuRIP0SDFRQ8F2M+O8uYrN/qOxdXrNhbpkUBvrSOMBGoKoSYo7WIO
+ 62pw9EtRcrZMPPoZX5NRbwz2trWdrAZkhvk568xpRGyfsHaMyNGIw2iOXv8lzVBuId
+ EUvs5xknWyXuQ==
+Message-ID: <35881d45-3a17-4f82-aae8-65579b10a9a6@lankhorst.se>
+Date: Wed, 25 Feb 2026 12:59:32 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFULL=3A_success_for_drm/i915/hdcp=3A_Take_forc?=
- =?utf-8?q?e=5Fhdcp14_into_account_during_check=5Flink?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Suraj Kandpal" <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 25 Feb 2026 11:38:26 -0000
-Message-ID: <177201950675.284988.3455555327740988449@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260225065045.3040787-1-suraj.kandpal@intel.com>
-In-Reply-To: <20260225065045.3040787-1-suraj.kandpal@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [i915-rt v6 13/24] drm/i915/display: Use intel_de_write_fw in
+ intel_pipe_fastset
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: linux-rt-devel@lists.linux.dev, dri-devel@lists.freedesktop.org
+References: <20260220083657.28815-26-dev@lankhorst.se>
+ <20260220083657.28815-39-dev@lankhorst.se>
+ <4537cb8e981e2f49e1ba212237134dc5e812756e@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <4537cb8e981e2f49e1ba212237134dc5e812756e@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,137 +53,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0062608046056834946==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hey,
 
-== Series Details ==
+Den 2026-02-25 kl. 10:25, skrev Jani Nikula:
+> On Fri, 20 Feb 2026, Maarten Lankhorst <dev@lankhorst.se> wrote:
+>> intel_set_pipe_src_size(), hsw_set_linetime_wm(),
+>> intel_cpu_transcoder_set_m1_n1() and intel_set_transcoder_timings_lrr()
+>> are called from an atomic context on PREEMPT_RT, and should be using the
+>> _fw functions.
+> 
+> Problem is, ~nobody knows when they should be using _fw anymore when
+> they're all over the place. It'll get cargo culted.
 
-Series: drm/i915/hdcp: Take force_hdcp14 into account during check_link
-URL   : https://patchwork.freedesktop.org/series/162116/
-State : success
+It's not too hard, IMO.
 
-== Summary ==
+Called from vblank evasion:
+All functions should use the _dsb postfixed functions if applicable, and intel_de_read_fw.
+On code only for old platforms, the _fw functions can be used.
 
-CI Bug Log - changes from xe-4610-4a8ef58307bfc096873745fbb27d0bbc5454676d_FULL -> xe-pw-162116v1_FULL
-====================================================
+Lockdep complains hard on PREEMPT_RT if this is not the case, especially since vblank
+evasion with this series  doesn't acquire or release any lock at all. It will allow us
+to uncouple the VBLANK_EVASION_TIME_US define from PROVE_LOCKING.
 
-Summary
--------
+Should I switch to use the _dsb prefixes all the time for readability?
 
-  **SUCCESS**
+Called from vblank readout:
+- we're disabling preemption, so _fw functions must be used as the spinlocks cannot be taken.
 
-  No regressions found.
+Other cases:
+- Normal functions. Same for encoder enabling etc.
 
-  
+Sidenote:
+I believe it's a mistake to make the intel_dmc_wl_get/put() functions implicit. There
+is already power well support for everything that needs it.
 
-Participating hosts (2 -> 2)
-------------------------------
+Explicit force_wake like xe_force_wake would be a better model. It could be implemented as
+simple as holding the dmc forcewake around the entire modeset sequence, which would still
+be protective. While for debugging we can still complain about affected registers outside
+the sequence until CI is clean.
 
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-162116v1_FULL that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_big_fb@yf-tiled-64bpp-rotate-180:
-    - shard-lnl:          NOTRUN -> [SKIP][1] ([Intel XE#1124])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162116v1/shard-lnl-8/igt@kms_big_fb@yf-tiled-64bpp-rotate-180.html
-
-  * igt@xe_exec_system_allocator@process-many-large-execqueues-mmap-free-race-nomemset:
-    - shard-lnl:          NOTRUN -> [ABORT][2] ([Intel XE#7414])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162116v1/shard-lnl-8/igt@xe_exec_system_allocator@process-many-large-execqueues-mmap-free-race-nomemset.html
-
-  
-  [Intel XE#1124]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124
-  [Intel XE#7414]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7414
-
-
-Build changes
--------------
-
-  * Linux: xe-4610-4a8ef58307bfc096873745fbb27d0bbc5454676d -> xe-pw-162116v1
-
-  IGT_8770: 8770
-  xe-4610-4a8ef58307bfc096873745fbb27d0bbc5454676d: 4a8ef58307bfc096873745fbb27d0bbc5454676d
-  xe-pw-162116v1: 162116v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162116v1/index.html
-
---===============0062608046056834946==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/hdcp: Take force_hdcp14 into account during check_link</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162116/">https://patchwork.freedesktop.org/series/162116/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162116v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162116v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4610-4a8ef58307bfc096873745fbb27d0bbc5454676d_FULL -&gt; xe-pw-162116v1_FULL</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (2 -&gt; 2)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-162116v1_FULL that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_big_fb@yf-tiled-64bpp-rotate-180:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162116v1/shard-lnl-8/igt@kms_big_fb@yf-tiled-64bpp-rotate-180.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124">Intel XE#1124</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_system_allocator@process-many-large-execqueues-mmap-free-race-nomemset:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162116v1/shard-lnl-8/igt@xe_exec_system_allocator@process-many-large-execqueues-mmap-free-race-nomemset.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7414">Intel XE#7414</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4610-4a8ef58307bfc096873745fbb27d0bbc5454676d -&gt; xe-pw-162116v1</li>
-</ul>
-<p>IGT_8770: 8770<br />
-  xe-4610-4a8ef58307bfc096873745fbb27d0bbc5454676d: 4a8ef58307bfc096873745fbb27d0bbc5454676d<br />
-  xe-pw-162116v1: 162116v1</p>
-
-</body>
-</html>
-
---===============0062608046056834946==--
+Kind regards,
+~Maarten Lankhorst
