@@ -4,62 +4,146 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C7FEFD374E
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 13:29:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD06DFD3764
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 14:26:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A11310E7A1;
-	Wed, 25 Feb 2026 13:29:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98E9010E17F;
+	Wed, 25 Feb 2026 14:26:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kXiuqk5R";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="PCgFefxG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08B7110E79F;
- Wed, 25 Feb 2026 13:29:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772026151; x=1803562151;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=DVgT5RMRNWekHbyHQc8KcLrs3cWTMG1K0k1HgAFeRF0=;
- b=kXiuqk5RiDN1NE0lLQgR2rcHAdZWpPBFs6QADrmOU3UGjrwafGIwibCI
- X0zZAlCk6aLyoTdClNdH7Tum+qBgKp5NwYhjqHKEAS8ypcww7qAvMJeXH
- Be8BlgdmlCUtYaQJT6jIDetpkoYzc0ubYXqgTwXqqg783LzL8eWmtwwG8
- vEXPvesLRWeTD3eU54IYG2z6s5K7oFG6OTa4uMYYTVf+dZrNTOo2E4/7y
- wJxdM1ZFWHlEhnb7OvuOdEyYtewC01EV9rCgb5rTJvIa8a/CX287B6vqT
- 22sBN789vMSkz8Dfnmx8bdk1OtnFm0RnaVSlE76Ut/egMjZaFx2K/rJq/ w==;
-X-CSE-ConnectionGUID: HTYDvouQSDa4pqEFbTzdkg==
-X-CSE-MsgGUID: fUwPy8L1SHq7AvqFWT4HKw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="95679098"
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="95679098"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 05:29:11 -0800
-X-CSE-ConnectionGUID: sFhDSqreQCuseaty/XGkng==
-X-CSE-MsgGUID: DqnRm6IwSjqOsCklKY3Y1g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="216116671"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.68])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 05:29:07 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, Jouni =?utf-8?Q?H?=
- =?utf-8?Q?=C3=B6gander?=
- <jouni.hogander@intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: stable@vger.kernel.org
-Subject: Re: [PATCH 4/5] drm/i915/psr: DSC configuration for Early Transport
-In-Reply-To: <528b9b9c-920d-4146-a4f7-97db356e7f28@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260219130743.1232188-1-jouni.hogander@intel.com>
- <20260219130743.1232188-5-jouni.hogander@intel.com>
- <528b9b9c-920d-4146-a4f7-97db356e7f28@intel.com>
-Date: Wed, 25 Feb 2026 15:29:04 +0200
-Message-ID: <62858fcc175b123862a5071265a65210428e3bc5@intel.com>
+Received: from MW6PR02CU001.outbound.protection.outlook.com
+ (mail-westus2azon11012070.outbound.protection.outlook.com [52.101.48.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D47B210E17F;
+ Wed, 25 Feb 2026 14:26:30 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jqW8y88MR47jXob8+S9hPd3uG2D8oakpYSY6K2lOVN01gBHrOyBNromJr47Hd9+5gpgW6BYZPRbGYi8noBewopAc7iDby34T37dnxFz1i6wlDuYTmy8+C3vAiFoq9fcto4JwBXOaGUEXsyiYoe35I4BvTezXoxwJqGsFxA2RuYK1tbhECpugpJxB0NrGvjQsx2wGQujQFK3pAxfmoqGDwhMkjaNvs+tS8qK3UJ31siwYH/PNxQ1lydkBLF2lsc8MioL0X3AUgrQ8aAsFbFCs70g7WHe1mIXMyooJ4aUQsSXhd62A0LMC4lkb48TsdfnlMFT/nQHfc5fJFC0cj1eYOQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tH8NTdo3O7wN/yFZAl4yRGkbgbzdmX0NbKaXbwQcPSo=;
+ b=Hzq75i4yBBL6htZmV274j2AsQVL9qS2B3YCxdJtgAZB75uOQdlWDvGTowdvBiW70gxvk74MmZ/NgYkSvq0HDuF6C1GxajJXV8Bc0E7YpeU+hDm2cLWFC6nmW4coMC8vGHtWqjXk/iYZh5V0lciI214lmWcDxLYbBJwVhRog/PfK0Y2ruMfRI555iN7ezB42//GVmMiT+hmKM23mDTK9pDxgedjrBVQCfQBrR4aJlLK7k2/JtibH9XFWiD+XUW0MXkpAS+Rwzs00JQuZfAFc+JPDiAwRSHXyMcI/T9Xm9FgrlWENF8MRss78qjFAlfr9Av3B0+TjcyNFviIiiRtu+jA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tH8NTdo3O7wN/yFZAl4yRGkbgbzdmX0NbKaXbwQcPSo=;
+ b=PCgFefxGpBT32dhbHCmg14jjsSXRE39dOxQ01dIxH00T0xM7s2tl91HuN+Hw4GSWVksty9LO+5dHYyWfvvId6r6HeoXneP6VrOQJ2xUQNEyh90GltPC/Jy2uG41SeEuG3Do8wfvNG42y1Ek3cJu/qTa6McrOhTlDj8xSuzBJjTDBEAx6XEWLDfCT2P8GUJXfWU88PwmSrQRjATnTfXulYEp4NG5LH+JVwKkpxBr77hpP1lQ35RAJ4LHDCBrS9t8xRy5rrg3KtBcXxtFbprBtixQKJHiDDEMWwgamQYfc7peR3DPzaMJmQ7SMD5jnlmvgJeqPXACXeQtTAlL6GM8ITQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
+ DM6PR12MB4282.namprd12.prod.outlook.com (2603:10b6:5:223::10) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9632.22; Wed, 25 Feb 2026 14:26:21 +0000
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9632.017; Wed, 25 Feb 2026
+ 14:26:21 +0000
+Date: Wed, 25 Feb 2026 09:26:18 -0500
+From: Joel Fernandes <joelagnelf@nvidia.com>
+To: Gary Guo <gary@garyguo.net>
+Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
+ Boqun Feng <boqun@kernel.org>, Bjorn Roy Baron <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Koen Koning <koen.koning@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, Nikola Djukic <ndjukic@nvidia.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
+ Christian Koenig <christian.koenig@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Vivi Rodrigo <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rui Huang <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, John Hubbard <jhubbard@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
+ Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
+ Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
+ Philipp Stanner <phasta@kernel.org>,
+ Elle Rhumsaa <elle@weathered-steel.dev>, alexeyi@nvidia.com,
+ Eliot Courtney <ecourtney@nvidia.com>, joel@joelfernandes.org,
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-fbdev@vger.kernel.org
+Subject: Re: [PATCH v8 16/25] gpu: nova-core: mm: Add page table walker for
+ MMU v2/v3
+Message-ID: <1772028959.538096.8539@nvidia.com>
+References: <129e9988ff8d3e8747f724fbcc88c5cb@garyguo.net>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <129e9988ff8d3e8747f724fbcc88c5cb@garyguo.net>
+X-ClientProxiedBy: MN2PR18CA0003.namprd18.prod.outlook.com
+ (2603:10b6:208:23c::8) To DS0PR12MB6486.namprd12.prod.outlook.com
+ (2603:10b6:8:c5::21)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|DM6PR12MB4282:EE_
+X-MS-Office365-Filtering-Correlation-Id: 71a40440-044c-4596-76d2-08de7479d8b5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|7416014|376014|1800799024|7053199007; 
+X-Microsoft-Antispam-Message-Info: 4fDsgpLTNkBc6yB0n6ykAc9rIMW4mRMok+6drLWG+tSFdljaEH/ExHfIwsK09GSZZ9VgsUZzjm4836A3nOh8UZxOa874e0irgDBuc+c5By0RiDmuhombuAetxxflOLGH4AxM5mnzMKCdPOexixdJ6yHu14+WB9uZ2cZHDj6Nf9/nxL59U7i01zsvxovKagNbIV6p8gH3dJtYslGcT74C+MECtRlOfKdfoFj5Ug4rzzPJFjAgtqILMRa4P9BdLzs4leeXHdLt8C0iOoHzodtZxctanMPR6tfBW/H8gcCT11lb6vp5HQU3jXaIhPf83hTOgtmj0YwRVeuqK0hLGEMiCNTXjXG3xfA2R5vx1tFAXrQJ4DwRCDjx+heFtiHBdyWWmj4Yf+WAh6Ve3IU4STBlDlfFS2HxO0KieNb6/PGye8mrv9cxj1GQh8EXvS3JTCr+qaOpCOZqKNY5IW+EnAJ17WTrL+AgriWmS4iPaqPigs8GNhLrXpJoVXDC4eu5//LdnuIx1LdhiS9ExgNWTe+suAOO7q3WRfn4dFhxog0fBI6tR2hrXF1Ld6qyU3QxmNs9R/cQm0FTC4gwz0Hlr0E5VRkHD2d4JA/T/5T9TLRDp3+mrAxdDkZ7yW8Nl6BnpZjSU9o9qIJaIsm7TNpoo5GN0dj1chkYB2h1uiinWf7KlxPCCQJr0J+fUFxAUjkU4c8TxDHpyc2M35iHM5Xvd+DKWQbroc5FcUgXfnQ48tj95wY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(7416014)(376014)(1800799024)(7053199007); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?UqxjBOVcup4F++cMvesxl1q+sH35ER1TFSZwBAb7drxpElRbWITf/ETsvdiM?=
+ =?us-ascii?Q?DGIfvJzveQm7GiHip0s/5ViEgU3QhBHAMbtEuVWuox3rYIeYIY96Ep7FfnCh?=
+ =?us-ascii?Q?C7lL1MZE0yH8KOIrqA+tOKksyuSPmI2GITBfLX7rz3wOapx2jsFTsN3lNXdg?=
+ =?us-ascii?Q?99TdmbMP7LU0iQCaFJ6UPiwfoTRLz8oPxubfYlyKy+cdrDVri/kCoAqzzV0L?=
+ =?us-ascii?Q?h8P/jP7eCwAYGoONIsopiufeVyFC2maISLKocjcpERfv5haqzUZBwCh+kysJ?=
+ =?us-ascii?Q?Erx0yjbWTF+MaeN5DJn8NhetAvveCxR6dWqDGPuXQIGVkv0wNl0tevqSlIU4?=
+ =?us-ascii?Q?xkCAv8TP8R9WpWio/WYw46qQ6ViN2Qhn4nkAEIZg/E+8aw/4tI9Txzju38uC?=
+ =?us-ascii?Q?y5POlqMw1DKNakRmocIlxO2NxrLf/dCoAkE0sxL6rcLNhrIkYa/kg2gvdf5h?=
+ =?us-ascii?Q?JDFbN/0xCVHpJcxZXb+SLIXZwIOrLBFyF7fFlfTAPPdmQSQQ7uqb6sw5Yj7C?=
+ =?us-ascii?Q?R5vRej3YSX7w+RhfKLRj58rKqRS9x0NwIYwNaGlmpHvbSucHhIyizdTM1qiR?=
+ =?us-ascii?Q?0IfCtT6p9hoL8skC5vKEvEfvzIaUDvdRCmgSJKfzskKJAkslLjmH7IrxdHaB?=
+ =?us-ascii?Q?WBTte1RkU5tGoEb31ea+lAW3esKhILJEa3mBNng1G3KgQQZFQPXhDLYibN4L?=
+ =?us-ascii?Q?93pvRVaTuomN2KbdAJbPTM2KFjkoPas/2zXf0vfGk3dNtZK2EWvgt+U5ldFG?=
+ =?us-ascii?Q?tPgwxOQc2Ve744M4a6xaidaieC9HoDK1hYwB3QmGA0c4UD0X2bF3bjB7X2TL?=
+ =?us-ascii?Q?vjso+jFs9FnpWc3TgBjK6QN0VIK9t831IoYNxaLya08Htu79tLxpZJrFcK13?=
+ =?us-ascii?Q?kcNcke3TdDM8OBvSTcSlOCXEOeqKH2D964JvWXJa1HaLIRQBQhRd4C8TTDhA?=
+ =?us-ascii?Q?/ZtnIJ3dQDuKlTCVOeIZt/d3tzNduiQnHAo2JhHMXvOL2kdY4YGMY4jQ3rPQ?=
+ =?us-ascii?Q?XLtuc/hsEzChmrTxm0d2K6NDkWKT5vVko6bJ6d5urcaY++hnI0HA79+w1Nki?=
+ =?us-ascii?Q?rvNrgaXUJ8OmhiuLrI9ekyONXzFtevo7EqJDg+Fz+6MetMe/zjVbiZec4U8k?=
+ =?us-ascii?Q?zBYGElkWzOHjl0q6aAwm6bI+gK9NfFTMrAgNby39CH+3SZPladSie/oML7+w?=
+ =?us-ascii?Q?2sfl1ftM18yTGrDZMT/mSihmTklbIfShxhsfCxi/d14HLs265YsEoneK9TNk?=
+ =?us-ascii?Q?PWrU475DmFibGOxPAHJRrMH3l8LGLyJ4Wn5AS/ysiGSmAOe+6HcvAcCmtudF?=
+ =?us-ascii?Q?LB6SvQqx+sh9u86KO6ZOEw55MgsuSa9yDrYkFlQSomcmdTC89hP/DRGnzPum?=
+ =?us-ascii?Q?CKU7bY5wDufpgn2fehYf7j8CRDAl5ZoHn2N4n5LEb7jTPHpBSBsnnXOY1j6d?=
+ =?us-ascii?Q?ZhCrlLQxCunWPlT5rIdNPHSeEei3NA2O8dKwubeBHdAkNSCtld/J9J5fJXT6?=
+ =?us-ascii?Q?Lb47nAbfpmtnBJ6vtgBwnfAVQYApH+Ud1YnN2jLlkZUaXy9o6vg/qe+xh72r?=
+ =?us-ascii?Q?drQZjOQThGlKLApJ7957HabXI0a/o/GVjutXlCofsOS1LzrMaaBtYK0RhI0P?=
+ =?us-ascii?Q?7MhNeP2q8r+H0QsfMj47TLtfk4WGPKvuI1u7raL1F/9LjfFGs7GHzYrXCg4X?=
+ =?us-ascii?Q?0sbHolZbLG/MfFjkUH/iT9OanZjBc/t6zzbpULuaAfa3Rx5fIoq3WnFmhL6X?=
+ =?us-ascii?Q?rD46s4yDog=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 71a40440-044c-4596-76d2-08de7479d8b5
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2026 14:26:21.1089 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4jSnY2VNjF5P3ct8jgslBmK+LwiSJkxdVV+AGM3omzHiMp2X1Kr7EDz4Qy9+KRAF+3Ks5iLrSQSe+icsBgLD8w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4282
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,156 +158,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 25 Feb 2026, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
-> On 2/19/2026 6:37 PM, Jouni H=C3=B6gander wrote:
->> There is Selective Update slice row per frame and picture height
->> configurations needed on DSC when using Selective Update Early
->> Transport. Calculate and configure these when using Early Transport.
->>
->> Bspec: 68927
->> Fixes: 467e4e061c44 ("drm/i915/psr: Enable psr2 early transport as possi=
-ble")
->> Cc: <stable@vger.kernel.org> # v6.9+
+On 2026-02-25, Gary Guo <gary@garyguo.net> wrote:
+> On 2026-02-24 22:53, Joel Fernandes wrote:
+>> +//! ## MMU v2 (Turing/Ampere/Ada) - 5 levels
+>> [...]
+>> +//! ## MMU v3 (Hopper+) - 6 levels
 >
->
-> This patch needs the other patch where registers are defined. I am not=20
-> sure if stable will only pick this patch or will try to find out the=20
-> dependency patch.
->
-> We need to check if there is a way to tell the dependency patch/commit=20
-> to stable, so that both patches are applied together.
->
-> If we want this change to get ported to older kernels, we might need to=20
-> squash the register definition patch with this patch.
+> I think this is called "4 levels" and "5 levels" in kernel MM rather than
+> "5 levels" and "6 levels".
 
-Nope. Neither we nor stable want dependencies squashed. They'll happily
-pick up extra dependency commits if needed, though.
+Actually, I think "5 levels" and "6 levels" is correct even by x86 kernel MM
+convention. In x86 "4-level paging", the 4 levels are PGD, PUD, PMD, PTE -
+the root page directory (PGD) IS counted as one of the 4 levels. Similarly,
+for the GPU MMU, counting the root PDB (L0) as a level gives us 5 levels for
+v2 (PDB/L0 through L4/PTE) and 6 levels for v3 (PDB/L0 through L5/PTE).
 
-Someone(tm) just needs to let them know about the dependencies when they
-send the mail about (the presumably failed) backport attempt.
+This is also consistent with NVIDIA's own hardware definitions in the OpenRM
+headers (dev_mmu.h for Turing and Hopper) which define the page table entries
+for each of these levels. The virtual address bitfield spans L0 (bits 56:48)
+through L4 (bits 20:12) for v2, giving 5 distinct page table levels.
 
-BR,
-Jani.
+FWIW, the existing nouveau driver also uses this convention - NVKM_VMM_LEVELS_MAX
+is defined as 6 in nvkm/subdev/mmu/vmm.c, and the GH100 page table descriptors
+in vmmgh100.c list all 6 levels.
 
+-- 
+Joel Fernandes
 
->
->
->> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
->> ---
->>   .../drm/i915/display/intel_display_types.h    |  1 +
->>   drivers/gpu/drm/i915/display/intel_psr.c      | 24 +++++++++++++++++++
->>   2 files changed, 25 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/driver=
-s/gpu/drm/i915/display/intel_display_types.h
->> index e8e4af03a6a6..8903804c04b1 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> @@ -1381,6 +1381,7 @@ struct intel_crtc_state {
->>   	u32 psr2_man_track_ctl;
->>=20=20=20
->>   	u32 pipe_srcsz_early_tpt;
->> +	u32 dsc_su_parameter_set_0_calc;
->
-> I think let's just have a bool parameter something like=20
-> psr_su_update_dsc_pps.
->
-> We can set this bool variable during intel_psr2_sel_fetch_update()
->
->
->>=20=20=20
->>   	struct drm_rect psr2_su_area;
->>=20=20=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/=
-i915/display/intel_psr.c
->> index 331645a2c9f6..0a2948ec308d 100644
->> --- a/drivers/gpu/drm/i915/display/intel_psr.c
->> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
->> @@ -2618,6 +2618,11 @@ void intel_psr2_program_trans_man_trk_ctl(struct =
-intel_dsb *dsb,
->>=20=20=20
->>   	intel_de_write_dsb(display, dsb, PIPE_SRCSZ_ERLY_TPT(crtc->pipe),
->>   			   crtc_state->pipe_srcsz_early_tpt);
->> +	intel_de_write_dsb(display, dsb, DSC_SU_PARAMETER_SET_0_DSC0(crtc->pip=
-e),
->> +			   crtc_state->dsc_su_parameter_set_0_calc);
->> +	if (intel_dsc_get_vdsc_per_pipe(crtc_state) > 1)
->> +		intel_de_write_dsb(display, dsb, DSC_SU_PARAMETER_SET_0_DSC1(crtc->pi=
-pe),
->> +				   crtc_state->dsc_su_parameter_set_0_calc);
->>   }
->>=20=20=20
->>   static void psr2_man_trk_ctl_calc(struct intel_crtc_state *crtc_state,
->> @@ -2668,6 +2673,23 @@ static u32 psr2_pipe_srcsz_early_tpt_calc(struct =
-intel_crtc_state *crtc_state,
->>   	return PIPESRC_WIDTH(width - 1) | PIPESRC_HEIGHT(height - 1);
->>   }
->>=20=20=20
->> +static u32 psr2_dsc_su_parameter_set_0_calc(struct intel_crtc_state *cr=
-tc_state,
->> +					    bool full_update)
->> +{
->> +	const struct drm_dsc_config *vdsc_cfg =3D &crtc_state->dsc.config;
->> +	int slice_row_per_frame, pic_height;
->> +
->> +	if (!crtc_state->enable_psr2_su_region_et || full_update ||
->> +	    !crtc_state->dsc.compression_enable)
->> +		return 0;
->> +
->
-> Although we are making sure that height of the psr2_su_area is a=20
-> multiple of the slice_height, perhaps it would be good to have a=20
-> drm_WARN here to flag any misconfiguration i.e. if height is not a=20
-> multiple of slice_height.
->
->
->> +	slice_row_per_frame =3D drm_rect_height(&crtc_state->psr2_su_area) / v=
-dsc_cfg->slice_height;
->> +	pic_height =3D slice_row_per_frame * vdsc_cfg->slice_height;
->> +
->> +	return DSC_SU_PARAMETER_SET_0_SU_SLICE_ROW_PER_FRAME(slice_row_per_fra=
-me) |
->> +		DSC_SU_PARAMETER_SET_0_SU_PIC_HEIGHT(pic_height);
->> +}
->
-> Since this writes a DSC register belonging to PPS Set 0, this function=20
-> should be moved to intel_vdsc.c.
->
-> Also, based on the boolean flag (psr_su_update_dsc_pps) discussed above,=
-=20
-> this function should simply retrieve the required fields from crtc_state=
-=20
-> and program the register.
->
-> Such a helper function should then be called from=20
-> intel_psr2_program_trans_man_trk_ctl() in place of the direct=20
-> intel_reg_write() call.
->
-> IMO, all register reads/writes, along with the wrappers/helpers around=20
-> them, should live in the file corresponding to the block that owns those=
-=20
-> registers, based on context.
->
->
-> Regards,
->
-> Ankit
->
->> +
->>   static void clip_area_update(struct drm_rect *overlap_damage_area,
->>   			     struct drm_rect *damage_area,
->>   			     struct drm_rect *pipe_src)
->> @@ -3026,6 +3048,8 @@ int intel_psr2_sel_fetch_update(struct intel_atomi=
-c_state *state,
->>   	psr2_man_trk_ctl_calc(crtc_state, full_update);
->>   	crtc_state->pipe_srcsz_early_tpt =3D
->>   		psr2_pipe_srcsz_early_tpt_calc(crtc_state, full_update);
->> +	crtc_state->dsc_su_parameter_set_0_calc =3D psr2_dsc_su_parameter_set_=
-0_calc(crtc_state,
->> +										   full_update);
->>   	return 0;
->>   }
->>=20=20=20
-
---=20
-Jani Nikula, Intel
