@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A67ECFD45FA
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 23:50:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5240EFD45F9
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 23:50:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6789910E846;
-	Wed, 25 Feb 2026 23:50:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1444610E847;
+	Wed, 25 Feb 2026 23:50:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fvkQwRWo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A14ne5y+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E47F10E845
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Feb 2026 23:50:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 811A410E845
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Feb 2026 23:50:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772063409; x=1803599409;
+ t=1772063407; x=1803599407;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=u3Tu4icy0iW2xRPeTH50GyW0y7ls6gz97fkKClD6Czs=;
- b=fvkQwRWo2xrBTrm88iXKuV29Csu1CSmcL3Z1OBrqLGJCc9ngItgB9Xqn
- +olDeYuwS2lQ7RUsu42a+0lOq/peo0ue9WEeSTCZCKdeZKR7tazkWzsdQ
- Pnegagx2Hzs7mWBXo6ul/Pflto0odcbWkJat0aJIOJaLaC/eL7XIf8/s6
- WRZtZujZI3uNbWQOiE00wjPf69FgU9HGAS4DF1W5+lIeUu5w542E+Q8kC
- 5GZ0RwL0kklEpVqGWDWpFK4bdB8xaiFDhcH9p/pi6ruAusW+IHmc8VrfO
- +nTpVcESQ4/+uu6KRL73G4r7pMHjQ4nBEwTvfJpZxF4gpKgd28YfmqTxh w==;
-X-CSE-ConnectionGUID: x2D77ohgSWWzjkGaT+6MCQ==
-X-CSE-MsgGUID: OuRoJDR+R2+aDuOk0I5C8Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="95730755"
-X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="95730755"
+ bh=ZKC94lUGgM8to4eXRMhbdYC1axuMW8r0jfrALvZvgqM=;
+ b=A14ne5y+wbHerN+0QWBKotM0jI5jDCeoKWfMEiNbpZhAuo2860smbnGM
+ 12Gw47gAuQhx8iyQPpIVB4ddgCyeEAgi1ay6nCkgULTuu+DLdjmh3euYU
+ Y8LS+c/MyJ836dqdxDE6xPszBETzL+ayVNGRFD4A65HVLgxXhOZ0YYa7M
+ 1MK6AGDaT4ZHoM87AfnaJLqaAvA9PCPhzFT72lUO5KGCJ6PhXke5AVtmM
+ vm+QDs2q2kBTPg7I5qRZ+54TJBFPpktLWVto1OKewR25c4MbaliYPUMOa
+ MYC8c9SOokvX1BMGu9NwCCHAMiUEQjM0hXPqAbQlK+wSWl7P9ShgnE9Ca w==;
+X-CSE-ConnectionGUID: 84mr+fhjRhWOJqLOG7C9VQ==
+X-CSE-MsgGUID: JzatPeHIT9WNRhzCD4baPA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="95730750"
+X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="95730750"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 15:50:09 -0800
-X-CSE-ConnectionGUID: nZvYkrO+QU2TqHpELSHnsA==
-X-CSE-MsgGUID: /kezZh01Qmaiq3XgUlpy+w==
+ 25 Feb 2026 15:50:07 -0800
+X-CSE-ConnectionGUID: iOVL+CHHRTuFAekoHtzCBA==
+X-CSE-MsgGUID: 8Vjc8Ep/RourIxOhdH3mtQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="246934350"
+X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="246934343"
 Received: from gkczarna.igk.intel.com ([10.211.131.163])
- by orviesa002.jf.intel.com with ESMTP; 25 Feb 2026 15:50:08 -0800
+ by orviesa002.jf.intel.com with ESMTP; 25 Feb 2026 15:50:06 -0800
 From: Tomasz Lis <tomasz.lis@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
  =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
  Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v3 3/4] drm/xe/vf: Wait for all fixups before using default
- LRCs
-Date: Thu, 26 Feb 2026 00:54:46 +0100
-Message-Id: <20260225235447.2772383-4-tomasz.lis@intel.com>
+Subject: [PATCH v3 2/4] drm/xe/queue: Wrappers for setting and getting LRC
+ references
+Date: Thu, 26 Feb 2026 00:54:45 +0100
+Message-Id: <20260225235447.2772383-3-tomasz.lis@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260225235447.2772383-1-tomasz.lis@intel.com>
 References: <20260225235447.2772383-1-tomasz.lis@intel.com>
@@ -69,87 +69,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When a context is being created during save/restore, the LRC creation
-needs to wait for GGTT address space to be shifted. But it also needs
-to have fixed default LRCs. This is mandatory to avoid the situation
-where LRC will be created based on data from before the fixups, but
-reference within exec queue will be set too late for fixups.
+There is a small but non-zero chance that VF post migration fixups
+are running on an exec queue during teardown. The chances are
+decreased by starting the teardown by releasing guc_id, but remain
+non-zero. On the other hand the sync between fixups and EQ creation
+(wait_valid_ggtt) drastically increases the chance for such parallel
+teardown if queue creation error path is entered (err_lrc label).
 
-This fixes an issue where contexts created during save/restore have
-a large chance of having one unfixed LRC, due to the xe_lrc_create()
-being synced for equal start to race with default LRC fixups.
+The exec queue itself is not going to cause an issue, but LRCs have
+a small chance of getting freed during the fixups.
 
-v2: Move the fixups confirmation further, behind all fixups.
-  Revert some renames.
+Creating a setter and a getter makes it easier to protect the fixup
+operations with a lock. For other driver activities, the original
+access method (without any protection) can still be used.
 
 Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_vf.c       | 16 +++++++++-------
- drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h |  2 +-
- 2 files changed, 10 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c | 71 +++++++++++++++++++++---------
+ drivers/gpu/drm/xe/xe_exec_queue.h |  1 +
+ 2 files changed, 52 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-index 527ded3c9c22..7f83c0d3b099 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf.c
-@@ -536,12 +536,6 @@ static int vf_get_ggtt_info(struct xe_gt *gt)
- 	 */
- 	xe_ggtt_shift_nodes(tile->mem.ggtt, start);
- 
--	if (xe_sriov_vf_migration_supported(gt_to_xe(gt))) {
--		WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, false);
--		smp_wmb();	/* Ensure above write visible before wake */
--		wake_up_all(&gt->sriov.vf.migration.wq);
--	}
--
- 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index b4ef725a682d..2cb37af42021 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -270,6 +270,54 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
+ 	return q;
  }
  
-@@ -846,6 +840,13 @@ static void xe_gt_sriov_vf_default_lrcs_hwsp_rebase(struct xe_gt *gt)
- 		xe_default_lrc_update_memirq_regs_with_address(hwe);
- }
- 
-+static void vf_post_migration_mark_fixups_done(struct xe_gt *gt)
++static void xe_exec_queue_set_lrc(struct xe_exec_queue *q, struct xe_lrc *lrc, u16 idx)
 +{
-+	WRITE_ONCE(gt->sriov.vf.migration.ggtt_need_fixes, false);
-+	smp_wmb();	/* Ensure above write visible before wake */
-+	wake_up_all(&gt->sriov.vf.migration.wq);
++	xe_assert(gt_to_xe(q->gt), idx < q->width);
++
++	scoped_guard(spinlock, &q->multi_queue.lock)
++		q->lrc[idx] = lrc;
 +}
 +
- static void vf_start_migration_recovery(struct xe_gt *gt)
++/**
++ * xe_exec_queue_get_lrc() - Get the LRC from exec queue.
++ * @q: The exec_queue.
++ * @idx: Index within multi-LRC array.
++ *
++ * Retrieves LRC of given index for the exec queue.
++ *
++ * Return: Pointer to LRC on success, error on failure
++ */
++struct xe_lrc *xe_exec_queue_get_lrc(struct xe_exec_queue *q, u16 idx)
++{
++	struct xe_lrc *lrc;
++
++	xe_assert(gt_to_xe(q->gt), idx < q->width);
++
++	scoped_guard(spinlock, &q->multi_queue.lock) {
++		lrc = q->lrc[idx];
++		if (lrc)
++			xe_lrc_get(lrc);
++	}
++
++	return lrc;
++}
++
++/**
++ * xe_exec_queue_lrc() - Get the LRC from exec queue.
++ * @q: The exec_queue.
++ *
++ * Retrieves the primary LRC for the exec queue. Note that this function
++ * returns only the first LRC instance, even when multiple parallel LRCs
++ * are configured. This function does not increment reference count,
++ * so the reference can be just forgotten after use.
++ *
++ * Return: Pointer to LRC on success, error on failure
++ */
++struct xe_lrc *xe_exec_queue_lrc(struct xe_exec_queue *q)
++{
++	return q->lrc[0];
++}
++
+ static void __xe_exec_queue_fini(struct xe_exec_queue *q)
  {
- 	bool started;
-@@ -1380,6 +1381,7 @@ static void vf_post_migration_recovery(struct xe_gt *gt)
- 	if (err)
- 		goto fail;
+ 	int i;
+@@ -327,8 +375,7 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
+ 			goto err_lrc;
+ 		}
  
-+	vf_post_migration_mark_fixups_done(gt);
- 	vf_post_migration_rearm(gt);
+-		/* Pairs with READ_ONCE to xe_exec_queue_contexts_hwsp_rebase */
+-		WRITE_ONCE(q->lrc[i], lrc);
++		xe_exec_queue_set_lrc(q, lrc, i);
+ 	}
  
- 	err = vf_post_migration_resfix_done(gt, marker);
-@@ -1514,7 +1516,7 @@ static bool vf_valid_ggtt(struct xe_gt *gt)
+ 	return 0;
+@@ -1288,21 +1335,6 @@ int xe_exec_queue_get_property_ioctl(struct drm_device *dev, void *data,
+ 	return ret;
  }
  
+-/**
+- * xe_exec_queue_lrc() - Get the LRC from exec queue.
+- * @q: The exec_queue.
+- *
+- * Retrieves the primary LRC for the exec queue. Note that this function
+- * returns only the first LRC instance, even when multiple parallel LRCs
+- * are configured.
+- *
+- * Return: Pointer to LRC on success, error on failure
+- */
+-struct xe_lrc *xe_exec_queue_lrc(struct xe_exec_queue *q)
+-{
+-	return q->lrc[0];
+-}
+-
  /**
-- * xe_gt_sriov_vf_wait_valid_ggtt() - VF wait for valid GGTT addresses
-+ * xe_gt_sriov_vf_wait_valid_ggtt() - wait for valid GGTT nodes and address refs
-  * @gt: the &xe_gt
-  */
- void xe_gt_sriov_vf_wait_valid_ggtt(struct xe_gt *gt)
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-index 4ef881b9b662..fca18be589db 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_vf_types.h
-@@ -73,7 +73,7 @@ struct xe_gt_sriov_vf_migration {
- 	bool recovery_queued;
- 	/** @recovery_inprogress: VF post migration recovery in progress */
- 	bool recovery_inprogress;
--	/** @ggtt_need_fixes: VF GGTT needs fixes */
-+	/** @ggtt_need_fixes: VF GGTT and references to it need fixes */
- 	bool ggtt_need_fixes;
- };
+  * xe_exec_queue_is_lr() - Whether an exec_queue is long-running
+  * @q: The exec_queue
+@@ -1662,14 +1694,13 @@ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch)
+ 	for (i = 0; i < q->width; ++i) {
+ 		struct xe_lrc *lrc;
  
+-		/* Pairs with WRITE_ONCE in __xe_exec_queue_init  */
+-		lrc = READ_ONCE(q->lrc[i]);
++		lrc = xe_exec_queue_get_lrc(q, i);
+ 		if (!lrc)
+ 			continue;
+-
+ 		xe_lrc_update_memirq_regs_with_address(lrc, q->hwe, scratch);
+ 		xe_lrc_update_hwctx_regs_with_address(lrc);
+ 		err = xe_lrc_setup_wa_bb_with_scratch(lrc, q->hwe, scratch);
++		xe_lrc_put(lrc);
+ 		if (err)
+ 			break;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
+index c9e3a7c2d249..a82d99bd77bc 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue.h
+@@ -160,6 +160,7 @@ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q);
+ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch);
+ 
+ struct xe_lrc *xe_exec_queue_lrc(struct xe_exec_queue *q);
++struct xe_lrc *xe_exec_queue_get_lrc(struct xe_exec_queue *q, u16 idx);
+ 
+ /**
+  * xe_exec_queue_idle_skip_suspend() - Can exec queue skip suspend
 -- 
 2.25.1
 
