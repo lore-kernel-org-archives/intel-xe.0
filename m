@@ -4,144 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA116FD3774
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 16:47:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AA60FD3774
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 16:48:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 768A710E88C;
-	Wed, 25 Feb 2026 16:47:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2607B10E88D;
+	Wed, 25 Feb 2026 16:48:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NHlnxqoN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fZP8CUdI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9B0710E870;
- Wed, 25 Feb 2026 16:47:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5901F10E88D
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Feb 2026 16:48:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772038036; x=1803574036;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=AqmHtxiSE/BKFraL9wnUTCImyLs3bsNgcYz7gqA/e1k=;
- b=NHlnxqoNBchjmCXbgennmqhOGE1iNtjpyBR9jMlDrDZlBHdEI85/DmGG
- u1BkCAZ7yPSgH3R6Fx3MLFYumqjdZb6Ye0p5wNJDVnLY7LExUWkROwKhJ
- MaMeXsQpMamgbq+HHFLL3/BsDbS4k0WmBWuwdsiePcqdB5tutXdsKHx0x
- ROyX8yPo8wGvlONkW+LpBIjlIfIDMbqyTrbiXQZ17KOiNs6nAQWfmtQ1u
- lNUIGoxTlAtIh+LbeJXhSQA9RwOSdzw7hnH0/Q039krPDB1EB/EDy3g7l
- KOdWxDPFUyUXDlFU16TGWYNudu3cWiKHnLzINS/bvup6KBOUuovn8EmQV w==;
-X-CSE-ConnectionGUID: bogfbUn2S1aWz2WYmu4GZw==
-X-CSE-MsgGUID: M8E8KOc9QSeXKpkSC/GtUg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="73259859"
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="73259859"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 08:47:16 -0800
-X-CSE-ConnectionGUID: AsErhDDTSViA4iOMmI2Plw==
-X-CSE-MsgGUID: pEmb/VeZR9CYpI4LSym5Vw==
+ t=1772038082; x=1803574082;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=1A2BXPnh07/q3/7HZ7KBoBHEqE/htaaVma6ycho/iyg=;
+ b=fZP8CUdI+51N+otYkNUMumumAlv50PYp151YsV/X0rhzweVK203qKdIE
+ dTT/37RqcitirF4SuYeZZRba3gOFgVQsEy5XoeDPQ6QUvHHh6IvuwOI5X
+ MJ0VLWT0camAT97Q+9yqJ9iXd/U8ZDxTSYBMuN0c8qPetSl3UQzoU4oSR
+ agEm01WYtoahn/cDl09AyS/gCyI/LEJ9TTj6hN6JQc5qtP37IV8bfn8Ug
+ 5ztaEiYYU+unzTKD8+FQ7ATXie0ozjASYo1MX7KXbKs5FQLaSHkYfgz4L
+ OXXVGwyLHSj9s3LbW7sE46x3KBiUfi0GTRlA1VLno/f3wZexEnh6MuBlx Q==;
+X-CSE-ConnectionGUID: YVoQutrJRYW3ohiOdlHc3g==
+X-CSE-MsgGUID: DpqmFNS9SYOl4yBC7avwyA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="72957977"
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="72957977"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2026 08:48:01 -0800
+X-CSE-ConnectionGUID: yHXFnIVZQf+PJ37MHZHoIQ==
+X-CSE-MsgGUID: R5BdefmRS126+bFHMxqCgA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="216433417"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 08:47:15 -0800
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 25 Feb 2026 08:47:15 -0800
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35 via Frontend Transport; Wed, 25 Feb 2026 08:47:15 -0800
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.8) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.35; Wed, 25 Feb 2026 08:47:15 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=qMEjuqQXfdNHTm71DX0ToLEAlBEtTCNwW2vfgFGl+onrKT/F21ly/pKN9WN5bEzew1VcSYx4YE4h9kc1UvK7rqF2FmZ0C2cWRRRggNKAhojAEBefj1AwDT52W/IVHDAwLEdq0FAeWjrpLiscLNLes5hf7658w8jcJVR3SpeW6aWsmmUfVsU+PHp/MMzxbCU3bx4uyg/Ou4b9SmXJ4Ld0IbJVTb8Be8RrFeNvL/aQxjaXinStS1xwEkdjiVOe+G5WFZmrTJmA3nLz3PPZyj5tckx+eRUCPUoYYCAVTLNByVcbH2wc16iX3b1yjqMt66CGYCkmcW34RalDBgRF6ZWecQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eNMft/JXp2xGZ/EFAiZ5mOf/FjXQqTDUETyt6w5bcco=;
- b=FirNcjgpKqV0kKOYZyfJgxxwXuQTHx6yG8INXD/3ofYkYd1/XF0Dw9OgFmR+EKNpGSpIHM/OgvJJrq3r9JkYCXsfFqk+MHHGdddlvJqRYY7aD0kG553mq41Uiv1XLxmZ6IqvDJsZ0b4CGz1X9u3tyolsxUuhT5TR5eReB5ZsnnLtj46T7XrOUtCDTf7Q79946CRC/shRhED23fZjTIi8Zi1kxUn5d0fMpCX+jpas9mvS3sEIyweb34pWtXi/ksE2j35rlSHye+zQ927WQDner5ufLjusf6OI/Vqg84A5iPDpbdP51afuHXttm7nXQADQN2nHL8MCaufI3XK6OAmzlw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
- by PH7PR11MB7449.namprd11.prod.outlook.com (2603:10b6:510:27a::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.21; Wed, 25 Feb
- 2026 16:47:10 +0000
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::9ca5:4d1d:db45:f523]) by SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::9ca5:4d1d:db45:f523%5]) with mapi id 15.20.9632.017; Wed, 25 Feb 2026
- 16:47:10 +0000
-From: Imre Deak <imre.deak@intel.com>
-To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-CC: Luca Coelho <luciano.coelho@intel.com>
-Subject: [PATCH v3 19/20] drm/i915/dp: Ack only the handled device service IRQs
-Date: Wed, 25 Feb 2026 18:46:17 +0200
-Message-ID: <20260225164618.1261368-20-imre.deak@intel.com>
-X-Mailer: git-send-email 2.49.1
-In-Reply-To: <20260225164618.1261368-1-imre.deak@intel.com>
-References: <20260225164618.1261368-1-imre.deak@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: GV2PEPF000239B7.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:158:400::239) To SJ0PR11MB4845.namprd11.prod.outlook.com
- (2603:10b6:a03:2d1::10)
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="215392966"
+Received: from varungup-desk.iind.intel.com ([10.190.238.71])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2026 08:48:00 -0800
+From: Varun Gupta <varun.gupta@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: stuart.summers@intel.com, matthew.d.roper@intel.com,
+ daniele.ceraolospurio@intel.com, himal.prasad.ghimiray@intel.com
+Subject: [PATCH v2] drm/xe/guc: Skip access counter queue init for unsupported
+ platforms
+Date: Wed, 25 Feb 2026 22:17:48 +0530
+Message-ID: <20260225164748.2302380-1-varun.gupta@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|PH7PR11MB7449:EE_
-X-MS-Office365-Filtering-Correlation-Id: 15309b79-2a80-44ea-39e9-08de748d850b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: E3FHzXKq8pgCO0niiiOhYIYLGs9ERwIi0KBbVUhoO30MDDj4ISfjJjUxoo1Svq7m+vfwaL5c6soOWlEPU0ez7qf7ChsbVNEMzL8vvNQTLV2cdfwfEIkxb2nVOSSJXB4GtC71HPOWchHFsnIWdqtnj6QsLatOfdN72Lh1p3OR4+fsZWIei1yYWLfx8XrniEyob/eZYeTeh3+CN8nO4K3eq1SOXE4sAcrig+Y5ZhcPEy2iXwAoxpvNfFZgFdPL3XEjpFf3gbYV38sz1o03/OdDSr9V7HwUQoyOybHlV+SzOZbpnZnhPcEnlrTN2Rfwo1uxxBMAyxgg29bmfTOqjko5McamA5g29IXW8LLDo9FW2YZGqFunXUFyXTYNQAp6tFM536ulHL9dz1FKbLUGc1LYwXEpkUponaF5wAPZSW8DhpgkSHtdg3HaFS32TiTOAjvcl7q0Wir3NRahfymnQzcA6MefqGljTlxBFtUHdxWxmM6vuODUVXOdW47ABeH2ZFsECbSPrAvJcva003Fa5rsY0KEQQJmBqX6+4UBUYqtVOysorkDTcWtOQaOgnsGDyPOGfGCLabCIVJPtbB9OvfG51Vyf5lX2NMLkQmHq658rsYi4/eE77xnZDztETzlCQ1/WmRa/o/Q/b9A0TmrWx/dGJ4GpE6OnCcBG7WUf1x/CpzIzxeVefqZdCTpDgeqgI5fE9m0v/KcQZBT9YsjmEXibumDoTMkaXQORVqhVMekQQNU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?hsd8ftIfJgkYKhh/uGtcwkf5PJJIkVeHP5FCtRAbfcP1Q1SL1VPNyHX3c/1U?=
- =?us-ascii?Q?P/5PtJkkH4boy+HohX3qqs5JcSc/6kPpCITz3hGUkeQpf/bSAaL9OSkPqXm0?=
- =?us-ascii?Q?Anmhx8CG6exX4ILohIqOFlFVm8c3jMl7ig96nnD9gFsGB8iCqVLPpVD4d+qw?=
- =?us-ascii?Q?hsmwLDCusHKJt1JgRfxMcdJoMWRC96LxFwimEtJqmKP6mB081/jFyGrW7MSj?=
- =?us-ascii?Q?ItH9K6E7i27rnSxJyj/4xkEJ4mFp1rDlfxrrqoKnlYN4mJbjPK2BxlKRJH3j?=
- =?us-ascii?Q?hqe2A+jkBf0qTOWfJy4/pp8tuImpNoIdNKSrSiIy6wV3X96wOAdwZwx4GlvW?=
- =?us-ascii?Q?4Va/rJwHsZn021ETy+woDwN/UGXs+OwZYkp2fXKoc1vHRDTta6pyaUGKYcCZ?=
- =?us-ascii?Q?UURH50oqMlniZMTmLc/mR5TjAIe80SrQcwHhMgbp/FMGNBu0cFutpGKnnngL?=
- =?us-ascii?Q?1lrU0MYq7P0H4yW0cu7x9u+51xhukORUVHtFAVpQfv64QcQvubklG4yOGkcD?=
- =?us-ascii?Q?+LNdTeHxuZ8C99ORC7wOIKx1myf89DrKorOMfn/ruJPC4STEK3eh7oVtxiNu?=
- =?us-ascii?Q?hYrK5Lw3b3VBjNfLHq3pFIU9309FcXJ9a/PR+o86PRSYzshFljvdB11C/tBC?=
- =?us-ascii?Q?pzfTnD2j3CgsZse+bgmPKJked0fC33iikQUoOK1ATtmOIyDJ7h5ksJ8LdoNo?=
- =?us-ascii?Q?g5+aRE44t7zNi0gDUoYTVEG43kQlbX8fNEDhCXH5UldKDf8cYEGhXctWBU3h?=
- =?us-ascii?Q?XZ49t19o6tzwrlcnAfvgsn9qfqsPhT/U7j5QlXpzumeCLSvDufVOE/Hqpu+A?=
- =?us-ascii?Q?Jy9wFkYWxOkhoFfFmcliTOU9tzIiUYDdwQaZZBKvUB33tEsLLIB9pUAaz6oH?=
- =?us-ascii?Q?thX3zY041kDvPaZSOKrq19PPKrCR7jifyjhLcd1LW28F6bvFB9PxsT/OUahv?=
- =?us-ascii?Q?DRPrKbEeSkWq3dns3ruj0zAbyYhIyoMrQEa/IQ1Ww4W8rOlbGBHebkwmWqm7?=
- =?us-ascii?Q?NJE16TVWiBaOgWUeQeOidRH/V9vFpP3IbSZbm2LjC56ZAdBa7wlFi5PcuwgZ?=
- =?us-ascii?Q?c5b4fOhlp3g37KmbszoKXZShiK3RXv6Vba/1jTDWk/oR8gyz29uVhtNazNEA?=
- =?us-ascii?Q?Ok0xo3f1dmQmz8p1r4Ay8OzpilyIwz1wnyctXm4K5UL/Ei5zI0J8tMpR3Qgr?=
- =?us-ascii?Q?2PE2Mgp8RNt8xhIlA5nwbBjkC1zObSe3HFy5XR1uKGHuXJAg8SxhvG4Gxd1g?=
- =?us-ascii?Q?UT5qqj6QTSBCAYdLL0HLd8F8nSeZWBlmGUpw9RLoVjLjOC2/3rvzNrNvqzz7?=
- =?us-ascii?Q?RnUoi6uuAtN4wwlHv0rCazQHJzU76eM0FLJRGy3yVW24t6IbhEPoBCa0LL8c?=
- =?us-ascii?Q?ybvnpmQ/TmMyOz5Z21E94lBjvXJmwPyMplTT4xOFviygczdkfMgrGyjEbS1u?=
- =?us-ascii?Q?5tBq7encvePG/SCSigC0hvQf6VZO9WcRuwq+kNCr8LWQ760+hLPCYLLqTssX?=
- =?us-ascii?Q?iKzbMAbwc+tiQwL6MOsKesf5zYlUS68Te53KnySpCfMJ7+iQ4A/Q3XNtC5fa?=
- =?us-ascii?Q?nSUuq1RmkaRmklNRXmyYhMDUIEEvgAIriKWQio+ut9Fc8KNl2Hfj/g2ggmoC?=
- =?us-ascii?Q?eK5ecdVb8LVrjSqfwD7XHPDq6mAabdIAohOXcGYwqA7AFhCYoYUaY50iElkO?=
- =?us-ascii?Q?vZ2VoO7+A0rRQbjeQKqZnVZGiZ8bzyKQm+2wYa9pT4ruUnvbgsNT4GxFJAfu?=
- =?us-ascii?Q?5JzwZRUMPQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 15309b79-2a80-44ea-39e9-08de748d850b
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Feb 2026 16:47:10.6169 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Hii/jhlsCF+4rvScMqny4rwjD7bmROzISv8e9vaDd3rmWYsyAFAJ0Yk7kfDcdIl7s/38VxYJeM39hI6/Jfwo/Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7449
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,67 +66,127 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Only those IRQs should be acked that are handled, however for SST all
-IRQs triggered by the sink are acked. This can be a problem for flags
-that are reserved/reading zero at a given moment, but become used for
-some purpose - with a side-effect if set - in a future DPCD revision.
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
-Fix the above by acking only those device service IRQs that will be
-handled. While at it add asserts that only the known/acked device
-service IRQs are handled both in the MST and SST case.
+Add a has_access_counter feature flag to the graphics IP descriptor
+and skip writing parameters for the access counter queue in
+guc_um_init_params(), leaving queue_params[2] zero-initialized
+to signal unavailability to the GuC.
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
+The queue_params[] array layout is fixed by firmware ABI, so we
+maintain the structure with queues 0 and 1 (page fault request/response)
+always configured, and queue 2 conditionally skipped based on the
+has_access_counter flag.
+
+Bspec: 59323
+Cc: Stuart Summers <stuart.summers@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Suggested-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Signed-off-by: Varun Gupta <varun.gupta1@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+v2:
+ - Replace platform check with has_access_counter feature flag in
+   graphics IP descriptor (Matt Roper)
+ - Add Bspec trailer (Matt Roper)
+ - Make commit message generic instead of CRI-specific
+---
+ drivers/gpu/drm/xe/xe_device_types.h |  2 ++
+ drivers/gpu/drm/xe/xe_guc_ads.c      | 11 +++++++++++
+ drivers/gpu/drm/xe/xe_pci.c          |  4 ++++
+ drivers/gpu/drm/xe/xe_pci_types.h    |  1 +
+ 4 files changed, 18 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 05e3071f33e27..866aeeb8f4614 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4916,6 +4916,14 @@ intel_dp_mst_disconnect(struct intel_dp *intel_dp)
- 	drm_dp_mst_topology_mgr_set_mst(&intel_dp->mst.mgr, intel_dp->is_mst);
- }
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 8f3ef836541e..78ecfd7414e8 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -151,6 +151,8 @@ struct xe_device {
  
-+#define INTEL_DP_DEVICE_SERVICE_IRQ_MASK_SST	(DP_AUTOMATED_TEST_REQUEST | \
-+						 DP_CP_IRQ | \
-+						 DP_SINK_SPECIFIC_IRQ)
-+
-+#define INTEL_DP_DEVICE_SERVICE_IRQ_MASK_MST	(DP_CP_IRQ | \
-+						 DP_DOWN_REP_MSG_RDY | \
-+						 DP_UP_REQ_MSG_RDY)
-+
- static bool
- intel_dp_get_sink_irq_esi(struct intel_dp *intel_dp, u8 *esi)
+ 		/** @info.force_execlist: Forced execlist submission */
+ 		u8 force_execlist:1;
++		/** @info.has_access_counter: Device supports access counter */
++		u8 has_access_counter:1;
+ 		/** @info.has_asid: Has address space ID */
+ 		u8 has_asid:1;
+ 		/** @info.has_atomic_enable_pte_bit: Device has atomic enable PTE bit */
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index f4cbc030f4c8..81b5f01b1f65 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -819,6 +819,7 @@ static void guc_um_init_params(struct xe_guc_ads *ads)
  {
-@@ -5013,6 +5021,8 @@ static bool intel_dp_get_and_ack_sink_irq_esi_sst(struct intel_dp *intel_dp, u8
- 		    encoder->base.base.id, encoder->base.name,
- 		    esi);
+ 	u32 um_queue_offset = guc_ads_um_queues_offset(ads);
+ 	struct xe_guc *guc = ads_to_guc(ads);
++	struct xe_device *xe = ads_to_xe(ads);
+ 	u64 base_dpa;
+ 	u32 base_ggtt;
+ 	bool with_dpa;
+@@ -830,6 +831,16 @@ static void guc_um_init_params(struct xe_guc_ads *ads)
+ 	base_dpa = xe_bo_main_addr(ads->bo, PAGE_SIZE) + um_queue_offset;
  
-+	esi[1] &= INTEL_DP_DEVICE_SERVICE_IRQ_MASK_SST;
+ 	for (i = 0; i < GUC_UM_HW_QUEUE_MAX; ++i) {
++		/*
++		 * Some platforms support USM but not access counters.
++		 * Skip ACCESS_COUNTER queue initialization for such
++		 * platforms, leaving queue_params[2] zero-initialized
++		 * to signal unavailability to the GuC.
++		 */
++		if (i == GUC_UM_HW_QUEUE_ACCESS_COUNTER &&
++		    !xe->info.has_access_counter)
++			continue;
 +
- 	if (mem_is_zero(&esi[1], 3))
- 		return true;
+ 		ads_blob_write(ads, um_init_params.queue_params[i].base_dpa,
+ 			       with_dpa ? (base_dpa + (i * GUC_UM_QUEUE_SIZE)) : 0);
+ 		ads_blob_write(ads, um_init_params.queue_params[i].base_ggtt_address,
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 56a768f2cfca..3a16d89fc044 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -81,6 +81,7 @@ static const struct xe_graphics_desc graphics_xehpc = {
  
-@@ -5557,6 +5567,8 @@ intel_dp_check_mst_status(struct intel_dp *intel_dp)
- 		if (mem_is_zero(ack, sizeof(ack)))
- 			break;
+ 	XE_HP_FEATURES,
  
-+		drm_WARN_ON(display->drm, ack[1] & ~INTEL_DP_DEVICE_SERVICE_IRQ_MASK_MST);
-+
- 		if (!intel_dp_ack_sink_irq_esi(intel_dp, ack))
- 			drm_dbg_kms(display->drm, "Failed to ack ESI\n");
++	.has_access_counter = 1,
+ 	.has_asid = 1,
+ 	.has_atomic_enable_pte_bit = 1,
+ 	.has_usm = 1,
+@@ -98,6 +99,7 @@ static const struct xe_graphics_desc graphics_xelpg = {
+ };
  
-@@ -5841,6 +5853,8 @@ static void intel_dp_handle_device_service_irq(struct intel_dp *intel_dp, u8 irq
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
+ #define XE2_GFX_FEATURES \
++	.has_access_counter = 1, \
+ 	.has_asid = 1, \
+ 	.has_atomic_enable_pte_bit = 1, \
+ 	.has_range_tlb_inval = 1, \
+@@ -123,6 +125,7 @@ static const struct xe_graphics_desc graphics_xe3p_lpg = {
  
-+	drm_WARN_ON(display->drm, irq_mask & ~INTEL_DP_DEVICE_SERVICE_IRQ_MASK_SST);
-+
- 	if (irq_mask & DP_AUTOMATED_TEST_REQUEST)
- 		intel_dp_test_request(intel_dp);
+ static const struct xe_graphics_desc graphics_xe3p_xpc = {
+ 	XE2_GFX_FEATURES,
++	.has_access_counter = 0,
+ 	.has_indirect_ring_state = 1,
+ 	.hw_engine_mask =
+ 		GENMASK(XE_HW_ENGINE_BCS8, XE_HW_ENGINE_BCS1) |
+@@ -923,6 +926,7 @@ static int xe_info_init(struct xe_device *xe,
+ 		media_desc = NULL;
+ 	}
  
++	xe->info.has_access_counter = graphics_desc->has_access_counter;
+ 	xe->info.has_asid = graphics_desc->has_asid;
+ 	xe->info.has_atomic_enable_pte_bit = graphics_desc->has_atomic_enable_pte_bit;
+ 	if (xe->info.platform != XE_PVC)
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index 470d31a1f0d6..658cb30de50d 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -69,6 +69,7 @@ struct xe_graphics_desc {
+ 	u8 num_geometry_xecore_fuse_regs;
+ 	u8 num_compute_xecore_fuse_regs;
+ 
++	u8 has_access_counter:1;
+ 	u8 has_asid:1;
+ 	u8 has_atomic_enable_pte_bit:1;
+ 	u8 has_indirect_ring_state:1;
 -- 
-2.49.1
+2.43.0
 
