@@ -4,59 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DC82F4BB93
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 10:38:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DECCF4BB9A
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 10:55:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0737810E736;
-	Wed, 25 Feb 2026 10:38:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C244610E010;
+	Wed, 25 Feb 2026 10:55:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mne8wO5T";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rt7dRJoA";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FA7810E257;
- Wed, 25 Feb 2026 10:38:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3F83010E010
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Feb 2026 10:55:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772015899; x=1803551899;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=Jn815aU1dhMcuo/Z4snZLFyOQNRUhoyGjMc6T0bDv0A=;
- b=mne8wO5TIFMEn045UCvm4pP7pzCsKlbp8Uyg3l35v5WVxV2X28/LORQo
- WbbE5QFwuLogK/XprX/Z9pv5b4XC/Dy7mhRwmXeLy6is3yQiKMUpCgXjg
- Ar6MnAwANCEO/QLp8FVLbE9a5tHdlHtQkdCHbAPAO3kq3IMYhRS1d4zH2
- 5+Y1BgRNs646QrXY4hk4KYOTht7b/A7TigeywzgfGjC4D7GTkUopvZ0+e
- P0cHcASShyfyJW2Nep5PFu0VIkjBozqQdUYPwBshWpuFyhE5SFGVVET94
- EPNC/paBncCxjg8DUCAvKpbOqTw6Fk06akeKsMjM7WRarKRArLempwIOB w==;
-X-CSE-ConnectionGUID: N8hRgT0VS8q69fhwL3PAnQ==
-X-CSE-MsgGUID: K8aOO5zVRBuuW/EltckrPQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="73119828"
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="73119828"
+ t=1772016934; x=1803552934;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=dlxcnYLAImynFOmbnTZ34qQkm8HKUwQnIpJtRNMXMGY=;
+ b=Rt7dRJoADloE4dW/cNHpn45PFJCkQ2sNC51gPTsaeokueVyrYwqDryTc
+ mh1jMR/tnS2OyWv38yijP0XiOIEaB4hxFQ+9F70+c5+Vy58VLIXGNzKDS
+ 0EFx58YIa9I9AIqOtFS7lpf+a56O1oG3pl4QJ48g8qo8V9IzO4df/ycag
+ Lw458Fv9bdpvVYRjOOJHtXKgQNFIqQBKHJWf5H0nbJ+s5dNMnLTprRl+f
+ qeAavTbxcaTT16fUq6vODYlTOzgrad+T24C4uYkMw9vEOcSOWUc8Ic6bc
+ 0ZFBb/9/oej6+Z+CRY49iVaZfd1Hn3D96VwOBMXZKO7CpEf8HV+p6BDsj A==;
+X-CSE-ConnectionGUID: 9PqaZPdJQBeLkuTvu9+bRQ==
+X-CSE-MsgGUID: Wss1VhdBQ+egOnXN75ngeA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="76657066"
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="76657066"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 02:38:18 -0800
-X-CSE-ConnectionGUID: /S8PtpRqRFqML2Stt5xEjg==
-X-CSE-MsgGUID: ow/weMVzTB2XQgbqIi1f0g==
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2026 02:55:33 -0800
+X-CSE-ConnectionGUID: hnkx3yezQvGCuVnLWkK5hw==
+X-CSE-MsgGUID: YUbYEZzESBS+zSPyMjnSng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="215305272"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.68])
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="215307784"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.244.40])
+ ([10.245.244.40])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 02:38:17 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 02/19] drm/i915/overlay: Track current frontbuffer_bits
-In-Reply-To: <20260218152806.18885-3-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260218152806.18885-1-ville.syrjala@linux.intel.com>
- <20260218152806.18885-3-ville.syrjala@linux.intel.com>
-Date: Wed, 25 Feb 2026 12:38:13 +0200
-Message-ID: <bc1719a455be6d86b6dfd37c573824f2f128625a@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+ 25 Feb 2026 02:55:32 -0800
+Message-ID: <b052bef6590a73a3ea726b81b1af55dea36db272.camel@linux.intel.com>
+Subject: Re: [PATCH v3 1/3] drm/xe: Split H2G and G2H into separate buffer
+ objects
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, stuart.summers@intel.com, 
+ francois.dugast@intel.com, daniele.ceraolospurio@intel.com, 
+ michal.wajdeczko@intel.com
+Date: Wed, 25 Feb 2026 11:55:28 +0100
+In-Reply-To: <aZ3N+CwyKRARMW6m@lstrano-desk.jf.intel.com>
+References: <20260218043319.809548-1-matthew.brost@intel.com>
+ <20260218043319.809548-2-matthew.brost@intel.com>
+ <3033abb2dfe6755ff3559a480e0d21b5665436d5.camel@linux.intel.com>
+ <aZ3N+CwyKRARMW6m@lstrano-desk.jf.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+MIME-Version: 1.0
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,130 +75,325 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 18 Feb 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Store the current frontbuffer_bits in the overlay data. The
-> main benefit here is that we get rid of the 'crtc->pipe'
-> usage from intel_overlay_flip_prepare() which will have to
-> move to the i915 side of the parent vs. display driver split.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_overlay.c | 19 ++++++++++++-------
->  1 file changed, 12 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/d=
-rm/i915/display/intel_overlay.c
-> index 33a38d116c90..dd04e75fe3a7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_overlay.c
-> +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-> @@ -205,6 +205,7 @@ struct intel_overlay {
->  	struct drm_i915_gem_object *reg_bo;
->  	struct overlay_registers __iomem *regs;
->  	u32 flip_addr;
-> +	u32 frontbuffer_bits;
->  	/* flip handling */
->  	struct i915_active last_flip;
->  	void (*flip_complete)(struct intel_overlay *ovl);
-> @@ -255,7 +256,8 @@ alloc_request(struct intel_overlay *overlay, void (*f=
-n)(struct intel_overlay *))
->  }
->=20=20
->  /* overlay needs to be disable in OCMD reg */
-> -static int intel_overlay_on(struct intel_overlay *overlay)
-> +static int intel_overlay_on(struct intel_overlay *overlay,
-> +			    u32 frontbuffer_bits)
->  {
->  	struct intel_display *display =3D overlay->display;
->  	struct i915_request *rq;
-> @@ -274,6 +276,7 @@ static int intel_overlay_on(struct intel_overlay *ove=
-rlay)
->  	}
->=20=20
->  	overlay->active =3D true;
-> +	overlay->frontbuffer_bits =3D frontbuffer_bits;
->=20=20
->  	if (display->platform.i830)
->  		i830_overlay_clock_gating(display, false);
-> @@ -293,7 +296,6 @@ static void intel_overlay_flip_prepare(struct intel_o=
-verlay *overlay,
->  				       struct i915_vma *vma)
->  {
->  	struct intel_display *display =3D overlay->display;
-> -	enum pipe pipe =3D overlay->crtc->pipe;
->  	struct intel_frontbuffer *frontbuffer =3D NULL;
->=20=20
->  	drm_WARN_ON(display->drm, overlay->old_vma);
-> @@ -302,7 +304,7 @@ static void intel_overlay_flip_prepare(struct intel_o=
-verlay *overlay,
->  		frontbuffer =3D intel_frontbuffer_get(intel_bo_to_drm_bo(vma->obj));
->=20=20
->  	intel_frontbuffer_track(overlay->frontbuffer, frontbuffer,
-> -				INTEL_FRONTBUFFER_OVERLAY(pipe));
-> +				overlay->frontbuffer_bits);
->=20=20
->  	if (overlay->frontbuffer)
->  		intel_frontbuffer_put(overlay->frontbuffer);
-> @@ -364,7 +366,7 @@ static void intel_overlay_release_old_vma(struct inte=
-l_overlay *overlay)
->  	if (drm_WARN_ON(display->drm, !vma))
->  		return;
->=20=20
-> -	intel_frontbuffer_flip(display, INTEL_FRONTBUFFER_OVERLAY(overlay->crtc=
-->pipe));
-> +	intel_frontbuffer_flip(display, overlay->frontbuffer_bits);
->=20=20
->  	i915_vma_unpin(vma);
->  	i915_vma_put(vma);
-> @@ -382,9 +384,8 @@ static void intel_overlay_off_tail(struct intel_overl=
-ay *overlay)
->=20=20
->  	intel_overlay_release_old_vma(overlay);
->=20=20
-> -	overlay->crtc->overlay =3D NULL;
-> -	overlay->crtc =3D NULL;
+On Tue, 2026-02-24 at 08:12 -0800, Matthew Brost wrote:
+> On Tue, Feb 24, 2026 at 04:58:35PM +0100, Thomas Hellstr=C3=B6m wrote:
+> > On Tue, 2026-02-17 at 20:33 -0800, Matthew Brost wrote:
+> > > H2G and G2H buffers have different access patterns (H2G is CPU-
+> > > write,
+> > > GuC-read, while G2H is GPU-write, CPU-read). On dGPU, these
+> > > patterns
+> > > benefit from different memory placements: H2G in VRAM and G2H in
+> > > system
+> > > memory. Split the CT buffer into two separate buffers=E2=80=94one for=
+ H2G
+> > > and
+> > > one for G2H=E2=80=94and select the optimal placement for each.
+> > >=20
+> > > This provides a significant performance improvement on the G2H
+> > > read
+> > > path, reducing a single read from ~20 =C2=B5s to under 1 =C2=B5s on B=
+MG.
+> > >=20
+> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> >=20
+> > Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> >=20
+> > Perhaps one could experiment with reading the data from the g2h bo
+> > using MOVNTDQA, like the write-combining memcopy. That would avoid
+> > caching the data and the GuC having to invalidate the cache line
+> > while
+> > snooping on the next write.
+>=20
+> We can try that, but G2H messages are variable-sized, so I believe it
+> will get a little tricky. Once these are system-memory reads, I
+> recall
+> G2H handling being something like 15 per =C2=B5s of page faults (maybe
+> that
+> isn=E2=80=99t correct =E2=80=94 I=E2=80=99ll double-check), and that incl=
+uded my not-yet-
+> posted
+> caching implementation, which also takes a spinlock, examines the
+> page-fault cache, and chains the fault onto a list. So I don=E2=80=99t th=
+ink
+> this will end up in the critical path.
+>=20
+> >=20
+> > But that should probably have a less impact, but perhaps speeding
+> > up
+> > GuC writes.
+>=20
+> We can play around with this and bounce ideas around. On the H2G
+> side,
+> xe_device_wmb() before the tail update is actually fairly expensive,
+> so
+> if we can use some asm instructions to avoid that, it might be
+> worthwhile.
 
-The movement of these to intel_overlay_switch_off() seems like an
-unrelated change. Maybe mention in the commit message at a minimum.
+That is probably the latency of flushing out buffered writes. I don't
+think there is much to be done on improving that.
 
-BR,
-Jani.
+/Thomas
 
->  	overlay->active =3D false;
-> +	overlay->frontbuffer_bits =3D 0;
->=20=20
->  	if (display->platform.i830)
->  		i830_overlay_clock_gating(display, true);
-> @@ -506,6 +507,7 @@ void intel_overlay_reset(struct intel_display *displa=
-y)
->  	overlay->old_yscale =3D 0;
->  	overlay->crtc =3D NULL;
->  	overlay->active =3D false;
-> +	overlay->frontbuffer_bits =3D 0;
->  }
->=20=20
->  static int packed_depth_bytes(u32 format)
-> @@ -836,7 +838,7 @@ static int intel_overlay_do_put_image(struct intel_ov=
-erlay *overlay,
->  			OCONF_PIPE_A : OCONF_PIPE_B;
->  		iowrite32(oconfig, &regs->OCONFIG);
->=20=20
-> -		ret =3D intel_overlay_on(overlay);
-> +		ret =3D intel_overlay_on(overlay, INTEL_FRONTBUFFER_OVERLAY(pipe));
->  		if (ret !=3D 0)
->  			goto out_unpin;
->  	}
-> @@ -924,6 +926,9 @@ int intel_overlay_switch_off(struct intel_overlay *ov=
-erlay)
->=20=20
->  	iowrite32(0, &overlay->regs->OCMD);
->=20=20
-> +	overlay->crtc->overlay =3D NULL;
-> +	overlay->crtc =3D NULL;
-> +
->  	return intel_overlay_off(overlay);
->  }
-
---=20
-Jani Nikula, Intel
+>=20
+> Matt
+>=20
+> >=20
+> > /Thomas
+> >=20
+> >=20
+> > >=20
+> > > ---
+> > > v3:
+> > > =C2=A0- Move BO to ctbs h2g or g2h structure (Michal)
+> > > ---
+> > > =C2=A0drivers/gpu/drm/xe/xe_guc_ct.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 | 67 +++++++++++++++++++---
+> > > ----
+> > > --
+> > > =C2=A0drivers/gpu/drm/xe/xe_guc_ct_types.h |=C2=A0 4 +-
+> > > =C2=A02 files changed, 47 insertions(+), 24 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c
+> > > b/drivers/gpu/drm/xe/xe_guc_ct.c
+> > > index 8a45573f8812..ea07a27757d5 100644
+> > > --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> > > +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> > > @@ -255,6 +255,7 @@ static bool g2h_fence_needs_alloc(struct
+> > > g2h_fence *g2h_fence)
+> > > =C2=A0
+> > > =C2=A0#define CTB_DESC_SIZE		ALIGN(sizeof(struct
+> > > guc_ct_buffer_desc), SZ_2K)
+> > > =C2=A0#define CTB_H2G_BUFFER_OFFSET	(CTB_DESC_SIZE * 2)
+> > > +#define CTB_G2H_BUFFER_OFFSET	(CTB_DESC_SIZE * 2)
+> > > =C2=A0#define CTB_H2G_BUFFER_SIZE	(SZ_4K)
+> > > =C2=A0#define CTB_H2G_BUFFER_DWORDS	(CTB_H2G_BUFFER_SIZE /
+> > > sizeof(u32))
+> > > =C2=A0#define CTB_G2H_BUFFER_SIZE	(SZ_128K)
+> > > @@ -279,10 +280,14 @@ long
+> > > xe_guc_ct_queue_proc_time_jiffies(struct
+> > > xe_guc_ct *ct)
+> > > =C2=A0	return (CTB_H2G_BUFFER_SIZE / SZ_4K) * HZ;
+> > > =C2=A0}
+> > > =C2=A0
+> > > -static size_t guc_ct_size(void)
+> > > +static size_t guc_h2g_size(void)
+> > > =C2=A0{
+> > > -	return CTB_H2G_BUFFER_OFFSET + CTB_H2G_BUFFER_SIZE +
+> > > -		CTB_G2H_BUFFER_SIZE;
+> > > +	return CTB_H2G_BUFFER_OFFSET + CTB_H2G_BUFFER_SIZE;
+> > > +}
+> > > +
+> > > +static size_t guc_g2h_size(void)
+> > > +{
+> > > +	return CTB_G2H_BUFFER_OFFSET + CTB_G2H_BUFFER_SIZE;
+> > > =C2=A0}
+> > > =C2=A0
+> > > =C2=A0static void guc_ct_fini(struct drm_device *drm, void *arg)
+> > > @@ -311,7 +316,8 @@ int xe_guc_ct_init_noalloc(struct xe_guc_ct
+> > > *ct)
+> > > =C2=A0	struct xe_gt *gt =3D ct_to_gt(ct);
+> > > =C2=A0	int err;
+> > > =C2=A0
+> > > -	xe_gt_assert(gt, !(guc_ct_size() % PAGE_SIZE));
+> > > +	xe_gt_assert(gt, !(guc_h2g_size() % PAGE_SIZE));
+> > > +	xe_gt_assert(gt, !(guc_g2h_size() % PAGE_SIZE));
+> > > =C2=A0
+> > > =C2=A0	err =3D drmm_mutex_init(&xe->drm, &ct->lock);
+> > > =C2=A0	if (err)
+> > > @@ -356,7 +362,17 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+> > > =C2=A0	struct xe_tile *tile =3D gt_to_tile(gt);
+> > > =C2=A0	struct xe_bo *bo;
+> > > =C2=A0
+> > > -	bo =3D xe_managed_bo_create_pin_map(xe, tile,
+> > > guc_ct_size(),
+> > > +	bo =3D xe_managed_bo_create_pin_map(xe, tile,
+> > > guc_h2g_size(),
+> > > +					=C2=A0 XE_BO_FLAG_SYSTEM |
+> > > +					=C2=A0 XE_BO_FLAG_GGTT |
+> > > +					=C2=A0
+> > > XE_BO_FLAG_GGTT_INVALIDATE
+> > > >=20
+> > > +					=C2=A0
+> > > XE_BO_FLAG_PINNED_NORESTORE);
+> > > +	if (IS_ERR(bo))
+> > > +		return PTR_ERR(bo);
+> > > +
+> > > +	ct->ctbs.h2g.bo =3D bo;
+> > > +
+> > > +	bo =3D xe_managed_bo_create_pin_map(xe, tile,
+> > > guc_g2h_size(),
+> > > =C2=A0					=C2=A0 XE_BO_FLAG_SYSTEM |
+> > > =C2=A0					=C2=A0 XE_BO_FLAG_GGTT |
+> > > =C2=A0					=C2=A0
+> > > XE_BO_FLAG_GGTT_INVALIDATE
+> > > >=20
+> > > @@ -364,7 +380,7 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
+> > > =C2=A0	if (IS_ERR(bo))
+> > > =C2=A0		return PTR_ERR(bo);
+> > > =C2=A0
+> > > -	ct->bo =3D bo;
+> > > +	ct->ctbs.g2h.bo =3D bo;
+> > > =C2=A0
+> > > =C2=A0	return devm_add_action_or_reset(xe->drm.dev,
+> > > guc_action_disable_ct, ct);
+> > > =C2=A0}
+> > > @@ -389,7 +405,7 @@ int xe_guc_ct_init_post_hwconfig(struct
+> > > xe_guc_ct
+> > > *ct)
+> > > =C2=A0	xe_assert(xe, !xe_guc_ct_enabled(ct));
+> > > =C2=A0
+> > > =C2=A0	if (IS_DGFX(xe)) {
+> > > -		ret =3D xe_managed_bo_reinit_in_vram(xe, tile,
+> > > &ct-
+> > > > bo);
+> > > +		ret =3D xe_managed_bo_reinit_in_vram(xe, tile,
+> > > &ct-
+> > > > ctbs.h2g.bo);
+> > > =C2=A0		if (ret)
+> > > =C2=A0			return ret;
+> > > =C2=A0	}
+> > > @@ -439,8 +455,7 @@ static void guc_ct_ctb_g2h_init(struct
+> > > xe_device
+> > > *xe, struct guc_ctb *g2h,
+> > > =C2=A0	g2h->desc =3D IOSYS_MAP_INIT_OFFSET(map, CTB_DESC_SIZE);
+> > > =C2=A0	xe_map_memset(xe, &g2h->desc, 0, 0, sizeof(struct
+> > > guc_ct_buffer_desc));
+> > > =C2=A0
+> > > -	g2h->cmds =3D IOSYS_MAP_INIT_OFFSET(map,
+> > > CTB_H2G_BUFFER_OFFSET
+> > > +
+> > > -					=C2=A0=C2=A0=C2=A0
+> > > CTB_H2G_BUFFER_SIZE);
+> > > +	g2h->cmds =3D IOSYS_MAP_INIT_OFFSET(map,
+> > > CTB_G2H_BUFFER_OFFSET);
+> > > =C2=A0}
+> > > =C2=A0
+> > > =C2=A0static int guc_ct_ctb_h2g_register(struct xe_guc_ct *ct)
+> > > @@ -449,8 +464,8 @@ static int guc_ct_ctb_h2g_register(struct
+> > > xe_guc_ct *ct)
+> > > =C2=A0	u32 desc_addr, ctb_addr, size;
+> > > =C2=A0	int err;
+> > > =C2=A0
+> > > -	desc_addr =3D xe_bo_ggtt_addr(ct->bo);
+> > > -	ctb_addr =3D xe_bo_ggtt_addr(ct->bo) +
+> > > CTB_H2G_BUFFER_OFFSET;
+> > > +	desc_addr =3D xe_bo_ggtt_addr(ct->ctbs.h2g.bo);
+> > > +	ctb_addr =3D xe_bo_ggtt_addr(ct->ctbs.h2g.bo) +
+> > > CTB_H2G_BUFFER_OFFSET;
+> > > =C2=A0	size =3D ct->ctbs.h2g.info.size * sizeof(u32);
+> > > =C2=A0
+> > > =C2=A0	err =3D xe_guc_self_cfg64(guc,
+> > > @@ -476,9 +491,8 @@ static int guc_ct_ctb_g2h_register(struct
+> > > xe_guc_ct *ct)
+> > > =C2=A0	u32 desc_addr, ctb_addr, size;
+> > > =C2=A0	int err;
+> > > =C2=A0
+> > > -	desc_addr =3D xe_bo_ggtt_addr(ct->bo) + CTB_DESC_SIZE;
+> > > -	ctb_addr =3D xe_bo_ggtt_addr(ct->bo) +
+> > > CTB_H2G_BUFFER_OFFSET +
+> > > -		CTB_H2G_BUFFER_SIZE;
+> > > +	desc_addr =3D xe_bo_ggtt_addr(ct->ctbs.g2h.bo) +
+> > > CTB_DESC_SIZE;
+> > > +	ctb_addr =3D xe_bo_ggtt_addr(ct->ctbs.g2h.bo) +
+> > > CTB_G2H_BUFFER_OFFSET;
+> > > =C2=A0	size =3D ct->ctbs.g2h.info.size * sizeof(u32);
+> > > =C2=A0
+> > > =C2=A0	err =3D xe_guc_self_cfg64(guc,
+> > > @@ -605,9 +619,12 @@ static int __xe_guc_ct_start(struct
+> > > xe_guc_ct
+> > > *ct, bool needs_register)
+> > > =C2=A0	xe_gt_assert(gt, !xe_guc_ct_enabled(ct));
+> > > =C2=A0
+> > > =C2=A0	if (needs_register) {
+> > > -		xe_map_memset(xe, &ct->bo->vmap, 0, 0,
+> > > xe_bo_size(ct->bo));
+> > > -		guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct->bo-
+> > > > vmap);
+> > > -		guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct->bo-
+> > > > vmap);
+> > > +		xe_map_memset(xe, &ct->ctbs.h2g.bo->vmap, 0, 0,
+> > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_bo_size(ct->ctbs.h2g.bo));
+> > > +		xe_map_memset(xe, &ct->ctbs.g2h.bo->vmap, 0, 0,
+> > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_bo_size(ct->ctbs.g2h.bo));
+> > > +		guc_ct_ctb_h2g_init(xe, &ct->ctbs.h2g, &ct-
+> > > > ctbs.h2g.bo->vmap);
+> > > +		guc_ct_ctb_g2h_init(xe, &ct->ctbs.g2h, &ct-
+> > > > ctbs.g2h.bo->vmap);
+> > > =C2=A0
+> > > =C2=A0		err =3D guc_ct_ctb_h2g_register(ct);
+> > > =C2=A0		if (err)
+> > > @@ -624,7 +641,7 @@ static int __xe_guc_ct_start(struct xe_guc_ct
+> > > *ct, bool needs_register)
+> > > =C2=A0		ct->ctbs.h2g.info.broken =3D false;
+> > > =C2=A0		ct->ctbs.g2h.info.broken =3D false;
+> > > =C2=A0		/* Skip everything in H2G buffer */
+> > > -		xe_map_memset(xe, &ct->bo->vmap,
+> > > CTB_H2G_BUFFER_OFFSET, 0,
+> > > +		xe_map_memset(xe, &ct->ctbs.h2g.bo->vmap,
+> > > CTB_H2G_BUFFER_OFFSET, 0,
+> > > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 CTB_H2G_BUFFER_SIZE);
+> > > =C2=A0	}
+> > > =C2=A0
+> > > @@ -1963,8 +1980,9 @@ static struct xe_guc_ct_snapshot
+> > > *guc_ct_snapshot_alloc(struct xe_guc_ct *ct, bo
+> > > =C2=A0	if (!snapshot)
+> > > =C2=A0		return NULL;
+> > > =C2=A0
+> > > -	if (ct->bo && want_ctb) {
+> > > -		snapshot->ctb_size =3D xe_bo_size(ct->bo);
+> > > +	if (ct->ctbs.h2g.bo && ct->ctbs.g2h.bo && want_ctb) {
+> > > +		snapshot->ctb_size =3D xe_bo_size(ct->ctbs.h2g.bo)
+> > > +
+> > > +			xe_bo_size(ct->ctbs.g2h.bo);
+> > > =C2=A0		snapshot->ctb =3D kmalloc(snapshot->ctb_size,
+> > > atomic ?
+> > > GFP_ATOMIC : GFP_KERNEL);
+> > > =C2=A0	}
+> > > =C2=A0
+> > > @@ -2012,8 +2030,13 @@ static struct xe_guc_ct_snapshot
+> > > *guc_ct_snapshot_capture(struct xe_guc_ct *ct,
+> > > =C2=A0		guc_ctb_snapshot_capture(xe, &ct->ctbs.g2h,
+> > > &snapshot->g2h);
+> > > =C2=A0	}
+> > > =C2=A0
+> > > -	if (ct->bo && snapshot->ctb)
+> > > -		xe_map_memcpy_from(xe, snapshot->ctb, &ct->bo-
+> > > >vmap,
+> > > 0, snapshot->ctb_size);
+> > > +	if (ct->ctbs.h2g.bo && ct->ctbs.g2h.bo && snapshot->ctb)
+> > > {
+> > > +		xe_map_memcpy_from(xe, snapshot->ctb, &ct-
+> > > > ctbs.h2g.bo->vmap, 0,
+> > > +				=C2=A0=C2=A0 xe_bo_size(ct->ctbs.h2g.bo));
+> > > +		xe_map_memcpy_from(xe, snapshot->ctb +
+> > > xe_bo_size(ct->ctbs.h2g.bo),
+> > > +				=C2=A0=C2=A0 &ct->ctbs.g2h.bo->vmap, 0,
+> > > +				=C2=A0=C2=A0 xe_bo_size(ct->ctbs.g2h.bo));
+> > > +	}
+> > > =C2=A0
+> > > =C2=A0	return snapshot;
+> > > =C2=A0}
+> > > diff --git a/drivers/gpu/drm/xe/xe_guc_ct_types.h
+> > > b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+> > > index 09d7ff1ef42a..46ad1402347d 100644
+> > > --- a/drivers/gpu/drm/xe/xe_guc_ct_types.h
+> > > +++ b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+> > > @@ -39,6 +39,8 @@ struct guc_ctb_info {
+> > > =C2=A0 * struct guc_ctb - GuC command transport buffer (CTB)
+> > > =C2=A0 */
+> > > =C2=A0struct guc_ctb {
+> > > +	/** @bo: Xe BO for CTB */
+> > > +	struct xe_bo *bo;
+> > > =C2=A0	/** @desc: dma buffer map for CTB descriptor */
+> > > =C2=A0	struct iosys_map desc;
+> > > =C2=A0	/** @cmds: dma buffer map for CTB commands */
+> > > @@ -126,8 +128,6 @@ struct xe_fast_req_fence {
+> > > =C2=A0 * for the H2G and G2H requests sent and received through the
+> > > buffers.
+> > > =C2=A0 */
+> > > =C2=A0struct xe_guc_ct {
+> > > -	/** @bo: Xe BO for CT */
+> > > -	struct xe_bo *bo;
+> > > =C2=A0	/** @lock: protects everything in CT layer */
+> > > =C2=A0	struct mutex lock;
+> > > =C2=A0	/** @fast_lock: protects G2H channel and credits */
