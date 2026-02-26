@@ -4,44 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 505FAFD8FD7
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 16:42:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C6B3FD8FD7
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 16:44:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0396510E99B;
-	Thu, 26 Feb 2026 16:42:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 185EC10E9B3;
+	Thu, 26 Feb 2026 16:44:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="YrPNh/1M";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nOYFg5zx";
 	dkim-atps=neutral
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D43C210E99B
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Feb 2026 16:42:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1772124126;
- bh=8ZGvrf+bQND9Wsk+fejOgdf8bV2VY9vO++Xkj9ZQ5+g=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=YrPNh/1Mym6m/4ndJCtdQThCUqvsHIujZ6Vx44ZXFyRQ2OeJGOc/loN0FGGqbZqaa
- S43qftupnNKR71+TxW9teXHFfAspoRA8mWi3cOCImuSJ3ODF9xeTGkfZIEzncNQWRZ
- dYgfeyQNAu3nVCO31Qxl1Lkd15Z/1DrzmnttZOXlHXc397GQDv5nS576/b/TuQKQSq
- FLiWlD0djOwQSaN9hBtk8Kr+dbxDbWURJ/Z03UE0++zl3P/Anqy3mN/lkmdRl0S7we
- 5ySRoIxeXKzFEyZHJnE72zvbj0D75nRu5cbJdxgyIAFjk+q8LMdl/voBEqkdNiP7Kf
- wSceNovz13U3Q==
-Content-Type: multipart/alternative;
- boundary="------------T4IzMhrwCFUaWTK8VLN60xfU"
-Message-ID: <38ac79bb-0d22-4f3f-b80b-9763aeb227eb@lankhorst.se>
-Date: Thu, 26 Feb 2026 17:42:05 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 531B310E9B3;
+ Thu, 26 Feb 2026 16:44:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772124269; x=1803660269;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=uj/i/HnaT46DmpNzeqdOvzysLKqoqq43QXVgDygdMx4=;
+ b=nOYFg5zxhbk5ig6Cqihtl4d8AJCVobZ5mcCGrCZLXKUOahpHQ2KEpA1s
+ NgvK6QTJYTz7eVxNxzQA/nWJnnVaMEssemvPVS/ixSElPytff+ZiqlLHq
+ DziElejioBH6laYmeIPYm0r7WjYx6HrExC82DBo0fxCj+kSVrWiI+OxRn
+ RnyHP0n9CzjP6vZUAUlMTn/nTfYhPSBM4gf0vdZo7e5ucExnq10Mtt6Pz
+ C7gosAmtWGl7gcUA5RzxgQLq8f7EC5Q2VP7jMUsRfp35WFEuiA+Vkr8zr
+ aUnkp8M9zkIw+AbalPGGsiq/q4hA/qfEZpfq8Oy2GjQv6UaoDm4ZdLB6p g==;
+X-CSE-ConnectionGUID: q5OCKfXrTB6onYSK9wKWRw==
+X-CSE-MsgGUID: MHiRA2H7QEiGfeV6f2A2dg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="60765769"
+X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="60765769"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 08:44:29 -0800
+X-CSE-ConnectionGUID: HYP7DCj+RW2lWilrPLVc/g==
+X-CSE-MsgGUID: RDX/POpcTOe0StFiBqnnnA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="221135527"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.224])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 08:44:27 -0800
+Date: Thu, 26 Feb 2026 18:44:23 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jouni.hogander@intel.com, animesh.manna@intel.com
+Subject: Re: [PATCH 12/14] include/drm/display/dp: Add DPCD registers for
+ configuring Panel Replay + VRR
+Message-ID: <aaB4ZypdYVFRgXX7@intel.com>
+References: <20260223134431.1639308-1-ankit.k.nautiyal@intel.com>
+ <20260223134431.1639308-13-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 6/6] drm/xe/pci: Introduce PCIe FLR
-To: Raag Jadav <raag.jadav@intel.com>, intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
- thomas.hellstrom@linux.intel.com, riana.tauro@intel.com,
- michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
- michal.winiarski@intel.com
-References: <20260224102618.3105171-1-raag.jadav@intel.com>
- <20260224102618.3105171-7-raag.jadav@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <maarten@lankhorst.se>
-In-Reply-To: <20260224102618.3105171-7-raag.jadav@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260223134431.1639308-13-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,56 +74,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------T4IzMhrwCFUaWTK8VLN60xfU
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+On Mon, Feb 23, 2026 at 07:14:29PM +0530, Ankit Nautiyal wrote:
+> Add additional DPCDs required to be configured to support VRR with Panel
+> Replay. These DPCDs are specifically required for configuring Adaptive Sync
+> SDP and are introduced in DP v2.1.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  include/drm/display/drm_dp.h | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+> index e4eebabab975..e63705415647 100644
+> --- a/include/drm/display/drm_dp.h
+> +++ b/include/drm/display/drm_dp.h
+> @@ -773,6 +773,15 @@
+>  # define DP_PANEL_REPLAY_SU_Y_GRANULARITY_EXTENDED_VAL_SEL_MASK  (0xf << 3)
+>  # define DP_PANEL_REPLAY_SU_REGION_SCANLINE_CAPTURE		 (1 << 7)
+>  
+> +#define PANEL_REPLAY_CONFIG3				0x11a	/* DP 2.1 */
+> +# define AS_SDP_SETUP_TIME_MASK				(3 << 6)
+> +# define AS_SDP_SETUP_TIME_T1				0
+> +# define AS_SDP_SETUP_TIME_DYNAMIC			1	/* uses Table 2-227 */
+                                                                        ^^^^^^^^^^^
 
-Hey,
+That reference is likely very DP spec version specific.
 
-Den 2026-02-24 kl. 11:25, skrev Raag Jadav:
-> With all the pieces in place, we can finally introduce PCIe FLR handling
-> which reloads hardware state without the need for reloading the driver
-> from userspace. Memory contents are also wiped along with hardware state,
-> so user still needs to recreate buffers and reload context after FLR.
->
-This probably needs some more help to support display.
-I tried using only FLR to tear down the driver during shutdown,
-but that ran into some issues unfortunately and was reverted.
+> +# define AS_SDP_SETUP_TIME_T2				2
 
-Kind regards,
-~Maarten Lankhorst
---------------T4IzMhrwCFUaWTK8VLN60xfU
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Missing the shift on the values.
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <font face="monospace">Hey,</font><br>
-    <br>
-    <div class="moz-cite-prefix">Den 2026-02-24 kl. 11:25, skrev Raag
-      Jadav:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:20260224102618.3105171-7-raag.jadav@intel.com">
-      <pre wrap="" class="moz-quote-pre">With all the pieces in place, we can finally introduce PCIe FLR handling
-which reloads hardware state without the need for reloading the driver
-from userspace. Memory contents are also wiped along with hardware state,
-so user still needs to recreate buffers and reload context after FLR.
+> +
+> +#define AS_SDP_TRANSMISSION_TIMIING_CONFIG	0x11b	/* DP 2.1 */
+> +# define AS_SDP_ONE_LINE_EARLIER_ENABLE		BIT(7)
+> +
+>  #define DP_PAYLOAD_ALLOCATE_SET		    0x1c0
+>  #define DP_PAYLOAD_ALLOCATE_START_TIME_SLOT 0x1c1
+>  #define DP_PAYLOAD_ALLOCATE_TIME_SLOT_COUNT 0x1c2
+> -- 
+> 2.45.2
 
-</pre>
-    </blockquote>
-    This probably needs some more help to support display.<br>
-    I tried using only FLR to tear down the driver during shutdown,<br>
-    but that ran into some issues unfortunately and was reverted.<br>
-    <br>
-    Kind regards,<br>
-    ~Maarten Lankhorst
-  </body>
-</html>
-
---------------T4IzMhrwCFUaWTK8VLN60xfU--
+-- 
+Ville Syrjälä
+Intel
