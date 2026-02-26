@@ -4,54 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2160FC5937
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 12:07:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36D28FC5915
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 12:08:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7C1C210E8FC;
-	Thu, 26 Feb 2026 12:07:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5A9710E906;
+	Thu, 26 Feb 2026 12:08:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="yfG9173G";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="QQwOsbfB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EiHqX+rh";
 	dkim-atps=neutral
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53C8810E8FC;
- Thu, 26 Feb 2026 12:07:20 +0000 (UTC)
-Date: Thu, 26 Feb 2026 13:07:15 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1772107637;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=A7DHd4YrW2ZSEM1imCWenSnVLlRamUHUYJ6oBJozRB4=;
- b=yfG9173GGEUfw94vLam1jS2uNf6x4mqxZyIJzFMno2axFDcEafHVSqFuCFEoE67p12eyCm
- G5FWYQjIvfZccyDGdE7Newbz2pYtJRkfdc+C/ph/SKATotfLznryX/0zdU8ARVuEkT1QZW
- Ln0CVC0V0GSsDJcqIBhqPL0UZ8I0sgcqUU2V86Ry8/9o3tF4sBVje6vUUZSUz+V32z0YZc
- 6lQXYionZXLD8oxwmzZc0T4TDYZz4iLMYoynyoniYKZcxXRuGEhOQiXnkF/AmWkz8Gq+o+
- 9bpgndQarbeo4xHCftYHcUMPsalfHspokrOVY3ISWDfSHxGKw2yuea3eYm77Vg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1772107637;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=A7DHd4YrW2ZSEM1imCWenSnVLlRamUHUYJ6oBJozRB4=;
- b=QQwOsbfBnSmS2mAUhg8PIH6BLHs3Uk0NofpFunSU6vCKYBIHMCECExzbTQd5TyajMbNi26
- dcSomuW3q/TfAkAQ==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Maarten Lankhorst <dev@lankhorst.se>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-rt-devel@lists.linux.dev, dri-devel@lists.freedesktop.org
-Subject: Re: [i915-rt v6 00/24] drm/i915/display: All patches to make
- PREEMPT_RT work on i915 + xe.
-Message-ID: <20260226120715.6Ug1Qkse@linutronix.de>
-References: <20260220083657.28815-26-dev@lankhorst.se>
- <20260224162703.Q_taYjEC@linutronix.de>
- <20260224165903.2mn24oQy@linutronix.de>
- <20260225075806.XNtXjZ5E@linutronix.de>
- <7ee8b784-a714-4329-aab2-a571f25c3baa@lankhorst.se>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE1FF10E906
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Feb 2026 12:08:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772107730; x=1803643730;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=O7SmXYcJn1laFbGSfTVdjafeFKdbTnF1G4+cs/GMPK4=;
+ b=EiHqX+rhEDCJicdMI7yOgppaYCdIY3lV4KbG6agbw5Aw3FYomCFuZZHI
+ 6y2GHOycwXnGx1Dbvjrn1Wsy75OQU9NuzSir+zj2njwCuZQcvDfucb1f6
+ +uh+IcvpMwst0YBO+Lk1k+miXAQo9ETi12m+6VcDZRXbwO2v7RUKU9QHy
+ R2TPtZEWpe1Y0HPoCqHnGPww0NxWGZkQel8qpkrSbnSCedZPFgDzISsJX
+ pPz5Gw8EX7ui+ds4OAUKvl0mSRyIY0OVUaC7hTLIx9wj26l8d8gTy3Xe5
+ juuFvgDTFbBpX3piqO4opPa5hes1/qml5dy5ovZ0aE943OiocwA6dZqRO A==;
+X-CSE-ConnectionGUID: /HDLWC/XTgebq/+uFjU++g==
+X-CSE-MsgGUID: yOcPmsc1QVuM1TuZePEwKQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="84520930"
+X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="84520930"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 04:08:50 -0800
+X-CSE-ConnectionGUID: PkgouyVtRiOLL+G2nBB+1w==
+X-CSE-MsgGUID: AH8bwBwdSUKlmkkbKq4iPA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="239537850"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.244.215])
+ ([10.245.244.215])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 04:08:48 -0800
+Message-ID: <cc0958e96c7204931c06aac064b29afa0d589d02.camel@linux.intel.com>
+Subject: Re: [PATCH v3 1/3] drm/xe: Split H2G and G2H into separate buffer
+ objects
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org, stuart.summers@intel.com, 
+ francois.dugast@intel.com, daniele.ceraolospurio@intel.com, 
+ michal.wajdeczko@intel.com
+Date: Thu, 26 Feb 2026 13:08:45 +0100
+In-Reply-To: <aZ3N+CwyKRARMW6m@lstrano-desk.jf.intel.com>
+References: <20260218043319.809548-1-matthew.brost@intel.com>
+ <20260218043319.809548-2-matthew.brost@intel.com>
+ <3033abb2dfe6755ff3559a480e0d21b5665436d5.camel@linux.intel.com>
+ <aZ3N+CwyKRARMW6m@lstrano-desk.jf.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <7ee8b784-a714-4329-aab2-a571f25c3baa@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,98 +75,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2026-02-25 21:06:05 [+0100], Maarten Lankhorst wrote:
-> Hey,
-Hi,
+On Tue, 2026-02-24 at 08:12 -0800, Matthew Brost wrote:
+> On Tue, Feb 24, 2026 at 04:58:35PM +0100, Thomas Hellstr=C3=B6m wrote:
+> > On Tue, 2026-02-17 at 20:33 -0800, Matthew Brost wrote:
+> > > H2G and G2H buffers have different access patterns (H2G is CPU-
+> > > write,
+> > > GuC-read, while G2H is GPU-write, CPU-read). On dGPU, these
+> > > patterns
+> > > benefit from different memory placements: H2G in VRAM and G2H in
+> > > system
+> > > memory. Split the CT buffer into two separate buffers=E2=80=94one for=
+ H2G
+> > > and
+> > > one for G2H=E2=80=94and select the optimal placement for each.
+> > >=20
+> > > This provides a significant performance improvement on the G2H
+> > > read
+> > > path, reducing a single read from ~20 =C2=B5s to under 1 =C2=B5s on B=
+MG.
+> > >=20
+> > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> >=20
+> > Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> >=20
+> > Perhaps one could experiment with reading the data from the g2h bo
+> > using MOVNTDQA, like the write-combining memcopy. That would avoid
+> > caching the data and the GuC having to invalidate the cache line
+> > while
+> > snooping on the next write.
+>=20
+> We can try that, but G2H messages are variable-sized, so I believe it
+> will get a little tricky. Once these are system-memory reads, I
+> recall
+> G2H handling being something like 15 per =C2=B5s of page faults (maybe
+> that
+> isn=E2=80=99t correct =E2=80=94 I=E2=80=99ll double-check), and that incl=
+uded my not-yet-
+> posted
+> caching implementation, which also takes a spinlock, examines the
+> page-fault cache, and chains the fault onto a list. So I don=E2=80=99t th=
+ink
+> this will end up in the critical path.
 
-> After realizing the uncore lock only needed to be converted to a raw spinlock
-> because the testcase was broken, I tested the alternative fix of using
-> sleeping context only in the selftests:
-> https://patchwork.freedesktop.org/patch/707063/?series=162145&rev=1
+Actually DOCs say MOVNTDQA only has an effect on write-combining
+mappings, so probably a dead end experimenting with that.
+There's also PREFETCHNTA though, which may or may not have an effect.
 
-I have some memory that makeing uncore raw "solved" the tracing problem
-but the latencies jumped at the same.
-
-Since you did test XE only, xe does not show the lockup. I spills this
-however:
-
-|[    T632] ============================================
-|[    T632] WARNING: possible recursive locking detected
-|[    T632] 7.0.0-rc1-plain+ #5 Tainted: G     U      E
-|[    T632] --------------------------------------------
-|[    T632] kworker/u32:13/632 is trying to acquire lock:
-|[    T632] ffff8efb858e7c58 (&fence->inline_lock){+.+.}-{2:2}, at: dma_fence_add_callback+0x4b/0x100
-|[    T632]
-|           but task is already holding lock:
-|[    T632] ffff8efb524a1b58 (&fence->inline_lock){+.+.}-{2:2}, at: dma_fence_add_callback+0x4b/0x100
-|[    T632]
-|           other info that might help us debug this:
-|[    T632]  Possible unsafe locking scenario:
-|[    T632]        CPU0
-|[    T632]        ----
-|[    T632]   lock(&fence->inline_lock);
-|[    T632]   lock(&fence->inline_lock);
-|[    T632]
-|            *** DEADLOCK ***
-|[    T632]  May be due to missing lock nesting notation
-|[    T632] 5 locks held by kworker/u32:13/632:
-|[    T632]  #0: ffffffffc0ba3540 (drm_sched_lockdep_map){+.+.}-{0:0}, at: process_one_work+0x57a/0x600
-|[    T632]  #1: ffffcf7f020f7e48 ((work_completion)(&sched->work_run_job)){+.+.}-{0:0}, at: process_one_work+0x1dc/0x600
-|[    T632]  #2: ffff8efb524a1b58 (&fence->inline_lock){+.+.}-{2:2}, at: dma_fence_add_callback+0x4b/0x100
-|[    T632]  #3: ffffffffb60fecc0 (rcu_read_lock){....}-{1:2}, at: rt_spin_lock+0xe6/0x1d0
-|[    T632]  #4: ffffffffb60fecc0 (rcu_read_lock){....}-{1:2}, at: __dma_fence_enable_signaling+0x59/0x320
-|[    T632]
-|           stack backtrace:
-|[    T632] CPU: 6 UID: 0 PID: 632 Comm: kworker/u32:13 Tainted: G     U      E       7.0.0-rc1-plain+ #5 PREEMPT_{RT,(lazy)}
-|[    T632] Tainted: [U]=USER, [E]=UNSIGNED_MODULE
-|[    T632] Hardware name: LENOVO 20TD00GLGE/20TD00GLGE, BIOS R1EET64W(1.64 ) 03/18/2025
-|[    T632] Workqueue:  drm_sched_run_job_work [gpu_sched]
-|[    T632] Call Trace:
-|[    T632]  <TASK>
-|[    T632]  dump_stack_lvl+0x6e/0xa0
-|[    T632]  print_deadlock_bug.cold+0xc0/0xcd
-|[    T632]  __lock_acquire+0x1232/0x2180
-|[    T632]  lock_acquire+0xca/0x2f0
-|[    T632]  rt_spin_lock+0x3f/0x1d0
-|[    T632]  dma_fence_add_callback+0x4b/0x100
-|[    T632]  dma_fence_chain_enable_signaling+0x11e/0x280
-|[    T632]  __dma_fence_enable_signaling+0xc8/0x320
-|[    T632]  dma_fence_add_callback+0x53/0x100
-|[    T632]  drm_sched_entity_pop_job+0xf5/0x550 [gpu_sched]
-|[    T632]  drm_sched_run_job_work+0x136/0x470 [gpu_sched]
-|[    T632]  process_one_work+0x21d/0x600
-|[    T632]  worker_thread+0x1d9/0x3b0
-|[    T632]  kthread+0xf4/0x130
-|[    T632]  ret_from_fork+0x3a5/0x430
-|[    T632]  ret_from_fork_asm+0x1a/0x30
-|[    T632]  </TASK>
-
-Nothing else so far.
-
-> With that the reset selftest works as expected.
-> 
-> But I do see some weird lockdep splats and aborts after that fixed the uncore lock testcases:
-> https://patchwork.freedesktop.org/series/162145/
-> 
-> I believe it could be a different instance of:
-> https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162145v1/bat-dg2-9/igt@gem_lmem_swapping@parallel-random-engines.html#dmesg-warnings904
-> 
-> Which is tracked under:
-> 
-> https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15759
-> 
-> Perhaps those are related to what you are seeing?
-
-Not sure if it was the uncore in both cases. If you have an update
-series somewhere I could pull and check. In meantime I would look what
-causes the lockup on i915.
-
-> Also don't use that series for anything but CI results, I rather want to submit
-> a new version of this series.
-
-So I am brave for using it on my actual HW then ;)
-
-> Kind regards,
-> ~Maarten Lankhorst
-
-Sebastian
+/Thomas
