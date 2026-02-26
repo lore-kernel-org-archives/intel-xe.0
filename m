@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFA96FCE08C
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 14:39:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D57DBFCE095
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 14:42:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8341C10E966;
-	Thu, 26 Feb 2026 14:39:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="dUyjoKS3";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="pkwh6iuu";
-	dkim-atps=neutral
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82D2710E965;
- Thu, 26 Feb 2026 14:39:01 +0000 (UTC)
-Date: Thu, 26 Feb 2026 15:38:57 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1772116738;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=qD3+6POXKNawLzIUuj2U309vx3UvgtoIfk7xn2TbokQ=;
- b=dUyjoKS3qrtrq3xWSwNltNQhKE3o4ALW1ajwOY7nqMMCsXtZPKu6siKbP7Cw4YHXOFHRhC
- e4D1mBMHOiVArrXPRxwOgxruvmhth4wVfL/+Z1odokwiQuMnGZa16FVPXFeZ7zl61xxI7d
- /Vg2dcH2CDFWfEaD8yZPJWyoTVzEkQdl8SSKbEL/Cuj1gcj6LD4d67NTy/JxeGrXGEuVFM
- Bkyt8KJHZrus4LasFa48Dye32bn83BWKmoad4egODdq2SnG6NvGwGGkLh61mZTo1MA8UMv
- I1u4N3q3wsMqfeAMdGv7S+NZq4a94iA0QxzYljVyKijtZyRYYDOSQ+kYWhlCVw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1772116738;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=qD3+6POXKNawLzIUuj2U309vx3UvgtoIfk7xn2TbokQ=;
- b=pkwh6iuuR7s/oYhiqToSdazOZCtQLovdcZtbccX9MNRgHlUHKExkYyYmFExj/bdgS/tOTS
- RnQ9pkoJopgzepDQ==
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-To: Maarten Lankhorst <dev@lankhorst.se>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-rt-devel@lists.linux.dev, dri-devel@lists.freedesktop.org
-Subject: Re: [i915-rt v6 00/24] drm/i915/display: All patches to make
- PREEMPT_RT work on i915 + xe.
-Message-ID: <20260226143857.4ZJAFzf6@linutronix.de>
-References: <20260220083657.28815-26-dev@lankhorst.se>
- <20260224162703.Q_taYjEC@linutronix.de>
- <20260224165903.2mn24oQy@linutronix.de>
- <20260225075806.XNtXjZ5E@linutronix.de>
- <7ee8b784-a714-4329-aab2-a571f25c3baa@lankhorst.se>
- <20260226120715.6Ug1Qkse@linutronix.de>
- <20260226141942.Z6vUrEQ3@linutronix.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 951C810E96B;
+	Thu, 26 Feb 2026 14:42:30 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4DF410E96B;
+ Thu, 26 Feb 2026 14:42:29 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7933773380745667207=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260226141942.Z6vUrEQ3@linutronix.de>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/overlay=3A_Convert?=
+ =?utf-8?q?_to_parent_interface_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 26 Feb 2026 14:42:29 -0000
+Message-ID: <177211694965.292161.3427319649043703144@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260226100738.29997-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20260226100738.29997-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,74 +36,154 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2026-02-26 15:19:42 [+0100], To Maarten Lankhorst wrote:
-> On 2026-02-26 13:07:18 [+0100], To Maarten Lankhorst wrote:
-> > series somewhere I could pull and check. In meantime I would look what
-> > causes the lockup on i915.
-> 
-> I think I got it.
+--===============7933773380745667207==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-This the atomic sync as-is, IRQ-Work (FIFO-1) will be preempted by the
-threaded-interrupt (FIFO-50) and the interrupt will poll on
-signaler_active while the irq-work can't make progress.
+== Series Details ==
 
-This will provide the needed sync:
+Series: drm/i915/overlay: Convert to parent interface (rev5)
+URL   : https://patchwork.freedesktop.org/series/161766/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-index a2b413982ce64..337f6e88faf05 100644
---- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-@@ -209,6 +209,7 @@ static void signal_irq_work(struct irq_work *work)
- 		intel_breadcrumbs_disarm_irq(b);
- 
- 	rcu_read_lock();
-+	spin_lock(&b->signaler_active_sync);
- 	atomic_inc(&b->signaler_active);
- 	list_for_each_entry_rcu(ce, &b->signalers, signal_link) {
- 		struct i915_request *rq;
-@@ -246,6 +247,7 @@ static void signal_irq_work(struct irq_work *work)
- 		}
- 	}
- 	atomic_dec(&b->signaler_active);
-+	spin_unlock(&b->signaler_active_sync);
- 	rcu_read_unlock();
- 
- 	llist_for_each_safe(signal, sn, signal) {
-@@ -290,6 +292,7 @@ intel_breadcrumbs_create(struct intel_engine_cs *irq_engine)
- 	init_llist_head(&b->signaled_requests);
- 
- 	spin_lock_init(&b->irq_lock);
-+	spin_lock_init(&b->signaler_active_sync);
- 	init_irq_work(&b->irq_work, signal_irq_work);
- 
- 	b->irq_engine = irq_engine;
-@@ -487,8 +490,11 @@ void intel_context_remove_breadcrumbs(struct intel_context *ce,
- 	if (release)
- 		intel_context_put(ce);
- 
--	while (atomic_read(&b->signaler_active))
-+	while (atomic_read(&b->signaler_active)) {
-+		spin_lock(&b->signaler_active_sync);
-+		spin_unlock(&b->signaler_active_sync);
- 		cpu_relax();
-+	}
- }
- 
- static void print_signals(struct intel_breadcrumbs *b, struct drm_printer *p)
-diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
-index bdf09fd67b6e7..28dae32628aab 100644
---- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
-@@ -40,6 +40,7 @@ struct intel_breadcrumbs {
- 	struct list_head signalers;
- 	struct llist_head signaled_requests;
- 	atomic_t signaler_active;
-+	spinlock_t signaler_active_sync;
- 
- 	spinlock_t irq_lock; /* protects the interrupt from hardirq context */
- 	struct irq_work irq_work; /* for use from inside irq_lock */
+== Summary ==
 
-Sebastian
+CI Bug Log - changes from xe-4621-0bc433c973ba7ccbc6f32f818744d5fae3d84fda_BAT -> xe-pw-161766v5_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-161766v5_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4621-0bc433c973ba7ccbc6f32f818744d5fae3d84fda/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161766v5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4621-0bc433c973ba7ccbc6f32f818744d5fae3d84fda/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161766v5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [FAIL][5] ([Intel XE#6520]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4621-0bc433c973ba7ccbc6f32f818744d5fae3d84fda/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161766v5/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
+
+
+Build changes
+-------------
+
+  * Linux: xe-4621-0bc433c973ba7ccbc6f32f818744d5fae3d84fda -> xe-pw-161766v5
+
+  IGT_8773: 8773
+  xe-4621-0bc433c973ba7ccbc6f32f818744d5fae3d84fda: 0bc433c973ba7ccbc6f32f818744d5fae3d84fda
+  xe-pw-161766v5: 161766v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161766v5/index.html
+
+--===============7933773380745667207==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/overlay: Convert to parent interface (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161766/">https://patchwork.freedesktop.org/series/161766/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161766v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161766v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4621-0bc433c973ba7ccbc6f32f818744d5fae3d84fda_BAT -&gt; xe-pw-161766v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-161766v5_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4621-0bc433c973ba7ccbc6f32f818744d5fae3d84fda/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161766v5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4621-0bc433c973ba7ccbc6f32f818744d5fae3d84fda/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161766v5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4621-0bc433c973ba7ccbc6f32f818744d5fae3d84fda/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161766v5/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4621-0bc433c973ba7ccbc6f32f818744d5fae3d84fda -&gt; xe-pw-161766v5</li>
+</ul>
+<p>IGT_8773: 8773<br />
+  xe-4621-0bc433c973ba7ccbc6f32f818744d5fae3d84fda: 0bc433c973ba7ccbc6f32f818744d5fae3d84fda<br />
+  xe-pw-161766v5: 161766v5</p>
+
+</body>
+</html>
+
+--===============7933773380745667207==--
