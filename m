@@ -4,59 +4,117 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87143FD8FD7
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 16:46:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CE1DFD8FD3
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 16:52:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F2BD10E9BB;
-	Thu, 26 Feb 2026 16:46:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BF7810E9D1;
+	Thu, 26 Feb 2026 16:52:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="atRXG8ss";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="I48kEQ0X";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A13DF10E9BB
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Feb 2026 16:46:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772124396; x=1803660396;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=nUiaD6JmtLoAi0Bi4EKi8Wog0b49vUeMoGEq8hBZ0Cs=;
- b=atRXG8ssxFEyQIUAiCdvlK/niMUxcU2wjlaCpl73Sj7fNNJXDy8+8rAb
- O9adGuT9c5Hm5aPigyZqQqgteM1UuDKqihTaIUhNL6XDATpzXjE0mVoFh
- pkRVvZ8VUhaayUIWR+qIa/vrpAAKbzqa9D0MTONEb+gk2c6C8uNVxxvC2
- t3aD1njSI8jEvGzoZm50Tc6t2Dd5vtb7fnoblVwGu/ln9cdvag35sJkhu
- 2OQ6V7tpbD4dClfAEPM7QyS9g3NnXes9SgUEgux/gF0nj6g62dARHZY1K
- g25PamDH79tE1IeJVANuNGlc/Hntz/s2joigPtXEJRbs2GUQ7AVM5p+7b w==;
-X-CSE-ConnectionGUID: l9zLKwX9RuikX1cftI3K3w==
-X-CSE-MsgGUID: TQcaJQ9tQauh2EvnUn+TfA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="72226154"
-X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="72226154"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2026 08:46:36 -0800
-X-CSE-ConnectionGUID: nD0AfD2URD2k1UV+LeNNLA==
-X-CSE-MsgGUID: QIa22iH/SiSbCC9NzBkdiw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="221622806"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2026 08:46:34 -0800
-Date: Thu, 26 Feb 2026 17:46:31 +0100
-From: Raag Jadav <raag.jadav@intel.com>
-To: Maarten Lankhorst <maarten@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
- rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
- riana.tauro@intel.com, michal.wajdeczko@intel.com,
- matthew.d.roper@intel.com, michal.winiarski@intel.com
-Subject: Re: [PATCH v1 6/6] drm/xe/pci: Introduce PCIe FLR
-Message-ID: <aaB450NUrl3kl6eW@black.igk.intel.com>
-References: <20260224102618.3105171-1-raag.jadav@intel.com>
- <20260224102618.3105171-7-raag.jadav@intel.com>
- <38ac79bb-0d22-4f3f-b80b-9763aeb227eb@lankhorst.se>
+Received: from mail-dl1-f43.google.com (mail-dl1-f43.google.com [74.125.82.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2377710E9D0
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Feb 2026 16:52:44 +0000 (UTC)
+Received: by mail-dl1-f43.google.com with SMTP id
+ a92af1059eb24-127337e3870so89479c88.2
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Feb 2026 08:52:44 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772124763; cv=none;
+ d=google.com; s=arc-20240605;
+ b=gE44lvgcGRNNqgEdU2NlzwFV7JPWgu4LyMN6SdCaPBFS9CPpB16FmL8RYUHQkn3BZ/
+ ewfycUvdF91AL+ddhy53K4YpBY3/7vxvuAZMO5XCzlp9DFpWVszESdBM2apl++HO64xK
+ 5yChWwFJZJ2dSG0uRSkD7ImdP8o12Zm4aYJQJOdh74Pi7okRlyaRknUP2KPSIJDfjSvM
+ 1DBKvmoLaSCZ4rTT+IiunFSPdk81w8dVwfEh2YtqvdIPQOZcjTWMRQxoRNxHFllPMA3G
+ Fex0i0ii5x5dwNFHc9176MZvZf4SFLrlyt2JjE7GTPcdxpZsfOjm3qBAZojHPVFwobRZ
+ zmWQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=pZcazbR1DE/nxOEeZq1x5Zwqj0GPkDpZzY4fxC9HT/k=;
+ fh=JJuyX7OCVVy6THj1IUJfJ07OXp9HW2wt7OFMdLmVT78=;
+ b=jDTL1OkOVdShd/3hsGUdgUFvu1o2MjJJ10f4BsnbDuVdgzdy1WsqmmQ3SWUtE6dpFj
+ 7NSOkLp515PP7HFskra19DfNt+w6XdnnBuwsCrhJnMmApVsF8U3tE1H8q/H9u6JZx0SK
+ l9uKwyR1Wl4ReXs1Xe5s9H3ZFczVFNImKaRt+A9sSSDNWnggOuV6zAjjVM/CkYIw5MJ+
+ caKTFmcgtO7JUGHJTwjAb30Uw9ij956LSTGOnyG5fbi82vd525iHNdFvk/gXO8k28kib
+ koCIG/+HfN3t4JOe+oWMJ9OU3X0pdHTu7Kb1qldbiaV4Nnh/pjxNdFOY3ZyfkBxxuyKE
+ Tw/g==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1772124763; x=1772729563; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=pZcazbR1DE/nxOEeZq1x5Zwqj0GPkDpZzY4fxC9HT/k=;
+ b=I48kEQ0Xg6Vb2T2JhV7Ls4Q85cYsznVwUTqzNvViBBIGbC9A3Wian5OsxFO+WB5jgq
+ wm4MDtdlMUT02G7c4sEFvkjfk8d2kJwdr8vtIu9u8172gDuC4AxcjxUehs2JZagGerzB
+ APnmbRgPPeZbwgVmKOdxgWgint3zMkd2BNT8EkwEOyGp7yHTpdV1Rxi3TrpKMb2i9o3F
+ pC/qpoTMWQEj+0Q0ut7W/yx/guxLX2BB7MG221q6qrWBLhfk3BjbYBrC47SAGHUxEp6h
+ 2SheJ0DPNFdTOmf3/KcRI6DsI0DHX1BBmmaTJjkzzySui+VQ9o29x/rBE6RiGdaFpmxw
+ DIOg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1772124763; x=1772729563;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=pZcazbR1DE/nxOEeZq1x5Zwqj0GPkDpZzY4fxC9HT/k=;
+ b=Saun75Ui5wd3YtMsX3ll079bntVifkbz0SqKbdK9PYzVi6UEPcse8gjAv4Rdw8+GyU
+ kDb9exux+MBwOPOkvWLukxx/Z5WNWy6ZmFejagQLBBiuaVUzHR/o59PIWxCATGfZPDkb
+ 92jh9DE0gqA/T/HrFwKwYzZlHiQex6G6d49ziXnj7ytxDSrfE6AYgm7pInaeJYX3yiaG
+ X7DgnqkTFomBa2ZprTAO4D6Cmpd4TMcUW9OVrkLYQYxxgBtPaGW3f7s4VaqjGo+D+rsO
+ BaabaX7hftG+pHzSrEEhoI5yfwZ2Jybg5Aacuz+L19LuREnOoV0IGQHpmtaGnyo1ysLV
+ 5xzw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVeUIFZW4wcAgT18/Ym8FgJ1WUuRuu3i8uabbsBr/jKvBAMyaY0nFN6O33EkBw7ykY6B24CVqSW8A==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwEDdwEDXPMayzNA9ya5FkKwTcO/ESBFMYZUpcay6LX2Wgjhz+b
+ IVT1IdvVXvm+eNYbx2yWXwvFraZzyRrA/YBJRo84o60W2bdKeFwKN/85KptjqS4IGCu6Q1UbWXF
+ ko0nCqkpCBquFEcTwOp0gO8DJjFitatw=
+X-Gm-Gg: ATEYQzz7Y9LePkrVIIDf+6qxr5dJhJE+eyfApNvDRHdoj0WpjARRg5CH9f4f+3YaZd6
+ CBEXQz/Ia2+kfFtAUMzpf+I7xo46oSYxM/clU+OV7YRH4i9RjzcTTwEt+cGxEfnkfaBAZsn8xUe
+ fzT0TtYOIA+rYz03j1+e1cIgOhMWRN1zVKWVeb4PgZSVuPoWv0CmIs1UsX40Q0uSd5EENmoZG5M
+ TcKtWbaCZWoibyIvcb2aztaAs19dd71FTlUijXsTrUSTwbZVkXWjm4In7EAJEaNcHxiBD/yV5+T
+ aqr5KjAq7ncMTRrVuNPU0hsWtiUX0hNyH2M4SGbYN27jyIv8goq9X7ebpgA19/yJPH4R8g==
+X-Received: by 2002:a05:7022:521:b0:11e:3e9:3e88 with SMTP id
+ a92af1059eb24-1276ad1a953mr3949889c88.6.1772124763232; Thu, 26 Feb 2026
+ 08:52:43 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <38ac79bb-0d22-4f3f-b80b-9763aeb227eb@lankhorst.se>
+References: <20260226030038.1182961-1-yujie.liu@intel.com>
+ <20260226030038.1182961-5-yujie.liu@intel.com>
+In-Reply-To: <20260226030038.1182961-5-yujie.liu@intel.com>
+From: Alex Deucher <alexdeucher@gmail.com>
+Date: Thu, 26 Feb 2026 11:52:31 -0500
+X-Gm-Features: AaiRm52jUWhoVzS5sZVs0p1S_kaUAgI_vRYo0M4j1pIdWaWT3Go6larHclvpApA
+Message-ID: <CADnq5_ObAojo6i2gwJR2Q6aL2gN3WEyxC5Uo_=yfW=9xqdndnQ@mail.gmail.com>
+Subject: Re: [PATCH 4/7] drm/amdgpu: fix kernel-doc warning for
+ amdgpu_ttm_alloc_mmio_remap_bo()
+To: Yujie Liu <yujie.liu@intel.com>
+Cc: Alex Deucher <alexander.deucher@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Kenneth Feng <kenneth.feng@amd.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Patrik Jakobsson <patrik.r.jakobsson@gmail.com>, 
+ Matthew Brost <matthew.brost@intel.com>, Danilo Krummrich <dakr@kernel.org>, 
+ Philipp Stanner <phasta@kernel.org>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>, 
+ Srinivasan Shanmugam <srinivasan.shanmugam@amd.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, 
+ Sunil Khatri <sunil.khatri@amd.com>, Lijo Lazar <lijo.lazar@amd.com>, 
+ Asad Kamal <asad.kamal@amd.com>, Yang Wang <kevinyang.wang@amd.com>, 
+ Hawking Zhang <Hawking.Zhang@amd.com>, Tao Zhou <tao.zhou1@amd.com>, 
+ Gangliang Xie <ganglxie@amd.com>, Candice Li <candice.li@amd.com>,
+ YiPeng Chai <YiPeng.Chai@amd.com>, 
+ Matthew Auld <matthew.auld@intel.com>, Luben Tuikov <luben.tuikov@amd.com>, 
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
+ =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>, 
+ Michal Wajdeczko <michal.wajdeczko@intel.com>, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ intel-xe@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,17 +129,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Feb 26, 2026 at 05:42:05PM +0100, Maarten Lankhorst wrote:
-> Den 2026-02-24 kl. 11:25, skrev Raag Jadav:
-> > With all the pieces in place, we can finally introduce PCIe FLR handling
-> > which reloads hardware state without the need for reloading the driver
-> > from userspace. Memory contents are also wiped along with hardware state,
-> > so user still needs to recreate buffers and reload context after FLR.
-> >
-> This probably needs some more help to support display.
-> I tried using only FLR to tear down the driver during shutdown,
-> but that ran into some issues unfortunately and was reverted.
+Applied.  Thanks!
 
-Yes, it's missing migrate and lrc pieces. Hold on for v2.
-
-Raag
+On Wed, Feb 25, 2026 at 10:09=E2=80=AFPM Yujie Liu <yujie.liu@intel.com> wr=
+ote:
+>
+> Warning: drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c:1923 expecting prototype=
+ for amdgpu_ttm_mmio_remap_bo_init(). Prototype was for amdgpu_ttm_alloc_mm=
+io_remap_bo() instead
+>
+> Fixes: 96e97a562d06 ("drm/amdgpu: Drop MMIO_REMAP domain bit and keep it =
+Internal")
+> Signed-off-by: Yujie Liu <yujie.liu@intel.com>
+> ---
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/am=
+d/amdgpu/amdgpu_ttm.c
+> index eeaa56c8d129..9789b778d491 100644
+> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+> @@ -1908,7 +1908,7 @@ static void amdgpu_ttm_pools_fini(struct amdgpu_dev=
+ice *adev)
+>  }
+>
+>  /**
+> - * amdgpu_ttm_mmio_remap_bo_init - Allocate the singleton MMIO_REMAP BO
+> + * amdgpu_ttm_alloc_mmio_remap_bo - Allocate the singleton MMIO_REMAP BO
+>   * @adev: amdgpu device
+>   *
+>   * Allocates a global BO with backing AMDGPU_PL_MMIO_REMAP when the
+> --
+> 2.43.0
+>
