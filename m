@@ -4,101 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 409C1FC590F
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 08:36:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A89A1FC590F
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 08:50:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E549E10E16D;
-	Thu, 26 Feb 2026 08:36:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6379110E885;
+	Thu, 26 Feb 2026 08:50:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="EJW1fvMm";
-	dkim=pass (2048-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="hg7zEFm6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aIZjisWe";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 925FF10E16D
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Feb 2026 08:36:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1772094994;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type;
- bh=Ohl1Ez7BeCQdSMgPkBEicSLs/08Ob1PpTVJeWELXJjM=;
- b=EJW1fvMmFJgDX26iBRCB0qFyasphY0YOjDljQ3Y0SqZ3dJYIn7JX+o3bHj3RSEF7I8wj6b
- I3CkS5MGJwpLIcnu244MWaB4cWbjYIrMYuducsITgTYHcaFHLvpqoW3sQDHDoTs88jwENE
- ybKsXZlpLbFOx7Flu+s4jDVR5xlffBM=
-Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
- [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-124-1a4nXy7qPxOMS_VPc44eyw-1; Thu, 26 Feb 2026 03:36:32 -0500
-X-MC-Unique: 1a4nXy7qPxOMS_VPc44eyw-1
-X-Mimecast-MFC-AGG-ID: 1a4nXy7qPxOMS_VPc44eyw_1772094992
-Received: by mail-wm1-f69.google.com with SMTP id
- 5b1f17b1804b1-48069a43217so1491635e9.1
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Feb 2026 00:36:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=redhat.com; s=google; t=1772094991; x=1772699791; darn=lists.freedesktop.org;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :from:to:cc:subject:date:message-id:reply-to;
- bh=Ohl1Ez7BeCQdSMgPkBEicSLs/08Ob1PpTVJeWELXJjM=;
- b=hg7zEFm6VHB0knv/snKj6a+lovDSRSxi/AZwiYpMvI7BLDjH/4W7lVzplEoXZiKYpn
- PZsztV74s2u0I1byxG3AAbKoTUUlxm1ZIQV/TXzvPwGLs6SgqFLg9baSx42pHsqdhD+n
- sRc5n3cKTciuEXrLnHoZpJMLAla+73d7h5h9I2VCc9E8XVI7/8dUui+GGSC8JRPZ9zED
- fXQSXBSSOc9JElvZphTs70Ydfrg3XgVmiQXUsJvcyofJQMNVaneMFuFthfOuudUiPAXx
- evex1nNmsiXv1WiQI+wnSRV5oiFC1sSF5dTCgYiGvb9JFf+hr86Iyp/477JB01o8iO4e
- qAmw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772094991; x=1772699791;
- h=content-disposition:mime-version:message-id:subject:cc:to:from:date
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=Ohl1Ez7BeCQdSMgPkBEicSLs/08Ob1PpTVJeWELXJjM=;
- b=xCViAOYfn/487Bq7zdzqsHCZS9NjwpmCXx2ZZXi1GeodzLgAvyWSx7ZFbpMBSggyNh
- 2l8F77ZlZJ5grD8LMkOxTu+i7uQ+wKegwr50tnp99dlfb+f7hbVdGgGnk/9eL9Fla2Fv
- DAxLvky3H9whFu22nkJVx7DndcxTafnw/6eXwLWQOHqXk0sdyigbmubw8vMMsMK9dgjg
- 1wp2QsgR32ttLUee8Ar7qCgL17de1lHvx6b8d9EFtHSgZrAdwWNlNFY2cgPT+2u6kN9J
- 8yJicV59eVws30+boXPrGJWHpP81/V6sUbwYHQb5U2MDUHLfTH6Nt6MpKWUqRfeG1NCH
- qeFA==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWbQrSMByQl74rPYzCcd1LenEYAu9/lTWHx7rropxCHNxxlAw+bspwrFN/ZOOm6EdnZrdCQxI91sg==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzKA5eIN0dH6hK+ZjYUCnrr+auHGtM/Jr5+nG8t0LOFqgCeWt/R
- WBwNGRRWNBBLxFslKhfFLm5NKZIkjpHDdMKPdbS+3N8ih1yAtqX/KgD5i/vE9qxx5D2rmn9ByeQ
- PS3IjAt53Ogf4Yd7rPBbWhlMNAzqxRuATJcBMJZJGZrz/PL7wUU6EaaTpZqWJOpJiemAm
-X-Gm-Gg: ATEYQzwc4881xr8gOGs7u7tMpSOYP/QN08fncuN8de4PAxCOUgBr6yhN0sOutn9YqAw
- MmcDRPajjlUYQymID1UY5TyxlPMoRvB7OaYm592XQe6Ff/YhPTsqxZ6Y8Md2QRvFnpyKLZR/I+h
- uq86aelMNRXuQsaloNn9MdKiNOqIU7h1OXwhOSev8JJlHVxoIDSdnqgnE8L1ayLp7nXFfqldMZD
- zgOs/d7bU5bA0ACdTbN+3g1xAvJFrxAYKMDm0R22l5C++Js/bbCZdR54VGQcicVajcLGOTHXdne
- eD2uGAFJBfJFjaxF98IHNFczO5OXFI48voRvqFxF+pFNX08aGRwOvZka1gsoL2HNZo2TIlZTaHh
- 8wpD0BvzG5CQG5a9o
-X-Received: by 2002:a05:600c:4452:b0:483:5a29:9678 with SMTP id
- 5b1f17b1804b1-483c21be3a5mr55275985e9.2.1772094991485; 
- Thu, 26 Feb 2026 00:36:31 -0800 (PST)
-X-Received: by 2002:a05:600c:4452:b0:483:5a29:9678 with SMTP id
- 5b1f17b1804b1-483c21be3a5mr55275345e9.2.1772094990875; 
- Thu, 26 Feb 2026 00:36:30 -0800 (PST)
-Received: from localhost ([82.66.159.240]) by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-483bd750607sm129958415e9.10.2026.02.26.00.36.30
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Feb 2026 00:36:30 -0800 (PST)
-Date: Thu, 26 Feb 2026 09:36:29 +0100
-From: Maxime Ripard <mripard@redhat.com>
-To: Dave Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Matthew Brost <matthew.brost@intel.com>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20260226-heretic-stimulating-swine-6a2f27@penduick>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CE0910E885
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Feb 2026 08:50:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772095848; x=1803631848;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=6YuOeX+YnFPhYVX8owDcdrCadWjnZqfI/Nl5pVGE7Qk=;
+ b=aIZjisWerFvvCTnRGfa8GFwbmyApzYHS9hKkXrQbuefoSNojo5KI+EsT
+ y8dEx22ymx9t3MX/8Y020r1JFJZgVzOdLHqUNtEn5btz+tBqE7Aen+bUg
+ MJLWqeqj3luR5G7nWR1MaLpFVhyyX+2nieymPJHBSbIxCMapFgrSb6nyk
+ nUPA+GlRANbcQiL1wmlA/aIDg6BZwWKToV0vXt1JSUiuVWdpJzpWrGM8K
+ O+4WDDEd90pjfR1lPGTtbWV65i5ap2SX04hz+Sm8q9Q2+u3ACBYzC7Ms/
+ CzftKEMbi1J+hEKNuAheJh04egZVVHMt9CWAAtZxaGXeXvPwiKmE1FAw/ Q==;
+X-CSE-ConnectionGUID: mcggr80YRCukkgmuM0ymeQ==
+X-CSE-MsgGUID: 4N2W8U2XTTSXnw4IGuFf9A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="83782148"
+X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="83782148"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 00:50:48 -0800
+X-CSE-ConnectionGUID: wFnjbb9QQ0q2QY+EnAvkLw==
+X-CSE-MsgGUID: hOujScOfSPyR8/JdlXqFbw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="221123507"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 00:50:48 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 26 Feb 2026 00:50:47 -0800
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Thu, 26 Feb 2026 00:50:47 -0800
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.29) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 26 Feb 2026 00:50:47 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=in2VqpDpuKPThXLbfbTALv4+VPCQQWOYAUFaf8Y2L0UUqYrfWLIp0y33JKmrpMIlJ7vfHD2h7afH2cmMzVcoKAveQuHmjIQYerp/x7iMOItfXoydj752pW56EFatTU2NPvprOeSn6FHCi8EGt76+vQyF5YX/x0GhKKgGQ1R+Jfw/ubyLaKrV2vq6s27qdsKNF06sAvWivSuCQM4qw8DxcRR4N1tB/8NWd+PrUdju1DIKQ15Fnl1Eyw9F5v4xNcRqd1E7mfj3HCVZcW9u4S5xh6a3pgy8B+IXDhqhlj2Rb5Qkb9UCe9eFVnfha5F7AkkHJ9ooyMS8YVIJsir5u0qkkQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=HKpmjUZXTnY/PXkBEqhQrmbNDlcAfNDl4LV2tbGSYVI=;
+ b=ZkGe9wvsdwIVfB4mnQcFXcRdZQzaYxr7RLOjkpebDvtEBspoVBSazcZBOwX5HOVpWsSpZ2QsgKJf1ig9Ix+AK2uz/0srMQMUt+JAlizW4rJkDETe5Q1iQuJjwlmxgSG2GGjY3HxPZZqhGEn8BeQBJMbaYoZwUkMV5hBkJpPXghxOlhpvP/8CXMfYINAEYV1LABZFRLNW+ICAnYH+46+xoRkoutt690AblfYWrIEfcQ0+R81utcZG8aXe/gbnhPl+n8tockmYb5lrh0Buzl8OgWz96jfbOoxQEw2CG44groJPeQwhKwOTuGUsWyYoV0cqyfk0tG7iKVDpp0a9z5UP9A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SN7PR11MB7138.namprd11.prod.outlook.com (2603:10b6:806:2a1::5)
+ by DS7PR11MB5991.namprd11.prod.outlook.com (2603:10b6:8:72::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Thu, 26 Feb
+ 2026 08:50:45 +0000
+Received: from SN7PR11MB7138.namprd11.prod.outlook.com
+ ([fe80::7ccb:84e7:50c3:c201]) by SN7PR11MB7138.namprd11.prod.outlook.com
+ ([fe80::7ccb:84e7:50c3:c201%3]) with mapi id 15.20.9632.017; Thu, 26 Feb 2026
+ 08:50:44 +0000
+Message-ID: <4600cfb3-2609-4510-bf2e-d2ed6248c4a8@intel.com>
+Date: Thu, 26 Feb 2026 14:20:35 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/1] drm/xe: Set GT rp min frequency as 1.2GHz default for
+ BMG/CRI
+To: "Hellstrom, Thomas" <thomas.hellstrom@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>, "Shah, Ankur N"
+ <ankur.n.shah@intel.com>, "Ghimiray, Himal Prasad"
+ <himal.prasad.ghimiray@intel.com>, "Mrozek, Michal" <michal.mrozek@intel.com>
+References: <20260216135107.3148167-3-naresh.kumar.g@intel.com>
+ <20260216135107.3148167-4-naresh.kumar.g@intel.com>
+ <4603e26486bdeeafac19dc8a4d0c64aa3fa988bb.camel@intel.com>
+Content-Language: en-US
+From: "Kumar G, Naresh" <naresh.kumar.g@intel.com>
+In-Reply-To: <4603e26486bdeeafac19dc8a4d0c64aa3fa988bb.camel@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5PR01CA0063.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b7::8) To SN7PR11MB7138.namprd11.prod.outlook.com
+ (2603:10b6:806:2a1::5)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="h7jenyb2nigt3xo2"
-Content-Disposition: inline
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN7PR11MB7138:EE_|DS7PR11MB5991:EE_
+X-MS-Office365-Filtering-Correlation-Id: bb90bb84-91df-4061-1154-08de751420d8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
+X-Microsoft-Antispam-Message-Info: r8D2vwTurS4TEG3pxitQqJnQ/eiF+UPk4KZoJ5TFLSjOL5jSLzyDENLLvzO37QnJ1CKE8cpktyE8EXgtkjqxzSif00dbQH0UnqvD/q9Sss/vrLjSx7gNQh6LTvPwEaOuDIO9+7G6f+YyDXWNULojglZyqs9ae3X0xNd4ft/xwJuz2ZtNUePlcha/WTOPPjYgSCdTVM3+rqRC8Jo51GwnlX0XTRIO3z9Tyvxi/rVb+fx0tXRbyNk1GS9C4r5AWI3PfMrbuUbK45IgklaE9TUsJFmzWeCFYpFTkKz2XnkKfjT5ZQfcYNwYM8D4a6lqIqMwzvjFYJJO0WPrnOty3P70iFuAloAYIFGto0FK1TKxCX7YO+jVIV2S7PCyaCcsCBc29nv3MmnnB/PWng6THtYFCwk7l4jlQl+cMOdHb7LmmjVspf5abmBFX63TG1WKWxXeX+cZ2+zlqyuVfB98XeHuHq9V+rlyYcgS3y6pB+FfwH+oRQKzEEUhGvfjaGZwu7bO+7L/InLokm62U2Cv5bNLtqREwJD21tM8iTXWiKMRaXWBYJ4GU8KjfvjZ2TKa6A7fOYMMnGRbe/TbgVDZmwsjUBGtEMsLlGHpHqCIAn1KuKUeI7fwd2v4cVpCuEv0Y7Eb+HuLjUtELDPYi+LTJKBRjetbKGYhzKxUMOmSHZ1Wgai+G5LF3xJmT2YT1wV0mN8NPObUmDuGtoPOvKebV4FbS2OxL5RmvwOoNEGhbUbcmcI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SN7PR11MB7138.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VkZQOFM2KzJiK05lL0J5VWt2ZUppQmVrM28wdnJDK1NZbEtUdCtsMER2aEJ3?=
+ =?utf-8?B?czE5YWxLVEE5Q3pUTSt4ZG9JZVB1TmtQTS9LdXFQSTYrTzBuZ29DMDZzZFhB?=
+ =?utf-8?B?OXp4ZTlMWU9NY1VhRWt0VTBuZEtneUx0dzYySUhyQzREWFJIenhic2lJcEVl?=
+ =?utf-8?B?OTRHME9idUFMK3AwM2hYZmxRZm0xZGRHOHBndldnbTUvbFBNVUE1SFdCUE5t?=
+ =?utf-8?B?cGpZaUJHaERaTHIzNGd4K3kwWUZsanVyZExCMUJKQVY2dFYrRmlZRmxXQ0Vm?=
+ =?utf-8?B?cWdXRC9KOHhPQkFyT0g4dEVwSWdzanFaNW1DMkxPOVFQMjUxM0FjYkFWS21o?=
+ =?utf-8?B?azNMOU9UOGw2a3ljZWVkMWQ4SHk2b3JuUGtIYksweTRSZmljM1RoeVAvZXdZ?=
+ =?utf-8?B?eW5NMjMwcjNLV3RmTFVZVVJJWUlqc1ZBMFppYWRjV3ljRVBEbVdlNjhPQ0lC?=
+ =?utf-8?B?c0wwOURpR1U0a0U3L3NDQjB5a0RSUlFoc1ZtZVk5eUZVZWh2SEZ1RStsaFVj?=
+ =?utf-8?B?dGR0NjR3WkpOR2E3T0tqa0N3MjYyQUs3UmFJK1M2SXQ2S1N3OS9oQk1OY2s2?=
+ =?utf-8?B?N0hHUDRwbDJKQStVMmJJR0tzUVRDamJENmY0ZWk5VkZwRzg0L3pSZFpyeTAz?=
+ =?utf-8?B?bGhoZityQjhKWmpraTN3MkJoQTZYOE5iaWRnMm5CWE52YUN0ZTFzRzRGMUx0?=
+ =?utf-8?B?dTdFems1NDBtZ25DOGZpQm1aRklzWnFUeXVlU0d3alorenJlRFNscmt6WCtw?=
+ =?utf-8?B?eG9OVFZVY1JTcjc0OWx0WER2Tk9ySWR3Um1QUXBCVnBxbFFrWFUzcDBnZW1I?=
+ =?utf-8?B?N1Q2ZG1nYThoOFgvbzNENXNuR3p2QnZ0QjUzVEtJRUdNUDB2T3paYUtDMFF5?=
+ =?utf-8?B?dFdOaVBaZmF0bVVZUk0wTWRDMnduVXNjMUVnaVVmUHRYeWJaYW01R0xiT1E4?=
+ =?utf-8?B?eUFzLys2L2cxbmJOMnI5c0tKTGFqeVZkNkFmSlVRaHg5d05sck1vK09rbytp?=
+ =?utf-8?B?M1p5MVFXT0NQYlBFNys1am50bUFEbFU1VGJJdlV1ZDhDekJrWmFmb3R0alM2?=
+ =?utf-8?B?cmFrNmNobUhJZWlVZ3FEZUhNSXlsNm9tMmptSEdCTi9nOGxBRm4vTkJuQ3Z1?=
+ =?utf-8?B?RjBLSjlaa29jY2ZVUWIwcXZJWWovVE5WZG1YZURJakhCWHVUb01GUnNlemFZ?=
+ =?utf-8?B?MXRobVd3MkhRNVBSRWdMVExBbTlLeXcrc1NEc0JKMlo3L0JWelQ1YWN1NExL?=
+ =?utf-8?B?QjAzZitneWFsQnAvMkwxbmtlSXUxbnhkSVdEa1FhbVFUVk9nOU82UDM5VE4r?=
+ =?utf-8?B?TVFhTzJxNloxVjJoSE9KeWJKMk1QRW03N0JPcjl6cndlMmFzUGdTRkppaWNw?=
+ =?utf-8?B?NE1UUkNoYmR4dFNOV1E3dnNrWWt0b01RSHNlUG4rVzhNSzA5cXF6eXFZNjdZ?=
+ =?utf-8?B?Z21vQmRuNmJRUnZQU3BuZldmUERRdmJORE5GWHdNdFUyVmNaaVVWcHhRWk9Q?=
+ =?utf-8?B?S3dLVmwzd0RPQzhEd2pLZDBidmxYZURQdFR2N0NrbkZkcG1pMFBZcHVtamx1?=
+ =?utf-8?B?R2o4bVhlREplQjc4MXRpamRzTGlQUDBEUWJTNDZMKzJqV2dXbzBta2ZLOE1t?=
+ =?utf-8?B?RmU5MnpkTFQzdlZPMk96aFVOczU3MUdhOFBlUkY2b0traE5qWS90QW51Y3g5?=
+ =?utf-8?B?WElzNEVQRStPblBTVDVvNkFNUWVCV1R3bmVXeWd2eUhTL09QazZGbzRacTBt?=
+ =?utf-8?B?a1htN1J0REt2VjhQUUFLYWFnblVVVFNFMlJwV0pwcW1CTGxpYStwQ2lBdmxK?=
+ =?utf-8?B?akxKdzlpdklXQ0MrNDNZUWsyUHRya1U4cXkyMWxzTjJObWZIS1ZnMTk3blZZ?=
+ =?utf-8?B?ZkdyRFNHdlhxc3dZdWs0d0xQV00wc0wyZWw5YzdVUUh3c1doY2dCcUJ3aUFy?=
+ =?utf-8?B?S1luWTRnMTdoT2o3REh6MnJjMnB4dW9uWUZNRjVEaExVdUtlSHJkalE2dEM1?=
+ =?utf-8?B?RWVIVzR1cXQ5NGlVbFRmdlF2eHY1QkJCWktQUmZUVGlkTTVSVjRBYWEvUVlE?=
+ =?utf-8?B?QU5oOElHUmcrcEFPS0psK25QU1lHeDZGUjBUQ1BaaVFabTB0QTd4dkVUMW9o?=
+ =?utf-8?B?VDVLZlNiYzV3aC80dVJoTC80UTk2K1FERTY3Zlp3SzJjR3ZBaGx5bUQwdEp2?=
+ =?utf-8?B?anl6d0d0QXFDMjdaVHloZWpxUitzTDBGbGtwMlVwNkxqUytCMnR2MnhESFhX?=
+ =?utf-8?B?OXRmTzFlWTVhSnhnaGUxcm9FTkpLalVIYWtRRnd4SStlVlpPWHFSQ25WVm9r?=
+ =?utf-8?B?QzQxN3VzcEpMSlZ5OGxZZ01MSmYxV014MXRQQjdFVU9SUWl2QTM5UT09?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: bb90bb84-91df-4061-1154-08de751420d8
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB7138.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2026 08:50:44.7564 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qgF9C1bLQn7pF6N63l6b74TsTyxfSN70XdV+y1ZGLwrVtJDZUBFHQhjIQUA1/QCCuC6pQLfNxk8A/ScMsrKAAB0a/prWfvgjGpLRMVBaK4w=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB5991
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,155 +171,76 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
---h7jenyb2nigt3xo2
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Subject: [PULL] drm-misc-fixes
-MIME-Version: 1.0
 
-Hi Dave, Sima,
+On 18-02-2026 14:34, Hellstrom, Thomas wrote:
+> On Mon, 2026-02-16 at 19:21 +0530, Nareshkumar Gollakoti wrote:
+>>   While previously applied only to the BMG G21(Battle image) platform
+>>   via workaround Wa_14022085890,this 1.2 GHz minimum is now the
+>> default
+>>   for BMG and CRI platforms.
+>>
+>>   Setting this frequency floor(1.2GHz) default is critical in multi
+>> GPU
+>>   environment for supporting effective Peer-to-Peer(P2P) transactions.
+>>
+>> Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_guc_pc.c | 9 ++++++++-
+>>   1 file changed, 8 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c
+>> b/drivers/gpu/drm/xe/xe_guc_pc.c
+>> index 5e5495a39a3c..881054c9cf92 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+>> @@ -860,6 +860,7 @@ static int pc_adjust_freq_bounds(struct xe_guc_pc
+>> *pc)
+>>   {
+>>   	struct xe_tile *tile = gt_to_tile(pc_to_gt(pc));
+>>   	int ret;
+>> +	struct xe_device *xe = pc_to_xe(pc);
+>>   
+>>   	lockdep_assert_held(&pc->freq_lock);
+>>   
+>> @@ -885,7 +886,13 @@ static int pc_adjust_freq_bounds(struct
+>> xe_guc_pc *pc)
+>>   	if (pc_get_min_freq(pc) > pc->rp0_freq)
+>>   		ret = pc_set_min_freq(pc, pc->rp0_freq);
+>>   
+>> -	if (XE_DEVICE_WA(tile_to_xe(tile), 14022085890))
+>> +	/*
+>> +	 * Setting GT RP min frequency to 1.2GHz by default for
+>> +	 * all BMG and CRI(For BMG G21 WA do the same).
+>> +	 */
+>> +	if (XE_DEVICE_WA(tile_to_xe(tile), 14022085890) ||
+>> +	    (xe->info.platform == XE_BATTLEMAGE ||
+>> +			 xe->info.platform == XE_CRESCENTISLAND))
+>>   		ret = pc_set_min_freq(pc, max(BMG_MIN_FREQ,
+>> pc_get_min_freq(pc)));
+> 
+> Copying the reply given to the cover letter for completeness:
+> 
+> Wasn't the idea to do this only for the Arc PRO BMGs (server SKUs)?
+> Perhaps the compute team would want to chime in here for the scope of
+> this workaround.
+> 
+> Thanks,
+> Thomas
+> 
+> 
+Hi Thomas,
 
-Here's this week drm-misc-fixes PR.
+As we have conclusive scope from compute team
+about having the change for both BMG/CRI.
 
-Maxime
+Let me know if any further review comments.
 
-drm-misc-fixes-2026-02-26:
-Several fixes for:
-  - amdxdna: Fix for a deadlock, a NULL pointer dereference, a suspend
-    failure, a hang, an out-of-bounds access, a buffer overflow, input
-    sanitization and other minor fixes.
-  - dw-dp: An error handling fix
-  - ethosu: A binary shift overflow fix
-  - imx: An error handling fix
-  - logicvc: A dt node reference leak fix
-  - nouveau: A WARN_ON removal
-  - samsung-dsim: A memory leak fix
-  - sharp-memory: A NULL pointer dereference fix
-  - vmgfx: A reference count and error handling fix
-The following changes since commit 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f:
+Thanks,
+Naresh
 
-  Linux 7.0-rc1 (2026-02-22 13:18:59 -0800)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2026-02-26
-
-for you to fetch changes up to 75c151ceaacf5ca8f2f34ebf863d88002fb12587:
-
-  accel/amdxdna: Use a different name for latest firmware (2026-02-25 13:51:31 -0800)
-
-----------------------------------------------------------------
-Several fixes for:
-  - amdxdna: Fix for a deadlock, a NULL pointer dereference, a suspend
-    failure, a hang, an out-of-bounds access, a buffer overflow, input
-    sanitization and other minor fixes.
-  - dw-dp: An error handling fix
-  - ethosu: A binary shift overflow fix
-  - imx: An error handling fix
-  - logicvc: A dt node reference leak fix
-  - nouveau: A WARN_ON removal
-  - samsung-dsim: A memory leak fix
-  - sharp-memory: A NULL pointer dereference fix
-  - vmgfx: A reference count and error handling fix
-
-----------------------------------------------------------------
-Brad Spengler (1):
-      drm/vmwgfx: Fix invalid kref_put callback in vmw_bo_dirty_release
-
-Chen Ni (2):
-      drm/imx: parallel-display: check return value of devm_drm_bridge_add() in imx_pd_probe()
-      drm/bridge: synopsys: dw-dp: Check return value of devm_drm_bridge_add() in dw_dp_bind()
-
-Dan Carpenter (1):
-      accel: ethosu: Fix shift overflow in cmd_to_addr()
-
-Dave Airlie (1):
-      nouveau/gsp: drop WARN_ON in ACPI probes
-
-Ethan Tidmore (1):
-      drm/tiny: sharp-memory: fix pointer error dereference
-
-Felix Gu (1):
-      drm/logicvc: Fix device node reference leak in logicvc_drm_config_parse()
-
-Franz Schnyder (1):
-      drm/bridge: ti-sn65dsi86: Enable HPD polling if IRQ is not used
-
-Ian Forbes (2):
-      drm/vmwgfx: Set a unique ID for each submitted command buffer
-      drm/vmwgfx: Return the correct value in vmw_translate_ptr functions
-
-Jonathan Cavitt (1):
-      drm/client: Do not destroy NULL modes
-
-Lizhi Hou (10):
-      accel/amdxdna: Remove buffer size check when creating command BO
-      accel/amdxdna: Switch to always use chained command
-      accel/amdxdna: Fix crash when destroying a suspended hardware context
-      accel/amdxdna: Fix dead lock for suspend and resume
-      accel/amdxdna: Fix suspend failure after enabling turbo mode
-      accel/amdxdna: Fix command hang on suspended hardware context
-      accel/amdxdna: Fix out-of-bounds memset in command slot handling
-      accel/amdxdna: Prevent ubuf size overflow
-      accel/amdxdna: Validate command buffer payload count
-      accel/amdxdna: Use a different name for latest firmware
-
-Mario Limonciello (1):
-      accel/amdxdna: Reduce log noise during process termination
-
-Matthew Brost (1):
-      drm/gpusvm: Fix drm_gpusvm_pages_valid_unlocked() kernel-doc
-
-Maxime Ripard (1):
-      Merge drm/drm-fixes into drm-misc-fixes
-
-Osama Abdelkader (1):
-      drm/bridge: samsung-dsim: Fix memory leak in error path
-
-Simon Ser (1):
-      drm/fourcc: fix plane order for 10/12/16-bit YCbCr formats
-
- drivers/accel/amdxdna/aie2_ctx.c                   | 32 ++++++++++-------
- drivers/accel/amdxdna/aie2_message.c               | 15 +++++---
- drivers/accel/amdxdna/aie2_pci.c                   | 40 ++++++++++++++++------
- drivers/accel/amdxdna/aie2_pm.c                    |  2 +-
- drivers/accel/amdxdna/amdxdna_ctx.c                | 24 ++++++-------
- drivers/accel/amdxdna/amdxdna_gem.c                | 38 ++++++++++----------
- drivers/accel/amdxdna/amdxdna_pci_drv.c            |  3 ++
- drivers/accel/amdxdna/amdxdna_pm.c                 |  2 ++
- drivers/accel/amdxdna/amdxdna_pm.h                 | 11 ++++++
- drivers/accel/amdxdna/amdxdna_ubuf.c               |  6 +++-
- drivers/accel/amdxdna/npu1_regs.c                  |  2 +-
- drivers/accel/amdxdna/npu4_regs.c                  |  2 +-
- drivers/accel/amdxdna/npu5_regs.c                  |  2 +-
- drivers/accel/amdxdna/npu6_regs.c                  |  2 +-
- drivers/accel/ethosu/ethosu_gem.c                  |  2 +-
- drivers/gpu/drm/bridge/samsung-dsim.c              | 23 ++++++++-----
- drivers/gpu/drm/bridge/synopsys/dw-dp.c            |  4 ++-
- drivers/gpu/drm/bridge/ti-sn65dsi86.c              |  6 ++--
- drivers/gpu/drm/drm_client_modeset.c               |  3 +-
- drivers/gpu/drm/drm_gpusvm.c                       | 10 +++---
- drivers/gpu/drm/imx/ipuv3/parallel-display.c       |  4 ++-
- drivers/gpu/drm/logicvc/logicvc_drm.c              |  4 +--
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c  | 12 +++----
- drivers/gpu/drm/tiny/sharp-memory.c                |  4 +--
- drivers/gpu/drm/vmwgfx/vmwgfx_cmdbuf.c             |  4 +++
- drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c            |  4 +--
- drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c         |  9 ++++-
- include/uapi/drm/drm_fourcc.h                      | 12 +++----
- 28 files changed, 176 insertions(+), 106 deletions(-)
-
---h7jenyb2nigt3xo2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaaAGDQAKCRAnX84Zoj2+
-drbsAYCEsDoqx/Gmbca8wv+gheQON5pIY63WyutXFjfIa0m3xv4JB84aD2h9Y4w7
-HlQsiasBgIYLwdAk+Aje1uqb/27BfH6ygDtbX2vizqxqResf6lJANGndqEfT/zsh
-Wn02s6t61g==
-=aeey
------END PGP SIGNATURE-----
-
---h7jenyb2nigt3xo2--
+> 
+> 
+> 
+>>   
+>>   out:
 
