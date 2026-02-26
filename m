@@ -4,59 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F764FD8FCA
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 15:34:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85B15FD8FCA
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 16:01:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4AF710E988;
-	Thu, 26 Feb 2026 15:34:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 214B910E96B;
+	Thu, 26 Feb 2026 16:01:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hMgNx0yR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C+UkJd+S";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E6C9C10E987;
- Thu, 26 Feb 2026 15:34:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD89010E96B;
+ Thu, 26 Feb 2026 16:01:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772120068; x=1803656068;
+ t=1772121704; x=1803657704;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=KVjuPV2PnmKImjY/YU+O9UZg7YjfMtTA0ylSXStBQRE=;
- b=hMgNx0yRxsgk62uGHydIDnHjC0nRwe2/4rXKQR9aABz69On+oortFULD
- LDQv2Mi+SLO8eivxJH1Zn1yAcdcmmI+kvGJo3XtuT42VzQJuy38kP6eQI
- TVxGG40okHsQKXJbX8DoQY33lhaXtwD3x4DvzHA4ZChikogYfyAcggu3n
- DIf8XOpjHGvFv/XZ1HgtFVCJ5btIAS13HTTljU9EHhwmzGPax66gOGnb6
- GHPpy1LuD+a9JjjmDyiztHnzet4/NjOzB4uskHc1DfZynSiIHAATdghNb
- fAhvxN1t1qU3AMzfC4O2PB58XRGkzZ73/O0dZtGHVdDVBrJkm6perc+jq g==;
-X-CSE-ConnectionGUID: IscowrINTWaP6kc/8Q9DCQ==
-X-CSE-MsgGUID: DtGK52+oQtODtkUodkVQjw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="95801226"
-X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="95801226"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2026 07:34:28 -0800
-X-CSE-ConnectionGUID: g6RoppsQSIms/jLFx64A7A==
-X-CSE-MsgGUID: xe6UvlSNTKuTlJaXipDpXg==
+ bh=OXZTjtKi5Ik0F9eC4rQ7zdeMg+KRBCgLFvprHIU5r2s=;
+ b=C+UkJd+Sh++BFthgXtwN1Gop5Kno4/LLi34EhxGkq4+lb0+YaWnFDKS3
+ srIuwry0II45VPsNerk5yVXI6ZEarmDErw4sIQszNPeygTodR07UfZlY4
+ lLgbhB62KDyFeRQ3YvVPDMNLMMRD7Nn7cCA0kT+kSlKjGmrkPQLyEX2GQ
+ XHslRR2F6zkWwAVeB/uujsgaixxVmtD/jmJdrf77tXPMkR2QfyGC9uUkx
+ GxFzNq0mtG0Gh7gIFvp9H6kKs4Hz8JM5K9qkA2yRAnZ2GNKSbG82eKywi
+ RWJNXHLSYskNrVpSUUPJK570/YC9Tmv77lFJjJxTIXwTIQwxpxzs54zLE w==;
+X-CSE-ConnectionGUID: keZnR66rRvOufYQI4/L+qg==
+X-CSE-MsgGUID: Xl7x6MSkT7ShZZ29/zt7Xw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="84281065"
+X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="84281065"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 08:01:44 -0800
+X-CSE-ConnectionGUID: 7egNvZwoTKuIhi4PweLE/Q==
+X-CSE-MsgGUID: rT5S4tFhTOGB3wvMTctfXQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="215832635"
+X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="254376493"
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
  ([10.245.244.224])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2026 07:34:26 -0800
-Date: Thu, 26 Feb 2026 17:34:22 +0200
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 08:01:41 -0800
+Date: Thu, 26 Feb 2026 18:01:38 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  jouni.hogander@intel.com, animesh.manna@intel.com
-Subject: Re: [PATCH 05/14] include/drm/display/dp: Add field for storing AS
- SDP version
-Message-ID: <aaBn_kzDTiO3EnV8@intel.com>
+Subject: Re: [PATCH 03/14] drm/i915/dp: Add a helper to decide if AS SDP is
+ needed
+Message-ID: <aaBuYixoTXRA64ga@intel.com>
 References: <20260223134431.1639308-1-ankit.k.nautiyal@intel.com>
- <20260223134431.1639308-6-ankit.k.nautiyal@intel.com>
+ <20260223134431.1639308-4-ankit.k.nautiyal@intel.com>
+ <aaBm7JNiW1T7Mmfc@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260223134431.1639308-6-ankit.k.nautiyal@intel.com>
+In-Reply-To: <aaBm7JNiW1T7Mmfc@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -74,46 +75,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Feb 23, 2026 at 07:14:22PM +0530, Ankit Nautiyal wrote:
-> Add a new member to store Adaptive Sync SDP version and include it in AS
-> SDP logs.
+On Thu, Feb 26, 2026 at 05:29:48PM +0200, Ville Syrjälä wrote:
+> On Mon, Feb 23, 2026 at 07:14:20PM +0530, Ankit Nautiyal wrote:
+> > Add a helper to check if AS SDP is needed. Currently AS SDP is only
+> > required when VRR is enabled. However, there are other use cases, along
+> > with the missing case of CMRR, dealt in subsequent changes.
+> > 
+> > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dp.c | 11 ++++++++++-
+> >  1 file changed, 10 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> > index b999d8c085c7..65764ab0bb9b 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> > @@ -3111,6 +3111,12 @@ static void intel_dp_compute_vsc_colorimetry(const struct intel_crtc_state *crtc
+> >  	vsc->content_type = DP_CONTENT_TYPE_NOT_DEFINED;
+> >  }
+> >  
+> > +static bool intel_dp_needs_as_sdp(struct intel_dp *intel_dp,
+> > +				  struct intel_crtc_state *crtc_state)
+> > +{
+> > +	return crtc_state->vrr.enable;
 > 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/display/drm_dp_helper.c | 1 +
->  include/drm/display/drm_dp_helper.h     | 1 +
->  2 files changed, 2 insertions(+)
+> Since we don't support VRR+PCON I don't think we actually
+> need the AS SDP for VRR.
+
+Hmm. DP 2.1a does say
+"When the plugged DP device has DPCD 02214h[0] = 1, a DP Source
+ device shall transmit an Adaptive-Sync SDP before enabling an
+ Adaptive-Sync video transmission."
+
+So maybe we do need to transmit it whenever the DP device
+supports it. In that case someone will probably need to figure
+out the fastset stuff.
+
 > 
-> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> index a697cc227e28..9469943d8194 100644
-> --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> @@ -3507,6 +3507,7 @@ void drm_dp_as_sdp_log(struct drm_printer *p, const struct drm_dp_as_sdp *as_sdp
->  {
->  	drm_printf(p, "DP SDP: AS_SDP, revision %u, length %u\n",
->  		   as_sdp->revision, as_sdp->length);
-> +	drm_printf(p, "    version: %d\n", as_sdp->version);
->  	drm_printf(p, "    vtotal: %d\n", as_sdp->vtotal);
->  	drm_printf(p, "    target_rr: %d\n", as_sdp->target_rr);
->  	drm_printf(p, "    duration_incr_ms: %d\n", as_sdp->duration_incr_ms);
-> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-> index 1d0acd58f486..c71787fc31c1 100644
-> --- a/include/drm/display/drm_dp_helper.h
-> +++ b/include/drm/display/drm_dp_helper.h
-> @@ -120,6 +120,7 @@ struct drm_dp_as_sdp {
->  	unsigned char sdp_type;
->  	unsigned char revision;
-                      ^^^^^^^^
-
-Isn't that already the thing you're trying to add here?
-
->  	unsigned char length;
-> +	int version;
->  	int vtotal;
->  	int target_rr;
->  	int duration_incr_ms;
+> And I don't think we even have a fastset path for this stuff
+> (or where is it?) so isn't this already causing fastset
+> failures for VRR enable/disable? Or maybe we don't have
+> displays with both VRR and AS SDP support anywhere?
+> 
+> > +}
+> > +
+> >  static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+> >  				    struct intel_crtc_state *crtc_state)
+> >  {
+> > @@ -3118,7 +3124,10 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+> >  	const struct drm_display_mode *adjusted_mode =
+> >  		&crtc_state->hw.adjusted_mode;
+> >  
+> > -	if (!crtc_state->vrr.enable || !intel_dp->as_sdp_supported)
+> > +	if (!intel_dp->as_sdp_supported)
+> > +		return;
+> > +
+> > +	if (!intel_dp_needs_as_sdp(intel_dp, crtc_state))
+> >  		return;
+> >  
+> >  	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
+> > -- 
+> > 2.45.2
+> 
 > -- 
-> 2.45.2
+> Ville Syrjälä
+> Intel
 
 -- 
 Ville Syrjälä
