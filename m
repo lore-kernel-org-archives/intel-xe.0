@@ -4,63 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85B15FD8FCA
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 16:01:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5710BFD8FD0
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 16:08:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 214B910E96B;
-	Thu, 26 Feb 2026 16:01:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E9EF10E9A6;
+	Thu, 26 Feb 2026 16:08:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C+UkJd+S";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IUcz4B0P";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD89010E96B;
- Thu, 26 Feb 2026 16:01:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 723DD10E9A6
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Feb 2026 16:08:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772121704; x=1803657704;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=OXZTjtKi5Ik0F9eC4rQ7zdeMg+KRBCgLFvprHIU5r2s=;
- b=C+UkJd+Sh++BFthgXtwN1Gop5Kno4/LLi34EhxGkq4+lb0+YaWnFDKS3
- srIuwry0II45VPsNerk5yVXI6ZEarmDErw4sIQszNPeygTodR07UfZlY4
- lLgbhB62KDyFeRQ3YvVPDMNLMMRD7Nn7cCA0kT+kSlKjGmrkPQLyEX2GQ
- XHslRR2F6zkWwAVeB/uujsgaixxVmtD/jmJdrf77tXPMkR2QfyGC9uUkx
- GxFzNq0mtG0Gh7gIFvp9H6kKs4Hz8JM5K9qkA2yRAnZ2GNKSbG82eKywi
- RWJNXHLSYskNrVpSUUPJK570/YC9Tmv77lFJjJxTIXwTIQwxpxzs54zLE w==;
-X-CSE-ConnectionGUID: keZnR66rRvOufYQI4/L+qg==
-X-CSE-MsgGUID: Xl7x6MSkT7ShZZ29/zt7Xw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="84281065"
-X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="84281065"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2026 08:01:44 -0800
-X-CSE-ConnectionGUID: 7egNvZwoTKuIhi4PweLE/Q==
-X-CSE-MsgGUID: rT5S4tFhTOGB3wvMTctfXQ==
+ t=1772122108; x=1803658108;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=rojk5xBRV8Q/SHizHr0RK5U+qadS/Vff4Qf25gUjhfE=;
+ b=IUcz4B0PUX4UpvDT7xOMdPXdFkYQhbFZXEwnKroUFlsIdzKzj8IRzff4
+ wXQ39v48ZSiY17Lfons8QmA//VkAB0nbRB/EghIieGgeOlIoiOF/LzsxB
+ VFCx/S4pq4VpzqZQaE0Uu+yvIzO9lFZlRpY4akT2RMR45BBWJv1NmpyFr
+ OV+i7qP//bKfjRVQrDXAa6UJAa8hEOAOOU5STlKY5RsKiFcOzyZ0NIWZp
+ lRZs6RMbtPlai4FlGHh571B3P1p2RMv2IRPbPZ+no5RQQ5eCLxxRjuNkt
+ uG/3/u2jTbYIlLeXZcl3rXQdyRrVeCxI95yb56qXGaNlCFe/I5BZxM9Hp g==;
+X-CSE-ConnectionGUID: KS+RN+B5RfaihuIoPDNG+A==
+X-CSE-MsgGUID: ZgpCM4HCQ1yM7NBOJgq5CA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="73234167"
+X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="73234167"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 08:08:27 -0800
+X-CSE-ConnectionGUID: i0sFyt+oRy2E9Cvw7tfklw==
+X-CSE-MsgGUID: cYCnll6yR2ae4H/xoUI5cQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="254376493"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
- ([10.245.244.224])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2026 08:01:41 -0800
-Date: Thu, 26 Feb 2026 18:01:38 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jouni.hogander@intel.com, animesh.manna@intel.com
-Subject: Re: [PATCH 03/14] drm/i915/dp: Add a helper to decide if AS SDP is
- needed
-Message-ID: <aaBuYixoTXRA64ga@intel.com>
-References: <20260223134431.1639308-1-ankit.k.nautiyal@intel.com>
- <20260223134431.1639308-4-ankit.k.nautiyal@intel.com>
- <aaBm7JNiW1T7Mmfc@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="214136900"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.242])
+ ([10.245.244.242])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 08:08:24 -0800
+Message-ID: <6d9a4efc-766e-45dc-973b-2a6fab76b143@intel.com>
+Date: Thu, 26 Feb 2026 16:08:22 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aaBm7JNiW1T7Mmfc@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 0/6] Introduce Xe PCIe FLR
+To: Raag Jadav <raag.jadav@intel.com>, intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
+ thomas.hellstrom@linux.intel.com, riana.tauro@intel.com,
+ michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
+ michal.winiarski@intel.com
+References: <20260224102618.3105171-1-raag.jadav@intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20260224102618.3105171-1-raag.jadav@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,72 +72,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Feb 26, 2026 at 05:29:48PM +0200, Ville Syrjälä wrote:
-> On Mon, Feb 23, 2026 at 07:14:20PM +0530, Ankit Nautiyal wrote:
-> > Add a helper to check if AS SDP is needed. Currently AS SDP is only
-> > required when VRR is enabled. However, there are other use cases, along
-> > with the missing case of CMRR, dealt in subsequent changes.
-> > 
-> > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp.c | 11 ++++++++++-
-> >  1 file changed, 10 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index b999d8c085c7..65764ab0bb9b 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -3111,6 +3111,12 @@ static void intel_dp_compute_vsc_colorimetry(const struct intel_crtc_state *crtc
-> >  	vsc->content_type = DP_CONTENT_TYPE_NOT_DEFINED;
-> >  }
-> >  
-> > +static bool intel_dp_needs_as_sdp(struct intel_dp *intel_dp,
-> > +				  struct intel_crtc_state *crtc_state)
-> > +{
-> > +	return crtc_state->vrr.enable;
-> 
-> Since we don't support VRR+PCON I don't think we actually
-> need the AS SDP for VRR.
+On 24/02/2026 10:25, Raag Jadav wrote:
+> Here's my humble attempt at introducing PCIe FLR support in xe driver.
+> This is ofcourse a half baked implementation and only limited to reloading
+> uC firmwares. This needs to be extended for a lot of different components
+> which I've skipped here for my lack of competence, so feel free to join
+> in and support them.
 
-Hmm. DP 2.1a does say
-"When the plugged DP device has DPCD 02214h[0] = 1, a DP Source
- device shall transmit an Adaptive-Sync SDP before enabling an
- Adaptive-Sync video transmission."
-
-So maybe we do need to transmit it whenever the DP device
-supports it. In that case someone will probably need to figure
-out the fastset stuff.
+I couldn't find where we re-init all the migrate stuff? There is a bunch 
+of PPGTT programming that will be lost if VRAM gets wiped. And then also 
+the migrate queue/context itself. See xe_migrate_init().
 
 > 
-> And I don't think we even have a fastset path for this stuff
-> (or where is it?) so isn't this already causing fastset
-> failures for VRR enable/disable? Or maybe we don't have
-> displays with both VRR and AS SDP support anywhere?
+> PS: This works enough to allow a single exec test run after FLR but it
+> follows with a GuC crash on subsequent runs which I'm still investigating.
 > 
-> > +}
-> > +
-> >  static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
-> >  				    struct intel_crtc_state *crtc_state)
-> >  {
-> > @@ -3118,7 +3124,10 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
-> >  	const struct drm_display_mode *adjusted_mode =
-> >  		&crtc_state->hw.adjusted_mode;
-> >  
-> > -	if (!crtc_state->vrr.enable || !intel_dp->as_sdp_supported)
-> > +	if (!intel_dp->as_sdp_supported)
-> > +		return;
-> > +
-> > +	if (!intel_dp_needs_as_sdp(intel_dp, crtc_state))
-> >  		return;
-> >  
-> >  	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
-> > -- 
-> > 2.45.2
+> Raag Jadav (6):
+>    drm/xe/uc_fw: Allow reloading firmware
+>    drm/xe/uc: Introduce FLR helpers
+>    drm/xe/irq: Introduce FLR helper
+>    drm/xe: Introduce xe_device_assert_lmem_ready()
+>    drm/xe/bo_evict: Introduce xe_bo_restore_map()
+>    drm/xe/pci: Introduce PCIe FLR
 > 
-> -- 
-> Ville Syrjälä
-> Intel
+>   drivers/gpu/drm/xe/Makefile      |   1 +
+>   drivers/gpu/drm/xe/xe_bo_evict.c |  34 +++++--
+>   drivers/gpu/drm/xe/xe_bo_evict.h |   2 +
+>   drivers/gpu/drm/xe/xe_device.c   |   4 +-
+>   drivers/gpu/drm/xe/xe_device.h   |   1 +
+>   drivers/gpu/drm/xe/xe_gsc.c      |  15 ++++
+>   drivers/gpu/drm/xe/xe_gsc.h      |   1 +
+>   drivers/gpu/drm/xe/xe_gt.c       |  10 +++
+>   drivers/gpu/drm/xe/xe_gt.h       |   2 +
+>   drivers/gpu/drm/xe/xe_guc.c      |  16 ++++
+>   drivers/gpu/drm/xe/xe_guc.h      |   1 +
+>   drivers/gpu/drm/xe/xe_huc.c      |  16 ++++
+>   drivers/gpu/drm/xe/xe_huc.h      |   1 +
+>   drivers/gpu/drm/xe/xe_irq.c      |   7 +-
+>   drivers/gpu/drm/xe/xe_irq.h      |   1 +
+>   drivers/gpu/drm/xe/xe_pci.c      |   1 +
+>   drivers/gpu/drm/xe/xe_pci.h      |   2 +
+>   drivers/gpu/drm/xe/xe_pci_err.c  | 147 +++++++++++++++++++++++++++++++
+>   drivers/gpu/drm/xe/xe_uc.c       |  24 +++++
+>   drivers/gpu/drm/xe/xe_uc.h       |   2 +
+>   drivers/gpu/drm/xe/xe_uc_fw.c    |  33 +++----
+>   drivers/gpu/drm/xe/xe_uc_fw.h    |   1 +
+>   22 files changed, 295 insertions(+), 27 deletions(-)
+>   create mode 100644 drivers/gpu/drm/xe/xe_pci_err.c
+> 
 
--- 
-Ville Syrjälä
-Intel
