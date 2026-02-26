@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D4C2FD4609
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 03:02:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BC05FD460B
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 03:02:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBDAA10E85E;
-	Thu, 26 Feb 2026 03:02:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0705110E0F9;
+	Thu, 26 Feb 2026 03:02:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RMekyBs7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gPnVYc02";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8A1E10E85B;
- Thu, 26 Feb 2026 03:01:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CC9110E0D9;
+ Thu, 26 Feb 2026 03:02:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772074918; x=1803610918;
+ t=1772074925; x=1803610925;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fXiqbnsskQzssrhJsmRaWZ7ZTaOaC057lWgLPTfrR3M=;
- b=RMekyBs78HnK1OU4rIsKBdySLYlrwYLr9K11fGck4w0MspBGOUVrjW57
- 9PtKLkKu9LekwX+tGYzfa8tC7JFm51Vrf/L4OhMgvU2lv838wDhoW0zhq
- Rnlg7x47vdNQ7MgdxvVPTZPMWFvfITVLN5zX5VsN8y7CeWKp+mToO0P6F
- z8t5TKTeyM/e6PCDCyDsCMjsTqjnF3NVGJ49haUVDe9YiD+qXFhSBT7qW
- lny2xgMHJHyNellTKSpcdERftQ3Ycwpu1MpaGtXl09oGd8/VTXYNnpVNi
- tGX6VZGC7g2jAzleUq/64vjcXuQk20ZDc80NQpUfpoSiYi0VMfYPRCn1/ A==;
-X-CSE-ConnectionGUID: dIfD8DD2SXq8E0JxXo/0kw==
-X-CSE-MsgGUID: qkUaxueHQUSCcmqBO3Mx+A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="72160392"
-X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="72160392"
+ bh=jEJUzFHoRE3d2/ezJ6fU2pSSD3BXkE7mH0J33xBDPd8=;
+ b=gPnVYc02LY5neZH+6+4un5d4sHb8U8MHy+Yzdja64H9nWOMzR6uM0YCS
+ IyC8bHU/8XJezNrTniTqAZM6XZ47sQrza2C4fZNJn6NIqfnoBHkd0mnpW
+ w6Wsatdxjm3FO2SZScp9xE4uOM1wiDz/W6KnaEwtT1rT5zP3My+BbjEGL
+ qtpNRSQUS/ewGlhpR6KSkOk2P8dcB+d2axFILevzzsGBvSoSfkeDhCjce
+ 3WcRSSZOA/331ymTNBJsHpeRSgBTjJJpmdnElwUQnAbzzjcKgHTIIIZdl
+ Z/QAfA/Sbu9YxlV6Ppb7QgJD3TjZW2R2oPrsnuO3WOZUGIRtPLD/6DE3Z w==;
+X-CSE-ConnectionGUID: sOtRJX8dRcixtHcZ5BwEMQ==
+X-CSE-MsgGUID: bcDEkqbNRdO9/ReOkr7Nsw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="72160418"
+X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="72160418"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 19:01:57 -0800
-X-CSE-ConnectionGUID: T60CfZXfQeuaL5+HQFuayw==
-X-CSE-MsgGUID: QSXSv/JkSn+q0nQ58gpQZQ==
+ 25 Feb 2026 19:02:05 -0800
+X-CSE-ConnectionGUID: 45t1mdtRSPCAMUTsuExbTg==
+X-CSE-MsgGUID: NbK7EVlaSrueUaDq1PrAgg==
 X-ExtLoop1: 1
 Received: from x299.sh.intel.com ([10.239.159.77])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 19:01:50 -0800
+ 25 Feb 2026 19:01:58 -0800
 From: Yujie Liu <yujie.liu@intel.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
@@ -67,10 +67,10 @@ Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>,
  amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org
-Subject: [PATCH 3/7] drm/gma500: fix kernel-doc warning for framebuffer
- init/create functions
-Date: Thu, 26 Feb 2026 11:00:34 +0800
-Message-ID: <20260226030038.1182961-4-yujie.liu@intel.com>
+Subject: [PATCH 4/7] drm/amdgpu: fix kernel-doc warning for
+ amdgpu_ttm_alloc_mmio_remap_bo()
+Date: Thu, 26 Feb 2026 11:00:35 +0800
+Message-ID: <20260226030038.1182961-5-yujie.liu@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260226030038.1182961-1-yujie.liu@intel.com>
 References: <20260226030038.1182961-1-yujie.liu@intel.com>
@@ -90,35 +90,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Warning: drivers/gpu/drm/gma500/framebuffer.c:34 function parameter 'info' not described in 'psb_framebuffer_init'
-Warning: drivers/gpu/drm/gma500/framebuffer.c:101 function parameter 'info' not described in 'psb_user_framebuffer_create'
+Warning: drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c:1923 expecting prototype for amdgpu_ttm_mmio_remap_bo_init(). Prototype was for amdgpu_ttm_alloc_mmio_remap_bo() instead
 
-Fixes: 4a792c59203b ("drm/gma500: Pass along the format info from .fb_create() to drm_helper_mode_fill_fb_struct()")
+Fixes: 96e97a562d06 ("drm/amdgpu: Drop MMIO_REMAP domain bit and keep it Internal")
 Signed-off-by: Yujie Liu <yujie.liu@intel.com>
 ---
- drivers/gpu/drm/gma500/framebuffer.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/gma500/framebuffer.c b/drivers/gpu/drm/gma500/framebuffer.c
-index fe1f43f0abff..5263eff6e462 100644
---- a/drivers/gpu/drm/gma500/framebuffer.c
-+++ b/drivers/gpu/drm/gma500/framebuffer.c
-@@ -21,6 +21,7 @@ static const struct drm_framebuffer_funcs psb_fb_funcs = {
-  *	psb_framebuffer_init	-	initialize a framebuffer
-  *	@dev: our DRM device
-  *	@fb: framebuffer to set up
-+ *	@info: pixel format information
-  *	@mode_cmd: mode description
-  *	@obj: backing object
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+index eeaa56c8d129..9789b778d491 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
+@@ -1908,7 +1908,7 @@ static void amdgpu_ttm_pools_fini(struct amdgpu_device *adev)
+ }
+ 
+ /**
+- * amdgpu_ttm_mmio_remap_bo_init - Allocate the singleton MMIO_REMAP BO
++ * amdgpu_ttm_alloc_mmio_remap_bo - Allocate the singleton MMIO_REMAP BO
+  * @adev: amdgpu device
   *
-@@ -91,6 +92,7 @@ struct drm_framebuffer *psb_framebuffer_create(struct drm_device *dev,
-  *	psb_user_framebuffer_create	-	create framebuffer
-  *	@dev: our DRM device
-  *	@filp: client file
-+ *	@info: pixel format information
-  *	@cmd: mode request
-  *
-  *	Create a new framebuffer backed by a userspace GEM object
+  * Allocates a global BO with backing AMDGPU_PL_MMIO_REMAP when the
 -- 
 2.43.0
 
