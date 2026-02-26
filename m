@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5CEFFD4619
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 04:29:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C11CFD461B
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 04:35:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7912F10E87C;
-	Thu, 26 Feb 2026 04:29:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="No9+NRF7";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BF9210E0FF
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Feb 2026 04:28:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772080120; x=1803616120;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=txdP7yXsIzL4CDIvvL9okq5zu+CKQO1EG1sjrGOsIgY=;
- b=No9+NRF7ik1SN8ZzKWrbBDuHNCnA8sQeQiC8bd0yWehYPBjL6FlAxrbr
- O7Wrca7KiaTlS4r8f4D3Wjp3zLIToXyvLSWKJYhLsW3M3lBYAR0ncZezh
- g9BDoZ/bwWZVh8YLnYu8zioDP+QwTOhyaNaNsUHE4AQicvsA+UKo3+Rw2
- y8LRg+BpYkSXgdqy1ddnOp7e9Raogb8xtaLkF51Pt99lpwI73bk0u4knb
- qDc/gQNoIPS7PqAtTiE5CpCiYGR7MrJ/yfYNsEaGxkMNOTVYlWxuEt5hL
- M+3w3suGyG5Zzs18PnCIsDI2Vm11OUBn/q0raC8MTeUHEg6iyoDfQOJVa Q==;
-X-CSE-ConnectionGUID: Jj0peUieQeamF2BLa+9cww==
-X-CSE-MsgGUID: C2vDPwCMRHCLFt0M2QXegw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="98603132"
-X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="98603132"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 20:28:39 -0800
-X-CSE-ConnectionGUID: cwqNeJQSS2+ergRgmDXw9w==
-X-CSE-MsgGUID: tSQAKdCpSXmxfop0A2uWrg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="216334158"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 20:28:38 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: stuart.summers@intel.com, arvind.yadav@intel.com,
- himal.prasad.ghimiray@intel.com, thomas.hellstrom@linux.intel.com,
- francois.dugast@intel.com
-Subject: [PATCH v4 06/12] drm/xe: Engine class and instance into a u8
-Date: Wed, 25 Feb 2026 20:28:28 -0800
-Message-Id: <20260226042834.2963245-7-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260226042834.2963245-1-matthew.brost@intel.com>
-References: <20260226042834.2963245-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BF0010E0FF;
+	Thu, 26 Feb 2026 04:35:18 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36C5010E0FF;
+ Thu, 26 Feb 2026 04:35:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Fine_grained_fault_lockin?=
+ =?utf-8?q?g=2C_threaded_prefetch=2C_storm_cache_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 26 Feb 2026 04:35:17 -0000
+Message-ID: <177208051719.289698.5617543866866478554@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260226042834.2963245-1-matthew.brost@intel.com>
+In-Reply-To: <20260226042834.2963245-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,94 +36,109 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Pack the engine class and instance fields into a single u8 to save space
-in struct xe_pagefault. This also makes future extensions easier.
+== Series Details ==
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_pagefault.c   |  7 +++++--
- drivers/gpu/drm/xe/xe_pagefault.c       | 12 ++++++++----
- drivers/gpu/drm/xe/xe_pagefault_types.h | 10 ++++++----
- 3 files changed, 19 insertions(+), 10 deletions(-)
+Series: Fine grained fault locking, threaded prefetch, storm cache (rev4)
+URL   : https://patchwork.freedesktop.org/series/162167/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_pagefault.c b/drivers/gpu/drm/xe/xe_guc_pagefault.c
-index 607e32392f46..2470faf3d5d8 100644
---- a/drivers/gpu/drm/xe/xe_guc_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pagefault.c
-@@ -89,8 +89,11 @@ int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len)
- 				   FIELD_GET(PFD_FAULT_LEVEL, msg[0])) |
- 			FIELD_PREP(XE_PAGEFAULT_TYPE_MASK,
- 				   FIELD_GET(PFD_FAULT_TYPE, msg[2]));
--	pf.consumer.engine_class = FIELD_GET(PFD_ENG_CLASS, msg[0]);
--	pf.consumer.engine_instance = FIELD_GET(PFD_ENG_INSTANCE, msg[0]);
-+	pf.consumer.engine_class_instance =
-+		FIELD_PREP(XE_PAGEFAULT_ENGINE_CLASS_MASK,
-+			   FIELD_GET(PFD_ENG_CLASS, msg[0])) |
-+		FIELD_PREP(XE_PAGEFAULT_ENGINE_INSTANCE_MASK,
-+			   FIELD_GET(PFD_ENG_INSTANCE, msg[0]));
- 
- 	pf.producer.private = guc;
- 	pf.producer.ops = &guc_pagefault_ops;
-diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-index 64b1dc574ab7..a6fa790774c5 100644
---- a/drivers/gpu/drm/xe/xe_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_pagefault.c
-@@ -245,13 +245,16 @@ static bool xe_pagefault_queue_pop(struct xe_pagefault_queue *pf_queue,
- 
- static void xe_pagefault_print(struct xe_pagefault *pf)
- {
-+	u8 engine_class = FIELD_GET(XE_PAGEFAULT_ENGINE_CLASS_MASK,
-+				    pf->consumer.engine_class_instance);
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b22e50c3acc2d6942febf7f04758fd75c289a9b2
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Wed Feb 25 20:28:34 2026 -0800
+
+    drm/xe: Track parallel page fault activity in GT stats
+    
+    Add a new GT statistic, PARALLEL_PAGEFAULT_COUNT, to record when
+    multiple page fault workers are active concurrently.
+    
+    When a worker dequeues a fault, scan peer workers for an active
+    cache entry and increment the counter if another fault is already
+    in flight. This provides basic visibility into parallel fault
+    handling behavior for performance analysis and tuning.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch f0ec6252eb6d9a4f0cb5a437f5c21fec16d0a440 drm-intel
+cc4a6a960ced drm/xe: Fine grained page fault locking
+-:557: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
+#557: FILE: drivers/gpu/drm/xe/xe_svm.h:251:
++	struct mutex lock;
+
+-:599: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#599: FILE: drivers/gpu/drm/xe/xe_userptr.c:61:
++}
++#define xe_vma_userptr_lockdep(uvma)	\
+
+total: 0 errors, 0 warnings, 2 checks, 691 lines checked
+ac537356e9fc drm/xe: Allow prefetch-only VM bind IOCTLs to use VM read lock
+0aeac3bc3f4e drm/xe: Thread prefetch of SVM ranges
+6b966b3ffe9b drm/xe: Use a single page-fault queue with multiple workers
+95d9cfd0aa92 drm/xe: Add num_pf_work modparam
+d4cdaa9ba507 drm/xe: Engine class and instance into a u8
+5aec41437b2b drm/xe: Track pagefault worker runtime
+2c38f9bd67bf drm/xe: Chain page faults via queue-resident cache to avoid fault storms
+-:34: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#34: 
+Assisted-by: Chat-GPT # Documentation
+
+-:34: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Chat-GPT # Documentation'
+#34: 
+Assisted-by: Chat-GPT # Documentation
+
+-:446: ERROR:SPACING: space prohibited before that close parenthesis ')'
+#446: FILE: drivers/gpu/drm/xe/xe_pagefault.c:571:
++		} else if (err ) {
+
+-:455: WARNING:LONG_LINE: line length of 109 exceeds 100 columns
+#455: FILE: drivers/gpu/drm/xe/xe_pagefault.c:578:
++				xe_gt_stats_incr(pf->gt, XE_GT_STATS_ID_INVALID_PREFETCH_PAGEFAULT_COUNT, 1);
+
+total: 2 errors, 2 warnings, 0 checks, 813 lines checked
+b79f27af94ef drm/xe: Add pagefault chaining stats
+3f11dd2c5784 drm/xe: Add debugfs pagefault_info
+-:14: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#14: 
+Assisted-by: Chat-GPT # Documentation
+
+-:14: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Chat-GPT # Documentation'
+#14: 
+Assisted-by: Chat-GPT # Documentation
+
+-:128: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
+#128: FILE: drivers/gpu/drm/xe/xe_pagefault.c:909:
 +
- 	xe_gt_info(pf->gt, "\n\tASID: %d\n"
- 		   "\tFaulted Address: 0x%08x%08x\n"
- 		   "\tFaultType: %lu\n"
- 		   "\tAccessType: %lu\n"
- 		   "\tFaultLevel: %lu\n"
- 		   "\tEngineClass: %d %s\n"
--		   "\tEngineInstance: %d\n",
-+		   "\tEngineInstance: %lu\n",
- 		   pf->consumer.asid,
- 		   upper_32_bits(pf->consumer.page_addr),
- 		   lower_32_bits(pf->consumer.page_addr),
-@@ -261,9 +264,10 @@ static void xe_pagefault_print(struct xe_pagefault *pf)
- 			     pf->consumer.access_type),
- 		   FIELD_GET(XE_PAGEFAULT_LEVEL_MASK,
- 			     pf->consumer.fault_type_level),
--		   pf->consumer.engine_class,
--		   xe_hw_engine_class_to_str(pf->consumer.engine_class),
--		   pf->consumer.engine_instance);
-+		   engine_class,
-+		   xe_hw_engine_class_to_str(engine_class),
-+		   FIELD_GET(XE_PAGEFAULT_ENGINE_INSTANCE_MASK,
-+			     pf->consumer.engine_class_instance));
++	}
+
+total: 1 errors, 1 warnings, 1 checks, 115 lines checked
+955d0956e486 drm/xe: batch CT pagefault acks with periodic flush
+-:27: WARNING:BAD_SIGN_OFF: Non-standard signature: Assistent-by:
+#27: 
+Assistent-by: Chat-GPT # Documentation
+
+-:27: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'Chat-GPT # Documentation'
+#27: 
+Assistent-by: Chat-GPT # Documentation
+
+-:254: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#254: FILE: drivers/gpu/drm/xe/xe_guc_ct.h:65:
  }
- 
- static void xe_pagefault_queue_work(struct work_struct *w)
-diff --git a/drivers/gpu/drm/xe/xe_pagefault_types.h b/drivers/gpu/drm/xe/xe_pagefault_types.h
-index 45065c25c25f..75bc53205601 100644
---- a/drivers/gpu/drm/xe/xe_pagefault_types.h
-+++ b/drivers/gpu/drm/xe/xe_pagefault_types.h
-@@ -82,10 +82,12 @@ struct xe_pagefault {
- #define XE_PAGEFAULT_TYPE_LEVEL_NACK		0xff	/* Producer indicates nack fault */
- #define XE_PAGEFAULT_LEVEL_MASK			GENMASK(3, 0)
- #define XE_PAGEFAULT_TYPE_MASK			GENMASK(7, 4)
--		/** @consumer.engine_class: engine class */
--		u8 engine_class;
--		/** @consumer.engine_instance: engine instance */
--		u8 engine_instance;
-+		/** @consumer.engine_class_instance: engine class and instance */
-+		u8 engine_class_instance;
-+#define XE_PAGEFAULT_ENGINE_CLASS_MASK		GENMASK(3, 0)
-+#define XE_PAGEFAULT_ENGINE_INSTANCE_MASK	GENMASK(7, 4)
-+		/** @pad: alignment padding */
-+		u8 pad;
- 		/** consumer.reserved: reserved bits for future expansion */
- 		u64 reserved;
- 	} consumer;
--- 
-2.34.1
++void xe_guc_ct_send_flush(struct xe_guc_ct *ct);
+
+total: 1 errors, 1 warnings, 1 checks, 368 lines checked
+b22e50c3acc2 drm/xe: Track parallel page fault activity in GT stats
+
 
