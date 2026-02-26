@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4929BFD460A
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 03:01:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26277FD460B
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 03:01:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D64C910E0FE;
-	Thu, 26 Feb 2026 03:01:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C792110E0F9;
+	Thu, 26 Feb 2026 03:01:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="irB5J4JG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NlJC8SS4";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 257C810E0D9;
- Thu, 26 Feb 2026 03:01:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02ACF10E0F9;
+ Thu, 26 Feb 2026 03:01:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772074912; x=1803610912;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=EMyw7QkTIGd6JUcIN1XEuwyKhym7f5E8Crv3cebehYA=;
- b=irB5J4JGZhuXIEr4KViqTWxA+rHtAe2vRxosCMOOGHqFoNVAtw6HrBmA
- 9D4KGTpL1Kt3mVrjYgL8VYWkcOL+g7g3G1DgLc9+U538+8tLAQpn5Igpu
- fpGNqhRrT6S779Rqi06L6NRxDZGMOVpTyU1Sw6FQl+kJWL4OZVJNyz+4f
- EuiunKhubZC9Zq1o5bNtY91Xb1G942oC/CCWCeUXkd+jB59KPxLNIEB5S
- sNlcpb1RkhtSYqZF9mwu9ilcnaqAOrmLO6rLVNf4qvnggPMM2bghu5IdW
- fpZaBtD8EQhd2ijyHZEeRdj8Pv+NYq8vqkBPeGR8W47+dTVB4ZUEb5ixI g==;
-X-CSE-ConnectionGUID: sOPJxlYlRSy+maPjoO16Kw==
-X-CSE-MsgGUID: BDVeGbXVT1W2YnnZy3EUOw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="72160306"
-X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="72160306"
+ t=1772074915; x=1803610915;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=mXzmsPGRB+4z16krNY0r2QNcwnkslNqgei1WpqL2E7Q=;
+ b=NlJC8SS4tyOm5YqoezwZeQnLFFV4e8F6MW9YDzqg5LCClGTKu91mlklk
+ dKjmdiWp+I8zn4QC8ii02m++5+aWd929m+befjRa16d3HEE00MmVFtFqn
+ 8ZDu9GKqm/bpwiaPCN1PmT3BrTsPaHUbb0D00A8K2dhR9bkQ3BJ8/9Tvs
+ WzHKkJYgR2Hg5ZockeJHaA+E8Ux78P95CB/T/OWY4jmveBcemBuGmcs2r
+ sWws2G1oyR76lhxX2VHDGZqFFLjcaEMQaWQp3a0PdqDXQ9/hheCHZivnS
+ quGLJlGJjbrj2VM9TNL+AsbJkIomSNn/GQN62bIVQSccvboI/dfypZC9e A==;
+X-CSE-ConnectionGUID: l0N3DFtoRLmwd5QqBDz65w==
+X-CSE-MsgGUID: /ZxZ+lmqTfG6wvEqxUVA2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="72160368"
+X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="72160368"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 19:01:35 -0800
-X-CSE-ConnectionGUID: K7D9cgqmT1CKgaCWNp6deg==
-X-CSE-MsgGUID: DC9Tt5RFRhuFtePJlYdziQ==
+ 25 Feb 2026 19:01:50 -0800
+X-CSE-ConnectionGUID: s+oV0KhDQrGZ7pZTmH96WQ==
+X-CSE-MsgGUID: DlYdLRq0RBq/1p8ScYnh4g==
 X-ExtLoop1: 1
 Received: from x299.sh.intel.com ([10.239.159.77])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 19:01:28 -0800
+ 25 Feb 2026 19:01:43 -0800
 From: Yujie Liu <yujie.liu@intel.com>
 To: Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
@@ -67,10 +67,13 @@ Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>,
  amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, intel-xe@lists.freedesktop.org
-Subject: [PATCH 0/7] drm: fix some kernel-doc warnings
-Date: Thu, 26 Feb 2026 11:00:31 +0800
-Message-ID: <20260226030038.1182961-1-yujie.liu@intel.com>
+Subject: [PATCH 2/7] drm/scheduler: fix kernel-doc warning for
+ drm_sched_job_done()
+Date: Thu, 26 Feb 2026 11:00:33 +0800
+Message-ID: <20260226030038.1182961-3-yujie.liu@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260226030038.1182961-1-yujie.liu@intel.com>
+References: <20260226030038.1182961-1-yujie.liu@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -87,27 +90,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Yujie Liu (7):
-  drm/gpusvm: fix kernel-doc warning for
-    drm_gpusvm_pages_valid_unlocked()
-  drm/scheduler: fix kernel-doc warning for drm_sched_job_done()
-  drm/gma500: fix kernel-doc warning for framebuffer init/create
-    functions
-  drm/amdgpu: fix kernel-doc warning for
-    amdgpu_ttm_alloc_mmio_remap_bo()
-  drm/xe/pf: fix kernel-doc warning for SR-IOV VF restore function
-  drm/amd/pm: fix kernel-doc warning for smu_msg_v1_send_msg()
-  drm/amd/ras: fix kernel-doc warning for ras_eeprom_append()
+Warning: drivers/gpu/drm/scheduler/sched_main.c:367 function parameter 'result' not described in 'drm_sched_job_done'
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c      | 2 +-
- drivers/gpu/drm/amd/pm/swsmu/smu_cmn.c       | 2 +-
- drivers/gpu/drm/amd/ras/rascore/ras_eeprom.c | 4 ++--
- drivers/gpu/drm/drm_gpusvm.c                 | 4 ++--
- drivers/gpu/drm/gma500/framebuffer.c         | 2 ++
- drivers/gpu/drm/scheduler/sched_main.c       | 1 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_control.c  | 2 +-
- 7 files changed, 10 insertions(+), 7 deletions(-)
+Fixes: 539f9ee4b52a ("drm/scheduler: properly forward fence errors")
+Signed-off-by: Yujie Liu <yujie.liu@intel.com>
+---
+ drivers/gpu/drm/scheduler/sched_main.c | 1 +
+ 1 file changed, 1 insertion(+)
 
+diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+index e6ee35406165..fe4c1017734b 100644
+--- a/drivers/gpu/drm/scheduler/sched_main.c
++++ b/drivers/gpu/drm/scheduler/sched_main.c
+@@ -361,6 +361,7 @@ static void drm_sched_run_free_queue(struct drm_gpu_scheduler *sched)
+ /**
+  * drm_sched_job_done - complete a job
+  * @s_job: pointer to the job which is done
++ * @result: 0 on success; -errno on failure
+  *
+  * Finish the job's fence and resubmit the work items.
+  */
 -- 
 2.43.0
 
