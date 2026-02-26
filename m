@@ -4,154 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08D43FCE068
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 12:33:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7488FCE06A
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 12:43:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEF9810E915;
-	Thu, 26 Feb 2026 12:33:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C90910E91D;
+	Thu, 26 Feb 2026 12:43:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WZU+HAkD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gqx0b0Gf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2256210E915
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Feb 2026 12:33:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 975E110E91D
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Feb 2026 12:43:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772109230; x=1803645230;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=fp2pYZfg8EqfCXHCAFlMXOmMH+EkJvmBJLJV2UG+oG4=;
- b=WZU+HAkDzNG+59pv70fvo1jceP/DDmGlnt2+wPezoC5UFl1JJP0Gf86L
- oCMa1bDWJrGnl8OvK13vQr+StWQKmNO0nKRHfbkh5cTK4LvDE447dVfAp
- pghV1u7gZSWobAhJ0lIaiwsmMiQ/Zi0YWfM3GH57o8kpzBtSeNH3XQJ/c
- tqbNLIg3+x6yVhTqL357E2KN50LZcG7pBhHSSPWJGPbpVi6ag14iYjmtI
- icmDREfAjyaEQqtATvpm+ORe7J6b3O4k6UZ4xYxPSware6lzVwEZn02Yi
- u7YmoV8rJQSHDL8dCrR/hULd1ZJXolpWkXUXfQRpIKgUfN/LKdxF9JWRR A==;
-X-CSE-ConnectionGUID: QMJki0N0QTm0o5HBwZuGTA==
-X-CSE-MsgGUID: fG3xeHFrROKKoF+Nc9Ivlw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="72202240"
-X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="72202240"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2026 04:33:50 -0800
-X-CSE-ConnectionGUID: 1QjbqByGRe6ypVis9kcGxg==
-X-CSE-MsgGUID: mPV6MOXUQGiRkj6/vtNN+g==
+ t=1772109828; x=1803645828;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=r4zib0TL3AyPMEAL5P/XJNhX43TnOlieL/e+VbM4V/c=;
+ b=gqx0b0GfaY9srLQT0XWBZme0qnQ6jE683fI62EANkd1rRy+6lqLsBJ/k
+ w2szBAU5Z5W0OanSQTdFYo/zI8i8ZhKH8CXx8AYP0C/cChpyCMEf6dXiT
+ ussSH7J4m7IkPtGRtNC9O/oNH4hQKe0ja0ZDBhh8G28oA5ItSz0YNVaVL
+ eVsHh76+xfRxmxLEzBxL6+NbpWteIKUG2lsVEdBZgxjN9zkSRgbDWvKlV
+ Ij+I3MX0nz6yNxjRK4GoVDPmktkVy5gWvC74NOOa3udx69PqzVC1nK8FH
+ L3WhJoW0H4LvWgVRQV7pJV5weIiWV7GQV48sQK5IgHcgJ46XePKDq+u/V A==;
+X-CSE-ConnectionGUID: TMlooi4bSjaTJvB1f7xqbA==
+X-CSE-MsgGUID: Pdl1fy33SkGgwaMn98lUPw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="75770548"
+X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="75770548"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 04:43:47 -0800
+X-CSE-ConnectionGUID: +7DQvHESTW2r5DFXZtsNnw==
+X-CSE-MsgGUID: cKP82drzQGqTY/YbPqqrZQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="221545229"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2026 04:33:50 -0800
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 26 Feb 2026 04:33:49 -0800
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 26 Feb 2026 04:33:49 -0800
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.32) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 26 Feb 2026 04:33:49 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CxE+ykPxQkvlNDL6RW9pMZNFVR1j7rQyx0JffFcV8hXafRr7pT1a/C2qAjB+gp/61mzmxyDBY16Od6LT6d9QgaBwtUvwvn/V9DePUTRqEjhCOruQlW8V/G+fix8tzR+CsWJo//quP8FhzXHbMdaSW8oqxrmmaosJB+9abRavTmV+B2J83twWJ3sYqw5TbWT98iclGy4eTTkO+gerwnHfnIIAdz0gwRVLxIZcB7Yu/sFoMvPsdTI//Rpty6wZNLrlWw/bqk5dVPK6kG/izk0E60hryoTgSNkjhXRPeGhhZ5hNacWAtwy6H3UYeLpPXwS/07zyv5HnNC2joe+0gq/3bQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=z8x54ZjslwMAme4MWHFrJXLlbDldU1QsWuE/B5+3SJc=;
- b=yoXRoR5e9LA/DP05AzGkNYS4JJs3UmkneQ3Q8EXS+12+oscNOVlFVNX3omWS108/FkO6xftTD//k7KgFdeph3oOefDrtGdl8YqvV75IN2nn0Rr/b+QMdjlVSpvdwFqLdAbTugOtXfgSG+x4kqtamZLSyX4tQ6/YNDzjkj1qhoQGsqEkq3doQlYUumRnE/NQObCdA56mLMAzYO9EilknDckFWSuPdv8Tl42akH5J36pLnggY+2DZaeq5/BcEwPB3hA9+5ZbQ0X7vPoEwoBHQpE3afUlyadrvxSFPaj3plyGPBLCLvqPYwxWEBKQG3Mn2439+/Qq/LB9WVWJo/XSuF0g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by BL1PR11MB5320.namprd11.prod.outlook.com (2603:10b6:208:316::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Thu, 26 Feb
- 2026 12:33:41 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811%3]) with mapi id 15.20.9632.017; Thu, 26 Feb 2026
- 12:33:40 +0000
-Message-ID: <334a019a-06dc-4979-9c68-78c9d4a007b7@intel.com>
-Date: Thu, 26 Feb 2026 13:33:37 +0100
-User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?B?UmU6IOKclyBYZS5DSS5GVUxMOiBmYWlsdXJlIGZvciBkcm0veGU6IERv?=
- =?UTF-8?Q?n=27t_expose_display_modparam_if_no_display_support?=
-To: <intel-xe@lists.freedesktop.org>
-References: <20260216183240.1308-1-michal.wajdeczko@intel.com>
- <177128382240.256994.8303814739819454363@a3b018990fe9>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <177128382240.256994.8303814739819454363@a3b018990fe9>
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO [10.245.244.215])
+ ([10.245.244.215])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 04:43:45 -0800
+Message-ID: <bf67f6971cacc71313cc92de8b0e99212106344c.camel@linux.intel.com>
+Subject: Re: [PATCH v3 3/3] drm/xe: Move LRC seqno to system memory to avoid
+ slow dGPU reads
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+Cc: stuart.summers@intel.com, francois.dugast@intel.com, 
+ daniele.ceraolospurio@intel.com, michal.wajdeczko@intel.com
+Date: Thu, 26 Feb 2026 13:43:43 +0100
+In-Reply-To: <20260218043319.809548-4-matthew.brost@intel.com>
+References: <20260218043319.809548-1-matthew.brost@intel.com>
+ <20260218043319.809548-4-matthew.brost@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR03CA0077.eurprd03.prod.outlook.com
- (2603:10a6:803:50::48) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|BL1PR11MB5320:EE_
-X-MS-Office365-Filtering-Correlation-Id: 306ccdb6-1171-4b77-4ac0-08de753345c0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0; ARA:13230040|1800799024|376014|366016|13003099007;
-X-Microsoft-Antispam-Message-Info: GZeBa1LOsZlTWImLaYlFO7Yy87dkZArQ1/fKCg6x6BmM07SUyBPtu0rgAx+j7BbpDT5rXBtxcZjzJt4xfZalnV4W59jsJC7MoDKkLpiz0LBMBaE9wJzi/tXQdIbA8ZD6MduwZPOX7RALXjm8Llr6VaX7UGaVvLmw822RRy0sTBkwpliJObV8KU/S0Mwm/4/sbDm7KpDSyaa0rItVxVnBaMjro/qHXm34WJffITkupCkMTPaPEvFAeSiCFyQLkFuApMzSxfiwyIzC28yAp9GNERdth/+10JNdc/m6W1BQ+mv+aQbe1WhxMjjZOTUSVa16kcx5rtRs+Q7AOMb6+H2McMJu2kTWjymjUbqfmDV5yyIfQqr2On8lJf0tkIm5J8CMaxhx4HdxmRl9UW/s94Ts4D49rPxYAYG/nO7WjSyWJVoPMSRX8sy0OlNkck5/nUZEobQPiLZSgQDCrDAi3WFkjwLqsb/XGUnduR+qJP3RJyShatAEjMza6OQBSY0sWH8U+SgtBtZc3QgpP9VxdBp5/2KLmm7ZBmmjv/HSd/WAKBY4IkD2RfMkufcdeXlXJ9r6zF74xWW0n8FwySIXWv0I7aYzfdnxShGyb74XxbC3yzqDyOP7D/z+j04px7X1/3YBdhwBUHq6T2ax8T8Id/Ume6mGmQCwupkNIBO8IHAXJsQYWRgIReWe0ry40eD+xKtP
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(13003099007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bkF0U3UycUlSR0RwUFZKYTZwbzR4ZlF4SmhNYWJMQ2F0V1B2QzFkaG5HMEN3?=
- =?utf-8?B?WStaZnVOWjhVWnc2K3VhUW9wQzBJdGxSL0o2aGRoYnIzdm5UUlB5NkJldVhL?=
- =?utf-8?B?K1kwVTRCOTkwVUNZSWdyZGd3WU1NZTIvZFoyQ3diMHFpT09aRzNkVkNpWnB5?=
- =?utf-8?B?QldFNEQzTXdHMzdaMzh1UjVoRktvandUUHBZcmpySTJHRUh6d0NVZklVVkp0?=
- =?utf-8?B?dzJxUWZsdmRTbUhiUk0xQTF3WjFzLzN4dVJJQXVveVRDejdoNzN2a1RKZ2pK?=
- =?utf-8?B?bHkrTmFlTUFpbUUxWURVY2haMlp3Q251S2Q3Tk9TSUdXQUVtMERaMkpjUWVX?=
- =?utf-8?B?TVRrVVlleFUyRGdvVDU3TFNMaC9DbzRwWWd0eWNQMHRCOE5rSGMyUWV2MDhQ?=
- =?utf-8?B?U3FzcmJkV0YxeDdOc2tMWWhReU9VWFRJME5WcE1GeUF2TWswdmpmSnlwcHRU?=
- =?utf-8?B?Q1g3ZzRmdCs2MzZtNjhQb2tVeXhHRWdWa1VFenpmQkY0aSsrWVFUMFdBTEhj?=
- =?utf-8?B?T0c1VXRrWUpJd0htSEE2VXRRZWYvRGlEZWdhNzNBc2F0dEVvZDFWL1lHVnA3?=
- =?utf-8?B?NFNHZUtxckc2d0RTZXptYjhkZC93MkNQSTNvNjk1d1NDdWlPVGdvZXI2TkpD?=
- =?utf-8?B?blBhcXZBR1MzR0FyWXZHNWkrNDdya05UUWpBamFjVzJQOEREc2cxY1Znd0Mw?=
- =?utf-8?B?WlZyMUtnN0dFVFZOSWgwZ2cxaEVLZHZjVW8zYUFYamFiaWV4UHRDOENHNFpD?=
- =?utf-8?B?eGhENjltM0VjKzVzaGlkTFJyK1hSd3E1eGRlTzFHbHViUTNiZkFzR0Z5eVpr?=
- =?utf-8?B?cVgyRnlQb3JPTjRyWDBHZDhrK3o0MVVwRWtRdGd3NkRNVW91dW9YRVZmSXNj?=
- =?utf-8?B?aWZHSGVuc2dKQlJIMzRnTUtFTEFGQnNmZjZBRktvVnp3L3JpdWk5RkRoeitT?=
- =?utf-8?B?RGRPcFZodTFucWlZcXFWQUdrckhtWnJwanhIOVhnQTZib0RLWUJxWlFTTVNC?=
- =?utf-8?B?UTMzRm9CdGVKdzNkMk1CUmU1dmFyenB2RWs1L3pJTDR2bmxaRElpMjhsVk90?=
- =?utf-8?B?RnFpR3RGSFVSK3NZL2VleFdJcU1tOUVERHJTb0hwYUhNMGs5ZHR1bjZxWUNG?=
- =?utf-8?B?dkxLU3A1bUYvRk9HUmdJVmpoYTZETzRyWFRrNVlFeThMN01kblc3VmRTVEJS?=
- =?utf-8?B?UndibHdBdkV1cUJiSVJ1TFd3K0k5TmtlQXVHcjNITE40Rk12bDRpZldRcEV6?=
- =?utf-8?B?aGVIVkcxdUlrQUVHcHVIb2hja3dMOTZJS2lmNjlMT0JlREJVSG9pOFFVcXNl?=
- =?utf-8?B?YllGMGl1ejBWd2YrbW85VEFhd1I2ZHhLbTNFS0pmT1llaDA0VCtkNFBPYXoy?=
- =?utf-8?B?RjNLbVZsWkVLdkVaWE41aTZTNFNDUVRYYnFtdzc3OUU0ekIwVFV2QXh2YWxY?=
- =?utf-8?B?Q1diemU2eThqeVNyc1JXdW9EckVPSWduNFVSMlo3ay9lYk9tVkx1bC96c1l4?=
- =?utf-8?B?YVFXZzYvWGIxVzlnZGNab01aNHVNU2hkTzhuYThTQjVnc0JSTks1N1Z1UHhB?=
- =?utf-8?B?UnZ0ZHBrd3NxVis2aVE3VjAxODNXTUFXTElHSEtYYXIwdEZpaEltWmtRVm05?=
- =?utf-8?B?eEI1d1dYeVlNeEk1Ni83UUQxVUsydDVSK0hLV2wzSHhtQXhjM1V4WVJOL0pH?=
- =?utf-8?B?YkNEQldWdk1WRWh1TzVMSFpvM1hjek1ZS05ldXBlTDh4L2NzalVjeHNkdEFI?=
- =?utf-8?B?QW92Tittb3JpZVVVOC9xTVRhY0FEQmY0TXVUL20xZmxuRk0wMnFmS3RDTi9o?=
- =?utf-8?B?ZFpSTjAvKzYyT09LYWtra0hYa2l3QWJkVUhtUHYvdUhwbnljS3JzVU9CTkh6?=
- =?utf-8?B?T3ViRDdKekhTMEhCS3VjV2JCSWQrbDF1WitoYU1yME5kMUNIdmlURURVS3lw?=
- =?utf-8?B?QzRVSzZ3eHRWY1pKUjlSVWtnNHRrcy9PV2Q1N2Z3UkUvbjg3dm5yK2pyMmcr?=
- =?utf-8?B?L3NsV0pnejhhdGwwdWxHZ1pYMUsvNVRnWnNUeFIxY0RGVXBjOHo0Skc5STR3?=
- =?utf-8?B?d2dDc2tML0ZxSmVzN0U5a3NYYjY1SmZVUDFqb3ZJdHJkUFI1Q1A4eENOdXNn?=
- =?utf-8?B?NFNaNmd1dCtnM214cHAwU2JZR1grdVpVcXN1eUJscG9CWlR0WVVxWlh2KzN3?=
- =?utf-8?B?SU1Pc1ZjcDJpaVZpSkVGYTc1R21UV1pvenI4bzVScU16aTRacXVuSHFkVlN1?=
- =?utf-8?B?bHQwblJRSWRuTnpPbXRRaHcyL3dGTmRJRk1QVXFxNTJBMEZmQkxlazFFSHdM?=
- =?utf-8?B?QmppUms2YmRZcFBUa0VYZHZzWktWc0s2OS8xdXY4T1dadmYrL0cvQlBGSlNN?=
- =?utf-8?Q?KRuyTIYvTlS88Smc=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 306ccdb6-1171-4b77-4ac0-08de753345c0
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Feb 2026 12:33:40.9090 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9SoIRgiAPYgQODrnDJAYE5Nes/7NztCvfgz4WFGGw/8OmcLM5eToTmrttKRLBkCV5GGpj6Ke9SB2na2ZhHMIWua6HK0AvVqnGn0JPHgaPpk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5320
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,81 +71,191 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Tue, 2026-02-17 at 20:33 -0800, Matthew Brost wrote:
+> The LRC seqno is read by the CPU in the fence signaling path. On dGPU
+> that read can turn into a PCIe transaction when the seqno lives in
+> the
+> main LRC BO, making the hot-path poll/peek much more expensive.
+>=20
+> Allocate a small dedicated seqno BO in system memory and map the
+> seqno
+> and start_seqno fields from there instead. The GPU still updates the
+> values, but CPU reads stay in cached system memory and avoid PCIe
+> read
+> latency.
+>=20
+> Update the LRC map/address helpers to accept a BO expression and use
+> the
+> new lrc->seqno_bo for seqno mappings. Unpin/unmap seqno_bo during
+> teardown.
+>=20
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_lrc.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 5=
+7 +++++++++++++++++++----------
+> --
+> =C2=A0drivers/gpu/drm/xe/xe_lrc_types.h |=C2=A0 6 ++++
+> =C2=A02 files changed, 42 insertions(+), 21 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.c
+> b/drivers/gpu/drm/xe/xe_lrc.c
+> index 38f648b98868..d72146313424 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.c
+> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> @@ -715,12 +715,13 @@ u32 xe_lrc_pphwsp_offset(struct xe_lrc *lrc)
+> =C2=A0#define __xe_lrc_pphwsp_offset xe_lrc_pphwsp_offset
+> =C2=A0#define __xe_lrc_regs_offset xe_lrc_regs_offset
+> =C2=A0
+> -#define LRC_SEQNO_PPHWSP_OFFSET 512
+> -#define LRC_START_SEQNO_PPHWSP_OFFSET (LRC_SEQNO_PPHWSP_OFFSET + 8)
+> -#define LRC_CTX_JOB_TIMESTAMP_OFFSET (LRC_START_SEQNO_PPHWSP_OFFSET
+> + 8)
+> +#define LRC_CTX_JOB_TIMESTAMP_OFFSET 512
+> =C2=A0#define LRC_ENGINE_ID_PPHWSP_OFFSET 1024
+> =C2=A0#define LRC_PARALLEL_PPHWSP_OFFSET 2048
+> =C2=A0
+> +#define LRC_SEQNO_OFFSET 0
+> +#define LRC_START_SEQNO_OFFSET (LRC_SEQNO_OFFSET + 8)
+> +
+> =C2=A0u32 xe_lrc_regs_offset(struct xe_lrc *lrc)
+> =C2=A0{
+> =C2=A0	return xe_lrc_pphwsp_offset(lrc) + LRC_PPHWSP_SIZE;
+> @@ -747,14 +748,12 @@ size_t xe_lrc_skip_size(struct xe_device *xe)
+> =C2=A0
+> =C2=A0static inline u32 __xe_lrc_seqno_offset(struct xe_lrc *lrc)
+> =C2=A0{
+> -	/* The seqno is stored in the driver-defined portion of
+> PPHWSP */
+> -	return xe_lrc_pphwsp_offset(lrc) + LRC_SEQNO_PPHWSP_OFFSET;
+> +	return LRC_SEQNO_OFFSET;
+> =C2=A0}
+> =C2=A0
+> =C2=A0static inline u32 __xe_lrc_start_seqno_offset(struct xe_lrc *lrc)
+> =C2=A0{
+> -	/* The start seqno is stored in the driver-defined portion
+> of PPHWSP */
+> -	return xe_lrc_pphwsp_offset(lrc) +
+> LRC_START_SEQNO_PPHWSP_OFFSET;
+> +	return LRC_START_SEQNO_OFFSET;
+> =C2=A0}
+> =C2=A0
+> =C2=A0static u32 __xe_lrc_ctx_job_timestamp_offset(struct xe_lrc *lrc)
+> @@ -805,10 +804,11 @@ static inline u32 __xe_lrc_wa_bb_offset(struct
+> xe_lrc *lrc)
+> =C2=A0	return xe_bo_size(lrc->bo) - LRC_WA_BB_SIZE;
+> =C2=A0}
+> =C2=A0
+> -#define DECL_MAP_ADDR_HELPERS(elem) \
+> +#define DECL_MAP_ADDR_HELPERS(elem, bo_expr) \
+> =C2=A0static inline struct iosys_map __xe_lrc_##elem##_map(struct xe_lrc
+> *lrc) \
+> =C2=A0{ \
+> -	struct iosys_map map =3D lrc->bo->vmap; \
+> +	struct xe_bo *bo =3D (bo_expr); \
+> +	struct iosys_map map =3D bo->vmap; \
+> =C2=A0\
+> =C2=A0	xe_assert(lrc_to_xe(lrc), !iosys_map_is_null(&map));=C2=A0 \
+> =C2=A0	iosys_map_incr(&map, __xe_lrc_##elem##_offset(lrc)); \
+> @@ -816,20 +816,22 @@ static inline struct iosys_map
+> __xe_lrc_##elem##_map(struct xe_lrc *lrc) \
+> =C2=A0} \
+> =C2=A0static inline u32 __maybe_unused __xe_lrc_##elem##_ggtt_addr(struct
+> xe_lrc *lrc) \
+> =C2=A0{ \
+> -	return xe_bo_ggtt_addr(lrc->bo) +
+> __xe_lrc_##elem##_offset(lrc); \
+> +	struct xe_bo *bo =3D (bo_expr); \
+> +\
+> +	return xe_bo_ggtt_addr(bo) + __xe_lrc_##elem##_offset(lrc);
+> \
+> =C2=A0} \
+> =C2=A0
+> -DECL_MAP_ADDR_HELPERS(ring)
+> -DECL_MAP_ADDR_HELPERS(pphwsp)
+> -DECL_MAP_ADDR_HELPERS(seqno)
+> -DECL_MAP_ADDR_HELPERS(regs)
+> -DECL_MAP_ADDR_HELPERS(start_seqno)
+> -DECL_MAP_ADDR_HELPERS(ctx_job_timestamp)
+> -DECL_MAP_ADDR_HELPERS(ctx_timestamp)
+> -DECL_MAP_ADDR_HELPERS(ctx_timestamp_udw)
+> -DECL_MAP_ADDR_HELPERS(parallel)
+> -DECL_MAP_ADDR_HELPERS(indirect_ring)
+> -DECL_MAP_ADDR_HELPERS(engine_id)
+> +DECL_MAP_ADDR_HELPERS(ring, lrc->bo)
+> +DECL_MAP_ADDR_HELPERS(pphwsp, lrc->bo)
+> +DECL_MAP_ADDR_HELPERS(seqno, lrc->seqno_bo)
+> +DECL_MAP_ADDR_HELPERS(regs, lrc->bo)
+> +DECL_MAP_ADDR_HELPERS(start_seqno, lrc->seqno_bo)
+> +DECL_MAP_ADDR_HELPERS(ctx_job_timestamp, lrc->bo)
+> +DECL_MAP_ADDR_HELPERS(ctx_timestamp, lrc->bo)
+> +DECL_MAP_ADDR_HELPERS(ctx_timestamp_udw, lrc->bo)
+> +DECL_MAP_ADDR_HELPERS(parallel, lrc->bo)
+> +DECL_MAP_ADDR_HELPERS(indirect_ring, lrc->bo)
+> +DECL_MAP_ADDR_HELPERS(engine_id, lrc->bo)
+> =C2=A0
+> =C2=A0#undef DECL_MAP_ADDR_HELPERS
+> =C2=A0
+> @@ -1036,6 +1038,7 @@ static void xe_lrc_finish(struct xe_lrc *lrc)
+> =C2=A0{
+> =C2=A0	xe_hw_fence_ctx_finish(&lrc->fence_ctx);
+> =C2=A0	xe_bo_unpin_map_no_vm(lrc->bo);
+> +	xe_bo_unpin_map_no_vm(lrc->seqno_bo);
+> =C2=A0}
+> =C2=A0
+> =C2=A0/*
+> @@ -1445,6 +1448,7 @@ static int xe_lrc_init(struct xe_lrc *lrc,
+> struct xe_hw_engine *hwe,
+> =C2=A0	u32 bo_size =3D ring_size + lrc_size + LRC_WA_BB_SIZE;
+> =C2=A0	struct xe_tile *tile =3D gt_to_tile(gt);
+> =C2=A0	struct xe_device *xe =3D gt_to_xe(gt);
+> +	struct xe_bo *seqno_bo;
+> =C2=A0	struct iosys_map map;
+> =C2=A0	u32 arb_enable;
+> =C2=A0	u32 bo_flags;
+> @@ -1479,6 +1483,17 @@ static int xe_lrc_init(struct xe_lrc *lrc,
+> struct xe_hw_engine *hwe,
+> =C2=A0	if (IS_ERR(lrc->bo))
+> =C2=A0		return PTR_ERR(lrc->bo);
+> =C2=A0
+> +	seqno_bo =3D xe_bo_create_pin_map_novm(xe, tile, PAGE_SIZE,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0 ttm_bo_type_kernel,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0 XE_BO_FLAG_GGTT |
+> +					=C2=A0=C2=A0=C2=A0=C2=A0
+> XE_BO_FLAG_GGTT_INVALIDATE |
+> +					=C2=A0=C2=A0=C2=A0=C2=A0 XE_BO_FLAG_SYSTEM,
+> false);
+> +	if (IS_ERR(seqno_bo)) {
+> +		err =3D PTR_ERR(lrc->bo);
+
+Claude found the above. Should be PTR_ERR(seqno_bo).
+
+/Thomas
 
 
-On 2/17/2026 12:17 AM, Patchwork wrote:
-> *Patch Details*
-> *Series:*	drm/xe: Don't expose display modparam if no display support
-> *URL:*	https://patchwork.freedesktop.org/series/161666/ <https://patchwork.freedesktop.org/series/161666/>
-> *State:*	failure
-> *Details:*	https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161666v1/index.html <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161666v1/index.html>
-> 
-> 
->   CI Bug Log - changes from xe-4563-483cf2d774a08fdf83f0e4c7a6ab671a53656d3c_FULL -> xe-pw-161666v1_FULL
-> 
-> 
->     Summary
-> 
-> *FAILURE*
-> 
-> Serious unknown changes coming with xe-pw-161666v1_FULL absolutely need to be
-> verified manually.
-> 
-> If you think the reported changes have nothing to do with the changes
-> introduced in xe-pw-161666v1_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-> to document this new failure mode, which will reduce false positives in CI.
-> 
-> 
->     Participating hosts (2 -> 2)
-> 
-> No changes in participating hosts
-> 
-> 
->     Possible new issues
-> 
-> Here are the unknown changes that may have been introduced in xe-pw-161666v1_FULL:
-> 
-> 
->       IGT changes
-> 
-> 
->         Possible regressions
-
-unrelated
-
-> 
->   *
-> 
->     igt@kms_cursor_crc@cursor-suspend:
-> 
->       o shard-bmg: NOTRUN -> INCOMPLETE <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161666v1/shard-bmg-3/igt@kms_cursor_crc@cursor-suspend.html> +1 other test incomplete
-
-no errors in dmesg, looks like a CI glitch
-
-Starting subtest: cursor-suspend
-Starting dynamic subtest: pipe-A-DP-2
-Dynamic subtest pipe-A-DP-2: SUCCESS (3.621s)
-Starting dynamic subtest: pipe-D-DP-2
-
-
->   *
-> 
->     igt@kms_frontbuffer_tracking@fbc-rgb101010-draw-mmap-wc:
-> 
->       o shard-bmg: PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-4563-483cf2d774a08fdf83f0e4c7a6ab671a53656d3c/shard-bmg-2/igt@kms_frontbuffer_tracking@fbc-rgb101010-draw-mmap-wc.html> -> INCOMPLETE <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161666v1/shard-bmg-2/igt@kms_frontbuffer_tracking@fbc-rgb101010-draw-mmap-wc.html>
-
-<3> [517.609394] xe 0000:03:00.0: [drm] *ERROR* Failed to bring PHY F to idle.
-<4> [517.735648] xe 0000:03:00.0: [drm] energy read from pmt failed, ret -19
-
-
->   *
-> 
->     igt@xe_pmu@gt-frequency:
-> 
->       o shard-lnl: PASS <https://intel-gfx-ci.01.org/tree/intel-xe/xe-4563-483cf2d774a08fdf83f0e4c7a6ab671a53656d3c/shard-lnl-1/igt@xe_pmu@gt-frequency.html> -> FAIL <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161666v1/shard-lnl-7/igt@xe_pmu@gt-frequency.html> +1 other test fail
-
-(xe_pmu:4993) CRITICAL: Test assertion failure function test_gt_frequency, file ../tests/intel/xe_pmu.c:961:
-(xe_pmu:4993) CRITICAL: Failed assertion: current_min == orig_min || current_min == orig_rpe
-Dynamic subtest gt0 failed.
-
-
+> +		goto err_lrc_finish;
+> +	}
+> +	lrc->seqno_bo =3D seqno_bo;
+> +
+> =C2=A0	xe_hw_fence_ctx_init(&lrc->fence_ctx, hwe->gt,
+> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 hwe->fence_irq, hwe->name);
+> =C2=A0
+> diff --git a/drivers/gpu/drm/xe/xe_lrc_types.h
+> b/drivers/gpu/drm/xe/xe_lrc_types.h
+> index a4373d280c39..5a718f759ed6 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc_types.h
+> +++ b/drivers/gpu/drm/xe/xe_lrc_types.h
+> @@ -22,6 +22,12 @@ struct xe_lrc {
+> =C2=A0	 */
+> =C2=A0	struct xe_bo *bo;
+> =C2=A0
+> +	/**
+> +	 * @seqno_bo: Buffer object (memory) for seqno numbers.
+> Always in system
+> +	 * memory as this a CPU read, GPU write path object.
+> +	 */
+> +	struct xe_bo *seqno_bo;
+> +
+> =C2=A0	/** @size: size of the lrc and optional indirect ring state
+> */
+> =C2=A0	u32 size;
+> =C2=A0
