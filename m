@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5240EFD45F9
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Feb 2026 23:50:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96DFCFD45FC
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 00:19:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1444610E847;
-	Wed, 25 Feb 2026 23:50:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9C4810E848;
+	Thu, 26 Feb 2026 00:19:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A14ne5y+";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="q3FhyayY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 811A410E845
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Feb 2026 23:50:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772063407; x=1803599407;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ZKC94lUGgM8to4eXRMhbdYC1axuMW8r0jfrALvZvgqM=;
- b=A14ne5y+wbHerN+0QWBKotM0jI5jDCeoKWfMEiNbpZhAuo2860smbnGM
- 12Gw47gAuQhx8iyQPpIVB4ddgCyeEAgi1ay6nCkgULTuu+DLdjmh3euYU
- Y8LS+c/MyJ836dqdxDE6xPszBETzL+ayVNGRFD4A65HVLgxXhOZ0YYa7M
- 1MK6AGDaT4ZHoM87AfnaJLqaAvA9PCPhzFT72lUO5KGCJ6PhXke5AVtmM
- vm+QDs2q2kBTPg7I5qRZ+54TJBFPpktLWVto1OKewR25c4MbaliYPUMOa
- MYC8c9SOokvX1BMGu9NwCCHAMiUEQjM0hXPqAbQlK+wSWl7P9ShgnE9Ca w==;
-X-CSE-ConnectionGUID: 84mr+fhjRhWOJqLOG7C9VQ==
-X-CSE-MsgGUID: JzatPeHIT9WNRhzCD4baPA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="95730750"
-X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="95730750"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 15:50:07 -0800
-X-CSE-ConnectionGUID: iOVL+CHHRTuFAekoHtzCBA==
-X-CSE-MsgGUID: 8Vjc8Ep/RourIxOhdH3mtQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="246934343"
-Received: from gkczarna.igk.intel.com ([10.211.131.163])
- by orviesa002.jf.intel.com with ESMTP; 25 Feb 2026 15:50:06 -0800
-From: Tomasz Lis <tomasz.lis@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Wajdeczko?= <michal.wajdeczko@intel.com>,
- =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v3 2/4] drm/xe/queue: Wrappers for setting and getting LRC
- references
-Date: Thu, 26 Feb 2026 00:54:45 +0100
-Message-Id: <20260225235447.2772383-3-tomasz.lis@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260225235447.2772383-1-tomasz.lis@intel.com>
-References: <20260225235447.2772383-1-tomasz.lis@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0326910E08C;
+ Thu, 26 Feb 2026 00:19:00 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 77E1B4452A;
+ Thu, 26 Feb 2026 00:18:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 639F2C116D0;
+ Thu, 26 Feb 2026 00:18:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1772065139;
+ bh=w3m6Gvq8PtKvqJds8vqvFnCWFEGepn0lazcbw18+qOA=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=q3FhyayYxO3igoPxQlkFl9p+Kfl+rgQl44e029l3FO2RUz3iO9mAnafK5riU+PfNu
+ 6nM0r6g3d2lojrnvzvhE8fb84biXXw6w4DUjEe56LKSkHEbFzrAeHifTDi6kH6soH/
+ btvPiA1c5UBdNYH9h0QhQoZ141wg08VB7p6sgiso/RRUbu0DErebPVOnV8IieZgQFc
+ U/ns+6ecdqe+aZhYV6Q0TCOKptBc7qU/xzPF28zzt6xJBEBoBEDploSY426YGZeu/Z
+ RcIyO/SiXL9rBN+xB8IHYUve0Xgh2TUeVSzGuvuizbVSp7PlL4UFT+tJu1IUx2V/QE
+ 2LpVGePCRg2Fg==
+Date: Wed, 25 Feb 2026 16:18:57 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Riana Tauro <riana.tauro@intel.com>
+Cc: <rodrigo.vivi@intel.com>, <intel-xe@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <aravind.iddamsetty@linux.intel.com>,
+ <anshuman.gupta@intel.com>, <joonas.lahtinen@linux.intel.com>,
+ <simona.vetter@ffwll.ch>, <airlied@gmail.com>, <pratik.bari@intel.com>,
+ <joshua.santosh.ranjan@intel.com>, <ashwin.kumar.kulkarni@intel.com>,
+ <shubham.kumar@intel.com>, <ravi.kishore.koppuravuri@intel.com>,
+ <raag.jadav@intel.com>, <anvesh.bakwad@intel.com>, Zack McKevitt
+ <zachary.mckevitt@oss.qualcomm.com>, Lijo Lazar <lijo.lazar@amd.com>,
+ "Hawking Zhang" <Hawking.Zhang@amd.com>, "David S. Miller"
+ <davem@davemloft.net>, "Paolo Abeni" <pabeni@redhat.com>, Eric Dumazet
+ <edumazet@google.com>, <netdev@vger.kernel.org>
+Subject: Re: [PATCH v8 1/5] drm/ras: Introduce the DRM RAS infrastructure
+ over generic netlink
+Message-ID: <20260225161857.55fd4ba4@kernel.org>
+In-Reply-To: <686b63cc-2dfb-467b-a472-b6766b2c8dd2@intel.com>
+References: <20260223060541.526397-7-riana.tauro@intel.com>
+ <20260223060541.526397-8-riana.tauro@intel.com>
+ <20260224162203.279f7b74@kernel.org>
+ <686b63cc-2dfb-467b-a472-b6766b2c8dd2@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,146 +69,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is a small but non-zero chance that VF post migration fixups
-are running on an exec queue during teardown. The chances are
-decreased by starting the teardown by releasing guc_id, but remain
-non-zero. On the other hand the sync between fixups and EQ creation
-(wait_valid_ggtt) drastically increases the chance for such parallel
-teardown if queue creation error path is entered (err_lrc label).
+On Wed, 25 Feb 2026 11:38:53 +0530 Riana Tauro wrote:
+> $ tools/net/ynl/pyynl/ynl_gen_c.py --spec \
+>   Documentation/netlink/specs/drm_ras.yaml --mode uapi --header \
+>   > include/uapi/drm/drm_ras.h  
+> 
+> $ tools/net/ynl/pyynl/ynl_gen_c.py --spec \
+>   Documentation/netlink/specs/drm_ras.yaml --mode kernel --header \
+>   > drivers/gpu/drm/drm_ras_nl.h  
+> 
+> $ tools/net/ynl/pyynl/ynl_gen_c.py --spec \
+>   Documentation/netlink/specs/drm_ras.yaml --mode kernel --source \
+>   > drivers/gpu/drm/drm_ras_nl.c  
 
-The exec queue itself is not going to cause an issue, but LRCs have
-a small chance of getting freed during the fixups.
+Oh interesting.. that's technically supported but the regen script
+uses "-o $file --cmp-out" instead of "> $file". If we were to use
+a shell redirect we override the file each time which makes incremental
+kernel builds much larger.
 
-Creating a setter and a getter makes it easier to protect the fixup
-operations with a lock. For other driver activities, the original
-access method (without any protection) can still be used.
+> I used above commands to generate the initial files moving the 
+> drm_ras_nl.h from include/ to drm layer.
+> 
+> Even after that if i regen using tools/net/ynl/ynl-regen.sh -f
+> I see the above diff.
+> 
+> Am i using the commands wrong or missing something?
 
-Signed-off-by: Tomasz Lis <tomasz.lis@intel.com>
----
- drivers/gpu/drm/xe/xe_exec_queue.c | 71 +++++++++++++++++++++---------
- drivers/gpu/drm/xe/xe_exec_queue.h |  1 +
- 2 files changed, 52 insertions(+), 20 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index b4ef725a682d..2cb37af42021 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -270,6 +270,54 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
- 	return q;
- }
- 
-+static void xe_exec_queue_set_lrc(struct xe_exec_queue *q, struct xe_lrc *lrc, u16 idx)
-+{
-+	xe_assert(gt_to_xe(q->gt), idx < q->width);
-+
-+	scoped_guard(spinlock, &q->multi_queue.lock)
-+		q->lrc[idx] = lrc;
-+}
-+
-+/**
-+ * xe_exec_queue_get_lrc() - Get the LRC from exec queue.
-+ * @q: The exec_queue.
-+ * @idx: Index within multi-LRC array.
-+ *
-+ * Retrieves LRC of given index for the exec queue.
-+ *
-+ * Return: Pointer to LRC on success, error on failure
-+ */
-+struct xe_lrc *xe_exec_queue_get_lrc(struct xe_exec_queue *q, u16 idx)
-+{
-+	struct xe_lrc *lrc;
-+
-+	xe_assert(gt_to_xe(q->gt), idx < q->width);
-+
-+	scoped_guard(spinlock, &q->multi_queue.lock) {
-+		lrc = q->lrc[idx];
-+		if (lrc)
-+			xe_lrc_get(lrc);
-+	}
-+
-+	return lrc;
-+}
-+
-+/**
-+ * xe_exec_queue_lrc() - Get the LRC from exec queue.
-+ * @q: The exec_queue.
-+ *
-+ * Retrieves the primary LRC for the exec queue. Note that this function
-+ * returns only the first LRC instance, even when multiple parallel LRCs
-+ * are configured. This function does not increment reference count,
-+ * so the reference can be just forgotten after use.
-+ *
-+ * Return: Pointer to LRC on success, error on failure
-+ */
-+struct xe_lrc *xe_exec_queue_lrc(struct xe_exec_queue *q)
-+{
-+	return q->lrc[0];
-+}
-+
- static void __xe_exec_queue_fini(struct xe_exec_queue *q)
- {
- 	int i;
-@@ -327,8 +375,7 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
- 			goto err_lrc;
- 		}
- 
--		/* Pairs with READ_ONCE to xe_exec_queue_contexts_hwsp_rebase */
--		WRITE_ONCE(q->lrc[i], lrc);
-+		xe_exec_queue_set_lrc(q, lrc, i);
- 	}
- 
- 	return 0;
-@@ -1288,21 +1335,6 @@ int xe_exec_queue_get_property_ioctl(struct drm_device *dev, void *data,
- 	return ret;
- }
- 
--/**
-- * xe_exec_queue_lrc() - Get the LRC from exec queue.
-- * @q: The exec_queue.
-- *
-- * Retrieves the primary LRC for the exec queue. Note that this function
-- * returns only the first LRC instance, even when multiple parallel LRCs
-- * are configured.
-- *
-- * Return: Pointer to LRC on success, error on failure
-- */
--struct xe_lrc *xe_exec_queue_lrc(struct xe_exec_queue *q)
--{
--	return q->lrc[0];
--}
--
- /**
-  * xe_exec_queue_is_lr() - Whether an exec_queue is long-running
-  * @q: The exec_queue
-@@ -1662,14 +1694,13 @@ int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch)
- 	for (i = 0; i < q->width; ++i) {
- 		struct xe_lrc *lrc;
- 
--		/* Pairs with WRITE_ONCE in __xe_exec_queue_init  */
--		lrc = READ_ONCE(q->lrc[i]);
-+		lrc = xe_exec_queue_get_lrc(q, i);
- 		if (!lrc)
- 			continue;
--
- 		xe_lrc_update_memirq_regs_with_address(lrc, q->hwe, scratch);
- 		xe_lrc_update_hwctx_regs_with_address(lrc);
- 		err = xe_lrc_setup_wa_bb_with_scratch(lrc, q->hwe, scratch);
-+		xe_lrc_put(lrc);
- 		if (err)
- 			break;
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index c9e3a7c2d249..a82d99bd77bc 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -160,6 +160,7 @@ void xe_exec_queue_update_run_ticks(struct xe_exec_queue *q);
- int xe_exec_queue_contexts_hwsp_rebase(struct xe_exec_queue *q, void *scratch);
- 
- struct xe_lrc *xe_exec_queue_lrc(struct xe_exec_queue *q);
-+struct xe_lrc *xe_exec_queue_get_lrc(struct xe_exec_queue *q, u16 idx);
- 
- /**
-  * xe_exec_queue_idle_skip_suspend() - Can exec queue skip suspend
--- 
-2.25.1
-
+If you use the redirect the script doesn't know what the file name is
+so it gives up on adding the local header. If you really want to have
+the header under include we can just add an option for "--no-auto-hdr"
+But again, just double checking that its what we really need, as the
+auto-generated header is usually quite internal to the Netlink code.
+The users of the netlink family within the kernel include the uAPI
+and some human-written header.
