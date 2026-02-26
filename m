@@ -4,62 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F83BFC590F
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 09:12:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D21C4FC5910
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Feb 2026 09:42:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A6A310E896;
-	Thu, 26 Feb 2026 09:12:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 940A810E8A6;
+	Thu, 26 Feb 2026 09:42:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Aaq7/Zgs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JB9xUMNb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77A4E10E896;
- Thu, 26 Feb 2026 09:12:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACEC610E8A4;
+ Thu, 26 Feb 2026 09:42:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772097166; x=1803633166;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=blMXsWAvuofUkGygXR2xg4VS4c6FdlmUnwcyorXruTo=;
- b=Aaq7/ZgsdbfB7KgOHY16a+3qxRpL0SEztBzzDeiTIT7XnCpi5aShMvKZ
- zPlYitfXHcFvyO2/zRxu7KpeGT1Hu0UfhKTLXbJM+Ccds6CqjeL7CsBe1
- 5Nho9ve0/A4hMuCNAhZYBNT+dvTA5q+g03XIIFuz3H2KLDojJW7W/98EO
- ehiAvKJ3Rp2HHRxv4a/MqEi6XkZ7yOB5oS1NEOrBZQZk+2Jv4J+BVvQ1c
- HSD8LvWiWOHIfBbjqSeGFNScRpD5Lv/QORGruTt4wDKmnTtC5oGeoF7mc
- dwAvieh7/rsurC4T48qHGQ0ubWSLhqjn3xQHyaPpnTuhKoRlEmpeh+3ly Q==;
-X-CSE-ConnectionGUID: LJEk5pnbRPyDtLDUuWxZEw==
-X-CSE-MsgGUID: /1kYdqKWTZi+Xaq3yfhjpw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="73065116"
-X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="73065116"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2026 01:12:45 -0800
-X-CSE-ConnectionGUID: SuBJDBysQ32+DR0sRD4BBg==
-X-CSE-MsgGUID: ToLYcNFdS0q2cG3BEaoPUA==
+ t=1772098964; x=1803634964;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Ipqzclbvrun69E3P+3xbXYjB5AzcNVAL1gctvJFvqMs=;
+ b=JB9xUMNbpNGm5AxDhUD77u8LZivUDfeW5SH5SOP1U2BKl3ogxLMPXt8h
+ 7lqSvoloyirYnScAPOq24Dobx4jAWUUipcF/XwmsZL/83V5rV0gotHfcU
+ mLCu3soa4qjm7oqcvhtni7CXK1C28+6n75bG/Mk/od4iXgMatPEKbbTl9
+ IpvrS2HAreNJSbIPCvqOrqloHnuI6BKb6ObxbA85rn0zOneizjvdm/qlT
+ S35IwACauWdHeJRTKKYz1q1z3qdTA/VLnnIKbFk/DDgo/HEQB84RF+VqO
+ eHSHbwXgEmwviKPUBNTp0IEzODrvdCq+5p00QCIitFcHOntmv3Kvy2ju/ g==;
+X-CSE-ConnectionGUID: 2fyCyXrKQZeNF7RPel5XWg==
+X-CSE-MsgGUID: d6+wBduRSxm6G9e3eSmQOg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="95770530"
+X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="95770530"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 01:42:44 -0800
+X-CSE-ConnectionGUID: wSlEEibTTJOQRunjnXvizA==
+X-CSE-MsgGUID: mq8+xssmQai79UaXrw/YBg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="216648273"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
- ([10.245.244.224])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2026 01:12:43 -0800
-Date: Thu, 26 Feb 2026 11:12:39 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Animesh Manna <animesh.manna@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, stable@vger.kernel.org,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH] drm/i915/alpm: ALPM disable fixes
-Message-ID: <aaAOhwxyLDggl08O@intel.com>
-References: <20260212062731.397801-1-jouni.hogander@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="254272580"
+Received: from fdefranc-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.125])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 01:42:41 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Shankar, Uma" <uma.shankar@intel.com>, "Roper, Matthew D"
+ <matthew.d.roper@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
+ <thomas.hellstrom@linux.intel.com>, "Brost, Matthew"
+ <matthew.brost@intel.com>
+Subject: RE: [PATCH] drm/xe/compat: Remove unused i915_reg.h from compat header
+In-Reply-To: <DM4PR11MB63609181C06EA2208BD6B33CF472A@DM4PR11MB6360.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260223171015.1035550-1-uma.shankar@intel.com>
+ <9f4d35467196e95d548030876a7f73386ed36d79@intel.com>
+ <DM4PR11MB6360D3D5EFB752BC46B8D02BF475A@DM4PR11MB6360.namprd11.prod.outlook.com>
+ <20260225174306.GQ4694@mdroper-desk1.amr.corp.intel.com>
+ <09eb82885835ecea2f60c9eaba15bf58c13fb32e@intel.com>
+ <DM4PR11MB63609181C06EA2208BD6B33CF472A@DM4PR11MB6360.namprd11.prod.outlook.com>
+Date: Thu, 26 Feb 2026 11:42:37 +0200
+Message-ID: <5c2d7382a694a16ce272543ae8812a6429b33928@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260212062731.397801-1-jouni.hogander@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,52 +79,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Feb 12, 2026 at 08:27:31AM +0200, Jouni Högander wrote:
-> PORT_ALPM_CTL is supposed to be written only before link training. Remove
-> writing it from ALPM disable.
-> 
-> Also clearing ALPM_CTL_ALPM_AUX_LESS_ENABLE and is not about disabling ALPM
-> but switching to AUX-Wake ALPM. Stop touching this bit on ALPM disable.
+On Thu, 26 Feb 2026, "Shankar, Uma" <uma.shankar@intel.com> wrote:
+> Thanks Jani, shall I send a revert on drm-xe-next and push through
+> drm-intel-next instead ?
 
-There's another open coded variant of this in intel_alpm_lobf_disable(),
-and that thing also gets passed the wrong crtc_state (new instead of
-old).
+Yes, please.
 
-Also LOBF enable is now being done from two places (intel_alpm_lobf_enable()
-and intel_psr_enable_source()). How those two interact is anyone's guess.
+> Apologies for the noise on this.
 
-> 
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/7153
-> Fixes: 1ccbf135862b ("drm/i915/psr: Enable ALPM on source side for eDP Panel replay")
-> Cc: Animesh Manna <animesh.manna@intel.com>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: <stable@vger.kernel.org> # v6.10+
-> Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_alpm.c | 7 +------
->  1 file changed, 1 insertion(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-> index e0a4a59dc025..b3334bc4d0f9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-> @@ -604,12 +604,7 @@ void intel_alpm_disable(struct intel_dp *intel_dp)
->  	mutex_lock(&intel_dp->alpm.lock);
->  
->  	intel_de_rmw(display, ALPM_CTL(display, cpu_transcoder),
-> -		     ALPM_CTL_ALPM_ENABLE | ALPM_CTL_LOBF_ENABLE |
-> -		     ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
-> -
-> -	intel_de_rmw(display,
-> -		     PORT_ALPM_CTL(cpu_transcoder),
-> -		     PORT_ALPM_CTL_ALPM_AUX_LESS_ENABLE, 0);
-> +		     ALPM_CTL_ALPM_ENABLE | ALPM_CTL_LOBF_ENABLE, 0);
->  
->  	drm_dbg_kms(display->drm, "Disabling ALPM\n");
->  	mutex_unlock(&intel_dp->alpm.lock);
-> -- 
-> 2.43.0
+No worries, it happens.
+
+BR,
+Jani.
+
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel
