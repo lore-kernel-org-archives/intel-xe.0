@@ -4,55 +4,157 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E022EFD7F95
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Feb 2026 11:21:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DC85FD7F91
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Feb 2026 11:23:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A539410E16E;
-	Fri, 27 Feb 2026 11:21:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CA2510EAFB;
+	Fri, 27 Feb 2026 11:23:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e9pW505e";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lrARm3uB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D5BB710E035
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Feb 2026 11:21:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E9DA10E035;
+ Fri, 27 Feb 2026 11:23:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772191284; x=1803727284;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Z31Fr96B8L3Da2sW4kzRNNN0q1BCftlzxLUjo8mEuDk=;
- b=e9pW505eoteXerjp5dQsMatMyjoH2E45vw+0h5gwZJBJepfgHpHXFIjw
- rs6ICJL5qm5PWpAWDD/OiWxIxgSDSK5LqmIabSiGF1NKJEFRYB6wr3qR5
- QJoIRh6Y0NCyzp7qFFXsBR5xw327WVeU01eYsL4i/tj1FhREeTj+GBnPj
- L9v/U9FXT9r/EjQ+gxQZfwbCX9sXngS9QK9cZfJjkAtAo3Gdp8ahPtKDQ
- rho3LvZV0pjK6D1OS1xhnbpMaX2KVahr+zNgZH3j9JIniKIOL40D1oe6b
- mQVy9Tae0938q6sQ/tPo3gyXhqRMcXe5WgahIpEfW+tfM6ZoiB9dKdPLw Q==;
-X-CSE-ConnectionGUID: clXR6WpvTYeq29UAxx3hdQ==
-X-CSE-MsgGUID: kpgwuYlwQJib7FxGfX2hNg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="73239457"
-X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="73239457"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 03:21:23 -0800
-X-CSE-ConnectionGUID: wQSRmaLkRxm5DhR1rzMMUw==
-X-CSE-MsgGUID: HMk3F5OpS1mI/LEK9RPbWA==
+ t=1772191391; x=1803727391;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=kCNP5GxzNgV7ujA4aaKXV5hQgtlfrFlKUQs94ojf3Zg=;
+ b=lrARm3uBVSg7aPrFb9wbBdnNItEJbIGzS8QWjDPzLqXAzt3pJL5xJsTr
+ C690382bTs1sLx3LmANhB8jIp+TJJwqRGgE/23xKhB5nvwfeXOS2NSznL
+ R2qFjjshfGubhVY6ROsec0PLUnXu++1osH+VzJt2vr47BeyNOzxB2mN3F
+ fAmC+MyvBAjqB1nTxVfyXqYZHwCGYuB4C82yPoa1MLwjhF3muzfGMB1l6
+ 4CuiHeWHkQ0tj7/EGLjzCu5lAX5c9G855857y2c3xMC1cQMb++lhKtCrd
+ xYfb+pXd+1mALpO5SfEwnRharzgslvJBHyqgpB16PeF4h35wpow4pGHaB g==;
+X-CSE-ConnectionGUID: f7oLq7sSSs6UzWoLDXAnFA==
+X-CSE-MsgGUID: H0icx3GzRUGQjqsSHXZTKQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="77112498"
+X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="77112498"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2026 03:23:11 -0800
+X-CSE-ConnectionGUID: IaHNfN6RSEuuBVZJLPzv8Q==
+X-CSE-MsgGUID: aN4CU+/9SNO5Gn3+C1tMvQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="254650545"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO lglandwe-mobl5.intel.com)
- ([10.245.245.89])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 03:21:21 -0800
-From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
-Subject: [v4] drm/xe: Allow per queue programming of COMMON_SLICE_CHICKEN3
- bit13
-Date: Fri, 27 Feb 2026 13:23:08 +0200
-Message-ID: <20260227112310.1222483-1-lionel.g.landwerlin@intel.com>
-X-Mailer: git-send-email 2.43.0
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="244268020"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2026 03:23:11 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Fri, 27 Feb 2026 03:23:10 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Fri, 27 Feb 2026 03:23:10 -0800
+Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.56) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Fri, 27 Feb 2026 03:23:10 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GSoCp/YKgHdot48O6LGHXNiQlK2uJ0rtpXzPgXmBZFypqCVf6Q4PRdlkse2SvH2MeEGt4CjAAK8SF3TUcmTiZTNGD1908WI17scbcXsj9BoUO02mjWZA5k6xiKzAEMHVrsIpFwWUohmRPSPsa7KO36N+6DM6S15m1UPLkG1IIsDMl89UPJ7UXrzlhbx98CwcnWIo4jfVjBV/e08baMveHcqyGewHvRvEkaR+KpeGpJaPG6LP3qVQsvkdNcim3GT2lCX7rcuAIDQeY6dX8D5w90yqtaywFzIw9MDg/6KlOdVLZZyqyAP3x3oTDary+zbUD1JBP7DMFRdx+itjnBcGZw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yjHD4Y+eCmrYw7bXODsjEGfdsQpcjoiKLcdXJTtKkr8=;
+ b=s41sNveRxmLih6B76asOkY/+kjP6742jmznb1MSZdB6TbJ7mLgVF1sBMOMndBQ0shKLKhr9Nvgy0mmL8ACnPdY0XapqK2gtfl8QkP7H28Cfx18uCGg0Ifx/0Z3fkD5VuKyhGaLe8SFKiImAUsxMUd0vSruiIO4YM/q2XBSLo1UtJcvi4sLttxtWPAl0YlNGX4DiMHU0BusWBg5+dFZ7AGYm45Sq3enJaxSexf7OpyOAVoCAy/ctw5LuoYUqoKPgKMPBi0kPGQiT+PhXKYN13jqjKSjdTZZvpX2+MkoipWH0l4YfWI7K9DbJ6xdQGmx6ZYBY9XpDiieN5dT02pisvCA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by CY8PR11MB6987.namprd11.prod.outlook.com (2603:10b6:930:55::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.11; Fri, 27 Feb
+ 2026 11:23:08 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::68b9:ea3c:8166:3cc4]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::68b9:ea3c:8166:3cc4%4]) with mapi id 15.20.9632.017; Fri, 27 Feb 2026
+ 11:23:08 +0000
+Message-ID: <7fb21fc1-b2f4-49f5-9950-65cb949e2357@intel.com>
+Date: Fri, 27 Feb 2026 16:53:00 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 09/14] drm/i915/psr: Add helper to check if PR is with
+ link OFF
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <jouni.hogander@intel.com>, <animesh.manna@intel.com>
+References: <20260223134431.1639308-1-ankit.k.nautiyal@intel.com>
+ <20260223134431.1639308-10-ankit.k.nautiyal@intel.com>
+ <aaBw8UiTZDg37Tml@intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <aaBw8UiTZDg37Tml@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5P287CA0082.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d8::12) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|CY8PR11MB6987:EE_
+X-MS-Office365-Filtering-Correlation-Id: e9d4985d-459b-4e02-da4b-08de75f29534
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: nFP1kdL/BJgfblU4xRpWJ5iiTtEkdc/NTLnl/cqkU2B0tTz3mfBCCdTM5xNma67zKOpLq70J2jVC5qSFiXEbggwWx00dyCCCMKzOvluyWs2zMarflOq88BkAeuxnqJdYF0/oWCyiPaiYf5cBKVtqmDAtFdlDRYT6fr3MFpqo4qn1vyu1NxH93eg9CpKhtQX3IdFP3PMQksjgmI2IZw6UpegdD4klES7R4egBYsphy5llkI2Kj2EJyAvbCeSLE2MVUnb7o2fSdr5/UpALaAKtAb9dJfqUhV/+vU9dGPyWs8Fwji6rBeTuoqc6VHeDOkFZVEEA/G+nWwEjShIpbOgHkEe0mGEreHzpEDJmybaQnQNV08kVg7NW30C7inAhSY2qHqoGM7Im7S9lb6VracaydP0og/3jTIvxZeeGWvMStZmPghnNj+KtO/vImXzsOfuFYzMKPutut5XI/nDISSL6chzGXz1Oa6yTQvF18sajoA2vBZ0fkbYj3sGhtP+I940jUlHosfM0nL4UDJ8s3MuYyJ8pB/tUOO1agzJOdxnUmFm7vQCk+bAiJbLLHzHYlj3O8mc+noAvK3Ljr9L0ab7Duw7Dl30HDIahhP2ctgSiOFN6s2CXhkVxjoTx9tmjLt+rByaTNu6YiyE8DFRX7AF+RIfaAxWq50fcJF5TWp5lQlCv7NVedisWBl/RKh+K1IGMYOajoQGrp9LdMHUuuQmj1B2IxkDbfwGMAV6Q3YLrvN8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YnFCMWxmSXZwcjh4Snh5NXpMVkE1WklYZVFVb3lhdUFaZjlndW4xSitBR2xh?=
+ =?utf-8?B?c2xDdTZlbGNLNVQzTExZeDZvcmFBUE5yZlp4dUdtOWZ6dUZuVFAvSnZYalNW?=
+ =?utf-8?B?VVVOb0NTNnkyaGUxYzRSdUtoQ01NZU8wc1YxTHRSdVdBR1JBcTlaQkFMVGF0?=
+ =?utf-8?B?L0xOaWYzSERrNG5hckpqSmFubHI4RVVqNjFGNWdFV1ByTVd0Y2NwK2JWRXZ6?=
+ =?utf-8?B?aGc0bmFJc2dzQXY4TlFJYmlRMGRmclIyV3VIRGlwUkVFa1o3UlRWS3RpY0ZG?=
+ =?utf-8?B?cEYvTmpyekI1NWJZL0lQRlJrS0NwSjNYVTBQY0ZlVTZTT2ZxcVFHMEN1aGFr?=
+ =?utf-8?B?d3FXQ1hrRHhNdEVTNlZPQTdYaFRpMmdEN0lBYnY3K0xzbG5YSWtpRUJYNEx4?=
+ =?utf-8?B?M08wWEFIUGFkUVV4WjRhR0FqMlNYUFNZMVZlOWx3UmRDUXdjTHVQekVlV1ds?=
+ =?utf-8?B?QUNoT3pybkJWRFZBa21HK1JvbUFvY1RuaEZLNUdCSXkyd0R4M3JyUDZsSVJi?=
+ =?utf-8?B?L3pQbDFhd2hUMmFoa3VsZGs1UG5CVGxtZ0FQTmZMUDFlWjRYc0lVcnpkWEZt?=
+ =?utf-8?B?OTZ3Y2M1Q0lqRlZHWnVWRmMreW1ONGJOK2F1Y0FvSG4wZHBycFpZUmdMSk5u?=
+ =?utf-8?B?Z212MTNCWmYxWHZkZ3F1M3c3eVhQdnM3UlVhSW51cmdXTVpNK2JTb3g1Wm56?=
+ =?utf-8?B?RUF2UWRhTit1d3FEaVVCcjh3ZklOQ3ExYnNOa2ozSjhTd2QxY3c0Z201UUEr?=
+ =?utf-8?B?bmpRcHQ4SXhrSXY2cjRpemdGbjBZSHk1aFRXM2d2ZGxsc1VUOGxoVnNZY3ov?=
+ =?utf-8?B?a05EU0JMMElaTnB4UXk0aWVWM0duUVVTT3M4d3VmOEQ4UXUxdlJmVlN6MlVL?=
+ =?utf-8?B?QzUzbTF1UGNMbk55ejFvbWxWdzVYVWRoYkJpS2RTdTYyMkNTUS9malBJajlu?=
+ =?utf-8?B?Mzg1SFFYZjl2akcxbVZnaktNZkw1ekRRR0YrMXZkQmtkNWZBNEJyL3BUNTZ5?=
+ =?utf-8?B?a2gzdkVNbVljYlRsS1NRQlRjbDVCckwvNlpwek5Vcm9EVWJtWTFocVpsMExy?=
+ =?utf-8?B?M3FjRTJBWHFPV2VoYXVHVU81aHYrRmVqN3FCcjBaS0RNZEZidDRZc1NFVVNW?=
+ =?utf-8?B?Mk50dWNXaUgyeHhmMGlHQ0JqVG91V0ZUcGFLc2Z5MW9USFBwUG02SlZ3OURx?=
+ =?utf-8?B?SDZLK3pldnRiUDhpNkRKK2plRDZOcXA1OFhoK3JJbzByT0YxTFNqb2Nhajg5?=
+ =?utf-8?B?QUgyTXZ6blRwTE9QYjU2SXcza3d6YW9lWkYvemU1OWxWbTFxcENmZWdOYkZa?=
+ =?utf-8?B?SmhKRDl0MFpCMEZVWUt1TStQYU10Z3hucDB2OVRnYnc1MmNnaGhyUWZqOEZ4?=
+ =?utf-8?B?NFgwcXNTeXRYUXM2QW12L1o2UnJwTm0vZFNyeDRaSFZIZ2tlNDFJYWdnVlo1?=
+ =?utf-8?B?UW41d1FmaVlzeWtBK0VNU0lWNENNYUpZeXhXLzUwRmoxNWVaclVOd0dHZ3BH?=
+ =?utf-8?B?NUZJYnpNK1pkeXRoS3RLME55MkNCOEh5ekpPKytPS3NKNDdpZG5VZCtQaDlr?=
+ =?utf-8?B?aUdaTFJaNzFZZXV4K1c2dzB2aU1qZ1FENGYvMUpZK1dySVR6cUZoNWZ2MmNx?=
+ =?utf-8?B?NjZ2aTlqdVVjb1ptNzRQSXB4bFRnMVFKSXd2SzFkOXNURzNGZytjU3R3NlA3?=
+ =?utf-8?B?SGc2U3l2M1BvQ1pFcDZYZTJKaSszcjRiSmtVWXNGLzdDZGVXdUsvUDQvczJp?=
+ =?utf-8?B?cDZZNnI1emVkUXlvc290WC8vQjVQY2YvMzdWYkZIM1oycS9pQUt2WVhNRWJF?=
+ =?utf-8?B?ZklPSzNYMkJhQ0FJUVV1T1psbnJVZlB0QVhQVTZicC9xelFJZWs2NzNYcDVX?=
+ =?utf-8?B?ODZaVlRydnlFZDk2KzhtWi9GdERtbXg5U1lsZndzY3AxM1pEd0NKRGhWZnAr?=
+ =?utf-8?B?T2ppU2ZQRjJkRjlNdWxxSWh4elMrOHIzeTRJSHBxalg4c1NsUmxGeERXSkdm?=
+ =?utf-8?B?M3dXNENKM0VBQnFSSG1kSTBuMXVjK0JwSXBtQlhNSVdZVzI1aCtEUUdTMjJr?=
+ =?utf-8?B?d2JmTWNtWnBTbWtVRXZWYlEzSWRvbkJtaGxUbkRXZlVVTGp3bmF1Ynk4VTJR?=
+ =?utf-8?B?bjRPZngzSldHOE5JRytrK0owU0x4NWFPc0I2VXRMZVZGTFZYem5RK2ZoZG0v?=
+ =?utf-8?B?L3NQN2h3SU5OVzRXby92MFRRMEkva1VneWZacUVpQTBXSUQrdHpLN2VrMmFm?=
+ =?utf-8?B?N2QwbDFOclM5Q1dDOWZmUGo3SEg5NS9qaHEzNkE0MDl3Q1FKVkhlbHhKMnZI?=
+ =?utf-8?B?ZTNsakpKRG9SZ3ZYMU9KbmxYQythcE9XWmRBYWhQVGt0ZkJyMUl4OUxTYlVs?=
+ =?utf-8?Q?B8yzOxrxVhPcVUdY=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9d4985d-459b-4e02-da4b-08de75f29534
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 11:23:08.2405 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0IOAKNKTcqgmfh1bg1pfVYqMdh3TdpI2JpuLKMwak8gYKD7hAiAdeqh+TDaNMJnm0Do3s7J1vjRyd46nMlfqpHNj+I3d/I093G2Wcz8c7xY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6987
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,216 +169,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Similar to i915's commit cebc13de7e704b1355bea208a9f9cdb042c74588
-("drm/i915: Whitelist COMMON_SLICE_CHICKEN3 for UMD access"), except
-people have decided to not rely on putting the register on the
-allowlist for UMD to program and instead have context/queue creation
-flag.
 
-This is a recommended tuning setting for both gen12 and Xe_HP
-platforms.
+On 2/26/2026 9:42 PM, Ville Syrjälä wrote:
+> On Mon, Feb 23, 2026 at 07:14:26PM +0530, Ankit Nautiyal wrote:
+>> Introduce a helper intel_psr_is_pr_with_link_off() to check if the Panel
+>> Replay feature needs to be enabled with link off.
+>>
+>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>> ---
+>>   drivers/gpu/drm/i915/display/intel_psr.c | 6 ++++++
+>>   drivers/gpu/drm/i915/display/intel_psr.h | 1 +
+>>   2 files changed, 7 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+>> index 5bea2eda744b..e0e6ddbfaa2d 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+>> @@ -4575,3 +4575,9 @@ bool intel_psr_use_trans_push(const struct intel_crtc_state *crtc_state)
+>>   
+>>   	return HAS_PSR_TRANS_PUSH_FRAME_CHANGE(display) && crtc_state->has_psr;
+>>   }
+>> +
+>> +bool intel_psr_is_pr_with_link_off(const struct intel_crtc_state *crtc_state)
+>> +{
+>> +	return crtc_state->has_panel_replay &&
+>> +		crtc_state->link_off_after_as_sdp_when_pr_active;
+> I don't think that flag has anything to do with what you're
+> trying to determine here.
 
-If a render queue is created with
-DRM_XE_EXEC_QUEUE_SET_STATE_CACHE_PERF_FIX, COMMON_SLICE_CHICKEN3 will
-be programmed at initialization to enable the render color cache to
-key with BTP+BTI (binding table pool + binding table entry) instead of
-just BTI (binding table entry). This enables the UMD to avoid emitting
-render-target-cache-flush + stall-at-pixel-scoreboard every time a
-binding table entry pointing to a render target is changed.
+You are right this is not the thing I wanted.
 
-v2: Use xe_lrc_write_ring()
+The source can use Auxless ALPM to turn off main link without this bit.
 
-v3: Update xe_query.c to report availability
+I am still looking for flag that can help to determine Auxless ALPM with 
+Link Off.
 
-v4: Rename defines to add DISABLE_
 
-Bspec: 73993, 73994, 72161, 31870, 68331
-Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_gt_regs.h     |  1 +
- drivers/gpu/drm/xe/xe_exec_queue.c       | 19 ++++++++++++++++++-
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 ++
- drivers/gpu/drm/xe/xe_lrc.c              |  9 +++++++++
- drivers/gpu/drm/xe/xe_lrc.h              |  1 +
- drivers/gpu/drm/xe/xe_query.c            |  2 ++
- include/uapi/drm/xe_drm.h                |  8 ++++++++
- 7 files changed, 41 insertions(+), 1 deletion(-)
+Regards,
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 90b9017770ea2..33b94ec344044 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -179,6 +179,7 @@
- 
- #define COMMON_SLICE_CHICKEN3				XE_REG(0x7304, XE_REG_OPTION_MASKED)
- #define XEHP_COMMON_SLICE_CHICKEN3			XE_REG_MCR(0x7304, XE_REG_OPTION_MASKED)
-+#define   DISABLE_STATE_CACHE_PERF_FIX			REG_BIT(13)
- #define   DG1_FLOAT_POINT_BLEND_OPT_STRICT_MODE_EN	REG_BIT(12)
- #define   XEHP_DUAL_SIMD8_SEQ_MERGE_DISABLE		REG_BIT(12)
- #define   BLEND_EMB_FIX_DISABLE_IN_RCC			REG_BIT(11)
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index f8980cb7293dd..93b39a3d60800 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -292,6 +292,9 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
- 	if (!(exec_queue_flags & EXEC_QUEUE_FLAG_KERNEL))
- 		flags |= XE_LRC_CREATE_USER_CTX;
- 
-+	if (q->flags & EXEC_QUEUE_FLAG_DISABLE_STATE_CACHE_PERF_FIX)
-+		flags |= XE_LRC_DISABLE_STATE_CACHE_PERF_FIX;
-+
- 	err = q->ops->init(q);
- 	if (err)
- 		return err;
-@@ -850,6 +853,17 @@ static int exec_queue_set_multi_queue_priority(struct xe_device *xe, struct xe_e
- 	return q->ops->set_multi_queue_priority(q, value);
- }
- 
-+static int exec_queue_set_state_cache_perf_fix(struct xe_device *xe, struct xe_exec_queue *q,
-+					       u64 value)
-+{
-+	if (XE_IOCTL_DBG(xe, q->class != XE_ENGINE_CLASS_RENDER))
-+		return -EOPNOTSUPP;
-+
-+	q->flags |= value != 0 ? EXEC_QUEUE_FLAG_DISABLE_STATE_CACHE_PERF_FIX : 0;
-+
-+	return 0;
-+}
-+
- typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
- 					     struct xe_exec_queue *q,
- 					     u64 value);
-@@ -862,6 +876,8 @@ static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
- 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP] = exec_queue_set_multi_group,
- 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY] =
- 							exec_queue_set_multi_queue_priority,
-+	[DRM_XE_EXEC_QUEUE_SET_DISABLE_STATE_CACHE_PERF_FIX] =
-+							exec_queue_set_state_cache_perf_fix,
- };
- 
- int xe_exec_queue_set_property_ioctl(struct drm_device *dev, void *data,
-@@ -946,7 +962,8 @@ static int exec_queue_user_ext_set_property(struct xe_device *xe,
- 			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE &&
- 			 ext.property != DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE &&
- 			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP &&
--			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY))
-+			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY &&
-+			 ext.property != DRM_XE_EXEC_QUEUE_SET_DISABLE_STATE_CACHE_PERF_FIX))
- 		return -EINVAL;
- 
- 	idx = array_index_nospec(ext.property, ARRAY_SIZE(exec_queue_set_property_funcs));
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 3791fed34ffa5..e4e3dbe956f05 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -134,6 +134,8 @@ struct xe_exec_queue {
- #define EXEC_QUEUE_FLAG_LOW_LATENCY		BIT(5)
- /* for migration (kernel copy, clear, bind) jobs */
- #define EXEC_QUEUE_FLAG_MIGRATE			BIT(6)
-+/* for programming COMMON_SLICE_CHICKEN3 on first submission */
-+#define EXEC_QUEUE_FLAG_DISABLE_STATE_CACHE_PERF_FIX	BIT(7)
- 
- 	/**
- 	 * @flags: flags for this exec queue, should statically setup aside from ban
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 384f9b31421ec..1ddc4f269d08c 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -14,6 +14,7 @@
- #include "instructions/xe_gfxpipe_commands.h"
- #include "instructions/xe_gfx_state_commands.h"
- #include "regs/xe_engine_regs.h"
-+#include "regs/xe_gt_regs.h"
- #include "regs/xe_lrc_layout.h"
- #include "xe_bb.h"
- #include "xe_bo.h"
-@@ -1451,6 +1452,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	struct xe_bo *seqno_bo;
- 	struct iosys_map map;
- 	u32 arb_enable;
-+	u32 state_cache_perf_fix[3];
- 	u32 bo_flags;
- 	int err;
- 
-@@ -1594,6 +1596,13 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
- 	arb_enable = MI_ARB_ON_OFF | MI_ARB_ENABLE;
- 	xe_lrc_write_ring(lrc, &arb_enable, sizeof(arb_enable));
- 
-+	if (init_flags & XE_LRC_DISABLE_STATE_CACHE_PERF_FIX) {
-+		state_cache_perf_fix[0] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1);
-+		state_cache_perf_fix[1] = COMMON_SLICE_CHICKEN3.addr;
-+		state_cache_perf_fix[2] = _MASKED_BIT_ENABLE(DISABLE_STATE_CACHE_PERF_FIX);
-+		xe_lrc_write_ring(lrc, state_cache_perf_fix, sizeof(state_cache_perf_fix));
-+	}
-+
- 	map = __xe_lrc_seqno_map(lrc);
- 	xe_map_write32(lrc_to_xe(lrc), &map, lrc->fence_ctx.next_seqno - 1);
- 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index 3e500004f1ae4..1c4ae5f6f06da 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -49,6 +49,7 @@ struct xe_lrc_snapshot {
- #define XE_LRC_CREATE_RUNALONE		BIT(0)
- #define XE_LRC_CREATE_PXP		BIT(1)
- #define XE_LRC_CREATE_USER_CTX		BIT(2)
-+#define XE_LRC_DISABLE_STATE_CACHE_PERF_FIX	BIT(3)
- 
- struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
- 			     void *replay_state, u32 ring_size, u16 msix_vec, u32 flags);
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 34db266b723fa..4852fdcb4b959 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -340,6 +340,8 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
- 			DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT;
- 	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
- 			DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY;
-+	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
-+		DRM_XE_QUERY_CONFIG_FLAG_HAS_DISABLE_STATE_CACHE_PERF_FIX;
- 	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
- 		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
- 	config->info[DRM_XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index ef2565048bdf1..df1dc6b9cbc8c 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -406,6 +406,9 @@ struct drm_xe_query_mem_regions {
-  *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT - Flag is set if the
-  *      device supports the userspace hint %DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION.
-  *      This is exposed only on Xe2+.
-+ *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_DISABLE_STATE_CACHE_PERF_FIX - Flag is set
-+ *      if a queue can be creaed with
-+ *      %DRM_XE_EXEC_QUEUE_SET_DISABLE_STATE_CACHE_PERF_FIX
-  *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment
-  *    required by this device, typically SZ_4K or SZ_64K
-  *  - %DRM_XE_QUERY_CONFIG_VA_BITS - Maximum bits of a virtual address
-@@ -425,6 +428,7 @@ struct drm_xe_query_config {
- 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY	(1 << 1)
- 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR	(1 << 2)
- 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT (1 << 3)
-+	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_DISABLE_STATE_CACHE_PERF_FIX	(1 << 4)
- #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
- #define DRM_XE_QUERY_CONFIG_VA_BITS			3
- #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
-@@ -1285,6 +1289,9 @@ struct drm_xe_vm_bind {
-  *  - %DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY - Set the queue
-  *    priority within the multi-queue group. Current valid priority values are 0–2
-  *    (default is 1), with higher values indicating higher priority.
-+ *  - %DRM_XE_EXEC_QUEUE_SET_DISABLE_STATE_CACHE_PERF_FIX - Set the queue to
-+ *    enable render color cache keying on BTP+BTI instead of just BTI
-+ *    (only valid for render queues).
-  *
-  * The example below shows how to use @drm_xe_exec_queue_create to create
-  * a simple exec_queue (no parallel submission) of class
-@@ -1329,6 +1336,7 @@ struct drm_xe_exec_queue_create {
- #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP		4
- #define     DRM_XE_MULTI_GROUP_CREATE				(1ull << 63)
- #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY	5
-+#define   DRM_XE_EXEC_QUEUE_SET_DISABLE_STATE_CACHE_PERF_FIX	6
- 	/** @extensions: Pointer to the first extension struct, if any */
- 	__u64 extensions;
- 
--- 
-2.43.0
+Ankit
 
+>
+>> +}
+>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
+>> index 394b641840b3..6764bcb13f9b 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_psr.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_psr.h
+>> @@ -86,5 +86,6 @@ void intel_psr_compute_config_late(struct intel_dp *intel_dp,
+>>   				   struct intel_crtc_state *crtc_state);
+>>   int intel_psr_min_guardband(struct intel_crtc_state *crtc_state);
+>>   bool intel_psr_use_trans_push(const struct intel_crtc_state *crtc_state);
+>> +bool intel_psr_is_pr_with_link_off(const struct intel_crtc_state *crtc_state);
+>>   
+>>   #endif /* __INTEL_PSR_H__ */
+>> -- 
+>> 2.45.2
