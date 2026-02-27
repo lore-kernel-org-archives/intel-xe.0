@@ -4,157 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B383FD7F95
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Feb 2026 11:13:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E022EFD7F95
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Feb 2026 11:21:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3D4010EAFB;
-	Fri, 27 Feb 2026 11:13:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A539410E16E;
+	Fri, 27 Feb 2026 11:21:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ffaQh71F";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e9pW505e";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B2E8010EAFB;
- Fri, 27 Feb 2026 11:13:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D5BB710E035
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Feb 2026 11:21:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772190808; x=1803726808;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=TVh5e3UzWltSTQC3gMtL+2+UdjwW1/rFp5MFO4DRu80=;
- b=ffaQh71FNTFllVBfUbd7C/vtjj2CMjeiU5Xd8luihtvdAJwcfWPtXBWD
- AygYoajx6YY4z8zp4IghP5q7zRMGFWdhucqGdi9ZVBVu8dhtZ0HBdd7w1
- 5bYPL1uWWqZZIfGHzsNv0uzr/gVea8hcaUg9q2WH84w/AUkdoZU1j8LhH
- lIPl1eQ3vcTsMW9khqtI6mMDV2NrFDGph9SrOYbN/ohIWOuUlTWcUClO+
- /654uHYjGqtZENYMbK7vqYG0oyt8M20Z7FClsi8wdcwe+m1WzJPFr8z3r
- 9cVeY6X+1qMr3+2anaSZcKk3+KvNb91FATHdLs9gIXQowYAGe0p1ol83C w==;
-X-CSE-ConnectionGUID: MHscmyrTSZyErTf6Sa5V4w==
-X-CSE-MsgGUID: +PybAAhgSeqah682oHducQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="95891971"
-X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="95891971"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 03:13:26 -0800
-X-CSE-ConnectionGUID: Pih1GT+ZQDSSGKL9q4zhtQ==
-X-CSE-MsgGUID: WrlLXkuuS66kY2IFDJQwXQ==
+ t=1772191284; x=1803727284;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Z31Fr96B8L3Da2sW4kzRNNN0q1BCftlzxLUjo8mEuDk=;
+ b=e9pW505eoteXerjp5dQsMatMyjoH2E45vw+0h5gwZJBJepfgHpHXFIjw
+ rs6ICJL5qm5PWpAWDD/OiWxIxgSDSK5LqmIabSiGF1NKJEFRYB6wr3qR5
+ QJoIRh6Y0NCyzp7qFFXsBR5xw327WVeU01eYsL4i/tj1FhREeTj+GBnPj
+ L9v/U9FXT9r/EjQ+gxQZfwbCX9sXngS9QK9cZfJjkAtAo3Gdp8ahPtKDQ
+ rho3LvZV0pjK6D1OS1xhnbpMaX2KVahr+zNgZH3j9JIniKIOL40D1oe6b
+ mQVy9Tae0938q6sQ/tPo3gyXhqRMcXe5WgahIpEfW+tfM6ZoiB9dKdPLw Q==;
+X-CSE-ConnectionGUID: clXR6WpvTYeq29UAxx3hdQ==
+X-CSE-MsgGUID: kpgwuYlwQJib7FxGfX2hNg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="73239457"
+X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="73239457"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2026 03:21:23 -0800
+X-CSE-ConnectionGUID: wQSRmaLkRxm5DhR1rzMMUw==
+X-CSE-MsgGUID: HMk3F5OpS1mI/LEK9RPbWA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="215988218"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 03:13:26 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 27 Feb 2026 03:13:26 -0800
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 27 Feb 2026 03:13:26 -0800
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.15) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 27 Feb 2026 03:13:25 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vopMOYuIuaG+1EUOnjJn/D5YukrmbK+eOi+AUQI0iFquNjc5VpBpF8hU1qnlKmh9WlI8h15UYcPJyBu+d5Enet6y12fgHj9H+PBf3h92alZ54f2K04nXuZ4n6b7ZOoGIIkJTvmoavE+Pj3Z4dQcRs9r5AzMRHjxymXoxzF+dqsTONDXSZ1uXXPI5b89cRzBaWDw2+9EAlPPi6oPnZhzYWf0658duQt+b9wpbChDXSCh8IYS/5hWmSExvyn1lzqUaPVS3Cr8eJ/4J9cR/j56KvxXhWuahNQbiAUM9Ir5UmA8yh/oenfguESxSzK38eIeaNgT3IV10cMW+LEaavogFIQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=s+mJnjJDVLyeo6H3A23b8m16+5hm8lCohv68lREQFwQ=;
- b=d7o71an64yvcBvOMpbhBqFB8VwMb5HX+L3kuTYf8dtxJCbh3WTnVph6HrvU3uODkfdBcgStbNR9QpIIADswHN+Xer94CpjZmPvYZuVopl3Gk1RF/lMaoot1Z2pvoc50VElrxCjuBUtTwvaaoV2jLTUBBYic22VbkGsVIYpsO65vKLCEjgLANN/vNmEyzDGetjMYd2xkc7TK/liiDf4ZkhfC1X3WK5VIsJQMNRkNEBiSAv/BSluJ3mQJqHzEHYBxeLhMCINrb0C/PMnrHBSoviPMqyCXdGjHsDmGr0/el8V0VFOwkNi4Msh5w6/nSdnnJ0f4SFzYHIIE+AKwfKa6EMw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by LV8PR11MB8488.namprd11.prod.outlook.com (2603:10b6:408:1e7::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Fri, 27 Feb
- 2026 11:13:23 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4%4]) with mapi id 15.20.9632.017; Fri, 27 Feb 2026
- 11:13:23 +0000
-Message-ID: <918e1bbe-e7e4-447c-b1a6-7b0aa6cd102c@intel.com>
-Date: Fri, 27 Feb 2026 16:43:14 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/14] include/drm/display/dp: Add field for storing AS
- SDP version
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <jouni.hogander@intel.com>, <animesh.manna@intel.com>
-References: <20260223134431.1639308-1-ankit.k.nautiyal@intel.com>
- <20260223134431.1639308-6-ankit.k.nautiyal@intel.com>
- <aaBn_kzDTiO3EnV8@intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <aaBn_kzDTiO3EnV8@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MAXPR01CA0112.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a00:5d::30) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="254650545"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO lglandwe-mobl5.intel.com)
+ ([10.245.245.89])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2026 03:21:21 -0800
+From: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+Subject: [v4] drm/xe: Allow per queue programming of COMMON_SLICE_CHICKEN3
+ bit13
+Date: Fri, 27 Feb 2026 13:23:08 +0200
+Message-ID: <20260227112310.1222483-1-lionel.g.landwerlin@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|LV8PR11MB8488:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6ff62444-66c4-4666-7333-08de75f138b5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: JS3hDKwqJ0worMEM95RuzLWKtuBjMo+IoRhU/Fi4+HpIkCpOd+2N9Bj3dXRb59e72aHKgfkA3e+ZC7QnYz8P2OF2a4wuCPbWn94/kgRXQ3PUXCm5MGb+hXDl3xX9yyuw67oQdIEK/7GCAncUMvkr3g/4mSaJaS+oWTz9H/rtGgUUoCWtxDQSrIe7hbL74JgtTSKNzfM5/b3iKSMQeFXzPGv+ob2eG4Mdn+1BS9nW4povtsh2dZ2IXEmruzxikr1O7ixgmxTVSQFqvPqCLGWx40Bj1hD4mxBV3sbm+ZcOZCm7+gamF3lmTWVAgcEx7B4lRWfnFZSfA9SM4Z9Ahh5HM57RYJ1uZ98anpccN7MJTe6FBphr8Kt/89GdtLK0sG3tB2BkwfWa0pdCzDE8OcxVQzVyEKPQ4MO9mNPO/XjBB93wimg4k4chr7cF+60Nd9G8UV9bJAtTgO594GV6daTrW8z7y7JLueJIoh+ACMqQkBqzMMGQLKxhso7yqAQ12qGai2UiBd2ZRlSyRbkhyV1RGLy9z79ch2cjr9GphdJq/FXDS95me3VUq8/yJM12ifn3UAy/+8MO6dUizaPV7OGZcoTn9eFAxpPQg5wZjJf+UlYaTwFACy0muGDryhnp7fngVHvjSQokeJsN7J+H0ulQ43wUWnOL14RiB3dl34/rgSdNMD3gArJ5K8zyD1zL5E20zVrMU3aDflccFAXkhT/uP9YJ01LRHSnpOhNjcBqjtP0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aWZBcjN4cjg5YlVQd0dMallidlIyMGU4SmxNR2dFUE5uUmNueGV5QWRoNEl6?=
- =?utf-8?B?cWhmWkxqa0IzeVJVVVRpeDcxZXdubHQ4N1F0SHhrK3MyRmpER2xnMGUzRnpY?=
- =?utf-8?B?dUMyMCtJRUx1cnpscmRsMjE1cHhQS2dCVUxnUGVLNUNPZjR2T0JCYm14SmFC?=
- =?utf-8?B?RFhpNEQzdTY4Rmc1WW5UUlZqRlQ4QTJJNVFxRTl4T0pab1k0bjlhN3dBOE5S?=
- =?utf-8?B?U0pJNHFFekFNaU9SSzlRTTNrYVR6SFZiSDQ4U1ZNN2FKMVU4RnNaNW9XWml2?=
- =?utf-8?B?U0RRSDNDd01JYjVyVENuYVBvL1lLSzI0WE53TlZBbHpjMktRTmdvQkxERDh1?=
- =?utf-8?B?NW40anhOMmdCR1k0YW9CZVgrNkNPWEJ0SzZCY1l0S0RmNXpGeU9yNThHbTlJ?=
- =?utf-8?B?RlMxaWdYSmEzVURjUWhpTWNZZGEwN1NXMVZXNGF3U3IzWkJvb1N2UStyUzBW?=
- =?utf-8?B?UUhiNDRPOVA5VW1tSUhVdE9WSFpRZElTNW03YVBQVlR5ckVmcUtTNTVxTU5F?=
- =?utf-8?B?QTlPUTdrZldHTENzV2VNdDYwMi9aYWhlQXAySkc3ZVNCbDFpQ0hHc0ZRVXFN?=
- =?utf-8?B?YUxUeURjZ0w2cXNtQjdlZGkxU3pBblpSUWlzUWpMSUR4dVVTNlkvVmxBZXZO?=
- =?utf-8?B?SXUrbVdMRTNwRG1wYU1VNWJlQnVzRERubDVMbWpkRjMxQmkzY3AyUUZZRnB2?=
- =?utf-8?B?dlB0RG1WbGhuM2lUTXE0Zlo0bFRKYUJiSVMwa2gxc3R4TXJjRHhMRkNJNDRZ?=
- =?utf-8?B?U1hrdGFZNDlHT1RnYURsMXZ2QTNlekpJWmpEK2EvdHR6d1F0Y1EwbjZLa29v?=
- =?utf-8?B?cGVjSE5xWjlUY0ZSUTVxMHJEZExxRFU0ZjVjUTh2M01teUJJTTMyY01hek42?=
- =?utf-8?B?K1lvVlhTaHNjUzlwNFhrM09zNm56YXc2K2NmRGhtZFVzTlQrQjN0M3VLS2V3?=
- =?utf-8?B?cUZ5M0hVR3FsRHM3MVpCSDJGcDhEbFFOZXRHTEtGRXRiWmdScUJpV0grVE5R?=
- =?utf-8?B?SGpvbVAwaXNoNEFUNEZJMHplTnNEVHU1djQrWVFPcWVxWWNCcVNwNDRDellz?=
- =?utf-8?B?T3B2NzhTaFQrV3dnTmxJQWFNWlFSekd2bGwyL2dsQWNhYTVHK1BrbDJlQkZq?=
- =?utf-8?B?c0p3ck94dDdGeG5iYkFGVlFOUllpMEQxOEJlNGptL2NENVM2QnFTdWNWdWZu?=
- =?utf-8?B?ajc2amVZd3BQS3o2czZrUW1hTUtpY0dMQi9QQUVPTEpqMktFNUVPdlpBQ3do?=
- =?utf-8?B?TXc2a3ZtMzlHWk1LQlQyV3RTVTg2clBOTUNYdVVxNU91NWZSUEFsMnJSakt6?=
- =?utf-8?B?SzNHdlIxeGhwd1NkVjdFT3U4QmhoT2tEeWZYQmZpU1Y3bFJOM2NTdUNaK1VM?=
- =?utf-8?B?K0FKYnVVc3NWbWRubVhyOVNlR2wvdXFFNTN6dy9wNWxLSmZlM3R5RENOVHdM?=
- =?utf-8?B?SUUwS29HZDh6Tktzb1FjOFlJUVhTa0RuQ2tYaVVGbzFwRDR6MFpuZmRoTmwr?=
- =?utf-8?B?eDB1ZE1WcGgvMTBISTRrVm5CWjZNZ3hWOWVvLzQwOXFWeis1UkpBb1hHSE1y?=
- =?utf-8?B?d2ZmakI1R1dIVldYSzVOcXU2dDExcC9QOTA1eGZzOE5VQkdmYVhFZmhHbjNN?=
- =?utf-8?B?MmtJSWlJellIb1ArYlZvdVo4TE0vK2g0aTdjdFBTdFVtMGt5dWVzN1lSUGtV?=
- =?utf-8?B?OVRyUThlM2t5cGZFbk9wUDNtc2Zsb0V4VWorRXV0c2dwV1ovS1gxNzRlYnYv?=
- =?utf-8?B?dHZmQjVhdVR1cEtpL2tqUXRpNkRrN2U4S2xHYXJ1VVZZVlR0Zzg2eGtMOWZu?=
- =?utf-8?B?Y3pYNDE2QWE5d3JnRE5vZ3VDRWlzeExSRmlBbmkwTlh1bHZxKzg3YWhXdjFo?=
- =?utf-8?B?c25ZWjdlWkl1Q1pOS3FBMzAwSUtNenIwZElVS29mWkRyaG1jdXBlR1BQaGFn?=
- =?utf-8?B?Y2pjMGRrWXVNa3ozSFJnZmg0MHBXNHR0NHNZMlJHUks0dWtGUGFIbitwTTFG?=
- =?utf-8?B?ZHlZc2d2cVRFUUQ1ZzhJODN4czBuZlVUNUNMMTNmVnBRZzRPUXBjOG1NVFh3?=
- =?utf-8?B?RmpNZjdxZXZNb0ErZFp0V1UyT2FVVk1pRWpWbS9XNE1VemFjZ2ExTUJweXZj?=
- =?utf-8?B?YzNDRFIvdnJMTFFHeFhOQTZGMDdHL0VIZXpocXE1YzIvdWs0emFQcUxwOVYz?=
- =?utf-8?B?VlVlY2FYbS8wWGFmZlZ4S3YxSk5jTVo1eGZYa3pPekNOQ0tNWUtpR2kyOEsy?=
- =?utf-8?B?OEJIZi96L0RFajJhN2VjYnVlVjRMWHNBT2pCT3FqeXZvS2F2OWxBMjBRYXBF?=
- =?utf-8?B?N0JSSU5jVXI2QVVWMi81SFRKSFNNRkowV2VyTW1EMXpKbmZ0T251M0wzRXhN?=
- =?utf-8?Q?1eiwu6+P7S/J0764=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6ff62444-66c4-4666-7333-08de75f138b5
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 11:13:23.5923 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UVwCdVYvokhTxZOfY9qGUy5+XQhfpQc6f+i3b5hwrDpYAJDmClQahWJI9zvGM+XB9U7SXAILi48YiKrcV1fcA4Icqfc6DKlh5/4l5pqEzC4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8488
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,56 +67,216 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Similar to i915's commit cebc13de7e704b1355bea208a9f9cdb042c74588
+("drm/i915: Whitelist COMMON_SLICE_CHICKEN3 for UMD access"), except
+people have decided to not rely on putting the register on the
+allowlist for UMD to program and instead have context/queue creation
+flag.
 
-On 2/26/2026 9:04 PM, Ville Syrjälä wrote:
-> On Mon, Feb 23, 2026 at 07:14:22PM +0530, Ankit Nautiyal wrote:
->> Add a new member to store Adaptive Sync SDP version and include it in AS
->> SDP logs.
->>
->> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> ---
->>   drivers/gpu/drm/display/drm_dp_helper.c | 1 +
->>   include/drm/display/drm_dp_helper.h     | 1 +
->>   2 files changed, 2 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
->> index a697cc227e28..9469943d8194 100644
->> --- a/drivers/gpu/drm/display/drm_dp_helper.c
->> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
->> @@ -3507,6 +3507,7 @@ void drm_dp_as_sdp_log(struct drm_printer *p, const struct drm_dp_as_sdp *as_sdp
->>   {
->>   	drm_printf(p, "DP SDP: AS_SDP, revision %u, length %u\n",
->>   		   as_sdp->revision, as_sdp->length);
->> +	drm_printf(p, "    version: %d\n", as_sdp->version);
->>   	drm_printf(p, "    vtotal: %d\n", as_sdp->vtotal);
->>   	drm_printf(p, "    target_rr: %d\n", as_sdp->target_rr);
->>   	drm_printf(p, "    duration_incr_ms: %d\n", as_sdp->duration_incr_ms);
->> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
->> index 1d0acd58f486..c71787fc31c1 100644
->> --- a/include/drm/display/drm_dp_helper.h
->> +++ b/include/drm/display/drm_dp_helper.h
->> @@ -120,6 +120,7 @@ struct drm_dp_as_sdp {
->>   	unsigned char sdp_type;
->>   	unsigned char revision;
->                        ^^^^^^^^
->
-> Isn't that already the thing you're trying to add here?
+This is a recommended tuning setting for both gen12 and Xe_HP
+platforms.
 
-Indeed (face palm). We seem to be not using it.
+If a render queue is created with
+DRM_XE_EXEC_QUEUE_SET_STATE_CACHE_PERF_FIX, COMMON_SLICE_CHICKEN3 will
+be programmed at initialization to enable the render color cache to
+key with BTP+BTI (binding table pool + binding table entry) instead of
+just BTI (binding table entry). This enables the UMD to avoid emitting
+render-target-cache-flush + stall-at-pixel-scoreboard every time a
+binding table entry pointing to a render target is changed.
 
-I will drop this patch and use the existing thing.
+v2: Use xe_lrc_write_ring()
 
+v3: Update xe_query.c to report availability
 
-Regards,
+v4: Rename defines to add DISABLE_
 
-Ankit
+Bspec: 73993, 73994, 72161, 31870, 68331
+Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h     |  1 +
+ drivers/gpu/drm/xe/xe_exec_queue.c       | 19 ++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 ++
+ drivers/gpu/drm/xe/xe_lrc.c              |  9 +++++++++
+ drivers/gpu/drm/xe/xe_lrc.h              |  1 +
+ drivers/gpu/drm/xe/xe_query.c            |  2 ++
+ include/uapi/drm/xe_drm.h                |  8 ++++++++
+ 7 files changed, 41 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 90b9017770ea2..33b94ec344044 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -179,6 +179,7 @@
+ 
+ #define COMMON_SLICE_CHICKEN3				XE_REG(0x7304, XE_REG_OPTION_MASKED)
+ #define XEHP_COMMON_SLICE_CHICKEN3			XE_REG_MCR(0x7304, XE_REG_OPTION_MASKED)
++#define   DISABLE_STATE_CACHE_PERF_FIX			REG_BIT(13)
+ #define   DG1_FLOAT_POINT_BLEND_OPT_STRICT_MODE_EN	REG_BIT(12)
+ #define   XEHP_DUAL_SIMD8_SEQ_MERGE_DISABLE		REG_BIT(12)
+ #define   BLEND_EMB_FIX_DISABLE_IN_RCC			REG_BIT(11)
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index f8980cb7293dd..93b39a3d60800 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -292,6 +292,9 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
+ 	if (!(exec_queue_flags & EXEC_QUEUE_FLAG_KERNEL))
+ 		flags |= XE_LRC_CREATE_USER_CTX;
+ 
++	if (q->flags & EXEC_QUEUE_FLAG_DISABLE_STATE_CACHE_PERF_FIX)
++		flags |= XE_LRC_DISABLE_STATE_CACHE_PERF_FIX;
++
+ 	err = q->ops->init(q);
+ 	if (err)
+ 		return err;
+@@ -850,6 +853,17 @@ static int exec_queue_set_multi_queue_priority(struct xe_device *xe, struct xe_e
+ 	return q->ops->set_multi_queue_priority(q, value);
+ }
+ 
++static int exec_queue_set_state_cache_perf_fix(struct xe_device *xe, struct xe_exec_queue *q,
++					       u64 value)
++{
++	if (XE_IOCTL_DBG(xe, q->class != XE_ENGINE_CLASS_RENDER))
++		return -EOPNOTSUPP;
++
++	q->flags |= value != 0 ? EXEC_QUEUE_FLAG_DISABLE_STATE_CACHE_PERF_FIX : 0;
++
++	return 0;
++}
++
+ typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
+ 					     struct xe_exec_queue *q,
+ 					     u64 value);
+@@ -862,6 +876,8 @@ static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
+ 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP] = exec_queue_set_multi_group,
+ 	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY] =
+ 							exec_queue_set_multi_queue_priority,
++	[DRM_XE_EXEC_QUEUE_SET_DISABLE_STATE_CACHE_PERF_FIX] =
++							exec_queue_set_state_cache_perf_fix,
+ };
+ 
+ int xe_exec_queue_set_property_ioctl(struct drm_device *dev, void *data,
+@@ -946,7 +962,8 @@ static int exec_queue_user_ext_set_property(struct xe_device *xe,
+ 			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE &&
+ 			 ext.property != DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE &&
+ 			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP &&
+-			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY))
++			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY &&
++			 ext.property != DRM_XE_EXEC_QUEUE_SET_DISABLE_STATE_CACHE_PERF_FIX))
+ 		return -EINVAL;
+ 
+ 	idx = array_index_nospec(ext.property, ARRAY_SIZE(exec_queue_set_property_funcs));
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index 3791fed34ffa5..e4e3dbe956f05 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -134,6 +134,8 @@ struct xe_exec_queue {
+ #define EXEC_QUEUE_FLAG_LOW_LATENCY		BIT(5)
+ /* for migration (kernel copy, clear, bind) jobs */
+ #define EXEC_QUEUE_FLAG_MIGRATE			BIT(6)
++/* for programming COMMON_SLICE_CHICKEN3 on first submission */
++#define EXEC_QUEUE_FLAG_DISABLE_STATE_CACHE_PERF_FIX	BIT(7)
+ 
+ 	/**
+ 	 * @flags: flags for this exec queue, should statically setup aside from ban
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 384f9b31421ec..1ddc4f269d08c 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -14,6 +14,7 @@
+ #include "instructions/xe_gfxpipe_commands.h"
+ #include "instructions/xe_gfx_state_commands.h"
+ #include "regs/xe_engine_regs.h"
++#include "regs/xe_gt_regs.h"
+ #include "regs/xe_lrc_layout.h"
+ #include "xe_bb.h"
+ #include "xe_bo.h"
+@@ -1451,6 +1452,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 	struct xe_bo *seqno_bo;
+ 	struct iosys_map map;
+ 	u32 arb_enable;
++	u32 state_cache_perf_fix[3];
+ 	u32 bo_flags;
+ 	int err;
+ 
+@@ -1594,6 +1596,13 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 	arb_enable = MI_ARB_ON_OFF | MI_ARB_ENABLE;
+ 	xe_lrc_write_ring(lrc, &arb_enable, sizeof(arb_enable));
+ 
++	if (init_flags & XE_LRC_DISABLE_STATE_CACHE_PERF_FIX) {
++		state_cache_perf_fix[0] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1);
++		state_cache_perf_fix[1] = COMMON_SLICE_CHICKEN3.addr;
++		state_cache_perf_fix[2] = _MASKED_BIT_ENABLE(DISABLE_STATE_CACHE_PERF_FIX);
++		xe_lrc_write_ring(lrc, state_cache_perf_fix, sizeof(state_cache_perf_fix));
++	}
++
+ 	map = __xe_lrc_seqno_map(lrc);
+ 	xe_map_write32(lrc_to_xe(lrc), &map, lrc->fence_ctx.next_seqno - 1);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+index 3e500004f1ae4..1c4ae5f6f06da 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.h
++++ b/drivers/gpu/drm/xe/xe_lrc.h
+@@ -49,6 +49,7 @@ struct xe_lrc_snapshot {
+ #define XE_LRC_CREATE_RUNALONE		BIT(0)
+ #define XE_LRC_CREATE_PXP		BIT(1)
+ #define XE_LRC_CREATE_USER_CTX		BIT(2)
++#define XE_LRC_DISABLE_STATE_CACHE_PERF_FIX	BIT(3)
+ 
+ struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
+ 			     void *replay_state, u32 ring_size, u16 msix_vec, u32 flags);
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 34db266b723fa..4852fdcb4b959 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -340,6 +340,8 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+ 			DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT;
+ 	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+ 			DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY;
++	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
++		DRM_XE_QUERY_CONFIG_FLAG_HAS_DISABLE_STATE_CACHE_PERF_FIX;
+ 	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
+ 		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
+ 	config->info[DRM_XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index ef2565048bdf1..df1dc6b9cbc8c 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -406,6 +406,9 @@ struct drm_xe_query_mem_regions {
+  *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT - Flag is set if the
+  *      device supports the userspace hint %DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION.
+  *      This is exposed only on Xe2+.
++ *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_DISABLE_STATE_CACHE_PERF_FIX - Flag is set
++ *      if a queue can be creaed with
++ *      %DRM_XE_EXEC_QUEUE_SET_DISABLE_STATE_CACHE_PERF_FIX
+  *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment
+  *    required by this device, typically SZ_4K or SZ_64K
+  *  - %DRM_XE_QUERY_CONFIG_VA_BITS - Maximum bits of a virtual address
+@@ -425,6 +428,7 @@ struct drm_xe_query_config {
+ 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY	(1 << 1)
+ 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR	(1 << 2)
+ 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT (1 << 3)
++	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_DISABLE_STATE_CACHE_PERF_FIX	(1 << 4)
+ #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
+ #define DRM_XE_QUERY_CONFIG_VA_BITS			3
+ #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
+@@ -1285,6 +1289,9 @@ struct drm_xe_vm_bind {
+  *  - %DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY - Set the queue
+  *    priority within the multi-queue group. Current valid priority values are 0–2
+  *    (default is 1), with higher values indicating higher priority.
++ *  - %DRM_XE_EXEC_QUEUE_SET_DISABLE_STATE_CACHE_PERF_FIX - Set the queue to
++ *    enable render color cache keying on BTP+BTI instead of just BTI
++ *    (only valid for render queues).
+  *
+  * The example below shows how to use @drm_xe_exec_queue_create to create
+  * a simple exec_queue (no parallel submission) of class
+@@ -1329,6 +1336,7 @@ struct drm_xe_exec_queue_create {
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP		4
+ #define     DRM_XE_MULTI_GROUP_CREATE				(1ull << 63)
+ #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY	5
++#define   DRM_XE_EXEC_QUEUE_SET_DISABLE_STATE_CACHE_PERF_FIX	6
+ 	/** @extensions: Pointer to the first extension struct, if any */
+ 	__u64 extensions;
+ 
+-- 
+2.43.0
 
->
->>   	unsigned char length;
->> +	int version;
->>   	int vtotal;
->>   	int target_rr;
->>   	int duration_incr_ms;
->> -- 
->> 2.45.2
