@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53E4AFEFB6D
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Feb 2026 16:59:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7356FEFB6D
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Feb 2026 17:03:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 152CC10EBD1;
-	Fri, 27 Feb 2026 16:59:32 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 944FB10EBD1;
- Fri, 27 Feb 2026 16:59:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4838732012536625075=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46FB210EBCE;
+	Fri, 27 Feb 2026 17:03:15 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mNbJDBxk";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20DA510EBCE
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Feb 2026 17:03:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772211795; x=1803747795;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=DyZzeJGHVQBLWobl8q2QUJPK7iFl3+mALQACQZGhQaE=;
+ b=mNbJDBxkf9d0bIlDIIrRuof/RnxA3k4z/oSw6OFdnzLXnigKvSLNnt0L
+ U1clhE1wCb7lC4NDMcCQX8S/a0523Mf8rAqlqgejmieUEKa7PngLcKUvR
+ cuKSGvW2IItj30sXeCWIGiDDFjLRLeguA5ExnSo/zhwnH1gAvYVOXWEuz
+ 7jSiS9NM6GrdgdF3irA6jDfH4MGiIERHRhXNy2X77uHKtiZ/YYyiPjp0Z
+ iXqNdCvDQiB28bYqNlKdGEervIowYdTxj5UAU2GEaJ5Tb2lh6vWNA31Uf
+ nlg2atFsVHV1lvMpw4udVjKquM/KALZODEXe+tixXcx9xqnCWkBrblQvh w==;
+X-CSE-ConnectionGUID: 81vPa+MSRpWhUaOfNaCzqg==
+X-CSE-MsgGUID: KX8j2cfRQ0SrhiS3lwALsw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11714"; a="73169886"
+X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="73169886"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2026 09:03:14 -0800
+X-CSE-ConnectionGUID: VKVhE4yVTQereWcWHOWoew==
+X-CSE-MsgGUID: VpI6gtQGREeNCqRgyt5ZVA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="216964615"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa008.jf.intel.com with ESMTP; 27 Feb 2026 09:03:11 -0800
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
+ thomas.hellstrom@linux.intel.com, riana.tauro@intel.com,
+ michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
+ michal.winiarski@intel.com, matthew.auld@intel.com, maarten@lankhorst.se,
+ Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v2 0/9] Introduce Xe PCIe FLR
+Date: Fri, 27 Feb 2026 22:30:40 +0530
+Message-ID: <20260227170049.3418863-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/tests=3A_Change_TEST?=
- =?utf-8?q?=5FVRAM_to_work_with_32-bit_resource=5Fsize=5Ft?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Feb 2026 16:59:28 -0000
-Message-ID: <177221156858.297188.14125410198475091410@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260227160010.12425-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20260227160010.12425-1-michal.wajdeczko@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,110 +64,68 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4838732012536625075==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Here's my humble attempt at introducing PCIe Function Level Reset (FLR)
+support in xe driver. This is ofcourse a half baked implementation and
+only limited to reloading GT. This needs to be extended for a lot of
+different components which I've skipped here for my lack of competence,
+so feel free to join in and support them.
 
-== Series Details ==
+PS: All xe_exec_basic tests and clpeak run smoothly after FLR. Give it
+a spin and let me know if any regressions.
 
-Series: drm/xe/tests: Change TEST_VRAM to work with 32-bit resource_size_t
-URL   : https://patchwork.freedesktop.org/series/162327/
-State : success
+Trigger it with:
 
-== Summary ==
+$ echo 1 > /sys/bus/pci/devices/<BDF>/reset
 
-CI Bug Log - changes from xe-4632-568403859ba7182ce2a59553664b34d58467adeb_BAT -> xe-pw-162327v1_BAT
-====================================================
+v2: Re-initialize migrate context (Matthew Brost)
+    Add kernel doc (Matthew Brost)
+    Spell out Function Level Reset (Jani)
 
-Summary
--------
+Raag Jadav (9):
+  drm/xe/uc_fw: Allow re-initializing firmware
+  drm/xe/gt: Introduce FLR helpers
+  drm/xe/irq: Introduce xe_irq_disable()
+  drm/xe: Introduce xe_device_assert_lmem_ready()
+  drm/xe/bo_evict: Introduce xe_bo_restore_map()
+  drm/xe/lrc: Introduce xe_lrc_reinit()
+  drm/xe/exec_queue: Introduce xe_exec_queue_reinit()
+  drm/xe/migrate: Introduce xe_migrate_reinit()
+  drm/xe/pci: Introduce PCIe FLR
 
-  **SUCCESS**
+ drivers/gpu/drm/xe/Makefile        |   1 +
+ drivers/gpu/drm/xe/xe_bo_evict.c   |  51 ++++++++--
+ drivers/gpu/drm/xe/xe_bo_evict.h   |   2 +
+ drivers/gpu/drm/xe/xe_device.c     |  10 +-
+ drivers/gpu/drm/xe/xe_device.h     |   1 +
+ drivers/gpu/drm/xe/xe_exec_queue.c |  34 ++++++-
+ drivers/gpu/drm/xe/xe_exec_queue.h |   1 +
+ drivers/gpu/drm/xe/xe_gsc.c        |  14 +++
+ drivers/gpu/drm/xe/xe_gsc.h        |   1 +
+ drivers/gpu/drm/xe/xe_gt.c         |  32 ++++++
+ drivers/gpu/drm/xe/xe_gt.h         |   2 +
+ drivers/gpu/drm/xe/xe_guc.c        |  14 +++
+ drivers/gpu/drm/xe/xe_guc.h        |   1 +
+ drivers/gpu/drm/xe/xe_huc.c        |  14 +++
+ drivers/gpu/drm/xe/xe_huc.h        |   1 +
+ drivers/gpu/drm/xe/xe_irq.c        |  13 ++-
+ drivers/gpu/drm/xe/xe_irq.h        |   1 +
+ drivers/gpu/drm/xe/xe_lrc.c        | 149 ++++++++++++++++------------
+ drivers/gpu/drm/xe/xe_lrc.h        |   2 +
+ drivers/gpu/drm/xe/xe_migrate.c    |  65 ++++++++++---
+ drivers/gpu/drm/xe/xe_migrate.h    |   1 +
+ drivers/gpu/drm/xe/xe_pci.c        |   1 +
+ drivers/gpu/drm/xe/xe_pci.h        |   2 +
+ drivers/gpu/drm/xe/xe_pci_err.c    | 150 +++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_uc.c         |  36 +++++++
+ drivers/gpu/drm/xe/xe_uc.h         |   2 +
+ drivers/gpu/drm/xe/xe_uc_fw.c      |  39 ++++++--
+ drivers/gpu/drm/xe/xe_uc_fw.h      |   1 +
+ 28 files changed, 544 insertions(+), 97 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_pci_err.c
 
-  No regressions found.
+-- 
+2.43.0
 
-  
-
-Participating hosts (14 -> 13)
-------------------------------
-
-  Missing    (1): bat-dg2-oem2 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8774 -> IGT_8775
-  * Linux: xe-4632-568403859ba7182ce2a59553664b34d58467adeb -> xe-pw-162327v1
-
-  IGT_8774: 8892452285d691f612ecb3b2a6fefc50983af15f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8775: 8775
-  xe-4632-568403859ba7182ce2a59553664b34d58467adeb: 568403859ba7182ce2a59553664b34d58467adeb
-  xe-pw-162327v1: 162327v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162327v1/index.html
-
---===============4838732012536625075==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/tests: Change TEST_VRAM to work with 32-bit resource_size_t</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162327/">https://patchwork.freedesktop.org/series/162327/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162327v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162327v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4632-568403859ba7182ce2a59553664b34d58467adeb_BAT -&gt; xe-pw-162327v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 13)</h2>
-<p>Missing    (1): bat-dg2-oem2 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8774 -&gt; IGT_8775</li>
-<li>Linux: xe-4632-568403859ba7182ce2a59553664b34d58467adeb -&gt; xe-pw-162327v1</li>
-</ul>
-<p>IGT_8774: 8892452285d691f612ecb3b2a6fefc50983af15f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8775: 8775<br />
-  xe-4632-568403859ba7182ce2a59553664b34d58467adeb: 568403859ba7182ce2a59553664b34d58467adeb<br />
-  xe-pw-162327v1: 162327v1</p>
-
-</body>
-</html>
-
---===============4838732012536625075==--
