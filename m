@@ -4,147 +4,99 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 631691039895
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Feb 2026 21:01:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB9561039895
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Feb 2026 21:11:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 213EA10EC43;
-	Fri, 27 Feb 2026 21:01:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F10210EC45;
+	Fri, 27 Feb 2026 21:11:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QQ4Y/gyh";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ly9MG+Ty";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6D4010EC41;
- Fri, 27 Feb 2026 21:01:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772226115; x=1803762115;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=ZAiRDJS+eBJkQy6qVHxk3eKLqExsZThBKdfkutJQKl4=;
- b=QQ4Y/gyhtlzWtdz0Ohacz1MAmlFZJwjxB0uV5QPzsWyVxRxi6gxH4rjR
- rocQJsXdTWHmikCGARsAt2gIv9wfZVbun+PeSG6RavVGpaq/eiIp71Qac
- Mh/q7GhekYHOMkPcNpCemRU+2Pj0JZzhlXuVFaNLSWKBtZGh+JkmlxEOr
- 4vh0Li2BcS14prpxA2zvMPozJbUq3C0F5EAdHrfGvDabuGME15nslOjpl
- jA5oN2WEgYOtU3MzhterOKp3TGve5JYoULNc6kDnqQeVj7yd3rVe2jpP9
- ZFwajZArtVsio/NcX4/m75cNnIKsDeW1C6LVplZBHBWNCIUHZJavXZev7 A==;
-X-CSE-ConnectionGUID: 7ruMjkLHQ4O34Ne+JK81Lw==
-X-CSE-MsgGUID: oarWmrhKT46+vCHwIxAbIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11714"; a="83650829"
-X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="83650829"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 13:01:52 -0800
-X-CSE-ConnectionGUID: 7Rpqi8ldQTqHoiiRo49Faw==
-X-CSE-MsgGUID: MzUkIut9TSq2Y6c41Vuv3w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="216917753"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 13:01:52 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 27 Feb 2026 13:01:51 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 27 Feb 2026 13:01:51 -0800
-Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.13) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 27 Feb 2026 13:01:51 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=V8oGfoTFZJOPSeGVUojBNWZ7IjUyUbFNWkvgOieey1O3KWyzwlv5NK2HUzJ0wRwSRXja1Fj0Nf6lRX+e5xf0wgT9sg0Krz3mj1aBkoeztkd09rAdlYj2c4uqABTQKgoBTnT9srLapTVdT9Pug5tZVMD6kMPBzsTD+OoZt0o5zIo8nOLziC3nGsKzbEOdBNCbIO6eAmTHS5/axao7HIJL41sYwQ0Ildj55N2hA8lG9EPqDslX6PCNlhVary/kuYPhlycnABTrH75A1K2fsVdPbGorrsSifDCBWCiS5edyBmMw1lqlqAJIC7Hzmip3dHHsLbXwXNjfhnj2W8kGdImiNw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Ky9FcCTeLKk3dbxt/z9nBLqn3VtIiJduA+rC4LMzFss=;
- b=Cw+9p8SLaMCGVyd/NvrDIeGk2T3kVB23WbvgTch7dDM+DN36rgI8jOMoDc/83xDzoyGhib1MCABhB84VuSbZFJ8aZnSMQ7Ohs5CYErWF6Lv14MC3cKO/e22Ve5coHDZ+FpQYQzOHtZpFhnnslbdckY1CHDL2sItH9dz727SvXMMDWtElK7gNJ624pAsA0yFjil2WwCYm1trDe+8VwSjU5h7yR5u+KW6gAMsLAyZUeymfBSBRNmsDpvZogzAYIVZ2e/7vXU3ZKAOA+Y65b3e1ZKyUutIpH4aUS008coWUwv2ZVFTQBNYC055dtyalrZb1k/WAXUh2YTaT7mA0jjtiIg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by BL3PR11MB6505.namprd11.prod.outlook.com (2603:10b6:208:38c::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.16; Fri, 27 Feb
- 2026 21:01:49 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c%6]) with mapi id 15.20.9654.014; Fri, 27 Feb 2026
- 21:01:49 +0000
-Date: Fri, 27 Feb 2026 13:01:46 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Matthew Auld <matthew.auld@intel.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH 1/2] drm/ttm: Don't spam the log on buffer object backing
- store allocation failure
-Message-ID: <aaIGOqOD5ti5W5v1@lstrano-desk.jf.intel.com>
-References: <20260227160012.82309-1-thomas.hellstrom@linux.intel.com>
- <20260227160012.82309-2-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260227160012.82309-2-thomas.hellstrom@linux.intel.com>
-X-ClientProxiedBy: MW4PR04CA0329.namprd04.prod.outlook.com
- (2603:10b6:303:82::34) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AED9C10EC43;
+ Fri, 27 Feb 2026 21:11:09 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id D13F460126;
+ Fri, 27 Feb 2026 21:11:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09766C116C6;
+ Fri, 27 Feb 2026 21:11:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1772226668;
+ bh=WV5uc/frrKbTpgSuTfIL/Q0arkypj/EMXIYECsp3ih4=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=ly9MG+Tyt+/Kbi+lbUoiqKMMboC21eSgm1KPIa1Cg8Xq2DOehnJ+nV4MS1RowzHSm
+ YjS5KSKgz92mjrAKLYOUJdfW7InnjFFpOhR2dnGMbUSL1Egom1QteTcJEAx7Kyv+5Q
+ DbpkumyUx84Y1vU+p6dubEccdW3OPKw1G1K3CiYkyXlD4tJKDkJlNtLPimlje3oy03
+ eVy4LUulNEpmOVzf6SorSevqzbaq0W3xBn4Lpuj65VMtlHpfWOxWWe8k3OYhgt3vk/
+ +jMNptxNuMs+t+8bLHIvkFgi7XsqpybbVd0LaxrvgZ2GdI37uijQQas7xVewjKZgj3
+ T3dIpAsoyNDEA==
+Message-ID: <9ee22635-a219-47bb-a397-bc4e141b408d@kernel.org>
+Date: Fri, 27 Feb 2026 22:11:00 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|BL3PR11MB6505:EE_
-X-MS-Office365-Filtering-Correlation-Id: e1fc094b-9aa3-44ca-f240-08de76436c84
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
-X-Microsoft-Antispam-Message-Info: lmU22s8B6PspBdYwMKJgWEU9edOhT0wkrfCdXcB2N0Anq5OF1iUBBP/yC5xAIgWHjyG2bA/wmS1zbayB+FVclbu8aslU7GTqzHkfBq3eGhOVflB7i8T+iv7YWeCEgcc3PJooqooEC1uDscsKrlc+8ixX+R1x4I+t9l21lt6bjyJoMenxfqZWYsXvK/oH6yWzuD3p9ktVE8gl3A15UpnO6w+ifJiJAWuZ5hoKvrbOoD+ZlQMLAb5zLOdBRll3kGkLivD+xhvPVB/BOPzv48pltS0FRzbPPUMK3E3eJmZbT1p//LSditzTV4ZkGAuoniMdPlXb/6q35SeWJp4BSQYF9I7q0RJFBcva3TSzWAiFDGW4unTfRNcalUlQQpoy1h5MrFnKcWC9BO+EM8w3srTN4FHymsRvLyW0WcD7t3P8ifZxZmLFQc4AylcwK1EqRGrUsCTj12DFdLw5D4bpdtXTxT0/6sZUs60tT9YVUeAWvGC5eaTZR/B/br0Kgg0iE9N+IbeoJ0gc5U2sMTdI+avyqrK4Bn1+LenLiBzTjF1cplryg32iWJLcX04cjCA2gVukzzrcA8QGQuZjv87Ag7G7qZbKu7QWfz4AvS/kssS2zUITL78Vr18sndAwdXhn7Ir43baQyiHTtV6fBoGz/W2J634XOJ9wirI5S16FHtzDp2cB0bx4/LCHoTBJK0YstpQ57HAT6OUTJjYWyhz/1aaNY7bWxAWqukJbbvUZrFWnvdM=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(7053199007); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?cf5d1ABkNUXqqLhX4afsNGXCkpyWgm42QdhvMTR9wpNakQLHiLWM1joI7l?=
- =?iso-8859-1?Q?LDr+Z2XVoykFKG3ITDtQlWq70ZEjrnMTFj41zd4v1YdDuhLCJI5KtuZoY4?=
- =?iso-8859-1?Q?PcrWOZqep3L+B8PmsDMcBf7Xg4qetE3bll//YyocppROfD1EVJDZccJwyD?=
- =?iso-8859-1?Q?Hss/i8GhjEhIr0DzXDDAjYRf/H1El7RGsCBSfikdwyZUFti4QDg4JWRqzr?=
- =?iso-8859-1?Q?qRkFOfeoj46pAURddbCDNsNKz5Vssa0SVZYdtitd70zlMm6lgM2lRw8Z8f?=
- =?iso-8859-1?Q?awsAbB16T+WkuksDfCkW54P5pvoQu6GLHLLIsv/zAlWNWKMPOkeBzbY0cK?=
- =?iso-8859-1?Q?tntWUM0o7HqxFxSu5YMetkYVgEoGsYsMf41LJ8WtkxE4aLFtEoq/0qUN6N?=
- =?iso-8859-1?Q?bho5eI3OEwvoMWzoIq/tS7hHlGm+pVFg8n2oAk2JRBFqhSGrEWfYKTZgVu?=
- =?iso-8859-1?Q?831HH0OR1HXMq3iAFklEGj+kRvGrygU2jbzcU/VDFIvDrQZQ6sPynivKd4?=
- =?iso-8859-1?Q?IHRMCFL9mZB+GhN0p6H7KTTCFVHypcU10VGd6eWR2wzMQ5EIwTD6FB65QO?=
- =?iso-8859-1?Q?yOboRw6gxqXfAl1pMPwzW+kuNKP3imnqc7rFmWm3PsNO2BDBSErDAQJJng?=
- =?iso-8859-1?Q?0baoOV9tUEWQWsqbCDlLJ6HbMwMbLfumuXprKPuvo609AqJsqEMYBwZCii?=
- =?iso-8859-1?Q?ScnUUrhC47N1YoXl9fv6ZLN1MpjhzMnCz9iTi7Ur4A0b/xIzCE/MPiNzrv?=
- =?iso-8859-1?Q?eBkaRe0fBnRZUf+/8jQMgSoNyRbAoznWvdg0fHkmBBeYYL2W0xSwUcttyY?=
- =?iso-8859-1?Q?6HWIdKJMKTjNVhuCLpNYKSRkamghApZZY85mskcAlPmraOsj3hxeTH5smc?=
- =?iso-8859-1?Q?PteSSMlMvjKUKOEj7YOCgl8GQ0oMwzOrHiI2bhQpWGJBdiOpqEs28mRlsV?=
- =?iso-8859-1?Q?GPtvwVoeQjlZkYrIMkPwq1MfzfLvl+wkN/CtyofUNEI5aYHfVDzksqYFmK?=
- =?iso-8859-1?Q?ja2KsfOwviImPucD16F5OLuM2vME1JHpOQbVfSI+XBnuPfXTTpJnutU/Ad?=
- =?iso-8859-1?Q?hzF1lWVXRZrYC/vZNuhvDzgcDZfoqPyeqT72vI7wbW68w2ssdRemleDLF2?=
- =?iso-8859-1?Q?O/I8yTcN5vN5d368ROdnsE4M39y1C9WVL3LLWjL1w9y/qjubvicR0JlgHR?=
- =?iso-8859-1?Q?mdY4xMtEPgNPJ2KcHmjsVQtIO4RjeiswZncPQxXuTdi5NMRU04LzHtrNTz?=
- =?iso-8859-1?Q?o8vRxA0gPhu6nfbVFVfEoYhVgJIg6sjuTPMBRxldjv3oCOKFnIjHNdCkdE?=
- =?iso-8859-1?Q?v5uoNb14TI1/gFC1CDE8KnAwFqCKPSmGqPqYNxnfz86jcdua22KPQ/c8qm?=
- =?iso-8859-1?Q?Ud6uZsNIq6SOc6PstGW6TsukXO0XRZtUNOS2SLkqGL1ppmocU86YoLNzaD?=
- =?iso-8859-1?Q?xaQjYVQisnOeit3d5BxVRG75/rGCVN9UWvq5cjK0ObQssOoT4ihG1T9B+f?=
- =?iso-8859-1?Q?BKGnWArqIZA+1R3NAdDBwBKTQSohOjzc/PALbYd+XnGsm24fw/plOQiM02?=
- =?iso-8859-1?Q?7lLke700Ba3yeauLuGIF8SOFUpzyb7RX12Bnsia8XphKsr+DhuS8l9XNIV?=
- =?iso-8859-1?Q?4k2iEhvwbXts9ya2WJZQhfaBi7HJ8zi2R041HOcBIFjiJZsKDZAmZRwED0?=
- =?iso-8859-1?Q?ciRaUK9Cun9XnonYxPeBBZHI1PV/KIIy+uso9LgXbxW8Pbp62X0jAB/spD?=
- =?iso-8859-1?Q?JeHYmTn+w/DroPqwGlypYFcnuhwEzceaANaXmQz5t0H2pcCGGiN6+XkQ+r?=
- =?iso-8859-1?Q?cAmIt8vHtFRrI69u9l0hUTWbk6nErQI=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e1fc094b-9aa3-44ca-f240-08de76436c84
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 21:01:49.0321 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: z5JSti/sGB2fpKDTdiLoOmVLARDNFvEJwK92D2SXHMqQJHZtcNDfSlyHl29+NiSj4prvG3XB584aLorc1TlKWg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6505
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 01/13] mm/migrate_device: Introduce
+ migrate_pfn_from_page() helper
+To: Jordan Niethe <jniethe@nvidia.com>, linux-mm@kvack.org
+Cc: balbirs@nvidia.com, matthew.brost@intel.com, akpm@linux-foundation.org,
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ ziy@nvidia.com, apopple@nvidia.com, lorenzo.stoakes@oracle.com,
+ lyude@redhat.com, dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch,
+ rcampbell@nvidia.com, mpenttil@redhat.com, jgg@nvidia.com,
+ willy@infradead.org, linuxppc-dev@lists.ozlabs.org,
+ intel-xe@lists.freedesktop.org, jgg@ziepe.ca, Felix.Kuehling@amd.com,
+ jhubbard@nvidia.com, maddy@linux.ibm.com, mpe@ellerman.id.au,
+ ying.huang@linux.alibaba.com
+References: <20260202113642.59295-1-jniethe@nvidia.com>
+ <20260202113642.59295-2-jniethe@nvidia.com>
+From: "David Hildenbrand (Arm)" <david@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=david@kernel.org; keydata=
+ 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
+ qIws/H2t
+In-Reply-To: <20260202113642.59295-2-jniethe@nvidia.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,35 +111,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Feb 27, 2026 at 05:00:11PM +0100, Thomas Hellström wrote:
-> If the struct ttm_operation_ctx::gfp_retry_mayfail is true,
-> buffer object backing store allocation failures are expected to
-> silently fail with an error code to the caller. But currently an
-> elaborate warning is printed to the system log.
+On 2/2/26 12:36, Jordan Niethe wrote:
+> To create a migrate entry from a given struct page, that page is first
+> converted to its pfn, before passing the pfn to migrate_pfn().
 > 
-> Don't spam the log in this way.
+> A future change will remove device private pages from the physical
+> address space. This will mean that device private pages no longer have a
+> pfn and must be handled separately.
 > 
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-
+> Prepare for this with a new helper:
+> 
+>     - migrate_pfn_from_page()
+> 
+> This helper takes a struct page as parameter instead of a pfn. This will
+> allow more flexibility for handling the mpfn differently for device
+> private pages.
+> 
+> Reviewed-by: Balbir Singh <balbirs@nvidia.com>
+> Acked-by: Felix Kuehling <felix.kuehling@amd.com>
+> Signed-off-by: Jordan Niethe <jniethe@nvidia.com>
 > ---
->  drivers/gpu/drm/ttm/ttm_pool.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-> index c0d95559197c..8fa9e09f6ee5 100644
-> --- a/drivers/gpu/drm/ttm/ttm_pool.c
-> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
-> @@ -726,7 +726,7 @@ static int __ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
->  		gfp_flags |= __GFP_ZERO;
->  
->  	if (ctx->gfp_retry_mayfail)
-> -		gfp_flags |= __GFP_RETRY_MAYFAIL;
-> +		gfp_flags |= __GFP_RETRY_MAYFAIL | __GFP_NOWARN;
->  
->  	if (ttm_pool_uses_dma32(pool))
->  		gfp_flags |= GFP_DMA32;
-> -- 
-> 2.53.0
-> 
+
+Acked-by: David Hildenbrand (Arm) <david@kernel.org>
+
+-- 
+Cheers,
+
+David
