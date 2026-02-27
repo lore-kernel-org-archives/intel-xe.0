@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AF64FD9E39
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Feb 2026 04:18:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8BC2FD9E34
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Feb 2026 04:31:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03E8810E188;
-	Fri, 27 Feb 2026 04:18:11 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TO26uike";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0AAA10E188
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Feb 2026 04:18:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772165889; x=1803701889;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=NSNXMM5F2l16cCsVFeqTe2Pd65awUzgrulJ6Tsvw3XE=;
- b=TO26uike9GQN0AH41iNgZKRy+r4m9TJrqigFRVGnxYq9ayHujbf12bin
- F39dudnM5bPBSI0TLgOefMGY+Xm2cm3/z+jjwbnwTwDDnak+qk7i0x0aw
- 2F5M0/HUB0oxdV1hM0a2JjUo/GFRwtcftkXeAw1/2pttMzhCne6OFjbC4
- S7gn9IDtHIXMv9iaShNmXmjMQHqesFa0Js/Ln2IG7essHLspdvweoKkUz
- KKomzEC3kdEtrWyQDZPn1lVRqKk6TlRRqxaiwjaZ1daLFPzTyI3yEm6If
- AzZg2caWCuTZed2eKIKvX8AWr3EShdvSMFDw2fkvcyldNlCpxakJhTFTT w==;
-X-CSE-ConnectionGUID: siHXYU+nQZemA9OwKTXlqQ==
-X-CSE-MsgGUID: P7wRy+6XT8m7ynSlr3VYHg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="72947270"
-X-IronPort-AV: E=Sophos;i="6.21,313,1763452800"; d="scan'208";a="72947270"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2026 20:18:09 -0800
-X-CSE-ConnectionGUID: CxTqF55jRGCCy5ETOgPMKA==
-X-CSE-MsgGUID: /9YP8K03SHqL1OSfTcW63g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,313,1763452800"; d="scan'208";a="215906935"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2026 20:18:07 -0800
-Date: Fri, 27 Feb 2026 05:18:04 +0100
-From: Raag Jadav <raag.jadav@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
- rodrigo.vivi@intel.com, thomas.hellstrom@linux.intel.com,
- riana.tauro@intel.com, michal.wajdeczko@intel.com,
- michal.winiarski@intel.com
-Subject: Re: [PATCH v1 0/6] Introduce Xe PCIe FLR
-Message-ID: <aaEa_NrpBGVqkH7e@black.igk.intel.com>
-References: <20260224102618.3105171-1-raag.jadav@intel.com>
- <20260226221225.GX4694@mdroper-desk1.amr.corp.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 877C310EA32;
+	Fri, 27 Feb 2026 04:31:44 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7EBF10EA32;
+ Fri, 27 Feb 2026 04:31:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0046370642645423295=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260226221225.GX4694@mdroper-desk1.amr.corp.intel.com>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_platform/x86/intel/vsec=3A_?=
+ =?utf-8?q?Prep_for_ACPI_PMT_discovery_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "David E. Box" <david.e.box@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 27 Feb 2026 04:31:43 -0000
+Message-ID: <177216670386.294056.7712635167065992187@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260227022711.3513663-1-david.e.box@linux.intel.com>
+In-Reply-To: <20260227022711.3513663-1-david.e.box@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,88 +36,282 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Feb 26, 2026 at 02:12:25PM -0800, Matt Roper wrote:
-> On Tue, Feb 24, 2026 at 03:55:13PM +0530, Raag Jadav wrote:
-> > Here's my humble attempt at introducing PCIe FLR support in xe driver.
-> > This is ofcourse a half baked implementation and only limited to reloading
-> > uC firmwares. This needs to be extended for a lot of different components
-> > which I've skipped here for my lack of competence, so feel free to join
-> > in and support them.
-> > 
-> > PS: This works enough to allow a single exec test run after FLR but it
-> > follows with a GuC crash on subsequent runs which I'm still investigating.
-> 
-> Probably a dumb question since FLR while the driver is bound isn't an
-> area I've considered:  if we do a PCI FLR, is there *anything* in the
-> driver state that would still be relevant and useful to carry forward
-> after the reset?  I believe at the hardware level vram gets wiped, all
-> registers in the BAR go back to power-up defaults, etc., right?  If
-> there's no state that we can meaningfully carry forward post-reset, then
-> couldn't that be handled by destroying the whole xe_device (and
-> releasing all of its resources), and then starting over with
-> xe_pci_probe() to initialize a new one from scratch?
+--===============0046370642645423295==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-As an alternative yes, but that's not the userspace contract with FLR.
-If user wants to reload the driver, there's a different path for it,
-i.e. unbind + bind. Detailed explanation[1] from Winiarski on this.
+== Series Details ==
 
-[1] https://lore.kernel.org/intel-xe/forn7m5f2m6bwpspktrmjzvxcezcmoqyuuclu64x77uxdo5c5u@fcg3kphdb5re/
+Series: platform/x86/intel/vsec: Prep for ACPI PMT discovery (rev6)
+URL   : https://patchwork.freedesktop.org/series/159716/
+State : success
 
-> I guess on an igpu all of our data is in smem and only the stolen memory
-> gets wiped, so an FLR is a bit less destructive.  But on a dgpu I'm not
-> sure how much continuation is really possible?
+== Summary ==
 
-The expectation is to give user back a working hardware. Since VRAM is
-lost, user may need to recreate memory contents, but we keep the clients
-and their descriptors intact.
+CI Bug Log - changes from xe-4628-1abdcb654ffbb08bbc96a9806fee60ef65fdad77_BAT -> xe-pw-159716v6_BAT
+====================================================
 
-On a side note, this implementation is meant as a stepping stone and to
-be reused for other usecases in future products.
+Summary
+-------
 
-Raag
+  **SUCCESS**
 
-> > Raag Jadav (6):
-> >   drm/xe/uc_fw: Allow reloading firmware
-> >   drm/xe/uc: Introduce FLR helpers
-> >   drm/xe/irq: Introduce FLR helper
-> >   drm/xe: Introduce xe_device_assert_lmem_ready()
-> >   drm/xe/bo_evict: Introduce xe_bo_restore_map()
-> >   drm/xe/pci: Introduce PCIe FLR
-> > 
-> >  drivers/gpu/drm/xe/Makefile      |   1 +
-> >  drivers/gpu/drm/xe/xe_bo_evict.c |  34 +++++--
-> >  drivers/gpu/drm/xe/xe_bo_evict.h |   2 +
-> >  drivers/gpu/drm/xe/xe_device.c   |   4 +-
-> >  drivers/gpu/drm/xe/xe_device.h   |   1 +
-> >  drivers/gpu/drm/xe/xe_gsc.c      |  15 ++++
-> >  drivers/gpu/drm/xe/xe_gsc.h      |   1 +
-> >  drivers/gpu/drm/xe/xe_gt.c       |  10 +++
-> >  drivers/gpu/drm/xe/xe_gt.h       |   2 +
-> >  drivers/gpu/drm/xe/xe_guc.c      |  16 ++++
-> >  drivers/gpu/drm/xe/xe_guc.h      |   1 +
-> >  drivers/gpu/drm/xe/xe_huc.c      |  16 ++++
-> >  drivers/gpu/drm/xe/xe_huc.h      |   1 +
-> >  drivers/gpu/drm/xe/xe_irq.c      |   7 +-
-> >  drivers/gpu/drm/xe/xe_irq.h      |   1 +
-> >  drivers/gpu/drm/xe/xe_pci.c      |   1 +
-> >  drivers/gpu/drm/xe/xe_pci.h      |   2 +
-> >  drivers/gpu/drm/xe/xe_pci_err.c  | 147 +++++++++++++++++++++++++++++++
-> >  drivers/gpu/drm/xe/xe_uc.c       |  24 +++++
-> >  drivers/gpu/drm/xe/xe_uc.h       |   2 +
-> >  drivers/gpu/drm/xe/xe_uc_fw.c    |  33 +++----
-> >  drivers/gpu/drm/xe/xe_uc_fw.h    |   1 +
-> >  22 files changed, 295 insertions(+), 27 deletions(-)
-> >  create mode 100644 drivers/gpu/drm/xe/xe_pci_err.c
-> > 
-> > -- 
-> > 2.43.0
-> > 
-> 
-> -- 
-> Matt Roper
-> Graphics Software Engineer
-> Linux GPU Platform Enablement
-> Intel Corporation
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 14)
+------------------------------
+
+  Additional (1): bat-atsm-2 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-159716v6_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@write:
+    - bat-atsm-2:         NOTRUN -> [SKIP][1] ([Intel XE#2134]) +4 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@fbdev@write.html
+
+  * igt@kms_addfb_basic@addfb25-yf-tiled-legacy:
+    - bat-atsm-2:         NOTRUN -> [SKIP][2] ([i915#6077]) +30 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@kms_addfb_basic@addfb25-yf-tiled-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - bat-atsm-2:         NOTRUN -> [SKIP][3] ([Intel XE#1024] / [Intel XE#782] / [Intel XE#947]) +5 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-atsm-2:         NOTRUN -> [SKIP][4] ([Intel XE#1024] / [Intel XE#784] / [Intel XE#947])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-atsm-2:         NOTRUN -> [SKIP][5] ([Intel XE#1024] / [Intel XE#783] / [Intel XE#947])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - bat-atsm-2:         NOTRUN -> [SKIP][6] ([Intel XE#540]) +3 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@kms_hdmi_inject@inject-audio.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc:
+    - bat-atsm-2:         NOTRUN -> [SKIP][7] ([Intel XE#829] / [i915#1836]) +6 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@kms_pipe_crc_basic@nonblocking-crc.html
+
+  * igt@kms_prop_blob@basic:
+    - bat-atsm-2:         NOTRUN -> [SKIP][8] ([Intel XE#780])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@kms_prop_blob@basic.html
+
+  * igt@kms_psr@psr-primary-page-flip:
+    - bat-atsm-2:         NOTRUN -> [SKIP][9] ([Intel XE#1024] / [Intel XE#947]) +6 other tests skip
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@kms_psr@psr-primary-page-flip.html
+
+  * igt@xe_exec_fault_mode@twice-userptr-prefetch:
+    - bat-atsm-2:         NOTRUN -> [SKIP][10] ([Intel XE#288]) +32 other tests skip
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-prefetch.html
+
+  * igt@xe_huc_copy@huc_copy:
+    - bat-atsm-2:         NOTRUN -> [SKIP][11] ([Intel XE#255])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@xe_huc_copy@huc_copy.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-atsm-2:         NOTRUN -> [SKIP][12] ([Intel XE#2229])
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  * igt@xe_pat@pat-index-xe2:
+    - bat-atsm-2:         NOTRUN -> [SKIP][13] ([Intel XE#977])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@xe_pat@pat-index-xe2.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-atsm-2:         NOTRUN -> [SKIP][14] ([Intel XE#2838] / [Intel XE#979])
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-atsm-2:         NOTRUN -> [SKIP][15] ([Intel XE#979])
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@xe_pat@pat-index-xelpg.html
+
+  
+  [Intel XE#1024]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024
+  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
+  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#540]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/540
+  [Intel XE#780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/780
+  [Intel XE#782]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/782
+  [Intel XE#783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/783
+  [Intel XE#784]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/784
+  [Intel XE#829]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/829
+  [Intel XE#947]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/947
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+  [i915#1836]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1836
+  [i915#6077]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6077
+
+
+Build changes
+-------------
+
+  * Linux: xe-4628-1abdcb654ffbb08bbc96a9806fee60ef65fdad77 -> xe-pw-159716v6
+
+  IGT_8774: 8892452285d691f612ecb3b2a6fefc50983af15f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4628-1abdcb654ffbb08bbc96a9806fee60ef65fdad77: 1abdcb654ffbb08bbc96a9806fee60ef65fdad77
+  xe-pw-159716v6: 159716v6
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/index.html
+
+--===============0046370642645423295==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>platform/x86/intel/vsec: Prep for ACPI PMT discovery (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159716/">https://patchwork.freedesktop.org/series/159716/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4628-1abdcb654ffbb08bbc96a9806fee60ef65fdad77_BAT -&gt; xe-pw-159716v6_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 14)</h2>
+<p>Additional (1): bat-atsm-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-159716v6_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@write:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@fbdev@write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-yf-tiled-legacy:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@kms_addfb_basic@addfb25-yf-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6077">i915#6077</a>) +30 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024">Intel XE#1024</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/782">Intel XE#782</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/947">Intel XE#947</a>) +5 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024">Intel XE#1024</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/784">Intel XE#784</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/947">Intel XE#947</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024">Intel XE#1024</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/783">Intel XE#783</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/947">Intel XE#947</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/540">Intel XE#540</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@kms_pipe_crc_basic@nonblocking-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/829">Intel XE#829</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1836">i915#1836</a>) +6 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_prop_blob@basic:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@kms_prop_blob@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/780">Intel XE#780</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-primary-page-flip:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@kms_psr@psr-primary-page-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024">Intel XE#1024</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/947">Intel XE#947</a>) +6 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-userptr-prefetch:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_huc_copy@huc_copy:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159716v6/bat-atsm-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4628-1abdcb654ffbb08bbc96a9806fee60ef65fdad77 -&gt; xe-pw-159716v6</li>
+</ul>
+<p>IGT_8774: 8892452285d691f612ecb3b2a6fefc50983af15f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4628-1abdcb654ffbb08bbc96a9806fee60ef65fdad77: 1abdcb654ffbb08bbc96a9806fee60ef65fdad77<br />
+  xe-pw-159716v6: 159716v6</p>
+
+</body>
+</html>
+
+--===============0046370642645423295==--
