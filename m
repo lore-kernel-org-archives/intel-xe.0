@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63C26FD9E34
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Feb 2026 06:42:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EBE9FD4600
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Feb 2026 06:43:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1881D10E615;
-	Fri, 27 Feb 2026 06:42:32 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 694DD10E12B;
- Fri, 27 Feb 2026 06:42:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8097045965827114473=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1C0210E615;
+	Fri, 27 Feb 2026 06:43:58 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DCm7SJM5";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACC5910E615
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Feb 2026 06:43:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772174636; x=1803710636;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ZZeqHEe+GQZw8nQYPQrT9jaf2lIiaat6FQh655u6z+0=;
+ b=DCm7SJM52UiUambUirMb2ocEI3eWLN6kleZuWwrsxf/7DWIM6/oNk67i
+ IbeWqhNWZYFg6dhOMGT2Wls+wXOas0jzTQKbA1H3mmxYWoU4ohIPf7bHp
+ UM4tbe+W+jVo5D+X8Q1vedNwuO2CF2QNHNw86Iq6y7lw11fpfpc2k8S/m
+ 2tEVK/gSvBIrnnLiuLq26rhjk5cEJuGnoBlv3uxA5BRyOw73bOILpp9DX
+ m3P5DL8Sp3hfF3jztp2xVvgpU7c3zhq+ANWDDWMioVn0uBmUQKP1hpyux
+ vEmPSyuIJtLrdikxUEd2lUA/fVjYQGXtEbDsAAof430VOJ7PDKswgBzkp Q==;
+X-CSE-ConnectionGUID: Xz8KFImcQNy0bUFsz4V4Og==
+X-CSE-MsgGUID: xPw8hBkOTsmeXmhsFvvjfA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="90656126"
+X-IronPort-AV: E=Sophos;i="6.21,313,1763452800"; d="scan'208";a="90656126"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 22:43:56 -0800
+X-CSE-ConnectionGUID: hEi9rK7cQumngN5B1E2iDQ==
+X-CSE-MsgGUID: JZ27iQbFS3G4o6+qZxyXbA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,313,1763452800"; d="scan'208";a="254594829"
+Received: from xwang-desk.fm.intel.com ([10.121.64.134])
+ by orviesa001.jf.intel.com with ESMTP; 26 Feb 2026 22:43:57 -0800
+From: Xin Wang <x.wang@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Xin Wang <x.wang@intel.com>
+Subject: [PATCH] drm/xe: Fix race between exec queue kill and VM cleanup on
+ file close
+Date: Thu, 26 Feb 2026 22:43:54 -0800
+Message-ID: <20260227064354.531306-1-x.wang@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/ttm/tests=3A_Fix_build_?=
- =?utf-8?q?failure_on_PREEMPT=5FRT?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Feb 2026 06:42:31 -0000
-Message-ID: <177217455139.294209.2588909599593399632@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260226151228.256003-1-dev@lankhorst.se>
-In-Reply-To: <20260226151228.256003-1-dev@lankhorst.se>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,306 +61,220 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8097045965827114473==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+During process exit, exec queues are killed asynchronously via GuC
+firmware. If VM page tables are released while the GuC is still
+processing the disable sequence, hardware can access freed memory
+causing CAT errors.
 
-== Series Details ==
+Fix this by reordering xe_file_close() to ensure hardware has stopped
+before releasing resources:
 
-Series: drm/ttm/tests: Fix build failure on PREEMPT_RT
-URL   : https://patchwork.freedesktop.org/series/162230/
-State : success
+1. Kill all exec queues (existing logic, unchanged)
+2. Flush per-GT workqueues (ordered_wq, g2h_wq) to drain in-flight
+   GuC messages
+3. Wait for GuC to confirm all queues are disabled via G2H feedback,
+   using wait_event_timeout on guc->ct.wq with a 5s timeout
+4. Release queue references only after hardware confirms idle
+5. Close and release VMs (page table teardown) last
 
-== Summary ==
+The wait includes bail-out conditions for GuC stopped state (GT reset)
+and VF recovery, consistent with all other wait_event_timeout patterns
+in xe_guc_submit.c.
 
-CI Bug Log - changes from xe-4628-1abdcb654ffbb08bbc96a9806fee60ef65fdad77_BAT -> xe-pw-162230v1_BAT
-====================================================
+Add xe_guc_exec_queue_is_idle() to check whether a queue has been
+confirmed idle by the GuC scheduler.
 
-Summary
--------
+Signed-off-by: Xin Wang <x.wang@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c     | 67 +++++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_guc_submit.c | 54 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc_submit.h |  1 +
+ 3 files changed, 121 insertions(+), 1 deletion(-)
 
-  **SUCCESS**
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 3462645ca13c..e15ce3c64914 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -41,6 +41,7 @@
+ #include "xe_gt_printk.h"
+ #include "xe_gt_sriov_vf.h"
+ #include "xe_guc.h"
++#include "xe_guc_submit.h"
+ #include "xe_guc_pc.h"
+ #include "xe_hw_engine_group.h"
+ #include "xe_hwmon.h"
+@@ -160,13 +161,29 @@ void xe_file_put(struct xe_file *xef)
+ 	kref_put(&xef->refcount, xe_file_destroy);
+ }
+ 
++static bool xe_file_is_idle(struct xe_file *xef, struct xe_gt *gt)
++{
++	struct xe_exec_queue *q;
++	unsigned long idx;
++
++	xa_for_each(&xef->exec_queue.xa, idx, q) {
++		struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
++		if (q->gt == gt && !xe_guc_exec_queue_is_idle(primary))
++			return false;
++	}
++
++	return true;
++}
++
+ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
+ {
+ 	struct xe_device *xe = to_xe_device(dev);
+ 	struct xe_file *xef = file->driver_priv;
+ 	struct xe_vm *vm;
+ 	struct xe_exec_queue *q;
++	struct xe_gt *gt;
+ 	unsigned long idx;
++	u8 id;
+ 
+ 	guard(xe_pm_runtime)(xe);
+ 
+@@ -175,13 +192,61 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
+ 	 * when FD is closing as IOCTLs presumably can't be modifying the
+ 	 * xarray. Taking exec_queue.lock here causes undue dependency on
+ 	 * vm->lock taken during xe_exec_queue_kill().
++	 *
++	 * Kill all exec queues first to stop hardware execution.
++	 * This must be done before releasing VM and page tables to avoid
++	 * hardware memory access errors (CAT errors) during process exit.
+ 	 */
+ 	xa_for_each(&xef->exec_queue.xa, idx, q) {
+ 		if (q->vm && q->hwe->hw_engine_group)
+ 			xe_hw_engine_group_del_exec_queue(q->hwe->hw_engine_group, q);
+ 		xe_exec_queue_kill(q);
+-		xe_exec_queue_put(q);
+ 	}
++
++	/*
++	 * Flush per-GT workqueues to drain in-flight GuC messages triggered
++	 * by the exec queue kills above. ordered_wq handles scheduler jobs
++	 * (H2G), and g2h_wq processes the GuC responses we're about to
++	 * wait for.
++	 */
++	for_each_gt(gt, xe, id) {
++		if (gt->ordered_wq)
++			flush_workqueue(gt->ordered_wq);
++		if (gt->uc.guc.ct.g2h_wq)
++			flush_workqueue(gt->uc.guc.ct.g2h_wq);
++	}
++
++	/*
++	 * Wait for GuC to confirm all queues are disabled. This prevents
++	 * hardware from accessing page tables after VM cleanup.
++	 *
++	 * Bail out early if GuC is stopped (GT reset) or VF recovery is
++	 * pending, as G2H confirmations cannot arrive in those states.
++	 */
++	smp_rmb();
++	for_each_gt(gt, xe, id) {
++		struct xe_guc *guc = &gt->uc.guc;
++		long timeout = 5 * HZ;
++		long ret;
++
++		ret = wait_event_timeout(guc->ct.wq,
++					 xe_file_is_idle(xef, gt) ||
++					 xe_guc_read_stopped(guc) ||
++					 xe_gt_recovery_pending(gt),
++					 timeout);
++
++		if (!ret && !xe_guc_read_stopped(guc) &&
++		    !xe_gt_recovery_pending(gt))
++			drm_warn(&xe->drm,
++				 "Timeout waiting for queue cleanup on GT%u, CAT errors may follow\n",
++				 id);
++	}
++
++	/* Now that hardware is stopped, release the queue references */
++	xa_for_each(&xef->exec_queue.xa, idx, q)
++		xe_exec_queue_put(q);
++
++	/* Finally, close and release the VMs (clearing page tables) */
+ 	xa_for_each(&xef->vm.xa, idx, vm)
+ 		xe_vm_close_and_put(vm);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index ca7aa4f358d0..9d81f76bfd54 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -2792,6 +2792,60 @@ g2h_exec_queue_lookup(struct xe_guc *guc, u32 guc_id)
+ 	return q;
+ }
+ 
++/**
++ * xe_guc_exec_queue_is_idle() - Check if the exec queue is truly idle on GuC
++ * @q: The exec_queue
++ *
++ * Return: True if the exec queue is no longer running on hardware, false otherwise.
++ *
++ */
++bool xe_guc_exec_queue_is_idle(struct xe_exec_queue *q)
++{
++	struct xe_guc *guc = &q->gt->uc.guc;
++	uint32_t state;
++
++	if (!xe_uc_fw_is_running(&guc->fw))
++		return true;
++
++	state = atomic_read(&q->guc->state);
++
++	/*
++	 * If queue was never enabled, it never submitted work to GuC, so
++	 * hardware never accessed it. Safe to consider idle immediately
++	 * without waiting for GuC cleanup, even if we later kill the queue.
++	 */
++	if (!(state & EXEC_QUEUE_STATE_ENABLED) &&
++	    !(state & EXEC_QUEUE_STATE_PENDING_ENABLE))
++		return true;
++
++	/*
++	 * Queue marked for destruction during file close, or suspended (not
++	 * executing on hardware). In both cases, the VM has been detached from
++	 * this queue, so we can safely consider it idle. Pending GuC cleanup
++	 * messages won't cause access issues.
++	 */
++	if ((state & EXEC_QUEUE_STATE_DESTROYED) || (state & EXEC_QUEUE_STATE_SUSPENDED))
++		return true;
++
++	/*
++	 * Killed queue can be idle only if no transitions are pending.
++	 * The queue could have been killed while enable or disable was in
++	 * progress, so we must wait for those pending transitions to complete.
++	 */
++	if (state & EXEC_QUEUE_STATE_KILLED)
++		return !(state & (EXEC_QUEUE_STATE_PENDING_DISABLE |
++			          EXEC_QUEUE_STATE_PENDING_ENABLE));
++
++	/*
++	 * Queue in transitional state (pending disable but not killed).
++	 * In the file-close path, all queues are killed above, so this return
++	 * is not reached during normal file close. However, it's defensive
++	 * programming: if any non-file-close caller checks is_idle without
++	 * killing first, we correctly wait for pending_disable to clear.
++	*/
++	return !(state & EXEC_QUEUE_STATE_PENDING_DISABLE);
++}
++
+ static void deregister_exec_queue(struct xe_guc *guc, struct xe_exec_queue *q)
+ {
+ 	u32 action[] = {
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+index b3839a90c142..9fa65366edcb 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.h
++++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+@@ -55,5 +55,6 @@ void xe_guc_register_vf_exec_queue(struct xe_exec_queue *q, int ctx_type);
+ bool xe_guc_has_registered_mlrc_queues(struct xe_guc *guc);
+ 
+ int xe_guc_contexts_hwsp_rebase(struct xe_guc *guc, void *scratch);
++bool xe_guc_exec_queue_is_idle(struct xe_exec_queue *q);
+ 
+ #endif
+-- 
+2.43.0
 
-  No regressions found.
-
-  
-
-Participating hosts (13 -> 14)
-------------------------------
-
-  Additional (1): bat-atsm-2 
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-162230v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@write:
-    - bat-atsm-2:         NOTRUN -> [SKIP][1] ([Intel XE#2134]) +4 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@fbdev@write.html
-
-  * igt@kms_addfb_basic@addfb25-yf-tiled-legacy:
-    - bat-atsm-2:         NOTRUN -> [SKIP][2] ([i915#6077]) +30 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@kms_addfb_basic@addfb25-yf-tiled-legacy.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - bat-atsm-2:         NOTRUN -> [SKIP][3] ([Intel XE#1024] / [Intel XE#782] / [Intel XE#947]) +5 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-atsm-2:         NOTRUN -> [SKIP][4] ([Intel XE#1024] / [Intel XE#784] / [Intel XE#947])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-atsm-2:         NOTRUN -> [SKIP][5] ([Intel XE#1024] / [Intel XE#783] / [Intel XE#947])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - bat-atsm-2:         NOTRUN -> [SKIP][6] ([Intel XE#540]) +3 other tests skip
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@kms_hdmi_inject@inject-audio.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc:
-    - bat-atsm-2:         NOTRUN -> [SKIP][7] ([Intel XE#829] / [i915#1836]) +6 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@kms_pipe_crc_basic@nonblocking-crc.html
-
-  * igt@kms_prop_blob@basic:
-    - bat-atsm-2:         NOTRUN -> [SKIP][8] ([Intel XE#780])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@kms_prop_blob@basic.html
-
-  * igt@kms_psr@psr-primary-page-flip:
-    - bat-atsm-2:         NOTRUN -> [SKIP][9] ([Intel XE#1024] / [Intel XE#947]) +6 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@kms_psr@psr-primary-page-flip.html
-
-  * igt@xe_exec_fault_mode@twice-userptr-prefetch:
-    - bat-atsm-2:         NOTRUN -> [SKIP][10] ([Intel XE#288]) +32 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-prefetch.html
-
-  * igt@xe_huc_copy@huc_copy:
-    - bat-atsm-2:         NOTRUN -> [SKIP][11] ([Intel XE#255])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@xe_huc_copy@huc_copy.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-atsm-2:         NOTRUN -> [SKIP][12] ([Intel XE#2229])
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  * igt@xe_pat@pat-index-xe2:
-    - bat-atsm-2:         NOTRUN -> [SKIP][13] ([Intel XE#977])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@xe_pat@pat-index-xe2.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-atsm-2:         NOTRUN -> [SKIP][14] ([Intel XE#2838] / [Intel XE#979])
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-atsm-2:         NOTRUN -> [SKIP][15] ([Intel XE#979])
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@xe_pat@pat-index-xelpg.html
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [PASS][16] -> [FAIL][17] ([Intel XE#6519])
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4628-1abdcb654ffbb08bbc96a9806fee60ef65fdad77/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][18] -> [FAIL][19] ([Intel XE#6520])
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4628-1abdcb654ffbb08bbc96a9806fee60ef65fdad77/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#1024]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024
-  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
-  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#540]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/540
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-  [Intel XE#780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/780
-  [Intel XE#782]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/782
-  [Intel XE#783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/783
-  [Intel XE#784]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/784
-  [Intel XE#829]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/829
-  [Intel XE#947]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/947
-  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
-  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
-  [i915#1836]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1836
-  [i915#6077]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6077
-
-
-Build changes
--------------
-
-  * Linux: xe-4628-1abdcb654ffbb08bbc96a9806fee60ef65fdad77 -> xe-pw-162230v1
-
-  IGT_8774: 8892452285d691f612ecb3b2a6fefc50983af15f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4628-1abdcb654ffbb08bbc96a9806fee60ef65fdad77: 1abdcb654ffbb08bbc96a9806fee60ef65fdad77
-  xe-pw-162230v1: 162230v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/index.html
-
---===============8097045965827114473==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/ttm/tests: Fix build failure on PREEMPT_RT</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162230/">https://patchwork.freedesktop.org/series/162230/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4628-1abdcb654ffbb08bbc96a9806fee60ef65fdad77_BAT -&gt; xe-pw-162230v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 14)</h2>
-<p>Additional (1): bat-atsm-2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-162230v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@write:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@fbdev@write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-yf-tiled-legacy:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@kms_addfb_basic@addfb25-yf-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6077">i915#6077</a>) +30 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024">Intel XE#1024</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/782">Intel XE#782</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/947">Intel XE#947</a>) +5 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024">Intel XE#1024</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/784">Intel XE#784</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/947">Intel XE#947</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024">Intel XE#1024</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/783">Intel XE#783</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/947">Intel XE#947</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/540">Intel XE#540</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@kms_pipe_crc_basic@nonblocking-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/829">Intel XE#829</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1836">i915#1836</a>) +6 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_prop_blob@basic:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@kms_prop_blob@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/780">Intel XE#780</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-primary-page-flip:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@kms_psr@psr-primary-page-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024">Intel XE#1024</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/947">Intel XE#947</a>) +6 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-userptr-prefetch:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_huc_copy@huc_copy:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xe2:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-atsm-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4628-1abdcb654ffbb08bbc96a9806fee60ef65fdad77/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@reltime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4628-1abdcb654ffbb08bbc96a9806fee60ef65fdad77/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162230v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4628-1abdcb654ffbb08bbc96a9806fee60ef65fdad77 -&gt; xe-pw-162230v1</li>
-</ul>
-<p>IGT_8774: 8892452285d691f612ecb3b2a6fefc50983af15f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4628-1abdcb654ffbb08bbc96a9806fee60ef65fdad77: 1abdcb654ffbb08bbc96a9806fee60ef65fdad77<br />
-  xe-pw-162230v1: 162230v1</p>
-
-</body>
-</html>
-
---===============8097045965827114473==--
