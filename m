@@ -4,54 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F00F0FEFB6C
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Feb 2026 16:00:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35B03FEFB6C
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Feb 2026 16:00:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFCB110E1AD;
-	Fri, 27 Feb 2026 16:00:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1DE210E1AD;
+	Fri, 27 Feb 2026 16:00:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lk/dpV+Z";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZDuGSVnQ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F30410E1AD
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Feb 2026 16:00:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0006A10E1AD;
+ Fri, 27 Feb 2026 16:00:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772208026; x=1803744026;
+ t=1772208046; x=1803744046;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=kZzgVBnOQD77cc7marMae7bYa5aqOoBWO6E0/TteGX8=;
- b=Lk/dpV+Zdy3irdgl8mt1emIXOkQ8SBmMB/co/QCpx4yuDpDeI5J3zqqh
- jvXjXxP5Cfe4io7UKa39RKfa+OT0Hlk3liEZ8GXxIouzdQxnCuhGuu+GM
- uac1DBcKIjVXu6PTO83D4h7r3RAHufp3VopfQYoNn5xaG+m7vX5WfSPmC
- h5LRDtM+C5M1SqDkM/G+TdKHpBOSa7ZXw/vg6H3bkkwpfwQx48r0p4qo8
- ptByL9gGBuUK5Yd7rxp73nkIRR4Jtj/+qfRp0380L7HaUW42uDi+B8Esa
- fT1oqWn9Hi9Uxi7ORMyRbhZmGZtmIKtBzMzvCGJEcpSqWPaQhZDRqvDjP w==;
-X-CSE-ConnectionGUID: 4ydPAsjTSV2l//wVgRAqhA==
-X-CSE-MsgGUID: DTE4zK60SzemopZTWwDs5Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11714"; a="72995964"
-X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="72995964"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 08:00:25 -0800
-X-CSE-ConnectionGUID: loQyHyVxQu2aSgx6ap4nzg==
-X-CSE-MsgGUID: /2DyUE8lQCuCTrZdN9vfdg==
+ bh=pUu9oJ+sRISpRQKVPUIG38QfS86s5N7QoC4hMppDx5g=;
+ b=ZDuGSVnQcovdTa1dFNe+vUIFly/k9HkCQylDJN8WnpcJ70+adYFOSavO
+ XlHTqwao40bVdD34fjBL3lD43vkG2jSNWS6vKnIEaC2NhiA12HL7Gxx5b
+ 5ExHASqDpGJeB93pGtY8ieWlh1oDq/JvWiCdFcST+5FpoFDRX6DizAd7O
+ chwVF5dvkaObU8J9ln45V5fCVeZqnmuTW7CnHxRd3Ql2aqCrM6TH3dlph
+ WkLmYZuMutWBrniAKBmQowxIbmkNiUELvSDOPSTJCREBJ9+r+rKLyPt58
+ GrIREbdRyGyixQQZEJw/9Sp7NzZ9Z8GkkcsZLkf2BcyWdOEM9o0KUHPox g==;
+X-CSE-ConnectionGUID: l2CdkDAoRryM3K95DOHzKw==
+X-CSE-MsgGUID: SiE8kHtyTAK2KaFlQ/ET3w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11714"; a="75895465"
+X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="75895465"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2026 08:00:45 -0800
+X-CSE-ConnectionGUID: MIC7Yg1NQoqG0pfFmd1bxw==
+X-CSE-MsgGUID: 7LszxI9vRdiM1v4epPLVMQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="221557942"
-Received: from pdaniel-mobl1.ger.corp.intel.com (HELO
- mwajdecz-hp.clients.intel.com) ([10.246.19.11])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 08:00:22 -0800
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="213791065"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO fedora)
+ ([10.245.245.106])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2026 08:00:44 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Nathan Chancellor <nathan@kernel.org>,
- =?UTF-8?q?Piotr=20Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Subject: [PATCH] drm/xe/tests: Change TEST_VRAM to work with 32-bit
- resource_size_t
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH 0/2] drm/ttm: Improve the TTM operation context
+ gfp_retry_mayfail behaviour 
 Date: Fri, 27 Feb 2026 17:00:10 +0100
-Message-ID: <20260227160010.12425-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.43.0
+Message-ID: <20260227160012.82309-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -69,34 +71,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We've picked the value of TEST_VRAM to match real VRAM size as found
-on the machines used by the CI, but that didn't work well on kernels
-that have 32-bit resource_size_t. Use smaller value instead.
+Two small patches around the gfp_retry_mayfail behaviour:
 
-Reported-by: Nathan Chancellor <nathan@kernel.org>
-Closes: https://lore.kernel.org/intel-xe/20260227011639.GA1683727@ax162/
-Fixes: cbe29da6f7c0 ("drm/xe/tests: Add KUnit tests for new VRAM fair provisioning")
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
-Cc: Nathan Chancellor <nathan@kernel.org>
-Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
----
- drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Patch 1 ensures we don't spam the kernel log on allocation failures.
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
-index 305dbd4e5d1a..efa8963ec248 100644
---- a/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
-+++ b/drivers/gpu/drm/xe/tests/xe_gt_sriov_pf_config_kunit.c
-@@ -11,7 +11,7 @@
- #include "xe_pci_test.h"
- 
- #define TEST_MAX_VFS	63
--#define TEST_VRAM	0x37a800000ull
-+#define TEST_VRAM	0x7a800000ull	/* random size that works on 32-bit */
- 
- static void pf_set_admin_mode(struct xe_device *xe, bool enable)
- {
+Patch 2 extends the gfp_retry_mayfail to swap readback.
+
+Thomas Hellström (2):
+  drm/ttm: Don't spam the log on buffer object backing store allocation
+    failure
+  drm/ttm: Avoid invoking the OOM killer when reading back swapped
+    content
+
+ drivers/gpu/drm/ttm/ttm_backup.c | 6 ++++--
+ drivers/gpu/drm/ttm/ttm_pool.c   | 7 +++++--
+ include/drm/ttm/ttm_backup.h     | 2 +-
+ 3 files changed, 10 insertions(+), 5 deletions(-)
+
 -- 
-2.47.1
+2.53.0
 
