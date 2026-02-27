@@ -4,167 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD1C6FD9E2E
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Feb 2026 02:09:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09C7CFD9E30
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Feb 2026 02:27:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 220F510EA1D;
-	Fri, 27 Feb 2026 02:09:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B8F310EA23;
+	Fri, 27 Feb 2026 02:27:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LwoHyCZR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mRAbORQ8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 953E410E0D7;
- Fri, 27 Feb 2026 02:09:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B95C110EA1F;
+ Fri, 27 Feb 2026 02:27:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772158145; x=1803694145;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=XBkfCs0Y5sBXenRmacI4OKzlvfVfmuDkTveINeTIsac=;
- b=LwoHyCZRwQlpeGrQsVlUPRhMeB40CkXynsfLeosFkmCMVYe8bA1fQfOU
- olFx00stGam0yx0reg2994V03lsYe5JlZBthQ7U7zu+Y8Iz4vnAlukYL8
- g4ZgtcfUrEUt0WS3OTewl+y4IaXfQ/5Jz5+2fI4BekhY8v/OtHA3hOiUL
- e/lWy5JoSZmvdb80I7jXcD19QeRVJEjacX1c6MXDE6fhA6big+QSNN6bR
- dCI707USDOBLF6Iz5IMBeMWF8TdlAgGsET1VXBUG4DeMnG9GF8L9zwnVI
- Cr4kF6p9LfVRY0VJXhCfWQ/4apRFQC3e6qSk7bOx/0xhE9wvIdqovtapQ g==;
-X-CSE-ConnectionGUID: 7uog+evQQqe2bHKxyMBBCw==
-X-CSE-MsgGUID: nG5oyodQTPilC+0zwl1kcA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="72939785"
-X-IronPort-AV: E=Sophos;i="6.21,313,1763452800"; d="scan'208";a="72939785"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2026 18:09:04 -0800
-X-CSE-ConnectionGUID: uEkm03rzTjGomGikEafypA==
-X-CSE-MsgGUID: LumtwMUOSDGZlcJYqrvtaw==
+ t=1772159239; x=1803695239;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=DyqyNnnTAap7JTHFe3VSBGAB2kKzNc6UeASax20VDi0=;
+ b=mRAbORQ8o7fNG2VLKC5fbPuu43n8mziH3nVsB7q2NfrbnySe/IXneSl8
+ 6we7lc39GMlV9sUTQCLv1iTvP0HU+eaoFkcrlUFeBbzGricN9TP6jC4NS
+ mNpnpjSW7xH8NDU602oUp30oxXkRYqS0U5VxxJ9wL4FE1MzM/S3CkMqap
+ SVFOTTruQvMXLYo+/ea7FVPsVeHix2FcmmV5Nn8r49ji4WxiOMVaiHaCY
+ zf46+RcfpCyM7bG735SMh9qZOuKbwR5k9x4wfa1tZ6iQXypO9TWCi5DUw
+ dVLo2FUm0elNqO1kVd4ssw/ihtTaq8O59X8TUx8+2yVOnna6ctl40cahI A==;
+X-CSE-ConnectionGUID: +uhGp9QaSZm18E/Z29siRQ==
+X-CSE-MsgGUID: XixMQ3h/TmuHc7nwELQSFg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="73283315"
+X-IronPort-AV: E=Sophos;i="6.21,313,1763452800"; d="scan'208";a="73283315"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 18:27:18 -0800
+X-CSE-ConnectionGUID: YTgZLCUsRKe2ulh+D/r4mw==
+X-CSE-MsgGUID: Lgjpmx17QmWEdzwozWPLnw==
 X-ExtLoop1: 1
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2026 18:09:04 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 26 Feb 2026 18:09:03 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 26 Feb 2026 18:09:03 -0800
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.55)
- by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 26 Feb 2026 18:09:03 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lY35Zh46/irxzWciu6GwU81OhI7uavP4PRsGPtibXz/FbZyOauhver7r0a4QMpRj2KtHlEHB+GhiKTSuiFDAevdOi3ZOe9oZk8GdM8UCmKLyq+IUeYxablZfQpl/JinN42Bpk7T+OSjq2pXrQ7C18JHWLvJxrF1FpmgDSsdrE4/2FbwrZHCM/4R+JRdh7Hrq5NAqaQISW6/KM4MVR0AWC6D6z5ixzzyK5m/AEUR1U1vTATaUcHz5u1PTQ77D7H+aA0bhbE0twrECLn9NBJF7cblEuqtJI87eaSs5rvrddXm67Gyk/r/IkAEJdFZmsUWRdOzbYdDDiAGcgyzcqlfECQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8hB1+TADh/6VCXuhoDyS/E5/oChv8mKEKogJ18N6TsQ=;
- b=X37OjP6xkO85banbNUvCiUk3pk2CzRbB0dYmfJkoZwo7yHqryUvnryyKmu81+ke8kNpYmmBYkJYe/as+dXZT8xLT4dmYo8s/ZmR082p9ENS0YI+v3dwPbu12OSSDvsFm1z/EZljoKLCcqt9NpUr4neRcd6hjYpPpFU8ZUpSip5uvOmhxMAq/oQoampNN8Y412C+cs39tTEN0EZ6e3udQ7D/2ctX7ydXvLRULJvC9aBXyp6nH+Al0pm8Nbrqa8CGfl5EDcqy0JvMfIzAXGyBRKrle7BV7/+wPu9sUcDGX9MgrXcVandPSCWH5M5yN/2yKcdVn8afmY5kzCLwIusTNaw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SA1PR11MB8393.namprd11.prod.outlook.com (2603:10b6:806:373::21)
- by SJ1PR11MB6156.namprd11.prod.outlook.com (2603:10b6:a03:45d::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.13; Fri, 27 Feb
- 2026 02:09:00 +0000
-Received: from SA1PR11MB8393.namprd11.prod.outlook.com
- ([fe80::804e:63d1:f2ce:7ce4]) by SA1PR11MB8393.namprd11.prod.outlook.com
- ([fe80::804e:63d1:f2ce:7ce4%6]) with mapi id 15.20.9654.014; Fri, 27 Feb 2026
- 02:09:00 +0000
-Date: Fri, 27 Feb 2026 10:08:10 +0800
-From: Yujie Liu <yujie.liu@intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-CC: Matthew Brost <matthew.brost@intel.com>, Alex Deucher
- <alexander.deucher@amd.com>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Kenneth Feng <kenneth.feng@amd.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Patrik Jakobsson
- <patrik.r.jakobsson@gmail.com>, Danilo Krummrich <dakr@kernel.org>, "Philipp
- Stanner" <phasta@kernel.org>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>, "Srinivasan
- Shanmugam" <srinivasan.shanmugam@amd.com>, Tvrtko Ursulin
- <tvrtko.ursulin@igalia.com>, Sunil Khatri <sunil.khatri@amd.com>, Lijo Lazar
- <lijo.lazar@amd.com>, Asad Kamal <asad.kamal@amd.com>, Yang Wang
- <kevinyang.wang@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>, Tao Zhou
- <tao.zhou1@amd.com>, Gangliang Xie <ganglxie@amd.com>, Candice Li
- <candice.li@amd.com>, YiPeng Chai <YiPeng.Chai@amd.com>, Matthew Auld
- <matthew.auld@intel.com>, Luben Tuikov <luben.tuikov@amd.com>, Ville
- =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
- =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>, "Michal
- Wajdeczko" <michal.wajdeczko@intel.com>, <amd-gfx@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
- <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 1/7] drm/gpusvm: fix kernel-doc warning for
- drm_gpusvm_pages_valid_unlocked()
-Message-ID: <aaD8is1OE05GuJxL@X299>
-References: <20260226030038.1182961-1-yujie.liu@intel.com>
- <20260226030038.1182961-2-yujie.liu@intel.com>
- <aZ+4sZoTzX4C/P2T@lstrano-desk.jf.intel.com>
- <aZ_gjpylcgG7PxPL@X299>
- <c0323ccf-5c35-4dcb-a409-a1e63d157b19@amd.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <c0323ccf-5c35-4dcb-a409-a1e63d157b19@amd.com>
-X-ClientProxiedBy: TPYP295CA0058.TWNP295.PROD.OUTLOOK.COM (2603:1096:7d0:8::9)
- To SA1PR11MB8393.namprd11.prod.outlook.com
- (2603:10b6:806:373::21)
+X-IronPort-AV: E=Sophos;i="6.21,313,1763452800"; d="scan'208";a="214662255"
+Received: from debox1-desk4.jf.intel.com ([10.88.27.138])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 18:27:16 -0800
+From: "David E. Box" <david.e.box@linux.intel.com>
+To: thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ irenic.rajneesh@gmail.com, ilpo.jarvinen@linux.intel.com,
+ srinivas.pandruvada@linux.intel.com, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, xi.pardee@linux.intel.com
+Cc: david.e.box@linux.intel.com, hansg@kernel.org,
+ linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
+Subject: [PATCH v6 2/6] platform/x86/intel/vsec: Make driver_data info const
+Date: Thu, 26 Feb 2026 18:27:06 -0800
+Message-ID: <20260227022711.3513663-3-david.e.box@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260227022711.3513663-1-david.e.box@linux.intel.com>
+References: <20260227022711.3513663-1-david.e.box@linux.intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA1PR11MB8393:EE_|SJ1PR11MB6156:EE_
-X-MS-Office365-Filtering-Correlation-Id: caf53e17-d55c-4396-a067-08de75a52bc6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|366016|376014|1800799024;
-X-Microsoft-Antispam-Message-Info: 6zJ0VNo57KdWm5ucHKJkbnhpangpupmzzvzknqF739kaSrdLc1iIXo6nRi8BN5Q9WLIDDMdeZ/LXUeoGU/zm7Esa1uw0caI1zABfCpXPgTgLB9Ea0HZUxyDxWiFWGLly1yeEYHktxn0ebPIKxR5gnXp9yT8w1/luBle6weksGIrYQRLxGt+qrtFG2f4RcNgsdwzKKWzAV+L4RQWGjp25Gu7VEIVz+eapUJF7K7uA/mS52E+KhNHs3pGxnc4KqObr3l2ifvan0o5A/TBGaw1ABukyzVnVgBFz9kcgY6MFJbjdmLBZ8ouTQwIb+dqT2tKzKdewYxgfyASICuWnT0zGI+WtCf/GXh1S3dZfCazHScW3yWJIdAecvihFqFVWrpAa1bDW6SbMplIayOzYW+91OTa4sIovcL1n38s/2AVD4/Nck1bwV4GW/ZZKNiKxkH7BjR4BxkI+oVJyrJXJ98rfywrAmWFRzJDgC8YXFg+dmeU/cn71BYt0p0gMzgqKk2MKgSKD1J5U1tkm491UjX5T/C9Tc1IZkz9+BgQ2tRImz6YXk4HyVpFpcZgbqVXhSRY15npegv34kLnDzPcLwUASRxLSS5yUnzORT5uWc58vKV4aYzp6+RvPDPvSTYL3yFNcW8J/Jqc5qaUNnFVYdBA5XBay0p1gQn6aVhlXH+GPCOqHoRy0giKorVdcPjgmjSpOo3HfgAOK3WAsrlMNv/CnzdWsuXwTLEe1ENgU9+ngp04=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA1PR11MB8393.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(366016)(376014)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?F/gGhWmHKW+UhU6DiAepbCw1nJ+xbsea58TRMnrfymSRR1CeQ9dhoW2Et1?=
- =?iso-8859-1?Q?HvES5UWLghGlxI2B8DzPV3L3/3hoWM/anxqWtjB4FHLDMNl0jmvqM6Zp6U?=
- =?iso-8859-1?Q?83jcrvTH2m0ZwUtZmmBATNZFIibIKjvG7zaXe6N19bhcOPSspp+ywKE3lx?=
- =?iso-8859-1?Q?DEkICMsL1Df3a0TGonGB0X80HJmGlsWOnsW1EEZeb0H7StcZxX93pM5FQJ?=
- =?iso-8859-1?Q?TcFYqmF8hUv8WWOEr++3ICGHtgWuLVwp0DeLzI2ZhRNcEo70RNONSc5hGF?=
- =?iso-8859-1?Q?RSMakJ6S09L/Z3MW3tnTs2K/Y9gpgD/T1ICCL87P83DX/ijujMkiABL1IU?=
- =?iso-8859-1?Q?GwfV5M0j2uD216USWFNwZHfESZGr+f7I2jQP8FPFkTTORuWTQGMjqdICk3?=
- =?iso-8859-1?Q?sJPCuuej2zCDOh4MQPAW/3SNVOO7nzEKGiouL0cp5Ha5iyUcjuaBQ8/ipP?=
- =?iso-8859-1?Q?GBgfDMPW1dkgXxKPjv+OnZNTTJuL+9Un/IRoLVOrvxkDCxgMHveJ5OBjUN?=
- =?iso-8859-1?Q?OAY5rVjAjEEag6QzOE+5/XhYHGCY9s/rIvGIPxbfHoQ1uauZkXopC+YoIl?=
- =?iso-8859-1?Q?f5lJ71T4/moB1eRVu+r43IA55ay1kKHRxfzuwXt9yWeENWkAeYiW6eZjFU?=
- =?iso-8859-1?Q?un8rVuziLK4GWw3W1Su9N/iNZiZkW1NwlwMgy6/qqANjDFso16MbrtAtaX?=
- =?iso-8859-1?Q?aSVbp+m7ZW4kt39MOK9cXcd2H5ew/3ksj0nfFOQuZZdG56KYW/pEMxngAG?=
- =?iso-8859-1?Q?hsfiQ7fO4EHZEpdG68iZF8dE8MJhQrmw4ik5fAmgmWOAtTcTdijVXA4yJk?=
- =?iso-8859-1?Q?HG+MFYJMWpWeYLfnIkeXu2kbFlqDQ3pWcSwX3xuaLxoRN9ARr+MrT65SVm?=
- =?iso-8859-1?Q?K+1cPJU0vi8g33BJdpj5IAJjrEG2sz7FgHPFsQ68ircV6x3Wwn/3h1aaYP?=
- =?iso-8859-1?Q?+ImAmHAwYr3Ko4EicVpbHihmREf+g+sSYMfHAkCHjztP4Y6ohRB6/x0DCP?=
- =?iso-8859-1?Q?V5b8ewiS1Qjqkl2fDYuOyoyrFQu+8yjEf+MwwdgiPs27cmXpem56RdB98z?=
- =?iso-8859-1?Q?oF7WH73Phd1M39cN3lKQDn+2v5zivlV0OhVrrQGyBhA7mbUOw4AC2Z8fWH?=
- =?iso-8859-1?Q?jp+pVJYuQrMJLt1puh2eX1jiylREdaHnXfEw7Nj2w5NhlFrK4o179FEcLi?=
- =?iso-8859-1?Q?Lqpb7oQXav8C4vNHs8oLTQWOGM6z4t9w8qMt0jWciqAeTcXw8XVZgUZQnn?=
- =?iso-8859-1?Q?04RevoFL2bT3vGQAaBnXx/eYIi+jl6nqV0hDr1w1jM6RskYSoOIjA0P+QB?=
- =?iso-8859-1?Q?ErvaZV5K/yW4tmcUOtcWIkj0siy52Zny0mZJ1AwWia7JZ8ascU+LA4DGAm?=
- =?iso-8859-1?Q?xvV++2QUdIJ/6rZ86yqMSyLZFwhzPLc50npJzxezhfPbHr1EM6pnW8Efov?=
- =?iso-8859-1?Q?RjPScxoQ+KRo3HbqM4Qlk70FcR+DCOIaxLYodnT1XccJrzhDlbJ3A+bBPQ?=
- =?iso-8859-1?Q?pRNkab4DBouReRtlkXMRMyiJzh+mNW51ZlO4riGnqxonVhRhNleUbY9TUr?=
- =?iso-8859-1?Q?9gtBYknYlhAMyeeR5d6L6yH4CNCefAQ1NwGvKvG1KdWyZvX81iLyIcB0IA?=
- =?iso-8859-1?Q?oQtjp4zu+u1QUI5jwWYL5G1LKhrj46FagLH/eV9zVt6eW4jj1bq8STtXAw?=
- =?iso-8859-1?Q?+nCxd57r5xPDxyktQGPBlImyHPvTzJ7sR8y13Gq9PruyO4i5Kac3/OJ76x?=
- =?iso-8859-1?Q?PN0ye4KuU7wjC6+2SxyWlfm2ciJ+28SbYLXwjPwE9lCuABUMjNvNHoYyLR?=
- =?iso-8859-1?Q?DQckeDHVgA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: caf53e17-d55c-4396-a067-08de75a52bc6
-X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB8393.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 02:09:00.0115 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PE3zTmOddTdAQpOxvucHOyMMYURmIENFxnhln5nG8PIiQxcWxPoCVvjMSGsevXcGw3UPkuQSg0oZeaNFVXHgOA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6156
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -179,31 +70,159 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Feb 26, 2026 at 12:39:01PM +0100, Christian König wrote:
-> On 2/26/26 06:56, Yujie Liu wrote:
-> > [Some people who received this message don't often get email from yujie.liu@intel.com. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
-> > 
-> > On Wed, Feb 25, 2026 at 07:06:25PM -0800, Matthew Brost wrote:
-> >> On Thu, Feb 26, 2026 at 11:00:32AM +0800, Yujie Liu wrote:
-> >>> Warning: drivers/gpu/drm/drm_gpusvm.c:1351 function parameter 'svm_pages' not described in 'drm_gpusvm_pages_valid_unlocked'
-> >>> Warning: drivers/gpu/drm/drm_gpusvm.c:1351 expecting prototype for drm_gpusvm_range_pages_valid_unlocked(). Prototype was for drm_gpusvm_pages_valid_unlocked() instead
-> >>>
-> >>> Fixes: 6364afd532bc ("drm/gpusvm: refactor core API to use pages struct")
-> >>
-> >> I fix this one already. Believe it merged yesterday.
-> > 
-> > Thanks. I will drop this patch and respin the series after waiting
-> > briefly for possible comments on other patches.
-> 
-> I also strongly suggest to split that patch set up by driver/subsystem and send it out individually. So that we can upstream it through different branches.
-> 
-> When it is send out as one patch set then that usually indicates that in needs to be applied in that order. That is clearly not the case here, but it would be nice to have it separately in my inbox.
+Treat PCI id->driver_data (intel_vsec_platform_info) as read-only by making
+vsec_priv->info a const pointer and updating all function signatures to
+accept const intel_vsec_platform_info *.
 
-Thank you very much for the guidance. I'll keep this in mind and
-carefully follow the rules and upstream workflow.
+This improves const-correctness and clarifies that the platform info data
+from the driver_data table is not meant to be modified at runtime.
 
-Since patch 1 and 5 have already been fixed, and patch 4, 6, 7 have been
-picked up by Alex, I'll respin to send out patch 2 and 3 individually.
+No functional changes intended.
 
-Best Regards,
-Yujie
+Signed-off-by: David E. Box <david.e.box@linux.intel.com>
+---
+Changes in v6:
+  - No change
+
+Changes in v5:
+  - No change
+
+Changes in v4:
+  - No change
+
+Changes in v3:
+  - No change
+
+Changes in v2:
+  - New patch
+
+ drivers/platform/x86/intel/vsec.c | 20 ++++++++++----------
+ include/linux/intel_vsec.h        |  4 ++--
+ 2 files changed, 12 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/platform/x86/intel/vsec.c b/drivers/platform/x86/intel=
+/vsec.c
+index 46966edca03b..e0096be605d9 100644
+--- a/drivers/platform/x86/intel/vsec.c
++++ b/drivers/platform/x86/intel/vsec.c
+@@ -42,7 +42,7 @@ enum vsec_device_state {
+ };
+=20
+ struct vsec_priv {
+-	struct intel_vsec_platform_info *info;
++	const struct intel_vsec_platform_info *info;
+ 	struct device *suppliers[VSEC_FEATURE_COUNT];
+ 	struct oobmsm_plat_info plat_info;
+ 	enum vsec_device_state state[VSEC_FEATURE_COUNT];
+@@ -270,7 +270,7 @@ int intel_vsec_add_aux(struct pci_dev *pdev, struct dev=
+ice *parent,
+ EXPORT_SYMBOL_NS_GPL(intel_vsec_add_aux, "INTEL_VSEC");
+=20
+ static int intel_vsec_add_dev(struct pci_dev *pdev, struct intel_vsec_head=
+er *header,
+-			      struct intel_vsec_platform_info *info,
++			      const struct intel_vsec_platform_info *info,
+ 			      unsigned long cap_id, u64 base_addr)
+ {
+ 	struct intel_vsec_device __free(kfree) *intel_vsec_dev =3D NULL;
+@@ -406,7 +406,7 @@ static int get_cap_id(u32 header_id, unsigned long *cap=
+_id)
+=20
+ static int intel_vsec_register_device(struct pci_dev *pdev,
+ 				      struct intel_vsec_header *header,
+-				      struct intel_vsec_platform_info *info,
++				      const struct intel_vsec_platform_info *info,
+ 				      u64 base_addr)
+ {
+ 	const struct vsec_feature_dependency *consumer_deps;
+@@ -452,7 +452,7 @@ static int intel_vsec_register_device(struct pci_dev *p=
+dev,
+ }
+=20
+ static bool intel_vsec_walk_header(struct pci_dev *pdev,
+-				   struct intel_vsec_platform_info *info)
++				   const struct intel_vsec_platform_info *info)
+ {
+ 	struct intel_vsec_header **header =3D info->headers;
+ 	bool have_devices =3D false;
+@@ -468,7 +468,7 @@ static bool intel_vsec_walk_header(struct pci_dev *pdev,
+ }
+=20
+ static bool intel_vsec_walk_dvsec(struct pci_dev *pdev,
+-				  struct intel_vsec_platform_info *info)
++				  const struct intel_vsec_platform_info *info)
+ {
+ 	bool have_devices =3D false;
+ 	int pos =3D 0;
+@@ -519,7 +519,7 @@ static bool intel_vsec_walk_dvsec(struct pci_dev *pdev,
+ }
+=20
+ static bool intel_vsec_walk_vsec(struct pci_dev *pdev,
+-				 struct intel_vsec_platform_info *info)
++				 const struct intel_vsec_platform_info *info)
+ {
+ 	bool have_devices =3D false;
+ 	int pos =3D 0;
+@@ -565,7 +565,7 @@ static bool intel_vsec_walk_vsec(struct pci_dev *pdev,
+ }
+=20
+ int intel_vsec_register(struct pci_dev *pdev,
+-			 struct intel_vsec_platform_info *info)
++			const struct intel_vsec_platform_info *info)
+ {
+ 	if (!pdev || !info || !info->headers)
+ 		return -EINVAL;
+@@ -578,7 +578,7 @@ int intel_vsec_register(struct pci_dev *pdev,
+ EXPORT_SYMBOL_NS_GPL(intel_vsec_register, "INTEL_VSEC");
+=20
+ static bool intel_vsec_get_features(struct pci_dev *pdev,
+-				    struct intel_vsec_platform_info *info)
++				    const struct intel_vsec_platform_info *info)
+ {
+ 	bool found =3D false;
+=20
+@@ -622,7 +622,7 @@ static void intel_vsec_skip_missing_dependencies(struct=
+ pci_dev *pdev)
+=20
+ static int intel_vsec_pci_probe(struct pci_dev *pdev, const struct pci_dev=
+ice_id *id)
+ {
+-	struct intel_vsec_platform_info *info;
++	const struct intel_vsec_platform_info *info;
+ 	struct vsec_priv *priv;
+ 	int num_caps, ret;
+ 	int run_once =3D 0;
+@@ -633,7 +633,7 @@ static int intel_vsec_pci_probe(struct pci_dev *pdev, c=
+onst struct pci_device_id
+ 		return ret;
+=20
+ 	pci_save_state(pdev);
+-	info =3D (struct intel_vsec_platform_info *)id->driver_data;
++	info =3D (const struct intel_vsec_platform_info *)id->driver_data;
+ 	if (!info)
+ 		return -EINVAL;
+=20
+diff --git a/include/linux/intel_vsec.h b/include/linux/intel_vsec.h
+index 1a0f357c2427..d551174b0049 100644
+--- a/include/linux/intel_vsec.h
++++ b/include/linux/intel_vsec.h
+@@ -200,13 +200,13 @@ static inline struct intel_vsec_device *auxdev_to_ivd=
+ev(struct auxiliary_device
+=20
+ #if IS_ENABLED(CONFIG_INTEL_VSEC)
+ int intel_vsec_register(struct pci_dev *pdev,
+-			 struct intel_vsec_platform_info *info);
++			const struct intel_vsec_platform_info *info);
+ int intel_vsec_set_mapping(struct oobmsm_plat_info *plat_info,
+ 			   struct intel_vsec_device *vsec_dev);
+ struct oobmsm_plat_info *intel_vsec_get_mapping(struct pci_dev *pdev);
+ #else
+ static inline int intel_vsec_register(struct pci_dev *pdev,
+-				       struct intel_vsec_platform_info *info)
++				      const struct intel_vsec_platform_info *info)
+ {
+ 	return -ENODEV;
+ }
+--=20
+2.43.0
+
