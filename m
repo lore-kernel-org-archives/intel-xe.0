@@ -4,140 +4,142 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F4F3FEFB6D
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Feb 2026 16:56:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4006BFEFB6E
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Feb 2026 16:59:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4821510EBD1;
-	Fri, 27 Feb 2026 16:56:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0194710EBCE;
+	Fri, 27 Feb 2026 16:59:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n8RgxC7N";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GJbAYxmn";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C403410EBD1
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Feb 2026 16:56:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 638BB10EBCE
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Feb 2026 16:59:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772211381; x=1803747381;
- h=date:from:to:subject:message-id:references:in-reply-to:
- mime-version; bh=7lxkg9Yi9vhrc4aN0NaP+R/wqMOYsMctMXpYH29tecs=;
- b=n8RgxC7NyXYNSUj5OOMftN7cEnX/17mWUb5QrRflttyYoRe/pL0f1hgJ
- KHvnvF8RlomVAkHCxDJWDbe3xboD2hnJIyqruH25xiyNa2yec8uXA+cBz
- EtwmxyPlWfAob2mTNwlNVk9yt3FuWlY8nKFDpjfVZHsewbNRUfd3Jcu1q
- EnrYIidezJqhAwYjm+p3rv+XCa2o6wC8ezXATiEjNHLObXpjssat3uebR
- 4wJGdLjKkJIO+MJJLrUCtiueXMlA/sSxSeJA3ke4N8rna/az4wBgI6PNX
- Q5gomd/IozOXcrzuCSCKzT9muCoUxrjj+HPNHrdzthT17Lk+wwMeEBkN8 w==;
-X-CSE-ConnectionGUID: NsiuC3e2TdCWAYmCRANMuw==
-X-CSE-MsgGUID: 3NZb4++ZTKO7eQaUFka3dQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11714"; a="98763780"
-X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="98763780"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 08:56:12 -0800
-X-CSE-ConnectionGUID: B82P980FQeSuUXbX+Q8jKQ==
-X-CSE-MsgGUID: +512liLeS4SLwYbCe0A1oA==
+ t=1772211566; x=1803747566;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=xig18ozt1o+RszvgBMea1IYSb0LU5THh/qyb4K7YO0Q=;
+ b=GJbAYxmnLvhsKIKsPZjyrjKLgBSSQTUox/SngCOrG0PEl72kIpx4u5Gz
+ WpZEUngjazyTXnI2kck1Qb+Zo65rySpxAc9qFKh45cMxxVXBkkTtFn+Je
+ YUBcs2bRkTZHeTs2T7+uTCpT5RYIn/T+Zj7Bf5dnB5QLG661rgsNsorm4
+ EI2Dotck/qlWflcj7jPCmXkG2moi6Ib1FBsZ1VwPAwtR3aphxzgX2gwu8
+ lGEo/0Z3h8vfSwbGN3xD8X5O6KNmSS2b9qDFEz7CW/mcGU1VOdLDIUVYX
+ N1QKgDSPKUDu2BZuxbTdiqb6SdLu23zGHwOm/TpXHGwXmyHowVg4ucNAT A==;
+X-CSE-ConnectionGUID: Z7MF0bbMSD+RbhSeHmYzzg==
+X-CSE-MsgGUID: UXBWaQSZRomwv+GUKKtbog==
+X-IronPort-AV: E=McAfee;i="6800,10657,11714"; a="73266554"
+X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="73266554"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2026 08:59:26 -0800
+X-CSE-ConnectionGUID: BdtNlWm0SQKwXd3P++4oUQ==
+X-CSE-MsgGUID: pufwElzAT7uoUF/jXYPMbA==
 X-ExtLoop1: 1
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 08:56:12 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 27 Feb 2026 08:56:11 -0800
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="244300663"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2026 08:59:25 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 27 Feb 2026 08:56:11 -0800
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.39) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.37; Fri, 27 Feb 2026 08:59:24 -0800
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 27 Feb 2026 08:56:11 -0800
+ 15.2.2562.37 via Frontend Transport; Fri, 27 Feb 2026 08:59:24 -0800
+Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.31) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Fri, 27 Feb 2026 08:59:24 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=xwNFejGtU6S6LUmrAqu5RPyStqyIzq4BDpqJhyrYG2noziSN/c2yIkwUj4WJbOlquCNFrGZvRWh8AOntQh01VYD1fSGKupwEQk7c5O/183FAi+ksNiAECapuG3ooId0El3hqYBao/+VoBzDVUorITJw5BSakm19FXf8fsyPBFeLauz6GoEstQBrlaupuLopDe21WKeonlXvmq5d7Gv5H0DcCD9Qp/SsPd3qdoyqSV+8B+kBtUBz3hcOMyPCHpJ7WzBaLcFyTmkbGUUcF0XeimBj2nyAA4wT8KO80XrNrIwSH/ws237srgKukzsbFHv4cz+fGHSXInRaDAyb9EeyB2A==
+ b=aHOCjZY83vY74+KUHDdj9NL1GJTJW79YwvQ+jlclqKYT4rKJu6ktEuL4fLyU5gfgeyi3ZklexunpSwvxwtS2whEbKHyqKoHANFG8j1ZL/ycz/EEHyzLuTKB3vdjj99EMhOoRncJ+7DtY6U6KePRAuder+Q9G23C7n+r92XoIn3OzMvaNT/N8VreN0Jtu+vKokMn2fXboxl2MZGDPPF3b2ewnt7x+tnN3/gO6tVl3qQS6/R/xhY5ZlXvZrU3D2vihG783nu+9qWVF5ODCIFPGUOl0mJgH49/qQRMqp1kTkGEwwEXgNjdqDW/sxAM+XF52Iyf/mA5aygixcvnu2uqKxA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sgvHqOuTgv9c+86FOCUUznCMzmEoJW98+WtyC2G411A=;
- b=O2shVphkFnz++luFJ3EPI0+VQI6vRavCo/w4p9XhE5Bz0ujW5R54NFXvfqeq5QvsRo4NWFBJ0+Wyv6dISeL6hTND6fh5y7jmtfmPZgcHhmgHOu+WVqsVRcIW2wItRBw3u5168xlk3wzX8A7Gq4vSbK5KnJxvEJfSKHu+wPn+Uzuv7yswlErlTGJIsNZeG+VumrVq/X2H9DHcXhJ+ibyA2IWHBHaEFOcTkaCxD4pb1XKEOutkI2C8FUdaRelBBwlGT7e7a4ctDIuMO3pNcIH86m0Xy+8cqBrx2QPPnRBrE7BbuFZeAW+kf2hxj45fx0Q5XTxYoQbA6euRk1zMG+et9g==
+ bh=fGURKO/rSF3R/37om2YAr+iDgKlP+fpC+9bRnXJdde4=;
+ b=TzVrsWL2BL1e90MyAsznG7+UJ+drtKnnbVInGygy3rNXBI63XkxyvMhZch4VdjRGixpt8biThgMiaMs5ouvCbjxUriaZn95GfweSATjqLASQ4jQVvQr6Qu7jE04km7PfGVlWqkGlwQ0LVYEmL9o65Xh8rwRNMoYWOBfg4QGHa+Ksq2OMTpbBNupfDm5dQ0Ejf0m1Mg8MfuSQFdCvfI3FdAjjZOtXtzZvOnvP7TgsIofOItnWDORO82NfkVN3LNfPXoWPdFy0h4LktjNssdj8gn4AMGfYvtUrS1Y+7ti4P0ITKXAICUhcN/dLzqtdIwR6jLTr0MhXI1D2k8GlkeNZbQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by LV2PR11MB6045.namprd11.prod.outlook.com (2603:10b6:408:17b::20) with
+ by DM4PR11MB6310.namprd11.prod.outlook.com (2603:10b6:8:a7::12) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Fri, 27 Feb
- 2026 16:56:07 +0000
+ 2026 16:59:21 +0000
 Received: from DS0PR11MB8182.namprd11.prod.outlook.com
  ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
  ([fe80::7b65:81e6:c6c4:449e%7]) with mapi id 15.20.9654.014; Fri, 27 Feb 2026
- 16:56:07 +0000
-Date: Fri, 27 Feb 2026 08:56:05 -0800
+ 16:59:21 +0000
+Date: Fri, 27 Feb 2026 08:59:19 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Subject: Re: =?utf-8?B?4pyTIFhlLkNJLkZVTEw6IHN1Y2Nl?=
- =?utf-8?Q?ss_for_drm=2Fxe=2Ftuning?= =?utf-8?Q?=3A?= Apply windower hardware
- filtering setting on Xe3 and Xe3p
-Message-ID: <20260227165605.GB4694@mdroper-desk1.amr.corp.intel.com>
-References: <20260224235055.3038710-2-matthew.d.roper@intel.com>
- <177200857090.284988.9907393533496529856@a3b018990fe9>
+CC: "Wang, X" <x.wang@intel.com>
+Subject: Re: =?utf-8?B?4pyXIFhlLkNJLkZVTEw6IGZhaWx1?= =?utf-8?Q?re?= for
+ drm/xe: restrict multi-lrc to VCS/VECS engines (rev3)
+Message-ID: <20260227165919.GC4694@mdroper-desk1.amr.corp.intel.com>
+References: <20260225022014.45394-1-x.wang@intel.com>
+ <177201319781.284987.11572938846238540790@a3b018990fe9>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <177200857090.284988.9907393533496529856@a3b018990fe9>
-X-ClientProxiedBy: BY5PR04CA0017.namprd04.prod.outlook.com
- (2603:10b6:a03:1d0::27) To DS0PR11MB8182.namprd11.prod.outlook.com
+In-Reply-To: <177201319781.284987.11572938846238540790@a3b018990fe9>
+X-ClientProxiedBy: SJ0PR03CA0127.namprd03.prod.outlook.com
+ (2603:10b6:a03:33c::12) To DS0PR11MB8182.namprd11.prod.outlook.com
  (2603:10b6:8:163::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|LV2PR11MB6045:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3859a9c8-f4c5-48d9-c352-08de762119e1
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|DM4PR11MB6310:EE_
+X-MS-Office365-Filtering-Correlation-Id: 95379ebe-2307-41b9-f9a6-08de76218d8c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: z+KYf5uRMCbAMyIibETY92boLlszNdEH1mPqqgZCdC3mOGCKsG8jgAdAGhapr+rXaJzu+Cph6o7+/jluKaFYxYJz5IJcrgScYzYQeBVGnKm8qOfoFjEEKnEtv7N4whQcYZNrGlMkT+UsZW717h7O3yJ7VP9sYMgxx+7Tw8TqgfeLITBydbSY9fUdIqz6dNlmMMzdQmUreHR8gVestsUieE0roDFlwUr06OMFD1WJx+vyD5MljRKU1PH7WzdRHObb1mWIeEIwLFJUr7whzlAD6XuV+izFbola25niWSlRzJndwdVJemx+567/t8dCMZFO97EWdgDpS6HohiKSIC4IwojsgcICVOvzZYonz03SzcVv3LUt/rk5Av7rxEE3z8HG78VAIJRppbCGkXHo9oyVBdYIevjtHaVNgb68u9qwYSZXeJWAsV1tXhygHsmRLj0zUS87EWiHQSrSE5DOXctQ8cjF75SQFUE7GuxZeYwqvgSchai2C9mudUm44oLMazs2LwqL3MOPFJsYeCE3pxIg1nUW1wQNXZfcmOcNsI5X5JMHsLLw0lr3oODYQqh03DasBv+6KQTeqglWK7x/P/FdhU5vgFLBTADH4k48AHLe+Gp/1y4AZBquQZzn65rH7errqcNvJFu65mM5KFYpKswpuBox7gKDUWN8l6HBksunct4XbH831p72GUAp5HurQyGx
+X-Microsoft-Antispam-Message-Info: Kr7V7lfOYCyxZO/Y6BOkT4nKR/qINkupo1DRRw147I08vHNWX+tQkxRAVTblscxeUN+jf9XTrCOLQ0YW9K43qy9+rW1gTgEnkqWh55jp/a6PxFpYHJkeeupD+QR0A+rFlxHmCDZXsJIWR5Uzv5jPEsRxJYmZCOEGXJUPUywYL864yBYYMiidgW6Zp1C8DF7u03PoBTgg7QSwnfoKJUjfVhAsw6rBIesCiABLrLnwDmb4fDuY96DPSk7T4tB6mteP3sLhQimmincRDv0ZbZzGr//CsZfMF+EwZy9dTe8kjTKxKKRtQ+bWztTSfb6UBLriP0q4m9+DG42WwHTd3W7penNsjaFjOrjlPyqyVRK3h+KHVbIrEC12QPWsYxKgHVzoy0ru3vk1C6ioHQ87vSEx3VwWd8Bn+QMJsWEq9THwmJwz9V2vfXZWnnRhnivNTqLWJSHaSno/o/ElNhKVfMhbzZElvOyDmqRqXvtpauMaTBPgXyuhv3apAgigm/oNuYr8e2HzJGh/sij3OvUus/Y8GDYB8ADFL2OnH3iHQDvbYTDl0FVpoFdEcA4uXxn08Rx8PGPtpnKJFEAIrXZZqB0Hgnp40WMtbR3O05am3gEOGnfVYTr/mOcNrkfAhQ2iYAqsmBkMtqb+lpoS83OeSCG31fGIDshw8O96okL+us8fipA+0ubZlInODN9+Qaay0RRM
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?anNjZvOR3P89YraGOedGnL2pRdundeffymlxSenEyjqAUH4b8R2sBhmj54VA?=
- =?us-ascii?Q?zRw8ZFthAFJG4skAlc++hF5qEQiT7qhMd0RRIs7BV4l3BnWWTuFLEvkFn6UI?=
- =?us-ascii?Q?DwJKP18MKARxRVGpJqgC4mqBdRdrMc5/oRwaCv+C1C9IAZJdx2z7uGqpxCki?=
- =?us-ascii?Q?9pl2EVMJ8Y8AW1J2kLfG1/dVv8uY2ysOYzC6LtVZOQu7qAo2njcJ53c5l7va?=
- =?us-ascii?Q?HCkEX0zjb0d1cGfuD9QQkUIE/M+nGctF2jI/n6OJ3kZAmlQbtT9OJOCY2GqA?=
- =?us-ascii?Q?gvAHacngczpvrM7WkohIiCYNzTjykLEajN+F0FowhU/7fkVGoyftoaUmUVTW?=
- =?us-ascii?Q?MEpEK3UXfhIwi+2w1eTtLvu4sjXoG8hpnr9xbi3luHnFTaJWoD8/7iLBizGN?=
- =?us-ascii?Q?ymr+/GQtCfMU08FQD4wCYYcZQ/UmdeQeJz1JNj7im5V4Erzuw1N5al5SyVJR?=
- =?us-ascii?Q?Fhz7jphQ8rFtCYEgxv/X2Y3qYXtcA306ByYaj2bjiwfeaagBRrnq/wCsJtFt?=
- =?us-ascii?Q?/8wY6xwu2yySDDNdBp8bigj8/8gw+iCJvN1vGKG5SnECttmDI8/VVYXk5LEZ?=
- =?us-ascii?Q?F4w1XsGnpELHREiHDCnuyeWzV99WnVgfULYbtoXxn9PBWB4957VG2bxdfvp+?=
- =?us-ascii?Q?1pI7PmnCbxItPiqBvecyxN8zMzdRDfi8IPUK1Z565K1JQbXZp7XtzvekelbQ?=
- =?us-ascii?Q?pFHyZlJNyRWdp2Xvs5AFl4EnVzkFCrsBUDVJQPAYszjb1yRedAq9wk1lWOt0?=
- =?us-ascii?Q?BV8Oza3UNp7bRm1RJqF5gcwYfgIJliA1OWvMPuoRVKnGFCt04XCmdLw8S4yi?=
- =?us-ascii?Q?4DbBB6DT0KKi5qNtu0oMNyY8mckilVv7ZbReJOR0daYvMqwMpbNXkzT0+I7T?=
- =?us-ascii?Q?9ZHqac43yQh8/Pt3RqSIO/f4KJNxyvNOg7bzjJtIEm4gLtH2bXsZMuv9VyUM?=
- =?us-ascii?Q?JvR08xmvxZ0127ZNFJYkeLdE9Nz9il/VlhVBn/NAEolPAEivTOXeC5n11zTZ?=
- =?us-ascii?Q?99ZneZqfc6eEaVDZ94bkELBYZ3ssqGy6qy3NthGhiNm5YddBtOqiIbf9lsVi?=
- =?us-ascii?Q?mogrSIgLArtFwrbCfmo9OrWjcyN1Nggxa2nWCqFBajwvRxS3/cSWu+XsREWr?=
- =?us-ascii?Q?JJMApkD7XxKLKkwW9qzmuJkxNo4kscEhl35pOpq3R9ULBu+CBxWBMBdtqGV8?=
- =?us-ascii?Q?jLTXoEvNm8lAH2ZGgSf7OZODLvVTHVB+Evc+q+FGnu2URbLyMOzHAwRZyCXh?=
- =?us-ascii?Q?3B3nxV9O8WhgC55ATMvzjgykfgfFmmKs0tvEc6k1FS6n3uf4uuPEdm08glLB?=
- =?us-ascii?Q?yauNiqZrp4qvCgrSFBSbwGs88XKYlGtO5Y7d7Nbs18JiL/BWPt5ZbQ1OgSOM?=
- =?us-ascii?Q?wSJZ1gpK0CRhlvC9aD/RINxMGYiU16ZKNRiysfguuX56lbWC/T8Xp3MgIrSD?=
- =?us-ascii?Q?9150+URy4s3tsuqPWjqAGStwQzMhDsEBaixKn68trN6aZo5paMjYnm2OX08p?=
- =?us-ascii?Q?BQKvtf/E/d5fnFemQphP9OvBST/0io+8Iqc+BjNaOWVgoaYa8s5tfQEtFQ8h?=
- =?us-ascii?Q?bLaZ4YtlGVh1HIIS0Noc2nITbGHngfXvlhbh//Lgp9cXDTmqnJuzdws+HFSG?=
- =?us-ascii?Q?tPq3COXq0yX6/w4TLzdzJHjtD7C3I4Xl+e/hjT6v0aS2PfeIz8Dgjbhwc10J?=
- =?us-ascii?Q?yoadR6ciSBUB6TFiDp70dHuC28+Wupe6LDaSv2P1a5HjUaez2Pkbv6g7czg4?=
- =?us-ascii?Q?NJkd/5Gs3rSKLi3E7v73s1Fm8MHtr/M=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3859a9c8-f4c5-48d9-c352-08de762119e1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?qvyXzxjt8QA+7gSvNKCCkstttSDg2tKSlfU+t5DOy2mKRlUBJqP2bLQZIxxv?=
+ =?us-ascii?Q?z6Qwk1/bx3oc0tVSkdIlrpYuMkHEnXaNfHftCgAanALaA1gBmHTFss5SUtVm?=
+ =?us-ascii?Q?fIRSP7KYI5kiP9toHUCWWVUs+4ejhMVQo2bU7BYHnOpP/0KFtNTzwjLjsuhR?=
+ =?us-ascii?Q?kNqqzdh+Njt5sJXxKqz0fY6YLK6i4VdweiQwxy7Z5rSxJqomA/ax1OUIA3eZ?=
+ =?us-ascii?Q?VmAw9N47zQrY/KyhAa5L7qBfSWO1ga4U++Cak5C1RDVJYRwbVCeXQg/ctPcs?=
+ =?us-ascii?Q?H88fPi7+OdpLPYxrRL9fZps871cGBXH0RhCWYIwYMBzWInMYi8y9WsbAxg3K?=
+ =?us-ascii?Q?JVDKFUiYGTuYqL1MY6MzGWBsOZTgBZg55VnDp6Mo+Cju7hS1feV1dyUy7SvX?=
+ =?us-ascii?Q?V4NKXq2HCfJqziltM/q5kverKuqkYz7nDOpOWRZRARtN3JDsQN8BNuSWahRC?=
+ =?us-ascii?Q?5Rsmi1Oxu48nMafDV4ZgC8LgoHfPJCgMXJjX0eM0eHqnLEdhqN5nkbAHo0iY?=
+ =?us-ascii?Q?GPS+vbC3wbsxt9Lj/CRNBY2OQ/U7FTwtEIOdlfEp2hIH8BtExL1u08vSXvNt?=
+ =?us-ascii?Q?M+MrxCxBw3kM5wHilq4Oev3WTONcNCduKDGqDDX77bWSGd0b1u8RI2XACPGu?=
+ =?us-ascii?Q?IkHGzqk+MDbwGkFjI0h8sqN1zk74ZnrBydoNyxD1VgpxSBvSmGRTDInV2H0d?=
+ =?us-ascii?Q?MNC7jOSBxhte8079M+BwZamFI4zxil+B+/vorHiRE9IgXcw4pMQnvOmY007d?=
+ =?us-ascii?Q?QF9sFXInxbNtbSJzDRMuch5QJTK0vr8RfCKP4J6f/AOCAwYbceVrZLjRWJx2?=
+ =?us-ascii?Q?0ZLB/Dka2pYTSQzj8pRUE1KFkeIITKiCKynSw8xEbWsgg/X8cJ1wOoBUy7jm?=
+ =?us-ascii?Q?4b9j4mTR2ou0QgesV0fquIkZmdV2nePxnpOOceDHLHFLUf6mQCuHTIjQJhJm?=
+ =?us-ascii?Q?c7D9bj/ukiNpWpCf3Fj4QuF1UZzPwJTHS7FoT2td3gc8YgnRttRucaN04F3n?=
+ =?us-ascii?Q?xH4Jl7UbYW7hYBgzwUYdSZNDCnz7kfwc5bZbsEomjZjtBhls1K6OIt0/I4c2?=
+ =?us-ascii?Q?S5ke72w45pOyBhxItLAoI2m/Md5ZwdjqGxYo4dh9fXBEjWoA0LccqEP6YcCU?=
+ =?us-ascii?Q?wgVxxvScvCvVR7G+2iaG58f2tNlJGIyivI3VDEmpbEn+zHSkUTyifp+R/iYB?=
+ =?us-ascii?Q?b2Dc0Bs1Uwp37OnQ5mplov1CR1or1EOca44FO90LnwKfKbvcCcAi3aTjOqWC?=
+ =?us-ascii?Q?9LUXkJI7whGKPIWl6W6F93BfU8t9Ujf0dmh3hdxV7kxWIMDAuVVFLjEkqqn8?=
+ =?us-ascii?Q?n5EEvsgWU/cwwl0/XQCZ3jD4/kxo9Ssm560kVJfIBGJkfTVOldsv2EvMAF34?=
+ =?us-ascii?Q?jDfdjh/LPusf6i8ZwS6sDgFo5u5Aje3DSBz5M5Pgzv58XP6/v4B/jKumyDzX?=
+ =?us-ascii?Q?blSgFGj0F0hFEFSXm7rP39ZXK6IYkhu56e+i0VINqMXQPk656Gb+JaQV+BLn?=
+ =?us-ascii?Q?GnGSqvQWGw0Rc8HGitXn4ABFOTlfhsH2AcP2UDrHQ99sDbrfK3wbRlVfP8yq?=
+ =?us-ascii?Q?nV0hAYVqVqysRMlIaPmutbj6rb93DSRRI/jJKn2YFSkdwxUMSwxZW38pGYeV?=
+ =?us-ascii?Q?S8ieClC7a5TJ0HgNnOsvg6Co+L17G/r6qSl5hzsEtnb8e5Kkt6g2qYC4n2wX?=
+ =?us-ascii?Q?94g61xSMPlrfQa6P1U+xBUyAM+ecIvqOi6n7WzejhC7uhdmxVi0L2vI8LKkZ?=
+ =?us-ascii?Q?Op7sUsU2rCVbBNkOoyYLMrSGyMjuaWc=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 95379ebe-2307-41b9-f9a6-08de76218d8c
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 16:56:07.4915 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 16:59:21.5618 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: f9a/kc1jlJKzo2nP9KRpER8aIeY41xESSrrd9GIs0XiHPXWUsoTfn1k9oXIpfcDMU42HUrvBhwcA21na5DPbfCz585iPY/T4oGLlRoZcwIY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB6045
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZXOA3EiY7CwHfP/xZxHCzEAPj/yAFdZHGVdzqRbTsEb77Mkewikr3VC4NYl3QAYIkx6sDn5WH6peo0OIB0b0r9CzcvWYORjqQ332k6QCmaM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6310
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -153,30 +155,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Feb 25, 2026 at 08:36:10AM +0000, Patchwork wrote:
+On Wed, Feb 25, 2026 at 09:53:17AM -0000, Patchwork wrote:
 > == Series Details ==
 > 
-> Series: drm/xe/tuning: Apply windower hardware filtering setting on Xe3 and Xe3p
-> URL   : https://patchwork.freedesktop.org/series/162104/
-> State : success
+> Series: drm/xe: restrict multi-lrc to VCS/VECS engines (rev3)
+> URL   : https://patchwork.freedesktop.org/series/161799/
+> State : failure
 > 
 > == Summary ==
 > 
-> CI Bug Log - changes from xe-4609-4caa4c7d4ff7bd4d24bca8e795773e460eb8bbfe_FULL -> xe-pw-162104v1_FULL
+> CI Bug Log - changes from xe-4609-4caa4c7d4ff7bd4d24bca8e795773e460eb8bbfe_FULL -> xe-pw-161799v3_FULL
 > ====================================================
 > 
 > Summary
 > -------
 > 
->   **SUCCESS**
+>   **FAILURE**
 > 
->   No regressions found.
-
-Applied to drm-xe-next.  Thanks Shuicheng for the review.
-
-
-Matt
-
+>   Serious unknown changes coming with xe-pw-161799v3_FULL absolutely need to be
+>   verified manually.
+>   
+>   If you think the reported changes have nothing to do with the changes
+>   introduced in xe-pw-161799v3_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+>   to document this new failure mode, which will reduce false positives in CI.
 > 
 >   
 > 
@@ -185,25 +186,181 @@ Matt
 > 
 >   No changes in participating hosts
 > 
+> Possible new issues
+> -------------------
 > 
-> Changes
-> -------
+>   Here are the unknown changes that may have been introduced in xe-pw-161799v3_FULL:
 > 
->   No changes found
+> ### IGT changes ###
+> 
+> #### Possible regressions ####
+> 
+>   * igt@xe_exec_system_allocator@many-large-execqueues-mmap-new:
+>     - shard-bmg:          NOTRUN -> [ABORT][1] +23 other tests abort
+>    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-bmg-4/igt@xe_exec_system_allocator@many-large-execqueues-mmap-new.html
+> 
+>   * igt@xe_exec_system_allocator@process-many-large-execqueues-malloc-race-nomemset:
+>     - shard-lnl:          NOTRUN -> [ABORT][2] +22 other tests abort
+>    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-lnl-8/igt@xe_exec_system_allocator@process-many-large-execqueues-malloc-race-nomemset.html
+
+The failures here (and on BAT) are
+https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/7414 and are not
+related to this patch.
+
+Applied to drm-xe-next.  Thanks for the patch and review.
+
+
+Matt
+
+> 
+>   
+> Known issues
+> ------------
+> 
+>   Here are the changes found in xe-pw-161799v3_FULL that come from known issues:
+> 
+> ### IGT changes ###
+> 
+> #### Issues hit ####
+> 
+>   * igt@kms_big_fb@yf-tiled-64bpp-rotate-180:
+>     - shard-lnl:          NOTRUN -> [SKIP][3] ([Intel XE#1124])
+>    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-lnl-6/igt@kms_big_fb@yf-tiled-64bpp-rotate-180.html
+>     - shard-bmg:          NOTRUN -> [SKIP][4] ([Intel XE#1124])
+>    [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-bmg-6/igt@kms_big_fb@yf-tiled-64bpp-rotate-180.html
+> 
+>   * igt@kms_ccs@bad-pixel-format-4-tiled-mtl-mc-ccs:
+>     - shard-lnl:          NOTRUN -> [SKIP][5] ([Intel XE#2887]) +2 other tests skip
+>    [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-lnl-1/igt@kms_ccs@bad-pixel-format-4-tiled-mtl-mc-ccs.html
+>     - shard-bmg:          NOTRUN -> [SKIP][6] ([Intel XE#2887]) +2 other tests skip
+>    [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-bmg-9/igt@kms_ccs@bad-pixel-format-4-tiled-mtl-mc-ccs.html
+> 
+>   * igt@kms_chamelium_color@ctm-negative:
+>     - shard-lnl:          NOTRUN -> [SKIP][7] ([Intel XE#306])
+>    [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-lnl-4/igt@kms_chamelium_color@ctm-negative.html
+>     - shard-bmg:          NOTRUN -> [SKIP][8] ([Intel XE#2325])
+>    [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-bmg-7/igt@kms_chamelium_color@ctm-negative.html
+> 
+>   * igt@kms_chamelium_edid@hdmi-mode-timings:
+>     - shard-lnl:          NOTRUN -> [SKIP][9] ([Intel XE#373]) +1 other test skip
+>    [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-lnl-3/igt@kms_chamelium_edid@hdmi-mode-timings.html
+> 
+>   * igt@kms_chamelium_hpd@hdmi-hpd-storm-disable:
+>     - shard-bmg:          NOTRUN -> [SKIP][10] ([Intel XE#2252]) +1 other test skip
+>    [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-bmg-9/igt@kms_chamelium_hpd@hdmi-hpd-storm-disable.html
+> 
+>   * igt@kms_flip@2x-flip-vs-expired-vblank-interruptible:
+>     - shard-lnl:          NOTRUN -> [SKIP][11] ([Intel XE#1421])
+>    [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-lnl-8/igt@kms_flip@2x-flip-vs-expired-vblank-interruptible.html
+> 
+>   * igt@kms_frontbuffer_tracking@drrs-1p-rte:
+>     - shard-lnl:          NOTRUN -> [SKIP][12] ([Intel XE#6312] / [Intel XE#651]) +1 other test skip
+>    [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-lnl-8/igt@kms_frontbuffer_tracking@drrs-1p-rte.html
+> 
+>   * igt@kms_frontbuffer_tracking@fbc-2p-primscrn-pri-shrfb-draw-blt:
+>     - shard-lnl:          NOTRUN -> [SKIP][13] ([Intel XE#656]) +6 other tests skip
+>    [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-lnl-3/igt@kms_frontbuffer_tracking@fbc-2p-primscrn-pri-shrfb-draw-blt.html
+>     - shard-bmg:          NOTRUN -> [SKIP][14] ([Intel XE#4141])
+>    [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-bmg-5/igt@kms_frontbuffer_tracking@fbc-2p-primscrn-pri-shrfb-draw-blt.html
+> 
+>   * igt@kms_frontbuffer_tracking@fbcdrrs-2p-scndscrn-cur-indfb-draw-mmap-wc:
+>     - shard-bmg:          NOTRUN -> [SKIP][15] ([Intel XE#2311]) +5 other tests skip
+>    [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-bmg-7/igt@kms_frontbuffer_tracking@fbcdrrs-2p-scndscrn-cur-indfb-draw-mmap-wc.html
+> 
+>   * igt@kms_frontbuffer_tracking@psr-2p-scndscrn-pri-indfb-draw-mmap-wc:
+>     - shard-bmg:          NOTRUN -> [SKIP][16] ([Intel XE#2313]) +3 other tests skip
+>    [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-bmg-8/igt@kms_frontbuffer_tracking@psr-2p-scndscrn-pri-indfb-draw-mmap-wc.html
+> 
+>   * igt@kms_psr2_sf@pr-cursor-plane-move-continuous-exceed-sf:
+>     - shard-bmg:          NOTRUN -> [SKIP][17] ([Intel XE#1406] / [Intel XE#1489])
+>    [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-bmg-7/igt@kms_psr2_sf@pr-cursor-plane-move-continuous-exceed-sf.html
+>     - shard-lnl:          NOTRUN -> [SKIP][18] ([Intel XE#1406] / [Intel XE#2893])
+>    [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-lnl-3/igt@kms_psr2_sf@pr-cursor-plane-move-continuous-exceed-sf.html
+> 
+>   * igt@kms_psr@fbc-psr-cursor-plane-move:
+>     - shard-bmg:          NOTRUN -> [SKIP][19] ([Intel XE#1406] / [Intel XE#2234] / [Intel XE#2850])
+>    [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-bmg-2/igt@kms_psr@fbc-psr-cursor-plane-move.html
+> 
+>   * igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd:
+>     - shard-lnl:          NOTRUN -> [SKIP][20] ([Intel XE#6540] / [Intel XE#688]) +1 other test skip
+>    [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-lnl-8/igt@xe_evict_ccs@evict-overcommit-parallel-nofree-samefd.html
+> 
+>   * igt@xe_exec_fault_mode@once-multi-queue-rebind-imm:
+>     - shard-bmg:          NOTRUN -> [SKIP][21] ([Intel XE#7136])
+>    [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-bmg-4/igt@xe_exec_fault_mode@once-multi-queue-rebind-imm.html
+>     - shard-lnl:          NOTRUN -> [SKIP][22] ([Intel XE#7136])
+>    [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-lnl-8/igt@xe_exec_fault_mode@once-multi-queue-rebind-imm.html
+> 
+>   * igt@xe_exec_multi_queue@two-queues-preempt-mode-close-fd-smem:
+>     - shard-lnl:          NOTRUN -> [SKIP][23] ([Intel XE#6874]) +1 other test skip
+>    [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-lnl-7/igt@xe_exec_multi_queue@two-queues-preempt-mode-close-fd-smem.html
+>     - shard-bmg:          NOTRUN -> [SKIP][24] ([Intel XE#6874]) +1 other test skip
+>    [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-bmg-1/igt@xe_exec_multi_queue@two-queues-preempt-mode-close-fd-smem.html
+> 
+>   * igt@xe_exec_threads@threads-multi-queue-cm-shared-vm-userptr:
+>     - shard-bmg:          NOTRUN -> [SKIP][25] ([Intel XE#7138]) +1 other test skip
+>    [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-bmg-5/igt@xe_exec_threads@threads-multi-queue-cm-shared-vm-userptr.html
+>     - shard-lnl:          NOTRUN -> [SKIP][26] ([Intel XE#7138]) +1 other test skip
+>    [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-lnl-8/igt@xe_exec_threads@threads-multi-queue-cm-shared-vm-userptr.html
+> 
+>   * igt@xe_pat@pat-index-xelpg:
+>     - shard-bmg:          NOTRUN -> [SKIP][27] ([Intel XE#2236])
+>    [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-bmg-2/igt@xe_pat@pat-index-xelpg.html
+>     - shard-lnl:          NOTRUN -> [SKIP][28] ([Intel XE#979])
+>    [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-lnl-8/igt@xe_pat@pat-index-xelpg.html
+> 
+>   * igt@xe_pmu@all-fn-engine-activity-load:
+>     - shard-lnl:          NOTRUN -> [SKIP][29] ([Intel XE#4650])
+>    [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-lnl-3/igt@xe_pmu@all-fn-engine-activity-load.html
+> 
+>   * igt@xe_sriov_auto_provisioning@fair-allocation:
+>     - shard-lnl:          NOTRUN -> [SKIP][30] ([Intel XE#4130])
+>    [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/shard-lnl-3/igt@xe_sriov_auto_provisioning@fair-allocation.html
+> 
+>   
+>   [Intel XE#1124]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124
+>   [Intel XE#1406]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1406
+>   [Intel XE#1421]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1421
+>   [Intel XE#1489]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1489
+>   [Intel XE#2234]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2234
+>   [Intel XE#2236]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2236
+>   [Intel XE#2252]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2252
+>   [Intel XE#2311]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2311
+>   [Intel XE#2313]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2313
+>   [Intel XE#2325]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2325
+>   [Intel XE#2850]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2850
+>   [Intel XE#2887]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2887
+>   [Intel XE#2893]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2893
+>   [Intel XE#306]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/306
+>   [Intel XE#373]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/373
+>   [Intel XE#4130]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4130
+>   [Intel XE#4141]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4141
+>   [Intel XE#4650]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4650
+>   [Intel XE#6312]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6312
+>   [Intel XE#651]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/651
+>   [Intel XE#6540]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6540
+>   [Intel XE#656]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/656
+>   [Intel XE#6874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6874
+>   [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+>   [Intel XE#7136]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7136
+>   [Intel XE#7138]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7138
+>   [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
 > 
 > 
 > Build changes
 > -------------
 > 
->   * Linux: xe-4609-4caa4c7d4ff7bd4d24bca8e795773e460eb8bbfe -> xe-pw-162104v1
+>   * IGT: IGT_8769 -> IGT_8770
+>   * Linux: xe-4609-4caa4c7d4ff7bd4d24bca8e795773e460eb8bbfe -> xe-pw-161799v3
 > 
 >   IGT_8769: 8769
+>   IGT_8770: 8770
 >   xe-4609-4caa4c7d4ff7bd4d24bca8e795773e460eb8bbfe: 4caa4c7d4ff7bd4d24bca8e795773e460eb8bbfe
->   xe-pw-162104v1: 162104v1
+>   xe-pw-161799v3: 161799v3
 > 
 > == Logs ==
 > 
-> For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162104v1/index.html
+> For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161799v3/index.html
 
 -- 
 Matt Roper
