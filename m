@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AF1E1048934
-	for <intel-xe@archiver.kernel.org>; Sat, 28 Feb 2026 01:35:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1D721048927
+	for <intel-xe@archiver.kernel.org>; Sat, 28 Feb 2026 01:35:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC04D10EC5A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C910010EC56;
 	Sat, 28 Feb 2026 01:35:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a1UdCsGo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UFoOLX9p";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B79310EC52
- for <intel-xe@lists.freedesktop.org>; Sat, 28 Feb 2026 01:35:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B41C10E1E1
+ for <intel-xe@lists.freedesktop.org>; Sat, 28 Feb 2026 01:35:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772242509; x=1803778509;
+ t=1772242511; x=1803778511;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Yu4zQtNc8/VJLS37IOE2thJOcPD1GBrBYOmB5QLU4yc=;
- b=a1UdCsGoxaQNB4CjxH9co9uQT2uCOPsYY2WEL4IJVer+pEVsAm0+itjg
- RRfAis0Oyn6x29MIDUUPjndIQvtTcH+NrFO9AxxnLvpl607bVg90mpsQY
- sNmhJV6p71RmYP7jY4wso1bAYd6WaglR5s4FgZVssc0YV27eUWBExw2Ae
- 7B8mZ3GW/ZK3NKqaA7A0lAMYC01o8InmMJo+Eg8MS0K22K8RlFcDuVrfK
- 7FVKvRVpV54MqSTfT6rUZSnVYRqsn9bgTjr3VXGb2s+5lECf+TWevIlZU
- QGmiaEsbpo90toqbIjfhFHlaX/nvKa+CufXKFY2mOBUvU77fPV7lNX7/z g==;
-X-CSE-ConnectionGUID: 0NgSOgs9SW2c5msIEg7g9A==
-X-CSE-MsgGUID: W+LKcbBMQvK6EBHIzXjW1Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11714"; a="83966346"
-X-IronPort-AV: E=Sophos;i="6.21,315,1763452800"; d="scan'208";a="83966346"
+ bh=4Q8WN3ouM6v1GmfNR3tUHwb2r/I/yZ746P6wHCXVm7I=;
+ b=UFoOLX9pwKM/hjVtH0EX1SAKcby+jcnVonLsHMyO/sp6dHwWYJ8yPpqB
+ /ZLhi76dyDJlKNob48YKcXubHjVPAs5GPn/WE3vfxOy/a2jue/fGNDgLX
+ S9WGQrQddKazzyfdXRfJ8/klmDAaFGE0jsYmE/lvsJc8apLRYMUFpLloL
+ qGu0PeCaFIKF7rUbucdFD/WQEchK6czLQ1MUeVc4OuCVGBW5XzRL/uWQm
+ ayIsdv03Uq+fwsVyF0OIqEXo/h+Vc+tedInqeZjfQqTD1zD5P/gC9DINj
+ kbjOPXc88unDkcZ0fjUTig+EmKQUMPk0fzvMNVEDWWaKkFPaRWkgbQVc0 g==;
+X-CSE-ConnectionGUID: D/dM7Y2PStKEH2sWR8Zw4Q==
+X-CSE-MsgGUID: VIYLGZ9rS/a4j+buA8iC7Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11714"; a="83966353"
+X-IronPort-AV: E=Sophos;i="6.21,315,1763452800"; d="scan'208";a="83966353"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 17:35:06 -0800
-X-CSE-ConnectionGUID: KwI3RlZ8Sf+waYTnyLNaiQ==
-X-CSE-MsgGUID: Lv35cUFcRMioVuKTmqI5+w==
+ 27 Feb 2026 17:35:08 -0800
+X-CSE-ConnectionGUID: fiB2vH5ZQUWKJsLHFgR6dw==
+X-CSE-MsgGUID: YOoKDvE0STquR/u8R9eU0Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,315,1763452800"; d="scan'208";a="213854855"
+X-IronPort-AV: E=Sophos;i="6.21,315,1763452800"; d="scan'208";a="213854877"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 17:35:07 -0800
+ 27 Feb 2026 17:35:08 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: stuart.summers@intel.com, arvind.yadav@intel.com,
  himal.prasad.ghimiray@intel.com, thomas.hellstrom@linux.intel.com,
  francois.dugast@intel.com
-Subject: [PATCH v3 07/25] drm/xe: Update scheduler job layer to support PT jobs
-Date: Fri, 27 Feb 2026 17:34:43 -0800
-Message-Id: <20260228013501.106680-8-matthew.brost@intel.com>
+Subject: [PATCH v3 14/25] drm/xe: Remove unused arguments from
+ xe_migrate_pt_update_ops
+Date: Fri, 27 Feb 2026 17:34:50 -0800
+Message-Id: <20260228013501.106680-15-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260228013501.106680-1-matthew.brost@intel.com>
 References: <20260228013501.106680-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,237 +69,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Update the scheduler job layer to support PT jobs. PT jobs are executed
-entirely on the CPU and do not require LRC fences or a batch address.
-Repurpose the LRC fence storage to hold PT‑job arguments and update the
-scheduler job layer to distinguish between PT jobs and jobs that require
-an LRC.
+Both populate and clear have unused void* ptr arguments, remove these.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_sched_job.c       | 92 ++++++++++++++++---------
- drivers/gpu/drm/xe/xe_sched_job_types.h | 31 ++++++++-
- 2 files changed, 88 insertions(+), 35 deletions(-)
+ drivers/gpu/drm/xe/xe_migrate.c |  4 ++--
+ drivers/gpu/drm/xe/xe_migrate.h |  7 ++-----
+ drivers/gpu/drm/xe/xe_pt.c      | 29 ++++++++++++++---------------
+ 3 files changed, 18 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-index ae5b38b2a884..a8ba7f90368f 100644
---- a/drivers/gpu/drm/xe/xe_sched_job.c
-+++ b/drivers/gpu/drm/xe/xe_sched_job.c
-@@ -26,19 +26,22 @@ static struct kmem_cache *xe_sched_job_parallel_slab;
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 00288a2ead00..fe5c9bdcb555 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -1714,11 +1714,11 @@ xe_migrate_update_pgtables_cpu_execute(struct xe_vm *vm, struct xe_tile *tile,
  
- int __init xe_sched_job_module_init(void)
- {
-+	struct xe_sched_job *job;
-+	size_t size;
-+
-+	size = struct_size(job, ptrs, 1);
- 	xe_sched_job_slab =
--		kmem_cache_create("xe_sched_job",
--				  sizeof(struct xe_sched_job) +
--				  sizeof(struct xe_job_ptrs), 0,
-+		kmem_cache_create("xe_sched_job", size, 0,
- 				  SLAB_HWCACHE_ALIGN, NULL);
- 	if (!xe_sched_job_slab)
- 		return -ENOMEM;
- 
-+	size = max_t(size_t,
-+		     struct_size(job, ptrs,
-+				 XE_HW_ENGINE_MAX_INSTANCE),
-+		     struct_size(job, pt_update, 1));
- 	xe_sched_job_parallel_slab =
--		kmem_cache_create("xe_sched_job_parallel",
--				  sizeof(struct xe_sched_job) +
--				  sizeof(struct xe_job_ptrs) *
--				  XE_HW_ENGINE_MAX_INSTANCE, 0,
-+		kmem_cache_create("xe_sched_job_parallel", size, 0,
- 				  SLAB_HWCACHE_ALIGN, NULL);
- 	if (!xe_sched_job_parallel_slab) {
- 		kmem_cache_destroy(xe_sched_job_slab);
-@@ -84,7 +87,7 @@ static void xe_sched_job_free_fences(struct xe_sched_job *job)
- {
- 	int i;
- 
--	for (i = 0; i < job->q->width; ++i) {
-+	for (i = 0; !job->is_pt_job && i < job->q->width; ++i) {
- 		struct xe_job_ptrs *ptrs = &job->ptrs[i];
- 
- 		if (ptrs->lrc_fence)
-@@ -93,10 +96,23 @@ static void xe_sched_job_free_fences(struct xe_sched_job *job)
- 	}
- }
- 
-+/**
-+ * xe_sched_job_create() - Create a scheduler job
-+ * @q: exec queue to create the scheduler job for
-+ * @batch: array of batch addresses for the job; must match the width of @q,
-+ *         or NULL to indicate a PT job that does not require a batch address
-+ *
-+ * Create a scheduler job for submission.
-+ *
-+ * Context: Reclaim
-+ *
-+ * Return: a &xe_sched_job object on success, or an ERR_PTR on failure.
-+ */
- struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
- 					 u64 *batch_addr)
- {
- 	bool is_migration = xe_sched_job_is_migration(q);
-+	struct xe_device *xe = gt_to_xe(q->gt);
- 	struct xe_sched_job *job;
- 	int err;
- 	int i;
-@@ -105,6 +121,9 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
- 	/* only a kernel context can submit a vm-less job */
- 	XE_WARN_ON(!q->vm && !(q->flags & EXEC_QUEUE_FLAG_KERNEL));
- 
-+	xe_assert(xe, batch_addr ||
-+		  q->flags & (EXEC_QUEUE_FLAG_VM | EXEC_QUEUE_FLAG_MIGRATE));
-+
- 	job = job_alloc(xe_exec_queue_is_parallel(q) || is_migration);
- 	if (!job)
- 		return ERR_PTR(-ENOMEM);
-@@ -119,34 +138,39 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
- 	if (err)
- 		goto err_free;
- 
--	for (i = 0; i < q->width; ++i) {
--		struct dma_fence *fence = xe_lrc_alloc_seqno_fence();
--		struct dma_fence_chain *chain;
--
--		if (IS_ERR(fence)) {
--			err = PTR_ERR(fence);
--			goto err_sched_job;
-+	if (!batch_addr) {
-+		job->fence = dma_fence_get_stub();
-+		job->is_pt_job = true;
-+	} else {
-+		for (i = 0; i < q->width; ++i) {
-+			struct dma_fence *fence = xe_lrc_alloc_seqno_fence();
-+			struct dma_fence_chain *chain;
-+
-+			if (IS_ERR(fence)) {
-+				err = PTR_ERR(fence);
-+				goto err_sched_job;
-+			}
-+			job->ptrs[i].lrc_fence = fence;
-+
-+			if (i + 1 == q->width)
-+				continue;
-+
-+			chain = dma_fence_chain_alloc();
-+			if (!chain) {
-+				err = -ENOMEM;
-+				goto err_sched_job;
-+			}
-+			job->ptrs[i].chain_fence = chain;
+ 			if (pt_op->bind)
+ 				ops->populate(tile, &update->pt_bo->vmap,
+-					      NULL, update->ofs, update->qwords,
++					      update->ofs, update->qwords,
+ 					      update);
+ 			else
+ 				ops->clear(vm, tile, &update->pt_bo->vmap,
+-					   NULL, update->ofs, update->qwords,
++					   update->ofs, update->qwords,
+ 					   update);
  		}
--		job->ptrs[i].lrc_fence = fence;
- 
--		if (i + 1 == q->width)
--			continue;
-+		width = q->width;
-+		if (is_migration)
-+			width = 2;
- 
--		chain = dma_fence_chain_alloc();
--		if (!chain) {
--			err = -ENOMEM;
--			goto err_sched_job;
--		}
--		job->ptrs[i].chain_fence = chain;
-+		for (i = 0; i < width; ++i)
-+			job->ptrs[i].batch_addr = batch_addr[i];
  	}
+diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+index 9865de29fee7..ae979f6bf8ef 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.h
++++ b/drivers/gpu/drm/xe/xe_migrate.h
+@@ -43,7 +43,6 @@ struct xe_migrate_pt_update_ops {
+ 	 * @populate: Populate a command buffer or page-table with ptes.
+ 	 * @tile: The tile for the current operation.
+ 	 * @map: struct iosys_map into the memory to be populated.
+-	 * @pos: If @map is NULL, map into the memory to be populated.
+ 	 * @ofs: qword offset into @map, unused if @map is NULL.
+ 	 * @num_qwords: Number of qwords to write.
+ 	 * @update: Information about the PTEs to be inserted.
+@@ -53,14 +52,13 @@ struct xe_migrate_pt_update_ops {
+ 	 * page-tables with PTEs.
+ 	 */
+ 	void (*populate)(struct xe_tile *tile, struct iosys_map *map,
+-			 void *pos, u32 ofs, u32 num_qwords,
++			 u32 ofs, u32 num_qwords,
+ 			 const struct xe_vm_pgtable_update *update);
+ 	/**
+ 	 * @clear: Clear a command buffer or page-table with ptes.
+ 	 * @vm: VM being updated
+ 	 * @tile: The tile for the current operation.
+ 	 * @map: struct iosys_map into the memory to be populated.
+-	 * @pos: If @map is NULL, map into the memory to be populated.
+ 	 * @ofs: qword offset into @map, unused if @map is NULL.
+ 	 * @num_qwords: Number of qwords to write.
+ 	 * @update: Information about the PTEs to be inserted.
+@@ -70,8 +68,7 @@ struct xe_migrate_pt_update_ops {
+ 	 * page-tables with PTEs.
+ 	 */
+ 	void (*clear)(struct xe_vm *vm, struct xe_tile *tile,
+-		      struct iosys_map *map, void *pos, u32 ofs,
+-		      u32 num_qwords,
++		      struct iosys_map *map, u32 ofs, u32 num_qwords,
+ 		      const struct xe_vm_pgtable_update *update);
  
--	width = q->width;
--	if (is_migration)
--		width = 2;
--
--	for (i = 0; i < width; ++i)
--		job->ptrs[i].batch_addr = batch_addr[i];
--
- 	atomic_inc(&q->job_cnt);
- 	xe_pm_runtime_get_noresume(job_to_xe(job));
- 	trace_xe_sched_job_create(job);
-@@ -246,7 +270,7 @@ bool xe_sched_job_completed(struct xe_sched_job *job)
- void xe_sched_job_arm(struct xe_sched_job *job)
+ 	/**
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index dc567e442db2..ed7cb34c958c 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -996,20 +996,18 @@ bool xe_pt_zap_ptes_range(struct xe_tile *tile, struct xe_vm *vm,
+ 
+ static void
+ xe_vm_populate_pgtable(struct xe_tile *tile, struct iosys_map *map,
+-		       void *data, u32 qword_ofs, u32 num_qwords,
++		       u32 qword_ofs, u32 num_qwords,
+ 		       const struct xe_vm_pgtable_update *update)
  {
- 	struct xe_exec_queue *q = job->q;
--	struct dma_fence *fence, *prev;
-+	struct dma_fence *fence = job->fence, *prev;
- 	struct xe_vm *vm = q->vm;
- 	u64 seqno = 0;
- 	int i;
-@@ -266,6 +290,9 @@ void xe_sched_job_arm(struct xe_sched_job *job)
- 		job->ring_ops_flush_tlb = true;
- 	}
+ 	struct xe_pt_entry *ptes = update->pt_entries;
+-	u64 *ptr = data;
+ 	u32 i;
  
-+	if (job->is_pt_job)
-+		goto arm;
+-	for (i = 0; i < num_qwords; i++) {
+-		if (map)
+-			xe_map_wr(tile_to_xe(tile), map, (qword_ofs + i) *
+-				  sizeof(u64), u64, ptes[i].pte);
+-		else
+-			ptr[i] = ptes[i].pte;
+-	}
++	xe_assert(tile_to_xe(tile), map);
++	xe_assert(tile_to_xe(tile), !iosys_map_is_null(map));
 +
- 	/* Arm the pre-allocated fences */
- 	for (i = 0; i < q->width; prev = fence, ++i) {
- 		struct dma_fence_chain *chain;
-@@ -286,6 +313,7 @@ void xe_sched_job_arm(struct xe_sched_job *job)
- 		fence = &chain->base;
- 	}
- 
-+arm:
- 	job->fence = dma_fence_get(fence);	/* Pairs with put in scheduler */
- 	drm_sched_job_arm(&job->drm);
++	for (i = 0; i < num_qwords; i++)
++		xe_map_wr(tile_to_xe(tile), map, (qword_ofs + i) *
++			  sizeof(u64), u64, ptes[i].pte);
  }
-diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h b/drivers/gpu/drm/xe/xe_sched_job_types.h
-index 13c2970e81a8..9be4e2c5989d 100644
---- a/drivers/gpu/drm/xe/xe_sched_job_types.h
-+++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
-@@ -10,10 +10,29 @@
  
- #include <drm/gpu_scheduler.h>
+ static void xe_pt_cancel_bind(struct xe_vma *vma,
+@@ -1826,22 +1824,23 @@ static unsigned int xe_pt_stage_unbind(struct xe_tile *tile,
  
--struct xe_exec_queue;
- struct dma_fence;
- struct dma_fence_chain;
+ static void
+ xe_migrate_clear_pgtable_callback(struct xe_vm *vm, struct xe_tile *tile,
+-				  struct iosys_map *map, void *ptr,
+-				  u32 qword_ofs, u32 num_qwords,
++				  struct iosys_map *map, u32 qword_ofs,
++				  u32 num_qwords,
+ 				  const struct xe_vm_pgtable_update *update)
+ {
+ 	u64 empty = __xe_pt_empty_pte(tile, vm, update->level);
+ 	int i;
  
-+struct xe_exec_queue;
-+struct xe_migrate_pt_update_ops;
-+struct xe_pt_job_ops;
-+struct xe_tile;
-+struct xe_vm;
+-	if (map && map->is_iomem)
++	xe_assert(vm->xe, map);
++	xe_assert(vm->xe, !iosys_map_is_null(map));
 +
-+/**
-+ * struct xe_pt_update_args - PT update arguments
-+ */
-+struct xe_pt_update_args {
-+	/** @vm: VM which is being bound */
-+	struct xe_vm *vm;
-+	/** @tile: Tile which page tables belong to */
-+	struct xe_tile *tile;
-+	/** @ops: Migrate PT update ops */
-+	const struct xe_migrate_pt_update_ops *ops;
-+	/** @pt_job_ops: PT job ops state */
-+	struct xe_pt_job_ops *pt_job_ops;
-+};
-+
- /**
-  * struct xe_job_ptrs - Per hw engine instance data
-  */
-@@ -69,8 +88,14 @@ struct xe_sched_job {
- 	bool restore_replay;
- 	/** @last_replay: last job being replayed */
- 	bool last_replay;
--	/** @ptrs: per instance pointers. */
--	struct xe_job_ptrs ptrs[];
-+	/** @is_pt_job: is a PT job */
-+	bool is_pt_job;
-+	union {
-+		/** @ptrs: per instance pointers. */
-+		DECLARE_FLEX_ARRAY(struct xe_job_ptrs, ptrs);
-+		/** @pt_update: PT update arguments */
-+		DECLARE_FLEX_ARRAY(struct xe_pt_update_args, pt_update);
-+	};
- };
++	if (map->is_iomem)
+ 		for (i = 0; i < num_qwords; ++i)
+ 			xe_map_wr(tile_to_xe(tile), map, (qword_ofs + i) *
+ 				  sizeof(u64), u64, empty);
+-	else if (map)
++	else
+ 		memset64(map->vaddr + qword_ofs * sizeof(u64), empty,
+ 			 num_qwords);
+-	else
+-		memset64(ptr, empty, num_qwords);
+ }
  
- struct xe_sched_job_snapshot {
+ static void xe_pt_abort_unbind(struct xe_vma *vma,
 -- 
 2.34.1
 
