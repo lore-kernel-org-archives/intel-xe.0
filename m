@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 920A51048925
-	for <intel-xe@archiver.kernel.org>; Sat, 28 Feb 2026 01:36:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C60011048922
+	for <intel-xe@archiver.kernel.org>; Sat, 28 Feb 2026 01:43:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5641E10E1DA;
-	Sat, 28 Feb 2026 01:36:12 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mmHPasOL";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70EA510E1DA
- for <intel-xe@lists.freedesktop.org>; Sat, 28 Feb 2026 01:35:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772242510; x=1803778510;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=GI1C50WNu9TkrpzbsJqHaVW1mg4oL2/MALR31mTqHIo=;
- b=mmHPasOLPxT0/zi9CqRuSwLVqIWABVhMaKsC1jacQwnA8GgDVptAi9t+
- IzJrnYMAjCrZwDdto14ETyNWCM3nw0ErOhN5d/wGoxKq8OmbTHWQRXjIq
- UKTUXfLbL6naiEoKg27Aaw0l/5T5b8ZljXj19W3a+9Bzw4Gn7YMTLOy68
- KS5Eq4lNiI5sj3KFgZLJfUslOnyNsTLA5+YSVg8zeQUQPPEff/ucKJZ5i
- AxGUniXocH65hVqXeYrzp2AkvHB6VtY+V+dDhYO12za8HqmHdg6ZbTrmO
- wp2AXX8k50FATioB7HYC1nvgInT1zddYlyYx03XT6upaIpmr1tDrBF3dH A==;
-X-CSE-ConnectionGUID: 9Aw8MKhZScihyXSeGbuyPw==
-X-CSE-MsgGUID: cB7epoxGQ52Xnt6o+iwjWw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11714"; a="83966349"
-X-IronPort-AV: E=Sophos;i="6.21,315,1763452800"; d="scan'208";a="83966349"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 17:35:07 -0800
-X-CSE-ConnectionGUID: FXnrocbbSVasyKiBDiq4DQ==
-X-CSE-MsgGUID: /759wQYGSTiun4mvn3fESw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,315,1763452800"; d="scan'208";a="213854864"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 17:35:07 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: stuart.summers@intel.com, arvind.yadav@intel.com,
- himal.prasad.ghimiray@intel.com, thomas.hellstrom@linux.intel.com,
- francois.dugast@intel.com
-Subject: [PATCH v3 10/25] drm/xe: Update GuC submission backend to run PT jobs
-Date: Fri, 27 Feb 2026 17:34:46 -0800
-Message-Id: <20260228013501.106680-11-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260228013501.106680-1-matthew.brost@intel.com>
-References: <20260228013501.106680-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 875DE10E155;
+	Sat, 28 Feb 2026 01:43:41 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC10610E1E0;
+ Sat, 28 Feb 2026 01:43:39 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_CPU_binds_and_ULLS_on_mig?=
+ =?utf-8?q?ration_queue_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Sat, 28 Feb 2026 01:43:39 -0000
+Message-ID: <177224301987.297701.5009034042774121458@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260228013501.106680-1-matthew.brost@intel.com>
+In-Reply-To: <20260228013501.106680-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,140 +36,85 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PT jobs bypass GPU execution for the final step of a bind job, using the
-CPU to program the required page tables. Teach the GuC submission backend
-how to execute these jobs.
+== Series Details ==
 
-PT job submission is implemented in the GuC backend for simplicity. A
-follow-up patch could introduce a dedicated backend for PT jobs.
+Series: CPU binds and ULLS on migration queue (rev3)
+URL   : https://patchwork.freedesktop.org/series/149888/
+State : warning
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_submit.c | 37 ++++++++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_migrate.c    | 13 ++++++++++-
- drivers/gpu/drm/xe/xe_migrate.h    |  8 +++++++
- 3 files changed, 52 insertions(+), 6 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 453af51fe87b..1d6ac7a6563b 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -36,8 +36,10 @@
- #include "xe_lrc.h"
- #include "xe_macros.h"
- #include "xe_map.h"
-+#include "xe_migrate.h"
- #include "xe_mocs.h"
- #include "xe_pm.h"
-+#include "xe_pt.h"
- #include "xe_ring_ops_types.h"
- #include "xe_sched_job.h"
- #include "xe_sleep.h"
-@@ -1183,6 +1185,20 @@ static void submit_exec_queue(struct xe_exec_queue *q, struct xe_sched_job *job)
- 	}
- }
- 
-+static bool is_pt_job(struct xe_sched_job *job)
-+{
-+	return job->is_pt_job;
-+}
-+
-+static void run_pt_job(struct xe_sched_job *job)
-+{
-+	xe_migrate_update_pgtables_cpu_execute(job->pt_update[0].vm,
-+					       job->pt_update[0].tile,
-+					       job->pt_update[0].ops,
-+					       job->pt_update[0].pt_job_ops->ops,
-+					       job->pt_update[0].pt_job_ops->current_op);
-+}
-+
- static struct dma_fence *
- guc_exec_queue_run_job(struct drm_sched_job *drm_job)
- {
-@@ -1210,14 +1226,25 @@ guc_exec_queue_run_job(struct drm_sched_job *drm_job)
- 				register_exec_queue(primary, GUC_CONTEXT_NORMAL);
- 		}
- 
--		if (!exec_queue_registered(q))
--			register_exec_queue(q, GUC_CONTEXT_NORMAL);
--		if (!job->restore_replay)
--			q->ring_ops->emit_job(job);
--		submit_exec_queue(q, job);
-+		if (is_pt_job(job)) {
-+			xe_gt_assert(guc_to_gt(guc), !exec_queue_registered(q));
-+			run_pt_job(job);
-+		} else {
-+			if (!exec_queue_registered(q))
-+				register_exec_queue(q, GUC_CONTEXT_NORMAL);
-+			if (!job->restore_replay)
-+				q->ring_ops->emit_job(job);
-+			submit_exec_queue(q, job);
-+		}
- 		job->restore_replay = false;
- 	}
- 
-+	if (is_pt_job(job)) {
-+		xe_pt_job_ops_put(job->pt_update[0].pt_job_ops);
-+		dma_fence_put(job->fence);	/* Drop ref from xe_sched_job_arm */
-+		return NULL;
-+	}
-+
- run_job_out:
- 
- 	return job->fence;
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index cd6802642ef3..e9b9dfe19e48 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -1715,7 +1715,18 @@ struct migrate_test_params {
- 	container_of(_priv, struct migrate_test_params, base)
- #endif
- 
--static void
-+/**
-+ * xe_migrate_update_pgtables_cpu_execute() - Update a VM's PTEs via the CPU
-+ * @vm: The VM being updated
-+ * @tile: The tile being updated
-+ * @ops: The migrate PT update ops
-+ * @pt_ops: The VM PT update ops
-+ * @num_ops: The number of The VM PT update ops
-+ *
-+ * Execute the VM PT update ops array which results in a VM's PTEs being updated
-+ * via the CPU.
-+ */
-+void
- xe_migrate_update_pgtables_cpu_execute(struct xe_vm *vm, struct xe_tile *tile,
- 				       const struct xe_migrate_pt_update_ops *ops,
- 				       struct xe_vm_pgtable_update_op *pt_op,
-diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
-index c3c0740f908d..30c9c990a8b1 100644
---- a/drivers/gpu/drm/xe/xe_migrate.h
-+++ b/drivers/gpu/drm/xe/xe_migrate.h
-@@ -24,6 +24,7 @@ struct xe_pt;
- struct xe_tile;
- struct xe_vm;
- struct xe_vm_pgtable_update;
-+struct xe_vm_pgtable_update_op;
- struct xe_vma;
- 
- enum xe_sriov_vf_ccs_rw_ctxs;
-@@ -157,6 +158,13 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 
- struct xe_vm *xe_migrate_get_vm(struct xe_migrate *m);
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 531eaee59c3ac68792e045084aa7d5ae6a0b0ea6
+Author: Matthew Brost <matthew.brost@intel.com>
+Date:   Fri Feb 27 17:35:01 2026 -0800
+
+    drm/xe: Add modparam to enable / disable ULLS on migrate queue
+    
+    Having modparam to enable / disable ULLS on migrate queue will help with
+    quick experiments.
+    
+    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch a0a6a2fc5a08dc2e936c43e5d181dd0975a251a1 drm-intel
+c6d7a5d86f5a drm/xe: Drop struct xe_migrate_pt_update argument from populate/clear vfuns
+03799a61f336 drm/xe: Add xe_migrate_update_pgtables_cpu_execute helper
+7e1e3cd4526c drm/xe: Decouple exec queue idle check from LRC
+06c680c5a5e4 drm/xe: Add job count to GuC exec queue snapshot
+9b9d70d7490a drm/xe: Update xe_bo_put_deferred arguments to include writeback flag
+ac11091a4b48 drm/xe: Add XE_BO_FLAG_PUT_VM_ASYNC
+71e369db81f3 drm/xe: Update scheduler job layer to support PT jobs
+84b14a4ca5b4 drm/xe: Add helpers to access PT ops
+549a82d6b216 drm/xe: Add struct xe_pt_job_ops
+-:177: WARNING:ALLOC_WITH_SIZEOF: Prefer kmalloc_obj over kmalloc with sizeof
+#177: FILE: drivers/gpu/drm/xe/xe_pt.c:2769:
++	pt_job_ops = kmalloc(sizeof(*pt_job_ops), GFP_KERNEL);
+
+total: 0 errors, 1 warnings, 0 checks, 296 lines checked
+6a327420218d drm/xe: Update GuC submission backend to run PT jobs
+-:122: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#122: FILE: drivers/gpu/drm/xe/xe_migrate.h:161:
  
 +
-+void
-+xe_migrate_update_pgtables_cpu_execute(struct xe_vm *vm, struct xe_tile *tile,
-+				       const struct xe_migrate_pt_update_ops *ops,
-+				       struct xe_vm_pgtable_update_op *pt_op,
-+				       int num_ops);
-+
- struct dma_fence *
- xe_migrate_update_pgtables(struct xe_migrate *m,
- 			   struct xe_migrate_pt_update *pt_update);
--- 
-2.34.1
+
+total: 0 errors, 0 warnings, 1 checks, 99 lines checked
+b856a54d5750 drm/xe: Store level in struct xe_vm_pgtable_update
+53b3d37165f1 drm/xe: Don't use migrate exec queue for page fault binds
+a627e2044eca drm/xe: Enable CPU binds for jobs
+4435208ab89b drm/xe: Remove unused arguments from xe_migrate_pt_update_ops
+9a118a617834 drm/xe: Make bind queues operate cross-tile
+-:304: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__i' - possible side-effects?
+#304: FILE: drivers/gpu/drm/xe/xe_exec_queue.h:17:
++#define for_each_tlb_inval(__q, __i)	\
++	for (__i = 0; __i < XE_EXEC_QUEUE_TLB_INVAL_COUNT; ++__i)	\
++		for_each_if((__q)->tlb_inval[__i].dep_scheduler)
+
+total: 0 errors, 0 warnings, 1 checks, 630 lines checked
+c91664d91904 drm/xe: Add CPU bind layer
+-:32: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#32: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 2335 lines checked
+e7a0e614bea1 drm/xe: Add device flag to enable PT mirroring across tiles
+a2c648d76671 drm/xe: Add xe_hw_engine_write_ring_tail
+31a9b7b87b03 drm/xe: Add ULLS support to LRC
+c5f1ef0cc157 drm/xe: Add ULLS migration job support to migration layer
+9c4f8e2efd57 drm/xe: Add MI_SEMAPHORE_WAIT instruction defs
+1cd235bcabf8 drm/xe: Add ULLS migration job support to ring ops
+118337e217f7 drm/xe: Add ULLS migration job support to GuC submission
+582f957830f0 drm/xe: Enter ULLS for migration jobs upon page fault or SVM prefetch
+531eaee59c3a drm/xe: Add modparam to enable / disable ULLS on migrate queue
+
 
