@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DA9A1048936
-	for <intel-xe@archiver.kernel.org>; Sat, 28 Feb 2026 01:35:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 757D9104893A
+	for <intel-xe@archiver.kernel.org>; Sat, 28 Feb 2026 01:35:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F0B4410EC5E;
-	Sat, 28 Feb 2026 01:35:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BA7310EC66;
+	Sat, 28 Feb 2026 01:35:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aW+N7iXX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kM+0K6HF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77F3A10EC53
- for <intel-xe@lists.freedesktop.org>; Sat, 28 Feb 2026 01:35:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E68010E1E1
+ for <intel-xe@lists.freedesktop.org>; Sat, 28 Feb 2026 01:35:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772242515; x=1803778515;
+ t=1772242510; x=1803778510;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=sL449RqN8272HKDYnzfFJb+QjprLX6w6ufCM4MF5hnI=;
- b=aW+N7iXX69MH6/0OccGubu9YPJF8a77HBM1XKD9cywTRZJsBqhbXVafV
- VNWf1aWcxa02JuIYALoJMrSNlTEO0PCS+glbTjD+H/44imDunpWBJtOJf
- tl+2L4R94+NtG6jMldZHvR90PaOtxeV6jjSuwZXqOmpCJiAT3Ylu0uyRc
- 3EX2XKd7I4Soil6fCFBR7J2yd+6MT8IzxPZ5WcLxB3rjXP7f2a1xt6CTM
- GjGu8Bc5fK0CzmMUmpXYhbb1AiPzcqWA5vLW6HMJkxIr1Fkd3aIBZyDYG
- t1XAUQICoJAbk95U3uTc0NHK14BHi1e6pnFNPx7DPAXtGrRTY96xJG/tg Q==;
-X-CSE-ConnectionGUID: ud+6a17RTSC+tprF8+w0eA==
-X-CSE-MsgGUID: bdNPZyO6S1+s6jSeeNgpJA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11714"; a="83966364"
-X-IronPort-AV: E=Sophos;i="6.21,315,1763452800"; d="scan'208";a="83966364"
+ bh=Eglji7Lju4kF3NxTPjOVrlIDWG9C68XBuE07KGiAsO4=;
+ b=kM+0K6HFD3gs2tc8BPb0vfMO2cE0Duv8N/17T53W0OikrXz8JqkjUW9X
+ NRrxcZvLJ7ErXqn843Olyc7RMVZjPS+hRkwTCABNdXTPw3qejPldqjf7h
+ 5IL8g8faZDDev/+nENMhZoLAIBj25anXpTxXXZbLDVC2x1zMGQVOOqIWl
+ NGGYOSgovKCr2ptrhTxI1qaP+qjg9xSwCTJF4AginBxBqUQ0HYbIhE1nv
+ qK3W/xIGPR1xi8YyKVCmYLGPcuxThFEKS0+na4Ywcu37ZsJJZWx0Yhmzd
+ sFXYtpXQ5G0Po98ZUCulm1+FAQiYtlS35U+l6/x5b9Loky4rwLlmPiQu1 g==;
+X-CSE-ConnectionGUID: nq/c89zQQx+CePP6Vxdteg==
+X-CSE-MsgGUID: yn0rTir6QRiYSlL5oYmsHw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11714"; a="83966350"
+X-IronPort-AV: E=Sophos;i="6.21,315,1763452800"; d="scan'208";a="83966350"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 17:35:09 -0800
-X-CSE-ConnectionGUID: Wh1RKbgMTVKAMlIJeUvwdg==
-X-CSE-MsgGUID: H4jSfVFyQeion4w4AKv4sw==
+ 27 Feb 2026 17:35:07 -0800
+X-CSE-ConnectionGUID: dnlrPDlnRey1ENacVe1hew==
+X-CSE-MsgGUID: hxObH/UCRvWZHt2hjt4W7A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,315,1763452800"; d="scan'208";a="213854911"
+X-IronPort-AV: E=Sophos;i="6.21,315,1763452800"; d="scan'208";a="213854868"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 17:35:10 -0800
+ 27 Feb 2026 17:35:07 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: stuart.summers@intel.com, arvind.yadav@intel.com,
  himal.prasad.ghimiray@intel.com, thomas.hellstrom@linux.intel.com,
  francois.dugast@intel.com
-Subject: [PATCH v3 25/25] drm/xe: Add modparam to enable / disable ULLS on
- migrate queue
-Date: Fri, 27 Feb 2026 17:35:01 -0800
-Message-Id: <20260228013501.106680-26-matthew.brost@intel.com>
+Subject: [PATCH v3 11/25] drm/xe: Store level in struct xe_vm_pgtable_update
+Date: Fri, 27 Feb 2026 17:34:47 -0800
+Message-Id: <20260228013501.106680-12-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260228013501.106680-1-matthew.brost@intel.com>
 References: <20260228013501.106680-1-matthew.brost@intel.com>
@@ -69,137 +68,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Having modparam to enable / disable ULLS on migrate queue will help with
-quick experiments.
+The level was previously extracted from struct xe_pt inside
+xe_vm_pgtable_update during CPU binds, which always occurred during the
+bind IOCTL. With CPU binds now supported in bind jobs, struct xe_pt may
+no longer be valid in memory at that point. To address this, store the
+level directly in struct xe_vm_pgtable_update.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_debugfs.c      |  1 +
- drivers/gpu/drm/xe/xe_defaults.h     |  1 +
- drivers/gpu/drm/xe/xe_device.c       | 12 +++++++++---
- drivers/gpu/drm/xe/xe_device_types.h |  5 +++++
- drivers/gpu/drm/xe/xe_migrate.c      |  2 +-
- drivers/gpu/drm/xe/xe_module.c       |  4 ++++
- drivers/gpu/drm/xe/xe_module.h       |  1 +
- 7 files changed, 22 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_pt.c       | 3 ++-
+ drivers/gpu/drm/xe/xe_pt_types.h | 8 +++++++-
+ 2 files changed, 9 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
-index 844cfafe1ec7..049389205b3f 100644
---- a/drivers/gpu/drm/xe/xe_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_debugfs.c
-@@ -85,6 +85,7 @@ static int info(struct seq_file *m, void *data)
- 	drm_printf(&p, "tile_count %d\n", xe->info.tile_count);
- 	drm_printf(&p, "vm_max_level %d\n", xe->info.vm_max_level);
- 	drm_printf(&p, "force_execlist %s\n", str_yes_no(xe->info.force_execlist));
-+	drm_printf(&p, "ulls_enable %s\n", str_yes_no(xe->info.ulls_enable));
- 	drm_printf(&p, "has_flat_ccs %s\n", str_yes_no(xe->info.has_flat_ccs));
- 	drm_printf(&p, "has_usm %s\n", str_yes_no(xe->info.has_usm));
- 	drm_printf(&p, "skip_guc_pc %s\n", str_yes_no(xe->info.skip_guc_pc));
-diff --git a/drivers/gpu/drm/xe/xe_defaults.h b/drivers/gpu/drm/xe/xe_defaults.h
-index c8ae1d5f3d60..299360546283 100644
---- a/drivers/gpu/drm/xe/xe_defaults.h
-+++ b/drivers/gpu/drm/xe/xe_defaults.h
-@@ -14,6 +14,7 @@
- #endif
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 6b56e62a35c1..0a90d1460a8b 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -381,6 +381,7 @@ xe_pt_new_shared(struct xe_walk_update *wupd, struct xe_pt *parent,
+ 	entry->flags = 0;
+ 	entry->qwords = 0;
+ 	entry->pt_bo->update_index = -1;
++	entry->level = parent->level;
  
- #define XE_DEFAULT_PROBE_DISPLAY		IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
-+#define XE_DEFAULT_ULLS_ENABLE			true
- #define XE_DEFAULT_VRAM_BAR_SIZE		0
- #define XE_DEFAULT_FORCE_PROBE			CONFIG_DRM_XE_FORCE_PROBE
- #define XE_DEFAULT_MAX_VFS			~0
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index b7ad7f97e68c..18af003c95c5 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -437,6 +437,14 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
- 	ttm_device_fini(&xe->ttm);
- }
- 
-+static void xe_device_parse_modparam(struct xe_device *xe)
-+{
-+	xe->info.force_execlist = xe_modparam.force_execlist;
-+	xe->info.ulls_enable = xe_modparam.ulls_enable;
-+	xe->atomic_svm_timeslice_ms = 5;
-+	xe->min_run_period_lr_ms = 5;
-+}
-+
- struct xe_device *xe_device_create(struct pci_dev *pdev,
- 				   const struct pci_device_id *ent)
+ 	if (alloc_entries) {
+ 		entry->pt_entries = kmalloc_objs(*entry->pt_entries, XE_PDES);
+@@ -1830,7 +1831,7 @@ xe_migrate_clear_pgtable_callback(struct xe_vm *vm, struct xe_tile *tile,
+ 				  u32 qword_ofs, u32 num_qwords,
+ 				  const struct xe_vm_pgtable_update *update)
  {
-@@ -470,9 +478,7 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+-	u64 empty = __xe_pt_empty_pte(tile, vm, update->pt->level);
++	u64 empty = __xe_pt_empty_pte(tile, vm, update->level);
+ 	int i;
  
- 	xe->info.devid = pdev->device;
- 	xe->info.revid = pdev->revision;
--	xe->info.force_execlist = xe_modparam.force_execlist;
--	xe->atomic_svm_timeslice_ms = 5;
--	xe->min_run_period_lr_ms = 5;
-+	xe_device_parse_modparam(xe);
+ 	if (map && map->is_iomem)
+diff --git a/drivers/gpu/drm/xe/xe_pt_types.h b/drivers/gpu/drm/xe/xe_pt_types.h
+index 92d50573ed1d..aa1d7c0e8669 100644
+--- a/drivers/gpu/drm/xe/xe_pt_types.h
++++ b/drivers/gpu/drm/xe/xe_pt_types.h
+@@ -65,12 +65,18 @@ struct xe_vm_pgtable_update {
+ 	/** @qwords: number of PTE's to write */
+ 	u32 qwords;
  
- 	err = xe_irq_init(xe);
- 	if (err)
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index b3737dfcc45c..a20ff1707227 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -231,6 +231,11 @@ struct xe_device {
- 		u8 skip_pcode:1;
- 		/** @info.needs_shared_vf_gt_wq: needs shared GT WQ on VF */
- 		u8 needs_shared_vf_gt_wq:1;
-+		/**
-+		 * @info.ulls_enable: Enable ULLS on migration queue in LR VM
-+		 * open
-+		 */
-+		u8 ulls_enable:1;
- 	} info;
+-	/** @pt: opaque pointer useful for the caller of xe_migrate_update_pgtables */
++	/**
++	 * @pt: opaque pointer useful for PT building in the bind IOCTL. Only
++	 * safe to touch during the bind IOCTL (i.e., not in bind jobs).
++	 */
+ 	struct xe_pt *pt;
  
- 	/** @wa_active: keep track of active workarounds */
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index 62f27868f56b..9f02e238e7c6 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -447,7 +447,7 @@ void xe_migrate_ulls_enter(struct xe_migrate *m)
+ 	/** @pt_entries: Newly added pagetable entries */
+ 	struct xe_pt_entry *pt_entries;
  
- 	xe_assert(xe, xe->info.has_usm);
- 
--	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe))
-+	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe) || !xe->info.ulls_enable)
- 		return;
- 
- job_alloc:
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 4cb578182912..bb4fb967aec9 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -22,6 +22,7 @@
- 
- struct xe_modparam xe_modparam = {
- 	.probe_display =	XE_DEFAULT_PROBE_DISPLAY,
-+	.ulls_enable =		XE_DEFAULT_ULLS_ENABLE,
- 	.guc_log_level =	XE_DEFAULT_GUC_LOG_LEVEL,
- 	.force_probe =		XE_DEFAULT_FORCE_PROBE,
- #ifdef CONFIG_PCI_IOV
-@@ -45,6 +46,9 @@ MODULE_PARM_DESC(probe_display, "Probe display HW, otherwise it's left untouched
- 		 "[default=" __stringify(XE_DEFAULT_PROBE_DISPLAY) "])");
- #endif
- 
-+module_param_named(ulls_enable, xe_modparam.ulls_enable, bool, 0444);
-+MODULE_PARM_DESC(ulls_enable, "Enable ULLS on migration queue if LR VM open (default: true)");
++	/** @level: level of update */
++	unsigned int level;
 +
- module_param_named(vram_bar_size, xe_modparam.force_vram_bar_size, int, 0600);
- MODULE_PARM_DESC(vram_bar_size, "Set the vram bar size in MiB (<0=disable-resize, 0=max-needed-size, >0=force-size "
- 		 "[default=" __stringify(XE_DEFAULT_VRAM_BAR_SIZE) "])");
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index 79cb9639c0f3..f0220b694c40 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -12,6 +12,7 @@
- struct xe_modparam {
- 	bool force_execlist;
- 	bool probe_display;
-+	bool ulls_enable;
- 	int force_vram_bar_size;
- 	int guc_log_level;
- 	char *guc_firmware_path;
+ 	/** @flags: Target flags */
+ 	u32 flags;
+ };
 -- 
 2.34.1
 
