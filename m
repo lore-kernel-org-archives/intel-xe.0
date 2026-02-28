@@ -4,59 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C93BFEE4C8
-	for <intel-xe@archiver.kernel.org>; Sat, 28 Feb 2026 05:11:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1931FEE4C8
+	for <intel-xe@archiver.kernel.org>; Sat, 28 Feb 2026 05:12:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B31F510E1F7;
-	Sat, 28 Feb 2026 05:11:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F22B10E1F7;
+	Sat, 28 Feb 2026 05:12:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gwTKzyqx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dcGeA9Jh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FFDA10E1F7
- for <intel-xe@lists.freedesktop.org>; Sat, 28 Feb 2026 05:11:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F0EB10E1F7
+ for <intel-xe@lists.freedesktop.org>; Sat, 28 Feb 2026 05:12:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772255488; x=1803791488;
+ t=1772255567; x=1803791567;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=UUujSSxnXVA5FP7rHSCutRaKBDPKwBojAjvOcaX/V3A=;
- b=gwTKzyqxUuxfsT4nNMW7PGuzCJ6paQe3iVK7QLMFYS2Zxpx9PbqSnl43
- 3tV6oTPv0HhGWlDf5eB7j3JT9cW2pgB/kAdR34fOH2M+ETh8FKmbm94VJ
- ewq+yRbSwzjHb20tgplzoWGr/DdR2Ie4F87HJyPFtlFNvAHYspG67sLt3
- pZe2EtHo47YNylYobLodu7vIG4NzZ+Yt6iRnvg2wulmvWzwfQTSTvhSo0
- aVYT0CTqFyi9rj4WPLFXtoEBmpy9sU6Q2ys0uPtWuoSfdUxmXC/bVEaNI
- jCXzcqQPrDHcg2Xd03gxI4+oyfhYWM4BN12JmWv2+5pWfB17wqGYmBVVG g==;
-X-CSE-ConnectionGUID: yUMUl3ALSq+57ruLdG9TeQ==
-X-CSE-MsgGUID: L7jQkBZ4RSuPzZT6sxI11g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11714"; a="73447325"
-X-IronPort-AV: E=Sophos;i="6.21,315,1763452800"; d="scan'208";a="73447325"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 21:11:27 -0800
-X-CSE-ConnectionGUID: cMus213vSzWmWzwHoWEq7g==
-X-CSE-MsgGUID: LuHGUiw3QrOw/TZRftP1Mg==
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=nLZOVNIOKH+NDp4rd67h6wgMiOnc/r7us6Y9Q8zGxJk=;
+ b=dcGeA9JhzzY6SHvh3jcW2z3NBvrD5L/LMRatzteKzWCzIvEZrCQYWOL0
+ +ek5gPgVpef5ntr0UWJGdz1Ug2fbk6AkvFR1u26NrYijPHo5PXnBcjKP9
+ 5iqYuFDN8GMK84AHDjkCOYrGDF8OjVGNB11GeAktTKodDB2j8nwG66V+g
+ YMTRDH2pIsjINvDK9qVzK5qpUZlFmF4WQeeuHVcPdZuDhtZHTlZN9ZO9s
+ vg8hLYDwx4t8xJqAopyiBS3vDCvI29utSKZeofgdTC/Jk1x8XuMzgYPls
+ p0MM++JS0AoACbrHGkmxD9EP7uXEalmD+1ZQJ2kVVB5ueBqhjcq1ZpaZK w==;
+X-CSE-ConnectionGUID: LM5JrWYWShSNtXUKTucNjQ==
+X-CSE-MsgGUID: kSPFI/UFS1OuZ0UUouaNNQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11714"; a="60913063"
+X-IronPort-AV: E=Sophos;i="6.21,315,1763452800"; d="scan'208";a="60913063"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2026 21:12:46 -0800
+X-CSE-ConnectionGUID: asRL+ULbSqeWE9QgYlz5jQ==
+X-CSE-MsgGUID: vF0i7t3nTH6BlQFiW4/bow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,315,1763452800"; d="scan'208";a="214448514"
+X-IronPort-AV: E=Sophos;i="6.21,315,1763452800"; d="scan'208";a="220297116"
 Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 21:11:25 -0800
-Date: Sat, 28 Feb 2026 06:11:22 +0100
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2026 21:12:43 -0800
+Date: Sat, 28 Feb 2026 06:12:41 +0100
 From: Raag Jadav <raag.jadav@intel.com>
 To: Matthew Brost <matthew.brost@intel.com>
 Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com,
  thomas.hellstrom@linux.intel.com, riana.tauro@intel.com,
  michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
  michal.winiarski@intel.com, matthew.auld@intel.com, maarten@lankhorst.se
-Subject: Re: [PATCH v2 6/9] drm/xe/lrc: Introduce xe_lrc_reinit()
-Message-ID: <aaJ4-gjgZBj0V7BA@black.igk.intel.com>
+Subject: Re: [PATCH v2 8/9] drm/xe/migrate: Introduce xe_migrate_reinit()
+Message-ID: <aaJ5SSnzTBvYE514@black.igk.intel.com>
 References: <20260227170049.3418863-1-raag.jadav@intel.com>
- <20260227170049.3418863-7-raag.jadav@intel.com>
- <aaHdHSyXmlix/rkl@lstrano-desk.jf.intel.com>
+ <20260227170049.3418863-9-raag.jadav@intel.com>
+ <aaHjM/uWgWRufcTi@lstrano-desk.jf.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <aaHdHSyXmlix/rkl@lstrano-desk.jf.intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aaHjM/uWgWRufcTi@lstrano-desk.jf.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,263 +72,186 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Feb 27, 2026 at 10:06:21AM -0800, Matthew Brost wrote:
-> On Fri, Feb 27, 2026 at 10:30:46PM +0530, Raag Jadav wrote:
-> > In preparation of usecases which require re-initializing LRC after PCIe
-> > FLR, introduce xe_lrc_reinit() helper. The LRC bo already exists but
-> > since it's contents are on VRAM, they are lost on PCIe FLR. Recreate
-> > ring context as part of re-initialization.
+On Fri, Feb 27, 2026 at 10:32:19AM -0800, Matthew Brost wrote:
+> On Fri, Feb 27, 2026 at 10:30:48PM +0530, Raag Jadav wrote:
+> > In preparation of usecases which require re-initializing migrate context
+> > after PCIe FLR, introduce xe_migrate_reinit() helper. Migrate exec queue
+> > and pt_bo already exist in migrate structure but since their contents live
+> > on VRAM, they are lost on PCIe FLR and need re-initialization.
 > > 
 > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 > > ---
 > > v2: Re-initialize migrate context (Matthew Brost)
 > > ---
-> >  drivers/gpu/drm/xe/xe_lrc.c | 149 +++++++++++++++++++++---------------
-> >  drivers/gpu/drm/xe/xe_lrc.h |   2 +
-> >  2 files changed, 90 insertions(+), 61 deletions(-)
+> >  drivers/gpu/drm/xe/xe_gt.c      | 10 +++++
+> >  drivers/gpu/drm/xe/xe_migrate.c | 65 +++++++++++++++++++++++++--------
+> >  drivers/gpu/drm/xe/xe_migrate.h |  1 +
+> >  3 files changed, 61 insertions(+), 15 deletions(-)
 > > 
-> > diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-> > index 84360fcdf743..9fc8720f62ca 100644
-> > --- a/drivers/gpu/drm/xe/xe_lrc.c
-> > +++ b/drivers/gpu/drm/xe/xe_lrc.c
-> > @@ -1438,65 +1438,16 @@ void xe_lrc_set_multi_queue_priority(struct xe_lrc *lrc, enum xe_multi_queue_pri
-> >  	lrc->desc |= FIELD_PREP(LRC_PRIORITY, xe_multi_queue_prio_to_lrc(lrc, priority));
-> >  }
-> >  
-> > -static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
-> > -		       struct xe_vm *vm, void *replay_state, u32 ring_size,
-> > -		       u16 msix_vec,
-> > -		       u32 init_flags)
-> > +static int xe_lrc_init_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_vm *vm,
-> > +			   void *replay_state, u16 msix_vec, u32 init_flags)
+> > diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> > index ff4a4e769fb1..ab34312830e3 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt.c
+> > +++ b/drivers/gpu/drm/xe/xe_gt.c
+> > @@ -966,6 +966,16 @@ void xe_gt_flr_prepare(struct xe_gt *gt)
+> >   */
+> >  int xe_gt_flr_done(struct xe_gt *gt)
 > >  {
-> >  	struct xe_gt *gt = hwe->gt;
-> > -	const u32 lrc_size = xe_gt_lrc_size(gt, hwe->class);
-> > -	u32 bo_size = ring_size + lrc_size + LRC_WA_BB_SIZE;
-> >  	struct xe_tile *tile = gt_to_tile(gt);
-> >  	struct xe_device *xe = gt_to_xe(gt);
-> > -	struct xe_bo *seqno_bo;
-> >  	struct iosys_map map;
-> >  	u32 arb_enable;
-> > -	u32 bo_flags;
-> >  	int err;
-> >  
-> > -	kref_init(&lrc->refcount);
-> > -	lrc->gt = gt;
-> > -	lrc->replay_size = xe_gt_lrc_hang_replay_size(gt, hwe->class);
-> > -	lrc->size = lrc_size;
-> > -	lrc->flags = 0;
-> > -	lrc->ring.size = ring_size;
-> > -	lrc->ring.tail = 0;
-> > -
-> > -	if (gt_engine_needs_indirect_ctx(gt, hwe->class)) {
-> > -		lrc->flags |= XE_LRC_FLAG_INDIRECT_CTX;
-> > -		bo_size += LRC_INDIRECT_CTX_BO_SIZE;
-> > -	}
-> > -
-> > -	if (xe_gt_has_indirect_ring_state(gt))
-> > -		lrc->flags |= XE_LRC_FLAG_INDIRECT_RING_STATE;
-> > -
-> > -	bo_flags = XE_BO_FLAG_VRAM_IF_DGFX(tile) | XE_BO_FLAG_GGTT |
-> > -		   XE_BO_FLAG_GGTT_INVALIDATE;
-> > -
-> > -	if ((vm && vm->xef) || init_flags & XE_LRC_CREATE_USER_CTX) /* userspace */
-> > -		bo_flags |= XE_BO_FLAG_PINNED_LATE_RESTORE | XE_BO_FLAG_FORCE_USER_VRAM;
-> > -
-> > -	lrc->bo = xe_bo_create_pin_map_novm(xe, tile,
-> > -					    bo_size,
-> > -					    ttm_bo_type_kernel,
-> > -					    bo_flags, false);
-> > -	if (IS_ERR(lrc->bo))
-> > -		return PTR_ERR(lrc->bo);
-> > -
-> > -	seqno_bo = xe_bo_create_pin_map_novm(xe, tile, PAGE_SIZE,
-> > -					     ttm_bo_type_kernel,
-> > -					     XE_BO_FLAG_GGTT |
-> > -					     XE_BO_FLAG_GGTT_INVALIDATE |
-> > -					     XE_BO_FLAG_SYSTEM, false);
-> > -	if (IS_ERR(seqno_bo)) {
-> > -		err = PTR_ERR(seqno_bo);
-> > -		goto err_lrc_finish;
-> > -	}
-> > -	lrc->seqno_bo = seqno_bo;
-> > -
-> > -	xe_hw_fence_ctx_init(&lrc->fence_ctx, hwe->gt,
-> > -			     hwe->fence_irq, hwe->name);
-> > -
-> >  	/*
-> >  	 * Init Per-Process of HW status Page, LRC / context state to known
-> >  	 * values. If there's already a primed default_lrc, just copy it, otherwise
-> > @@ -1508,7 +1459,7 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
-> >  		xe_map_memset(xe, &map, 0, 0, LRC_PPHWSP_SIZE);	/* PPHWSP */
-> >  		xe_map_memcpy_to(xe, &map, LRC_PPHWSP_SIZE,
-> >  				 gt->default_lrc[hwe->class] + LRC_PPHWSP_SIZE,
-> > -				 lrc_size - LRC_PPHWSP_SIZE);
-> > +				 lrc->size - LRC_PPHWSP_SIZE);
-> >  		if (replay_state)
-> >  			xe_map_memcpy_to(xe, &map, LRC_PPHWSP_SIZE,
-> >  					 replay_state, lrc->replay_size);
-> > @@ -1516,21 +1467,16 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
-> >  		void *init_data = empty_lrc_data(hwe);
-> >  
-> >  		if (!init_data) {
-> > -			err = -ENOMEM;
-> > -			goto err_lrc_finish;
-> > +			return -ENOMEM;
-> >  		}
-> >  
-> > -		xe_map_memcpy_to(xe, &map, 0, init_data, lrc_size);
-> > +		xe_map_memcpy_to(xe, &map, 0, init_data, lrc->size);
-> >  		kfree(init_data);
-> >  	}
-> >  
-> > -	if (vm) {
-> > +	if (vm)
-> >  		xe_lrc_set_ppgtt(lrc, vm);
-> >  
-> > -		if (vm->xef)
-> > -			xe_drm_client_add_bo(vm->xef->client, lrc->bo);
-> > -	}
-> > -
-> >  	if (xe_device_has_msix(xe)) {
-> >  		xe_lrc_write_ctx_reg(lrc, CTX_INT_STATUS_REPORT_PTR,
-> >  				     xe_memirq_status_ptr(&tile->memirq, hwe));
-> > @@ -1602,12 +1548,93 @@ static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
-> >  
-> >  	err = setup_wa_bb(lrc, hwe);
-> >  	if (err)
-> > -		goto err_lrc_finish;
-> > +		return err;
-> >  
-> >  	err = setup_indirect_ctx(lrc, hwe);
+> > +	int err;
 > > +
-> > +	return err;
-> > +}
+> > +	if (xe_gt_is_main_type(gt)) {
+> > +		struct xe_tile *tile = gt_to_tile(gt);
 > > +
-> > +/**
-> > + * xe_lrc_reinit() - Re-initialize LRC
-> > + * @lrc: Pointer to the LRC
-> > + * @hwe: Hardware Engine
-> > + * @vm: The VM (address space)
-> > + * @replay_state: GPU hang replay state
-> > + * @msix_vec: MSI-X interrupt vector (for platforms that support it)
-> > + * @init_flags: LRC initialization flags
-> > + *
-> > + * Returns: 0 on success, negative error code otherwise.
-> > + */
-> > +int xe_lrc_reinit(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_vm *vm,
-> > +		  void *replay_state, u16 msix_vec, u32 init_flags)
-> > +{
+> > +		err = xe_migrate_reinit(tile->migrate);
 > 
-> I think you likely want to set lrc->ring.tail = 0 here (or in
-> xe_lrc_init_ctx), right? Alternatively, you could set both
-> INDIRECT_CTX_RING_HEAD and INDIRECT_CTX_RING_TAIL to lrc->ring.tail in
-> xe_lrc_init_ctx.
+> I think there is work ahead for future platforms where multiple tiles
+> point to the same migrate object, so we’ll need to keep an eye on that.
+> Perhaps calling xe_migrate_reinit twice is harmless too.
 > 
-> Consider the case where a bunch of work has run on the migration queue
-> and lrc->ring.tail ends up in the middle of the ring, then xe_lrc_reinit
-> is called. The next submission on the LRC will execute the instructions
-> between 0 (INDIRECT_CTX_RING_HEAD is set zero in xe_lrc_init_ctx) and
-> the lrc->ring.tail value at the time xe_lrc_reinit was invoked, which
-> will be stale or invalid if VRAM was clobbered.
+> Anyways the patch looks correct.
 > 
-> I would have expected this to show up in testing if you ran something
-> like:
-> 
-> xe_exec_basic;
-> echo 1 > /sys/bus/pci/devices/<BDF>/reset;
-> xe_exec_basic;
-> 
-> Otherwise this is good cleanup adding xe_lrc_init_ctx regardless of Xe
-> PCIe FLR so if we work out above, feel free to post this an independent
-> which we can merge ahead of Xe PCIe FLR.
+> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-Makes sense.
+Thank you.
 
 Raag
 
-> > +	return xe_lrc_init_ctx(lrc, hwe, vm, replay_state, msix_vec, init_flags);
+> > +		if (err)
+> > +			return err;
+> > +	}
+> > +
+> >  	return xe_uc_flr_done(&gt->uc);
+> >  }
+> >  
+> > diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+> > index 333af7b57ae9..f4a2ad3ce601 100644
+> > --- a/drivers/gpu/drm/xe/xe_migrate.c
+> > +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> > @@ -184,19 +184,11 @@ static void xe_migrate_program_identity(struct xe_device *xe, struct xe_vm *vm,
+> >  	xe_assert(xe, pos == vram_limit);
+> >  }
+> >  
+> > -static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+> > -				 struct xe_vm *vm, struct drm_exec *exec)
+> > +static int xe_migrate_pt_bo_alloc(struct xe_tile *tile, struct xe_migrate *m,
+> > +				  struct xe_vm *vm, struct drm_exec *exec)
+> >  {
+> > -	struct xe_device *xe = tile_to_xe(tile);
+> > -	u16 pat_index = xe->pat.idx[XE_CACHE_WB];
+> > -	u8 id = tile->id;
+> > -	u32 num_entries = NUM_PT_SLOTS, num_level = vm->pt_root[id]->level;
+> > -#define VRAM_IDENTITY_MAP_COUNT	2
+> > -	u32 num_setup = num_level + VRAM_IDENTITY_MAP_COUNT;
+> > -#undef VRAM_IDENTITY_MAP_COUNT
+> > -	u32 map_ofs, level, i;
+> >  	struct xe_bo *bo, *batch = tile->mem.kernel_bb_pool->bo;
+> > -	u64 entry, pt29_ofs;
+> > +	u32 num_entries = NUM_PT_SLOTS;
+> >  
+> >  	/* Can't bump NUM_PT_SLOTS too high */
+> >  	BUILD_BUG_ON(NUM_PT_SLOTS > SZ_2M/XE_PAGE_SIZE);
+> > @@ -216,6 +208,24 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+> >  	if (IS_ERR(bo))
+> >  		return PTR_ERR(bo);
+> >  
+> > +	m->pt_bo = bo;
+> > +	return 0;
 > > +}
 > > +
-> > +static int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_vm *vm,
-> > +		       void *replay_state, u32 ring_size, u16 msix_vec, u32 init_flags)
+> > +static void xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+> > +				  struct xe_vm *vm, u32 *ofs)
 > > +{
-> > +	struct xe_gt *gt = hwe->gt;
-> > +	const u32 lrc_size = xe_gt_lrc_size(gt, hwe->class);
-> > +	u32 bo_size = ring_size + lrc_size + LRC_WA_BB_SIZE;
-> > +	struct xe_tile *tile = gt_to_tile(gt);
-> > +	struct xe_device *xe = gt_to_xe(gt);
-> > +	struct xe_bo *bo;
-> > +	u32 bo_flags;
-> > +	int err;
+> > +	struct xe_device *xe = tile_to_xe(tile);
+> > +	u16 pat_index = xe->pat.idx[XE_CACHE_WB];
+> > +	u8 id = tile->id;
+> > +	u32 num_entries = NUM_PT_SLOTS, num_level = vm->pt_root[id]->level;
+> > +#define VRAM_IDENTITY_MAP_COUNT	2
+> > +	u32 num_setup = num_level + VRAM_IDENTITY_MAP_COUNT;
+> > +#undef VRAM_IDENTITY_MAP_COUNT
+> > +	u32 map_ofs, level, i;
+> > +	struct xe_bo *bo = m->pt_bo, *batch = tile->mem.kernel_bb_pool->bo;
+> > +	u64 entry, pt29_ofs;
 > > +
-> > +	kref_init(&lrc->refcount);
-> > +	lrc->gt = gt;
-> > +	lrc->replay_size = xe_gt_lrc_hang_replay_size(gt, hwe->class);
-> > +	lrc->size = lrc_size;
-> > +	lrc->flags = 0;
-> > +	lrc->ring.size = ring_size;
-> > +	lrc->ring.tail = 0;
-> > +
-> > +	if (gt_engine_needs_indirect_ctx(gt, hwe->class)) {
-> > +		lrc->flags |= XE_LRC_FLAG_INDIRECT_CTX;
-> > +		bo_size += LRC_INDIRECT_CTX_BO_SIZE;
-> > +	}
-> > +
-> > +	if (xe_gt_has_indirect_ring_state(gt))
-> > +		lrc->flags |= XE_LRC_FLAG_INDIRECT_RING_STATE;
-> > +
-> > +	bo_flags = XE_BO_FLAG_VRAM_IF_DGFX(tile) | XE_BO_FLAG_GGTT |
-> > +		   XE_BO_FLAG_GGTT_INVALIDATE;
-> > +
-> > +	if ((vm && vm->xef) || init_flags & XE_LRC_CREATE_USER_CTX) /* userspace */
-> > +		bo_flags |= XE_BO_FLAG_PINNED_LATE_RESTORE | XE_BO_FLAG_FORCE_USER_VRAM;
-> > +
-> > +	bo = xe_bo_create_pin_map_novm(xe, tile, bo_size,
-> > +				       ttm_bo_type_kernel,
-> > +				       bo_flags, false);
-> > +	if (IS_ERR(lrc->bo))
-> > +		return PTR_ERR(lrc->bo);
-> > +
-> > +	lrc->bo = bo;
-> > +
-> > +	bo = xe_bo_create_pin_map_novm(xe, tile, PAGE_SIZE,
-> > +				       ttm_bo_type_kernel,
-> > +				       XE_BO_FLAG_GGTT |
-> > +				       XE_BO_FLAG_GGTT_INVALIDATE |
-> > +				       XE_BO_FLAG_SYSTEM, false);
-> > +	if (IS_ERR(bo)) {
-> > +		err = PTR_ERR(bo);
-> > +		goto err_lrc_finish;
-> > +	}
-> > +	lrc->seqno_bo = bo;
-> > +
-> > +	xe_hw_fence_ctx_init(&lrc->fence_ctx, hwe->gt,
-> > +			     hwe->fence_irq, hwe->name);
-> > +
-> > +	err = xe_lrc_init_ctx(lrc, hwe, vm, replay_state, msix_vec, init_flags);
-> >  	if (err)
-> >  		goto err_lrc_finish;
+> >  	/* PT30 & PT31 reserved for 2M identity map */
+> >  	pt29_ofs = xe_bo_size(bo) - 3 * XE_PAGE_SIZE;
+> >  	entry = vm->pt_ops->pde_encode_bo(bo, pt29_ofs);
+> > @@ -338,6 +348,12 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+> >  		}
+> >  	}
 > >  
-> > +	if (vm && vm->xef)
-> > +		xe_drm_client_add_bo(vm->xef->client, lrc->bo);
+> > +	if (ofs)
+> > +		*ofs = map_ofs;
+> > +}
 > > +
-> >  	return 0;
+> > +static void xe_migrate_suballoc_manager_init(struct xe_migrate *m, u32 map_ofs)
+> > +{
+> >  	/*
+> >  	 * Example layout created above, with root level = 3:
+> >  	 * [PT0...PT7]: kernel PT's for copy/clear; 64 or 4KiB PTE's
+> > @@ -363,9 +379,6 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+> >  	drm_suballoc_manager_init(&m->vm_update_sa,
+> >  				  (size_t)(map_ofs / XE_PAGE_SIZE - NUM_KERNEL_PDE) *
+> >  				  NUM_VMUSA_UNIT_PER_PAGE, 0);
+> > -
+> > -	m->pt_bo = bo;
+> > -	return 0;
+> >  }
 > >  
-> >  err_lrc_finish:
-> > diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-> > index 3e500004f1ae..af31de8df408 100644
-> > --- a/drivers/gpu/drm/xe/xe_lrc.h
-> > +++ b/drivers/gpu/drm/xe/xe_lrc.h
-> > @@ -52,6 +52,8 @@ struct xe_lrc_snapshot {
+> >  /*
+> > @@ -416,12 +429,22 @@ static int xe_migrate_lock_prepare_vm(struct xe_tile *tile, struct xe_migrate *m
+> >  	struct xe_device *xe = tile_to_xe(tile);
+> >  	struct xe_validation_ctx ctx;
+> >  	struct drm_exec exec;
+> > +	u32 map_ofs;
+> >  	int err = 0;
 > >  
-> >  struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
-> >  			     void *replay_state, u32 ring_size, u16 msix_vec, u32 flags);
-> > +int xe_lrc_reinit(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct xe_vm *vm,
-> > +		  void *replay_state, u16 msix_vec, u32 init_flags);
-> >  void xe_lrc_destroy(struct kref *ref);
+> >  	xe_validation_guard(&ctx, &xe->val, &exec, (struct xe_val_flags) {}, err) {
+> >  		err = xe_vm_drm_exec_lock(vm, &exec);
+> > +		if (err)
+> > +			return err;
+> > +
+> >  		drm_exec_retry_on_contention(&exec);
+> > -		err = xe_migrate_prepare_vm(tile, m, vm, &exec);
+> > +
+> > +		err = xe_migrate_pt_bo_alloc(tile, m, vm, &exec);
+> > +		if (err)
+> > +			return err;
+> > +
+> > +		xe_migrate_prepare_vm(tile, m, vm, &map_ofs);
+> > +		xe_migrate_suballoc_manager_init(m, map_ofs);
+> >  		drm_exec_retry_on_contention(&exec);
+> >  		xe_validation_retry_on_oom(&ctx, &err);
+> >  	}
+> > @@ -429,6 +452,18 @@ static int xe_migrate_lock_prepare_vm(struct xe_tile *tile, struct xe_migrate *m
+> >  	return err;
+> >  }
 > >  
+> > +/**
+> > + * xe_migrate_reinit() - Re-initialize a migrate context
+> > + * @m: The migration context
+> > + *
+> > + * Returns: 0 on success, negative error code otherwise.
+> > + */
+> > +int xe_migrate_reinit(struct xe_migrate *m)
+> > +{
+> > +	xe_migrate_prepare_vm(m->tile, m, m->q->vm, NULL);
+> > +	return xe_exec_queue_reinit(m->q);
+> > +}
+> > +
 > >  /**
+> >   * xe_migrate_init() - Initialize a migrate context
+> >   * @m: The migration context
+> > diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
+> > index 1522afb37dcf..fffbcab8b2e3 100644
+> > --- a/drivers/gpu/drm/xe/xe_migrate.h
+> > +++ b/drivers/gpu/drm/xe/xe_migrate.h
+> > @@ -112,6 +112,7 @@ struct xe_migrate_pt_update {
+> >  
+> >  struct xe_migrate *xe_migrate_alloc(struct xe_tile *tile);
+> >  int xe_migrate_init(struct xe_migrate *m);
+> > +int xe_migrate_reinit(struct xe_migrate *m);
+> >  
+> >  struct dma_fence *xe_migrate_to_vram(struct xe_migrate *m,
+> >  				     unsigned long npages,
 > > -- 
 > > 2.43.0
 > > 
