@@ -4,32 +4,32 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C60D0FD0049
-	for <intel-xe@archiver.kernel.org>; Sun,  1 Mar 2026 01:40:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00F4CFD0045
+	for <intel-xe@archiver.kernel.org>; Sun,  1 Mar 2026 01:48:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EE2110E365;
-	Sun,  1 Mar 2026 01:40:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8F2310E388;
+	Sun,  1 Mar 2026 01:48:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nMWkvLar";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="mRmn7WPz";
 	dkim-atps=neutral
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B61710E365;
- Sun,  1 Mar 2026 01:40:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D27CC10E388;
+ Sun,  1 Mar 2026 01:48:25 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id A009C6012A;
- Sun,  1 Mar 2026 01:40:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7FA2C19421;
- Sun,  1 Mar 2026 01:39:59 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 549F360141;
+ Sun,  1 Mar 2026 01:48:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 655A3C19421;
+ Sun,  1 Mar 2026 01:48:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772329200;
- bh=1GtMc162MLWYRr7paZkLvfQH5WUk2KvjHh27w/2t7rE=;
+ s=k20201202; t=1772329705;
+ bh=8IUnhooVV+zzTIMn32gkHI63pQCnlwF8OJ/l8Xw+WU0=;
  h=From:To:Cc:Subject:Date:From;
- b=nMWkvLarTuZQWxo7QezAkx6XzM+ECeJXyhJ3rJ/T2AlHVaxlmlB7I4W8Rs3ffqUaP
- A8g0epV+WAJSr9RPnHrDTBXc3+x9pSSrYHZoROATgseaMZxEpWyMwAjYpY7oCklVIL
- Meb6gPhRTK/5ngqKxsqw8eaHeTYQ538Nn8xxLXgizUHpG3U7mLeeHz2WKqrj3ihYN0
- sbWNnzh5muLMHE0KIyRMLo5tMj4wSfG6vGlsUARgNwst+2vh87L8P6aD8HvnL8N4JW
- 79RQi1jY4w7g7wch+pD7XN4beMP5/VP5yy+Bem9T4uWvvP3NUcnfzoRF8sLiqjpit5
- 97i+vK7H7FsEw==
+ b=mRmn7WPzDkQJZouTBtYFtr5Gv3jJIoDpsT+chdAguBLi9a64kOtz3lkUZUBFSVLD2
+ nXNRYadS1m5mBNm4ZlY+kBHd7IYFedUuy2frBYAasgDwkp/piBJg4ds+Fi4x+6giNG
+ Reu5DfQuj7PjLpbjJc8w92oSf9S7/z4JALztnZJU2JFLb7EO/B/SM8uyeKva+NKtXR
+ YyTMB+AtjM2YuRRAqyzlDR0oOP/XYAZzQbEUZFEBL+zralPmax/e4U5YXqeVFGEncL
+ 1J6afkbrzDC2eo2Emkkb4LFZRZpw95ePJqyuBVnkKfc01BLTw5VE+lT0ASDHGfqh9/
+ gRHP/uTR957UA==
 From: Sasha Levin <sashal@kernel.org>
 To: stable@vger.kernel.org,
 	ville.syrjala@linux.intel.com
@@ -37,9 +37,9 @@ Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Subject: FAILED: Patch "drm/i915/psr: Reject async flips when selective fetch
- is enabled" failed to apply to 6.1-stable tree
-Date: Sat, 28 Feb 2026 20:39:58 -0500
-Message-ID: <20260301013958.1701109-1-sashal@kernel.org>
+ is enabled" failed to apply to 5.15-stable tree
+Date: Sat, 28 Feb 2026 20:48:22 -0500
+Message-ID: <20260301014823.1712560-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
 X-Patchwork-Hint: ignore
@@ -60,7 +60,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The patch below does not apply to the 6.1-stable tree.
+The patch below does not apply to the 5.15-stable tree.
 If someone wants it applied there, or to any other stable or longterm
 tree, then please email the backport, including the original git commit
 id to <stable@vger.kernel.org>.
