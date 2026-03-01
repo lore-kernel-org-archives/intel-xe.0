@@ -4,152 +4,119 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A0B9FD0058
-	for <intel-xe@archiver.kernel.org>; Sun,  1 Mar 2026 16:58:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C307FD0073
+	for <intel-xe@archiver.kernel.org>; Sun,  1 Mar 2026 19:05:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB35910E3EB;
-	Sun,  1 Mar 2026 16:58:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C183110E3F2;
+	Sun,  1 Mar 2026 19:05:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="fkhYPumS";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="T5HtZ/1d";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="PpAKcDjE";
 	dkim-atps=neutral
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F30CD10E3EB
- for <intel-xe@lists.freedesktop.org>; Sun,  1 Mar 2026 16:58:31 +0000 (UTC)
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 6214EaTb1518052
- for <intel-xe@lists.freedesktop.org>; Sun, 1 Mar 2026 16:58:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=yZjRbJ2gpSOpi4BD2wRxX0dJ
- 2Njlip5bE4IRh4tsp0k=; b=fkhYPumSL/QAlMbXMLtEWChiX97tIzcJ8VeBIX4T
- 7342qTqQUCnt0S7oDq9sQfzhyGpEUUJellGBOuoJYTfsmMFHgnXodEk5AC55z1iG
- c18u06r73+Pdj0npRxhtTGO474kenLYedhcwWpbRcBC3ivwUaTrgm50Dsqk4R6aI
- +2cwuKSHZdg1z1b9ojEBXDyD89t9uzig7w2KMFQb1bUwamY01WeikQvsTWQDMhlM
- wS7Axd8o1A+YDbnxSksJB4wZ0i060owQOeU4T2ACD8MJ4tYn9Af87F/Z+bjux2Vo
- fOz++88nKgW1Zk3CTwm94ccFlRFF5WRpv6fuV0NvlWcAeA==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
- [209.85.222.200])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ckshck2hp-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-xe@lists.freedesktop.org>; Sun, 01 Mar 2026 16:58:31 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id
- af79cd13be357-8cb3d11b913so3146955385a.1
- for <intel-xe@lists.freedesktop.org>; Sun, 01 Mar 2026 08:58:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1772384310; x=1772989110;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=yZjRbJ2gpSOpi4BD2wRxX0dJ2Njlip5bE4IRh4tsp0k=;
- b=T5HtZ/1dr8xhlk5K5n2vsvGjj6cJVNlMgnZaFJ286RkQDiVgcMhI7DH+rXVapZ1r2R
- Lcik5RDe83oXJqKTPio3Bf5OkEZmeWAIYkrhstjXFlTpJuM+KOv1C6WmgpLHj7MfZMTy
- eqeLkjkXL9rAk00SK4smmodiSNDj/Shcha0NLmYs7ENXMQu9yBnag0VfbcA3GEwEd+bz
- daruiYD7DdmgCiZNVNdwtiWxmYsJmaYU7GH6U6Rln4fd8E4tin3iln2IuhZVKvK+v6J1
- Rji6TxGl08ZDo46Tx4XNjQ/aPX8yc+L/qeet2Sehj1TTWjt6rbr1op6BuhpQ9pZbFf0g
- rFAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772384310; x=1772989110;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=yZjRbJ2gpSOpi4BD2wRxX0dJ2Njlip5bE4IRh4tsp0k=;
- b=DlwiPYzdoR83cJmkX2o+D2qtp4Hp7z4fdDNWQsLQc31U0plV61be65bP/ddMFv5btM
- 4nX1M+n/y3o9VuHhQhlwsroa0cAWiYJ57U2xV7xSSiugUQW2YTcuALqdG2MfSb8b/yWo
- KgL6ngzF9QI98B/jMP6ueT02bljpTYBArZjlCpDxljUtHto/tMA01zVKb5jm5c1TqtSQ
- IO9+FzP5fMG5egb6Bhta2DrseLdbIQ8UEFwj3/NjFwgOwWj6B9rWzs8RAK2u4Qgqzglq
- OBzhw5bKsQlzFYYTrWP+c2rXTjXUF0FuHzkFIZ6u6bJGXrNeJ7T1oJtqXQk+2AZnnWAG
- oM6g==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWGFxx9wiVxkzC1AvSlerV7QJkHx19KZLZnuVEmqUzffc6F5vY7nty0pN53X0nZpI50rK/yapq3eA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyu361NVL5Rf7es6F7aUvzk/9ooISYv0QYZYKiVWtCUhGteS38P
- lf63SyXEMgUyUBzzq0vYiOeYEsFO9oOWxaWp3RSYgRWnE199XS0qwnWPn1e99uk6VH6cPsB0RXK
- 8GXJ+iJl9PIFsb1ieA5rsuhhBXIqn3ZPpwt2/rO2CD5bexTZTgQSM8UtA+k7P2L5etXzGqw==
-X-Gm-Gg: ATEYQzxgWPdHxJdMkblkWVpRFf+1Rs587dyGT97qe1FVW5UWU2YdiVIHdEg/LVEFbg0
- wPXhUnhIg1hWSBvHArRx6pScUbvHWYf0N6S/K8zQ2qPMe/vsIK4bwuyfkZG8uUPIGKTqWmAWj9X
- c6EZvVCW67P68JZrPhKDgzgn/AH7ZgkI+8/ivLU2gehMtVL6XD8MPayza/fvdFOCa/FsNfZl1gA
- ymtkqMEtYALTQn6aqSZ1AaST2Z6M27JPODY1EGbMc62nNc+WpM9iF1MfNwConKIDTvFAxX+GQnN
- aU7ohKba+dwhlzZsthF4cGYIWIj/VEahcwQDhAeXLpecGEAYokYh1MsG48f9iUST/0jEbNdWnVo
- RSWfYJH13o0WEWPFUOcW6BuL0mi8u7SpK0/Ldo124TSgjLZ/E6FPy+5xit8uujbKs43PJbRO4cU
- yNBkwKoIChBR3I6GHwcNI0uPpq0QNdJS+0Q0s=
-X-Received: by 2002:a05:620a:3952:b0:8c6:e8f6:2c7 with SMTP id
- af79cd13be357-8cbc8e4b725mr1252713885a.38.1772384310463; 
- Sun, 01 Mar 2026 08:58:30 -0800 (PST)
-X-Received: by 2002:a05:620a:3952:b0:8c6:e8f6:2c7 with SMTP id
- af79cd13be357-8cbc8e4b725mr1252708585a.38.1772384309937; 
- Sun, 01 Mar 2026 08:58:29 -0800 (PST)
-Received: from umbar.lan
- (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5a115bca0dbsm1204999e87.41.2026.03.01.08.58.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 01 Mar 2026 08:58:29 -0800 (PST)
-Date: Sun, 1 Mar 2026 18:58:27 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v9 15/19] drm/connector: Register color format property
- on HDMI connectors
-Message-ID: <mxfdm4rrsizf3jzjbeoxosb5lhm2wrzqipn6rvly4ukrodltgp@vcu2fkgwagdx>
-References: <20260227-color-format-v9-0-658c3b9db7ef@collabora.com>
- <20260227-color-format-v9-15-658c3b9db7ef@collabora.com>
-MIME-Version: 1.0
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012060.outbound.protection.outlook.com [52.101.53.60])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E5AE10E3F2;
+ Sun,  1 Mar 2026 19:05:47 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=YS04b4MeXOktTFXdM44FNGU1S06Z4Hfe5eWTu1m3Q9T1Y+CPouoESq+0O8v9RGFUGER02vIAvNZRiKVdd5/iqoJ0zD52e83um4126ZYmJRV1nX0i+b9uR5sUckonD7HIRZm+RL3aZTa3KFH9wjh8Kky2G5+9vNOIIK2NDgWebK0h3fyysUaAsLZqFd5pefzhrIKlMcFTJbGYHd9vGDDEMue5vBR2CZIg9PTREZlwFYTu72RYhwNoyoGgiHJq7EwgPdbByX3gS1Y+ykkmtiQKvQcZFtbMF2C4KQOCrttg0v4nHjz54rLPCghOEF0NtGR/rAj6inuO95MQW5id5+krcg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gTcGJxcpXK81aXJPeYcwvBcR6Va4VSyOpbXP/adPWRE=;
+ b=LGwIbVFYjsX5NROJUPNBux+dtsy4Lt3abfkCWBdJBL7iok0N2yLD9mTP/mSoX+qgAVpUQVeWjX33XhHD2MYtFC7PYvOPWheCHthCaZQ2BHkRfNm+H4BRF8+UCvwe6ZxCVsFLWIvQcjGAIv2Vh4mfnNyco8H0t9qwAuJVy5n7M0kn8yl9/V3ZJ+xUGqlgAp8j9ItPQ5l5IaBg2aa/CU0JWH0YE99Obdxp7qBza5M55mzSTBB945k32TgQsOcKaaxqFABbbVcmcCjan+wWl04mN1kJ4m3N93SRIxD8w0tr0QynHCqQFXrROeo03rcnVhKUOeNqJZx8Z98AkUCwFqxcYw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gTcGJxcpXK81aXJPeYcwvBcR6Va4VSyOpbXP/adPWRE=;
+ b=PpAKcDjE7ra4froggO9Pb224HdajFA5E7wWUmNQIud4/mu2JZLjv/KlBxoK0RSZU79YHS80zBzwvZEbzgqpAv4qjCH0IjTYha8tZ+qe99VbqmAksrF2BU2kCNHAXoGVNB6Zq9aX6ptVBSNBgBy7ERbonYCXP+EOtAItUtGdgq3uhjzgSpwh4189kxNSBNFdSiLn/+ff2i6E/Cv06mAn1OEMg96zRA/6t9MfTjcWyuadSCmCOCLAWRwkXyGkqpim44BwjU52JZ/Gpt3aUFa4ZzEKNE/SCauKElLNhEjqt3YeKKAknnKP8M45ZRE7OG/IAR2acDzF1rRUGUiyTiL90EA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV8PR12MB9620.namprd12.prod.outlook.com (2603:10b6:408:2a1::19)
+ by BL1PR12MB5993.namprd12.prod.outlook.com (2603:10b6:208:399::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.18; Sun, 1 Mar
+ 2026 19:05:44 +0000
+Received: from LV8PR12MB9620.namprd12.prod.outlook.com
+ ([fe80::299d:f5e0:3550:1528]) by LV8PR12MB9620.namprd12.prod.outlook.com
+ ([fe80::299d:f5e0:3550:1528%5]) with mapi id 15.20.9654.014; Sun, 1 Mar 2026
+ 19:05:44 +0000
+Date: Sun, 1 Mar 2026 15:05:43 -0400
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: Christian Koenig <christian.koenig@amd.com>,
+ Dongwon Kim <dongwon.kim@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ iommu@lists.linux.dev, Kevin Tian <kevin.tian@intel.com>,
+ Leon Romanovsky <leonro@nvidia.com>, linaro-mm-sig@lists.linaro.org,
+ linux-media@vger.kernel.org, Matthew Brost <matthew.brost@intel.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Vivek Kasireddy <vivek.kasireddy@intel.com>
+Subject: Re: [PATCH RFC 00/26] Add DMA-buf mapping types and convert
+ vfio/iommufd to use them
+Message-ID: <20260301190543.GA768004@nvidia.com>
+References: <0-v1-b5cab63049c0+191af-dmabuf_map_type_jgg@nvidia.com>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260227-color-format-v9-15-658c3b9db7ef@collabora.com>
-X-Proofpoint-ORIG-GUID: aOt_fQMxjYlcLjj6-JBShLcOXDN3jfFp
-X-Proofpoint-GUID: aOt_fQMxjYlcLjj6-JBShLcOXDN3jfFp
-X-Authority-Analysis: v=2.4 cv=SO9PlevH c=1 sm=1 tr=0 ts=69a47037 cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22 a=VwQbUJbxAAAA:8
- a=QX4gbG5DAAAA:8 a=QnxT5sWzqww7kDut_5wA:9 a=CjuIK1q_8ugA:10
- a=PEH46H7Ffwr30OY-TuGO:22 a=AbAUZ8qAyYyZVLSsDulk:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAxMDE1NSBTYWx0ZWRfXy0wDSGeM6oiF
- Kuw2hVoejJ6gfjfcGx+1OBcC2cKUS9PcLTyqD14Sl6gidXrR2EEf35+oIUHMocyKxDl/VBhpvkr
- jZ6FHYlR1Qh3lhKYTRRNnXLgDlJ2T/oEpwxiv4GLr61WzLMTFnekOX7Fs/JYyKXLsyFfRxvaC9W
- HAX9lXadFkzUN6FIS4BrWE/9ynQr1qPTNjrPuQHnIHdApzSDlpIYNJ36+bU18bOPsUNsiAQNPdL
- 6yXEyRA2JjR0435+HIDDrFGGd7J8hjuhnotohZGTDbisLW0DVbfArsAdDHFgX9BQyoD0rmvSmIB
- N40tpRt2wTzLMnP5zaD/5DKCmyNeml0mGGk7x3XeJnyLCGkqKSSwQoEv0VLO7WpFp0EW+OGO1l2
- ey/E0bKcvpZdur+OMDTUMZ9xBW62gMcGgPTPnBA+8YNY2lt8iu3I8eXYjKty1iCo8FRVwcdXvsq
- zgNQJLCPeR65mxAWE9g==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-01_03,2026-02-27_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 phishscore=0 impostorscore=0 spamscore=0 bulkscore=0
- suspectscore=0 priorityscore=1501 adultscore=0 lowpriorityscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
- definitions=main-2603010155
+In-Reply-To: <0-v1-b5cab63049c0+191af-dmabuf_map_type_jgg@nvidia.com>
+X-ClientProxiedBy: MN0PR03CA0004.namprd03.prod.outlook.com
+ (2603:10b6:208:52f::10) To LV8PR12MB9620.namprd12.prod.outlook.com
+ (2603:10b6:408:2a1::19)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV8PR12MB9620:EE_|BL1PR12MB5993:EE_
+X-MS-Office365-Filtering-Correlation-Id: a200f667-22f5-4af1-7048-08de77c589ed
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|7416014|366016|1800799024|921020; 
+X-Microsoft-Antispam-Message-Info: FCOjuAQgDqtC51UatFUH/Kd5iO6r3coOY01AW+YuoMzlpPvh4W2W+1eExfjtoRMN9YUr5rL13M5X84ZLC7FrwSpEDDsz7nbVicjQ2KdbRATUt3PA+PwwMRjL/ZFd2xB1ZflsWYGb/9OClMhrvWDEg/kL6+K8eNOx6rV1V7sL/yfJmegMo52h6RQisCtkNZfxMUxZkyQpGmr1jvrQlLSkZn8pxrirBDo32t28Q8Bj5yJO8XUwOD7aoJ6u0hkwL/32KPwr8NYvevVvv1Z9lm412nKpEqCnFCOM+Jg5Pq+fehAoLWtRA6hHHVq+xhm7qNjXN5zWI8o5i5iNA5BUu7Z9roZFg8NOiYZD+9OwRG8F3zKWGXOScjAOyffnY53SntTOAPoLoL7J9VdWgDUDzEkj0rLeyVzSgYAWI7BiUwEO7FGbeLogSh/zvglNEcq9v1W4cRTl8sM/rV65f2HU6C4SJ4UtmGVvXz1087HEHcws5WY87dyfRfgdGX9Hh1iU0sdf8g6GSgROpWZsmhV6jamPgpCnQD0R5eQD82z4oQad4zDWbO/IBdsBw184xWcV4emDv4d6lLCVFnYQftkljGqI2jO5AQ1RJAAma7PW5u4NYSrr/cncLRN6rONcen59k36bWui7fjId23DXEwtR3BTWY0OtsN1s6AtaezmzvbzKsVPUcoZiBldtEhzzfPj5no2/NQTaTsLaZ/NAjA/jvjo6pe44LUIBUg+Dba27hSP5gCD/gYDzniuaRoEvx9rFZ0lx9w1s7C65oRbTai4f3Wpu+/L46kWWPNPdHlcFWHMpdrQ=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV8PR12MB9620.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(7416014)(366016)(1800799024)(921020); DIR:OUT; SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?BIvUSlKeOs6dElWw5NTwf2/gSW5emGw11fTAV2FhtHDkXSHwN8fRWlEogJH0?=
+ =?us-ascii?Q?c85WvuNglyDlawsVLRAxQhVmAcplE2MF9Ma7RwaZMBVFNdZisd3Fj/doKDrC?=
+ =?us-ascii?Q?H6YjY2IK7jTYf2e7qsv/nHU5kZSGl3EaDNLc5wyeV6z0RcFKAaFA++5ssT0N?=
+ =?us-ascii?Q?WDzIZnZDgIJSaz39Z3x0aU5fFdyswIVM6qOKMh4Eeczz5VozrrBLtv7q2z3T?=
+ =?us-ascii?Q?xdOJ870SAlOgACzugQ+u2vbaFjju/BLOJnVI3DBDR5yQJtLUbtdCqtiQU8iu?=
+ =?us-ascii?Q?7FF2ApvkRWsMuUPM9OoJRnlQRhGLxbonvsxEi6Q8LQ8d2FGLzysyEbgNtFWj?=
+ =?us-ascii?Q?7pxsm1Gq4pIetyBgJH0cs/BUwOL0Y5AeTc5dy4tv0VWBxE0w/scLT9sCLPEn?=
+ =?us-ascii?Q?J3UG+ODa+bapl2Km7FFAnXi5gaSndIeT1xr1TcnQil/tG/jT95Zgfd93j26m?=
+ =?us-ascii?Q?iksZPq6VZOgl6UeUpm8brh3jOS5csB7rJeHEyUo/nvQJfk2T8Jx+pI5J0jaq?=
+ =?us-ascii?Q?7Wmh8LDqCTEMpcrpawFvRnNaRL0JAetoo1dIhC8B3Mb8ND2bH0MJIVaMsHta?=
+ =?us-ascii?Q?5YTyIs0Bu/LmtmKY82njDson4TnKc7+2hmLXQSyOl5cCpqtom1Rn/JJG83ri?=
+ =?us-ascii?Q?Rxw4gVvfyeu3VAQyjB5Utddmp2P1xmITmKx5f0BDxe5WygcvbajB56Gebh7e?=
+ =?us-ascii?Q?revfOuRE0lJa6gwzl7O0ZeUHAJ8iaz3Id48f9vAM+Wf8NIrXWFqAb0mg+ZSw?=
+ =?us-ascii?Q?YdTfQtnbFxlx/kKSgDe6tnfq4GZgee5oE30E67GXuvPLeq67ber9VIc/kcze?=
+ =?us-ascii?Q?FH8+0A7iRLuvBmsYkV81B0K9dND9FPHMKtOmcY0QCp5KFuA3m3wfhckPB55+?=
+ =?us-ascii?Q?ZctuW2nSqF0S8Ch3pHVV6RA6r42WzaC41AyrnCmhiy02E+g74JPj1ldSEqdD?=
+ =?us-ascii?Q?q2QZiBq1YLDWTuhOrbZTIs0ZP+2cmg7gKiMAF+b8Gfme0/gFYLF9Zgkzmnto?=
+ =?us-ascii?Q?A7VlAAOFAPfVk/YD09FmJoldSOR/RF0vvMfCXNO2bJSH6PH45ObzE49q1dI7?=
+ =?us-ascii?Q?BHKEmBq07AR9lwcKwewFAgizxfbbrqpYdfuY+x3USRQb9EF868czw0WePkdi?=
+ =?us-ascii?Q?4ZHC4PIF5HFTkvrL7ALuvRnKYAQ49A08DgVxNFrF4/t1/JDPAyCbLXgnUqCr?=
+ =?us-ascii?Q?b2c0Qv3UtItZ0JqJyVFhdE97NPLk3Ey5rT19orPP9DFZE+6eL6qenSNsrEY2?=
+ =?us-ascii?Q?rdmUa296Co1EDliHIqequPNyyq6x+UHuUm9vDtfxVieXfJC3A0cumFpYc8ZZ?=
+ =?us-ascii?Q?ss2cQzp0dZKCsU8LeevQnkrGOxz+1MPZGnA+Z1Rxo4dWHlCoNzz8yRa95wO5?=
+ =?us-ascii?Q?5v6s4vsA1g/VSEccYWJMGNNvDR4AEEGKRk45OnSIZU9tMYuixH6ydqs73Y5P?=
+ =?us-ascii?Q?yPyDpFC3HF/Y/SaHz3czV+z+94d/FR+RdasjUQesEzHKyBr7qQd/akxolYbw?=
+ =?us-ascii?Q?ayDWfBt57+vpZCyd0XYj/DrA4AoE2o0XyRQEKI6g6vaWV0opqWOSPQoIuiGi?=
+ =?us-ascii?Q?AazP0KHCrC//KgRUfKS7YRhCF3AJb3yGSOIy+jdMmQgVsDeWI6sxkpvFbDp5?=
+ =?us-ascii?Q?N0CyS/qeev5LBDnw5aLR3b6ehnDVuFFNGqYggFWP4vJCrov8SJ7o2C3mA3w7?=
+ =?us-ascii?Q?hR7deJuLaBziMQFNrJ3IlQh+fk+dPunqESJvC8/K/b7ewT//JdX6Fo+cgA49?=
+ =?us-ascii?Q?MdI4MZ/6BA=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a200f667-22f5-4af1-7048-08de77c589ed
+X-MS-Exchange-CrossTenant-AuthSource: LV8PR12MB9620.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2026 19:05:44.1626 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: gqPLu4L5eKhKrMvWOTnwRSVdeKEUmkWNTJdBqjgTJuUGv80zGODIsdlI6Bo35UzZ
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5993
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,44 +131,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Feb 27, 2026 at 08:20:20PM +0100, Nicolas Frattaroli wrote:
-> The drmm_connector_hdmi_init function can figure out what DRM color
-> formats are supported by a particular connector based on the supported
-> HDMI format bitmask that's passed in.
-> 
-> Use it to register the drm color format property.
-> 
-> Reviewed-by: Maxime Ripard <mripard@kernel.org>
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->  drivers/gpu/drm/drm_connector.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> index a4907e15dfc5..0f4e24446a9e 100644
-> --- a/drivers/gpu/drm/drm_connector.c
-> +++ b/drivers/gpu/drm/drm_connector.c
-> @@ -627,6 +627,9 @@ int drmm_connector_hdmi_init(struct drm_device *dev,
->  	if (max_bpc > 8)
->  		drm_connector_attach_hdr_output_metadata_property(connector);
->  
-> +	if (!drm_mode_create_color_format_property(connector, supported_formats))
-> +		drm_connector_attach_color_format_property(connector);
+On Tue, Feb 17, 2026 at 08:11:31PM -0400, Jason Gunthorpe wrote:
+> Jason Gunthorpe (26):
+>   dma-buf: Introduce DMA-buf mapping types
+>   dma-buf: Add the SGT DMA mapping type
+>   dma-buf: Add dma_buf_mapping_attach()
+>   dma-buf: Route SGT related actions through attach->map_type
+>   dma-buf: Allow single exporter drivers to avoid the match_mapping
+>     function
 
-It really looks like:
+I've rebased my github branch:
 
-   drm_connector_attach_color_format_property(connector,
-					      supported_formats);
+  https://github.com/jgunthorpe/linux/commits/dmabuf_map_type
 
-> +
->  	connector->hdmi.funcs = hdmi_funcs;
->  
->  	return 0;
-> 
-> -- 
-> 2.53.0
-> 
+On to drm-misc-next comit 41dae5ac5e15 ("drm/nouveau: Test for imported
+buffers with drm_gem_is_imported()") and reworked some of the pending
+bits on the VFIO side to accommodate Leon's series.
 
--- 
-With best wishes
-Dmitry
+Christian/Thomas/Vivek, how are you feeling about this approach? I'd
+like to focus on the above patches, should I post a non-RFC series?
+
+Thanks,
+Jason
