@@ -4,152 +4,152 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20A66FD0057
-	for <intel-xe@archiver.kernel.org>; Sun,  1 Mar 2026 12:56:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A48F0FD006E
+	for <intel-xe@archiver.kernel.org>; Sun,  1 Mar 2026 16:42:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D11FE10E26E;
-	Sun,  1 Mar 2026 12:56:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70BD510E118;
+	Sun,  1 Mar 2026 16:42:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="dABDq58F";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="He8pARc8";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="QnYLq2eD";
 	dkim-atps=neutral
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010070.outbound.protection.outlook.com [52.101.46.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69FEE10E242;
- Sun,  1 Mar 2026 12:56:38 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tUWXcmSbDADXCXCj4mTqO1s2ZfQRWbLbjsXWD4cK0s7nBJD28PfHWDpX8fKKPP2xdmwzmpIG30/KT3uvojkrl09jsTwmA/R7agmQkByrfs4Ag4hs/0g+OGf8+4u05NYViMwe81vR8WN0T1eo/F+UNm2fReg3ZI4DyCM27niB861FYOS1DgolfrgUaq3BeM5suvz7SS73vOkfzK350Hp5YEw6vywq09AsLWvEl1gXpmgzlxKd3BkbK7ZrH+/wdvywN95KwCZS1V2wAThJw3qrv0bQsROV3o/GW2TiiTvRKc7I5WhNHEsXOQp5qYnF5ByWD5YjmOkvloSCJ/TEzWtGPw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GIGfi1bmm7i7SmOkR5eGx5RU+3wrmWy3gsj7tkhJ06M=;
- b=fIp1TNoHl+kR5m5V3SCt7fa4J2yTr8U+r3prafF3/cGIAdblI2NaJ7njaqlDoxByPpoAI0h9s9/xH65ike6SEyfPva+FpIbgFbN5EDVxbRlfm9xLvWTX0pe/nmcxY0V1/y6BoOe4IMghpaqoG2DES/T8QOXBu4nzcE3Uyo9a3VfCpy08h6tQEzKfZAxL7RD00ZHp6raZiWTfibTe7sKDPxN1HNsfMx69OhI/csXiTiYZsRZ3HItSnQjzJ0q63L82F1OliwX58gXBhnesY2sJk/Ds6aDchRgWc02kFsJrJB1hdWt7aR+qerAQZZ08/ZcD+aTsJdvs/z+/ayrJFDlT4w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GIGfi1bmm7i7SmOkR5eGx5RU+3wrmWy3gsj7tkhJ06M=;
- b=dABDq58FJKUUm7UTPBAFY4EfwwKjXKNpvdjTInF5PxqzFYeaU10hhGUPGyf2EhgybgZqnqeN4vTGBaFOVVttMIiWy5b+huIYGJbCAFxwSqRgBxrbrFiTgku/0m8LU2QyoHYGF+2cNmVyoCo6nhGaBspPELzad3xu7ylOK26r1FZh+tVy0bWfeDQgFe3CV4T2SJTRNN3MY5QTytkLOARD3KeBG+voUnmmLtr20L3bkuf8BjGY3D8rILpDPe3VMppR4hh8FkO2a9mwHIsNjr09fF1bd/Lf18xQKo+TBZE52powTj4niEGH0Qzy2FQWXbmxSJUqNYG1MpWk9NATFmQ4ww==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
- by IA0PR12MB9010.namprd12.prod.outlook.com (2603:10b6:208:48e::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.11; Sun, 1 Mar
- 2026 12:56:34 +0000
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989%6]) with mapi id 15.20.9654.020; Sun, 1 Mar 2026
- 12:56:33 +0000
-Content-Type: text/plain; charset=UTF-8
-Date: Sun, 01 Mar 2026 21:56:30 +0900
-Message-Id: <DGRGNLACDJI2.1JFEXE1GL1ZVM@nvidia.com>
-Cc: <linux-kernel@vger.kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>,
- "Boqun Feng" <boqun@kernel.org>, "Gary Guo" <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
- <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice
- Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Danilo
- Krummrich" <dakr@kernel.org>, "Dave Airlie" <airlied@redhat.com>, "Daniel
- Almeida" <daniel.almeida@collabora.com>, "Koen Koning"
- <koen.koning@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
- <nouveau@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>, "Nikola
- Djukic" <ndjukic@nvidia.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet" <corbet@lwn.net>,
- "Alex Deucher" <alexander.deucher@amd.com>,
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
- <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
- <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
- "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
- "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
- <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Helge Deller" <deller@gmx.de>, "Alex Gaynor" <alex.gaynor@gmail.com>,
- "Boqun Feng" <boqun.feng@gmail.com>, "Alistair Popple"
- <apopple@nvidia.com>, "Andrea Righi" <arighi@nvidia.com>, "Zhi Wang"
- <zhiw@nvidia.com>, "Philipp Stanner" <phasta@kernel.org>, "Elle Rhumsaa"
- <elle@weathered-steel.dev>, <alexeyi@nvidia.com>, "Eliot Courtney"
- <ecourtney@nvidia.com>, <joel@joelfernandes.org>,
- <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-fbdev@vger.kernel.org>
-Subject: Re: [PATCH v8 11/25] gpu: nova-core: mm: Use usable VRAM region for
- buddy allocator
-From: "Alexandre Courbot" <acourbot@nvidia.com>
-To: "Joel Fernandes" <joelagnelf@nvidia.com>
-Content-Transfer-Encoding: quoted-printable
-References: <20260224225323.3312204-1-joelagnelf@nvidia.com>
- <20260224225323.3312204-12-joelagnelf@nvidia.com>
-In-Reply-To: <20260224225323.3312204-12-joelagnelf@nvidia.com>
-X-ClientProxiedBy: TYCP286CA0176.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:3c6::8) To CH2PR12MB3990.namprd12.prod.outlook.com
- (2603:10b6:610:28::18)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4685410E0E0
+ for <intel-xe@lists.freedesktop.org>; Sun,  1 Mar 2026 16:42:46 +0000 (UTC)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 621Ge0D42970129
+ for <intel-xe@lists.freedesktop.org>; Sun, 1 Mar 2026 16:42:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=qcppdkim1; bh=UUK6gQUiNTqa63dauhB4oNrf
+ uTLkXg9Yv5hlRkbvUf4=; b=He8pARc8xKIWQNSUN5iKpE5loEd11TA19/vijzUy
+ CYWHw9Xaap0rWw4bWeDfmBphXjBNU8zWqkLN0XTsTFglTLJRWiXYf7jqZnnW+NXb
+ bE7DV5GnSj7UFtEJXNVoI/V8AkgNAOOfa8AS8aXm3UPmIjCkq1IvovuIL8iR56GT
+ HRJ3BdNAUBEeqwYnPCAapQzOa8+GpTl7+m4P3BikpDnkGNGJzkOtqB0piXklqmXN
+ BpoJDnESMWRskJpZaShiXRIapbYJ7FzjH3VJbf0wPkAje0oqUMrHemOdFsakXWe8
+ VFIVqmFmDzPzK9WZ6poJpgk3/7NVdg6uXmSnFPyYJ7aewg==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
+ [209.85.222.197])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ckshck1xs-1
+ (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+ for <intel-xe@lists.freedesktop.org>; Sun, 01 Mar 2026 16:42:45 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id
+ af79cd13be357-8c70ab7f67fso4985277185a.3
+ for <intel-xe@lists.freedesktop.org>; Sun, 01 Mar 2026 08:42:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oss.qualcomm.com; s=google; t=1772383364; x=1772988164;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=UUK6gQUiNTqa63dauhB4oNrfuTLkXg9Yv5hlRkbvUf4=;
+ b=QnYLq2eD5AFMMiygpwkS6OHcOBkt9zJawC2vxAyOvKS7Hd13ZpEyGYuV1jIJpPkI6W
+ AX5j51GcOIDUKKMV7ICRayxHhzgxw7lOgv+QbIwJfgnE+h33LomSJSejqSJReG55rjMV
+ piS2gMHSbTm+63kcgQQaDFGK28sS3x8Bp820z4B5u7ctwnlE3yU8GAQuMHro6EjsMkzX
+ H8d05DBTNC/BZQXgdjYiIu5I/nM5onglS/kGxZKJ3FXdV9TLxb/A8VgPHi5z9gFgn6pI
+ ulkWlqdLh/UHFUCPU5XVhX5c1lKHBzSSffTTiS02QQUFOvnzltmpoDn+3iv1uGToqBLu
+ RQ7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1772383364; x=1772988164;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=UUK6gQUiNTqa63dauhB4oNrfuTLkXg9Yv5hlRkbvUf4=;
+ b=Bk/PXx+vapAbG/FSkfiyagVUKiea9zD9ldEf0qXRaWbxDy7NUCMxdE0o5pfHf2H7fN
+ Y0OWZ+PLadiR3yZyE0riWxvA2edPqBAat0H50nFKd9YDbx5OV03+3AFj0uyyMl2mEsA/
+ vfq/gNOBmxoOTCZJ/bfqgYotc0YNVPbjT3yYAKPlBUp+xkO8oHB93uoxg++qu9TKpSff
+ 14avnPLXmq/Sb4YykKVXtUGERaplVKxiNBWvLVepvsPJWbf89/zp0qRRgHq+mmNvwzTy
+ 6GeIWc9jK0z5LoDFS04ze5iE18ueIM9dBOWbBLCKPGB7iKLbrGevjtOVeK78ke4FUTyy
+ A7gQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUK/afgNer2lJPNKb5T7zWpw1kX3kJqbFklQzWsmOd3H6gNCOyV1ZxQ3vOruDdH108ZwMuGSQBFFQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzrVrQRfw1U+JoGyHTIkZsZUVEigHWk0QE70TuHZN9upsdPJ6Rv
+ fIAyjN4N7R6Jx1IG8oR5lDYEwyyUsJZljY0t5/9s5YjjUHkvsFgE6cLDZkhk3IiGsYv7fJGtgLE
+ Pkk/qPT5WpX5y/PKJnc6OTBxbkHGs+V2gFIsQYGuIIgTFXut8A40Z7Er/iA+SJJq6LvwokQ==
+X-Gm-Gg: ATEYQzwa7hsBsUyQvE26tHE1Xei1leyl9h4a7j1uZ9/2D66+Idz3dPj5clqYc38k7C7
+ eU430j7Z3kJN/99VImKd1DK0Cf9gLwXJeTBSTaAnhyJr/nzixJzFxdpAG0pNV7KUAogjd/2HhmU
+ QnMzr96rX5c9D3qZ0veDjdYpylDGnAyybwFXPrBNftQ8RM87wLlHDKLhM3w1R+RuEsFMdq50+2w
+ FoArCZHDo/gMmSegGHw2oe0qPqnz2nvnnbcAPdNAdXYTW/t0ZDJUkL//tVlkcXgqvFgzaPCzQjv
+ 7B7awrE686Xk9nhRB6uCmL5qfruYeY2LJohrc+4WtmerySoLNXyXwOGq0DTez7pWygh5CB+wwbN
+ 8fEbGZPQD3/RBACecxfnPT8v1aO0N1x3vuE9E2yMbE1OoWcydG9e/a/DRgmLGcKyItGioCU151F
+ kv5wXBu2HXx7970n72DOlo6YgUMWMEDvrYy7E=
+X-Received: by 2002:a05:620a:40c4:b0:8c5:32b7:210e with SMTP id
+ af79cd13be357-8cbc8ead9f6mr1058571285a.82.1772383364326; 
+ Sun, 01 Mar 2026 08:42:44 -0800 (PST)
+X-Received: by 2002:a05:620a:40c4:b0:8c5:32b7:210e with SMTP id
+ af79cd13be357-8cbc8ead9f6mr1058568585a.82.1772383363834; 
+ Sun, 01 Mar 2026 08:42:43 -0800 (PST)
+Received: from umbar.lan
+ (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-5a115bca1e5sm1139257e87.26.2026.03.01.08.42.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sun, 01 Mar 2026 08:42:43 -0800 (PST)
+Date: Sun, 1 Mar 2026 18:42:41 +0200
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>,
+ Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v9 12/19] drm/bridge: dw-hdmi-qp: Implement
+ atomic_get_output_bus_fmts
+Message-ID: <hocqjcusieyqmsai4bxtgjon446yae6m43dmvqzk34ul44pvfg@ithgwadiwx2j>
+References: <20260227-color-format-v9-0-658c3b9db7ef@collabora.com>
+ <20260227-color-format-v9-12-658c3b9db7ef@collabora.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|IA0PR12MB9010:EE_
-X-MS-Office365-Filtering-Correlation-Id: 18c503f3-34b3-4fd3-33f1-08de7791f737
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|7416014|376014|366016|10070799003; 
-X-Microsoft-Antispam-Message-Info: BVIctgIHLM9b55JzsXRI9vFlGJU+bvF6aVKWxpIjQ9UTgLXp7vpJsW/dDIRBzvye4F8X7jv4uhippvTuxOjBENIUuZ3yYKYia2Y0DhWPHfNl+8i6yVFc5r9uf36UcNJTConsG/byocsKCWMdDoLZe/p4u29S5N4Q5Varl2IYShQPqDrREIbDLtqZuKoPtmQAfE2r3PP6UMiSyK1rLPfyhOIfcLfEcWID448ngYyEduOjbrjZM3653nH+o2GIeM81CqSg5tJyCdbKYe2ExvgcvvX95UnoyiS8yTc4KSTZ3Lt85if8Bphw6u/HFiOxPRJHmxuHcG5yEkaab2lW+TSaW3xw4P/c92mlwRlpFVI8UK0sPxUXfzT3cMx/g3VevXEiDsWETlC74Sd2LZnglJGzVJMRFJ2+6n5KHHL1O/nwk1PTGJXp6kmN+tOdTOKZk02ibrbboXpzsFGF1sX4O6sb3743eCeAv2WlpKBr9v/NFk0BmalzDrPlD84PRPoacg/jIb9gFfrnWOuNTxjOvOKSsAOBTpBj58kCDnxHjc8051xwSOixlmc+Iq1R6v+xvCfrC3Syjg0jygahbAljRGbtwOl1SKJz+hlhO0x6/xIQNfuffkaRfSjMIXAFvDwbHsqtly1PepYeI/dAHQVbic6oZEYY7d5bpEdo49nygHL7f4iQtdVLRa7dBV12fvuQDGEUFmZm36xdFJcmAiWb4qDWTb8vwDhcZYBf5BFU0I6tj6k=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH2PR12MB3990.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(7416014)(376014)(366016)(10070799003); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y1ZYZWlYRE1iY1hnNkcvOHVKMkplakpNN1dJN1VkWkxrTUFXRFp2WWFzNmly?=
- =?utf-8?B?bElIeis4a3hpdXBmTHpLVVZoWEVNWG04Qk01UjJkSFhCWkhLKzc5RlIvTWJR?=
- =?utf-8?B?cUlDRDZnWDl0eml5ZkR1eHhGd1JocDlZaS91R3VKbmw0bEZ4QjE3emdBQlZO?=
- =?utf-8?B?Q3c3U3JjOXdNck91endNcC80QkU1WTN3UTg3WWxBTFRiYnJ3M1QvOWt1SUdE?=
- =?utf-8?B?SzBpQ0hqNlBDVmdIdTdJZU1rN0k1MkxMcXdreW1Za2gzWU0rYVlXTytRSkQ4?=
- =?utf-8?B?N1pYUFA4MlhjV1BiWm1kYmFqbllGTDE2ekNOZVlvSFhGQkoxQXk5ZU5GMkJE?=
- =?utf-8?B?UW8remtxWkg0L0d1d1h1ZmVGMW54dXBSVXZaaVdyL3J0aXZYdU9aeW1yUHZI?=
- =?utf-8?B?K3lsRDFOUndMbVMwTFkzakdndDJrNXhBZDRsRHgrZ1dIdHc4Nmw1Ty91Umxt?=
- =?utf-8?B?Uk9qRkwrNThwYy9CN0VIZlY4ZytaZ2pUWmZkOG9MUmh4RHFacUxudVcvSmUw?=
- =?utf-8?B?eHY3N2hWQTNucTNuTy9zM2lRT2hwaDhZb0xobW9kdlhwc081aVFnMXZHU2ZV?=
- =?utf-8?B?TzV5R0NoNFYzTUtSV3FzMzZyaEJkclU0OE1Dcm83dldDKzUzV0RmQlVNVmZ3?=
- =?utf-8?B?T0hidHJURkptOEFnMnlQTlZNUTdsV0pRcG1GL2FrYVBBRWlMamRiYjNLS1NJ?=
- =?utf-8?B?MnhaUjB3c29Vd3FtbFZmRmJYLzUzSFRReDJMMlRlUW9seTQ0V010UmNzSmxq?=
- =?utf-8?B?aE1nMEZUMUVsZHVycW9ZVzZHdXdBWkVtRDd3ems4QVlMc2szYmQvNVJZYWg5?=
- =?utf-8?B?RThSRlo0bWkrdFp3SGxLdE8xMEp4Zmg4UkFEYjF2MHlJY05GekRmMWY0emhG?=
- =?utf-8?B?U2dVa1BLNFJyR1hlVWF3UTlSNjNuaFg3bzhCekpDdUYwdnE4bGNCYmRrT244?=
- =?utf-8?B?VXVKMUJ6QkJST2k4cXViK1RmT0w4R09tZzBpUmZYOVMwa1hKVVZFdy9PQjAy?=
- =?utf-8?B?MzZYQlYrNmxGWmxjNElWYWNDZGU0dkkxa1lUSURWWE8xOUpVd3NqRVVnQVU5?=
- =?utf-8?B?TmxJdG8zZ0xzdm10TEVpV1ArMzlCWGo0WDhkVStKVlF6TU4zZCsvRTNvVTJu?=
- =?utf-8?B?VUdTcWhKMmxXWkpuZ0VWRVJTM0ZnSVdmUDM2RHZSUStPbFhJWDh0dXNkRTRH?=
- =?utf-8?B?QWlUWHFrQ2RCUWlMU25oaGg1NWpzZ0VOVUNBR3VwSU0zdTJ6eG80L21yYnhR?=
- =?utf-8?B?aFVteGJqV2dmdVJacjlCazkyNkM0TFhsM3RZbkpZdHM4MUlwaVRnQnk4Y1N2?=
- =?utf-8?B?SlBRVFJLYmJWVlc4NGJZL3VvTVFVY1BTNE5pYjdaK2dUc080RkZNMEVZclVV?=
- =?utf-8?B?TmdncUVycG9QMGpVdTI4YmI2OWN1bGxLSDd2eDNYYWJiVkMzTU5FbjFiaFds?=
- =?utf-8?B?UW9QVTVOM3dXTGFBZ05ZMzBTODJOY25PejM4Sk5UNUplM1hBRzE1M0lsUUds?=
- =?utf-8?B?NlVrU2VvY2xVc1YxYitNMDNsMWtGVi9Oc1ZTUU5mS2o1cVVmcm9FYjduTWZT?=
- =?utf-8?B?aTluSWs4ZjFWOWpyVEVxTWNwcEZVZ1B1WGN6TEpHRVMzRXRxQ0J4aEs1VlJT?=
- =?utf-8?B?UldSZHQ1V0M1VER4MmxrVDkrbENuUjJlY3pkNXk2NjlCYStRSEEraXkrSlIw?=
- =?utf-8?B?YU90K2xiS2YrNGUvamR1SmhidTFZMTMrOWRaa1NiOTNObVgyVVJ3S2JkMHNT?=
- =?utf-8?B?K1NEREsvd29kZGgwU3Q4eHhqY3pGSnYvUUZUNWZ2cFA1MkJIOHNhQVFUVnBN?=
- =?utf-8?B?NU0xbWI2b283Y0NvTFlzdnc5TFBob2N6QlZVWCtmRDlUSTAxSHRjV05zRjVv?=
- =?utf-8?B?QmxYbmtpTGlBRnhibGJJTVAvK2tEWHhZUHFaOFJYOWd2RG90MDRCN3BQSm40?=
- =?utf-8?B?VHlvRDZka1BDNGw1S2pjNjhEdWFQZWxzRitnblE1blRkREJBSVpaZ2haZlhT?=
- =?utf-8?B?SmtCN2M4OWJnNUowU2t1S1kwY1YrbTdVQnJBVlJyNGh4bGJkM3AvbDhoVHIv?=
- =?utf-8?B?TU9CWHJkSXdOMzZOTmVqV09zUm56NUZtYUNBL1pEVXVkeW9mR3pSdUFENTZN?=
- =?utf-8?B?ZCtLWmVFU3hHL0VucHVOci9nTnJ5dGFCcUdFR3JGekNqY2NKL3haZVpMTlRH?=
- =?utf-8?B?OTRSbDkzUXEybCtUTVpnQTFXMWU4SlpST29wL1pZbTJuaFdOd3VodzV3Zlla?=
- =?utf-8?B?UTVMcnFoYThnWHVGdGFHbXN4R0NZbzdTeGN1V0o5Z0x0bGxMUlBhbDF4cnVY?=
- =?utf-8?B?NUs0SHEyK201cEtVOExmNTJ0cHg5TGF6eXBWMW1zQ0ZiSTZ0a05URk9xNThT?=
- =?utf-8?Q?lc9hhgtmFjdpNYVpzhkiWxV27l7yST8wkYYh90OWXByBP?=
-X-MS-Exchange-AntiSpam-MessageData-1: mJHfwKYVfBlOlg==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 18c503f3-34b3-4fd3-33f1-08de7791f737
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2026 12:56:33.7750 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GrsTA4RK6nYCZX2TqyENznuJDOXVtqwsjWz2vHI2tq2o36basnKvRGaxrc7m5cf5eXEZI4JnBxmGZOoouxs2dQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB9010
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260227-color-format-v9-12-658c3b9db7ef@collabora.com>
+X-Proofpoint-ORIG-GUID: qXcZXxp6ufP_zXIdwwc7ZwjtRjvrSnWM
+X-Proofpoint-GUID: qXcZXxp6ufP_zXIdwwc7ZwjtRjvrSnWM
+X-Authority-Analysis: v=2.4 cv=SO9PlevH c=1 sm=1 tr=0 ts=69a46c85 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22 a=QX4gbG5DAAAA:8
+ a=J_biHfMZ8pKUvqPgpkYA:9 a=CjuIK1q_8ugA:10 a=IoWCM6iH3mJn3m4BftBB:22
+ a=AbAUZ8qAyYyZVLSsDulk:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAxMDE1MiBTYWx0ZWRfX82r3h+fudRn2
+ j551963uzuRj4pX4jcEr/rMJQqOGsjMcZwfCxrwRmok8gdaDRgSoTLYjE8E6VpnrBwLAuUrN4af
+ 5Nn8aMjAfZM8OvC/ZYARTH7+u/1SGFJ46ZA40s7A3TPAImF+ULvWnRi7YpVE7RXPZ++lcGyFvgA
+ lt1aypJhsVEyfnm6yJJNLCjIL7F9mADS1bKA3c3DLoDiUayotQlDRcm1S5DosSYfF5mfnjcupC6
+ IFyAHba69Q1iOPJIpzwApWy3wsfL2dtqGt0HzaY9zOvXanTemTV4x0VZxWXLsV7voKPi92RdV7/
+ nltrrLap4jF3X+h5UMweduJl4YsMTWJpy92CFmGU7v633x60K45QM7hk+6V3RNYAFs8K8baWEx1
+ kFrx7S/Y8AxraIlZgWXt6suQjVIfFoG30u6aZHKYuYyxqNHWGp9VrnEnXHItu4fLTfsQ91pm70b
+ I6cTPZZXsav3NfWuxnQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-01_03,2026-02-27_03,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1011 phishscore=0 impostorscore=0 spamscore=0 bulkscore=0
+ suspectscore=0 priorityscore=1501 adultscore=0 lowpriorityscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2602130000
+ definitions=main-2603010152
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,146 +164,121 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed Feb 25, 2026 at 7:53 AM JST, Joel Fernandes wrote:
-<snip>
-> @@ -295,18 +309,42 @@ pub(crate) fn new<'a>(
-> =20
->              sec2_falcon: Falcon::new(pdev.as_ref(), spec.chipset)?,
-> =20
-> -            // Create GPU memory manager owning memory management resour=
-ces.
-> -            // This will be initialized with the usable VRAM region from=
- GSP in a later
-> -            // patch. For now, we use a placeholder of 1MB.
-> -            mm <- GpuMm::new(devres_bar.clone(), GpuBuddyParams {
-> -                base_offset_bytes: 0,
-> -                physical_memory_size_bytes: SZ_1M as u64,
-> -                chunk_size_bytes: SZ_4K as u64,
-> -            })?,
-> -
->              gsp <- Gsp::new(pdev),
-> =20
-> -            gsp_static_info: { gsp.boot(pdev, bar, spec.chipset, gsp_fal=
-con, sec2_falcon)?.0 },
-> +            // Boot GSP and extract usable VRAM region for buddy allocat=
-or.
-> +            gsp_static_info: {
-> +                let (info, fb_layout) =3D gsp.boot(pdev, bar, spec.chips=
-et, gsp_falcon, sec2_falcon)?;
+On Fri, Feb 27, 2026 at 08:20:17PM +0100, Nicolas Frattaroli wrote:
+> The atomic_get_output_bus_fmts callback is used by the DRM bridge layer
+> to recursively select a suitable output format in a bridge chain.
+> 
+> As a bridge that outputs to HDMI, dw-hdmi-qp will have its output
+> formats determined by which formats the platform-specific integration of
+> the hardware supports, and the chosen HDMI output bit depth.
+> 
+> Implement this callback. The returned u32* buffer is supposed to be
+> freed by the caller of this callback, as specified by the callback's
+> documentation.
+> 
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+>  drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c | 64 ++++++++++++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
+> index d649a1cf07f5..4556494f9bb1 100644
+> --- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
+> +++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/export.h>
+>  #include <linux/i2c.h>
+>  #include <linux/irq.h>
+> +#include <linux/media-bus-format.h>
+>  #include <linux/minmax.h>
+>  #include <linux/module.h>
+>  #include <linux/mutex.h>
+> @@ -749,6 +750,68 @@ static struct i2c_adapter *dw_hdmi_qp_i2c_adapter(struct dw_hdmi_qp *hdmi)
+>  	return adap;
+>  }
+>  
+> +static u32*
+> +dw_hdmi_qp_bridge_get_output_bus_fmts(struct drm_bridge *bridge,
+> +				      struct drm_bridge_state *bridge_state,
+> +				      struct drm_crtc_state *crtc_state,
+> +				      struct drm_connector_state *conn_state,
+> +				      unsigned int *num_output_fmts)
+> +{
+> +	unsigned int num_fmts = 0;
+> +	u32 *out_fmts;
 > +
-> +                let usable_vram =3D fb_layout.usable_vram.as_ref().ok_or=
-_else(|| {
-> +                    dev_err!(pdev.as_ref(), "No usable FB regions found =
-from GSP\n");
-> +                    ENODEV
-> +                })?;
-
-The chain through which we obtain `usable_vram` is very inefficient and
-much more complex than it needs to be.
-
-`fb_layout` is used as a transport for `usable_vram`, but `usable_vram`
-is the only member of it that we ever use. In that case, why not return
-`usable_vram` directly?
-
-This is all the better as `usable_vram` is added as an `Option` in
-`FbLayout`, not because `None` is a valid state but because `FbLayout`
-is already constructed by the time we obtain `usable_vram`. So `None` is
-just a value that tells the caller "please return an error". Now we can
-remove the option altogether, drop patch 5, and have `boot` return the
-error for us if `usable_vram` cannot be obtained.
-
-But let's not stop here. `usable_vram` is first obtained as part of the
-`GetGspStaticInfo` reply. It starts its life as `(u64, u64)` before
-being morphed into a `Range<u64>` when stored in `FbLayout`. Since its
-tuple state is never useful, let's store it as a `Range<u64>` in
-`GetGspStaticInfoReply` to begin with and, since we cannot continue
-without it anyway, let's make `commands::get_gsp_info()` fail if it
-cannot build it. That way we don't even need to store it as an `Option`.
-
-And now, since `boot` already returns the `GetGspStaticInfoReply`, we
-can directly access it just by making `usable_vram` public - no need for
-`boot` to return a tuple anymore.
-
-Once you have that, something interesting happens: you don't need to
-change the `gsp_static_info` arm at all in this patch. All the new code
-can be moved to the `mm` arm, which is where it is actually useful
-anyway.
-
-The subsequent patches that make use of `boot_params` in other arms can
-also access the exact same data using `gsp_static_info`:
-
-- `bar1_pde_base` is also accessible from `gsp_static_info` (let's also
-  make it public instead of adding an accessor method),
-- The other `boot_params` used to build the `GpuMM` can be reconstructed
-  from `usable_vram`.
-
-Which means `boot_params` and `BootParams` can be removed (and the
-`Cell` import), and we have something simpler and more direct that takes
-~60 less LoCs.
-
-In other words, this arm remains as it was:
-
-    gsp_static_info: gsp.boot(pdev, bar, spec.chipset, gsp_falcon, sec2_fal=
-con)?,
-
-
-> +            // Create GPU memory manager owning memory management resour=
-ces.
-> +            // Uses the usable VRAM region from GSP for buddy allocator.
-> +            mm <- {
-
-this arm can now be:
-
-    let usable_vram =3D &gsp_static_info.usable_fb_region;
-
-    dev_info!(
-        pdev.as_ref(),
-        "Using FB region: {:#x}..{:#x}\n",
-        usable_vram.start,
-        usable_vram.end
-    );
-
-    GpuMm::new(devres_bar.clone(), GpuBuddyParams {
-        base_offset_bytes: usable_vram.start,
-        physical_memory_size_bytes: usable_vram.end - usable_vram.start,
-        chunk_size_bytes: SZ_4K.into_safe_cast(),
-    })?
-
-> +                let params =3D boot_params.get();
-> +                GpuMm::new(devres_bar.clone(), GpuBuddyParams {
-> +                    base_offset_bytes: params.usable_vram_start,
-> +                    physical_memory_size_bytes: params.usable_vram_size,
-> +                    chunk_size_bytes: SZ_4K.into_safe_cast(),
-> +                })?
-> +            },
-> =20
->              bar: devres_bar,
->          })
-> diff --git a/drivers/gpu/nova-core/gsp/boot.rs b/drivers/gpu/nova-core/gs=
-p/boot.rs
-> index 7a4a0c759267..bc4446282613 100644
-> --- a/drivers/gpu/nova-core/gsp/boot.rs
-> +++ b/drivers/gpu/nova-core/gsp/boot.rs
-> @@ -150,7 +150,7 @@ pub(crate) fn boot(
-> =20
->          let gsp_fw =3D KBox::pin_init(GspFirmware::new(dev, chipset, FIR=
-MWARE_VERSION), GFP_KERNEL)?;
-> =20
-> -        let fb_layout =3D FbLayout::new(chipset, bar, &gsp_fw)?;
-> +        let mut fb_layout =3D FbLayout::new(chipset, bar, &gsp_fw)?;
->          dev_dbg!(dev, "{:#x?}\n", fb_layout);
-> =20
->          Self::run_fwsec_frts(dev, gsp_falcon, bar, &bios, &fb_layout)?;
-> @@ -252,6 +252,11 @@ pub(crate) fn boot(
->              Err(e) =3D> dev_warn!(pdev.as_ref(), "GPU name unavailable: =
-{:?}\n", e),
->          }
-> =20
-> +        // Populate usable VRAM from GSP response.
-> +        if let Some((base, size)) =3D info.usable_fb_region() {
-> +            fb_layout.set_usable_vram(base, size);
-> +        }
+> +	/*
+> +	 * bridge->supported_formats is a bit field of the HDMI_COLORSPACE_* enums.
+> +	 * These enums are defined by the HDMI standard, and currently top out at
+> +	 * 7. Consequently, BIT(7) is the highest bit that will be set here, unless
+> +	 * the standard runs out of reserved pixel formats. Therefore, hweight8()
+> +	 * will give an accurate count of how many bus formats we'll output.
+> +	 */
+> +	out_fmts = kmalloc_array(hweight8(bridge->supported_formats), sizeof(u32),
+> +				 GFP_KERNEL);
+> +	if (!out_fmts) {
+> +		*num_output_fmts = 0;
+> +		return NULL;
+> +	}
 > +
+> +	switch (conn_state->hdmi.output_bpc) {
+> +	case 12:
+> +		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444))
+> +			out_fmts[num_fmts++] = MEDIA_BUS_FMT_RGB121212_1X36;
+> +		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444))
+> +			out_fmts[num_fmts++] = MEDIA_BUS_FMT_YUV12_1X36;
+> +		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR422))
+> +			out_fmts[num_fmts++] = MEDIA_BUS_FMT_UYVY12_1X24;
+> +		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR420))
+> +			out_fmts[num_fmts++] = MEDIA_BUS_FMT_UYYVYY12_0_5X36;
 
-And this change is not needed anymore.
+This looks like very generic code. It uses bridge->supported_formats
+only. Can we move this to the helpers library?
 
+> +		break;
+> +	case 10:
+> +		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444))
+> +			out_fmts[num_fmts++] = MEDIA_BUS_FMT_RGB101010_1X30;
+> +		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444))
+> +			out_fmts[num_fmts++] = MEDIA_BUS_FMT_YUV10_1X30;
+> +		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR422))
+> +			out_fmts[num_fmts++] = MEDIA_BUS_FMT_UYVY10_1X20;
+> +		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR420))
+> +			out_fmts[num_fmts++] = MEDIA_BUS_FMT_UYYVYY10_0_5X30;
+> +		break;
+> +	default:
+> +		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444))
+> +			out_fmts[num_fmts++] = MEDIA_BUS_FMT_RGB888_1X24;
+> +		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444))
+> +			out_fmts[num_fmts++] = MEDIA_BUS_FMT_YUV8_1X24;
+> +		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR422))
+> +			out_fmts[num_fmts++] = MEDIA_BUS_FMT_UYVY8_1X16;
+> +		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR420))
+> +			out_fmts[num_fmts++] = MEDIA_BUS_FMT_UYYVYY8_0_5X24;
+> +		break;
+> +	}
+> +
+> +	*num_output_fmts = num_fmts;
+> +
+> +	return out_fmts;
+> +}
+> +
+>  static void dw_hdmi_qp_bridge_atomic_enable(struct drm_bridge *bridge,
+>  					    struct drm_atomic_state *state)
+>  {
+> @@ -1192,6 +1255,7 @@ static int dw_hdmi_qp_cec_transmit(struct drm_bridge *bridge, u8 attempts,
+>  #endif /* CONFIG_DRM_DW_HDMI_QP_CEC */
+>  
+>  static const struct drm_bridge_funcs dw_hdmi_qp_bridge_funcs = {
+> +	.atomic_get_output_bus_fmts = dw_hdmi_qp_bridge_get_output_bus_fmts,
+>  	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
+>  	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
+>  	.atomic_reset = drm_atomic_helper_bridge_reset,
+> 
+> -- 
+> 2.53.0
+> 
+
+-- 
+With best wishes
+Dmitry
