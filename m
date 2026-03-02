@@ -4,77 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC486E9B377
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 12:54:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E5BEE9B37E
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 13:27:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 800D610E4D0;
-	Mon,  2 Mar 2026 12:54:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CE0310E4E2;
+	Mon,  2 Mar 2026 13:27:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="czCH1Pwn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mFUeT5B8";
 	dkim-atps=neutral
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 664BB10E4CF;
- Mon,  2 Mar 2026 12:53:58 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1772456025; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=GMp6+xRMNwgsTM8iGKy0G8y6GkFeXPgakJzLr4g7v95spFf1QZd6gihYWQLeJL3rhTD72V5ksZSGquVESfiNqgKeGzY50/q6h8v1bi60drZGMwODJVl5oWq2gscFuxM8XEzd0q5iQhjpvN7xPzvuZds5ioTLzjp+OL7gf+moM5U=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1772456025;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=lPQKUxtVjexxEX4A7XuYCfJhBt0aFJEhGTj3wOuGAak=; 
- b=A8n4m9TSHOWSTtoNn2W97tLnoFen+A2T+MHjlMc1Fy2Osrzwbvz5wXokklGhxewaXenze4bkNrKTYl8owJrBUJ5XF9C1NhbLaSeq6TvYARrjCjqRSAlPfwuHpfzYaBKPOAlJuENarffaJUdtReMw0Vc+oQzIvMJ9+Pn+0UGA/IA=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772456025; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
- bh=lPQKUxtVjexxEX4A7XuYCfJhBt0aFJEhGTj3wOuGAak=;
- b=czCH1PwnW/CNSDoAUO7w4zjpsIwnu75I4YmbkTsbzGgEvfX7ryNg9YU9rmvgEoUo
- y3p5/qdnQXH9dJ1dsu7mEMvGlvt+UzU3mJRc0wVN7PDPDV0PuEoHXkeE5lIglxjq8Ht
- E9oAQ8KmXt0DU/LN72eVoyq0jW1mxhcUOCti0jF4=
-Received: by mx.zohomail.com with SMTPS id 1772456023924351.0985024371805;
- Mon, 2 Mar 2026 04:53:43 -0800 (PST)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- kernel@collabora.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org
-Subject: Re: [PATCH v9 04/19] drm/display: hdmi-state-helper: Act on color
- format DRM property
-Date: Mon, 02 Mar 2026 13:53:34 +0100
-Message-ID: <8648916.T7Z3S40VBb@workhorse>
-In-Reply-To: <20260302-literate-shrew-of-health-ec19d2@houat>
-References: <20260227-color-format-v9-0-658c3b9db7ef@collabora.com>
- <20260227-color-format-v9-4-658c3b9db7ef@collabora.com>
- <20260302-literate-shrew-of-health-ec19d2@houat>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACAD010E4EF;
+ Mon,  2 Mar 2026 13:27:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772458040; x=1803994040;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Oqvk5frmWrTXoWpOMVRWNeoQPtQgpz706F7RVEFBd8U=;
+ b=mFUeT5B8HJkffLA75PDanZLW+qJRAZ7U7QzlhTG85G+dM/ukIqrsbMAo
+ dHUXOj4oC9YjsjHNHng6pBw/VmhBWMMDkB9UeYW7RW4KNObHSxmNbxAHP
+ +J/o4zww7dT1Fp20oCsZiaz01q/oAY3iuZPmrNczsR38QvIDNYA8PE0/q
+ bT/M5THxdMNL0qNJIkDCswdBG8tlv147FVBVdrhA8ZyQqGKUzcfXXVZRw
+ xPbLaDZMhnApBugeE77eZMYnAI96Z8IFtycAEpuF8BrnL8AyRYIQFuGs8
+ FtbPNtPQwmwmWQLLded/agz7DnP8FyZ/TuLlh8sxWnRCXln87WLPlKMoN A==;
+X-CSE-ConnectionGUID: ZaDFw0RzSlOZ6OixkEYNTA==
+X-CSE-MsgGUID: jq7eQKi4TjSV9FYb22HaUw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="84813269"
+X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="84813269"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 05:27:18 -0800
+X-CSE-ConnectionGUID: fSe1HhPeSTicEbb1LXP5TQ==
+X-CSE-MsgGUID: oXJu6FMrQ5CC8Q59IRWlkg==
+X-ExtLoop1: 1
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa003.fm.intel.com with ESMTP; 02 Mar 2026 05:27:16 -0800
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: animesh.manna@intel.com, ankit.k.nautiyal@intel.com, jani.nikula@intel.com,
+ jouni.hogander@intel.com, Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCHv3 1/2] drm/i915/dp: Read ALPM caps after DPCD init
+Date: Mon,  2 Mar 2026 18:56:01 +0530
+Message-Id: <20260302132602.480408-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,110 +64,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Monday, 2 March 2026 09:46:06 Central European Standard Time Maxime Ripard wrote:
-> Hi,
-> 
-> On Fri, Feb 27, 2026 at 08:20:09PM +0100, Nicolas Frattaroli wrote:
-> > With the introduction of the "color format" DRM property, which allows
-> > userspace to request a specific color format, the HDMI state helper
-> > should implement this.
-> > 
-> > Implement it by translating the requested drm_connector_color_format to
-> > a drm_output_color_format enum value as per the logic HDMI should use
-> > for this: Auto is translated to RGB, and a fallback to YUV420 is only
-> > performed if the original color format was auto.
-> > 
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > ---
-> >  drivers/gpu/drm/display/drm_hdmi_state_helper.c | 28 +++++++++++++++++++++++--
-> >  1 file changed, 26 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/display/drm_hdmi_state_helper.c b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-> > index 9f3b696aceeb..31c6d55fa995 100644
-> > --- a/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-> > +++ b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-> > @@ -669,10 +669,34 @@ hdmi_compute_config(const struct drm_connector *connector,
-> >  	unsigned int max_bpc = clamp_t(unsigned int,
-> >  				       conn_state->max_bpc,
-> >  				       8, connector->max_bpc);
-> > +	enum drm_output_color_format fmt;
-> >  	int ret;
-> >  
-> > -	ret = hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc,
-> > -				      DRM_OUTPUT_COLOR_FORMAT_RGB444);
-> > +	switch (conn_state->color_format) {
-> > +	case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
-> > +	case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
-> > +		fmt = DRM_OUTPUT_COLOR_FORMAT_RGB444;
-> > +		break;
-> > +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR444:
-> > +		fmt = DRM_OUTPUT_COLOR_FORMAT_YCBCR444;
-> > +		break;
-> > +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR422:
-> > +		fmt = DRM_OUTPUT_COLOR_FORMAT_YCBCR422;
-> > +		break;
-> > +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR420:
-> > +		fmt = DRM_OUTPUT_COLOR_FORMAT_YCBCR420;
-> > +		break;
-> > +	default:
-> > +		drm_dbg_kms(connector->dev, "HDMI does not support color format '%d'.\n",
-> > +			    conn_state->color_format);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	ret = hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc, fmt);
-> > +
-> > +	if (conn_state->color_format != DRM_CONNECTOR_COLOR_FORMAT_AUTO)
-> > +		return ret;
-> > +
-> 
-> We discussed it before, and it wasn't as trivial as it should have been,
-> but now, I really feel something like the following would be simpler:
-> 
-> if (conn_state->color_format != DRM_CONNECTOR_COLOR_FORMAT_AUTO) {
-> 	enum drm_output_color_format fmt;
-> 
-> 	switch (conn_state->color_format) {
-> 	case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
-> 	     drm_warn(connector->dev, "The format shouldn't be auto here"); // or any better message
-> 	     fallthrough;
+For eDP read the ALPM DPCD caps after DPCD initalization and just before
+the PSR init.
 
-Why shouldn't it be auto there? This is the function where the auto->rgb
-mapping is explicitly handled.
+v2: Move intel_alpm_init to intel_edp_init_dpcd (Jouni)
+v3: Add Fixes with commit-id (Jouni)
 
-> 	case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
-> 	     fmt = DRM_OUTPUT_COLOR_FORMAT_RGB444;
-> 	     break;
-> 	....
-> 	}
-> 
-> 	return hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc, fmt);
-> }
-> 
-> ret = hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc,
-> 			      DRM_OUTPUT_COLOR_FORMAT_RGB444);
-> 
-> It makes it much clearer what the two branches are, and we don't have to
-> test for auto multiple times.
+Fixes: 15438b325987 ("drm/i915/alpm: Add compute config for lobf")
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-Testing for auto multiple times is done for the "4:2:0 fallback on
-AUTO only" case. If you fall through from AUTO to RGB and then return
-the result of hdmi_compute_format_bpc on RGB, then you will not let
-AUTO fall back to 4:2:0. hdmi_compute_format_bpc only does a fallback
-for lower bit depths, not different color formats.
-
-As far as I can tell, you're requesting a change of behaviour here that
-would require me to adjust the behaviour of every single other HDMI
-implementation and modify all the tests that you already gave a reviewed-by,
-so I assume this wasn't the intent?
-
-Kind regards,
-Nicolas Frattaroli
-
-> 
-> Maxime
-> 
-
-
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 025e906b63a9..1544758c0bbc 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -4748,6 +4748,9 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector
+ 	 */
+ 	intel_dp_init_source_oui(intel_dp);
+ 
++	/* Read ALPM DPCD caps before reading the PSR CAPS */
++	intel_alpm_init(intel_dp);
++
+ 	/*
+ 	 * This has to be called after intel_dp->edp_dpcd is filled, PSR checks
+ 	 * for SET_POWER_CAPABLE bit in intel_dp->edp_dpcd[1]
+@@ -6914,8 +6917,6 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+ 	 */
+ 	intel_hpd_enable_detection(encoder);
+ 
+-	intel_alpm_init(intel_dp);
+-
+ 	/* Cache DPCD and EDID for edp. */
+ 	has_dpcd = intel_edp_init_dpcd(intel_dp, connector);
+ 
+-- 
+2.25.1
 
