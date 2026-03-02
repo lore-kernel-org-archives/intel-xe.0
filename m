@@ -4,158 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E2F2EA4E0E
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 14:58:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96D4AEA4E18
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 15:10:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02D3F10E51E;
-	Mon,  2 Mar 2026 14:58:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5318410E045;
+	Mon,  2 Mar 2026 15:10:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MGgHkw8Q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dsUbhPlG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7645C10E51E;
- Mon,  2 Mar 2026 14:58:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E9A410E045;
+ Mon,  2 Mar 2026 15:10:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772463495; x=1803999495;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=BrmHKAelhQyXF4eylB8ggRzPVP5mJeDjgM/HokOrIro=;
- b=MGgHkw8QLqoBT1wKaWDf/N1kU/1tMj0j+Y3f+gV19QmZGPriKUHAD1p5
- B18gDTv8uMLqBPgpiEdVLtY0HXw0/66EAbxVbNlrQvsrrEUY7Pqyax55I
- LFQ1elHDhCA4OjuFwzbVDjfLCvzDSLvww/ckgK0O/7u7M+0EvWUl/q2ws
- SS1cwNlaXYAs3r7IRfzb9iLf45OqVjTWeAz2z8ogT5DkWUAtAh1mnqRR5
- /WAWvcvAgJXy5AxUA/qVu3GrGPtFG2CBssndx6HLbooTiFsdkle/o9kz3
- Tr6rlVI1PFM6gapfmm/naT1TQH4a/6fvkOXM+ODTiwCRw7DyWW4Y7mVj1 g==;
-X-CSE-ConnectionGUID: exXgPGD+Sy2sUJJXSz8XyQ==
-X-CSE-MsgGUID: e2YhmfSCRoWJwAhh2QWRiw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="98940425"
-X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="98940425"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 06:58:14 -0800
-X-CSE-ConnectionGUID: 0lSrdl/5RQqTI1BIBHeyIg==
-X-CSE-MsgGUID: QsidPzoeT2abdJ1Dj5aWGQ==
+ t=1772464249; x=1804000249;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=EoqTsk/E62r3ys5VvD40GGl5AX1bEyjIl0bpZmmEgAc=;
+ b=dsUbhPlGEpLdQF6XxMSUmOmQvMmM/y+V5QvWSHF6uAEg5ZWntQhe85BR
+ XKJ12Sp9Sm3kiPXQO5G3PqDfI/zCvXKTUVBVpOSvVozT/GEXKgqcxwkGJ
+ jjNLWfgMxMT0czeA8QRjKgb3Cv1s+/tDiQRfWQ8d9W6TjumPJ/VpqnVjS
+ T4Y9WRWZAbpFYeT02ZnFRhvPZn3dc9iiJPzjT9IoqDl6je4+8QO/wyi4D
+ gG7GLiZALKY+OKTo0PxCc/z4R/5Rc+GsKONRtMfuMK7z2XGGE/e8nNnKQ
+ i17bPRVTPI4ZB/dcIV2yBsyn64/dnwwX3xZFGiW9+R+4wozY7eslItcVa w==;
+X-CSE-ConnectionGUID: QH5Rfdy0TJumQ5HVq5KTVA==
+X-CSE-MsgGUID: bhSmnaOVQv25+EN6gBP5wg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="72672457"
+X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="72672457"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 07:10:49 -0800
+X-CSE-ConnectionGUID: ljUTpfIITSe8oDvbtGqkow==
+X-CSE-MsgGUID: 9hVHehVhQBOP89Gv2jP9og==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="214878333"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 06:58:14 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 2 Mar 2026 06:58:13 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 2 Mar 2026 06:58:13 -0800
-Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.29) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 2 Mar 2026 06:58:13 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bUf497cRh0h+3guUeluperbz3JvxTW0eJzWli8AgTNeHVM4vVR2BOMSIFroH46gqCvv8pgLOrvMX8QJmpyjN6eCkUqKxNo4Ko0AQTZrq0lRcPSw8oAfTWh1RB+bd+kl5buDAcWCoy3YkUUSvdDB18Q/X0PxQZ9/XrvNbslS1MUftQdqRRfGGXM7vZd+sMlF8Tzgzg1saAO2FeU3ngZ6EWt11KPLyzdi8oXy4vYQ68Bus//FQMK5VXGqJ4aLWf3N36rTg1ggJla88UF/7dHczmzJmcUuGHML04m48m4YFDaSK9/riyPoqO3lb1rqifZxGkx3ctgvK8ut/AQ0RphjZsw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rhQOGV+opiR2KFel/9d7G9EkkZhea7Pq39qYLB7lgvw=;
- b=bFACwJZMOnFADQrSjJqkYGx0X65xHxy8zLNCADxGykalXEPkwKJrgbnQFZBVP8PvtSywePOLhBo9u8QhuZN8kmxB38f7Rhxyy+n1qHKDG+7x+M2y+dw9Zg7dpqwzh5h8c04G3YVvb2aY4kCKPFTnwHQjQOmba37YGFa0XDMA0rrcAqQlT3Xz841rdCotUS2I9iJfg9WyNCHbrA349oYIikTCKCAQPiLrH8nXA6bb7KE2XtNnFOwi9j0Hqk3kXkJ7E+0hLqSjBnFamqAgXIFgkzJZPIhmkrULq9n17a2xC8YfLkMd8urSl1fI0g3Oqq+o1jDfb7AP8CLfDrTi8SAu1A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10)
- by SJ5PPF263E38237.namprd11.prod.outlook.com (2603:10b6:a0f:fc02::81a) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.18; Mon, 2 Mar
- 2026 14:58:11 +0000
-Received: from DM4PR11MB7183.namprd11.prod.outlook.com
- ([fe80::d9c7:d2fb:680d:1ee1]) by DM4PR11MB7183.namprd11.prod.outlook.com
- ([fe80::d9c7:d2fb:680d:1ee1%6]) with mapi id 15.20.9654.020; Mon, 2 Mar 2026
- 14:58:11 +0000
-Message-ID: <6f9c65e1-b110-4cad-b2dd-d9d8a1b73a51@intel.com>
-Date: Mon, 2 Mar 2026 20:28:03 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCHv2 2/2] drm/i915/dp: Rename alpm_init to alpm_init_dpcd
-To: Arun R Murthy <arun.r.murthy@intel.com>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-CC: <animesh.manna@intel.com>, <ankit.k.nautiyal@intel.com>,
- <jani.nikula@intel.com>, <jouni.hogander@intel.com>
-References: <20260302033630.428913-1-arun.r.murthy@intel.com>
- <20260302084030.463284-1-arun.r.murthy@intel.com>
- <20260302084030.463284-2-arun.r.murthy@intel.com>
-Content-Language: en-US
-From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <20260302084030.463284-2-arun.r.murthy@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0033.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:178::10) To DM4PR11MB7183.namprd11.prod.outlook.com
- (2603:10b6:8:111::10)
+X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="215307293"
+Received: from yadavs-z690i-a-ultra-plus.iind.intel.com ([10.190.216.90])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 07:10:47 -0800
+From: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>
+Subject: [PATCH] gpu/tests/gpu_buddy: Add gpu_test_buddy_alloc_range for
+ exact-range allocation
+Date: Mon,  2 Mar 2026 20:39:46 +0530
+Message-ID: <20260302150947.47535-2-sanjay.kumar.yadav@intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB7183:EE_|SJ5PPF263E38237:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5894dc64-9fb2-4f56-35cd-08de786c1f62
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: mL4mpOynKxUfwyV3Ql9zsC7b/n7sm019XHEj4475mE3gcOwSrY4/5ilLuZc3ZJBP0+CSnWmwZm9XXy6IllQCQ/C09ptDCxXUyZQ41NX1zu6GnhMcbSAdYn/3h1YSf1UA/MLXdmR3jwkMg1FNPctu2JAKQgoL2KCqf8uYQEF5EONXHTf0PEpDhNsEa3oqy6xga2X6bmCM8AEmC6UI2eCdaFrBQ0SVrS4won5IzLozTJaBPhcmtws8E7DmDL5VmsW3TSIOhTCQ/wAlXoUMFtHC4ee5Y6Fx+4VHMl5reEjQ4uN0MAgNg8reqDBPzZ5IDLDZ4G32UeZ0CzGaVIxDhYfC7UIYTS/X2J62/6+pA2r3zujl1xoQb9gD4zwPb0zXwpIUJ6WHJJRCX5zFWxp9VTUjlsjCJF/VTkm2T2ICWC9f3T6CAWYEAA83dhwpwGvwAwFJcSQTmk1ohaDNWUnG/kA6hj1j9L3eIraOxjNfSksbc00QAxSI1eCnNPGeN2NqnVrUHXvDu4xVasCd3IEQQSBoTrtTIWrkb/qfHB2Ew84XHjeG90V+8hISQKGYaUnOF6Q8t8LqSLauKSM/oJk54NYH8U+eSn1XggE1DV7FWJynM+FxJzGivwc/nY+dw1MMt/7iAkiB4icugN1veKolnhm7MKX892694Cg2raUxcFJJ6icKTmxbf19fBVw05L5XTp6jHbgFEFmcxzEojAVQ6PVqasO3cDlz83KieccOKTYrgbU=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB7183.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M1hjUGdXMzBjSFFNeHZnNjl0SkRTUnF2SUlsVE4yZnZ5elV3TlJjc2VnQkZy?=
- =?utf-8?B?eG1aRTFTNk9WeWlkcU42WSsraDlGbXVHS0V6ZmI1R2dDdnpTOVZXaU5OanZt?=
- =?utf-8?B?WWxVcis5R1Z4MDF6enhoSFlHVDM0ZUhodlRab0g0V3ltR3VFdGQveElRU0Vq?=
- =?utf-8?B?RTdTVldldk1WL1JtWUlGMWJ4RGdiczBxTG1MNktBRXlUeDNtSDIxeUZGMUZO?=
- =?utf-8?B?QXIrNXRFcDJ4Qnp4eTVFM1hTQ2NsYVFsVURqbEpCbDZ5VjhiOFNrZk4vT2ta?=
- =?utf-8?B?QWkrUWpBVy9wYlBPay92bGhyYzg1VTZrSFEyNkRSS2xhTityL1lqazl0S3Bm?=
- =?utf-8?B?Z3NPaU5TTlFFbGlUdjRUNG54Z0R1N1FzdGU3Z21aZkVvQ2Jkb01DWUluZW4w?=
- =?utf-8?B?Qmo3eUZvNWwvRDJlVVZQRVhkVk0rbWtNRjhIcDQ0cFBaWDB5Tklwc2UxWmpz?=
- =?utf-8?B?WVZKMFl4VjdqMTEzZkU1a3ZYN0tva1dyVm5Jd2pzazY3TDU5RisrYVBGNkNP?=
- =?utf-8?B?dmRMR3REK2QxYnQxcWFRdzZLa2FPRWYvRlNYMUt2UllJSUxMWGlyUXd6eXdo?=
- =?utf-8?B?VVlESUhOTXJVWXNLZ0E5WXdhV3NuY0JWaVFRdlp2TGl1RnJ1YmFuWVpYTWly?=
- =?utf-8?B?UGRPbjdObUp3WWNmZEN4ZjlIT3B6dUxJWFZSUkFMdEdoQlhvb3hnenYvc2Jx?=
- =?utf-8?B?cTQrK2RGUkVudlMvcDVrVlFBK09zZVdpSS9mU2tENGNadDJBa1ZVTmNEVVA1?=
- =?utf-8?B?cmtFeDA4RVJaKzZUQ1RqdVZHZ2NJb3hONy9nOWs1SlhzR0FmSU03MUF4Ulh1?=
- =?utf-8?B?bld1QmNjR0RBbC8wRndEZkN2dFlaV3ZiSVR3TURPakVJOHBNWElkQmpZckFm?=
- =?utf-8?B?b1JqdU15Y09GRHc3M3F6WEFYMjhWWU15dDRaOEY1djIvTFZ2bCtIMTZNV3hX?=
- =?utf-8?B?S1JnM0JPOEVZTDdrQVAxV2JVMTdMa0ZHcm4wU1RvWVdBK1F2Nk1neHd5UUdR?=
- =?utf-8?B?LzZSWEdFTmNqY0dZeVBxZ0tZcTBWMlU4dHEwdDdFaVBMWXpwNUxXdldlREVv?=
- =?utf-8?B?cUFHd3ZIeHNxUWlld1pONXNUblQvTGl4NndOQ2NRMUNJVDltQnhEMVljTnJB?=
- =?utf-8?B?d1RzNjJuMk95dzI5WFJ5OGZDcEd1RjdLaWFvZlpNMFR3ckVGdFRHRnlTdVFW?=
- =?utf-8?B?WDA5SVpHcnlHTFZEWlpEOUxoSmJlMzBUM3loYStiVDIremllQjN4aWdWN1RF?=
- =?utf-8?B?UStiMWtyS0xudjAvN0xOUmxmYVMrclRRWVVVZHBsOEt4OUVvVUIyZVRkQmFk?=
- =?utf-8?B?VnJ2Z0dlYllUWFMzMHBzQW1acFhZcWIvY2QzcHQwSjVsM3p4UjhSdFFrcUVI?=
- =?utf-8?B?bG94SVF2NTBvMlRaTXNrQ2YyTS83V2d6MkxOY3J0STBxSUZKVlF3YjU3ZGFK?=
- =?utf-8?B?R2IxUS96bG9CT3MySFljTHByNFNrVjk1UFZka291WmwvOE1DZWMwRDNwR1pX?=
- =?utf-8?B?UXRDUFNxbWt2MzJsV0VsdWs1VFZvK0ZESGRnK0RQd3NSekd2MnlkSzREL3BN?=
- =?utf-8?B?UnpmOC9WZnJENXdEYWx1L1NKNmpQanNlbHArbTFZWHZKaG1IMTQ4UGVMbndn?=
- =?utf-8?B?ZUowTHE4bFBKeWFRWm9pbUVNTllHV1Z0b3FnS0hxenhiMGVVVGVtaFBobVQ1?=
- =?utf-8?B?VE1RTEJsYjdxVFNIR1lrSWdWUW5XVFAwQ0R4OExZaytxSTZNVGRvcU4zMlBk?=
- =?utf-8?B?R2c0NEZnV09Fc2laZ1k3aGNsN1pqbUhsVXpxL21HbU5NTnJaT3FRUkpaelhj?=
- =?utf-8?B?NlUvVkkwWHJSU01QVXlZeGlLcTkyZnVWUE1MY293dGEwRHdyMVBIMHR0dFlM?=
- =?utf-8?B?TFJIYjlrdno1bHlVdnp1OEs1eDlzdVBpdlJrTGZYL1l3bXFpZEZ6NG9KVWQr?=
- =?utf-8?B?eHlaZ1pNNHozbkFsSFNrYzlBZ0VGY25LYUxWRE5FTzBlRVlUcEhBRVZhRGMy?=
- =?utf-8?B?YzdTUHpWcTVDMm5pdmVLRDM3TkJwbFpUalhGRU12YkpLTExDUXVLSy9qZGk3?=
- =?utf-8?B?RERtZnpHdHFDQjlaOWE3UnpMbWhwZy90SjdyazFzYWlCdGhUTGlKTGREbkpp?=
- =?utf-8?B?dEdFNXdUcnpoRjgrY3JDeXJLN3pLYi9IbHgzdlpjTEJuQW81ek5GcDV3TFBa?=
- =?utf-8?B?eGpXVHFYYzA2MVZKV3libGM0UW13bERsY2ZvaUNxb0xlN2NKOHZYa0JmNE8x?=
- =?utf-8?B?dGp4UVh0dStVeTNxQm5MMWpSbXFiSGtwZ1VQbFpKNk1lenZZMjdFODM4ODVZ?=
- =?utf-8?B?bmxJbjNpNGFCUDR5N2VXSHNraHFjK1IwNkxmb3B0ZFozOE1UM1VFL2tvSG9K?=
- =?utf-8?Q?osl7LzD6wfsCVzXTj5135gwUM5Jr8Bk9Lhi+897W9fXtc?=
-X-MS-Exchange-AntiSpam-MessageData-1: i/tOlQILIsXD0w==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5894dc64-9fb2-4f56-35cd-08de786c1f62
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7183.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 14:58:11.5320 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gfCUvYWcWTD6PffH2+HPeukuwZPEMqObgaqRzQFK0uqzENrEJwm3R+Dmmc344RJcq/46lf8ZsDoz45O5eqj+XL9Mvq6/rt17QerKwOHU+09xSR+LBUlFe4ofx7WUo3qh
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF263E38237
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,62 +69,379 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Add a new kunit test gpu_test_buddy_alloc_range() that exercises the
+__gpu_buddy_alloc_range() exact-range allocation path, triggered when
+start + size == end with flags=0.
 
-On 02-03-2026 14:10, Arun R Murthy wrote:
-> In the function intel_alpm_init we are reading the ALPM_CAPABILITIES and
-> storing them in intel_dp, so appending the function name to _dpcd so as
-> to align with other function such as intel_psr_init_dpcd referenced in
-> the same function.
+The test covers:
+- Basic exact-range allocation of the full mm
+- Exact-range allocation of equal sub-ranges (quarters)
+- Minimum chunk-size exact ranges at start, middle, and end offsets
+- Non power-of-two mm size with multiple roots, including cross-root
+  exact-range allocation
+- Randomized exact-range allocations of N contiguous page-aligned
+  slices in random order
+- Negative: partially allocated range must reject overlapping exact
+  alloc
+- Negative: checkerboard allocation pattern rejects exact range over
+  partially occupied pairs
+- Negative: misaligned start, unaligned size, and out-of-bounds end
+- Free and re-allocate the same exact range across multiple iterations
+- Various power-of-two exact ranges at natural alignment
 
-Rename looks okay, but mutex_init(&intel_dp->alpm.lock)
-looks to be out of the place in intel_psr_init_dpcd.
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
+Suggested-by: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+---
+ drivers/gpu/tests/gpu_buddy_test.c | 327 +++++++++++++++++++++++++++++
+ 1 file changed, 327 insertions(+)
 
-Regards,
-Dibin
+diff --git a/drivers/gpu/tests/gpu_buddy_test.c b/drivers/gpu/tests/gpu_buddy_test.c
+index 5429010f34d3..9738fd09518f 100644
+--- a/drivers/gpu/tests/gpu_buddy_test.c
++++ b/drivers/gpu/tests/gpu_buddy_test.c
+@@ -362,6 +362,332 @@ static void gpu_test_buddy_alloc_range_bias(struct kunit *test)
+ 	gpu_buddy_fini(&mm);
+ }
+ 
++static void gpu_test_buddy_alloc_range(struct kunit *test)
++{
++	GPU_RND_STATE(prng, random_seed);
++	struct gpu_buddy_block *block;
++	struct gpu_buddy mm;
++	u32 mm_size, total;
++	LIST_HEAD(blocks);
++	LIST_HEAD(tmp);
++	u32 ps = SZ_4K;
++	int ret;
++
++	mm_size = SZ_16M;
++
++	KUNIT_ASSERT_FALSE_MSG(test, gpu_buddy_init(&mm, mm_size, ps),
++			       "buddy_init failed\n");
++
++	/*
++	 * Basic exact-range allocation.
++	 * Allocate the entire mm as one exact range (start + size == end).
++	 * This is the simplest case exercising __gpu_buddy_alloc_range.
++	 */
++	ret = gpu_buddy_alloc_blocks(&mm, 0, mm_size, mm_size, ps, &blocks, 0);
++	KUNIT_ASSERT_EQ_MSG(test, ret, 0,
++			    "exact-range alloc of full mm failed\n");
++
++	total = 0;
++	list_for_each_entry(block, &blocks, link) {
++		u64 offset = gpu_buddy_block_offset(block);
++		u64 bsize = gpu_buddy_block_size(&mm, block);
++
++		KUNIT_EXPECT_TRUE_MSG(test, offset + bsize <= (u64)mm_size,
++				      "block [%llx, %llx) outside mm\n", offset, offset + bsize);
++		total += (u32)bsize;
++	}
++	KUNIT_EXPECT_EQ(test, total, mm_size);
++	KUNIT_EXPECT_EQ(test, mm.avail, 0ULL);
++
++	/* Full mm should be exhausted */
++	ret = gpu_buddy_alloc_blocks(&mm, 0, ps, ps, ps, &tmp, 0);
++	KUNIT_EXPECT_NE_MSG(test, ret, 0, "alloc should fail when mm is full\n");
++
++	gpu_buddy_free_list(&mm, &blocks, 0);
++	KUNIT_EXPECT_EQ(test, mm.avail, (u64)mm_size);
++	gpu_buddy_fini(&mm);
++
++	/*
++	 * Exact-range allocation of sub-ranges.
++	 * Split the mm into four equal quarters and allocate each as an exact
++	 * range. Validates splitting and non-overlapping exact allocations.
++	 */
++	KUNIT_ASSERT_FALSE(test, gpu_buddy_init(&mm, mm_size, ps));
++
++	{
++		u32 quarter = mm_size / 4;
++		int i;
++
++		for (i = 0; i < 4; i++) {
++			u32 start = i * quarter;
++			u32 end = start + quarter;
++
++			ret = gpu_buddy_alloc_blocks(&mm, start, end, quarter, ps, &blocks, 0);
++			KUNIT_ASSERT_EQ_MSG(test, ret, 0,
++					    "exact-range alloc quarter %d [%x, %x) failed\n",
++					    i, start, end);
++		}
++		KUNIT_EXPECT_EQ(test, mm.avail, 0ULL);
++		gpu_buddy_free_list(&mm, &blocks, 0);
++	}
++
++	gpu_buddy_fini(&mm);
++
++	/*
++	 * Minimum chunk-size exact range at various offsets.
++	 * Allocate single-page exact ranges at the start, middle and end.
++	 */
++	KUNIT_ASSERT_FALSE(test, gpu_buddy_init(&mm, mm_size, ps));
++
++	ret = gpu_buddy_alloc_blocks(&mm, 0, ps, ps, ps, &blocks, 0);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++
++	ret = gpu_buddy_alloc_blocks(&mm, mm_size / 2, mm_size / 2 + ps, ps, ps, &blocks, 0);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++
++	ret = gpu_buddy_alloc_blocks(&mm, mm_size - ps, mm_size, ps, ps, &blocks, 0);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++
++	total = 0;
++	list_for_each_entry(block, &blocks, link)
++		total += (u32)gpu_buddy_block_size(&mm, block);
++	KUNIT_EXPECT_EQ(test, total, 3 * ps);
++
++	gpu_buddy_free_list(&mm, &blocks, 0);
++	gpu_buddy_fini(&mm);
++
++	/*
++	 * Non power-of-two mm size (multiple roots).
++	 * Exact-range allocations that span root boundaries must still work.
++	 */
++	mm_size = SZ_4M + SZ_2M + SZ_1M; /* 7 MiB, three roots */
++
++	KUNIT_ASSERT_FALSE(test, gpu_buddy_init(&mm, mm_size, ps));
++	KUNIT_EXPECT_GT(test, mm.n_roots, 1U);
++
++	/* Allocate first 4M root exactly */
++	ret = gpu_buddy_alloc_blocks(&mm, 0, SZ_4M, SZ_4M, ps, &blocks, 0);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++
++	/* Allocate second root (4M-6M) exactly */
++	ret = gpu_buddy_alloc_blocks(&mm, SZ_4M, SZ_4M + SZ_2M, SZ_2M, ps, &blocks, 0);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++
++	/* Allocate third root (6M-7M) exactly */
++	ret = gpu_buddy_alloc_blocks(&mm, SZ_4M + SZ_2M, mm_size, SZ_1M, ps, &blocks, 0);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++
++	KUNIT_EXPECT_EQ(test, mm.avail, 0ULL);
++	gpu_buddy_free_list(&mm, &blocks, 0);
++
++	/* Cross-root exact-range: the entire non-pot mm */
++	ret = gpu_buddy_alloc_blocks(&mm, 0, mm_size, mm_size, ps, &blocks, 0);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++	KUNIT_EXPECT_EQ(test, mm.avail, 0ULL);
++
++	gpu_buddy_free_list(&mm, &blocks, 0);
++	gpu_buddy_fini(&mm);
++
++	/*
++	 * Randomized exact-range allocations.
++	 * Divide the mm into N random-sized, contiguous, page-aligned slices
++	 * and allocate each as an exact range in random order.
++	 */
++	mm_size = SZ_16M;
++	KUNIT_ASSERT_FALSE(test, gpu_buddy_init(&mm, mm_size, ps));
++
++	{
++#define N_RAND_RANGES 16
++		u32 ranges[N_RAND_RANGES + 1]; /* boundaries */
++		u32 order_arr[N_RAND_RANGES];
++		u32 remaining = mm_size;
++		int i;
++
++		ranges[0] = 0;
++		for (i = 0; i < N_RAND_RANGES - 1; i++) {
++			u32 max_chunk = remaining - (N_RAND_RANGES - 1 - i) * ps;
++			u32 sz = max(round_up(prandom_u32_state(&prng) % max_chunk, ps), ps);
++
++			ranges[i + 1] = ranges[i] + sz;
++			remaining -= sz;
++		}
++		ranges[N_RAND_RANGES] = mm_size;
++
++		/* Create a random order */
++		for (i = 0; i < N_RAND_RANGES; i++)
++			order_arr[i] = i;
++		for (i = N_RAND_RANGES - 1; i > 0; i--) {
++			u32 j = prandom_u32_state(&prng) % (i + 1);
++			u32 tmp_val = order_arr[i];
++
++			order_arr[i] = order_arr[j];
++			order_arr[j] = tmp_val;
++		}
++
++		for (i = 0; i < N_RAND_RANGES; i++) {
++			u32 idx = order_arr[i];
++			u32 start = ranges[idx];
++			u32 end = ranges[idx + 1];
++			u32 sz = end - start;
++
++			ret = gpu_buddy_alloc_blocks(&mm, start, end, sz, ps, &blocks, 0);
++			KUNIT_ASSERT_EQ_MSG(test, ret, 0,
++					    "random exact-range [%x, %x) sz=%x failed\n",
++					    start, end, sz);
++		}
++
++		KUNIT_EXPECT_EQ(test, mm.avail, 0ULL);
++		gpu_buddy_free_list(&mm, &blocks, 0);
++#undef N_RAND_RANGES
++	}
++
++	gpu_buddy_fini(&mm);
++
++	/*
++	 * Negative case - partially allocated range.
++	 * Allocate the first half, then try to exact-range allocate the full
++	 * mm. This must fail because the first half is already occupied.
++	 */
++	mm_size = SZ_16M;
++	KUNIT_ASSERT_FALSE(test, gpu_buddy_init(&mm, mm_size, ps));
++
++	ret = gpu_buddy_alloc_blocks(&mm, 0, mm_size / 2, mm_size / 2, ps, &blocks, 0);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++
++	ret = gpu_buddy_alloc_blocks(&mm, 0, mm_size, mm_size, ps, &tmp, 0);
++	KUNIT_EXPECT_NE_MSG(test, ret, 0,
++			    "exact-range alloc should fail when range is partially used\n");
++
++	/* Also try the already-occupied sub-range directly */
++	ret = gpu_buddy_alloc_blocks(&mm, 0, mm_size / 2, mm_size / 2, ps, &tmp, 0);
++	KUNIT_EXPECT_NE_MSG(test, ret, 0,
++			    "double alloc of same exact range should fail\n");
++
++	/* The free second half should still be allocatable */
++	ret = gpu_buddy_alloc_blocks(&mm, mm_size / 2, mm_size, mm_size / 2, ps, &blocks, 0);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++
++	KUNIT_EXPECT_EQ(test, mm.avail, 0ULL);
++	gpu_buddy_free_list(&mm, &blocks, 0);
++	gpu_buddy_fini(&mm);
++
++	/*
++	 * Negative case - checkerboard partial allocation.
++	 * Allocate every other page-sized chunk in a small mm, then try to
++	 * exact-range allocate a range covering two pages (one allocated, one
++	 * free). This must fail.
++	 */
++	mm_size = SZ_64K;
++	KUNIT_ASSERT_FALSE(test, gpu_buddy_init(&mm, mm_size, ps));
++
++	{
++		u32 off;
++
++		for (off = 0; off < mm_size; off += 2 * ps) {
++			ret = gpu_buddy_alloc_blocks(&mm, off, off + ps, ps, ps, &blocks, 0);
++			KUNIT_ASSERT_EQ(test, ret, 0);
++		}
++
++		/* Try exact range over a pair [allocated, free] */
++		ret = gpu_buddy_alloc_blocks(&mm, 0, 2 * ps, 2 * ps, ps, &tmp, 0);
++		KUNIT_EXPECT_NE_MSG(test, ret, 0,
++				    "exact-range over partially allocated pair should fail\n");
++
++		/* The free pages individually should still work */
++		ret = gpu_buddy_alloc_blocks(&mm, ps, 2 * ps, ps, ps, &blocks, 0);
++		KUNIT_ASSERT_EQ(test, ret, 0);
++
++		gpu_buddy_free_list(&mm, &blocks, 0);
++	}
++
++	gpu_buddy_fini(&mm);
++
++	/* Negative case - misaligned start/end/size */
++	mm_size = SZ_16M;
++	KUNIT_ASSERT_FALSE(test, gpu_buddy_init(&mm, mm_size, ps));
++
++	/* start not aligned to chunk_size */
++	ret = gpu_buddy_alloc_blocks(&mm, ps / 2, ps / 2 + ps, ps, ps, &tmp, 0);
++	KUNIT_EXPECT_NE(test, ret, 0);
++
++	/* size not aligned */
++	ret = gpu_buddy_alloc_blocks(&mm, 0, ps + 1, ps + 1, ps, &tmp, 0);
++	KUNIT_EXPECT_NE(test, ret, 0);
++
++	/* end exceeds mm size */
++	ret = gpu_buddy_alloc_blocks(&mm, mm_size, mm_size + ps, ps, ps, &tmp, 0);
++	KUNIT_EXPECT_NE(test, ret, 0);
++
++	gpu_buddy_fini(&mm);
++
++	/*
++	 * Free and re-allocate the same exact range.
++	 * This exercises merge-on-free followed by exact-range re-split.
++	 */
++	mm_size = SZ_16M;
++	KUNIT_ASSERT_FALSE(test, gpu_buddy_init(&mm, mm_size, ps));
++
++	{
++		int i;
++
++		for (i = 0; i < 5; i++) {
++			ret = gpu_buddy_alloc_blocks(&mm, SZ_4M, SZ_4M + SZ_2M,
++						     SZ_2M, ps, &blocks, 0);
++			KUNIT_ASSERT_EQ_MSG(test, ret, 0,
++					    "re-alloc iteration %d failed\n", i);
++
++			total = 0;
++			list_for_each_entry(block, &blocks, link) {
++				u64 offset = gpu_buddy_block_offset(block);
++				u64 bsize = gpu_buddy_block_size(&mm, block);
++
++				KUNIT_EXPECT_GE(test, offset, (u64)SZ_4M);
++				KUNIT_EXPECT_LE(test, offset + bsize, (u64)(SZ_4M + SZ_2M));
++				total += (u32)bsize;
++			}
++			KUNIT_EXPECT_EQ(test, total, SZ_2M);
++
++			gpu_buddy_free_list(&mm, &blocks, 0);
++		}
++
++		KUNIT_EXPECT_EQ(test, mm.avail, (u64)mm_size);
++	}
++
++	gpu_buddy_fini(&mm);
++
++	/*
++	 * Various power-of-two exact ranges within a large mm.
++	 * Allocate non-overlapping power-of-two exact ranges at their natural
++	 * alignment, validating that the allocator handles different orders.
++	 */
++	mm_size = SZ_16M;
++	KUNIT_ASSERT_FALSE(test, gpu_buddy_init(&mm, mm_size, ps));
++
++	/* Allocate 4K at offset 0 */
++	ret = gpu_buddy_alloc_blocks(&mm, 0, SZ_4K, SZ_4K, ps, &blocks, 0);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++
++	/* Allocate 64K at offset 64K */
++	ret = gpu_buddy_alloc_blocks(&mm, SZ_64K, SZ_64K + SZ_64K, SZ_64K, ps, &blocks, 0);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++
++	/* Allocate 1M at offset 1M */
++	ret = gpu_buddy_alloc_blocks(&mm, SZ_1M, SZ_1M + SZ_1M, SZ_1M, ps, &blocks, 0);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++
++	/* Allocate 4M at offset 4M */
++	ret = gpu_buddy_alloc_blocks(&mm, SZ_4M, SZ_4M + SZ_4M, SZ_4M, ps, &blocks, 0);
++	KUNIT_ASSERT_EQ(test, ret, 0);
++
++	total = 0;
++	list_for_each_entry(block, &blocks, link)
++		total += (u32)gpu_buddy_block_size(&mm, block);
++	KUNIT_EXPECT_EQ(test, total, SZ_4K + SZ_64K + SZ_1M + SZ_4M);
++
++	gpu_buddy_free_list(&mm, &blocks, 0);
++	gpu_buddy_fini(&mm);
++}
++
+ static void gpu_test_buddy_alloc_clear(struct kunit *test)
+ {
+ 	unsigned long n_pages, total, i = 0;
+@@ -909,6 +1235,7 @@ static struct kunit_case gpu_buddy_tests[] = {
+ 	KUNIT_CASE(gpu_test_buddy_alloc_pathological),
+ 	KUNIT_CASE(gpu_test_buddy_alloc_contiguous),
+ 	KUNIT_CASE(gpu_test_buddy_alloc_clear),
++	KUNIT_CASE(gpu_test_buddy_alloc_range),
+ 	KUNIT_CASE(gpu_test_buddy_alloc_range_bias),
+ 	KUNIT_CASE_SLOW(gpu_test_buddy_fragmentation_performance),
+ 	KUNIT_CASE(gpu_test_buddy_alloc_exceeds_max_order),
+-- 
+2.52.0
 
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->   drivers/gpu/drm/i915/display/intel_alpm.c | 2 +-
->   drivers/gpu/drm/i915/display/intel_alpm.h | 2 +-
->   drivers/gpu/drm/i915/display/intel_dp.c   | 2 +-
->   3 files changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-> index b3334bc4d0f9..8ba7463d7fe1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.c
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-> @@ -42,7 +42,7 @@ bool intel_alpm_is_alpm_aux_less(struct intel_dp *intel_dp,
->   		(crtc_state->has_lobf && intel_alpm_aux_less_wake_supported(intel_dp));
->   }
->   
-> -void intel_alpm_init(struct intel_dp *intel_dp)
-> +void intel_alpm_init_dpcd(struct intel_dp *intel_dp)
->   {
->   	u8 dpcd;
->   
-> diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-> index 1cf70668ab1b..a24a7a03bdaa 100644
-> --- a/drivers/gpu/drm/i915/display/intel_alpm.h
-> +++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-> @@ -15,7 +15,7 @@ struct intel_connector;
->   struct intel_atomic_state;
->   struct intel_crtc;
->   
-> -void intel_alpm_init(struct intel_dp *intel_dp);
-> +void intel_alpm_init_dpcd(struct intel_dp *intel_dp);
->   bool intel_alpm_compute_params(struct intel_dp *intel_dp,
->   			       struct intel_crtc_state *crtc_state);
->   void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 1544758c0bbc..4e9df88b90cd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -4749,7 +4749,7 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector
->   	intel_dp_init_source_oui(intel_dp);
->   
->   	/* Read ALPM DPCD caps before reading the PSR CAPS */
-> -	intel_alpm_init(intel_dp);
-> +	intel_alpm_init_dpcd(intel_dp);
->   
->   	/*
->   	 * This has to be called after intel_dp->edp_dpcd is filled, PSR checks
