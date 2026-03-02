@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DBDBD58E73
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 08:10:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32C51D58E78
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 08:10:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 113BD10E44B;
-	Mon,  2 Mar 2026 08:10:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E67A110E44E;
+	Mon,  2 Mar 2026 08:10:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KqyH5dC5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="esyrd8YH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7D5610E44B
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Mar 2026 08:10:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2748B10E44E
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Mar 2026 08:10:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772439014; x=1803975014;
+ t=1772439017; x=1803975017;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=oeaYTP3N5SWcewtojoTwUx177AzgdDZzD1rnZZC3qKk=;
- b=KqyH5dC5LjbBq6NzyXDMt6NgDxvsYN3m1ZqhEQnVaFIKCpMd09OZ7pf1
- uPc91rhGNcMt+KQGc9qqm8cWz9ot8dzBaSJcMJcBso3AAT/I9dpnnoBCV
- O9HPUySLK1PhtF9T9xwHalIpCUlunhdRyDiWMnyGa5QRiMs1dmiecgdqz
- POpnYvJdwdrVC2ovEjUYj3pOJb3fAtzVtuHNcgmZnZj26nH272k5ICvMx
- GhSmPonqbNms1yI7nOCPBEoClxzTi7+bAIj3BldqxA+0RrWfi5V/VasQi
- brzuF9gkSYrVCIxBOGBoewuPEaPt5YtwiDSu4nipqtRXtLGX0W4mw6oBf Q==;
-X-CSE-ConnectionGUID: lwQUmboTThurRFpvhA6rOw==
-X-CSE-MsgGUID: D5RTLFJPQ+mHfzVACm5I2Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="84790259"
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="84790259"
+ bh=9DzvbH7fA/XrcBi1iEEKYx7mFDaB3iaSZxjZQnjoNdM=;
+ b=esyrd8YH09W12E6xWp2KKWhIxz8qhb6xg1BGAM7vUMeKAnY+BE/JYkPe
+ R9wRfuKVdcLAkOdQkkJDU/+rpxaMVLK2m354/0EhqLK+P6md2iYBaJsya
+ 8YJ5g9vhuvU+TuBEhy21NebRlCKyFkivBcQNQzMt1W+t5efir1fBpzlrs
+ ovbyjBk9FZChxT87F2OkT2VOdSQziarsWN6KP5RdTsfxTjo4Qbphg3cvl
+ l004zaozdCQlKFEmhJXxbBtTEwxgqhQCw73Whj/IyTt8TTYO7/tEnRYIZ
+ NrJ4N91dOAHBLvwWJr87wVjEP1coH4WN22sz6WJzu2TjCMYlDR7O9IlRf w==;
+X-CSE-ConnectionGUID: /gciy4FzRwyN3fmOzmRNrw==
+X-CSE-MsgGUID: 62UhlU7+Q2ml3Ymo8NB3wQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="84790334"
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="84790334"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 00:10:13 -0800
-X-CSE-ConnectionGUID: 6KtxTUPVShyhnX+x1rXVfg==
-X-CSE-MsgGUID: p1y0CtO+R7Gin7mYclY+Gw==
+ 02 Mar 2026 00:10:17 -0800
+X-CSE-ConnectionGUID: bR0RPVN7Si+7QdTJMNrnHQ==
+X-CSE-MsgGUID: ztdESxuSRTiu/Cj5lMmGjQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="214079135"
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="214079203"
 Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 00:10:10 -0800
+ 02 Mar 2026 00:10:13 -0800
 From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
@@ -48,10 +48,10 @@ Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
  riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
  michael.j.ruhl@intel.com, paul.e.luse@intel.com,
  mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
-Subject: [PATCH v8 1/6] drm/xe/sysctrl: Add System Controller types and device
- integration
-Date: Mon,  2 Mar 2026 00:10:03 -0800
-Message-ID: <20260302081002.3275868-9-anoop.c.vijay@intel.com>
+Subject: [PATCH v8 2/6] drm/xe/sysctrl: Add System Controller register
+ definitions
+Date: Mon,  2 Mar 2026 00:10:04 -0800
+Message-ID: <20260302081002.3275868-10-anoop.c.vijay@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260302081002.3275868-8-anoop.c.vijay@intel.com>
 References: <20260302081002.3275868-8-anoop.c.vijay@intel.com>
@@ -74,110 +74,68 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Add foundational type definitions for System Controller support and
-integrate them into xe_device structure. Also add has_sysctrl
-capability flag to device descriptor and runtime info.
+Add register definitions for System Controller mailbox interface:
+- Control and data registers
+- MKHI protocol frame control fields
+- Base address and BAR configuration
 
-No functional changes. This is preparatory infrastructure for
-System Controller support.
+No functional changes, just register definitions.
 
 Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
 ---
-v4: (Matt, Mike)
-- Add domain-specific MMIO accessor
-- Change phase_bit type from u32 to bool
+v4: (Matt)
+- Use lowercase hex values
+- Align macro definitions to column 49
+- Change to relative register offsets
 
 v6: (Matt)
-- Add mailbox protocol constants
-
-v8: (Matt, Michal)
-- Reordered patches for logical flow
+- Move protocol constants to xe_sysctrl_mailbox_types.h
+- Add SYSCTRL_MB_CTRL_MKHI_CMD helper macro
 ---
- drivers/gpu/drm/xe/xe_device_types.h  |  6 +++++
- drivers/gpu/drm/xe/xe_pci_types.h     |  1 +
- drivers/gpu/drm/xe/xe_sysctrl_types.h | 32 +++++++++++++++++++++++++++
- 3 files changed, 39 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_types.h
+ drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h | 36 +++++++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index caa8f34a6744..ec66ef772cd6 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -26,6 +26,7 @@
- #include "xe_sriov_vf_ccs_types.h"
- #include "xe_step_types.h"
- #include "xe_survivability_mode_types.h"
-+#include "xe_sysctrl_types.h"
- #include "xe_tile_types.h"
- #include "xe_validation.h"
- 
-@@ -203,6 +204,8 @@ struct xe_device {
- 		u8 has_soc_remapper_telem:1;
- 		/** @info.has_sriov: Supports SR-IOV */
- 		u8 has_sriov:1;
-+		/** @info.has_sysctrl: Supports System Controller */
-+		u8 has_sysctrl:1;
- 		/** @info.has_usm: Device has unified shared memory support */
- 		u8 has_usm:1;
- 		/** @info.has_64bit_timestamp: Device supports 64-bit timestamps */
-@@ -512,6 +515,9 @@ struct xe_device {
- 	/** @i2c: I2C host controller */
- 	struct xe_i2c *i2c;
- 
-+	/** @sc: System Controller */
-+	struct xe_sysctrl sc;
-+
- 	/** @atomic_svm_timeslice_ms: Atomic SVM fault timeslice MS */
- 	u32 atomic_svm_timeslice_ms;
- 
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index 47e8a1552c2b..6ffef99b7973 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -57,6 +57,7 @@ struct xe_device_desc {
- 	u8 has_soc_remapper_sysctrl:1;
- 	u8 has_soc_remapper_telem:1;
- 	u8 has_sriov:1;
-+	u8 has_sysctrl:1;
- 	u8 needs_scratch:1;
- 	u8 skip_guc_pc:1;
- 	u8 skip_mtcfg:1;
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_types.h b/drivers/gpu/drm/xe/xe_sysctrl_types.h
+diff --git a/drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h b/drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h
 new file mode 100644
-index 000000000000..c1a3f4c835b8
+index 000000000000..f3c00f54a2ce
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_types.h
-@@ -0,0 +1,32 @@
++++ b/drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h
+@@ -0,0 +1,36 @@
 +/* SPDX-License-Identifier: MIT */
 +/*
 + * Copyright © 2026 Intel Corporation
 + */
 +
-+#ifndef _XE_SYSCTRL_TYPES_H_
-+#define _XE_SYSCTRL_TYPES_H_
++#ifndef _XE_SYSCTRL_REGS_H_
++#define _XE_SYSCTRL_REGS_H_
 +
-+#include <linux/mutex.h>
-+#include <linux/types.h>
++#include "xe_regs.h"
 +
-+struct xe_mmio;
++#define SYSCTRL_BASE_OFFSET			0xdb000
++#define SYSCTRL_BASE				(SOC_BASE + SYSCTRL_BASE_OFFSET)
++#define SYSCTRL_MAILBOX_INDEX			0x03
++#define SYSCTRL_BAR_LENGTH			0x1000
 +
-+/**
-+ * struct xe_sysctrl - System Controller driver context
-+ *
-+ * This structure maintains the runtime state for System Controller
-+ * communication. All fields are initialized during xe_sysctrl_init()
-+ * and protected appropriately for concurrent access.
-+ */
-+struct xe_sysctrl {
-+	/** @mmio: MMIO region for system control registers */
-+	struct xe_mmio *mmio;
++#define SYSCTRL_MB_CTRL				XE_REG(0x10)
++#define   SYSCTRL_MB_CTRL_RUN_BUSY		REG_BIT(31)
++#define   SYSCTRL_MB_CTRL_IRQ			REG_BIT(30)
++#define   SYSCTRL_MB_CTRL_RUN_BUSY_OUT		REG_BIT(29)
++#define   SYSCTRL_MB_CTRL_PARAM3_MASK		REG_GENMASK(28, 24)
++#define   SYSCTRL_MB_CTRL_PARAM2_MASK		REG_GENMASK(23, 16)
++#define   SYSCTRL_MB_CTRL_PARAM1_MASK		REG_GENMASK(15, 8)
++#define   SYSCTRL_MB_CTRL_COMMAND_MASK		REG_GENMASK(7, 0)
++#define   SYSCTRL_MB_CTRL_MKHI_CMD		REG_FIELD_PREP(SYSCTRL_MB_CTRL_COMMAND_MASK, 5)
 +
-+	/** @cmd_lock: Mutex protecting mailbox command operations */
-+	struct mutex cmd_lock;
++#define SYSCTRL_MB_DATA0			XE_REG(0x14)
++#define SYSCTRL_MB_DATA1			XE_REG(0x18)
++#define SYSCTRL_MB_DATA2			XE_REG(0x1C)
++#define SYSCTRL_MB_DATA3			XE_REG(0x20)
 +
-+	/** @phase_bit: MKHI message boundary phase toggle bit (0 or 1) */
-+	bool phase_bit;
-+};
++#define MKHI_FRAME_PHASE			REG_BIT(24)
++#define MKHI_FRAME_CURRENT_MASK			REG_GENMASK(21, 16)
++#define MKHI_FRAME_TOTAL_MASK			REG_GENMASK(13, 8)
++#define MKHI_FRAME_COMMAND_MASK			REG_GENMASK(7, 0)
 +
 +#endif
 -- 
