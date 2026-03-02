@@ -4,165 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E23BD58E4C
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 09:35:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09D13E9B340
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 09:39:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E475410E209;
-	Mon,  2 Mar 2026 09:35:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C15D910E209;
+	Mon,  2 Mar 2026 09:39:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OpGFzlI2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jX8pTZ5c";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE4B110E209
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Mar 2026 09:35:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E25E10E209;
+ Mon,  2 Mar 2026 09:39:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772444149; x=1803980149;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=vnJq96jlQzQz9AF0A2jT2uLk2SlPreRABJqEx+un1TQ=;
- b=OpGFzlI2DJ8RH215/Pux0pkNn9+LWwMAJOcomFBGTlGUSwvOCPVclmAO
- /NtW9rxmoTv0NApVOIMcaIecP8I1hhGSatS+N/1PLtmhGLsHFmroNarog
- uvIIkjYNdFTeOV/+ULB+QUzqeP4ID5YBNjLsYSkWUXNtgy+ErSWUjAH7/
- UcVmAwYDTUxEWxbVm89vFeUkFToo6YVRhSoiILv48sAqlXHNU8Vba5jh0
- q9haOhQXE0mp5zDnmUylt53MSA1Ac+ZRSrOLDXpPKdBelBTy5cWSdbuYi
- FJyxDJs7IodO7c00W6Q2rOLplin6sAYYmteOhfe/5t86/GTu6HnBmHf0w Q==;
-X-CSE-ConnectionGUID: dlPifCJrQUaWCbILnl76OQ==
-X-CSE-MsgGUID: 41jGCIaXSTW6FxMNJWRYUg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="72473963"
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="72473963"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 01:35:48 -0800
-X-CSE-ConnectionGUID: iLHP1MAvQnO1u0RL8E74Pg==
-X-CSE-MsgGUID: ihK+NXGeRyiY2FSw6KRBhA==
+ t=1772444355; x=1803980355;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=C/IKmReL6/AWqKgeho2zj5OurIYqVbDfsm4wmDu7IxE=;
+ b=jX8pTZ5ceNTfDCs2HqLsq27hUAsLzo18KSaQGQliN5YGckhGqocVZ6eI
+ YwtXT8m6EOS3+nHGJadJH86gdz6+g/Ga8Ji5BmcYdCS0tnJg/5zQ1efQ5
+ gpc/ms93NYsmgGzO18FT6DfHt7hgwAfXEgNMA1lkihuYOAl55mPR2YQ5k
+ NC4mnBeyCjx8DcRGxEOaF6vKfmcysZGk0U4Tu7EupQCcwu80T7BtxI6Ce
+ eve5s0hSjvZ8TeT5WT9w+Fc2Y3pVK8EkLVa+/sJszaLLl+S4Pp8x1ykcD
+ 3dfowYmKh7MCqmnvZFh+mn3bc2KFwgipWFmWVDTeQYz4Ho7M3xo2RUGpS w==;
+X-CSE-ConnectionGUID: 6iGO/YCpSX6ZpFuEYk6xog==
+X-CSE-MsgGUID: al8o2ZuKRwu47QzRVxhKYQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="73355650"
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="73355650"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 01:39:15 -0800
+X-CSE-ConnectionGUID: +WNCp4nyQ6iKBAsZT99AJA==
+X-CSE-MsgGUID: IEt66UKmR5WT9RZSU4uD/w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="220681506"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 01:35:49 -0800
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 2 Mar 2026 01:35:48 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 2 Mar 2026 01:35:48 -0800
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.51) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 2 Mar 2026 01:35:48 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vZZmXUSJ7mBh/UnkOouXdZRG4Ay+W5oR2EtgxBKrLVpZ0c02Hgn5tOqLsZ8kDpNAjoPn/AsNIQ5PtjMFkC3CuT+ZdqtQ3V6yozydnc9oaLB2MnjMrA/mCKplfEGwgCyjLK61hmg8u2cu8MbD4zMB9iQ9wvbmYDQkjnQoIpCnbKdaFVEahF8VPEaVG0/jWZ8O3sKSnJPoiD74IiidZpNwDhByGsBpkQnn26btSeyXXsaN142x+hV0dx8sp/aJj4nRBvBsbQ/lKck1Rpxq5aGFnPFftdQ760dkAiYyOb3iLX0akYI99OwRluBJnO8j0/mNgl9uvBTbPP/VL8PXqYdgjQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2N2uaxIQB2vDfFWnGo02+wvhWuQvFZ+WXD/woBnKDzk=;
- b=ucfQ6PZAvFnd6pnSypY/f/01KNX7j3vzeI8PMBQfAv9xBHum7QIqtWfNvF5E2fnHWt8iPedHECoN3psN4ujJrvBD9gKLqf4MHpl5t0QYIe+iBV2kIhBt1ufwK2AmwspowVOO2HtwXB/FzqbiACh6Lcl5DT4zowlaJIKwnL7YNOtS7bGhUUBF+/uvJMIjaBBmMC/64DoIUVwRIgGcM6FlCG04X/uVCVDlD45bDqGGE+p6D7g4vWBkZDK9hxSzfbKKsbuhfXr77/uvxqapYgtDnlNgrfq8nkh6HnEwXj9f8yCzlz2TZ40ASVtC8i9VvKLwt3X6UQw3oTELS9mwrIM9EQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SA3PR11MB7556.namprd11.prod.outlook.com (2603:10b6:806:31f::21)
- by SA1PR11MB5921.namprd11.prod.outlook.com (2603:10b6:806:22a::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.16; Mon, 2 Mar
- 2026 09:35:43 +0000
-Received: from SA3PR11MB7556.namprd11.prod.outlook.com
- ([fe80::3b95:cfb:be21:788c]) by SA3PR11MB7556.namprd11.prod.outlook.com
- ([fe80::3b95:cfb:be21:788c%3]) with mapi id 15.20.9654.020; Mon, 2 Mar 2026
- 09:35:43 +0000
-Message-ID: <5ffd98cb-9c41-4907-8855-384f20a8e27a@intel.com>
-Date: Mon, 2 Mar 2026 15:05:33 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/6] drm/xe/sysctrl: Add System Controller types and
- structures
-To: "Lin, Shuicheng" <shuicheng.lin@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Nerlige Ramappa, Umesh" <umesh.nerlige.ramappa@intel.com>, "Nilawar,
- Badal" <badal.nilawar@intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>, "Tauro, Riana"
- <riana.tauro@intel.com>, "Gupta, Anshuman" <anshuman.gupta@intel.com>,
- "Roper, Matthew D" <matthew.d.roper@intel.com>, "Ruhl, Michael J"
- <michael.j.ruhl@intel.com>, "Luse, Paul E" <paul.e.luse@intel.com>, "V,
- Mohamed Mansoor" <mohamed.mansoor.v@intel.com>, "Nasim, Kam"
- <kam.nasim@intel.com>
-References: <20260128081403.3138456-8-anoop.c.vijay@intel.com>
- <20260128081403.3138456-10-anoop.c.vijay@intel.com>
- <DM4PR11MB54567ADA9436AC7380EFA6DEEA91A@DM4PR11MB5456.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Anoop Vijay <anoop.c.vijay@intel.com>
-Organization: Intel
-In-Reply-To: <DM4PR11MB54567ADA9436AC7380EFA6DEEA91A@DM4PR11MB5456.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0112.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1b5::15) To SA3PR11MB7556.namprd11.prod.outlook.com
- (2603:10b6:806:31f::21)
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="221752346"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO [10.245.244.81])
+ ([10.245.244.81])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 01:39:12 -0800
+Message-ID: <4e9ac4fe88f4b8aec161d4edb4b4f66e70554ec8.camel@linux.intel.com>
+Subject: Re: [PATCH 1/2] drm/ttm: Don't spam the log on buffer object
+ backing store allocation failure
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, 
+ intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>, Matthew Auld
+ <matthew.auld@intel.com>, dri-devel@lists.freedesktop.org
+Date: Mon, 02 Mar 2026 10:39:10 +0100
+In-Reply-To: <fe4d93d8-5c9c-460b-93e1-5d0d49a316ab@amd.com>
+References: <20260227160012.82309-1-thomas.hellstrom@linux.intel.com>
+ <20260227160012.82309-2-thomas.hellstrom@linux.intel.com>
+ <fe4d93d8-5c9c-460b-93e1-5d0d49a316ab@amd.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SA3PR11MB7556:EE_|SA1PR11MB5921:EE_
-X-MS-Office365-Filtering-Correlation-Id: d82c3a90-c469-49e6-1189-08de783f12ce
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: z++Oy1K6lES6T0sBYCdCGGmRYBsGFaxtt2wTRnhsci3kSe5vfRTXYWWEp4G6viy5ij1jNleRq8X2rrAnV8xoLfnmFfV4A9lSV9BLyPgev+qcqzl8xtbxQJvocLTkRFzDtPvVf3nrcpj0M5WkKM23MnG+LPm5wRv8KlMhvDUSQ2HFUS9d10/aXhDauABH2Psrc4CSu42jR1TeleND4w9pNkD0H7XWnrsFCNXdGtOYXu835z4PY5Ui75hb9qFqQ00KBTVpBcEoGHI9btwizqQXiM1LQuxo5b+pD5g94s7g76AhsdaooLiZIZAP0y+LntUYg4u0CAyHx/kEA80+xap02szGf147ev5zBk8paiXscjwFt9Q4bm6PLwYUKg7l3kDw8oB6umSai6PZjYhrE/Tcdo1XyLzKt1hTl8RybFjv8CH7hfGwH4xRfjBLAEv1wJWKbZ6k+o9CJn0WqPMXp5tCc5vC92or8q7cgwW8lx81pbMT5vlJlqPAQC5hcngteHHFjpmERzkRbrIPbbtT8uGoPhLWD1gCKc1p1xIqV94OJoHbM8a15SKyt99sQydkazVH9hO13zcdd1718vCVlvtmFLlSH00IRkbLeF++mVDALFdqWYmF9kfMKxqOMGT7KkCq55Mw52Pv0iBKK+q8Kc4HJxQlXoG+BB0YEv5dPjfDyF+ksxAzVRaRY6J2Aspla948
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SA3PR11MB7556.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZzhWSVBnT0hZeER2MHI0TkJmSTNNMTlvOE1NekNyY1NadWxLV1RLVU93OUM4?=
- =?utf-8?B?cXF3SHdpSUMycGNGUGRFU2tyWnUvemIyaDlCN05VMzFrN0RUbnhqcy9oUW4x?=
- =?utf-8?B?U3hwY0tRUWJXNUhrMERhSTl4ZUgwY1dwUnFYZDQ0b1g5WkdXekVpeklRRlpx?=
- =?utf-8?B?azlkTzdNOG1OUm5ydHJPSDBFTjZlQ1dsR3JxWTh1U0VIc3RKWVVIdXl6QUFB?=
- =?utf-8?B?eWYxTHdhTzVhMmJNTDZ0TGR6S3JKUmZUMjR0dGVEYXdJcEF1Qkx5UUpkR052?=
- =?utf-8?B?bmpnWEFGS3dzb2kvQTZUSVR1QzhpNTNsazNMVWZPMERKcDYrTDdWUW84blVL?=
- =?utf-8?B?SXkzNm10T3poWVNKcVg2cjlsMmRaNjNKemYvcWUwYU95SnNGbE1GOXgwZm93?=
- =?utf-8?B?UkVEUVV3aDBaOXJnWHljQUQxSHRoQ1VwMHJ0MzBabmFmNGs5MlovcUV5MHlU?=
- =?utf-8?B?c0JOeGhkNkZlUERnUnYyL0FVWTk2VHB6bGdwbWtwQjIzZW1ObDNRR29Rb1dU?=
- =?utf-8?B?dnNTTFMwNnpuems2NG9DTTNDdlV3R2xwUU9RRkFuYU1BRmxmL2dUMGV6ZlRS?=
- =?utf-8?B?WjE4YzFscHlSSkpUMnlVNGlpVVRXVktGSVlVdjJENEFtcmEwMnQ5cVJjMHFK?=
- =?utf-8?B?SnJVMDFtbE1lZTVYaUtjY0tFdEpTWUJ4ZVNWWlpYWmpLY1lNUGdVWFZrR01R?=
- =?utf-8?B?UkFWckszNlhuUlJOZktjNFZTVXU4ODNGMzZmM3BlczdLTWlCd3Qxa0NXMVhY?=
- =?utf-8?B?SXZ2YW9tUHNmdkRiKytWVUYvV1EvTTZoTzNWUUlpSDNnUUZ4eWVBcEhMY2RM?=
- =?utf-8?B?Z3ljQ2hzQ25IajhQd3hmS0c0SVlpaHNsMlk0ODhhWlZMUlNjS2VVNTJWcXVq?=
- =?utf-8?B?c0tHT3FBT1lpczdDZkxaNHpVejlJNDM3cXlqdjNBNEMwYklSSEV5bmJUSjJ4?=
- =?utf-8?B?YmdWVng5bmlHd3NCVDlEcm9pQzhWaW9KZGxmSWxnMEJPQjRSdTVyN2RLSVFh?=
- =?utf-8?B?bzZ5V1RFeGd2empNWjljdnFtUTVrT3pJc0ZYaGh5d3RIVVdDZDgybDZTM1VB?=
- =?utf-8?B?TVYycXdBbzA3aWxGZGRrUnpqM1FFMmVkajJlVHZJeWN1SHdCYmgxRDBBcGwr?=
- =?utf-8?B?QytXSkl4M0s0SGVZVmp1Z01ZR1pnWWtrZFhBQXlsTXh5TUFhWGJzNHg3ZDla?=
- =?utf-8?B?UXJHL0pmQkRpRFl3bG1TQ1IrVkZmRDZhYVBrSWlWU203NSsxT25vWkUzSk1a?=
- =?utf-8?B?MUdnUlJyYWVscWd4WUVrZmhEM2xWeUxNaFpDYmxpMitXaHNCQWozMUVORGo3?=
- =?utf-8?B?Nk1jZk5pWkxQTVY0dktFNUNWTlZJUGx2WnFvcW1aMHNKM0J1SThjMHBpOEM5?=
- =?utf-8?B?Z0RrN1FITmhuSTVLTVFNZkcrNllxVjdudmRlOFM1dDcrRnVXSHk1elpYUHNG?=
- =?utf-8?B?amo2VEtJN2oyMktHRmlzQnZyR2cyVVNjSXBZZ1hXN1REaUxMbHBmYnNGZFhO?=
- =?utf-8?B?ckhLN1FnOEUvRXFZRVBFK0ZiK1lNWTZoTWRrdVVBaDdYcEVaQ09qSWJtSE9T?=
- =?utf-8?B?UnRwcmxWeTJaNnEwZkszclJyWCtFc0dZOFQ0bi93RE1DZkFhVjNIZ21DSS9C?=
- =?utf-8?B?Vk52dUpxWEx0V1EyTldLOGs5Vk9RYUlmSEw0eGtkN2dPY2ZOZnFQbDhTUE0x?=
- =?utf-8?B?RzhOeVBoTm1Wb3pVZ2RuYk5hRnBuODFuVXp3M3c2Wi8rSVBLR3FmKzdiMm9u?=
- =?utf-8?B?NS9yS1NIZVBnd1BiSFFwUjBBU2FESEVDVmQ0RGJXem12elFOL1ZuZGhCdTc2?=
- =?utf-8?B?QkZyUkRHNTJqaS8ybzM5L05WNkRMcDZlOG8rRG9PZVVsMEdlUzFtY0ZOYzlY?=
- =?utf-8?B?ODF6M0VvN0VOR1lDc2hCMFdZbTRKK0M5dS9kRnFFajN6THJaY2hTTHVOd3Rv?=
- =?utf-8?B?ZmY0TjlVMHRXMGJESVVhc3ZlVDZVT1JNRW5mVExJY1g1bzcrcGs5a1B1YzB2?=
- =?utf-8?B?enNwYWJ3eFBPQmpneWdGNjYwQ2Erc1Nadjd2eGJ0NCtZNVFQbmtYTng3ei9B?=
- =?utf-8?B?SW4wbTlFendMTVA0dW9SbU9LN0xNaWVZTkZEWjlyMlU2ZHVRSEQ4c3M1TUtL?=
- =?utf-8?B?VUxySzdDZkNOMGNXSnpUblk0SjdJcmRWRUFGY0JSRzZjSHROeTRZOFBuR24z?=
- =?utf-8?B?VWtYSkV2RjhxRUEzTlNDYjQ3NFBTd29xdzhNWFNqa0REUFpBSHZmNjc1TlVP?=
- =?utf-8?B?a01VZW54TGtuTExLKzZMZ1JpU2xzQXg0aEx0SVFiUkNVVEZVZDR5VTExZHNa?=
- =?utf-8?B?cTRCT3RJdzhxMGZDNDJaWmE4OVArRGhTTHE2WjFaTDZ1ZGlSdTVNbUhuTDQr?=
- =?utf-8?Q?NhnTfN2TDBTn2Koc=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d82c3a90-c469-49e6-1189-08de783f12ce
-X-MS-Exchange-CrossTenant-AuthSource: SA3PR11MB7556.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 09:35:43.0701 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JZ0Blw/v8eAbYytDoxto+VmTlQLMBXQzDwiWC1Wohd40UuIks5UHBLrdIlomXMxph6JKT/FmHzKOcvw1x+gfyw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5921
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,186 +74,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Mon, 2026-03-02 at 10:02 +0100, Christian K=C3=B6nig wrote:
+> On 2/27/26 17:00, Thomas Hellstr=C3=B6m wrote:
+> > If the struct ttm_operation_ctx::gfp_retry_mayfail is true,
+> > buffer object backing store allocation failures are expected to
+> > silently fail with an error code to the caller. But currently an
+> > elaborate warning is printed to the system log.
+> >=20
+> > Don't spam the log in this way.
+>=20
+> That was intentionally removed or never added because Simona
+> absolutely didn't liked the gfp_retry_mayfail flag at that time.
+>=20
+> In general I'm fine with this change since I think we have proved by
+> now that the flag is useful, but that probably need more wider
+> discussion.
 
-On 1/29/2026 3:55 AM, Lin, Shuicheng wrote:
-> On Wed, Jan 28, 2026 12:14 AM Anoop Vijay wrote:
->> From: Anoop Vijay <anoop.c.vijay@intel.com>
->>
->> Add type definitions and header declarations for System Controller mailbox
->> communication protocol.
->>
->> Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
->> ---
->> v4: (Matt, Mike)
->> - Add domain-specific MMIO accessor
->> - Change phase_bit type from u32 to bool
->>
->> v6: (Matt)
->> - Add mailbox protocol constants
->> ---
->>   drivers/gpu/drm/xe/xe_sysctrl_mailbox.h       | 35 ++++++++++++++++
->>   drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h | 42
->> +++++++++++++++++++
->>   drivers/gpu/drm/xe/xe_sysctrl_types.h         | 33 +++++++++++++++
->>   3 files changed, 110 insertions(+)
->>   create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
->>   create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
->>   create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_types.h
->>
->> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
->> b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
->> new file mode 100644
->> index 000000000000..2b64165c8e76
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
->> @@ -0,0 +1,35 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2026 Intel Corporation
->> + */
->> +
->> +#ifndef __XE_SYSCTRL_MAILBOX_H__
->> +#define __XE_SYSCTRL_MAILBOX_H__
->> +
->> +#include <linux/bitfield.h>
->> +#include <linux/types.h>
->> +
->> +struct xe_sysctrl;
->> +struct xe_device;
->> +struct xe_sysctrl_mailbox_command;
->> +
->> +#define APP_HDR_GROUP_ID_MASK			GENMASK(7, 0)
->> +#define APP_HDR_COMMAND_MASK			GENMASK(15, 8)
->> +#define APP_HDR_VERSION_MASK			GENMASK(23, 16)
->> +#define APP_HDR_RESERVED_MASK			GENMASK(31, 24)
->> +
->> +#define XE_SYSCTRL_APP_HDR_GROUP_ID(hdr) \
->> +	FIELD_GET(APP_HDR_GROUP_ID_MASK, le32_to_cpu((hdr)->data))
->> +
->> +#define XE_SYSCTRL_APP_HDR_COMMAND(hdr) \
->> +	FIELD_GET(APP_HDR_COMMAND_MASK, le32_to_cpu((hdr)->data))
->> +
->> +#define XE_SYSCTRL_APP_HDR_VERSION(hdr) \
->> +	FIELD_GET(APP_HDR_VERSION_MASK, le32_to_cpu((hdr)->data))
->> +
->> +void xe_sysctrl_mailbox_init(struct xe_sysctrl *sc); int
->> +xe_sysctrl_send_command(struct xe_device *xe,
->> +			    struct xe_sysctrl_mailbox_command *cmd,
->> +			    size_t *rdata_len);
-> 
-> I don't see this function is called in the series. May I know when and where this function will be used?
-> Thanks.
-> 
-> Shuicheng
+Well for system memory it is a bit questionable to be honest, I think
+mostly because even if we return an error, the OOM killer might be
+invoked on an unrelated allocation immediately afterwards.
 
-xe_sysctrl_send_command() function is introduced here as part of mailbox 
-interface, it is called in other patch series build on top of this one, 
-such as:
-
-https://patchwork.freedesktop.org/series/160482/
-https://patchwork.freedesktop.org/series/160184/
-https://patchwork.freedesktop.org/series/161655/
+Still, even if the use of gfp_retry_mayfail can be discussed, I'm not
+sure why an error here needs to be printed when there are a number of
+other errors that are not printed or printed only on debug.
 
 Thanks,
-Anoop
+Thomas
 
-> 
->> +
->> +#endif /* __XE_SYSCTRL_MAILBOX_H__ */
->> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
->> b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
->> new file mode 100644
->> index 000000000000..ce10924c5881
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
->> @@ -0,0 +1,42 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2026 Intel Corporation
->> + */
->> +
->> +#ifndef __XE_SYSCTRL_MAILBOX_TYPES_H__
->> +#define __XE_SYSCTRL_MAILBOX_TYPES_H__
->> +
->> +#include <linux/types.h>
->> +
->> +struct xe_sysctrl_mailbox_mkhi_msg_hdr {
->> +	__le32 data;
->> +} __packed;
->> +
->> +struct xe_sysctrl_mailbox_app_msg_hdr {
->> +	__le32 data;
->> +} __packed;
->> +
->> +struct xe_sysctrl_mailbox_command {
->> +	/** @header: Application message header containing command
->> information */
->> +	struct xe_sysctrl_mailbox_app_msg_hdr header;
->> +
->> +	/** @data_in: Pointer to input payload data (can be NULL if no input
->> data) */
->> +	void *data_in;
->> +
->> +	/** @data_in_len: Size of input payload in bytes (0 if no input data) */
->> +	size_t data_in_len;
->> +
->> +	/** @data_out: Pointer to output buffer for response data (can be
->> NULL if no response) */
->> +	void *data_out;
->> +
->> +	/** @data_out_len: Size of output buffer in bytes (0 if no response
->> expected) */
->> +	size_t data_out_len;
->> +};
->> +
->> +#define SYSCTRL_MB_FRAME_SIZE			16
->> +#define SYSCTRL_MB_MAX_FRAMES			64
->> +#define SYSCTRL_MB_MAX_MESSAGE_SIZE
->> 	(SYSCTRL_MB_FRAME_SIZE * SYSCTRL_MB_MAX_FRAMES)
->> +
->> +#define SYSCTRL_MB_DEFAULT_TIMEOUT_MS		500
->> +
->> +#endif /* __XE_SYSCTRL_MAILBOX_TYPES_H__ */
->> diff --git a/drivers/gpu/drm/xe/xe_sysctrl_types.h
->> b/drivers/gpu/drm/xe/xe_sysctrl_types.h
->> new file mode 100644
->> index 000000000000..d4a362564925
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_sysctrl_types.h
->> @@ -0,0 +1,33 @@
->> +/* SPDX-License-Identifier: MIT */
->> +/*
->> + * Copyright © 2026 Intel Corporation
->> + */
->> +
->> +#ifndef _XE_SYSCTRL_TYPES_H_
->> +#define _XE_SYSCTRL_TYPES_H_
->> +
->> +#include <linux/mutex.h>
->> +#include <linux/types.h>
->> +
->> +struct xe_mmio;
->> +
->> +/**
->> + * struct xe_sysctrl - System Controller driver context  */ struct
->> +xe_sysctrl {
->> +	/** @mmio: MMIO region for system control registers */
->> +	struct xe_mmio *mmio;
->> +
->> +	/** @cmd_lock: Mutex protecting mailbox command operations */
->> +	struct mutex cmd_lock;
->> +
->> +	/**
->> +	 * @phase_bit: MKHI message boundary phase toggle bit
->> +	 *
->> +	 * Phase bit alternates between 0 and 1 for consecutive
->> +	 * messages to help distinguish message boundaries.
->> +	 */
->> +	bool phase_bit;
->> +};
->> +
->> +#endif /* _XE_SYSCTRL_TYPES_H_ */
->> --
->> 2.43.0
-> 
 
+>=20
+> Regards,
+> Christian.
+>=20
+> >=20
+> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > ---
+> > =C2=A0drivers/gpu/drm/ttm/ttm_pool.c | 2 +-
+> > =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/ttm/ttm_pool.c
+> > b/drivers/gpu/drm/ttm/ttm_pool.c
+> > index c0d95559197c..8fa9e09f6ee5 100644
+> > --- a/drivers/gpu/drm/ttm/ttm_pool.c
+> > +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+> > @@ -726,7 +726,7 @@ static int __ttm_pool_alloc(struct ttm_pool
+> > *pool, struct ttm_tt *tt,
+> > =C2=A0		gfp_flags |=3D __GFP_ZERO;
+> > =C2=A0
+> > =C2=A0	if (ctx->gfp_retry_mayfail)
+> > -		gfp_flags |=3D __GFP_RETRY_MAYFAIL;
+> > +		gfp_flags |=3D __GFP_RETRY_MAYFAIL | __GFP_NOWARN;
+> > =C2=A0
+> > =C2=A0	if (ttm_pool_uses_dma32(pool))
+> > =C2=A0		gfp_flags |=3D GFP_DMA32;
