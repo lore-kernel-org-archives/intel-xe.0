@@ -4,65 +4,157 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77138EB3637
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 21:33:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76B88EB363D
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 21:48:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E88610E5D6;
-	Mon,  2 Mar 2026 21:33:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3144010E5DB;
+	Mon,  2 Mar 2026 21:48:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HLZR/YEr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PH9VYxmb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A0BE10E5C3;
- Mon,  2 Mar 2026 21:33:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D49BC10E5DB
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Mar 2026 21:48:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772487209; x=1804023209;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=LZxIosRq4lQs18rEB7ozia74wMHgUHayh9CXSZmnCV4=;
- b=HLZR/YErVyLvYDQ39EwlQMxd8gbyHRz0ITZm4YUs8SKFtwoY+vBYEg+M
- anse/57aszzyoZ7NmkDVXb0lFq0zdLf6HcIc8qhBUXnTsW6lscHrF2g29
- AOS7jHqE23qfKmlPrZoy+rZtbmgoXt5qBaHmJyKFQTbvkb5aheeQoV2PG
- o7dzI5cG4qIbj332FjiaR10Y/otrncAwqJhI5t8Mq4SmsKfQs0IsBN5hg
- skumHWmi5/NMqoiItspkK+kLB9JrJvizzXgFyilI5cWOUAiWTAAUrcJMi
- i4usQbdGQi01RFnBZV/qp08lVPS7oSYbu60F+uQdHtF8CMzHi5gRGyMid g==;
-X-CSE-ConnectionGUID: BMCnpczoRHW3pWJ2LWRvlw==
-X-CSE-MsgGUID: MEVzgUDjTkOe5nLFTAZdBw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="73212884"
-X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="73212884"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 13:33:28 -0800
-X-CSE-ConnectionGUID: hDgtmLUoS5WeedhE79/wEw==
-X-CSE-MsgGUID: e4P3ROA6SbiU7uStVtFT0A==
+ t=1772488136; x=1804024136;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=HXI2ulteDXIs/GSBIvNniK6ON9MKpn8May7qDzaOKa4=;
+ b=PH9VYxmbKA8To7d2yqyLkgkrJea7M5b7mC/EL7Ob+iEblAsOrAs5IJX8
+ x98Noj4L62HM4R+rXe+oGnqo4C8VqPGuKu6Rv3u/RTAQf2m+r6d+zVUKz
+ K+5McM06utz1o2CuuRwArCUx3eu0vQe9Dh1eUXGpcHRVORuLeMmmaYtwL
+ 1eXdOBy2m5M4vX8/yqnfbwmkkhLAEz+vMRGleApMXhN4ii2WZ+n3Tbad5
+ ZQDave2q6Dakd3KXH6WYchpuZ8AseH/JOjLMuo2rvttklRgnKKVYUQYmv
+ qgVjAYnf5ZLnywY9XPhbvwQVt0Ba9b58MhjdrXXGekKKAhXhrffRY2nZA Q==;
+X-CSE-ConnectionGUID: WKSBezERTCWSIQVl6V9usw==
+X-CSE-MsgGUID: zu00uKA6RKWmHsLloT4KuQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="91083752"
+X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="91083752"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 13:48:56 -0800
+X-CSE-ConnectionGUID: q9DVOnc9TEm+VQiKETLncA==
+X-CSE-MsgGUID: QC6rljh1S1mYtaNVjIiMNQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="215370415"
-Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.244.183])
- ([10.245.244.183])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 13:33:25 -0800
-Message-ID: <3419e00ff2278a63bea5b175894646174dff2ec5.camel@linux.intel.com>
-Subject: Re: [PATCH v2 4/4] drm/xe/userptr: Defer Waiting for TLB
- invalidation to the second pass if possible
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="255651558"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 13:48:57 -0800
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 2 Mar 2026 13:48:55 -0800
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Mon, 2 Mar 2026 13:48:55 -0800
+Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.0) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 2 Mar 2026 13:48:55 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IuvG1tQg034JL9bxU46XX1bP/JHtSo3+BwQi0tYRlV1C8fj5pMlWmGkc1r/SD5pecDM7B5xOQnDF9BzzuGw2jnUvbNK6MqONtUWJNmFJGSB1C78MIMo6D85OM2DcY3YviT+f2Xl0gEXKQh+xlD06WYIsnhyWkT3Fi8d75iH6Ocjn07QsOQuTX0ittVvenF9AaWDYfq4hG0XJbFHvzF5X8W158jIXY4CdUhHwvw/OeB68CdHqYQcde/7kVjtJnI5LkW4lEpB8iSYIVVfmf6knLULs0BTL7xMrp2ml95wLs3SQZqWQqv5dI1HzpdvmpJGThcSkCSU7+931kj9nGjQeuw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=F5GDSL2eudKghhh77/LRBd5pp686qHijckXUOok2lI0=;
+ b=nSGkgxRikUnoJm7TMsc+XwiluF3mP+nailNUmgRbPMiNPVe4T9ah35q9spB08mzCiul3F7zyTDhzUVDEfFQHW08TcWuq0HjG9OSEDpDEjXd/25u3A0eJbZWcRlOIyNDzdTff/5w77CfNaVzOpfoHreApQ7d2J+Wwl9yrWvSsoynubGcoNMRVOhK0NWGBy/7t/yI/jElQRVTM0PlWMCHoETL08u3iIAfCMzs45gmrp5px+uhBPPdCS7tCpPbwzk94uAQn4KbAOAA+wtpdw6R3K0HMT9prW8jjX1isGA06dNjo9OPhj7SfIuvWnsWDALRyH/npx0O4PaInLJvBBlUDGQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
+ by CH3PR11MB7938.namprd11.prod.outlook.com (2603:10b6:610:12f::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.21; Mon, 2 Mar
+ 2026 21:47:46 +0000
+Received: from MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
+ ([fe80::3a69:3aa4:9748:6811%3]) with mapi id 15.20.9654.020; Mon, 2 Mar 2026
+ 21:47:46 +0000
+Message-ID: <30c186ba-8d1c-4c90-b609-58218f06c469@intel.com>
+Date: Mon, 2 Mar 2026 22:47:41 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe/pf: Take pci_rescan_remove_lock mutex when
+ disabling VFs
 To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, Christian =?ISO-8859-1?Q?K=F6nig?=	
- <christian.koenig@amd.com>, dri-devel@lists.freedesktop.org, Jason
- Gunthorpe	 <jgg@ziepe.ca>, Andrew Morton <akpm@linux-foundation.org>,
- Simona Vetter	 <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>,
- Alistair Popple	 <apopple@nvidia.com>, linux-mm@kvack.org,
- linux-kernel@vger.kernel.org
-Date: Mon, 02 Mar 2026 22:33:23 +0100
-In-Reply-To: <aaXhp1EhwE275kla@lstrano-desk.jf.intel.com>
-References: <20260302163248.105454-1-thomas.hellstrom@linux.intel.com>
- <20260302163248.105454-5-thomas.hellstrom@linux.intel.com>
- <aaXhp1EhwE275kla@lstrano-desk.jf.intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
+CC: <intel-xe@lists.freedesktop.org>, =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?=
+ <piotr.piorkowski@intel.com>
+References: <20260227214048.12649-1-michal.wajdeczko@intel.com>
+ <20260302094336.tdcyzx6kqkthfp4v@intel.com>
+ <aaX0v0pezDvqt9mT@lstrano-desk.jf.intel.com>
+Content-Language: en-US
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <aaX0v0pezDvqt9mT@lstrano-desk.jf.intel.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: VI1PR06CA0206.eurprd06.prod.outlook.com
+ (2603:10a6:802:2c::27) To MN0PR11MB6011.namprd11.prod.outlook.com
+ (2603:10b6:208:372::6)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|CH3PR11MB7938:EE_
+X-MS-Office365-Filtering-Correlation-Id: c3dafc65-2806-4deb-fd06-08de78a55747
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
+X-Microsoft-Antispam-Message-Info: 4LcrCb4HenAFz2E3cU7/h2KuODZ8l0yGwnN3/1Kq+gtv83Fn0AQbhVh65cKBZZbymd3yWznySO9wYJHey6cBBsi9AyNm1Xrm0JO8yvolJRw71w6dFapYXenYe1Zvrb07arO0dF4IKrAcxQr5lniShSnzbXPjUxTPXbslJwwnH+8zWRG2BlqwcT2Xd7St+eUfgjznlGDTAY6xBbREuep+Wkcd1QIQrgpVmd94EuEcTgz5rBNh5gGztNcXPnfbopKO6GR8oxTXM/BXkkidnOBiwhN+0DlskEcJZ0/qb/9jH520zfxgxmSF2qbODXW/NtoVUF8ZmNb5fNLlkfNNdLhhPkEFJY+1NYp1O4n2Gd+RdS0LqSXSSbJElzBqPnV2oajGjoPDhLp4O0Kat67Tcv+ro/vNXmcx8PaPc8h6wvSzF4FRWFswtHK9LrAaeE7hCINpGorTAGlAKD50ho0oUqDrBmrG5kpFdpBz75IiMLax43SNRryK/+Mn/S+wFSD7TMhm6znQZzFeD7bjNkGnO3tmrSdjvC1vrAn+foETYVz7p4TOzE9tp51EPZLET6t48mDlzUERYnoeuVFZl4L3EeqamV6W1pBDGTO2h9y6HIR1VI2zMyNXjr8DN8gDPwDUKAMCsCPxIQKZjQ1BjieCml8EL4DH7FH9YCgtgvV4OkZ/gDTMcBWL1q/P/RjNTK/nZazF
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WnlTSytkVHZxWFBDVU9ScURPS3Z2ZWdTaHFnaWhlT3RkclZPZThWTG9LRHF2?=
+ =?utf-8?B?Q1p6akVtOGRhNHFkMzVGaDRIc1RiNnVsUklBd08rZUppOStJeGQ3ZEQyazk2?=
+ =?utf-8?B?b1NVcDhaWkNZYXBNSWpVZzZFeHlGZ28wcDhaYUVrZVMvS3JaQmZ5WHYyRVZ5?=
+ =?utf-8?B?TE5ySllzTWpRSndOOGVCK1NPWGhZUVRFczFwUm1ncVpmNDFLZHB2ZVFPSlhR?=
+ =?utf-8?B?eVorNnRZOHBnUEo4TjduZHNDZW5RZy95QlgyYU90K3djNmUzcjhhbmUrNC9X?=
+ =?utf-8?B?V2lqVDZnNWlRSmx1aUtVbjVQcTF2MlpUUVNaTzlnUGJsc1dHMUsyRG5nMkcw?=
+ =?utf-8?B?T0FoMWNxZEpCRWRIalpZWGVEU1p6OWM3WFZYUXBwTWRnMDcwN2tVczcxRFJN?=
+ =?utf-8?B?MHc4Ni9tb2dWeWFyWmNPb3hTNklaN0o0MFljVEZuYVovV0U0RWhoN2kxZWkw?=
+ =?utf-8?B?Y2pWTURLanhPdUw1QmdQbHNpcXdpTDVUS1lvUmloRi9ZdXJEYW5RRitqaXJT?=
+ =?utf-8?B?WnpXUjFhS2VWTUljQm9tKzJQTEo4Y2hvU0N5SGlWS2syWXQxWkhTMmhEcHJq?=
+ =?utf-8?B?cVFHalJ3Z25yQ1ArRWh0TkRieGp3c3dSK3RwZVJORlhwaEdKMk9PM3JZYmd3?=
+ =?utf-8?B?Nk1Pcjh2V1RWR3crTzRZT3phTTI3T0syc050T1BXWnh5eXJtTU9YNjdwRWdx?=
+ =?utf-8?B?S3VVKzZVRng3Q0FwUDAyekJnRVBXMGFTSWRMSVlWQkxXZmM5UHgzMTNxL0la?=
+ =?utf-8?B?aXJ5VWZMZkZFWWRBOVFoSXVvUTNDNWcxeXhyQ2lNekFGWUo2WlZhdmRLOXg4?=
+ =?utf-8?B?TlFNT2tGRVlBQllOcENhRTM1dnBJSnVxSm1ON0N3SVdKQWJNc3lYOXJlTmNC?=
+ =?utf-8?B?RUtMWnhiVGNTYUl6WWdNSDNDNDR2VzhHWHZ2WmJpU0I3Yk9oS0hyYlZwTWdX?=
+ =?utf-8?B?U29na2tyRjByWnM4end5c2djR3BOWmY4ZHNONGk3U3RaZ2NnV2pmTGRBTUd5?=
+ =?utf-8?B?Ry9MZURVZWtOSm55aWlxWU9OeitkVHRmT21aOXdTVWFCSWx2eFRwejJ5MUY5?=
+ =?utf-8?B?VExBcUV5OGFUdUhpL3A5Y1c3ZXM0ZzRZb2lTazZSbzlSYzU2azNpY2hUNzVk?=
+ =?utf-8?B?T3h5U1VXaUZSR01GMGh2YnRJZWNiRDBGY25tU1YvcmdOMTJBcnV2Wm8rbUlV?=
+ =?utf-8?B?c0tYL0x4MjNKYll3L0RRc2hCbnQxNHg2WVpMMXNzdVgxQitWemZXbUZQN3lR?=
+ =?utf-8?B?STB2anJnMHJCY2FnMkpJMitPM09BVU5pOEtyREhvR29jei80Sk5mZGM4Unc2?=
+ =?utf-8?B?QXZZMndyemd1MDc2d2RBTFR6SWEzeDhVNll2YXVadWswZkQ0OXlrYVZxYXZX?=
+ =?utf-8?B?dlVyOFJFSVg0ejhKNExpTEwvRnh5Yk9rNjZFL2xBZDNkNVJ4SzZtdHBZUDVh?=
+ =?utf-8?B?ekd2V1ZXNmdUSmJ3cHN4MVNYMjRVWDhzd1BYdXFGUVl4VVREbnZpeFVQNk5E?=
+ =?utf-8?B?V0tMd3F0RVNMbXUwZG15S3F5K2htS1d0ck9sVE9nbFdNL2l3S1dpRnRwYmVK?=
+ =?utf-8?B?aEc4dEFHbHZyR3NLbmhZb0g1L0JvQzdkT2pwTENXc2NjdGVncW9sc1ZnSEt6?=
+ =?utf-8?B?Smswb1R5dDZkbEJKSWszV3dOcVgzL2ZvVzErUXoxMURYR3NFV29TOFJyd0Vu?=
+ =?utf-8?B?VSs5TlMvK2RVdzJwRjVKVUJMaEF6dVFsd2h3OUtaQ3E4L1ZNSlRLeGRXN2VY?=
+ =?utf-8?B?YWd0eDE4cnIyOWdBQ0VhTStPS0VwdTVuNTJGV0ZJOWl1eEtLcXNkZUw2OVRG?=
+ =?utf-8?B?WTNZMmJtd1I3Q1JYVzJaUWRrQmd0SjdQd1hiNEJGZ2JWK2pnZTBqeUViWW9m?=
+ =?utf-8?B?K0N6dnJ2SE9POXZOOVEybTVvYytUWWpRWFRYMWcvWW1Jd2grMlVKNHpmaFh3?=
+ =?utf-8?B?bU9FeWJRVnBMR1pFRXMvTUFZMWl4ZmEwK2JBM3RmZ1NoOG5mbzlvT1lVeTl1?=
+ =?utf-8?B?Rzh0STRPSW94cHZ4Vjl6akZJRGhBK285NjVBZTJtS09BMGU0aWhWK01QTzJW?=
+ =?utf-8?B?eGsvRnVaMmtDVHVoOFVRSHpuTTNCUEJoUHFySDdyUThDZ3g3NjZ1dW9nQTJz?=
+ =?utf-8?B?VjhxQmFscUI3UGxLVW5pN0VYRFoxc21VR2ZYRlNmdlNVOXRWNDNlUEhkQXla?=
+ =?utf-8?B?d2Q2T3ZFR0tWdlNmc3ZIOWJVTlFJL0M5WDRXVXloOFVNc0poQ1lsbGJHZ1c1?=
+ =?utf-8?B?NGtNNHBjVEIza3FrNUpaZTdKTTEwWTJzeEJ0b3psbkJiUGprYW90ejFPd0NZ?=
+ =?utf-8?B?eXp0OGxMcUlGLzJ2ekVZUkNwWklMbUtmdVh6Rk0vR0xuRElaTHhxY0Rsei9Y?=
+ =?utf-8?Q?qyd7TFWj02R5yNjc=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c3dafc65-2806-4deb-fd06-08de78a55747
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 21:47:46.5172 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: DKqdMQ1YbQ4YV9wnU3btLnybJ+h8C9UG++/fYPjdl52cMi3ZmCHHf+/62c3WmXiaMkcE0Tz3x1uJpEZ5cm8csrabhWPcxyGNXUF14yezZmE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7938
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,431 +169,164 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 2026-03-02 at 11:14 -0800, Matthew Brost wrote:
-> On Mon, Mar 02, 2026 at 05:32:48PM +0100, Thomas Hellstr=C3=B6m wrote:
-> > Now that the two-pass notifier flow uses xe_vma_userptr_do_inval()
-> > for
-> > the fence-wait + TLB-invalidate work, extend it to support a
-> > further
-> > deferred TLB wait:
-> >=20
-> > - xe_vma_userptr_do_inval(): when the embedded finish handle is
-> > free,
-> > =C2=A0 submit the TLB invalidation asynchronously
-> > (xe_vm_invalidate_vma_submit)
-> > =C2=A0 and return &userptr->finish so the mmu_notifier core schedules a
-> > third
-> > =C2=A0 pass.=C2=A0 When the handle is occupied by a concurrent invalida=
-tion,
-> > fall
-> > =C2=A0 back to the synchronous xe_vm_invalidate_vma() path.
-> >=20
-> > - xe_vma_userptr_complete_tlb_inval(): new helper called from
-> > =C2=A0 invalidate_finish when tlb_inval_submitted is set.=C2=A0 Waits f=
-or the
-> > =C2=A0 previously submitted batch and unmaps the gpusvm pages.
-> >=20
-> > xe_vma_userptr_invalidate_finish() dispatches between the two
-> > helpers
-> > via tlb_inval_submitted, making the three possible flows explicit:
-> >=20
-> > =C2=A0 pass1 (fences pending)=C2=A0 -> invalidate_finish -> do_inval (s=
-ync
-> > TLB)
-> > =C2=A0 pass1 (fences done)=C2=A0=C2=A0=C2=A0=C2=A0 -> do_inval -> inval=
-idate_finish
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 -> complete_tlb_inval (deferred TLB)
-> > =C2=A0 pass1 (finish occupied) -> do_inval (sync TLB, inline)
-> >=20
-> > In multi-GPU scenarios this allows TLB flushes to be submitted on
-> > all
-> > GPUs in one pass before any of them are waited on.
-> >=20
-> > Also adds xe_vm_invalidate_vma_submit() which submits the TLB range
-> > invalidation without blocking, populating a xe_tlb_inval_batch that
-> > the caller waits on separately.
-> >=20
->=20
-> As suggested in patch #2, maybe squash this into patch #2 as some of
-> patch #2 is immediately tweaked / rewritten here.=20
->=20
-> A couple nits.
->=20
-> > Assisted-by: GitHub Copilot:claude-sonnet-4.6
-> > Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> > ---
-> > =C2=A0drivers/gpu/drm/xe/xe_userptr.c | 60 +++++++++++++++++++++++++++-=
--
-> > ----
-> > =C2=A0drivers/gpu/drm/xe/xe_userptr.h | 18 ++++++++++
-> > =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 38 +++=
-+++++++++++++-----
-> > =C2=A0drivers/gpu/drm/xe/xe_vm.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 =
-2 ++
-> > =C2=A04 files changed, 99 insertions(+), 19 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/xe/xe_userptr.c
-> > b/drivers/gpu/drm/xe/xe_userptr.c
-> > index 440b0a79d16f..a62b796afb93 100644
-> > --- a/drivers/gpu/drm/xe/xe_userptr.c
-> > +++ b/drivers/gpu/drm/xe/xe_userptr.c
-> > @@ -8,6 +8,7 @@
-> > =C2=A0
-> > =C2=A0#include <linux/mm.h>
-> > =C2=A0
-> > +#include "xe_tlb_inval.h"
-> > =C2=A0#include "xe_trace_bo.h"
-> > =C2=A0
-> > =C2=A0/**
-> > @@ -73,8 +74,8 @@ int xe_vma_userptr_pin_pages(struct
-> > xe_userptr_vma *uvma)
-> > =C2=A0				=C2=A0=C2=A0=C2=A0 &ctx);
-> > =C2=A0}
-> > =C2=A0
-> > -static void xe_vma_userptr_do_inval(struct xe_vm *vm, struct
-> > xe_userptr_vma *uvma,
-> > -				=C2=A0=C2=A0=C2=A0 bool is_deferred)
-> > +static struct mmu_interval_notifier_finish *
-> > +xe_vma_userptr_do_inval(struct xe_vm *vm, struct xe_userptr_vma
-> > *uvma, bool is_deferred)
-> > =C2=A0{
-> > =C2=A0	struct xe_userptr *userptr =3D &uvma->userptr;
-> > =C2=A0	struct xe_vma *vma =3D &uvma->vma;
-> > @@ -84,12 +85,23 @@ static void xe_vma_userptr_do_inval(struct
-> > xe_vm *vm, struct xe_userptr_vma *uvm
-> > =C2=A0	};
-> > =C2=A0	long err;
-> > =C2=A0
-> > -	err =3D dma_resv_wait_timeout(xe_vm_resv(vm),
-> > -				=C2=A0=C2=A0=C2=A0 DMA_RESV_USAGE_BOOKKEEP,
-> > +	err =3D dma_resv_wait_timeout(xe_vm_resv(vm),
-> > DMA_RESV_USAGE_BOOKKEEP,
-> > =C2=A0				=C2=A0=C2=A0=C2=A0 false, MAX_SCHEDULE_TIMEOUT);
->=20
-> Unrelated.
-
-Right, will fix.
-
->=20
-> > =C2=A0	XE_WARN_ON(err <=3D 0);
-> > =C2=A0
-> > =C2=A0	if (xe_vm_in_fault_mode(vm) && userptr->initial_bind) {
-> > +		if (!userptr->finish_inuse) {
->=20
-> Since this is state machiney - should we have asserts on state? That
-> typically the approach I take when I write stae machiney code. Self
-> documenting plus immediatelt catches misuse.
->=20
-> So here an example would be:
->=20
-> xe_assert(.., !userptr->tlb_inval_submitted);
-
-Sure. Can take a look at that to see how it turns out.
 
 
-> =C2=A0
-> > +			/*
-> > +			 * Defer the TLB wait to an extra pass so
-> > the caller
-> > +			 * can pipeline TLB flushes across GPUs
-> > before waiting
-> > +			 * on any of them.
-> > +			 */
-> > +			userptr->finish_inuse =3D true;
-> > +			userptr->tlb_inval_submitted =3D true;
-> > +			err =3D xe_vm_invalidate_vma_submit(vma,
-> > &userptr->inval_batch);
-> > +			XE_WARN_ON(err);
-> > +			return &userptr->finish;
-> > +		}
-> > =C2=A0		err =3D xe_vm_invalidate_vma(vma);
-> > =C2=A0		XE_WARN_ON(err);
-> > =C2=A0	}
-> > @@ -98,6 +110,24 @@ static void xe_vma_userptr_do_inval(struct
-> > xe_vm *vm, struct xe_userptr_vma *uvm
-> > =C2=A0		userptr->finish_inuse =3D false;
-> > =C2=A0	drm_gpusvm_unmap_pages(&vm->svm.gpusvm, &uvma-
-> > >userptr.pages,
-> > =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_vma_size(vma) >> PAGE_=
-SHIFT,
-> > &ctx);
-> > +	return NULL;
-> > +}
-> > +
-> > +static void
-> > +xe_vma_userptr_complete_tlb_inval(struct xe_vm *vm, struct
-> > xe_userptr_vma *uvma)
-> > +{
-> > +	struct xe_userptr *userptr =3D &uvma->userptr;
-> > +	struct xe_vma *vma =3D &uvma->vma;
-> > +	struct drm_gpusvm_ctx ctx =3D {
-> > +		.in_notifier =3D true,
-> > +		.read_only =3D xe_vma_read_only(vma),
-> > +	};
-> > +
->=20
-> xe_svm_assert_in_notifier();
+On 3/2/2026 9:36 PM, Matthew Brost wrote:
+> On Mon, Mar 02, 2026 at 10:43:36AM +0100, Piotr Piórkowski wrote:
+>> Michal Wajdeczko <michal.wajdeczko@intel.com> wrote on pią [2026-lut-27 22:40:47 +0100]:
+>>> Since recent commit a5338e365c45 ("PCI/IOV: Fix race between SR-IOV
+>>> enable/disable and hotplug") the driver pci_driver.sriov_configure
+>>> hook is called with the mutex pci_rescan_remove_lock already taken.
+>>>
+>>> As we are using this hook as-is during driver removal, we get:
+>>>
+>>>  [ ] xe 0000:4d:00.0: [drm:xe_pci_sriov_configure [xe]] PF: disabling 1 VF
+>>>  [ ] ------------[ cut here ]------------
+>>>  [ ] debug_locks && !(lock_is_held(&(&pci_rescan_remove_lock)->dep_map) != 0)
+>>>  [ ] WARNING: drivers/pci/remove.c:130 at pci_stop_and_remove_bus_device+0x4c/0x50, CPU#32: rmmod/6476
+>>>  [ ] RIP: 0010:pci_stop_and_remove_bus_device+0x4c/0x50
+>>>  [ ] Call Trace:
+>>>  [ ]  <TASK>
+>>>  [ ]  pci_iov_remove_virtfn+0xd1/0x140
+>>>  [ ]  sriov_disable+0x42/0x100
+>>>  [ ]  pci_disable_sriov+0x34/0x50
+>>>  [ ]  xe_pci_sriov_configure+0x2d0/0x1150 [xe]
+>>>  [ ]  xe_pci_remove+0x7c/0x190 [xe]
+>>>  [ ]  pci_device_remove+0x41/0xb0
+>>>  [ ]  device_remove+0x43/0x80
+>>>  [ ]  device_release_driver_internal+0x215/0x280
+>>>  [ ]  driver_detach+0x50/0xb0
+>>>  [ ]  bus_remove_driver+0x86/0x120
+>>>  [ ]  driver_unregister+0x2f/0x60
+>>>  [ ]  pci_unregister_driver+0x22/0xc0
+>>>  [ ]  xe_unregister_pci_driver+0x15/0x20 [xe]
+>>>  [ ]  xe_exit+0x1f/0x34 [xe]
+>>>
+>>> Fix that by taking a pci_rescan_remove_lock as it is now expected.
+>>>
+>>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>> ---
+>>>  drivers/gpu/drm/xe/xe_pci.c       |  2 +-
+>>>  drivers/gpu/drm/xe/xe_pci_sriov.c | 20 ++++++++++++++++++++
+>>>  2 files changed, 21 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+>>> index 3ac99472d6dd..fb0abd768e67 100644
+>>> --- a/drivers/gpu/drm/xe/xe_pci.c
+>>> +++ b/drivers/gpu/drm/xe/xe_pci.c
+>>> @@ -1010,7 +1010,7 @@ static void xe_pci_remove(struct pci_dev *pdev)
+>>>  	struct xe_device *xe = pdev_to_xe_device(pdev);
+>>>  
+>>>  	if (IS_SRIOV_PF(xe))
+>>> -		xe_pci_sriov_configure(pdev, 0);
+>>> +		xe_pci_sriov_disable_vfs(pdev);
+>>>  
+>>>  	if (xe_survivability_mode_is_boot_enabled(xe))
+>>>  		return;
+>>> diff --git a/drivers/gpu/drm/xe/xe_pci_sriov.c b/drivers/gpu/drm/xe/xe_pci_sriov.c
+>>> index 3fd22034f03e..2a3fd3578ef2 100644
+>>> --- a/drivers/gpu/drm/xe/xe_pci_sriov.c
+>>> +++ b/drivers/gpu/drm/xe/xe_pci_sriov.c
+>>> @@ -239,6 +239,26 @@ int xe_pci_sriov_configure(struct pci_dev *pdev, int num_vfs)
+>>>  		return pf_disable_vfs(xe);
+>>>  }
+>>>  
+>>> +/**
+>>> + * xe_pci_sriov_disable_vfs() - Disable all VFs.
+>>> + * @pdev: the PF's &pci_dev
+>>> + *
+>>> + * This is a simple wrapper around our function that implements the
+>>> + * pci_driver.sriov_configure hook but also takes a required mutex.
+>>> + *
+>>> + * Return: 0 on success or a negative error code on failure.
+>>> + */
+>>> +int xe_pci_sriov_disable_vfs(struct pci_dev *pdev)
+>>> +{
+>>> +	int ret;
+>>> +
+>>> +	pci_lock_rescan_remove();
+>>> +	ret = xe_pci_sriov_configure(pdev, 0);
+>>> +	pci_unlock_rescan_remove();
+>>> +
+>>> +	return ret;
+>>> +}
+>>> +
+>> LGTM:
+>> Reviewed-by: Piotr Piórkowski <piotr.piorkowski@intel.com>
+>>
+> 
+> The lockdep reasons and the placement of the lock make sense to me.
+> 
+> I do have a question though, as I’m a little concerned about our driver
+> having to take a lock like pci_lock_rescan_remove...
+> 
+> Why is the xe_pci_sriov_disable_vfs call needed in pci_driver.remove?
+> In other words, why doesn’t the PCI core call pci_driver.sriov_configure
+> first?
 
-See previous comment on this.
+dunno, but it does complain [1] when PF leaves VFs enabled
 
->=20
-> State machine asserts could be:
->=20
-> xe_assert(..., userptr->tlb_inval_submitted);
-> xe_assert(..., userptr->finish_inuse);
+[1] https://elixir.bootlin.com/linux/v6.19.3/source/drivers/pci/iov.c#L1027
 
-Will take a look at this as well.
+> 
+> I don’t see many examples of device drivers having to call
+> pci_lock_rescan_remove [1], which is why I’m asking. I’m wondering whether we
+> are missing an accepted flow for SR-IOV, and whether the need to take
+> pci_lock_rescan_remove just to silence lockdep is pointing to a larger
+> issue.
 
->=20
-> > +	xe_tlb_inval_batch_wait(&userptr->inval_batch);
-> > +	userptr->tlb_inval_submitted =3D false;
-> > +	userptr->finish_inuse =3D false;
-> > +	drm_gpusvm_unmap_pages(&vm->svm.gpusvm, &uvma-
-> > >userptr.pages,
-> > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_vma_size(vma) >> PAGE_SHIFT=
-,
-> > &ctx);
-> > =C2=A0}
-> > =C2=A0
-> > =C2=A0static struct mmu_interval_notifier_finish *
-> > @@ -141,13 +171,11 @@ xe_vma_userptr_invalidate_pass1(struct xe_vm
-> > *vm, struct xe_userptr_vma *uvma)
-> > =C2=A0	 * If it's already in use, or all fences are already
-> > signaled,
-> > =C2=A0	 * proceed directly to invalidation without deferring.
-> > =C2=A0	 */
-> > -	if (signaled || userptr->finish_inuse) {
-> > -		xe_vma_userptr_do_inval(vm, uvma, false);
-> > -		return NULL;
-> > -	}
-> > +	if (signaled || userptr->finish_inuse)
-> > +		return xe_vma_userptr_do_inval(vm, uvma, false);
-> > =C2=A0
-> > +	/* Defer: the notifier core will call invalidate_finish
-> > once done. */
-> > =C2=A0	userptr->finish_inuse =3D true;
-> > -
->=20
-> Unrelated.
+at first I was assuming that there is just a new expectation for the
+driver, but indeed it looks that we have a larger problem, as our CI
+also found that in slightly different scenario [2] this mutex is already
+taken by the PCI subsystem when calling the .remove callback:
 
-Will fix.
+ [ ]  Possible unsafe locking scenario:
+ [ ]        CPU0
+ [ ]        ----
+ [ ]   lock(pci_rescan_remove_lock);
+ [ ]   lock(pci_rescan_remove_lock);
+ [ ] 
+ *** DEADLOCK ***
 
->=20
-> > =C2=A0	return &userptr->finish;
-> > =C2=A0}
-> > =C2=A0
-> > @@ -193,7 +221,15 @@ static void
-> > xe_vma_userptr_invalidate_finish(struct
-> > mmu_interval_notifier_finish
-> > =C2=A0		xe_vma_start(vma), xe_vma_size(vma));
-> > =C2=A0
-> > =C2=A0	down_write(&vm->svm.gpusvm.notifier_lock);
-> > -	xe_vma_userptr_do_inval(vm, uvma, true);
-> > +	/*
-> > +	 * If a TLB invalidation was previously submitted
-> > (deferred from the
-> > +	 * synchronous pass1 fallback), wait for it and unmap
-> > pages.
-> > +	 * Otherwise, fences have now completed: invalidate the
-> > TLB and unmap.
-> > +	 */
-> > +	if (uvma->userptr.tlb_inval_submitted)
-> > +		xe_vma_userptr_complete_tlb_inval(vm, uvma);
-> > +	else
-> > +		xe_vma_userptr_do_inval(vm, uvma, true);
-> > =C2=A0	up_write(&vm->svm.gpusvm.notifier_lock);
-> > =C2=A0	trace_xe_vma_userptr_invalidate_complete(vma);
-> > =C2=A0}
-> > @@ -231,7 +267,9 @@ void xe_vma_userptr_force_invalidate(struct
-> > xe_userptr_vma *uvma)
-> > =C2=A0
-> > =C2=A0	finish =3D xe_vma_userptr_invalidate_pass1(vm, uvma);
-> > =C2=A0	if (finish)
-> > -		xe_vma_userptr_do_inval(vm, uvma, true);
-> > +		finish =3D xe_vma_userptr_do_inval(vm, uvma, true);
-> > +	if (finish)
-> > +		xe_vma_userptr_complete_tlb_inval(vm, uvma);
-> > =C2=A0}
-> > =C2=A0#endif
-> > =C2=A0
-> > diff --git a/drivers/gpu/drm/xe/xe_userptr.h
-> > b/drivers/gpu/drm/xe/xe_userptr.h
-> > index 4f42db61fd62..7477009651c2 100644
-> > --- a/drivers/gpu/drm/xe/xe_userptr.h
-> > +++ b/drivers/gpu/drm/xe/xe_userptr.h
-> > @@ -14,6 +14,8 @@
-> > =C2=A0
-> > =C2=A0#include <drm/drm_gpusvm.h>
-> > =C2=A0
-> > +#include "xe_tlb_inval_types.h"
-> > +
-> > =C2=A0struct xe_vm;
-> > =C2=A0struct xe_vma;
-> > =C2=A0struct xe_userptr_vma;
-> > @@ -63,6 +65,15 @@ struct xe_userptr {
-> > =C2=A0	 * Protected by @vm::svm.gpusvm.notifier_lock.
-> > =C2=A0	 */
-> > =C2=A0	struct mmu_interval_notifier_finish finish;
-> > +
-> > +	/**
-> > +	 * @inval_batch: TLB invalidation batch for deferred
-> > completion.
-> > +	 * Stores an in-flight TLB invalidation submitted during a
-> > two-pass
-> > +	 * notifier so the wait can be deferred to a subsequent
-> > pass, allowing
-> > +	 * multiple GPUs to be signalled before any of them are
-> > waited on.
-> > +	 * Protected by @vm::svm.gpusvm.notifier_lock.
->=20
-> In write mode?
+ [ ] Call Trace:
+ [ ]  dump_stack_lvl+0x91/0xf0
+ [ ]  dump_stack+0x10/0x20
+ [ ]  print_deadlock_bug+0x23f/0x320
+ [ ]  __lock_acquire+0x146e/0x2790
+ [ ]  lock_acquire+0xc4/0x2f0
+ [ ]  __mutex_lock+0xb2/0x10e0
+ [ ]  mutex_lock_nested+0x1b/0x30
+ [ ]  pci_lock_rescan_remove+0x17/0x30
+ [ ]  xe_pci_sriov_disable_vfs+0x12/0x40 [xe]
+ [ ]  xe_pci_remove+0x7a/0x180 [xe]
+ [ ]  pci_device_remove+0x41/0xb0
+ [ ]  device_remove+0x43/0x80
+ [ ]  device_release_driver_internal+0x215/0x280
+ [ ]  device_release_driver+0x12/0x20
+ [ ]  pci_stop_bus_device+0x69/0x90
+ [ ]  pci_stop_and_remove_bus_device_locked+0x24/0x60
+ [ ]  remove_store+0x85/0xa0
+ [ ]  dev_attr_store+0x17/0x40
 
-Yeah, This one and the one below will look a bit more complicated if we
-want to keep the invalidation injection. Will update.
+but it looks that this issue was already noticed and discussed [3]
+in the PCI level, so lets wait and see how this will be solved.
 
->=20
-> > +	 */
-> > +	struct xe_tlb_inval_batch inval_batch;
-> > =C2=A0	/**
-> > =C2=A0	 * @finish_inuse: Whether @finish is currently in use by
-> > an in-progress
-> > =C2=A0	 * two-pass invalidation.
-> > @@ -70,6 +81,13 @@ struct xe_userptr {
-> > =C2=A0	 */
-> > =C2=A0	bool finish_inuse;
-> > =C2=A0
-> > +	/**
-> > +	 * @tlb_inval_submitted: Whether a TLB invalidation has
-> > been submitted
-> > +	 * via @inval_batch and is pending completion.=C2=A0 When set,
-> > the next pass
-> > +	 * must call xe_tlb_inval_batch_wait() before reusing
-> > @inval_batch.
-> > +	 * Protected by @vm::svm.gpusvm.notifier_lock.
->=20
-> In write mode?
->=20
+[2] https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162346v2/shard-bmg-7/igt@core_hotunplug@unplug-rescan.html
+[3] https://lore.kernel.org/linux-pci/20260228120138.51197-4-ionut.nechita@windriver.com/
+
+
+> 
 > Matt
+> 
+> [1] https://elixir.bootlin.com/linux/v6.19.3/A/ident/pci_lock_rescan_remove
+> 
+>>
+>>>  /**
+>>>   * xe_pci_sriov_get_vf_pdev() - Lookup the VF's PCI device using the VF identifier.
+>>>   * @pdev: the PF's &pci_dev
+>>> -- 
+>>> 2.47.1
+>>>
+>>
+>> -- 
 
-Thanks,
-Thomas
-
-
->=20
-> > +	 */
-> > +	bool tlb_inval_submitted;
-> > =C2=A0	/**
-> > =C2=A0	 * @initial_bind: user pointer has been bound at least
-> > once.
-> > =C2=A0	 * write: vm->svm.gpusvm.notifier_lock in read mode and
-> > vm->resv held.
-> > diff --git a/drivers/gpu/drm/xe/xe_vm.c
-> > b/drivers/gpu/drm/xe/xe_vm.c
-> > index 7f29d2b2972d..fdad9329dfb4 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm.c
-> > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> > @@ -3967,20 +3967,23 @@ void xe_vm_unlock(struct xe_vm *vm)
-> > =C2=A0}
-> > =C2=A0
-> > =C2=A0/**
-> > - * xe_vm_invalidate_vma - invalidate GPU mappings for VMA without
-> > a lock
-> > + * xe_vm_invalidate_vma_submit - Submit a job to invalidate GPU
-> > mappings for
-> > + * VMA.
-> > =C2=A0 * @vma: VMA to invalidate
-> > + * @batch: TLB invalidation batch to populate; caller must later
-> > call
-> > + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 xe_tlb_inval_batch_=
-wait() on it to wait for completion
-> > =C2=A0 *
-> > =C2=A0 * Walks a list of page tables leaves which it memset the entries
-> > owned by this
-> > - * VMA to zero, invalidates the TLBs, and block until TLBs
-> > invalidation is
-> > - * complete.
-> > + * VMA to zero, invalidates the TLBs, but doesn't block waiting
-> > for TLB flush
-> > + * to complete, but instead populates @batch which can be waited
-> > on using
-> > + * xe_tlb_inval_batch_wait().
-> > =C2=A0 *
-> > =C2=A0 * Returns 0 for success, negative error code otherwise.
-> > =C2=A0 */
-> > -int xe_vm_invalidate_vma(struct xe_vma *vma)
-> > +int xe_vm_invalidate_vma_submit(struct xe_vma *vma, struct
-> > xe_tlb_inval_batch *batch)
-> > =C2=A0{
-> > =C2=A0	struct xe_device *xe =3D xe_vma_vm(vma)->xe;
-> > =C2=A0	struct xe_vm *vm =3D xe_vma_vm(vma);
-> > -	struct xe_tlb_inval_batch _batch;
-> > =C2=A0	struct xe_tile *tile;
-> > =C2=A0	u8 tile_mask =3D 0;
-> > =C2=A0	int ret =3D 0;
-> > @@ -4023,14 +4026,33 @@ int xe_vm_invalidate_vma(struct xe_vma
-> > *vma)
-> > =C2=A0
-> > =C2=A0	ret =3D xe_tlb_inval_range_tilemask_submit(xe,
-> > xe_vma_vm(vma)->usm.asid,
-> > =C2=A0					=09
-> > xe_vma_start(vma), xe_vma_end(vma),
-> > -						 tile_mask,
-> > &_batch);
-> > +						 tile_mask,
-> > batch);
-> > =C2=A0
-> > =C2=A0	/* WRITE_ONCE pairs with READ_ONCE in
-> > xe_vm_has_valid_gpu_mapping() */
-> > =C2=A0	WRITE_ONCE(vma->tile_invalidated, vma->tile_mask);
-> > +	return ret;
-> > +}
-> > +
-> > +/**
-> > + * xe_vm_invalidate_vma - invalidate GPU mappings for VMA without
-> > a lock
-> > + * @vma: VMA to invalidate
-> > + *
-> > + * Walks a list of page tables leaves which it memset the entries
-> > owned by this
-> > + * VMA to zero, invalidates the TLBs, and block until TLBs
-> > invalidation is
-> > + * complete.
-> > + *
-> > + * Returns 0 for success, negative error code otherwise.
-> > + */
-> > +int xe_vm_invalidate_vma(struct xe_vma *vma)
-> > +{
-> > +	struct xe_tlb_inval_batch batch;
-> > +	int ret;
-> > =C2=A0
-> > -	if (!ret)
-> > -		xe_tlb_inval_batch_wait(&_batch);
-> > +	ret =3D xe_vm_invalidate_vma_submit(vma, &batch);
-> > +	if (ret)
-> > +		return ret;
-> > =C2=A0
-> > +	xe_tlb_inval_batch_wait(&batch);
-> > =C2=A0	return ret;
-> > =C2=A0}
-> > =C2=A0
-> > diff --git a/drivers/gpu/drm/xe/xe_vm.h
-> > b/drivers/gpu/drm/xe/xe_vm.h
-> > index 62f4b6fec0bc..0bc7ed23eeae 100644
-> > --- a/drivers/gpu/drm/xe/xe_vm.h
-> > +++ b/drivers/gpu/drm/xe/xe_vm.h
-> > @@ -242,6 +242,8 @@ struct dma_fence *xe_vm_range_unbind(struct
-> > xe_vm *vm,
-> > =C2=A0
-> > =C2=A0int xe_vm_invalidate_vma(struct xe_vma *vma);
-> > =C2=A0
-> > +int xe_vm_invalidate_vma_submit(struct xe_vma *vma, struct
-> > xe_tlb_inval_batch *batch);
-> > +
-> > =C2=A0int xe_vm_validate_protected(struct xe_vm *vm);
-> > =C2=A0
-> > =C2=A0static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
-> > --=20
-> > 2.53.0
-> >=20
