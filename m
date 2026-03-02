@@ -4,71 +4,123 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 672DDD58E7A
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 08:46:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F81FD58E7D
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 09:02:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2797510E45F;
-	Mon,  2 Mar 2026 08:46:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06D2610E463;
+	Mon,  2 Mar 2026 09:02:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="s5TC01pa";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="bsmm3QcJ";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CBBE10E1D7;
- Mon,  2 Mar 2026 08:46:10 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id D42EB437BD;
- Mon,  2 Mar 2026 08:46:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A83AC19423;
- Mon,  2 Mar 2026 08:46:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772441169;
- bh=YLIStkIR1KJnf5YwD17+MZnntYrS4W0CEDe/6e+dJPw=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=s5TC01paLL43eTxonms1l0UTMB4QscnLOYJJh0RDmcC95ZK4NIh4yD4712OZgUuCL
- tGqNwHCeuKPPfd/Y9RMuzjFpMVmtx4gMtyFak2D4RcHbIe5Vj6uBb69MFJcJn8i1MV
- LZ3G6cmaomOi4BrrxqreSH1M6xtIAVmo/cePrRxgpg98RMOH0Y27kjzCOFgFY32W9Z
- YScYRspyy630xCT3XFhu+bPmy9R1s9nWAjo80hSv3xIbOX0venX94Nvrxjj1aRNf4p
- kRf4aeZrCSzUJ13Por+I5nwALTVi5dTSqYKsEbG78P6SkwRUpll2ijXXo3iGzov5Qj
- htsykmjAjatjw==
-Date: Mon, 2 Mar 2026 09:46:06 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
- amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org
-Subject: Re: [PATCH v9 04/19] drm/display: hdmi-state-helper: Act on color
- format DRM property
-Message-ID: <20260302-literate-shrew-of-health-ec19d2@houat>
-References: <20260227-color-format-v9-0-658c3b9db7ef@collabora.com>
- <20260227-color-format-v9-4-658c3b9db7ef@collabora.com>
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011046.outbound.protection.outlook.com [52.101.52.46])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA72410E462;
+ Mon,  2 Mar 2026 09:02:38 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UpTTKLN9STg7TrsGH0vyxAM74QPQxvBsqWbbGU7UGDHyefaeoT4/dc9jFFX2uY4uE7NhepPFK2Y20SM1hSjsGcdmNOThYTdcrWcGFZ/WT7FmPRhNuXtaBDe2Kl3KZpuXQVN4VJl5k98EWMMglCE0Mt/AeHk67NlImY/HdTcV/bM2XkB1KOOaWkHn9N1ZiUJBkKaG6ql609OWSPGfc8TagwpFbQy8UhVvRsRbosjGyFDI9tGA+70RYlkGTa1x7+03xFV5cLM6my65fTdrCVShaPhxqoZhhY37AVTq7OO5pjVkdQqV0/PfsXBOl6Ff0Plmsb8kyM4Ybddr+ecdF0ZD6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5WpOTTf1KnYtuMAqiWkA8eAdpuDa9NYS2ymWwn/XysM=;
+ b=QmItCcNTMfmmFozSYlwacbSMBwTbfilddEX+Ye2wFb1Sk4//5Gy/WKBcBuJE7mZ908FkLVomS1NwmyMgBmGRosXGcNbbQynXAT4fmvN6gs+5bhF0xRZ/K8qtZycNeVy87O1wJNke7DYwgbqeyY7AFwhACa7G9uezGrkb09eurSx6/HbS+3Kinu2/B4KLWka+ZXBxY+53K7vACPNO8RFa1avOr7QC1Ohbm8aDzSMoE2TkxRWmYaxtk5ILahBCPSNVmQQlgYSGd0MMStT1PWkN8SmlclsfuJ4lX3L/eMVx/b4D0UJzVtabgMLg5iIaZLC4SX7a9CjUuShhby9kypk1NA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5WpOTTf1KnYtuMAqiWkA8eAdpuDa9NYS2ymWwn/XysM=;
+ b=bsmm3QcJ/Yj/LNogjbideWBzf61xOpT+FFt0/K7hM9t6ZWd2ydE218uQMIWCILavnfZBJrcMKUM8zlBokpgCOFSQCzgP5gWUgMdOOoSWEBUNm/KFqdeNNPATOyXfHtgLqQKBtmL1sMpHKQGml0VKWoO2m5zn4XArMLiQsvJIu7Q=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by IA1PR12MB6259.namprd12.prod.outlook.com (2603:10b6:208:3e5::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Mon, 2 Mar
+ 2026 09:02:33 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9654.014; Mon, 2 Mar 2026
+ 09:02:32 +0000
+Message-ID: <fe4d93d8-5c9c-460b-93e1-5d0d49a316ab@amd.com>
+Date: Mon, 2 Mar 2026 10:02:27 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] drm/ttm: Don't spam the log on buffer object backing
+ store allocation failure
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, dri-devel@lists.freedesktop.org
+References: <20260227160012.82309-1-thomas.hellstrom@linux.intel.com>
+ <20260227160012.82309-2-thomas.hellstrom@linux.intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20260227160012.82309-2-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR2P281CA0173.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:9f::8) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="vlv6rbxnnxkik4dv"
-Content-Disposition: inline
-In-Reply-To: <20260227-color-format-v9-4-658c3b9db7ef@collabora.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|IA1PR12MB6259:EE_
+X-MS-Office365-Filtering-Correlation-Id: 236db270-7e1b-46f6-184a-08de783a7089
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7053199007;
+X-Microsoft-Antispam-Message-Info: e7W+H+EpoY0A7waVOMYwL/Ggi5ZzlZUxxLKf8IZeeLy1HVDAQjo06YL7/WGhI0z872421es7JRfJyMiLLKxle5nRZxZGhkmWX/rjhkKtTTYufXbfnYxiiLjjynm6aHB9cuytAGIy/NVkUaD7bW/FBhFSTSqLwdL6iw5rkCUPOuycOWZ0dcZcA9BF4pn7SG5LPPIaiUUa+pPnDBvb3Mw48VQO8GRbe+buHu31ogYxB2/3zZXPpJNxGKfwoa/KCqhQnR2ORS1SnUNtFiv/QFCsUWqiQhziVuYo0cVJxgVGQjWSdHTtgU3/5L9NkhHkioc9evUCwrvBfKtorltDzGx2GjX8lKR8q5y/3g70+was8n+sCmrAFjS+neTvCcwb9k+K3a8NWqNxor038dLR9W5eCfp/AgCHl9/v2pyTgHkfcLMpwGCc7DXPOKtCW6zgx6Y8KyeyEs8wY9KaZDKPAO0hPslJ0JuoZZQ/Tpj9Ffk8LMuENM2AYEE+DUEn5evhALalL0AmKaqMcm4/x0LkB58Sqe7TDRxs2FvwJbK38SCOPKD1uAfG3gkPrxPQkH0rfjOCRbPN4LHPzIztyHY4eDS0oqnJAiY/Uo4f+FwQ2RvPzGlBGp4pBwexOqgtU9uo6EQdanMg5Bjhd3WXXJ5v8a5d5gbBNEoNCt0ajal4gOiXdYAo24savuwrFKPfdUHTJ2o1laUI6x7R9KzhAjlJq1Lwk1UIen0B32KtmC4usPIWddM=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(7053199007); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?clFKVzBtYVdQMnY3R3JKNWhxZXVhUmFvYytEc3hCdEwxbWZLOHlrYWtDelFj?=
+ =?utf-8?B?SkJlS281Z2N2Q3ZuWlRYdjNGVmY4OThFNjgyckk1VDRaRzRoMGUwU2xLS1N4?=
+ =?utf-8?B?dHJLWE82bVE4MkpYNmIzMHo4R1dCUm9NV2UyMHg5VHcvVWlBczN6UUg4VG1i?=
+ =?utf-8?B?N29KcXVtNmZpZ1U2ZUZKelhrZFFldHl3cTN2WG1vUFVhTkFFVnYxVjNWVE5M?=
+ =?utf-8?B?dWMyaG4xV3RHZU9ZTG91MnlJNWhtUmFHZFpJcTVwQVBudzJuZkV4d2J1TjV5?=
+ =?utf-8?B?VjRvM0pFazFNdkdDZk5aY0NIVnJjMjVaUWlnMHh6dEtSNkZoTnd6c0RtS0RF?=
+ =?utf-8?B?eG4xOFBBdTNpMWdHVDdDWmRpRVByUng0enVCL3hQeWtzNFdOY1QwdFlKLy82?=
+ =?utf-8?B?NWZER1lHdnhySkZveWJ6dDRtc3RwdG1YaVAwRVB2cE5URWZBUFV2NklyNnow?=
+ =?utf-8?B?dVVJbitZeXRSZGdHMHF4TjErcDBhRHpMMktTajN5TVRUVG5ablFtbkJLT040?=
+ =?utf-8?B?bHRnUUlTSDgvRy9rZXprSzhiVEtXNU41RHBmMnB4NlN2NVFKT0hBbFZGK3cy?=
+ =?utf-8?B?dS9GdGg3bE5abE9wR2xDUkovQThRZkFqaE0xWDNHUUprOHJVeTlORzcxdEFJ?=
+ =?utf-8?B?TFFVVk9aTVY5UTdqUURDekNLMjNlT0tsRlc3c2huMmpnbVlSNndxK1lHY2Jm?=
+ =?utf-8?B?em9aTkMraU95ZXQ1c1dwNXJQbURUMkVpSEphZDdxcTJBYlI5Rm00OHBMdEs0?=
+ =?utf-8?B?R3lPVDJEVURoNDlhOElUNnk5bncvV254WWVwTjFtN0N2Q01NMHpSK0t6WDNm?=
+ =?utf-8?B?RGVMWndjcUR1cld4dEhNZEdkOUZrbFc1RVpyZHNpUW5TZ1pHNWJ4N21DSzJz?=
+ =?utf-8?B?NnZ0TWhROEM3RVV5YnhERWhLNFlhT1dueHh3RFlJR1pHYVNicEpZNmxhc1Fx?=
+ =?utf-8?B?QnRCS0pod08xaDA0cWFGSTZPNjR2RVFCb3RSSjJaeDBRZE1oWEdvZFlwNWFV?=
+ =?utf-8?B?ejl2YUVRYW1yNitDUUVldmIvUXMyMzFtSWNsTnp0S2d3U2M2MXI4SUQ4MU1s?=
+ =?utf-8?B?VWc2UTZmWGFDcXk2ZU54bk5PVFc0alNIOGhtUkxyQ0pZUHRMaUg2Vjl3a08v?=
+ =?utf-8?B?ZiswYVBKd0Rzc3NpZDREVUtYUTNNN25zNUxYOTVocXpHN0NPVGovQTRSMitT?=
+ =?utf-8?B?WUlQZTdEQWlqbzNlK1JkR1J5d0M4REJUTmQ1eGdPcnBUcWtqTGxSY3lxUk1V?=
+ =?utf-8?B?ZkRuY2F1VWlsZ0gwWTdpQXNIdHVFNTMvaTFhSmhrekE3NmtFNEhiQm4ySkVK?=
+ =?utf-8?B?MEhOUlhMYmU4Y0djMncrdGlILzNpdlZvWUNMNlJxZ0gwOTlRZUttOTRNU0d3?=
+ =?utf-8?B?K3AyaUMvdTZKTGVRRHdVejZMT2NSQkg5OHJTSmhmYnJDdk04bFZzSmo1SXFt?=
+ =?utf-8?B?clR3a1dwQk51Y1pmSXhSL1JOaSsvV2prY2ZoNy9SR1ZEUWlPc1VOeW5Qa2JQ?=
+ =?utf-8?B?NExOak12TjdOejE0N2RoRGRYaTRDeThjR3FrZnUrSXk4bG9DWm55ZmxSekNs?=
+ =?utf-8?B?RVhSRXltOVZrVElwOTNjSVpCUU1pQlp1eURxdlIxWU9tci9ZK2QxVVBXSWVP?=
+ =?utf-8?B?bXBQb3JIR3BtMDJLb1ZndHdNZEFoazZmbWY0SEdpbVlxbWZOSnh2VW9odGt2?=
+ =?utf-8?B?OVpwRE14RFpIYm04Ti9SQStEcmx4QkttZ1l0dHFuak8rdEhTNlFZMEQyOTdt?=
+ =?utf-8?B?MzkwSzFha2ozbXhEd2pVcXNwOGdPT3J0UVNlU25MNXdIRDVSRk82ZVYvaEcy?=
+ =?utf-8?B?NzRoNmowN0ZKdld6VHhWTVV0RmwrS1NyMGkwMU5janJha2RuSG5SZXM0YVk4?=
+ =?utf-8?B?Y1FmeUpOaThWVEJsNi9udkx3VWRwM0lJWWdlSUF6aU5DWno3Mzl3NFhvODFX?=
+ =?utf-8?B?eVNpNmErYTJtV2R3czdkczlUbGUxRDJ2MlZqd2JYczF0ZjNNY3lqT09jOUJD?=
+ =?utf-8?B?U0doTTdsK2l0bm55eGxKMlpWRW1ycUU3QWZ6WGJpTWhxZ1pTSWE4c0lJUldW?=
+ =?utf-8?B?WGpJM2g4eHI2dUZnLzNRQVo4UmlWakQ4ZkhYcDAvTFZjNldyODBUSWs4SWVu?=
+ =?utf-8?B?YUtKMkFiVUEyQ0RGazVycXNFMEFwdnlCUXdldFUybmU5T1dGL3E0YzFFM0Rl?=
+ =?utf-8?B?Ym9tQVRGNmJUTVB6R051MUhhL094Q2NLdXdkbVJIL3dnc0lYVllrZ3p2b1Iz?=
+ =?utf-8?B?Q3Y0VDI0alVoSTJ1OEJqYURNQjN2OWdTUmdmSTh2RHZoN2dUVlQxNVhpallh?=
+ =?utf-8?Q?cAm4uRDY+X9qXd+3E3?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 236db270-7e1b-46f6-184a-08de783a7089
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 09:02:32.6263 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: /u/C186VggS/AB323W42UUuYcsVWD3/wRLVNqYy2JaQFOCyn0h4GwGcPgcpc0X2C
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6259
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,114 +135,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On 2/27/26 17:00, Thomas Hellström wrote:
+> If the struct ttm_operation_ctx::gfp_retry_mayfail is true,
+> buffer object backing store allocation failures are expected to
+> silently fail with an error code to the caller. But currently an
+> elaborate warning is printed to the system log.
+> 
+> Don't spam the log in this way.
 
---vlv6rbxnnxkik4dv
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v9 04/19] drm/display: hdmi-state-helper: Act on color
- format DRM property
-MIME-Version: 1.0
+That was intentionally removed or never added because Simona absolutely didn't liked the gfp_retry_mayfail flag at that time.
 
-Hi,
+In general I'm fine with this change since I think we have proved by now that the flag is useful, but that probably need more wider discussion.
 
-On Fri, Feb 27, 2026 at 08:20:09PM +0100, Nicolas Frattaroli wrote:
-> With the introduction of the "color format" DRM property, which allows
-> userspace to request a specific color format, the HDMI state helper
-> should implement this.
->=20
-> Implement it by translating the requested drm_connector_color_format to
-> a drm_output_color_format enum value as per the logic HDMI should use
-> for this: Auto is translated to RGB, and a fallback to YUV420 is only
-> performed if the original color format was auto.
->=20
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Regards,
+Christian.
+
+> 
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 > ---
->  drivers/gpu/drm/display/drm_hdmi_state_helper.c | 28 +++++++++++++++++++=
-++++--
->  1 file changed, 26 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/display/drm_hdmi_state_helper.c b/drivers/gp=
-u/drm/display/drm_hdmi_state_helper.c
-> index 9f3b696aceeb..31c6d55fa995 100644
-> --- a/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-> +++ b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-> @@ -669,10 +669,34 @@ hdmi_compute_config(const struct drm_connector *con=
-nector,
->  	unsigned int max_bpc =3D clamp_t(unsigned int,
->  				       conn_state->max_bpc,
->  				       8, connector->max_bpc);
-> +	enum drm_output_color_format fmt;
->  	int ret;
-> =20
-> -	ret =3D hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc,
-> -				      DRM_OUTPUT_COLOR_FORMAT_RGB444);
-> +	switch (conn_state->color_format) {
-> +	case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
-> +	case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
-> +		fmt =3D DRM_OUTPUT_COLOR_FORMAT_RGB444;
-> +		break;
-> +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR444:
-> +		fmt =3D DRM_OUTPUT_COLOR_FORMAT_YCBCR444;
-> +		break;
-> +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR422:
-> +		fmt =3D DRM_OUTPUT_COLOR_FORMAT_YCBCR422;
-> +		break;
-> +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR420:
-> +		fmt =3D DRM_OUTPUT_COLOR_FORMAT_YCBCR420;
-> +		break;
-> +	default:
-> +		drm_dbg_kms(connector->dev, "HDMI does not support color format '%d'.\=
-n",
-> +			    conn_state->color_format);
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret =3D hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc, f=
-mt);
-> +
-> +	if (conn_state->color_format !=3D DRM_CONNECTOR_COLOR_FORMAT_AUTO)
-> +		return ret;
-> +
+>  drivers/gpu/drm/ttm/ttm_pool.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
+> index c0d95559197c..8fa9e09f6ee5 100644
+> --- a/drivers/gpu/drm/ttm/ttm_pool.c
+> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
+> @@ -726,7 +726,7 @@ static int __ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
+>  		gfp_flags |= __GFP_ZERO;
+>  
+>  	if (ctx->gfp_retry_mayfail)
+> -		gfp_flags |= __GFP_RETRY_MAYFAIL;
+> +		gfp_flags |= __GFP_RETRY_MAYFAIL | __GFP_NOWARN;
+>  
+>  	if (ttm_pool_uses_dma32(pool))
+>  		gfp_flags |= GFP_DMA32;
 
-We discussed it before, and it wasn't as trivial as it should have been,
-but now, I really feel something like the following would be simpler:
-
-if (conn_state->color_format !=3D DRM_CONNECTOR_COLOR_FORMAT_AUTO) {
-	enum drm_output_color_format fmt;
-
-	switch (conn_state->color_format) {
-	case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
-	     drm_warn(connector->dev, "The format shouldn't be auto here"); // or =
-any better message
-	     fallthrough;
-	case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
-	     fmt =3D DRM_OUTPUT_COLOR_FORMAT_RGB444;
-	     break;
-	....
-	}
-
-	return hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc, fmt);
-}
-
-ret =3D hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc,
-			      DRM_OUTPUT_COLOR_FORMAT_RGB444);
-
-It makes it much clearer what the two branches are, and we don't have to
-test for auto multiple times.
-
-Maxime
-
---vlv6rbxnnxkik4dv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaaVOSgAKCRAnX84Zoj2+
-duj9AYC6G+CPt23Nm72keJB2VkI/OrdBkSffWrgwixDMIES2m/uxHVPMi8koLjpl
-BYFiCIUBf0RielKN8kXZvqBYg3FOuVBkylhQtEUK3blNIgR3cHtExnVL3+ecatTR
-DqljNp/Vrw==
-=9ih2
------END PGP SIGNATURE-----
-
---vlv6rbxnnxkik4dv--
