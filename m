@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87652D58E53
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 04:06:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 112D7D58E47
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 04:27:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4EF0810E431;
-	Mon,  2 Mar 2026 04:06:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rql9AwyA";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F0ED10E430;
- Mon,  2 Mar 2026 04:06:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772424392; x=1803960392;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8/Df5iEM2abNKH7kKWydRqVe+ejjPV55Vboay9bXNW8=;
- b=Rql9AwyAG0V3xFeWb3sRqNht6YXOkQsWZfWpbRk4TXk25TBx7yV7eo6f
- It0uU7qGUjt8gQz1vPTETTODe8axAZqTJp1D1ms5MUf4nFZXZPIny5Eed
- SgFNfI0/c9BnHw5yZ93v/khSEMyxaBimqJP9Oc2BCFbu15IRHcGlRl6cp
- QaPvvxR5+2PBQjfxmG9Xha58hMFsu+ykFryhu5oCUGZtcNFB3A+YhN5MB
- 7M1TVPhubSxd5fJVax63E0CwH0o/BwdAcqi3mr8i81abB45k6vPbC9v0R
- fMAhNbj/098ZvUNTKmgcbYpNZn6PKS5ulkgtLFcetlTlCYHcDz3zGkzf8 g==;
-X-CSE-ConnectionGUID: TmGLOKjsQfKqfFSXiLLfhA==
-X-CSE-MsgGUID: slaIt1WXRdmGQx5iEFCXWg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="77294462"
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="77294462"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2026 20:06:31 -0800
-X-CSE-ConnectionGUID: kH7xn9EQS3S3c5VIQHxgow==
-X-CSE-MsgGUID: isbm81MLRb2VImMTRmBqkA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="217541031"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa008.jf.intel.com with ESMTP; 01 Mar 2026 20:06:30 -0800
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
- Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [RESEND 8/8] drm/i915/backlight: Use default/max brightness for INTEL
- AUX HDR backlight init
-Date: Mon,  2 Mar 2026 09:36:13 +0530
-Message-Id: <20260302040613.3324049-9-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260302040613.3324049-1-suraj.kandpal@intel.com>
-References: <20260302040613.3324049-1-suraj.kandpal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9CBA510E1A4;
+	Mon,  2 Mar 2026 04:27:46 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7097110E1A4;
+ Mon,  2 Mar 2026 04:27:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3771989315000145360=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_ALPM_init_to?=
+ =?utf-8?q?_be_done_after_DPCD_init?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 02 Mar 2026 04:27:45 -0000
+Message-ID: <177242566542.302126.10749341314819824106@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260302033630.428913-1-arun.r.murthy@intel.com>
+In-Reply-To: <20260302033630.428913-1-arun.r.murthy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,36 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the brightness fetched from VBT/previous state is 0 on backlight
-initialization, then set the brightness to a default/max value.
-Whenever the minimum brightness is reported as 0 there are chances
-we maybe sometimes end up with blank screen. This confuses the user
-into thinking the display is acting weird. This occurs in eDP 1.4b
-when we use proprietary INTEL AUX HDR DPCD registers to manipulate
-brightness via luminance values.
+--===============3771989315000145360==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 2 ++
- 1 file changed, 2 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index cedfbf516b5d..b8769930b16e 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -442,6 +442,8 @@ intel_dp_aux_hdr_setup_backlight(struct intel_connector *connector, enum pipe pi
- 
- 	panel->backlight.level = intel_dp_aux_hdr_get_backlight(connector, pipe);
- 	panel->backlight.enabled = panel->backlight.level != 0;
-+	if (!panel->backlight.level)
-+		panel->backlight.level = panel->backlight.max;
- 
- 	return 0;
- }
--- 
-2.34.1
+Series: drm/i915/dp: ALPM init to be done after DPCD init
+URL   : https://patchwork.freedesktop.org/series/162392/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4636-1ad945dbcb06504e1d9796cac1588c31b4ee62e9_BAT -> xe-pw-162392v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8775 -> IGT_8776
+  * Linux: xe-4636-1ad945dbcb06504e1d9796cac1588c31b4ee62e9 -> xe-pw-162392v1
+
+  IGT_8775: 8775
+  IGT_8776: 8776
+  xe-4636-1ad945dbcb06504e1d9796cac1588c31b4ee62e9: 1ad945dbcb06504e1d9796cac1588c31b4ee62e9
+  xe-pw-162392v1: 162392v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162392v1/index.html
+
+--===============3771989315000145360==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp: ALPM init to be done after DPCD init</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162392/">https://patchwork.freedesktop.org/series/162392/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162392v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162392v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4636-1ad945dbcb06504e1d9796cac1588c31b4ee62e9_BAT -&gt; xe-pw-162392v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8775 -&gt; IGT_8776</li>
+<li>Linux: xe-4636-1ad945dbcb06504e1d9796cac1588c31b4ee62e9 -&gt; xe-pw-162392v1</li>
+</ul>
+<p>IGT_8775: 8775<br />
+  IGT_8776: 8776<br />
+  xe-4636-1ad945dbcb06504e1d9796cac1588c31b4ee62e9: 1ad945dbcb06504e1d9796cac1588c31b4ee62e9<br />
+  xe-pw-162392v1: 162392v1</p>
+
+</body>
+</html>
+
+--===============3771989315000145360==--
