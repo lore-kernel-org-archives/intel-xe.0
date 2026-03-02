@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F8AFEB3637
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 21:59:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92826EB3637
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 22:04:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E59210E5DB;
-	Mon,  2 Mar 2026 21:59:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CBF310E5DE;
+	Mon,  2 Mar 2026 22:04:37 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81F0E10E5DB;
- Mon,  2 Mar 2026 21:59:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5287197396198662690=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63F2D10E5DD;
+ Mon,  2 Mar 2026 22:04:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_gpu/tests/gpu=5Fbuddy=3A_Ad?=
- =?utf-8?q?d_gpu=5Ftest=5Fbuddy=5Falloc=5Frange_for_exact-range_allocation?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Two-pass_MMU_interval_not?=
+ =?utf-8?q?ifiers_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sanjay Yadav" <sanjay.kumar.yadav@intel.com>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 02 Mar 2026 21:59:28 -0000
-Message-ID: <177248876849.305661.7028418090738119181@a3b018990fe9>
+Date: Mon, 02 Mar 2026 22:04:35 -0000
+Message-ID: <177248907538.305661.13210464326044259032@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260302150947.47535-2-sanjay.kumar.yadav@intel.com>
-In-Reply-To: <20260302150947.47535-2-sanjay.kumar.yadav@intel.com>
+References: <20260302163248.105454-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20260302163248.105454-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,307 +40,100 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5287197396198662690==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: gpu/tests/gpu_buddy: Add gpu_test_buddy_alloc_range for exact-range allocation
-URL   : https://patchwork.freedesktop.org/series/162435/
-State : success
+Series: Two-pass MMU interval notifiers (rev2)
+URL   : https://patchwork.freedesktop.org/series/153280/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4641-aefa7ffb61438af0d06c3533fa6b8339b72e802e_BAT -> xe-pw-162435v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c2e8c69404a2a73e66de3c340f9fdcb3dfcc1350
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Mon Mar 2 17:32:48 2026 +0100
 
-Summary
--------
+    drm/xe/userptr: Defer Waiting for TLB invalidation to the second pass if possible
+    
+    Now that the two-pass notifier flow uses xe_vma_userptr_do_inval() for
+    the fence-wait + TLB-invalidate work, extend it to support a further
+    deferred TLB wait:
+    
+    - xe_vma_userptr_do_inval(): when the embedded finish handle is free,
+      submit the TLB invalidation asynchronously (xe_vm_invalidate_vma_submit)
+      and return &userptr->finish so the mmu_notifier core schedules a third
+      pass.  When the handle is occupied by a concurrent invalidation, fall
+      back to the synchronous xe_vm_invalidate_vma() path.
+    
+    - xe_vma_userptr_complete_tlb_inval(): new helper called from
+      invalidate_finish when tlb_inval_submitted is set.  Waits for the
+      previously submitted batch and unmaps the gpusvm pages.
+    
+    xe_vma_userptr_invalidate_finish() dispatches between the two helpers
+    via tlb_inval_submitted, making the three possible flows explicit:
+    
+      pass1 (fences pending)  -> invalidate_finish -> do_inval (sync TLB)
+      pass1 (fences done)     -> do_inval -> invalidate_finish
+                              -> complete_tlb_inval (deferred TLB)
+      pass1 (finish occupied) -> do_inval (sync TLB, inline)
+    
+    In multi-GPU scenarios this allows TLB flushes to be submitted on all
+    GPUs in one pass before any of them are waited on.
+    
+    Also adds xe_vm_invalidate_vma_submit() which submits the TLB range
+    invalidation without blocking, populating a xe_tlb_inval_batch that
+    the caller waits on separately.
+    
+    Assisted-by: GitHub Copilot:claude-sonnet-4.6
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch 658ee8457333fe9f26f88f812f6cd423f800720b drm-intel
+cf2abf1e0058 mm/mmu_notifier: Allow two-pass struct mmu_interval_notifiers
+-:48: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#48: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6 # Documentation only.
 
-  **SUCCESS**
+-:48: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'GitHub Copilot:claude-sonnet-4.6 # Documentation only.'
+#48: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6 # Documentation only.
 
-  No regressions found.
+total: 1 errors, 1 warnings, 0 checks, 162 lines checked
+90515c84cb85 drm/xe/userptr: Convert invalidation to two-pass MMU notifier
+-:32: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#32: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-  
+-:32: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'GitHub Copilot:claude-sonnet-4.6'
+#32: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-Participating hosts (13 -> 13)
-------------------------------
+total: 1 errors, 1 warnings, 0 checks, 179 lines checked
+aba93520ca36 drm/xe: Split TLB invalidation into submit and wait steps
+-:21: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#21: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-  Additional (1): bat-atsm-2 
-  Missing    (1): bat-bmg-3 
+-:21: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'GitHub Copilot:claude-sonnet-4.6'
+#21: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-Known issues
-------------
+total: 1 errors, 1 warnings, 0 checks, 277 lines checked
+c2e8c69404a2 drm/xe/userptr: Defer Waiting for TLB invalidation to the second pass if possible
+-:39: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#39: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-  Here are the changes found in xe-pw-162435v1_BAT that come from known issues:
+-:39: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'GitHub Copilot:claude-sonnet-4.6'
+#39: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@fbdev@write:
-    - bat-atsm-2:         NOTRUN -> [SKIP][1] ([Intel XE#2134]) +4 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@fbdev@write.html
-
-  * igt@kms_addfb_basic@addfb25-yf-tiled-legacy:
-    - bat-atsm-2:         NOTRUN -> [SKIP][2] ([i915#6077]) +30 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@kms_addfb_basic@addfb25-yf-tiled-legacy.html
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - bat-atsm-2:         NOTRUN -> [SKIP][3] ([Intel XE#1024] / [Intel XE#782] / [Intel XE#947]) +5 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-atsm-2:         NOTRUN -> [SKIP][4] ([Intel XE#1024] / [Intel XE#784] / [Intel XE#947])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [PASS][5] -> [DMESG-WARN][6] ([Intel XE#7483])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4641-aefa7ffb61438af0d06c3533fa6b8339b72e802e/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-atsm-2:         NOTRUN -> [SKIP][7] ([Intel XE#1024] / [Intel XE#783] / [Intel XE#947])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - bat-atsm-2:         NOTRUN -> [SKIP][8] ([Intel XE#540]) +3 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@kms_hdmi_inject@inject-audio.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc:
-    - bat-atsm-2:         NOTRUN -> [SKIP][9] ([Intel XE#829] / [i915#1836]) +6 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@kms_pipe_crc_basic@nonblocking-crc.html
-
-  * igt@kms_prop_blob@basic:
-    - bat-atsm-2:         NOTRUN -> [SKIP][10] ([Intel XE#780])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@kms_prop_blob@basic.html
-
-  * igt@kms_psr@psr-primary-page-flip:
-    - bat-atsm-2:         NOTRUN -> [SKIP][11] ([Intel XE#1024] / [Intel XE#947]) +6 other tests skip
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@kms_psr@psr-primary-page-flip.html
-
-  * igt@xe_exec_fault_mode@twice-userptr-prefetch:
-    - bat-atsm-2:         NOTRUN -> [SKIP][12] ([Intel XE#288]) +32 other tests skip
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-prefetch.html
-
-  * igt@xe_huc_copy@huc_copy:
-    - bat-atsm-2:         NOTRUN -> [SKIP][13] ([Intel XE#255])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@xe_huc_copy@huc_copy.html
-
-  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
-    - bat-atsm-2:         NOTRUN -> [SKIP][14] ([Intel XE#2229])
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
-
-  * igt@xe_pat@pat-index-xe2:
-    - bat-atsm-2:         NOTRUN -> [SKIP][15] ([Intel XE#977])
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@xe_pat@pat-index-xe2.html
-
-  * igt@xe_pat@pat-index-xehpc:
-    - bat-atsm-2:         NOTRUN -> [SKIP][16] ([Intel XE#2838] / [Intel XE#979])
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@xe_pat@pat-index-xehpc.html
-
-  * igt@xe_pat@pat-index-xelpg:
-    - bat-atsm-2:         NOTRUN -> [SKIP][17] ([Intel XE#979])
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@xe_pat@pat-index-xelpg.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][18] ([Intel XE#7483]) -> [PASS][19]
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4641-aefa7ffb61438af0d06c3533fa6b8339b72e802e/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-  [Intel XE#1024]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024
-  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
-  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#540]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/540
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
-  [Intel XE#780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/780
-  [Intel XE#782]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/782
-  [Intel XE#783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/783
-  [Intel XE#784]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/784
-  [Intel XE#829]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/829
-  [Intel XE#947]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/947
-  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
-  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
-  [i915#1836]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1836
-  [i915#6077]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6077
+total: 1 errors, 1 warnings, 0 checks, 216 lines checked
 
 
-Build changes
--------------
-
-  * Linux: xe-4641-aefa7ffb61438af0d06c3533fa6b8339b72e802e -> xe-pw-162435v1
-
-  IGT_8776: 8776
-  xe-4641-aefa7ffb61438af0d06c3533fa6b8339b72e802e: aefa7ffb61438af0d06c3533fa6b8339b72e802e
-  xe-pw-162435v1: 162435v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/index.html
-
---===============5287197396198662690==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>gpu/tests/gpu_buddy: Add gpu_test_buddy_alloc_range for exact-range allocation</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162435/">https://patchwork.freedesktop.org/series/162435/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4641-aefa7ffb61438af0d06c3533fa6b8339b72e802e_BAT -&gt; xe-pw-162435v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 13)</h2>
-<p>Additional (1): bat-atsm-2 <br />
-  Missing    (1): bat-bmg-3 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-162435v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@fbdev@write:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@fbdev@write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@addfb25-yf-tiled-legacy:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@kms_addfb_basic@addfb25-yf-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6077">i915#6077</a>) +30 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024">Intel XE#1024</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/782">Intel XE#782</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/947">Intel XE#947</a>) +5 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024">Intel XE#1024</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/784">Intel XE#784</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/947">Intel XE#947</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4641-aefa7ffb61438af0d06c3533fa6b8339b72e802e/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024">Intel XE#1024</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/783">Intel XE#783</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/947">Intel XE#947</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/540">Intel XE#540</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@kms_pipe_crc_basic@nonblocking-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/829">Intel XE#829</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1836">i915#1836</a>) +6 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_prop_blob@basic:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@kms_prop_blob@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/780">Intel XE#780</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-primary-page-flip:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@kms_psr@psr-primary-page-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024">Intel XE#1024</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/947">Intel XE#947</a>) +6 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-userptr-prefetch:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_huc_copy@huc_copy:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xe2:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xehpc:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_pat@pat-index-xelpg:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-atsm-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4641-aefa7ffb61438af0d06c3533fa6b8339b72e802e/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162435v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4641-aefa7ffb61438af0d06c3533fa6b8339b72e802e -&gt; xe-pw-162435v1</li>
-</ul>
-<p>IGT_8776: 8776<br />
-  xe-4641-aefa7ffb61438af0d06c3533fa6b8339b72e802e: aefa7ffb61438af0d06c3533fa6b8339b72e802e<br />
-  xe-pw-162435v1: 162435v1</p>
-
-</body>
-</html>
-
---===============5287197396198662690==--
