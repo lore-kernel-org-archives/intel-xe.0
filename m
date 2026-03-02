@@ -4,86 +4,78 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62545E9B36F
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 12:34:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51CB8E9B371
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 12:35:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2521D10E4B6;
-	Mon,  2 Mar 2026 12:34:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0617310E4BC;
+	Mon,  2 Mar 2026 12:35:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="ABMSQRTk";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="B7iz3Bd6";
 	dkim-atps=neutral
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F37E10E4B6
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Mar 2026 12:34:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1772454864;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=3doa6HfxdfxJ1p5CQxQkAhxxDryXGM6DiFWfZesWQ/A=;
- b=ABMSQRTksCmKVK6dZ9Mc0reiQq/D/tTWkMwtMWktqLXgJnnU/zlu34Pr3hSKc4EBow726E
- QVLN9yQzsgKfqJUD/IeBZM7Nx4QZJuPXlPUAGppBVoPuf6Uj/VTTT3VZE5VCUB6qRByE1e
- IUcrigBO0PiEIkEL9m5p0OUQd4bKU0c=
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-333-G540OS_JN6OiKCyM2yn9Pg-1; Mon, 02 Mar 2026 07:34:23 -0500
-X-MC-Unique: G540OS_JN6OiKCyM2yn9Pg-1
-X-Mimecast-MFC-AGG-ID: G540OS_JN6OiKCyM2yn9Pg_1772454863
-Received: by mail-qt1-f197.google.com with SMTP id
- d75a77b69052e-506c0da79c5so437345861cf.1
- for <intel-xe@lists.freedesktop.org>; Mon, 02 Mar 2026 04:34:23 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772454862; x=1773059662;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=3doa6HfxdfxJ1p5CQxQkAhxxDryXGM6DiFWfZesWQ/A=;
- b=s+jXCsjRxB9QJ3V+JvG+hOy2Vn0ByDc/SJ+lx7747VgOX+ygvv/9bFAEJY0XB+ajY2
- J4lmAJSur0SR2geKjo2LQswl4MOseCJP/IFN1y5xZIs4AhagLMCXh2rmGCOnpoFj9qZi
- f2pOYoJPC3PQJaieDa7FgTqIVqyKGZgqzKr6bJl6/4S9bO1Y3UNBddizDFUVbLvks3Fy
- RcpALniabUGawDI8v+nuA1y/ftvLAEfi2jgdnLGyBkYAjy0u4VgVi3nYgYq+cBqiC8yn
- sSQdKSoUxZVsAZYIYzJwqc38u4aiB7AuHV80CtOCFLt/k8KQ9Jajy1tpDfl8Lc9qLLd9
- WWUg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCWc2wwfusCZhS0SI0S8PMmnVwfpOSYgjRYBOPBDm66gufVU114eWG3rkYkrN+rDo/UZJHWOTYde9g==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyjUxMYO+OHddLuc06ajGj0x4GRxmbD4aQaz7M5bzrg8flCjuQO
- xl7LlTva08aikWBiMtwalgxb/TRP53ZY5AZsKwKgUU24II8J1SyIw5OKXLyTFOHI1Ee6ZovFd51
- SRt98bQNm6JygQymCV/B92DYnAzQW6X2HObaBu7sMhNjLVrR2tSeL2Dl7BvBwQ9HkZEJhG8yds6
- a2xi1f8X+00BWvG3nX47aaRZ4mFDfcNT45SgIEWZlWm80=
-X-Gm-Gg: ATEYQzxNvApQ9+p9j3Qp5kINmrxyNgqEwlfQDbxfdGo/0PyZ0WOQcQ7E2nGkhu2fNBa
- fJzKHMAXEDW0iwmCK/JKTvQUFTVbjp8XNjLEKfZYo31NJ2jpAkCmHyeV+hZRCb8Cx0jgvE8KJxx
- zqIRMAqMZBdatRM81dg5FhTFtWbARi/OXlkyIwQ/ve0GI6Kq+mDUN7i2fpdt9AJIG7pHfLl+6eI
- 5sZWLA=
-X-Received: by 2002:ac8:7f49:0:b0:502:a1c6:4ee with SMTP id
- d75a77b69052e-50752714b06mr153678751cf.1.1772454862538; 
- Mon, 02 Mar 2026 04:34:22 -0800 (PST)
-X-Received: by 2002:ac8:7f49:0:b0:502:a1c6:4ee with SMTP id
- d75a77b69052e-50752714b06mr153678311cf.1.1772454862031; Mon, 02 Mar 2026
- 04:34:22 -0800 (PST)
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA72410E4B8;
+ Mon,  2 Mar 2026 12:35:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1772454928; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=EdM6kuDOOrBMjnk82Ujo+bVjEAXNVDAZBqVU/C5AIUuCTCpiFxwCZcpe03EWauXknbjeD766XJC5tJXnzS73vS3HbLrIVgx4rI/i1umJU3RCWVf4cWtY31b9OEOnDlRP22zfC84VoMNE73XFwNmWC4jeftCBL06vVeerlFo1Mxg=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1772454928;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=3BG6NbMJZCakv4h2SAqH1WDhyhJOxLlkoG0+u/X9t+w=; 
+ b=TiGFuMZyrE5Ol/sLoQp+n0ByX0Xz2NUfj2Wbg/OGQXHHc+WHNgMxrth2sK/DXaQUgopkpXqtj73ZFd4FpvtZVvJsUOXn5b909FImg8PufyEmX3POJt6RtJLYu6HzjrzyRCD24SyHVJo7YW4IT+h4B294hCJ/oza3vNm3PR0QHA8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772454928; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+ bh=3BG6NbMJZCakv4h2SAqH1WDhyhJOxLlkoG0+u/X9t+w=;
+ b=B7iz3Bd6S3S9gUGiY3IxUc2MxIUugQu7iDZrJ/yyGxTlAtxwtsUGr5Xe5CLIXEGc
+ 4z1rqx/G6PEKW5Q98G92SaBOZWk7fscOfqGNo1g8UGj3WiRlrlT4fxUNnQkh/ltgEPS
+ YLQ2mrmefuTXI3ooJRzKjrWdygiygyjjnqNTQ15g=
+Received: by mx.zohomail.com with SMTPS id 1772454925950111.09737166746925;
+ Mon, 2 Mar 2026 04:35:25 -0800 (PST)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ kernel@collabora.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, Andri Yngvason <andri@yngvason.is>,
+ Werner Sembach <wse@tuxedocomputers.com>,
+ Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v9 02/19] drm: Add new general DRM property "color format"
+Date: Mon, 02 Mar 2026 13:35:16 +0100
+Message-ID: <5081457.31r3eYUQgx@workhorse>
+In-Reply-To: <y5ybjitphwydvtcjdtrmpcx7t7hwevjszpktcnmyvjqkgzinmu@hoitkl7lghxh>
+References: <20260227-color-format-v9-0-658c3b9db7ef@collabora.com>
+ <20260227-color-format-v9-2-658c3b9db7ef@collabora.com>
+ <y5ybjitphwydvtcjdtrmpcx7t7hwevjszpktcnmyvjqkgzinmu@hoitkl7lghxh>
 MIME-Version: 1.0
-References: <20260228130946.50919-2-ltao@redhat.com>
- <31690b028081ba72ca9babf2d09417376e10f2f1@intel.com>
-In-Reply-To: <31690b028081ba72ca9babf2d09417376e10f2f1@intel.com>
-From: Tao Liu <ltao@redhat.com>
-Date: Tue, 3 Mar 2026 01:33:44 +1300
-X-Gm-Features: AaiRm52a0YHO0oHtZTipmB5LVpX2kFAg8VVxT3gl0IBhaHYmqB6zATtNCm8_Zxk
-Message-ID: <CAO7dBbV2AtmXRCQkNgYvaAVW8S_jWoQgqC6c1k83H-aug_tNeA@mail.gmail.com>
-Subject: Re: [PATCH] i915: Fix NULL pointer dereference in
- intel_dmc_update_dc6_allowed_count()
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com, 
- tursulin@ursulin.net, airlied@gmail.com, simona@ffwll.ch, imre.deak@intel.com, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, kexec@lists.infradead.org, 
- linux-kernel@vger.kernel.org
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: gBMARKoXzvSU8LiQXggYe3EUwJ3sCqonT7xP40pZUzk_1772454863
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,130 +90,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Mar 2, 2026 at 10:14=E2=80=AFPM Jani Nikula <jani.nikula@linux.inte=
-l.com> wrote:
->
-> On Sun, 01 Mar 2026, Tao Liu <ltao@redhat.com> wrote:
-> > There is a NULL pointer dereference issue noticed in i915 when 2nd kern=
-el
-> > bootup during kdump. This will panic 2nd kernel and lead to no vmcore
-> > generation. The issue is observed in Meteorlake CPU(cpuid: 0xA06A2):
->
-> The previously posted fix is [1].
-
-Thanks for the link, I didn't notice it. For kdump case, as far as I
-have tested, only adding (!dmc) check for
-intel_dmc_update_dc6_allowed_count() is sufficient to allow kdump to
-work.
-
-Thanks,
-Tao Liu
-
->
-> Imre, please R-b that. It's a NULL pointer dereference in the wild, in
-> stable kernels. We need to get it fixed instead of bikeshedding on
-> potential incorrect debugfs results.
->
-> BR,
-> Jani.
->
->
-> [1] https://lore.kernel.org/r/20251202183950.2450315-1-jani.nikula@intel.=
-com
->
->
-> >
-> >     BUG: kernel NULL pointer dereference, address: 0000000000000000
-> >     #PF: supervisor read access in kernel mode
-> >     #PF: error_code(0x0000) - not-present page
-> >     PGD 0 P4D 0
-> >     Oops: Oops: 0000 [#1] SMP NOPTI
-> >     ...
-> >     RIP: 0010:intel_dmc_update_dc6_allowed_count+0x16/0xa0 [i915]
-> >     ...
-> >
-> > It is easy to locate the NULL pointer dereference by disassembly:
-> >
-> >     00000000001171e0 <intel_dmc_update_dc6_allowed_count>:
-> >       1171e0:       f3 0f 1e fa             endbr64
-> >       1171e4:       e8 00 00 00 00          call   1171e9
-> >       1171e9:       41 55                   push   %r13
-> >       1171eb:       41 54                   push   %r12
-> >       1171ed:       55                      push   %rbp
-> >       1171ee:       53                      push   %rbx
-> >       1171ef:       4c 8b a7 18 03 00 00    mov    0x318(%rdi),%r12
-> >       1171f6:       49 8b 2c 24             mov    (%r12),%rbp
-> >
-> > To fix this, add a NULL pointer check before dereferencing.
-> >
-> > Signed-off-by: Tao Liu <ltao@redhat.com>
+On Sunday, 1 March 2026 17:47:48 Central European Standard Time Dmitry Baryshkov wrote:
+> On Fri, Feb 27, 2026 at 08:20:07PM +0100, Nicolas Frattaroli wrote:
+> > From: Andri Yngvason <andri@yngvason.is>
+> > 
+> > Add a new general DRM property named "color format" which can be used by
+> > userspace to request the display driver to output a particular color
+> > format.
+> > 
+> > Possible options are:
+> >     - auto (setup by default, driver internally picks the color format)
+> >     - rgb
+> >     - ycbcr444
+> >     - ycbcr422
+> >     - ycbcr420
+> > 
+> > Drivers should advertise from this list which formats they support.
+> > Together with this list and EDID data from the sink we should be able
+> > to relay a list of usable color formats to users to pick from.
+> > 
+> > Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+> > Signed-off-by: Andri Yngvason <andri@yngvason.is>
+> > Signed-off-by: Marius Vlad <marius.vlad@collabora.com>
+> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 > > ---
-> >
-> > The issue doesn't happen in 1st kernel, but in 2nd kernel of kdump. I'm=
- not
-> > an expert to i915 and unsure what lead to the NULL pointer. To help fur=
-ther
-> > analysis, here is the full stack:
-> >
-> > [    8.608520]  <TASK>
-> > [    8.610652]  gen9_set_dc_state.part.0+0x25d/0x2f0 [i915]
-> > [    8.616096]  icl_display_core_init+0x2d/0x620 [i915]
-> > [    8.621266]  intel_power_domains_init_hw+0x1b2/0x500 [i915]
-> > [    8.627047]  intel_display_driver_probe_noirq+0x87/0x300 [i915]
-> > [    8.633188]  i915_driver_probe+0x207/0x5d0 [i915]
-> > [    8.637977]  ? drm_privacy_screen_get+0x198/0x1c0
-> > [    8.642832]  local_pci_probe+0x41/0x90
-> > [    8.646646]  pci_call_probe+0x58/0x160
-> > [    8.650458]  ? pci_assign_irq+0x2f/0x160
-> > [    8.654447]  ? pci_match_device+0xf8/0x120
-> > [    8.658522]  pci_device_probe+0x95/0x140
-> > [    8.662582]  call_driver_probe+0x27/0x110
-> > [    8.666570]  really_probe+0xcc/0x2c0
-> > [    8.670190]  __driver_probe_device+0x78/0x120
-> > [    8.674692]  driver_probe_device+0x1f/0xa0
-> > [    8.678857]  __driver_attach+0xfa/0x230
-> > [    8.682757]  ? __pfx___driver_attach+0x10/0x10
-> > [    8.687185]  bus_for_each_dev+0x8e/0xe0
-> > [    8.691159]  bus_add_driver+0x11f/0x200
-> > [    8.694970]  driver_register+0x72/0xd0
-> > [    8.698853]  i915_init+0x26/0x90 [i915]
-> > [    8.702837]  ? __pfx_i915_init+0x10/0x10 [i915]
-> > [    8.707433]  do_one_initcall+0x5c/0x320
-> > [    8.711409]  do_init_module+0x60/0x240
-> > [    8.715132]  init_module_from_file+0xd6/0x130
-> > [    8.719634]  idempotent_init_module+0x114/0x310
-> > [    8.724241]  __x64_sys_finit_module+0x71/0xe0
-> > [    8.728671]  do_syscall_64+0x11b/0x6d0
-> > [    8.732483]  ? ksys_read+0x6b/0xe0
-> > [    8.735854]  ? arch_exit_to_user_mode_prepare.isra.0+0xa2/0xd0
-> > [    8.741768]  ? do_syscall_64+0x153/0x6d0
-> > [    8.745828]  ? do_syscall_64+0x153/0x6d0
-> > [    8.749814]  ? do_syscall_64+0x153/0x6d0
-> > [    8.753800]  ? clear_bhb_loop+0x30/0x80
-> > [    8.757700]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
-> >
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dmc.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm=
-/i915/display/intel_dmc.c
-> > index 1006b060c3f3..fd2756badc0c 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> > @@ -1578,7 +1578,7 @@ void intel_dmc_update_dc6_allowed_count(struct in=
-tel_display *display,
-> >       struct intel_dmc *dmc =3D display_to_dmc(display);
-> >       u32 dc5_cur_count;
-> >
-> > -     if (DISPLAY_VER(dmc->display) < 14)
-> > +     if (!dmc || DISPLAY_VER(dmc->display) < 14)
-> >               return;
-> >
-> >       dc5_cur_count =3D intel_de_read(dmc->display, DG1_DMC_DEBUG_DC5_C=
-OUNT);
->
-> --
-> Jani Nikula, Intel
->
+> >  drivers/gpu/drm/drm_atomic_helper.c |   5 ++
+> >  drivers/gpu/drm/drm_atomic_uapi.c   |  11 ++++
+> >  drivers/gpu/drm/drm_connector.c     | 124 ++++++++++++++++++++++++++++++++++++
+> >  include/drm/drm_connector.h         | 103 ++++++++++++++++++++++++++++++
+> >  4 files changed, 243 insertions(+)
+> 
+> It seems and feels that the common code to be used (almost?) everywhere
+> would be:
+> 
+> if (!drm_mode_create_color_format_property(connector, supported_formats))
+> 	drm_connector_attach_color_format_property(connector);
+> 
+> 
+> Please mention somewhere the reason to split that into two functions.
+> 
+
+There isn't one I can think of, I kept it as-is since I inherited
+the code like this and figured this was the expected convention based
+on drm_mode_create_hdmi_colorspace_property ->
+drm_connector_attach_colorspace_property.
+
+Quite possibly, the idea is that callers can choose to probe whether
+a certain set of parameters would allow the property to be created
+without attaching it during said probing, but that's speculation on
+my part.
+
+Having it work like drm_connector_attach_max_bpc_property may make
+more sense here, and I'll refactor it to do this in the next revision
+unless anyone has any objections.
+
+Kind regards,
+Nicolas Frattaroli
+
 
