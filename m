@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E491AEB3624
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 19:56:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9E4DEB3624
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 20:01:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9704210E5BB;
-	Mon,  2 Mar 2026 19:56:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74D0710E11B;
+	Mon,  2 Mar 2026 20:01:11 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6130010E22D;
- Mon,  2 Mar 2026 19:56:08 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6899665764164232741=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C35210E11B;
+ Mon,  2 Mar 2026 20:01:10 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_series_starting_with_=5BPAT?=
- =?utf-8?q?CHv3=2C1/2=5D_drm/i915/dp=3A_Read_ALPM_caps_after_DPCD_init?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_checkpatch=3A_teach_check?=
+ =?utf-8?q?patch_about_the_Assisted-by=3A_tag_for_AI-assisted_patches?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 02 Mar 2026 19:56:08 -0000
-Message-ID: <177248136837.305649.14333878123399687128@a3b018990fe9>
+Date: Mon, 02 Mar 2026 20:01:10 -0000
+Message-ID: <177248167061.305661.1333768231380491809@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260302132602.480408-1-arun.r.murthy@intel.com>
-In-Reply-To: <20260302132602.480408-1-arun.r.murthy@intel.com>
+References: <20260302143659.41882-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20260302143659.41882-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,136 +40,139 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6899665764164232741==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [PATCHv3,1/2] drm/i915/dp: Read ALPM caps after DPCD init
-URL   : https://patchwork.freedesktop.org/series/162420/
-State : success
+Series: checkpatch: teach checkpatch about the Assisted-by: tag for AI-assisted patches
+URL   : https://patchwork.freedesktop.org/series/162433/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4640-40e52ed6c66cef091579dd7fe49ccd2de135f5c5_BAT -> xe-pw-162420v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 8b7df9864f125be1128fda77843dcd2cb42dd5d5
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Mon Mar 2 15:36:59 2026 +0100
 
-Summary
--------
+    checkpatch: teach checkpatch about the Assisted-by: tag for AI-assisted patches
+    
+    Documentation/process/coding-assistants.rst mandates the use of an
+    uses an "Agent:Model" notation rather than a name-and-email-address
+    pair, for example:
+    
+      Assisted-by: GitHub Copilot:claude-sonnet-4.6
+    
+    checkpatch.pl currently emits false-positive errors and warnings for
+    this tag:
+    
+      WARNING: Non-standard signature: Assisted-by:
+      ERROR: Unrecognized email address: 'GitHub Copilot:claude-sonnet-4.6'
+    
+    Teach checkpatch about the tag:
+    
+    - Add Assisted-by: to the $signature_tags regex so it is no longer
+      flagged as a non-standard signature.
+    - Add Assisted-by: to the standard_signature_tags list in
+      find_standard_signature() so that near-miss typos (e.g.
+      'Assited-by:') suggest the correct spelling.
+    - Skip the email-address validation for Assisted-by: tags and instead
+      validate that the value contains at least one colon separating the
+      agent name from the model identifier.  Emit a BAD_SIGN_OFF warning
+      if the notation does not conform.
+    
+    Cc: Andy Whitcroft <apw@canonical.com>
+    Cc: Joe Perches <joe@perches.com>
+    Cc: Dwaipayan Ray <dwaipayanray1@gmail.com>
+    Cc: Lukas Bulwahn <lukas.bulwahn@gmail.com>
+    Cc: linux-kernel@vger.kernel.org
+    Assisted-by: GitHub Copilot:claude-sonnet-4.6
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch 8527899064372c5c8f4d8db80024412ff3c02128 drm-intel
+8b7df9864f12 checkpatch: teach checkpatch about the Assisted-by: tag for AI-assisted patches
+-:4: WARNING:EMAIL_SUBJECT: A patch subject line should describe the change not the tool that found it
+#4: 
+Subject: [PATCH] checkpatch: teach checkpatch about the Assisted-by: tag for
 
-  **SUCCESS**
+-:14: WARNING:BAD_SIGN_OFF: Do not use whitespace before Assisted-by:
+#14: 
+  Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-  No regressions found.
+-:39: WARNING:BAD_SIGN_OFF: Duplicate signature
+#39: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-  
+-:47: WARNING:BAD_SIGN_OFF: Do not use whitespace before Reviewed-by:
+#47: FILE: scripts/checkpatch.pl:641:
+ 	Reviewed-by:|
 
-Participating hosts (14 -> 14)
-------------------------------
+-:47: WARNING:BAD_SIGN_OFF: Use a single space after Reviewed-by:
+#47: FILE: scripts/checkpatch.pl:641:
+ 	Reviewed-by:|
 
-  No changes in participating hosts
+-:47: ERROR:BAD_SIGN_OFF: Unrecognized email address: '|'
+#47: FILE: scripts/checkpatch.pl:641:
+ 	Reviewed-by:|
 
-Known issues
-------------
+-:48: WARNING:BAD_SIGN_OFF: Do not use whitespace before Reported-by:
+#48: FILE: scripts/checkpatch.pl:642:
+ 	Reported-by:|
 
-  Here are the changes found in xe-pw-162420v1_BAT that come from known issues:
+-:48: WARNING:BAD_SIGN_OFF: Use a single space after Reported-by:
+#48: FILE: scripts/checkpatch.pl:642:
+ 	Reported-by:|
 
-### IGT changes ###
+-:48: ERROR:BAD_SIGN_OFF: Unrecognized email address: '|'
+#48: FILE: scripts/checkpatch.pl:642:
+ 	Reported-by:|
 
-#### Issues hit ####
+-:48: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
+#48: FILE: scripts/checkpatch.pl:642:
+ 	Reported-by:|
+ 	Suggested-by:|
 
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4640-40e52ed6c66cef091579dd7fe49ccd2de135f5c5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162420v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+-:49: WARNING:BAD_SIGN_OFF: Do not use whitespace before Suggested-by:
+#49: FILE: scripts/checkpatch.pl:643:
+ 	Suggested-by:|
 
-  
-#### Possible fixes ####
+-:49: WARNING:BAD_SIGN_OFF: Use a single space after Suggested-by:
+#49: FILE: scripts/checkpatch.pl:643:
+ 	Suggested-by:|
 
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4640-40e52ed6c66cef091579dd7fe49ccd2de135f5c5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162420v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+-:49: ERROR:BAD_SIGN_OFF: Unrecognized email address: '|'
+#49: FILE: scripts/checkpatch.pl:643:
+ 	Suggested-by:|
 
-  
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
+-:51: WARNING:BAD_SIGN_OFF: Do not use whitespace before To:
+#51: FILE: scripts/checkpatch.pl:645:
+ 	To:|
 
+-:51: WARNING:BAD_SIGN_OFF: Use a single space after To:
+#51: FILE: scripts/checkpatch.pl:645:
+ 	To:|
 
-Build changes
--------------
+-:51: ERROR:BAD_SIGN_OFF: Unrecognized email address: '|'
+#51: FILE: scripts/checkpatch.pl:645:
+ 	To:|
 
-  * Linux: xe-4640-40e52ed6c66cef091579dd7fe49ccd2de135f5c5 -> xe-pw-162420v1
+-:52: WARNING:BAD_SIGN_OFF: Do not use whitespace before Cc:
+#52: FILE: scripts/checkpatch.pl:646:
+ 	Cc:
 
-  IGT_8776: 8776
-  xe-4640-40e52ed6c66cef091579dd7fe49ccd2de135f5c5: 40e52ed6c66cef091579dd7fe49ccd2de135f5c5
-  xe-pw-162420v1: 162420v1
+-:52: WARNING:BAD_SIGN_OFF: Use a single space after Cc:
+#52: FILE: scripts/checkpatch.pl:646:
+ 	Cc:
 
-== Logs ==
+-:52: ERROR:BAD_SIGN_OFF: Unrecognized email address: ''
+#52: FILE: scripts/checkpatch.pl:646:
+ 	Cc:
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162420v1/index.html
-
---===============6899665764164232741==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [PATCHv3,1/2] drm/i915/dp: Read ALPM caps after DPCD init</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162420/">https://patchwork.freedesktop.org/series/162420/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162420v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162420v1/index.html</a></td></tr>
-
-</table>
+total: 5 errors, 14 warnings, 0 checks, 31 lines checked
 
 
-    <h1>CI Bug Log - changes from xe-4640-40e52ed6c66cef091579dd7fe49ccd2de135f5c5_BAT -&gt; xe-pw-162420v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-162420v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4640-40e52ed6c66cef091579dd7fe49ccd2de135f5c5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162420v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4640-40e52ed6c66cef091579dd7fe49ccd2de135f5c5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162420v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4640-40e52ed6c66cef091579dd7fe49ccd2de135f5c5 -&gt; xe-pw-162420v1</li>
-</ul>
-<p>IGT_8776: 8776<br />
-  xe-4640-40e52ed6c66cef091579dd7fe49ccd2de135f5c5: 40e52ed6c66cef091579dd7fe49ccd2de135f5c5<br />
-  xe-pw-162420v1: 162420v1</p>
-
-</body>
-</html>
-
---===============6899665764164232741==--
