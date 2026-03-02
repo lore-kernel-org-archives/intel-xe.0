@@ -4,123 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F81FD58E7D
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 09:02:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 781FAD58E7D
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 09:05:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06D2610E463;
-	Mon,  2 Mar 2026 09:02:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F8E110E464;
+	Mon,  2 Mar 2026 09:05:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="bsmm3QcJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hD0QHxTL";
 	dkim-atps=neutral
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011046.outbound.protection.outlook.com [52.101.52.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA72410E462;
- Mon,  2 Mar 2026 09:02:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5262310E354;
+ Mon,  2 Mar 2026 09:05:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772442303; x=1803978303;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=CJILPxbxLXLxdDe+GsTFWZZdM+5e+NFSFm5qDUCA06s=;
+ b=hD0QHxTLLYQDy+vpfe+DSFDroXvUOyC/Oo6qrYng2ggmtB6pPEWx6K5g
+ M9XP1KeLtvw2ED+AgBRglKjMvbkoVLKHdFSINzektwWFxGs7A5jFW+/0q
+ FEleQhgiHS6cyv2mMkyiQq5uPggQP5mJQdKiJHPZFtEEgur+v/pgRy67V
+ h+aJlOHqfHvTTeMwCpEjSPkJnObttbwbX52S7Wdsb7WUZ7VHer9EFdDes
+ iZW9qRr9PXdp26OD43ITeYBdmDA25jkq2lWw65i5uDLZEymc3BmQFc772
+ NnrYt5ctiUNpqaL9BsP9H2ic9cyX7RBPcRuG5IYJhl+w6iWnd+D+vY0Wo g==;
+X-CSE-ConnectionGUID: hl4C+n7IT9G9am6H1dYFfQ==
+X-CSE-MsgGUID: HLvnxWACRnKiALyh6/tlLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="73408854"
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="73408854"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 01:05:02 -0800
+X-CSE-ConnectionGUID: FlBlsRmmQG6Hd86dicmJjA==
+X-CSE-MsgGUID: NpTVdrgqSYadFSUQP2KrXg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="214831817"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 01:05:02 -0800
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 2 Mar 2026 01:05:01 -0800
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Mon, 2 Mar 2026 01:05:01 -0800
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.34) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 2 Mar 2026 01:05:00 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=UpTTKLN9STg7TrsGH0vyxAM74QPQxvBsqWbbGU7UGDHyefaeoT4/dc9jFFX2uY4uE7NhepPFK2Y20SM1hSjsGcdmNOThYTdcrWcGFZ/WT7FmPRhNuXtaBDe2Kl3KZpuXQVN4VJl5k98EWMMglCE0Mt/AeHk67NlImY/HdTcV/bM2XkB1KOOaWkHn9N1ZiUJBkKaG6ql609OWSPGfc8TagwpFbQy8UhVvRsRbosjGyFDI9tGA+70RYlkGTa1x7+03xFV5cLM6my65fTdrCVShaPhxqoZhhY37AVTq7OO5pjVkdQqV0/PfsXBOl6Ff0Plmsb8kyM4Ybddr+ecdF0ZD6w==
+ b=agqv16ysMii3HuCNnN6HNLfeWfqU2bG5XVfA4ojA2aAmVgTvKPROmbLSdgS0Xx8OwajntJRH1yFZSdKYDMYI8vqqR0Nx1D7uUvaM2qIJxQvQYVQ2e8jgEqIrTHAq1u/w5ItD5ILP9P5AewRH9f/gIWlME8JfhFER/G5x2+XqOaUhCnJThyudFseeHzXMUBtB9pMCdR/J35wf7YAmoSnTmsjRE1Ip09jinoDNnKxFeH4Xjsonzbys2kQ1CWDh2g/5B0l5Pqb9gN7d7ZAZhqLsIk6Dg5eq4r5cyQqmBXXPdJYOxpCbSM0yisTNBrAfYV/OlT7WcpJEC6d7rthWyJn7iw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5WpOTTf1KnYtuMAqiWkA8eAdpuDa9NYS2ymWwn/XysM=;
- b=QmItCcNTMfmmFozSYlwacbSMBwTbfilddEX+Ye2wFb1Sk4//5Gy/WKBcBuJE7mZ908FkLVomS1NwmyMgBmGRosXGcNbbQynXAT4fmvN6gs+5bhF0xRZ/K8qtZycNeVy87O1wJNke7DYwgbqeyY7AFwhACa7G9uezGrkb09eurSx6/HbS+3Kinu2/B4KLWka+ZXBxY+53K7vACPNO8RFa1avOr7QC1Ohbm8aDzSMoE2TkxRWmYaxtk5ILahBCPSNVmQQlgYSGd0MMStT1PWkN8SmlclsfuJ4lX3L/eMVx/b4D0UJzVtabgMLg5iIaZLC4SX7a9CjUuShhby9kypk1NA==
+ bh=35e3kHZMDtUKoeQa2ZHFnj0RD700iBZ69mzWLXmlarc=;
+ b=hO6FYKmz8koNAzAzCFW89QXvje5vWuIlR1e/tv8lWHcM3LJAwNxqzMb9T/dM3ycYzdPlD3mWyY8GmziBN9ctpas/fo24EvyQdM/ZLCEJYAXB7haztuuzB7OsEn2tHY9sy7ifKPqCuH5Mku9Csc2mProZ7ANVJaKat7mTSZl/UFqZiZ1v7QhPmmMYWjLhhddgaTuNXGqMNlR88rF9AZAlvKOdVUNypZEEwT7kGHsyW1/qs/gXsJY8001CLSWnb4M0MKF8ZUeelxQZuJDSa8WpgVbupaoCYaLMQhYESY9rmS3QDhEI70IZgvMsx+XY0mU0croMBRJ/59nNK5YP6IovJg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5WpOTTf1KnYtuMAqiWkA8eAdpuDa9NYS2ymWwn/XysM=;
- b=bsmm3QcJ/Yj/LNogjbideWBzf61xOpT+FFt0/K7hM9t6ZWd2ydE218uQMIWCILavnfZBJrcMKUM8zlBokpgCOFSQCzgP5gWUgMdOOoSWEBUNm/KFqdeNNPATOyXfHtgLqQKBtmL1sMpHKQGml0VKWoO2m5zn4XArMLiQsvJIu7Q=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by IA1PR12MB6259.namprd12.prod.outlook.com (2603:10b6:208:3e5::17)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
+ by MN0PR11MB5964.namprd11.prod.outlook.com (2603:10b6:208:373::17)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Mon, 2 Mar
- 2026 09:02:33 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9654.014; Mon, 2 Mar 2026
- 09:02:32 +0000
-Message-ID: <fe4d93d8-5c9c-460b-93e1-5d0d49a316ab@amd.com>
-Date: Mon, 2 Mar 2026 10:02:27 +0100
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.15; Mon, 2 Mar
+ 2026 09:04:53 +0000
+Received: from IA0PR11MB7307.namprd11.prod.outlook.com
+ ([fe80::9d4a:f89:f548:dbc7]) by IA0PR11MB7307.namprd11.prod.outlook.com
+ ([fe80::9d4a:f89:f548:dbc7%6]) with mapi id 15.20.9654.020; Mon, 2 Mar 2026
+ 09:04:53 +0000
+Message-ID: <cfaac7db-2920-467a-a980-a2225f028014@intel.com>
+Date: Mon, 2 Mar 2026 14:34:45 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/ttm: Don't spam the log on buffer object backing
- store allocation failure
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, dri-devel@lists.freedesktop.org
-References: <20260227160012.82309-1-thomas.hellstrom@linux.intel.com>
- <20260227160012.82309-2-thomas.hellstrom@linux.intel.com>
+Subject: Re: [PATCHv2] drm/i915/dp: On DPCD init/caps wake the DPRx
+To: <imre.deak@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <suraj.kandpal@intel.com>, <jani.nikula@intel.com>,
+ <ville.syrjala@linux.intel.com>
+References: <20260219094326.34922-1-arun.r.murthy@intel.com>
+ <20260224074831.374990-1-arun.r.murthy@intel.com>
+ <aZ26pwv6M7gG4W9D@ideak-desk.lan>
+ <2b94fd1d-ce06-4c65-a615-7b9b2aeb3c57@intel.com>
+ <aaVCFx0U1TZpJeuJ@ideak-desk.lan>
 Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260227160012.82309-2-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR2P281CA0173.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:9f::8) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+From: "Murthy, Arun R" <arun.r.murthy@intel.com>
+In-Reply-To: <aaVCFx0U1TZpJeuJ@ideak-desk.lan>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0147.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d7::9) To IA0PR11MB7307.namprd11.prod.outlook.com
+ (2603:10b6:208:437::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|IA1PR12MB6259:EE_
-X-MS-Office365-Filtering-Correlation-Id: 236db270-7e1b-46f6-184a-08de783a7089
+X-MS-TrafficTypeDiagnostic: IA0PR11MB7307:EE_|MN0PR11MB5964:EE_
+X-MS-Office365-Filtering-Correlation-Id: 28d4a28f-eef0-4a58-a3e6-08de783ac437
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7053199007;
-X-Microsoft-Antispam-Message-Info: e7W+H+EpoY0A7waVOMYwL/Ggi5ZzlZUxxLKf8IZeeLy1HVDAQjo06YL7/WGhI0z872421es7JRfJyMiLLKxle5nRZxZGhkmWX/rjhkKtTTYufXbfnYxiiLjjynm6aHB9cuytAGIy/NVkUaD7bW/FBhFSTSqLwdL6iw5rkCUPOuycOWZ0dcZcA9BF4pn7SG5LPPIaiUUa+pPnDBvb3Mw48VQO8GRbe+buHu31ogYxB2/3zZXPpJNxGKfwoa/KCqhQnR2ORS1SnUNtFiv/QFCsUWqiQhziVuYo0cVJxgVGQjWSdHTtgU3/5L9NkhHkioc9evUCwrvBfKtorltDzGx2GjX8lKR8q5y/3g70+was8n+sCmrAFjS+neTvCcwb9k+K3a8NWqNxor038dLR9W5eCfp/AgCHl9/v2pyTgHkfcLMpwGCc7DXPOKtCW6zgx6Y8KyeyEs8wY9KaZDKPAO0hPslJ0JuoZZQ/Tpj9Ffk8LMuENM2AYEE+DUEn5evhALalL0AmKaqMcm4/x0LkB58Sqe7TDRxs2FvwJbK38SCOPKD1uAfG3gkPrxPQkH0rfjOCRbPN4LHPzIztyHY4eDS0oqnJAiY/Uo4f+FwQ2RvPzGlBGp4pBwexOqgtU9uo6EQdanMg5Bjhd3WXXJ5v8a5d5gbBNEoNCt0ajal4gOiXdYAo24savuwrFKPfdUHTJ2o1laUI6x7R9KzhAjlJq1Lwk1UIen0B32KtmC4usPIWddM=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: rMDovI30aCqGKzBMh2yRrLj2fY7tRK710V+ziLm2ldMEydGNVs8WpuSgIQoW0T7mCeCb+82Cs7y4Xr/fIB7TGXbyymNDFfNN2PIe/aH1GvAhZ0Ujrcd5x0smVsFL8tNaV/+BXn0QbJxR3+rLF0xzssj71IruttXZtm56Fw0Hz3vr3PXF5zVFaVccUVk1KMij4x47Lm+q+cPAoq8lXhOUJUMoR4owQfOU9CrFOmynHllAXb0BAAHOAQ8TQgZpX1dkh6oj57G0ZXmddXxZE4c3Xlc13jStNjWGejGjE3V4bCsZd5e9qq0rSlcv4S9MQqbpB+zCcpUX7nF/IWi+VLilju0gfl3vH/bVCM4Xk/+ZGqUoFjKlH9yDfk9OUywTk7iqEvNTQUgYS/MyNVplFyco+dOE26LK1JpaAHgga48wDe5ytvAiimvPy/Uu6YWAc8XFb0VkyXoeOXagMH16VhxEWmz/MNTxPxzpeI1vEm1u3ThLuKiO+oTL6FL1QUboAMwBn1waBpb6IOcZrzTSV5gq7CzX94IYZqagOJVl0wqRBwcdrhpPc7GhgkcbsYXSY0Px8VIQXsvlhl3NQ3XSvJOLvSkspYpnKq+mycBv/vV6CY3+pBVV1KJd9jHpuRAIK2Ja7Q7N9P8joXWvl9VdDEjVokqbHvSNfxsukqkrKYHNJo4b9koXMa1NRBZsmN2odhxs
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7053199007); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?clFKVzBtYVdQMnY3R3JKNWhxZXVhUmFvYytEc3hCdEwxbWZLOHlrYWtDelFj?=
- =?utf-8?B?SkJlS281Z2N2Q3ZuWlRYdjNGVmY4OThFNjgyckk1VDRaRzRoMGUwU2xLS1N4?=
- =?utf-8?B?dHJLWE82bVE4MkpYNmIzMHo4R1dCUm9NV2UyMHg5VHcvVWlBczN6UUg4VG1i?=
- =?utf-8?B?N29KcXVtNmZpZ1U2ZUZKelhrZFFldHl3cTN2WG1vUFVhTkFFVnYxVjNWVE5M?=
- =?utf-8?B?dWMyaG4xV3RHZU9ZTG91MnlJNWhtUmFHZFpJcTVwQVBudzJuZkV4d2J1TjV5?=
- =?utf-8?B?VjRvM0pFazFNdkdDZk5aY0NIVnJjMjVaUWlnMHh6dEtSNkZoTnd6c0RtS0RF?=
- =?utf-8?B?eG4xOFBBdTNpMWdHVDdDWmRpRVByUng0enVCL3hQeWtzNFdOY1QwdFlKLy82?=
- =?utf-8?B?NWZER1lHdnhySkZveWJ6dDRtc3RwdG1YaVAwRVB2cE5URWZBUFV2NklyNnow?=
- =?utf-8?B?dVVJbitZeXRSZGdHMHF4TjErcDBhRHpMMktTajN5TVRUVG5ablFtbkJLT040?=
- =?utf-8?B?bHRnUUlTSDgvRy9rZXprSzhiVEtXNU41RHBmMnB4NlN2NVFKT0hBbFZGK3cy?=
- =?utf-8?B?dS9GdGg3bE5abE9wR2xDUkovQThRZkFqaE0xWDNHUUprOHJVeTlORzcxdEFJ?=
- =?utf-8?B?TFFVVk9aTVY5UTdqUURDekNLMjNlT0tsRlc3c2huMmpnbVlSNndxK1lHY2Jm?=
- =?utf-8?B?em9aTkMraU95ZXQ1c1dwNXJQbURUMkVpSEphZDdxcTJBYlI5Rm00OHBMdEs0?=
- =?utf-8?B?R3lPVDJEVURoNDlhOElUNnk5bncvV254WWVwTjFtN0N2Q01NMHpSK0t6WDNm?=
- =?utf-8?B?RGVMWndjcUR1cld4dEhNZEdkOUZrbFc1RVpyZHNpUW5TZ1pHNWJ4N21DSzJz?=
- =?utf-8?B?NnZ0TWhROEM3RVV5YnhERWhLNFlhT1dueHh3RFlJR1pHYVNicEpZNmxhc1Fx?=
- =?utf-8?B?QnRCS0pod08xaDA0cWFGSTZPNjR2RVFCb3RSSjJaeDBRZE1oWEdvZFlwNWFV?=
- =?utf-8?B?ejl2YUVRYW1yNitDUUVldmIvUXMyMzFtSWNsTnp0S2d3U2M2MXI4SUQ4MU1s?=
- =?utf-8?B?VWc2UTZmWGFDcXk2ZU54bk5PVFc0alNIOGhtUkxyQ0pZUHRMaUg2Vjl3a08v?=
- =?utf-8?B?ZiswYVBKd0Rzc3NpZDREVUtYUTNNN25zNUxYOTVocXpHN0NPVGovQTRSMitT?=
- =?utf-8?B?WUlQZTdEQWlqbzNlK1JkR1J5d0M4REJUTmQ1eGdPcnBUcWtqTGxSY3lxUk1V?=
- =?utf-8?B?ZkRuY2F1VWlsZ0gwWTdpQXNIdHVFNTMvaTFhSmhrekE3NmtFNEhiQm4ySkVK?=
- =?utf-8?B?MEhOUlhMYmU4Y0djMncrdGlILzNpdlZvWUNMNlJxZ0gwOTlRZUttOTRNU0d3?=
- =?utf-8?B?K3AyaUMvdTZKTGVRRHdVejZMT2NSQkg5OHJTSmhmYnJDdk04bFZzSmo1SXFt?=
- =?utf-8?B?clR3a1dwQk51Y1pmSXhSL1JOaSsvV2prY2ZoNy9SR1ZEUWlPc1VOeW5Qa2JQ?=
- =?utf-8?B?NExOak12TjdOejE0N2RoRGRYaTRDeThjR3FrZnUrSXk4bG9DWm55ZmxSekNs?=
- =?utf-8?B?RVhSRXltOVZrVElwOTNjSVpCUU1pQlp1eURxdlIxWU9tci9ZK2QxVVBXSWVP?=
- =?utf-8?B?bXBQb3JIR3BtMDJLb1ZndHdNZEFoazZmbWY0SEdpbVlxbWZOSnh2VW9odGt2?=
- =?utf-8?B?OVpwRE14RFpIYm04Ti9SQStEcmx4QkttZ1l0dHFuak8rdEhTNlFZMEQyOTdt?=
- =?utf-8?B?MzkwSzFha2ozbXhEd2pVcXNwOGdPT3J0UVNlU25MNXdIRDVSRk82ZVYvaEcy?=
- =?utf-8?B?NzRoNmowN0ZKdld6VHhWTVV0RmwrS1NyMGkwMU5janJha2RuSG5SZXM0YVk4?=
- =?utf-8?B?Y1FmeUpOaThWVEJsNi9udkx3VWRwM0lJWWdlSUF6aU5DWno3Mzl3NFhvODFX?=
- =?utf-8?B?eVNpNmErYTJtV2R3czdkczlUbGUxRDJ2MlZqd2JYczF0ZjNNY3lqT09jOUJD?=
- =?utf-8?B?U0doTTdsK2l0bm55eGxKMlpWRW1ycUU3QWZ6WGJpTWhxZ1pTSWE4c0lJUldW?=
- =?utf-8?B?WGpJM2g4eHI2dUZnLzNRQVo4UmlWakQ4ZkhYcDAvTFZjNldyODBUSWs4SWVu?=
- =?utf-8?B?YUtKMkFiVUEyQ0RGazVycXNFMEFwdnlCUXdldFUybmU5T1dGL3E0YzFFM0Rl?=
- =?utf-8?B?Ym9tQVRGNmJUTVB6R051MUhhL094Q2NLdXdkbVJIL3dnc0lYVllrZ3p2b1Iz?=
- =?utf-8?B?Q3Y0VDI0alVoSTJ1OEJqYURNQjN2OWdTUmdmSTh2RHZoN2dUVlQxNVhpallh?=
- =?utf-8?Q?cAm4uRDY+X9qXd+3E3?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 236db270-7e1b-46f6-184a-08de783a7089
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TDhHbXk2M2FodDZRSUpMUDNDd3o0TnN0OWV2Qk5oVnNRdUkyMXNUUnkrRlE2?=
+ =?utf-8?B?RjBielozNzFUY3pYUi9sZVdPY3Z0MFlRcjNoU0FTck9naWczVGgyVXdQTm5W?=
+ =?utf-8?B?SEJsWVo5SGkrdWpMc0d6bjJ6US91TzZWeTZlNng4clhwcUoxeTJQNUpCekQ3?=
+ =?utf-8?B?TWdrc2NjZlhWRVBYK3lQZ0lvcDFPM3N2MDY1ZUZWMUVqcVE4cC80YUVqelZs?=
+ =?utf-8?B?MlRjZlEyS1F3VTExK2Y0ZytEcEhFL29raGtUYVFIUzUwcFFNOTJ3Tm11Rmps?=
+ =?utf-8?B?Ti85WXBTSUZQRHJBNEc4V1ZvM3JpZUl1MzYyN0tLOWV0c01JaDI5S2VFQXg5?=
+ =?utf-8?B?RklDV2JQWnRmQzlXV243YTBEc3pSa1VrOUxZNGZEVUxWSTh6L0NSRC9Oakkr?=
+ =?utf-8?B?SVRuWXFaMnNZWjRYaXYxZzVmcjlLUytkQ0wvZHVKWnFJWW9rb0Q2VmJyVHpp?=
+ =?utf-8?B?dWY2b0xnYmwwd3RqUThxQ21WbUFEOFJ5VSthS0xPeC91VDBMN0JGSGo2OE0x?=
+ =?utf-8?B?Mlg0VlYwanJETWZJbzUvVEYxUjk3a2pMbUhXdHA0V0RacnB4c084d3FSYmZp?=
+ =?utf-8?B?NGhOcEJ3K0lYTGpKdVM5cTU2a3ZXY0hQeWtJWHU0dDlvKzNacGpScXNEeEJW?=
+ =?utf-8?B?ZHFrNnFJU0JVV09POHgrek54NEs4YlBzOHFvd1NSdEVMVWdJSURTWExTS3JR?=
+ =?utf-8?B?QmxHdnNOVlE1Mk80cEVBeXpHT0NJUTNSUDVFT0s3L01RRlZXcUNpdHNuZ3hj?=
+ =?utf-8?B?eFVDdG1qRUdjK2R1UUJ0djFxOHVJeFIzN3MyWGNaZ1UxOWhKeU1nNXRGVGFE?=
+ =?utf-8?B?bnpOVm9ETGV6dFNDdzlabFNnQ1hQZFVkT3loK29sR0dPWlNxOFdDUDhubUVL?=
+ =?utf-8?B?aEkxSmpCT0NabnY3QkNmN2RHazl2aXJoL3llckNYMUlTVXM0b0xzaEpURG1v?=
+ =?utf-8?B?bUlibkJmeFB0Y0d0Q3oxRjZIbFMvVFBwMEVSMlgyQkFycGhyTVNSMmxYaWxZ?=
+ =?utf-8?B?bVloRVZMcndTdTBFTEwzV3N2c3pBVlhSS1Vyc3hUUE9ZS3hnc3NmelNpUGVj?=
+ =?utf-8?B?UzY3ZVd3VHh0VWtDYTIvMStlMXFhL3hzMTlwdTVRdXlxVHVOYzBSem9LSkRS?=
+ =?utf-8?B?dXhzSXZDRUZaNk5ZN2U5b3N6MzgyOGEwYXdvSXVKSGtQVDZ4ai83WHRBcDhQ?=
+ =?utf-8?B?dXpRVmp0VitSQzllcGtTMGN1bmNERTJNdFNSOHBpZXE2Q0psbVRiYVZJZlpM?=
+ =?utf-8?B?emdyTjlDVS9MRlh1QWFCRlFZRVFtKzFPU2RSVTFJaEVzbkJrdTZnZ0hNdGVr?=
+ =?utf-8?B?dEpGTE9uNy9SbCsxd3FyZjVPTkhwS3hIMnVrYUQ5WnhucHdPbUN3RGRwaS9F?=
+ =?utf-8?B?NEYrbnRYWmFXc3hiN29VWFplQUZHV2ZjSHRCVHRNRnBUWmhrbENEMkY4dGV1?=
+ =?utf-8?B?UHozbTRyWDVFcE16Zjh3Q2svdXo4cDAvdjdhRXZ3czNXb3hkUGNKVWZnaFVy?=
+ =?utf-8?B?M2tKbEh6aEphQXZpcXcra1lML3lTR1JQdER0SVVHU3EyalRYZVlZK1FSczN3?=
+ =?utf-8?B?RFViTmNGWW56TVdKQ21kTVdlbGtjdW9Tc0FLVUpmSlNxa1MzRGpiZ3lLSGIv?=
+ =?utf-8?B?MC9FT2tIc3A4NlJicnAxdDFNN3l1bkliL0pKcU9WeklBZGxvRnZFT1BFOUls?=
+ =?utf-8?B?OHFyakVkVjhza1VKVkpsTjQ1Yk14dzNlZm5qNzZrdU1RV1BZTVE2dE8wM2t6?=
+ =?utf-8?B?YnVRL0Y3c1ZhWUhtemtBU0RaVmluNXJIVTY0TUgxMzhOaFV4VjkzblY3U0ZT?=
+ =?utf-8?B?R3hEdldyZlI2a3NLdU4yQzJkTFIvQzJQUXJmdVFkNjY5OWtST0JFanVwQW0w?=
+ =?utf-8?B?TWtwQTNuWER4YlNtSDdGeE91N3NybFAwSFNQaEc3Qkoxb1pyZ1RxRU1sQ3dM?=
+ =?utf-8?B?U0RGdVZjMy9ZRUp1aG9kZC8xRzJwZVZMYmlnd3RhNzc0bGQvQkFCZEpnNkJW?=
+ =?utf-8?B?bXo2T1Nqa29VUmFaS3dxanJYMjNEamZld0xWN0tyZmR5SjQ0UjEzV05ZRmxi?=
+ =?utf-8?B?TE9ZVkxUUVY5c2ZyeitRdmNuemJtOGp2Mm5vdkxuQWMvWTc3d2dJMlNoSmJN?=
+ =?utf-8?B?dC8vTi9NS2U5ZGlrZXlhbndrVUh1TWZ0REgyY2lIS1h6bS9DWWFGQUxGQmFY?=
+ =?utf-8?B?Vy9nS0FzUzAyNFJWVStqeUsxNVgxaTk1cEY2YnZqRnpwMXhmUHNUVy9pRERj?=
+ =?utf-8?B?NVJsbmxpalRvdVoxdWdBanBmM3BiSHJicXFwMEhKRURVTmRMT0hvaXlMR2JW?=
+ =?utf-8?B?YTRvdGMyeWVIRHFjdFZaNVBINTE3REZtYnJ1RHBWQWxzZWdqU3ByQT09?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 28d4a28f-eef0-4a58-a3e6-08de783ac437
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 09:02:32.6263 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 09:04:53.1766 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /u/C186VggS/AB323W42UUuYcsVWD3/wRLVNqYy2JaQFOCyn0h4GwGcPgcpc0X2C
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6259
+X-MS-Exchange-CrossTenant-UserPrincipalName: tPl9EqOlJAZhuy8CQaSyNa+CF0XQoJ1kyvsITfXILbNvSPCocTbmruVVde65wFpo8rkFR3R5YDksas2+hDQ5sA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB5964
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,38 +170,170 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2/27/26 17:00, Thomas Hellström wrote:
-> If the struct ttm_operation_ctx::gfp_retry_mayfail is true,
-> buffer object backing store allocation failures are expected to
-> silently fail with an error code to the caller. But currently an
-> elaborate warning is printed to the system log.
-> 
-> Don't spam the log in this way.
+On 02-03-2026 13:27, Imre Deak wrote:
+> On Wed, Feb 25, 2026 at 09:03:06AM +0530, Murthy, Arun R wrote:
+>> On 24-02-2026 20:20, Imre Deak wrote:
+>>> On Tue, Feb 24, 2026 at 01:18:30PM +0530, Arun R Murthy wrote:
+>>>> Its observed that on AUX_CH failure, even if the retry is increased to
+>>>> 1000, it does not succeed. Either the command might be wrong or sink in
+>>>> an unknown/sleep state can cause this. So try waking the sink device.
+>>>> Before reading the DPCD caps wake the sink for eDP and for DP after
+>>>> reading the lttpr caps if present and before reading the dpcd caps wake
+>>>> up the sink device.
+>>>>
+>>>> v2: Use poll_timeout_us (Jani N)
+>>>>       Add the reason, why this change is required (Ville)
+>>>>
+>>>> Closes: https://issues.redhat.com/browse/RHEL-120913
+>>> I wonder what should be the rule with non-public links like the above.
+>>> For instance, we do not put VLK-xxx links exactly because those are
+>>> non-public. Should/could we demand that RedHat opens a public ticket?
+>>> Jani?
+>> There is a JIRA as well
+>> https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4391
+> The above ticket is about an
+>
+> "AUX x did not complete or timeout within 10ms"
+>
+> error, which means the DPTX didn't complete the transfer. A transfer is
+> completed either (a) in response to a DPRX reply (AUX ACK,NAK,DEFER
+> reply) or (b) in case the DPRX is not replying at all. The above error
+> indicates that DPTX observed/signaled neither a or b. That's a problem
+> in the DPTX not in the DPRX which this patch is trying to fix (by
+> setting the DPRX power state to D0).
+On a Native AUX_CH transaction DPRX can reply with AUX_ACK/NACK/DEFER as 
+per Table2-177 in the Spec DP2.1.
+In the error from the above ticker, we are getting a timeout for a 
+AUX_CH initiated by DPTX.
+Section 2.3.4 of Spec DP2.1 says timeout can be due to No Reply and the 
+reason for No Reply is either sending invalid command or DPRX in sleep 
+state or waking up from sleep state.
 
-That was intentionally removed or never added because Simona absolutely didn't liked the gfp_retry_mayfail flag at that time.
+As part of this state, this patch is trying to wake the DPRX by setting 
+to D0.
 
-In general I'm fine with this change since I think we have proved by now that the flag is useful, but that probably need more wider discussion.
+Thanks and Regards,
+Arun R Murthy
+--------------------
 
-Regards,
-Christian.
-
-> 
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> ---
->  drivers/gpu/drm/ttm/ttm_pool.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-> index c0d95559197c..8fa9e09f6ee5 100644
-> --- a/drivers/gpu/drm/ttm/ttm_pool.c
-> +++ b/drivers/gpu/drm/ttm/ttm_pool.c
-> @@ -726,7 +726,7 @@ static int __ttm_pool_alloc(struct ttm_pool *pool, struct ttm_tt *tt,
->  		gfp_flags |= __GFP_ZERO;
->  
->  	if (ctx->gfp_retry_mayfail)
-> -		gfp_flags |= __GFP_RETRY_MAYFAIL;
-> +		gfp_flags |= __GFP_RETRY_MAYFAIL | __GFP_NOWARN;
->  
->  	if (ttm_pool_uses_dma32(pool))
->  		gfp_flags |= GFP_DMA32;
-
+> Please open a separate public ticket for the actually reported
+> RHEL-120913 issue - which based on the changes in this patch must have a
+> separate root cause than issues/4391 - and attach a dmesg log having the
+> AUX logging enabled (drm.debug=0x10e) and reporducing the problem. Also
+> please ask the reporter to provide the details of the connected eDP
+> panel model and wiring to the CPU (is there any retimer, mux etc. HW
+> component between the CPU and the panel?).
+>
+>>>> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+>>>> ---
+>>>>    drivers/gpu/drm/i915/display/intel_dp.c       | 38 +++++++++++++++++++
+>>>>    drivers/gpu/drm/i915/display/intel_dp.h       |  1 +
+>>>>    .../drm/i915/display/intel_dp_link_training.c |  3 ++
+>>>>    3 files changed, 42 insertions(+)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+>>>> index 025e906b63a9..fa0730f7b92a 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>>>> @@ -4705,6 +4705,42 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+>>>>    	intel_edp_set_data_override_rates(intel_dp);
+>>>>    }
+>>>> +/* Spec says to try for 3 times, its doubled to add the software overhead */
+>>>> +#define AUX_CH_WAKE_RETRY	6
+>>>> +
+>>>> +void intel_dp_wake_sink(struct intel_dp *intel_dp)
+>>>> +{
+>>>> +	u8 value = 0;
+>>>> +	int ret = 0;
+>>>> +
+>>>> +	intel_dp_dpcd_set_probe(intel_dp, false);
+>>> Is there any particular reason to turn off/on the probing? I don't see
+>>> any reason why the DP_SET_POWER polling would need that. In any case
+>>> turning it off/on this way is not ok: reading the DPRX caps, which would
+>>> call this function, could happen at any time after a sink gets
+>>> connected, so turning probing back on at the end of this function would
+>>> re-enable it incorrectly for sinks where it's been already established
+>>> that the probing workaround is not needed and should stay disabled.
+>> This function intel_dp_wake_sink() is called from edp_init_dpcd and
+>> dp_init_lttpr_dprx_caps.
+>> dpcd_set_probe is set to true in dp_aux_init which is called before calling
+>> intel_edp_init_connector.
+>>
+>> Probe is set to true, hence in this function I am setting it to false and
+>> then setting back to true.
+>> But there can be a possibility of reading lttpr_dprx_caps being called later
+>> as well.
+>>
+>> Will correct this to check if probe is already being set to true, will then
+>> disable before waking the sink and restore the probe status at the end.
+>>
+>> Will get this corrected in the next revision.
+>>
+>> Thanks and Regards,
+>> Arun R Murthy
+>> -------------------
+>>
+>>>> +
+>>>> +	/*
+>>>> +	 * Wake the sink device
+>>>> +	 * Spec DP2.1 section 2.3.1.2 if AUX CH is powered down by writing 0x02
+>>>> +	 * to DP_SET_POWER dpcd reg, 1ms time would be required to wake it up
+>>>> +	 */
+>>>> +	ret = poll_timeout_us(ret = drm_dp_dpcd_readb(&intel_dp->aux, DP_SET_POWER, &value),
+>>>> +			      ret > 0,
+>>>> +			      1000, AUX_CH_WAKE_RETRY * 1000, true);
+>>>> +
+>>>> +	/*
+>>>> +	 * If sink is in D3 then it may not respond to the AUX tx so
+>>>> +	 * wake it up to D3_AUX_ON state
+>>>> +	 * If the above poll_timeout_us fails, try waking the sink.
+>>>> +	 */
+>>>> +	if (value == DP_SET_POWER_D3 || ret < 0) {
+>>>> +		/* After setting to D0 need a min of 1ms to wake(Spec DP2.1 sec 2.3.1.2) */
+>>>> +		drm_dp_dpcd_writeb(&intel_dp->aux, DP_SET_POWER,
+>>>> +				   DP_SET_POWER_D0);
+>>>> +		fsleep(1000);
+>>>> +		drm_dp_dpcd_writeb(&intel_dp->aux, DP_SET_POWER,
+>>>> +				   DP_SET_POWER_D3_AUX_ON);
+>>>> +	}
+>>>> +
+>>>> +	intel_dp_dpcd_set_probe(intel_dp, true);
+>>>> +}
+>>>> +
+>>>>    static bool
+>>>>    intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector)
+>>>>    {
+>>>> @@ -4713,6 +4749,8 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector
+>>>>    	/* this function is meant to be called only once */
+>>>>    	drm_WARN_ON(display->drm, intel_dp->dpcd[DP_DPCD_REV] != 0);
+>>>> +	intel_dp_wake_sink(intel_dp);
+>>>> +
+>>>>    	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd) != 0)
+>>>>    		return false;
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+>>>> index b0bbd5981f57..3f16077c0cc7 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_dp.h
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+>>>> @@ -232,6 +232,7 @@ bool intel_dp_dotclk_valid(struct intel_display *display,
+>>>>    bool intel_dp_joiner_candidate_valid(struct intel_connector *connector,
+>>>>    				     int hdisplay,
+>>>>    				     int num_joined_pipes);
+>>>> +void intel_dp_wake_sink(struct intel_dp *intel_dp);
+>>>>    #define for_each_joiner_candidate(__connector, __mode, __num_joined_pipes) \
+>>>>    	for ((__num_joined_pipes) = 1; (__num_joined_pipes) <= (I915_MAX_PIPES); (__num_joined_pipes)++) \
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>>>> index 54c585c59b90..cbb712ea9f60 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>>>> @@ -270,6 +270,9 @@ int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp)
+>>>>    		lttpr_count = intel_dp_init_lttpr(intel_dp, dpcd);
+>>>>    	}
+>>>> +	/* After reading LTTPR wake up the sink before reading DPRX caps */
+>>>> +	intel_dp_wake_sink(intel_dp);
+>>>> +
+>>>>    	/*
+>>>>    	 * The DPTX shall read the DPRX caps after LTTPR detection, so re-read
+>>>>    	 * it here.
+>>>> -- 
+>>>> 2.25.1
+>>>>
