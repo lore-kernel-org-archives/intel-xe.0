@@ -4,57 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB163E9B344
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 09:50:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 377CEE9B340
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 09:50:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6968010E472;
-	Mon,  2 Mar 2026 09:50:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E80B410E476;
+	Mon,  2 Mar 2026 09:50:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iTqLF8UF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OdoD0esZ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC73810E476
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Mar 2026 09:50:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEB2710E476
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Mar 2026 09:50:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772445039; x=1803981039;
+ t=1772445042; x=1803981042;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rxRoUUqrJT3ke1km23Gdw7tNIVi1gkYHyOt1vJs70Vs=;
- b=iTqLF8UFKO4uQOwJselrBdwIvKMiwP+yxtDvlS9uD2Np8/m2jR3nXufu
- hyc7+5DMoqTQM9as1+g0hCZIX7lJtYjOEjUmepH2DLIzV0SR8U98RbeNq
- BDk1R6BSsYOsBasULiwdGZVHjatV8uMwqu4TneoN2uzfTactv+N1GIN1k
- 5s3eayK1w93hLY3QHnzmOnG0i+rE31IaymTrBBe5wd7iStL24cOAuVZoc
- rciWeo+mdk9m5YAmClAgl13PU2UJUOnXeiufenwF9homO3hcSUmLK7ffQ
- l8g026lCrA4Eoz4/o78vUVEG+XBjTeg1eEakeE0dIph2Nz7MfPpw69su0 w==;
-X-CSE-ConnectionGUID: 8ovVe8T3RAeJAVQSLr/W9Q==
-X-CSE-MsgGUID: zNxsz9sjSju3LVR2NBpdOA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="83783052"
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="83783052"
+ bh=qmig5SQfqzragGEMKZtjshPLKAzBvT4VKWLZoDZCwPU=;
+ b=OdoD0esZe3sU38ttKw+Y4KHR3VGmw4o9rf/eYO/FGBt136UUT6elS72R
+ s8GrbJzPmZe9iD7/tmTAEBRxm614plstSifQHQ+gzs7JkPqF7/IOrzcpJ
+ K+Ov3jT4p/K+nVtcFH1vOAWAU+I0r0Fq8YMUmYzhJgEQ5mtwjfHjDKKH4
+ k0QOJ/MkrvXaeaw4xfToakJ1ETuw8imneFm1fM14d7bLCwY2DA9XP5gAx
+ aw5O5InRXnL727miLfjdUXk/fmGvUYn7AOW2uisO7xiqg1fsPmOkMVB3W
+ LuSQsS+VpUBqnSuFERhrk6vRZ6W0C3kW/GKz5ZwXUSe2Pi1MW7sYt6xxK A==;
+X-CSE-ConnectionGUID: 4+HBUDZqTla+HMkQgIxabw==
+X-CSE-MsgGUID: Xti0BPuoROKzhXZiJAv+Dw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="83783054"
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="83783054"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 01:50:38 -0800
-X-CSE-ConnectionGUID: wgaKl0vLRSO7M9ekcMkJ0w==
-X-CSE-MsgGUID: yMHB/l0xRbm0Y1Nof6ukEw==
+ 02 Mar 2026 01:50:42 -0800
+X-CSE-ConnectionGUID: eG3VBWl7TnGYwqlLqUCxMA==
+X-CSE-MsgGUID: pdSrWHnRTUKziL6ho4Du6w==
 X-ExtLoop1: 1
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 01:50:36 -0800
+ 02 Mar 2026 01:50:40 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
  mallesh.koujalagi@intel.com
-Subject: [PATCH v2 07/11] drm/xe/xe_ras: Add structures and commands for
- Uncorrectable Core Compute Errors
-Date: Mon,  2 Mar 2026 15:52:02 +0530
-Message-ID: <20260302102155.4074630-20-riana.tauro@intel.com>
+Subject: [PATCH v2 08/11] drm/xe/xe_ras: Add support for Uncorrectable
+ Core-Compute errors
+Date: Mon,  2 Mar 2026 15:52:03 +0530
+Message-ID: <20260302102155.4074630-21-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20260302102155.4074630-13-riana.tauro@intel.com>
 References: <20260302102155.4074630-13-riana.tauro@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,251 +69,238 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add the sysctrl commands and response structures for Uncorrectable
-Core Compute errors.
+Uncorrectable Core-Compute errors are classified into Global and Local
+errors.
+
+Global error is an error that affects the entire device requiring a
+reset. This type of error is not isolated. When an AER is reported and
+error_detected is invoked return PCI_ERS_RESULT_NEED_RESET.
+
+A Local error is confined to a specific component or context like a
+engine. These errors can be contained and recovered by resetting
+only the affected part without distrupting the rest of the device.
+
+Upon detection of an Uncorrectable Local Core-Compute error, an AER is
+generated and GuC is notified of the error. The KMD then sets
+the context as non-runnable and initiates an engine reset.
+(TODO: GuC <->KMD communication for the error).
+Since the error is contained and recovered, PCI error handling
+callback returns PCI_ERS_RESULT_RECOVERED.
 
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
-v2: use macro max error details (Mallesh)
-    use static_assert
-    fix kernel-doc
-    remove xe_assert
+v2: add newline and fix log
+    add bounds check (Mallesh)
+    add ras specific enum (Raag)
+    helper for sysctrl prepare command
+    process all errors before deciding recovery action
 ---
- drivers/gpu/drm/xe/xe_ras.c                   |  56 ++++++++
- drivers/gpu/drm/xe/xe_ras_types.h             | 132 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  13 ++
- 3 files changed, 201 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_ras_types.h
+ drivers/gpu/drm/xe/xe_ras.c       | 139 ++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ras.h       |   3 +
+ drivers/gpu/drm/xe/xe_ras_types.h |  16 ++++
+ 3 files changed, 158 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-index bc7615c6c1be..3bef589082d7 100644
+index 3bef589082d7..61c01a4bfadb 100644
 --- a/drivers/gpu/drm/xe/xe_ras.c
 +++ b/drivers/gpu/drm/xe/xe_ras.c
-@@ -6,6 +6,62 @@
- #include "xe_device_types.h"
- #include "xe_ras.h"
+@@ -4,7 +4,14 @@
+  */
  
-+/* Severity classification of detected errors */
-+enum xe_ras_severity {
-+	XE_RAS_SEVERITY_NOT_SUPPORTED = 0,
-+	XE_RAS_SEVERITY_CORRECTABLE,
-+	XE_RAS_SEVERITY_UNCORRECTABLE,
-+	XE_RAS_SEVERITY_INFORMATIONAL,
-+	XE_RAS_SEVERITY_MAX
-+};
+ #include "xe_device_types.h"
++#include "xe_printk.h"
+ #include "xe_ras.h"
++#include "xe_ras_types.h"
++#include "xe_sysctrl_mailbox.h"
++#include "xe_sysctrl_mailbox_types.h"
 +
-+/* major IP blocks where errors can originate */
-+enum xe_ras_component {
-+	XE_RAS_COMPONENT_NOT_SUPPORTED = 0,
-+	XE_RAS_COMPONENT_DEVICE_MEMORY,
-+	XE_RAS_COMPONENT_CORE_COMPUTE,
-+	XE_RAS_COMPONENT_RESERVED,
-+	XE_RAS_COMPONENT_PCIE,
-+	XE_RAS_COMPONENT_FABRIC,
-+	XE_RAS_COMPONENT_SOC_INTERNAL,
-+	XE_RAS_COMPONENT_MAX
-+};
-+
-+static const char * const xe_ras_severities[] = {
-+	[XE_RAS_SEVERITY_NOT_SUPPORTED]		= "Not Supported",
-+	[XE_RAS_SEVERITY_CORRECTABLE]		= "Correctable",
-+	[XE_RAS_SEVERITY_UNCORRECTABLE]		= "Uncorrectable",
-+	[XE_RAS_SEVERITY_INFORMATIONAL]		= "Informational",
-+};
-+static_assert(ARRAY_SIZE(xe_ras_severities) == XE_RAS_SEVERITY_MAX);
-+
-+static const char * const xe_ras_components[] = {
-+	[XE_RAS_COMPONENT_NOT_SUPPORTED]	= "Not Supported",
-+	[XE_RAS_COMPONENT_DEVICE_MEMORY]	= "Device Memory",
-+	[XE_RAS_COMPONENT_CORE_COMPUTE]		= "Core Compute",
-+	[XE_RAS_COMPONENT_RESERVED]		= "Reserved",
-+	[XE_RAS_COMPONENT_PCIE]			= "PCIe",
-+	[XE_RAS_COMPONENT_FABRIC]		= "Fabric",
-+	[XE_RAS_COMPONENT_SOC_INTERNAL]		= "SoC Internal",
-+};
-+static_assert(ARRAY_SIZE(xe_ras_components) == XE_RAS_COMPONENT_MAX);
-+
-+static inline const char *severity_to_str(struct xe_device *xe, u32 severity)
++#define COMPUTE_ERROR_SEVERITY_MASK		GENMASK(26, 25)
++#define GLOBAL_UNCORR_ERROR			2
+ 
+ /* Severity classification of detected errors */
+ enum xe_ras_severity {
+@@ -62,6 +69,138 @@ static inline const char *comp_to_str(struct xe_device *xe, u32 comp)
+ 	return xe_ras_components[comp];
+ }
+ 
++static void log_ras_error(struct xe_device *xe, struct xe_ras_error_class *error_class)
 +{
-+	if (severity >= XE_RAS_SEVERITY_MAX)
-+		return "Unknown Severity";
++	struct xe_ras_error_common common_info = error_class->common;
++	struct xe_ras_error_product product_info = error_class->product;
++	u8 tile = product_info.unit.tile;
++	u32 instance = product_info.unit.instance;
++	u32 cause = product_info.error_cause.cause;
 +
-+	return xe_ras_severities[severity];
++	xe_err(xe, "[RAS]: Tile%u, Instance %u, %s %s Error detected Cause: 0x%x\n",
++	       tile, instance, severity_to_str(xe, common_info.severity),
++	       comp_to_str(xe, common_info.component), cause);
 +}
 +
-+static inline const char *comp_to_str(struct xe_device *xe, u32 comp)
++static enum xe_ras_recovery_action handle_compute_errors(struct xe_device *xe,
++							 struct xe_ras_error_array *arr)
 +{
-+	if (comp >= XE_RAS_COMPONENT_MAX)
-+		return "Unknown Component";
++	struct xe_ras_compute_error *error_info = (struct xe_ras_compute_error *)arr->error_details;
++	u8 uncorr_type;
 +
-+	return xe_ras_components[comp];
++	uncorr_type = FIELD_GET(COMPUTE_ERROR_SEVERITY_MASK, error_info->error_log_header);
++	log_ras_error(xe, &arr->error_class);
++
++	xe_err(xe, "[RAS]: Core Compute Error: timestamp %llu Uncorrected error type %u\n",
++	       arr->timestamp, uncorr_type);
++
++	/* Request a RESET if error is global */
++	if (uncorr_type == GLOBAL_UNCORR_ERROR)
++		return XE_RAS_RECOVERY_ACTION_RESET;
++
++	/* Local errors are recovered using a engine reset */
++	return XE_RAS_RECOVERY_ACTION_RECOVERED;
++}
++
++static void xe_ras_prepare_sysctrl_command(struct xe_sysctrl_mailbox_command *command,
++					   u32 cmd_mask, void *request, size_t request_len,
++					   void *response, size_t response_len)
++{
++	struct xe_sysctrl_mailbox_app_msg_hdr hdr = {0};
++	u32 req_hdr;
++
++	req_hdr = FIELD_PREP(APP_HDR_GROUP_ID_MASK, XE_SYSCTRL_GROUP_GFSP) |
++		  FIELD_PREP(APP_HDR_COMMAND_MASK, cmd_mask);
++
++	hdr.data = req_hdr;
++	command->header = hdr;
++	command->data_in = request;
++	command->data_in_len = request_len;
++	command->data_out = response;
++	command->data_out_len = response_len;
++}
++
++/**
++ * xe_ras_process_errors - Process and contain hardware errors
++ * @xe: xe device instance
++ *
++ * Get error details from system controller and return recovery
++ * method. Called only from PCI error handling.
++ *
++ * Returns: recovery action to be taken
++ */
++enum xe_ras_recovery_action xe_ras_process_errors(struct xe_device *xe)
++{
++	struct xe_sysctrl_mailbox_command command = {0};
++	struct xe_ras_get_error_response response;
++	enum xe_ras_recovery_action final_action;
++	size_t rlen;
++	int ret;
++
++	/* Default action */
++	final_action = XE_RAS_RECOVERY_ACTION_RECOVERED;
++
++	if (!xe->info.has_sysctrl)
++		return XE_RAS_RECOVERY_ACTION_RESET;
++
++	xe_ras_prepare_sysctrl_command(&command, XE_SYSCTRL_CMD_GET_SOC_ERROR, NULL, 0,
++				       &response, sizeof(response));
++
++	do {
++		memset(&response, 0, sizeof(response));
++		rlen = 0;
++
++		ret = xe_sysctrl_send_command(xe, &command, &rlen);
++		if (ret || !rlen) {
++			xe_err(xe, "[RAS]: Sysctrl error ret %d\n", ret);
++			goto err;
++		}
++
++		if (rlen != sizeof(response)) {
++			xe_err(xe, "[RAS]: Sysctrl response does not match len!!\n");
++			goto err;
++		}
++
++		if (response.num_errors > XE_RAS_NUM_ERROR_ARR) {
++			xe_err(xe, "[RAS]: Number of errors out of bound (%d)\n",
++			       XE_RAS_NUM_ERROR_ARR);
++			goto err;
++		}
++
++		for (int i = 0; i < response.num_errors; i++) {
++			struct xe_ras_error_array arr = response.error_arr[i];
++			enum xe_ras_recovery_action action;
++			struct xe_ras_error_class error_class;
++			u8 component;
++
++			error_class = arr.error_class;
++			component = error_class.common.component;
++
++			switch (component) {
++			case XE_RAS_COMPONENT_CORE_COMPUTE:
++				action = handle_compute_errors(xe, &arr);
++				break;
++			default:
++				xe_err(xe, "[RAS]: Unknown error component %u\n", component);
++				break;
++			}
++
++			/*
++			 * Retain the highest severity action. Process and log all errors
++			 * and then take appropriate recovery action
++			 */
++			if (action > final_action)
++				final_action = action;
++		}
++
++	} while (response.additional_errors);
++
++	return final_action;
++
++err:
++	return XE_RAS_RECOVERY_ACTION_RESET;
 +}
 +
  #ifdef CONFIG_PCIEAER
  static void aer_unmask_and_downgrade_internal_error(struct xe_device *xe)
  {
+diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
+index 14cb973603e7..e191ab80080c 100644
+--- a/drivers/gpu/drm/xe/xe_ras.h
++++ b/drivers/gpu/drm/xe/xe_ras.h
+@@ -6,8 +6,11 @@
+ #ifndef _XE_RAS_H_
+ #define _XE_RAS_H_
+ 
++#include "xe_ras_types.h"
++
+ struct xe_device;
+ 
+ void xe_ras_init(struct xe_device *xe);
++enum xe_ras_recovery_action  xe_ras_process_errors(struct xe_device *xe);
+ 
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-new file mode 100644
-index 000000000000..676755732ef6
---- /dev/null
+index 676755732ef6..221d07efd84c 100644
+--- a/drivers/gpu/drm/xe/xe_ras_types.h
 +++ b/drivers/gpu/drm/xe/xe_ras_types.h
-@@ -0,0 +1,132 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#ifndef _XE_RAS_TYPES_H_
-+#define _XE_RAS_TYPES_H_
-+
-+#include <linux/types.h>
-+
-+#define XE_RAS_NUM_ERROR_ARR		3
-+#define XE_RAS_MAX_ERROR_DETAILS	16
-+
-+/**
-+ * struct xe_ras_error_common - Common RAS error class
-+ *
-+ * This structure contains error severity and component information
-+ * across all products
-+ */
-+struct xe_ras_error_common {
-+	/** @severity: Error Severity */
-+	u8 severity;
-+	/** @component: IP where the error originated */
-+	u8 component;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_error_unit - Error unit information
-+ */
-+struct xe_ras_error_unit {
-+	/** @tile: Tile identifier */
-+	u8 tile;
-+	/** @instance: Instance identifier within a component */
-+	u32 instance;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_error_cause - Error cause information
-+ */
-+struct xe_ras_error_cause {
-+	/** @cause: Cause */
-+	u32 cause;
-+	/** @reserved: For future use */
-+	u8 reserved;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_error_product - Error fields that are specific to the product
-+ */
-+struct xe_ras_error_product {
-+	/** @unit: Unit within IP block */
-+	struct xe_ras_error_unit unit;
-+	/** @error_cause: Cause/checker */
-+	struct xe_ras_error_cause error_cause;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_error_class - Complete RAS Error Class
-+ *
-+ * This structure provides the complete error classification by combining
-+ * the common error class with the product-specific error class.
-+ */
-+struct xe_ras_error_class {
-+	/** @common: Common error severity and component */
-+	struct xe_ras_error_common common;
-+	/** @product: Product-specific unit and cause */
-+	struct xe_ras_error_product product;
-+} __packed;
-+
-+/**
-+ * struct xe_ras_error_array - Details of the error types
-+ */
-+struct xe_ras_error_array {
-+	/** @error_class: Error class */
-+	struct xe_ras_error_class error_class;
-+	/** @timestamp: Timestamp */
-+	u64 timestamp;
-+	/** @error_details: Error details specific to the class */
-+	u32 error_details[XE_RAS_MAX_ERROR_DETAILS];
-+} __packed;
-+
-+/**
-+ * struct xe_ras_get_error_response - Response for XE_SYSCTRL_GET_SOC_ERROR
-+ */
-+struct xe_ras_get_error_response {
-+	/** @num_errors: Number of errors reported in this response */
-+	u8 num_errors;
-+	/** @additional_errors: Indicates if the errors are pending */
-+	u8 additional_errors;
-+	/** @error_arr: Array of up to 3 errors */
-+	struct xe_ras_error_array error_arr[XE_RAS_NUM_ERROR_ARR];
-+} __packed;
-+
-+/**
-+ * struct xe_ras_compute_error - Error details of Core Compute error
-+ */
-+struct xe_ras_compute_error {
-+	/** @error_log_header: Error Source and type */
-+	u32 error_log_header;
-+	/** @internal_error_log: Internal Error log */
-+	u32 internal_error_log;
-+	/** @fabric_log: Fabric Error log */
-+	u32 fabric_log;
-+	/** @internal_error_addr_log0: Internal Error addr log */
-+	u32 internal_error_addr_log0;
-+	/** @internal_error_addr_log1: Internal Error addr log */
-+	u32 internal_error_addr_log1;
-+	/** @packet_log0: Packet log */
-+	u32 packet_log0;
-+	/** @packet_log1: Packet log */
-+	u32 packet_log1;
-+	/** @packet_log2: Packet log */
-+	u32 packet_log2;
-+	/** @packet_log3: Packet log */
-+	u32 packet_log3;
-+	/** @packet_log4: Packet log */
-+	u32 packet_log4;
-+	/** @misc_log0: Misc log */
-+	u32 misc_log0;
-+	/** @misc_log1: Misc log */
-+	u32 misc_log1;
-+	/** @spare_log0: Spare log */
-+	u32 spare_log0;
-+	/** @spare_log1: Spare log */
-+	u32 spare_log1;
-+	/** @spare_log2: Spare log */
-+	u32 spare_log2;
-+	/** @spare_log3: Spare log */
-+	u32 spare_log3;
-+} __packed;
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-index ce10924c5881..14e2d7989fcc 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-@@ -8,6 +8,19 @@
- 
- #include <linux/types.h>
+@@ -11,6 +11,22 @@
+ #define XE_RAS_NUM_ERROR_ARR		3
+ #define XE_RAS_MAX_ERROR_DETAILS	16
  
 +/**
-+ * enum xe_sysctrl_mailbox_command_id - RAS Command ID's for GFSP group
++ * enum xe_ras_recovery_action - RAS recovery actions
 + *
-+ * @XE_SYSCTRL_CMD_GET_SOC_ERROR: Get basic error information
++ * @XE_RAS_RECOVERY_ACTION_RECOVERED: Error recovered
++ * @XE_RAS_RECOVERY_ACTION_RESET: Requires reset
++ * @XE_RAS_RECOVERY_ACTION_DISCONNECT: Requires disconnect
++ *
++ * This enum defines the possible recovery actions that can be taken in response
++ * to RAS errors.
 + */
-+enum xe_sysctrl_mailbox_command_id {
-+	XE_SYSCTRL_CMD_GET_SOC_ERROR = 1
++enum xe_ras_recovery_action {
++	XE_RAS_RECOVERY_ACTION_RECOVERED = 0,
++	XE_RAS_RECOVERY_ACTION_RESET,
++	XE_RAS_RECOVERY_ACTION_DISCONNECT
 +};
 +
-+enum xe_sysctrl_group {
-+	XE_SYSCTRL_GROUP_GFSP = 1
-+};
-+
- struct xe_sysctrl_mailbox_mkhi_msg_hdr {
- 	__le32 data;
- } __packed;
+ /**
+  * struct xe_ras_error_common - Common RAS error class
+  *
 -- 
 2.47.1
 
