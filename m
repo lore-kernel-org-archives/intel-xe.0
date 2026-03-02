@@ -4,88 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD275E9B365
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 11:19:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BC24E9B36A
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 11:25:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4990810E493;
-	Mon,  2 Mar 2026 11:19:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30A6710E17D;
+	Mon,  2 Mar 2026 11:25:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=invisiblethingslab.com header.i=@invisiblethingslab.com header.b="FAViYZk7";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="zROQEehH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lF9oW4AD";
 	dkim-atps=neutral
-Received: from fout-a3-smtp.messagingengine.com
- (fout-a3-smtp.messagingengine.com [103.168.172.146])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9886410E1F1
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Mar 2026 11:19:08 +0000 (UTC)
-Received: from phl-compute-03.internal (phl-compute-03.internal [10.202.2.43])
- by mailfout.phl.internal (Postfix) with ESMTP id D07FEEC0572;
- Mon,  2 Mar 2026 06:19:07 -0500 (EST)
-Received: from phl-frontend-03 ([10.202.2.162])
- by phl-compute-03.internal (MEProxy); Mon, 02 Mar 2026 06:19:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- invisiblethingslab.com; h=cc:cc:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm3; t=1772450347;
- x=1772536747; bh=bY05i/GjZaw5/I4RKcGeiDPQv4mupjxmU/TsxnBo4pg=; b=
- FAViYZk7P8cQ5QKQj5oTiJqlHbUBrgabRd2dqSXJWnGT+3G6sm23c8bZBmB4FUoZ
- 5NJaPVUZ4lBZERUFgbS0Qw9/xhEASUEpaR2eUtOtkyrlc9BsaDU9aXN91OoLQFXU
- 0ZUPFM+2gEGHJ6L/YhhhieLTIEFyCw6XYmBZeCj43/D6UlpwhKsq4wDfNL6n1ugT
- MMWTGVkD6D4pcJRn/lJUdIvHnG83OFkmcMcPS/JtLEmUJfcrXjiU1bjbzmU+bCqE
- Ql7gRUiSJL/qBSL+offf65xVdDgqtyPN5X8g+AAss9gUhBhkfF4m+ao+XPTBNvYN
- hy46qXtzdk/EwI41jznchw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-type:content-type:date:date
- :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
- :message-id:mime-version:references:reply-to:subject:subject:to
- :to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
- 1772450347; x=1772536747; bh=bY05i/GjZaw5/I4RKcGeiDPQv4mupjxmU/T
- sxnBo4pg=; b=zROQEehHXc0vtPL8x5aYaOHzP2+SbHMvp3iLw3IvbcwvMTViksk
- BqRjwJgp6SXgVVqcRC1LK9LNpK8/GcbalaSXWZQeZi7J/Pg5Ge481kb7HH6k0Otb
- ee6lwETcmzT8tuFi9EBBr6lKE1+b4CmW0AZYUjQpZ/6ldlrVh6QNdGw5rhlWhzNG
- MBbmt2fHFSTBLIa7MABh1Xux7nNunTJ6/JdKb62m1IzQYPIxdCLi1bhFhZDpjcwb
- 4Tcf0uCwr9wV49+63wuN2Yz7FafZRl2tUSWYQgIvaFnjDidjDmOq2Z21M1OlHhXd
- JF296+BxBQmeKn/YVvCoyYZUurKkQFC637Q==
-X-ME-Sender: <xms:K3KlaRND_q9jjg7rxcn822HnhgzVR2BeWb4fLcy_FmWPrQ4DKqnTrw>
- <xme:K3Klabsk1Jfu5fAg9Z3pMUoqxosmkIUO1BXJfz54YztplX_EbAp2SFCza9tigs_hk
- I1rCetCtUEc3rJ6WB74u3jCT042NMMRRtwiK8tEMxzwPfrIjw>
-X-ME-Received: <xmr:K3KlaTUhGa-8Vjp4u_Ch5NGQIx3VYJs0U8BKvyrIOQOytxbfXWj0tZ_oXw_6ohBJid3Em1HBk-l_Zit9ztC20__mgmCTc43XfgI>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddvheejheefucetufdoteggodetrf
- dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
- rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
- gurhepfffhvfevuffkfhggtggujgesghdtreertddtjeenucfhrhhomhepofgrrhgvkhcu
- ofgrrhgtiiihkhhofihskhhiqdfikphrvggtkhhiuceomhgrrhhmrghrvghksehinhhvih
- hsihgslhgvthhhihhnghhslhgrsgdrtghomheqnecuggftrfgrthhtvghrnheptdehvedt
- ffeggeffgeetieevfeelvdfhjeekvdfhgfffvedvuedviedugefguedvnecuffhomhgrih
- hnpehgihhthhhusgdrtghomhdpqhhusggvshdqohhsrdhorhhgnecuvehluhhsthgvrhfu
- ihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrrhhmrghrvghksehinhhvih
- hsihgslhgvthhhihhnghhslhgrsgdrtghomhdpnhgspghrtghpthhtohepfedpmhhouggv
- pehsmhhtphhouhhtpdhrtghpthhtoheprhhoghgvrhdrphgruhestghithhrihigrdgtoh
- hmpdhrtghpthhtohepgigvnhdquggvvhgvlheslhhishhtshdrgigvnhhprhhojhgvtght
- rdhorhhgpdhrtghpthhtohepihhnthgvlhdqgigvsehlihhsthhsrdhfrhgvvgguvghskh
- htohhprdhorhhg
-X-ME-Proxy: <xmx:K3KlabtC9r6FGdQFhTcKbTOFE3Ce7o4HgUvWiojRMl9F4QzQ1OhxXg>
- <xmx:K3KlaXV1Bavo4iOEeUPVy9mj3pe7DkrLBU_1p9DKc4wAp0fmQ5ZbLw>
- <xmx:K3KlaWnh5NmCo_jhLAS1P2slfTKRkNFz0pxKBpF9aqju2SsV62iq8A>
- <xmx:K3KlaYZdrrEBGIaYSvM5dXmTjbFLYMj3U2-nZjBV7Mm6AAN2Vs9MdQ>
- <xmx:K3Klabz6ExESttmkQasThpbzfLp3hC3w0cZUz65ScP6V4LezttAf-y85>
-Feedback-ID: i1568416f:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 2 Mar 2026 06:19:06 -0500 (EST)
-Date: Mon, 2 Mar 2026 12:19:04 +0100
-From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?=
- <marmarek@invisiblethingslab.com>
-To: Roger Pau =?utf-8?B?TW9ubsOp?= <roger.pau@citrix.com>
-Cc: xen-devel <xen-devel@lists.xenproject.org>, intel-xe@lists.freedesktop.org
-Subject: Re: Graphical glitches (not refreshing?) with Linux's xe driver +
- Xen 4.19
-Message-ID: <aaVyKFaCSuhJufW2@mail-itl>
-References: <aYtznP_tT6xNPwf-@mail-itl> <aY3ttvtxGCPTNgsj@Mac.lan>
- <aY58-gyarcVoBS2a@mail-itl> <aZ3KoSlIzru0Uumu@mail-itl>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E732310E010;
+ Mon,  2 Mar 2026 11:25:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772450738; x=1803986738;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=ryhY777bCLCf6JHq4SupwGlVA50ZGL7NVyJ4/Ycc2vU=;
+ b=lF9oW4ADNh/iz+S/xcbb6tX6iozvJC8ln/AjsLw3CogpTpNPecYQ8OvI
+ +juPq8cGHRe8ctS5tWh+u9d14qzZg4TuYGoGJIgdUqw+iEnIgl3pkQCwu
+ NDtLQ1gGTpFya3mJRVkv/hIrds1kHUWr2NShQX/BXibk/SOEEn+0TGgMU
+ xeENwVQGxZH4sZP/Wb+Cn7tEZw8nXCAKr3L/VmxNrTwuJQhU9+GdaU97X
+ qKJ0Qza+Gd83GmarbniufyQY0sUn1CN+g5Ho+8rvjvJTgsIf/cOm54afM
+ qIvooerWdvOZFLSlziw1REfR0HPmju94A9/KLaESIlFenKfMpH0ViLCnu g==;
+X-CSE-ConnectionGUID: zRJjMZ1ORTiJX6hm9BPVqA==
+X-CSE-MsgGUID: aZHMz5ipRQOp57Go9KurEQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="76057809"
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="76057809"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 03:25:37 -0800
+X-CSE-ConnectionGUID: 9Qfz5AhyS6WzInOCO5b6+Q==
+X-CSE-MsgGUID: efmw7faBTROkejDlBC8hRQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="217650566"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.238])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 03:25:36 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Subject: RE: [PATCH v3 1/8] drm/i915/backlight: Use default/max brightness
+ for VESA AUX backlight init
+In-Reply-To: <DM3PPF208195D8D8B2C13C0E7E9385ED0FCE37EA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260224034526.2730130-1-suraj.kandpal@intel.com>
+ <20260224034526.2730130-2-suraj.kandpal@intel.com>
+ <1a76dfe14cbc90b4aaec6f0e54b4e8df9f480efa@intel.com>
+ <DM3PPF208195D8DACF643E4D0D138F0128CE375A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ <9f9be7c4361428b7ccb77dcc04f93b0eda024c8b@intel.com>
+ <DM3PPF208195D8DBB70E17DC6764BC5A276E37EA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ <676746dc5a9fe839e3ed071dee1c8e89174ce0ea@intel.com>
+ <DM3PPF208195D8D8B2C13C0E7E9385ED0FCE37EA@DM3PPF208195D8D.namprd11.prod.outlook.com>
+Date: Mon, 02 Mar 2026 13:25:32 +0200
+Message-ID: <6af697ac89413d21faee8515056cfe4bb699d733@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature"; boundary="zu0C4HM+umfEjDpa"
-Content-Disposition: inline
-In-Reply-To: <aZ3KoSlIzru0Uumu@mail-itl>
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,175 +78,208 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Mon, 02 Mar 2026, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+>> Subject: RE: [PATCH v3 1/8] drm/i915/backlight: Use default/max brightness for
+>> VESA AUX backlight init
+>> 
+>> On Mon, 02 Mar 2026, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+>> >> Subject: RE: [PATCH v3 1/8] drm/i915/backlight: Use default/max
+>> >> brightness for VESA AUX backlight init
+>> >>
+>> >> On Wed, 25 Feb 2026, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+>> >> >> Subject: Re: [PATCH v3 1/8] drm/i915/backlight: Use default/max
+>> >> >> brightness for VESA AUX backlight init
+>> >> >>
+>> >> >> On Tue, 24 Feb 2026, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+>> >> >> > If the brightness fetched from VBT/previous state is 0 on
+>> >> >> > backlight initialization, then set the brightness to a default/max value.
+>> >> >> > Whenever the minimum brightness is reported as 0 there are
+>> >> >> > chances we end up with blank screen. This confuses the user into
+>> >> >> > thinking the display is acting weird. This occurs in eDP 1.5
+>> >> >> > when we are using PANEL_LUMINANCE_OVERRIDE mode to mainpulate
+>> >> >> > brightness via luminance values.
+>> >> >> >
+>> >> >> > Closes:
+>> >> >> > https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15671
+>> >> >> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>> >> >> > Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+>> >> >> > ---
+>> >> >> > v1 -> v2:
+>> >> >> > - Let users set brightness to 0, make it so that it's just not
+>> >> >> > done by default (Arun)
+>> >> >> >
+>> >> >> > v2 -> v3:
+>> >> >> > -Update commit header and message (Arun)
+>> >> >> >
+>> >> >> >  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 4 ++++
+>> >> >> >  1 file changed, 4 insertions(+)
+>> >> >> >
+>> >> >> > diff --git
+>> >> >> > a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+>> >> >> > b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+>> >> >> > index eb05ef4bd9f6..c40ce310ad97 100644
+>> >> >> > --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+>> >> >> > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+>> >> >> > @@ -564,6 +564,8 @@ static int
+>> >> >> > intel_dp_aux_vesa_setup_backlight(struct
+>> >> >> intel_connector *connector,
+>> >> >> >  		}
+>> >> >> >  		panel->backlight.level =
+>> >> >> intel_dp_aux_vesa_get_backlight(connector, 0);
+>> >> >> >  		panel->backlight.enabled = panel->backlight.level != 0;
+>> >> >> > +		if (!panel->backlight.level)
+>> >> >> > +			panel->backlight.level = panel->backlight.max;
+>> >> >>
+>> >> >> How does this help when .enabled is still based on level != 0 above?
+>> >> >>
+>> >> >
+>> >> > Well we keep the backlight.enabled as false if we read a 0 back
+>> >> > from the DPCD
+>> >> or the current level state is 0.
+>> >> > This is to maintain the policy that if during setup we get 0 as
+>> >> > backlight value eDP backlight is currently disabled (which means
+>> >> > __intel_backlight_enable needs be called). We then change the
+>> >> > current level to max so that when backlight enable is called after
+>> >> > setup from
+>> >> intel_backlight_update, we enable backlight with max level so that we
+>> >> do not end up with a blank screen. This is also where we set
+>> backlight.enabled = true.
+>> >> > This is  to tackle different eDP behavior where, some preserve the
+>> >> > last brightness value programmed in them (in that case users want
+>> >> > the same brightness to continue) while others don't and just 0 it
+>> >> > out instead of
+>> >> having some default value (in that case we keep backlight.enabled =
+>> >> false later to be made true during the __intel_backlight_enable call).
+>> >> > We face these scenarios in some compositors during the pass key
+>> >> > phase where the compositor is still totally not doing everything
+>> >> > and does not send
+>> >> us any explicit brightness value to set thinking eDP would have some
+>> >> basic default value of it's own . We end up getting a 0 from DPCD and
+>> >> we enable and set the backlight enable with 0 value which anyways
+>> >> later causes us to call backlight disable.
+>> >> > In this case during authentication in some compositors like Fedora
+>> >> > there are cases where we do not get a explicitly backlight value
+>> >> > till the user
+>> >> has to blindly enter their Passkey, after which the compositor sends
+>> >> us some sane value which we then program.
+>> >>
+>> >> There's a long history of problems with the PWM backlight
+>> >> unexpectedly going from 0 to max.
+>> >
+>> > Right but at least with this now luminance values will continue if
+>> > DPCD maintains its state if we get a value back, otherwise we set a Default
+>> value.
+>> 
+>> What's the brightness control mode *before* we enable luminance control?
+>> 
+>> When taking over, we should try to read the current brightness setting with the
+>> current brightness control method. If we're switching to luminance control, the
+>> existing luminance value is meaningless.
+>> 
+>> AFAICT drm_edp_backlight_probe_state() uses bl->luminance_set to determine
+>> the value to read, not the current mode. At a glance, seems wrong to me.
+>
+> Luminance mode is the current mode. Which we determine that by checking different capabilities from the and setting them
+> In this case aux_set and aux_enable to represent them.
 
---zu0C4HM+umfEjDpa
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Date: Mon, 2 Mar 2026 12:19:04 +0100
-From: Marek =?utf-8?Q?Marczykowski-G=C3=B3recki?= <marmarek@invisiblethingslab.com>
-To: Roger Pau =?utf-8?B?TW9ubsOp?= <roger.pau@citrix.com>
-Cc: xen-devel <xen-devel@lists.xenproject.org>,
-	intel-xe@lists.freedesktop.org
-Subject: Re: Graphical glitches (not refreshing?) with Linux's xe driver +
- Xen 4.19
+The question is not about the panel's *ability* to use luminance mode,
+it's about whether that mode was set and in use by GOP/pre-os.
 
-On Tue, Feb 24, 2026 at 04:58:25PM +0100, Marek Marczykowski-G=C3=B3recki w=
-rote:
-> On Fri, Feb 13, 2026 at 02:23:06AM +0100, Marek Marczykowski-G=C3=B3recki=
- wrote:
-> > On Thu, Feb 12, 2026 at 04:11:50PM +0100, Roger Pau Monn=C3=A9 wrote:
-> > > On Tue, Feb 10, 2026 at 07:06:20PM +0100, Marek Marczykowski-G=C3=B3r=
-ecki wrote:
-> > > > Hi,
-> > > >=20
-> > > > Recently I started testing compatibility with Intel Lunar Lake. Thi=
-s is
-> > > > the first one that uses "xe" instead of "i915" Linux driver for iGP=
-U.
-> > > > I test it with Qubes OS 4.3, which uses Xen 4.19.4 and PV dom0 runn=
-ing
-> > > > Linux 6.17.9 in this test.
-> > >=20
-> > > Not sure it's going to help a lot, but does using a PVH dom0 make any
-> > > difference?
-> >=20
-> > Ok, now with the correct Xen version, it's better with PVH dom0. At
-> > least on the login screen and few applications (from both dom0 and domU)
-> > I don't see the glitches anymore. I can't do a full test, because PCI
-> > passthrough doesn't seem to work with PVH dom0 on Xen 4.19 - and I need
-> > it to start most VMs.
-> >=20
-> > So, if the above test is representative, it's only about PV dom0.
->=20
-> Some further observations:
->=20
-> 1. My initial impression that Xen 4.17.6 is not affected is false.
-> Apparently I got lucky and didn't waited long enough for glitches to
-> appear. Unfortunately this means I have no way to bisect this...
->=20
-> 1a. Updated test procedure - either:
->   - start Qubes OS in full (including default system domUs) and try to
->     open an app in one of them (for example file manager or pdf viewer)
->   - start Linux up to lightdm login page, log in, log out, click on a
->     few lightdm menus (session type selector, poewroff menu etc)
->=20
-> The second version works even if toolstack version in dom0 doesn't match
-> Xen version. If no glitches are observed after doing either of those
-> procedures, assume it's good.
->=20
-> 2. Xen staging is affected too. As well as Xen staging-4.19 without
-> any qubes patches.
->=20
-> 3. After enabling CONFIG_DEBUG in Xen, the xe.ko fails to load firmware:
->=20
->     xe 0000:00:02.0: [drm] Tile0: GT0: Using GuC firmware from xe/lnl_guc=
-_70.bin version 70.53.0
->     xe 0000:00:02.0: [drm] *ERROR* Tile0: GT0: load failed: status =3D 0x=
-40000056, time =3D 0ms, freq =3D 1850MHz (req 1850MHz), done =3D -1
->     xe 0000:00:02.0: [drm] *ERROR* Tile0: GT0: load failed: status: Reset=
- =3D 0, BootROM =3D 0x2B, UKernel =3D 0x00, MIA =3D 0x00, Auth =3D 0x01
->     xe 0000:00:02.0: [drm] *ERROR* Tile0: GT0: firmware production part c=
-heck failure
->     xe 0000:00:02.0: [drm] *ERROR* Tile0: GT0: Failed to initialize uC (-=
-EPROTO)
->     xe 0000:00:02.0: probe with driver xe failed with error -71
->=20
-> CONFIG_DEBUG is the only change between "xe.ko loads fine but there are
-> glitches later on" and "xe.ko fails to load at all". Full console logs:
-> https://gist.github.com/marmarek/47b5e62a2cdbae6678c2aecc5283cd3f, there
-> are 3 files:
->   - CONFIG_DEBUG=3Dn
->   - CONFIG_DEBUG=3Dy
->   - CONFIG_DEBUG=3Dy + iommu=3Ddebug
->=20
-> 4. Updating to Linux 7.0-rc1 doesn't help, for example:
-> https://openqa.qubes-os.org/tests/168119#step/desktop_linux_manager_creat=
-e_qube/11
->=20
-> Generally, it does feel like a bug in xe.ko, but I can't exclude some iss=
-ue
-> on Xen side too (especially given point 3 above).
+BR,
+Jani.
 
-After waiting some time (Linux 6.19.5 this time), Xen CONFIG_DEBUG=3Dn, I g=
-et some timeout messages:
+>
+> [    1.667694] i915 0000:00:02.0: [drm:drm_edp_backlight_init [drm_display_helper]] AUX A/DDI A/PHY A: Found backlight: aux_set=1 aux_enable=0 mode=0
+> [    1.667703] i915 0000:00:02.0: [drm:drm_edp_backlight_init [drm_display_helper]] AUX A/DDI A/PHY A: Backlight caps: level=496/496 pwm_freq_pre_divider=0 lsb_reg_used=1
+>
+> In this case aux_set = 1 and luminance_set = 1 which means we are in luminance mode
+>
+>> 
+>> Of course, regressions have priority, so a revert should also be a consideration
+>> before quickly going for adding level = max in there.
+>> 
+>
+> From what I can see
+> We are in Luminance Mode to begin with. From logs there is a level mentioned in VBT should we use that ?
+>
+> [    1.665632] i915 0000:00:02.0: [drm:intel_bios_init_panel [i915]] Panel type (VBT): 255
+> [    1.665770] i915 0000:00:02.0: [drm:pnpid_get_panel_type [i915]] EDID manufacturer name: SDC, product code: 16899, serial number: 0, year of manufacture: 2024
+> [    1.665890] i915 0000:00:02.0: [drm:pnpid_get_panel_type [i915]] EDID raw product id: 4c 83 03 42 00 00 00 00 00 22
+> [    1.666006] i915 0000:00:02.0: [drm:intel_bios_init_panel [i915]] Panel type (fallback): 0
+> [    1.666124] i915 0000:00:02.0: [drm:intel_bios_init_panel [i915]] Selected panel type (fallback): 0
+> [    1.666235] i915 0000:00:02.0: [drm:intel_bios_init_panel [i915]] DRRS supported mode is seamless
+> [    1.666346] i915 0000:00:02.0: [drm:intel_bios_init_panel [i915]] Found panel mode in BIOS VBT legacy lfp table: "640x480": 63 25180 640 648 744 784 480 482 484 509 0x8 0xa
+> [    1.666454] i915 0000:00:02.0: [drm:intel_bios_init_panel [i915]] Panel manufacturer name: @H@, product code: 0, serial number: 0, year of manufacture: 1990
+> [    1.666560] i915 0000:00:02.0: [drm:intel_bios_init_panel [i915]] Panel name: LFP_PanelName
+> [    1.666665] i915 0000:00:02.0: [drm:intel_bios_init_panel [i915]] Seamless DRRS min refresh rate: 0 Hz
+> [    1.666757] i915 0000:00:02.0: [drm:intel_bios_init_panel [i915]] VBT backlight PWM modulation frequency 200 Hz, active high, min brightness 0, level 255, controller 0
+> [    1.666847] i915 0000:00:02.0: [drm:intel_panel_add_edid_fixed_modes [i915]] [CONNECTOR:502:eDP-1] using preferred EDID fixed mode: "2880x1800": 60 709633 2880 2888 2920 3080 1800 3800 3816 3840 0x48 0xa
+> [    1.666931] i915 0000:00:02.0: [drm:intel_panel_add_edid_fixed_modes [i915]] [CONNECTOR:502:eDP-1] using alternate EDID fixed mode: "2880x1800": 120 709633 2880 2888 2920 3080 1800 1880 1896 1920 0x40 0xa
+> [    1.667117] mmc0: SDHCI controller on PCI [0000:58:00.0] using ADMA
+> [    1.667206] i915 0000:00:02.0: [drm:drm_dp_dpcd_read [drm_display_helper]] AUX A/DDI A/PHY A: 0x007a4 AUX -> (ret=  1) 00
+> [    1.667223] i915 0000:00:02.0: [drm:intel_dp_aux_init_backlight_funcs [i915]] [CONNECTOR:502:eDP-1] AUX Luminance Based Backlight Control Supported!
+> [    1.667335] i915 0000:00:02.0: [drm:intel_dp_aux_init_backlight_funcs [i915]] [CONNECTOR:502:eDP-1] Using VESA eDP backlight controls
+> [    1.667413] i915 0000:00:02.0: [drm:intel_panel_init [i915]] [CONNECTOR:502:eDP-1] DRRS type: none
+>
+> VBT here says use level 255 would it be okay if we set that to level as VBT level, if no value is returned from DPCD panel.
+>
+> Regards,
+> Suraj Kandpal
+>
+>> > Can we proceed with getting this merged ? Would really help the user.
+>> 
+>> The real problem with quick fixes to help the user is that they have the
+>> potential to make it a lot harder for a lot more users and developers in the long
+>> run.
+>> 
+>> 
+>> BR,
+>> Jani.
+>> 
+>> >
+>> > Regards,
+>> > Suraj Kandpal
+>> >
+>> >>
+>> >> BR,
+>> >> Jani.
+>> >>
+>> >> >
+>> >> > Regards,
+>> >> > Suraj Kandpal
+>> >> >
+>> >> >> >  		drm_dbg_kms(display->drm,
+>> >> >> >  			    "[CONNECTOR:%d:%s] AUX VESA Nits
+>> backlight level
+>> >> >> is controlled through DPCD\n",
+>> >> >> >  			    connector->base.base.id, connector-
+>> >base.name);
+>> >> >> @@ -573,6
+>> >> >> > +575,8 @@ static int intel_dp_aux_vesa_setup_backlight(struct
+>> >> >> intel_connector *connector,
+>> >> >> >  		if (current_mode ==
+>> >> >> DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD) {
+>> >> >> >  			panel->backlight.level = current_level;
+>> >> >> >  			panel->backlight.enabled = panel-
+>> >backlight.level != 0;
+>> >> >> > +			if (!panel->backlight.level)
+>> >> >> > +				panel->backlight.level = panel-
+>> >backlight.max;
+>> >> >>
+>> >> >> Ditto.
+>> >> >>
+>> >> >> >  		} else {
+>> >> >> >  			panel->backlight.level = panel->backlight.max;
+>> >> >> >  			panel->backlight.enabled = false;
+>> >> >>
+>> >> >> --
+>> >> >> Jani Nikula, Intel
+>> >>
+>> >> --
+>> >> Jani Nikula, Intel
+>> 
+>> --
+>> Jani Nikula, Intel
 
-    [    8.122120] xe 0000:00:02.0: [drm] [ENCODER:204:DDI A/PHY A] failed =
-to retrieve link info, disabling eDP
-    [    8.148476] xe 0000:00:02.0: [drm] Tile0: GT0: Using GuC firmware fr=
-om xe/lnl_guc_70.bin version 70.53.0
-    [    8.803845] xe 0000:00:02.0: [drm] Tile0: GT0: ccs1 fused off
-    [    8.804208] xe 0000:00:02.0: [drm] Tile0: GT0: ccs2 fused off
-    [    8.804556] xe 0000:00:02.0: [drm] Tile0: GT0: ccs3 fused off
-    [    8.822426] xe 0000:00:02.0: [drm] Tile0: GT1: Using GuC firmware fr=
-om xe/lnl_guc_70.bin version 70.53.0
-    [    8.827140] xe 0000:00:02.0: [drm] Tile0: GT1: Using HuC firmware fr=
-om xe/lnl_huc.bin version 9.4.13
-    [    8.829478] xe 0000:00:02.0: [drm] Tile0: GT1: Using GSC firmware fr=
-om xe/lnl_gsc_1.bin version 104.0.5.1429
-    [    8.852923] xe 0000:00:02.0: [drm] Tile0: GT1: vcs1 fused off
-    [    8.853513] xe 0000:00:02.0: [drm] Tile0: GT1: vcs2 fused off
-    [    8.854090] xe 0000:00:02.0: [drm] Tile0: GT1: vcs3 fused off
-    [    8.854706] xe 0000:00:02.0: [drm] Tile0: GT1: vcs4 fused off
-    [    8.855310] xe 0000:00:02.0: [drm] Tile0: GT1: vcs5 fused off
-    [    8.855904] xe 0000:00:02.0: [drm] Tile0: GT1: vcs6 fused off
-    [    8.856495] xe 0000:00:02.0: [drm] Tile0: GT1: vcs7 fused off
-    [    8.857079] xe 0000:00:02.0: [drm] Tile0: GT1: vecs1 fused off
-    [    8.857675] xe 0000:00:02.0: [drm] Tile0: GT1: vecs2 fused off
-    [    8.858272] xe 0000:00:02.0: [drm] Tile0: GT1: vecs3 fused off
-    [    8.975881] xe 0000:00:02.0: [drm] Registered 3 planes with drm panic
-    [    8.976586] [drm] Initialized xe 1.1.0 for 0000:00:02.0 on minor 0
-    [    8.980882] ACPI: video: Video Device [GFX0] (multi-head: yes  rom: =
-no  post: no)
-    [    9.033754] xe 0000:00:02.0: [drm] Tile0: GT1: found GSC cv104.1.0
-    ...
-    [ 1218.319232] xe 0000:00:02.0: [drm] Tile0: GT0: Engine reset: engine_=
-class=3Drcs, logical_mask: 0x1, guc_id=3D3
-    [ 1218.319890] xe 0000:00:02.0: [drm] Tile0: GT0: Timedout job: seqno=
-=3D9883, lrc_seqno=3D9883, guc_id=3D3, flags=3D0x0 in Xorg [3245]
-    [ 1218.320736] xe 0000:00:02.0: [drm] Xe device coredump has been creat=
-ed
-    [ 1218.321140] xe 0000:00:02.0: [drm] Check your /sys/class/drm/card0/d=
-evice/devcoredump/data
-    [ 1222.285626] xe 0000:00:02.0: [drm] *ERROR* [CRTC:88:pipe A] flip_don=
-e timed out
-    [ 1232.525685] xe 0000:00:02.0: [drm] *ERROR* flip_done timed out
-    [ 1232.526280] xe 0000:00:02.0: [drm] *ERROR* [CRTC:88:pipe A] commit w=
-ait timed out
-    [ 1242.765717] xe 0000:00:02.0: [drm] *ERROR* [CRTC:88:pipe A] flip_don=
-e timed out
-    [ 1253.005696] xe 0000:00:02.0: [drm] *ERROR* flip_done timed out
-    [ 1253.006248] xe 0000:00:02.0: [drm] *ERROR* [CRTC:88:pipe A] commit w=
-ait timed out
-    [ 1263.245599] xe 0000:00:02.0: [drm] *ERROR* [CRTC:88:pipe A] flip_don=
-e timed out
-
-The glitches appear much earlier, though.
-Would content of /sys/class/drm/card0/device/devcoredump/data be useful
-for debugging this?
-
-Full log at https://openqa.qubes-os.org/tests/168813/file/serial0.txt
-(warning, almost 200MB of those errors...)
-
-
---=20
-Best Regards,
-Marek Marczykowski-G=C3=B3recki
-Invisible Things Lab
-
---zu0C4HM+umfEjDpa
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEhrpukzGPukRmQqkK24/THMrX1ywFAmmlcigACgkQ24/THMrX
-1yxbnAf8CLqovdVUHy5Z9g4mb1xXRlYtk5W3BzX2l8m7XATXQU50WCZ70jFB3IVI
-731vgifDlcnRiY1/bHU851bc1fHHKKq1KeqL+jmSYEVlxixO9N7Et/o1VDVJdsql
-wq6sWj2BByyyFvbhOxfUmIfPG/aOqJrBNxMH2QVhTnyUrnWEyX6oUI9jXiA8FX7h
-a836dOQOkY+zTaypRg85iXbHBjxjj7Kyj8qPFGfyFj5TRw/vgtiMfU1yzPxOo7QT
-/t47KCoDCwcz4g99iacx3Ly60/x18oyvebrov4KGvAHW75VVlJSG9Zob2as4GH+X
-wySLcUiG8BkWOu9O57PwH3xGv04dww==
-=pqlU
------END PGP SIGNATURE-----
-
---zu0C4HM+umfEjDpa--
+-- 
+Jani Nikula, Intel
