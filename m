@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AA06E9B344
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 09:50:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6DD2E9B344
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Mar 2026 09:50:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E69E10E20B;
-	Mon,  2 Mar 2026 09:50:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6564B10E474;
+	Mon,  2 Mar 2026 09:50:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dNeLHWBy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TIJtoEuO";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7952910E473
- for <intel-xe@lists.freedesktop.org>; Mon,  2 Mar 2026 09:50:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00F0710E473
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Mar 2026 09:50:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772445031; x=1803981031;
+ t=1772445035; x=1803981035;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=c+yrNJPkVkI5vNMK9Ks28nzWWMjhzqBuitHv6QI6G4o=;
- b=dNeLHWByuaCVn9MBbVjQ4U47+7hR8twLwx+mT0s9O3/1TR31g+3owSoz
- WT9FwYLekduUhN9wo72xwSEZhHM2jeRwOixX0S+EbOtLVKt5uBzsOEOUh
- AX7+L9QQPDW/I+N2vZnilrJpJanN/UfmP9JmUMPhLb30bsfuJcCvEJo2/
- /wq702DcowMDxCjjeIBCyagWVXr/zDtnCWrOgoTc0MhGYZj76zsX+P4j3
- UrNHMgduHxesnz8Y2VOdBDjMDE1DwJ1a8yDiwQvNw+wrIX/gCsOc/pYxg
- 8p9mKRmoTlhw0yGHK0nCSa+fNCOtD72ESQkJFkDhSWE1EfXqg1GXRhlWy g==;
-X-CSE-ConnectionGUID: aN1drbzNRPeD1UGcK7X1ew==
-X-CSE-MsgGUID: UupLFA4lRUa7UdcGWFUs9g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="83783035"
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="83783035"
+ bh=Pz3zGc+bB8zzUX5IfqSNb/ej7jaVu2gugyxIkuZOgdw=;
+ b=TIJtoEuOf7DWMZJ3Xyaj1mFuDDANoa6T7rtIpf6sCT3uJ4MnkeDysHso
+ XRKudnXOQEx6adLunAPaWQ0Uv37bJAMo8kM0KOKWaHrw4xp0xsD8/prYg
+ JFmw9WdE5Jb+xGY7iDOuKrSIpsaMutEl6AfkySeh35m1SMppyxt8kvYi4
+ DP9QVl7B3hxSAb4OTZdl6ZzT4vc7rsVgxwSez8h+yVkvvjujU62tUrm7+
+ Tb8B+TNs8jZReKeXd8fO9w/ENnr6DX1NjdO/LllM6Z4xVOUYEEcMBcGY8
+ cLe+RYrhGSHmhQWHc4kQOoQkNTSgovjjM5hqFq3wfyWoDDqWFJTA4Yh5y g==;
+X-CSE-ConnectionGUID: 2dPYxPaeRKOoWE/ITOBAGg==
+X-CSE-MsgGUID: tY79pETNTySevfLE7plPqA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="83783039"
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="83783039"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 01:50:31 -0800
-X-CSE-ConnectionGUID: XNB0R3rhRS+2/Tswbt0Shw==
-X-CSE-MsgGUID: cCJxNtgTSqmgmhBVuPDQYg==
+ 02 Mar 2026 01:50:34 -0800
+X-CSE-ConnectionGUID: lWG7xaSuR8ixtXszxoO/Wg==
+X-CSE-MsgGUID: 5tEyeVjnQ4+zrnri4xHv/A==
 X-ExtLoop1: 1
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 01:50:28 -0800
+ 02 Mar 2026 01:50:32 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: riana.tauro@intel.com, anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  aravind.iddamsetty@linux.intel.com, badal.nilawar@intel.com,
  raag.jadav@intel.com, ravi.kishore.koppuravuri@intel.com,
- mallesh.koujalagi@intel.com, Matthew Brost <matthew.brost@intel.com>,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [PATCH v2 05/11] drm/xe: Skip device access during PCI error recovery
-Date: Mon,  2 Mar 2026 15:52:00 +0530
-Message-ID: <20260302102155.4074630-18-riana.tauro@intel.com>
+ mallesh.koujalagi@intel.com
+Subject: [PATCH v2 06/11] drm/xe/xe_ras: Initialize Uncorrectable AER Registers
+Date: Mon,  2 Mar 2026 15:52:01 +0530
+Message-ID: <20260302102155.4074630-19-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.47.1
 In-Reply-To: <20260302102155.4074630-13-riana.tauro@intel.com>
 References: <20260302102155.4074630-13-riana.tauro@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,88 +69,165 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When a fatal error occurs and the error_detected callback is
-invoked the device is inaccessible. The error_detected callback
-wedges the device causing the jobs to timeout.
+Uncorrectable errors from different endpoints in the device are steered to
+the USP which is a PCI Advanced Error Reporting (AER) Compliant device.
+Downgrade all the errors to non-fatal to prevent PCIe bus driver
+from triggering a Secondary Bus Reset (SBR). This allows error
+detection, containment and recovery in the driver.
 
-The timedout handler acquires forcewake to dump devcoredump and
-triggers a GT reset. Since the device is inacessible this causes
-errors. Skip all mmio accesses and gt reset when the device
-is in recovery.
+The Uncorrectable Error Severity Register has the 'Uncorrectable
+Internal Error Severity' set to fatal by default. Set this to
+non-fatal and unmask the error.
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c         | 11 ++++++++---
- drivers/gpu/drm/xe/xe_guc_submit.c |  9 +++++----
- 2 files changed, 13 insertions(+), 7 deletions(-)
+v2: clear stale uncorrectable internal status in status register
+(Aravind)
+---
+ drivers/gpu/drm/xe/Makefile    |  1 +
+ drivers/gpu/drm/xe/xe_device.c |  3 ++
+ drivers/gpu/drm/xe/xe_ras.c    | 78 ++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ras.h    | 13 ++++++
+ 4 files changed, 95 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_ras.c
+ create mode 100644 drivers/gpu/drm/xe/xe_ras.h
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index b455af1e6072..6f41090063bf 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -933,18 +933,23 @@ static void gt_reset_worker(struct work_struct *w)
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 417b030e5ce7..47cc8a572112 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -111,6 +111,7 @@ xe-y += xe_bb.o \
+ 	xe_pxp_debugfs.o \
+ 	xe_pxp_submit.o \
+ 	xe_query.o \
++	xe_ras.o \
+ 	xe_range_fence.o \
+ 	xe_reg_sr.o \
+ 	xe_reg_whitelist.o \
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index eea67cf13539..d2978c52efed 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -60,6 +60,7 @@
+ #include "xe_psmi.h"
+ #include "xe_pxp.h"
+ #include "xe_query.h"
++#include "xe_ras.h"
+ #include "xe_shrinker.h"
+ #include "xe_soc_remapper.h"
+ #include "xe_survivability_mode.h"
+@@ -1016,6 +1017,8 @@ int xe_device_probe(struct xe_device *xe)
  
- void xe_gt_reset_async(struct xe_gt *gt)
- {
--	xe_gt_info(gt, "trying reset from %ps\n", __builtin_return_address(0));
-+	struct xe_device *xe = gt_to_xe(gt);
+ 	xe_vsec_init(xe);
+ 
++	xe_ras_init(xe);
 +
-+	if (xe_device_is_in_recovery(xe))
+ 	err = xe_sriov_init_late(xe);
+ 	if (err)
+ 		goto err_unregister_display;
+diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+new file mode 100644
+index 000000000000..bc7615c6c1be
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_ras.c
+@@ -0,0 +1,78 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#include "xe_device_types.h"
++#include "xe_ras.h"
++
++#ifdef CONFIG_PCIEAER
++static void aer_unmask_and_downgrade_internal_error(struct xe_device *xe)
++{
++	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
++	struct pci_dev *vsp, *usp;
++	u32 aer_uncorr_mask, aer_uncorr_sev, aer_uncorr_status;
++	u16 aer_cap;
++
++	 /* Gfx Device Hierarchy: USP-->VSP-->SGunit */
++	vsp = pci_upstream_bridge(pdev);
++	if (!vsp)
 +		return;
- 
- 	/* Don't do a reset while one is already in flight */
- 	if (!xe_fault_inject_gt_reset() && xe_uc_reset_prepare(&gt->uc))
- 		return;
- 
-+	xe_gt_info(gt, "trying reset from %ps\n", __builtin_return_address(0));
 +
- 	xe_gt_info(gt, "reset queued\n");
- 
- 	/* Pair with put in gt_reset_worker() if work is enqueued */
--	xe_pm_runtime_get_noresume(gt_to_xe(gt));
-+	xe_pm_runtime_get_noresume(xe);
- 	if (!queue_work(gt->ordered_wq, &gt->reset.worker))
--		xe_pm_runtime_put(gt_to_xe(gt));
-+		xe_pm_runtime_put(xe);
- }
- 
- void xe_gt_suspend_prepare(struct xe_gt *gt)
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index ca7aa4f358d0..c25658f1e44b 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1508,7 +1508,7 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	 * If devcoredump not captured and GuC capture for the job is not ready
- 	 * do manual capture first and decide later if we need to use it
- 	 */
--	if (!exec_queue_killed(q) && !xe->devcoredump.captured &&
-+	if (!xe_device_is_in_recovery(xe) && !exec_queue_killed(q) && !xe->devcoredump.captured &&
- 	    !xe_guc_capture_get_matching_and_lock(q)) {
- 		/* take force wake before engine register manual capture */
- 		CLASS(xe_force_wake, fw_ref)(gt_to_fw(q->gt), XE_FORCEWAKE_ALL);
-@@ -1530,8 +1530,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	set_exec_queue_banned(q);
- 
- 	/* Kick job / queue off hardware */
--	if (!wedged && (exec_queue_enabled(primary) ||
--			exec_queue_pending_disable(primary))) {
-+	if (!xe_device_is_in_recovery(xe) && !wedged &&
-+	    (exec_queue_enabled(primary) || exec_queue_pending_disable(primary))) {
- 		int ret;
- 
- 		if (exec_queue_reset(primary))
-@@ -1599,7 +1599,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 
- 	trace_xe_sched_job_timedout(job);
- 
--	if (!exec_queue_killed(q))
-+	/* Do not access device if in recovery */
-+	if (!xe_device_is_in_recovery(xe) && !exec_queue_killed(q))
- 		xe_devcoredump(q, job,
- 			       "Timedout job - seqno=%u, lrc_seqno=%u, guc_id=%d, flags=0x%lx",
- 			       xe_sched_job_seqno(job), xe_sched_job_lrc_seqno(job),
++	usp = pci_upstream_bridge(vsp);
++	if (!usp)
++		return;
++
++	aer_cap = usp->aer_cap;
++
++	if (!aer_cap)
++		return;
++
++	/*
++	 * Clear any stale Uncorrectable Internal Error Status event in Uncorrectable Error
++	 * Status Register.
++	 */
++	pci_read_config_dword(usp, aer_cap + PCI_ERR_UNCOR_STATUS, &aer_uncorr_status);
++	if (aer_uncorr_status & PCI_ERR_UNC_INTN)
++		pci_write_config_dword(usp, aer_cap + PCI_ERR_UNCOR_STATUS, PCI_ERR_UNC_INTN);
++
++	/*
++	 * All errors are steered to USP which is a PCIe AER Compliant device.
++	 * Downgrade all the errors to non-fatal to prevent PCIe bus driver
++	 * from triggering a Secondary Bus Reset (SBR). This allows error
++	 * detection, containment and recovery in the driver.
++	 *
++	 * The Uncorrectable Error Severity Register has the 'Uncorrectable
++	 * Internal Error Severity' set to fatal by default. Set this to
++	 * non-fatal and unmask the error.
++	 */
++
++	/* Initialize Uncorrectable Error Severity Register */
++	pci_read_config_dword(usp, aer_cap + PCI_ERR_UNCOR_SEVER, &aer_uncorr_sev);
++	aer_uncorr_sev &= ~PCI_ERR_UNC_INTN;
++	pci_write_config_dword(usp, aer_cap + PCI_ERR_UNCOR_SEVER, aer_uncorr_sev);
++
++	/* Initialize Uncorrectable Error Mask Register */
++	pci_read_config_dword(usp, aer_cap + PCI_ERR_UNCOR_MASK, &aer_uncorr_mask);
++	aer_uncorr_mask &= ~PCI_ERR_UNC_INTN;
++	pci_write_config_dword(usp, aer_cap + PCI_ERR_UNCOR_MASK, aer_uncorr_mask);
++
++	pci_save_state(usp);
++}
++#endif
++
++/**
++ * xe_ras_init - Initialize Xe RAS
++ * @xe: xe device instance
++ *
++ * Initialize Xe RAS
++ */
++void xe_ras_init(struct xe_device *xe)
++{
++	if (!xe->info.has_sysctrl)
++		return;
++
++#ifdef CONFIG_PCIEAER
++	aer_unmask_and_downgrade_internal_error(xe);
++#endif
++}
+diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
+new file mode 100644
+index 000000000000..14cb973603e7
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_ras.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#ifndef _XE_RAS_H_
++#define _XE_RAS_H_
++
++struct xe_device;
++
++void xe_ras_init(struct xe_device *xe);
++
++#endif
 -- 
 2.47.1
 
