@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8991EC1438
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1E69EC1430
 	for <intel-xe@archiver.kernel.org>; Tue,  3 Mar 2026 12:54:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 476D8891D9;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BB3C10E7C6;
 	Tue,  3 Mar 2026 12:54:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UCDYCo0+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YX+j2aN5";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9074210E7C6;
- Tue,  3 Mar 2026 12:54:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 967EF10E7CA;
+ Tue,  3 Mar 2026 12:54:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772542464; x=1804078464;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=av8+L30nVaapIj3fTDGGcxm5bFsQnh49jSxm9fqFqm4=;
- b=UCDYCo0+YMvPJqD297ZDahgFW97gMx4IcNVIjuePF9j++Y8s55CNjHzg
- 2dUvGP53QrhQcWA5lN/pMrk6kp7Ttm0yQu2TdDFmrceBCApW87yuxhACV
- ch+pywc2gUNsnnhchXcX9qdEN0tRqAjrtdUlVpkXLrC4Wj90gRvKgV6iy
- lvbX++99fhDoButliuD3GthYTfDMaTifDgkLM0k5A2V/7Rr0hkm1FWs7L
- ae7AQTMovMjMREV8II6p2XPM/apA9PWyJoxAp3SGyTeoekojuoPo/sLCq
- wvwdHeEXlCKmqG6IotaYu0/l66GlIoNzPHOHzfQTSKyruFOf0jhilDYRg g==;
-X-CSE-ConnectionGUID: pNEGYSX2SoOYo/4Eq4piCg==
-X-CSE-MsgGUID: fa1GzwTwRHu0I4+zcjfxKg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="77421786"
-X-IronPort-AV: E=Sophos;i="6.21,322,1763452800"; d="scan'208";a="77421786"
+ t=1772542466; x=1804078466;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=smWueL8c5hFbYh8cLmxGUSoLdjfILkNyFPZmZACjldU=;
+ b=YX+j2aN5D1bTDWH2w1Bof/LBdP/KI0X/OLv1/k6b3eCerHs66ag6Uqkf
+ e/vR2Qc1qULjxSDHTPBZ5CBkimHSG3Xo+MOlSc3WhMyyT4utTfjcCG4Tx
+ GRgcXY9zL7MoChEZYjqdOv2NCus2Y2LHMi8dfg2qgZ82l7xkPfoEhYVRX
+ vvlMgTj+B0h1t6WZeNiqRBgyL59dBt7/QBppjgo4oAVqubqhvuKNGY32O
+ yWWra8YXsY64AS3b/U4KI1m2a8jDIcWMb9aQ/d+tGrvyglnklRFC+2h6Y
+ l2AL8h9rNvtOvNEp3vZuf+RCp5gqDdcVPMOiLG+EoKGdTR40sLSCK7liI Q==;
+X-CSE-ConnectionGUID: KL0qaffBTeiUpHz+SGr0pg==
+X-CSE-MsgGUID: D+6rf5hCT96YII1HsOHrkg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="77421835"
+X-IronPort-AV: E=Sophos;i="6.21,322,1763452800"; d="scan'208";a="77421835"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2026 04:54:23 -0800
-X-CSE-ConnectionGUID: BZcKqrMKR7mBjevxrhCzHw==
-X-CSE-MsgGUID: h6Z6wsGERdejvIIAIkVQIg==
+ 03 Mar 2026 04:54:26 -0800
+X-CSE-ConnectionGUID: QFSSJ012TW2i0qGm5dzqVQ==
+X-CSE-MsgGUID: kJoHt0khRBe/MoYfb9w/xw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,322,1763452800"; d="scan'208";a="222651970"
+X-IronPort-AV: E=Sophos;i="6.21,322,1763452800"; d="scan'208";a="222651978"
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO
  jhogande-mobl3.intel.com) ([10.245.245.74])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2026 04:54:20 -0800
+ 03 Mar 2026 04:54:23 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v2 0/4] PSR/PR Selective Fetch Early Transport fixes
-Date: Tue,  3 Mar 2026 14:54:05 +0200
-Message-ID: <20260303125409.503148-1-jouni.hogander@intel.com>
+Subject: [PATCH v2 2/4] drm/i915/dsc: Add Selective Update register definitions
+Date: Tue,  3 Mar 2026 14:54:07 +0200
+Message-ID: <20260303125409.503148-3-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260303125409.503148-1-jouni.hogander@intel.com>
+References: <20260303125409.503148-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -68,31 +70,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch set contains fixes for Selective Fetch Early Transport configuration:
+Add definitions for DSC_SU_PARAMETER_SET_0_DSC0 and
+DSC_SU_PARAMETER_SET_0_DSC1 registers. These are for Selective Update Early
+Transport configuration.
 
-  - add necessary DSC Early Transport configuration
-  - corner case fix for Selective Update area when Early Transport is
-    in use and cursor plane is included into SU are due to alignment.
+Bspec: 71709
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_vdsc_regs.h | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-v2:
-  - optimize elignment loop
-  - move register definitions to intel_vdsc_regs.h
-  - replace patches 3 and 4 with new patches
-  - drop patch 5
-
-Jouni Högander (4):
-  drm/i915/psr: Repeat Selective Update area alignment
-  drm/i915/dsc: Add Selective Update register definitions
-  drm/i915/dsc: Add helper for writing DSC Selective Update ET
-    parameters
-  drm/i915/psr: Write DSC parameters on Selective Update in ET mode
-
- drivers/gpu/drm/i915/display/intel_psr.c      | 61 +++++++++++++++----
- drivers/gpu/drm/i915/display/intel_vdsc.c     | 22 +++++++
- drivers/gpu/drm/i915/display/intel_vdsc.h     |  3 +
- .../gpu/drm/i915/display/intel_vdsc_regs.h    | 12 ++++
- 4 files changed, 85 insertions(+), 13 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+index 2d478a84b07c..2b2e3c1b8138 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_vdsc_regs.h
+@@ -196,6 +196,18 @@
+ #define   DSC_PPS18_NSL_BPG_OFFSET(offset)	REG_FIELD_PREP(DSC_PPS18_NSL_BPG_OFFSET_MASK, offset)
+ #define   DSC_PPS18_SL_OFFSET_ADJ(offset)	REG_FIELD_PREP(DSC_PPS18_SL_OFFSET_ADJ_MASK, offset)
+ 
++#define _LNL_DSC0_SU_PARAMETER_SET_0_PA		0x78064
++#define _LNL_DSC1_SU_PARAMETER_SET_0_PA		0x78164
++#define _LNL_DSC0_SU_PARAMETER_SET_0_PB		0x78264
++#define _LNL_DSC1_SU_PARAMETER_SET_0_PB		0x78364
++#define LNL_DSC0_SU_PARAMETER_SET_0(pipe)	_MMIO_PIPE((pipe), _LNL_DSC0_SU_PARAMETER_SET_0_PA, _LNL_DSC0_SU_PARAMETER_SET_0_PB)
++#define LNL_DSC1_SU_PARAMETER_SET_0(pipe)	_MMIO_PIPE((pipe), _LNL_DSC1_SU_PARAMETER_SET_0_PA, _LNL_DSC1_SU_PARAMETER_SET_0_PB)
++
++#define   DSC_SUPS0_SU_SLICE_ROW_PER_FRAME_MASK		REG_GENMASK(31, 20)
++#define   DSC_SUPS0_SU_SLICE_ROW_PER_FRAME(rows)	REG_FIELD_PREP(DSC_SUPS0_SU_SLICE_ROW_PER_FRAME_MASK, (rows))
++#define   DSC_SUPS0_SU_PIC_HEIGHT_MASK			REG_GENMASK(15, 0)
++#define   DSC_SUPS0_SU_PIC_HEIGHT(h)			REG_FIELD_PREP(DSC_SUPS0_SU_PIC_HEIGHT_MASK, (h))
++
+ /* Icelake Rate Control Buffer Threshold Registers */
+ #define DSCA_RC_BUF_THRESH_0			_MMIO(0x6B230)
+ #define DSCA_RC_BUF_THRESH_0_UDW		_MMIO(0x6B230 + 4)
 -- 
 2.43.0
 
