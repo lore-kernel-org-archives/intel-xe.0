@@ -4,61 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 821E6EC1429
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Mar 2026 10:53:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E8A4EC1428
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Mar 2026 10:55:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34ED210E793;
-	Tue,  3 Mar 2026 10:53:01 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fsOJ4rcP";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95A8410E791;
- Tue,  3 Mar 2026 10:52:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772535179; x=1804071179;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=DHAmQtiBu2zYk+h4U+GfMqpt9I4enHk0rekPcXnBthY=;
- b=fsOJ4rcPDBCxcsqQDZDfveBJsF9zxbJRXmLuYl1H/oi8OyrN/21fkqp0
- MU6l87LOmCNhtk7p1HYLeA8M/5ImRbiV7D0rMTBVG3zqzAdM+Y9+EVvpR
- 1HCMtlBQEVhXv4OJoR8SUXf7yAlnq5ST2EF9GmUZGW4va14CGrtSlfsE7
- FWIagKNJyz3jkWxpw8sltPiWLc7+o3jTCnaK2aWgLR8YEbWNNhOrYW5Jb
- bXNptwRrFTYBeX5DRCj6LA9aW/wc5/K56v6M83lvRdjZ7bqmWymxI/NzK
- HfvvgzXU0qF/XHsG+nk+AlX/fvEIyUUy0A2+ZWKJhlf5gNYbcFQDFhtvO w==;
-X-CSE-ConnectionGUID: gciMLMmKTl6oVU+R5f2cLw==
-X-CSE-MsgGUID: mvG2nzMURBOU9fKK/g0J1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="91138802"
-X-IronPort-AV: E=Sophos;i="6.21,321,1763452800"; d="scan'208";a="91138802"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2026 02:52:59 -0800
-X-CSE-ConnectionGUID: suqWUCBtRVS3WANgLskiHQ==
-X-CSE-MsgGUID: 1iXi69h8RD6taWqKKQ1fCQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,321,1763452800"; d="scan'208";a="214302532"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.245.26])
- ([10.245.245.26])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2026 02:52:57 -0800
-Message-ID: <9f13e0d0-4a4f-43ac-a2f2-72806b91c92a@intel.com>
-Date: Tue, 3 Mar 2026 10:52:55 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id C249010E166;
+	Tue,  3 Mar 2026 10:55:36 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37F0610E166;
+ Tue,  3 Mar 2026 10:55:36 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1918305924134588187=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] gpu/tests/gpu_buddy: Add gpu_test_buddy_alloc_range for
- exact-range allocation
-To: Sanjay Yadav <sanjay.kumar.yadav@intel.com>,
- dri-devel@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, =?UTF-8?Q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>,
- Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-References: <20260302150947.47535-2-sanjay.kumar.yadav@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260302150947.47535-2-sanjay.kumar.yadav@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/vrr=3A_Configure_V?=
+ =?utf-8?q?RR_timings_after_enabling_TRANS=5FDDI=5FFUNC=5FCTL?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 03 Mar 2026 10:55:36 -0000
+Message-ID: <177253533620.308587.18439672761947711049@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260303095414.4331-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20260303095414.4331-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,33 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 02/03/2026 15:09, Sanjay Yadav wrote:
-> Add a new kunit test gpu_test_buddy_alloc_range() that exercises the
-> __gpu_buddy_alloc_range() exact-range allocation path, triggered when
-> start + size == end with flags=0.
-> 
-> The test covers:
-> - Basic exact-range allocation of the full mm
-> - Exact-range allocation of equal sub-ranges (quarters)
-> - Minimum chunk-size exact ranges at start, middle, and end offsets
-> - Non power-of-two mm size with multiple roots, including cross-root
->    exact-range allocation
-> - Randomized exact-range allocations of N contiguous page-aligned
->    slices in random order
-> - Negative: partially allocated range must reject overlapping exact
->    alloc
-> - Negative: checkerboard allocation pattern rejects exact range over
->    partially occupied pairs
-> - Negative: misaligned start, unaligned size, and out-of-bounds end
-> - Free and re-allocate the same exact range across multiple iterations
-> - Various power-of-two exact ranges at natural alignment
-> 
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-> Suggested-by: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: Sanjay Yadav <sanjay.kumar.yadav@intel.com>
+--===============1918305924134588187==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+== Series Details ==
+
+Series: drm/i915/vrr: Configure VRR timings after enabling TRANS_DDI_FUNC_CTL
+URL   : https://patchwork.freedesktop.org/series/162481/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-4648-a0812623719f56a50fb9dd57003b9d9abd61c093_BAT -> xe-pw-162481v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 12)
+------------------------------
+
+  Missing    (2): bat-dg2-oem2 bat-atsm-2 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4648-a0812623719f56a50fb9dd57003b9d9abd61c093 -> xe-pw-162481v1
+
+  IGT_8777: a50285a68dbef0fe11140adef4016a756f57b324 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4648-a0812623719f56a50fb9dd57003b9d9abd61c093: a0812623719f56a50fb9dd57003b9d9abd61c093
+  xe-pw-162481v1: 162481v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162481v1/index.html
+
+--===============1918305924134588187==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/vrr: Configure VRR timings after enabling TRANS_DDI_FUNC_CTL</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162481/">https://patchwork.freedesktop.org/series/162481/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162481v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162481v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4648-a0812623719f56a50fb9dd57003b9d9abd61c093_BAT -&gt; xe-pw-162481v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 12)</h2>
+<p>Missing    (2): bat-dg2-oem2 bat-atsm-2 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4648-a0812623719f56a50fb9dd57003b9d9abd61c093 -&gt; xe-pw-162481v1</li>
+</ul>
+<p>IGT_8777: a50285a68dbef0fe11140adef4016a756f57b324 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4648-a0812623719f56a50fb9dd57003b9d9abd61c093: a0812623719f56a50fb9dd57003b9d9abd61c093<br />
+  xe-pw-162481v1: 162481v1</p>
+
+</body>
+</html>
+
+--===============1918305924134588187==--
