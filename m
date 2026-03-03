@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4103EDEBEF
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Mar 2026 20:14:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C02DFEDEBF3
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Mar 2026 20:14:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 775F410E8B3;
-	Tue,  3 Mar 2026 20:14:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76AAE10E8B4;
+	Tue,  3 Mar 2026 20:14:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hmRVH9rV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L2fdTUjs";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E5A410E8B4
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Mar 2026 20:14:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0532B10E8B3
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Mar 2026 20:14:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772568878; x=1804104878;
+ t=1772568877; x=1804104877;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uaCZKfrH4AgBus8l61j499PNz24I9XmJ+sMDGct/OdU=;
- b=hmRVH9rVLMOyAaukLreWxDonHrmw31zEcq6KVIpHSSSPcgDNNiiZ0TzX
- NckXVudpo/RMKVpgg2nif1B87/HpN5Dr4JulqR8u23dj3TkdAw8ia9IdR
- p/DRe5hzVqTINF4NsuvFPYYC1hqQxUFO3kI6uHDnSJ9nZRxeH9Ch98/TY
- DIYITeOf9/VRbzAnKV/Fueuwhh/qZGWlXphZABf6DjLVOEp19+7M5LRsd
- 614cf/UBzcypUqy6LIzJl/4w7gnisQzjCVqr6J2ENxUv6Q/b/896TPbj1
- zB1IrT7VQUBbUh/vqDi8KjX3Auj39597U0cOKLQLOu/DBGtfh4qww8r2M w==;
-X-CSE-ConnectionGUID: Zsz+yWZoR8aVzIgW0NZiUQ==
-X-CSE-MsgGUID: TzAdp7JSSFixn0+/bDWLxw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11718"; a="99096716"
-X-IronPort-AV: E=Sophos;i="6.21,322,1763452800"; d="scan'208";a="99096716"
+ bh=oig6CaDD5aNW2kUOprh46AeMd/iDbvha1IYyunjaqNM=;
+ b=L2fdTUjsRRl9rFrb3mv3DOcU8jeUGEHrvbW6X7E8c/+pIFdyyuMSRaLr
+ FzbuilAF681qDhQc0RKbqYPRWs4tTEfp8OkI75QUHAPV3XClThKVBrzFX
+ LwBfjPRrO7ZrfI+eK5noRbo6TI/vibl8Ak+43GXycx6tNaajj3kT2E/4P
+ 2Q839s0Taf70FQTz5ajoAoyRcJAJ9OEYU6wSlaI8FM52B4s8U3ZrOWDPN
+ 3sd22fPRjU6WTXACgiINz0ZjJqjX5GYspZ80wiXRAUkbWkPfR4RjLsR+L
+ INHWfooGRVJrPavZNXsxyIGu0hkRgJ/rmpViH2ETJG8YFIfqQnaW4s6N8 g==;
+X-CSE-ConnectionGUID: lslDCg7uTeeVPiWEFYp5fw==
+X-CSE-MsgGUID: YjgxQWOoQ8yzETOMONhdaw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11718"; a="99096715"
+X-IronPort-AV: E=Sophos;i="6.21,322,1763452800"; d="scan'208";a="99096715"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2026 12:14:38 -0800
-X-CSE-ConnectionGUID: /OeCyykTTj+3WvFYC5bKeA==
-X-CSE-MsgGUID: k49b6keyQk22tleMQA7Imw==
+ 03 Mar 2026 12:14:37 -0800
+X-CSE-ConnectionGUID: xnDQfAAXSxO8boCg3A9pcQ==
+X-CSE-MsgGUID: HiH7YbfrRQqtxIZTUXGl0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,322,1763452800"; d="scan'208";a="256005841"
+X-IronPort-AV: E=Sophos;i="6.21,322,1763452800"; d="scan'208";a="256005834"
 Received: from ngusev-mobl1.ger.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.245.98.92])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2026 12:14:37 -0800
+ 03 Mar 2026 12:14:36 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 2/3] drm/xe: Add MI_SEMAPHORE_WAIT command definition
-Date: Tue,  3 Mar 2026 21:13:53 +0100
-Message-ID: <20260303201354.17948-3-michal.wajdeczko@intel.com>
+Subject: [PATCH 1/3] drm/xe: Add PR_CTR_CTRL/THRSH register definitions
+Date: Tue,  3 Mar 2026 21:13:52 +0100
+Message-ID: <20260303201354.17948-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260303201354.17948-1-michal.wajdeczko@intel.com>
 References: <20260303201354.17948-1-michal.wajdeczko@intel.com>
@@ -67,41 +67,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This command supports memory based Semaphore WAIT. Memory based
-semaphores will be used for synchronization between the Producer
-and the Consumer contexts. Producer and Consumer Contexts could
-be running on different engines or on the same engine inside GT.
+The Watchdog Counter Control and Watchdog Counter Threshold
+registers are needed for watchdog programming. This watchdog
+will generate the "Media Hang Notify" interrupt.
 
-Bspec: 45749, 60244
+Bspec: 45999, 46000
+Bspec: 60373, 60374
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/instructions/xe_mi_commands.h | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-index c47b290e0e9f..29569eff1af3 100644
---- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-@@ -34,6 +34,19 @@
- #define MI_FORCE_WAKEUP			__MI_INSTR(0x1D)
- #define MI_MATH(n)			(__MI_INSTR(0x1A) | XE_INSTR_NUM_DW((n) + 1))
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index dc5a4fafa70c..1b4a7e9a703d 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -132,6 +132,14 @@
+ #define RING_BBADDR(base)			XE_REG((base) + 0x140)
+ #define RING_BBADDR_UDW(base)			XE_REG((base) + 0x168)
  
-+#define MI_SEMAPHORE_WAIT		(__MI_INSTR(0x1c) | XE_INSTR_NUM_DW(5))
-+#define   MI_SEMW_GGTT			REG_BIT(22)
-+#define   MI_SEMW_POLL			REG_BIT(15)
-+#define   MI_SEMW_COMPARE_OP_MASK	REG_GENMASK(14, 12)
-+#define     COMPARE_OP_SAD_GT_SDD	0
-+#define     COMPARE_OP_SAD_GTE_SDD	1
-+#define     COMPARE_OP_SAD_LT_SDD	2
-+#define     COMPARE_OP_SAD_LTE_SDD	3
-+#define     COMPARE_OP_SAD_EQ_SDD	4
-+#define     COMPARE_OP_SAD_NEQ_SDD	5
-+#define   MI_SEMW_COMPARE(OP)		REG_FIELD_PREP(MI_SEMW_COMPARE_OP_MASK, COMPARE_OP_##OP)
-+#define   MI_SEMW_TOKEN(token)		REG_FIELD_PREP(REG_GENMASK(9, 2), (token))
++#define PR_CTR_CTRL(base)			XE_REG((base) + 0x178)
++#define   CTR_COUNT_SELECT_FF			REG_BIT(31)
++#define   CTR_LOGIC_OP_MASK			REG_GENMASK(30, 0)
++#define     CTR_START				0
++#define     CTR_STOP				1
++#define   CTR_LOGIC_OP(OP)			REG_FIELD_PREP(CTR_LOGIC_OP_MASK, CTR_##OP)
++#define PR_CTR_THRSH(base)			XE_REG((base) + 0x17c)
 +
- #define MI_STORE_DATA_IMM		__MI_INSTR(0x20)
- #define   MI_SDI_GGTT			REG_BIT(22)
- #define   MI_SDI_LEN_DW			GENMASK(9, 0)
+ #define BCS_SWCTRL(base)			XE_REG((base) + 0x200, XE_REG_OPTION_MASKED)
+ #define   BCS_SWCTRL_DISABLE_256B		REG_BIT(2)
+ 
 -- 
 2.47.1
 
