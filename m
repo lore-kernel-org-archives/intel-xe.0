@@ -4,151 +4,142 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4ADDEDEBE0
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Mar 2026 18:13:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07F97EDEBE0
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Mar 2026 18:14:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76E2510E8A1;
-	Tue,  3 Mar 2026 18:13:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBD6110E89E;
+	Tue,  3 Mar 2026 18:14:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PSq7cd38";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yn9O/6n4";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2F0310E89C;
- Tue,  3 Mar 2026 18:13:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67A8010E89E
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Mar 2026 18:14:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772561624; x=1804097624;
+ t=1772561648; x=1804097648;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=PdqQADp61IVtjYOzLbgwMY7M2AYUq6kqGqDbOhPBwr0=;
- b=PSq7cd38x6KyJNA7LPA7vWBz1UNsgf0hXGDJOIE354AQIWCoOK0klYmj
- nK5O+04Uvj4JBS20NZ4YGjjxzbd8SyK+wp7UvmrmKI9B3H9Hbx9cQb4Fx
- 97NaFFl1NCINGB80H3vt2L1QTVFrzLtk53cF42I2Jyw3+yxCp5nZ4w8Kl
- bUqyaEKSYA2KV6KJSfhC+WALxMZaK1qX1h8Qh6fyAw+qHalUseIjHQOfc
- 0qJl/uMJcgq4uJEDa4j1m0oRRNxpp0+7oZMtGztDvrg2EfGtMsp1y1oon
- ekxIicYAXQDRBrk8fAGhgLNKc3wURQdN/5hwHNJDaSgf/EW1jfzyDlALx A==;
-X-CSE-ConnectionGUID: qs8QzEKcSjuH+tAAxrjQPA==
-X-CSE-MsgGUID: q1Su2rnSRhqk8l+pL7i28g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11718"; a="77454965"
-X-IronPort-AV: E=Sophos;i="6.21,322,1763452800"; d="scan'208";a="77454965"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2026 10:13:44 -0800
-X-CSE-ConnectionGUID: adUS6M0lRv+AFoGFJMu6YQ==
-X-CSE-MsgGUID: kQybSvZdRNmNdkSvS5G58w==
+ in-reply-to:mime-version;
+ bh=X+PMPY1GPE3XRRfEpsjak2oZgxe0N6ADA5ZxqzaD8FM=;
+ b=Yn9O/6n4RHc8g7i0+k+rOyxT9QyWRRDyjDcHT0Lz73VkI1Pt9I+FiTxM
+ cnKq7jSaxFmtUsCUE+HZLuutpOlBq64SzRW9m9JgEBItNW8Muq02NzfF6
+ WFFgYDGxsfsR5X/lIsPLfa9WMY0AqUfBQhIjaAkDrWD6hq263VgLIDiLq
+ iwLYlCkb3faeHbNM2D3Pbsrli83LbwD4L+FMQDowxE4NLIyZLUprrgaRX
+ hQUuPM7xIOtJP4g1eNc5lp8iDZmh8PQkVbNRZ7M7BnFpPwZkn67Q/GBmp
+ BwGsp2CIKmcgTplbAREC0lyn2PiqmvjgIWS6XlufrgNV755Cr+llpNcDY w==;
+X-CSE-ConnectionGUID: 4IpiT+LpSFS3jQ+6lplz+w==
+X-CSE-MsgGUID: AjOSQbSuSfO6C9oI/kZu0Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11718"; a="76212791"
+X-IronPort-AV: E=Sophos;i="6.21,322,1763452800"; d="scan'208";a="76212791"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2026 10:14:02 -0800
+X-CSE-ConnectionGUID: Kp1RsDN6QZ+rtP0AdM/egw==
+X-CSE-MsgGUID: Tx6lCoy5T+WUZC10qMqzcQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,322,1763452800"; d="scan'208";a="218031412"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2026 10:13:44 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.21,322,1763452800"; d="scan'208";a="222744539"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Mar 2026 10:14:00 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 3 Mar 2026 10:13:43 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.37; Tue, 3 Mar 2026 10:13:59 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 3 Mar 2026 10:13:43 -0800
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.14) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Tue, 3 Mar 2026 10:13:59 -0800
+Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.1) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 3 Mar 2026 10:13:43 -0800
+ 15.2.2562.37; Tue, 3 Mar 2026 10:13:59 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=V2b2WA+wuuCWb7rc4LM6S9OC5NE/hq4Lvpbf1pXlcwjTG5v3OxzCBoatLtVxnTEpFCOA9OXsLcHS4dKmnc1XQTm8jVbsItOkb6Wd0KTrcIH1EUlIVEekgAl8hlvidwrf8z2hmO2L92aYw7aVM6ROKkPnIlLaB9kJ12GOGvjuvlbPuSBFWPF9i/ynX98UA8dPq03GCFD8rRh8bhmlxXcKxWEK9n1NB3e4qnPDEeWO4U022DUlykI7mOelMI0wlJfl7NgM0OQFS6/VAA3eS+2GXi6a4hEQhIiPM6dX21C4HN+HqtgJU91Rsury18eHqjyPYS2g4Y9XgM0NsRLcTwmn3Q==
+ b=Hef1jinQ8Mmj2GQ+Ij3PhSWAvmMdOuY0eJjdsX3GP+2T9ksu9lWUh8SURFj7VdJ23/llvFLTQ5BJjPNMRZ0upGcC4Lu2KMJJTnYZpKTSPJYIDrYH4pIwYtSDHXgDhov9AiCPwzShgRvcQ8kADwGL72BD35CSrfD/E96uluq66VID/SKlKbZMAgH/3C3Cwqt+dljR29NAqJT6ne5cqmiqZf4LD5jGq96a2xJdJjGoyTah9J5OHABSNrw9VGVHRlATbJ9mN+BnVwKkXFZ18JE0QbKE1h3AL8rh6jGCa/l6SVZjl/iIWpHbdk0qmSXV9wYzzuPcIoa2SFQM0KIal2qUNQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SaRMG3D58w2JGxNdMkfX3kjmnCtuo/6Z9xFFTHcKo5E=;
- b=DXjrtOQd9XfbdVcMlO3UUuqd2FMXO/PnMEIbTbsQmqayaPLXVC0+H9rdkRVobSem07AZf7HPniLbHCICrNDA3nwnHGf8oxICdtCx0HqfY7eaFHRs5Gu71CJAZuw7rH6LxJ1oRo/IyvGJmYWwZ5sGAEmoWgIuD4738RbPOKHxVbiK4lNdiob2N10l/uPSc17j9tthBGDTZm3veWwXhEEJ/s13Y+Vde3MtdsmywXNX445KaY4ABdHAgLwVj16tV35oRDyaZh6/md17tR/iQh+MDf19UUVEOnWLDreuDSX7kFozxM6oOBUNl/74cOOkl2z2X7J7mQQt3Gkd8j2Ky1N4LA==
+ bh=sKaMh0n8dIhAtfzP3Nox6bsnCSA+mVn/7KhuA7SgXUw=;
+ b=GHNTD+kR01i5F+qH9+o1Fn3Vl0Xdyi45ptFOkD4zy9oPHmY6lsrRGXeNCK9VHHlTv9mwaBARkEhM9OMAvyQmXQ/W1BDIAVi9Xw8ecZ4Np0mI425dnOiMzvDZWmOBFb7/tHRkAr7pu9WprsHLTF5dlj5N69iZfy2NhHQu2vAZLsXv6j0HXOfxZBwl4n03gaAIWepn/NB6vlKKmbr9sGcSzjzxxLUFA5vUGSJCKMeASmWYN8YGnVd4m+c15GRcPYd4+tRGPXPol6rptFrfJpQIZwZ4IQzWuJa6Lg6eTLifGx37XT88Xphz0ioU3kHBQYpyPe9//IXnfOAFHNSMGkWTGg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SA2PR11MB4907.namprd11.prod.outlook.com (2603:10b6:806:111::15)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
+ by DS0PR11MB7286.namprd11.prod.outlook.com (2603:10b6:8:13c::15) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.22; Tue, 3 Mar
- 2026 18:13:39 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.20.9654.022; Tue, 3 Mar 2026
- 18:13:39 +0000
-Date: Tue, 3 Mar 2026 10:13:36 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Christian =?iso-8859-1?Q?K=F6nig?=
- <christian.koenig@amd.com>, <dri-devel@lists.freedesktop.org>, "Jason
- Gunthorpe" <jgg@ziepe.ca>, Andrew Morton <akpm@linux-foundation.org>, "Simona
- Vetter" <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>, "Alistair
- Popple" <apopple@nvidia.com>, <linux-mm@kvack.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 3/4] drm/xe: Split TLB invalidation into submit and
- wait steps
-Message-ID: <aack0DFgje/muR9I@lstrano-desk.jf.intel.com>
-References: <20260303133409.11609-1-thomas.hellstrom@linux.intel.com>
- <20260303133409.11609-4-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+ 2026 18:13:56 +0000
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::1d86:a34:519a:3b0d]) by CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::1d86:a34:519a:3b0d%5]) with mapi id 15.20.9654.020; Tue, 3 Mar 2026
+ 18:13:56 +0000
+Date: Tue, 3 Mar 2026 13:13:53 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+CC: <intel-xe@lists.freedesktop.org>, <kernel-dev@igalia.com>
+Subject: Re: [PATCH v17 6/8] drm/xe/xelp: Add AuxCCS invalidation to the
+ indirect context workarounds
+Message-ID: <aack4Q1MRQ-Eq1pM@intel.com>
+References: <20260128101333.37765-1-tvrtko.ursulin@igalia.com>
+ <20260128101333.37765-7-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260303133409.11609-4-thomas.hellstrom@linux.intel.com>
-X-ClientProxiedBy: SJ0PR05CA0027.namprd05.prod.outlook.com
- (2603:10b6:a03:33b::32) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+In-Reply-To: <20260128101333.37765-7-tvrtko.ursulin@igalia.com>
+X-ClientProxiedBy: BY1P220CA0003.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:59d::10) To CYYPR11MB8430.namprd11.prod.outlook.com
+ (2603:10b6:930:c6::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA2PR11MB4907:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9dc773d0-9bb9-447b-42de-08de79509830
+X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|DS0PR11MB7286:EE_
+X-MS-Office365-Filtering-Correlation-Id: fc12512d-99da-4e46-a5b5-08de7950a261
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|7416014|376014|1800799024|7053199007; 
-X-Microsoft-Antispam-Message-Info: LjRW0yEnqPVmJpPVsvgqTMmCgJTfiRAvqfA4JeTEYW1mEivob3pcadDDExCtaOkCk8FTCc0Zzc+MLHdFYEqQNAK9V0B/wII6VvAhV+kQFs0YlmKBbkQYyb+3pxedwUHz0kceLyGkbXjq8A/BuLHgrTl4rD1VNb+0Q428Cgh6U8986aGW8a+A0uM2wj85+RD4wbuVdiIuPDa75ztprtKP6wvsqX4lm3AN3AQEeCnoYQsDVzQWncemTWK/ySim9Cv8cL0jtO170cBFAVNfZKJ427W+PuvOLAeZtmVsIJDkCEow+HuqrA8eHbiSGS1B/QTjJNtw/6kKkZ1tYNcwD86D4cI6KvLxrmEj2Roe8JlWv/G8Sb/YL7jJqBtc9/VaG9YqfyvQQNA72J6s6dNi3kZxJ7ymYvTMsoVn5tsFrCu5Hg1zaZ8ROEHeGeik1q3URu4Rykr5ERCXIuSE7fyumMm2WZahHw/Ipfifh4svqFIW7ywAJhImW/Mm2fGnCjKixvZ0iGXmcF0avhmL25hzGZ5KcG6p8UjifPSlnG7T1B/x+a9e+PcB4+ZSo+KsufMqsGB9bh8CuRDDkZlEPzbOhX8J4Xx1sJP4tjvSL3nXYP2pY04bZcqxd18mqjWszIegy14+sT845AZeqWMr64QtvYHOlOkbnFxhL+FyO/9Ok8KR1K6nVrbMC6a2Xs+tPQSDvgUVfbs7KFEE4g2QuHWEpnB8SHGmJ7cGS+9X4pxBdiE/o3k=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
+X-Microsoft-Antispam-Message-Info: s2+tS/ZDAw/rLYskxp3MtMKOFdfr+3I2XrhWlJv/Q3wOE2QI3l+kIK1Mn4SSmUURkOcC8h+Zung9JxSvYKOks9O7k0cvt95vXCQ33GxATAtdjuuYKRYEWUac66JkbZ2UF9yoXoRtHQpMGA2p7ErimL0GIdhIP13so2V4bcxlRAFFVpFzziy4c3meqX48M3qALQpAbGfpK6+LAQ5YmcE+6BEGWGO7QQA97V318GiqRcaJqyJTg0sU6DY0a4koA2VZPbAVPithU0BnFAfg/VIlbzJIXE4GnvvhbUv3V1zPrfySmvtpLyvmfoDy5Fy+6LbsNWulTUlHzKv2LR5sJphtTYHEUhgujpU1qCmBLwi/k9mLszcfr171fIxDUk5tRv0XROaqvhn91ngAKbF6fR1uDruUyznIQjzxBKim7ydqokC21oymo4ECHrpVeO57R418C5cNvfSGb3sHH1GdoTaYnCvAJA/Z5XW3nJyByWg33F99W4xvYXRNuItrBao4gYXRFZ5wrYE+YusV7qKcyFbO493M5bBaeH79fBOjI1/noOloWbFATqD0v/EJF7GxMVCbQ5h2fjUffUp9ZPIlTEqrHAsTIYeb9rvfq1DhJ3nzES13J4E9fr25IJrERw9vnlzeaRxOOLqUTf6+lKrwJTjyAutdGZxxc+2VV7lUz6wVN03FeMbNWNTwuAZPoPYZ42o2qpC/9OTEPiB8Dt5OwrtXJCA12WmbSltfcrZNfKVHgnU=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(7416014)(376014)(1800799024)(7053199007); DIR:OUT;
- SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(7053199007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?XwOSyr9WV4ae08qHL67Q2Q6YF3FDvkdDhOcuXACv+7Ss5v897lDUrmWG1L?=
- =?iso-8859-1?Q?C8+M8EXF3rg8E2EZTi037PGAuvWBnJyNpazCxIkIKqk0acZCl72/4Co8B6?=
- =?iso-8859-1?Q?Do/eE2nlsfkQojMT72714qpl63Bux3f/wyS48SRJK1ZDBr+9Zu+mut/npB?=
- =?iso-8859-1?Q?p+XmDixm7kPTVYwK7uVRUBc/6/gwAbq48HkGj2s3e+nOm+ddrJrvvQ1NrR?=
- =?iso-8859-1?Q?sXUrZbJEYqxuOVstrBtXj+l1RO+Q3m1ADtoJxVhSSCMJWTpHI7ftPbNR57?=
- =?iso-8859-1?Q?62DN1jW/nvqETl4fQ9y4nYaoSEEw4b5dy6AB3YV57sVKdxQ5j9DyH2GxZh?=
- =?iso-8859-1?Q?0uvfpTpzm7pR8d3ACaeROgc2RxUxjPf1ayaLPQkRzJc0//ghy8juhNiHpK?=
- =?iso-8859-1?Q?WW7553GncmcKu7/ART1Al3ZSIXviS2so/MZiTR1tIXxAjTaK5dWYU172+j?=
- =?iso-8859-1?Q?SlT5L0I0kRa49fC/DaXgCTLSEU7u4ss6MflopsYFMBjrDjtaW8eCUCz9+F?=
- =?iso-8859-1?Q?eY5ETQs4XsO+fVgnZVIE+adzZ3vsFPR3dXwths1imkcGgTxLbcebwjjrm5?=
- =?iso-8859-1?Q?PET5GgWEQXxclkgcZXe9QqdMLQYkMBI5WP7p2rhZtXtUNY3vppt+Yp8WFr?=
- =?iso-8859-1?Q?xN0dt4Th5bolMsAl8CD83TPrvylc1EBO+KFCkemLi6Ki/m4RxIEVcQ3IhY?=
- =?iso-8859-1?Q?tjBHyhB2MIIU0tkw1G25hrWcAhNHNhdYgeP/G34LM1m6Mn3JUiG64AdNgK?=
- =?iso-8859-1?Q?9uTv1/azwwdSrLq2f3e42Kv8W5UmuVlFq+5PRH/oFmI9KGdltHHm9TGmtV?=
- =?iso-8859-1?Q?XKDRf9JjEtP98MEMxGuF/95ZfPf/YiEUDK/9OFlWmJNCGemG52AWt/jEJ2?=
- =?iso-8859-1?Q?wyuIjSp9URTS7RpA6sbvvyAzykLQgX6Uo1GTLwyTC+huT11RJE6ClUaz0b?=
- =?iso-8859-1?Q?sQ5bmI/oCU0DO8uRacPzxU92cA16zXN8hM0tWukZ+GDCzjt2O5KAwoTlEC?=
- =?iso-8859-1?Q?aRsU1rpUxrofgM8gSH670e4JAIHHzdJS4XpBwRyyvRoyRfd7HwQY3DXnOS?=
- =?iso-8859-1?Q?B23moGYu3/TqnH2+/nGR5tlDQaOoJKPpYh9HK2Dh98UQPpbh6SENxeJufx?=
- =?iso-8859-1?Q?g6ak4p8pMUt0d8U8Gj8lLgaOoyZ0twC5kQLWJon7/z9BN9GXw2+9f2J7WI?=
- =?iso-8859-1?Q?CwP9bgph2i9rNfYSsBUhzbGMlE8fEGtYY4pn9BjLicKfmXWNctt+7sGQmi?=
- =?iso-8859-1?Q?BuuexctdKE8S2qJ3WzNx9cihuIwvPtgsA4W3OQmZ3gXW7A/McF31PTEsun?=
- =?iso-8859-1?Q?nXC7bQA+mpO1qD5As9qPqwAdhMryKNKhXPIOjtv/hLKapiEBgj0NAwzXH8?=
- =?iso-8859-1?Q?DoN1dreO+n3Z5RvjdWUIDCy8DIRsaUrsGz29jj1KYH4XtTLpa1zKCQ5EST?=
- =?iso-8859-1?Q?QoRbhvTSmbZVjuBr1icuzW98NOSLAFWJXjQaRWFeALZuejnMXMcDeUQ2B/?=
- =?iso-8859-1?Q?43XqQdEEpWgzWwF84Rl3RkYCk8/f0HwIzEF6idJ9LrYaiKP5g2E8Nd6xTq?=
- =?iso-8859-1?Q?Eoy3JfngQ8VqoOWFB3kGdZ37haqz5Q14tuoG+LCRsDBLoD4M8as82jyIpB?=
- =?iso-8859-1?Q?UiLAna2gSj68z684vLlWMYi0BgtBOXM/LGXqKQpVUE6Cbsfl6DNoflaGJo?=
- =?iso-8859-1?Q?AinKKdm9n2AnUuiN165eEcvb3ONfmt0SqgXBgZiH/anafrLuoo2lzntSoV?=
- =?iso-8859-1?Q?haKh/1FzgjTH0csZ3oAtbP5atqL4F4aX8/Yybjf/WSACyy9m4fuVLjB+dK?=
- =?iso-8859-1?Q?kKZrBzYlANGZvsu0yxtDohpd6uPsOus=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9dc773d0-9bb9-447b-42de-08de79509830
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?gjK4Ji0Legh3GpXx7QerevFn+NcZrpKYEXGvQExW8TZPEWgi0j5kKOQNaRAa?=
+ =?us-ascii?Q?A9Q86Nk1ebpUG1mbTWC90ymxrlV6HmjJ496VYhuGDI12NO6yr0U7ien5tpJi?=
+ =?us-ascii?Q?dls3GYfeWGxE2B23zRTmUWm3Bf/OhUcruV4fNuZQE8k0GK/mtx3j7mxUGF/2?=
+ =?us-ascii?Q?EuDOtScDcU0Hx3ecYr/FmCXP4UwTYdSTvwjMBaeyTWQUBLSKuD2UjDUfoKx3?=
+ =?us-ascii?Q?SppoQrbcsDLdbfpNO2WVjYIDBtDtlfWmBw//6K627nJZD0yyHgSAu4OHPpkZ?=
+ =?us-ascii?Q?902fJKH1l98JKYBl2UOR4eJS7LJIuMrpfr92OgwVOM9G3twIc6mxX38VohWZ?=
+ =?us-ascii?Q?QJadYJQ6AD6jpaVjJxCDp9jsQaPd8qoOXc3mSmkJG9nCpqZ7lfjXUbR3TuHN?=
+ =?us-ascii?Q?Yk5/1bPNzisLuHs67XFF+6vRygwMTmHY1F1hP1OBtTNvtaZ/epVeqd+LF1gb?=
+ =?us-ascii?Q?k9IyhVvHQYxgRL7gGDFN4r5GBhaCvgeqZwRFCt88ZwHzwkTE5PNMqo1XaBCg?=
+ =?us-ascii?Q?MWfyDaN9ybRNRdDpNFPTqM0pQgrVdKsXe48DV0e2adOoxzJUY6wBI+71t//d?=
+ =?us-ascii?Q?ZSgA3kf86j2ygSrChCVC6ht/GVovm9q9RNQpz7pnIcUH6Mh3Fbn83rqmLaCp?=
+ =?us-ascii?Q?5wn/9/PccwT3UddO82lgJIKWvBBm8HKXjGgRrfzvXx0nNuCMH/Wi/XMsXmaQ?=
+ =?us-ascii?Q?shJA0WND4cm9tbjPY9XidEmqHhiYppEVCq5avYkI7XH5zvD4lj3ZjS+rkP6/?=
+ =?us-ascii?Q?BQ9Fc8NLjR8dNWFzjF23ydwecXjwaoyPd3T2rvYeWnMLf7rd2dt9UboLlUo6?=
+ =?us-ascii?Q?l7YwaQ+aud68q/xzKwoak3o8AZFs6PFXIfy4/WORHGhJLisApQNaxyTNgeCi?=
+ =?us-ascii?Q?HVRM0f6F/mJxdNSsZ/kfS0WDim0gxZe7cTd1B4LMw2hqbhqh31GbOUJb3Ol+?=
+ =?us-ascii?Q?b/ryP0zOXByD1FBkU+mEkv5CdbTr3JJDCPVFWmW2ArY6xyvFN+TaCcDhLpUE?=
+ =?us-ascii?Q?s1iKGo0wrlCrECDKGMUwFYxMVHeQKoLL09HNe3lcVeur7IEWi2ZcO0qX6ydk?=
+ =?us-ascii?Q?WFupMCLYNfnpiA07PWmzWQQ6NL1SS/yE9lBW7J1VwWKfbaPmz7/RprjOZQfQ?=
+ =?us-ascii?Q?iFoOxDIQmDET9tzMJA6aWC881k/ssDIeic5iVEy99k4mcUwNp4REzTNgrft5?=
+ =?us-ascii?Q?nDf8aEKbJusHpJawgkpeMuXfyZGs7hKCRfdRrnVnaQVrYkalGQJFS0oixv3U?=
+ =?us-ascii?Q?fBckA85FGNnQ7PYb6WJGSebOx+wggGbo+BThtErQi2lqkVsrJghtYCLgbd0E?=
+ =?us-ascii?Q?BmtFWk3V9G/7WAD96gjI+/aE+ittviZ0YIbrMmUS9QN++CY7dFR24q50XkJQ?=
+ =?us-ascii?Q?TuqgvAxW8Z0JHfDpnmSbWh3i8KQ2PJTdNqX9ml89mfp5NaSp947Hsnsa8clc?=
+ =?us-ascii?Q?WL1NyiImJ1OkU2NoONwqJVvdWE9b6QAxSNIXZac0p72gYUIS7EsduBsuTzME?=
+ =?us-ascii?Q?kPVfWGOvuX5zG3HdJAv7BSseLf0Kz4VzMFTos2wAr27goc3DQ3NqRN9wmC3z?=
+ =?us-ascii?Q?IkPEsi1b76XfdzExEIeUbOCVXRgyPyXC5OJsiLT5ZBfbexLTcZPly7Uz5SEl?=
+ =?us-ascii?Q?s+y7WamM132b4y72RrlvxXoS71z8tW+/A9E/VHayQU+E7sspbwy1EeQ+UFz9?=
+ =?us-ascii?Q?aoOGLx85Z6EtOm4W8l0ywDsfW3/FmBXMOfCrEj1o8WXEeTS4j/zYR1HFO+6M?=
+ =?us-ascii?Q?/5DpsVEvPQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: fc12512d-99da-4e46-a5b5-08de7950a261
+X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2026 18:13:39.1951 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2026 18:13:56.3746 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sracCjp+Keov6kDy8gJxuZcObXMC8td0wa0mMZRIrBUpsdhK4XZBDi0IbdwGrcQQK2THnRd67BHSD/LMHCp+NA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4907
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5krgNoErpbQ2Mof5yUjtQiouzqXSWYyKLU1wH2+NiQZiGT2lpNir8JJo66AAuEaUR8lYSS00HNmxX97VLDPz3g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7286
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -164,368 +155,178 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 03, 2026 at 02:34:08PM +0100, Thomas Hellström wrote:
-> xe_vm_range_tilemask_tlb_inval() submits TLB invalidation requests to
-> all GTs in a tile mask and then immediately waits for them to complete
-> before returning. This is fine for the existing callers, but a
-> subsequent patch will need to defer the wait in order to overlap TLB
-> invalidations across multiple VMAs.
+On Wed, Jan 28, 2026 at 10:13:31AM +0000, Tvrtko Ursulin wrote:
+> Following from the i915 reference implementation, we add the AuxCCS
+> invalidation to the indirect context workarounds page.
 > 
-> Introduce xe_tlb_inval_range_tilemask_submit() and
-> xe_tlb_inval_batch_wait() in xe_tlb_inval.c as the submit and wait
-> halves respectively. The batch of fences is carried in the new
-> xe_tlb_inval_batch structure. Remove xe_vm_range_tilemask_tlb_inval()
-> and convert all three call sites to the new API.
-> 
-> v3:
-> - Don't wait on TLB invalidation batches if the corresponding batch
->   submit returns an error. (Matt Brost)
-> - s/_batch/batch/ (Matt Brost)
-> 
-> Assisted-by: GitHub Copilot:claude-sonnet-4.6
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
 > ---
->  drivers/gpu/drm/xe/xe_svm.c             |  8 ++-
->  drivers/gpu/drm/xe/xe_tlb_inval.c       | 84 +++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_tlb_inval.h       |  6 ++
->  drivers/gpu/drm/xe/xe_tlb_inval_types.h | 14 +++++
->  drivers/gpu/drm/xe/xe_vm.c              | 69 +++-----------------
->  drivers/gpu/drm/xe/xe_vm.h              |  3 -
->  drivers/gpu/drm/xe/xe_vm_madvise.c      | 10 ++-
->  drivers/gpu/drm/xe/xe_vm_types.h        |  1 +
->  8 files changed, 127 insertions(+), 68 deletions(-)
+>  drivers/gpu/drm/xe/xe_hw_engine.h | 24 ++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_lrc.c       | 27 +++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_ring_ops.c  | 19 +++----------------
+>  3 files changed, 54 insertions(+), 16 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
-> index 002b6c22ad3f..a91c84487a67 100644
-> --- a/drivers/gpu/drm/xe/xe_svm.c
-> +++ b/drivers/gpu/drm/xe/xe_svm.c
-> @@ -19,6 +19,7 @@
->  #include "xe_pt.h"
->  #include "xe_svm.h"
->  #include "xe_tile.h"
-> +#include "xe_tlb_inval.h"
->  #include "xe_ttm_vram_mgr.h"
->  #include "xe_vm.h"
->  #include "xe_vm_types.h"
-> @@ -225,6 +226,7 @@ static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
->  			      const struct mmu_notifier_range *mmu_range)
->  {
->  	struct xe_vm *vm = gpusvm_to_vm(gpusvm);
-> +	struct xe_tlb_inval_batch batch;
->  	struct xe_device *xe = vm->xe;
->  	struct drm_gpusvm_range *r, *first;
->  	struct xe_tile *tile;
-> @@ -276,8 +278,10 @@ static void xe_svm_invalidate(struct drm_gpusvm *gpusvm,
->  
->  	xe_device_wmb(xe);
->  
-> -	err = xe_vm_range_tilemask_tlb_inval(vm, adj_start, adj_end, tile_mask);
-> -	WARN_ON_ONCE(err);
-> +	err = xe_tlb_inval_range_tilemask_submit(xe, vm->usm.asid, adj_start, adj_end,
-> +						 tile_mask, &batch);
-> +	if (!WARN_ON_ONCE(err))
-> +		xe_tlb_inval_batch_wait(&batch);
->  
->  range_notifier_event_end:
->  	r = first;
-> diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
-> index 933f30fb617d..10dcd4abb00f 100644
-> --- a/drivers/gpu/drm/xe/xe_tlb_inval.c
-> +++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
-> @@ -486,3 +486,87 @@ bool xe_tlb_inval_idle(struct xe_tlb_inval *tlb_inval)
->  	guard(spinlock_irq)(&tlb_inval->pending_lock);
->  	return list_is_singular(&tlb_inval->pending_fences);
->  }
-> +
-> +/**
-> + * xe_tlb_inval_batch_wait() - Wait for all fences in a TLB invalidation batch
-> + * @batch: Batch of TLB invalidation fences to wait on
-> + *
-> + * Waits for every fence in @batch to signal, then resets @batch so it can be
-> + * reused for a subsequent invalidation.
-> + */
-> +void xe_tlb_inval_batch_wait(struct xe_tlb_inval_batch *batch)
-> +{
-> +	struct xe_tlb_inval_fence *fence = &batch->fence[0];
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < batch->num_fences; ++i)
-> +		xe_tlb_inval_fence_wait(fence++);
-> +
-> +	batch->num_fences = 0;
-> +}
-> +
-> +/**
-> + * xe_tlb_inval_range_tilemask_submit() - Submit TLB invalidations for an
-> + * address range on a tile mask
-> + * @xe: The xe device
-> + * @asid: Address space ID
-> + * @start: start address
-> + * @end: end address
-> + * @tile_mask: mask for which gt's issue tlb invalidation
-> + * @batch: Batch of tlb invalidate fences
-> + *
-> + * Issue a range based TLB invalidation for gt's in tilemask
-> + * If the function returns an error, there is no need to call
-> + * xe_tlb_inval_batch_wait() on @batch.
-> + *
-> + * Returns 0 for success, negative error code otherwise.
-> + */
-> +int xe_tlb_inval_range_tilemask_submit(struct xe_device *xe, u32 asid,
-> +				       u64 start, u64 end, u8 tile_mask,
-> +				       struct xe_tlb_inval_batch *batch)
-> +{
-> +	struct xe_tlb_inval_fence *fence = &batch->fence[0];
-> +	struct xe_tile *tile;
-> +	u32 fence_id = 0;
-> +	u8 id;
-> +	int err;
-> +
-> +	batch->num_fences = 0;
-> +	if (!tile_mask)
-> +		return 0;
-> +
-> +	for_each_tile(tile, xe, id) {
-> +		if (!(tile_mask & BIT(id)))
-> +			continue;
-> +
-> +		xe_tlb_inval_fence_init(&tile->primary_gt->tlb_inval,
-> +					&fence[fence_id], true);
-> +
-> +		err = xe_tlb_inval_range(&tile->primary_gt->tlb_inval,
-> +					 &fence[fence_id], start, end,
-> +					 asid, NULL);
-> +		if (err)
-> +			goto wait;
-> +		++fence_id;
-> +
-> +		if (!tile->media_gt)
-> +			continue;
-> +
-> +		xe_tlb_inval_fence_init(&tile->media_gt->tlb_inval,
-> +					&fence[fence_id], true);
-> +
-> +		err = xe_tlb_inval_range(&tile->media_gt->tlb_inval,
-> +					 &fence[fence_id], start, end,
-> +					 asid, NULL);
-> +		if (err)
-> +			goto wait;
-> +		++fence_id;
-> +	}
-> +
-> +wait:
-> +	batch->num_fences = fence_id;
-> +	if (err)
-> +		xe_tlb_inval_batch_wait(batch);
-> +
-> +	return err;
-> +}
-> diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.h b/drivers/gpu/drm/xe/xe_tlb_inval.h
-> index 62089254fa23..a76b7823a5f2 100644
-> --- a/drivers/gpu/drm/xe/xe_tlb_inval.h
-> +++ b/drivers/gpu/drm/xe/xe_tlb_inval.h
-> @@ -45,4 +45,10 @@ void xe_tlb_inval_done_handler(struct xe_tlb_inval *tlb_inval, int seqno);
->  
->  bool xe_tlb_inval_idle(struct xe_tlb_inval *tlb_inval);
->  
-> +int xe_tlb_inval_range_tilemask_submit(struct xe_device *xe, u32 asid,
-> +				       u64 start, u64 end, u8 tile_mask,
-> +				       struct xe_tlb_inval_batch *batch);
-> +
-> +void xe_tlb_inval_batch_wait(struct xe_tlb_inval_batch *batch);
-> +
->  #endif	/* _XE_TLB_INVAL_ */
-> diff --git a/drivers/gpu/drm/xe/xe_tlb_inval_types.h b/drivers/gpu/drm/xe/xe_tlb_inval_types.h
-> index 3b089f90f002..3d1797d186fd 100644
-> --- a/drivers/gpu/drm/xe/xe_tlb_inval_types.h
-> +++ b/drivers/gpu/drm/xe/xe_tlb_inval_types.h
-> @@ -9,6 +9,8 @@
->  #include <linux/workqueue.h>
->  #include <linux/dma-fence.h>
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
+> index 6b5f9fa2a594..725467b5877c 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine.h
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine.h
+> @@ -6,6 +6,7 @@
+>  #ifndef _XE_HW_ENGINE_H_
+>  #define _XE_HW_ENGINE_H_
 >  
 > +#include "xe_device_types.h"
+>  #include "xe_hw_engine_types.h"
+>  
+>  struct drm_printer;
+> @@ -79,4 +80,27 @@ enum xe_force_wake_domains xe_hw_engine_to_fw_domain(struct xe_hw_engine *hwe);
+>  void xe_hw_engine_mmio_write32(struct xe_hw_engine *hwe, struct xe_reg reg, u32 val);
+>  u32 xe_hw_engine_mmio_read32(struct xe_hw_engine *hwe, struct xe_reg reg);
+>  
+> +static inline bool
+> +xe_engine_class_has_auxccs(struct xe_device *xe, enum xe_engine_class class)
+> +{
+> +	/*
+> +	 * PVC is a special case that has no compression of either type
+> +	 * (FlatCCS or AuxCCS).  Also, AuxCCS is no longer used from Xe2
+> +	 * onward, so any future platforms with no FlatCCS will not have
+> +	 * AuxCCS, and we explicity do not want to support it on MTL.
+> +	 */
+> +	if (GRAPHICS_VERx100(xe) >= 1270 ||
+> +	    xe->info.platform == XE_PVC ||
+> +	    xe->info.has_flat_ccs)
+> +		return false;
 > +
->  struct drm_suballoc;
->  struct xe_tlb_inval;
->  
-> @@ -132,4 +134,16 @@ struct xe_tlb_inval_fence {
->  	ktime_t inval_time;
->  };
->  
-> +/**
-> + * struct xe_tlb_inval_batch - Batch of TLB invalidation fences
-> + *
-> + * Holds one fence per GT covered by a TLB invalidation request.
-> + */
-> +struct xe_tlb_inval_batch {
-> +	/** @fence: per-GT TLB invalidation fences */
-> +	struct xe_tlb_inval_fence fence[XE_MAX_TILES_PER_DEVICE * XE_MAX_GT_PER_TILE];
-> +	/** @num_fences: number of valid entries in @fence */
-> +	unsigned int num_fences;
-> +};
+> +	if (class == XE_ENGINE_CLASS_RENDER ||
+> +	    class == XE_ENGINE_CLASS_COMPUTE ||
+> +	    class == XE_ENGINE_CLASS_VIDEO_DECODE ||
+> +	    class == XE_ENGINE_CLASS_VIDEO_ENHANCE)
+> +		return true;
+> +
+> +	return false;
+> +}
 > +
 >  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 548b0769b3ef..a3c2e8cefec7 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -3966,66 +3966,6 @@ void xe_vm_unlock(struct xe_vm *vm)
->  	dma_resv_unlock(xe_vm_resv(vm));
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> index 3db7968aa5e2..25e4392e303f 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.c
+> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> @@ -23,10 +23,12 @@
+>  #include "xe_exec_queue_types.h"
+>  #include "xe_gt.h"
+>  #include "xe_gt_printk.h"
+> +#include "xe_hw_engine.h"
+>  #include "xe_hw_fence.h"
+>  #include "xe_map.h"
+>  #include "xe_memirq.h"
+>  #include "xe_mmio.h"
+> +#include "xe_ring_ops.h"
+>  #include "xe_sriov.h"
+>  #include "xe_trace_lrc.h"
+>  #include "xe_vm.h"
+> @@ -93,6 +95,10 @@ gt_engine_needs_indirect_ctx(struct xe_gt *gt, enum xe_engine_class class)
+>  					       class, NULL))
+>  		return true;
+>  
+> +	/* For AuxCCS invalidation */
+> +	if (xe_engine_class_has_auxccs(xe, class))
+> +		return true;
+> +
+>  	return false;
 >  }
 >  
-> -/**
-> - * xe_vm_range_tilemask_tlb_inval - Issue a TLB invalidation on this tilemask for an
-> - * address range
-> - * @vm: The VM
-> - * @start: start address
-> - * @end: end address
-> - * @tile_mask: mask for which gt's issue tlb invalidation
-> - *
-> - * Issue a range based TLB invalidation for gt's in tilemask
-> - *
-> - * Returns 0 for success, negative error code otherwise.
-> - */
-> -int xe_vm_range_tilemask_tlb_inval(struct xe_vm *vm, u64 start,
-> -				   u64 end, u8 tile_mask)
+> @@ -1209,6 +1215,25 @@ static ssize_t setup_invalidate_state_cache_wa(struct xe_lrc *lrc,
+>  	return cmd - batch;
+>  }
+>  
+> +static ssize_t setup_invalidate_auxccs_wa(struct xe_lrc *lrc,
+> +					  struct xe_hw_engine *hwe,
+> +					  u32 *batch, size_t max_len)
+> +{
+> +	struct xe_gt *gt = lrc->gt;
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +	u32 *cmd;
+> +
+> +	if (!xe_engine_class_has_auxccs(xe, hwe->class))
+> +		return 0;
+> +
+> +	if (xe_gt_WARN_ON(gt, max_len < 8))
+> +		return -ENOSPC;
+> +
+> +	cmd = xe_emit_aux_table_inv(hwe, batch);
+> +
+> +	return cmd - batch;
+> +}
+> +
+>  struct bo_setup {
+>  	ssize_t (*setup)(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+>  			 u32 *batch, size_t max_size);
+> @@ -1341,9 +1366,11 @@ setup_indirect_ctx(struct xe_lrc *lrc, struct xe_hw_engine *hwe)
+>  {
+>  	static const struct bo_setup rcs_funcs[] = {
+>  		{ .setup = setup_timestamp_wa },
+> +		{ .setup = setup_invalidate_auxccs_wa },
+>  		{ .setup = setup_configfs_mid_ctx_restore_bb },
+>  	};
+>  	static const struct bo_setup xcs_funcs[] = {
+> +		{ .setup = setup_invalidate_auxccs_wa },
+>  		{ .setup = setup_configfs_mid_ctx_restore_bb },
+>  	};
+>  	struct bo_setup_state state = {
+> diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+> index e6ecd70618c3..cb6c7d18b939 100644
+> --- a/drivers/gpu/drm/xe/xe_ring_ops.c
+> +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+> @@ -12,6 +12,7 @@
+>  #include "regs/xe_engine_regs.h"
+>  #include "regs/xe_gt_regs.h"
+>  #include "xe_exec_queue.h"
+> +#include "xe_hw_engine.h"
+>  #include "xe_gt_printk.h"
+>  #include "xe_gt_types.h"
+>  #include "xe_lrc.h"
+> @@ -331,20 +332,6 @@ static void __emit_job_gen12_simple(struct xe_sched_job *job, struct xe_lrc *lrc
+>  	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
+>  }
+>  
+> -static bool has_aux_ccs(struct xe_device *xe)
 > -{
-> -	struct xe_tlb_inval_fence
-> -		fence[XE_MAX_TILES_PER_DEVICE * XE_MAX_GT_PER_TILE];
-> -	struct xe_tile *tile;
-> -	u32 fence_id = 0;
-> -	u8 id;
-> -	int err;
+> -	/*
+> -	 * PVC is a special case that has no compression of either type
+> -	 * (FlatCCS or AuxCCS).  Also, AuxCCS is no longer used from Xe2
+> -	 * onward, so any future platforms with no FlatCCS will not have
+> -	 * AuxCCS, and we explicity do not want to support it on MTL.
+> -	 */
+> -	if (GRAPHICS_VERx100(xe) >= 1270 || xe->info.platform == XE_PVC)
+> -		return false;
 > -
-> -	if (!tile_mask)
-> -		return 0;
-> -
-> -	for_each_tile(tile, vm->xe, id) {
-> -		if (!(tile_mask & BIT(id)))
-> -			continue;
-> -
-> -		xe_tlb_inval_fence_init(&tile->primary_gt->tlb_inval,
-> -					&fence[fence_id], true);
-> -
-> -		err = xe_tlb_inval_range(&tile->primary_gt->tlb_inval,
-> -					 &fence[fence_id], start, end,
-> -					 vm->usm.asid, NULL);
-> -		if (err)
-> -			goto wait;
-> -		++fence_id;
-> -
-> -		if (!tile->media_gt)
-> -			continue;
-> -
-> -		xe_tlb_inval_fence_init(&tile->media_gt->tlb_inval,
-> -					&fence[fence_id], true);
-> -
-> -		err = xe_tlb_inval_range(&tile->media_gt->tlb_inval,
-> -					 &fence[fence_id], start, end,
-> -					 vm->usm.asid, NULL);
-> -		if (err)
-> -			goto wait;
-> -		++fence_id;
-> -	}
-> -
-> -wait:
-> -	for (id = 0; id < fence_id; ++id)
-> -		xe_tlb_inval_fence_wait(&fence[id]);
-> -
-> -	return err;
+> -	return !xe->info.has_flat_ccs;
 > -}
 > -
->  /**
->   * xe_vm_invalidate_vma - invalidate GPU mappings for VMA without a lock
->   * @vma: VMA to invalidate
-> @@ -4040,6 +3980,7 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+>  static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+>  				   u64 batch_addr, u32 *head, u32 seqno)
 >  {
->  	struct xe_device *xe = xe_vma_vm(vma)->xe;
->  	struct xe_vm *vm = xe_vma_vm(vma);
-> +	struct xe_tlb_inval_batch batch;
->  	struct xe_tile *tile;
->  	u8 tile_mask = 0;
->  	int ret = 0;
-> @@ -4080,12 +4021,16 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+> @@ -360,7 +347,7 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
+>  	dw[i++] = preparser_disable(true);
 >  
->  	xe_device_wmb(xe);
+>  	/* hsdes: 1809175790 */
+> -	if (has_aux_ccs(xe))
+> +	if (xe_engine_class_has_auxccs(xe, job->q->class))
+>  		i = emit_aux_table_inv(job->q->hwe, dw, i);
 >  
-> -	ret = xe_vm_range_tilemask_tlb_inval(xe_vma_vm(vma), xe_vma_start(vma),
-> -					     xe_vma_end(vma), tile_mask);
-> +	ret = xe_tlb_inval_range_tilemask_submit(xe, xe_vma_vm(vma)->usm.asid,
-> +						 xe_vma_start(vma), xe_vma_end(vma),
-> +						 tile_mask, &batch);
+>  	if (job->ring_ops_flush_tlb)
+> @@ -401,7 +388,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+>  	struct xe_gt *gt = job->q->gt;
+>  	struct xe_device *xe = gt_to_xe(gt);
+>  	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
+> -	const bool aux_ccs = has_aux_ccs(xe);
+> +	const bool aux_ccs = xe_engine_class_has_auxccs(xe, job->q->class);
+>  	u32 mask_flags = 0;
 >  
->  	/* WRITE_ONCE pairs with READ_ONCE in xe_vm_has_valid_gpu_mapping() */
->  	WRITE_ONCE(vma->tile_invalidated, vma->tile_mask);
->  
-> +	if (!ret)
-> +		xe_tlb_inval_batch_wait(&batch);
-> +
->  	return ret;
->  }
->  
-> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-> index f849e369432b..62f4b6fec0bc 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.h
-> +++ b/drivers/gpu/drm/xe/xe_vm.h
-> @@ -240,9 +240,6 @@ struct dma_fence *xe_vm_range_rebind(struct xe_vm *vm,
->  struct dma_fence *xe_vm_range_unbind(struct xe_vm *vm,
->  				     struct xe_svm_range *range);
->  
-> -int xe_vm_range_tilemask_tlb_inval(struct xe_vm *vm, u64 start,
-> -				   u64 end, u8 tile_mask);
-> -
->  int xe_vm_invalidate_vma(struct xe_vma *vma);
->  
->  int xe_vm_validate_protected(struct xe_vm *vm);
-> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> index 95bf53cc29e3..02daf8a93044 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> @@ -12,6 +12,7 @@
->  #include "xe_pat.h"
->  #include "xe_pt.h"
->  #include "xe_svm.h"
-> +#include "xe_tlb_inval.h"
->  
->  struct xe_vmas_in_madvise_range {
->  	u64 addr;
-> @@ -235,13 +236,20 @@ static u8 xe_zap_ptes_in_madvise_range(struct xe_vm *vm, u64 start, u64 end)
->  static int xe_vm_invalidate_madvise_range(struct xe_vm *vm, u64 start, u64 end)
->  {
->  	u8 tile_mask = xe_zap_ptes_in_madvise_range(vm, start, end);
-> +	struct xe_tlb_inval_batch batch;
-> +	int err;
->  
->  	if (!tile_mask)
->  		return 0;
->  
->  	xe_device_wmb(vm->xe);
->  
-> -	return xe_vm_range_tilemask_tlb_inval(vm, start, end, tile_mask);
-> +	err = xe_tlb_inval_range_tilemask_submit(vm->xe, vm->usm.asid, start, end,
-> +						 tile_mask, &batch);
-> +	if (!err)
-> +		xe_tlb_inval_batch_wait(&batch);
-> +
-> +	return err;
->  }
->  
->  static bool madvise_args_are_sane(struct xe_device *xe, const struct drm_xe_madvise *args)
-> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-> index 1f6f7e30e751..de6544165cfa 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> @@ -18,6 +18,7 @@
->  #include "xe_device_types.h"
->  #include "xe_pt_types.h"
->  #include "xe_range_fence.h"
-> +#include "xe_tlb_inval_types.h"
->  #include "xe_userptr.h"
->  
->  struct drm_pagemap;
+>  	*head = lrc->ring.tail;
 > -- 
-> 2.53.0
+> 2.52.0
 > 
