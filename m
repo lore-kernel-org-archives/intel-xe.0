@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 611F8E67A6B
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Mar 2026 05:20:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67CD8E67A6D
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Mar 2026 05:20:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A87E10E62F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40CE910E631;
 	Tue,  3 Mar 2026 05:20:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i2sXts4N";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vz3K5me3";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EA9510E62C;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02CE710E0DA;
  Tue,  3 Mar 2026 05:20:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1772515202; x=1804051202;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=MzCLSMJtQYqsgVxKoCNu4SFvLJd6PlQw8eK71bvCWes=;
- b=i2sXts4NRunA9D/pxOxAfVNUi6W5u4Yr5KPnwtxOvuwEmjYgZ3WaM+iN
- q2uz/Mt3xKMQYbUc7JFs4r0Ya2wAGo/5qB54OIgKm18OXJgI0NFssYgzG
- NebMwM7DDAN82rPSmYmesC9ydMtsl9i59CswVlv77IPTk72hOxJGK5286
- T8bAA0P/h7d27D7XdAqvKvH/C8yoSQK2CPinmzTcHR6QOsOE5ffM/YCw3
- mIsYH9WYsPIUyqFpwxe8Gt8pudn6Te/OQIgeR7yoJclwB0va29qwh/RPk
- 4y1+i2pP2HpvqPOhtGGlovDJxstKA7cn4MJH4tbDJIWKLpPKShCe9nA7R Q==;
-X-CSE-ConnectionGUID: W+KmX4TCSbChS8alpGf+SA==
-X-CSE-MsgGUID: 1g4hYtUVS+uxUr6QkZ8eZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="73445403"
-X-IronPort-AV: E=Sophos;i="6.21,321,1763452800"; d="scan'208";a="73445403"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=IOayjJtDTZfdMge/Pz0t18B/ED4I6iuq6j8Enn7Aolk=;
+ b=Vz3K5me3wBZKblIbai+cXBjUPSldWI8kwWQmkOArSt3Em4qy19uvWEaL
+ bAiFb8EL4NvWZ63FivrAw4jFBh46jGfV296+LiRGsEl5DVUplEFfTAH52
+ dzekZEIfRE5kej/8u9xu5n3kW1O3/KDIHy3Qr7NCWHim2nSjQbMp9CLC0
+ K8rjESQ7qjogGOHmPr3xaPX0r3wp3Am1AUb+hNOgYcRcYprp8kWt+Yz/7
+ sVfWrInF2tryKQJDvbD5gfZaqQaaaiNVtm7I2dWnbOimtvejJ+/uuo380
+ UP0/VH2g5nb9IJtMcITQul/oFzZoq6ADabcn9nYpxDYud2N/MbLYcz/4q g==;
+X-CSE-ConnectionGUID: U1iP33s2RRimwzq18Y+jSg==
+X-CSE-MsgGUID: C/Q4cJ4uRNSntFm/TxG57Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="73445427"
+X-IronPort-AV: E=Sophos;i="6.21,321,1763452800"; d="scan'208";a="73445427"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  02 Mar 2026 21:20:01 -0800
-X-CSE-ConnectionGUID: hMIJemb1RYCBYB9ozCdpuA==
-X-CSE-MsgGUID: n5LwjUV5Sta+ipDUdt3wbQ==
+X-CSE-ConnectionGUID: UjTuAvspSjq1BXUSTS30KQ==
+X-CSE-MsgGUID: pro2r6E4Se63EWLhoU3WjA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,321,1763452800"; d="scan'208";a="217110163"
+X-IronPort-AV: E=Sophos;i="6.21,321,1763452800"; d="scan'208";a="217110179"
 Received: from debox1-desk4.jf.intel.com ([10.88.27.138])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  02 Mar 2026 21:20:01 -0800
@@ -48,10 +48,13 @@ To: thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
  dri-devel@lists.freedesktop.org, xi.pardee@linux.intel.com
 Cc: david.e.box@linux.intel.com, hansg@kernel.org,
  linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
-Subject: [PATCH v7 0/6] platform/x86/intel/vsec: Prep for ACPI PMT discovery
-Date: Mon,  2 Mar 2026 21:19:47 -0800
-Message-ID: <20260303051953.1453372-1-david.e.box@linux.intel.com>
+Subject: [PATCH v7 5/6] platform/x86/intel/vsec: Return real error codes from
+ registration path
+Date: Mon,  2 Mar 2026 21:19:52 -0800
+Message-ID: <20260303051953.1453372-6-david.e.box@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260303051953.1453372-1-david.e.box@linux.intel.com>
+References: <20260303051953.1453372-1-david.e.box@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
@@ -69,69 +72,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series updates intel_vsec to improve const-correctness, decouple
-helper APIs from PCI, enhance error handling, and plumb ACPI-based Intel
-Platform Monitoring Technology (PMT) discovery through the vsec layer. It
-is preparatory infrastructure for follow-on PMT core/telemetry and
-PMC/SSRAM series that add ACPI discovery and support for new platforms.
+Stop collapsing registration results into booleans. Make
+intel_vsec_walk_header() return int and propagate the first non-zero error
+from intel_vsec_register_device(). intel_vsec_register() now returns that
+error directly and 0 on success.
 
-The series is organized as follows:
+This preserves success behavior while surfacing meaningful errors instead
+of hiding them behind a bool/-ENODEV, which makes debugging and probe
+ordering issues clearer.
 
-Patches 1-2 refactor and improve const-correctness of base_addr handling.
-Patch 1 makes base_addr an explicit parameter throughout the call chain,
-clarifying ownership and removing conditional logic. Patch 2 then makes the
-platform info data structure read-only, preventing unintended modifications
-to shared driver data.
-
-Patches 3-4 decouple the vsec layer from PCI-specific types, updating
-helper APIs and data structures to use generic struct device instead of
-struct pci_dev.  This enables vsec to work with both PCI and ACPI parent
-devices.
-
-Patch 5 enhances error visibility by returning meaningful error codes from
-the registration path instead of collapsing to boolean success/failure.
-
-Patch 6 adds infrastructure for ACPI-based PMT discovery, allowing client
-drivers to consume discovery data from either PCI or ACPI sources.
-
+Reviewed-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
 Signed-off-by: David E. Box <david.e.box@linux.intel.com>
-
+---
 Changes in v7:
+  - No change
+=20=20=20=20
+Changes in v6:
+  - No change
+=20=20=20=20
+Changes in v5:
+  - No change
+=20=20=20=20
+Changes in v4:
+  - No change
+=20=20
+Changes in v3:
+  - No change
+=20=20=20
+Changes in v2:
+  - No change (previous patch 3)
 
-Fix but found from incorrect struct device * passed to
-intel_vsec_add_aux().  When the unused first parameter was originally
-removed, the remaining device argument was inadvertently changed from the
-aux device to the PCI device. Patch 3 restores &vsec_dev->auxdev.dev, and
-patch 4 drops a follow-on change that would have reverted it back to the
-PCI device.
+ drivers/platform/x86/intel/vsec.c | 16 ++++++----------
+ 1 file changed, 6 insertions(+), 10 deletions(-)
 
-David E. Box (6):
-  platform/x86/intel/vsec: Refactor base_addr handling
-  platform/x86/intel/vsec: Make driver_data info const
-  platform/x86/intel/vsec: Decouple add/link helpers from PCI
-  platform/x86/intel/vsec: Switch exported helpers from pci_dev to
-    device
-  platform/x86/intel/vsec: Return real error codes from registration
-    path
-  platform/x86/intel/vsec: Plumb ACPI PMT discovery tables through vsec
-
- drivers/gpu/drm/xe/xe_debugfs.c               |   2 +-
- drivers/gpu/drm/xe/xe_hwmon.c                 |   2 +-
- drivers/gpu/drm/xe/xe_vsec.c                  |   7 +-
- drivers/gpu/drm/xe/xe_vsec.h                  |   4 +-
- drivers/platform/x86/intel/pmc/core.c         |   4 +-
- .../platform/x86/intel/pmc/ssram_telemetry.c  |   2 +-
- drivers/platform/x86/intel/pmt/class.c        |   8 +-
- drivers/platform/x86/intel/pmt/class.h        |   5 +-
- drivers/platform/x86/intel/pmt/discovery.c    |   4 +-
- drivers/platform/x86/intel/pmt/telemetry.c    |  13 +-
- drivers/platform/x86/intel/pmt/telemetry.h    |  12 +-
- drivers/platform/x86/intel/sdsi.c             |   5 +-
- drivers/platform/x86/intel/vsec.c             | 121 +++++++++++-------
- drivers/platform/x86/intel/vsec_tpmi.c        |   8 +-
- include/linux/intel_vsec.h                    |  39 ++++--
- 15 files changed, 143 insertions(+), 93 deletions(-)
-
+diff --git a/drivers/platform/x86/intel/vsec.c b/drivers/platform/x86/intel=
+/vsec.c
+index a547e4b98245..34b2c19ecff0 100644
+--- a/drivers/platform/x86/intel/vsec.c
++++ b/drivers/platform/x86/intel/vsec.c
+@@ -461,20 +461,19 @@ static int intel_vsec_register_device(struct device *=
+dev,
+ 	return -EAGAIN;
+ }
+=20
+-static bool intel_vsec_walk_header(struct device *dev,
+-				   const struct intel_vsec_platform_info *info)
++static int intel_vsec_walk_header(struct device *dev,
++				  const struct intel_vsec_platform_info *info)
+ {
+ 	struct intel_vsec_header **header =3D info->headers;
+-	bool have_devices =3D false;
+ 	int ret;
+=20
+ 	for ( ; *header; header++) {
+ 		ret =3D intel_vsec_register_device(dev, *header, info, info->base_addr);
+-		if (!ret)
+-			have_devices =3D true;
++		if (ret)
++			return ret;
+ 	}
+=20
+-	return have_devices;
++	return 0;
+ }
+=20
+ static bool intel_vsec_walk_dvsec(struct pci_dev *pdev,
+@@ -580,10 +579,7 @@ int intel_vsec_register(struct device *dev,
+ 	if (!dev || !info || !info->headers)
+ 		return -EINVAL;
+=20
+-	if (!intel_vsec_walk_header(dev, info))
+-		return -ENODEV;
+-	else
+-		return 0;
++	return intel_vsec_walk_header(dev, info);
+ }
+ EXPORT_SYMBOL_NS_GPL(intel_vsec_register, "INTEL_VSEC");
+=20
 --=20
 2.43.0
 
