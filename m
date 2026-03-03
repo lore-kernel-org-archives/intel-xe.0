@@ -4,160 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45C57E67A68
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Mar 2026 05:09:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60764E67A68
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Mar 2026 05:20:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7E7810E62C;
-	Tue,  3 Mar 2026 05:09:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0337710E62D;
+	Tue,  3 Mar 2026 05:20:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VjnJaGj/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fzJY/U8o";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79D7B10E62C
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Mar 2026 05:09:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F9D210E0DA;
+ Tue,  3 Mar 2026 05:20:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772514576; x=1804050576;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=bT6mmu8Px0FHfyqF9Do+YPuLvLdvXfEBaOJyRNiCJ7k=;
- b=VjnJaGj/nBHgQGtOCPu3pUhQztA23XNc4UAzd0mX6Anb2kVo5qNXgSI9
- 7CVYBtkAbmNvyWjwoIGw4n4g9LND9l40o1CO98UudtpE7+5BC1wxoGbX/
- 9pA0yRCOi5Lmr8VNsXN2J88rnPInag8DmI0qvvkGL9lZQQStFEnSSAipq
- V1Vh31a8+yE90LBOAd4uDuq3cUwsSE5+2+SBHu6yIh6psalQDHF+uhZR8
- yAFHlzWB4kTFcC2pUvO8x3a67lltKeTPU+wf3vmbRj7ZSb1tY0KSWPs85
- LKxeC8Dxy+r9e2Q7mjjDksj6MC0rBnD7KAcvMHx+zZaxkQClffUZEhtbq Q==;
-X-CSE-ConnectionGUID: SAMBSuu8QMKuFdcoFOYWUA==
-X-CSE-MsgGUID: Je/Itnq7TfGnjRDE+8PnUg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="73580141"
-X-IronPort-AV: E=Sophos;i="6.21,321,1763452800"; d="scan'208";a="73580141"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 21:09:35 -0800
-X-CSE-ConnectionGUID: 98KNC9kpQjG4LXVBfrHGDw==
-X-CSE-MsgGUID: HzQVYeDfSBOEENlaCExRig==
+ t=1772515202; x=1804051202;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=XjAt9ULcdjkGNQNSzEQqU6CAR4EsbvsDM7nysjGXakA=;
+ b=fzJY/U8oAzIDsjTjoc+vjVShLGD3JIGfF5BHH8QyKe+8XWyXPh0y0FTo
+ HjH2XXIit5hYmEUdYvGbMuuAzWsd61kZUZpTi2VKkRRneqQbXNQ+eW9J0
+ /bZfl9jE7QdoyB6pV1yRukhlPHIxZYaDXqGSX1eH9FA2pCX+fZBxDWGi2
+ 0T4C81+u1sUQN7TLfiXTOq4Wmz1jJdJItT7KPsQ/BgZ3Am4uroQncv1Ga
+ jGNuorlEoNia/vfvkDocwlcDCBuksmWNh3pE1wlxQu5oVb2+/0z7nQ/g7
+ o/xb7w97yDtHDC8D+qnOoLwbDhbJxgK3k0jqKwUQ6qtcj4dNwRp11aW3y g==;
+X-CSE-ConnectionGUID: Vwo7sGG0Qbe7mnxyYTi51A==
+X-CSE-MsgGUID: 1+XaAxllRzWHak6g/mhP1Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="73445407"
+X-IronPort-AV: E=Sophos;i="6.21,321,1763452800"; d="scan'208";a="73445407"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 21:20:01 -0800
+X-CSE-ConnectionGUID: 49jopBzyTtOXf/BZz5sQFg==
+X-CSE-MsgGUID: ufLanesJQwOKXTGCHsN+3A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,321,1763452800"; d="scan'208";a="222043504"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 21:09:35 -0800
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 2 Mar 2026 21:09:34 -0800
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 2 Mar 2026 21:09:34 -0800
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.63) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 2 Mar 2026 21:09:34 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ao6AdA2vEsTABDv1QUCTiBALTm9o6KXDMxQ2kwe3nLxS6Aqqv6i5MsjXgUyDYArbPfuplEYiG98vn0G53alE/rb1bryyPLlAWR9ECDbTHyKUnKbWltIwBTHA4ozkjsWzYXGFwjgq9cxUpG3qTFA25XJkDsGdVVexWgsqOSPibu6Wjwh9Um1UZtvV4xceV15zOa0BTZSbdCJuoX9MixisxZlemx5XTVAk7TI8JJiYELGw6JeTUWGZ7hueIPz2HDGK4rrGWCpKxKwPHePLhT5qNP3D4iRkoUuRyWXFhrCsvnnt8uwWYYGlkt5BhZi7/v7qvgcCPCO4GyepwCLHIrXKFQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=O02yQIPbHu2LwImE2CXUVUnqBnmX6KMCR9jAqyjlc2k=;
- b=szMSuMZ3OKYbsfkeKOuGMG+W35mZ6gqqvy8lALP270NBdj52nKlfzw41CqJwVTiEH3TNvADVO8iqvpZKTX+OIvc92ZwYtr2Nqj6yglwMMJQFrSlXcd2/e2TJycICixheoVlU4NRc0rRU8ORpp6QmlYUrnzGx34NXMGiU3XH2OW+YN2kdlAFqec/wrUBb5D/b3jeySKKpRxjNOLnW40wwcDwmCMf/yAOAPhg38ZmbNiMU1zb36Zo+gaIyK3BvX8qt4gzGoy6j815DlvUdNbg3o2qyrp8fKyuQ/iYIkcBNtX/mC3EBZw4EnWib4C2IbUTysITgTx8WLtEUYyMu15Kqdw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- SJ5PPF77ABF615C.namprd11.prod.outlook.com (2603:10b6:a0f:fc02::836)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9632.19; Tue, 3 Mar
- 2026 05:09:25 +0000
-Received: from DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99]) by DS0PR11MB7958.namprd11.prod.outlook.com
- ([fe80::8cb2:cffc:b684:9a99%6]) with mapi id 15.20.9654.020; Tue, 3 Mar 2026
- 05:09:25 +0000
-Message-ID: <ccfcc908-ca92-40bb-8de4-b355445ce341@intel.com>
-Date: Tue, 3 Mar 2026 10:39:16 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 03/11] drm/xe/xe_pci_error: Implement PCI error
- recovery callbacks
-To: Raag Jadav <raag.jadav@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <anshuman.gupta@intel.com>,
- <rodrigo.vivi@intel.com>, <aravind.iddamsetty@linux.intel.com>,
- <badal.nilawar@intel.com>, <ravi.kishore.koppuravuri@intel.com>,
- <mallesh.koujalagi@intel.com>, Michal Wajdeczko <michal.wajdeczko@intel.com>, 
- Matthew Brost <matthew.brost@intel.com>, Matt Roper
- <matthew.d.roper@intel.com>
-References: <20260302102155.4074630-13-riana.tauro@intel.com>
- <20260302102155.4074630-16-riana.tauro@intel.com>
- <aaXKyl5M5vpbDlka@black.igk.intel.com>
-Content-Language: en-US
-From: Riana Tauro <riana.tauro@intel.com>
-In-Reply-To: <aaXKyl5M5vpbDlka@black.igk.intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0040.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:175::13) To DS0PR11MB7958.namprd11.prod.outlook.com
- (2603:10b6:8:f9::19)
+X-IronPort-AV: E=Sophos;i="6.21,321,1763452800"; d="scan'208";a="217110167"
+Received: from debox1-desk4.jf.intel.com ([10.88.27.138])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 21:20:01 -0800
+From: "David E. Box" <david.e.box@linux.intel.com>
+To: thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
+ irenic.rajneesh@gmail.com, ilpo.jarvinen@linux.intel.com,
+ srinivas.pandruvada@linux.intel.com, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, xi.pardee@linux.intel.com
+Cc: david.e.box@linux.intel.com, hansg@kernel.org,
+ linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
+Subject: [PATCH v7 1/6] platform/x86/intel/vsec: Refactor base_addr handling
+Date: Mon,  2 Mar 2026 21:19:48 -0800
+Message-ID: <20260303051953.1453372-2-david.e.box@linux.intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260303051953.1453372-1-david.e.box@linux.intel.com>
+References: <20260303051953.1453372-1-david.e.box@linux.intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|SJ5PPF77ABF615C:EE_
-X-MS-Office365-Filtering-Correlation-Id: 38e680dd-72ea-4dfd-911b-08de78e30982
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: h0aw0J52xP8omXlVIn9trVbMdFjykpD3MpOnr5JaIdd9WoHQiERoCTJ6qJuqJVG3GXNAprisCKOjhzcQXu7j9L4XARRDJmsaHarDrZB7B/cTc7lTs94zx543/QqSdI/04bejY2gi4pdw/dCWzPS/t1TsnUnbvqm9m7+LPUhdp+CFFir9JaM6X9rOsujCh/CzryGtN1w2vZSCmLaywJ5bYlHlzn+xL86i5j9XGq7vH8zVpeDxu2PgOvX6dPav6SeQyoJsyENRH9B1yqrPz3sPi56ApaZdRLJA2z1jlE2lm6aQ+VbXXksEa0SIiVTwjkf/32zdDMLaPT15263DXARgpBQNsQYh4Gq0VUEzzVSGJ+athbUPY6MrZh78Xe8GnwSTyuafhTh9IoNurvl5LyDT5bkQScG6vkH5KPXQs3f/+oe5tlksgdE46br/bSyush11INOIEpSZX2ipcy3zaNFF6NzskIVn5Mf4NxeaAbgb40ld5OEjbtOcQOH49Snnnz17nEY0V/d4cLP+G1aRoqFFfjjkg2ptbgMDzJSw3nmPqANA0fJJxlEQYLYJW+wGFKj/fSz7li3r0cCBbLja7L60idZD8A7uPwk8/hadtOVHmOeS9DSjVDhRWqPolJHKfLSzuQKFeMRFRd7IeT12msYLwBrD5if6FehwbWUpRhvLqUOAEKEokFHqsfR6UQsJaYj5sjms5pcKrJpS5My2KVEeRt5ztsO7wwzA/+4TBiaKAX8=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QVJ0YUkzaEdnOUVQZG1XTUhteXM1TWZJd08vUzc3WU5EZm5ZSGJEc2diblZo?=
- =?utf-8?B?ckRvbzl6L3Rsbi9uR3ZCbytUN0E4Nmtyc0xYUnFFUEFQYm12ZUlqb3BLZkRH?=
- =?utf-8?B?dzBXVkxBK3BvQ3pFeEdIUnMwSHYvZkFPRERnY2hNQW5HYlJIeGw0dWFaV0JX?=
- =?utf-8?B?bGdpUFNOVkZEVEJ3SzVma3FrQ0ZMN1orS1VkblFLdGZqdzhxbHJ0SVhpSWw2?=
- =?utf-8?B?YllUZUhnQkM4a2hpUDAyUUZndTR5NHJmdXdQNEJ1Ukd3REsybjFvSGdnVFVu?=
- =?utf-8?B?TDFET1JsNzlOK1d3aUJsNUdsWmRuQWhBWG1GRzVnZS9rL1d3L2NjWk1CTlRs?=
- =?utf-8?B?OHBrelltTGRYZ2wvbzM5cTdFcnhadHZ4OU8vUjFWQTBKRzdTWUlJMmh1UjBF?=
- =?utf-8?B?UUQ3QzltSWZmR2Fsb3dqVU5UbWUyYUxGdXVyVE93RVNTWURScDlqQmxTMWJE?=
- =?utf-8?B?UHNWcjFxbWs5SFoxRDJJeXdHSFBDbzBmTEhFOXk2S0g2UGtRaHkxbkhJVllm?=
- =?utf-8?B?dU15dUk3NU1KdTBlOG9IMVhleHFNMG1mOVdMTFhrcExSM3NpeEk4cEpxbHg3?=
- =?utf-8?B?Y21lQTQ0eUFMRkp6NGlnQ0Rvam81WVMxU0h5Qlh5S3pDa1pCSWNnSUVDaDFm?=
- =?utf-8?B?ZzdFUDJLU0FuS1RGa3JLNnpaU1BsMGdQdnFlOHU4VmdZYXd2eGpNWVI3dzdq?=
- =?utf-8?B?RGMzb2hIbjVJLzA3dHM3c0pVcVdPTWRjZktlYlNNelNnSWdmYXoyVnhOc3dT?=
- =?utf-8?B?OEtKS3pZcUJWYWlqUFU5WE1DWXVocHI1dWtFaVJNZjBVMzU1SGRQa2VKdEw2?=
- =?utf-8?B?UC95RUtSOUJBVzM4MVhDV2NMTTBrcXJPZWpNYjRqMnBGWk5FalVGTU9pMm9r?=
- =?utf-8?B?WUV0anE2ZzJ2akRBUVFTWkw4d29NckhJbytPRWg5a0xXSXZJNWpRdUYxWlVo?=
- =?utf-8?B?TkdGZ2NVMXp4UVc0UEFnb0xPZDdtT2c4dGhsNVVGalQxM2VwdDd2ejRWc0cy?=
- =?utf-8?B?NkF5bmhjVmNZdWJYZ2ZuNUJ3Z0lnMVIwQldyMWtSVVlJRjJhZ052am5sM3BE?=
- =?utf-8?B?NkNLZGkvR0FVN0QzeGx5Q2M5cGxxazgzcHlUeWMvZWl1bUpTcGVxamJyNkJU?=
- =?utf-8?B?dUI1M3diUjg0Y2FLT3FtWDVFZ0NIRS9VVHhtZDVtNE9wYU1vUmtidWUxbUtB?=
- =?utf-8?B?MFNKeGxuelcvR1IySXBFYk8xc1QrNFZUb0xEZTRCcFRCaE51d1UycFNqNEgw?=
- =?utf-8?B?Zzgyc0ZIKzFhem52aFdjOWRzTDlKNnFoZWVQeGlkR1p2QUhGdm5XVGJVTVUw?=
- =?utf-8?B?WUZReDRIaVFzeEJia0VkQm5xQ29HaWVScmNHajh2Yi8zdkY1VG14dUpKM2w0?=
- =?utf-8?B?RTY3bTcrcmJGbE1UOGZHMTFZUzhGYWx1a1BHOU1Dcm9oSnBqcXkyQ2dmckNP?=
- =?utf-8?B?RFkrK0pFUmlKZmU5QndzRk9mdFJDWHorMWthdEdNSVl1d2dPSExkb0JsVmFR?=
- =?utf-8?B?bVdveHNGQVowb05kZGdaVXFhQloxcE9HSHN6aGR6T2FZMEZjWUd4d3M3QTdk?=
- =?utf-8?B?RDk3U045VjFaZzlGbDZVeUJQNi8xRndlZ2ViaFhoTzJtYmEvbG1IS2tENEZi?=
- =?utf-8?B?VmxZdXd2b0tmQ2pzQXlMbFNGU25McnpqZmVkbU81Y29XbUF2eG9jamZ4Zm1s?=
- =?utf-8?B?RlZoSDBDRS9mK284dm5xR1lQK1NBaXUvNHRETkdEKzhJWE5RZzVJSjl1aUhs?=
- =?utf-8?B?UzFDOUlxeWFmS0F4USszdHpsQStXcXR5T1dLTk5SU2t3UUEzZWVTQ3hYajFk?=
- =?utf-8?B?SGVHYkYybmFmRWIrVlVCZXlhNXhsNXlhVE9mdkpvWklFM1JSVXBJdHB3Nm1h?=
- =?utf-8?B?djdxbzdLWVIyRlNhNGoyTWppSFBHa0ZneHZNRktwTWU2bE10c3FXSTFXMTlP?=
- =?utf-8?B?S0ZtbGE5T3dRNUVOVnlhR1I3L05qRVY2akVUOXpBQ3U1TTNoSmdNb1N5TktM?=
- =?utf-8?B?K1BKWkluRW41MWhsc054djJJeVlGSGI0Z0taQkNUNytHTGxoR3pON0RtZUJh?=
- =?utf-8?B?UHNoYTVSVU9LYjhGbUltdFV2K04zMDZYY3FBcVJ4L0xWbDd4dUs4eU9HMG80?=
- =?utf-8?B?bnVpUE55dGU2QXNVOHBnT3M3QU81QlhjYnhHSEJRRlBSUnNtLzZLRGE1UHYx?=
- =?utf-8?B?Ym82eVZJL0hMQTU0MzVNMkFTUW9PeGxaL2x1d3NtRWR1TFFyN0hWNXVwa2xr?=
- =?utf-8?B?UVBpSHVFVFpPWkFxVjByclhKdmhlVnorb1kzNVQ0WWJyWnNkcDRzMzIyNW1y?=
- =?utf-8?B?UjNJcXM1Y3pkbExsV282QWxEb1dUQzh1ZnJETks0Q2ZxMWh3STg3UT09?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 38e680dd-72ea-4dfd-911b-08de78e30982
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Mar 2026 05:09:25.0573 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9WIAnbKNWFOMAtDYyN5za0SRGUc0ksg+5tFuXQBtdcARn0yCQqB8K25DZnBky5ier+jTzbmBZIzVHY1A0Yn2Kw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF77ABF615C
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -172,250 +70,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+The base_addr field in intel_vsec_platform_info was originally added to
+support devices that emulate PCI VSEC capabilities in MMIO. Previously,
+the code would check at registration time whether base_addr was set,
+falling back to the PCI BAR if not.
 
+Refactor this by making base_addr an explicit function parameter. This
+clarifies ownership of the value and removes conditional logic from
+intel_vsec_add_dev(). It also enables making intel_vsec_platform_info
+const in a later patch, since the function no longer needs to write to
+info->base_addr.
 
-On 3/2/2026 11:07 PM, Raag Jadav wrote:
-> On Mon, Mar 02, 2026 at 03:51:58PM +0530, Riana Tauro wrote:
->> Add error_detected, mmio_enabled, slot_reset and resume
->> recovery callbacks to handle PCIe Advanced Error Reporting
->> (AER) errors.
->>
->> For fatal errors, the device is wedged and becomes
->> inaccessible. Return PCI_ERS_RESULT_SLOT_RESET from
->> error_detected to request a Secondary Bus Reset (SBR).
->>
->> For non-fatal errors, return PCI_ERS_RESULT_CAN_RECOVER from
->> error_detected to trigger the mmio_enabled callback. In this callback,
->> the device is queried to determine the error cause and attempt
->> recovery based on the error type.
->>
->> Once the secondary bus reset(SBR) is completed the slot_reset callback
->> cleanly removes and reprobe the device to restore functionality.
->>
->> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Cc: Matt Roper <matthew.d.roper@intel.com>
->> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
->> ---
->> v2: re-order linux headers
->>      reword error messages
->>      do not clear in_recovery after remove
->>      return PCI_ERS_RESULT_DISCONNECT if probe fails (Michal)
->>      only wedge device do not send uevent (Raag)
->>      set recovery flag in error_detected and clear on resume
->>      add default switch case (Mallesh)
->> ---
->>   drivers/gpu/drm/xe/Makefile          |  1 +
->>   drivers/gpu/drm/xe/xe_device.h       | 15 +++++
->>   drivers/gpu/drm/xe/xe_device_types.h |  3 +
->>   drivers/gpu/drm/xe/xe_pci.c          |  3 +
->>   drivers/gpu/drm/xe/xe_pci_error.c    | 99 ++++++++++++++++++++++++++++
->>   5 files changed, 121 insertions(+)
->>   create mode 100644 drivers/gpu/drm/xe/xe_pci_error.c
->>
->> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
->> index 1890bbd1b28d..417b030e5ce7 100644
->> --- a/drivers/gpu/drm/xe/Makefile
->> +++ b/drivers/gpu/drm/xe/Makefile
->> @@ -99,6 +99,7 @@ xe-y += xe_bb.o \
->>   	xe_page_reclaim.o \
->>   	xe_pat.o \
->>   	xe_pci.o \
->> +	xe_pci_error.o \
->>   	xe_pci_rebar.o \
->>   	xe_pcode.o \
->>   	xe_pm.o \
->> diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
->> index 39464650533b..972f43d20f1a 100644
->> --- a/drivers/gpu/drm/xe/xe_device.h
->> +++ b/drivers/gpu/drm/xe/xe_device.h
->> @@ -43,6 +43,21 @@ static inline struct xe_device *ttm_to_xe_device(struct ttm_device *ttm)
->>   	return container_of(ttm, struct xe_device, ttm);
->>   }
->>   
->> +static inline bool xe_device_is_in_recovery(struct xe_device *xe)
->> +{
->> +	return atomic_read(&xe->in_recovery);
->> +}
->> +
->> +static inline void xe_device_set_in_recovery(struct xe_device *xe)
->> +{
->> +	atomic_set(&xe->in_recovery, 1);
->> +}
->> +
->> +static inline void xe_device_clear_in_recovery(struct xe_device *xe)
->> +{
->> +	 atomic_set(&xe->in_recovery, 0);
->> +}
->> +
->>   struct xe_device *xe_device_create(struct pci_dev *pdev,
->>   				   const struct pci_device_id *ent);
->>   int xe_device_probe_early(struct xe_device *xe);
->> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
->> index 5599534384fa..616d74792902 100644
->> --- a/drivers/gpu/drm/xe/xe_device_types.h
->> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->> @@ -504,6 +504,9 @@ struct xe_device {
->>   		bool inconsistent_reset;
->>   	} wedged;
->>   
->> +	/** @in_recovery: Indicates if device is in recovery */
->> +	atomic_t in_recovery;
->> +
->>   	/** @bo_device: Struct to control async free of BOs */
->>   	struct xe_bo_dev {
->>   		/** @bo_device.async_free: Free worker */
->> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
->> index ad1e5ef2ee89..825489287f28 100644
->> --- a/drivers/gpu/drm/xe/xe_pci.c
->> +++ b/drivers/gpu/drm/xe/xe_pci.c
->> @@ -1313,6 +1313,8 @@ static const struct dev_pm_ops xe_pm_ops = {
->>   };
->>   #endif
->>   
->> +extern const struct pci_error_handlers xe_pci_error_handlers;
->> +
->>   static struct pci_driver xe_pci_driver = {
->>   	.name = DRIVER_NAME,
->>   	.id_table = pciidlist,
->> @@ -1320,6 +1322,7 @@ static struct pci_driver xe_pci_driver = {
->>   	.remove = xe_pci_remove,
->>   	.shutdown = xe_pci_shutdown,
->>   	.sriov_configure = xe_pci_sriov_configure,
->> +	.err_handler = &xe_pci_error_handlers,
->>   #ifdef CONFIG_PM_SLEEP
->>   	.driver.pm = &xe_pm_ops,
->>   #endif
->> diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/xe_pci_error.c
->> new file mode 100644
->> index 000000000000..d4896a4a5014
->> --- /dev/null
->> +++ b/drivers/gpu/drm/xe/xe_pci_error.c
->> @@ -0,0 +1,99 @@
->> +// SPDX-License-Identifier: MIT
->> +/*
->> + * Copyright © 2026 Intel Corporation
->> + */
->> +#include <linux/pci.h>
->> +
->> +#include <drm/drm_drv.h>
->> +
->> +#include "xe_device.h"
->> +#include "xe_gt.h"
->> +#include "xe_pci.h"
->> +#include "xe_uc.h"
->> +
->> +static void xe_pci_error_handling(struct pci_dev *pdev)
->> +{
->> +	struct xe_device *xe = pdev_to_xe_device(pdev);
->> +	struct xe_gt *gt;
->> +	u8 id;
->> +
->> +	/* Wedge the device to prevent userspace access but don't send the event yet */
->> +	atomic_set(&xe->wedged.flag, 1);
->> +
->> +	for_each_gt(gt, xe, id)
->> +		xe_gt_declare_wedged(gt);
->> +
->> +	pci_disable_device(pdev);
->> +}
->> +
->> +static pci_ers_result_t xe_pci_error_detected(struct pci_dev *pdev, pci_channel_state_t state)
->> +{
->> +	struct xe_device *xe = pdev_to_xe_device(pdev);
->> +
->> +	dev_err(&pdev->dev, "Xe Pci error recovery: error detected state %d\n", state);
->> +
->> +	xe_device_set_in_recovery(xe);
-> 
-> This looks similar to wedged.flag. If we rather stop exec queues and
-> cancel/flush all pending work properly, perhaps we won't be needing
-> this. Let me explore what can be done here.
+No functional change intended.
 
-This will also have to deal with clearing user bos. Let me take a look.
-Right now jobs timeout. This flag prevents gt reset and devcoredump to 
-prevent accessing the device.
+Signed-off-by: David E. Box <david.e.box@linux.intel.com>
+---
+Changes in v7:
+  - No change
 
-> 
->> +	switch (state) {
->> +	case pci_channel_io_normal:
->> +		return PCI_ERS_RESULT_CAN_RECOVER;
->> +	case pci_channel_io_frozen:
->> +		xe_pci_error_handling(pdev);
->> +		return PCI_ERS_RESULT_NEED_RESET;
->> +	case pci_channel_io_perm_failure:
->> +		return PCI_ERS_RESULT_DISCONNECT;
->> +	default:
->> +		dev_err(&pdev->dev, "Unknown state %d\n", state);
->> +		return PCI_ERS_RESULT_NEED_RESET;
->> +	}
->> +}
->> +
->> +static pci_ers_result_t xe_pci_error_mmio_enabled(struct pci_dev *pdev)
->> +{
->> +	dev_err(&pdev->dev, "Xe Pci error recovery: MMIO enabled\n");
->> +
->> +	return PCI_ERS_RESULT_NEED_RESET;
->> +}
->> +
->> +static pci_ers_result_t xe_pci_error_slot_reset(struct pci_dev *pdev)
->> +{
->> +	const struct pci_device_id *ent = pci_match_id(pdev->driver->id_table, pdev);
->> +	struct xe_device *xe = pdev_to_xe_device(pdev);
->> +
->> +	dev_err(&pdev->dev, "Xe Pci error recovery: Slot reset\n");
->> +
->> +	pci_restore_state(pdev);
->> +
->> +	if (pci_enable_device(pdev)) {
->> +		dev_err(&pdev->dev,
->> +			"Cannot re-enable PCI device after reset\n");
->> +		return PCI_ERS_RESULT_DISCONNECT;
->> +	}
->> +
->> +	/*
->> +	 * Secondary Bus Reset wipes out all device memory
->> +	 * requiring XE KMD to perform a device removal and reprobe.
->> +	 */
->> +	pdev->driver->remove(pdev);
-> 
-> A bit fishy, but does the job for now ;)
+Changes in v6:
+  - No change
 
-If the FLR changes are merged that would be helpful here.
-Thanks for that series.
+Changes in v5:
+  - No change
 
-Will add those changes and test locally. Otherwise will incrementally 
-optimize this to separate out xe_device and xe_pci related changes so we 
-can call xe_device_probe and remove.
+Changes in v4:
+  - No change
 
-Thanks
-Riana
+Changes in v3:
+  - No change
 
-> 
-> Raag
-> 
->> +	if (!pdev->driver->probe(pdev, ent))
->> +		return PCI_ERS_RESULT_RECOVERED;
->> +
->> +	return PCI_ERS_RESULT_DISCONNECT;
->> +}
->> +
->> +static void xe_pci_error_resume(struct pci_dev *pdev)
->> +{
->> +	struct xe_device *xe = pdev_to_xe_device(pdev);
->> +
->> +	dev_info(&pdev->dev, "Xe Pci error recovery: Recovered\n");
->> +
->> +	xe_device_clear_in_recovery(xe);
->> +}
->> +
->> +const struct pci_error_handlers xe_pci_error_handlers = {
->> +	.error_detected	= xe_pci_error_detected,
->> +	.mmio_enabled	= xe_pci_error_mmio_enabled,
->> +	.slot_reset	= xe_pci_error_slot_reset,
->> +	.resume		= xe_pci_error_resume,
->> +};
->> -- 
->> 2.47.1
->>
+Changes in v2:
+  - Use pci_resource_start() macro instead of direct pdev->resource array
+    access (suggested by Ilpo)
+
+ drivers/platform/x86/intel/vsec.c | 23 ++++++++++-------------
+ 1 file changed, 10 insertions(+), 13 deletions(-)
+
+diff --git a/drivers/platform/x86/intel/vsec.c b/drivers/platform/x86/intel=
+/vsec.c
+index 5059d320edf8..46966edca03b 100644
+--- a/drivers/platform/x86/intel/vsec.c
++++ b/drivers/platform/x86/intel/vsec.c
+@@ -271,14 +271,13 @@ EXPORT_SYMBOL_NS_GPL(intel_vsec_add_aux, "INTEL_VSEC"=
+);
+=20
+ static int intel_vsec_add_dev(struct pci_dev *pdev, struct intel_vsec_head=
+er *header,
+ 			      struct intel_vsec_platform_info *info,
+-			      unsigned long cap_id)
++			      unsigned long cap_id, u64 base_addr)
+ {
+ 	struct intel_vsec_device __free(kfree) *intel_vsec_dev =3D NULL;
+ 	struct resource __free(kfree) *res =3D NULL;
+ 	struct resource *tmp;
+ 	struct device *parent;
+ 	unsigned long quirks =3D info->quirks;
+-	u64 base_addr;
+ 	int i;
+=20
+ 	if (info->parent)
+@@ -310,11 +309,6 @@ static int intel_vsec_add_dev(struct pci_dev *pdev, st=
+ruct intel_vsec_header *he
+ 	if (quirks & VSEC_QUIRK_TABLE_SHIFT)
+ 		header->offset >>=3D TABLE_OFFSET_SHIFT;
+=20
+-	if (info->base_addr)
+-		base_addr =3D info->base_addr;
+-	else
+-		base_addr =3D pdev->resource[header->tbir].start;
+-
+ 	/*
+ 	 * The DVSEC/VSEC contains the starting offset and count for a block of
+ 	 * discovery tables. Create a resource array of these tables to the
+@@ -412,7 +406,8 @@ static int get_cap_id(u32 header_id, unsigned long *cap=
+_id)
+=20
+ static int intel_vsec_register_device(struct pci_dev *pdev,
+ 				      struct intel_vsec_header *header,
+-				      struct intel_vsec_platform_info *info)
++				      struct intel_vsec_platform_info *info,
++				      u64 base_addr)
+ {
+ 	const struct vsec_feature_dependency *consumer_deps;
+ 	struct vsec_priv *priv;
+@@ -428,7 +423,7 @@ static int intel_vsec_register_device(struct pci_dev *p=
+dev,
+ 	 * For others using the exported APIs, add the device directly.
+ 	 */
+ 	if (!pci_match_id(intel_vsec_pci_ids, pdev))
+-		return intel_vsec_add_dev(pdev, header, info, cap_id);
++		return intel_vsec_add_dev(pdev, header, info, cap_id, base_addr);
+=20
+ 	priv =3D pci_get_drvdata(pdev);
+ 	if (priv->state[cap_id] =3D=3D STATE_REGISTERED ||
+@@ -444,7 +439,7 @@ static int intel_vsec_register_device(struct pci_dev *p=
+dev,
+=20
+ 	consumer_deps =3D get_consumer_dependencies(priv, cap_id);
+ 	if (!consumer_deps || suppliers_ready(priv, consumer_deps, cap_id)) {
+-		ret =3D intel_vsec_add_dev(pdev, header, info, cap_id);
++		ret =3D intel_vsec_add_dev(pdev, header, info, cap_id, base_addr);
+ 		if (ret)
+ 			priv->state[cap_id] =3D STATE_SKIP;
+ 		else
+@@ -464,7 +459,7 @@ static bool intel_vsec_walk_header(struct pci_dev *pdev,
+ 	int ret;
+=20
+ 	for ( ; *header; header++) {
+-		ret =3D intel_vsec_register_device(pdev, *header, info);
++		ret =3D intel_vsec_register_device(pdev, *header, info, info->base_addr);
+ 		if (!ret)
+ 			have_devices =3D true;
+ 	}
+@@ -512,7 +507,8 @@ static bool intel_vsec_walk_dvsec(struct pci_dev *pdev,
+ 		pci_read_config_dword(pdev, pos + PCI_DVSEC_HEADER2, &hdr);
+ 		header.id =3D PCI_DVSEC_HEADER2_ID(hdr);
+=20
+-		ret =3D intel_vsec_register_device(pdev, &header, info);
++		ret =3D intel_vsec_register_device(pdev, &header, info,
++						 pci_resource_start(pdev, header.tbir));
+ 		if (ret)
+ 			continue;
+=20
+@@ -557,7 +553,8 @@ static bool intel_vsec_walk_vsec(struct pci_dev *pdev,
+ 		header.tbir =3D INTEL_DVSEC_TABLE_BAR(table);
+ 		header.offset =3D INTEL_DVSEC_TABLE_OFFSET(table);
+=20
+-		ret =3D intel_vsec_register_device(pdev, &header, info);
++		ret =3D intel_vsec_register_device(pdev, &header, info,
++						 pci_resource_start(pdev, header.tbir));
+ 		if (ret)
+ 			continue;
+=20
+--=20
+2.43.0
 
