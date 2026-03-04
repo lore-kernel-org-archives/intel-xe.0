@@ -4,62 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33623EF8FE5
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Mar 2026 13:50:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D8E9EF8FE5
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Mar 2026 13:51:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E64EC10EA1C;
-	Wed,  4 Mar 2026 13:50:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FC1010EA1E;
+	Wed,  4 Mar 2026 13:51:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FwvV0+sV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WCHyw5dr";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7AF810EA1C
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Mar 2026 13:50:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 047A910EA1E
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Mar 2026 13:51:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772632248; x=1804168248;
+ t=1772632272; x=1804168272;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=zl/5sQ1F2E6222IQSL3rw9o3VAYUUF4SvKw0bZ4fHXQ=;
- b=FwvV0+sV7Ke3ypK9afkEnvOm7dCbd6Ts3A3354FyRuWk75ybeYA8nnpg
- pXSbyNDtijQjv8fuG/DU9Ymei8wR8GfkUdzNc5axv4MUgMTQY+6XFhFD6
- e1cX3c6cttD68naiRU3/RH2qzY0RH6vpXdKI33Ok15UCWvkxYxJkvqHMF
- SzU2vINeq9bARBg6QGM5Lo0MpOKVsxDVNR8RV69QIt8zI8wrHuYzYQhXd
- Z9myOc98+ntG9Wklja0LjvAjw/Z8Uy5ED6VcdX1oKoJPW2+GAmMUmba89
- 5Np4UYHsgv74oe+NYaQ4yS0Ko0Lr4lATn9HXm82KNutMDl7RPny4Xqk6k Q==;
-X-CSE-ConnectionGUID: UjoiwATWRNS3VygxH7IHKw==
-X-CSE-MsgGUID: e7DoUrvSR6yn8Gyk/92fpQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="84026789"
-X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; d="scan'208";a="84026789"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 05:50:48 -0800
-X-CSE-ConnectionGUID: qW5VzCsnTISCpX40kx8ZHA==
-X-CSE-MsgGUID: ZFTnrfuQQ/OlLrlosYbmcw==
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=ZKpCYZ7DAHADQmqDB3zCSoh8jAeOJsBluT/h/Zm1q8U=;
+ b=WCHyw5drwKGEt53k8evsPlJBqqR3GtWn+pN023Ekawh1Vido3lmQ9VZF
+ ULFfsUq5+eRsWD2sqAjtXxjudn0myCI4P8oOhy8YBrd35FemNPquJAghX
+ fSvcuJz+I5epMPF0+vo816MQ/x3Q1jPRwa5OmDI1v8lLlr12Ydp+ZACzz
+ NC8uLupwpRKqcCQsRF0jF9/Y1h4/jD0YMBbnNmn0/9P+tPMarH0GGAeUY
+ 1le/n7finU2Ab6SN5LUtRAHm0gK1PTt7t7eChijh25gn9Yqa4S2Sh7IQJ
+ mHTNlC30jN7NvQZBwGcV1N2HuJ175/4jmdLyCXgHGPVLn9dsgsJmrrWh4 A==;
+X-CSE-ConnectionGUID: rMDr3VRpQRW8WFfkAEAiRA==
+X-CSE-MsgGUID: 08nSfNSsSCmSC2x3swBKQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="73817882"
+X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; d="scan'208";a="73817882"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2026 05:51:11 -0800
+X-CSE-ConnectionGUID: NXuupWVNT/+bs796cLIUig==
+X-CSE-MsgGUID: 58+pTxewS7mAjOi7cl8svw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; d="scan'208";a="216192368"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 05:50:48 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; d="scan'208";a="216655770"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2026 05:51:10 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 4 Mar 2026 05:50:47 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.37; Wed, 4 Mar 2026 05:51:10 -0800
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 4 Mar 2026 05:50:47 -0800
-Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.2) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Wed, 4 Mar 2026 05:51:10 -0800
+Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.61) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 4 Mar 2026 05:50:47 -0800
+ 15.2.2562.37; Wed, 4 Mar 2026 05:51:10 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=tQYfPCsvkcVPdcgdNkzoTt0kT+Y1CshFWl7erdrJUyn/rjB/kq0eMNzPWLACRxOe8ns9RzyK9NZZeyBt81p+d6w9TF+4DJlcP8cw6YadMGr6lRSaur2RA458swPNpCMBM+dMrRZT715D3r85bdgRfE+2fPb4oTEKHldJw0X4shO4/VTlwo6Oi5n8KIJAWTQ3rFICns/v5LipHF2hhvLWITgG4VHK3ACJrP7lG33uKAhwAP3SVfTkebyjdmpwZJBDAaJMCFFApTeA0ED76Hh3rP3agPuKZ2JSUtbIc78e8GZLNK0IyqeoiMKhqRxNHv739NXksG0PGehsmY0s4ETT4A==
+ b=YbwY+YPaQw647QNeG8mAZxCisZqWJP7tYcDnhsjik9MFh3vZFPozvpuhqGXTCuUaGQrYbwKrm9Heoj7C1LzKVZ5kXB6jPXajJNOw95Jle2EsqbJchTlci9rneW+uRWhwdjwS263BFHl3VJ+dXqKmqgvLUcFI/53emGtpLhl8iE31ELkv3UqRO1OmScItdArClQDuUKnDc33+MedSTqnr0Jk+xdzxX4raQw2VdqtyqMj0/cwBq7/v6wWA1cylnP7+ItjD8U3P4IJaPDyWtvNoZCreWhLVaClM0JDaVZm8YACgnCFEFemxaNip69GYLxm+N01CA47JZh8rDLfus4Yf/g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=iCZUDVq47vJAt6ppZ/w3J3b7qTfxoevEqXyjpZRPA4g=;
- b=bM2Q2HJOEsjoqifZJs2v1AMk0xutqL5UZjd8zLVpGf9Gs3J1hFzd850wa/8+Q3y+XefiI5D8jLQLUtETh3b639gSXamW85R+SfYTcw88NvBPPP7Ud5nOJfy4bmvJuhsyBn90Ykuq5fDOairHaM6zjmqI3UEyTSb4roC0MGoHdLqhHQIkOhJVP0aMXvUiIi22cqMqh5kxhcg/acr8/8ahGYOzLFHsO1jK3UNesW9znScjMZW8qe9M3z8eMJ+7bi/3Z+tlIxFEgdvHiZcqt7z2GmLrw33AbQf61rcdgbdi7y9emH/vB6CcBhAgFyYfm+nzMBQ7I5+L+qqndAxvmjBgug==
+ bh=/p+xwY1opfNBcFEGnd7IlrB6kKISlCiCuvZSU2aMsFQ=;
+ b=WmmlEkpJJJ6+nyLC88xPt7v0dFNg0GAbewuqrp7UkDOgi5yWVc/7PopR51jKigSTWrhYDO8KMXSsANaFJwKAFSkDLp9S1Z7zknwker+GCc0oacLmaIho5zamdcguyen1KmsSG6DtwawVIFmVd+09mQYjbMS5TZ8ofeuTphaEli7+Zjuxj8GLBSTqUVb+Af7lcEMsK3cgH4qzP/wjJ3r556Tqu83NDGoyEkgJlt48kO2NJTXSRzTSB4B/D64MI/q5Dns4aJh0bWxEF7AIqo6lh2LOhEQqOu18mloXkDlZ49CApaW3JH4QwosRT9NvoBORr1EZNRHz5UR3KHlodbeHYQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -69,77 +69,80 @@ Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
  by PH0PR11MB5142.namprd11.prod.outlook.com (2603:10b6:510:39::20)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.17; Wed, 4 Mar
- 2026 13:50:46 +0000
+ 2026 13:51:08 +0000
 Received: from CYYPR11MB8430.namprd11.prod.outlook.com
  ([fe80::1d86:a34:519a:3b0d]) by CYYPR11MB8430.namprd11.prod.outlook.com
  ([fe80::1d86:a34:519a:3b0d%5]) with mapi id 15.20.9654.022; Wed, 4 Mar 2026
- 13:50:46 +0000
-Date: Wed, 4 Mar 2026 08:50:42 -0500
+ 13:51:07 +0000
+Date: Wed, 4 Mar 2026 08:51:04 -0500
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-CC: <intel-xe@lists.freedesktop.org>, <kernel-dev@igalia.com>
-Subject: Re: [PATCH v18 1/9] drm/xe: Rename XE_BO_FLAG_SCANOUT to
- XE_BO_FLAG_FORCE_WC
-Message-ID: <aag4sgi4vjYh6xUR@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <kernel-dev@igalia.com>, Ville
+ =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH v18 2/9] drm/xe: Use write-combine mapping when
+ populating DPT
+Message-ID: <aag4yMcmyUaH8OZ3@intel.com>
 References: <20260304130314.6084-1-tvrtko.ursulin@igalia.com>
- <20260304130314.6084-2-tvrtko.ursulin@igalia.com>
-Content-Type: text/plain; charset="us-ascii"
+ <20260304130314.6084-3-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20260304130314.6084-2-tvrtko.ursulin@igalia.com>
-X-ClientProxiedBy: SJ0PR03CA0172.namprd03.prod.outlook.com
- (2603:10b6:a03:338::27) To CYYPR11MB8430.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260304130314.6084-3-tvrtko.ursulin@igalia.com>
+X-ClientProxiedBy: BYAPR01CA0069.prod.exchangelabs.com (2603:10b6:a03:94::46)
+ To CYYPR11MB8430.namprd11.prod.outlook.com
  (2603:10b6:930:c6::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|PH0PR11MB5142:EE_
-X-MS-Office365-Filtering-Correlation-Id: 67b15838-d212-4760-65e0-08de79f508f8
+X-MS-Office365-Filtering-Correlation-Id: 7a7afaff-a12b-41b3-f866-08de79f51608
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016|7053199007;
-X-Microsoft-Antispam-Message-Info: YtD6grPO58EHrNz5ToWsTaQQCJg/p3xn4KObAXzEIso/XA5P+erLdjH8FWY8HmTiIxqqZPgcfWMpOwbjo/rnVG9VNxkx2blhjpTAcPr3FnNNpPGFbla9vAgOL27PoutP/u6awwW98osK7WIb9WH/0kolt3inE3wMcc4q6aPT8oH6eLYASD4eGOvnUW/udrefen79Avg7IELJv3/gqou+RQGlE9X+lemwud9i0MyC2QxpF9opEJtooTilKBaviB2VwE6rJR7GcbF6f4bpdG79mrziS+fq89fqVjP0BfFjtCBeBN0fyYGEr3JvaVukJTnxTfIVNicxYg5nTQhTQBf3Lakff50xu5ScTZXgQAYsJNiuWw4ZJO6o+WtJllnZBhgY53xDXprligEB/Wuu7QV7lTe4pXWJcOMdn+m28BQ/vew5UvgtWZwYDLvWUcp3sAa5bMPzLasSup0ZWiryfFRf9DBrL9chwCi5Oep7tlSFoPLX4mus6cuw22xdQSYPvGVce23q8mSgM+lymNUzTKnGZiZvdidAZImyCKv0E1+xseHCbBe2E7MbNuAuZV0m/HithPLD9ewQoHaYJf71zIJahiHb61rIZ61JNZ1gSTRKXcYnmqRyubWMpijv649pwHWOUbaYsYkNOq/mClS42f5p6vXIHH9sLYIg8Hg5L+1Q3ldgodPOX6tX6tKlmD0H+8FNIAQzpodysmWEQObF4wLJhvwSIfiy2Is8u4m22QEtpyY=
+X-Microsoft-Antispam-Message-Info: CHBJGBme46ZZXzypbTRF+nZpCBAIR30YgYaMGIljltLD5oxIfai/VvspExUYTXOSSDFrc1+XACF3Doy3uWg6jabODQGlty5sOR5Cj/zgItGtCNzftg4P1cOggwG8RuZARLYNV34xDmjR6fA1rGxNuMa3/ayfCd++cURd3uBsq1ekGl/jhZ9bbhJ6ZPuUqg5tdzAAQodL/83EypqGiRhDa7Di28qdb+EJf0ImQquPlQZEDaHWKJIhUdqxdHtjQnAUXYNGDe2KIu2RbVtkmYsa9bzAE3wvAEnM2LXjnvwOkNXMWR4WIK4wIHX7XRP9M3Ce6oTqn6G5pIw8/lCGc/2lv4vUYQsEU3RwewX9rFjoXM9HTlLYhGtC7fvy8+oHTbl0idxI6UgjWAAl8zCfanbnt1I2+sIjPU147bSr1d25XqnzGPsTsZkSIVaI+3UkndZ3YThJQvcu4eD7L1RwWAk7fFob4OJsmBQye30xxcRT1nmgN9eOTXiSRNAssgnJN+qnR4e1hzphGKAew712zjs/Ay2xYTFzkaLlIGIIm5ZTKgq02nvgSQSGOkYMVnn7NY5TJZ6hKz4TiWhbLlmc7Tz2K+G6iiGGHAKWfMN2325oPUo8rla2aLLhMdC0XKmjmHMEd65eMIUd4eGVrJ2HKEGL7vFEwqsBmU9SL+gfkwlNwGEBtGfuKvqGolTaD0xPDKCkh2V/qA5+GYfPtD+TFACTxMdzA+j71AtTZasP1KGv1jU=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(376014)(1800799024)(366016)(7053199007); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?CLdudzUTWDVt7qSDesPyUBJw/RfHT4ou6gT5bn241hBrimUAZ+XIarxA1AYe?=
- =?us-ascii?Q?sZeabUJ1+tvvCotnxiRvH9qu8SrjL01pRIAsz/TVnlmpnpd1bn92hIamzfG4?=
- =?us-ascii?Q?u81wFSbBq8nyAVS3d5KASRttK8P2Dv2dNgP3LMscz8F1UvOWzFU5r2Gwm7wd?=
- =?us-ascii?Q?par3oLm7p31yKVfiEJ6YiCua+k3rJXrWyJ2jtpHu6sXFi2SGZz/8md/IAbZE?=
- =?us-ascii?Q?Zl3+mq8Y50jHZv1BQ66UTMdUtqmYuiMewXq0aGaq35MPzGMa58sTCVyqD2yv?=
- =?us-ascii?Q?j/MsqLYcxlsuFtElP9+mfFT5X2ezmYV94S6HAoHaKCE2NIcZ0TXQznjC4xSt?=
- =?us-ascii?Q?Gox2yXLv2olFOdlY8N7N7HzS/qwBiMGSqO11uWLTV3N791P6QNnlznSpCc1h?=
- =?us-ascii?Q?qE8XFYPJ10gzJzYp+/R0MutHz+5HxbTUzTPeITGLTYOrfcmNbm4H4VyVZiR6?=
- =?us-ascii?Q?beDiNZUB7fo/aJPLNDz/f11xdAnbBcsOgHEhOS2mBu/Rz8XxJ156lTXCxDwV?=
- =?us-ascii?Q?FT5XDigquPvTUwdrKzTPq+2f+plHRcFF60G4gfY/KUszRLxhwX41UojzbhBb?=
- =?us-ascii?Q?ncpzYHLQn64+7TCB5Hk+Ed+prOGl3xxZOlVZQDbUKyH4gER6QyfYJFkq+pET?=
- =?us-ascii?Q?XoM430VzoPgXM18smpTJr0eBifIwUQX+9qBptSY8hr5hNvK2YI/Jss20CMjM?=
- =?us-ascii?Q?B+iGq+jrGxa2neDFFC26unFyXIjtPEjFvPB9wf/70e+sijGti8+wyA6EVRDJ?=
- =?us-ascii?Q?ZnxSEiLUmK+dlIYcM2ERsg8jxRtOXAkRdWnuMlTNOKCwNk2jetKBgi01Amnp?=
- =?us-ascii?Q?1vZS/yHyWhYgtzu1Y9IDUyqA76Kgwf+zs13y1ogvw5U28ttGwDJAtdxfVMv9?=
- =?us-ascii?Q?XXmBLTYBjURiBqO/a1sMJN/C4IsHQZRZ73//pcXvKz4HFhOkpi+6VXIj8ufJ?=
- =?us-ascii?Q?IIyW4ztyb01BaFQtZ2cMH2/y36ycmewNvIFZYfMfbbG3f5rny6awxe1BvaBl?=
- =?us-ascii?Q?luJ/2r/0yQwxhxuNNHfIupzqlZuSC9q0sRqOg7Yt9cWxdhc16OD5XYSyWTs2?=
- =?us-ascii?Q?2TjYmNJkBr59ZZqtb2OT0KXPV3bDeflvIBCBXgb/1oHw1JqEndH26n007GFM?=
- =?us-ascii?Q?H2GG4hIf76gLdhH1fGWG/b1TYS2k1/O8vM9YvvMaqNGaj95VAClQg8k80zXx?=
- =?us-ascii?Q?eThFAohfWeKStxc8HVUvKBW01pmkv8iSyv/yqwnr4IeBczXbqUQ2dE2yBchd?=
- =?us-ascii?Q?PEBGEZRarw7GnVQugAaQ5/lpizb32sj7T4JkBdYCbroeQ2UJsPoibhn4pXzJ?=
- =?us-ascii?Q?5pj7VydyHu12RQeKR6GjXYgsmTcpPiBM63kRLa+/opj+Hi276dx+aa34HVgp?=
- =?us-ascii?Q?HwRzR6N5BKRaZh8Y7xX0HHz+3UrpeKxjc2TOmXmXjl4h/thMwEdWSzzN0boS?=
- =?us-ascii?Q?7fl1k0uwgndv+2Y/QI4LVWjvEDRXUI5FXRH3yujbGSD3OGbtTzFcilczsyI+?=
- =?us-ascii?Q?Zq5WnjZaWn4Pf09ND1f2r1506+mSjWbKaXYWBBTwgsKyY1ZJks9yCpCRGY0l?=
- =?us-ascii?Q?eh+0io4ehSW8ddAyx/CkCRo5Y9WK5j71aAdyU7aLbiU95eKX41CONdu0NCb+?=
- =?us-ascii?Q?0tMJN7hZjz7IZ/CB6bAkoceGD3m8D1Mj6v+4U9uw/eVYCEoPUL8YhqDRxqyr?=
- =?us-ascii?Q?sYFdqbUy928nDr7H/yTNhLLC5U9bPMTcVTIODu49cUYOLRbkdzHqPWXuxpX7?=
- =?us-ascii?Q?lXf9squWqw=3D=3D?=
-X-Exchange-RoutingPolicyChecked: qMaSuY4E8PrkFUYtJCLlcvhyxQbo+FxTeBj6Au9vibAQ1PhS7Ay+U7tlktUzgMA5OsI3txS2OPXgjNpyEflf3/B426RGzW65Xv+QKsS1faVAffrMnfc7gLyqfk2pWe0kcAYmJMlLdlLsJ65oqx1XJ5g+kmop5jaxz+Qmwpqd2/r/7wru+KEBz05OWfH1IozHp1ntUXkzZ/LEpuTXM26mFrPJYvwELECI0Fn6mmcQTOpBYcHTFwy+nxRmz2WI7s74EK/uvMGD9tBkH7I0r0zNy9pdPb7zDoBEqmN6cIpuMqy4g0QJiVUtsfejM2MP8Iu0ZAlgpebhUec3meB6b2t3dQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 67b15838-d212-4760-65e0-08de79f508f8
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?pONl2w4YbmNnwIKIm7WMsJ/pmk8cqh3RnXELX/jJtwuOio4beL/6I+qYhz?=
+ =?iso-8859-1?Q?TCESZDD5N0uiQctsyOoiFaq3J+fKzlEuai2b+4lc7Z7ybIraX6uab0jSmG?=
+ =?iso-8859-1?Q?lA/dHay/O4UgyzPypnLZr9UZ/7slHbyfiwwH+e+wsSwHeihlunhq7cHeOO?=
+ =?iso-8859-1?Q?GthfvRjHTV27mH/mPhpnh75eUTyHczDZz3cdlcNqQLb9Z4fRDiv8fcgcfU?=
+ =?iso-8859-1?Q?0ZTmfutQa7iWqb5wn8ZapnPee7dnhhvnXetiJEo9KM3K/E8WU1Vd/pJkRH?=
+ =?iso-8859-1?Q?suTRLiwOc8mKFZ051G+F7vGYYwJYH54J28hvRE4Ep2UqZV78dqPobq5dt6?=
+ =?iso-8859-1?Q?V6tihBzonKm0N/gjdyD6dLNhgzdhbzz0Hm33j0W6TUnrwbnd626MO8YazN?=
+ =?iso-8859-1?Q?qBIgVFKr3sfOtMdHfF0aioFq5sJKOOQr1Z6WS7nN77t89wah4kWf7p9vfN?=
+ =?iso-8859-1?Q?T0o5iimGH1FCSviQD2jCEOF5ymKW1l6jCJCk449jusiebGzVVrJoejk8qI?=
+ =?iso-8859-1?Q?yNvf78oiV0YwVh9KJ7GXYjTcj84aMXs17YIyqbIvrwzpeV8iIqA1sgB3dX?=
+ =?iso-8859-1?Q?d0DsHSDQEA3lLJAkE8C/jppHE+BhkteGjzmrPOECWSUw0R30tH9w99EYfa?=
+ =?iso-8859-1?Q?S9DrxybX10x6n6ErqheZcMSiFkoaQ+C/jXLbuf9H5AcMQxWbwdbCPUC3Gj?=
+ =?iso-8859-1?Q?OQA318qzlUBQbDR8eVcKDET1KANI4S7JwwNnNCrdCormRmclh22t8b1izx?=
+ =?iso-8859-1?Q?fy+mBXcR3IYJxTuEuwRbdUeGr4UqD0bzwSMZhV2EuaTgYOFhkz4ktxiHIu?=
+ =?iso-8859-1?Q?FUZLW5Whj3n0jG/guSq3pZcYXXMaGfpi2zNKPqfILqpHOIlhO6l9KYknAo?=
+ =?iso-8859-1?Q?18yz7AqHwekpXnUPrvlftzUslMVQBmF6J/xo135yyxtZFgPcKtnKOWFLav?=
+ =?iso-8859-1?Q?5nhbqmhCik7/yYc0DZx7vvv0Wq+Wvp3opN8KPEfDJKCv6mfhORq/+uoG2H?=
+ =?iso-8859-1?Q?ftwlTDpfizh/JpTPvVkBgCmRImax95Siii5blWNdtejRnYI185KwkDUOKF?=
+ =?iso-8859-1?Q?zyOPP74Vxp3fxwpvb5NJY8VsX+dtO/ra2+7RDTXO9kIU5+V2qBIsDQG72y?=
+ =?iso-8859-1?Q?pLZ20sgoqRKa8BKHwZhEOWXLQ6ASQwuWBPXGlBQuzYjDiCacD8TvJLpG8m?=
+ =?iso-8859-1?Q?yeW1xP4TOAhTlOzliJBl8hPrckF8i9+fbvqecAQdDDzhKrifXahRGA0poU?=
+ =?iso-8859-1?Q?Lk/EprZVpA9emc+e81ylAm2LcQaz738+dmTCvQrjqxHzMo+Kdq8IRywZGk?=
+ =?iso-8859-1?Q?ZAgs85/N3cA7l8dazOkwFmhwlbflui/j0YlEkme+VrAwuy/jHdSZ8eFO6p?=
+ =?iso-8859-1?Q?CwogUwCxKKL2aL4OEwMojnwIS3awz1DS1ZxbxjWCq/jAaNJULlFaK4NY6S?=
+ =?iso-8859-1?Q?OANuBcoOCIeO+wtwKRU0vODQQdqY0uIrSCrr4xo0XeRZU4mRPeBjQ2r2VW?=
+ =?iso-8859-1?Q?/SxRvFpmbRpSp50jiLUJgd2xOYyz9AesOs8UjBhb3ScC1j57eYl4NYPHYc?=
+ =?iso-8859-1?Q?YWuDpaCmbmKdWKKS47nCuc5DY5YzY8q4AE1MCJQfmYahpetZWW2cRbUAQX?=
+ =?iso-8859-1?Q?wgTIWgKWG2hoN85oM/uuVgR/3vAWyoFl7CugQAGwwJl4pgJFjzzqJnVUs4?=
+ =?iso-8859-1?Q?MM3QgB832CvMTjL55Q5bwdNBMB7Q6c8mr2IRSryMd3aNusRm9MFkqDbMlV?=
+ =?iso-8859-1?Q?6XDNrFcDJ+KZWuG1aL0772AM+SJJ3vG0p+mO+xTqXrkYXFGjPIDRBGx8e7?=
+ =?iso-8859-1?Q?eRJgKQ8ZaQ=3D=3D?=
+X-Exchange-RoutingPolicyChecked: gCOdim+LwNG3NBKUkAdkThnWAYlOx6IJtxyVuVp2lr3IFaFa21ZgHk2IxFjgw9XSeskP7fuVOFb1qP2qt3nMDFYVV28kKprBP5YoW40STP3FgSD+EkDcUrH/AkWASQ5c0XThJjHSBE+QT0S1BJNZNC0QtO14BgxMiHQIRjZ2vUqN+/tCmeeh4HdBFZXb+Ta/2eCtRa+G2+4QRarDh5HA3/sFYMtKykyjBN1Ih5W/zD3LDM+Jo+pjh19qBS4OBUhD80LDUyyHU+RgIuXzuGOJpf597WF/qfOG32Sm8Eou7lQiGfDM5TD/uea+JjSzEJg2U8T/rCopirXK127YiSH9nw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7a7afaff-a12b-41b3-f866-08de79f51608
 X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2026 13:50:45.9769 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2026 13:51:07.9189 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: T1KR6nbO2NxFq6lK2S0TaPuS8HUDYs8LElR0FAdjtGPMy7PUi8SEHFyzzf5Ksbn5iyiK5DW50WTRixGoKkfz8w==
+X-MS-Exchange-CrossTenant-UserPrincipalName: g8RZp5jBQn0sAXiZwb31hfpNopXx9/1nouZX5ANaMNwJUs87FocIThVNkSO2O1q2Ci+VxRsye83MalUeEuR0cw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5142
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -156,197 +159,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Mar 04, 2026 at 01:03:06PM +0000, Tvrtko Ursulin wrote:
-> Rename XE_BO_FLAG_SCANOUT to XE_BO_FLAG_FORCE_WC so that the usage of the
-> flag can legitimately be expanded to more than just the actual frame-
-> buffer objects.
+On Wed, Mar 04, 2026 at 01:03:07PM +0000, Tvrtko Ursulin wrote:
+> The fallback case for DPT backing store is a buffer object in system
+> memory buffer, which by default use a write-back CPU caching policy.
+> 
+> If this fallback gets triggered, and since there is currently no flushing,
+> the DPT writes made when pinning a buffer to display are not guaranteed to
+> be seen by the display engine.
+> 
+> To fix this, since both the local memory and the stolen memory DPT
+> placements already use write-combine, let us make the system memory option
+> follow suit by passing down the appropriate flag.
 > 
 > Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-> Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> ---
->  drivers/gpu/drm/xe/display/intel_fb_bo.c      |  6 +++---
->  drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 12 ++++++++----
->  drivers/gpu/drm/xe/display/xe_dsb_buffer.c    |  4 +++-
->  drivers/gpu/drm/xe/display/xe_fb_pin.c        |  2 +-
->  drivers/gpu/drm/xe/display/xe_initial_plane.c |  2 +-
->  drivers/gpu/drm/xe/xe_bo.c                    | 16 +++++++++++-----
->  drivers/gpu/drm/xe/xe_bo.h                    |  2 +-
->  7 files changed, 28 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/display/intel_fb_bo.c b/drivers/gpu/drm/xe/display/intel_fb_bo.c
-> index db8b1a27b4de..d2e72dc5abd9 100644
-> --- a/drivers/gpu/drm/xe/display/intel_fb_bo.c
-> +++ b/drivers/gpu/drm/xe/display/intel_fb_bo.c
-> @@ -45,9 +45,9 @@ int intel_fb_bo_framebuffer_init(struct drm_gem_object *obj,
->  	if (ret)
->  		goto err;
->  
-> -	if (!(bo->flags & XE_BO_FLAG_SCANOUT)) {
-> +	if (!(bo->flags & XE_BO_FLAG_FORCE_WC)) {
->  		/*
-> -		 * XE_BO_FLAG_SCANOUT should ideally be set at creation, or is
-> +		 * XE_BO_FLAG_FORCE_WC should ideally be set at creation, or is
->  		 * automatically set when creating FB. We cannot change caching
->  		 * mode when the bo is VM_BINDed, so we can only set
->  		 * coherency with display when unbound.
-> @@ -57,7 +57,7 @@ int intel_fb_bo_framebuffer_init(struct drm_gem_object *obj,
->  			ret = -EINVAL;
->  			goto err;
->  		}
-> -		bo->flags |= XE_BO_FLAG_SCANOUT;
-> +		bo->flags |= XE_BO_FLAG_FORCE_WC;
->  	}
->  	ttm_bo_unreserve(&bo->ttm);
->  	return 0;
-> diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-> index 87af5646c938..d7030e4d814c 100644
-> --- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-> +++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
-> @@ -56,9 +56,11 @@ struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, int size
->  	if (intel_fbdev_fb_prefer_stolen(drm, size)) {
->  		obj = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe),
->  						size,
-> -						ttm_bo_type_kernel, XE_BO_FLAG_SCANOUT |
-> +						ttm_bo_type_kernel,
-> +						XE_BO_FLAG_FORCE_WC |
->  						XE_BO_FLAG_STOLEN |
-> -						XE_BO_FLAG_GGTT, false);
-> +						XE_BO_FLAG_GGTT,
-> +						false);
->  		if (!IS_ERR(obj))
->  			drm_info(&xe->drm, "Allocated fbdev into stolen\n");
->  		else
-> @@ -69,9 +71,11 @@ struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, int size
->  
->  	if (IS_ERR(obj)) {
->  		obj = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe), size,
-> -						ttm_bo_type_kernel, XE_BO_FLAG_SCANOUT |
-> +						ttm_bo_type_kernel,
-> +						XE_BO_FLAG_FORCE_WC |
->  						XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
-> -						XE_BO_FLAG_GGTT, false);
-> +						XE_BO_FLAG_GGTT,
-> +						false);
->  	}
->  
->  	if (IS_ERR(obj)) {
-> diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-> index 1c67a950c6ad..a7158c73a14c 100644
-> --- a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-> +++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
-> @@ -54,7 +54,9 @@ static struct intel_dsb_buffer *xe_dsb_buffer_create(struct drm_device *drm, siz
->  					PAGE_ALIGN(size),
->  					ttm_bo_type_kernel,
->  					XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
-> -					XE_BO_FLAG_SCANOUT | XE_BO_FLAG_GGTT, false);
-> +					XE_BO_FLAG_FORCE_WC |
-> +					XE_BO_FLAG_GGTT,
-> +					false);
->  	if (IS_ERR(obj)) {
->  		ret = PTR_ERR(obj);
->  		goto err_pin_map;
-> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> index dbbc61032b7f..d4a9eb550cae 100644
-> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> @@ -429,7 +429,7 @@ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
->  		return 0;
->  
->  	/* We reject creating !SCANOUT fb's, so this is weird.. */
-> -	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_SCANOUT));
-> +	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_FORCE_WC));
->  
->  	vma = __xe_pin_fb_vma(intel_fb, &new_plane_state->view.gtt, alignment);
->  
-> diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> index 65cc0b0c934b..8bcae552dddc 100644
-> --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> @@ -48,7 +48,7 @@ initial_plane_bo(struct xe_device *xe,
->  	if (plane_config->size == 0)
->  		return NULL;
->  
-> -	flags = XE_BO_FLAG_SCANOUT | XE_BO_FLAG_GGTT;
-> +	flags = XE_BO_FLAG_FORCE_WC | XE_BO_FLAG_GGTT;
->  
->  	base = round_down(plane_config->base, page_size);
->  	if (IS_DGFX(xe)) {
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 8ff193600443..fe560b0a980a 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -515,7 +515,7 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
->  		 * For Xe_LPG and beyond up to NVL-P (excluding), PPGTT PTE
->  		 * lookups are also non-coherent and require a CPU:WC mapping.
->  		 */
-> -		if ((!bo->cpu_caching && bo->flags & XE_BO_FLAG_SCANOUT) ||
-> +		if ((!bo->cpu_caching && bo->flags & XE_BO_FLAG_FORCE_WC) ||
->  		     (!xe->info.has_cached_pt && bo->flags & XE_BO_FLAG_PAGETABLE))
->  			caching = ttm_write_combined;
->  	}
-> @@ -3196,8 +3196,14 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
->  	if (args->flags & DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING)
->  		bo_flags |= XE_BO_FLAG_DEFER_BACKING;
->  
-> +	/*
-> +	 * Display scanout is always non-coherent with the CPU cache.
-> +	 *
-> +	 * For Xe_LPG and beyond up to NVL-P (excluding), PPGTT PTE
-> +	 * lookups are also non-coherent and require a CPU:WC mapping.
-> +	 */
-
-I believe this comment should be now removed from the other place.
-But it doesn't hurt if you decide to keep in both places.
+> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-
->  	if (args->flags & DRM_XE_GEM_CREATE_FLAG_SCANOUT)
-> -		bo_flags |= XE_BO_FLAG_SCANOUT;
-> +		bo_flags |= XE_BO_FLAG_FORCE_WC;
->  
->  	if (args->flags & DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION) {
->  		if (XE_IOCTL_DBG(xe, GRAPHICS_VER(xe) < 20))
-> @@ -3209,7 +3215,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
->  
->  	/* CCS formats need physical placement at a 64K alignment in VRAM. */
->  	if ((bo_flags & XE_BO_FLAG_VRAM_MASK) &&
-> -	    (bo_flags & XE_BO_FLAG_SCANOUT) &&
-> +	    (args->flags & XE_BO_FLAG_FORCE_WC) &&
->  	    !(xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K) &&
->  	    IS_ALIGNED(args->size, SZ_64K))
->  		bo_flags |= XE_BO_FLAG_NEEDS_64K;
-> @@ -3229,7 +3235,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
->  			 args->cpu_caching != DRM_XE_GEM_CPU_CACHING_WC))
->  		return -EINVAL;
->  
-> -	if (XE_IOCTL_DBG(xe, bo_flags & XE_BO_FLAG_SCANOUT &&
-> +	if (XE_IOCTL_DBG(xe, bo_flags & XE_BO_FLAG_FORCE_WC &&
->  			 args->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB))
->  		return -EINVAL;
->  
-> @@ -3642,7 +3648,7 @@ int xe_bo_dumb_create(struct drm_file *file_priv,
->  	bo = xe_bo_create_user(xe, NULL, args->size,
->  			       DRM_XE_GEM_CPU_CACHING_WC,
->  			       XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
-> -			       XE_BO_FLAG_SCANOUT |
-> +			       XE_BO_FLAG_FORCE_WC |
->  			       XE_BO_FLAG_NEEDS_CPU_ACCESS, NULL);
->  	if (IS_ERR(bo))
->  		return PTR_ERR(bo);
-> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> index c914ab719f20..af9a6669c872 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_bo.h
-> @@ -35,7 +35,7 @@
->  #define XE_BO_FLAG_PINNED		BIT(7)
->  #define XE_BO_FLAG_NO_RESV_EVICT	BIT(8)
->  #define XE_BO_FLAG_DEFER_BACKING	BIT(9)
-> -#define XE_BO_FLAG_SCANOUT		BIT(10)
-> +#define XE_BO_FLAG_FORCE_WC		BIT(10)
->  #define XE_BO_FLAG_FIXED_PLACEMENT	BIT(11)
->  #define XE_BO_FLAG_PAGETABLE		BIT(12)
->  #define XE_BO_FLAG_NEEDS_CPU_ACCESS	BIT(13)
+> ---
+>  drivers/gpu/drm/xe/display/xe_fb_pin.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> index d4a9eb550cae..df7d305c6fcd 100644
+> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> @@ -122,7 +122,8 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+>  						   ttm_bo_type_kernel,
+>  						   XE_BO_FLAG_SYSTEM |
+>  						   XE_BO_FLAG_GGTT |
+> -						   XE_BO_FLAG_PAGETABLE,
+> +						   XE_BO_FLAG_PAGETABLE |
+> +						   XE_BO_FLAG_FORCE_WC,
+>  						   alignment, false);
+>  	if (IS_ERR(dpt))
+>  		return PTR_ERR(dpt);
 > -- 
 > 2.52.0
 > 
