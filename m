@@ -4,66 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20E75EB7EDA
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Mar 2026 12:06:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8425DEB7ED7
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Mar 2026 12:08:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE4A510E9E6;
-	Wed,  4 Mar 2026 12:06:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43E3F10E9F1;
+	Wed,  4 Mar 2026 12:08:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="key not found in DNS" (0-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="biM+LKOU";
+	dkim=fail reason="key not found in DNS" (0-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lpEcYoic";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F4FE10E9E4;
- Wed,  4 Mar 2026 12:06:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2613810E9F5
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Mar 2026 12:08:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772625998; x=1804161998;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ANuuMYO/vF7yQGmzew+xe/nxKl1V6CMtN/3rlr43aRg=;
- b=biM+LKOUpubSTtakF5JNay6fSpDgMOHHC+j7nre01rHkGZmYGQsdzNo4
- uNB9aRETp1jnJmo3P3UjvcGk44MNmGwa4kx0i6t4ThWDXyZMcqynblYcn
- wYGU4ip1r77upBQoPGEetXAUJHiAfxEVpSKSZsawJqkyGcwLijkRnTUHk
- qcjI/tnQnjmg5vMLU80NJ0nvdYnKELTGnOBkBQH+fTjPTJUUETmVtiuM2
- oCuE4AGCf5E9Z0Ub9xKUkQG0jPMgW5enaIIYZQ6lzDpvdbpH2dz37dP8Q
- n2HAo7WIId8vOJ3OZ95Yu5QqZ9uK9tSyf5uaEO07IDCDqF93lMRk1b/4w g==;
-X-CSE-ConnectionGUID: iqyxYYHDQcyA+zIS9iBSxA==
-X-CSE-MsgGUID: yXgeCXEFTfGujA2muIZb9w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11718"; a="73810842"
-X-IronPort-AV: E=Sophos;i="6.21,323,1763452800"; d="scan'208";a="73810842"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 04:06:37 -0800
-X-CSE-ConnectionGUID: PX7mwvG8Q1mblD52yjdrjA==
-X-CSE-MsgGUID: iRMkUhxzT3G5QMtFDoJyLQ==
+ t=1772626138; x=1804162138;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rn4ZXrA2iIb7rGXKJBDl2vMpRYh3nZxmwKIGiyT6YOY=;
+ b=lpEcYoicdStivto1bu9/fM+bOo68et2tIOZ/kgZT507K7oMqAhPa3K3A
+ 8DjMXLPVEo3qVYVzv0CXGZ0dGcQWAvmJ97t5RGrqHvCKHQK2NTyTbMqIp
+ ebsEglScFIA6kq0jHlH3U3i1cu5sOQGnBHbz0WGvAtDk1vWHYmi6tAaHY
+ nYKQAfZJi785PSzUz0AO1YppYwivsAf0dBVlkte4AT2Q1vKKg6bMStO2I
+ lmP1zez/GdiLPJyrUSfif8/NOTh2MH3lrjK09fCLwVEq1HDKpHRafVTst
+ mcKVleUmIlwpHcsz+HqQaz5Afm7HAobMHUOC84QhqEzU4c5iUwvXLWHRR w==;
+X-CSE-ConnectionGUID: LQunN3cRS/25V/3dzuDlgA==
+X-CSE-MsgGUID: uCUCKe1MRtmnj3FdqQGS2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11718"; a="96300606"
+X-IronPort-AV: E=Sophos;i="6.21,323,1763452800"; d="scan'208";a="96300606"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2026 04:04:46 -0800
+X-CSE-ConnectionGUID: 0GQEkmfyRlOVE5ehAP+3xw==
+X-CSE-MsgGUID: dZuiNsg6Si2zF2xZvAlz5g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,323,1763452800"; d="scan'208";a="215698669"
-Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.84])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 04:06:34 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Cc: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Subject: RE: [PATCH v3 1/8] drm/i915/backlight: Use default/max brightness
- for VESA AUX backlight init
-In-Reply-To: <DM3PPF208195D8DE8AD240BD7C41488F465E37CA@DM3PPF208195D8D.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260224034526.2730130-1-suraj.kandpal@intel.com>
- <20260224034526.2730130-2-suraj.kandpal@intel.com>
- <1a76dfe14cbc90b4aaec6f0e54b4e8df9f480efa@intel.com>
- <DM3PPF208195D8DACF643E4D0D138F0128CE375A@DM3PPF208195D8D.namprd11.prod.outlook.com>
- <9f9be7c4361428b7ccb77dcc04f93b0eda024c8b@intel.com>
- <DM3PPF208195D8DBB70E17DC6764BC5A276E37EA@DM3PPF208195D8D.namprd11.prod.outlook.com>
- <676746dc5a9fe839e3ed071dee1c8e89174ce0ea@intel.com>
- <DM3PPF208195D8DE8AD240BD7C41488F465E37CA@DM3PPF208195D8D.namprd11.prod.outlook.com>
-Date: Wed, 04 Mar 2026 14:06:30 +0200
-Message-ID: <bc588898a98e512b60e209324495e747cd003364@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,323,1763452800"; d="scan'208";a="244992767"
+Received: from nitin-super-server.iind.intel.com ([10.190.238.72])
+ by fmviesa001.fm.intel.com with ESMTP; 04 Mar 2026 04:04:39 -0800
+From: Nitin Gote <nitin.r.gote@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, matthew.auld@intel.com, michal.mrozek@intel.com,
+ thomas.hellstrom@linux.intel.com, Nitin Gote <nitin.r.gote@intel.com>
+Subject: [PATCH v7 0/3] drm/xe: add VM_BIND DECOMPRESS support and on‑demand decompression
+Date: Wed,  4 Mar 2026 18:07:59 +0530
+Message-ID: <20260304123758.3050386-5-nitin.r.gote@intel.com>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,35 +65,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 04 Mar 2026, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
-> I did some more digging and for aux_set enabled we really do not need to do get_backlight 
-> And read register again that is filled in probe state and fills up the current_level variable that can be use.
-> Check drm_edp_backlight_probe_state.
-> I also found this little comment there
->
->         /*
->          * If we're not in DPCD control mode yet, the programmed brightness value is meaningless and
->          * the driver should assume max brightness
->          */
->         return bl->max;
->
-> So this was a policy that was decided during VESA AUX Backlight implementation time. Also that Mode will not be DPCD
-> Initially and will change later during backlight enable so we get to assume max brightness . That should be okay to do with
-> Luminance_set case too then.
+This series implements VM_BIND decompression support in the XE driver
+for both non-fault mode and fault mode.
 
-The comment says, if the panel is not in DPCD control mode, the value in
-DPCD is meaningless.
+Compute PR: https://github.com/intel/compute-runtime/pull/898
+Tested with IGT tests https://patchwork.freedesktop.org/series/157553/
+which validates basic VM_BIND DECOMPRESS behavior for both
+regular and FAULT_MODE VMs.
 
-Ditto, if the panel is not in luminance control mode (or whatever the
-specific name for it is), the luminance value in DPCD is meaningless.
+v7:
+   - Add compute PR info and rebase to latest drm-tip
+   - Fix kernel-doc warnings
 
-However, if the panel is in DPCD control mode but not in luminance
-control mode, we should be able to read the non-luminance DPCD
-brightness value and use that.
+v6: (Matt Auld)
+   - Rebase as xe_pat_index_get_comp_en() is added in separate
+     patch
+   - Drop vm param from xe_bo_decompress(), instead of it
+     extract tile from bo
+   - Reject decompression on igpu instead of silent skipping
+     to avoid any failure on Xe2+igpu as xe_device_has_flat_ccs()
+     can sometimes be false on igpu due some setting in the BIOS
+     to turn off compression on igpu.
+   - Nits
 
-BR,
-Jani.
+v5: (Matt)
+   - Correct the condition check of xe_pat_index_get_comp_en
 
+v4: (Matt)
+  - Simplify xe_migrate_resolve(), use single BO/resource;
+    remove copy_only_ccs argument as it's always false.
+  - Introduce xe_pat_index_get_comp_en(), which checks
+    XE2_COMP_EN for the pat_index
+  - .interruptible should be true, everything else false
+
+v3: (Matt)
+   - s/xe_bo_schedule_decompress/xe_bo_decompress
+   - skip the decrompress step if the BO isn't in VRAM
+   - start/size not required in xe_bo_schedule_decompress
+   - Use xe_bo_move_notify instead of xe_vm_invalidate_vma
+     with respect to invalidation.
+   - Nits
+
+v2:
+   - Add kernel doc (Matt)
+   - Move decompression work out of vm_bind ioctl. (Matt)
+   - Put that work in a small helper at the BO/migrate layer invoke it
+     from vma_lock_and_validate which already runs under drm_exec.
+   - Move lightweight checks to vm_bind_ioctl_check_args (Matthew Auld)
+
+
+Nitin Gote (3):
+  drm/xe: add VM_BIND DECOMPRESS uapi flag
+  drm/xe: add xe_migrate_resolve wrapper and is_vram_resolve support
+  drm/xe: implement VM_BIND decompression in vm_bind_ioctl
+
+ drivers/gpu/drm/xe/xe_bo.c       | 55 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_bo.h       |  2 +
+ drivers/gpu/drm/xe/xe_migrate.c  | 90 ++++++++++++++++++++++----------
+ drivers/gpu/drm/xe/xe_migrate.h  |  4 ++
+ drivers/gpu/drm/xe/xe_vm.c       | 37 +++++++++----
+ drivers/gpu/drm/xe/xe_vm_types.h |  2 +
+ include/uapi/drm/xe_drm.h        |  8 +++
+ 7 files changed, 162 insertions(+), 36 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.50.1
+
