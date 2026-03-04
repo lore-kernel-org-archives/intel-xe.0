@@ -4,43 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD2C7EB7EB2
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Mar 2026 09:25:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9158DEB7EAC
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Mar 2026 09:58:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EA7710E1BE;
-	Wed,  4 Mar 2026 09:25:22 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="W3eP6LgN";
-	dkim-atps=neutral
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8403510E1BE;
- Wed,  4 Mar 2026 09:25:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1772616320;
- bh=/40XvtT+BxKnrYkUa8lYXVQal1PyHUZGLbHPaEdMN/0=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=W3eP6LgN4+gYF7z3TCkdklK7qtpnbpBOeXO2UUKYiDtf7HIQxTPEcIsTcs9Zi+6QQ
- znC2v5CQKQJO29OMIPh0e7tFxw6rLNHLL2IYIeMSa8FGkZX4C50P39v4bGjXfyAQ5T
- CbKjMYqDRh6rBqM2Bh20kd0P6BaHgb6FugxGOKBVFYsyMzA/6YNn2/Jh10uZIqP2gf
- SM4QuExl9deiN5E9ByA+IxCtHMhGsCG6D/te08kddLvu/LOkS+eZiYyKvxtVlXkHyS
- UdsPajwNuFE8jKK+SQHQI6cR7K9MGY1Q62a+AgpZ5vAqgcT9VJcCqDIim/xZcw5HQG
- GShZB7AMFokbw==
-Message-ID: <0d69a3a9-3656-4471-a075-85b3090c585f@lankhorst.se>
-Date: Wed, 4 Mar 2026 10:25:19 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5748A10E999;
+	Wed,  4 Mar 2026 09:58:38 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BB0E10E999;
+ Wed,  4 Mar 2026 09:58:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3930603012198075275=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] drm/ttm/tests: Fix build failure on PREEMPT_RT
-To: "Hogander, Jouni" <jouni.hogander@intel.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- lkp <lkp@intel.com>
-References: <20260304085616.1216961-1-dev@lankhorst.se>
- <d98e78d4b24b8b18db6a8d82d52ebf8f91c6fbfb.camel@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <d98e78d4b24b8b18db6a8d82d52ebf8f91c6fbfb.camel@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_Allow_per_queue_p?=
+ =?utf-8?q?rogramming_of_COMMON=5FSLICE=5FCHICKEN3_bit13_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 04 Mar 2026 09:58:37 -0000
+Message-ID: <177261831762.314766.9523942912228107229@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260304075529.1250065-1-lionel.g.landwerlin@intel.com>
+In-Reply-To: <20260304075529.1250065-1-lionel.g.landwerlin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,61 +36,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+--===============3930603012198075275==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/xe: Allow per queue programming of COMMON_SLICE_CHICKEN3 bit13 (rev5)
+URL   : https://patchwork.freedesktop.org/series/161212/
+State : failure
+
+== Summary ==
+
+ERROR: The runconfig 'xe-4655-cfc20c776480fda8c1b0517b187bb71ec0781cd4_BAT' does not exist in the database
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161212v5/index.html
+
+--===============3930603012198075275==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
-Den 2026-03-04 kl. 09:58, skrev Hogander, Jouni:
-> On Wed, 2026-03-04 at 09:56 +0100, Maarten Lankhorst wrote:
->> Fix a compile error in the kunit tests when CONFIG_PREEMPT_RT is
->> enabled, and the normal mutex is converted into a rtmutex.
->>
->> Reported-by: kernel test robot <lkp@intel.com>
->> Closes:
->> https://lore.kernel.org/oe-kbuild-all/202602261547.3bM6yVAS-lkp@intel.com/
->> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-> 
-> Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
-Thanks, tested if UML was still passing and it does. 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-./tools/testing/kunit/kunit.py run --kunitconfig=drivers/gpu/drm/ttm/tests/.kunitconfig
-....
-[10:06:16] [PASSED] ttm_bo_reserve_interrupted
 
-Will wait for CI kunit results and then push.
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Allow per queue programming of COMMON_SLICE_CHICKEN3 bit13 (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161212/">https://patchwork.freedesktop.org/series/161212/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
 
-> 
->> ---
->> Changes since v1:
->> - Use the correct locking primitive (Jouni)
->>
->>  drivers/gpu/drm/ttm/tests/ttm_bo_test.c | 4 ++--
->>  1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/ttm/tests/ttm_bo_test.c
->> b/drivers/gpu/drm/ttm/tests/ttm_bo_test.c
->> index d468f83220720..f3103307b5df9 100644
->> --- a/drivers/gpu/drm/ttm/tests/ttm_bo_test.c
->> +++ b/drivers/gpu/drm/ttm/tests/ttm_bo_test.c
->> @@ -222,13 +222,13 @@ static void ttm_bo_reserve_interrupted(struct
->> kunit *test)
->>  		KUNIT_FAIL(test, "Couldn't create ttm bo reserve
->> task\n");
->>  
->>  	/* Take a lock so the threaded reserve has to wait */
->> -	mutex_lock(&bo->base.resv->lock.base);
->> +	dma_resv_lock(bo->base.resv, NULL);
->>  
->>  	wake_up_process(task);
->>  	msleep(20);
->>  	err = kthread_stop(task);
->>  
->> -	mutex_unlock(&bo->base.resv->lock.base);
->> +	dma_resv_unlock(bo->base.resv);
->>  
->>  	KUNIT_ASSERT_EQ(test, err, -ERESTARTSYS);
->>  }
-> 
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161212v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161212v5/index.html</a></td></tr>
 
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-4655-cfc20c776480fda8c1b0517b187bb71ec0781cd4_BAT' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============3930603012198075275==--
