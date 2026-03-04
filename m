@@ -4,98 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0138EB7EB2
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Mar 2026 09:16:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD2C7EB7EB2
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Mar 2026 09:25:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6CA5810E16F;
-	Wed,  4 Mar 2026 09:16:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EA7710E1BE;
+	Wed,  4 Mar 2026 09:25:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=arndb.de header.i=@arndb.de header.b="pw5EK2gm";
-	dkim=pass (2048-bit key; unprotected) header.d=messagingengine.com header.i=@messagingengine.com header.b="WyMQzHsg";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="W3eP6LgN";
 	dkim-atps=neutral
-X-Greylist: delayed 572 seconds by postgrey-1.36 at gabe;
- Wed, 04 Mar 2026 09:16:43 UTC
-Received: from fhigh-b2-smtp.messagingengine.com
- (fhigh-b2-smtp.messagingengine.com [202.12.124.153])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 601E810E16F
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Mar 2026 09:16:43 +0000 (UTC)
-Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
- by mailfhigh.stl.internal (Postfix) with ESMTP id D20F57A01C0;
- Wed,  4 Mar 2026 04:07:10 -0500 (EST)
-Received: from phl-imap-02 ([10.202.2.81])
- by phl-compute-04.internal (MEProxy); Wed, 04 Mar 2026 04:07:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
- :cc:content-transfer-encoding:content-type:content-type:date
- :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to; s=fm3; t=1772615230;
- x=1772701630; bh=4HZcCt0xrSe1MKL8+grG1PUCwoEjyp3CA+Kghv05k8c=; b=
- pw5EK2gmcl0wxe3psF1Uk2zZMsKGjf+xbzgFsqEZl6GIiV6d1yFqt7e92qv5U8/E
- 1FOA6p/yAw6EdcQXy3oOYaVAKORchKtjRYgTTIuNqWy3g0HySAtwzZ/UMzbu8d01
- Fs3pMt4sAIZs4oiKozguf+ocj1UevszvWCxGC4ELCdexx1Zz5J6qUvr4h+qz3Dcw
- dD2KRnz0uoM+TvAXKlR6foR5tnXyhEpEaGnKhyvwEyTHCrbnraMJPr1xP4xqmQ/R
- taRUOVQ7Xse7A19yd12AMKP7Bm3zinjfafqw1mEWn6ASZ2SA2QwpMQHudArx14lf
- dor61XcH5Qy5s2K468lSzA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
- messagingengine.com; h=cc:cc:content-transfer-encoding
- :content-type:content-type:date:date:feedback-id:feedback-id
- :from:from:in-reply-to:in-reply-to:message-id:mime-version
- :references:reply-to:subject:subject:to:to:x-me-proxy
- :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1772615230; x=
- 1772701630; bh=4HZcCt0xrSe1MKL8+grG1PUCwoEjyp3CA+Kghv05k8c=; b=W
- yMQzHsgDDVVH7Dnl1Am/fQBw8IY5d9qf4RsWQxgUJGVcZl3dGrudQdmCqJw4tQYo
- uV3yE0DaYu5FOugrBEUVbdIBd0iYocke6GJxZcEsQ6LrdLlYGl+AZtzvuRn924hP
- fcF+4RIFxZTQ1RE/BsELOuK4jIMLaeEJYp2oKPOUKW/OZW9qhGV/yUexFz+4/13Y
- 6UCbIzYAOpuCBMWFGoi9vxfcZOPyd2c+K8wDkEkF43yp6vWoQAcU+EhugL/fHjgt
- j/VBp4KW2RulY2/HW428uyoFHVzSzt7RL8F03+elF3IH2DiAYYzC8QzU8GkvJiBu
- BQhuNTaHbToQ4fcIYzBWw==
-X-ME-Sender: <xms:PfanaR7wx63YQJzlg9DDEjyBKnsR2YC9BLVG0XwJSuceShqdijUjLg>
- <xme:PfanaZsEE9s8JoDnXVh_sC-pmCKj61VdBvh5BlLl_2LDeGZtPLvIQBWdLijxZcZuT
- emxU-lXviMBoAiTYYPP2pya9DR1P6e2ZtBAchxKUyzPDyn1gaOS>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgddvieeftdekucetufdoteggodetrf
- dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
- rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
- gurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddtnecuhfhrohhmpedftehrnhgu
- uceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrthhtvg
- hrnhepveeikeduheeftdegfffffeettedtkeffhfetgeeuvdeivdeujeeuueevveeuueei
- necuffhomhgrihhnpehfrhgvvgguvghskhhtohhprdhorhhgnecuvehluhhsthgvrhfuih
- iivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvgdp
- nhgspghrtghpthhtohepuddupdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehsih
- hmohhnrgesfhhffihllhdrtghhpdhrtghpthhtoheprghirhhlihgvugesghhmrghilhdr
- tghomhdprhgtphhtthhopehmrghtthhhvgifrdgsrhhoshhtsehinhhtvghlrdgtohhmpd
- hrtghpthhtohepmhhitghhrghlrdifrghjuggvtgiikhhosehinhhtvghlrdgtohhmpdhr
- tghpthhtohepphhiohhtrhdrphhiohhrkhhofihskhhisehinhhtvghlrdgtohhmpdhrtg
- hpthhtoheprhhoughrihhgohdrvhhivhhisehinhhtvghlrdgtohhmpdhrtghpthhtohep
- rghrnhgusehkvghrnhgvlhdrohhrghdprhgtphhtthhopehthhhomhgrshdrhhgvlhhlsh
- htrhhomheslhhinhhugidrihhnthgvlhdrtghomhdprhgtphhtthhopegurhhiqdguvghv
- vghlsehlihhsthhsrdhfrhgvvgguvghskhhtohhprdhorhhg
-X-ME-Proxy: <xmx:Pfanaccwqq2iHIcIk6OOPXduEiVMc-DPAWXccumwXIJ0HlEayma2bA>
- <xmx:PfanafzLa5Vx_kizVBtorF1oYAFhWZRTPTAnbv-rsXmOFrhFHyS4QQ>
- <xmx:PfanaczYBFNFAcyYjFGV2DQ2hUBA8ddP9WL9rzg683_v4P2dYOXIpA>
- <xmx:PfanaYZo5qJcT9RCzRYo-8QEvArFk8DucIm2VUHvJ5D3IIijmHoBsQ>
- <xmx:PvanaenkR3ffUG7tRWShftKOxWcyxmZVPgJnss7qkpHRIx1O4arHwU1d>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
- id 7A68070006A; Wed,  4 Mar 2026 04:07:09 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8403510E1BE;
+ Wed,  4 Mar 2026 09:25:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1772616320;
+ bh=/40XvtT+BxKnrYkUa8lYXVQal1PyHUZGLbHPaEdMN/0=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=W3eP6LgN4+gYF7z3TCkdklK7qtpnbpBOeXO2UUKYiDtf7HIQxTPEcIsTcs9Zi+6QQ
+ znC2v5CQKQJO29OMIPh0e7tFxw6rLNHLL2IYIeMSa8FGkZX4C50P39v4bGjXfyAQ5T
+ CbKjMYqDRh6rBqM2Bh20kd0P6BaHgb6FugxGOKBVFYsyMzA/6YNn2/Jh10uZIqP2gf
+ SM4QuExl9deiN5E9ByA+IxCtHMhGsCG6D/te08kddLvu/LOkS+eZiYyKvxtVlXkHyS
+ UdsPajwNuFE8jKK+SQHQI6cR7K9MGY1Q62a+AgpZ5vAqgcT9VJcCqDIim/xZcw5HQG
+ GShZB7AMFokbw==
+Message-ID: <0d69a3a9-3656-4471-a075-85b3090c585f@lankhorst.se>
+Date: Wed, 4 Mar 2026 10:25:19 +0100
 MIME-Version: 1.0
-X-ThreadId: AWJR11MObH7o
-Date: Wed, 04 Mar 2026 10:06:49 +0100
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>,
- "Arnd Bergmann" <arnd@kernel.org>, "Matthew Brost" <matthew.brost@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Rodrigo Vivi" <rodrigo.vivi@intel.com>, "Dave Airlie" <airlied@gmail.com>,
- "Simona Vetter" <simona@ffwll.ch>,
- =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Message-Id: <77d07ecc-69d1-4661-b4f8-56a189a3b56b@app.fastmail.com>
-In-Reply-To: <399b1f09-b134-4ec1-bada-5ec053691bf7@intel.com>
-References: <20260304083741.725121-1-arnd@kernel.org>
- <399b1f09-b134-4ec1-bada-5ec053691bf7@intel.com>
-Subject: Re: [PATCH] drm/xe/tests: avoid build warning on 32-bit targets
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm/ttm/tests: Fix build failure on PREEMPT_RT
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ lkp <lkp@intel.com>
+References: <20260304085616.1216961-1-dev@lankhorst.se>
+ <d98e78d4b24b8b18db6a8d82d52ebf8f91c6fbfb.camel@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <d98e78d4b24b8b18db6a8d82d52ebf8f91c6fbfb.camel@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,20 +55,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Mar 4, 2026, at 09:51, Michal Wajdeczko wrote:
-> On 3/4/2026 9:37 AM, Arnd Bergmann wrote:
->> From: Arnd Bergmann <arnd@arndb.de>
+Hey,
+
+
+Den 2026-03-04 kl. 09:58, skrev Hogander, Jouni:
+> On Wed, 2026-03-04 at 09:56 +0100, Maarten Lankhorst wrote:
+>> Fix a compile error in the kunit tests when CONFIG_PREEMPT_RT is
+>> enabled, and the normal mutex is converted into a rtmutex.
+>>
+>> Reported-by: kernel test robot <lkp@intel.com>
+>> Closes:
+>> https://lore.kernel.org/oe-kbuild-all/202602261547.3bM6yVAS-lkp@intel.com/
+>> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+> 
+> Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
+Thanks, tested if UML was still passing and it does. 
+
+./tools/testing/kunit/kunit.py run --kunitconfig=drivers/gpu/drm/ttm/tests/.kunitconfig
+....
+[10:06:16] [PASSED] ttm_bo_reserve_interrupted
+
+Will wait for CI kunit results and then push.
+
+> 
 >> ---
->> If there is a better way to fix this, please treat this as a bug report and
->> just add a Reported-by tag in the commit.
->
-> this was already fixed and pushed [1]
->
-> [1] 
-> https://gitlab.freedesktop.org/drm/xe/kernel/-/commit/4f18a79b3585a28c9f73f859fe83f12d0eccc736
->
+>> Changes since v1:
+>> - Use the correct locking primitive (Jouni)
+>>
+>>  drivers/gpu/drm/ttm/tests/ttm_bo_test.c | 4 ++--
+>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/ttm/tests/ttm_bo_test.c
+>> b/drivers/gpu/drm/ttm/tests/ttm_bo_test.c
+>> index d468f83220720..f3103307b5df9 100644
+>> --- a/drivers/gpu/drm/ttm/tests/ttm_bo_test.c
+>> +++ b/drivers/gpu/drm/ttm/tests/ttm_bo_test.c
+>> @@ -222,13 +222,13 @@ static void ttm_bo_reserve_interrupted(struct
+>> kunit *test)
+>>  		KUNIT_FAIL(test, "Couldn't create ttm bo reserve
+>> task\n");
+>>  
+>>  	/* Take a lock so the threaded reserve has to wait */
+>> -	mutex_lock(&bo->base.resv->lock.base);
+>> +	dma_resv_lock(bo->base.resv, NULL);
+>>  
+>>  	wake_up_process(task);
+>>  	msleep(20);
+>>  	err = kthread_stop(task);
+>>  
+>> -	mutex_unlock(&bo->base.resv->lock.base);
+>> +	dma_resv_unlock(bo->base.resv);
+>>  
+>>  	KUNIT_ASSERT_EQ(test, err, -ERESTARTSYS);
+>>  }
+> 
 
-Right, that looks better than my version. Apparently it just
-missed the current linux-next that I was testing on.
-
-     Arnd
