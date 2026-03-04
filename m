@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B00B6EB7ECD
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Mar 2026 11:30:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE4A7EB7ED3
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Mar 2026 11:30:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEDD610E9B8;
-	Wed,  4 Mar 2026 11:30:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A05A210E9BC;
+	Wed,  4 Mar 2026 11:30:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R358NFYu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QjloDRvA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CC6010E9B6;
- Wed,  4 Mar 2026 11:30:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC0A510E9BB;
+ Wed,  4 Mar 2026 11:30:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772623828; x=1804159828;
+ t=1772623831; x=1804159831;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VyEFWTQb4qhEJbfhtgA0EcgAW0Bgk6i+K7CQ5W5tVEA=;
- b=R358NFYuNlELytQ6H00/N4GYM9ASbZrIRzk7amqQ2kk5SpWAtP4X28gG
- kXbKutoHvnheoNBFoKzGlAottsJaQGf5Q2q2yyU0CJlS8rbzgUhZRG49i
- /q+skjW2LKcTCc/Qza5Gjl3e2W7HHK5Hfo0j2I1j1O7X6sBIbsYzF96BH
- S93TprrXyZrA+MmKKuiMKYBhKCo6i29Q21CcVLIiei/VfoFdO7LP/H65d
- skDigZVFp3xa0+ObBXTqHZZ4gEjdK0B7lqK0M8xQ2Ff0FvTQEvNWPjW+V
- 0oXvG6hb9SpFVb7zs+2VGzMmQki/rOyo2gzl1jPK1fk8SQHzFTnefPyMX w==;
-X-CSE-ConnectionGUID: Ll/IBOd5R8i393Y670J9aw==
-X-CSE-MsgGUID: bHK6BuBoSDSdHJw9xmdhYw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11718"; a="91255315"
-X-IronPort-AV: E=Sophos;i="6.21,323,1763452800"; d="scan'208";a="91255315"
+ bh=sFZgICEhpaTtIMj4KxNCcAgF9CSNJHxQzo7Zt1/XtzA=;
+ b=QjloDRvAqxMSqG9KBPZH8i+aEb27cKOSKsEZH5oDbBfz9lhrgY8B3CU+
+ 9LnD1TThSd+cXOlN3BcuVOG+r38XenrCOCsgDwOaFqpcRuMVHqo8LRW7o
+ 3tSN2wstnozgDHGKiLDH/1xMzeFcWXU6MBA52rJzfWiIgjzefNvaJ6yIa
+ 4jd3YIhBPJsF5O1XIaeJ8LevExG1CZaJGJwARFZcjI1nfYKAHGlwFXihF
+ 3wQSWbDF9SFyWafGAidPi58Jk5QONfDkaX2Xy2T1MuPYgBlsBEDje98wu
+ yu9Gy7sXohpOe8EJ59rxvNzfla/04HWbXnxnrDTzUTOdeMG1j3IEudUDz A==;
+X-CSE-ConnectionGUID: qiXYJv+DQ9SCMo0qLlnIxw==
+X-CSE-MsgGUID: QXcwaxHfRQ2gKJ7XUhSCLQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11718"; a="91255321"
+X-IronPort-AV: E=Sophos;i="6.21,323,1763452800"; d="scan'208";a="91255321"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 03:30:27 -0800
-X-CSE-ConnectionGUID: nAivn7gJS8it9ezHcM+yAw==
-X-CSE-MsgGUID: eGlsbLdAR6mtr6LY/50R7w==
+ 04 Mar 2026 03:30:31 -0800
+X-CSE-ConnectionGUID: lqRwRZ4BSNyg1eVGgWGgpQ==
+X-CSE-MsgGUID: v2/BmKJnQoWUixZnD1ZGvg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,323,1763452800"; d="scan'208";a="248789998"
+X-IronPort-AV: E=Sophos;i="6.21,323,1763452800"; d="scan'208";a="248790014"
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO
  jhogande-mobl3.intel.com) ([10.245.245.129])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 03:30:26 -0800
+ 04 Mar 2026 03:30:30 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- stable@vger.kernel.org, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH v3 1/4] drm/i915/psr: Repeat Selective Update area alignment
-Date: Wed,  4 Mar 2026 13:30:08 +0200
-Message-ID: <20260304113011.626542-2-jouni.hogander@intel.com>
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v3 3/4] drm/i915/dsc: Add helper for writing DSC Selective
+ Update ET parameters
+Date: Wed,  4 Mar 2026 13:30:10 +0200
+Message-ID: <20260304113011.626542-4-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260304113011.626542-1-jouni.hogander@intel.com>
 References: <20260304113011.626542-1-jouni.hogander@intel.com>
@@ -71,113 +71,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently we are aligning Selective Update area to cover cursor fully if
-needed only once. It may happen that cursor is in Selective Update area
-after pipe alignment and after that covering cursor plane only
-partially. Fix this by looping alignment as long as alignment isn't needed
-anymore.
+There are slice row per frame and pic height configuration in DSC Selective
+Update Parameter Set 1 register. Add helper for configuring these.
 
 v2:
-  - do not unecessarily loop if cursor was already fully covered
-  - rename aligned as su_area_changed
+  - Add WARN_ON_ONCE if vdsc instances per pipe > 2
+  - instead of checking vdsc instances per pipe being > 1 check == 2
 
-Fixes: 1bff93b8bc27 ("drm/i915/psr: Extend SU area to cover cursor fully if needed")
-Cc: <stable@vger.kernel.org> # v6.9+
+Bspec: 71709
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 50 ++++++++++++++++++------
- 1 file changed, 38 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vdsc.c | 23 +++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_vdsc.h |  3 +++
+ 2 files changed, 26 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 5bea2eda744b..7b197e84e77d 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2688,11 +2688,12 @@ static void clip_area_update(struct drm_rect *overlap_damage_area,
- 		overlap_damage_area->y2 = damage_area->y2;
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.c b/drivers/gpu/drm/i915/display/intel_vdsc.c
+index 7e53201b3cb1..6c09c6d99ffe 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.c
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.c
+@@ -820,6 +820,29 @@ void intel_dsc_dp_pps_write(struct intel_encoder *encoder,
+ 				  sizeof(dp_dsc_pps_sdp));
  }
  
--static void intel_psr2_sel_fetch_pipe_alignment(struct intel_crtc_state *crtc_state)
-+static bool intel_psr2_sel_fetch_pipe_alignment(struct intel_crtc_state *crtc_state)
++void intel_dsc_su_et_parameters_configure(struct intel_dsb *dsb, struct intel_encoder *encoder,
++					  const struct intel_crtc_state *crtc_state, int su_lines)
++{
++	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
++	const struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
++	enum pipe pipe = crtc->pipe;
++	int vdsc_instances_per_pipe = intel_dsc_get_vdsc_per_pipe(crtc_state);
++	int slice_row_per_frame = su_lines / vdsc_cfg->slice_height;
++	u32 val;
++
++	drm_WARN_ON_ONCE(display->drm, su_lines % vdsc_cfg->slice_height);
++	drm_WARN_ON_ONCE(display->drm, vdsc_instances_per_pipe > 2);
++
++	val = DSC_SUPS0_SU_SLICE_ROW_PER_FRAME(slice_row_per_frame);
++	val |= DSC_SUPS0_SU_PIC_HEIGHT(su_lines);
++
++	intel_de_write_dsb(display, dsb, LNL_DSC0_SU_PARAMETER_SET_0(pipe), val);
++
++	if (vdsc_instances_per_pipe == 2)
++		intel_de_write_dsb(display, dsb, LNL_DSC1_SU_PARAMETER_SET_0(pipe), val);
++}
++
+ static i915_reg_t dss_ctl1_reg(struct intel_crtc *crtc, enum transcoder cpu_transcoder)
  {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	const struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
- 	u16 y_alignment;
-+	bool su_area_changed = false;
+ 	return is_pipe_dsc(crtc, cpu_transcoder) ?
+diff --git a/drivers/gpu/drm/i915/display/intel_vdsc.h b/drivers/gpu/drm/i915/display/intel_vdsc.h
+index f4d5b37293cf..3372f8694054 100644
+--- a/drivers/gpu/drm/i915/display/intel_vdsc.h
++++ b/drivers/gpu/drm/i915/display/intel_vdsc.h
+@@ -14,6 +14,7 @@ enum transcoder;
+ struct intel_crtc;
+ struct intel_crtc_state;
+ struct intel_display;
++struct intel_dsb;
+ struct intel_dsc_slice_config;
+ struct intel_encoder;
  
- 	/* ADLP aligns the SU region to vdsc slice height in case dsc is enabled */
- 	if (crtc_state->dsc.compression_enable &&
-@@ -2701,10 +2702,18 @@ static void intel_psr2_sel_fetch_pipe_alignment(struct intel_crtc_state *crtc_st
- 	else
- 		y_alignment = crtc_state->su_y_granularity;
- 
--	crtc_state->psr2_su_area.y1 -= crtc_state->psr2_su_area.y1 % y_alignment;
--	if (crtc_state->psr2_su_area.y2 % y_alignment)
-+	if (crtc_state->psr2_su_area.y1 % y_alignment) {
-+		crtc_state->psr2_su_area.y1 -= crtc_state->psr2_su_area.y1 % y_alignment;
-+		su_area_changed = true;
-+	}
-+
-+	if (crtc_state->psr2_su_area.y2 % y_alignment) {
- 		crtc_state->psr2_su_area.y2 = ((crtc_state->psr2_su_area.y2 /
- 						y_alignment) + 1) * y_alignment;
-+		su_area_changed = true;
-+	}
-+
-+	return su_area_changed;
- }
- 
- /*
-@@ -2838,7 +2847,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 	struct intel_crtc_state *crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
- 	struct intel_plane_state *new_plane_state, *old_plane_state;
- 	struct intel_plane *plane;
--	bool full_update = false, cursor_in_su_area = false;
-+	bool full_update = false, su_area_changed;
- 	int i, ret;
- 
- 	if (!crtc_state->enable_psr2_sel_fetch)
-@@ -2945,15 +2954,32 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
- 	if (ret)
- 		return ret;
- 
--	/*
--	 * Adjust su area to cover cursor fully as necessary (early
--	 * transport). This needs to be done after
--	 * drm_atomic_add_affected_planes to ensure visible cursor is added into
--	 * affected planes even when cursor is not updated by itself.
--	 */
--	intel_psr2_sel_fetch_et_alignment(state, crtc, &cursor_in_su_area);
-+	do {
-+		bool cursor_in_su_area;
- 
--	intel_psr2_sel_fetch_pipe_alignment(crtc_state);
-+		/*
-+		 * Adjust su area to cover cursor fully as necessary
-+		 * (early transport). This needs to be done after
-+		 * drm_atomic_add_affected_planes to ensure visible
-+		 * cursor is added into affected planes even when
-+		 * cursor is not updated by itself.
-+		 */
-+		intel_psr2_sel_fetch_et_alignment(state, crtc, &cursor_in_su_area);
-+
-+		su_area_changed = intel_psr2_sel_fetch_pipe_alignment(crtc_state);
-+
-+		/*
-+		 * If the cursor was outside the SU area before
-+		 * alignment, the alignment step (which only expands
-+		 * SU) may pull the cursor partially inside, so we
-+		 * must run ET alignment again to fully cover it. But
-+		 * if the cursor was already fully inside before
-+		 * alignment, expanding the SU area won't change that,
-+		 * so no further work is needed.
-+		 */
-+		if (cursor_in_su_area)
-+			break;
-+	} while (su_area_changed);
- 
- 	/*
- 	 * Now that we have the pipe damaged area check if it intersect with
+@@ -37,6 +38,8 @@ void intel_dsc_dsi_pps_write(struct intel_encoder *encoder,
+ 			     const struct intel_crtc_state *crtc_state);
+ void intel_dsc_dp_pps_write(struct intel_encoder *encoder,
+ 			    const struct intel_crtc_state *crtc_state);
++void intel_dsc_su_et_parameters_configure(struct intel_dsb *dsb, struct intel_encoder *encoder,
++					  const struct intel_crtc_state *crtc_state, int su_lines);
+ void intel_vdsc_state_dump(struct drm_printer *p, int indent,
+ 			   const struct intel_crtc_state *crtc_state);
+ int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state);
 -- 
 2.43.0
 
