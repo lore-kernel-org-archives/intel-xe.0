@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC3ADEDEBF7
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Mar 2026 07:23:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CBB5EDEC12
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Mar 2026 07:24:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53B4810E138;
-	Wed,  4 Mar 2026 07:23:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U3Z9E1BG";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8545310E138;
- Wed,  4 Mar 2026 07:23:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772609007; x=1804145007;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=G5vlQjfftmoGyVQ90i64ILbH++7Jqez8nUv5o92OiOg=;
- b=U3Z9E1BGEXj7f26xQX3DhvBpefZKptywAg0yk/hGB8ppXEGbd0Qaqgjb
- 4gWBETKkRSS7rutIPYCRliliQGM6SshH7tvSE+LhYzkXZ/4XvcRLlXqpO
- dQTCu/f66C1NEfEvT7r54WAM/WcZzdEtvXClPLw4uHN7+c82dXrf5Sjoq
- 42ZR8glrUeKAMWuq43lc1jR1Dv2WUIXXr7i20VJPDikX0aNJZAHGnRkFr
- 4li1FSMx5Bad4gXuXqD6NGlpefEAWDPpM+ZIkmBjxsSHlWlmgqZ1cLDlS
- re+/Q2WWqAxT4D2VUTyb7tJF1Y6RTlv7UGwWKek+S3yaLEdvEfWpCoHGf w==;
-X-CSE-ConnectionGUID: gDQDYx0QRGqCEKqzy6ekIA==
-X-CSE-MsgGUID: nXm5vS7dQAi1DYEBG4C3hA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11718"; a="91053895"
-X-IronPort-AV: E=Sophos;i="6.21,323,1763452800"; d="scan'208";a="91053895"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Mar 2026 23:23:26 -0800
-X-CSE-ConnectionGUID: 8z/PAUJnSxWM1c+xLNLbaQ==
-X-CSE-MsgGUID: jb8PMHYCSEWoo+977jOLPQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,323,1763452800"; d="scan'208";a="223249149"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa005.jf.intel.com with ESMTP; 03 Mar 2026 23:23:23 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: animesh.manna@intel.com, ankit.k.nautiyal@intel.com, jani.nikula@intel.com,
- jouni.hogander@intel.com, Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCHv6] drm/i915/dp: Read ALPM caps after DPCD init
-Date: Wed,  4 Mar 2026 12:51:57 +0530
-Message-Id: <20260304072157.1123283-1-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260302033630.428913-1-arun.r.murthy@intel.com>
-References: <20260302033630.428913-1-arun.r.murthy@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50E7610E138;
+	Wed,  4 Mar 2026 07:24:11 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6641C10E138;
+ Wed,  4 Mar 2026 07:24:10 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3988519065484624480=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_drm/xe/vf=3A_Improve_getti?=
+ =?utf-8?q?ng_clean_NULL_context?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 04 Mar 2026 07:24:10 -0000
+Message-ID: <177260905041.314042.4187382661200520822@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260303201354.17948-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20260303201354.17948-1-michal.wajdeczko@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,70 +36,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For eDP read the ALPM DPCD caps after DPCD initalization and just before
-the PSR init.
+--===============3988519065484624480==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Move intel_alpm_init to intel_edp_init_dpcd (Jouni)
-v3: Add Fixes with commit-id (Jouni)
-v4: Separated the alpm dpcd read caps from alpm_init and moved to
-intel_edp_init_dpcd.
-v5: Read alpm_caps always for eDP irrespective of the eDP version (Jouni)
-v6: replace drm_dp_dpcd_readb with drm_dp_dpcd_read_byte (Jouni)
+== Series Details ==
 
-Fixes: 15438b325987 ("drm/i915/alpm: Add compute config for lobf")
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-Reviewed-by: Animesh Manna <animesh.manna@intel.com>
-Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_alpm.c | 6 ------
- drivers/gpu/drm/i915/display/intel_dp.c   | 7 +++++++
- 2 files changed, 7 insertions(+), 6 deletions(-)
+Series: drm/xe/vf: Improve getting clean NULL context
+URL   : https://patchwork.freedesktop.org/series/162520/
+State : failure
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index b3334bc4d0f9..a7350ce8e716 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -44,12 +44,6 @@ bool intel_alpm_is_alpm_aux_less(struct intel_dp *intel_dp,
- 
- void intel_alpm_init(struct intel_dp *intel_dp)
- {
--	u8 dpcd;
--
--	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_RECEIVER_ALPM_CAP, &dpcd) < 0)
--		return;
--
--	intel_dp->alpm_dpcd = dpcd;
- 	mutex_init(&intel_dp->alpm.lock);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 025e906b63a9..d6a7ccbc9932 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4709,6 +4709,7 @@ static bool
- intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
-+	int ret;
- 
- 	/* this function is meant to be called only once */
- 	drm_WARN_ON(display->drm, intel_dp->dpcd[DP_DPCD_REV] != 0);
-@@ -4748,6 +4749,12 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector
- 	 */
- 	intel_dp_init_source_oui(intel_dp);
- 
-+	/* Read the ALPM DPCD caps */
-+	ret = drm_dp_dpcd_read_byte(&intel_dp->aux, DP_RECEIVER_ALPM_CAP,
-+				    &intel_dp->alpm_dpcd);
-+	if (ret < 0)
-+		return false;
-+
- 	/*
- 	 * This has to be called after intel_dp->edp_dpcd is filled, PSR checks
- 	 * for SET_POWER_CAPABLE bit in intel_dp->edp_dpcd[1]
--- 
-2.25.1
+== Summary ==
 
+ERROR: The runconfig 'xe-4655-cfc20c776480fda8c1b0517b187bb71ec0781cd4_FULL' does not exist in the database
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162520v1/index.html
+
+--===============3988519065484624480==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/vf: Improve getting clean NULL context</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162520/">https://patchwork.freedesktop.org/series/162520/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162520v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162520v1/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-4655-cfc20c776480fda8c1b0517b187bb71ec0781cd4_FULL' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============3988519065484624480==--
