@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32619EDEBFF
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Mar 2026 01:13:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D45D7EDEBFD
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Mar 2026 01:18:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A59AF10E901;
-	Wed,  4 Mar 2026 01:13:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8710F10E901;
+	Wed,  4 Mar 2026 01:18:24 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EBAB10E901;
- Wed,  4 Mar 2026 01:13:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8733754785626183487=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D58DF10E0C5;
+ Wed,  4 Mar 2026 01:18:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_Fix_exec_queue_un?=
- =?utf-8?q?wind_on_hw_engine_group_add_failure?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Enable_Wa=5F140?=
+ =?utf-8?q?25515070=2C_Enable_indirect_ring_state_for_XE2+_=28rev8=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+To: "Julia Filipchuk" <julia.filipchuk@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 04 Mar 2026 01:13:32 -0000
-Message-ID: <177258681206.312866.16030380583511729829@a3b018990fe9>
+Date: Wed, 04 Mar 2026 01:18:23 -0000
+Message-ID: <177258710387.310842.7676358730138489419@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260303235219.1035961-2-shuicheng.lin@intel.com>
-In-Reply-To: <20260303235219.1035961-2-shuicheng.lin@intel.com>
+References: <20260304003431.758201-3-julia.filipchuk@intel.com>
+In-Reply-To: <20260304003431.758201-3-julia.filipchuk@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,57 +40,110 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8733754785626183487==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe: Fix exec queue unwind on hw engine group add failure
-URL   : https://patchwork.freedesktop.org/series/162533/
-State : failure
+Series: drm/xe: Enable Wa_14025515070, Enable indirect ring state for XE2+ (rev8)
+URL   : https://patchwork.freedesktop.org/series/160812/
+State : warning
 
 == Summary ==
 
-ERROR: The runconfig 'xe-4655-cfc20c776480fda8c1b0517b187bb71ec0781cd4_BAT' does not exist in the database
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4268074229b80b392911bc5818336427b0312916
+Author: Julia Filipchuk <julia.filipchuk@intel.com>
+Date:   Tue Mar 3 16:34:24 2026 -0800
 
-== Logs ==
+    drm/xe: Enable Wa_14025515070
+    
+    Corrects a failure on context switch. On registration of context with
+    indirect ring state will correct state of targeted and idle command
+    streamers.
+    
+    This Wa requires GuC 70.53+ (uapi 1.26+).  If indirect_ring_state is
+    enabled and Wa is unavailable, notify and disable indirect_ring_state.
+    
+    Added additional XE_RTP_PASTE macros for expansion of longer rules.
+    
+    Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
++ /mt/dim checkpatch cfc20c776480fda8c1b0517b187bb71ec0781cd4 drm-intel
+4268074229b8 drm/xe: Enable Wa_14025515070
+-:71: WARNING:LONG_LINE: line length of 167 exceeds 100 columns
+#71: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:69:
++#define XE_RTP_PASTE_13(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_12(prefix_, sep_, _XE_TUPLE_TAIL args_)
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162533v1/index.html
+-:71: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#71: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:69:
++#define XE_RTP_PASTE_13(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_12(prefix_, sep_, _XE_TUPLE_TAIL args_)
 
---===============8733754785626183487==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:71: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'prefix_' - possible side-effects?
+#71: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:69:
++#define XE_RTP_PASTE_13(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_12(prefix_, sep_, _XE_TUPLE_TAIL args_)
+
+-:71: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'args_' - possible side-effects?
+#71: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:69:
++#define XE_RTP_PASTE_13(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_12(prefix_, sep_, _XE_TUPLE_TAIL args_)
+
+-:72: WARNING:LONG_LINE: line length of 167 exceeds 100 columns
+#72: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:70:
++#define XE_RTP_PASTE_14(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_13(prefix_, sep_, _XE_TUPLE_TAIL args_)
+
+-:72: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#72: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:70:
++#define XE_RTP_PASTE_14(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_13(prefix_, sep_, _XE_TUPLE_TAIL args_)
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:72: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'prefix_' - possible side-effects?
+#72: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:70:
++#define XE_RTP_PASTE_14(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_13(prefix_, sep_, _XE_TUPLE_TAIL args_)
+
+-:72: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'args_' - possible side-effects?
+#72: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:70:
++#define XE_RTP_PASTE_14(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_13(prefix_, sep_, _XE_TUPLE_TAIL args_)
+
+total: 2 errors, 2 warnings, 4 checks, 51 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Fix exec queue unwind on hw engine group add failure</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162533/">https://patchwork.freedesktop.org/series/162533/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162533v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162533v1/index.html</a></td></tr>
-
-</table>
-
-
-    <p>ERROR: The runconfig 'xe-4655-cfc20c776480fda8c1b0517b187bb71ec0781cd4_BAT' does not exist in the database</p>
-
-</body>
-</html>
-
---===============8733754785626183487==--
