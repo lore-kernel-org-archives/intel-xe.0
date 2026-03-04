@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B23A6EDEC0F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1B62FD006E
 	for <intel-xe@archiver.kernel.org>; Wed,  4 Mar 2026 13:03:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7736F10E9EE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8836010E9F0;
 	Wed,  4 Mar 2026 13:03:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="D0hBDGox";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="GK9GPEX6";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87B9A10E9ED
- for <intel-xe@lists.freedesktop.org>; Wed,  4 Mar 2026 13:03:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCD6910E9EC
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Mar 2026 13:03:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,24 +22,23 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=OkArCljfCOiaElh+YsUOQj1hMkvYasXtemMoOP8KeyQ=; b=D0hBDGox+D4lt70Ld+eeDM+q9a
- 2MAzJlpCEJdfh/Uq2BB5ZstwDtPy+oduHCOiGMzfAEB/KD68UduyZA6+85nqLdt9RH42qBK6ILzG0
- nRoN9gZap8X/niKQYg75q/nJ/2eaYxroYxsAD8l3txw7kM7Vfy3TmArLsL9npg4kS5p+cwJ9ZIQ1a
- PyON/ZjdBrktX6MOKlNOrlXH2J6R6gytTZ8oSwozIHBCUEhF8vPOccNtZgDNYp7iITyNNCX6ydrAL
- 8wafnbWjsVovLjcggV6LUDgiLcUl10L470wSlodOyEZ7a0f5efYRvmJd/aK+gsdzUbRkDuDOpw8mj
- RGe6e/pQ==;
+ bh=nWd67F+byMz5p3gk+pdm4hKboP7tkgWqdrP5XIEqBl4=; b=GK9GPEX631Y90kK8euenBLvjL5
+ 8IGyF583ahe9b78yYqz072f6JAn/FhkjwtiNncMZtThpcsPmUdNOcsmKU/IoBSBayhohiFrdNH8Tk
+ WGMhJ/J3TIjMVl4nrEoaHdSCbpuDyDcroV20/QzXPbU8P8c1hYuRL9wl+pQAl0AZYeAKyfUwe1oN3
+ so6sCax9KVmlUJen2uCJiPH3c1CyMzP05iqxIImUcDlhLVFy6b9TjJMM+Vh0fD8kDMKF0npu80FYX
+ FLAz1hcZOcLTJDUkuQtLaVmJoCYwSICYDosriGeLxaAKnkLB3lFLz7x0NTUP5SM290gZxV11X60d2
+ DWnTldTA==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vxlsm-008vT5-LE; Wed, 04 Mar 2026 14:03:20 +0100
+ id 1vxlso-008vTK-2p; Wed, 04 Mar 2026 14:03:22 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v18 3/9] drm/xe/xelpg: Limit AuxCCS ring buffer programming to
- Alderlake
-Date: Wed,  4 Mar 2026 13:03:08 +0000
-Message-ID: <20260304130314.6084-4-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v18 5/9] drm/xe/xelp: Wait for AuxCCS invalidation to complete
+Date: Wed,  4 Mar 2026 13:03:10 +0000
+Message-ID: <20260304130314.6084-6-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260304130314.6084-1-tvrtko.ursulin@igalia.com>
 References: <20260304130314.6084-1-tvrtko.ursulin@igalia.com>
@@ -59,35 +58,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-At the moment the driver does not support AuxCCS at all due respective
-modifiers being hidden from userspace.
-
-As we are about to start enabling them, starting with Alderlake, let us
-begin by limiting the ring buffer support to just that initial platform.
+On AuxCCS platforms we need to wait for AuxCCS invalidations to complete.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ring_ops.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/instructions/xe_mi_commands.h | 6 ++++++
+ drivers/gpu/drm/xe/xe_ring_ops.c                 | 9 ++++++++-
+ drivers/gpu/drm/xe/xe_ring_ops_types.h           | 2 +-
+ 3 files changed, 15 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+index c47b290e0e9f..49d8ffd026d5 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+@@ -81,4 +81,10 @@
+ #define MI_SET_APPID_SESSION_ID_MASK	REG_GENMASK(6, 0)
+ #define MI_SET_APPID_SESSION_ID(x)	REG_FIELD_PREP(MI_SET_APPID_SESSION_ID_MASK, x)
+ 
++#define MI_SEMAPHORE_WAIT_TOKEN		(__MI_INSTR(0x1c) | XE_INSTR_NUM_DW(5)) /* XeLP+ */
++#define   MI_SEMAPHORE_REGISTER_POLL	REG_BIT(16)
++#define   MI_SEMAPHORE_POLL		REG_BIT(15)
++#define   MI_SEMAPHORE_CMP_OP_MASK	REG_GENMASK(14, 12)
++#define   MI_SEMAPHORE_SAD_EQ_SDD	REG_FIELD_PREP(MI_SEMAPHORE_CMP_OP_MASK, 4)
++
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 53d420d72164..07235a895f4b 100644
+index 91f52d7748ca..596379e6d742 100644
 --- a/drivers/gpu/drm/xe/xe_ring_ops.c
 +++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -305,9 +305,9 @@ static bool has_aux_ccs(struct xe_device *xe)
- 	 * PVC is a special case that has no compression of either type
- 	 * (FlatCCS or AuxCCS).  Also, AuxCCS is no longer used from Xe2
- 	 * onward, so any future platforms with no FlatCCS will not have
--	 * AuxCCS either.
-+	 * AuxCCS, and we explicity do not want to support it on MTL.
- 	 */
--	if (GRAPHICS_VER(xe) >= 20 || xe->info.platform == XE_PVC)
-+	if (GRAPHICS_VERx100(xe) >= 1270 || xe->info.platform == XE_PVC)
- 		return false;
+@@ -54,7 +54,14 @@ static int emit_aux_table_inv(struct xe_gt *gt, struct xe_reg reg,
+ 	dw[i++] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1) | MI_LRI_MMIO_REMAP_EN;
+ 	dw[i++] = reg.addr + gt->mmio.adj_offset;
+ 	dw[i++] = AUX_INV;
+-	dw[i++] = MI_NOOP;
++	dw[i++] = MI_SEMAPHORE_WAIT_TOKEN |
++		  MI_SEMAPHORE_REGISTER_POLL |
++		  MI_SEMAPHORE_POLL |
++		  MI_SEMAPHORE_SAD_EQ_SDD;
++	dw[i++] = 0;
++	dw[i++] = reg.addr + gt->mmio.adj_offset;
++	dw[i++] = 0;
++	dw[i++] = 0;
  
- 	return !xe->info.has_flat_ccs;
+ 	return i;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+index 477dc7defd72..1197fc0bf2af 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
++++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+@@ -8,7 +8,7 @@
+ 
+ struct xe_sched_job;
+ 
+-#define MAX_JOB_SIZE_DW 70
++#define MAX_JOB_SIZE_DW 74
+ #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
+ 
+ /**
 -- 
 2.52.0
 
