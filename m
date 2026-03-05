@@ -4,43 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B002EF30946
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 12:45:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB61EF30946
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 12:50:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7494110EB53;
-	Thu,  5 Mar 2026 12:45:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A82C310EB21;
+	Thu,  5 Mar 2026 12:50:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="jI0wXuwV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="afjDSUia";
 	dkim-atps=neutral
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7001C10EB1B;
- Thu,  5 Mar 2026 12:45:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1772714745;
- bh=ab9I5AqlIbEt0Cs5813dVMgxpQwoO7pPngmI92wUOjY=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=jI0wXuwVETqNnCkQfLyd27nQOpOgGx4JGQ58IcMIReKUWO6sOGhxRBA9xy1QTnzbx
- mzCOFbTNh1yZpoNOoo6k3gnPDoac3atksFsloMMvpVFu0hp/kGWIk/6hjhUp/4HoBX
- fArmFvaq+2eTPO/lrw0h2AcbdlkSjMK8LRYgr+Np66ZpCrOsomKUNszjyjh6jss5x2
- ph9nIaeIJEbKZLQxzOCT8SSvqeMwjJRsfgJ6sP7bxtJcmTOCwFgQBI+U/N5p5m7Cfz
- n/EzCSnmjJh4KRvsfShZNYIbKS9V2TQGYn7W6yCZLAQOwCMWPqj6cWqvBr4DM0Hroj
- jgR9ZSaXU8f3g==
-Message-ID: <fbf457b5-cec0-41c6-bd04-55b5aabe23f6@lankhorst.se>
-Date: Thu, 5 Mar 2026 13:45:44 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5302D10EB21;
+ Thu,  5 Mar 2026 12:50:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772715001; x=1804251001;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WMCBu7nETDMMeLdTIUM3q3fbFVMGLADq4lYO1V4zoj0=;
+ b=afjDSUia6vMS2P2hRhSHOfUGF7Ihx/yyD5ywnSNxTOxGK9gsQP+sXNpp
+ +Ri1WrCHwRVNy6xG8S1dWOPKh28gdR3mCFBo2N9mRIs4bNPAvk6TSRDyE
+ 4lBAWtGOEf4oe6qnMcs41Mwyf8nTE7YhGEwnyzvzRzd/3/36dK9g9yAPF
+ i9yt26kgsFAPimJp8pGlShj+lj8O4wpHcOhBzEUDUup/zH0IMJ9xw63mt
+ 7EuL5KNYUY2oWD6rY3Kfm+KmlfW33FWKrrDUVK8+J6pM2Nr8jzexPzbc1
+ +AEn3UclxUaRMOPwGsZockVo1VPrSaXZKwh1efZignzSSH0B8AHtWA5S9 g==;
+X-CSE-ConnectionGUID: Yqe2JajZQEiwG7NkB7GnMg==
+X-CSE-MsgGUID: UN0lOkSOSB+IrRCDjq2PQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="73706858"
+X-IronPort-AV: E=Sophos;i="6.23,103,1770624000"; d="scan'208";a="73706858"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2026 04:50:01 -0800
+X-CSE-ConnectionGUID: MEV6fzwyReiUEy6fGBZhbw==
+X-CSE-MsgGUID: Olp1u3p3QeiqWo1L0/4d3w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,103,1770624000"; d="scan'208";a="215483405"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by fmviesa006.fm.intel.com with ESMTP; 05 Mar 2026 04:49:59 -0800
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jouni.hogander@intel.com, jani.nikula@intel.com,
+ Animesh Manna <animesh.manna@intel.com>
+Subject: [PATCH v6 0/2] Panel Replay BW optimization.
+Date: Thu,  5 Mar 2026 17:50:09 +0530
+Message-Id: <20260305122011.3297262-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] Revert "drm/syncobj: Fix handle <-> fd ioctls with dirty
- stack"
-To: Julian Orth <ju.orth@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Rob Clark <robdclark@chromium.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
-References: <20260305113734.1309238-1-dev@lankhorst.se>
- <CAHijbEWKN8EY0uy73XR2RRh1ScgarZTLibu5ECR08OeqTje54Q@mail.gmail.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <CAHijbEWKN8EY0uy73XR2RRh1ScgarZTLibu5ECR08OeqTje54Q@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -57,69 +66,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+Unused bandwidth can be used by external display agents for Panel Replay
+enabled DP panel during idleness with link on. This patch series
+enabling the same.
 
-Den 2026-03-05 kl. 12:48, skrev Julian Orth:
-> On Thu, Mar 5, 2026 at 12:37 PM Maarten Lankhorst <dev@lankhorst.se> wrote:
->>
->> This reverts commit 2e3649e237237258a08d75afef96648dd2b379f7.
->>
->> The problem occurs when userspace is compiled against new headers
->> with new members, but don't correctly initialise those new members.
->>
->> This is not a kernel problem, and should be fixed in userspace by
->> correctly zero'ing all members.
-> 
-> I don't mind it being reverted since userspace rust code is not
-> affected by this failure mode.
-> 
-> However, if you're committed to the idea that this is a userspace
-> issue, then I think the correct solution would be to instead apply the
-> patch you suggested. It clarifies the intention of the code in my
-> opinion.
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 
-Thanks for having a better understanding of the issue now. :)
-I will resend the original patch I mentioned later. I just wanted to get
-this revert in drm/drm-fixes before it reaches a rc kernel.
+Animesh Manna (2):
+  drm/i915/display: Panel Replay BW optimization for DP2.0 tunneling
+  drm/i915/display: Disable Panel Replay for DP-tunneling without
+    optimization
 
-Can I read your reply as an acked-by?
+ .../gpu/drm/i915/display/intel_display_regs.h |  1 +
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  1 +
+ drivers/gpu/drm/i915/display/intel_psr.c      | 42 ++++++++++++++++++-
+ 4 files changed, 43 insertions(+), 2 deletions(-)
 
-Kind regards,
-~Maarten Lankhorst
-
->>
->> Cc: Rob Clark <robdclark@chromium.org>
->> Cc: Julian Orth <ju.orth@gmail.com>
->> Cc: Christian König <christian.koenig@amd.com>
->> Cc: Michel Dänzer <michel.daenzer@mailbox.org>
->> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
->> ---
->>  drivers/gpu/drm/drm_syncobj.c | 4 ++--
->>  1 file changed, 2 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/drm_syncobj.c b/drivers/gpu/drm/drm_syncobj.c
->> index 49eccb43ce63d..250734dee928e 100644
->> --- a/drivers/gpu/drm/drm_syncobj.c
->> +++ b/drivers/gpu/drm/drm_syncobj.c
->> @@ -875,7 +875,7 @@ drm_syncobj_handle_to_fd_ioctl(struct drm_device *dev, void *data,
->>                 return drm_syncobj_export_sync_file(file_private, args->handle,
->>                                                     point, &args->fd);
->>
->> -       if (point)
->> +       if (args->point)
->>                 return -EINVAL;
->>
->>         return drm_syncobj_handle_to_fd(file_private, args->handle,
->> @@ -909,7 +909,7 @@ drm_syncobj_fd_to_handle_ioctl(struct drm_device *dev, void *data,
->>                                                           args->handle,
->>                                                           point);
->>
->> -       if (point)
->> +       if (args->point)
->>                 return -EINVAL;
->>
->>         return drm_syncobj_fd_to_handle(file_private, args->fd,
->> --
->> 2.51.0
->>
+-- 
+2.29.0
 
