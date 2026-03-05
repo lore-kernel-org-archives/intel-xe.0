@@ -4,145 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB6D2F3D31C
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 16:12:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E978F3D330
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 16:28:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 85A6210EC3E;
-	Thu,  5 Mar 2026 16:12:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C00C10EC49;
+	Thu,  5 Mar 2026 16:28:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kyYToqH8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LHSoWZxm";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52D2010EC3C;
- Thu,  5 Mar 2026 16:12:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D131210EC49
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Mar 2026 16:28:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772727127; x=1804263127;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- in-reply-to:mime-version;
- bh=2aDza1PQwkbZOxdFZhCLxmb5LynbORTurOSzPNPkH3Y=;
- b=kyYToqH82psAgE7PiwC0ISrexMPoF6Cm58Gc4o7G9IEss0n9N/kvCSk7
- cJ2c4Yt64Gg0ihfAjh9JpnNCnlMgQRXiAFi1SO6mjmsg9jkxWApklUnS0
- VwmgSCoYFa7Oz442Be1svZm/pihoRxj+9pri5eqE/n+wDOsUn21QRQkr6
- zbylo/nkEk3vUXW5Wx6OVxB84n3I7X15nm6Pa6ttf4aCLMipYc+mAWvaJ
- SiaLi0kypB+YLbINAlAfbQU/faugWOl8tIDY2/+Z9p92kV1zVQTcZJQym
- L9Edly5JLKWnC08mEObMQIVc98TyXRt4KI1XTmj9xfUtJuZawsCcy4M+h A==;
-X-CSE-ConnectionGUID: pJLwWj/hRauyaAXWBXpPXw==
-X-CSE-MsgGUID: p6/yT2A7RFeTk4B8BJYuZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11720"; a="73725404"
-X-IronPort-AV: E=Sophos;i="6.23,103,1770624000"; d="scan'208";a="73725404"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2026 08:12:06 -0800
-X-CSE-ConnectionGUID: YzApFBdnSwisqxEStnh2Xw==
-X-CSE-MsgGUID: uj1TK282TmaCg5DalYZJzw==
+ t=1772728104; x=1804264104;
+ h=date:from:to:cc:subject:message-id;
+ bh=20MyjVB+cjt26iu6ypXq9+FDJNQtEKKYEFIThSaQER0=;
+ b=LHSoWZxmWiOUiPEhn+1Z3IwRIScdxH7zOlFx/btNcFWNu+dB6M7SOQkl
+ pnBI0SGb2GMMSx4l9wFYYjWp9dMyi/qD+s9zde/r23Vlt3AAXSuYQ6sUl
+ 9Rwxdi1wtq22Ueaq29gcMPC//uSrjhYzU7Sa+5jE60rIGTTp6r11RMap5
+ +pPkHv+uZT74DhZ7xax7ICM3ToIwZWyvp52ywm8aq4735y+bVVCy1WLmt
+ Luc1yR+sTuo8Z0ygFNwQtApFyZI/YHlLIvNs+k3siroi7KYMmYacarrrz
+ 7W0bbct8MUfzVJKXhstd6F0KG4O2CmTP/IfkH84cCZ/pDsXQ9EkeMF9C6 Q==;
+X-CSE-ConnectionGUID: X+I89HO4Tl62y7OlOy5Kzg==
+X-CSE-MsgGUID: y5/FTRsmQxeeTIrxBQg2rQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11720"; a="96439209"
+X-IronPort-AV: E=Sophos;i="6.23,103,1770624000"; d="scan'208";a="96439209"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2026 08:28:22 -0800
+X-CSE-ConnectionGUID: GDcLHmleRBqfIqrZrswMig==
+X-CSE-MsgGUID: VpE9N71eT7WmNzqm7YPtVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,103,1770624000"; d="scan'208";a="216530348"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2026 08:12:05 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 5 Mar 2026 08:12:05 -0800
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 5 Mar 2026 08:12:05 -0800
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.16) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 5 Mar 2026 08:12:04 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ewxRwQcReePirirnuNV0iApprwAN3fqAeCfvwWwVUBn4ou73+PiIKtokj4yKevpcfSTRAHb7/pG1gsl9tXsQL1slHlRbufEE3lXllfoTDGeMC9yJuo6Tj8rMM0HIAutIotUc7MMmxgFPKelzm86Pw37XK/eW6wCqRbUJ/eZO4orH71HH4ndyqWZytMaOvn4E391O8j3qqIQj0YSyYoketPwLFUpYQnfl9GjMx3CWnDy85DfP86WI3Sfh+E3jnNAZa6JxHjK716cCUVjsgUjwNv1Ew7Iy9MiNCOgi2pPmSOIanzVwK4iLj4REi+WE79j7pv65Eq88ZHa7jyITD/QHHA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7HE9SZtNnk0O4HWlrZceoMNDazMFHeZjFQBi1VHs/S4=;
- b=iT2ANzgd5s0K89F0QjuzYsWHwCDivfbGMkJNeBmqLt9QhM87BuVyF4Lbg4uEE5b0ubMrRXJFaPpB5fujZ3CzUCmFZcRaIl2uXsKOhcuYUouTvNxoew3S9vplG1UCz6KKPLx/XAoLUND5BhMbyv8rTN19BdNXCgBe/m96b3qZR9QO4ETgexi6e8/MihMACBCkUtHWjvAXv1/JOe+9VRvX/BMuhZee2J7aTEvwjC46Sjw1YAAGjOY/ViNof+Uf1UpGxfbwtZn9kyWLQnPgtFfcWxVgwtlZOoDIBsDPeWIYFG/2q0Zz0NEkxeb7ok7vvNt9nqBTM3PFcvW0bTwnSN91mg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
- by MW6PR11MB8368.namprd11.prod.outlook.com (2603:10b6:303:246::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.22; Thu, 5 Mar
- 2026 16:12:00 +0000
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::9ca5:4d1d:db45:f523]) by SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::9ca5:4d1d:db45:f523%5]) with mapi id 15.20.9654.015; Thu, 5 Mar 2026
- 16:12:00 +0000
-Date: Thu, 5 Mar 2026 18:11:51 +0200
-From: Imre Deak <imre.deak@intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>
-CC: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, "Jani
- Nikula" <jani.nikula@linux.intel.com>, <dri-devel@lists.freedesktop.org>, 
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH RFC 0/4] DP: Read LTTPR caps followed by DPRX caps
-Message-ID: <aamrRxXwBxzt6s4F@ideak-desk.lan>
-References: <20260305-dp_aux-v1-0-54ee0b5f5158@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260305-dp_aux-v1-0-54ee0b5f5158@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-X-ClientProxiedBy: GVX0EPF0005F6AA.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:158:400::287) To SJ0PR11MB4845.namprd11.prod.outlook.com
- (2603:10b6:a03:2d1::10)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|MW6PR11MB8368:EE_
-X-MS-Office365-Filtering-Correlation-Id: 257b6f41-932c-4324-80f4-08de7ad1ee56
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: DQczXjVVjuFScVD6IoKivZ0WUvhHKcl1XBjh2E4Y6ztM+I+9PvGi+Y6hTJ8obD1YfJgt/ji/6pPheGn3BpFOTAloJKKNUB6gpVlOCjcwg6W/hLVpC8ztvQ5iOuBl+4jkJB0aQfqnfOSEett3SvFzUlYgJbDZsgvabTKDy9oSq/VpP0SHxfqoyUs+nItbQI7tBJCNupPNrZV8j3jx50QWiqO5IlictI3eanAK347TNKXaSQwErnXypHpjJxT7EL62hgEGh/sUUJrPAkdzPzzNP3jBkmL+v5lB2GmKvHTxGwELhntnD2w5o9d8PJtVpU0uy9SpKe18J/vpNXE3i1JS86OP2FAZyZa1ldDs++X8OuhsFTU1bqbq2RJf4BgMMo2cfcF7Fl4o68oIvV2cubOlxhanNVgzpjm3HxVnFnvinvPk2cwOax7o6BYm1FpaMO83dP1Ftflv3LQF78eApkDlFcrNQVVsnmNmnaeZD7YgoOVb/5W862ZQ30pN/WOwQWSQEE/06MvrJWoqYFbCOLq6YYqVUrMAiFLDJbKugSYSIReGkZahuIDt4K10535iCnsIjW8rQc4NzcOY2dJyEO/qLIz/J00WZnvjZpfBLU/QbhMU8vEqTl/eWBLNQWVzwor2FxE1I8EYEx38nYhRzMc8FFPepWUh2343479yXEcIEPUKg6MU2Jl8Pt5z1tK1y5Ci
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4G6jA040mAFag899XwSLEqlHcZ4HWVHPQZAedFb7a2DG7q/IgFVlisAOY4Mg?=
- =?us-ascii?Q?GiPBpJ+T8jw1egMqlJ4h+R63FVw1CN1Jod7KMGm/eQ5kCDZ9mevKjHGOC9P7?=
- =?us-ascii?Q?KJ/9OPmegSL8aKLX8wdmVj4w/MwNb5XpkuxmGdb5OHYYJvmHdFKJMks4ojL/?=
- =?us-ascii?Q?+dL4vBeE2NfGlYazs5hi5FMNafRLuFgCZbKbNvS71DaTWpDkXz3cjEJNKUX4?=
- =?us-ascii?Q?8qsmWeyBn/sxfwphiwhvtt6s4kmSK9z6CSzsvwNQjt2wiWyZqkAQiIGVCHQk?=
- =?us-ascii?Q?4OuTDm2eBSsjTE2kOGUCn7x6DTNiveR8rXbWGMG2lZeiOPDN7WoVjDSv1HbL?=
- =?us-ascii?Q?YH1P62tBSGxjQKbmd6O9VArx3TXUEVVitHVqOMjaoUk7B3l/uMbg2sKNbpJd?=
- =?us-ascii?Q?akUJOujR678HJ8916hzqK9MHk1cEUH6yzJPngr+r2upsKe9TpIllQTMXlId6?=
- =?us-ascii?Q?blRT3SlFfxDmmJRIHxdxu/ibK/p14Gox/xKPwjDLwHn3Zgs4Us/dh0rfUvM7?=
- =?us-ascii?Q?5nce49V0FUpH8iELaQCU4XHnHz/BJEeRKPjetCuhnIYRXE+hGsntzWn+VngC?=
- =?us-ascii?Q?aB4X/h+GOwHYM3dKN+83XRPLvpNkDmduExIfcz2hro9qeyaq3XHMTkruAK9q?=
- =?us-ascii?Q?loJqsj/X4YrFPBNs5DjqGmUejBRRIvF8e8icjtkHdgedpLmRBv10FrgqJNg1?=
- =?us-ascii?Q?K3MoZxbA0FWTRu9OIvG+mHNe9uVYilPhTK/fCspOp4PdhZH7lMARxLj4DVTp?=
- =?us-ascii?Q?kzWkxBPkQf2VsQrThKA+v/SIZ+MLS7A4CtAGEdzHjceKBnmwZWMiwcI5kF79?=
- =?us-ascii?Q?M/12sX9Zz2wDFykaAgIM0FMAZZWE8jlKOU6sGg7Uk9tJPyqKeYOt+Iu7BfZd?=
- =?us-ascii?Q?e74GoD+Rpo7KR5jvnC8K0qg153C+sSgxd8XRI4lKRx6QByKBJ/w+9wdW+ebu?=
- =?us-ascii?Q?YXrqVPP74Ygipm9rmpAceFwTbaR58FfiA8t61YmS4Uk06GR9LAQ/3QDcWhlH?=
- =?us-ascii?Q?ndKacwT+vO1z6NT5tYEPncBcmyba0pskXhGpMd8rc+RYKFXu1Ep3qOk4f/R/?=
- =?us-ascii?Q?nVsvnrZ3+/SPyl1YrltlNLA8K4bsBiRcSU3BdHxrTHA6IalmKInHYE7c8DVc?=
- =?us-ascii?Q?HrKxArHBfgEhREd9SOVa1l9F2822lqfd7w7zwDASMtqkMX2S2gubNa53iL+c?=
- =?us-ascii?Q?j2MwcSbckLY7cjRp1J9RVL+QUZuUhdcsKPQyBGRMv4CT9pYa7jJ5RRPOI9M7?=
- =?us-ascii?Q?rUsrvVrknpvYyyqnDYWW4sViW4NZaEwWYZN3EEl1leWFIHWmDiFRwcjYWRn2?=
- =?us-ascii?Q?jb9K0g3KQ1YJHf0zIULkPVgSqju4B4NxJwDhY2VgVctqCl53tyJ2U3VK5JE+?=
- =?us-ascii?Q?P698wDNEr4NPLVwG/jpPhQ9Iu6Je+8z3wnxVQFfjXQZaIFzUXRHjoQHsY0er?=
- =?us-ascii?Q?4a9w994UGi0QtE0oE920JPRnVDZz0mH+rmqFsRF45OMnhIsKkOD9AUmUDmC0?=
- =?us-ascii?Q?OUtG4suEf7orCqKmnuiyAFVzFFecGdddqofhnJn00HG018pPDYmKLsL/7GLT?=
- =?us-ascii?Q?X7Zv8ZrmQgoHtssEm/RMW8HdzF6/kmpqpWFiaMEId8zbYyv8hMNU/ey6eJHR?=
- =?us-ascii?Q?dnlM1Y7GjWb5usk/OC3POsGVTvv77UN6CU/YYzIaJKgCIhSDP6xAFOSXE7lb?=
- =?us-ascii?Q?sfrjpV847+24f5ExWL7QMdWsqL7HWr7eAzN1HGy4m3WkysKRN2kQjvQOwgTa?=
- =?us-ascii?Q?px2eGUyMOA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 257b6f41-932c-4324-80f4-08de7ad1ee56
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 16:12:00.0243 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MCJq08ueKflmbep7CO3FELRzwCFvB/uMF//ZugGhqjeKe2ptJpKs87pin9fe+tYaNHtMW4rBuuJyhACVCQaT7A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR11MB8368
-X-OriginatorOrg: intel.com
+X-IronPort-AV: E=Sophos;i="6.23,103,1770624000"; d="scan'208";a="218681860"
+Received: from lkp-server01.sh.intel.com (HELO cadc4577a874) ([10.239.97.150])
+ by orviesa009.jf.intel.com with ESMTP; 05 Mar 2026 08:28:21 -0800
+Received: from kbuild by cadc4577a874 with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1vyBYg-000000000v6-0rYW;
+ Thu, 05 Mar 2026 16:28:18 +0000
+Date: Fri, 06 Mar 2026 00:27:34 +0800
+From: kernel test robot <lkp@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
+ 0cfe9c4838f1147713f6b5c02094cd4dc0c598fa
+Message-ID: <202603060026.QExAaSar-lkp@intel.com>
+User-Agent: s-nail v14.9.25
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,73 +61,132 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Mar 05, 2026 at 01:48:10PM +0530, Arun R Murthy wrote:
-> As per the spec  DP2.1 section 3.6.8.6.1, section 2.12.1,
-> section 2.12.3 (Link Policy) the LTTPR caps is to be read first
-> followed by the DPRX capability.
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
+branch HEAD: 0cfe9c4838f1147713f6b5c02094cd4dc0c598fa  drm/xe: Fix memory leak in xe_vm_madvise_ioctl
 
-Not exactly. The Standard requires reading the DPRX capabilities after
-the LTTPR caps are read. The driver does read the DPRX caps after
-reading the LTTPR caps. The DP Standard does not mandate that the first
-read after a sink is connected (i.e. after the HPD signal of the sink is
-asserted) must be an LTTPR capability read and cannot be any other DPCD
-register read. In fact this would be impossible to guarantee, a DPRX
-capability read - or any DPCD register read for that matter - could
-happen at any point and so it could happen right after the HPD signal
-got asserted.
+elapsed time: 1554m
 
-> Git log shows that initially drm dp helper exposed function to read
-> lttpr caps. Driver reads the lttpr caps and then the dprx caps.
-> For a particular issue 
-> https://gitlab.freedesktop.org/drm/intel/-/issues/3415
-> as a workaround reading dprx caps was done first to know if the panel is
-> < DP1.4 and then read 1 block at a time for lttpr caps.
-> 
-> This can be handled in a better way and two such ways is what I see.
-> 1. Read LTTPR caps followed by DPRX caps as per the spec. Then on
-> reading dprx caps if revision < 1.4 then re-read the lttpr caps one
-> block at a time.
-> 
-> 2. Read LTTPR caps and if 8b/10b check for correctness of the link rate
-> supported(lttpr caps 0xf0001), if some corrupted value is read then read
-> one block at a time.
+configs tested: 110
+configs skipped: 2
 
-The driver does read the DPRX capabilities after reading the LTTPR
-capabilities. This is what the standard mandates.
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-The workaround for issues/3415 depends on the DPCD_REV value, so this is
-read separately before reading the LTTPR caps. I don't see a better way
-to implement the workaround and such read is not prohibited by the DP
-Standard either. So I don't see the point of the changes in this
-patchset.
+tested configs:
+alpha                             allnoconfig    gcc-15.2.0
+alpha                            allyesconfig    gcc-15.2.0
+alpha                               defconfig    gcc-15.2.0
+arc                              allmodconfig    gcc-15.2.0
+arc                               allnoconfig    gcc-15.2.0
+arc                              allyesconfig    gcc-15.2.0
+arc                                 defconfig    gcc-15.2.0
+arc                   randconfig-001-20260305    gcc-8.5.0
+arc                   randconfig-002-20260305    gcc-8.5.0
+arm                               allnoconfig    clang-23
+arm                   randconfig-001-20260305    clang-23
+arm                   randconfig-002-20260305    clang-19
+arm                   randconfig-003-20260305    clang-23
+arm                   randconfig-004-20260305    gcc-10.5.0
+arm64                             allnoconfig    gcc-15.2.0
+arm64                 randconfig-001-20260305    gcc-9.5.0
+csky                             allmodconfig    gcc-15.2.0
+csky                              allnoconfig    gcc-15.2.0
+hexagon                          allmodconfig    clang-17
+hexagon                           allnoconfig    clang-23
+hexagon               randconfig-001-20260305    clang-23
+hexagon               randconfig-002-20260305    clang-23
+i386                              allnoconfig    gcc-14
+i386        buildonly-randconfig-001-20260305    clang-20
+i386        buildonly-randconfig-002-20260305    gcc-14
+i386        buildonly-randconfig-003-20260305    gcc-14
+i386        buildonly-randconfig-004-20260305    gcc-14
+i386        buildonly-randconfig-005-20260305    gcc-14
+i386        buildonly-randconfig-006-20260305    gcc-14
+i386                  randconfig-001-20260305    clang-20
+i386                  randconfig-002-20260305    gcc-14
+i386                  randconfig-003-20260305    gcc-14
+i386                  randconfig-004-20260305    clang-20
+i386                  randconfig-005-20260305    gcc-14
+i386                  randconfig-006-20260305    gcc-14
+i386                  randconfig-007-20260305    clang-20
+i386                  randconfig-011-20260305    clang-20
+i386                  randconfig-012-20260305    clang-20
+i386                  randconfig-013-20260305    clang-20
+i386                  randconfig-014-20260305    clang-20
+i386                  randconfig-015-20260305    clang-20
+i386                  randconfig-016-20260305    clang-20
+i386                  randconfig-017-20260305    gcc-14
+loongarch                         allnoconfig    clang-23
+loongarch             randconfig-001-20260305    gcc-15.2.0
+loongarch             randconfig-002-20260305    gcc-15.2.0
+m68k                             allmodconfig    gcc-15.2.0
+m68k                              allnoconfig    gcc-15.2.0
+m68k                             allyesconfig    gcc-15.2.0
+m68k                                defconfig    gcc-15.2.0
+microblaze                        allnoconfig    gcc-15.2.0
+microblaze                       allyesconfig    gcc-15.2.0
+microblaze                          defconfig    gcc-15.2.0
+mips                              allnoconfig    gcc-15.2.0
+mips                             allyesconfig    gcc-15.2.0
+nios2                            allmodconfig    gcc-11.5.0
+nios2                             allnoconfig    gcc-11.5.0
+nios2                               defconfig    gcc-11.5.0
+nios2                 randconfig-001-20260305    gcc-8.5.0
+nios2                 randconfig-002-20260305    gcc-11.5.0
+openrisc                          allnoconfig    gcc-15.2.0
+openrisc                            defconfig    gcc-15.2.0
+parisc                            allnoconfig    gcc-15.2.0
+parisc                           allyesconfig    gcc-15.2.0
+parisc                              defconfig    gcc-15.2.0
+parisc                randconfig-001-20260305    gcc-9.5.0
+parisc                randconfig-002-20260305    gcc-8.5.0
+powerpc                           allnoconfig    gcc-15.2.0
+powerpc                   currituck_defconfig    clang-23
+powerpc               randconfig-001-20260305    gcc-12.5.0
+powerpc               randconfig-002-20260305    gcc-8.5.0
+powerpc64             randconfig-001-20260305    clang-17
+powerpc64             randconfig-002-20260305    gcc-10.5.0
+riscv                             allnoconfig    gcc-15.2.0
+riscv                               defconfig    clang-23
+riscv                 randconfig-001-20260305    gcc-15.2.0
+riscv                 randconfig-002-20260305    clang-23
+s390                             allmodconfig    clang-18
+s390                              allnoconfig    clang-23
+s390                  randconfig-001-20260305    clang-23
+s390                  randconfig-002-20260305    clang-18
+sh                               allmodconfig    gcc-15.2.0
+sh                                allnoconfig    gcc-15.2.0
+sh                               allyesconfig    gcc-15.2.0
+sh                    randconfig-001-20260305    gcc-15.2.0
+sh                    randconfig-002-20260305    gcc-12.5.0
+sparc                             allnoconfig    gcc-15.2.0
+sparc                               defconfig    gcc-15.2.0
+sparc                 randconfig-001-20260305    gcc-8.5.0
+sparc                 randconfig-002-20260305    gcc-12.5.0
+sparc64               randconfig-001-20260305    clang-23
+sparc64               randconfig-002-20260305    clang-20
+um                                allnoconfig    clang-23
+um                               allyesconfig    gcc-14
+um                    randconfig-001-20260305    clang-23
+um                    randconfig-002-20260305    gcc-14
+x86_64                            allnoconfig    clang-20
+x86_64      buildonly-randconfig-001-20260305    gcc-14
+x86_64      buildonly-randconfig-002-20260305    clang-20
+x86_64      buildonly-randconfig-003-20260305    clang-20
+x86_64      buildonly-randconfig-004-20260305    clang-20
+x86_64      buildonly-randconfig-005-20260305    clang-20
+x86_64      buildonly-randconfig-006-20260305    clang-20
+x86_64                randconfig-001-20260305    clang-20
+x86_64                randconfig-003-20260305    gcc-13
+x86_64                randconfig-004-20260305    clang-20
+x86_64                randconfig-012-20260305    gcc-14
+xtensa                            allnoconfig    gcc-15.2.0
+xtensa                randconfig-001-20260305    gcc-8.5.0
+xtensa                randconfig-002-20260305    gcc-14.3.0
 
-> I am open for either of the two or you have any other options as well I
-> am open.
-> 
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
-> Arun R Murthy (4):
->       drm/display/dp: Read LTTPR caps without DPRX caps
->       drm/i915/dp: Read LTTPR caps followed by DPRX caps
->       drm/i915/dp: On HPD read LTTPR caps followed by DPRX caps
->       drm/i915/dp: DPRX/LTTPR caps for DP should be read once
-> 
->  drivers/gpu/drm/display/drm_dp_helper.c            | 63 ++++++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_dp.c            |  3 +-
->  .../gpu/drm/i915/display/intel_dp_link_training.c  | 40 +++++++-------
->  .../gpu/drm/i915/display/intel_dp_link_training.h  |  1 -
->  drivers/gpu/drm/i915/display/intel_dp_tunnel.c     |  3 +-
->  include/drm/display/drm_dp_helper.h                |  2 +
->  6 files changed, 86 insertions(+), 26 deletions(-)
-> ---
-> base-commit: cfc20c776480fda8c1b0517b187bb71ec0781cd4
-> change-id: 20260305-dp_aux-1e27599e06c8
-> 
-> Best regards,
-> -- 
-> Arun R Murthy <arun.r.murthy@intel.com>
-> 
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
