@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01251EFCE5A
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 04:16:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44DB9EEF301
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 05:35:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B696A10EB01;
-	Thu,  5 Mar 2026 04:16:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Akyy6ZJ6";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDDE010EB00;
- Thu,  5 Mar 2026 04:16:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772684210; x=1804220210;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=hOaZUh33N2Lh3Xvgkf5xtmh25Nh6BmpcqXuZWcAA3jQ=;
- b=Akyy6ZJ6nz/r1tGIFNGe5h0rvGvM/DbSctqtuYj5dnbzXGfxhEgio4BJ
- gX/dbA2l0we2yTEoPqSnLIMNfiUF14uzUKz8YibdFIG0jw98A0VfE/rSt
- 6RJMw+uYKM3o43rcF0YvtCPOEOoazcmfLND1MGh/N7gne7r9KsSZ2MT8s
- +Z5OyUOWduyWB2azbmrvd5UnAtLTi76nr6jxxkCj9kVirOGNnv8SHQP1j
- Nw5vGyhYIuMbkus3+k2URRZ9bQIPm0MUkBSPFXFsuEMC2KUG3pj6TUC4a
- YqreZ8Brt1Tk8NJVz9XBU0SHxBSw3C0gRQncnIYJqN8HYv13eU58z6tlQ Q==;
-X-CSE-ConnectionGUID: ajGwaEBpRC+piD9D59GA0g==
-X-CSE-MsgGUID: p/W4nYYDSGWGs5COgMCRtQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="73674712"
-X-IronPort-AV: E=Sophos;i="6.21,325,1763452800"; d="scan'208";a="73674712"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 20:16:50 -0800
-X-CSE-ConnectionGUID: W6jL2t1aSxS/cEGmhTEOUw==
-X-CSE-MsgGUID: Ph7LGTc2Rlm8GmVmKNG6BA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,325,1763452800"; d="scan'208";a="222705745"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 20:16:48 -0800
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, arun.r.murthy@intel.com,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 5/5] drm/i915/dp: Enable Common SDP Transmission line
-Date: Thu,  5 Mar 2026 09:31:18 +0530
-Message-ID: <20260305040118.2576312-6-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20260305040118.2576312-1-ankit.k.nautiyal@intel.com>
-References: <20260305040118.2576312-1-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 080F510EB1C;
+	Thu,  5 Mar 2026 05:35:07 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7E4F10EB0D;
+ Thu,  5 Mar 2026 05:35:05 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4920821725673270353=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_overflow_in_g?=
+ =?utf-8?q?uc=5Fct=5Fsnapshot=5Fcapture?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 05 Mar 2026 05:35:05 -0000
+Message-ID: <177268890570.318063.8411055489833895493@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260304112501.230992-1-mika.kuoppala@linux.intel.com>
+In-Reply-To: <20260304112501.230992-1-mika.kuoppala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,128 +36,282 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable the Common SDP Transmission line for the SDP packets.
-We get the clear picture about the SDPs and guardband only in
-intel_dp_sdp_compute_config_late() therefore we must configure the
-crtc_state members related to Common SDP Transmission line at this
-point.
+--===============4920821725673270353==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Currently, the stagger values are set as per the default policy of the
-Hardware. This can be optimized later if we come up with a specific
-driver policy to sequence the SDPs better.
+== Series Details ==
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c |  3 ++
- drivers/gpu/drm/i915/display/intel_dp.c  | 64 ++++++++++++++++++++++++
- 2 files changed, 67 insertions(+)
+Series: drm/xe: Fix overflow in guc_ct_snapshot_capture
+URL   : https://patchwork.freedesktop.org/series/162568/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index bdbd89600bee..e1e95f18f0ed 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2726,6 +2726,8 @@ static void mtl_ddi_pre_enable_dp(struct intel_atomic_state *state,
- 	/* 6.o Configure and enable FEC if needed */
- 	intel_ddi_enable_fec(encoder, crtc_state);
- 
-+	intel_dp_cmn_sdp_transmission_line_enable(crtc_state);
-+
- 	/* 7.a 128b/132b SST. */
- 	if (!is_mst && intel_dp_is_uhbr(crtc_state)) {
- 		/* VCPID 1, start slot 0 for 128b/132b, tu slots */
-@@ -3113,6 +3115,7 @@ static void intel_ddi_buf_disable(struct intel_encoder *encoder,
- 			     DP_TP_CTL_ENABLE, 0);
- 	}
- 
-+	intel_dp_cmn_sdp_transmission_line_disable(crtc_state);
- 	intel_ddi_disable_fec(encoder, crtc_state);
- 
- 	if (DISPLAY_VER(display) < 14)
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 59a8fa5e5ba9..87d73d0239bc 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -7189,6 +7189,68 @@ void intel_dp_mst_resume(struct intel_display *display)
- 	}
- }
- 
-+static
-+void intel_dp_cmn_sdp_tl_compute_config_late(struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	bool as_sdp, gmp_sdp, pps_sdp, vsc_sdp, vsc_ext_sdp;
-+
-+	if (!HAS_CMN_SDP_TL(display))
-+		return;
-+
-+	as_sdp = crtc_state->infoframes.enable &
-+		 intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
-+
-+	gmp_sdp = crtc_state->infoframes.enable &
-+		  intel_hdmi_infoframe_enable(HDMI_PACKET_TYPE_GAMUT_METADATA);
-+
-+	pps_sdp = crtc_state->infoframes.enable &
-+		  intel_hdmi_infoframe_enable(DP_SDP_PPS);
-+
-+	vsc_sdp = crtc_state->infoframes.enable &
-+		  intel_hdmi_infoframe_enable(DP_SDP_VSC);
-+
-+	vsc_ext_sdp = crtc_state->infoframes.enable &
-+		      (intel_hdmi_infoframe_enable(DP_SDP_VSC_EXT_VESA) |
-+		       intel_hdmi_infoframe_enable(DP_SDP_VSC_EXT_CEA));
-+
-+	if (!gmp_sdp && !pps_sdp && !vsc_sdp && !vsc_ext_sdp)
-+		return;
-+
-+	crtc_state->cmn_sdp_tl.enable = true;
-+
-+	/*
-+	 * When AS SDP is enabled :
-+	 *  - The common SDP Transmission Line matches the EMP SDP Transmission Line.
-+	 *
-+	 * When AS SDP is disabled:
-+	 *  - Bspec mentions the positions as lines of delayed vblank.
-+	 *  - Guardband = 1st line of delayed vblank
-+	 *  - Common SDP Transmission line is set to 2nd line of delayed vblank.
-+	 */
-+
-+	if (as_sdp)
-+		crtc_state->cmn_sdp_tl.transmission_line =
-+			intel_dp_emp_as_sdp_tl(crtc_state);
-+	else
-+		crtc_state->cmn_sdp_tl.transmission_line =
-+			crtc_state->vrr.guardband - 1;
-+
-+	/*
-+	 * Currently we are programming the default stagger values, but these
-+	 * can be optimized if required, based on number of SDPs enabled.
-+	 *
-+	 * Default values of the Transmission lines for SDPs other than AS SDP:
-+	 * VSC : CMN SDP Transmission line
-+	 * GMP : CMN SDP Transmission line
-+	 * PPS : CMN SDP Transmission line + 1
-+	 * VSC_EXT: CMN SDP Transmission line + 2
-+	 */
-+	crtc_state->cmn_sdp_tl.gmp_stagger = GMP_STAGGER_DEFAULT;
-+	crtc_state->cmn_sdp_tl.pps_stagger = PPS_STAGGER_DEFAULT;
-+	crtc_state->cmn_sdp_tl.vsc_ext_stagger = VSC_EXT_STAGGER_DEFAULT;
-+}
-+
- static
- int intel_dp_sdp_compute_config_late(struct intel_crtc_state *crtc_state)
- {
-@@ -7202,6 +7264,8 @@ int intel_dp_sdp_compute_config_late(struct intel_crtc_state *crtc_state)
- 		return -EINVAL;
- 	}
- 
-+	intel_dp_cmn_sdp_tl_compute_config_late(crtc_state);
-+
- 	return 0;
- }
- 
--- 
-2.45.2
+== Summary ==
 
+CI Bug Log - changes from xe-4657-de9130630d2dc4c0f650333605a14d475ee788e1_BAT -> xe-pw-162568v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 14)
+------------------------------
+
+  Additional (1): bat-atsm-2 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-162568v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@write:
+    - bat-atsm-2:         NOTRUN -> [SKIP][1] ([Intel XE#2134]) +4 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@fbdev@write.html
+
+  * igt@kms_addfb_basic@addfb25-yf-tiled-legacy:
+    - bat-atsm-2:         NOTRUN -> [SKIP][2] ([i915#6077]) +30 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@kms_addfb_basic@addfb25-yf-tiled-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - bat-atsm-2:         NOTRUN -> [SKIP][3] ([Intel XE#1024] / [Intel XE#782] / [Intel XE#947]) +5 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-atsm-2:         NOTRUN -> [SKIP][4] ([Intel XE#1024] / [Intel XE#784] / [Intel XE#947])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-atsm-2:         NOTRUN -> [SKIP][5] ([Intel XE#1024] / [Intel XE#783] / [Intel XE#947])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - bat-atsm-2:         NOTRUN -> [SKIP][6] ([Intel XE#540]) +3 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@kms_hdmi_inject@inject-audio.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc:
+    - bat-atsm-2:         NOTRUN -> [SKIP][7] ([Intel XE#829] / [i915#1836]) +6 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@kms_pipe_crc_basic@nonblocking-crc.html
+
+  * igt@kms_prop_blob@basic:
+    - bat-atsm-2:         NOTRUN -> [SKIP][8] ([Intel XE#780])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@kms_prop_blob@basic.html
+
+  * igt@kms_psr@psr-primary-page-flip:
+    - bat-atsm-2:         NOTRUN -> [SKIP][9] ([Intel XE#1024] / [Intel XE#947]) +6 other tests skip
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@kms_psr@psr-primary-page-flip.html
+
+  * igt@xe_exec_fault_mode@twice-userptr-prefetch:
+    - bat-atsm-2:         NOTRUN -> [SKIP][10] ([Intel XE#288]) +32 other tests skip
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-prefetch.html
+
+  * igt@xe_huc_copy@huc_copy:
+    - bat-atsm-2:         NOTRUN -> [SKIP][11] ([Intel XE#255])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@xe_huc_copy@huc_copy.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-atsm-2:         NOTRUN -> [SKIP][12] ([Intel XE#2229])
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  * igt@xe_pat@pat-index-xe2:
+    - bat-atsm-2:         NOTRUN -> [SKIP][13] ([Intel XE#977])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@xe_pat@pat-index-xe2.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-atsm-2:         NOTRUN -> [SKIP][14] ([Intel XE#2838] / [Intel XE#979])
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-atsm-2:         NOTRUN -> [SKIP][15] ([Intel XE#979])
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@xe_pat@pat-index-xelpg.html
+
+  
+  [Intel XE#1024]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024
+  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
+  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#540]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/540
+  [Intel XE#780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/780
+  [Intel XE#782]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/782
+  [Intel XE#783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/783
+  [Intel XE#784]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/784
+  [Intel XE#829]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/829
+  [Intel XE#947]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/947
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+  [i915#1836]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1836
+  [i915#6077]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6077
+
+
+Build changes
+-------------
+
+  * Linux: xe-4657-de9130630d2dc4c0f650333605a14d475ee788e1 -> xe-pw-162568v1
+
+  IGT_8777: a50285a68dbef0fe11140adef4016a756f57b324 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4657-de9130630d2dc4c0f650333605a14d475ee788e1: de9130630d2dc4c0f650333605a14d475ee788e1
+  xe-pw-162568v1: 162568v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/index.html
+
+--===============4920821725673270353==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Fix overflow in guc_ct_snapshot_capture</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162568/">https://patchwork.freedesktop.org/series/162568/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4657-de9130630d2dc4c0f650333605a14d475ee788e1_BAT -&gt; xe-pw-162568v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 14)</h2>
+<p>Additional (1): bat-atsm-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-162568v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@write:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@fbdev@write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-yf-tiled-legacy:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@kms_addfb_basic@addfb25-yf-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6077">i915#6077</a>) +30 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024">Intel XE#1024</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/782">Intel XE#782</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/947">Intel XE#947</a>) +5 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024">Intel XE#1024</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/784">Intel XE#784</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/947">Intel XE#947</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024">Intel XE#1024</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/783">Intel XE#783</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/947">Intel XE#947</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/540">Intel XE#540</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@kms_pipe_crc_basic@nonblocking-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/829">Intel XE#829</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1836">i915#1836</a>) +6 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_prop_blob@basic:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@kms_prop_blob@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/780">Intel XE#780</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-primary-page-flip:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@kms_psr@psr-primary-page-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024">Intel XE#1024</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/947">Intel XE#947</a>) +6 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-userptr-prefetch:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_huc_copy@huc_copy:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162568v1/bat-atsm-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4657-de9130630d2dc4c0f650333605a14d475ee788e1 -&gt; xe-pw-162568v1</li>
+</ul>
+<p>IGT_8777: a50285a68dbef0fe11140adef4016a756f57b324 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4657-de9130630d2dc4c0f650333605a14d475ee788e1: de9130630d2dc4c0f650333605a14d475ee788e1<br />
+  xe-pw-162568v1: 162568v1</p>
+
+</body>
+</html>
+
+--===============4920821725673270353==--
