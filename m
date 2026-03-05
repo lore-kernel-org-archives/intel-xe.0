@@ -4,52 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90DC6F3092A
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 10:33:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BED1AF3092A
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 10:33:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F52F10E002;
-	Thu,  5 Mar 2026 10:33:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8366D10E247;
+	Thu,  5 Mar 2026 10:33:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hz0vhcLa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZMIsr6rH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE6B210E002
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Mar 2026 10:33:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB2E610E247
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Mar 2026 10:33:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772706831; x=1804242831;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=y+XVEr2sdDBD7gGFF1UuCtmlJONuTUATW4lf9gRPEWA=;
- b=hz0vhcLav6B59Oa78/Ppo2umA9B52edKVr9VYlovR4yhMjVq/eJVQFrI
- biamrh9aF06CI280Y9dfw0AadbzaxuGwteGOxRUAWTn28WVivmGsRPRgh
- 7kDepaXoBcoiOFVYwT//7ZLhhlVDzQ4CI6u5EoFI3HATwG3QPFLxnWdCA
- H3SogSxqPYPPUSX2FBnES40+9AJCz9XRjKDEE/2jFTHTEitjtAJZFvYvm
- nGAvJ5foFN2q8Snhn8LY1PO6xw+aFVomqozbmpRfvZRYIo+y+3N67bM6/
- F/sde5/ll/ZEDpZ9Jy4yOINveiq1oTQJVBGxFMaURRv2sKAisD7fcyduI g==;
-X-CSE-ConnectionGUID: mHwn+L4DTbCSDnleQPI81g==
-X-CSE-MsgGUID: ef06p/rsSRmKWPsm0aml+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="73859082"
-X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; d="scan'208";a="73859082"
+ t=1772706833; x=1804242833;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=NsdjgfeuEdryW6taB6sYEs1VKrO+dWucDNhqhqpfXTs=;
+ b=ZMIsr6rHoJ1yFfAfHjqGFRkLUgUETzf2o0PIlkXG+gB3Y9fX2ueDN47Z
+ FNfVxRdVBMiaqUTLR69pLVYnOf7P+h8MxP5Q9LrqykWnyeShbvJnlQFRk
+ fSEz7/oNH2XE8BYdl0YGgWJ+PzA4IMZxy7+idGaSdwp9XuAXAA0kRHG7q
+ HUs+KsBQsoboog9gwq63Py2a0M347b/l1HT02eXw35Z8YAHAi421CL1SY
+ oK8mvcCwC2ha9AB5V/YxayP/IvlhwZzVC/hyEJjAqtNmKg3k8EYqLLIDX
+ exo/7o7BHaCUFESMOdXeH3CFy9x6fpJBsdxh1oXxcO+p6zDkl2oI8Mked g==;
+X-CSE-ConnectionGUID: KWT6aJxUTuWSmUahzmOGbw==
+X-CSE-MsgGUID: CbCBFAv0SnSKnIkRF8VIxQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="73859091"
+X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; d="scan'208";a="73859091"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2026 02:33:50 -0800
-X-CSE-ConnectionGUID: 0f/ms+5EQ1SBet3uUPadCQ==
-X-CSE-MsgGUID: m6h7E9KJRVqWHvS5Ws14Rg==
+ 05 Mar 2026 02:33:53 -0800
+X-CSE-ConnectionGUID: DlRmgVnSSgOZbEV5YPdZcQ==
+X-CSE-MsgGUID: qFcQ7ldwSTOEev/Mv6lXLg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; d="scan'208";a="223326113"
+X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; d="scan'208";a="223326123"
 Received: from bnilawar-desk2.iind.intel.com ([10.190.239.41])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2026 02:33:49 -0800
+ 05 Mar 2026 02:33:51 -0800
 From: Badal Nilawar <badal.nilawar@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
  alexander.usyskin@intel.com, michael.j.ruhl@intel.com,
  daniele.ceraolospurio@intel.com
-Subject: [RFC PATCH 0/4] Add ocode late binding support for CRI
-Date: Thu,  5 Mar 2026 16:14:41 +0530
-Message-ID: <20260305104441.2857181-6-badal.nilawar@intel.com>
+Subject: [RFC PATCH 1/4] drm/xe/xe_late_bind_fw: Refactor pm flow
+Date: Thu,  5 Mar 2026 16:14:42 +0530
+Message-ID: <20260305104441.2857181-7-badal.nilawar@intel.com>
 X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260305104441.2857181-6-badal.nilawar@intel.com>
+References: <20260305104441.2857181-6-badal.nilawar@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -66,25 +68,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Ocode is the OOBMSM telemetry/manageability firmware, and on CRI it is
-loaded through late binding flow.
+Refactor late binding flow across suspend/resume by adding dedicated
+pm functions.
 
-Dependancy: There is dependancy on mei side of patches to support ocode late binding,
-	    which are not upstreamed yet. Hence, this patch is marked as RFC.
+Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+---
+ drivers/gpu/drm/xe/xe_late_bind_fw.c | 32 +++++++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_late_bind_fw.h |  4 ++--
+ drivers/gpu/drm/xe/xe_pm.c           |  6 +++---
+ 3 files changed, 29 insertions(+), 13 deletions(-)
 
-Badal Nilawar (4):
-  drm/xe/xe_late_bind_fw: Refactor pm flow
-  drm/xe/xe_late_bind_fw: Add support to load Ocode firmware on CRI
-  drm/xe/xe_late_bind_fw: Track firmware load status
-  drm/xe/xe_late_bind_fw: Enable late binding support for CRI
-
- drivers/gpu/drm/xe/xe_late_bind_fw.c       | 143 ++++++++++++++++++---
- drivers/gpu/drm/xe/xe_late_bind_fw.h       |   7 +-
- drivers/gpu/drm/xe/xe_late_bind_fw_types.h |  25 ++++
- drivers/gpu/drm/xe/xe_pci.c                |   1 +
- drivers/gpu/drm/xe/xe_pm.c                 |   9 +-
- 5 files changed, 161 insertions(+), 24 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.c b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+index 768442ca7da6d..5ca25186dc0cc 100644
+--- a/drivers/gpu/drm/xe/xe_late_bind_fw.c
++++ b/drivers/gpu/drm/xe/xe_late_bind_fw.c
+@@ -193,7 +193,7 @@ static int xe_late_bind_fw_num_fans(struct xe_late_bind *late_bind, u32 *num_fan
+ 			     PCODE_MBOX(FAN_SPEED_CONTROL, FSC_READ_NUM_FANS, 0), num_fans, NULL);
+ }
+ 
+-void xe_late_bind_wait_for_worker_completion(struct xe_late_bind *late_bind)
++static void xe_late_bind_wait_for_worker_completion(struct xe_late_bind *late_bind)
+ {
+ 	struct xe_device *xe = late_bind_to_xe(late_bind);
+ 	struct xe_late_bind_fw *lbfw;
+@@ -269,18 +269,12 @@ static void xe_late_bind_work(struct work_struct *work)
+ 	xe_pm_runtime_put(xe);
+ }
+ 
+-int xe_late_bind_fw_load(struct xe_late_bind *late_bind)
++static int xe_late_bind_fw_load(struct xe_late_bind *late_bind)
+ {
+ 	struct xe_device *xe = late_bind_to_xe(late_bind);
+ 	struct xe_late_bind_fw *lbfw;
+ 	int fw_id;
+ 
+-	if (!late_bind->component_added)
+-		return -ENODEV;
+-
+-	if (late_bind->disable)
+-		return 0;
+-
+ 	for (fw_id = 0; fw_id < XE_LB_FW_MAX_ID; fw_id++) {
+ 		lbfw = &late_bind->late_bind_fw[fw_id];
+ 		if (lbfw->payload) {
+@@ -424,6 +418,28 @@ static void xe_late_bind_remove(void *arg)
+ 	}
+ }
+ 
++void xe_late_bind_pm_suspend(struct xe_late_bind *late_bind)
++{
++	if (!late_bind->component_added)
++		return;
++
++	if (late_bind->disable)
++		return;
++
++	xe_late_bind_wait_for_worker_completion(late_bind);
++}
++
++void xe_late_bind_pm_resume(struct xe_late_bind *late_bind)
++{
++	if (!late_bind->component_added)
++		return;
++
++	if (late_bind->disable)
++		return;
++
++	xe_late_bind_fw_load(late_bind);
++}
++
+ /**
+  * xe_late_bind_init() - add xe mei late binding component
+  * @late_bind: pointer to late bind structure.
+diff --git a/drivers/gpu/drm/xe/xe_late_bind_fw.h b/drivers/gpu/drm/xe/xe_late_bind_fw.h
+index 07e4373905395..8896fea3068e5 100644
+--- a/drivers/gpu/drm/xe/xe_late_bind_fw.h
++++ b/drivers/gpu/drm/xe/xe_late_bind_fw.h
+@@ -11,7 +11,7 @@
+ struct xe_late_bind;
+ 
+ int xe_late_bind_init(struct xe_late_bind *late_bind);
+-int xe_late_bind_fw_load(struct xe_late_bind *late_bind);
+-void xe_late_bind_wait_for_worker_completion(struct xe_late_bind *late_bind);
++void xe_late_bind_pm_suspend(struct xe_late_bind *late_bind);
++void xe_late_bind_pm_resume(struct xe_late_bind *late_bind);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index 01185f10a8835..f85b12c1a85d2 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -182,7 +182,7 @@ int xe_pm_suspend(struct xe_device *xe)
+ 	if (err)
+ 		goto err;
+ 
+-	xe_late_bind_wait_for_worker_completion(&xe->late_bind);
++	xe_late_bind_pm_suspend(&xe->late_bind);
+ 
+ 	for_each_gt(gt, xe, id)
+ 		xe_gt_suspend_prepare(gt);
+@@ -284,7 +284,7 @@ int xe_pm_resume(struct xe_device *xe)
+ 	if (IS_VF_CCS_READY(xe))
+ 		xe_sriov_vf_ccs_register_context(xe);
+ 
+-	xe_late_bind_fw_load(&xe->late_bind);
++	xe_late_bind_pm_resume(&xe->late_bind);
+ 
+ 	drm_dbg(&xe->drm, "Device resumed\n");
+ 	xe_pm_block_end_signalling();
+@@ -698,7 +698,7 @@ int xe_pm_runtime_resume(struct xe_device *xe)
+ 		xe_sriov_vf_ccs_register_context(xe);
+ 
+ 	if (xe->d3cold.allowed)
+-		xe_late_bind_fw_load(&xe->late_bind);
++		xe_late_bind_pm_resume(&xe->late_bind);
+ 
+ out:
+ 	xe_rpm_lockmap_release(xe);
 -- 
 2.52.0
 
