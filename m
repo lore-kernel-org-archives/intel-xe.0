@@ -4,78 +4,102 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D081BEEF312
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 07:59:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 670E6EEF31A
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 08:09:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8757510E21F;
-	Thu,  5 Mar 2026 07:59:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B3B710EB5B;
+	Thu,  5 Mar 2026 08:09:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="inGPyAKP";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="gsVlAbZx";
+	dkim=pass (2048-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="dVXICtCK";
 	dkim-atps=neutral
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com
- [209.85.221.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB79510E220
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Mar 2026 07:59:07 +0000 (UTC)
-Received: by mail-wr1-f41.google.com with SMTP id
- ffacd0b85a97d-439a89b6fd0so4596701f8f.2
- for <intel-xe@lists.freedesktop.org>; Wed, 04 Mar 2026 23:59:07 -0800 (PST)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DDC110EB5B
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Mar 2026 08:09:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1772698174;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=m2qyIYKFUP0m9wA/UEgSZpALpRru5dabPxt8eU3MBlw=;
+ b=gsVlAbZxIEtEXJxnE2kGOtg601gN10/fIR81nTgujtrzRQN1QOpmUXRK4DvBvdsZPq2O4T
+ ybVletFVWCAQtNHG9C5Mgh15lCDR08o9eAA4r6GdyHyls5JGrfY+3zfiYWFwT1vWEpBBN1
+ Ta6doxgezvz9PUCQFqO0tcO1EkT82FQ=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-348-VMULnJZtO6exp25w5ukF6A-1; Thu, 05 Mar 2026 03:09:30 -0500
+X-MC-Unique: VMULnJZtO6exp25w5ukF6A-1
+X-Mimecast-MFC-AGG-ID: VMULnJZtO6exp25w5ukF6A_1772698169
+Received: by mail-wm1-f70.google.com with SMTP id
+ 5b1f17b1804b1-4836bf1a920so83473185e9.3
+ for <intel-xe@lists.freedesktop.org>; Thu, 05 Mar 2026 00:09:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1772697546; x=1773302346; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:to
- :from:sender:from:to:cc:subject:date:message-id:reply-to;
- bh=up1Dq1xg6gmNuKxcZqGmFJ9w/LNCPKzJ4m3SQCOPg0U=;
- b=inGPyAKP5xxRdV1I9NHGRIr9zbgxx1ooUmYHx9Bl+wEWG2BmMvMEJmnTKwJ1yjJKI0
- Gi4bsOP5gLxjmZ2gvFcAHL/nTEcBo4NUyJgJ/6CLPsSFTJdZoGIJXM0z8pTMegRO/1zO
- QP4y+rpO7W/gdfu2q+SsSnH48wBKkDHIFcBjWQlruiYlotV200Y6HhSh38dgCuE614xO
- 95i4bFlzRXQEwVaYUqcezy4bsr4mIu4tqwQdHDuMKqxH3Y+nB0puDC/VU/A2X4pRFkum
- zk9e7Ff0COm34b6ZBQZjdNE8PJD4Hy+Cx89ObyvVb1zMbQ4pJlUEZgD56z3Qq6Qkf86q
- OhUg==
+ d=redhat.com; s=google; t=1772698169; x=1773302969; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=m2qyIYKFUP0m9wA/UEgSZpALpRru5dabPxt8eU3MBlw=;
+ b=dVXICtCK0aUMOoFCEogBSHGu0NUEkGWi5r0LPJKWvcDNoDPS26mUHqLsbaJ1igH2q1
+ eSPQtAjNNT9UqUEPTqJI5DZxAYU7dN3BasvASjTcfpgg7Xkv/mbza6GdwBFJmWSizK7s
+ 7vT9hZZm0OVmI8jqkCLfYsW6oNCrOB0HCELTvvuyeDVbqbNr4asJggnx544WDzM5ILge
+ caccZyAckV5uoIreBnJurwUZNn6kXmuhlJq3AiavHfaOIx7W8U8ZMWfeoNfCdlrNF8O7
+ x82JRDqIXDT2ozg455lSJg+U8oTqMcuOpbMnih5sAO2IqeYKJpgkfLQ5qcgfSwFxMwRX
+ BTuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772697546; x=1773302346;
- h=content-transfer-encoding:mime-version:message-id:date:subject:to
- :from:sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=up1Dq1xg6gmNuKxcZqGmFJ9w/LNCPKzJ4m3SQCOPg0U=;
- b=JykeZs274WZVOXrGeLMo7T6GqtdgTN8g7x57v9B/4Mgy5iKuQNiEaCdmyojFnYqdIV
- 8xOI8CcRyNChpSoYCX6GBadEDuhP7C52dXQOUIoLu2h7DST8t1TyY5zCC6aEVwcpoYNk
- 8VTpzPhkJ4KcOMrb69SS4ri38vBwSagor6K+qJwyFoTmp6X5aIp+q44IAYYms3GwOyhO
- p8IdV0eTJUBZhYu2TDpzg9fxG2sLXerH7yNrhNArVme5WcUNvIua9QbyAH5sYAn/K67x
- kMLMS6Yh+YtW0+mMdiQGl56U+SM4njfArtJesGFtGOG1M+zMA4HNixCu/Er0Bksl+Fz6
- D9UQ==
+ d=1e100.net; s=20230601; t=1772698169; x=1773302969;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=m2qyIYKFUP0m9wA/UEgSZpALpRru5dabPxt8eU3MBlw=;
+ b=UreTVPPJrFOt+5ud8kETXmkFtWupLKWp5cw99vK4W/E3N+7RBj4eofJJj80FYWgrIP
+ tEwee1lLmZ5N41zTkMc4TjW+VNQ97S0d/LU9VM2miiiHZ5NkYTu8WG4Q8eVWKU9WM4hI
+ bn/4LMims6+Q2s7wQla0N0l882xX+mFWDbomUfAmDMz3x8NqqZ6Hn/t6L7atfhzVVxfc
+ 2aprNgYSzts2+foYFAj4jdrwb966+sTmYvRaGthDNE8lBfBSWQB5O2j7vwoAGRbUk+1Y
+ 8sg33VEe1sdaRvgrTjDJg8OvjOKRLpvswJ88UTRU++LdmgztCXh0x/a+wI5IrqWberzS
+ ubSQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCX+0mZamREt8Ayv3RuzQYIuezofJY1t5PkuxdDJ9+sQLUjoeX+RRSzUAtUSHl4oVwL1mhO6mgyXBA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzqX+k1jTZbtcdf+xsDbb7eXfXjLdeJ6UAqTcySEHBg/iw5/nXC
- zcRaVn6vj9ZRiPP8T4intvr20rYg6gv9s+6G6jWQDzUdX/QhU7qm9BY1
-X-Gm-Gg: ATEYQzzx07Q1uORISijT3FRyxjCE0LncGsbltDUSpKW9vFFV2v/WxNgN8JrPm4KjoOy
- XNyprSFdAx7pbEiDPO7Z1OXtxYdhN2lduCGFmTkSxcLFbQgdmKRslVuE83RzWCYFn+1HRVt2Urd
- x++7WB1JmPPAK4rvV/gwKSCKB4q7uG15Dfb+NVDpVQK3eTZLuap08A2WYemhBytAoHgeduo2H1b
- rUkjxfnnj26wQlngcEHIaCoV7HFpr/1nA6W2Hm6rq/Y671bZCyDxc9Ufak0ruqXii9FQG+e301O
- PZoEa1daHEQc5Ll5ekdE0/ASTvEtyNruXo6DimIzIBQlwwJu1Mxs5637GXPPoVpwTJhCAobGjV0
- 8YFI720+8ZlP84Ms2sKKvfO/OyhgTgpk5t7T7XLc5HdBLvcxzM00A+PqEPh0aJ5jrWtGIUU/ESp
- 2knglSrg==
-X-Received: by 2002:a05:6000:2c0c:b0:439:905e:1236 with SMTP id
- ffacd0b85a97d-439c7f99afamr9065426f8f.2.1772697546064; 
- Wed, 04 Mar 2026 23:59:06 -0800 (PST)
-Received: from localhost ([2001:67c:1562:8007::aac:4468])
+ AJvYcCXSiA3om4ymk3piosyDUBvKC4PRX5yFMQz0Oxhe2uy7UDkoY2aUjO1uItA0Pu9mrPRthF2slGRiYg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyeDiBOF7kHGNMSkaXBhBKjDlyKpN12z+4iP2tjGtXTSUAgfebj
+ 75N1pTpOVUpLA4ehhCQ3joUZodMm0IO9oWA+D4oHQs4QDC5DTQWHgNmtbLU77IBwXMbJd3zMMva
+ MYZB9ElKIWsL21WTHEQOYTjyX9gW8qHpH1qnKUeMLUJgog7NnLpCpSLFxm1S2VIPlUMm8
+X-Gm-Gg: ATEYQzwfZeoZt+AO69Tv+yc9eUmtBBvg+oJzTmrmZWn37lyIeavBaEekjc9Q3gnPEdN
+ AS2Ca8tXfmpNh+5B4e12yQB3sd5PPFRgYIHbafsZOmiTgXKWTIjp9z6R+Dy0rVrK9f8UrUNS3oj
+ Ap3OK+NWkiFUzkXWaMEcUiq8uCOqWNkoDKnOL0ST2Xg2UyaP4hun6OJprfugiutkIoU6zpQqVeK
+ 8e9ygaTzPY1h9SFzHRND9j/Du7F5d1EtZqS2Xpwkj9jtpxVoofdr6xwHUHtEh7ZWfQBFt6NWbmF
+ kEuXz5jReIbK/URlHlX9KW5bjsadBOje9SJhFxIYrUN4dceSNcLhASuiX7peScJYZrHczLtwpw=
+ =
+X-Received: by 2002:a05:600c:3b9e:b0:477:5cc6:7e44 with SMTP id
+ 5b1f17b1804b1-4851984f5bemr88508665e9.11.1772698168795; 
+ Thu, 05 Mar 2026 00:09:28 -0800 (PST)
+X-Received: by 2002:a05:600c:3b9e:b0:477:5cc6:7e44 with SMTP id
+ 5b1f17b1804b1-4851984f5bemr88508245e9.11.1772698168337; 
+ Thu, 05 Mar 2026 00:09:28 -0800 (PST)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-439b0549600sm34180087f8f.35.2026.03.04.23.59.03
+ 5b1f17b1804b1-4851fad01d2sm25418255e9.3.2026.03.05.00.09.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 04 Mar 2026 23:59:05 -0800 (PST)
-From: "Chia-Lin Kao (AceLan)" <acelan.kao@canonical.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thu, 05 Mar 2026 00:09:27 -0800 (PST)
+Date: Thu, 5 Mar 2026 09:09:27 +0100
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/i915/lnl+/tc: Fix false disconnect of active DP-alt TC
- port during long HPD pulse
-Date: Thu,  5 Mar 2026 15:58:57 +0800
-Message-ID: <20260305075857.40077-1-acelan.kao@canonical.com>
-X-Mailer: git-send-email 2.51.0
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20260305-ludicrous-quirky-raven-7cdafd@houat>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="ylij2qs72s7ecmod"
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,66 +114,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On platforms using XELPDP+ (Lunar Lake and later), tc_phy_hpd_live_status()
-reads the PICAINTERRUPT_ISR register to determine DP-alt live status. The
-XELPDP_DP_ALT_HOTPLUG_MASK bit in this register reflects the live HPD signal,
-which deasserts (goes low) during a long HPD pulse from the sink.
 
-When an LTTPR dongle (e.g. HP Type-C to HDMI, 03f0:8a4a) fires a long HPD
-pulse after link training, intel_tc_port_connected() reads PICAINTERRUPT_ISR
-and returns false even though the PHY is still owned and the link is active.
-Since intel_tc_port_handles_hpd_glitches() returns true for TC dp-alt ports,
-the 4ms glitch-filter retry loop in intel_digital_port_connected_locked() is
-bypassed immediately, giving no protection against this transient deassertion.
+--ylij2qs72s7ecmod
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: [PULL] drm-misc-fixes
+MIME-Version: 1.0
 
-The AUX abort logic then fires (-ENXIO), the hotplug handler marks DP-1 as
-disconnected, and the compositor responds by disabling eDP-1, causing the
-internal display to disappear.
+Hi Dave, Sima,
 
-Fix this by trusting the PHY ownership register
-(XELPDP_PORT_BUF_CTL1 & XELPDP_TC_PHY_OWNERSHIP) over the transient HPD
-live status in intel_tc_port_connected() when the port has an active link
-(link_refcount > 0). The ownership register is stable and does not toggle
-during HPD pulses.
+Here's this week drm-misc-fixes PR.
 
-The TC cold power domain is guaranteed to be held when link_refcount > 0,
-as __intel_tc_port_lock() already asserts and verifies this via tc_phy_is_owned()
-before we reach intel_tc_port_connected().
+Maxime
 
-Without this fix, triggering mirror mode via hotkey on HP ZBook with HP Type-C
-to HDMI dongle (03f0:8a4a) causes:
+drm-misc-fixes-2026-03-05:
+A return type fix for ttm, a display fix for solomon, several misc fixes
+for amdxdna, a DSI clock rate fix for rz-du, a uapi fix for syncobj, a
+possible build failure fix for dma-buf, a doc warning fix for sched, a
+build failure fix for ttm tests, and a crash fix when suspended for
+nouveau.
+The following changes since commit 75c151ceaacf5ca8f2f34ebf863d88002fb12587:
 
-  [drm:intel_dp_hpd_pulse] got hpd irq on [ENCODER:270:DDI TC1/PHY TC1] - long
-  [drm:intel_tc_port_update_mode] Port D/TC#1: TC port mode reset (disconnected -> tbt-alt)
-  [drm:intel_dp_hpd_pulse] got hpd irq on [ENCODER:270:DDI TC1/PHY TC1] - long
-  [drm:intel_hotplug_detect_connector] [CONNECTOR:271:DP-1] status updated from connected to disconnected
+  accel/amdxdna: Use a different name for latest firmware (2026-02-25 13:51:31 -0800)
 
-With this fix, the port correctly stays in DP-alt mode:
+are available in the Git repository at:
 
-  [drm:intel_tc_port_update_mode] Port D/TC#1: TC port mode reset (dp-alt -> disconnected)
-  [drm:intel_tc_port_update_mode] Port D/TC#1: TC port mode reset (disconnected -> dp-alt)
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2026-03-05
 
-Signed-off-by: Chia-Lin Kao (AceLan) <acelan.kao@canonical.com>
----
- drivers/gpu/drm/i915/display/intel_tc.c | 5 +++++
- 1 file changed, 5 insertions(+)
+for you to fetch changes up to 8f3c6f08ababad2e3bdd239728cf66a9949446b4:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index bd12148e42f70..0967cfc75f522 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.c
-+++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -1732,6 +1732,11 @@ bool intel_tc_port_connected(struct intel_encoder *encoder)
- 	if (tc->mode != TC_PORT_DISCONNECTED)
- 		mask = BIT(tc->mode);
- 
-+	if (tc->link_refcount > 0 &&
-+	    tc->mode == TC_PORT_DP_ALT &&
-+	    tc_phy_is_owned(tc))
-+		return true;
-+
- 	return tc_phy_hpd_live_status(tc) & mask;
- }
- 
--- 
-2.51.0
+  nouveau/dpcd: return EBUSY for aux xfer if the device is asleep (2026-03-04 22:08:01 +0100)
+
+----------------------------------------------------------------
+A return type fix for ttm, a display fix for solomon, several misc fixes
+for amdxdna, a DSI clock rate fix for rz-du, a uapi fix for syncobj, a
+possible build failure fix for dma-buf, a doc warning fix for sched, a
+build failure fix for ttm tests, and a crash fix when suspended for
+nouveau.
+
+----------------------------------------------------------------
+Chris Brandt (1):
+      drm: renesas: rz-du: mipi_dsi: Set DSI divider
+
+Dave Airlie (1):
+      nouveau/dpcd: return EBUSY for aux xfer if the device is asleep
+
+Francesco Lavra (1):
+      drm/solomon: Fix page start when updating rectangle in page addressing mode
+
+Isaac J. Manjarres (1):
+      dma-buf: Include ioctl.h in UAPI header
+
+Julian Orth (1):
+      drm/syncobj: Fix handle <-> fd ioctls with dirty stack
+
+Lizhi Hou (3):
+      accel/amdxdna: Fill invalid payload for failed command
+      accel/amdxdna: Fix NULL pointer dereference of mgmt_chann
+      accel/amdxdna: Fix major version check on NPU1 platform
+
+Maarten Lankhorst (1):
+      drm/ttm/tests: Fix build failure on PREEMPT_RT
+
+Tvrtko Ursulin (1):
+      drm/ttm: Fix ttm_pool_beneficial_order() return type
+
+Yujie Liu (1):
+      drm/sched: Fix kernel-doc warning for drm_sched_job_done()
+
+ drivers/accel/amdxdna/aie2_ctx.c               | 23 ++++++++--------------
+ drivers/accel/amdxdna/aie2_message.c           | 21 +++++++++++++++-----
+ drivers/accel/amdxdna/aie2_pci.c               |  7 ++-----
+ drivers/accel/amdxdna/aie2_pci.h               |  1 +
+ drivers/accel/amdxdna/amdxdna_ctx.c            | 27 ++++++++++++++++++++++++++
+ drivers/accel/amdxdna/amdxdna_ctx.h            |  3 +++
+ drivers/accel/amdxdna/npu1_regs.c              |  2 +-
+ drivers/gpu/drm/drm_syncobj.c                  |  4 ++--
+ drivers/gpu/drm/nouveau/nouveau_connector.c    |  3 +++
+ drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c | 16 ++++++++++++++-
+ drivers/gpu/drm/scheduler/sched_main.c         |  1 +
+ drivers/gpu/drm/solomon/ssd130x.c              |  6 ++----
+ drivers/gpu/drm/ttm/tests/ttm_bo_test.c        |  4 ++--
+ drivers/gpu/drm/ttm/ttm_pool_internal.h        |  2 +-
+ include/uapi/linux/dma-buf.h                   |  1 +
+ 15 files changed, 85 insertions(+), 36 deletions(-)
+
+--ylij2qs72s7ecmod
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaak6NgAKCRAnX84Zoj2+
+dhbSAYDiK+Tlgc4M1b78/SsyoMZnUj9Ar7Ng0Xl9zLTTzyeb6ppi2/x1Tos5HxSG
+xAjONRYBgJO8bjLZzhy+E0A12Jl84j8jchkWzfP8dtTxmSxFaDNO/WduyyqBIR/t
+HjKu7W6gMQ==
+=5wx3
+-----END PGP SIGNATURE-----
+
+--ylij2qs72s7ecmod--
 
