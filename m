@@ -4,60 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0296F3093C
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 11:02:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A43CF30944
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 11:11:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9942510E002;
-	Thu,  5 Mar 2026 11:02:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FEF910E267;
+	Thu,  5 Mar 2026 11:11:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WUTwUrRb";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="UHq0f49b";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC79710E002
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Mar 2026 11:02:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772708559; x=1804244559;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=i807A9hBBGS+MjOlUMR6QrE1Eqy9wbseIxzO3zL2ykE=;
- b=WUTwUrRblp8lJgU2XMpxeAli+Gkup4tS77YXJ5eqYwouaO3LQgZ9qoLR
- H/0CFy79cop3bxnXwO9GQjIUYDvWEXpNlQNMoHr+lrYsn9SJxNpG1Jmo4
- Ge94xf22x9lITGoF4+mgzGLRO9EFxze3+FHqmLZcq1qn3tNvHQWbNTSGy
- X7sMi00SeRKyOy9SaJmBJZXJuAlhk6NMcHpwJXPhTO3mrRa0FAJG+G5ol
- OwGG/eecnBPyeUgt1XL7N6hXArn3ZiV7cyZ1fO7r7wUND13pDO57cfxwR
- fUMO3AhvcbeRt8EM9SuI1v+XBmPzwsW+yO6+AhLd/6XznjqapvrRKGQYn Q==;
-X-CSE-ConnectionGUID: y14PV7oyRMKZyT1sF5SKmQ==
-X-CSE-MsgGUID: 3eLjaOvzQ+2hAwgT8dOQAQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="61366375"
-X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; d="scan'208";a="61366375"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2026 03:02:38 -0800
-X-CSE-ConnectionGUID: hThikkAuTZ6gTTZQYjOuuw==
-X-CSE-MsgGUID: Ks0XsRfDSrWYqPrIQwp/sw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; d="scan'208";a="215469400"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO [10.245.244.71])
- ([10.245.244.71])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2026 03:02:36 -0800
-Message-ID: <2ecfbbf73b825da172c7176c7ae9c46096221bd4.camel@linux.intel.com>
-Subject: Re: [PATCH V5 3/4] drm/xe/xe3p_lpg: Restrict UAPI to enable L2
- flush optimization
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>, intel-xe@lists.freedesktop.org
-Cc: matthew.auld@intel.com, carl.zhang@intel.com, jose.souza@intel.com,
- Michal Mrozek <michal.mrozek@intel.com>
-Date: Thu, 05 Mar 2026 12:02:33 +0100
-In-Reply-To: <20260303062441.1860959-9-tejas.upadhyay@intel.com>
-References: <20260303062441.1860959-6-tejas.upadhyay@intel.com>
- <20260303062441.1860959-9-tejas.upadhyay@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CF3610E25E;
+ Thu,  5 Mar 2026 11:11:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1772709111;
+ bh=wa7+Aea3F916j67zXQlWhpl7Fp1/xJSsF/OHIDAj0Dg=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=UHq0f49bk9ezP9FF9aNJukLEIaLEyLz6H6ZRdRog+XQ5Zjhe+a++l2PQuB+O9ieLY
+ LdsN7/hsjrQrzgdwEBOjYbyIrG9YGOAuRRJnoHId5zIcRVL1akAWzcuhStyOfiktG6
+ EpGcqp1mFMVz26zYm7+a3gmwgJH+c19SlsziVioeup2eULWgAC9AmdxLF1I2Ica0ay
+ fxr9+gikXc9Telq++3PXzhC25gz5u99OA7UjfOiJSJle2R7k2+bzEz6UyNQtYenMRC
+ DYWRzLkMprgkcOYBXFTkbx1SAEY46jztPhUasGaE/D0w51QW7U9iALjrDHwQhgun30
+ D7Sor/HQn5XZQ==
+Message-ID: <08ff34aa-acb2-4110-9dec-db6dde6edd5c@lankhorst.se>
+Date: Thu, 5 Mar 2026 12:11:50 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [i915-rt v6 00/24] drm/i915/display: All patches to make
+ PREEMPT_RT work on i915 + xe.
+To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-rt-devel@lists.linux.dev, dri-devel@lists.freedesktop.org
+References: <20260220083657.28815-26-dev@lankhorst.se>
+ <20260224162703.Q_taYjEC@linutronix.de>
+ <20260224165903.2mn24oQy@linutronix.de>
+ <20260225075806.XNtXjZ5E@linutronix.de>
+ <7ee8b784-a714-4329-aab2-a571f25c3baa@lankhorst.se>
+ <20260226120715.6Ug1Qkse@linutronix.de>
+ <20260226141942.Z6vUrEQ3@linutronix.de>
+ <20260226143857.4ZJAFzf6@linutronix.de>
+ <98af7aba-f86f-4ff0-a53b-60e0e9784e37@lankhorst.se>
+ <20260305105022.cc1qAMoO@linutronix.de>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <20260305105022.cc1qAMoO@linutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,105 +63,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Tejas,
+Hey,
 
-On Tue, 2026-03-03 at 11:54 +0530, Tejas Upadhyay wrote:
-> When set, starting xe3p_lpg, the L2 flush optimization
-> feature will control whether L2 is in Persistent or
-> Transient mode through monitoring of media activity.
->=20
-> To enable L2 flush optimization include new feature flag
-> GUC_CTL_ENABLE_L2FLUSH_OPT for Novalake platforms when
-> media type is detected.
->=20
-> Tighten UAPI validation to restrict userptr, svm and
-> dmabuf mappings to be either 2WAY or XA+1WAY
->=20
-> V4(MattA): Modify uapi doc and commit
-> V3(MattA): check valid op and pat_index value
-> V2(MattA): validate dma-buf bos and madvise pat-index
->=20
-> Acked-by: Michal Mrozek <michal.mrozek@intel.com>
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_guc.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0 3 +++
-> =C2=A0drivers/gpu/drm/xe/xe_guc_fwif.h=C2=A0=C2=A0 |=C2=A0 1 +
-> =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0 8 ++++++++
-> =C2=A0drivers/gpu/drm/xe/xe_vm_madvise.c | 23 +++++++++++++++++++++++
-> =C2=A0include/uapi/drm/xe_drm.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0 4 +++-
-> =C2=A05 files changed, 38 insertions(+), 1 deletion(-)
->=20
+Den 2026-03-05 kl. 11:50, skrev Sebastian Andrzej Siewior:
+> On 2026-03-05 11:42:19 [+0100], Maarten Lankhorst wrote:
+>> Hey,
+> Hi,
+> 
+>> Den 2026-02-26 kl. 15:38, skrev Sebastian Andrzej Siewior:
+>>> On 2026-02-26 15:19:42 [+0100], To Maarten Lankhorst wrote:
+>>>> On 2026-02-26 13:07:18 [+0100], To Maarten Lankhorst wrote:
+>>>>> series somewhere I could pull and check. In meantime I would look what
+>>>>> causes the lockup on i915.
+>>>>
+>>>> I think I got it.
+>>>
+>>> This the atomic sync as-is, IRQ-Work (FIFO-1) will be preempted by the
+>>> threaded-interrupt (FIFO-50) and the interrupt will poll on
+>>> signaler_active while the irq-work can't make progress.
+>>>
+>>> This will provide the needed sync:
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+>>> index a2b413982ce64..337f6e88faf05 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+>>> @@ -209,6 +209,7 @@ static void signal_irq_work(struct irq_work *work)
+>>>  		intel_breadcrumbs_disarm_irq(b);
+>>>  
+>>>  	rcu_read_lock();
+>>> +	spin_lock(&b->signaler_active_sync);
+>>>  	atomic_inc(&b->signaler_active);
+>>>  	list_for_each_entry_rcu(ce, &b->signalers, signal_link) {
+>>>  		struct i915_request *rq;
+>>> @@ -246,6 +247,7 @@ static void signal_irq_work(struct irq_work *work)
+>>>  		}
+>>>  	}
+>>>  	atomic_dec(&b->signaler_active);
+>>> +	spin_unlock(&b->signaler_active_sync);
+>>>  	rcu_read_unlock();
+>>>  
+>>>  	llist_for_each_safe(signal, sn, signal) {
+>>> @@ -290,6 +292,7 @@ intel_breadcrumbs_create(struct intel_engine_cs *irq_engine)
+>>>  	init_llist_head(&b->signaled_requests);
+>>>  
+>>>  	spin_lock_init(&b->irq_lock);
+>>> +	spin_lock_init(&b->signaler_active_sync);
+>>>  	init_irq_work(&b->irq_work, signal_irq_work);
+>>>  
+>>>  	b->irq_engine = irq_engine;
+>>> @@ -487,8 +490,11 @@ void intel_context_remove_breadcrumbs(struct intel_context *ce,
+>>>  	if (release)
+>>>  		intel_context_put(ce);
+>>>  
+>>> -	while (atomic_read(&b->signaler_active))
+>>> +	while (atomic_read(&b->signaler_active)) {
+>>> +		spin_lock(&b->signaler_active_sync);
+>>> +		spin_unlock(&b->signaler_active_sync);
+>>>  		cpu_relax();
+>>> +	}
+>>>  }
+>>>  
+>>>  static void print_signals(struct intel_breadcrumbs *b, struct drm_printer *p)
+>>> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+>>> index bdf09fd67b6e7..28dae32628aab 100644
+>>> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+>>> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
+>>> @@ -40,6 +40,7 @@ struct intel_breadcrumbs {
+>>>  	struct list_head signalers;
+>>>  	struct llist_head signaled_requests;
+>>>  	atomic_t signaler_active;
+>>> +	spinlock_t signaler_active_sync;
+>>>  
+>>>  	spinlock_t irq_lock; /* protects the interrupt from hardirq context */
+>>>  	struct irq_work irq_work; /* for use from inside irq_lock */
+>>>
+>>
+>> Thinking some more, replacing signaler_active with signaler_active_sync might be the best fix.
+>> I'm not sure there's much use for parallel completion of the same breadcrumb, and using completion
+>> might be too heavy handed.
+> 
+> We have something similar in timer, tasklet and other "similar" code
+> where on RT you have preemption and therefore the possibility of another
+> user on the same CPU while on !RT it is only possible on a remote CPU.
+> Using the spinlock_t for synchronisation would restrict to one-on-one.
+> The closest API that comes to mind would be a sequence lock. One writer,
+> multiple reader. So that would be an option that you might like ;) If
+> the pure spinlock_t is off the table.
 
-Claude has some suggestions on this patch:
-
-"
-commit 77271d8c323486ebe5dc6f1264fc318a43a29084
-Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
-
-drm/xe/xe3p_lpg: Restrict UAPI to enable L2 flush optimization
-
-This commit adds UAPI validation to restrict userptr, svm, and dmabuf
-mappings on L2 flush optimized platforms (Xe3p+ non-DGFX) to use either
-2WAY coherency or XA with 1WAY coherency (pat_index 19).
-
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 99fa36123f58..42356d73ca65 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-
-[ ... ]
-
-> @@ -3480,6 +3480,10 @@ static int vm_bind_ioctl_check_args(struct
-xe_device *xe, struct xe_vm *vm,
->  			 op =3D=3D DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
->  	    XE_IOCTL_DBG(xe, coh_mode =3D=3D XE_COH_NONE &&
->  			 op =3D=3D DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
-> +	    XE_IOCTL_DBG(xe, xe_device_is_l2_flush_optimized(xe) &&
-> +			 (op =3D=3D DRM_XE_VM_BIND_OP_MAP_USERPTR ||
-> +			  is_cpu_addr_mirror) &&
-> +			 (pat_index !=3D 19 || coh_mode !=3D XE_COH_2WAY))
-||
-
-The condition uses || but should this use && instead?
-
-The commit message says mappings should be allowed if they use "either
-2WAY or XA+1WAY". The UAPI documentation also says "the kernel expects
-either 2WAY or 1WAY and XA @pat_index".
-
-Looking at xe3p_lpg_pat_table in xe_pat.c:
-
-    [19] =3D XE2_PAT( 1, 0, 0, 2, 3, 2 )
-
-The last parameter is coh_mode=3D2, which maps to XE_COH_1WAY based on
-the XE2_PAT macro:
-
-    .coh_mode =3D __coh_mode ? __coh_mode : XE_COH_NONE
-
-So pat_index 19 has coh_mode=3DXE_COH_1WAY, not XE_COH_2WAY.
-
-With the current || condition, for pat_index 19:
-  - pat_index !=3D 19 is false
-  - coh_mode !=3D XE_COH_2WAY is true (since coh_mode is XE_COH_1WAY)
-  - false || true =3D true, validation fails
-
-This means userptr/svm operations will always fail validation on L2
-flush optimized platforms, even when using the correct pat_index 19.
-
-Should the condition be:
-
-    (pat_index !=3D 19 && coh_mode !=3D XE_COH_2WAY)
-
-This would fail only if the mapping is neither pat_index 19 (XA+1WAY)
-nor using 2WAY coherency, matching the commit message intent.
-
-The same issue appears in xe_vm_bind_ioctl_validate_bo() and
-xe_vm_madvise_ioctl() at the similar validation points.
-
-"
-
-Thanks,
-Thomas
-
+I think it should be possible then to remove signaler_active, and change
+the reader side to if (spin_is_locked()) { spin_lock(); spin_unlock(); } ?
