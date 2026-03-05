@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 739DBF30946
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 12:03:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C2F7F30952
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 12:11:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A53510E296;
-	Thu,  5 Mar 2026 12:03:18 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RohS8ajq";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DADD10E286
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Mar 2026 12:03:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772712195; x=1804248195;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=hFUWGTxnHgo7RB5MdpmWCfidPkJlTOHdo1k+CZwV+NU=;
- b=RohS8ajqEcblWMB2u814YqUEseoxhSTvqWoLhP+GXH6eJOUMl5Je6qch
- bXIGfdtsb7RZWhqE84to1+0uKmkIwz0J/AzL6KLnBUlQFbFl4PfkLmHko
- eNn5A4Jebjtct1f2OdVOpx2+3gfO7MTsnzZcj3FKHkXN7sv6ADc77CPBK
- dyZSb8ZNqIVe9J2OHUW2JbtilwuEF6htHC+ew9XJzhHkGngkbEvEnZCiv
- rSBQUe3dZS2TdHyGCaD6ozDiIjjkKEJm07QnWWJZqfnMzPUHOnB8doK1r
- KAUHEg1ed8ZwDeJ7ZV4okJEqUxv9GPi3AEE50q5VMLrnLW+6HnMcGWxmZ A==;
-X-CSE-ConnectionGUID: xigNrl2GRQybgDmfNGR5iQ==
-X-CSE-MsgGUID: vENjswXmT7CIXOSuHErHGg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="73702526"
-X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; d="scan'208";a="73702526"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2026 04:03:15 -0800
-X-CSE-ConnectionGUID: ZAvi4DHMRjCzGVNTgLIh3A==
-X-CSE-MsgGUID: G0vQwuWVSquE8LWcZipV0A==
-X-ExtLoop1: 1
-Received: from iherna2-mobl4.amr.corp.intel.com (HELO [192.168.1.16])
- ([10.124.220.218])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2026 04:03:14 -0800
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Thu, 05 Mar 2026 09:02:33 -0300
-Subject: [PATCH 6/7] drm/xe/xe3p: Drop Wa_16028780921
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3B0810E289;
+	Thu,  5 Mar 2026 12:11:56 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0042810E289;
+ Thu,  5 Mar 2026 12:11:55 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5459864169062963332=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260305-extra-nvl-p-enabling-patches-v1-6-5020d5289dea@intel.com>
-References: <20260305-extra-nvl-p-enabling-patches-v1-0-5020d5289dea@intel.com>
-In-Reply-To: <20260305-extra-nvl-p-enabling-patches-v1-0-5020d5289dea@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-X-Mailer: b4 0.15-dev
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_PSR/PR_Selective_Fetch_Earl?=
+ =?utf-8?q?y_Transport_fixes_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 05 Mar 2026 12:11:55 -0000
+Message-ID: <177271271597.320895.273122156329729552@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260304113011.626542-1-jouni.hogander@intel.com>
+In-Reply-To: <20260304113011.626542-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,50 +36,140 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Wa_16028780921 involves writing to a register that is locked by firmware
-prior to driver loading and doesn't have any effect if implemented by
-the KMD.  Since the implementation of the workaround actually belongs
-the firmware, just drop the ineffective implementation by the KMD.
+--===============5459864169062963332==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_gt_regs.h | 3 ---
- drivers/gpu/drm/xe/xe_wa.c           | 4 ----
- 2 files changed, 7 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index a83cafbe03fd..f49a28f4a330 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -218,9 +218,6 @@
- 
- #define GSCPSMI_BASE				XE_REG(0x880c)
- 
--#define CCCHKNREG2				XE_REG_MCR(0x881c)
--#define   LOCALITYDIS				REG_BIT(7)
--
- #define CCCHKNREG1				XE_REG_MCR(0x8828)
- #define   L3CMPCTRL				REG_BIT(23)
- #define   ENCOMPPERFFIX				REG_BIT(18)
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 183c5c86c35a..38881b1aaeb1 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -287,10 +287,6 @@ static const struct xe_rtp_entry_sr gt_was[] = {
- 	  XE_RTP_ACTIONS(SET(MMIOATSREQLIMIT_GAM_WALK_3D,
- 			     DIS_ATS_WRONLY_PG))
- 	},
--	{ XE_RTP_NAME("16028780921"),
--	  XE_RTP_RULES(GRAPHICS_VERSION(3510), GRAPHICS_STEP(A0, B0)),
--	  XE_RTP_ACTIONS(SET(CCCHKNREG2, LOCALITYDIS))
--	},
- 	{ XE_RTP_NAME("14026144927"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION(3510), GRAPHICS_STEP(A0, B0)),
- 	  XE_RTP_ACTIONS(SET(L3SQCREG2, L3_SQ_DISABLE_COAMA_2WAY_COH |
+Series: PSR/PR Selective Fetch Early Transport fixes (rev3)
+URL   : https://patchwork.freedesktop.org/series/161835/
+State : success
 
--- 
-2.52.0
+== Summary ==
 
+CI Bug Log - changes from xe-4658-d17c843163eeb774261fd8b0ea9e278c0e57db50_BAT -> xe-pw-161835v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-161835v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4658-d17c843163eeb774261fd8b0ea9e278c0e57db50/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161835v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4658-d17c843163eeb774261fd8b0ea9e278c0e57db50/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161835v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
+
+
+Build changes
+-------------
+
+  * Linux: xe-4658-d17c843163eeb774261fd8b0ea9e278c0e57db50 -> xe-pw-161835v3
+
+  IGT_8777: a50285a68dbef0fe11140adef4016a756f57b324 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4658-d17c843163eeb774261fd8b0ea9e278c0e57db50: d17c843163eeb774261fd8b0ea9e278c0e57db50
+  xe-pw-161835v3: 161835v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161835v3/index.html
+
+--===============5459864169062963332==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>PSR/PR Selective Fetch Early Transport fixes (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161835/">https://patchwork.freedesktop.org/series/161835/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161835v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161835v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4658-d17c843163eeb774261fd8b0ea9e278c0e57db50_BAT -&gt; xe-pw-161835v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-161835v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4658-d17c843163eeb774261fd8b0ea9e278c0e57db50/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161835v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4658-d17c843163eeb774261fd8b0ea9e278c0e57db50/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161835v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4658-d17c843163eeb774261fd8b0ea9e278c0e57db50 -&gt; xe-pw-161835v3</li>
+</ul>
+<p>IGT_8777: a50285a68dbef0fe11140adef4016a756f57b324 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4658-d17c843163eeb774261fd8b0ea9e278c0e57db50: d17c843163eeb774261fd8b0ea9e278c0e57db50<br />
+  xe-pw-161835v3: 161835v3</p>
+
+</body>
+</html>
+
+--===============5459864169062963332==--
