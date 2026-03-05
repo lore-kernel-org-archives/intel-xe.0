@@ -4,107 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A35EFCA17C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1476FCA17B
 	for <intel-xe@archiver.kernel.org>; Mon,  9 Mar 2026 18:56:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 394DA10E592;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3932610E591;
 	Mon,  9 Mar 2026 18:56:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="pG33F6xg";
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="ups+boPH";
 	dkim-atps=neutral
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 643D410ED54
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Mar 2026 15:27:01 +0000 (UTC)
-Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 626AfiMu3559845; Fri, 6 Mar 2026 15:26:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
- :content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:sender:subject:to; s=pp1;
- bh=q5kgqseMzlg7vRNkt9YBQ+vCvsfOYFApnpS9LBSUNQ0=; b=pG33F6xgLLOH
- SFWzU6ufr+pxpH1zmqWlKNRdH5o6/8UNJ2NJkdGLl4Mxp9PX1GF1MzbvCLOMkCaJ
- Xmul+y3MLDjDV4yYaE2jjN2fx1w4DYp9cBNCnQ4kU0Q643eRFuaG8Y07g6Hxwu4b
- 9guyGRsdA4w/eWkcXd3fI1K6hb8ybrwrPK/ARZL8wTlDcVVvMgQkyZYSAFn6tg6o
- 75Bsz7PhEJvhf9gJMK5EUo2628FwpqCN/js0HOjabR24vO62mHVYdORQoPsbNBKF
- GPfmn1gukslaAwTuIdJT6Bb3d3APIDbPE70b85xXOJ7UayhmIgWbPqSNtfS+KrIN
- Sx0HBkWRFw==
-Received: from ppma22.wdc07v.mail.ibm.com
- (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4ckskd969a-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 06 Mar 2026 15:26:53 +0000 (GMT)
-Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
- by ppma22.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 626D6M5F003243;
- Fri, 6 Mar 2026 15:26:51 GMT
-Received: from smtprelay05.fra02v.mail.ibm.com ([9.218.2.225])
- by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4cmb2yggtf-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Fri, 06 Mar 2026 15:26:51 +0000
-Received: from smtpav07.fra02v.mail.ibm.com (smtpav07.fra02v.mail.ibm.com
- [10.20.54.106])
- by smtprelay05.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 626FQjZh37617924
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Fri, 6 Mar 2026 15:26:45 GMT
-Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id C8A1320043;
- Fri,  6 Mar 2026 15:26:45 +0000 (GMT)
-Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id B5B5320040;
- Fri,  6 Mar 2026 15:26:45 +0000 (GMT)
-Received: from p1gen4-pw042f0m (unknown [9.52.223.163])
- by smtpav07.fra02v.mail.ibm.com (Postfix) with ESMTPS;
- Fri,  6 Mar 2026 15:26:45 +0000 (GMT)
-Received: from bblock by p1gen4-pw042f0m with local (Exim 4.99.1)
- (envelope-from <bblock@linux.ibm.com>) id 1vyX4f-000000054GF-1vDU;
- Fri, 06 Mar 2026 16:26:45 +0100
-Date: Fri, 6 Mar 2026 16:26:45 +0100
-From: Benjamin Block <bblock@linux.ibm.com>
-To: "Ionut Nechita (Wind River)" <ionut.nechita@windriver.com>
-Cc: linux-pci@vger.kernel.org, bhelgaas@google.com, helgaas@kernel.org,
- sebott@linux.ibm.com, schnelle@linux.ibm.com, alifm@linux.ibm.com,
- julianr@linux.ibm.com, dtatulea@nvidia.com, mani@kernel.org,
- lukas@wunner.de, kbusch@kernel.org, ionut_n2001@yahoo.com,
- sunlightlinux@gmail.com, linux-kernel@vger.kernel.org,
- stable@vger.kernel.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v6 1/1] PCI/IOV: Make pci_lock_rescan_remove() reentrant
- and protect sriov_add_vfs/sriov_del_vfs
-Message-ID: <20260306152645.GL1971507@p1gen4-pw042f0m>
-References: <20260306082108.17322-1-ionut.nechita@windriver.com>
- <20260306082108.17322-2-ionut.nechita@windriver.com>
+X-Greylist: delayed 537 seconds by postgrey-1.36 at gabe;
+ Thu, 05 Mar 2026 08:47:24 UTC
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B892510EB9A
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Mar 2026 08:47:24 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4fRNGm4XrCz9vHN;
+ Thu,  5 Mar 2026 09:38:24 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; 
+ t=1772699904; h=from:from:reply-to:reply-to:subject:subject:date:date:
+ message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+ content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=RDdj3abi2vMGKdWjSOIxxSAL5D4KNz7XiIk0sO3UJ0o=;
+ b=ups+boPHjHQ2P/4dIdpcVSQmrelz+aRL8XaXz56odHOk3J90+6cRU43ZLLgg/8CYdfMIF0
+ pqUeaCBY20QTEjUrTz58i73NfHxtVzzULWeU9baBhT9GJrxvVq03vMDOHVzitEXgEUXTX4
+ M+6pEFG8yShRUs6OOYev9l+pLYooZT1/9/hlghkbJFv6vqUQPzzZBNTNHbhL20SmSXcdc6
+ T8AM3m1cEJr4XeeirK1OwLaipkKSu1XHvaYkHyNjTwgxNer7ll68N1XUv0UhwpGXdBDtKw
+ f3V6D4lue/OlFJDd7qeCT/b8tm63qWcfuZ695qO0iZjJ4pqLaapRa7Zd+J2Dmw==
+Message-ID: <fa4a9c55792b0e79d94faa82085b693aa7feb989.camel@mailbox.org>
+Subject: Re: drm_sched run_job and scheduling latency
+From: Philipp Stanner <phasta@mailbox.org>
+To: Boris Brezillon <boris.brezillon@collabora.com>, Matthew Brost
+ <matthew.brost@intel.com>
+Cc: Chia-I Wu <olvaffe@gmail.com>, ML dri-devel
+ <dri-devel@lists.freedesktop.org>, intel-xe@lists.freedesktop.org, Steven
+ Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>,  Thomas Zimmermann <tzimmermann@suse.de>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Danilo
+ Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>, Christian
+ =?ISO-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>, Thomas
+ =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, Rodrigo
+ Vivi <rodrigo.vivi@intel.com>,  open list <linux-kernel@vger.kernel.org>,
+ tj@kernel.org
+Date: Thu, 05 Mar 2026 09:38:16 +0100
+In-Reply-To: <20260305092711.20069ca1@fedora>
+References: <CAPaKu7RbCtkz1BbX57+CebB2uepyCAi-3QzBy8BDGngCJ-Du0w@mail.gmail.com>
+ <aajkqXZDGUFPlq1o@lstrano-desk.jf.intel.com>
+ <20260305092711.20069ca1@fedora>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260306082108.17322-2-ionut.nechita@windriver.com>
-X-TM-AS-GCONF: 00
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Proofpoint-GUID: CwSDB7Ae9mxkIbM9fih1jXPrHqT2QzyP
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA2MDE0NSBTYWx0ZWRfX5X5nu7kG95or
- MjeylGOpNFOWjLjDd+b8Tp20yqm6aKh1u4u9yPvBmmEngBH0Cv6FHz2+nmghW1Id7/wxTEEsMK2
- 9a0L/tW7ZeSA01h2VS7Ec1OcYiAbtSjNNPNjkhYxuWYlG3kJikuIkaL8Dpy9KdDEcAzzttkd9v+
- yyOiS/PW3ifWd11PbXKxU968JQuOH1VCeUDqzyc8WvxB72duoMfUYQqTYobAvjUGQmEsrdr1HkL
- KeAyhdIQYxga+cNdEJJzN2sqHvRORcf47Ud2MlXagk2D7b56guNrIripJCJo+yrqXr3UzPWg/u8
- EB4suOg728as3vX40m/uzgGCnXaJ1LeNArptobtHj9s+AgVY646naqg0vLEWAaHxj3Ov6gIaKNv
- ikZmYsvmEYvVRg0ePEkAZcxJsplEm0t+BeUt+3bvHdPtCmO2uBGrnbETAvHz3gK1c//ie5Fp8iW
- oa+oj3JyF1EFULv54rQ==
-X-Authority-Analysis: v=2.4 cv=H7DWAuYi c=1 sm=1 tr=0 ts=69aaf23d cx=c_pps
- a=5BHTudwdYE3Te8bg5FgnPg==:117 a=5BHTudwdYE3Te8bg5FgnPg==:17
- a=8nJEP1OIZ-IA:10 a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=uAbxVGIbfxUO_5tXvNgY:22 a=VwQbUJbxAAAA:8
- a=VnNF1IyMAAAA:8 a=Ikd4Dj_1AAAA:8 a=CjxXgO3LAAAA:8 a=t7CeM3EgAAAA:8
- a=RHTUbazJTsWS8M0bD-YA:9 a=3ZKOabzyN94A:10 a=wPNLvfGTeEIA:10
- a=FdTzh2GWekK77mhwV6Dw:22
-X-Proofpoint-ORIG-GUID: qt7NbiWAQaq5ufIDnDp-4bCtwaRKMTwx
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-06_04,2026-03-06_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 phishscore=0 clxscore=1011 priorityscore=1501
- adultscore=0 bulkscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603060145
+X-MBO-RS-ID: 88a6adfc76d4be2c1c4
+X-MBO-RS-META: y1d3c39qqy3z9obp43rittpxs8bgscsg
 X-Mailman-Approved-At: Mon, 09 Mar 2026 18:55:56 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -117,117 +75,75 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: phasta@kernel.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey Ionut,
+On Thu, 2026-03-05 at 09:27 +0100, Boris Brezillon wrote:
+> Hi Matthew,
+>=20
+> On Wed, 4 Mar 2026 18:04:25 -0800
+> Matthew Brost <matthew.brost@intel.com> wrote:
+>=20
+> > On Wed, Mar 04, 2026 at 02:51:39PM -0800, Chia-I Wu wrote:
+> > > Hi,
+> > >=20
+> > > Our system compositor (surfaceflinger on android) submits gpu jobs
+> > > from a SCHED_FIFO thread to an RT gpu queue. However, because
+> > > workqueue threads are SCHED_NORMAL, the scheduling latency from submi=
+t
+> > > to run_job can sometimes cause frame misses. We are seeing this on
+> > > panthor and xe, but the issue should be common to all drm_sched users=
+.
+> > > =C2=A0=20
+> >=20
+> > I'm going to assume that since this is a compositor, you do not pass
+> > input dependencies to the page-flip job. Is that correct?
+> >=20
+> > If so, I believe we could fairly easily build an opt-in DRM sched path
+> > that directly calls run_job in the exec IOCTL context (I assume this is
+> > SCHED_FIFO) if the job has no dependencies.
+>=20
+> I guess by ::run_job() you mean something slightly more involved that
+> checks if:
+>=20
+> - other jobs are pending
+> - enough credits (AKA ringbuf space) is available
+> - and probably other stuff I forgot about
+>=20
+> >=20
+> > This would likely break some of Xe=E2=80=99s submission-backend assumpt=
+ions
+> > around mutual exclusion and ordering based on the workqueue, but that
+> > seems workable. I don=E2=80=99t know how the Panthor code is structured=
+ or
+> > whether they have similar issues.
+>=20
+> Honestly, I'm not thrilled by this fast-path/call-run_job-directly idea
+> you're describing. There's just so many things we can forget that would
+> lead to races/ordering issues that will end up being hard to trigger and
+> debug.
+>=20
 
-On Fri, Mar 06, 2026 at 10:21:08AM +0200, Ionut Nechita (Wind River) wrote:
---8<--
-> Fixes: 18f9e9d150fc ("PCI/IOV: Factor out sriov_add_vfs()")
-> Cc: stable@vger.kernel.org
-> Suggested-by: Lukas Wunner <lukas@wunner.de>
-> Tested-by: Dragos Tatulea <dtatulea@nvidia.com>
-> Reviewed-by: Benjamin Block <bblock@linux.ibm.com>
-> Tested-by: Benjamin Block <bblock@linux.ibm.com>
++1
 
-I'm not sure whether you are aware of this, but generally, once you make
-substantially changes to a patch, it is common practice to remove the previous
-Tested-by and/or Reviewed-by tags again:
-https://docs.kernel.org/process/submitting-patches.html#reviewer-s-statement-of-oversight
-(3. paragraph).
+I'm not thrilled either. More like the opposite of thrilled actually.
 
-It's a bit of a judgement call what level of change is necessary to be
-"substantial", but anyway, I thought I'd mention it :)
+Even if we could get that to work. This is more of a maintainability
+issue.
 
-> Signed-off-by: Ionut Nechita <ionut_n2001@yahoo.com>
-> Signed-off-by: Ionut Nechita <ionut.nechita@windriver.com>
-> ---
---8<--
-> diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-> index bccc7a4bdd794..c7efb8e1010d3 100644
-> --- a/drivers/pci/probe.c
-> +++ b/drivers/pci/probe.c
-> @@ -3509,16 +3509,27 @@ EXPORT_SYMBOL_GPL(pci_rescan_bus);
->   * routines should always be executed under this mutex.
->   */
->  DEFINE_MUTEX(pci_rescan_remove_lock);
-> +static struct task_struct *pci_rescan_remove_owner;
-> +static unsigned int pci_rescan_remove_count;
->  
->  void pci_lock_rescan_remove(void)
->  {
-> +	if (pci_rescan_remove_owner == current) {
-> +		pci_rescan_remove_count++;
-> +		return;
-> +	}
->  	mutex_lock(&pci_rescan_remove_lock);
-> +	pci_rescan_remove_owner = current;
-> +	pci_rescan_remove_count = 1;
->  }
->  EXPORT_SYMBOL_GPL(pci_lock_rescan_remove);
->  
->  void pci_unlock_rescan_remove(void)
->  {
-> -	mutex_unlock(&pci_rescan_remove_lock);
-> +	if (--pci_rescan_remove_count == 0) {
-> +		pci_rescan_remove_owner = NULL;
-> +		mutex_unlock(&pci_rescan_remove_lock);
-> +	}
->  }
->  EXPORT_SYMBOL_GPL(pci_unlock_rescan_remove);
+The scheduler is full of insane performance hacks for this or that
+driver. Lockless accesses, a special lockless queue only used by that
+one party in the kernel (a lockless queue which is nowadays, after N
+reworks, being used with a lock. Ah well).
 
-I'm not sure Lukas meant to revert to a local cache for the task_struct, just
-that the counter variable itself doesn't need to be an atomic.
+In the past discussions Danilo and I made it clear that more major
+features in _new_ patch series aimed at getting merged into drm/sched
+must be preceded by cleanup work to address some of the scheduler's
+major problems.
 
-How the counting is done itself is probably very much a taste question. I've
-run tests in my test lab with this change:
+That's especially true if it's features aimed at performance buffs.
 
-diff --git a/drivers/pci/probe.c b/drivers/pci/probe.c
-index 6686cee98afc..28c0384424db 100644
---- a/drivers/pci/probe.c
-+++ b/drivers/pci/probe.c
-@@ -3510,27 +3510,23 @@ EXPORT_SYMBOL_GPL(pci_rescan_bus);
-  */
- DEFINE_MUTEX(pci_rescan_remove_lock);
- EXPORT_SYMBOL_GPL(pci_rescan_remove_lock);
--static struct task_struct *pci_rescan_remove_owner;
--static unsigned int pci_rescan_remove_count;
-+static size_t pci_rescan_remove_reentrant_count = 0;
- 
- void pci_lock_rescan_remove(void)
- {
--	if (pci_rescan_remove_owner == current) {
--		pci_rescan_remove_count++;
--		return;
--	}
--	mutex_lock(&pci_rescan_remove_lock);
--	pci_rescan_remove_owner = current;
--	pci_rescan_remove_count = 1;
-+	if (mutex_get_owner(&pci_rescan_remove_lock) == (unsigned long)current)
-+		pci_rescan_remove_reentrant_count++;
-+	else
-+		mutex_lock(&pci_rescan_remove_lock);
- }
- EXPORT_SYMBOL_GPL(pci_lock_rescan_remove);
- 
- void pci_unlock_rescan_remove(void)
- {
--	if (--pci_rescan_remove_count == 0) {
--		pci_rescan_remove_owner = NULL;
-+	if (pci_rescan_remove_reentrant_count > 0)
-+		pci_rescan_remove_reentrant_count--;
-+	else
- 		mutex_unlock(&pci_rescan_remove_lock);
--	}
- }
- EXPORT_SYMBOL_GPL(pci_unlock_rescan_remove);
- 
-But like I said, the counting comes down to about the same as with your patch
-(as far as I can tell), just that it also uses the mutex_get_owner() call.
 
--- 
-Best Regards, Benjamin Block        /        Linux on IBM Z Kernel Development
-IBM Deutschland Research & Development GmbH    /   https://www.ibm.com/privacy
-Vors. Aufs.-R.: Wolfgang Wendt         /        Geschäftsführung: David Faller
-Sitz der Ges.: Ehningen     /     Registergericht: AmtsG Stuttgart, HRB 243294
+
+P.
