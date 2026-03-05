@@ -4,160 +4,156 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31F71EFCE43
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 02:04:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8509DEFCE5E
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 03:38:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA58010E1D6;
-	Thu,  5 Mar 2026 02:04:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 290B410E160;
+	Thu,  5 Mar 2026 03:38:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bsX7jPto";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EeQ8aw5D";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BFE8D10E1D6;
- Thu,  5 Mar 2026 02:04:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CFAD910E160
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Mar 2026 03:38:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772676274; x=1804212274;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=djU3LFFYH/Jk8x7XNoikYk9zkfgvMGaEEpVO2mTL+3M=;
- b=bsX7jPtoa8djSPqwvVoHUmXIntQabSeTdVHzgj1lGYfbLtLVPj8xxPoU
- 2+xReRd4aW7iQESUXjGQjTbPK9z/BCUO/v4ZZ4Lv0rYiUfGDW7JkaAAqq
- 7D9IXKVCk82j0ZKVv2mu2O+KdoiOLzaHwe6/lTd96YNuh8cj5YLuIVeHd
- juqVmt0O4sTAkxy12nc7gYYqdNtaRWvGWr+rYSIGe2X9K8Dp2kHdZFIIW
- nkhMPK3EFodKoSzF6SFl9LuIFX+81OWxwrkduZbBkDtkBfRXvRE/NkQNe
- AG19aQ4lbxOHq12bdlSuLiwU5wCGe2umokk2lWgOt66lkZK4xHTl40qXD g==;
-X-CSE-ConnectionGUID: SnotvJKoTcyO+z/3LtKN4g==
-X-CSE-MsgGUID: vdF58JeUSfG4M7r+dddUTQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="72950426"
-X-IronPort-AV: E=Sophos;i="6.21,325,1763452800"; d="scan'208";a="72950426"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 18:04:33 -0800
-X-CSE-ConnectionGUID: g60yybrERSuYO6KaoWrbnQ==
-X-CSE-MsgGUID: a1vLN7dkRO2TikVyuilEAQ==
+ t=1772681922; x=1804217922;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=z7T/Cv++KNdpbtsIEzxHlUxkg0oe8JmyYL30jvygdKI=;
+ b=EeQ8aw5DD15ciq1yM6EF0kD6uWU/uyQ+oQtPR+4jMBG7kMU5cyrUPko6
+ n4XhcXDNRD7IBvqvSdTgSH2cg7VnsQDb+lis5lWSFX8xX54K7koS53fDK
+ M836xft5kjksoA9jTtNV9ZeDiHUSWIf6JLETQ3ElWfo7aNjzIHvlEU7ne
+ gnby66SXnc2KylBVO3JFRSHYa2B83LUUxZyYFznUR46mAU7hpTtG+MOuK
+ SVjY4pthd7L8A6PYi0SXHVFqfZLdVWZZf9MGbbsLJwkDnLp8E26n/NlzH
+ HmaaXB3pZwfY8wh4Y7sPvhBme5behVvrznbMR0dAR9spOCX2JOnLP8PB9 w==;
+X-CSE-ConnectionGUID: h6WU2ResQGG6bNDCcSTbBA==
+X-CSE-MsgGUID: gIcwE/RSQaGiWkqAnb3Nig==
+X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="84093278"
+X-IronPort-AV: E=Sophos;i="6.21,325,1763452800"; d="scan'208";a="84093278"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2026 19:38:41 -0800
+X-CSE-ConnectionGUID: b06bqj8yQ7Wjib56pH2BkQ==
+X-CSE-MsgGUID: HfI4Ud6rSfO09/cvm5TlQg==
 X-ExtLoop1: 1
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 18:04:33 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.21,325,1763452800"; d="scan'208";a="216372183"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2026 19:38:40 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 4 Mar 2026 18:04:32 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.37; Wed, 4 Mar 2026 19:38:39 -0800
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 4 Mar 2026 18:04:32 -0800
-Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.66) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Wed, 4 Mar 2026 19:38:39 -0800
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.41) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 4 Mar 2026 18:04:32 -0800
+ 15.2.2562.37; Wed, 4 Mar 2026 19:38:38 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=N0jT2iC+sqjsvjBiIlsrNoTNslnIkCzulyKBMywgxQ6Fox5CjXIiF1Z9O3I3h7zlEuAJs+OuYLmNPxG15lj/q705y23dMVKAI8ogjKjjyXTBlpLw3q7ZIsfSbMmUA6c888Dk5x3g6oULwdjS+ucWYbGVpFC+g/TQWbuDJ9fPlgU/tRo5qZ3do12ibl2tHUC/rJtOEH2kvY0fnw2/HIiGOfXJvZmGeo6d4aWM4S06bH+XRtu9s60GBHHW4bDuj0LnVsFOxaVUtbTUYkGUgGqCBdDD7TP5jQmkzr91gpE+SahKBvc1KUsDYma0LMYbWVW+f8Pl+Xlg60obdZJr0hkIrQ==
+ b=xEQeP7Zb2gtXdGjP4i3db3BjNk8UAkC9MtL2Nttu6sqP3sTalyQbnP8AUeNlsI1wzK299Yx5jLpCy+aHfNG1EHhGQfChMcjk54dVsNiFZ8v5H9M9dHYDD/MDktHgRImtZZxCooM9xH98oxjrId4YU76hypxefP94DOT2g2qoRT5fTPCBCD/+ligfCf6tZoaqPRk1pyETugj6U975007od8aXK9s9G/a++S9f4t9vrP7QG34Zk9Q3JuV0ony0QgE/tTjFlIx9QzwnM99i+6GbICBUp3HUjssFK639fmp0ME9Tdodaz/5luY+sKFvUtgMoF74+D0pMI0Kb2wqLcecBlA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LMBzpy1wRVgyF4ooxfQOfjXv5GPNLXwDo/tFwE2w2hk=;
- b=Q680e0rUYPL1zxWswzxGxELSPyd9LynivXS49jJF88IreYKYUj6qfpUGM9j89EaJrdnalbQHBZ/EikOh7Nv010R6pJOQAM7ckUQA5Qa++O6y5weirgVeHnCmov6lF1gVsTKZEc6GOYIECNyeiI4llXWGUUanIbqARuMKVf/ywmoHvvaTGuZ7xPnintJ5IL10dqgNFbxtKWxfLT+bxpgFHP3VbprcEQqCoaIOlTg12205l21MQ3nKd17j852e8QFOorUrkqIwIm8XxZpMmj4+Tx4SUsy+JK7KuZwAOyIxSoh6hkpDVo79bRMjqIkkrHzuKjISp/9gnk55IkltXqqolg==
+ bh=lswiopyITePsU76rheTgRIN9LrZtpV75EcenDYtT+bA=;
+ b=DWGBWT/lJSsWctuyvXgL3XifmjhJlHs9OXxrYAhbMRvSFLsNbn3RFX3DeEbN2FSQEVDa3hfvaN3K6ql8jZqJ+AOJSNgo3Qpv5S6Iew/TMaJGC4PZ1WFNgZzSN0IFv1aTBCdNE7dNYN18ANDgfyccTJKgOXbA8TWbEkZCDTIjoePktTINv33+ntREdtfLMFD/ZYZgVSmNu3m2tFmdMdz41o+VY1jQP3WPnNMdM+dVbWGl9dwLTgUStLRkkk70AMtIkf5RS+gsQCe2lyl3V3i4EKT9zoKeXvGLoNwTZi/punMQry/jcSxsQl/kT2SxT+fuV8xeYQ0C8Ym5aCgQf+SXxg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
- by SA3PR11MB7581.namprd11.prod.outlook.com (2603:10b6:806:31b::21)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from BN0PR11MB5709.namprd11.prod.outlook.com (2603:10b6:408:148::6)
+ by PH0PR11MB4807.namprd11.prod.outlook.com (2603:10b6:510:3a::6) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.22; Thu, 5 Mar
- 2026 02:04:30 +0000
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::53c9:f6c2:ffa5:3cb5%7]) with mapi id 15.20.9678.016; Thu, 5 Mar 2026
- 02:04:29 +0000
-Date: Wed, 4 Mar 2026 18:04:25 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: Chia-I Wu <olvaffe@gmail.com>
-CC: ML dri-devel <dri-devel@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, Boris Brezillon
- <boris.brezillon@collabora.com>, Steven Price <steven.price@arm.com>, "Liviu
- Dudau" <liviu.dudau@arm.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Danilo Krummrich <dakr@kernel.org>, "Philipp
- Stanner" <phasta@kernel.org>, Christian =?iso-8859-1?Q?K=F6nig?=
- <ckoenig.leichtzumerken@gmail.com>, Thomas =?iso-8859-1?Q?Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- open list <linux-kernel@vger.kernel.org>, <tj@kernel.org>
-Subject: Re: drm_sched run_job and scheduling latency
-Message-ID: <aajkqXZDGUFPlq1o@lstrano-desk.jf.intel.com>
-References: <CAPaKu7RbCtkz1BbX57+CebB2uepyCAi-3QzBy8BDGngCJ-Du0w@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
+ 2026 03:38:36 +0000
+Received: from BN0PR11MB5709.namprd11.prod.outlook.com
+ ([fe80::ad31:3f30:20b8:26c]) by BN0PR11MB5709.namprd11.prod.outlook.com
+ ([fe80::ad31:3f30:20b8:26c%6]) with mapi id 15.20.9678.017; Thu, 5 Mar 2026
+ 03:38:36 +0000
+Message-ID: <ce4b99da-1e31-4ba0-83cc-bd4f2b0f4279@intel.com>
+Date: Thu, 5 Mar 2026 09:08:29 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC 3/7] drm/xe/svm: Clear CPU_AUTORESET_ACTIVE on first GPU
+ fault
+To: Matthew Brost <matthew.brost@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <himal.prasad.ghimiray@intel.com>,
+ <thomas.hellstrom@linux.intel.com>
+References: <20260219091312.796749-1-arvind.yadav@intel.com>
+ <20260219091312.796749-4-arvind.yadav@intel.com>
+ <aZjAMO2aGh8cHbYg@lstrano-desk.jf.intel.com>
+ <aZjhKPaPbR4l1C63@lstrano-desk.jf.intel.com>
+Content-Language: en-US
+From: "Yadav, Arvind" <arvind.yadav@intel.com>
+In-Reply-To: <aZjhKPaPbR4l1C63@lstrano-desk.jf.intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAPaKu7RbCtkz1BbX57+CebB2uepyCAi-3QzBy8BDGngCJ-Du0w@mail.gmail.com>
-X-ClientProxiedBy: SJ0PR03CA0361.namprd03.prod.outlook.com
- (2603:10b6:a03:3a1::6) To BL3PR11MB6508.namprd11.prod.outlook.com
- (2603:10b6:208:38f::5)
+X-ClientProxiedBy: MA5PR01CA0228.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1f4::7) To BN0PR11MB5709.namprd11.prod.outlook.com
+ (2603:10b6:408:148::6)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|SA3PR11MB7581:EE_
-X-MS-Office365-Filtering-Correlation-Id: f15033bf-36bd-430f-7865-08de7a5b8935
+X-MS-TrafficTypeDiagnostic: BN0PR11MB5709:EE_|PH0PR11MB4807:EE_
+X-MS-Office365-Filtering-Correlation-Id: 51dc52c5-a996-4a19-9b69-08de7a68aebd
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|7416014;
-X-Microsoft-Antispam-Message-Info: AnmPTj9g9c7I0XtQ5Fa8cys2U6uPFNABvrXuFSM7qRuajq0a/Imp3cZ/jUMfBZLfKkBCqKqduCksPt8WNymFnTtbVrcpFp2/Q9WsE9Iz4hFr++Ige4ICxCZKQ9N7+BgNp2Ut+Us9Vo0VrPPOpju3htegqWZC3u8VY2v/AVLzQ/ze0NEH6XXrqP2URc7Wl0Q7vK4b5jhZtEWhAA8I3T1TVtOXrON9nbC0PQ0H5d0FFqmFoamNWDAOMVT+r4Dz0UW6Cju5Wv2QpQv2SPIMk71xl1Q8Aoxf5l6luoqzxG9uRQGAwEvxKextUlQccXHNR4oiOWjZ32TDeD7qEvBabC6XL6uxUsCy3Q53hOxe7bBKS8RPtA+YSqmNUMYw3785Q5mVjfhMMvkp9QdvX/aBll/6IF0g5HZa/otqJYKLJA8jgrcKGmOw7LjX02+Fnbj/7S8bfDLqaHujbldvHdScKYBPz7GOC4JV/ZndGUmV6F6MO/k3pWhmf1b41YAvONzlxJEHbBk5Ddsd63QekSGI7QqtbvcxL21clG6bpA5yF3jRBZAqAupSXn4sIBbvotowV0vpxFMXLJduCyLQHtYJ9+Sha5IFFfOz0F1Ry1/d0IcEwXpozRLcL35xmTldwzzg3hqc3QXljt8Gw945Q/GV2FJNxHfPA/iGJuPmXomRwYpjD73vutV06ehOZHrIs+1/6HXXhLN8tXv8DEU2MX8+IxJW/sLRbmdQ6qzvDtrucfmcxLY=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: J+XS6fzpctK1AwUpjoVFLMMf0582MbafVCZQb5CM7O8hqV3z1/v+ltoLTipE1HAwssHE+d6PPAR4gpjQc7uigcdbsrkbPxKpOK2ILL3ZbasJXFfwz4IG/p0DCn5/qXZvOFIA6JPQeuuX1OiwBt+L2gpHXrFzBfaiaMGNJvwW4ZpB9lWJaPgyhF4eN/e9AKF/JDoKGp0aBG+UkNyR171U7vICheULLetWRUBVqLQ9ehs4oEaaKkBIz4qdAF0Jxm1bprRo86cvydz3/1Qj8UDX/sUxFQKAn1p9G3SUG0QqM4pf3lZSLG4BZNu33NWp/+mqRQ04B6v1oNW3V7q3VGosALA9v9hGDd00+FftFyD8aTLln3syWhe0G0rqNMJR34CSDEcBMuaP2/7tqLnIPBwB5sYi7I7I3CD7UzTJ4xvxrIMQmeSWF/TyNo/w+OyZYJy4qq7lW5HqVbdCw5uPr3+hD9aOUU1lBDlN/llbrgSmdnR5wR5m94O4Z7xb0sAEjLa4efwbG0KpRmmNSmmZ9CigkDt693/cDQKufVkqWHMknw74sj9abJxD1kz9gasnyMAKoi8BMjo5C0xzofUziVn7rp/xxWAUS8D3f9BTWUpG0tZilkPC/9DNtCN+Re8cVPTG/9L5l96SEhCJLLsCeIuutGYO8kDGq66k4RFUSXnCTFmPiF+yx54tgs+5dNn0Cwdr
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(7416014); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:BN0PR11MB5709.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aGtFSDVDVVhYa1RSUGFnYkVORG1LZ0hWa1Q3K2luNXdpVnU0cE5TV0NLN1Zt?=
- =?utf-8?B?eFNnVmJXbzJYUEhubm96dWdQYi93VWFNZ2o0eXB3M0ZtQml5K3NVaG4xWHBm?=
- =?utf-8?B?M3RTMVhaVW5ZUTVZMkZrRFVvMjlNMWE1WDBHcm95OExUZXNyem5KeWY2bVF6?=
- =?utf-8?B?OEE1bU5BSk96Wm1PQ0RzMGtzNnZaZEx5ZHBSaUkrOGRMUDB1VEZ1am1QemY4?=
- =?utf-8?B?eFEyeGRPVHBMNWZjYU1EMkJyYjVhdUUrOU92cVlEWm9qQnJGMWdRY2dpOWo1?=
- =?utf-8?B?RHEwbS9FYkZ1amVickdoWm9mQUNJOVd0QXFnWWhHdWtNbG9PRnZWN1JLeXg3?=
- =?utf-8?B?NmJ4VGRLbEtaZzFaVUdyNlNGQ25vT0RZTzVzU1pJMFcrTWFhTklSQ1NDcm1L?=
- =?utf-8?B?OWRLNjI3cXlPWVE2b3g0VGUrQ1pmQlRrV01rK0JkazRxUEk3d3M2OHo4b1h1?=
- =?utf-8?B?dW5WTDFZVkNQbjFzZjJhUFI4RUdwVFZuN3dzUUZOZFV2blprQmI2V2d6Y1Uy?=
- =?utf-8?B?VkMrekhSU09BN2VHRDFaNk9aY3JCWlFDbi9aL0ljYUFSZlVNYzhSUHNyalQ2?=
- =?utf-8?B?T0k1Q1JUU09MMlpyNjBQK0RMRE9aeG00VFJXVWl2TThrVm9RYnQxZlg5VVBo?=
- =?utf-8?B?V2JPZDVoVExmb1h6ZHhseG1RK3JOS21SSUdGKytJREZ1MHh1aXg0eDVxVC9O?=
- =?utf-8?B?R3JmeUliZXliQVIzbklIWnRoaW5tdjJtMXV1bG1tQmtpTExTWDE5NTlGOHNt?=
- =?utf-8?B?R0QrdlcrdFhZNUg1eHgwVWJ0WHlselBkZmQvNnkvVUxoNVdkYklUVzRET3JE?=
- =?utf-8?B?L1YvdGcrdUFiTDdYc3UvZzJmek5VYnNhZXpvSzZHNEdxdTQrbU1LdHBOTFFW?=
- =?utf-8?B?THIyNXdHYnJKSDBSbGEyVzEreEdDOHZ4UkpFSmhDTXZMdlN1cHkxdEdCeFlU?=
- =?utf-8?B?WU5IbW8xUWl6TUxvSWdUOUYzUDIva282alBVY3d6dVBKWXMvb21VeW9aQlI2?=
- =?utf-8?B?WUtzYm5JaStFMlpTeG15cFRERGlpcHBoSGJuVXRJbFdNNHp0NU5GbmVpd3Np?=
- =?utf-8?B?czVzWDhHNFlxaHZIc0FVS2o4Z2EyUXNrSG5UQ01YdDhwQzgraDZmT3prdFBQ?=
- =?utf-8?B?dGZyVlc2NnhIN2lqbUh5d3JxWmpVT2VCbDRDdnBCdEtCZ1VCMUs2N3Jua1hY?=
- =?utf-8?B?VmtWWndNQUIyb2FXLytTK3ZtcmFiS0RNK2NmUE5SaExPMTlxbWNYL0Zkb0Zs?=
- =?utf-8?B?ajFEaHFTbWtIQ3pJaUNCZDdMalcyZ1NjUGtuSWpZZm4vRFpMZVo0R0dQcVdF?=
- =?utf-8?B?Tk1vVjh4bGkyM1RPQVJjaGgyVDdrWk5KTHdwOEFWODBzVlZCMHE0TlBSclVD?=
- =?utf-8?B?djRRQ296a1NmdHE2UzIzRURvZGhQK3ViS3lRQzVCejE3SGk4YUluRDF2WG1K?=
- =?utf-8?B?dG0xV2lnWkFhYUNhdjRBUk9qWWliSWxmQkJla0M0dFNSblZkYUNJc2VDVkFT?=
- =?utf-8?B?cU5OQ2xFTUk2eTZZSnNTVy9DL1lOOTZyY1FaRUE5Y3MxQUhULytUM0diaXRx?=
- =?utf-8?B?eVg0RXVNTUhzNUU1dm9ySGNuVFVuemZXaXR6d3Noa0s3cjVNeXMrYmtEdzVT?=
- =?utf-8?B?VFhyUzdKQmFlVnY1ejgwN0RZSmIyVXFUaXpuS1VDd0lSR2ZVVkw4ejNKWmxT?=
- =?utf-8?B?YlVhZnUzYnZzaUtwYVhGemVWT2RsSnhqUHM3UTJoV0tyU011T1dRYnB2c1ZL?=
- =?utf-8?B?WUxreE0yL3granhSb1lmcVB6Qit4R3Y5V283eXg3VXJleHNFVkQxdzJzcDBq?=
- =?utf-8?B?QW1TOFlRdWpRdFpEQmZyZUxFVDA2RFpCV2tRWUlpb2ZzeWs0TG5pYXJod0tI?=
- =?utf-8?B?RXJIR3QvaUpieWUzZGN6UFpZWlhmelJMVVVLM3pTYVlYUWtlbDBJNE95a2d1?=
- =?utf-8?B?amxYcS9wS2xzL3NxQWNKbnBqVVE0d24rRGgrRzhMOGtPU2NuUTNiM2JoRWpq?=
- =?utf-8?B?RjJLeE9Fd2FFUytqODZVT2F0aUl3OXc1UmdzK09LMlFsQ0JpbmdlRTFkeG9X?=
- =?utf-8?B?ZDRucmdlbFBMUDhRMEowUnFxTDRNeGVKOGdmVkUydi8xUTNnU3BmZDdEQ1VK?=
- =?utf-8?B?WUhtczZ0N0Q1UkR6OGxuSnlpWXJkSzBxc0dEVDFPeGFBaTlkd3FGbENBVG5Y?=
- =?utf-8?B?RnJLdzBESHBhMUhCZS9CQ01SczZUTkhlOFRNaG1WZk1rNE82aHlCOUVpbnFF?=
- =?utf-8?B?RURXU0FGUjVjZ3ZOd29qQTRQVFZKSEdaNDBZTHVTYXNiMWdTM2NNOCtVb2ZB?=
- =?utf-8?B?ZThlaEVXejQreENhTU8xajNmcE9hYUZqdkFEMFF1OHVDeWovVTNwK29OM1Av?=
- =?utf-8?Q?+fipt4sPM+wUcdvY=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f15033bf-36bd-430f-7865-08de7a5b8935
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RVRuQldTS2VpRllEQjg5MzJPL1hMbkZhbDZwSzQ0R3ZWVU1GUmJ1K0N4bjdr?=
+ =?utf-8?B?OVNpWSt2OEN2Sko0TWxWcmZ4TzBTOXhPNCtodkovd2pUNWtuOGRKbmE5OWdn?=
+ =?utf-8?B?YjNaZHU4OFRHUEsxTUFkSW5HWXRKVEhJUGJEU1RYdTlERW05K2RlMjRaZ3pI?=
+ =?utf-8?B?NTVZZ1VKQXQ5M1RWbTR4OGlUZDBPbCs4K21RZWloTFcyZ0xQajRhYVlSeVJy?=
+ =?utf-8?B?VGljUUNQOU10TWh4SkNiV1U5QXc5a3NzdDFUbFFlNlNyT3RkdEVSTUhxZUJP?=
+ =?utf-8?B?WnRWVTVUQm44eHE4ZVdSUWxCM0RUd3J4VDhFRVMxTk5qdXlYVEVaK1FEUmlU?=
+ =?utf-8?B?Qy9qMUhZWGxaSU5hVmZTWGhKZTdERkNEQWRlaS9HYnFQOFRDallZQld6MDd2?=
+ =?utf-8?B?blIxK0dqOHU4ejNCcFFmZEoyNkUrbXRmSTJ1Wm1FdGVKbDNIRENHQnhRWnVJ?=
+ =?utf-8?B?SldLRGk5eENBazZWMG01M1VyZXBQbXhOY0tGWmszaWFRYlBKSURRb2VVZlVi?=
+ =?utf-8?B?Q2p3TmV5N08rVlZsaU1EVUpHRW5kUXZEWFpkaHJNdlFRMWhWQmNwMlg2Tkl6?=
+ =?utf-8?B?Q3grYVZwV1NiRUdBVU84VndqMnZXdTBqR0RsellSbkk2VkplbUYwbGs1SDNs?=
+ =?utf-8?B?VXZPZTNEWjdMWldzclEyY3pwWmxVOGphUGM4Uy9VZ01HY1lrUWZQYURGN2J0?=
+ =?utf-8?B?RFNZb0tmam1XS1pLbkpzSUxBQndXTTZIeUlnbFovdXdGZ2FydnduZTJJL0VC?=
+ =?utf-8?B?Z2Y3dHd0VzF6czNjT1MzWkdpVVF5bEt2SXIyaTY3RExOejc1RmwrWXRJeHIr?=
+ =?utf-8?B?czFHbmExeUU1SW1FMU5TK2hwTldVR1ZqaUpWdHZOQ2I3c3ZJaGxWLys1V1dV?=
+ =?utf-8?B?Z2RsN0FRMGg3QkJLc3dLTkF0ek1kcmhRek5DZ1Z1bk01TGE4M2N0WDF6NXpQ?=
+ =?utf-8?B?Vjk4Zmh5cFl4RWNveWE4ZEtPcCtRMUptN1ZXT2cveWNUU1l1Y1k3R056TW1u?=
+ =?utf-8?B?QWVyM3hjNXpCSzhnaE1ncUg3OXNCZFQyQW5qQVdSSWlTRkdLRldtTVRXSTZC?=
+ =?utf-8?B?bko5OWgvTWMrcHFZT2NSOEh3Wkd4NVFhTVFhOTE2RWdpUjBJdHlySmNtZHBx?=
+ =?utf-8?B?UFhaREMyRFRhak8rVUxQVTljT0JycGdPVGs5QmpoUHRaeWd5a3FBN2IyU2xF?=
+ =?utf-8?B?UXQvZEl4VnRSMUlqSkVxLzM3MXJUNFNTOWtlWDNpNERIdXFTSTlaODdBQlFK?=
+ =?utf-8?B?QjlFMHhzTGQ5eXVla2pIWG83eThzaW5vMFIxZmdVa2VRWjlxR1k5dTAvS1U4?=
+ =?utf-8?B?Mk80RHlnUGpFaUpkaEtoc3NNRCtwL2xobjVSRnNsb2docU42UXVyY2tSbEl4?=
+ =?utf-8?B?TUNaVERIYzNxckVsOU5nbm0vR1gwVmVkYnhaS1ltQ3p6aUJUKzhLZ0hUUzhp?=
+ =?utf-8?B?S0pXMjd3aTdUU0JQbGxFcHQ2M0wrQ3QzQzAvR2Z0TmxpVG9mWWtTMlNvNXRS?=
+ =?utf-8?B?NWFjZjA2dFRhUGNTM1NGRmZEcW91V2tTcitwZ0s0czR6K3ZHWTdCdUZtYnVL?=
+ =?utf-8?B?NlRSSHZ1RTBhTjJ5bi9mNloxQVNXbENycS9aempjWkV5bE9kRW5XS0ZzQklo?=
+ =?utf-8?B?WnQ3Q0FrbzI0UUI3aTlWSW00ait6TnZOSCtWeFYyZEpGWmRsVWJvdWErL1ZM?=
+ =?utf-8?B?ZURCZ0JmUmZReVRFVnEvUEJwNnk1dEwwK1Nrek9nZHcyUCtWcC9NTmViVy9H?=
+ =?utf-8?B?N3ZSdHpLaUJNZlEvaDRtREFoQmlvRVR5ZVNzeTZMaXNBa1psb3FFWXc1bWRy?=
+ =?utf-8?B?TUZBQXBaaHFyZENxdWVZaFVLSEVLelUxbkJvZmN2WG56NXZMSlBHcWxjZnlC?=
+ =?utf-8?B?YkQ0SCtTUzgrVURKUlRoNzFzdzM4TXVnZENWUVpnOG4rSjlSQ3BsMU40a0ow?=
+ =?utf-8?B?amZPem5wQ1h0N3ZmZ2NWZmp2THlDU281dkMrRVl1S2tUdHVjVlVRS3FwYjVw?=
+ =?utf-8?B?RWV6aE5IR3lYcCtlK2tpSW5FOGtBb01JNUR5NVVtM2pQZDNFSW1NZWxBUGxK?=
+ =?utf-8?B?RWJXY1RKb2k0L09GV3MxQ3RVeGxBK2JldjRFd1owTFZBam9VaVVHc1ZTLzZw?=
+ =?utf-8?B?MlVLYmRLR1B6akFOUDVtZ3BBZzhkOHlZNDlBTjZWSTNqenlVK01JK2JHcnh4?=
+ =?utf-8?B?R3QzWDNtT1VsZ1dPeEt3cTlRTGlWSjFGMTZ0Qmg1aExyMk1CVUUyeUkwSDYv?=
+ =?utf-8?B?QlZlbHE3TVNwTHJTMEx3OXN4NDFDVE4zUGozbnJsRUZiamcrVWJ3TzdzMFF0?=
+ =?utf-8?B?bUJSQzBlK0dDbnY1dERXQWtzVmdkdXZ5emxuMFJEeElvbUtkdkJGdz09?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 51dc52c5-a996-4a19-9b69-08de7a68aebd
+X-MS-Exchange-CrossTenant-AuthSource: BN0PR11MB5709.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 02:04:29.8231 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 03:38:36.1872 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: eVm3MzEd3BZiOfNLi5hiRoORC4LORXAdVLNJXP4TTNlDNVhOJC/pRfI6t9eyNkQQ5go9KzZMda5ETIaxGT066A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7581
+X-MS-Exchange-CrossTenant-UserPrincipalName: MX1EPXs+Pld+I66eeQhkjNRCHbRMNFhuj6TcAY7aydhyyVozQKp7OWUm1oXqMaPZojcKKpERd7YLhMb0cBr1sQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4807
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -173,56 +169,138 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Mar 04, 2026 at 02:51:39PM -0800, Chia-I Wu wrote:
-> Hi,
-> 
-> Our system compositor (surfaceflinger on android) submits gpu jobs
-> from a SCHED_FIFO thread to an RT gpu queue. However, because
-> workqueue threads are SCHED_NORMAL, the scheduling latency from submit
-> to run_job can sometimes cause frame misses. We are seeing this on
-> panthor and xe, but the issue should be common to all drm_sched users.
-> 
 
-I'm going to assume that since this is a compositor, you do not pass
-input dependencies to the page-flip job. Is that correct?
+On 21-02-2026 04:03, Matthew Brost wrote:
+> On Fri, Feb 20, 2026 at 12:12:32PM -0800, Matthew Brost wrote:
+>> On Thu, Feb 19, 2026 at 02:43:08PM +0530, Arvind Yadav wrote:
+>>> Clear XE_VMA_CPU_AUTORESET_ACTIVE before installing GPU PTEs for CPU
+>>> address mirror VMAs.
+>>>
+>>> This marks the one-way transition from CPU-only to GPU-touched so munmap
+>>> handling can switch from the MADVISE autoreset notifier to the existing
+>>> SVM notifier.
+>>>
+>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+>>> Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/xe/xe_svm.c | 10 ++++++++++
+>>>   drivers/gpu/drm/xe/xe_vm.h  | 11 +++++++++++
+>>>   2 files changed, 21 insertions(+)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+>>> index cda3bf7e2418..b9dbbb245779 100644
+>>> --- a/drivers/gpu/drm/xe/xe_svm.c
+>>> +++ b/drivers/gpu/drm/xe/xe_svm.c
+>>> @@ -1209,6 +1209,9 @@ static int __xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+>>>   	lockdep_assert_held_write(&vm->lock);
+>>>   	xe_assert(vm->xe, xe_vma_is_cpu_addr_mirror(vma));
+>>>   
+>>> +	/* Invariant: CPU_AUTORESET_ACTIVE cleared before reaching here. */
+>>> +	WARN_ON_ONCE(xe_vma_has_cpu_autoreset_active(vma));
+>>> +
+>>>   	xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_PAGEFAULT_COUNT, 1);
+>>>   
+>>>   retry:
+>>> @@ -1360,6 +1363,13 @@ int xe_svm_handle_pagefault(struct xe_vm *vm, struct xe_vma *vma,
+>>>   			    bool atomic)
+>>>   {
+>>>   	int need_vram, ret;
+>>> +
+>>> +	lockdep_assert_held_write(&vm->lock);
+>>> +
+>>> +	/* Transition CPU-only -> GPU-touched before installing PTEs. */
+>>> +	if (xe_vma_has_cpu_autoreset_active(vma))
+>>> +		xe_vma_gpu_touch(vma);
+>> I don’t think this will work going forward. I plan on making the fault
+>> handler run under vm->lock in read mode [1], and VMA state will only be
+>> allowed to be modified under the lockdep constraints in [2], which are
+>> vm->lock in write mode or vm->lock in read mode plus the garbage
+>> collector lock. Maybe this is fine for now, and we can rework it once
+>> [1] and [2] land—most likely by taking the garbage collector mutex
+>> introduced in [1] before touching this VMA’s flags.
+>>
+>> Another issue is what happens if we don’t want to taint the VMA unless
+>> we actually fault in a range. It is valid to not find a range to fault
+>> in if this is a prefetch, as that fault just gets suppressed on the
+>> device. So at a minimum, this needs to be moved to where the function
+>> returns zero (i.e., by the out label).
+>>
+>> [1] https://gitlab.freedesktop.org/mbrost/xe-kernel-driver-svn-perf-6-15-2025/-/commit/08fa2b95800583e804a91caf477f9c30b3440a33#33e7d2d9323cd529c8d587d9d3801e353439d783_181_179
+>> [2] https://gitlab.freedesktop.org/mbrost/xe-kernel-driver-svn-perf-6-15-2025/-/commit/08fa2b95800583e804a91caf477f9c30b3440a33#71bf077daec46f3ebd785235e8ecc786681aff99_1112_1128
+>>
 
-If so, I believe we could fairly easily build an opt-in DRM sched path
-that directly calls run_job in the exec IOCTL context (I assume this is
-SCHED_FIFO) if the job has no dependencies.
+Good catch on both. I will move the gpu_touch to after 
+__xe_svm_handle_pagefault() returns 0 so we donot taint on suppressed 
+prefetch faults. For the future locking rework, happy to revisit — 
+likely taking the GC mutex there as you mentioned.
 
-This would likely break some of Xe’s submission-backend assumptions
-around mutual exclusion and ordering based on the workqueue, but that
-seems workable. I don’t know how the Panthor code is structured or
-whether they have similar issues.
+>>> +
+>>>   retry:
+>>>   	need_vram = xe_vma_need_vram_for_atomic(vm->xe, vma, atomic);
+>>>   	if (need_vram < 0)
+>>> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+>>> index 7bf400f068ce..3dc549550c91 100644
+>>> --- a/drivers/gpu/drm/xe/xe_vm.h
+>>> +++ b/drivers/gpu/drm/xe/xe_vm.h
+>>> @@ -423,4 +423,15 @@ static inline struct drm_exec *xe_vm_validation_exec(struct xe_vm *vm)
+>>>   	((READ_ONCE(tile_present) & ~READ_ONCE(tile_invalidated)) & BIT((tile)->id))
+>>>   
+>>>   void xe_vma_mem_attr_copy(struct xe_vma_mem_attr *to, struct xe_vma_mem_attr *from);
+>>> +
+>>> +/**
+>>> + * xe_vma_gpu_touch() - Mark VMA as GPU-touched
+>>> + * @vma: VMA to mark
+>>> + *
+>>> + * Clear XE_VMA_CPU_AUTORESET_ACTIVE. Must be done before first GPU PTE install.
+>>> + */
+>>> +static inline void xe_vma_gpu_touch(struct xe_vma *vma)
+>>> +{
+>>> +	vma->gpuva.flags &= ~XE_VMA_CPU_AUTORESET_ACTIVE;
+>> Thinking out loud — not strictly related to your series, but I think we
+>> should route all accesses to vma->gpuva.flags through helpers with
+>> lockdep annotations to prove we aren’t violating the rules I mentioned
+>> above (right now this would just require vm->lock in write mode).
+>>
+> Actually I looked at this and exec IOCTLs can set some of the
+> vma->gpuva.flags in vm->lock read mode only, so we basically don't have
+> any rules for vma->gpuva.flags and it all happens to work by chance. So
+> at minimum here let's define some clear rules /w lockdep for
+> XE_VMA_CPU_AUTORESET_ACTIVE, if that needs to be moved out
+> vma->gpuva.flags for now that would be my preference as we shouldn't
+> make the usage of vma->gpuva.flags worse.
 
-I can try to hack together a quick PoC to see what this would look like
-and give you something to test.
 
-> Using a WQ_HIGHPRI workqueue helps, but it is still not RT (and won't
-> meet future android requirements). It seems either workqueue needs to
-> gain RT support, or drm_sched needs to support kthread_worker.
+I will move it out of vma->gpuva.flags into a dedicated bool 
+cpu_autoreset_active in struct xe_vma with explicit lockdep comment 
+(write: vm->lock write; read: vm->lock read). 
+XE_VMA_CPU_AUTORESET_ACTIVE is kept as a pipeline-only bit in 
+op->map.vma_flags to carry state through MAP/REMAP ops, not stored in 
+vma->gpuva.flags.
 
-+Tejun to see if RT workqueue is in the plans.
+>
+> Matt
+>
+>> Perhaps when I post [1] and [2], I can clean all of that up, or if you
+>> want to transition all access to vma->gpuva.flags to helpers (e.g.,
+>> xe_vma_write_flags(vma, mask), xe_vma_read_flags(vma, mask),
+>> xe_vma_clear_flags(vma, mask)), I wouldn’t complain.
 
-> 
-> I know drm_sched switched from kthread_worker to workqueue for better
-> scaling when xe was introduced. But if drm_sched can support either
-> workqueue or kthread_worker during drm_sched_init, drivers can
-> selectively use kthread_worker only for RT gpu queues. And because
-> drivers require CAP_SYS_NICE for RT gpu queues, this should not cause
-> scaling issues.
-> 
 
-I don’t think having two paths will ever be acceptable, nor do I think
-supporting a kthread would be all that easy. For example, in Xe we queue
-additional work items outside of the scheduler on the queue for ordering
-reasons — we’d have to move all of that code down into DRM sched or
-completely redesign our submission model to avoid this. I’m not sure if
-other drivers also do this, but it is allowed.
+We can add the xe_vma_write_flags/read_flags/clear_flags wrappers too if 
+you want that done in this series or prefer to do it alongside your 
+locking rework.
 
-> Thoughts? Or perhaps this becomes less of an issue if all drm_sched
-> users have concrete plans for userspace submissions..
 
-Maybe some day....
+Thanks,
+Arvind
 
-Matt
+>>
+>> Matt
+>>
+>>> +}
+>>>   #endif
+>>> -- 
+>>> 2.43.0
+>>>
