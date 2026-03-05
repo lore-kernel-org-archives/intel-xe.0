@@ -4,49 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3C79F3092A
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 10:42:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CA31F30931
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 10:43:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B56C910E251;
-	Thu,  5 Mar 2026 10:42:23 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="TVltokj+";
-	dkim-atps=neutral
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 343EF10E251;
- Thu,  5 Mar 2026 10:42:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1772707340;
- bh=PMyN55nlHGUFjJgx8Vh4sLgZmW5ECk9JFSDWHXdmyzo=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=TVltokj+SkJQ12pGB/gQG+dHnDdXiTKsvVdKIbnR7zO0t6WcAkvIvzEoZ+t0Yw0Aq
- ChHPWeJ/zkgBTtAx9chYBSvckAldHGRD/TA07AfBMByAuZtgT4yKiT8EyET+qKO+C7
- dtpx1p76m/KXkG4jpIFvYGmX1eFLpCAP9PVgIrZibNN7rpAs/dsL6gskD0IRkfgVt0
- Hvmwfi1ZYMN2tycSDPBP79SvjV1ysleulIoXdR2UrQv4VcFP8LCMtI3u2bw3aOivPJ
- rkR2U7kndvbPmvo6IS1J6qun3YY0FvLxa0RWJrE8euIjARcd7jb9xnFRm8NgA10u6K
- 4NqS32z1O0jng==
-Message-ID: <98af7aba-f86f-4ff0-a53b-60e0e9784e37@lankhorst.se>
-Date: Thu, 5 Mar 2026 11:42:19 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB43A10E25E;
+	Thu,  5 Mar 2026 10:43:41 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45EC910E25E;
+ Thu,  5 Mar 2026 10:43:40 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4274534004980132416=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [i915-rt v6 00/24] drm/i915/display: All patches to make
- PREEMPT_RT work on i915 + xe.
-To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-rt-devel@lists.linux.dev, dri-devel@lists.freedesktop.org
-References: <20260220083657.28815-26-dev@lankhorst.se>
- <20260224162703.Q_taYjEC@linutronix.de>
- <20260224165903.2mn24oQy@linutronix.de>
- <20260225075806.XNtXjZ5E@linutronix.de>
- <7ee8b784-a714-4329-aab2-a571f25c3baa@lankhorst.se>
- <20260226120715.6Ug1Qkse@linutronix.de>
- <20260226141942.Z6vUrEQ3@linutronix.de>
- <20260226143857.4ZJAFzf6@linutronix.de>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <20260226143857.4ZJAFzf6@linutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_drm/i915/dp=3A_ALPM_init_t?=
+ =?utf-8?q?o_be_done_after_DPCD_init_=28rev6=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 05 Mar 2026 10:43:40 -0000
+Message-ID: <177270742026.320086.18406022965722866080@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260302033630.428913-1-arun.r.murthy@intel.com>
+In-Reply-To: <20260302033630.428913-1-arun.r.murthy@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,83 +36,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+--===============4274534004980132416==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Den 2026-02-26 kl. 15:38, skrev Sebastian Andrzej Siewior:
-> On 2026-02-26 15:19:42 [+0100], To Maarten Lankhorst wrote:
->> On 2026-02-26 13:07:18 [+0100], To Maarten Lankhorst wrote:
->>> series somewhere I could pull and check. In meantime I would look what
->>> causes the lockup on i915.
->>
->> I think I got it.
-> 
-> This the atomic sync as-is, IRQ-Work (FIFO-1) will be preempted by the
-> threaded-interrupt (FIFO-50) and the interrupt will poll on
-> signaler_active while the irq-work can't make progress.
-> 
-> This will provide the needed sync:
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> index a2b413982ce64..337f6e88faf05 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> @@ -209,6 +209,7 @@ static void signal_irq_work(struct irq_work *work)
->  		intel_breadcrumbs_disarm_irq(b);
->  
->  	rcu_read_lock();
-> +	spin_lock(&b->signaler_active_sync);
->  	atomic_inc(&b->signaler_active);
->  	list_for_each_entry_rcu(ce, &b->signalers, signal_link) {
->  		struct i915_request *rq;
-> @@ -246,6 +247,7 @@ static void signal_irq_work(struct irq_work *work)
->  		}
->  	}
->  	atomic_dec(&b->signaler_active);
-> +	spin_unlock(&b->signaler_active_sync);
->  	rcu_read_unlock();
->  
->  	llist_for_each_safe(signal, sn, signal) {
-> @@ -290,6 +292,7 @@ intel_breadcrumbs_create(struct intel_engine_cs *irq_engine)
->  	init_llist_head(&b->signaled_requests);
->  
->  	spin_lock_init(&b->irq_lock);
-> +	spin_lock_init(&b->signaler_active_sync);
->  	init_irq_work(&b->irq_work, signal_irq_work);
->  
->  	b->irq_engine = irq_engine;
-> @@ -487,8 +490,11 @@ void intel_context_remove_breadcrumbs(struct intel_context *ce,
->  	if (release)
->  		intel_context_put(ce);
->  
-> -	while (atomic_read(&b->signaler_active))
-> +	while (atomic_read(&b->signaler_active)) {
-> +		spin_lock(&b->signaler_active_sync);
-> +		spin_unlock(&b->signaler_active_sync);
->  		cpu_relax();
-> +	}
->  }
->  
->  static void print_signals(struct intel_breadcrumbs *b, struct drm_printer *p)
-> diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
-> index bdf09fd67b6e7..28dae32628aab 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
-> @@ -40,6 +40,7 @@ struct intel_breadcrumbs {
->  	struct list_head signalers;
->  	struct llist_head signaled_requests;
->  	atomic_t signaler_active;
-> +	spinlock_t signaler_active_sync;
->  
->  	spinlock_t irq_lock; /* protects the interrupt from hardirq context */
->  	struct irq_work irq_work; /* for use from inside irq_lock */
-> 
+== Series Details ==
 
-Thinking some more, replacing signaler_active with signaler_active_sync might be the best fix.
-I'm not sure there's much use for parallel completion of the same breadcrumb, and using completion
-might be too heavy handed.
+Series: drm/i915/dp: ALPM init to be done after DPCD init (rev6)
+URL   : https://patchwork.freedesktop.org/series/162392/
+State : failure
 
-Kind regards,
-~Maarten Lankhorst
+== Summary ==
+
+ERROR: The runconfig 'xe-4655-cfc20c776480fda8c1b0517b187bb71ec0781cd4_FULL' does not exist in the database
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162392v6/index.html
+
+--===============4274534004980132416==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp: ALPM init to be done after DPCD init (rev6)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162392/">https://patchwork.freedesktop.org/series/162392/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162392v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162392v6/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-4655-cfc20c776480fda8c1b0517b187bb71ec0781cd4_FULL' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============4274534004980132416==--
