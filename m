@@ -4,101 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 679DEF33A66
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 14:00:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85640F33A6B
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 14:06:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2889110E147;
-	Thu,  5 Mar 2026 14:00:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F1C710EBC8;
+	Thu,  5 Mar 2026 14:06:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LLiPPMTz";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NerOuSps";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8E1810E147;
- Thu,  5 Mar 2026 14:00:32 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id AE18A43A5E;
- Thu,  5 Mar 2026 14:00:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E58FC116C6;
- Thu,  5 Mar 2026 14:00:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772719232;
- bh=393qDIgoHBbCQNpTIGP+WBiCqebYKIGYINOpS7EZdyA=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=LLiPPMTzZg9/f80zQO9P/fDIaf7xVcapS/MbzaPpFA+pXw3fDPXDsl5FaO+E3F0+K
- e/AwWKAZC2U0+K3fQVhE48wi9M0L1hOg+hzT5GLlBoJvKlwPwy0nB/XNxCSlkA3oVi
- Zq5Tqg6m+9A8Um7hHXF9eEg/jNtA5iqOkWM15gP1eIg+7eezFv6GgM7tYhSpTb8EOR
- M+VIQjM3qFn1f+gBYvrACm1H5odHiuYaipKFvPxrAPdkk8xpNQan2YpBRq8AuPNm7l
- ARrox0w0CBjHRwemaDknNiPDqzDvILVTPu9EJd+tmQZOFlXsYnVgY6LfwgwCp+eVnE
- yuMhyx9j8yaQQ==
-Message-ID: <1efba81b-d4e9-405b-8ad5-0a170237902f@kernel.org>
-Date: Thu, 5 Mar 2026 15:00:23 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADD8F10EBC8;
+ Thu,  5 Mar 2026 14:06:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772719605; x=1804255605;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ in-reply-to:mime-version;
+ bh=8Zzp/ormxdjdwK2BTXHBC3gs+EzvVzhJ5DLUurqfNKE=;
+ b=NerOuSpsfzQI94mSAqciMF0+27cVWNg2LjNSgOPvz2zQGqPn9VeG0UE9
+ 0QX3ZDgSAr18zf9L+/GFBIBO+tdnWcIayT2bvqpo8eCT2JDYl+KiaOzE+
+ zLtFphO5X1li9ezVMFcSSGCpW8n9iZBnTWDkpaY4P9BBGyNPfV3hg+j7j
+ BAupBm3uGxrfMNV1sKHc3qx3mRctB4ZtCxjypAAmqR132WBvaODBWcxC8
+ wp46g6lx5q32f46NfzZkbjcCB/QSGRtEfA82xMXqr9f6+B2ncv9zKPlMk
+ N+CBxjW2T4eom5O4+CuQkVy9E7OLfPGvJMrIO2ifB0w3UFsfpPBICabmj Q==;
+X-CSE-ConnectionGUID: fptFxViRQSi2+Orx5JGfZA==
+X-CSE-MsgGUID: x6ee0QOeQha7kY27ldggVg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11720"; a="77680238"
+X-IronPort-AV: E=Sophos;i="6.23,103,1770624000"; d="scan'208";a="77680238"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2026 06:06:45 -0800
+X-CSE-ConnectionGUID: vgZLtdgYQf+JFihpbNq3YA==
+X-CSE-MsgGUID: rcExzPnJQX6FXTPG1CMt6w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,103,1770624000"; d="scan'208";a="218647829"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2026 06:06:45 -0800
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 5 Mar 2026 06:06:44 -0800
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Thu, 5 Mar 2026 06:06:44 -0800
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.16) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 5 Mar 2026 06:06:44 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=iG0JLTrd65qaSUv3T3vEplB49fSABLgBtW9uLdEZGfATJtcUq+clLxsQbP2oR5F5VIverR0wHx80rn7uSsEfbEdNLsHonjNR5Mrx5u323TJHBE8Pz5aoxcqT+eDqkP6fLVhGJJHl22G+dtkBgL8aa3iKgyI35VwrFU6vIbHYsVqGlK+HZplqC75+rp7PqKRHiNv/AUpK6M7nv7DbLon+eoR33UC/w/LmO7vkZOXKOoY0vu1FhwTAf/xfvK7tASedDULIr+SvhzFXH9saFCoEUej+4L+eHPB5alUAaw0HGIj3TWHPRSmKHnmNBg6N/Yxq1uYXTdg0BvLDdK1ue+Y9Fg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dGQgvIPB8eF3Y1vKhW77qrdE9RjoCKK/sOpkZdFYt+E=;
+ b=CxfbHkzOZh2fP4N8yStUREM/9t6BV1GFtPjrgg0tuSCO0TW+gNtGeEuVtztLYyxow5/tBb2INi5nPTGAwB5ayoKft3XHwq+MwnD23ySGOBrEHPvEC7ELociA6LbWSDkIuIoxl/CoIIW1b2wexORSy9o2ZuVq1xinJm6+tljHouUHAj+Uz7Wo9akab5tWcFfwKIg1kRfV/E/vzhR+5Ez79pgu7XcKIgkqM2lleqF0XGeSPP0g8CkKKVVVCJW65sr/mZCPRxp5zsk+40zqU4luJ44ZVzCqwhvI7iXsGx7Iiiyw04gZuC1V3ChVPq/9K5fZD0eM+uA42mP5jwiWBhMqag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
+ by SN7PR11MB7067.namprd11.prod.outlook.com (2603:10b6:806:29a::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Thu, 5 Mar
+ 2026 14:06:42 +0000
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::9ca5:4d1d:db45:f523]) by SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::9ca5:4d1d:db45:f523%5]) with mapi id 15.20.9654.015; Thu, 5 Mar 2026
+ 14:06:41 +0000
+Date: Thu, 5 Mar 2026 16:06:34 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Animesh Manna <animesh.manna@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <jouni.hogander@intel.com>, <jani.nikula@intel.com>, Arun R Murthy
+ <arun.r.murthy@intel.com>
+Subject: Re: [PATCH v6 1/2] drm/i915/display: Panel Replay BW optimization
+ for DP2.0 tunneling
+Message-ID: <aamN6sXMXoOgZpBs@ideak-desk.lan>
+References: <20260305122011.3297262-1-animesh.manna@intel.com>
+ <20260305122011.3297262-2-animesh.manna@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20260305122011.3297262-2-animesh.manna@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-ClientProxiedBy: GVZP280CA0057.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:150:271::11) To SJ0PR11MB4845.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d1::10)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] mm/mmu_notifier: Allow two-pass struct
- mmu_interval_notifiers
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, Andrew Morton <akpm@linux-foundation.org>,
- Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>,
- Alistair Popple <apopple@nvidia.com>, dri-devel@lists.freedesktop.org,
- linux-mm@kvack.org, linux-kernel@vger.kernel.org
-References: <20260305093909.43623-1-thomas.hellstrom@linux.intel.com>
- <20260305093909.43623-2-thomas.hellstrom@linux.intel.com>
-From: "David Hildenbrand (Arm)" <david@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=david@kernel.org; keydata=
- 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
- qIws/H2t
-In-Reply-To: <20260305093909.43623-2-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|SN7PR11MB7067:EE_
+X-MS-Office365-Filtering-Correlation-Id: be776df5-1b16-4aa6-574a-08de7ac06d1e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: Bp3Qjl3GT6KI17Gf2pWH77uU29HwA7fILi+rNXU6/oiYK+Mts9s+/eWVsoJ2KLQ4/F6rvseb1tS3RZiKyqCJQjph2FlrL5wodCrNW5WqWui7xB4dC6bn+cGzOvVvFlDifzuo4PUDEiBVoE4kKRKSyQ413L1cG8trjfcg6kfgeqsALOufWaFwhxvyQVo4r+bFjUWbSXroHUUzbRaJAw8WjryNeCzqY2w+iepMyRoHgMruhbPEh+r14j8ZVzch+gHPoYUXsFYJ1cmKHBEH/Qj9UfFQfOdQk67Ub0V6k3JLP74M8xc7spTLlrv9FRX+GJv6C5iDL+cZ8PJjiW+1L5mTTyLX9aD5uoFi74z9cepSPhrjsqihHPLhz/RKPrtBmMlT+h+q2rTvPZbuvEs0FVYOoddyUaHFbj4fwh5uJbRK5twMfo3DKBYFIWQn3IzZe11EO7dh7KwfWqorhxhDy/z5y5AoDksV8VlVEqtX9LBq3oUitx7Vam3mdxD7zvhp7sf6JqJtcY2ijNW47PUkc5XPawLQC3EmFitrFO0KuKANcsXS9fFzwjPEfSU2UKtkkWAEL67vF9GOojykt9raC9M12jaqzx44cbqEIZ7aIJJiATgO9g/mn4Hiy5xNK60es23+nJQ60gcLQlY2zqPQKAjIb5l9lxKAzumdWxMnm64AZpcmpd2sYjYGm0teNzotzILR342ATaSeADyKLUlEZG+w8B5TSkj1Phz2pogrEbU7bqI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0IV2cfTa753wKjPZdazcjiWkfOcDYVa5qSjxd8A0d6LVzFMbYj6gF5NZlCUK?=
+ =?us-ascii?Q?aDGBNTVJeF89RnEwaTuAA79YfN2Mjyk8yh8FcF7OjzUigAZS3Fuk3GgDKR37?=
+ =?us-ascii?Q?oCykLFYcaRD8MQXraOEWZjb83xPFsCBu6ki1pQKsK9YukTKyrcs2ohFa0UH8?=
+ =?us-ascii?Q?SefxMGRvwD+EkKkk8GXCGsYvIDhcDqLLu2uTbPyNTtVa4GGXLBHbmUiVO0Sq?=
+ =?us-ascii?Q?pWcLWwF7uthLdK3n55VYIniTZ/3dFCJZDEhk3HCKpqVK0jZ+wLxVKgPfA+MS?=
+ =?us-ascii?Q?NKGysuVoID3UYhUKMgQCzlGH8+ADcZ0op3t5/MWg6UNbgy2c5zK+nPkgjFbl?=
+ =?us-ascii?Q?szUhr/OIDHA5VC7P38n9fYIPVZx40ucIqFSsBdZX6cQw4BtdZYpJDfwhBPk/?=
+ =?us-ascii?Q?e0y0mZzzSfYITN8Zt+v7v8NQK/fDtJRXEgtBrtu+X7K/OI8LAsk4zg4rJJpc?=
+ =?us-ascii?Q?Sta4u4JsYVyRJXJIui67on3RvaspQEvzk5ovjh/tzZXsB6HEItDX3jNl9UC9?=
+ =?us-ascii?Q?QArquk4E0CxBdx06UV0c3GxcG2+i3ILlrlhvjlKObeBrpcliGkZ134mxV9pV?=
+ =?us-ascii?Q?pY8W6iQq7wvXTA+HJIxQT9b4HOVqdMXSunFVjhp3LCD02r4kIQtNY14cQt1T?=
+ =?us-ascii?Q?cOPjSxn23avtA3YsTlP6ZjAHLr8mfbhQBnlwVrf0JWBtbYU+yFDEiE0LRCkR?=
+ =?us-ascii?Q?gFibRw9ITJ+gCUM5aTpZaSFMtKs+rtR6Zemwp6wecY4Frg7ZW+fkjI/KTIjd?=
+ =?us-ascii?Q?VbBdlJSZtgeomDJ/9UswSdVGEyOSu0Xy1Ns6QhIyNhlvTnmI7L6kg6ELVL+Y?=
+ =?us-ascii?Q?Im7pR+o+XeY37N512Mji/Ncmc47BD6P/2MOI22QMoAmSa8SWkeUjS7Cl+662?=
+ =?us-ascii?Q?zFHb6jXwjHDTKFtGTDU30af8aGT+QmAv5VPVKHVOXrNe5cQz4blW8N4kHino?=
+ =?us-ascii?Q?BMzutt92od/NCOQ8wMOg2Ecg6+G8JQxjdS9IHHj37/Xi3oPKRzWJE+CFbqTy?=
+ =?us-ascii?Q?4l1bvFQ/SNB44Z9XZMSyy5WA6rTNQMNaajK0ICJZeqh2zJRXJWhkxgf/5hDW?=
+ =?us-ascii?Q?X+QChs01YHEBEOvV0Pf1UjfYB1JDieYiEQGJTTRwnPuhTY1MjiJDDN2aYuWh?=
+ =?us-ascii?Q?+NnwBItJcc94B8SAmgASI8N21MjHFr3dTI08BJYJgYgRdREpXNpN60jFyEKa?=
+ =?us-ascii?Q?Z4jBOxyMQPI0ZYCrr4LzfsRT8AmHHmkW9iWNA+ZJhSFG3qRBgiODwOwsxWjm?=
+ =?us-ascii?Q?Y/oaBLRlrTqBLPMf7atAT8Bwe30Eq29+cplKZLwWnlwhala4lqPtXDFEvTBc?=
+ =?us-ascii?Q?+LdR9LhcClxGL/cJChaIRW+a8MHqWUNFkhRDeoj6u25eYiqX8BopeMMGcWh+?=
+ =?us-ascii?Q?nEd6xxB7OrTcU6fjZq0ncQGTQApsZC+dPwek6OaB+AS+X0GpIXBv9tYJYsva?=
+ =?us-ascii?Q?fMkI7Cpy4x+TiD9A+zswGlRDfK2B4ntYgvL39BtP778Bvx5ziUsGE/cAEZSe?=
+ =?us-ascii?Q?CjyOanQVFU1Tc1N49IQ727j8PDUa3JRmCgXYtKgNWJzgVNRZXOVqh9pIx3ZJ?=
+ =?us-ascii?Q?qpLBk/XBZFjvK0CV+6cIA1wjd47KE+yPN5x0k7okE7Jh4dgYBQQzQFLvBCqh?=
+ =?us-ascii?Q?sTrVm3Qlgqbm8hMUJX9cGwdqzY1MXZGr0IZVLm640Oj7szCRvBgS43eLUr3b?=
+ =?us-ascii?Q?8ThpAupTW5cimUxdRa5rRjvwVF/bSAoUr35WosjuTfIQ/lQ+95JLpDaea7gG?=
+ =?us-ascii?Q?5t4PqrmONA=3D=3D?=
+X-Exchange-RoutingPolicyChecked: XHIqaxcvzdG1ji9TklStBnUS2M14+U1RAApqgvQltGJmSPDUBgFSP9hpyYceZm0PnFOoYEJedFOc9HLa2U0KdWuBt2iYB/fJqmJGgeol8jGxfd3dMM/fT1cvRJ1ZJ0zEEm/wrg226UlYjkQnM/0GAEyN/rW8v597M7HQ3FRcOO0toBjt1QCoAIvf8TpIMZdSsdVa6sxcEehNVCCASDpAnNlAC59YPp0rPktqJ39Hwb7NG8LyOcanHNw5PCwM38l35ttER4jiPbpHoSxU39z4686qIIHeqhK6Wmb8LS3IUDRqWKzbFw7II5Zzt/L5BSkcoF3d6eb2YxSewNjuh94t+Q==
+X-MS-Exchange-CrossTenant-Network-Message-Id: be776df5-1b16-4aa6-574a-08de7ac06d1e
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 14:06:41.8174 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: W295tyB9XyBaELOKvZ+EilNaC2rKIR5AE2cP0BnA+IU+k9IGsst3XfZNGMnpRGBXMJgdUFccfed8o4JFqlTfSg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7067
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,74 +157,164 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 3/5/26 10:39, Thomas Hellström wrote:
-> GPU use-cases for mmu_interval_notifiers with hmm often involve
-> starting a gpu operation and then waiting for it to complete.
-> These operations are typically context preemption or TLB flushing.
+On Thu, Mar 05, 2026 at 05:50:10PM +0530, Animesh Manna wrote:
+> Unused bandwidth can be used by external display agents for Panel Replay
+> enabled DP panel during idleness with link on. Enable source to replace
+> dummy data from the display with data from another agent by programming
+> TRANS_DP2_CTL [Panel Replay Tunneling Enable].
 > 
-> With single-pass notifiers per GPU this doesn't scale in
-> multi-gpu scenarios. In those scenarios we'd want to first start
-> preemption- or TLB flushing on all GPUs and as a second pass wait
-> for them to complete.
-> 
-> One can do this on per-driver basis multiplexing per-driver
-> notifiers but that would mean sharing the notifier "user" lock
-> across all GPUs and that doesn't scale well either, so adding support
-> for multi-pass in the core appears to be the right choice.
-> 
-> Implement two-pass capability in the mmu_interval_notifier. Use a
-> linked list for the final passes to minimize the impact for
-> use-cases that don't need the multi-pass functionality by avoiding
-> a second interval tree walk, and to be able to easily pass data
-> between the two passes.
-> 
-> v1:
-> - Restrict to two passes (Jason Gunthorpe)
-> - Improve on documentation (Jason Gunthorpe)
-> - Improve on function naming (Alistair Popple)
 > v2:
-> - Include the invalidate_finish() callback in the
->   struct mmu_interval_notifier_ops.
-> - Update documentation (GitHub Copilot:claude-sonnet-4.6)
-> - Use lockless list for list management.
+> - Enable pr bw optimization along with panel replay enable. [Jani]
+> 
 > v3:
-> - Update kerneldoc for the struct mmu_interval_notifier_finish::list member
->   (Matthew Brost)
-> - Add a WARN_ON_ONCE() checking for NULL invalidate_finish() op if
->   if invalidate_start() is non-NULL. (Matthew Brost)
+> - Write TRANS_DP2_CTL once for both bw optimization and panel replay
+> enable. [Jani]
+> 
 > v4:
-> - Addressed documentation review comments by David Hildenbrand.
+> - Read DPCD once in init() and store in panel_replay_caps. [Jouni]
 > 
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: David Hildenbrand <david@kernel.org>
-> Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-> Cc: Liam R. Howlett <Liam.Howlett@oracle.com>
-> Cc: Vlastimil Babka <vbabka@kernel.org>
-> Cc: Mike Rapoport <rppt@kernel.org>
-> Cc: Suren Baghdasaryan <surenb@google.com>
-> Cc: Michal Hocko <mhocko@suse.com>
-> Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> Cc: Andrew Morton <akpm@linux-foundation.org>
-> Cc: Simona Vetter <simona.vetter@ffwll.ch>
-> Cc: Dave Airlie <airlied@gmail.com>
-> Cc: Alistair Popple <apopple@nvidia.com>
-> Cc: <dri-devel@lists.freedesktop.org>
-> Cc: <linux-mm@kvack.org>
-> Cc: <linux-kernel@vger.kernel.org>
+> v5:
+> - Avoid reading DPCD for edp. [Jouni]
+> - Use drm_dp_dpcd_read_byte() and some cosmetic changes. [Jani]
 > 
-> Assisted-by: GitHub Copilot:claude-sonnet-4.6 # Documentation only.
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Bspec: 68920
+> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 > ---
+>  .../gpu/drm/i915/display/intel_display_regs.h |  1 +
+>  .../drm/i915/display/intel_display_types.h    |  1 +
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  1 +
+>  drivers/gpu/drm/i915/display/intel_psr.c      | 35 +++++++++++++++++--
+>  4 files changed, 36 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> index 5838338f495a..0a641daf22c6 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> @@ -2269,6 +2269,7 @@
+>  #define TRANS_DP2_CTL(trans)			_MMIO_TRANS(trans, _TRANS_DP2_CTL_A, _TRANS_DP2_CTL_B)
+>  #define  TRANS_DP2_128B132B_CHANNEL_CODING	REG_BIT(31)
+>  #define  TRANS_DP2_PANEL_REPLAY_ENABLE		REG_BIT(30)
+> +#define  TRANS_DP2_PR_TUNNELING_ENABLE		REG_BIT(26)
+>  #define  TRANS_DP2_DEBUG_ENABLE			REG_BIT(23)
+>  
+>  #define _TRANS_DP2_VFREQHIGH_A			0x600a4
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 7adfb4169e25..a291665808cc 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -576,6 +576,7 @@ struct intel_connector {
+>  
+>  			bool support;
+>  			bool su_support;
+> +			bool optimization_support;
+>  			enum intel_panel_replay_dsc_support dsc_support;
+>  
+>  			u16 su_w_granularity;
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index fcf478fbf8cd..7758213c070e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -6250,6 +6250,7 @@ intel_dp_detect(struct drm_connector *_connector,
+>  		intel_dp->psr.sink_panel_replay_support = false;
+>  		connector->dp.panel_replay_caps.support = false;
+>  		connector->dp.panel_replay_caps.su_support = false;
+> +		connector->dp.panel_replay_caps.optimization_support = false;
+>  		connector->dp.panel_replay_caps.dsc_support =
+>  			INTEL_DP_PANEL_REPLAY_DSC_NOT_SUPPORTED;
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index 5bea2eda744b..27ba96ede8e2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -43,6 +43,7 @@
+>  #include "intel_dmc.h"
+>  #include "intel_dp.h"
+>  #include "intel_dp_aux.h"
+> +#include "intel_dp_tunnel.h"
+>  #include "intel_dsb.h"
+>  #include "intel_frontbuffer.h"
+>  #include "intel_hdmi.h"
+> @@ -603,6 +604,7 @@ static void _panel_replay_init_dpcd(struct intel_dp *intel_dp, struct intel_conn
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+>  	int ret;
+> +	u8 val;
+>  
+>  	/* TODO: Enable Panel Replay on MST once it's properly implemented. */
+>  	if (intel_dp->mst_detect == DRM_DP_MST)
+> @@ -650,6 +652,15 @@ static void _panel_replay_init_dpcd(struct intel_dp *intel_dp, struct intel_conn
+>  		    connector->dp.panel_replay_caps.su_support ?
+>  		    "selective_update " : "",
+>  		    panel_replay_dsc_support_str(connector->dp.panel_replay_caps.dsc_support));
+> +
+> +	if (intel_dp_is_edp(intel_dp))
+> +		return;
+> +
+> +	/* Rest is for DP only */
+> +
+> +	drm_dp_dpcd_read_byte(&intel_dp->aux, DP_TUNNELING_CAPABILITIES, &val);
+> +	connector->dp.panel_replay_caps.optimization_support = val &
+> +		DP_PANEL_REPLAY_OPTIMIZATION_SUPPORT;
 
-LGTM, thanks!
+The above DPCD register is read already by drm_dp_tunnel_detect(), so I
+think the proper way is to extend the corresponding interface defined in
+drm_dp_tunnel.c to query the Panel Replay optimization capability.
 
-Acked-by: David Hildenbrand (Arm) <david@kernel.org>
-
--- 
-Cheers,
-
-David
+>  }
+>  
+>  static void _psr_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector)
+> @@ -1022,11 +1033,29 @@ static u8 frames_before_su_entry(struct intel_dp *intel_dp)
+>  	return frames_before_su_entry;
+>  }
+>  
+> +static bool intel_psr_allow_pr_bw_optimization(struct intel_dp *intel_dp)
+> +{
+> +	struct intel_display *display = to_intel_display(intel_dp);
+> +	struct intel_connector *connector = intel_dp->attached_connector;
+> +
+> +	if (DISPLAY_VER(display) < 35)
+> +		return false;
+> +
+> +	if (!intel_dp_tunnel_bw_alloc_is_enabled(intel_dp))
+> +		return false;
+> +
+> +	if (!connector->dp.panel_replay_caps.optimization_support)
+> +		return false;
+> +
+> +	return true;
+> +}
+> +
+>  static void dg2_activate_panel_replay(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+>  	struct intel_psr *psr = &intel_dp->psr;
+>  	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+> +	u32 dp2_ctl_val = TRANS_DP2_PANEL_REPLAY_ENABLE;
+>  
+>  	if (intel_dp_is_edp(intel_dp) && psr->sel_update_enabled) {
+>  		u32 val = psr->su_region_et_enabled ?
+> @@ -1039,12 +1068,14 @@ static void dg2_activate_panel_replay(struct intel_dp *intel_dp)
+>  			       val);
+>  	}
+>  
+> +	if (!intel_dp_is_edp(intel_dp) && intel_psr_allow_pr_bw_optimization(intel_dp))
+> +		dp2_ctl_val |= TRANS_DP2_PR_TUNNELING_ENABLE;
+> +
+>  	intel_de_rmw(display,
+>  		     PSR2_MAN_TRK_CTL(display, intel_dp->psr.transcoder),
+>  		     0, ADLP_PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME);
+>  
+> -	intel_de_rmw(display, TRANS_DP2_CTL(intel_dp->psr.transcoder), 0,
+> -		     TRANS_DP2_PANEL_REPLAY_ENABLE);
+> +	intel_de_rmw(display, TRANS_DP2_CTL(intel_dp->psr.transcoder), 0, dp2_ctl_val);
+>  }
+>  
+>  static void hsw_activate_psr2(struct intel_dp *intel_dp)
+> -- 
+> 2.29.0
+> 
