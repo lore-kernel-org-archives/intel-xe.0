@@ -4,27 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFA30F30924
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 09:37:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C6ABF30924
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 09:39:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6608B10EBDD;
-	Thu,  5 Mar 2026 09:37:17 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E258710EBDD;
- Thu,  5 Mar 2026 09:37:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1797020089658347251=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4EBB10EBDD;
+	Thu,  5 Mar 2026 09:39:47 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mTWrFkFe";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6A2710E290;
+ Thu,  5 Mar 2026 09:39:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772703587; x=1804239587;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=bpL7MiGzLlgeJDkxUeNpB6VxlUDAZkq+QvjkG45XU8o=;
+ b=mTWrFkFe3EgtkPcKybwaKMiE2PXXf2s7afgdt9SqmzpCS55Hd3A9ZPjr
+ pX46IuA6cv80Pd7sBo11y2UNeHCkXreuTVmhxZCX0IOfcNIk0rjjuY56M
+ YsZ0p0oL6eFv7imVbYVZlyGVMcZRatBh2lCu+3oXVEG6RgT3izg2pX1DR
+ KMJVVx3dq4KM9Xn59K5OpjnMZIIT+j1xBHPK4LKAEBaBj8YDElDOGzwwa
+ l9zGEWqgPlmCBpShyJuYjyX9gje6HS7hCoTmuGo4WCIw/5xkUmgqa5Dv4
+ tPkBWdi+8IeN6tT0nlf6QzUlUzjW9G795lw1tA7ff+etUROjXSvoiecLH w==;
+X-CSE-ConnectionGUID: zRrPzUjNS/i+ejUayhfkqg==
+X-CSE-MsgGUID: a6bLR/SqQCKbT6wy4C5rlg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="84870944"
+X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; d="scan'208";a="84870944"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2026 01:39:44 -0800
+X-CSE-ConnectionGUID: XlUf5igBRuegKqAZriXKgQ==
+X-CSE-MsgGUID: kIk+aQ3GRXqvHx1gbHabNQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; d="scan'208";a="214684973"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO fedora) ([10.245.244.71])
+ by fmviesa009-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Mar 2026 01:39:40 -0800
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Hildenbrand <david@kernel.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Andrew Morton <akpm@linux-foundation.org>,
+ Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>,
+ Alistair Popple <apopple@nvidia.com>, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/4] Two-pass MMU interval notifiers
+Date: Thu,  5 Mar 2026 10:39:05 +0100
+Message-ID: <20260305093909.43623-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe=3A_Allow_per_queue_p?=
- =?utf-8?q?rogramming_of_COMMON=5FSLICE=5FCHICKEN3_bit13_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lionel Landwerlin" <lionel.g.landwerlin@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 05 Mar 2026 09:37:16 -0000
-Message-ID: <177270343690.318933.13466248270772156000@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260304075529.1250065-1-lionel.g.landwerlin@intel.com>
-In-Reply-To: <20260304075529.1250065-1-lionel.g.landwerlin@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,61 +73,89 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1797020089658347251==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+GPU use-cases for mmu_interval_notifiers with hmm often involve
+starting a gpu operation and then waiting for it to complete.
+These operations are typically context preemption or TLB flushing.
+    
+With single-pass notifiers per GPU this doesn't scale in
+multi-gpu scenarios. In those scenarios we'd want to first start
+preemption- or TLB flushing on all GPUs and as a second pass wait
+for them to complete.
 
-== Series Details ==
+This also applies in non-recoverable page-fault scenarios to
+starting a preemption requests on GPUs and waiting for the GPUs 
+to preempt so that system pages they access can be reclaimed.
+    
+One can do this on per-driver basis multiplexing per-driver
+notifiers but that would mean sharing the notifier "user" lock
+across all GPUs and that doesn't scale well either, so adding support
+for two-pass in the core appears like the right choice.
 
-Series: drm/xe: Allow per queue programming of COMMON_SLICE_CHICKEN3 bit13 (rev5)
-URL   : https://patchwork.freedesktop.org/series/161212/
-State : failure
+So this series does that, with pach 1 implementing the core support
+and also describes the choices made.
 
-== Summary ==
+The rest of the patches implements a POC with xeKMD userptr
+invalidation and potential TLB-flushing. A follow-up series
+will extend to drm_gpusvm.
 
-ERROR: The runconfig 'xe-4655-cfc20c776480fda8c1b0517b187bb71ec0781cd4_BAT' does not exist in the database
+v2 hightlights:
+- Refactor the core mm patch to use the struct
+  mmu_interval_notifier_ops for the invalidate_finish() callback.
+- Rebase on xe driver tlb invalidation changes.
+- Provide an initial implementation for userptr instead of drm_gpusvm.
+  The intent is to handle drm_gpusvm in a follow-up series.
 
-== Logs ==
+v3:
+- Address review comments from Matt Brost: Code formatting,
+  documentation, additional asserts and removal of
+  unnecessary waits, as specified in each patch.
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161212v5/index.html
+v4:
+- Extend to wider audience and add R-Bs on the xe patches.
+- Address documentation review comments from David Hildenbrand
 
---===============1797020089658347251==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: David Hildenbrand <david@kernel.org>
+Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+Cc: Liam R. Howlett <Liam.Howlett@oracle.com>
+Cc: Vlastimil Babka <vbabka@kernel.org>
+Cc: Mike Rapoport <rppt@kernel.org>
+Cc: Suren Baghdasaryan <surenb@google.com>
+Cc: Michal Hocko <mhocko@suse.com>
+Cc: Jason Gunthorpe <jgg@ziepe.ca>
+Cc: Andrew Morton <akpm@linux-foundation.org>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Dave Airlie <airlied@gmail.com>
+Cc: Alistair Popple <apopple@nvidia.com>
+Cc: <dri-devel@lists.freedesktop.org>
+Cc: <linux-mm@kvack.org>
+Cc: <linux-kernel@vger.kernel.org>
+    
+Thomas Hellström (4):
+  mm/mmu_notifier: Allow two-pass struct mmu_interval_notifiers
+  drm/xe/userptr: Convert invalidation to two-pass MMU notifier
+  drm/xe: Split TLB invalidation into submit and wait steps
+  drm/xe/userptr: Defer Waiting for TLB invalidation to the second pass
+    if possible
 
+ drivers/gpu/drm/xe/xe_svm.c             |   8 +-
+ drivers/gpu/drm/xe/xe_tlb_inval.c       |  84 +++++++++++++
+ drivers/gpu/drm/xe/xe_tlb_inval.h       |   6 +
+ drivers/gpu/drm/xe/xe_tlb_inval_types.h |  14 +++
+ drivers/gpu/drm/xe/xe_userptr.c         | 155 ++++++++++++++++++++----
+ drivers/gpu/drm/xe/xe_userptr.h         |  31 ++++-
+ drivers/gpu/drm/xe/xe_vm.c              |  99 +++++----------
+ drivers/gpu/drm/xe/xe_vm.h              |   5 +-
+ drivers/gpu/drm/xe/xe_vm_madvise.c      |  10 +-
+ drivers/gpu/drm/xe/xe_vm_types.h        |   1 +
+ include/linux/mmu_notifier.h            |  42 +++++++
+ mm/mmu_notifier.c                       |  65 ++++++++--
+ 12 files changed, 416 insertions(+), 104 deletions(-)
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+-- 
+2.53.0
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Allow per queue programming of COMMON_SLICE_CHICKEN3 bit13 (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161212/">https://patchwork.freedesktop.org/series/161212/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161212v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161212v5/index.html</a></td></tr>
-
-</table>
-
-
-    <p>ERROR: The runconfig 'xe-4655-cfc20c776480fda8c1b0517b187bb71ec0781cd4_BAT' does not exist in the database</p>
-
-</body>
-</html>
-
---===============1797020089658347251==--
