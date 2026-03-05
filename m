@@ -4,51 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76D83EEF32A
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 08:53:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7AE3EEEF32F
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 08:59:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3089310EBA4;
-	Thu,  5 Mar 2026 08:53:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="G7BjPDfk";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D619D10EBA5
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Mar 2026 08:53:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=EUav3qg9j313IrO6RYKbcueJg1mvKz2Rppw13ZFrjkk=; b=G7BjPDfkBl61gdIwRh4NlLzYS8
- HFR9n+lRg9k/ML1/jIw6BoKP7SGLqXxDoR9NFOJOLucG8l6S+FSZ1e3FF0luLbtJ0+TGs3vBHkBIV
- B0q7wfzJTKKXYFr5VI87IM8UxbGlqaDSUkpa6aE5b0KVYgHSUsJc2mehmuIdGCJlW/WE76bZDfPsN
- MBfmUaKHCwKQMrXYs1pYKVl3yCj6jPVu5Z8keORh47DDYj9jOhCct4XxB2xbNUG74i9yTiajRzi23
- Q/Rpy9FLJAj24auIsQvLOMwbo4/Mnx9JriPgOCMBAUDZIMl6d4/PjMmfDN/xqMQvx1bBx8+7Q2Ic4
- P77i8fYQ==;
-Received: from [90.240.106.137] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vy4Sl-009HTd-58; Thu, 05 Mar 2026 09:53:43 +0100
-From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-To: intel-xe@lists.freedesktop.org
-Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Jani Nikula <jani.nikula@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v19 9/9] drm/xe/xelp: Expose AuxCCS frame buffer modifiers on
- Alderlake-P
-Date: Thu,  5 Mar 2026 08:53:31 +0000
-Message-ID: <20260305085331.46514-10-tvrtko.ursulin@igalia.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260305085331.46514-1-tvrtko.ursulin@igalia.com>
-References: <20260305085331.46514-1-tvrtko.ursulin@igalia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 336B910EBA1;
+	Thu,  5 Mar 2026 08:59:08 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1A3710EBA1;
+ Thu,  5 Mar 2026 08:59:06 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5548333235893263448=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_drm/xe/guc=3A_Fail_immedia?=
+ =?utf-8?q?tely_on_GuC_load_error_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 05 Mar 2026 08:59:06 -0000
+Message-ID: <177270114690.319155.13082469257709901356@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260303001732.2540493-2-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20260303001732.2540493-2-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,64 +36,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we have implemented all the related missing bits we can enable
-the AuxCCS compressed modifiers which were disabled in
-cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
+--===============5548333235893263448==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+== Series Details ==
 
-        [PLANE:32:plane 1A]: type=PRI
-                uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=28
-                hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000
+Series: drm/xe/guc: Fail immediately on GuC load error (rev3)
+URL   : https://patchwork.freedesktop.org/series/161860/
+State : failure
 
-Display is working fine - no artefacts, no DMAR/PIPE faults.
+== Summary ==
 
-v2:
- * Adjust patch title. (Rodrigo)
+ERROR: The runconfig 'xe-4655-cfc20c776480fda8c1b0517b187bb71ec0781cd4_FULL' does not exist in the database
 
-v3:
- * Complete rewrite based on the display parent interface.
+== Logs ==
 
-Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: José Roberto de Souza <jose.souza@intel.com>
-Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/xe/display/xe_display.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161860v3/index.html
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index c8dd3faa9b97..5180de285295 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -539,6 +539,13 @@ static const struct intel_display_irq_interface xe_display_irq_interface = {
- 	.synchronize = irq_synchronize,
- };
- 
-+static bool has_auxccs(struct drm_device *drm)
-+{
-+	struct xe_device *xe = to_xe_device(drm);
-+
-+	return xe->info.platform == XE_ALDERLAKE_P;
-+}
-+
- static const struct intel_display_parent_interface parent = {
- 	.dsb = &xe_display_dsb_interface,
- 	.hdcp = &xe_display_hdcp_interface,
-@@ -548,6 +555,7 @@ static const struct intel_display_parent_interface parent = {
- 	.pcode = &xe_display_pcode_interface,
- 	.rpm = &xe_display_rpm_interface,
- 	.stolen = &xe_display_stolen_interface,
-+	.has_auxccs = has_auxccs,
- };
- 
- /**
--- 
-2.52.0
+--===============5548333235893263448==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/guc: Fail immediately on GuC load error (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161860/">https://patchwork.freedesktop.org/series/161860/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161860v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161860v3/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-4655-cfc20c776480fda8c1b0517b187bb71ec0781cd4_FULL' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============5548333235893263448==--
