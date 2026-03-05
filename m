@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91596EEF31C
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 08:53:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76D83EEF32A
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 08:53:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55C7110EBA9;
-	Thu,  5 Mar 2026 08:53:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3089310EBA4;
+	Thu,  5 Mar 2026 08:53:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="l7SlByyi";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="G7BjPDfk";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B36E10EBC4
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Mar 2026 08:53:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D619D10EBA5
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Mar 2026 08:53:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -22,24 +22,27 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Xx3+8tSTQJqmDBQtxFmGi9pVySeekP6amr9tdATHjW4=; b=l7SlByyitfGiZgwBlHb9cGm1jO
- mha5peOhqeJ/XW71bfVnRfZTug2cWHHlz3iLLAhBA15lcvUPJ++F84ZjQikN2OJKVq1pbO1yVZhft
- etq1ez0fqSqhyA5JbCmuZAmLVmOdJndbl9eHOEJKrUiDpSl4G2AZc6ZCzWukUwl0pCy7s17h4F+JJ
- h0Bii5UoTWfnYztl7qCqcq9bDvK/0QiT8Xqva4nqBql55n6I5zJKpliivxdYpFbkfZGi9HAJUPOLF
- uL7hCk44ZpOA7SJVrZL1pVZyPRmvnn6wMRstJhFXDXuL96KnOgkuhVh5dcptqkwQF49X8E3RCzX3G
- rtWxcmWg==;
+ bh=EUav3qg9j313IrO6RYKbcueJg1mvKz2Rppw13ZFrjkk=; b=G7BjPDfkBl61gdIwRh4NlLzYS8
+ HFR9n+lRg9k/ML1/jIw6BoKP7SGLqXxDoR9NFOJOLucG8l6S+FSZ1e3FF0luLbtJ0+TGs3vBHkBIV
+ B0q7wfzJTKKXYFr5VI87IM8UxbGlqaDSUkpa6aE5b0KVYgHSUsJc2mehmuIdGCJlW/WE76bZDfPsN
+ MBfmUaKHCwKQMrXYs1pYKVl3yCj6jPVu5Z8keORh47DDYj9jOhCct4XxB2xbNUG74i9yTiajRzi23
+ Q/Rpy9FLJAj24auIsQvLOMwbo4/Mnx9JriPgOCMBAUDZIMl6d4/PjMmfDN/xqMQvx1bBx8+7Q2Ic4
+ P77i8fYQ==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vy4Sf-009HSn-OQ; Thu, 05 Mar 2026 09:53:37 +0100
+ id 1vy4Sl-009HTd-58; Thu, 05 Mar 2026 09:53:43 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
+ Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v19 2/9] drm/xe: Use write-combine mapping when populating DPT
-Date: Thu,  5 Mar 2026 08:53:24 +0000
-Message-ID: <20260305085331.46514-3-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v19 9/9] drm/xe/xelp: Expose AuxCCS frame buffer modifiers on
+ Alderlake-P
+Date: Thu,  5 Mar 2026 08:53:31 +0000
+Message-ID: <20260305085331.46514-10-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260305085331.46514-1-tvrtko.ursulin@igalia.com>
 References: <20260305085331.46514-1-tvrtko.ursulin@igalia.com>
@@ -60,38 +63,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The fallback case for DPT backing store is a buffer object in system
-memory buffer, which by default use a write-back CPU caching policy.
+Now that we have implemented all the related missing bits we can enable
+the AuxCCS compressed modifiers which were disabled in
+cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
 
-If this fallback gets triggered, and since there is currently no flushing,
-the DPT writes made when pinning a buffer to display are not guaranteed to
-be seen by the display engine.
+Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
 
-To fix this, since both the local memory and the stolen memory DPT
-placements already use write-combine, let us make the system memory option
-follow suit by passing down the appropriate flag.
+        [PLANE:32:plane 1A]: type=PRI
+                uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=28
+                hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000
+
+Display is working fine - no artefacts, no DMAR/PIPE faults.
+
+v2:
+ * Adjust patch title. (Rodrigo)
+
+v3:
+ * Complete rewrite based on the display parent interface.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/display/xe_display.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index d4a9eb550cae..df7d305c6fcd 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -122,7 +122,8 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 						   ttm_bo_type_kernel,
- 						   XE_BO_FLAG_SYSTEM |
- 						   XE_BO_FLAG_GGTT |
--						   XE_BO_FLAG_PAGETABLE,
-+						   XE_BO_FLAG_PAGETABLE |
-+						   XE_BO_FLAG_FORCE_WC,
- 						   alignment, false);
- 	if (IS_ERR(dpt))
- 		return PTR_ERR(dpt);
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index c8dd3faa9b97..5180de285295 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -539,6 +539,13 @@ static const struct intel_display_irq_interface xe_display_irq_interface = {
+ 	.synchronize = irq_synchronize,
+ };
+ 
++static bool has_auxccs(struct drm_device *drm)
++{
++	struct xe_device *xe = to_xe_device(drm);
++
++	return xe->info.platform == XE_ALDERLAKE_P;
++}
++
+ static const struct intel_display_parent_interface parent = {
+ 	.dsb = &xe_display_dsb_interface,
+ 	.hdcp = &xe_display_hdcp_interface,
+@@ -548,6 +555,7 @@ static const struct intel_display_parent_interface parent = {
+ 	.pcode = &xe_display_pcode_interface,
+ 	.rpm = &xe_display_rpm_interface,
+ 	.stolen = &xe_display_stolen_interface,
++	.has_auxccs = has_auxccs,
+ };
+ 
+ /**
 -- 
 2.52.0
 
