@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 06845EDA697
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 09:18:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 819B9EDA697
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 09:20:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 719A110EBCD;
-	Thu,  5 Mar 2026 09:18:47 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hQ9SNWm/";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E014A10EBCA;
- Thu,  5 Mar 2026 09:18:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772702326; x=1804238326;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=BXzAUTiKj5HwGFCiCJkRyXpWu7IkPmlenPetUuj2SaE=;
- b=hQ9SNWm/tVnlOdev/64EHGVeI6UB4OCod80VRU1tlkr1Il0wXRz+MQth
- I5cJsNPIGT/62P4X0z47kXhTEesD1+5NdsyOqPqmm2LutJtkgn0XdclrJ
- wbormavFse+1JwC9faDidTLBjGppsELXDQOIG51HJDlDKgzAHFsneQ0L5
- s1YhdyDEM0cTEMdlACElv2cpSF+nU9sayNYiWQkV0OlgZvJ0B+f8p1SUW
- UDAnaaNYBgf49Wx7OUcOrnOdHuSBAUFH75WmEiEajtnob/81mVWypN1Ow
- RfGNlRmf0aKI3YKiISLrsI934Mstp54WbzhUZn9QggBCtLG3YEW4aOljx A==;
-X-CSE-ConnectionGUID: oHgdxkA+TwKcBmRSLrbbnQ==
-X-CSE-MsgGUID: TaKvsqZySaWbWFFyhOuGpQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="77654194"
-X-IronPort-AV: E=Sophos;i="6.23,325,1770624000"; d="scan'208";a="77654194"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2026 01:18:44 -0800
-X-CSE-ConnectionGUID: 7pQVRJ7AR3e7Ep3saSntAw==
-X-CSE-MsgGUID: U2mJ2UdCTNC9lJTjWmeCcw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,325,1770624000"; d="scan'208";a="249084544"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.134])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2026 01:18:42 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>, Imre Deak
- <imre.deak@intel.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Arun R Murthy <arun.r.murthy@intel.com>
-Subject: Re: [PATCH RFC 1/4] drm/display/dp: Read LTTPR caps without DPRX caps
-In-Reply-To: <20260305-dp_aux-v1-1-54ee0b5f5158@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260305-dp_aux-v1-0-54ee0b5f5158@intel.com>
- <20260305-dp_aux-v1-1-54ee0b5f5158@intel.com>
-Date: Thu, 05 Mar 2026 11:18:38 +0200
-Message-ID: <33d050c09290955321f01d61166e7763b6db2e77@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4755010EBCD;
+	Thu,  5 Mar 2026 09:20:10 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 744BF10EBCD;
+ Thu,  5 Mar 2026 09:20:08 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3819809982066862777=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_drm/xe=3A_Enable_Wa=5F1402?=
+ =?utf-8?q?5515070=2C_Enable_indirect_ring_state_for_XE2+_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Julia Filipchuk" <julia.filipchuk@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 05 Mar 2026 09:20:08 -0000
+Message-ID: <177270240845.319155.15984569909572226345@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260304003431.758201-3-julia.filipchuk@intel.com>
+In-Reply-To: <20260304003431.758201-3-julia.filipchuk@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,135 +36,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 05 Mar 2026, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> We at present have drm_dp_Read_lttpr_common_caps to read the LTTPR caps,
-> but this function required DPRX caps to be passed. As per the DP2.1 spec
-> section 3.6.8.6.1, section 2.12.1, section 2.12.3 (Link Policy) the
-> LTTPR caps is to be read first followed by the DPRX capability.
-> Hence adding another function to read the LTTPR caps without the need
-> for DPRX caps.
+--===============3819809982066862777==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-If the spec says something, why are we keeping the function that does it
-the other way?
+== Series Details ==
 
-> In order to handle the issue
-> https://gitlab.freedesktop.org/drm/intel/-/issues/4531
-> of reading corrupted values for LTTPR caps on few pannels with DP Rev 1.2
-> the workaround of reducing the block size to 1 and reading one block at a
-> time is done by checking for a valid link rate.
->
-> Fixes: 657586e474bd ("drm/i915: Add a DP1.2 compatible way to read LTTPR capabilities")
+Series: drm/xe: Enable Wa_14025515070, Enable indirect ring state for XE2+ (rev8)
+URL   : https://patchwork.freedesktop.org/series/160812/
+State : failure
 
-You're not calling the code being added here. This can't fix anything on
-its own. This is not how the Fixes: tag works.
+== Summary ==
 
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  drivers/gpu/drm/display/drm_dp_helper.c | 63 +++++++++++++++++++++++++++++++++
->  include/drm/display/drm_dp_helper.h     |  2 ++
->  2 files changed, 65 insertions(+)
->
-> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> index a697cc227e28964cd8322803298178e7d788e820..9fe7db73027a43b01c4d12927f1f0e61444658e5 100644
-> --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> @@ -3050,6 +3050,69 @@ static int drm_dp_read_lttpr_regs(struct drm_dp_aux *aux,
->  	return 0;
->  }
->  
-> +static bool drm_dp_valid_link_rate(u8 link_rate)
-> +{
-> +	switch (link_rate) {
-> +	case 0x06:
-> +	case 0x0a:
-> +	case 0x14:
-> +	case 0x1e:
-> +		return true;
-> +	default:
-> +		return false;
-> +	}
-> +}
-> +
-> +/**
-> + * drm_dp_read_lttpr_caps - read the LTTPR capabilities
-> + * @aux: DisplayPort AUX channel
-> + * @caps: buffer to return the capability info in
-> + *
-> + * Read capabilities common to all LTTPRs.
-> + *
-> + * Returns 0 on success or a negative error code on failure.
-> + */
-> +int drm_dp_read_lttpr_caps(struct drm_dp_aux *aux,
-> +			   u8 caps[DP_LTTPR_COMMON_CAP_SIZE])
-> +{
-> +	/*
-> +	 * At least the DELL P2715Q monitor with a DPCD_REV < 0x14 returns
-> +	 * corrupted values when reading from the 0xF0000- range with a block
-> +	 * size bigger than 1.
-> +	 * For DP as per the spec DP2.1 section 3.6.8.6.1, section 2.12.1, section
-> +	 * 2.12.3 (Link Policy) the LTTPR caps is to be read first followed by the
-> +	 * DPRX capability.
-> +	 * So ideally we dont have DPCD_REV yet to check for the revision, instead
-> +	 * check for the correctness of the read value and in found corrupted read
-> +	 * block by block.
-> +	 */
-> +	int block_size;
-> +	int offset;
-> +	int ret;
-> +	int address = DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV;
-> +	int buf_size = DP_LTTPR_COMMON_CAP_SIZE;
-> +
-> +	ret = drm_dp_dpcd_read_data(aux, address, &caps, buf_size);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (caps[0] == 0x14) {
-> +		if (!drm_dp_valid_link_rate(caps[1])) {
+ERROR: The runconfig 'xe-4655-cfc20c776480fda8c1b0517b187bb71ec0781cd4_FULL' does not exist in the database
 
-So you first read the whole thing once, and then in some cases read the
-whole thing again one byte at a time?
+== Logs ==
 
-Everything about this smells like a quirk for a specific display, not
-something you do normally. We shouldn't have to have two ways to read
-the lttpr caps in the normal case.
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160812v8/index.html
 
-> +			block_size = 1;
+--===============3819809982066862777==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-What's the point with the variable?
 
-> +			for (offset = 0; offset < buf_size; offset += block_size) {
-> +				ret = drm_dp_dpcd_read_data(aux,
-> +							    address + offset,
-> +							    &caps[offset],
-> +							    block_size);
-> +				if (ret < 0)
-> +					return ret;
-> +			}
-> +		}
-> +	}
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(drm_dp_read_lttpr_caps);
-> +
->  /**
->   * drm_dp_read_lttpr_common_caps - read the LTTPR common capabilities
->   * @aux: DisplayPort AUX channel
-> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-> index 1d0acd58f48676f60ff6a07cc6812f72cbb452e8..def145e67011c325b790c807f934b288304260c1 100644
-> --- a/include/drm/display/drm_dp_helper.h
-> +++ b/include/drm/display/drm_dp_helper.h
-> @@ -755,6 +755,8 @@ bool drm_dp_read_sink_count_cap(struct drm_connector *connector,
->  				const struct drm_dp_desc *desc);
->  int drm_dp_read_sink_count(struct drm_dp_aux *aux);
->  
-> +int drm_dp_read_lttpr_caps(struct drm_dp_aux *aux,
-> +				  u8 caps[DP_LTTPR_COMMON_CAP_SIZE]);
->  int drm_dp_read_lttpr_common_caps(struct drm_dp_aux *aux,
->  				  const u8 dpcd[DP_RECEIVER_CAP_SIZE],
->  				  u8 caps[DP_LTTPR_COMMON_CAP_SIZE]);
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
--- 
-Jani Nikula, Intel
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Enable Wa_14025515070, Enable indirect ring state for XE2+ (rev8)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160812/">https://patchwork.freedesktop.org/series/160812/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160812v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160812v8/index.html</a></td></tr>
+
+</table>
+
+
+    <p>ERROR: The runconfig 'xe-4655-cfc20c776480fda8c1b0517b187bb71ec0781cd4_FULL' does not exist in the database</p>
+
+</body>
+</html>
+
+--===============3819809982066862777==--
