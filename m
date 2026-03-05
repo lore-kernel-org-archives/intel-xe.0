@@ -4,27 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0BC8F30924
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 09:45:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82A3BF30928
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 10:01:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66CCF10EBE9;
-	Thu,  5 Mar 2026 09:45:15 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 396BE10EBD9;
- Thu,  5 Mar 2026 09:45:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7378460065891545018=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42FF010EB9C;
+	Thu,  5 Mar 2026 10:01:15 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ldk0V1Sk";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A5E110E28E;
+ Thu,  5 Mar 2026 10:01:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772704874; x=1804240874;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=v1xf8WgnUelQYFT9WXC+EioUMpMIX59IgrO8KVjDeKM=;
+ b=Ldk0V1SklO88cS2YhwGyMKIdTRbGzkgRNxy59GVYQP/ebtVNU0rAEmuw
+ D8t7x9yfm2WjBeZ/t0rOxPZP1WX9IyV14jbs/L/Bcf4Qy3DWfy+jdc+zR
+ o+NVlToZYSbpDCrkGbw9d42XEOKzDcsL8dkCgHLdRD19WaDi5W9qQZpHN
+ Zn8+qyHVlc9juYP/2Z+mmEIeDbtGfIyyIxLd0xgJInWsH3V0wV3kjzIJl
+ y581foABsXlJD30P/gzSRc0RaLtX+9rQSHNHHaPw3bxWERopVqBRt5z5M
+ WNwxKBpz/8yekyMG4iEOA8qJg/K9b+6Sopod2Vp35gCqeo4X8KV1MEPdm Q==;
+X-CSE-ConnectionGUID: zArWBrBgRYWDxynTHAMUuA==
+X-CSE-MsgGUID: Ee1VLPQfSrGW5aW0XOYUSQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="73758068"
+X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; d="scan'208";a="73758068"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2026 02:01:13 -0800
+X-CSE-ConnectionGUID: 1H6Du8BuROKk1WX/bbGyMA==
+X-CSE-MsgGUID: AvP8id7nSS6vZRXlEBD6xg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; d="scan'208";a="215460217"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO hazy.intel.com)
+ ([10.245.244.57])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2026 02:01:11 -0800
+From: Luca Coelho <luciano.coelho@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+	suraj.kandpal@intel.com
+Subject: [PATCH v5 00/16] drm/i915/display: convert a bunch of W/A checks to
+ the new framework
+Date: Thu,  5 Mar 2026 11:59:03 +0200
+Message-ID: <20260305100100.332956-1-luciano.coelho@intel.com>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_drm/xe/pat=3A_Extract_gt=5F?=
- =?utf-8?q?pta=5Fentry=28=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 05 Mar 2026 09:45:14 -0000
-Message-ID: <177270391421.319155.16241383081921688368@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260303-pat-gt_pta_entry-v1-1-0dee8e1e7bd9@intel.com>
-In-Reply-To: <20260303-pat-gt_pta_entry-v1-1-0dee8e1e7bd9@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,61 +64,80 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7378460065891545018==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi,
 
-== Series Details ==
+This series convert the "low hanging fruits" of workaround checks to
+the new framework.  Some of the workarounds check other values that
+are not in the intel_display structure, so they don't directly fit in
+the workaround framework and will be left for later.
 
-Series: drm/xe/pat: Extract gt_pta_entry()
-URL   : https://patchwork.freedesktop.org/series/162522/
-State : failure
+In v2:
+   * Added intel-xe in Cc for xe CI (Jani);
+   * Removed NOP intel-overlay.c patch (Jani).
 
-== Summary ==
+In v3:
+   * Added a comment back (accidentally removed) (Ville);
+   * Inverted the logic of W/A 16025596647 (Ville);
+   * Removed macro magic (Ville).
 
-ERROR: The runconfig 'xe-4655-cfc20c776480fda8c1b0517b187bb71ec0781cd4_BAT' does not exist in the database
+In v4:
+   * Fix checkpatch warnings (checkpatch/Suraj).
 
-== Logs ==
+In v5:
+   * Just fixed a tiny rebase conflict, just an #include that was
+     removed, which conflicted with the one I had added.
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162522v1/index.html
-
---===============7378460065891545018==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+Cheers,
+Luca.
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pat: Extract gt_pta_entry()</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162522/">https://patchwork.freedesktop.org/series/162522/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+Luca Coelho (16):
+  drm/i915/display: remove enum macro magic in intel_display_wa()
+  drm/i915/display: convert audio workaround to new framework
+  drm/i915/display: convert W/As in intel_display_power.c to new
+    framework
+  drm/i915/display: convert W/As in intel_cdclk.c to new framework
+  drm/i915/display: convert W/As in intel_cursor.c to new framework
+  drm/i915/display: convert W/As in intel_ddi.c to new framework
+  drm/i915/display: convert W/As in intel_display.c to new framework
+  drm/i915/display: convert W/As in intel_display_device.c to new
+    framework
+  drm/i915/display: convert W/As in intel_dp_mst.c to new framework
+  drm/i915/display: convert W/As in intel_fbc.c to new framework
+  drm/i915/display: convert W/As in intel_flipq.c to new framework
+  drm/i915/display: convert W/As in intel_modeset_setup.c to new
+    framework
+  drm/i915/display: convert W/As in intel_pmdemand.c to new framework
+  drm/i915/display: convert W/As in intel_psr.c to new framework
+  drm/i915/display: convert W/As in skl_universal_plane.c to new
+    framework
+  drm/i915/display: convert W/As in skl_watermark.c to new framework
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162522v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162522v1/index.html</a></td></tr>
+ drivers/gpu/drm/i915/display/intel_audio.c    | 24 +++----
+ drivers/gpu/drm/i915/display/intel_cdclk.c    |  7 +-
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  3 +-
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  4 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  6 +-
+ .../drm/i915/display/intel_display_device.c   |  3 +-
+ .../drm/i915/display/intel_display_power.c    | 22 +++---
+ .../i915/display/intel_display_power_well.c   |  4 +-
+ .../gpu/drm/i915/display/intel_display_wa.c   | 67 ++++++++++++++++++-
+ .../gpu/drm/i915/display/intel_display_wa.h   | 27 +++++++-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  3 +-
+ drivers/gpu/drm/i915/display/intel_fbc.c      | 12 ++--
+ drivers/gpu/drm/i915/display/intel_flipq.c    | 13 +---
+ drivers/gpu/drm/i915/display/intel_gmbus.c    |  6 +-
+ .../drm/i915/display/intel_modeset_setup.c    |  3 +-
+ drivers/gpu/drm/i915/display/intel_pmdemand.c |  8 ++-
+ drivers/gpu/drm/i915/display/intel_psr.c      | 20 +++---
+ drivers/gpu/drm/i915/display/skl_scaler.c     |  2 +-
+ .../drm/i915/display/skl_universal_plane.c    |  6 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  3 +-
+ 20 files changed, 164 insertions(+), 79 deletions(-)
 
-</table>
+-- 
+2.51.0
 
-
-    <p>ERROR: The runconfig 'xe-4655-cfc20c776480fda8c1b0517b187bb71ec0781cd4_BAT' does not exist in the database</p>
-
-</body>
-</html>
-
---===============7378460065891545018==--
