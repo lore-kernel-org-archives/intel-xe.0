@@ -4,59 +4,145 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1987EF3D31A
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 15:49:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB6D2F3D31C
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Mar 2026 16:12:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D189710EC49;
-	Thu,  5 Mar 2026 15:49:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85A6210EC3E;
+	Thu,  5 Mar 2026 16:12:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BDEiOmlc";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kyYToqH8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD09710EC3F
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Mar 2026 15:49:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 52D2010EC3C;
+ Thu,  5 Mar 2026 16:12:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772725789; x=1804261789;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=wj7wiZUme1FJqFRm9+u/cm+2BRCY49xHqAMiN3WY6cI=;
- b=BDEiOmlcSP4yyqSUAXKO99vPHYBlt7kRR4UlhIM10OVM8GfQ3wet+tvB
- 8t8vToVZP2u8o79+lJpCGmNRNIFAYTg/23V7oK6j2oz+rhLN0I08thr6o
- mZr3rAT1QskBB/8Q07PHa8NAHJQa/TpQl3aC1L8Ipb5SUTsGFaUpnM0Wa
- 1rHUXnWmjEEPXzJDugw1YkO2H7UuTDBClxnQ7sqtfFT4uT5PjfFZCUqL0
- 8a/m1ZIfhAAZtyJ8roc1R8Nm11pjU4+JQvtPCV0iSsmjYtcCkSUT8Z7H6
- v7jKTaB9lvrz3WEtxSF0aI6N4rT/jGcLB3YKXp3gxpojFhDWGDMWY8Yl3 g==;
-X-CSE-ConnectionGUID: F6/180oqSsO+Bu2xiQKoYg==
-X-CSE-MsgGUID: feVCDp25SsWtxvUpMHX/5Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11720"; a="61390172"
-X-IronPort-AV: E=Sophos;i="6.23,103,1770624000"; d="scan'208";a="61390172"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2026 07:49:49 -0800
-X-CSE-ConnectionGUID: m5Zp9rMFTy6NYx34ommLhg==
-X-CSE-MsgGUID: mpWAjQ0zQvOiHBGb4+jEsA==
+ t=1772727127; x=1804263127;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ in-reply-to:mime-version;
+ bh=2aDza1PQwkbZOxdFZhCLxmb5LynbORTurOSzPNPkH3Y=;
+ b=kyYToqH82psAgE7PiwC0ISrexMPoF6Cm58Gc4o7G9IEss0n9N/kvCSk7
+ cJ2c4Yt64Gg0ihfAjh9JpnNCnlMgQRXiAFi1SO6mjmsg9jkxWApklUnS0
+ VwmgSCoYFa7Oz442Be1svZm/pihoRxj+9pri5eqE/n+wDOsUn21QRQkr6
+ zbylo/nkEk3vUXW5Wx6OVxB84n3I7X15nm6Pa6ttf4aCLMipYc+mAWvaJ
+ SiaLi0kypB+YLbINAlAfbQU/faugWOl8tIDY2/+Z9p92kV1zVQTcZJQym
+ L9Edly5JLKWnC08mEObMQIVc98TyXRt4KI1XTmj9xfUtJuZawsCcy4M+h A==;
+X-CSE-ConnectionGUID: pJLwWj/hRauyaAXWBXpPXw==
+X-CSE-MsgGUID: p6/yT2A7RFeTk4B8BJYuZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11720"; a="73725404"
+X-IronPort-AV: E=Sophos;i="6.23,103,1770624000"; d="scan'208";a="73725404"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2026 08:12:06 -0800
+X-CSE-ConnectionGUID: YzApFBdnSwisqxEStnh2Xw==
+X-CSE-MsgGUID: uj1TK282TmaCg5DalYZJzw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,103,1770624000"; d="scan'208";a="223406780"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO [10.245.244.71])
- ([10.245.244.71])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2026 07:49:47 -0800
-Message-ID: <79f4260f85a1f00a3996406b3314c2db5873322d.camel@linux.intel.com>
-Subject: Re: [PATCH v6 12/12] drm/xe/bo: Skip zero-refcount BOs in shrinker
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Arvind Yadav <arvind.yadav@intel.com>, intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com, 
- pallavi.mishra@intel.com
-Date: Thu, 05 Mar 2026 16:49:44 +0100
-In-Reply-To: <20260303152015.3499248-13-arvind.yadav@intel.com>
-References: <20260303152015.3499248-1-arvind.yadav@intel.com>
- <20260303152015.3499248-13-arvind.yadav@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+X-IronPort-AV: E=Sophos;i="6.23,103,1770624000"; d="scan'208";a="216530348"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2026 08:12:05 -0800
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 5 Mar 2026 08:12:05 -0800
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Thu, 5 Mar 2026 08:12:05 -0800
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.16) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 5 Mar 2026 08:12:04 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ewxRwQcReePirirnuNV0iApprwAN3fqAeCfvwWwVUBn4ou73+PiIKtokj4yKevpcfSTRAHb7/pG1gsl9tXsQL1slHlRbufEE3lXllfoTDGeMC9yJuo6Tj8rMM0HIAutIotUc7MMmxgFPKelzm86Pw37XK/eW6wCqRbUJ/eZO4orH71HH4ndyqWZytMaOvn4E391O8j3qqIQj0YSyYoketPwLFUpYQnfl9GjMx3CWnDy85DfP86WI3Sfh+E3jnNAZa6JxHjK716cCUVjsgUjwNv1Ew7Iy9MiNCOgi2pPmSOIanzVwK4iLj4REi+WE79j7pv65Eq88ZHa7jyITD/QHHA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7HE9SZtNnk0O4HWlrZceoMNDazMFHeZjFQBi1VHs/S4=;
+ b=iT2ANzgd5s0K89F0QjuzYsWHwCDivfbGMkJNeBmqLt9QhM87BuVyF4Lbg4uEE5b0ubMrRXJFaPpB5fujZ3CzUCmFZcRaIl2uXsKOhcuYUouTvNxoew3S9vplG1UCz6KKPLx/XAoLUND5BhMbyv8rTN19BdNXCgBe/m96b3qZR9QO4ETgexi6e8/MihMACBCkUtHWjvAXv1/JOe+9VRvX/BMuhZee2J7aTEvwjC46Sjw1YAAGjOY/ViNof+Uf1UpGxfbwtZn9kyWLQnPgtFfcWxVgwtlZOoDIBsDPeWIYFG/2q0Zz0NEkxeb7ok7vvNt9nqBTM3PFcvW0bTwnSN91mg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
+ by MW6PR11MB8368.namprd11.prod.outlook.com (2603:10b6:303:246::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.22; Thu, 5 Mar
+ 2026 16:12:00 +0000
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::9ca5:4d1d:db45:f523]) by SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::9ca5:4d1d:db45:f523%5]) with mapi id 15.20.9654.015; Thu, 5 Mar 2026
+ 16:12:00 +0000
+Date: Thu, 5 Mar 2026 18:11:51 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>
+CC: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, "Jani
+ Nikula" <jani.nikula@linux.intel.com>, <dri-devel@lists.freedesktop.org>, 
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH RFC 0/4] DP: Read LTTPR caps followed by DPRX caps
+Message-ID: <aamrRxXwBxzt6s4F@ideak-desk.lan>
+References: <20260305-dp_aux-v1-0-54ee0b5f5158@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20260305-dp_aux-v1-0-54ee0b5f5158@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-ClientProxiedBy: GVX0EPF0005F6AA.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:158:400::287) To SJ0PR11MB4845.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d1::10)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|MW6PR11MB8368:EE_
+X-MS-Office365-Filtering-Correlation-Id: 257b6f41-932c-4324-80f4-08de7ad1ee56
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: DQczXjVVjuFScVD6IoKivZ0WUvhHKcl1XBjh2E4Y6ztM+I+9PvGi+Y6hTJ8obD1YfJgt/ji/6pPheGn3BpFOTAloJKKNUB6gpVlOCjcwg6W/hLVpC8ztvQ5iOuBl+4jkJB0aQfqnfOSEett3SvFzUlYgJbDZsgvabTKDy9oSq/VpP0SHxfqoyUs+nItbQI7tBJCNupPNrZV8j3jx50QWiqO5IlictI3eanAK347TNKXaSQwErnXypHpjJxT7EL62hgEGh/sUUJrPAkdzPzzNP3jBkmL+v5lB2GmKvHTxGwELhntnD2w5o9d8PJtVpU0uy9SpKe18J/vpNXE3i1JS86OP2FAZyZa1ldDs++X8OuhsFTU1bqbq2RJf4BgMMo2cfcF7Fl4o68oIvV2cubOlxhanNVgzpjm3HxVnFnvinvPk2cwOax7o6BYm1FpaMO83dP1Ftflv3LQF78eApkDlFcrNQVVsnmNmnaeZD7YgoOVb/5W862ZQ30pN/WOwQWSQEE/06MvrJWoqYFbCOLq6YYqVUrMAiFLDJbKugSYSIReGkZahuIDt4K10535iCnsIjW8rQc4NzcOY2dJyEO/qLIz/J00WZnvjZpfBLU/QbhMU8vEqTl/eWBLNQWVzwor2FxE1I8EYEx38nYhRzMc8FFPepWUh2343479yXEcIEPUKg6MU2Jl8Pt5z1tK1y5Ci
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4G6jA040mAFag899XwSLEqlHcZ4HWVHPQZAedFb7a2DG7q/IgFVlisAOY4Mg?=
+ =?us-ascii?Q?GiPBpJ+T8jw1egMqlJ4h+R63FVw1CN1Jod7KMGm/eQ5kCDZ9mevKjHGOC9P7?=
+ =?us-ascii?Q?KJ/9OPmegSL8aKLX8wdmVj4w/MwNb5XpkuxmGdb5OHYYJvmHdFKJMks4ojL/?=
+ =?us-ascii?Q?+dL4vBeE2NfGlYazs5hi5FMNafRLuFgCZbKbNvS71DaTWpDkXz3cjEJNKUX4?=
+ =?us-ascii?Q?8qsmWeyBn/sxfwphiwhvtt6s4kmSK9z6CSzsvwNQjt2wiWyZqkAQiIGVCHQk?=
+ =?us-ascii?Q?4OuTDm2eBSsjTE2kOGUCn7x6DTNiveR8rXbWGMG2lZeiOPDN7WoVjDSv1HbL?=
+ =?us-ascii?Q?YH1P62tBSGxjQKbmd6O9VArx3TXUEVVitHVqOMjaoUk7B3l/uMbg2sKNbpJd?=
+ =?us-ascii?Q?akUJOujR678HJ8916hzqK9MHk1cEUH6yzJPngr+r2upsKe9TpIllQTMXlId6?=
+ =?us-ascii?Q?blRT3SlFfxDmmJRIHxdxu/ibK/p14Gox/xKPwjDLwHn3Zgs4Us/dh0rfUvM7?=
+ =?us-ascii?Q?5nce49V0FUpH8iELaQCU4XHnHz/BJEeRKPjetCuhnIYRXE+hGsntzWn+VngC?=
+ =?us-ascii?Q?aB4X/h+GOwHYM3dKN+83XRPLvpNkDmduExIfcz2hro9qeyaq3XHMTkruAK9q?=
+ =?us-ascii?Q?loJqsj/X4YrFPBNs5DjqGmUejBRRIvF8e8icjtkHdgedpLmRBv10FrgqJNg1?=
+ =?us-ascii?Q?K3MoZxbA0FWTRu9OIvG+mHNe9uVYilPhTK/fCspOp4PdhZH7lMARxLj4DVTp?=
+ =?us-ascii?Q?kzWkxBPkQf2VsQrThKA+v/SIZ+MLS7A4CtAGEdzHjceKBnmwZWMiwcI5kF79?=
+ =?us-ascii?Q?M/12sX9Zz2wDFykaAgIM0FMAZZWE8jlKOU6sGg7Uk9tJPyqKeYOt+Iu7BfZd?=
+ =?us-ascii?Q?e74GoD+Rpo7KR5jvnC8K0qg153C+sSgxd8XRI4lKRx6QByKBJ/w+9wdW+ebu?=
+ =?us-ascii?Q?YXrqVPP74Ygipm9rmpAceFwTbaR58FfiA8t61YmS4Uk06GR9LAQ/3QDcWhlH?=
+ =?us-ascii?Q?ndKacwT+vO1z6NT5tYEPncBcmyba0pskXhGpMd8rc+RYKFXu1Ep3qOk4f/R/?=
+ =?us-ascii?Q?nVsvnrZ3+/SPyl1YrltlNLA8K4bsBiRcSU3BdHxrTHA6IalmKInHYE7c8DVc?=
+ =?us-ascii?Q?HrKxArHBfgEhREd9SOVa1l9F2822lqfd7w7zwDASMtqkMX2S2gubNa53iL+c?=
+ =?us-ascii?Q?j2MwcSbckLY7cjRp1J9RVL+QUZuUhdcsKPQyBGRMv4CT9pYa7jJ5RRPOI9M7?=
+ =?us-ascii?Q?rUsrvVrknpvYyyqnDYWW4sViW4NZaEwWYZN3EEl1leWFIHWmDiFRwcjYWRn2?=
+ =?us-ascii?Q?jb9K0g3KQ1YJHf0zIULkPVgSqju4B4NxJwDhY2VgVctqCl53tyJ2U3VK5JE+?=
+ =?us-ascii?Q?P698wDNEr4NPLVwG/jpPhQ9Iu6Je+8z3wnxVQFfjXQZaIFzUXRHjoQHsY0er?=
+ =?us-ascii?Q?4a9w994UGi0QtE0oE920JPRnVDZz0mH+rmqFsRF45OMnhIsKkOD9AUmUDmC0?=
+ =?us-ascii?Q?OUtG4suEf7orCqKmnuiyAFVzFFecGdddqofhnJn00HG018pPDYmKLsL/7GLT?=
+ =?us-ascii?Q?X7Zv8ZrmQgoHtssEm/RMW8HdzF6/kmpqpWFiaMEId8zbYyv8hMNU/ey6eJHR?=
+ =?us-ascii?Q?dnlM1Y7GjWb5usk/OC3POsGVTvv77UN6CU/YYzIaJKgCIhSDP6xAFOSXE7lb?=
+ =?us-ascii?Q?sfrjpV847+24f5ExWL7QMdWsqL7HWr7eAzN1HGy4m3WkysKRN2kQjvQOwgTa?=
+ =?us-ascii?Q?px2eGUyMOA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 257b6f41-932c-4324-80f4-08de7ad1ee56
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2026 16:12:00.0243 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: MCJq08ueKflmbep7CO3FELRzwCFvB/uMF//ZugGhqjeKe2ptJpKs87pin9fe+tYaNHtMW4rBuuJyhACVCQaT7A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR11MB8368
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,52 +154,73 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2026-03-03 at 20:50 +0530, Arvind Yadav wrote:
-> Zero-refcount BOs are being destroyed. Skip them in the shrinker
-> to avoid racing with cleanup by returning -EBUSY.
->=20
-> Ghost BOs from ttm_bo_pipeline_gutting() still hold reclaimable
-> pages, so continue processing them via xe_bo_shrink_purge().
->=20
-> Fixes: 00c8efc3180f ("drm/xe: Add a shrinker for xe bos")
->=20
-> v6:
-> =C2=A0 - Split from patch 0010 (Thomas)
->=20
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+On Thu, Mar 05, 2026 at 01:48:10PM +0530, Arun R Murthy wrote:
+> As per the spec  DP2.1 section 3.6.8.6.1, section 2.12.1,
+> section 2.12.3 (Link Policy) the LTTPR caps is to be read first
+> followed by the DPRX capability.
 
-Hi, Arvind.
+Not exactly. The Standard requires reading the DPRX capabilities after
+the LTTPR caps are read. The driver does read the DPRX caps after
+reading the LTTPR caps. The DP Standard does not mandate that the first
+read after a sink is connected (i.e. after the HPD signal of the sink is
+asserted) must be an LTTPR capability read and cannot be any other DPCD
+register read. In fact this would be impossible to guarantee, a DPRX
+capability read - or any DPCD register read for that matter - could
+happen at any point and so it could happen right after the HPD signal
+got asserted.
 
+> Git log shows that initially drm dp helper exposed function to read
+> lttpr caps. Driver reads the lttpr caps and then the dprx caps.
+> For a particular issue 
+> https://gitlab.freedesktop.org/drm/intel/-/issues/3415
+> as a workaround reading dprx caps was done first to know if the panel is
+> < DP1.4 and then read 1 block at a time for lttpr caps.
+> 
+> This can be handled in a better way and two such ways is what I see.
+> 1. Read LTTPR caps followed by DPRX caps as per the spec. Then on
+> reading dprx caps if revision < 1.4 then re-read the lttpr caps one
+> block at a time.
+> 
+> 2. Read LTTPR caps and if 8b/10b check for correctness of the link rate
+> supported(lttpr caps 0xf0001), if some corrupted value is read then read
+> one block at a time.
+
+The driver does read the DPRX capabilities after reading the LTTPR
+capabilities. This is what the standard mandates.
+
+The workaround for issues/3415 depends on the DPCD_REV value, so this is
+read separately before reading the LTTPR caps. I don't see a better way
+to implement the workaround and such read is not prohibited by the DP
+Standard either. So I don't see the point of the changes in this
+patchset.
+
+> I am open for either of the two or you have any other options as well I
+> am open.
+> 
+> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 > ---
-> =C2=A0drivers/gpu/drm/xe/xe_bo.c | 6 +++++-
-> =C2=A01 file changed, 5 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 598d4463baf3..07acce383cb1 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -1295,9 +1295,13 @@ long xe_bo_shrink(struct ttm_operation_ctx
-> *ctx, struct ttm_buffer_object *bo,
-> =C2=A0	if (!xe_bo_eviction_valuable(bo, &place))
-> =C2=A0		return -EBUSY;
-> =C2=A0
-> -	if (!xe_bo_is_xe_bo(bo) || !xe_bo_get_unless_zero(xe_bo))
-
-Looking a bit closer at this, I realized this is intentional. The bo
-has two refcounts. One is the gem refcount (which we fail to grab here)
-and one is the ttm refcount, which we have successfully grabbed,
-otherwise this function wouldn't be called. So the bo is in a zombie
-state (all xe-specific members are invalidd) but calling
-xe_bo_shrink_purge is allowed. So this patch could actually be dropped.
-
-Question is did you see any issues from xe_bo_shrink_purge() without
-this patch?
-
-Thanks,
-Thomas
+> Arun R Murthy (4):
+>       drm/display/dp: Read LTTPR caps without DPRX caps
+>       drm/i915/dp: Read LTTPR caps followed by DPRX caps
+>       drm/i915/dp: On HPD read LTTPR caps followed by DPRX caps
+>       drm/i915/dp: DPRX/LTTPR caps for DP should be read once
+> 
+>  drivers/gpu/drm/display/drm_dp_helper.c            | 63 ++++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_dp.c            |  3 +-
+>  .../gpu/drm/i915/display/intel_dp_link_training.c  | 40 +++++++-------
+>  .../gpu/drm/i915/display/intel_dp_link_training.h  |  1 -
+>  drivers/gpu/drm/i915/display/intel_dp_tunnel.c     |  3 +-
+>  include/drm/display/drm_dp_helper.h                |  2 +
+>  6 files changed, 86 insertions(+), 26 deletions(-)
+> ---
+> base-commit: cfc20c776480fda8c1b0517b187bb71ec0781cd4
+> change-id: 20260305-dp_aux-1e27599e06c8
+> 
+> Best regards,
+> -- 
+> Arun R Murthy <arun.r.murthy@intel.com>
+> 
