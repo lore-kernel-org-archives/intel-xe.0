@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65B27FCB624
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 16:35:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8EDEFCB626
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 16:35:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6530510ED9F;
-	Fri,  6 Mar 2026 16:35:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D61DF10EDA6;
+	Fri,  6 Mar 2026 16:35:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="jDlvtH6m";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="S4yIUiZJ";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DEAD10ED8C;
- Fri,  6 Mar 2026 16:34:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7283910E300;
+ Fri,  6 Mar 2026 16:34:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
@@ -22,16 +22,16 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=isPE7SV+21KOtWeVLoaKO7/uBCz9JXONEqZDhUVKJtw=; b=jDlvtH6mGZqP537aqOWCtY/LEi
- alo630gVwpVyalcXS7QPn5uFDHTRwNsAMvUnUPP+gjZHEjiVjX06+IukNYhNz2a7dADR4NgUayHEW
- OzPqo/NVUQ1OtoCuO+3UqmczscLKhTaOHIFW/hMz1hYOOXKoq9ypLO5Gdt6FkNoEeapjLACd+Y5Pj
- SsLIFeWKz4N4y/MYpIP9cw4cNrJQvjL+VqSzpwwfoY5mmHstkaI+RHZF9xFbmOEW765TCcBwMlPQz
- sGs0sCNuOzqJD8ABEa9D2DgFCSJGLEzQ1Z8HlIPqsKFLqAvw+x3WbdNO3MKn8NXHHnM2GvfrgOinp
- pLwAG2Wg==;
+ bh=QhyfM3MnCNNbxIL+ugXR9IrHIA0+N+F88/ZuvKu4lcA=; b=S4yIUiZJ2chdgg6UGdm7UxJFS9
+ ecjQSSTSh3XEMbN7Oi8KP+exSRwjg3jXUZEBGB6uMEsD7UWltyiNj4bWWXh7nXYqklPdYBdOIrpA6
+ hVSaIy8zGopjlICQcO676+fEvpQoYweTQYckVgvuXiaj2an425w8iktGbsi590XCNgCFgs31NVCI8
+ vgiZn+0UhjT2t55ZB4UiM1fH4JFDLd6MfWJVcJUHQRR2zxqR40NE5R6IPOlLqHZEv3VmNkvnRlnVF
+ l4uz907dia4gaQUihvvVFqwEK5IdvdqKo7Gd8anxr+rHcEWfvFaEcxwzdWMroFVIEG35oU4VIq9JQ
+ FDnEtS1w==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vyY8e-00APSV-95; Fri, 06 Mar 2026 17:34:56 +0100
+ id 1vyY8Y-00APRQ-Ov; Fri, 06 Mar 2026 17:34:50 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: amd-gfx@lists.freedesktop.org,
 	dri-devel@lists.freedesktop.org
@@ -40,9 +40,10 @@ Cc: kernel-dev@igalia.com, intel-xe@lists.freedesktop.org,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v7 08/29] drm/sched: Account entity GPU time
-Date: Fri,  6 Mar 2026 16:34:24 +0000
-Message-ID: <20260306163445.97243-9-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v7 01/29] drm/sched: Disallow initializing entities with no
+ schedulers
+Date: Fri,  6 Mar 2026 16:34:17 +0000
+Message-ID: <20260306163445.97243-2-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260306163445.97243-1-tvrtko.ursulin@igalia.com>
 References: <20260306163445.97243-1-tvrtko.ursulin@igalia.com>
@@ -63,272 +64,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To implement fair scheduling we need a view into the GPU time consumed by
-entities. Problem we have is that jobs and entities objects have decoupled
-lifetimes, where at the point we have a view into accurate GPU time, we
-cannot link back to the entity any longer.
-
-Solve this by adding a light weight entity stats object which is reference
-counted by both entity and the job and hence can safely be used from
-either side.
-
-With that, the only other thing we need is to add a helper for adding the
-job's GPU time into the respective entity stats object, and call it once
-the accurate GPU time has been calculated.
-
-The most convenient place to do that is the free job worker for several
-reasons. Doing the accounting from the job completion callback would mean
-a few locks would need to become irq safe and we would also need to worry
-about out of order completions (via dma_fence_is_signaled calls which we
-cannot control). In-order completions are critical for GPU time accuracy
-which is currently adjusted per fence in the free worker and requires
-looking at the next job in the scheduler pending list. We would also need
-to add a new lock to protect the scheduler average stats update.
-
-In contrast to those complications, having the accounting done from the
-free worker is serialized by definition and all the above complications
-are avoided. Downside is there is potential for a time lag between job
-completions and GPU time being accounted against the entity. Since that is
-partly alleviated by batch processing the completed job queue, and the
-scheduling algorithm does not attempt to be completely fair, which would
-even be rather impossible to achieve in the GPU world with the current
-DRM scheduler design and hardware with no or poor preemption support,
-this downside is not considered critical. Plus, in practice the scheduler
-is also affected by worker scheduling delays from other angles too. Not
-least being able to promptly feed the GPU with new work.
-
-We therefore choose the simple option and can later consider improving
-upon it if the need arises.
+Since we have removed the case where amdgpu was initializing entitites
+with either no schedulers on the list, or with a single NULL scheduler,
+and there appears no other drivers which rely on this, we can simplify the
+scheduler by explictly rejecting that early.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Cc: Christian König <christian.koenig@amd.com>
 Cc: Danilo Krummrich <dakr@kernel.org>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Philipp Stanner <phasta@kernel.org>
-Acked-by: Danilo Krummrich <dakr@kernel.org>
+Reviewed-by: Christian König <christian.koenig@amd.com>
+Acked-by: Philipp Stanner <phasta@kernel.org>
 ---
- drivers/gpu/drm/scheduler/sched_entity.c   | 58 ++++++++++++++++++++++
- drivers/gpu/drm/scheduler/sched_internal.h | 48 ++++++++++++++++++
- drivers/gpu/drm/scheduler/sched_main.c     |  6 ++-
- include/drm/gpu_scheduler.h                | 12 +++++
- 4 files changed, 123 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/scheduler/sched_entity.c | 13 ++++---------
+ 1 file changed, 4 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
-index 768f11510129..591cb9f82608 100644
+index fe174a4857be..bb7e5fc47f99 100644
 --- a/drivers/gpu/drm/scheduler/sched_entity.c
 +++ b/drivers/gpu/drm/scheduler/sched_entity.c
-@@ -32,6 +32,58 @@
- 
- #include "gpu_scheduler_trace.h"
- 
-+
-+/**
-+ * drm_sched_entity_stats_release - Entity stats kref release function
-+ * @kref: Entity stats embedded kref pointer
-+ */
-+void drm_sched_entity_stats_release(struct kref *kref)
-+{
-+	struct drm_sched_entity_stats *stats =
-+		container_of(kref, typeof(*stats), kref);
-+
-+	kfree(stats);
-+}
-+
-+/**
-+ * drm_sched_entity_stats_new - Allocate a new struct drm_sched_entity_stats object
-+ *
-+ * Return: Pointer to newly allocated struct drm_sched_entity_stats object.
-+ */
-+static struct drm_sched_entity_stats *drm_sched_entity_stats_new(void)
-+{
-+	struct drm_sched_entity_stats *stats;
-+
-+	stats = kzalloc(sizeof(*stats), GFP_KERNEL);
-+	if (!stats)
-+		return NULL;
-+
-+	kref_init(&stats->kref);
-+	spin_lock_init(&stats->lock);
-+
-+	return stats;
-+}
-+
-+/**
-+ * drm_sched_entity_stats_job_add_gpu_time - Account job execution time to entity
-+ * @job: Scheduler job to account.
-+ *
-+ * Accounts the execution time of @job to its respective entity stats object.
-+ */
-+void drm_sched_entity_stats_job_add_gpu_time(struct drm_sched_job *job)
-+{
-+	struct drm_sched_entity_stats *stats = job->entity_stats;
-+	struct drm_sched_fence *s_fence = job->s_fence;
-+	ktime_t start, end;
-+
-+	start = dma_fence_timestamp(&s_fence->scheduled);
-+	end = dma_fence_timestamp(&s_fence->finished);
-+
-+	spin_lock(&stats->lock);
-+	stats->runtime = ktime_add(stats->runtime, ktime_sub(end, start));
-+	spin_unlock(&stats->lock);
-+}
-+
- /**
-  * drm_sched_entity_init - Init a context entity used by scheduler when
-  * submit to HW ring.
-@@ -65,6 +117,11 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
+@@ -61,32 +61,27 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
+ 			  unsigned int num_sched_list,
+ 			  atomic_t *guilty)
+ {
+-	if (!(entity && sched_list && (num_sched_list == 0 || sched_list[0])))
++	if (!entity || !sched_list || !num_sched_list || !sched_list[0])
  		return -EINVAL;
  
  	memset(entity, 0, sizeof(struct drm_sched_entity));
-+
-+	entity->stats = drm_sched_entity_stats_new();
-+	if (!entity->stats)
-+		return -ENOMEM;
-+
  	INIT_LIST_HEAD(&entity->list);
  	entity->rq = NULL;
  	entity->guilty = guilty;
-@@ -338,6 +395,7 @@ void drm_sched_entity_fini(struct drm_sched_entity *entity)
- 
- 	dma_fence_put(rcu_dereference_check(entity->last_scheduled, true));
+-	entity->num_sched_list = num_sched_list;
+ 	entity->priority = priority;
+ 	entity->last_user = current->group_leader;
+-	/*
+-	 * It's perfectly valid to initialize an entity without having a valid
+-	 * scheduler attached. It's just not valid to use the scheduler before it
+-	 * is initialized itself.
+-	 */
++	entity->num_sched_list = num_sched_list;
+ 	entity->sched_list = num_sched_list > 1 ? sched_list : NULL;
  	RCU_INIT_POINTER(entity->last_scheduled, NULL);
-+	drm_sched_entity_stats_put(entity->stats);
- }
- EXPORT_SYMBOL(drm_sched_entity_fini);
+ 	RB_CLEAR_NODE(&entity->rb_tree_node);
  
-diff --git a/drivers/gpu/drm/scheduler/sched_internal.h b/drivers/gpu/drm/scheduler/sched_internal.h
-index b683cf813469..be5d99c641c5 100644
---- a/drivers/gpu/drm/scheduler/sched_internal.h
-+++ b/drivers/gpu/drm/scheduler/sched_internal.h
-@@ -3,6 +3,26 @@
- #ifndef _DRM_GPU_SCHEDULER_INTERNAL_H_
- #define _DRM_GPU_SCHEDULER_INTERNAL_H_
- 
-+#include <linux/ktime.h>
-+#include <linux/kref.h>
-+#include <linux/spinlock.h>
-+
-+/**
-+ * struct drm_sched_entity_stats - execution stats for an entity.
-+ * @kref: reference count for the object.
-+ * @lock: lock guarding the @runtime updates.
-+ * @runtime: time entity spent on the GPU.
-+ *
-+ * Because jobs and entities have decoupled lifetimes, ie. we cannot access the
-+ * entity once the job has been de-queued, and we do need know how much GPU time
-+ * each entity has spent, we need to track this in a separate object which is
-+ * reference counted by both entities and jobs.
-+ */
-+struct drm_sched_entity_stats {
-+	struct kref	kref;
-+	spinlock_t	lock;
-+	ktime_t		runtime;
-+};
- 
- /* Used to choose between FIFO and RR job-scheduling */
- extern int drm_sched_policy;
-@@ -95,4 +115,32 @@ drm_sched_entity_is_ready(struct drm_sched_entity *entity)
- 	return true;
- }
- 
-+void drm_sched_entity_stats_release(struct kref *kref);
-+
-+/**
-+ * drm_sched_entity_stats_get - Obtain a reference count on &struct drm_sched_entity_stats object
-+ * @stats: struct drm_sched_entity_stats pointer
-+ *
-+ * Return: struct drm_sched_entity_stats pointer
-+ */
-+static inline struct drm_sched_entity_stats *
-+drm_sched_entity_stats_get(struct drm_sched_entity_stats *stats)
-+{
-+	kref_get(&stats->kref);
-+
-+	return stats;
-+}
-+
-+/**
-+ * drm_sched_entity_stats_put - Release a reference count on &struct drm_sched_entity_stats object
-+ * @stats: struct drm_sched_entity_stats pointer
-+ */
-+static inline void
-+drm_sched_entity_stats_put(struct drm_sched_entity_stats *stats)
-+{
-+	kref_put(&stats->kref, drm_sched_entity_stats_release);
-+}
-+
-+void drm_sched_entity_stats_job_add_gpu_time(struct drm_sched_job *job);
-+
- #endif
-diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-index 046686a83699..826ef4e0180a 100644
---- a/drivers/gpu/drm/scheduler/sched_main.c
-+++ b/drivers/gpu/drm/scheduler/sched_main.c
-@@ -661,6 +661,7 @@ void drm_sched_job_arm(struct drm_sched_job *job)
- 
- 	job->sched = sched;
- 	job->s_priority = entity->priority;
-+	job->entity_stats = drm_sched_entity_stats_get(entity->stats);
- 
- 	drm_sched_fence_init(job->s_fence, job->entity);
- }
-@@ -850,6 +851,7 @@ void drm_sched_job_cleanup(struct drm_sched_job *job)
- 		 * been called.
+-	if (num_sched_list && !sched_list[0]->sched_rq) {
++	if (!sched_list[0]->sched_rq) {
+ 		/* Since every entry covered by num_sched_list
+ 		 * should be non-NULL and therefore we warn drivers
+ 		 * not to do this and to fix their DRM calling order.
  		 */
- 		dma_fence_put(&job->s_fence->finished);
-+		drm_sched_entity_stats_put(job->entity_stats);
- 	} else {
- 		/* The job was aborted before it has been committed to be run;
- 		 * notably, drm_sched_job_arm() has not been called.
-@@ -1001,8 +1003,10 @@ static void drm_sched_free_job_work(struct work_struct *w)
- 		container_of(w, struct drm_gpu_scheduler, work_free_job);
- 	struct drm_sched_job *job;
- 
--	while ((job = drm_sched_get_finished_job(sched)))
-+	while ((job = drm_sched_get_finished_job(sched))) {
-+		drm_sched_entity_stats_job_add_gpu_time(job);
- 		sched->ops->free_job(job);
-+	}
- 
- 	drm_sched_run_job_queue(sched);
- }
-diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-index 2b3eaf623f68..bf31c4c58a4c 100644
---- a/include/drm/gpu_scheduler.h
-+++ b/include/drm/gpu_scheduler.h
-@@ -71,6 +71,8 @@ enum drm_sched_priority {
- 	DRM_SCHED_PRIORITY_COUNT
- };
- 
-+struct drm_sched_entity_stats;
-+
- /**
-  * struct drm_sched_entity - A wrapper around a job queue (typically
-  * attached to the DRM file_priv).
-@@ -110,6 +112,11 @@ struct drm_sched_entity {
- 	 */
- 	struct drm_sched_rq		*rq;
- 
-+	/**
-+	 * @stats: Stats object reference held by the entity and jobs.
-+	 */
-+	struct drm_sched_entity_stats	*stats;
-+
- 	/**
- 	 * @sched_list:
- 	 *
-@@ -365,6 +372,11 @@ struct drm_sched_job {
- 	struct drm_sched_fence		*s_fence;
- 	struct drm_sched_entity         *entity;
- 
-+	/**
-+	 * @entity_stats: Stats object reference held by the job and entity.
-+	 */
-+	struct drm_sched_entity_stats	*entity_stats;
-+
- 	enum drm_sched_priority		s_priority;
- 	u32				credits;
- 	/** @last_dependency: tracks @dependencies as they signal */
+ 		pr_warn("%s: called with uninitialized scheduler\n", __func__);
+-	} else if (num_sched_list) {
++	} else {
+ 		/* The "priority" of an entity cannot exceed the number of run-queues of a
+ 		 * scheduler. Protect against num_rqs being 0, by converting to signed. Choose
+ 		 * the lowest priority available.
 -- 
 2.52.0
 
