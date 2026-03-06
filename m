@@ -4,51 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCE94FCB624
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 16:52:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B59BFCB624
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 16:52:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 845C310EDA4;
-	Fri,  6 Mar 2026 16:52:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D79E010EDA7;
+	Fri,  6 Mar 2026 16:52:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MK7Cxupc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CAdOAKpv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A072410EDA4
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA75110EDA7
  for <intel-xe@lists.freedesktop.org>; Fri,  6 Mar 2026 16:52:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1772815942; x=1804351942;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=UWxLeokH4pcBS0o3QSecjR0YFOVOAc3wFkfRiEahMz4=;
- b=MK7Cxupc8/3PO2imCRHwgi0iL1UYaAod/s+UL7Y4NkGJ0thrMB+nGRQs
- qOfRLhV3za5Ts2pQaNJAVm0ejgMaMjZDy/0UUQv57vUog5B72d3ex0Tx6
- qrITAzTzoYfxwOpPwsXxS1VnwP45yGrWsnsckDRLIFfodsiXlZqqODepE
- 57L3hNQZHKGYzSVboY7HOFGKvl5MC9M3tHWheVGjf2Th0kppxzHLL5cWU
- gzs7Jj4aF5mdM533XMxGdupI5esP5es2vy+x3BL9thCUdKdOtQTv5k3/c
- H8a0LEmRA7iWNF9CWnnmGc0B3dkqMWFNvtJcXyBOcbEaRuloz7IMs2wct A==;
-X-CSE-ConnectionGUID: kGVeNcvDSbqJPC0HNmeI/w==
-X-CSE-MsgGUID: uaGCGMAiRCKfxqPLEcBGCg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11721"; a="73843743"
-X-IronPort-AV: E=Sophos;i="6.23,105,1770624000"; d="scan'208";a="73843743"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=lnfMgOYi+gT0t3rto+rUpCKO/q9EbgKET+JHf20pJgg=;
+ b=CAdOAKpvMQcLttqrT8gS5li16HQOZ5fbQl1h1wi1RkFoGAb7rcEY3/+H
+ oXap1R0Tbtm7Qj7c2K6v0YXvTDpSsPQTFlj47IgwqkXkUM4jWOP8nPCbn
+ /nz2Y98yE9Dzn/THW7MjrcHLJ0+Ci+XTur6v1poGOFcyWRp8JZS45ZRB+
+ KPw4pNeCJoROGbXfFC9sN2jFKkKqoToiyRY2+9HeSbvYtLblOLqHlLcGq
+ zAOFmebPb+ZVUVHmO5PrbUbwPBW2tcK/KEGmcRNc9CrmSpiGiwmNqAq5R
+ dSQSSsNjMBl9fLsqH+LkLwcan9THjio4+d0pGp5ZjBQKD6UT1Jjw84m8u w==;
+X-CSE-ConnectionGUID: bP9DDSk9Sm6TKpTCoTdMbw==
+X-CSE-MsgGUID: WwpLyzGES1SIp0S3lbUmoA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11721"; a="73843756"
+X-IronPort-AV: E=Sophos;i="6.23,105,1770624000"; d="scan'208";a="73843756"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2026 08:52:14 -0800
-X-CSE-ConnectionGUID: 7qUH6z7fSYG/xjab+hSyVA==
-X-CSE-MsgGUID: e64BFpSASlS9nERH2hJemg==
+ 06 Mar 2026 08:52:21 -0800
+X-CSE-ConnectionGUID: vUbGqBXDTd+TJ8MhYh9TLQ==
+X-CSE-MsgGUID: Nb9nkXfuQrKKejaqrK9UAQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,105,1770624000"; d="scan'208";a="223753600"
+X-IronPort-AV: E=Sophos;i="6.23,105,1770624000"; d="scan'208";a="223753618"
 Received: from dut6079bmgfrd.fm.intel.com ([10.80.55.56])
- by fmviesa005.fm.intel.com with ESMTP; 06 Mar 2026 08:52:13 -0800
+ by fmviesa005.fm.intel.com with ESMTP; 06 Mar 2026 08:52:20 -0800
 From: Shuicheng Lin <shuicheng.lin@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Shuicheng Lin <shuicheng.lin@intel.com>,
  Matthew Brost <matthew.brost@intel.com>,
  Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Subject: [PATCH v2 0/2] Fix error path of xe_exec_queue_create_ioctl()
-Date: Fri,  6 Mar 2026 16:52:05 +0000
-Message-Id: <20260306165207.176758-1-shuicheng.lin@intel.com>
+Subject: [PATCH v2 2/2] drm/xe: Fix exec queue unwind on hw engine group add
+ failure
+Date: Fri,  6 Mar 2026 16:52:07 +0000
+Message-Id: <20260306165207.176758-3-shuicheng.lin@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260306165207.176758-1-shuicheng.lin@intel.com>
+References: <20260306165207.176758-1-shuicheng.lin@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,20 +68,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Split to 2 patches due to different Fixes tag.
+When xe_hw_engine_group_add_exec_queue() fails in
+xe_exec_queue_create_ioctl(), to undo xe_exec_queue_group_add()
+and xe_vm_add_compute_exec_queue(), the code should unwind through
+kill_exec_queue rather than directly dropping the queue reference.
 
-v2: update 2nd patch to skip unnecessary del when add failed
+Use a new kill_exec_queue_no_del label to skip
+xe_hw_engine_group_del_exec_queue() since the queue was never
+successfully added to the group.
 
+v2: correct the jump label from delete_queue_group to kill_exec_queue (Matt)
+v3: add new label to skip unnecessary del when add failed
 
-Shuicheng Lin (2):
-  drm/xe: Fix missing xe_hw_engine_group_del_exec_queue() in error path
-  drm/xe: Fix exec queue unwind on hw engine group add failure
-
- drivers/gpu/drm/xe/xe_exec_queue.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
+Fixes: d9ec63474648 ("drm/xe/multi_queue: Add user interface for multi queue support")
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+---
+ drivers/gpu/drm/xe/xe_exec_queue.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index af915ccb4925..177d40c4408e 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -1390,7 +1390,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ 		if (q->vm && q->hwe->hw_engine_group) {
+ 			err = xe_hw_engine_group_add_exec_queue(q->hwe->hw_engine_group, q);
+ 			if (err)
+-				goto put_exec_queue;
++				goto kill_exec_queue_no_del;
+ 		}
+ 	}
+ 
+@@ -1410,6 +1410,7 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
+ kill_exec_queue:
+ 	if (q->vm && q->hwe->hw_engine_group)
+ 		xe_hw_engine_group_del_exec_queue(q->hwe->hw_engine_group, q);
++kill_exec_queue_no_del:
+ 	xe_exec_queue_kill(q);
+ delete_queue_group:
+ 	if (xe_exec_queue_is_multi_queue_secondary(q))
 -- 
 2.34.1
 
