@@ -4,56 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA4B2FCC04D
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 17:28:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8310FCC048
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 17:28:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64B7E10EDE5;
-	Fri,  6 Mar 2026 17:28:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6937210EDF5;
+	Fri,  6 Mar 2026 17:28:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AzV8TrUU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KWFq6t1M";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4B8F10EDE5
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Mar 2026 17:28:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72F4210EDF5
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Mar 2026 17:28:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772818127; x=1804354127;
- h=from:subject:date:message-id:mime-version:
- content-transfer-encoding:to:cc;
- bh=I4iZbsTblUYKs1yc/iE2E6o3ZuV6IVn3oCSDdoGpw+8=;
- b=AzV8TrUUiRXWRARmWTSdQym7kgTG7YZXqRJsdKhL7dh4xyhBJmb6Ublj
- upihCgtmrAMRkZr+mb+MPC9O6k6Yl9AZMmzEIGvTt4s/k0TOwhM75sezf
- exqfUVnYQ4Iz4uq8R7o6wTrK4c6rIqAAjxhsTXNoukRVpAUP4ZM8ziBhR
- OyHFox+WYwcKP/3ocRJtyoO/5aIfOSFGU0K3ISPfFiBb5G6jZlmmGCT7R
- uccrZ4NEkGgXsGh1btp/Gltqa5lSAg9l7O6EfvHpB28l6CpeQ3UcdwdpJ
- EP0lzYhyb30xqhb+z4HvB1Mb7D5xKX+1I/P5iY2rm1gRnI5Bjh0I4OrJQ g==;
-X-CSE-ConnectionGUID: kupp9FwFSu2S+ydm/CQKog==
-X-CSE-MsgGUID: BIihoVitQxmfX1JdnRVvHQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11721"; a="73899626"
-X-IronPort-AV: E=Sophos;i="6.23,105,1770624000"; d="scan'208";a="73899626"
+ t=1772818129; x=1804354129;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to:cc;
+ bh=c8nDN7GDPTGjD6BQ0QADtnF4ZQbGDjqszhy0VlHxL6Q=;
+ b=KWFq6t1MsRI8WmKCM8RxfI3FM6NGW9Lix4L5epdSJwy/YC41uXAV+eSn
+ jmgIUaqcCvja5WVnGXHfYd3FqRcHGlnJmbbv3E2v3kDnfDRTjQYC/cLzm
+ TqZfCM8GX+SOJXNUDIhgFW5ShZbTWCXusaY7ZfpUld/Ied8dj9wqxKhxJ
+ 0xMZY+MYqRy2WApEvqg3sXj3oKmI4y5llthztaFOjjL3RG6h3WHXIpZg9
+ ool2s4PuGKfYQ4EpzguF/W9vZa7NR0p3pvB2jnAjSTF8rUPO4ZPNX6pFG
+ xxGTGtuQJEiMyRTY4eBIwWLexnwreoRIpIIVt6uX5ocXHyiCh7r5N5OfN g==;
+X-CSE-ConnectionGUID: FoIq/k+qRI6C/HkATXBv/Q==
+X-CSE-MsgGUID: cYp6hOYxS2CcGt7O8KmjzQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11721"; a="73899629"
+X-IronPort-AV: E=Sophos;i="6.23,105,1770624000"; d="scan'208";a="73899629"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2026 09:28:46 -0800
-X-CSE-ConnectionGUID: om1ryeCETIWxDyXiklGWOw==
-X-CSE-MsgGUID: rUiD9MlDQdSZbvn4HFELkw==
+ 06 Mar 2026 09:28:49 -0800
+X-CSE-ConnectionGUID: 2szZ3sqXQh6FipctdqeUGA==
+X-CSE-MsgGUID: TrhnHB70Qla/AC0x7PPFAQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,105,1770624000"; d="scan'208";a="218229597"
+X-IronPort-AV: E=Sophos;i="6.23,105,1770624000"; d="scan'208";a="218229610"
 Received: from spandruv-mobl5.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.221.22])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2026 09:28:45 -0800
+ 06 Mar 2026 09:28:48 -0800
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [PATCH v2 0/7] Extra enabling patches for NVL-P
-Date: Fri, 06 Mar 2026 14:28:20 -0300
-Message-Id: <20260306-extra-nvl-p-enabling-patches-v2-0-53dcfa6b44e4@intel.com>
+Date: Fri, 06 Mar 2026 14:28:22 -0300
+Subject: [PATCH v2 2/7] drm/xe: Drop unused IS_PLATFORM_STEP() and
+ IS_SUBPLATFORM_STEP()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/33NQQ6CMBCF4auQWTtmqK0BV97DsKgwwCRYSNs0G
- MLdrSRuXf5v8b0NAnvhALdiA89JgswuhzoV0I7WDYzS5QZF6koX0shr9BZdmnBBdvY5iRtwsbE
- dOaCu2eqKFeneQCYWz72sB/9oco8S4uzfx1sqv+sPNv/hVCKhIUWdUVXdsb2Lizyd2/kFzb7vH
- 8W0Pr/IAAAA
-X-Change-ID: 20260304-extra-nvl-p-enabling-patches-49ea48e204f5
+Message-Id: <20260306-extra-nvl-p-enabling-patches-v2-2-53dcfa6b44e4@intel.com>
+References: <20260306-extra-nvl-p-enabling-patches-v2-0-53dcfa6b44e4@intel.com>
+In-Reply-To: <20260306-extra-nvl-p-enabling-patches-v2-0-53dcfa6b44e4@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
  Matt Roper <matthew.d.roper@intel.com>
@@ -72,44 +70,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series contains some extra enabling patches for NVL-P.
+The macros IS_PLATFORM_STEP() and IS_SUBPLATFORM_STEP() are unused since
+commit 87c299fa3a97 ("drm/xe/guc: Port Wa_14014475959 to xe_wa and fix
+it") and commit 63bbd800ff01 ("drm/xe/guc: Port
+Wa_22012727170/Wa_22012727685 to xe_wa"), respectively, and we can drop
+them now.  Furthermore, in upcoming changes we will add logic to read
+platform-level step information from PCI RevID and keeping those macros
+around would potentially cause confusion.
 
+v2:
+  - Cite commits that made the macros unused. (Matt)
+
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
-Changes in v2:
-- Minor update in patch "drm/xe/nvlp: Implement Wa_14026539277" to skip
-  the workaround if on a SRIOV VF.
-- Link to v1: https://patch.msgid.link/20260305-extra-nvl-p-enabling-patches-v1-0-5020d5289dea@intel.com
+ drivers/gpu/drm/xe/xe_device_types.h | 10 ----------
+ 1 file changed, 10 deletions(-)
 
----
-Gustavo Sousa (7):
-      drm/xe: Modify stepping info directly in xe_step_*_get()
-      drm/xe: Drop unused IS_PLATFORM_STEP() and IS_SUBPLATFORM_STEP()
-      drm/xe/nvlp: Read platform-level stepping info
-      drm/xe/rtp: Add support for matching platform-level stepping
-      drm/xe/nvlp: Implement Wa_14026539277
-      drm/xe/xe3p: Drop Wa_16028780921
-      drm/xe: Translate C-state "reset value" into RC6
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index e9032014923d..85451cef3c25 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -81,16 +81,6 @@ enum xe_wedged_mode {
+ 
+ #define XE_MAX_ASID	(BIT(20))
+ 
+-#define IS_PLATFORM_STEP(_xe, _platform, min_step, max_step)	\
+-	((_xe)->info.platform == (_platform) &&			\
+-	 (_xe)->info.step.graphics >= (min_step) &&		\
+-	 (_xe)->info.step.graphics < (max_step))
+-#define IS_SUBPLATFORM_STEP(_xe, _platform, sub, min_step, max_step)	\
+-	((_xe)->info.platform == (_platform) &&				\
+-	 (_xe)->info.subplatform == (sub) &&				\
+-	 (_xe)->info.step.graphics >= (min_step) &&			\
+-	 (_xe)->info.step.graphics < (max_step))
+-
+ /**
+  * struct xe_device - Top level struct of Xe device
+  */
 
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |  8 ++--
- drivers/gpu/drm/xe/xe_device_types.h | 10 -----
- drivers/gpu/drm/xe/xe_gt.c           | 27 +++++++++++++
- drivers/gpu/drm/xe/xe_guc_pc.c       |  8 ++++
- drivers/gpu/drm/xe/xe_pci.c          |  8 ++--
- drivers/gpu/drm/xe/xe_rtp.c          |  7 ++++
- drivers/gpu/drm/xe/xe_rtp.h          | 20 ++++++++++
- drivers/gpu/drm/xe/xe_rtp_types.h    |  1 +
- drivers/gpu/drm/xe/xe_step.c         | 74 +++++++++++++++++++++++++-----------
- drivers/gpu/drm/xe/xe_step.h         | 10 +++--
- drivers/gpu/drm/xe/xe_step_types.h   |  1 +
- drivers/gpu/drm/xe/xe_wa.c           |  4 --
- drivers/gpu/drm/xe/xe_wa_oob.rules   |  2 +
- 13 files changed, 133 insertions(+), 47 deletions(-)
----
-base-commit: e4b36c44f536abdf724e6a17700a47ce1631699f
-change-id: 20260304-extra-nvl-p-enabling-patches-49ea48e204f5
-
-Best regards,
---  
-Gustavo Sousa <gustavo.sousa@intel.com>
+-- 
+2.52.0
 
