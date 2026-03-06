@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41D7AFCB626
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 16:52:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A22AEFCB637
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 17:11:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0617B10EDCB;
-	Fri,  6 Mar 2026 16:52:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cIWC8SXX";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D34FA10EDA4
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Mar 2026 16:52:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772815942; x=1804351942;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=GpTfZf18pCNdMh0u6lmxOJZGE8n9YE0rGbitPXLVVU8=;
- b=cIWC8SXXDKY49dMriVDGlj20+CMz4ZIZGrdntF+qJtje9sDxSRX9MIDt
- UpOEEeCyqQvL8eW57srt/JiTWUUHVhy/8Heg7oFpx7k+bqoH4S2Mj+4rV
- M88R7lYK/MXIqSOIFGpNcHqju9/XRbHsilPyOrKsal2ZNPYmOECSMEglY
- m4L/kD0MrwTvc5NdKZlyP2xjhpSIR/5HEZYHiT3vP9qX6I1Kkn47NwVQv
- NSIW2R6Q/Yh2YV+NTHX4ne6Eao+FXZ0v70YzWFJ9id5QLzHeNLeAsdt1y
- tHHTKQOqpgcC0Iw4coGKw8MakEmY1BkwJ2ao4Ycpqlt+EtwKSB01vu/R6 Q==;
-X-CSE-ConnectionGUID: x2+rQW1DTN6F/gAAG9+JQA==
-X-CSE-MsgGUID: q7RvGKPQRf6ZhjYmmVXnlQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11721"; a="73843749"
-X-IronPort-AV: E=Sophos;i="6.23,105,1770624000"; d="scan'208";a="73843749"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2026 08:52:18 -0800
-X-CSE-ConnectionGUID: DpFJEyeqQPqhK2mFiS7lbA==
-X-CSE-MsgGUID: 2vQ0Q01OTMOP1t1seA3oQw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,105,1770624000"; d="scan'208";a="223753611"
-Received: from dut6079bmgfrd.fm.intel.com ([10.80.55.56])
- by fmviesa005.fm.intel.com with ESMTP; 06 Mar 2026 08:52:17 -0800
-From: Shuicheng Lin <shuicheng.lin@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>, stable@vger.kernel.org,
- Matthew Brost <matthew.brost@intel.com>,
- Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Subject: [PATCH v2 1/2] drm/xe: Fix missing
- xe_hw_engine_group_del_exec_queue() in error path
-Date: Fri,  6 Mar 2026 16:52:06 +0000
-Message-Id: <20260306165207.176758-2-shuicheng.lin@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260306165207.176758-1-shuicheng.lin@intel.com>
-References: <20260306165207.176758-1-shuicheng.lin@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62B9610E0E0;
+	Fri,  6 Mar 2026 17:11:31 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1F4910E0E0;
+ Fri,  6 Mar 2026 17:11:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_type-specific_GT_loop?=
+ =?utf-8?q?_iterator?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 06 Mar 2026 17:11:30 -0000
+Message-ID: <177281709076.328022.17397408534251092222@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260305-gt-type-loops-v1-0-aa42e9fc3f06@intel.com>
+In-Reply-To: <20260305-gt-type-loops-v1-0-aa42e9fc3f06@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,38 +36,116 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When xa_alloc() fails after xe_hw_engine_group_add_exec_queue() has
-already succeeded, xe_hw_engine_group_del_exec_queue() is never called
-to undo the add.
+== Series Details ==
 
-Add xe_hw_engine_group_del_exec_queue() at the kill_exec_queue label
-to fix it.
+Series: Add type-specific GT loop iterator
+URL   : https://patchwork.freedesktop.org/series/162710/
+State : warning
 
-Fixes: 7970cb36966c ("drm/xe/hw_engine_group: Register hw engine group's exec queues")
-Cc: stable@vger.kernel.org
-Cc: Matthew Brost <matthew.brost@intel.com>
-Suggested-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
----
- drivers/gpu/drm/xe/xe_exec_queue.c | 2 ++
- 1 file changed, 2 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 5c67185d5357..af915ccb4925 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -1408,6 +1408,8 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 	return 0;
- 
- kill_exec_queue:
-+	if (q->vm && q->hwe->hw_engine_group)
-+		xe_hw_engine_group_del_exec_queue(q->hwe->hw_engine_group, q);
- 	xe_exec_queue_kill(q);
- delete_queue_group:
- 	if (xe_exec_queue_is_multi_queue_secondary(q))
--- 
-2.34.1
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0aa6d19fd7f891663570df831de93732953792e0
+Author: Matt Roper <matthew.d.roper@intel.com>
+Date:   Thu Mar 5 14:59:28 2026 -0800
+
+    drm/xe: Utilize for_each_gt_with_type() for type-specific GT loops
+    
+    Convert existing loops with Coccinelle via the following semantic patch:
+    
+        @@
+        identifier GT, XE, ID;
+        iterator name for_each_gt, for_each_gt_with_type;
+        @@
+        - for_each_gt(GT, XE, ID) {
+        + for_each_gt_with_type(GT, XE, ID, BIT(XE_GT_TYPE_MAIN)) {
+        -         if (xe_gt_is_media_type(GT))
+        -                 continue;
+                  ...
+          }
+    
+        @@
+        identifier GT, XE, ID;
+        iterator name for_each_gt, for_each_gt_with_type;
+        @@
+        - for_each_gt(GT, XE, ID) {
+        + for_each_gt_with_type(GT, XE, ID, BIT(XE_GT_TYPE_MEDIA)) {
+        -         if (xe_gt_is_main_type(GT))
+        -                 continue;
+                  ...
+          }
+    
+        @@
+        identifier GT, XE, ID;
+        iterator name for_each_gt, for_each_gt_with_type;
+        @@
+        - for_each_gt(GT, XE, ID) {
+        + for_each_gt_with_type(GT, XE, ID, BIT(XE_GT_TYPE_MAIN)) {
+        -         if (!xe_gt_is_main_type(GT))
+        -                 continue;
+                  ...
+          }
+    
+        @@
+        identifier GT, XE, ID;
+        iterator name for_each_gt, for_each_gt_with_type;
+        @@
+        - for_each_gt(GT, XE, ID) {
+        + for_each_gt_with_type(GT, XE, ID, BIT(XE_GT_TYPE_MEDIA)) {
+        -         if (xe_gt_is_media_type(GT))
+        -                 continue;
+                  ...
+          }
+    
+    No functional change expected.
+    
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch a48305e6a2e6a1ed90df374101dd29542c105d8f drm-intel
+9d5a7a4fa7cb drm/xe: Add for_each_gt_with_type() iterator
+-:37: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#37: FILE: drivers/gpu/drm/xe/xe_device.h:134:
++#define for_each_gt_with_type(gt__, xe__, id__, typemask__) \
++	for_each_gt((gt__), (xe__), (id__)) \
++		for_each_if((typemask__) & BIT((gt__)->info.type))
+
+BUT SEE:
+
+   do {} while (0) advice is over-stated in a few situations:
+
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:37: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'gt__' - possible side-effects?
+#37: FILE: drivers/gpu/drm/xe/xe_device.h:134:
++#define for_each_gt_with_type(gt__, xe__, id__, typemask__) \
++	for_each_gt((gt__), (xe__), (id__)) \
++		for_each_if((typemask__) & BIT((gt__)->info.type))
+
+total: 1 errors, 0 warnings, 1 checks, 10 lines checked
+0aa6d19fd7f8 drm/xe: Utilize for_each_gt_with_type() for type-specific GT loops
+
 
