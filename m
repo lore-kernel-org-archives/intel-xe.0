@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4855F01821
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 10:32:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B236F01825
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 10:34:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D77C10ECCA;
-	Fri,  6 Mar 2026 10:32:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z0Z8lTKQ";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3BBA10ECC7;
- Fri,  6 Mar 2026 10:32:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772793121; x=1804329121;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=CgIUiqoctAst7HrTIjj+1cX/4J2lpJfXl0eA3wafb4Y=;
- b=Z0Z8lTKQnWmN2n3mR4OaXF+YsXA1anU87/0NsNz1q4dareO9Ybo7TswY
- ZCqnxJVBizXJPjyEadwEdskHLI2Iz2exAHiVDp6BapG4ffwNVR+sjrzLR
- phZa6r3Oyn8abw54LdmOMPUsN4DRtVWpVswufQxBztJGHDSoXztZ0vC18
- dF8lcG+HbrPG95xghMC9rZ8LwAKtFrPwWnair/rMUuSX7T2Lwj/drB4L6
- NzuIp8mkBglys+oUE/DLazpBdt/iFWPIx4GJfj5WCTvIlJoPtEkKBRU6G
- s6TcKBRJNLMx5vIBrk6f+aW4kDtBKmg3dXCGIXtNed4xrmrL1ueyk5Meb w==;
-X-CSE-ConnectionGUID: rfiDHvccShaGGr5LyenLig==
-X-CSE-MsgGUID: Ou8Z2X10Qa6gqAc3R8wJCg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11720"; a="84608498"
-X-IronPort-AV: E=Sophos;i="6.23,104,1770624000"; d="scan'208";a="84608498"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2026 02:32:00 -0800
-X-CSE-ConnectionGUID: OmgBK8SKQaiVRecYw+UDYw==
-X-CSE-MsgGUID: EU9FzmMgRjCvKQNuiw0SXQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,104,1770624000"; d="scan'208";a="249446474"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.191])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2026 02:31:58 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Randy Dunlap <rdunlap@infradead.org>, linux-kernel@vger.kernel.org
-Cc: Randy Dunlap <rdunlap@infradead.org>, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH RESEND] iopoll: fix parameter names in kernel-doc
-In-Reply-To: <20260306063829.2059375-1-rdunlap@infradead.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260306063829.2059375-1-rdunlap@infradead.org>
-Date: Fri, 06 Mar 2026 12:31:54 +0200
-Message-ID: <7b4ab61091b0bd032e129e46237f707d2448ca08@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10A4B10ECD2;
+	Fri,  6 Mar 2026 10:34:48 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33F3A10ECCA;
+ Fri,  6 Mar 2026 10:34:47 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5518006295885641018=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Two-pass_MMU_interval_notif?=
+ =?utf-8?q?iers_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 06 Mar 2026 10:34:47 -0000
+Message-ID: <177279328714.325615.11225642052302752766@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260305093909.43623-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20260305093909.43623-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,62 +36,132 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 05 Mar 2026, Randy Dunlap <rdunlap@infradead.org> wrote:
-> Correct the parameter names to avoid kernel-doc warnings:
->
-> Warning: include/linux/iopoll.h:169 function parameter 'sleep_us' not
->  described in 'read_poll_timeout_atomic'
-> Warning: ../include/linux/iopoll.h:169 function parameter
->  'sleep_before_read' not described in 'read_poll_timeout_atomic'
+--===============5518006295885641018==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I think the right fix is to rename the parameters instead. They're
-passed on to poll_timeout_us_atomic() where the parameters are called
-delay_us and delay_before_op, emphasizing that this is atomic i.e. no
-sleep.
+== Series Details ==
 
-BR,
-Jani.
+Series: Two-pass MMU interval notifiers (rev4)
+URL   : https://patchwork.freedesktop.org/series/153280/
+State : failure
 
->
-> Fixes: 9df8043a546d ("iopoll: Generalize read_poll_timeout() into poll_ti=
-meout_us()")
-> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
-> ---
-> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: intel-xe@lists.freedesktop.org
-> ---
->  include/linux/iopoll.h |    6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
->
-> --- linux-next-20260304.orig/include/linux/iopoll.h
-> +++ linux-next-20260304/include/linux/iopoll.h
-> @@ -150,16 +150,16 @@
->   * @op: accessor function (takes @args as its arguments)
->   * @val: Variable to read the value into
->   * @cond: Break condition (usually involving @val)
-> - * @delay_us: Time to udelay between reads in us (0 tight-loops). Please
-> + * @sleep_us: Time to udelay between reads in us (0 tight-loops). Please
->   *            read udelay() function description for details and
->   *            limitations.
->   * @timeout_us: Timeout in us, 0 means never timeout
-> - * @delay_before_read: if it is true, delay @delay_us before read.
-> + * @sleep_before_read: if it is true, delay @sleep_us before read.
->   * @args: arguments for @op poll
->   *
->   * This macro does not rely on timekeeping.  Hence it is safe to call ev=
-en when
->   * timekeeping is suspended, at the expense of an underestimation of wal=
-l clock
-> - * time, which is rather minimal with a non-zero delay_us.
-> + * time, which is rather minimal with a non-zero @sleep_us.
->   *
->   * When available, you'll probably want to use one of the specialized
->   * macros defined below rather than this macro directly.
+== Summary ==
 
---=20
-Jani Nikula, Intel
+CI Bug Log - changes from xe-4673-79792a2fc5d37b5446e543f1de05158ab0f551c9_BAT -> xe-pw-153280v4_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-153280v4_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-153280v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (14 -> 15)
+------------------------------
+
+  Additional (1): bat-pvc-2 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-153280v4_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_module_load@load:
+    - bat-pvc-2:          NOTRUN -> [ABORT][1]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153280v4/bat-pvc-2/igt@xe_module_load@load.html
+
+  
+
+
+Build changes
+-------------
+
+  * Linux: xe-4673-79792a2fc5d37b5446e543f1de05158ab0f551c9 -> xe-pw-153280v4
+
+  IGT_8782: eac3b04d1f76b82ac3a183fb293c44e9185d8dba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4673-79792a2fc5d37b5446e543f1de05158ab0f551c9: 79792a2fc5d37b5446e543f1de05158ab0f551c9
+  xe-pw-153280v4: 153280v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153280v4/index.html
+
+--===============5518006295885641018==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Two-pass MMU interval notifiers (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/153280/">https://patchwork.freedesktop.org/series/153280/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153280v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153280v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4673-79792a2fc5d37b5446e543f1de05158ab0f551c9_BAT -&gt; xe-pw-153280v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-153280v4_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-153280v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (14 -&gt; 15)</h2>
+<p>Additional (1): bat-pvc-2 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-153280v4_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-153280v4/bat-pvc-2/igt@xe_module_load@load.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4673-79792a2fc5d37b5446e543f1de05158ab0f551c9 -&gt; xe-pw-153280v4</li>
+</ul>
+<p>IGT_8782: eac3b04d1f76b82ac3a183fb293c44e9185d8dba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4673-79792a2fc5d37b5446e543f1de05158ab0f551c9: 79792a2fc5d37b5446e543f1de05158ab0f551c9<br />
+  xe-pw-153280v4: 153280v4</p>
+
+</body>
+</html>
+
+--===============5518006295885641018==--
