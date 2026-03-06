@@ -4,27 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AF9BF01818
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 09:36:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A8BFF01818
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 09:37:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 336B610ECBC;
-	Fri,  6 Mar 2026 09:36:40 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 168E210E20D;
- Fri,  6 Mar 2026 09:36:39 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABDC310ECBD;
+	Fri,  6 Mar 2026 09:37:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="wWz8NWFW";
+	dkim-atps=neutral
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1511610ECBC;
+ Fri,  6 Mar 2026 09:37:07 +0000 (UTC)
+Received: from smtp102.mailbox.org (smtp102.mailbox.org
+ [IPv6:2001:67c:2050:b231:465::102])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4fS1Wy6KkBz9tpm;
+ Fri,  6 Mar 2026 10:37:02 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1772789823;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ANaPsF4QJeveKptubtd0nStch7cg+Yo3B2BsZZ9z6Kw=;
+ b=wWz8NWFWYrAW5ljpIcDUJ3sRzKLyXtD6CtgaUvTOAyDw9GJofqZ2b+ZXJy3pcbR/hBnF7V
+ fLkk9PBMMIgLyStqFmQ649w0LnyOeIoiU7ZJcjpFzwsasTPScAXB6AxCOrilb4jGOrH5wU
+ tikKaWCQhzb21g6E+MdmrGVhrLxp2qY7Ses+R4jtSu/GAVW8H7iBCvbAHgP6vIaFijOxtR
+ Kf8bXF2QEh14D/UKgM6sLJs5O29DiO6Na1NItpBIrjJAJqN4EnPSB/rpo3Nc6IhzSE8tEV
+ FnUnOYwfEj+4F5F3jsQyiloPIVZ61oyiwtiUBv4MIZjOOmZ7HgW5Dh9A8onbhw==
+Message-ID: <28ce8bae-bc49-4f51-9f12-ae7bc427c920@mailbox.org>
+Date: Fri, 6 Mar 2026 10:36:56 +0100
 MIME-Version: 1.0
+Subject: Re: drm_sched run_job and scheduling latency
+To: Chia-I Wu <olvaffe@gmail.com>, Matthew Brost <matthew.brost@intel.com>
+Cc: Boris Brezillon <boris.brezillon@collabora.com>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ intel-xe@lists.freedesktop.org, Steven Price <steven.price@arm.com>,
+ Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <ckoenig.leichtzumerken@gmail.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ open list <linux-kernel@vger.kernel.org>, tj@kernel.org
+References: <CAPaKu7RbCtkz1BbX57+CebB2uepyCAi-3QzBy8BDGngCJ-Du0w@mail.gmail.com>
+ <aajkqXZDGUFPlq1o@lstrano-desk.jf.intel.com> <20260305092711.20069ca1@fedora>
+ <aalWTOZSNYcKpvdd@lstrano-desk.jf.intel.com> <20260305115201.6fb044f0@fedora>
+ <aans5SMXDbwhpqY8@lstrano-desk.jf.intel.com>
+ <CAPaKu7SXsCv=G+O38unCsdrUNeeOmbopRdBpjqP+Qxp+EP9JtA@mail.gmail.com>
+From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Content-Language: de-CH-frami, en-CA
+In-Reply-To: <CAPaKu7SXsCv=G+O38unCsdrUNeeOmbopRdBpjqP+Qxp+EP9JtA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_AuxCCS_handling_and_rende?=
- =?utf-8?q?r_compression_modifiers?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 06 Mar 2026 09:36:39 -0000
-Message-ID: <177278979905.325586.12548596328867332130@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260305085331.46514-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20260305085331.46514-1-tvrtko.ursulin@igalia.com>
+X-MBO-RS-META: m14gt1oxa4xx91oiqz3rcunncq3ngwxe
+X-MBO-RS-ID: 787898a7cbfbb7b33de
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,88 +74,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On 3/6/26 06:13, Chia-I Wu wrote:
+> On Thu, Mar 5, 2026 at 12:52 PM Matthew Brost <matthew.brost@intel.com> wrote:
+>> On Thu, Mar 05, 2026 at 11:52:01AM +0100, Boris Brezillon wrote:
+>>> On Thu, 5 Mar 2026 02:09:16 -0800
+>>> Matthew Brost <matthew.brost@intel.com> wrote:
+>>>> On Thu, Mar 05, 2026 at 09:27:11AM +0100, Boris Brezillon wrote:
+>>>>> On Wed, 4 Mar 2026 18:04:25 -0800
+>>>>> Matthew Brost <matthew.brost@intel.com> wrote:
+>>>>>> On Wed, Mar 04, 2026 at 02:51:39PM -0800, Chia-I Wu wrote:
+>>>>>>>
+>>>>>>> Thoughts? Or perhaps this becomes less of an issue if all drm_sched
+>>>>>>> users have concrete plans for userspace submissions..
+>>>>>>
+>>>>>> Maybe some day....
+>>>>>
+>>>>> I've yet to see a solution where no dma_fence-based signalization is
+>>>>> involved in graphics workloads though (IIRC, Arm's solution still
+>>>>> needs the kernel for that). Until that happens, we'll still need the
+>>>>> kernel to signal fences asynchronously when the job is done, which I
+>>>>> suspect will cause the same kind of latency issue...
+>>>>>
+>>>>
+>>>> I don't think that is the problem here. Doesn’t the job that draws the
+>>>> frame actually draw it, or does the display wait on the draw job’s fence
+>>>> to signal and then do something else?
+>>>
+>>> I know close to nothing about SurfaceFlinger and very little about
+>>> compositors in general, so I'll let Chia answer that one. What's sure
+>>
+>> I think Chia input would good, as if SurfaceFlinger jobs have input
+>> dependencies this entire suggestion doesn't make any sense.
+>>
+>>> is that, on regular page-flips (don't remember what async page-flips
+>>> do), the display drivers wait on the fences attached to the buffer to
+>>> signal before doing the flip.
+>>
+>> I think SurfaceFlinger is different compared to Wayland/X11 use cases,
+>> as maintaining a steady framerate is the priority above everything else
+>> (think phone screens, which never freeze, whereas desktops do all the
+>> time). So I believe SurfaceFlinger decides when it will submit the job
+>> to draw a frame, without directly passing in application dependencies
+>> into the buffer/job being drawn. Again, my understanding here may be
+>> incorrect...
+> That is correct. SurfaceFlinger only ever latches buffers whose
+> associated fences have signaled, and sends down the buffers to gpu for
+> composition or to the display for direct scanout. That might also be
+> how modern wayland compositors work nowadays?
 
-Series: AuxCCS handling and render compression modifiers
-URL   : https://patchwork.freedesktop.org/series/162646/
-State : warning
-
-== Summary ==
-
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-1f57ba1afceae32108bd24770069f764d940a0e4
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit ee89237c157574c56dcf4dd52fa9164c0e2d3967
-Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Date:   Thu Mar 5 08:53:31 2026 +0000
-
-    drm/xe/xelp: Expose AuxCCS frame buffer modifiers on Alderlake-P
-    
-    Now that we have implemented all the related missing bits we can enable
-    the AuxCCS compressed modifiers which were disabled in
-    cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
-    
-    Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
-    
-            [PLANE:32:plane 1A]: type=PRI
-                    uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=28
-                    hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000
-    
-    Display is working fine - no artefacts, no DMAR/PIPE faults.
-    
-    v2:
-     * Adjust patch title. (Rodrigo)
-    
-    v3:
-     * Complete rewrite based on the display parent interface.
-    
-    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-    References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
-    Cc: Jani Nikula <jani.nikula@intel.com>
-    Cc: José Roberto de Souza <jose.souza@intel.com>
-    Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-+ /mt/dim checkpatch 79792a2fc5d37b5446e543f1de05158ab0f551c9 drm-intel
-0f5882433241 drm/xe: Rename XE_BO_FLAG_SCANOUT to XE_BO_FLAG_FORCE_WC
--:127: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#127: FILE: drivers/gpu/drm/xe/xe_bo.c:517:
-+		if ((!bo->cpu_caching && bo->flags & XE_BO_FLAG_FORCE_WC) ||
- 		     (!xe->info.has_cached_pt && bo->flags & XE_BO_FLAG_PAGETABLE))
-
-total: 0 errors, 0 warnings, 1 checks, 128 lines checked
-5a847cead1bb drm/xe: Use write-combine mapping when populating DPT
-9ef58e3b5b2e drm/xe/xelpg: Limit AuxCCS ring buffer programming to Alderlake
--:26: WARNING:TYPO_SPELLING: 'explicity' may be misspelled - perhaps 'explicitly'?
-#26: FILE: drivers/gpu/drm/xe/xe_ring_ops.c:308:
-+	 * AuxCCS, and we explicity do not want to support it on MTL.
- 	                  ^^^^^^^^^
-
-total: 0 errors, 1 warnings, 0 checks, 11 lines checked
-78458efee8f4 drm/xe/xelp: Quiesce memory traffic before invalidating AuxCCS
-87f8d28c4c33 drm/xe/xelp: Wait for AuxCCS invalidation to complete
-426a22d6c7e6 drm/xe: Move aux table invalidation to ring ops
-6f96719f5a6b drm/xe/xelp: Add AuxCCS invalidation to the indirect context workarounds
-6ce891ed5d6e drm/xe/display: Add support for AuxCCS
-ee89237c1575 drm/xe/xelp: Expose AuxCCS frame buffer modifiers on Alderlake-P
--:12: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#12: 
-cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
-
--:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")'
-#12: 
-cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
-
-total: 1 errors, 1 warnings, 0 checks, 20 lines checked
+Many (most of the major ones?) do, yes. (Weston being a notable exception AFAIK, though since it supports the Wayland syncobj protocol now, switching to this model should be easy)
 
 
+-- 
+Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
+https://redhat.com             \               Libre software enthusiast
