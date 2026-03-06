@@ -4,72 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95C20FCC07C
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 21:27:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5191FFCC07D
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 21:30:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48F6310E3FA;
-	Fri,  6 Mar 2026 21:27:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08CAF10E40D;
+	Fri,  6 Mar 2026 21:30:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="TKuE5TCY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NslTUJnI";
 	dkim-atps=neutral
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C0F110E3FA;
- Fri,  6 Mar 2026 21:27:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1772832476;
- bh=8AcXATpPHhAW6+VsEJt3fbqjfR+nRZ5oVmrac43OOrg=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=TKuE5TCY9pEao6ovX2ljN+08xIEW10blai+3m0jm5lIqeNw1ZtMCznKG1mP5WDIZa
- RMy8xazy/23QolllpOLPnM3DiBpIdv86oGjBjzgKGYmPUFe0o5AZVmGdLurCUda0JQ
- OmEwFnoXG8n8ZNpeIqkW8oVCvVmcmF6s7Wg5DfvXLqXrnEX6+tZM4LQN4fZNcuLEEG
- Jfy9uq4P/0HDrrTyIYtoAlj/aDYFhzyuRf91VNqojzpQFlYt4I1WkkkkteEwnp8djt
- WxIJeugI63Mz6WslOt1Hk6ceagZFYi5AwF1vZ4o3IqKEguUiKdtrQEyR4KlT6/MbPW
- 1vV1T6W5Cx2Hg==
-Received: from [192.168.1.90] (unknown [86.123.23.225])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: cristicc)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id C482617E0959;
- Fri,  6 Mar 2026 22:27:54 +0100 (CET)
-Message-ID: <84b30917-5d09-4432-bc49-873d1b2674df@collabora.com>
-Date: Fri, 6 Mar 2026 23:27:53 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 15/22] drm/rockchip: dw_hdmi_qp: Implement "color
- format" DRM property
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
- <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org
-References: <20260305-color-format-v10-0-a58c68a11868@collabora.com>
- <20260305-color-format-v10-15-a58c68a11868@collabora.com>
-Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <20260305-color-format-v10-15-a58c68a11868@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23BB810E3FA;
+ Fri,  6 Mar 2026 21:30:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772832643; x=1804368643;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=5VGVb44S4Jl8pGAPgj80nmy3APxdU9AwqSy7FuPWvbQ=;
+ b=NslTUJnIbs1NHhsdUaXgvo53P8pGJ2qtucU733ioMfbuONesnLbaern7
+ tfhjTnMN4fphWqYYrJsJuTx5QPX1SNP8dSOHJPThmX8lxsAO7VBMeNlkS
+ EB4LocQIPy6svyG+EOTbuSK48aJROzYfuArEBAwlLOxWCYzkzzqPOPUUL
+ XSsRXdc4CGq8tTopDZz/loEU0pl6B+ezCVAC1ROUK893OlJE9fVE89ywz
+ 5LZunap/WFF6cVoDQ7sPktUI/ViFODxeEY/v5NryJANzjxtEmQrDjhvM4
+ 6m9JEzEHjqCl/2Uwikjw6OVEbEkwUPGDf4uu0PRB/kucmDZBV1PGRqR3Z A==;
+X-CSE-ConnectionGUID: PlvCQ/cnTdyL9E/ZyYPu2A==
+X-CSE-MsgGUID: BtkP8Ue6TfWQRMtYsm1U4A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11721"; a="61520057"
+X-IronPort-AV: E=Sophos;i="6.23,105,1770624000"; d="scan'208";a="61520057"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2026 13:30:43 -0800
+X-CSE-ConnectionGUID: BYj3klkDTS2wlqPayerSRA==
+X-CSE-MsgGUID: e8LlaqTHSl+CCgdO11fRNQ==
+X-ExtLoop1: 1
+Received: from rmigue1x-mobl.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
+ ([10.125.38.160])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2026 13:30:42 -0800
+Date: Fri, 06 Mar 2026 13:30:41 -0800
+Message-ID: <87o6l0sl1a.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: "Souza, Jose" <jose.souza@intel.com>, =?ISO-8859-2?Q?Micha=B3?=
+ Winiarski <michal.winiarski@intel.com>, Michal Wajdeczko
+ <michal.wajdeczko@intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "K V P,  Satyanarayana"
+ <satyanarayana.k.v.p@intel.com>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "Brost, Matthew"
+ <matthew.brost@intel.com>, "thomas.hellstrom@linux.intel.com"
+ <thomas.hellstrom@linux.intel.com>, "Piorkowski, Piotr"
+ <piotr.piorkowski@intel.com>, "Dunajski, Bartosz"
+ <bartosz.dunajski@intel.com>, "Wajdeczko, Michal"
+ <Michal.Wajdeczko@intel.com>
+Subject: Re: [RFC v5 1/1] drm/xe/pf: Restrict device query responses in
+ admin-only PF mode
+In-Reply-To: <aard4hmG_HOhWDji@intel.com>
+References: <20260227120702.3651913-3-satyanarayana.k.v.p@intel.com>	<20260227120702.3651913-4-satyanarayana.k.v.p@intel.com>	<c113e7d317a6ae275c49151ff8e3ecad6bb85e45.camel@intel.com>	<aard4hmG_HOhWDji@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,19 +79,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 3/5/26 4:19 PM, Nicolas Frattaroli wrote:
-> Switch between requested color formats by setting the right bus formats,
-> configuring the VO GRF registers, and setting the right output mode.
-> 
-> To do this, the encoder's atomic_check queries the bus format of the
-> first bridge, which was determined by the bridge chain recursive format
-> selection. Pick the input format if it's !FIXED, otherwise, pick the
-> output format.
-> 
-> The previously unused GRF register color format defines are redone as
-> well. Both RK3588 and RK3576 use the same defines; it didn't look like
-> this as there was a typo in the previously (unused) definition.
-> 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+On Fri, 06 Mar 2026 06:00:02 -0800, Rodrigo Vivi wrote:
+>
+> On Tue, Mar 03, 2026 at 08:39:56PM +0000, Souza, Jose wrote:
+> > On Fri, 2026-02-27 at 12:07 +0000, Satyanarayana K V P wrote:
+> > > When a PF is configured in admin-only mode, it is intended for
+> > > management
+> > > only and must not expose workload-facing capabilities to userspace.
+> > >
+> > > Limit the exposed ioctl set in admin-only PF mode to XE_DEVICE_QUERY,
+> > > and
+> > > suppress capability-bearing query payloads so userspace cannot
+> > > discover
+> > > execution-related device details in this mode.
+> >
+> > Mesa MR:
+> > https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/40206
+>
+> Looking to this patch I got myself wondering if query.size == 0 is
+> long-term proof...   I mean, if we need to get some OA/RAS/telemetry
+> kind of API that end up needing some kind of query information....
+>
+> Michals, thoughts on this?
+>
+> I know, I know, this solution is indeed much better than my
+> proposal of no ioctl exposed. But I mean, since we are taking
+> this path and allowing some ioctl. Shouldn't we prepare at least
+> the query for that and then only limiting the number of engines
+> and memory regions to zero?
 
-Reviewed-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+I think UMD's should handle both these cases, either:
+
+1. The returned query size is 0, so there is no further information, which
+   can only mean nothing is supported (engine, memory region counts are
+   all 0)
+2. Or, returned query size is non-zero but engine or memory region counts
+   returned are 0.
+
+And then KMD can implement either (or switch between the two later) as
+needed?
+
+Also, there were some questions about supporting OA in the
+admin-only-pf. Here are some high level points about this:
+
+* OA/EUSTALL is not supported in VF's in current products, this might
+  change in the future
+* OA/EUSTALL in admin-only-pf can be used to profile global counts across
+  VF's
+* OA/EUSTALL themselves don't allow workload submission etc. They only
+  allow reading profiling data from HW
+* OA/EUSTALL in admin-only-pf will need the observation ioctl to be
+  supported. Also, some other query ioctls such as hw configuration,
+  topology, frequency will be needed to make sense of OA/EUSTALL data.
+
+Thanks.
+--
+Ashutosh
