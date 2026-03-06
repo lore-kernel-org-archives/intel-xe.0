@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7C4DFCB602
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 22:38:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE69EF5141C
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 22:38:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6531910EDD0;
-	Fri,  6 Mar 2026 22:38:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 885B210EDFF;
+	Fri,  6 Mar 2026 22:38:32 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26E7810EDB8;
- Fri,  6 Mar 2026 22:38:14 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 241D910EDD0;
+ Fri,  6 Mar 2026 22:38:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0699017981388963392=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/xe=5Fvm=3A_Impleme?=
- =?utf-8?q?nt_xe=5Fvm=5Fget=5Fproperty=5Fioctl?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/pagemap=5Futil=3A_Ensur?=
+ =?utf-8?q?e_proper_cache_lock_management_on_free?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 06 Mar 2026 22:38:14 -0000
-Message-ID: <177283669413.329328.15799704078718182247@a3b018990fe9>
+Date: Fri, 06 Mar 2026 22:38:32 -0000
+Message-ID: <177283671212.329328.15658697097795818827@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260306155556.67500-6-jonathan.cavitt@intel.com>
-In-Reply-To: <20260306155556.67500-6-jonathan.cavitt@intel.com>
+References: <20260306154322.60120-2-jonathan.cavitt@intel.com>
+In-Reply-To: <20260306154322.60120-2-jonathan.cavitt@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,155 +40,140 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============0699017981388963392==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
-URL   : https://patchwork.freedesktop.org/series/162773/
-State : warning
+Series: drm/pagemap_util: Ensure proper cache lock management on free
+URL   : https://patchwork.freedesktop.org/series/162771/
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-1f57ba1afceae32108bd24770069f764d940a0e4
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 5a7183e3e94f88ebca6de0e586137e6a781938a1
-Author: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Date:   Fri Mar 6 15:56:01 2026 +0000
+CI Bug Log - changes from xe-4674-a48305e6a2e6a1ed90df374101dd29542c105d8f_BAT -> xe-pw-162771v1_BAT
+====================================================
 
-    drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
-    
-    Add support for userspace to request a list of observed faults
-    from a specified VM.
-    
-    v2:
-    - Only allow querying of failed pagefaults (Matt Brost)
-    
-    v3:
-    - Remove unnecessary size parameter from helper function, as it
-      is a property of the arguments. (jcavitt)
-    - Remove unnecessary copy_from_user (Jainxun)
-    - Set address_precision to 1 (Jainxun)
-    - Report max size instead of dynamic size for memory allocation
-      purposes.  Total memory usage is reported separately.
-    
-    v4:
-    - Return int from xe_vm_get_property_size (Shuicheng)
-    - Fix memory leak (Shuicheng)
-    - Remove unnecessary size variable (jcavitt)
-    
-    v5:
-    - Rename ioctl to xe_vm_get_faults_ioctl (jcavitt)
-    - Update fill_property_pfs to eliminate need for kzalloc (Jianxun)
-    
-    v6:
-    - Repair and move fill_faults break condition (Dan Carpenter)
-    - Free vm after use (jcavitt)
-    - Combine assertions (jcavitt)
-    - Expand size check in xe_vm_get_faults_ioctl (jcavitt)
-    - Remove return mask from fill_faults, as return is already -EFAULT or 0
-      (jcavitt)
-    
-    v7:
-    - Revert back to using xe_vm_get_property_ioctl
-    - Apply better copy_to_user logic (jcavitt)
-    
-    v8:
-    - Fix and clean up error value handling in ioctl (jcavitt)
-    - Reapply return mask for fill_faults (jcavitt)
-    
-    v9:
-    - Future-proof size logic for zero-size properties (jcavitt)
-    - Add access and fault types (Jianxun)
-    - Remove address type (Jianxun)
-    
-    v10:
-    - Remove unnecessary switch case logic (Raag)
-    - Compress size get, size validation, and property fill functions into a
-      single helper function (jcavitt)
-    - Assert valid size (jcavitt)
-    
-    v11:
-    - Remove unnecessary else condition
-    - Correct backwards helper function size logic (jcavitt)
-    
-    v12:
-    - Use size_t instead of int (Raag)
-    
-    v13:
-    - Remove engine class and instance (Ivan)
-    
-    v14:
-    - Map access type, fault type, and fault level to user macros (Matt
-      Brost, Ivan)
-    
-    v15:
-    - Remove unnecessary size assertion (jcavitt)
-    
-    v16:
-    - Nit fixes (Matt Brost)
-    
-    v17:
-    - Rebase and refactor (jcavitt)
-    
-    v18:
-    - Do not copy_to_user in critical section (Matt Brost)
-    - Assert args->size is multiple of sizeof(struct xe_vm_fault) (Matt
-      Brost)
-    
-    v19:
-    - Remove unnecessary memset (Matt Brost)
-    
-    uAPI: https://github.com/intel/compute-runtime/pull/878
-    Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-    Suggested-by: Matthew Brost <matthew.brost@intel.com>
-    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-    Cc: Jainxun Zhang <jianxun.zhang@intel.com>
-    Cc: Shuicheng Lin <shuicheng.lin@intel.com>
-    Cc: Raag Jadav <raag.jadav@intel.com>
-    Cc: Ivan Briano <ivan.briano@intel.com>
-+ /mt/dim checkpatch a48305e6a2e6a1ed90df374101dd29542c105d8f drm-intel
-56f2e2105e87 drm/xe/xe_pagefault: Disallow writes to read-only VMAs
-daceb9a1800e drm/xe/uapi: Define drm_xe_vm_get_property
--:31: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'uAPI:', use 'Link:' or 'Closes:' instead
-#31: 
-uAPI: https://github.com/intel/compute-runtime/pull/878
+Summary
+-------
 
--:64: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
-#64: FILE: include/uapi/drm/xe_drm.h:130:
-+#define DRM_IOCTL_XE_VM_GET_PROPERTY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_GET_PROPERTY, struct drm_xe_vm_get_property)
+  **SUCCESS**
 
-total: 0 errors, 2 warnings, 0 checks, 110 lines checked
-28b551a9eb0c drm/xe/xe_vm: Add per VM fault info
--:78: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'uAPI:', use 'Link:' or 'Closes:' instead
-#78: 
-uAPI: https://github.com/intel/compute-runtime/pull/878
+  No regressions found.
 
--:171: WARNING:ALLOC_WITH_SIZEOF: Prefer kzalloc_obj over kzalloc with sizeof
-#171: FILE: drivers/gpu/drm/xe/xe_vm.c:602:
-+	e = kzalloc(sizeof(*e), GFP_KERNEL);
+  
 
--:173: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
-#173: FILE: drivers/gpu/drm/xe/xe_vm.c:604:
-+	if (!e) {
-+		drm_warn(&vm->xe->drm,
+Participating hosts (15 -> 14)
+------------------------------
 
-total: 0 errors, 3 warnings, 0 checks, 210 lines checked
-5a7183e3e94f drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
--:87: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'uAPI:', use 'Link:' or 'Closes:' instead
-#87: 
-uAPI: https://github.com/intel/compute-runtime/pull/878
+  Missing    (1): bat-pvc-2 
 
--:221: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#221: FILE: drivers/gpu/drm/xe/xe_vm.c:4040:
-+	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1] ||
-+			     args->reserved[2]))
+Known issues
+------------
 
-total: 0 errors, 1 warnings, 1 checks, 140 lines checked
+  Here are the changes found in xe-pw-162771v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4674-a48305e6a2e6a1ed90df374101dd29542c105d8f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162771v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4674-a48305e6a2e6a1ed90df374101dd29542c105d8f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162771v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
 
 
+Build changes
+-------------
+
+  * IGT: IGT_8782 -> IGT_8783
+  * Linux: xe-4674-a48305e6a2e6a1ed90df374101dd29542c105d8f -> xe-pw-162771v1
+
+  IGT_8782: eac3b04d1f76b82ac3a183fb293c44e9185d8dba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8783: b5051dc2e867005c758c707312aa9cf9d1dc3291 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4674-a48305e6a2e6a1ed90df374101dd29542c105d8f: a48305e6a2e6a1ed90df374101dd29542c105d8f
+  xe-pw-162771v1: 162771v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162771v1/index.html
+
+--===============0699017981388963392==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/pagemap_util: Ensure proper cache lock management on free</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162771/">https://patchwork.freedesktop.org/series/162771/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162771v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162771v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4674-a48305e6a2e6a1ed90df374101dd29542c105d8f_BAT -&gt; xe-pw-162771v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (15 -&gt; 14)</h2>
+<p>Missing    (1): bat-pvc-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-162771v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4674-a48305e6a2e6a1ed90df374101dd29542c105d8f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162771v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4674-a48305e6a2e6a1ed90df374101dd29542c105d8f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162771v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8782 -&gt; IGT_8783</li>
+<li>Linux: xe-4674-a48305e6a2e6a1ed90df374101dd29542c105d8f -&gt; xe-pw-162771v1</li>
+</ul>
+<p>IGT_8782: eac3b04d1f76b82ac3a183fb293c44e9185d8dba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8783: b5051dc2e867005c758c707312aa9cf9d1dc3291 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4674-a48305e6a2e6a1ed90df374101dd29542c105d8f: a48305e6a2e6a1ed90df374101dd29542c105d8f<br />
+  xe-pw-162771v1: 162771v1</p>
+
+</body>
+</html>
+
+--===============0699017981388963392==--
