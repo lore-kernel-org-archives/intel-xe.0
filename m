@@ -4,99 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23EB0FCB619
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 15:44:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25649FCB61C
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 15:56:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB7DC10ED6D;
-	Fri,  6 Mar 2026 15:44:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C963410ED6D;
+	Fri,  6 Mar 2026 15:56:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="cPwvk7hY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZjoJ5c3J";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF9ED10ED6A;
- Fri,  6 Mar 2026 15:44:18 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id D15A960127;
- Fri,  6 Mar 2026 15:44:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 042BFC2BC86;
- Fri,  6 Mar 2026 15:44:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772811857;
- bh=Irog342MSr8k0zPuW6pGzgfpJRPPfcyU46dDqhpUBU8=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=cPwvk7hYBURwasb7XgxxL1kr9EppTKvwp8HXAgsivHXKjqp75sTPHdGxFMqtH5GoC
- KWahvwUXupdk0vP9+GXBHipHQQaevBgrSxRfLxtzes8UcuTMob+APPrkVxnMkQ43H4
- pqYJhYjEEPC6KmAUY+xkMmbNui7Qj/X1BlHXLP7cxJoqraZdVLVMgU71DKUckL8hlD
- U99gWs8Qztv8u3kD1L8S1yKRUESqYW3qiE3m5QVefWfGRMXRXb2kxyi5TOLk2Jh50O
- s5ZJkDQL5uz7rygM1S6oeiYTyYKoEc7zKF2NvNddiKTezKxSMgVXGP1dArr2DxQVXv
- OaWe1NzgWP/6A==
-Message-ID: <81e7bd1c-54d5-4f88-969a-685177447c51@kernel.org>
-Date: Fri, 6 Mar 2026 16:44:06 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DC1C10ED6D;
+ Fri,  6 Mar 2026 15:56:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772812562; x=1804348562;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=nn0e66Cjyw8HVNHpO2h8i/I63DmYi7XOFXxs8CiLe8k=;
+ b=ZjoJ5c3JWlWa0HzjY5KFCjVSZlZ5eoyuTy/ZOeQe/PAZdMX4uQyz0aXq
+ Qv8k5cWg8HOllPT7SH3HIb/W3glNfVOy3LqqOKEe/E6Mf68Ghg777kiak
+ gFRw90KxWtzOD/rrkdT/fDwIfp1vJ4a/bClejVFMH0qqS7Bc2cDe3wcfQ
+ KZajzc9BV/TAKiZRv/lUXDQxh+YkX/Al9DJpd0N0dV329G5qdZzJ7KO9k
+ Ru+eEqVkXKbqC2z8Rgw2BB70QRWXRGBFy8CYM98PHTQ5BlBoTVjWeRrAU
+ v9/BXIkUjNrNxGW4vmn5kff5D5H0GlnZPClJt4vRh0yns69INwtNAWc3S A==;
+X-CSE-ConnectionGUID: aghIIVjoSbumtyyJTHJc2A==
+X-CSE-MsgGUID: YexjQmBoSJuietpsV7ruQg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11721"; a="77770017"
+X-IronPort-AV: E=Sophos;i="6.23,105,1770624000"; d="scan'208";a="77770017"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2026 07:55:59 -0800
+X-CSE-ConnectionGUID: gLY7GTqMSqy+47h+aGWLhg==
+X-CSE-MsgGUID: v3tDynfwT9KYJRbhrbgA/A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,105,1770624000"; d="scan'208";a="215720644"
+Received: from dut4086lnl.fm.intel.com ([10.105.10.23])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2026 07:55:57 -0800
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
+ joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
+ jianxun.zhang@intel.com, shuicheng.lin@intel.com,
+ dri-devel@lists.freedesktop.org, Michal.Wajdeczko@intel.com,
+ michal.mrozek@intel.com, raag.jadav@intel.com, ivan.briano@intel.com,
+ matthew.auld@intel.com
+Subject: [PATCH v36 1/4] drm/xe/xe_pagefault: Disallow writes to read-only VMAs
+Date: Fri,  6 Mar 2026 15:55:58 +0000
+Message-ID: <20260306155556.67500-7-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260306155556.67500-6-jonathan.cavitt@intel.com>
+References: <20260306155556.67500-6-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 05/13] mm/page_vma_mapped: Add flag to
- page_vma_mapped_walk::flags to track device private pages
-To: Jordan Niethe <jniethe@nvidia.com>, linux-mm@kvack.org
-Cc: balbirs@nvidia.com, matthew.brost@intel.com, akpm@linux-foundation.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- ziy@nvidia.com, apopple@nvidia.com, lorenzo.stoakes@oracle.com,
- lyude@redhat.com, dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch,
- rcampbell@nvidia.com, mpenttil@redhat.com, jgg@nvidia.com,
- willy@infradead.org, linuxppc-dev@lists.ozlabs.org,
- intel-xe@lists.freedesktop.org, jgg@ziepe.ca, Felix.Kuehling@amd.com,
- jhubbard@nvidia.com, maddy@linux.ibm.com, mpe@ellerman.id.au,
- ying.huang@linux.alibaba.com
-References: <20260202113642.59295-1-jniethe@nvidia.com>
- <20260202113642.59295-6-jniethe@nvidia.com>
-From: "David Hildenbrand (Arm)" <david@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=david@kernel.org; keydata=
- xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
- dBrn+lhhOYjjNefFQou6478faXE6o2AhmebqT4KiQoUQFV4R7y1KMEKoSyy8hQaK1umALTdL
- QZLQMzNE74ap+GDK0wnacPQFpcG1AE9RMq3aeErY5tujekBS32jfC/7AnH7I0v1v1TbbK3Gp
- XNeiN4QroO+5qaSr0ID2sz5jtBLRb15RMre27E1ImpaIv2Jw8NJgW0k/D1RyKCwaTsgRdwuK
- Kx/Y91XuSBdz0uOyU/S8kM1+ag0wvsGlpBVxRR/xw/E8M7TEwuCZQArqqTCmkG6HGcXFT0V9
- PXFNNgV5jXMQRwU0O/ztJIQqsE5LsUomE//bLwzj9IVsaQpKDqW6TAPjcdBDPLHvriq7kGjt
- WhVhdl0qEYB8lkBEU7V2Yb+SYhmhpDrti9Fq1EsmhiHSkxJcGREoMK/63r9WLZYI3+4W2rAc
- UucZa4OT27U5ZISjNg3Ev0rxU5UH2/pT4wJCfxwocmqaRr6UYmrtZmND89X0KigoFD/XSeVv
- jwBRNjPAubK9/k5NoRrYqztM9W6sJqrH8+UWZ1Idd/DdmogJh0gNC0+N42Za9yBRURfIdKSb
- B3JfpUqcWwE7vUaYrHG1nw54pLUoPG6sAA7Mehl3nd4pZUALHwARAQABzS5EYXZpZCBIaWxk
- ZW5icmFuZCAoQ3VycmVudCkgPGRhdmlkQGtlcm5lbC5vcmc+wsGQBBMBCAA6AhsDBQkmWAik
- AgsJBBUKCQgCFgICHgUCF4AWIQQb2cqtc1xMOkYN/MpN3hD3AP+DWgUCaYJt/AIZAQAKCRBN
- 3hD3AP+DWriiD/9BLGEKG+N8L2AXhikJg6YmXom9ytRwPqDgpHpVg2xdhopoWdMRXjzOrIKD
- g4LSnFaKneQD0hZhoArEeamG5tyo32xoRsPwkbpIzL0OKSZ8G6mVbFGpjmyDLQCAxteXCLXz
- ZI0VbsuJKelYnKcXWOIndOrNRvE5eoOfTt2XfBnAapxMYY2IsV+qaUXlO63GgfIOg8RBaj7x
- 3NxkI3rV0SHhI4GU9K6jCvGghxeS1QX6L/XI9mfAYaIwGy5B68kF26piAVYv/QZDEVIpo3t7
- /fjSpxKT8plJH6rhhR0epy8dWRHk3qT5tk2P85twasdloWtkMZ7FsCJRKWscm1BLpsDn6EQ4
- jeMHECiY9kGKKi8dQpv3FRyo2QApZ49NNDbwcR0ZndK0XFo15iH708H5Qja/8TuXCwnPWAcJ
- DQoNIDFyaxe26Rx3ZwUkRALa3iPcVjE0//TrQ4KnFf+lMBSrS33xDDBfevW9+Dk6IISmDH1R
- HFq2jpkN+FX/PE8eVhV68B2DsAPZ5rUwyCKUXPTJ/irrCCmAAb5Jpv11S7hUSpqtM/6oVESC
- 3z/7CzrVtRODzLtNgV4r5EI+wAv/3PgJLlMwgJM90Fb3CB2IgbxhjvmB1WNdvXACVydx55V7
- LPPKodSTF29rlnQAf9HLgCphuuSrrPn5VQDaYZl4N/7zc2wcWM7BTQRVy5+RARAA59fefSDR
- 9nMGCb9LbMX+TFAoIQo/wgP5XPyzLYakO+94GrgfZjfhdaxPXMsl2+o8jhp/hlIzG56taNdt
- VZtPp3ih1AgbR8rHgXw1xwOpuAd5lE1qNd54ndHuADO9a9A0vPimIes78Hi1/yy+ZEEvRkHk
- /kDa6F3AtTc1m4rbbOk2fiKzzsE9YXweFjQvl9p+AMw6qd/iC4lUk9g0+FQXNdRs+o4o6Qvy
- iOQJfGQ4UcBuOy1IrkJrd8qq5jet1fcM2j4QvsW8CLDWZS1L7kZ5gT5EycMKxUWb8LuRjxzZ
- 3QY1aQH2kkzn6acigU3HLtgFyV1gBNV44ehjgvJpRY2cC8VhanTx0dZ9mj1YKIky5N+C0f21
- zvntBqcxV0+3p8MrxRRcgEtDZNav+xAoT3G0W4SahAaUTWXpsZoOecwtxi74CyneQNPTDjNg
- azHmvpdBVEfj7k3p4dmJp5i0U66Onmf6mMFpArvBRSMOKU9DlAzMi4IvhiNWjKVaIE2Se9BY
- FdKVAJaZq85P2y20ZBd08ILnKcj7XKZkLU5FkoA0udEBvQ0f9QLNyyy3DZMCQWcwRuj1m73D
- sq8DEFBdZ5eEkj1dCyx+t/ga6x2rHyc8Sl86oK1tvAkwBNsfKou3v+jP/l14a7DGBvrmlYjO
- 59o3t6inu6H7pt7OL6u6BQj7DoMAEQEAAcLBfAQYAQgAJgIbDBYhBBvZyq1zXEw6Rg38yk3e
- EPcA/4NaBQJonNqrBQkmWAihAAoJEE3eEPcA/4NaKtMQALAJ8PzprBEXbXcEXwDKQu+P/vts
- IfUb1UNMfMV76BicGa5NCZnJNQASDP/+bFg6O3gx5NbhHHPeaWz/VxlOmYHokHodOvtL0WCC
- 8A5PEP8tOk6029Z+J+xUcMrJClNVFpzVvOpb1lCbhjwAV465Hy+NUSbbUiRxdzNQtLtgZzOV
- Zw7jxUCs4UUZLQTCuBpFgb15bBxYZ/BL9MbzxPxvfUQIPbnzQMcqtpUs21CMK2PdfCh5c4gS
- sDci6D5/ZIBw94UQWmGpM/O1ilGXde2ZzzGYl64glmccD8e87OnEgKnH3FbnJnT4iJchtSvx
- yJNi1+t0+qDti4m88+/9IuPqCKb6Stl+s2dnLtJNrjXBGJtsQG/sRpqsJz5x1/2nPJSRMsx9
- 5YfqbdrJSOFXDzZ8/r82HgQEtUvlSXNaXCa95ez0UkOG7+bDm2b3s0XahBQeLVCH0mw3RAQg
- r7xDAYKIrAwfHHmMTnBQDPJwVqxJjVNr7yBic4yfzVWGCGNE4DnOW0vcIeoyhy9vnIa3w1uZ
- 3iyY2Nsd7JxfKu1PRhCGwXzRw5TlfEsoRI7V9A8isUCoqE2Dzh3FvYHVeX4Us+bRL/oqareJ
- CIFqgYMyvHj7Q06kTKmauOe4Nf0l0qEkIuIzfoLJ3qr5UyXc2hLtWyT9Ir+lYlX9efqh7mOY
- qIws/H2t
-In-Reply-To: <20260202113642.59295-6-jniethe@nvidia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,118 +71,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2/2/26 12:36, Jordan Niethe wrote:
-> A future change will remove device private pages from the physical
-> address space. This will mean that device private pages no longer have
-> normal PFN and must be handled separately.
-> 
-> Prepare for this by adding a PVMW_DEVICE_PRIVATE flag to
-> page_vma_mapped_walk::flags. This indicates that
-> page_vma_mapped_walk::pfn contains a device private offset rather than a
-> normal pfn.
-> 
-> Once the device private pages are removed from the physical address
-> space this flag will be used to ensure a device private offset is
-> returned.
-> 
-> Reviewed-by: Zi Yan <ziy@nvidia.com>
-> Signed-off-by: Jordan Niethe <jniethe@nvidia.com>
-> Signed-off-by: Alistair Popple <apopple@nvidia.com>
-> ---
-> v1:
->   - Update for HMM huge page support
-> v2:
->   - Move adding device_private param to check_pmd() until final patch
-> v3:
->   - Track device private offset in pvmw::flags instead of pvmw::pfn
-> v4:
->   - No change
-> ---
->  include/linux/rmap.h | 24 ++++++++++++++++++++++--
->  mm/page_vma_mapped.c |  4 ++--
->  mm/rmap.c            |  4 ++--
->  mm/vmscan.c          |  2 +-
->  4 files changed, 27 insertions(+), 7 deletions(-)
-> 
-> diff --git a/include/linux/rmap.h b/include/linux/rmap.h
-> index daa92a58585d..1b03297f13dc 100644
-> --- a/include/linux/rmap.h
-> +++ b/include/linux/rmap.h
-> @@ -921,6 +921,8 @@ struct page *make_device_exclusive(struct mm_struct *mm, unsigned long addr,
->  #define PVMW_SYNC		(1 << 0)
->  /* Look for migration entries rather than present PTEs */
->  #define PVMW_MIGRATION		(1 << 1)
-> +/* pvmw::pfn is a device private offset */
-> +#define PVMW_DEVICE_PRIVATE	(1 << 2)
->  
->  /* Result flags */
->  
-> @@ -939,14 +941,32 @@ struct page_vma_mapped_walk {
->  	unsigned int flags;
->  };
->  
-> +static inline unsigned long page_vma_walk_flags(const struct folio *folio,
-> +						unsigned long flags)
-> +{
-> +	if (folio_is_device_private(folio))
-> +		return flags | PVMW_DEVICE_PRIVATE;
-> +	return flags;
-> +}
-> +
-> +static inline unsigned long folio_page_vma_walk_pfn(const struct folio *folio)
-> +{
-> +	return folio_pfn(folio);
-> +}
-> +
-> +static inline struct folio *page_vma_walk_pfn_to_folio(struct page_vma_mapped_walk *pvmw)
-> +{
-> +	return pfn_folio(pvmw->pfn);
-> +}
-> +
->  #define DEFINE_FOLIO_VMA_WALK(name, _folio, _vma, _address, _flags)	\
->  	struct page_vma_mapped_walk name = {				\
-> -		.pfn = folio_pfn(_folio),				\
-> +		.pfn = folio_page_vma_walk_pfn(_folio),			\
->  		.nr_pages = folio_nr_pages(_folio),			\
->  		.pgoff = folio_pgoff(_folio),				\
->  		.vma = _vma,						\
->  		.address = _address,					\
-> -		.flags = _flags,					\
-> +		.flags = page_vma_walk_flags(_folio, _flags),		\
->  	}
+The page fault handler should reject write/atomic access to read only
+VMAs.  Add code to handle this in xe_pagefault_service after the VMA
+lookup.
 
-That's all rather horrible ...
+v2:
+- Apply max line length (Matthew)
 
+Fixes: fb544b844508 ("drm/xe: Implement xe_pagefault_queue_work")
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pagefault.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-I was asking myself recently, why something that is called
-"page_vma_mapped_walk" consume a pfn. It's just a horrible interface.
-
-
-* DEFINE_FOLIO_VMA_WALK() users obviously receive a folio.
-* mm/migrate_device.c just abuses page_vma_mapped_walk() to make
-  set_pmd_migration_entry() work. But we have a folio.
-* page_mapped_in_vma() has a page/folio.
-
-mapping_wrprotect_range_one() and pfn_mkclean_range() are the real
-issues. They all end up calling page_vma_mkclean_one(), which does not
-operate on pages/folios.
-
-Ideally, the odd pfn case would use it's own simplified infrastructure.
-
-
-So, could we simply add a folio+page pointer in case we have one, and
-use that one if set, leaving leaving the pfn unset?
-
-Then, the pfn would only be set for the
-mapping_wrprotect_range_one/pfn_mkclean_range case. I don't think
-device-private folios would ever have to mess with that.
-
-
-Then, you just always have a folio+page and don't even have to worry
-about the pfn?
-
-
+diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
+index ea4857acf28d..918d595d1c1b 100644
+--- a/drivers/gpu/drm/xe/xe_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_pagefault.c
+@@ -187,6 +187,12 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
+ 		goto unlock_vm;
+ 	}
+ 
++	if (xe_vma_read_only(vma) &&
++	    pf->consumer.access_type != XE_PAGEFAULT_ACCESS_TYPE_READ) {
++		err = -EPERM;
++		goto unlock_vm;
++	}
++
+ 	atomic = xe_pagefault_access_is_atomic(pf->consumer.access_type);
+ 
+ 	if (xe_vma_is_cpu_addr_mirror(vma))
 -- 
-Cheers,
+2.43.0
 
-David
