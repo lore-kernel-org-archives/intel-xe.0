@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56314F51405
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 06:19:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B283AF51405
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 06:21:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05DCD10E374;
-	Fri,  6 Mar 2026 06:19:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6509710E275;
+	Fri,  6 Mar 2026 06:21:51 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEABD10E374;
- Fri,  6 Mar 2026 06:19:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5128616929162014225=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 47C1210E275;
+ Fri,  6 Mar 2026 06:21:50 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/guc=3A_Fail_immediat?=
- =?utf-8?q?ely_on_GuC_load_error_=28rev4=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Enable_Wa=5F140?=
+ =?utf-8?q?25515070=2C_Enable_indirect_ring_state_for_XE2+_=28rev9=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+To: "Julia Filipchuk" <julia.filipchuk@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 06 Mar 2026 06:19:41 -0000
-Message-ID: <177277798175.324340.17014024436144330710@a3b018990fe9>
+Date: Fri, 06 Mar 2026 06:21:50 -0000
+Message-ID: <177277811026.324694.1994852065055458550@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260303001732.2540493-2-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20260303001732.2540493-2-daniele.ceraolospurio@intel.com>
+References: <20260304003431.758201-3-julia.filipchuk@intel.com>
+In-Reply-To: <20260304003431.758201-3-julia.filipchuk@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,149 +40,110 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5128616929162014225==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/guc: Fail immediately on GuC load error (rev4)
-URL   : https://patchwork.freedesktop.org/series/161860/
-State : success
+Series: drm/xe: Enable Wa_14025515070, Enable indirect ring state for XE2+ (rev9)
+URL   : https://patchwork.freedesktop.org/series/160812/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4672-6707287bc6e4620c3bde4f316248cc8e7a4a95d3_BAT -> xe-pw-161860v4_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 5b92d02fbe3f83c57b658cda0e2201ac5ff6f3f2
+Author: Julia Filipchuk <julia.filipchuk@intel.com>
+Date:   Tue Mar 3 16:34:24 2026 -0800
 
-Summary
--------
+    drm/xe: Enable Wa_14025515070
+    
+    Corrects a failure on context switch. On registration of context with
+    indirect ring state will correct state of targeted and idle command
+    streamers.
+    
+    This Wa requires GuC 70.53+ (uapi 1.26+).  If indirect_ring_state is
+    enabled and Wa is unavailable, notify and disable indirect_ring_state.
+    
+    Added additional XE_RTP_PASTE macros for expansion of longer rules.
+    
+    Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Signed-off-by: Julia Filipchuk <julia.filipchuk@intel.com>
++ /mt/dim checkpatch 79792a2fc5d37b5446e543f1de05158ab0f551c9 drm-intel
+5b92d02fbe3f drm/xe: Enable Wa_14025515070
+-:71: WARNING:LONG_LINE: line length of 167 exceeds 100 columns
+#71: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:69:
++#define XE_RTP_PASTE_13(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_12(prefix_, sep_, _XE_TUPLE_TAIL args_)
 
-  **SUCCESS**
+-:71: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#71: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:69:
++#define XE_RTP_PASTE_13(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_12(prefix_, sep_, _XE_TUPLE_TAIL args_)
 
-  No regressions found.
+BUT SEE:
 
-  
+   do {} while (0) advice is over-stated in a few situations:
 
-Participating hosts (13 -> 14)
-------------------------------
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
 
-  Additional (1): bat-bmg-3 
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
 
-Known issues
-------------
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
 
-  Here are the changes found in xe-pw-161860v4_BAT that come from known issues:
+   Enjoy this qualification while we work to improve our heuristics.
 
-### IGT changes ###
+-:71: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'prefix_' - possible side-effects?
+#71: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:69:
++#define XE_RTP_PASTE_13(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_12(prefix_, sep_, _XE_TUPLE_TAIL args_)
 
-#### Issues hit ####
+-:71: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'args_' - possible side-effects?
+#71: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:69:
++#define XE_RTP_PASTE_13(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_12(prefix_, sep_, _XE_TUPLE_TAIL args_)
 
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4672-6707287bc6e4620c3bde4f316248cc8e7a4a95d3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161860v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+-:72: WARNING:LONG_LINE: line length of 167 exceeds 100 columns
+#72: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:70:
++#define XE_RTP_PASTE_14(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_13(prefix_, sep_, _XE_TUPLE_TAIL args_)
 
-  * igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:
-    - bat-bmg-3:          NOTRUN -> [SKIP][3] ([Intel XE#6566]) +3 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161860v4/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html
+-:72: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#72: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:70:
++#define XE_RTP_PASTE_14(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_13(prefix_, sep_, _XE_TUPLE_TAIL args_)
 
-  
-#### Possible fixes ####
+BUT SEE:
 
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [DMESG-WARN][4] ([Intel XE#7483]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4672-6707287bc6e4620c3bde4f316248cc8e7a4a95d3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161860v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   do {} while (0) advice is over-stated in a few situations:
 
-  
-  [Intel XE#6566]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
 
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
 
-Build changes
--------------
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
 
-  * Linux: xe-4672-6707287bc6e4620c3bde4f316248cc8e7a4a95d3 -> xe-pw-161860v4
+   Enjoy this qualification while we work to improve our heuristics.
 
-  IGT_8782: eac3b04d1f76b82ac3a183fb293c44e9185d8dba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4672-6707287bc6e4620c3bde4f316248cc8e7a4a95d3: 6707287bc6e4620c3bde4f316248cc8e7a4a95d3
-  xe-pw-161860v4: 161860v4
+-:72: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'prefix_' - possible side-effects?
+#72: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:70:
++#define XE_RTP_PASTE_14(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_13(prefix_, sep_, _XE_TUPLE_TAIL args_)
 
-== Logs ==
+-:72: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'args_' - possible side-effects?
+#72: FILE: drivers/gpu/drm/xe/xe_rtp_helpers.h:70:
++#define XE_RTP_PASTE_14(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, FIRST_ARG args_) __XE_RTP_PASTE_SEP_ ## sep_ XE_RTP_PASTE_13(prefix_, sep_, _XE_TUPLE_TAIL args_)
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161860v4/index.html
-
---===============5128616929162014225==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 2 errors, 2 warnings, 4 checks, 51 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/guc: Fail immediately on GuC load error (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161860/">https://patchwork.freedesktop.org/series/161860/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161860v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161860v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4672-6707287bc6e4620c3bde4f316248cc8e7a4a95d3_BAT -&gt; xe-pw-161860v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (13 -&gt; 14)</h2>
-<p>Additional (1): bat-bmg-3 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-161860v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4672-6707287bc6e4620c3bde4f316248cc8e7a4a95d3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161860v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p:</p>
-<ul>
-<li>bat-bmg-3:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161860v4/bat-bmg-3/igt@xe_peer2peer@read@read-gpua-vram01-gpub-system-p2p.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6566">Intel XE#6566</a>) +3 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4672-6707287bc6e4620c3bde4f316248cc8e7a4a95d3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161860v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4672-6707287bc6e4620c3bde4f316248cc8e7a4a95d3 -&gt; xe-pw-161860v4</li>
-</ul>
-<p>IGT_8782: eac3b04d1f76b82ac3a183fb293c44e9185d8dba @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4672-6707287bc6e4620c3bde4f316248cc8e7a4a95d3: 6707287bc6e4620c3bde4f316248cc8e7a4a95d3<br />
-  xe-pw-161860v4: 161860v4</p>
-
-</body>
-</html>
-
---===============5128616929162014225==--
