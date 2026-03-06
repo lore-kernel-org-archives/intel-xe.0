@@ -4,143 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56DF2F513E9
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 00:54:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B15B0F513E9
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Mar 2026 01:20:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0455B10EC95;
-	Fri,  6 Mar 2026 00:54:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52C3E10E03D;
+	Fri,  6 Mar 2026 01:20:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ESk4Zq0b";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nnD7oSlD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 323E710EC95
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Mar 2026 00:54:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9085E10E03D
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Mar 2026 01:20:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772758444; x=1804294444;
+ t=1772760002; x=1804296002;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=l+/oTJ8PjbzDxUqTEmL7MPGjrAHD3uKlf1Gqi+KS1hE=;
- b=ESk4Zq0bBRaNqMidbPnA/966sV7Qk/r358bAS4PsN68y/WkMq61HQEBA
- gAvDAUmh0jOCUkUQovItyxEU3gqFldadUNubv6WKBCWkS0ks7s7Pbxfdl
- eouQSNHZxpwvUAFdOkno99vDqjGglXIsQ1RRmjvZZ4xBQiGcoc4TiWhEF
- Co1hhBVvmCBDo16MGxIMofJdr6KvFDoK6vqsDK/pY6zijhFfF1pD3YVxr
- vKRj8oRmDMLW+6N8yuH6kFUsn157Y117NGxCNIwV832mSMYEu/4bwfSAc
- V7ii9Xec9zLFsWDg3K5/UmoDLAz/s27NV0wloLAj+brgAhEJp3Dm3RzXu g==;
-X-CSE-ConnectionGUID: n+IkomfqRyi/zLwnNx66xA==
-X-CSE-MsgGUID: qpIQPTMlTlaxsQWY/yYceQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11720"; a="74050781"
-X-IronPort-AV: E=Sophos;i="6.23,104,1770624000"; d="scan'208";a="74050781"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2026 16:54:04 -0800
-X-CSE-ConnectionGUID: gUOSTdF5SKOqdmwQfykX2A==
-X-CSE-MsgGUID: Op+y0nctQ0uK35KjMP2WMg==
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=h9XIRhOUxdOa+pZgmQNyeMf5ca7RiWU3rbASKF8C15s=;
+ b=nnD7oSlD34Xg09DseRSSFUW8xTcwlbkrlqNsX8XGNztlZiRkzAACoO9F
+ Vba+cKc4Xjq6oCfNeGPgjVkMvYkK/m/M9h2WYGtZNq95N7w4GuspW16MH
+ BwfqdBD5Co/ShCQjnDs4v+jrijIrvKEyD7bdk5qrQylQkfhMIaqyKaSab
+ LXovpDyBEZeewzpKrX7qQjEnduFfQllC3EnAQRKNo6nitewbrYCfXR7h2
+ HA/2llHtkDmee02cBbAdkiiUVXn6naqkXO1qo2nCAgT2BZrbz65MI5Quk
+ T0HSZrjBfk1Np5SnCZSEgnhn9LRZRANvF+dkvo5KeS5FYDF2qTJtDrqCs w==;
+X-CSE-ConnectionGUID: QA5LQS7URxi2rSVP5+3msg==
+X-CSE-MsgGUID: gQp/aBEqRby8UdwByoR9lw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11720"; a="85213006"
+X-IronPort-AV: E=Sophos;i="6.23,104,1770624000"; d="scan'208";a="85213006"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2026 17:20:00 -0800
+X-CSE-ConnectionGUID: pjEMjFcoS5WZH9CCD3pZ9A==
+X-CSE-MsgGUID: KiHjHBb2QuqWwKfmF7jc+g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,104,1770624000"; d="scan'208";a="215588902"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2026 16:54:03 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,104,1770624000"; d="scan'208";a="256759543"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2026 17:19:59 -0800
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 5 Mar 2026 16:54:03 -0800
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.37; Thu, 5 Mar 2026 17:19:58 -0800
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 5 Mar 2026 16:54:03 -0800
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.62) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Thu, 5 Mar 2026 17:19:58 -0800
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.33) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 5 Mar 2026 16:54:03 -0800
+ 15.2.2562.37; Thu, 5 Mar 2026 17:19:57 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=WTNFWIHoLkfXe+5aqMatzGpfLlLacfTEkKQdfvdeK47BUBDigQZLmTx507em6uae7cRJGWWwDX/9Ksc9fxfc2AwOaHF7VwtLCy3qCSvnIMIa5UnRRG+Id70sNQiyAq098hlznKq5UOnJAaJNVANbzpXevF7Gh6Bjef41Axdd1sVvXRnziqmfGDs2lJNn4y6wRgcMdZ6tiqd02chbIbAdyxU1/UCMIBY3sdQa64fJReIlKAyN8nOp9OxW/ODou3hL32q8pn6adexmMsFGges4xrkSn3zQeuzsBp0pNqtLSHEnFNL8J2GYw0g6qt2hq4SkqlrlrLaZB22IdKJA7TjgJA==
+ b=uWg3Kc4XTNuRss63cKFpZPuXA0K34VukohH+IhkuguUM0TYA+nQj5egvSqHhWUhPB+pcDM/cudfZ/gyJn02ggMRkuT1eh/iskKLGjcuoT+ErEIPWePv8PstFPiPz5Pengyf3oFGdoVe2znGfL6diYvClmq8nvTO6Rii3V3gK0wdZGYgcTTb9VERRf57aznSoB7cqClEuwNRAX+CbvyV0j/myhAzhfMYy96GkoSFR6swndZJesGd45Ecza9PGdGlqxV731ZE2yDw7CyvgBh++8w7PuMLB5FOraXsTxTFdk3m5rR/F6fAqnF8svyTaGzHsqQcZQv1K87aoQnTH/UmhlA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=g2GOqMnd5Tprtlscr36ipIVRwffjXVq1seUvSVwyVJk=;
- b=Og6l76giMFXn/T85jOdchVnayZTtjejCefq3u0tUtGGvoYFgL7L1mTog399P99DlDrOzX8E+nCZw5Kb6SQ/vKUQfsffGAPEiW+2Ki6tkrHKxI2ahyfxTZAU/P5BQD8X+4KNh3BhN/5AAx7HNmFTryZQeYrMLqRln/zAjNXiHdM+eBIMiov+dE5qZGhMrWrtwB/kLUvj7gXE+5XLUs8EfArmmVON374oK/0pe/sj9WkzIU8KWwJ7kPQTvtIbT2KX3Z54GR0MBcQUXTxqYszSXjSur5y8O7ZtutLWsEPWQ0ij9qyoG8HrRChNNWEp46bjJ4WmRFMlhRsBpW/aAIgpIxA==
+ bh=6N3/25FPuUsCuPTVVf37E4gdlkX8WUdF0V/4Mupb7ps=;
+ b=Q437nnzOLOY8BWUq/+ODk2Ux8d3UGGSAjXA8EVttRXHjPgNAGyeB10CrMBlusk2xuFH734PaaSndXEtGpX5Q1ZSpFNacEEjcu8HxxLxwkJunOhWibwmcNy3nWQTy2TaBDkaEjm8VqC9fosRt32KNL4y6Sqm2lT4UDuRsOtJySvAYhw5zbyT+Q5u1Peq3syOiAZfbP0JoFygIDCcLTR9Tk66VFcy3+nmMb9x1tCyDslfaQ47nciRyoQS4zX6oKWexyc+67uIsIUo1MC6gPN2sZQr80pYOzegST06a8PG0PQvLpi38e3FMvD06lYywUgmh7MvSMW5uArpl9Mh8HiAtsw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by MW3PR11MB4762.namprd11.prod.outlook.com (2603:10b6:303:5d::21) with
- Microsoft SMTP Server (version=TLS1_2,
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
+ by BY1PR11MB8056.namprd11.prod.outlook.com (2603:10b6:a03:533::9)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Fri, 6 Mar
- 2026 00:54:00 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e%7]) with mapi id 15.20.9678.017; Fri, 6 Mar 2026
- 00:54:00 +0000
-Date: Thu, 5 Mar 2026 16:53:58 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>
+ 2026 01:19:54 +0000
+Received: from CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::1d86:a34:519a:3b0d]) by CYYPR11MB8430.namprd11.prod.outlook.com
+ ([fe80::1d86:a34:519a:3b0d%5]) with mapi id 15.20.9678.017; Fri, 6 Mar 2026
+ 01:19:54 +0000
+Date: Thu, 5 Mar 2026 20:19:51 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 4/7] drm/xe/rtp: Add support for matching platform-level
- stepping
-Message-ID: <20260306005358.GW52346@mdroper-desk1.amr.corp.intel.com>
-References: <20260305-extra-nvl-p-enabling-patches-v1-0-5020d5289dea@intel.com>
- <20260305-extra-nvl-p-enabling-patches-v1-4-5020d5289dea@intel.com>
- <20260305222256.GS4694@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset="us-ascii"
+Subject: Re: [v5] drm/xe: Allow per queue programming of
+ COMMON_SLICE_CHICKEN3 bit13
+Message-ID: <aaortyfm2POr6F78@intel.com>
+References: <20260304075529.1250065-1-lionel.g.landwerlin@intel.com>
+ <aanXT8gDwVQOXt2I@intel.com>
+ <016f76b2-568e-4136-9a6b-b2be903c7ca9@intel.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20260305222256.GS4694@mdroper-desk1.amr.corp.intel.com>
-X-ClientProxiedBy: SJ0PR03CA0160.namprd03.prod.outlook.com
- (2603:10b6:a03:338::15) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <016f76b2-568e-4136-9a6b-b2be903c7ca9@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0289.namprd03.prod.outlook.com
+ (2603:10b6:a03:39e::24) To CYYPR11MB8430.namprd11.prod.outlook.com
+ (2603:10b6:930:c6::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|MW3PR11MB4762:EE_
-X-MS-Office365-Filtering-Correlation-Id: bacd0093-eaa3-4ff5-fc1e-08de7b1adafa
+X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|BY1PR11MB8056:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4d2a2961-ddad-45da-2f0f-08de7b1e7905
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: gI41wZcaxY9gf2jkXgjX5acjFK6ucUJXCe3apZuusjn8yATRMOZ7wygi1b6puE+r9GSb+TPhnkl1iyJWDg8yKLIypzq6KZpjU4rP4mO/In2aLLn6vsUHLAU34MjP5DYZJcki9uqVI8RJ2v4REFqpJQo8uDz04t83swp0yWjBDJXCTWq0KhC3TvZPqawbP/+ZkKQuX1M+4CxT5wl9RlxE6mU8Cti0+abvBWKb7Oi8cfnGU5EwX0oX0G0Tk6WP4v+6SGq8fVh+mvOT9cPsL8sxhlAULSQf35ID535NizpbuxjCXT51ndw07FqrNm5fjh2W1xdPBTGXfiHKc9UiEcCN0o0l2j/VqsqUZTBOCp9Gwu4ZPVCdSS0UuphHY5Y4e8rV1Xdpsl/wcZXK6lJe/rqhqNidUKnwabOw1sVK5LhjhPFLCBAjqFkjl3lIA3w53VrM+BqJ28nsFzg/WrZ+W4c9xZXp+NmJDGmGF0/cyFJGC2mVQbn9PWuyuZEVhd4VnT5K6BU+uMp9tgCWAnUBtkfgib9pjWGeqivad/h+Oewl9Ba0dmm5md1CCF0WT3JT1tjSrdXyHUuD8QCcDFrR0ZtyEqqF9Ju0T0hmLUHqGvgu+D7MSwvxvH9osLLHp/KSPdRx8lufwFLcXOZEcoNL+f8jnPT9xaec4gUeOPoc6dYgeH6tUlBn1MkjWdl2Kz3fHx4vO1jQ8a1c9x75An0e8hBVtqLFJrtgnIOI9Q4Bbx9WAzI=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: bXXSz6tboxh3917kWIoLd4GAN5T/KNFurMmNWiPnoRpj1e4xzEcl2z0yN9rGQVNlMmUiygJTBr4Vb9VTRPQIdNDduMR3dM8NVo8F+mm9wfH5tutTG8X0vxrU7Pnjn0SX1S4qytFcoU9HQoiLKutzpVkqmJl1Mr83N71ngSLB3bbSM0RdQ8tdvmGt/8cxQz4vMdFdaUm+k2RpjCFaDouelzr3LpOC0TkrTA0egFVQTB0X2uMGSieVAYptJCeoVcmHvBIcJYnVmKQ7TFHlWRbUsTPbWyiSwZlqSsM3Bhw+0yMemJXBfDZ/XxUm2Rv0uzHQM4ZH4hMhFTEIYQtDrZqwjLV9BQ5rYJMkKhWlj3FltXxZg0aG7GCXtpiLDQFPbmo7TyBRRodcBOfOoxiu8Hte0WgeirH7MRUMQDqdjmUSuMdBcOTHCXG1SNKGPJkjZ1IIxEAj2J5V5NapGEGBOFRR1IZ7Xmqh8tp0Q2s6iYqumrfj3KpqKYRRejrQC1f0K6qyuiQiCuFP3ouWHfTrnN7x2em2Pn/ebW96XtITvPFyBH4MvInkGf44+VfpCPfd1IZleO16zpNDMZth2dGPlUOLapoEk1W39PYXX3jdO7JYRTakP+uscRxIJgFTuFb+bUZ2FJkmJs/Lcicpp8jECDhx84ZramuzR+iwyOFDJE/KOyyho3j+wCptwf9m6oeXldEr
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ui6taGMZt41U3FYbprxJWzK2XighbnxthL/5FLgWMen94BkiLB/5G/MmpjdG?=
- =?us-ascii?Q?5MqwFUqRrR5hOcQnr3sfdmwVjpmERLWzzKRAnUsFADA2kihrWDnhMbBGawpp?=
- =?us-ascii?Q?Nd2bM+isbADTfJlZnnLuoAzgI5yXC3oVZfK7UVsk845dxU96EhqsneiyN/XX?=
- =?us-ascii?Q?7BAWdV/hLNvtKXH4Z2JXZ7CJcG8e4J1xgRYrIUDdzJylyInnTVPcgoqHrzw9?=
- =?us-ascii?Q?mcGh7n9AduJLpaICebtwe0X6oltj39yeYme0VUNIBw3F4LGSyfrXEAcNdBic?=
- =?us-ascii?Q?CmFmdWu+V2VRWQlmduAJ/WAhs+KDjmFKAJsJ4PbWSOMRwk7lq/Y2L3tRiwbd?=
- =?us-ascii?Q?R/i4X0HbLWe2zeDmoDO3RViw0pNh02zlvGD0vXhM9wBVdBEIkyWMaJtdFi3/?=
- =?us-ascii?Q?5knQXSpK+Rw+225QX28RmI5dIHIPbB+wGpt/l9wBQGilrR7CTo1yPP26tkH9?=
- =?us-ascii?Q?YuK3a5fv5omPTOY8z9up0dcnNFpH1Hk6JTGg6C5hcxl6KoTS638NCwGYtslo?=
- =?us-ascii?Q?PoX/5NaNyhRbSSz1KtUE9koMCIUSKM31+EqyM0DJkcz0Mi/e2+Axlzx6TmAR?=
- =?us-ascii?Q?jSW5Tm1Qy4UBdxw2CY1Lsan/ZM4ZpOR+Wy0xXz5/e3U2fPp0wA/azPSkbU3H?=
- =?us-ascii?Q?CMLk1rwHsBhgldVQz7HqBJAl902/Hqy3D42Gw2CiuiYrMHsSa032ac8wTmaG?=
- =?us-ascii?Q?pHxfBSuruE1LG4mfishDWMxtEQCHqgvJP8Vc6m0+X3GZxCeyS3b6ebTFCS/L?=
- =?us-ascii?Q?lge1fLnspW2aMiD5CawLGTFfnzA1S7oERORh5RJp23mVU7StZ8Uvx4rc4GHb?=
- =?us-ascii?Q?TZnOwNLhegoL1Z3AtmLjJJNjI04kFIUwXhy8VeLDthz6mNmE6D2ngXbUZ+Ac?=
- =?us-ascii?Q?bTD884JCI8o6SuvsJUGe5ni1a6qrjV/K4OUP/6n3T7OxxAkPirS8e/qAvUf3?=
- =?us-ascii?Q?GzLf6nCGwzG3k1TsWMaMLmLKE0+Dnfh8RP9cKrC+ChulP65IN0pZ4EqtKbOs?=
- =?us-ascii?Q?4wawo/3/GAEkou9FDkyLbLVQL1gkIvsFCfLIgJAwT+S+cH5NUSfT/vbqOpts?=
- =?us-ascii?Q?WVpys+eJuTS8ObDIEPEB/zhuV8y5b9+Lzn0AGSqhJJDFLoMRKbgdCRSGcHLi?=
- =?us-ascii?Q?j+BSEzoMzNOd3la3OpW5jOAYdmEaePx+k+CB3RWDVKuEdPU4YutDCE9WGmrk?=
- =?us-ascii?Q?u2dZg6ZMct6Pq3Vf2YfyPsYpSgh/wWWJaiuu1LttKXEb4eO/cT9c5yPgGrvI?=
- =?us-ascii?Q?ei9V2Gzpj2IAuSAk1XnpmjJjvXmsdhE0q3gFd2Qz7jd4fCGhnv0mF+W11Erl?=
- =?us-ascii?Q?N6NRE+9dAshuSj4nx1kC35j2fUn09VOoHgkC0+o07iEc03wa27xeODqsvLET?=
- =?us-ascii?Q?cuDtB5/ggc8Kpah8XRrj0wutekEq2dl28kCFuRmkvVqDRDyeCRlmyBzIdBgc?=
- =?us-ascii?Q?iuQqsoELcITxHj5XIUBKxvCAFelK9rk3KZw9DT9sTc3QTwMIu+NjGEDo3FD3?=
- =?us-ascii?Q?RGQLSqcKiwZgOEGKlcJAeGbhynSITHW4YvTojMl83qMCIkhb5euIyXY0LMBo?=
- =?us-ascii?Q?4w7utVbWOtOX5oONSl8+Rdlx6ZoPBPTPYSEBNrWA1R0yQ90Sd8wqaG01e3sd?=
- =?us-ascii?Q?VQkDB4SQNFX0x2mmItuFXxbB8CLx+iql+E1BirCUypkW/f/4dTgFVCAdzFdM?=
- =?us-ascii?Q?Swyteyqc5D+s2sGKhaOsBFxjmYm5BloePnYPltS6jSfcvRiJLhUgBMR5oeNt?=
- =?us-ascii?Q?blG6DNqp/d3Wd0CNqKzWbEv7BbmrtyI=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: bacd0093-eaa3-4ff5-fc1e-08de7b1adafa
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NXZySjNQeWJkQkxOZWs1UDg5bk5xQ0RqTGZ6aFpPdjUweFZiSm4zOGJ3eCta?=
+ =?utf-8?B?SzdOR2J1RXRxSnBHd0d4WHlRanJub0VGWVR2a3lYUm9jcWdLU3pZRkE3YkZE?=
+ =?utf-8?B?S1pLUDM0RDA3a080eU5mZWRnQ0hVaklQb282cU9YNDVnR2c5cmNhV1dHQUhN?=
+ =?utf-8?B?eEgrSE5BU1ZPbVlmeWQ3bUdLQlpjUmdYRHQzZWdPWjRCSkYvSGFNWkQ5SElD?=
+ =?utf-8?B?bWVxcnUyOW1WZFIvQkZMcGNPbFFMTzJzNXVVQ0l6Y2gwZTRPRWRBQXJ1MlEv?=
+ =?utf-8?B?MWtvdk1acWYxY2RqeCtXWjh0TWc2cXRSMW9wc05QYzlRS0hIaGk5SHN0V3lE?=
+ =?utf-8?B?VFlXZ1hEVHozVG9yQUJKT0cxR2VCaTFMalFBbndUYlpQV3piSnk1OEQ2RWQx?=
+ =?utf-8?B?SzUvNjUvMmlWY2hEaFdFRnZST0ZHemRwNmtIME44YzZub2lNZ1AwK2ZhczFj?=
+ =?utf-8?B?Qk54WnFpcll5eUs2aDZQOW5jMXgxdldmVXdHdFE4VXBON0RLdm00NWkwd2Uz?=
+ =?utf-8?B?L2FNTk50SjdHUVhHeWJMbWhPVWN6bTBLdTMxY1hlUUxNdzdsUFd3am53cWNl?=
+ =?utf-8?B?SFBCdXUvMmVjaHZiR1NGT3p1c29oYklPeUsxR3VhQ1RxQ0FRSFk3MWRnTjcr?=
+ =?utf-8?B?RUlsaTkraG8wOGNlcytyVHBWVVhCcDFLVGY4Umx3aFV1RHB5QzlhUTkvR1hZ?=
+ =?utf-8?B?b3JFVFp1UTRWdVJZR2lmNWswS2N2QXIzNU9vYVdYdjFkSlhvWFdUWFFBMmNh?=
+ =?utf-8?B?ejEwRmg1bGk3VTBxT05NakgrczZ3MkNpN3M1NTR3ZlJjYkZLNFI3ZTF3VkNV?=
+ =?utf-8?B?MldEcmN6eUFFZVJ6NDJQYis5VTJMc2NKTzlFb0Jablc0UFRlbEtiWWk5VjI3?=
+ =?utf-8?B?cnlycDJoSE9LbnZMMVBBYjJ2ZmFQdXVUZXUza2FSaXc1VXZiNFhCYkFobktj?=
+ =?utf-8?B?L2dqcGp6NlFLdmIzSlJ3NlBTMzYvbllNenZncnB1cDVvenp2Q0J6Y284Vldy?=
+ =?utf-8?B?WnF5OTEyUGpHWEp3cHhXSVp6OHFDaGxHbjdaOXNML0lMeEd2Z2xublRqZElu?=
+ =?utf-8?B?ZG1IWGpNRmZYUlBYSVNicm9iSHVrazZzVUl3UHU0VnRFdkxJOGJtNkdDcDQx?=
+ =?utf-8?B?Uk5rSUZNcVovaVZ0UkFqRHVmdHk2bldjME1YSGx0T0dYUGFUVDlXWkpaZkNX?=
+ =?utf-8?B?a3QxQ0xUWkI5SERsOE5PSTY4eDR3VnJ4cEtZSWNlUStrcGpmTzVNNnpRQXh0?=
+ =?utf-8?B?OWxHYmZjUkYvKytyK25WMlhoY2JEOFJnd3Vpbi90a0JnMXoxR3k4a2lNalVw?=
+ =?utf-8?B?b1V6eGppRFo0WnFVL2ZKWXUram5OVFAvN2Y4Zk9NcGlYV0xpYnhhaUh6aTRU?=
+ =?utf-8?B?OTR1UnRuOFVPRGV0NXg2bXFOSTNqWk5rOGh3ejQ3OTRWTnNaQmcrblRZZFA0?=
+ =?utf-8?B?b0ZOWEVRT1MxMHpVKzRHUXBoVFdUNVppN0JSN2lMWEJBUktwcE42ZmxObGJ5?=
+ =?utf-8?B?SUh1NjliVG1kQkV3UDVBU1F5bWZZUWs3cHoyTndPd0F5WHRsU0ZFNFUrRzcz?=
+ =?utf-8?B?SC92WUVSanUzUHlubk9tOFVKYmNpc2piSG11cVQwNjdxdThCNSt0aFc4OUsr?=
+ =?utf-8?B?dVRiK1BJMmhHOUJaYkJWZm9UeUtzK0xDbEp6cWVLYlZGdktqbmNINDB0dmZm?=
+ =?utf-8?B?clQzYlpsdENMRkhNdkgwTjBKUDd0NUdkbXF6SEhTNCtiRGlsZUMzWjdBdkQz?=
+ =?utf-8?B?V0Y5QXVzOFIrUXVCdUpXUnp4UmwvbWdFRjhhSWlXQ2R0QThJNUlJZGpFOFdh?=
+ =?utf-8?B?ajJqa0ZmYkJjc0FkbWRHaTRUc0lCOEo3MFZhTzQxaVVWRmxxZ295MFFOelFL?=
+ =?utf-8?B?VVJleWswcG5uaHJoQkNZbm52cnVSLzlaNnNNZFZjVllZeCs1bHZGUXZYTkhC?=
+ =?utf-8?B?WEk1TXh3ZGFqNFBUUTRpWXcwQVVHWVVCQUJHODlsaXJ4ZWF5bFlXb3NLenhm?=
+ =?utf-8?B?MEErL2hxblFVWTQxRlZuMGVrNnVBTUN5cVhaQmZ6VU9RNnV1VFZRaUFqTE51?=
+ =?utf-8?B?MHg3RzlDNXNPbGxFYXArM3YrSjhSSGFUWFFuS0I1YWVKOTZTVUZWZ01Ba3pq?=
+ =?utf-8?B?RFpOVDRqVDVVaGIwMXYwUy9YQTBvdTR4Y1NWbFk1cU1QZXcrKzEzaWtrQUta?=
+ =?utf-8?B?RExKZ25FSFd6NnZmYXhmWmVNajMwNXBRYkNQdWREL3hJN3ZrVEl6eFVpZlZj?=
+ =?utf-8?B?UXFsUlowcWNtcUtuSTBWSWJINDBnMjBkQ2c2YmxBOUFHODF6L0VuZ1pzSzI2?=
+ =?utf-8?B?c3JlRWFzTHQ1dDhyMXJCT1JLdGJGZWRBVFVZQUZWN1YrazNlcjBlUT09?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4d2a2961-ddad-45da-2f0f-08de7b1e7905
+X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2026 00:54:00.7596 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2026 01:19:54.4534 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MRfiHJx1KBDViGL/oiDJJaM/mNmqcw4J4ZwT/xU/UnI02IsAhqBu/12+J6eaHWXqxioulDCaQCikiCNHrPrCZBWbLSC8XV1o43A4CgT+/l4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4762
+X-MS-Exchange-CrossTenant-UserPrincipalName: AEgDdWAazV4ttW2du47tNogJ6Q3uzItxJ9SgMn19TH51KZjuMN6kM8H3nhoJs9X4k6NrCp3Ha9HEWeJq67kMeA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR11MB8056
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -156,136 +166,236 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Mar 05, 2026 at 02:22:56PM -0800, Matt Roper wrote:
-> On Thu, Mar 05, 2026 at 09:02:31AM -0300, Gustavo Sousa wrote:
-> > Add support for matching platform-level stepping, which will be used for
-> > an upcoming NVL-P workaround.
+On Thu, Mar 05, 2026 at 10:36:59PM +0200, Lionel Landwerlin wrote:
+> On 05/03/2026 21:19, Rodrigo Vivi wrote:
+> > On Wed, Mar 04, 2026 at 09:55:27AM +0200, Lionel Landwerlin wrote:
+> > > Similar to i915's commit cebc13de7e704b1355bea208a9f9cdb042c74588
+> > > ("drm/i915: Whitelist COMMON_SLICE_CHICKEN3 for UMD access"), except
+> > > that instead of putting the register on the allowlist for UMD to
+> > > program, the KMD is doing the programming at context initialization
+> > > based on a queue creation flag.
+> > > 
+> > > This is a recommended tuning setting for both gen12 and Xe_HP
+> > > platforms.
+> > > 
+> > > If a render queue is created with
+> > > DRM_XE_EXEC_QUEUE_SET_STATE_CACHE_PERF_FIX, COMMON_SLICE_CHICKEN3 will
+> > > be programmed at initialization to enable the render color cache to
+> > > key with BTP+BTI (binding table pool + binding table entry) instead of
+> > > just BTI (binding table entry). This enables the UMD to avoid emitting
+> > > render-target-cache-flush + stall-at-pixel-scoreboard every time a
+> > > binding table entry pointing to a render target is changed.
+> > > 
+> > > v2: Use xe_lrc_write_ring()
+> > > 
+> > > v3: Update xe_query.c to report availability
+> > > 
+> > > v4: Rename defines to add DISABLE_
+> > > 
+> > > v5: update commit message
+> > > 
+> > > Bspec: 73993, 73994, 72161, 31870, 68331
+> > > Signed-off-by: Lionel Landwerlin <lionel.g.landwerlin@intel.com>
 > > 
-> > As support for reading platform-level stepping information is added only
-> > as needed in the driver, add a warning when the rule finds a STEP_NONE
-> > value, which is an indication that the driver is missing such a support.
+> > Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > > 
-> > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_rtp.c       |  7 +++++++
-> >  drivers/gpu/drm/xe/xe_rtp.h       | 20 ++++++++++++++++++++
-> >  drivers/gpu/drm/xe/xe_rtp_types.h |  1 +
-> >  3 files changed, 28 insertions(+)
+> > could you please share the Mesa gitlab PR using this?
 > > 
-> > diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-> > index 7bfdc6795ce6..991f218f1cc3 100644
-> > --- a/drivers/gpu/drm/xe/xe_rtp.c
-> > +++ b/drivers/gpu/drm/xe/xe_rtp.c
-> > @@ -55,6 +55,13 @@ static bool rule_matches(const struct xe_device *xe,
-> >  			match = xe->info.platform == r->platform &&
-> >  				xe->info.subplatform == r->subplatform;
-> >  			break;
-> > +		case XE_RTP_MATCH_PLATFORM_STEP:
-> > +			if (drm_WARN_ON(&xe->drm, xe->info.step.platform == STEP_NONE))
-> > +				return false;
-> > +
-> > +			match = xe->info.step.platform >= r->step_start &&
-> > +				xe->info.step.platform < r->step_end;
-> > +			break;
-> >  		case XE_RTP_MATCH_GRAPHICS_VERSION:
-> >  			if (drm_WARN_ON(&xe->drm, !gt))
-> >  				return false;
-> > diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
-> > index be4195264286..7d6daa7eb1e4 100644
-> > --- a/drivers/gpu/drm/xe/xe_rtp.h
-> > +++ b/drivers/gpu/drm/xe/xe_rtp.h
-> > @@ -35,6 +35,10 @@ struct xe_reg_sr;
-> >  	{ .match_type = XE_RTP_MATCH_SUBPLATFORM,				\
-> >  	  .platform = plat__, .subplatform = sub__ }
-> >  
-> > +#define _XE_RTP_RULE_PLATFORM_STEP(start__, end__)				\
-> > +	{ .match_type = XE_RTP_MATCH_PLATFORM_STEP,				\
-> > +	  .step_start = start__, .step_end = end__ }
-> > +
-> >  #define _XE_RTP_RULE_GRAPHICS_STEP(start__, end__)				\
-> >  	{ .match_type = XE_RTP_MATCH_GRAPHICS_STEP,				\
-> >  	  .step_start = start__, .step_end = end__ }
-> > @@ -66,6 +70,22 @@ struct xe_reg_sr;
-> >  #define XE_RTP_RULE_SUBPLATFORM(plat_, sub_)					\
-> >  	_XE_RTP_RULE_SUBPLATFORM(XE_##plat_, XE_SUBPLATFORM_##plat_##_##sub_)
-> >  
-> > +/**
-> > + * XE_RTP_RULE_PLATFORM_STEP - Create rule matching platform-level stepping
-> > + * @start_: First stepping matching the rule
-> > + * @end_: First stepping that does not match the rule
-> > + *
-> > + * Note that the range matching this rule is [ @start_, @end_ ), i.e. inclusive
-> > + * on the left, exclusive on the right.
-> > + *
-> > + * You need to make sure that proper support for reading platform-level stepping
-> > + * information is present for the target platform before using this rule.
-> > + *
-> > + * Refer to XE_RTP_RULES() for expected usage.
-> > + */
-> > +#define XE_RTP_RULE_PLATFORM_STEP(start_, end_)					\
-> > +	_XE_RTP_RULE_PLATFORM_STEP(STEP_##start_, STEP_##end_)
+> > Thanks,
+> > Rodrigo.
 > 
-> To use this effectively someone will need to pair this with another rule
-> like
 > 
->         PLATFORM(NOVALAKE_P), PLATFORM_STEP(A2, C1)
+> Sure,
 > 
-> and using PLATFORM_STEP() by itself without a corresponding PLATFORM()
-> or SUBPLATFORM() would be a bug.  Maybe we should just make
-> PLATFORM_STEP a rule that takes the platform as well as the stepping
-> range so that it's impossible for anyone to ever use PLATFORM_STEP
-> without tying it to a specific platform?  And also make a corresponding
-> SUBPLATFORM_STEP() rule for cases where that's relevant.  E.g.,
 > 
->         PLATFORM_STEP(NOVALAKE_P, A2, C1)
-> 
-> or
-> 
->         SUBPLATFORM_STEP(BATTLEMAGE, BATTLEMAGE_G21, A0, B0)
-> 
-> We'd need to update the union in struct xe_rtp_rule, but the size of the
-> union shouldn't increase.
-> 
-> What do you think?
+> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/39982
 
-Anyway, consider this feedback optional.  I think it's fine to land
-as-is if you want.
+Thanks for your patience. I was going to merge it right now, but
+it fails to apply.
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Could you please rebase it on drm-tip and resend?
+
+Thanks,
+Rodrigo.
 
 > 
 > 
-> Matt
-> 
-> > +
-> >  /**
-> >   * XE_RTP_RULE_GRAPHICS_STEP - Create rule matching graphics stepping
-> >   * @start_: First stepping matching the rule
-> > diff --git a/drivers/gpu/drm/xe/xe_rtp_types.h b/drivers/gpu/drm/xe/xe_rtp_types.h
-> > index 6ba7f226c227..166251615be1 100644
-> > --- a/drivers/gpu/drm/xe/xe_rtp_types.h
-> > +++ b/drivers/gpu/drm/xe/xe_rtp_types.h
-> > @@ -41,6 +41,7 @@ struct xe_rtp_action {
-> >  enum {
-> >  	XE_RTP_MATCH_PLATFORM,
-> >  	XE_RTP_MATCH_SUBPLATFORM,
-> > +	XE_RTP_MATCH_PLATFORM_STEP,
-> >  	XE_RTP_MATCH_GRAPHICS_VERSION,
-> >  	XE_RTP_MATCH_GRAPHICS_VERSION_RANGE,
-> >  	XE_RTP_MATCH_GRAPHICS_VERSION_ANY_GT,
 > > 
-> > -- 
-> > 2.52.0
-> > 
+> > > ---
+> > >   drivers/gpu/drm/xe/regs/xe_gt_regs.h     |  1 +
+> > >   drivers/gpu/drm/xe/xe_exec_queue.c       | 19 ++++++++++++++++++-
+> > >   drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 ++
+> > >   drivers/gpu/drm/xe/xe_lrc.c              |  9 +++++++++
+> > >   drivers/gpu/drm/xe/xe_lrc.h              |  1 +
+> > >   drivers/gpu/drm/xe/xe_query.c            |  2 ++
+> > >   include/uapi/drm/xe_drm.h                |  8 ++++++++
+> > >   7 files changed, 41 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> > > index 66ddad767ad44..aa6dd6885fbee 100644
+> > > --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> > > +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> > > @@ -180,6 +180,7 @@
+> > >   #define COMMON_SLICE_CHICKEN3				XE_REG(0x7304, XE_REG_OPTION_MASKED)
+> > >   #define XEHP_COMMON_SLICE_CHICKEN3			XE_REG_MCR(0x7304, XE_REG_OPTION_MASKED)
+> > > +#define   DISABLE_STATE_CACHE_PERF_FIX			REG_BIT(13)
+> > >   #define   DG1_FLOAT_POINT_BLEND_OPT_STRICT_MODE_EN	REG_BIT(12)
+> > >   #define   XEHP_DUAL_SIMD8_SEQ_MERGE_DISABLE		REG_BIT(12)
+> > >   #define   BLEND_EMB_FIX_DISABLE_IN_RCC			REG_BIT(11)
+> > > diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+> > > index 2d0e73a6a6eee..546f920ba8af8 100644
+> > > --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> > > +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> > > @@ -353,6 +353,9 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
+> > >   	if (!(exec_queue_flags & EXEC_QUEUE_FLAG_KERNEL))
+> > >   		flags |= XE_LRC_CREATE_USER_CTX;
+> > > +	if (q->flags & EXEC_QUEUE_FLAG_DISABLE_STATE_CACHE_PERF_FIX)
+> > > +		flags |= XE_LRC_DISABLE_STATE_CACHE_PERF_FIX;
+> > > +
+> > >   	err = q->ops->init(q);
+> > >   	if (err)
+> > >   		return err;
+> > > @@ -910,6 +913,17 @@ static int exec_queue_set_multi_queue_priority(struct xe_device *xe, struct xe_e
+> > >   	return q->ops->set_multi_queue_priority(q, value);
+> > >   }
+> > > +static int exec_queue_set_state_cache_perf_fix(struct xe_device *xe, struct xe_exec_queue *q,
+> > > +					       u64 value)
+> > > +{
+> > > +	if (XE_IOCTL_DBG(xe, q->class != XE_ENGINE_CLASS_RENDER))
+> > > +		return -EOPNOTSUPP;
+> > > +
+> > > +	q->flags |= value != 0 ? EXEC_QUEUE_FLAG_DISABLE_STATE_CACHE_PERF_FIX : 0;
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > >   typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
+> > >   					     struct xe_exec_queue *q,
+> > >   					     u64 value);
+> > > @@ -922,6 +936,8 @@ static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
+> > >   	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP] = exec_queue_set_multi_group,
+> > >   	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY] =
+> > >   							exec_queue_set_multi_queue_priority,
+> > > +	[DRM_XE_EXEC_QUEUE_SET_DISABLE_STATE_CACHE_PERF_FIX] =
+> > > +							exec_queue_set_state_cache_perf_fix,
+> > >   };
+> > >   int xe_exec_queue_set_property_ioctl(struct drm_device *dev, void *data,
+> > > @@ -1006,7 +1022,8 @@ static int exec_queue_user_ext_set_property(struct xe_device *xe,
+> > >   			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_PXP_TYPE &&
+> > >   			 ext.property != DRM_XE_EXEC_QUEUE_SET_HANG_REPLAY_STATE &&
+> > >   			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP &&
+> > > -			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY))
+> > > +			 ext.property != DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY &&
+> > > +			 ext.property != DRM_XE_EXEC_QUEUE_SET_DISABLE_STATE_CACHE_PERF_FIX))
+> > >   		return -EINVAL;
+> > >   	idx = array_index_nospec(ext.property, ARRAY_SIZE(exec_queue_set_property_funcs));
+> > > diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > > index a1f3938f4173b..8ce78e0b1d502 100644
+> > > --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > > +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> > > @@ -134,6 +134,8 @@ struct xe_exec_queue {
+> > >   #define EXEC_QUEUE_FLAG_LOW_LATENCY		BIT(5)
+> > >   /* for migration (kernel copy, clear, bind) jobs */
+> > >   #define EXEC_QUEUE_FLAG_MIGRATE			BIT(6)
+> > > +/* for programming COMMON_SLICE_CHICKEN3 on first submission */
+> > > +#define EXEC_QUEUE_FLAG_DISABLE_STATE_CACHE_PERF_FIX	BIT(7)
+> > >   	/**
+> > >   	 * @flags: flags for this exec queue, should statically setup aside from ban
+> > > diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> > > index fcdbd403fa3c6..73a503d88217e 100644
+> > > --- a/drivers/gpu/drm/xe/xe_lrc.c
+> > > +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> > > @@ -14,6 +14,7 @@
+> > >   #include "instructions/xe_gfxpipe_commands.h"
+> > >   #include "instructions/xe_gfx_state_commands.h"
+> > >   #include "regs/xe_engine_regs.h"
+> > > +#include "regs/xe_gt_regs.h"
+> > >   #include "regs/xe_lrc_layout.h"
+> > >   #include "xe_bb.h"
+> > >   #include "xe_bo.h"
+> > > @@ -1446,6 +1447,7 @@ static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct
+> > >   	struct xe_device *xe = gt_to_xe(gt);
+> > >   	struct iosys_map map;
+> > >   	u32 arb_enable;
+> > > +	u32 state_cache_perf_fix[3];
+> > >   	int err;
+> > >   	/*
+> > > @@ -1546,6 +1548,13 @@ static int xe_lrc_ctx_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe, struct
+> > >   	arb_enable = MI_ARB_ON_OFF | MI_ARB_ENABLE;
+> > >   	xe_lrc_write_ring(lrc, &arb_enable, sizeof(arb_enable));
+> > > +	if (init_flags & XE_LRC_DISABLE_STATE_CACHE_PERF_FIX) {
+> > > +		state_cache_perf_fix[0] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1);
+> > > +		state_cache_perf_fix[1] = COMMON_SLICE_CHICKEN3.addr;
+> > > +		state_cache_perf_fix[2] = _MASKED_BIT_ENABLE(DISABLE_STATE_CACHE_PERF_FIX);
+> > > +		xe_lrc_write_ring(lrc, state_cache_perf_fix, sizeof(state_cache_perf_fix));
+> > > +	}
+> > > +
+> > >   	map = __xe_lrc_seqno_map(lrc);
+> > >   	xe_map_write32(lrc_to_xe(lrc), &map, lrc->fence_ctx.next_seqno - 1);
+> > > diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
+> > > index 48f7c26cf1298..e7c975f9e2d97 100644
+> > > --- a/drivers/gpu/drm/xe/xe_lrc.h
+> > > +++ b/drivers/gpu/drm/xe/xe_lrc.h
+> > > @@ -49,6 +49,7 @@ struct xe_lrc_snapshot {
+> > >   #define XE_LRC_CREATE_RUNALONE		BIT(0)
+> > >   #define XE_LRC_CREATE_PXP		BIT(1)
+> > >   #define XE_LRC_CREATE_USER_CTX		BIT(2)
+> > > +#define XE_LRC_DISABLE_STATE_CACHE_PERF_FIX	BIT(3)
+> > >   struct xe_lrc *xe_lrc_create(struct xe_hw_engine *hwe, struct xe_vm *vm,
+> > >   			     void *replay_state, u32 ring_size, u16 msix_vec, u32 flags);
+> > > diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+> > > index 34db266b723fa..4852fdcb4b959 100644
+> > > --- a/drivers/gpu/drm/xe/xe_query.c
+> > > +++ b/drivers/gpu/drm/xe/xe_query.c
+> > > @@ -340,6 +340,8 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+> > >   			DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT;
+> > >   	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+> > >   			DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY;
+> > > +	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
+> > > +		DRM_XE_QUERY_CONFIG_FLAG_HAS_DISABLE_STATE_CACHE_PERF_FIX;
+> > >   	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
+> > >   		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
+> > >   	config->info[DRM_XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
+> > > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> > > index ef2565048bdf1..df1dc6b9cbc8c 100644
+> > > --- a/include/uapi/drm/xe_drm.h
+> > > +++ b/include/uapi/drm/xe_drm.h
+> > > @@ -406,6 +406,9 @@ struct drm_xe_query_mem_regions {
+> > >    *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT - Flag is set if the
+> > >    *      device supports the userspace hint %DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION.
+> > >    *      This is exposed only on Xe2+.
+> > > + *    - %DRM_XE_QUERY_CONFIG_FLAG_HAS_DISABLE_STATE_CACHE_PERF_FIX - Flag is set
+> > > + *      if a queue can be creaed with
+> > > + *      %DRM_XE_EXEC_QUEUE_SET_DISABLE_STATE_CACHE_PERF_FIX
+> > >    *  - %DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - Minimal memory alignment
+> > >    *    required by this device, typically SZ_4K or SZ_64K
+> > >    *  - %DRM_XE_QUERY_CONFIG_VA_BITS - Maximum bits of a virtual address
+> > > @@ -425,6 +428,7 @@ struct drm_xe_query_config {
+> > >   	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY	(1 << 1)
+> > >   	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR	(1 << 2)
+> > >   	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT (1 << 3)
+> > > +	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_DISABLE_STATE_CACHE_PERF_FIX	(1 << 4)
+> > >   #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
+> > >   #define DRM_XE_QUERY_CONFIG_VA_BITS			3
+> > >   #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
+> > > @@ -1285,6 +1289,9 @@ struct drm_xe_vm_bind {
+> > >    *  - %DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY - Set the queue
+> > >    *    priority within the multi-queue group. Current valid priority values are 0–2
+> > >    *    (default is 1), with higher values indicating higher priority.
+> > > + *  - %DRM_XE_EXEC_QUEUE_SET_DISABLE_STATE_CACHE_PERF_FIX - Set the queue to
+> > > + *    enable render color cache keying on BTP+BTI instead of just BTI
+> > > + *    (only valid for render queues).
+> > >    *
+> > >    * The example below shows how to use @drm_xe_exec_queue_create to create
+> > >    * a simple exec_queue (no parallel submission) of class
+> > > @@ -1329,6 +1336,7 @@ struct drm_xe_exec_queue_create {
+> > >   #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_GROUP		4
+> > >   #define     DRM_XE_MULTI_GROUP_CREATE				(1ull << 63)
+> > >   #define   DRM_XE_EXEC_QUEUE_SET_PROPERTY_MULTI_QUEUE_PRIORITY	5
+> > > +#define   DRM_XE_EXEC_QUEUE_SET_DISABLE_STATE_CACHE_PERF_FIX	6
+> > >   	/** @extensions: Pointer to the first extension struct, if any */
+> > >   	__u64 extensions;
+> > > -- 
+> > > 2.43.0
+> > > 
 > 
-> -- 
-> Matt Roper
-> Graphics Software Engineer
-> Linux GPU Platform Enablement
-> Intel Corporation
-
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
