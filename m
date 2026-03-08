@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3B0BF513F0
-	for <intel-xe@archiver.kernel.org>; Sun,  8 Mar 2026 13:25:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADCFCEF5866
+	for <intel-xe@archiver.kernel.org>; Sun,  8 Mar 2026 13:31:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 793EF10E16D;
-	Sun,  8 Mar 2026 13:25:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iiFZSiKx";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEACB10E178;
- Sun,  8 Mar 2026 13:25:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772976313; x=1804512313;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=3ofEo5bG8KYNyWPizhORO2e0SFfm9K8oT+kar0uiN90=;
- b=iiFZSiKxClTZXB3au8zBY7Q13ZkRuNj1kKqSFx93PQR//Fuku4SY8JQE
- Ng8++nbRxiZ+FpsbqPUB+xG0wwURs3Kjti5MDrojTiw0kZN+OjZ0arY3n
- MP55nCsbbXvLgYae5A8TxLXNSZK5Oy+jM5orYYnWy0Ir2s7KhJqMP5ibK
- bhHSm7W+BrLgc7vLgROSieS5WwbLp72oBGiKXzwOohSF5y8QdhPdNiSh5
- ucVEtGax1t1bgAccCR3QKkos0/GHRIRZiHU2bXm+167m90SLkRiRcUfdq
- 7WyqXi0UooyHcv5n2C0x5ZuiwBy6LhJ1I/DzG+UBli9+XoVJlg5ctzgWX w==;
-X-CSE-ConnectionGUID: CvA7yzkjRMyN65riTUJLXA==
-X-CSE-MsgGUID: venqafGURp2Xml8fMZ9aIw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11722"; a="77871408"
-X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="77871408"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2026 06:25:13 -0700
-X-CSE-ConnectionGUID: fzUtHyVYQeOMsaSlfSGcwA==
-X-CSE-MsgGUID: YGk5u7fbSAOHMf9yXQvPAw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="217598185"
-Received: from administrator-system-product-name.igk.intel.com (HELO
- dev-417.igk.intel.com) ([10.91.214.181])
- by fmviesa008.fm.intel.com with ESMTP; 08 Mar 2026 06:25:11 -0700
-From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [RFC v1 09/11] drm/i915/xe3p: add V/P Override support for xe3p
-Date: Sun,  8 Mar 2026 14:24:44 +0100
-Message-ID: <20260308132446.3320848-10-michal.grzelak@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20260308132446.3320848-1-michal.grzelak@intel.com>
-References: <20260308132446.3320848-1-michal.grzelak@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6346F10E371;
+	Sun,  8 Mar 2026 13:31:51 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B69F110E371;
+ Sun,  8 Mar 2026 13:31:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_support_for_vswing/preemp?=
+ =?utf-8?q?hasis_override?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Sun, 08 Mar 2026 13:31:49 -0000
+Message-ID: <177297670972.330866.7803474216778054179@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260308132446.3320848-1-michal.grzelak@intel.com>
+In-Reply-To: <20260308132446.3320848-1-michal.grzelak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,180 +36,187 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add macros to reflect the layout of vswing/preemphasis override tables
-for xe3p.
+== Series Details ==
 
-Add separate intel_ddi_buf_trans_entry to be overridden for xe3plpd.
-Set & return it when port requests to override default table.
+Series: support for vswing/preemphasis override
+URL   : https://patchwork.freedesktop.org/series/162813/
+State : warning
 
-Set the value by extracting the lowest byte from entry from the table.
+== Summary ==
 
-There are no changes to intel_ddi_dp_level() since selection of correct
-row of intel_ddi_buf_trans_entry is same as when no override request has
-been done.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a8f8d00edb4f3222259177cc0b422e526b0aa431
+Author: Michał Grzelak <michal.grzelak@intel.com>
+Date:   Sun Mar 8 14:24:46 2026 +0100
 
-Add FIXME & warning when EDP is requested to be overridden.
+    drm/i915/mtl: add V/P Override support for mtl+
+    
+    Add macros to reflect the layout of vswing/preemphasis override tables
+    for mtl. Add separate macros for C10 & C20.
+    
+    Add separate intel_ddi_buf_trans_entry to be overridden for mtl onward.
+    Set & return it when port requests to override default table. Use same
+    setter for both C10 & C20 cases.
+    
+    Set the value by extracting the lowest byte from entry from the table.
+    
+    There are no changes to intel_ddi_dp_level() since selection of correct
+    row of intel_ddi_buf_trans_entry is same as when no override request has
+    been done.
+    
+    Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
++ /mt/dim checkpatch f705e865254996e9a099a22a9320e523e6debdcf drm-intel
+bc1824f5c1f7 drm/i915/bios: search for Block 57 by default
+6ddca3e03774 drm/i915/bios: cache V/P Override block
+39d73b41836c drm/i915/bios: remove V/P Override warning
+cc3b213c7af3 drm/i915/bios: print V/P Override port info
+d0a12b9e3daa drm/i915/buf_trans: add intel_dp_above_hbr1() helper
+b0398db83482 drm/i915/buf_trans: add intel_edp_above_hbr2() helper
+619b322a52c3 drm/i915/lt: align xe3plpd with V/P Override layout
+-:37: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#37: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1121:
++	{ .lt = { 21, 0, 0 , 1, 0 } },
+ 	                   ^
 
-beware of endianness:
-during VBT parsing, u32's were split into u8;
-read u32 from selected row to restore it;
-windows assumes u8, so extract the lowest byte.
+-:38: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#38: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1122:
++	{ .lt = { 24, 0, 3 , 1, 1 } },
+ 	                   ^
 
-Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
----
- .../drm/i915/display/intel_ddi_buf_trans.c    | 102 +++++++++++++++++-
- 1 file changed, 99 insertions(+), 3 deletions(-)
+-:39: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#39: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1123:
++	{ .lt = { 28, 0, 7 , 1, 2 } },
+ 	                   ^
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index 528a0ccfe8a2..632a5fe08381 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -12,6 +12,16 @@
- #include "intel_dp.h"
- #include "intel_lt_phy.h"
- 
-+#define XE3P_VS_PE_EDP 3
-+#define XE3P_VS_PE_DP14 4
-+#define XE3P_VS_PE_DP21 5
-+
-+#define XE3P_VS_PE_COL 5
-+#define XE3P_VS_PE_ROW 16
-+
-+#define VS_PE_MASK 0x000000ff
-+
-+#define LOW(x) ((x) & (VS_PE_MASK))
- /* HDMI/DVI modes ignore everything but the last 2 items. So we share
-  * them for both DP and FDI transports, allowing those ports to
-  * automatically adapt to HDMI connections as well
-@@ -1164,6 +1174,25 @@ static const union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_edp[] = {
- 	{ .lt = { 26, 0, 0, 1, 3 } },
- };
- 
-+static union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_override[] = {
-+	{ .lt = { 0, 0, 0, 0, 0 } },
-+	{ .lt = { 0, 0, 0, 0, 0 } },
-+	{ .lt = { 0, 0, 0, 0, 0 } },
-+	{ .lt = { 0, 0, 0, 0, 0 } },
-+	{ .lt = { 0, 0, 0, 0, 0 } },
-+	{ .lt = { 0, 0, 0, 0, 0 } },
-+	{ .lt = { 0, 0, 0, 0, 0 } },
-+	{ .lt = { 0, 0, 0, 0, 0 } },
-+	{ .lt = { 0, 0, 0, 0, 0 } },
-+	{ .lt = { 0, 0, 0, 0, 0 } },
-+	{ .lt = { 0, 0, 0, 0, 0 } },
-+	{ .lt = { 0, 0, 0, 0, 0 } },
-+	{ .lt = { 0, 0, 0, 0, 0 } },
-+	{ .lt = { 0, 0, 0, 0, 0 } },
-+	{ .lt = { 0, 0, 0, 0, 0 } },
-+	{ .lt = { 0, 0, 0, 0, 0 } },
-+};
-+
- static const struct intel_ddi_buf_trans xe3plpd_lt_trans_dp14 = {
- 	.entries = _xe3plpd_lt_trans_dp14,
- 	.num_entries = ARRAY_SIZE(_xe3plpd_lt_trans_dp14),
-@@ -1179,11 +1208,29 @@ static const struct intel_ddi_buf_trans xe3plpd_lt_trans_edp = {
- 	.num_entries = ARRAY_SIZE(_xe3plpd_lt_trans_edp),
- };
- 
-+static struct intel_ddi_buf_trans xe3plpd_lt_trans_override = {
-+	.entries = _xe3plpd_lt_trans_override,
-+	.num_entries = ARRAY_SIZE(_xe3plpd_lt_trans_override),
-+};
-+
- bool is_hobl_buf_trans(const struct intel_ddi_buf_trans *table)
- {
- 	return table == &tgl_combo_phy_trans_edp_hbr2_hobl;
- }
- 
-+static const u32 *find_row(const u32 *tables,
-+			   int idx,
-+			   int row,
-+			   int row_no,
-+			   int col_no)
-+{
-+	size_t ent_sz = sizeof(*tables);
-+	size_t row_sz = col_no * ent_sz;
-+	size_t tbl_sz = row_no * row_sz;
+-:41: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#41: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1125:
++	{ .lt = { 27, 0, 0 , 1, 1 } },
+ 	                   ^
+
+-:42: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#42: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1126:
++	{ .lt = { 31, 0, 4 , 1, 2 } },
+ 	                   ^
+
+-:43: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#43: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1127:
++	{ .lt = { 39, 0, 9 , 0, 3 } },
+ 	                   ^
+
+-:44: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#44: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1128:
++	{ .lt = { 35, 0, 0 , 1, 2 } },
+ 	                   ^
+
+-:45: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#45: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1129:
++	{ .lt = { 41, 0, 7 , 0, 3 } },
+ 	                   ^
+
+-:46: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#46: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1130:
++	{ .lt = { 48, 0, 0 , 0, 3 } },
+ 	                   ^
+
+-:67: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#67: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1135:
++	{ .lt = { 48, 0, 0 , 0, 0 } },
+ 	                   ^
+
+-:68: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#68: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1136:
++	{ .lt = { 43, 0, 5 , 0, 0 } },
+ 	                   ^
+
+-:69: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#69: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1137:
++	{ .lt = { 40, 0, 8 , 0, 0 } },
+ 	                   ^
+
+-:72: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#72: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1140:
++	{ .lt = { 46, 2, 0 , 0, 0 } },
+ 	                   ^
+
+-:73: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#73: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1141:
++	{ .lt = { 42, 2, 4 , 0, 0 } },
+ 	                   ^
+
+-:74: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#74: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1142:
++	{ .lt = { 38, 2, 8 , 0, 0 } },
+ 	                   ^
+
+-:77: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#77: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1145:
++	{ .lt = { 44, 4, 0 , 0, 0 } },
+ 	                   ^
+
+-:78: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#78: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1146:
++	{ .lt = { 40, 4, 4 , 0, 0 } },
+ 	                   ^
+
+-:79: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#79: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1147:
++	{ .lt = { 37, 4, 7 , 0, 0 } },
+ 	                   ^
+
+-:81: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#81: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1149:
++	{ .lt = { 40, 8, 0 , 0, 0 } },
+ 	                   ^
+
+-:82: ERROR:SPACING: space prohibited before that ',' (ctx:WxW)
+#82: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1150:
++	{ .lt = { 26, 2, 2 , 1, 0 } },
+ 	                   ^
+
+total: 20 errors, 0 warnings, 0 checks, 100 lines checked
+241c0a42c9fb drm/i915/buf_trans: switch from u8 to u32
+2c831cdfa1cb drm/i915/xe3p: add V/P Override support for xe3p
+-:101: WARNING:LINE_SPACING: Missing a blank line after declarations
+#101: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1231:
 +	size_t offset = idx * tbl_sz + row * row_sz;
 +	return &tables[offset];
-+}
-+
- static bool intel_dp_above_hbr1(const struct intel_crtc_state *crtc_state)
- {
- 	if (crtc_state->port_clock > 270000)
-@@ -1785,17 +1832,66 @@ mtl_get_c20_buf_trans(struct intel_encoder *encoder,
- 		return intel_get_buf_trans(&mtl_c20_trans_dp14, n_entries);
- }
- 
-+static const struct intel_ddi_buf_trans *
-+xe3plpd_set_lt_buf_trans(struct intel_encoder *encoder,
-+			 int idx,
-+			 int *n_entries)
-+{
-+	struct intel_display *display = to_intel_display(encoder);
-+	struct intel_ddi_buf_trans *buf_trans = &xe3plpd_lt_trans_override;
-+	union intel_ddi_buf_trans_entry *entries, *entry;
-+	const u32 *tables = display->vbt.override_vswing;
-+	const u32 *vals;
-+
+
+-:122: CHECK:SPACING: No space is necessary after a cast
+#122: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1846:
 +	entries = (union intel_ddi_buf_trans_entry *) buf_trans->entries;
-+	for (int row = 0; row < XE3P_VS_PE_ROW; row++) {
-+		entry = &entries[row];
-+		vals = find_row(tables,
-+				idx,
-+				row,
-+				XE3P_VS_PE_ROW,
-+				XE3P_VS_PE_COL);
-+
-+		entry->lt.main_cursor = LOW(vals[0]);
-+		entry->lt.pre_cursor = LOW(vals[1]);
-+		entry->lt.post_cursor = LOW(vals[2]);
-+		entry->lt.txswing = LOW(vals[3]);
-+		entry->lt.txswing_level = LOW(vals[4]);
-+	}
-+
-+	return intel_get_buf_trans(&xe3plpd_lt_trans_override, n_entries);
-+}
-+
- static const struct intel_ddi_buf_trans *
- xe3plpd_get_lt_buf_trans(struct intel_encoder *encoder,
- 			 const struct intel_crtc_state *crtc_state,
- 			 int *n_entries)
- {
--	if (intel_crtc_has_dp_encoder(crtc_state) && intel_dp_is_uhbr(crtc_state))
-+	if (intel_crtc_has_dp_encoder(crtc_state) && intel_dp_is_uhbr(crtc_state)) {
-+		if (intel_bios_encoder_overrides_vswing(encoder->devdata))
-+			return xe3plpd_set_lt_buf_trans(encoder,
-+							XE3P_VS_PE_DP21,
-+							n_entries);
- 		return intel_get_buf_trans(&xe3plpd_lt_trans_uhbr, n_entries);
--	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
-+	} else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
+
+-:156: WARNING:BLOCK_COMMENT_STYLE: Block comments should align the * on each line
+#156: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1878:
 +		 /* FIXME need to check correct parsing & table index should
 +		 * this ever trigger.
-+		 * return xe3plpd_set_lt_buf_trans(encoder,
-+		 * 				   XE3P_VS_PE_EDP,
-+		 *				   n_entries);
-+		 */
-+		drm_WARN(to_intel_display(encoder)->drm,
-+			 intel_bios_encoder_overrides_vswing(encoder->devdata),
-+			 "Port %s asks to override EDP's vswing/preemph tables\n",
-+			 port_name(intel_bios_encoder_port(encoder->devdata)));
- 		return intel_get_buf_trans(&xe3plpd_lt_trans_edp, n_entries);
--	else
-+	} else {
-+		if (intel_bios_encoder_overrides_vswing(encoder->devdata))
-+			return xe3plpd_set_lt_buf_trans(encoder,
-+							XE3P_VS_PE_DP14,
-+							n_entries);
- 		return intel_get_buf_trans(&xe3plpd_lt_trans_dp14, n_entries);
-+	}
- }
- 
- void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
--- 
-2.45.2
+
+-:158: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
+#158: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1880:
++^I^I * ^I^I^I^I   XE3P_VS_PE_EDP,$
+
+total: 0 errors, 3 warnings, 1 checks, 139 lines checked
+396ec1c11c89 drm/i915/dg2: warn on V/P Override request on dg2
+a8f8d00edb4f drm/i915/mtl: add V/P Override support for mtl+
+-:99: CHECK:SPACING: No space is necessary after a cast
+#99: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1864:
++	entries = (union intel_ddi_buf_trans_entry *) buf_trans->entries;
+
+-:131: ERROR:SPACING: space required before the open brace '{'
+#131: FILE: drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c:1896:
++		} else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)){
+
+total: 1 errors, 0 warnings, 1 checks, 137 lines checked
+
 
