@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4B23FC9EC4
-	for <intel-xe@archiver.kernel.org>; Sun,  8 Mar 2026 13:25:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3B0BF513F0
+	for <intel-xe@archiver.kernel.org>; Sun,  8 Mar 2026 13:25:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7034910E18D;
-	Sun,  8 Mar 2026 13:25:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 793EF10E16D;
+	Sun,  8 Mar 2026 13:25:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MtHj8gv4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iiFZSiKx";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F05910E179;
- Sun,  8 Mar 2026 13:25:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEACB10E178;
+ Sun,  8 Mar 2026 13:25:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772976315; x=1804512315;
+ t=1772976313; x=1804512313;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eWFb2B6xgiZC4FUZ/N1wzyBAuIMQ2CGxVoqdqt4WyPY=;
- b=MtHj8gv4YoiK7SpqAorZnOtP1shN0F8VH4Uz0EJjUr/M4bRJOKdQ0+Bx
- PUJ5aaxMEfJQ5FpnMXzEBSucazANxbNLxLYxh98KgMhbeTtOJ53fBfOGl
- 3BgnmHt2His3zdkgPXhgo+YEaQM9khmFAY6Wzi3pkCdpTYB7s6WH6EqFC
- nZf3J3FE3GC6/Zz/qep9AQSdkP1yGAUOUcL9JBkLdmCCQnks40JShsu1J
- qRpOxfn8awTHMZz4Kq5gTwbjCcIkLsXIsVrlkwJ4lmd4R0ojcXqtGUggL
- zZpZ69WogKleTrZOBa8Gpcqa8Vq1F4roC5GQad9OIbNGrRrcRWbX16WU2 w==;
-X-CSE-ConnectionGUID: uhXT3Ws2SKCyHrZDTTL+vQ==
-X-CSE-MsgGUID: 9q3pJ7rWR5W3GF4SJlGeLg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11722"; a="77871410"
-X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="77871410"
+ bh=3ofEo5bG8KYNyWPizhORO2e0SFfm9K8oT+kar0uiN90=;
+ b=iiFZSiKxClTZXB3au8zBY7Q13ZkRuNj1kKqSFx93PQR//Fuku4SY8JQE
+ Ng8++nbRxiZ+FpsbqPUB+xG0wwURs3Kjti5MDrojTiw0kZN+OjZ0arY3n
+ MP55nCsbbXvLgYae5A8TxLXNSZK5Oy+jM5orYYnWy0Ir2s7KhJqMP5ibK
+ bhHSm7W+BrLgc7vLgROSieS5WwbLp72oBGiKXzwOohSF5y8QdhPdNiSh5
+ ucVEtGax1t1bgAccCR3QKkos0/GHRIRZiHU2bXm+167m90SLkRiRcUfdq
+ 7WyqXi0UooyHcv5n2C0x5ZuiwBy6LhJ1I/DzG+UBli9+XoVJlg5ctzgWX w==;
+X-CSE-ConnectionGUID: CvA7yzkjRMyN65riTUJLXA==
+X-CSE-MsgGUID: venqafGURp2Xml8fMZ9aIw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11722"; a="77871408"
+X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="77871408"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2026 06:25:15 -0700
-X-CSE-ConnectionGUID: PNQpiOuoRMOzqt94rYzOYw==
-X-CSE-MsgGUID: qWgHrS1fS6qNdHMNKCbvNw==
+ 08 Mar 2026 06:25:13 -0700
+X-CSE-ConnectionGUID: fzUtHyVYQeOMsaSlfSGcwA==
+X-CSE-MsgGUID: YGk5u7fbSAOHMf9yXQvPAw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="217598195"
+X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="217598185"
 Received: from administrator-system-product-name.igk.intel.com (HELO
  dev-417.igk.intel.com) ([10.91.214.181])
- by fmviesa008.fm.intel.com with ESMTP; 08 Mar 2026 06:25:14 -0700
+ by fmviesa008.fm.intel.com with ESMTP; 08 Mar 2026 06:25:11 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [RFC v1 11/11] drm/i915/mtl: add V/P Override support for mtl+
-Date: Sun,  8 Mar 2026 14:24:46 +0100
-Message-ID: <20260308132446.3320848-12-michal.grzelak@intel.com>
+Subject: [RFC v1 09/11] drm/i915/xe3p: add V/P Override support for xe3p
+Date: Sun,  8 Mar 2026 14:24:44 +0100
+Message-ID: <20260308132446.3320848-10-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260308132446.3320848-1-michal.grzelak@intel.com>
 References: <20260308132446.3320848-1-michal.grzelak@intel.com>
@@ -71,11 +71,10 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Add macros to reflect the layout of vswing/preemphasis override tables
-for mtl. Add separate macros for C10 & C20.
+for xe3p.
 
-Add separate intel_ddi_buf_trans_entry to be overridden for mtl onward.
-Set & return it when port requests to override default table. Use same
-setter for both C10 & C20 cases.
+Add separate intel_ddi_buf_trans_entry to be overridden for xe3plpd.
+Set & return it when port requests to override default table.
 
 Set the value by extracting the lowest byte from entry from the table.
 
@@ -83,157 +82,165 @@ There are no changes to intel_ddi_dp_level() since selection of correct
 row of intel_ddi_buf_trans_entry is same as when no override request has
 been done.
 
+Add FIXME & warning when EDP is requested to be overridden.
+
+beware of endianness:
+during VBT parsing, u32's were split into u8;
+read u32 from selected row to restore it;
+windows assumes u8, so extract the lowest byte.
+
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- .../drm/i915/display/intel_ddi_buf_trans.c    | 99 ++++++++++++++++++-
- 1 file changed, 96 insertions(+), 3 deletions(-)
+ .../drm/i915/display/intel_ddi_buf_trans.c    | 102 +++++++++++++++++-
+ 1 file changed, 99 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index 1b30c9888f95..7798320a4968 100644
+index 528a0ccfe8a2..632a5fe08381 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
 +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -12,6 +12,17 @@
+@@ -12,6 +12,16 @@
  #include "intel_dp.h"
  #include "intel_lt_phy.h"
  
-+#define MTL_C10_VS_PE_DP14_RBR_HBR 0
-+#define MTL_C10_VS_PE_DP14_HBR2_HBR3 1
-+#define MTL_C10_VS_PE_EDP_NON_HBR3 2
-+#define MTL_C10_VS_PE_EDP_HBR3 3
++#define XE3P_VS_PE_EDP 3
++#define XE3P_VS_PE_DP14 4
++#define XE3P_VS_PE_DP21 5
 +
-+#define MTL_C20_VS_PE_DP14 4
-+#define MTL_C20_VS_PE_DP20 5
++#define XE3P_VS_PE_COL 5
++#define XE3P_VS_PE_ROW 16
 +
-+#define MTL_CX0_VS_PE_COL 3
-+#define MTL_CX0_VS_PE_ROW 16
++#define VS_PE_MASK 0x000000ff
 +
- #define XE3P_VS_PE_EDP 3
- #define XE3P_VS_PE_DP14 4
- #define XE3P_VS_PE_DP21 5
-@@ -1109,6 +1120,25 @@ static const union intel_ddi_buf_trans_entry _mtl_c20_trans_hdmi[] = {
- 	{ .snps = { 32, 4, 12 } },      /* preset 4 */
++#define LOW(x) ((x) & (VS_PE_MASK))
+ /* HDMI/DVI modes ignore everything but the last 2 items. So we share
+  * them for both DP and FDI transports, allowing those ports to
+  * automatically adapt to HDMI connections as well
+@@ -1164,6 +1174,25 @@ static const union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_edp[] = {
+ 	{ .lt = { 26, 0, 0, 1, 3 } },
  };
  
-+static union intel_ddi_buf_trans_entry _mtl_cx0_trans_override[] = {
-+	{ .snps = { 0, 0, 0 } },
-+	{ .snps = { 0, 0, 0 } },
-+	{ .snps = { 0, 0, 0 } },
-+	{ .snps = { 0, 0, 0 } },
-+	{ .snps = { 0, 0, 0 } },
-+	{ .snps = { 0, 0, 0 } },
-+	{ .snps = { 0, 0, 0 } },
-+	{ .snps = { 0, 0, 0 } },
-+	{ .snps = { 0, 0, 0 } },
-+	{ .snps = { 0, 0, 0 } },
-+	{ .snps = { 0, 0, 0 } },
-+	{ .snps = { 0, 0, 0 } },
-+	{ .snps = { 0, 0, 0 } },
-+	{ .snps = { 0, 0, 0 } },
-+	{ .snps = { 0, 0, 0 } },
-+	{ .snps = { 0, 0, 0 } },
++static union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_override[] = {
++	{ .lt = { 0, 0, 0, 0, 0 } },
++	{ .lt = { 0, 0, 0, 0, 0 } },
++	{ .lt = { 0, 0, 0, 0, 0 } },
++	{ .lt = { 0, 0, 0, 0, 0 } },
++	{ .lt = { 0, 0, 0, 0, 0 } },
++	{ .lt = { 0, 0, 0, 0, 0 } },
++	{ .lt = { 0, 0, 0, 0, 0 } },
++	{ .lt = { 0, 0, 0, 0, 0 } },
++	{ .lt = { 0, 0, 0, 0, 0 } },
++	{ .lt = { 0, 0, 0, 0, 0 } },
++	{ .lt = { 0, 0, 0, 0, 0 } },
++	{ .lt = { 0, 0, 0, 0, 0 } },
++	{ .lt = { 0, 0, 0, 0, 0 } },
++	{ .lt = { 0, 0, 0, 0, 0 } },
++	{ .lt = { 0, 0, 0, 0, 0 } },
++	{ .lt = { 0, 0, 0, 0, 0 } },
 +};
 +
- static const struct intel_ddi_buf_trans mtl_c20_trans_hdmi = {
- 	.entries = _mtl_c20_trans_hdmi,
- 	.num_entries = ARRAY_SIZE(_mtl_c20_trans_hdmi),
-@@ -1126,6 +1156,11 @@ static const struct intel_ddi_buf_trans mtl_c20_trans_uhbr = {
- 	.num_entries = ARRAY_SIZE(_mtl_c20_trans_uhbr),
+ static const struct intel_ddi_buf_trans xe3plpd_lt_trans_dp14 = {
+ 	.entries = _xe3plpd_lt_trans_dp14,
+ 	.num_entries = ARRAY_SIZE(_xe3plpd_lt_trans_dp14),
+@@ -1179,11 +1208,29 @@ static const struct intel_ddi_buf_trans xe3plpd_lt_trans_edp = {
+ 	.num_entries = ARRAY_SIZE(_xe3plpd_lt_trans_edp),
  };
  
-+static struct intel_ddi_buf_trans mtl_cx0_trans_override = {
-+	.entries = _mtl_cx0_trans_override,
-+	.num_entries = ARRAY_SIZE(_mtl_cx0_trans_override),
++static struct intel_ddi_buf_trans xe3plpd_lt_trans_override = {
++	.entries = _xe3plpd_lt_trans_override,
++	.num_entries = ARRAY_SIZE(_xe3plpd_lt_trans_override),
 +};
 +
- /* DP1.4 */
- static const union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_dp14[] = {
- 	{ .lt = { 21, 0, 0 , 1, 0 } },
-@@ -1815,11 +1850,60 @@ dg2_get_snps_buf_trans(struct intel_encoder *encoder,
- 		return intel_get_buf_trans(&dg2_snps_trans, n_entries);
+ bool is_hobl_buf_trans(const struct intel_ddi_buf_trans *table)
+ {
+ 	return table == &tgl_combo_phy_trans_edp_hbr2_hobl;
+ }
+ 
++static const u32 *find_row(const u32 *tables,
++			   int idx,
++			   int row,
++			   int row_no,
++			   int col_no)
++{
++	size_t ent_sz = sizeof(*tables);
++	size_t row_sz = col_no * ent_sz;
++	size_t tbl_sz = row_no * row_sz;
++	size_t offset = idx * tbl_sz + row * row_sz;
++	return &tables[offset];
++}
++
+ static bool intel_dp_above_hbr1(const struct intel_crtc_state *crtc_state)
+ {
+ 	if (crtc_state->port_clock > 270000)
+@@ -1785,17 +1832,66 @@ mtl_get_c20_buf_trans(struct intel_encoder *encoder,
+ 		return intel_get_buf_trans(&mtl_c20_trans_dp14, n_entries);
  }
  
 +static const struct intel_ddi_buf_trans *
-+mtl_set_cx0_buf_trans(struct intel_encoder *encoder,
-+		      int idx,
-+		      int *n_entries)
++xe3plpd_set_lt_buf_trans(struct intel_encoder *encoder,
++			 int idx,
++			 int *n_entries)
 +{
 +	struct intel_display *display = to_intel_display(encoder);
-+	struct intel_ddi_buf_trans *buf_trans = &mtl_cx0_trans_override;
++	struct intel_ddi_buf_trans *buf_trans = &xe3plpd_lt_trans_override;
 +	union intel_ddi_buf_trans_entry *entries, *entry;
 +	const u32 *tables = display->vbt.override_vswing;
 +	const u32 *vals;
 +
 +	entries = (union intel_ddi_buf_trans_entry *) buf_trans->entries;
-+	for (int row = 0; row < MTL_CX0_VS_PE_ROW; row++) {
++	for (int row = 0; row < XE3P_VS_PE_ROW; row++) {
 +		entry = &entries[row];
 +		vals = find_row(tables,
 +				idx,
 +				row,
-+				MTL_CX0_VS_PE_ROW,
-+				MTL_CX0_VS_PE_COL);
++				XE3P_VS_PE_ROW,
++				XE3P_VS_PE_COL);
 +
-+		entry->snps.vswing = LOW(vals[0]);
-+		entry->snps.pre_cursor = LOW(vals[1]);
-+		entry->snps.post_cursor = LOW(vals[2]);
++		entry->lt.main_cursor = LOW(vals[0]);
++		entry->lt.pre_cursor = LOW(vals[1]);
++		entry->lt.post_cursor = LOW(vals[2]);
++		entry->lt.txswing = LOW(vals[3]);
++		entry->lt.txswing_level = LOW(vals[4]);
 +	}
 +
-+	return intel_get_buf_trans(&mtl_cx0_trans_override, n_entries);
++	return intel_get_buf_trans(&xe3plpd_lt_trans_override, n_entries);
 +}
 +
  static const struct intel_ddi_buf_trans *
- mtl_get_c10_buf_trans(struct intel_encoder *encoder,
- 		      const struct intel_crtc_state *crtc_state,
- 		      int *n_entries)
- {
-+	if (intel_bios_encoder_overrides_vswing(encoder->devdata)) {
-+		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP)) {
-+			if (intel_dp_above_hbr1(crtc_state))
-+				return mtl_set_cx0_buf_trans(encoder,
-+							     MTL_C10_VS_PE_DP14_HBR2_HBR3,
-+							     n_entries);
-+			else
-+				return mtl_set_cx0_buf_trans(encoder,
-+							     MTL_C10_VS_PE_DP14_RBR_HBR,
-+							     n_entries);
-+		} else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)){
-+			if (intel_edp_above_hbr2(crtc_state))
-+				return mtl_set_cx0_buf_trans(encoder,
-+							     MTL_C10_VS_PE_EDP_HBR3,
-+							     n_entries);
-+			else
-+				return mtl_set_cx0_buf_trans(encoder,
-+							     MTL_C10_VS_PE_EDP_NON_HBR3,
-+							     n_entries);
-+		}
-+	}
- 	return intel_get_buf_trans(&mtl_c10_trans_dp14, n_entries);
- }
- 
-@@ -1828,12 +1912,21 @@ mtl_get_c20_buf_trans(struct intel_encoder *encoder,
- 		      const struct intel_crtc_state *crtc_state,
- 		      int *n_entries)
+ xe3plpd_get_lt_buf_trans(struct intel_encoder *encoder,
+ 			 const struct intel_crtc_state *crtc_state,
+ 			 int *n_entries)
  {
 -	if (intel_crtc_has_dp_encoder(crtc_state) && intel_dp_is_uhbr(crtc_state))
 +	if (intel_crtc_has_dp_encoder(crtc_state) && intel_dp_is_uhbr(crtc_state)) {
 +		if (intel_bios_encoder_overrides_vswing(encoder->devdata))
-+			return mtl_set_cx0_buf_trans(encoder,
-+						     MTL_C20_VS_PE_DP20,
-+						     n_entries);
- 		return intel_get_buf_trans(&mtl_c20_trans_uhbr, n_entries);
--	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
-+	} else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
- 		return intel_get_buf_trans(&mtl_c20_trans_hdmi, n_entries);
++			return xe3plpd_set_lt_buf_trans(encoder,
++							XE3P_VS_PE_DP21,
++							n_entries);
+ 		return intel_get_buf_trans(&xe3plpd_lt_trans_uhbr, n_entries);
+-	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP))
++	} else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
++		 /* FIXME need to check correct parsing & table index should
++		 * this ever trigger.
++		 * return xe3plpd_set_lt_buf_trans(encoder,
++		 * 				   XE3P_VS_PE_EDP,
++		 *				   n_entries);
++		 */
++		drm_WARN(to_intel_display(encoder)->drm,
++			 intel_bios_encoder_overrides_vswing(encoder->devdata),
++			 "Port %s asks to override EDP's vswing/preemph tables\n",
++			 port_name(intel_bios_encoder_port(encoder->devdata)));
+ 		return intel_get_buf_trans(&xe3plpd_lt_trans_edp, n_entries);
 -	else
 +	} else {
 +		if (intel_bios_encoder_overrides_vswing(encoder->devdata))
-+			return mtl_set_cx0_buf_trans(encoder,
-+						     MTL_C20_VS_PE_DP14,
-+						     n_entries);
- 		return intel_get_buf_trans(&mtl_c20_trans_dp14, n_entries);
++			return xe3plpd_set_lt_buf_trans(encoder,
++							XE3P_VS_PE_DP14,
++							n_entries);
+ 		return intel_get_buf_trans(&xe3plpd_lt_trans_dp14, n_entries);
 +	}
  }
  
- static const struct intel_ddi_buf_trans *
+ void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
 -- 
 2.45.2
 
