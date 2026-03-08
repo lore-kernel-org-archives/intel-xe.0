@@ -4,88 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7F8BFCA180
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C0D2FCA181
 	for <intel-xe@archiver.kernel.org>; Mon,  9 Mar 2026 18:56:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5A6810E596;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFAFB10E59A;
 	Mon,  9 Mar 2026 18:56:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=sotapeli.fi header.i=@sotapeli.fi header.b="qDJ/fbpR";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="o3hp+eSM";
 	dkim-atps=neutral
-X-Greylist: delayed 391 seconds by postgrey-1.36 at gabe;
- Sun, 08 Mar 2026 18:33:25 UTC
-Received: from se.sotapeli.fi (se.sotapeli.fi [206.168.212.219])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC92610E06D
- for <intel-xe@lists.freedesktop.org>; Sun,  8 Mar 2026 18:33:25 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 38592181AA07; Sun,  8 Mar 2026 19:26:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sotapeli.fi; s=dkim;
- t=1772994412; h=from:subject:date:message-id:to:mime-version:content-type:
- content-transfer-encoding:content-language:in-reply-to:references:autocrypt;
- bh=N5dCOjSWAkxO9DN4gtCxteG7R4ZfjxfQTi9PJmI9Jj4=;
- b=qDJ/fbpRMDy1mVvL9UCCpugY2hp8KurePTJv+j3oM6TIgpSNyHxlspozTQKVgP5i28Km6X
- 89a3+0DMedZl2JnNEA+absdWKz1aSwxDEinf0XSK5pOhHNQl1XAd9ro/rECnU1dYXvsl/S
- KPlti/UWCgVmq5b9x79m9em9E/vyy6b/HSSiHKTJNYGy4VKoADUgYfIuG8l2hCnLpKDzJa
- ONM2ueN1qwITjKC0M2Pu6y2agCzJmofAX3MxBdB+x+l6Y+Cwy33Q12kH+9I1zjg6RrRBEV
- 80xjL4vkwc20ctQ+9eXZR6MW44a3aMGlCUO4PrhWwPDy97WUMSJuTwHOOdV/rA==
-Message-ID: <473f5ef9-d8d1-46b0-a145-dd278ac4e9cb@sotapeli.fi>
-Date: Sun, 8 Mar 2026 20:26:44 +0200
+Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com
+ [148.163.158.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 129E010E06E
+ for <intel-xe@lists.freedesktop.org>; Sun,  8 Mar 2026 22:54:21 +0000 (UTC)
+Received: from pps.filterd (m0356516.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 628MF1lU1527158; Sun, 8 Mar 2026 22:54:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+ :content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:sender:subject:to; s=pp1;
+ bh=pH7xO9uh+VKhfiZB0WjQ91+mVFhzbRfV5Z5ktd6zwJg=; b=o3hp+eSM6igl
+ M0/aoX29+r7rAly1jb6oExN2f4PmKidXMj95ifGt/wJcdoYO8XfvkXVj4bkzbRmN
+ v7tAJ/cSlz8ViieuKs58ucRAEWySIxFJWRSGhKNbP6BzCRVTu2Vetp1bU5kBfIh2
+ lhsV3hg7QNBWvyVCXoqdiZzLIpd8zj4SPxxYDyLwmOwu+TxLH3odNZdeXch4YtSh
+ 2Ege1jd/sR5letpH34q/C5UL2hvQjJRjo+nqgkS/u3paMiTBYaI1TNXrKlTnzD9I
+ rFEU7GL/4kvmDxQy1j5saNn1eGX72be6Z2E9PGy7NWUfS4l2+45+OsYDBso4hUma
+ 1VM9cJK9JQ==
+Received: from ppma12.dal12v.mail.ibm.com
+ (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4crcun49ah-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Sun, 08 Mar 2026 22:54:18 +0000 (GMT)
+Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
+ by ppma12.dal12v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 628KERFe021181;
+ Sun, 8 Mar 2026 22:54:17 GMT
+Received: from smtprelay02.fra02v.mail.ibm.com ([9.218.2.226])
+ by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 4crxbsjx3a-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Sun, 08 Mar 2026 22:54:17 +0000
+Received: from smtpav07.fra02v.mail.ibm.com (smtpav07.fra02v.mail.ibm.com
+ [10.20.54.106])
+ by smtprelay02.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 628MsBI852166984
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Sun, 8 Mar 2026 22:54:11 GMT
+Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 287822004B;
+ Sun,  8 Mar 2026 22:54:11 +0000 (GMT)
+Received: from smtpav07.fra02v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 0CBC320043;
+ Sun,  8 Mar 2026 22:54:11 +0000 (GMT)
+Received: from p1gen4-pw042f0m (unknown [9.111.6.17])
+ by smtpav07.fra02v.mail.ibm.com (Postfix) with ESMTPS;
+ Sun,  8 Mar 2026 22:54:11 +0000 (GMT)
+Received: from bblock by p1gen4-pw042f0m with local (Exim 4.99.1)
+ (envelope-from <bblock@linux.ibm.com>) id 1vzN0k-00000001z6J-1YeB;
+ Sun, 08 Mar 2026 23:54:10 +0100
+Date: Sun, 8 Mar 2026 23:54:10 +0100
+From: Benjamin Block <bblock@linux.ibm.com>
+To: "Ionut Nechita (Wind River)" <ionut.nechita@windriver.com>
+Cc: linux-pci@vger.kernel.org, bhelgaas@google.com, helgaas@kernel.org,
+ sebott@linux.ibm.com, schnelle@linux.ibm.com, alifm@linux.ibm.com,
+ julianr@linux.ibm.com, dtatulea@nvidia.com, mani@kernel.org,
+ lukas@wunner.de, kbusch@kernel.org, ionut_n2001@yahoo.com,
+ sunlightlinux@gmail.com, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v7 1/1] PCI/IOV: Make pci_lock_rescan_remove() reentrant
+ and protect sriov_add_vfs/sriov_del_vfs
+Message-ID: <20260308225410.GA46248@p1gen4-pw042f0m.fritz.box>
+References: <20260308135352.80346-1-ionut.nechita@windriver.com>
+ <20260308135352.80346-2-ionut.nechita@windriver.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Few bugs with Arc B570
-To: "Lin, Shuicheng" <shuicheng.lin@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-References: <12d4e567-0592-42d1-af84-a8b079b33785@sotapeli.fi>
- <DM4PR11MB5456CD6BBFF05C5DE68D10B6EAD5A@DM4PR11MB5456.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Jani Partanen <jiipee@sotapeli.fi>
-Autocrypt: addr=jiipee@sotapeli.fi; keydata=
- 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
-In-Reply-To: <DM4PR11MB5456CD6BBFF05C5DE68D10B6EAD5A@DM4PR11MB5456.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260308135352.80346-2-ionut.nechita@windriver.com>
+X-TM-AS-GCONF: 00
+X-Proofpoint-Reinject: loops=2 maxloops=12
+X-Proofpoint-GUID: VaNGpKzTEXBQKq63s8HD3H9MOS_tLkMe
+X-Authority-Analysis: v=2.4 cv=Hp172kTS c=1 sm=1 tr=0 ts=69adfe1a cx=c_pps
+ a=bLidbwmWQ0KltjZqbj+ezA==:117 a=bLidbwmWQ0KltjZqbj+ezA==:17
+ a=8nJEP1OIZ-IA:10 a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=RnoormkPH1_aCDwRdu11:22 a=Y2IxJ9c9Rs8Kov3niI8_:22 a=VnNF1IyMAAAA:8
+ a=VwQbUJbxAAAA:8 a=CjxXgO3LAAAA:8 a=t7CeM3EgAAAA:8 a=xHlSXgK-8sZQpV_rmxkA:9
+ a=3ZKOabzyN94A:10 a=wPNLvfGTeEIA:10 a=FdTzh2GWekK77mhwV6Dw:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzA4MDIwOSBTYWx0ZWRfX/eETzeq5+IeY
+ n50QTQua5VQWv7a9fD89PRPztZYLxyq/a964aAWjldgrtahbHqB0ZcBP+4xNyaYimUDjNmyHgWo
+ h0Ndg/wuedkfW3pAddikRLKA0vmXieZ5Sachvn7jetJ/YyO6TEd2aP1l7xsB6MZIAP6MOeNtLir
+ K6ltzIQXUmt+aLsKAP4mlCjBvWov/Nlok4u8NqRiSm05a2X492mtf4GXiqCPdFhntCMfDmGceUJ
+ 1njtKzNgc17HO2aKTagJeFDY/PW1UaEPI5n3qUy9oZsw8Swr1FZ0pg1aCsj3s+zfT7Ezn+tpn1e
+ k/2k3MlXls9utlwEWAEdOPpE/t9YPdv3z5D64OyfDLQPQRqNw1EXtkHyfEBl9ugy1Y7SmSzhH/s
+ JY8F1vxd2yyC2vqcRBirmNWhMRsR5T4kQLml81JPOTy36Q0HVUR0cUhWHquaDc3UJEeDDjbXJys
+ jtJ4AEmyi+Emj/rcotA==
+X-Proofpoint-ORIG-GUID: Dp_Q7a3nFw8xJ82YVL7swqNSBsTqmuVs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-08_06,2026-03-06_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 adultscore=0 malwarescore=0 impostorscore=0 suspectscore=0
+ spamscore=0 phishscore=0 clxscore=1015 priorityscore=1501 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603080209
 X-Mailman-Approved-At: Mon, 09 Mar 2026 18:55:56 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -101,38 +119,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 21/11/2025 18.47, Lin, Shuicheng wrote:
+On Sun, Mar 08, 2026 at 03:53:52PM +0200, Ionut Nechita (Wind River) wrote:
+> After reverting commit 05703271c3cd ("PCI/IOV: Add PCI rescan-remove
+> locking when enabling/disabling SR-IOV") and moving the lock to
+> sriov_numvfs_store(), the path through driver .remove() (e.g. rmmod,
+> or manual unbind) that calls pci_disable_sriov() directly remains
+> unprotected against concurrent hotplug events. This affects any SR-IOV
+> capable driver that calls pci_disable_sriov() from its .remove()
+> callback (i40e, ice, mlx5, bnxt, etc.).
+> 
+> On s390, platform-generated hot-unplug events for VFs can race with
+> sriov_del_vfs() when a PF driver is being unloaded. The platform event
+> handler takes pci_rescan_remove_lock, but sriov_del_vfs() does not,
+> leading to double removal and list corruption.
+> 
+> We cannot use a plain mutex_lock() here because sriov_del_vfs() may also
+> be called from paths that already hold pci_rescan_remove_lock (e.g.
+> remove_store -> pci_stop_and_remove_bus_device_locked, or
+> sriov_numvfs_store with the lock taken by the previous patch). Using
+> mutex_lock() in those cases would deadlock.
+> 
+> Make pci_lock_rescan_remove() itself reentrant using mutex_get_owner()
+> and a reentrant depth counter, as suggested by Lukas Wunner and
+> Benjamin Block, since these recursive locking scenarios exist elsewhere
+> in the PCI subsystem:
+>  - If the lock is already held by the current task (checked via
+>    mutex_get_owner()): increments the reentrant counter and returns
+>    without re-acquiring, avoiding deadlock.
+>  - If the lock is held by another task: blocks until the lock is
+>    released, providing complete serialization.
+>  - If the lock is not held: acquires the mutex normally.
+> 
+> pci_unlock_rescan_remove() decrements the reentrant counter if it is
+> non-zero, otherwise releases the mutex.
+> 
+> This approach keeps the API unchanged: callers simply pair lock/unlock
+> calls without needing to track any return value or use separate
+> reentrant variants.
+> 
+> Add pci_lock_rescan_remove()/pci_unlock_rescan_remove() calls to
+> sriov_add_vfs() and sriov_del_vfs() to protect VF addition and
+> removal against concurrent hotplug events.
+> 
+> Fixes: 18f9e9d150fc ("PCI/IOV: Factor out sriov_add_vfs()")
+> Cc: stable@vger.kernel.org
+> Suggested-by: Lukas Wunner <lukas@wunner.de>
+> Suggested-by: Benjamin Block <bblock@linux.ibm.com>
+> Signed-off-by: Ionut Nechita <ionut_n2001@yahoo.com>
+> Signed-off-by: Ionut Nechita <ionut.nechita@windriver.com>
+> ---
+>  drivers/pci/iov.c   |  5 +++++
+>  drivers/pci/probe.c | 11 +++++++++--
+>  2 files changed, 14 insertions(+), 2 deletions(-)
+
+Looks good to me. Also, I ran tests with this in our test lab (s390).
 
 
->> I am also seeing this, but sadly this always happens at time when I am
->> not front of computer so dump gets trashed. I have not figured out how I
->> could change timeout from 1h to something else. I have seen this on
->> stock kernel also.
->>
->>
->> [213377.351299] xe 0000:0e:00.0: [drm] GT0: Engine reset:
->> engine_class=rcs, logical_mask: 0x1, guc_id=109
->> [213377.351361] xe 0000:0e:00.0: [drm] GT0: Timedout job: seqno=7579,
->> lrc_seqno=7579, guc_id=109, flags=0x0 in zenity [306155]
->> [213377.403140] xe 0000:0e:00.0: [drm] Xe device coredump has been created
->> [213377.403145] xe 0000:0e:00.0: [drm] Check your
->> /sys/class/drm/card1/device/devcoredump/data
->> [217090.855547] xe 0000:0e:00.0: [drm] Xe device coredump has been deleted.
->>
-> It seems like engine hang and lead to engine reset. And the data file could help provide more info when issue occurs.
->
-> The 1h timeout is defined as below in the code.
-> /* 1 hour timeout */
-> #define XE_COREDUMP_TIMEOUT_JIFFIES (60 * 60 * HZ)
+Reviewed-by: Benjamin Block <bblock@linux.ibm.com>
+Tested-by: Benjamin Block <bblock@linux.ibm.com>
 
+Thanks.
 
-I finaly got coredump from this! Reason it took so long time, is that I 
-use GUI only rarely on that machine, it's mostly acting as my NAS. But 
-dump can be found here:
-
-https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6639
-
-
-// Jani
-
-
+-- 
+Best Regards, Benjamin Block        /        Linux on IBM Z Kernel Development
+IBM Deutschland Research & Development GmbH    /   https://www.ibm.com/privacy
+Vors. Aufs.-R.: Wolfgang Wendt         /        Geschäftsführung: David Faller
+Sitz der Ges.: Ehningen     /     Registergericht: AmtsG Stuttgart, HRB 243294
