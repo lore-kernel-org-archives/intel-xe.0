@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30835F5513F
-	for <intel-xe@archiver.kernel.org>; Sun,  8 Mar 2026 13:58:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73D74F55139
+	for <intel-xe@archiver.kernel.org>; Sun,  8 Mar 2026 13:58:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBB4E10E0B0;
-	Sun,  8 Mar 2026 13:58:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 07C0410E01F;
+	Sun,  8 Mar 2026 13:58:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dYwmSpOQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DMe/Aqxl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 071FA10E0B0
- for <intel-xe@lists.freedesktop.org>; Sun,  8 Mar 2026 13:58:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E22CC10E01F
+ for <intel-xe@lists.freedesktop.org>; Sun,  8 Mar 2026 13:58:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772978295; x=1804514295;
+ t=1772978299; x=1804514299;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/n32fiZnD85HByndlWmseu3Eual3JzKdaiM/KBTj5Qk=;
- b=dYwmSpOQN9eVAYOEpCkXo2m7sVfU1kEZwMfjoKIYUVjf68suQc54+TUa
- J4WU0p3Ixe7b98fALJVErtwf19gwAmrqmOBOnfVDD7pIPAsl5Z4GSeU55
- /JDhAk0QQIaL2VQk4EMH6m+RIyx0kExfdOpnhd1syz7ECtbRtPilccnZm
- YLtK0ktLeCxIReDwr+Oce8aad6oTj09i+NTDxoa0gyuxQOGYIXhmJIKhK
- Y/ciOuURghM+kJCehUCpxr7PeOxoKOOhvtTT3v2no3IuKreYKqEfyjyJ1
- oGWfkm4mYHjEzDv7JLq1ekbRHikLC6ZHuSKEBL+LMJ9QBYAdnioJYAICB Q==;
-X-CSE-ConnectionGUID: E1hDf5I4RQ6b4uvPGew2Qw==
-X-CSE-MsgGUID: lsNPlbv+SBe1OJaBkMHt3Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11722"; a="73934702"
-X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="73934702"
+ bh=20bKTnwkbIE9be+HF2Rr6fK/1kWkccYCJ2EMFT0TAyM=;
+ b=DMe/Aqxl3kCcE8a70DR0Rg/nUiv7fnzy2CFuGKG2M1nGOr0PcmClYdBD
+ SXNU30AZyv3HN7cx7SOpRHnrvfWkQQRK3KX90TCCcJBURjLIYVG6uk4UB
+ WNwqI6RFq+ix9HksWVTHVPDbfs2tJA02gquZXt7lVJsFFJvwGNvvaU2oa
+ ytfsW9S1TrG7eY/eQBv/8JVjNaiOyRixbC8fm7vWn07NKL78oscohThUh
+ dyxtPLAeX1DXxc+BIl+EXyYIzHjLbE99EAYSl5IlbkTi7uUmnCKdYKi6v
+ NGx9AseHSlHy4uHHx9HMhvdr3ESfO2J+ropiURAo7Rb+cUPvZcXG2ekmQ Q==;
+X-CSE-ConnectionGUID: 3BGkY6BdSP+f7qsAIw/q0A==
+X-CSE-MsgGUID: e2cD4kucSNCibBM/rU9KHA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11722"; a="73934706"
+X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="73934706"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2026 06:58:15 -0700
-X-CSE-ConnectionGUID: c6kOyP/ORxSAIggd2aL6WQ==
-X-CSE-MsgGUID: oujfvv2gRRqDxdzc84cS5A==
+ 08 Mar 2026 06:58:19 -0700
+X-CSE-ConnectionGUID: 9qOxYBAMQ9Kjy7dSKQR74g==
+X-CSE-MsgGUID: a6bh4IegTPesgS2dHdPDVg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="242523275"
+X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="242523282"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa002.fm.intel.com with ESMTP; 08 Mar 2026 06:58:11 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 08 Mar 2026 06:58:15 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
@@ -48,9 +48,9 @@ Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
  michal.winiarski@intel.com, matthew.auld@intel.com, maarten@lankhorst.se,
  jani.nikula@intel.com, lukasz.laguna@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v3 03/10] drm/xe/guc_submit: Support cancelling submission
-Date: Sun,  8 Mar 2026 19:25:29 +0530
-Message-ID: <20260308135536.3852304-4-raag.jadav@intel.com>
+Subject: [PATCH v3 04/10] drm/xe/gt: Introduce FLR helpers
+Date: Sun,  8 Mar 2026 19:25:30 +0530
+Message-ID: <20260308135536.3852304-5-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260308135536.3852304-1-raag.jadav@intel.com>
 References: <20260308135536.3852304-1-raag.jadav@intel.com>
@@ -70,101 +70,253 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In preparation of usecases which require cancelling submission before
-PCIe FLR, introduce xe_guc_submit_cancel() helper. This cancels and
-frees any in-flight jobs on the scheduler.
+In preparation of usecases which require preparing/re-initializing GT and
+all its uCs before/after PCIe FLR, introduce flr_prepare/done() helpers.
 
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 ---
-v3: Cancel in-flight jobs before FLR
+v2: Add kernel doc (Matthew Brost)
 ---
- drivers/gpu/drm/xe/xe_gpu_scheduler.c | 11 +++++++++++
- drivers/gpu/drm/xe/xe_gpu_scheduler.h |  1 +
- drivers/gpu/drm/xe/xe_guc_submit.c    | 24 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_submit.h    |  1 +
- 4 files changed, 37 insertions(+)
+ drivers/gpu/drm/xe/xe_gsc.c | 14 ++++++++++++++
+ drivers/gpu/drm/xe/xe_gsc.h |  1 +
+ drivers/gpu/drm/xe/xe_gt.c  | 22 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt.h  |  2 ++
+ drivers/gpu/drm/xe/xe_guc.c | 23 +++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_guc.h |  2 ++
+ drivers/gpu/drm/xe/xe_huc.c | 14 ++++++++++++++
+ drivers/gpu/drm/xe/xe_huc.h |  1 +
+ drivers/gpu/drm/xe/xe_uc.c  | 36 ++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_uc.h  |  2 ++
+ 10 files changed, 117 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-index 9c8004d5dd91..c012dbe84540 100644
---- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-+++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-@@ -90,6 +90,17 @@ void xe_sched_fini(struct xe_gpu_scheduler *sched)
- 	drm_sched_fini(&sched->base);
- }
- 
-+void xe_sched_submission_cancel(struct xe_gpu_scheduler *sched)
-+{
-+	struct drm_gpu_scheduler *base = &sched->base;
-+	struct drm_sched_job *job, *tmp;
-+
-+	list_for_each_entry_safe_reverse(job, tmp, &base->pending_list, list) {
-+		list_del(&job->list);
-+		base->ops->free_job(job);
-+	}
-+}
-+
- void xe_sched_submission_start(struct xe_gpu_scheduler *sched)
- {
- 	drm_sched_wqueue_start(&sched->base);
-diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-index 664c2db56af3..ba7892db8428 100644
---- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-+++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-@@ -19,6 +19,7 @@ int xe_sched_init(struct xe_gpu_scheduler *sched,
- 		  struct device *dev);
- void xe_sched_fini(struct xe_gpu_scheduler *sched);
- 
-+void xe_sched_submission_cancel(struct xe_gpu_scheduler *sched);
- void xe_sched_submission_start(struct xe_gpu_scheduler *sched);
- void xe_sched_submission_stop(struct xe_gpu_scheduler *sched);
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index de716c1fb18e..cba544cc185c 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -2399,6 +2399,30 @@ void xe_guc_submit_stop(struct xe_guc *guc)
- 
+diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
+index e5c234f3d795..452976c7a8e5 100644
+--- a/drivers/gpu/drm/xe/xe_gsc.c
++++ b/drivers/gpu/drm/xe/xe_gsc.c
+@@ -552,6 +552,20 @@ void xe_gsc_wait_for_worker_completion(struct xe_gsc *gsc)
+ 		flush_work(&gsc->work);
  }
  
 +/**
-+ * xe_guc_submit_cancel - Cancel all runs of submission tasks on given GuC.
-+ * @guc: the &xe_guc struct instance whose scheduler is to be cancelled
++ * xe_gsc_flr_done() - Re-initialize GSC firmware after FLR
++ * @gsc: The GSC object
++ *
++ * Returns: 0 on success, negative error code otherwise.
 + */
-+void xe_guc_submit_cancel(struct xe_guc *guc)
++int xe_gsc_flr_done(struct xe_gsc *gsc)
 +{
-+	struct xe_exec_queue *q;
-+	unsigned long index;
++	if (!xe_uc_fw_is_loadable(&gsc->fw))
++		return 0;
 +
-+	mutex_lock(&guc->submission_state.lock);
-+
-+	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
-+		struct xe_gpu_scheduler *sched = &q->guc->sched;
-+
-+		/* Prevent redundant attempts to cancel parallel queues */
-+		if (q->guc->id != index)
-+			continue;
-+
-+		xe_sched_submission_cancel(sched);
-+	}
-+
-+	mutex_unlock(&guc->submission_state.lock);
++	return xe_uc_fw_reinit(&gsc->fw);
 +}
 +
- static void guc_exec_queue_revert_pending_state_change(struct xe_guc *guc,
- 						       struct xe_exec_queue *q)
+ void xe_gsc_stop_prepare(struct xe_gsc *gsc)
  {
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
-index b3839a90c142..f361a6d32fd3 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.h
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.h
-@@ -16,6 +16,7 @@ int xe_guc_submit_init(struct xe_guc *guc, unsigned int num_ids);
- int xe_guc_submit_enable(struct xe_guc *guc);
- void xe_guc_submit_disable(struct xe_guc *guc);
+ 	struct xe_gt *gt = gsc_to_gt(gsc);
+diff --git a/drivers/gpu/drm/xe/xe_gsc.h b/drivers/gpu/drm/xe/xe_gsc.h
+index b8b8e0810ad9..8b7fd98f0be6 100644
+--- a/drivers/gpu/drm/xe/xe_gsc.h
++++ b/drivers/gpu/drm/xe/xe_gsc.h
+@@ -13,6 +13,7 @@ struct xe_gsc;
+ struct xe_gt;
+ struct xe_hw_engine;
  
-+void xe_guc_submit_cancel(struct xe_guc *guc);
- int xe_guc_submit_reset_prepare(struct xe_guc *guc);
- void xe_guc_submit_reset_wait(struct xe_guc *guc);
- void xe_guc_submit_stop(struct xe_guc *guc);
++int xe_gsc_flr_done(struct xe_gsc *gsc);
+ int xe_gsc_init(struct xe_gsc *gsc);
+ int xe_gsc_init_post_hwconfig(struct xe_gsc *gsc);
+ void xe_gsc_wait_for_worker_completion(struct xe_gsc *gsc);
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index f3bb856aad2a..f39f70bd40e0 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -949,6 +949,28 @@ void xe_gt_reset_async(struct xe_gt *gt)
+ 		xe_pm_runtime_put(gt_to_xe(gt));
+ }
+ 
++/**
++ * xe_gt_flr_prepare() - Prepare GT for FLR
++ * @gt: the GT object
++ *
++ * Prepare all GT uCs for FLR.
++ */
++void xe_gt_flr_prepare(struct xe_gt *gt)
++{
++	xe_uc_flr_prepare(&gt->uc);
++}
++
++/**
++ * xe_gt_flr_done() - Re-initialize GT after FLR
++ * @gt: the GT object
++ *
++ * Returns: 0 on success, negative error code otherwise.
++ */
++int xe_gt_flr_done(struct xe_gt *gt)
++{
++	return xe_uc_flr_done(&gt->uc);
++}
++
+ void xe_gt_suspend_prepare(struct xe_gt *gt)
+ {
+ 	CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index de7e47763411..5e6e4eb09efe 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -63,6 +63,8 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt);
+  */
+ void xe_gt_record_user_engines(struct xe_gt *gt);
+ 
++int xe_gt_flr_done(struct xe_gt *gt);
++void xe_gt_flr_prepare(struct xe_gt *gt);
+ void xe_gt_suspend_prepare(struct xe_gt *gt);
+ int xe_gt_suspend(struct xe_gt *gt);
+ void xe_gt_shutdown(struct xe_gt *gt);
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index e75653a5e797..768671dfa127 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -1656,6 +1656,29 @@ void xe_guc_sanitize(struct xe_guc *guc)
+ 	xe_guc_submit_disable(guc);
+ }
+ 
++/**
++ * xe_guc_cancel() - Cancel all GuC submissions
++ * @guc: The GuC object
++ */
++void xe_guc_cancel(struct xe_guc *guc)
++{
++	xe_guc_submit_cancel(guc);
++}
++
++/**
++ * xe_guc_flr_done() - Re-initialize GuC firmware after FLR
++ * @guc: The GuC object
++ *
++ * Returns: 0 on success, negative error code otherwise.
++ */
++int xe_guc_flr_done(struct xe_guc *guc)
++{
++	if (!xe_uc_fw_is_loadable(&guc->fw))
++		return 0;
++
++	return xe_uc_fw_reinit(&guc->fw);
++}
++
+ int xe_guc_reset_prepare(struct xe_guc *guc)
+ {
+ 	return xe_guc_submit_reset_prepare(guc);
+diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+index 66e7edc70ed9..908009e608c9 100644
+--- a/drivers/gpu/drm/xe/xe_guc.h
++++ b/drivers/gpu/drm/xe/xe_guc.h
+@@ -31,7 +31,9 @@
+ 
+ struct drm_printer;
+ 
++void xe_guc_cancel(struct xe_guc *guc);
+ void xe_guc_comm_init_early(struct xe_guc *guc);
++int xe_guc_flr_done(struct xe_guc *guc);
+ int xe_guc_init_noalloc(struct xe_guc *guc);
+ int xe_guc_init(struct xe_guc *guc);
+ int xe_guc_init_post_hwconfig(struct xe_guc *guc);
+diff --git a/drivers/gpu/drm/xe/xe_huc.c b/drivers/gpu/drm/xe/xe_huc.c
+index 57afe21444b1..0e7d2ef86241 100644
+--- a/drivers/gpu/drm/xe/xe_huc.c
++++ b/drivers/gpu/drm/xe/xe_huc.c
+@@ -296,6 +296,20 @@ void xe_huc_sanitize(struct xe_huc *huc)
+ 	xe_uc_fw_sanitize(&huc->fw);
+ }
+ 
++/**
++ * xe_huc_flr_done() - Re-initialize HuC firmware after FLR
++ * @huc: The HuC object
++ *
++ * Returns: 0 on success, negative error code otherwise.
++ */
++int xe_huc_flr_done(struct xe_huc *huc)
++{
++	if (!xe_uc_fw_is_loadable(&huc->fw))
++		return 0;
++
++	return xe_uc_fw_reinit(&huc->fw);
++}
++
+ void xe_huc_print_info(struct xe_huc *huc, struct drm_printer *p)
+ {
+ 	struct xe_gt *gt = huc_to_gt(huc);
+diff --git a/drivers/gpu/drm/xe/xe_huc.h b/drivers/gpu/drm/xe/xe_huc.h
+index fa1c45e70443..7600ea196908 100644
+--- a/drivers/gpu/drm/xe/xe_huc.h
++++ b/drivers/gpu/drm/xe/xe_huc.h
+@@ -17,6 +17,7 @@ enum xe_huc_auth_types {
+ 	XE_HUC_AUTH_TYPES_COUNT
+ };
+ 
++int xe_huc_flr_done(struct xe_huc *huc);
+ int xe_huc_init(struct xe_huc *huc);
+ int xe_huc_init_post_hwconfig(struct xe_huc *huc);
+ int xe_huc_upload(struct xe_huc *huc);
+diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+index d9aa845a308d..8d89f2038bb9 100644
+--- a/drivers/gpu/drm/xe/xe_uc.c
++++ b/drivers/gpu/drm/xe/xe_uc.c
+@@ -283,6 +283,42 @@ static void uc_reset_wait(struct xe_uc *uc)
+ 		goto again;
+ }
+ 
++/**
++ * xe_uc_flr_prepare() - Prepare uCs for FLR
++ * @uc: The uC object
++ *
++ * Flush pending work and stop all uCs.
++ */
++void xe_uc_flr_prepare(struct xe_uc *uc)
++{
++	xe_gsc_wait_for_worker_completion(&uc->gsc);
++	xe_uc_reset_prepare(uc);
++	xe_guc_cancel(&uc->guc);
++	xe_uc_stop(uc);
++	xe_uc_sanitize(uc);
++}
++
++/**
++ * xe_uc_flr_done() - Re-initialize uCs after FLR
++ * @uc: The uC object
++ *
++ * Returns: 0 on success, negative error code otherwise.
++ */
++int xe_uc_flr_done(struct xe_uc *uc)
++{
++	int ret;
++
++	ret = xe_guc_flr_done(&uc->guc);
++	if (ret)
++		return ret;
++
++	ret = xe_huc_flr_done(&uc->huc);
++	if (ret)
++		return ret;
++
++	return xe_gsc_flr_done(&uc->gsc);
++}
++
+ void xe_uc_suspend_prepare(struct xe_uc *uc)
+ {
+ 	xe_gsc_wait_for_worker_completion(&uc->gsc);
+diff --git a/drivers/gpu/drm/xe/xe_uc.h b/drivers/gpu/drm/xe/xe_uc.h
+index 255a54a8f876..1756821edea1 100644
+--- a/drivers/gpu/drm/xe/xe_uc.h
++++ b/drivers/gpu/drm/xe/xe_uc.h
+@@ -8,6 +8,8 @@
+ 
+ struct xe_uc;
+ 
++int xe_uc_flr_done(struct xe_uc *uc);
++void xe_uc_flr_prepare(struct xe_uc *uc);
+ int xe_uc_init_noalloc(struct xe_uc *uc);
+ int xe_uc_init(struct xe_uc *uc);
+ int xe_uc_init_post_hwconfig(struct xe_uc *uc);
 -- 
 2.43.0
 
