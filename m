@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36E35F5513F
-	for <intel-xe@archiver.kernel.org>; Sun,  8 Mar 2026 13:58:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 307FAF5513F
+	for <intel-xe@archiver.kernel.org>; Sun,  8 Mar 2026 13:58:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC6B810E040;
-	Sun,  8 Mar 2026 13:58:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E69E510E09C;
+	Sun,  8 Mar 2026 13:58:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S2f96Y02";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EbQMKccG";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B5AC610E040
- for <intel-xe@lists.freedesktop.org>; Sun,  8 Mar 2026 13:58:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3181E10E09C
+ for <intel-xe@lists.freedesktop.org>; Sun,  8 Mar 2026 13:58:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772978288; x=1804514288;
+ t=1772978291; x=1804514291;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PwWIOmSE7x2Sw/FTpFQV7ob5ZNJBldSImkj0jJJXZSc=;
- b=S2f96Y02FrffA0GSaWv7LgmZAG5yWQHlQXUZ7sU+oJ3tG7OZKUxl6DYu
- GXUDuyCXQ3z5a6JhxLGB/uzlMvtUip//Hx7IS0xirJkQ9+4OakeE/46xi
- a1R9PJyPtX9JBfUNq1uP1t3U7Rq2rU9EEZcFtHu2gXlMF8/VuKXl385A2
- +OcFQ12NOKJZf88DpM4y60gGsg6cgkWtCJ5YcxHeYB6y3SvS6XqzAlg1P
- RaMQ97YG81jEiqYlRVxUmm4hPdINwWhGM1Bk8zYhdfdzYjHa2iBd8HLDv
- 0BeuQt0c1Jzv6IdD8NRQZHwIhimRHlCvldweB/fWVob9kKNA9UY8dRxBs A==;
-X-CSE-ConnectionGUID: xwMWHDLrTlSW2ayV2Mj3iA==
-X-CSE-MsgGUID: 9uKKn7eMQKCl6ESQS1X/jw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11722"; a="73934696"
-X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="73934696"
+ bh=XIeVpsvykSAgg6Eb3mESoLnMns6usXYbi5hy8EV+EK8=;
+ b=EbQMKccGa0y/0DJb92UXFvygOMTa+t7FrVdqLSc/EayulCMLjSzwOSbM
+ LGempU6gZF2VcK5ZV38VVEamlOeNMsCFsjXumW/MJHo01KH0kMkcutoWO
+ mxGTpYMRq5wZ8xe9+NNnqhmjwBtLS9ppFW9cVFw8Wdi5PXWOMJiN2c9ph
+ +qJrxzEN4nKoWBtkXSYh1oBIk3/+51pHIb0J39jk5SGHTg0VON6pIcHOO
+ ihuaqRAclL5bRcl4pu/2xXJPp/H90oTwvC42nipik3wjWjanu7Wxg/CK2
+ +qhVYeXCv+R+t2pPNerHcLoWwEj46U0Ju2t8hjXFouxGovvHR6VPn/inS w==;
+X-CSE-ConnectionGUID: x8wiZsU/Q1OPLLQ+dC2dDA==
+X-CSE-MsgGUID: oerzDmLOS7CirRt6rcBAiA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11722"; a="73934699"
+X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="73934699"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2026 06:58:08 -0700
-X-CSE-ConnectionGUID: sFu9pA2iTI+ieHZ7pLtBXA==
-X-CSE-MsgGUID: D59xPHuXSMu5rCzF22utkA==
+ 08 Mar 2026 06:58:11 -0700
+X-CSE-ConnectionGUID: 0uNNQrbyREClEfXodS8H+Q==
+X-CSE-MsgGUID: UYlDGjpESe+3/LTugFMghA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="242523266"
+X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="242523272"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa002.fm.intel.com with ESMTP; 08 Mar 2026 06:58:04 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 08 Mar 2026 06:58:08 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
@@ -48,9 +48,10 @@ Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
  michal.winiarski@intel.com, matthew.auld@intel.com, maarten@lankhorst.se,
  jani.nikula@intel.com, lukasz.laguna@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v3 01/10] drm/xe/uc_fw: Allow re-initializing firmware
-Date: Sun,  8 Mar 2026 19:25:27 +0530
-Message-ID: <20260308135536.3852304-2-raag.jadav@intel.com>
+Subject: [PATCH v3 02/10] drm/xe/hw_fence: Synchronize fence irq before
+ destroying the job
+Date: Sun,  8 Mar 2026 19:25:28 +0530
+Message-ID: <20260308135536.3852304-3-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260308135536.3852304-1-raag.jadav@intel.com>
 References: <20260308135536.3852304-1-raag.jadav@intel.com>
@@ -70,97 +71,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In preparation of usecases which require re-initializing firmware without
-reloading the driver, introduce xe_uc_fw_reinit(). The uC firmware bo
-already exists but since it's contents are on VRAM, they are lost on PCIe
-FLR. Copy the firmware back to it's bo and mark it as loadable as part of
-re-initialization.
+We may need to cancel and destroy jobs while they are in-flight.
+Make sure the irq work is synchronized when we do it.
 
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 ---
-v2: Add kernel doc (Matthew Brost)
+v3: Cancel in-flight jobs before FLR
 ---
- drivers/gpu/drm/xe/xe_uc_fw.c | 39 +++++++++++++++++++++++++++++------
- drivers/gpu/drm/xe/xe_uc_fw.h |  1 +
- 2 files changed, 34 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_hw_fence.c  | 5 +++++
+ drivers/gpu/drm/xe/xe_hw_fence.h  | 1 +
+ drivers/gpu/drm/xe/xe_sched_job.c | 1 +
+ 3 files changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index d35bc4989144..205bd05f684d 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -704,13 +704,7 @@ static int uc_fw_request(struct xe_uc_fw *uc_fw, const struct firmware **firmwar
- 	const struct firmware *fw = NULL;
- 	int err;
- 
--	/*
--	 * we use FIRMWARE_UNINITIALIZED to detect checks against uc_fw->status
--	 * before we're looked at the HW caps to see if we have uc support
--	 */
- 	BUILD_BUG_ON(XE_UC_FIRMWARE_UNINITIALIZED);
--	xe_gt_assert(gt, !uc_fw->status);
--	xe_gt_assert(gt, !uc_fw->path);
- 
- 	uc_fw_auto_select(xe, uc_fw);
- 
-@@ -823,6 +817,14 @@ static int uc_fw_copy(struct xe_uc_fw *uc_fw, const void *data, size_t size, u32
- 	return err;
+diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_fence.c
+index ae8ed15b64c5..c4e2b8e2648f 100644
+--- a/drivers/gpu/drm/xe/xe_hw_fence.c
++++ b/drivers/gpu/drm/xe/xe_hw_fence.c
+@@ -106,6 +106,11 @@ void xe_hw_fence_irq_run(struct xe_hw_fence_irq *irq)
+ 	irq_work_queue(&irq->work);
  }
  
-+static void uc_fw_reinit(struct xe_uc_fw *uc_fw, const void *data)
++void xe_hw_fence_irq_sync(struct xe_hw_fence_irq *irq)
 +{
-+	struct xe_device *xe = uc_fw_to_xe(uc_fw);
-+
-+	xe_map_memcpy_to(xe, &uc_fw->bo->vmap, 0, data, uc_fw->size);
-+	xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_LOADABLE);
++	irq_work_sync(&irq->work);
 +}
 +
- int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
+ void xe_hw_fence_ctx_init(struct xe_hw_fence_ctx *ctx, struct xe_gt *gt,
+ 			  struct xe_hw_fence_irq *irq, const char *name)
  {
- 	const struct firmware *fw = NULL;
-@@ -846,6 +848,31 @@ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
- }
- ALLOW_ERROR_INJECTION(xe_uc_fw_init, ERRNO); /* See xe_pci_probe() */
+diff --git a/drivers/gpu/drm/xe/xe_hw_fence.h b/drivers/gpu/drm/xe/xe_hw_fence.h
+index 599492c13f80..7ad64a515ae3 100644
+--- a/drivers/gpu/drm/xe/xe_hw_fence.h
++++ b/drivers/gpu/drm/xe/xe_hw_fence.h
+@@ -17,6 +17,7 @@ void xe_hw_fence_module_exit(void);
+ void xe_hw_fence_irq_init(struct xe_hw_fence_irq *irq);
+ void xe_hw_fence_irq_finish(struct xe_hw_fence_irq *irq);
+ void xe_hw_fence_irq_run(struct xe_hw_fence_irq *irq);
++void xe_hw_fence_irq_sync(struct xe_hw_fence_irq *irq);
  
-+/**
-+ * xe_uc_fw_reinit() - Re-initialize uC firmware into its bo
-+ * @uc_fw: uC firmware
-+ *
-+ * Returns: 0 on success, negative error code otherwise.
-+ */
-+int xe_uc_fw_reinit(struct xe_uc_fw *uc_fw)
-+{
-+	const struct firmware *fw = NULL;
-+	int err;
-+
-+	err = uc_fw_request(uc_fw, &fw);
-+	if (err)
-+		return err;
-+
-+	/* no error and no firmware means nothing to copy */
-+	if (!fw)
-+		return 0;
-+
-+	uc_fw_reinit(uc_fw, fw->data);
-+	uc_fw_release(fw);
-+
-+	return err;
-+}
-+
- static u32 uc_fw_ggtt_offset(struct xe_uc_fw *uc_fw)
- {
- 	return xe_bo_ggtt_addr(uc_fw->bo);
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.h b/drivers/gpu/drm/xe/xe_uc_fw.h
-index 6195e353f269..a73935b976d5 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.h
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.h
-@@ -15,6 +15,7 @@
- struct drm_printer;
+ void xe_hw_fence_ctx_init(struct xe_hw_fence_ctx *ctx, struct xe_gt *gt,
+ 			  struct xe_hw_fence_irq *irq, const char *name);
+diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
+index 3927666fe556..d5f3f90e9061 100644
+--- a/drivers/gpu/drm/xe/xe_sched_job.c
++++ b/drivers/gpu/drm/xe/xe_sched_job.c
+@@ -175,6 +175,7 @@ void xe_sched_job_destroy(struct kref *ref)
+ 	struct xe_device *xe = job_to_xe(job);
+ 	struct xe_exec_queue *q = job->q;
  
- int xe_uc_fw_init(struct xe_uc_fw *uc_fw);
-+int xe_uc_fw_reinit(struct xe_uc_fw *uc_fw);
- size_t xe_uc_fw_copy_rsa(struct xe_uc_fw *uc_fw, void *dst, u32 max_len);
- int xe_uc_fw_upload(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags);
- int xe_uc_fw_check_version_requirements(struct xe_uc_fw *uc_fw);
++	xe_hw_fence_irq_sync(job->q->fence_irq);
+ 	xe_sched_job_free_fences(job);
+ 	dma_fence_put(job->fence);
+ 	drm_sched_job_cleanup(&job->drm);
 -- 
 2.43.0
 
