@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F836EF36F6
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Mar 2026 07:32:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A68DEF36FA
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Mar 2026 07:32:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 739EF10E492;
-	Mon,  9 Mar 2026 07:32:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A0E610E49A;
+	Mon,  9 Mar 2026 07:32:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VL+l0wRX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fl7JSZia";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C786510E0D8;
- Mon,  9 Mar 2026 07:32:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3768A10E0D8;
+ Mon,  9 Mar 2026 07:32:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773041556; x=1804577556;
- h=from:subject:date:message-id:mime-version:
- content-transfer-encoding:to:cc;
- bh=VauP1ROV92pNMZ/iiYucSS+d65dDT5JM4Zbi/ebIsaY=;
- b=VL+l0wRXFHVwXDxuL54IqiSSrrtBfuiV8i9nKP7o8kycQKUbK67IRlWF
- +IFvSzY7DFoo+aX43vLGFoh96PMabieoeouZhpUe2oszgqxefA7JYYrTw
- pLJegFczLfpzJUniooXRxFWL3GvfBpASVdGxNTHDGVEVw6HsQ8uMYjsSu
- NixWB3V6hXPXkJ89KXlFefpUjwi+kSWzfyjSnQnB8ZNF0MxEpthPFURvy
- 4HoYd+LfgeRUklkASzJyatsqWmgQufpjD/9J4WnZmJbSgeTAy7yQg4GY1
- LteJYsRWve/9QggNAHq/ro7IKP/17tgg3Xs7lOnr1D06h4Om6RE92y4Fo A==;
-X-CSE-ConnectionGUID: oC2vMM/cQqe3c38kBXaJ2A==
-X-CSE-MsgGUID: wRhjnGSySlONFbvr3+8caw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11723"; a="77935630"
-X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="77935630"
+ t=1773041557; x=1804577557;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to:cc;
+ bh=lJ8E4ZxIoPsvLDyPf5xPOgjs/2rkmGqWz7hirornyf8=;
+ b=fl7JSZiam88XiCnBzgXIXz2f6sqIOUucHeme4A4mWSHpk8dsT/MD2deB
+ u4yQVNperqGaJG7f9r/XLy77ia+qCLTKWsER1HJwWKQSpy9pQ6Ky6T3Qv
+ 5L7fIcXasINTSPm5eMAUPrfqw5K6E0AQZfrhuJ7s79y60Vf3t4fQHJNpH
+ 120ba+kl0CNSrFokqOmK0Fyk2StDGPN9LZjnpQlE3L/jlq3BLGBNQQkuH
+ FpaiAgr0CrrIH/T5qXZMev7n+GE2EUEdqEcYEXwWelLAVcSX4uRJe4vCA
+ 0DAcqUAHMqtbanwzVuCuXktsaF3lMoM6xyjA0tOrIVvs2dM4WBev8UTfn Q==;
+X-CSE-ConnectionGUID: XMZbvQd+Trq0xbwtrWEW7g==
+X-CSE-MsgGUID: RieWgYdgQ2a+5i7MvVnd5Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11723"; a="77935659"
+X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="77935659"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2026 00:31:01 -0700
-X-CSE-ConnectionGUID: KGrwCQIyT+OAq4NdDxzGsw==
-X-CSE-MsgGUID: fGf5GSr+TVmxPWcb6SulNA==
+ 09 Mar 2026 00:31:07 -0700
+X-CSE-ConnectionGUID: 7US0M7c8TTS+CzJ9UDVhAA==
+X-CSE-MsgGUID: dBau2nXoTPeYdXKgGdjwuw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="217286703"
+X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="217286736"
 Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by fmviesa007.fm.intel.com with ESMTP; 09 Mar 2026 00:30:58 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 09 Mar 2026 00:31:04 -0700
 From: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCH RFC 0/3] Some updates over DP AUX Transactions
-Date: Mon, 09 Mar 2026 12:59:23 +0530
-Message-Id: <20260309-dp_aux_timeout-v1-0-08c610a63a84@intel.com>
+Date: Mon, 09 Mar 2026 12:59:25 +0530
+Subject: [PATCH RFC 2/3] drm/i915/dp: On AUX_CH tx timeout, wake up the
+ sink
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIANN2rmkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDYwNL3ZSC+MTSiviSzNzU/NISXcsU0yTDJGPTRIMUCyWgpoKi1LTMCrC
- B0UpBbs5KsbW1AJR6yNFlAAAA
-X-Change-ID: 20260309-dp_aux_timeout-9d5b1b35a0d8
+Message-Id: <20260309-dp_aux_timeout-v1-2-08c610a63a84@intel.com>
+References: <20260309-dp_aux_timeout-v1-0-08c610a63a84@intel.com>
+In-Reply-To: <20260309-dp_aux_timeout-v1-0-08c610a63a84@intel.com>
 To: Simona Vetter <simona@ffwll.ch>, 
  Jani Nikula <jani.nikula@linux.intel.com>, ville.syrjala@linux.intel.com, 
  suraj.kandpal@intel.com, imre.deak@intel.com
@@ -72,36 +71,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Based on the discussions/comments on the patch
-https://lore.kernel.org/intel-xe/aaVWbdt1vOFxGAb1@ideak-desk.lan/
-in order to address the real HW(DPTX) generated timeout and adress the
-fix, this series is targetted.
-Along with this it was noticed that the the AUX power request bit in the
-port control register is being touched outside the power well framework.
-The limitation due to the way aux port control register was programmed.
-Replacing the aux control register write to read/mask/write thereby
-writing only the required bits.
-
-Note: This is RFC and full round of testing the pending.
+On a native AUX_CH transaction when the timer on DPTX timesout this can
+be due to DPTX sending invalid command or the sink is waking up from
+sleept state and hence there is a No Reply from DPRX. In this case try
+to wake up the sink device.
 
 Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
-Arun R Murthy (3):
-      drm/display/dp: Export function to wake the sink AUX_CH
-      drm/i915/dp: On AUX_CH tx timeout, wake up the sink
-      drm/i915/dp: Configure PORT_AUX_CTL and then trigger the tx
+ drivers/gpu/drm/i915/display/intel_dp_aux.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
- drivers/gpu/drm/display/drm_dp_helper.c            | 36 +++++++++
- drivers/gpu/drm/i915/display/intel_display_types.h |  6 +-
- drivers/gpu/drm/i915/display/intel_dp_aux.c        | 94 +++++++++++++++-------
- drivers/gpu/drm/i915/display/intel_psr.c           | 29 ++++---
- include/drm/display/drm_dp_helper.h                |  1 +
- 5 files changed, 123 insertions(+), 43 deletions(-)
----
-base-commit: 6884fe03ff2bc5a2f501ba4710f950dd4933ac84
-change-id: 20260309-dp_aux_timeout-9d5b1b35a0d8
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+index b20ec3e589fadc4972efb77286978f38a527bd1c..0a9e2d6cdbc5d9e0d17b2db60a32cf20a3bad6b6 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+@@ -372,8 +372,17 @@ intel_dp_aux_xfer(struct intel_dp *intel_dp,
+ 			 *   Timeout errors from the HW already meet this
+ 			 *   requirement so skip to next iteration
+ 			 */
+-			if (status & DP_AUX_CH_CTL_TIME_OUT_ERROR)
++			if (status & DP_AUX_CH_CTL_TIME_OUT_ERROR) {
++				/*
++				 * Timeout can occur when there is no reply
++				 * from the sink and this can be either due to
++				 * DPTX sending wrong command or sink is sleep
++				 * state/waking up from sleep state.
++				 * Spec DP2.1 Section 2.11.7.1.5.8
++				 */
++				drm_dp_wake_sink(&intel_dp->aux);
+ 				continue;
++			}
+ 
+ 			if (status & DP_AUX_CH_CTL_RECEIVE_ERROR) {
+ 				usleep_range(400, 500);
 
-Best regards,
 -- 
-Arun R Murthy <arun.r.murthy@intel.com>
+2.25.1
 
