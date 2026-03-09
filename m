@@ -4,56 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBAACFCA17B
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Mar 2026 20:07:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F37C1FCA17F
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Mar 2026 20:07:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC9D310E598;
-	Mon,  9 Mar 2026 20:07:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B490010E5C0;
+	Mon,  9 Mar 2026 20:07:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XfeZ34z5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vb+aGc+x";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5154910E598
- for <intel-xe@lists.freedesktop.org>; Mon,  9 Mar 2026 20:07:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB75210E5BF
+ for <intel-xe@lists.freedesktop.org>; Mon,  9 Mar 2026 20:07:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773086869; x=1804622869;
- h=from:subject:date:message-id:mime-version:
- content-transfer-encoding:to:cc;
- bh=Ikj4RfP1ITUe8TmWux4U6/RxlRRV3sjrkDE/FSvABGw=;
- b=XfeZ34z5hkHCxn5UX7S+104GpFmd8uStn1Il7JOWVOpZvlSdHX7L8QqJ
- FL/qab+jWM8wViO1Bx9nsfAzG2mSouFYaiShRA69Q+ZroTIAA6xlrC70L
- La+tz+rlKyWWspD2bZRjD6tI83TQ9mrH6Z1tkXTzWWD9PQdnVfzuCRMq2
- u4ieRjf6u0uHz8PZL6GrvKyoWyZLd+3lIicfVUPnl3nAHsuIl/o2SlIxn
- fES33NisCnDMsES4dtCUHyr3QOWQzPrIUnkFOBkNExmXcDMzLLG9Nh5Ur
- Hyexaf2NQx3FfQv1g+bm7yt6kj4ERdWHv1jhxZA3zqXVcfjtBKn8iwzsF w==;
-X-CSE-ConnectionGUID: Yj7SxpxdTryBDow0j3T/7Q==
-X-CSE-MsgGUID: pAAxfHs4QUSZVIs9qiMP4w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="61694876"
-X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="61694876"
+ t=1773086870; x=1804622870;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to:cc;
+ bh=jpHb0D4xvDjBCQ04MDUJGlq2onmxOLUcTRrqHyQ/nfU=;
+ b=Vb+aGc+x6UHckJzyJppb/Ww+MNwtV+Ui4nWQFrpapKbkOl5myhshLPBa
+ aFGHxHZ7TIpp+mIrchHwuZG8SyU+igmH1O+MxtWRHAco2R3cCRAtIuik1
+ yJD8q+AObeZd1yvDOQNy1Ki8Ynh5U+tMlS+8I0LGm+te0yrM/mTBU62Xp
+ 5M3VUaUESZLVdR/uHDZnA0pzwevUz/W7mlLOn5a4PgfShkFF8E01ZCPNb
+ /Rda56nC8psPPnh9L3ZSTJ4RYDKILiNI5j0QVWtIgQk70PJZgVYQygP/F
+ 7EIsazGDSR3I4phyuiFYX7ZDVNDAr0scDl3gN1P8bK/rga8XejBJfJNaQ A==;
+X-CSE-ConnectionGUID: +mrATIf4TSCWOWb/kTBLuw==
+X-CSE-MsgGUID: Fh0ZYD1hRYesDBMbw+5KMQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="61694879"
+X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="61694879"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2026 13:07:48 -0700
-X-CSE-ConnectionGUID: 1cYdYxOrRZq72UZHYkSiEA==
-X-CSE-MsgGUID: pACFJigaQvS3Ax/xjo1rvg==
+ 09 Mar 2026 13:07:50 -0700
+X-CSE-ConnectionGUID: YWsa+uPaRIKzlrZqXGMUtQ==
+X-CSE-MsgGUID: 5RQvFIcOSS61GXQg816YTg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="242879473"
+X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="242879486"
 Received: from jjgreens-desk21.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.221.146])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2026 13:07:47 -0700
+ 09 Mar 2026 13:07:49 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: [PATCH v3 0/8] Extra enabling patches for NVL-P
-Date: Mon, 09 Mar 2026 17:07:28 -0300
-Message-Id: <20260309-extra-nvl-p-enabling-patches-v3-0-0416900dd498@intel.com>
+Date: Mon, 09 Mar 2026 17:07:30 -0300
+Subject: [PATCH v3 2/8] drm/xe: Drop unused IS_PLATFORM_STEP() and
+ IS_SUBPLATFORM_STEP()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/4XNQQqDMBCF4atI1p0SYyLaVe9RuojJqAM2ShKCR
- bx7VSi4apf/W3xvYQE9YWC3bGEeEwUa3RbFJWOm165DILs1E1yUvOAScI5eg0sDTIBONwO5DiY
- dTY8BZI1aVii4bBXbiMljS/PBP55b9xTi6N/HW8r39Qur33DKgYPiglslqtqivpOLOFzN+GI7n
- MQZK/9gYscKa1pdNlKiPGPrun4AsNB/KBUBAAA=
-X-Change-ID: 20260304-extra-nvl-p-enabling-patches-49ea48e204f5
+Message-Id: <20260309-extra-nvl-p-enabling-patches-v3-2-0416900dd498@intel.com>
+References: <20260309-extra-nvl-p-enabling-patches-v3-0-0416900dd498@intel.com>
+In-Reply-To: <20260309-extra-nvl-p-enabling-patches-v3-0-0416900dd498@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
  Matt Roper <matthew.d.roper@intel.com>
@@ -72,53 +70,45 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series contains some extra enabling patches for NVL-P.
+The macros IS_PLATFORM_STEP() and IS_SUBPLATFORM_STEP() are unused since
+commit 87c299fa3a97 ("drm/xe/guc: Port Wa_14014475959 to xe_wa and fix
+it") and commit 63bbd800ff01 ("drm/xe/guc: Port
+Wa_22012727170/Wa_22012727685 to xe_wa"), respectively, and we can drop
+them now.  Furthermore, in upcoming changes we will add logic to read
+platform-level step information from PCI RevID and keeping those macros
+around would potentially cause confusion.
 
+v2:
+  - Cite commits that made the macros unused. (Matt)
+
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
-Changes in v3:
-- Incorportate Matt's feedback regarding Wa_14026539277.
-- Added extra patch, namely "drm/xe: Call xe_wa_process_device_oob()
-  after xe_sriov_probe_early()", to allow
-  FUNC(xe_rtp_match_not_sriov_vf) to be used for device OOB workarounds.
-- Link to v2: https://patch.msgid.link/20260306-extra-nvl-p-enabling-patches-v2-0-53dcfa6b44e4@intel.com
+ drivers/gpu/drm/xe/xe_device_types.h | 10 ----------
+ 1 file changed, 10 deletions(-)
 
-Changes in v2:
-- Minor update in patch "drm/xe/nvlp: Implement Wa_14026539277" to skip
-  the workaround if on a SRIOV VF.
-- Link to v1: https://patch.msgid.link/20260305-extra-nvl-p-enabling-patches-v1-0-5020d5289dea@intel.com
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 3e04e80e0815..615218d775b1 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -82,16 +82,6 @@ enum xe_wedged_mode {
+ 
+ #define XE_MAX_ASID	(BIT(20))
+ 
+-#define IS_PLATFORM_STEP(_xe, _platform, min_step, max_step)	\
+-	((_xe)->info.platform == (_platform) &&			\
+-	 (_xe)->info.step.graphics >= (min_step) &&		\
+-	 (_xe)->info.step.graphics < (max_step))
+-#define IS_SUBPLATFORM_STEP(_xe, _platform, sub, min_step, max_step)	\
+-	((_xe)->info.platform == (_platform) &&				\
+-	 (_xe)->info.subplatform == (sub) &&				\
+-	 (_xe)->info.step.graphics >= (min_step) &&			\
+-	 (_xe)->info.step.graphics < (max_step))
+-
+ /**
+  * struct xe_device - Top level struct of Xe device
+  */
 
----
-Gustavo Sousa (8):
-      drm/xe: Modify stepping info directly in xe_step_*_get()
-      drm/xe: Drop unused IS_PLATFORM_STEP() and IS_SUBPLATFORM_STEP()
-      drm/xe/nvlp: Read platform-level stepping info
-      drm/xe/rtp: Add support for matching platform-level stepping
-      drm/xe: Call xe_wa_process_device_oob() after xe_sriov_probe_early()
-      drm/xe/nvlp: Implement Wa_14026539277
-      drm/xe/xe3p: Drop Wa_16028780921
-      drm/xe: Translate C-state "reset value" into RC6
-
- drivers/gpu/drm/xe/regs/xe_gt_regs.h      |  8 ++--
- drivers/gpu/drm/xe/xe_device.c            |  6 +--
- drivers/gpu/drm/xe/xe_device_types.h      | 10 -----
- drivers/gpu/drm/xe/xe_device_wa_oob.rules |  1 +
- drivers/gpu/drm/xe/xe_gt.c                | 27 +++++++++++
- drivers/gpu/drm/xe/xe_guc_pc.c            |  8 ++++
- drivers/gpu/drm/xe/xe_pci.c               |  8 ++--
- drivers/gpu/drm/xe/xe_rtp.c               |  7 +++
- drivers/gpu/drm/xe/xe_rtp.h               | 20 +++++++++
- drivers/gpu/drm/xe/xe_rtp_types.h         |  1 +
- drivers/gpu/drm/xe/xe_step.c              | 74 ++++++++++++++++++++++---------
- drivers/gpu/drm/xe/xe_step.h              | 10 +++--
- drivers/gpu/drm/xe/xe_step_types.h        |  1 +
- drivers/gpu/drm/xe/xe_wa.c                |  4 --
- 14 files changed, 135 insertions(+), 50 deletions(-)
----
-base-commit: 9583680736b058808148da4717ca824d25702418
-change-id: 20260304-extra-nvl-p-enabling-patches-49ea48e204f5
-
-Best regards,
---  
-Gustavo Sousa <gustavo.sousa@intel.com>
+-- 
+2.52.0
 
