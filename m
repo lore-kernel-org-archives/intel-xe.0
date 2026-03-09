@@ -4,141 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1ADBFCA19D
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Mar 2026 23:07:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C81DBFCA19F
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Mar 2026 23:12:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C3D710E5EA;
-	Mon,  9 Mar 2026 23:07:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A84210E5EA;
+	Mon,  9 Mar 2026 23:12:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FEyYeaX5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y4ly/Usf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 999DF10E5EA
- for <intel-xe@lists.freedesktop.org>; Mon,  9 Mar 2026 23:07:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EB2210E5EA
+ for <intel-xe@lists.freedesktop.org>; Mon,  9 Mar 2026 23:12:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773097629; x=1804633629;
+ t=1773097923; x=1804633923;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=j5yyyOkWEkh0BZUFT/iA84C+5QwKgvmWpkFNpUHzJSQ=;
- b=FEyYeaX5/emFW3XTttmov/BpzelMODQGE7DBppnbE1SuDGNDh7gmxv3Y
- 84IYCBy3ypHnvF9pv42Kczs8YhI1CuK8zVqtCi4Cf9/iIdAQuSSpvjAgy
- Cyw+cle7GoRPpMtiG2zaLlGhlb2S/grR81ROkLgJ4bARLcVOp0wUzRW3B
- NE00NrmH53hECs6CbJmPZXRloLRg4OIHPVcaCMmkFkyij2UO3UMwzY7W3
- V+CeDlitkSr4uH1d8uW2DWSbC/hy48ObWY7AyalxAerks1qpugkjDdilq
- wRBec/QlSR/BuHpX/eqWcFNZVGQH6SjkicPebuq0/ASKJyCxw+44rYtbQ A==;
-X-CSE-ConnectionGUID: od/aVf9yQre51r8imn2hsw==
-X-CSE-MsgGUID: LUVUx4ZQSmquhjURxuUz/A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="84768412"
-X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; d="scan'208";a="84768412"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2026 16:07:09 -0700
-X-CSE-ConnectionGUID: y/VyqRY+SqOzgdKnV6A5/Q==
-X-CSE-MsgGUID: EsBJ6/q1S3uDiRWXC1r02w==
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=+Yv2x6KVwuLdZtrqAeHqbBFvwAIeaLGqRkFVT1890+0=;
+ b=Y4ly/UsfHr2KtVri7tf13ktvCQszSG026D3pULXmNsKqd1V8brq74FXV
+ YRC2Eg5q0haCBKPRiABqoKp+pGQeyaumDD3W0Rpec0tl9WaEwteSPIdqf
+ VENj4jmTxj8H5gS4Emzuj6sUNjwaHswiR62rHj5Ye+ibaQjudMpKKeUXJ
+ wAekRBRLCKrVVN969O0bY/Dp86rz8ozvBjdSrx7leaiGyqKEZ0EJhUkK5
+ uWbM5c7LtW0tRxVXecZwZeROWYMIGt7l9LYhfWp66jzCDqWJH6F8gPj9U
+ Sn4+vR2U3GtCMyuseFqnUyOIktJ6QcoGBU9NgueKstNwg/p7HqAoOjggX g==;
+X-CSE-ConnectionGUID: 63omc0hGRaGVdYuQV3mXcA==
+X-CSE-MsgGUID: 9KCnBGg3S6CEebCgrp2kJA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="77741381"
+X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; d="scan'208";a="77741381"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2026 16:11:59 -0700
+X-CSE-ConnectionGUID: +LyIKtAbToqvBLpWcdEaYg==
+X-CSE-MsgGUID: cECinvDWRbOvM4fFrYDdJQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; d="scan'208";a="219035171"
+X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; d="scan'208";a="220034373"
 Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2026 16:07:09 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2026 16:11:59 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 9 Mar 2026 16:07:08 -0700
+ 15.2.2562.37; Mon, 9 Mar 2026 16:11:58 -0700
 Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 9 Mar 2026 16:07:08 -0700
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.43) by
+ 15.2.2562.37 via Frontend Transport; Mon, 9 Mar 2026 16:11:58 -0700
+Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.34) by
  edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 9 Mar 2026 16:07:07 -0700
+ 15.2.2562.37; Mon, 9 Mar 2026 16:11:57 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=RM+Ki8HLVhE080hmdOt04r0wfrZiJ1c2BFktnbEtcm57ehbL04CfyFnXy53tBjldTKLEk6tTzPVdhPyydBXRR7Ropkwx5X3kpB+A+2nATfiroYgbZqSuMyCCKE5Rn7o2QsX23vgBG8ivmkVDjI0FTKAPmsLlYmBjn3ShJRfH7j7SEsXzm/7GRLuTS7ZrQOmz8e7YSSQQVEndZAcBjT7Tf5QyR/XUn4PxE8UaqKfdpRPy1XDDxOrHFITqfRd7Q0CMLXwil6hQGHoMnMMnioqlGA6CSj7zv4kChYO4+1C5ggAR8aILg1+DJZvSZWxIHo51lv7I8N2Ubkvb7/N0wJPRMA==
+ b=kMfFdi5KvxZiK7o7fPYB4RgZlWpI6EFvS5es1k4NT1fCIxwS/E8Ci3IvdE87tCnGPmfdwTWcrqdI83CG5Rw1X1c+iW0h91QU5o1Trz+AWC+Qv2eopmE+uDdNvfBbMchH6VgwQ2vAhZlrfTOaZYeWivRTFUJq45rwlMgrXTHVdtHcKyB9gX/9rhYCpYwfffP2QGziDD0sd0szsfhRj00V56wHQFMZxW512ny3t+tI2eswQi4PGnNircKg8TkbU7+J5HZvozTACmpkfYtOpcMdiFsQyNDw6BUJqVnbBYidBqFqkrqnu9b5HjojCG3iotlcBAHn0mRWMG5Ou6iZmlFiGQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JoSZXbuMecofdQJld2VZTKc1ZN+gdqbkSh/nvlwo208=;
- b=osmewCy1gfV6OuWZISh7MsN0pyNrJ5IaSXXSbImozxPzvUhzJR1UlJbYmOIT/tPnvRieUZA+yPWpwqXSTQOW0wUQL0/jfGh10S+O/TfTLshP6USTbPqE+lMxishIoeS96Jmm7dHkhRJh6aj/d2Q/V6TfUE+OLeWWwfRIayRTveFUKGKznJJJZW8WUP2qf5dOjO/4laSPe+Unxwj68auC2vFgFVkyhoX+Q0LCSucoRzzZYEC0f3AHLtqeNPINCODlLZw8J3eJUjz53oi1MjiWGxTmz1UtNS8q5pVZmeX66ULZ6HT99WRxy+WdTYkh18ww4lV//aNA8rXvOqDAaytz6w==
+ bh=DzlXdPxOtgjtZnzYnAq2Ir0ikS6sKmELCi4WJYTYB8o=;
+ b=itArKep/ms8rbmp/45CulfE4lp0ozJgmhpbJTxc79efzeqgag1p2JEMMEkurKTdvEH6ePTp+KyU/WBM4DUnLQz3gt1VzvEElfrqCOMQ+ILo3F+mmqM8HRa9Yo2xOZInPFOxppsQxb0i8UxfZPmDnqM3SLUnmbmA7DEJoI5MENX9ZieLGkFeQxJ0sVfrCUmOUunvwUYoIDbSj/A6sDG56BlKtzBkwhID4c2jmY33Yp3DwXJ+tSDq/LM2Nz87QONrlFOUW7C+1WNem8/+OINAxI8jdqKOikGEFOclTM0xkelFX43Yl/9EKiESnVq+X6WdZi0aLuBVUnid74Lt0LYeEfQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by DS0PR11MB6421.namprd11.prod.outlook.com (2603:10b6:8:c7::11) with
- Microsoft SMTP Server (version=TLS1_2,
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by CY8PR11MB7396.namprd11.prod.outlook.com (2603:10b6:930:87::11)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Mon, 9 Mar
- 2026 23:07:01 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::7b65:81e6:c6c4:449e%7]) with mapi id 15.20.9700.010; Mon, 9 Mar 2026
- 23:07:01 +0000
-Date: Mon, 9 Mar 2026 16:06:58 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Varun Gupta <varun.gupta@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <tejas.upadhyay@intel.com>
-Subject: Re: [PATCH v4] drm/xe: Add Wa_14026578760
-Message-ID: <20260309230658.GE52346@mdroper-desk1.amr.corp.intel.com>
-References: <20260309063923.4031933-1-varun.gupta@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+ 2026 23:11:55 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.20.9700.010; Mon, 9 Mar 2026
+ 23:11:55 +0000
+Date: Mon, 9 Mar 2026 16:11:52 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: "Summers, Stuart" <stuart.summers@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>, "Yadav, Arvind"
+ <arvind.yadav@intel.com>, "thomas.hellstrom@linux.intel.com"
+ <thomas.hellstrom@linux.intel.com>, "Dugast, Francois"
+ <francois.dugast@intel.com>
+Subject: Re: [PATCH v3 20/25] drm/xe: Add ULLS migration job support to
+ migration layer
+Message-ID: <aa9TuKG2YL6DVQWk@lstrano-desk.jf.intel.com>
+References: <20260228013501.106680-1-matthew.brost@intel.com>
+ <20260228013501.106680-21-matthew.brost@intel.com>
+ <7be318280fc180267ce14a299de7315cb237137a.camel@intel.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20260309063923.4031933-1-varun.gupta@intel.com>
-X-ClientProxiedBy: BYAPR05CA0024.namprd05.prod.outlook.com
- (2603:10b6:a03:c0::37) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <7be318280fc180267ce14a299de7315cb237137a.camel@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0205.namprd03.prod.outlook.com
+ (2603:10b6:a03:2ef::30) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|DS0PR11MB6421:EE_
-X-MS-Office365-Filtering-Correlation-Id: d1649c08-65bd-463f-611a-08de7e30922e
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CY8PR11MB7396:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6da0d980-5651-47d6-2b42-08de7e314185
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: BL4nJN3y63tzA9bwfs7BOP4rYD0wfxbJ+OS1P2weQjoce8Ctm7AkuP0cXqiQBKCbXrYYBQ3vMu4MFzq/WM31A3KO1OYuUil0T1Z/ZFR3F035spouG832buDpPD012/xTyiOt5gInfr8PNKtF8bV/le9nhcJFfq4SOK0wAhkblGEEWomaP0hsC2BXd2TjWkKr9mMhwhNNwoR+ym3/DLK+q9i8UP22wYEPQazL7NVI5U2TC2FInIeTzTcp//oDT4B+Ola1HKCd0e6cpj8iuqmQz3dKT/RMEsfNKa7xNv+5PJadhAa840kbpCQM0G8MoejaDDiWtyukQkVxXvODAl+nzgV4hVJ4kiQlqGHfqScIhBSewmYVcXTUdgKLfTT4IxgZM6EvGQN1Y753bFZMhFYBcPCXwXDeuZAnrQvw6gRSAcm1TlOhhMTQWbuuWyWIXjr5Ul7JvJGlYKN8KM0HdXYS3Q6zguVHIe2H5pu5S7TAu9kK5Whfp8jri4a92TGSf/qUyKKvCAFN1Qt6iYdpIhaKNnOYyyI7ofAtpZgRjKw5ryCxHYnMs9ClT3V5M2oa5VJZvn6MDZfYu4QcT5Po8HO8DwnW8v9KoDmDXPZqW0ymNZFYdAudM6RAX5vDGQJAmN6qQLdn4vIHrKoGI9G2yEJnopZQpr5dR8qqPc2GkV9Bmp2AreCMdNdLli6aXNRvYUHwpjdPRvcHXeV9TOhel6CjzW+EtlLaOBxkYZCJ6sujkrg=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info: tHN4aPbEfZpPeDuZm7bxUe+U6nhnUrotnkoAJ6wcYwgfEiAkT9/XXc6DcTxaqkB2oqvbIpCWXwEF0yFYf3OcWepmnaqvZxFKr5Lp4W+SuZZjV4UqbvFgpL2iCbZJQqxLZtNjQizLGI0Qe/5XynbIRV7iqAYcQsc8Qz+ifLWvajuduAmGaMv5JiKr+1t2IFGpM3ac2e2+7S/iSerF+7Qv6Xd9ngRnqjX/Lk4Y6cDkFiheEaHwSkvZ1mfvJmJUCmyA2jCPQbgilZ5SwF3pJG4FRFzMNJgK1BazocgstidskNLm/byo+6a99ckSMjGT+YHb0q+1tpaOKc3FshPLLyvK01F+MHDxSUs0ds7bkxDXg20SzQa+TGBpyUOdh+0HImd15rOhWdY8Gv9kk17vyaQf+R0lk5vxFRxCtBMajzzDxzqeLKaMd5PPoOtcBl3I70uUaDZ/+RdgfGKxbpWjmtd71rvqB4X+u2KcTpk73uF1bvq3NEg7Nxf5G+a/rn+wWRObXk4u2nkvRmHyFPgVHM5cGvg14VqZjwmdeTx4X/FQiG1QPBVZ3m6uZBLI8t1S7kb5UVHt3kY8773q3PRSRxw92sv+vLYdagJUVPSLjmtxg1o9QeNWnBut3UN6eQAS97C5ko181vIV6mPB1VKj1LThzgDJcGn5qfVCulEwmso7uzoXvYCrXiBMFFMjarf6gI1zqWCsYkxexBsqeLxQ62efqF/3+iA0ZP+Lsqp5bGlNetg=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Twd3N2i4/77LGrhATL56artSYdMfBtpMLAALjKzIrBedIJn0RWmYjc/JB3bj?=
- =?us-ascii?Q?XSFTICXqUt2XlHrEuWXEFnfCWgWWmQoydjeOiHhh7SF4h9H+N+oVy2+b8zcp?=
- =?us-ascii?Q?NN630oBBGabD7Lg/Ke0lFLefpnaee2XTLuGRpRUoKEFCpEcc7UCiO7wxWJWM?=
- =?us-ascii?Q?n37NsdNFxfE9pAgri6sLDW6nCsBbH5r6rEf4qwHAvcviEamIJtpkxH88wlrD?=
- =?us-ascii?Q?bmpAyDgn6eiMdsoHl+XypHmgZcaj6/aECKe4YKVRdp2hSmJwjR15VxSyEQTS?=
- =?us-ascii?Q?VKPVobnlIO0nzEEvCX48alRp775rGGLLTwa+o6nqxfPWh5IoIsNWE8EfQfi8?=
- =?us-ascii?Q?hNoBEy/n0jxcrOJAPhHEY8e3mgmOpC07GJOn1nUq2Co7gHQmt9zrzBSjyZzg?=
- =?us-ascii?Q?SUkQMB7cULH4xXSehSdGK1zZM9yVfRGrw3VKIZEDEV9tiGTFOK6ejHMju4dJ?=
- =?us-ascii?Q?2SPqvoObA39otsWcswMfC1ec0z4TFFjjOpO6qgx/h6tZOZxGe2la58m3OaJy?=
- =?us-ascii?Q?eswM8dCBn2h15Gf2IWGwKc/pe4DNlYGm3BDRlA52qXlp0EC3ReEcV35oFZfB?=
- =?us-ascii?Q?jweFGqTlPFmQRwML6cWgbXdxvq/kUGAlloxyO0m2lUMjEB0W05GuAe00Cz8H?=
- =?us-ascii?Q?4m70JmuA/KfC1faNISQ1AOsF43Q4y70ntP2TMV6qCbaMnmNFbKDsSr61Rej0?=
- =?us-ascii?Q?HOPZsTOByeKpUg0oEsRC/lR5GFWe412Ia0WGqK1RYlnfdyNg1oTL+IIffSUS?=
- =?us-ascii?Q?1BhSqYr/d57OXVxfh4qq6RhmM8vRVT55Quu2UkwS8dj5VjgaMoT2rPbAxpZm?=
- =?us-ascii?Q?HrlJLsvohGC1tX8MlgsZ6BlF9HDrc0LGKzAGikkpBxTofs9m0SPKnDIutK9p?=
- =?us-ascii?Q?T2z2To8L8rKkhf7U5Y65c5rJfrBI+/MaUzGqWi5eHfLGAC9vYnK0/TAWhUca?=
- =?us-ascii?Q?6w0jQPDIlz83SIIKXh8D9jVboy8rbR+7GbVQuK77ZehEqnY+/bp7GsXkQLtE?=
- =?us-ascii?Q?+xqk29POGtBl7QqzIuJNCPXWaHKZ+gbRoUPZqOL37vbe2Z13Zoy4oGwGuN0L?=
- =?us-ascii?Q?LGJ6xCDoW9/QE6CDXIuXe9E1yXF5QjJCD24Ui9/uxUMQ81BIavSIuTxmOBtt?=
- =?us-ascii?Q?Uh5tGooIRChpnjW/Lpwa9CIKQuqzj88Asb1n6vrbKeSxC6tZqPmho19LZLa1?=
- =?us-ascii?Q?JxalVw6Sw0Jd6L6pLBEmkDW8j3q3VQ9EyOSvT6sxKTvhvI+MHREZ07soMGX3?=
- =?us-ascii?Q?J9+4NvzYTZHTw2oZjUqQVs7GZsr/FF+ohID3+aluXE9WIfwEAjwD2uKWb6jF?=
- =?us-ascii?Q?edJ5DnvFSjVmO2XoFtQUG1zngjdPHnBTGxXlpeuVP8mXwAK358ZO6Umzptbj?=
- =?us-ascii?Q?VauL0tUDDVfg73eU2Ym9g4ogtZsJXKT5dZZGB+H2DgDZg+CdEaBSQElan4Zn?=
- =?us-ascii?Q?BBMnmnW+zXFgIveBOpWXB5ZbMwPvvn0YkcgAhCYdd29jup0FVsg1CkQQUQRM?=
- =?us-ascii?Q?HVYwtVRyh/ij5RRbWb4Se7P9FMQ/s2eZ9IAh+YVo4GNo6kMvD/u4EWtBP2/t?=
- =?us-ascii?Q?ko2ChVvpF4cePER4EEif7xtfGrADxwJIz1D6zP8PbrjFSrlagLXeNKSV4Sp4?=
- =?us-ascii?Q?9mUcazwQLH7UebgRr8IfyxcbonURd3gjL9EiPnqHnmBIdJVOu5pIwa9f8JHp?=
- =?us-ascii?Q?SrKoyvbJjAijk9xznATxKPRvrsv0p5E517ug01FVVuuXISVa3oqk/jKYOLMo?=
- =?us-ascii?Q?ryArHNU3nfXWRLcA7pUhzAyr5W+DsgY=3D?=
-X-Exchange-RoutingPolicyChecked: OxbBZeobgl+ctJXwfioOJVTvwdeuNbvfaZHSr755T0cZFHy5GXNF3UYxK5aF9zI1Z7GYROL+i+4I21Td9Vd+aaBlHyGBXZPOfz1aBQkb1vZwGjhnWjFlKT0mvlaflsANtOHIgIIvLS+x6iImEk/8AIT9lxsGRhHVaYosegbdvT9qMzVbJucXkM58j3YG3u/4e/vB2+8zMs0gSNEXeNE05ad4KcgLNJOaeYh9Aj1tIGw19UetlNTrQUddXXGeRtqcAKvG1CVyGc4Iv9EB8tEKCB777BeyRQ23gnRBsmxj3b2NMikiJxbGO3PE8/EajNgXyx/enDjRryVeyGN6B2fZjg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: d1649c08-65bd-463f-611a-08de7e30922e
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dUY3Y21xN2xzL1JSL0t1N0U5SmQyT0N4OGNHZWtyWTBuaHEzTnJwOEhEMFhl?=
+ =?utf-8?B?UjRlV0ZmN0w0YTcxbGVwK3FTTUMxUy8yTlFsd0x6VTFhZUpKclA4aWxYWlhW?=
+ =?utf-8?B?MzZtZ1dKSFJ2dlB2eCtGTE9STzVNVTFReDNuTDVmaWFXU1A4NUQ5TWM3NzA5?=
+ =?utf-8?B?bEpWWnRFVGRzcWtKOTd4YWs0RitvNE81T0xXTjdPOEMwTHNMaXR2RU9wNzZJ?=
+ =?utf-8?B?b2UzVWJBYnQ5TjNWOE11ejU1UEJzM2hyU3diYnRLbU41N1BUQ2dvVllQZVUv?=
+ =?utf-8?B?YTBrTUJqS3lOR1VFOXZmMndEMjFFcHp6V241elZaVzNsUXdEbFVyRHZnb3JI?=
+ =?utf-8?B?bFZ5RmpOaEg0Uy9sNDlVK1JoM0hSU21VcFRQd2FzTlgrTEthVUVxbDBpWEVS?=
+ =?utf-8?B?SUR3ZkZuanZZclNWdEtuWm9ZQm9hMFhIQ1J1TVhmSXFOWXNVYUQ4TjBtemFM?=
+ =?utf-8?B?ODMzOEtUSC91UmtmYnA2OFQ1L1EwMnlCOTJyT0lVNWxsK1BmaVBzS2lmalkz?=
+ =?utf-8?B?clZLWUdmSHA1bklqYUV4SzN3azFmTlU4Z2dCUmZNZWZueUU3dElTUEFwR04w?=
+ =?utf-8?B?WGpZenFob05IWDRvUm9hMFZlK0FqWFFlWCs4WHVIbTljMjdhTTFOOEtDQVpu?=
+ =?utf-8?B?cTFhYkUxSk9DZDMxdS9oYVpMUFFPYmhZR25ocTdsN3FXMGJWNmFiQUt3azRS?=
+ =?utf-8?B?aEI1RzVkQTNVK0FFcDdISXJCek9lNmc5ZTYwcWVuVmdLZ3BrYjV3eHVzOXlH?=
+ =?utf-8?B?VmJVZ3NGR3RRRC9LUFRweDhHVmxIN05UNnVJdFpVd2pqek1NOGdWOEYycS9y?=
+ =?utf-8?B?TUdOZG1PRVVjYTFvQmoxTk5JREpQZkQwTzlNU1V4dWxpQnd0S2ZUSW5ZRUFY?=
+ =?utf-8?B?ZE5IVW9FUGZFVXVGZFJUUGVENjdNa09hN2R2b1lHVjEwZldSSS8zSmFYQ1NY?=
+ =?utf-8?B?Y1dVUm9qVm1OZ2V2S1hrcmJUOGVXVkVxZ0hmTzBvbFBRQWMrWVBOUnRuNHI0?=
+ =?utf-8?B?amJNYlBjTFlIRkx5UkVzOFNiaGtXeFc4KzV2VGpEWjNxTkIrSUlSK041djZ2?=
+ =?utf-8?B?VVprWDZMc1BNcDhNNXNpUW1GM0ZCdkhiU2k0dlJSMUdwM1BGTE1tSWlydDBG?=
+ =?utf-8?B?azJmVEhVam4rQWZDaEdZajNNUFdMZkFjeTF3Q2JzczUreCtVZ01VTzB0azB3?=
+ =?utf-8?B?L3ZESnVCbDhCK1Q3RmVHcW4yMnoydGZDaksydEZBVGZJSXNhUnJqeDVSMFZn?=
+ =?utf-8?B?YjJ4WTJGMXV1c0hQYnp4MzdZa2RZUWV5cjU2aWE3VitqTGRsYmdxdUpNQU9Z?=
+ =?utf-8?B?V1BqMk1VN1BjclNGTU96UUJ6c2U0TnVNdGhhbzkyS2l5VEtaU1FnTGtjWmty?=
+ =?utf-8?B?NXNFT0VGUDFNMmFvK2hURUFDOE5EMnZOdVZUN0ZJR3d3dTFnZk1XcDZRbFhN?=
+ =?utf-8?B?S25pSGtmcjY5Mzc0c3drMkpDZzFrWGNFWHVMNE1WUWVCRDFhemNYR3lKOU1Z?=
+ =?utf-8?B?QzBDV2t1N0dtZTZVdCs2SGpBR0VmMldleEE1aTFDUFEzc3VQdFNlWnVrN25F?=
+ =?utf-8?B?OXg0QU1YYUZKMnZhZXRwTjdTTy9uQ1JRNDg1dEVIbXVUd0dtczY0aGxEbGc4?=
+ =?utf-8?B?Q2kxdm5sVnB5bExuLzdWVGtCSmNlR1pQTzF0cnBBTG95QkJIM3FKODQ0LzhQ?=
+ =?utf-8?B?VmVwZjdwSkJBdnlUN1dVZUQwZDkzV3NlZFp0dFFpSTVYQzNOMHVvSndXNDNY?=
+ =?utf-8?B?aGM2MVV2cTUrQ3lDZWFsVC81OG92TVRWRi84WlIwNWdrT0hqdk96V296Unlk?=
+ =?utf-8?B?SkRjMHhEVWJtWTcvdlB3MHB1VnVOSHN6TjV6cEg5Z3RlTFFoeVF6empsYllZ?=
+ =?utf-8?B?bENCUjNoSi92Mkx5TEZGSU5HWE9QWk5vcy8rR1B0dUJBY3E1OHprK2pqRUVD?=
+ =?utf-8?B?eGlleHNOUlFQWCtKV3RnbENrdWNVM2toSGJkdUxFNHpoTzFTdEk2R0FKYjFZ?=
+ =?utf-8?B?anEzNDZycFBYYk1aNlJic2RITVJUd2Y1dHRxdW1qS1VzTjU1SjlaK0Ercmwx?=
+ =?utf-8?B?NC9yN1VvemlnRVlvWGdoTnpCeEhGYW1PM0Y3QnJnYzJpU3NoYkxBL215bE9o?=
+ =?utf-8?B?SFVRNlI5UzR5ZzRzWXhkbERkQlFhQ29NU09FQnBJbUdFQWVpaGxUUnFqYk5r?=
+ =?utf-8?B?d0dtQnJUZDBSeVRtbGVqanpiNEpnSDdaUjJRalRZZDJQRWtUeUlBMDI5YUNO?=
+ =?utf-8?B?eGx6UCtkWC9RN3o1SkIwVEU1cFkzOHRienNmZVhPTm05eVRlUVJoWXJLRHg5?=
+ =?utf-8?B?czV3bVdrNk1Da2l4WCt0ZVdBL2FhUHJJa3lDSmRIUUJwMVMxZThBQT09?=
+X-Exchange-RoutingPolicyChecked: LsWqOsCPt+e2Ds+4FAeYCRqD5mXwxram2wuAqYkTHda4qhewSvqO6vbzzGZtQk2iZz63DR+Oe8qMHreFOeMtpZqVWepotb/7O5QZDk2O+eppCXQHNFX+CkYUpdGDZE/o98LDCjhyYsQHHkVGPT9OPydzd0OYpWQMdOzi2P9lmlVV7FpvzZtdTtJVQWkzKU1+a+o+eEEsDyTtAhQ4jPp1Bq9ORB87Tp9u5KpL/AW0box/CEgu8Y0ZMQQgfki3pOir7y7N99D/RDJ96G6GA5feMyG7GqXF2dQhQfcNVZa0HGoaahoA4+wd9McC4F9w8fJFbATeUNiH+fBauF3EYSatPA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6da0d980-5651-47d6-2b42-08de7e314185
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 23:07:01.0072 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 23:11:55.3266 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yYy7ZG7Jggj0o4V1LDmUtzErqzsC8v9w9brjmaGb2gkWcMCLqXLrkxA4ZcL28YPlptkkOd1diqwk97oiJ3YPpyNIM7E9cnbBW+6NAnZRAKs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6421
+X-MS-Exchange-CrossTenant-UserPrincipalName: eIYzJH2i6F27n2kPE/o54mB4Hg6yPCsYxe5gVXbpLKJd0aAY0ofHiJKjFBMb+NtdsMx8T+fwtfXD1P4o6sYBqA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7396
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -154,67 +171,514 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Mar 09, 2026 at 12:09:23PM +0530, Varun Gupta wrote:
-> Add GT workaround Wa_14026578760 for graphics versions 35.10, 35.11
-> and media version 35.03.
+On Thu, Mar 05, 2026 at 04:34:36PM -0700, Summers, Stuart wrote:
+> On Fri, 2026-02-27 at 17:34 -0800, Matthew Brost wrote:
+> > Add function to enter ULLS mode for migration job and delayed worker
+> > to
+> > exit (power saving). ULLS mode expected to entered upon page fault or
+> > SVM prefetch. ULLS mode exit delay is currently set to 5us.
+> > 
+> > ULLS mode only support on DGFX and USM platforms where a hardware
+> > engine
+> > is reserved for migrations jobs. When in ULLS mode, set several flags
+> > on
+> > migration jobs so submission backend / ring ops can properly submit
+> > in
+> > ULLS mode.
+> > 
+> > Upon ULLS mode enter, send a job trigger waiting a semphore pipling
+> > initial GuC / HW conetxt switch.
+> > 
+> > Upon ULLS mode exit, send a job to trigger that current ULLS
+> > semaphore so the ring can be taken off the hardware.
 > 
-> Signed-off-by: Varun Gupta <varun.gupta@intel.com>
-> Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-
-> ---
-> v4:
->  - Drop separate media register define; MEDIA_GT_GSI_OFFSET is applied
->    automatically by the media GT's mmio, so a single XE_REG_MCR
->    suffices for both graphics and media (Matt Roper)
-> v3:
->  - Use separate register defines for graphics and media (Tejas)
-> v2:
->  - Fix register define ordering (Matt Roper)
->  - Broaden workaround scope to cover graphics 35.10, 35.11 and media
->    35.03 per workaround database (Matt Roper)
-> ---
->  drivers/gpu/drm/xe/regs/xe_gt_regs.h | 3 +++
->  drivers/gpu/drm/xe/xe_wa.c           | 5 +++++
->  2 files changed, 8 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> index 90b9017770ea..c70dbf7e4e7c 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> @@ -100,6 +100,9 @@
->  #define VE1_AUX_INV				XE_REG(0x42b8)
->  #define   AUX_INV				REG_BIT(0)
->  
-> +#define GAMSTLB_CTRL				XE_REG_MCR(0x477c)
-> +#define   DIS_PEND_GPA_LINK			REG_BIT(13)
-> +
->  #define GAMSTLB_CTRL2				XE_REG_MCR(0x4788)
->  #define   STLB_SINGLE_BANK_MODE			REG_BIT(11)
->  
-> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-> index 26950b8a7543..dc780368c452 100644
-> --- a/drivers/gpu/drm/xe/xe_wa.c
-> +++ b/drivers/gpu/drm/xe/xe_wa.c
-> @@ -164,6 +164,11 @@ static const struct xe_rtp_entry_sr gt_was[] = {
->  		       MEDIA_VERSION_RANGE(1301, 3500)),
->  	  XE_RTP_ACTIONS(SET(GUC_INTR_CHICKEN, DISABLE_SIGNALING_ENGINES))
->  	},
-> +	{ XE_RTP_NAME("14026578760"),
-> +	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3510, 3511), OR,
-> +		       MEDIA_VERSION(3503)),
-> +	  XE_RTP_ACTIONS(SET(GAMSTLB_CTRL, DIS_PEND_GPA_LINK))
-> +	},
->  
->  	/* DG1 */
->  
-> -- 
-> 2.43.0
+> Assuming we do go down the ULLS in the KMD route, can you add a little
+> documentation for how this is being managed? Just in terms of how the
+> KMD is interacting with GuC and HW to manage this basically, how you
+> might configure, etc. Not specific to this patch, but maybe more for
+> the ULLS portion of the series generally...
 > 
 
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+I can write a proper kernel doc section for ULLS explaining the design -
+I should have done that to make reviews easier. 
+
+> > 
+> > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_exec_queue.c      |   5 +-
+> >  drivers/gpu/drm/xe/xe_exec_queue.h      |   4 +-
+> >  drivers/gpu/drm/xe/xe_migrate.c         | 180
+> > ++++++++++++++++++++++++
+> >  drivers/gpu/drm/xe/xe_migrate.h         |   2 +
+> >  drivers/gpu/drm/xe/xe_pt.c              |   2 +-
+> >  drivers/gpu/drm/xe/xe_sched_job_types.h |   6 +
+> >  drivers/gpu/drm/xe/xe_vm.c              |   2 +-
+> >  7 files changed, 195 insertions(+), 6 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c
+> > b/drivers/gpu/drm/xe/xe_exec_queue.c
+> > index ee2119cf45c1..4fa99f12c566 100644
+> > --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> > +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> > @@ -1348,6 +1348,7 @@ bool xe_exec_queue_is_lr(struct xe_exec_queue
+> > *q)
+> >  /**
+> >   * xe_exec_queue_is_idle() - Whether an exec_queue is idle.
+> >   * @q: The exec_queue
+> > + * @extra_jobs: Extra jobs on the queue
+> >   *
+> >   * FIXME: Need to determine what to use as the short-lived
+> >   * timeline lock for the exec_queues, so that the return value
+> > @@ -1359,9 +1360,9 @@ bool xe_exec_queue_is_lr(struct xe_exec_queue
+> > *q)
+> >   *
+> >   * Return: True if the exec_queue is idle, false otherwise.
+> >   */
+> > -bool xe_exec_queue_is_idle(struct xe_exec_queue *q)
+> > +bool xe_exec_queue_is_idle(struct xe_exec_queue *q, int extra_jobs)
+> >  {
+> > -       return !atomic_read(&q->job_cnt);
+> > +       return !(atomic_read(&q->job_cnt) - extra_jobs);
+> >  }
+> >  
+> >  /**
+> > diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h
+> > b/drivers/gpu/drm/xe/xe_exec_queue.h
+> > index b5aabab388c1..a11648b62a98 100644
+> > --- a/drivers/gpu/drm/xe/xe_exec_queue.h
+> > +++ b/drivers/gpu/drm/xe/xe_exec_queue.h
+> > @@ -116,7 +116,7 @@ static inline struct xe_exec_queue
+> > *xe_exec_queue_multi_queue_primary(struct xe_
+> >  
+> >  bool xe_exec_queue_is_lr(struct xe_exec_queue *q);
+> >  
+> > -bool xe_exec_queue_is_idle(struct xe_exec_queue *q);
+> > +bool xe_exec_queue_is_idle(struct xe_exec_queue *q, int extra_jobs);
+> 
+> Is this extra_jobs bit something coming in a future patch? I might have
+> missed, but I'm not seeing any non-zero usage here.
+> 
+
+It is used in xe_migrate_ulls_exit...
+
+> >  
+> >  void xe_exec_queue_kill(struct xe_exec_queue *q);
+> >  
+> > @@ -176,7 +176,7 @@ struct xe_lrc *xe_exec_queue_get_lrc(struct
+> > xe_exec_queue *q, u16 idx);
+> >   */
+> >  static inline bool xe_exec_queue_idle_skip_suspend(struct
+> > xe_exec_queue *q)
+> >  {
+> > -       return !xe_exec_queue_is_parallel(q) &&
+> > xe_exec_queue_is_idle(q);
+> > +       return !xe_exec_queue_is_parallel(q) &&
+> > xe_exec_queue_is_idle(q, 0);
+> >  }
+> >  
+> >  #endif
+> > diff --git a/drivers/gpu/drm/xe/xe_migrate.c
+> > b/drivers/gpu/drm/xe/xe_migrate.c
+> > index c9ee6325ec9d..62f27868f56b 100644
+> > --- a/drivers/gpu/drm/xe/xe_migrate.c
+> > +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> > @@ -8,6 +8,7 @@
+> >  #include <linux/bitfield.h>
+> >  #include <linux/sizes.h>
+> >  
+> > +#include <drm/drm_drv.h>
+> >  #include <drm/drm_managed.h>
+> >  #include <drm/drm_pagemap.h>
+> >  #include <drm/ttm/ttm_tt.h>
+> > @@ -23,6 +24,7 @@
+> >  #include "xe_bb.h"
+> >  #include "xe_bo.h"
+> >  #include "xe_exec_queue.h"
+> > +#include "xe_force_wake.h"
+> >  #include "xe_ggtt.h"
+> >  #include "xe_gt.h"
+> >  #include "xe_gt_printk.h"
+> > @@ -30,6 +32,7 @@
+> >  #include "xe_lrc.h"
+> >  #include "xe_map.h"
+> >  #include "xe_mocs.h"
+> > +#include "xe_pm.h"
+> >  #include "xe_printk.h"
+> >  #include "xe_pt.h"
+> >  #include "xe_res_cursor.h"
+> > @@ -75,6 +78,14 @@ struct xe_migrate {
+> >         struct dma_fence *fence;
+> >         /** @min_chunk_size: For dgfx, Minimum chunk size */
+> >         u64 min_chunk_size;
+> > +       /** @ulls: ULLS support */
+> > +       struct {
+> > +               /** @ulls.enabled: ULLS is enabled */
+> > +               bool enabled;
+> > +#define ULLS_EXIT_JIFFIES      (HZ / 50)
+> 
+> It might be nice to make this configurable through sysfs or debugfs
+> even...
+> 
+
+I agree. Will do in next rev.
+
+> > +               /** @ulls.exit_work: ULLS exit worker */
+> > +               struct delayed_work exit_work;
+> > +       } ulls;
+> >  };
+> >  
+> >  #define MAX_PREEMPTDISABLE_TRANSFER SZ_8M /* Around 1ms. */
+> > @@ -96,6 +107,16 @@ struct xe_migrate {
+> >  static void xe_migrate_fini(void *arg)
+> >  {
+> >         struct xe_migrate *m = arg;
+> > +       struct xe_device *xe = tile_to_xe(m->tile);
+> > +
+> > +       disable_delayed_work_sync(&m->ulls.exit_work);
+> > +       mutex_lock(&m->job_mutex);
+> > +       if (m->ulls.enabled) {
+> > +               xe_force_wake_put(gt_to_fw(m->q->hwe->gt), m->q->hwe-
+> > >domain);
+> > +               xe_pm_runtime_put(xe);
+> > +               m->ulls.enabled = false;
+> > +       }
+> > +       mutex_unlock(&m->job_mutex);
+> >  
+> >         xe_vm_lock(m->q->vm, false);
+> >         xe_bo_unpin(m->pt_bo);
+> > @@ -410,6 +431,140 @@ static int xe_migrate_lock_prepare_vm(struct
+> > xe_tile *tile, struct xe_migrate *m
+> >         return err;
+> >  }
+> >  
+> > +/**
+> > + * xe_migrate_ulls_enter() - Enter ULLS mode
+> > + * @m: The migration context.
+> > + *
+> > + * If DGFX and not a VF, enter ULLS mode bypassing GuC / HW context
+> > + * switches by utilizing semaphore and continuously running batches.
+> > + */
+> > +void xe_migrate_ulls_enter(struct xe_migrate *m)
+> > +{
+> > +       struct xe_device *xe = tile_to_xe(m->tile);
+> > +       struct xe_sched_job *job = NULL;
+> > +       u64 batch_addr[2] = { 0, 0 };
+> > +       bool alloc = false;
+> > +
+> > +       xe_assert(xe, xe->info.has_usm);
+> > +
+> > +       if (!IS_DGFX(xe) || IS_SRIOV_VF(xe))
+> > +               return;
+> > +
+> > +job_alloc:
+> > +       if (alloc) {
+> > +               /*
+> > +                * Must be done outside job_mutex as that lock is
+> > tainted with
+> > +                * reclaim.
+> 
+> Where is the reclaim happening for this? It seems ugly jumping back and
+> forth like this to avoid the lock.
+> 
+
+The job_mutex is annotated with reclaim, because it is dma-fence
+signaling path. I forgot the details here of why it is, but Thomas
+figured this out a while back and fixed the bugs we had there and added
+the annotation. I can try to page this information back in why the
+job_mutex is reclaim and perhaps add some kernel doc explaining this.
+
+> > +                */
+> > +               job = xe_sched_job_create(m->q, batch_addr);
+> > +               if (WARN_ON_ONCE(IS_ERR(job)))
+> > +                       return;         /* Not fatal */
+> > +       }
+> > +
+> > +       mutex_lock(&m->job_mutex);
+> > +       if (!m->ulls.enabled) {
+> > +               unsigned int fw_ref;
+> > +
+> > +               if (!job) {
+> > +                       alloc = true;
+> > +                       mutex_unlock(&m->job_mutex);
+> > +                       goto job_alloc;
+> 
+> Why are you jumping through this alloc/!job hoop here? Can we just do
+> this in one place instead of jumping back and forth?
+> 
+
+It could be rewritten - maybe I always just allocate the job and discard
+it if it isn't needed.
+
+> > +               }
+> > +
+> > +               /* Pairs with FW put on ULLS exit */
+> > +               fw_ref = xe_force_wake_get(gt_to_fw(m->q->hwe->gt),
+> > +                                          m->q->hwe->domain);
+> > +               if (fw_ref) {
+> > +                       struct xe_device *xe = tile_to_xe(m->tile);
+> > +                       struct dma_fence *fence;
+> > +
+> > +                       /* Pairs with PM put on ULLS exit */
+> > +                       xe_pm_runtime_get_noresume(xe);
+> > +
+> > +                       xe_sched_job_get(job);
+> > +                       xe_sched_job_arm(job);
+> > +                       job->is_ulls = true;
+> > +                       job->is_ulls_first = true;
+> > +                       fence = dma_fence_get(&job->drm.s_fence-
+> > >finished);
+> > +                       xe_sched_job_push(job);
+> > +
+> > +                       dma_fence_put(fence);
+> > +
+> > +                       xe_dbg(xe, "Migrate ULLS mode enter");
+> > +                       m->ulls.enabled = true;
+> > +               }
+> > +       }
+> > +       if (job)
+> > +               xe_sched_job_put(job);
+> > +       if (m->ulls.enabled)
+> > +               mod_delayed_work(system_percpu_wq, &m-
+> > >ulls.exit_work,
+> > +                                ULLS_EXIT_JIFFIES);
+> > +       mutex_unlock(&m->job_mutex);
+> > +}
+> > +
+> > +static void xe_migrate_ulls_exit(struct work_struct *work)
+> > +{
+> > +       struct xe_migrate *m = container_of(work, struct xe_migrate,
+> > +                                           ulls.exit_work.work);
+> > +       struct xe_device *xe = tile_to_xe(m->tile);
+> > +       struct xe_sched_job *job = NULL;
+> > +       struct dma_fence *fence;
+> > +       u64 batch_addr[2] = { 0, 0 };
+> > +       int idx;
+> > +
+> > +       xe_assert(xe, m->ulls.enabled);
+> > +
+> > +       if (!drm_dev_enter(&xe->drm, &idx))
+> > +               return;
+> > +
+> > +       /*
+> > +        * Must be done outside job_mutex as that lock is tainted
+> > with
+> > +        * reclaim and must be done holding a pm ref.
+> > +        */
+> > +       job = xe_sched_job_create(m->q, batch_addr);
+> > +       if (WARN_ON_ONCE(IS_ERR(job))) {
+> > +               drm_dev_exit(idx);
+> > +               mod_delayed_work(system_percpu_wq, &m-
+> > >ulls.exit_work,
+> > +                                ULLS_EXIT_JIFFIES);
+> > +               return;         /* Not fatal */
+> > +       }
+> > +
+> > +       mutex_lock(&m->job_mutex);
+> > +
+> > +       if (!xe_exec_queue_is_idle(m->q, 1))
+> > +               goto unlock_exit;
+> > +
+> > +       xe_sched_job_get(job);
+> > +       xe_sched_job_arm(job);
+> > +       job->is_ulls = true;
+> > +       job->is_ulls_last = true;
+> > +       fence = dma_fence_get(&job->drm.s_fence->finished);
+> > +       xe_sched_job_push(job);
+> > +
+> > +       /* Serialize force wake put */
+> > +       dma_fence_wait(fence, false);
+> > +       dma_fence_put(fence);
+> > +
+> > +       m->ulls.enabled = false;
+> > +unlock_exit:
+> > +       if (job)
+> > +               xe_sched_job_put(job);
+> > +       if (!m->ulls.enabled) {
+> > +               /* Pairs with PM gets on enter */
+> > +               xe_force_wake_put(gt_to_fw(m->q->hwe->gt), m->q->hwe-
+> > >domain);
+> > +               xe_pm_runtime_put(xe);
+> 
+> Maybe reverse these to match the gets above.
+> 
+
+Yes.
+
+> > +
+> > +               cancel_delayed_work(&m->ulls.exit_work);
+> > +               xe_dbg(xe, "Migrate ULLS mode exit");
+> > +       } else {
+> > +               mod_delayed_work(system_percpu_wq, &m-
+> > >ulls.exit_work,
+> > +                                ULLS_EXIT_JIFFIES);
+> > +       }
+> > +
+> > +       drm_dev_exit(idx);
+> > +       mutex_unlock(&m->job_mutex);
+> > +}
+> > +
+> >  /**
+> >   * xe_migrate_init() - Initialize a migrate context
+> >   * @m: The migration context
+> > @@ -473,6 +628,8 @@ int xe_migrate_init(struct xe_migrate *m)
+> >         might_lock(&m->job_mutex);
+> >         fs_reclaim_release(GFP_KERNEL);
+> >  
+> > +       INIT_DELAYED_WORK(&m->ulls.exit_work, xe_migrate_ulls_exit);
+> > +
+> >         err = devm_add_action_or_reset(xe->drm.dev, xe_migrate_fini,
+> > m);
+> >         if (err)
+> >                 return err;
+> > @@ -818,6 +975,26 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate
+> > *m,
+> >         return flush_flags;
+> >  }
+> >  
+> > +static bool xe_migrate_is_ulls(struct xe_migrate *m)
+> > +{
+> > +       lockdep_assert_held(&m->job_mutex);
+> > +
+> > +       return m->ulls.enabled;
+> > +}
+> > +
+> > +static void xe_migrate_job_set_ulls_flags(struct xe_migrate *m,
+> > +                                         struct xe_sched_job *job)
+> > +{
+> > +       lockdep_assert_held(&m->job_mutex);
+> > +       xe_tile_assert(m->tile, m->q == job->q);
+> 
+> Nit: Should we have a helper here like you have for the bind queue?
+> 
+
+Let me see if there is a helper I can use here.
+
+> > +
+> > +       if (xe_migrate_is_ulls(m)) {
+> > +               job->is_ulls = true;
+> > +               mod_delayed_work(system_percpu_wq, &m-
+> > >ulls.exit_work,
+> > +                                ULLS_EXIT_JIFFIES);
+> > +       }
+> > +}
+> > +
+> >  /**
+> >   * xe_migrate_copy() - Copy content of TTM resources.
+> >   * @m: The migration context.
+> > @@ -992,6 +1169,7 @@ struct dma_fence *xe_migrate_copy(struct
+> > xe_migrate *m,
+> >  
+> >                 mutex_lock(&m->job_mutex);
+> >                 xe_sched_job_arm(job);
+> > +               xe_migrate_job_set_ulls_flags(m, job);
+> >                 dma_fence_put(fence);
+> >                 fence = dma_fence_get(&job->drm.s_fence->finished);
+> >                 xe_sched_job_push(job);
+> > @@ -1602,6 +1780,7 @@ struct dma_fence *xe_migrate_clear(struct
+> > xe_migrate *m,
+> >  
+> >                 mutex_lock(&m->job_mutex);
+> >                 xe_sched_job_arm(job);
+> > +               xe_migrate_job_set_ulls_flags(m, job);
+> >                 dma_fence_put(fence);
+> >                 fence = dma_fence_get(&job->drm.s_fence->finished);
+> >                 xe_sched_job_push(job);
+> > @@ -1881,6 +2060,7 @@ static struct dma_fence *xe_migrate_vram(struct
+> > xe_migrate *m,
+> >  
+> >         mutex_lock(&m->job_mutex);
+> >         xe_sched_job_arm(job);
+> > +       xe_migrate_job_set_ulls_flags(m, job);
+> >         fence = dma_fence_get(&job->drm.s_fence->finished);
+> >         xe_sched_job_push(job);
+> >  
+> > diff --git a/drivers/gpu/drm/xe/xe_migrate.h
+> > b/drivers/gpu/drm/xe/xe_migrate.h
+> > index f6fa23c6c4fb..71606fb4fad0 100644
+> > --- a/drivers/gpu/drm/xe/xe_migrate.h
+> > +++ b/drivers/gpu/drm/xe/xe_migrate.h
+> > @@ -85,4 +85,6 @@ struct xe_vm *xe_migrate_get_vm(struct xe_migrate
+> > *m);
+> >  
+> >  void xe_migrate_wait(struct xe_migrate *m);
+> >  
+> > +void xe_migrate_ulls_enter(struct xe_migrate *m);
+> > +
+> >  #endif
+> > diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> > index ef34fbfc14f0..2c0f9a99d7a9 100644
+> > --- a/drivers/gpu/drm/xe/xe_pt.c
+> > +++ b/drivers/gpu/drm/xe/xe_pt.c
+> > @@ -1317,7 +1317,7 @@ static int xe_pt_vm_dependencies(struct
+> > xe_sched_job *job,
+> >         if (!job && !no_in_syncs(vops->syncs, vops->num_syncs))
+> >                 return -ETIME;
+> >  
+> > -       if (!job && !xe_exec_queue_is_idle(vops->q))
+> > +       if (!job && !xe_exec_queue_is_idle(vops->q, 0))
+> >                 return -ETIME;
+> >  
+> >         if (vops->flags & (XE_VMA_OPS_FLAG_WAIT_VM_BOOKKEEP |
+> > diff --git a/drivers/gpu/drm/xe/xe_sched_job_types.h
+> > b/drivers/gpu/drm/xe/xe_sched_job_types.h
+> > index 3a797de746ad..fe2d2ee12efc 100644
+> > --- a/drivers/gpu/drm/xe/xe_sched_job_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_sched_job_types.h
+> > @@ -89,6 +89,12 @@ struct xe_sched_job {
+> >         bool last_replay;
+> >         /** @is_pt_job: is a PT job */
+> >         bool is_pt_job;
+> > +       /** @is_ulls: is ULLS job */
+> > +       bool is_ulls;
+> > +       /** @is_ulls_first: is first ULLS job */
+> 
+> This flag I'm not fully understanding. Why do we need to separate this
+> from is_ulls?
+> 
+
+This is where kernel doc would help. Let me explain:
+
+The first ULLS job only submits ring operations to start spinning on a
+semaphore in the ring (no BB execution). This is a GuC submission, if
+that isn’t clear.
+
+The middle ULLS jobs submit by moving the ring tail via an MMIO write,
+signaling the spinning semaphore from the previous job (GuC bypass, BB
+execution). The last instructions in the ring set up a new spinning
+semaphore.
+
+The last ULLS job submits by moving the ring tail via an MMIO write,
+signaling the spinning semaphore from the previous job (GuC bypass, no
+BB execution). There are no instructions in the ring for a spinning
+semaphore, so the queue will context-switch off the hardware.
+
+Also, if it isn’t clear, this whole scheme only works if it runs on a
+dedicated hardware engine—which we have after CPU binds, since the
+paging copy engine is mapped only to the migration queue. Also this
+relies on MMIO write, this also doesn't work on VFs.
+
+Matt
+
+> Thanks,
+> Stuart
+> 
+> > +       bool is_ulls_first;
+> > +       /** @is_ulls_last: is last ULLS job */
+> > +       bool is_ulls_last;
+> >         union {
+> >                 /** @ptrs: per instance pointers. */
+> >                 DECLARE_FLEX_ARRAY(struct xe_job_ptrs, ptrs);
+> > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> > index d4629e953b01..931d46696811 100644
+> > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > @@ -146,7 +146,7 @@ static bool xe_vm_is_idle(struct xe_vm *vm)
+> >  
+> >         xe_vm_assert_held(vm);
+> >         list_for_each_entry(q, &vm->preempt.exec_queues, lr.link) {
+> > -               if (!xe_exec_queue_is_idle(q))
+> > +               if (!xe_exec_queue_is_idle(q, 0))
+> >                         return false;
+> >         }
+> >  
+> 
