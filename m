@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65D84EFCD7E
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Mar 2026 10:08:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47E71EFCD95
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Mar 2026 10:35:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 26AD210E4CB;
-	Mon,  9 Mar 2026 10:08:37 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24FFF10E4CB;
- Mon,  9 Mar 2026 10:08:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6686921320588557311=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E67F810E4CE;
+	Mon,  9 Mar 2026 10:35:20 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gbjUct+B";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF3E610E00A;
+ Mon,  9 Mar 2026 10:35:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773052519; x=1804588519;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=H5k17/f2MLN4x7ocaee4PFxuLWcOy17TiF4ninqHGQw=;
+ b=gbjUct+BVZK8jpafePFupeAtP7tVruK1KD8oeJMfQpAIxmn6ElbZ9zNR
+ bAtkjtvATxDTpWn2kfxm558uEaC2nuWSdYR5kDE6b2iLDMxJSEmE2MwVs
+ UJFAgnj8hBu4vmWNcGqkPT6LCABhhbSGskY8G/up5XGZVpuzWx+5fjuRP
+ 66RcBVVQ5mPfhxc6A4iCeVe/K5CLc0m4MuhCPkWvi0eVwDlGpsUZRv+gK
+ 5tXy3X2XGtCVd0S1sXBSDyR2rjITwIygPx32C48nwNUv0WJPQriqwDHSj
+ I2myjl5xbwWZZeGMxtbw4EqAqDzfHSA1Hy+cITj9809MAMUhlWTJcVlAY A==;
+X-CSE-ConnectionGUID: 5KDDRlxGQwWcFLSDIaTT2w==
+X-CSE-MsgGUID: 6FzFlE3fRt6wKWlAlwqqGg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11723"; a="91458064"
+X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="91458064"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2026 03:35:18 -0700
+X-CSE-ConnectionGUID: Csk/u4cIRxa+3Nb4jmgRqw==
+X-CSE-MsgGUID: uL9Ox0hASTG0x9wDStKXDA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="250177817"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.239])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2026 03:35:14 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Randy Dunlap <rdunlap@infradead.org>, linux-kernel@vger.kernel.org
+Cc: Randy Dunlap <rdunlap@infradead.org>, Ville =?utf-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2] iopoll: fix function parameter names in
+ read_poll_timeout_atomic()
+In-Reply-To: <20260306221033.2357305-1-rdunlap@infradead.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260306221033.2357305-1-rdunlap@infradead.org>
+Date: Mon, 09 Mar 2026 12:35:11 +0200
+Message-ID: <d1ea41327832c2e4447429d6fc0030b71491ca44@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_Some_updates_over_DP_AUX_Tr?=
- =?utf-8?q?ansactions?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 09 Mar 2026 10:08:35 -0000
-Message-ID: <177305091513.332501.8688892905709532897@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260309-dp_aux_timeout-v1-0-08c610a63a84@intel.com>
-In-Reply-To: <20260309-dp_aux_timeout-v1-0-08c610a63a84@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,161 +69,71 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6686921320588557311==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 06 Mar 2026, Randy Dunlap <rdunlap@infradead.org> wrote:
+> Correct the function parameter names to avoid kernel-doc warnings
+> and to emphasize this function is atomic (non-sleeping).
+>
+> Warning: include/linux/iopoll.h:169 function parameter 'sleep_us' not
+>  described in 'read_poll_timeout_atomic'
+> Warning: ../include/linux/iopoll.h:169 function parameter
+>  'sleep_before_read' not described in 'read_poll_timeout_atomic'
+>
+> Fixes: 9df8043a546d ("iopoll: Generalize read_poll_timeout() into poll_ti=
+meout_us()")
+> Signed-off-by: Randy Dunlap <rdunlap@infradead.org>
 
-== Series Details ==
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Series: Some updates over DP AUX Transactions
-URL   : https://patchwork.freedesktop.org/series/162842/
-State : failure
+Please let me know how you want this merged. I don't think iopoll.h has
+an active maintainer.
 
-== Summary ==
+> ---
+> v2: change the function parameter names, not the kernel-doc comments (Jan=
+i)
+>
+>  include/linux/iopoll.h |    8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+>
+> --- linux-next-20260304.orig/include/linux/iopoll.h
+> +++ linux-next-20260304/include/linux/iopoll.h
+> @@ -159,7 +159,7 @@
+>   *
+>   * This macro does not rely on timekeeping.  Hence it is safe to call ev=
+en when
+>   * timekeeping is suspended, at the expense of an underestimation of wal=
+l clock
+> - * time, which is rather minimal with a non-zero delay_us.
+> + * time, which is rather minimal with a non-zero @delay_us.
+>   *
+>   * When available, you'll probably want to use one of the specialized
+>   * macros defined below rather than this macro directly.
+> @@ -167,9 +167,9 @@
+>   * Returns: 0 on success and -ETIMEDOUT upon a timeout. In either
+>   * case, the last read value at @args is stored in @val.
+>   */
+> -#define read_poll_timeout_atomic(op, val, cond, sleep_us, timeout_us, \
+> -				 sleep_before_read, args...) \
+> -	poll_timeout_us_atomic((val) =3D op(args), cond, sleep_us, timeout_us, =
+sleep_before_read)
+> +#define read_poll_timeout_atomic(op, val, cond, delay_us, timeout_us, \
+> +				 delay_before_read, args...) \
+> +	poll_timeout_us_atomic((val) =3D op(args), cond, delay_us, timeout_us, =
+delay_before_read)
+>=20=20
+>  /**
+>   * readx_poll_timeout - Periodically poll an address until a condition i=
+s met or a timeout occurs
+>
+>
+> ---
+> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org
+> Cc: intel-xe@lists.freedesktop.org
+> Cc: dri-devel@lists.freedesktop.org
 
-CI Bug Log - changes from xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38_BAT -> xe-pw-162842v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-162842v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-162842v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (14 -> 12)
-------------------------------
-
-  Missing    (2): bat-adlp-vm bat-ptl-vm 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-162842v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_module_load@load:
-    - bat-ptl-2:          [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38/bat-ptl-2/igt@xe_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162842v1/bat-ptl-2/igt@xe_module_load@load.html
-    - bat-dg2-oem2:       [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38/bat-dg2-oem2/igt@xe_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162842v1/bat-dg2-oem2/igt@xe_module_load@load.html
-    - bat-wcl-1:          [PASS][5] -> [ABORT][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38/bat-wcl-1/igt@xe_module_load@load.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162842v1/bat-wcl-1/igt@xe_module_load@load.html
-    - bat-ptl-1:          [PASS][7] -> [ABORT][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38/bat-ptl-1/igt@xe_module_load@load.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162842v1/bat-ptl-1/igt@xe_module_load@load.html
-    - bat-wcl-2:          [PASS][9] -> [ABORT][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38/bat-wcl-2/igt@xe_module_load@load.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162842v1/bat-wcl-2/igt@xe_module_load@load.html
-    - bat-lnl-1:          [PASS][11] -> [ABORT][12]
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38/bat-lnl-1/igt@xe_module_load@load.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162842v1/bat-lnl-1/igt@xe_module_load@load.html
-    - bat-adlp-7:         [PASS][13] -> [ABORT][14]
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38/bat-adlp-7/igt@xe_module_load@load.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162842v1/bat-adlp-7/igt@xe_module_load@load.html
-    - bat-lnl-2:          [PASS][15] -> [ABORT][16]
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38/bat-lnl-2/igt@xe_module_load@load.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162842v1/bat-lnl-2/igt@xe_module_load@load.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38 -> xe-pw-162842v1
-
-  IGT_8784: c7d12b3499ef1698373f246748e68c05ada0579e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38: cca5d254412c9aab810a9337611ccdcba546bd38
-  xe-pw-162842v1: 162842v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162842v1/index.html
-
---===============6686921320588557311==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Some updates over DP AUX Transactions</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162842/">https://patchwork.freedesktop.org/series/162842/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162842v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162842v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38_BAT -&gt; xe-pw-162842v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-162842v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-162842v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (14 -&gt; 12)</h2>
-<p>Missing    (2): bat-adlp-vm bat-ptl-vm </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-162842v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_module_load@load:<ul>
-<li>bat-ptl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38/bat-ptl-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162842v1/bat-ptl-2/igt@xe_module_load@load.html">ABORT</a></li>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38/bat-dg2-oem2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162842v1/bat-dg2-oem2/igt@xe_module_load@load.html">ABORT</a></li>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38/bat-wcl-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162842v1/bat-wcl-1/igt@xe_module_load@load.html">ABORT</a></li>
-<li>bat-ptl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38/bat-ptl-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162842v1/bat-ptl-1/igt@xe_module_load@load.html">ABORT</a></li>
-<li>bat-wcl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38/bat-wcl-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162842v1/bat-wcl-2/igt@xe_module_load@load.html">ABORT</a></li>
-<li>bat-lnl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38/bat-lnl-1/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162842v1/bat-lnl-1/igt@xe_module_load@load.html">ABORT</a></li>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38/bat-adlp-7/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162842v1/bat-adlp-7/igt@xe_module_load@load.html">ABORT</a></li>
-<li>bat-lnl-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38/bat-lnl-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162842v1/bat-lnl-2/igt@xe_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38 -&gt; xe-pw-162842v1</li>
-</ul>
-<p>IGT_8784: c7d12b3499ef1698373f246748e68c05ada0579e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4679-cca5d254412c9aab810a9337611ccdcba546bd38: cca5d254412c9aab810a9337611ccdcba546bd38<br />
-  xe-pw-162842v1: 162842v1</p>
-
-</body>
-</html>
-
---===============6686921320588557311==--
+--=20
+Jani Nikula, Intel
