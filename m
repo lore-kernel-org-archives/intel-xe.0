@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 252F0FCA180
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Mar 2026 20:07:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F297FFCA17F
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Mar 2026 20:07:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E23E610E5C5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9E3610E5C3;
 	Mon,  9 Mar 2026 20:07:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kq0FOij1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SZ7Tz2Zl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5166710E5C3
- for <intel-xe@lists.freedesktop.org>; Mon,  9 Mar 2026 20:07:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4F5410E5C3
+ for <intel-xe@lists.freedesktop.org>; Mon,  9 Mar 2026 20:07:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773086875; x=1804622875;
+ t=1773086871; x=1804622871;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=ZHAoutYh0AH23mk2xCJRF9Wmvw9TKOWsgiYmZ+FyMRE=;
- b=Kq0FOij1R08xhTclXFBoGySJn8IBfL+LX1r8cBzq5iAaiZfRpDZkewXV
- w/mK6EZWTAdZJ2GgqnxLtOuEgi1GFDOi1pB/nwZgt0XUpskV4RslN1ZDl
- nHYmw2aeNnUaGvyxdZQXl4lnuaQACsFtBgfJCwxxmChzTyhyPdSyFQrn7
- i3hG3J8NCZVkcwSSCBGjaCUynFylN0P/tt36Y2/xCcSFizUFVDbFToKzo
- JnthnreJStVbdhfZDOp1geVt5JJQTm37/p5Far4FNt9FTieFwcEMjK7bx
- ab0JRNckpL/6RQF6RVq6+OAJnTf1RD349/UxBKoDwLuqWMpwNhERofLLL g==;
-X-CSE-ConnectionGUID: Bte5iQkQQIOkMYhgQj4kUw==
-X-CSE-MsgGUID: YrSLPFCKQRq+VClWoqEZOQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="61694889"
-X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="61694889"
+ bh=CBrrmYP6kxrZzXIBShwDeYZg4Fz26ve6f2cCmn3sWYE=;
+ b=SZ7Tz2ZlgljQVSHvyCehbkNPgfeGCnqBCzKZ4aeJVpJ7/IE5duSKE0Nq
+ A9aLP5FcjTvYxaonNR494cDlWxQA0XmpjJRWzsTg8NS7dFeshTjTOJXK9
+ UhPgAOK3HM1HC0yxgaGaOUU9UrMdF5DkrOAc++2bIZXnrDjKC8nRHooNr
+ Eo5UfF8sfkoRK62PnYg5g3ypGASXPrcfDWV/+FzddFYl6byV1EzUVh8mh
+ 6hLq2R6ZDiSBOw07s69iLzqOJi0p2Dwe1zLU7v1ucWUHyeHUy+CAgZHbJ
+ 4L8NCkiVgR4OqV4hSKsCxcET1g9uZIHXKdlYmsKu8lQfUz6Y0rnmzG3d4 Q==;
+X-CSE-ConnectionGUID: fMx5lXPIRIS4GjRNdGLyUQ==
+X-CSE-MsgGUID: 7k6s1/OySgSmjzyMR2VB9A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="61694882"
+X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="61694882"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2026 13:07:55 -0700
-X-CSE-ConnectionGUID: biHjp4wiTQ2lGKk8EC/Lbg==
-X-CSE-MsgGUID: K072SiL4TxCcs7PR3VbZnA==
+ 09 Mar 2026 13:07:51 -0700
+X-CSE-ConnectionGUID: 0IqriP85QK+qifQtAUUT5Q==
+X-CSE-MsgGUID: /qzf/+X0QXOrJrFh+UFDHw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="242879522"
+X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="242879492"
 Received: from jjgreens-desk21.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.221.146])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2026 13:07:54 -0700
+ 09 Mar 2026 13:07:51 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Mon, 09 Mar 2026 17:07:34 -0300
-Subject: [PATCH v3 6/8] drm/xe/nvlp: Implement Wa_14026539277
+Date: Mon, 09 Mar 2026 17:07:31 -0300
+Subject: [PATCH v3 3/8] drm/xe/nvlp: Read platform-level stepping info
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260309-extra-nvl-p-enabling-patches-v3-6-0416900dd498@intel.com>
+Message-Id: <20260309-extra-nvl-p-enabling-patches-v3-3-0416900dd498@intel.com>
 References: <20260309-extra-nvl-p-enabling-patches-v3-0-0416900dd498@intel.com>
 In-Reply-To: <20260309-extra-nvl-p-enabling-patches-v3-0-0416900dd498@intel.com>
 To: intel-xe@lists.freedesktop.org
@@ -69,101 +69,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Implement the KMD part of Wa_14026539277, which applies to NVL-P A0.
-The KMD implementation is just one component of the workaround, which
-also depends on Pcode to implement its part in order to be complete.
+There will be a NVL-P workaround for which we will need to know the
+platform-level stepping information in order to decide whether to apply
+it or not.
+
+While NVL-P has a nice mapping between the PCI revid and our symbolic
+stepping enumeration, not all platforms are like that: (i) Some
+platforms will have a single PCI revid used for a set platform level
+steppings (ii) and some might even require specific mappings.
+
+To make things simpler, let's include stepping information in the device
+info only on demand, for those platforms where it is needed for
+workaround checks.
 
 v2:
-  - Add FUNC(xe_rtp_match_not_sriov_vf) to skip applying the workaround
-    to SRIOV VFs. (Matt)
-v3:
-  - Make Wa_14026539277 a device workaround instead of a GT workaround.
-    (Matt)
+  - Call xe_step_platform_get() very early, to allow device workarounds
+    to use it in early stages of device initialization. (Matt)
 
+Bspec: 74201
 Cc: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com> # v1
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h      |  4 ++++
- drivers/gpu/drm/xe/xe_device_wa_oob.rules |  1 +
- drivers/gpu/drm/xe/xe_gt.c                | 27 +++++++++++++++++++++++++++
- 3 files changed, 32 insertions(+)
+ drivers/gpu/drm/xe/xe_pci.c        |  2 ++
+ drivers/gpu/drm/xe/xe_step.c       | 22 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_step.h       |  2 ++
+ drivers/gpu/drm/xe/xe_step_types.h |  1 +
+ 4 files changed, 27 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 66ddad767ad4..a83cafbe03fd 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -452,6 +452,10 @@
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 72d4131e9775..189e2a1c29f9 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -780,6 +780,8 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.max_gt_per_tile = desc->max_gt_per_tile;
+ 	xe->info.tile_count = 1 + desc->max_remote_tiles;
  
- #define XEHPC_L3CLOS_MASK(i)			XE_REG_MCR(0xb194 + (i) * 8)
- 
-+#define L2COMPUTESIDECTRL			XE_REG_MCR(0xb1c0)
-+#define   CECTRL				REG_GENMASK(2, 1)
-+#define   CECTRL_CENODATA_ALWAYS		REG_FIELD_PREP(CECTRL, 0x0)
++	xe_step_platform_get(xe);
 +
- #define XE2_GLOBAL_INVAL			XE_REG(0xb404)
+ 	err = xe_tile_init_early(xe_device_get_root_tile(xe), xe, 0);
+ 	if (err)
+ 		return err;
+diff --git a/drivers/gpu/drm/xe/xe_step.c b/drivers/gpu/drm/xe/xe_step.c
+index 064b604b5b94..d0f888c31831 100644
+--- a/drivers/gpu/drm/xe/xe_step.c
++++ b/drivers/gpu/drm/xe/xe_step.c
+@@ -108,6 +108,28 @@ static const int pvc_basedie_subids[] = {
  
- #define XE2LPM_L3SQCREG2			XE_REG_MCR(0xb604)
-diff --git a/drivers/gpu/drm/xe/xe_device_wa_oob.rules b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-index 55ba01bc8f38..7a1d1f9072b1 100644
---- a/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-@@ -3,3 +3,4 @@
- 		PLATFORM(PANTHERLAKE)
- 22019338487_display	PLATFORM(LUNARLAKE)
- 14022085890	SUBPLATFORM(BATTLEMAGE, G21)
-+14026539277	PLATFORM(NOVALAKE_P), PLATFORM_STEP(A0, B0), FUNC(xe_rtp_match_not_sriov_vf)
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index f3bb856aad2a..bbb2fb86d3cd 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -10,6 +10,7 @@
- #include <drm/drm_managed.h>
- #include <uapi/drm/xe_drm.h>
+ __diag_pop();
  
-+#include <generated/xe_device_wa_oob.h>
- #include <generated/xe_wa_oob.h>
- 
- #include "instructions/xe_alu_commands.h"
-@@ -451,6 +452,23 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
- 	return err;
- }
- 
-+static void wa_14026539277(struct xe_gt *gt)
++/**
++ * xe_step_platform_get - Determine platform-level stepping from PCI revid
++ * @xe: Xe device
++ *
++ * Convert the PCI revid into a platform-level stepping value and store that
++ * in the device info.
++ */
++void xe_step_platform_get(struct xe_device *xe)
 +{
-+	struct xe_device *xe = gt_to_xe(gt);
-+	u32 val;
++	/*
++	 * Not all platforms map PCI revid directly into our symbolic stepping
++	 * enumeration. Some platforms will have a single PCI revid used for a
++	 * range platform level steppings and some might even require specific
++	 * mappings. So prefer to err on the side of caution and include only
++	 * the platforms from which we need the stepping info for workaround
++	 * checks.
++	 */
 +
-+	if (!XE_DEVICE_WA(xe, 14026539277))
-+		return;
-+
-+	if (!xe_gt_is_main_type(gt))
-+		return;
-+
-+	val = xe_gt_mcr_unicast_read_any(gt, L2COMPUTESIDECTRL);
-+	val &= ~CECTRL;
-+	val |= CECTRL_CENODATA_ALWAYS;
-+	xe_gt_mcr_multicast_write(gt, L2COMPUTESIDECTRL, val);
++	if (xe->info.platform == XE_NOVALAKE_P)
++		xe->info.step.platform = STEP_A0 + xe->info.revid;
 +}
 +
- int xe_gt_init_early(struct xe_gt *gt)
- {
- 	int err;
-@@ -576,6 +594,15 @@ static int gt_init_with_gt_forcewake(struct xe_gt *gt)
- 	 */
- 	gt->info.gmdid = xe_mmio_read32(&gt->mmio, GMD_ID);
+ /**
+  * xe_step_pre_gmdid_get - Determine IP steppings from PCI revid
+  * @xe: Xe device
+diff --git a/drivers/gpu/drm/xe/xe_step.h b/drivers/gpu/drm/xe/xe_step.h
+index 6febb7fac476..41f1c95c46e5 100644
+--- a/drivers/gpu/drm/xe/xe_step.h
++++ b/drivers/gpu/drm/xe/xe_step.h
+@@ -12,6 +12,8 @@
  
-+	/*
-+	 * Wa_14026539277 can't be implemented as a regular GT workaround (i.e.
-+	 * as an entry in gt_was[]) for two reasons: it is actually a device
-+	 * workaround that happens to involve programming a GT register; and it
-+	 * needs to be applied early to avoid getting the hardware in a bad
-+	 * state before we have a chance to do the necessary programming.
-+	 */
-+	wa_14026539277(gt);
+ struct xe_device;
+ 
++void xe_step_platform_get(struct xe_device *xe);
 +
- 	return 0;
- }
+ void xe_step_pre_gmdid_get(struct xe_device *xe);
+ void xe_step_gmdid_get(struct xe_device *xe,
+ 		       u32 graphics_gmdid_revid,
+diff --git a/drivers/gpu/drm/xe/xe_step_types.h b/drivers/gpu/drm/xe/xe_step_types.h
+index d978cc2512f2..43ca73850739 100644
+--- a/drivers/gpu/drm/xe/xe_step_types.h
++++ b/drivers/gpu/drm/xe/xe_step_types.h
+@@ -9,6 +9,7 @@
+ #include <linux/types.h>
  
+ struct xe_step_info {
++	u8 platform;
+ 	u8 graphics;
+ 	u8 media;
+ 	u8 basedie;
 
 -- 
 2.52.0
