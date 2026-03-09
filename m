@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38BDFFCA192
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Mar 2026 21:40:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 128E3FCA195
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Mar 2026 21:40:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5D0610E5D1;
-	Mon,  9 Mar 2026 21:40:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C144A10E5C7;
+	Mon,  9 Mar 2026 21:40:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NofaRO4E";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EcmbUPyz";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DE3E10E5D0
- for <intel-xe@lists.freedesktop.org>; Mon,  9 Mar 2026 21:40:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94A4B10E5D2
+ for <intel-xe@lists.freedesktop.org>; Mon,  9 Mar 2026 21:40:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773092417; x=1804628417;
+ t=1773092420; x=1804628420;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=l8xhpyXzQy3W15JF9YQN0aTcgv3dFTSbgMacGH5+J80=;
- b=NofaRO4E+tkqFA5q2JlNQh0QQW67zeetOogvZ8WlXgK27+SJtum2OoAz
- ZsiG5/JeTApp1L0PtO507WV1wgB4HXB1FSmd8PqpI9v/AiUPKhVllL1c1
- yJfaBBSY7VB2FhL356jtW80nT5UdyzePHO5qouHteHkBiN/NEmnQ9cqH8
- PuY59PPt9Uz/TQSPkBQVXpBz2jlOGLinzCUVL1comZGRQX5/AHe2+azXu
- 1dBl+4eDbGAG0w8iXnHzuyTqex+Rek/W728GYZcTOQmudr41NMZ22LZ86
- 3SIxxudos1VCmm7d7Uu/Be0y2xCfbMjSQfh5uzTSTwdrbpeS/Np5JnlA2 w==;
-X-CSE-ConnectionGUID: 0drcENo7Qf62buJkIzQpRA==
-X-CSE-MsgGUID: ThxAizdbTYuDEQAE0PEYwQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="91702273"
-X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; d="scan'208";a="91702273"
+ bh=nhFCpZPE9FC5CDn1IaQ36ZZSmpn9Ws386/Tu2RnaxSQ=;
+ b=EcmbUPyz50Nvud27lxNzyRfds+AxURYGJJgLiA6KNwy/9PBw6+UJPJmp
+ hIPBnzmCiKc6U82LZIsQNIihM0ve8FrjxOBsS3NFY22oJ+/rY8VA164Pv
+ /GES2vXnBo3YMJ1iuyPrrlaqunvCb1+MtoMlEd5h9Bafjz/t+GTANhaD+
+ 9f9uxXVsZ0VzcT4Jy2prpLa0+OGSleWcy7V49T+DV01ByudWLglbB7p4y
+ 7JyCo/Bl4cs8TjHXXDeBnD/DpsHQ7UtcbbkvYjM+B3WBsPM83lZJ+jXho
+ YU0KgvUEq9xOQ7YTik8CfVPzWJewfLqajyQ3K6ICYffdXCkZphtT+pXlg A==;
+X-CSE-ConnectionGUID: v8QvYLPmRBW3IfdLkfsxCg==
+X-CSE-MsgGUID: 14pct3YTS+Op0jxf1vYQsg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="91702276"
+X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; d="scan'208";a="91702276"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2026 14:40:17 -0700
-X-CSE-ConnectionGUID: uWicNzAwSHKcyr318v7mlg==
-X-CSE-MsgGUID: 0IORl9xCR56Gj8fI1bLv0g==
+ 09 Mar 2026 14:40:20 -0700
+X-CSE-ConnectionGUID: FqydFZhjSmmddayx2/x9sA==
+X-CSE-MsgGUID: EIbhJ9GzS/Obw1ClAtUtLQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; d="scan'208";a="216346740"
+X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; d="scan'208";a="216346749"
 Received: from jjgreens-desk21.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.221.146])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2026 14:40:16 -0700
+ 09 Mar 2026 14:40:18 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Mon, 09 Mar 2026 18:39:49 -0300
-Subject: [PATCH v4 6/8] drm/xe/nvlp: Implement Wa_14026539277
+Date: Mon, 09 Mar 2026 18:39:51 -0300
+Subject: [PATCH v4 8/8] drm/xe: Translate C-state "reset value" into RC6
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260309-extra-nvl-p-enabling-patches-v4-6-2e7fcead971a@intel.com>
+Message-Id: <20260309-extra-nvl-p-enabling-patches-v4-8-2e7fcead971a@intel.com>
 References: <20260309-extra-nvl-p-enabling-patches-v4-0-2e7fcead971a@intel.com>
 In-Reply-To: <20260309-extra-nvl-p-enabling-patches-v4-0-2e7fcead971a@intel.com>
 To: intel-xe@lists.freedesktop.org
@@ -69,101 +69,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Implement the KMD part of Wa_14026539277, which applies to NVL-P A0.
-The KMD implementation is just one component of the workaround, which
-also depends on Pcode to implement its part in order to be complete.
+There are higher level sleep states that will cause RC6 state readout to
+come back with an "in-reset" value. That is the case with NVL-P. As
+those states are only possible if the GT is already in C6, let's just
+translate the "reset value" into C6 when doing the readout.
 
-v2:
-  - Add FUNC(xe_rtp_match_not_sriov_vf) to skip applying the workaround
-    to SRIOV VFs. (Matt)
-v3:
-  - Make Wa_14026539277 a device workaround instead of a GT workaround.
-    (Matt)
-
+Bspec: 67651
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h      |  4 ++++
- drivers/gpu/drm/xe/xe_device_wa_oob.rules |  1 +
- drivers/gpu/drm/xe/xe_gt.c                | 27 +++++++++++++++++++++++++++
- 3 files changed, 32 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 1 +
+ drivers/gpu/drm/xe/xe_guc_pc.c       | 8 ++++++++
+ 2 files changed, 9 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index 66ddad767ad4..a83cafbe03fd 100644
+index f49a28f4a330..1cc8c7c2d379 100644
 --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
 +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -452,6 +452,10 @@
+@@ -20,6 +20,7 @@
+ #define MTL_MIRROR_TARGET_WP1				XE_REG(0xc60)
+ #define   MTL_CAGF_MASK					REG_GENMASK(8, 0)
+ #define   MTL_CC_MASK					REG_GENMASK(12, 9)
++#define   MTL_CRST					0xf
  
- #define XEHPC_L3CLOS_MASK(i)			XE_REG_MCR(0xb194 + (i) * 8)
- 
-+#define L2COMPUTESIDECTRL			XE_REG_MCR(0xb1c0)
-+#define   CECTRL				REG_GENMASK(2, 1)
-+#define   CECTRL_CENODATA_ALWAYS		REG_FIELD_PREP(CECTRL, 0x0)
+ /* RPM unit config (Gen8+) */
+ #define RPM_CONFIG0					XE_REG(0xd00)
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 21fe73ab4583..bb8c4e793492 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -756,6 +756,14 @@ enum xe_gt_idle_state xe_guc_pc_c_status(struct xe_guc_pc *pc)
+ 	if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270) {
+ 		reg = xe_mmio_read32(&gt->mmio, MTL_MIRROR_TARGET_WP1);
+ 		gt_c_state = REG_FIELD_GET(MTL_CC_MASK, reg);
 +
- #define XE2_GLOBAL_INVAL			XE_REG(0xb404)
- 
- #define XE2LPM_L3SQCREG2			XE_REG_MCR(0xb604)
-diff --git a/drivers/gpu/drm/xe/xe_device_wa_oob.rules b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-index 55ba01bc8f38..7a1d1f9072b1 100644
---- a/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_device_wa_oob.rules
-@@ -3,3 +3,4 @@
- 		PLATFORM(PANTHERLAKE)
- 22019338487_display	PLATFORM(LUNARLAKE)
- 14022085890	SUBPLATFORM(BATTLEMAGE, G21)
-+14026539277	PLATFORM(NOVALAKE_P), PLATFORM_STEP(A0, B0), FUNC(xe_rtp_match_not_sriov_vf)
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index f3bb856aad2a..bbb2fb86d3cd 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -10,6 +10,7 @@
- #include <drm/drm_managed.h>
- #include <uapi/drm/xe_drm.h>
- 
-+#include <generated/xe_device_wa_oob.h>
- #include <generated/xe_wa_oob.h>
- 
- #include "instructions/xe_alu_commands.h"
-@@ -451,6 +452,23 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
- 	return err;
- }
- 
-+static void wa_14026539277(struct xe_gt *gt)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+	u32 val;
-+
-+	if (!XE_DEVICE_WA(xe, 14026539277))
-+		return;
-+
-+	if (!xe_gt_is_main_type(gt))
-+		return;
-+
-+	val = xe_gt_mcr_unicast_read_any(gt, L2COMPUTESIDECTRL);
-+	val &= ~CECTRL;
-+	val |= CECTRL_CENODATA_ALWAYS;
-+	xe_gt_mcr_multicast_write(gt, L2COMPUTESIDECTRL, val);
-+}
-+
- int xe_gt_init_early(struct xe_gt *gt)
- {
- 	int err;
-@@ -576,6 +594,15 @@ static int gt_init_with_gt_forcewake(struct xe_gt *gt)
- 	 */
- 	gt->info.gmdid = xe_mmio_read32(&gt->mmio, GMD_ID);
- 
-+	/*
-+	 * Wa_14026539277 can't be implemented as a regular GT workaround (i.e.
-+	 * as an entry in gt_was[]) for two reasons: it is actually a device
-+	 * workaround that happens to involve programming a GT register; and it
-+	 * needs to be applied early to avoid getting the hardware in a bad
-+	 * state before we have a chance to do the necessary programming.
-+	 */
-+	wa_14026539277(gt);
-+
- 	return 0;
- }
- 
++		/*
++		 * There are higher level sleep states that will cause this
++		 * field to read out as its reset state, and those are only
++		 * possible after the GT is already in C6.
++		 */
++		if (gt_c_state == MTL_CRST)
++			gt_c_state = GT_C6;
+ 	} else {
+ 		reg = xe_mmio_read32(&gt->mmio, GT_CORE_STATUS);
+ 		gt_c_state = REG_FIELD_GET(RCN_MASK, reg);
 
 -- 
 2.52.0
