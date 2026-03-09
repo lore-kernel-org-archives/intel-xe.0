@@ -4,159 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2BFBEFCD63
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Mar 2026 09:38:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5505EFCD71
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Mar 2026 09:43:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 795A610E4BC;
-	Mon,  9 Mar 2026 09:38:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8215F10E4C2;
+	Mon,  9 Mar 2026 09:43:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tosar30v";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gyWd8/Rs";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B5CC10E4BC;
- Mon,  9 Mar 2026 09:38:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5E1410E4C2
+ for <intel-xe@lists.freedesktop.org>; Mon,  9 Mar 2026 09:43:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773049121; x=1804585121;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=ShPHMfXq3dbNGUEL4I5c+3+2ZJEix1bQmvG0ptLe9p0=;
- b=Tosar30vBNFwTpopwIDA/v0dl44q4jDoVxcKs49drgh+umXS0tuZwo6C
- G8/dIwgEN4Op0Ai5EZvsCO+SHR8SEhyBoGELFBLHng8O10K+WXBXbfzwk
- JRsbSEnqhioXMq69ZMgs0zLke3nEs27Jbkjq5QNPT5Nd+WGQMxa8XQMcw
- 3baA+A6mLDm1DhydyR11gOPLk6uouJJV2m8j4F247UWVAOH5Tq591x73w
- uc4jGDLczIiQOXrbfxgDPBlJUZ3b3+E8SYRf567mA8QU7tz6lsdCkIrTb
- JQFxReWIN8+h8HNGFZ1f4FlCgXo/k/mddwTQnQu56pbuyOXHXxkjdzst4 g==;
-X-CSE-ConnectionGUID: ONE8JmsVQGGPZZ1WdIiECw==
-X-CSE-MsgGUID: sKiDDMHQTXmelQCmCu2iqg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11723"; a="84702000"
-X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="84702000"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2026 02:38:41 -0700
-X-CSE-ConnectionGUID: IQK+dS70TLyFYndAQ8WBcQ==
-X-CSE-MsgGUID: X/CyAw8kRMqnGPCp/QCOaw==
+ t=1773049402; x=1804585402;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=SKEJ8Og5cCOi2j8X2RSuczCTveeYjrEMuv78iy7ENEI=;
+ b=gyWd8/RsljXoIxFBzClYB2UrBAb5gnX3QoHmMww9Hc/EW6FdMuxFaa95
+ NLH2b8+BeBDth7bVZw9qA24TZNYB84+mdDQkSY1vkwRL0kX6fMb4F4h34
+ LBy1ClBcy8RgnWVvorqn/WnD5L1mX0GynCTmoAH2pUw0gYRrCdukg/oel
+ e0cd0277gyr+SEKfiQi9KROcOkRyEdg5UZH3Adr+LQS0/U452ymoE6cyj
+ mPmygybyxpOv8KWz1lZWq/Vgk8j5gK0CjpA9c/7JtTrEzvDnAZJRwqiJz
+ DIkSw18AWk5VFs5KPzhsHXtr0Ud9wWFB+PfjhJ16tpQdG+wtAtI6N1oto A==;
+X-CSE-ConnectionGUID: LkeEQkOPSvKVIILXg1emWw==
+X-CSE-MsgGUID: A6mpW5VbRBWGgbH3bZH/xA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11723"; a="74179511"
+X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="74179511"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2026 02:43:21 -0700
+X-CSE-ConnectionGUID: hHFZ5+vPRYulrzw3v16hpA==
+X-CSE-MsgGUID: bAONuQunTl+C723sdTZsew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="218902317"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2026 02:38:41 -0700
+X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="257625923"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Mar 2026 02:43:22 -0700
 Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 9 Mar 2026 02:38:40 -0700
+ 15.2.2562.37; Mon, 9 Mar 2026 02:43:20 -0700
 Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 9 Mar 2026 02:38:40 -0700
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.55) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Mon, 9 Mar 2026 02:43:20 -0700
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.53)
+ by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 9 Mar 2026 02:38:39 -0700
+ 15.2.2562.37; Mon, 9 Mar 2026 02:43:20 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VovXhCUBMQ0Oa/mIQ2VAZ4e1r8N3moaeeRuGkajR2fJbmWqjs10OtQ0d3/hJX1GpI2H/kHB2bRmJAygpJvfNvbywsK3oGPqilyeYDybWED6QYQt/JeUCe+j2IL7azy/yd96TpODqQ2d4mPtxMl8DJrX8OxjRTmUu5q2NBRfv5BUTUd9ej6T3ToUeXhKxVOBC4sJiAd6OfINw9jz93k01DARbklgWozhrvy2ba7PFp6YbzDg0FWpl/MfyDsnt6Iz35LhPhS0IRqSGtqxZ7JeynwhbHKneEJYqJ4F4D/3yrBCEqeYI9Ymi2BRX0HlR1XR0/v8xoQuqEQrmIE43e9Zhqg==
+ b=Ulz8N72ztW5RAIl7fkCkV7xtBobciyueOLgXvB6IvaPfNZ7XPIZg1H7edy/5fMzTJcrnvCeyXndVeqWGFdhDqfUC0EZS2UhSmeDyOXQ4QyWP6ZVQJX1Flv20WGLqwVj6yLDmT1Fiiu8gWYud/u0mbuua5HBC0oZC2NTuarJofyG0ZXpJSOv/jvbQuvqbxgWj3MJht+g7UzUFSuN97Y7sVrjRuW1j92zI35W4hiAuFUh1CFHeol5Z74+eb4G3Fs/OQ+xdBROEV4NGj0KEinYstaBGWA2XiYB6CyhSxn9Z/MafnOTS6DFS2C3oX3gxTB0g4J+AHaROKZH+KJyglJezeA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ShPHMfXq3dbNGUEL4I5c+3+2ZJEix1bQmvG0ptLe9p0=;
- b=Ml1OSYO95CGOSe+HHr9sOIEE6lRHjlupeKIS71BrAnpol5odSdbmAzYukN2dqoiQL1jKCdC440F6eg0H2zXig/jmkCiMBEl9yLmCpPXGgVI6QO8KY0wEC01T160urCjTG7nw1w5BnI6hZCSBJpjXmS0r1/ScvrhG/emBWqK7ujy6Wv4EYGrR3UZWIgkv9V27TL2ECm8STGLQFUPp9rEd3O5g/w3zfU68JtQ+sOqE8rtA8SwSKKkcxB8YRZfhXtEP2HxVE51acTxr7dYJ0QbeCZkMhp6gblL4yZbvfVr0ra5Xxbl0Pp+Fl9OSzutbtow5jb+j3lzLUkTmI7vny1CxMA==
+ bh=LVBXN6OhlGDxV0Kj/ovdFDycnelmyTsBKFOoKGjMs6g=;
+ b=toEMmcxcBPM9VSDa4KKqulIGvL87vgSoVK2u/P23j+5JRKFr+RMafgwigqiH0GbxFQl6gz2oEMSL1Of47zdVQrmFSsSZ1zyiaSdn8IFoLkXzyLX7CnstyO+XCwEIm1gah63AUso4zYPPVRKpMSFAN8KnQGPB48s/jdhzkNeKa7w54ot96jKnGp5H5x9b+xd6magiZMINb8QSeopm9FP9+QoH+BMzddFNgNur3t5UYI0DqilrRtWJlB93tiBcjqg2hRpY56m8yVcrIaejKaU2+9uh6ISdzBkbPYv6UsF+wLKLuyWTSIv3rE+lC5jy7jPeNMhAqlUnnBWdW47qIdQWfg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DS0PR11MB8049.namprd11.prod.outlook.com (2603:10b6:8:116::6) by
- LV1PR11MB8820.namprd11.prod.outlook.com (2603:10b6:408:2b2::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.10; Mon, 9 Mar 2026 09:38:30 +0000
-Received: from DS0PR11MB8049.namprd11.prod.outlook.com
- ([fe80::603c:772d:6793:d4eb]) by DS0PR11MB8049.namprd11.prod.outlook.com
- ([fe80::603c:772d:6793:d4eb%7]) with mapi id 15.20.9700.010; Mon, 9 Mar 2026
- 09:38:29 +0000
-From: "Manna, Animesh" <animesh.manna@intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Nikula, Jani"
- <jani.nikula@intel.com>, "Hogander, Jouni" <jouni.hogander@intel.com>
-Subject: RE: [PATCHv6] drm/i915/dp: Read ALPM caps after DPCD init
-Thread-Topic: [PATCHv6] drm/i915/dp: Read ALPM caps after DPCD init
-Thread-Index: AQHcq6fPGb1V0+grJ0aqzF8kdKVQ/LWl+Q7g
-Date: Mon, 9 Mar 2026 09:38:29 +0000
-Message-ID: <DS0PR11MB804923B1E8BB59729382E13CF979A@DS0PR11MB8049.namprd11.prod.outlook.com>
-References: <20260302033630.428913-1-arun.r.murthy@intel.com>
- <20260304072157.1123283-1-arun.r.murthy@intel.com>
-In-Reply-To: <20260304072157.1123283-1-arun.r.murthy@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB8049:EE_|LV1PR11MB8820:EE_
-x-ms-office365-filtering-correlation-id: 9d48ad8f-76d3-4bd7-670d-08de7dbf9f13
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|7053199007|38070700021; 
-x-microsoft-antispam-message-info: nGrBeJkmVPwZzJEjBQnNYvknnMkGj0NasqZ7zAIrNZJz07jbBkrURMjjsdoWx6Pu0UHt4D6gr5pPs+j3/QsGZRfu+t7wV2Hh0FpHFkvEKidMXMtSswQ12AkghF3kkuXjMz3djhLb/KLc93TPV/nZYXNw1LTBiLnD9uzhHMYZ+RVzAtasDzoaGclpUDM7PrmxyjCoVLkQMlBBN9IsJAMOXletmfZi8YZW08LBNg433UsP2IplP/85Ecif9XHE99dN9C/RjWizoXLqbo3fBMv8TaTiLk2qSLll1AXwVxnGZ98skd6WpDojpvmXvcyCUwRslwkAz+97KK9Y+KLOwKn3UH4Y9mtON7kJXHO8sNgMJMGDupCBbxOw5z9kxNK3dLTD+Q0MqqnY2j294mWdRPBAzOQaLJFHHGeY1h83CMVOd/ROI0J/XNQOiyuCwqAQquqsdyVsVinT2xMgbP8c9Tf38Xir6o2IwDqOz6/uZnl4SxqNfGXCkt0sA93xvD3pw/0MtbRvXJOjfeYyUVeQQT3WO0xijVH6bLWi19edJbx3/tJxCpprAooaOfVGcJDnXcJi/OnMr9bVQb6LSTKEYmWgakTgwgkaBfLXc9EnSpafvncdYrHxhzoW+/RQ59n6Cyh3ljkg4ED0G8jA0uS+wndpXqdUWASd9Nm5o62K8GvPtS3z7VyAVaJ23RZTc8X1wGsuLQZ5jSZZ0VEPwxKiCNqFwJACRzAPX2Tyamma7t7JeR12dbgNK7+IUcthmHtaDBcZJpN/PyjNmI5YhhAIr5XyCg==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8049.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7053199007)(38070700021); DIR:OUT;
- SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MDl2RUticlR0Zk1QQUNSL3VsdisxeTNlZGhZUVpkVzZwWlBvdGRrRVFzZmx2?=
- =?utf-8?B?a1pKRGpRcXEyYlpYQ1g3WXpzUENVWnFwcjRSSHNITERkZzFHVFN3MThJcHU0?=
- =?utf-8?B?RmptcG1tWWM2MkFOOFdyeGZVYUw0S0RvOEdGdHBEZVVRc3ltNzJ1TjFsak41?=
- =?utf-8?B?TVVmd2pnR1UxcEUvUENBZ0JmNnI5Z0FLcklmU1BiMmxMRHBaTUZwdWtEYVhU?=
- =?utf-8?B?cmhWV2dLNVJmZktmVTYyVnFRcnZMQ0VyUVluSGJ2YzhlLy9mdklVclJUSTYr?=
- =?utf-8?B?b0JnWVRER005cHM5Q0Zvd1A0NTdEajdFQ2Eyekk0T2tOcG5lVlN5ejR6MUdr?=
- =?utf-8?B?TEpnMHk2T3cyeGRjOVZmWHprVVVPNFRIa2x2MG5QeVJ1V0J6dFhtTGdwYzVk?=
- =?utf-8?B?S1dkV1pqQ1Y1RGhzempsWHJ3eHR4K2tZSmh4MnlVUjI1REU1VkR2SHZib0U3?=
- =?utf-8?B?UkVpZEtmVjZkSVFvc3pXSC8vYXFKQnBNUUw3UktRbDAvWUorY2JpLzhvN3Jz?=
- =?utf-8?B?dXd5WnFlOUxOSHRsNWZkby9wcjFIWG9qeTF0amRrbHY3c0RMNDExbmtyZ3k3?=
- =?utf-8?B?a21DNVFFbXgzTkU3S0kzZEFPdEE3cmttT0ZjQUVpbjdZQ1lIUEhaT1ZkQkYv?=
- =?utf-8?B?eWlJQy9qMU4ySE1XOXBaL05jNUpQcUd2TG53dkNZV2VWOG9ZVWIweDJKRnhC?=
- =?utf-8?B?WlpBMUV3N1FiK2JVWUNKNzFLNnVpblhPOHhJenR3elpQb1k5dnNwTHAwbENt?=
- =?utf-8?B?cWlESlJIYXBoam1hMXkrTTF0VXJIQnlBQXdTeSs0K1JlK2hWZ0FrZWVLdG5X?=
- =?utf-8?B?a3F5TkQ5a0RwZzA3SmRqeDNHRUZNWWE1MXRtZEU1ejlPSE9mSkt0bENkWldB?=
- =?utf-8?B?RXg5VXp5U0NKeW9MMktaNkEyR1FRK21qWm5UeEVIemZZaUZZMnVVZmQwU2F3?=
- =?utf-8?B?T244UWhnUEJwQjFQVDA0VUJQcXo0MzRhK2NiTmw2R1ZtclJvNjdjSDJOL3dK?=
- =?utf-8?B?YW13TUpIMU1LR1ZrZDJwZUtPdmxHWlVRV1pPcVBST3hOQW5jL0lOdHBqbWY5?=
- =?utf-8?B?MUwvYlR6Q2cxYU1ueWl3d3R5T2tudUVGYjF1M3lXUWlPMUFTQUkyQ0NxOGNK?=
- =?utf-8?B?MWVkL3BidGR3cG9VUmJ4eGdNMkpiQkE5dWxhTlFtSDlEVjFEaEJLR1h6elcr?=
- =?utf-8?B?YkZXWThyOXJLcUxFdm95TXVTRWFtYXZoZHJwcWIzMU13a2JEaEcvREVGTkJp?=
- =?utf-8?B?K1JSRjNwMGtmNjZJR1pIMlFXdTA5eHpLenp6bFQrRThQTEsxRXFCNmVoYXlS?=
- =?utf-8?B?VHF6TkdyVGdNZFVhZWl6SFB0TXRsNW1HNDdCemxOT2RwakdsU3VKQUpWbkll?=
- =?utf-8?B?OHFnY1R2TnBFZ0ZocWttVG9BSDRMb3F5S01Bdk9VaUJabENBN2pHVSsyMDBF?=
- =?utf-8?B?TW1MSGRhMCtvYkE5ckxVaXgwa1FNZ3BTNTd5RWNkWENaeWlEUXhxSlpEdWhM?=
- =?utf-8?B?QkpSNDB3cnBxOEZwQVk0UkFRTDFVZ1hVc2xKQitob3VzdldESFJsUE9iekxr?=
- =?utf-8?B?Nlovdis3YmZwd0N4YmZQdDVaOStvdTAwTUo3ZkxzeUhGclRka2VOalBnajBi?=
- =?utf-8?B?K2xtaVR3a09LS0NrZE53UTlOUDZHcUFIUGl0Yk9EVjl4b1dUUU1ST2hENXNn?=
- =?utf-8?B?OXc1Mks5VUpmVUlBM1hJUlNGc0JoZy9acEYrNnU5eXdESjE0Q3J4VkdlK3Rh?=
- =?utf-8?B?VlJEK0lqaGVDVHI4VHNKSFhUendWTlY1Y1hhcVNBTytHaWllcENEWGcyUXV3?=
- =?utf-8?B?Y1hUYXRYQkpoaXZoc282d3g1cldJaldENDJoZUFmZXZVWVhYSW5CcS9RUjlS?=
- =?utf-8?B?K2pUWjJJSkhqaWtOQlUyWWZUMkxNM1pSNU9zcDVYdnVuV281OWtVbVhSYkF1?=
- =?utf-8?B?a2xjcHRyYm5HL0p0Q1ZlQllwbGNqUE0vUk1ZN0o1Mk5xbXdkNFpFZGlaRnNr?=
- =?utf-8?B?cHZFQXZ0cDNMNVJFeEloakVQN0p1YWkxc0kwQm54Y29ZNGlEdEwxRTJtNFZY?=
- =?utf-8?B?VFQwV1hCdDlXRmVZbC8vWUVuM01VbGlENjNwOXdyL2xnOTY1Yy9ZZ2t0cm95?=
- =?utf-8?B?L1pYb0NPMzdDeW9HVkVpTzNDOWRNdFpyTzI1ODNyV1NFcGwvMmEvYVVLaU41?=
- =?utf-8?B?dVFUZTFUZTVCZ1paNVJwY0dxcDBLTHgvWUxNWDhLRkNVeGFOenUybElFODNa?=
- =?utf-8?B?VjFRMzV4citHV2c5MHhTT1R4bXJHdkJPankxOXZsRzVhZCs4SHkwUFcxOFR5?=
- =?utf-8?B?alpacEdWWUNQZDBReU5hSTlTcGJkbE9LcG42eEdTTjdueDU2UHlMQT09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
+ by PH8PR11MB7119.namprd11.prod.outlook.com (2603:10b6:510:215::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Mon, 9 Mar
+ 2026 09:43:13 +0000
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::53aa:3f7a:59cd:e057]) by DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::53aa:3f7a:59cd:e057%3]) with mapi id 15.20.9700.010; Mon, 9 Mar 2026
+ 09:43:13 +0000
+Date: Mon, 9 Mar 2026 15:13:00 +0530
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: "Anoop, Vijay" <anoop.c.vijay@intel.com>
+CC: <intel-xe@lists.freedesktop.org>, <badal.nilawar@intel.com>,
+ <rodrigo.vivi@intel.com>, <aravind.iddamsetty@intel.com>,
+ <riana.tauro@intel.com>, <anshuman.gupta@intel.com>,
+ <matthew.d.roper@intel.com>, <michael.j.ruhl@intel.com>,
+ <paul.e.luse@intel.com>, <mohamed.mansoor.v@intel.com>, <kam.nasim@intel.com>
+Subject: Re: [PATCH v8 5/6] drm/xe/sysctrl: Add mailbox communication
+ implementation
+Message-ID: <aa6WJHzxkUbXrqXU@soc-5CG1426VCC.clients.intel.com>
+References: <20260302081002.3275868-8-anoop.c.vijay@intel.com>
+ <20260302081002.3275868-13-anoop.c.vijay@intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260302081002.3275868-13-anoop.c.vijay@intel.com>
+X-ClientProxiedBy: MA5P287CA0082.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d8::12) To DS0PR11MB7408.namprd11.prod.outlook.com
+ (2603:10b6:8:136::15)
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: cUBFxM/zBjdx8bDgFxonyt8J9ETideitI6iOBuJpccX99co1oCZ9tDhf1p0Nl1bzEjeZQltR9bZeZL40I8m59GHke2GlRMIqwZ6UxK7w6TEC3oR4kQBmugwv6zCsmh3h8/8M6Yfe1WC/oPD4OJMf2pTYpOomn5me5P+HaTaK2ozFIejuqV46sgRQakWa7XRuKXJWhxc2EBpwu41PxYxVGe3xmCEbifNuaFl5tux/sBOdVbjfLgpeKdIAWT0eS/PCsda0skkE5IhtoeyO/fXjYIMmFhqfZreI9bziX/e0vJwp/aeD9VnV4SQIpEmAwHZNkw/QamqT1V/Wf7GabeCHIg==
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|PH8PR11MB7119:EE_
+X-MS-Office365-Filtering-Correlation-Id: b12f5bb5-9bb0-4033-edf0-08de7dc0480b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: 4udyBt2CGdwg/gQqeHmSIocWO+Ui4/CN1zyHI/rTswkJJmAv+DujprIw94x2TVFMiwAka9zatB0nUM7Ke55ElxtuAJij8d43IuiQmfRrRMsbj8SwC3CAmQO0HTlxXP1CYJoqLge2Y9Tf5bDoUBqxLnh7zNMg9b8ySAZy0Wg4eZOuL4cp1iPJGPSK14/KiGAO/6qsz3esuTHxy9xfHuEXmB7+Kxzderw5+4/UIr4yJAKuwa9Q8IYN6NgQTQsxakfHzAKAY8ZlGhL/h4hzWZHDEOGpuICQHgebdjf8LkJFcZJzlnxW0LjIW3EmvcT5ewcGNM2cJRIplPo7N2B0GLYDxJInW7VJ7EhkHzI2XL5FwLcQADy1azBbd9NDedgDdONgVE1oCFoqArJnKkFEFDPK/NH856KA9YNDsmRvSjE51jj+4SNSQyR+C3ysnz5DoR3baLBYWN39SOX3TYVawv0B4NRtiOKDrTdQCUzXY+SeD3V8LQ559Tr6sO+Xsyea76QKW9bz3JPCE1hyzKcJvNI/dHQueMWLBq06xs+JFCy8s5GQ12kVQU4PMX4/vj8B2CxgK7CK1ktXCAn6rMAs+OuKBfawr03lWZZ4X0Duqg0HuJeREQdCs4nz7qows8d8XZWDtaJt1iBlTuvxu2s7epoLvaGToyuxB5BEy/fTfhMX7Swd9d8eb80MOlqUkAseZoyGujU1Xd9J7nMEr6i49AywGW5ZQA2hcLKyteW600DBqfw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VkF1YThPMjlkTDRTSEsxRnZpcnZuakxhU09uTmJKMlFoS2pGbmhWL0hlb2lq?=
+ =?utf-8?B?SDQ4TWpFY2xrVDBVRnk5TzJ4YTZHQXZuWlNTNWo0RDhuVVJpTlIwTmN5aTJQ?=
+ =?utf-8?B?YzgyWHZBTnRpMVRUWUphaXBnRFpQUDFPNEtwdDMwb2pzWkUvK3hqTmVRc2cw?=
+ =?utf-8?B?YTljWktlOXZOSHkvVm9RNjJMQzY2WXpjQWttN3p1YkNWRkMyS3BNTkZFeXlQ?=
+ =?utf-8?B?Q2cxL3htNVY4RFFESm9ZNUtLWXJrUm9SWkVtbHNRaGtacnFVaFZLaTRPTElE?=
+ =?utf-8?B?OTFPcjBpdmhJMWxCSlpza1E3SmhtWkhCNzcxdDZYOUE1QWlKS1B1ZHAvakd5?=
+ =?utf-8?B?MHpoNThmQ0JpdFpUUERTamFrbzBFWWR5akczeHhteWVPU2dMaElNRE5DRkNn?=
+ =?utf-8?B?bVA3WVpuSVFJR0UwbVlna0lrZ2xYMW5jOHlKQjM4MFpPUzIvVXNZZ29ySU1h?=
+ =?utf-8?B?YXpGeWRsY25YaWVFK3dWS0M1dnYxNDc0TmYzSW85Unc1c2VTMU9SZVc4WU5k?=
+ =?utf-8?B?aTh2Y1MwK1pxd1F4N09rbkVyTmRybnpiSjljekFzd3VEdXZCYlg2Q2lxT1JG?=
+ =?utf-8?B?VVZQWEFTRGNEWmdFUVc3TTFzWTl0RHVCdDJsTm9meHA0QXMrY1ZNOTNOK2pN?=
+ =?utf-8?B?VUdmUW1JeHNZMDNjN2l3NUlWZm0rZnF1RUhaUUJCazUxK0JhV3JDN2V4cnZ6?=
+ =?utf-8?B?WjJ1b1RraVRaeG8rK2lpQmc1OGJZUktmNEIybkYxWjhEcjJlK2ZxZHFNOVgy?=
+ =?utf-8?B?VDFkRW1Ub2R4MXc3eGdNQmJ5OUxreCs5WStiRVJyNTFnOGNsdENKQUdjSXpy?=
+ =?utf-8?B?a29EaVhiYWM0M3hnNlRyMjF4OGs4RnVzdXFWUEtTZXByOTNaMG9ZQ0tySjdH?=
+ =?utf-8?B?Tmc5UnNYSUZYVEVpUFVIUFZMbXNUaVFjRU5YQnJEbjNCV01MYWZIbU53Qk5N?=
+ =?utf-8?B?RUxtZkF3dVZ1Z3F3S3lyMUNoQXU2QWNEcWRhV05zNUZ4cnQ3aTNVcmxaVDlp?=
+ =?utf-8?B?Q0F0Y3dEN0JmUHQxN29SNUhPQk9WY1I0UlFvY0tmSUlJS0RDQ2svbUh0KzVC?=
+ =?utf-8?B?MldjdVo1dlFObEUyQzBZZkZYcmZZamI2bk01TTlwTnAreVZQUkltOC9ya3VW?=
+ =?utf-8?B?Q1R3RUlhV2VPVk9pTktrR2duanFZTE93S29OOFlxVVRzWjNFeDV2aTJJWnhk?=
+ =?utf-8?B?alhBWXhIdXFOa1g2eXAxSTFuRnRRUHZHVmFENWlaeG4zNDlRcGdkSWxVcHZj?=
+ =?utf-8?B?eHdzbVJsT0huZWVLV0JzRTJ5SjgvMHcyNTJFMkovZUVSam9EejhNL0RyR05L?=
+ =?utf-8?B?dzJJbTNIT1pFcjNVZjhyaGU0dmJKT2VTM0R2cWpNQUhEcVFDdllwR3VOYzNN?=
+ =?utf-8?B?NEdZVjZQOHJ1SVUvWGUzc3Bveks1L3AyNCtJUjExdU5QdUxnQllqY245UmVG?=
+ =?utf-8?B?eFh0ZXFlOTRzV3VkQmFKNjR0WXMwQVdLYXUvZTRiUTJuVFpWT2RYWTJwd2Vj?=
+ =?utf-8?B?ak5VdEdZZHI1SVZGK0JDM2RCcjFvU1REdnBIY0JmU005S3FOU0tPTEVheVpN?=
+ =?utf-8?B?MkZOOHJUNFVpanFzZFRReFhYNXkyMFlFcVVaQnJvQnJIWndvdEJweGVnRWcw?=
+ =?utf-8?B?Y01EQ1c4eGxVYmtOK2MvdGd4eG5kbUxQSnh3ZkVlclFZWWFTbnVrRjJuTWlY?=
+ =?utf-8?B?QStoNkZiTlBtVjRrUGluMkdVSU4wUzJnekhlUEdyZXlxaXdaSUNXRm5TcTV2?=
+ =?utf-8?B?aWxWdEJzbTE3R1hJRHNwNm5hdXUrZFFiMDZjS09YVElXUTZhMGM2eXNEZ09n?=
+ =?utf-8?B?dDFKTWJoYTFZVFRMZEZXQkMzWXozVURvMXd2c1F1OTFkdUhPSmpDQ0tDSkFv?=
+ =?utf-8?B?R1I0TldWbFRGTW9ycXRRa2tQL29hN1VDRUxNdXM2bkJIK2loZzlFaitkRHFV?=
+ =?utf-8?B?dHF4Uy95MCswMDQzWXhIZGJuK2J1R1h5M3dBRnVrWlpvSTZmMVd5SEp0bmxo?=
+ =?utf-8?B?S2hSSFhQRSthTGZqcnQ5UE9DZmFDeTJrWWw3bVZLWG1NMVhkOFlyMEVwQzNm?=
+ =?utf-8?B?QXFHU1VOSnNqRktCaXdiRTF3V0JHY0s5ZkdxV0dzSGZIamE3NDFERGdLa1pr?=
+ =?utf-8?B?TjMxc3JJdUxnNVlOSUFFTS9ka2tsN1hQM2hpUkhMalczVXN2U0NSRytmcjc0?=
+ =?utf-8?B?VnNJRWZzYi9pVmVLa2xLKzZHb3VhcnVHVjc2M1A2K3J4czY5WkxvV1NWSTRY?=
+ =?utf-8?B?RFhvY2gwWWZ4SjUzcG81SS9XWDkyRXNkMmtsQjMwN3hWR3A2Zm9FOWlyWnlr?=
+ =?utf-8?B?TDM5ZnVscjFsSTQwMTdhMEJQZFJuaWhDaWdCam00Zko1R2RLRC9ZSGtEVTJQ?=
+ =?utf-8?Q?PxAURtl6YIATCmGY=3D?=
+X-Exchange-RoutingPolicyChecked: XhXF+ghFk4B2AT5HtAR/+eGrsyG2qq9ThubiiB2NRgLwlCVAvWVQV9dD8V/ImHzJuHaQMRUkt+vWj4nwfsKWlo7sxqIuY9ATsM6X0IPQzs35XKk6fHVALLeV13BS+aSJuHm0UN7K7DP/FmUJXBzGIL8gUmZ8iIv4azLE+6XDFZr+omDurc785/0jzKKPyjrPnZ0Ox5jacjsGDA8tt27lSH88tupBjCmrKw/ZPTj00V9vAFyWl9TGtI+rPICsyZYncVahuTfOeiqEjiKKK0Zz4tRr1A/FXikuhIcb7s4lNMNvz97qVgeB2V5camEmFtikAd3wa/5rHXaRkkxH89LuFw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: b12f5bb5-9bb0-4033-edf0-08de7dc0480b
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8049.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9d48ad8f-76d3-4bd7-670d-08de7dbf9f13
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Mar 2026 09:38:29.3284 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: cfQ18xJeAkheGITY4wiaVG6iiXWk4XxOVIOkxMwAlQNPinRfLH8WVGHo3jnoWCZQBtQ6ATtUE9p+yMJaILV41g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV1PR11MB8820
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 09:43:13.0533 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LdVSuXmMrF9+mRMeh32mt+jG82uWlUbw72aqjrx9lo8gKeowF3uju8xGu0whZqYTa0U/BVZoMWD5t4Cod4PGd9D557IsNY5v4hUB9mc3lEw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB7119
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -172,58 +171,454 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogTXVydGh5LCBBcnVuIFIg
-PGFydW4uci5tdXJ0aHlAaW50ZWwuY29tPg0KPiBTZW50OiBXZWRuZXNkYXksIE1hcmNoIDQsIDIw
-MjYgMTI6NTIgUE0NCj4gVG86IGludGVsLWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IGludGVs
-LXhlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0KPiBDYzogTWFubmEsIEFuaW1lc2ggPGFuaW1lc2gu
-bWFubmFAaW50ZWwuY29tPjsgTmF1dGl5YWwsIEFua2l0IEsNCj4gPGFua2l0LmsubmF1dGl5YWxA
-aW50ZWwuY29tPjsgTmlrdWxhLCBKYW5pIDxqYW5pLm5pa3VsYUBpbnRlbC5jb20+Ow0KPiBIb2dh
-bmRlciwgSm91bmkgPGpvdW5pLmhvZ2FuZGVyQGludGVsLmNvbT47IE11cnRoeSwgQXJ1biBSDQo+
-IDxhcnVuLnIubXVydGh5QGludGVsLmNvbT4NCj4gU3ViamVjdDogW1BBVENIdjZdIGRybS9pOTE1
-L2RwOiBSZWFkIEFMUE0gY2FwcyBhZnRlciBEUENEIGluaXQNCj4gDQo+IEZvciBlRFAgcmVhZCB0
-aGUgQUxQTSBEUENEIGNhcHMgYWZ0ZXIgRFBDRCBpbml0YWxpemF0aW9uIGFuZCBqdXN0IGJlZm9y
-ZQ0KPiB0aGUgUFNSIGluaXQuDQo+IA0KPiB2MjogTW92ZSBpbnRlbF9hbHBtX2luaXQgdG8gaW50
-ZWxfZWRwX2luaXRfZHBjZCAoSm91bmkpDQo+IHYzOiBBZGQgRml4ZXMgd2l0aCBjb21taXQtaWQg
-KEpvdW5pKQ0KPiB2NDogU2VwYXJhdGVkIHRoZSBhbHBtIGRwY2QgcmVhZCBjYXBzIGZyb20gYWxw
-bV9pbml0IGFuZCBtb3ZlZCB0bw0KPiBpbnRlbF9lZHBfaW5pdF9kcGNkLg0KPiB2NTogUmVhZCBh
-bHBtX2NhcHMgYWx3YXlzIGZvciBlRFAgaXJyZXNwZWN0aXZlIG9mIHRoZSBlRFAgdmVyc2lvbiAo
-Sm91bmkpDQo+IHY2OiByZXBsYWNlIGRybV9kcF9kcGNkX3JlYWRiIHdpdGggZHJtX2RwX2RwY2Rf
-cmVhZF9ieXRlIChKb3VuaSkNCj4gDQo+IEZpeGVzOiAxNTQzOGIzMjU5ODcgKCJkcm0vaTkxNS9h
-bHBtOiBBZGQgY29tcHV0ZSBjb25maWcgZm9yIGxvYmYiKQ0KPiBTaWduZWQtb2ZmLWJ5OiBBcnVu
-IFIgTXVydGh5IDxhcnVuLnIubXVydGh5QGludGVsLmNvbT4NCj4gUmV2aWV3ZWQtYnk6IEFuaW1l
-c2ggTWFubmEgPGFuaW1lc2gubWFubmFAaW50ZWwuY29tPg0KPiBSZXZpZXdlZC1ieTogSm91bmkg
-SMO2Z2FuZGVyIDxqb3VuaS5ob2dhbmRlckBpbnRlbC5jb20+DQoNClB1c2hlZCB0aGUgY2hhbmdl
-cyB0byBkaW4uIFRoYW5rcyBmb3IgdGhlIHBhdGNoLg0KDQpSZWdhcmRzLA0KQW5pbWVzaA0KPiAt
-LS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYWxwbS5jIHwgNiAtLS0t
-LS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYyAgIHwgNyArKysr
-KysrDQo+ICAyIGZpbGVzIGNoYW5nZWQsIDcgaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlvbnMoLSkN
-Cj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Fs
-cG0uYw0KPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYWxwbS5jDQo+IGlu
-ZGV4IGIzMzM0YmM0ZDBmOS4uYTczNTBjZThlNzE2IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2FscG0uYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
-aTkxNS9kaXNwbGF5L2ludGVsX2FscG0uYw0KPiBAQCAtNDQsMTIgKzQ0LDYgQEAgYm9vbCBpbnRl
-bF9hbHBtX2lzX2FscG1fYXV4X2xlc3Moc3RydWN0IGludGVsX2RwDQo+ICppbnRlbF9kcCwNCj4g
-DQo+ICB2b2lkIGludGVsX2FscG1faW5pdChzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwKSAgew0K
-PiAtCXU4IGRwY2Q7DQo+IC0NCj4gLQlpZiAoZHJtX2RwX2RwY2RfcmVhZGIoJmludGVsX2RwLT5h
-dXgsIERQX1JFQ0VJVkVSX0FMUE1fQ0FQLA0KPiAmZHBjZCkgPCAwKQ0KPiAtCQlyZXR1cm47DQo+
-IC0NCj4gLQlpbnRlbF9kcC0+YWxwbV9kcGNkID0gZHBjZDsNCj4gIAltdXRleF9pbml0KCZpbnRl
-bF9kcC0+YWxwbS5sb2NrKTsNCj4gIH0NCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9k
-cm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
-bGF5L2ludGVsX2RwLmMNCj4gaW5kZXggMDI1ZTkwNmI2M2E5Li5kNmE3Y2NiYzk5MzIgMTAwNjQ0
-DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHAuYw0KPiArKysg
-Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwLmMNCj4gQEAgLTQ3MDksNiAr
-NDcwOSw3IEBAIHN0YXRpYyBib29sDQo+ICBpbnRlbF9lZHBfaW5pdF9kcGNkKHN0cnVjdCBpbnRl
-bF9kcCAqaW50ZWxfZHAsIHN0cnVjdCBpbnRlbF9jb25uZWN0b3INCj4gKmNvbm5lY3RvcikgIHsN
-Cj4gIAlzdHJ1Y3QgaW50ZWxfZGlzcGxheSAqZGlzcGxheSA9IHRvX2ludGVsX2Rpc3BsYXkoaW50
-ZWxfZHApOw0KPiArCWludCByZXQ7DQo+IA0KPiAgCS8qIHRoaXMgZnVuY3Rpb24gaXMgbWVhbnQg
-dG8gYmUgY2FsbGVkIG9ubHkgb25jZSAqLw0KPiAgCWRybV9XQVJOX09OKGRpc3BsYXktPmRybSwg
-aW50ZWxfZHAtPmRwY2RbRFBfRFBDRF9SRVZdICE9IDApOw0KPiBAQCAtNDc0OCw2ICs0NzQ5LDEy
-IEBAIGludGVsX2VkcF9pbml0X2RwY2Qoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwNCj4gc3Ry
-dWN0IGludGVsX2Nvbm5lY3RvciAqY29ubmVjdG9yDQo+ICAJICovDQo+ICAJaW50ZWxfZHBfaW5p
-dF9zb3VyY2Vfb3VpKGludGVsX2RwKTsNCj4gDQo+ICsJLyogUmVhZCB0aGUgQUxQTSBEUENEIGNh
-cHMgKi8NCj4gKwlyZXQgPSBkcm1fZHBfZHBjZF9yZWFkX2J5dGUoJmludGVsX2RwLT5hdXgsDQo+
-IERQX1JFQ0VJVkVSX0FMUE1fQ0FQLA0KPiArCQkJCSAgICAmaW50ZWxfZHAtPmFscG1fZHBjZCk7
-DQo+ICsJaWYgKHJldCA8IDApDQo+ICsJCXJldHVybiBmYWxzZTsNCj4gKw0KPiAgCS8qDQo+ICAJ
-ICogVGhpcyBoYXMgdG8gYmUgY2FsbGVkIGFmdGVyIGludGVsX2RwLT5lZHBfZHBjZCBpcyBmaWxs
-ZWQsIFBTUiBjaGVja3MNCj4gIAkgKiBmb3IgU0VUX1BPV0VSX0NBUEFCTEUgYml0IGluIGludGVs
-X2RwLT5lZHBfZHBjZFsxXQ0KPiAtLQ0KPiAyLjI1LjENCg0K
+On Mon, Mar 02, 2026 at 12:10:07AM -0800, Anoop, Vijay wrote:
+>From: Anoop Vijay <anoop.c.vijay@intel.com>
+>
+>Adding mailbox communication layer for System Controller
+>interaction. The mailbox interface enables sending commands and
+>receiving responses from embedded System Controller.
+>
+>Key features:
+>- Command/response protocol handling
+>- Timeout and error management
+>- Uses MKHI protocol headers defined in ABI
+>
+>Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
+>---
+>v4: (Matt, Mike)
+>- Refactor MMIO access to use domain-specific accessor
+>- Add input validation and buffer overflow protection
+>- Add bounds checking for multi-frame operations
+>- Fix potential NULL pointer dereference
+>
+>v5: (Umesh, Riana)
+>- Reset phase bit to 0 on error conditions
+>- Refactor mailbox receive path
+>- Updated xe_err messages for consistency
+>
+>v6: (Matt)
+>- Use SYSCTRL_MB_CTRL_MKHI_CMD macro instead of FIELD_PREP
+>
+>v8 (Matt, Michal):
+>- Reordered patches for logical flow
+>- Static functions renamed with short prefix
+>- Changed xe_sysctrl_send_command() function parameter from 'xe' to 'sc'
+>- Added frame length validation and command overflow protection
+>- Use REG_FIELD_PREP for hardware registers
+>- Changed error format to %pe
+>- Removed unnecessary NULL checks and explicit zeros
+>- Fixed kernel-doc syntax
+>---
+> drivers/gpu/drm/xe/Makefile             |   1 +
+> drivers/gpu/drm/xe/xe_sysctrl.c         |   2 +
+> drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 364 ++++++++++++++++++++++++
+> 3 files changed, 367 insertions(+)
+> create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+>
+>diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+>index 07e028fa50e8..1890bbd1b28d 100644
+>--- a/drivers/gpu/drm/xe/Makefile
+>+++ b/drivers/gpu/drm/xe/Makefile
+>@@ -123,6 +123,7 @@ xe-y += xe_bb.o \
+> 	xe_survivability_mode.o \
+> 	xe_sync.o \
+> 	xe_sysctrl.o \
+>+	xe_sysctrl_mailbox.o \
+> 	xe_tile.o \
+> 	xe_tile_sysfs.o \
+> 	xe_tlb_inval.o \
+>diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
+>index 2751fe25a6ff..365f73ef680d 100644
+>--- a/drivers/gpu/drm/xe/xe_sysctrl.c
+>+++ b/drivers/gpu/drm/xe/xe_sysctrl.c
+>@@ -78,5 +78,7 @@ int xe_sysctrl_init(struct xe_device *xe)
+> 	if (ret)
+> 		return ret;
+>
+>+	xe_sysctrl_mailbox_init(sc);
+>+
+> 	return 0;
+> }
+>diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+>new file mode 100644
+>index 000000000000..0e154b6dcdc7
+>--- /dev/null
+>+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+>@@ -0,0 +1,364 @@
+>+// SPDX-License-Identifier: MIT
+>+/*
+>+ * Copyright © 2026 Intel Corporation
+>+ */
+>+
+>+#include <linux/bitfield.h>
+>+#include <linux/cleanup.h>
+>+#include <linux/container_of.h>
+>+#include <linux/errno.h>
+>+#include <linux/minmax.h>
+>+#include <linux/mutex.h>
+>+#include <linux/slab.h>
+>+#include <linux/string.h>
+>+#include <linux/types.h>
+>+
+>+#include "regs/xe_sysctrl_regs.h"
+>+#include "xe_device.h"
+>+#include "xe_device_types.h"
+>+#include "xe_mmio.h"
+>+#include "xe_pm.h"
+>+#include "xe_printk.h"
+>+#include "xe_sysctrl.h"
+>+#include "xe_sysctrl_mailbox.h"
+>+#include "xe_sysctrl_mailbox_types.h"
+>+#include "xe_sysctrl_types.h"
+>+
+>+#define XE_SYSCTRL_MKHI_HDR_GROUP_ID(hdr) \
+>+	FIELD_GET(MKHI_HDR_GROUP_ID_MASK, le32_to_cpu((hdr)->data))
+>+
+>+#define XE_SYSCTRL_MKHI_HDR_COMMAND(hdr) \
+>+	FIELD_GET(MKHI_HDR_COMMAND_MASK, le32_to_cpu((hdr)->data))
+>+
+>+#define XE_SYSCTRL_MKHI_HDR_IS_RESPONSE(hdr) \
+>+	FIELD_GET(MKHI_HDR_IS_RESPONSE, le32_to_cpu((hdr)->data))
+>+
+>+#define XE_SYSCTRL_MKHI_HDR_RESULT(hdr) \
+>+	FIELD_GET(MKHI_HDR_RESULT_MASK, le32_to_cpu((hdr)->data))
+>+
+>+static bool sysctrl_wait_bit_clear(struct xe_sysctrl *sc, u32 bit_mask,
+>+				   unsigned int timeout_ms)
+>+{
+>+	int ret;
+>+
+>+	ret = xe_mmio_wait32_not(sc->mmio, SYSCTRL_MB_CTRL, bit_mask, bit_mask,
+>+				 timeout_ms * 1000, NULL, false);
+>+
+>+	return ret == 0;
+>+}
+>+
+>+static bool sysctrl_wait_bit_set(struct xe_sysctrl *sc, u32 bit_mask,
+>+				 unsigned int timeout_ms)
+>+{
+>+	int ret;
+>+
+>+	ret = xe_mmio_wait32(sc->mmio, SYSCTRL_MB_CTRL, bit_mask, bit_mask,
+>+			     timeout_ms * 1000, NULL, false);
+>+
+>+	return ret == 0;
+>+}
+>+
+>+static int sysctrl_write_frame(struct xe_sysctrl *sc, const void *frame,
+>+			       size_t len)
+>+{
+>+	static const struct xe_reg regs[] = {
+>+		SYSCTRL_MB_DATA0, SYSCTRL_MB_DATA1, SYSCTRL_MB_DATA2, SYSCTRL_MB_DATA3
+>+	};
+>+	struct xe_device *xe = sc_to_xe(sc);
+>+	u32 val[XE_SYSCTRL_MB_FRAME_SIZE / sizeof(u32)] = {0};
+>+	u32 dw = DIV_ROUND_UP(len, sizeof(u32));
+>+	u32 i;
+>+
+>+	xe_assert(xe, len > 0 && len <= XE_SYSCTRL_MB_FRAME_SIZE);
+>+
+>+	memcpy(val, frame, len);
+>+
+>+	for (i = 0; i < dw; i++)
+>+		xe_mmio_write32(sc->mmio, regs[i], val[i]);
+>+
+>+	return 0;
+>+}
+>+
+>+static int sysctrl_read_frame(struct xe_sysctrl *sc, void *frame,
+>+			      size_t len)
+>+{
+>+	static const struct xe_reg regs[] = {
+>+		SYSCTRL_MB_DATA0, SYSCTRL_MB_DATA1, SYSCTRL_MB_DATA2, SYSCTRL_MB_DATA3
+>+	};
+>+	struct xe_device *xe = sc_to_xe(sc);
+>+	u32 val[XE_SYSCTRL_MB_FRAME_SIZE / sizeof(u32)] = {0};
+>+	u32 dw = DIV_ROUND_UP(len, sizeof(u32));
+>+	u32 i;
+>+
+>+	xe_assert(xe, len > 0 && len <= XE_SYSCTRL_MB_FRAME_SIZE);
+>+
+>+	for (i = 0; i < dw; i++)
+>+		val[i] = xe_mmio_read32(sc->mmio, regs[i]);
+>+
+>+	memcpy(frame, val, len);
+>+
+>+	return 0;
+>+}
+>+
+>+static void sysctrl_clear_response(struct xe_sysctrl *sc)
+>+{
+>+	xe_mmio_rmw32(sc->mmio, SYSCTRL_MB_CTRL, SYSCTRL_MB_CTRL_RUN_BUSY_OUT, 0);
+>+}
+>+
+>+static int sysctrl_prepare_command(struct xe_device *xe,
+>+				   u8 group_id, u8 command,
+>+				   const void *data_in, size_t data_in_len,
+>+				   u8 **mbox_cmd, size_t *cmd_size)
+>+{
+>+	struct xe_sysctrl_mailbox_mkhi_msg_hdr *mkhi_hdr;
+>+	size_t size;
+>+	u8 *buffer;
+>+
+>+	xe_assert(xe, command <= MKHI_HDR_COMMAND_MAX);
+>+
+>+	if (data_in_len > XE_SYSCTRL_MB_MAX_MESSAGE_SIZE - sizeof(*mkhi_hdr)) {
+>+		xe_err(xe, "sysctrl: Input data too large: %zu bytes\n", data_in_len);
+>+		return -EINVAL;
+>+	}
+>+
+>+	size = sizeof(*mkhi_hdr) + data_in_len;
+>+
+>+	buffer = kmalloc(size, GFP_KERNEL);
+>+	if (!buffer)
+>+		return -ENOMEM;
+>+
+>+	mkhi_hdr = (struct xe_sysctrl_mailbox_mkhi_msg_hdr *)buffer;
+>+	mkhi_hdr->data = cpu_to_le32(FIELD_PREP(MKHI_HDR_GROUP_ID_MASK, group_id) |
+>+				     FIELD_PREP(MKHI_HDR_COMMAND_MASK, command));
+>+
+>+	if (data_in && data_in_len)
+>+		memcpy(buffer + sizeof(*mkhi_hdr), data_in, data_in_len);
+>+
+>+	*mbox_cmd = buffer;
+>+	*cmd_size = size;
+>+
+>+	return 0;
+>+}
+>+
+>+static int sysctrl_send_frames(struct xe_sysctrl *sc,
+>+			       const u8 *mbox_cmd,
+>+			       size_t cmd_size, unsigned int timeout_ms)
+>+{
+>+	struct xe_device *xe = sc_to_xe(sc);
+>+	u32 ctrl_reg, total_frames, frame;
+>+	size_t bytes_sent, frame_size;
+>+
+>+	total_frames = DIV_ROUND_UP(cmd_size, XE_SYSCTRL_MB_FRAME_SIZE);
+>+
+>+	if (!sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms)) {
+>+		xe_err(xe, "sysctrl: Mailbox busy\n");
+>+		return -EBUSY;
+>+	}
+>+
+>+	sc->phase_bit ^= 1;
+>+	bytes_sent = 0;
+>+
+>+	for (frame = 0; frame < total_frames; frame++) {
+>+		frame_size = min_t(size_t, cmd_size - bytes_sent, XE_SYSCTRL_MB_FRAME_SIZE);
+>+
+>+		if (sysctrl_write_frame(sc, mbox_cmd + bytes_sent, frame_size)) {
+>+			xe_err(xe, "sysctrl: Failed to write frame %u\n", frame);
+>+			sc->phase_bit = 0;
+>+			return -EIO;
+>+		}
+>+
+>+		ctrl_reg = SYSCTRL_MB_CTRL_RUN_BUSY |
+>+			   REG_FIELD_PREP(MKHI_FRAME_CURRENT_MASK, frame) |
+>+			   REG_FIELD_PREP(MKHI_FRAME_TOTAL_MASK, total_frames - 1) |
+>+			   SYSCTRL_MB_CTRL_MKHI_CMD |
+>+			   (sc->phase_bit ? MKHI_FRAME_PHASE : 0);
+>+
+>+		xe_mmio_write32(sc->mmio, SYSCTRL_MB_CTRL, ctrl_reg);
+>+
+>+		if (!sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms)) {
+>+			xe_err(xe, "sysctrl: Frame %u acknowledgment timeout\n", frame);
+>+			sc->phase_bit = 0;
+>+			return -ETIMEDOUT;
+>+		}
+>+
+>+		bytes_sent += frame_size;
+>+	}
+>+
+>+	return 0;
+>+}
+>+
+>+static int sysctrl_process_frame(struct xe_sysctrl *sc, void *out,
+>+				 size_t frame_size, unsigned int timeout_ms,
+>+				 bool *done)
+>+{
+>+	u32 curr_frame, total_frames, ctrl_reg;
+>+	struct xe_device *xe = sc_to_xe(sc);
+>+	int ret;
+>+
+>+	if (!sysctrl_wait_bit_set(sc, SYSCTRL_MB_CTRL_RUN_BUSY_OUT, timeout_ms)) {
+>+		xe_err(xe, "sysctrl: Response frame timeout\n");
+>+		return -ETIMEDOUT;
+>+	}
+>+
+>+	ctrl_reg = xe_mmio_read32(sc->mmio, SYSCTRL_MB_CTRL);
+>+	total_frames = FIELD_GET(MKHI_FRAME_TOTAL_MASK, ctrl_reg);
+>+	curr_frame = FIELD_GET(MKHI_FRAME_CURRENT_MASK, ctrl_reg);
+>+
+>+	ret = sysctrl_read_frame(sc, out, frame_size);
+>+	if (ret)
+>+		return ret;
+>+
+>+	sysctrl_clear_response(sc);
+>+
+>+	if (curr_frame == total_frames)
+>+		*done = true;
+>+
+>+	return 0;
+>+}
+>+
+>+static int sysctrl_receive_frames(struct xe_sysctrl *sc,
+>+				  const struct xe_sysctrl_mailbox_mkhi_msg_hdr *req,
+>+				  void *data_out, size_t data_out_len,
+>+				  size_t *rdata_len, unsigned int timeout_ms)
+>+{
+>+	struct xe_sysctrl_mailbox_mkhi_msg_hdr *mkhi_hdr;
+>+	struct xe_device *xe = sc_to_xe(sc);
+>+	size_t remain = sizeof(*mkhi_hdr) + data_out_len;
+>+
+
+Extra line here ^ must be deleted.
+
+>+	u8 *buffer __free(kfree) = kzalloc(remain, GFP_KERNEL);
+>+	size_t frame_size;
+>+	bool done = false;
+>+	int ret = 0;
+>+	u8 *out;
+>+
+>+	if (!buffer)
+>+		return -ENOMEM;
+>+
+>+	out = buffer;
+>+	while (!done && remain) {
+>+		frame_size = min_t(size_t, remain, XE_SYSCTRL_MB_FRAME_SIZE);
+>+
+>+		ret = sysctrl_process_frame(sc, out, frame_size, timeout_ms,
+>+					    &done);
+>+		if (ret)
+>+			return ret;
+>+
+>+		remain -= frame_size;
+>+		out += frame_size;
+>+	}
+>+
+>+	mkhi_hdr = (struct xe_sysctrl_mailbox_mkhi_msg_hdr *)buffer;
+>+
+>+	if (!XE_SYSCTRL_MKHI_HDR_IS_RESPONSE(mkhi_hdr) ||
+>+	    XE_SYSCTRL_MKHI_HDR_GROUP_ID(mkhi_hdr) != XE_SYSCTRL_MKHI_HDR_GROUP_ID(req) ||
+>+	    XE_SYSCTRL_MKHI_HDR_COMMAND(mkhi_hdr) != XE_SYSCTRL_MKHI_HDR_COMMAND(req)) {
+>+		xe_err(xe, "sysctrl: Response header mismatch\n");
+>+		return -EPROTO;
+>+	}
+>+
+>+	if (XE_SYSCTRL_MKHI_HDR_RESULT(mkhi_hdr) != 0) {
+>+		xe_err(xe, "sysctrl: Firmware error: 0x%02lx\n",
+>+		       XE_SYSCTRL_MKHI_HDR_RESULT(mkhi_hdr));
+>+		return -EIO;
+>+	}
+>+
+>+	memcpy(data_out, mkhi_hdr + 1, data_out_len);
+>+	*rdata_len = out - buffer - sizeof(*mkhi_hdr);
+>+
+>+	return 0;
+>+}
+>+
+>+static int sysctrl_send_command(struct xe_sysctrl *sc,
+>+				const u8 *mbox_cmd, size_t cmd_size,
+>+				void *data_out, size_t data_out_len,
+>+				size_t *rdata_len, unsigned int timeout_ms)
+>+{
+>+	const struct xe_sysctrl_mailbox_mkhi_msg_hdr *mkhi_hdr;
+>+	size_t received;
+>+	int ret;
+>+
+>+	ret = sysctrl_send_frames(sc, mbox_cmd, cmd_size, timeout_ms);
+>+	if (ret)
+>+		return ret;
+>+
+>+	if (!data_out || !rdata_len)
+>+		return 0;
+>+
+>+	mkhi_hdr = (const struct xe_sysctrl_mailbox_mkhi_msg_hdr *)mbox_cmd;
+>+
+>+	ret = sysctrl_receive_frames(sc, mkhi_hdr, data_out, data_out_len,
+>+				     &received, timeout_ms);
+>+	if (ret)
+>+		return ret;
+>+
+>+	*rdata_len = received;
+>+
+>+	return 0;
+>+}
+>+
+>+/**
+>+ * xe_sysctrl_mailbox_init - Initialize System Controller mailbox interface
+>+ * @sc: System controller structure
+>+ *
+>+ * Initialize system controller mailbox interface for communication.
+>+ */
+>+void xe_sysctrl_mailbox_init(struct xe_sysctrl *sc)
+>+{
+>+	u32 ctrl_reg;
+>+
+>+	ctrl_reg = xe_mmio_read32(sc->mmio, SYSCTRL_MB_CTRL);
+>+	sc->phase_bit = (ctrl_reg & MKHI_FRAME_PHASE) ? 1 : 0;
+>+}
+>+
+>+/**
+>+ * xe_sysctrl_send_command() - Send command to System Controller via mailbox
+>+ * @sc: System Controller instance
+>+ * @cmd: Pointer to xe_sysctrl_mailbox_command structure
+>+ * @rdata_len: Pointer to store actual response data size (can be NULL)
+>+ *
+>+ * Send a command to the System Controller using MKHI protocol. Handles
+>+ * command preparation, fragmentation, transmission, and response reception.
+>+ *
+>+ * Return: 0 on success, negative error code on failure
+>+ */
+>+int xe_sysctrl_send_command(struct xe_sysctrl *sc,
+>+			    struct xe_sysctrl_mailbox_command *cmd,
+>+			    size_t *rdata_len)
+>+{
+>+	struct xe_device *xe = sc_to_xe(sc);
+>+	u8 group_id, command_code;
+>+	u8 *mbox_cmd = NULL;
+>+	size_t cmd_size = 0;
+>+	int ret = 0;
+>+
+>+	xe_assert(xe, xe->info.has_sysctrl);
+>+	xe_assert(xe, !cmd->data_in || cmd->data_in_len);
+>+	xe_assert(xe, !cmd->data_out || cmd->data_out_len);
+
+Is it possible for both data_in and data_out to the NULL? If not, then 
+you at least need another assert.
+
+	xe_assert(xe, cmd->data_in || cmd->data_out);
+
+Umesh
+>+
+>+	group_id = XE_SYSCTRL_APP_HDR_GROUP_ID(&cmd->header);
+>+	command_code = XE_SYSCTRL_APP_HDR_COMMAND(&cmd->header);
+>+
+>+	might_sleep();
+>+
+>+	ret = sysctrl_prepare_command(xe, group_id, command_code,
+>+				      cmd->data_in, cmd->data_in_len,
+>+				      &mbox_cmd, &cmd_size);
+>+	if (ret) {
+>+		xe_err(xe, "sysctrl: Failed to prepare command: %pe\n", ERR_PTR(ret));
+>+		return ret;
+>+	}
+>+
+>+	guard(xe_pm_runtime)(xe);
+>+
+>+	guard(mutex)(&sc->cmd_lock);
+>+
+>+	ret = sysctrl_send_command(sc, mbox_cmd, cmd_size,
+>+				   cmd->data_out, cmd->data_out_len, rdata_len,
+>+				   XE_SYSCTRL_MB_DEFAULT_TIMEOUT_MS);
+>+	if (ret)
+>+		xe_err(xe, "sysctrl: Mailbox command failed: %pe\n", ERR_PTR(ret));
+>+
+>+	kfree(mbox_cmd);
+>+
+>+	return ret;
+>+}
+>-- 
+>2.43.0
+>
