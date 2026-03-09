@@ -4,145 +4,145 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0E32F3C24F
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Mar 2026 13:26:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB79DF3C25E
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Mar 2026 13:54:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF66410E4B5;
-	Mon,  9 Mar 2026 13:26:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 553DE10E4FD;
+	Mon,  9 Mar 2026 13:53:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ariehpdj";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="iEngbn6e";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA3D410E4B5
- for <intel-xe@lists.freedesktop.org>; Mon,  9 Mar 2026 13:26:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773062763; x=1804598763;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=g3UlDELmQ/WLcZz+MloAw8IM35EMyusQd/bvjleQIZk=;
- b=ariehpdjnoN7Btfd7FK8t3DobCK+SDlL/7TB0raMl3Pt4DJU3elWGMIF
- hgo1pPJQqvoPpe9lbMVjZV4HJjtL5xCZ6XXdp1B9Bs8DzIVSVgUUl4pAr
- 9/lv2Dz/+wgXhUid2zdZw6lphVNBWQsds4XvwTfrgjjDPq+CIbjzIT3aS
- vTjRFlMsZ6WsXPjr0Adwl2zuFB9TPECdFKJuNE72AWPHQZl3RG+wKpMmH
- wb8zNI6QKKiOu4ybfB3i4V42ShWryVt8a0pkA3HvNaChMThq8EIwiQeJw
- 5qTp6NM0NEI3dLm77x5ou7K7sR2rFVLbdv3ZP9Sq7OH+xSjDkt+K7zwfj g==;
-X-CSE-ConnectionGUID: FBT0wOMYRNyu8BYds43ZWw==
-X-CSE-MsgGUID: j4D8G+OvSKGN4C1TuuytRA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11723"; a="73985322"
-X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="73985322"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2026 06:26:02 -0700
-X-CSE-ConnectionGUID: N7Eqne3MS8u/VTGTfYgZFg==
-X-CSE-MsgGUID: 9G6HkOCeTgOJvH/aVLLI5g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="245715442"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2026 06:26:01 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 9 Mar 2026 06:26:00 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 9 Mar 2026 06:26:00 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.29) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 9 Mar 2026 06:26:00 -0700
+Received: from PH0PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11011058.outbound.protection.outlook.com [40.107.208.58])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3342410E4F4;
+ Mon,  9 Mar 2026 13:53:57 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ElNEHAPPv37l6NTeCcLN1fIP6qaDuzufJ4BrMYLJvZkAevV27osKtjel9VDAwCmGmuBQAvkZz05dY4fjn2O72Ji0yHIyBca02q7HQhtfHG62OP+RG1Y6Q+zTT+vQ22m5YHBopYxW2rnn/idF0W7vu5QXx3hDoFmcg+vZWGk7nZgvaDJirvk1X+RdVjraJ/CXreRGcL3JiKG2YGN/IorZI6PRtN808vtNEV0Nr5GlSTslEA9Jlv7J4xhhfEziVhsNX/dlSh1nGdjJcIqWRZJEME1ZJr8NO9U0lgu2IgJ56R+T/AFLJUy9aaqOy2/iIkcO+hLkgd7d0gOBrPRMQ3kXeQ==
+ b=vm6GdmmJNvguxP8sjwMOqV8V0VLvDBxjWz4QXlwXRBryP5b6xPU7ag3YgGYGUlJOwIUGLvVGJORfPoEka/Ei2naaa534q1ETot/mwl7nnho0vEIW76C/yrIBEIsEop/+4U/RGXZuAjpXTx7DBhatzSHjHpw8XAr+Y8ZouKiKM/Zkw3rJGLHKMCxYWv960XHimwfRMJvs6V4PdW3eAv5jfjClbsWtb8yoomh8kXl6Ivq4Ff7sSWIPZy0G33wsVrvv3kGwVNWIE4ofb1AIKCzG/YXtVZ1YZ3bLvJzcu+DGh34VuMqOGzGKLovSs2X6wdnOdKrCxoq6XTBWnFxnHfjhGw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SlwhkULP9YVZiP06a+GlWKcIV7lun7T77zc6z5lsYvM=;
- b=pvrHz4DKSp1wgK8w7G2/A+HdytItYELkJwOLu+R3fBi6DG+ynDz+ZWq/waQ/edvlEyhz9iZK2Vr82MqXuop8+4B5c7i33JF0lnwch/YQU9J/7n3j1t3XkQs1f1WYUrkzYE+jWnd3uZ/thJFckpWCGQ9Sn+wOdZ2KTVMOegskU0WjzOTtPT49NUUyI1Nbkvl/0hDhh0rPkwNOySNsXSDJ1vJkGMiRrytbqxsf1rueOdurjCSGaK7iejbMuEkexwVNM2BXgzrjTjoX7xpsH0+nV/JJZi6SlP9UWAtUOD9lPWofXem9XWuTQKdab92uyS5Tc+cZzvsaCKER16B6vyMVkw==
+ bh=8TKBgpRZ1LF+riKYp7m4qyYg6CwL4avNKoePBXwYvXI=;
+ b=ptPCxw3HrqVnb9kGa9/OYUNtxbrFznBct0rzY9lZi313l172RJM5VpNqdU7ff1mQ65pSABwNG2dVLgZjJW3I8MeVIi3tL6q5EZY/LUF6a9hzS4wTjzBkBpTRCbNnGm3NgMw7/pAEzjHTz6BrSezmIxdYeNp1lrw5ROvqIQcvWTi27ojvt3kAo1V2RItJj+eCMlceKvkP28j0keA7XwkjGSYp99pjESt80N2rzExct3eV+mmLNwB4B00S2R7N6YPQTCpedi2cUamAMyTBBM0WkmC4xVaxT6rbyu24a1DDuqAr7w19WTlIhkYPLxitTZeodAGj2hrI/VFsVyFsPb5vlw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8TKBgpRZ1LF+riKYp7m4qyYg6CwL4avNKoePBXwYvXI=;
+ b=iEngbn6eZ0cppiD5tykEGn06OAWDFQmI71sxcNjhNyCc+e72ftGr1ngIxmmssHRrxdp9JIOTpleGXe29El+FX7Hct3p4kAGaMyaprRMbjKx87lvFSfwWTrarbYlrPvs2/Nr69CnxRpuCE64cmMk45V+VwdCTs1HKd4Ek0ZLuDnYWlgwcW3X374q4FZTfPZJBgMa5HDuTubn2TReMOUsfrpYjuZbs0ykOer7etgCipsfcF4xCtGQphgDnf2HWDxNtTMZW6XssglQsoL7fqxgTVlNtW2NuAt77J5n9cAmeHGQ8woiMO95t3TCxG9hZy3fZ6oyMfzWPwEQtYl0f1QIcbw==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
- by SN7PR11MB6993.namprd11.prod.outlook.com (2603:10b6:806:2ac::18)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.8; Mon, 9 Mar
- 2026 13:25:56 +0000
-Received: from PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::a0e5:e99c:ee7b:620a]) by PH8PR11MB8287.namprd11.prod.outlook.com
- ([fe80::a0e5:e99c:ee7b:620a%3]) with mapi id 15.20.9700.010; Mon, 9 Mar 2026
- 13:25:56 +0000
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-CC: <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v2 5/7] drm/xe/nvlp: Implement Wa_14026539277
-In-Reply-To: <20260306190910.GZ52346@mdroper-desk1.amr.corp.intel.com>
-References: <20260306-extra-nvl-p-enabling-patches-v2-0-53dcfa6b44e4@intel.com>
- <20260306-extra-nvl-p-enabling-patches-v2-5-53dcfa6b44e4@intel.com>
- <20260306183953.GY52346@mdroper-desk1.amr.corp.intel.com>
- <87y0k4wzny.fsf@intel.com>
- <20260306190910.GZ52346@mdroper-desk1.amr.corp.intel.com>
-Date: Mon, 9 Mar 2026 10:25:51 -0300
-Message-ID: <87wlzl9lsw.fsf@intel.com>
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
+ BY5PR12MB4082.namprd12.prod.outlook.com (2603:10b6:a03:212::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Mon, 9 Mar
+ 2026 13:53:49 +0000
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9700.009; Mon, 9 Mar 2026
+ 13:53:48 +0000
+From: Joel Fernandes <joelagnelf@nvidia.com>
+To: linux-kernel@vger.kernel.org
+Cc: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
+ Gary Guo <gary@garyguo.net>,
+ =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ Nikola Djukic <ndjukic@nvidia.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>, John Hubbard <jhubbard@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
+ Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
+ Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
+ Philipp Stanner <phasta@kernel.org>,
+ Elle Rhumsaa <elle@weathered-steel.dev>, alexeyi@nvidia.com,
+ Eliot Courtney <ecourtney@nvidia.com>, joel@joelfernandes.org,
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-fbdev@vger.kernel.org, Joel Fernandes <joelagnelf@nvidia.com>
+Subject: [PATCH v12.1 0/1] Rust GPU buddy allocator bindings
+Date: Mon,  9 Mar 2026 09:53:37 -0400
+Message-Id: <20260309135338.3919996-1-joelagnelf@nvidia.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260308180407.3988286-1-joelagnelf@nvidia.com>
+References: <20260308180407.3988286-1-joelagnelf@nvidia.com>
+Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR05CA0129.namprd05.prod.outlook.com
- (2603:10b6:a03:33d::14) To PH8PR11MB8287.namprd11.prod.outlook.com
- (2603:10b6:510:1c7::14)
+X-ClientProxiedBy: CYZPR05CA0036.namprd05.prod.outlook.com
+ (2603:10b6:930:a3::24) To DS0PR12MB6486.namprd12.prod.outlook.com
+ (2603:10b6:8:c5::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|SN7PR11MB6993:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0f024256-ce7a-4d25-e07b-08de7ddf650b
+X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|BY5PR12MB4082:EE_
+X-MS-Office365-Filtering-Correlation-Id: 597b2e98-dc76-4f2b-dc99-08de7de349cc
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info: zl3M2SCWswZwu7OPtyjKqEf6NeW/B35zp7Zm/oZfcqpHBSOGwzvNGilB6yrqPhc0wn3E+yDQATB6bkiUvzZa4yeAvQBOvl+cafGwArOyhfZxodqsqRdprRdnk8wjt4HlQr3K4g4amvfoideON5vWMK6Q6k8wyjFa8PD4HYIxIk0R3OTgi1jIx3vD1hwUGg3MYS4raLVHHjgsc9Wzc5Q5IhWOsJvfldRCc0l98ljLDONBZEhhdYAiW3IUvO5Q4O2yZwh2VtrxVlUsFBz3nVy27RM2wYnFXWRPIVMe0YnvnaFnC9bxkqi1hQVsQD+fGiXGl5Ts4GYCmoC0WWlX243y0fuAhPJgolv1R0f2lCISywUNkunNG516AA9MHIMESu6eu3Y+7OB/QWYIj2fzHYCEchGKy37L62Q72M3fKMMlU/U1K/IUeJsjmjyzgNpZ3zm/H7kGw9TLIs+mxNmbIRa1oo5/LJYlrX51fR+WhAUQIErgBe9auydw7AjgtUi9A9pFdnAGNUbsODQQUCqHha0xPh27J3H73qj94khuAl64x1Na3weGtvZJ7nWrWdVJbpyqm27KI7iIZEZrJJmxgXp5wrNR7oowPmcvQopdesnn58bFJjzLbCNEbpKx09bwWAujaXxaGOcYT+pp8U69cRsdaIV5VG8kbuzkJLyEhTeA10kmIXAwcSUunog2/ziJw6DQ1LaDXBWwll/R8Re+dXMzEww+l7g/+u/jTT/Hp984j1M=
+X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info: KYNmmuakd6CrA22J0broSzJgjvCoeeaX1OnUk3/zgg293mCMmvf59RjmmKMDvLiuFFHWbSMQEaz/ueoLHcscb3xMiTFBke54GRXUYhbLKscJR1GYFrbchpe4RNuXrI15G4KaXIlEspDfRG7a4ZgiJVTFL1QVFP1ofyfHFEZMhAwi7UsdwVKOYekUuqXB7OB2uVAltPf3SD7WtcRqNvwsI8Xd7quh90jIjPVxPjZB+gqnU+7JdHgUeiME5rHmL7OUkEdOif3JldgrI4WJsqHba5JeKPF4zOQtGGZ9FoDXMASj2LfWb26AgD+0Jodd123HSxL2lAPSdcp0iC8TY8L5gDdn4ut89oai+WVURwfZ/SQxSlgS24gt0LMTqKMVYhBEXwi5Q6lA8NrPf1hhYaA1mHlBYfPkC1C1xlcxY3PcZjQshyyTFtp6sObQqU5FeSpfbhOD12+idedcla0akvERX4NR3mzLnSNhtFZErdocBU3Ha0vloGvZRHmO/RPYRz5Ujfz7oec84ARNArhO6CaC8jFrWJKFZYE8t8gvJE+mSnZEtp28I8kcS4YxDMC6kDIPMWnVjGtROePAznoGwr+TWIMPuX9fUNaZhMwGiTwydZ38x9xDJKFvLdUt0Ra2I0ZxgJ07Y0DOrMFWzWH03lKthMz1sK1oDE23kPAvYYyGk65maAuldigLntWaUDcWLB3+5yyerltxRZIAjUoaPjBNOlXvdJXzh/SVixD3/AgGVx4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016); DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(7416014)(366016)(1800799024); DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4VRHlQ04y0AtsvkM4CJtf6RybP5J88o+r7HOQfv2Fj3LlaH1KMtLmcrREhkk?=
- =?us-ascii?Q?8oZec4kPBqdiQZ8li8v1j7hC2BBbumRzvym1PD+mKGQqswb2Q1gW7bQxEY4t?=
- =?us-ascii?Q?KcM+b3Ow7CDafkfwPhJk1tStOPflra2wgdlTPJd8fOn+JuCQ7A6aAl8BRWJb?=
- =?us-ascii?Q?Ik2gfiwB5uguAcmKLZb6pqgEgJZB0+aMaJhbN+FBjzP7ceQ6+BtxrPb6gLvF?=
- =?us-ascii?Q?nQEMg2l6a+yRtwkXtBqGC+IWV1CgVs1eVZRU07wfdkr0rtYfdjPc+p+g021N?=
- =?us-ascii?Q?3GguNZ82UYHoPoPu9sYg/rpTzno2clp/EbcafqSr1mYfPvxevcC9Huk+5XCd?=
- =?us-ascii?Q?8Hpi3BAcc58v1eD+1MnG6xwhgYk2abb08A+dHjQsKSeBj1Kf7LSeniUfIj+Q?=
- =?us-ascii?Q?vR1DVJWJX5YLi94YU0vlYcTydaWd9N2OepwXN+Ico5O43RkxPhPcGUAGZzVw?=
- =?us-ascii?Q?fw9oYp8UoA7iGBIiUKTLqHOImltiJpidKXNoGbwU7qsxIU+9NZVu5Z80qpxv?=
- =?us-ascii?Q?VbBbd/Grd3irXtlH0ogGJovvYww4zFWLz72xhWWf+PDOGCxIQP0WMFcVS3J+?=
- =?us-ascii?Q?fI6YsOVc0TutEymbrwmsPf+38C5RvRtQKXGjsTBUOv2ci8FAzqwfc29+IRqj?=
- =?us-ascii?Q?zH38ywSy6CCFKYRBeRdj3SEmiV9fFR2JXGGzZf2WJbuKgmLV2oyOhjyN1cz1?=
- =?us-ascii?Q?G3iv3VCWsEgo4zeL3DVJZAiBmRvYP2xjiLqxq3Bj4EcWe+cz36DiHxiehXQ9?=
- =?us-ascii?Q?b+v+Rv8bYoTJbIUCdBtl0OYiM+IDrPUW5cqOyD+/JnMACxccw8FEAy9aoQKU?=
- =?us-ascii?Q?LPyiATybuGNtaxI2ayFS/evpaKVIFRuY0JpzhfV1Lwspy1mC03Jq2BmwahQ/?=
- =?us-ascii?Q?j6BKrR7S5LkzUVbIroHqWT5ScopD9N3/wUx0pMtFiNJgRQmTjw2rGACcQ9rV?=
- =?us-ascii?Q?sDQEr2/ic853P8X/8fF9fx/FoAbRYUzSAqvhB4sIzYUBuHJcdbf67/3ZGoVK?=
- =?us-ascii?Q?MzrhCCjmfXgB5YcnQtLJCO6bs+2Wc5yti+FbmBlrN/U40O+IFpk5odhzgnbf?=
- =?us-ascii?Q?gEaIiK/TRWmCGj64A4z+GZg7KqREmQxv3bzy5KNvAj87ygpvClvS19b9xAsa?=
- =?us-ascii?Q?JlAsmTLAGjHI0XnLGGKsYHfxuzM8hG03zbhKb97DwB2SB1l4zxIj7RD/KzJw?=
- =?us-ascii?Q?iBiF/9IQanAej71Eea6LWtFWZ9BdDzLCkxCD33+XNATsYaNS3rJkiVA41tim?=
- =?us-ascii?Q?oJV/tATF+xsAdSfcGBUraUUbGAvhnKOr8gL9eB43XZd1E1g61wj7YeP9ItKW?=
- =?us-ascii?Q?unRm3V79EHSiYkqp4XLcp57H6Cd5P9l1NbWVB7myUCfagy7tZkW8zXEMBgm2?=
- =?us-ascii?Q?UJjrn943LpnY1jsMLZymx/9NnLaaTAjXz5Y09ckE8+cnxkqNRlmizR4LmuhV?=
- =?us-ascii?Q?TNVUIqICSgZNlMqVvmYwMbxk9xPf6zWjkbWRgujF3R0bAQv5aciYdaqyqMHS?=
- =?us-ascii?Q?bJuaqLhSVjNI0rbM6My+Bn+pjJGS5OgNlPyLOslFY2iBW1ETyS1Bu8TcHEGi?=
- =?us-ascii?Q?/bgUTk+gVwRsis0qH3ddEvPTyIipzJ2hEHGURwmpHTPeLZkLivSEQS7Np+Pu?=
- =?us-ascii?Q?MP5rPqxMSjDYeqhd0NIyuoDvbH3ODPRNyIFYz4Q+I4qYN9/2gi/EJOUYlV2g?=
- =?us-ascii?Q?FGfy1mD0CEEilIyBPO/iycDsFxp90n/mV5ah/5BPuK0YGm3YnHuDsL1QnXC2?=
- =?us-ascii?Q?svkTwU/cZA=3D=3D?=
-X-Exchange-RoutingPolicyChecked: NH8LcPeTZCnq0xy08rtPk+Gy/P5mBWp4/DCLkbexV9YFt5LHSckiSv1fBcNdnC1Amcy3Sh8gtZkBWOnqz+0B8f4z48zH9hn62o8CE3LARiqYE+akcspfvow6I+pA88yZk9YayLiPxXHNe771wkatkbgPN7yQGei+ib3agcqOLXTtdtoTHM6zCh2Gr6QkE+JxyAeYmDcyTfoG4GE7FE20DQWLPMMu2mr3GF44ARkIFGf+gZj6guSxgnPuUV/y161d8nOEymmKeMSZ6JmT8i/Lh+VazeYhpU44fGaBdtIkE+wIRj9AG70/+zJS1yNHelmQCSol5uCyR7Kwu/KYjRM5ag==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0f024256-ce7a-4d25-e07b-08de7ddf650b
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?VRCdMjPMuU3PzfD4lp2NoNFYZqLRWvOUdM840gKiHmRbd80hYRYuXHKmmb1l?=
+ =?us-ascii?Q?PvdLBA6mxBkKOOu5QiliOSaRjrTzQ6Wh1PzaG/+G/+g2GrHqsatZce7miV6v?=
+ =?us-ascii?Q?GAmEnSYGE/aEByJHIK59PY+dQAbBjL9H7jsErw3yUF9/VUmQX/sUOofMVFoa?=
+ =?us-ascii?Q?YxYSXulKpa8o8E4IxQyssPyCOA3HWs9JUpQ1rjA7KzFzseHoFLRh9kBhbR2t?=
+ =?us-ascii?Q?R/gPzXt9BTTzFvEKAvB4OhCwY4cUWZhXU8D6rpF/5k8AW4XW9A0Itgj6GcyR?=
+ =?us-ascii?Q?6VxsK/tWkPieT5BBs9CWskWcK2asqslNO3sA4SHRus9Vnv4ndT14q5m7m4zw?=
+ =?us-ascii?Q?0ex2KO+NktiE/3IcIxFerqsoehZQZ5hvrYX6kRbkCPCw9J8OVxTwc7GVvLTV?=
+ =?us-ascii?Q?v3sXioqgqq291P5l/n9L8OFP+Kx44rDB312MHMBb1Z/0uQKYLdYGrja+BvMp?=
+ =?us-ascii?Q?j6+rkPtyvNQUh8laoXQRMvtChxprONG9g3dV669rKtmVE2AIWyJdbDznozcX?=
+ =?us-ascii?Q?kOhoEgodbZwGwtJ9hBSrGANyLt8ROHZ4QcCQ1duS8mmw8eu7lA/NefJwjnne?=
+ =?us-ascii?Q?4y/aHeS/can9JWXHUOth/9BiVQ0sgm1aXIJncP/i4x14YJlktqfXvbf/C5Qa?=
+ =?us-ascii?Q?dYOiu4pxtj4eFO3iNUhaVCpeuNVJElNnnbx2fMOVqWX7/GSf8QNx7vAXogn2?=
+ =?us-ascii?Q?M+h7YcLVrTfd2l5ZwKLj9OxaztspZZzzzE6hkvMm/1n/1EikTt/uBVxqK0+S?=
+ =?us-ascii?Q?DD6BH3FTDLTn1V9ghReKxgvqD1K0TrK8/EOfufouPWKXALAQdyHDpY5INr2j?=
+ =?us-ascii?Q?H5xoK6F1AyUndnbuyvhSIr9tqfxPmGSlm3IlvMJw7BJq5FMg1XE2DGyonK4L?=
+ =?us-ascii?Q?axOl0RURhLX11lDm0CrUwzPSwxNh2mBo3rxZCYr6nlL1IDh4fOaHJ1i2V2ZP?=
+ =?us-ascii?Q?hwVe6QBCJOfMT/+5CuxJqqkvw8i7iOOBS0KJj+egYsG8Fkvj2OQyZB/u/snS?=
+ =?us-ascii?Q?p99o+9PqpB1BLHETBvxUornWM8uAovICbpUGJqGy8GQ7F4CstsoT2ajsiHI6?=
+ =?us-ascii?Q?GLZX8ODoKtDHLZpGrvz+ZSyCeWHEV3jkyLfyEbkf0a7au0Bubc23MEvgCr+Z?=
+ =?us-ascii?Q?UTLKUR/iT1l7e3wCgoCzyByU6Jlo13HR8TdzMcyRJBBjPRbExCXBJiDD0CiA?=
+ =?us-ascii?Q?u74KgmRWPn7an9U9c9hJMlPM9cUC6PX8w/Qe1B/t9vIkMYnykPpYv1RyFwqu?=
+ =?us-ascii?Q?ffj0cshyOGPE5TX7/cFuQjFvpJ9G/fD8ZEYuislkSi+mCZ5kB4l/wKG7vCZd?=
+ =?us-ascii?Q?aZC6k7u+Nrj0iGJRki1okPihlygu4BUKWHx9m5CZlOTNwIEvDEse27ut18EU?=
+ =?us-ascii?Q?1NU+Gn/s81c3iv+W50vmnhCUcw3vtJ5GHzoKYcU+Ro3TWYEGQ8fuQcnEcN0j?=
+ =?us-ascii?Q?NproQ+SGbcya35ltmwYXLf06WXlr9tqo/iAhbr6cAUrpTJvCbF6D8GoqVT6R?=
+ =?us-ascii?Q?ZJEctUyqNVtdJqjb5CNQrnsfv/44ZtqxxK9h2rPVbtHGhR3E4hE2HrMaOwpu?=
+ =?us-ascii?Q?UzWNfG+ixQTCu5+idgEBHvAKu5k5yRB6O6A0Vbkx8kbQddBf01XxWlZWM23d?=
+ =?us-ascii?Q?euPZEPhNGB7F/nF8rzH1FPgEw4mLKTCgJ4G678YNynrgias+1O/+JkT2UAIx?=
+ =?us-ascii?Q?uplCjqMFBuYaopgDgMQ0ZUVT7ROgZupXvC4e75Gt5AAdErlhxLSMzlkJmLTt?=
+ =?us-ascii?Q?PVMFdzfNOg=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 597b2e98-dc76-4f2b-dc99-08de7de349cc
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 13:25:56.4510 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2026 13:53:48.4213 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aBbsSon+Sffr0Gmtat1OsEmbVq9boYuJC9bdgSm/e8Jk/tVipb+GJ4NHxEDlgUeMHRfb9mDO+AY18lwzwPHMHA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6993
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3zPvav3Y915nfftHR466eibh/OJnuhUDUmPm2IIJVI9CIxXM0U3ABmrcPUC38bG9uv8Gs1SmKyhu3UZuUkX63g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR12MB4082
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,203 +157,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Matt Roper <matthew.d.roper@intel.com> writes:
+This patch adds safe Rust abstractions over the Linux kernel's GPU buddy
+allocator for physical memory management. The prerequisite infrastructure
+patches (DRM buddy code movement and the uninitialized buddy fix) have been
+absorbed into upstream -next, so this is now a standalone patch.
 
-> On Fri, Mar 06, 2026 at 04:01:05PM -0300, Gustavo Sousa wrote:
->> Matt Roper <matthew.d.roper@intel.com> writes:
->> 
->> > On Fri, Mar 06, 2026 at 02:28:25PM -0300, Gustavo Sousa wrote:
->> >> Implement the KMD part of Wa_14026539277, which applies to NVL-P A0.
->> >> The KMD implementation is just one component of the workaround, which
->> >> also depends on Pcode to implement its part in order to be complete.
->> >> 
->> >> v2:
->> >>   - Add FUNC(xe_rtp_match_not_sriov_vf) to skip applying the workaround
->> >>     to SRIOV VFs. (Matt)
->> >> 
->> >> Cc: Matt Roper <matthew.d.roper@intel.com>
->> >> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
->> >> ---
->> >>  drivers/gpu/drm/xe/regs/xe_gt_regs.h |  4 ++++
->> >>  drivers/gpu/drm/xe/xe_gt.c           | 27 +++++++++++++++++++++++++++
->> >>  drivers/gpu/drm/xe/xe_wa_oob.rules   |  2 ++
->> >>  3 files changed, 33 insertions(+)
->> >> 
->> >> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->> >> index 66ddad767ad4..a83cafbe03fd 100644
->> >> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->> >> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
->> >> @@ -452,6 +452,10 @@
->> >>  
->> >>  #define XEHPC_L3CLOS_MASK(i)			XE_REG_MCR(0xb194 + (i) * 8)
->> >>  
->> >> +#define L2COMPUTESIDECTRL			XE_REG_MCR(0xb1c0)
->> >> +#define   CECTRL				REG_GENMASK(2, 1)
->> >> +#define   CECTRL_CENODATA_ALWAYS		REG_FIELD_PREP(CECTRL, 0x0)
->> >> +
->> >>  #define XE2_GLOBAL_INVAL			XE_REG(0xb404)
->> >>  
->> >>  #define XE2LPM_L3SQCREG2			XE_REG_MCR(0xb604)
->> >> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
->> >> index b455af1e6072..3c8692f9b8cf 100644
->> >> --- a/drivers/gpu/drm/xe/xe_gt.c
->> >> +++ b/drivers/gpu/drm/xe/xe_gt.c
->> >> @@ -450,6 +450,25 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt)
->> >>  	return err;
->> >>  }
->> >>  
->> >> +static void xe_gt_wa_14026539277(struct xe_gt *gt)
->> >> +{
->> >> +	u32 val;
->> >> +
->> >> +	if (!XE_GT_WA(gt, 14026539277))
->> >> +		return;
->> >> +
->> >> +	/*
->> >> +	 * L2COMPUTESIDECTRL has a specific offset for media and the GSI offset
->> >> +	 * does not apply.
->> >> +	 */
->> >> +	xe_gt_assert(gt, xe_gt_is_main_type(gt));
->> >> +
->> >> +	val = xe_gt_mcr_unicast_read_any(gt, L2COMPUTESIDECTRL);
->> >> +	val &= ~CECTRL;
->> >> +	val |= CECTRL_CENODATA_ALWAYS;
->> >> +	xe_gt_mcr_multicast_write(gt, L2COMPUTESIDECTRL, val);
->> >> +}
->> >> +
->> >>  int xe_gt_init_early(struct xe_gt *gt)
->> >>  {
->> >>  	int err;
->> >> @@ -575,6 +594,14 @@ static int gt_init_with_gt_forcewake(struct xe_gt *gt)
->> >>  	 */
->> >>  	gt->info.gmdid = xe_mmio_read32(&gt->mmio, GMD_ID);
->> >>  
->> >> +	/*
->> >> +	 * Wa_14026539277 can't be implemented as a regular GT workaround (i.e.
->> >> +	 * as an entry in gt_was[]) because we would get the hardware already in
->> >> +	 * a bad state by the time it would be applied.  Hence, we implement it
->> >> +	 * as an OOB workaround and apply it early to prevent that.
->> >> +	 */
->> >> +	xe_gt_wa_14026539277(gt);
->> >> +
->> >>  	return 0;
->> >>  }
->> >>  
->> >> diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
->> >> index 80b54b195f20..03a0bf0aeb6e 100644
->> >> --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
->> >> +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
->> >> @@ -58,3 +58,5 @@
->> >>  
->> >>  14025883347	MEDIA_VERSION_RANGE(1301, 3503)
->> >>  		GRAPHICS_VERSION_RANGE(2004, 3005)
->> >> +
->> >> +14026539277	PLATFORM(NOVALAKE_P), PLATFORM_STEP(A0, B0), GRAPHICS_VERSION(3510), FUNC(xe_rtp_match_not_sriov_vf)
->> >
->> > I don't think it's right that we have both platform matches and IP
->> > matches here; that's not something that should usually happen because
->> > the workaround is either tied to the platform (NVL) or tied to the IP
->> > (Xe3p_LPG).  For device workarounds, the handling in our graphics
->> > workaround database can be a bit confusing since what we're looking at
->> > is really just a proxy/placeholder ticket for something that was filed
->> > in a different database originally.  Due to how the databases work, they
->> > have to slap some IP release on the proxy ticket, but in this case we
->> > don't need to add a match for those to our driver rules; just the
->> > platform information is sufficient.
->> >
->> > That would also mean that this should probably be an XE_DEVICE_WA()
->> > rather than an XE_GT_WA() and the workaround function we're adding here
->> > should be renamed.
->> 
->> Hm... But are we meant to apply the programming to the media GT as well?
->> I thought the issue for this workaround was observed only on the primary
->> GT.
->> 
->
-> Device workarounds operate on the xe_device rather than on any xe_gt.
-> So if a device workaround asks you to do something with with GTs, you
-> need to extract the relevant GTs from the device.  Novalake is
-> single-tile, so in this case we'd do something like
->
->      struct xe_gt *gt = xe_device_get_root_tile(xe)->primary_gt;
->
-> to grab the primary GT if that's what we're supposed to be working
-> with.
+The git tree with all patches can be found at:
+git://git.kernel.org/pub/scm/linux/kernel/git/jfern/linux.git (tag: gpu-buddy-bindings-v12.1-20260309)
 
-Or simply loop over GTs and only apply to primary GTs? I prefer this
-because it abstracts away the assumption of a single tile/primary GT
-(even though we know this applies only to NVL-P and is unlikely to be
-needed in other platforms).
+Change log:
 
->
->> So, should we make this a device workaround and add then make sure that
->> we apply it only on the primary GT in the function that implements it?
->> 
->> We will probably need to rework device OOB workarounds in
->> order to make this change, because stepping information is not ready by
->> the time device OOB workarounds are matched (i.e. when
->> xe_wa_process_device_oob() is called before we read the stepping
->> information into the device info).
->
-> I guess we should just move the device stepping determination earlier.
-> Figuring out the platform stepping only requires information from the
-> PCI config space so it should be possible to do before anything else in
-> the driver (i.e., we don't even need the MMIO BARs mapped yet to be able
-> to determine the platform stepping --- and in theory there could be
-> device workarounds that need to be taken into account during the very
-> earliest parts of driver initialization).
+Changes from v12 to v12.1:
+- Fixed undeclared type `GpuBuddyFlags` in doc examples: renamed to
+  `GpuBuddyAllocFlags` in all seven doc test examples (found by kernel
+  test robot).
 
-Yep, sounds good.
+Changes from v11 to v12:
+- Rebased on linux-next; this is now a standalone single patch as dependencies
+  are absorbed (but clist is a prerequisite).
+- Redesigned allocation API (Alexandre Courbot) for better Rust ergonomics.
+- Split single long example into 4 self-contained examples (Alexandre Courbot).
+- Several safety and invariant comment changes (Danilo).
+- MAINTAINERS changes (Arun, Mathew, Danilo, Dave).
+- Fixed `#[cfg(CONFIG_GPU_BUDDY)]` to `#[cfg(CONFIG_GPU_BUDDY = "y")]` (Danilo Krummrich).
+- Updated `ffi::clist::CListHead` to `interop::list::CListHead`.
 
-I'm also going to need to make sure that xe_wa_process_device_oob() is
-called after xe_sriov_probe_early(), because of
-FUNC(xe_rtp_match_not_sriov_vf).
+Changes from v10 to v11:
+- Dropped "rust: ffi: Convert pub use to pub mod and create ffi module" patch;
+  the ffi module restructuring will go through a different path.
+- Dropped "rust: clist: Add support to interface with C linked lists" patch;
+  the clist module will be submitted separately.
+- Dropped "nova-core: Kconfig: Sort select statements alphabetically" cosmetic
+  patch.
+- Patches 1-3 (DRM buddy movement and fix) are included as reference only;
+  they are already being pulled into upstream via drm-misc-next.
+- Removed clist patches as those can go in independently (Alice).
+- Moved the Kconfig GPU_BUDDY selection patch to nova-core mm series to enable
+  it when it is actually used.
+- Various nits to comments, etc.
 
-I'm wondering if it would be a good idea to have OOB workarounds being
-checked lazily because of these ordering issues.  Not sure though, since
-it would require more storage if we want to continue caching the results
-in the bitmask (it would need an extra bitmask to check if it was alreay
-evaluated); and also it adds some level of unpredictability, since there
-would not be specific point where we would know workarounds are all
-checked.
+Changes from v9 to v10:
+- Absorbed the DRM buddy code movement patches into this series as patches 1-2.
+  Dave Airlie reworked these into two parts for better git history.
+- Added "gpu: Fix uninitialized buddy for built-in drivers" fix by Koen Koning,
+  using subsys_initcall instead of module_init to fix NULL pointer dereference
+  when built-in drivers use the buddy allocator before initialization.
+- Added "rust: ffi: Convert pub use to pub mod and create ffi module" to prepare
+  the ffi module for hosting clist as a sub-module.
+- Moved clist from rust/kernel/clist.rs to rust/kernel/ffi/.
+- Added "nova-core: Kconfig: Sort select statements alphabetically" (Danilo).
 
-Another option is making sure we raise warnings for anything that is not
-yet "ready" to be checked by the time a workaround check is done.  It
-appears xe_device_sriov_mode() already contains an assert that would
-cover that (although we could also have one specific for
-xe_rtp_match_not_sriov_vf, to be safe), but I don't think the other
-match functions contain that yet.
+Changes from v8 to v9:
+- Updated nova-core Kconfig patch: addressed sorting of Kconfig options.
+- Added Daniel Almeida's Reviewed-by tag to clist patch.
+- Minor refinements to GPU buddy bindings.
 
-I think I like this last one better.
+Changes from v7 to v8:
+- Added nova-core Kconfig patch to select GPU_BUDDY for VRAM allocation.
+- Various changes suggested by Danilo Krummrich, Gary Guo, and Daniel Almeida.
+- Added Acked-by: Gary Guo for clist patch.
 
---
-Gustavo Sousa
+Changes from v6 to v7:
+- Major restructuring: split the large 26-patch v6 RFC series. v7 only contains
+  the Rust infrastructure patches (clist + GPU buddy bindings), extracted from
+  the full nova-core MM series. The nova-core MM patches follow separately.
+- Rebased on linux-next.
 
->
->
-> Matt
->
->> 
->> --
->> Gustavo Sousa
->> 
->> >
->> >
->> > Matt
->> >
->> >> 
->> >> -- 
->> >> 2.52.0
->> >> 
->> >
->> > -- 
->> > Matt Roper
->> > Graphics Software Engineer
->> > Linux GPU Platform Enablement
->> > Intel Corporation
->
-> -- 
-> Matt Roper
-> Graphics Software Engineer
-> Linux GPU Platform Enablement
-> Intel Corporation
+Link to v12: https://lore.kernel.org/all/20260308180407.3988286-1-joelagnelf@nvidia.com/
+Link to v11: https://lore.kernel.org/all/20260224224005.3232841-1-joelagnelf@nvidia.com/
+
+Joel Fernandes (1):
+  rust: gpu: Add GPU buddy allocator bindings
+
+ MAINTAINERS                     |   6 +-
+ rust/bindings/bindings_helper.h |  11 +
+ rust/helpers/gpu.c              |  23 ++
+ rust/helpers/helpers.c          |   1 +
+ rust/kernel/gpu/buddy.rs        | 611 ++++++++++++++++++++++++++++++++
+ rust/kernel/gpu/mod.rs          |   5 +
+ rust/kernel/lib.rs              |   2 +
+ 7 files changed, 658 insertions(+), 1 deletion(-)
+ create mode 100644 rust/helpers/gpu.c
+ create mode 100644 rust/kernel/gpu/buddy.rs
+ create mode 100644 rust/kernel/gpu/mod.rs
+
+-- 
+2.34.1
+
