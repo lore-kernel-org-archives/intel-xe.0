@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 069BEFCA180
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Mar 2026 20:07:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E08EFCA17B
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Mar 2026 20:07:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC4EC10E5C2;
-	Mon,  9 Mar 2026 20:07:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E43A410E5BF;
+	Mon,  9 Mar 2026 20:07:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Eqh5CqEC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mKojjVp+";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 831A610E5BF
- for <intel-xe@lists.freedesktop.org>; Mon,  9 Mar 2026 20:07:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18CB210E5BF
+ for <intel-xe@lists.freedesktop.org>; Mon,  9 Mar 2026 20:07:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773086869; x=1804622869;
+ t=1773086873; x=1804622873;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=ntfRk+4braRlNz0fA8KEuJ25wv3J27xm74Nj7EmSV9I=;
- b=Eqh5CqECUY5xke5SZ66B82O+Z+gEpiy4s8zpji5Nj/Xr33m5fyWSAZOZ
- nJA43ARq/UnA745YxBiJXsf5nVz1L9fXy9QIWHa3MleoB4NG3n+iQ+hZx
- bZeqKAsN/BFOeNiMhXSW6Mq+Hhh5cLMHjmapK76nIjgdYdBWk0olmVRiu
- IrTqVSLHsOu/MuFtBFsBqbJrCn+GYbtoO4p4+zdfTFfUmYZbt2cK7c0ac
- 59QlZrjZ/XrWpu4smXR6+sC+/0aEV9mhTv4YDGSGUVJjn3lUJbcIH304+
- k5qrLmPkquq0bqRGbej0Z37gO0y848JaDVXywcC4iMv7NvRt1XODsmwfZ w==;
-X-CSE-ConnectionGUID: PFbvAy2KQV2G2CFkhBS8Bw==
-X-CSE-MsgGUID: CotNGmn+TYqtIyu1lKpaug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="61694878"
-X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="61694878"
+ bh=OK442CO9nsQxduKuPyhVYcJ4VBB7YAfgJtJq9bursxM=;
+ b=mKojjVp+7ZAdFCE13y43WA7dqpzj+4AU8MAoUpASBThp7JSLEdKEHarg
+ Cp3XfRyrsA9jyMDPNvMGr9bd1pfWEFEmpAbUgSIDwQJ2uHJIlupEW1yfp
+ AG1NsqR4gSsUz60LFj10xNRHIjYHmt55NKtp46LRnczn9WIvRnnejIYV9
+ 3+azmNDecHbJaC2oWbpI6uvaDit/nZa0D9mBr8uRgc2onHFBV3oDjjyP8
+ YjpMdTT4q2mOsuOiYVQXtu1+Z4Gy/1MChq36v3IYL5EGMei/ONR+6tuIi
+ bNzQSdhz4dZrhQz7cGzjYrYV3nuKZwe5T2f+Z3EeIHtEOIIjGKqmchpci w==;
+X-CSE-ConnectionGUID: Q5H6HppOTf22dEfIQstC1w==
+X-CSE-MsgGUID: cWdpAUMNSCi81b7Q3XJS2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="61694884"
+X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="61694884"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2026 13:07:49 -0700
-X-CSE-ConnectionGUID: WQSaKr7RSq2Cgdit8uj8Ag==
-X-CSE-MsgGUID: ENmSfc7TRj2Fsfob5KZgcQ==
+ 09 Mar 2026 13:07:53 -0700
+X-CSE-ConnectionGUID: 9vyqMtDiQzi9bgchf58dWg==
+X-CSE-MsgGUID: poTudv1/Q6uTS0uW3ZegnA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="242879480"
+X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="242879504"
 Received: from jjgreens-desk21.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.221.146])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2026 13:07:48 -0700
+ 09 Mar 2026 13:07:52 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Mon, 09 Mar 2026 17:07:29 -0300
-Subject: [PATCH v3 1/8] drm/xe: Modify stepping info directly in
- xe_step_*_get()
+Date: Mon, 09 Mar 2026 17:07:32 -0300
+Subject: [PATCH v3 4/8] drm/xe/rtp: Add support for matching platform-level
+ stepping
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260309-extra-nvl-p-enabling-patches-v3-1-0416900dd498@intel.com>
+Message-Id: <20260309-extra-nvl-p-enabling-patches-v3-4-0416900dd498@intel.com>
 References: <20260309-extra-nvl-p-enabling-patches-v3-0-0416900dd498@intel.com>
 In-Reply-To: <20260309-extra-nvl-p-enabling-patches-v3-0-0416900dd498@intel.com>
 To: intel-xe@lists.freedesktop.org
@@ -70,181 +70,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In an upcoming change, we will add a member to struct xe_step_info to
-represent the platform-level stepping.  As such, we should stop assigning
-the value returned by functions xe_step_pre_gmdid_get() and
-xe_step_gmdid_get() directly to xe->info.step.
+Add support for matching platform-level stepping, which will be used for
+an upcoming NVL-P workaround.
 
-Since there are no other users for those functions, let's simply update
-them to modify xe->info.step directly.
+As support for reading platform-level stepping information is added only
+as needed in the driver, add a warning when the rule finds a STEP_NONE
+value, which is an indication that the driver is missing such a support.
 
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pci.c  |  6 ++---
- drivers/gpu/drm/xe/xe_step.c | 52 +++++++++++++++++++++++++-------------------
- drivers/gpu/drm/xe/xe_step.h |  8 +++----
- 3 files changed, 36 insertions(+), 30 deletions(-)
+ drivers/gpu/drm/xe/xe_rtp.c       |  7 +++++++
+ drivers/gpu/drm/xe/xe_rtp.h       | 20 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_rtp_types.h |  1 +
+ 3 files changed, 28 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 29f976e66848..72d4131e9775 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -914,7 +914,7 @@ static int xe_info_init(struct xe_device *xe,
- 	if (desc->pre_gmdid_graphics_ip) {
- 		graphics_ip = desc->pre_gmdid_graphics_ip;
- 		media_ip = desc->pre_gmdid_media_ip;
--		xe->info.step = xe_step_pre_gmdid_get(xe);
-+		xe_step_pre_gmdid_get(xe);
- 	} else {
- 		xe_assert(xe, !desc->pre_gmdid_media_ip);
- 		ret = handle_gmdid(xe, &graphics_ip, &media_ip,
-@@ -922,9 +922,7 @@ static int xe_info_init(struct xe_device *xe,
- 		if (ret)
- 			return ret;
+diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
+index 7bfdc6795ce6..991f218f1cc3 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.c
++++ b/drivers/gpu/drm/xe/xe_rtp.c
+@@ -55,6 +55,13 @@ static bool rule_matches(const struct xe_device *xe,
+ 			match = xe->info.platform == r->platform &&
+ 				xe->info.subplatform == r->subplatform;
+ 			break;
++		case XE_RTP_MATCH_PLATFORM_STEP:
++			if (drm_WARN_ON(&xe->drm, xe->info.step.platform == STEP_NONE))
++				return false;
++
++			match = xe->info.step.platform >= r->step_start &&
++				xe->info.step.platform < r->step_end;
++			break;
+ 		case XE_RTP_MATCH_GRAPHICS_VERSION:
+ 			if (drm_WARN_ON(&xe->drm, !gt))
+ 				return false;
+diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
+index be4195264286..7d6daa7eb1e4 100644
+--- a/drivers/gpu/drm/xe/xe_rtp.h
++++ b/drivers/gpu/drm/xe/xe_rtp.h
+@@ -35,6 +35,10 @@ struct xe_reg_sr;
+ 	{ .match_type = XE_RTP_MATCH_SUBPLATFORM,				\
+ 	  .platform = plat__, .subplatform = sub__ }
  
--		xe->info.step = xe_step_gmdid_get(xe,
--						  graphics_gmdid_revid,
--						  media_gmdid_revid);
-+		xe_step_gmdid_get(xe, graphics_gmdid_revid, media_gmdid_revid);
- 	}
++#define _XE_RTP_RULE_PLATFORM_STEP(start__, end__)				\
++	{ .match_type = XE_RTP_MATCH_PLATFORM_STEP,				\
++	  .step_start = start__, .step_end = end__ }
++
+ #define _XE_RTP_RULE_GRAPHICS_STEP(start__, end__)				\
+ 	{ .match_type = XE_RTP_MATCH_GRAPHICS_STEP,				\
+ 	  .step_start = start__, .step_end = end__ }
+@@ -66,6 +70,22 @@ struct xe_reg_sr;
+ #define XE_RTP_RULE_SUBPLATFORM(plat_, sub_)					\
+ 	_XE_RTP_RULE_SUBPLATFORM(XE_##plat_, XE_SUBPLATFORM_##plat_##_##sub_)
  
- 	/*
-diff --git a/drivers/gpu/drm/xe/xe_step.c b/drivers/gpu/drm/xe/xe_step.c
-index 2860986f82f7..064b604b5b94 100644
---- a/drivers/gpu/drm/xe/xe_step.c
-+++ b/drivers/gpu/drm/xe/xe_step.c
-@@ -115,15 +115,17 @@ __diag_pop();
-  * Convert the PCI revid into proper IP steppings.  This should only be
-  * used on platforms that do not have GMD_ID support.
-  */
--struct xe_step_info xe_step_pre_gmdid_get(struct xe_device *xe)
-+void xe_step_pre_gmdid_get(struct xe_device *xe)
- {
- 	const struct xe_step_info *revids = NULL;
--	struct xe_step_info step = {};
- 	u16 revid = xe->info.revid;
- 	int size = 0;
- 	const int *basedie_info = NULL;
- 	int basedie_size = 0;
- 	int baseid = 0;
-+	u8 graphics = STEP_NONE;
-+	u8 media = STEP_NONE;
-+	u8 basedie = STEP_NONE;
- 
- 	if (xe->info.platform == XE_PVC) {
- 		baseid = FIELD_GET(GENMASK(5, 3), xe->info.revid);
-@@ -166,10 +168,12 @@ struct xe_step_info xe_step_pre_gmdid_get(struct xe_device *xe)
- 
- 	/* Not using the stepping scheme for the platform yet. */
- 	if (!revids)
--		return step;
-+		goto done;
- 
- 	if (revid < size && revids[revid].graphics != STEP_NONE) {
--		step = revids[revid];
-+		graphics = revids[revid].graphics;
-+		media = revids[revid].media;
-+		basedie = revids[revid].basedie;
- 	} else {
- 		drm_warn(&xe->drm, "Unknown revid 0x%02x\n", revid);
- 
-@@ -187,25 +191,30 @@ struct xe_step_info xe_step_pre_gmdid_get(struct xe_device *xe)
- 		if (revid < size) {
- 			drm_dbg(&xe->drm, "Using steppings for revid 0x%02x\n",
- 				revid);
--			step = revids[revid];
-+			graphics = revids[revid].graphics;
-+			media = revids[revid].media;
-+			basedie = revids[revid].basedie;
- 		} else {
- 			drm_dbg(&xe->drm, "Using future steppings\n");
--			step.graphics = STEP_FUTURE;
-+			graphics = STEP_FUTURE;
- 		}
- 	}
- 
--	drm_WARN_ON(&xe->drm, step.graphics == STEP_NONE);
-+	drm_WARN_ON(&xe->drm, graphics == STEP_NONE);
- 
- 	if (basedie_info && basedie_size) {
- 		if (baseid < basedie_size && basedie_info[baseid] != STEP_NONE) {
--			step.basedie = basedie_info[baseid];
-+			basedie = basedie_info[baseid];
- 		} else {
- 			drm_warn(&xe->drm, "Unknown baseid 0x%02x\n", baseid);
--			step.basedie = STEP_FUTURE;
-+			basedie = STEP_FUTURE;
- 		}
- 	}
- 
--	return step;
-+done:
-+	xe->info.step.graphics = graphics;
-+	xe->info.step.media = media;
-+	xe->info.step.basedie = basedie;
- }
- 
++/**
++ * XE_RTP_RULE_PLATFORM_STEP - Create rule matching platform-level stepping
++ * @start_: First stepping matching the rule
++ * @end_: First stepping that does not match the rule
++ *
++ * Note that the range matching this rule is [ @start_, @end_ ), i.e. inclusive
++ * on the left, exclusive on the right.
++ *
++ * You need to make sure that proper support for reading platform-level stepping
++ * information is present for the target platform before using this rule.
++ *
++ * Refer to XE_RTP_RULES() for expected usage.
++ */
++#define XE_RTP_RULE_PLATFORM_STEP(start_, end_)					\
++	_XE_RTP_RULE_PLATFORM_STEP(STEP_##start_, STEP_##end_)
++
  /**
-@@ -220,28 +229,27 @@ struct xe_step_info xe_step_pre_gmdid_get(struct xe_device *xe)
-  * all platforms:  major steppings (A0, B0, etc.) are 4 apart, with minor
-  * steppings (A1, A2, etc.) taking the values in between.
-  */
--struct xe_step_info xe_step_gmdid_get(struct xe_device *xe,
--				      u32 graphics_gmdid_revid,
--				      u32 media_gmdid_revid)
-+void xe_step_gmdid_get(struct xe_device *xe,
-+		       u32 graphics_gmdid_revid,
-+		       u32 media_gmdid_revid)
- {
--	struct xe_step_info step = {
--		.graphics = STEP_A0 + graphics_gmdid_revid,
--		.media = STEP_A0 + media_gmdid_revid,
--	};
-+	u8 graphics = STEP_A0 + graphics_gmdid_revid;
-+	u8 media = STEP_A0 + media_gmdid_revid;
- 
--	if (step.graphics >= STEP_FUTURE) {
--		step.graphics = STEP_FUTURE;
-+	if (graphics >= STEP_FUTURE) {
-+		graphics = STEP_FUTURE;
- 		drm_dbg(&xe->drm, "Graphics GMD_ID revid value %d treated as future stepping\n",
- 			graphics_gmdid_revid);
- 	}
- 
--	if (step.media >= STEP_FUTURE) {
--		step.media = STEP_FUTURE;
-+	if (media >= STEP_FUTURE) {
-+		media = STEP_FUTURE;
- 		drm_dbg(&xe->drm, "Media GMD_ID revid value %d treated as future stepping\n",
- 			media_gmdid_revid);
- 	}
- 
--	return step;
-+	xe->info.step.graphics = graphics;
-+	xe->info.step.media = media;
- }
- 
- #define STEP_NAME_CASE(name)	\
-diff --git a/drivers/gpu/drm/xe/xe_step.h b/drivers/gpu/drm/xe/xe_step.h
-index 686cb59200c2..6febb7fac476 100644
---- a/drivers/gpu/drm/xe/xe_step.h
-+++ b/drivers/gpu/drm/xe/xe_step.h
-@@ -12,10 +12,10 @@
- 
- struct xe_device;
- 
--struct xe_step_info xe_step_pre_gmdid_get(struct xe_device *xe);
--struct xe_step_info xe_step_gmdid_get(struct xe_device *xe,
--				      u32 graphics_gmdid_revid,
--				      u32 media_gmdid_revid);
-+void xe_step_pre_gmdid_get(struct xe_device *xe);
-+void xe_step_gmdid_get(struct xe_device *xe,
-+		       u32 graphics_gmdid_revid,
-+		       u32 media_gmdid_revid);
- static inline u32 xe_step_to_gmdid(enum xe_step step) { return step - STEP_A0; }
- 
- const char *xe_step_name(enum xe_step step);
+  * XE_RTP_RULE_GRAPHICS_STEP - Create rule matching graphics stepping
+  * @start_: First stepping matching the rule
+diff --git a/drivers/gpu/drm/xe/xe_rtp_types.h b/drivers/gpu/drm/xe/xe_rtp_types.h
+index 6ba7f226c227..166251615be1 100644
+--- a/drivers/gpu/drm/xe/xe_rtp_types.h
++++ b/drivers/gpu/drm/xe/xe_rtp_types.h
+@@ -41,6 +41,7 @@ struct xe_rtp_action {
+ enum {
+ 	XE_RTP_MATCH_PLATFORM,
+ 	XE_RTP_MATCH_SUBPLATFORM,
++	XE_RTP_MATCH_PLATFORM_STEP,
+ 	XE_RTP_MATCH_GRAPHICS_VERSION,
+ 	XE_RTP_MATCH_GRAPHICS_VERSION_RANGE,
+ 	XE_RTP_MATCH_GRAPHICS_VERSION_ANY_GT,
 
 -- 
 2.52.0
