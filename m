@@ -4,37 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B88F5EB105B
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 11:57:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF742EB107C
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 11:57:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13A2010E6D1;
-	Tue, 10 Mar 2026 11:57:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEDB110E6D7;
+	Tue, 10 Mar 2026 11:57:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="ORJP6pik";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="SQW7Vu5o";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BB0410E6C9;
- Tue, 10 Mar 2026 11:57:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0940610E6D9;
+ Tue, 10 Mar 2026 11:57:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1773143854;
- bh=q5DGgQouGWGgfcuej1E52iDtx+kNPYr3AALCQt5FiTw=;
+ s=default; t=1773143860;
+ bh=LA3hIjGi9cA+PnG6A3TfKFJX6Y7TpnsugvkmMDZPIGM=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=ORJP6pik4mxWZMAxvvvqW03RNGWTfnDYCsgf12gqe7z50Hvoh3Zq3Os2AE9LGniSi
- b85a460PAJAXUBq3zV3hDpxKlnX2JQeyOICXCLXFlicJs/6njoBLcW5+TxEKVLPQrA
- NWRHOpq+MhOpoEXonUyRHgaZdVAmqzDKfa/J7maxafwUemHXUVcQfYqyvcIdwXjEhJ
- U0dF+qmznJqi8DqKL9rdc5+tX1OmUCXm8DiJ9TSbUCXYbYHIuxxBUGomMp0iS9VEwa
- IFXXdkfNfTYY/2UJr2CQjhRgY7XRhDz7RAIW6zeBgdcZTXxpPPpmVIKw3cKS+kCnAO
- hkUvBh29/M8UQ==
+ b=SQW7Vu5oXhCvF5trGl7S0iwyQq7kY6skjQlvmYfXsB3iYfI/BWLbfh3CfsSmZVCr4
+ tMKkEN8D23HpMNDtwQaAi9SCuqiieTX7Yg5fy3a/qAXtN6+MZ/cdGxnSoruwjR0fJq
+ s4hgOJNesqORXfFu7sdZ+NEiSndqU2zT+EiOEiGoWdTsQZ0lE/T2xW4PfnbVGbmBQB
+ ZhwcL9UxlnRS/7dHL7aFE+lXZnjfglSXacO2MU+yN8gTppPQh3rpzaNu8kUMk/EJ4s
+ 9FFVDkYZqLNAMRZlIYL1eE+IuyuH/xKDhccqwc8RXC0gFsXx3b2w00Gm0FsuGA5/Ij
+ 6yk/G5gwKl8TA==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
- Matthew Brost <matthew.brost@intel.com>,
- Uma Shankar <uma.shankar@intel.com>
-Subject: [PATCH v7 15/26] drm/i915/display: Fix intel_lpe_audio_irq_handler
- for PREEMPT-RT
-Date: Tue, 10 Mar 2026 12:56:57 +0100
-Message-ID: <20260310115709.2276203-16-dev@lankhorst.se>
+Cc: dri-devel@lists.freedesktop.org,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ "John B. Wyatt IV" <jwyatt@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v7 18/26] drm/i915/guc: Consider also RCU depth in busy loop.
+Date: Tue, 10 Mar 2026 12:57:00 +0100
+Message-ID: <20260310115709.2276203-19-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260310115709.2276203-1-dev@lankhorst.se>
 References: <20260310115709.2276203-1-dev@lankhorst.se>
@@ -54,36 +54,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The LPE audio interrupt comes from the i915 interrupt handler. It
-should be in irq disabled context.
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 
-With PREEMPT_RT enabled, the IRQ handler is threaded.
-Because intel_lpe_audio_irq_handler() may be called in threaded IRQ context,
-generic_handle_irq_safe API disables the interrupts before calling LPE's
-interrupt top half handler.
+intel_guc_send_busy_loop() looks at in_atomic() and irqs_disabled() to
+decide if it should busy-spin while waiting or if it may sleep.
+Both checks will report false on PREEMPT_RT if sleeping spinlocks are
+acquired leading to RCU splats while the function sleeps.
 
-This fixes braswell audio issues with RT enabled.
+Check also if RCU has been disabled.
 
+Reported-by: "John B. Wyatt IV" <jwyatt@redhat.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lpe_audio.c | 2 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-index 117b60656ca19..306b16889bc92 100644
---- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-@@ -262,7 +262,7 @@ void intel_lpe_audio_irq_handler(struct intel_display *display)
- 	if (!HAS_LPE_AUDIO(display))
- 		return;
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+index 053780f562c1a..b25fa8f4dc4bd 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+@@ -362,7 +362,7 @@ static inline int intel_guc_send_busy_loop(struct intel_guc *guc,
+ {
+ 	int err;
+ 	unsigned int sleep_period_ms = 1;
+-	bool not_atomic = !in_atomic() && !irqs_disabled();
++	bool not_atomic = !in_atomic() && !irqs_disabled() && !rcu_preempt_depth();
  
--	ret = generic_handle_irq(display->audio.lpe.irq);
-+	ret = generic_handle_irq_safe(display->audio.lpe.irq);
- 	if (ret)
- 		drm_err_ratelimited(display->drm,
- 				    "error handling LPE audio irq: %d\n", ret);
+ 	/*
+ 	 * FIXME: Have caller pass in if we are in an atomic context to avoid
 -- 
 2.51.0
 
