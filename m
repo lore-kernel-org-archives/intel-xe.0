@@ -4,158 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2403EFCC9DB
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 08:59:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9CA50EA8550
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 09:01:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD8CD10E69B;
-	Tue, 10 Mar 2026 08:59:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49D4610E69C;
+	Tue, 10 Mar 2026 09:01:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VlrlkCxv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lL1zIMgv";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0BA410E699;
- Tue, 10 Mar 2026 08:59:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67D3310E69B;
+ Tue, 10 Mar 2026 09:01:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773133149; x=1804669149;
- h=message-id:date:subject:to:cc:references:from:
+ t=1773133267; x=1804669267;
+ h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=USwiRCdO0VD22T6I1t4JGcJAjy/1/uUwykAV4I9iR5w=;
- b=VlrlkCxvnUykbmcK9XZeoCfBW+hnPA0Q7G4AMTZ/3BU0QoeQyUp4WF28
- 04ho+5idirXv6HqksaJ3ScR+ZGVVzCTcfA4vfy5LSGpDjW3lE+jahkwIe
- WJpLGC2nqc0Td76EE+qiXoc1P3zFy+ptFv0U4UDqrMLxlFqJH77zMekM5
- SW9jmlkRL4DJmqf0ZnGooD46jsQmF603B4CStc/sv/A+I2R0EeMAC8n0h
- UcScdmULNeARR+Jta82JxXrqpVr26SCy1tF48Lcd+GHT4DGqwXTbliAiK
- HXGpQP9SApFPydYS3CQ5hiUAdy7kpCSJnZVPGLAb1f+AidJ9pOqA1aw7d A==;
-X-CSE-ConnectionGUID: Ae2ArqysSMeY9NvKJGaRVA==
-X-CSE-MsgGUID: 2JbqvRrdQ86AXk4d+VeEPQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="73872780"
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="73872780"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 01:58:28 -0700
-X-CSE-ConnectionGUID: 3wNtKRfMTIewc7WsQ4kk8w==
-X-CSE-MsgGUID: EZiJeURXT+WWHE891n0CrA==
+ bh=kvAlzzV4qZzdRaMyXkl9CSsfRvnNaEtjCA9htczIKxc=;
+ b=lL1zIMgvC4JwR73Cv16JIBvFD5LgLdlZRRByScO+Zlw2t0OFQgr1vU3K
+ 2SjACaCn1nCScPJrVwFY4PSr0sNnoy1OHK+03Jco667HVw6bPixpIKtOA
+ GL4wqdTkB3vEDVcE+g9+YNt9k4nWwJJBRZZYbDdZ4SdxO159mTpxelf7o
+ bqL4JD5crXElA4qgeJtzWDZoQHHvI22N+38HUOd147ss4MyE6dhMbF0Gz
+ QaYlBVy1AOZ80lxDmiF79B6PLlaw6nV0a2BZJcjtNjw6mnkMh/8vlCW+n
+ daMfWsp09DGp01c7Q/crkKWz1FQAEXjPfOw0Mm32fu1BFODXax0GpKeH+ A==;
+X-CSE-ConnectionGUID: QQQheIwHQeSHorYpliKHsw==
+X-CSE-MsgGUID: 97Y0bfQbQfaQ1JzQfH3y5w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="85648985"
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="85648985"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2026 02:01:05 -0700
+X-CSE-ConnectionGUID: 78SG7O0XQWSJiuaJKVUtPQ==
+X-CSE-MsgGUID: fbfCu0T8Qyms282lB46KfA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="257956856"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 01:58:27 -0700
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="219294205"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2026 02:01:03 -0700
 Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 10 Mar 2026 01:58:27 -0700
+ 15.2.2562.37; Tue, 10 Mar 2026 02:01:02 -0700
 Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 10 Mar 2026 01:58:27 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.42) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Tue, 10 Mar 2026 02:01:02 -0700
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.14)
+ by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 10 Mar 2026 01:58:26 -0700
+ 15.2.2562.37; Tue, 10 Mar 2026 02:01:00 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZPYt33JauSwmZvJrZAE4rWp/jYD9lkwn76ZbpTgcKTYZePLtSc5ly51Od7K62Qr8Kb5OLiQqXWW+ODUmgEogQKo6c8OPS88qDUoUriCHw/AJ0Ub4er1imXLxgn42oBHABlWylJ+MYlAJsSSWT78wzxf8F8Mqtrl+GeDVEnyQQQUX+IRO6zOu3QUdPXgbdPw/eZlut0GUGIqsCPDX1jAunxSFakDm71fWgDFRXZ0hOt8x6mu/8bdXxZMRgGp1br73nezRdQH/eJaDLzh+/4kXETPy89oIBn3ttRj2/uyk6CwpqmZmC24jBCCQKMTNHA9nzvNv3Thz51nRAxYWahoPAg==
+ b=tj/fdxZMk0Hu8CxuhWPRfVRZWon7dLKXgbIkwPpsJFTWSLbl47vPmuUHKW6fH7Aapxohg9aL07pxp9IcUnN/Zp+t952Np82QvefPPtvEg4YvjrxqjF/jjrOuCHCLbbPzv6KaZCRyHPlPjGKbn8OAMHp6gQ6pI2xNONRE/a0HE03k3LB7v4gqkUqNGCodpJwglYY8903czWX7YUDMBzTRvanGdQ8f5JcRB6AVEfjVFBCrp7LDPadFJ1lDuppFHxIIW6f4XziyNkIl1ecy3AD6wXCDmvSoGDv8YHFbS85v+WiEB0MdWQMVlTtL4VDch/JgZVCbTSAaO3JWHDziIKAXKg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sUyVM3FMH+treYttOOAXXp8//g/9M9WwZ7/2owByBMw=;
- b=bIRNCK2SdOdFPMzkRJtNo1VqmbVLDSoXVftq2AqC8XCW4t//Ztqqwn4AcpUnGneKMRh2brozwjObKfcPFb2laxK0UaNMLnAkn6hjOnu8TWJ/AjOHbA1CFYGMp3c/WkDocxldThqQeI7k9sQA5Pe4wBcVkMT0cdzdOkYK0du8WM4j8S5wFjQMZ7zcqZDwdE/7u/VFKzubYOz+5SbjP7UBLCgLIcmrtY5GCppBkT8LTwDopK1rEsjA6v0vRBROsIZ/ao9G+4rZ7ecCXK8i4YhAtZT4kE+1QpvwTWctGLrA0ltILAOrNK4I8NUJ/oOcep58ivt1YOrjF9cIt6NGhLlNhA==
+ bh=kvAlzzV4qZzdRaMyXkl9CSsfRvnNaEtjCA9htczIKxc=;
+ b=sW2GdnjmiMfP22tI/K9kyt4CZU5xPzPAZzVwdDBxisxJOIFKSrrQBQc5nl93J8WoyIhDrDTE19WRyKglIAcc1XtPnh4gOqS0LkWQvhgBm4A0JlOIUWPwLQcV+J0hpJF/YPOL6cbFZCzY16wAVwxvTZ8Bu1TNul3AIwbL46gbx+CJxkMXw37t+2xyeME5y52k7l4o8Yb32aSBo9OFqNrZtmK0SsOrw3n917O0dBWDa1EHv3Xniz7hHYzJiqCcvMyrefRVd3xykufLmFEQHLNSvmV4lONJncixWi2oIVECDUoVVU1pxETUqdFU2hQKjnpBVurwuPv3PHCIg9lgTKGhMQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
- by MW4PR11MB7078.namprd11.prod.outlook.com (2603:10b6:303:219::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Tue, 10 Mar
- 2026 08:58:24 +0000
-Received: from IA0PR11MB7307.namprd11.prod.outlook.com
- ([fe80::9d4a:f89:f548:dbc7]) by IA0PR11MB7307.namprd11.prod.outlook.com
- ([fe80::9d4a:f89:f548:dbc7%6]) with mapi id 15.20.9700.010; Tue, 10 Mar 2026
- 08:58:24 +0000
-Message-ID: <0c432d87-4916-4ab0-8472-64d4a399face@intel.com>
-Date: Tue, 10 Mar 2026 14:28:16 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 0/4] DP: Read LTTPR caps followed by DPRX caps
-To: <imre.deak@intel.com>
-CC: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, "Jani
- Nikula" <jani.nikula@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-References: <20260305-dp_aux-v1-0-54ee0b5f5158@intel.com>
- <aamrRxXwBxzt6s4F@ideak-desk.lan>
- <8e862ee8-34e2-4330-a9ae-e5b97ef3beae@intel.com>
- <aaqibzXw-QK4mrHR@ideak-desk.lan>
+Received: from DS7PR11MB6271.namprd11.prod.outlook.com (2603:10b6:8:95::6) by
+ PH0PR11MB4808.namprd11.prod.outlook.com (2603:10b6:510:39::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9700.9; Tue, 10 Mar 2026 09:00:58 +0000
+Received: from DS7PR11MB6271.namprd11.prod.outlook.com
+ ([fe80::3d4e:a313:cb21:144b]) by DS7PR11MB6271.namprd11.prod.outlook.com
+ ([fe80::3d4e:a313:cb21:144b%4]) with mapi id 15.20.9700.010; Tue, 10 Mar 2026
+ 09:00:57 +0000
+From: "Mrozek, Michal" <michal.mrozek@intel.com>
+To: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Gupta, Saurabhg" <saurabhg.gupta@intel.com>, "Zuo, Alex"
+ <alex.zuo@intel.com>, "joonas.lahtinen@linux.intel.com"
+ <joonas.lahtinen@linux.intel.com>, "Brost, Matthew"
+ <matthew.brost@intel.com>, "Zhang, Jianxun" <jianxun.zhang@intel.com>, "Lin,
+ Shuicheng" <shuicheng.lin@intel.com>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "Wajdeczko, Michal"
+ <Michal.Wajdeczko@intel.com>, "Jadav, Raag" <raag.jadav@intel.com>, "Briano,
+ Ivan" <ivan.briano@intel.com>, "Auld, Matthew" <matthew.auld@intel.com>
+Subject: RE: [PATCH v36 4/4] drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
+Thread-Topic: [PATCH v36 4/4] drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
+Thread-Index: AQHcrYHBrOY7SSPxkEq2nlwSvobDfbWnfb1Q
+Date: Tue, 10 Mar 2026 09:00:57 +0000
+Message-ID: <DS7PR11MB627168F214425C848935B2A0E746A@DS7PR11MB6271.namprd11.prod.outlook.com>
+References: <20260306155556.67500-6-jonathan.cavitt@intel.com>
+ <20260306155556.67500-10-jonathan.cavitt@intel.com>
+In-Reply-To: <20260306155556.67500-10-jonathan.cavitt@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-In-Reply-To: <aaqibzXw-QK4mrHR@ideak-desk.lan>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0218.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1b4::17) To IA0PR11MB7307.namprd11.prod.outlook.com
- (2603:10b6:208:437::10)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS7PR11MB6271:EE_|PH0PR11MB4808:EE_
+x-ms-office365-filtering-correlation-id: a4ab99d7-16dc-4888-d566-08de7e838b63
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0; ARA:13230040|376014|366016|1800799024|38070700021;
+x-microsoft-antispam-message-info: KFunjmKwp6GkUbxqbswyVLPx4ZJaJOx4x6KdtyaONxCgTSVFEmSbDOuZjz61J9lRSAv8ywZOSRP0JNspPPexpYtDQPa79whYpt/SS/vnPpyDGHcsgOUJDwV0YwX+gvo9bg6qvCqYESfzPS173GaHZGOv/xUboEmTzrvKYVMtXpxJFyObBIEkyAD31Amr25t+fPGS1QWzQpTnpYXM1ln/4iafuvxztq2QOuFZt4PlaaIL2And5Eix4WIAy/BSWzJHuTnKiIPRACQ8xWbzOKWktZGDnmgcKxizJI3F6UB9s8lTLtbasvdrZVVEh2H/wkHO/09Gg2X/keLXMG8+Dsv7Po85rykHbzMDpYTu5jTFjM71XqRkaiiOfp/XSuHJjyRv+UhISIzbnRkg76pzzpuzmE7dJMDf1sVjzE0TciInqwJrp0EQwQ0wajjm1he6xs4v9gOxjJZiUWqm4sQbPNL7rt81L0371T29IeRLrnydw0BYEBAt1wJLt3OL9aGducKElD3CizeB3V24TZ/ps1CsWR70637e+W7sHrV4G85AKWQzkBK7IuHF1YlY0m4oDxTdFiB29Llq1oiMFrwnXcBDHYTqxZONviI7q2Uu1kQqphbZxh8dmf4uoZS8OCAALj4DdztBd8SN51Thr+7JL1Gvm3E1srA3k8S2psi1DeUnUsSKle+QZPRDAS0RBJNgP0hU7VWJhJfrwovFE7NJpuyYzh9utshH5h325gW8A20OiaqcLenpVFdxX4eFAF1Rd+zgQk6bPHz0c+O1gh6aAFmCB3Bj3AYQjrLv+8wHfTFiX/M=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB6271.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(38070700021); DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?eCCdUB1XDrwjM9JUuZKd0CE6fiyyetUIti8mfJUtAUiXgcG2t9f28zKoTo3m?=
+ =?us-ascii?Q?S906eoeqB80NQOBT9zhyMFkxGLNIgSF+hrXlUDhbACV1pjJzoZvzolOthMpJ?=
+ =?us-ascii?Q?z/UWCP295YFo5LRoyOQNjFZ2MgJ79kjzyoWotsXgZB4jaFE2RpLTyrlC3Qsz?=
+ =?us-ascii?Q?x5vOXy4rlu8WvfZo467d9twfgyuJl3vp5F/Yp6G7ewUU+Rp4QGuuJ/Fqo3iw?=
+ =?us-ascii?Q?1vzORo1nnmcwluMUpvNe6BdWnxXyCppYmRnDMBGyQ9IG8C2dnTKPArCghIOg?=
+ =?us-ascii?Q?OVtrAgfW608mHJ8nth/IcQI5w8HY+KN2FHtcJvSIHlqLiLEho1+bfHw556so?=
+ =?us-ascii?Q?+734/rIApt+Uq2P58c/e0u2H3TtMBbwEoJXgp4ezSEmELmSD14NEwWjuwx+H?=
+ =?us-ascii?Q?GIZ4rYSi8151OqRXLZ7Y+w0jdI3a65B0DUpvd+9boSdmtVk4U98abpJgNSi8?=
+ =?us-ascii?Q?eWGSBLh3DKACsl5Wll98qNUvtKImq8/1FG8MZBQumSHk8Neq3W0oqIQ0zKZr?=
+ =?us-ascii?Q?llsddtkCJVDHi4W0vqMZonSy5PaNoIuQWDcoP5SNcTZh6h9lejLNPU6SmQV9?=
+ =?us-ascii?Q?O2lpy34bW30JoWvjACMm/Jn8BY5CQIGkReNJlP9ytJEnOva6OmPQKGWE617W?=
+ =?us-ascii?Q?7mnpLN9J6NY33p53VMseVchHTjfCavgioiaGrAp8UZppwr7n/JmgXODFEJ9g?=
+ =?us-ascii?Q?ssSUhf8BI8PmVtDKvortfOTjotwUu1IU4o8O8d2OsX9wZOJ13Lm/MkHp1rQO?=
+ =?us-ascii?Q?NFo3jyl6SaBWC6EJaMMCat8pqJvoS1N0/h/Al5Q3R4W0yYvuQ7UQmqwlevw1?=
+ =?us-ascii?Q?GGHU7YgMeFnbz2UsJnOAVNqFEHyJZJ5JiJklQQ/fQ1OtgbtqyIwhnej1CJgO?=
+ =?us-ascii?Q?8tQzMvYv9J1pNJgUiF/vMOlGBRGCYLte3kEEJqTLaRKt/SbGMkqvpym15gdB?=
+ =?us-ascii?Q?SA2yp8BP6ajAfPesAe922bzTrZk6AHyUY6DdyUx2a8QuOsJZYt9rGNLAFLhE?=
+ =?us-ascii?Q?e/tzbTweLTUJb5C0NA1ajnqRjJ27O5kSls12+U5+KpuwSPrfreZucJZk8tTN?=
+ =?us-ascii?Q?OdzW+VKZ79+htbRMCC3FzWW9DkswsyKe6CEyDERQ2n9kn4bI8vYcCrB0e+yl?=
+ =?us-ascii?Q?tbkGBaSuiESRnxApJMGTP1hRXFmo+qYCMaJAZmXSfya6ITrP97joLcOswd2M?=
+ =?us-ascii?Q?wauJv340xVhAr92yKf/AHGKbAyaOoB30j9/8+2UAQjsuJ283/RL1nn7RF69O?=
+ =?us-ascii?Q?ZCCZ6znYMcm5/2VqFqKnwdtp1a2NUeRvhcqL4yJRO3oFLb5eU7Qcz0qyy26w?=
+ =?us-ascii?Q?yHWmYxAACY0C9snUIauj46uiJQuTcgQ9aF64gRLwhXllcuBteXY/YJuJTrw/?=
+ =?us-ascii?Q?zsSeNjEDB18FFhMzotKjEvr/BYcD0thlQauJAhC+Lhw9Pt0kaLuZemMmtZmd?=
+ =?us-ascii?Q?McSd5VQ8sSENFEdcaSvTjaecE5bv/8JC6xJ30sfg0amFbju2Ebw+GUAElgEb?=
+ =?us-ascii?Q?4LyfmoKaURrhHvE0bMMUhaFjZbkDcuwgRIx6rgiyk7AItDRQv3M4tg7AqkRy?=
+ =?us-ascii?Q?s2P4qV09bJQbC4OogZWorqcd8uPNItEmifSlIjC+milAM/R2Lult8POPD6WA?=
+ =?us-ascii?Q?pKYMeFSqULJ08KQqBGgz5uZYkdDBnKL3ioY0afrrwX8qJEK32oYrzsHf45Sx?=
+ =?us-ascii?Q?rvihmYmcUVj7UAxFJUN7xFDVlSO87yS9JP2czQ4eqAdGKSh3WrFnEgkJdgsr?=
+ =?us-ascii?Q?6z7xANw4hw=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA0PR11MB7307:EE_|MW4PR11MB7078:EE_
-X-MS-Office365-Filtering-Correlation-Id: c995188a-123b-4212-4303-08de7e832f92
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
-X-Microsoft-Antispam-Message-Info: pt8HC+EpABG6r6W+vy8PrVrUrLeN/vwtW6KUfxhfbzBgjoJQiu/keHmEkwOKEJKzmCS7MncXOXNgCSGHHt9j1L3sN7mxANVp1qt42gIjBJQg90vCnaJOanfN3fzCjhwQs95LJQ/8ZDUE6Vsh+VLCMwCRSRBiN0pyAnGr1VlAoiWKTxW7JKsASaZvWoSGiuFd+Puj9Y7ULVqDXGGsJvQZsKwjqFVQUAuV0TItpA4smF6UDr7t6yX18BmuEj3Cd/hAQXGBs8tfliU4+FTArCxg9+mG/ba0M1bUGDoSfb0h0FuH4uuagnoQc9Xk3ulRtHNAlTpaK4seEej2vRhAI1WLyYvt450y/5jsTL5Pp1HD46PAv/SHkUwBwVkRdLPsvKTlwRbS1YP3/NvzZxUYU0CRfWKkh/XV5NaslM4Z0YtKm+pVi+D/gh8JN9Cp8Bx9KUqIeNuw7JwitQruL4yIoFFS9B+xLM3TDIvaVMD23blUrDQmToT/mOHG/ekrwfK0NMX7WmSpMo/h2wvqYm/SPsWmSvUMlj4AE2i6I0pDo/HzDfDk5zO7qSKyQJI08RbtPIYxsPHd9LXpOhSov3I1AkA5Fn9rjj+PnXSv2ES+Dg8biudd/8EXiM2Efe1RvNh950htYMjbwoZ2bvUGIQR1SvhvFaLNne6E5AvTl7XlqygJiS5rQia64c++a3erxlMyjJAQ
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aHR2OEF4MGdkbnprTjRYNFZTd1F6SW9CZE90WUNuNmZuMUlsMmFwS0dFR1dl?=
- =?utf-8?B?ZTdUMDdpRzQ5WHZxYzk3YzhNZU9TbHUyOGFRT0xCaDhUeHA1WCtxcVZQYWhQ?=
- =?utf-8?B?a2dqL0hrNlUwK09lbGIwVWZLdmplOFAwdWE5Ukp1blFJVnFZZ01pR05tZzlm?=
- =?utf-8?B?UTlCT3Q4MWtNOVRiWDZaV2tsd2pROXRqcjlLVHJIOFNBVzZlUlNSMFQrZExK?=
- =?utf-8?B?dGNrYkQ5Q3htYXMyL2xhU0pPTjkrNkVjMFYxWjR0eGRtb3dVdlVXTE96UkN5?=
- =?utf-8?B?V0k2SzNVK05pZGs1aFpJOXFseEFnbk5PWmNPS0piTHFvVU1sb2sxUGxPTHFP?=
- =?utf-8?B?Njg4UENBZXpVOGROSmVQZUk1R0JXdjg4OFpQTkdvSnFKclpnSm9Fb05qOUdW?=
- =?utf-8?B?cVFmeElkdlpXcEJwZ2tGTDFDWlBsbExRc3pJSEU0Q0ZTZ0xLbkRUWmxTOWlk?=
- =?utf-8?B?eUh2SFRzejdmeEhoTnNqY1VEUkgrTlI2VEVhdTFmUStNYWNaMWdnc08renhu?=
- =?utf-8?B?cHJIRVAzc05xamNySUR4UGpOUVExb28xeXM2UzhYb3NDQmRoTDJRLzFHQkdZ?=
- =?utf-8?B?NmNuOVArb2xkTFpTb2t2cmN6Y2xSakdCYjFJYVdmbWIxM2Rwd3BzOEoxSWty?=
- =?utf-8?B?WTNkY2RvRHcvMUZkbk1BU09SK2dkMHo1dXhZQmJqUnBtRVZxb0NObEgwNlNW?=
- =?utf-8?B?S0kzdm11SURrOVJHMXoxaWVpcFA3RFJCaTNHUmE3NVBiZEp1L21FcTV3N1VS?=
- =?utf-8?B?bEEzcHFQQ2tzZERYWElPa1BFYzRyZXRZMWhsNmU5UVFobFJEL1pBYitFRTlN?=
- =?utf-8?B?dk5ibytoVmtkaVRYaTBQU3RUZXhGaGpZak1xQjI3R3RCTTJOV3JCMnpRb1dF?=
- =?utf-8?B?T0tIM1ZSZklBOFdyOEtBUG4xbzh3eGpKY0IvampLTlNXUUhmNjVORnlkc1JK?=
- =?utf-8?B?djNLVDVoVzc1VHh3Wld0dllZcTl5WWJjQkdLdXQzaG45bEhXN2toeVJwUFJI?=
- =?utf-8?B?NllHa0UwbG9ackJHWTMrbTRYYmVKSkphbk00aG5NSTJrMDYySTBYWUsvSE9J?=
- =?utf-8?B?a0tISWl4MjUzZ2hoQVdTb1k5bCtlM1ZQdEJRWGc1Q2gxM1lLWHl6d2dxQ291?=
- =?utf-8?B?SGt2Z0RrdkNnOGo0VjJCUEd5cUhuMGsyNGc1bnI4VjY5OGRlcG5uY01Md2Ji?=
- =?utf-8?B?YkJjK2VnOVdjdlJzalcrOFAzYVFDVG5DWHpYTjNvTW5OZlFBakUrdWdUT0tB?=
- =?utf-8?B?RXZaa3dCZUxSaWt3eEQrTUlZMzdzNklPMjhySDFyZnZxdTFOR1cvKzZNTVI1?=
- =?utf-8?B?YkJiTjcxc3FzMjdUb2p0NjNuODBwSDZxRzlINE10cjQ1REJOdHkvVHM0QXpj?=
- =?utf-8?B?ZWFySllMbGR2WC9GVmtmVmRqTzlSYmZiMmVwMWxkTXhMbmtVTEUxTUlFWGY2?=
- =?utf-8?B?enNDTjNWNlpHc3pHelFIZUZEVkpKaHBOVU5rS081eGlleHlFeDRTWW5TR1Ix?=
- =?utf-8?B?TkJnUWZqM095eE1Ddjc2ZzZ3dE05cWxYMU5lQnowUkxIZWV0OEc3dzlGRGl2?=
- =?utf-8?B?TjRkYVdxQjdMUndwZWNGMWwzL2tKMkxxRkxCZVdkY29sWnFYWnk3Ni8yTjNI?=
- =?utf-8?B?SDFhdEVhTW5YclZ2TzRsaE1NRXJYTmZ3TGliaEZYTWFNUG1nNVRuSVJaS1hU?=
- =?utf-8?B?YzB0cmdxdEx2R1BUYlp5c084bXkvTytWQWo2dHRCalpyeGRQa2NVa1gxTEZq?=
- =?utf-8?B?a3hWK201S0RFZ05YQmgydEJvMjhmTTV0WGFvalR4T3lybm1Mby9XNHNheUZK?=
- =?utf-8?B?WStSTHJxT1pzRG5ldng2b3RscFVYOXE1NC8rOVFhM1liOHRsZFJrR2VKRXVQ?=
- =?utf-8?B?YnhiR0lhaEI2cnYyQW9TY2NERzdOSjJ0TFFpVjJLSjBacE1YK0gxQWFtbVN0?=
- =?utf-8?B?a1JCc1BPVVRjV3BBSHUvZWVTV2oxUnV1VnN5ZkhVaXFXeDZrbVViS21UdUIy?=
- =?utf-8?B?eVhZTWlINmVDQm9pNi9zd0MyTXNzQlN6MEZVMi9KN2U1enphQnpQVW1NZWp4?=
- =?utf-8?B?U2ZZMllCcjVORVcyUjJMV3FaRjM0V25rdzRiajVnczY1dkpRVm9NSWZIbXZW?=
- =?utf-8?B?WnVKUE13ckpoVTNxNVoyT3dzRkZIb1QrL2ZOaDU4SWtJa3dsZXZOUUR0Zzc0?=
- =?utf-8?B?NkdTMWowcmNTWXBCM25rTXI5bmRVVHZpK3VUd2tsQkhkVGROTFBHeDNGR0ht?=
- =?utf-8?B?RVRYbkNCeENrdTdBM1ZmejVJc1pzdERUQVpYOUFlK3R2S1ppRkg5cGRDSkxj?=
- =?utf-8?B?cmh6RWlhODFLeDMxZWg0YUdOSTdHTEJvYXhhV0FYaExwSC9hd3VFaTJGd21E?=
- =?utf-8?Q?m4wnzGiyKBvbvcYE=3D?=
-X-Exchange-RoutingPolicyChecked: fgE3RAd7Vn353qdLJOsaVRBfoUyvon9vddeu9glE7UqSFoQu6OO2Pw9kwzxNR7SjrH0a/g7PfmUOCRq+EIfB7TteVk06zQOojqbNMq+p9+ra7q+6w/hkDCX2W7QvgAU+FsE4HVVmgtU0LKqoogRji/ZXfUwQzQahIu2rUZQMUkRaf+LQLUKBMUuIvyxLWLjuxjQrK8TiRsICTxRPWuqsjSbokIidSQvp/bwqerBnHXlFuIGsmwW91WW3Y4l7GjHpndiYC5Z9VT/IVbcAUKriMc947pxWgPAozcNq6SC9FRuwqQp6OYg1E5vDlPY1msa7cSb7fsoVolihfG1QQD3hNQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: c995188a-123b-4212-4303-08de7e832f92
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
+X-Exchange-RoutingPolicyChecked: Ct5p5alsxz+fx5X581G/mLTc45LSjHnacgGmvkaldt8ExNu4b5q0cWENe8qh8z8o7rNwdyenZvpDcGX6Pwn560lwO+cVfbbRppqs48k7RXb45MK5Gc9EQO+dBTGoXKaOw5rldcFKXvL0Xw9PVw8d6PlLuwB7RKAt2h2N8BfIMJHhCgGVBrB/m2jezS+eLfQfWVv5WD9tWCqACPRPeZobZJZH19OWpwKhnIk/c+s3V6vk60IDxII2cIOioE3BgSxjkbkh+9Z9iV3oK6GeglI8NFL8/THoDjm/QFcNQBAGU7AKKzJxoWj8lN+RtXH5oLHsus//BpqzerzEvXiPAANURw==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2026 08:58:24.1551 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZIMkpUgicB20SKftSNq5cCL/plXU8fyE31/UXc5k7DoJzwIAl+rrhUQ8haWNV0csXUV/pjpnmw8j8BDyV2b4oQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB7078
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB6271.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a4ab99d7-16dc-4888-d566-08de7e838b63
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Mar 2026 09:00:57.7388 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: lzKBIFdWNMmrVjsF/wnMqFq+CmZqVrUT+Ov2lXgqj10iJqMDP7b30DTbXZS3/HViYzT12D0R8h/SutFRMf3XmQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4808
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -171,130 +166,4 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-I understand that with race conditions from user get_connector it still 
-cannot guarantee that lttpr caps are read first, dropping this patch for 
-now!
-
-Thanks and Regards,
-Arun R Murthy
--------------------
-
-On 06-03-2026 15:16, Imre Deak wrote:
-> On Fri, Mar 06, 2026 at 09:59:10AM +0530, Murthy, Arun R wrote:
->> On 05-03-2026 21:41, Imre Deak wrote:
->>> On Thu, Mar 05, 2026 at 01:48:10PM +0530, Arun R Murthy wrote:
->>>> As per the spec  DP2.1 section 3.6.8.6.1, section 2.12.1,
->>>> section 2.12.3 (Link Policy) the LTTPR caps is to be read first
->>>> followed by the DPRX capability.
->>> Not exactly. The Standard requires reading the DPRX capabilities after
->>> the LTTPR caps are read.
->> I also mean the same, sorry if my wordings were complex.
->>
->>> The driver does read the DPRX caps after
->>> reading the LTTPR caps.
->> In intel_dp_link_training.c function intel_dp_init_lttpr_and_dprx_caps()
->>
->> int err = intel_dp_read_dprx_caps()
->> if (err != 0)
->>      return err;
->> lttpr_count = intel_dp_init_lttpr()
->>
->> Here we are reading dprx caps and then passing this dprx caps to the the
->> func intel_dp_init_lttpr(). I think this will be a deviation of the spec.
-> No, it's not a deviation of the spec, because the spec does not forbid
-> reading the DPCD_REV or other DPCD registers before reading the LTTPR
-> capability registers and it cannot really forbid this as I explained.
->
-> What the spec requires is reading the DPRX capabilities after the LTTPR
-> capabilities were read out, which the driver does: after the above lines
-> there is also:
->
->          /*
->           * The DPTX shall read the DPRX caps after LTTPR detection, so re-read
->           * it here.
->           */
->          if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd)) ...
->
->>> The DP Standard does not mandate that the first read after a sink is
->>> connected (i.e. after the HPD signal of the sink is asserted) must
->>> be an LTTPR capability read and cannot be any other DPCD register
->>> read. In fact this would be impossible to guarantee, a DPRX
->>> capability read - or any DPCD register read for that matter - could
->>> happen at any point and so it could happen right after the HPD
->>> signal got asserted.
->> Spec DP2.1 Section 3.6.8.6.1 LTTPR Recognition After HPD is propagated
->> from the DPRX to the DPTX, a DP Source device with a DPTX shall read
->> specific registers within the DPCD LTTPR Capability and ID Field (DPCD
->> F0000h through F0009h; see Section 3.6.5) After LTTPR recognition, a
->> DP Source device with a DPTX shall read the DP Sink device with a
->> DPRX’s capability by reading the DisplayID or legacy EDID and the
->> DPRX’s Receiver Capability field (DPCD 00000h through 000FFh; see
->> Table 2-232).
-> The above does not prohibit reading non-LTTPR DPCD registers before
-> reading F0000h - F0009h, and it cannot forbid this as explained above.
->
->>>> Git log shows that initially drm dp helper exposed function to read
->>>> lttpr caps. Driver reads the lttpr caps and then the dprx caps.
->>>> For a particular issue
->>>> https://gitlab.freedesktop.org/drm/intel/-/issues/3415
->>>> as a workaround reading dprx caps was done first to know if the panel is
->>>> < DP1.4 and then read 1 block at a time for lttpr caps.
->>>>
->>>> This can be handled in a better way and two such ways is what I see.
->>>> 1. Read LTTPR caps followed by DPRX caps as per the spec. Then on
->>>> reading dprx caps if revision < 1.4 then re-read the lttpr caps one
->>>> block at a time.
->>>>
->>>> 2. Read LTTPR caps and if 8b/10b check for correctness of the link rate
->>>> supported(lttpr caps 0xf0001), if some corrupted value is read then read
->>>> one block at a time.
->>> The driver does read the DPRX capabilities after reading the LTTPR
->>> capabilities. This is what the standard mandates.
->> Yes but before reading the LTTPR capabilities also DPRX capabilities is
->> read. Have added ref to the code snipped above.
-> This is not forbidden by the specification.
->
->> Please let me know if my understanding is wrong.
->>
->>> The workaround for issues/3415 depends on the DPCD_REV value, so this is
->>> read separately before reading the LTTPR caps. I don't see a better way
->>> to implement the workaround and such read is not prohibited by the DP
->>> Standard either. So I don't see the point of the changes in this
->>> patchset.
->> As Jani pointed this can be added as a quirk for that particular panel
->> instead of mandating this kind of reading dprx caps first and then reading
->> the lttpr caps for all the monitors.
-> There is already a quirk in the driver - to read out the LTTPR
-> capabilities 1 byte at a time - and the quirk is applied based on the
-> DPCD_REV register value of the monitor.
->
->> Thanks and Regards,
->> Arun R Murthy
->> -------------------
->>
->>>> I am open for either of the two or you have any other options as well I
->>>> am open.
->>>>
->>>> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
->>>> ---
->>>> Arun R Murthy (4):
->>>>         drm/display/dp: Read LTTPR caps without DPRX caps
->>>>         drm/i915/dp: Read LTTPR caps followed by DPRX caps
->>>>         drm/i915/dp: On HPD read LTTPR caps followed by DPRX caps
->>>>         drm/i915/dp: DPRX/LTTPR caps for DP should be read once
->>>>
->>>>    drivers/gpu/drm/display/drm_dp_helper.c            | 63 ++++++++++++++++++++++
->>>>    drivers/gpu/drm/i915/display/intel_dp.c            |  3 +-
->>>>    .../gpu/drm/i915/display/intel_dp_link_training.c  | 40 +++++++-------
->>>>    .../gpu/drm/i915/display/intel_dp_link_training.h  |  1 -
->>>>    drivers/gpu/drm/i915/display/intel_dp_tunnel.c     |  3 +-
->>>>    include/drm/display/drm_dp_helper.h                |  2 +
->>>>    6 files changed, 86 insertions(+), 26 deletions(-)
->>>> ---
->>>> base-commit: cfc20c776480fda8c1b0517b187bb71ec0781cd4
->>>> change-id: 20260305-dp_aux-1e27599e06c8
->>>>
->>>> Best regards,
->>>> -- 
->>>> Arun R Murthy <arun.r.murthy@intel.com>
->>>>
+Acked-by: Michal Mrozek <michal.mrozek@intel.com>
