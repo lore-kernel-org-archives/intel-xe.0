@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13C30FD2D63
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 12:35:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13346FD2D69
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 12:35:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCCAB10E6AA;
-	Tue, 10 Mar 2026 12:35:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAE9A10E6BB;
+	Tue, 10 Mar 2026 12:35:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="BmXsQ7Fx";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="mD0cmJ0r";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EEEBC10E6AA
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Mar 2026 12:35:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECA9310E278
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Mar 2026 12:35:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,24 +22,25 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=79pjw7Sqt40h9bg8zohI8YZr+Pwrk2R8SdZArRSvPNo=; b=BmXsQ7Fx8z5zrYPHNRELVETTKd
- EAlo+YHWj0o7AutYvUwmc4PYSJjzLzq0wioXD9ix7dA3LS6BfTo7/g7V/XBmBTj8iHmVGiMx3jfKn
- DvNRrISaTybDdu5TEMsZcoUaTcJLdHmF94TaXCGuCp+gtcA4qhiSlYBSinUvOT3c3xXEGWt28msXP
- a9TCarW+ZIQMP0ari0kV0xcv1rmI2oPTEMr8+QxHy42UIN7aTxXthWWW1kngJKkNzGN86EB5cfZlw
- 5xePmVnIIypmO9N0xxFvwNGltFJbMoRV9qImuvf920OMF457QPomocQSUBpMx64Go5L3Y8Cvrr6bn
- hrl0tYqg==;
+ bh=wqTOPCsK/oERZXQZZDz5kuQlMsMiXx1dGjQE0GsbVz0=; b=mD0cmJ0rPYmhJnXsNtyFcjqUyt
+ TEMUUa0q8dIzz9lonAeDOA8plVeqNrQ9KuxaAeNcg4I1/sqFZtO3QuQ0+cS+KW8EuM1edVodPfanA
+ I14utLFDPdljjV764nNqCqpZkrcZ7v+s74M8W71zf8yBB5HNq8WF7WU2BOr4M2UDcfbpF02BRdaC1
+ rqnFqYjPanZ2aGNBPuEjbNm0M1PU3fCQTSdaYHUwQRmmz4UN0U5ApfWRkTNM1pNcDDbQYUZXgnC7u
+ 5oVv3STvxLAXmlN2JP6hk7Az9WqNjM+QmBVf1CDeBHZlj/o5F3PjHejCNPwZsZVHsS3Q0Z/znXLPJ
+ 7AanOyWA==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vzwIq-00CYj0-91; Tue, 10 Mar 2026 13:35:12 +0100
+ id 1vzwIr-00CYjH-Q2; Tue, 10 Mar 2026 13:35:13 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Matthew Brost <matthew.brost@intel.com>,
+ Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v21 6/9] drm/xe: Move aux table invalidation to ring ops
-Date: Tue, 10 Mar 2026 12:34:50 +0000
-Message-ID: <20260310123453.54346-7-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v21 8/9] drm/xe/display: Add support for AuxCCS
+Date: Tue, 10 Mar 2026 12:34:52 +0000
+Message-ID: <20260310123453.54346-9-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260310123453.54346-1-tvrtko.ursulin@igalia.com>
 References: <20260310123453.54346-1-tvrtko.ursulin@igalia.com>
@@ -59,233 +60,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Implement the suggestion of moving the aux invalidation from a helper to a
-ring ops vfunc, together with the suggestion to split the vfunc table of
-video decode and video enhance engines.
+Add support for mapping the auxiliary CCS buffer into the DPT page tables.
 
-With this done the LRC code will be able to access the functionality via
-the newly added ring ops vfunc.
+This will allow for better power efficiency by enabling the render
+compression frame buffer modifiers such as
+I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS in a following patch.
+
+We do this by refactoring the code a bit so handling for the linear
+auxiliary frame buffer can be added in a tidy way. Also replace some
+hardcoded constants.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
-v2:
- * Removed stray hunks from v1.
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 111 ++++++++++++++++++-------
+ 1 file changed, 81 insertions(+), 30 deletions(-)
 
-v3:
- * Include header for u32.
-
-v4:
- * Forward declare struct xe_gt.
----
- drivers/gpu/drm/xe/xe_ring_ops.c       | 105 ++++++++++++++++++-------
- drivers/gpu/drm/xe/xe_ring_ops_types.h |   6 ++
- 2 files changed, 83 insertions(+), 28 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 596379e6d742..8947b3091873 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -48,22 +48,48 @@ static u32 preparser_disable(bool state)
- 	return MI_ARB_CHECK | BIT(8) | state;
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index df7d305c6fcd..fe4b66e5c3ad 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -49,33 +49,94 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
+ 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
  }
  
--static int emit_aux_table_inv(struct xe_gt *gt, struct xe_reg reg,
--			      u32 *dw, int i)
-+static u32 *
-+__emit_aux_table_inv(u32 *cmd, const struct xe_reg reg, u32 adj_offset)
++static unsigned int
++write_dpt_padding(struct iosys_map *map, unsigned int dest, unsigned int pad)
++{
++	/* The DE ignores the PTEs for the padding tiles */
++	return dest + pad * sizeof(u64);
++}
++
++static unsigned int
++write_dpt_remapped_linear(struct xe_bo *bo, struct iosys_map *map,
++			  unsigned int dest,
++			  const struct intel_remapped_plane_info *plane)
++{
++	struct xe_device *xe = xe_bo_device(bo);
++	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
++	const u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo,
++						 xe->pat.idx[XE_CACHE_NONE]);
++	unsigned int offset = plane->offset * XE_PAGE_SIZE;
++	unsigned int size = plane->size;
++
++	while (size--) {
++		u64 addr = xe_bo_addr(bo, offset, XE_PAGE_SIZE);
++
++		iosys_map_wr(map, dest, u64, addr | pte);
++		dest += sizeof(u64);
++		offset += XE_PAGE_SIZE;
++	}
++
++	return dest;
++}
++
++static unsigned int
++write_dpt_remapped_tiled(struct xe_bo *bo, struct iosys_map *map,
++			 unsigned int dest,
++			 const struct intel_remapped_plane_info *plane)
++{
++	struct xe_device *xe = xe_bo_device(bo);
++	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
++	const u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo,
++						 xe->pat.idx[XE_CACHE_NONE]);
++	unsigned int offset, column, row;
++
++	for (row = 0; row < plane->height; row++) {
++		offset = (plane->offset + plane->src_stride * row) *
++			 XE_PAGE_SIZE;
++
++		for (column = 0; column < plane->width; column++) {
++			u64 addr = xe_bo_addr(bo, offset, XE_PAGE_SIZE);
++
++			iosys_map_wr(map, dest, u64, addr | pte);
++			dest += sizeof(u64);
++			offset += XE_PAGE_SIZE;
++		}
++
++		dest = write_dpt_padding(map, dest,
++					 plane->dst_stride - plane->width);
++	}
++
++	return dest;
++}
++
+ static void
+-write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
+-		   u32 bo_ofs, u32 width, u32 height, u32 src_stride,
+-		   u32 dst_stride)
++write_dpt_remapped(struct xe_bo *bo,
++		   const struct intel_remapped_info *remap_info,
++		   struct iosys_map *map)
  {
--	dw[i++] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1) | MI_LRI_MMIO_REMAP_EN;
--	dw[i++] = reg.addr + gt->mmio.adj_offset;
--	dw[i++] = AUX_INV;
--	dw[i++] = MI_SEMAPHORE_WAIT_TOKEN |
--		  MI_SEMAPHORE_REGISTER_POLL |
--		  MI_SEMAPHORE_POLL |
--		  MI_SEMAPHORE_SAD_EQ_SDD;
--	dw[i++] = 0;
--	dw[i++] = reg.addr + gt->mmio.adj_offset;
--	dw[i++] = 0;
--	dw[i++] = 0;
-+	*cmd++ = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1) |
-+		 MI_LRI_MMIO_REMAP_EN;
-+	*cmd++ = reg.addr + adj_offset;
-+	*cmd++ = AUX_INV;
-+	*cmd++ = MI_SEMAPHORE_WAIT_TOKEN | MI_SEMAPHORE_REGISTER_POLL |
-+		 MI_SEMAPHORE_POLL | MI_SEMAPHORE_SAD_EQ_SDD;
-+	*cmd++ = 0;
-+	*cmd++ = reg.addr + adj_offset;
-+	*cmd++ = 0;
-+	*cmd++ = 0;
+-	struct xe_device *xe = xe_bo_device(bo);
+-	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
+-	u32 column, row;
+-	u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo, xe->pat.idx[XE_CACHE_NONE]);
++	unsigned int i, dest = 0;
  
--	return i;
-+	return cmd;
-+}
+-	for (row = 0; row < height; row++) {
+-		u32 src_idx = src_stride * row + bo_ofs;
++	for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++) {
++		const struct intel_remapped_plane_info *plane =
++						&remap_info->plane[i];
+ 
+-		for (column = 0; column < width; column++) {
+-			u64 addr = xe_bo_addr(bo, src_idx * XE_PAGE_SIZE, XE_PAGE_SIZE);
+-			iosys_map_wr(map, *dpt_ofs, u64, pte | addr);
++		if (!plane->width && !plane->height && !plane->linear)
++			continue;
+ 
+-			*dpt_ofs += 8;
+-			src_idx++;
++		if (remap_info->plane_alignment) {
++			const unsigned int index = dest / sizeof(u64);
++			const unsigned int pad =
++				ALIGN(index, remap_info->plane_alignment) -
++				index;
 +
-+static u32 *emit_aux_table_inv_render_compute(struct xe_gt *gt, u32 *cmd)
-+{
-+	return __emit_aux_table_inv(cmd, CCS_AUX_INV, gt->mmio.adj_offset);
-+}
-+
-+static u32 *emit_aux_table_inv_video_decode(struct xe_gt *gt, u32 *cmd)
-+{
-+	return __emit_aux_table_inv(cmd, VD0_AUX_INV, gt->mmio.adj_offset);
-+}
-+
-+static u32 *emit_aux_table_inv_video_enhance(struct xe_gt *gt, u32 *cmd)
-+{
-+	return __emit_aux_table_inv(cmd, VE0_AUX_INV, gt->mmio.adj_offset);
-+}
-+
-+static int emit_aux_table_inv(struct xe_hw_engine *hwe, u32 *dw, int i)
-+{
-+	struct xe_gt *gt = hwe->gt;
-+	u32 *(*emit)(struct xe_gt *gt, u32 *cmd) =
-+		gt->ring_ops[hwe->class]->emit_aux_table_inv;
-+
-+	if (emit)
-+		return emit(gt, dw + i) - dw;
-+	else
-+		return i;
- }
++			dest = write_dpt_padding(map, dest, pad);
+ 		}
  
- static int emit_user_interrupt(u32 *dw, int i)
-@@ -327,7 +353,6 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
- 	u32 ppgtt_flag = get_ppgtt_flag(job);
- 	struct xe_gt *gt = job->q->gt;
- 	struct xe_device *xe = gt_to_xe(gt);
--	bool decode = job->q->class == XE_ENGINE_CLASS_VIDEO_DECODE;
- 
- 	*head = lrc->ring.tail;
- 
-@@ -336,12 +361,7 @@ static void __emit_job_gen12_video(struct xe_sched_job *job, struct xe_lrc *lrc,
- 	dw[i++] = preparser_disable(true);
- 
- 	/* hsdes: 1809175790 */
--	if (has_aux_ccs(xe)) {
--		if (decode)
--			i = emit_aux_table_inv(gt, VD0_AUX_INV, dw, i);
--		else
--			i = emit_aux_table_inv(gt, VE0_AUX_INV, dw, i);
--	}
-+	i = emit_aux_table_inv(job->q->hwe, dw, i);
- 
- 	if (job->ring_ops_flush_tlb)
- 		i = emit_flush_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
-@@ -384,7 +404,6 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	struct xe_gt *gt = job->q->gt;
- 	struct xe_device *xe = gt_to_xe(gt);
- 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
--	const bool aux_ccs = has_aux_ccs(xe);
- 	u32 mask_flags = 0;
- 
- 	*head = lrc->ring.tail;
-@@ -395,7 +414,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	 * On AuxCCS platforms the invalidation of the Aux table requires
- 	 * quiescing the memory traffic beforehand.
- 	 */
--	if (aux_ccs)
-+	if (has_aux_ccs(xe))
- 		i = emit_render_cache_flush(job, dw, i);
- 
- 	dw[i++] = preparser_disable(true);
-@@ -408,8 +427,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 	i = emit_pipe_invalidate(job->q, mask_flags, job->ring_ops_flush_tlb, dw, i);
- 
- 	/* hsdes: 1809175790 */
--	if (aux_ccs)
--		i = emit_aux_table_inv(gt, CCS_AUX_INV, dw, i);
-+	i = emit_aux_table_inv(job->q->hwe, dw, i);
- 
- 	dw[i++] = preparser_disable(false);
- 
-@@ -534,7 +552,11 @@ static const struct xe_ring_ops ring_ops_gen12_copy = {
- 	.emit_job = emit_job_gen12_copy,
- };
- 
--static const struct xe_ring_ops ring_ops_gen12_video = {
-+static const struct xe_ring_ops ring_ops_gen12_video_decode = {
-+	.emit_job = emit_job_gen12_video,
-+};
-+
-+static const struct xe_ring_ops ring_ops_gen12_video_enhance = {
- 	.emit_job = emit_job_gen12_video,
- };
- 
-@@ -542,20 +564,47 @@ static const struct xe_ring_ops ring_ops_gen12_render_compute = {
- 	.emit_job = emit_job_gen12_render_compute,
- };
- 
-+static const struct xe_ring_ops auxccs_ring_ops_gen12_video_decode = {
-+	.emit_job = emit_job_gen12_video,
-+	.emit_aux_table_inv = emit_aux_table_inv_video_decode,
-+};
-+
-+static const struct xe_ring_ops auxccs_ring_ops_gen12_video_enhance = {
-+	.emit_job = emit_job_gen12_video,
-+	.emit_aux_table_inv = emit_aux_table_inv_video_enhance,
-+};
-+
-+static const struct xe_ring_ops auxccs_ring_ops_gen12_render_compute = {
-+	.emit_job = emit_job_gen12_render_compute,
-+	.emit_aux_table_inv = emit_aux_table_inv_render_compute,
-+};
-+
- const struct xe_ring_ops *
- xe_ring_ops_get(struct xe_gt *gt, enum xe_engine_class class)
- {
-+	struct xe_device *xe = gt_to_xe(gt);
-+
- 	switch (class) {
- 	case XE_ENGINE_CLASS_OTHER:
- 		return &ring_ops_gen12_gsc;
- 	case XE_ENGINE_CLASS_COPY:
- 		return &ring_ops_gen12_copy;
- 	case XE_ENGINE_CLASS_VIDEO_DECODE:
-+		if (has_aux_ccs(xe))
-+			return &auxccs_ring_ops_gen12_video_decode;
+-		/* The DE ignores the PTEs for the padding tiles */
+-		*dpt_ofs += (dst_stride - width) * 8;
++		if (plane->linear)
++			dest = write_dpt_remapped_linear(bo, map, dest, plane);
 +		else
-+			return &ring_ops_gen12_video_decode;
- 	case XE_ENGINE_CLASS_VIDEO_ENHANCE:
--		return &ring_ops_gen12_video;
-+		if (has_aux_ccs(xe))
-+			return &auxccs_ring_ops_gen12_video_enhance;
-+		else
-+			return &ring_ops_gen12_video_enhance;
- 	case XE_ENGINE_CLASS_RENDER:
- 	case XE_ENGINE_CLASS_COMPUTE:
--		return &ring_ops_gen12_render_compute;
-+		if (has_aux_ccs(xe))
-+			return &auxccs_ring_ops_gen12_render_compute;
-+		else
-+			return &ring_ops_gen12_render_compute;
- 	default:
- 		return NULL;
++			dest = write_dpt_remapped_tiled(bo, map, dest, plane);
  	}
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
-index 1197fc0bf2af..52ff96bc4100 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
-+++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
-@@ -6,6 +6,9 @@
- #ifndef _XE_RING_OPS_TYPES_H_
- #define _XE_RING_OPS_TYPES_H_
+-
+-	/* Align to next page */
+-	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
+ }
  
-+#include <linux/types.h>
-+
-+struct xe_gt;
- struct xe_sched_job;
- 
- #define MAX_JOB_SIZE_DW 74
-@@ -17,6 +20,9 @@ struct xe_sched_job;
- struct xe_ring_ops {
- 	/** @emit_job: Write job to ring */
- 	void (*emit_job)(struct xe_sched_job *job);
-+
-+	/** @emit_aux_table_inv: Emit aux table invalidation to the ring */
-+	u32 *(*emit_aux_table_inv)(struct xe_gt *gt, u32 *cmd);
- };
- 
- #endif
+ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+@@ -138,17 +199,7 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 			iosys_map_wr(&dpt->vmap, x * 8, u64, pte | addr);
+ 		}
+ 	} else if (view->type == I915_GTT_VIEW_REMAPPED) {
+-		const struct intel_remapped_info *remap_info = &view->remapped;
+-		u32 i, dpt_ofs = 0;
+-
+-		for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++)
+-			write_dpt_remapped(bo, &dpt->vmap, &dpt_ofs,
+-					   remap_info->plane[i].offset,
+-					   remap_info->plane[i].width,
+-					   remap_info->plane[i].height,
+-					   remap_info->plane[i].src_stride,
+-					   remap_info->plane[i].dst_stride);
+-
++		write_dpt_remapped(bo, &view->remapped, &dpt->vmap);
+ 	} else {
+ 		const struct intel_rotation_info *rot_info = &view->rotated;
+ 		u32 i, dpt_ofs = 0;
 -- 
 2.52.0
 
