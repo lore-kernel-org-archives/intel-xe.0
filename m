@@ -4,54 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B80BFD2D84
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 13:36:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75E1AFD2D9F
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 14:04:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0CC7110E29F;
-	Tue, 10 Mar 2026 13:36:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35F2610E294;
+	Tue, 10 Mar 2026 14:04:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H+r+6uWB";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="TDCpneR7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1852510E29F;
- Tue, 10 Mar 2026 13:36:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773149764; x=1804685764;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=YNVg0BRHGoVeXuk5Vxr+f30hSbojncH4/v76fsbkPVM=;
- b=H+r+6uWBJ64hHYCrtcYgK/v5Hp5R3AUppn/ryjwCDYjK8btFYqThjkle
- vrX4x2gCByKLAXY7yYHTwC/z+OxwVedslp/Qdcdd2vKoK0g3iHPdNJHt6
- XLzTTGULa9eC2yaeuaKl/naQWeWYCDaTTK5a4NWLQiXqp6siQ/yj3oICy
- Z7l89s7323OZsPwb9TR0AwwgJoDZxAFXPeNmhmW3OI9pMMHBm0J3YLZJO
- krzU0UvvtXNDFkBJpDmRqeJHZFPaiMQs69TLgEOCrno33hPfCoiSwO8pB
- LnpE5MpFrovMlqEk7ZVI5ZC5Zof98zX8Tt2/GxXUwxDrNlTow1FvdhqzD A==;
-X-CSE-ConnectionGUID: oGft8QxYTky4nhwphWJ10Q==
-X-CSE-MsgGUID: 4rfAj+XvQXmr6kNlKRjjpw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="85672637"
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="85672637"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 06:36:03 -0700
-X-CSE-ConnectionGUID: ASCeFWh8Q4y+UZ3i0uY+Wg==
-X-CSE-MsgGUID: b/TGjLb1Qz2GX9UTEuVaKQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="217646521"
-Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa007.fm.intel.com with ESMTP; 10 Mar 2026 06:36:01 -0700
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v3 03/24] drm/i915/lt_phy: Refactor LT PHY PLL handling to use
- explicit PLL state
-Date: Tue, 10 Mar 2026 13:36:00 +0000
-Message-ID: <20260310133600.1708066-1-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260304131423.1017821-5-mika.kahola@intel.com>
-References: <20260304131423.1017821-5-mika.kahola@intel.com>
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 890ED10E294;
+ Tue, 10 Mar 2026 14:04:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1773151492;
+ bh=AP771/2zE2q+ybEw63w0gq1+eWjICIZaqX8QtFkg6Y4=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=TDCpneR7rSc+QsWPXUAi5CDqj4FadL5YZY4sWe00jbEuKTQgONEFhoonbVt4hniNf
+ VhpLLLWQ70xI8zDfoxRffkEJD9Askb5DHQB5opl/sY3VBGIkoHubgm/16dTNV7Dv7l
+ 65SQcXGQpw7u+HQJlObkfrVRGo/IsBev2GYqVhQx+ozIkqH3JwsNP+s8ClFNpzOjNV
+ WzGgMkJnt/V6yyGNPf5bP2kxLY8pyxtUOmlz/ilsBK/2qYZg/NUxLU0APnuZbSaOn5
+ iU2+iSnTJBC+Au5hP8hlzI+vmqOV8X0Q+GP4dTAGm2mZl8eiMr8A4P8V4dPjCi8aKE
+ /+yh/IvMyNaYw==
+Message-ID: <250c4fe8-8f7a-4a0e-8439-53bb12987b3d@lankhorst.se>
+Date: Tue, 10 Mar 2026 15:04:50 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/4] mm/mmu_notifier: Allow two-pass struct
+ mmu_interval_notifiers
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Hildenbrand <david@kernel.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Andrew Morton <akpm@linux-foundation.org>,
+ Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>,
+ Alistair Popple <apopple@nvidia.com>, dri-devel@lists.freedesktop.org,
+ linux-mm@kvack.org, linux-kernel@vger.kernel.org
+References: <20260305093909.43623-1-thomas.hellstrom@linux.intel.com>
+ <20260305093909.43623-2-thomas.hellstrom@linux.intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <20260305093909.43623-2-thomas.hellstrom@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -68,205 +65,264 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The LT PHY implementation currently pulls PLL and port_clock
-information directly from the CRTC state. This ties the PHY
-programming logic too tightly to the CRTC state and makes it
-harder to clearly express the PHY’s own PLL configuration.
+Hey,
 
-Introduce an explicit "struct intel_lt_phy_pll_state" argument
-for the PHY functions and update callers accordingly.
 
-No functional change is intended — this is a preparatory cleanup for
-to bring LT PHY PLL handling as part of PLL framework.
+Den 2026-03-05 kl. 10:39, skrev Thomas Hellström:
+> GPU use-cases for mmu_interval_notifiers with hmm often involve
+> starting a gpu operation and then waiting for it to complete.
+> These operations are typically context preemption or TLB flushing.
+>
+> With single-pass notifiers per GPU this doesn't scale in
+> multi-gpu scenarios. In those scenarios we'd want to first start
+> preemption- or TLB flushing on all GPUs and as a second pass wait
+> for them to complete.
+>
+> One can do this on per-driver basis multiplexing per-driver
+> notifiers but that would mean sharing the notifier "user" lock
+> across all GPUs and that doesn't scale well either, so adding support
+> for multi-pass in the core appears to be the right choice.
+>
+> Implement two-pass capability in the mmu_interval_notifier. Use a
+> linked list for the final passes to minimize the impact for
+> use-cases that don't need the multi-pass functionality by avoiding
+> a second interval tree walk, and to be able to easily pass data
+> between the two passes.
+>
+> v1:
+> - Restrict to two passes (Jason Gunthorpe)
+> - Improve on documentation (Jason Gunthorpe)
+> - Improve on function naming (Alistair Popple)
+> v2:
+> - Include the invalidate_finish() callback in the
+>   struct mmu_interval_notifier_ops.
+> - Update documentation (GitHub Copilot:claude-sonnet-4.6)
+> - Use lockless list for list management.
+> v3:
+> - Update kerneldoc for the struct mmu_interval_notifier_finish::list member
+>   (Matthew Brost)
+> - Add a WARN_ON_ONCE() checking for NULL invalidate_finish() op if
+>   if invalidate_start() is non-NULL. (Matthew Brost)
+> v4:
+> - Addressed documentation review comments by David Hildenbrand.
+>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: David Hildenbrand <david@kernel.org>
+> Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
+> Cc: Liam R. Howlett <Liam.Howlett@oracle.com>
+> Cc: Vlastimil Babka <vbabka@kernel.org>
+> Cc: Mike Rapoport <rppt@kernel.org>
+> Cc: Suren Baghdasaryan <surenb@google.com>
+> Cc: Michal Hocko <mhocko@suse.com>
+> Cc: Jason Gunthorpe <jgg@ziepe.ca>
+> Cc: Andrew Morton <akpm@linux-foundation.org>
+> Cc: Simona Vetter <simona.vetter@ffwll.ch>
+> Cc: Dave Airlie <airlied@gmail.com>
+> Cc: Alistair Popple <apopple@nvidia.com>
+> Cc: <dri-devel@lists.freedesktop.org>
+> Cc: <linux-mm@kvack.org>
+> Cc: <linux-kernel@vger.kernel.org>
+>
+> Assisted-by: GitHub Copilot:claude-sonnet-4.6 # Documentation only.
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>  include/linux/mmu_notifier.h | 42 +++++++++++++++++++++++
+>  mm/mmu_notifier.c            | 65 +++++++++++++++++++++++++++++++-----
+>  2 files changed, 98 insertions(+), 9 deletions(-)
+>
+> diff --git a/include/linux/mmu_notifier.h b/include/linux/mmu_notifier.h
+> index 07a2bbaf86e9..dcdfdf1e0b39 100644
+> --- a/include/linux/mmu_notifier.h
+> +++ b/include/linux/mmu_notifier.h
+> @@ -233,16 +233,58 @@ struct mmu_notifier {
+>  	unsigned int users;
+>  };
+>  
+> +/**
+> + * struct mmu_interval_notifier_finish - mmu_interval_notifier two-pass abstraction
+> + * @link: Lockless list link for the notifiers pending pass list
+> + * @notifier: The mmu_interval_notifier for which the finish pass is called.
+> + *
+> + * Allocate, typically using GFP_NOWAIT in the interval notifier's start pass.
+> + * Note that with a large number of notifiers implementing two passes,
+> + * allocation with GFP_NOWAIT will become increasingly likely to fail, so consider
+> + * implementing a small pool instead of using kmalloc() allocations.
+> + *
+> + * If the implementation needs to pass data between the start and the finish passes,
+> + * the recommended way is to embed struct mmu_interval_notifier_finish into a larger
+> + * structure that also contains the data needed to be shared. Keep in mind that
+> + * a notifier callback can be invoked in parallel, and each invocation needs its
+> + * own struct mmu_interval_notifier_finish.
+> + *
+> + * If allocation fails, then the &mmu_interval_notifier_ops->invalidate_start op
+> + * needs to implements the full notifier functionality. Please refer to its
+> + * documentation.
+> + */
+> +struct mmu_interval_notifier_finish {
+> +	struct llist_node link;
+> +	struct mmu_interval_notifier *notifier;
+> +};
+> +
+>  /**
+>   * struct mmu_interval_notifier_ops
+>   * @invalidate: Upon return the caller must stop using any SPTEs within this
+>   *              range. This function can sleep. Return false only if sleeping
+>   *              was required but mmu_notifier_range_blockable(range) is false.
+> + * @invalidate_start: Similar to @invalidate, but intended for two-pass notifier
+> + *                    callbacks where the call to @invalidate_start is the first
+> + *                    pass and any struct mmu_interval_notifier_finish pointer
+> + *                    returned in the @finish parameter describes the finish pass.
+> + *                    If *@finish is %NULL on return, then no final pass will be
+> + *                    called, and @invalidate_start needs to implement the full
+> + *                    notifier, behaving like @invalidate. The value of *@finish
+> + *                    is guaranteed to be %NULL at function entry.
+> + * @invalidate_finish: Called as the second pass for any notifier that returned
+> + *                     a non-NULL *@finish from @invalidate_start. The @finish
+> + *                     pointer passed here is the same one returned by
+> + *                     @invalidate_start.
+>   */
+>  struct mmu_interval_notifier_ops {
+>  	bool (*invalidate)(struct mmu_interval_notifier *interval_sub,
+>  			   const struct mmu_notifier_range *range,
+>  			   unsigned long cur_seq);
+> +	bool (*invalidate_start)(struct mmu_interval_notifier *interval_sub,
+> +				 const struct mmu_notifier_range *range,
+> +				 unsigned long cur_seq,
+> +				 struct mmu_interval_notifier_finish **finish);
+> +	void (*invalidate_finish)(struct mmu_interval_notifier_finish *finish);
+>  };
+>  
+>  struct mmu_interval_notifier {
+> diff --git a/mm/mmu_notifier.c b/mm/mmu_notifier.c
+> index a6cdf3674bdc..4d8a64ce8eda 100644
+> --- a/mm/mmu_notifier.c
+> +++ b/mm/mmu_notifier.c
+> @@ -260,6 +260,15 @@ mmu_interval_read_begin(struct mmu_interval_notifier *interval_sub)
+>  }
+>  EXPORT_SYMBOL_GPL(mmu_interval_read_begin);
+>  
+> +static void mn_itree_finish_pass(struct llist_head *finish_passes)
+> +{
+> +	struct llist_node *first = llist_reverse_order(__llist_del_all(finish_passes));
+> +	struct mmu_interval_notifier_finish *f, *next;
+> +
+> +	llist_for_each_entry_safe(f, next, first, link)
+> +		f->notifier->ops->invalidate_finish(f);
+> +}
+> +
+>  static void mn_itree_release(struct mmu_notifier_subscriptions *subscriptions,
+>  			     struct mm_struct *mm)
+>  {
+> @@ -271,6 +280,7 @@ static void mn_itree_release(struct mmu_notifier_subscriptions *subscriptions,
+>  		.end = ULONG_MAX,
+>  	};
+>  	struct mmu_interval_notifier *interval_sub;
+> +	LLIST_HEAD(finish_passes);
+>  	unsigned long cur_seq;
+>  	bool ret;
+>  
+> @@ -278,11 +288,27 @@ static void mn_itree_release(struct mmu_notifier_subscriptions *subscriptions,
+>  		     mn_itree_inv_start_range(subscriptions, &range, &cur_seq);
+>  	     interval_sub;
+>  	     interval_sub = mn_itree_inv_next(interval_sub, &range)) {
+> -		ret = interval_sub->ops->invalidate(interval_sub, &range,
+> -						    cur_seq);
+> +		if (interval_sub->ops->invalidate_start) {
+> +			struct mmu_interval_notifier_finish *finish = NULL;
+> +
+> +			ret = interval_sub->ops->invalidate_start(interval_sub,
+> +								  &range,
+> +								  cur_seq,
+> +								  &finish);
+> +			if (ret && finish) {
+> +				finish->notifier = interval_sub;
+> +				__llist_add(&finish->link, &finish_passes);
+> +			}
+Should we warn if !ret && finish?
 
-v2:  DP, HDMI 2.0, and HDMI FRL modes are port of the VDR configuration 0
-    register. These modes are defined by bits 2:0. Decode these to
-    differentiate DP and HDMI modes when programming PLL's. (Imre, Suraj)
+Anyway, looks good either way.
 
-BSpec: 744921
+Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/intel_lt_phy.c | 67 ++++++++++++++-------
- 1 file changed, 46 insertions(+), 21 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index f173d1788af8..06d83282c495 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -33,6 +33,7 @@
- #define PCLK_PLL_ACK_LN0		REG_BIT(30)
- #define MODE_DP				3
- #define MODE_HDMI_20			4
-+#define MODE_HDMI_FRL			5
- #define Q32_TO_INT(x)	((x) >> 32)
- #define Q32_TO_FRAC(x)	((x) & 0xFFFFFFFF)
- #define DCO_MIN_FREQ_MHZ	11850
-@@ -1177,9 +1178,30 @@ intel_lt_phy_lane_reset(struct intel_encoder *encoder,
- 	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port), lane_phy_pulse_status, 0);
- }
- 
-+static bool intel_lt_phy_is_hdmi(const struct intel_lt_phy_pll_state *ltpll)
-+{
-+	u8 mode = REG_FIELD_GET8(LT_PHY_VDR_MODE_ENCODING_MASK, ltpll->config[0]);
-+
-+	if (mode == MODE_HDMI_20 || mode == MODE_HDMI_FRL)
-+		return true;
-+
-+	return false;
-+}
-+
-+static bool intel_lt_phy_is_dp(const struct intel_lt_phy_pll_state *ltpll)
-+{
-+	u8 mode = REG_FIELD_GET8(LT_PHY_VDR_MODE_ENCODING_MASK, ltpll->config[0]);
-+
-+	if (mode == MODE_DP)
-+		return true;
-+
-+	return false;
-+}
-+
- static void
- intel_lt_phy_program_port_clock_ctl(struct intel_encoder *encoder,
--				    const struct intel_crtc_state *crtc_state,
-+				    const struct intel_lt_phy_pll_state *ltpll,
-+				    int port_clock,
- 				    bool lane_reversal)
- {
- 	struct intel_display *display = to_intel_display(encoder);
-@@ -1196,17 +1218,16 @@ intel_lt_phy_program_port_clock_ctl(struct intel_encoder *encoder,
- 	 * but since the register bits still remain the same we use
- 	 * the same definition
- 	 */
--	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) &&
--	    intel_hdmi_is_frl(crtc_state->port_clock))
-+	if (intel_lt_phy_is_hdmi(ltpll) && intel_hdmi_is_frl(port_clock))
- 		val |= XELPDP_DDI_CLOCK_SELECT_PREP(display, XELPDP_DDI_CLOCK_SELECT_DIV18CLK);
- 	else
- 		val |= XELPDP_DDI_CLOCK_SELECT_PREP(display, XELPDP_DDI_CLOCK_SELECT_MAXPCLK);
- 
- 	 /* DP2.0 10G and 20G rates enable MPLLA*/
--	if (crtc_state->port_clock == 1000000 || crtc_state->port_clock == 2000000)
-+	if (port_clock == 1000000 || port_clock == 2000000)
- 		val |= XELPDP_SSC_ENABLE_PLLA;
- 	else
--		val |= crtc_state->dpll_hw_state.ltpll.ssc_enabled ? XELPDP_SSC_ENABLE_PLLB : 0;
-+		val |= ltpll->ssc_enabled ? XELPDP_SSC_ENABLE_PLLB : 0;
- 
- 	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
- 		     XELPDP_LANE1_PHY_CLOCK_SELECT | XELPDP_FORWARD_CLOCK_UNGATE |
-@@ -1249,10 +1270,12 @@ static u32 intel_lt_phy_get_dp_clock(u8 rate)
- 
- static bool
- intel_lt_phy_config_changed(struct intel_encoder *encoder,
--			    const struct intel_crtc_state *crtc_state)
-+			    const struct intel_lt_phy_pll_state *ltpll)
- {
-+	struct intel_display *display = to_intel_display(encoder);
- 	u8 val, rate;
- 	u32 clock;
-+	u32 port_clock = intel_lt_phy_calc_port_clock(display, ltpll);
- 
- 	val = intel_lt_phy_read(encoder, INTEL_LT_PHY_LANE0,
- 				LT_PHY_VDR_0_CONFIG);
-@@ -1263,9 +1286,9 @@ intel_lt_phy_config_changed(struct intel_encoder *encoder,
- 	 * using 1.62 Gbps clock since PHY PLL defaults to that
- 	 * otherwise we always need to reconfigure it.
- 	 */
--	if (intel_crtc_has_dp_encoder(crtc_state)) {
-+	if (intel_lt_phy_is_dp(ltpll)) {
- 		clock = intel_lt_phy_get_dp_clock(rate);
--		if (crtc_state->port_clock == 1620000 && crtc_state->port_clock == clock)
-+		if (port_clock == 1620000 && port_clock == clock)
- 			return false;
- 	}
- 
-@@ -1760,41 +1783,41 @@ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
- 
- static void
- intel_lt_phy_program_pll(struct intel_encoder *encoder,
--			 const struct intel_crtc_state *crtc_state)
-+			 const struct intel_lt_phy_pll_state *ltpll)
- {
- 	u8 owned_lane_mask = intel_lt_phy_get_owned_lane_mask(encoder);
- 	int i, j, k;
- 
- 	intel_lt_phy_write(encoder, owned_lane_mask, LT_PHY_VDR_0_CONFIG,
--			   crtc_state->dpll_hw_state.ltpll.config[0], MB_WRITE_COMMITTED);
-+			   ltpll->config[0], MB_WRITE_COMMITTED);
- 	intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_1_CONFIG,
--			   crtc_state->dpll_hw_state.ltpll.config[1], MB_WRITE_COMMITTED);
-+			   ltpll->config[1], MB_WRITE_COMMITTED);
- 	intel_lt_phy_write(encoder, owned_lane_mask, LT_PHY_VDR_2_CONFIG,
--			   crtc_state->dpll_hw_state.ltpll.config[2], MB_WRITE_COMMITTED);
-+			   ltpll->config[2], MB_WRITE_COMMITTED);
- 
- 	for (i = 0; i <= 12; i++) {
- 		intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_X_ADDR_MSB(i),
--				   crtc_state->dpll_hw_state.ltpll.addr_msb[i],
-+				   ltpll->addr_msb[i],
- 				   MB_WRITE_COMMITTED);
- 		intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_X_ADDR_LSB(i),
--				   crtc_state->dpll_hw_state.ltpll.addr_lsb[i],
-+				   ltpll->addr_lsb[i],
- 				   MB_WRITE_COMMITTED);
- 
- 		for (j = 3, k = 0; j >= 0; j--, k++)
- 			intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0,
- 					   LT_PHY_VDR_X_DATAY(i, j),
--					   crtc_state->dpll_hw_state.ltpll.data[i][k],
-+					   ltpll->data[i][k],
- 					   MB_WRITE_COMMITTED);
- 	}
- }
- 
- static void
- intel_lt_phy_enable_disable_tx(struct intel_encoder *encoder,
--			       const struct intel_crtc_state *crtc_state)
-+			       const struct intel_lt_phy_pll_state *ltpll,
-+			       u8 lane_count)
- {
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 	bool lane_reversal = dig_port->lane_reversal;
--	u8 lane_count = crtc_state->lane_count;
- 	bool is_dp_alt =
- 		intel_tc_port_in_dp_alt_mode(dig_port);
- 	enum intel_tc_pin_assignment tc_pin =
-@@ -1896,7 +1919,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 	intel_lt_phy_lane_reset(encoder, crtc_state->lane_count);
- 
- 	/* 2. Program PORT_CLOCK_CTL register to configure clock muxes, gating, and SSC. */
--	intel_lt_phy_program_port_clock_ctl(encoder, crtc_state, lane_reversal);
-+	intel_lt_phy_program_port_clock_ctl(encoder, &crtc_state->dpll_hw_state.ltpll,
-+					    crtc_state->port_clock, lane_reversal);
- 
- 	/* 3. Change owned PHY lanes power to Ready state. */
- 	intel_lt_phy_powerdown_change_sequence(encoder, owned_lane_mask,
-@@ -1906,12 +1930,12 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 	 * 4. Read the PHY message bus VDR register PHY_VDR_0_Config check enabled PLL type,
- 	 * encoded rate and encoded mode.
- 	 */
--	if (intel_lt_phy_config_changed(encoder, crtc_state)) {
-+	if (intel_lt_phy_config_changed(encoder, &crtc_state->dpll_hw_state.ltpll)) {
- 		/*
- 		 * 5. Program the PHY internal PLL registers over PHY message bus for the desired
- 		 * frequency and protocol type
- 		 */
--		intel_lt_phy_program_pll(encoder, crtc_state);
-+		intel_lt_phy_program_pll(encoder, &crtc_state->dpll_hw_state.ltpll);
- 
- 		/* 6. Use the P2P transaction flow */
- 		/*
-@@ -2002,7 +2026,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 	intel_lt_phy_powerdown_change_sequence(encoder, owned_lane_mask,
- 					       XELPDP_P0_STATE_ACTIVE);
- 
--	intel_lt_phy_enable_disable_tx(encoder, crtc_state);
-+	intel_lt_phy_enable_disable_tx(encoder, &crtc_state->dpll_hw_state.ltpll,
-+				       crtc_state->lane_count);
- 	intel_lt_phy_transaction_end(encoder, wakeref);
- }
- 
--- 
-2.43.0
+> +		} else {
+> +			ret = interval_sub->ops->invalidate(interval_sub,
+> +							    &range,
+> +							    cur_seq);
+> +		}
+>  		WARN_ON(!ret);
+>  	}
+>  
+> +	mn_itree_finish_pass(&finish_passes);
+>  	mn_itree_inv_end(subscriptions);
+>  }
+>  
+> @@ -430,7 +456,9 @@ static int mn_itree_invalidate(struct mmu_notifier_subscriptions *subscriptions,
+>  			       const struct mmu_notifier_range *range)
+>  {
+>  	struct mmu_interval_notifier *interval_sub;
+> +	LLIST_HEAD(finish_passes);
+>  	unsigned long cur_seq;
+> +	int err = 0;
+>  
+>  	for (interval_sub =
+>  		     mn_itree_inv_start_range(subscriptions, range, &cur_seq);
+> @@ -438,23 +466,41 @@ static int mn_itree_invalidate(struct mmu_notifier_subscriptions *subscriptions,
+>  	     interval_sub = mn_itree_inv_next(interval_sub, range)) {
+>  		bool ret;
+>  
+> -		ret = interval_sub->ops->invalidate(interval_sub, range,
+> -						    cur_seq);
+> +		if (interval_sub->ops->invalidate_start) {
+> +			struct mmu_interval_notifier_finish *finish = NULL;
+> +
+> +			ret = interval_sub->ops->invalidate_start(interval_sub,
+> +								  range,
+> +								  cur_seq,
+> +								  &finish);
+> +			if (ret && finish) {
+> +				finish->notifier = interval_sub;
+> +				__llist_add(&finish->link, &finish_passes);
+> +			}
+> +
+> +		} else {
+> +			ret = interval_sub->ops->invalidate(interval_sub,
+> +							    range,
+> +							    cur_seq);
+> +		}
+>  		if (!ret) {
+>  			if (WARN_ON(mmu_notifier_range_blockable(range)))
+>  				continue;
+> -			goto out_would_block;
+> +			err = -EAGAIN;
+> +			break;
+>  		}
+>  	}
+> -	return 0;
+>  
+> -out_would_block:
+> +	mn_itree_finish_pass(&finish_passes);
+> +
+>  	/*
+>  	 * On -EAGAIN the non-blocking caller is not allowed to call
+>  	 * invalidate_range_end()
+>  	 */
+> -	mn_itree_inv_end(subscriptions);
+> -	return -EAGAIN;
+> +	if (err)
+> +		mn_itree_inv_end(subscriptions);
+> +
+> +	return err;
+>  }
+>  
+>  static int mn_hlist_invalidate_range_start(
+> @@ -976,6 +1022,7 @@ int mmu_interval_notifier_insert(struct mmu_interval_notifier *interval_sub,
+>  	struct mmu_notifier_subscriptions *subscriptions;
+>  	int ret;
+>  
+> +	WARN_ON_ONCE(ops->invalidate_start && !ops->invalidate_finish);
+>  	might_lock(&mm->mmap_lock);
+>  
+>  	subscriptions = smp_load_acquire(&mm->notifier_subscriptions);
 
