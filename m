@@ -4,49 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7B58FD88CA
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F307DFD88CD
 	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 22:50:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C45310E798;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3CB310E799;
 	Tue, 10 Mar 2026 22:50:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bti8Qjyd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Vp7xVWRn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1CB710E28A
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Mar 2026 22:50:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6555910E791
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Mar 2026 22:50:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1773183043; x=1804719043;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=W9kAFLLtJ+IIvTtGP6Mu/7epysP+r1CNR2aBDnC1CsY=;
- b=Bti8Qjyd7GFF0F/tArI29Y62q7c3/K3aueWocT2U7DI3hl7Z8oqQWAJf
- +KNLoCVyl45FH4MbZKcHiElAatFsWUjr2ZC/oU6k9hzG5QqPyAHXxfwLs
- 1NqSM0/VqIpsQWQIDYt9eIjdtXMNQw/3CY5QiB4UHoGDzecrdxKDNDPr9
- X3WkFDlADcdrsR2NNa1cUszNX5HkrQ9ciX0OZi1g8eg8a1XlBYyxfbag/
- duc9AFrldtgiAX5xw1TjNVSRSbq2jpePlKqsnP0aVEnQ/XFhMkseuIw41
- Adt0NTtkf+WxscNG/GKlnYiMDvZgOGzQlmaeCLZWhngvIb2QvHBrLfO8e Q==;
-X-CSE-ConnectionGUID: ZOt7xEhqQpeNRiq5i1iQXQ==
-X-CSE-MsgGUID: mdSYGvSjRw6flrHPvww40w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="61817879"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="61817879"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ZkDto7k/ZbVbqwmXw35jod4C168qPJErUPhJ50kaTE0=;
+ b=Vp7xVWRnrNPClxuuWEvzp/0skf0Owf69cM2klOtu5D+8e3uw+D7zCB8G
+ 4hJlIZLZkd5flw1PetOsYGTwl68wMgbirDUKcSiWjd97SQik4Zo2GkEYd
+ qWW96GOep00ELybtqktoFZRX6FqkhJzv097afU+OUzMPYGTalsIj0+Elg
+ 8YT+pyR9Fdt4EwY+OoDubQEJtB0utkfxXXVYEAubUnEoZSru8HhlUdbzC
+ o8iCULKiXO+dHCUKXhTSpQ5TVc5rrFaN7wtSRAqWoXXVppb0RJ9DhAyyv
+ LgZHl+87JrH+6WCWThT0RYA7NF4h8qutzJBJFxjZe0jjED83OyVlm94RU Q==;
+X-CSE-ConnectionGUID: ATyAm+LtSm6JHRJ4qA2eOQ==
+X-CSE-MsgGUID: 6lg1tqKoSmCCvFDRTCWfTw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="61817883"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="61817883"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Mar 2026 15:50:42 -0700
-X-CSE-ConnectionGUID: YrzMQOq7SF6GIsqRoUpPYA==
-X-CSE-MsgGUID: 6+F1HT0xRVqnnEL4iTTZQg==
+X-CSE-ConnectionGUID: EMMkmu6cR5SC85Xc/IVF+g==
+X-CSE-MsgGUID: AAWrl7jVQFS1mBluNlp6Tw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="220440984"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="220440990"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.39.24])
- by orviesa007.jf.intel.com with ESMTP; 10 Mar 2026 15:50:40 -0700
+ by orviesa007.jf.intel.com with ESMTP; 10 Mar 2026 15:50:41 -0700
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: [PATCH v9 0/7] Attempt to fixup reset, wedge, unload corner cases
-Date: Tue, 10 Mar 2026 18:50:32 -0400
-Message-Id: <20260310225039.1320161-1-zhanjun.dong@intel.com>
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>, stable@vger.kernel.org,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v9 2/7] drm/xe: Forcefully tear down exec queues in GuC submit
+ fini
+Date: Tue, 10 Mar 2026 18:50:34 -0400
+Message-Id: <20260310225039.1320161-3-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260310225039.1320161-1-zhanjun.dong@intel.com>
+References: <20260310225039.1320161-1-zhanjun.dong@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -63,67 +67,193 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We have several bug reports [1], [2], [3] describing failures in reset,
-wedge, and unload corner cases where memory is not properly freed or
-fences fail to signal. This patch attempts to address the issue by
-forcefully killing any remaining queues on driver unload and wedging the
-device if not in mode 2.
+In GuC submit fini, forcefully tear down any exec queues by disabling
+CTs, stopping the scheduler (which cleans up lost G2H), killing all
+remaining queues, and resuming scheduling to allow any remaining cleanup
+actions to complete and signal any remaining fences.
 
-Zhanjun Dong
+Split guc_submit_fini into device related and software only part. Using
+device-managed and drm-managed action guarantees the correct ordering of
+cleanup.
 
-[1] https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5466
-[2] https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/5530
-[3] https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6029
-
+Fixes: dd08ebf6c352 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
+Cc: stable@vger.kernel.org
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
-History started from v2 (v1 not found):
-v9:
- - Limit 1 author per patch to avoid confusion in git bisect
-v8:
- - Bug fix for Assertion `xe_guc_read_stopped(guc) == 1` failed
- - Add kernel-doc (Michal)
- - Rename function __xe_guc_submit_reset_prepare (Michal)
- - Remove empty errout: block, change goto to return (Michal)
-v7:
- - Add "Open-code GGTT MMIO access protection" and rebase with baseline changes
-v6:
- - Split guc_submit_fini into 2 parts, device related by devm and software
-   only part by drmm
-v5:
- - Removed redundant xe_guc_ct_stop() and __xe_guc_submit_reset_prepare()
-   calls (Michal and Matthew)
- - Split patch 3 into 2 patches(new #3 and #4), #3 is for fixes old patch purpose,
-   #4 add as separate commit uses the enum for better code maintainability (Matthew)
-v4:
- - Make guc_submit_fini a devm managed action
- - Squash patch 2 with 6 from v3
- - Commit message update (Matthew)
-v3:
- - Add patch 3-6 in series
- - For "Trigger queue cleanup if not in wedged mode 2":
-     Add guc_ct_stop and reset prepare in patch of:
-     Sync with baseline changes
-
-Matthew Brost (2):
-  drm/xe: Always kill exec queues in xe_guc_submit_pause_abort
-  drm/xe: Open-code GGTT MMIO access protection
-
-Zhanjun Dong (5):
-  drm/xe: Forcefully tear down exec queues in GuC submit fini
-  drm/xe: Trigger queue cleanup if not in wedged mode 2
-  drm/xe: Use XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET enum instead of
-    magic number
-  drm/xe/guc: Ensure CT state transitions via STOP before DISABLED
-  drm/xe/uc: Drop xe_guc_sanitize in favor of managed cleanup
-
- drivers/gpu/drm/xe/xe_ggtt.c       | 15 +++---
- drivers/gpu/drm/xe/xe_guc.c        | 26 ++++++++-
+ drivers/gpu/drm/xe/xe_guc.c        | 26 ++++++++++++++--
  drivers/gpu/drm/xe/xe_guc.h        |  1 +
- drivers/gpu/drm/xe/xe_guc_ct.c     |  1 +
- drivers/gpu/drm/xe/xe_guc_submit.c | 87 +++++++++++++++++++++---------
- drivers/gpu/drm/xe/xe_uc.c         | 22 +++-----
- 6 files changed, 104 insertions(+), 48 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 48 +++++++++++++++++++++++-------
+ 3 files changed, 63 insertions(+), 12 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index e75653a5e797..f6964b8f8ede 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -1399,15 +1399,37 @@ int xe_guc_enable_communication(struct xe_guc *guc)
+ 	return 0;
+ }
+ 
+-int xe_guc_suspend(struct xe_guc *guc)
++/**
++ * xe_guc_softreset() - Soft reset GuC
++ * @guc: The GuC object
++ *
++ * Send soft reset command to GuC through mmio send.
++ *
++ * Return: 0 if success, otherwise error code
++ */
++int xe_guc_softreset(struct xe_guc *guc)
+ {
+-	struct xe_gt *gt = guc_to_gt(guc);
+ 	u32 action[] = {
+ 		XE_GUC_ACTION_CLIENT_SOFT_RESET,
+ 	};
+ 	int ret;
+ 
++	if (!xe_uc_fw_is_running(&guc->fw))
++		return 0;
++
+ 	ret = xe_guc_mmio_send(guc, action, ARRAY_SIZE(action));
++	if (ret)
++		return ret;
++
++	return 0;
++}
++
++int xe_guc_suspend(struct xe_guc *guc)
++{
++	struct xe_gt *gt = guc_to_gt(guc);
++	int ret;
++
++	ret = xe_guc_softreset(guc);
+ 	if (ret) {
+ 		xe_gt_err(gt, "GuC suspend failed: %pe\n", ERR_PTR(ret));
+ 		return ret;
+diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+index 66e7edc70ed9..02514914f404 100644
+--- a/drivers/gpu/drm/xe/xe_guc.h
++++ b/drivers/gpu/drm/xe/xe_guc.h
+@@ -44,6 +44,7 @@ int xe_guc_opt_in_features_enable(struct xe_guc *guc);
+ void xe_guc_runtime_suspend(struct xe_guc *guc);
+ void xe_guc_runtime_resume(struct xe_guc *guc);
+ int xe_guc_suspend(struct xe_guc *guc);
++int xe_guc_softreset(struct xe_guc *guc);
+ void xe_guc_notify(struct xe_guc *guc);
+ int xe_guc_auth_huc(struct xe_guc *guc, u32 rsa_addr);
+ int xe_guc_mmio_send(struct xe_guc *guc, const u32 *request, u32 len);
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index b31e0e0af5cb..8afd424b27fb 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -47,6 +47,8 @@
+ 
+ #define XE_GUC_EXEC_QUEUE_CGP_CONTEXT_ERROR_LEN		6
+ 
++static int guc_submit_reset_prepare(struct xe_guc *guc);
++
+ static struct xe_guc *
+ exec_queue_to_guc(struct xe_exec_queue *q)
+ {
+@@ -238,7 +240,7 @@ static bool exec_queue_killed_or_banned_or_wedged(struct xe_exec_queue *q)
+ 		 EXEC_QUEUE_STATE_BANNED));
+ }
+ 
+-static void guc_submit_fini(struct drm_device *drm, void *arg)
++static void guc_submit_sw_fini(struct drm_device *drm, void *arg)
+ {
+ 	struct xe_guc *guc = arg;
+ 	struct xe_device *xe = guc_to_xe(guc);
+@@ -256,6 +258,19 @@ static void guc_submit_fini(struct drm_device *drm, void *arg)
+ 	xa_destroy(&guc->submission_state.exec_queue_lookup);
+ }
+ 
++static void guc_submit_fini(void *arg)
++{
++	struct xe_guc *guc = arg;
++
++	/* Forcefully kill any remaining exec queues */
++	xe_guc_ct_stop(&guc->ct);
++	guc_submit_reset_prepare(guc);
++	xe_guc_softreset(guc);
++	xe_guc_submit_stop(guc);
++	xe_uc_fw_sanitize(&guc->fw);
++	xe_guc_submit_pause_abort(guc);
++}
++
+ static void guc_submit_wedged_fini(void *arg)
+ {
+ 	struct xe_guc *guc = arg;
+@@ -325,7 +340,11 @@ int xe_guc_submit_init(struct xe_guc *guc, unsigned int num_ids)
+ 
+ 	guc->submission_state.initialized = true;
+ 
+-	return drmm_add_action_or_reset(&xe->drm, guc_submit_fini, guc);
++	err = drmm_add_action_or_reset(&xe->drm, guc_submit_sw_fini, guc);
++	if (err)
++		return err;
++
++	return devm_add_action_or_reset(xe->drm.dev, guc_submit_fini, guc);
+ }
+ 
+ /*
+@@ -2298,6 +2317,7 @@ static const struct xe_exec_queue_ops guc_exec_queue_ops = {
+ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
+ {
+ 	struct xe_gpu_scheduler *sched = &q->guc->sched;
++	bool do_destroy = false;
+ 
+ 	/* Stop scheduling + flush any DRM scheduler operations */
+ 	xe_sched_submission_stop(sched);
+@@ -2305,7 +2325,7 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
+ 	/* Clean up lost G2H + reset engine state */
+ 	if (exec_queue_registered(q)) {
+ 		if (exec_queue_destroyed(q))
+-			__guc_exec_queue_destroy(guc, q);
++			do_destroy = true;
+ 	}
+ 	if (q->guc->suspend_pending) {
+ 		set_exec_queue_suspended(q);
+@@ -2341,18 +2361,15 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
+ 			xe_guc_exec_queue_trigger_cleanup(q);
+ 		}
+ 	}
++
++	if (do_destroy)
++		__guc_exec_queue_destroy(guc, q);
+ }
+ 
+-int xe_guc_submit_reset_prepare(struct xe_guc *guc)
++static int guc_submit_reset_prepare(struct xe_guc *guc)
+ {
+ 	int ret;
+ 
+-	if (xe_gt_WARN_ON(guc_to_gt(guc), vf_recovery(guc)))
+-		return 0;
+-
+-	if (!guc->submission_state.initialized)
+-		return 0;
+-
+ 	/*
+ 	 * Using an atomic here rather than submission_state.lock as this
+ 	 * function can be called while holding the CT lock (engine reset
+@@ -2367,6 +2384,17 @@ int xe_guc_submit_reset_prepare(struct xe_guc *guc)
+ 	return ret;
+ }
+ 
++int xe_guc_submit_reset_prepare(struct xe_guc *guc)
++{
++	if (xe_gt_WARN_ON(guc_to_gt(guc), vf_recovery(guc)))
++		return 0;
++
++	if (!guc->submission_state.initialized)
++		return 0;
++
++	return guc_submit_reset_prepare(guc);
++}
++
+ void xe_guc_submit_reset_wait(struct xe_guc *guc)
+ {
+ 	wait_event(guc->ct.wq, xe_device_wedged(guc_to_xe(guc)) ||
 -- 
 2.34.1
 
