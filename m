@@ -4,56 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8584FCC9D6
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 07:57:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72A16FCC9DE
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 08:29:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B32710E219;
-	Tue, 10 Mar 2026 07:57:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28D9310E689;
+	Tue, 10 Mar 2026 08:29:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fQxxqSzR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LRUC/uPD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1127D10E219;
- Tue, 10 Mar 2026 07:57:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05CFD10E689;
+ Tue, 10 Mar 2026 08:29:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773129424; x=1804665424;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=7TwBzeNnkoshVUQVhFTePeCLRszhoh8FSFg0Jk5Epnw=;
- b=fQxxqSzReEZX7/9X8AkQVmRzUNltIFePOxRtBqCRJ6Xt/L/fWkqU3DCy
- RAPOp6/Q/snw1fOY9dl9GRpBYZw+LXdfd7jw9r8R9d1g1tFvkbzsarhqx
- KXVAm0ZZDvLMjYNi/+MnvELe/GoMXbINRTEkV2KIAeub0iwju0ynw3Qqa
- npmh7Nkxryk+lyvYNHi9N7u7IBuC8zdthtYVd8AbRJRnnEy2ljbfcJ6Be
- dhu2jX15kPsXPsuJgv2IOWL8Vf4ta2yaur0Lsp0kjAajB1RPqMaPZhnrb
- e1yjONqa5D327JJJXcdzxLycfMIJLX9Q16tXdor4uaSmWGZVfkc7P0vbs g==;
-X-CSE-ConnectionGUID: IBBT+lAhQmyNGZWSfGFC0A==
-X-CSE-MsgGUID: VmcKXcIQS26awylFWNjrZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="85256039"
-X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; d="scan'208";a="85256039"
+ t=1773131362; x=1804667362;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=68cxXRRzLHdXXJqGEgoS2bI42dMva4qnaNSrAjNOz2s=;
+ b=LRUC/uPDnQ9AyUTXhtmJTtPKczI9XhxYeFEiTU/5GjcqqjvT7AvEpmYm
+ Whczc5FdN2FyB8jSJrK7Mk9GLT/S10UIJ7xSZK4RhsjAZS3i0BJIkWdAJ
+ x8IYFDQecMP1qLcsKf81s3ddDLjKpM5UJYgXCNFcaRhwlNTsKhxVtqWLK
+ Xurk7c9B3hL0M8m+7PkvJujlS6WXv0+E/O5RYfebbqWWuUE/QeVw7UeUR
+ /j7rN7ijr1ILqAJePbDMNfjoZVVsLZzbxvemFzDjkR09O4XnlFsWMhBij
+ TMFEKBLIQSiSF0QFq73o0Jv0iH2JC/AY3Dl5R++fYZ0Qd5t2gcHehMiLG g==;
+X-CSE-ConnectionGUID: s9PYJSzYSAmP4rnjAOqxCg==
+X-CSE-MsgGUID: ZOoE5bqxQhyaATJ/q9k86w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="78022351"
+X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; d="scan'208,223";a="78022351"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 00:56:59 -0700
-X-CSE-ConnectionGUID: aGLs+ut6Qyq9uSuliGI9dA==
-X-CSE-MsgGUID: wgj27m2uQp6kQU0GGa+ANw==
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2026 01:29:22 -0700
+X-CSE-ConnectionGUID: 9ufg1RbpTXidMzLnK+zs8g==
+X-CSE-MsgGUID: epumpSfNQL2gS/sSIy3pgg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; d="scan'208";a="224975807"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 00:56:56 -0700
-Date: Tue, 10 Mar 2026 08:56:53 +0100
-From: Raag Jadav <raag.jadav@intel.com>
-To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: airlied@gmail.com, simona@ffwll.ch, mripard@kernel.org,
- matthew.brost@intel.com, rodrigo.vivi@intel.com,
- riana.tauro@intel.com, christian.koenig@amd.com, andrealmeid@igalia.com
-Subject: Re: [PATCH v2 0/3] Update 'none' recovery method for DRM wedged event
-Message-ID: <aa_OxUm6vthhaorE@black.igk.intel.com>
-References: <20260305130720.3685754-1-raag.jadav@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; 
+ d="scan'208,223";a="224982758"
+Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2026 01:29:20 -0700
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: uma.shankar@intel.com,
+	swati2.sharma@intel.com
+Subject: [PATCH] drm/i915/dmc: Update PIPEDMC interrupt mask
+Date: Tue, 10 Mar 2026 14:00:47 +0530
+Message-ID: <20260310083047.2593048-1-dibin.moolakadan.subrahmanian@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260305130720.3685754-1-raag.jadav@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,29 +67,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Mar 05, 2026 at 06:36:46PM +0530, Raag Jadav wrote:
-> Currently 'none' recovery method for wedged event expects no explicit
-> recovery from userspace consumer but it expects driver to have reset
-> the device, which may not always be the case. Update documentation and
-> log to reflect this expectation.
+From display version 35 onwards PIPEDMC_ATS_FAULT and
+PIPEDMC_GTT_FAULT interrupt bits are no longer defined.
 
-Anything I can do to move this forward?
+Update the interrupt mask to drop these and
+enable the PIPEDMC_ERROR interrupt.
 
-Raag
+Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dmc.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-> v2: Rephrase documentation (Rodrigo)
-> 
-> Raag Jadav (3):
->   drm/doc: Update documentation for 'none' recovery method
->   drm: Update log for 'none' recovery method
->   drm/xe: Send 'none' recovery method for
->     XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET
-> 
->  Documentation/gpu/drm-uapi.rst | 14 +++++++-------
->  drivers/gpu/drm/drm_drv.c      |  2 +-
->  drivers/gpu/drm/xe/xe_device.c |  9 ++++++++-
->  3 files changed, 16 insertions(+), 9 deletions(-)
-> 
-> -- 
-> 2.43.0
-> 
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index c3b411259a0c..e60f1f977070 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -509,6 +509,10 @@ static void pipedmc_clock_gating_wa(struct intel_display *display, bool enable)
+ 
+ static u32 pipedmc_interrupt_mask(struct intel_display *display)
+ {
++	if (DISPLAY_VER(display) >= 35)
++		return PIPEDMC_FLIPQ_PROG_DONE |
++			PIPEDMC_ERROR;
++
+ 	/*
+ 	 * FIXME PIPEDMC_ERROR not enabled for now due to LNL pipe B
+ 	 * triggering it during the first DC state transition. Figure
+-- 
+2.43.0
+
