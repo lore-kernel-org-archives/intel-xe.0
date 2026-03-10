@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA73AFCC9A4
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 00:43:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBB21FCC9A2
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 00:43:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8830210E609;
-	Tue, 10 Mar 2026 00:43:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 817F510E604;
+	Tue, 10 Mar 2026 00:43:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cWuUe6TJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bFE9NxUr";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9008F10E604
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Mar 2026 00:43:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FFD610E60B
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Mar 2026 00:43:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773103381; x=1804639381;
+ t=1773103384; x=1804639384;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=OK442CO9nsQxduKuPyhVYcJ4VBB7YAfgJtJq9bursxM=;
- b=cWuUe6TJR9nhoelPTY6AsgsGIoIvBv1f0JW9W0cDv6MAUiJVhM5tlaUq
- ioMVBSgc3vh+pxYped78R5b5IjY+iZ9Ktsg2qnhECeX8Yt7mpSrXB9qLX
- sk5Wn4MXu9raskx2uiwYkhvejCdY+hEjKCo8cIHB5hTRf/4Dby3r1+m5u
- tSkGS+nmTaRJXW2X1/GpGsMX8pIYrvixqW/gvM5z0E6ft7LLZPJl64NoD
- jMTDevUbZsUdf4FJrqSM2RCBxbwbrTeXreccamZtdq6GV5TaiyR1YtTos
- heqxO3rOHoWAEwMiRAvt5NMp6iTzSIszLTWseQT/8TPJl9OfYtep/RG1T Q==;
-X-CSE-ConnectionGUID: qUkK9VU0SYGfWN9lufSuYg==
-X-CSE-MsgGUID: y1EjQBZcSNuD1Cpi05g9FQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="74183493"
-X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; d="scan'208";a="74183493"
+ bh=wKPiUcJBz6PF8Q1VHH0LHG1wL1SRc7UHSa/Q6O1Ul1Y=;
+ b=bFE9NxUrHKnyMqhzwTs5C2NMoVSbKs2/6f3VajAcp8uvKFkFMmzeW3MQ
+ GRe7zR9pe/Cyxav8zawlqsZ1RyIQNH9c81OJSe6EGEjZ5767vEgEyNsp0
+ MQUHkIUiKVL06bqt4E/qqfJPmM+BZkOxfo/RgnAssMLWTPml4SJI6TDng
+ FZti+F/yQto4ACKJJpr/XjCZ+ouCs7PuxciGRBqbLl1LNX3ajiFQqC4mB
+ QifvUg4IkIKudkt+XhFcB0t4/Dqw238x7HHRIxoNY0IrSiNLSDXlHzeCq
+ CSHv8zj97l/+Fseoxf0agidW75xvQYzAe80gWCaMAzw0DR1rTa7i7gHw3 w==;
+X-CSE-ConnectionGUID: 4NPwcntCSmOyqirVzwqHAw==
+X-CSE-MsgGUID: d2q5Neb+THWbp7TSRRA06g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="74183505"
+X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; d="scan'208";a="74183505"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2026 17:43:01 -0700
-X-CSE-ConnectionGUID: hrg+yJTrSkuPCVK/+PYbLA==
-X-CSE-MsgGUID: z5RIvYVBTyC1hLjLOIIYsA==
+ 09 Mar 2026 17:43:04 -0700
+X-CSE-ConnectionGUID: b+Zf3hLoT5qo/vFD4PaD2g==
+X-CSE-MsgGUID: VvvkCba7SHKrc9bwwwDhSg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; d="scan'208";a="219063555"
+X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; d="scan'208";a="219063592"
 Received: from jjgreens-desk21.amr.corp.intel.com (HELO [192.168.1.16])
  ([10.124.221.146])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Mar 2026 17:43:00 -0700
+ 09 Mar 2026 17:43:03 -0700
 From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Mon, 09 Mar 2026 21:42:09 -0300
-Subject: [PATCH v5 4/7] drm/xe/rtp: Add support for matching platform-level
- stepping
+Date: Mon, 09 Mar 2026 21:42:11 -0300
+Subject: [PATCH v5 6/7] drm/xe/xe3p: Drop Wa_16028780921
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260309-extra-nvl-p-enabling-patches-v5-4-be9c902ee34e@intel.com>
+Message-Id: <20260309-extra-nvl-p-enabling-patches-v5-6-be9c902ee34e@intel.com>
 References: <20260309-extra-nvl-p-enabling-patches-v5-0-be9c902ee34e@intel.com>
 In-Reply-To: <20260309-extra-nvl-p-enabling-patches-v5-0-be9c902ee34e@intel.com>
 To: intel-xe@lists.freedesktop.org
@@ -70,89 +69,47 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add support for matching platform-level stepping, which will be used for
-an upcoming NVL-P workaround.
-
-As support for reading platform-level stepping information is added only
-as needed in the driver, add a warning when the rule finds a STEP_NONE
-value, which is an indication that the driver is missing such a support.
+Wa_16028780921 involves writing to a register that is locked by firmware
+prior to driver loading and doesn't have any effect if implemented by
+the KMD.  Since the implementation of the workaround actually belongs
+the firmware, just drop the ineffective implementation by the KMD.
 
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 ---
- drivers/gpu/drm/xe/xe_rtp.c       |  7 +++++++
- drivers/gpu/drm/xe/xe_rtp.h       | 20 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_rtp_types.h |  1 +
- 3 files changed, 28 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 3 ---
+ drivers/gpu/drm/xe/xe_wa.c           | 4 ----
+ 2 files changed, 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
-index 7bfdc6795ce6..991f218f1cc3 100644
---- a/drivers/gpu/drm/xe/xe_rtp.c
-+++ b/drivers/gpu/drm/xe/xe_rtp.c
-@@ -55,6 +55,13 @@ static bool rule_matches(const struct xe_device *xe,
- 			match = xe->info.platform == r->platform &&
- 				xe->info.subplatform == r->subplatform;
- 			break;
-+		case XE_RTP_MATCH_PLATFORM_STEP:
-+			if (drm_WARN_ON(&xe->drm, xe->info.step.platform == STEP_NONE))
-+				return false;
-+
-+			match = xe->info.step.platform >= r->step_start &&
-+				xe->info.step.platform < r->step_end;
-+			break;
- 		case XE_RTP_MATCH_GRAPHICS_VERSION:
- 			if (drm_WARN_ON(&xe->drm, !gt))
- 				return false;
-diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
-index be4195264286..7d6daa7eb1e4 100644
---- a/drivers/gpu/drm/xe/xe_rtp.h
-+++ b/drivers/gpu/drm/xe/xe_rtp.h
-@@ -35,6 +35,10 @@ struct xe_reg_sr;
- 	{ .match_type = XE_RTP_MATCH_SUBPLATFORM,				\
- 	  .platform = plat__, .subplatform = sub__ }
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index a83cafbe03fd..f49a28f4a330 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -218,9 +218,6 @@
  
-+#define _XE_RTP_RULE_PLATFORM_STEP(start__, end__)				\
-+	{ .match_type = XE_RTP_MATCH_PLATFORM_STEP,				\
-+	  .step_start = start__, .step_end = end__ }
-+
- #define _XE_RTP_RULE_GRAPHICS_STEP(start__, end__)				\
- 	{ .match_type = XE_RTP_MATCH_GRAPHICS_STEP,				\
- 	  .step_start = start__, .step_end = end__ }
-@@ -66,6 +70,22 @@ struct xe_reg_sr;
- #define XE_RTP_RULE_SUBPLATFORM(plat_, sub_)					\
- 	_XE_RTP_RULE_SUBPLATFORM(XE_##plat_, XE_SUBPLATFORM_##plat_##_##sub_)
+ #define GSCPSMI_BASE				XE_REG(0x880c)
  
-+/**
-+ * XE_RTP_RULE_PLATFORM_STEP - Create rule matching platform-level stepping
-+ * @start_: First stepping matching the rule
-+ * @end_: First stepping that does not match the rule
-+ *
-+ * Note that the range matching this rule is [ @start_, @end_ ), i.e. inclusive
-+ * on the left, exclusive on the right.
-+ *
-+ * You need to make sure that proper support for reading platform-level stepping
-+ * information is present for the target platform before using this rule.
-+ *
-+ * Refer to XE_RTP_RULES() for expected usage.
-+ */
-+#define XE_RTP_RULE_PLATFORM_STEP(start_, end_)					\
-+	_XE_RTP_RULE_PLATFORM_STEP(STEP_##start_, STEP_##end_)
-+
- /**
-  * XE_RTP_RULE_GRAPHICS_STEP - Create rule matching graphics stepping
-  * @start_: First stepping matching the rule
-diff --git a/drivers/gpu/drm/xe/xe_rtp_types.h b/drivers/gpu/drm/xe/xe_rtp_types.h
-index 6ba7f226c227..166251615be1 100644
---- a/drivers/gpu/drm/xe/xe_rtp_types.h
-+++ b/drivers/gpu/drm/xe/xe_rtp_types.h
-@@ -41,6 +41,7 @@ struct xe_rtp_action {
- enum {
- 	XE_RTP_MATCH_PLATFORM,
- 	XE_RTP_MATCH_SUBPLATFORM,
-+	XE_RTP_MATCH_PLATFORM_STEP,
- 	XE_RTP_MATCH_GRAPHICS_VERSION,
- 	XE_RTP_MATCH_GRAPHICS_VERSION_RANGE,
- 	XE_RTP_MATCH_GRAPHICS_VERSION_ANY_GT,
+-#define CCCHKNREG2				XE_REG_MCR(0x881c)
+-#define   LOCALITYDIS				REG_BIT(7)
+-
+ #define CCCHKNREG1				XE_REG_MCR(0x8828)
+ #define   L3CMPCTRL				REG_BIT(23)
+ #define   ENCOMPPERFFIX				REG_BIT(18)
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 183c5c86c35a..38881b1aaeb1 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -287,10 +287,6 @@ static const struct xe_rtp_entry_sr gt_was[] = {
+ 	  XE_RTP_ACTIONS(SET(MMIOATSREQLIMIT_GAM_WALK_3D,
+ 			     DIS_ATS_WRONLY_PG))
+ 	},
+-	{ XE_RTP_NAME("16028780921"),
+-	  XE_RTP_RULES(GRAPHICS_VERSION(3510), GRAPHICS_STEP(A0, B0)),
+-	  XE_RTP_ACTIONS(SET(CCCHKNREG2, LOCALITYDIS))
+-	},
+ 	{ XE_RTP_NAME("14026144927"),
+ 	  XE_RTP_RULES(GRAPHICS_VERSION(3510), GRAPHICS_STEP(A0, B0)),
+ 	  XE_RTP_ACTIONS(SET(L3SQCREG2, L3_SQ_DISABLE_COAMA_2WAY_COH |
 
 -- 
 2.52.0
