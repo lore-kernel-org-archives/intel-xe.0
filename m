@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 649E7FD4F00
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 16:01:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4423FD4F02
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 16:01:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23A7810E717;
-	Tue, 10 Mar 2026 16:01:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 935C210E717;
+	Tue, 10 Mar 2026 16:01:39 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 903E410E71A;
- Tue, 10 Mar 2026 16:01:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C7C310E2C4;
+ Tue, 10 Mar 2026 16:01:39 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/xe=5Fvm=3A_Impleme?=
- =?utf-8?q?nt_xe=5Fvm=5Fget=5Fproperty=5Fioctl?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe/xe=5Fvm=3A_Implement_xe?=
+ =?utf-8?q?=5Fvm=5Fget=5Fproperty=5Fioctl?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 10 Mar 2026 16:01:03 -0000
-Message-ID: <177315846357.340340.6742165811575097625@a3b018990fe9>
+Date: Tue, 10 Mar 2026 16:01:39 -0000
+Message-ID: <177315849909.340695.15397274662768315276@a3b018990fe9>
 X-Patchwork-Hint: ignore
 References: <20260310144914.7525-6-jonathan.cavitt@intel.com>
 In-Reply-To: <20260310144914.7525-6-jonathan.cavitt@intel.com>
@@ -44,157 +44,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
 URL   : https://patchwork.freedesktop.org/series/162962/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-1f57ba1afceae32108bd24770069f764d940a0e4
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 8fb096cc90a3748eb3c00c27bd6cf55cb0e3fe98
-Author: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Date:   Tue Mar 10 14:49:19 2026 +0000
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/xe/xe_lrc.c: In function ‘xe_lrc_ctx_init’:
+../drivers/gpu/drm/xe/xe_lrc.c:1554:43: error: implicit declaration of function ‘_MASKED_BIT_ENABLE’; did you mean ‘REG_MASKED_FIELD_ENABLE’? [-Werror=implicit-function-declaration]
+ 1554 |                 state_cache_perf_fix[2] = _MASKED_BIT_ENABLE(DISABLE_STATE_CACHE_PERF_FIX);
+      |                                           ^~~~~~~~~~~~~~~~~~
+      |                                           REG_MASKED_FIELD_ENABLE
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:289: drivers/gpu/drm/xe/xe_lrc.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:548: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:548: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:548: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:548: drivers] Error 2
+make[2]: *** [/kernel/Makefile:2101: .] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-    drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
-    
-    Add support for userspace to request a list of observed faults
-    from a specified VM.
-    
-    v2:
-    - Only allow querying of failed pagefaults (Matt Brost)
-    
-    v3:
-    - Remove unnecessary size parameter from helper function, as it
-      is a property of the arguments. (jcavitt)
-    - Remove unnecessary copy_from_user (Jainxun)
-    - Set address_precision to 1 (Jainxun)
-    - Report max size instead of dynamic size for memory allocation
-      purposes.  Total memory usage is reported separately.
-    
-    v4:
-    - Return int from xe_vm_get_property_size (Shuicheng)
-    - Fix memory leak (Shuicheng)
-    - Remove unnecessary size variable (jcavitt)
-    
-    v5:
-    - Rename ioctl to xe_vm_get_faults_ioctl (jcavitt)
-    - Update fill_property_pfs to eliminate need for kzalloc (Jianxun)
-    
-    v6:
-    - Repair and move fill_faults break condition (Dan Carpenter)
-    - Free vm after use (jcavitt)
-    - Combine assertions (jcavitt)
-    - Expand size check in xe_vm_get_faults_ioctl (jcavitt)
-    - Remove return mask from fill_faults, as return is already -EFAULT or 0
-      (jcavitt)
-    
-    v7:
-    - Revert back to using xe_vm_get_property_ioctl
-    - Apply better copy_to_user logic (jcavitt)
-    
-    v8:
-    - Fix and clean up error value handling in ioctl (jcavitt)
-    - Reapply return mask for fill_faults (jcavitt)
-    
-    v9:
-    - Future-proof size logic for zero-size properties (jcavitt)
-    - Add access and fault types (Jianxun)
-    - Remove address type (Jianxun)
-    
-    v10:
-    - Remove unnecessary switch case logic (Raag)
-    - Compress size get, size validation, and property fill functions into a
-      single helper function (jcavitt)
-    - Assert valid size (jcavitt)
-    
-    v11:
-    - Remove unnecessary else condition
-    - Correct backwards helper function size logic (jcavitt)
-    
-    v12:
-    - Use size_t instead of int (Raag)
-    
-    v13:
-    - Remove engine class and instance (Ivan)
-    
-    v14:
-    - Map access type, fault type, and fault level to user macros (Matt
-      Brost, Ivan)
-    
-    v15:
-    - Remove unnecessary size assertion (jcavitt)
-    
-    v16:
-    - Nit fixes (Matt Brost)
-    
-    v17:
-    - Rebase and refactor (jcavitt)
-    
-    v18:
-    - Do not copy_to_user in critical section (Matt Brost)
-    - Assert args->size is multiple of sizeof(struct xe_vm_fault) (Matt
-      Brost)
-    
-    v19:
-    - Remove unnecessary memset (Matt Brost)
-    
-    v20:
-    - Report canonicalized address (Jose)
-    - Mask out prefetch data from access type (Jose, jcavitt)
-    
-    uAPI: https://github.com/intel/compute-runtime/pull/878
-    Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-    Suggested-by: Matthew Brost <matthew.brost@intel.com>
-    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-    Acked-by: Michal Mrozek <michal.mrozek@intel.com>
-    Cc: Jainxun Zhang <jianxun.zhang@intel.com>
-    Cc: Shuicheng Lin <shuicheng.lin@intel.com>
-    Cc: Raag Jadav <raag.jadav@intel.com>
-    Cc: Ivan Briano <ivan.briano@intel.com>
-    Cc: Jose Souza <jose.souza@intel.com>
-+ /mt/dim checkpatch adf67fb1258884dab38a71526783f901069dbb81 drm-intel
-8e04663e4d07 drm/xe/xe_pagefault: Disallow writes to read-only VMAs
-22643a9d20a5 drm/xe/uapi: Define drm_xe_vm_get_property
--:31: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'uAPI:', use 'Link:' or 'Closes:' instead
-#31: 
-uAPI: https://github.com/intel/compute-runtime/pull/878
-
--:64: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
-#64: FILE: include/uapi/drm/xe_drm.h:130:
-+#define DRM_IOCTL_XE_VM_GET_PROPERTY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_GET_PROPERTY, struct drm_xe_vm_get_property)
-
-total: 0 errors, 2 warnings, 0 checks, 110 lines checked
-8f1ce8e49b2f drm/xe/xe_vm: Add per VM fault info
--:78: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'uAPI:', use 'Link:' or 'Closes:' instead
-#78: 
-uAPI: https://github.com/intel/compute-runtime/pull/878
-
--:171: WARNING:ALLOC_WITH_SIZEOF: Prefer kzalloc_obj over kzalloc with sizeof
-#171: FILE: drivers/gpu/drm/xe/xe_vm.c:602:
-+	e = kzalloc(sizeof(*e), GFP_KERNEL);
-
--:173: WARNING:OOM_MESSAGE: Possible unnecessary 'out of memory' message
-#173: FILE: drivers/gpu/drm/xe/xe_vm.c:604:
-+	if (!e) {
-+		drm_warn(&vm->xe->drm,
-
-total: 0 errors, 3 warnings, 0 checks, 210 lines checked
-8fb096cc90a3 drm/xe/xe_vm: Implement xe_vm_get_property_ioctl
--:91: WARNING:COMMIT_LOG_USE_LINK: Unknown link reference 'uAPI:', use 'Link:' or 'Closes:' instead
-#91: 
-uAPI: https://github.com/intel/compute-runtime/pull/878
-
--:227: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#227: FILE: drivers/gpu/drm/xe/xe_vm.c:4040:
-+	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1] ||
-+			     args->reserved[2]))
-
-total: 0 errors, 1 warnings, 1 checks, 140 lines checked
+[16:01:04] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[16:01:08] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
