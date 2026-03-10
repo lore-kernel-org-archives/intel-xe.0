@@ -4,27 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94A11FD2D69
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 12:27:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDAC5FD2D63
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 12:35:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C2F310E700;
-	Tue, 10 Mar 2026 12:27:58 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 45D0F10E6FE;
- Tue, 10 Mar 2026 12:27:57 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83C9210E1C2;
+	Tue, 10 Mar 2026 12:35:11 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="bPT6iQyM";
+	dkim-atps=neutral
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD8EB10E1C2
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Mar 2026 12:35:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+ Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=cE4mg+kc15WK9oaBaXCRYC8O8OLOKzs1JJX0Xu8yqP0=; b=bPT6iQyMaAqBIeqprpL/ZUkay1
+ BvUMMMBcoWg9MCPCpOSKbMDjtUlhEE7ve8Wf5Ne9HQNVdps3LACk3uESGHc/1BqfcIocpOTNsJg+Z
+ rPY44IQXmhjbOuhw5VEth+XJolXgewxdp00msbXJOnC4qN+8KjNtv/BQG5g98vCHvzPvre809UJkY
+ YRlnbfC6mjFI9lE73ZiDki9/OuN6cdfwP7C6nDm2uqbeIvv0NA5bQuKCAbDcMQCfFkG9ES4Ol7F2l
+ S+KqBfxCPSLs7jc97TrnbZyym/NPfB62mEy1VVLBo+lRT8Fgjl1ELMbEIFKXvWB6FNWsj7ANeMtfQ
+ OV4sGAJw==;
+Received: from [90.240.106.137] (helo=localhost)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1vzwIl-00CYiR-MD; Tue, 10 Mar 2026 13:35:07 +0100
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+To: intel-xe@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v21 0/9] AuxCCS handling and render compression modifiers
+Date: Tue, 10 Mar 2026 12:34:44 +0000
+Message-ID: <20260310123453.54346-1-tvrtko.ursulin@igalia.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_drm/i915/display=3A_All_?=
- =?utf-8?q?patches_to_make_PREEMPT=5FRT_work_on_i915_+_xe=2E_=28rev14=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sebastian Andrzej Siewior" <bigeasy@linutronix.de>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 10 Mar 2026 12:27:57 -0000
-Message-ID: <177314567726.338604.12210245436233365298@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260310115709.2276203-1-dev@lankhorst.se>
-In-Reply-To: <20260310115709.2276203-1-dev@lankhorst.se>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,37 +54,143 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+A series to add support for compressed surface scanout under xe with
+Alderlake-P.
 
-Series: drm/i915/display: All patches to make PREEMPT_RT work on i915 + xe. (rev14)
-URL   : https://patchwork.freedesktop.org/series/159034/
-State : warning
+Currently the auxiliary buffer data isn't mapped into the page tables at all so
+cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+had to disable the support.
 
-== Summary ==
+On top of that there are missing flushes, invalidations and similar.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 77e176657e782bb81270c230d1cfec91f7707162
-Sparse version: 0.6.4 (Ubuntu: 0.6.4-4ubuntu3)
-Fast mode used, each commit won't be checked separately.
-+/kernel/Makefile:1204: C=1 specified, but sparse is not available or not up to date
+Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+  [PLANE:32:plane 1A]: type=PRI
+          uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
+          hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
 
+Display working fine - no artefacts, no DMAR/PIPE faults.
+
+All IGTs pass for me locally.
+
+v2:
+ * More patches added to fix kms_flip_tiling.
+
+v3:
+ * Rebased after some cleanup patches from v2 were merged.
+ * Added people to Cc as suggested by Rodrigo.
+ * Adjusted last patch title. (Rodrigo)
+ * Apply GGTT flushing only to iomapped system memory buffers.
+
+v4:
+ * Added patch for potentially misplaced Wa_14016712196.
+ * Fixed (hopefully) MAX_JOB_SIZE_DW on Meteorlake.
+
+v5:
+ * Split out ring emission changes to smaller patches.
+ * Fixed MAX_JOB_SIZE_DW even more.
+ * Don't emit MI_FLUSH_DW_CCS on !BCS. This should fix Meteorlake.
+
+ v6:
+ * Added AuxCCS invalidation to indirect context workarounds.
+ * Also added the indirect context handling and some other workarounds. They are
+   unrelated but the series depends on it.
+ * Dropped DPT pin alignment reduction since BMG appears not to be liking it for
+   some reason.
+
+v7:
+ * Rebased on top of recent xe_fb_pin.c refactoring and also the indirect
+   context workarounds series.
+
+v8:
+ * Rebased for bo->size removal.
+ * Corrected PIPE_CONTROL_FLUSH_L3 to bit 30. (Jose)
+
+v9:
+ * Fixed fb remapping changes.
+ * Dropped two not required patches from the series.
+ * Fixed criteria for GGTT flushing.
+ * Limit clflush to the compression metadata area.
+ * Rebased for indirect context workarounds landing upstream.
+
+v10:
+ * Rebase for XE_GT_WA().
+
+v11:
+ * Do not use stolen for DPT on IGFX + AuxCCS.
+
+v12:
+ * Rebased for some ringbuf and LRC code changes.
+
+v13:
+ * Rebased for various upstream changes.
+ * Dropped clflush and stolen avoidance patches after merging IGT MOCS 61 usage.
+
+ v14:
+ * MMIO 0x4248 and MI_FLUSH_DW_CCS are MTL+. (Matt)
+ * Consolidate engine feature checks. (Ville)
+ * Brought back the patch to put DPT tables in system memory for 100% CI pass
+   rate. It looks like MOCS 61 is not enough to avoid sporadic pipecrc
+   mismatches.
+
+v15:
+ * Limited to enabling on Alderlake-P only. (Dropped all Meteorlake patches.)
+ * Dropped unrelated GGTT alignment fix. (Sent standalone.)
+ * Use display parent interface for probing AuxCCS driver support.
+
+v16:
+ * Use write-combine for DPT in stolen memory. (Ville)
+ * Dropped clflush patches under assumption pre-production ADL machine were the
+   reason for sporadic pipecrc failures.
+
+v17:
+ * Mechanical rebase for upstream conflicts.
+
+v18:
+ * Added a patch to rename XE_BO_FLAG_SCANOUT to XE_BO_FLAG_FORCE_WC. (Rodrigo)
+ * Instead of exporting a helper function for emitting the aux invalidation
+   into the ring, add it to the ring ops vfunc table. (Matthew)
+
+v19:
+ * Tweaked comments and removed some stray hunks from v17.
+
+v20:
+ * Include <linux/types.h> for u32.
+
+v21:
+ * Forward declare struct xe_gt to fix standalone headers test.
+
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+
+Tvrtko Ursulin (9):
+  drm/xe: Rename XE_BO_FLAG_SCANOUT to XE_BO_FLAG_FORCE_WC
+  drm/xe: Use write-combine mapping when populating DPT
+  drm/xe/xelpg: Limit AuxCCS ring buffer programming to Alderlake
+  drm/xe/xelp: Quiesce memory traffic before invalidating AuxCCS
+  drm/xe/xelp: Wait for AuxCCS invalidation to complete
+  drm/xe: Move aux table invalidation to ring ops
+  drm/xe/xelp: Add AuxCCS invalidation to the indirect context
+    workarounds
+  drm/xe/display: Add support for AuxCCS
+  drm/xe/xelp: Expose AuxCCS frame buffer modifiers on Alderlake-P
+
+ drivers/gpu/drm/xe/display/intel_fb_bo.c      |   6 +-
+ drivers/gpu/drm/xe/display/intel_fbdev_fb.c   |  12 +-
+ drivers/gpu/drm/xe/display/xe_display.c       |   8 ++
+ drivers/gpu/drm/xe/display/xe_dsb_buffer.c    |   4 +-
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 116 +++++++++++++-----
+ drivers/gpu/drm/xe/display/xe_initial_plane.c |   2 +-
+ .../gpu/drm/xe/instructions/xe_mi_commands.h  |   6 +
+ drivers/gpu/drm/xe/xe_bo.c                    |  15 +--
+ drivers/gpu/drm/xe/xe_bo.h                    |   2 +-
+ drivers/gpu/drm/xe/xe_lrc.c                   |  23 ++++
+ drivers/gpu/drm/xe/xe_ring_ops.c              | 106 ++++++++++++----
+ drivers/gpu/drm/xe/xe_ring_ops_types.h        |   8 +-
+ 12 files changed, 237 insertions(+), 71 deletions(-)
+
+-- 
+2.52.0
 
