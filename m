@@ -4,36 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26FFEEB1054
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 14:46:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65A37EB1054
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 14:49:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFA8E10E160;
-	Tue, 10 Mar 2026 14:45:59 +0000 (UTC)
-Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63A6310E160;
- Tue, 10 Mar 2026 14:45:58 +0000 (UTC)
-Received: from [IPV6:2400:2410:b120:f200:a1f3:73da:3a04:160d] (unknown
- [IPv6:2400:2410:b120:f200:a1f3:73da:3a04:160d])
- (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id 06D183F363;
- Tue, 10 Mar 2026 15:45:55 +0100 (CET)
-Message-ID: <45f30d71-2afc-40fb-ba5d-ffd0bb7e7ee0@hogyros.de>
-Date: Tue, 10 Mar 2026 23:45:53 +0900
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26C9110E160;
+	Tue, 10 Mar 2026 14:49:19 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="doiMXl09";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EF32010E1C0;
+ Tue, 10 Mar 2026 14:49:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773154158; x=1804690158;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=nn0e66Cjyw8HVNHpO2h8i/I63DmYi7XOFXxs8CiLe8k=;
+ b=doiMXl09SpaN4YrTz2yh33y2C7L1sAKztGIz477SO/pBAmzGeJN7DYLs
+ o414fXBHbHw/ZnQCOGAAZ78hRU7dB3dCYgftZnluUwkRR87HrAW7TAq9N
+ 7L7yfr3N1SR/hQQWNRV8pHfUJ/KOXO3KBKDAZu81HETsvkpcgYiYsKURs
+ FuLUVIZ36+lJNxyyNcal0G7vQT4MPJL6x4tfniG30TbepB5sip+fc/0By
+ 5GQhliomHWcCuOmOBdSNte2wuieQ1a4RRp8jBJiGUVwehGwJze3v0CZQ8
+ mez6yF554nCNga8XV9JZkQUqzzgYBPyjKdqAOoQCNGy2JlIP2yxZUfIfM A==;
+X-CSE-ConnectionGUID: nKYdb3p6QgmwZKYO9WHQ2Q==
+X-CSE-MsgGUID: aOyWgnJNS3qADF2cNMyPwQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="74282509"
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="74282509"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2026 07:49:17 -0700
+X-CSE-ConnectionGUID: tepoTryzQ221FybIj5sK2w==
+X-CSE-MsgGUID: 2yqJcvKIRtS6QZOvQDoxog==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="220099355"
+Received: from dut4086lnl.fm.intel.com ([10.105.10.74])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2026 07:49:16 -0700
+From: Jonathan Cavitt <jonathan.cavitt@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
+ joonas.lahtinen@linux.intel.com, matthew.brost@intel.com,
+ jianxun.zhang@intel.com, shuicheng.lin@intel.com,
+ dri-devel@lists.freedesktop.org, Michal.Wajdeczko@intel.com,
+ michal.mrozek@intel.com, raag.jadav@intel.com, matthew.auld@intel.com,
+ jose.souza@intel.com
+Subject: [PATCH v37 1/4] drm/xe/xe_pagefault: Disallow writes to read-only VMAs
+Date: Tue, 10 Mar 2026 14:49:16 +0000
+Message-ID: <20260310144914.7525-7-jonathan.cavitt@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260310144914.7525-6-jonathan.cavitt@intel.com>
+References: <20260310144914.7525-6-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/1] drm/i915: handle failure from
- vga_get_uninterruptible()
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20260218131131.460105-1-Simon.Richter@hogyros.de>
- <20260306151347.758836-1-Simon.Richter@hogyros.de>
- <aa_8GhVURTdKWRVl@intel.com>
-Content-Language: en-US
-From: Simon Richter <Simon.Richter@hogyros.de>
-In-Reply-To: <aa_8GhVURTdKWRVl@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -49,18 +71,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+The page fault handler should reject write/atomic access to read only
+VMAs.  Add code to handle this in xe_pagefault_service after the VMA
+lookup.
 
-On 3/10/26 8:10 PM, Ville Syrjälä wrote:
+v2:
+- Apply max line length (Matthew)
 
-> Do you need to take this in via some other tree, or should I just push
-> it to drm-intel-next?
+Fixes: fb544b844508 ("drm/xe: Implement xe_pagefault_queue_work")
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Suggested-by: Matthew Brost <matthew.brost@intel.com>
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pagefault.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-This is independent from the PCI changes (and I didn't Cc linux-pci on 
-this one), so via drm-intel-next would be best, thanks!
+diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
+index ea4857acf28d..918d595d1c1b 100644
+--- a/drivers/gpu/drm/xe/xe_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_pagefault.c
+@@ -187,6 +187,12 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
+ 		goto unlock_vm;
+ 	}
+ 
++	if (xe_vma_read_only(vma) &&
++	    pf->consumer.access_type != XE_PAGEFAULT_ACCESS_TYPE_READ) {
++		err = -EPERM;
++		goto unlock_vm;
++	}
++
+ 	atomic = xe_pagefault_access_is_atomic(pf->consumer.access_type);
+ 
+ 	if (xe_vma_is_cpu_addr_mirror(vma))
+-- 
+2.43.0
 
-I've also prepared a backported version for 5.3 to 6.19 kernels[1].
-
-    Simon
-
-[1] https://patchwork.freedesktop.org/patch/709684/?series=161721&rev=4
