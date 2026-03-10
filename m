@@ -4,35 +4,35 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02C4DFD2D69
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 11:57:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC3ACFD2D66
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 11:57:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B4C610E6F2;
-	Tue, 10 Mar 2026 11:57:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 553D010E6E9;
+	Tue, 10 Mar 2026 11:57:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="iKJViWfG";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="bnxebMrk";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AAC410E6D8;
- Tue, 10 Mar 2026 11:57:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7107910E6DF;
+ Tue, 10 Mar 2026 11:57:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1773143861;
- bh=/YttZUgmn62XSEh0hwiLQG2joTYu/zUwyvhm/nBW/W4=;
+ s=default; t=1773143864;
+ bh=lrcUxclBSkr+3S1JEQjxufiM7ar00+YY89+dveOvBfo=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=iKJViWfGBAbqjLc45D98BVX4xa6cvr9S4QWrf+PTXkzhAZ1Kkqc6fjqEhF9EVHkWe
- U6gh5CgnYb/Z/8pLXo8J0ghSOnCSeWLFQRiRCiH1llGtx985PlbdNSq+WlSbTqd0W9
- cJbFFWq325/MJ33G/jnqHGVSr+yjIYGRJ9cz4nETVe5cXJ+eZuA7/NScKu/xcS6wCt
- 8189x1WZrEPQiEnId7hSIOG3HRs5+lHYsBfw7Wz9QnLPZvWq1DyaQZ7Wlab9z8BUX/
- Gqy3IoPw11/G4X9TYHBYZREI87kowd+JOLXGt+Of+dNF6BCsa92Eus1yFZONeHmE33
- vz5bUbMpGRiFg==
+ b=bnxebMrksPfBeKyD+A6AktvxNrDPAdEwReHQNZsSvKDgtJpJUQtcbscqrVaeY/WMh
+ DF5/aP7QQ/kML8rCdzAQhls/pPcJYa2SPUDvGB6a4wZCWy/ilStSOy0Go8zbI40TpE
+ AmVL4w96AWbd5WoxnzrZcH7Hl+4jbswY7GjpA+d7dxdCtXjhFyBP13vDD9wmmmFJmm
+ OyiK6YRtSecOGnlYHxnIU0RJaT8yizNjaMi/JWSVop1eNql0uK78p4LaQZXLydG+pj
+ GubE1VeSOp/rAD0Yn9OoX0cOQHLN6Pf3uuNgtBjy2yC4aWjql01q6UwRppuYZT87bj
+ 8fDn0vwlN7B7w==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v7 19/26] drm/i915/gt: Fix selftests on PREEMPT_RT
-Date: Tue, 10 Mar 2026 12:57:01 +0100
-Message-ID: <20260310115709.2276203-20-dev@lankhorst.se>
+Subject: [PATCH v7 24/26] PREEMPT_RT injection
+Date: Tue, 10 Mar 2026 12:57:06 +0100
+Message-ID: <20260310115709.2276203-25-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260310115709.2276203-1-dev@lankhorst.se>
 References: <20260310115709.2276203-1-dev@lankhorst.se>
@@ -54,41 +54,69 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/gt/selftest_engine_pm.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/Kconfig.debug | 15 ---------------
+ drivers/gpu/drm/xe/Kconfig.debug   |  5 +++++
+ kernel/Kconfig.preempt             |  4 ++--
+ 3 files changed, 7 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-index 10e556a7eac45..c1eff9edd8a5e 100644
---- a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-@@ -277,11 +277,11 @@ static int live_engine_busy_stats(void *arg)
- 		st_engine_heartbeat_disable(engine);
+diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
+index 3562a02ef7adc..0ab10ff41e38d 100644
+--- a/drivers/gpu/drm/i915/Kconfig.debug
++++ b/drivers/gpu/drm/i915/Kconfig.debug
+@@ -233,21 +233,6 @@ config DRM_I915_LOW_LEVEL_TRACEPOINTS
  
- 		ENGINE_TRACE(engine, "measuring idle time\n");
--		preempt_disable();
-+		migrate_disable();
- 		de = intel_engine_get_busy_time(engine, &t[0]);
- 		udelay(100);
- 		de = ktime_sub(intel_engine_get_busy_time(engine, &t[1]), de);
--		preempt_enable();
-+		migrate_enable();
- 		dt = ktime_sub(t[1], t[0]);
- 		if (de < 0 || de > 10) {
- 			pr_err("%s: reported %lldns [%d%%] busyness while sleeping [for %lldns]\n",
-@@ -316,11 +316,11 @@ static int live_engine_busy_stats(void *arg)
- 		}
+ 	  If in doubt, say "N".
  
- 		ENGINE_TRACE(engine, "measuring busy time\n");
--		preempt_disable();
-+		migrate_disable();
- 		de = intel_engine_get_busy_time(engine, &t[0]);
- 		mdelay(100);
- 		de = ktime_sub(intel_engine_get_busy_time(engine, &t[1]), de);
--		preempt_enable();
-+		migrate_enable();
- 		dt = ktime_sub(t[1], t[0]);
- 		if (100 * de < 95 * dt || 95 * de > 100 * dt) {
- 			pr_err("%s: reported %lldns [%d%%] busyness while spinning [for %lldns]\n",
+-config DRM_I915_DEBUG_VBLANK_EVADE
+-	bool "Enable extra debug warnings for vblank evasion"
+-	depends on DRM_I915
+-	default n
+-	help
+-	  Choose this option to turn on extra debug warnings for the
+-	  vblank evade mechanism. This gives a warning every time the
+-	  the deadline allotted for the vblank evade critical section
+-	  is exceeded, even if there isn't an actual risk of missing
+-	  the vblank.
+-
+-	  Recommended for driver developers only.
+-
+-	  If in doubt, say "N".
+-
+ config DRM_I915_DEBUG_RUNTIME_PM
+ 	bool "Enable extra state checking for runtime PM"
+ 	depends on DRM_I915
+diff --git a/drivers/gpu/drm/xe/Kconfig.debug b/drivers/gpu/drm/xe/Kconfig.debug
+index 01227c77f6d70..1d5f11c6e88f3 100644
+--- a/drivers/gpu/drm/xe/Kconfig.debug
++++ b/drivers/gpu/drm/xe/Kconfig.debug
+@@ -30,6 +30,11 @@ config DRM_XE_DEBUG
+ 
+ 	  If in doubt, say "N".
+ 
++config DRM_I915_DEBUG_VBLANK_EVADE
++        def_bool y
++        depends on DRM_XE
++
++
+ config DRM_XE_DEBUG_VM
+ 	bool "Enable extra VM debugging info"
+ 	default n
+diff --git a/kernel/Kconfig.preempt b/kernel/Kconfig.preempt
+index 88c594c6d7fcd..11bec9be95405 100644
+--- a/kernel/Kconfig.preempt
++++ b/kernel/Kconfig.preempt
+@@ -90,9 +90,9 @@ config PREEMPT_LAZY
+ endchoice
+ 
+ config PREEMPT_RT
+-	bool "Fully Preemptible Kernel (Real-Time)"
+-	depends on EXPERT && ARCH_SUPPORTS_RT && !COMPILE_TEST
++	def_bool y
+ 	select PREEMPTION
++	depends on ARCH_SUPPORTS_RT
+ 	help
+ 	  This option turns the kernel into a real-time kernel by replacing
+ 	  various locking primitives (spinlocks, rwlocks, etc.) with
 -- 
 2.51.0
 
