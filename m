@@ -4,44 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E362FD4F1F
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 19:03:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D87AFD4F23
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 19:08:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2F1A10E2D1;
-	Tue, 10 Mar 2026 19:03:16 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="GYu4TCJo";
-	dkim-atps=neutral
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79A6C10E2D1;
- Tue, 10 Mar 2026 19:03:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1773169395;
- bh=Eb/85b5s3J1SrNnCYdrUNYgYfHqbz5dKd5RyBjycj1s=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=GYu4TCJoa4ULUkgwOPCoSzYTU/hGmCbORHB3EPACSqbtQO9G/LcLZO8om/Jfx8kEb
- 3wORaQz8RpyJryk1AAKzIV3CBmU7u8BjCpujvLPze860UkyzIjUInFtMZVdFXShbcC
- AmXEbnzh6SeBH7LOnbS5Nfx5tSijBDdldGgp/IPrlKyih4BM8Dz3lPilQxXRRHQ9n3
- BBUyGQZuIBb3KX6S/TkgVILvICbS2vbkenCIS5qPTdxS3g1sK3cjXeFuedtWRBemIb
- nlkL6+PPi3cqFwYegjz49OGZYbRPlgbMlI+hJGgq8u6ylYGG6dIWzMjByf3z2JnaZR
- fCiMnEi/e31kw==
-Message-ID: <7774bff2-e101-4e59-9cfb-9f200e1caef9@lankhorst.se>
-Date: Tue, 10 Mar 2026 20:03:14 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22D2710E167;
+	Tue, 10 Mar 2026 19:08:48 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79DBC10E167;
+ Tue, 10 Mar 2026 19:08:46 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0217428633985884231=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 26/26] drm/i915/gt: Add a spinlock to prevent
- starvation of irq_work.
-To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20260310115709.2276203-1-dev@lankhorst.se>
- <20260310115709.2276203-27-dev@lankhorst.se>
- <20260310172214.4lEOgGOl@linutronix.de>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <20260310172214.4lEOgGOl@linutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/sysctrl=3A_Add_syste?=
+ =?utf-8?q?m_controller_component_for_Xe3p_dGPU_platforms_=28rev10=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Anoop, Vijay" <anoop.c.vijay@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 10 Mar 2026 19:08:46 -0000
+Message-ID: <177316972647.340892.14359216150512590957@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260310182336.611041-8-anoop.c.vijay@intel.com>
+In-Reply-To: <20260310182336.611041-8-anoop.c.vijay@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,35 +36,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+--===============0217428633985884231==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Den 2026-03-10 kl. 18:22, skrev Sebastian Andrzej Siewior:
-> On 2026-03-10 12:57:08 [+0100], Maarten Lankhorst wrote:
->> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
->> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
->> @@ -487,8 +490,11 @@ void intel_context_remove_breadcrumbs(struct intel_context *ce,
->>  	if (release)
->>  		intel_context_put(ce);
->>  
->> -	while (atomic_read(&b->signaler_active))
->> +	while (atomic_read(&b->signaler_active)) {
->> +		spin_lock(&b->signaler_active_sync);
->> +		spin_unlock(&b->signaler_active_sync);
->>  		cpu_relax();
-> 
-> Forgot to mention: This is fine on PREEMPT_RT but on !RT you might need
-> 
->                spin_lock_irqsave(&b->signaler_active_sync, flags);
->                spin_unlock_irqrestore(&b->signaler_active_sync, flags);
-> 
-> if the function can be called from !IRQ context which might be the case
-> due to the irqsave() earlier in this function.
-Yeah seems a bit of an oversight. I'll change it to use flags.
+== Series Details ==
 
-Is it correct to assume that irq_work disables interrupts on !RT?
+Series: drm/xe/sysctrl: Add system controller component for Xe3p dGPU platforms (rev10)
+URL   : https://patchwork.freedesktop.org/series/159554/
+State : success
 
-Kind regards,
-~Maarten Lankhorst
+== Summary ==
+
+CI Bug Log - changes from xe-4691-bf3ba6a508ffb59323357535a459eb64f02d94f7_BAT -> xe-pw-159554v10_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-159554v10_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6520]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4691-bf3ba6a508ffb59323357535a459eb64f02d94f7/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159554v10/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8791 -> IGT_8792
+  * Linux: xe-4691-bf3ba6a508ffb59323357535a459eb64f02d94f7 -> xe-pw-159554v10
+
+  IGT_8791: b319fd1815d426b3f24094113d614d08dee374d8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8792: 8792
+  xe-4691-bf3ba6a508ffb59323357535a459eb64f02d94f7: bf3ba6a508ffb59323357535a459eb64f02d94f7
+  xe-pw-159554v10: 159554v10
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159554v10/index.html
+
+--===============0217428633985884231==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/sysctrl: Add system controller component for Xe3p dGPU platforms (rev10)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/159554/">https://patchwork.freedesktop.org/series/159554/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159554v10/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159554v10/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4691-bf3ba6a508ffb59323357535a459eb64f02d94f7_BAT -&gt; xe-pw-159554v10_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-159554v10_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4691-bf3ba6a508ffb59323357535a459eb64f02d94f7/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-159554v10/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8791 -&gt; IGT_8792</li>
+<li>Linux: xe-4691-bf3ba6a508ffb59323357535a459eb64f02d94f7 -&gt; xe-pw-159554v10</li>
+</ul>
+<p>IGT_8791: b319fd1815d426b3f24094113d614d08dee374d8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8792: 8792<br />
+  xe-4691-bf3ba6a508ffb59323357535a459eb64f02d94f7: bf3ba6a508ffb59323357535a459eb64f02d94f7<br />
+  xe-pw-159554v10: 159554v10</p>
+
+</body>
+</html>
+
+--===============0217428633985884231==--
