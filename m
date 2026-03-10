@@ -4,24 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07660EB1074
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 15:50:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 767A1EB1074
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 15:50:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD24210E717;
-	Tue, 10 Mar 2026 15:50:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 387EA10E717;
+	Tue, 10 Mar 2026 15:50:52 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 048BC10E2C4;
- Tue, 10 Mar 2026 15:50:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2943B10E2C4;
+ Tue, 10 Mar 2026 15:50:51 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_AuxCCS_handling_and_rende?=
- =?utf-8?q?r_compression_modifiers?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_AuxCCS_handling_and_render_com?=
+ =?utf-8?q?pression_modifiers?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 10 Mar 2026 15:50:16 -0000
-Message-ID: <177315781600.340340.17681218316662836702@a3b018990fe9>
+Date: Tue, 10 Mar 2026 15:50:51 -0000
+Message-ID: <177315785115.340340.6035750282889431459@a3b018990fe9>
 X-Patchwork-Hint: ignore
 References: <20260310123453.54346-1-tvrtko.ursulin@igalia.com>
 In-Reply-To: <20260310123453.54346-1-tvrtko.ursulin@igalia.com>
@@ -44,80 +44,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: AuxCCS handling and render compression modifiers
 URL   : https://patchwork.freedesktop.org/series/162953/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-1f57ba1afceae32108bd24770069f764d940a0e4
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 004317ff024e787f794562f2457d617ace1c253f
-Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Date:   Tue Mar 10 12:34:53 2026 +0000
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/xe/xe_lrc.c: In function ‘xe_lrc_ctx_init’:
+../drivers/gpu/drm/xe/xe_lrc.c:1577:43: error: implicit declaration of function ‘_MASKED_BIT_ENABLE’; did you mean ‘REG_MASKED_FIELD_ENABLE’? [-Werror=implicit-function-declaration]
+ 1577 |                 state_cache_perf_fix[2] = _MASKED_BIT_ENABLE(DISABLE_STATE_CACHE_PERF_FIX);
+      |                                           ^~~~~~~~~~~~~~~~~~
+      |                                           REG_MASKED_FIELD_ENABLE
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:289: drivers/gpu/drm/xe/xe_lrc.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:548: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:548: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:548: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:548: drivers] Error 2
+make[2]: *** [/kernel/Makefile:2101: .] Error 2
+make[1]: *** [/kernel/Makefile:248: __sub-make] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-    drm/xe/xelp: Expose AuxCCS frame buffer modifiers on Alderlake-P
-    
-    Now that we have implemented all the related missing bits we can enable
-    the AuxCCS compressed modifiers which were disabled in
-    cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
-    
-    Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
-    
-            [PLANE:32:plane 1A]: type=PRI
-                    uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=28
-                    hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000
-    
-    Display is working fine - no artefacts, no DMAR/PIPE faults.
-    
-    v2:
-     * Adjust patch title. (Rodrigo)
-    
-    v3:
-     * Complete rewrite based on the display parent interface.
-    
-    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-    References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
-    Cc: Jani Nikula <jani.nikula@intel.com>
-    Cc: José Roberto de Souza <jose.souza@intel.com>
-    Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-+ /mt/dim checkpatch adf67fb1258884dab38a71526783f901069dbb81 drm-intel
-a258c5cd5870 drm/xe: Rename XE_BO_FLAG_SCANOUT to XE_BO_FLAG_FORCE_WC
--:127: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#127: FILE: drivers/gpu/drm/xe/xe_bo.c:517:
-+		if ((!bo->cpu_caching && bo->flags & XE_BO_FLAG_FORCE_WC) ||
- 		     (!xe->info.has_cached_pt && bo->flags & XE_BO_FLAG_PAGETABLE))
-
-total: 0 errors, 0 warnings, 1 checks, 128 lines checked
-9a15063a3621 drm/xe: Use write-combine mapping when populating DPT
-7bec3c410d55 drm/xe/xelpg: Limit AuxCCS ring buffer programming to Alderlake
--:26: WARNING:TYPO_SPELLING: 'explicity' may be misspelled - perhaps 'explicitly'?
-#26: FILE: drivers/gpu/drm/xe/xe_ring_ops.c:308:
-+	 * AuxCCS, and we explicity do not want to support it on MTL.
- 	                  ^^^^^^^^^
-
-total: 0 errors, 1 warnings, 0 checks, 11 lines checked
-74e61c681696 drm/xe/xelp: Quiesce memory traffic before invalidating AuxCCS
-d5fcdf78c28e drm/xe/xelp: Wait for AuxCCS invalidation to complete
-5d4d542e9438 drm/xe: Move aux table invalidation to ring ops
-2593db62fdf9 drm/xe/xelp: Add AuxCCS invalidation to the indirect context workarounds
-eb228c47d2ea drm/xe/display: Add support for AuxCCS
-004317ff024e drm/xe/xelp: Expose AuxCCS frame buffer modifiers on Alderlake-P
--:12: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#12: 
-cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
-
--:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")'
-#12: 
-cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
-
-total: 1 errors, 1 warnings, 0 checks, 20 lines checked
+[15:50:17] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[15:50:21] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make all compile_commands.json scripts_gdb ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
