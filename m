@@ -4,150 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AD57FCC9DB
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 08:40:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8B1CFCC9DE
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 08:41:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2027A10E68E;
-	Tue, 10 Mar 2026 08:40:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE03B10E699;
+	Tue, 10 Mar 2026 08:41:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WUaO2fHL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UTLz0Xie";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E235210E248;
- Tue, 10 Mar 2026 08:40:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D41B610E692
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Mar 2026 08:41:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773132039; x=1804668039;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=21FrW6FwZgLn++FVYNJBczpCTBoCoakkCdplWfOFfAc=;
- b=WUaO2fHLhbmIgA+C97Gd9Xaca0pVkkJU9VgMmHSynIEjY90dCmwpZwh7
- HiPrcvISg77IjixerJhSwO7ouTJ0cyTwnP+to8vF5eVZ9o9neL9m1lgYM
- hvUU7S8INjQrj71keh1RkADI2lSVbUV73JZKoax5YJBpcXrtniu8pA6iZ
- gbhzppF6rjA/UQfbtIIi/OtGDzCUbi+sgpIzvQUxbRuPE9OIOkJsVfKq+
- gObKcCHlE4zHNChhIFmmVrdVAS4BszT7X9tGL2gE69kE11NChI1pPNKR2
- nogf/8hodzQkr4296WKKP+ht7buda3z8EYma7ll/b2C0ObeW5hwY+b8+m A==;
-X-CSE-ConnectionGUID: EHZ0Ts5aQZWI2r/O4BBWWQ==
-X-CSE-MsgGUID: uj5s8TekRqipzlh61UPIkg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="76778590"
-X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; d="scan'208";a="76778590"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 01:40:39 -0700
-X-CSE-ConnectionGUID: 2dkymf47T8qvpnKR3y8sHg==
-X-CSE-MsgGUID: 4CT5bsx7QvKSDTTGcJ+NKQ==
+ t=1773132073; x=1804668073;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=gd22RHElSKWsId9wGpTVMeZ+Xp6G2tfVl68u5j1MGvo=;
+ b=UTLz0Xie0J8cVck2qG8NQCMazXw0WavUnmdmj5cyDdON4HL4tSmhvEsE
+ p/451BDGHgBoSGg3lj/qGbixefV4GeIWzmJ9gFijfqYbcPX6K3/J7zN94
+ srL/4qjQB/dZC5ByZa2mVjBGNO10SA/yyZp5C+r1AcfDXGU6g7lRn6mAW
+ u2eOtzrRaMpq7tosMc2S8BWECz4gQUxj7BckKMo6avNTNvGvJZC6YljDU
+ +lgeaa2RTLcT3xSM40u1tRkxeVCO3BMX4QHDHGVpf30+JpbwG/DwUagS/
+ CvCGSEkOsJvSb5zPKJ2dIop69W/6xj08iolozit483mR8R/JjJa7ren/2 Q==;
+X-CSE-ConnectionGUID: T7NObevJTAukSJCgH7/Fqg==
+X-CSE-MsgGUID: +2DratLFRIuLgLQyQdAuaw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="78023639"
+X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; d="scan'208";a="78023639"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2026 01:41:13 -0700
+X-CSE-ConnectionGUID: uoV9/E3uR2K4sA8qsjyF2Q==
+X-CSE-MsgGUID: l/N4FoEYR1WGY507KRg6Xg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; d="scan'208";a="222650526"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 01:40:38 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 10 Mar 2026 01:40:37 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 10 Mar 2026 01:40:37 -0700
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.44) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 10 Mar 2026 01:40:37 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QI2t9bVrN1sDiAwSyV/kVpIZ7rWEtm8lwAlLv9k/WFeWmEpaO+EvfM5ZbDWURZRUPxRjvpwT4l1TjVZYmOmqzOPpZUAYpBUxWnV6/bXgePHwZ8w3VLVw60OCt5FxRjv/BfwqV8UxD3JJ/NglGQGlrH7wQYzJ8WWQQgU3+cxkurysJ9FCR9HZv0f7/8I8QwsQ2DmOMGsJDMs39Py7ApPgS9+qrpoWLdym/cpNp1LsKkvGxuY0Q0V8PSpwRucBpa2aM74gc6fdHIhTdhCGhzna8B+OjXyp4G2rpXqiIXyQZQ6hvqpumAFe/ZiUpv8VrWl4OOSTF14Q/YKwRq+rDCB/cQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AZFzDmu3IuGEItf6e6G1KSlKELrJiCmBgGOtrZw29I0=;
- b=j/fCaxR01wNvuPW8WxoFo/nvph0XQxMKJGWSowS/itjixgBOiDaGvVZsLMAce4GtkKIXVxhFi3hPShVRKULQNWUQ4Ow/Py3kWcOPDv9CJ7A7DaFqopmsi8Hu5zfwccvJnO8AqUw+vNpdmBisjkoCDY33vCncVPMdwYPxZrENC8XxlFkxJxaExrmYWL2ZkZjNBCM0JJ/AVSJ4sG///jYJ1jBGGsubXqQaeiAjARIS1vikIZhhlpSmXY5Q2a9EipstovewWN7TfAnKoglbB3L3+iHqVaRmuQD7ZQMuvOHWEptCAnnUxWXcC0evKrIaFaN2A66O41VtkvgrQLkFtzchzA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
- (2603:10b6:f:fc00::f13) by PH8PR11MB6801.namprd11.prod.outlook.com
- (2603:10b6:510:1c9::8) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Tue, 10 Mar
- 2026 08:40:30 +0000
-Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
- ([fe80::21ae:7048:11eb:3faa]) by DM3PPF208195D8D.namprd11.prod.outlook.com
- ([fe80::21ae:7048:11eb:3faa%6]) with mapi id 15.20.9678.017; Tue, 10 Mar 2026
- 08:40:30 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Kahola, Mika" <mika.kahola@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-CC: "Kahola, Mika" <mika.kahola@intel.com>
-Subject: RE: [PATCH v3 23/24] drm/i915/lt_phy: Remove LT PHY specific state
- verification
-Thread-Topic: [PATCH v3 23/24] drm/i915/lt_phy: Remove LT PHY specific state
- verification
-Thread-Index: AQHcrV6LE7e0PynUsE+u7YBPefneBbWneD6g
-Date: Tue, 10 Mar 2026 08:40:30 +0000
-Message-ID: <DM3PPF208195D8DE92E1F93306F48753390E346A@DM3PPF208195D8D.namprd11.prod.outlook.com>
-References: <20260304131423.1017821-24-mika.kahola@intel.com>
- <20260306114348.1161663-1-mika.kahola@intel.com>
-In-Reply-To: <20260306114348.1161663-1-mika.kahola@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|PH8PR11MB6801:EE_
-x-ms-office365-filtering-correlation-id: 47663484-80dd-4b9b-bfee-08de7e80afbc
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0; ARA:13230040|376014|366016|1800799024|38070700021;
-x-microsoft-antispam-message-info: pm+0QeIDTjp4j13seXD0n7VSIjmGM3hdrgtDToNdXY9Km/pZnEhsApwX4lbjwuLEUmSMRZEPODyzql789g/hoXzgxtf720ZzNSLbpfPQVztVD9yNEW5idYHlMDx48PgEzXXXTF3YPC95TNyM49NzRQj60dEpcDVoHHD+7MG+4Kgcx+3h4QXAC7Op1o4BNY+wNGD6ey+KhhkXPkAKeuMNC8XQBTXMfQ4a6yDt9sP2xKHBUbLL1DhZ65G73eJ4Zl2s6qBh1RgYKvO1FLklEZzW7W2KbLMCRu38DNaTQcVjXTUA8y0JJSf07d2oVXa+6J8EO8I2GHRKm7lfQIXZKvrYaPs8AnoqSry50RM36vIYjmDCGoMCCrAsBeFHzLaPz9MGCe8ap1tIv1Et8nVHcFlJqxOQPRXtokfKEHjHnADOvq4YOiucf77NmX3oNFq3FW574VNgL1j43oehLxufGJPuL6vngTlsBCt8u/zvdUfd6fEXE1jE+7+Ie+GJGgDtshWUfawAQyXbfeLhPQaP4qpXMIHf3WobMrltXyKGD7o1typUYIxpJ+of2cJ6MT2Pp1qinJF1jWrAHXqMphlnnC9x3AMVSA++glXkXGAOilhrKVO4A63XaAO4Gz3wKzRx3eCC4L5lnrkTNkMwKWx0na//6jqhKSRv57LATW4Bs6v1D6RrtX5tWgnSdGm13LGmNiyA4OwUA6AxVMCjzm+QFP09vD5SqwNRroJ/5YsFD9KKsThkLUp8dh1Vq0J/QXwwPcCZp/MRcmdBhk9FzvaWrWk44jCqa7JphlcCStHBb5lxvu8=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(38070700021); DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?OLQCOzlrmZqDcwRgOOL7YTWMPyAANQbbybNAy2HHuuOK7M9My2DaQwKmxacu?=
- =?us-ascii?Q?Yl/5c0weO7DBISGG7R3fk5QVtyC3BmoEtsTujNRR0zAN95DKQXUQK1LtQpnJ?=
- =?us-ascii?Q?kzBkhnNhadtz1Zz7w/QleYBNDZTyPkBrCoKaeGVoLK6gt4O/CUPaoXGAk4o7?=
- =?us-ascii?Q?yFshAX/WhfzxCpjbhkQG9RAijvg/592qSKjBiC6z9XMmb9MY6U0HlKxqHoaL?=
- =?us-ascii?Q?fvQDYawirsTKEi3xv5rQYKlkkgLa8w2NE2CGaUxHRxliPsZeOP7nKfaxiPBM?=
- =?us-ascii?Q?Pc0W08Sn5ks1Bq428UABrUCCiKNu4XuoapcTp1x1jkBvNYxCMm05wbsigFuC?=
- =?us-ascii?Q?Kh4lSaNp8fNbOnQ2iSy7VWfmG/3cOCyz5xMtG3N+wBZy5A4Z8feHAxNxGY1V?=
- =?us-ascii?Q?ebj6dc9IqJCHuNAuR2Uh3wdYu3WXN1vnBlD46O8MTYWUuYdceoNQu1Wy76q9?=
- =?us-ascii?Q?ZQGx3pVyokYECek/s1qwL0+6T+h5rfKCaBGHygi2jDKVdX82czfcF6P9PxcO?=
- =?us-ascii?Q?ULoGsWDEVHEY0jiWISFOPrfH9xGAZOdmkqOtn6iFBhueGnk+HKMLgu4eaoZE?=
- =?us-ascii?Q?uq0zqseZre+SqbC7OrxGsMLa1IO7IDsC/FkIxCWm8GvRLg9qyG8TDbsfUX0K?=
- =?us-ascii?Q?KSAlB29qstVm+xYOyCfVPNSwrKv7c3k1lFLZ9gKuo2MOCCdAsh5bmtO9H0ML?=
- =?us-ascii?Q?nPXPi+F9eLK41lb6142KG9T0cDPQ47f3+GC/FfC/MFo+6eorgszZGrJtddwD?=
- =?us-ascii?Q?UOW46QnQ0GgcSO5ITSRmiqnu1LvePsnL0feWRe+v4/4n13nW/R4APSmfuVKc?=
- =?us-ascii?Q?IZTqq1zF28/3H76aZi7j3pvTDCBP4OFh+uP+bC7I6HsRbMAKA7DEGb1ysl9K?=
- =?us-ascii?Q?sG53np5u7iwPryV+kpsNplx9B6k75b6QNBdRM77NLnVFJ7TmEDWKcXOmfY73?=
- =?us-ascii?Q?YMYPk4tmcEZb47Vp8Bs/rrXzwFwDpWwNKt292s5ZjWZZYIYlPWQxhumuAmHB?=
- =?us-ascii?Q?05RUfKovrEAQhlhW5m63lQxVtuhvTtE+zbTzarcp52JqcqoV5q2qKq0d1AII?=
- =?us-ascii?Q?/tu90mf+cOJAlz/x/70NbfvUpGhDf8PSuLImK6oH+KTSQ3nnT0o+yzqL2RFS?=
- =?us-ascii?Q?NP96DyaAhgdoK804EHMpuGUhcNh2dqwsnmePagSdJAcSw+UYiJAiMIcU9Tsy?=
- =?us-ascii?Q?SKWu2F7mJp21DtQrU2tW8l0fAGZ+YKLVTiC+HgRHpDctMjXUnR12TXMX+Z8T?=
- =?us-ascii?Q?CPBS5clAQLt12u84LCAc6/OcAGRoYrEceSKdcNietBp6lwtpg8/i7Xq/BjK6?=
- =?us-ascii?Q?XwoJ91oZSlT0HU7rpBPTE8Wn2jsgr/SR242J3Jjrq131Odo7wIl9I8kLCrBE?=
- =?us-ascii?Q?0Dxv6lpzuJw4HvVK1tFvGAcUsjQWV8kE4R+N2NMtERpm22T2ii1M4BkgXkqH?=
- =?us-ascii?Q?GO8JhngOCqIVjmf0+elMW4elxtDFFnZD6jyeDsKt8914ys+wOVBoRZw4Dae+?=
- =?us-ascii?Q?xjGHM7GKfaj1E7nbrPiE11htbX9LT/W1suCGQdl1TvIwAO/Pz6nlmlBjwqp2?=
- =?us-ascii?Q?liMu6B6LYtFrvcYBNcWHYjrQZI+ceZkZt15JzJeVqqS9IoCBTauCx5JLpJsH?=
- =?us-ascii?Q?beyo/C+WqD0xIXAhhIYmiCcmFx8tJTCKpH7qaNxI+z2+j7cnGHYxa3vNb5pJ?=
- =?us-ascii?Q?XRsAGEKJLk/87VhKnrvjqgI7h8nhyRDKS1wKmk3Wt42YOLU6GSmuggh9KtJq?=
- =?us-ascii?Q?eLvyAS0z3w=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
+X-IronPort-AV: E=Sophos;i="6.23,111,1770624000"; d="scan'208";a="250524410"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.244.39])
+ ([10.245.244.39])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2026 01:41:10 -0700
+Message-ID: <e58ea93dc23a020c2ae90cd0b1e955fd5ff02b7b.camel@linux.intel.com>
+Subject: Re: [PATCH v6 03/12] drm/xe/madvise: Implement purgeable buffer
+ object support
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Arvind Yadav <arvind.yadav@intel.com>, intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com, 
+ pallavi.mishra@intel.com
+Date: Tue, 10 Mar 2026 09:41:08 +0100
+In-Reply-To: <20260303152015.3499248-4-arvind.yadav@intel.com>
+References: <20260303152015.3499248-1-arvind.yadav@intel.com>
+ <20260303152015.3499248-4-arvind.yadav@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: qp6XlZx3XVAu+XVhFGh1ev4VzVoRvLQvU631F9IbgX/PXLItiiNft/+Fpx6XveFRs5Mi6GgSBrlYTKJU/y38Jg7IsAu0bkH4M8S2yZebBHngxOiF8gGZNSjaBnVJgNQlcxGVSJ14pYhcV+i2UfyfA84U72wkx0VcY1TL7duvKR8qzU1xRlgVxDQUQDh4hChJSw+ZhyvOsi23aiwXbJEzji5QawcoOLxU0zQ8FvdCegDOmToYXcUEiIY9GJVB0jqo3YWTWNQiR+7J/D4v/2rTNJlQR5PxLLJs+cy4HUor+PxB3UQ6rlOV8rec8OJUSl8bcWv166y+hldR4D1RSGEB2A==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 47663484-80dd-4b9b-bfee-08de7e80afbc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Mar 2026 08:40:30.2025 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: c82iAFnWUjMdEB9VP5UWhaprDn07mpCGeX5BXgWFEOi0/2BCAG6lHKo6fezXcb/grRoKQrLCQ9IqhbwlfMwrpw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6801
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,159 +72,810 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> Subject: [PATCH v3 23/24] drm/i915/lt_phy: Remove LT PHY specific state
-> verification
+On Tue, 2026-03-03 at 20:49 +0530, Arvind Yadav wrote:
+> This allows userspace applications to provide memory usage hints to
+> the kernel for better memory management under pressure:
 >=20
-> Remove LT PHY specific state verification as DPLL framework has state
-> verification check.
+> Add the core implementation for purgeable buffer objects, enabling
+> memory
+> reclamation of user-designated DONTNEED buffers during eviction.
 >=20
-> v2: Reuse intel_lt_phy_pll_compare_hw_state() as only config[0]
->     and config[0] parameters are reliable with LT PHY (Suraj)
-> v3: Rephrase handling of LT PHY case when verifying the state (CI)
+> This patch implements the purge operation and state machine
+> transitions:
 >=20
-
-LGTM,
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-
-> Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+> Purgeable States (from xe_madv_purgeable_state):
+> =C2=A0- WILLNEED (0): BO should be retained, actively used
+> =C2=A0- DONTNEED (1): BO eligible for purging, not currently needed
+> =C2=A0- PURGED (2): BO backing store reclaimed, permanently invalid
+>=20
+> Design Rationale:
+> =C2=A0 - Async TLB invalidation via trigger_rebind (no blocking
+> xe_vm_invalidate_vma)
+> =C2=A0 - i915 compatibility: retained field, "once purged always purged"
+> semantics
+> =C2=A0 - Shared BO protection prevents multi-process memory corruption
+> =C2=A0 - Scratch PTE reuse avoids new infrastructure, safe for fault mode
+>=20
+> Note: The madvise_purgeable() function is implemented but not hooked
+> into
+> the IOCTL handler (madvise_funcs[] entry is NULL) to maintain
+> bisectability.
+> The feature will be enabled in the final patch when all supporting
+> infrastructure (shrinker, per-VMA tracking) is complete.
+>=20
+> v2:
+> =C2=A0 - Use xe_bo_trigger_rebind() for async TLB invalidation (Thomas
+> Hellstr=C3=B6m)
+> =C2=A0 - Add NULL rebind with scratch PTEs for fault mode (Thomas
+> Hellstr=C3=B6m)
+> =C2=A0 - Implement i915-compatible retained field logic (Thomas Hellstr=
+=C3=B6m)
+> =C2=A0 - Skip BO validation for purged BOs in page fault handler (crash
+> fix)
+> =C2=A0 - Add scratch VM check in page fault path (non-scratch VMs fail
+> fault)
+> =C2=A0 - Force clear_pt for non-scratch VMs to avoid phys addr 0 mapping
+> (review fix)
+> =C2=A0 - Add !is_purged check to resource cursor setup to prevent stale
+> access
+>=20
+> v3:
+> =C2=A0 - Rebase as xe_gt_pagefault.c is gone upstream and replaced
+> =C2=A0=C2=A0=C2=A0 with xe_pagefault.c (Matthew Brost)
+> =C2=A0 - Xe specific warn on (Matthew Brost)
+> =C2=A0 - Call helpers for madv_purgeable access(Matthew Brost)
+> =C2=A0 - Remove bo NULL check(Matthew Brost)
+> =C2=A0 - Use xe_bo_assert_held instead of dma assert(Matthew Brost)
+> =C2=A0 - Move the xe_bo_is_purged check under the dma-resv lock( by Matt)
+> =C2=A0 - Drop is_purged from xe_pt_stage_bind_entry and just set is_null
+> to true
+> =C2=A0=C2=A0=C2=A0 for purged BO rename s/is_null/is_null_or_purged (by M=
+att)
+> =C2=A0 - UAPI rule should not be changed.(Matthew Brost)
+> =C2=A0 - Make 'retained' a userptr (Matthew Brost)
+>=20
+> v4:
+> =C2=A0 - @madv_purgeable atomic_t =E2=86=92 u32 change across all relevan=
+t patches
+> (Matt)
+>=20
+> v5:
+> =C2=A0 - Introduce xe_bo_set_purgeable_state() helper (void return) to
+> centralize
+> =C2=A0=C2=A0=C2=A0 madv_purgeable updates with xe_bo_assert_held() and st=
+ate
+> transition
+> =C2=A0=C2=A0=C2=A0 validation using explicit enum checks (no transition o=
+ut of
+> PURGED) (Matt)
+> =C2=A0 - Make xe_ttm_bo_purge() return int and propagate failures from
+> =C2=A0=C2=A0=C2=A0 xe_bo_move(); handle xe_bo_trigger_rebind() failures (=
+e.g.
+> no_wait_gpu
+> =C2=A0=C2=A0=C2=A0 paths) rather than silently ignoring (Matt)
+> =C2=A0 - Replace drm_WARN_ON with xe_assert for better Xe-specific
+> assertions (Matt)
+> =C2=A0 - Hook purgeable handling into
+> madvise_funcs[DRM_XE_VMA_ATTR_PURGEABLE_STATE]
+> =C2=A0=C2=A0=C2=A0 instead of special-case path in xe_vm_madvise_ioctl() =
+(Matt)
+> =C2=A0 - Track purgeable retained return via xe_madvise_details and
+> perform
+> =C2=A0=C2=A0=C2=A0 copy_to_user() from xe_madvise_details_fini() after lo=
+cks are
+> dropped (Matt)
+> =C2=A0 - Set madvise_funcs[DRM_XE_VMA_ATTR_PURGEABLE_STATE] to NULL with
+> =C2=A0=C2=A0=C2=A0 __maybe_unused on madvise_purgeable() to maintain bise=
+ctability
+> until
+> =C2=A0=C2=A0=C2=A0 shrinker integration is complete in final patch (Matt)
+> =C2=A0 - Use put_user() instead of copy_to_user() for single u32 retained
+> value (Thomas)
+> =C2=A0 - Return -EFAULT from ioctl if put_user() fails (Thomas)
+> =C2=A0 - Validate userspace initialized retained to 0 before ioctl,
+> ensuring safe
+> =C2=A0=C2=A0=C2=A0 default (0 =3D "assume purged") if put_user() fails (T=
+homas)
+> =C2=A0 - Refactor error handling: separate fallible put_user from
+> infallible cleanup
+> =C2=A0 - xe_madvise_purgeable_retained_to_user(): separate helper for
+> fallible put_user
+> =C2=A0 - Call put_user() after releasing all locks to avoid circular
+> dependencies
+> =C2=A0 - Use xe_bo_move_notify() instead of xe_bo_trigger_rebind() in
+> xe_ttm_bo_purge()
+> =C2=A0=C2=A0=C2=A0 for proper abstraction - handles vunmap, dma-buf notif=
+ications,
+> and VRAM
+> =C2=A0=C2=A0=C2=A0 userfault cleanup (Thomas)
+> =C2=A0 - Fix LRU crash while running shrink test
+> =C2=A0 - Skip xe_bo_validate() for purged BOs in xe_gpuvm_validate()
+>=20
+> v6:
+> =C2=A0 - xe_bo_move_notify() must be called *before* ttm_bo_validate().
+> (Thomas)
+> =C2=A0 - Block GPU page faults (fault-mode VMs) for DONTNEED bo's (Thomas=
+,
+> Matt)
+> =C2=A0 - Rename retained to retained_ptr. (Jose)
+>=20
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 14 +++++--
->  drivers/gpu/drm/i915/display/intel_lt_phy.c   | 39 -------------------
->  drivers/gpu/drm/i915/display/intel_lt_phy.h   |  2 -
->  .../drm/i915/display/intel_modeset_verify.c   |  1 -
->  4 files changed, 11 insertions(+), 45 deletions(-)
+> =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 | 107 ++++++++++++++++++++---
+> =C2=A0drivers/gpu/drm/xe/xe_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 2 +
+> =C2=A0drivers/gpu/drm/xe/xe_pagefault.c=C2=A0 |=C2=A0 19 ++++
+> =C2=A0drivers/gpu/drm/xe/xe_pt.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0 40 +++++++--
+> =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0 20 ++++-
+> =C2=A0drivers/gpu/drm/xe/xe_vm_madvise.c | 136
+> +++++++++++++++++++++++++++++
+> =C2=A06 files changed, 303 insertions(+), 21 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> index 534cc691979f..c3f35250f192 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-> @@ -5075,6 +5075,7 @@ verify_single_dpll_state(struct intel_display *disp=
-lay,
->  			 const struct intel_crtc_state *new_crtc_state)  {
->  	struct intel_dpll_hw_state dpll_hw_state =3D {};
-> +	bool pll_mismatch =3D false;
->  	u8 pipe_mask;
->  	bool active;
->=20
-> @@ -5116,9 +5117,16 @@ verify_single_dpll_state(struct intel_display
-> *display,
->  				 "%s: pll enabled crtcs mismatch (expected
-> 0x%x in 0x%x)\n",
->  				 pll->info->name, pipe_mask, pll-
-> >state.pipe_mask);
->=20
-> -	if (INTEL_DISPLAY_STATE_WARN(display,
-> -				     pll->on && memcmp(&pll->state.hw_state,
-> &dpll_hw_state,
-> -						       sizeof(dpll_hw_state)),
-> +	if (pll->on) {
-> +		const struct intel_dpll_mgr *dpll_mgr =3D display->dpll.mgr;
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 8ff193600443..513f01aa2ddd 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -835,6 +835,84 @@ static int xe_bo_move_notify(struct xe_bo *bo,
+> =C2=A0	return 0;
+> =C2=A0}
+> =C2=A0
+> +/**
+> + * xe_bo_set_purgeable_state() - Set BO purgeable state with
+> validation
+> + * @bo: Buffer object
+> + * @new_state: New purgeable state
+> + *
+> + * Sets the purgeable state with lockdep assertions and validates
+> state
+> + * transitions. Once a BO is PURGED, it cannot transition to any
+> other state.
+> + * Invalid transitions are caught with xe_assert().
+> + */
+> +void xe_bo_set_purgeable_state(struct xe_bo *bo,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum xe_madv_purgeable_state
+> new_state)
+> +{
+> +	struct xe_device *xe =3D xe_bo_device(bo);
 > +
-> +		if (HAS_LT_PHY(display))
-> +			pll_mismatch =3D !dpll_mgr->compare_hw_state(&pll-
-> >state.hw_state, &dpll_hw_state);
-> +		else
-> +			pll_mismatch =3D memcmp(&pll->state.hw_state,
-> &dpll_hw_state, sizeof(dpll_hw_state));
+> +	xe_bo_assert_held(bo);
+> +
+> +	/* Validate state is one of the known values */
+> +	xe_assert(xe, new_state =3D=3D XE_MADV_PURGEABLE_WILLNEED ||
+> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 new_state =3D=3D XE_MADV_PURGEABLE_DONT=
+NEED ||
+> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 new_state =3D=3D XE_MADV_PURGEABLE_PURG=
+ED);
+> +
+> +	/* Once purged, always purged - cannot transition out */
+> +	xe_assert(xe, !(bo->madv_purgeable =3D=3D
+> XE_MADV_PURGEABLE_PURGED &&
+> +			new_state !=3D XE_MADV_PURGEABLE_PURGED));
+> +
+> +	bo->madv_purgeable =3D new_state;
+> +}
+> +
+> +/**
+> + * xe_ttm_bo_purge() - Purge buffer object backing store
+> + * @ttm_bo: The TTM buffer object to purge
+> + * @ctx: TTM operation context
+> + *
+> + * This function purges the backing store of a BO marked as DONTNEED
+> and
+> + * triggers rebind to invalidate stale GPU mappings. For fault-mode
+> VMs,
+> + * this zaps the PTEs. The next GPU access will trigger a page fault
+> and
+> + * perform NULL rebind (scratch pages or clear PTEs based on VM
+> config).
+> + *
+> + * Return: 0 on success, negative error code on failure
+> + */
+> +static int xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct
+> ttm_operation_ctx *ctx)
+> +{
+> +	struct xe_bo *bo =3D ttm_to_xe_bo(ttm_bo);
+> +	struct ttm_placement place =3D {};
+> +	int ret;
+> +
+> +	xe_bo_assert_held(bo);
+> +
+> +	if (!ttm_bo->ttm)
+> +		return 0;
+> +
+> +	if (!xe_bo_madv_is_dontneed(bo))
+> +		return 0;
+> +
+> +	/*
+> +	 * Use the standard pre-move hook so we share the same
+> cleanup/invalidate
+> +	 * path as migrations: drop any CPU vmap and schedule the
+> necessary GPU
+> +	 * unbind/rebind work.
+> +	 *
+> +	 * This must be called before ttm_bo_validate() frees the
+> pages.
+> +	 * May fail in no-wait contexts (fault/shrinker) or if the
+> BO is
+> +	 * pinned. Keep state unchanged on failure so we don't end
+> up "PURGED"
+> +	 * with stale mappings.
+> +	 */
+> +	ret =3D xe_bo_move_notify(bo, ctx);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret =3D ttm_bo_validate(ttm_bo, &place, ctx);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Commit the state transition only once invalidation was
+> queued */
+> +	xe_bo_set_purgeable_state(bo, XE_MADV_PURGEABLE_PURGED);
+> +
+> +	return 0;
+> +}
+> +
+> =C2=A0static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_operation_ctx *ctx,
+> =C2=A0		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct ttm_resource *new_mem,
+> @@ -854,6 +932,20 @@ static int xe_bo_move(struct ttm_buffer_object
+> *ttm_bo, bool evict,
+> =C2=A0				=C2=A0 ttm && ttm_tt_is_populated(ttm)) ?
+> true : false;
+> =C2=A0	int ret =3D 0;
+> =C2=A0
+> +	/*
+> +	 * Purge only non-shared BOs explicitly marked DONTNEED by
+> userspace.
+> +	 * The move_notify callback will handle invalidation
+> asynchronously.
+> +	 */
+> +	if (evict && xe_bo_madv_is_dontneed(bo)) {
+> +		ret =3D xe_ttm_bo_purge(ttm_bo, ctx);
+> +		if (ret)
+> +			return ret;
+> +
+> +		/* Free the unused eviction destination resource */
+> +		ttm_resource_free(ttm_bo, &new_mem);
+> +		return 0;
 > +	}
 > +
-> +	if (INTEL_DISPLAY_STATE_WARN(display, pll_mismatch,
->  				     "%s: pll hw state mismatch\n",
->  				     pll->info->name)) {
->  		struct drm_printer p =3D drm_dbg_printer(display->drm,
-> DRM_UT_KMS, NULL); diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy=
-.c
-> b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> index 746b0182362a..032fd80664c6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-> @@ -2263,45 +2263,6 @@ bool intel_lt_phy_pll_readout_hw_state(struct
-> intel_encoder *encoder,
->  	return true;
->  }
->=20
-> -void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
-> -				   struct intel_crtc *crtc)
+> =C2=A0	/* Bo creation path, moving to system or TT. */
+> =C2=A0	if ((!old_mem && ttm) && !handle_system_ccs) {
+> =C2=A0		if (new_mem->mem_type =3D=3D XE_PL_TT)
+> @@ -1603,18 +1695,6 @@ static void xe_ttm_bo_delete_mem_notify(struct
+> ttm_buffer_object *ttm_bo)
+> =C2=A0	}
+> =C2=A0}
+> =C2=A0
+> -static void xe_ttm_bo_purge(struct ttm_buffer_object *ttm_bo, struct
+> ttm_operation_ctx *ctx)
 > -{
-> -	struct intel_display *display =3D to_intel_display(state);
-> -	struct intel_digital_port *dig_port;
-> -	const struct intel_crtc_state *new_crtc_state =3D
-> -		intel_atomic_get_new_crtc_state(state, crtc);
-> -	struct intel_encoder *encoder;
-> -	struct intel_lt_phy_pll_state pll_hw_state =3D {};
-> -	const struct intel_lt_phy_pll_state *pll_sw_state =3D &new_crtc_state-
-> >dpll_hw_state.ltpll;
+> -	struct xe_device *xe =3D ttm_to_xe_device(ttm_bo->bdev);
 > -
-> -	if (DISPLAY_VER(display) < 35)
-> -		return;
+> -	if (ttm_bo->ttm) {
+> -		struct ttm_placement place =3D {};
+> -		int ret =3D ttm_bo_validate(ttm_bo, &place, ctx);
 > -
-> -	if (!new_crtc_state->hw.active)
-> -		return;
-> -
-> -	/* intel_get_crtc_new_encoder() only works for modeset/fastset
-> commits */
-> -	if (!intel_crtc_needs_modeset(new_crtc_state) &&
-> -	    !intel_crtc_needs_fastset(new_crtc_state))
-> -		return;
-> -
-> -	encoder =3D intel_get_crtc_new_encoder(state, new_crtc_state);
-> -	intel_lt_phy_pll_readout_hw_state(encoder, &pll_hw_state);
-> -
-> -	dig_port =3D enc_to_dig_port(encoder);
-> -	if (intel_tc_port_in_tbt_alt_mode(dig_port))
-> -		return;
-> -
-> -	INTEL_DISPLAY_STATE_WARN(display, pll_hw_state.config[0] !=3D
-> pll_sw_state->config[0],
-> -				 "[CRTC:%d:%s] mismatch in LT PHY PLL
-> CONFIG 0: (expected 0x%04x, found 0x%04x)",
-> -				 crtc->base.base.id, crtc->base.name,
-> -				 pll_sw_state->config[0],
-> pll_hw_state.config[0]);
-> -	INTEL_DISPLAY_STATE_WARN(display, pll_hw_state.config[2] !=3D
-> pll_sw_state->config[2],
-> -				 "[CRTC:%d:%s] mismatch in LT PHY PLL
-> CONFIG 2: (expected 0x%04x, found 0x%04x)",
-> -				 crtc->base.base.id, crtc->base.name,
-> -				 pll_sw_state->config[2],
-> pll_hw_state.config[2]);
+> -		drm_WARN_ON(&xe->drm, ret);
+> -	}
 > -}
 > -
->  void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
->  			      struct intel_dpll *pll,
->  			      const struct intel_dpll_hw_state *dpll_hw_state)
-> diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h
-> b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-> index 1c2ec438cd10..8b98997b3107 100644
-> --- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
-> +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-> @@ -41,8 +41,6 @@ bool intel_lt_phy_tbt_pll_readout_hw_state(struct
-> intel_display *display,
->  					   struct intel_dpll_hw_state
-> *hw_state);  bool intel_lt_phy_pll_readout_hw_state(struct intel_encoder
-> *encoder,
->  				       struct intel_lt_phy_pll_state *pll_state); -
-> void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
-> -				   struct intel_crtc *crtc);
->  int
->  intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_stat=
-e,
->  				  u32 frequency_khz);
-> diff --git a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-> b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-> index 12a00121c274..2ec17c2bfe0f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-> +++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
-> @@ -246,7 +246,6 @@ void intel_modeset_verify_crtc(struct
-> intel_atomic_state *state,
->  	verify_crtc_state(state, crtc);
->  	intel_dpll_state_verify(state, crtc);
->  	intel_mpllb_state_verify(state, crtc);
-> -	intel_lt_phy_pll_state_verify(state, crtc);
->  }
->=20
->  void intel_modeset_verify_disabled(struct intel_atomic_state *state)
-> --
-> 2.43.0
+> =C2=A0static void xe_ttm_bo_swap_notify(struct ttm_buffer_object *ttm_bo)
+> =C2=A0{
+> =C2=A0	struct ttm_operation_ctx ctx =3D {
+> @@ -2195,6 +2275,9 @@ struct xe_bo *xe_bo_init_locked(struct
+> xe_device *xe, struct xe_bo *bo,
+> =C2=A0#endif
+> =C2=A0	INIT_LIST_HEAD(&bo->vram_userfault_link);
+> =C2=A0
+> +	/* Initialize purge advisory state */
+> +	bo->madv_purgeable =3D XE_MADV_PURGEABLE_WILLNEED;
+> +
+> =C2=A0	drm_gem_private_object_init(&xe->drm, &bo->ttm.base, size);
+> =C2=A0
+> =C2=A0	if (resv) {
+> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> index ea157d74e2fb..0d9f25b51eb2 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -271,6 +271,8 @@ static inline bool xe_bo_madv_is_dontneed(struct
+> xe_bo *bo)
+> =C2=A0	return bo->madv_purgeable =3D=3D XE_MADV_PURGEABLE_DONTNEED;
+> =C2=A0}
+> =C2=A0
+> +void xe_bo_set_purgeable_state(struct xe_bo *bo, enum
+> xe_madv_purgeable_state new_state);
+> +
+> =C2=A0static inline void xe_bo_unpin_map_no_vm(struct xe_bo *bo)
+> =C2=A0{
+> =C2=A0	if (likely(bo)) {
+> diff --git a/drivers/gpu/drm/xe/xe_pagefault.c
+> b/drivers/gpu/drm/xe/xe_pagefault.c
+> index ea4857acf28d..4ef8674e6b0b 100644
+> --- a/drivers/gpu/drm/xe/xe_pagefault.c
+> +++ b/drivers/gpu/drm/xe/xe_pagefault.c
+> @@ -59,6 +59,25 @@ static int xe_pagefault_begin(struct drm_exec
+> *exec, struct xe_vma *vma,
+> =C2=A0	if (!bo)
+> =C2=A0		return 0;
+> =C2=A0
+> +	/* Block GPU faults on DONTNEED BOs to preserve the GPU PTE
+> zap done at
 
+For multi-line code comments, No text on the first line. Just the '/*'
+
+With that fixed,
+=20
+Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+
+
+> +	 * madvise time; otherwise the rebind path would re-map real
+> pages and
+> +	 * undo the invalidation, preventing the shrinker from
+> reclaiming the BO.
+> +	 */
+> +	if (unlikely(xe_bo_madv_is_dontneed(bo)))
+> +		return -EACCES;
+> +
+> +	/*
+> +	 * Check if BO is purged (under dma-resv lock).
+> +	 * For purged BOs:
+> +	 * - Scratch VMs: Skip validation, rebind will use scratch
+> PTEs
+> +	 * - Non-scratch VMs: FAIL the page fault (no scratch page
+> available)
+> +	 */
+> +	if (unlikely(xe_bo_is_purged(bo))) {
+> +		if (!xe_vm_has_scratch(vm))
+> +			return -EACCES;
+> +		return 0;
+> +	}
+> +
+> =C2=A0	return need_vram_move ? xe_bo_migrate(bo, vram->placement,
+> NULL, exec) :
+> =C2=A0		xe_bo_validate(bo, vm, true, exec);
+> =C2=A0}
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index 13b355fadd58..93f9fdf0ff24 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -531,20 +531,26 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent,
+> pgoff_t offset,
+> =C2=A0	/* Is this a leaf entry ?*/
+> =C2=A0	if (level =3D=3D 0 || xe_pt_hugepte_possible(addr, next, level,
+> xe_walk)) {
+> =C2=A0		struct xe_res_cursor *curs =3D xe_walk->curs;
+> -		bool is_null =3D xe_vma_is_null(xe_walk->vma);
+> -		bool is_vram =3D is_null ? false :
+> xe_res_is_vram(curs);
+> +		struct xe_bo *bo =3D xe_vma_bo(xe_walk->vma);
+> +		bool is_null_or_purged =3D xe_vma_is_null(xe_walk-
+> >vma) ||
+> +					 (bo &&
+> xe_bo_is_purged(bo));
+> +		bool is_vram =3D is_null_or_purged ? false :
+> xe_res_is_vram(curs);
+> =C2=A0
+> =C2=A0		XE_WARN_ON(xe_walk->va_curs_start !=3D addr);
+> =C2=A0
+> =C2=A0		if (xe_walk->clear_pt) {
+> =C2=A0			pte =3D 0;
+> =C2=A0		} else {
+> -			pte =3D vm->pt_ops->pte_encode_vma(is_null ? 0
+> :
+> +			/*
+> +			 * For purged BOs, treat like null VMAs -
+> pass address 0.
+> +			 * The pte_encode_vma will set XE_PTE_NULL
+> flag for scratch mapping.
+> +			 */
+> +			pte =3D vm->pt_ops-
+> >pte_encode_vma(is_null_or_purged ? 0 :
+> =C2=A0						=09
+> xe_res_dma(curs) +
+> =C2=A0							 xe_walk-
+> >dma_offset,
+> =C2=A0							 xe_walk-
+> >vma,
+> =C2=A0							 pat_index,
+> level);
+> -			if (!is_null)
+> +			if (!is_null_or_purged)
+> =C2=A0				pte |=3D is_vram ? xe_walk-
+> >default_vram_pte :
+> =C2=A0					xe_walk->default_system_pte;
+> =C2=A0
+> @@ -568,7 +574,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent,
+> pgoff_t offset,
+> =C2=A0		if (unlikely(ret))
+> =C2=A0			return ret;
+> =C2=A0
+> -		if (!is_null && !xe_walk->clear_pt)
+> +		if (!is_null_or_purged && !xe_walk->clear_pt)
+> =C2=A0			xe_res_next(curs, next - addr);
+> =C2=A0		xe_walk->va_curs_start =3D next;
+> =C2=A0		xe_walk->vma->gpuva.flags |=3D (XE_VMA_PTE_4K <<
+> level);
+> @@ -721,6 +727,26 @@ xe_pt_stage_bind(struct xe_tile *tile, struct
+> xe_vma *vma,
+> =C2=A0	};
+> =C2=A0	struct xe_pt *pt =3D vm->pt_root[tile->id];
+> =C2=A0	int ret;
+> +	bool is_purged =3D false;
+> +
+> +	/*
+> +	 * Check if BO is purged:
+> +	 * - Scratch VMs: Use scratch PTEs (XE_PTE_NULL) for safe
+> zero reads
+> +	 * - Non-scratch VMs: Clear PTEs to zero (non-present) to
+> avoid mapping to phys addr 0
+> +	 *
+> +	 * For non-scratch VMs, we force clear_pt=3Dtrue so leaf PTEs
+> become completely
+> +	 * zero instead of creating a PRESENT mapping to physical
+> address 0.
+> +	 */
+> +	if (bo && xe_bo_is_purged(bo)) {
+> +		is_purged =3D true;
+> +
+> +		/*
+> +		 * For non-scratch VMs, a NULL rebind should use
+> zero PTEs
+> +		 * (non-present), not a present PTE to phys 0.
+> +		 */
+> +		if (!xe_vm_has_scratch(vm))
+> +			xe_walk.clear_pt =3D true;
+> +	}
+> =C2=A0
+> =C2=A0	if (range) {
+> =C2=A0		/* Move this entire thing to xe_svm.c? */
+> @@ -756,11 +782,11 @@ xe_pt_stage_bind(struct xe_tile *tile, struct
+> xe_vma *vma,
+> =C2=A0	}
+> =C2=A0
+> =C2=A0	xe_walk.default_vram_pte |=3D XE_PPGTT_PTE_DM;
+> -	xe_walk.dma_offset =3D bo ? vram_region_gpu_offset(bo-
+> >ttm.resource) : 0;
+> +	xe_walk.dma_offset =3D (bo && !is_purged) ?
+> vram_region_gpu_offset(bo->ttm.resource) : 0;
+> =C2=A0	if (!range)
+> =C2=A0		xe_bo_assert_held(bo);
+> =C2=A0
+> -	if (!xe_vma_is_null(vma) && !range) {
+> +	if (!xe_vma_is_null(vma) && !range && !is_purged) {
+> =C2=A0		if (xe_vma_is_userptr(vma))
+> =C2=A0			xe_res_first_dma(to_userptr_vma(vma)-
+> >userptr.pages.dma_addr, 0,
+> =C2=A0					 xe_vma_size(vma), &curs);
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 548b0769b3ef..c65d014c7491 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -326,6 +326,7 @@ void xe_vm_kill(struct xe_vm *vm, bool unlocked)
+> =C2=A0static int xe_gpuvm_validate(struct drm_gpuvm_bo *vm_bo, struct
+> drm_exec *exec)
+> =C2=A0{
+> =C2=A0	struct xe_vm *vm =3D gpuvm_to_vm(vm_bo->vm);
+> +	struct xe_bo *bo =3D gem_to_xe_bo(vm_bo->obj);
+> =C2=A0	struct drm_gpuva *gpuva;
+> =C2=A0	int ret;
+> =C2=A0
+> @@ -334,10 +335,16 @@ static int xe_gpuvm_validate(struct
+> drm_gpuvm_bo *vm_bo, struct drm_exec *exec)
+> =C2=A0		list_move_tail(&gpuva_to_vma(gpuva)-
+> >combined_links.rebind,
+> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &vm->rebind_list);
+> =C2=A0
+> +	/* Skip re-populating purged BOs, rebind maps scratch pages.
+> */
+> +	if (xe_bo_is_purged(bo)) {
+> +		vm_bo->evicted =3D false;
+> +		return 0;
+> +	}
+> +
+> =C2=A0	if (!try_wait_for_completion(&vm->xe->pm_block))
+> =C2=A0		return -EAGAIN;
+> =C2=A0
+> -	ret =3D xe_bo_validate(gem_to_xe_bo(vm_bo->obj), vm, false,
+> exec);
+> +	ret =3D xe_bo_validate(bo, vm, false, exec);
+> =C2=A0	if (ret)
+> =C2=A0		return ret;
+> =C2=A0
+> @@ -1358,6 +1365,9 @@ static u64 xelp_pte_encode_bo(struct xe_bo *bo,
+> u64 bo_offset,
+> =C2=A0static u64 xelp_pte_encode_vma(u64 pte, struct xe_vma *vma,
+> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u16 pat_index, u32 pt_level=
+)
+> =C2=A0{
+> +	struct xe_bo *bo =3D xe_vma_bo(vma);
+> +	struct xe_vm *vm =3D xe_vma_vm(vma);
+> +
+> =C2=A0	pte |=3D XE_PAGE_PRESENT;
+> =C2=A0
+> =C2=A0	if (likely(!xe_vma_read_only(vma)))
+> @@ -1366,7 +1376,13 @@ static u64 xelp_pte_encode_vma(u64 pte, struct
+> xe_vma *vma,
+> =C2=A0	pte |=3D pte_encode_pat_index(pat_index, pt_level);
+> =C2=A0	pte |=3D pte_encode_ps(pt_level);
+> =C2=A0
+> -	if (unlikely(xe_vma_is_null(vma)))
+> +	/*
+> +	 * NULL PTEs redirect to scratch page (return zeros on
+> read).
+> +	 * Set for: 1) explicit null VMAs, 2) purged BOs on scratch
+> VMs.
+> +	 * Never set NULL flag without scratch page - causes
+> undefined behavior.
+> +	 */
+> +	if (unlikely(xe_vma_is_null(vma) ||
+> +		=C2=A0=C2=A0=C2=A0=C2=A0 (bo && xe_bo_is_purged(bo) &&
+> xe_vm_has_scratch(vm))))
+> =C2=A0		pte |=3D XE_PTE_NULL;
+> =C2=A0
+> =C2=A0	return pte;
+> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c
+> b/drivers/gpu/drm/xe/xe_vm_madvise.c
+> index 95bf53cc29e3..f7e767f21795 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
+> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+> @@ -25,6 +25,8 @@ struct xe_vmas_in_madvise_range {
+> =C2=A0/**
+> =C2=A0 * struct xe_madvise_details - Argument to madvise_funcs
+> =C2=A0 * @dpagemap: Reference-counted pointer to a struct drm_pagemap.
+> + * @has_purged_bo: Track if any BO was purged (for purgeable state)
+> + * @retained_ptr: User pointer for retained value (for purgeable
+> state)
+> =C2=A0 *
+> =C2=A0 * The madvise IOCTL handler may, in addition to the user-space
+> =C2=A0 * args, have additional info to pass into the madvise_func that
+> @@ -33,6 +35,8 @@ struct xe_vmas_in_madvise_range {
+> =C2=A0 */
+> =C2=A0struct xe_madvise_details {
+> =C2=A0	struct drm_pagemap *dpagemap;
+> +	bool has_purged_bo;
+> +	u64 retained_ptr;
+> =C2=A0};
+> =C2=A0
+> =C2=A0static int get_vmas(struct xe_vm *vm, struct
+> xe_vmas_in_madvise_range *madvise_range)
+> @@ -179,6 +183,67 @@ static void madvise_pat_index(struct xe_device
+> *xe, struct xe_vm *vm,
+> =C2=A0	}
+> =C2=A0}
+> =C2=A0
+> +/**
+> + * madvise_purgeable - Handle purgeable buffer object advice
+> + * @xe: XE device
+> + * @vm: VM
+> + * @vmas: Array of VMAs
+> + * @num_vmas: Number of VMAs
+> + * @op: Madvise operation
+> + * @details: Madvise details for return values
+> + *
+> + * Handles DONTNEED/WILLNEED/PURGED states. Tracks if any BO was
+> purged
+> + * in details->has_purged_bo for later copy to userspace.
+> + *
+> + * Note: Marked __maybe_unused until hooked into madvise_funcs[] in
+> the
+> + * final patch to maintain bisectability. The NULL placeholder in
+> the
+> + * array ensures proper -EINVAL return for userspace until all
+> supporting
+> + * infrastructure (shrinker, per-VMA tracking) is complete.
+> + */
+> +static void __maybe_unused madvise_purgeable(struct xe_device *xe,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vm *vm,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vma **vmas,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0 int num_vmas,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_xe_madvise
+> *op,
+> +					=C2=A0=C2=A0=C2=A0=C2=A0 struct
+> xe_madvise_details *details)
+> +{
+> +	int i;
+> +
+> +	xe_assert(vm->xe, op->type =3D=3D
+> DRM_XE_VMA_ATTR_PURGEABLE_STATE);
+> +
+> +	for (i =3D 0; i < num_vmas; i++) {
+> +		struct xe_bo *bo =3D xe_vma_bo(vmas[i]);
+> +
+> +		if (!bo)
+> +			continue;
+> +
+> +		/* BO must be locked before modifying madv state */
+> +		xe_bo_assert_held(bo);
+> +
+> +		/*
+> +		 * Once purged, always purged. Cannot transition
+> back to WILLNEED.
+> +		 * This matches i915 semantics where purged BOs are
+> permanently invalid.
+> +		 */
+> +		if (xe_bo_is_purged(bo)) {
+> +			details->has_purged_bo =3D true;
+> +			continue;
+> +		}
+> +
+> +		switch (op->purge_state_val.val) {
+> +		case DRM_XE_VMA_PURGEABLE_STATE_WILLNEED:
+> +			xe_bo_set_purgeable_state(bo,
+> XE_MADV_PURGEABLE_WILLNEED);
+> +			break;
+> +		case DRM_XE_VMA_PURGEABLE_STATE_DONTNEED:
+> +			xe_bo_set_purgeable_state(bo,
+> XE_MADV_PURGEABLE_DONTNEED);
+> +			break;
+> +		default:
+> +			drm_warn(&vm->xe->drm, "Invalid madvice
+> value =3D %d\n",
+> +				 op->purge_state_val.val);
+> +			return;
+> +		}
+> +	}
+> +}
+> +
+> =C2=A0typedef void (*madvise_func)(struct xe_device *xe, struct xe_vm *vm=
+,
+> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 struct xe_vma **vmas, int num_vmas,
+> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_xe_madvise *op,
+> @@ -188,6 +253,12 @@ static const madvise_func madvise_funcs[] =3D {
+> =C2=A0	[DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC] =3D
+> madvise_preferred_mem_loc,
+> =C2=A0	[DRM_XE_MEM_RANGE_ATTR_ATOMIC] =3D madvise_atomic,
+> =C2=A0	[DRM_XE_MEM_RANGE_ATTR_PAT] =3D madvise_pat_index,
+> +	/*
+> +	 * Purgeable support implemented but not enabled yet to
+> maintain
+> +	 * bisectability. Will be set to madvise_purgeable() in
+> final patch
+> +	 * when all infrastructure (shrinker, VMA tracking) is
+> complete.
+> +	 */
+> +	[DRM_XE_VMA_ATTR_PURGEABLE_STATE] =3D NULL,
+> =C2=A0};
+> =C2=A0
+> =C2=A0static u8 xe_zap_ptes_in_madvise_range(struct xe_vm *vm, u64 start,
+> u64 end)
+> @@ -311,6 +382,19 @@ static bool madvise_args_are_sane(struct
+> xe_device *xe, const struct drm_xe_madv
+> =C2=A0			return false;
+> =C2=A0		break;
+> =C2=A0	}
+> +	case DRM_XE_VMA_ATTR_PURGEABLE_STATE:
+> +	{
+> +		u32 val =3D args->purge_state_val.val;
+> +
+> +		if (XE_IOCTL_DBG(xe, !(val =3D=3D
+> DRM_XE_VMA_PURGEABLE_STATE_WILLNEED ||
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 val =3D=3D
+> DRM_XE_VMA_PURGEABLE_STATE_DONTNEED)))
+> +			return false;
+> +
+> +		if (XE_IOCTL_DBG(xe, args->purge_state_val.pad))
+> +			return false;
+> +
+> +		break;
+> +	}
+> =C2=A0	default:
+> =C2=A0		if (XE_IOCTL_DBG(xe, 1))
+> =C2=A0			return false;
+> @@ -329,6 +413,12 @@ static int xe_madvise_details_init(struct xe_vm
+> *vm, const struct drm_xe_madvise
+> =C2=A0
+> =C2=A0	memset(details, 0, sizeof(*details));
+> =C2=A0
+> +	/* Store retained pointer for purgeable state */
+> +	if (args->type =3D=3D DRM_XE_VMA_ATTR_PURGEABLE_STATE) {
+> +		details->retained_ptr =3D args-
+> >purge_state_val.retained_ptr;
+> +		return 0;
+> +	}
+> +
+> =C2=A0	if (args->type =3D=3D DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC) {
+> =C2=A0		int fd =3D args->preferred_mem_loc.devmem_fd;
+> =C2=A0		struct drm_pagemap *dpagemap;
+> @@ -357,6 +447,21 @@ static void xe_madvise_details_fini(struct
+> xe_madvise_details *details)
+> =C2=A0	drm_pagemap_put(details->dpagemap);
+> =C2=A0}
+> =C2=A0
+> +static int xe_madvise_purgeable_retained_to_user(const struct
+> xe_madvise_details *details)
+> +{
+> +	u32 retained;
+> +
+> +	if (!details->retained_ptr)
+> +		return 0;
+> +
+> +	retained =3D !details->has_purged_bo;
+> +
+> +	if (put_user(retained, (u32 __user
+> *)u64_to_user_ptr(details->retained_ptr)))
+> +		return -EFAULT;
+> +
+> +	return 0;
+> +}
+> +
+> =C2=A0static bool check_bo_args_are_sane(struct xe_vm *vm, struct xe_vma
+> **vmas,
+> =C2=A0				=C2=A0=C2=A0 int num_vmas, u32 atomic_val)
+> =C2=A0{
+> @@ -414,6 +519,7 @@ int xe_vm_madvise_ioctl(struct drm_device *dev,
+> void *data, struct drm_file *fil
+> =C2=A0	struct xe_vm *vm;
+> =C2=A0	struct drm_exec exec;
+> =C2=A0	int err, attr_type;
+> +	bool do_retained;
+> =C2=A0
+> =C2=A0	vm =3D xe_vm_lookup(xef, args->vm_id);
+> =C2=A0	if (XE_IOCTL_DBG(xe, !vm))
+> @@ -424,6 +530,25 @@ int xe_vm_madvise_ioctl(struct drm_device *dev,
+> void *data, struct drm_file *fil
+> =C2=A0		goto put_vm;
+> =C2=A0	}
+> =C2=A0
+> +	/* Cache whether we need to write retained, and validate
+> it's initialized to 0 */
+> +	do_retained =3D args->type =3D=3D DRM_XE_VMA_ATTR_PURGEABLE_STATE
+> &&
+> +		=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 args->purge_state_val.retained_ptr;
+> +	if (do_retained) {
+> +		u32 retained;
+> +		u32 __user *retained_ptr;
+> +
+> +		retained_ptr =3D u64_to_user_ptr(args-
+> >purge_state_val.retained_ptr);
+> +		if (get_user(retained, retained_ptr)) {
+> +			err =3D -EFAULT;
+> +			goto put_vm;
+> +		}
+> +
+> +		if (XE_IOCTL_DBG(xe, retained !=3D 0)) {
+> +			err =3D -EINVAL;
+> +			goto put_vm;
+> +		}
+> +	}
+> +
+> =C2=A0	xe_svm_flush(vm);
+> =C2=A0
+> =C2=A0	err =3D down_write_killable(&vm->lock);
+> @@ -479,6 +604,13 @@ int xe_vm_madvise_ioctl(struct drm_device *dev,
+> void *data, struct drm_file *fil
+> =C2=A0	}
+> =C2=A0
+> =C2=A0	attr_type =3D array_index_nospec(args->type,
+> ARRAY_SIZE(madvise_funcs));
+> +
+> +	/* Ensure the madvise function exists for this type */
+> +	if (!madvise_funcs[attr_type]) {
+> +		err =3D -EINVAL;
+> +		goto err_fini;
+> +	}
+> +
+> =C2=A0	madvise_funcs[attr_type](xe, vm, madvise_range.vmas,
+> madvise_range.num_vmas, args,
+> =C2=A0				 &details);
+> =C2=A0
+> @@ -496,6 +628,10 @@ int xe_vm_madvise_ioctl(struct drm_device *dev,
+> void *data, struct drm_file *fil
+> =C2=A0	xe_madvise_details_fini(&details);
+> =C2=A0unlock_vm:
+> =C2=A0	up_write(&vm->lock);
+> +
+> +	/* Write retained value to user after releasing all locks */
+> +	if (!err && do_retained)
+> +		err =3D
+> xe_madvise_purgeable_retained_to_user(&details);
+> =C2=A0put_vm:
+> =C2=A0	xe_vm_put(vm);
+> =C2=A0	return err;
