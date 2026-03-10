@@ -4,36 +4,37 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C15BEEB1066
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 11:57:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B88F5EB105B
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 11:57:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A45910E6D9;
-	Tue, 10 Mar 2026 11:57:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13A2010E6D1;
+	Tue, 10 Mar 2026 11:57:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="VO+3b2Uk";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="ORJP6pik";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1E5D10E6D8;
- Tue, 10 Mar 2026 11:57:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BB0410E6C9;
+ Tue, 10 Mar 2026 11:57:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1773143862;
- bh=q6cWlIPHJP94xlV119OSNA4p75Ngwqz4Ky8WC5QWwO8=;
+ s=default; t=1773143854;
+ bh=q5DGgQouGWGgfcuej1E52iDtx+kNPYr3AALCQt5FiTw=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=VO+3b2Uk0Pa11oVnMbk5Ds9h4801dOVayP/JR5Ks54hqsr7PUR2UeWlIi0PmoH5BC
- HB+q5sR336KE/L9fK7tXSdmSfhstvo4MIkgLxijDHfaq9WlMDA5pF3mf4Om/anuAhr
- 9zLF4ygXPmrkV6MyFYCRE40s9RAT3Osrd4p3YSbgHkceC1gW29pGXBAMPflAoz6vfd
- FA6cmpE+Uckjxg/wHncHvS3c/HWqU0mZB3fj7+ac00L3FtiThQQV35Bce3Wz93JoNo
- BtCP/Ip0c27iB79TubMY5d3AFEJApskVaY0rALkime7uExf0/Z7/9U8hyO9yaiOZxg
- K68DcoYtNsp9A==
+ b=ORJP6pik4mxWZMAxvvvqW03RNGWTfnDYCsgf12gqe7z50Hvoh3Zq3Os2AE9LGniSi
+ b85a460PAJAXUBq3zV3hDpxKlnX2JQeyOICXCLXFlicJs/6njoBLcW5+TxEKVLPQrA
+ NWRHOpq+MhOpoEXonUyRHgaZdVAmqzDKfa/J7maxafwUemHXUVcQfYqyvcIdwXjEhJ
+ U0dF+qmznJqi8DqKL9rdc5+tX1OmUCXm8DiJ9TSbUCXYbYHIuxxBUGomMp0iS9VEwa
+ IFXXdkfNfTYY/2UJr2CQjhRgY7XRhDz7RAIW6zeBgdcZTXxpPPpmVIKw3cKS+kCnAO
+ hkUvBh29/M8UQ==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
-	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v7 20/26] drm/i915/gt: Set stop_timeout() correctly on
- PREEMPT-RT
-Date: Tue, 10 Mar 2026 12:57:02 +0100
-Message-ID: <20260310115709.2276203-21-dev@lankhorst.se>
+Cc: dri-devel@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Uma Shankar <uma.shankar@intel.com>
+Subject: [PATCH v7 15/26] drm/i915/display: Fix intel_lpe_audio_irq_handler
+ for PREEMPT-RT
+Date: Tue, 10 Mar 2026 12:56:57 +0100
+Message-ID: <20260310115709.2276203-16-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260310115709.2276203-1-dev@lankhorst.se>
 References: <20260310115709.2276203-1-dev@lankhorst.se>
@@ -53,27 +54,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Also check if RCU is disabled for PREEMPT-RT, which is the case when
-local_bh_disable() is called.
+The LPE audio interrupt comes from the i915 interrupt handler. It
+should be in irq disabled context.
+
+With PREEMPT_RT enabled, the IRQ handler is threaded.
+Because intel_lpe_audio_irq_handler() may be called in threaded IRQ context,
+generic_handle_irq_safe API disables the interrupts before calling LPE's
+interrupt top half handler.
+
+This fixes braswell audio issues with RT enabled.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_cs.c | 2 +-
+ drivers/gpu/drm/i915/display/intel_lpe_audio.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index c0fd349a4600c..9dd9665128caa 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1607,7 +1607,7 @@ u64 intel_engine_get_last_batch_head(const struct intel_engine_cs *engine)
+diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+index 117b60656ca19..306b16889bc92 100644
+--- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+@@ -262,7 +262,7 @@ void intel_lpe_audio_irq_handler(struct intel_display *display)
+ 	if (!HAS_LPE_AUDIO(display))
+ 		return;
  
- static unsigned long stop_timeout(const struct intel_engine_cs *engine)
- {
--	if (in_atomic() || irqs_disabled()) /* inside atomic preempt-reset? */
-+	if (in_atomic() || irqs_disabled() || rcu_preempt_depth()) /* inside atomic preempt-reset? */
- 		return 0;
- 
- 	/*
+-	ret = generic_handle_irq(display->audio.lpe.irq);
++	ret = generic_handle_irq_safe(display->audio.lpe.irq);
+ 	if (ret)
+ 		drm_err_ratelimited(display->drm,
+ 				    "error handling LPE audio irq: %d\n", ret);
 -- 
 2.51.0
 
