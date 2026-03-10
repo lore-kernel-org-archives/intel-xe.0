@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6CE6FD88CA
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 22:50:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03BD6FD88C5
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 22:50:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6AA5410E793;
-	Tue, 10 Mar 2026 22:50:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE5D410E797;
+	Tue, 10 Mar 2026 22:50:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ey61dNNT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WHMLS4gE";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6587310E792
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9789410E791
  for <intel-xe@lists.freedesktop.org>; Tue, 10 Mar 2026 22:50:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773183043; x=1804719043;
+ t=1773183044; x=1804719044;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MIzx/n8/FqBhb07NqepSBkx9AzpoCTmrGbXpYe1ylcI=;
- b=Ey61dNNTWqdTUDAkyLQDp//wQLg4P4LhhpjfF5PMSw1CpuD3aGfwIj+Y
- 2joDIDWFXqikS8YuzvJEd/WgG4YoqCW15xqvAE2b+nKCkYHcqCGV4X/C4
- DrplJrSl0/bV93WCTBW728F8rLO95/2R+uwvAwew2637Vg2IY14L3979E
- aim+x7UPYay2ZhM1fmN55LSfFt4HGrzc2BK8pNSlZoofghMsGnkKYXyFC
- P10UxBPDmWkYJw6Hc4xUS0tg3Pw4H/prJZhd6x0C5wiSsKwyrnXcVge/f
- RP0EM7+A700u+qi+7mLkoLquPpUlK0puTt+SSY1z30SPemKVWjLJD/l4D w==;
-X-CSE-ConnectionGUID: C4jll/dSQ6KAQvlGcPMPPQ==
-X-CSE-MsgGUID: I7R9gHg7Seyyw+hfpNQHUA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="61817885"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="61817885"
+ bh=1PYGlGe6o5enDEtJxv7ZITtMqjuaLLBnX78P1ipbvd0=;
+ b=WHMLS4gEoOPaaFLZzyAHj2Kt16DeYwm+qVAN59GwcBZUktMj7Ilwaita
+ Ep44OeRGB45MZnubzotv67vAeHE1jUl+7h+Nxg5MCF1LjppnB3tzs6Gax
+ 7aA1dW4vj15njcdNzuTk985QWgPDnTjnocZaSKEjlYI6GlwxRSDFzZG0j
+ 4HyJZs1Aeltt/nFkY/C+f1TQzX/2d1zMz6pCkZ3Byb13HISrwXolWtdt6
+ WbMohOYsS/ZR1Ojt5JJU258TJvKRGXCxsyPAHCOqW1JIBm1aMyqdpHFEV
+ GnRBdN8IQe32MtrQnRKtLqni5Kn81wD+wLFcPZ0W9q26YZ2B4Po76OkZ+ A==;
+X-CSE-ConnectionGUID: DEDOT+L0TLy8mgSpk6rRpQ==
+X-CSE-MsgGUID: 5Qmv1cF4TzCQbFc8koK1TQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="61817890"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="61817890"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 15:50:42 -0700
-X-CSE-ConnectionGUID: yPIjyh42TFSVQVksiO9OIA==
-X-CSE-MsgGUID: CUPfv7RuTpiIM7P/+4taig==
+ 10 Mar 2026 15:50:43 -0700
+X-CSE-ConnectionGUID: Py+mOid8QH6kgLJOqe57Cw==
+X-CSE-MsgGUID: 5cnMJ7znSyGSXv39ZbjeSg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="220440995"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="220441009"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.39.24])
- by orviesa007.jf.intel.com with ESMTP; 10 Mar 2026 15:50:41 -0700
+ by orviesa007.jf.intel.com with ESMTP; 10 Mar 2026 15:50:42 -0700
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Zhanjun Dong <zhanjun.dong@intel.com>, stable@vger.kernel.org,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v9 3/7] drm/xe: Trigger queue cleanup if not in wedged mode 2
-Date: Tue, 10 Mar 2026 18:50:35 -0400
-Message-Id: <20260310225039.1320161-4-zhanjun.dong@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org,
+ Zhanjun Dong <zhanjun.dong@intel.com>
+Subject: [PATCH v9 7/7] drm/xe: Open-code GGTT MMIO access protection
+Date: Tue, 10 Mar 2026 18:50:39 -0400
+Message-Id: <20260310225039.1320161-8-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260310225039.1320161-1-zhanjun.dong@intel.com>
 References: <20260310225039.1320161-1-zhanjun.dong@intel.com>
@@ -66,72 +66,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The intent of wedging a device is to allow queues to continue running
-only in wedged mode 2. In other modes, queues should initiate cleanup
-and signal all remaining fences. Fix xe_guc_submit_wedge to correctly
-clean up queues when wedge mode != 2.
+From: Matthew Brost <matthew.brost@intel.com>
 
-Fixes: 7dbe8af13c18 ("drm/xe: Wedge the entire device")
+GGTT MMIO access is currently protected by hotplug (drm_dev_enter),
+which works correctly when the driver loads successfully and is later
+unbound or unloaded. However, if driver load fails, this protection is
+insufficient because drm_dev_unplug() is never called.
+
+Additionally, devm release functions cannot guarantee that all BOs with
+GGTT mappings are destroyed before the GGTT MMIO region is removed, as
+some BOs may be freed asynchronously by worker threads.
+
+To address this, introduce an open-coded flag, protected by the GGTT
+lock, that guards GGTT MMIO access. The flag is cleared during the
+dev_fini_ggtt devm release function to ensure MMIO access is disabled
+once teardown begins.
+
 Cc: stable@vger.kernel.org
+Fixes: 919bb54e989c ("drm/xe: Fix missing runtime outer protection for ggtt_remove_node")
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Zhanjun Dong <zhanjun.dong@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_submit.c | 35 +++++++++++++++++++-----------
- 1 file changed, 22 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/xe_ggtt.c | 15 +++++++++------
+ 1 file changed, 9 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 8afd424b27fb..cb32053d57ec 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -1319,6 +1319,7 @@ static void disable_scheduling_deregister(struct xe_guc *guc,
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 0f2e3af49912..21071b64b09d 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -66,6 +66,9 @@
+  * give us the correct placement for free.
   */
- void xe_guc_submit_wedge(struct xe_guc *guc)
+ 
++#define XE_GGTT_FLAGS_64K	BIT(0)
++#define XE_GGTT_FLAGS_ONLINE	BIT(1)
++
+ /**
+  * struct xe_ggtt_node - A node in GGTT.
+  *
+@@ -117,6 +120,8 @@ struct xe_ggtt {
+ 	 * @flags: Flags for this GGTT
+ 	 * Acceptable flags:
+ 	 * - %XE_GGTT_FLAGS_64K - if PTE size is 64K. Otherwise, regular is 4K.
++	 * - %XE_GGTT_FLAGS_ONLINE - is GGTT online, protected by ggtt->lock
++	 *   after init
+ 	 */
+ 	unsigned int flags;
+ 	/** @scratch: Internal object allocation used as a scratch page */
+@@ -367,6 +372,8 @@ static void dev_fini_ggtt(void *arg)
  {
-+	struct xe_device *xe = guc_to_xe(guc);
- 	struct xe_gt *gt = guc_to_gt(guc);
- 	struct xe_exec_queue *q;
- 	unsigned long index;
-@@ -1333,20 +1334,28 @@ void xe_guc_submit_wedge(struct xe_guc *guc)
- 	if (!guc->submission_state.initialized)
- 		return;
+ 	struct xe_ggtt *ggtt = arg;
  
--	err = devm_add_action_or_reset(guc_to_xe(guc)->drm.dev,
--				       guc_submit_wedged_fini, guc);
--	if (err) {
--		xe_gt_err(gt, "Failed to register clean-up in wedged.mode=%s; "
--			  "Although device is wedged.\n",
--			  xe_wedged_mode_to_string(XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET));
--		return;
--	}
-+	if (xe->wedged.mode == 2) {
-+		err = devm_add_action_or_reset(guc_to_xe(guc)->drm.dev,
-+					       guc_submit_wedged_fini, guc);
-+		if (err) {
-+			xe_gt_err(gt, "Failed to register clean-up on wedged.mode=2; "
-+				  "Although device is wedged.\n");
-+			return;
-+		}
- 
--	mutex_lock(&guc->submission_state.lock);
--	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
--		if (xe_exec_queue_get_unless_zero(q))
--			set_exec_queue_wedged(q);
--	mutex_unlock(&guc->submission_state.lock);
-+		mutex_lock(&guc->submission_state.lock);
-+		xa_for_each(&guc->submission_state.exec_queue_lookup, index, q)
-+			if (xe_exec_queue_get_unless_zero(q))
-+				set_exec_queue_wedged(q);
-+		mutex_unlock(&guc->submission_state.lock);
-+	} else {
-+		/* Forcefully kill any remaining exec queues, signal fences */
-+		guc_submit_reset_prepare(guc);
-+		xe_guc_submit_stop(guc);
-+		xe_guc_softreset(guc);
-+		xe_uc_fw_sanitize(&guc->fw);
-+		xe_guc_submit_pause_abort(guc);
-+	}
++	scoped_guard(mutex, &ggtt->lock)
++		ggtt->flags &= ~XE_GGTT_FLAGS_ONLINE;
+ 	drain_workqueue(ggtt->wq);
  }
  
- static bool guc_submit_hint_wedged(struct xe_guc *guc)
+@@ -437,6 +444,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ 	if (err)
+ 		return err;
+ 
++	ggtt->flags |= XE_GGTT_FLAGS_ONLINE;
+ 	return devm_add_action_or_reset(xe->drm.dev, dev_fini_ggtt, ggtt);
+ }
+ ALLOW_ERROR_INJECTION(xe_ggtt_init_early, ERRNO); /* See xe_pci_probe() */
+@@ -465,13 +473,10 @@ static void ggtt_node_fini(struct xe_ggtt_node *node)
+ static void ggtt_node_remove(struct xe_ggtt_node *node)
+ {
+ 	struct xe_ggtt *ggtt = node->ggtt;
+-	struct xe_device *xe = tile_to_xe(ggtt->tile);
+ 	bool bound;
+-	int idx;
+-
+-	bound = drm_dev_enter(&xe->drm, &idx);
+ 
+ 	mutex_lock(&ggtt->lock);
++	bound = ggtt->flags & XE_GGTT_FLAGS_ONLINE;
+ 	if (bound)
+ 		xe_ggtt_clear(ggtt, xe_ggtt_node_addr(node), xe_ggtt_node_size(node));
+ 	drm_mm_remove_node(&node->base);
+@@ -484,8 +489,6 @@ static void ggtt_node_remove(struct xe_ggtt_node *node)
+ 	if (node->invalidate_on_remove)
+ 		xe_ggtt_invalidate(ggtt);
+ 
+-	drm_dev_exit(idx);
+-
+ free_node:
+ 	ggtt_node_fini(node);
+ }
 -- 
 2.34.1
 
