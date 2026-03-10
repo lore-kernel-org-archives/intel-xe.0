@@ -4,37 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16310FD2D61
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 11:57:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1730AFD2D64
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 11:57:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 014CC10E6D8;
-	Tue, 10 Mar 2026 11:57:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACFDC10E6F4;
+	Tue, 10 Mar 2026 11:57:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="KWumscMl";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="DcM0GUk7";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF13210E6DF;
- Tue, 10 Mar 2026 11:57:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D0C510E6D9;
+ Tue, 10 Mar 2026 11:57:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1773143864;
- bh=Qyjkrg23NvqAtrZ6SXaT7ACN9JWfiY1iU+ZEiaE5bX4=;
+ s=default; t=1773143862;
+ bh=dgU9NxaeCYzOSvvL/Rn9LO0Bo2PGBMD2TB4KIygXVt8=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=KWumscMlLjkWsiGPS0Ln5IgpRWUds5BsVDDNnnVCLELJs5HItcuUKpO/jgeTT3keB
- LfZwolMd2mm1bYIg8uW32t+Ax4+t46wgF+MMkJ3tcY5oFvq3Rwev5hjYoJudDVP5ah
- qr2MLWsPRjvRiVSKOaRGaLX86AJOqgrpjci+FejUvBRNwQYOWAPxYk5LTCg3jCImDU
- N2hJTK1dk1X2pSrCeYXLjd/H+KvmD9h6nF3RIHSmavsUwRk+F2+74H2rzSMR1fLMzX
- aJqXiOM7mOn+yPWdEwJfPzdzCHq9MrVA09Qkdhd3nOM4nVnR6GVqQDNYsJJQEmf8Hs
- Mw5no72m7XgAw==
+ b=DcM0GUk74a88eEIzf8dSJzNqOIuxBZf1aRg4b3wtiIIXjNxYgRpI9vss2+FYRJiYb
+ 6fPvVV5ozWG/nhSlXt8Mu/a1Nz+0MWv7uOLbCxk7vznuFk0YJCF/XlWnxOCrR82i+q
+ tJs8tAXHJ3LBKelQT96zH0GCjnTSJhOPwgBjMkS5eyInBNT3N5GTjTtmUiy2ePe5rB
+ 4dF5kTWIjWEHQyFuRveCEnf/oU1gs/NboXTmK2BA5gqdLNk9PALuMWp2zFGlF6KSsH
+ PI+5RDhoqsP3CL+ItD12XibE3xgQXDdHeOCUwlG4BR4hPwRblXAXx7PGKgL3KsZnIX
+ KmibJMSN67+Hw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v7 23/26] Revert "drm/i915: Depend on !PREEMPT_RT."
-Date: Tue, 10 Mar 2026 12:57:05 +0100
-Message-ID: <20260310115709.2276203-24-dev@lankhorst.se>
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v7 21/26] drm/i915/display: Remove uncore lock from
+ vlv_atomic_update_fifo
+Date: Tue, 10 Mar 2026 12:57:03 +0100
+Message-ID: <20260310115709.2276203-22-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260310115709.2276203-1-dev@lankhorst.se>
 References: <20260310115709.2276203-1-dev@lankhorst.se>
@@ -54,30 +53,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+TODO: Grab uncore lock during entire vblank evasion before disabling
+interrupts, and check what breaks?
 
-Once the known issues are addressed, it should be safe to enable the
-driver.
-
-Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/Kconfig | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/i915/display/i9xx_wm.c | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
-index 5e939004b6463..40a9234e6e5dc 100644
---- a/drivers/gpu/drm/i915/Kconfig
-+++ b/drivers/gpu/drm/i915/Kconfig
-@@ -3,7 +3,6 @@ config DRM_I915
- 	tristate "Intel 8xx/9xx/G3x/G4x/HD Graphics"
- 	depends on DRM
- 	depends on X86 && PCI
--	depends on !PREEMPT_RT
- 	select INTEL_GTT if X86
- 	select INTERVAL_TREE
- 	# we need shmfs for the swappable backing store, and in particular
+diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
+index 9e170e79dcf67..8e1b3aced9a98 100644
+--- a/drivers/gpu/drm/i915/display/i9xx_wm.c
++++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
+@@ -1863,7 +1863,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
+ 				   struct intel_crtc *crtc)
+ {
+ 	struct intel_display *display = to_intel_display(crtc);
+-	struct intel_uncore *uncore = to_intel_uncore(display->drm);
+ 	const struct intel_crtc_state *crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	const struct vlv_fifo_state *fifo_state =
+@@ -1892,7 +1891,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
+ 	 * intel_pipe_update_start() has already disabled interrupts
+ 	 * for us, so a plain spin_lock() is sufficient here.
+ 	 */
+-	spin_lock(&uncore->lock);
+ 
+ 	switch (crtc->pipe) {
+ 	case PIPE_A:
+@@ -1951,8 +1949,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
+ 	}
+ 
+ 	intel_de_read_fw(display, DSPARB(display));
+-
+-	spin_unlock(&uncore->lock);
+ }
+ 
+ #undef VLV_FIFO
 -- 
 2.51.0
 
