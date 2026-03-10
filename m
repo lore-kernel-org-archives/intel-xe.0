@@ -4,55 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5132BEFCD9F
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 09:57:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4367EFCD9F
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 10:01:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1436B10E6AC;
-	Tue, 10 Mar 2026 09:57:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70C4710E6AE;
+	Tue, 10 Mar 2026 10:01:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ipo9M7pA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cWAd91iD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B531110E6AD
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Mar 2026 09:57:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53DA510E6AF
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Mar 2026 10:01:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773136632; x=1804672632;
+ t=1773136873; x=1804672873;
  h=message-id:subject:from:to:cc:date:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=7iti2WApTj4tqlLaQvnG1L9/UWThosVzKcYdeTXEURU=;
- b=ipo9M7pAw9Se+btf2N8NPPKwjfnsEhhiKvl+rzKluMKYNEXuLPNQ5gOU
- 5ht7VlPkTmlaiBYbOalecuo83RSJtM7yDE3/fC+J9HCmOc81NLgxdCp5u
- jZQEitg9nbnB86cyPp+nKSiBiGDjN1WUGhsJFWh4T7oAOyXNAuOt/2WDe
- 5Ao6oa20RuFx0/Q+PR8+M2r9iw3g1Lbm6RqmcZcn0gK7XiBVBSoEa6Tg6
- sSqKQ0BCQzPEIrJlm9JrFqCCAxn6odRO7iLALl3Ph/eq8uTebqR9II7Fu
- xolyrs2VBv6mYKTu9OvOMicFaXrEaDox1XdcZb7tHJ4ihpaX4V2wD3qI5 Q==;
-X-CSE-ConnectionGUID: zQSqPo8KR9GLWmn9/uAnhA==
-X-CSE-MsgGUID: TC5AlEADQIatBOxlvm52/g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="99644820"
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="99644820"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 02:57:11 -0700
-X-CSE-ConnectionGUID: m3Q97cDwREOrk93qQw8LkA==
-X-CSE-MsgGUID: IXd5GbShQSmyqR1PhZfGVQ==
+ bh=S62VDTXrNaqlueU7WAH3GUYEhuu4NgMhKy5FfS4eUmY=;
+ b=cWAd91iDotUkTfppTw6k2VYAMjtwxZVz8xU2/E2J6eAFofIvs2in53Sw
+ cLl30urakkEjsnwDQUgJIsK7+FO2oP/U9qZ5wYp2ztGj7BRKEfYOJ1JJj
+ 22U3u/fgsFqLdHqOomMUGD5mbQhxhfzDDk3ui9xJx4VY6IEVD5H2LymKO
+ P4k3CQ/cz1Ruf+eoXkbrSI7Nk7axC7OMK1tOKYAtsVD+amqUqFkuf8Hms
+ Wj2aJRhjwOzn7NfRltR0Z/Ct/DyeCtypVb91yQyLUf0AF48IAjiheTmjA
+ UjXRW1QZIJpPoDJt8gwA/JInfBIHIXUlth5GrG/2sKoaJtTkTuwbYrH84 Q==;
+X-CSE-ConnectionGUID: ajzhuV23Q7OuVsPTYyTZvg==
+X-CSE-MsgGUID: pz7KE1Z9RC63efuhRBuBXg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="84890470"
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="84890470"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2026 03:01:13 -0700
+X-CSE-ConnectionGUID: UqeXBx3BSIuPBfZus81pGg==
+X-CSE-MsgGUID: NtSGQx0YRBWe17Y3i/IdYw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="220014937"
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="220236127"
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.244.39])
  ([10.245.244.39])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 02:57:10 -0700
-Message-ID: <a8a7c37dffefb4d5d01a76ccf1e327f4a3496ab9.camel@linux.intel.com>
-Subject: Re: [PATCH v6 06/12] drm/xe/madvise: Implement per-VMA purgeable
- state tracking
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2026 03:01:11 -0700
+Message-ID: <fd01cee5878be605002e2a4f349be9f5b76010a6.camel@linux.intel.com>
+Subject: Re: [PATCH v6 10/12] drm/xe/bo: Add purgeable shrinker state helpers
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
 To: Arvind Yadav <arvind.yadav@intel.com>, intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com, 
  pallavi.mishra@intel.com
-Date: Tue, 10 Mar 2026 10:57:07 +0100
-In-Reply-To: <20260303152015.3499248-7-arvind.yadav@intel.com>
+Date: Tue, 10 Mar 2026 11:01:09 +0100
+In-Reply-To: <20260303152015.3499248-11-arvind.yadav@intel.com>
 References: <20260303152015.3499248-1-arvind.yadav@intel.com>
- <20260303152015.3499248-7-arvind.yadav@intel.com>
+ <20260303152015.3499248-11-arvind.yadav@intel.com>
 Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -73,34 +72,21 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On Tue, 2026-03-03 at 20:50 +0530, Arvind Yadav wrote:
-> Track purgeable state per-VMA instead of using a coarse shared
-> BO check. This prevents purging shared BOs until all VMAs across
-> all VMs are marked DONTNEED.
+> Encapsulate TTM purgeable flag updates and shrinker page accounting
+> into helper functions. This prevents desynchronization between the
+> TTM tt->purgeable flag and the shrinker's page bucket counters.
 >=20
-> Add xe_bo_all_vmas_dontneed() to check all VMAs before marking
-> a BO purgeable. Add xe_bo_recheck_purgeable_on_vma_unbind() to
-> handle state transitions when VMAs are destroyed - if all
-> remaining VMAs are DONTNEED the BO can become purgeable, or if
-> no VMAs remain it transitions to WILLNEED.
+> Without these helpers, direct manipulation of xe_ttm_tt->purgeable
+> risks forgetting to update the corresponding shrinker counters,
+> leading to incorrect memory pressure calculations.
 >=20
-> The per-VMA purgeable_state field stores the madvise hint for
-> each mapping. Shared BOs can only be purged when all VMAs
-> unanimously indicate DONTNEED.
+> Add xe_bo_set_purgeable_shrinker() and
+> xe_bo_clear_purgeable_shrinker()
+> which atomically update both the TTM flag and transfer pages between
+> the shrinkable and purgeable buckets.
 >=20
-> This prevents the bug where unmapping the last VMA would incorrectly
-> flip
-> a DONTNEED BO back to WILLNEED. The enum-based state check preserves
-> BO
-> state when no VMAs remain, only updating when VMAs provide explicit
-> hints.
->=20
-> v3:
-> =C2=A0 - This addresses Thomas Hellstr=C3=B6m's feedback: "loop over all =
-vmas
-> =C2=A0=C2=A0=C2=A0 attached to the bo and check that they all say WONTNEE=
-D. This
-> will
-> =C2=A0=C2=A0=C2=A0 also need a check at VMA unbinding"
+> Update purgeable BO state to PURGED after successful shrinker purge
+> for DONTNEED BOs.
 >=20
 > v4:
 > =C2=A0 - @madv_purgeable atomic_t =E2=86=92 u32 change across all relevan=
@@ -108,396 +94,332 @@ t
 > =C2=A0=C2=A0=C2=A0 patches (Matt)
 >=20
 > v5:
-> =C2=A0 - Call xe_bo_recheck_purgeable_on_vma_unbind() from
-> xe_vma_destroy()
-> =C2=A0=C2=A0=C2=A0 right after drm_gpuva_unlink() where we already hold t=
-he BO lock,
-> =C2=A0=C2=A0=C2=A0 drop the trylock-based late destroy path (Matt)
-> =C2=A0 - Move purgeable_state into xe_vma_mem_attr with the other madvise
-> =C2=A0=C2=A0=C2=A0 attributes (Matt)
-> =C2=A0 - Drop READ_ONCE since the BO lock already protects us (Matt)
-> =C2=A0 - Keep returning false when there are no VMAs - otherwise we'd mar=
-k
-> =C2=A0=C2=A0=C2=A0 BOs purgeable without any user hint (Matt)
-> =C2=A0 - Use xe_bo_set_purgeable_state() instead of direct
-> initialization(Matt)
-> =C2=A0 - use xe_assert instead of drm_warn (Thomas)
+> =C2=A0 - Update purgeable BO state to PURGED after a successful shrinker
+> =C2=A0=C2=A0=C2=A0 purge for DONTNEED BOs.
+> =C2=A0 - Split ghost BO and zero-refcount handling in xe_bo_shrink()
+> (Thomas)
 >=20
 > v6:
-> =C2=A0 - Fix state transition bug: don't flip DONTNEED =E2=86=92 WILLNEED=
- when
-> last
-> =C2=A0=C2=A0=C2=A0 VMA unmapped (Matt)
-> =C2=A0 - Change xe_bo_all_vmas_dontneed() from bool to enum to distinguis=
-h
-> =C2=A0=C2=A0=C2=A0 "no VMAs" from "has WILLNEED VMA" (Matt)
-> =C2=A0 - Preserve BO state on NO_VMAS instead of forcing WILLNEED.
-> =C2=A0 - Set skip_invalidation explicitly in madvise_purgeable() to ensur=
-e
-> =C2=A0=C2=A0=C2=A0 DONTNEED always zaps GPU PTEs regardless of prior madv=
-ise state.
+> =C2=A0 - Create separate patch for 'Split ghost BO and zero-refcount
+> =C2=A0=C2=A0=C2=A0 handling'. (Thomas)
 >=20
 > Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 > Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 > Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 > ---
-> =C2=A0drivers/gpu/drm/xe/xe_svm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 |=C2=A0=C2=A0 1 +
-> =C2=A0drivers/gpu/drm/xe/xe_vm.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 |=C2=A0=C2=A0 9 +-
-> =C2=A0drivers/gpu/drm/xe/xe_vm_madvise.c | 127
-> +++++++++++++++++++++++++++--
-> =C2=A0drivers/gpu/drm/xe/xe_vm_madvise.h |=C2=A0=C2=A0 3 +
-> =C2=A0drivers/gpu/drm/xe/xe_vm_types.h=C2=A0=C2=A0 |=C2=A0 11 +++
-> =C2=A05 files changed, 144 insertions(+), 7 deletions(-)
+> =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 | 63
+> ++++++++++++++++++++++++++++++
+> =C2=A0drivers/gpu/drm/xe/xe_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0 2 +
+> =C2=A0drivers/gpu/drm/xe/xe_vm_madvise.c |=C2=A0 8 +++-
+> =C2=A03 files changed, 71 insertions(+), 2 deletions(-)
 >=20
-> diff --git a/drivers/gpu/drm/xe/xe_svm.c
-> b/drivers/gpu/drm/xe/xe_svm.c
-> index 002b6c22ad3f..dffa0cab5f5d 100644
-> --- a/drivers/gpu/drm/xe/xe_svm.c
-> +++ b/drivers/gpu/drm/xe/xe_svm.c
-> @@ -318,6 +318,7 @@ static void xe_vma_set_default_attributes(struct
-> xe_vma *vma)
-> =C2=A0		.preferred_loc.migration_policy =3D
-> DRM_XE_MIGRATE_ALL_PAGES,
-> =C2=A0		.pat_index =3D vma->attr.default_pat_index,
-> =C2=A0		.atomic_access =3D DRM_XE_ATOMIC_UNDEFINED,
-> +		.purgeable_state =3D XE_MADV_PURGEABLE_WILLNEED,
-> =C2=A0	};
-> =C2=A0
-> =C2=A0	xe_vma_mem_attr_copy(&vma->attr, &default_attr);
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 4a8abdcfb912..8e4c14fa3df2 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -39,6 +39,7 @@
-> =C2=A0#include "xe_tile.h"
-> =C2=A0#include "xe_tlb_inval.h"
-> =C2=A0#include "xe_trace_bo.h"
-> +#include "xe_vm_madvise.h"
-> =C2=A0#include "xe_wa.h"
-> =C2=A0
-> =C2=A0static struct drm_gem_object *xe_vm_obj(struct xe_vm *vm)
-> @@ -1085,6 +1086,7 @@ static struct xe_vma *xe_vma_create(struct
-> xe_vm *vm,
-> =C2=A0static void xe_vma_destroy_late(struct xe_vma *vma)
-> =C2=A0{
-> =C2=A0	struct xe_vm *vm =3D xe_vma_vm(vma);
-> +	struct xe_bo *bo =3D xe_vma_bo(vma);
-> =C2=A0
-> =C2=A0	if (vma->ufence) {
-> =C2=A0		xe_sync_ufence_put(vma->ufence);
-> @@ -1099,7 +1101,7 @@ static void xe_vma_destroy_late(struct xe_vma
-> *vma)
-> =C2=A0	} else if (xe_vma_is_null(vma) ||
-> xe_vma_is_cpu_addr_mirror(vma)) {
-> =C2=A0		xe_vm_put(vm);
-> =C2=A0	} else {
-> -		xe_bo_put(xe_vma_bo(vma));
-> +		xe_bo_put(bo);
-> =C2=A0	}
-> =C2=A0
-> =C2=A0	xe_vma_free(vma);
-> @@ -1125,6 +1127,7 @@ static void vma_destroy_cb(struct dma_fence
-> *fence,
-> =C2=A0static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence
-> *fence)
-> =C2=A0{
-> =C2=A0	struct xe_vm *vm =3D xe_vma_vm(vma);
-> +	struct xe_bo *bo =3D xe_vma_bo(vma);
-> =C2=A0
-> =C2=A0	lockdep_assert_held_write(&vm->lock);
-> =C2=A0	xe_assert(vm->xe, list_empty(&vma->combined_links.destroy));
-> @@ -1133,9 +1136,10 @@ static void xe_vma_destroy(struct xe_vma *vma,
-> struct dma_fence *fence)
-> =C2=A0		xe_assert(vm->xe, vma->gpuva.flags &
-> XE_VMA_DESTROYED);
-> =C2=A0		xe_userptr_destroy(to_userptr_vma(vma));
-> =C2=A0	} else if (!xe_vma_is_null(vma) &&
-> !xe_vma_is_cpu_addr_mirror(vma)) {
-> -		xe_bo_assert_held(xe_vma_bo(vma));
-> +		xe_bo_assert_held(bo);
-> =C2=A0
-> =C2=A0		drm_gpuva_unlink(&vma->gpuva);
-> +		xe_bo_recompute_purgeable_state(bo);
-> =C2=A0	}
-> =C2=A0
-> =C2=A0	xe_vm_assert_held(vm);
-> @@ -2691,6 +2695,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm
-> *vm, struct drm_gpuva_ops *ops,
-> =C2=A0				.atomic_access =3D
-> DRM_XE_ATOMIC_UNDEFINED,
-> =C2=A0				.default_pat_index =3D op-
-> >map.pat_index,
-> =C2=A0				.pat_index =3D op->map.pat_index,
-> +				.purgeable_state =3D
-> XE_MADV_PURGEABLE_WILLNEED,
-> =C2=A0			};
-> =C2=A0
-> =C2=A0			flags |=3D op->map.vma_flags &
-> XE_VMA_CREATE_MASK;
-> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c
-> b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> index f7e767f21795..ca003e0db87b 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> @@ -12,6 +12,7 @@
-> =C2=A0#include "xe_pat.h"
-> =C2=A0#include "xe_pt.h"
-> =C2=A0#include "xe_svm.h"
-> +#include "xe_vm.h"
-> =C2=A0
-> =C2=A0struct xe_vmas_in_madvise_range {
-> =C2=A0	u64 addr;
-> @@ -183,6 +184,112 @@ static void madvise_pat_index(struct xe_device
-> *xe, struct xe_vm *vm,
-> =C2=A0	}
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 3a4965bdadf2..598d4463baf3 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -863,6 +863,66 @@ void xe_bo_set_purgeable_state(struct xe_bo *bo,
+> =C2=A0	bo->madv_purgeable =3D new_state;
 > =C2=A0}
 > =C2=A0
 > +/**
-> + * enum xe_bo_vmas_purge_state - VMA purgeable state aggregation
-> + *
-> + * Distinguishes whether a BO's VMAs are all DONTNEED, have at least
-> + * one WILLNEED, or have no VMAs at all.
-> + *
-> + * Enum values align with XE_MADV_PURGEABLE_* states for
-> consistency.
-> + */
-> +enum xe_bo_vmas_purge_state {
-> +	/** @XE_BO_VMAS_STATE_WILLNEED: At least one VMA is WILLNEED
-> */
-> +	XE_BO_VMAS_STATE_WILLNEED =3D 0,
-> +	/** @XE_BO_VMAS_STATE_DONTNEED: All VMAs are DONTNEED */
-> +	XE_BO_VMAS_STATE_DONTNEED =3D 1,
-> +	/** @XE_BO_VMAS_STATE_NO_VMAS: BO has no VMAs */
-> +	XE_BO_VMAS_STATE_NO_VMAS =3D 2,
-> +};
-> +
-> +/**
-> + * xe_bo_all_vmas_dontneed() - Determine BO VMA purgeable state
+> + * xe_bo_set_purgeable_shrinker() - Mark BO purgeable and update
+> shrinker
 > + * @bo: Buffer object
 > + *
-> + * Check all VMAs across all VMs to determine aggregate purgeable
-> state.
-> + * Shared BOs require unanimous DONTNEED state from all mappings.
-> + *
-> + * Caller must hold BO dma-resv lock.
-> + *
-> + * Return: XE_BO_VMAS_STATE_DONTNEED if all VMAs are DONTNEED,
-> + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 XE_BO_VMAS_STATE_WILL=
-NEED if at least one VMA is not
-> DONTNEED,
-> + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 XE_BO_VMAS_STATE_NO_V=
-MAS if BO has no VMAs
+> + * Transfers pages from shrinkable to purgeable bucket. Shrinker can
+> now
+> + * discard pages immediately without swapping. Caller holds BO lock.
 > + */
-> +static enum xe_bo_vmas_purge_state xe_bo_all_vmas_dontneed(struct
-> xe_bo *bo)
+> +void xe_bo_set_purgeable_shrinker(struct xe_bo *bo)
 > +{
-> +	struct drm_gpuvm_bo *vm_bo;
-> +	struct drm_gpuva *gpuva;
-> +	struct drm_gem_object *obj =3D &bo->ttm.base;
-> +	bool has_vmas =3D false;
+> +	struct ttm_buffer_object *ttm_bo =3D &bo->ttm;
+> +	struct ttm_tt *tt =3D ttm_bo->ttm;
+> +	struct xe_device *xe =3D ttm_to_xe_device(ttm_bo->bdev);
+> +	struct xe_ttm_tt *xe_tt;
 > +
 > +	xe_bo_assert_held(bo);
 > +
-> +	drm_gem_for_each_gpuvm_bo(vm_bo, obj) {
-> +		drm_gpuvm_bo_for_each_va(gpuva, vm_bo) {
-> +			struct xe_vma *vma =3D gpuva_to_vma(gpuva);
+> +	if (!tt || !ttm_tt_is_populated(tt))
+> +		return;
 > +
-> +			has_vmas =3D true;
+> +	xe_tt =3D container_of(tt, struct xe_ttm_tt, ttm);
 > +
-> +			/* Any non-DONTNEED VMA prevents purging */
-> +			if (vma->attr.purgeable_state !=3D
-> XE_MADV_PURGEABLE_DONTNEED)
-> +				return XE_BO_VMAS_STATE_WILLNEED;
-> +		}
+> +	if (!xe_tt->purgeable) {
+> +		xe_tt->purgeable =3D true;
+> +		/* Transfer pages from shrinkable to purgeable count
+> */
+> +		xe_shrinker_mod_pages(xe->mem.shrinker,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -(long)tt->num_pages,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tt->num_pages);
 > +	}
-> +
-> +	/*
-> +	 * No VMAs =3D> preserve existing BO purgeable state.
-> +	 * Avoids incorrectly flipping DONTNEED -> WILLNEED when
-> last VMA unmapped.
-> +	 */
-> +	if (!has_vmas)
-> +		return XE_BO_VMAS_STATE_NO_VMAS;
-> +
-> +	return XE_BO_VMAS_STATE_DONTNEED;
 > +}
 > +
 > +/**
-> + * xe_bo_recompute_purgeable_state() - Recompute BO purgeable state
-> from VMAs
+> + * xe_bo_clear_purgeable_shrinker() - Mark BO non-purgeable and
+> update shrinker
 > + * @bo: Buffer object
 > + *
-> + * Walk all VMAs to determine if BO should be purgeable or not.
-> + * Shared BOs require unanimous DONTNEED state from all mappings.
-> + *
-> + * Locking: Caller must hold BO dma-resv lock. When iterating GPUVM
-> lists,
-> + * VM lock must also be held (write) to prevent concurrent VMA
-> modifications.
-> + * This is satisfied at both call sites:
-> + * - xe_vma_destroy(): holds vm->lock write
-> + * - madvise_purgeable(): holds vm->lock write (from madvise ioctl
-> path)
-> + *
-> + * Return: nothing
+> + * Transfers pages from purgeable to shrinkable bucket. Shrinker
+> must now
+> + * swap pages instead of discarding. Caller holds BO lock.
 > + */
-> +void xe_bo_recompute_purgeable_state(struct xe_bo *bo)
+> +void xe_bo_clear_purgeable_shrinker(struct xe_bo *bo)
 > +{
-> +	enum xe_bo_vmas_purge_state vma_state;
-> +
-> +	if (!bo)
-> +		return;
+> +	struct ttm_buffer_object *ttm_bo =3D &bo->ttm;
+> +	struct ttm_tt *tt =3D ttm_bo->ttm;
+> +	struct xe_device *xe =3D ttm_to_xe_device(ttm_bo->bdev);
+> +	struct xe_ttm_tt *xe_tt;
 > +
 > +	xe_bo_assert_held(bo);
 > +
-> +	/*
-> +	 * Once purged, always purged. Cannot transition back to
-> WILLNEED.
-> +	 * This matches i915 semantics where purged BOs are
-> permanently invalid.
-> +	 */
-> +	if (bo->madv_purgeable =3D=3D XE_MADV_PURGEABLE_PURGED)
+> +	if (!tt || !ttm_tt_is_populated(tt))
 > +		return;
 > +
-> +	vma_state =3D xe_bo_all_vmas_dontneed(bo);
+> +	xe_tt =3D container_of(tt, struct xe_ttm_tt, ttm);
 > +
-> +	if (vma_state =3D=3D XE_BO_VMAS_STATE_DONTNEED) {
-> +		/* All VMAs are DONTNEED - mark BO purgeable */
-> +		if (bo->madv_purgeable !=3D
-> XE_MADV_PURGEABLE_DONTNEED)
-> +			xe_bo_set_purgeable_state(bo,
-> XE_MADV_PURGEABLE_DONTNEED);
-> +	} else if (vma_state =3D=3D XE_BO_VMAS_STATE_WILLNEED) {
-> +		/* At least one VMA is WILLNEED - BO must not be
-> purgeable */
-> +		if (bo->madv_purgeable !=3D
-> XE_MADV_PURGEABLE_WILLNEED)
-> +			xe_bo_set_purgeable_state(bo,
-> XE_MADV_PURGEABLE_WILLNEED);
+> +	if (xe_tt->purgeable) {
+> +		xe_tt->purgeable =3D false;
+> +		/* Transfer pages from purgeable to shrinkable count
+> */
+> +		xe_shrinker_mod_pages(xe->mem.shrinker,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tt->num_pages,
+> +				=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -(long)tt->num_pages);
 > +	}
-> +	/* XE_BO_VMAS_STATE_NO_VMAS: Preserve existing BO state */
-
-Couldn't this be made:
-
-	if (vma_state !=3D bo->madv_purgeable && vma_state !=3D
-XE_BO_VMAS_STATE_NO_VMAS)
-		xe_bo_set_purgeable_state(bo, vma_state);
-
-
-(see upcoming email for shrinker implication).
-
-I also wonder if you ever explored the idea of having a "willneed_maps"
-refcount on each bo. Each willneed vma as well as each exported dma-buf
-would then take such a refcount, and state-transitions would happen
-when the refcount goes from 0->1 and 1->0? That could possibly save a
-lot of processing in xe_bo_all_vmas_dontneed?
-
-
-/Thomas
-
-
 > +}
 > +
 > =C2=A0/**
-> =C2=A0 * madvise_purgeable - Handle purgeable buffer object advice
-> =C2=A0 * @xe: XE device
-> @@ -214,8 +321,11 @@ static void __maybe_unused
-> madvise_purgeable(struct xe_device *xe,
-> =C2=A0	for (i =3D 0; i < num_vmas; i++) {
-> =C2=A0		struct xe_bo *bo =3D xe_vma_bo(vmas[i]);
-> =C2=A0
-> -		if (!bo)
-> +		if (!bo) {
-> +			/* Purgeable state applies to BOs only, skip
-> non-BO VMAs */
-> +			vmas[i]->skip_invalidation =3D true;
-> =C2=A0			continue;
-> +		}
-> =C2=A0
-> =C2=A0		/* BO must be locked before modifying madv state */
-> =C2=A0		xe_bo_assert_held(bo);
-> @@ -226,19 +336,26 @@ static void __maybe_unused
-> madvise_purgeable(struct xe_device *xe,
-> =C2=A0		 */
-> =C2=A0		if (xe_bo_is_purged(bo)) {
-> =C2=A0			details->has_purged_bo =3D true;
-> +			vmas[i]->skip_invalidation =3D true;
-> =C2=A0			continue;
-> =C2=A0		}
-> =C2=A0
-> =C2=A0		switch (op->purge_state_val.val) {
-> =C2=A0		case DRM_XE_VMA_PURGEABLE_STATE_WILLNEED:
-> -			xe_bo_set_purgeable_state(bo,
-> XE_MADV_PURGEABLE_WILLNEED);
-> +			vmas[i]->attr.purgeable_state =3D
-> XE_MADV_PURGEABLE_WILLNEED;
-> +			vmas[i]->skip_invalidation =3D true;
-> +
-> +			xe_bo_recompute_purgeable_state(bo);
-> =C2=A0			break;
-> =C2=A0		case DRM_XE_VMA_PURGEABLE_STATE_DONTNEED:
-> -			xe_bo_set_purgeable_state(bo,
-> XE_MADV_PURGEABLE_DONTNEED);
-> +			vmas[i]->attr.purgeable_state =3D
-> XE_MADV_PURGEABLE_DONTNEED;
-> +			vmas[i]->skip_invalidation =3D false;
-> +
-> +			xe_bo_recompute_purgeable_state(bo);
-> =C2=A0			break;
-> =C2=A0		default:
-> -			drm_warn(&vm->xe->drm, "Invalid madvice
-> value =3D %d\n",
-> -				 op->purge_state_val.val);
-> +			/* Should never hit - values validated in
-> madvise_args_are_sane() */
-> +			xe_assert(vm->xe, 0);
-> =C2=A0			return;
-> =C2=A0		}
+> =C2=A0 * xe_ttm_bo_purge() - Purge buffer object backing store
+> =C2=A0 * @ttm_bo: The TTM buffer object to purge
+> @@ -1243,6 +1303,9 @@ long xe_bo_shrink(struct ttm_operation_ctx
+> *ctx, struct ttm_buffer_object *bo,
+> =C2=A0			lret =3D xe_bo_move_notify(xe_bo, ctx);
+> =C2=A0		if (!lret)
+> =C2=A0			lret =3D xe_bo_shrink_purge(ctx, bo, scanned);
+> +		if (lret > 0 && xe_bo_madv_is_dontneed(xe_bo))
+> +			xe_bo_set_purgeable_state(xe_bo,
+> +						=C2=A0
+> XE_MADV_PURGEABLE_PURGED);
+> =C2=A0		goto out_unref;
 > =C2=A0	}
-> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.h
-> b/drivers/gpu/drm/xe/xe_vm_madvise.h
-> index b0e1fc445f23..39acd2689ca0 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_madvise.h
-> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.h
-> @@ -8,8 +8,11 @@
 > =C2=A0
-> =C2=A0struct drm_device;
-> =C2=A0struct drm_file;
-> +struct xe_bo;
+> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> index 0d9f25b51eb2..46d1fff10e4f 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -272,6 +272,8 @@ static inline bool xe_bo_madv_is_dontneed(struct
+> xe_bo *bo)
+> =C2=A0}
 > =C2=A0
-> =C2=A0int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
-> =C2=A0			struct drm_file *file);
+> =C2=A0void xe_bo_set_purgeable_state(struct xe_bo *bo, enum
+> xe_madv_purgeable_state new_state);
+> +void xe_bo_set_purgeable_shrinker(struct xe_bo *bo);
+> +void xe_bo_clear_purgeable_shrinker(struct xe_bo *bo);
 > =C2=A0
-> +void xe_bo_recompute_purgeable_state(struct xe_bo *bo);
-> +
-> =C2=A0#endif
-> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
-> b/drivers/gpu/drm/xe/xe_vm_types.h
-> index 1f6f7e30e751..bfe7157756ad 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> @@ -94,6 +94,17 @@ struct xe_vma_mem_attr {
-> =C2=A0	 * same as default_pat_index unless overwritten by madvise.
-> =C2=A0	 */
-> =C2=A0	u16 pat_index;
-> +
-> +	/**
-> +	 * @purgeable_state: Purgeable hint for this VMA mapping
-> +	 *
-> +	 * Per-VMA purgeable state from madvise. Valid states are
-> WILLNEED (0)
-> +	 * or DONTNEED (1). Shared BOs require all VMAs to be
-> DONTNEED before
-> +	 * the BO can be purged. PURGED state exists only at BO
-> level.
-> +	 *
-> +	 * Protected by BO dma-resv lock. Set via
-> DRM_IOCTL_XE_MADVISE.
-> +	 */
-> +	u32 purgeable_state;
-> =C2=A0};
+> =C2=A0static inline void xe_bo_unpin_map_no_vm(struct xe_bo *bo)
+> =C2=A0{
+> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c
+> b/drivers/gpu/drm/xe/xe_vm_madvise.c
+> index 8acc19e25aa5..ab83e94980e4 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
+> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+> @@ -312,12 +312,16 @@ void xe_bo_recompute_purgeable_state(struct
+> xe_bo *bo)
 > =C2=A0
-> =C2=A0struct xe_vma {
+> =C2=A0	if (vma_state =3D=3D XE_BO_VMAS_STATE_DONTNEED) {
+> =C2=A0		/* All VMAs are DONTNEED - mark BO purgeable */
+> -		if (bo->madv_purgeable !=3D
+> XE_MADV_PURGEABLE_DONTNEED)
+> +		if (bo->madv_purgeable !=3D
+> XE_MADV_PURGEABLE_DONTNEED) {
+> =C2=A0			xe_bo_set_purgeable_state(bo,
+> XE_MADV_PURGEABLE_DONTNEED);
+> +			xe_bo_set_purgeable_shrinker(bo);
+> +		}
+> =C2=A0	} else if (vma_state =3D=3D XE_BO_VMAS_STATE_WILLNEED) {
+> =C2=A0		/* At least one VMA is WILLNEED - BO must not be
+> purgeable */
+> -		if (bo->madv_purgeable !=3D
+> XE_MADV_PURGEABLE_WILLNEED)
+> +		if (bo->madv_purgeable !=3D
+> XE_MADV_PURGEABLE_WILLNEED) {
+> =C2=A0			xe_bo_set_purgeable_state(bo,
+> XE_MADV_PURGEABLE_WILLNEED);
+> +			xe_bo_clear_purgeable_shrinker(bo);
+> +		}
+> =C2=A0	}
+> =C2=A0	/* XE_BO_VMAS_STATE_NO_VMAS: Preserve existing BO state */
+> =C2=A0}
+
+I think this can be simplified a bit using something like the below
+applied after the above patch: (untested).
+
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 07acce383cb1..9f0885cd3cfd 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -835,47 +835,14 @@ static int xe_bo_move_notify(struct xe_bo *bo,
+ 	return 0;
+ }
+=20
+-/**
+- * xe_bo_set_purgeable_state() - Set BO purgeable state with
+validation
+- * @bo: Buffer object
+- * @new_state: New purgeable state
+- *
+- * Sets the purgeable state with lockdep assertions and validates
+state
+- * transitions. Once a BO is PURGED, it cannot transition to any other
+state.
+- * Invalid transitions are caught with xe_assert().
+- */
+-void xe_bo_set_purgeable_state(struct xe_bo *bo,
+-			       enum xe_madv_purgeable_state new_state)
+-{
+-	struct xe_device *xe =3D xe_bo_device(bo);
+-
+-	xe_bo_assert_held(bo);
+-
+-	/* Validate state is one of the known values */
+-	xe_assert(xe, new_state =3D=3D XE_MADV_PURGEABLE_WILLNEED ||
+-		      new_state =3D=3D XE_MADV_PURGEABLE_DONTNEED ||
+-		      new_state =3D=3D XE_MADV_PURGEABLE_PURGED);
+-
+-	/* Once purged, always purged - cannot transition out */
+-	xe_assert(xe, !(bo->madv_purgeable =3D=3D XE_MADV_PURGEABLE_PURGED
+&&
+-			new_state !=3D XE_MADV_PURGEABLE_PURGED));
+-
+-	bo->madv_purgeable =3D new_state;
+-}
+-
+-/**
+- * xe_bo_set_purgeable_shrinker() - Mark BO purgeable and update
+shrinker
+- * @bo: Buffer object
+- *
+- * Transfers pages from shrinkable to purgeable bucket. Shrinker can
+now
+- * discard pages immediately without swapping. Caller holds BO lock.
+- */
+-void xe_bo_set_purgeable_shrinker(struct xe_bo *bo)
++static void xe_bo_set_purgeable_shrinker(struct xe_bo *bo, enum
+xe_madv_purgeable_state new_state)
++					=20
+ {
+ 	struct ttm_buffer_object *ttm_bo =3D &bo->ttm;
+ 	struct ttm_tt *tt =3D ttm_bo->ttm;
+ 	struct xe_device *xe =3D ttm_to_xe_device(ttm_bo->bdev);
+ 	struct xe_ttm_tt *xe_tt;
++	long int tt_pages;
+=20
+ 	xe_bo_assert_held(bo);
+=20
+@@ -883,44 +850,44 @@ void xe_bo_set_purgeable_shrinker(struct xe_bo
+*bo)
+ 		return;
+=20
+ 	xe_tt =3D container_of(tt, struct xe_ttm_tt, ttm);
+-
+-	if (!xe_tt->purgeable) {
++	tt_pages =3D tt->num_pages;
++=09
++	if (!xe_tt->purgeable && new_state =3D=3D
+XE_MADV_PURGEABLE_DONTNEED) {
+ 		xe_tt->purgeable =3D true;
+-		/* Transfer pages from shrinkable to purgeable count
+*/
+-		xe_shrinker_mod_pages(xe->mem.shrinker,
+-				      -(long)tt->num_pages,
+-				      tt->num_pages);
++		xe_shrinker_mod_pages(xe->mem.shrinker, -tt_pages,
+tt_pages);
++	} else if (xe_tt->purgeable && new_state =3D=3D
+XE_MADV_PURGEABLE_WILLNEED) {
++		xe_tt->purgeable =3D false;
++		xe_shrinker_mod_pages(xe->mem.shrinker, tt_pages, -
+tt_pages);
+ 	}
+ }
+=20
+ /**
+- * xe_bo_clear_purgeable_shrinker() - Mark BO non-purgeable and update
+shrinker
++ * xe_bo_set_purgeable_state() - Set BO purgeable state with
+validation
+  * @bo: Buffer object
++ * @new_state: New purgeable state
+  *
+- * Transfers pages from purgeable to shrinkable bucket. Shrinker must
+now
+- * swap pages instead of discarding. Caller holds BO lock.
++ * Sets the purgeable state with lockdep assertions and validates
+state
++ * transitions. Once a BO is PURGED, it cannot transition to any other
+state.
++ * Invalid transitions are caught with xe_assert().
+  */
+-void xe_bo_clear_purgeable_shrinker(struct xe_bo *bo)
++void xe_bo_set_purgeable_state(struct xe_bo *bo
++,			       enum xe_madv_purgeable_state new_state)
+ {
+-	struct ttm_buffer_object *ttm_bo =3D &bo->ttm;
+-	struct ttm_tt *tt =3D ttm_bo->ttm;
+-	struct xe_device *xe =3D ttm_to_xe_device(ttm_bo->bdev);
+-	struct xe_ttm_tt *xe_tt;
++	struct xe_device *xe =3D xe_bo_device(bo);
+=20
+ 	xe_bo_assert_held(bo);
+=20
+-	if (!tt || !ttm_tt_is_populated(tt))
+-		return;
++	/* Validate state is one of the known values */
++	xe_assert(xe, new_state =3D=3D XE_MADV_PURGEABLE_WILLNEED ||
++		      new_state =3D=3D XE_MADV_PURGEABLE_DONTNEED ||
++		      new_state =3D=3D XE_MADV_PURGEABLE_PURGED);
+=20
+-	xe_tt =3D container_of(tt, struct xe_ttm_tt, ttm);
++	/* Once purged, always purged - cannot transition out */
++	xe_assert(xe, !(bo->madv_purgeable =3D=3D XE_MADV_PURGEABLE_PURGED
+&&
++			new_state !=3D XE_MADV_PURGEABLE_PURGED));
+=20
+-	if (xe_tt->purgeable) {
+-		xe_tt->purgeable =3D false;
+-		/* Transfer pages from purgeable to shrinkable count
+*/
+-		xe_shrinker_mod_pages(xe->mem.shrinker,
+-				      tt->num_pages,
+-				      -(long)tt->num_pages);
+-	}
++	bo->madv_purgeable =3D new_state;
++	xe_bo_set_purgeable_shrinker(bo, new_state);
+ }
+=20
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 46d1fff10e4f..0d9f25b51eb2 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -272,8 +272,6 @@ static inline bool xe_bo_madv_is_dontneed(struct
+xe_bo *bo)
+ }
+=20
+ void xe_bo_set_purgeable_state(struct xe_bo *bo, enum
+xe_madv_purgeable_state new_state);
+-void xe_bo_set_purgeable_shrinker(struct xe_bo *bo);
+-void xe_bo_clear_purgeable_shrinker(struct xe_bo *bo);
+=20
+ static inline void xe_bo_unpin_map_no_vm(struct xe_bo *bo)
+ {
+
+
+
+
+
+
+
+
