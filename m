@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B553EB1060
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 15:38:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07660EB1074
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 15:50:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8421E10E2BC;
-	Tue, 10 Mar 2026 15:38:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MacECfSl";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E4F210E2B6;
- Tue, 10 Mar 2026 15:38:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773157105; x=1804693105;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=5t/Nl19lBc99pULKIc3u2lOUlSXXZ3/NYwUYAkaStbI=;
- b=MacECfSlbfk4otUq8HoYVlayzqTOKsr1Ghd0d1UDdrT238clzNaEWTcK
- NjR0X3YokO+QU8J1M3tu97vR4U6fSqEndiOibFBz/BrWc7gaAEK6QW8Yr
- 4vf6QntIO5wo9JLU/li83kAq68aWnDN6dRbbZrbrAdbqM1dJqD4JzG5NE
- c9Y9mSqjt61SG9WxYldfabUFe7h/TGiH5eRYqPCwkY2AvLagEgr9ih6Q3
- zExrR0ZkdfAo01nCvmvnzBrWeul4DknaZabU8+n2CJbtktdZat9dygIR1
- P06OO68ssQf425Dgs8/vkVJIwjaq6bAr/SQOnnhOwDy6JESgF0FyvcWLb g==;
-X-CSE-ConnectionGUID: 7Lg2DLTATeCLdSMjx+1IeA==
-X-CSE-MsgGUID: 1f1gcSjwSJq35uojfEPv2A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="84840209"
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="84840209"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 08:38:25 -0700
-X-CSE-ConnectionGUID: jVO35lVmR+CT7xza/853Fg==
-X-CSE-MsgGUID: EVk+8s8SRLS5JZ5CqAgUrw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="220199474"
-Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa008.jf.intel.com with ESMTP; 10 Mar 2026 08:38:23 -0700
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v3 04/24] drm/i915/lt_phy: Refactor LT PHY PLL handling to use
- explicit PLL state
-Date: Tue, 10 Mar 2026 15:38:21 +0000
-Message-ID: <20260310153821.1933371-1-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260310133600.1708066-1-mika.kahola@intel.com>
-References: <20260310133600.1708066-1-mika.kahola@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD24210E717;
+	Tue, 10 Mar 2026 15:50:16 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 048BC10E2C4;
+ Tue, 10 Mar 2026 15:50:16 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_AuxCCS_handling_and_rende?=
+ =?utf-8?q?r_compression_modifiers?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 10 Mar 2026 15:50:16 -0000
+Message-ID: <177315781600.340340.17681218316662836702@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260310123453.54346-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20260310123453.54346-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,208 +36,88 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The LT PHY implementation currently pulls PLL and port_clock
-information directly from the CRTC state. This ties the PHY
-programming logic too tightly to the CRTC state and makes it
-harder to clearly express the PHY’s own PLL configuration.
+== Series Details ==
 
-Introduce an explicit "struct intel_lt_phy_pll_state" argument
-for the PHY functions and update callers accordingly.
+Series: AuxCCS handling and render compression modifiers
+URL   : https://patchwork.freedesktop.org/series/162953/
+State : warning
 
-No functional change is intended — this is a preparatory cleanup for
-to bring LT PHY PLL handling as part of PLL framework.
+== Summary ==
 
-v2:  DP, HDMI 2.0, and HDMI FRL modes are port of the VDR configuration 0
-    register. These modes are defined by bits 2:0. Decode these to
-    differentiate DP and HDMI modes when programming PLL's. (Imre, Suraj)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 004317ff024e787f794562f2457d617ace1c253f
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Tue Mar 10 12:34:53 2026 +0000
 
-BSpec: 744921
+    drm/xe/xelp: Expose AuxCCS frame buffer modifiers on Alderlake-P
+    
+    Now that we have implemented all the related missing bits we can enable
+    the AuxCCS compressed modifiers which were disabled in
+    cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
+    
+    Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+    
+            [PLANE:32:plane 1A]: type=PRI
+                    uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=28
+                    hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000
+    
+    Display is working fine - no artefacts, no DMAR/PIPE faults.
+    
+    v2:
+     * Adjust patch title. (Rodrigo)
+    
+    v3:
+     * Complete rewrite based on the display parent interface.
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+    References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+    Cc: Jani Nikula <jani.nikula@intel.com>
+    Cc: José Roberto de Souza <jose.souza@intel.com>
+    Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch adf67fb1258884dab38a71526783f901069dbb81 drm-intel
+a258c5cd5870 drm/xe: Rename XE_BO_FLAG_SCANOUT to XE_BO_FLAG_FORCE_WC
+-:127: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#127: FILE: drivers/gpu/drm/xe/xe_bo.c:517:
++		if ((!bo->cpu_caching && bo->flags & XE_BO_FLAG_FORCE_WC) ||
+ 		     (!xe->info.has_cached_pt && bo->flags & XE_BO_FLAG_PAGETABLE))
 
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/intel_lt_phy.c | 67 ++++++++++++++-------
- 1 file changed, 46 insertions(+), 21 deletions(-)
+total: 0 errors, 0 warnings, 1 checks, 128 lines checked
+9a15063a3621 drm/xe: Use write-combine mapping when populating DPT
+7bec3c410d55 drm/xe/xelpg: Limit AuxCCS ring buffer programming to Alderlake
+-:26: WARNING:TYPO_SPELLING: 'explicity' may be misspelled - perhaps 'explicitly'?
+#26: FILE: drivers/gpu/drm/xe/xe_ring_ops.c:308:
++	 * AuxCCS, and we explicity do not want to support it on MTL.
+ 	                  ^^^^^^^^^
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 8fe61cfdb706..76acffb2e840 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -32,6 +32,7 @@
- 					 INTEL_LT_PHY_LANE0)
- #define MODE_DP				3
- #define MODE_HDMI_20			4
-+#define MODE_HDMI_FRL			5
- #define Q32_TO_INT(x)	((x) >> 32)
- #define Q32_TO_FRAC(x)	((x) & 0xFFFFFFFF)
- #define DCO_MIN_FREQ_MHZ	11850
-@@ -1176,9 +1177,30 @@ intel_lt_phy_lane_reset(struct intel_encoder *encoder,
- 	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port), lane_phy_pulse_status, 0);
- }
- 
-+static bool intel_lt_phy_is_hdmi(const struct intel_lt_phy_pll_state *ltpll)
-+{
-+	u8 mode = REG_FIELD_GET8(LT_PHY_VDR_MODE_ENCODING_MASK, ltpll->config[0]);
-+
-+	if (mode == MODE_HDMI_20 || mode == MODE_HDMI_FRL)
-+		return true;
-+
-+	return false;
-+}
-+
-+static bool intel_lt_phy_is_dp(const struct intel_lt_phy_pll_state *ltpll)
-+{
-+	u8 mode = REG_FIELD_GET8(LT_PHY_VDR_MODE_ENCODING_MASK, ltpll->config[0]);
-+
-+	if (mode == MODE_DP)
-+		return true;
-+
-+	return false;
-+}
-+
- static void
- intel_lt_phy_program_port_clock_ctl(struct intel_encoder *encoder,
--				    const struct intel_crtc_state *crtc_state,
-+				    const struct intel_lt_phy_pll_state *ltpll,
-+				    int port_clock,
- 				    bool lane_reversal)
- {
- 	struct intel_display *display = to_intel_display(encoder);
-@@ -1195,17 +1217,16 @@ intel_lt_phy_program_port_clock_ctl(struct intel_encoder *encoder,
- 	 * but since the register bits still remain the same we use
- 	 * the same definition
- 	 */
--	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) &&
--	    intel_hdmi_is_frl(crtc_state->port_clock))
-+	if (intel_lt_phy_is_hdmi(ltpll) && intel_hdmi_is_frl(port_clock))
- 		val |= XELPDP_DDI_CLOCK_SELECT_PREP(display, XELPDP_DDI_CLOCK_SELECT_DIV18CLK);
- 	else
- 		val |= XELPDP_DDI_CLOCK_SELECT_PREP(display, XELPDP_DDI_CLOCK_SELECT_MAXPCLK);
- 
- 	 /* DP2.0 10G and 20G rates enable MPLLA*/
--	if (crtc_state->port_clock == 1000000 || crtc_state->port_clock == 2000000)
-+	if (port_clock == 1000000 || port_clock == 2000000)
- 		val |= XELPDP_SSC_ENABLE_PLLA;
- 	else
--		val |= crtc_state->dpll_hw_state.ltpll.ssc_enabled ? XELPDP_SSC_ENABLE_PLLB : 0;
-+		val |= ltpll->ssc_enabled ? XELPDP_SSC_ENABLE_PLLB : 0;
- 
- 	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
- 		     XELPDP_LANE1_PHY_CLOCK_SELECT | XELPDP_FORWARD_CLOCK_UNGATE |
-@@ -1248,10 +1269,12 @@ static u32 intel_lt_phy_get_dp_clock(u8 rate)
- 
- static bool
- intel_lt_phy_config_changed(struct intel_encoder *encoder,
--			    const struct intel_crtc_state *crtc_state)
-+			    const struct intel_lt_phy_pll_state *ltpll)
- {
-+	struct intel_display *display = to_intel_display(encoder);
- 	u8 val, rate;
- 	u32 clock;
-+	u32 port_clock = intel_lt_phy_calc_port_clock(display, ltpll);
- 
- 	val = intel_lt_phy_read(encoder, INTEL_LT_PHY_LANE0,
- 				LT_PHY_VDR_0_CONFIG);
-@@ -1262,9 +1285,9 @@ intel_lt_phy_config_changed(struct intel_encoder *encoder,
- 	 * using 1.62 Gbps clock since PHY PLL defaults to that
- 	 * otherwise we always need to reconfigure it.
- 	 */
--	if (intel_crtc_has_dp_encoder(crtc_state)) {
-+	if (intel_lt_phy_is_dp(ltpll)) {
- 		clock = intel_lt_phy_get_dp_clock(rate);
--		if (crtc_state->port_clock == 1620000 && crtc_state->port_clock == clock)
-+		if (port_clock == 1620000 && port_clock == clock)
- 			return false;
- 	}
- 
-@@ -1759,41 +1782,41 @@ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
- 
- static void
- intel_lt_phy_program_pll(struct intel_encoder *encoder,
--			 const struct intel_crtc_state *crtc_state)
-+			 const struct intel_lt_phy_pll_state *ltpll)
- {
- 	u8 owned_lane_mask = intel_lt_phy_get_owned_lane_mask(encoder);
- 	int i, j, k;
- 
- 	intel_lt_phy_write(encoder, owned_lane_mask, LT_PHY_VDR_0_CONFIG,
--			   crtc_state->dpll_hw_state.ltpll.config[0], MB_WRITE_COMMITTED);
-+			   ltpll->config[0], MB_WRITE_COMMITTED);
- 	intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_1_CONFIG,
--			   crtc_state->dpll_hw_state.ltpll.config[1], MB_WRITE_COMMITTED);
-+			   ltpll->config[1], MB_WRITE_COMMITTED);
- 	intel_lt_phy_write(encoder, owned_lane_mask, LT_PHY_VDR_2_CONFIG,
--			   crtc_state->dpll_hw_state.ltpll.config[2], MB_WRITE_COMMITTED);
-+			   ltpll->config[2], MB_WRITE_COMMITTED);
- 
- 	for (i = 0; i <= 12; i++) {
- 		intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_X_ADDR_MSB(i),
--				   crtc_state->dpll_hw_state.ltpll.addr_msb[i],
-+				   ltpll->addr_msb[i],
- 				   MB_WRITE_COMMITTED);
- 		intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_X_ADDR_LSB(i),
--				   crtc_state->dpll_hw_state.ltpll.addr_lsb[i],
-+				   ltpll->addr_lsb[i],
- 				   MB_WRITE_COMMITTED);
- 
- 		for (j = 3, k = 0; j >= 0; j--, k++)
- 			intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0,
- 					   LT_PHY_VDR_X_DATAY(i, j),
--					   crtc_state->dpll_hw_state.ltpll.data[i][k],
-+					   ltpll->data[i][k],
- 					   MB_WRITE_COMMITTED);
- 	}
- }
- 
- static void
- intel_lt_phy_enable_disable_tx(struct intel_encoder *encoder,
--			       const struct intel_crtc_state *crtc_state)
-+			       const struct intel_lt_phy_pll_state *ltpll,
-+			       u8 lane_count)
- {
- 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 	bool lane_reversal = dig_port->lane_reversal;
--	u8 lane_count = crtc_state->lane_count;
- 	bool is_dp_alt =
- 		intel_tc_port_in_dp_alt_mode(dig_port);
- 	enum intel_tc_pin_assignment tc_pin =
-@@ -1895,7 +1918,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 	intel_lt_phy_lane_reset(encoder, crtc_state->lane_count);
- 
- 	/* 2. Program PORT_CLOCK_CTL register to configure clock muxes, gating, and SSC. */
--	intel_lt_phy_program_port_clock_ctl(encoder, crtc_state, lane_reversal);
-+	intel_lt_phy_program_port_clock_ctl(encoder, &crtc_state->dpll_hw_state.ltpll,
-+					    crtc_state->port_clock, lane_reversal);
- 
- 	/* 3. Change owned PHY lanes power to Ready state. */
- 	intel_lt_phy_powerdown_change_sequence(encoder, owned_lane_mask,
-@@ -1905,12 +1929,12 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 	 * 4. Read the PHY message bus VDR register PHY_VDR_0_Config check enabled PLL type,
- 	 * encoded rate and encoded mode.
- 	 */
--	if (intel_lt_phy_config_changed(encoder, crtc_state)) {
-+	if (intel_lt_phy_config_changed(encoder, &crtc_state->dpll_hw_state.ltpll)) {
- 		/*
- 		 * 5. Program the PHY internal PLL registers over PHY message bus for the desired
- 		 * frequency and protocol type
- 		 */
--		intel_lt_phy_program_pll(encoder, crtc_state);
-+		intel_lt_phy_program_pll(encoder, &crtc_state->dpll_hw_state.ltpll);
- 
- 		/* 6. Use the P2P transaction flow */
- 		/*
-@@ -2001,7 +2025,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
- 	intel_lt_phy_powerdown_change_sequence(encoder, owned_lane_mask,
- 					       XELPDP_P0_STATE_ACTIVE);
- 
--	intel_lt_phy_enable_disable_tx(encoder, crtc_state);
-+	intel_lt_phy_enable_disable_tx(encoder, &crtc_state->dpll_hw_state.ltpll,
-+				       crtc_state->lane_count);
- 	intel_lt_phy_transaction_end(encoder, wakeref);
- }
- 
--- 
-2.43.0
+total: 0 errors, 1 warnings, 0 checks, 11 lines checked
+74e61c681696 drm/xe/xelp: Quiesce memory traffic before invalidating AuxCCS
+d5fcdf78c28e drm/xe/xelp: Wait for AuxCCS invalidation to complete
+5d4d542e9438 drm/xe: Move aux table invalidation to ring ops
+2593db62fdf9 drm/xe/xelp: Add AuxCCS invalidation to the indirect context workarounds
+eb228c47d2ea drm/xe/display: Add support for AuxCCS
+004317ff024e drm/xe/xelp: Expose AuxCCS frame buffer modifiers on Alderlake-P
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#12: 
+cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
+
+-:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")'
+#12: 
+cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
+
+total: 1 errors, 1 warnings, 0 checks, 20 lines checked
+
 
