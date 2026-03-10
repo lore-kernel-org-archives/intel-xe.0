@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03BD6FD88C5
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 571C4FD88CC
 	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 22:50:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE5D410E797;
-	Tue, 10 Mar 2026 22:50:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19B4710E796;
+	Tue, 10 Mar 2026 22:50:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WHMLS4gE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VaUPXcHn";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9789410E791
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88BC210E78F
  for <intel-xe@lists.freedesktop.org>; Tue, 10 Mar 2026 22:50:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1773183044; x=1804719044;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1PYGlGe6o5enDEtJxv7ZITtMqjuaLLBnX78P1ipbvd0=;
- b=WHMLS4gEoOPaaFLZzyAHj2Kt16DeYwm+qVAN59GwcBZUktMj7Ilwaita
- Ep44OeRGB45MZnubzotv67vAeHE1jUl+7h+Nxg5MCF1LjppnB3tzs6Gax
- 7aA1dW4vj15njcdNzuTk985QWgPDnTjnocZaSKEjlYI6GlwxRSDFzZG0j
- 4HyJZs1Aeltt/nFkY/C+f1TQzX/2d1zMz6pCkZ3Byb13HISrwXolWtdt6
- WbMohOYsS/ZR1Ojt5JJU258TJvKRGXCxsyPAHCOqW1JIBm1aMyqdpHFEV
- GnRBdN8IQe32MtrQnRKtLqni5Kn81wD+wLFcPZ0W9q26YZ2B4Po76OkZ+ A==;
-X-CSE-ConnectionGUID: DEDOT+L0TLy8mgSpk6rRpQ==
-X-CSE-MsgGUID: 5Qmv1cF4TzCQbFc8koK1TQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="61817890"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="61817890"
+ bh=CCohocB8mU+UKXhQOgjuJJzp/M1ULH/IMXj9VkhA6iE=;
+ b=VaUPXcHnc6gjeld+xEYnaCBvWPu9p/k4tn4a3cjHtaRlPsDel5OqzTzE
+ GV/QIVS1h6p2YHC7L4FoSK/kjW1EgUy6RXSKw5bxKtThXURp4r3d2LUZU
+ gyWcIervPwhucz+t5JwJjwvynH91y7vracKUet/orIpjknh6phmc4Srd2
+ J62m2MhXXLdBgQyL2a4n5r+j99lsgijw4EM+AYFbhzOL7aaXdW22rhmTT
+ 97yRUa5hG7ULZj2/MWN+iEMSsWkmvMYUvgVwFSqIDrb2Mm2pDA+U4slnq
+ geuGkqlheEBZb1GEadceZ56n2Tr7iHGQjntM3Bth8H5Du2KgYC2iBDVQb w==;
+X-CSE-ConnectionGUID: rKgVuQK2QWqlq4ESPqsO7Q==
+X-CSE-MsgGUID: 4wD5oQftQIy+TR7C9W4I9w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="61817887"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="61817887"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  10 Mar 2026 15:50:43 -0700
-X-CSE-ConnectionGUID: Py+mOid8QH6kgLJOqe57Cw==
-X-CSE-MsgGUID: 5cnMJ7znSyGSXv39ZbjeSg==
+X-CSE-ConnectionGUID: 73UP1crSQW+NZZE/dGAOng==
+X-CSE-MsgGUID: YvyaAG6dSbGo9lpAAHtrsw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="220441009"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="220441001"
 Received: from guc-pnp-dev-box-1.fm.intel.com ([10.1.39.24])
- by orviesa007.jf.intel.com with ESMTP; 10 Mar 2026 15:50:42 -0700
+ by orviesa007.jf.intel.com with ESMTP; 10 Mar 2026 15:50:41 -0700
 From: Zhanjun Dong <zhanjun.dong@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, stable@vger.kernel.org,
- Zhanjun Dong <zhanjun.dong@intel.com>
-Subject: [PATCH v9 7/7] drm/xe: Open-code GGTT MMIO access protection
-Date: Tue, 10 Mar 2026 18:50:39 -0400
-Message-Id: <20260310225039.1320161-8-zhanjun.dong@intel.com>
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>, stable@vger.kernel.org,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH v9 5/7] drm/xe/guc: Ensure CT state transitions via STOP
+ before DISABLED
+Date: Tue, 10 Mar 2026 18:50:37 -0400
+Message-Id: <20260310225039.1320161-6-zhanjun.dong@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260310225039.1320161-1-zhanjun.dong@intel.com>
 References: <20260310225039.1320161-1-zhanjun.dong@intel.com>
@@ -66,94 +67,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Brost <matthew.brost@intel.com>
+The GuC CT state transition requires moving to the STOP state before
+entering the DISABLED state. Update the driver teardown sequence to make
+the proper state machine transitions.
 
-GGTT MMIO access is currently protected by hotplug (drm_dev_enter),
-which works correctly when the driver loads successfully and is later
-unbound or unloaded. However, if driver load fails, this protection is
-insufficient because drm_dev_unplug() is never called.
-
-Additionally, devm release functions cannot guarantee that all BOs with
-GGTT mappings are destroyed before the GGTT MMIO region is removed, as
-some BOs may be freed asynchronously by worker threads.
-
-To address this, introduce an open-coded flag, protected by the GGTT
-lock, that guards GGTT MMIO access. The flag is cleared during the
-dev_fini_ggtt devm release function to ensure MMIO access is disabled
-once teardown begins.
-
+Fixes: ee4b32220a6b ("drm/xe/guc: Add devm release action to safely tear down CT")
 Cc: stable@vger.kernel.org
-Fixes: 919bb54e989c ("drm/xe: Fix missing runtime outer protection for ggtt_remove_node")
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Zhanjun Dong <zhanjun.dong@intel.com>
+Signed-off-by: Zhanjun Dong <zhanjun.dong@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_ggtt.c | 15 +++++++++------
- 1 file changed, 9 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 0f2e3af49912..21071b64b09d 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -66,6 +66,9 @@
-  * give us the correct placement for free.
-  */
- 
-+#define XE_GGTT_FLAGS_64K	BIT(0)
-+#define XE_GGTT_FLAGS_ONLINE	BIT(1)
-+
- /**
-  * struct xe_ggtt_node - A node in GGTT.
-  *
-@@ -117,6 +120,8 @@ struct xe_ggtt {
- 	 * @flags: Flags for this GGTT
- 	 * Acceptable flags:
- 	 * - %XE_GGTT_FLAGS_64K - if PTE size is 64K. Otherwise, regular is 4K.
-+	 * - %XE_GGTT_FLAGS_ONLINE - is GGTT online, protected by ggtt->lock
-+	 *   after init
- 	 */
- 	unsigned int flags;
- 	/** @scratch: Internal object allocation used as a scratch page */
-@@ -367,6 +372,8 @@ static void dev_fini_ggtt(void *arg)
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 496c6c77bee6..3b1c03743f83 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -352,6 +352,7 @@ static void guc_action_disable_ct(void *arg)
  {
- 	struct xe_ggtt *ggtt = arg;
+ 	struct xe_guc_ct *ct = arg;
  
-+	scoped_guard(mutex, &ggtt->lock)
-+		ggtt->flags &= ~XE_GGTT_FLAGS_ONLINE;
- 	drain_workqueue(ggtt->wq);
++	xe_guc_ct_stop(ct);
+ 	guc_ct_change_state(ct, XE_GUC_CT_STATE_DISABLED);
  }
  
-@@ -437,6 +444,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
- 	if (err)
- 		return err;
- 
-+	ggtt->flags |= XE_GGTT_FLAGS_ONLINE;
- 	return devm_add_action_or_reset(xe->drm.dev, dev_fini_ggtt, ggtt);
- }
- ALLOW_ERROR_INJECTION(xe_ggtt_init_early, ERRNO); /* See xe_pci_probe() */
-@@ -465,13 +473,10 @@ static void ggtt_node_fini(struct xe_ggtt_node *node)
- static void ggtt_node_remove(struct xe_ggtt_node *node)
- {
- 	struct xe_ggtt *ggtt = node->ggtt;
--	struct xe_device *xe = tile_to_xe(ggtt->tile);
- 	bool bound;
--	int idx;
--
--	bound = drm_dev_enter(&xe->drm, &idx);
- 
- 	mutex_lock(&ggtt->lock);
-+	bound = ggtt->flags & XE_GGTT_FLAGS_ONLINE;
- 	if (bound)
- 		xe_ggtt_clear(ggtt, xe_ggtt_node_addr(node), xe_ggtt_node_size(node));
- 	drm_mm_remove_node(&node->base);
-@@ -484,8 +489,6 @@ static void ggtt_node_remove(struct xe_ggtt_node *node)
- 	if (node->invalidate_on_remove)
- 		xe_ggtt_invalidate(ggtt);
- 
--	drm_dev_exit(idx);
--
- free_node:
- 	ggtt_node_fini(node);
- }
 -- 
 2.34.1
 
