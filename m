@@ -4,27 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69810FD4F0C
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 17:42:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95CFCFD4F17
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 18:14:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28F5F10E771;
-	Tue, 10 Mar 2026 17:42:08 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42F4110E771;
- Tue, 10 Mar 2026 17:42:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5324710280244566383=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5461010E77B;
+	Tue, 10 Mar 2026 18:14:22 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="kEW9++8W";
+	dkim-atps=neutral
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 555DD10E77B;
+ Tue, 10 Mar 2026 18:14:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1773166459;
+ bh=GjCA8yQPbu1rhR9QarsGaGitf2y9GvEi6i7/18ZjPWU=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=kEW9++8WO5AbuW0PQiHjP5MQM55Dq+cstct4rRBNAqMp5BfLNYmaahlwnNl2Pfmeh
+ pIiBSkp1nuGYWp8GFmGH1qGlzIxTxghPuPSI5Dln7zsty9U+KnpIVZ/1lup1GhoYhr
+ CDeWHVFYhgxHYuKVv2xj2mZgW+/zp9wI1IB3ezdZ2OyLqJtJTXOWq8X4oKhYxI36RU
+ ovkqlTIpIxHq25/KcQ8CfaXZ+w203Vv4gLtFIpZGhp96hLveBkh5QP9h5XmwuYUDM2
+ Hr5+frKhLF+XMJy1pTAmD9TbPT9UBEgIEBamA6PEHETJWSUcedB7EBPQT+mpmjGs57
+ qs10u9mLkX2FQ==
+Message-ID: <64617f61-6c91-4739-a545-b0109f8dc87e@lankhorst.se>
+Date: Tue, 10 Mar 2026 19:14:18 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe=5Fvm=3A_Implement?=
- =?utf-8?q?_xe=5Fvm=5Fget=5Fproperty=5Fioctl_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 10 Mar 2026 17:42:07 -0000
-Message-ID: <177316452724.340794.5005435622173083471@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260310144914.7525-6-jonathan.cavitt@intel.com>
-In-Reply-To: <20260310144914.7525-6-jonathan.cavitt@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 26/26] drm/i915/gt: Add a spinlock to prevent
+ starvation of irq_work.
+To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20260310115709.2276203-1-dev@lankhorst.se>
+ <20260310115709.2276203-27-dev@lankhorst.se>
+ <20260310170413.5rCjlTce@linutronix.de>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <20260310170413.5rCjlTce@linutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,178 +53,109 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5324710280244566383==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hey,
 
-== Series Details ==
+Den 2026-03-10 kl. 18:04, skrev Sebastian Andrzej Siewior:
+> On 2026-03-10 12:57:08 [+0100], Maarten Lankhorst wrote:
+>> From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+>>
+>> IRQ-Work (FIFO-1) will be preempted by the threaded-interrupt (FIFO-50)
+>> and the interrupt will poll on signaler_active while the irq-work can't
+>> make progress.
+> 
+> The threaded-interrupt is the interrupt.
+> 
+> | On PREEMPT_RT the irq_work can be preempted by threaded-interrupt which
+> | will be poll for completion but the irq_work routine can't make
+> | progress.
+> 
+>> Solve this by adding a spinlock to prevent starvation and force
+>> completion.
+> 
+> | Solve this by adding a spinlock_t to prevent starvation by forcing a
+> | context switch if lock is held based on `signaler_active'. On
+> | !PREEMPT_RT `signaler_active' can only be non-zero if multiple CPUs are
+> | involved and spinning on the lock leds to the same result.
+> 
+>> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+> 
+> If I am the From: then I should have the Signed-off-by, too. Let me do
+> Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+> 
+> so it can be picked up.
+> 
+> You did suggest the following:
+> 
+> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> @@ -209,7 +209,7 @@ static void signal_irq_work(struct irq_work *work)
+>  		intel_breadcrumbs_disarm_irq(b);
+>  
+>  	rcu_read_lock();
+> -	atomic_inc(&b->signaler_active);
+> +	spin_lock(&b->signaler_active_sync);
+>  	list_for_each_entry_rcu(ce, &b->signalers, signal_link) {
+>  		struct i915_request *rq;
+>  
+> @@ -245,7 +245,7 @@ static void signal_irq_work(struct irq_work *work)
+>  				i915_request_put(rq);
+>  		}
+>  	}
+> -	atomic_dec(&b->signaler_active);
+> +	spin_unlock(&b->signaler_active_sync);
+>  	rcu_read_unlock();
+>  
+>  	llist_for_each_safe(signal, sn, signal) {
+> @@ -290,6 +290,7 @@ intel_breadcrumbs_create(struct intel_engine_cs *irq_engine)
+>  	init_llist_head(&b->signaled_requests);
+>  
+>  	spin_lock_init(&b->irq_lock);
+> +	spin_lock_init(&b->signaler_active_sync);
+>  	init_irq_work(&b->irq_work, signal_irq_work);
+>  
+>  	b->irq_engine = irq_engine;
+> @@ -487,8 +488,10 @@ void intel_context_remove_breadcrumbs(struct intel_context *ce,
+>  	if (release)
+>  		intel_context_put(ce);
+>  
+> -	while (atomic_read(&b->signaler_active))
+> -		cpu_relax();
+> +	while (spin_is_locked(&b->signaler_active_sync)) {
+> +		spin_lock_irqsave(&b->signaler_active_sync, flags);
+> +		spin_unlock_irqrestore(&b->signaler_active_sync, flags);
+> 
+> And this does not work because spin_is_locked() returns true and spins
+> forever. This fails because there is a "corner case" where
+> spin_is_locked() returns but the lock has no lock owner as in locked.
+> This happens if there is a waiter which did not yet acquire the lock. 
+> 
+> So if you happy with this, we could keep it ;)
 
-Series: drm/xe/xe_vm: Implement xe_vm_get_property_ioctl (rev2)
-URL   : https://patchwork.freedesktop.org/series/162962/
-State : success
+It seems CI is a lot happier too now.
 
-== Summary ==
+Xe:
+https://patchwork.freedesktop.org/series/159034/#rev14
 
-CI Bug Log - changes from xe-4688-7282a0941df77adea4aeae319d4ff11358c98584_BAT -> xe-pw-162962v2_BAT
-====================================================
+BAT passes, the full run has some minor issues but only kms_vblank systematic.
+Likely due to the fundamental changes of the PREEMPT_RT kernel itself, nothing driver specific.
 
-Summary
--------
+i915:
+https://patchwork.freedesktop.org/series/159035/#rev14
 
-  **SUCCESS**
+A few new warnings, and some noise. The most worrying part is the i915 execlists selftest
+failing on nearly all platforms:
 
-  No regressions found.
+<3>[  504.279024] i915/intel_execlists_live_selftests: live_preempt_user failed with error -62
+...
+<7>[  506.799685] [IGT] i915_selftest: finished subtest execlists, FAIL
 
-  
+I don't know what's going on there yet, likely needs more debugging. Could be the test itself
+being written incorrectly or something else entirely.
 
-Participating hosts (14 -> 14)
-------------------------------
+Otherwise things are looking good! Have you uncovered anything else?
 
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-162962v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4688-7282a0941df77adea4aeae319d4ff11358c98584/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162962v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [PASS][3] -> [TIMEOUT][4] ([Intel XE#6506])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4688-7282a0941df77adea4aeae319d4ff11358c98584/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162962v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [PASS][5] -> [FAIL][6] ([Intel XE#6519])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4688-7282a0941df77adea4aeae319d4ff11358c98584/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162962v2/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][7] -> [FAIL][8] ([Intel XE#6520])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4688-7282a0941df77adea4aeae319d4ff11358c98584/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162962v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [DMESG-WARN][9] ([Intel XE#7483]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4688-7282a0941df77adea4aeae319d4ff11358c98584/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162962v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
-
-
-Build changes
--------------
-
-  * Linux: xe-4688-7282a0941df77adea4aeae319d4ff11358c98584 -> xe-pw-162962v2
-
-  IGT_8791: b319fd1815d426b3f24094113d614d08dee374d8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4688-7282a0941df77adea4aeae319d4ff11358c98584: 7282a0941df77adea4aeae319d4ff11358c98584
-  xe-pw-162962v2: 162962v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162962v2/index.html
-
---===============5324710280244566383==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe_vm: Implement xe_vm_get_property_ioctl (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162962/">https://patchwork.freedesktop.org/series/162962/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162962v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162962v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4688-7282a0941df77adea4aeae319d4ff11358c98584_BAT -&gt; xe-pw-162962v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-162962v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4688-7282a0941df77adea4aeae319d4ff11358c98584/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162962v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@abstime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4688-7282a0941df77adea4aeae319d4ff11358c98584/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162962v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4688-7282a0941df77adea4aeae319d4ff11358c98584/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162962v2/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@reltime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4688-7282a0941df77adea4aeae319d4ff11358c98584/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162962v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4688-7282a0941df77adea4aeae319d4ff11358c98584/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162962v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4688-7282a0941df77adea4aeae319d4ff11358c98584 -&gt; xe-pw-162962v2</li>
-</ul>
-<p>IGT_8791: b319fd1815d426b3f24094113d614d08dee374d8 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4688-7282a0941df77adea4aeae319d4ff11358c98584: 7282a0941df77adea4aeae319d4ff11358c98584<br />
-  xe-pw-162962v2: 162962v2</p>
-
-</body>
-</html>
-
---===============5324710280244566383==--
+Kind regards,
+~Maarten Lankhorst
