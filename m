@@ -4,62 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5E5FEB106D
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 15:19:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B553EB1060
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 15:38:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DE5910E2A9;
-	Tue, 10 Mar 2026 15:19:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8421E10E2BC;
+	Tue, 10 Mar 2026 15:38:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dx6h0Fcl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MacECfSl";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21A3810E1FF;
- Tue, 10 Mar 2026 15:19:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E4F210E2B6;
+ Tue, 10 Mar 2026 15:38:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773155991; x=1804691991;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=t0mpfZD9ghiA61gvfNsCWxTjADq9UDNAwEA9lpLiHF4=;
- b=dx6h0FclaRbo77NeTa2oqlxbzFi8LQx48a8lNWOYFKz0q7z2x5bBsNsX
- +gHOFi7Og06ZyVTZ+DtGQFXKMoT7SmoDFE+hVNsEsDxYMu8vwHXdnxMWT
- NfeIAuc4AfI3QiC14rgunkkz2qrnJtoNZIjnHU6MBh8eP5pFLkp5YFUgc
- T0Est5ols4kmUaai880F2Fan13zMDTEqithNjOMTMxv/dCbeHFVy/OfgI
- bvDT2aP9jSjsqA9Z0dKJSAlClBEkOBO+tuh3J6HXLxc0ySo8e/qiIEN2X
- vJQkj1ZFUImiPbwi0Cc/hA0wE9uWDME+R/rw5m/9+DmDoFleK9HbvzOBN w==;
-X-CSE-ConnectionGUID: YwSiFTwATF+E4H1jNvFMTQ==
-X-CSE-MsgGUID: IQ+Fd5CDTDyjiqttTdwsFg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="78059674"
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="78059674"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 08:19:50 -0700
-X-CSE-ConnectionGUID: kAPgrrb6Tc6kpxo5u+WHfQ==
-X-CSE-MsgGUID: lT61rQ3kRnSZ+wVoGO3qzg==
+ t=1773157105; x=1804693105;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=5t/Nl19lBc99pULKIc3u2lOUlSXXZ3/NYwUYAkaStbI=;
+ b=MacECfSlbfk4otUq8HoYVlayzqTOKsr1Ghd0d1UDdrT238clzNaEWTcK
+ NjR0X3YokO+QU8J1M3tu97vR4U6fSqEndiOibFBz/BrWc7gaAEK6QW8Yr
+ 4vf6QntIO5wo9JLU/li83kAq68aWnDN6dRbbZrbrAdbqM1dJqD4JzG5NE
+ c9Y9mSqjt61SG9WxYldfabUFe7h/TGiH5eRYqPCwkY2AvLagEgr9ih6Q3
+ zExrR0ZkdfAo01nCvmvnzBrWeul4DknaZabU8+n2CJbtktdZat9dygIR1
+ P06OO68ssQf425Dgs8/vkVJIwjaq6bAr/SQOnnhOwDy6JESgF0FyvcWLb g==;
+X-CSE-ConnectionGUID: 7Lg2DLTATeCLdSMjx+1IeA==
+X-CSE-MsgGUID: 1f1gcSjwSJq35uojfEPv2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="84840209"
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="84840209"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2026 08:38:25 -0700
+X-CSE-ConnectionGUID: jVO35lVmR+CT7xza/853Fg==
+X-CSE-MsgGUID: EVk+8s8SRLS5JZ5CqAgUrw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="220111991"
-Received: from zzombora-mobl1 (HELO localhost) ([10.245.244.33])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 08:19:49 -0700
-Date: Tue, 10 Mar 2026 17:19:45 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Simon Richter <Simon.Richter@hogyros.de>
-Cc: linux-pci@vger.kernel.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v3 4/5] pci: check if VGA decoding was really activated
-Message-ID: <abA2kQScB-m2ka3K@intel.com>
-References: <20260307173538.763188-1-Simon.Richter@hogyros.de>
- <20260307173538.763188-5-Simon.Richter@hogyros.de>
- <abAChDpsUQhpnOcT@intel.com>
- <1a7a9d17-5086-4fdb-83e7-56d5ddaaadbd@hogyros.de>
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="220199474"
+Received: from display-adls.igk.intel.com ([10.211.131.198])
+ by orviesa008.jf.intel.com with ESMTP; 10 Mar 2026 08:38:23 -0700
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Mika Kahola <mika.kahola@intel.com>
+Subject: [PATCH v3 04/24] drm/i915/lt_phy: Refactor LT PHY PLL handling to use
+ explicit PLL state
+Date: Tue, 10 Mar 2026 15:38:21 +0000
+Message-ID: <20260310153821.1933371-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260310133600.1708066-1-mika.kahola@intel.com>
+References: <20260310133600.1708066-1-mika.kahola@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1a7a9d17-5086-4fdb-83e7-56d5ddaaadbd@hogyros.de>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,85 +68,205 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 10, 2026 at 11:08:40PM +0900, Simon Richter wrote:
-> Hi,
-> 
-> On 3/10/26 8:37 PM, Ville Syrjälä wrote:
-> 
-> > Maybe this should also have a comment or spec quote to explain
-> > that it's legal behavior?
-> 
-> The PCI-to-PCI Bridge Specification version 1.1 has in chapter 4.5 "VGA 
-> Support":
-> 
->      Bridges are not required to implement the VGA support mechanisms
->      described in the following sections.
-> 
-> So this has always been optional.
-> 
-> What is a bit annoying is that I cannot find an explicit sentence 
-> allowing the VGAEnable bit to be hardwired to zero in that specification.
-> 
-> It is explicitly allowed to hardwire the VGASnoopEnable bit to zero if 
-> VGA palette snooping is not supported for downstream devices (Table 3-2 
-> "Command Register"):
-> 
->      Implementation of VGA palette snooping by a bridge is optional. If
->      VGA palette snooping is not supported, this bit must be implemented
->      as read-only with a value of 0
-> 
-> That is the command register though, not the bridge control register.
-> 
-> The bridge control register documentation (Table 3-9) does not 
-> explicitly say what should be done if VGA support is not available, but 
-> the behaviour of the VGAEnable bit is a superset of the VGASnoopEnable 
-> bit, and the VGASnoopEnable bit becomes a Don't Care if VGAEnable is 
-> set, so "the bit must be hardwired to zero if unsupported" appears to be 
-> the only valid interpretation.
-> 
-> This seems to be the behaviour of all the devices I have available:
-> 
->   - IBM PowerNV PCIe root bridge (POWER9)
->   - SiFive VisionFive2 PCIe root bridge (PLDA XpressRich-AXI Ref Design)
-> 
-> Both read back this bit as zero when written via setpci:
-> 
-> # setpci -s 0000:00:00.0 BRIDGE_CONTROL
-> 0002
-> # setpci -s 0000:00:00.0 BRIDGE_CONTROL=0xa
-> # setpci -s 0000:00:00.0 BRIDGE_CONTROL
-> 0002
-> 
-> There is also a question in the Altera support forum for their PCIe Root 
-> Bridge IP at https://community.altera.com/kb/knowledge-base/-/345837 .
+The LT PHY implementation currently pulls PLL and port_clock
+information directly from the CRTC state. This ties the PHY
+programming logic too tightly to the CRTC state and makes it
+harder to clearly express the PHYâ€™s own PLL configuration.
 
-Yeah, looks like the exact explanation was only added in the PCIe
-bridge spec. Before that it was somewhat ambiguous.
+Introduce an explicit "struct intel_lt_phy_pll_state" argument
+for the PHY functions and update callers accordingly.
 
-> 
-> > The slightly bigger concern I have is whether we need to unwind
-> > the previous steps if this fails? Looks like we don't update
-> > vgadev->owns on failure (even though we may have partially
-> > enabled things). But since the bridge should never forward any
-> > VGA accesses, leaving some extra PCI_COMMAND enable(s) set on
-> > the device shouldn't matter in practice.
-> 
-> I was thinking the same, but because we're going upwards in the 
-> hierarchy, the bridges we leave enabled are downstream of the bridge 
-> that refused to forward.
-> 
-> I can add this for completeness though, that should be fairly easy.
-> 
-> > So I guess this should
-> > work even without unwinding. Well, not sure about
-> > arch_set_vga_state() since that's 100% magic...
-> 
-> It's not entirely magic, because after success from arch_set_vga_state() 
-> we still go through all the bridges. I believe uv uses it for some kind 
-> of paravirtualization.
-> 
->     Simon
+No functional change is intended â€” this is a preparatory cleanup for
+to bring LT PHY PLL handling as part of PLL framework.
 
+v2:  DP, HDMI 2.0, and HDMI FRL modes are port of the VDR configuration 0
+    register. These modes are defined by bits 2:0. Decode these to
+    differentiate DP and HDMI modes when programming PLL's. (Imre, Suraj)
+
+BSpec: 744921
+
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_lt_phy.c | 67 ++++++++++++++-------
+ 1 file changed, 46 insertions(+), 21 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+index 8fe61cfdb706..76acffb2e840 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+@@ -32,6 +32,7 @@
+ 					 INTEL_LT_PHY_LANE0)
+ #define MODE_DP				3
+ #define MODE_HDMI_20			4
++#define MODE_HDMI_FRL			5
+ #define Q32_TO_INT(x)	((x) >> 32)
+ #define Q32_TO_FRAC(x)	((x) & 0xFFFFFFFF)
+ #define DCO_MIN_FREQ_MHZ	11850
+@@ -1176,9 +1177,30 @@ intel_lt_phy_lane_reset(struct intel_encoder *encoder,
+ 	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port), lane_phy_pulse_status, 0);
+ }
+ 
++static bool intel_lt_phy_is_hdmi(const struct intel_lt_phy_pll_state *ltpll)
++{
++	u8 mode = REG_FIELD_GET8(LT_PHY_VDR_MODE_ENCODING_MASK, ltpll->config[0]);
++
++	if (mode == MODE_HDMI_20 || mode == MODE_HDMI_FRL)
++		return true;
++
++	return false;
++}
++
++static bool intel_lt_phy_is_dp(const struct intel_lt_phy_pll_state *ltpll)
++{
++	u8 mode = REG_FIELD_GET8(LT_PHY_VDR_MODE_ENCODING_MASK, ltpll->config[0]);
++
++	if (mode == MODE_DP)
++		return true;
++
++	return false;
++}
++
+ static void
+ intel_lt_phy_program_port_clock_ctl(struct intel_encoder *encoder,
+-				    const struct intel_crtc_state *crtc_state,
++				    const struct intel_lt_phy_pll_state *ltpll,
++				    int port_clock,
+ 				    bool lane_reversal)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+@@ -1195,17 +1217,16 @@ intel_lt_phy_program_port_clock_ctl(struct intel_encoder *encoder,
+ 	 * but since the register bits still remain the same we use
+ 	 * the same definition
+ 	 */
+-	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) &&
+-	    intel_hdmi_is_frl(crtc_state->port_clock))
++	if (intel_lt_phy_is_hdmi(ltpll) && intel_hdmi_is_frl(port_clock))
+ 		val |= XELPDP_DDI_CLOCK_SELECT_PREP(display, XELPDP_DDI_CLOCK_SELECT_DIV18CLK);
+ 	else
+ 		val |= XELPDP_DDI_CLOCK_SELECT_PREP(display, XELPDP_DDI_CLOCK_SELECT_MAXPCLK);
+ 
+ 	 /* DP2.0 10G and 20G rates enable MPLLA*/
+-	if (crtc_state->port_clock == 1000000 || crtc_state->port_clock == 2000000)
++	if (port_clock == 1000000 || port_clock == 2000000)
+ 		val |= XELPDP_SSC_ENABLE_PLLA;
+ 	else
+-		val |= crtc_state->dpll_hw_state.ltpll.ssc_enabled ? XELPDP_SSC_ENABLE_PLLB : 0;
++		val |= ltpll->ssc_enabled ? XELPDP_SSC_ENABLE_PLLB : 0;
+ 
+ 	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
+ 		     XELPDP_LANE1_PHY_CLOCK_SELECT | XELPDP_FORWARD_CLOCK_UNGATE |
+@@ -1248,10 +1269,12 @@ static u32 intel_lt_phy_get_dp_clock(u8 rate)
+ 
+ static bool
+ intel_lt_phy_config_changed(struct intel_encoder *encoder,
+-			    const struct intel_crtc_state *crtc_state)
++			    const struct intel_lt_phy_pll_state *ltpll)
+ {
++	struct intel_display *display = to_intel_display(encoder);
+ 	u8 val, rate;
+ 	u32 clock;
++	u32 port_clock = intel_lt_phy_calc_port_clock(display, ltpll);
+ 
+ 	val = intel_lt_phy_read(encoder, INTEL_LT_PHY_LANE0,
+ 				LT_PHY_VDR_0_CONFIG);
+@@ -1262,9 +1285,9 @@ intel_lt_phy_config_changed(struct intel_encoder *encoder,
+ 	 * using 1.62 Gbps clock since PHY PLL defaults to that
+ 	 * otherwise we always need to reconfigure it.
+ 	 */
+-	if (intel_crtc_has_dp_encoder(crtc_state)) {
++	if (intel_lt_phy_is_dp(ltpll)) {
+ 		clock = intel_lt_phy_get_dp_clock(rate);
+-		if (crtc_state->port_clock == 1620000 && crtc_state->port_clock == clock)
++		if (port_clock == 1620000 && port_clock == clock)
+ 			return false;
+ 	}
+ 
+@@ -1759,41 +1782,41 @@ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
+ 
+ static void
+ intel_lt_phy_program_pll(struct intel_encoder *encoder,
+-			 const struct intel_crtc_state *crtc_state)
++			 const struct intel_lt_phy_pll_state *ltpll)
+ {
+ 	u8 owned_lane_mask = intel_lt_phy_get_owned_lane_mask(encoder);
+ 	int i, j, k;
+ 
+ 	intel_lt_phy_write(encoder, owned_lane_mask, LT_PHY_VDR_0_CONFIG,
+-			   crtc_state->dpll_hw_state.ltpll.config[0], MB_WRITE_COMMITTED);
++			   ltpll->config[0], MB_WRITE_COMMITTED);
+ 	intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_1_CONFIG,
+-			   crtc_state->dpll_hw_state.ltpll.config[1], MB_WRITE_COMMITTED);
++			   ltpll->config[1], MB_WRITE_COMMITTED);
+ 	intel_lt_phy_write(encoder, owned_lane_mask, LT_PHY_VDR_2_CONFIG,
+-			   crtc_state->dpll_hw_state.ltpll.config[2], MB_WRITE_COMMITTED);
++			   ltpll->config[2], MB_WRITE_COMMITTED);
+ 
+ 	for (i = 0; i <= 12; i++) {
+ 		intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_X_ADDR_MSB(i),
+-				   crtc_state->dpll_hw_state.ltpll.addr_msb[i],
++				   ltpll->addr_msb[i],
+ 				   MB_WRITE_COMMITTED);
+ 		intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_X_ADDR_LSB(i),
+-				   crtc_state->dpll_hw_state.ltpll.addr_lsb[i],
++				   ltpll->addr_lsb[i],
+ 				   MB_WRITE_COMMITTED);
+ 
+ 		for (j = 3, k = 0; j >= 0; j--, k++)
+ 			intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0,
+ 					   LT_PHY_VDR_X_DATAY(i, j),
+-					   crtc_state->dpll_hw_state.ltpll.data[i][k],
++					   ltpll->data[i][k],
+ 					   MB_WRITE_COMMITTED);
+ 	}
+ }
+ 
+ static void
+ intel_lt_phy_enable_disable_tx(struct intel_encoder *encoder,
+-			       const struct intel_crtc_state *crtc_state)
++			       const struct intel_lt_phy_pll_state *ltpll,
++			       u8 lane_count)
+ {
+ 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+ 	bool lane_reversal = dig_port->lane_reversal;
+-	u8 lane_count = crtc_state->lane_count;
+ 	bool is_dp_alt =
+ 		intel_tc_port_in_dp_alt_mode(dig_port);
+ 	enum intel_tc_pin_assignment tc_pin =
+@@ -1895,7 +1918,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+ 	intel_lt_phy_lane_reset(encoder, crtc_state->lane_count);
+ 
+ 	/* 2. Program PORT_CLOCK_CTL register to configure clock muxes, gating, and SSC. */
+-	intel_lt_phy_program_port_clock_ctl(encoder, crtc_state, lane_reversal);
++	intel_lt_phy_program_port_clock_ctl(encoder, &crtc_state->dpll_hw_state.ltpll,
++					    crtc_state->port_clock, lane_reversal);
+ 
+ 	/* 3. Change owned PHY lanes power to Ready state. */
+ 	intel_lt_phy_powerdown_change_sequence(encoder, owned_lane_mask,
+@@ -1905,12 +1929,12 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+ 	 * 4. Read the PHY message bus VDR register PHY_VDR_0_Config check enabled PLL type,
+ 	 * encoded rate and encoded mode.
+ 	 */
+-	if (intel_lt_phy_config_changed(encoder, crtc_state)) {
++	if (intel_lt_phy_config_changed(encoder, &crtc_state->dpll_hw_state.ltpll)) {
+ 		/*
+ 		 * 5. Program the PHY internal PLL registers over PHY message bus for the desired
+ 		 * frequency and protocol type
+ 		 */
+-		intel_lt_phy_program_pll(encoder, crtc_state);
++		intel_lt_phy_program_pll(encoder, &crtc_state->dpll_hw_state.ltpll);
+ 
+ 		/* 6. Use the P2P transaction flow */
+ 		/*
+@@ -2001,7 +2025,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+ 	intel_lt_phy_powerdown_change_sequence(encoder, owned_lane_mask,
+ 					       XELPDP_P0_STATE_ACTIVE);
+ 
+-	intel_lt_phy_enable_disable_tx(encoder, crtc_state);
++	intel_lt_phy_enable_disable_tx(encoder, &crtc_state->dpll_hw_state.ltpll,
++				       crtc_state->lane_count);
+ 	intel_lt_phy_transaction_end(encoder, wakeref);
+ }
+ 
 -- 
-Ville Syrjälä
-Intel
+2.43.0
+
