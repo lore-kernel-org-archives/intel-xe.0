@@ -4,42 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDAC5FD2D63
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 12:35:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9754FD2D69
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 12:35:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 83C9210E1C2;
-	Tue, 10 Mar 2026 12:35:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 85AF410E264;
+	Tue, 10 Mar 2026 12:35:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="bPT6iQyM";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="NLHNoU6+";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD8EB10E1C2
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Mar 2026 12:35:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BA0910E1B6
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Mar 2026 12:35:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
- Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+ In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=cE4mg+kc15WK9oaBaXCRYC8O8OLOKzs1JJX0Xu8yqP0=; b=bPT6iQyMaAqBIeqprpL/ZUkay1
- BvUMMMBcoWg9MCPCpOSKbMDjtUlhEE7ve8Wf5Ne9HQNVdps3LACk3uESGHc/1BqfcIocpOTNsJg+Z
- rPY44IQXmhjbOuhw5VEth+XJolXgewxdp00msbXJOnC4qN+8KjNtv/BQG5g98vCHvzPvre809UJkY
- YRlnbfC6mjFI9lE73ZiDki9/OuN6cdfwP7C6nDm2uqbeIvv0NA5bQuKCAbDcMQCfFkG9ES4Ol7F2l
- S+KqBfxCPSLs7jc97TrnbZyym/NPfB62mEy1VVLBo+lRT8Fgjl1ELMbEIFKXvWB6FNWsj7ANeMtfQ
- OV4sGAJw==;
+ bh=Xx3+8tSTQJqmDBQtxFmGi9pVySeekP6amr9tdATHjW4=; b=NLHNoU6+rq+huQzfl5/lxBorc2
+ T256ycopZ0lpCw4nCk3PWIrV+3XrJGdza+NHDc279PzPgiWHbK1RR9o75gMrGeZ66Rg4oxJgG1Gci
+ GD3dq1WB0QLfAy/mcRsSE08aYNE3ERjS0Kpwou3w4ZjpZuQyMhs3RWsAa1N7UQcpkSrPQvFDDs8Xw
+ U+Y04FPV70PZxEJZ48pY7KjgugVhaCMSAdyh3nkm/4vKrap4QhApnIjq6Uy9gCwXkyVauuNTOrvSU
+ WKZwQcTRn58lDA5LQsXnzU/PWrafjfiDuPVk11OyM0Oqk9JubXkt8lYuYs8mwaJPSMbzC8qUs8RKn
+ 1XJVVsAQ==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1vzwIl-00CYiR-MD; Tue, 10 Mar 2026 13:35:07 +0100
+ id 1vzwIn-00CYiZ-7T; Tue, 10 Mar 2026 13:35:09 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v21 0/9] AuxCCS handling and render compression modifiers
-Date: Tue, 10 Mar 2026 12:34:44 +0000
-Message-ID: <20260310123453.54346-1-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v21 2/9] drm/xe: Use write-combine mapping when populating DPT
+Date: Tue, 10 Mar 2026 12:34:46 +0000
+Message-ID: <20260310123453.54346-3-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260310123453.54346-1-tvrtko.ursulin@igalia.com>
+References: <20260310123453.54346-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -57,140 +60,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A series to add support for compressed surface scanout under xe with
-Alderlake-P.
+The fallback case for DPT backing store is a buffer object in system
+memory buffer, which by default use a write-back CPU caching policy.
 
-Currently the auxiliary buffer data isn't mapped into the page tables at all so
-cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
-had to disable the support.
+If this fallback gets triggered, and since there is currently no flushing,
+the DPT writes made when pinning a buffer to display are not guaranteed to
+be seen by the display engine.
 
-On top of that there are missing flushes, invalidations and similar.
+To fix this, since both the local memory and the stolen memory DPT
+placements already use write-combine, let us make the system memory option
+follow suit by passing down the appropriate flag.
 
-Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-  [PLANE:32:plane 1A]: type=PRI
-          uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
-          hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000000x1800.000000+0.000000+0.000000, dst=2880x1800+0+0, rotation=0 (0x00000001)
-
-Display working fine - no artefacts, no DMAR/PIPE faults.
-
-All IGTs pass for me locally.
-
-v2:
- * More patches added to fix kms_flip_tiling.
-
-v3:
- * Rebased after some cleanup patches from v2 were merged.
- * Added people to Cc as suggested by Rodrigo.
- * Adjusted last patch title. (Rodrigo)
- * Apply GGTT flushing only to iomapped system memory buffers.
-
-v4:
- * Added patch for potentially misplaced Wa_14016712196.
- * Fixed (hopefully) MAX_JOB_SIZE_DW on Meteorlake.
-
-v5:
- * Split out ring emission changes to smaller patches.
- * Fixed MAX_JOB_SIZE_DW even more.
- * Don't emit MI_FLUSH_DW_CCS on !BCS. This should fix Meteorlake.
-
- v6:
- * Added AuxCCS invalidation to indirect context workarounds.
- * Also added the indirect context handling and some other workarounds. They are
-   unrelated but the series depends on it.
- * Dropped DPT pin alignment reduction since BMG appears not to be liking it for
-   some reason.
-
-v7:
- * Rebased on top of recent xe_fb_pin.c refactoring and also the indirect
-   context workarounds series.
-
-v8:
- * Rebased for bo->size removal.
- * Corrected PIPE_CONTROL_FLUSH_L3 to bit 30. (Jose)
-
-v9:
- * Fixed fb remapping changes.
- * Dropped two not required patches from the series.
- * Fixed criteria for GGTT flushing.
- * Limit clflush to the compression metadata area.
- * Rebased for indirect context workarounds landing upstream.
-
-v10:
- * Rebase for XE_GT_WA().
-
-v11:
- * Do not use stolen for DPT on IGFX + AuxCCS.
-
-v12:
- * Rebased for some ringbuf and LRC code changes.
-
-v13:
- * Rebased for various upstream changes.
- * Dropped clflush and stolen avoidance patches after merging IGT MOCS 61 usage.
-
- v14:
- * MMIO 0x4248 and MI_FLUSH_DW_CCS are MTL+. (Matt)
- * Consolidate engine feature checks. (Ville)
- * Brought back the patch to put DPT tables in system memory for 100% CI pass
-   rate. It looks like MOCS 61 is not enough to avoid sporadic pipecrc
-   mismatches.
-
-v15:
- * Limited to enabling on Alderlake-P only. (Dropped all Meteorlake patches.)
- * Dropped unrelated GGTT alignment fix. (Sent standalone.)
- * Use display parent interface for probing AuxCCS driver support.
-
-v16:
- * Use write-combine for DPT in stolen memory. (Ville)
- * Dropped clflush patches under assumption pre-production ADL machine were the
-   reason for sporadic pipecrc failures.
-
-v17:
- * Mechanical rebase for upstream conflicts.
-
-v18:
- * Added a patch to rename XE_BO_FLAG_SCANOUT to XE_BO_FLAG_FORCE_WC. (Rodrigo)
- * Instead of exporting a helper function for emitting the aux invalidation
-   into the ring, add it to the ring ops vfunc table. (Matthew)
-
-v19:
- * Tweaked comments and removed some stray hunks from v17.
-
-v20:
- * Include <linux/types.h> for u32.
-
-v21:
- * Forward declare struct xe_gt to fix standalone headers test.
-
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-Tvrtko Ursulin (9):
-  drm/xe: Rename XE_BO_FLAG_SCANOUT to XE_BO_FLAG_FORCE_WC
-  drm/xe: Use write-combine mapping when populating DPT
-  drm/xe/xelpg: Limit AuxCCS ring buffer programming to Alderlake
-  drm/xe/xelp: Quiesce memory traffic before invalidating AuxCCS
-  drm/xe/xelp: Wait for AuxCCS invalidation to complete
-  drm/xe: Move aux table invalidation to ring ops
-  drm/xe/xelp: Add AuxCCS invalidation to the indirect context
-    workarounds
-  drm/xe/display: Add support for AuxCCS
-  drm/xe/xelp: Expose AuxCCS frame buffer modifiers on Alderlake-P
-
- drivers/gpu/drm/xe/display/intel_fb_bo.c      |   6 +-
- drivers/gpu/drm/xe/display/intel_fbdev_fb.c   |  12 +-
- drivers/gpu/drm/xe/display/xe_display.c       |   8 ++
- drivers/gpu/drm/xe/display/xe_dsb_buffer.c    |   4 +-
- drivers/gpu/drm/xe/display/xe_fb_pin.c        | 116 +++++++++++++-----
- drivers/gpu/drm/xe/display/xe_initial_plane.c |   2 +-
- .../gpu/drm/xe/instructions/xe_mi_commands.h  |   6 +
- drivers/gpu/drm/xe/xe_bo.c                    |  15 +--
- drivers/gpu/drm/xe/xe_bo.h                    |   2 +-
- drivers/gpu/drm/xe/xe_lrc.c                   |  23 ++++
- drivers/gpu/drm/xe/xe_ring_ops.c              | 106 ++++++++++++----
- drivers/gpu/drm/xe/xe_ring_ops_types.h        |   8 +-
- 12 files changed, 237 insertions(+), 71 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index d4a9eb550cae..df7d305c6fcd 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -122,7 +122,8 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
+ 						   ttm_bo_type_kernel,
+ 						   XE_BO_FLAG_SYSTEM |
+ 						   XE_BO_FLAG_GGTT |
+-						   XE_BO_FLAG_PAGETABLE,
++						   XE_BO_FLAG_PAGETABLE |
++						   XE_BO_FLAG_FORCE_WC,
+ 						   alignment, false);
+ 	if (IS_ERR(dpt))
+ 		return PTR_ERR(dpt);
 -- 
 2.52.0
 
