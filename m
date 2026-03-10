@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC048EB104F
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 11:37:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A1C8EB1050
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 11:37:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C6D810E251;
-	Tue, 10 Mar 2026 11:37:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DFE9010E251;
+	Tue, 10 Mar 2026 11:37:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nLkMYD3y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ri3tZu3e";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6320710E251;
- Tue, 10 Mar 2026 11:37:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9036610E251;
+ Tue, 10 Mar 2026 11:37:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773142636; x=1804678636;
+ t=1773142666; x=1804678666;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=wfQo3G1VdAcgol/HRvdVZRGaZRNEhdOv8p8rm/8p2+w=;
- b=nLkMYD3yqndcIrqPzL9KuF2bn3jvE5Z3EKWzdgeCPv/0XGLYf3gteC4v
- latX0MJU3FNr1p0VMOGu/yqEe3yf6apQlO9cImcTQV+3aDAPZ231FmLTM
- nxzBDiUrJ+oJWtHalXq0Xsz84blYeKNtValMqd2Nrr0VTIF18Df/6WvZm
- tAghp+V+pXn8Xc8KPoWteb5QhCL7BtXEKbwgai3uSjREPKaSYGmnA7VnV
- mwZDEy1v/komqPOSNlQka2qYPvbv16Nab48GwHsIlHbAPpCUe6BUtUogQ
- VFLfDz5a3GHQjMUDHb7rc49q7nQ7a9E5MKPk54Hx7ximncwcdQJqWLJRe A==;
-X-CSE-ConnectionGUID: ondFta+6Q6CfmDfqZa/H4g==
-X-CSE-MsgGUID: omj5frwdTqWUu9xiQzzKHg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="85662720"
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="85662720"
+ bh=zK5Jh59GAbn4En/eW1Dtts2Spbt7++8xZNGEZnpVOOM=;
+ b=Ri3tZu3eUjs6bNn9PZMgPuyixKTvMbSslsDfY72TVBhQaVwz4Y6kuoeq
+ nimB5frTJ/wLhr8qLwU53HkwigdKscBoya8Y6QpdcdjaYCzHInAPumZSN
+ cQCx+in9+Z6VZb+pd7FQkyuBTPY1aWgjI6l68kWrqjBk0abWKfr9GFoCH
+ 8idBKqE+HYxqJIXsDDhbYC+a1wX+abTFGheuZWP114W5d00+y8rIlf9Rn
+ sJcgFvqWUmSWN3hMXF0HI6w/IWhFGwy2Y6ni5OVYOHxjf6OUqKhpfwjgX
+ mKkeNcEzf7zeV7mW8sdriYxYhUTZPtLYKRPwccQfsWNXVC8bOKA0J9FhO A==;
+X-CSE-ConnectionGUID: j2G+xLuQQL6bHqMQ2OVNDA==
+X-CSE-MsgGUID: RAHj3Bn6T1+DY8Gx6oWD7g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="85662784"
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="85662784"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 04:37:15 -0700
-X-CSE-ConnectionGUID: TSz16qltT7iAOKBTtOnBNA==
-X-CSE-MsgGUID: 7RkwOCdrRtKmeC9VswEKaQ==
+ 10 Mar 2026 04:37:46 -0700
+X-CSE-ConnectionGUID: WKFysl9bQC2xmFKIChwLoQ==
+X-CSE-MsgGUID: CHngzzXkTCCp14kBfXf1qQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="243098885"
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="243099015"
 Received: from zzombora-mobl1 (HELO localhost) ([10.245.244.33])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 04:37:13 -0700
-Date: Tue, 10 Mar 2026 13:37:10 +0200
+ 10 Mar 2026 04:37:43 -0700
+Date: Tue, 10 Mar 2026 13:37:40 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Simon Richter <Simon.Richter@hogyros.de>
 Cc: linux-pci@vger.kernel.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v3 2/5] vgaarb: pass errors from pci_set_vga_state() up
-Message-ID: <abACZiX80vhQP0d-@intel.com>
+Subject: Re: [PATCH v3 4/5] pci: check if VGA decoding was really activated
+Message-ID: <abAChDpsUQhpnOcT@intel.com>
 References: <20260307173538.763188-1-Simon.Richter@hogyros.de>
- <20260307173538.763188-3-Simon.Richter@hogyros.de>
+ <20260307173538.763188-5-Simon.Richter@hogyros.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260307173538.763188-3-Simon.Richter@hogyros.de>
+In-Reply-To: <20260307173538.763188-5-Simon.Richter@hogyros.de>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -72,66 +72,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sun, Mar 08, 2026 at 02:35:35AM +0900, Simon Richter wrote:
-> pci_set_vga_state() returns an error code, which so far has been ignored by
-> the only caller, __vga_tryget(), so forward it to the caller. As the return
-> type of __vga_tryget() is a pointer, wrap the error in ERR_PTR().
+On Sun, Mar 08, 2026 at 02:35:37AM +0900, Simon Richter wrote:
+> PCI bridges are allowed to refuse activating VGA decoding, by simply
+> ignoring attempts to set the bit that enables it, so after setting the bit,
+> read it back to verify.
+> 
+> One example of such a bridge is the root bridge in IBM PowerNV, but this is
+> also useful for GPU passthrough into virtual machines, where it is
+> difficult to set up routing for legacy IO through IOMMU.
 > 
 > Signed-off-by: Simon Richter <Simon.Richter@hogyros.de>
 > ---
->  drivers/pci/vgaarb.c | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
+>  drivers/pci/pci.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
-> diff --git a/drivers/pci/vgaarb.c b/drivers/pci/vgaarb.c
-> index 22b2b6ebdefd..c360eee11dd9 100644
-> --- a/drivers/pci/vgaarb.c
-> +++ b/drivers/pci/vgaarb.c
-> @@ -215,6 +215,7 @@ static struct vga_device *__vga_tryget(struct vga_device *vgadev,
->  	struct vga_device *conflict;
->  	unsigned int pci_bits;
->  	u32 flags = 0;
-> +	int err;
->  
->  	/*
->  	 * Account for "normal" resources to lock. If we decode the legacy,
-> @@ -307,7 +308,9 @@ static struct vga_device *__vga_tryget(struct vga_device *vgadev,
->  		if (change_bridge)
->  			flags |= PCI_VGA_STATE_CHANGE_BRIDGE;
->  
-> -		pci_set_vga_state(conflict->pdev, false, pci_bits, flags);
-> +		err = pci_set_vga_state(conflict->pdev, false, pci_bits, flags);
-> +		if (err)
-> +			return ERR_PTR(err);
+> diff --git a/drivers/pci/pci.c b/drivers/pci/pci.c
+> index 8479c2e1f74f..e60b948f8576 100644
+> --- a/drivers/pci/pci.c
+> +++ b/drivers/pci/pci.c
+> @@ -6197,6 +6197,12 @@ int pci_set_vga_state(struct pci_dev *dev, bool decode,
+>  				cmd &= ~PCI_BRIDGE_CTL_VGA;
+>  			pci_write_config_word(bridge, PCI_BRIDGE_CONTROL,
+>  					      cmd);
+> +			if (decode) {
+> +				pci_read_config_word(bridge, PCI_BRIDGE_CONTROL,
+> +						     &cmd);
+> +				if(!(cmd & PCI_BRIDGE_CTL_VGA))
+> +					return -EIO;
+> +			}
 
-I was thinking this one should never fail and maybe could warrant
-a WARN, but uv_set_vga_state() involves some kind of BIOS call and
-who knows what that does. So maybe a WARN isn't a good idea.
+Maybe this should also have a comment or spec quote to explain
+that it's legal behavior?
 
->  		conflict->owns &= ~match;
->  
->  		/* If we disabled normal decoding, reflect it in owns */
-> @@ -337,7 +340,9 @@ static struct vga_device *__vga_tryget(struct vga_device *vgadev,
->  	if (wants & VGA_RSRC_LEGACY_MASK)
->  		flags |= PCI_VGA_STATE_CHANGE_BRIDGE;
->  
-> -	pci_set_vga_state(vgadev->pdev, true, pci_bits, flags);
-> +	err = pci_set_vga_state(vgadev->pdev, true, pci_bits, flags);
-> +	if (err)
-> +		return ERR_PTR(err);
->  
->  	vgadev->owns |= wants;
->  lock_them:
-> @@ -455,6 +460,10 @@ int vga_get(struct pci_dev *pdev, unsigned int rsrc, int interruptible)
+The slightly bigger concern I have is whether we need to unwind
+the previous steps if this fails? Looks like we don't update
+vgadev->owns on failure (even though we may have partially
+enabled things). But since the bridge should never forward any
+VGA accesses, leaving some extra PCI_COMMAND enable(s) set on
+the device shouldn't matter in practice. So I guess this should
+work even without unwinding. Well, not sure about 
+arch_set_vga_state() since that's 100% magic...
+
 >  		}
->  		conflict = __vga_tryget(vgadev, rsrc);
->  		spin_unlock_irqrestore(&vga_lock, flags);
-> +		if (IS_ERR(conflict)) {
-> +			rc = PTR_ERR(conflict);
-> +			break;
-> +		}
->  		if (conflict == NULL)
->  			break;
->  
+>  		bus = bus->parent;
+>  	}
 > -- 
 > 2.47.3
 
