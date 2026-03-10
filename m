@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0925FD2D63
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 12:11:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20346FD2D63
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 12:12:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 611F610E6AC;
-	Tue, 10 Mar 2026 12:11:33 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EA29310E279;
- Tue, 10 Mar 2026 12:11:31 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id D216310E279;
+	Tue, 10 Mar 2026 12:12:08 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TvNceBrh";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7407410E279
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Mar 2026 12:12:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773144727; x=1804680727;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=qSppQWVMyTzxtgBwzTSxBbHOtCmiZmPObvaokbrHlhI=;
+ b=TvNceBrhU+yMt0ndtKtxt/c2Ift6sZ8h8YfcaUw12Rja2xlqxmJCC7q7
+ Ao51cuxlVlRcqZCkH/G3U216A70NU9WeQXzpJk2vlzCAWt+ri7dgsZfRI
+ 5c401BXMtDKDrL9PreMZcuGnmtmWgYi68UaeeYI7ytK3s0pCVwSPs29w0
+ ZswGIVHeMxFnIp/w8KxmiAgSL0Hgm2P12ix92gsJcZkp0Gwaovek7u4Eu
+ 611gz122G5RUgqc3G5ESlYonAKe1yLIlEe6m5evcfAvC+NVwLEs6HYAM6
+ hV+ggvmUtIdvf/dKrWvjVNufmopCrmWYYjLSdz2Wf53uGCTTjQ+3t0CeE Q==;
+X-CSE-ConnectionGUID: L15rutcQTBC/QM58g5E2WQ==
+X-CSE-MsgGUID: kbbSfyBLQL2C/+ErHH2+Pw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="84900031"
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="84900031"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2026 05:12:07 -0700
+X-CSE-ConnectionGUID: Ow4eLBYfQAadWErALANtVA==
+X-CSE-MsgGUID: RrcAng/WR0SS9B9k+cC8Vw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="243106646"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2026 05:12:05 -0700
+Date: Tue, 10 Mar 2026 13:12:02 +0100
+From: Raag Jadav <raag.jadav@intel.com>
+To: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
+Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
+ rodrigo.vivi@intel.com, riana.tauro@intel.com,
+ michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
+ umesh.nerlige.ramappa@intel.com, soham.purkait@intel.com,
+ anoop.c.vijay@intel.com
+Subject: Re: [PATCH v2 4/4] drm/xe/ras: Introduce correctable error handling
+Message-ID: <abAKkvGtfxeAjvcX@black.igk.intel.com>
+References: <20260213081644.2085314-1-raag.jadav@intel.com>
+ <20260213081644.2085314-5-raag.jadav@intel.com>
+ <69bc7fd7-b1ca-4949-8eaa-15208ae1d38b@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_All_p?=
- =?utf-8?q?atches_to_make_PREEMPT=5FRT_work_on_i915_+_xe=2E_=28rev14=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sebastian Andrzej Siewior" <bigeasy@linutronix.de>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 10 Mar 2026 12:11:31 -0000
-Message-ID: <177314469193.338934.165818632824742825@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260310115709.2276203-1-dev@lankhorst.se>
-In-Reply-To: <20260310115709.2276203-1-dev@lankhorst.se>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <69bc7fd7-b1ca-4949-8eaa-15208ae1d38b@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,202 +70,267 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Mar 10, 2026 at 03:48:35PM +0530, Mallesh, Koujalagi wrote:
+> On 13-02-2026 01:46 pm, Raag Jadav wrote:
+> > Add initial support for correctable error handling which is serviced
+> > using system controller event. Currently we only log the errors in
+> > dmesg but this serves as a foundation for RAS infrastructure and will
+> > be further extended to facilitate other RAS features.
+> > 
+> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > ---
+> >   drivers/gpu/drm/xe/Makefile           |  1 +
+> >   drivers/gpu/drm/xe/xe_ras.c           | 87 +++++++++++++++++++++++++++
+> >   drivers/gpu/drm/xe/xe_ras.h           | 14 +++++
+> >   drivers/gpu/drm/xe/xe_ras_types.h     | 79 ++++++++++++++++++++++++
+> >   drivers/gpu/drm/xe/xe_sysctrl_event.c |  3 +-
+> >   5 files changed, 183 insertions(+), 1 deletion(-)
+> >   create mode 100644 drivers/gpu/drm/xe/xe_ras.c
+> >   create mode 100644 drivers/gpu/drm/xe/xe_ras.h
+> >   create mode 100644 drivers/gpu/drm/xe/xe_ras_types.h
+> > 
+> > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> > index 59e083f90d7e..7fc67c320086 100644
+> > --- a/drivers/gpu/drm/xe/Makefile
+> > +++ b/drivers/gpu/drm/xe/Makefile
+> > @@ -111,6 +111,7 @@ xe-y += xe_bb.o \
+> >   	xe_pxp_submit.o \
+> >   	xe_query.o \
+> >   	xe_range_fence.o \
+> > +	xe_ras.o \
+> >   	xe_reg_sr.o \
+> >   	xe_reg_whitelist.o \
+> >   	xe_ring_ops.o \
+> > diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+> > new file mode 100644
+> > index 000000000000..413c6e62cd50
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_ras.c
+> > @@ -0,0 +1,87 @@
+> > +// SPDX-License-Identifier: MIT
+> > +/*
+> > + * Copyright © 2026 Intel Corporation
+> > + */
+> > +
+> > +#include "xe_assert.h"
+> > +#include "xe_printk.h"
+> > +#include "xe_ras.h"
+> > +#include "xe_ras_types.h"
+> > +#include "xe_sysctrl_event_types.h"
+> > +
+> > +/* Severity of detected errors  */
+> > +enum xe_ras_severity {
+> > +	XE_RAS_SEV_NOT_SUPPORTED		= 0x00,
+> > +	XE_RAS_SEV_CORRECTABLE			= 0x01,
+> > +	XE_RAS_SEV_UNCORRECTABLE		= 0x02,
+> > +	XE_RAS_SEV_INFORMATIONAL		= 0x03,
+> > +	XE_RAS_SEV_MAX
+> > +};
+> > +
+> > +/* Major IP blocks/components where errors can originate */
+> > +enum xe_ras_component {
+> > +	XE_RAS_COMP_NOT_SUPPORTED		= 0x00,
+> > +	XE_RAS_COMP_DEVICE_MEMORY		= 0x01,
+> > +	XE_RAS_COMP_CORE_COMPUTE		= 0x02,
+> > +	XE_RAS_COMP_RESERVED			= 0x03,
+> > +	XE_RAS_COMP_PCIE			= 0x04,
+> > +	XE_RAS_COMP_FABRIC			= 0x05,
+> > +	XE_RAS_COMP_SOC_INTERNAL		= 0x06,
+> > +	XE_RAS_COMP_MAX
+> > +};
+> > +
+> > +static const char *const xe_ras_severities[] = {
+> > +	[XE_RAS_SEV_NOT_SUPPORTED]		= "Not Supported",
+> > +	[XE_RAS_SEV_CORRECTABLE]		= "Correctable",
+> > +	[XE_RAS_SEV_UNCORRECTABLE]		= "Uncorrectable",
+> > +	[XE_RAS_SEV_INFORMATIONAL]		= "Informational",
+> > +};
+> > +static_assert(ARRAY_SIZE(xe_ras_severities) == XE_RAS_SEV_MAX);
+> > +
+> > +static const char *const xe_ras_components[] = {
+> > +	[XE_RAS_COMP_NOT_SUPPORTED]		= "Not Supported",
+> > +	[XE_RAS_COMP_DEVICE_MEMORY]		= "Device Memory",
+> > +	[XE_RAS_COMP_CORE_COMPUTE]		= "Core Compute",
+> > +	[XE_RAS_COMP_RESERVED]			= "Reserved",
+> > +	[XE_RAS_COMP_PCIE]			= "PCIe",
+> > +	[XE_RAS_COMP_FABRIC]			= "Fabric",
+> > +	[XE_RAS_COMP_SOC_INTERNAL]		= "SoC Internal",
+> > +};
+> > +static_assert(ARRAY_SIZE(xe_ras_components) == XE_RAS_COMP_MAX);
+> > +
+> > +static inline const char *sev_to_str(struct xe_device *xe, u32 sev)
+> > +{
+> > +	xe_assert(xe, sev < XE_RAS_SEV_MAX);
+> > +
+> > +	return xe_ras_severities[sev];
+> > +}
+> > +
+> > +static inline const char *comp_to_str(struct xe_device *xe, u32 comp)
+> > +{
+> > +	xe_assert(xe, comp < XE_RAS_COMP_MAX);
+> > +
+> > +	return xe_ras_components[comp];
+> > +}
+> > +
+> > +void xe_ras_event_log(struct xe_device *xe, struct xe_sysctrl_event_response *response)
+> > +{
+> > +	struct xe_ras_event_threshold_crossed *pending = (void *)&response->data;
+> > +	struct xe_ras_error *errors = pending->counters;
+> > +	u32 cid, sev, comp, inst, cause;
+> > +	u8 tile;
+> > +
+> > +	xe_warn(xe, "[RAS]: error counter threshold crossed\n");
+> > +	xe_assert(xe, pending->ncounters < XE_RAS_NUM_COUNTERS);
+> > +
+> > +	for (cid = 0; cid < pending->ncounters; cid++) {
+> > +		sev = errors[cid].common.severity;
+> > +		comp = errors[cid].common.component;
+> > +
+> > +		tile = errors[cid].product.unit.tile;
+> > +		inst = errors[cid].product.unit.instance;
+> > +		cause = errors[cid].product.cause.cause;
+> > +
+> Unaligned access of member cause penalty, we need to check.
 
-Series: drm/i915/display: All patches to make PREEMPT_RT work on i915 + xe. (rev14)
-URL   : https://patchwork.freedesktop.org/series/159034/
-State : warning
+I'm okay with aligning but not sure if the firmware will accept it.
+Let's check with arch.
 
-== Summary ==
+> > +		xe_warn(xe, "[RAS]: Error:%s Tile:%u Component:%s Instance:%u Cause:%#x\n",
+> > +			sev_to_str(xe, sev), tile, comp_to_str(xe, comp), inst, cause);
+> 
+> Spam kernel Log, we can use rate limit right?
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-1f57ba1afceae32108bd24770069f764d940a0e4
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 7fd9e411743903c36fc1e625dd8de6900d4f5acb
-Author: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Date:   Tue Mar 10 12:57:08 2026 +0100
+Yep.
 
-    drm/i915/gt: Add a spinlock to prevent starvation of irq_work.
-    
-    IRQ-Work (FIFO-1) will be preempted by the threaded-interrupt (FIFO-50)
-    and the interrupt will poll on signaler_active while the irq-work can't
-    make progress.
-    
-    Solve this by adding a spinlock to prevent starvation and force
-    completion.
-    
-    Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-+ /mt/dim checkpatch 77e176657e782bb81270c230d1cfec91f7707162 drm-intel
-79bd7d0764c3 drm/vblank_work: Add methods to schedule vblank_work in 2 stages
--:116: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#116: FILE: drivers/gpu/drm/drm_vblank_work.c:180:
- 
-+
+Raag
 
-total: 0 errors, 0 warnings, 1 checks, 162 lines checked
-639b9c115d50 drm/vblank: Add a 2-stage version of drm_crtc_arm_vblank_event
-652ee2c41511 drm/intel/display: Make intel_crtc_arm_vblank_event static
-3986bb1e7e09 drm/intel/display: Convert vblank event handling to 2-stage arming
--:139: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
-#139: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:752:
-+							 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
-
--:142: WARNING:LONG_LINE_COMMENT: line length of 110 exceeds 100 columns
-#142: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:755:
-+				/* Remove plane from atomic state, cleanup/free is done from vblank worker. */
-
-total: 0 errors, 2 warnings, 0 checks, 120 lines checked
-722856e23869 drm/i915/display: Move vblank put until after critical section
-e576e647adfe drm/i915/display: Remove locking from intel_vblank_evade critical section
--:47: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#47: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:735:
-+static bool scanline_in_safe_range(struct intel_vblank_evade_ctx *evade, int *scanline, bool unlocked)
-
--:91: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
-#91: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:767:
-+		timeout = wait_event_timeout(*wq, scanline_in_safe_range(evade, &scanline, true), timeout);
-
-total: 0 errors, 2 warnings, 0 checks, 78 lines checked
-4183ddfb90b6 drm/i915/display: Handle vlv dsi workaround in scanline_in_safe_range too
-b86bc8bd77b0 drm/i915: Use preempt_disable/enable_rt() where recommended
--:7: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#7: 
-  ad3543ede630f ("drm/intel: Push get_scanout_position() timestamping into kms driver.")
-
--:46: WARNING:LINE_SPACING: Missing a blank line after declarations
-#46: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:324:
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
-+	spin_lock_irqsave(&uncore->lock, *flags);
-
--:53: WARNING:LINE_SPACING: Missing a blank line after declarations
-#53: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:331:
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
-+	spin_unlock_irqrestore(&uncore->lock, flags);
-
-total: 0 errors, 3 warnings, 0 checks, 78 lines checked
-5cb67d624443 drm/i915/display: Make get_vblank_counter use intel_de_read_fw()
--:8: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#8: 
-<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
-
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
-fa92857210d4 drm/i915/display: Do not take uncore lock in i915_get_vblank_counter
--:43: ERROR:CODE_INDENT: code indent should use tabs where possible
-#43: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:113:
-+^I^I^I^I        PIPEFRAME(display, pipe));$
-
--:43: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#43: FILE: drivers/gpu/drm/i915/display/intel_vblank.c:113:
-+	frame = intel_de_read64_2x32_fw(display, PIPEFRAMEPIXEL(display, pipe),
-+				        PIPEFRAME(display, pipe));
-
--:60: WARNING:LINE_SPACING: Missing a blank line after declarations
-#60: FILE: drivers/gpu/drm/i915/intel_uncore.h:457:
-+	u32 upper, lower, old_upper, loop = 0;
-+	upper = intel_uncore_read_fw(uncore, upper_reg);
-
-total: 1 errors, 1 warnings, 1 checks, 85 lines checked
-3ca6b97d05b4 drm/i915/display: Make icl_dsi_frame_update use _fw too
-4cd533806948 drm/i915/display: Use intel_de_read/write_fw in colorops
--:123: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#123: FILE: drivers/gpu/drm/i915/display/intel_color.c:1054:
-+	intel_de_write_fw(display, GAMMA_MODE(crtc->pipe),
- 		       crtc_state->gamma_mode);
-
--:143: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
-
-total: 0 errors, 1 warnings, 1 checks, 24 lines checked
-765abf38cf39 drm/i915/display: Use intel_de_write_fw in intel_pipe_fastset
--:14: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#14: 
-<3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
-
--:203: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
-
-total: 0 errors, 2 warnings, 0 checks, 112 lines checked
-ae5a92ca1c69 drm/i915/display: Make set_pipeconf use the fw variants
--:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#11: 
-| BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
-
--:46: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
-#46: 
-Reported-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-
--:76: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
-
-total: 0 errors, 3 warnings, 0 checks, 22 lines checked
-d1a9944e7d20 drm/i915/display: Fix intel_lpe_audio_irq_handler for PREEMPT-RT
--:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#11: 
-Because intel_lpe_audio_irq_handler() may be called in threaded IRQ context,
-
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
-dd15c45c1bf3 drm/i915/gt: Use spin_lock_irq() instead of local_irq_disable() + spin_lock()
--:22: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
-#22: 
-Reported-by: Clark Williams <williams@redhat.com>
-Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-
-total: 0 errors, 1 warnings, 0 checks, 53 lines checked
-de19a909607a drm/i915: Drop the irqs_disabled() check
--:16: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
-#16: 
-Reported-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-
-total: 0 errors, 1 warnings, 0 checks, 14 lines checked
-0d88e188d794 drm/i915/guc: Consider also RCU depth in busy loop.
--:13: WARNING:BAD_REPORTED_BY_LINK: Reported-by: should be immediately followed by Closes: with a URL to the report
-#13: 
-Reported-by: "John B. Wyatt IV" <jwyatt@redhat.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
--:27: ERROR:IN_ATOMIC: do not use in_atomic in drivers
-#27: FILE: drivers/gpu/drm/i915/gt/uc/intel_guc.h:365:
-+	bool not_atomic = !in_atomic() && !irqs_disabled() && !rcu_preempt_depth();
-
-total: 1 errors, 1 warnings, 0 checks, 8 lines checked
-196c87b569a0 drm/i915/gt: Fix selftests on PREEMPT_RT
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
-total: 0 errors, 1 warnings, 0 checks, 26 lines checked
-ed35927713c8 drm/i915/gt: Set stop_timeout() correctly on PREEMPT-RT
--:20: WARNING:LONG_LINE_COMMENT: line length of 101 exceeds 100 columns
-#20: FILE: drivers/gpu/drm/i915/gt/intel_engine_cs.c:1610:
-+	if (in_atomic() || irqs_disabled() || rcu_preempt_depth()) /* inside atomic preempt-reset? */
-
--:20: ERROR:IN_ATOMIC: do not use in_atomic in drivers
-#20: FILE: drivers/gpu/drm/i915/gt/intel_engine_cs.c:1610:
-+	if (in_atomic() || irqs_disabled() || rcu_preempt_depth()) /* inside atomic preempt-reset? */
-
-total: 1 errors, 1 warnings, 0 checks, 8 lines checked
-b11495d3f633 drm/i915/display: Remove uncore lock from vlv_atomic_update_fifo
-f7913847b960 drm/i915: Use sleeping selftests for igt_atomic on PREEMPT_RT
-86cd54693e7e Revert "drm/i915: Depend on !PREEMPT_RT."
-e1708d8ad928 PREEMPT_RT injection
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
-total: 0 errors, 1 warnings, 0 checks, 43 lines checked
-c5087b289fb2 FOR-CI: bump MAX_STACK_TRACE_ENTRIES
-7fd9e4117439 drm/i915/gt: Add a spinlock to prevent starvation of irq_work.
--:65: CHECK:UNCOMMENTED_DEFINITION: spinlock_t definition without comment
-#65: FILE: drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h:43:
-+	spinlock_t signaler_active_sync;
-
--:68: ERROR:NO_AUTHOR_SIGN_OFF: Missing Signed-off-by: line by nominal patch author 'Sebastian Andrzej Siewior <bigeasy@linutronix.de>'
-
-total: 1 errors, 0 warnings, 1 checks, 40 lines checked
-
-
+> > +	}
+> > +}
+> > diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
+> > new file mode 100644
+> > index 000000000000..fdefe0e2fe98
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_ras.h
+> > @@ -0,0 +1,14 @@
+> > +/* SPDX-License-Identifier: MIT */
+> > +/*
+> > + * Copyright © 2026 Intel Corporation
+> > + */
+> > +
+> > +#ifndef _XE_RAS_H_
+> > +#define _XE_RAS_H_
+> > +
+> > +struct xe_device;
+> > +struct xe_sysctrl_event_response;
+> > +
+> > +void xe_ras_event_log(struct xe_device *xe, struct xe_sysctrl_event_response *response);
+> > +
+> > +#endif
+> > diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
+> > new file mode 100644
+> > index 000000000000..0afcf8bf982d
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_ras_types.h
+> > @@ -0,0 +1,79 @@
+> > +/* SPDX-License-Identifier: MIT */
+> > +/*
+> > + * Copyright © 2026 Intel Corporation
+> > + */
+> > +
+> > +#ifndef _XE_RAS_TYPES_H_
+> > +#define _XE_RAS_TYPES_H_
+> > +
+> > +#include <linux/types.h>
+> > +
+> > +#define XE_RAS_NUM_COUNTERS			21
+> > +
+> > +/**
+> > + * struct xe_ras_error_common - Error fields that are common across all products
+> > + */
+> > +struct xe_ras_error_common {
+> > +	/** @severity: Error severity */
+> > +	u8 severity;
+> > +	/** @component: IP block where error originated */
+> > +	u8 component;
+> > +} __packed;
+> > +
+> > +/**
+> > + * struct xe_ras_error_unit - Error unit information
+> > + */
+> > +struct xe_ras_error_unit {
+> > +	/** @tile: Tile identifier */
+> > +	u8 tile;
+> > +	/** @instance: Instance identifier specific to IP */
+> > +	u32 instance;
+> > +} __packed;
+> > +
+> > +/**
+> > + * struct xe_ras_error_cause - Error cause information
+> > + */
+> > +struct xe_ras_error_cause {
+> > +	/** @cause: Cause/checker */
+> > +	u32 cause;
+> > +	/** @reserved: For future use */
+> > +	u8 reserved;
+> > +} __packed;
+> > +
+> > +/**
+> > + * struct xe_ras_error_product - Error fields that are specific to the product
+> > + */
+> > +struct xe_ras_error_product {
+> > +	/** @unit: Unit within IP block */
+> > +	struct xe_ras_error_unit unit;
+> > +	/** @cause: Cause/checker */
+> > +	struct xe_ras_error_cause cause;
+> > +} __packed;
+> > +
+> > +/**
+> > + * struct xe_ras_error - Combines common and product-specific parts
+> > + */
+> > +struct xe_ras_error {
+> > +	/** @common: Common error type and component */
+> > +	struct xe_ras_error_common common;
+> > +	/** @product: Product-specific unit and cause */
+> > +	struct xe_ras_error_product product;
+> > +} __packed;
+> > +
+> > +/**
+> > + * struct xe_ras_event_threshold_crossed - Event data for counter threshold crossed event
+> > + */
+> > +struct xe_ras_event_threshold_crossed {
+> > +	/** @ncounters: Number of counters that crossed thresholds */
+> > +	u32 ncounters;
+> > +	/** @ts_high: Higher 32 bits of event timestamp */
+> > +	u32 ts_high;
+> > +	/** @ts_low: Lower 32 bits of event timestamp */
+> > +	u32 ts_low;
+> > +	/** @reason: Threshold cross reason */
+> > +	u32 reason;
+> > +	/** @counters: Array of error counters that crossed threshold */
+> > +	struct xe_ras_error counters[XE_RAS_NUM_COUNTERS];
+> > +} __packed;
+> > +
+> > +#endif
+> > diff --git a/drivers/gpu/drm/xe/xe_sysctrl_event.c b/drivers/gpu/drm/xe/xe_sysctrl_event.c
+> > index 7c3041f4196a..876754f9fe35 100644
+> > --- a/drivers/gpu/drm/xe/xe_sysctrl_event.c
+> > +++ b/drivers/gpu/drm/xe/xe_sysctrl_event.c
+> > @@ -7,6 +7,7 @@
+> >   #include "xe_device.h"
+> >   #include "xe_irq.h"
+> >   #include "xe_printk.h"
+> > +#include "xe_ras.h"
+> >   #include "xe_sysctrl.h"
+> >   #include "xe_sysctrl_event_types.h"
+> >   #include "xe_sysctrl_mailbox.h"
+> > @@ -37,7 +38,7 @@ static void xe_sysctrl_get_pending_event(struct xe_device *xe,
+> >   		}
+> >   		if (response.event == XE_SYSCTRL_EVENT_THRESHOLD_CROSSED) {
+> > -			xe_warn(xe, "[RAS]: error counter threshold crossed\n");
+> > +			xe_ras_event_log(xe, &response);
+> >   		} else {
+> >   			xe_err(xe, "sysctrl: unexpected event %#x\n", response.event);
+> >   			return;
