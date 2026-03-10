@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ED50FD4F19
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 18:23:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F9A6FD4F19
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 18:23:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D431F10E29B;
-	Tue, 10 Mar 2026 18:23:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC53110E2CD;
+	Tue, 10 Mar 2026 18:23:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="flTow7kU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ci8KE6Ap";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9246710E29B
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Mar 2026 18:23:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FE3F10E2CD
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Mar 2026 18:23:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773167025; x=1804703025;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=j0LN/s5UdRqklERMT+lZ1KLJUzXZjucPwosk6BOECtU=;
- b=flTow7kUiGvTIf7ZhjxP1lozh6RE4598bp7h9I5vL1cfYary4PXU7TZc
- NpTjfbJlBOyhmw32BLSzAWPPmFcW8qMoZiS/tzUwWQuYD3xNqUxGMZIt2
- X0uo2SBCoPU7QYBglqtltbonfiZaOfwoduM5RVKKWhdzx9xppBoDFbA06
- PvlraL2EhCHcc8qo9rMfw1AGk6AfLRCGj2unLRpXAecay4A16TsV2kbNV
- qykcmPBMm1fucK+eAAl1MqWGLZBxkOZrVAKlJfkl6Ysj0VyzqNwYswwEO
- koiu0WtzGr+gcR0CYvRXBwtRCUBcQTJ7WqQjJLlmotVplUZ7ZQ2zxtvnL w==;
-X-CSE-ConnectionGUID: +en/VgraSVCc8R2ZaDly/Q==
-X-CSE-MsgGUID: JWpD2Ba/TUur1YYwjlCf6g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="78109802"
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="78109802"
+ t=1773167028; x=1804703028;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=TiABjjmuEPrqAHUgtk93qbwhRElB9z8OkCCs9uFKEzY=;
+ b=ci8KE6ApnYF/Yon/wbOSGLnoZ7Rylqg48Z3CXdRLu2TXKw+i8wYj/xwX
+ mvVWRdSjujMVFwb0LRbgJ5Sh6Y+nEfhuBNSqoAwYkLQN6y4Xl/2pTGIhS
+ odVS0ThSjDomYXkd47O2P04FrK/96V1ynAMw1LCWG4mCS8syvnQdl5+/+
+ 71E17qoj9Ft23y5AF213EQRlO4Pn3ngO7zwHxhxYQ+dwdlj6i5n2TeTA7
+ T2nRp9q7ZPREspxFGoakIOxKcY81d/pUTIFrIqqBLThXNLB0wtqBkNHif
+ Kd6wM9kv58rFKN8e+oqkT3rtw/1cLm65jF95YZUEWfbyT8a4Yh3uR2sLA w==;
+X-CSE-ConnectionGUID: ykm2kSL1Q/yDxZOO2g5/mA==
+X-CSE-MsgGUID: HW0H4uC0S2e409IGE4ck0Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="78109807"
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="78109807"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 11:23:44 -0700
-X-CSE-ConnectionGUID: 6iKEPmdaQE6H/xOfixrJpQ==
-X-CSE-MsgGUID: yuGEN/WmQhidzkMyiuXKwg==
+ 10 Mar 2026 11:23:48 -0700
+X-CSE-ConnectionGUID: FfVVzNacSjS1uoRxhM/XLw==
+X-CSE-MsgGUID: eSQwH5KNQZWvf0YwbSW/Uw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="258127606"
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="258127616"
 Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 11:23:40 -0700
+ 10 Mar 2026 11:23:44 -0700
 From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
@@ -48,12 +48,15 @@ Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
  riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
  michael.j.ruhl@intel.com, paul.e.luse@intel.com,
  mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
-Subject: [PATCH v9 0/6] drm/xe/sysctrl: Add system controller component for
- Xe3p dGPU platforms
-Date: Tue, 10 Mar 2026 11:23:19 -0700
-Message-ID: <20260310182336.611041-8-anoop.c.vijay@intel.com>
+Subject: [PATCH v9 1/6] drm/xe/sysctrl: Add System Controller types and device
+ integration
+Date: Tue, 10 Mar 2026 11:23:20 -0700
+Message-ID: <20260310182336.611041-9-anoop.c.vijay@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260310182336.611041-8-anoop.c.vijay@intel.com>
+References: <20260310182336.611041-8-anoop.c.vijay@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,117 +74,128 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-This patch series introduces System Controller (sysctrl) component for Intel Xe3p 
-dGPU platforms.
+Add foundational type definitions for System Controller (sysctrl)
+support and integrate them into xe_device structure. Also add a
+ capability flag to device descriptor and runtime
+info.
 
-This component provides the foundational infrastructure for communication
-with the System Controller firmware using MKHI protocol over a mailbox interface.
+System Controller is a separate management entity responsible for
+certain platform-level control and coordination tasks in Intel Xe3p
+dGPU platforms. Driver communicates with it via a mailbox interface
+using SCHI (System Controller Host Interface) protocol for operations
+delegated to this controller.
 
-Key features introduced:
-- Detection and initialization of System Controller interface on Xe3p dGPU platforms
-- Mailbox communication with System Controller firmware
-- Fragmented message transfer for large command payloads
+This commit introduces core data structures required for sysctrl
+support, including MMIO region, command mutex, and phase bit used
+by SCHI protocol.  flag explicitly records presence of
+sysctrl hardware on supported platforms.
 
-This implementation establishes the base for future System Controller feature
-enablement and firmware command handling.
+No functional changes. This is preparatory infrastructure for System
+Controller support.
+
+Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
 ---
-v2: (Umesh)
-- Fix commit message to 75 chars per line
-- Address CI.Hooks and checkpatch warnings
-- Add sc_to_xe() helper for cleaner conversions
-- Alphabetical order for headers
-- Simplify write/read frame logic using memcpy
-- Drop redundant frame length checks
-- Use xe_mmio_rmw32() for register updates
-- Align FIELD_PREP macros
-- Improve error handling and timeout messages
-- Handle phase_bit revert on write-frame failure
-- Update rdata_len on partial receive before return
-- Remove unnecessary headers
-
-v3: (Matt, Riana, Umesh)
-- Split patch into logical series
-- Rename SC_* macros to SYSCTRL_* for consistency
-- Move MKHI_* defines to .c file
-- Pass xe directly to helpers
-- Place devm_add_action_or_reset() after set_sysctrl_region()
-- Add kernel-doc for xe_sysctrl_mailbox_init()
-- Add short documentation for System Controller in xe_sysctrl.c
-- Avoid hardcoded sizes
-- Move structs to _types.h
-
 v4: (Matt, Mike)
-- Code style improvements
 - Add domain-specific MMIO accessor
-- Change phase_bit to bool type
-- Add input validation and buffer overflow protection
-
-v5: (Umesh, Riana)
-- Reset phase bit to 0 on error conditions
-- Refactor mailbox receive path
-- Updated xe_err messages for consistency
+- Change phase_bit type from u32 to bool
 
 v6: (Matt)
-- Move protocol constants from xe_sysctrl_regs.h to xe_sysctrl_mailbox_types.h
-- Add SYSCTRL_MB_CTRL_MKHI_CMD helper macro
+- Add mailbox protocol constants
 
-v7:
-- Fix for CI failure
-
-v8: (Matt, Michal, Shuicheng)
+v8: (Matt, Michal)
 - Reordered patches for logical flow
-- Moved ABI definitions to dedicated header
-- Static functions renamed with short prefix
-- Fixed include order
-- Added VF check
-- Converted runtime checks to assertions
-- Changed xe_sysctrl_send_command() function parameter from 'xe' to 'sc'
-- Added frame length validation and command overflow protection
-- Use REG_FIELD_PREP for hardware registers
-- Changed error format to %pe
-- Removed unnecessary NULL checks and explicit zeros
-- Fixed kernel-doc syntax
-- Added sc_to_xe() helper
 
-v9: (Matt, Umesh, Badal)
+v9: (Matt)
 - Extended commit message to explain System Controller and purpose of
   `has_sysctrl` flag
-- Normalized hexadecimal literal casing
-- Renamed MKHI to SCHI (System Controller Host Interface)
-- Fixed kernel-doc syntax
 ---
-
-Anoop Vijay (6):
-  drm/xe/sysctrl: Add System Controller types and device integration
-  drm/xe/sysctrl: Add System Controller register definitions
-  drm/xe/sysctrl: Add mailbox communication headers
-  drm/xe/sysctrl: Add System Controller initialization
-  drm/xe/sysctrl: Add mailbox communication implementation
-  drm/xe/pci: Enable System Controller for CRI platform
-
- drivers/gpu/drm/xe/Makefile                   |   2 +
- drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h       |  31 ++
- drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h     |  36 ++
- drivers/gpu/drm/xe/xe_device.c                |   5 +
- drivers/gpu/drm/xe/xe_device_types.h          |   6 +
- drivers/gpu/drm/xe/xe_pci.c                   |   2 +
- drivers/gpu/drm/xe/xe_pci_types.h             |   1 +
- drivers/gpu/drm/xe/xe_sysctrl.c               |  84 ++++
- drivers/gpu/drm/xe/xe_sysctrl.h               |  21 +
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.c       | 364 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.h       |  31 ++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  35 ++
- drivers/gpu/drm/xe/xe_sysctrl_types.h         |  32 ++
- 13 files changed, 650 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
- create mode 100644 drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.c
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.h
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+ drivers/gpu/drm/xe/xe_device_types.h  |  6 +++++
+ drivers/gpu/drm/xe/xe_pci_types.h     |  1 +
+ drivers/gpu/drm/xe/xe_sysctrl_types.h | 32 +++++++++++++++++++++++++++
+ 3 files changed, 39 insertions(+)
  create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_types.h
 
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 3e04e80e0815..2990c1e76687 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -27,6 +27,7 @@
+ #include "xe_sriov_vf_ccs_types.h"
+ #include "xe_step_types.h"
+ #include "xe_survivability_mode_types.h"
++#include "xe_sysctrl_types.h"
+ #include "xe_tile_types.h"
+ #include "xe_validation.h"
+ 
+@@ -206,6 +207,8 @@ struct xe_device {
+ 		u8 has_soc_remapper_telem:1;
+ 		/** @info.has_sriov: Supports SR-IOV */
+ 		u8 has_sriov:1;
++		/** @info.has_sysctrl: Supports System Controller */
++		u8 has_sysctrl:1;
+ 		/** @info.has_usm: Device has unified shared memory support */
+ 		u8 has_usm:1;
+ 		/** @info.has_64bit_timestamp: Device supports 64-bit timestamps */
+@@ -518,6 +521,9 @@ struct xe_device {
+ 	/** @i2c: I2C host controller */
+ 	struct xe_i2c *i2c;
+ 
++	/** @sc: System Controller */
++	struct xe_sysctrl sc;
++
+ 	/** @atomic_svm_timeslice_ms: Atomic SVM fault timeslice MS */
+ 	u32 atomic_svm_timeslice_ms;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index 8eee4fb1c57c..08386c5eca27 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -57,6 +57,7 @@ struct xe_device_desc {
+ 	u8 has_soc_remapper_sysctrl:1;
+ 	u8 has_soc_remapper_telem:1;
+ 	u8 has_sriov:1;
++	u8 has_sysctrl:1;
+ 	u8 needs_scratch:1;
+ 	u8 skip_guc_pc:1;
+ 	u8 skip_mtcfg:1;
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_types.h b/drivers/gpu/drm/xe/xe_sysctrl_types.h
+new file mode 100644
+index 000000000000..8217f6befe70
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sysctrl_types.h
+@@ -0,0 +1,32 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#ifndef _XE_SYSCTRL_TYPES_H_
++#define _XE_SYSCTRL_TYPES_H_
++
++#include <linux/mutex.h>
++#include <linux/types.h>
++
++struct xe_mmio;
++
++/**
++ * struct xe_sysctrl - System Controller driver context
++ *
++ * This structure maintains the runtime state for System Controller
++ * communication. All fields are initialized during xe_sysctrl_init()
++ * and protected appropriately for concurrent access.
++ */
++struct xe_sysctrl {
++	/** @mmio: MMIO region for system control registers */
++	struct xe_mmio *mmio;
++
++	/** @cmd_lock: Mutex protecting mailbox command operations */
++	struct mutex cmd_lock;
++
++	/** @phase_bit: Message boundary phase toggle bit (0 or 1) */
++	bool phase_bit;
++};
++
++#endif
 -- 
 2.43.0
 
