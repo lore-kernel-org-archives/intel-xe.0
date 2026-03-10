@@ -4,44 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95CFCFD4F17
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 18:14:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ED50FD4F19
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Mar 2026 18:23:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5461010E77B;
-	Tue, 10 Mar 2026 18:14:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D431F10E29B;
+	Tue, 10 Mar 2026 18:23:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="kEW9++8W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="flTow7kU";
 	dkim-atps=neutral
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 555DD10E77B;
- Tue, 10 Mar 2026 18:14:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1773166459;
- bh=GjCA8yQPbu1rhR9QarsGaGitf2y9GvEi6i7/18ZjPWU=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=kEW9++8WO5AbuW0PQiHjP5MQM55Dq+cstct4rRBNAqMp5BfLNYmaahlwnNl2Pfmeh
- pIiBSkp1nuGYWp8GFmGH1qGlzIxTxghPuPSI5Dln7zsty9U+KnpIVZ/1lup1GhoYhr
- CDeWHVFYhgxHYuKVv2xj2mZgW+/zp9wI1IB3ezdZ2OyLqJtJTXOWq8X4oKhYxI36RU
- ovkqlTIpIxHq25/KcQ8CfaXZ+w203Vv4gLtFIpZGhp96hLveBkh5QP9h5XmwuYUDM2
- Hr5+frKhLF+XMJy1pTAmD9TbPT9UBEgIEBamA6PEHETJWSUcedB7EBPQT+mpmjGs57
- qs10u9mLkX2FQ==
-Message-ID: <64617f61-6c91-4739-a545-b0109f8dc87e@lankhorst.se>
-Date: Tue, 10 Mar 2026 19:14:18 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9246710E29B
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Mar 2026 18:23:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773167025; x=1804703025;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=j0LN/s5UdRqklERMT+lZ1KLJUzXZjucPwosk6BOECtU=;
+ b=flTow7kUiGvTIf7ZhjxP1lozh6RE4598bp7h9I5vL1cfYary4PXU7TZc
+ NpTjfbJlBOyhmw32BLSzAWPPmFcW8qMoZiS/tzUwWQuYD3xNqUxGMZIt2
+ X0uo2SBCoPU7QYBglqtltbonfiZaOfwoduM5RVKKWhdzx9xppBoDFbA06
+ PvlraL2EhCHcc8qo9rMfw1AGk6AfLRCGj2unLRpXAecay4A16TsV2kbNV
+ qykcmPBMm1fucK+eAAl1MqWGLZBxkOZrVAKlJfkl6Ysj0VyzqNwYswwEO
+ koiu0WtzGr+gcR0CYvRXBwtRCUBcQTJ7WqQjJLlmotVplUZ7ZQ2zxtvnL w==;
+X-CSE-ConnectionGUID: +en/VgraSVCc8R2ZaDly/Q==
+X-CSE-MsgGUID: JWpD2Ba/TUur1YYwjlCf6g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="78109802"
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="78109802"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2026 11:23:44 -0700
+X-CSE-ConnectionGUID: 6iKEPmdaQE6H/xOfixrJpQ==
+X-CSE-MsgGUID: yuGEN/WmQhidzkMyiuXKwg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="258127606"
+Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2026 11:23:40 -0700
+From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
+ rodrigo.vivi@intel.com, aravind.iddamsetty@intel.com,
+ riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
+ michael.j.ruhl@intel.com, paul.e.luse@intel.com,
+ mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
+Subject: [PATCH v9 0/6] drm/xe/sysctrl: Add system controller component for
+ Xe3p dGPU platforms
+Date: Tue, 10 Mar 2026 11:23:19 -0700
+Message-ID: <20260310182336.611041-8-anoop.c.vijay@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 26/26] drm/i915/gt: Add a spinlock to prevent
- starvation of irq_work.
-To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20260310115709.2276203-1-dev@lankhorst.se>
- <20260310115709.2276203-27-dev@lankhorst.se>
- <20260310170413.5rCjlTce@linutronix.de>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <20260310170413.5rCjlTce@linutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,106 +69,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Den 2026-03-10 kl. 18:04, skrev Sebastian Andrzej Siewior:
-> On 2026-03-10 12:57:08 [+0100], Maarten Lankhorst wrote:
->> From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
->>
->> IRQ-Work (FIFO-1) will be preempted by the threaded-interrupt (FIFO-50)
->> and the interrupt will poll on signaler_active while the irq-work can't
->> make progress.
-> 
-> The threaded-interrupt is the interrupt.
-> 
-> | On PREEMPT_RT the irq_work can be preempted by threaded-interrupt which
-> | will be poll for completion but the irq_work routine can't make
-> | progress.
-> 
->> Solve this by adding a spinlock to prevent starvation and force
->> completion.
-> 
-> | Solve this by adding a spinlock_t to prevent starvation by forcing a
-> | context switch if lock is held based on `signaler_active'. On
-> | !PREEMPT_RT `signaler_active' can only be non-zero if multiple CPUs are
-> | involved and spinning on the lock leds to the same result.
-> 
->> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-> 
-> If I am the From: then I should have the Signed-off-by, too. Let me do
-> Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-> 
-> so it can be picked up.
-> 
-> You did suggest the following:
-> 
-> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> @@ -209,7 +209,7 @@ static void signal_irq_work(struct irq_work *work)
->  		intel_breadcrumbs_disarm_irq(b);
->  
->  	rcu_read_lock();
-> -	atomic_inc(&b->signaler_active);
-> +	spin_lock(&b->signaler_active_sync);
->  	list_for_each_entry_rcu(ce, &b->signalers, signal_link) {
->  		struct i915_request *rq;
->  
-> @@ -245,7 +245,7 @@ static void signal_irq_work(struct irq_work *work)
->  				i915_request_put(rq);
->  		}
->  	}
-> -	atomic_dec(&b->signaler_active);
-> +	spin_unlock(&b->signaler_active_sync);
->  	rcu_read_unlock();
->  
->  	llist_for_each_safe(signal, sn, signal) {
-> @@ -290,6 +290,7 @@ intel_breadcrumbs_create(struct intel_engine_cs *irq_engine)
->  	init_llist_head(&b->signaled_requests);
->  
->  	spin_lock_init(&b->irq_lock);
-> +	spin_lock_init(&b->signaler_active_sync);
->  	init_irq_work(&b->irq_work, signal_irq_work);
->  
->  	b->irq_engine = irq_engine;
-> @@ -487,8 +488,10 @@ void intel_context_remove_breadcrumbs(struct intel_context *ce,
->  	if (release)
->  		intel_context_put(ce);
->  
-> -	while (atomic_read(&b->signaler_active))
-> -		cpu_relax();
-> +	while (spin_is_locked(&b->signaler_active_sync)) {
-> +		spin_lock_irqsave(&b->signaler_active_sync, flags);
-> +		spin_unlock_irqrestore(&b->signaler_active_sync, flags);
-> 
-> And this does not work because spin_is_locked() returns true and spins
-> forever. This fails because there is a "corner case" where
-> spin_is_locked() returns but the lock has no lock owner as in locked.
-> This happens if there is a waiter which did not yet acquire the lock. 
-> 
-> So if you happy with this, we could keep it ;)
+This patch series introduces System Controller (sysctrl) component for Intel Xe3p 
+dGPU platforms.
 
-It seems CI is a lot happier too now.
+This component provides the foundational infrastructure for communication
+with the System Controller firmware using MKHI protocol over a mailbox interface.
 
-Xe:
-https://patchwork.freedesktop.org/series/159034/#rev14
+Key features introduced:
+- Detection and initialization of System Controller interface on Xe3p dGPU platforms
+- Mailbox communication with System Controller firmware
+- Fragmented message transfer for large command payloads
 
-BAT passes, the full run has some minor issues but only kms_vblank systematic.
-Likely due to the fundamental changes of the PREEMPT_RT kernel itself, nothing driver specific.
+This implementation establishes the base for future System Controller feature
+enablement and firmware command handling.
+---
+v2: (Umesh)
+- Fix commit message to 75 chars per line
+- Address CI.Hooks and checkpatch warnings
+- Add sc_to_xe() helper for cleaner conversions
+- Alphabetical order for headers
+- Simplify write/read frame logic using memcpy
+- Drop redundant frame length checks
+- Use xe_mmio_rmw32() for register updates
+- Align FIELD_PREP macros
+- Improve error handling and timeout messages
+- Handle phase_bit revert on write-frame failure
+- Update rdata_len on partial receive before return
+- Remove unnecessary headers
 
-i915:
-https://patchwork.freedesktop.org/series/159035/#rev14
+v3: (Matt, Riana, Umesh)
+- Split patch into logical series
+- Rename SC_* macros to SYSCTRL_* for consistency
+- Move MKHI_* defines to .c file
+- Pass xe directly to helpers
+- Place devm_add_action_or_reset() after set_sysctrl_region()
+- Add kernel-doc for xe_sysctrl_mailbox_init()
+- Add short documentation for System Controller in xe_sysctrl.c
+- Avoid hardcoded sizes
+- Move structs to _types.h
 
-A few new warnings, and some noise. The most worrying part is the i915 execlists selftest
-failing on nearly all platforms:
+v4: (Matt, Mike)
+- Code style improvements
+- Add domain-specific MMIO accessor
+- Change phase_bit to bool type
+- Add input validation and buffer overflow protection
 
-<3>[  504.279024] i915/intel_execlists_live_selftests: live_preempt_user failed with error -62
-...
-<7>[  506.799685] [IGT] i915_selftest: finished subtest execlists, FAIL
+v5: (Umesh, Riana)
+- Reset phase bit to 0 on error conditions
+- Refactor mailbox receive path
+- Updated xe_err messages for consistency
 
-I don't know what's going on there yet, likely needs more debugging. Could be the test itself
-being written incorrectly or something else entirely.
+v6: (Matt)
+- Move protocol constants from xe_sysctrl_regs.h to xe_sysctrl_mailbox_types.h
+- Add SYSCTRL_MB_CTRL_MKHI_CMD helper macro
 
-Otherwise things are looking good! Have you uncovered anything else?
+v7:
+- Fix for CI failure
 
-Kind regards,
-~Maarten Lankhorst
+v8: (Matt, Michal, Shuicheng)
+- Reordered patches for logical flow
+- Moved ABI definitions to dedicated header
+- Static functions renamed with short prefix
+- Fixed include order
+- Added VF check
+- Converted runtime checks to assertions
+- Changed xe_sysctrl_send_command() function parameter from 'xe' to 'sc'
+- Added frame length validation and command overflow protection
+- Use REG_FIELD_PREP for hardware registers
+- Changed error format to %pe
+- Removed unnecessary NULL checks and explicit zeros
+- Fixed kernel-doc syntax
+- Added sc_to_xe() helper
+
+v9: (Matt, Umesh, Badal)
+- Extended commit message to explain System Controller and purpose of
+  `has_sysctrl` flag
+- Normalized hexadecimal literal casing
+- Renamed MKHI to SCHI (System Controller Host Interface)
+- Fixed kernel-doc syntax
+---
+
+Anoop Vijay (6):
+  drm/xe/sysctrl: Add System Controller types and device integration
+  drm/xe/sysctrl: Add System Controller register definitions
+  drm/xe/sysctrl: Add mailbox communication headers
+  drm/xe/sysctrl: Add System Controller initialization
+  drm/xe/sysctrl: Add mailbox communication implementation
+  drm/xe/pci: Enable System Controller for CRI platform
+
+ drivers/gpu/drm/xe/Makefile                   |   2 +
+ drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h       |  31 ++
+ drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h     |  36 ++
+ drivers/gpu/drm/xe/xe_device.c                |   5 +
+ drivers/gpu/drm/xe/xe_device_types.h          |   6 +
+ drivers/gpu/drm/xe/xe_pci.c                   |   2 +
+ drivers/gpu/drm/xe/xe_pci_types.h             |   1 +
+ drivers/gpu/drm/xe/xe_sysctrl.c               |  84 ++++
+ drivers/gpu/drm/xe/xe_sysctrl.h               |  21 +
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.c       | 364 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.h       |  31 ++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  35 ++
+ drivers/gpu/drm/xe/xe_sysctrl_types.h         |  32 ++
+ 13 files changed, 650 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
+ create mode 100644 drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_types.h
+
+-- 
+2.43.0
+
