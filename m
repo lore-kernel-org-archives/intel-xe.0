@@ -4,80 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D66511125839
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 14:52:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EDEE1125839
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 14:56:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86C1910E27A;
-	Wed, 11 Mar 2026 14:52:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7BA210E205;
+	Wed, 11 Mar 2026 14:56:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dmYwKc36";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hricGtH6";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDE0A10E27A
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Mar 2026 14:52:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A06FF10E205
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Mar 2026 14:56:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773240722; x=1804776722;
+ t=1773240970; x=1804776970;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=abRqNg+Il4PiU7XPolOiABxIz0jXrSTyG1KG6CSk1KA=;
- b=dmYwKc36Fi+qgj6jGwLFUTn6j/Oh2zLFdJtDe+NQjEsdENAl8KdFSgvS
- fJgLVw4DfcAGV8CbART9VvxfAP3+Wc7fFWVU43tFQyqlILdNinxX59l6N
- PN6fP+D5rb9SwaBIeNTY5KaizZQZC/R2b8lge6PsHQn4XQbK/TlcTdWsG
- uZkH/BWY0wkTxvLnQv87QDyj6sP4B+17AGGsXqHykWqGj6bUk2wTB2lwn
- WofWme1mdwVIwPmDsevCnYXnCvZph2hdvlFmxtDyMVfAMHaOyE7Bd1jI0
- AxudIzfFYMkLYzN+nXaHnvgPcaXDPTkbUERa7gBaITe4XuRauBDtiXJ/1 Q==;
-X-CSE-ConnectionGUID: iosoVKz0TiC8bR8mVgh9ag==
-X-CSE-MsgGUID: r80uaTbHTCaXpViVi9VSew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="91692427"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="91692427"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 07:52:00 -0700
-X-CSE-ConnectionGUID: LLwKvBXrTLi2ho8aeZBmJQ==
-X-CSE-MsgGUID: NwOI6uyTTl2M9NGd5UBjtA==
+ bh=iJGX+sHt8T1mDsbhwOtSWuFeE5XaEYa9yz9e/eT1UbQ=;
+ b=hricGtH6nPJfQRVV9alcYZReix/uVu5UPEPmVbVMjm/g2s70PGwfjB3h
+ 9y46837LHIE3qYYpXORNdecOiXNQxav3X7bhwEOkuD8BfCADtOQikjonE
+ nT64+QKL20137cZjaUckjPy2pluCrB69ig/mDkQzr89q7LKUQhM9eEZqN
+ 27nNQ0289LePSYgu0UbGvyNuGhaIqvVBY5ozCQHvCw6xnSUYS38A9bayI
+ 543wVGHrMtb5DcbnxbiMAjmpItyBdQd+pqk0SiiU2FhpA/mLzXVlclL+x
+ TFgvFWRBAi/rHGem67bIs5SFoNktW66Yvcl0ZIx1QmIwk9HU8aNW1luqL A==;
+X-CSE-ConnectionGUID: h9Zpf6WkQyuUk/vjrHqcRQ==
+X-CSE-MsgGUID: DK2ZJ9XdSyqd0Xl1kL9gZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="85788832"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="85788832"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2026 07:56:06 -0700
+X-CSE-ConnectionGUID: 8yegEgt1Rd+EXfF8cvJKww==
+X-CSE-MsgGUID: MWstGjT7RJCUIej8mj3ZYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="243510672"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 07:52:00 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="217959218"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2026 07:56:06 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 11 Mar 2026 07:51:59 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.37; Wed, 11 Mar 2026 07:56:05 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 11 Mar 2026 07:51:59 -0700
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.22) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Wed, 11 Mar 2026 07:56:05 -0700
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.21) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 11 Mar 2026 07:51:59 -0700
+ 15.2.2562.37; Wed, 11 Mar 2026 07:56:04 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ClRX/SaxLF2Js1FDahNAWbroAMAON/tfIqLLC2rh1ylNtXpcSOfqTcfEK9snuqCtsjTC6kTBMWjwLztoimJvKX93fICpnLURpHE1eVYPySi394yG8iF/Sbflp7KfAkpkA6Z8JhuKRYaFq9SgJZgnGwyYP7cxBMc5I0v3U+a0EhJqi3sRyM79NnSSIP2rCVM1rAByHN8pPsFyd4CeNdV+x1760d9EuHm7ZgGaa42pNFqku3WqSIKeO7taZM/BdvsknbBcyI3xAWvzREkRU9MPTR2EOjSUzZlU6tjxBpSqMA3QytbJGeEI8CGt6Cj1fQPz24eHAyq8tI+lf+ygGf8OdA==
+ b=dCkODSGmaD/cyFyP6PKGGiSE+CMTraSLf1sE2ZedhAfEGgFwgIwbTsBUnKjZgRvWZQg/GvSRghoAYguFFvd699TUrTMbGaSFWWCaIPzPJ41IWS0cz1VfF8Fzt8zzvHc0IKkTCFauthzP/lSCdHgQ0tj2PXapLSNKPPk+3zxRg7fRNLpmYPPxSdbCWoF3eYiib3tegDXBhxJijD3lvaXHr9Z+FViFAxRyqNz5XEbrV6XxJMsklsupx4gBw2v/YK8KFHN5Fnpls2w9dmuQwXC0qKUG557uFZhB8nEsYYthZwq+qnjFQCubQClUPKYL4CjieTlBwRXlnugdSgQIhukvLQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NF619tmgdwfAE81DZWIDuiH0a3U7vdzWXVPKMBRBb9o=;
- b=Z99GXqpHSytbRD7aMSD6TFc0OTEXTYny4YTihCOObPVK/K4rETzG0nzo7Ny96rYgrB7S9gxYcOys8fBQ3gtUNRIt7s0ptvGuGV2ttvBplypBOZjkDxuJxJ1onkmugB6QbGA+2fV0CnWAzHP1lPPOk1ijNpywIPMDirHwkBKCq00fcZJcRdrIgdNZFiD4Tj/U+F+2WTeIAUmxBoayJ25zWSFvw+YfQJnftZG4sC3uL2voAPIG27hYG6zG9D8qlM8Ql9jGOJOxvl8pmlKjm21MISrwV0MYm+vLrxOBEX1ASPG+8tm9gvcePabfIb3j5dzG98bVvwEa0m2P9dimpUnorQ==
+ bh=RXe5zj26eGN3QZLJ3IWm1BOJsMBpRnJdwrXH+oev3n4=;
+ b=etWe4yadz41pZnMNGLg+EZvfrYgyZWuEewlOMab24XfEXLQnTcCouQ0g+0eywmuMwB8hns7M0tKnm2ycQODxcZfyW8pq3cbQ1bRNeRRN1TVO86gCmQtrRhM18toO0B60hQjik5AjzyhHA38G3SyJichFd3pxOhlEwpFziVlriZsFNNwTKLomcPGoWeOmW4e9x8BEw74X30AL1Z3n0v0E+HLXBaHYK1DJcpj8H3WKQTExLR4BzA+aqgO43LBBtPnquL1rOq6Hrf6c/AEsaJXuHEQgC61YnDZ3tsEzDmvsZqzsSmhC81nwdukA1efiJ/GJaT4zKu0s1kqHaTQmMBeR+A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- PH7PR11MB5765.namprd11.prod.outlook.com (2603:10b6:510:139::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9700.11; Wed, 11 Mar 2026 14:51:56 +0000
+ IA0PR11MB7330.namprd11.prod.outlook.com (2603:10b6:208:436::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Wed, 11 Mar
+ 2026 14:56:00 +0000
 Received: from DS0PR11MB7958.namprd11.prod.outlook.com
  ([fe80::8cb2:cffc:b684:9a99]) by DS0PR11MB7958.namprd11.prod.outlook.com
  ([fe80::8cb2:cffc:b684:9a99%6]) with mapi id 15.20.9700.010; Wed, 11 Mar 2026
- 14:51:56 +0000
-Message-ID: <bb0159e9-18d2-4991-965b-89dea538384a@intel.com>
-Date: Wed, 11 Mar 2026 20:21:49 +0530
+ 14:55:59 +0000
+Message-ID: <8cd2bf2f-f923-4791-8644-2500354937f5@intel.com>
+Date: Wed, 11 Mar 2026 20:25:51 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 09/11] drm/xe/xe_ras: Add structures for SoC Internal
+Subject: Re: [PATCH v2 10/11] drm/xe/xe_ras: Handle Uncorrectable SoC Internal
  errors
 To: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
 CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
@@ -85,79 +85,79 @@ CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
  <raag.jadav@intel.com>, <ravi.kishore.koppuravuri@intel.com>,
  <intel-xe@lists.freedesktop.org>
 References: <20260302102155.4074630-13-riana.tauro@intel.com>
- <20260302102155.4074630-22-riana.tauro@intel.com>
- <4c4e9f47-c04a-4426-91ed-b415532d9dde@intel.com>
+ <20260302102155.4074630-23-riana.tauro@intel.com>
+ <4d62f154-dd1f-4213-a5ff-87abf09c4ab9@intel.com>
 Content-Language: en-US
 From: Riana Tauro <riana.tauro@intel.com>
-In-Reply-To: <4c4e9f47-c04a-4426-91ed-b415532d9dde@intel.com>
+In-Reply-To: <4d62f154-dd1f-4213-a5ff-87abf09c4ab9@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA0PR01CA0066.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:ad::8) To DS0PR11MB7958.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA0PR01CA0064.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:ad::6) To DS0PR11MB7958.namprd11.prod.outlook.com
  (2603:10b6:8:f9::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|PH7PR11MB5765:EE_
-X-MS-Office365-Filtering-Correlation-Id: af5e1365-667a-43b4-f449-08de7f7dbdd0
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|IA0PR11MB7330:EE_
+X-MS-Office365-Filtering-Correlation-Id: 740136de-8356-4c17-88de-08de7f7e4ea7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|22082099003|56012099003|18002099003; 
-X-Microsoft-Antispam-Message-Info: I+7+lHVGBFoTl1EXwHy4ZLR2o5EKrCABd4Ub1tKbIMK0t+kYFdTuTLa1A2eXoZgUS+KB6KMLETruBP79x1q+R5+N9dwOUZs7n3Mawi5x7K3ywF9WpwVlDHpjSYzT3/R5jWRLv5SLqlUm5YRn0Sh0XNqNj5e8VXUgw8g75Upqjeg8Qnb57jSqkHDj5rOiu+W1IIwhiXNO/10p/+Lg9DR3k5khV2KMBSspoQid/58/MfhCkxFdnnDrkZbRTybKcJmwGG3CxoPF7Rc7lK7dz68lffadHqfI36IATD4wlPMN7Vmt2vcd2bmsebf8qcJpFGOOUNhSLxGtA2ajFkEVcS2//Tpg2eJGkzLOJdAYt3kv7F84Wq777KAVmoPHbwPe8CSf7hMhxLUeCxauB7Mw59cWPDF1T7IdIA+bwP8edwyaRlxOkT8L7LgjjborgAJ9aqyHHyUH8c5My01i6DflZhDU6x0BtvaprXP/hMRM/Lmy1cOK326pkQzu60l+OGtnKda58t1SVt5GKReFYbkQfn0vC6u1pw6ag6MqwojdV6hxXB0IFhG/SgoOQ0O0mzLgSICi/dCUvH7lkYnkrnyfsi7Xi+JZyGiTse4BELtE8bx8W5eBYcY+P9mR5RKaQwneplh8sA53ndb9wuYVfj1uXFRA8FN1W6NULD10QkN7oVboaba8/s6j7Ic5Gu5GFHSxA48Dh+q8pail9YBxBco9kGEO591zhR+kMUHbT/knJUXzW3s=
+ ARA:13230040|366016|376014|1800799024|18002099003|56012099003|22082099003; 
+X-Microsoft-Antispam-Message-Info: 3LJqTiFAJoFqBI8GVZFELxl99ahKKzzduv8eNG2M+vL6Eeg8UPagdChpmG8xkEYtHStCvy8dBGr3mo1zuijuGRVP4IO9tZoYGLTDYWrLAneAnsIox5Njx4FYhFf7xNTr3fVcQEFt0G9f/QR6d7bk+Va0Dx1Y/5mcGG5Zawa4CxyjAdPnEphJOxz3MMXJ2FVPCXb8o//rVt9zmOg+T8beqDK8ovztT8FJc044u6tUFljKElcEuhtuW9m0QviNZ6QcqYYnm4cRMFE1D1mHyUu8i7E9h7qnYlEZepBSXEn4ySWcrGMmMaJe4h1SaMJLQgQIVJhBLXe1CYaarArfluPxP/cFovSagAF+PVX7Aqg904w2+opYdN/i8CMGIbCoNJCX5V7dzaxLAmsL/GG5bFxTN5fzvqdYDaisfwQPpByoUSnPXWmkNzZcFnQIRd1EbGytdufEU3YUBeWx7yapkJ/FqcUNPKxmpp3HLld4CNj1A7BPxyigbK/sgtPAvZSOHdZbblyQjufwhfmBBIYLFSrTWm2XKHC3L0Lt2YAfFLj0O2NNHff4UUqJPYyu2vlvksGVVGn8RNHuYKF9Ema3lX9TDV/Y0gBhqsHOWOGRT12FXSRq4AQLp3IkDvSK/eH/f8R1FWzO2JnF+XRlm5XcWmFVh5UwlPNVhizGvMEGrLSX7p/eGMjijQpYdv9lKM7jFyPYI6+yvdknPHrvh7kSkI1e2dLRpgDNcdBCr6TREZ0MYrQ=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(22082099003)(56012099003)(18002099003);
+ SFS:(13230040)(366016)(376014)(1800799024)(18002099003)(56012099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MkQxMmlEUVlPNVg5U0NETGxPclhHL3JkV0wrL2xCbDBESHFpR3NEeDlZNXBl?=
- =?utf-8?B?eitLdHZmQklWOW9aM0JpckNMZ3NnQURia25aOCtGOSswakdrTTcveVlJZFZF?=
- =?utf-8?B?SWVxbHNyMVkySzBMRkNJMGJNLzhlZEtLV0c5d0l4L3A4M1V1eTgvTlFxeTdJ?=
- =?utf-8?B?M0lXckoyTU5seFpaSVNjVEN0Tm1ReTFoLy9UbXJMYUEzYjdKU0w4bERaL25O?=
- =?utf-8?B?QmpHSzZmSDNxTHNpQi9rU055NDZwZWtBMXRvdEkwQkFocHlpL1ZXYXVwTHVI?=
- =?utf-8?B?VThpVWVTK2JJMDNMbU1SWUVSK3hqUDdVcms4KzFmQ2xUdDQyOGxuUVUyVVlT?=
- =?utf-8?B?bFJDYnVsK0oxZVpXWnFialY3aHlIWW9Mb1VHclk0bGU4RExVTFNZUkkrRFdL?=
- =?utf-8?B?SDRxd2tRQ3o2dVhmb0xPRHc2cXNOc3dyWXVCUE5DUDNqK0hXQnF4bGxwMHlV?=
- =?utf-8?B?Z2xacUtxYjRpRTM4R1dnalEyWjVuaEJ1Umk3NkErZWx2N1lUaG9NOWMvZFFz?=
- =?utf-8?B?dDJ4ZmFwZEI2S1JYZ3Y3N1habHBYdzUzR1RZaGtuRjBVVWVEM0FPVzl1THVN?=
- =?utf-8?B?clQxTVVvUVR6ajJKZUsyc1ZVcW40Q2lDejkvWEpNQ3IvSmhvbmtlTXo4ZUlj?=
- =?utf-8?B?RnRISWNyZHhQOHcyVlk3VSsvWGg2S3RpVkxmL0dJVDZuQ3d3V2hNR0VNU3VO?=
- =?utf-8?B?R3R0Y2doV3hrSUJTRnAvV0E4dmRybEpNbnltTE1waldSQ2dtRGw3K1ZzVWN0?=
- =?utf-8?B?dENpdlZ1RjloTmtHVENNbkFFR28ybENMSjZJTkp3YmpCU09zeGExb0FPejIy?=
- =?utf-8?B?Z1poaGEwZWQzSjdOTm5QZVVYSWttV1dWZWhpUHpqMmQ0VzA5MHdLQUZyVDZ4?=
- =?utf-8?B?cWw5VExuUDBQalczTlJoWXl2UTFKS0laL3ZUUUt5V1VkNEo3RUJSYUZaejlx?=
- =?utf-8?B?UmsvWGx6cXd1M3RpVjR2c09IS3dPTng2YUlvcU9aVCs3RG1Xc3hhM1U2K21W?=
- =?utf-8?B?citLZnJsbHR2SW8xVUJWSHdIaExjSHVFQlV3Rm9xUG9zajdSR1k4SXVmMjc2?=
- =?utf-8?B?dUI3RmZtNlpBdVJsQUJSU3pvVGdDVjZUdUsvZ1BDYzJqQ0o5aGd2VmxpQmh4?=
- =?utf-8?B?dURDTXBNVWZ1WXo3WFVlelpTaFNTNzhua2lRSEZaRm85ZXB3ekxuWkVVZXJn?=
- =?utf-8?B?SU10em9ScGlQeWw1M2V5K05KbzVlaEZLczhmU1d6L2VWK1R2eUJZNE5tSUJK?=
- =?utf-8?B?MlBXdDBPRHhHcnFlREUybHgyQ0FwNGIzNlRLeGU2cVo4dGx6UCtpOEFrMElY?=
- =?utf-8?B?ZmJWRHNCQ3pnL25BWGJaTlJrdHJnZXVrZWlNLzB1MERBZUlSOStydi9pRmpV?=
- =?utf-8?B?ZWg2cVhicEdoSkhTMFpwVzdTTmhmTEloYjVqTGhzTUIyamNDK3p1SDBqdk4v?=
- =?utf-8?B?SEVUM1VUT3BqUlBIMHZmNzV5VlNONTFmYlBvZERGUlB1OFBrNGRHWlAvZGlr?=
- =?utf-8?B?U1h3WExidFlRbk5mOEpkUWNDbm55dXI2RXViS1dzU0ZlcEVUL3hkdEVmWkJZ?=
- =?utf-8?B?TWE4ZHhWNllwSmFUQjUzdzRIZ2JPdkd3bnBncXNCMnRhUXRBb0FjMGpUd2VN?=
- =?utf-8?B?NkdNZmtxVjRDaEk5WDU3MFdQd1RxNEM5OTJtSTJPL21hTnp4NFVYUW45ejZz?=
- =?utf-8?B?ZTdQMEQxU2UrWnFWamRDdDUwSTFtNTRtb3ByQWwzNkI0VHVteERYS1ArSTZa?=
- =?utf-8?B?M2VHQ2hnUWpNaXBLYlZiRFI2L1B3SHo0eHVERWh1dHNhZnRUNFhaMXBOVlJI?=
- =?utf-8?B?Z1g4bWdvWGIwS1dac25LaWFhZWs4WCs5QU5NM28wbUtWejNVZTk3OGJLN0du?=
- =?utf-8?B?L2lzYmgyTWJZZkRGdjhFV3lBZXRsdERqcno5RkZ2ZVdJNFVBZVlwbTZUNmtK?=
- =?utf-8?B?azloTVNXN2VGSDBKaGJNcGNzTTVoRUxRdWlkUU9ESVZhSUVpVFh2bGVFdm9v?=
- =?utf-8?B?T0xyZy82WWdOTFNhTmpsalJvb1FTb3JlUzlOUFhkZUZtVzFYWnhSZlVmMzNN?=
- =?utf-8?B?dU1aSTZVZEFZTVRaMG05RTJGeFcxQk00V1VjVEo4R1FDZkx0MUs3QjNrdFlG?=
- =?utf-8?B?VldOUjZaeU9DNGdZT0Q0VU5IZjRJbVowVlA0WnY5UE92dUhNbE1wek1RRG9C?=
- =?utf-8?B?eEV4M253dkJobHR5OW5EQ1lpSnJYdG5DQ3dXZGFHZW1YY0NMZjQ4dU0zTzlt?=
- =?utf-8?B?OHZNa3drOXlFL0hqZjZlZG5acmFBY1hTUTFQT2VycU1LbGFSMkVQK1pYQ1k0?=
- =?utf-8?B?Y29TWno2MzVXZTEvRjdhT2t3dHlZWEREZEV2ZDZxVXdyU1J0S1dCQT09?=
-X-Exchange-RoutingPolicyChecked: jpf7/RbcbJLPcbvkav0LFsP76wwOtMDJnCY+0SlzCY/LK9dljpgOUydw4CRlXeoBLe+g+KQ/yWMJJJLw0Za/SdsGqfrmAZFjFxMiNntH6tumcQt9w5meGVhJl+5G5oubnB5ZZ+z4683QBEHSysWfSChdOtB0j0doZWFjBkF60eG9RJqL3sdlJHMl5brnIZqKFOrbxbUhw4BDD9OPs/zut4YZYY6/EzNTEH6ZnnCKwCTR+ByH/DCcLBAgzdRTvmSttbep14na3SQpJKbVaTu0BCfaxn1ej822fnK64aIQQ8sb/XcWRTKhEL3VjC7lEZv3f1dfDpswv/eGFpIVxPbVkg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: af5e1365-667a-43b4-f449-08de7f7dbdd0
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K2NPOW9DZk02T0Z2eldaR1ZBTUE1THVoS1RhVzFZVmx6SjZpNGpxQWQxcC90?=
+ =?utf-8?B?NDhoeTIwaTgvT2ZGL3BFUFpNSVZzbTNCeGp1bG4zU2VHRTQ2blFqYVlsTzhx?=
+ =?utf-8?B?dkllVEM5Ui9Ocjl1N0xRb21zQlpka1JwYW1yZ3NZK2pjb21aVks1RG93YndE?=
+ =?utf-8?B?anVNSnh0bkRlWi9VTmpmN2VMaE9uRFYrYWJRYm5kUjhiT0dSM080ZzBRaEZW?=
+ =?utf-8?B?WG5DRVJJbzMxS1hNbkhWUDllVkEwTWwwMlhBWm9DWTVxZUQ0TWptZzBPT0p5?=
+ =?utf-8?B?RHk3WnZ0OEJrWlVza0lzclNSaW05bE11UDk4Nm1TNlAzeHQwNE5LMVAyS1dE?=
+ =?utf-8?B?RVBRaU1vYWNpZXJlLzVCV0QyQjhvcEFkd3FFT0xQOFdodWhmejNJR0JhRktD?=
+ =?utf-8?B?THJMSzQ1MTA0NDE5NGlacEw3TE5Fa2FpclBBUWczdVJFeVZ0Ykk3ZTBYck1D?=
+ =?utf-8?B?UDl6akFSbjZPMC9vNXdmTTBtb01lRzBDWURKcURBd2szb041b1BWUVd0R25a?=
+ =?utf-8?B?VWdBai9CdlU0R1RLdFlQWDdNaGZvYVZTcFppSFFESDRGQVBnd25WNEo2eU4x?=
+ =?utf-8?B?T3FOUy9PRFBBOHpLanJyWmJxTXJIN0ZhOXhERWFKanMwNmZOY24xb2pJUVpK?=
+ =?utf-8?B?bkoxWUhtMWJmdU83UC8vSjRmTzVTWVphSGMyL2MxODBmeHRGd3hDbnFTdmI0?=
+ =?utf-8?B?TkRFYUd3ZWtxbUFoRHB1akZHcUUwK1JETmF4RWg0Z280dzRDWVMwSm5URGJy?=
+ =?utf-8?B?Y0x6Q0gyK2ppQTQrZ2VxcGU3K1A2c0ZweEhyeHVIbUFSNHVVU2I5MUdRdXcz?=
+ =?utf-8?B?c2o1d0lWaEExRk1YLzZjRHNaZmgyaldmQ2JUUDdxbVp1Vml3S01XQzJIOWtJ?=
+ =?utf-8?B?NlFqZjc2QU90QWIrV2FrU2VGM0RIT3FQRSs4UWpsYUNLUGhiS25wMDdycnpp?=
+ =?utf-8?B?M3Jrc0pYZ2M1TXk1emNtSFo1b211b2xQdWtBUnZGaWF4aEd6U1kveGlrVEh1?=
+ =?utf-8?B?Uis0MUVoaDl1R2Y1VC9oM3pXUkRUalpDYUE3TzhoeWhwVHZkTFVFZTMrdWpx?=
+ =?utf-8?B?aTJab0lOZFVmRGl2dlVVR3ZISExobEFRWkdvR2pDR2Y0eWJlZUQ5UG9XOGVj?=
+ =?utf-8?B?TDFqb21vL2kxL1puUC9zVEkwZlRFcmhzMWs1VWc1OFQvRG9QSzJXeWh3Umli?=
+ =?utf-8?B?dk1LR3M5SzRuL0FhdWJ6OFk3dk9MWW1YNVhKNHdheGlLeVl4MFBLQUp4MlVm?=
+ =?utf-8?B?aTQxMVV2UFM4bzJMVTFsOHZFSS9UOHVPQUNsUVVuSFE4ekdNdjQ2UVhjd0gw?=
+ =?utf-8?B?SWQ4NTkzQlZJV3V0WVZhcHIvUTRhYnZGMU5xbmkxdVFlQ0ZNVDIwWjVXWXQ0?=
+ =?utf-8?B?aE5aUXZneDNpLzB6SG1tSWR4NC9SeXFuTU9zRHROV0ZTWER0M3JLeXh2WndC?=
+ =?utf-8?B?MnRDNG9UMlRVQ2Nua3RyczY2ZjR0N0hJSFRLYWZpS3hKUTJ5OVZWeTMvdTg5?=
+ =?utf-8?B?TWV1cEwyUHVwS0ltbk9EcUplR1NnYkRDNVJqNDZvZVdmMU5talk5NUM2VzlQ?=
+ =?utf-8?B?VGhKL2pyemp6M3NKL3hnNTloMXhtZERSSE9ScHBZeTJjeW5YV1djcjhISGlW?=
+ =?utf-8?B?RkY4YW5TcEFUQnpKczRSWW5BY1lISitwd1ZEajZzWjI1cTM3K29VWXNIOVpy?=
+ =?utf-8?B?alBqRndMMm81YzhYaUFmUDVGdkFlUS9Na3M0Y2JDZUpvZk96ck9ZOU5PdUxs?=
+ =?utf-8?B?ZjA2cTNNazhvVUNqNXpLa0pMZ3pETDBzWmRsMXQxTnQ2VTdJTjNiRjlTM0s0?=
+ =?utf-8?B?MWV0anhvc1RkMkZISndQdUZOTUZCREEzVStNNWFKMWZORDR2OHVEblRQQWYx?=
+ =?utf-8?B?SVAwR1NhZkxrWURBdFlnT0lNREhOdUFVYzBjMnVjNkY4bFVIL1pkWisxLzBO?=
+ =?utf-8?B?ekVaWTJFVWRTMjFQaThnbkVXUlJxV1VkRG11WnUydGJSWVBEVHUzeU01RUJD?=
+ =?utf-8?B?cFdIVGgzS0NNMW9oMnk5bCtrdW5WaVBtQjNKUS92b1kvSmk3emNrRTNOb3B1?=
+ =?utf-8?B?SmExRWlqZzR4RHpCYVRJNkxENVk5OGNpTFNOSlowSzd2TDl1ajY1enZ3VG8y?=
+ =?utf-8?B?Y3JKQS8rWjlLZ0grVXJLZ2hDUFNqZzZRUkMxWkFrd3E0WEdSVlQ2QTNzbmJY?=
+ =?utf-8?B?UVF6bU1wang5VnA0Uy9pblRxQWhFeDF0aDdvemljRlM1T0RwcXJ1RDUwSlJ0?=
+ =?utf-8?B?Q2RWOG9CSmFRTXp2WDlIc1dzU0pudkhkTTJoWnZQV0haYkg5ODJjM0hrTUdP?=
+ =?utf-8?B?aytrWkdkaUVSS0xEUlpFOE1ENG54MnF3Mkhqc1hpNjA1aTYydVFuZz09?=
+X-Exchange-RoutingPolicyChecked: BHDXYrFiIEvgHv3KDdCdIiKFq+PoWBip8aPXulSlSqolacM1DCqouNR3zZoTEwU4vAW1f2G7VtDYKFaeQHiz+MmFUu+4flDllqWpsKyC3XvNAIfyb8AO3webZm+Zpd7tXXqZlbTitKZqkALf3VUzssuUkRYmOsghe0tW4wyp62C6Qy/O9uxZgsJK33NhSPHluBC2aU2b8ZWa/gbYCkeoiEoHE5zk6XBMoiiCH1CMitZPy0/UZVEXte4JONAP22HpeI7776JMkyrdYnpFM7wgvyMxaRbToV0e0gOign+5xejNOnVZ+mlDPFonle03lV3NZPbugmWkZTQcKieivE5/cg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 740136de-8356-4c17-88de-08de7f7e4ea7
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2026 14:51:56.6990 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2026 14:55:59.8835 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Sfsv9EuNHuk4Rl15lB56fpyEyfYQdprDRp8pgeYo5ICNxletrPTWVt0xLlezrit9WkqB35hk6KQPW7/SV87RTQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5765
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1bo2Yp/XA5pHrfqz6L0kfVXzzTMLU1QUZ3815473wp0lBbmThLnevV6bwmoXgKxHsgIiPX2cPyKOTqw6C3bQoQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7330
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -175,184 +175,103 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 3/10/2026 6:32 PM, Mallesh, Koujalagi wrote:
+On 3/10/2026 6:59 PM, Mallesh, Koujalagi wrote:
 > 
 > On 02-03-2026 03:52 pm, Riana Tauro wrote:
->> Add response structures for SoC Internal errors.
+>> Some critical errors such as CSC firmware and Punit are reported under
+>> SoC Internal Errors.
+>>
+>> CSC errors are classified as hardware errors and firmware errors.
+>> Hardware errors can be recovered using a SBR whereas firmware errors
+>> are critical and require a firmware flash. On such errors, device will
+>> be wedged and runtime survivability mode will be enabed to notify
+>> userspace that a firmware flash is required.
+>>
+>> PUNIT uncorrectable errors can only be recovered through a cold reset.
+>> TODO: Wedge device and notify userspace that a cold reset is required.
 >>
 >> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/xe_ras_types.h | 134 ++++++++++++++++++++++++++++++
->>   1 file changed, 134 insertions(+)
+>>   drivers/gpu/drm/xe/xe_ras.c | 52 +++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 52 insertions(+)
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/ 
->> xe_ras_types.h
->> index 221d07efd84c..466db9f47127 100644
->> --- a/drivers/gpu/drm/xe/xe_ras_types.h
->> +++ b/drivers/gpu/drm/xe/xe_ras_types.h
->> @@ -145,4 +145,138 @@ struct xe_ras_compute_error {
->>       u32 spare_log3;
->>   } __packed;
-> Add hardware component glossary to more understanding.
-
-Sorry didn't get this.
-
->> +/**
->> + * struct xe_ras_soc_error_source - Source of SOC error
->> + */
->> +struct xe_ras_soc_error_source {
->> +    /** @csc: CSC error */
->> +    u32 csc:1;
->> +    /** @soc: SOC error */
->> +    u32 soc:1;
->> +    /** @reserved: Reserved for future use */
->> +    u32 reserved:30;
->> +} __packed;
+>> diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
+>> index 61c01a4bfadb..f35d77654c8f 100644
+>> --- a/drivers/gpu/drm/xe/xe_ras.c
+>> +++ b/drivers/gpu/drm/xe/xe_ras.c
+>> @@ -7,6 +7,7 @@
+>>   #include "xe_printk.h"
+>>   #include "xe_ras.h"
+>>   #include "xe_ras_types.h"
+>> +#include "xe_survivability_mode.h"
+>>   #include "xe_sysctrl_mailbox.h"
+>>   #include "xe_sysctrl_mailbox_types.h"
+>> @@ -102,6 +103,54 @@ static enum xe_ras_recovery_action 
+>> handle_compute_errors(struct xe_device *xe,
+>>       return XE_RAS_RECOVERY_ACTION_RECOVERED;
+>>   }
+>> +static enum xe_ras_recovery_action handle_soc_internal_errors(struct 
+>> xe_device *xe,
+>> +                                  struct xe_ras_error_array *arr)
+>> +{
+>> +    struct xe_ras_soc_error *error_info = (struct xe_ras_soc_error 
+>> *)arr->error_details;
+>> +    struct xe_ras_soc_error_source source = error_info->error_source;
+>> +    struct xe_ras_error_common common_info = arr->error_class.common;
+>> +    enum xe_ras_recovery_action action;
 >> +
->> +/**
->> + * struct xe_ras_soc_error - SOC error details
->> + */
->> +struct xe_ras_soc_error {
->> +    /** @error_source: Error Source */
->> +    struct xe_ras_soc_error_source error_source;
->> +    /** @additional_details: Additional details */
->> +    u32 additional_details[15];
-> Use Macro
-
-This is remaining part of existing macro
-
-+#define XE_RAS_MAX_ERROR_DETAILS	16
-
-This is not used across files and adding a macro
-for every array creates unnecessary defines for a single
-file. If we explicitly change or use this array
-we can add it.
-
->> +} __packed;
+>> +    /* Default action */
+>> +    action = XE_RAS_RECOVERY_ACTION_RESET;
 >> +
->> +/**
->> + * struct xe_ras_csc_error - CSC error details
->> + */
->> +struct xe_ras_csc_error {
->> +    /** @hec_uncorr_err_status: CSC error */
->> +    u32 hec_uncorr_err_status;
->> +    /** @hec_uncorr_fw_err_dw0: CSC f/w error */
->> +    u32 hec_uncorr_fw_err_dw0;
->> +} __packed;
+>> +    log_ras_error(xe, &arr->error_class);
 >> +
->> +/**
->> + * struct xe_ras_ieh_error - SoC IEH error details
->> + */
->> +struct xe_ras_ieh_error {
->> +    /** @ieh_instance: IEH instance */
->> +    u32 ieh_instance:2;
->> +    /** @reserved: Reserved for future use */
->> +    u32 reserved:30;
->> +    union {
->> +        /** @global_error_status: Global error status */
->> +        u32 global_error_status;
->> +        /** @error_sources_ieh0: Error sources for IEH0 */
->> +        struct {
->> +            /** @psf0_psf1_npk: PSF0, PSF1, NPK */
->> +            u32 psf0_psf1_npk:1;
->> +            /** @punit: PUNIT */
->> +            u32 punit:1;
->> +            /** @reserved_2: Reserved */
->> +            u32 reserved_2:1;
->> +            /** @oobmsm: OOBMSM */
->> +            u32 oobmsm:1;
->> +            /** @i2c: I2C */
->> +            u32 i2c:1;
->> +            /** @pciess_gpma: PCIESS GPMA */
->> +            u32 pciess_gpma:1;
->> +            /** @lpioss_pma: LPIOSS PMA */
->> +            u32 lpioss_pma:1;
->> +            /** @fabss0_pma: FabSS0 PMA */
->> +            u32 fabss0_pma:1;
->> +            /** @fabss1_pma: FabSS1 PMA */
->> +            u32 fabss1_pma:1;
->> +            /** @reserved_9: Reserved */
->> +            u32 reserved_9:1;
->> +            /** @reserved_10: Reserved */
->> +            u32 reserved_10:1;
->> +            /** @reserved_11: Reserved */
->> +            u32 reserved_11:1;
->> +            /** @reserved_12: Reserved */
->> +            u32 reserved_12:1;
->> +            /** @reserved_13: Reserved */
->> +            u32 reserved_13:1;
->> +            /** @memss_ieh1: MEMSS -> IEH1 */
->> +            u32 memss_ieh1:1;
->> +            /** @memss_ieh2: MEMSS -> IEH2 */
->> +            u32 memss_ieh2:1;
->> +            /** @saf0_mhb0: SAF0 MHB0 */
->> +            u32 saf0_mhb0:1;
->> +            /** @saf0_mhb1: SAF0 MHB1 */
->> +            u32 saf0_mhb1:1;
->> +             /** @saf0_mhb2: SAF0 MHB2 */
-> Please remove space
-
-Thanks. Will remove it.
-
->> +            u32 saf0_mhb2:1;
->> +            /** @saf0_mhb3: SAF0 MHB3 */
->> +            u32 saf0_mhb3:1;
->> +            /** @saf0_mhb4: SAF0 MHB4 */
->> +            u32 saf0_mhb4:1;
->> +            /** @saf0_mhb5: SAF0 MHB5 */
->> +            u32 saf0_mhb5:1;
->> +            /** @saf0_mhb6: SAF0 MHB6 */
->> +            u32 saf0_mhb6:1;
->> +            /** @saf0_mhb7: SAF0 MHB7 */
->> +            u32 saf0_mhb7:1;
->> +            /** @saf1_mhb0: SAF1 MHB0 */
->> +            u32 saf1_mhb0:1;
->> +            /** @saf1_mhb1: SAF1 MHB1 */
->> +            u32 saf1_mhb1:1;
->> +            /** @saf1_mhb2: SAF1 MHB2 */
->> +            u32 saf1_mhb2:1;
->> +            /** @saf1_mhb3: SAF1 MHB3 */
->> +            u32 saf1_mhb3:1;
->> +            /** @saf1_mhb4: SAF1 MHB4 */
->> +            u32 saf1_mhb4:1;
->> +            /** @saf1_mhb5: SAF1 MHB5 */
->> +            u32 saf1_mhb5:1;
->> +            /** @saf1_mhb6: SAF1 MHB6 */
->> +            u32 saf1_mhb6:1;
->> +            /** @saf1_mhb7: SAF1 MHB7 */
->> +            u32 saf1_mhb7:1;
->> +        } error_sources_ieh0;
->> +    };
+>> +    if (source.csc) {
+>> +        struct xe_ras_csc_error *csc_error = (struct xe_ras_csc_error 
+>> *)error_info->additional_details;
 >> +
->> +    /** @lerr_status_ieh0: Local error status of IEH0 */
->> +    struct {
->> +        /** @reserved_0: Reserved for future use */
->> +        u32 reserved_0:1;
->> +        /** @psf0: PSF0 */
->> +        u32 psf0:1;
->> +        /** @psf1: PSF1 */
->> +        u32 psf1:1;
->> +        /** @reserved_26: Reserved */
->> +        u32 reserved_26:26;
-> Reserved bit 3_28 right?, need to change name
-
-Will just rename it to reserved 0,1,2 instead of bits
-
->> +        /** @npk: NPK */
->> +        u32 npk:1;
->> +        /** @reserved_30: Reserved */
->> +        u32 reserved_30:2;
-> Reserved bit 30_31 right?
->> +    } lerr_status_ieh0;
+>> +        /*
+>> +         * CSC uncorrectable errors are classified as hardware errors 
+>> and firmware errors.
+>> +         * CSC firmware errors are critical errors that can be 
+>> recovered only by firmware
+>> +         * update via SPI driver. PCODE enables FDO mode and sets the 
+>> bit in the capability
+>> +         * register. On receiving this error, the driver enables 
+>> runtime survivability mode
+>> +         * which notifies userspace that a firmware update is required.
+>> +         */
+>> +        if (csc_error->hec_uncorr_fw_err_dw0) {
+>> +            xe_err(xe, "[RAS]: CSC %s error detected: 0x%x\n",
+>> +                   severity_to_str(xe, common_info.severity),
+>> +                   csc_error->hec_uncorr_fw_err_dw0);
+>> +            xe_survivability_mode_runtime_enable(xe);
+>> +            action = XE_RAS_RECOVERY_ACTION_DISCONNECT;
+>> +        }
+>> +    }
 >> +
->> +    /** @gerr_mask: Global error mask */
->> +    u32 gerr_mask;
->> +    /** @additional_info: Additional information */
->> +    u32 additional_info[10];
+>> +    if (source.soc) {
+>> +        struct xe_ras_ieh_error *ieh_error = (struct xe_ras_ieh_error 
+>> *)error_info->additional_details;
+>> +
+>> +        if (ieh_error->error_sources_ieh0.punit) {
+>> +            xe_err(xe, "[RAS]: PUNIT %s error detected: 0x%x\n",
+>> +                   severity_to_str(xe, common_info.severity),
+>> +                   ieh_error->error_sources_ieh0.punit);
+>> +            /** TODO: Add PUNIT error handling */
+>> +            action = XE_RAS_RECOVERY_ACTION_DISCONNECT;
+>> +        }
+>> +    }
+>> +
 > 
-> ditto above
+> Use else if in source.soc, since source.csc and source.soc bits are set 
+> (even it's not happen), the same additional details are
+> 
+> cast two different structure type may cause undefined behavior.
 
-Replied above
+Yeah you are correct. Thanks for catching this.
+I can just return the action.
+
+Though will double check if two error bits can be set in a single response
 
 Thanks
 Riana
@@ -362,7 +281,25 @@ Riana
 > 
 > -/Mallesh
 > 
->> +} __packed;
+>> +    /* For other SOC internal errors, request a reset as recovery 
+>> mechanism */
+>> +    return action;
+>> +}
 >> +
->>   #endif
+>>   static void xe_ras_prepare_sysctrl_command(struct 
+>> xe_sysctrl_mailbox_command *command,
+>>                          u32 cmd_mask, void *request, size_t request_len,
+>>                          void *response, size_t response_len)
+>> @@ -180,6 +229,9 @@ enum xe_ras_recovery_action 
+>> xe_ras_process_errors(struct xe_device *xe)
+>>               case XE_RAS_COMPONENT_CORE_COMPUTE:
+>>                   action = handle_compute_errors(xe, &arr);
+>>                   break;
+>> +            case XE_RAS_COMPONENT_SOC_INTERNAL:
+>> +                action = handle_soc_internal_errors(xe, &arr);
+>> +                break;
+>>               default:
+>>                   xe_err(xe, "[RAS]: Unknown error component %u\n", 
+>> component);
+>>                   break;
 
