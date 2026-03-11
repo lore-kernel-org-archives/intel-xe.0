@@ -4,57 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C85161049513
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 09:17:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 231C91049513
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 09:19:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8859410E3B1;
-	Wed, 11 Mar 2026 09:17:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3D9110E3B7;
+	Wed, 11 Mar 2026 09:19:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pc+BRXiJ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PP6uDYcX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 526B710E3B1;
- Wed, 11 Mar 2026 09:17:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9007D10E3B7;
+ Wed, 11 Mar 2026 09:19:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773220645; x=1804756645;
+ t=1773220756; x=1804756756;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=SsE+rBIXbtXBtGaR+sSpPBH7VMSs19v+Ajaa8zdz9LI=;
- b=Pc+BRXiJwrvFuN1mF5JJ+AQFxG5FHY761YXaiJKxN7e+nQPjZ03e6IuD
- Q0ka41EMNkCMdkW39YbyU5V17oTucziKaDBeKohi6qH/PcOdOYHUepCM8
- lD2aXf/1BUe4fctRVk/M7KRkcPRvMinJ7pnV+L6AAZREb202LAymCxCaQ
- mg/zF+ivGcmIvsqJObfedFvkrWeglEvDM1H/FbSa3SBVZyI4NEU1zhRil
- rFx1E4CA6Yvo5dGG3EKkcDEy4Ww3oy70meDmy173B99wcypNr/JpRa12F
- +Ytop7HyYILlpx3eLPOjMDmyNnzT6XM4trjjzGNalNGRLdk4ZD+D1mkbq Q==;
-X-CSE-ConnectionGUID: fZR26EVgR/WaiIOkrcC0xQ==
-X-CSE-MsgGUID: byEn6++rROurYcqagFPzwQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="84606577"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="84606577"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 02:17:24 -0700
-X-CSE-ConnectionGUID: 79txNiDqT72l710F/Vsdrg==
-X-CSE-MsgGUID: eaUaKykcTcy002S1yOocGA==
+ bh=TAhv73cB/BBuyGTI6TtvSBb4y1rzFIq2f/0Ad6aPeQ4=;
+ b=PP6uDYcX1CWgamIqYrnLNWYuxmKjv6TkLx2Qjam5Gs/OuNKYomEoGuXz
+ ZL620Yd9grDuQM5hXXvkI41lTKoqIW86OAS+xpitbQqEgdnyrffoCKMT2
+ F2JUGxCj2a+y5y+H5zQTxrp+Rmb+aRkEpvrzB/YZOSx3F2x/u44EzBTME
+ qVirVLqE7T2Oy6ErcQcdoyeDpoNIYZ0vzhlEJf6oEK1R3hR5AKCnTH8G2
+ 1XJ9keeDFW8R6CZ3uupmzp4UYXAkH81jcXhG6EV1KqyRj0lC2DYjMvk2o
+ MBsXHTw5jzUpGWUWYW3J3TuJ2zEot/WExw0D5yQft4xtIiNhy0EbE/ZnV Q==;
+X-CSE-ConnectionGUID: jIrqmeXDRJ2hKrYqD0v+Xw==
+X-CSE-MsgGUID: 5v5yfDSwTdq35WBJy/DIow==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="73304861"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="73304861"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2026 02:19:16 -0700
+X-CSE-ConnectionGUID: P8aZmXbIRHWy1frLWfOmdA==
+X-CSE-MsgGUID: bKgyeBQrRcu0pEXxxvxPdw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="250907222"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="224870550"
 Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.91])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 02:17:22 -0700
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2026 02:19:15 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Cc: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>
-Subject: Re: [RFC v1 05/11] drm/i915/buf_trans: add intel_dp_above_hbr1()
+Subject: Re: [RFC v1 06/11] drm/i915/buf_trans: add intel_edp_above_hbr2()
  helper
-In-Reply-To: <20260308132446.3320848-6-michal.grzelak@intel.com>
+In-Reply-To: <20260308132446.3320848-7-michal.grzelak@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260308132446.3320848-1-michal.grzelak@intel.com>
- <20260308132446.3320848-6-michal.grzelak@intel.com>
-Date: Wed, 11 Mar 2026 11:17:18 +0200
-Message-ID: <5f7ce468042741bcbc323d1918a6ed6d202a7fa0@intel.com>
+ <20260308132446.3320848-7-michal.grzelak@intel.com>
+Date: Wed, 11 Mar 2026 11:19:11 +0200
+Message-ID: <c42e2f2d486b94b23e473f8bc15eef3502ea93b4@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -73,160 +73,108 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On Sun, 08 Mar 2026, Micha=C5=82 Grzelak <michal.grzelak@intel.com> wrote:
-> Check if port_clock is above HBR1 inside separate function.
+> Check if port_clock is above HBR2 inside separate function.
 
-I've got a mixture of reactions to this.
-
-- For better or for worse, I think most people want to have these checks
-  inline instead of hidden in a function.
-
-- This whole "above hbr1" is also oddly specific. If we wanted to
-  abstract this somehow, it should be generic. We have
-  intel_dp_is_uhbr() because it changes everything about the link. None
-  of the other rates are that special.
-
-- If we wanted to hide the magic numbers, we'd need to define some RBR,
-  HBR, etc. macros for the link rates... but then the problem is you'd
-  have to remember what they mean. The numbers are easy.
-
-- Realizing this kind of change is contentious, and unrelated to the
-  feature at hand, you're probably better off dropping it (or suggesting
-  it in another thread, another time) and focusing on the feature.
-
-BR,
-Jani.
-
+Same as the previous patch.
 
 >
 > Signed-off-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
 > ---
->  .../drm/i915/display/intel_ddi_buf_trans.c    | 27 ++++++++++++-------
->  1 file changed, 17 insertions(+), 10 deletions(-)
+>  .../drm/i915/display/intel_ddi_buf_trans.c    | 19 +++++++++++++------
+>  1 file changed, 13 insertions(+), 6 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers=
 /gpu/drm/i915/display/intel_ddi_buf_trans.c
-> index 395dba8c9e4d..ee6a78a20dac 100644
+> index ee6a78a20dac..8b369535189c 100644
 > --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
 > +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> @@ -1184,6 +1184,13 @@ bool is_hobl_buf_trans(const struct intel_ddi_buf_=
-trans *table)
->  	return table =3D=3D &tgl_combo_phy_trans_edp_hbr2_hobl;
+> @@ -1191,6 +1191,13 @@ static bool intel_dp_above_hbr1(const struct intel=
+_crtc_state *crtc_state)
+>  	return false;
 >  }
 >=20=20
-> +static bool intel_dp_above_hbr1(const struct intel_crtc_state *crtc_stat=
-e)
+> +static bool intel_edp_above_hbr2(const struct intel_crtc_state *crtc_sta=
+te)
+
+This doesn't have anything to do with "edp" specifically.
+
 > +{
-> +	if (crtc_state->port_clock > 270000)
+> +	if (crtc_state->port_clock > 540000)
 > +		return true;
 > +	return false;
+
+Side note, this is just "return crtc_state->port_clock > 540000"
+directly, if-else for returning true/false is unnecessary.
+
+BR,
+Jani.
+
 > +}
 > +
 >  static bool use_edp_hobl(struct intel_encoder *encoder)
 >  {
 >  	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
-> @@ -1396,7 +1403,7 @@ icl_get_mg_buf_trans_dp(struct intel_encoder *encod=
-er,
->  			const struct intel_crtc_state *crtc_state,
->  			int *n_entries)
+> @@ -1374,7 +1381,7 @@ icl_get_combo_buf_trans_edp(struct intel_encoder *e=
+ncoder,
+>  			    const struct intel_crtc_state *crtc_state,
+>  			    int *n_entries)
 >  {
-> -	if (crtc_state->port_clock > 270000) {
-> +	if (intel_dp_above_hbr1(crtc_state)) {
->  		return intel_get_buf_trans(&icl_mg_phy_trans_hbr2_hbr3,
+> -	if (crtc_state->port_clock > 540000) {
+> +	if (intel_edp_above_hbr2(crtc_state)) {
+>  		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
 >  					   n_entries);
->  	} else {
-> @@ -1421,7 +1428,7 @@ ehl_get_combo_buf_trans_edp(struct intel_encoder *e=
+>  	} else if (use_edp_low_vswing(encoder)) {
+> @@ -1499,7 +1506,7 @@ tgl_get_combo_buf_trans_edp(struct intel_encoder *e=
 ncoder,
 >  			    const struct intel_crtc_state *crtc_state,
 >  			    int *n_entries)
 >  {
-> -	if (crtc_state->port_clock > 270000)
-> +	if (intel_dp_above_hbr1(crtc_state))
->  		return intel_get_buf_trans(&ehl_combo_phy_trans_edp_hbr2, n_entries);
->  	else
->  		return intel_get_buf_trans(&icl_combo_phy_trans_edp_hbr2, n_entries);
-> @@ -1446,7 +1453,7 @@ jsl_get_combo_buf_trans_edp(struct intel_encoder *e=
-ncoder,
->  			    const struct intel_crtc_state *crtc_state,
->  			    int *n_entries)
->  {
-> -	if (crtc_state->port_clock > 270000)
-> +	if (intel_dp_above_hbr1(crtc_state))
->  		return intel_get_buf_trans(&jsl_combo_phy_trans_edp_hbr2, n_entries);
->  	else
->  		return intel_get_buf_trans(&jsl_combo_phy_trans_edp_hbr, n_entries);
-> @@ -1473,7 +1480,7 @@ tgl_get_combo_buf_trans_dp(struct intel_encoder *en=
-coder,
->  {
->  	struct intel_display *display =3D to_intel_display(encoder);
->=20=20
-> -	if (crtc_state->port_clock > 270000) {
-> +	if (intel_dp_above_hbr1(crtc_state)) {
->  		if (display->platform.tigerlake_uy) {
->  			return intel_get_buf_trans(&tgl_uy_combo_phy_trans_dp_hbr2,
->  						   n_entries);
-> @@ -1524,7 +1531,7 @@ dg1_get_combo_buf_trans_dp(struct intel_encoder *en=
-coder,
->  			   const struct intel_crtc_state *crtc_state,
->  			   int *n_entries)
->  {
-> -	if (crtc_state->port_clock > 270000)
-> +	if (intel_dp_above_hbr1(crtc_state))
->  		return intel_get_buf_trans(&dg1_combo_phy_trans_dp_hbr2_hbr3,
+> -	if (crtc_state->port_clock > 540000) {
+> +	if (intel_edp_above_hbr2(crtc_state)) {
+>  		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
 >  					   n_entries);
->  	else
-> @@ -1568,7 +1575,7 @@ rkl_get_combo_buf_trans_dp(struct intel_encoder *en=
-coder,
->  			   const struct intel_crtc_state *crtc_state,
->  			   int *n_entries)
->  {
-> -	if (crtc_state->port_clock > 270000)
-> +	if (intel_dp_above_hbr1(crtc_state))
->  		return intel_get_buf_trans(&rkl_combo_phy_trans_dp_hbr2_hbr3, n_entrie=
-s);
->  	else
->  		return intel_get_buf_trans(&rkl_combo_phy_trans_dp_hbr, n_entries);
-> @@ -1611,7 +1618,7 @@ adls_get_combo_buf_trans_dp(struct intel_encoder *e=
+>  	} else if (use_edp_hobl(encoder)) {
+> @@ -1544,7 +1551,7 @@ dg1_get_combo_buf_trans_edp(struct intel_encoder *e=
 ncoder,
 >  			    const struct intel_crtc_state *crtc_state,
 >  			    int *n_entries)
 >  {
-> -	if (crtc_state->port_clock > 270000)
-> +	if (intel_dp_above_hbr1(crtc_state))
->  		return intel_get_buf_trans(&adls_combo_phy_trans_dp_hbr2_hbr3, n_entri=
+> -	if (crtc_state->port_clock > 540000)
+> +	if (intel_edp_above_hbr2(crtc_state))
+>  		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
+>  					   n_entries);
+>  	else if (use_edp_hobl(encoder))
+> @@ -1586,7 +1593,7 @@ rkl_get_combo_buf_trans_edp(struct intel_encoder *e=
+ncoder,
+>  			    const struct intel_crtc_state *crtc_state,
+>  			    int *n_entries)
+>  {
+> -	if (crtc_state->port_clock > 540000) {
+> +	if (intel_edp_above_hbr2(crtc_state)) {
+>  		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
+>  					   n_entries);
+>  	} else if (use_edp_hobl(encoder)) {
+> @@ -1629,7 +1636,7 @@ adls_get_combo_buf_trans_edp(struct intel_encoder *=
+encoder,
+>  			     const struct intel_crtc_state *crtc_state,
+>  			     int *n_entries)
+>  {
+> -	if (crtc_state->port_clock > 540000)
+> +	if (intel_edp_above_hbr2(crtc_state))
+>  		return intel_get_buf_trans(&adls_combo_phy_trans_edp_hbr3, n_entries);
+>  	else if (use_edp_hobl(encoder))
+>  		return intel_get_buf_trans(&tgl_combo_phy_trans_edp_hbr2_hobl, n_entri=
 es);
->  	else
->  		return intel_get_buf_trans(&tgl_combo_phy_trans_dp_hbr, n_entries);
-> @@ -1650,7 +1657,7 @@ adlp_get_combo_buf_trans_dp(struct intel_encoder *e=
-ncoder,
->  			    const struct intel_crtc_state *crtc_state,
->  			    int *n_entries)
+> @@ -1668,7 +1675,7 @@ adlp_get_combo_buf_trans_edp(struct intel_encoder *=
+encoder,
+>  			     const struct intel_crtc_state *crtc_state,
+>  			     int *n_entries)
 >  {
-> -	if (crtc_state->port_clock > 270000)
-> +	if (intel_dp_above_hbr1(crtc_state))
->  		return intel_get_buf_trans(&adlp_combo_phy_trans_dp_hbr2_hbr3, n_entri=
-es);
->  	else
->  		return intel_get_buf_trans(&adlp_combo_phy_trans_dp_hbr, n_entries);
-> @@ -1693,7 +1700,7 @@ tgl_get_dkl_buf_trans_dp(struct intel_encoder *enco=
-der,
->  			 const struct intel_crtc_state *crtc_state,
->  			 int *n_entries)
->  {
-> -	if (crtc_state->port_clock > 270000) {
-> +	if (intel_dp_above_hbr1(crtc_state)) {
->  		return intel_get_buf_trans(&tgl_dkl_phy_trans_dp_hbr2,
+> -	if (crtc_state->port_clock > 540000) {
+> +	if (intel_edp_above_hbr2(crtc_state)) {
+>  		return intel_get_buf_trans(&adlp_combo_phy_trans_edp_hbr3,
 >  					   n_entries);
->  	} else {
-> @@ -1718,7 +1725,7 @@ adlp_get_dkl_buf_trans_dp(struct intel_encoder *enc=
-oder,
->  			  const struct intel_crtc_state *crtc_state,
->  			  int *n_entries)
->  {
-> -	if (crtc_state->port_clock > 270000) {
-> +	if (intel_dp_above_hbr1(crtc_state)) {
->  		return intel_get_buf_trans(&adlp_dkl_phy_trans_dp_hbr2_hbr3,
->  					   n_entries);
->  	} else {
+>  	} else if (use_edp_hobl(encoder)) {
 
 --=20
 Jani Nikula, Intel
