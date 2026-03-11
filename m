@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F75A106286C
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD0191062871
 	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 11:52:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6C5010E8AA;
-	Wed, 11 Mar 2026 11:52:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A16310E8B9;
+	Wed, 11 Mar 2026 11:52:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f6OvJKB0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XPArbzcB";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8C6D10E8B6;
- Wed, 11 Mar 2026 11:51:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F8FE10E8AA;
+ Wed, 11 Mar 2026 11:52:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773229919; x=1804765919;
+ t=1773229922; x=1804765922;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=mwhc/pb3zdm4mBR44R5kAx8+kIxcpojGKEbdjJvZRNU=;
- b=f6OvJKB0Tm8z5TKkW+4PqjGgWywbQQdIgcQ8+HG7N0npkyrH+9v7Hdm9
- YhtHEbYflO9hUrJHHBV+HZg2LFnwc11dqFPoikrQ0kJ93f+D+PwFA0sAE
- dTissYtwVwWyb6XBVfhLfnh5S/IlmrMbW779kH4edkMe18PL2fosYwFCu
- 0XdNdxhJMLRSjr+24ucUDSyZ9iq4y1MtbnVXTSIXqwGfRJ+2ZdJE/mEfT
- rDJVE79nycMiBBChU0ZXSRh86Vo97vIzpG4Hie3hoWnawYf/hc6tiuCAJ
- GofWjKLODBA/84K2xPhxhNgQvl32nHbowRatEg9ICWeJXXidkCdI2PX81 A==;
-X-CSE-ConnectionGUID: 88ff549VRF2+Csn7mYyrOQ==
-X-CSE-MsgGUID: O6mxIbL8T9mKi4rpVcRU3A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="74204995"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="74204995"
+ bh=Jrv2DXoYj6RuefpCatL8lehXlzmEKEUWB+Gtz3Vd4Fk=;
+ b=XPArbzcB0Hh7MAWiUauXNZUcroqAVbt+zdtKFIlcvok/u1eIPu0oy4hN
+ /Ep6gn0gBBP7jBahheirqZDCDmmsdfEmADyN+TNI+aB5w5mFZpOokvkUI
+ PSWarRPO+YzJ5cC5nZZjIo5CifpmDjzXgl9D09XYvTxHAhMwJeDUIFLfr
+ GH4AsAyDqOHvAtx/A6YwC8tqvZZOIAdJFHFcimvqgaE45YX06KWglE4hQ
+ nWXXWWO3mpyR4ccqhsFp5UqXcmt9g7RqpyxmZkHOFCpvpv8WvJ62EsttB
+ hOiG2AhKxzUXwyqKWwnRMK8XNvUM6gA8qbmjdgerHR7iamh4Ct1aFcLIy Q==;
+X-CSE-ConnectionGUID: 0QhrTKCDRxGv87GjiMhs+w==
+X-CSE-MsgGUID: bz3vuImzTgGcWqD66eTTWQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="74204997"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="74204997"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 04:51:58 -0700
-X-CSE-ConnectionGUID: dhProZY3R4yVuvA9SUUoSQ==
-X-CSE-MsgGUID: YGWoP/QqTzue5KBrzygQEg==
+ 11 Mar 2026 04:52:01 -0700
+X-CSE-ConnectionGUID: ar4eeJ4VQgmLqEBuCdwsUQ==
+X-CSE-MsgGUID: hqTArtAsQ2qsEXxqTf67Sw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="224602380"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="224602384"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 04:51:56 -0700
+ 11 Mar 2026 04:51:58 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 11/19] drm/i915/dp: Add member to intel_dp to store AS SDP v2
- support
-Date: Wed, 11 Mar 2026 17:06:03 +0530
-Message-ID: <20260311113611.3393194-12-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 12/19] drm/i915/psr: Write the PR config DPCDs in burst mode
+Date: Wed, 11 Mar 2026 17:06:04 +0530
+Message-ID: <20260311113611.3393194-13-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260311113611.3393194-1-ankit.k.nautiyal@intel.com>
 References: <20260311113611.3393194-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -69,70 +69,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DP v2.1 mentions support for FAVT payload fields parsing in DPCD 0x2214
-Bit 2. This essentially signals the support for AS SDP version 2, that
-allows source to set the version in HB2[4:0] and the payload length in
-HB3[5:0] of the AS SDP header.
+Replace the consecutive single-byte writes to PANEL_REPLAY_CONFIG and
+CONFIG2 with one drm_dp_dpcd_write() burst starting at PANEL_REPLAY_CONFIG,
+reducing AUX transactions.
 
-Read this bit and store the AS SDP v2 capability in intel_dp.
-
+Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- .../drm/i915/display/intel_display_types.h    |  1 +
- drivers/gpu/drm/i915/display/intel_dp.c       | 21 +++++++++++++++++++
- 2 files changed, 22 insertions(+)
+ drivers/gpu/drm/i915/display/intel_psr.c | 18 ++++++++++++------
+ 1 file changed, 12 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index e189f8c39ccb..d783cea06aed 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1870,6 +1870,7 @@ struct intel_dp {
- 	/* connector directly attached - won't be use for modeset in mst world */
- 	struct intel_connector *attached_connector;
- 	bool as_sdp_supported;
-+	bool as_sdp_v2_supported;
- 
- 	struct drm_dp_tunnel *tunnel;
- 	bool tunnel_suspended:1;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 0d2403d48528..e6148e7f0ebc 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -6291,6 +6291,24 @@ intel_dp_unset_edid(struct intel_dp *intel_dp)
- 					       false);
- }
- 
-+static bool
-+intel_dp_sink_supports_as_sdp_v2(struct intel_dp *intel_dp)
-+{
-+	struct intel_display *display = to_intel_display(intel_dp);
-+	u8 rx_features;
-+
-+	if (drm_dp_dpcd_read_byte(&intel_dp->aux,
-+				  DP_DPRX_FEATURE_ENUMERATION_LIST_CONT_1,
-+				  &rx_features) < 0) {
-+		drm_dbg_kms(display->drm,
-+			    "Failed to read DP_DPRX_FEATURE_ENUMERATION_LIST_CONT_1\n");
-+
-+		return false;
-+	}
-+
-+	return rx_features & DP_AS_SDP_FAVT_PAYLOAD_FIELDS_PARSING_SUPPORTED;
-+}
-+
- static void
- intel_dp_detect_sdp_caps(struct intel_dp *intel_dp)
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 5041a5a138d1..ee6e26abd05e 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -774,27 +774,33 @@ static bool psr2_su_region_et_valid(struct intel_connector *connector, bool pane
+ static void _panel_replay_enable_sink(struct intel_dp *intel_dp,
+ 				      const struct intel_crtc_state *crtc_state)
  {
-@@ -6298,6 +6316,9 @@ intel_dp_detect_sdp_caps(struct intel_dp *intel_dp)
+-	u8 val = DP_PANEL_REPLAY_ENABLE |
++	struct intel_display *display = to_intel_display(intel_dp);
++	u8 panel_replay_config = DP_PANEL_REPLAY_ENABLE |
+ 		DP_PANEL_REPLAY_VSC_SDP_CRC_EN |
+ 		DP_PANEL_REPLAY_UNRECOVERABLE_ERROR_EN |
+ 		DP_PANEL_REPLAY_RFB_STORAGE_ERROR_EN |
+ 		DP_PANEL_REPLAY_ACTIVE_FRAME_CRC_ERROR_EN;
+ 	u8 panel_replay_config2 = DP_PANEL_REPLAY_CRC_VERIFICATION;
++	u8 buf[2];
++	int ret;
  
- 	intel_dp->as_sdp_supported = HAS_AS_SDP(display) &&
- 		drm_dp_as_sdp_supported(&intel_dp->aux, intel_dp->dpcd);
+ 	if (crtc_state->has_sel_update)
+-		val |= DP_PANEL_REPLAY_SU_ENABLE;
++		panel_replay_config |= DP_PANEL_REPLAY_SU_ENABLE;
+ 
+ 	if (crtc_state->enable_psr2_su_region_et)
+-		val |= DP_PANEL_REPLAY_ENABLE_SU_REGION_ET;
++		panel_replay_config |= DP_PANEL_REPLAY_ENABLE_SU_REGION_ET;
+ 
+ 	if (crtc_state->req_psr2_sdp_prior_scanline)
+ 		panel_replay_config2 |=
+ 			DP_PANEL_REPLAY_SU_REGION_SCANLINE_CAPTURE;
+ 
+-	drm_dp_dpcd_writeb(&intel_dp->aux, PANEL_REPLAY_CONFIG, val);
++	buf[0] = panel_replay_config;
++	buf[1] = panel_replay_config2;
 +
-+	intel_dp->as_sdp_v2_supported = intel_dp->as_sdp_supported &&
-+					intel_dp_sink_supports_as_sdp_v2(intel_dp);
++	ret = drm_dp_dpcd_write(&intel_dp->aux, PANEL_REPLAY_CONFIG, buf, sizeof(buf));
+ 
+-	drm_dp_dpcd_writeb(&intel_dp->aux, PANEL_REPLAY_CONFIG2,
+-			   panel_replay_config2);
++	if (ret < 0 || ret != sizeof(buf))
++		drm_dbg_kms(display->drm, "Failed to write Panel Replay Configs\n");
  }
  
- static bool intel_dp_needs_dpcd_probe(struct intel_dp *intel_dp, bool force_on_external)
+ static void _psr_enable_sink(struct intel_dp *intel_dp,
 -- 
 2.45.2
 
