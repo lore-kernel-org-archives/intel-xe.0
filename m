@@ -4,46 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2ECB41062884
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 12:19:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E968C106288A
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 12:26:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF68910E116;
-	Wed, 11 Mar 2026 12:19:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F7D810E1BC;
+	Wed, 11 Mar 2026 12:26:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="PyJCsFyA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HxgEmYWU";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E17C10E116
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Mar 2026 12:19:00 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id C5E9143987;
- Wed, 11 Mar 2026 12:18:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BD2CC4CEF7;
- Wed, 11 Mar 2026 12:18:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1773231539;
- bh=JPy1P/nZjsTDepdMBvS4sgUwRld2mjU32vdkoNCV31k=;
- h=Date:From:To:Cc:Subject:From;
- b=PyJCsFyA7XA6Dde5mr4ouKu2viYihju/M07qxSGKS+ZvyfcCZA58w1WUgEZvC4IN/
- uLqYPNUpeju8zz38ZqGeuz0Z22g0KonRYHGLITefqu9RvMp+2MmwsLk9J8mogTecUi
- rDxGN/DKNiiTyKDYh2IpKbpV+HTpt+vQOXj+iCmrTcry7m1x5GpUSKtoDjvitWHDfV
- 4gKRN4FT69Y+MLXIuuSNRTjceL1+L1iKDa9XgBffBVwh1hwnDvtwrhGn6AHTSt84Dl
- +x5xISwW2o8fA3Qp891RIUswdnSpu77rfEvFMttaK25ckCsTZ2Bw1D4rigcoEFX8rZ
- xZjTNR/uCCiUg==
-Date: Wed, 11 Mar 2026 12:18:55 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- DRM XE List <intel-xe@lists.freedesktop.org>
-Cc: Andrew Morton <akpm@linux-foundation.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Randy Dunlap <rdunlap@infradead.org>
-Subject: linux-next: manual merge of the drm-xe tree with the mm-hotfixes tree
-Message-ID: <abFdr2hYWR-WSPvw@sirena.org.uk>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5110C10E1BC;
+ Wed, 11 Mar 2026 12:26:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773231970; x=1804767970;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=KdP4kjaCpXAymNN+Yhi2z2CE8+D8Ime3bG2PjPe+Gr8=;
+ b=HxgEmYWUlkFx+7rNy8EGn5sDZX5WdgP3bB9/V7MHkPL83UXVpgytfQ9k
+ sPBc5mpiiOR76Gzub11m+aS5u+Xk0wkj3fJqYvy44/2LsjmthCu2/DaIP
+ 5/x9VAZQvM6WtX1/dXz0qfm8DwxPZBk9FiZt3ngxC1rDnH+UHhMDDXdt6
+ B2/SF8ZahE82k5bInvj+7X/IEkAD8IbKkc/0q7O2awKHZXmA6SgG57rJo
+ I90Xo2BRO3mQspxNDkoDGxDIp9sd144IFde6+rFbT1kcSur048M5bg2O3
+ 82e+AbQoSRjIYWmhMtPQ8vxkBrqEUvvlA/4gb7BxpjqraLWYTvBSUEBDb Q==;
+X-CSE-ConnectionGUID: 0PJLc0ciSEKKriByOIMrAQ==
+X-CSE-MsgGUID: SdzzEJzbSyKwUvSQWe7WLQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="85002389"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="85002389"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2026 05:26:10 -0700
+X-CSE-ConnectionGUID: cSmEKEC5RxC2TMxDHEnkcA==
+X-CSE-MsgGUID: hSuucEqvQVukaUlExU3HCQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="216712898"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.252])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2026 05:26:07 -0700
+Date: Wed, 11 Mar 2026 14:25:54 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Mohammed Thasleem <mohammed.thasleem@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Tao Liu <ltao@redhat.com>, stable@vger.kernel.org,
+ Jani Nikula <jani.nikula@intel.com>
+Subject: Re: [CI] drm/i915/dmc: Fix an unlikely NULL pointer deference at probe
+Message-ID: <abFfUhF-bvNmmZDn@intel.com>
+References: <20260309164803.1918158-1-imre.deak@intel.com>
+ <aa_Y7shwd1Vqiy3i@intel.com> <aa_j1Gxa7iWEEYHi@ideak-desk.lan>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="6Na+vzgnSWw1C9h4"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aa_j1Gxa7iWEEYHi@ideak-desk.lan>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,102 +76,135 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Tue, Mar 10, 2026 at 11:26:44AM +0200, Imre Deak wrote:
+> On Tue, Mar 10, 2026 at 10:40:14AM +0200, Ville Syrjälä wrote:
+> > On Mon, Mar 09, 2026 at 06:48:03PM +0200, Imre Deak wrote:
+> > > intel_dmc_update_dc6_allowed_count() oopses when DMC hasn't been
+> > > initialized, and dmc is thus NULL.
+> > > 
+> > > That would be the case when the call path is
+> > > intel_power_domains_init_hw() -> {skl,bxt,icl}_display_core_init() ->
+> > > gen9_set_dc_state() -> intel_dmc_update_dc6_allowed_count(), as
+> > > intel_power_domains_init_hw() is called *before* intel_dmc_init().
+> > > 
+> > > However, gen9_set_dc_state() calls intel_dmc_update_dc6_allowed_count()
+> > > conditionally, depending on the current and target DC states. At probe,
+> > > the target is disabled, but if DC6 is enabled, the function is called,
+> > > and an oops follows. Apparently it's quite unlikely that DC6 is enabled
+> > > at probe, as we haven't seen this failure mode before.
+> > > 
+> > > It is also strange to have DC6 enabled at boot, since that would require
+> > > the DMC firmware (loaded by BIOS); the BIOS loading the DMC firmware and
+> > > the driver stopping / reprogramming the firmware is a poorly specified
+> > > sequence and as such unlikely an intentional BIOS behaviour. It's more
+> > > likely that BIOS is leaving an unintentionally enabled DC6 HW state
+> > > behind (without actually loading the required DMC firmware for this).
+> > 
+> > Wasn't the original case some kdump kernel thing?
+> 
+> According to Jani the original issue was a KASAN run in QEMU, see [1].
+> Not sure if that also resulted in kexec/kdump.
+> 
+> However the case reported by Tao later is related to kexec/kdump indeed.
+> 
+> > I think that has a few issues:
+> > - loading full GPU drivers for a kdump kernel after the real kernel
+> >   has crashed seems a bit risky. Who knows what state the hardware
+> >   is in after the crash...
+> > - we should probably try to unload DMC at kexec time (to the extent
+> >   that DMC can actually be unloaded)
+> 
+> AFAICS that involves calling the pci_driver::shutdown which (for both xe
+> and i915) ends up calling intel_power_domains_disable(), which disables
+> DC states at least (hence the kexec'ed kernel should still not see DC6
+> being enabled). The DMC FW event handlers are not disabled though in
+> this case (which would be what you refer to unloading DMC I presume) as
+> opposed to system/runtime suspend, where all the DMC events are also
+> disabled.
+> 
+> I agree that the kexec->shutdown, driver remove etc. handlers should be
+> synced at least wrt. the above DMC unloading with the suspend handlers.
+> However, I consider that as a separate issue to the one fixed in this
+> patch, which is using the HW DC state (which is unreliable) incorrectly
+> to track the DC6 allowed counter (the correct way being using the SW DC
+> state instead). So are you okay to go ahead with this patch still for
+> now and follow up with syncing the above shutdown/driver remove handlers
+> with the suspend ones?
 
---6Na+vzgnSWw1C9h4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yeah this seems fine.
 
-Hi all,
+As we discussed, eventually we may want:
+- make sure we sanitize DMC(*) early enough during driver load to
+  make sure it isn't running while we're initializing anything important
+- also sanitize similarly it during shutdown/unload/etc. to make sure it
+  doesn't screw up anything for the next driver/whatever
+- sprinkle some more asserts to make sure the DC state matches in
+  software and hardware, if we don't already have enough of these
 
-Today's linux-next merge of the drm-xe tree got a conflict in:
+* disable DC states and all event handlers
 
-  include/linux/mmu_notifier.h
+> 
+> [1] https://lore.kernel.org/all/43c4d7f0d9fe4ba6acac828306b41d612dd4f085@intel.com
+> 
+> > > The tracking of the DC6 allowed counter only works if starting /
+> > > stopping the counter depends on the _SW_ DC6 state vs. the current _HW_
+> > > DC6 state (since stopping the counter requires the DC5 counter captured
+> > > when the counter was started). Thus, using the HW DC6 state is incorrect
+> > > and it also leads to the above oops. Fix both issues by using the SW DC6
+> > > state for the tracking.
+> > > 
+> > > This is v2 of the fix originally sent by Jani, updated based on the
+> > > first Link: discussion below.
+> > > 
+> > > Link: https://lore.kernel.org/all/3626411dc9e556452c432d0919821b76d9991217@intel.com
+> > > Link: https://lore.kernel.org/all/20260228130946.50919-2-ltao@redhat.com
+> > > Fixes: 88c1f9a4d36d ("drm/i915/dmc: Create debugfs entry for dc6 counter")
+> > > Cc: Mohammed Thasleem <mohammed.thasleem@intel.com>
+> > > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > > Cc: Tao Liu <ltao@redhat.com>
+> > > Cc: <stable@vger.kernel.org> # v6.16+
+> > > Tested-by: Tao Liu <ltao@redhat.com>
+> > > Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_display_power_well.c | 2 +-
+> > >  drivers/gpu/drm/i915/display/intel_dmc.c                | 3 +--
+> > >  2 files changed, 2 insertions(+), 3 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> > > index 1e03187dbd38a..f855f0f886946 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> > > @@ -852,7 +852,7 @@ void gen9_set_dc_state(struct intel_display *display, u32 state)
+> > >  			power_domains->dc_state, val & mask);
+> > >  
+> > >  	enable_dc6 = state & DC_STATE_EN_UPTO_DC6;
+> > > -	dc6_was_enabled = val & DC_STATE_EN_UPTO_DC6;
+> > > +	dc6_was_enabled = power_domains->dc_state & DC_STATE_EN_UPTO_DC6;
+> > >  	if (!dc6_was_enabled && enable_dc6)
+> > >  		intel_dmc_update_dc6_allowed_count(display, true);
+> > >  
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+> > > index c3b411259a0c5..90ba932d940ac 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+> > > @@ -1598,8 +1598,7 @@ static bool intel_dmc_get_dc6_allowed_count(struct intel_display *display, u32 *
+> > >  		return false;
+> > >  
+> > >  	mutex_lock(&power_domains->lock);
+> > > -	dc6_enabled = intel_de_read(display, DC_STATE_EN) &
+> > > -		      DC_STATE_EN_UPTO_DC6;
+> > > +	dc6_enabled = power_domains->dc_state & DC_STATE_EN_UPTO_DC6;
+> > >  	if (dc6_enabled)
+> > >  		intel_dmc_update_dc6_allowed_count(display, false);
+> > >  
+> > > -- 
+> > > 2.49.1
+> > 
+> > -- 
+> > Ville Syrjälä
+> > Intel
 
-between commit:
-
-  599b4e290c876 ("mm/mmu_notifier: clean up mmu_notifier.h kernel-doc")
-
-=66rom the mm-hotfixes tree and commit:
-
-  7aba71dbc4164 ("mm/mmu_notifier: Allow two-pass struct mmu_interval_notif=
-iers")
-
-=66rom the drm-xe tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
-diff --cc include/linux/mmu_notifier.h
-index 3705d350c8633,b60673a8e0bbb..0000000000000
---- a/include/linux/mmu_notifier.h
-+++ b/include/linux/mmu_notifier.h
-@@@ -233,8 -233,33 +233,33 @@@ struct mmu_notifier=20
-  	unsigned int users;
-  };
- =20
-+ /**
-+  * struct mmu_interval_notifier_finish - mmu_interval_notifier two-pass a=
-bstraction
-+  * @link: Lockless list link for the notifiers pending pass list
-+  * @notifier: The mmu_interval_notifier for which the finish pass is call=
-ed.
-+  *
-+  * Allocate, typically using GFP_NOWAIT in the interval notifier's start =
-pass.
-+  * Note that with a large number of notifiers implementing two passes,
-+  * allocation with GFP_NOWAIT will become increasingly likely to fail, so=
- consider
-+  * implementing a small pool instead of using kmalloc() allocations.
-+  *
-+  * If the implementation needs to pass data between the start and the fin=
-ish passes,
-+  * the recommended way is to embed struct mmu_interval_notifier_finish in=
-to a larger
-+  * structure that also contains the data needed to be shared. Keep in min=
-d that
-+  * a notifier callback can be invoked in parallel, and each invocation ne=
-eds its
-+  * own struct mmu_interval_notifier_finish.
-+  *
-+  * If allocation fails, then the &mmu_interval_notifier_ops->invalidate_s=
-tart op
-+  * needs to implements the full notifier functionality. Please refer to i=
-ts
-+  * documentation.
-+  */
-+ struct mmu_interval_notifier_finish {
-+ 	struct llist_node link;
-+ 	struct mmu_interval_notifier *notifier;
-+ };
-+=20
-  /**
- - * struct mmu_interval_notifier_ops
- + * struct mmu_interval_notifier_ops - callback for range notification
-   * @invalidate: Upon return the caller must stop using any SPTEs within t=
-his
-   *              range. This function can sleep. Return false only if slee=
-ping
-   *              was required but mmu_notifier_range_blockable(range) is f=
-alse.
-
---6Na+vzgnSWw1C9h4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmxXa4ACgkQJNaLcl1U
-h9DUfQf8DDF+368HcmXtWEmMP5aHhUZ+3DfCxbuzu/HH623OQmzEG0GmHprLBFqZ
-OIbYMCpoDKYpZtUNjXhkpeeVTMS2+oWXLNg8YJG7Uwp/YoxksLYDIqRmIqzAUbvW
-cA/e94BKG6va47hz8pAFEUbDQu5hU5UXlG3qCpb7WVP2dgWdTPOlaTj6L5uK+Fa8
-gmiUkstU1cx5o2HOWyR3KZvqH8KU/350ygICENr7EHedHyX5MdgzvKMI9iG7Kmr6
-AFSLOt25o79wP6SbdN+6najN272tTZU5EEUbaksiIoFch9TB2taPbHypThf7tfDk
-AYNf6dp+Y2c57JXgpudJEC47eyEOqQ==
-=LOXu
------END PGP SIGNATURE-----
-
---6Na+vzgnSWw1C9h4--
+-- 
+Ville Syrjälä
+Intel
