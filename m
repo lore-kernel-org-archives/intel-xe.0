@@ -4,57 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 231C91049513
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 09:19:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 950191049521
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 09:52:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3D9110E3B7;
-	Wed, 11 Mar 2026 09:19:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53E6E10E3CC;
+	Wed, 11 Mar 2026 09:52:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PP6uDYcX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jw9q/oqa";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9007D10E3B7;
- Wed, 11 Mar 2026 09:19:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD3B910E3CC;
+ Wed, 11 Mar 2026 09:52:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773220756; x=1804756756;
+ t=1773222723; x=1804758723;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=TAhv73cB/BBuyGTI6TtvSBb4y1rzFIq2f/0Ad6aPeQ4=;
- b=PP6uDYcX1CWgamIqYrnLNWYuxmKjv6TkLx2Qjam5Gs/OuNKYomEoGuXz
- ZL620Yd9grDuQM5hXXvkI41lTKoqIW86OAS+xpitbQqEgdnyrffoCKMT2
- F2JUGxCj2a+y5y+H5zQTxrp+Rmb+aRkEpvrzB/YZOSx3F2x/u44EzBTME
- qVirVLqE7T2Oy6ErcQcdoyeDpoNIYZ0vzhlEJf6oEK1R3hR5AKCnTH8G2
- 1XJ9keeDFW8R6CZ3uupmzp4UYXAkH81jcXhG6EV1KqyRj0lC2DYjMvk2o
- MBsXHTw5jzUpGWUWYW3J3TuJ2zEot/WExw0D5yQft4xtIiNhy0EbE/ZnV Q==;
-X-CSE-ConnectionGUID: jIrqmeXDRJ2hKrYqD0v+Xw==
-X-CSE-MsgGUID: 5v5yfDSwTdq35WBJy/DIow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="73304861"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="73304861"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 02:19:16 -0700
-X-CSE-ConnectionGUID: P8aZmXbIRHWy1frLWfOmdA==
-X-CSE-MsgGUID: bKgyeBQrRcu0pEXxxvxPdw==
+ bh=pXWW7wSsuyxrtBCgBc+KVyPw2G9Aj+nqQvRECisMXsA=;
+ b=Jw9q/oqayF9Ya4DNwhREvwpuLYJi71d3qi+3qPUm8PNulw5ucGxMf/Yt
+ mER8s7KUhWUyMSImLyuoIp9/6RZbIc3dPn44PcQBZNnKcwOjtYtVsMbml
+ pa8uVK3RQvQ4fAfCuwxlT9l/ULAUVmk0bW0ZcfesFquzEBPRyXLlvr++2
+ TUHJWIKdA6JWX8mH9UiGfTvIYBWErvSskv4oeM9R4x1LeC6vFqygy9Ns/
+ mblsafZ9QZg8wVNDoAEI9aleuo+AluJq3lVPOumQeY7c7LgnD50MxGTtC
+ zJLxKm5u17GrklUJzI4V8tEToBEU467BPyoAxEU79Klr7XvJQu3w/vSQY g==;
+X-CSE-ConnectionGUID: BbMFcA+3QXar9P+8SQDCng==
+X-CSE-MsgGUID: T2Yv22exT9On39DqUUlrrA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="74257386"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="74257386"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2026 02:52:02 -0700
+X-CSE-ConnectionGUID: EuW6U4yKR12rOGce8+xLdQ==
+X-CSE-MsgGUID: coE2aUauQ+GSyWBh3WU84g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="224870550"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="258325872"
 Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.91])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 02:19:15 -0700
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2026 02:52:00 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Cc: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>
-Subject: Re: [RFC v1 06/11] drm/i915/buf_trans: add intel_edp_above_hbr2()
- helper
-In-Reply-To: <20260308132446.3320848-7-michal.grzelak@intel.com>
+Subject: Re: [RFC v1 11/11] drm/i915/mtl: add V/P Override support for mtl+
+In-Reply-To: <20260308132446.3320848-12-michal.grzelak@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260308132446.3320848-1-michal.grzelak@intel.com>
- <20260308132446.3320848-7-michal.grzelak@intel.com>
-Date: Wed, 11 Mar 2026 11:19:11 +0200
-Message-ID: <c42e2f2d486b94b23e473f8bc15eef3502ea93b4@intel.com>
+ <20260308132446.3320848-12-michal.grzelak@intel.com>
+Date: Wed, 11 Mar 2026 11:51:56 +0200
+Message-ID: <f8c0f5fac58ab54828f749b05b4d3ed9646cbfc2@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -73,108 +72,205 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On Sun, 08 Mar 2026, Micha=C5=82 Grzelak <michal.grzelak@intel.com> wrote:
-> Check if port_clock is above HBR2 inside separate function.
-
-Same as the previous patch.
-
+> Add macros to reflect the layout of vswing/preemphasis override tables
+> for mtl. Add separate macros for C10 & C20.
+>
+> Add separate intel_ddi_buf_trans_entry to be overridden for mtl onward.
+> Set & return it when port requests to override default table. Use same
+> setter for both C10 & C20 cases.
+>
+> Set the value by extracting the lowest byte from entry from the table.
+>
+> There are no changes to intel_ddi_dp_level() since selection of correct
+> row of intel_ddi_buf_trans_entry is same as when no override request has
+> been done.
 >
 > Signed-off-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
 > ---
->  .../drm/i915/display/intel_ddi_buf_trans.c    | 19 +++++++++++++------
->  1 file changed, 13 insertions(+), 6 deletions(-)
+>  .../drm/i915/display/intel_ddi_buf_trans.c    | 99 ++++++++++++++++++-
+>  1 file changed, 96 insertions(+), 3 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers=
 /gpu/drm/i915/display/intel_ddi_buf_trans.c
-> index ee6a78a20dac..8b369535189c 100644
+> index 1b30c9888f95..7798320a4968 100644
 > --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
 > +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-> @@ -1191,6 +1191,13 @@ static bool intel_dp_above_hbr1(const struct intel=
-_crtc_state *crtc_state)
->  	return false;
+> @@ -12,6 +12,17 @@
+>  #include "intel_dp.h"
+>  #include "intel_lt_phy.h"
+>=20=20
+> +#define MTL_C10_VS_PE_DP14_RBR_HBR 0
+> +#define MTL_C10_VS_PE_DP14_HBR2_HBR3 1
+> +#define MTL_C10_VS_PE_EDP_NON_HBR3 2
+> +#define MTL_C10_VS_PE_EDP_HBR3 3
+> +
+> +#define MTL_C20_VS_PE_DP14 4
+> +#define MTL_C20_VS_PE_DP20 5
+> +
+> +#define MTL_CX0_VS_PE_COL 3
+> +#define MTL_CX0_VS_PE_ROW 16
+
+I don't know what any of these mean, and it's really hard to figure out
+from the code.
+
+> +
+>  #define XE3P_VS_PE_EDP 3
+>  #define XE3P_VS_PE_DP14 4
+>  #define XE3P_VS_PE_DP21 5
+> @@ -1109,6 +1120,25 @@ static const union intel_ddi_buf_trans_entry _mtl_=
+c20_trans_hdmi[] =3D {
+>  	{ .snps =3D { 32, 4, 12 } },      /* preset 4 */
+>  };
+>=20=20
+> +static union intel_ddi_buf_trans_entry _mtl_cx0_trans_override[] =3D {
+> +	{ .snps =3D { 0, 0, 0 } },
+> +	{ .snps =3D { 0, 0, 0 } },
+> +	{ .snps =3D { 0, 0, 0 } },
+> +	{ .snps =3D { 0, 0, 0 } },
+> +	{ .snps =3D { 0, 0, 0 } },
+> +	{ .snps =3D { 0, 0, 0 } },
+> +	{ .snps =3D { 0, 0, 0 } },
+> +	{ .snps =3D { 0, 0, 0 } },
+> +	{ .snps =3D { 0, 0, 0 } },
+> +	{ .snps =3D { 0, 0, 0 } },
+> +	{ .snps =3D { 0, 0, 0 } },
+> +	{ .snps =3D { 0, 0, 0 } },
+> +	{ .snps =3D { 0, 0, 0 } },
+> +	{ .snps =3D { 0, 0, 0 } },
+> +	{ .snps =3D { 0, 0, 0 } },
+> +	{ .snps =3D { 0, 0, 0 } },
+> +};
+> +
+
+Using mutable static data for this is not possible. It's module
+specific, which means having two devices in the same system will trample
+each other's data.
+
+>  static const struct intel_ddi_buf_trans mtl_c20_trans_hdmi =3D {
+>  	.entries =3D _mtl_c20_trans_hdmi,
+>  	.num_entries =3D ARRAY_SIZE(_mtl_c20_trans_hdmi),
+> @@ -1126,6 +1156,11 @@ static const struct intel_ddi_buf_trans mtl_c20_tr=
+ans_uhbr =3D {
+>  	.num_entries =3D ARRAY_SIZE(_mtl_c20_trans_uhbr),
+>  };
+>=20=20
+> +static struct intel_ddi_buf_trans mtl_cx0_trans_override =3D {
+> +	.entries =3D _mtl_cx0_trans_override,
+> +	.num_entries =3D ARRAY_SIZE(_mtl_cx0_trans_override),
+> +};
+> +
+>  /* DP1.4 */
+>  static const union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_dp14[] =
+=3D {
+>  	{ .lt =3D { 21, 0, 0 , 1, 0 } },
+> @@ -1815,11 +1850,60 @@ dg2_get_snps_buf_trans(struct intel_encoder *enco=
+der,
+>  		return intel_get_buf_trans(&dg2_snps_trans, n_entries);
 >  }
 >=20=20
-> +static bool intel_edp_above_hbr2(const struct intel_crtc_state *crtc_sta=
-te)
-
-This doesn't have anything to do with "edp" specifically.
-
+> +static const struct intel_ddi_buf_trans *
+> +mtl_set_cx0_buf_trans(struct intel_encoder *encoder,
+> +		      int idx,
+> +		      int *n_entries)
 > +{
-> +	if (crtc_state->port_clock > 540000)
-> +		return true;
-> +	return false;
-
-Side note, this is just "return crtc_state->port_clock > 540000"
-directly, if-else for returning true/false is unnecessary.
-
-BR,
-Jani.
-
-> +}
+> +	struct intel_display *display =3D to_intel_display(encoder);
+> +	struct intel_ddi_buf_trans *buf_trans =3D &mtl_cx0_trans_override;
+> +	union intel_ddi_buf_trans_entry *entries, *entry;
+> +	const u32 *tables =3D display->vbt.override_vswing;
+> +	const u32 *vals;
 > +
->  static bool use_edp_hobl(struct intel_encoder *encoder)
+> +	entries =3D (union intel_ddi_buf_trans_entry *) buf_trans->entries;
+> +	for (int row =3D 0; row < MTL_CX0_VS_PE_ROW; row++) {
+> +		entry =3D &entries[row];
+> +		vals =3D find_row(tables,
+> +				idx,
+> +				row,
+> +				MTL_CX0_VS_PE_ROW,
+> +				MTL_CX0_VS_PE_COL);
+> +
+> +		entry->snps.vswing =3D LOW(vals[0]);
+> +		entry->snps.pre_cursor =3D LOW(vals[1]);
+> +		entry->snps.post_cursor =3D LOW(vals[2]);
+> +	}
+> +
+> +	return intel_get_buf_trans(&mtl_cx0_trans_override, n_entries);
+> +}
+
+But why do we have to "set" the data in the first place?
+
+Is it not possible to arrange the buf trans data that we have in the
+same format as VBT? And then instead of returning the data from our
+predefined tables, we'd return the data from VBT. Without conversions.
+
+If that's not feasible, then parsing of VBT data belongs to
+intel_bios.c. That's the place where we convert VBT input into the
+format our driver understands, and the rest of the driver doesn't need
+to jump through hoops to parse it.
+
+> +
+>  static const struct intel_ddi_buf_trans *
+>  mtl_get_c10_buf_trans(struct intel_encoder *encoder,
+>  		      const struct intel_crtc_state *crtc_state,
+>  		      int *n_entries)
 >  {
->  	struct intel_dp *intel_dp =3D enc_to_intel_dp(encoder);
-> @@ -1374,7 +1381,7 @@ icl_get_combo_buf_trans_edp(struct intel_encoder *e=
-ncoder,
->  			    const struct intel_crtc_state *crtc_state,
->  			    int *n_entries)
+> +	if (intel_bios_encoder_overrides_vswing(encoder->devdata)) {
+> +		if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_DP)) {
+> +			if (intel_dp_above_hbr1(crtc_state))
+> +				return mtl_set_cx0_buf_trans(encoder,
+> +							     MTL_C10_VS_PE_DP14_HBR2_HBR3,
+> +							     n_entries);
+> +			else
+> +				return mtl_set_cx0_buf_trans(encoder,
+> +							     MTL_C10_VS_PE_DP14_RBR_HBR,
+> +							     n_entries);
+> +		} else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)){
+> +			if (intel_edp_above_hbr2(crtc_state))
+> +				return mtl_set_cx0_buf_trans(encoder,
+> +							     MTL_C10_VS_PE_EDP_HBR3,
+> +							     n_entries);
+> +			else
+> +				return mtl_set_cx0_buf_trans(encoder,
+> +							     MTL_C10_VS_PE_EDP_NON_HBR3,
+> +							     n_entries);
+> +		}
+> +	}
+
+Can we not do this in a more generic fashion instead of sprinkling these
+override things and if-ladders absolutely everywhere? I mean the whole
+file is already a bunch of if-ladders, but do we really need to add
+another set for VBT stuff?
+
+>  	return intel_get_buf_trans(&mtl_c10_trans_dp14, n_entries);
+>  }
+>=20=20
+> @@ -1828,12 +1912,21 @@ mtl_get_c20_buf_trans(struct intel_encoder *encod=
+er,
+>  		      const struct intel_crtc_state *crtc_state,
+>  		      int *n_entries)
 >  {
-> -	if (crtc_state->port_clock > 540000) {
-> +	if (intel_edp_above_hbr2(crtc_state)) {
->  		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
->  					   n_entries);
->  	} else if (use_edp_low_vswing(encoder)) {
-> @@ -1499,7 +1506,7 @@ tgl_get_combo_buf_trans_edp(struct intel_encoder *e=
-ncoder,
->  			    const struct intel_crtc_state *crtc_state,
->  			    int *n_entries)
->  {
-> -	if (crtc_state->port_clock > 540000) {
-> +	if (intel_edp_above_hbr2(crtc_state)) {
->  		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
->  					   n_entries);
->  	} else if (use_edp_hobl(encoder)) {
-> @@ -1544,7 +1551,7 @@ dg1_get_combo_buf_trans_edp(struct intel_encoder *e=
-ncoder,
->  			    const struct intel_crtc_state *crtc_state,
->  			    int *n_entries)
->  {
-> -	if (crtc_state->port_clock > 540000)
-> +	if (intel_edp_above_hbr2(crtc_state))
->  		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
->  					   n_entries);
->  	else if (use_edp_hobl(encoder))
-> @@ -1586,7 +1593,7 @@ rkl_get_combo_buf_trans_edp(struct intel_encoder *e=
-ncoder,
->  			    const struct intel_crtc_state *crtc_state,
->  			    int *n_entries)
->  {
-> -	if (crtc_state->port_clock > 540000) {
-> +	if (intel_edp_above_hbr2(crtc_state)) {
->  		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
->  					   n_entries);
->  	} else if (use_edp_hobl(encoder)) {
-> @@ -1629,7 +1636,7 @@ adls_get_combo_buf_trans_edp(struct intel_encoder *=
-encoder,
->  			     const struct intel_crtc_state *crtc_state,
->  			     int *n_entries)
->  {
-> -	if (crtc_state->port_clock > 540000)
-> +	if (intel_edp_above_hbr2(crtc_state))
->  		return intel_get_buf_trans(&adls_combo_phy_trans_edp_hbr3, n_entries);
->  	else if (use_edp_hobl(encoder))
->  		return intel_get_buf_trans(&tgl_combo_phy_trans_edp_hbr2_hobl, n_entri=
-es);
-> @@ -1668,7 +1675,7 @@ adlp_get_combo_buf_trans_edp(struct intel_encoder *=
-encoder,
->  			     const struct intel_crtc_state *crtc_state,
->  			     int *n_entries)
->  {
-> -	if (crtc_state->port_clock > 540000) {
-> +	if (intel_edp_above_hbr2(crtc_state)) {
->  		return intel_get_buf_trans(&adlp_combo_phy_trans_edp_hbr3,
->  					   n_entries);
->  	} else if (use_edp_hobl(encoder)) {
+> -	if (intel_crtc_has_dp_encoder(crtc_state) && intel_dp_is_uhbr(crtc_stat=
+e))
+> +	if (intel_crtc_has_dp_encoder(crtc_state) && intel_dp_is_uhbr(crtc_stat=
+e)) {
+> +		if (intel_bios_encoder_overrides_vswing(encoder->devdata))
+> +			return mtl_set_cx0_buf_trans(encoder,
+> +						     MTL_C20_VS_PE_DP20,
+> +						     n_entries);
+>  		return intel_get_buf_trans(&mtl_c20_trans_uhbr, n_entries);
+> -	else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI))
+> +	} else if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
+>  		return intel_get_buf_trans(&mtl_c20_trans_hdmi, n_entries);
+> -	else
+> +	} else {
+> +		if (intel_bios_encoder_overrides_vswing(encoder->devdata))
+> +			return mtl_set_cx0_buf_trans(encoder,
+> +						     MTL_C20_VS_PE_DP14,
+> +						     n_entries);
+>  		return intel_get_buf_trans(&mtl_c20_trans_dp14, n_entries);
+> +	}
+>  }
+>=20=20
+>  static const struct intel_ddi_buf_trans *
 
 --=20
 Jani Nikula, Intel
