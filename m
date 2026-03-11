@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8453112584F
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 15:52:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB233112584F
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 15:52:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AACE810E3C5;
-	Wed, 11 Mar 2026 15:52:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A515810E8B0;
+	Wed, 11 Mar 2026 15:52:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bBULJ1IV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a81rUR/i";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28D8710E2B5;
- Wed, 11 Mar 2026 15:52:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE1E910E3ED;
+ Wed, 11 Mar 2026 15:52:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773244370; x=1804780370;
+ t=1773244373; x=1804780373;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vTma2qW7o3rhaBNXY3OTsHwqf6t0tIa6AoW36t9S4qY=;
- b=bBULJ1IVOMIXLBplNcfKM/y6vbwaZSmLRWHLcdVzTnwehuvSaueF5Gas
- IUsrGv2pQWkJEUeli8cn7YVOGEXHPWTJOHJhq1Oub01qjdFfTzRlpmmYy
- 3CSna/+SE7D5kTcd1wjKmMLyi0Ap2xycrH0xaBF8ClvwgfVjGHvEz4VKI
- kL5rPMJRX7vAayXTvcIvIzUpPij/ZQfzKQi0O+ImW3FKlqJmiE08p/w6z
- EqvUyZ6hyLTWwxF1LQ4WYOJz7K1lqUmqLyFYBT7fDyK+FeMV6KkPlKbx9
- 2hwCxdVw31La6pX2i+b8MCf15InM6SedEszuNmhry4U93DWVOAcKEHxFX Q==;
-X-CSE-ConnectionGUID: M0yZi6zIRjqFoUwdazFirA==
-X-CSE-MsgGUID: +ZmzcPm2TCq0ucUSBvuW9Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="74398182"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="74398182"
+ bh=xAnL+9IhxFRWyY4aXDCogwrwG4fhOUxMZMHt0f/ecHc=;
+ b=a81rUR/i7kMAzAGIEgOKC0c7DTIs3OOLp5unKs4MPJHpZcu4YcA18Q1g
+ dBxOtXw2x3DeWd3nvgn/7PotNxsBjQEi7R49hLwPoDF7u79sKR0v0DA5f
+ kDTUvOeuzNpUcJzsWUUxXXlgo1QX0wWq57klCPwlQomtSCwDwyN5+1kVh
+ irWEsKeiNA5+noAidzIiF2ePDAAAVcR+JFh6HzSTGTF+9OhJmloyNIejC
+ +9QDClVKlckwP27X61ywXlavRR9hShXQ9EXgZUMgxkoVcxOZc7ixRIUBS
+ 6qGWh223RkWR8A8kE4PqJKKxiONWLtqx3JcV6V90cUy1M86/Zd2lKY9pb Q==;
+X-CSE-ConnectionGUID: ihLpQL8KQAi7eXPXS7NXxQ==
+X-CSE-MsgGUID: CIJ8jb5HSdCfBO7zuMY4gQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="74398190"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="74398190"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 08:52:49 -0700
-X-CSE-ConnectionGUID: 38f2FjPMQkasQHxFNTtPbg==
-X-CSE-MsgGUID: EuRrCQo9QPmlwy2hukErwQ==
+ 11 Mar 2026 08:52:51 -0700
+X-CSE-ConnectionGUID: plOv7IGwQv6MX4WPpXYvLg==
+X-CSE-MsgGUID: byNfUypvQTSNnebasrX5Gg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="246064348"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="246064354"
 Received: from gsd-build.iind.intel.com ([10.190.229.167])
- by fmviesa001.fm.intel.com with ESMTP; 11 Mar 2026 08:52:46 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 11 Mar 2026 08:52:48 -0700
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
@@ -49,10 +49,9 @@ Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>,
  =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
  dri-devel@lists.freedesktop.org
-Subject: [PATCH 2/3] drm/xe/vf: Disable fences while initializing CCS
- read/write sub-allocs
-Date: Wed, 11 Mar 2026 15:52:36 +0000
-Message-ID: <20260311155233.1903253-7-satyanarayana.k.v.p@intel.com>
+Subject: [PATCH 3/3] drm/tests: Add KUnit test for suballocator allocation
+Date: Wed, 11 Mar 2026 15:52:37 +0000
+Message-ID: <20260311155233.1903253-8-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260311155233.1903253-5-satyanarayana.k.v.p@intel.com>
 References: <20260311155233.1903253-5-satyanarayana.k.v.p@intel.com>
@@ -73,11 +72,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The current sub-allocator default assumes that fences are enabled and
-while finding a hole during buffer allocation, it checks only till
-first hole.
-Disable fences immediately initalizing the SA manager so that, holes can be
-searched through out the sub-allocator while allocating buffer.
+Add KUnit test to verify DRM suballocator allocation and insertion over
+multiple iterations with randomized sizes. Tests both successful
+allocations and allocation-free cycles to exercise fragmentation handling.
 
 Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
@@ -87,75 +84,131 @@ Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Cc: Christian König <christian.koenig@amd.com>
 Cc: dri-devel@lists.freedesktop.org
 ---
- drivers/gpu/drm/xe/xe_sa.c           | 20 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sa.h           |  1 +
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.c |  3 ++-
- 3 files changed, 23 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/Kconfig.debug             |  1 +
+ drivers/gpu/drm/tests/.kunitconfig        |  1 +
+ drivers/gpu/drm/tests/Makefile            |  1 +
+ drivers/gpu/drm/tests/drm_suballoc_test.c | 79 +++++++++++++++++++++++
+ 4 files changed, 82 insertions(+)
+ create mode 100644 drivers/gpu/drm/tests/drm_suballoc_test.c
 
-diff --git a/drivers/gpu/drm/xe/xe_sa.c b/drivers/gpu/drm/xe/xe_sa.c
-index f32045f40b7a..13f47db662a6 100644
---- a/drivers/gpu/drm/xe/xe_sa.c
-+++ b/drivers/gpu/drm/xe/xe_sa.c
-@@ -117,6 +117,26 @@ struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size,
- 	return sa_manager;
- }
+diff --git a/drivers/gpu/drm/Kconfig.debug b/drivers/gpu/drm/Kconfig.debug
+index 3b7886865335..ea18d9399d5c 100644
+--- a/drivers/gpu/drm/Kconfig.debug
++++ b/drivers/gpu/drm/Kconfig.debug
+@@ -69,6 +69,7 @@ config DRM_KUNIT_TEST
+ 	select DRM_EXPORT_FOR_TESTS if m
+ 	select DRM_GEM_SHMEM_HELPER
+ 	select DRM_KUNIT_TEST_HELPERS
++	select DRM_SUBALLOC_HELPER
+ 	select DRM_SYSFB_HELPER
+ 	select PRIME_NUMBERS
+ 	default KUNIT_ALL_TESTS
+diff --git a/drivers/gpu/drm/tests/.kunitconfig b/drivers/gpu/drm/tests/.kunitconfig
+index 5be8e71f45d5..67758bb211d2 100644
+--- a/drivers/gpu/drm/tests/.kunitconfig
++++ b/drivers/gpu/drm/tests/.kunitconfig
+@@ -3,3 +3,4 @@ CONFIG_DRM=y
+ CONFIG_DRM_VKMS=y
+ CONFIG_DRM_FBDEV_EMULATION=y
+ CONFIG_DRM_KUNIT_TEST=y
++CONFIG_DRM_SUBALLOC_HELPER=y
+diff --git a/drivers/gpu/drm/tests/Makefile b/drivers/gpu/drm/tests/Makefile
+index d2e2e3d8349a..7f8aa03c5a6d 100644
+--- a/drivers/gpu/drm/tests/Makefile
++++ b/drivers/gpu/drm/tests/Makefile
+@@ -23,6 +23,7 @@ obj-$(CONFIG_DRM_KUNIT_TEST) += \
+ 	drm_plane_helper_test.o \
+ 	drm_probe_helper_test.o \
+ 	drm_rect_test.o \
++	drm_suballoc_test.o \
+ 	drm_sysfb_modeset_test.o \
+ 	drm_fixp_test.o
  
-+/**
-+ * xe_sa_bo_manager_fence_disable() - Set the suballocator to disable fencing.
-+ * @sa_manager: the XE sub allocator manager
-+ * @disable: Disable fences
-+ *
-+ * When @fence_disabled is true allocation scans all holes without waiting on
-+ * fences. When false, the manager tracks free suballocations behind fences
-+ * and reuses them only after the fence signals.
-+ *
-+ * This should be called immediately after creating the suballocator and before
-+ * any allocations are made. The behaviour is undefined if this is called after
-+ * allocations have been made.
-+ *
-+ * Return: None.
+diff --git a/drivers/gpu/drm/tests/drm_suballoc_test.c b/drivers/gpu/drm/tests/drm_suballoc_test.c
+new file mode 100644
+index 000000000000..f03327e1c8af
+--- /dev/null
++++ b/drivers/gpu/drm/tests/drm_suballoc_test.c
+@@ -0,0 +1,79 @@
++// SPDX-License-Identifier: GPL-2.0 AND MIT
++/*
++ * Copyright © 2026 Intel Corporation
 + */
-+void xe_sa_bo_manager_fence_disable(struct xe_sa_manager *sa_manager, bool disable)
++
++#include <drm/drm_suballoc.h>
++
++#include <kunit/test.h>
++#include <linux/errno.h>
++#include <linux/module.h>
++#include <linux/sizes.h>
++
++#define DRM_SUBALLOC_TEST_ITERATIONS        128
++#define DRM_SUBALLOC_TEST_MANAGER_ALIGN     SZ_16
++#define DRM_SUBALLOC_TEST_MANAGER_SIZE      SZ_16K
++#define DRM_SUBALLOC_TEST_MAX_ALLOCS        16
++#define DRM_SUBALLOC_TEST_MAX_ALLOC_SIZE    SZ_512
++
++static bool fence_disable = true;
++module_param_named(fence_disable, fence_disable, bool, 0644);
++MODULE_PARM_DESC(fence_disable, "Disable suballoc fence tracking in test");
++
++static void drm_test_suballoc_alloc_insert(struct kunit *test)
 +{
-+	drm_suballoc_manager_fence_disable(&sa_manager->base, disable);
++	struct drm_suballoc_manager manager;
++	struct drm_suballoc *sa_arr[DRM_SUBALLOC_TEST_MAX_ALLOCS], *sa;
++	struct drm_suballoc
++		*sa_alloc_arr[DRM_SUBALLOC_TEST_ITERATIONS / DRM_SUBALLOC_TEST_MAX_ALLOCS] = {0};
++	int i, size, sa_index, sa_alloc_arr_index;
++
++	drm_suballoc_manager_init(&manager,
++				  DRM_SUBALLOC_TEST_MANAGER_SIZE,
++				  DRM_SUBALLOC_TEST_MANAGER_ALIGN);
++	drm_suballoc_manager_fence_disable(&manager, fence_disable);
++
++	kunit_info(test, "Starting suballoc test with %d iterations with fence %s\n",
++		   DRM_SUBALLOC_TEST_ITERATIONS, fence_disable ? "disabled" : "enabled");
++
++	for (i = 0, sa_index = 0, sa_alloc_arr_index = 0;
++	     i < DRM_SUBALLOC_TEST_ITERATIONS; i++) {
++		size = get_random_u32_below(DRM_SUBALLOC_TEST_MAX_ALLOC_SIZE) + 1;
++		size = ALIGN(size, 16);
++
++		sa = drm_suballoc_new(&manager, size, GFP_KERNEL, true, 0);
++		KUNIT_ASSERT_NOT_ERR_OR_NULL(test, sa);
++		KUNIT_ASSERT_EQ(test, drm_suballoc_size(sa), size);
++		sa_arr[sa_index++] = sa;
++
++		if (sa_index == DRM_SUBALLOC_TEST_MAX_ALLOCS) {
++			for (int free_iter = 0; free_iter < DRM_SUBALLOC_TEST_MAX_ALLOCS - 1;
++			     free_iter++) {
++				drm_suballoc_free(sa_arr[free_iter], NULL);
++			}
++			sa_alloc_arr[sa_alloc_arr_index++] =
++				sa_arr[DRM_SUBALLOC_TEST_MAX_ALLOCS - 1];
++			sa_index = 0;
++		}
++	}
++
++	for (i = 0; i < sa_alloc_arr_index; i++)
++		drm_suballoc_free(sa_alloc_arr[i], NULL);
++
++	drm_suballoc_manager_fini(&manager);
 +}
 +
- /**
-  * xe_sa_bo_swap_shadow() - Swap the SA BO with shadow BO.
-  * @sa_manager: the XE sub allocator manager
-diff --git a/drivers/gpu/drm/xe/xe_sa.h b/drivers/gpu/drm/xe/xe_sa.h
-index 50218b0d1404..77b5520b04e8 100644
---- a/drivers/gpu/drm/xe/xe_sa.h
-+++ b/drivers/gpu/drm/xe/xe_sa.h
-@@ -17,6 +17,7 @@ struct xe_tile;
- #define XE_SA_BO_MANAGER_FLAG_SHADOW	BIT(0)
- struct xe_sa_manager *__xe_sa_bo_manager_init(struct xe_tile *tile, u32 size,
- 					      u32 guard, u32 align, u32 flags);
-+void xe_sa_bo_manager_fence_disable(struct xe_sa_manager *sa_manager, bool disable);
- struct drm_suballoc *__xe_sa_bo_new(struct xe_sa_manager *sa_manager, u32 size, gfp_t gfp);
- 
- static inline struct xe_sa_manager *xe_sa_bo_manager_init(struct xe_tile *tile, u32 size, u32 align)
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-index db023fb66a27..0508847da468 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-@@ -152,7 +152,6 @@ static int alloc_bb_pool(struct xe_tile *tile, struct xe_sriov_vf_ccs_ctx *ctx)
- 
- 	sa_manager = __xe_sa_bo_manager_init(tile, bb_pool_size, SZ_4K, SZ_16,
- 					     XE_SA_BO_MANAGER_FLAG_SHADOW);
--
- 	if (IS_ERR(sa_manager)) {
- 		xe_sriov_err(xe, "Suballocator init failed with error: %pe\n",
- 			     sa_manager);
-@@ -160,6 +159,8 @@ static int alloc_bb_pool(struct xe_tile *tile, struct xe_sriov_vf_ccs_ctx *ctx)
- 		return err;
- 	}
- 
-+	xe_sa_bo_manager_fence_disable(sa_manager, true);
++static struct kunit_case drm_suballoc_tests[] = {
++	KUNIT_CASE(drm_test_suballoc_alloc_insert),
++	{}
++};
 +
- 	offset = 0;
- 	xe_map_memset(xe, &sa_manager->bo->vmap, offset, MI_NOOP,
- 		      bb_pool_size);
++static struct kunit_suite drm_suballoc_test = {
++	.name = "drm_suballoc",
++	.test_cases = drm_suballoc_tests,
++};
++
++kunit_test_suite(drm_suballoc_test);
++
++MODULE_DESCRIPTION("KUnit DRM suballoc test suite");
++MODULE_LICENSE("GPL");
 -- 
 2.43.0
 
