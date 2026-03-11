@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93BCB1125869
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 19:03:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6719C1125876
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 19:28:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5024310E3E4;
-	Wed, 11 Mar 2026 19:03:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PjwK7OYS";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6094210E3E3;
- Wed, 11 Mar 2026 19:03:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773255783; x=1804791783;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=5LeoInOG72AC63xWadzf3zI9WdMs0+cPlz+u001cIjg=;
- b=PjwK7OYSaoXcdX30yr7SwRpgxXixpfvTo+pba1479pJtCG5tcSGkakGx
- EwUscwk55zKw1KdvgQ10PhRaKZS2OJeRwN1WPbAjGw0uuihxr1fgYEf6M
- WNt7smGfNVrTCVA4TCHY99QsoV+zpMPlXjqM5ErlY+CXLSAJMu90Bbvhs
- WAiMqhLj5PHcG0B6mEPp+FBpTvHYueJo2SewBbX8Sr92lCSz8TzW6KoRf
- r9ALM3SBgf0WapCBLyKIhqSSdNrovy17teHcHzYRg332s9PHZfCjtYkec
- FcHpWVJqksi1U348EkG+0OS/xrwYOvvx2/FCJQyA4EGg1DlL4oSZXzght w==;
-X-CSE-ConnectionGUID: ZZ6zs3y5Rd22DT/v6+KLZA==
-X-CSE-MsgGUID: CAzMrluvQu2VwjBzBdFktA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="74231133"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="74231133"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 12:03:02 -0700
-X-CSE-ConnectionGUID: YHT7ROcfRYaPmlJvkd5tlg==
-X-CSE-MsgGUID: 9p9KeXFOTbaDUJ1ThCBlxQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="220516067"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO [10.245.244.202])
- ([10.245.244.202])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 12:02:59 -0700
-Message-ID: <78e96e9a6bf228c19c43698666785268b9477493.camel@linux.intel.com>
-Subject: Re: [PATCH 1/3] drm/sa: Scan all holes when fences are disabled
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>, 
- intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>, Maarten Lankhorst	
- <dev@lankhorst.se>, Michal Wajdeczko <michal.wajdeczko@intel.com>,
- Christian =?ISO-8859-1?Q?K=F6nig?=	 <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org
-Date: Wed, 11 Mar 2026 20:02:57 +0100
-In-Reply-To: <20260311155233.1903253-6-satyanarayana.k.v.p@intel.com>
-References: <20260311155233.1903253-5-satyanarayana.k.v.p@intel.com>
- <20260311155233.1903253-6-satyanarayana.k.v.p@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 228D310E3EF;
+	Wed, 11 Mar 2026 19:28:25 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C169D10E3EE;
+ Wed, 11 Mar 2026 19:28:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6684890358308536637=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Fix_missing_runti?=
+ =?utf-8?q?me_PM_reference_in_ccs=5Fmode=5Fstore?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sanjay Yadav" <sanjay.kumar.yadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 11 Mar 2026 19:28:24 -0000
+Message-ID: <177325730478.347435.4249051534549149829@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260311165242.2355683-2-sanjay.kumar.yadav@intel.com>
+In-Reply-To: <20260311165242.2355683-2-sanjay.kumar.yadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,242 +36,343 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 2026-03-11 at 15:52 +0000, Satyanarayana K V P wrote:
-> The suballocator algorithm tracks a hole cursor at the last
-> allocation
-> and tries to allocate after it. This is optimized for fence-ordered
-> progress, where older allocations are expected to become reusable
-> first.
->=20
-> In fence-enabled mode, that ordering assumption holds. In fence-
-> disabled
-> mode, allocations may be freed in arbitrary order, so limiting
-> allocation
-> to the current hole window can miss valid free space and fail
-> allocations
-> despite sufficient total space.
->=20
-> Update the fence-disabled path to walk through all holes and select
-> any
-> fitting range, while keeping the existing fence-based behavior
-> unchanged.
->=20
-> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Cc: Maarten Lankhorst <dev@lankhorst.se>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Cc: dri-devel@lists.freedesktop.org
+--===============6684890358308536637==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Hmm.
+== Series Details ==
 
-The amount of changes we discover are needed for this use-case makes me
-wonder whether we are actually using the incorrect subsystems and
-should have coded up a separate utility for this: The utility holds the
-HW and shadow BOs, and we then embed (or possibly point to) a struct
-drm_mm_node in the bos.
+Series: drm/xe: Fix missing runtime PM reference in ccs_mode_store
+URL   : https://patchwork.freedesktop.org/series/163048/
+State : success
 
-Perhaps should've Claude code that up and see what it looks like?
+== Summary ==
 
-Thanks,
-Thomas
+CI Bug Log - changes from xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb_BAT -> xe-pw-163048v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 14)
+------------------------------
+
+  Additional (1): bat-atsm-2 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-163048v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@fbdev@write:
+    - bat-atsm-2:         NOTRUN -> [SKIP][1] ([Intel XE#2134]) +4 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@fbdev@write.html
+
+  * igt@kms_addfb_basic@addfb25-yf-tiled-legacy:
+    - bat-atsm-2:         NOTRUN -> [SKIP][2] ([i915#6077]) +30 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@kms_addfb_basic@addfb25-yf-tiled-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - bat-atsm-2:         NOTRUN -> [SKIP][3] ([Intel XE#1024] / [Intel XE#782] / [Intel XE#947]) +5 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-atsm-2:         NOTRUN -> [SKIP][4] ([Intel XE#1024] / [Intel XE#784] / [Intel XE#947])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-atsm-2:         NOTRUN -> [SKIP][5] ([Intel XE#1024] / [Intel XE#783] / [Intel XE#947])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - bat-atsm-2:         NOTRUN -> [SKIP][6] ([Intel XE#540]) +3 other tests skip
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@kms_hdmi_inject@inject-audio.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc:
+    - bat-atsm-2:         NOTRUN -> [SKIP][7] ([Intel XE#829] / [i915#1836]) +6 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@kms_pipe_crc_basic@nonblocking-crc.html
+
+  * igt@kms_prop_blob@basic:
+    - bat-atsm-2:         NOTRUN -> [SKIP][8] ([Intel XE#780])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@kms_prop_blob@basic.html
+
+  * igt@kms_psr@psr-primary-page-flip:
+    - bat-atsm-2:         NOTRUN -> [SKIP][9] ([Intel XE#1024] / [Intel XE#947]) +6 other tests skip
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@kms_psr@psr-primary-page-flip.html
+
+  * igt@xe_exec_fault_mode@twice-userptr-prefetch:
+    - bat-atsm-2:         NOTRUN -> [SKIP][10] ([Intel XE#288]) +32 other tests skip
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-prefetch.html
+
+  * igt@xe_huc_copy@huc_copy:
+    - bat-atsm-2:         NOTRUN -> [SKIP][11] ([Intel XE#255])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@xe_huc_copy@huc_copy.html
+
+  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
+    - bat-bmg-2:          NOTRUN -> [SKIP][12] ([Intel XE#2229])
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
+
+  * igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:
+    - bat-atsm-2:         NOTRUN -> [SKIP][13] ([Intel XE#2229])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html
+
+  * igt@xe_pat@pat-index-xe2:
+    - bat-atsm-2:         NOTRUN -> [SKIP][14] ([Intel XE#977])
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@xe_pat@pat-index-xe2.html
+
+  * igt@xe_pat@pat-index-xehpc:
+    - bat-atsm-2:         NOTRUN -> [SKIP][15] ([Intel XE#2838] / [Intel XE#979])
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@xe_pat@pat-index-xehpc.html
+
+  * igt@xe_pat@pat-index-xelpg:
+    - bat-atsm-2:         NOTRUN -> [SKIP][16] ([Intel XE#979])
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@xe_pat@pat-index-xelpg.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [TIMEOUT][17] ([Intel XE#6506]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [FAIL][19] ([Intel XE#6520]) -> [PASS][20]
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+#### Warnings ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [ABORT][21] ([Intel XE#7249]) -> [DMESG-WARN][22] ([Intel XE#7433])
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+  [Intel XE#1024]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024
+  [Intel XE#2134]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134
+  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
+  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
+  [Intel XE#2838]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#540]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/540
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+  [Intel XE#7249]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249
+  [Intel XE#7433]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7433
+  [Intel XE#780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/780
+  [Intel XE#782]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/782
+  [Intel XE#783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/783
+  [Intel XE#784]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/784
+  [Intel XE#829]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/829
+  [Intel XE#947]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/947
+  [Intel XE#977]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/977
+  [Intel XE#979]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/979
+  [i915#1836]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1836
+  [i915#6077]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6077
 
 
+Build changes
+-------------
 
-> ---
-> =C2=A0drivers/gpu/drm/drm_suballoc.c | 90
-> ++++++++++++++++++++++++++++++++++
-> =C2=A0include/drm/drm_suballoc.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 5 ++
-> =C2=A02 files changed, 95 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/drm_suballoc.c
-> b/drivers/gpu/drm/drm_suballoc.c
-> index b74277bbc14b..307da191a855 100644
-> --- a/drivers/gpu/drm/drm_suballoc.c
-> +++ b/drivers/gpu/drm/drm_suballoc.c
-> @@ -78,12 +78,33 @@ void drm_suballoc_manager_init(struct
-> drm_suballoc_manager *sa_manager,
-> =C2=A0	sa_manager->size =3D size;
-> =C2=A0	sa_manager->align =3D align;
-> =C2=A0	sa_manager->hole =3D &sa_manager->olist;
-> +	sa_manager->fence_disable =3D false;
-> =C2=A0	INIT_LIST_HEAD(&sa_manager->olist);
-> =C2=A0	for (i =3D 0; i < DRM_SUBALLOC_MAX_QUEUES; ++i)
-> =C2=A0		INIT_LIST_HEAD(&sa_manager->flist[i]);
-> =C2=A0}
-> =C2=A0EXPORT_SYMBOL(drm_suballoc_manager_init);
-> =C2=A0
-> +/**
-> + * drm_suballoc_manager_fence_disable() - Enable or disable fence
-> tracking.
-> + * @sa_manager: Pointer to the suballocation manager.
-> + * @fence_disable: Whether to disable fence tracking for free
-> suballocations.
-> + *
-> + * When @fence_disable is true allocation scans all holes without
-> waiting on
-> + * fences. When false, the manager tracks free suballocations behind
-> fences and
-> + * reuses them only after the fence signals.
-> + *
-> + * This should be called immediately after creating the suballocator
-> and before
-> + * any allocations are made. The behaviour is undefined if this is
-> called after
-> + * allocations have been made.
-> + */
-> +void drm_suballoc_manager_fence_disable(struct drm_suballoc_manager
-> *sa_manager,
-> +					bool fence_disable)
-> +{
-> +	sa_manager->fence_disable =3D fence_disable;
-> +}
-> +EXPORT_SYMBOL(drm_suballoc_manager_fence_disable);
-> +
-> =C2=A0/**
-> =C2=A0 * drm_suballoc_manager_fini() - Destroy the drm_suballoc_manager
-> =C2=A0 * @sa_manager: pointer to the sa_manager
-> @@ -110,6 +131,7 @@ void drm_suballoc_manager_fini(struct
-> drm_suballoc_manager *sa_manager)
-> =C2=A0	}
-> =C2=A0
-> =C2=A0	sa_manager->size =3D 0;
-> +	sa_manager->fence_disable =3D false;
-> =C2=A0}
-> =C2=A0EXPORT_SYMBOL(drm_suballoc_manager_fini);
-> =C2=A0
-> @@ -161,6 +183,69 @@ static size_t drm_suballoc_hole_eoffset(struct
-> drm_suballoc_manager *sa_manager)
-> =C2=A0	return sa_manager->size;
-> =C2=A0}
-> =C2=A0
-> +/**
-> + * drm_suballoc_hole_soffset_eoffset() - Find a hole fitting size
-> and alignment.
-> + * @sa_manager: Suballocator manager.
-> + * @soffset: Start offset of the selected hole.
-> + * @eoffset: End offset of the selected hole.
-> + * @size: Size to be allocated.
-> + * @align: Allocation alignment.
-> + *
-> + * This function is used when fences are disabled. It scans the
-> holes starting
-> + * at the current hole pointer and selects the first one that can
-> satisfy @size
-> + * once @align padding is applied. We may need to scan the entire
-> list of holes
-> + * and update soffset and eoffset for each hole to find a suitable
-> one, as the
-> + * current hole pointer may not be the same as sa_manager->hole.
-> + *
-> + * Return: true if a suitable hole is found, false otherwise.
-> + */
-> +static bool drm_suballoc_hole_soffset_eoffset(struct
-> drm_suballoc_manager *sa_manager,
-> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 size_t *soffset,
-> size_t *eoffset,
-> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 size_t size, size_t
-> align)
-> +{
-> +	struct list_head *start, *hole;
-> +
-> +	if (!sa_manager->fence_disable)
-> +		return true;
-> +
-> +	start =3D sa_manager->hole;
-> +	hole =3D start;
-> +
-> +	do {
-> +		size_t s, e, wasted;
-> +
-> +		/*
-> +		 * We can't use drm_suballoc_hole_soffset() and
-> +		 * drm_suballoc_hole_eoffset() here as the hole may
-> not be same
-> +		 * as sa_manager->hole.
-> +		 */
-> +		if (hole !=3D &sa_manager->olist)
-> +			s =3D list_entry(hole, struct drm_suballoc,
-> olist)->eoffset;
-> +		else
-> +			s =3D 0;
-> +
-> +		if (hole->next !=3D &sa_manager->olist)
-> +			e =3D list_entry(hole->next, struct
-> drm_suballoc, olist)->soffset;
-> +		else
-> +			e =3D sa_manager->size;
-> +
-> +		if (e < s || e =3D=3D s || (e - s) < size) {
-> +			hole =3D hole->next;
-> +			continue;
-> +		}
-> +
-> +		wasted =3D round_up(s, align) - s;
-> +		if ((e - s) >=3D (size + wasted)) {
-> +			*soffset =3D s;
-> +			*eoffset =3D e;
-> +			sa_manager->hole =3D hole;
-> +			return true;
-> +		}
-> +	} while (hole !=3D start);
-> +
-> +	return false;
-> +}
-> +
-> =C2=A0static bool drm_suballoc_try_alloc(struct drm_suballoc_manager
-> *sa_manager,
-> =C2=A0				=C2=A0=C2=A0 struct drm_suballoc *sa,
-> =C2=A0				=C2=A0=C2=A0 size_t size, size_t align)
-> @@ -169,6 +254,11 @@ static bool drm_suballoc_try_alloc(struct
-> drm_suballoc_manager *sa_manager,
-> =C2=A0
-> =C2=A0	soffset =3D drm_suballoc_hole_soffset(sa_manager);
-> =C2=A0	eoffset =3D drm_suballoc_hole_eoffset(sa_manager);
-> +
-> +	if (!drm_suballoc_hole_soffset_eoffset(sa_manager, &soffset,
-> +					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &eoffset, size,
-> align))
-> +		return false;
-> +
-> =C2=A0	wasted =3D round_up(soffset, align) - soffset;
-> =C2=A0
-> =C2=A0	if ((eoffset - soffset) >=3D (size + wasted)) {
-> diff --git a/include/drm/drm_suballoc.h b/include/drm/drm_suballoc.h
-> index 29befdda35d2..066412196f8a 100644
-> --- a/include/drm/drm_suballoc.h
-> +++ b/include/drm/drm_suballoc.h
-> @@ -20,6 +20,7 @@
-> =C2=A0 * @flist: Array[fence context hash] of queues of fenced allocated
-> ranges.
-> =C2=A0 * @size: Size of the managed range.
-> =C2=A0 * @align: Default alignment for the managed range.
-> + * @fence_disable: Fences are disabled for this SA manager.
-> =C2=A0 */
-> =C2=A0struct drm_suballoc_manager {
-> =C2=A0	wait_queue_head_t wq;
-> @@ -28,6 +29,7 @@ struct drm_suballoc_manager {
-> =C2=A0	struct list_head flist[DRM_SUBALLOC_MAX_QUEUES];
-> =C2=A0	size_t size;
-> =C2=A0	size_t align;
-> +	bool fence_disable;
-> =C2=A0};
-> =C2=A0
-> =C2=A0/**
-> @@ -51,6 +53,9 @@ struct drm_suballoc {
-> =C2=A0void drm_suballoc_manager_init(struct drm_suballoc_manager
-> *sa_manager,
-> =C2=A0			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 size_t size, size_t align);
-> =C2=A0
-> +void drm_suballoc_manager_fence_disable(struct drm_suballoc_manager
-> +					*sa_manager, bool
-> fence_disable);
-> +
-> =C2=A0void drm_suballoc_manager_fini(struct drm_suballoc_manager
-> *sa_manager);
-> =C2=A0
-> =C2=A0struct drm_suballoc *drm_suballoc_alloc(gfp_t gfp);
+  * IGT: IGT_8793 -> IGT_8794
+  * Linux: xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb -> xe-pw-163048v1
+
+  IGT_8793: c623172fdd4dd92bb23dbc55b3930c40266c3e59 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8794: 8794
+  xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb: 4a30f5fa0fe382b3915a8208a483d0044c40b9eb
+  xe-pw-163048v1: 163048v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/index.html
+
+--===============6684890358308536637==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Fix missing runtime PM reference in ccs_mode_store</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163048/">https://patchwork.freedesktop.org/series/163048/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb_BAT -&gt; xe-pw-163048v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 14)</h2>
+<p>Additional (1): bat-atsm-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-163048v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@fbdev@write:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@fbdev@write.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2134">Intel XE#2134</a>) +4 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_addfb_basic@addfb25-yf-tiled-legacy:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@kms_addfb_basic@addfb25-yf-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6077">i915#6077</a>) +30 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024">Intel XE#1024</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/782">Intel XE#782</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/947">Intel XE#947</a>) +5 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024">Intel XE#1024</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/784">Intel XE#784</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/947">Intel XE#947</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024">Intel XE#1024</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/783">Intel XE#783</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/947">Intel XE#947</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/540">Intel XE#540</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@kms_pipe_crc_basic@nonblocking-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/829">Intel XE#829</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1836">i915#1836</a>) +6 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_prop_blob@basic:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@kms_prop_blob@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/780">Intel XE#780</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-primary-page-flip:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@kms_psr@psr-primary-page-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1024">Intel XE#1024</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/947">Intel XE#947</a>) +6 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_fault_mode@twice-userptr-prefetch:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +32 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_huc_copy@huc_copy:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
+<ul>
+<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@xe_live_ktest@xe_migrate@xe_validate_ccs_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xe2:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@xe_pat@pat-index-xe2.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/977">Intel XE#977</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xehpc:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@xe_pat@pat-index-xehpc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2838">Intel XE#2838</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pat@pat-index-xelpg:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-atsm-2/igt@xe_pat@pat-index-xelpg.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/979">Intel XE#979</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_waitfence@abstime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249">Intel XE#7249</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163048v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7433">Intel XE#7433</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8793 -&gt; IGT_8794</li>
+<li>Linux: xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb -&gt; xe-pw-163048v1</li>
+</ul>
+<p>IGT_8793: c623172fdd4dd92bb23dbc55b3930c40266c3e59 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8794: 8794<br />
+  xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb: 4a30f5fa0fe382b3915a8208a483d0044c40b9eb<br />
+  xe-pw-163048v1: 163048v1</p>
+
+</body>
+</html>
+
+--===============6684890358308536637==--
