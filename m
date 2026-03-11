@@ -4,162 +4,160 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE28C1125811
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 18:19:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B21B21125811
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 18:22:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BCAF10E023;
-	Wed, 11 Mar 2026 18:19:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C3D110E320;
+	Wed, 11 Mar 2026 18:22:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oB974Kh/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LTjNK84E";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C40BF10E023;
- Wed, 11 Mar 2026 18:19:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E25F610E2C8
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Mar 2026 18:22:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773253192; x=1804789192;
- h=message-id:date:subject:to:cc:references:from:
+ t=1773253373; x=1804789373;
+ h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=pqCD/Ggon+u0srUv8MgESB3++LEq2xGFLb3CaannOh8=;
- b=oB974Kh/4DjzNTpggt/INZ/o1+OXw+Fl5hTYTxGJhnx2VetqLPxJY9BY
- ltCNK2KZec8pNzsD1apL96E9E7uK+7fjk0xBUFrsOGvfqWGVoeYnziw+n
- R4Xt/1LXFdowGQjgnIbR3UMloMHlKtmlisYYcWpYnagLzjlN51jtRuZzC
- LM3WPIvBQpFv+bYRVDcRXKG+VuBHGyiajfi3wNKfwa6lounhaGxLU1n3+
- k9o9dPUtZUFGl4g0xMUM61vVbQoQcCahw4IQDYrbwG8StJZ5hhAVkJgQZ
- g/YUHihqI+u9DzUZPCN1yO/hpEA4T7jKJ/BxOZBcRhvdV774J5mRaJxkb w==;
-X-CSE-ConnectionGUID: wcJMgmiKRCmjrjiyrQt+hA==
-X-CSE-MsgGUID: /fLIJTrNSTq8rf1U8Lrmag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="84961620"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="84961620"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 11:19:50 -0700
-X-CSE-ConnectionGUID: rp6Gfd8zS3+kByNXoT4TcQ==
-X-CSE-MsgGUID: 989SJnvYSLKvZLtWCQhtPQ==
+ bh=fnvCwdDVew2zAJ0XP2gbSK6Mr19c3srNtIT8H9njeig=;
+ b=LTjNK84EsGQE8OKnIZi1Yk51hLnsD5Hl7WXalE0F24ic/Cwe8KkYZ+r/
+ slYVz3DP3LeLMmPGfTh/k3Hu2dIqxyKbTdo81Zo5+cQakJlGKMdyhO4Us
+ nTU7JOcM2ueXAlgZ1nzc/Wq5ylH/FtcNkGrvlYHGjzxjg/E8hzcecPUVu
+ /vS4NS+yQHz+GmD2w1nrVUaRdgYvmywrQhpdJfXL+o6rNGzDhkS7xuon0
+ TVK3JQBcXhu7oiulMy9PPO34JPfxIbyTuWUJtHd7nlisiHgkwI0lF6Jwj
+ Qndkm2IkAlXH3tfUH1O/40NZY6W5FCPUfMMV8qS39tiZuKDs7YlQsS6JH A==;
+X-CSE-ConnectionGUID: z35K5AsyS6a34mmNmRv80w==
+X-CSE-MsgGUID: NJbDCHXUSPaEaErDnm0+/A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="78225480"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="78225480"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2026 11:22:52 -0700
+X-CSE-ConnectionGUID: soQaHLr/S+SjRSBNGA92tw==
+X-CSE-MsgGUID: W+YbSyErTC60zB+G99T+Mg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="219808664"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 11:19:50 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="220727912"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2026 11:22:52 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 11 Mar 2026 11:19:49 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.2.2562.37; Wed, 11 Mar 2026 11:22:51 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 11 Mar 2026 11:19:49 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.31) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Wed, 11 Mar 2026 11:22:51 -0700
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.8) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 11 Mar 2026 11:19:49 -0700
+ 15.2.2562.37; Wed, 11 Mar 2026 11:22:51 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jpsxIq9o0dCdUdYYseKEMrpAmU+TH/YKPHqOtBu+gRIsR3aS27jnsSEiWmxGeHJt/WYDd2u0mP5dCqeqYsvpW7QlzE5mjbcIPXCVXyh+W5kp04CaYbBAJdvtPr+FFxSR/XHvhlCqIlE/mzL3zdT+iJJ1Fov5aUL+2CHMi5yDKs583JR4IKBjeaqKT/Inh10+awFpT9VIyhw4ug++FbTm8UCCy+i5RsVt3+P/KTCQPLgMkJqr+sKQb37pTcfNN7mtFlBGsEuNI+EmFIk+6Fa718bhI4vovnyP74oqNbMiyehfGbuBS8m0y483VC+kaHcreByNmOMk8Ldomz8PYEQxaQ==
+ b=PTHg4VPSH8V4frPJnOP+xHAHZo8z4M2UH584gP+T83my47GLiZrQuYFklXhPJ4SN1w3cc/PEzl4B18Gey6B15usTecZzVNo1MV9JXSxuIbKn8JM1fMtJtVmjA1LPyy6+ut5Ps8oMGLDYs8t2QmsJ5+BZBpV/NkpIdcxThMtkCrYfcLB2mnhhhv2W4WlVqLEwIkqRUkQ3XH/TmZCByy8bRZk8bPZ+rG5AhfPkKtFlzQ78sGWrEXFzB1O6rFSD5FmVan2bUC/57eRspv2wveKEEe6Z7N0FBC26ZPWD46qxiHcGERoV0zlQMkR1pXZbhjSMTkXGIqldj2/up2v9f1LFdQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hMZ8DUvGu/QR4/+qIVw4iD7yrMFAmkxzKLNjQtK4sbE=;
- b=FKS4SJBBr5i6o/SntUDquACFj+Ph03v48PvYvWRUPvE20pl3iGrl/bzwPCKnAhBstEUg5F+Sc+6aXuhmVRw4X6bj1ZVlam8ntBZQXTugjOH65mc6hYzxSUsxcmroLxRgjoBl0K7/x6aVKH9dyhWw3LivWLZIRy/PhsiI/tc43Iga1uT3Oi4+eLIe5p+HVJYRFrICkOYGPDURKDrgdL5A2X7dRDlvJMRExyTpQBaCxVHEIeQpcUkUrGvp23PEeMHStayrCoPC8MUW+NVCJl1SoaH1t7FE0e94NwD7DW3RlOEMBJDSoYJZPLm7mdSpwy2gwtZjvVaOz1vxjPuYSZKZ5Q==
+ bh=fnvCwdDVew2zAJ0XP2gbSK6Mr19c3srNtIT8H9njeig=;
+ b=GjMAp5nB8lGcGtdqCXpTNmCoRfYynTuSu/F7DmFgtWkz3XSADoHEjM3EyQ2mkIVcl6M/mqvPx2BS45MeHYw66XLgltl2R6qkXH/zhMJ+Khwy/bpOxZLh96kZao4pWYhXYn4iRB9dYMysMSw4uQKmzPiQE5gGj5Tw/d8y65fQCCrYDdVONvCU60kJhb2nFJYQC2fnXHypOkTaLxXFT1cBuUNyWlnJYovjd+XXBh/hiFDbkWy7/UYh8TRIMWQFyyf7bFqVVO3/QojhFymCXmHs3N+111/yrmV2hxDz7tULTwZ89CkqmxoLXfV85bnfnd8j82zhbYwypTUf3LfQhM6zxw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by SJ2PR11MB8321.namprd11.prod.outlook.com (2603:10b6:a03:546::10)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from DM4PR11MB5456.namprd11.prod.outlook.com (2603:10b6:5:39c::14)
+ by IA3PR11MB8917.namprd11.prod.outlook.com (2603:10b6:208:57d::8) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Wed, 11 Mar
- 2026 18:19:45 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811%3]) with mapi id 15.20.9700.010; Wed, 11 Mar 2026
- 18:19:45 +0000
-Message-ID: <1249efb1-0ba3-43d6-b525-e6f3721ff1c5@intel.com>
-Date: Wed, 11 Mar 2026 19:19:40 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v5 1/1] drm/xe/pf: Restrict device query responses in
- admin-only PF mode
-To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- <intel-xe@lists.freedesktop.org>
-CC: Rodrigo Vivi <rodrigo.vivi@intel.com>, =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?=
- <piotr.piorkowski@intel.com>, Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>, "Dunajski
- Bartosz" <bartosz.dunajski@intel.com>, <dri-devel@lists.freedesktop.org>
-References: <20260227120702.3651913-3-satyanarayana.k.v.p@intel.com>
- <20260227120702.3651913-4-satyanarayana.k.v.p@intel.com>
+ 2026 18:22:49 +0000
+Received: from DM4PR11MB5456.namprd11.prod.outlook.com
+ ([fe80::62e5:4a7c:f965:9082]) by DM4PR11MB5456.namprd11.prod.outlook.com
+ ([fe80::62e5:4a7c:f965:9082%6]) with mapi id 15.20.9723.000; Wed, 11 Mar 2026
+ 18:22:48 +0000
+From: "Lin, Shuicheng" <shuicheng.lin@intel.com>
+To: "Yadav, Sanjay Kumar" <sanjay.kumar.yadav@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Auld, Matthew" <matthew.auld@intel.com>, "stable@vger.kernel.org"
+ <stable@vger.kernel.org>, =?utf-8?B?VGhvbWFzIEhlbGxzdHLDtm0=?=
+ <thomas.hellstrom@linux.intel.com>, "Brost, Matthew"
+ <matthew.brost@intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Subject: RE: [PATCH] drm/xe: Fix missing runtime PM reference in ccs_mode_store
+Thread-Topic: [PATCH] drm/xe: Fix missing runtime PM reference in
+ ccs_mode_store
+Thread-Index: AQHcsXlNvTxggtb0EEOmAH1sDxGhUrWpoHiQ
+Date: Wed, 11 Mar 2026 18:22:48 +0000
+Message-ID: <DM4PR11MB54561F96FB88885F0B7C4CE5EA47A@DM4PR11MB5456.namprd11.prod.outlook.com>
+References: <20260311165242.2355683-2-sanjay.kumar.yadav@intel.com>
+In-Reply-To: <20260311165242.2355683-2-sanjay.kumar.yadav@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20260227120702.3651913-4-satyanarayana.k.v.p@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: VI1PR0102CA0097.eurprd01.prod.exchangelabs.com
- (2603:10a6:803:15::38) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|SJ2PR11MB8321:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9f99bcd3-eeb4-41ab-00a9-08de7f9ac59c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|56012099003|18002099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: SvyGVCnEeUDJ28678/c3uXAKYmITeX2HUU4aEEa4891w52YTcKpyKCcKmLesPlsbXb6O3tOe2J3CjuL3symxlqmFaaJXAE1GOKCVv8Uoy/j0STnbr/2odCdmI3O9aTph+dN0pPqPQPoBBQXiFk5N7TG3bt2vf7zddhuILDr9Ppr1PkMXGOe2xDFLCjkAI3gQthkDeXJCIMjSZUB0NexvyRLNZuwRyUh/KITNwk9NyFiyqKZqzOFwygve17WfIO1v3LikhOEMudJ1Wo5Zisc38MvX0Aga77px+5863Lbj8rLzLfNzfjWE9nxx/xuQTtYTDbM6YY0DjL85lw1RQ/ytqJqmgIQzoAnphhDFmvF8jw/fddNpMloF71JvljIaFLzVNqlrOLPHLbbW7LzoAmrO3EcLScSmwehQZmj+xYVnYywvW7CJULLIoLFEVsNHrMOg7eRkJa1B0IKLb04tvJkZ2+92vIJd7Pdg8GttYZXimN3HjfiEyTZE2YEIXN4sVo3MnabGWwQ0KMTrXhpdekW85N6HbV3NfIOGOz6smJfEaTh/AI0d+Mtp/7B+AICZmRr31nwaMuSYAEA2/cOyeMZWgOLCLkIcjnLY6unATk+gYYrOV0yehOSfTBm/rxYksrvodWy81GFpIrsN2wKWibwBOaDPPP1hhTEmYEJvecN61Zsln4FKJ8x/zMeOfY95/a3VeW494h23xf6B/26f6/E+uahdSSmXkG3yOj4B4QlWRBw=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(56012099003)(18002099003)(22082099003);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB5456:EE_|IA3PR11MB8917:EE_
+x-ms-office365-filtering-correlation-id: 662c1aa6-6018-4509-85bb-08de7f9b32fe
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|38070700021|56012099003|22082099003|18002099003;
+x-microsoft-antispam-message-info: gBbTstrheHq5/sEJbqz6Dtm2fG8naHEV5EJuUi4OgGBFzlJHsEoclop+VZzDff63x9Hbb69hFCFDWgOyygb54sqnxnm1pzs3zbhn+EwyxqJBKMpnzCcL/VbraBg1ZQgwxflpISOY9uaUQFyI9LWkDRecAbZI+sy9mKvXVzkAUrFgdrSVOEiDYUrfpfg17fYxztMILn+DCpBz/fSp5VgqeTSKkHTo3TfgCeuOynsphixttTvjk5r40IphZHefGwUFHU47EGYMSs01mT+bdOmHPjVhRmTH7otlL6cP/cwk9og2+m8V0/MnQcPHTggFNojSIFJ7SG4jyQdCrJX+ouCyuqkS+KafoWK1DV/ovXLY82NRjqaNEsYqwe1t9+fcfuYo82u2e4dk/X9zVZAFjDKTIjGC7OjJHqXAbfdvqAckGXGpWRz0McLrdE5fQO+AssfIvtxsONxwlWVZv4kLYYDWeVeivd3BSnKS7fjVx8wyDCH8CFzWjIvmECDyNSJ0zjeXHIDM8WFqa1JqcDVzIERtNkwVtgDbp97uPrdWwVjyElLjdRsJTZpSu0aHksuU/dpfB2w2yo9VrzmA7lMwoV2qurHYapRAj9OI28F8hhX7fvrffuGl+OT3M4QUfwk8LskbxfdZTRGCbmlaw0AAk27XO/Oyr1YXRxEqkQH8tvHhY6x+8YC4WAzr2HjwM7bs5jVim4nNBxGCUVy9Vkd1e994F1rHmKT7KB0KD7e/ADJ+n3s=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5456.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(38070700021)(56012099003)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Ny9ja2dJdWxUQmF2TWhFUEk5R1RmbThnUklmNVJlNEIvc1hwYnFyNVl1cFpx?=
- =?utf-8?B?VGZVWjJzM0d6VmJMZ1d2VVRBSWtsTU03aDBOUUZ4NGRYR0tLbHllSGg3alR6?=
- =?utf-8?B?a0hkRkRKa3ZhUHRFR0hqSFQwbjU0dzVqYXRIM2Y0VkFaZUNIdmdYSGgxYTBl?=
- =?utf-8?B?bnZ0VVFGZWlIRERkRXg0SmovV3FCUjJDWmFnS3R0N2tmTXE4V1Q1RUwxc0p4?=
- =?utf-8?B?NzE2dC9ITVJhSEFuaXptdnVRLzhxanR1RW0wenBPYlJTbWhMY2YybmkzellH?=
- =?utf-8?B?UHpEUldEcFdpdTZZSjlHU1I3TXNwemVWR0NSZWRJaXRHd1dvTy9qblB3djNM?=
- =?utf-8?B?WHpBK1V1VXV5ZUZzWVczdENBbWdNVHJFN3JKcFlEMXYyQ2R1ckJ6NEVEcGxv?=
- =?utf-8?B?QUF5UDBWbnByeEVjaGZIRHFXZEFkVU9SdThTTHhwMmlKTFloT0xsY1lnaDQ2?=
- =?utf-8?B?dW1tdG1JbWU5SjZ1eFhycFQwWWZENzRsaFNreGpycWVyYmVhOGRuWTkyaURW?=
- =?utf-8?B?QXZzRjdLcmpZaEZNLzd4SXFmRGgyeGFOeHJpYVgvdlNjeERUZnlId0pzVWI3?=
- =?utf-8?B?c2RNS00vcE1YRWFwY1BWZVZhTjRaOFRFdnpvZVhueG5nclVoZFBqZWpQVGlH?=
- =?utf-8?B?NTFBcFNEcWN6TkVpQ0lvek52Y1dRQ0paVkFTTzcrWVhRblFaVEM1NjMySStv?=
- =?utf-8?B?QkFTYWc5T2FPTXZQMi95M3ZMSlAwQTdIYS8wSFI2UG0xZmFPRWZRM3BKTEF4?=
- =?utf-8?B?QWhJbXpZU0tJYmZJenNVc1BZMG1aalZLU2dWY1JzQUd1TnJKZHE4QjRTOHB4?=
- =?utf-8?B?ZHBGamlDMzYrZDNBb0hCQU9lckxuVVVGTHU1RytVZ2dWRFErZGZwTU9YZzN3?=
- =?utf-8?B?c0FmaHBhMy9nbEZpeHdKcUR0b2NzaGRyL01vQWo2MFVad1IxMTBHRkJIVnh3?=
- =?utf-8?B?WlZhL0IyYk9kSG05Zkl2ZXhubXhIK3ZYcVBMUTlwS0EzRk9CZUoxaHluang2?=
- =?utf-8?B?eFFUbXdTcGZ0cS9zbVBhNXYvbGc3NXpWRG1HTkkvOTdlL2tQa054WFRuYnVT?=
- =?utf-8?B?WCtmWSt4ODA0ZHJ1c2NlbkhmZ1E5QTV0QzgrSFRudFRUOUlyQjdEYlpxUlNY?=
- =?utf-8?B?Tmd6N3hVZCtEWjZrUjYrQmRMNmx1Q0dCVUgveUhlRzFwM2ZaaXh1WHJ2Q2F0?=
- =?utf-8?B?dkROYW1ZTHhmWnVPaEljbXlrNEVwK3ZVMjFwNXJ4cWJYR0lmNTc5VnFrWG02?=
- =?utf-8?B?MEVWMTRkRVFNNno5N2ZTZ3g4c1NZWFUzUjZIdzVOQk1CQmk3Y2lScUlCTVJ1?=
- =?utf-8?B?TDFFcHdzNkNCOHBDVk81TG9sa2djTnRRcFBlekNpT0xDR0gxdC9XN0lxZTdM?=
- =?utf-8?B?TkVsdFNPSDNDcE9XelV2L0dFR1Y0b2NnRU16Z29XcUdvbUF1OWVodkZOMkRh?=
- =?utf-8?B?cmRGUmVUTVZUVEtKKzdybGcyTC91MHpNY0k3VTZYZDZ1ekhtME02TnNRanoy?=
- =?utf-8?B?d0lNQ2U2UWwzbTFUaWl5VGxLZzR0UTA2d2hLaDVUdWZRakoxMERUUkgyYlVp?=
- =?utf-8?B?NWoraDhEVUNSMzdWSFIzMG9EUFh3MEI0VWp3SG1mRUEzRk1BdVdoeHJ0N3NU?=
- =?utf-8?B?d1Ira20zS2Q5MTZoYnlMSGVtcjBhaXpDZE16VjU5NGliOGZ5V2YwZlpRS00r?=
- =?utf-8?B?T3ZCK1ZvQ1dyQWhIODR3R3Z6MWpHVXFvNHpMelVpdU1xbmJVRmdGNmJ0aW5T?=
- =?utf-8?B?NVVqSytlRHlobDdyU29ydFlaUCs1SEFrZld4S0I3ZUo3akpjdUhqY0gwWFZI?=
- =?utf-8?B?NGovY2NIMnh0aGNmWlQvdDZYS3NvTnloY2FRemlJdXFVZHVxNnhEdDhpVFh6?=
- =?utf-8?B?MWdOSWF4dlkzMzg5TThRTVNBcUZ6UkNSRURDM21DVWEzL0hXbGVNdmt1bjc0?=
- =?utf-8?B?cGx3K3EzZVBSUC84ak95cmQ4dWlJN2llSTU4RFIrQzVhbjdGdlhSTEhzanBS?=
- =?utf-8?B?bE1La1dXNDFnblcxdEZyb0gwbGJxNmhsV1dwRnJycGdqY0svMWZ6OHJWamwr?=
- =?utf-8?B?anpFbytIaHRXV1hYZnZEWjNKbVZXYk5zb1pYU3dQVVR5SnZSbXJOYUZlNXM4?=
- =?utf-8?B?ZUdKVG9FcUVNZ0g0QUZwQ3V0dmFiSlZRRllTaHk4WTFJWWQrQ0Q4YzJUQ0dj?=
- =?utf-8?B?YkdJTVdkVnVaSmJBVGMxejhJWmRlSm5nVkYxVWRQUWZXN2Z6UDlqdFhGZElV?=
- =?utf-8?B?Z056ak1DOWhYMXFOdXhUdVdZeFViTjlUUE9OMG83OFh2bmloS2xiQ3hLT1NN?=
- =?utf-8?B?Zm54d3Z0YkVDK0p5alFzcjNxNWtaRXU3Ny81SEdsU3lrOXlncHRiaFJGTVpP?=
- =?utf-8?Q?GnwrMZ5rpfvFksSw=3D?=
-X-Exchange-RoutingPolicyChecked: ooHX6n0v+NIdT/8QNT/6MEWK3Wn5qgmXdgh88Gm8j1qs9NwOK4soGNFXigrYz0gIf9T7fiQKEDqrvi10sVqB4aEeuj5M5FGTyXTmWinR5Tl+0k3Fo0abufV38BwBbXQJzWDkdat0KTF05lct1/Goc9Y4f2ZozCIYZEHbRjHfjqn9AGshgWMwt7KkHV6xdv/R1KNuv1cwuklJ6sRP6ouAvboSUiQ+5A0kJOyT4T0oKhH7fTi+o6c6S0y1ZQVPvQgTPNrqgldIN1ZTH1R6hSgUIyUasf+t5urxAhoIzzttiSSRCCPgKsPhQVUSgmCwHPh3wtVT6FsKlbPAkMw9Hgz6/A==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9f99bcd3-eeb4-41ab-00a9-08de7f9ac59c
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?S2RzK0VuV0dBcWtLWDMwSEdYb25IbHBaWGtRYUdzeXN3c2RqcXgvaElmeVB4?=
+ =?utf-8?B?dktPR0QzUDFkaFBBRW83NEphMW9GU3VqRjNSbEZhdDdEV25JOTVjek1pYkxl?=
+ =?utf-8?B?WUtZTzBaT1FvS1JMV2tOS24rVURvR0xRNkRyUTFwL3VHc3hONWVORmZiZS9r?=
+ =?utf-8?B?NnRrcEZjZzgvRHRjakU1cUpiTmdsYjhQd2t1c1NCVk5UVkVaSnZWVkFES3d6?=
+ =?utf-8?B?OWxXbGJjY0JiUW9HQnpFK1lYY3I1OVZWc0JWallCRXVCdTVTSXFOdmxkcmxw?=
+ =?utf-8?B?TkFYWTRLbzE4L0NTL3RjQmpKd3BJWGdidi9ZVnVmck5IeDlncVZFRWE1WWt4?=
+ =?utf-8?B?VlVTbU9DN3FDM1JmTm41ZmZvNkRkY25SdGZYSGlwZWdOQncxKzZSd1pLTWx2?=
+ =?utf-8?B?TmFoWDBhK2ZsUEoxQnpGS1ZiN1ZvNlF0WjMzem9pK0txRXNHbUdtL1VNTVRQ?=
+ =?utf-8?B?NmxBWmxwMVhkRC9tU0IzRVYyaWZSOXRWcTBPS1dCaWhJZ2d1b2ZhMzU5NmFJ?=
+ =?utf-8?B?M1MzR2tpTFAwcXIwVWFGMUxJZ0g0dkQ4a25nQ0FCU0N2Q0RPc3hVOGc3Z0Nn?=
+ =?utf-8?B?Q2lEYnVmSTk2RmgzTXFCQjMrbVpyamJIZ1hTci83a2lCWGdUVnlpdEJDUjg5?=
+ =?utf-8?B?ZlVJQmY1UVc3UFBtOVFDQ1hOSEhUdm9TQTFSOVVMRWNIcVRqZGZZaFpDTUdz?=
+ =?utf-8?B?TlUyU25ndEcyc0JEajJyRXprSEFTVmQwRjh0Y0F3M1hEOW1NVkpIMGZ4K3Fa?=
+ =?utf-8?B?N1FpNG9NOUtzK2pFRGljR2ZUM29xTUtaZmdGcjdxZ0M1bFN3QXByR1gwT2Ra?=
+ =?utf-8?B?aEI4aU5GTEpJeEFIZUgvMTJvWGx2cFo0K0V5UWkxQ2RsdTZqa2NSNGxxZXJX?=
+ =?utf-8?B?L28zM0RzUG9hL0NWL2JLTllBWjBlbnc2T0tHT1R3QkpTTFpaSjhHWW8rVGVl?=
+ =?utf-8?B?U1VCcG1PanhHZnJWVnIrU1NydXJjRmRjR1kyam9lTGVMa3Z3S0V4QWgwTlpX?=
+ =?utf-8?B?Mzk4N0QyY1Z1d3UzaG9hZEM4Q2JoM1NublJ5Z2xZSzlBdWJHa1hvbEU5MTNO?=
+ =?utf-8?B?TytIMlJ1SU9vb2lQSGdYVkRNZE8wWUE3RFlyRFJabXAyQ29RN1BIL1U3SUpw?=
+ =?utf-8?B?M2RlNkUvaWkvMGdoL1BQSUtGY21HOEc2cGZSRFE5SjdESSt6UkZUVzR0ZFJS?=
+ =?utf-8?B?RzZ6L0U1ZGEybzFZNExMZEFwcytTc0p4S2lRV2JyVlFON2JzSFA0aFFGRm1q?=
+ =?utf-8?B?RTY4K3ByU3R3b2xzTGlNTzc5SnhBa1YvVlVJM21sUXlGMTMrZS94VXJnNlZF?=
+ =?utf-8?B?YytvdnZVWjBEWnhOK3JhOURZOXZrMEFLWndvc1kxRW50aG0yR0gxMXcyQjMw?=
+ =?utf-8?B?eDVQMHBIejRZQUhzSWs4eDNzMFJEUDB6ZnBXaXRsTVU0cVVnT0RTK2JkV3Jq?=
+ =?utf-8?B?OVV0VE5lVHowR1pxUU5WUXFwU3NqTkoyTFJoVVdiRGdRNURxOUVFQ2NRcjVv?=
+ =?utf-8?B?NmY2NFBVYlhWSWdNZ3cvcWphdlIyZHFDOElPWlo2OXEwSFprK0RkMVJKOER2?=
+ =?utf-8?B?MThzS2ljNEtKODh0TFRwV3NoaE82WGhrMEFMTXN1MGl3Q1MybkJteXYzSHZG?=
+ =?utf-8?B?czdNV252NS9zMVQwc1cxVElwcFdJZGY4Qys1R0V5WFd5QzQvZ1B3M3ZlNWU1?=
+ =?utf-8?B?cElsTEZmRDA4djdXNEx5UEJHbDdUUnJLM1VMSGtnL1R6MWlwZjhtK3RNcGpP?=
+ =?utf-8?B?ZTVwYVkvcXhSL2lPODBwWGtHQjFrTVh3ZkFpM1JLNGFOY2FGdXhSVFl3Rnlo?=
+ =?utf-8?B?RDZSZmlNY0FTY2Z4dlhHcHE4bUxKS2N2dlJDamxWelI3T3BmTjZLd1NIU3hz?=
+ =?utf-8?B?a2pvRmh3MDdldUxpQXZXdHErQklIR3kvQldUZEZwRDVxU0hyR0ZVSEJCYzZv?=
+ =?utf-8?B?dGEwaEgwSkRFQ3RFT28wbDlhTERnUzJwTWYzY09FQ291NGc4c0VrYkxsdHJR?=
+ =?utf-8?B?Tm53d1JXazZWejVoalBiOG5Ib0Y1YmxKSHhUNlBSWlpaME4zbjRDbUUxa1Nk?=
+ =?utf-8?B?c3ZBMzBNdjdiWk5vTFNPNDRlamFDTGorYkhvSFV0UXVXUlQ1QzFraTN3OG5j?=
+ =?utf-8?B?bUtxd1FPQ1FnMFR3dEZKREFrMHNNZitCM1duSXRmc1RDYXZyVmhJeW9VTHB5?=
+ =?utf-8?B?RWJMMlVXemVqcDU5MXc0T05rQ0xGcHNYY2c5VFV3U1RDcnpWUEwvdUxVUWJP?=
+ =?utf-8?B?eFNSRU8zV0VUK2FKa1FJV0ZJSGVlVWhUVlZqVUV3WDU5dFQvLzRhcTlYY1d1?=
+ =?utf-8?B?eGNYNTBwcnVNT3U3VnpQTmdRemtxT0Mrak5PbXorRkYvU3BBVHc5UT09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: PEUX1BPrWsAsfuc09lgM63HES8hNzlNdkiV267ykldnj0D9lEz1ZBm6/L3NXLBxmcWEJYsC/YePdy7beGm0I+O4JAylnJ3IB1CM06rsE3vPcgkYmPxiPLGlEAUia+/slncHxOT67u0mRz9kxNHJrsI9Ct5asyYhRSDbZ9i7Q/IHNlW0CjDgUCDVDb6xrDrVtl80FDDGwjffxHopetNEpXTnLYH3SIEC4pRbSUWAhl2gi2w2XaE8IWeM2F69JiI5qdADkj4KqDikF1hF2vMpoev4cpBQ7/BfQCzXendP6+NsRLS/euq0pEXtebpzL0OU3Z17BJ9ugNE6sQaMbOD0vpQ==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2026 18:19:45.3182 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 92cTgqLog2ykNRjdXbw2JGkyQ3hrgRSKGg+uNlwHp/HRQK/Raueptd9SehO0pfAH8VGjsjYyORfmA8SXe5c/jorTHLens4cuVdmGQp/uv6U=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8321
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5456.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 662c1aa6-6018-4509-85bb-08de7f9b32fe
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Mar 2026 18:22:48.5357 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 5CVfzFAKIhOS6WJTKb+iu0AezILZ3HYYoOIQiflTESvMtTE9JtKicuhmO1yklkzFCKKfh8DQqp+cw12w4EUYPg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB8917
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -175,386 +173,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 2/27/2026 1:07 PM, Satyanarayana K V P wrote:
-> When a PF is configured in admin-only mode, it is intended for management
-> only and must not expose workload-facing capabilities to userspace.
-> 
-> Limit the exposed ioctl set in admin-only PF mode to XE_DEVICE_QUERY, and
-> suppress capability-bearing query payloads so userspace cannot discover
-> execution-related device details in this mode.
-> 
-> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Michał Winiarski <michal.winiarski@intel.com>
-> Cc: Dunajski Bartosz <bartosz.dunajski@intel.com>
-> Cc: dri-devel@lists.freedesktop.org
-> 
-> ---
-> V4 -> V5:
-> - Updated commit message (Matt B).
-> - Introduced new driver_admin_only_pf structure (Michal Wajdeczko).
-> - Updated all query configs (Michal Wajdeczko).
-> - Renamed xe_device_is_admin_only() to xe_device_is_admin_only_pf()
-> - Fixed other review comments (Michal Wajdeczko).
-> 
-> V3 -> V4:
-> - Suppressed device capabilities in admin-only PF mode. (Wajdeczko)
-> 
-> V2 -> V3:
-> - Introduced new helper function xe_debugfs_create_files() to create
-> debugfs entries based on admin_only_pf mode or normal mode.
-> 
-> V1 -> V2:
-> - Rebased to latest drm-tip.
-> - Update update_minor_dev() to debugfs_minor_dev().
-> ---
->  drivers/gpu/drm/xe/xe_device.c | 47 +++++++++++++++++++++++++++--
->  drivers/gpu/drm/xe/xe_query.c  | 55 ++++++++++++++++++++++++----------
->  drivers/gpu/drm/xe/xe_sriov.h  | 11 +++++++
->  3 files changed, 94 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 3462645ca13c..76d534491e01 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -25,6 +25,7 @@
->  #include "regs/xe_regs.h"
->  #include "xe_bo.h"
->  #include "xe_bo_evict.h"
-> +#include "xe_configfs.h"
->  #include "xe_debugfs.h"
->  #include "xe_defaults.h"
->  #include "xe_devcoredump.h"
-> @@ -213,6 +214,10 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
->  			  DRM_RENDER_ALLOW),
->  };
->  
-> +static const struct drm_ioctl_desc xe_ioctls_admin_only_pf[] = {
-> +	DRM_IOCTL_DEF_DRV(XE_DEVICE_QUERY, xe_query_ioctl, DRM_RENDER_ALLOW),
-> +};
-> +
->  static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
->  {
->  	struct drm_file *file_priv = file->private_data;
-> @@ -415,6 +420,29 @@ static struct drm_driver driver = {
->  	.patchlevel = DRIVER_PATCHLEVEL,
->  };
->  
-> +static struct drm_driver driver_admin_only_pf  = {
-                                                ^^
-double space
-
-and nit: maybe
-
-	static struct drm_driver admin_only_driver = {
-
-> +	.driver_features =
-> +	    DRIVER_GEM | DRIVER_GEM_GPUVA,
-> +	.open = xe_file_open,
-> +	.postclose = xe_file_close,
-> +
-> +	.gem_prime_import = xe_gem_prime_import,
-> +
-> +	.dumb_create = xe_bo_dumb_create,
-> +	.dumb_map_offset = drm_gem_ttm_dumb_map_offset,
-> +#ifdef CONFIG_PROC_FS
-> +	.show_fdinfo = xe_drm_client_fdinfo,
-> +#endif
-> +	.ioctls = xe_ioctls_admin_only_pf,
-> +	.num_ioctls = ARRAY_SIZE(xe_ioctls_admin_only_pf),
-> +	.fops = &xe_driver_fops,
-> +	.name = DRIVER_NAME,
-> +	.desc = DRIVER_DESC,
-> +	.major = DRIVER_MAJOR,
-> +	.minor = DRIVER_MINOR,
-> +	.patchlevel = DRIVER_PATCHLEVEL,
-> +};
-> +
->  static void xe_device_destroy(struct drm_device *dev, void *dummy)
->  {
->  	struct xe_device *xe = to_xe_device(dev);
-> @@ -439,16 +467,24 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
->  struct xe_device *xe_device_create(struct pci_dev *pdev,
->  				   const struct pci_device_id *ent)
->  {
-> +	struct drm_driver *active_drm_driver = &driver;
-
-nit: maybe
-
-	struct drm_driver *driver = &regular_driver;
-
->  	struct xe_device *xe;
->  	int err;
->  
-> -	xe_display_driver_set_hooks(&driver);
-> +	/*
-> +	 * Since XE device is not initialized yet, read from configfs
-> +	 * directly to decide whether we are in admin-only PF mode or not.
-> +	 */
-> +	if (xe_configfs_admin_only_pf(pdev))
-> +		active_drm_driver = &driver_admin_only_pf;
-> +
-> +	xe_display_driver_set_hooks(active_drm_driver);
->  
-> -	err = aperture_remove_conflicting_pci_devices(pdev, driver.name);
-> +	err = aperture_remove_conflicting_pci_devices(pdev, active_drm_driver->name);
->  	if (err)
->  		return ERR_PTR(err);
->  
-> -	xe = devm_drm_dev_alloc(&pdev->dev, &driver, struct xe_device, drm);
-> +	xe = devm_drm_dev_alloc(&pdev->dev, active_drm_driver, struct xe_device, drm);
->  	if (IS_ERR(xe))
->  		return xe;
->  
-> @@ -708,6 +744,11 @@ int xe_device_probe_early(struct xe_device *xe)
->  
->  	xe_sriov_probe_early(xe);
->  
-> +	if (xe_configfs_admin_only_pf(to_pci_dev(xe->drm.dev)) && !IS_SRIOV_PF(xe)) {
-> +		drm_err(&xe->drm, "Admin-only PF mode is enabled in non PF mode\n");
-> +		return -ENODEV;
-> +	}
-> +
->  	if (IS_SRIOV_VF(xe))
->  		vf_update_device_info(xe);
->  
-> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-> index 34db266b723f..f46e62797dd6 100644
-> --- a/drivers/gpu/drm/xe/xe_query.c
-> +++ b/drivers/gpu/drm/xe/xe_query.c
-> @@ -55,6 +55,9 @@ static size_t calc_hw_engine_info_size(struct xe_device *xe)
->  	u8 gt_id;
->  	int i = 0;
->  
-> +	if (xe_device_is_admin_only_pf(xe))
-
-shouldn't we move that check to xe_hw_engine_is_reserved() to also
-cover all other use cases for free?
-
-> +		return 0;
-> +
->  	for_each_gt(gt, xe, gt_id)
->  		for_each_hw_engine(hwe, gt, id) {
->  			if (xe_hw_engine_is_reserved(hwe))
-> @@ -126,7 +129,10 @@ query_engine_cycles(struct xe_device *xe,
->  	if (IS_SRIOV_VF(xe))
->  		return -EOPNOTSUPP;
->  
-> -	if (query->size == 0) {
-> +	if (xe_device_is_admin_only_pf(xe))
-> +		size = 0;
-
-btw, it looks that we don't use xe_hw_engine_is_reserved() to check
-if query is allowed ...
-
-> +
-> +	if (query->size == 0 || !size) {
->  		query->size = size;
->  		return 0;
->  	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
-> @@ -190,7 +196,7 @@ static int query_engines(struct xe_device *xe,
->  	u8 gt_id;
->  	int i = 0;
->  
-> -	if (query->size == 0) {
-> +	if (query->size == 0 || !size) {
->  		query->size = size;
->  		return 0;
->  	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
-> @@ -231,6 +237,9 @@ static size_t calc_mem_regions_size(struct xe_device *xe)
->  	u32 num_managers = 1;
->  	int i;
->  
-> +	if (xe_device_is_admin_only_pf(xe))
-> +		return 0;
-> +
->  	for (i = XE_PL_VRAM0; i <= XE_PL_VRAM1; ++i)
->  		if (ttm_manager_type(&xe->ttm, i))
->  			num_managers++;
-> @@ -248,7 +257,7 @@ static int query_mem_regions(struct xe_device *xe,
->  	struct ttm_resource_manager *man;
->  	int ret, i;
->  
-> -	if (query->size == 0) {
-> +	if (query->size == 0 || !size) {
->  		query->size = size;
->  		return 0;
->  	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
-> @@ -309,13 +318,13 @@ static int query_mem_regions(struct xe_device *xe,
->  static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
-
-shouldn't we allow some basic query to pass ? like REV_AND_DEVICE_ID
-
-and maybe we can also consider adding DRM_XE_QUERY_CONFIG_ADMIN_ONLY_PF
-which would allow us to return engines/vram/topo details but as not-for-use?
-
-don't know if that wouldn't break any backward compatibility rules...
-
->  {
->  	const u32 num_params = DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY + 1;
-> -	size_t size =
-> +	size_t size = xe_device_is_admin_only_pf(xe) ? 0 :
->  		sizeof(struct drm_xe_query_config) + num_params * sizeof(u64);
->  	struct drm_xe_query_config __user *query_ptr =
->  		u64_to_user_ptr(query->data);
->  	struct drm_xe_query_config *config;
->  
-> -	if (query->size == 0) {
-> +	if (query->size == 0 || !size) {
->  		query->size = size;
->  		return 0;
->  	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
-> @@ -358,15 +367,15 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
->  static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query)
->  {
->  	struct xe_gt *gt;
-> -	size_t size = sizeof(struct drm_xe_query_gt_list) +
-> -		xe->info.gt_count * sizeof(struct drm_xe_gt);
-> +	size_t size = xe_device_is_admin_only_pf(xe) ? 0 :
-> +		sizeof(struct drm_xe_query_gt_list) + xe->info.gt_count * sizeof(struct drm_xe_gt);
->  	struct drm_xe_query_gt_list __user *query_ptr =
->  		u64_to_user_ptr(query->data);
->  	struct drm_xe_query_gt_list *gt_list;
->  	int iter = 0;
->  	u8 id;
->  
-> -	if (query->size == 0) {
-> +	if (query->size == 0 || !size) {
->  		query->size = size;
->  		return 0;
->  	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
-> @@ -436,7 +445,10 @@ static int query_hwconfig(struct xe_device *xe,
->  	void __user *query_ptr = u64_to_user_ptr(query->data);
->  	void *hwconfig;
->  
-> -	if (query->size == 0) {
-> +	if (xe_device_is_admin_only_pf(xe))
-> +		size = 0;
-
-do we have to restrict hwconfig too?
-
-> +
-> +	if (query->size == 0 || !size) {
->  		query->size = size;
->  		return 0;
->  	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
-> @@ -464,6 +476,9 @@ static size_t calc_topo_query_size(struct xe_device *xe)
->  	size_t query_size = 0;
->  	int id;
->  
-> +	if (xe_device_is_admin_only_pf(xe))
-> +		return 0;
-> +
->  	for_each_gt(gt, xe, id) {
->  		query_size += 3 * sizeof(struct drm_xe_query_topology_mask) +
->  			sizeof_field(struct xe_gt, fuse_topo.g_dss_mask) +
-> @@ -505,7 +520,7 @@ static int query_gt_topology(struct xe_device *xe,
->  	struct xe_gt *gt;
->  	int id;
->  
-> -	if (query->size == 0) {
-> +	if (query->size == 0 || !size) {
->  		query->size = size;
->  		return 0;
->  	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
-> @@ -559,11 +574,12 @@ static int
->  query_uc_fw_version(struct xe_device *xe, struct drm_xe_device_query *query)
->  {
->  	struct drm_xe_query_uc_fw_version __user *query_ptr = u64_to_user_ptr(query->data);
-> -	size_t size = sizeof(struct drm_xe_query_uc_fw_version);
-> +	size_t size = xe_device_is_admin_only_pf(xe) ? 0 :
-> +		sizeof(struct drm_xe_query_uc_fw_version);
->  	struct drm_xe_query_uc_fw_version resp;
->  	struct xe_uc_fw_version *version = NULL;
->  
-> -	if (query->size == 0) {
-> +	if (query->size == 0 || !size) {
->  		query->size = size;
->  		return 0;
->  	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
-> @@ -634,6 +650,9 @@ static size_t calc_oa_unit_query_size(struct xe_device *xe)
->  	struct xe_gt *gt;
->  	int i, id;
->  
-> +	if (xe_device_is_admin_only_pf(xe))
-> +		return 0;
-> +
->  	for_each_gt(gt, xe, id) {
->  		for (i = 0; i < gt->oa.num_oa_units; i++) {
->  			size += sizeof(struct drm_xe_oa_unit);
-> @@ -659,7 +678,7 @@ static int query_oa_units(struct xe_device *xe,
->  	struct xe_gt *gt;
->  	u8 *pdu;
->  
-> -	if (query->size == 0) {
-> +	if (query->size == 0 || !size) {
->  		query->size = size;
->  		return 0;
->  	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
-> @@ -711,11 +730,12 @@ static int query_oa_units(struct xe_device *xe,
->  static int query_pxp_status(struct xe_device *xe, struct drm_xe_device_query *query)
->  {
->  	struct drm_xe_query_pxp_status __user *query_ptr = u64_to_user_ptr(query->data);
-> -	size_t size = sizeof(struct drm_xe_query_pxp_status);
-> +	size_t size = xe_device_is_admin_only_pf(xe) ? 0 :
-> +		sizeof(struct drm_xe_query_pxp_status);
->  	struct drm_xe_query_pxp_status resp = { 0 };
->  	int ret;
->  
-> -	if (query->size == 0) {
-> +	if (query->size == 0 || !size) {
->  		query->size = size;
->  		return 0;
->  	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
-> @@ -751,7 +771,10 @@ static int query_eu_stall(struct xe_device *xe,
->  	array_size = xe_eu_stall_get_sampling_rates(&num_rates, &rates);
->  	size = sizeof(struct drm_xe_query_eu_stall) + array_size;
->  
-> -	if (query->size == 0) {
-> +	if (xe_device_is_admin_only_pf(xe))
-> +		size = 0;
-> +
-> +	if (query->size == 0 || !size) {
->  		query->size = size;
->  		return 0;
->  	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
-> diff --git a/drivers/gpu/drm/xe/xe_sriov.h b/drivers/gpu/drm/xe/xe_sriov.h
-> index 72e55543c30e..ee84978350aa 100644
-> --- a/drivers/gpu/drm/xe/xe_sriov.h
-> +++ b/drivers/gpu/drm/xe/xe_sriov.h
-> @@ -37,6 +37,17 @@ static inline bool xe_device_is_sriov_vf(const struct xe_device *xe)
->  	return xe_device_sriov_mode(xe) == XE_SRIOV_MODE_VF;
->  }
->  
-> +/**
-> + * xe_device_is_admin_only_pf() - Check whether device is admin only PF or not.
-> + * @xe: the &xe_device to check
-> + *
-> + * Return: true if the device is admin only PF, false otherwise.
-> + */
-> +static inline bool xe_device_is_admin_only_pf(const struct xe_device *xe)
-> +{
-> +	return xe_device_is_sriov_pf(xe) && xe->sriov.pf.admin_only;
-> +}
-
-we already have PF specific xe_sriov_pf_admin_only(xe) helper
-
-but since admin-only concept has now a bigger impact, maybe such helper
-should be defined in xe_device.c as:
-
-bool xe_device_is_admin_only(const struct xe_device *xe)
-{
-	return xe->drm.driver == &admin_only_driver;
-}
-
-> +
->  #define IS_SRIOV_PF(xe) xe_device_is_sriov_pf(xe)
->  #define IS_SRIOV_VF(xe) xe_device_is_sriov_vf(xe)
->  
-
+T24gV2VkLCBNYXIgMTEsIDIwMjYgOTo1MyBBTSBTYW5qYXkgWWFkYXYgd3JvdGU6DQo+IGNjc19t
+b2RlX3N0b3JlKCkgY2FsbHMgeGVfZ3RfcmVzZXQoKSB3aGljaCBpbnRlcm5hbGx5IGludm9rZXMN
+Cj4geGVfcG1fcnVudGltZV9nZXRfbm9yZXN1bWUoKS4gVGhhdCBmdW5jdGlvbiByZXF1aXJlcyB0
+aGUgY2FsbGVyIHRvIGFscmVhZHkNCj4gaG9sZCBhbiBvdXRlciBydW50aW1lIFBNIHJlZmVyZW5j
+ZSBhbmQgd2FybnMgaWYgbm9uZSBpcyBoZWxkOg0KPiANCj4gICBbNDYuODkxMTc3XSB4ZSAwMDAw
+OjAzOjAwLjA6IFtkcm1dIE1pc3Npbmcgb3V0ZXIgcnVudGltZSBQTSBwcm90ZWN0aW9uDQo+ICAg
+WzQ2Ljg5MTE3OF0gV0FSTklORzogZHJpdmVycy9ncHUvZHJtL3hlL3hlX3BtLmM6ODg1IGF0DQo+
+ICAgeGVfcG1fcnVudGltZV9nZXRfbm9yZXN1bWUrMHg4Yi8weGMwDQo+IA0KPiBGaXggdGhpcyBi
+eSB3cmFwcGluZyB4ZV9ndF9yZXNldCgpIHdpdGggeGVfcG1fcnVudGltZV9nZXQvcHV0KCkuDQo+
+IA0KPiBDbG9zZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9wLm9yZy9kcm0veGUva2VybmVs
+Ly0vaXNzdWVzLzc1OTMNCj4gRml4ZXM6IDQ4MGIzNThlN2Q4ZSAoImRybS94ZTogRG8gbm90IHdh
+a2UgZGV2aWNlIGR1cmluZyBhIEdUIHJlc2V0IikNCj4gQ2M6IDxzdGFibGVAdmdlci5rZXJuZWwu
+b3JnPiAjIHY2LjE5Kw0KPiBDYzogVGhvbWFzIEhlbGxzdHLDtm0gPHRob21hcy5oZWxsc3Ryb21A
+bGludXguaW50ZWwuY29tPg0KPiBDYzogTWF0dGhldyBCcm9zdCA8bWF0dGhldy5icm9zdEBpbnRl
+bC5jb20+DQo+IENjOiBSb2RyaWdvIFZpdmkgPHJvZHJpZ28udml2aUBpbnRlbC5jb20+DQo+IFN1
+Z2dlc3RlZC1ieTogTWF0dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPg0KPiBTaWdu
+ZWQtb2ZmLWJ5OiBTYW5qYXkgWWFkYXYgPHNhbmpheS5rdW1hci55YWRhdkBpbnRlbC5jb20+DQo+
+IC0tLQ0KPiAgZHJpdmVycy9ncHUvZHJtL3hlL3hlX2d0X2Njc19tb2RlLmMgfCAzICsrKw0KPiAg
+MSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZl
+cnMvZ3B1L2RybS94ZS94ZV9ndF9jY3NfbW9kZS5jDQo+IGIvZHJpdmVycy9ncHUvZHJtL3hlL3hl
+X2d0X2Njc19tb2RlLmMNCj4gaW5kZXggYjM1YmUzNmIwZWFhLi5mM2I4MzRhMDlhNmQgMTAwNjQ0
+DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9ndF9jY3NfbW9kZS5jDQo+ICsrKyBiL2Ry
+aXZlcnMvZ3B1L2RybS94ZS94ZV9ndF9jY3NfbW9kZS5jDQo+IEBAIC0xMiw2ICsxMiw3IEBADQo+
+ICAjaW5jbHVkZSAieGVfZ3RfcHJpbnRrLmgiDQo+ICAjaW5jbHVkZSAieGVfZ3Rfc3lzZnMuaCIN
+Cj4gICNpbmNsdWRlICJ4ZV9tbWlvLmgiDQo+ICsjaW5jbHVkZSAieGVfcG0uaCINCj4gICNpbmNs
+dWRlICJ4ZV9zcmlvdi5oIg0KPiAgI2luY2x1ZGUgInhlX3NyaW92X3BmLmgiDQo+IA0KPiBAQCAt
+MTYzLDcgKzE2NCw5IEBAIGNjc19tb2RlX3N0b3JlKHN0cnVjdCBkZXZpY2UgKmtkZXYsIHN0cnVj
+dA0KPiBkZXZpY2VfYXR0cmlidXRlICphdHRyLA0KPiAgCXhlX2d0X2luZm8oZ3QsICJTZXR0aW5n
+IGNvbXB1dGUgbW9kZSB0byAlZFxuIiwgbnVtX2VuZ2luZXMpOw0KPiAgCWd0LT5jY3NfbW9kZSA9
+IG51bV9lbmdpbmVzOw0KPiAgCXhlX2d0X3JlY29yZF91c2VyX2VuZ2luZXMoZ3QpOw0KPiArCXhl
+X3BtX3J1bnRpbWVfZ2V0KHhlKTsNCj4gIAl4ZV9ndF9yZXNldChndCk7DQo+ICsJeGVfcG1fcnVu
+dGltZV9wdXQoeGUpOw0KDQpIb3cgYWJvdXQgdXNlIHRoZSBzY29wZS1iYXNlZCB2ZXJzaW9uOiAi
+Z3VhcmQoeGVfcG1fcnVudGltZSkoeGUpOyAiPw0KDQpTaHVpY2hlbmcNCg0KPiANCj4gIAkvKiBX
+ZSBtYXkgZW5kIFBGIGxvY2tkb3duIG9uY2UgQ0NTIG1vZGUgaXMgZGVmYXVsdCBhZ2FpbiAqLw0K
+PiAgCWlmIChndF9jY3NfbW9kZV9kZWZhdWx0KGd0KSAmJiBJU19TUklPVl9QRih4ZSkpDQo+IC0t
+DQo+IDIuNTIuMA0KDQo=
