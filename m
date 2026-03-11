@@ -4,143 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2D5A1125842
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 15:33:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4871E1125847
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 15:52:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F33110E8F2;
-	Wed, 11 Mar 2026 15:33:15 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20CCF10E2A4;
- Wed, 11 Mar 2026 15:33:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01D3310E034;
+	Wed, 11 Mar 2026 15:52:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OU2CaN4o";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00BBE10E034
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Mar 2026 15:52:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773243189; x=1804779189;
- h=from:to:subject:date:message-id:in-reply-to:references:
- content-transfer-encoding:mime-version;
- bh=n1s9SDtZTBVSa6XYISpM0MQYXSHWO7azRL9+fiOrUm8=;
- b=jyz2M4JST064T/fjBlWMy0epM9R+D71BDoXzTm52wirGrfibqeZBvb2R
- BUMPJAPyBgfoP9C4ck19I3G+rckW3v0/a1PzPw16kOlkfrUurrI7Hyrt5
- AK6hQguEhlS6YOiTmYTZR6gonFgP72boJ8MoLsWdWk/JghBy1tBYr0Rtb
- Y/oL05mOo4mXv9dk//EF+jGjEA1JKP96ObVUuFjOUqsTUwtWpKpK+0Zq4
- OIEuRIYOCjOpE+crkskaf6ni+FRB7kY4FN0OHP669PR1ZO8sKRTvm3BZW
- Af5Waa1zZGKsDW//Qyl2RAMnD3v9glUtavqq1zOxM4cDFz0wbBNCDIk8V A==;
-X-CSE-ConnectionGUID: oeT6JjtXRSSJi1u7CiMKMQ==
-X-CSE-MsgGUID: uHfK11R7Q7ilvYuAAu0rLA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="84945425"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="84945425"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 08:33:08 -0700
-X-CSE-ConnectionGUID: DF5K/3nUTamG7d5wy9uQ9A==
-X-CSE-MsgGUID: Ky1+ohakS+KusIL/F8fLOg==
+ t=1773244364; x=1804780364;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=QV9l/jbo5Wuf9OfxBWgX6huR/xGfn765GI9XMsb6wsY=;
+ b=OU2CaN4oV8GTNB1LgbCS0gkcvPyXaytett6hxpLR/UZu95vPPJsYgkCv
+ X8zYDxY+LXyBY7DGwuYRsLdx634t96HV5s28Hfb28AJO4LDxUPTGhlw23
+ TX6DMMw/DC4YfKekMINgsLwatbyiQX/8z27hD+2sXPtjgJC0XbgyUbOBb
+ p/X13sIijbOe2UW/pokqOafGo9w9v6Vr0iosOMTtT6M2E5AsokeNR2gDp
+ z0BHj32hn6S5PVbBxRxva6uSp8bh4FxUcQdhMQWnXEVJYz6oKJO1ZVlCJ
+ kPBhL9sVwNlIkCfZdY4dzjPxNsC+pHSJW6mLYJTM9DzIQZMbVyNkmNND0 w==;
+X-CSE-ConnectionGUID: mEA3o8v+R0iUf7nXFicGWA==
+X-CSE-MsgGUID: ZWeVbsrFSJakoexX4jG4MQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="74398167"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="74398167"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2026 08:52:43 -0700
+X-CSE-ConnectionGUID: s7qhjGSPT1irjUAmyQiR6Q==
+X-CSE-MsgGUID: Lxwzt+TbS0CFONOX61b3Xg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="219647112"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 08:33:07 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 11 Mar 2026 08:33:03 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 11 Mar 2026 08:33:03 -0700
-Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.24) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 11 Mar 2026 08:32:34 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AiKlRWeEcfFX72LWuzncrMs8A7ViCXQW9ikGaUyHRm1ZB7OT9KnR1pD9XuXr0JjqIyUVBEWTGbRcowYvZRX6CW9PCUNvbOHOkBdrEWgDFxR9eTrVVoiH0azkAjOCyBO2beKi+GlAFXi99ELncL/htG8mk/HPP8iWVHK49KxjoT2hcAH11wt2BuJpGZijJ4lzbswfgpupXGPoA89WUWP2820WRw+MZKf2PGZL/JSvf30STUZmauhGnKLHseFEhZE/ePLrIqnhv9fM1VSRVM4UXIe6nPQLjE6paPPmx4fcR02b3R2DyolhlFS/JyF1qjk/M+PUX6PtnnOl4R5ggWrT2Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=BLwziTUm+/IAdvH2OQrDo+HgFesduudyeKKZoFhXIUg=;
- b=YdUCcu6s9t8FxipOZAByB7Hq2Mdsotx82jYP+eivsmj7Rh4xQ0viSaf9DJ34A1buppS0/05vlVieLXl9JP4mt/fqbJgcYG9lAn6suuz+YHuNmnt4OrWl7TWOYj4kBDvC4RjbEUqdkDbfUsW82WNHcC4b5Q8D/ZFh4ZYE2QAmaGqvyEY6mEybtDwDZKM0+4fH1ZC7i2XQGyyFFyMeN54WhCmV2Dwi9QSxE1mMxdK9ObnAGGF5wcyXEnjpl9RsGctwEEvX1imRjBC4z2gy0o+Zm6HkDc5kmgmlvknSn/hI48otW9UbZd1VusOXDXrBwOUkpo/ut3Z26nyQyl/FtyG4cA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
- by IA4PR11MB9371.namprd11.prod.outlook.com (2603:10b6:208:56a::16)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.14; Wed, 11 Mar
- 2026 15:32:31 +0000
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::9ca5:4d1d:db45:f523]) by SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::9ca5:4d1d:db45:f523%5]) with mapi id 15.20.9700.010; Wed, 11 Mar 2026
- 15:32:26 +0000
-From: Imre Deak <imre.deak@intel.com>
-To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: [PATCH 2/2] drm/i915/dp: Simplify forcing a link retraining
-Date: Wed, 11 Mar 2026 17:31:52 +0200
-Message-ID: <20260311153152.133744-2-imre.deak@intel.com>
-X-Mailer: git-send-email 2.49.1
-In-Reply-To: <20260311153152.133744-1-imre.deak@intel.com>
-References: <20260311153152.133744-1-imre.deak@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: GVZP280CA0049.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:150:271::7) To SJ0PR11MB4845.namprd11.prod.outlook.com
- (2603:10b6:a03:2d1::10)
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="246064338"
+Received: from gsd-build.iind.intel.com ([10.190.229.167])
+ by fmviesa001.fm.intel.com with ESMTP; 11 Mar 2026 08:52:42 -0700
+From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+Subject: [PATCH 0/3] Scan all holes when fences are disabled in SA
+Date: Wed, 11 Mar 2026 15:52:34 +0000
+Message-ID: <20260311155233.1903253-5-satyanarayana.k.v.p@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|IA4PR11MB9371:EE_
-X-MS-Office365-Filtering-Correlation-Id: 13c14424-8cbf-4d96-da5f-08de7f836618
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|18002099003|56012099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: d2XjPfdSPrlzAqQyMWPXAB2BZHIEIT6o7EcT3YCYpTMBr+XnP2228aPxnYXtUnzPBEqeoQ3ggMslOdcK7AAiwN6QK6zqKe3p1ifedDBh/UUzGHJPzvmx1kNFuRl6EUh5Nkn2NZO1zaO9Qrd+CK3l+5Mf2qfQh8Op7eeTd/6NK7i0atlSh2ygiBX7NiCULgH67MjU7e6vNAE4f4E6uFrzGvZFeWrkeZNJhtfzdKoHRdVzqLokv+oVR51anmMPLMpS9sYb8YAtCQ3WRk4eXMpRSPjbmo198vbgT1h3orGhSk7oVvKqxQgUzBIouXWmDHdYngrFaRFwsWBZ4L3xVV321UB9hYz82yIjFVRlXD0K44SAL9J/8zkMC7bdqlZTw10OdJutIpnUx1c7pLEkl/mzwhhNAndlH9KJ3kR2BoztceFvy1yUjT46HMSCi1ZyM0w8jUPOEYCiEb5VDtgXBK8bZ9QNyZSaoaEanQpB6ynL7M2W62crwgsVXb+OEgdk3JRyqv/GYcyVcfuJItlSM4F1s+1pzcy61Vu1I6ij6bgyhYeKaTUydjk2lYWN2yviWoLn2fegpICZEJCxilf5oDxEc+pjprR+CHI5U8kG49lFxghOJmaeyfFL/uPh4oCvX7hwxXGFJY0tDWRUHZLieSK2chuEscpeRUX7wv4CviCwJ2PwaucqoH13EnuL6O4Mi+Z2hsIyjMBJS10618wnkV9gDO0VFwuymyHIS+ut+1lG0b8=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(56012099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?RN1zYSSX9kT1eTgf14TbEpYPswzVdfDoOYZq17EsyUqEjiDATJzHQfa/EF1G?=
- =?us-ascii?Q?2kK3VIgyfJIXDrgoEcr0XBvVvf1nX6s+LlVGHW8JBq7bZo2s3k6IQKGud7Sz?=
- =?us-ascii?Q?62RHPyIsfYfo1wkj9kgSOQIrhONQPQOwF572prOTCx4B+tSIlQQO76+2oBAe?=
- =?us-ascii?Q?hyIaVYybE4pHmbC6W+gvao/4QbQja4qifydYBdV5bT1IZtKZao9BhN1Myg19?=
- =?us-ascii?Q?Zd2hSyTiUXwCFNFSXAKzE4rY0CHzqES5DWJxAoGUuLPxZYKPcwSg6y5qcLtU?=
- =?us-ascii?Q?FIvTbNYS1hsy/HS+VJM+kdivU6otPWvFyzrk/WAeae436+1j4hHUTJLdYUOh?=
- =?us-ascii?Q?wJlXoL18O8SuW6c7ZLUuBoQXy6agxwsut29V5SNlVN2NzJc3fbWtBlcwliJR?=
- =?us-ascii?Q?EukpFuvtq1+kQkqjbM3jxUNt76gam90oAcYTqKlQsegwaEjez2Wt6xdm57HR?=
- =?us-ascii?Q?7TgiuTCXvjh7s/I0Qpd8U/ug8jdNs27RAcwH3s7JSGppZgmZmMP4n6XlrCMp?=
- =?us-ascii?Q?nljVGc+I1KqPYjSC9lJNVgL6zAHKSsKboF8g7sQHayhSxp7G6dsxtk8sCJEx?=
- =?us-ascii?Q?7aRryEMPauY9w4RoGmGtqLzoKJaE3wpNkhyxQdVKfiqJYmHO8rsApUq1MTFc?=
- =?us-ascii?Q?PZvMxyPY+3oMz6z979KGaLTNdc/dIKX3WLt8K1Ioo3iAptQOG2a6pjDefrv5?=
- =?us-ascii?Q?knHbneF7vIzA4P7ENJirwo9H1l67j+7wagXu78FdTKNl1NYKUSBhnnxl2fvN?=
- =?us-ascii?Q?AwXPSsQkHm2zF2gahjuT9F/T2ggmSKVZfnYFqrwbWoqXeCU3yzyrmROG9FBu?=
- =?us-ascii?Q?50WhjaoIr+u1RT7TLziwkimAaUoFIQQrCgLHn0xCI8Syah9n3y3fPPr/sl+S?=
- =?us-ascii?Q?BnT4td3VQshAXzXLPe7OBetC7fxkhQTm9K2vveyEGTOwwacFUYQAVU+rZ5Ic?=
- =?us-ascii?Q?ry11wTzIq+/vd0P0oVeqvDtX+mUduVukdltBcQOhgdVlTKt1+p/cJvJDv/ei?=
- =?us-ascii?Q?2gJ7cXcRlSFny648TNkFOSQxbapMx/Bp+fhS2Xf3WZl7HZYXbqf9AtrGD5Gd?=
- =?us-ascii?Q?bsVqCcQWyVeDUGJB1Vl52ZiTLgs6izetLQ5AFnqgftS+u0zu81n6T3j/t7lI?=
- =?us-ascii?Q?f49RROMplqhVFSPOgsutQER0055fcHBV/qxPDwyiBmbaQ6Q5y9aI7Aao4Txu?=
- =?us-ascii?Q?oXUf4EMcZUoKJ5k8D2r+1Lxcr3WEBtfoqQwtPa0IsYzAToq7SVDBQiy59AUR?=
- =?us-ascii?Q?dkRlKa/rf51ocvonX15bw3sIFl+Uc5/UctTa9+0GLrp9rRkKAt08MS8ZA210?=
- =?us-ascii?Q?uXoRShU9mzDCEokk6L1GUwZ9VdpcjIasWzy5g47wvAgsT0pcOybvSjwNXmxC?=
- =?us-ascii?Q?j4a/UAKtwIu+obGNL7s0rqZ+XSe2x1OCXf3Mbz83NSvNeqPbykcSKaS/t+tp?=
- =?us-ascii?Q?c57K7uMiVF6aFJCD590XJzwD4LYei57mCntMfYPrHnzuR3b6ciOPDLUr4IB5?=
- =?us-ascii?Q?TR6UfNEaadJi6xjY77xFYWBlRpvUPuMFDBcsPYLzgNrtSQoDfcP3Vj3iWko7?=
- =?us-ascii?Q?FAExJRf26PgMed3SEaNeUlrY1xfC5wGy7JeZ4Lt7JODd2MAMYQ1JlGceeK0t?=
- =?us-ascii?Q?tWeOLO3JXR/l1XsuA4CAIggADCkqAMD7kTLIeBdi21dutg1ZUoG2Jxhzs6Oc?=
- =?us-ascii?Q?/E0tDdr2WBygtQmxwM2T6+E2PGgC9Sznq+AWzlx7X6lqII+iEb6NatEuS+LX?=
- =?us-ascii?Q?rhVvsMSeHQ=3D=3D?=
-X-Exchange-RoutingPolicyChecked: RvIR5Rlzr47AJybpkNPelWraRQmXpZ/auJiGE2PDuvmvEtKWNxD1N5iPNcMXVi4jc3Z/J/kVds6g2AwCNIIHUkGIYY5BTeQEQZdJnnEdIp0noERe/3F/mmjYdC/z+nXsmcrX62/SSJvBUP0Ot0RFF1/VpA00aegASysYWRZT5H8n+pMFZFVgY2l2/3Yr6M7nWKXa84pzQvtQyamrVuT2vAPNSXwuoqdtMeo/tLCJzPuGtu3AeSTgyT7g5qKYZ6XonM6NyrhF9CcZuuEJP5LYSSxfzbKXi9UbYnsvquWglxrUlA2/RE3oJBzYRbgAd3Yp3FDg6ZhPMgrfXQrFwi8WNw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 13c14424-8cbf-4d96-da5f-08de7f836618
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2026 15:32:26.7085 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Ez5XEL62O6ddhLhVy9okqVUBWPwyWbeux16EYTUvl+zdzGwYk7xwMX/uzH/TFZQ7gGWWHANNlRckNaXgOOHRAA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR11MB9371
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,45 +64,35 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Since both the DP SST and MST HPD IRQ handlers call
-intel_dp_handle_link_service_irq() with LINK_STATUS_CHANGED set in
-irq_mask if intel_dp->link.force_retrain is set, checking for the former
-flag is sufficient to determine if the link status needs to be checked
-(which includes retraining the link if this is forced); remove checking
-for the latter flag.
+The suballocator algorithm tracks a hole cursor at the last allocation
+and tries to allocate after it. This is optimized for fence-ordered
+progress, where older allocations are expected to become reusable first.
 
-Since LINK_STATUS_CHANGED is currently set unconditionally for DP SST,
-extend the related comment to note that it must be set if
-intel_dp->link.force_retrain is set (in case setting LINK_STATUS_CHANGED
-becomes conditional on DPCD_REV).
+In fence-enabled mode, that ordering assumption holds. In fence-disabled
+mode, allocations may be freed in arbitrary order, so limiting allocation
+to the current hole window can miss valid free space and fail allocations
+despite sufficient total space.
 
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Update the fence-disabled path to walk through all holes and select any
+fitting range, while keeping the existing fence-based behavior unchanged.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 2ae030eda73ee..4955bd8b11d7a 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5925,7 +5925,7 @@ static bool intel_dp_handle_link_service_irq(struct intel_dp *intel_dp, u8 irq_m
- 	if (irq_mask & RX_CAP_CHANGED)
- 		reprobe_needed = true;
- 
--	if ((irq_mask & LINK_STATUS_CHANGED) || intel_dp->link.force_retrain)
-+	if (irq_mask & LINK_STATUS_CHANGED)
- 		intel_dp_check_link_state(intel_dp);
- 
- 	if (irq_mask & HDMI_LINK_STATUS_CHANGED)
-@@ -5984,7 +5984,7 @@ intel_dp_short_pulse(struct intel_dp *intel_dp)
- 	/*
- 	 * Force checking the link status for DPCD_REV < 1.2
- 	 * TODO: let the link status check depend on LINK_STATUS_CHANGED
--	 * for DPCD_REV >= 1.2
-+	 * or intel_dp->link.force_retrain for DPCD_REV >= 1.2
- 	 */
- 	esi[3] |= LINK_STATUS_CHANGED;
- 	if (intel_dp_handle_link_service_irq(intel_dp, esi[3]))
+Satyanarayana K V P (3):
+  drm/sa: Scan all holes when fences are disabled
+  drm/xe/vf: Disable fences while initializing CCS read/write sub-allocs
+  drm/tests: Add KUnit test for suballocator allocation
+
+ drivers/gpu/drm/Kconfig.debug             |  1 +
+ drivers/gpu/drm/drm_suballoc.c            | 90 +++++++++++++++++++++++
+ drivers/gpu/drm/tests/.kunitconfig        |  1 +
+ drivers/gpu/drm/tests/Makefile            |  1 +
+ drivers/gpu/drm/tests/drm_suballoc_test.c | 79 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sa.c                | 20 +++++
+ drivers/gpu/drm/xe/xe_sa.h                |  1 +
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c      |  3 +-
+ include/drm/drm_suballoc.h                |  5 ++
+ 9 files changed, 200 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/tests/drm_suballoc_test.c
+
 -- 
-2.49.1
+2.43.0
 
