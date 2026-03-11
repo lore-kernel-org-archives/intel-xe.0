@@ -4,61 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5C36FD0655
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 08:25:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B02AAFD0659
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 08:49:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77ABF10E38F;
-	Wed, 11 Mar 2026 08:25:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E6F810E393;
+	Wed, 11 Mar 2026 08:49:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dkWBSPAF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FTzFyBAs";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DEEE10E38F
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Mar 2026 08:25:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 674F010E3A7;
+ Wed, 11 Mar 2026 08:49:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773217508; x=1804753508;
- h=message-id:subject:from:to:date:in-reply-to:references:
- content-transfer-encoding:mime-version;
- bh=dUWZtX8ZFIOeNVRe6LNu9T/yEug2Wa0ei4846CwM2Zc=;
- b=dkWBSPAFBrk6iVLni6G45K2oss/zfncUoBLCMv+0JFvxHZ0beWjbl7/b
- +O3zK53gUyBr+kescY8WK8oL5r7dJVTWbxIoDvqqrUs7pkXfdYsnIbmHd
- ToHcJPi7djypr13Cg/fg9wAOJhdc5E3NYv93f+RxOwtnCbgsMk3FY5nXk
- 829in9I2+w/LecMMCqHhhZDYdxFgWoyRnYnC3OmfKFkrNF6pw9q+vFPRB
- NDBWiHm7ppRyoqNcJSGjki0ihAAOOCeFlm3ca7to7LgUii7GLrYdGdptd
- CbgMzNJo05kIlUxUXKvmwhHdst4fZ9UAXHE2kfnRcJJ2H3IshYKA/3HRm Q==;
-X-CSE-ConnectionGUID: K4zPvjuLQN6gMd+bsVh0Ig==
-X-CSE-MsgGUID: 7JuJIKueRC6hY7iNXt0r6Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="74153893"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="74153893"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 01:25:07 -0700
-X-CSE-ConnectionGUID: Ig8PIclDSDOBWXA7fKI3AQ==
-X-CSE-MsgGUID: onN2yFYCRd+MmGAwDB6QsA==
+ t=1773218972; x=1804754972;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=iemXGwn0WTLQQHxIdty0y7e5+IYGHeXdy2cffbbSFn0=;
+ b=FTzFyBAsFEeFoFel5Wt5fD/oAqFwuxds53H2+t+BV/qjfFvaL1BDHJqB
+ nR4blLVKBauCxU8yinwsjbnWo5WqLX8ERuNMTZVqm9jVDqXJwYJZswzwa
+ PnmpPt5CACLkSYMd/zXZL875D0Gq6RBpCrODdk3LpJIt3yX6RDOeDzdVH
+ b81Bh5j2JgVzCRtOVCA7rwHfuwDVMAiykONf7w77qryOObYpI8BRB6bAc
+ 0Yl5VHf7WMBphW9um80hbXENLawuyhD8ft+N5zXvvrLtZ2Rd3bWTDRgr8
+ jH7gUJdjz1drqNj4MvOe+2xYOFq9A7pg329NCqTB6HDuhOatWuEsRlh05 w==;
+X-CSE-ConnectionGUID: O5X7PHW3RTiEBgEJ1GlKDw==
+X-CSE-MsgGUID: lJsyenTXSaS1yaNAwOiTQQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="91850935"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="91850935"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2026 01:49:31 -0700
+X-CSE-ConnectionGUID: S5JTpmPgTvuAXxQz1E/F8A==
+X-CSE-MsgGUID: J2WSliGJTWyMsMq8Plr0Dg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="220426403"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO [10.245.244.202])
- ([10.245.244.202])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 01:25:07 -0700
-Message-ID: <68e7fbf84fe0a509db5a6de5a47d861b0cfcb5c1.camel@linux.intel.com>
-Subject: Re: [PATCH v4 1/4] mm/mmu_notifier: Allow two-pass struct
- mmu_interval_notifiers
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Wed, 11 Mar 2026 09:25:03 +0100
-In-Reply-To: <9986a822-c7e6-45ac-bf74-899ca1a9363f@kernel.org>
-References: <20260305093909.43623-1-thomas.hellstrom@linux.intel.com>
- <20260305093909.43623-2-thomas.hellstrom@linux.intel.com>
- <1efba81b-d4e9-405b-8ad5-0a170237902f@kernel.org>
- <81917cd6035774c73cd40e638707e4148519b981.camel@linux.intel.com>
- <9986a822-c7e6-45ac-bf74-899ca1a9363f@kernel.org>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="219644678"
+Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.91])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2026 01:49:25 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: harry.wentland@amd.com, louis.chauvet@bootlin.com, mwen@igalia.com,
+ contact@emersion.fr, alex.hung@amd.com, daniels@collabora.com,
+ uma.shankar@intel.com, maarten.lankhorst@intel.com,
+ pekka.paalanen@collabora.com, pranay.samala@intel.com,
+ swati2.sharma@intel.com, Chaitanya Kumar Borah
+ <chaitanya.kumar.borah@intel.com>
+Subject: Re: [PATCH 01/10] drm/colorop: Add DRM_COLOROP_CSC_FF
+In-Reply-To: <20260306165307.3233194-2-chaitanya.kumar.borah@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260306165307.3233194-1-chaitanya.kumar.borah@intel.com>
+ <20260306165307.3233194-2-chaitanya.kumar.borah@intel.com>
+Date: Wed, 11 Mar 2026 10:49:22 +0200
+Message-ID: <224fa0ee81fdf9390e783e1b33da221eebcecca6@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,93 +76,350 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replying to list address for reference.
+On Fri, 06 Mar 2026, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
+> Introduce DRM_COLOROP_CSC_FF, a new colorop type representing a
+> fixed-function Color Space Conversion (CSC) block.
+>
+> Unlike CTM-based colorops, this block does not expose programmable
+> coefficients. Instead, userspace selects one of the predefined
+> hardware modes via a new CSC_FF_TYPE enum property. Supported modes
+> include common YUV->RGB and RGB709->RGB2020 conversions.
+>
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> ---
+>  drivers/gpu/drm/drm_atomic.c      |   4 ++
+>  drivers/gpu/drm/drm_atomic_uapi.c |   4 ++
+>  drivers/gpu/drm/drm_colorop.c     | 105 ++++++++++++++++++++++++++++++
+>  include/drm/drm_colorop.h         |  72 ++++++++++++++++++++
+>  include/uapi/drm/drm_mode.h       |  13 ++++
+>  5 files changed, 198 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+> index 04925166df98..7296b844e3fd 100644
+> --- a/drivers/gpu/drm/drm_atomic.c
+> +++ b/drivers/gpu/drm/drm_atomic.c
+> @@ -844,6 +844,10 @@ static void drm_atomic_colorop_print_state(struct drm_printer *p,
+>  			   drm_get_colorop_lut3d_interpolation_name(colorop->lut3d_interpolation));
+>  		drm_printf(p, "\tdata blob id=%d\n", state->data ? state->data->base.id : 0);
+>  		break;
+> +	case DRM_COLOROP_CSC_FF:
+> +		drm_printf(p, "\tcsc_ff_type=%s\n",
+> +			   drm_get_colorop_csc_ff_type_name(state->csc_ff_type));
 
-On Fri, 2026-03-06 at 14:11 +0100, David Hildenbrand (Arm) wrote:
-> On 3/6/26 14:05, Thomas Hellstr=C3=B6m wrote:
-> > On Thu, 2026-03-05 at 15:00 +0100, David Hildenbrand (Arm) wrote:
-> > > On 3/5/26 10:39, Thomas Hellstr=C3=B6m wrote:
-> > > > GPU use-cases for mmu_interval_notifiers with hmm often involve
-> > > > starting a gpu operation and then waiting for it to complete.
-> > > > These operations are typically context preemption or TLB
-> > > > flushing.
-> > > >=20
-> > > > With single-pass notifiers per GPU this doesn't scale in
-> > > > multi-gpu scenarios. In those scenarios we'd want to first
-> > > > start
-> > > > preemption- or TLB flushing on all GPUs and as a second pass
-> > > > wait
-> > > > for them to complete.
-> > > >=20
-> > > > One can do this on per-driver basis multiplexing per-driver
-> > > > notifiers but that would mean sharing the notifier "user" lock
-> > > > across all GPUs and that doesn't scale well either, so adding
-> > > > support
-> > > > for multi-pass in the core appears to be the right choice.
-> > > >=20
-> > > > Implement two-pass capability in the mmu_interval_notifier. Use
-> > > > a
-> > > > linked list for the final passes to minimize the impact for
-> > > > use-cases that don't need the multi-pass functionality by
-> > > > avoiding
-> > > > a second interval tree walk, and to be able to easily pass data
-> > > > between the two passes.
-> > > >=20
-> > > > v1:
-> > > > - Restrict to two passes (Jason Gunthorpe)
-> > > > - Improve on documentation (Jason Gunthorpe)
-> > > > - Improve on function naming (Alistair Popple)
-> > > > v2:
-> > > > - Include the invalidate_finish() callback in the
-> > > > =C2=A0 struct mmu_interval_notifier_ops.
-> > > > - Update documentation (GitHub Copilot:claude-sonnet-4.6)
-> > > > - Use lockless list for list management.
-> > > > v3:
-> > > > - Update kerneldoc for the struct
-> > > > mmu_interval_notifier_finish::list member
-> > > > =C2=A0 (Matthew Brost)
-> > > > - Add a WARN_ON_ONCE() checking for NULL invalidate_finish() op
-> > > > if
-> > > > =C2=A0 if invalidate_start() is non-NULL. (Matthew Brost)
-> > > > v4:
-> > > > - Addressed documentation review comments by David Hildenbrand.
-> > > >=20
-> > > > Cc: Matthew Brost <matthew.brost@intel.com>
-> > > > Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> > > > Cc: David Hildenbrand <david@kernel.org>
-> > > > Cc: Lorenzo Stoakes <lorenzo.stoakes@oracle.com>
-> > > > Cc: Liam R. Howlett <Liam.Howlett@oracle.com>
-> > > > Cc: Vlastimil Babka <vbabka@kernel.org>
-> > > > Cc: Mike Rapoport <rppt@kernel.org>
-> > > > Cc: Suren Baghdasaryan <surenb@google.com>
-> > > > Cc: Michal Hocko <mhocko@suse.com>
-> > > > Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> > > > Cc: Andrew Morton <akpm@linux-foundation.org>
-> > > > Cc: Simona Vetter <simona.vetter@ffwll.ch>
-> > > > Cc: Dave Airlie <airlied@gmail.com>
-> > > > Cc: Alistair Popple <apopple@nvidia.com>
-> > > > Cc: <dri-devel@lists.freedesktop.org>
-> > > > Cc: <linux-mm@kvack.org>
-> > > > Cc: <linux-kernel@vger.kernel.org>
-> > > >=20
-> > > > Assisted-by: GitHub Copilot:claude-sonnet-4.6 # Documentation
-> > > > only.
-> > > > Signed-off-by: Thomas Hellstr=C3=B6m
-> > > > <thomas.hellstrom@linux.intel.com>
-> > > > ---
-> > >=20
-> > > LGTM, thanks!
-> > >=20
-> > > Acked-by: David Hildenbrand (Arm) <david@kernel.org>
-> >=20
-> > Thanks, David.
-> >=20
-> > Ack to merge this through drm together with the drm/xe patches?
->=20
-> Works for me, let me CC Andrew for awareness.
->=20
-> >=20
-> > If so, do I need an additional R-B in addition to any drm/xe
-> > reviewers?
->=20
-> Not from MM people :)
+See drm_printf_indent().
+
+> +		break;
+>  	default:
+>  		break;
+>  	}
+> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
+> index 87de41fb4459..9af73325aa93 100644
+> --- a/drivers/gpu/drm/drm_atomic_uapi.c
+> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
+> @@ -757,6 +757,8 @@ static int drm_atomic_colorop_set_property(struct drm_colorop *colorop,
+>  	} else if (property == colorop->data_property) {
+>  		return drm_atomic_color_set_data_property(colorop, state,
+>  							  property, val);
+> +	} else if (property == colorop->csc_ff_type_property) {
+> +		state->csc_ff_type = val;
+>  	} else {
+>  		drm_dbg_atomic(colorop->dev,
+>  			       "[COLOROP:%d:%d] unknown property [PROP:%d:%s]\n",
+> @@ -789,6 +791,8 @@ drm_atomic_colorop_get_property(struct drm_colorop *colorop,
+>  		*val = colorop->lut3d_interpolation;
+>  	else if (property == colorop->data_property)
+>  		*val = (state->data) ? state->data->base.id : 0;
+> +	else if (property == colorop->csc_ff_type_property)
+> +		*val = state->csc_ff_type;
+>  	else
+>  		return -EINVAL;
+>  
+> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
+> index f421c623b3f0..49422c625f4d 100644
+> --- a/drivers/gpu/drm/drm_colorop.c
+> +++ b/drivers/gpu/drm/drm_colorop.c
+> @@ -68,6 +68,7 @@ static const struct drm_prop_enum_list drm_colorop_type_enum_list[] = {
+>  	{ DRM_COLOROP_CTM_3X4, "3x4 Matrix"},
+>  	{ DRM_COLOROP_MULTIPLIER, "Multiplier"},
+>  	{ DRM_COLOROP_3D_LUT, "3D LUT"},
+> +	{ DRM_COLOROP_CSC_FF, "CSC Fixed-Function"},
+>  };
+>  
+>  static const char * const colorop_curve_1d_type_names[] = {
+> @@ -90,6 +91,13 @@ static const struct drm_prop_enum_list drm_colorop_lut3d_interpolation_list[] =
+>  	{ DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL, "Tetrahedral" },
+>  };
+>  
+> +static const char * const colorop_csc_ff_type_names[] = {
+> +	[DRM_COLOROP_CSC_FF_YUV601_RGB601]   = "YUV601 to RGB601",
+> +	[DRM_COLOROP_CSC_FF_YUV709_RGB709]   = "YUV709 to RGB709",
+> +	[DRM_COLOROP_CSC_FF_YUV2020_RGB2020] = "YUV2020 to RGB2020",
+> +	[DRM_COLOROP_CSC_FF_RGB709_RGB2020]  = "RGB709 to RGB2020",
+> +};
+> +
+>  /* Init Helpers */
+>  
+>  static int drm_plane_colorop_init(struct drm_device *dev, struct drm_colorop *colorop,
+> @@ -459,6 +467,80 @@ int drm_plane_colorop_3dlut_init(struct drm_device *dev, struct drm_colorop *col
+>  }
+>  EXPORT_SYMBOL(drm_plane_colorop_3dlut_init);
+>  
+> +/**
+> + * drm_plane_colorop_csc_ff_init - Initialize a DRM_COLOROP_CSC_FF
+> + *
+> + * @dev: DRM device
+> + * @colorop: The drm_colorop object to initialize
+> + * @plane: The associated drm_plane
+> + * @funcs: control functions for the new colorop
+> + * @supported_csc_ff: A bitfield of supported drm_plane_colorop_csc_ff_type enum values,
+> + *                    created using BIT(csc_ff_type) and combined with the OR '|'
+> + *                    operator.
+> + * @flags: bitmask of misc, see DRM_COLOROP_FLAG_* defines.
+> + * @return zero on success, -E value on failure
+> + */
+> +int drm_plane_colorop_csc_ff_init(struct drm_device *dev, struct drm_colorop *colorop,
+> +				  struct drm_plane *plane, const struct drm_colorop_funcs *funcs,
+> +				  u64 supported_csc_ff, uint32_t flags)
+> +{
+> +	struct drm_prop_enum_list enum_list[DRM_COLOROP_CSC_FF_COUNT];
+> +	int i, len;
+> +
+> +	struct drm_property *prop;
+> +	int ret;
+> +
+> +	if (!supported_csc_ff) {
+> +		drm_err(dev,
+> +			"No supported CSC op for new CSC FF colorop on [PLANE:%d:%s]\n",
+> +			plane->base.id, plane->name);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if ((supported_csc_ff & -BIT(DRM_COLOROP_CSC_FF_COUNT)) != 0) {
+> +		drm_err(dev, "Unknown CSC provided on [PLANE:%d:%s]\n",
+> +			plane->base.id, plane->name);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = drm_plane_colorop_init(dev, colorop, plane, funcs, DRM_COLOROP_CSC_FF, flags);
+> +	if (ret)
+> +		return ret;
+> +
+> +	len = 0;
+> +	for (i = 0; i < DRM_COLOROP_CSC_FF_COUNT; i++) {
+> +		if ((supported_csc_ff & BIT(i)) == 0)
+> +			continue;
+> +
+> +		enum_list[len].type = i;
+> +		enum_list[len].name = colorop_csc_ff_type_names[i];
+> +		len++;
+> +	}
+> +
+> +	if (WARN_ON(len <= 0))
+> +		return -EINVAL;
+> +
+> +	prop = drm_property_create_enum(dev, DRM_MODE_PROP_ATOMIC, "CSC_FF_TYPE",
+> +					enum_list, len);
+> +
+> +	if (!prop)
+> +		return -ENOMEM;
+> +
+> +	colorop->csc_ff_type_property = prop;
+> +	/*
+> +	 * Default to the first supported CSC mode as provided by the driver.
+> +	 * Intuitively this should be something that keeps the colorop in pixel bypass
+> +	 * mode but that is already handled via the standard colorop bypass
+> +	 * property.
+> +	 */
+> +	drm_object_attach_property(&colorop->base, colorop->csc_ff_type_property,
+> +				   enum_list[0].type);
+> +	drm_colorop_reset(colorop);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_plane_colorop_csc_ff_init);
+> +
+>  static void __drm_atomic_helper_colorop_duplicate_state(struct drm_colorop *colorop,
+>  							struct drm_colorop_state *state)
+>  {
+> @@ -513,6 +595,13 @@ static void __drm_colorop_state_reset(struct drm_colorop_state *colorop_state,
+>  						      &val);
+>  		colorop_state->curve_1d_type = val;
+>  	}
+> +
+> +	if (colorop->csc_ff_type_property) {
+> +		drm_object_property_get_default_value(&colorop->base,
+> +						      colorop->csc_ff_type_property,
+> +						      &val);
+> +		colorop_state->csc_ff_type = val;
+> +	}
+>  }
+>  
+>  /**
+> @@ -551,6 +640,7 @@ static const char * const colorop_type_name[] = {
+>  	[DRM_COLOROP_CTM_3X4] = "3x4 Matrix",
+>  	[DRM_COLOROP_MULTIPLIER] = "Multiplier",
+>  	[DRM_COLOROP_3D_LUT] = "3D LUT",
+> +	[DRM_COLOROP_CSC_FF] = "CSC Fixed-Function",
+>  };
+>  
+>  static const char * const colorop_lu3d_interpolation_name[] = {
+> @@ -607,6 +697,21 @@ const char *drm_get_colorop_lut3d_interpolation_name(enum drm_colorop_lut3d_inte
+>  	return colorop_lu3d_interpolation_name[type];
+>  }
+>  
+> +/**
+> + * drm_get_colorop_csc_ff_type_name: return a string for interpolation type
+> + * @type: csc ff type to compute name of
+> + *
+> + * In contrast to the other drm_get_*_name functions this one here returns a
+> + * const pointer and hence is threadsafe.
+> + */
+> +const char *drm_get_colorop_csc_ff_type_name(enum drm_colorop_csc_ff_type type)
+> +{
+> +	if (WARN_ON(type >= ARRAY_SIZE(colorop_csc_ff_type_names)))
+> +		return "unknown";
+> +
+> +	return colorop_csc_ff_type_names[type];
+> +}
+> +
+>  /**
+>   * drm_colorop_set_next_property - sets the next pointer
+>   * @colorop: drm colorop
+> diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h
+> index bd082854ca74..2cd8e0779c2a 100644
+> --- a/include/drm/drm_colorop.h
+> +++ b/include/drm/drm_colorop.h
+> @@ -134,6 +134,60 @@ enum drm_colorop_curve_1d_type {
+>  	DRM_COLOROP_1D_CURVE_COUNT
+>  };
+>  
+> +/**
+> + * enum drm_colorop_csc_ff_type - type of CSC Fixed-Function
+> + *
+> + * Describes a CSC operation to be applied by the DRM_COLOROP_CSC_FF colorop.
+> + */
+> +enum drm_colorop_csc_ff_type {
+> +	/**
+> +	 * @DRM_COLOROP_CSC_FF_YUV601_RGB601
+> +	 *
+> +	 * enum string "YUV601 to RGB601"
+> +	 *
+> +	 * Selects the fixed-function CSC preset that converts YUV
+> +	 * (BT.601) colorimetry to RGB (BT.601).
+> +	 */
+> +	DRM_COLOROP_CSC_FF_YUV601_RGB601,
+> +
+> +	/**
+> +	 * @DRM_COLOROP_CSC_FF_YUV709_RGB709:
+> +	 *
+> +	 * enum string "YUV709 to RGB709"
+> +	 *
+> +	 * Selects the fixed-function CSC preset that converts YUV
+> +	 * (BT.709) colorimetry to RGB (BT.709).
+> +	 */
+> +	DRM_COLOROP_CSC_FF_YUV709_RGB709,
+> +
+> +	/**
+> +	 * @DRM_COLOROP_CSC_FF_YUV2020_RGB2020:
+> +	 *
+> +	 * enum string "YUV2020 to RGB2020"
+> +	 *
+> +	 * Selects the fixed-function CSC preset that converts YUV
+> +	 * (BT.2020) colorimetry to RGB (BT.2020).
+> +	 */
+> +	DRM_COLOROP_CSC_FF_YUV2020_RGB2020,
+> +
+> +	/**
+> +	 * @DRM_COLOROP_CSC_FF_RGB709_RGB2020:
+> +	 *
+> +	 * enum string "RGB709 to RGB2020"
+> +	 *
+> +	 * Selects the fixed-function CSC preset that converts RGB
+> +	 * (BT.709) colorimetry to RGB (BT.2020).
+> +	 */
+> +	DRM_COLOROP_CSC_FF_RGB709_RGB2020,
+> +
+> +	/**
+> +	 * @DRM_COLOROP_CSC_FF_COUNT:
+> +	 *
+> +	 * enum value denoting the size of the enum
+> +	 */
+> +	DRM_COLOROP_CSC_FF_COUNT
+> +};
+> +
+>  /**
+>   * struct drm_colorop_state - mutable colorop state
+>   */
+> @@ -183,6 +237,13 @@ struct drm_colorop_state {
+>  	 */
+>  	struct drm_property_blob *data;
+>  
+> +	/**
+> +	 * @csc_ff_type:
+> +	 *
+> +	 * Type of Fixed function CSC.
+> +	 */
+> +	enum drm_colorop_csc_ff_type csc_ff_type;
+> +
+>  	/** @state: backpointer to global drm_atomic_state */
+>  	struct drm_atomic_state *state;
+>  };
+> @@ -368,6 +429,13 @@ struct drm_colorop {
+>  	 */
+>  	struct drm_property *data_property;
+>  
+> +	/**
+> +	 * @csc_ff_type_property:
+> +	 *
+> +	 * Sub-type for DRM_COLOROP_CSC_FF type.
+> +	 */
+> +	struct drm_property *csc_ff_type_property;
+> +
+>  	/**
+>  	 * @next_property:
+>  	 *
+> @@ -424,6 +492,9 @@ int drm_plane_colorop_3dlut_init(struct drm_device *dev, struct drm_colorop *col
+>  				 uint32_t lut_size,
+>  				 enum drm_colorop_lut3d_interpolation_type interpolation,
+>  				 uint32_t flags);
+> +int drm_plane_colorop_csc_ff_init(struct drm_device *dev, struct drm_colorop *colorop,
+> +				  struct drm_plane *plane, const struct drm_colorop_funcs *funcs,
+> +				  u64 supported_csc_ff, uint32_t flags);
+>  
+>  struct drm_colorop_state *
+>  drm_atomic_helper_colorop_duplicate_state(struct drm_colorop *colorop);
+> @@ -480,6 +551,7 @@ drm_get_colorop_lut1d_interpolation_name(enum drm_colorop_lut1d_interpolation_ty
+>  
+>  const char *
+>  drm_get_colorop_lut3d_interpolation_name(enum drm_colorop_lut3d_interpolation_type type);
+> +const char *drm_get_colorop_csc_ff_type_name(enum drm_colorop_csc_ff_type type);
+>  
+>  void drm_colorop_set_next_property(struct drm_colorop *colorop, struct drm_colorop *next);
+>  
+> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
+> index 3693d82b5279..f7808e7ea984 100644
+> --- a/include/uapi/drm/drm_mode.h
+> +++ b/include/uapi/drm/drm_mode.h
+> @@ -968,6 +968,19 @@ enum drm_colorop_type {
+>  	 *         color = lut3d[index]
+>  	 */
+>  	DRM_COLOROP_3D_LUT,
+> +
+> +	/**
+> +	 * @DRM_COLOROP_CSC_FF:
+> +	 *
+> +	 * enum string "CSC Fixed-Function"
+> +	 *
+> +	 * A fixed-function Color Space Conversion block where the coefficients
+> +	 * are not programmable but selected from predefined hardware modes via
+> +	 * the CSC_FF_TYPE enum property. The driver advertises the supported
+> +	 * CSC modes through this property.
+> +	 */
+> +	DRM_COLOROP_CSC_FF,
+> +
+>  };
+>  
+>  /**
+
+-- 
+Jani Nikula, Intel
