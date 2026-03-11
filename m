@@ -4,158 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53599104C00D
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 12:11:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2ECB41062884
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Mar 2026 12:19:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 109F310E8EE;
-	Wed, 11 Mar 2026 12:10:57 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF82710E8B4;
- Wed, 11 Mar 2026 12:10:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773231051; x=1804767051;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=etszYrQN7wmKwNtPE/XGYpYWgK2X8OB8um2DOlqXbu0=;
- b=VVrkVLPHwvQIbxpiVC4wc/pKJFCcKNFwWPdnXwGDukHAeM3/+MhXXlHc
- YExavUcX0YHR1xV4XJ/tZbWBZI0AEVeYhpWpzs9VsQqAnqwicOuHifJ6R
- +QTpAZSV3t9Qhb9tVsJalJaqrnAdjkmTi7OMcowbzj+JZXIXH0tG8U3pH
- HiOgfjWurACyWjNmZRY8w5+cp7eb1BAtVrnO0Tgs5djyhsg+HTcRbSoYx
- T6ecI1/l30kY8YQzNRyBwE0Cp1n2j1Nq771zztJmUBMyXtnMmFnhj5p7t
- 3rawj4y6sLM0O8QhrKzNHxWAuhad6sG11++3Owkub2Ie/+x5c2gdZXOxZ g==;
-X-CSE-ConnectionGUID: m9pTbEEsQoSBPAInyG4/cg==
-X-CSE-MsgGUID: NL7RuuC3RSe+D4Z0Y/hfBg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="99760975"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="99760975"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 05:10:45 -0700
-X-CSE-ConnectionGUID: GYQdFrS6RMGpPwJVCWPyIQ==
-X-CSE-MsgGUID: 3te19XkXR++N1bG3EVdoHA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="220629706"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 05:10:44 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 11 Mar 2026 05:10:43 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 11 Mar 2026 05:10:43 -0700
-Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.32) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 11 Mar 2026 05:10:42 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=MwHR7yveF4bCxV5T4VME6rRDquTlgUIkMCUiFgA1pDW7B4FvzmnDLHAXgZrlJrGaAxJhXqechE+37QrVtQRqSSbcjdl20lnWVSG5J2UeFmRYa07RC4mq8zQhJoNjmnP0P6EOznnbVkPQO4SgoTm2kUkNN9/hdok65iVuGDTx/OcXgcmYSp0zUurOyk55OHMZB1NhSNzCZOZ2Vu49FmpQJuBQtRJ3bk01oz9WEl/UfoX6q/Lj5kRwR+qYmImlY4EYZDA/PkY7YTVjmwsunfLvtfNKRiFCiQLxVzsCoM91FUNfcd4ISLMZhLn/stLQyeEMyHz+pFmiA9gclx9r91OYDg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=duYRGAeHirgn5PB3+pnKjqaYy5CMb0NGYH9DiyUhrZ0=;
- b=eBg14Q0yfjbc4eZWZR2BNFINbGR7mWLLp1pTGK48L3HAVUjZF38gpz2ToZR2sJnYUtoRh8aiLT+tLgQDfhZEOMOHnZ3aSLSugtJPstgSVC/Z23mtZVQr7WwrOOPK6/3CN3pZbcTrZOglhFyTnmS0yo6uqFsANpEVHCCisDum70y/ADSsJmHNF41fjjEaxBDgtPY8qg98QgTsHKpjb2PcnDhi41dqJ6RxqRNxpTmozIBMWanbO5S2FBGPwF7A6ZR+Zv06YOMJ3la6WsrfrOu2WB/jDQb+ASmak/MMxz97DjQHtCfRHIioiYWB3PW5iZTas1x2R+rtAbTGOgdNVcKqQA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by DM3PPFF2E67D388.namprd11.prod.outlook.com (2603:10b6:f:fc00::f60) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.15; Wed, 11 Mar
- 2026 12:10:40 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4%4]) with mapi id 15.20.9700.010; Wed, 11 Mar 2026
- 12:10:40 +0000
-Message-ID: <07570fdf-a053-4df0-93ad-6a404a5662e6@intel.com>
-Date: Wed, 11 Mar 2026 17:40:32 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] drm/i915/dp: Add helper for AS SDP TL and fix
- documentation
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <arun.r.murthy@intel.com>
-References: <20260305040118.2576312-1-ankit.k.nautiyal@intel.com>
- <20260305040118.2576312-4-ankit.k.nautiyal@intel.com>
- <aarCQYHTCCEKtB2R@intel.com> <aa_fhRxsFcftI2Nv@intel.com>
- <270d9647-7238-4d78-a942-d45ea846b763@intel.com> <abFaPftPmvwGPXkD@intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <abFaPftPmvwGPXkD@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5PR01CA0048.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1d6::7) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF68910E116;
+	Wed, 11 Mar 2026 12:19:00 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="PyJCsFyA";
+	dkim-atps=neutral
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E17C10E116
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Mar 2026 12:19:00 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id C5E9143987;
+ Wed, 11 Mar 2026 12:18:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BD2CC4CEF7;
+ Wed, 11 Mar 2026 12:18:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1773231539;
+ bh=JPy1P/nZjsTDepdMBvS4sgUwRld2mjU32vdkoNCV31k=;
+ h=Date:From:To:Cc:Subject:From;
+ b=PyJCsFyA7XA6Dde5mr4ouKu2viYihju/M07qxSGKS+ZvyfcCZA58w1WUgEZvC4IN/
+ uLqYPNUpeju8zz38ZqGeuz0Z22g0KonRYHGLITefqu9RvMp+2MmwsLk9J8mogTecUi
+ rDxGN/DKNiiTyKDYh2IpKbpV+HTpt+vQOXj+iCmrTcry7m1x5GpUSKtoDjvitWHDfV
+ 4gKRN4FT69Y+MLXIuuSNRTjceL1+L1iKDa9XgBffBVwh1hwnDvtwrhGn6AHTSt84Dl
+ +x5xISwW2o8fA3Qp891RIUswdnSpu77rfEvFMttaK25ckCsTZ2Bw1D4rigcoEFX8rZ
+ xZjTNR/uCCiUg==
+Date: Wed, 11 Mar 2026 12:18:55 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ DRM XE List <intel-xe@lists.freedesktop.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Randy Dunlap <rdunlap@infradead.org>
+Subject: linux-next: manual merge of the drm-xe tree with the mm-hotfixes tree
+Message-ID: <abFdr2hYWR-WSPvw@sirena.org.uk>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|DM3PPFF2E67D388:EE_
-X-MS-Office365-Filtering-Correlation-Id: ad8a19f7-5e9f-49de-f683-08de7f673620
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|18002099003|22082099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: BIYRYHvteyObZimuX9MzZcATydRiUhpMMWIJISNmglIvgRXEoZ0Bxpr10sdHakTzYqEkF7hmASnUo5ltcnNtf4dgHyMqaCjtkobBOME1hV1q0YF54vZr5rgufoHStg5oLFva1UHX6FaPV2x/yA1cInE/RtcjlgG7sM2A/mHjJrC2Lslgm3/teLXIm4JlZYpOvcqS04pBtjH8bxBCvYs3EOwPs+JTFezrfqaoFXr1gYvC+hW+4b2g/5x/SoMRpiaaZzWxi4pFpeT5HX0h8rPxjWk5ybT2ZrkTFATZ0tgzZMtgzTl+m/pp/er5GvRKNwZOYPa3aH/ZHcbFY5gN4VcEPkcgZsGK9F64zI9c16OXycCGWQxUbpjrpHBuzCEOckUt0IaTqZnoQ81nY9WATmngJQaU5l9KEjskQUcZeQW4gGC5j8li9BBRfENfK8iqVLOHAw4DBwxSwuEi1zQJ7wfVMzVK5eSuRkoPs6d32A0x9R3UgRdmb2M2Xqspg790IhcGRmpcXKzJ92QHyP38+0prcWu2xpnI8Q+Zo7h+8HjpuUHqYnCRSVleKyKAqWBKKOnxSTJmA/Pu2ltIsy/dJEtiNOFbOVvgfeNJ7cV4WfcnIjodoJoell+lzNZphvw6SyNQMyOcgoNe4bddc/B4t7g8RgViz1Lb30GZ2i4IjzuULOkAWzjxGYVmwFLEHJPHqhnPhKgjqH7Bd56S1pGdyQfcTxp4kQ1N8ZofRrpNYjW5IoA=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eS8zazBXZktBWTgxR0NabmhhUE1lMklKSkFqM3lZS09tWHoxRHVTUXhLSnFG?=
- =?utf-8?B?ZUx5UjM3TUVIVTdXdkIrd01OOTROUEVMNG5iRUdxTjJmSE5iZ3kvU095Z25J?=
- =?utf-8?B?TytlNGU5bXRQYmVDQ3kxWiszampSeFA0SmlkNUFzdC9tdVlZWUtpL3VrZGZ1?=
- =?utf-8?B?bDVyZlNtZ0MxeGxzNkpsQlVoUGJ0dmlCeDFSMjVUczkvdHM2RFZ3eUdyL0ZP?=
- =?utf-8?B?SnJSeEloQko5V2tjMklrTXBPaUJicUxOMDZjUm5vT2djbWNDMDFocmg5ZUEw?=
- =?utf-8?B?NmtYSjBpUzlybWxubS9LNVAwR2tJdXc2MWdRd1BjeGZJY1cyWlNGRkJJOTNX?=
- =?utf-8?B?VjNkb2lzQ1huTUtQNU04MktyWUdlMy9VSjk4SzhnWWNHQ3pkQ2JDMzg2VGpz?=
- =?utf-8?B?N2Q0VWFWRGFQUklBbEVLd1Z4a2lQUU1oTFNMYUQ0d2ZrRlVhZS9wZXNXeno5?=
- =?utf-8?B?am9GOVNOTFJUTVkrTWxqOEoyMGc0Tlo0MzNTUG83aGZVUDFQclhqaUw5NWJE?=
- =?utf-8?B?MEgxbUVaRU11QTV3b0tFbU5RRHNBYUpMT293cExvOXFkakJMMThtdVRwamdZ?=
- =?utf-8?B?NFRGSHladGdjZi9lQTRyZG05N1RKb1NXM1JmZ1B0YXVzSStEZ29xUVV4Mkxo?=
- =?utf-8?B?SkFidE1JK3laak1qeUdIV25pbXd6VGZwSStSQ3dvNWZoT1FDenJ4ejZnQ09M?=
- =?utf-8?B?VmxzV2dvek1sbTgwZWJGVC9Qc0ZMRUNQejgwcDlCb0N5VmVYaitVOC9wWFBO?=
- =?utf-8?B?OHFOaENRbjhPdDhMSE9VbTJYeUdReExRNVhUVGdsQkV1U1lsbGpSN2dRb25z?=
- =?utf-8?B?d2U3U004em5xNlRqSS81aHZXM1ZhbS9ZeDc0YXVFUkk4V2JHTStYTVFUcGYz?=
- =?utf-8?B?MTd2UytYUnVEc2VlYVcxQ20zajJnTmJ2UGYxdVFKbDBUdUVxN2kranpOcHFx?=
- =?utf-8?B?M3M0RG43dVB6UTNlcGpjZTdCSDhnWE9zUEhNcWxFU1BVVWhtTjRUajB1dXVp?=
- =?utf-8?B?RHVaZ2s2MHNZQ0xyY2k4aFFld1ZoMW5sTWw5MnpvUSthTGNMZWNDb2cwRGpF?=
- =?utf-8?B?TEpyWlVPVkwzSkhCOFlUL2pFTjcxMkZmRkxNczBzMHlIdURLN094OXhDbmxJ?=
- =?utf-8?B?Lzd1RzV3ZVVzSU5temhIVVhocHUvdUE2ZlhGbFhsQzNOVDh2TDhZUTF3cGg0?=
- =?utf-8?B?ajBuRDMrUWNuVE5RU2wzQktISkltb0VidVBLSVk5OFYwd2xUT1l2TnNiMWNk?=
- =?utf-8?B?WTJYT0haN0NQbXU5Zjlia0N2NDJDRzd0V2tmV0h3elpKTHFxZk9QdUs0V29p?=
- =?utf-8?B?cXloZjV5T1BQTGR2R0JaS3FPcCtUUXNkNUhjMCtWQTZDSmJtYWV3bHhBYnBJ?=
- =?utf-8?B?bVMwMEZiZEN2RTFLeUJyeHh4QXJHZ3dWZWtqQTFValZnZEE5Zi9idjVYMWpR?=
- =?utf-8?B?cFcvS09oemtWREZHWVNPQ00yQU1nWXdTY0tRRlJ2NGgwdVFFaStrdVBLalZt?=
- =?utf-8?B?cjBKWWZCd1RLVXUzUVE5MGNaUXNwdlh6N3NoYmxDMm53MVpMYVFaVkZENXJC?=
- =?utf-8?B?V1RCRHc5Unp0M1p5T3lhSmlZNUNHNEFkM3RxRmVya2ZrSGlZUmxnbWZKSFBm?=
- =?utf-8?B?QnJTUFR3dTV1dTdrdm5FdzlhTXdXeTd3RXlnOFBTYzFod3NkTVRFZ0VSSlF6?=
- =?utf-8?B?c3owRWxSdXdjaVNtVFZrS24xeDFuUWxqZ29Xc1VQSFhjZUZKQWU3bWFMMXNB?=
- =?utf-8?B?SW1CQ1ZCc1BadWswVHkxaWs0Qmg5R2huY0lXRGpxMTZtZCtWZXZZVmwyVG8z?=
- =?utf-8?B?ZHIxdTdadEpGYy9SajZSYnBjUVJYMnVJNXZKa0M3dmc0dVMweXFrYW1LV3lJ?=
- =?utf-8?B?YmNoeUNYa1VuZTNtbzlSVGhPbHlqQXFiQzR1L1RVLzk0NzcvTFRFblN0TWIy?=
- =?utf-8?B?OTNzUlpPbXdUWTZhZjVWTHpIVHlnQ0xUeGwrU3YzSGNTT1E3WThXR2g3alB6?=
- =?utf-8?B?ZGpURlMrenlwVzNjOTBYUSt3Y2psbE0vaXNUc0RwRGcrc1V4Tk9PT05uQ2Zs?=
- =?utf-8?B?bXZNVXFzWi9lRVlZYU4zb29zdldZQ3gyYS9IWUV5a2grTFhJMmhjaW0wTk90?=
- =?utf-8?B?S0ZYU2cvTUt4bjc1bnd3QnlrUXlJaGJqTU5OVXZpWi9jeFhjZEpwL1U1MHRl?=
- =?utf-8?B?MEpKdnk4bjVBZU8yeDE1UU8vaHhhdHE2RHE4NEhENEdNVTR2Q3Via2J5UW0x?=
- =?utf-8?B?L2FjQUptcnVlNmVuazdoblR2Y3dIZ3VmZm0zZFhjandrbkd0RitIVUtQcTZt?=
- =?utf-8?B?V0JMQTR0ZHYwa3VtVmt1dUJJUkJvMmU3U2NGYnJuYUxEWEdGMTM3R0FJUGJs?=
- =?utf-8?Q?C8w19QTNnH2trFHo=3D?=
-X-Exchange-RoutingPolicyChecked: F2XNipv4sDhQxdBMNaXEW3FQg1A7LI5RkYAk/2mrYXsz2FAzHXus70BmpJsTaZGWcBZvRQq1Z32IM/hSH2yjKv919lE5d93nDOONKdjY5FDMHnOhwUmwYzMg45YEvUgjEgtXSFn59qYvKHQ8yQvgxd86kjoox2o0eCfGN6wKOmF3d1jRQIQgf2zslIfJ3Ou6HR/JS9ySqxhf1MldOPWaAvmhgR4THEmL0uLl65Sw9mOMrLNzIO9AFI71MRuV0wGM1w4QabfvG0Hj6PtDCsUSPjJaAm9IIgiU5UYyb7es6YHX4TH3Clb3mTeT+/VLi+g0ARx5HmTJjIPHwbNBqW9DPw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: ad8a19f7-5e9f-49de-f683-08de7f673620
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2026 12:10:40.4928 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xwrTc8tKBJySV3MCvPowVcQcbCECXzeNfwEKK8yons8IOLV98Y9I+Q+MHFiL86B9ziWsXCv6WN6cTdKIv/5EVAjncjsFO/hm4tgo4Foq4Qo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM3PPFF2E67D388
-X-OriginatorOrg: intel.com
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="6Na+vzgnSWw1C9h4"
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -171,82 +59,101 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 3/11/2026 5:34 PM, Ville Syrjälä wrote:
-> On Wed, Mar 11, 2026 at 05:24:22PM +0530, Nautiyal, Ankit K wrote:
->> On 3/10/2026 2:38 PM, Ville Syrjälä wrote:
->>> On Fri, Mar 06, 2026 at 02:02:09PM +0200, Ville Syrjälä wrote:
->>>> On Thu, Mar 05, 2026 at 09:31:16AM +0530, Ankit Nautiyal wrote:
->>>>> Add a helper, intel_dp_emp_as_sdp_tl(), to compute the EMP_AS_SDP_TL
->>>>> value used when programming the double‑buffering point and transmission
->>>>> line for VRR packets.
->>>>> Also improve the documentation: the AS SDP transmission line corresponds
->>>>> to the T1 position, which maps to the start of the Vsync pulse.
->>>>>
->>>>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->>>>> ---
->>>>>    drivers/gpu/drm/i915/display/intel_dp.c  | 9 +++++++++
->>>>>    drivers/gpu/drm/i915/display/intel_dp.h  | 1 +
->>>>>    drivers/gpu/drm/i915/display/intel_vrr.c | 4 ++--
->>>>>    3 files changed, 12 insertions(+), 2 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->>>>> index 86390553800d..9204a813639a 100644
->>>>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->>>>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->>>>> @@ -7288,6 +7288,15 @@ bool intel_dp_joiner_candidate_valid(struct intel_connector *connector,
->>>>>    	return true;
->>>>>    }
->>>>>    
->>>>> +int intel_dp_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state)
->>>>> +{
->>>>> +	/*
->>>>> +	 * EMP_AS_SDP_TL defines the T1 position : The default AS SDP position
->>>>> +	 * that corresponds to the start of the Vsync pulse.
->>>>> +	 */
->>>>> +	return crtc_state->vrr.vsync_start;
->>>>> +}
->>>> Other parts of the code (eg. ALPM) still just directly use the
->>>> adjusted_mode timings to calculate the same stuff. So this doesn't
->>>> really seem to help us.
->>>>
->>>> Feels like all of our abstractions around this SDP transmission line
->>>> stuff are way too low level, and thus the same information is
->>>> calculated in different ways in different parts of the code. There
->>>> should be a single place that defines the transmission line(s),
->>>> and everyone should just consult that stuff (regardless of whether
->>>> the platform uses implicit transmission lines, EMP_AS_SDP_TL, or
->>>> the new stuff).
->>> I think instead of tracking the low level stagger values directly, what
->>> we want to track is just the transmission line itself for each type of
->>> SDP. That seems like a form that is easier to use elsewhere in the code.
->> Agreed storing TL will be easier, stagger values can be derived from that.
->>
->> So we set the transmission line for the packets only if we plan to send
->> them right?
-> I don't see why we wouldn't just always set them. And if we set one we
-> have to anyway set all of them since they're all derived from that one
-> pair of registers.
+--6Na+vzgnSWw1C9h4
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hmm alright, I will take care of this in the next revision.
+Hi all,
 
-(I will be Off for a few days, will come back to it in couple of weeks).
+Today's linux-next merge of the drm-xe tree got a conflict in:
 
-Thanks Ville for all the inputs.
+  include/linux/mmu_notifier.h
 
+between commit:
 
-Regards,
+  599b4e290c876 ("mm/mmu_notifier: clean up mmu_notifier.h kernel-doc")
 
-Ankit
+=66rom the mm-hotfixes tree and commit:
 
->
->>
->>> And to accommodate VRR I suppose we should use the "transmission line
->>> is specified relative to the end of vblank/vtotal" convention for all
->>> of these.
->> Makes sense.
->>
->>
->> Regards,
->>
->> Ankit
->>
+  7aba71dbc4164 ("mm/mmu_notifier: Allow two-pass struct mmu_interval_notif=
+iers")
+
+=66rom the drm-xe tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+diff --cc include/linux/mmu_notifier.h
+index 3705d350c8633,b60673a8e0bbb..0000000000000
+--- a/include/linux/mmu_notifier.h
++++ b/include/linux/mmu_notifier.h
+@@@ -233,8 -233,33 +233,33 @@@ struct mmu_notifier=20
+  	unsigned int users;
+  };
+ =20
++ /**
++  * struct mmu_interval_notifier_finish - mmu_interval_notifier two-pass a=
+bstraction
++  * @link: Lockless list link for the notifiers pending pass list
++  * @notifier: The mmu_interval_notifier for which the finish pass is call=
+ed.
++  *
++  * Allocate, typically using GFP_NOWAIT in the interval notifier's start =
+pass.
++  * Note that with a large number of notifiers implementing two passes,
++  * allocation with GFP_NOWAIT will become increasingly likely to fail, so=
+ consider
++  * implementing a small pool instead of using kmalloc() allocations.
++  *
++  * If the implementation needs to pass data between the start and the fin=
+ish passes,
++  * the recommended way is to embed struct mmu_interval_notifier_finish in=
+to a larger
++  * structure that also contains the data needed to be shared. Keep in min=
+d that
++  * a notifier callback can be invoked in parallel, and each invocation ne=
+eds its
++  * own struct mmu_interval_notifier_finish.
++  *
++  * If allocation fails, then the &mmu_interval_notifier_ops->invalidate_s=
+tart op
++  * needs to implements the full notifier functionality. Please refer to i=
+ts
++  * documentation.
++  */
++ struct mmu_interval_notifier_finish {
++ 	struct llist_node link;
++ 	struct mmu_interval_notifier *notifier;
++ };
++=20
+  /**
+ - * struct mmu_interval_notifier_ops
+ + * struct mmu_interval_notifier_ops - callback for range notification
+   * @invalidate: Upon return the caller must stop using any SPTEs within t=
+his
+   *              range. This function can sleep. Return false only if slee=
+ping
+   *              was required but mmu_notifier_range_blockable(range) is f=
+alse.
+
+--6Na+vzgnSWw1C9h4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmxXa4ACgkQJNaLcl1U
+h9DUfQf8DDF+368HcmXtWEmMP5aHhUZ+3DfCxbuzu/HH623OQmzEG0GmHprLBFqZ
+OIbYMCpoDKYpZtUNjXhkpeeVTMS2+oWXLNg8YJG7Uwp/YoxksLYDIqRmIqzAUbvW
+cA/e94BKG6va47hz8pAFEUbDQu5hU5UXlG3qCpb7WVP2dgWdTPOlaTj6L5uK+Fa8
+gmiUkstU1cx5o2HOWyR3KZvqH8KU/350ygICENr7EHedHyX5MdgzvKMI9iG7Kmr6
+AFSLOt25o79wP6SbdN+6najN272tTZU5EEUbaksiIoFch9TB2taPbHypThf7tfDk
+AYNf6dp+Y2c57JXgpudJEC47eyEOqQ==
+=LOXu
+-----END PGP SIGNATURE-----
+
+--6Na+vzgnSWw1C9h4--
