@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5314FED2E4
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F15D4FED2E7
 	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 08:07:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DEAD10E9BB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B115D10E9C0;
 	Thu, 12 Mar 2026 08:07:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P0tRrd8i";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gNGPyKgc";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A453C10E9B9;
- Thu, 12 Mar 2026 08:07:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC8F310E9A6;
+ Thu, 12 Mar 2026 08:07:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773302838; x=1804838838;
+ t=1773302844; x=1804838844;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=XsmZE1Z21n5+fS7HALmDFSPnoDEc6I8P0GUYavm2pDc=;
- b=P0tRrd8iNqm3OPxmQxfhHYf+mMoLFlaVuRF73okkLyWs2qz5ESIYwLL0
- Xmr+Y2YNcUKNXjwivC8qzunnlywY56VibMv7as3Lpyta77m5abflmQ/IF
- hxLmeOwifsZwZ0eW51/p8y4/lLl9OTm0JX9OZBzechVhZTr81xExb66AC
- cY/YiOLV+kw8ODT3aH0LAtDS6hyiL0LebJwRCORerIOlDA25KAodwPeUe
- 64EoO24OzKXKYlVNBdoP1rOIQa1BAf0o4TSONFu3lkuirbANbQV8L6mEw
- 8bK/IQjpdWrGCtSJWOS3/HhEhP3JqXfX3kmMsMo8zDuFQQB/7y24d15CT Q==;
-X-CSE-ConnectionGUID: T519J+MPSuebj6XyiVyo7A==
-X-CSE-MsgGUID: 4rbQhUnqR1SS4gGmniYcyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="85013732"
-X-IronPort-AV: E=Sophos;i="6.23,115,1770624000"; d="scan'208";a="85013732"
+ bh=4JDn4RXztymz/hyaqvXjTomgI/1Wir4CtpbFjr2Kpxw=;
+ b=gNGPyKgc05vI87lLSDKCkcjTLo0BvbSH5OSskjlfVuX948Ha8JPA3kNi
+ SSuW6d8GYRJ6Q5sKhg4RfQ0n6fG0iIR5P5+7vjSDl79NRVtICJpSmwGFr
+ yFSNTo73hnp0mbEEUshXIZh4zi9AAVApnrD498BgNKmm35EjOrySyl+h4
+ LpEUGpWYMaTHdQXBynRTmW3XLWvY1oezsZ+bcJzVEL/8/mPacZueEGeaq
+ brSA1WhakytrAn1hu1SLrCZQsmVsMTBVh+2CAo4DRh0H1AV38KrGwcCao
+ lTnpxKFWIwkfTW3PIDhuI3GmU5D2ifQpgUKDQwsiD/cg8JttAUgg/1xir A==;
+X-CSE-ConnectionGUID: daAxLnLFQYqNCbtT0gX8RA==
+X-CSE-MsgGUID: rTIV+afnSQWNSU2I6JL6Mw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="85013741"
+X-IronPort-AV: E=Sophos;i="6.23,115,1770624000"; d="scan'208";a="85013741"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2026 01:07:18 -0700
-X-CSE-ConnectionGUID: lQTT8wQNSrWx5n4cBAc5HA==
-X-CSE-MsgGUID: 9dmoiSyiRv+R0Xegy/Si/g==
+ 12 Mar 2026 01:07:23 -0700
+X-CSE-ConnectionGUID: b6QIKL1HS1uwo7f2uzaNYg==
+X-CSE-MsgGUID: ZZeofJeyRCu6KvRKDXaN8w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,115,1770624000"; d="scan'208";a="223206866"
+X-IronPort-AV: E=Sophos;i="6.23,115,1770624000"; d="scan'208";a="223206898"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa004.fm.intel.com with ESMTP; 12 Mar 2026 01:07:17 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 12 Mar 2026 01:07:22 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [CI v3 15/24] drm/i915/lt_phy: Add xe3plpd .crtc_get_dpll
-Date: Thu, 12 Mar 2026 08:06:48 +0000
-Message-ID: <20260312080657.2648265-16-mika.kahola@intel.com>
+Subject: [CI v3 19/24] drm/i915/lt_phy: Readout lane count
+Date: Thu, 12 Mar 2026 08:06:52 +0000
+Message-ID: <20260312080657.2648265-20-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260312080657.2648265-1-mika.kahola@intel.com>
 References: <20260312080657.2648265-1-mika.kahola@intel.com>
@@ -67,27 +67,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add .crtc_get_dpll function pointer to support xe3plpd
-platform.
+Readout lane count back from HW. Reuse existing function
+for Cx0 for LT PHY case with minor modification to add
+lanes as function parameters.
 
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 10 ++++++----
+ drivers/gpu/drm/i915/display/intel_cx0_phy.h |  1 +
+ drivers/gpu/drm/i915/display/intel_lt_phy.c  |  2 ++
+ 3 files changed, 9 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
-index 147baa777856..e13a5e12109d 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-@@ -1696,6 +1696,7 @@ static int i8xx_crtc_compute_clock(struct intel_atomic_state *state,
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 6a471c021c0e..7e59409bbf01 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2180,7 +2180,7 @@ static int intel_c10pll_calc_state(const struct intel_crtc_state *crtc_state,
+ 	return 0;
+ }
  
- static const struct intel_dpll_global_funcs xe3plpd_dpll_funcs = {
- 	.crtc_compute_clock = xe3plpd_crtc_compute_clock,
-+	.crtc_get_dpll = hsw_crtc_get_dpll,
- };
+-static int readout_enabled_lane_count(struct intel_encoder *encoder)
++int intel_readout_lane_count(struct intel_encoder *encoder, int lane0, int lane1)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+ 	u8 enabled_tx_lane_count = 0;
+@@ -2212,7 +2212,7 @@ static int readout_enabled_lane_count(struct intel_encoder *encoder)
+ 		max_tx_lane_count = round_up(max_tx_lane_count, 2);
  
- static const struct intel_dpll_global_funcs mtl_dpll_funcs = {
+ 	for (tx_lane = 0; tx_lane < max_tx_lane_count; tx_lane++) {
+-		u8 phy_lane_mask = tx_lane < 2 ? INTEL_CX0_LANE0 : INTEL_CX0_LANE1;
++		u8 phy_lane_mask = tx_lane < 2 ? lane0 : lane1;
+ 		int tx = tx_lane % 2 + 1;
+ 		u8 val;
+ 
+@@ -2252,7 +2252,8 @@ static void intel_c10pll_readout_hw_state(struct intel_encoder *encoder,
+ 	 */
+ 	intel_c10_msgbus_access_begin(encoder, lane);
+ 
+-	cx0pll_state->lane_count = readout_enabled_lane_count(encoder);
++	cx0pll_state->lane_count = intel_readout_lane_count(encoder, INTEL_CX0_LANE0,
++							    INTEL_CX0_LANE1);
+ 
+ 	for (i = 0; i < ARRAY_SIZE(pll_state->pll); i++)
+ 		pll_state->pll[i] = intel_cx0_read(encoder, lane, PHY_C10_VDR_PLL(i));
+@@ -2707,7 +2708,8 @@ static void intel_c20pll_readout_hw_state(struct intel_encoder *encoder,
+ 
+ 	wakeref = intel_cx0_phy_transaction_begin(encoder);
+ 
+-	cx0pll_state->lane_count = readout_enabled_lane_count(encoder);
++	cx0pll_state->lane_count = intel_readout_lane_count(encoder, INTEL_CX0_LANE0,
++							    INTEL_CX0_LANE1);
+ 
+ 	/* 1. Read VDR params and current context selection */
+ 	intel_c20_readout_vdr_params(encoder, &pll_state->vdr, &cntx);
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+index 1d4480b8bf39..1428e7a5a318 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+@@ -28,6 +28,7 @@ struct intel_hdmi;
+ void intel_cx0_clear_response_ready_flag(struct intel_encoder *encoder,
+ 					 int lane);
+ bool intel_encoder_is_c10phy(struct intel_encoder *encoder);
++int intel_readout_lane_count(struct intel_encoder *encoder, int lane0, int lane1);
+ void intel_mtl_pll_enable(struct intel_encoder *encoder,
+ 			  struct intel_dpll *pll,
+ 			  const struct intel_dpll_hw_state *dpll_hw_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+index 62719082efda..e9fce044b99d 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+@@ -2232,6 +2232,8 @@ bool intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
+ 	lane = owned_lane_mask & INTEL_LT_PHY_LANE0 ? : INTEL_LT_PHY_LANE1;
+ 	wakeref = intel_lt_phy_transaction_begin(encoder);
+ 
++	pll_state->lane_count = intel_readout_lane_count(encoder, INTEL_LT_PHY_LANE0,
++							 INTEL_LT_PHY_LANE1);
+ 	pll_state->config[0] = intel_lt_phy_read(encoder, lane, LT_PHY_VDR_0_CONFIG);
+ 	pll_state->config[1] = intel_lt_phy_read(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_1_CONFIG);
+ 	pll_state->config[2] = intel_lt_phy_read(encoder, lane, LT_PHY_VDR_2_CONFIG);
 -- 
 2.43.0
 
