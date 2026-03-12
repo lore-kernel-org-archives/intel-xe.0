@@ -4,54 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AA49FED2F9
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 10:14:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BF62FED2F9
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 10:17:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1006410E9BF;
-	Thu, 12 Mar 2026 10:14:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 155FB10E9CF;
+	Thu, 12 Mar 2026 10:17:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LHcA2rRp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a6bF6945";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79B2E10E9BE;
- Thu, 12 Mar 2026 10:14:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E24D10E9CC;
+ Thu, 12 Mar 2026 10:17:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773310461; x=1804846461;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uNC/1gie8248vhbMNgP66VUvppaQFJUrJAb4ub6mlYs=;
- b=LHcA2rRpQxTg0Ro7xCBBgAFV9flUwLN0FTfCs6KE7VBs+dmHyPD+RF2V
- hVydABdMr4bhynRKDVaRWAwZeW5H6wrngrdNQuwHyIYLLJxQGoj3Vg6fP
- Hz8SEb6w9agYqe0KHL5JzgxKNZ2v086WVM9HcpLFsz0j5QhlY27HJMcMh
- 1SN9LkonnNnp+/raMt3Pf2K7sIi8+L3N+JLT6QugwXPWvB4aZuMNmVlXJ
- lVspeGAhOYNgr+CeQ29tLM+bNuISOzad2x/GqVqrjYIuFP2fItHoncVzU
- PwG5wqcozkyC1DYywodWkoLeSywkHEDh7rq5jfXcp2/ETGKsmiOJ1HqkU g==;
-X-CSE-ConnectionGUID: u1NLxC5uQ8GOZjTR6H6haQ==
-X-CSE-MsgGUID: Spod4urQSEOAjKtSw5yHBQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="74098908"
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="74098908"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2026 03:14:20 -0700
-X-CSE-ConnectionGUID: deNiMlIxTVySZLTSdtvh/w==
-X-CSE-MsgGUID: BJJkIyaTTwaYnWqC6QHNwA==
+ t=1773310658; x=1804846658;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=q10lpM6sZRUITHwwKuTv+xH4LIsg86jKPcy0faoM7Es=;
+ b=a6bF69457qd5u4VYfWxCJ7pwNbh82azu458xwESN3fY4gq7iBhopmRlM
+ B4dWBNNpRjLJRuJTaloTK6DVcSrxdXqXN8C9QmEETGGliT4ycls0fw9Qf
+ y+puzaZmFfp510YpDWHP4auem4VZeaIzktY/ZR3JP7IqCdN9Tuxi+sqw7
+ MxIg7JqxoPa/5t0Glfmut52zPfvXbBaejz543oP5alHTtwxpCbGNpmWdD
+ 3/Hoyjg5SVU6inHNI+sEQnqmQJ1AeT5KNdbdoFuFgrZz/zcLvW16tlhDD
+ WEG6BoWXHAxmvQmscrYrHp00o1pUoWpNEDsmP591gK0SxCqBWauxEBUsf g==;
+X-CSE-ConnectionGUID: KiFnLNPWQ5u4Da180gPRmA==
+X-CSE-MsgGUID: eeQOrysrRC6m/RaOChv2Yg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="85873113"
+X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="85873113"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2026 03:17:37 -0700
+X-CSE-ConnectionGUID: 6U0YCNtlS/uFf4lm9Auj8w==
+X-CSE-MsgGUID: 4EJFmJB5QieJ72tRPRK7Ow==
 X-ExtLoop1: 1
-Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa003.fm.intel.com with ESMTP; 12 Mar 2026 03:14:19 -0700
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Mika Kahola <mika.kahola@intel.com>,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [CI v3 23/24] drm/i915/lt_phy: Enable dpll framework for xe3plpd
-Date: Thu, 12 Mar 2026 10:14:15 +0000
-Message-ID: <20260312101415.2669387-1-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260312080657.2648265-24-mika.kahola@intel.com>
-References: <20260312080657.2648265-24-mika.kahola@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="251270236"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2026 03:17:34 -0700
+Date: Thu, 12 Mar 2026 11:17:30 +0100
+From: Raag Jadav <raag.jadav@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ netdev@vger.kernel.org, aravind.iddamsetty@linux.intel.com,
+ anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, simona.vetter@ffwll.ch,
+ airlied@gmail.com, pratik.bari@intel.com,
+ joshua.santosh.ranjan@intel.com, ashwin.kumar.kulkarni@intel.com,
+ shubham.kumar@intel.com, ravi.kishore.koppuravuri@intel.com,
+ anvesh.bakwad@intel.com, maarten.lankhorst@linux.intel.com
+Subject: Re: [PATCH 2/4] drm/xe/xe_drm_ras: Add support for
+ clear-error-counter in XE DRM RAS
+Message-ID: <abKSunbqoLw7uxmd@black.igk.intel.com>
+References: <20260311102913.3387468-6-riana.tauro@intel.com>
+ <20260311102913.3387468-8-riana.tauro@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260311102913.3387468-8-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,131 +75,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe3plpd platform is supported by dpll framework remove a separate
-check for hw comparison and rely solely on dpll framework
-hw comparison.
+On Wed, Mar 11, 2026 at 03:59:16PM +0530, Riana Tauro wrote:
+> Add support for clear-error-counter command in XE DRM RAS.
+> This resets the counter value.
+> 
+> Usage:
+> 
+> $ sudo ynl --family drm_ras  --do clear-error-counter --json \
+> '{"node-id":1, "error-id":1}'
+> None
+> 
+> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_drm_ras.c | 35 +++++++++++++++++++++++++++++++--
+>  1 file changed, 33 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_drm_ras.c b/drivers/gpu/drm/xe/xe_drm_ras.c
+> index e07dc23a155e..c21c8b428de6 100644
+> --- a/drivers/gpu/drm/xe/xe_drm_ras.c
+> +++ b/drivers/gpu/drm/xe/xe_drm_ras.c
+> @@ -27,6 +27,16 @@ static int hw_query_error_counter(struct xe_drm_ras_counter *info,
+>  	return 0;
+>  }
+>  
+> +static int hw_clear_error_counter(struct xe_drm_ras_counter *info, u32 error_id)
+> +{
+> +	if (!info || !info[error_id].name)
+> +		return -ENOENT;
+> +
+> +	atomic_set(&info[error_id].counter, 0);
+> +
+> +	return 0;
+> +}
+> +
+>  static int query_uncorrectable_error_counter(struct drm_ras_node *ep, u32 error_id,
+>  					     const char **name, u32 *val)
+>  {
+> @@ -37,6 +47,15 @@ static int query_uncorrectable_error_counter(struct drm_ras_node *ep, u32 error_
+>  	return hw_query_error_counter(info, error_id, name, val);
+>  }
+>  
+> +static int clear_uncorrectable_error_counter(struct drm_ras_node *node, u32 error_id)
+> +{
+> +	struct xe_device *xe = node->priv;
+> +	struct xe_drm_ras *ras = &xe->ras;
+> +	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERR_SEV_UNCORRECTABLE];
+> +
+> +	return hw_clear_error_counter(info, error_id);
+> +}
+> +
+>  static int query_correctable_error_counter(struct drm_ras_node *ep, u32 error_id,
+>  					   const char **name, u32 *val)
+>  {
+> @@ -47,6 +66,15 @@ static int query_correctable_error_counter(struct drm_ras_node *ep, u32 error_id
+>  	return hw_query_error_counter(info, error_id, name, val);
+>  }
+>  
+> +static int clear_correctable_error_counter(struct drm_ras_node *node, u32 error_id)
+> +{
+> +	struct xe_device *xe = node->priv;
+> +	struct xe_drm_ras *ras = &xe->ras;
+> +	struct xe_drm_ras_counter *info = ras->info[DRM_XE_RAS_ERR_SEV_CORRECTABLE];
+> +
+> +	return hw_clear_error_counter(info, error_id);
+> +}
 
-Finally, all required hooks are now in place so initialize
-PLL manager for xe3plpd platform and remove the redirections
-to the legacy code paths for clock enable/disable as well as
-state mismatch checks that are no longer needed.
+This would've been much simpler if we had per node info, but for now
 
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c      |  2 +-
- drivers/gpu/drm/i915/display/intel_display.c  | 31 -------------------
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  7 +++--
- drivers/gpu/drm/i915/display/intel_lt_phy.c   |  1 +
- 4 files changed, 6 insertions(+), 35 deletions(-)
+Reviewed-by: Raag Jadav <raag.jadav@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index fe024250d350..ebefa889bc8c 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -5285,7 +5285,7 @@ void intel_ddi_init(struct intel_display *display,
- 	if (HAS_LT_PHY(display)) {
- 		encoder->enable_clock = intel_mtl_pll_enable_clock;
- 		encoder->disable_clock = intel_mtl_pll_disable_clock;
--		encoder->port_pll_type = intel_mtl_port_pll_type;
-+		encoder->port_pll_type = icl_ddi_tc_port_pll_type;
- 		if (intel_encoder_is_tc(encoder))
- 			encoder->get_config = mtl_ddi_tc_phy_get_config;
- 		else
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 26601ddc94cd..74a89f531698 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5057,23 +5057,6 @@ static bool allow_vblank_delay_fastset(const struct intel_crtc_state *old_crtc_s
- 	       !intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DSI);
- }
- 
--static void
--pipe_config_lt_phy_pll_mismatch(struct drm_printer *p, bool fastset,
--				const struct intel_crtc *crtc,
--				const char *name,
--				const struct intel_lt_phy_pll_state *a,
--				const struct intel_lt_phy_pll_state *b)
--{
--	char *chipname = "LTPHY";
--
--	pipe_config_mismatch(p, fastset, crtc, name, chipname);
--
--	drm_printf(p, "expected:\n");
--	intel_lt_phy_dump_hw_state(p, a);
--	drm_printf(p, "found:\n");
--	intel_lt_phy_dump_hw_state(p, b);
--}
--
- bool
- intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 			  const struct intel_crtc_state *pipe_config,
-@@ -5188,16 +5171,6 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	} \
- } while (0)
- 
--#define PIPE_CONF_CHECK_PLL_LT(name) do { \
--	if (!intel_lt_phy_pll_compare_hw_state(&current_config->name, \
--					       &pipe_config->name)) { \
--		pipe_config_lt_phy_pll_mismatch(&p, fastset, crtc, __stringify(name), \
--						&current_config->name, \
--						&pipe_config->name); \
--		ret = false; \
--	} \
--} while (0)
--
- #define PIPE_CONF_CHECK_TIMINGS(name) do {     \
- 	PIPE_CONF_CHECK_I(name.crtc_hdisplay); \
- 	PIPE_CONF_CHECK_I(name.crtc_htotal); \
-@@ -5424,10 +5397,6 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	if (display->dpll.mgr || HAS_GMCH(display))
- 		PIPE_CONF_CHECK_PLL(dpll_hw_state);
- 
--	/* FIXME convert MTL+ platforms over to dpll_mgr */
--	if (HAS_LT_PHY(display))
--		PIPE_CONF_CHECK_PLL_LT(dpll_hw_state.ltpll);
--
- 	PIPE_CONF_CHECK_X(dsi_pll.ctrl);
- 	PIPE_CONF_CHECK_X(dsi_pll.div);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 421767dd8367..f5d4f7146fbc 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -4724,7 +4724,6 @@ static bool xe3plpd_compare_hw_state(const struct intel_dpll_hw_state *_a,
- 	return intel_lt_phy_pll_compare_hw_state(a, b);
- }
- 
--__maybe_unused
- static const struct intel_dpll_mgr xe3plpd_pll_mgr = {
- 	.dpll_info = xe3plpd_plls,
- 	.compute_dplls = xe3plpd_compute_dplls,
-@@ -4750,9 +4749,11 @@ void intel_dpll_init(struct intel_display *display)
- 
- 	mutex_init(&display->dpll.lock);
- 
--	if (DISPLAY_VER(display) >= 35 || display->platform.dg2)
--		/* No shared DPLLs on NVL or DG2; port PLLs are part of the PHY */
-+	if (display->platform.dg2)
-+		/* No shared DPLLs on DG2; port PLLs are part of the PHY */
- 		dpll_mgr = NULL;
-+	else if (DISPLAY_VER(display) >= 35)
-+		dpll_mgr = &xe3plpd_pll_mgr;
- 	else if (DISPLAY_VER(display) >= 14)
- 		dpll_mgr = &mtl_pll_mgr;
- 	else if (display->platform.alderlake_p)
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 5bbbc6182861..657ad5cb0eff 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -11,6 +11,7 @@
- #include "intel_ddi_buf_trans.h"
- #include "intel_de.h"
- #include "intel_display.h"
-+#include "intel_display_regs.h"
- #include "intel_display_types.h"
- #include "intel_display_utils.h"
- #include "intel_dpll.h"
--- 
-2.43.0
-
+>  static struct xe_drm_ras_counter *allocate_and_copy_counters(struct xe_device *xe)
+>  {
+>  	struct xe_drm_ras_counter *counter;
+> @@ -92,10 +120,13 @@ static int assign_node_params(struct xe_device *xe, struct drm_ras_node *node,
+>  	if (IS_ERR(ras->info[severity]))
+>  		return PTR_ERR(ras->info[severity]);
+>  
+> -	if (severity == DRM_XE_RAS_ERR_SEV_CORRECTABLE)
+> +	if (severity == DRM_XE_RAS_ERR_SEV_CORRECTABLE) {
+>  		node->query_error_counter = query_correctable_error_counter;
+> -	else
+> +		node->clear_error_counter = clear_correctable_error_counter;
+> +	} else {
+>  		node->query_error_counter = query_uncorrectable_error_counter;
+> +		node->clear_error_counter = clear_uncorrectable_error_counter;
+> +	}
+>  
+>  	return 0;
+>  }
+> -- 
+> 2.47.1
+> 
