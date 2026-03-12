@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 802FA106ACEA
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 21:16:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58BF7106ACEE
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 22:04:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3EEBE10E305;
-	Thu, 12 Mar 2026 21:16:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A44D10E1EF;
+	Thu, 12 Mar 2026 22:04:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a8FlQR9v";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="blPeXXzi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EAB9C10E305
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Mar 2026 21:16:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B0F910E1EF
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Mar 2026 22:04:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773350171; x=1804886171;
+ t=1773353094; x=1804889094;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=qySIWvuWMFx7sDGtdCLyfQpHTCMfSE2568QRpblzDNE=;
- b=a8FlQR9v3RKCrfkAkciQpdvyvBFvbkGdNNCOWRtBYxZuEJkvryRF1mpM
- kW10gMFBtcyMV3Y7zYTiYztE0PIW451jOaMho1UzLFzihvSqbUVMA8g/D
- K4td6wKndYPZzK2Apnb8p+sR+5QytF4a1ht69PrTQTUuZB52ulPOVaR5Z
- efNlqNavd/weiZ1IScVq//fy1MP9Axojbu1YFwMofKNp/Q73aRRO07/nk
- XuJ0G2LhJFg3cLAAupQP307uf16fHRoVEQSINOZNZ3+fVJNKUOAmbzgCn
- ast3+0J/N0dMOCCUrP92HJCoeeui78I9eVSBhEaOzK0bi9ROgq/fJAnaR g==;
-X-CSE-ConnectionGUID: rtmVbh9ySSSrnTxYFwB88Q==
-X-CSE-MsgGUID: ZU0wIsntQiaoS5ygrKaakA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74158438"
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="74158438"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2026 14:16:10 -0700
-X-CSE-ConnectionGUID: QYtp+LdRQ5iA1Ndw6B9UAw==
-X-CSE-MsgGUID: ZX1LOcKlQ6O1p/tzc89nGg==
+ bh=+Ob7CtUzCfAOe1n6e0q6nMVwP2+8j5PR84ycB6L0ORo=;
+ b=blPeXXzi5OKmd3xw8lZkeTpT1hVmdAB/xNIxJed1oRYw+FtMijzS85c5
+ x4i3Abi104xixtm7lSZ2mjhzIkhVpSnNkbLImzTCnueeuN/PhuPgLGG0/
+ WtP/XsSUPcst7k4Ngcoh50j+tTg6z3GQhmXJJzKXwdeITjYWuH2j+VIl/
+ X739zg7aWL4Z8y48e7gPigQOvWKexXNrR8De99vdVyO3EShjVxi1b5ZiR
+ HL5QBWhHgpanj6GMojZVgaUnB2j5FMBCwBC4xEGdXqxVSwa4GA/8Mfc0N
+ HDdA54UBRwfVAn50PM7j1tDhMW7Af/2FrmD3z5t/tzSyykSAPc2HVLYeK A==;
+X-CSE-ConnectionGUID: Ognunur3RGmhoig+yUpTHA==
+X-CSE-MsgGUID: kdzeOMvXQfKq1GdVxwpgCw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="78312064"
+X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="78312064"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2026 15:04:52 -0700
+X-CSE-ConnectionGUID: eaVe5xzoR5C7/y9GLS7pHg==
+X-CSE-MsgGUID: fZtpEoRrQFGs4iYogJ6o7Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="225920253"
+X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="220217045"
 Received: from unknown (HELO adixit-MOBL3.intel.com) ([10.241.243.126])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2026 14:16:09 -0700
-Date: Thu, 12 Mar 2026 14:16:08 -0700
-Message-ID: <87qzporbon.wl-ashutosh.dixit@intel.com>
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2026 15:04:52 -0700
+Date: Thu, 12 Mar 2026 15:04:51 -0700
+Message-ID: <87pl58r9fg.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Cc: <intel-xe@lists.freedesktop.org>,
- Robert Krzemien <robert.krzemien@intel.com>
-Subject: Re: [PATCH] drm/xe/oa: Allow reading after disabling OA stream
-In-Reply-To: <abKw1rkEfe5+2ZLC@soc-5CG1426VCC.clients.intel.com>
-References: <20260311210107.3112353-1-ashutosh.dixit@intel.com>	<abI/7h8lOy9NFpBX@soc-5CG1426VCC.clients.intel.com>	<87wlzhwnd5.wl-ashutosh.dixit@intel.com>	<abKw1rkEfe5+2ZLC@soc-5CG1426VCC.clients.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/xe/lrc: Fix uninitialized new_ts when capturing
+ context timestamp
+In-Reply-To: <20260312125308.3126607-2-umesh.nerlige.ramappa@intel.com>
+References: <20260312125308.3126607-2-umesh.nerlige.ramappa@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -69,84 +69,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 12 Mar 2026 05:25:58 -0700, Umesh Nerlige Ramappa wrote:
+On Thu, 12 Mar 2026 05:53:09 -0700, Umesh Nerlige Ramappa wrote:
 >
-> On Wed, Mar 11, 2026 at 11:52:38PM -0700, Dixit, Ashutosh wrote:
-> > On Wed, 11 Mar 2026 21:24:14 -0700, Umesh Nerlige Ramappa wrote:
-> >>
-> >
-> > Hi Umesh,
-> >
-> >> On Wed, Mar 11, 2026 at 02:01:07PM -0700, Ashutosh Dixit wrote:
-> >> > Some OA data might be present in the OA buffer when OA stream is
-> >> > disabled. Allow UMD's to retrieve this data, so that all data till the
-> >> > point when OA stream is disabled can be retrieved.
-> >> >
-> >> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> >> > ---
-> >> > drivers/gpu/drm/xe/xe_oa.c | 3 +--
-> >> > 1 file changed, 1 insertion(+), 2 deletions(-)
-> >> >
-> >> > diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-> >> > index 72fc4424017bf..f840827960eab 100644
-> >> > --- a/drivers/gpu/drm/xe/xe_oa.c
-> >> > +++ b/drivers/gpu/drm/xe/xe_oa.c
-> >> > @@ -543,8 +543,7 @@ static ssize_t xe_oa_read(struct file *file, char __user *buf,
-> >> >	size_t offset = 0;
-> >> >	int ret;
-> >> >
-> >> > -	/* Can't read from disabled streams */
-> >> > -	if (!stream->enabled || !stream->sample)
-> >> > +	if (!stream->sample)
-> >> >		return -EINVAL;
-> >>
-> >> What if there is no data to be read when the stream was disabled? In polled
-> >> mode, we are probably fine, but in blocking mode, we may just wait forever
-> >> here.
-> >
-> > Yes, correct. There is no problem in non-blocking read() (it will return
-> > -EAGAIN if no data). But poll() or blocking read() can block.
-> >
-> > However, as far as I see, the responsibility of unblocking the blocked
-> > thread (e.g. by means of a signal) rests with UMD.
-> >
-> > Note: blocking read() cannot return 0 (it can, only on EOF, see 'man 2
-> > read' but I don't want to do it because "what is EOF"). Similarly poll()
-> > cannot return if there's no data, UMD will need to specify a timeout in
-> > poll().
-> >
-> > Note, KMD release() method will not get called if UMD thread is blocked in
-> > read(). So stream cannot be closed till the blocked thread is unblocked.
-> >
-> > I would imagine UMD will use non-blocking read()'s to retrieve data after
-> > stream is disabled, till non-blocking read() returns -EAGAIN. If they don't
-> > use non-blocking read(), they will have to handle the blocked thread using
-> > one of the methods above. There's nothing KMD can do.
-> >
-> > Unless you or Robert (Cc'd) can prove otherwise :-)
+> Getting engine specific CTX TIMESTAMP register can fail. In that case,
+> if the context is active, new_ts is uninitialized. Fix that case by
+> initializing new_ts to the last value that was sampled in SW -
+> lrc->ctx_timestamp.
 >
-> I guess you can argue both ways. I would think if the stream is disabled,
-> there is really no meaning in supporting the blocked mode, but then blocked
-> mode itself means that caller is blocked until data is available, so I
-> guess it's okay to leave it as is.
+> Flagged by static analysis.
+>
+> v2: Fix new_ts initialization (Ashutosh)
 
-Yes, today we never return 0 from read(). We either return a +ve number
-(num bytes read) or a -ve error. Or we block. So I strongly prefer not
-changing this behavior. Some UMD might be checking for >= 0, some only > 0,
-so if we change the 0 behavior we might also start breaking UMD/tests.
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
-> I noticed another thing - When you disable a stream, you also end up
-> disabling the hrtimer. Then who updates the software tail such that all the
-> remaining data is read? Note that the poll only waits on the poll_wq. It
-> does not check if new reports are available.
-
-Yeah, thanks for catching this, I think we need to do something here. Let
-me look some more into this and update the patch in the next couple of
-days.
-
-> >
-> >> >
-> >> >	if (!(file->f_flags & O_NONBLOCK)) {
-> >> > --
-> >> > 2.48.1
-> >> >
+>
+> Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_lrc.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+> index aa26c71ae34f..04304dff45b0 100644
+> --- a/drivers/gpu/drm/xe/xe_lrc.c
+> +++ b/drivers/gpu/drm/xe/xe_lrc.c
+> @@ -2563,14 +2563,14 @@ static int get_ctx_timestamp(struct xe_lrc *lrc, u32 engine_id, u64 *reg_ctx_ts)
+>   * @lrc: Pointer to the lrc.
+>   *
+>   * Return latest ctx timestamp. With support for active contexts, the
+> - * calculation may bb slightly racy, so follow a read-again logic to ensure that
+> + * calculation may be slightly racy, so follow a read-again logic to ensure that
+>   * the context is still active before returning the right timestamp.
+>   *
+>   * Returns: New ctx timestamp value
+>   */
+>  u64 xe_lrc_timestamp(struct xe_lrc *lrc)
+>  {
+> -	u64 lrc_ts, reg_ts, new_ts;
+> +	u64 lrc_ts, reg_ts, new_ts = lrc->ctx_timestamp;
+>	u32 engine_id;
+>
+>	lrc_ts = xe_lrc_ctx_timestamp(lrc);
+> --
+> 2.51.0
+>
