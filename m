@@ -4,27 +4,112 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E31E1FED2DF
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 07:32:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85CC1FED2E1
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 07:56:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A90EB10E969;
-	Thu, 12 Mar 2026 07:32:23 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 615C110E418;
- Thu, 12 Mar 2026 07:32:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9006643368042044174=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3105710E98F;
+	Thu, 12 Mar 2026 07:56:34 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="OXjjnk7L";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="qy5lwvbO";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="OXjjnk7L";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="qy5lwvbO";
+	dkim-atps=neutral
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDF6A10E993
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Mar 2026 07:56:32 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 9765E5BD9A;
+ Thu, 12 Mar 2026 07:56:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1773302191; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=DHVNXKHqHBN4I0S02ySoOpHlXMNjJ0NB2c/sQHZ56Q8=;
+ b=OXjjnk7Lme3svZXSDQe9dCKsgg8CKOeLI+U9pU5SUh+15iDvoVcU4FWniDYRQlMMjdwtQC
+ p3W2t7sG9LE16v9TUTV3ot1YMBDEBLN6ODwgL3hWF4Sg544MXo0J0v0N5XgmlWaPxKZRPR
+ ph6CrXmEpUYX5GHqIu4j/9HHjLiwX74=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1773302191;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=DHVNXKHqHBN4I0S02ySoOpHlXMNjJ0NB2c/sQHZ56Q8=;
+ b=qy5lwvbOVNC2qna+8SOxvTc6FvVMfncc7+vdLmh96antddOFtBx00sl6YtSoimYrpvdyr/
+ DvcND5Q9+BhoiEAg==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=OXjjnk7L;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=qy5lwvbO
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1773302191; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=DHVNXKHqHBN4I0S02ySoOpHlXMNjJ0NB2c/sQHZ56Q8=;
+ b=OXjjnk7Lme3svZXSDQe9dCKsgg8CKOeLI+U9pU5SUh+15iDvoVcU4FWniDYRQlMMjdwtQC
+ p3W2t7sG9LE16v9TUTV3ot1YMBDEBLN6ODwgL3hWF4Sg544MXo0J0v0N5XgmlWaPxKZRPR
+ ph6CrXmEpUYX5GHqIu4j/9HHjLiwX74=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1773302191;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=DHVNXKHqHBN4I0S02ySoOpHlXMNjJ0NB2c/sQHZ56Q8=;
+ b=qy5lwvbOVNC2qna+8SOxvTc6FvVMfncc7+vdLmh96antddOFtBx00sl6YtSoimYrpvdyr/
+ DvcND5Q9+BhoiEAg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 3729C3FE6E;
+ Thu, 12 Mar 2026 07:56:31 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id KF1GDK9xsmmMRgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 12 Mar 2026 07:56:31 +0000
+Date: Thu, 12 Mar 2026 08:56:29 +0100
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next
+Message-ID: <20260312075629.GA21234@linux.fritz.box>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFULL=3A_success_for_drm/syncobj=3A_Enforce_str?=
- =?utf-8?q?ict_checking_of_timeline_syncobj_struct?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 12 Mar 2026 07:32:23 -0000
-Message-ID: <177330074337.349283.1453516778541596709@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260311144524.3046352-2-dev@lankhorst.se>
-In-Reply-To: <20260311144524.3046352-2-dev@lankhorst.se>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
+ NEURAL_HAM_LONG(-1.00)[-1.000];
+ R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
+ MX_GOOD(-0.01)[]; ARC_NA(0.00)[];
+ FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+ RCPT_COUNT_TWELVE(0.00)[16];
+ FUZZY_RATELIMITED(0.00)[rspamd.com]; MIME_TRACE(0.00)[0:+];
+ MISSING_XM_UA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
+ FREEMAIL_ENVRCPT(0.00)[gmail.com];
+ DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+ RCVD_TLS_ALL(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
+ FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
+ RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
+ DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.com:url,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns];
+ SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
+ DKIM_TRACE(0.00)[suse.de:+]
+X-Rspamd-Action: no action
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Rspamd-Queue-Id: 9765E5BD9A
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,169 +121,377 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============9006643368042044174==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave, Sima,
 
-== Series Details ==
+here's this week's PR for drm-misc-next.
 
-Series: drm/syncobj: Enforce strict checking of timeline syncobj struct
-URL   : https://patchwork.freedesktop.org/series/163039/
-State : success
+Best regards
+Thomas
 
-== Summary ==
+drm-misc-next-2026-03-12:
+drm-misc-next for v7.1:
 
-CI Bug Log - changes from xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb_FULL -> xe-pw-163039v1_FULL
-====================================================
+UAPI Changes:
 
-Summary
--------
+amdxdna:
+- Add sensors ioctls
 
-  **SUCCESS**
+Cross-subsystem Changes:
 
-  No regressions found.
+dma-buf:
+- clean pages with helpers
 
-  
+Documenatation:
+- devicetree: Add lxd vendor prefix
 
-Participating hosts (2 -> 2)
-------------------------------
+Core Changes:
 
-  No changes in participating hosts
+buddy:
+- improve aligned allocations
 
-Known issues
-------------
+gem-shmem:
+- Track page accessed/dirty status across mmap/vmap
 
-  Here are the changes found in xe-pw-163039v1_FULL that come from known issues:
+ttm:
+- fix fence signalling
 
-### IGT changes ###
+Driver Changes:
 
-#### Issues hit ####
+amdxdna:
+- provide NPU power estimate
+- support sensor for column utilization
 
-  * igt@kms_vrr@cmrr@pipe-a-edp-1:
-    - shard-lnl:          [PASS][1] -> [FAIL][2] ([Intel XE#4459]) +1 other test fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb/shard-lnl-7/igt@kms_vrr@cmrr@pipe-a-edp-1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163039v1/shard-lnl-4/igt@kms_vrr@cmrr@pipe-a-edp-1.html
+bridge:
+- anx7625: Fix USB Type-C handling
+- cdns-mhdp8546-core: Handle HDCP state in bridge atomic_check
 
-  * igt@kms_vrr@seamless-rr-switch-virtual@pipe-a-edp-1:
-    - shard-lnl:          [PASS][3] -> [FAIL][4] ([Intel XE#2142]) +1 other test fail
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb/shard-lnl-8/igt@kms_vrr@seamless-rr-switch-virtual@pipe-a-edp-1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163039v1/shard-lnl-7/igt@kms_vrr@seamless-rr-switch-virtual@pipe-a-edp-1.html
+ivpu:
+- fixes
 
-  
-#### Possible fixes ####
+loongson:
+- replace custom code with drm_gem_ttm_dumb_map_offset()
 
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible:
-    - shard-lnl:          [FAIL][5] ([Intel XE#301]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb/shard-lnl-5/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163039v1/shard-lnl-5/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
+mxsfb:
+- lcdif: report probing errors with dev_err_probe()
 
-  * igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-single-vma:
-    - shard-lnl:          [FAIL][7] ([Intel XE#5625]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb/shard-lnl-3/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-single-vma.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163039v1/shard-lnl-3/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-single-vma.html
+panel:
+- ilitek-ili9882t: Allow GPIO calls to sleep
+- jadard: Support TAIGUAN XTI05101-01A
+- lxd: Support LXD M9189A plus DT bindings
+- mantix: Fix pixel clock; Clean up
+- motorola: Support Motorola Atrix 4G and Droid X2 plus DT bindings
+- novatek: Support Novatek/Tianma NT37700F plus DT bindings
+- renesas: Clean up
+- simple: Support EDT ET057023UDBA plus DT bindings; Support Powertip
+  PH800480T032-ZHC19 plus DT bindings; Support Waveshare 13.3"
+  - clean up DT bindings of various drivers
 
-  
-  [Intel XE#2142]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2142
-  [Intel XE#301]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/301
-  [Intel XE#4459]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/4459
-  [Intel XE#5625]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5625
+panthor:
+- fix fence handling
 
+vc4:
+- check return value of platform_get_irq_byname()
+The following changes since commit 58351f46de26bcc4403f9972f7aed430d15cbd03:
 
-Build changes
--------------
+  Merge v7.0-rc3 into drm-next (2026-03-11 11:18:31 +0100)
 
-  * Linux: xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb -> xe-pw-163039v1
+are available in the Git repository at:
 
-  IGT_8793: c623172fdd4dd92bb23dbc55b3930c40266c3e59 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb: 4a30f5fa0fe382b3915a8208a483d0044c40b9eb
-  xe-pw-163039v1: 163039v1
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2026-03-12
 
-== Logs ==
+for you to fetch changes up to f08ceb71c5a5615577e7c841e1e00a89f495ab51:
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163039v1/index.html
+  Merge drm/drm-next into drm-misc-next (2026-03-12 08:25:41 +0100)
 
---===============9006643368042044174==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+----------------------------------------------------------------
+drm-misc-next for v7.1:
 
+UAPI Changes:
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+amdxdna:
+- Add sensors ioctls
 
+Cross-subsystem Changes:
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/syncobj: Enforce strict checking of timeline syncobj struct</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163039/">https://patchwork.freedesktop.org/series/163039/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
+dma-buf:
+- clean pages with helpers
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163039v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163039v1/index.html</a></td></tr>
+Documenatation:
+- devicetree: Add lxd vendor prefix
 
-</table>
+Core Changes:
 
+buddy:
+- improve aligned allocations
 
-    <h1>CI Bug Log - changes from xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb_FULL -&gt; xe-pw-163039v1_FULL</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (2 -&gt; 2)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-163039v1_FULL that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_vrr@cmrr@pipe-a-edp-1:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb/shard-lnl-7/igt@kms_vrr@cmrr@pipe-a-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163039v1/shard-lnl-4/igt@kms_vrr@cmrr@pipe-a-edp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/4459">Intel XE#4459</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_vrr@seamless-rr-switch-virtual@pipe-a-edp-1:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb/shard-lnl-8/igt@kms_vrr@seamless-rr-switch-virtual@pipe-a-edp-1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163039v1/shard-lnl-7/igt@kms_vrr@seamless-rr-switch-virtual@pipe-a-edp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2142">Intel XE#2142</a>) +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank-interruptible:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb/shard-lnl-5/igt@kms_flip@flip-vs-expired-vblank-interruptible.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163039v1/shard-lnl-5/igt@kms_flip@flip-vs-expired-vblank-interruptible.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-single-vma:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb/shard-lnl-3/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-single-vma.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5625">Intel XE#5625</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163039v1/shard-lnl-3/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-single-vma.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb -&gt; xe-pw-163039v1</li>
-</ul>
-<p>IGT_8793: c623172fdd4dd92bb23dbc55b3930c40266c3e59 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4700-4a30f5fa0fe382b3915a8208a483d0044c40b9eb: 4a30f5fa0fe382b3915a8208a483d0044c40b9eb<br />
-  xe-pw-163039v1: 163039v1</p>
+gem-shmem:
+- Track page accessed/dirty status across mmap/vmap
 
-</body>
-</html>
+ttm:
+- fix fence signalling
 
---===============9006643368042044174==--
+Driver Changes:
+
+amdxdna:
+- provide NPU power estimate
+- support sensor for column utilization
+
+bridge:
+- anx7625: Fix USB Type-C handling
+- cdns-mhdp8546-core: Handle HDCP state in bridge atomic_check
+
+ivpu:
+- fixes
+
+loongson:
+- replace custom code with drm_gem_ttm_dumb_map_offset()
+
+mxsfb:
+- lcdif: report probing errors with dev_err_probe()
+
+panel:
+- ilitek-ili9882t: Allow GPIO calls to sleep
+- jadard: Support TAIGUAN XTI05101-01A
+- lxd: Support LXD M9189A plus DT bindings
+- mantix: Fix pixel clock; Clean up
+- motorola: Support Motorola Atrix 4G and Droid X2 plus DT bindings
+- novatek: Support Novatek/Tianma NT37700F plus DT bindings
+- renesas: Clean up
+- simple: Support EDT ET057023UDBA plus DT bindings; Support Powertip
+  PH800480T032-ZHC19 plus DT bindings; Support Waveshare 13.3"
+  - clean up DT bindings of various drivers
+
+panthor:
+- fix fence handling
+
+vc4:
+- check return value of platform_get_irq_byname()
+
+----------------------------------------------------------------
+Alexander Stein (1):
+      drm: lcdif: Use dev_err_probe()
+
+Amin GATTOUT (1):
+      drm/loongson: use drm_gem_ttm_dumb_map_offset()
+
+Andrzej Kacprowski (1):
+      accel/ivpu: Remove boot params address setting via MMIO register
+
+Arnd Bergmann (1):
+      drm: bridge: anx7625: enforce CONFIG_USB_ROLE_SWITCH dependency
+
+Arunpravin Paneer Selvam (2):
+      drm/buddy: Improve offset-aligned allocation handling
+      drm/buddy: Add KUnit test for offset-aligned allocations
+
+Boris Brezillon (1):
+      drm/panthor: Fix the "done_fence is initialized" detection logic
+
+Dave Hansen (1):
+      MAINTAINERS: Remove bouncing Keem Bay maintainer
+
+Dmitry Baryshkov (1):
+      drm: bridge: anx7625: correctly detect if PD can be disabled
+
+Florijan Plohl (2):
+      dt-bindings: display: simple: Add Powertip PH800480T032-ZHC19 panel
+      drm/panel: simple: Add Powertip PH800480T032-ZHC19 panel
+
+Greg Kroah-Hartman (1):
+      drm/vc4: platform_get_irq_byname() returns an int
+
+Harikrishna Shenoy (1):
+      drm/bridge: cadence: cdns-mhdp8546-core: Handle HDCP state in bridge atomic check
+
+Jayesh Choudhary (5):
+      drm/bridge: cadence: cdns-mhdp8546-core: Set the mhdp connector earlier in atomic_enable()
+      drm/bridge: cadence: cdns-mhdp8546-core: Add mode_valid hook to drm_bridge_funcs
+      drm/bridge: cadence: cdns-mhdp8546-core: Remove legacy support for connector initialisation in bridge
+      cadence: cdns-mhdp8546*: Change drm_connector from structure to pointer
+      drm/bridge: cadence: cdns-mhdp8546-core: Reduce log level for DPCD read/write
+
+John Keeping (1):
+      drm/panel: ilitek-ili9882t: use gpiod_set_value_cansleep()
+
+Karol Wachowski (2):
+      accel/ivpu: Test for imported buffers with drm_gem_is_imported()
+      accel/ivpu: Apply minor code style cleanups to align with kernel style
+
+Krzysztof Kozlowski (4):
+      dt-bindings: display: samsung,s6d7aa0: Document port
+      dt-bindings: display: innolux,p097pfg: Document ports
+      dt-bindings: display: panel: Drop redundant properties
+      dt-bindings: display: panel: Align style of additionalProperties
+
+Langyan Ye (3):
+      dt-bindings: vendor: add taiguanck
+      dt-bindings: display: panel: Add compatible for TAIGUAN XTI05101-01A
+      drm/panel: panel-jadard-jd9365da-h3: support for taiguan-xti05101-01a MIPI-DSI panel
+
+Linus Walleij (2):
+      dma-buf: heaps: Clear CMA pages with clear_pages()
+      dma-buf: heaps: Clear CMA highages using helper
+
+Lizhi Hou (1):
+      accel/amdxdna: Add IOCTL to retrieve realtime NPU power estimate
+
+Loic Poulain (1):
+      drm: bridge: anx7625: don't crash if Type-C port is not used
+
+Luca Leonardo Scorcia (1):
+      dt-bindings: display: panel: Document the rotation property
+
+Lukas Bulwahn (1):
+      MAINTAINERS: adjust file entry in GPU BUDDY ALLOCATOR
+
+Marco Felsch (2):
+      dt-bindings: display: simple: add EDT ET057023UDBA panel
+      drm/panel: simple: add EDT ET057023UDBA panel
+
+Marek Vasut (1):
+      drm/panel: simple: Add Waveshare 13.3" panel support
+
+Mario Limonciello (AMD) (2):
+      accel/amdxdna: Import AMD_PMF namespace
+      accel/amdxdna: Support sensors for column utilization
+
+Maxime Ripard (1):
+      Merge drm/drm-next into drm-misc-next
+
+Richard Acayan (3):
+      dt-bindings: arm: qcom: document google,bonito-tianma board
+      dt-bindings: panel-simple-dsi: add nt37700f compatible
+      drm/panel: Add Novatek/Tianma NT37700F panel
+
+Rouven Czerwinski (3):
+      dt-bindings: vendor-prefixes: Add lxd
+      dt-bindings: display: panel: add LXD M9189A
+      drm/panel: add LXD M9189A panel driver
+
+Sanjay Yadav (1):
+      gpu/tests/gpu_buddy: Add gpu_test_buddy_alloc_range for exact-range allocation
+
+Sebastian Brzezinka (1):
+      drm/ttm: fix NULL deref in ttm_bo_flush_all_fences() after fence ops detach
+
+Sebastian Krzyszkowiak (2):
+      drm/panel: mantix: Drop the shutdown callback
+      drm/panel: mantix: Set the pixel clocks for 60 Hz
+
+Svyatoslav Ryhel (7):
+      drm/panel: r61307: align with schema property
+      drm/panel: r61307/r69328: convert to drm_connector_helper_get_modes_fixed
+      drm/panel: r61307/r69328: remove redundant checks
+      drm/panel: r61307/r69328: return accumulated errors
+      drm/panel: r61307/r69328: convert to devm_mipi_dsi_attach
+      dt-bindings: display: panel: document Atrix 4G and Droid X2 DSI panel
+      gpu/drm: panel: add support for DSI panel used in Motorola Atrix 4G and Droid X2
+
+Thomas Zimmermann (6):
+      drm/gem-shmem: Use obj directly where appropriate in fault handler
+      drm/gem-shmem: Test for existence of page in mmap fault handler
+      drm/gem-shmem: Return vm_fault_t from drm_gem_shmem_try_map_pmd()
+      drm/gem-shmem: Refactor drm_gem_shmem_try_map_pmd()
+      drm/gem-shmem: Track folio accessed/dirty status in mmap
+      drm/gem-shmem: Track folio accessed/dirty status in vmap
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   6 +
+ .../bindings/display/panel/abt,y030xx067a.yaml     |   5 -
+ .../display/panel/advantech,idk-1110wr.yaml        |   4 +-
+ .../display/panel/advantech,idk-2121wr.yaml        |   4 +-
+ .../display/panel/bananapi,s070wv20-ct16.yaml      |   4 +-
+ .../bindings/display/panel/dlc,dlc0700yzg-1.yaml   |   4 +-
+ .../bindings/display/panel/himax,hx83112a.yaml     |   2 -
+ .../bindings/display/panel/himax,hx8394.yaml       |   4 +-
+ .../bindings/display/panel/ilitek,ili9163.yaml     |   4 -
+ .../bindings/display/panel/ilitek,ili9322.yaml     |   3 -
+ .../bindings/display/panel/ilitek,ili9341.yaml     |   6 +-
+ .../bindings/display/panel/innolux,ej030na.yaml    |   5 -
+ .../bindings/display/panel/innolux,p097pfg.yaml    |  26 +-
+ .../bindings/display/panel/jadard,jd9365da-h3.yaml |   4 +-
+ .../display/panel/kingdisplay,kd035g6-54nt.yaml    |   5 -
+ .../bindings/display/panel/lgphilips,lb035q02.yaml |   4 -
+ .../bindings/display/panel/lxd,m9189a.yaml         |  64 +++
+ .../display/panel/mitsubishi,aa104xd12.yaml        |   4 +-
+ .../display/panel/mitsubishi,aa121td01.yaml        |   4 +-
+ .../bindings/display/panel/motorola,mot-panel.yaml |  69 +++
+ .../bindings/display/panel/nec,nl8048hl11.yaml     |   4 -
+ .../bindings/display/panel/novatek,nt36523.yaml    |   3 -
+ .../bindings/display/panel/novatek,nt36672a.yaml   |   3 -
+ .../bindings/display/panel/orisetech,otm8009a.yaml |   4 +-
+ .../bindings/display/panel/panel-simple-dsi.yaml   |   2 +
+ .../bindings/display/panel/panel-simple.yaml       |   4 +
+ .../bindings/display/panel/pda,91-00156-a0.yaml    |   4 +-
+ .../bindings/display/panel/raydium,rm68200.yaml    |   4 +-
+ .../bindings/display/panel/raydium,rm692e5.yaml    |   2 -
+ .../bindings/display/panel/samsung,atna33xc20.yaml |   4 +-
+ .../bindings/display/panel/samsung,ld9040.yaml     |   4 -
+ .../bindings/display/panel/samsung,lms380kf01.yaml |   6 -
+ .../bindings/display/panel/samsung,lms397kf04.yaml |   6 -
+ .../bindings/display/panel/samsung,s6d27a1.yaml    |   6 -
+ .../bindings/display/panel/samsung,s6d7aa0.yaml    |   8 +
+ .../bindings/display/panel/samsung,s6e3ha8.yaml    |   4 -
+ .../bindings/display/panel/samsung,s6e63m0.yaml    |   2 -
+ .../bindings/display/panel/sgd,gktw70sdae4se.yaml  |   4 +-
+ .../bindings/display/panel/sitronix,st7701.yaml    |   6 -
+ .../bindings/display/panel/sitronix,st7789v.yaml   |   6 -
+ .../bindings/display/panel/sony,acx565akm.yaml     |   4 -
+ .../display/panel/startek,kd070fhfid015.yaml       |   4 +-
+ .../devicetree/bindings/display/panel/tpo,td.yaml  |   5 -
+ .../bindings/display/panel/visionox,r66451.yaml    |   4 +-
+ .../bindings/display/panel/visionox,rm69299.yaml   |   4 +-
+ .../bindings/display/panel/visionox,vtdr6130.yaml  |   4 +-
+ .../devicetree/bindings/vendor-prefixes.yaml       |   4 +
+ MAINTAINERS                                        |  11 +-
+ drivers/accel/amdxdna/aie2_pci.c                   |  53 +++
+ drivers/accel/amdxdna/aie2_pci.h                   |  28 ++
+ drivers/accel/amdxdna/amdxdna_pci_drv.c            |   4 +-
+ drivers/accel/ivpu/ivpu_gem.c                      |  12 +-
+ drivers/accel/ivpu/ivpu_hw_40xx_reg.h              |   6 -
+ drivers/accel/ivpu/ivpu_hw_ip.c                    |   1 -
+ drivers/dma-buf/heaps/cma_heap.c                   |   7 +-
+ drivers/gpu/buddy.c                                | 274 ++++++++++--
+ drivers/gpu/drm/bridge/analogix/Kconfig            |   3 +-
+ drivers/gpu/drm/bridge/analogix/anx7625.c          |  41 +-
+ .../gpu/drm/bridge/cadence/cdns-mhdp8546-core.c    | 257 +++--------
+ .../gpu/drm/bridge/cadence/cdns-mhdp8546-core.h    |   2 +-
+ .../gpu/drm/bridge/cadence/cdns-mhdp8546-hdcp.c    |  18 +-
+ drivers/gpu/drm/drm_gem_shmem_helper.c             |  79 ++--
+ drivers/gpu/drm/imagination/pvr_gem.c              |   6 +-
+ drivers/gpu/drm/loongson/lsdc_drv.c                |   3 +-
+ drivers/gpu/drm/loongson/lsdc_gem.c                |  15 -
+ drivers/gpu/drm/loongson/lsdc_gem.h                |   4 -
+ drivers/gpu/drm/mxsfb/lcdif_drv.c                  |   8 +-
+ drivers/gpu/drm/panel/Kconfig                      |  32 ++
+ drivers/gpu/drm/panel/Makefile                     |   3 +
+ drivers/gpu/drm/panel/panel-ilitek-ili9882t.c      |  14 +-
+ drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c   | 244 ++++++++++
+ drivers/gpu/drm/panel/panel-lxd-m9189a.c           | 243 ++++++++++
+ drivers/gpu/drm/panel/panel-mantix-mlaf057we51.c   |  15 +-
+ drivers/gpu/drm/panel/panel-motorola-mot.c         | 244 ++++++++++
+ drivers/gpu/drm/panel/panel-novatek-nt37700f.c     | 299 +++++++++++++
+ drivers/gpu/drm/panel/panel-renesas-r61307.c       |  40 +-
+ drivers/gpu/drm/panel/panel-renesas-r69328.c       |  38 +-
+ drivers/gpu/drm/panel/panel-simple.c               |  92 ++++
+ drivers/gpu/drm/panthor/panthor_sched.c            |   2 +-
+ drivers/gpu/drm/ttm/ttm_bo.c                       |   6 +-
+ drivers/gpu/drm/vc4/vc4_hdmi.c                     |  14 +-
+ drivers/gpu/tests/gpu_buddy_test.c                 | 493 +++++++++++++++++++++
+ include/linux/gpu_buddy.h                          |   2 +
+ include/uapi/drm/amdxdna_accel.h                   |   3 +-
+ 84 files changed, 2397 insertions(+), 565 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/lxd,m9189a.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/panel/motorola,mot-panel.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-lxd-m9189a.c
+ create mode 100644 drivers/gpu/drm/panel/panel-motorola-mot.c
+ create mode 100644 drivers/gpu/drm/panel/panel-novatek-nt37700f.c
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
