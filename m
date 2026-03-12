@@ -4,158 +4,83 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1222B106ACCF
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 741D3106ACD1
 	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 16:46:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6B0B10E141;
-	Thu, 12 Mar 2026 16:46:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="FTC4BTEz";
-	dkim-atps=neutral
-Received: from SN4PR2101CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11012015.outbound.protection.outlook.com
- [40.93.195.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B89EC10E411;
- Thu, 12 Mar 2026 06:35:08 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Pep8gXUor0zBlMZ3YXJN5gxt79IzshNlmVlMm4AjdrNMclZ+o6gYz07CwCFvKu/tBZav5XDwkAByE6WfgOFjKN8ms9uXJ6/Gtgz3Fiwt9T++a8lRW9uQ2x+98FzQePWCg/XvPumbHtHFkdKwjenmEKrubdJ5dkN0/AWOL4rn65D1PJCe03Vud+LsUWTbnfXTSs4W+C/+kIea4lLn57h5hMu1Y6oiEPTLqhktAJeaCbYla7EOXUY3+j1ohvAsjseMYM6L8iig2zxpEJT+LpIA9wst5n+rhsABGanDKYxiZgjbN3FvEL3AFJw/RflZJqhcKBAnSt9tvFmFrZR+Xw3Rug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rjaTqyhEaKDuyTXt89q0O2FtdXsJd1OXhticyrVz5Rs=;
- b=jf9Qy9ueMekrNfv93YADt1A3OOcdJQoaV2d6zUUz3LEPJwQz1H/P1KlaZKwtmRvNfbJo0AhJSn99iEVe7PizheQ8tU7L6j7fSu4H9Q/4uhGIkp0+LilqC4kG7hqHCbqbWXceYgnNjtI8hg2/GiJaFnr/L0P/UjilhpzDFzlnKxpTnh2cnB9UvL440SapJfPB5UVbfQSwSN9L/2FBjwmBp9D5U7pxvLErcD0N7BlSsz+RY4jup3YTk7RUEayNfb382FwbqfDvh1g/6010431YtYLX9l/qW6qbR1sc9+c5intUI4TlA6suCDT0ZwFkPN27nuu5knXoJgnc1xq7bEE/4Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rjaTqyhEaKDuyTXt89q0O2FtdXsJd1OXhticyrVz5Rs=;
- b=FTC4BTEzsjLVlxkWu0dfDZ2Nx8bNjHHRA8ilq9cTia6HBR0Sq6XuMrepifUb/iAwlx+aFYADJSKmzIvAyxfAPxc0YLO6+6+L/M9ysrjkNI9al93D8T7pUHmoqNmKWdtAskBqSfNidM2kDHvPVJeOqYk+psJAQ4iYxnl5TebZ3Iipmn27a+8PasK8jkNjksQ4kgZGReQd1vzMgSEoB6qU1sk2H2zBiWJgMLYwwRYtKxUeub8WUQUQUlNNaVUtd95vfRLLxiT3lLbuss0aMDNU9dGMnDQCt4Ifoq+h7iUfMEh6DJ+O2Ku5HSgMagHJea7bQ+X3lD3RBRoZBEhGjMOjOA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from BL0PR12MB2353.namprd12.prod.outlook.com (2603:10b6:207:4c::31)
- by IA1PR12MB6555.namprd12.prod.outlook.com (2603:10b6:208:3a1::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.4; Thu, 12 Mar
- 2026 06:35:02 +0000
-Received: from BL0PR12MB2353.namprd12.prod.outlook.com
- ([fe80::99b:dcff:8d6d:78e0]) by BL0PR12MB2353.namprd12.prod.outlook.com
- ([fe80::99b:dcff:8d6d:78e0%4]) with mapi id 15.20.9723.000; Thu, 12 Mar 2026
- 06:35:02 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 12 Mar 2026 15:34:59 +0900
-Message-Id: <DH0LFHAXDCZZ.3GSBNK7DXNDRP@nvidia.com>
-Cc: "Miguel Ojeda" <ojeda@kernel.org>, "Boqun Feng" <boqun@kernel.org>,
- "Gary Guo" <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
- Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
- "Trevor Gross" <tmgross@umich.edu>, "Danilo Krummrich" <dakr@kernel.org>,
- "Dave Airlie" <airlied@redhat.com>, "Daniel Almeida"
- <daniel.almeida@collabora.com>, "Koen Koning"
- <koen.koning@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
- <nouveau@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>, "Nikola
- Djukic" <ndjukic@nvidia.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
- <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet"
- <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>,
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
- <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
- <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
- "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
- "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
- <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Helge Deller" <deller@gmx.de>, "Alex Gaynor" <alex.gaynor@gmail.com>,
- "Boqun Feng" <boqun.feng@gmail.com>, "John Hubbard" <jhubbard@nvidia.com>,
- "Alistair Popple" <apopple@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>,
- "Edwin Peer" <epeer@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>,
- "Andrea Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>,
- "Zhi Wang" <zhiw@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>, "Philipp
- Stanner" <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>,
- <alexeyi@nvidia.com>, "Eliot Courtney" <ecourtney@nvidia.com>,
- <joel@joelfernandes.org>, <linux-doc@vger.kernel.org>,
- <amd-gfx@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <linux-fbdev@vger.kernel.org>,
- "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
-Subject: Re: [PATCH v9 01/23] gpu: nova-core: Select GPU_BUDDY for VRAM
- allocation
-From: "Eliot Courtney" <ecourtney@nvidia.com>
-To: "Joel Fernandes" <joelagnelf@nvidia.com>, <linux-kernel@vger.kernel.org>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20260311004008.2208806-1-joelagnelf@nvidia.com>
- <20260311004008.2208806-2-joelagnelf@nvidia.com>
-In-Reply-To: <20260311004008.2208806-2-joelagnelf@nvidia.com>
-X-ClientProxiedBy: BYAPR05CA0107.namprd05.prod.outlook.com
- (2603:10b6:a03:e0::48) To BL0PR12MB2353.namprd12.prod.outlook.com
- (2603:10b6:207:4c::31)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13E3110EA6A;
+	Thu, 12 Mar 2026 16:46:36 +0000 (UTC)
+X-Greylist: delayed 902 seconds by postgrey-1.36 at gabe;
+ Thu, 12 Mar 2026 01:59:11 UTC
+Received: from invmail4.hynix.com (exvmail4.skhynix.com [166.125.252.92])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CB94410E93E
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Mar 2026 01:59:10 +0000 (UTC)
+X-AuditID: a67dfc5b-c2dff70000001609-0e-69b21a6748f9
+Date: Thu, 12 Mar 2026 10:44:01 +0900
+From: Byungchul Park <byungchul@sk.com>
+To: Yunseong Kim <ysk@kzalloc.com>
+Cc: Nathan Chancellor <nathan@kernel.org>, kernel_team@skhynix.com,
+ torvalds@linux-foundation.org, gregkh@linuxfoundation.org,
+ kernel-team@lge.com, linux-mm@kvack.org, minchan@kernel.org,
+ harry.yoo@oracle.com, gwan-gyeong.mun@intel.com,
+ max.byungchul.park@gmail.com, Peter Zijlstra <peterz@infradead.org>,
+ Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+ boqun.feng@gmail.com, Waiman Long <longman@redhat.com>,
+ yunseong.kim@ericsson.com, yeoreum.yun@arm.com,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Nick Desaulniers <nick.desaulniers+lkml@gmail.com>,
+ Bill Wendling <morbo@google.com>, Justin Stitt <justinstitt@google.com>,
+ Stuart Summers <stuart.summers@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, llvm@lists.linux.dev,
+ patches@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v18 20/42] dept: apply timeout consideration to dma fence
+ wait
+Message-ID: <20260312014401.GA24696@system.software.com>
+References: <20251205071855.72743-1-byungchul@sk.com>
+ <20251205071855.72743-21-byungchul@sk.com>
+ <02e5b102-d8e2-4fbf-8818-55863e425c96@kzalloc.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL0PR12MB2353:EE_|IA1PR12MB6555:EE_
-X-MS-Office365-Filtering-Correlation-Id: a4f961cc-1f7d-4cd4-bda0-08de80017d92
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|10070799003|376014|7416014|1800799024|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: ui8re/SYJzBEP+guBBgkI4CpoxXwO6W4r/seqCcMEQnvXRUSqgg8vNQsf9Y6CflPPUvvyUCopBnwtxIyjq6ssMeutIFEOlchTTN5FMo3GLmunVjCYGucvkLkz+YJ6oylRQD165vQGPc1WW+jyug86fNjv93/AXopt9iGTO/wC5NP/F2D7mGa0JuBvrKOmDoAfNQMRURS1a6l/rvF9Btrc9rlDe4mGgL8t8cQYoCKVWd7DHOXi6jkO05vjSxFPY5GwstG+6IzSohoJRmTylb3O2nzkxtXXyv183LUtRSJaC9vMMrx2ZYBX15mwkXwtsk3N4aMiYy2IXvLtnvAs4uUZROGfZ7mL3k/+Gov/v0+k/ZQ0DSZZ3GOrAbuSBTFLuezL5v/4XuVL8h2MLm34DY59kz+kV3djk7tMPQcpcUaYE2xomxm+ERDypFrzdv/+2K90msw6vBYp/6204smAbbUKbqBK6Og351M0AW81VKaiSYpSe0eS2IHMgV00mVbTHgHIRcaF68oGJUAMSCyKnSc7n3wORepCS+UQdLdQKWlnXxEqnW9TxlydymctnBDcbDDtp2ePtMnW86Z02L8J+kyE4GjHjlK9oz9yq+T5Ip23lxiwuy/6EtXrAbWRMVEDu9RXSi3/mDNFJC8WWUoTcueHRyYUo8pRML9MymMObNFaX4hgThz7SBU4sBS2M1gGX55maYdbkBaXQEQ/ayhCOMpsf9SE/Yhx94W4AR2P+XAZh0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL0PR12MB2353.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(10070799003)(376014)(7416014)(1800799024)(22082099003)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TENpQlp5d0NJd2xUOERoZ0R4aGhXeUkydXhsYnFGOGRIT3N4K0NRbW1oaG10?=
- =?utf-8?B?NWsvZ1hVVG9OUlR3OGZXcld0YXJsTXlTalQvOEE3VHZXWnZQRHdubTBqVGFu?=
- =?utf-8?B?ejZyalZ6dzNYRy8rUE5rN05wMklSRjBXSVZiMkc2UllpYnBITnpXYnNmRU1y?=
- =?utf-8?B?bmttRzJSazFuZGxLVkRxby93Mk51R2htdVNzTGlxbEd1eG05a0o2SlpPSkcy?=
- =?utf-8?B?WVBUWXQ1MkJXZTBJT3ZLbkY4YWF6Z1hLQWdiZlBQTHVOWjU2bldOY1p4OWdR?=
- =?utf-8?B?RURmUlJHTHRNWnB5amhreWtxMWxaWFQ5eWU4SG9PdUhDcXN1bi9EeXJlbXN3?=
- =?utf-8?B?UldBb0FqNitVeXBFOFU4WS9mdlZHS1Y0UTc0UDgvMlczdGk4VXhLSjhnSldj?=
- =?utf-8?B?R1RwTzBGNy9iT0tWaytWYm00dGljU0RMZ2tZZUd6OXhOdFZwQUdDN0kwVTJO?=
- =?utf-8?B?RlBJUUExR3RSWlI0VWxqbGE2a3lvV3ord212b3F6emFSM3ozZUtPMVVyamNC?=
- =?utf-8?B?Y2ZKS2VEWGhTQ3g1UG1vVWhOcStIMFZsOWdDVjY0dHJUQUdMZG95NlhodmFw?=
- =?utf-8?B?VXFHaGFJN2s3RlZtUDdhMTYxZGNkTjR5VEo3d1R6TVZLemI5U1Q3ZG4xZWp3?=
- =?utf-8?B?L1FveXpPZlp5eElONTM1dTZtd01rU0hMN3Jqb1B4d1lUanZjTGxiSk1rREtC?=
- =?utf-8?B?cWd6cDMrWEVUZDZ2ZG5OM2ZMMVZaTVZRSDdBVDF4eG1sWXFoT1ZJZWN4N1Fx?=
- =?utf-8?B?UzVaVXUxYlA0U1RNYmo5dTM5a0I2b01BLzNqVzNCanYzZWxGZ3k3Y1lzZVg1?=
- =?utf-8?B?QU5tSEZPM0hLZDJwdkN4NkV1d2NnOUo2K2xzNFFnZWRabEZWTkpVWW5KUUg5?=
- =?utf-8?B?ellsTzZNMnUxYTRtS0VyUHhDRHVFSStObXZiY3FBZlJ5Q0RteEYyRjlGb01s?=
- =?utf-8?B?L2dnTmpseDZ1NWpHUUp6NVEycHlGTGpidjNZSzM3R2VOc1FwZEd1bC9TTURU?=
- =?utf-8?B?YkYxMEJWajgrSGJ1bDdVd3g4T0tJYk1wUDhWQjBEK2w5UWV5L0FWR0krNGhR?=
- =?utf-8?B?aGNMeTNZZGpYQkcvU20yUFozMmVYdVZtMU1EeGRxZzkrVFlzTUpnL0FSVlZj?=
- =?utf-8?B?UkNzTWJnOXFXNU5qOVE4MWppckxkQU9OS1htUUR2RE1MS3hSVzBWYUY4eWxz?=
- =?utf-8?B?dG54WXhSeS9QMHZzNy9DNXd2WmlOaGtzM05Db2tIWjZzUFhCblFLZSs2eTNP?=
- =?utf-8?B?L2U3UTIyNEIzRWVzQi9QaUdQZHA3M21xTS9aWE4wMDBRZWFaYzBFcVFNOEhy?=
- =?utf-8?B?L0xHR0dTRUF3V1VHVThWUnFoMlkrOGptT2RvTm1QazdYaVpXWWtZQUM1SCsw?=
- =?utf-8?B?ZXJTRTNCVyt0NEZMNEFSR3JSVGkxUnhjc2NXamNTcUFpWmV6a1hDRFROSjVU?=
- =?utf-8?B?dGNoRHlpWW1ySTBldHU3NTZaNDI5WFNyazBsZ3RsK0tYaTRSeFcxL1dHa25V?=
- =?utf-8?B?RkEyNDJadm1GNjFaalZXcUxxL2s3cmQ3TCs2cFpnS0FqZ2wyNCtlMGFSVmh4?=
- =?utf-8?B?R1ZTajB4REZQeUtDQ2krNEZQT0Vzc0xoaW9aeWtiSmtXR3dVL05ZNFRpbEo5?=
- =?utf-8?B?WDFkd2M2NHU2YXJRcU4xeVNFNzYybE9jLytGY3djczdrY0I2aUdkQWNtZjlr?=
- =?utf-8?B?VlpjcHdMYy9oNldlZU5tV2MrWVJ2YW9PUDZDb0NkUWtQUUI2cFBPL1lwZm5h?=
- =?utf-8?B?M2tMNzFQaWw3UUdQUG1TQmpxYm10THJGWGJZUEtoamxFbkFUQVBVektocUpN?=
- =?utf-8?B?Z1Ayb0NFQWdXb2pPMUNldjRYMVZ6aVJpUWFQOHFQZGMySW5OOUNicUI2VjMw?=
- =?utf-8?B?U2djY0ZDc010b1RPUjk5NEw5OVBrNy96L2N0b3hXMGtVSVVOcUloemhqc3Ft?=
- =?utf-8?B?Rm9FYmdlOEhCZkhqL0VUQTZVMko3T21GYU90Vnh5U3lybDgwZE5Xd0lNSmlF?=
- =?utf-8?B?c2xLeWZMc3J0N1JwNnVnTGM1QlNNZk03NDQxdW9ZeG9yYzJzWURNaFhIZU1W?=
- =?utf-8?B?VElHTFU4OEpJNWliUUE4WnJhVFVLRmYvS3dhSlVQSlpnUklQS1RiSW9zSnlj?=
- =?utf-8?B?MEJTNVViTWx1ckxRVVVBNVhvMkpYNWpTQnBmQWVNdk1jZzZydWtVR2RkRito?=
- =?utf-8?B?QnovYWh2OTc4OStGUDNDVUg0ZFNXN3RSV1J6bEdUdW5vNnJ2c1RtWnBySndG?=
- =?utf-8?B?RVliOXd2SHR6VHVNVzhlYzUyd0c1K01PQlB6b3RZUTFrSkFlQnpsUWdBOWlu?=
- =?utf-8?B?TGhrUGpQL0YwcGpjbUZJeXpCYjdnVkM1WHJiZVhVMzFLaW95RWxCZW1NUmNs?=
- =?utf-8?Q?79UalDy+bBPgov5RHlfE/JT0ICii45DnCCXMcZPEAjIUd?=
-X-MS-Exchange-AntiSpam-MessageData-1: XD4w/Ds9sPmjYw==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a4f961cc-1f7d-4cd4-bda0-08de80017d92
-X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2353.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2026 06:35:02.5059 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZlZOztvg7Y8+rGS+cGtpbSCHTl+63rTN54vgjwiaJXQCCeP0/BvxDp7pmcwXk0o9boLS6GXfzCp9GVKbubQLUQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6555
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <02e5b102-d8e2-4fbf-8818-55863e425c96@kzalloc.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sa0hTYRjHe89tx9Xg9WT05kJiFYZRaVg8QlgGxYEgiiKpCFt5yFNeYqul
+ UVA4Eg1DI7VWLs2YS9eqqaFdmA3y1s1L6sDMazY1k/JSlllOifry8uP9//k9z4eHp4Us1p+X
+ 409IunhtrIZTMsqhefmrjvg75OAyI4aa1lsU2ErPU/B2bJiD5IJ7HDQMTlLQYelj4HuJh4Ls
+ 4gIOat+3sND06AYH722/Wei94uTgRVUNA/lfyhgYv6SG+sx0FixjwwporMyjwNE0wsKFVAsL
+ KXc+cNCVYldAU3Pu9FPTiKA6vZICp6lFAdc/OxVgLSinYbDczUL3pSEFlH7KZMH4bh3kjobA
+ aHERB3d/taBNS0Wb2YbEH2PNnPh0PI8RK0ztCjHPcVIssQaJBU/6KdFRlMqJjq+XFWL+Tw8t
+ pg29pcSaqz8Z0Vy7U3Tm2hRix8VqSvSUXEM7/PYpN0RLsbJB0q0JP6iMyc4xouMDBxK/VKw4
+ hzq3pCEfnuBQ0twwRf1lT1cy8jKDlxPrt8+slzkcSNzuCdrLflhDiu93MGlIydO4wofYb1s4
+ bzAf7yZvRt4xXlZhIAN9w7S3JOAcREp7brCzgS+pvdY7U6JxEHFP9U9P5qdZTQqneO+3D95I
+ jKlDM5UFeCmpfFhNeT0El/KkyNjNzm66iDyzupkMhE3/aU3/aU3/tHmILkKCHG+I08qxoatj
+ kuLlxNWHE+IcaPpYLGcn95ejr/W7XAjzSDNPFbztgSywWoM+Kc6FCE9r/FRCm10WVNHapNOS
+ LiFKdzJW0ruQmmc0C1Vrx09FC/iI9oR0TJKOS7q/KcX7+J9DetdNV5tQeCYwtKHEtn1x1PIl
+ kRnru3x9W6kAz+4O81hP1q25QRfPhxsiNtS/apfNdUcDw1x3ekaTRiP2vr77vGqi0BkxuedK
+ XRmqswzOqRaWvZQ3d+aoXdbHA479H9WRaWGHXr56arWz5q3RKYI9zGNI7VsJAcPaKFdMOjap
+ NIw+RhsSROv02j8sQDXmKAMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sa0hTcRjG+Z/bjqPBaU06uCJYmkMqExRe6P6hOhVFgWQEkcNOedIt2+bQ
+ Iiom2hZZi+iynFiLNXVpzQuusolFbmg3N21SZlfzki3LW2UXV0R9efnx/J7n20vj0nEihhY0
+ el6rUWUrKDEh3rjYuGBXjFtYZG9WgO/JJQxctUcwCI6GKTDaqyl4PDiJQY+jl4CJmj4MzlTa
+ KfA/7yThjs1PQuBGCQXPXT9JeHPaS0HrPR8BF4frCBgrlsMjy3ESHKNhEbQ3lWHgDnwmodDk
+ IKGo/C0FL4uqRBDosE0dXzuCluNNGHitnSK48MErAqe9AYfBhhAJr4qHRFD73kJCwbMUsI0k
+ wUhlBQVXv3eiFbGcq9SFuK+jHRTXOFZGcB5rt4grc+dyNc4Ezn6rH+PcFSaKc386JeIufuvD
+ OfNQEON8574RXKl/M+e1uURcz7EWjOurOY82RW8TL9nJZwsGXpu4LF2ceeZsAcoZ2J437FEe
+ Ri9WmVEUzTLJbN9LI4owwcSxzvEPZIQpJp4Nhb7gEZYxCrbyWg9hRmIaZzxRbNVlBxURM5hU
+ 9uHnZ0SEJQywA71hPFKSMmcRW/u6hPwjprP+829+l3AmgQ396MfMiJ5iOXvlBx2Jo5jlbIFp
+ 6HclmpnLNtW3YCeRxPrf2vrf2vpvXYbwCiQTNAa1SshOWajLyszXCHkLM/aq3WjqHRwHJy0N
+ aCSwphkxNFJMkyxaf12QkiqDLl/djFgaV8gk0qdVglSyU5W/n9fu3aHNzeZ1zUhOE4qZknVp
+ fLqU2a3S81k8n8Nr/1qMjoo5jJzUvu7++RnyuzJ9Kb9SYx/I8DycXTiwtTUcypoz0WjY7MvV
+ HcpdurahblZbr1Lp8t82r3wbmNDDHg9RveW+xFAvOxC7ZPyBh0pMtd3sUqo29hqn5a0b61qR
+ 7D1RbFEPBu5pEueWb3BmuY6mxDe9axNiP84LmiYdqbNNcauDaQpCl6lKSsC1OtUvyj6eeAoD
+ AAA=
+X-CFilter-Loop: Reflected
 X-Mailman-Approved-At: Thu, 12 Mar 2026 16:46:35 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -171,12 +96,260 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed Mar 11, 2026 at 9:39 AM JST, Joel Fernandes wrote:
-> nova-core will use the GPU buddy allocator for physical VRAM management.
-> Enable it in Kconfig.
->
-> Cc: Nikola Djukic <ndjukic@nvidia.com>
-> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
-> ---
+On Thu, Mar 12, 2026 at 01:38:19AM +0900, Yunseong Kim wrote:
+> Hi all,
+> 
+> I have been investigating repeated Clang build failures of the form:
+> 
+>   "cannot jump from this indirect goto statement to one of its possible targets"
+>   "note: jump enters a statement expression"
+> 
+> triggered by the interaction between drm_exec's indirect goto
+> (goto *__drm_exec_retry_ptr) and diagnostic macros such as _THIS_IP_,
+> LOCKDEP, and DEPT.
+> 
+> Link: https://lore.kernel.org/all/?q=b%3A%22error%3A+cannot+jump+from+this+indirect+goto+statement+to+one+of+its+possible+targets%22
+> 
+> Notably, failures on DEPT are currently observed on arm64 builds.
+> On arm64, _THIS_IP_ uses the common implementation based on a GNU C
+> statement expression with an address-taken label, relying on compiler
+> optimization rather than an architecture-specific definition. This makes
+> arm64 particularly sensitive to Clang's treatment of address-taken labels
+> and indirect goto targets.
+> 
+> This is also not limited to a single driver. I have observed the same
+> failure pattern in multiple DRM drivers when DEPT instrumentation is in
+> the call path (e.g. dma_fence_wait() -> sdt_might_sleep_start_timeout()
+> -> _THIS_IP_), including msm and others.
+> 
+> $ clang --version
+> clang version 23.0.0git (https://github.com/llvm/llvm-project.git
+> 1ff1e5f10a5c765b4cf1344c4964604dcd09fef3)
+> 
+> drivers/gpu/drm/msm/msm_gem_vma.c:919:3: error: cannot jump from this
+> indirect goto statement to one of its possible targets
+>   919 |                 drm_exec_retry_on_contention(&exec);
+>       |                 ^
+> ./include/drm/drm_exec.h:123:4: note: expanded from macro
+> 'drm_exec_retry_on_contention'
+>   123 |                         goto *__drm_exec_retry_ptr;             \
+>       |                         ^
+> drivers/gpu/drm/msm/msm_gem_vma.c:909:3: note: possible target of
+> indirect goto statement
+>   909 |                 dma_fence_wait(vm->last_fence, false);
+>       |                 ^
+> ./include/linux/dma-fence.h:677:2: note: expanded from macro 'dma_fence_wait'
+>   677 |         sdt_might_sleep_start_timeout(NULL,
+> MAX_SCHEDULE_TIMEOUT);      \
+>       |         ^
+> ./include/linux/dept_sdt.h:46:31: note: expanded from macro
+> 'sdt_might_sleep_start_timeout'
+>    46 |                 unsigned long __this_ip__ = _THIS_IP_;
+>          \
+>       |                                             ^
+> ./include/linux/instruction_pointer.h:10:41: note: expanded from macro
+> '_THIS_IP_'
+>    10 | #define _THIS_IP_  ({ __label__ __here; __here: (unsigned
+> long)&&__here; })
+>       |                                         ^
+> drivers/gpu/drm/msm/msm_gem_vma.c:909:3: note: jump enters a statement
+> expression
+> ./include/linux/dma-fence.h:677:2: note: expanded from macro 'dma_fence_wait'
+>   677 |         sdt_might_sleep_start_timeout(NULL,
+> MAX_SCHEDULE_TIMEOUT);      \
+>       |         ^
+> ./include/linux/dept_sdt.h:46:31: note: expanded from macro
+> 'sdt_might_sleep_start_timeout'
+>    46 |                 unsigned long __this_ip__ = _THIS_IP_;
+>          \
+>       |                                             ^
+> ./include/linux/instruction_pointer.h:10:20: note: expanded from macro
+> '_THIS_IP_'
+>    10 | #define _THIS_IP_  ({ __label__ __here; __here: (unsigned
+> long)&&__here; })
+>       |                    ^
+> drivers/gpu/drm/msm/msm_gem_vma.c:909:3: note: jump enters a statement
+> expression
+> ./include/linux/dma-fence.h:673:38: note: expanded from macro 'dma_fence_wait'
+>   673 | #define dma_fence_wait(f, intr)
+>          \
+>       |
+>          ^
+> drivers/gpu/drm/msm/msm_gem_vma.c:933:5: error: cannot jump from this
+> indirect goto statement to one of its possible targets
+>   933 |                                 drm_exec_retry_on_contention(&exec);
+>       |                                 ^
+> ./include/drm/drm_exec.h:123:4: note: expanded from macro
+> 'drm_exec_retry_on_contention'
+>   123 |                         goto *__drm_exec_retry_ptr;             \
+>       |                         ^
+> drivers/gpu/drm/msm/msm_gem_vma.c:909:3: note: possible target of
+> indirect goto statement
+>   909 |                 dma_fence_wait(vm->last_fence, false);
+>       |                 ^
+> ./include/linux/dma-fence.h:677:2: note: expanded from macro 'dma_fence_wait'
+>   677 |         sdt_might_sleep_start_timeout(NULL,
+> MAX_SCHEDULE_TIMEOUT);      \
+>       |         ^
+> ./include/linux/dept_sdt.h:46:31: note: expanded from macro
+> 'sdt_might_sleep_start_timeout'
+>    46 |                 unsigned long __this_ip__ = _THIS_IP_;
+>          \
+>       |                                             ^
+> ./include/linux/instruction_pointer.h:10:41: note: expanded from macro
+> '_THIS_IP_'
+>    10 | #define _THIS_IP_  ({ __label__ __here; __here: (unsigned
+> long)&&__here; })
+>       |                                         ^
+> drivers/gpu/drm/msm/msm_gem_vma.c:909:3: note: jump enters a statement
+> expression
+> ./include/linux/dma-fence.h:677:2: note: expanded from macro 'dma_fence_wait'
+>   677 |         sdt_might_sleep_start_timeout(NULL,
+> MAX_SCHEDULE_TIMEOUT);      \
+>       |         ^
+> ./include/linux/dept_sdt.h:46:31: note: expanded from macro
+> 'sdt_might_sleep_start_timeout'
+>    46 |                 unsigned long __this_ip__ = _THIS_IP_;
+>          \
+>       |                                             ^
+> ./include/linux/instruction_pointer.h:10:20: note: expanded from macro
+> '_THIS_IP_'
+>    10 | #define _THIS_IP_  ({ __label__ __here; __here: (unsigned
+> long)&&__here; })
+>       |                    ^
+> drivers/gpu/drm/msm/msm_gem_vma.c:909:3: note: jump enters a statement
+> expression
+> ./include/linux/dma-fence.h:673:38: note: expanded from macro 'dma_fence_wait'
+>   673 | #define dma_fence_wait(f, intr)
+>          \
+>       |
+>          ^
+> 
+> I was able to find the pattern of the kernel source code that uses this pattern:
+> 
+>   $ git grep -n 'goto \*' | grep ';' | grep -v "\*/" | \
+>     grep -Ev "(\*[[:space:]]+goto|_goto.*\*\);)"
+>   drivers/gpu/drm/xe/xe_validation.h:149:                       goto *__drm_exec_retry_ptr;                     \
+>   drivers/misc/lkdtm/cfi.c:129:                 goto *labels[1];
+>   drivers/misc/lkdtm/cfi.c:131:                 goto *labels[2];
+>   drivers/misc/lkdtm/cfi.c:133:                 goto *labels[3];
+>   drivers/misc/lkdtm/cfi.c:135:                 goto *labels[4];
+>   include/drm/drm_exec.h:123:                   goto *__drm_exec_retry_ptr;             \
+>   kernel/bpf/core.c:1776:       goto *jumptable[insn->code];
+>   scripts/gcc-plugins/gcc-common.h:368: return as_a<ggoto *>(stmt);
+>   scripts/gcc-plugins/gcc-common.h:373: return as_a<const ggoto *>(stmt);
+>   tools/testing/selftests/bpf/progs/bpf_gotox.c:219:    goto *jt[ctx->x & 0xff];
+>   tools/testing/selftests/bpf/progs/bpf_gotox.c:261:            goto *jt1[a];
+>   tools/testing/selftests/bpf/progs/bpf_gotox.c:263:            goto *jt2[b];
+>   tools/testing/selftests/bpf/progs/bpf_gotox.c:284:            goto *jt[a];
+>   tools/testing/selftests/bpf/progs/bpf_gotox.c:287:            goto *jt[a + b];
+> 
+> I understand that Clang's behavior here is intentional and conservative:
+> any address-taken label in the same function is treated as a potential
+> indirect goto target, and jumping into a statement expression is diagnosed
+> to avoid semantic issues. This aligns with:
+> 
+>   - [Clang] Diagnose jumps into statement expressions (D154696)
+>     https://reviews.llvm.org/D154696
+> 
+> At the same time, the kernel is not using _THIS_IP_ for control flow.
+> The label address is used purely for diagnostics (lockdep/DEPT attribution).
+> However, as discussed in:
+> 
+>   - LLVM Issue #138272: Add builtin/intrinsic to get current instruction pointer
+>     https://github.com/llvm/llvm-project/issues/138272
+> 
+> using blockaddress (&&label) purely to obtain an instruction pointer is
+> problematic in LLVM's model, since blockaddress has defined behavior only
+> when used with indirectbr or for null comparisons.
+> 
+> Similar issues have also been observed in other contexts where indirect
+> goto interacts with address-taken labels, e.g.:
+> 
+>   - LLVM Issue #28019: Wrong 'cannot jump from this indirect goto statement'
+>     https://github.com/llvm/llvm-project/issues/28019
+> 
+> Given this, I think there is three possible directions:
 
-Reviewed-by: Eliot Courtney <ecourtney@nvidia.com>
+Hi,
+
+Thanks for the clarification of the issue.
+
+Indeed, the issue is inevitable as long as 'THIS_IP' macro is used along
+with 'indirect goto' statement nearby.
+
+> 1) Continue per-callsite structural workarounds
+>    Keep separating indirect goto usage from any code that expands _THIS_IP_
+>    (e.g. moving PROVE_LOCKING / DEPT paths into helper functions). This avoids
+>    the diagnostic but requires ongoing refactoring and does not scale well as
+>    similar patterns reappear across drivers.
+
+Yes.  This workaround would work anyway.  However, hopefully, we can
+resolve it in a better way if any.
+
+> 2) Introduce a compiler-supported alternative to _THIS_IP_
+>    As discussed in LLVM Issue #138272, a dedicated builtin or intrinsic to
+>    obtain a best-effort instruction pointer for diagnostics would allow the
+>    kernel to avoid address-taken labels entirely and eliminate this class of
+>    conflicts.
+
+Or introduce a new attribute to indicate that 'the symbol(label) is not
+used by indirect goto from out of the scope' or something?
+
+> 3) DRM/drm_exec-scoped refactoring as a pragmatic middle ground
+>    Since drm_exec is the common convergence point where indirect goto and
+>    DEPT/LOCKDEP instrumentation can meet in the same function across multiple
+>    DRM drivers, we could refactor the drm_exec usage patterns (or provide a
+>    recommended wrapper pattern) to structurally separate the retry/indirect-goto
+>    region from instrumentation that expands _THIS_IP_. This would avoid
+>    kernel-wide churn while addressing the recurring failures in DRM drivers.
+> 
+> I am not proposing to weaken Clang's diagnostics. Rather, I would like
+> feedback on whether option (3) is considered an acceptable short- to
+> medium-term approach, and whether option (2) is the preferred long-term
+> direction from the compiler side.
+
+I'd also like to hear feedbacks for what you mentioned.
+
+Thanks!
+
+	Byungchul
+
+> Any guidance from the LOCKDEP and kernel LLVM maintainers on the preferred
+> path forward would be greatly appreciated.
+> 
+> On 12/5/25 4:18 PM, Byungchul Park wrote:
+> > Now that CONFIG_DEPT_AGGRESSIVE_TIMEOUT_WAIT was introduced, apply the
+> > consideration to dma fence wait.
+> >
+> > Signed-off-by: Byungchul Park <byungchul@sk.com>
+> > ---
+> >  drivers/dma-buf/dma-fence.c | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/dma-buf/dma-fence.c b/drivers/dma-buf/dma-fence.c
+> > index b313bb59dc9c..f2cc7068af65 100644
+> > --- a/drivers/dma-buf/dma-fence.c
+> > +++ b/drivers/dma-buf/dma-fence.c
+> > @@ -799,7 +799,7 @@ dma_fence_default_wait(struct dma_fence *fence, bool intr, signed long timeout)
+> >       cb.task = current;
+> >       list_add(&cb.base.node, &fence->cb_list);
+> >
+> > -     sdt_might_sleep_start(NULL);
+> > +     sdt_might_sleep_start_timeout(NULL, timeout);
+> >       while (!test_bit(DMA_FENCE_FLAG_SIGNALED_BIT, &fence->flags) && ret > 0) {
+> >               if (intr)
+> >                       __set_current_state(TASK_INTERRUPTIBLE);
+> > @@ -903,7 +903,7 @@ dma_fence_wait_any_timeout(struct dma_fence **fences, uint32_t count,
+> >               }
+> >       }
+> >
+> > -     sdt_might_sleep_start(NULL);
+> > +     sdt_might_sleep_start_timeout(NULL, timeout);
+> >       while (ret > 0) {
+> >               if (intr)
+> >                       set_current_state(TASK_INTERRUPTIBLE);
+> 
+> 
+> Best regards,
+> Yuseong
