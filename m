@@ -4,163 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 592D9FED2E4
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 08:09:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92CE1FED2E7
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 08:11:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20C8D10E9D7;
-	Thu, 12 Mar 2026 08:09:05 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QRSm6ArW";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0344010E9D7
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Mar 2026 08:09:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773302944; x=1804838944;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=GBV7Y6mNEE8CVAAhb5ZNSe7fh0bHiurgkTMAHctzxTA=;
- b=QRSm6ArWEPRa82IHa3HuhqfwV6kqiY1wWQJ5lIh3do1lQ2we4ROlFkR2
- xBKWsZUzt1MlsZQXYx3yR3EJesdeBlHSdaJK35BFJ1e0Z8PSlLf37GyAE
- 5TRFKvOwIyi/VnGC3VbHJAWlD4q93ZatGp2PlLH7s5KL9eYzCgNdnT1+c
- RjW4XcimS7zWPU0AzOYBfPRZyZxLrI6mWPkNjzYcRNEwEp806aFH5MhQe
- 5TRMQbCe+vF+49S9NOBlAVMWLJTMDXcmaXYueUspL4cXAlEWkBNEa/LbX
- dKaYKfdelDXyS8LRFAV1aGLp3MsLMRJHJ+dkx1V+vKBMM2Buv4szJo9tD g==;
-X-CSE-ConnectionGUID: 6zVCP39GRJGaOgENJuRHtQ==
-X-CSE-MsgGUID: qfEiNpU2Qji/SdaCL7NgAg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="85861606"
-X-IronPort-AV: E=Sophos;i="6.23,115,1770624000"; d="scan'208";a="85861606"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2026 01:09:04 -0700
-X-CSE-ConnectionGUID: jgedmF6CT+meQ1OI4S5EIQ==
-X-CSE-MsgGUID: BhHjfK46RtyCpNHgHfQgmw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,115,1770624000"; d="scan'208";a="243765620"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2026 01:09:03 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 12 Mar 2026 01:09:02 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 12 Mar 2026 01:09:02 -0700
-Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.18) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 12 Mar 2026 01:09:00 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Qfsj7M/IWhQ4p5dwi6/U3uC+Twofm+2B0YrP4N3AOoju7vf+MipmPLuLfw6yWddQP2LjtRyYtKANHljAy688SM4YuOTuWyNbCUm6Tm2fRRr2dyJPieZDlVZzHGjy/6PbQeIw7jHZR8yIaQxDQaMy4PNcKZzys2tnrrouxKfxS7fXCcl2TlS3SbJFJeCu61ShUUEbkTcvKBXKLP2zkNHIAMpyrCUQbydbFO3dryGWjAYHbTt4VICi8Z61YWmyjAyvurHH8Rv2Uij3+Qpa1hcEFdZprZ6NjniWKTZd0uoAMptuCFpObvP0/QfI2aYUFuVgxVpo5d4Ni13sjmAJ9y4hhg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gEyILDcZh+MfmTZxAN51u4N1Mt0ImomkEDRsEiDckkc=;
- b=X4Ox8DKWTtlQsjjV0dkYSNNERie9OpM08ataf2vGh0LMDMvUjE5KTkPvtsekoGIeSkRQtiqpKE/W7zcPYc196gUlpkLYi9a+EmfZhu9K7LirzcEJwaXEhllDGlIGmwxmaT0gC6GZJ8PzBhlNmgfOoufyGHuI6hm3MVU3FbOkcA4L+sEQsYEtUofXVYNan07u8ycLyE93pujUir/YRX5Nso988Mxn8Nb/g+dwEDQ8dnHzcYT9IHB8hh8zxKhsp7LXIfmiykr0queL8G6URfIC5AiMuT7UT7Hm8VhGgCFh+WobBPlkmdVKjcfwiKXqpe5f3bEBYuHfCp9xQlV3HD6mRA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6209.namprd11.prod.outlook.com (2603:10b6:930:27::16)
- by DM4PR11MB6168.namprd11.prod.outlook.com (2603:10b6:8:ab::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.6; Thu, 12 Mar
- 2026 08:08:57 +0000
-Received: from CY5PR11MB6209.namprd11.prod.outlook.com
- ([fe80::a805:a5ac:cf5c:8671]) by CY5PR11MB6209.namprd11.prod.outlook.com
- ([fe80::a805:a5ac:cf5c:8671%3]) with mapi id 15.20.9723.000; Thu, 12 Mar 2026
- 08:08:57 +0000
-Message-ID: <b0f2b557-f713-427c-b1e6-66bde00ff489@intel.com>
-Date: Thu, 12 Mar 2026 13:38:49 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 11/11] drm/xe/xe_pci_error: Process errors in
- mmio_enabled
-To: Riana Tauro <riana.tauro@intel.com>
-CC: <anshuman.gupta@intel.com>, <rodrigo.vivi@intel.com>,
- <aravind.iddamsetty@linux.intel.com>, <badal.nilawar@intel.com>,
- <raag.jadav@intel.com>, <ravi.kishore.koppuravuri@intel.com>,
- <intel-xe@lists.freedesktop.org>
-References: <20260302102155.4074630-13-riana.tauro@intel.com>
- <20260302102155.4074630-24-riana.tauro@intel.com>
- <b308163f-a203-4cc4-b558-1de58fb1251c@intel.com>
- <4fee6a95-1101-404a-909d-7f3654a8b129@intel.com>
-Content-Language: en-US
-From: "Mallesh, Koujalagi" <mallesh.koujalagi@intel.com>
-In-Reply-To: <4fee6a95-1101-404a-909d-7f3654a8b129@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0060.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1d3::9) To CY5PR11MB6209.namprd11.prod.outlook.com
- (2603:10b6:930:27::16)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B27710E9E6;
+	Thu, 12 Mar 2026 08:11:25 +0000 (UTC)
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4092C10E9DF;
+ Thu, 12 Mar 2026 08:11:24 +0000 (UTC)
+Received: from 37-33-19-16.bb.dnainternet.fi ([37.33.19.16]
+ helo=[192.168.101.111])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1w0b8Z-00000003G2b-1dJs; Thu, 12 Mar 2026 10:11:21 +0200
+Message-ID: <687335ed794eb133347e00adb14b1bea55552a68.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Jani Nikula <jani.nikula@linux.intel.com>, Luca Coelho
+ <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com
+Date: Thu, 12 Mar 2026 10:11:17 +0200
+In-Reply-To: <d9934b9f57fde3abad73b40013d68f1238f7284a@intel.com>
+References: <20260305100100.332956-1-luciano.coelho@intel.com>
+ <20260305100100.332956-2-luciano.coelho@intel.com>
+ <3ac0ffb3dae8ae824d34fc9330bbbc974af34651@intel.com>
+ <d9934b9f57fde3abad73b40013d68f1238f7284a@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-8 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6209:EE_|DM4PR11MB6168:EE_
-X-MS-Office365-Filtering-Correlation-Id: b319b239-ad61-4472-5e5c-08de800e9c2e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|18002099003|56012099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: eU9k/+jBsQX1Qa4mYfMAK2fYdATVhpNQtbepC0Vm4HNSuHTwlM4AiIGeGqXtbWwz56XswArV4Y/oqjsY+VpdUK00+KTdQogYPw304+bBHl64aC4TdugcKrRhOXnoEAKpXKb4GYJod+JbnXMopKGGrA1+IVpjXzP364Fj6cS5UH/J1o0vcYQz2ACGqNGw3HVlRfHeACtZYSMfSw/ja4LN8SCrExYjQ7GcK4ixm0tV8QZtC0FUc05J16cqsw+do6khA8q0rhzsj6xaxyxLw5hNh2PxwzNg2HMiecmv3K2/W/EkCUKK2xXR5dHCcKOAt40GSB9z4Cp7DntFe28oiZAjtz/v5FmcEKkSNI0WBe99xvd6EmOyZcbomiMQS5TSgItRIoPthMWwhOQFr6fScf0cXOJuNcxRZCQ6qSRFcJMvASRH+gid+kCv76SfQQBa94Srk2Kcc1JC78OcCv/1gXWW3ioqcHRZlxwUELeK6JvtCU+iSEa3sTAZmEDo0q23xZ5q5D90mPt6XCf6cetscReTVeutxiwIjx4c6fphKfjTuHJ2K6Au0wQJ5QcD2WCWdqstqeGigmq7+A18H8SfbBuQeZk976uYKJkqFtKgdYPM2YijrdCY8LKLAus2bC5XuOX7zrMII9DCSVcCmrOSfKO9WbKKVlLL1cIbzVxQCCjEkxShi4ZdLelO4LpiRi0VmbTV
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6209.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(18002099003)(56012099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OHNtcGtkUG16UlN0NFNDQ0xwY1JkVWE3MXFUZENOVHpUTk9ib1RBRUNOR2hV?=
- =?utf-8?B?Tm00K2QxZlZYSHZjbGVLWlV6SE9MN2o4Tk5zdWtLWjJab0NPekhPYVpjTTl6?=
- =?utf-8?B?MTl0UG1xOTg5dG96YW85bDZ0a2p5bXRlYTB4ZHlOM2dzMUY4SHJhUXgybGNk?=
- =?utf-8?B?ZFRRUGtYUnBFNFNFd0p5YnZIcmRRakhGUFFOeW52UDVaUG84dGRqRmRjdHky?=
- =?utf-8?B?TUdWWWRnRzYzYjV0bWpmM1p0WFkxYnlXZVVFR01tdm1xaHJtM3cwTVVaeEx4?=
- =?utf-8?B?dS9xbG9EUTF2VFhvWnhyMExEdml3U01RRnU2L2hiQ0dqWExseTJJY1BsV3li?=
- =?utf-8?B?UWRVQ3hsZC84YUNaUFZ4MXRkcWhwc2lhNHlmQlhPUFc0NDEweHpRaTFqZGRE?=
- =?utf-8?B?NlZqSVVoVDFxZHNsQXEzNHdXWkNaT3RqNVg2NlJJSXJsbGR4VDd2aXpjSUds?=
- =?utf-8?B?MWpKNndGdnhweU5JUEJQTm5sT3VLeS94TFRDTmNmc0U1elBJei9kcmFmcWJl?=
- =?utf-8?B?b2UvcldyWEQ5RzFuYkJuRzZQTTNzM3BqanZseVVmc2NJTWRsMXJQSEpZQ3VN?=
- =?utf-8?B?Zk5ucTV4MldCTkpXM2lLelh5R0RNTE9XRHRrdDlvZmR5bThBcUxvS3NidkZv?=
- =?utf-8?B?akFUS1Z1WkU1aitWRmJDazFyKytDbnhMWnlrVEhWb0o1UjNCMURxRnFzNHNH?=
- =?utf-8?B?V1l5RXNwZVlyWTFCdFBxMTFBMzg0OWNvQ05aM2hWb3hCQ05pZUVLYVQwOW4y?=
- =?utf-8?B?Rkw5Mm9FRVpic293YlVFM1VWWWZiQXpTa0xHNUV3b28zaU14a1QwRnZza256?=
- =?utf-8?B?VFhha2dZUy9PQ2o3VkFPTkNCNTFEUmI2OXJNNGNiOVgzbXFYa3V3STc3NUlk?=
- =?utf-8?B?N284VnczR3VLM2VqTHpLNmgxUlVRNzh4aWJibVBqeUsrRlR0SDFwaUxvdHND?=
- =?utf-8?B?eGhYVDhGMG96WGJ3aWMzWEpoZEZKelQybVNmUU5Ed2pXZkZoMHhUeFZHeHJt?=
- =?utf-8?B?cTYzbkdKNk5rc1BaVzhPU3grd3N2UE1kUjVJOHJkTlhkc2ZsZytBenB4Y3Nv?=
- =?utf-8?B?NTM2RDc1UGZmbTZod29qVzJUYUdaU3NDOUptaUpRWDhMSjVvT3o0d0JSbVFo?=
- =?utf-8?B?V251L2JIYkxGSFg1S0FHdlJHczEyRkFxTjJHYkxadndFNUNXbHpaYStKOWZr?=
- =?utf-8?B?d0lhWXdOemRibkE5VEc3U1VKNUdPalBJSVVyeVBqd1pleSs5NkVPaXJiUCtW?=
- =?utf-8?B?QVA1R2JLWnF2Q2xSMEZiUXJtOEtQZHdZZDgweXhnd21wa25UckNmRkhkOXB3?=
- =?utf-8?B?V0RFMlFtTDZkMUdDemR4bkF2ZkwzZHJGUlFiZkIxdURKeVB2Vk05OUJpOXQ2?=
- =?utf-8?B?VlFENWZ2TnAyMDdXaUVKeGpod3hJdWtKS1VNcklCa25aZWhGSS9kRGw1TURU?=
- =?utf-8?B?VFMzZzcxTEptMDMxSk93M2Y1ay91QjdUQVh4YkxDc2FYUUhTdXBtQUtCcVk1?=
- =?utf-8?B?ekhyamZwNXVHZUxhWklURnhkU3QzcGNkT3lzMkhmSmFwMGlNTTVNYkw4L0xi?=
- =?utf-8?B?STJld09QTUtZY2RzdkJiNm05SjZlemVWOUZBM1N5QTI0ZTh3VXRlWTdMaTRi?=
- =?utf-8?B?RWV5bGxVL2pia0hhQ1Ivc3ZqSnBPUU9IQm9ZYndLWFFiYWtzSFFyTkJYajNx?=
- =?utf-8?B?M3hYN3pJT2pONTlOZzlEYlUxSWRRZUt2UjlJY2ltU3M2R2hHN21HVHNObTJq?=
- =?utf-8?B?c1hNcjl5dlQvNU5pRkVLQkFJZzM2dXZ5bWtpUDErcHIwY21FTGVDRm1vMWQv?=
- =?utf-8?B?TTZOL2oyNHQ2dnJGR1IyZlVHTE9CSDBQY3RTdXYzbHQvcnpzYW1raHlBWWZz?=
- =?utf-8?B?VUVhVjBxUC9ORUZENjNJK1E5clk5MXZsd3ZlbXVmSWt2eW1MUkp1NnBSWFJj?=
- =?utf-8?B?UkNnM3J6TTJtTDVMMy9NMUpaWUk1VnVaNy80d0h6VDdQcGlBd0dFeXlFTm1l?=
- =?utf-8?B?ek8rOUpKR2hZYTUvYklMdU0wRGROcHZHVXpzUGE3N01aWERPVjJLb0k0bG5K?=
- =?utf-8?B?K04ybkZpbS9GODMzMXdaWkxKazgralRVaUM3K2pzUkpWM2ZwT2xiRjRnalRU?=
- =?utf-8?B?MTJoZWgrYVYrY3FMaFREZHQremZqMjR0U0dsNmlFbENLc0lpKzI1dG1tTzJY?=
- =?utf-8?B?ZXErTWxoWjFMQ0tqK3daT3hmd1UxTjhjYlJjVURHekVid1lvUjhYT0h3TFE2?=
- =?utf-8?B?cnppbXpUY1pMazUzVXBOYk5ZWG0ybnhyaWtTUER6amRMZXBjTVZabmo1bnlt?=
- =?utf-8?B?NEpsL1lsSlpoU05sVk1XVmVkSVpiVmtoMndLSmtBUGpxdkxUU05LYnZuV3ZI?=
- =?utf-8?Q?Wjp4W0X5I4ZVxVmQ=3D?=
-X-Exchange-RoutingPolicyChecked: M7yDqp4p0RLXKxE2dncYjCUa59IPulXVmzhKpTX83SL8KpqV+EcfUV0owOdb6bT/o+WhvMbYsHdZmS6vhccRd3xYxdeJeS9EW7SlqCrMZp7TJDxUGCQ0W9jJmKkZXqksjB6FhTLXQspjQgisZ7xWDQsVVKZGodwVBFtVc6eRQnlody0pdalts/4XE6H9V89TjZOJXmahscdl7boHMxqlHcAv5crwcqY/Oqa6csA2jDNKFM5gqyFXn9ZySuFlVxrCAJpoFOp6EyukmiiHBEc6EHPgSpQ7X1YPL5H4E5KfZNMbQkx/B+YETkGPmZF8p3wTNSmy53cP+B2LQln62u1eSw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: b319b239-ad61-4472-5e5c-08de800e9c2e
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6209.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2026 08:08:57.5614 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +1Lc/v+fHUuBjBtcqiyi9FsUj6vG5ljjsdj9H6uFJeEObgy1EDMJDt8z3zth3X88ZttsbkP8TcWoMoV75j5qLw/pCC8e+SNXFRXdjXYG3DA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6168
-X-OriginatorOrg: intel.com
+Subject: Re: [PATCH v5 01/16] drm/i915/display: remove enum macro magic in
+ intel_display_wa()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -175,122 +48,260 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Fri, 2026-03-06 at 13:38 +0200, Jani Nikula wrote:
+> On Fri, 06 Mar 2026, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> > On Thu, 05 Mar 2026, Luca Coelho <luciano.coelho@intel.com> wrote:
+> > > There's not much use in passing a number to the macro and let it
+> > > convert that into the enum and a string.  It just hides the symbols.
+> >=20
+> > There was a point, though. Passing a random number to intel_display_wa(=
+)
+> > would fail the build. Now you'll only find out runtime. I'll concede
+> > there's value, perhaps more so, in having the symbols not hidden.
 
-On 11-03-2026 08:09 pm, Riana Tauro wrote:
-> Hi Mallesh
->
-> On 3/11/2026 12:40 PM, Mallesh, Koujalagi wrote:
->>
->> On 02-03-2026 03:52 pm, Riana Tauro wrote:
->>> Query system controller when any non fatal error occurs to check
->>> the type of the error, contain and recover.
->>>
->>> The system controller is queried in the mmio_enabled callback.
->>>
->>> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
->>> ---
->>> v2: use ras recovery enum (Raag)
->>> ---
->>>   drivers/gpu/drm/xe/xe_pci_error.c | 13 ++++++++++++-
->>>   1 file changed, 12 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_pci_error.c b/drivers/gpu/drm/xe/ 
->>> xe_pci_error.c
->>> index ba62868f00d4..35bc5b8cee99 100644
->>> --- a/drivers/gpu/drm/xe/xe_pci_error.c
->>> +++ b/drivers/gpu/drm/xe/xe_pci_error.c
->>> @@ -9,6 +9,7 @@
->>>   #include "xe_device.h"
->>>   #include "xe_gt.h"
->>>   #include "xe_pci.h"
->>> +#include "xe_ras.h"
->>>   #include "xe_uc.h"
->>>   static void xe_pci_error_handling(struct pci_dev *pdev)
->>> @@ -26,6 +27,12 @@ static void xe_pci_error_handling(struct pci_dev 
->>> *pdev)
->>>       pci_disable_device(pdev);
->>>   }
->> Explain the mapping rationale
->
-> Do you mean commit message?
-> In the code the naming is self explanatory
+Good point, but there are many nicer ways of achieving the same thing
+without creating a ficticious integer for it, because the WA number is
+really an ID, and could be any string...
 
-Not commit message. Add  a brief code comments 
-(ras_recovery_action_to_pci_result) about map RAS recovery action to PCI 
-AER results.
+Anyway, this series is already merged, but I'll send a new proposal
+with BUILD_BUG_ON() that should achieve the same thing.
 
-For example DISCONNECT: Require system intervention (FW update, cold reset)
 
-Since we called PCI DISCONNECT when CSC Firmware errors that need a 
-flash update.
+> >=20
+> > > Remove the number to enum conversion magic in intel_display_wa().
+> > >=20
+> > > This has the side-effect of changing the print in the drm_WARN() that
+> > > is issued when the number is not implemented, but that is moot anyway
+> > > and can be changed later to something cleaner if needed.
+> >=20
+> > I actually wonder if having the names there is really worth it. It's
+> > just a bunch of rodata bloat for not much benefit. It should be easy
+> > enough to find which enumerator isn't handled.
+> >=20
+> > Maybe check the objdump bloat reduction with the intel_display_wa()
+> > wrapper macro and the const char *name parameter removed?
 
-Thanks
+Yes, good idea, I'll check this and maybe send a patch to improve this
+as well.
 
--/Mallesh
 
->
->>> +static pci_ers_result_t ras_recovery_action_to_pci_result[] = {
->> The mapping array should be constant, never modified.
->>> +    [XE_RAS_RECOVERY_ACTION_RECOVERED] = PCI_ERS_RESULT_RECOVERED,
->>> +    [XE_RAS_RECOVERY_ACTION_RESET] = PCI_ERS_RESULT_NEED_RESET,
->>> +    [XE_RAS_RECOVERY_ACTION_DISCONNECT] = PCI_ERS_RESULT_DISCONNECT,
->>> +};
->>> +
->>>   static pci_ers_result_t xe_pci_error_detected(struct pci_dev 
->>> *pdev, pci_channel_state_t state)
->>>   {
->>>       struct xe_device *xe = pdev_to_xe_device(pdev);
->>> @@ -50,9 +57,13 @@ static pci_ers_result_t 
->>> xe_pci_error_detected(struct pci_dev *pdev, pci_channel_
->>>   static pci_ers_result_t xe_pci_error_mmio_enabled(struct pci_dev 
->>> *pdev)
->>>   {
->>> +    struct xe_device *xe = pdev_to_xe_device(pdev);
->>> +    enum xe_ras_recovery_action action;
->> Add action_max @ end of enum to validate.
->
-> Answered below, but for consistency i can add max
->
->>> +
->>>       dev_err(&pdev->dev, "Xe Pci error recovery: MMIO enabled\n");
->>> +    action = xe_ras_process_errors(xe);
->> What will happen, if RAS processing takes significant time?
->
-> System controller times out after a duration. Refer patch
-> https://patchwork.freedesktop.org/patch/710637/?series=159554&rev=10
->
-> If the ret is negative in process_errors
->
-> +        ret = xe_sysctrl_send_command(xe, &command, &rlen);
-> +        if (ret || !rlen) {
-> +            xe_err(xe, "[RAS]: Sysctrl error ret %d\n", ret);
-> +            goto err;
-> +        }
-> +
->
-> We request for a reset assuming a SC error.
->
->
->>> -    return PCI_ERS_RESULT_NEED_RESET;
->>
->> Use array bound check before using action to avoid out of bounds 
->> array access
->
-> The action here comes from a xe_ras_process_errors which also returns
-> enum. This action is explicitly sent and is not coming from user
-> or firmware.
->
-> Adding a check here seems unnecessary.
->
-> Thanks
-> Riana
->
->>
->> Thanks,
->>
->> -/Mallesh
->>
->>> +    return ras_recovery_action_to_pci_result[action];
->>>   }
->>>   static pci_ers_result_t xe_pci_error_slot_reset(struct pci_dev *pdev)
->
+
+> PS. All of this can be done in follow-up too, to not hold this series
+> back any longer.
+
+Thanks!
+
+--
+Cheers,
+Luca.
+
+
+> >=20
+> > >=20
+> > > Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> > > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_cdclk.c              | 5 +++--
+> > >  drivers/gpu/drm/i915/display/intel_display.c            | 2 +-
+> > >  drivers/gpu/drm/i915/display/intel_display_power_well.c | 4 ++--
+> > >  drivers/gpu/drm/i915/display/intel_display_wa.c         | 2 +-
+> > >  drivers/gpu/drm/i915/display/intel_display_wa.h         | 2 +-
+> > >  drivers/gpu/drm/i915/display/intel_fbc.c                | 8 ++++----
+> > >  drivers/gpu/drm/i915/display/intel_gmbus.c              | 6 +++---
+> > >  drivers/gpu/drm/i915/display/skl_scaler.c               | 2 +-
+> > >  8 files changed, 16 insertions(+), 15 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu=
+/drm/i915/display/intel_cdclk.c
+> > > index 38331e899519..7767f8c198da 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> > > @@ -1870,7 +1870,7 @@ static void icl_cdclk_pll_disable(struct intel_=
+display *display)
+> > >  	 *      after the PLL is enabled (which is already done as part of =
+the
+> > >  	 *      normal flow of _bxt_set_cdclk()).
+> > >  	 */
+> > > -	if (intel_display_wa(display, 13012396614))
+> > > +	if (intel_display_wa(display, INTEL_DISPLAY_WA_13012396614))
+> > >  		intel_de_rmw(display, CDCLK_CTL, MDCLK_SOURCE_SEL_MASK, MDCLK_SOUR=
+CE_SEL_CD2XCLK);
+> > > =20
+> > >  	intel_de_rmw(display, BXT_DE_PLL_ENABLE,
+> > > @@ -2186,7 +2186,8 @@ static u32 bxt_cdclk_ctl(struct intel_display *=
+display,
+> > >  		 * icl_cdclk_pll_disable().  Here we are just making sure
+> > >  		 * we keep the expected value.
+> > >  		 */
+> > > -		if (intel_display_wa(display, 13012396614) && vco =3D=3D 0)
+> > > +		if (intel_display_wa(display, INTEL_DISPLAY_WA_13012396614) &&
+> > > +		    vco =3D=3D 0)
+> > >  			val |=3D MDCLK_SOURCE_SEL_CD2XCLK;
+> > >  		else
+> > >  			val |=3D xe2lpd_mdclk_source_sel(display);
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/g=
+pu/drm/i915/display/intel_display.c
+> > > index 138ee7dd1977..15edf609fff4 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > @@ -1070,7 +1070,7 @@ static void intel_post_plane_update(struct inte=
+l_atomic_state *state,
+> > >  	if (audio_enabling(old_crtc_state, new_crtc_state))
+> > >  		intel_encoders_audio_enable(state, crtc);
+> > > =20
+> > > -	if (intel_display_wa(display, 14011503117)) {
+> > > +	if (intel_display_wa(display, INTEL_DISPLAY_WA_14011503117)) {
+> > >  		if (old_crtc_state->pch_pfit.enabled !=3D new_crtc_state->pch_pfit=
+.enabled)
+> > >  			adl_scaler_ecc_unmask(new_crtc_state);
+> > >  	}
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c =
+b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> > > index 9c8d29839caf..1e03187dbd38 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> > > @@ -249,7 +249,7 @@ static void hsw_power_well_post_enable(struct int=
+el_display *display,
+> > >  	if (irq_pipe_mask) {
+> > >  		gen8_irq_power_well_post_enable(display, irq_pipe_mask);
+> > > =20
+> > > -		if (intel_display_wa(display, 22021048059))
+> > > +		if (intel_display_wa(display, INTEL_DISPLAY_WA_22021048059))
+> > >  			dss_pipe_gating_enable_disable(display, irq_pipe_mask, false);
+> > >  	}
+> > >  }
+> > > @@ -258,7 +258,7 @@ static void hsw_power_well_pre_disable(struct int=
+el_display *display,
+> > >  				       u8 irq_pipe_mask)
+> > >  {
+> > >  	if (irq_pipe_mask) {
+> > > -		if (intel_display_wa(display, 22021048059))
+> > > +		if (intel_display_wa(display, INTEL_DISPLAY_WA_22021048059))
+> > >  			dss_pipe_gating_enable_disable(display, irq_pipe_mask, true);
+> > > =20
+> > >  		gen8_irq_power_well_pre_disable(display, irq_pipe_mask);
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/driver=
+s/gpu/drm/i915/display/intel_display_wa.c
+> > > index c2ccdca2c2f3..1d8340b36c01 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
+> > > @@ -87,7 +87,7 @@ bool __intel_display_wa(struct intel_display *displ=
+ay, enum intel_display_wa wa,
+> > >  	case INTEL_DISPLAY_WA_22021048059:
+> > >  		return IS_DISPLAY_VER(display, 14, 35);
+> > >  	default:
+> > > -		drm_WARN(display->drm, 1, "Missing Wa number: %s\n", name);
+> > > +		drm_WARN(display->drm, 1, "Missing Wa: %s\n", name);
+> > >  		break;
+> > >  	}
+> > > =20
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/driver=
+s/gpu/drm/i915/display/intel_display_wa.h
+> > > index 767420d5f406..06c1f62c0f6d 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
+> > > @@ -40,6 +40,6 @@ enum intel_display_wa {
+> > >  bool __intel_display_wa(struct intel_display *display, enum intel_di=
+splay_wa wa, const char *name);
+> > > =20
+> > >  #define intel_display_wa(__display, __wa) \
+> > > -	__intel_display_wa((__display), INTEL_DISPLAY_WA_##__wa, __stringif=
+y(__wa))
+> > > +	__intel_display_wa((__display), __wa, __stringify(__wa))
+> > > =20
+> > >  #endif
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/d=
+rm/i915/display/intel_fbc.c
+> > > index 3e9b3e532499..5d0d7c1027f5 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
+> > > @@ -957,7 +957,7 @@ static void intel_fbc_program_workarounds(struct =
+intel_fbc *fbc)
+> > >  	 * Fixes: Screen flicker with FBC and Package C state enabled
+> > >  	 * Workaround: Forced SLB invalidation before start of new frame.
+> > >  	 */
+> > > -	if (intel_display_wa(display, 22014263786))
+> > > +	if (intel_display_wa(display, INTEL_DISPLAY_WA_22014263786))
+> > >  		intel_de_rmw(display, ILK_DPFC_CHICKEN(fbc->id),
+> > >  			     0, DPFC_CHICKEN_FORCE_SLB_INVALIDATION);
+> > > =20
+> > > @@ -979,7 +979,7 @@ static void fbc_sys_cache_update_config(struct in=
+tel_display *display, u32 reg,
+> > >  	 * Fixes: SoC hardware issue in read caching
+> > >  	 * Workaround: disable cache read setting which is enabled by defau=
+lt.
+> > >  	 */
+> > > -	if (!intel_display_wa(display, 14025769978))
+> > > +	if (!intel_display_wa(display, INTEL_DISPLAY_WA_14025769978))
+> > >  		/* Cache read enable is set by default */
+> > >  		reg |=3D FBC_SYS_CACHE_READ_ENABLE;
+> > > =20
+> > > @@ -1612,7 +1612,7 @@ static int intel_fbc_check_plane(struct intel_a=
+tomic_state *state,
+> > >  		return 0;
+> > >  	}
+> > > =20
+> > > -	if (intel_display_wa(display, 16023588340)) {
+> > > +	if (intel_display_wa(display, INTEL_DISPLAY_WA_16023588340)) {
+> > >  		plane_state->no_fbc_reason =3D "Wa_16023588340";
+> > >  		return 0;
+> > >  	}
+> > > @@ -1622,7 +1622,7 @@ static int intel_fbc_check_plane(struct intel_a=
+tomic_state *state,
+> > >  	 * Fixes: Underrun during media decode
+> > >  	 * Workaround: Do not enable FBC
+> > >  	 */
+> > > -	if (intel_display_wa(display, 15018326506)) {
+> > > +	if (intel_display_wa(display, INTEL_DISPLAY_WA_15018326506)) {
+> > >  		plane_state->no_fbc_reason =3D "Wa_15018326506";
+> > >  		return 0;
+> > >  	}
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu=
+/drm/i915/display/intel_gmbus.c
+> > > index 38706017c0c6..df48f27f1cc1 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
+> > > @@ -250,7 +250,7 @@ static u32 get_reserved(struct intel_gmbus *bus)
+> > >  	preserve_bits |=3D GPIO_DATA_PULLUP_DISABLE | GPIO_CLOCK_PULLUP_DIS=
+ABLE;
+> > > =20
+> > >  	/* Wa_16025573575: the masks bits need to be preserved through out =
+*/
+> > > -	if (intel_display_wa(display, 16025573575))
+> > > +	if (intel_display_wa(display, INTEL_DISPLAY_WA_16025573575))
+> > >  		preserve_bits |=3D GPIO_CLOCK_DIR_MASK | GPIO_CLOCK_VAL_MASK |
+> > >  				 GPIO_DATA_DIR_MASK | GPIO_DATA_VAL_MASK;
+> > > =20
+> > > @@ -342,7 +342,7 @@ intel_gpio_pre_xfer(struct i2c_adapter *adapter)
+> > >  	if (display->platform.pineview)
+> > >  		pnv_gmbus_clock_gating(display, false);
+> > > =20
+> > > -	if (intel_display_wa(display, 16025573575))
+> > > +	if (intel_display_wa(display, INTEL_DISPLAY_WA_16025573575))
+> > >  		ptl_handle_mask_bits(bus, true);
+> > > =20
+> > >  	set_data(bus, 1);
+> > > @@ -363,7 +363,7 @@ intel_gpio_post_xfer(struct i2c_adapter *adapter)
+> > >  	if (display->platform.pineview)
+> > >  		pnv_gmbus_clock_gating(display, true);
+> > > =20
+> > > -	if (intel_display_wa(display, 16025573575))
+> > > +	if (intel_display_wa(display, INTEL_DISPLAY_WA_16025573575))
+> > >  		ptl_handle_mask_bits(bus, false);
+> > >  }
+> > > =20
+> > > diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/=
+drm/i915/display/skl_scaler.c
+> > > index 4c4deac7f9c8..7c5cb188ebf0 100644
+> > > --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+> > > +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+> > > @@ -823,7 +823,7 @@ void skl_pfit_enable(const struct intel_crtc_stat=
+e *crtc_state)
+> > >  			crtc_state->scaler_state.scaler_id < 0))
+> > >  		return;
+> > > =20
+> > > -	if (intel_display_wa(display, 14011503117))
+> > > +	if (intel_display_wa(display, INTEL_DISPLAY_WA_14011503117))
+> > >  		adl_scaler_ecc_mask(crtc_state);
+> > > =20
+> > >  	drm_rect_init(&src, 0, 0,
