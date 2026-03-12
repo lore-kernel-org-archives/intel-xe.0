@@ -4,112 +4,127 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85CC1FED2E1
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 07:56:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2378AFED2E1
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 07:56:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3105710E98F;
-	Thu, 12 Mar 2026 07:56:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD13E10E994;
+	Thu, 12 Mar 2026 07:56:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="OXjjnk7L";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="qy5lwvbO";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="OXjjnk7L";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="qy5lwvbO";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="HEpyYkE3";
 	dkim-atps=neutral
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDF6A10E993
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Mar 2026 07:56:32 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 9765E5BD9A;
- Thu, 12 Mar 2026 07:56:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1773302191; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=DHVNXKHqHBN4I0S02ySoOpHlXMNjJ0NB2c/sQHZ56Q8=;
- b=OXjjnk7Lme3svZXSDQe9dCKsgg8CKOeLI+U9pU5SUh+15iDvoVcU4FWniDYRQlMMjdwtQC
- p3W2t7sG9LE16v9TUTV3ot1YMBDEBLN6ODwgL3hWF4Sg544MXo0J0v0N5XgmlWaPxKZRPR
- ph6CrXmEpUYX5GHqIu4j/9HHjLiwX74=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1773302191;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=DHVNXKHqHBN4I0S02ySoOpHlXMNjJ0NB2c/sQHZ56Q8=;
- b=qy5lwvbOVNC2qna+8SOxvTc6FvVMfncc7+vdLmh96antddOFtBx00sl6YtSoimYrpvdyr/
- DvcND5Q9+BhoiEAg==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=OXjjnk7L;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=qy5lwvbO
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1773302191; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=DHVNXKHqHBN4I0S02ySoOpHlXMNjJ0NB2c/sQHZ56Q8=;
- b=OXjjnk7Lme3svZXSDQe9dCKsgg8CKOeLI+U9pU5SUh+15iDvoVcU4FWniDYRQlMMjdwtQC
- p3W2t7sG9LE16v9TUTV3ot1YMBDEBLN6ODwgL3hWF4Sg544MXo0J0v0N5XgmlWaPxKZRPR
- ph6CrXmEpUYX5GHqIu4j/9HHjLiwX74=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1773302191;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=DHVNXKHqHBN4I0S02ySoOpHlXMNjJ0NB2c/sQHZ56Q8=;
- b=qy5lwvbOVNC2qna+8SOxvTc6FvVMfncc7+vdLmh96antddOFtBx00sl6YtSoimYrpvdyr/
- DvcND5Q9+BhoiEAg==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 3729C3FE6E;
- Thu, 12 Mar 2026 07:56:31 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id KF1GDK9xsmmMRgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 12 Mar 2026 07:56:31 +0000
-Date: Thu, 12 Mar 2026 08:56:29 +0100
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-next
-Message-ID: <20260312075629.GA21234@linux.fritz.box>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Received: from DM1PR04CU001.outbound.protection.outlook.com
+ (mail-centralusazon11010047.outbound.protection.outlook.com [52.101.61.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D2F1D10E997;
+ Thu, 12 Mar 2026 07:56:42 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=FCkpkz0NvnVZM6S8mPb4ia/244IRfXKfi97kNccFyXw58bmuRtq50LN09vPyx+5baLWOrO1/eQEOEjfYO3pFdoFUVqoVRityKdc5r7CKjDPhIMVNkFWR0Qi/avSmYOC0sDopecfnAk2uUfuBTEePiMDRxNQG5qgfJV6TFOWIvmpbax08xAmdNFmtZYiHMSfY9RO8vM3lxrpipe5OxRunLtJCl3hbIlHfxU617DDQEjZp31g00sQy3p++HZbbjs3NLQY/9zkcIIdaPE1fMYe7YsqaYN76XutyicUuhB1HX5Eq7EogjqK6P4xnLjhkr+WMxqn/lVsNxAJoVvjDe8HtYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=EcSP7KSwij88x/UpA/R6VhUQGs6LVMVHkIWcEjN+WVE=;
+ b=E4KVkNn6fXffzRljbEt6sut615LrctmoOI29AOgv57BM0CFQ+Hg8AdcF8Q9jrUMAbIv+mep0x1JVf3WA0tfe/nWL7x1GE4Jw+sH9K6MnoOFGN9NY4ht08SEPTOupRCiNJ/7z5wGMqS2SfQbrUzZp2/DQxOhtNPJ1vXO5Dj+pIG7zr2kSHfYtJCZ0TJcWWA5u3Uf67Qi9bVRXjeFaf8MtvcBpb8/6JRE2ZFVGX+N86pNP2syIRfBhSFiqtW6Liwpv/qzwfrsajuJkH5RYbFpvNe2Z5fe8+YGEnHK9swVbtHM6XZ6BO3cb8yL1z/r6oMkl/QbxTVYBOcVq0FR0CfW6tA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EcSP7KSwij88x/UpA/R6VhUQGs6LVMVHkIWcEjN+WVE=;
+ b=HEpyYkE3FEMqpB/bdu5V5P8uoQa/JeKdbHrm82RP2eu74DuQhjR6v9wADfrzr2GOh+vyqe9CQ/oIA14Zp55rpXoHrTbVP7xGhvG1IFEYqdSzsrekmN+REbhv02FEjpCd3vgtBcZd1nEuN5strnlBa3itvHdkD2adPp/B8hL4v5E=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by SA1PR12MB7272.namprd12.prod.outlook.com (2603:10b6:806:2b6::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.4; Thu, 12 Mar
+ 2026 07:56:39 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.20.9700.010; Thu, 12 Mar 2026
+ 07:56:38 +0000
+Message-ID: <c97a444f-1b47-4281-8cdb-b544c8fb59af@amd.com>
+Date: Thu, 12 Mar 2026 08:56:33 +0100
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] drm/sa: Scan all holes when fences are disabled
+To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Maarten Lankhorst <dev@lankhorst.se>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ dri-devel@lists.freedesktop.org
+References: <20260311155233.1903253-5-satyanarayana.k.v.p@intel.com>
+ <20260311155233.1903253-6-satyanarayana.k.v.p@intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <20260311155233.1903253-6-satyanarayana.k.v.p@intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spamd-Result: default: False [-4.51 / 50.00]; BAYES_HAM(-3.00)[100.00%];
- NEURAL_HAM_LONG(-1.00)[-1.000];
- R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-0.20)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- MX_GOOD(-0.01)[]; ARC_NA(0.00)[];
- FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
- RCPT_COUNT_TWELVE(0.00)[16];
- FUZZY_RATELIMITED(0.00)[rspamd.com]; MIME_TRACE(0.00)[0:+];
- MISSING_XM_UA(0.00)[]; RCVD_VIA_SMTP_AUTH(0.00)[];
- FREEMAIL_ENVRCPT(0.00)[gmail.com];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- RCVD_TLS_ALL(0.00)[]; FROM_EQ_ENVFROM(0.00)[];
- FROM_HAS_DN(0.00)[]; TO_DN_SOME(0.00)[];
- RCVD_COUNT_TWO(0.00)[2]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.com:url,imap1.dmz-prg2.suse.org:helo,imap1.dmz-prg2.suse.org:rdns];
- SPAMHAUS_XBL(0.00)[2a07:de40:b281:104:10:150:64:97:from];
- DKIM_TRACE(0.00)[suse.de:+]
-X-Rspamd-Action: no action
-X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
-X-Rspamd-Queue-Id: 9765E5BD9A
+X-ClientProxiedBy: FR2P281CA0027.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:14::14) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA1PR12MB7272:EE_
+X-MS-Office365-Filtering-Correlation-Id: 68fc7205-e89e-4b0b-cef0-08de800ce3b0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|18002099003|56012099003|22082099003|7053199007|7142099003;
+X-Microsoft-Antispam-Message-Info: Omx3dQeCUCtMyc8tqXir6BJNEYvk60DBuKZTHc+66qrRIitkI0zcsQzKV4T0NVcC9wUxm4gPhuLL3s3DNYU49ZM2DL8sTSVkJta9MigmE9WBcKTfhEem9TT0za50W3QM07CL5hR3XFR5kMnjZ8uzDO4urjgNuWtNvOkku3KwGvBwuPLTPiQcJ9gzxbgH4zmbp3ramDRoAmhQbiEDsXyeOsLK9HxnGO49c13Yd0SNmT5+vkKJC9qeMBoj9UXBI/heDCt1Pkk+0uBJ2MGisrAbknDoAJYO5mBkU4uGBBQ7uU193hShdW6HLgUil8S9U3azpzNcV1h6ZE6Lg4amdxEWaLhVSrzXx2duwa8PWeragOFOcI4ZixViDMGotpcYI7ITAuieyyJV+OGVTSittm7VtY7nOpTdvhbMTytAoED/1QJkPKFLPW0D7nvYKU69GJ0iXBSQ+yVJixTo6tR/KagrgwHjLuSmfKhxa3os0KgvKGRgWQwzgilhJUlrT5AprR0SpD+VK8ntcf28/F6coK1/jasxBxAf4NvEA5ppK2Y5j1YO3MfvT9v2miXfAXkWKDIaNeIrkFSKvE2+FhBxbe4mZcmlrbieyNuwNjx4oIoZq6E0ZYOmX0OojvyOp6mwddWNW/8DvYYf83GSqIHOGqqIVpZo6YcHJtOTf+sdSlr7xpHhWQ+3jM2/KP9EzQzpGCS+82sKTFmAL5plGef+vxG1uOPy2Ru4G68v42sIVa1D8z4=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(56012099003)(22082099003)(7053199007)(7142099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZkR6aGNyZ2Nrcmlxd0UrbDFQUTJsRW5POVpyRnFzcTYxUG42ZHJ5OVhROHV6?=
+ =?utf-8?B?VlRqWnh0QnROWVhpR2xmK2o1dmlZVVhwSHIwVGpidStndDR1cEVsTHM5dEsw?=
+ =?utf-8?B?K3Q5YThieVEyQ0pZbWtOaGVXaGoyN2NEb2s1ZHl3Z1V6TXBSREdTTFlmZ0Q5?=
+ =?utf-8?B?YlVqWmhpbjM5cm1TZ1Z2M2VCQ2lqOTU1UXZRa3ZhcWtWYXJleGl2Ynk5RGRn?=
+ =?utf-8?B?TXFPdldvdG9yTU9YYmtjdms5aDRaV1RFNC9LSDRhWkpndG1sSU9pTW5Qb2Zz?=
+ =?utf-8?B?NHdnUzBvbUl2alFvMGJZZm5pYzVpNVl1Y1NkTmUvUlJQL2ZpOHJ6NS93ZFVL?=
+ =?utf-8?B?ZTdCWXRQMFkyRTFoYUp0cmZKM1NXWmZQSFdZV3ZJQkt4ems5V1FQbVdpekJD?=
+ =?utf-8?B?SWJWR0Q3dlowTnJXL3lReS8zQ0ptZ3Q3VlVFWklKSW9xYi9nSnJtRzNRRm1V?=
+ =?utf-8?B?MGkrbFhodXZMS0FQb1lYdjh0L04rQTdOcGUxdjZVeWpwUTJvdGg5ZXBaYzlz?=
+ =?utf-8?B?Z3JXQVQwdXEyWlpRS2JvbTZzQnZMU1pkdk9MMDR5b3N6YS9wU3I3Ukc0MkNl?=
+ =?utf-8?B?YUVSRGoxYVVoc2JLZkM0UWNnbmRsbWo5WFFXM0lINXNOMU5maCtSQ2ZMbmM1?=
+ =?utf-8?B?enRsSEo4RXVyVis2L3A0M0RkcjIxSUxIbFRlL3VaUHozcE5lOXcvTUQ2NjBC?=
+ =?utf-8?B?MVRDK2kzM3phMCtRQngzSjlmQUVLR1l1K2VNZ3hyWTRINGd0QmJnbjJQdHZO?=
+ =?utf-8?B?RWNSUjBnOVhlRWs1TXlIeG1udnNOVEdaMC9adHF0ZjE4OGdBYUNYUEhYTit3?=
+ =?utf-8?B?aGJweC9Rd2RqbldoeHNpY3NrK1RHODNHLzJvRmc3T1JyeWE0VlI1UnhSMWRX?=
+ =?utf-8?B?ckdqOU1qaFU2S2tYbndTU2JFN3g2Z0dzN3NvWVNtUWxaNHA2STlYdHBKZEJW?=
+ =?utf-8?B?MU11aU16NGFWWGFxZHhodllyTWF0SzJJQzNUQ2dSRmJadDEvOXNvYzM4Q2Fk?=
+ =?utf-8?B?SlBRYlU3WHlLamFxRVpBMlZKNThHY0d2dUxPT2UyODR5Nm1GNXZ4OS9yL2Js?=
+ =?utf-8?B?R3FKeG83WDhZbW8vc1YrRjVGWDlsenFDRVZIZDNBMUZZeFJxTnFyME9qOXF3?=
+ =?utf-8?B?bytTbEZCQThQaHloR1hLOW9DaW9PWDlpc3o2MHlCQmttcmZrL0FBcForRE8r?=
+ =?utf-8?B?SVkrR05rWmp6WjNUblNEK09DWERlNFlMMVJieTBsRWNnWHpTZlhqRFpac3lY?=
+ =?utf-8?B?U1laQUFLalFoQlZQbU9OUzlvRlg3QWFMRmpla1lYdUpORUszM1MwUkJXU3Zv?=
+ =?utf-8?B?K2NsVVdkTnplZmx4SFdZeTVEQ1VrL2VTQWd2bStkNWZEM0pnU2lVekkrOHE4?=
+ =?utf-8?B?VDIrR2hleXBwOWNrQnRKbk9LWVBFRGQrcVdNclZEcFBld1M3bzJwZTJTTWQ5?=
+ =?utf-8?B?SFJSNHovc2hFQWMrSUl0WUVMVnh5NUIySTZLUUxDQi9YTGVablNFY2R6TDJT?=
+ =?utf-8?B?a0VNY1JhK1J2dGtrbEZWUnhXT1BjTDA0TXJmQzllSThFaHQ0Q2xiSjdtR0J4?=
+ =?utf-8?B?b2d3RDNZOEs1OWRqQzNFUjIxaTJaeTc2MTcwVWhKbzRNT0dwSUR2VVdpTFVt?=
+ =?utf-8?B?Yk5IVHgxR1h4ZmxPYmlUa3hqY3dOV21Dd2V0RXFKSzFFa2F3MnRLc0ZGbnVV?=
+ =?utf-8?B?ZXQwRnZrQWg3empIeHNDcEZVNFdsanNBYUZremxNQ0MyRUN6NDRVbWRKb1Jn?=
+ =?utf-8?B?dEVBOHFaRHArVWd2VU9BZ0MxZHlRMkRIUjFHbERmYzBLdDlsQzFiZzZxR0RU?=
+ =?utf-8?B?bnVvVmJ4QUhnZDR0bk12ZFdaVTUyUEVUYWloVENFN3N4bGd4eVViOW0zbnlT?=
+ =?utf-8?B?T0FKcENHaE5GQVNJeHNsYUVXWFRHRlpVbXEzZk5TNWkvREFTQmlUNFBhOHM4?=
+ =?utf-8?B?dmFYdHh0bkpUdzU5aGxGclVWU3N6RmNscmJuYThoZXFNdGZaNXdINEtiM2Fs?=
+ =?utf-8?B?eFFySzNQYnUzQTRCb2ptQ2VWU2xTOVBHei9LVTFzRXpMOVZGTEFOeFd0NENB?=
+ =?utf-8?B?Zy90YlYxOTNFTXhkejJBN245WVI2ekd6bXQrem9hUzUzVWczTzdUb2ZVOVlH?=
+ =?utf-8?B?V3FXc1ZtMkpxWjMzK3c5TnhiVnAycjVydDR6dTd3cDVPNFZCU3lWNXN0MGh4?=
+ =?utf-8?B?VGYyYjJ4NitUWXg2S1gwajRaYi82UmQ5SExuZ1pLY1ZEWHI3UEFZMmFTL2Fl?=
+ =?utf-8?B?akl0dUZ0RUtCbldTem55d2FMZFc0WnRhU0V2c3p4V0t2aVhpK2I5ZUU1R1VC?=
+ =?utf-8?Q?ShN7x/2c9TMILHCCYS?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 68fc7205-e89e-4b0b-cef0-08de800ce3b0
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2026 07:56:38.2877 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: hnEc5RD8Mi48YyLqYDNtQCDOqIoFaue1HiNxmaiJKBXPH20r8AaGQfbfaT7o4oK5
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7272
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,374 +139,197 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Dave, Sima,
+On 3/11/26 16:52, Satyanarayana K V P wrote:
+> The suballocator algorithm tracks a hole cursor at the last allocation
+> and tries to allocate after it. This is optimized for fence-ordered
+> progress, where older allocations are expected to become reusable first.
+> 
+> In fence-enabled mode, that ordering assumption holds. In fence-disabled
+> mode, allocations may be freed in arbitrary order, so limiting allocation
+> to the current hole window can miss valid free space and fail allocations
+> despite sufficient total space.
+> 
+> Update the fence-disabled path to walk through all holes and select any
+> fitting range, while keeping the existing fence-based behavior unchanged.
+
+Mhm, that sounds like we are abusing the SA for an unfit use case to me.
+
+The whole idea of the SA is to work with fence protected allocation, if you don't need that then you can also use the drm_mm for the job.
+
+So why are you not using drm_mm for that?
+
+Regards,
+Christian.
+
+> 
+> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Thomas HellstrÃ¶m <thomas.hellstrom@linux.intel.com>
+> Cc: Maarten Lankhorst <dev@lankhorst.se>
+> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> Cc: Christian KÃ¶nig <christian.koenig@amd.com>
+> Cc: dri-devel@lists.freedesktop.org
+> ---
+>  drivers/gpu/drm/drm_suballoc.c | 90 ++++++++++++++++++++++++++++++++++
+>  include/drm/drm_suballoc.h     |  5 ++
+>  2 files changed, 95 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_suballoc.c b/drivers/gpu/drm/drm_suballoc.c
+> index b74277bbc14b..307da191a855 100644
+> --- a/drivers/gpu/drm/drm_suballoc.c
+> +++ b/drivers/gpu/drm/drm_suballoc.c
+> @@ -78,12 +78,33 @@ void drm_suballoc_manager_init(struct drm_suballoc_manager *sa_manager,
+>  	sa_manager->size = size;
+>  	sa_manager->align = align;
+>  	sa_manager->hole = &sa_manager->olist;
+> +	sa_manager->fence_disable = false;
+>  	INIT_LIST_HEAD(&sa_manager->olist);
+>  	for (i = 0; i < DRM_SUBALLOC_MAX_QUEUES; ++i)
+>  		INIT_LIST_HEAD(&sa_manager->flist[i]);
+>  }
+>  EXPORT_SYMBOL(drm_suballoc_manager_init);
+>  
+> +/**
+> + * drm_suballoc_manager_fence_disable() - Enable or disable fence tracking.
+> + * @sa_manager: Pointer to the suballocation manager.
+> + * @fence_disable: Whether to disable fence tracking for free suballocations.
+> + *
+> + * When @fence_disable is true allocation scans all holes without waiting on
+> + * fences. When false, the manager tracks free suballocations behind fences and
+> + * reuses them only after the fence signals.
+> + *
+> + * This should be called immediately after creating the suballocator and before
+> + * any allocations are made. The behaviour is undefined if this is called after
+> + * allocations have been made.
+> + */
+> +void drm_suballoc_manager_fence_disable(struct drm_suballoc_manager *sa_manager,
+> +					bool fence_disable)
+> +{
+> +	sa_manager->fence_disable = fence_disable;
+> +}
+> +EXPORT_SYMBOL(drm_suballoc_manager_fence_disable);
+> +
+>  /**
+>   * drm_suballoc_manager_fini() - Destroy the drm_suballoc_manager
+>   * @sa_manager: pointer to the sa_manager
+> @@ -110,6 +131,7 @@ void drm_suballoc_manager_fini(struct drm_suballoc_manager *sa_manager)
+>  	}
+>  
+>  	sa_manager->size = 0;
+> +	sa_manager->fence_disable = false;
+>  }
+>  EXPORT_SYMBOL(drm_suballoc_manager_fini);
+>  
+> @@ -161,6 +183,69 @@ static size_t drm_suballoc_hole_eoffset(struct drm_suballoc_manager *sa_manager)
+>  	return sa_manager->size;
+>  }
+>  
+> +/**
+> + * drm_suballoc_hole_soffset_eoffset() - Find a hole fitting size and alignment.
+> + * @sa_manager: Suballocator manager.
+> + * @soffset: Start offset of the selected hole.
+> + * @eoffset: End offset of the selected hole.
+> + * @size: Size to be allocated.
+> + * @align: Allocation alignment.
+> + *
+> + * This function is used when fences are disabled. It scans the holes starting
+> + * at the current hole pointer and selects the first one that can satisfy @size
+> + * once @align padding is applied. We may need to scan the entire list of holes
+> + * and update soffset and eoffset for each hole to find a suitable one, as the
+> + * current hole pointer may not be the same as sa_manager->hole.
+> + *
+> + * Return: true if a suitable hole is found, false otherwise.
+> + */
+> +static bool drm_suballoc_hole_soffset_eoffset(struct drm_suballoc_manager *sa_manager,
+> +					      size_t *soffset, size_t *eoffset,
+> +					      size_t size, size_t align)
+> +{
+> +	struct list_head *start, *hole;
+> +
+> +	if (!sa_manager->fence_disable)
+> +		return true;
+> +
+> +	start = sa_manager->hole;
+> +	hole = start;
+> +
+> +	do {
+> +		size_t s, e, wasted;
+> +
+> +		/*
+> +		 * We can't use drm_suballoc_hole_soffset() and
+> +		 * drm_suballoc_hole_eoffset() here as the hole may not be same
+> +		 * as sa_manager->hole.
+> +		 */
+> +		if (hole != &sa_manager->olist)
+> +			s = list_entry(hole, struct drm_suballoc, olist)->eoffset;
+> +		else
+> +			s = 0;
+> +
+> +		if (hole->next != &sa_manager->olist)
+> +			e = list_entry(hole->next, struct drm_suballoc, olist)->soffset;
+> +		else
+> +			e = sa_manager->size;
+> +
+> +		if (e < s || e == s || (e - s) < size) {
+> +			hole = hole->next;
+> +			continue;
+> +		}
+> +
+> +		wasted = round_up(s, align) - s;
+> +		if ((e - s) >= (size + wasted)) {
+> +			*soffset = s;
+> +			*eoffset = e;
+> +			sa_manager->hole = hole;
+> +			return true;
+> +		}
+> +	} while (hole != start);
+> +
+> +	return false;
+> +}
+> +
+>  static bool drm_suballoc_try_alloc(struct drm_suballoc_manager *sa_manager,
+>  				   struct drm_suballoc *sa,
+>  				   size_t size, size_t align)
+> @@ -169,6 +254,11 @@ static bool drm_suballoc_try_alloc(struct drm_suballoc_manager *sa_manager,
+>  
+>  	soffset = drm_suballoc_hole_soffset(sa_manager);
+>  	eoffset = drm_suballoc_hole_eoffset(sa_manager);
+> +
+> +	if (!drm_suballoc_hole_soffset_eoffset(sa_manager, &soffset,
+> +					       &eoffset, size, align))
+> +		return false;
+> +
+>  	wasted = round_up(soffset, align) - soffset;
+>  
+>  	if ((eoffset - soffset) >= (size + wasted)) {
+> diff --git a/include/drm/drm_suballoc.h b/include/drm/drm_suballoc.h
+> index 29befdda35d2..066412196f8a 100644
+> --- a/include/drm/drm_suballoc.h
+> +++ b/include/drm/drm_suballoc.h
+> @@ -20,6 +20,7 @@
+>   * @flist: Array[fence context hash] of queues of fenced allocated ranges.
+>   * @size: Size of the managed range.
+>   * @align: Default alignment for the managed range.
+> + * @fence_disable: Fences are disabled for this SA manager.
+>   */
+>  struct drm_suballoc_manager {
+>  	wait_queue_head_t wq;
+> @@ -28,6 +29,7 @@ struct drm_suballoc_manager {
+>  	struct list_head flist[DRM_SUBALLOC_MAX_QUEUES];
+>  	size_t size;
+>  	size_t align;
+> +	bool fence_disable;
+>  };
+>  
+>  /**
+> @@ -51,6 +53,9 @@ struct drm_suballoc {
+>  void drm_suballoc_manager_init(struct drm_suballoc_manager *sa_manager,
+>  			       size_t size, size_t align);
+>  
+> +void drm_suballoc_manager_fence_disable(struct drm_suballoc_manager
+> +					*sa_manager, bool fence_disable);
+> +
+>  void drm_suballoc_manager_fini(struct drm_suballoc_manager *sa_manager);
+>  
+>  struct drm_suballoc *drm_suballoc_alloc(gfp_t gfp);
 
-here's this week's PR for drm-misc-next.
-
-Best regards
-Thomas
-
-drm-misc-next-2026-03-12:
-drm-misc-next for v7.1:
-
-UAPI Changes:
-
-amdxdna:
-- Add sensors ioctls
-
-Cross-subsystem Changes:
-
-dma-buf:
-- clean pages with helpers
-
-Documenatation:
-- devicetree: Add lxd vendor prefix
-
-Core Changes:
-
-buddy:
-- improve aligned allocations
-
-gem-shmem:
-- Track page accessed/dirty status across mmap/vmap
-
-ttm:
-- fix fence signalling
-
-Driver Changes:
-
-amdxdna:
-- provide NPU power estimate
-- support sensor for column utilization
-
-bridge:
-- anx7625: Fix USB Type-C handling
-- cdns-mhdp8546-core: Handle HDCP state in bridge atomic_check
-
-ivpu:
-- fixes
-
-loongson:
-- replace custom code with drm_gem_ttm_dumb_map_offset()
-
-mxsfb:
-- lcdif: report probing errors with dev_err_probe()
-
-panel:
-- ilitek-ili9882t: Allow GPIO calls to sleep
-- jadard: Support TAIGUAN XTI05101-01A
-- lxd: Support LXD M9189A plus DT bindings
-- mantix: Fix pixel clock; Clean up
-- motorola: Support Motorola Atrix 4G and Droid X2 plus DT bindings
-- novatek: Support Novatek/Tianma NT37700F plus DT bindings
-- renesas: Clean up
-- simple: Support EDT ET057023UDBA plus DT bindings; Support Powertip
-  PH800480T032-ZHC19 plus DT bindings; Support Waveshare 13.3"
-  - clean up DT bindings of various drivers
-
-panthor:
-- fix fence handling
-
-vc4:
-- check return value of platform_get_irq_byname()
-The following changes since commit 58351f46de26bcc4403f9972f7aed430d15cbd03:
-
-  Merge v7.0-rc3 into drm-next (2026-03-11 11:18:31 +0100)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2026-03-12
-
-for you to fetch changes up to f08ceb71c5a5615577e7c841e1e00a89f495ab51:
-
-  Merge drm/drm-next into drm-misc-next (2026-03-12 08:25:41 +0100)
-
-----------------------------------------------------------------
-drm-misc-next for v7.1:
-
-UAPI Changes:
-
-amdxdna:
-- Add sensors ioctls
-
-Cross-subsystem Changes:
-
-dma-buf:
-- clean pages with helpers
-
-Documenatation:
-- devicetree: Add lxd vendor prefix
-
-Core Changes:
-
-buddy:
-- improve aligned allocations
-
-gem-shmem:
-- Track page accessed/dirty status across mmap/vmap
-
-ttm:
-- fix fence signalling
-
-Driver Changes:
-
-amdxdna:
-- provide NPU power estimate
-- support sensor for column utilization
-
-bridge:
-- anx7625: Fix USB Type-C handling
-- cdns-mhdp8546-core: Handle HDCP state in bridge atomic_check
-
-ivpu:
-- fixes
-
-loongson:
-- replace custom code with drm_gem_ttm_dumb_map_offset()
-
-mxsfb:
-- lcdif: report probing errors with dev_err_probe()
-
-panel:
-- ilitek-ili9882t: Allow GPIO calls to sleep
-- jadard: Support TAIGUAN XTI05101-01A
-- lxd: Support LXD M9189A plus DT bindings
-- mantix: Fix pixel clock; Clean up
-- motorola: Support Motorola Atrix 4G and Droid X2 plus DT bindings
-- novatek: Support Novatek/Tianma NT37700F plus DT bindings
-- renesas: Clean up
-- simple: Support EDT ET057023UDBA plus DT bindings; Support Powertip
-  PH800480T032-ZHC19 plus DT bindings; Support Waveshare 13.3"
-  - clean up DT bindings of various drivers
-
-panthor:
-- fix fence handling
-
-vc4:
-- check return value of platform_get_irq_byname()
-
-----------------------------------------------------------------
-Alexander Stein (1):
-      drm: lcdif: Use dev_err_probe()
-
-Amin GATTOUT (1):
-      drm/loongson: use drm_gem_ttm_dumb_map_offset()
-
-Andrzej Kacprowski (1):
-      accel/ivpu: Remove boot params address setting via MMIO register
-
-Arnd Bergmann (1):
-      drm: bridge: anx7625: enforce CONFIG_USB_ROLE_SWITCH dependency
-
-Arunpravin Paneer Selvam (2):
-      drm/buddy: Improve offset-aligned allocation handling
-      drm/buddy: Add KUnit test for offset-aligned allocations
-
-Boris Brezillon (1):
-      drm/panthor: Fix the "done_fence is initialized" detection logic
-
-Dave Hansen (1):
-      MAINTAINERS: Remove bouncing Keem Bay maintainer
-
-Dmitry Baryshkov (1):
-      drm: bridge: anx7625: correctly detect if PD can be disabled
-
-Florijan Plohl (2):
-      dt-bindings: display: simple: Add Powertip PH800480T032-ZHC19 panel
-      drm/panel: simple: Add Powertip PH800480T032-ZHC19 panel
-
-Greg Kroah-Hartman (1):
-      drm/vc4: platform_get_irq_byname() returns an int
-
-Harikrishna Shenoy (1):
-      drm/bridge: cadence: cdns-mhdp8546-core: Handle HDCP state in bridge atomic check
-
-Jayesh Choudhary (5):
-      drm/bridge: cadence: cdns-mhdp8546-core: Set the mhdp connector earlier in atomic_enable()
-      drm/bridge: cadence: cdns-mhdp8546-core: Add mode_valid hook to drm_bridge_funcs
-      drm/bridge: cadence: cdns-mhdp8546-core: Remove legacy support for connector initialisation in bridge
-      cadence: cdns-mhdp8546*: Change drm_connector from structure to pointer
-      drm/bridge: cadence: cdns-mhdp8546-core: Reduce log level for DPCD read/write
-
-John Keeping (1):
-      drm/panel: ilitek-ili9882t: use gpiod_set_value_cansleep()
-
-Karol Wachowski (2):
-      accel/ivpu: Test for imported buffers with drm_gem_is_imported()
-      accel/ivpu: Apply minor code style cleanups to align with kernel style
-
-Krzysztof Kozlowski (4):
-      dt-bindings: display: samsung,s6d7aa0: Document port
-      dt-bindings: display: innolux,p097pfg: Document ports
-      dt-bindings: display: panel: Drop redundant properties
-      dt-bindings: display: panel: Align style of additionalProperties
-
-Langyan Ye (3):
-      dt-bindings: vendor: add taiguanck
-      dt-bindings: display: panel: Add compatible for TAIGUAN XTI05101-01A
-      drm/panel: panel-jadard-jd9365da-h3: support for taiguan-xti05101-01a MIPI-DSI panel
-
-Linus Walleij (2):
-      dma-buf: heaps: Clear CMA pages with clear_pages()
-      dma-buf: heaps: Clear CMA highages using helper
-
-Lizhi Hou (1):
-      accel/amdxdna: Add IOCTL to retrieve realtime NPU power estimate
-
-Loic Poulain (1):
-      drm: bridge: anx7625: don't crash if Type-C port is not used
-
-Luca Leonardo Scorcia (1):
-      dt-bindings: display: panel: Document the rotation property
-
-Lukas Bulwahn (1):
-      MAINTAINERS: adjust file entry in GPU BUDDY ALLOCATOR
-
-Marco Felsch (2):
-      dt-bindings: display: simple: add EDT ET057023UDBA panel
-      drm/panel: simple: add EDT ET057023UDBA panel
-
-Marek Vasut (1):
-      drm/panel: simple: Add Waveshare 13.3" panel support
-
-Mario Limonciello (AMD) (2):
-      accel/amdxdna: Import AMD_PMF namespace
-      accel/amdxdna: Support sensors for column utilization
-
-Maxime Ripard (1):
-      Merge drm/drm-next into drm-misc-next
-
-Richard Acayan (3):
-      dt-bindings: arm: qcom: document google,bonito-tianma board
-      dt-bindings: panel-simple-dsi: add nt37700f compatible
-      drm/panel: Add Novatek/Tianma NT37700F panel
-
-Rouven Czerwinski (3):
-      dt-bindings: vendor-prefixes: Add lxd
-      dt-bindings: display: panel: add LXD M9189A
-      drm/panel: add LXD M9189A panel driver
-
-Sanjay Yadav (1):
-      gpu/tests/gpu_buddy: Add gpu_test_buddy_alloc_range for exact-range allocation
-
-Sebastian Brzezinka (1):
-      drm/ttm: fix NULL deref in ttm_bo_flush_all_fences() after fence ops detach
-
-Sebastian Krzyszkowiak (2):
-      drm/panel: mantix: Drop the shutdown callback
-      drm/panel: mantix: Set the pixel clocks for 60 Hz
-
-Svyatoslav Ryhel (7):
-      drm/panel: r61307: align with schema property
-      drm/panel: r61307/r69328: convert to drm_connector_helper_get_modes_fixed
-      drm/panel: r61307/r69328: remove redundant checks
-      drm/panel: r61307/r69328: return accumulated errors
-      drm/panel: r61307/r69328: convert to devm_mipi_dsi_attach
-      dt-bindings: display: panel: document Atrix 4G and Droid X2 DSI panel
-      gpu/drm: panel: add support for DSI panel used in Motorola Atrix 4G and Droid X2
-
-Thomas Zimmermann (6):
-      drm/gem-shmem: Use obj directly where appropriate in fault handler
-      drm/gem-shmem: Test for existence of page in mmap fault handler
-      drm/gem-shmem: Return vm_fault_t from drm_gem_shmem_try_map_pmd()
-      drm/gem-shmem: Refactor drm_gem_shmem_try_map_pmd()
-      drm/gem-shmem: Track folio accessed/dirty status in mmap
-      drm/gem-shmem: Track folio accessed/dirty status in vmap
-
- Documentation/devicetree/bindings/arm/qcom.yaml    |   6 +
- .../bindings/display/panel/abt,y030xx067a.yaml     |   5 -
- .../display/panel/advantech,idk-1110wr.yaml        |   4 +-
- .../display/panel/advantech,idk-2121wr.yaml        |   4 +-
- .../display/panel/bananapi,s070wv20-ct16.yaml      |   4 +-
- .../bindings/display/panel/dlc,dlc0700yzg-1.yaml   |   4 +-
- .../bindings/display/panel/himax,hx83112a.yaml     |   2 -
- .../bindings/display/panel/himax,hx8394.yaml       |   4 +-
- .../bindings/display/panel/ilitek,ili9163.yaml     |   4 -
- .../bindings/display/panel/ilitek,ili9322.yaml     |   3 -
- .../bindings/display/panel/ilitek,ili9341.yaml     |   6 +-
- .../bindings/display/panel/innolux,ej030na.yaml    |   5 -
- .../bindings/display/panel/innolux,p097pfg.yaml    |  26 +-
- .../bindings/display/panel/jadard,jd9365da-h3.yaml |   4 +-
- .../display/panel/kingdisplay,kd035g6-54nt.yaml    |   5 -
- .../bindings/display/panel/lgphilips,lb035q02.yaml |   4 -
- .../bindings/display/panel/lxd,m9189a.yaml         |  64 +++
- .../display/panel/mitsubishi,aa104xd12.yaml        |   4 +-
- .../display/panel/mitsubishi,aa121td01.yaml        |   4 +-
- .../bindings/display/panel/motorola,mot-panel.yaml |  69 +++
- .../bindings/display/panel/nec,nl8048hl11.yaml     |   4 -
- .../bindings/display/panel/novatek,nt36523.yaml    |   3 -
- .../bindings/display/panel/novatek,nt36672a.yaml   |   3 -
- .../bindings/display/panel/orisetech,otm8009a.yaml |   4 +-
- .../bindings/display/panel/panel-simple-dsi.yaml   |   2 +
- .../bindings/display/panel/panel-simple.yaml       |   4 +
- .../bindings/display/panel/pda,91-00156-a0.yaml    |   4 +-
- .../bindings/display/panel/raydium,rm68200.yaml    |   4 +-
- .../bindings/display/panel/raydium,rm692e5.yaml    |   2 -
- .../bindings/display/panel/samsung,atna33xc20.yaml |   4 +-
- .../bindings/display/panel/samsung,ld9040.yaml     |   4 -
- .../bindings/display/panel/samsung,lms380kf01.yaml |   6 -
- .../bindings/display/panel/samsung,lms397kf04.yaml |   6 -
- .../bindings/display/panel/samsung,s6d27a1.yaml    |   6 -
- .../bindings/display/panel/samsung,s6d7aa0.yaml    |   8 +
- .../bindings/display/panel/samsung,s6e3ha8.yaml    |   4 -
- .../bindings/display/panel/samsung,s6e63m0.yaml    |   2 -
- .../bindings/display/panel/sgd,gktw70sdae4se.yaml  |   4 +-
- .../bindings/display/panel/sitronix,st7701.yaml    |   6 -
- .../bindings/display/panel/sitronix,st7789v.yaml   |   6 -
- .../bindings/display/panel/sony,acx565akm.yaml     |   4 -
- .../display/panel/startek,kd070fhfid015.yaml       |   4 +-
- .../devicetree/bindings/display/panel/tpo,td.yaml  |   5 -
- .../bindings/display/panel/visionox,r66451.yaml    |   4 +-
- .../bindings/display/panel/visionox,rm69299.yaml   |   4 +-
- .../bindings/display/panel/visionox,vtdr6130.yaml  |   4 +-
- .../devicetree/bindings/vendor-prefixes.yaml       |   4 +
- MAINTAINERS                                        |  11 +-
- drivers/accel/amdxdna/aie2_pci.c                   |  53 +++
- drivers/accel/amdxdna/aie2_pci.h                   |  28 ++
- drivers/accel/amdxdna/amdxdna_pci_drv.c            |   4 +-
- drivers/accel/ivpu/ivpu_gem.c                      |  12 +-
- drivers/accel/ivpu/ivpu_hw_40xx_reg.h              |   6 -
- drivers/accel/ivpu/ivpu_hw_ip.c                    |   1 -
- drivers/dma-buf/heaps/cma_heap.c                   |   7 +-
- drivers/gpu/buddy.c                                | 274 ++++++++++--
- drivers/gpu/drm/bridge/analogix/Kconfig            |   3 +-
- drivers/gpu/drm/bridge/analogix/anx7625.c          |  41 +-
- .../gpu/drm/bridge/cadence/cdns-mhdp8546-core.c    | 257 +++--------
- .../gpu/drm/bridge/cadence/cdns-mhdp8546-core.h    |   2 +-
- .../gpu/drm/bridge/cadence/cdns-mhdp8546-hdcp.c    |  18 +-
- drivers/gpu/drm/drm_gem_shmem_helper.c             |  79 ++--
- drivers/gpu/drm/imagination/pvr_gem.c              |   6 +-
- drivers/gpu/drm/loongson/lsdc_drv.c                |   3 +-
- drivers/gpu/drm/loongson/lsdc_gem.c                |  15 -
- drivers/gpu/drm/loongson/lsdc_gem.h                |   4 -
- drivers/gpu/drm/mxsfb/lcdif_drv.c                  |   8 +-
- drivers/gpu/drm/panel/Kconfig                      |  32 ++
- drivers/gpu/drm/panel/Makefile                     |   3 +
- drivers/gpu/drm/panel/panel-ilitek-ili9882t.c      |  14 +-
- drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c   | 244 ++++++++++
- drivers/gpu/drm/panel/panel-lxd-m9189a.c           | 243 ++++++++++
- drivers/gpu/drm/panel/panel-mantix-mlaf057we51.c   |  15 +-
- drivers/gpu/drm/panel/panel-motorola-mot.c         | 244 ++++++++++
- drivers/gpu/drm/panel/panel-novatek-nt37700f.c     | 299 +++++++++++++
- drivers/gpu/drm/panel/panel-renesas-r61307.c       |  40 +-
- drivers/gpu/drm/panel/panel-renesas-r69328.c       |  38 +-
- drivers/gpu/drm/panel/panel-simple.c               |  92 ++++
- drivers/gpu/drm/panthor/panthor_sched.c            |   2 +-
- drivers/gpu/drm/ttm/ttm_bo.c                       |   6 +-
- drivers/gpu/drm/vc4/vc4_hdmi.c                     |  14 +-
- drivers/gpu/tests/gpu_buddy_test.c                 | 493 +++++++++++++++++++++
- include/linux/gpu_buddy.h                          |   2 +
- include/uapi/drm/amdxdna_accel.h                   |   3 +-
- 84 files changed, 2397 insertions(+), 565 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/panel/lxd,m9189a.yaml
- create mode 100644 Documentation/devicetree/bindings/display/panel/motorola,mot-panel.yaml
- create mode 100644 drivers/gpu/drm/panel/panel-lxd-m9189a.c
- create mode 100644 drivers/gpu/drm/panel/panel-motorola-mot.c
- create mode 100644 drivers/gpu/drm/panel/panel-novatek-nt37700f.c
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
