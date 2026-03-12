@@ -4,156 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CE39FED2C7
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 04:31:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3B87FED2C7
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 04:32:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03F2810E41B;
-	Thu, 12 Mar 2026 04:31:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 951DF10E41B;
+	Thu, 12 Mar 2026 04:32:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I5rlPVPY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iItD8dCJ";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D332610E414;
- Thu, 12 Mar 2026 04:31:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 425A710E41B
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Mar 2026 04:32:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773289869; x=1804825869;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=Huu04eQsEAYUYKIFc3A3hQ5ILlbVOME3feATC8qK3Gw=;
- b=I5rlPVPYvjEvzXiP9hmZGaUNDccPH7tbmmU9Z6hmqAA1DEFJV5x8Nq3G
- r41tWIS6Iu9HF3RviqOEO3W3gSHRSDq5x+fDW+KLb8TEtrMUKtqi/5ZYp
- mj1i1ga5D7UtHbvTaKz8VPeMrs4qhCFSqW9FeKWBVyr5CjlGuzmmRIizZ
- cJ/mmgQjdC765ry77Kbw0FyVG+/g+R/s+46y7Xl3Tn8rB6jqihT1Qc55Z
- rHHJL2FFg6K4L68q51JIgbEn/v1X/S0VuWy3cM9JVSywWa7wHaOeLN7m3
- B5T3MGsGhIyT8uOo4HPVroAnIoPmwYKMEOvuaAB4UrJyjqvCkEP/euFiw g==;
-X-CSE-ConnectionGUID: XWKCOka9QEmyzuUQ1OH3mg==
-X-CSE-MsgGUID: ZNLXQP9WS6C47ZGZ99fmxQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="91752345"
-X-IronPort-AV: E=Sophos;i="6.23,115,1770624000"; d="scan'208";a="91752345"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 21:31:08 -0700
-X-CSE-ConnectionGUID: gAMmeakgSaWscNnCXTwyOA==
-X-CSE-MsgGUID: sUlWDxqaSByx1jmzwqVt8w==
+ t=1773289934; x=1804825934;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=JGDweLhgJdZEpADAS8K5UEF977VaUcAQ1yfsN4/o++A=;
+ b=iItD8dCJ5eghPkjIgaIcfmgaeT5Xr37XKbjI8BQ23jaZ2BroBPb8xaz4
+ FC+p8PFPDw4estmwP0sjqHouEmyj9y/HMwjldv6hKOLAk/6ziGecS+t8T
+ G3oBMtPOnmuS0bqHE7sWqMm7x1J/N/89waXbvQKvmOGC09CdzFU7+o+Or
+ KajdRmRh3AqO0TgjpT74dnauDUJsI/Lki8R7ItyKLvLGqsRRpc1jBKLMl
+ 04/LveObJvUfrRgr5WUhgAgHhYMQaD6fJxY308dL15aezR3Ul5B0OnCzG
+ nWcEz+P2WhtCFKSJa+Luha0ZmnAhJAtOkHKJeeryDNauHHNBTvHiHUnh5 w==;
+X-CSE-ConnectionGUID: ldomy8CmTmiySZf+tLE97g==
+X-CSE-MsgGUID: aK+X844MSsCTj/JvkzUxjQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="73565063"
+X-IronPort-AV: E=Sophos;i="6.23,115,1770624000"; d="scan'208";a="73565063"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2026 21:32:14 -0700
+X-CSE-ConnectionGUID: nZQTJg6jRYeHXTwSqgIYDQ==
+X-CSE-MsgGUID: Vpwxf3vMRYSiOjEWDV291w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,115,1770624000"; d="scan'208";a="258596120"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 21:31:08 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,115,1770624000"; d="scan'208";a="225138667"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2026 21:32:13 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 11 Mar 2026 21:31:06 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.37; Wed, 11 Mar 2026 21:32:12 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 11 Mar 2026 21:31:06 -0700
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.34)
- by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Wed, 11 Mar 2026 21:32:12 -0700
+Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.48) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 11 Mar 2026 21:31:05 -0700
+ 15.2.2562.37; Wed, 11 Mar 2026 21:32:12 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=h3INXy7rQPXZcBYt+G2edXCz8PgvqAeuO2tgYiB+j9Y55WYQHdzyT4UCeepsCczYA3XlZy78idoEdq4n0Jf33zvkK0mrQVHhonnSnxfYZJNLnVoRju3AUZH083eBdRdRwFRIulJDbvbjEt6RV179QHwzk4d+MVjZYDsrTav1nNbQn3SV1nIvC65NczcknZEITrrdJoO+kckPmU1p7McCtDiwCnm8gPw8wY5a5/zihI0vXqagvEzGgMq1Di5rwkjqZNj8kW6FzYG710Zk+Pm6zjtG6PnA1r6uiRGHTkSQluFHAj4GHdA2AJd2mPFB2KnJFxDhGybr1pLEeAe50uYjBA==
+ b=JEQbQRm1vU90P6iOw42bDRl24kQkWqtIhLvUS1uunS2VPnZvsd6KbeOynD8IBwuCHvh2cPC7ZJcetihnxX3+e5ok66M9kFrxLg2S21YcV4dTBz/6qoob9NuqAqZko9DuznKTXeQCNrcAwOFf2NS5KUhoo1WJjvEZLjlMkiqvoWWGFH3opz6n9nrPPFnr/33CKhwLCF9/y3AhnmYYT+/AKIrxODM4TZY62CUoOAvI4U835t0DgZeTmlcMZsKCn6YnFHTVQB4G/2qpnVbJWPFmmrAt6BuUDnvuI5UV+J2gDdC6tDhOpMvmTiE5S4BNS+7HS9tushzp3Ik1ltVCCl3ogA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/ZlMxtvyy5qaKaJTtl59mm4TAHwowkxbjoocQUdLqKQ=;
- b=TnPC1pQ+oQS31uOFLYgDYwfwHgvbz9FfoNPufZJblxCxUvfFt4I2kyoYJGVIHeeflueErwCG9E6isBy1gmV635qdAdRMbI5ots6pntxnXJ79l2GXOA9wb/v5D2FDE040PkceoLkY2wMP0fasojKsiL6xTLdOCrJ0W/4plnZ2p9Xdfjs6vVzxJ2zWGyRrCdZLy8FpCldoaXVz5IXymq+26Evu8Dl/0W5pLIYxrejdUCRLh7gOguMKuBwgDp5ikoR4WxG+Z5Olnw4wF690bdSSRcsn4Px0RXSm1uDPEsvycYDB6vpSTatnqZHTuPVxy8KX1tm0Q9T8wqzgMDa70N8J4Q==
+ bh=KDZC+B/RvZ9+coplQ4N0CLhxkQ9ywOYDY68/pKIevE8=;
+ b=KXUQy2zs5KHt93tQb3Ga3+W+Lb/MMIYninU6i8RgdJApv2rf3JyWUIEVZ4OkKChGWSFyBTXXNim4DbcVMMq3hpHlA3YhYTADyQIeg/aKUWRE26RQu/XwPL/30IUSHtqanHL+0FbQVThdaNqLymbaOWcg2KGBoylYRSg8yAfoti3MklBhx+qgBfs395uUCxTitY3sG4W/IAbHuRHJKsyr2308yPBWawG9gQo3Ze9QX01XYCJbkuzbipkKA8cLde4hg7Pxy6uaUcuYwNtzSkAIrCHstBzfx10uqy7n1ya/EpdQggMhNu6jYmaFq3p8ekdDtpuNIIBYnTrzqNBOk86RZQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by IA3PR11MB9421.namprd11.prod.outlook.com (2603:10b6:208:578::9) with
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
+ by PH7PR11MB7452.namprd11.prod.outlook.com (2603:10b6:510:27d::20) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Thu, 12 Mar
- 2026 04:31:02 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4%4]) with mapi id 15.20.9700.010; Thu, 12 Mar 2026
- 04:31:02 +0000
-Message-ID: <5e20f2af-e901-4cc4-be55-cc0e9ef10662@intel.com>
-Date: Thu, 12 Mar 2026 10:00:55 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] drm/i915/display: Introduce skl_pipe_scaler_setup()
-To: Nemesa Garg <nemesa.garg@intel.com>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>
-References: <20251223081300.1196417-1-nemesa.garg@intel.com>
- <20251223081300.1196417-3-nemesa.garg@intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20251223081300.1196417-3-nemesa.garg@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0122.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1d0::14) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.4; Thu, 12 Mar
+ 2026 04:32:10 +0000
+Received: from DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::53aa:3f7a:59cd:e057]) by DS0PR11MB7408.namprd11.prod.outlook.com
+ ([fe80::53aa:3f7a:59cd:e057%3]) with mapi id 15.20.9723.000; Thu, 12 Mar 2026
+ 04:32:09 +0000
+Date: Thu, 12 Mar 2026 10:02:00 +0530
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+CC: "Anoop, Vijay" <anoop.c.vijay@intel.com>,
+ <intel-xe@lists.freedesktop.org>, <badal.nilawar@intel.com>,
+ <rodrigo.vivi@intel.com>, <aravind.iddamsetty@intel.com>,
+ <anshuman.gupta@intel.com>, <matthew.d.roper@intel.com>,
+ <michael.j.ruhl@intel.com>, <paul.e.luse@intel.com>,
+ <mohamed.mansoor.v@intel.com>, <kam.nasim@intel.com>
+Subject: Re: [PATCH v9 4/6] drm/xe/sysctrl: Add System Controller
+ initialization
+Message-ID: <abJBwDWYy/1Y3xIq@soc-5CG1426VCC.clients.intel.com>
+References: <20260310182336.611041-8-anoop.c.vijay@intel.com>
+ <20260310182336.611041-12-anoop.c.vijay@intel.com>
+ <99cdff33-f6f3-4075-8787-d0456592afb5@intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <99cdff33-f6f3-4075-8787-d0456592afb5@intel.com>
+X-ClientProxiedBy: BY3PR05CA0023.namprd05.prod.outlook.com
+ (2603:10b6:a03:254::28) To DS0PR11MB7408.namprd11.prod.outlook.com
+ (2603:10b6:8:136::15)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|IA3PR11MB9421:EE_
-X-MS-Office365-Filtering-Correlation-Id: ede93142-b651-453e-a223-08de7ff02abf
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|PH7PR11MB7452:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1d3d2843-5f8f-4f72-6bd1-08de7ff052f1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|22082099003|56012099003|18002099003; 
-X-Microsoft-Antispam-Message-Info: qX2Y2iYKU6weX4zPBHYD35U1Yn/+8QATpOuuz1dTKl8S4zuDWS9qugrrwwiBAaSTBBvGxphIj8HJxnzkPsgaM2EXawb33zJlB6VznvoiNK4q30Gjsrnp7EbZM07Whz839RVEmL5clrTgeH1FIB3w0FNX1b7vjDLAgtjn19WyT2hxxDSKurGW8LgfHF1vsLpHiLDSdw+cuzx9pimeGne7T5adwoe0827TSxXGsgOrVxoyK0gp3s3H8W9JYz3kbEttIvX447lPiBXBdzNBxVyPfm+CipnGSQJWOrS2JSTr4XLOQeyCDTBVPyW0RCFzmabCrs8yxDNpweER5Bdb8G+gfcNVLFBL5GYVVd2JPH3/HMIoGLxQKCBKBHY4ziN/gGJce+uQ3mnIol70GsRogliwotnj+D/+J8ZruzZXiimfadmeNPrWvHrFXdGRpK0Pr3+fwmMKHl7B4efxlDH21xt5O/nZVrsqpuT63jJSa4305W1as7yR/imBpQFQXSSt5BpTRb7/9HOcBObWCbL2s887giBhNL6eK0eino0XrHhaJ++z7DjdR4qRWn/UpUiINiR2ZX25IyNV7sw+ZN9aYAlaX+0uDGiAjyofIe+c6eYQbt5SenQ6Vjr5qk2vjdrphLMUeZ1IP7xCL7O3fujzzdRSmLSsspOes5J9Xm4Yj5DtZPlFH9jLPR64APjXocab6rhoQ+Mwro8mT2RKcuK+71xnY5fkQijDT1wFKkHeCcPSm2U=
+ ARA:13230040|366016|376014|1800799024|22082099003|18002099003|56012099003; 
+X-Microsoft-Antispam-Message-Info: WAuIOSKYFhRCsh/pwQSm3xESldQ4nts6xQpxSKdZ80WlNa7yYg6GkX9iL8+7Z1Pl/w2GnBN2TRPpQaKzHxUXdTapc0WyhoOF8Je7wPPCI7qBfS2UTPlo7kBhUVjGrv21w4Wj3ZMysWuHyMLR7YxRpPfzkYTiZMBIaup94W8BdQKmNLmNF77gOmZT/7F5cpuRZlY58fvuWORZajlJ5Sub9YKJFlVWXzVUZyBDnZf+VolYMR4oIfQJmt5IYJEjqAHvVvgVKF2Co5ATsy07PDCtgVR93UahJEBVGqgfk3nGG/2Pa3UxtHBTQL7fH6nxHJ2m0llWS1iwMj2zWxZvPqNoO/lzlmgJJF8+pzQhVw6qkduGr6Kz57xjr4og29JomcOoKD/0Y9wxlfNwM2mzR/1sQNXru6R76qSWf8z7OhEluTzXG43r4BmfVoZzBTwTJlqTHWCEOANPQG6qFMlRpmc87ewGrsv3ptn5D4iKoksnvNiYomXfEgzzc8wj/R2zmolArrcw8FbKcja/s0SihWdZc5EWhAzZHBku34fHC28wSSgf/+Zrs60U7ayfeknIpHo/bEX5MR7sTIA1twb2cs4BQnvFE8SEJ58ECoD/cg0cOYfcA0jwQ1a4P0LB5iMGO6Yzu0KiInIaA5MaNfOx/430g41JW3JymPGCv1BHRU2CWXjBIyjicY5MoQ+Jp40PaLfs9hZICHBaKqPMDrcxMpjGfhxK0IkIEsEpVh0PhwZfulU=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(22082099003)(56012099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(22082099003)(18002099003)(56012099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZkRQS1N4NzVRekRLM2pobHFxeWNMeGRlZXduejlBRThJbnFTVlhHSGk4eUVv?=
- =?utf-8?B?THc1ZDNqZmk2YlZaRWRxUHlVYlJISmR4dWVqT0FkeFdHazFwd0Z0RzhXcC9O?=
- =?utf-8?B?SGRCK3B6UW96Zk9lMlRRdjF0dk5NUEJqaGQ0MndITlRibzlkdHpvWEhnU1hJ?=
- =?utf-8?B?ODZuSW1UWS9kL1U0MERidG50cmduUnZsUmZadFpZMWYwSldXNGQzYnZHTUY3?=
- =?utf-8?B?RjA3NE5TMWEydklGYWFyUkhPazRXMUpvNjBPYmtMTm9RTnFpNncvODFid3Qr?=
- =?utf-8?B?eW1aTEswOGRSSVVEWnhJTjNENW5wM1pRZkw0cTVydjZ4S2lRaDJuUTlJc0xq?=
- =?utf-8?B?S1EvQVRIR24yZTd1RnYrY2p0N1Y3OWJPK1pDUEIrcFl1bW12U01VQm9zdVVj?=
- =?utf-8?B?WE1HUjdtRjNkRnljUFZldzhuendKUm5LR3RQN0xOVTRyK1l6ODREbjNFR01Q?=
- =?utf-8?B?U3lpTTlES3o4SzZ6L0ZLd2p4V3lLSktTQ296ZVc2elNGNDVWMzVLbDd5THlL?=
- =?utf-8?B?RzU2UFVmd1U0c3dHZ2FvQkRsN1huWS96ZjJQWVJYdG9qYVFhZ1pjMURrWmZh?=
- =?utf-8?B?Yk4xc3c4aTdFRmJDS092Rng5ZmpsaFpIcXdqUVcxV0VST29JaWRKTFBaUVc3?=
- =?utf-8?B?MEVPY3VyR3h2MW5zUTdpT2ZhcnJac0lBdjBGRWkreko1RFZwQ0JjN3BrWXJF?=
- =?utf-8?B?U3crTmxOT2QzOTBCQWVCNDY0aVZYS1JXeFQ1YnJYb0tHYUxiVnVMT0ZCenpK?=
- =?utf-8?B?SDVwTkROSE9KNkY1cTRjeU50V3h4aDg3TG5EQ2NLRGFmRDR0U1VWRlRYdElq?=
- =?utf-8?B?dkhMZUhZcmdWb0xrVXV3VXYzSGFpZUh2ZVpXd21wMnpmd3NPT2FNclo1ZjRP?=
- =?utf-8?B?b2pXTVQ1SnB5ZVMzNWRJaVBTZEs2aXBWNzNYYVMrenJBQ1JoR1FzZWxFYXlO?=
- =?utf-8?B?Y2xXUkVSM0laaW5zRzh1cjJYbThyQkpCb09ZY1krSFpXQ2luQ1BQd1JML3N5?=
- =?utf-8?B?b3ZYZkVhMGtOT1ZOUlFXQ2RHWUdsa0d3Sk5abGpLakZ6d3RDOHBSbjBXR1Ry?=
- =?utf-8?B?RXFLWTRuejErdHZQWkxzMHVPeFdzOUZHQy9yVFVwWmVJMTRHNytQMFQ5MC9r?=
- =?utf-8?B?MUsxczBsQ1pDVC9RNnZtQjI3dWZyWVF0dEkwVC9Td1l5SWxGR05rcStwS0Ix?=
- =?utf-8?B?RGt3L2RnSjVWYTNuUWJJQ0FPUmhrYkNOYW02OUhxZ0Q3Ny9mNVVjUGtLd3My?=
- =?utf-8?B?eERZeklQWWpyUkRJbmtJVUpGNEcvWlgreks0T0NWaUQzcHIvUTc3YVgvem1w?=
- =?utf-8?B?dllFVTR2djhFYU1ITlcxNWlwWGpzUzJnWE9qVm9nOVdUUVl3SjBxM1NDblhQ?=
- =?utf-8?B?c3JQRVZ6eCtlQ1ZpaVlpRkI0MFBvbjFGVDBjVzB0S3p2YWlzUDA3YXQ4S0Rm?=
- =?utf-8?B?QTI2eEFaU2NZZCt5OVlwN3FsenF4TVFPWGFrZDJyeDZITlhlTytDZndPUzVF?=
- =?utf-8?B?WVBQVmtha1hOQ0FKa0dRYjdkMzVVQkx5bVhxMkxuakx0TXNOKzNzemJwWnE2?=
- =?utf-8?B?SW1QVXc3SDZiNndoa2s4MzdvVDEwR3Bod2Vab0hyK0l6MDBEWDE2dWtMMnNN?=
- =?utf-8?B?Z0RFZCt3N1czbW1mb1htYUtXSUNyRjdpU1FwdXQ2K0o3bzc2TldvWXNvZk5h?=
- =?utf-8?B?S3hlTzdSOVhWR1JhS3pTSkFVT3AxTDk0dythTmU0UTRseTRIRHJtV0l2Rmxk?=
- =?utf-8?B?U0RuWHZsNTZIckpCcks0UGF3OTlJNVRBZGtIRnFna1lEUlp3MkdrQ2NCTzNu?=
- =?utf-8?B?elNURU9nenZUcHdUTkNISUhBK1E3Y3pTZENMTGNzNXFjSCtFdEpvSFlYZ2hR?=
- =?utf-8?B?bDArYXQ3Um1lY3hUMCtxSkErYnBzYmlBb3JUZmZlNWE2aWxWeVBSN1NINFho?=
- =?utf-8?B?SVVCUXh6U0tmWWxtS2ZkanA0dysxNFhMRmYwaW53YkpRM1RBbE03UFlaY0Ra?=
- =?utf-8?B?ODVndWhyYWFaSTlCNTdkdWJrY09oOTJQdGZJcFhkaFBwNkc5cjVsdkdFZVIx?=
- =?utf-8?B?SDE2ZjV5Z2RJSmNpR2VrRUxMYVJ5OUtXU1MzM3gxdnBxdUJveUgwMUR1WHJU?=
- =?utf-8?B?d0NJeGtCajE5enAyZ00vcVRRVnJLc3F3ekErYXkzUGx2VmREQXB3QWc3R0dh?=
- =?utf-8?B?RTMzUjIzd0hXQnJHNG1LSUl3WUFuSXpiUXFpQ01rYk5KaUNvRTc4ZWZnQmZJ?=
- =?utf-8?B?eTdZcE9RemEzc0VaRVpsQTBiL2d2VW55TW9zWnMxbFRZTWZ5M0xoeVFKdi94?=
- =?utf-8?B?bW5kcHJIc1kxSklGY0hQbmZiczRNRHV2OFMrR1AvT0lNcnZnTUdSbVkzbjM5?=
- =?utf-8?Q?1JCH5E6/Cmv1MiUI=3D?=
-X-Exchange-RoutingPolicyChecked: VWu9p6QqHva9Ta/isF71/SHwIBffX85rh1EuyYj5BOMOGmAqf/DFdHJDLMpRV0C212wAhq8UyLLyedEP3POKaw9ciVW1CLyFYj5zq28ZsCoxlaoHHh1EnbpOPBuOT1uqh7ZljEBeYS5agn0NEjh8Ea7Q22P4E11IiZGmxBg7XIljzvSpzRxwurxiqK2m5cdOInZonVfyXgcQ9fAd9f/ewcg59cOBdH1F3hY/39vqj91gkuNFLgZlG+WzEeUzo6af7VL8W1ShPpCE1TpTFq4hlZb6xwdZfpI9Qzgkys04SKUSdiBSZcHhOsj/88pIICx/pU9aNqignwvhmASyiHTDoQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: ede93142-b651-453e-a223-08de7ff02abf
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TnZwSWFLZVdjZXN5clBxOE9kV2xaZXNZL3JpdE9QeGhzVEhzZXh6VllnM1h4?=
+ =?utf-8?B?U2ZzREkxYVIra3FMOGlLbk5WbFRFaTliMTZqczNhdnJ6NWhuUFZWeENlcnIw?=
+ =?utf-8?B?L0U1T0E2UHFkVmx5ZDBSUUYxNGw3RmFjR1VVUFVYWlNKbjNpSk8weVc5WG1K?=
+ =?utf-8?B?cWxDSUlkZFpxeXU5Y3pBb3BBOVVTaU9oZ2xVODlncVpQemllVTQya1VZUzJz?=
+ =?utf-8?B?WGwremtpci9FWURudHRnbjdRZXBYYzFqSHdOWUtYWXJ4T0pReWp2ZHd6bFh5?=
+ =?utf-8?B?cGdJVE9jWHFtaFYzbndNV0lpS3VmSWozYlcrMTJwaURobUhBZm1pZ1Fuam1p?=
+ =?utf-8?B?d1FzU1BWSExQbFRKaWNoNXJsQVAzRGNhYnJnZDhaK1pkS01TSnJaYmo3ckgr?=
+ =?utf-8?B?TXVPREFsekYrQngwdGtsNlg2eDU2VW9RcVpwT3dvNkRzRmxhZnEwdHc0U0Nq?=
+ =?utf-8?B?bVJIUHhGM0pOYXkrY2xteVZKMEpHSy9ZWnFHU29RcUJFZXk0dTJrNVMzbE00?=
+ =?utf-8?B?UVVQREdxWFNleVpHT1ZRcGg1TEVTaDRXMmt3TFU2VzhrVmtYV1ZuYXpwcUtQ?=
+ =?utf-8?B?M0d1RU0wWEVGcm96MG0rRFJ4UE9XUXFldDAxRzg0NUkyMklHSzdMV2NUaXNC?=
+ =?utf-8?B?L3NjMGRGRGJCcG5MR2ZTQnp6UDdvK1ZUSzA5Y25SSHNDNzUrU1dCTmttVVB0?=
+ =?utf-8?B?SnYvSUVmekZQcWhmMndOaG85MHVYcWRLc1JmQWhDc0tOL2xHV0I3NHFqK3R0?=
+ =?utf-8?B?Rnd0aGdRbjJzL3BUWGdld05ybzYxZWRHRnNiUS9HeHpOanVtdlRmT2w4akhH?=
+ =?utf-8?B?OU13N21mOGJKUkpBUnJpTElsRko0S0doV1BZTk1lNDEyb2FXWGZwUWNHMklN?=
+ =?utf-8?B?cFBMbzlHSWwvNjNHSWdkSk1WU1QxckVQbDdDQ2c0a1VEdExkL2lmVjVxZVl2?=
+ =?utf-8?B?WVJXYWhyU2thajFpV1puRjV1UVhwdlFJTnl6aXovYitDRmRlOVRUb2R4MEpv?=
+ =?utf-8?B?U2JxTkFIMFRiL0x2QzhEYlp4ZzgyTlVZSDgzakpJTk9Nak91SXhYaEloU21j?=
+ =?utf-8?B?akw0YUZQQlBpMCswNnJuRENkMnA4Rk9SU1lIMTJ5cFd1MUxJRkVnckhMQTBr?=
+ =?utf-8?B?bFdya09qSng4MDZMdUN2cEc0ZzgySnZFUm1pd0RTaTJGZFc3U0hwQnhzQ1NY?=
+ =?utf-8?B?M2hMYUNHaHB1S3hOeUtKSFAyc2xHUGRmK0k1TDhicEp6MmlLU2FkRzJrZjdF?=
+ =?utf-8?B?R2VQNWQrRlNPcWRUNnNNb1RLQXdPOVE1NGVOQ25tZ3Q2cTl0ZVdFbDYwSHRa?=
+ =?utf-8?B?cXh0cDNxV0VoSzBQWitDdS82STI5NFNlT1hiRW4wRTNZNnM5UnlkMmJYaHFB?=
+ =?utf-8?B?dGExYS9GejJ2TzdlOHhVNFloTmczSU5mcElVT3hwaUVBd05nclAzM05Ja05Z?=
+ =?utf-8?B?RTNiQ3dhU1psVVplVjF6ZklSbVI5eTJwRXlCVXJCSk5OMm92TEtRNUpFbHU0?=
+ =?utf-8?B?Wm9TaVZveFFmNytkaUxTSmYyOEFJNGdEcDl6OUFyMnVVR0lxdTlVM3ZIeGRD?=
+ =?utf-8?B?Z0lycUhSYkZxM3J4bGU5a2x4cHNmSlZDZGtKZEllRWZJNldMWUdrUHNWZU5B?=
+ =?utf-8?B?VEpBVlFFZnlvRmdaV1hVMTl1U3dLMk9XVlJaT01oNWVwcWMyTzAwZFRLakFQ?=
+ =?utf-8?B?RDFabjlrRXpKN2pXdlBSaFExamI0cFdGcVp2WnExT0dLdEhxSy9hMG8rdFAr?=
+ =?utf-8?B?MThCSGV6SjhGNGl5ci9mRHg1ZEVNY2hDRTBRdWt0Rk44MlRPV0dJY3ZnUE5X?=
+ =?utf-8?B?aE9KY1BaR1d2Y3l3WHVIUW1rZmtSK2xuMXFvZWFhYm9JRVdYVjhKWUU3VFk4?=
+ =?utf-8?B?K3JoMTNTOXF4Skgrek9kcitrYnhibitrU3VpWUV4eFlzanBFTFplTUhFSWRy?=
+ =?utf-8?B?YVE4RjBPRHRhMCtid1B1R1lKUHAzSGIvTFJDa2VzOS9DcXpWSHpPRENDSHc3?=
+ =?utf-8?B?NStqb0dQcDkrdEduZk1mMTEvb3lhYmpraUFiT0pXWmlCL25yNWZKNFNtOWZV?=
+ =?utf-8?B?Ym43aGt3UHl6V2RDYlpBc2xjMXAxcjNNeWFUNFpORXR4L0tDS3NZbjkxZHB0?=
+ =?utf-8?B?aUVmc1pqazM4U04zWUNIN1dITndnWUxIRDJrNHZVOFovZW9Zb1ErK2dMUXgx?=
+ =?utf-8?B?VzR2bTVSMllsaWdKUnZDSm9TeTBEbkxuYXl0dTIxekZMZTJjRTlYUm9TWFFk?=
+ =?utf-8?B?MzRKSFg1cy9jcGZpSGVJbHdaK1oyWG1paW9DME5RWnEyTE8xelVUWTc0TnQ1?=
+ =?utf-8?B?RFArTzZKNWNQcDhLa1JXUXJsKzZyUnFIZzE1NFR1MUdIZXl2QTAwb014NUU5?=
+ =?utf-8?Q?rBKdpwfuNWZXhi0csvArJOGg4yN0CKEZLB+EV?=
+X-Exchange-RoutingPolicyChecked: t7gJ0x+HY8CfP7hVN/Q1KxEKo5RK9E9KvA3AcXlFGumro7XNn3R/htppU9pusRGh5je33jz4h64/cBN0EoilFTqjJ7mCxO4QL44TUJbf4OdGHF5XZk+O9MCQt3C5+XTuC3KeAeMATigCnZaagQz5ahKFHhNiZsNoPFVzTYZ/dgkj6aqopxOcDzpaOmhv7LugSYkCgT+++P5jzrWqNfkMD5MExeDTedQmBHgq8DGXleMw0IdyrPOd6mIX8RVHM/V6St4kmmW3/519OVGs9cVX3uZtTMchkJSzNc/2zDhbygzNengCh2tN4IRx7Tn7/EQIpvc9CSjvG5UNVsZS4Qcvbw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1d3d2843-5f8f-4f72-6bd1-08de7ff052f1
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2026 04:31:02.2591 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2026 04:32:09.7187 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AaEGVcJaoPknjfEqMPEL0hI6V8mBu6x21Zoy8HdrUPipkbHrBNsfWGAqYm3Jm8BnPlABhsUVNfI83zmMY4diM7yt+BSDCo36rkykdupYqRw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9421
+X-MS-Exchange-CrossTenant-UserPrincipalName: dhem99iWJHA0juKmGa4MUnHO7sOvDxmCaqoxAt2BJWnziZUdjJu9FYQRdnYDwhw2hQh9BdytVG2QNeL/xQ+RdlapmUmrfBQxgXmi0ZB4Gcs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7452
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -169,183 +175,213 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On 12/23/2025 1:42 PM, Nemesa Garg wrote:
-> As skl_pfit_enable and skl_scaler_setup_casf
-> have similar logic for pipe scaler registers
-> so to avoid duplicacy introduce new helper
-
-Perhaps 'duplication' will be apt.
-
-
-> skl_pipe_scaler_setup. This helper consolidates
-> common scaler setup steps and is now called
-> from both skl_pfit_enable() and skl_scaler_setup_casf().
-
-As suggested in previous patch, lets use ~75 character limit.
-
-
+On Wed, Mar 11, 2026 at 04:29:58PM +0530, Riana Tauro wrote:
 >
-> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
-> ---
->   drivers/gpu/drm/i915/display/skl_scaler.c | 67 ++++++++++++-----------
->   drivers/gpu/drm/i915/display/skl_scaler.h |  2 +
->   2 files changed, 36 insertions(+), 33 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-> index 4c4deac7f9c8..abd951f7dd71 100644
-> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
-> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-> @@ -761,41 +761,25 @@ static void skl_scaler_setup_filter(struct intel_display *display,
->   
->   void skl_scaler_setup_casf(struct intel_crtc_state *crtc_state)
->   {
-> -	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> -	struct intel_display *display = to_intel_display(crtc);
-> +	struct intel_display *display = to_intel_display(crtc_state);
+>On 3/10/2026 11:53 PM, Anoop, Vijay wrote:
+>>From: Anoop Vijay <anoop.c.vijay@intel.com>
+>>
+>>Add initialization infrastructure for System Controller subsystem:
+>>- xe_sysctrl_init() and cleanup handler
+>>- Integration into xe_device_probe()
+>>- Makefile build inclusion
+>
+>The description should be a brief of what the patch is.
+>Mentioning 'makefile inclusions' is unnecessary
+>
+>>
+>>Initialization flow will check platform support via has_sysctrl flag and
+>>configure mailbox region through SOC remapper interface
+>
+>punctuation..
+>
+>>
+>>Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
+>>Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+>>---
+>>v8: (Matt, Michal, Shuicheng)
+>>- Fixed include order
+>>- Added VF check
+>>- Converted runtime checks to assertions
+>>- Added sc_to_xe() helper
+>>- Fixed kernel-doc syntax
+>>---
+>>  drivers/gpu/drm/xe/Makefile     |  1 +
+>>  drivers/gpu/drm/xe/xe_device.c  |  5 ++
+>>  drivers/gpu/drm/xe/xe_sysctrl.c | 82 +++++++++++++++++++++++++++++++++
+>>  drivers/gpu/drm/xe/xe_sysctrl.h | 21 +++++++++
+>>  4 files changed, 109 insertions(+)
+>>  create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.c
+>>  create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.h
+>>
+>>diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+>>index f63fdf80055a..76a86818986a 100644
+>>--- a/drivers/gpu/drm/xe/Makefile
+>>+++ b/drivers/gpu/drm/xe/Makefile
+>>@@ -123,6 +123,7 @@ xe-y += xe_bb.o \
+>>  	xe_step.o \
+>>  	xe_survivability_mode.o \
+>>  	xe_sync.o \
+>>+	xe_sysctrl.o \
+>>  	xe_tile.o \
+>>  	xe_tile_sysfs.o \
+>>  	xe_tlb_inval.o \
+>>diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+>>index e77a3a3db73d..c70d4ae413a9 100644
+>>--- a/drivers/gpu/drm/xe/xe_device.c
+>>+++ b/drivers/gpu/drm/xe/xe_device.c
+>>@@ -65,6 +65,7 @@
+>>  #include "xe_survivability_mode.h"
+>>  #include "xe_sriov.h"
+>>  #include "xe_svm.h"
+>>+#include "xe_sysctrl.h"
+>>  #include "xe_tile.h"
+>>  #include "xe_ttm_stolen_mgr.h"
+>>  #include "xe_ttm_sys_mgr.h"
+>>@@ -985,6 +986,10 @@ int xe_device_probe(struct xe_device *xe)
+>>  	if (err)
+>>  		goto err_unregister_display;
+>>+	err = xe_sysctrl_init(xe);
+>>+	if (err)
+>>+		goto err_unregister_display;
+>>+
+>>  	err = xe_device_sysfs_init(xe);
+>>  	if (err)
+>>  		goto err_unregister_display;
+>>diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
+>>new file mode 100644
+>>index 000000000000..2751fe25a6ff
+>>--- /dev/null
+>>+++ b/drivers/gpu/drm/xe/xe_sysctrl.c
+>>@@ -0,0 +1,82 @@
+>>+// SPDX-License-Identifier: MIT
+>>+/*
+>>+ * Copyright © 2026 Intel Corporation
+>>+ */
+>>+
+>>+#include <linux/device.h>
+>>+#include <linux/mutex.h>
+>>+
+>>+#include <drm/drm_managed.h>
+>>+
+>>+#include "regs/xe_sysctrl_regs.h"
+>>+#include "xe_assert.h"
+>>+#include "xe_device.h"
+>>+#include "xe_mmio.h"
+>>+#include "xe_printk.h"
+>>+#include "xe_soc_remapper.h"
+>>+#include "xe_sriov.h"
+>>+#include "xe_sysctrl.h"
+>>+#include "xe_sysctrl_mailbox.h"
+>>+#include "xe_sysctrl_types.h"
+>>+
+>>+/**
+>>+ * DOC: System Controller (sysctrl)
+>>+ *
+>>+ * The System Controller (sysctrl) is an embedded microcontroller in Intel GPUs
+>>+ * responsible for managing various low-level platform functions. Communication
+>>+ * between the driver and the System Controller occurs via a mailbox interface,
+>>+ * enabling the exchange of commands and responses.
+>>+ *
+>>+ * This module provides initialization routines and helper functions to interact
+>>+ * with the System Controller through the mailbox.
+>>+ */
+>>+static void sysctrl_fini(void *arg)
+>>+{
+>>+	struct xe_device *xe = arg;
+>>+
+>>+	xe->soc_remapper.set_sysctrl_region(xe, 0);
+>>+}
+>>+
+>>+/**
+>>+ * xe_sysctrl_init() - Initialize System Controller subsystem
+>>+ * @xe: xe device instance
+>>+ *
+>>+ * Entry point for System Controller initialization, called from xe_device_probe.
+>
+>How about suspend/resume?
+>
 
-I think we can retain the order in the new function as the previous one, 
-there is no change required here.
+Right, forgot about that, thanks for catching that. Suspend/resume is no 
+longer handled within SoC remapper. It must be handled by the user. The 
+telemetry user does not need it since each access to the registers is 
+preceded by soc remapper configuration.
 
-
-> +        struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-
-Extra space before the line. In fact, I can see a lot of styling issues 
-caught by the checkpatch. Please fix those.
-
-
-> +	const struct intel_crtc_scaler_state *scaler_state =
-> +                &crtc_state->scaler_state;
->   	struct drm_display_mode *adjusted_mode =
-> -	&crtc_state->hw.adjusted_mode;
-> -	struct intel_crtc_scaler_state *scaler_state =
-> -		&crtc_state->scaler_state;
-> -	struct drm_rect src, dest;
-> -	int id, width, height;
-> -	int x = 0, y = 0;
-> +		&crtc_state->hw.adjusted_mode;
->   	enum pipe pipe = crtc->pipe;
-> -	u32 ps_ctrl;
-> +	int width, height, x = 0, y = 0;
-> +	int id;
->   
->   	width = adjusted_mode->crtc_hdisplay;
->   	height = adjusted_mode->crtc_vdisplay;
->   
-> -	drm_rect_init(&dest, x, y, width, height);
-> -
-> -	width = drm_rect_width(&dest);
-> -	height = drm_rect_height(&dest);
->   	id = scaler_state->scaler_id;
->   
-> -	drm_rect_init(&src, 0, 0,
-> -		      drm_rect_width(&crtc_state->pipe_src) << 16,
-> -		      drm_rect_height(&crtc_state->pipe_src) << 16);
-> +	skl_pipe_scaler_setup(crtc_state, width, height, x, y);
->   
-> -	trace_intel_pipe_scaler_update_arm(crtc, id, x, y, width, height);
-> -
-> -	ps_ctrl = PS_SCALER_EN | PS_BINDING_PIPE | scaler_state->scalers[id].mode |
-> -		  CASF_SCALER_FILTER_SELECT;
-> -
-> -	intel_de_write_fw(display, SKL_PS_CTRL(pipe, id), ps_ctrl);
-> -	intel_de_write_fw(display, SKL_PS_WIN_POS(pipe, id),
-> -			  PS_WIN_XPOS(x) | PS_WIN_YPOS(y));
->   	intel_de_write_fw(display, SKL_PS_WIN_SZ(pipe, id),
-> -			  PS_WIN_XSIZE(width) | PS_WIN_YSIZE(height));
-> +                          PS_WIN_XSIZE(width) | PS_WIN_YSIZE(height));
->   }
->   
->   void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
-> @@ -814,7 +798,6 @@ void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
->   	int hscale, vscale;
->   	struct drm_rect src;
->   	int id;
-> -	u32 ps_ctrl;
->   
->   	if (!crtc_state->pch_pfit.enabled)
->   		return;
-> @@ -836,10 +819,34 @@ void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
->   	uv_rgb_hphase = skl_scaler_calc_phase(1, hscale, false);
->   	uv_rgb_vphase = skl_scaler_calc_phase(1, vscale, false);
->   
-> +	skl_pipe_scaler_setup(crtc_state, width, height, x, y);
-> +
-> +	id = scaler_state->scaler_id;
-> +
-> +	intel_de_write_fw(display, SKL_PS_VPHASE(pipe, id),
-> +			  PS_Y_PHASE(0) | PS_UV_RGB_PHASE(uv_rgb_vphase));
-> +	intel_de_write_fw(display, SKL_PS_HPHASE(pipe, id),
-> +			  PS_Y_PHASE(0) | PS_UV_RGB_PHASE(uv_rgb_hphase));
-> +	intel_de_write_fw(display, SKL_PS_WIN_SZ(pipe, id),
-> +			  PS_WIN_XSIZE(width) | PS_WIN_YSIZE(height));
-> +}
-> +
-> +void skl_pipe_scaler_setup(const struct intel_crtc_state *crtc_state,
-> +			   int width, int height, int x, int y)
-
-
-Why is this exposed? I don't see this getting used outside of this file 
-in this patch or the next patch.
-
-This should be a static function. You should move this function just 
-before the first caller.
-
-> +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	const struct intel_crtc_scaler_state *scaler_state =
-> +		&crtc_state->scaler_state;
-> +	enum pipe pipe = crtc->pipe;
-> +	int id;
-> +	u32 ps_ctrl;
-> +
->   	id = scaler_state->scaler_id;
->   
->   	ps_ctrl = PS_SCALER_EN | PS_BINDING_PIPE | scaler_state->scalers[id].mode |
-> -		skl_scaler_get_filter_select(crtc_state->hw.scaling_filter);
-> +		  skl_scaler_get_filter_select(crtc_state->hw.scaling_filter) |
-> +		  CASF_SCALER_FILTER_SELECT;
-
-
-This seems incorrect. With this we are setting CASF SCALER FILTER SELECT 
-for pfit case also, which we do not want.
-
-We need to set this, only when the call is from skl_scaler_setup_casf.
-
+In system controller, that's not the case, so we should add hooks to 
+suspend/resume to reconfigure the SoC remapper.
 
 Regards,
-
-Ankit
-
->   
->   	trace_intel_pipe_scaler_update_arm(crtc, id, x, y, width, height);
->   
-> @@ -848,14 +855,8 @@ void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
->   
->   	intel_de_write_fw(display, SKL_PS_CTRL(pipe, id), ps_ctrl);
->   
-> -	intel_de_write_fw(display, SKL_PS_VPHASE(pipe, id),
-> -			  PS_Y_PHASE(0) | PS_UV_RGB_PHASE(uv_rgb_vphase));
-> -	intel_de_write_fw(display, SKL_PS_HPHASE(pipe, id),
-> -			  PS_Y_PHASE(0) | PS_UV_RGB_PHASE(uv_rgb_hphase));
->   	intel_de_write_fw(display, SKL_PS_WIN_POS(pipe, id),
->   			  PS_WIN_XPOS(x) | PS_WIN_YPOS(y));
-> -	intel_de_write_fw(display, SKL_PS_WIN_SZ(pipe, id),
-> -			  PS_WIN_XSIZE(width) | PS_WIN_YSIZE(height));
->   }
->   
->   void
-> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.h b/drivers/gpu/drm/i915/display/skl_scaler.h
-> index 7e8d819c019d..94bde5d1c06a 100644
-> --- a/drivers/gpu/drm/i915/display/skl_scaler.h
-> +++ b/drivers/gpu/drm/i915/display/skl_scaler.h
-> @@ -30,6 +30,8 @@ void skl_program_plane_scaler(struct intel_dsb *dsb,
->   			      struct intel_plane *plane,
->   			      const struct intel_crtc_state *crtc_state,
->   			      const struct intel_plane_state *plane_state);
-> +void skl_pipe_scaler_setup(const struct intel_crtc_state *crtc_state,
-> +			   int width, int height, int x, int y);
->   void skl_detach_scalers(struct intel_dsb *dsb,
->   			const struct intel_crtc_state *crtc_state);
->   void skl_scaler_disable(const struct intel_crtc_state *old_crtc_state);
+Umesh
+>>+ * This function checks platform support and initializes the system controller.
+>>+ *
+>>+ * Return: 0 on success, error code on failure
+>>+ */
+>>+int xe_sysctrl_init(struct xe_device *xe)
+>>+{
+>>+	struct xe_tile *tile = xe_device_get_root_tile(xe);
+>>+	struct xe_sysctrl *sc = &xe->sc;
+>>+	int ret;
+>>+
+>>+	if (!xe->info.has_sysctrl)
+>>+		return 0;
+>>+
+>>+	if (IS_SRIOV_VF(xe))
+>>+		return 0;
+>>+
+>>+	xe_assert(xe, xe->soc_remapper.set_sysctrl_region);
+>>+
+>>+	xe->soc_remapper.set_sysctrl_region(xe, SYSCTRL_MAILBOX_INDEX);
+>>+
+>>+	ret = devm_add_action_or_reset(xe->drm.dev, sysctrl_fini, xe);
+>>+	if (ret)
+>>+		return ret;
+>>+
+>>+	sc->mmio = devm_kzalloc(xe->drm.dev, sizeof(*sc->mmio), GFP_KERNEL);
+>>+	if (!sc->mmio)
+>>+		return -ENOMEM;
+>>+
+>>+	xe_mmio_init(sc->mmio, tile, tile->mmio.regs, tile->mmio.regs_size);
+>>+	sc->mmio->adj_offset = SYSCTRL_BASE;
+>>+	sc->mmio->adj_limit = U32_MAX;
+>>+
+>>+	ret = drmm_mutex_init(&xe->drm, &sc->cmd_lock);
+>
+>Let's use devm or drmm. Not a mix of both.
+>Sc is specific to device so devm would be appropriate.
+>
+>Thanks
+>Riana
+>
+>>+	if (ret)
+>>+		return ret;
+>>+
+>>+	return 0;
+>>+}
+>>diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
+>>new file mode 100644
+>>index 000000000000..d5d8735038ae
+>>--- /dev/null
+>>+++ b/drivers/gpu/drm/xe/xe_sysctrl.h
+>>@@ -0,0 +1,21 @@
+>>+/* SPDX-License-Identifier: MIT */
+>>+/*
+>>+ * Copyright © 2026 Intel Corporation
+>>+ */
+>>+
+>>+#ifndef _XE_SYSCTRL_H_
+>>+#define _XE_SYSCTRL_H_
+>>+
+>>+#include <linux/container_of.h>
+>>+
+>>+#include "xe_device_types.h"
+>>+#include "xe_sysctrl_types.h"
+>>+
+>>+static inline struct xe_device *sc_to_xe(struct xe_sysctrl *sc)
+>>+{
+>>+	return container_of(sc, struct xe_device, sc);
+>>+}
+>>+
+>>+int xe_sysctrl_init(struct xe_device *xe);
+>>+
+>>+#endif
+>
