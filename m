@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC0B5FED2F6
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 09:28:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 839D7FED2F7
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 09:43:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C38A10E9A1;
-	Thu, 12 Mar 2026 09:28:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EcDfi8dE";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E72EE10E9A1;
- Thu, 12 Mar 2026 09:28:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773307709; x=1804843709;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uNC/1gie8248vhbMNgP66VUvppaQFJUrJAb4ub6mlYs=;
- b=EcDfi8dEVkSGPiL8tj4HbZMDhBylHayROru0PgK0d2joU1LULV+AyNhz
- xJ8C8Vqv14hQUspnMh+vjMvWh/+VpJCoSXYMMj76oU5Y8QKPXNf53I5V9
- BRajQcfaZMNgkThJP1b9qZGPp3MxMXHfFgpclbackAtLjrXfyCeUZam4T
- NqnDhl8u+j7at9OUuhy11yR9aQhqR2nT484VBgN507dH5CqLvvQ/TH40H
- Zqsk548sNEdntNRbD03/Ljz1qnvrPL+R2YmJ4YZv5cqDXwiUhCgQGayCw
- PGLa/+5tkfnz8AZj/3i0Juiwjqt+T/+4/X2JK6Q9IVNg57Ui8zSPb41EA g==;
-X-CSE-ConnectionGUID: vaTLIVsaRfWUmTZW5lFTUQ==
-X-CSE-MsgGUID: Vy2/LT/JTP6XBD3fBP+n+Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="97009107"
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="97009107"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2026 02:28:28 -0700
-X-CSE-ConnectionGUID: 6T+Sb9qsQd6skiQBgtTQjA==
-X-CSE-MsgGUID: MQhA4LY3RZ6T6PhxbPf97w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="218185995"
-Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa007.fm.intel.com with ESMTP; 12 Mar 2026 02:28:26 -0700
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: Mika Kahola <mika.kahola@intel.com>,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [CI v3 23/24] drm/i915/lt_phy: Enable dpll framework for xe3plpd
-Date: Thu, 12 Mar 2026 09:28:24 +0000
-Message-ID: <20260312092824.2669009-1-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260311141905.2526418-24-mika.kahola@intel.com>
-References: <20260311141905.2526418-24-mika.kahola@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 337ED10E9A1;
+	Thu, 12 Mar 2026 09:43:26 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EFC6310E198;
+ Thu, 12 Mar 2026 09:43:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3853470041021131270=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_fail_co?=
+ =?utf-8?q?mpilation_on_intel=5Fdisplay=5Fwa=28=29_with_invalid_enums?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Luca Coelho" <luciano.coelho@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 12 Mar 2026 09:43:25 -0000
+Message-ID: <177330860595.349923.17431939159686972049@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260312081647.1083777-1-luciano.coelho@intel.com>
+In-Reply-To: <20260312081647.1083777-1-luciano.coelho@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,134 +36,166 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe3plpd platform is supported by dpll framework remove a separate
-check for hw comparison and rely solely on dpll framework
-hw comparison.
+--===============3853470041021131270==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Finally, all required hooks are now in place so initialize
-PLL manager for xe3plpd platform and remove the redirections
-to the legacy code paths for clock enable/disable as well as
-state mismatch checks that are no longer needed.
+== Series Details ==
 
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_ddi.c      |  2 +-
- drivers/gpu/drm/i915/display/intel_display.c  | 31 -------------------
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  7 +++--
- drivers/gpu/drm/i915/display/intel_lt_phy.c   |  1 +
- 4 files changed, 6 insertions(+), 35 deletions(-)
+Series: drm/i915/display: fail compilation on intel_display_wa() with invalid enums
+URL   : https://patchwork.freedesktop.org/series/163094/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index fe024250d350..ebefa889bc8c 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -5285,7 +5285,7 @@ void intel_ddi_init(struct intel_display *display,
- 	if (HAS_LT_PHY(display)) {
- 		encoder->enable_clock = intel_mtl_pll_enable_clock;
- 		encoder->disable_clock = intel_mtl_pll_disable_clock;
--		encoder->port_pll_type = intel_mtl_port_pll_type;
-+		encoder->port_pll_type = icl_ddi_tc_port_pll_type;
- 		if (intel_encoder_is_tc(encoder))
- 			encoder->get_config = mtl_ddi_tc_phy_get_config;
- 		else
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 26601ddc94cd..74a89f531698 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5057,23 +5057,6 @@ static bool allow_vblank_delay_fastset(const struct intel_crtc_state *old_crtc_s
- 	       !intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_DSI);
- }
- 
--static void
--pipe_config_lt_phy_pll_mismatch(struct drm_printer *p, bool fastset,
--				const struct intel_crtc *crtc,
--				const char *name,
--				const struct intel_lt_phy_pll_state *a,
--				const struct intel_lt_phy_pll_state *b)
--{
--	char *chipname = "LTPHY";
--
--	pipe_config_mismatch(p, fastset, crtc, name, chipname);
--
--	drm_printf(p, "expected:\n");
--	intel_lt_phy_dump_hw_state(p, a);
--	drm_printf(p, "found:\n");
--	intel_lt_phy_dump_hw_state(p, b);
--}
--
- bool
- intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 			  const struct intel_crtc_state *pipe_config,
-@@ -5188,16 +5171,6 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	} \
- } while (0)
- 
--#define PIPE_CONF_CHECK_PLL_LT(name) do { \
--	if (!intel_lt_phy_pll_compare_hw_state(&current_config->name, \
--					       &pipe_config->name)) { \
--		pipe_config_lt_phy_pll_mismatch(&p, fastset, crtc, __stringify(name), \
--						&current_config->name, \
--						&pipe_config->name); \
--		ret = false; \
--	} \
--} while (0)
--
- #define PIPE_CONF_CHECK_TIMINGS(name) do {     \
- 	PIPE_CONF_CHECK_I(name.crtc_hdisplay); \
- 	PIPE_CONF_CHECK_I(name.crtc_htotal); \
-@@ -5424,10 +5397,6 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 	if (display->dpll.mgr || HAS_GMCH(display))
- 		PIPE_CONF_CHECK_PLL(dpll_hw_state);
- 
--	/* FIXME convert MTL+ platforms over to dpll_mgr */
--	if (HAS_LT_PHY(display))
--		PIPE_CONF_CHECK_PLL_LT(dpll_hw_state.ltpll);
--
- 	PIPE_CONF_CHECK_X(dsi_pll.ctrl);
- 	PIPE_CONF_CHECK_X(dsi_pll.div);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 421767dd8367..f5d4f7146fbc 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -4724,7 +4724,6 @@ static bool xe3plpd_compare_hw_state(const struct intel_dpll_hw_state *_a,
- 	return intel_lt_phy_pll_compare_hw_state(a, b);
- }
- 
--__maybe_unused
- static const struct intel_dpll_mgr xe3plpd_pll_mgr = {
- 	.dpll_info = xe3plpd_plls,
- 	.compute_dplls = xe3plpd_compute_dplls,
-@@ -4750,9 +4749,11 @@ void intel_dpll_init(struct intel_display *display)
- 
- 	mutex_init(&display->dpll.lock);
- 
--	if (DISPLAY_VER(display) >= 35 || display->platform.dg2)
--		/* No shared DPLLs on NVL or DG2; port PLLs are part of the PHY */
-+	if (display->platform.dg2)
-+		/* No shared DPLLs on DG2; port PLLs are part of the PHY */
- 		dpll_mgr = NULL;
-+	else if (DISPLAY_VER(display) >= 35)
-+		dpll_mgr = &xe3plpd_pll_mgr;
- 	else if (DISPLAY_VER(display) >= 14)
- 		dpll_mgr = &mtl_pll_mgr;
- 	else if (display->platform.alderlake_p)
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 5bbbc6182861..657ad5cb0eff 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -11,6 +11,7 @@
- #include "intel_ddi_buf_trans.h"
- #include "intel_de.h"
- #include "intel_display.h"
-+#include "intel_display_regs.h"
- #include "intel_display_types.h"
- #include "intel_display_utils.h"
- #include "intel_dpll.h"
--- 
-2.43.0
+== Summary ==
 
+CI Bug Log - changes from xe-4704-169ea69ad8f2fb0a126608399386e4580bb2d0b0_BAT -> xe-pw-163094v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 12)
+------------------------------
+
+  Missing    (2): bat-bmg-2 bat-atsm-2 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-163094v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4704-169ea69ad8f2fb0a126608399386e4580bb2d0b0/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163094v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4704-169ea69ad8f2fb0a126608399386e4580bb2d0b0/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163094v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [FAIL][5] ([Intel XE#6519]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4704-169ea69ad8f2fb0a126608399386e4580bb2d0b0/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163094v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [FAIL][7] ([Intel XE#6520]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4704-169ea69ad8f2fb0a126608399386e4580bb2d0b0/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163094v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
+
+
+Build changes
+-------------
+
+  * Linux: xe-4704-169ea69ad8f2fb0a126608399386e4580bb2d0b0 -> xe-pw-163094v1
+
+  IGT_8797: 8797
+  xe-4704-169ea69ad8f2fb0a126608399386e4580bb2d0b0: 169ea69ad8f2fb0a126608399386e4580bb2d0b0
+  xe-pw-163094v1: 163094v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163094v1/index.html
+
+--===============3853470041021131270==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: fail compilation on intel_display_wa() with invalid enums</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163094/">https://patchwork.freedesktop.org/series/163094/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163094v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163094v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4704-169ea69ad8f2fb0a126608399386e4580bb2d0b0_BAT -&gt; xe-pw-163094v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 12)</h2>
+<p>Missing    (2): bat-bmg-2 bat-atsm-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-163094v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4704-169ea69ad8f2fb0a126608399386e4580bb2d0b0/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163094v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4704-169ea69ad8f2fb0a126608399386e4580bb2d0b0/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163094v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4704-169ea69ad8f2fb0a126608399386e4580bb2d0b0/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163094v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4704-169ea69ad8f2fb0a126608399386e4580bb2d0b0/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163094v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4704-169ea69ad8f2fb0a126608399386e4580bb2d0b0 -&gt; xe-pw-163094v1</li>
+</ul>
+<p>IGT_8797: 8797<br />
+  xe-4704-169ea69ad8f2fb0a126608399386e4580bb2d0b0: 169ea69ad8f2fb0a126608399386e4580bb2d0b0<br />
+  xe-pw-163094v1: 163094v1</p>
+
+</body>
+</html>
+
+--===============3853470041021131270==--
