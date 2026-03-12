@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78800106ACCD
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 17:41:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D407106ACCD
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 17:42:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3977E10E19C;
-	Thu, 12 Mar 2026 17:41:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C7D3210E19C;
+	Thu, 12 Mar 2026 17:42:01 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F270710E19C;
- Thu, 12 Mar 2026 17:41:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3569917495631246588=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9648310E360;
+ Thu, 12 Mar 2026 17:42:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/uapi=3A_Fix_kernel-d?=
- =?utf-8?q?oc_for_DRM=5FXE=5FVM=5FBIND=5FFLAG=5FDECOMPRESS?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/wa=3A_Drop_redunda?=
+ =?utf-8?q?nt_entries_for_Wa=5F16021867713_=26_Wa=5F14019449301?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nitin Gote" <nitin.r.gote@intel.com>
+To: "Matt Roper" <matthew.d.roper@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 12 Mar 2026 17:41:04 -0000
-Message-ID: <177333726497.352406.3372569612964370808@a3b018990fe9>
+Date: Thu, 12 Mar 2026 17:42:00 -0000
+Message-ID: <177333732060.352406.166509331257223217@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260312160244.809849-2-nitin.r.gote@intel.com>
-In-Reply-To: <20260312160244.809849-2-nitin.r.gote@intel.com>
+References: <20260312-wa_merge_fix-v1-1-2ec6607f1e0c@intel.com>
+In-Reply-To: <20260312-wa_merge_fix-v1-1-2ec6607f1e0c@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,154 +40,59 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3569917495631246588==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/uapi: Fix kernel-doc for DRM_XE_VM_BIND_FLAG_DECOMPRESS
-URL   : https://patchwork.freedesktop.org/series/163133/
-State : success
+Series: drm/xe/wa: Drop redundant entries for Wa_16021867713 & Wa_14019449301
+URL   : https://patchwork.freedesktop.org/series/163135/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4707-3ccc0e3404591e404d0dee79406cd013f377356a_BAT -> xe-pw-163133v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 22de8994dcfffc252acad167dd568f32fe43d160
+Author: Matt Roper <matthew.d.roper@intel.com>
+Date:   Thu Mar 12 09:29:23 2026 -0700
 
-Summary
--------
+    drm/xe/wa: Drop redundant entries for Wa_16021867713 & Wa_14019449301
+    
+    The Xe2_HPM-specific RTP table entries for Wa_16021867713 and
+    Wa_14019449301 were removed by commit 941f538b0af8 ("drm/xe: Consolidate
+    workaround entries for Wa_16021867713") and commit aa0f0a678370
+    ("drm/xe: Consolidate workaround entries for Wa_14019449301") in favor
+    of alternate entries earlier in the table that cover a wider range of IP
+    versions.  However these Xe2_HPM-specific entries were accidentally
+    resurrected during a backmerge, which causes the Xe driver to complain
+    on probe about two entries trying to program the same registers+bits:
+    
+      <3> [48.491155] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: discarding save-restore reg 1c3f1c (clear: 00000008, set: 00000008, masked: no, mcr: no): ret=-22
+      <3> [48.491211] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: discarding save-restore reg 1d3f1c (clear: 00000008, set: 00000008, masked: no, mcr: no): ret=-22
+      <3> [48.491225] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: discarding save-restore reg 1c3f08 (clear: 00000020, set: 00000020, masked: no, mcr: no): ret=-22
+      <3> [48.491238] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: discarding save-restore reg 1d3f08 (clear: 00000020, set: 00000020, masked: no, mcr: no): ret=-22
+    
+    Re-drop the redundant Xe2_HPM-specific entries to eliminate the dmesg
+    errors.
+    
+    Fixes: 58351f46de26 ("Merge v7.0-rc3 into drm-next")
+    Cc: Simona Vetter <simona.vetter@ffwll.ch>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/7608
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
++ /mt/dim checkpatch 3ccc0e3404591e404d0dee79406cd013f377356a drm-intel
+22de8994dcff drm/xe/wa: Drop redundant entries for Wa_16021867713 & Wa_14019449301
+-:19: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#19: 
+  <3> [48.491155] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: discarding save-restore reg 1c3f1c (clear: 00000008, set: 00000008, masked: no, mcr: no): ret=-22
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-163133v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4707-3ccc0e3404591e404d0dee79406cd013f377356a/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163133v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4707-3ccc0e3404591e404d0dee79406cd013f377356a/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163133v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][5] ([Intel XE#6519]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4707-3ccc0e3404591e404d0dee79406cd013f377356a/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163133v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
-
-
-Build changes
--------------
-
-  * IGT: IGT_8798 -> IGT_8799
-  * Linux: xe-4707-3ccc0e3404591e404d0dee79406cd013f377356a -> xe-pw-163133v1
-
-  IGT_8798: 8798
-  IGT_8799: 8799
-  xe-4707-3ccc0e3404591e404d0dee79406cd013f377356a: 3ccc0e3404591e404d0dee79406cd013f377356a
-  xe-pw-163133v1: 163133v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163133v1/index.html
-
---===============3569917495631246588==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 20 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/uapi: Fix kernel-doc for DRM_XE_VM_BIND_FLAG_DECOMPRESS</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163133/">https://patchwork.freedesktop.org/series/163133/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163133v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163133v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4707-3ccc0e3404591e404d0dee79406cd013f377356a_BAT -&gt; xe-pw-163133v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-163133v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4707-3ccc0e3404591e404d0dee79406cd013f377356a/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163133v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4707-3ccc0e3404591e404d0dee79406cd013f377356a/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163133v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4707-3ccc0e3404591e404d0dee79406cd013f377356a/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163133v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8798 -&gt; IGT_8799</li>
-<li>Linux: xe-4707-3ccc0e3404591e404d0dee79406cd013f377356a -&gt; xe-pw-163133v1</li>
-</ul>
-<p>IGT_8798: 8798<br />
-  IGT_8799: 8799<br />
-  xe-4707-3ccc0e3404591e404d0dee79406cd013f377356a: 3ccc0e3404591e404d0dee79406cd013f377356a<br />
-  xe-pw-163133v1: 163133v1</p>
-
-</body>
-</html>
-
---===============3569917495631246588==--
