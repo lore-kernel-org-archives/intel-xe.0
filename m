@@ -4,55 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0D91FED2F1
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 08:54:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E072FFED2F0
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 09:00:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65D9A10E9B2;
-	Thu, 12 Mar 2026 08:54:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="naja8ZIB";
-	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0221710E9A3;
- Thu, 12 Mar 2026 08:54:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
- Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=YjDlyOnCfo2a+nrGi13xXHyMQ5y5kSAnR94RLevB/p4=; b=naja8ZIBI8htCLoeyiAmJTvTvv
- 9kNDfBxxhKunOKdOm5oUo3WLHUnaIpeHI5B8M9ly6PuyFcCgW0fUiymazZ7dMgMuCTVAv+Ma0bo4/
- FGHTmZY/CIwZIksYubng8rkmbve8/vAz12AMuTCriCa3+F8NwYqz46U/r8aWtYkBElGjY2vlsf0aK
- QfN+Z+w0XsjH+oATkReTVQ2fNMR1l+T6FQCNy3ZduQsqVFX+izLSNcG547qQPm8O2nyG4V3ZxTRJ0
- Pv3XBiLI+VtN2gNO1TD/CSleBf+lF23jnQkyoMIFiIMbHNUkQOeyriTTPddJIdKoZchF6OLAs0PM7
- FtrkykRA==;
-Received: from [90.240.106.137] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1w0bo2-00EPMd-GL; Thu, 12 Mar 2026 09:54:10 +0100
-Date: Thu, 12 Mar 2026 08:54:09 +0000
-From: Tvrtko Ursulin <tursulin@igalia.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-fixes
-Message-ID: <abJ_MQ7o-5ghyaNW@linux>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1BBB10E1E4;
+	Thu, 12 Mar 2026 09:00:05 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4999F10E1E4;
+ Thu, 12 Mar 2026 09:00:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8312238526007842984=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Refactor_LT_PHY_PLL_handlin?=
+ =?utf-8?q?g_to_use_DPLL_framework_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kahola" <mika.kahola@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 12 Mar 2026 09:00:04 -0000
+Message-ID: <177330600428.349937.8267867145407540044@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260312080657.2648265-1-mika.kahola@intel.com>
+In-Reply-To: <20260312080657.2648265-1-mika.kahola@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,65 +36,145 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============8312238526007842984==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Hi Dave, Sima,
+== Series Details ==
 
-This week's fixes are a fix to avoid ICL hang when configuring VRR,
-fix to the eDP ALPM read-out sequence, two fixes for PSR Selective
-Update handling (with two dependecies) and a fix for sg table overflow
-when shmem folio allocations are larger than 4GB.
+Series: Refactor LT PHY PLL handling to use DPLL framework (rev7)
+URL   : https://patchwork.freedesktop.org/series/161586/
+State : success
 
-Tvrtko
+== Summary ==
 
-drm-intel-fixes-2026-03-12:
-- Avoid hang when configuring VRR [icl] (Ville Syrjälä)
-- Fix sg_table overflow with >4GB folios (Janusz Krzysztofik)
-- Fix PSR Selective Update handling [psr] (Jouni Högander)
-- Fix eDP ALPM read-out sequence [dp] (Arun R Murthy)
-The following changes since commit 1f318b96cc84d7c2ab792fcc0bfd42a7ca890681:
+CI Bug Log - changes from xe-4703-389757a158d828affd3a4c242b98ffac9646daf3_BAT -> xe-pw-161586v7_BAT
+====================================================
 
-  Linux 7.0-rc3 (2026-03-08 16:56:54 -0700)
+Summary
+-------
 
-are available in the Git repository at:
+  **SUCCESS**
 
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2026-03-12
+  No regressions found.
 
-for you to fetch changes up to 335b237d902c7362cb7228802e68374406b24acf:
+  
 
-  drm/i915/dp: Read ALPM caps after DPCD init (2026-03-10 08:26:33 +0000)
+Participating hosts (14 -> 14)
+------------------------------
 
-----------------------------------------------------------------
-- Avoid hang when configuring VRR [icl] (Ville Syrjälä)
-- Fix sg_table overflow with >4GB folios (Janusz Krzysztofik)
-- Fix PSR Selective Update handling [psr] (Jouni Högander)
-- Fix eDP ALPM read-out sequence [dp] (Arun R Murthy)
+  No changes in participating hosts
 
-----------------------------------------------------------------
-Arun R Murthy (1):
-      drm/i915/dp: Read ALPM caps after DPCD init
+Known issues
+------------
 
-Janusz Krzysztofik (1):
-      drm/i915: Fix potential overflow of shmem scatterlist length
+  Here are the changes found in xe-pw-161586v7_BAT that come from known issues:
 
-Jouni Högander (4):
-      drm/i915/psr: Repeat Selective Update area alignment
-      drm/i915/dsc: Add Selective Update register definitions
-      drm/i915/dsc: Add helper for writing DSC Selective Update ET parameters
-      drm/i915/psr: Write DSC parameters on Selective Update in ET mode
+### IGT changes ###
 
-Ville Syrjälä (1):
-      drm/i915/vrr: Configure VRR timings after enabling TRANS_DDI_FUNC_CTL
+#### Issues hit ####
 
- drivers/gpu/drm/i915/display/intel_alpm.c      |  6 ---
- drivers/gpu/drm/i915/display/intel_display.c   |  1 -
- drivers/gpu/drm/i915/display/intel_dp.c        |  7 +++
- drivers/gpu/drm/i915/display/intel_psr.c       | 60 ++++++++++++++++++++------
- drivers/gpu/drm/i915/display/intel_vdsc.c      | 23 ++++++++++
- drivers/gpu/drm/i915/display/intel_vdsc.h      |  3 ++
- drivers/gpu/drm/i915/display/intel_vdsc_regs.h | 12 ++++++
- drivers/gpu/drm/i915/display/intel_vrr.c       | 14 ++++++
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c      | 12 ++++--
- 9 files changed, 116 insertions(+), 22 deletions(-)
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6520])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4703-389757a158d828affd3a4c242b98ffac9646daf3/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161586v7/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+#### Possible fixes ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-bmg-1:          [TIMEOUT][3] ([Intel XE#6506]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4703-389757a158d828affd3a4c242b98ffac9646daf3/bat-bmg-1/igt@xe_waitfence@abstime.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161586v7/bat-bmg-1/igt@xe_waitfence@abstime.html
+    - bat-dg2-oem2:       [TIMEOUT][5] ([Intel XE#6506]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4703-389757a158d828affd3a4c242b98ffac9646daf3/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161586v7/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+
+
+Build changes
+-------------
+
+  * Linux: xe-4703-389757a158d828affd3a4c242b98ffac9646daf3 -> xe-pw-161586v7
+
+  IGT_8797: 8797
+  xe-4703-389757a158d828affd3a4c242b98ffac9646daf3: 389757a158d828affd3a4c242b98ffac9646daf3
+  xe-pw-161586v7: 161586v7
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161586v7/index.html
+
+--===============8312238526007842984==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Refactor LT PHY PLL handling to use DPLL framework (rev7)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161586/">https://patchwork.freedesktop.org/series/161586/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161586v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161586v7/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4703-389757a158d828affd3a4c242b98ffac9646daf3_BAT -&gt; xe-pw-161586v7_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-161586v7_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_waitfence@reltime:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4703-389757a158d828affd3a4c242b98ffac9646daf3/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161586v7/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_waitfence@abstime:<ul>
+<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4703-389757a158d828affd3a4c242b98ffac9646daf3/bat-bmg-1/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161586v7/bat-bmg-1/igt@xe_waitfence@abstime.html">PASS</a></li>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4703-389757a158d828affd3a4c242b98ffac9646daf3/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161586v7/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4703-389757a158d828affd3a4c242b98ffac9646daf3 -&gt; xe-pw-161586v7</li>
+</ul>
+<p>IGT_8797: 8797<br />
+  xe-4703-389757a158d828affd3a4c242b98ffac9646daf3: 389757a158d828affd3a4c242b98ffac9646daf3<br />
+  xe-pw-161586v7: 161586v7</p>
+
+</body>
+</html>
+
+--===============8312238526007842984==--
