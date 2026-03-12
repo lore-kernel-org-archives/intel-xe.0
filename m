@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E072FFED2F0
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 09:00:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27371FED2F0
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 09:00:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1BBB10E1E4;
-	Thu, 12 Mar 2026 09:00:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1BBA10E1E4;
+	Thu, 12 Mar 2026 09:00:30 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4999F10E1E4;
- Thu, 12 Mar 2026 09:00:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8312238526007842984=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A5DCF10E1E4;
+ Thu, 12 Mar 2026 09:00:29 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Refactor_LT_PHY_PLL_handlin?=
- =?utf-8?q?g_to_use_DPLL_framework_=28rev7=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/display=3A_fail_?=
+ =?utf-8?q?compilation_on_intel=5Fdisplay=5Fwa=28=29_with_invalid_enums?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mika Kahola" <mika.kahola@intel.com>
+To: "Luca Coelho" <luciano.coelho@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 12 Mar 2026 09:00:04 -0000
-Message-ID: <177330600428.349937.8267867145407540044@a3b018990fe9>
+Date: Thu, 12 Mar 2026 09:00:29 -0000
+Message-ID: <177330602966.349923.9726496145635489078@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260312080657.2648265-1-mika.kahola@intel.com>
-In-Reply-To: <20260312080657.2648265-1-mika.kahola@intel.com>
+References: <20260312081647.1083777-1-luciano.coelho@intel.com>
+In-Reply-To: <20260312081647.1083777-1-luciano.coelho@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,141 +40,55 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8312238526007842984==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Refactor LT PHY PLL handling to use DPLL framework (rev7)
-URL   : https://patchwork.freedesktop.org/series/161586/
-State : success
+Series: drm/i915/display: fail compilation on intel_display_wa() with invalid enums
+URL   : https://patchwork.freedesktop.org/series/163094/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4703-389757a158d828affd3a4c242b98ffac9646daf3_BAT -> xe-pw-161586v7_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e495a3e85c22f55b9251af74bca38ebcbbf7f09e
+Author: Luca Coelho <luciano.coelho@intel.com>
+Date:   Thu Mar 12 10:16:46 2026 +0200
 
-Summary
--------
+    drm/i915/display: fail compilation on intel_display_wa() with invalid enums
+    
+    In a previous commit, the intel_display_wa() was changed so it
+    wouldn't receive an integer as the workaround number, but the enum
+    value itself.  This caused compilation not to fail anymore when the
+    enum passed didn't exist.
+    
+    Bring this back by using BUILD_BUG_ON() to check that the enum passed
+    sits within the range of defined enums.
+    
+    Cc: Jani Nikula <jani.nikula@linux.intel.com>
+    Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
++ /mt/dim checkpatch 169ea69ad8f2fb0a126608399386e4580bb2d0b0 drm-intel
+e495a3e85c22 drm/i915/display: fail compilation on intel_display_wa() with invalid enums
+-:35: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__wa' - possible side-effects?
+#35: FILE: drivers/gpu/drm/i915/display/intel_display_wa.h:69:
++#define intel_display_wa(__display, __wa) ({				  \
++		BUILD_BUG_ON(__wa >= INTEL_DISPLAY_WA_COUNT);		  \
++		__intel_display_wa((__display), __wa, __stringify(__wa)); \
++	})
 
-  **SUCCESS**
+-:35: CHECK:MACRO_ARG_PRECEDENCE: Macro argument '__wa' may be better as '(__wa)' to avoid precedence issues
+#35: FILE: drivers/gpu/drm/i915/display/intel_display_wa.h:69:
++#define intel_display_wa(__display, __wa) ({				  \
++		BUILD_BUG_ON(__wa >= INTEL_DISPLAY_WA_COUNT);		  \
++		__intel_display_wa((__display), __wa, __stringify(__wa)); \
++	})
 
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-161586v7_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#6520])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4703-389757a158d828affd3a4c242b98ffac9646daf3/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161586v7/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_waitfence@abstime:
-    - bat-bmg-1:          [TIMEOUT][3] ([Intel XE#6506]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4703-389757a158d828affd3a4c242b98ffac9646daf3/bat-bmg-1/igt@xe_waitfence@abstime.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161586v7/bat-bmg-1/igt@xe_waitfence@abstime.html
-    - bat-dg2-oem2:       [TIMEOUT][5] ([Intel XE#6506]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4703-389757a158d828affd3a4c242b98ffac9646daf3/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161586v7/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+total: 0 errors, 0 warnings, 2 checks, 17 lines checked
 
 
-Build changes
--------------
-
-  * Linux: xe-4703-389757a158d828affd3a4c242b98ffac9646daf3 -> xe-pw-161586v7
-
-  IGT_8797: 8797
-  xe-4703-389757a158d828affd3a4c242b98ffac9646daf3: 389757a158d828affd3a4c242b98ffac9646daf3
-  xe-pw-161586v7: 161586v7
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161586v7/index.html
-
---===============8312238526007842984==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Refactor LT PHY PLL handling to use DPLL framework (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161586/">https://patchwork.freedesktop.org/series/161586/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161586v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161586v7/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4703-389757a158d828affd3a4c242b98ffac9646daf3_BAT -&gt; xe-pw-161586v7_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-161586v7_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_waitfence@reltime:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4703-389757a158d828affd3a4c242b98ffac9646daf3/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161586v7/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@abstime:<ul>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4703-389757a158d828affd3a4c242b98ffac9646daf3/bat-bmg-1/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161586v7/bat-bmg-1/igt@xe_waitfence@abstime.html">PASS</a></li>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4703-389757a158d828affd3a4c242b98ffac9646daf3/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-161586v7/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4703-389757a158d828affd3a4c242b98ffac9646daf3 -&gt; xe-pw-161586v7</li>
-</ul>
-<p>IGT_8797: 8797<br />
-  xe-4703-389757a158d828affd3a4c242b98ffac9646daf3: 389757a158d828affd3a4c242b98ffac9646daf3<br />
-  xe-pw-161586v7: 161586v7</p>
-
-</body>
-</html>
-
---===============8312238526007842984==--
