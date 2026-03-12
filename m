@@ -4,106 +4,106 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53E9C105F7A6
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 12:58:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DD9D105F7A7
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 12:58:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 143A910EBE4;
-	Fri, 13 Mar 2026 12:58:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FF3410EBE6;
+	Fri, 13 Mar 2026 12:58:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="I70LgRYw";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="homXtovm";
 	dkim-atps=neutral
-Received: from mail-dy1-f170.google.com (mail-dy1-f170.google.com
- [74.125.82.170])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E28C910EA94
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Mar 2026 19:16:13 +0000 (UTC)
-Received: by mail-dy1-f170.google.com with SMTP id
- 5a478bee46e88-2bda3b4318dso97248eec.1
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Mar 2026 12:16:13 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773342973; cv=none;
+Received: from mail-dl1-f44.google.com (mail-dl1-f44.google.com [74.125.82.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB55610EA91
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Mar 2026 19:15:46 +0000 (UTC)
+Received: by mail-dl1-f44.google.com with SMTP id
+ a92af1059eb24-1273c690e5bso106212c88.2
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Mar 2026 12:15:46 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773342946; cv=none;
  d=google.com; s=arc-20240605;
- b=b63jMsmm/l6vTO2O8JBQaloQ+cFhqwRdZIUNSeB5AE9684VoE9qM+2vcUSsd7eN/hb
- iXBKbv9FVuGUoK4NNWuO/Oa4ShWUxkg3JH4MstdMwO3IwetSDUcrM6Wz9/qaHNbZmmcN
- Go6EMNR2a8knK71VkALaTqxDpQWbHNW6oQEpMj/dyAo9hwXDsndR1ckD2ma3yWXiqATq
- Ln27voEpK6fWIwD5jY2LRnebGk/69ynuNf2Wewg0N0/edR1Z+YbDIX+8MhnyxVYCcj+d
- Y5/XIFLd/2YLTgH0FadqKpulPicw/HB6xHunn++9EhY2BDJYJEz1g77VBrR2ZYu3c5We
- 9OnA==
+ b=PmQDD9o1RQKHY042Lu25rAL75995tuqoVg14jAYyJ05ZOwz4HNnUKVqe4/TbWsq3AB
+ nvV+k+SrZszeKBTc5u0FvDhca/WhXlyiqN63f2x2xMjdFO8mxZe3DZ4qfVGXQzw1iS28
+ a/np5KnjeS1EtDOMQJAI9jKqrQdQiai5bfyaSApMBZIhXD3ip5qCcndT1U7frQw/PIDe
+ +ZzHKtMBLOx+mr0ZTcQTDoCptGRKsW9LvYrc2fHC5l9DRAaYsOkgCHpStAHQnfXCsEa0
+ 9lhV6r2x1R2jqYjaBNSsCBgA8AjIzM0cveezsR1N4vUyQY136LQ6DMI1529b/FcAgcL+
+ TfmQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=2hzSysAOGotLHY/Gk0vtKsQ07bdjUjpPdIHGXWzs09g=;
- fh=Js1ubc0f6mRVGMys9n4fn4a7TH+ptTIAGlhG7yRg3M4=;
- b=Q2ANKp0Hk72ST5oivy3aY/ogdDL7+AC1hsyKmOaBrw6vjLJGZczj4ADa7GmZKkB70/
- p56jIADUA9II4NyM/MJMxlFAxR8Tw9ycBJQXosjWpFVceOA1o88xhWeK8SY7NP9pZp10
- 1m4MTbV7zpWwQ39923o0rLoRecvGCG7TYlWX01WL954mESO8PjVNoJHhJXkhBxr9vfi4
- Jl/AK9h/GuqxM8CEC64sYT/Et5uQ6V78+uKj49f9hfMpOVz1X3q6Lz6ugMdsX2S27gzR
- 9lcCNMzpPf1UY/D/Z3gwhNZN3KlwS7BnNkJbZxLxeNTb7aDdiEwk0YzSAzYpXJxghGUa
- dJuA==; darn=lists.freedesktop.org
+ bh=4VzEC4HlHoK4vh0lvr6EYPz1Eqp/YdbOqaCW1vewwOg=;
+ fh=UhJAfYbqgxUZDuTOrwUsD8udPBd+HghZM0zuSROIcoE=;
+ b=RW6R/u9t+pYzYrl6xnapPGa71ZJNVA8t9REsqD6QEUAsFGngtxS48xWKDLwGtXHLAn
+ eSatmBYY90sbXBUb92wQFjd7hMkxhDivAdoE24TrCnodK6vGDfBx983DfgJknsFJADrh
+ txaHFbJzdOp44J7Qwtrsn0xY+P9gapenNJ8cFkwFhbvl0YsAVESjvxGUGWYyC0qawIip
+ gUuh6PXS4o31xxRc+peEBo46aOl06imjxKYmatv9T9bUqpcb/liuFP2HxsQwOJNNyLLN
+ 4Vr+6U7NrpxYhjhzatATqPj/zPWvtuiUzSWWYg6pcmTeouHTlfztKxvnj9EYZuSJGMUD
+ O1gw==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773342973; x=1773947773; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1773342946; x=1773947746; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=2hzSysAOGotLHY/Gk0vtKsQ07bdjUjpPdIHGXWzs09g=;
- b=I70LgRYwmb1Kf3TSnl+ArSLtzExyTBoa7dl04aKCHbpIOVlt0pkM+kTuMC22F9ryVp
- jUv01TLfI+UOeUVX6Sjz3kZS8LJyXET8ksAMjQMZzMqR2UNwz/RhUR0Dh0iVLA9TJZHL
- QXDsAXdQJiSbkyV3ypZv6uYxCyR1eCY+nrb6KQRwRLstb0XzDVTra1OJoA7lxpmr4sXI
- kaiXA9abzkmSNzENEsVuZBIyKPxgfqceCeSC5GzkFLFj33Ut8QJ5agezs64BnIL5WFv+
- 4K0QJleWgs+yILD46TlDsM4JTXcyiLlouPXq9bhfJihv+HoQC5so3WutGFCQ5CAn3ICC
- Xoxg==
+ bh=4VzEC4HlHoK4vh0lvr6EYPz1Eqp/YdbOqaCW1vewwOg=;
+ b=homXtovmL7d23e1KalTVecPCknznywPIJhKJxhlfi9r/A8gMAxe1ycrez11l4fcHPC
+ UGvAcbrIPdP8O+4oEK+JchQu580zby3Tlf2fh6+ztzz+HhH8wE21U6foC5E2j5gyYoFM
+ iVKydSWkzJza/5PFWOm3qlqzqrH0RYniiCSWHJ1PfXLSa0w+zNGzVtbdj14pTcR66X9s
+ PMwush3kC20A/nl6ZSDn+yMNBkGgnQh7jo+XNOknpROw63oeMZPgx2RpLGBP9QLTA78P
+ EDwErEtf6ttnw7STJmy01IEfICVkOTw7TU9vyyi7EmAcaP7446w5CnqMgfCZ9NDSjUeO
+ zzog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1773342973; x=1773947773;
+ d=1e100.net; s=20230601; t=1773342946; x=1773947746;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=2hzSysAOGotLHY/Gk0vtKsQ07bdjUjpPdIHGXWzs09g=;
- b=YysGS1YV4lkBAD8XZ7caWhWIoMNzdiScgCCX0QoQzABd95c0riuP5Fi9G4TX8iXn7P
- bRNjmdXMGKLcpK2lBNhroj3yvyynd1kRKzhWnJ4FR/xIZmOJU784gyYJnLVo65Rb7evZ
- LfxXdf+kZzfgeQoxys2geK0qVH+s9K40Q4EimfjnPagGAx7NFwrPWCW4lRCw1md+Ajr5
- 9KMYtCzJUxjBLjNFpaP9zx0y54/VILXmUnjEQo3/ZaLFQcSfmwiytzELsOkx05IWMPyu
- aKw5U3ExnuBDJWixxKpj5EdVY/J5qUE4oSLTlArmBqkqN9FFHmesXeae//0HjkbBy6Dr
- nGoQ==
+ bh=4VzEC4HlHoK4vh0lvr6EYPz1Eqp/YdbOqaCW1vewwOg=;
+ b=tDUUqyFC0ZZqR0ssg5kbd5ZF0LMKDuACsK4sUFWYy5BmT3pXwM70j1brCWVUp720X4
+ kVk/w9YIVB+UuIS7oUhwBJAgqlAkxileWwl7PcyzMRjyWdayfAWi8NfJqbL3ixFJ0qrZ
+ 9rTZYYGlAAjCl0l/pSfmrrDr8ij7SnydmzvTbY9EYFlGmEKMQtjCMs8fxklF6CkmOpOQ
+ 0+iFzul+yBX+d7j3U91/gVVmqe/c0bvaDgmJNcg2LopdHoNMGBJrQ+cWmHYQ7ZNk9veM
+ J/RBf4RtBcnUAFRH0bz/qc98gQwO5w15w63Rb4GQmUcDgX14qK6idG36iUwrQ0JeA0W6
+ 5viA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWYEGPJFwTby06V8zWYphwDWuijG786DIq1C9ltO4cwvSdnphekc3/NNQ4xmEtCISPF/ywyayQGBA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxExoLb44WWFrtWOdKhUJadAqQTwwnx+CF55jOXi4dAjuBkQTx7
- gJRlv7ktgAghErZfFT3dWK2SWb33pAmJdrg0rtnMObrb+xCS6vffoHAf7eKQwCISBudwdxAF2I/
- 6XESiWmrqyi5EdGDF63IpLNwjN4jktqI=
-X-Gm-Gg: ATEYQzxatZvG4n5xtaaxL+Mpwzd3WzNaC0ROR6dEzjwq+C+WOe/6K+D9OGdI7RxrTwT
- gRxlTkzyh52uRPVMxNmXQaaTSHuTUnEN2zhkiHM/vF3PejmspPKeapkTBDz4sh/ZmVcnl/XCX8z
- WwQ4B5Nr9XyTYObnc+Xl1EiQJL+qcdK/wWm2Sainaw43ou6VAVgzIpWNMnFt+QpJisM2ybcR43r
- JkcFhRdg/aGu0fwK4L53zdhEX8cAbQp2AG4aYN0svDf4u0pMni5blJvhdkc7khEiNIxqO8r6j8g
- 7oJduazlo3v2BDDJ450slukGjwA2kQXEXPRO/TuqM4H6jnDCBWSrNnCk6ulso7rLLLXOyJBt6OI
- W7lF1WEtoONWBbTYKithmKXE=
-X-Received: by 2002:a05:7300:fd03:b0:2be:171c:2177 with SMTP id
- 5a478bee46e88-2bea5744a60mr186533eec.7.1773342973060; Thu, 12 Mar 2026
- 12:16:13 -0700 (PDT)
+ AJvYcCXLZJSaPrT74GSl1P3JVWwm2wk2irwdylMCQpBB52qs3wsIsZ2ouNVtArzsfl/oSpPnAwnJJU3IlQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwRlDxrU84WWR7J71fAme2IRvhvcDiQknzyXdk02q5kmoHm3VOJ
+ Krzg/jPueQGjFgN2mHO7OwR4XJWalxAennEDOOQTAMOMweXJ2ARI8kOiSsojSRDLSEVxW5gRkfu
+ LmNJbCvvM/+rh2y0in93Tq9642nh7HCg=
+X-Gm-Gg: ATEYQzyWIqMYoorDkGjybG5wU8qkWqQUTAa8FRuSgMFtjAsdkGCi556fFAcicynkhqE
+ jYmaAsFq4aY86tebFfFY/g7iyCriJAEMSrvHO6G6RBd7sTtCHRDpGLSv3QMS0Zev/vmkk6Trgg6
+ oz6GJiWT92dfBSbVA2aexQASXSiXRW5Q19E4iOivMIaeef0MWDLHx0q0scNwdBoaxnQbt/YmCys
+ sfVtAe8cixWb9gYWyp6qJp/UgmCU9jJkaTpP7UVAxAO5HyBi6hmRQEAeROLi6ykUXIhPFWIhSmO
+ rxY/Kn94dV9D6lAoNgWqAcXkmvBF9pmztvOdK1VlPxbsWAVRDbLbNVXX715RTPR4Y1dCzJ8uCzW
+ bIMSPXZ5EtOEl3H9ItvuTML8=
+X-Received: by 2002:a05:7301:1924:b0:2bd:d8e6:90a0 with SMTP id
+ 5a478bee46e88-2bea555c8d0mr231898eec.3.1773342945899; Thu, 12 Mar 2026
+ 12:15:45 -0700 (PDT)
 MIME-Version: 1.0
 References: <20260306203648.1136554-1-joelagnelf@nvidia.com>
  <20260306203648.1136554-2-joelagnelf@nvidia.com>
-In-Reply-To: <20260306203648.1136554-2-joelagnelf@nvidia.com>
+ <DH0ZMJKN6OE6.243UPT928HIIX@kernel.org>
+In-Reply-To: <DH0ZMJKN6OE6.243UPT928HIIX@kernel.org>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Thu, 12 Mar 2026 20:16:00 +0100
-X-Gm-Features: AaiRm537cVQtFBzSwOEaMgXdjzYeE0uMIzdX3f2cfwXX8kFS15LK67mGvYzfQo0
-Message-ID: <CANiq72m2Eo1UAuwMC0LhiD4+yqKixRm=+oHtEnpwY-VbNdR+fw@mail.gmail.com>
+Date: Thu, 12 Mar 2026 20:15:33 +0100
+X-Gm-Features: AaiRm53560zXAmoL0EVQHDBxYh33LaVByeeBz-QChPDevjdBJ65drv5v7FGkL1c
+Message-ID: <CANiq72n6ccEz71V3nkJxtY_BNbTw3F_eekt+Dyhvfb1FNP-srw@mail.gmail.com>
 Subject: Re: [PATCH v12 1/1] rust: interop: Add list module for C linked list
  interface
-To: Joel Fernandes <joelagnelf@nvidia.com>
-Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>, 
- Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, 
+To: Danilo Krummrich <dakr@kernel.org>
+Cc: Joel Fernandes <joelagnelf@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>, 
+ linux-kernel@vger.kernel.org, Boqun Feng <boqun@kernel.org>, 
+ Gary Guo <gary@garyguo.net>,
  =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Danilo Krummrich <dakr@kernel.org>, 
- Dave Airlie <airlied@redhat.com>, David Airlie <airlied@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>, 
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, 
- Nikola Djukic <ndjukic@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>, 
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa <elle@weathered-steel.dev>, 
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Dave Airlie <airlied@redhat.com>, 
+ David Airlie <airlied@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Simona Vetter <simona@ffwll.ch>, Daniel Almeida <daniel.almeida@collabora.com>,
+ Koen Koning <koen.koning@linux.intel.com>, Nikola Djukic <ndjukic@nvidia.com>, 
+ Alexandre Courbot <acourbot@nvidia.com>, Philipp Stanner <phasta@kernel.org>, 
+ Elle Rhumsaa <elle@weathered-steel.dev>, Jonathan Corbet <corbet@lwn.net>, 
+ Alex Deucher <alexander.deucher@amd.com>,
  =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
  Jani Nikula <jani.nikula@linux.intel.com>, 
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
@@ -140,114 +140,14 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Mar 6, 2026 at 9:37=E2=80=AFPM Joel Fernandes <joelagnelf@nvidia.co=
-m> wrote:
+On Thu, Mar 12, 2026 at 6:42=E2=80=AFPM Danilo Krummrich <dakr@kernel.org> =
+wrote:
 >
-> Acked-by: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+> Was this given off-list? I can't find a corresponding reply from Miguel.
 
-Acked-by: Miguel Ojeda <ojeda@kernel.org>
+Thanks for double-checking that -- it is fine.
 
-> +//! # // SAFETY: head and all the items are test objects allocated in th=
-is scope.
-
-`head`
-
-> +//! // Rust wrapper for the C struct.
-
-Empty newline comment between these:
-
-  //! //
-
-Actually, should this be `//! ///`?
-
-> +//! // The list item struct in this example is defined in C code as:
-> +//! //   struct SampleItemC {
-> +//! //       int value;
-> +//! //       struct list_head link;
-> +//! //   };
-> +//! //
-
-Let's try to use the usual style, i.e. no empty newline at the end of
-docs for an item.
-
-And the example should be in a proper code block with a C tag, so all
-together something like:
-
-    //! /// Rust wrapper for the C struct.
-    //! ///
-    //! /// The list item struct in this example is defined in C code as:
-    //! ///
-    //! /// ```c
-    //! /// struct SampleItemC {
-    //! ///     int value;
-    //! ///     struct list_head link;
-    //! /// };
-    //! /// ```
-
-> +//!         // SAFETY: [`Item`] has same layout as [`SampleItemC`].
-
-No need for intra-doc links in comments (for now at least).
-
-> +//! // Create typed [`CList`] from sentinel head.
-
-Empty newline comment.
-
-> +//! // SAFETY: head is valid and initialized, items are `SampleItemC` wi=
-th
-
-`head`
-
-However, this is giving me a Clippy issue (please see the other email).
-
-> +///   `next`/`prev` pointers are valid and non-NULL.
-
-We started using `NULL` recently as a convention for the null pointer.
-
-> +        // - [`CListHead`] has same layout as `list_head`.
-
-Intra-doc link not needed.
-
-> +        // - `ptr` is valid and unmodified for 'a per caller guarantees.
-
-`'a`
-
-> +        // SAFETY: self.as_raw() is valid per type invariants.
-
-`self.as_raw()`
-
-> +/// perform conversion of returned [`CListHead`] to an item (using `cont=
-ainer_of` macro or similar).
-
-Intra-doc link to `container_of`?
-
-> +        // - [`CList`] has same layout as [`CListHead`] due to repr(tran=
-sparent).
-
-Intra-doc link not needed.
-
-> +        // Convert to item using OFFSET.
-
-`OFFSET`
-
-Newline comment after this one.
-
-> +/// Create a C doubly-circular linked list interface `CList` from a raw =
-`list_head` pointer.
-
-[`CList`]
-
-> +///   pointing to a list that is not concurrently modified for the lifet=
-ime of the `CList`.
-
-[`CList`]
-
-> +/// Refer to the examples in this module's documentation.
-
-Perhaps we could have an intra-doc link here to the module.
-
-> +        // Compile-time check that field path is a list_head.
-
-`list_head`
+I am sending some nits and Clippy issues independently though.
 
 Cheers,
 Miguel
