@@ -4,62 +4,128 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DA01105F78C
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 12:43:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53E9C105F7A6
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 12:58:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CDB110EBD9;
-	Fri, 13 Mar 2026 12:43:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 143A910EBE4;
+	Fri, 13 Mar 2026 12:58:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G6cmPtgE";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="I70LgRYw";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86C3310EBD9;
- Fri, 13 Mar 2026 12:43:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773405780; x=1804941780;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=T/oAZlQntOauE8Rca7++5NByj8AgYQDNRpE72LJMUt4=;
- b=G6cmPtgE0I3MWzEKfM42y5cTDkluCRqqWte52Uipm45EHoTST3cvaexh
- VNs73ZjqlxTPzalwAFIo5u/ichfs53hqi8y8oM38zcODF5rvXw1QCeGpS
- RnjhQuBzAgZSB9jP63mM5XrTU4QJ2FS+5q8HmesC3TZehX0i5yhEFz72I
- vT4seqgyvVOvl4cGsu+PH8BswFr0gMHFVJ2lgRZHirxq67Fxvq7GiM69h
- v1YtInywEUpy3xIzFkyMWRtzWtw0fdbmVVCpoBjzjuNy0nEAVgGpbP+TP
- YFnppEI4i4rbCgdcL8Dudbp+93tocpu+dM0ucK4Wtybjq4q4Krh2EaaOw g==;
-X-CSE-ConnectionGUID: cp1DEFCtTn2c0HIrNmLHWg==
-X-CSE-MsgGUID: pAUsKrl6R+Sx1rFyckbT/Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74479034"
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="74479034"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 05:43:00 -0700
-X-CSE-ConnectionGUID: CxYTJHTHSI6KUe/0TAKrDg==
-X-CSE-MsgGUID: Lw7L+tRNQXKppgebK+Tqhw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="221215692"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.21])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 05:42:58 -0700
-Date: Fri, 13 Mar 2026 14:42:55 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, jouni.hogander@intel.com,
- animesh.manna@intel.com
-Subject: Re: [PATCH 18/19] drm/i915/dp: Make provision for AS SDP version 1
-Message-ID: <abQGT0gcL7SsDCh9@intel.com>
-References: <20260311113611.3393194-1-ankit.k.nautiyal@intel.com>
- <20260311113611.3393194-19-ankit.k.nautiyal@intel.com>
+Received: from mail-dy1-f170.google.com (mail-dy1-f170.google.com
+ [74.125.82.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E28C910EA94
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Mar 2026 19:16:13 +0000 (UTC)
+Received: by mail-dy1-f170.google.com with SMTP id
+ 5a478bee46e88-2bda3b4318dso97248eec.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Mar 2026 12:16:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773342973; cv=none;
+ d=google.com; s=arc-20240605;
+ b=b63jMsmm/l6vTO2O8JBQaloQ+cFhqwRdZIUNSeB5AE9684VoE9qM+2vcUSsd7eN/hb
+ iXBKbv9FVuGUoK4NNWuO/Oa4ShWUxkg3JH4MstdMwO3IwetSDUcrM6Wz9/qaHNbZmmcN
+ Go6EMNR2a8knK71VkALaTqxDpQWbHNW6oQEpMj/dyAo9hwXDsndR1ckD2ma3yWXiqATq
+ Ln27voEpK6fWIwD5jY2LRnebGk/69ynuNf2Wewg0N0/edR1Z+YbDIX+8MhnyxVYCcj+d
+ Y5/XIFLd/2YLTgH0FadqKpulPicw/HB6xHunn++9EhY2BDJYJEz1g77VBrR2ZYu3c5We
+ 9OnA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=2hzSysAOGotLHY/Gk0vtKsQ07bdjUjpPdIHGXWzs09g=;
+ fh=Js1ubc0f6mRVGMys9n4fn4a7TH+ptTIAGlhG7yRg3M4=;
+ b=Q2ANKp0Hk72ST5oivy3aY/ogdDL7+AC1hsyKmOaBrw6vjLJGZczj4ADa7GmZKkB70/
+ p56jIADUA9II4NyM/MJMxlFAxR8Tw9ycBJQXosjWpFVceOA1o88xhWeK8SY7NP9pZp10
+ 1m4MTbV7zpWwQ39923o0rLoRecvGCG7TYlWX01WL954mESO8PjVNoJHhJXkhBxr9vfi4
+ Jl/AK9h/GuqxM8CEC64sYT/Et5uQ6V78+uKj49f9hfMpOVz1X3q6Lz6ugMdsX2S27gzR
+ 9lcCNMzpPf1UY/D/Z3gwhNZN3KlwS7BnNkJbZxLxeNTb7aDdiEwk0YzSAzYpXJxghGUa
+ dJuA==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1773342973; x=1773947773; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=2hzSysAOGotLHY/Gk0vtKsQ07bdjUjpPdIHGXWzs09g=;
+ b=I70LgRYwmb1Kf3TSnl+ArSLtzExyTBoa7dl04aKCHbpIOVlt0pkM+kTuMC22F9ryVp
+ jUv01TLfI+UOeUVX6Sjz3kZS8LJyXET8ksAMjQMZzMqR2UNwz/RhUR0Dh0iVLA9TJZHL
+ QXDsAXdQJiSbkyV3ypZv6uYxCyR1eCY+nrb6KQRwRLstb0XzDVTra1OJoA7lxpmr4sXI
+ kaiXA9abzkmSNzENEsVuZBIyKPxgfqceCeSC5GzkFLFj33Ut8QJ5agezs64BnIL5WFv+
+ 4K0QJleWgs+yILD46TlDsM4JTXcyiLlouPXq9bhfJihv+HoQC5so3WutGFCQ5CAn3ICC
+ Xoxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1773342973; x=1773947773;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=2hzSysAOGotLHY/Gk0vtKsQ07bdjUjpPdIHGXWzs09g=;
+ b=YysGS1YV4lkBAD8XZ7caWhWIoMNzdiScgCCX0QoQzABd95c0riuP5Fi9G4TX8iXn7P
+ bRNjmdXMGKLcpK2lBNhroj3yvyynd1kRKzhWnJ4FR/xIZmOJU784gyYJnLVo65Rb7evZ
+ LfxXdf+kZzfgeQoxys2geK0qVH+s9K40Q4EimfjnPagGAx7NFwrPWCW4lRCw1md+Ajr5
+ 9KMYtCzJUxjBLjNFpaP9zx0y54/VILXmUnjEQo3/ZaLFQcSfmwiytzELsOkx05IWMPyu
+ aKw5U3ExnuBDJWixxKpj5EdVY/J5qUE4oSLTlArmBqkqN9FFHmesXeae//0HjkbBy6Dr
+ nGoQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWYEGPJFwTby06V8zWYphwDWuijG786DIq1C9ltO4cwvSdnphekc3/NNQ4xmEtCISPF/ywyayQGBA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxExoLb44WWFrtWOdKhUJadAqQTwwnx+CF55jOXi4dAjuBkQTx7
+ gJRlv7ktgAghErZfFT3dWK2SWb33pAmJdrg0rtnMObrb+xCS6vffoHAf7eKQwCISBudwdxAF2I/
+ 6XESiWmrqyi5EdGDF63IpLNwjN4jktqI=
+X-Gm-Gg: ATEYQzxatZvG4n5xtaaxL+Mpwzd3WzNaC0ROR6dEzjwq+C+WOe/6K+D9OGdI7RxrTwT
+ gRxlTkzyh52uRPVMxNmXQaaTSHuTUnEN2zhkiHM/vF3PejmspPKeapkTBDz4sh/ZmVcnl/XCX8z
+ WwQ4B5Nr9XyTYObnc+Xl1EiQJL+qcdK/wWm2Sainaw43ou6VAVgzIpWNMnFt+QpJisM2ybcR43r
+ JkcFhRdg/aGu0fwK4L53zdhEX8cAbQp2AG4aYN0svDf4u0pMni5blJvhdkc7khEiNIxqO8r6j8g
+ 7oJduazlo3v2BDDJ450slukGjwA2kQXEXPRO/TuqM4H6jnDCBWSrNnCk6ulso7rLLLXOyJBt6OI
+ W7lF1WEtoONWBbTYKithmKXE=
+X-Received: by 2002:a05:7300:fd03:b0:2be:171c:2177 with SMTP id
+ 5a478bee46e88-2bea5744a60mr186533eec.7.1773342973060; Thu, 12 Mar 2026
+ 12:16:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260311113611.3393194-19-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260306203648.1136554-1-joelagnelf@nvidia.com>
+ <20260306203648.1136554-2-joelagnelf@nvidia.com>
+In-Reply-To: <20260306203648.1136554-2-joelagnelf@nvidia.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Thu, 12 Mar 2026 20:16:00 +0100
+X-Gm-Features: AaiRm537cVQtFBzSwOEaMgXdjzYeE0uMIzdX3f2cfwXX8kFS15LK67mGvYzfQo0
+Message-ID: <CANiq72m2Eo1UAuwMC0LhiD4+yqKixRm=+oHtEnpwY-VbNdR+fw@mail.gmail.com>
+Subject: Re: [PATCH v12 1/1] rust: interop: Add list module for C linked list
+ interface
+To: Joel Fernandes <joelagnelf@nvidia.com>
+Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>, 
+ Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Danilo Krummrich <dakr@kernel.org>, 
+ Dave Airlie <airlied@redhat.com>, David Airlie <airlied@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>, 
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Koen Koning <koen.koning@linux.intel.com>, 
+ Nikola Djukic <ndjukic@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>, 
+ Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa <elle@weathered-steel.dev>, 
+ Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>, 
+ Matthew Auld <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Helge Deller <deller@gmx.de>, John Hubbard <jhubbard@nvidia.com>, 
+ Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ Edwin Peer <epeer@nvidia.com>, 
+ Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
+ Zhi Wang <zhiw@nvidia.com>, 
+ Balbir Singh <balbirs@nvidia.com>, alexeyi@nvidia.com, 
+ Eliot Courtney <ecourtney@nvidia.com>, dri-devel@lists.freedesktop.org, 
+ nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org, 
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-fbdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Fri, 13 Mar 2026 12:58:25 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,82 +140,114 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Mar 11, 2026 at 05:06:10PM +0530, Ankit Nautiyal wrote:
-> Currently we are setting AS SDP version to 2 without checking if the sink
-> supports it or whether we need to send version 1.
-> 
-> For PR with Link ON, the AS SDP version V1 is used.
-> When using AS SDP Version 1, AS SDP payload and parity bytes
-> are all set to zeroes.
-> 
-> Add a helper to compute the AS SDP version based on sink support and
-> feature requirement.
-> 
-> If AS SDP V2 is supported we use V2, unless Panel Replay with Link On is
-> enabled, for which we use V1.
-> If AS SDP V1 is not supported, we always send V1, without the payload.
-> 
-> Bspec: 75639
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 24 +++++++++++++++++++++++-
->  1 file changed, 23 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 4d0a7695be5a..6b45894e40e0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5109,6 +5109,10 @@ static ssize_t intel_dp_as_sdp_pack(const struct drm_dp_as_sdp *as_sdp,
->  	sdp->sdp_header.HB2 = as_sdp->revision;
->  	sdp->sdp_header.HB3 = as_sdp->length;
->  
-> +	/* No Payload Data bytes for Version 1 */
-> +	if (as_sdp->revision == 0x1)
-> +		return length;
-> +
->  	/* Fill AS (Adaptive Sync) SDP Payload */
->  	sdp->db[0] = as_sdp->mode;
->  	sdp->db[1] = as_sdp->vtotal & 0xFF;
-> @@ -7330,6 +7334,19 @@ void intel_dp_mst_resume(struct intel_display *display)
->  	}
->  }
->  
-> +static bool intel_dp_get_as_sdp_revision(struct intel_dp *intel_dp,
-> +					 struct intel_crtc_state *crtc_state)
-> +{
-> +	if (crtc_state->has_panel_replay &&
-> +	    !intel_alpm_is_alpm_aux_less(intel_dp, crtc_state))
-> +		return 1;
+On Fri, Mar 6, 2026 at 9:37=E2=80=AFPM Joel Fernandes <joelagnelf@nvidia.co=
+m> wrote:
+>
+> Acked-by: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
 
-The bogus v1 in PR link ON requirement got nuked from bspec.
+Acked-by: Miguel Ojeda <ojeda@kernel.org>
 
-> +
-> +	if (intel_dp->as_sdp_v2_supported)
-> +		return 2;
-> +
-> +	return 1;
-> +}
-> +
->  static
->  void intel_dp_as_sdp_compute_config_late(struct intel_dp *intel_dp,
->  					 struct intel_crtc_state *crtc_state)
-> @@ -7345,7 +7362,12 @@ void intel_dp_as_sdp_compute_config_late(struct intel_dp *intel_dp,
->  	as_sdp->sdp_type = DP_SDP_ADAPTIVE_SYNC;
->  	as_sdp->length = 0x9;
->  	as_sdp->duration_incr_ms = 0;
-> -	as_sdp->revision = 0x2;
-> +	as_sdp->revision = intel_dp_get_as_sdp_revision(intel_dp, crtc_state);
-> +
-> +	/* No payload data bytes for Version 1 */
-> +	if (as_sdp->revision == 1)
-> +		return;
-> +
->  	as_sdp->vtotal = intel_vrr_vmin_vtotal(crtc_state);
->  
->  	if (crtc_state->cmrr.enable) {
-> -- 
-> 2.45.2
+> +//! # // SAFETY: head and all the items are test objects allocated in th=
+is scope.
 
--- 
-Ville Syrjälä
-Intel
+`head`
+
+> +//! // Rust wrapper for the C struct.
+
+Empty newline comment between these:
+
+  //! //
+
+Actually, should this be `//! ///`?
+
+> +//! // The list item struct in this example is defined in C code as:
+> +//! //   struct SampleItemC {
+> +//! //       int value;
+> +//! //       struct list_head link;
+> +//! //   };
+> +//! //
+
+Let's try to use the usual style, i.e. no empty newline at the end of
+docs for an item.
+
+And the example should be in a proper code block with a C tag, so all
+together something like:
+
+    //! /// Rust wrapper for the C struct.
+    //! ///
+    //! /// The list item struct in this example is defined in C code as:
+    //! ///
+    //! /// ```c
+    //! /// struct SampleItemC {
+    //! ///     int value;
+    //! ///     struct list_head link;
+    //! /// };
+    //! /// ```
+
+> +//!         // SAFETY: [`Item`] has same layout as [`SampleItemC`].
+
+No need for intra-doc links in comments (for now at least).
+
+> +//! // Create typed [`CList`] from sentinel head.
+
+Empty newline comment.
+
+> +//! // SAFETY: head is valid and initialized, items are `SampleItemC` wi=
+th
+
+`head`
+
+However, this is giving me a Clippy issue (please see the other email).
+
+> +///   `next`/`prev` pointers are valid and non-NULL.
+
+We started using `NULL` recently as a convention for the null pointer.
+
+> +        // - [`CListHead`] has same layout as `list_head`.
+
+Intra-doc link not needed.
+
+> +        // - `ptr` is valid and unmodified for 'a per caller guarantees.
+
+`'a`
+
+> +        // SAFETY: self.as_raw() is valid per type invariants.
+
+`self.as_raw()`
+
+> +/// perform conversion of returned [`CListHead`] to an item (using `cont=
+ainer_of` macro or similar).
+
+Intra-doc link to `container_of`?
+
+> +        // - [`CList`] has same layout as [`CListHead`] due to repr(tran=
+sparent).
+
+Intra-doc link not needed.
+
+> +        // Convert to item using OFFSET.
+
+`OFFSET`
+
+Newline comment after this one.
+
+> +/// Create a C doubly-circular linked list interface `CList` from a raw =
+`list_head` pointer.
+
+[`CList`]
+
+> +///   pointing to a list that is not concurrently modified for the lifet=
+ime of the `CList`.
+
+[`CList`]
+
+> +/// Refer to the examples in this module's documentation.
+
+Perhaps we could have an intra-doc link here to the module.
+
+> +        // Compile-time check that field path is a list_head.
+
+`list_head`
+
+Cheers,
+Miguel
