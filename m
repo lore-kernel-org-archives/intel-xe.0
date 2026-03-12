@@ -4,158 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A108E1125867
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 13:44:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAC88105A59F
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 13:47:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E307510EA00;
-	Thu, 12 Mar 2026 13:44:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6FE410EA0C;
+	Thu, 12 Mar 2026 13:47:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Dmrk2Kf2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OlgJGOld";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5720310E9FD;
- Thu, 12 Mar 2026 13:44:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75F7310EA0C
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Mar 2026 13:47:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773323063; x=1804859063;
- h=message-id:date:subject:from:to:cc:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=0ystCewz8n8hRuQmPFmFJAPYbQpBWd+H3YoX6LdZ4lU=;
- b=Dmrk2Kf2V/aXCVvsqNRTJRNnSuW8OsfUw6kBxrLazXN3N2w0JdP7nT/m
- ZIlHSPIGtDsZsHwvfo2K2oIIs+2qwuliI4imWCej2/PCDk4Lw11T0WwoR
- ctGjkFBU1NivliF2sdaLRvlY1erhS279iYR6ZnB+2k6fIzYQK50moghdq
- H0TqPp8bJQy/AokLxQ76bTWUhewQPqsawg21rmLtAGL/70qWX0JVDzcn0
- JdvZlM2ZR+ui/E8jOzKXpbYCSP7EjEbd0Nskdns1Kz7nGdjaLoxXql6Te
- VYKBHocKDU3aMqoaY4EF+GNE6LKCeNiJE8nhwdSCS4fcsPeWD2TjOM/Wn g==;
-X-CSE-ConnectionGUID: vgwYft2wQqSWWJkPD1IhCA==
-X-CSE-MsgGUID: AdltqHArSrWAjFU5hREjZg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="74455217"
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="74455217"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2026 06:44:22 -0700
-X-CSE-ConnectionGUID: U5KUGoHzQw2MHO955p1ASQ==
-X-CSE-MsgGUID: jdMBE581QFW/wwDF13+ulg==
+ t=1773323227; x=1804859227;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=+tLosyNYAW5XlMaNAlUNPFHjKptQ5MpcCNy3zcqRK78=;
+ b=OlgJGOldWL15DlGJV0Qkpw8rYa50rGprB2j0adm9pmHSdFHUje0Az8+W
+ bB9X0wg6qRTb1iUuIauUkitcvxARkEcVG/aRvX9Z5NlzVUh47Z+Z6qjJM
+ tVfJfNJkc3S/E4QaC14EmGI/ze9YuPWMUIm9srhA20JeC21N2DQHbKX/q
+ HeeCazUpETKdk65gI0Qx5ijmpsAqONIKd9tKeSN0FSQqWCkVDmWCqG0I+
+ fTbclRGlHqaTU1wxQYE+crLr028JbE7UETlGDBtz2O9Ci3FbTMlmaeSI4
+ S4tREo5udO5c/pE49ARfAehwbAOPepT/KAY2zhThwCjneAAuSLnb7Huly Q==;
+X-CSE-ConnectionGUID: I4dbW/v+T6CSrq5KbzpKTw==
+X-CSE-MsgGUID: TmJXJcHZTZWJi6OJgGo/1Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="74382320"
+X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="74382320"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2026 06:47:07 -0700
+X-CSE-ConnectionGUID: Txe7U5uOQfWTyxv4G4vnrQ==
+X-CSE-MsgGUID: t5twzfg9TJaCZnc3K2okow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="216942611"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2026 06:44:21 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 12 Mar 2026 06:44:20 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 12 Mar 2026 06:44:20 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.16) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 12 Mar 2026 06:44:20 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=JvR6b8l9CW+6jk1/oeqd8ffGo9jQb4e5LfTehsmmAADcBxgLUUEQGbnPs32zgE7bk6NplvGTK4ikvgbnvuBk4X4RAxpli1cgAq19bJ/Sm74Irusnm3zrrbxckOpyTWhTtUNhQv8u+WlLRUD3PRou+nT0POIUD6w6WJmLvPAoKL6VzNmmAyoJ32FA/eyHfNjESfqzkrl6598uZCK6zJp5s7nHwwqKfvgzu75SqrNx6pepvZSZf7xzTjixbxJAFum+ZC1vL/3DyQ4PsOAwS80WS5vrZ9fmgA+KlRoxl+hlCD1Pbiup5Ac/qF6xOnLp1zYoWdBJug+oELXnfY4xz/08lg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6BBANnbuf4oWdLp4fU6NcuralIVi7eMefTn6JOIMLxw=;
- b=OZ6bXqMuitC7EjEgl2vGM5TZdgKGBWrCJEkOfU1ZKNF4tB10uP7h27WOxpYa842+u0rf/2wjAbJ0k1gRXqIFs0izLQVQ06WBtRw2rWNmA1dxaSbhmhNMQXfN4nQ4LMa/dY3CWM0URqBh92MFKHsavtp7s2RYFqIHxuQMqt2J7HkPnM5/1fM0G1G9xPpNkVdNWvydG3H3h6rET/eHh1ZwGXfj7pMBIB3vqgrwdnFwSe3sCRzrCfb6fWIoweVl7PsbNoSojeXVVqUZHOUx6t4xPZK53IS2PlvBxH6Fljldd8hhbE/CkzMFbKNtjVbACTJA4fH+nGLC9dvmUbK8fo7E5g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10)
- by CY5PR11MB6187.namprd11.prod.outlook.com (2603:10b6:930:25::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.3; Thu, 12 Mar
- 2026 13:44:18 +0000
-Received: from DM4PR11MB7183.namprd11.prod.outlook.com
- ([fe80::d9c7:d2fb:680d:1ee1]) by DM4PR11MB7183.namprd11.prod.outlook.com
- ([fe80::d9c7:d2fb:680d:1ee1%6]) with mapi id 15.20.9723.000; Thu, 12 Mar 2026
- 13:44:17 +0000
-Message-ID: <c84d549e-cbd0-442c-b57d-9ac84eb8c10e@intel.com>
-Date: Thu, 12 Mar 2026 19:14:09 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/2] drm/i915/dmc: Update PIPEDMC interrupt mask/
-From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-CC: <ville.syrjala@linux.intel.com>, <uma.shankar@intel.com>,
- <swati2.sharma@intel.com>, <suraj.kandpal@intel.com>
-References: <20260312132654.2614433-1-dibin.moolakadan.subrahmanian@intel.com>
-Content-Language: en-US
-In-Reply-To: <20260312132654.2614433-1-dibin.moolakadan.subrahmanian@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MW4PR04CA0108.namprd04.prod.outlook.com
- (2603:10b6:303:83::23) To DM4PR11MB7183.namprd11.prod.outlook.com
- (2603:10b6:8:111::10)
+X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="251319166"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO mwauld-desk.intel.com)
+ ([10.245.245.114])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2026 06:47:06 -0700
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH] drm/xe: always keep track of remap prev/next
+Date: Thu, 12 Mar 2026 13:46:49 +0000
+Message-ID: <20260312134648.286641-2-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB7183:EE_|CY5PR11MB6187:EE_
-X-MS-Office365-Filtering-Correlation-Id: 49474f66-383e-4ab0-cfdf-08de803d7498
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|22082099003|56012099003|18002099003; 
-X-Microsoft-Antispam-Message-Info: O8K8H/JsfVWMDGggcK4dDXPmhh7yqOltUkCGI/kFFC7Fk76ietR9DpwtgO7eshB7lXCFPmh35MgECwCOBirrtP5HcPi4/9eacT0jS1VEwD99kxjzAE7uNG80tKswgcdNLNyavHHshRpMQKdh7HqoXZ1rp2olCsqjpYPM/BXvt+NFlgQ38YDPBJAgMJB40Nv6Y1BWF2tuy1zVeWb5hxEK2LYtck8YZYNgYGCwDUriNNxVfZflM0J2deHu7B1+30VTgTfjplFE86tTED7uRUNomtcqo7tuNhqnRYV9/FC9kHE7cTxwwREARt/rY6/fExXjjJ1BlgfbMO1VGRZcNfzamSKYRwTIXlaFT+bj8+56EsvF2UT5faND8e2bKqrnB1XF0cAN1CWpKyw8YXZscMAkEmtqqqgnPgYlF+VOnWm3oe0ZBRMIqxlTeSvHOGnKYGo3rKy/F322nfsuOLySNsBcdlKxCyYdCAV+IoooewSjAPk9zXeEbv2CAtF4qoJ9WC2UNQ6yzRc/10BoBi/fRlkeGAE6BbP5Ehs0YSu2nOgQk7XsrH4NsiAjJD5nOm+7guAmTZrBOBtypD+FcLO0kfZ13drbONlA6c1PTw4mijTER53pnAL5EUU1DsIq/zUQZiUuDli2FZKVjDsFaPJ4XDebK3zBxJs/zpBggnQBShFyPtRFEUji+14Y2iOa9bfuZLXPybQPsn83IFh7zK1g4eGOuCmf7rlCqQIC1q4+Ks90aN0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB7183.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(22082099003)(56012099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?b0w1S1E2bFVXZ2E4MzRaVyttcU9Pc29IMlJtV3NFcmI4bVEwY0x3YjhKODVQ?=
- =?utf-8?B?MDUzR3NyL2JvK0tDQ04xZkIxTEZpUTU5aFlwbU5ub3lFRGVvcytCZTYyL1VP?=
- =?utf-8?B?cHZWVUVNdXRXaTB4QXgrWng0WFpXbllQR3V0N2pEV1dNTWlYUS85RnhtaGNo?=
- =?utf-8?B?blhCbDR2MkVQaHgxNS9kaFNNSzI2bytDVTdibGxLb3BXRDdOMVBBemVZdjVH?=
- =?utf-8?B?dThkNDI5Z0k2Y1RXdE4zeE0zNjFQOEkvTmZmMjlTTThaRXlTcC90ejVLaGZC?=
- =?utf-8?B?bFZ6ZHByMXlZK3NUTGlYVDhLN3hOL1JDclVRNUJWNGgwU3g3RlZ5NDQ0WEZO?=
- =?utf-8?B?MXJXSnRxRVZjSDN4c1ZmbXF5eVJkc1NSR3M2R2haM3FSTGswclBEUm5mUGlq?=
- =?utf-8?B?akJ5dzE1eXRSeDZBWjdtb3BJckVNTFpXT1RJTER6MWQwOEJ4V05DWk1lUC82?=
- =?utf-8?B?NmhEcXF3VlhZcERyemQvWGZzWUFpdUNCNms1c2dqQjBMNWxJMUZmd1V1N2ZK?=
- =?utf-8?B?TGw3ZFhhOHN2dDUzaEhoTjIrcElxcDFPSWxXVDRlZ3F3M2xmRE1wSXB0M0cw?=
- =?utf-8?B?L2tPMVdNdTlvSXVGTzhyQXZGY2NEaVF6VllSaDRtUEp5TUhJUCtFUCtVb0RL?=
- =?utf-8?B?YW1ybUE2V3U1NDRCQlZVZDhFMUlod20wclJKbmNIZEYzODFDOHM4WkJ0cnp4?=
- =?utf-8?B?RnMyczVNTkVNYjNFK2xSK0l0NGpKcm4va0Jpa25LYVo2bGgxK2FVOHFpNm9B?=
- =?utf-8?B?NjludHh0MTc1UUVCS2t1VUorUlg2Ymh1bGdxMzZGc0JNMXBVM1hibHFYTm5w?=
- =?utf-8?B?LzZ4dUFib1FmZEgrNEJuVnptN1hESmJXYlJiU2dXakMrU21oNm5LRUhYMUJY?=
- =?utf-8?B?Qk13T2FVNStqWEFScy9uMFA2TlNLOWFWWGQwSDN1L1hTaXF2SXR4UFAvRHBj?=
- =?utf-8?B?dmZzV1NhSVkxSW0wRjRUdXN2K1dUR21neml4djVORHhwdUFxa0ZySWdVdWxn?=
- =?utf-8?B?U0hlMHJqME1DaGpIa1VjV2RBTFg1ODIyczNua0p5bGd6bUlHWTJmTWNIUGtS?=
- =?utf-8?B?ZnVlZ2RyTlI1eEMyRG4xRFA1Z2N4RDczeWdKblE0d3NqN2FNdFEvbnNBaFZn?=
- =?utf-8?B?NWg3SU5rYnVQY2R4VDQzamlCZ0NnMXF6ZFFJS3VvbVR6TVhCckRuOXBWRGlI?=
- =?utf-8?B?dlNNUlRNMUVNM05LSVJBUDI1bmNzbkttVnBySEdPT2ROQ2h1ZjFZVWdobVk4?=
- =?utf-8?B?UnhSeVVmakozMjZJdUVzV3JMR2R5dTFWSE55Vzd1aFNMUEFwQVI5SjI4b1ZV?=
- =?utf-8?B?VG1CYnBtMkgxajAzT2tCMVpTYTR4TGFjZWsrWHpJNHQ0N0wyTmlQNE9pMzJE?=
- =?utf-8?B?VW0xdXdyZ1g0S3drN29YY25BTFdrMXVkK1hEeGcrMW1Fa2Vzd2FYYkhsbmpt?=
- =?utf-8?B?dFBVYUFZdW83RGZaOWxZdHBCd040VWc5MndlWi93cTdUL0srSXpzT094VmRW?=
- =?utf-8?B?a09mUFVybzhIN1RTT0N1MXNHMlRUblZYUHZvYzR4M0x0K3FVZTlsczNoeUpi?=
- =?utf-8?B?S2FHcmlUSCs3MWM3MFdkZS9RUkIwV2NCdkQxc21lRVpqcUpSSnAxVzE3Qi8w?=
- =?utf-8?B?SnFXNE1ZUXlpWUdLamRnZnVnWklQYncxK2NSY0w2dkVtZlRST05YZndMOTU5?=
- =?utf-8?B?TmJnQ0t6ak9LTjFWcjl0U3RQQUEzTWVpMjF5Y1ZhcmVzcjlZYnVUTjF0V0Zk?=
- =?utf-8?B?Qno3bjVudzR4ZXhBL2JaS29Xdk1DV0xFVlFDU3BrNU96OWJyaUVoMHZXdjlj?=
- =?utf-8?B?VEd1ZERNQkdOL29XNnBtTXI4d2dQYXRkclhYY1hoa3BBd1hDenRMbVBsUHVj?=
- =?utf-8?B?RHdVQ2c2VzR1OVBRWEdubjR2VVMwbkZHeVlVWUlPeER5N09HblhtTmV4TmZI?=
- =?utf-8?B?SkhBRllCWVZkQnFaU29KS3lRNXFkbDRoVmpGcDIwRTVyekhqR0Q5TFNhVm1q?=
- =?utf-8?B?L2tJUzNrSXVGcFNNdmJIZ0lDbElFcEdOTENGcmRBSUIwSHNNc2Q2V3M4M1E0?=
- =?utf-8?B?SkhzUWt6aGkyTDVCL3I5bk5Ib0pyUXlaK3ZqQkZhSGF1OUxCdFVMcUI3dXJD?=
- =?utf-8?B?SnJtZitpQlc1VUFueFgvMVZUVktYSVVTYUd4VFFFYUR5Z0xuekh4TkVZMVRS?=
- =?utf-8?B?T1djSFQ2M2Q1MCtjUEZIWnk3cTBHNEFKMm85WG54TzBhcVpGRkdKVjQ1RGFk?=
- =?utf-8?B?R01pYWsrM1RhRmxpeFI2OER3WnBkckZHM3ZTamt5MDM0ZThEbFZLTDlSLzRT?=
- =?utf-8?B?aUFmd1YxWUl1dllpMndBS3JHL0xoUUZlTXh3K2M3bHAvSTJvamtjZnpnWDJk?=
- =?utf-8?Q?BXxCjccyyrnay00zfnjdUjazKR4ueqXRHfnCPpVzYt705?=
-X-MS-Exchange-AntiSpam-MessageData-1: AN/yujFXGoOz1g==
-X-Exchange-RoutingPolicyChecked: V5KhQu5xGC2GCKeksCW8tIsZcafgprWUu8aACHiok+XWPL8FWNprk7UobMUz95vQC6FeUbgbddaZgvIpqc6xAUkgruadaqRXQtJhptkjMSnAtPqAJnXajMKiXdnND7FyIhp5V203NTuToiO6m6EIxxWrFf6wevPzXOl2UaBE9WjXCDAzBqzo/mqcRsuBRgVGTvXPq7Hh7BvxSAQyr1xHSWgJYJaYmCF2VyStkQTXWsesFPlqK7Fzu3CsszK2if3OLzutSDZVxbOCe8yy0Q67Jk2437PNsMBh3vfSYMszTjZA3Isi1+n/DydTXrs24uxXP0Ni+NaN9w9PH0aiU2XDuw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 49474f66-383e-4ab0-cfdf-08de803d7498
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7183.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2026 13:44:17.2633 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uRUdkjpfjP2+w+SbdSTS94i7R9OUOduIeME4yo3mBq4zMESlm8NO04reKiV/EPYQSXe4QRwo37BuRtGMOtIhe2jBfYwE37RW63YQSUG5t+sxLzy/2zI/L3UjO5YnubKq
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6187
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,29 +65,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+During 3D workload, user is reporting hitting:
 
-Please ignore this series. The cover letter was incorrect.
-I will resend the patches in the correct series.
+[  413.361679] WARNING: drivers/gpu/drm/xe/xe_vm.c:1217 at vm_bind_ioctl_ops_unwind+0x1e2/0x2e0 [xe], CPU#7: vkd3d_queue/9925
+[  413.361944] CPU: 7 UID: 1000 PID: 9925 Comm: vkd3d_queue Kdump: loaded Not tainted 7.0.0-070000rc3-generic #202603090038 PREEMPT(lazy)
+[  413.361949] RIP: 0010:vm_bind_ioctl_ops_unwind+0x1e2/0x2e0 [xe]
+[  413.362074] RSP: 0018:ffffd4c25c3df930 EFLAGS: 00010282
+[  413.362077] RAX: 0000000000000000 RBX: ffff8f3ee817ed10 RCX: 0000000000000000
+[  413.362078] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+[  413.362079] RBP: ffffd4c25c3df980 R08: 0000000000000000 R09: 0000000000000000
+[  413.362081] R10: 0000000000000000 R11: 0000000000000000 R12: ffff8f41fbf99380
+[  413.362082] R13: ffff8f3ee817e968 R14: 00000000ffffffef R15: ffff8f43d00bd380
+[  413.362083] FS:  00000001040ff6c0(0000) GS:ffff8f4696d89000(0000) knlGS:00000000330b0000
+[  413.362085] CS:  0010 DS: 002b ES: 002b CR0: 0000000080050033
+[  413.362086] CR2: 00007ddfc4747000 CR3: 00000002e6262005 CR4: 0000000000f72ef0
+[  413.362088] PKRU: 55555554
+[  413.362089] Call Trace:
+[  413.362092]  <TASK>
+[  413.362096]  xe_vm_bind_ioctl+0xa9a/0xc60 [xe]
 
-Regards,
-Dibin
+Which seems to hint that the vma we are re-inserting for the ops unwind
+is either invalid or overlapping with something already inserted in the
+vm. It shouldn't be invalid since this is a re-insertion, so must have
+worked before. Leaving the likely culprit as something already placed
+where we want to insert the vma.
 
-On 12-03-2026 18:56, Dibin Moolakadan Subrahmanian wrote:
-> On display version 35+ the PIPEDMC_ATS_FAULT and
-> PIPEDMC_GTT_FAULT interrupt bits are no longer defined.
-> Update the interrupt mask accordingly and enable the
-> PIPEDMC_ERROR interrupt.
->
-> Changes in v2:
-> - Move PIPEDMC_ERROR interrupt enable to a separate patch (Ville Syrjala)
-> Changes in v3:
-> - Add Bspec reference (Suraj Kandpal)
->
-> Dibin Moolakadan Subrahmanian (2):
->    drm/i915/dmc: Remove invalid PIPEDMC interrupt bits
->    drm/i915/dmc: Enable PIPEDMC_ERROR interrupt
->
->   drivers/gpu/drm/i915/display/intel_dmc.c | 4 ++++
->   1 file changed, 4 insertions(+)
->
+Following from that, for the case where we do something like a rebind in
+the middle of a vma, and one or both mapped ends are already compatible,
+we skip doing the rebind of those vma and set next/prev to NULL.
+However, if we need to do an ops unwind later, we currently need to know
+the next/prev when removing the two end vma, before then re-inserting
+the original vma we tried to split. If we don't remove the prev/end vma,
+then the re-insertion could fail since the two end vma are overlapping
+the range we want to re-insert. This could explain the user bug, and
+does seem to fit.
+
+With that keep prev/next intact, and rely on skip prev/next.
+
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/7602
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pt.c | 12 ++++++------
+ drivers/gpu/drm/xe/xe_vm.c |  2 --
+ 2 files changed, 6 insertions(+), 8 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 13b355fadd58..a5bc553f8456 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -1442,9 +1442,9 @@ static int op_check_svm_userptr(struct xe_vm *vm, struct xe_vma_op *op,
+ 		err = vma_check_userptr(vm, op->map.vma, pt_update);
+ 		break;
+ 	case DRM_GPUVA_OP_REMAP:
+-		if (op->remap.prev)
++		if (op->remap.prev && !op->remap.skip_prev)
+ 			err = vma_check_userptr(vm, op->remap.prev, pt_update);
+-		if (!err && op->remap.next)
++		if (!err && op->remap.next && !op->remap.skip_next)
+ 			err = vma_check_userptr(vm, op->remap.next, pt_update);
+ 		break;
+ 	case DRM_GPUVA_OP_UNMAP:
+@@ -2178,12 +2178,12 @@ static int op_prepare(struct xe_vm *vm,
+ 
+ 		err = unbind_op_prepare(tile, pt_update_ops, old);
+ 
+-		if (!err && op->remap.prev) {
++		if (!err && op->remap.prev && !op->remap.skip_prev) {
+ 			err = bind_op_prepare(vm, tile, pt_update_ops,
+ 					      op->remap.prev, false);
+ 			pt_update_ops->wait_vm_bookkeep = true;
+ 		}
+-		if (!err && op->remap.next) {
++		if (!err && op->remap.next && !op->remap.skip_next) {
+ 			err = bind_op_prepare(vm, tile, pt_update_ops,
+ 					      op->remap.next, false);
+ 			pt_update_ops->wait_vm_bookkeep = true;
+@@ -2408,10 +2408,10 @@ static void op_commit(struct xe_vm *vm,
+ 
+ 		unbind_op_commit(vm, tile, pt_update_ops, old, fence, fence2);
+ 
+-		if (op->remap.prev)
++		if (op->remap.prev && !op->remap.skip_prev)
+ 			bind_op_commit(vm, tile, pt_update_ops, op->remap.prev,
+ 				       fence, fence2, false);
+-		if (op->remap.next)
++		if (op->remap.next && !op->remap.skip_next)
+ 			bind_op_commit(vm, tile, pt_update_ops, op->remap.next,
+ 				       fence, fence2, false);
+ 		break;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 5572e12c2a7e..9a897388ff5f 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2584,7 +2584,6 @@ static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
+ 			if (!err && op->remap.skip_prev) {
+ 				op->remap.prev->tile_present =
+ 					tile_present;
+-				op->remap.prev = NULL;
+ 			}
+ 		}
+ 		if (op->remap.next) {
+@@ -2594,7 +2593,6 @@ static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
+ 			if (!err && op->remap.skip_next) {
+ 				op->remap.next->tile_present =
+ 					tile_present;
+-				op->remap.next = NULL;
+ 			}
+ 		}
+ 
+-- 
+2.53.0
+
