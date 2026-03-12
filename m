@@ -4,80 +4,159 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1557E106ACCB
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 16:31:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1222B106ACCF
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 16:46:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7C0710EA5D;
-	Thu, 12 Mar 2026 16:31:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6B0B10E141;
+	Thu, 12 Mar 2026 16:46:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MhmIyamN";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="FTC4BTEz";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 16B7C10EA5D
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Mar 2026 16:31:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773333069; x=1804869069;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:to:cc;
- bh=NU3wHXa8eS76Ynd06hO5tdhrImzMH0adOz+qpVoqVx8=;
- b=MhmIyamNFKbPmc5t2sJR0RoRmWRTOiaXZqhKKAGEtEfEUaM/TSS2H8HQ
- CK0H+VFkIXO94dWS5aqUIyDI+IQ4W1O+QZl5dYbFzkbp3xpGcofiyBU3r
- nHb5FiXvwaHcVDdaAjc7w2eLfmyXBUcuBs1G1ZQRZIQs9nGHQvtrM585t
- ziufJYSrADH7SaZL36HFQIFX0QNBevrt95XATOGVhPaE3dA07Re5E5/UL
- U+lcLqgSaMSismbjtxJXRKRGqzQetrFArEwThpx6EsUTteA3v4NhY1U2w
- YvAoV/B6qBSNSWEmiSxd/zIOMRMHSquQfFCYR3e2QfNlKm6GB3O+jCooV A==;
-X-CSE-ConnectionGUID: A8Uhtc9NQRqsHx0qGKHVCw==
-X-CSE-MsgGUID: OCVXbSV5SkWniERIqL93yw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74473897"
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="74473897"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2026 09:31:08 -0700
-X-CSE-ConnectionGUID: VgDlUSyOSzyQXw8cyWvBiA==
-X-CSE-MsgGUID: mbaIBISuQ8yT58oiuc3Xjw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="220945408"
-Received: from mdroper-desk1.fm.intel.com (HELO
- mdroper-desk1.amr.corp.intel.com) ([10.1.39.133])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2026 09:31:09 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-Date: Thu, 12 Mar 2026 09:29:23 -0700
-Subject: [PATCH] drm/xe/wa: Drop redundant entries for Wa_16021867713 &
- Wa_14019449301
+Received: from SN4PR2101CU001.outbound.protection.outlook.com
+ (mail-southcentralusazon11012015.outbound.protection.outlook.com
+ [40.93.195.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B89EC10E411;
+ Thu, 12 Mar 2026 06:35:08 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Pep8gXUor0zBlMZ3YXJN5gxt79IzshNlmVlMm4AjdrNMclZ+o6gYz07CwCFvKu/tBZav5XDwkAByE6WfgOFjKN8ms9uXJ6/Gtgz3Fiwt9T++a8lRW9uQ2x+98FzQePWCg/XvPumbHtHFkdKwjenmEKrubdJ5dkN0/AWOL4rn65D1PJCe03Vud+LsUWTbnfXTSs4W+C/+kIea4lLn57h5hMu1Y6oiEPTLqhktAJeaCbYla7EOXUY3+j1ohvAsjseMYM6L8iig2zxpEJT+LpIA9wst5n+rhsABGanDKYxiZgjbN3FvEL3AFJw/RflZJqhcKBAnSt9tvFmFrZR+Xw3Rug==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rjaTqyhEaKDuyTXt89q0O2FtdXsJd1OXhticyrVz5Rs=;
+ b=jf9Qy9ueMekrNfv93YADt1A3OOcdJQoaV2d6zUUz3LEPJwQz1H/P1KlaZKwtmRvNfbJo0AhJSn99iEVe7PizheQ8tU7L6j7fSu4H9Q/4uhGIkp0+LilqC4kG7hqHCbqbWXceYgnNjtI8hg2/GiJaFnr/L0P/UjilhpzDFzlnKxpTnh2cnB9UvL440SapJfPB5UVbfQSwSN9L/2FBjwmBp9D5U7pxvLErcD0N7BlSsz+RY4jup3YTk7RUEayNfb382FwbqfDvh1g/6010431YtYLX9l/qW6qbR1sc9+c5intUI4TlA6suCDT0ZwFkPN27nuu5knXoJgnc1xq7bEE/4Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rjaTqyhEaKDuyTXt89q0O2FtdXsJd1OXhticyrVz5Rs=;
+ b=FTC4BTEzsjLVlxkWu0dfDZ2Nx8bNjHHRA8ilq9cTia6HBR0Sq6XuMrepifUb/iAwlx+aFYADJSKmzIvAyxfAPxc0YLO6+6+L/M9ysrjkNI9al93D8T7pUHmoqNmKWdtAskBqSfNidM2kDHvPVJeOqYk+psJAQ4iYxnl5TebZ3Iipmn27a+8PasK8jkNjksQ4kgZGReQd1vzMgSEoB6qU1sk2H2zBiWJgMLYwwRYtKxUeub8WUQUQUlNNaVUtd95vfRLLxiT3lLbuss0aMDNU9dGMnDQCt4Ifoq+h7iUfMEh6DJ+O2Ku5HSgMagHJea7bQ+X3lD3RBRoZBEhGjMOjOA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from BL0PR12MB2353.namprd12.prod.outlook.com (2603:10b6:207:4c::31)
+ by IA1PR12MB6555.namprd12.prod.outlook.com (2603:10b6:208:3a1::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.4; Thu, 12 Mar
+ 2026 06:35:02 +0000
+Received: from BL0PR12MB2353.namprd12.prod.outlook.com
+ ([fe80::99b:dcff:8d6d:78e0]) by BL0PR12MB2353.namprd12.prod.outlook.com
+ ([fe80::99b:dcff:8d6d:78e0%4]) with mapi id 15.20.9723.000; Thu, 12 Mar 2026
+ 06:35:02 +0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 12 Mar 2026 15:34:59 +0900
+Message-Id: <DH0LFHAXDCZZ.3GSBNK7DXNDRP@nvidia.com>
+Cc: "Miguel Ojeda" <ojeda@kernel.org>, "Boqun Feng" <boqun@kernel.org>,
+ "Gary Guo" <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
+ "Trevor Gross" <tmgross@umich.edu>, "Danilo Krummrich" <dakr@kernel.org>,
+ "Dave Airlie" <airlied@redhat.com>, "Daniel Almeida"
+ <daniel.almeida@collabora.com>, "Koen Koning"
+ <koen.koning@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
+ <nouveau@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>, "Nikola
+ Djukic" <ndjukic@nvidia.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet"
+ <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
+ <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
+ "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
+ <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Helge Deller" <deller@gmx.de>, "Alex Gaynor" <alex.gaynor@gmail.com>,
+ "Boqun Feng" <boqun.feng@gmail.com>, "John Hubbard" <jhubbard@nvidia.com>,
+ "Alistair Popple" <apopple@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>,
+ "Edwin Peer" <epeer@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>,
+ "Andrea Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>,
+ "Zhi Wang" <zhiw@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>, "Philipp
+ Stanner" <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>,
+ <alexeyi@nvidia.com>, "Eliot Courtney" <ecourtney@nvidia.com>,
+ <joel@joelfernandes.org>, <linux-doc@vger.kernel.org>,
+ <amd-gfx@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <linux-fbdev@vger.kernel.org>,
+ "dri-devel" <dri-devel-bounces@lists.freedesktop.org>
+Subject: Re: [PATCH v9 01/23] gpu: nova-core: Select GPU_BUDDY for VRAM
+ allocation
+From: "Eliot Courtney" <ecourtney@nvidia.com>
+To: "Joel Fernandes" <joelagnelf@nvidia.com>, <linux-kernel@vger.kernel.org>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260311004008.2208806-1-joelagnelf@nvidia.com>
+ <20260311004008.2208806-2-joelagnelf@nvidia.com>
+In-Reply-To: <20260311004008.2208806-2-joelagnelf@nvidia.com>
+X-ClientProxiedBy: BYAPR05CA0107.namprd05.prod.outlook.com
+ (2603:10b6:a03:e0::48) To BL0PR12MB2353.namprd12.prod.outlook.com
+ (2603:10b6:207:4c::31)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20260312-wa_merge_fix-v1-1-2ec6607f1e0c@intel.com>
-X-B4-Tracking: v=1; b=H4sIAOTpsmkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIzMDY0Mj3fLE+NzUovTU+LTMCl3jVIs0C+PkJFOzJDMloJaColSgMNi46Nj
- aWgDlJCaNXgAAAA==
-X-Change-ID: 20260312-wa_merge_fix-3e8f83cb56b6
-To: intel-xe@lists.freedesktop.org
-Cc: Simona Vetter <simona.vetter@ffwll.ch>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Matthew Brost <matthew.brost@intel.com>, 
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Matt Roper <matthew.d.roper@intel.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2825;
- i=matthew.d.roper@intel.com; h=from:subject:message-id;
- bh=NU3wHXa8eS76Ynd06hO5tdhrImzMH0adOz+qpVoqVx8=;
- b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBpsupMTrNm45JIG+10xjdMwrf1EzV6seVVVzeHp
- e2dC4pzlpeJAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCabLqTAAKCRBNeSQFyHKQ
- BOD3D/9H5wNakKgqYIobGVA4o5pj5QgLwXYEPdxq/DFldWCBHp6pbCLB4n4Bucr46dNe7oQXNHo
- eP6erMpNm7FFoCZBPnBKxXDWJYD4mO4bN9Vy6dP5Yc1SzFZYQwajKC0hWNj2l1ezU6xshRwLqs1
- 89t2ZZiqgELyXL9UFrmprOSSXnNHyPkFA9s/BH8gW1Jle5GkC/pMkU+sCL+I6tOgmgT9UYaWFU+
- DKpGejoHZuPX7RO1VH3NeiGzWT2216JlzdtpQ3r1RWZWU3hIwsxZmyokkq78QoBgzKQTdwTux5W
- j4zRb7JS/UYveEyVJQq23eAbFfrpER8vRcmgAJWrEFw+4FZufH1fABTWFfzkD8uxRlXou7s1etz
- XP8fENuUO+/sTb9r7TZxu+33rseonnIehVsmtuEg/7w+YDG8Jpr0Cig+Pu8hEDGhrSE6mDQCFK1
- eXttMzK+74IZ+TPN+YMX4IceDcjUUMqfZx0HO3zzZF298cboW1fTgCpoCXhfNo6rc5zhxgJzbZt
- N6KRQZh9RG9f5XcgmSkQhxpHzigwkHHJjIpv4f1amZKvcxzLdmjZqhkA+RJL5jWAcrmKOCyIB1i
- wavdmyEmHTEEqnHv/9gVx1QSW8IOeWnp8CGuasCVrC5c+0Zm0COaDeDuEpYbmY73jkT2sKQ9WQ8
- hWjw3eB0VeL/DvQ==
-X-Developer-Key: i=matthew.d.roper@intel.com; a=openpgp;
- fpr=C267C309447FEB4F3F216DAC4D792405C8729004
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL0PR12MB2353:EE_|IA1PR12MB6555:EE_
+X-MS-Office365-Filtering-Correlation-Id: a4f961cc-1f7d-4cd4-bda0-08de80017d92
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|10070799003|376014|7416014|1800799024|22082099003|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: ui8re/SYJzBEP+guBBgkI4CpoxXwO6W4r/seqCcMEQnvXRUSqgg8vNQsf9Y6CflPPUvvyUCopBnwtxIyjq6ssMeutIFEOlchTTN5FMo3GLmunVjCYGucvkLkz+YJ6oylRQD165vQGPc1WW+jyug86fNjv93/AXopt9iGTO/wC5NP/F2D7mGa0JuBvrKOmDoAfNQMRURS1a6l/rvF9Btrc9rlDe4mGgL8t8cQYoCKVWd7DHOXi6jkO05vjSxFPY5GwstG+6IzSohoJRmTylb3O2nzkxtXXyv183LUtRSJaC9vMMrx2ZYBX15mwkXwtsk3N4aMiYy2IXvLtnvAs4uUZROGfZ7mL3k/+Gov/v0+k/ZQ0DSZZ3GOrAbuSBTFLuezL5v/4XuVL8h2MLm34DY59kz+kV3djk7tMPQcpcUaYE2xomxm+ERDypFrzdv/+2K90msw6vBYp/6204smAbbUKbqBK6Og351M0AW81VKaiSYpSe0eS2IHMgV00mVbTHgHIRcaF68oGJUAMSCyKnSc7n3wORepCS+UQdLdQKWlnXxEqnW9TxlydymctnBDcbDDtp2ePtMnW86Z02L8J+kyE4GjHjlK9oz9yq+T5Ip23lxiwuy/6EtXrAbWRMVEDu9RXSi3/mDNFJC8WWUoTcueHRyYUo8pRML9MymMObNFaX4hgThz7SBU4sBS2M1gGX55maYdbkBaXQEQ/ayhCOMpsf9SE/Yhx94W4AR2P+XAZh0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR12MB2353.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(10070799003)(376014)(7416014)(1800799024)(22082099003)(18002099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TENpQlp5d0NJd2xUOERoZ0R4aGhXeUkydXhsYnFGOGRIT3N4K0NRbW1oaG10?=
+ =?utf-8?B?NWsvZ1hVVG9OUlR3OGZXcld0YXJsTXlTalQvOEE3VHZXWnZQRHdubTBqVGFu?=
+ =?utf-8?B?ejZyalZ6dzNYRy8rUE5rN05wMklSRjBXSVZiMkc2UllpYnBITnpXYnNmRU1y?=
+ =?utf-8?B?bmttRzJSazFuZGxLVkRxby93Mk51R2htdVNzTGlxbEd1eG05a0o2SlpPSkcy?=
+ =?utf-8?B?WVBUWXQ1MkJXZTBJT3ZLbkY4YWF6Z1hLQWdiZlBQTHVOWjU2bldOY1p4OWdR?=
+ =?utf-8?B?RURmUlJHTHRNWnB5amhreWtxMWxaWFQ5eWU4SG9PdUhDcXN1bi9EeXJlbXN3?=
+ =?utf-8?B?UldBb0FqNitVeXBFOFU4WS9mdlZHS1Y0UTc0UDgvMlczdGk4VXhLSjhnSldj?=
+ =?utf-8?B?R1RwTzBGNy9iT0tWaytWYm00dGljU0RMZ2tZZUd6OXhOdFZwQUdDN0kwVTJO?=
+ =?utf-8?B?RlBJUUExR3RSWlI0VWxqbGE2a3lvV3ord212b3F6emFSM3ozZUtPMVVyamNC?=
+ =?utf-8?B?Y2ZKS2VEWGhTQ3g1UG1vVWhOcStIMFZsOWdDVjY0dHJUQUdMZG95NlhodmFw?=
+ =?utf-8?B?VXFHaGFJN2s3RlZtUDdhMTYxZGNkTjR5VEo3d1R6TVZLemI5U1Q3ZG4xZWp3?=
+ =?utf-8?B?L1FveXpPZlp5eElONTM1dTZtd01rU0hMN3Jqb1B4d1lUanZjTGxiSk1rREtC?=
+ =?utf-8?B?cWd6cDMrWEVUZDZ2ZG5OM2ZMMVZaTVZRSDdBVDF4eG1sWXFoT1ZJZWN4N1Fx?=
+ =?utf-8?B?UzVaVXUxYlA0U1RNYmo5dTM5a0I2b01BLzNqVzNCanYzZWxGZ3k3Y1lzZVg1?=
+ =?utf-8?B?QU5tSEZPM0hLZDJwdkN4NkV1d2NnOUo2K2xzNFFnZWRabEZWTkpVWW5KUUg5?=
+ =?utf-8?B?ellsTzZNMnUxYTRtS0VyUHhDRHVFSStObXZiY3FBZlJ5Q0RteEYyRjlGb01s?=
+ =?utf-8?B?L2dnTmpseDZ1NWpHUUp6NVEycHlGTGpidjNZSzM3R2VOc1FwZEd1bC9TTURU?=
+ =?utf-8?B?YkYxMEJWajgrSGJ1bDdVd3g4T0tJYk1wUDhWQjBEK2w5UWV5L0FWR0krNGhR?=
+ =?utf-8?B?aGNMeTNZZGpYQkcvU20yUFozMmVYdVZtMU1EeGRxZzkrVFlzTUpnL0FSVlZj?=
+ =?utf-8?B?UkNzTWJnOXFXNU5qOVE4MWppckxkQU9OS1htUUR2RE1MS3hSVzBWYUY4eWxz?=
+ =?utf-8?B?dG54WXhSeS9QMHZzNy9DNXd2WmlOaGtzM05Db2tIWjZzUFhCblFLZSs2eTNP?=
+ =?utf-8?B?L2U3UTIyNEIzRWVzQi9QaUdQZHA3M21xTS9aWE4wMDBRZWFaYzBFcVFNOEhy?=
+ =?utf-8?B?L0xHR0dTRUF3V1VHVThWUnFoMlkrOGptT2RvTm1QazdYaVpXWWtZQUM1SCsw?=
+ =?utf-8?B?ZXJTRTNCVyt0NEZMNEFSR3JSVGkxUnhjc2NXamNTcUFpWmV6a1hDRFROSjVU?=
+ =?utf-8?B?dGNoRHlpWW1ySTBldHU3NTZaNDI5WFNyazBsZ3RsK0tYaTRSeFcxL1dHa25V?=
+ =?utf-8?B?RkEyNDJadm1GNjFaalZXcUxxL2s3cmQ3TCs2cFpnS0FqZ2wyNCtlMGFSVmh4?=
+ =?utf-8?B?R1ZTajB4REZQeUtDQ2krNEZQT0Vzc0xoaW9aeWtiSmtXR3dVL05ZNFRpbEo5?=
+ =?utf-8?B?WDFkd2M2NHU2YXJRcU4xeVNFNzYybE9jLytGY3djczdrY0I2aUdkQWNtZjlr?=
+ =?utf-8?B?VlpjcHdMYy9oNldlZU5tV2MrWVJ2YW9PUDZDb0NkUWtQUUI2cFBPL1lwZm5h?=
+ =?utf-8?B?M2tMNzFQaWw3UUdQUG1TQmpxYm10THJGWGJZUEtoamxFbkFUQVBVektocUpN?=
+ =?utf-8?B?Z1Ayb0NFQWdXb2pPMUNldjRYMVZ6aVJpUWFQOHFQZGMySW5OOUNicUI2VjMw?=
+ =?utf-8?B?U2djY0ZDc010b1RPUjk5NEw5OVBrNy96L2N0b3hXMGtVSVVOcUloemhqc3Ft?=
+ =?utf-8?B?Rm9FYmdlOEhCZkhqL0VUQTZVMko3T21GYU90Vnh5U3lybDgwZE5Xd0lNSmlF?=
+ =?utf-8?B?c2xLeWZMc3J0N1JwNnVnTGM1QlNNZk03NDQxdW9ZeG9yYzJzWURNaFhIZU1W?=
+ =?utf-8?B?VElHTFU4OEpJNWliUUE4WnJhVFVLRmYvS3dhSlVQSlpnUklQS1RiSW9zSnlj?=
+ =?utf-8?B?MEJTNVViTWx1ckxRVVVBNVhvMkpYNWpTQnBmQWVNdk1jZzZydWtVR2RkRito?=
+ =?utf-8?B?QnovYWh2OTc4OStGUDNDVUg0ZFNXN3RSV1J6bEdUdW5vNnJ2c1RtWnBySndG?=
+ =?utf-8?B?RVliOXd2SHR6VHVNVzhlYzUyd0c1K01PQlB6b3RZUTFrSkFlQnpsUWdBOWlu?=
+ =?utf-8?B?TGhrUGpQL0YwcGpjbUZJeXpCYjdnVkM1WHJiZVhVMzFLaW95RWxCZW1NUmNs?=
+ =?utf-8?Q?79UalDy+bBPgov5RHlfE/JT0ICii45DnCCXMcZPEAjIUd?=
+X-MS-Exchange-AntiSpam-MessageData-1: XD4w/Ds9sPmjYw==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a4f961cc-1f7d-4cd4-bda0-08de80017d92
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2353.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2026 06:35:02.5059 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZlZOztvg7Y8+rGS+cGtpbSCHTl+63rTN54vgjwiaJXQCCeP0/BvxDp7pmcwXk0o9boLS6GXfzCp9GVKbubQLUQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6555
+X-Mailman-Approved-At: Thu, 12 Mar 2026 16:46:35 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,68 +171,12 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The Xe2_HPM-specific RTP table entries for Wa_16021867713 and
-Wa_14019449301 were removed by commit 941f538b0af8 ("drm/xe: Consolidate
-workaround entries for Wa_16021867713") and commit aa0f0a678370
-("drm/xe: Consolidate workaround entries for Wa_14019449301") in favor
-of alternate entries earlier in the table that cover a wider range of IP
-versions.  However these Xe2_HPM-specific entries were accidentally
-resurrected during a backmerge, which causes the Xe driver to complain
-on probe about two entries trying to program the same registers+bits:
+On Wed Mar 11, 2026 at 9:39 AM JST, Joel Fernandes wrote:
+> nova-core will use the GPU buddy allocator for physical VRAM management.
+> Enable it in Kconfig.
+>
+> Cc: Nikola Djukic <ndjukic@nvidia.com>
+> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+> ---
 
-  <3> [48.491155] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: discarding save-restore reg 1c3f1c (clear: 00000008, set: 00000008, masked: no, mcr: no): ret=-22
-  <3> [48.491211] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: discarding save-restore reg 1d3f1c (clear: 00000008, set: 00000008, masked: no, mcr: no): ret=-22
-  <3> [48.491225] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: discarding save-restore reg 1c3f08 (clear: 00000020, set: 00000020, masked: no, mcr: no): ret=-22
-  <3> [48.491238] xe 0000:03:00.0: [drm] *ERROR* Tile0: GT1: discarding save-restore reg 1d3f08 (clear: 00000020, set: 00000020, masked: no, mcr: no): ret=-22
-
-Re-drop the redundant Xe2_HPM-specific entries to eliminate the dmesg
-errors.
-
-Fixes: 58351f46de26 ("Merge v7.0-rc3 into drm-next")
-Cc: Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/7608
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/xe_wa.c | 14 --------------
- 1 file changed, 14 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 025ec102bf0776f0fdb408f66123fa2ff3d84103..8c55cd187a0c2f17f1d6ed0ef2f9c7a87913a840 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -263,20 +263,6 @@ static const struct xe_rtp_entry_sr gt_was[] = {
- 				   LSN_DIM_Z_WGT(1)))
- 	},
- 
--	/* Xe2_HPM */
--
--	{ XE_RTP_NAME("16021867713"),
--	  XE_RTP_RULES(MEDIA_VERSION(1301),
--		       ENGINE_CLASS(VIDEO_DECODE)),
--	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F1C(0), MFXPIPE_CLKGATE_DIS)),
--	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
--	},
--	{ XE_RTP_NAME("14019449301"),
--	  XE_RTP_RULES(MEDIA_VERSION(1301), ENGINE_CLASS(VIDEO_DECODE)),
--	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F08(0), CG3DDISHRS_CLKGATE_DIS)),
--	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
--	},
--
- 	/* Xe3_LPG */
- 
- 	{ XE_RTP_NAME("14021871409"),
-
----
-base-commit: 3ccc0e3404591e404d0dee79406cd013f377356a
-change-id: 20260312-wa_merge_fix-3e8f83cb56b6
-
-Best regards,
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
-
+Reviewed-by: Eliot Courtney <ecourtney@nvidia.com>
