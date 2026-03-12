@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8947FED2F2
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 09:02:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 075A5FED2F7
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Mar 2026 09:09:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 698BE10E9D4;
-	Thu, 12 Mar 2026 09:02:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A083810E352;
+	Thu, 12 Mar 2026 09:09:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Sm8cjlgb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KsLFZW1u";
 	dkim-atps=neutral
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E06BA10E9D4;
- Thu, 12 Mar 2026 09:02:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:
- Sender:Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=ssD/aexp1TPZVxZYeIQ8/tAxE6E0FX14OtVZZgzqR0M=; b=Sm8cjlgbjqKLfJO+NYIMCk1EVQ
- CzobYawbs9hMQX7wnRNOkeeLEIwaWK8MWsnzA0G8+ftC9ruq5eY6yjTAIN6lLl2eDm73evMpD1Y6Q
- IITOl67vMwGNzpFR8lMOAlZRBW6GQW1MmGU5I9NfXTT2oPgOqvSJoVBLrl2gdf5VlHlLmO0bdiggj
- guFZ1i5SmFhM26ZjW8aulYGYnqfdkOOsKSQkcLc1LR7aDiHYC2GVfrTPEdP1Ywy2o92fagKWSDxlp
- ZElXGclnUAo2qyNQInLmxVnlRalgf1kwXuQfYJzxFUE1XXekbwJuIb/0428eg6b1JpG26eyNcKoz+
- t8Y8qc5A==;
-Received: from [90.240.106.137] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1w0bvx-00EPaT-3j; Thu, 12 Mar 2026 10:02:21 +0100
-Date: Thu, 12 Mar 2026 09:02:20 +0000
-From: Tvrtko Ursulin <tursulin@igalia.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-gt-next
-Message-ID: <abKBHNFsBQCv2h3e@linux>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6BCF10E352
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Mar 2026 09:09:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773306577; x=1804842577;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=BIhgrsuIWJWF+ofqT03SgwYVkYvLi4PZ20c8zmtLKu4=;
+ b=KsLFZW1ugzUhFd3uBYrVFAM4RE/OSqkvRmAaNg/2W1WeLgwevONgYtx2
+ zhA1udUF+nYmSjMGwYfq/Odx05e7cyVBufGpaEf+KhB7NHsV9zGmvlcTr
+ NzKeTnZTonUMMPWG5AuTsNnjt395E27qt+Z710vOrO+d+hb/K4vT9F66g
+ H07zhXWkhtV4tA0ESpw9VjXOjCcDrLWw/XEk9oWJd3/iCzXyKiE020iIt
+ fEVWQuaXamtvjP5ivyVyP82kqsD53DtSrglYmv5jKWSq+qk4LlVDcGFxj
+ ffN68dxPxtyv5pnttidHvGVWSy6ISVZ87J3o0aeiqEifVG2Rpmmi5hUig w==;
+X-CSE-ConnectionGUID: 872KsRnyQv2vtp+BsFI8vg==
+X-CSE-MsgGUID: fEWQQWmdTIi+6+mpzardvA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="77994746"
+X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="77994746"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2026 02:09:37 -0700
+X-CSE-ConnectionGUID: /4dkiHe5T+W1lHmXz9MGDw==
+X-CSE-MsgGUID: yOUwViu0TR+PQWHyYphlkQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="220815062"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by orviesa008.jf.intel.com with ESMTP; 12 Mar 2026 02:09:34 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com, riana.tauro@intel.com,
+ michal.wajdeczko@intel.com, matthew.d.roper@intel.com,
+ umesh.nerlige.ramappa@intel.com, mallesh.koujalagi@intel.com,
+ soham.purkait@intel.com, anoop.c.vijay@intel.com,
+ aravind.iddamsetty@linux.intel.com, Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v3 0/4] Introduce Xe Correctable Error Handling
+Date: Thu, 12 Mar 2026 14:36:53 +0530
+Message-ID: <20260312090657.4026013-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,70 +67,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+This series builds on top of system controller series[1] and adds initial
+support for correctable error handling in xe. This serves as a foundation
+for RAS infrastructure and will be further extended to facilitate other
+RAS features.
 
-Hi Dave, Sima,
+Detailed description in commit message.
 
-Here is the first drm-intel-gt-next pull request for 7.1.
+[1] https://patchwork.freedesktop.org/series/159554/
 
-Only notable change is a fix for sg table overflow with sg segments over
-4GB due large folio allocations, but that one is already in
-drm-intel-fixes as well. The rest are just minor cleanups.
+v2: Use system_percpu_wq instead of dedicated (Matthew Brost)
+    Handle unexpected response length (Mallesh)
 
-drm-intel-gt-next-2026-03-12:
-Driver Changes:
+v3: Handle event flood (Mallesh)
 
-Fixes/improvements/new stuff:
+Anoop Vijay (1):
+  drm/xe/sysctrl: Add System Controller
 
-- Fix potential overflow of shmem scatterlist length (Janusz Krzysztofik)
+Raag Jadav (3):
+  drm/xe/sysctrl: Add system controller interrupt handler
+  drm/xe/sysctrl: Add system controller event support
+  drm/xe/ras: Introduce correctable error handling
 
-Miscellaneous:
+ drivers/gpu/drm/xe/Makefile                   |   4 +
+ drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h       |  31 ++
+ drivers/gpu/drm/xe/regs/xe_irq_regs.h         |   1 +
+ drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h     |  36 ++
+ drivers/gpu/drm/xe/xe_device.c                |   5 +
+ drivers/gpu/drm/xe/xe_device_types.h          |   6 +
+ drivers/gpu/drm/xe/xe_irq.c                   |   2 +
+ drivers/gpu/drm/xe/xe_pci.c                   |   2 +
+ drivers/gpu/drm/xe/xe_pci_types.h             |   1 +
+ drivers/gpu/drm/xe/xe_ras.c                   |  89 +++++
+ drivers/gpu/drm/xe/xe_ras.h                   |  14 +
+ drivers/gpu/drm/xe/xe_ras_types.h             |  73 ++++
+ drivers/gpu/drm/xe/xe_sysctrl.c               | 113 ++++++
+ drivers/gpu/drm/xe/xe_sysctrl.h               |  23 ++
+ drivers/gpu/drm/xe/xe_sysctrl_event.c         |  83 ++++
+ drivers/gpu/drm/xe/xe_sysctrl_event_types.h   |  52 +++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.c       | 364 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.h       |  41 ++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  35 ++
+ drivers/gpu/drm/xe/xe_sysctrl_types.h         |  39 ++
+ 20 files changed, 1014 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
+ create mode 100644 drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h
+ create mode 100644 drivers/gpu/drm/xe/xe_ras.c
+ create mode 100644 drivers/gpu/drm/xe/xe_ras.h
+ create mode 100644 drivers/gpu/drm/xe/xe_ras_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_event.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_event_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_types.h
 
-- Keep mock file open during unfaultable migrate with fill [selftests] (Krzysztof Karas)
-- Test for imported buffers with drm_gem_is_imported() (Thomas Zimmermann)
-- Fix corrupted copyright symbols in selftest files [guc] (Konstantin Khorenko)
-The following changes since commit 9512d9fc2a7a4fee14854fbb3af89a8bf599f361:
+-- 
+2.43.0
 
-  drm/i915/guc: Recommend GuC v70.53.0 for DG2, MTL (2026-01-12 14:21:10 -0800)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-gt-next-2026-03-12
-
-for you to fetch changes up to 06249b4e691a75694c014a61708c007fb5755f60:
-
-  drm/i915: Fix potential overflow of shmem scatterlist length (2026-03-06 12:52:13 +0100)
-
-----------------------------------------------------------------
-Driver Changes:
-
-Fixes/improvements/new stuff:
-
-- Fix potential overflow of shmem scatterlist length (Janusz Krzysztofik)
-
-Miscellaneous:
-
-- Keep mock file open during unfaultable migrate with fill [selftests] (Krzysztof Karas)
-- Test for imported buffers with drm_gem_is_imported() (Thomas Zimmermann)
-- Fix corrupted copyright symbols in selftest files [guc] (Konstantin Khorenko)
-
-----------------------------------------------------------------
-Janusz Krzysztofik (1):
-      drm/i915: Fix potential overflow of shmem scatterlist length
-
-Konstantin Khorenko (1):
-      drm/i915/guc: Fix corrupted copyright symbols in selftest files
-
-Krzysztof Karas (1):
-      drm/i915/selftests: Keep mock file open during unfaultable migrate with fill
-
-Thomas Zimmermann (1):
-      drm/i915: Test for imported buffers with drm_gem_is_imported()
-
- drivers/gpu/drm/i915/gem/i915_gem_object.c         |  6 +--
- drivers/gpu/drm/i915/gem/i915_gem_shmem.c          | 12 ++++--
- drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c | 27 ++++++++++----
- drivers/gpu/drm/i915/gt/uc/selftest_guc.c          |  2 +-
- .../gpu/drm/i915/gt/uc/selftest_guc_multi_lrc.c    |  2 +-
- drivers/gpu/drm/i915/selftests/igt_mmap.c          | 43 ++++++++++++++--------
- drivers/gpu/drm/i915/selftests/igt_mmap.h          |  8 ++++
- 7 files changed, 70 insertions(+), 30 deletions(-)
