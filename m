@@ -4,106 +4,105 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DD9D105F7A7
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B2B0105F7A8
 	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 12:58:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FF3410EBE6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BDFA10EBE7;
 	Fri, 13 Mar 2026 12:58:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="homXtovm";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eKa/GtPM";
 	dkim-atps=neutral
-Received: from mail-dl1-f44.google.com (mail-dl1-f44.google.com [74.125.82.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB55610EA91
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Mar 2026 19:15:46 +0000 (UTC)
-Received: by mail-dl1-f44.google.com with SMTP id
- a92af1059eb24-1273c690e5bso106212c88.2
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Mar 2026 12:15:46 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773342946; cv=none;
+Received: from mail-dl1-f52.google.com (mail-dl1-f52.google.com [74.125.82.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DA8110EA99
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Mar 2026 19:20:23 +0000 (UTC)
+Received: by mail-dl1-f52.google.com with SMTP id
+ a92af1059eb24-128d428ba0cso76776c88.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Mar 2026 12:20:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773343222; cv=none;
  d=google.com; s=arc-20240605;
- b=PmQDD9o1RQKHY042Lu25rAL75995tuqoVg14jAYyJ05ZOwz4HNnUKVqe4/TbWsq3AB
- nvV+k+SrZszeKBTc5u0FvDhca/WhXlyiqN63f2x2xMjdFO8mxZe3DZ4qfVGXQzw1iS28
- a/np5KnjeS1EtDOMQJAI9jKqrQdQiai5bfyaSApMBZIhXD3ip5qCcndT1U7frQw/PIDe
- +ZzHKtMBLOx+mr0ZTcQTDoCptGRKsW9LvYrc2fHC5l9DRAaYsOkgCHpStAHQnfXCsEa0
- 9lhV6r2x1R2jqYjaBNSsCBgA8AjIzM0cveezsR1N4vUyQY136LQ6DMI1529b/FcAgcL+
- TfmQ==
+ b=DCZV5pmRQk8aAiiM0CIhKxlKmgpT85uUnr5axIpOjEbmERCq6q45CSpSJuhDndBzEm
+ CHWS6BNUkJ/uySbE90tCNiu4S5HrewY6MNLR0QIMw3peBlqcBPZ8zUtrm4Bs6cCOfq10
+ Wj4/PIkLsQkoMg+4adOQQxDbveSHTQQ6qkt60Uza5tU6c/Jrif9o5wyai+8LKHYWHAeR
+ +/jKMP+GogpPgMpdodPZ7a1Sx0gMVV/I3oC2bhju6Us6NBYPu6CIZMydMGIFUg9e3TSZ
+ tFQ9+LVmY+zrofY9m9IY1VRp5Npe1NeyihFolpzq0zbcMJ1yjeVSnaQzD1vWtyaNzARz
+ C6gg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=4VzEC4HlHoK4vh0lvr6EYPz1Eqp/YdbOqaCW1vewwOg=;
- fh=UhJAfYbqgxUZDuTOrwUsD8udPBd+HghZM0zuSROIcoE=;
- b=RW6R/u9t+pYzYrl6xnapPGa71ZJNVA8t9REsqD6QEUAsFGngtxS48xWKDLwGtXHLAn
- eSatmBYY90sbXBUb92wQFjd7hMkxhDivAdoE24TrCnodK6vGDfBx983DfgJknsFJADrh
- txaHFbJzdOp44J7Qwtrsn0xY+P9gapenNJ8cFkwFhbvl0YsAVESjvxGUGWYyC0qawIip
- gUuh6PXS4o31xxRc+peEBo46aOl06imjxKYmatv9T9bUqpcb/liuFP2HxsQwOJNNyLLN
- 4Vr+6U7NrpxYhjhzatATqPj/zPWvtuiUzSWWYg6pcmTeouHTlfztKxvnj9EYZuSJGMUD
- O1gw==; darn=lists.freedesktop.org
+ bh=sqyBefgbThwlgKP9KCSuGlJgdIuR2RT0nMZ3gZqSKA8=;
+ fh=EvzA/hcu3KaiJGF1VyN80l5JHT00c9QkX9ZsBjhW6cg=;
+ b=f8trTCR4TgXtuqPsTiZgX0MPuYKlTm9rSSFwQc0niTkWOJgGquy0b2r3q7QPR7hsNm
+ BNzjmywpgRGMJcDSwOch0Oozggtu7VXmkzkW7Z/Bwetg/K6YXAY58J2z9bURp1+ckzo6
+ /I0gRrdPWONaLOxIUFFX1wHdd/Q7kcGWoZcjctIsJ6GlHtnejqqxTaBGSlSaMUAmtyrG
+ E14cYR6tJRjuteC830j/AvFjC4aRBZo4KoIbzuPX2Ubgyy5sa39abnWexw66liQ1d/jU
+ pLbDQCsREm1fRKRRc5b9nTSv/vFBjhNjS/BSjtYYHbvnlhvaVxEnJgh5Y1538p+Ibyci
+ 1DFA==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773342946; x=1773947746; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1773343222; x=1773948022; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=4VzEC4HlHoK4vh0lvr6EYPz1Eqp/YdbOqaCW1vewwOg=;
- b=homXtovmL7d23e1KalTVecPCknznywPIJhKJxhlfi9r/A8gMAxe1ycrez11l4fcHPC
- UGvAcbrIPdP8O+4oEK+JchQu580zby3Tlf2fh6+ztzz+HhH8wE21U6foC5E2j5gyYoFM
- iVKydSWkzJza/5PFWOm3qlqzqrH0RYniiCSWHJ1PfXLSa0w+zNGzVtbdj14pTcR66X9s
- PMwush3kC20A/nl6ZSDn+yMNBkGgnQh7jo+XNOknpROw63oeMZPgx2RpLGBP9QLTA78P
- EDwErEtf6ttnw7STJmy01IEfICVkOTw7TU9vyyi7EmAcaP7446w5CnqMgfCZ9NDSjUeO
- zzog==
+ bh=sqyBefgbThwlgKP9KCSuGlJgdIuR2RT0nMZ3gZqSKA8=;
+ b=eKa/GtPM6DQyTDU1NXE17k03ynX+A5tbTCcDsNZIKXsmdmIq/2Vu2FvzIyDsBMF2kq
+ 3LB2Ba4NSm3HX4KTlxWs+XQe7CY4o0RwC07+JyWNzmZN4cgxB5VvH9RFlgMMxvbwKQ44
+ e+9z7Rn+mW8nPeGorv2EXGrujJbIU/SrcoLjvuLFZFF9GuK65Qq/Orfm9g4r3xVVuQXm
+ HNWJp0KcbVTZyQ06X0lG8/CefLI7VEfGZxw08RN70KxirSfYU8nRdXFRunAnrQz58EH5
+ aCHWY0Lz7Tn3GVQ/vQxpnNi24rSzCQnwg7YwDCM6xkkU8ojuVnugo4ZbMgRi6ah2Clup
+ /gsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1773342946; x=1773947746;
+ d=1e100.net; s=20230601; t=1773343222; x=1773948022;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=4VzEC4HlHoK4vh0lvr6EYPz1Eqp/YdbOqaCW1vewwOg=;
- b=tDUUqyFC0ZZqR0ssg5kbd5ZF0LMKDuACsK4sUFWYy5BmT3pXwM70j1brCWVUp720X4
- kVk/w9YIVB+UuIS7oUhwBJAgqlAkxileWwl7PcyzMRjyWdayfAWi8NfJqbL3ixFJ0qrZ
- 9rTZYYGlAAjCl0l/pSfmrrDr8ij7SnydmzvTbY9EYFlGmEKMQtjCMs8fxklF6CkmOpOQ
- 0+iFzul+yBX+d7j3U91/gVVmqe/c0bvaDgmJNcg2LopdHoNMGBJrQ+cWmHYQ7ZNk9veM
- J/RBf4RtBcnUAFRH0bz/qc98gQwO5w15w63Rb4GQmUcDgX14qK6idG36iUwrQ0JeA0W6
- 5viA==
+ bh=sqyBefgbThwlgKP9KCSuGlJgdIuR2RT0nMZ3gZqSKA8=;
+ b=UdpMmnS2UpHV9ao8DqNoxArImba2UTDjSNWRsWPTkahhHMQU+NNO5TWnlzEUuUq5vT
+ WgGf5pPRaHIw0g/3fJ/cNRpxe1Uivo5NZ+GaJV56is9FHwY0qTC467MUxGWrTugRxcLU
+ ztHzax3ZjTq0hivPbIugZZXYil/9ZBSe4/nDkeEWu+LV5lsXXF+LXEhjKklbA+2Y8gin
+ SQ+sz/nIcYBlxlzSnXkTFkUjqOhqzLjT5ZQkBO+l39tqYyIi8yB8rsO9QCR1HYako6TU
+ 7rRtsUBRzHTB240SJK/x9smmmR7Io16m5FNAjyqd0kyyEB1ctFuC2F504kigi6LHx1nf
+ 9k2g==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXLZJSaPrT74GSl1P3JVWwm2wk2irwdylMCQpBB52qs3wsIsZ2ouNVtArzsfl/oSpPnAwnJJU3IlQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwRlDxrU84WWR7J71fAme2IRvhvcDiQknzyXdk02q5kmoHm3VOJ
- Krzg/jPueQGjFgN2mHO7OwR4XJWalxAennEDOOQTAMOMweXJ2ARI8kOiSsojSRDLSEVxW5gRkfu
- LmNJbCvvM/+rh2y0in93Tq9642nh7HCg=
-X-Gm-Gg: ATEYQzyWIqMYoorDkGjybG5wU8qkWqQUTAa8FRuSgMFtjAsdkGCi556fFAcicynkhqE
- jYmaAsFq4aY86tebFfFY/g7iyCriJAEMSrvHO6G6RBd7sTtCHRDpGLSv3QMS0Zev/vmkk6Trgg6
- oz6GJiWT92dfBSbVA2aexQASXSiXRW5Q19E4iOivMIaeef0MWDLHx0q0scNwdBoaxnQbt/YmCys
- sfVtAe8cixWb9gYWyp6qJp/UgmCU9jJkaTpP7UVAxAO5HyBi6hmRQEAeROLi6ykUXIhPFWIhSmO
- rxY/Kn94dV9D6lAoNgWqAcXkmvBF9pmztvOdK1VlPxbsWAVRDbLbNVXX715RTPR4Y1dCzJ8uCzW
- bIMSPXZ5EtOEl3H9ItvuTML8=
-X-Received: by 2002:a05:7301:1924:b0:2bd:d8e6:90a0 with SMTP id
- 5a478bee46e88-2bea555c8d0mr231898eec.3.1773342945899; Thu, 12 Mar 2026
- 12:15:45 -0700 (PDT)
+ AJvYcCXAvecqMsqSkPX2K69lkmcgOUw4vwkOZoJpuuFnbF1TClgft5B0Lxsd25pL9rvm+wrQkjtz/25TDQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxEO+vyVugiAfwBf+TyezdcEZmzqWQCvAKwH0bJoWP5qBo7TVfM
+ AH3xoywxhpa2oh7oQmdj76OH2MkYYtSjC5iw+TLK9dhTXFBLP41l7nW1a0u6qzhbECw0AnWUAzu
+ qjuxkpHFFGaSgxnuAC7g8D+fRreDN2JQ=
+X-Gm-Gg: ATEYQzyu/7FaUaeTMJlh9PnP/QDcztRx41upofWyTx9WXt6iyc9n6PTzuCrhNJO0aQr
+ tPT3ogCJ/un0fflrTV+h03yDstmF7cUZdHze/YddbmBv4jfUmeOqsLw8yoQ6E4r0yPv+mx+U7Lw
+ rQGTx9ZFld4G6kaQ8Xd8r89ovTHZN94aI8axKiCQC3DcQ1bNecHG0lXeDcUL7bGSKYfWtrmdnDo
+ 7TgjwC6czOwVwsp6OZrkjbI8x9Wu4Dxu2+3CuSgm5lY9YQ1QWU8AAs558scLRqAZFzxWDSPiATX
+ yUtFF8fSQOCdGRhJvrbdjCsceJrXaddNco4vgZXMhdj7qHi7bvwyeWj7LWLVHg4O+ZpBVFWkEyb
+ U4LO/jm8P7L8EfNiBe3jtqJM=
+X-Received: by 2002:a05:693c:3113:b0:2be:ca4:e136 with SMTP id
+ 5a478bee46e88-2bea539b6c2mr239955eec.2.1773343222351; Thu, 12 Mar 2026
+ 12:20:22 -0700 (PDT)
 MIME-Version: 1.0
 References: <20260306203648.1136554-1-joelagnelf@nvidia.com>
  <20260306203648.1136554-2-joelagnelf@nvidia.com>
- <DH0ZMJKN6OE6.243UPT928HIIX@kernel.org>
-In-Reply-To: <DH0ZMJKN6OE6.243UPT928HIIX@kernel.org>
+In-Reply-To: <20260306203648.1136554-2-joelagnelf@nvidia.com>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Thu, 12 Mar 2026 20:15:33 +0100
-X-Gm-Features: AaiRm53560zXAmoL0EVQHDBxYh33LaVByeeBz-QChPDevjdBJ65drv5v7FGkL1c
-Message-ID: <CANiq72n6ccEz71V3nkJxtY_BNbTw3F_eekt+Dyhvfb1FNP-srw@mail.gmail.com>
+Date: Thu, 12 Mar 2026 20:20:10 +0100
+X-Gm-Features: AaiRm53FHItUdFEegxUW1-4wt0_otNvbfdbd3Uys6sYfgMCnCSAVDf6Yalvkc30
+Message-ID: <CANiq72kEnDyUpnWMZmheJytjioeiJUK_C-yQJk77dPid89LExw@mail.gmail.com>
 Subject: Re: [PATCH v12 1/1] rust: interop: Add list module for C linked list
  interface
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: Joel Fernandes <joelagnelf@nvidia.com>, Miguel Ojeda <ojeda@kernel.org>, 
- linux-kernel@vger.kernel.org, Boqun Feng <boqun@kernel.org>, 
- Gary Guo <gary@garyguo.net>,
+To: Joel Fernandes <joelagnelf@nvidia.com>
+Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>, 
+ Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, 
  =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
  Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
  Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
- Alex Gaynor <alex.gaynor@gmail.com>, Dave Airlie <airlied@redhat.com>, 
- David Airlie <airlied@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Simona Vetter <simona@ffwll.ch>, Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, Nikola Djukic <ndjukic@nvidia.com>, 
- Alexandre Courbot <acourbot@nvidia.com>, Philipp Stanner <phasta@kernel.org>, 
- Elle Rhumsaa <elle@weathered-steel.dev>, Jonathan Corbet <corbet@lwn.net>, 
- Alex Deucher <alexander.deucher@amd.com>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Danilo Krummrich <dakr@kernel.org>, 
+ Dave Airlie <airlied@redhat.com>, David Airlie <airlied@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>, 
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Koen Koning <koen.koning@linux.intel.com>, 
+ Nikola Djukic <ndjukic@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>, 
+ Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa <elle@weathered-steel.dev>, 
+ Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>, 
  =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
  Jani Nikula <jani.nikula@linux.intel.com>, 
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
@@ -140,14 +139,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Mar 12, 2026 at 6:42=E2=80=AFPM Danilo Krummrich <dakr@kernel.org> =
-wrote:
+On Fri, Mar 6, 2026 at 9:37=E2=80=AFPM Joel Fernandes <joelagnelf@nvidia.co=
+m> wrote:
 >
-> Was this given off-list? I can't find a corresponding reply from Miguel.
+> +//! // Create typed [`CList`] from sentinel head.
+> +//! // SAFETY: head is valid and initialized, items are `SampleItemC` wi=
+th
+> +//! // embedded `link` field, and `Item` is `#[repr(transparent)]` over =
+`SampleItemC`.
+> +//! let list =3D clist_create!(unsafe { head, Item, SampleItemC, link })=
+;
 
-Thanks for double-checking that -- it is fine.
+Was the patch tested with Clippy? It has several issues.
 
-I am sending some nits and Clippy issues independently though.
+The worst news is that it seems the "supposed to be `unsafe` block"
+does not count as one for Clippy, i.e.:
+
+    let list =3D clist_create!(unsafe { head, Item, SampleItemC, link });
+
+So we get:
+
+    error: statement has unnecessary safety comment
+        --> rust/doctests_kernel_generated.rs:7416:1
+         |
+    7416 | let list =3D clist_create!(unsafe { head, Item, SampleItemC, lin=
+k });
+         | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^=
+^^^
+         |
+    help: consider removing the safety comment
+        --> rust/doctests_kernel_generated.rs:7414:4
+         |
+    7414 | // SAFETY: head is valid and initialized, items are
+`SampleItemC` with
+         |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^=
+^^^^^^
+         =3D help: for further information visit
+https://rust-lang.github.io/rust-clippy/rust-1.94.0/index.html#unnecessary_=
+safety_comment
+         =3D note: `-D clippy::unnecessary-safety-comment` implied by
+`-D warnings`
+         =3D help: to override `-D warnings` add
+`#[allow(clippy::unnecessary_safety_comment)]`
+
+For this, we could write them as a `// SAFETY*: ` comment or similar,
+to make progress for now, but it would best to request upstream Clippy
+to detect this or to rework the macro to force the `unsafe` block
+outside.
+
+In addition:
+
+    error: unsafe block missing a safety comment
+       --> rust/kernel/interop/list.rs:357:17
+        |
+    112 |     let _list =3D clist_create!(unsafe { head, Item,
+SampleItemC, link });
+        |
+--------------------------------------------------------- in this
+macro invocation
+    ...
+    357 |             |p| unsafe { &raw const (*p).$($field).+ };
+        |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        |
+        =3D help: consider adding a safety comment on the preceding line
+        =3D help: for further information visit
+https://rust-lang.github.io/rust-clippy/rust-1.94.0/index.html#undocumented=
+_unsafe_blocks
+        =3D note: `-D clippy::undocumented-unsafe-blocks` implied by `-D wa=
+rnings`
+        =3D help: to override `-D warnings` add
+`#[allow(clippy::undocumented_unsafe_blocks)]`
+        =3D note: this error originates in the macro `clist_create` (in
+Nightly builds, run with -Z macro-backtrace for more info)
+
+So this needs a `// SAFETY:` comment on top of the closure.
+
+    error: this macro expands metavariables in an unsafe block
+       --> rust/kernel/interop/list.rs:362:9
+        |
+    362 |         unsafe { $crate::interop::list::CList::<$rust_type,
+OFFSET>::from_raw($head) }
+        |
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^=
+^^^
+        |
+        =3D note: this allows the user of the macro to write unsafe code
+outside of an unsafe block
+        =3D help: consider expanding any metavariables outside of this
+block, e.g. by storing them in a variable
+        =3D help: ... or also expand referenced metavariables in a safe
+context to require an unsafe block at callsite
+        =3D help: for further information visit
+https://rust-lang.github.io/rust-clippy/rust-1.94.0/index.html#macro_metava=
+rs_in_unsafe
+        =3D note: `-D clippy::macro-metavars-in-unsafe` implied by `-D warn=
+ings`
+        =3D help: to override `-D warnings` add
+`#[allow(clippy::macro_metavars_in_unsafe)]`
+
+For this one, to begin with, do we expect to have actual expressions
+for `$head`, or could we constrain it for now to an identifier for
+instance?
+
+With an identifier there is no issue then -- the example currently has
+just an identifier anyway.
+
+I hope that helps.
 
 Cheers,
 Miguel
