@@ -4,60 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3FF7103E305
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 15:41:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11D98107BCC8
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 16:02:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6015610E45B;
-	Fri, 13 Mar 2026 15:41:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E27910E45E;
+	Fri, 13 Mar 2026 16:02:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YIH9SLf7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gcSpRszh";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A824710E45B;
- Fri, 13 Mar 2026 15:41:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22A1510E45B;
+ Fri, 13 Mar 2026 16:02:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773416492; x=1804952492;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=CxVN9VlC3SWpg1TmlHV0rqFxt6d7g9UyQXojpSvD4QA=;
- b=YIH9SLf7MJp1Hx0uF9Osd/tUyADGGgQKA+WgDPmfRAUYEeGNbm0vA9tC
- dpZ/AMaxdcuOAgMHOOFfsFcjgMXNw0VS34shgmvvDkaTEgNP7sywOsnc2
- oYBduAylAT82kkJbcpiwCVzcERRgPFzd+aP0t239RrDEv0pdC+gA8cJKk
- GclK4zevbzqcrQlgJzqVuNe0hAHTY7Ba4iyiasuQL+6vLSyt6QOADMIi8
- zl/toOJdheEGCT9qYfsmfYVegJ4VkVSSgsGyCuYksFrjzTdUgi9qBm4d1
- JkRFMqEP+HTEb4i7Xml3TpN4I27/S5evtGDAgNDihkfVxUKOCZsYf6km6 g==;
-X-CSE-ConnectionGUID: PVHuaNTMSdSahwp7x9MhIg==
-X-CSE-MsgGUID: n1toCIjpT5qJ59ZzMz1/7Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11728"; a="78417456"
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="78417456"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 08:41:31 -0700
-X-CSE-ConnectionGUID: 4/iwgC4OT/KcDRjcM8Kv3Q==
-X-CSE-MsgGUID: 7ApDyu/QSg2Yjbtz69TiSQ==
+ t=1773417774; x=1804953774;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zB3V7bGxksL3/f0fptc8KKbDH2ZQ8vP23RYHUtkxrow=;
+ b=gcSpRszhiL3VNLFV+T7u7N+2Fyqk5mtjUiuik46mGHeqCOjWuJywd7ko
+ p0Y8ojHseXM1N/my3qMkVtZsh+O6Snhre5GtUvvRyfVckf9glPM5ubm1A
+ qx9x5rhWZilu9D5ZsL6NuViMPSznVk+XRRcwOZXT3RczrcNlLG8jZMv1J
+ I2fIgbXL0q5QuX8n4Yw7XAA8XhsgnBUp3OUcD9LWuVrI8pqHWq9/y3g5F
+ /hLw2mkPQj3tA72/7HIoWSrCCjmgHLAo1GMCXsgF2Gb1pwU8gcXAyepuj
+ Dg1bH17+hZiUbn880qGy9U7g8fNxsR4+F/ICjnoRWaFshS1D53x/B8vM/ Q==;
+X-CSE-ConnectionGUID: KAsbZ6R4T8aY6i5GYFG0dQ==
+X-CSE-MsgGUID: tH7T4YxgSSWDeZnE8vqTaw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11728"; a="74715305"
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="74715305"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2026 09:02:54 -0700
+X-CSE-ConnectionGUID: VikaKam/RRGrNxNdZ5SxFQ==
+X-CSE-MsgGUID: CaMvVLZZR+i8b1nwkWp+vg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="259098318"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.193])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 08:41:27 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>,
- Gustavo Sousa <gustavo.sousa@intel.com>, =?utf-8?Q?Micha=C5=82?= Grzelak
- <michal.grzelak@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: [PATCH 1/2] drm/i915/cx0: Clear response ready & error bit
-In-Reply-To: <20260122044859.753682-1-suraj.kandpal@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260122044859.753682-1-suraj.kandpal@intel.com>
-Date: Fri, 13 Mar 2026 17:41:23 +0200
-Message-ID: <4246db6c7096dd089ebcd7ac0b3c7589a232e836@intel.com>
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by fmviesa003.fm.intel.com with ESMTP; 13 Mar 2026 09:02:51 -0700
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com, uma.shankar@intel.com,
+ dibin.moolakadan.subrahmanian@intel.com,
+ Animesh Manna <animesh.manna@intel.com>
+Subject: [PATCH v3 00/12] CMTG enablement
+Date: Fri, 13 Mar 2026 21:02:48 +0530
+Message-Id: <20260313153300.3530695-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,62 +65,41 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 22 Jan 2026, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
-> Clear the response ready and error bit of PORT_P2M_MESSAGE_BUS_STATUS
-> before writing the transaction pending bit of
-> PORT_M2P_MSGBUS_CTL as that is a hard requirement. If not done
-> we find that the PHY hangs since it ends up in a weird state if left
-> idle for more than 1 hour.
+Common mode timing generator (CMTG) support is added LNL onwards.
+Enable CMTG which will be needed by other fearure like dynamic dc
+state enablement later.
 
-Should this have had a Fixes: tag or Cc: stable like Rodrigo asked way
-back when [1]? Do we have some PHY hang issue in the wild?
+Testing ongoing, currently counters are incrementing as expected.
 
-We rely heavily on developers identifying fixes that need backports to
-stable kernels.
+Animesh Manna (11):
+  drm/i915/cmtg: add is_enable_allowed() for cmtg
+  drm/i915/cmtg: set CMTG clock select
+  drm/i915/cmtg: set timings for CMTG
+  drm/i915/cmtg: program VRR registers of CMTG
+  drm/i915/cmtg: set transcoder mn for CMTG
+  drm/i915/cmtg: add hook to enable CMTG with sync to port
+  drm/i915/cmtg: add a hook to enable ddi for CMTG
+  drm/i915/cmtg: Add trigger to enable/disable cmtg
+  drm/i915/cmtg: Add CMTG interrupt handling
+  drm/i915/cmtg: set dc3co_enable flag for lobf/psr2/pr-alpm
+  drm/i915/cmtg: disable CMTG if dc3co entry condition not met
 
-BR,
-Jani.
+Dibin Moolakadan Subrahmanian (1):
+  drm/i915/cmtg: modify existing hook to disable CMTG
 
+ drivers/gpu/drm/i915/display/intel_cmtg.c     | 248 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_cmtg.h     |  14 +
+ .../gpu/drm/i915/display/intel_cmtg_regs.h    |  24 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  28 ++
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../gpu/drm/i915/display/intel_display_irq.c  |  12 +
+ .../gpu/drm/i915/display/intel_display_regs.h |   6 +
+ .../drm/i915/display/intel_display_types.h    |   8 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |   8 +
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   |   7 +-
+ drivers/gpu/drm/i915/display/intel_vrr.c      |   5 +
+ 11 files changed, 349 insertions(+), 12 deletions(-)
 
-[1] https://lore.kernel.org/r/aWexzTR221l0F-we@intel.com
+-- 
+2.29.0
 
-
-
-
->
-> Bspec: 65101
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> Reviewed-by: Gustavo Sousa <gustavo.sousa@intel.com>
-> Reviewed-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_cx0_phy.c | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/d=
-rm/i915/display/intel_cx0_phy.c
-> index 4f56a370102d..ff74f64eb970 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-> @@ -223,6 +223,8 @@ static int __intel_cx0_read_once(struct intel_encoder=
- *encoder,
->  		return -ETIMEDOUT;
->  	}
->=20=20
-> +	intel_clear_response_ready_flag(encoder, lane);
-> +
->  	intel_de_write(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
->  		       XELPDP_PORT_M2P_TRANSACTION_PENDING |
->  		       XELPDP_PORT_M2P_COMMAND_READ |
-> @@ -294,6 +296,8 @@ static int __intel_cx0_write_once(struct intel_encode=
-r *encoder,
->  		return -ETIMEDOUT;
->  	}
->=20=20
-> +	intel_clear_response_ready_flag(encoder, lane);
-> +
->  	intel_de_write(display, XELPDP_PORT_M2P_MSGBUS_CTL(display, port, lane),
->  		       XELPDP_PORT_M2P_TRANSACTION_PENDING |
->  		       (committed ? XELPDP_PORT_M2P_COMMAND_WRITE_COMMITTED :
-
---=20
-Jani Nikula, Intel
