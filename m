@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B653106FD60
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 01:52:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D80F106FD68
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 01:52:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDE9F10EAE2;
-	Fri, 13 Mar 2026 01:52:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4589A10EAFD;
+	Fri, 13 Mar 2026 01:52:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WUuPMba6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cjH2Xi7J";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FD6F10E042;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBCAB10E441;
  Fri, 13 Mar 2026 01:52:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773366739; x=1804902739;
+ t=1773366740; x=1804902740;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wbjNJLd8atOYnQ6zYbAQNjHcXD+p8VTla29he68mD/I=;
- b=WUuPMba68C7wtMnFGt9MUIXTBHVSE3mvVYldh1HGt+gK3H66oVv6V/FF
- dBtvVTDga20EO4QWdkkgRRC+5m4vePqZNRcVofAofPlth5oK3WE5wl9RX
- QzppQYgloczoVMwIVUM79dw5dnwOieieZcgloVOBnullkd4S+mlgF4kMi
- reD1ixsHFT+/SX1vyUUC3K8QGERFy//DpRPrCNQWPMM2aa0UCYZ+0/1IT
- gxGED7XZBhnbEKxzNiEcM29wqrTJQejcWbOKZHGhH3Y6Y0Y9qNBIMzuSN
- XnuGNqdEpCLWD7VDEHibn8PxCf0A5tjwG/fymtnKSByoUOLNS/pzoFjxm g==;
-X-CSE-ConnectionGUID: zGRyuyKnRWOkLAxHzDjpaQ==
-X-CSE-MsgGUID: KCNR1ROZRQO62ntK0BfeZw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74354578"
-X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="74354578"
+ bh=e1S8raHL6U6wBJ8ruzzvM0H21MrzxEn6TFDGtuGpeH4=;
+ b=cjH2Xi7JyD8zWKWCB6reEIZjvJuXphmUqgmqMbM5aNun3X4ONmELeISU
+ NvZK+rtH1eWRjgAa++KnQp9HEzRr3sg+JjyPGlf7uqY1sta3Ruvtn+iRm
+ w5fHB0O0XTe0GMR6j2AX+SBqB04JivD0TVEV4b4e8DIx5GPua2AngprLS
+ nmS6rE1+N6qFjiQmqTZURMcLHZR4pM5/+shqzBd3a7MyWG9CLOJ8QN78L
+ 0A8H7JkUhy7jALepCnU/FWg0B1fpdd3k9FRYloxkVsYXH3iCMv4C1ml5J
+ ClNu7gZsdxUTeNyAzN8XnbSgI816vcb2lk5SNpqlwSqrVfs8xwMGBHYPq w==;
+X-CSE-ConnectionGUID: S1Vgdvp3R1quAZUou1rTKQ==
+X-CSE-MsgGUID: tLxI0EL+SpO1cdkXlTw8Kw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74354608"
+X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="74354608"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Mar 2026 18:52:12 -0700
-X-CSE-ConnectionGUID: f8z5cZEsSmmRmu7hbGUhLA==
-X-CSE-MsgGUID: 2bx2yGadTfm3aOlekBjFhg==
+X-CSE-ConnectionGUID: 89UbklxMTcKhw/hQkw800g==
+X-CSE-MsgGUID: W7Ipz7btQ3Oexz/az466tw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="220108497"
+X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="220108518"
 Received: from debox1-desk4.jf.intel.com ([10.88.27.138])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Mar 2026 18:52:12 -0700
@@ -48,10 +48,10 @@ To: thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
  dri-devel@lists.freedesktop.org, xi.pardee@linux.intel.com
 Cc: david.e.box@linux.intel.com, hansg@kernel.org,
  linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
-Subject: [PATCH 10/22] platform/x86/intel/pmt: Move header decode into common
- helper
-Date: Thu, 12 Mar 2026 18:51:49 -0700
-Message-ID: <20260313015202.3660072-11-david.e.box@linux.intel.com>
+Subject: [PATCH 17/22] platform/x86/intel/pmc/ssram: Refactor DEVID/PWRMBASE
+ extraction into helper
+Date: Thu, 12 Mar 2026 18:51:56 -0700
+Message-ID: <20260313015202.3660072-18-david.e.box@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260313015202.3660072-1-david.e.box@linux.intel.com>
 References: <20260313015202.3660072-1-david.e.box@linux.intel.com>
@@ -71,228 +71,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Unify PMT discovery table parsing by moving header decode logic into the
-class driver. A new helper, pmt_read_header(), now fills in the standard
-header fields from the discovery table, replacing the per-namespace
-pmt_header_decode callbacks in telemetry and crashlog.
+Move DEVID/PWRMBASE extraction into pmc_ssram_get_devid_pwrmbase().
 
-This centralizes the discovery table bit-field definitions in class.h,
-removes duplicate decode code from telemetry and crashlog, and prepares the
-PMT class for additional discovery sources.
+This is a preparatory refactor to place functionality in a common helper
+for reuse by a subsequent patch, while keeping behavior unchanged in this
+step.
 
 Signed-off-by: David E. Box <david.e.box@linux.intel.com>
 ---
- drivers/platform/x86/intel/pmt/class.c     | 38 +++++++++++++++-------
- drivers/platform/x86/intel/pmt/class.h     | 15 +++++++--
- drivers/platform/x86/intel/pmt/crashlog.c  | 17 ----------
- drivers/platform/x86/intel/pmt/telemetry.c | 26 ---------------
- 4 files changed, 40 insertions(+), 56 deletions(-)
+ .../platform/x86/intel/pmc/ssram_telemetry.c  | 31 ++++++++++++-------
+ 1 file changed, 19 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/=
-intel/pmt/class.c
-index 9b315334a69b..a4d6ffed2fed 100644
---- a/drivers/platform/x86/intel/pmt/class.c
-+++ b/drivers/platform/x86/intel/pmt/class.c
-@@ -8,6 +8,7 @@
-  * Author: "Alexander Duyck" <alexander.h.duyck@linux.intel.com>
-  */
+diff --git a/drivers/platform/x86/intel/pmc/ssram_telemetry.c b/drivers/pla=
+tform/x86/intel/pmc/ssram_telemetry.c
+index 9c3d7ba2fd52..75a80a74a069 100644
+--- a/drivers/platform/x86/intel/pmc/ssram_telemetry.c
++++ b/drivers/platform/x86/intel/pmc/ssram_telemetry.c
+@@ -27,6 +27,23 @@ DEFINE_FREE(pmc_ssram_telemetry_iounmap, void __iomem *,=
+ if (_T) iounmap(_T))
+ static struct pmc_ssram_telemetry pmc_ssram_telems[3];
+ static bool device_probed;
 =20
-+#include <linux/bitfield.h>
- #include <linux/kernel.h>
- #include <linux/log2.h>
- #include <linux/intel_vsec.h>
-@@ -368,26 +369,41 @@ static int intel_pmt_dev_register(struct intel_pmt_en=
-try *entry,
- 	return ret;
- }
-=20
--int intel_pmt_dev_create(struct intel_pmt_entry *entry, struct intel_pmt_n=
-amespace *ns,
--			 struct intel_vsec_device *intel_vsec_dev, int idx)
-+static int pmt_read_header(struct intel_vsec_device *ivdev, int idx,
-+			   struct intel_pmt_entry *entry)
- {
--	struct device *dev =3D &intel_vsec_dev->auxdev.dev;
--	struct resource	*disc_res;
--	int ret;
-+	struct intel_pmt_header *header =3D &entry->header;
-+	struct device *dev =3D &ivdev->auxdev.dev;
-+	u64 headers[2];
-=20
--	disc_res =3D &intel_vsec_dev->resource[idx];
--
--	entry->disc_table =3D devm_ioremap_resource(dev, disc_res);
-+	entry->disc_table =3D devm_ioremap_resource(dev, &ivdev->resource[idx]);
- 	if (IS_ERR(entry->disc_table))
- 		return PTR_ERR(entry->disc_table);
-=20
-+	memcpy_fromio(headers, entry->disc_table, 2 * sizeof(u64));
-+
-+	header->access_type =3D FIELD_GET(PMT_ACCESS_TYPE, headers[0]);
-+	header->telem_type =3D FIELD_GET(PMT_TELEM_TYPE, headers[0]);
-+	/* Size is measured in DWORDS, but accessor returns bytes */
-+	header->size =3D PMT_GET_SIZE(FIELD_GET(PMT_SIZE, headers[0]));
-+	header->guid =3D FIELD_GET(PMT_GUID32, headers[0]);
-+	header->base_offset =3D FIELD_GET(PMT_BASE_OFFSET, headers[1]);
-+
-+	return 0;
++static inline u64 get_base(void __iomem *addr, u32 offset)
++{
++	return lo_hi_readq(addr + offset) & GENMASK_ULL(63, 3);
 +}
 +
-+int intel_pmt_dev_create(struct intel_pmt_entry *entry, struct intel_pmt_n=
-amespace *ns,
-+			 struct intel_vsec_device *intel_vsec_dev, int idx)
++static void pmc_ssram_get_devid_pwrmbase(void __iomem *ssram, unsigned int=
+ pmc_idx)
 +{
-+	int ret;
++	u64 pwrm_base;
++	u16 devid;
 +
- 	if (ns->pmt_pre_decode) {
- 		ret =3D ns->pmt_pre_decode(intel_vsec_dev, entry);
- 		if (ret)
- 			return ret;
- 	}
-=20
--	ret =3D ns->pmt_header_decode(entry, dev);
-+	ret =3D pmt_read_header(intel_vsec_dev, idx, entry);
- 	if (ret)
- 		return ret;
-=20
-@@ -397,11 +413,11 @@ int intel_pmt_dev_create(struct intel_pmt_entry *entr=
-y, struct intel_pmt_namespa
- 			return ret;
- 	}
-=20
--	ret =3D intel_pmt_populate_entry(entry, intel_vsec_dev, disc_res);
-+	ret =3D intel_pmt_populate_entry(entry, intel_vsec_dev, &intel_vsec_dev->=
-resource[idx]);
- 	if (ret)
- 		return ret;
-=20
--	return intel_pmt_dev_register(entry, ns, dev);
-+	return intel_pmt_dev_register(entry, ns, &intel_vsec_dev->auxdev.dev);
- }
- EXPORT_SYMBOL_NS_GPL(intel_pmt_dev_create, "INTEL_PMT");
-=20
-diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/=
-intel/pmt/class.h
-index 8a0db0ef58c1..06f90c7ce6b3 100644
---- a/drivers/platform/x86/intel/pmt/class.h
-+++ b/drivers/platform/x86/intel/pmt/class.h
-@@ -11,6 +11,19 @@
-=20
- #include "telemetry.h"
-=20
-+/* PMT Discovery Table DWORD 1 */
-+#define PMT_ACCESS_TYPE		GENMASK_ULL(3, 0)
-+#define PMT_TELEM_TYPE		GENMASK_ULL(7, 4)
-+#define PMT_SIZE		GENMASK_ULL(27, 12)
-+#define PMT_GUID32		GENMASK_ULL(63, 32)
++	pwrm_base =3D get_base(ssram, SSRAM_PWRM_OFFSET);
++	devid =3D readw(ssram + SSRAM_DEVID_OFFSET);
 +
-+/* PMT Discovery Table DWORD 2 */
-+#define PMT_BASE_OFFSET		GENMASK_ULL(31, 0)
-+#define PMT_TELE_ID		GENMASK_ULL(63, 32)
++	pmc_ssram_telems[pmc_idx].devid =3D devid;
++	pmc_ssram_telems[pmc_idx].base_addr =3D pwrm_base;
++}
 +
-+/* Get size bytes from DWORDs */
-+#define PMT_GET_SIZE(v)		((v) << 2)
-+
- /* PMT access types */
- #define ACCESS_BARID		2
- #define ACCESS_LOCAL		3
-@@ -61,8 +74,6 @@ struct intel_pmt_entry {
- struct intel_pmt_namespace {
- 	const char *name;
- 	struct xarray *xa;
--	int (*pmt_header_decode)(struct intel_pmt_entry *entry,
--				 struct device *dev);
- 	int (*pmt_pre_decode)(struct intel_vsec_device *ivdev,
- 			      struct intel_pmt_entry *entry);
- 	int (*pmt_post_decode)(struct intel_vsec_device *ivdev,
-diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x=
-86/intel/pmt/crashlog.c
-index f936daf99e4d..67795e2cb1ed 100644
---- a/drivers/platform/x86/intel/pmt/crashlog.c
-+++ b/drivers/platform/x86/intel/pmt/crashlog.c
-@@ -516,28 +516,11 @@ static int pmt_crashlog_pre_decode(struct intel_vsec_=
-device *ivdev,
- 	return 0;
- }
-=20
--static int pmt_crashlog_header_decode(struct intel_pmt_entry *entry,
--				      struct device *dev)
--{
--	void __iomem *disc_table =3D entry->disc_table;
--	struct intel_pmt_header *header =3D &entry->header;
--
--	header->access_type =3D GET_ACCESS(readl(disc_table));
--	header->guid =3D readl(disc_table + GUID_OFFSET);
--	header->base_offset =3D readl(disc_table + BASE_OFFSET);
--
--	/* Size is measured in DWORDS, but accessor returns bytes */
--	header->size =3D GET_SIZE(readl(disc_table + SIZE_OFFSET));
--
--	return 0;
--}
--
- static DEFINE_XARRAY_ALLOC(crashlog_array);
- static struct intel_pmt_namespace pmt_crashlog_ns =3D {
- 	.name =3D "crashlog",
- 	.xa =3D &crashlog_array,
- 	.pmt_pre_decode =3D pmt_crashlog_pre_decode,
--	.pmt_header_decode =3D pmt_crashlog_header_decode,
- };
-=20
- /*
-diff --git a/drivers/platform/x86/intel/pmt/telemetry.c b/drivers/platform/=
-x86/intel/pmt/telemetry.c
-index d22f633638be..80773e3c3efa 100644
---- a/drivers/platform/x86/intel/pmt/telemetry.c
-+++ b/drivers/platform/x86/intel/pmt/telemetry.c
-@@ -27,14 +27,6 @@
-=20
- #include "class.h"
-=20
--#define TELEM_SIZE_OFFSET	0x0
--#define TELEM_GUID_OFFSET	0x4
--#define TELEM_BASE_OFFSET	0x8
--#define TELEM_ACCESS(v)		((v) & GENMASK(3, 0))
--#define TELEM_TYPE(v)		(((v) & GENMASK(7, 4)) >> 4)
--/* size is in bytes */
--#define TELEM_SIZE(v)		(((v) & GENMASK(27, 12)) >> 10)
--
- /* Used by client hardware to identify a fixed telemetry entry*/
- #define TELEM_CLIENT_FIXED_BLOCK_GUID	0x10000000
-=20
-@@ -69,23 +61,6 @@ static bool pmt_telem_region_overlaps(struct device *dev=
-, u32 guid, u32 type)
- 	return false;
- }
-=20
--static int pmt_telem_header_decode(struct intel_pmt_entry *entry,
--				   struct device *dev)
--{
--	void __iomem *disc_table =3D entry->disc_table;
--	struct intel_pmt_header *header =3D &entry->header;
--
--	header->access_type =3D TELEM_ACCESS(readl(disc_table));
--	header->guid =3D readl(disc_table + TELEM_GUID_OFFSET);
--	header->base_offset =3D readl(disc_table + TELEM_BASE_OFFSET);
--
--	/* Size is measured in DWORDS, but accessor returns bytes */
--	header->size =3D TELEM_SIZE(readl(disc_table));
--	header->telem_type =3D TELEM_TYPE(readl(entry->disc_table));
--
--	return 0;
--}
--
- static int pmt_telem_post_decode(struct intel_vsec_device *ivdev,
- 				 struct intel_pmt_entry *entry)
+ static int
+ pmc_ssram_telemetry_add_pmt(struct pci_dev *pcidev, u64 ssram_base, void _=
+_iomem *ssram)
  {
-@@ -135,7 +110,6 @@ static DEFINE_XARRAY_ALLOC(telem_array);
- static struct intel_pmt_namespace pmt_telem_ns =3D {
- 	.name =3D "telem",
- 	.xa =3D &telem_array,
--	.pmt_header_decode =3D pmt_telem_header_decode,
- 	.pmt_post_decode =3D pmt_telem_post_decode,
- 	.pmt_add_endpoint =3D pmt_telem_add_endpoint,
- };
+@@ -63,18 +80,12 @@ pmc_ssram_telemetry_add_pmt(struct pci_dev *pcidev, u64=
+ ssram_base, void __iomem
+ 	return intel_vsec_register(&pcidev->dev, &info);
+ }
+=20
+-static inline u64 get_base(void __iomem *addr, u32 offset)
+-{
+-	return lo_hi_readq(addr + offset) & GENMASK_ULL(63, 3);
+-}
+-
+ static int
+ pmc_ssram_telemetry_get_pmc(struct pci_dev *pcidev, unsigned int pmc_idx, =
+u32 offset)
+ {
+ 	void __iomem __free(pmc_ssram_telemetry_iounmap) *tmp_ssram =3D NULL;
+ 	void __iomem __free(pmc_ssram_telemetry_iounmap) *ssram =3D NULL;
+-	u64 ssram_base, pwrm_base;
+-	u16 devid;
++	u64 ssram_base;
+=20
+ 	ssram_base =3D pci_resource_start(pcidev, 0);
+ 	tmp_ssram =3D ioremap(ssram_base, SSRAM_HDR_SIZE);
+@@ -99,11 +110,7 @@ pmc_ssram_telemetry_get_pmc(struct pci_dev *pcidev, uns=
+igned int pmc_idx, u32 of
+ 		ssram =3D no_free_ptr(tmp_ssram);
+ 	}
+=20
+-	pwrm_base =3D get_base(ssram, SSRAM_PWRM_OFFSET);
+-	devid =3D readw(ssram + SSRAM_DEVID_OFFSET);
+-
+-	pmc_ssram_telems[pmc_idx].devid =3D devid;
+-	pmc_ssram_telems[pmc_idx].base_addr =3D pwrm_base;
++	pmc_ssram_get_devid_pwrmbase(ssram, pmc_idx);
+=20
+ 	/* Find and register and PMC telemetry entries */
+ 	return pmc_ssram_telemetry_add_pmt(pcidev, ssram_base, ssram);
 --=20
 2.43.0
 
