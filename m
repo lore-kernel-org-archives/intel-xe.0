@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A21A5106FD67
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 01:52:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C316106FD6B
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 01:52:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E25410E441;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3A8F10EADA;
 	Fri, 13 Mar 2026 01:52:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ES21B1RQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b1bT1CyQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A80710E042;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94EBA10EAD0;
  Fri, 13 Mar 2026 01:52:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1773366739; x=1804902739;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=O6eG7WRWywaqNptPXMPB/TF5fGTS9YsXb2B5mhnJT5w=;
- b=ES21B1RQKQV/l3Tvd4S4GKcwPk0GtT24W0ID08rylwPH6KalljN51Prk
- 2cZpf/eNDccn1hMwTkhNX4aURHhf59bfDB5LHpGyyqGR6qxpFxB4LleAP
- MaiCHzVo9BXA6fTGI3IwlXs1HUOX47fmksUkj55g37s7FG81ATjPeF3oP
- MfGk4m4mZdDcx+ZJzQdz1HrmdzbK7KSlJ4VbuvrW0vg65hY7fgPtSH/zi
- VAkIFbyTCbpCq6IDMck9hqpsHiL0f1q9uFprBiP0eX7cdrv/+nIndWfJU
- wQNHLzmMh0DG/XXOQ6K9Q3KQMxA4RmoQk0lrKh4q3/RNN6955pgO4NcMO A==;
-X-CSE-ConnectionGUID: 2UCHMUlOQaWiEXzCRJ1uQg==
-X-CSE-MsgGUID: c5F+wmuMRwmh4jTUrCKJ9g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74354567"
-X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="74354567"
+ bh=0wdWYOTQIrn2DAmCCZnu5w7Dz3BlEgyNXBT+ovP1hMg=;
+ b=b1bT1CyQJc0cAkgE0cIvh82AiBMuKVaSZ4gB2wz3Fm515srXG6rjRFJk
+ aJyW+0PIOtG+B2KSp7j1JPHH97VekT2ei9hVWBAKnYQ9OmZAYrl6hXNI1
+ iNXcQv0zO8Lo992G4jzzFLRNfe7xchmOeMX5VgZYMxUapoINXhICJq2Ul
+ MVCpbT1JAzx+UoewjU9RCCjjK/sDsIYbc6D9YvYxR25LIKCswnLVp/qwa
+ GzFx6oeSlnvCp0q+XjnXSC2JRnQFiCarYPf2hkI5QMP3EJ39Sf5/kIRTa
+ QdbcjSm5AY2atFHrWU+iHr4NKDYl4yWlZPQpby3Y7utMb0I6+OQ6rIhG4 A==;
+X-CSE-ConnectionGUID: iwtRlkqnSQqI2VnlkJgc0A==
+X-CSE-MsgGUID: BH3gDD9tTjqWyzn7Jqy6FQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74354589"
+X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="74354589"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Mar 2026 18:52:12 -0700
-X-CSE-ConnectionGUID: TMsKAeUpRUGaCXxJQ1roKQ==
-X-CSE-MsgGUID: fK7N8ixzQC6dsd5yXu8hYQ==
+X-CSE-ConnectionGUID: vrHvvp0eRJqEhXjrAedY0A==
+X-CSE-MsgGUID: +lq3nR5/RiugRyW7GOxSVw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="220108490"
+X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="220108503"
 Received: from debox1-desk4.jf.intel.com ([10.88.27.138])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Mar 2026 18:52:12 -0700
@@ -48,10 +48,10 @@ To: thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
  dri-devel@lists.freedesktop.org, xi.pardee@linux.intel.com
 Cc: david.e.box@linux.intel.com, hansg@kernel.org,
  linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
-Subject: [PATCH 08/22] platform/x86/intel/pmt/crashlog: Split init into
- pre-decode
-Date: Thu, 12 Mar 2026 18:51:47 -0700
-Message-ID: <20260313015202.3660072-9-david.e.box@linux.intel.com>
+Subject: [PATCH 12/22] platform/x86/intel/pmt: Unify header fetch and add ACPI
+ source
+Date: Thu, 12 Mar 2026 18:51:51 -0700
+Message-ID: <20260313015202.3660072-13-david.e.box@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260313015202.3660072-1-david.e.box@linux.intel.com>
 References: <20260313015202.3660072-1-david.e.box@linux.intel.com>
@@ -71,78 +71,186 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Refactor crashlog initialization to use the PMT namespace pre-decode hook:
+Allow the PMT class to read discovery headers from either PCI MMIO or
+ACPI-provided entries, depending on the discovery source. The new
+source-aware fetch helper retrieves the first two QWORDs for both paths
+while keeping the mapped discovery table available for users such as
+crashlog.
 
-  - Add pmt_crashlog_pre_decode() to parse type/version, select the
-    crashlog_info, initialize the control mutex, and set entry->attr_grp.
-  - Simplify pmt_crashlog_header_decode() to only read header fields from
-    the discovery table.
-  - Wire the namespace with .pmt_pre_decode =3D pmt_crashlog_pre_decode.
+Split intel_pmt_populate_entry() into source-specific resolvers:
+  - pmt_resolve_access_pci(): handles both ACCESS_LOCAL and ACCESS_BARID
+    for PCI-backed devices and sets entry->pcidev. Same existing
+    functionality.
+  - pmt_resolve_access_acpi(): handles only ACCESS_BARID for ACPI-backed
+    devices, rejecting ACCESS_LOCAL which has no valid semantics without
+    a physical discovery resource.
 
-This separates structural initialization from header parsing, aligning
-crashlog with the PMT class pre/post decode flow.
+This maintains existing PCI behavior and makes no functional changes
+for PCI devices.
 
 Signed-off-by: David E. Box <david.e.box@linux.intel.com>
 ---
- drivers/platform/x86/intel/pmt/crashlog.c | 19 +++++++++++++------
- 1 file changed, 13 insertions(+), 6 deletions(-)
+ drivers/platform/x86/intel/pmt/class.c | 124 +++++++++++++++++++++++--
+ 1 file changed, 115 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/platform/x86/intel/pmt/crashlog.c b/drivers/platform/x=
-86/intel/pmt/crashlog.c
-index b0393c9c5b4b..f936daf99e4d 100644
---- a/drivers/platform/x86/intel/pmt/crashlog.c
-+++ b/drivers/platform/x86/intel/pmt/crashlog.c
-@@ -496,11 +496,9 @@ static const struct crashlog_info *select_crashlog_inf=
-o(u32 type, u32 version)
- 	return &crashlog_type1_ver2;
- }
+diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/=
+intel/pmt/class.c
+index f94f51178043..ddd9c4bf7323 100644
+--- a/drivers/platform/x86/intel/pmt/class.c
++++ b/drivers/platform/x86/intel/pmt/class.c
+@@ -205,9 +205,9 @@ struct class intel_pmt_class =3D {
+ };
+ EXPORT_SYMBOL_GPL(intel_pmt_class);
 =20
--static int pmt_crashlog_header_decode(struct intel_pmt_entry *entry,
--				      struct device *dev)
-+static int pmt_crashlog_pre_decode(struct intel_vsec_device *ivdev,
-+				   struct intel_pmt_entry *entry)
+-static int intel_pmt_populate_entry(struct intel_pmt_entry *entry,
+-				    struct intel_vsec_device *ivdev,
+-				    int idx)
++static int pmt_resolve_access_pci(struct intel_pmt_entry *entry,
++				  struct intel_vsec_device *ivdev,
++				  int idx)
  {
--	void __iomem *disc_table =3D entry->disc_table;
--	struct intel_pmt_header *header =3D &entry->header;
- 	struct crashlog_entry *crashlog;
- 	u32 version;
- 	u32 type;
-@@ -513,6 +511,16 @@ static int pmt_crashlog_header_decode(struct intel_pmt=
-_entry *entry,
- 	mutex_init(&crashlog->control_mutex);
+ 	struct pci_dev *pci_dev =3D to_pci_dev(ivdev->dev);
+ 	struct device *dev =3D &ivdev->auxdev.dev;
+@@ -287,6 +287,82 @@ static int intel_pmt_populate_entry(struct intel_pmt_e=
+ntry *entry,
+ 	}
 =20
- 	crashlog->info =3D select_crashlog_info(type, version);
-+	entry->attr_grp =3D crashlog->info->attr_grp;
+ 	entry->pcidev =3D pci_dev;
 +
 +	return 0;
 +}
 +
-+static int pmt_crashlog_header_decode(struct intel_pmt_entry *entry,
-+				      struct device *dev)
++static int pmt_resolve_access_acpi(struct intel_pmt_entry *entry,
++				   struct intel_vsec_device *ivdev)
 +{
-+	void __iomem *disc_table =3D entry->disc_table;
++	struct pci_dev *pci_dev =3D NULL;
++	struct device *dev =3D &ivdev->auxdev.dev;
 +	struct intel_pmt_header *header =3D &entry->header;
-=20
- 	header->access_type =3D GET_ACCESS(readl(disc_table));
- 	header->guid =3D readl(disc_table + GUID_OFFSET);
-@@ -521,8 +529,6 @@ static int pmt_crashlog_header_decode(struct intel_pmt_=
-entry *entry,
- 	/* Size is measured in DWORDS, but accessor returns bytes */
- 	header->size =3D GET_SIZE(readl(disc_table + SIZE_OFFSET));
-=20
--	entry->attr_grp =3D crashlog->info->attr_grp;
--
- 	return 0;
++	u8 bir;
++
++	if (dev_is_pci(ivdev->dev))
++		pci_dev =3D to_pci_dev(ivdev->dev);
++
++	/*
++	 * The base offset should always be 8 byte aligned.
++	 *
++	 * For non-local access types the lower 3 bits of base offset
++	 * contains the index of the base address register where the
++	 * telemetry can be found.
++	 */
++	bir =3D GET_BIR(header->base_offset);
++
++	switch (header->access_type) {
++	case ACCESS_BARID:
++		/* ACPI platform drivers use base_addr */
++		if (ivdev->base_addr) {
++			entry->base_addr =3D ivdev->base_addr +
++					   GET_ADDRESS(header->base_offset);
++			break;
++		}
++
++		/* If base_addr is not provided, then this is an ACPI companion device */
++		if (!pci_dev) {
++			dev_err(dev,
++				"ACCESS_BARID requires PCI BAR resources or base_addr\n");
++			return -EINVAL;
++		}
++
++		entry->base_addr =3D pci_resource_start(pci_dev, bir) +
++			GET_ADDRESS(header->base_offset);
++		break;
++	default:
++		dev_err(dev, "Unsupported access type %d for ACPI based PMT\n",
++			header->access_type);
++		return -EINVAL;
++	}
++
++	return 0;
++}
++
++static int intel_pmt_populate_entry(struct intel_pmt_entry *entry,
++				    struct intel_vsec_device *ivdev,
++				    int idx)
++{
++	struct intel_pmt_header *header =3D &entry->header;
++	struct device *dev =3D &ivdev->auxdev.dev;
++	int ret;
++
++	switch (ivdev->src) {
++	case INTEL_VSEC_DISC_PCI:
++		ret =3D pmt_resolve_access_pci(entry, ivdev, idx);
++		break;
++	case INTEL_VSEC_DISC_ACPI:
++		ret =3D pmt_resolve_access_acpi(entry, ivdev);
++		break;
++	default:
++		dev_err(dev, "Unknown discovery source: %d\n", ivdev->src);
++		ret =3D -EINVAL;
++		break;
++	}
++
++	if (ret)
++		return ret;
++
+ 	entry->guid =3D header->guid;
+ 	entry->size =3D header->size;
+ 	entry->cb =3D ivdev->priv_data;
+@@ -371,18 +447,48 @@ static int intel_pmt_dev_register(struct intel_pmt_en=
+try *entry,
+ 	return ret;
  }
 =20
-@@ -530,6 +536,7 @@ static DEFINE_XARRAY_ALLOC(crashlog_array);
- static struct intel_pmt_namespace pmt_crashlog_ns =3D {
- 	.name =3D "crashlog",
- 	.xa =3D &crashlog_array,
-+	.pmt_pre_decode =3D pmt_crashlog_pre_decode,
- 	.pmt_header_decode =3D pmt_crashlog_header_decode,
- };
++static int pmt_get_headers(struct intel_vsec_device *ivdev, int idx,
++			   struct intel_pmt_entry *entry, u64 headers[2])
++{
++	struct device *dev =3D &ivdev->auxdev.dev;
++
++	switch (ivdev->src) {
++	case INTEL_VSEC_DISC_PCI: {
++		void __iomem *disc_table;
++
++		disc_table =3D devm_ioremap_resource(dev, &ivdev->resource[idx]);
++		if (IS_ERR(disc_table))
++			return PTR_ERR(disc_table);
++
++		memcpy_fromio(headers, disc_table, 2 * sizeof(u64));
++
++		/* Used by crashlog driver */
++		entry->disc_table =3D disc_table;
++
++		return 0;
++	}
++	case INTEL_VSEC_DISC_ACPI:
++		memcpy(headers, &ivdev->acpi_disc[idx][0], 2 * sizeof(u64));
++
++		return 0;
++	default:
++		dev_err(dev, "Unknown discovery source type: %d\n", ivdev->src);
++		break;
++	}
++
++	return -EINVAL;
++}
++
+ static int pmt_read_header(struct intel_vsec_device *ivdev, int idx,
+ 			   struct intel_pmt_entry *entry)
+ {
+ 	struct intel_pmt_header *header =3D &entry->header;
+-	struct device *dev =3D &ivdev->auxdev.dev;
+ 	u64 headers[2];
++	int ret;
 =20
+-	entry->disc_table =3D devm_ioremap_resource(dev, &ivdev->resource[idx]);
+-	if (IS_ERR(entry->disc_table))
+-		return PTR_ERR(entry->disc_table);
+-
+-	memcpy_fromio(headers, entry->disc_table, 2 * sizeof(u64));
++	ret =3D pmt_get_headers(ivdev, idx, entry, headers);
++	if (ret)
++		return ret;
+=20
+ 	header->access_type =3D FIELD_GET(PMT_ACCESS_TYPE, headers[0]);
+ 	header->telem_type =3D FIELD_GET(PMT_TELEM_TYPE, headers[0]);
 --=20
 2.43.0
 
