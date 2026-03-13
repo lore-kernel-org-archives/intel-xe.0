@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55399106FD68
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 01:52:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A4A3F106FD69
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 01:52:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C18B10EAD0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8169B10E042;
 	Fri, 13 Mar 2026 01:52:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T6HZytcx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mj/ev/MD";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B740510E042;
- Fri, 13 Mar 2026 01:52:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2EA4610EAC6;
+ Fri, 13 Mar 2026 01:52:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1773366739; x=1804902739;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=oXXOP1gqycimx7oikYmx2NO26Ma/Qa/r2+tpGF/GmCg=;
- b=T6HZytcxzj3mydW2jb8Aaf09ouInMv4rpqE5OPpYlh1cC8ETVlHYMAcO
- jPM5wY4aVfea3Cdw5HZ1Jx/vwh6nODO6tSrj7uNrrVJxFkVhpvr+Hm7Bt
- VzFdLqOxS844LxNUyMv1LiIxw0mpJtuUfNOXMFbP91gtuuoaxzudbzsWZ
- jrkwZVOvTQebJMl/zvDKd5vsfim4VuKi6My6Il53+Lgz+vo8GiBp/QBBa
- sMGLpJKMryw9QkPlMqIskSrk8DaGI5diqGGWZDecc+6bcO/WBbNbsALZ8
- fsx53p6ull9lbIMpP75t9ECoE+0/YItiICoa1CbR+UpKxoHyhtMvLY91z A==;
-X-CSE-ConnectionGUID: PrK6WnP3QbabiAqK0hfJWg==
-X-CSE-MsgGUID: V2TY23v5TU6nsySWtmeunQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74354557"
-X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="74354557"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=HyZPT4xj/h9rsSXpt3bJWZONcExlgM7rs4CWBgwAqIs=;
+ b=Mj/ev/MDg6SRE6wnLD9MbEpo43c3xh2GAIHpp+HKkIrOQZ1l0Sjs2Ob/
+ sMN4h3SgFBW3kIxEr4jZH8eimLYSFhrF7K383NyMmabuR7MDTI+liGlOc
+ nSsTLs8r3h9W8NLhrIc9NyqEQ4lCEKSsICfdjcd4dPsvEDV215SMWMT2I
+ fJ3IgeoV4gEkl90YjWvHxrZNl73xb+ifw5PFZF/AKKjsnLnHfUJ+uFquL
+ fEFa2iL2WxzJIN3Ecpt7loVAiXJgLVlJ1tchQ5Q4IqyzoWab3NfmJELpN
+ ORD/JsDkjfPGI6OA7M+w7zr2lcFA/ZGFkfdzaVV1JkNymzTVod7bgUdZq g==;
+X-CSE-ConnectionGUID: ctht/xVXSTqeOT/FtCuz8Q==
+X-CSE-MsgGUID: iJADxvxAQdCAYu6FvhOfSg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74354531"
+X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="74354531"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Mar 2026 18:52:12 -0700
-X-CSE-ConnectionGUID: tpoATOHLSdKE+DtE+0Uxhg==
-X-CSE-MsgGUID: Wmt5vo9rToi/S8iyG1jyRg==
+X-CSE-ConnectionGUID: o/J1PXZCRxinXe9US6mS9w==
+X-CSE-MsgGUID: DskQomeYR92n3K21XYfdEw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="220108481"
+X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="220108465"
 Received: from debox1-desk4.jf.intel.com ([10.88.27.138])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Mar 2026 18:52:12 -0700
@@ -48,13 +48,11 @@ To: thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
  dri-devel@lists.freedesktop.org, xi.pardee@linux.intel.com
 Cc: david.e.box@linux.intel.com, hansg@kernel.org,
  linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
-Subject: [PATCH 05/22] platform/x86/intel/vsec: Return real error codes from
- registration path
-Date: Thu, 12 Mar 2026 18:51:44 -0700
-Message-ID: <20260313015202.3660072-6-david.e.box@linux.intel.com>
+Subject: [PATCH 00/22] platform/x86/intel: Add ACPI PMT discovery support and
+ enable NVL PMC telemetry
+Date: Thu, 12 Mar 2026 18:51:39 -0700
+Message-ID: <20260313015202.3660072-1-david.e.box@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260313015202.3660072-1-david.e.box@linux.intel.com>
-References: <20260313015202.3660072-1-david.e.box@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
@@ -72,85 +70,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Stop collapsing registration results into booleans. Make
-intel_vsec_walk_header() return int and propagate the first non-zero error
-from intel_vsec_register_device(). intel_vsec_register() now returns that
-error directly and 0 on success.
+This series adds ACPI-based PMT discovery support and wires it into the
+Intel PMC telemetry stack for Nova Lake S.
 
-This preserves success behavior while surfacing meaningful errors instead
-of hiding them behind a bool/-ENODEV, which makes debugging and probe
-ordering issues clearer.
+Today, PMT discovery flow is primarily PCI-oriented. Some platforms expose
+PMT discovery via ACPI _DSD, and PMC telemetry needs to consume that path
+for both standalone and companion-device cases. This series addresses that
+in three logical steps:
 
-Reviewed-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
-Signed-off-by: David E. Box <david.e.box@linux.intel.com>
----
+    1. Prepare intel_vsec for ACPI-backed discovery
+    2. Refactor PMT class handling so discovery source is
+       abstracted (PCI or ACPI)
+    3. Add/enable PMC consumers using ACPI discovery, including NVL
+       SSRAM support
 
-Previous changelog:
-  Changes in v7:
-  - No change
-=20=20
-  Changes in v6:
-  - No change
-=20=20
-  Changes in v5:
-  - No change
-=20=20
-  Changes in v4:
-  - No change
-=20=20
-  Changes in v3:
-  - No change
-=20=20
-  Changes in v2:
-  - No change (previous patch 3)
+Patches 1=E2=80=936 were previously posted here:
+https://lore.kernel.org/all/20260303051953.1453372-1-david.e.box@linux.inte=
+l.com/
 
- drivers/platform/x86/intel/vsec.c | 16 ++++++----------
- 1 file changed, 6 insertions(+), 10 deletions(-)
+Series layout
 
-diff --git a/drivers/platform/x86/intel/vsec.c b/drivers/platform/x86/intel=
-/vsec.c
-index a547e4b98245..34b2c19ecff0 100644
---- a/drivers/platform/x86/intel/vsec.c
-+++ b/drivers/platform/x86/intel/vsec.c
-@@ -461,20 +461,19 @@ static int intel_vsec_register_device(struct device *=
-dev,
- 	return -EAGAIN;
- }
-=20
--static bool intel_vsec_walk_header(struct device *dev,
--				   const struct intel_vsec_platform_info *info)
-+static int intel_vsec_walk_header(struct device *dev,
-+				  const struct intel_vsec_platform_info *info)
- {
- 	struct intel_vsec_header **header =3D info->headers;
--	bool have_devices =3D false;
- 	int ret;
-=20
- 	for ( ; *header; header++) {
- 		ret =3D intel_vsec_register_device(dev, *header, info, info->base_addr);
--		if (!ret)
--			have_devices =3D true;
-+		if (ret)
-+			return ret;
- 	}
-=20
--	return have_devices;
-+	return 0;
- }
-=20
- static bool intel_vsec_walk_dvsec(struct pci_dev *pdev,
-@@ -580,10 +579,7 @@ int intel_vsec_register(struct device *dev,
- 	if (!dev || !info || !info->headers)
- 		return -EINVAL;
-=20
--	if (!intel_vsec_walk_header(dev, info))
--		return -ENODEV;
--	else
--		return 0;
-+	return intel_vsec_walk_header(dev, info);
- }
- EXPORT_SYMBOL_NS_GPL(intel_vsec_register, "INTEL_VSEC");
-=20
+    01-06: intel_vsec cleanup/generalization for ACPI-capable discovery
+           plumbing. Previous changelog up to V7 included.
+           Major patches:
+           Patch 6 - adds ACPI support in VSEC driver
+
+    07-12: PMT class refactor and ACPI discovery-source support
+           Major patches:
+           Patch 12 - adds ACPI support in PMT driver
+
+    13-22: PMC driver integration
+           Major patches:
+           Patch 14 - adds new ACPI platform driver
+           Patch 20 - adds ACPI discovery support in ssram driver
+           Patch 22 - adds NVL IDs for SSRAM discovery
+
+David E. Box (20):
+  platform/x86/intel/vsec: Refactor base_addr handling
+  platform/x86/intel/vsec: Make driver_data info const
+  platform/x86/intel/vsec: Decouple add/link helpers from PCI
+  platform/x86/intel/vsec: Switch exported helpers from pci_dev to
+    device
+  platform/x86/intel/vsec: Return real error codes from registration
+    path
+  platform/x86/intel/vsec: Plumb ACPI PMT discovery tables through vsec
+  platform/x86/intel/pmt: Add pre/post decode hooks around header
+    parsing
+  platform/x86/intel/pmt/crashlog: Split init into pre-decode
+  platform/x86/intel/pmt/telemetry: Move overlap check to post-decode
+    hook
+  platform/x86/intel/pmt: Move header decode into common helper
+  platform/x86/intel/pmt: Pass discovery index instead of resource
+  platform/x86/intel/pmt: Unify header fetch and add ACPI source
+  platform/x86/intel/pmc: Add PMC SSRAM Kconfig description
+  platform/x86/intel/pmc: Add ACPI PWRM telemetry driver for Nova Lake S
+  platform/x86/intel/pmc/ssram: Rename probe and PCI ID table for
+    consistency
+  platform/x86/intel/pmc/ssram: Refactor DEVID/PWRMBASE extraction into
+    helper
+  platform/x86/intel/pmc/ssram: Add PCI platform data
+  platform/x86/intel/pmc/ssram: Add ACPI discovery scaffolding
+  platform/x86/intel/pmc/ssram: Make PMT registration optional
+  platform/x86/intel/pmc: Add NVL PCI IDs for SSRAM telemetry discovery
+
+Xi Pardee (2):
+  platform/x86/intel/pmc/ssram: Use fixed-size static pmc array
+  platform/x86/intel/pmc/ssram: Refactor memory barrier for reentrant
+    probe
+
+ drivers/gpu/drm/xe/xe_debugfs.c               |   2 +-
+ drivers/gpu/drm/xe/xe_hwmon.c                 |   2 +-
+ drivers/gpu/drm/xe/xe_vsec.c                  |   7 +-
+ drivers/gpu/drm/xe/xe_vsec.h                  |   4 +-
+ drivers/platform/x86/intel/pmc/Kconfig        |  25 ++
+ drivers/platform/x86/intel/pmc/Makefile       |   2 +
+ drivers/platform/x86/intel/pmc/core.c         |   4 +-
+ drivers/platform/x86/intel/pmc/core.h         |  17 ++
+ .../platform/x86/intel/pmc/pwrm_telemetry.c   | 227 ++++++++++++++++
+ .../platform/x86/intel/pmc/ssram_telemetry.c  | 254 ++++++++++++++----
+ drivers/platform/x86/intel/pmt/class.c        | 170 ++++++++++--
+ drivers/platform/x86/intel/pmt/class.h        |  25 +-
+ drivers/platform/x86/intel/pmt/crashlog.c     |  16 +-
+ drivers/platform/x86/intel/pmt/discovery.c    |   4 +-
+ drivers/platform/x86/intel/pmt/telemetry.c    |  45 +---
+ drivers/platform/x86/intel/pmt/telemetry.h    |  12 +-
+ drivers/platform/x86/intel/sdsi.c             |   5 +-
+ drivers/platform/x86/intel/vsec.c             | 121 +++++----
+ drivers/platform/x86/intel/vsec_tpmi.c        |   8 +-
+ include/linux/intel_vsec.h                    |  39 ++-
+ 20 files changed, 784 insertions(+), 205 deletions(-)
+ create mode 100644 drivers/platform/x86/intel/pmc/pwrm_telemetry.c
+
+
+base-commit: 11439c4635edd669ae435eec308f4ab8a0804808
 --=20
 2.43.0
 
