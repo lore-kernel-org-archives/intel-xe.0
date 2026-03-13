@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0A69105F78C
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 11:57:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E981105F7A1
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 12:11:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EA9910EBBC;
-	Fri, 13 Mar 2026 11:57:19 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pkx3Daur";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (unknown [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C02A10EBBC
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Mar 2026 11:57:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773403039; x=1804939039;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=LOnaTDGC51VgqbQ1maJ7Rj1bBIfxNyBbFiCTiX4kJkU=;
- b=Pkx3DaurHZynA0gB2tHcQ6GEnq4Jhn14nHsOaVo2b9P5b52KVskD3dzo
- eHWRc872psdVDpuN2GQ2aJ4qTw3XEnx80snGwAeOzF8Yuso9Qi5qLhXSs
- zWOdi/XGmH04j23C25VIqmW8XaE1dz17/X0Cx32xdLg0R+d/YFjaVBaix
- mCzZcopK81ox0orYvMQE9RGHlrzLdRFKaWgXnbeLuuYZAjiLr0TnV6FW4
- MCgXXQbU8x0sWrTFzV2SByTpP8f6dW+RaDWXjkv1oeCKUsc5AyHk3dTzK
- OPDd+UzuhG6d5b5iFU4fvAY8YuamYgV6CJrk6LLLo08thMgOfbAhQAf17 Q==;
-X-CSE-ConnectionGUID: vrMqpdkPQhudpzyIZE6now==
-X-CSE-MsgGUID: R8vZt/rxReGSNiRkPeRRwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="78106891"
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="78106891"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 04:55:31 -0700
-X-CSE-ConnectionGUID: hPfhKbCCQgeKFntlc8En4w==
-X-CSE-MsgGUID: +FaFAoLxT5iJZKLp6UhaFg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="225602127"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.21])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 04:55:29 -0700
-Date: Fri, 13 Mar 2026 13:55:26 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, jouni.hogander@intel.com,
- animesh.manna@intel.com
-Subject: Re: [PATCH 10/19] drm/i915/dp: Use revision field of AS SDP data
- structure
-Message-ID: <abP7Lq--PC69q5ex@intel.com>
-References: <20260311113611.3393194-1-ankit.k.nautiyal@intel.com>
- <20260311113611.3393194-11-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E875F10EBC9;
+	Fri, 13 Mar 2026 12:11:25 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7B9710EBC9;
+ Fri, 13 Mar 2026 12:11:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7010718322127170964=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260311113611.3393194-11-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFULL=3A_success_for_drm/xe/lrc=3A_Fix_uninitia?=
+ =?utf-8?q?lized_new=5Fts_when_capturing_context_timestamp_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 13 Mar 2026 12:11:24 -0000
+Message-ID: <177340388492.355365.7200998839364795874@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260312125308.3126607-2-umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <20260312125308.3126607-2-umesh.nerlige.ramappa@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,79 +36,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Mar 11, 2026 at 05:06:02PM +0530, Ankit Nautiyal wrote:
-> Use the revision field of struct drm_dp_as_sdp instead of current
-> hardcoding for the AS SDP revisions.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
->  drivers/gpu/drm/i915/display/intel_dp.c      | 7 +++----
->  2 files changed, 5 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index b18ce0c36a64..88e1b503d301 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -4900,7 +4900,8 @@ static bool
->  intel_compare_dp_as_sdp(const struct drm_dp_as_sdp *a,
->  			const struct drm_dp_as_sdp *b)
->  {
-> -	return a->vtotal == b->vtotal &&
-> +	return a->revision == b->revision &&
+--===============7010718322127170964==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Someone should add the check for the type and length as well
-(and other relevant stuff in the header if any). But that
-can be a separate patch.
+== Series Details ==
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Series: drm/xe/lrc: Fix uninitialized new_ts when capturing context timestamp (rev2)
+URL   : https://patchwork.freedesktop.org/series/163021/
+State : success
 
-> +		a->vtotal == b->vtotal &&
->  		a->target_rr == b->target_rr &&
->  		a->duration_incr_ms == b->duration_incr_ms &&
->  		a->duration_decr_ms == b->duration_decr_ms &&
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 17af68a1a9e5..0d2403d48528 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -3154,6 +3154,7 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
->  	as_sdp->sdp_type = DP_SDP_ADAPTIVE_SYNC;
->  	as_sdp->length = 0x9;
->  	as_sdp->duration_incr_ms = 0;
-> +	as_sdp->revision = 0x2;
->  	as_sdp->vtotal = intel_vrr_vmin_vtotal(crtc_state);
->  
->  	if (crtc_state->cmrr.enable) {
-> @@ -5117,7 +5118,7 @@ static ssize_t intel_dp_as_sdp_pack(const struct drm_dp_as_sdp *as_sdp,
->  	/* Prepare AS (Adaptive Sync) SDP Header */
->  	sdp->sdp_header.HB0 = 0;
->  	sdp->sdp_header.HB1 = as_sdp->sdp_type;
-> -	sdp->sdp_header.HB2 = 0x02;
-> +	sdp->sdp_header.HB2 = as_sdp->revision;
->  	sdp->sdp_header.HB3 = as_sdp->length;
->  
->  	/* Fill AS (Adaptive Sync) SDP Payload */
-> @@ -5304,13 +5305,11 @@ int intel_dp_as_sdp_unpack(struct drm_dp_as_sdp *as_sdp,
->  	if (sdp->sdp_header.HB1 != DP_SDP_ADAPTIVE_SYNC)
->  		return -EINVAL;
->  
-> -	if (sdp->sdp_header.HB2 != 0x02)
-> -		return -EINVAL;
-> -
->  	if ((sdp->sdp_header.HB3 & 0x3F) != 9)
->  		return -EINVAL;
->  
->  	as_sdp->length = sdp->sdp_header.HB3 & DP_AS_SDP_LENGTH_MASK;
-> +	as_sdp->revision = sdp->sdp_header.HB2;
->  	as_sdp->mode = sdp->db[0] & DP_AS_SDP_OPERATION_MODE_MASK;
->  	as_sdp->vtotal = (sdp->db[2] << 8) | sdp->db[1];
->  	as_sdp->target_rr = ((sdp->db[4] & 0x3) << 8) | sdp->db[3];
-> -- 
-> 2.45.2
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+CI Bug Log - changes from xe-4706-72190ebdd4c0e9a2b454b04ba382beeb6020e047_FULL -> xe-pw-163021v2_FULL
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (2 -> 2)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-163021v2_FULL that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_vrr@seamless-rr-switch-virtual@pipe-a-edp-1:
+    - shard-lnl:          [FAIL][1] ([Intel XE#2142]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4706-72190ebdd4c0e9a2b454b04ba382beeb6020e047/shard-lnl-2/igt@kms_vrr@seamless-rr-switch-virtual@pipe-a-edp-1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163021v2/shard-lnl-6/igt@kms_vrr@seamless-rr-switch-virtual@pipe-a-edp-1.html
+
+  
+  [Intel XE#2142]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2142
+
+
+Build changes
+-------------
+
+  * Linux: xe-4706-72190ebdd4c0e9a2b454b04ba382beeb6020e047 -> xe-pw-163021v2
+
+  IGT_8798: 8798
+  xe-4706-72190ebdd4c0e9a2b454b04ba382beeb6020e047: 72190ebdd4c0e9a2b454b04ba382beeb6020e047
+  xe-pw-163021v2: 163021v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163021v2/index.html
+
+--===============7010718322127170964==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/lrc: Fix uninitialized new_ts when capturing context timestamp (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163021/">https://patchwork.freedesktop.org/series/163021/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163021v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163021v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4706-72190ebdd4c0e9a2b454b04ba382beeb6020e047_FULL -&gt; xe-pw-163021v2_FULL</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (2 -&gt; 2)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-163021v2_FULL that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_vrr@seamless-rr-switch-virtual@pipe-a-edp-1:<ul>
+<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4706-72190ebdd4c0e9a2b454b04ba382beeb6020e047/shard-lnl-2/igt@kms_vrr@seamless-rr-switch-virtual@pipe-a-edp-1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2142">Intel XE#2142</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163021v2/shard-lnl-6/igt@kms_vrr@seamless-rr-switch-virtual@pipe-a-edp-1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4706-72190ebdd4c0e9a2b454b04ba382beeb6020e047 -&gt; xe-pw-163021v2</li>
+</ul>
+<p>IGT_8798: 8798<br />
+  xe-4706-72190ebdd4c0e9a2b454b04ba382beeb6020e047: 72190ebdd4c0e9a2b454b04ba382beeb6020e047<br />
+  xe-pw-163021v2: 163021v2</p>
+
+</body>
+</html>
+
+--===============7010718322127170964==--
