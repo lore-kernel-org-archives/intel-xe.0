@@ -4,58 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADAF5105F7A6
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 14:21:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDBE7105F7AE
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 14:33:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6B36910EC33;
-	Fri, 13 Mar 2026 14:21:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8540010E0B0;
+	Fri, 13 Mar 2026 14:33:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Puklsmdo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m4udBBV3";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 40FA410EC33;
- Fri, 13 Mar 2026 14:21:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 35E2D10E0B0
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Mar 2026 14:33:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773411695; x=1804947695;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=UDRYPDXv274vC7jv2QkW2olNdhEMyA6j5smoM2DFxHU=;
- b=PuklsmdokP3/e6UqqptyshDSrBFY5EjUJra/ScEnzIzspbvNoIfJkfiw
- pX04jaift+nXQRMQaMxnQvZ4odb0RNGnl+zJn0ii3XRdHYfukh2KVT0O0
- DUSD7/867jimFlQvV3U4oNn1Mw9NpqbYYHPQzFSH3d3ljCLtonB+88zZd
- lgc6zOWKeMYkBeE+qJ3uewxZbn4Os0DMxZh+C+qJnEazcFE7n135t8PuX
- TvPkvSFjtZwI/toNG9aAyMVtvvBy62pygVVVhcDwzuePeP9CYcKacYlty
- xZ9Juxdef8l6j7xzDq6o7mcsYD2XpeKiCEGgWIikvNbDIwTOV5dp8B7yl w==;
-X-CSE-ConnectionGUID: n/g+5PcbT8ONPFyar56PDw==
-X-CSE-MsgGUID: P3sDU6sORQ6AV6c6DHVoNA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11728"; a="74218330"
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="74218330"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 07:21:34 -0700
-X-CSE-ConnectionGUID: 4028PaYOSEG8T6ooKqG10g==
-X-CSE-MsgGUID: PPi3cZFUTaiCv5zzw7xReQ==
+ t=1773412391; x=1804948391;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=oAatLhD2E4ibNzadx8UzsB4mu93ScfxRy3DX4DY8xkI=;
+ b=m4udBBV3jClgQ5r7s/1RMDpjLb1KG5teGQmzzlzPrTvbKawvzWwbxqYo
+ RJtx3qza0OBtcXPZsLYAClK5oEu8a1k186cuNVTsLKj7pKdhxcvLmYeXn
+ goIwI++7RBujGqNYllikkRtCb267AiwHTzU4hpJMcs5t1euGDJxnMHTqv
+ EMOvoOq7NnASF4/EMkyuLSSrKelkvPFiUXKe+Zx8RBxKmW8oxJWAkN2VN
+ 0IksGHDhPoEduEpkowQWQSeElj9fHVK2Qsiioxy0Ni99fT69DcTxOV2vi
+ Kxi+fSfqZGukauSxcZqsxLZ9WKtNj5WhOpWQrwtDYYJ8or3oYIXSD8yAS g==;
+X-CSE-ConnectionGUID: fS/XTOLjT7eN6xcZfSrZ2Q==
+X-CSE-MsgGUID: FR3x0qKSQKK02ZJH9r863A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11728"; a="73536509"
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="73536509"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2026 07:33:11 -0700
+X-CSE-ConnectionGUID: 693tVG5WRb6N9kzNgVUYiQ==
+X-CSE-MsgGUID: Vce0r/AOQEy5EFugcygHog==
 X-ExtLoop1: 1
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.193])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 07:21:32 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/3] drm/i915/de: Move intel_de_wait*() into intel_de.c
-In-Reply-To: <20260313111028.25159-3-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260313111028.25159-1-ville.syrjala@linux.intel.com>
- <20260313111028.25159-3-ville.syrjala@linux.intel.com>
-Date: Fri, 13 Mar 2026 16:21:28 +0200
-Message-ID: <5c029eac8bab1466ff942cd71ee9d33bd0370da4@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="216084294"
+Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2026 07:33:07 -0700
+From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
+ rodrigo.vivi@intel.com, aravind.iddamsetty@intel.com,
+ riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
+ michael.j.ruhl@intel.com, paul.e.luse@intel.com,
+ mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
+Subject: [PATCH v10 0/7] drm/xe/xe_sysctrl: Add system controller component
+ for Xe3p dGPU platforms
+Date: Fri, 13 Mar 2026 07:33:03 -0700
+Message-ID: <20260313143303.2441609-9-anoop.c.vijay@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,228 +69,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 13 Mar 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> intel_de_wait*() end up doing quite a bit of stuff, so the one
-> function call overhead from them seems insignificant. Move the
-> implementation intel_de.c.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+This patch series introduces initial support for System Controller
+(sysctrl) component on Intel Xe3p discrete GPU platforms.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_de.c | 72 ++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_de.h | 99 +++++--------------------
->  2 files changed, 92 insertions(+), 79 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_de.c b/drivers/gpu/drm/i9=
-15/display/intel_de.c
-> index 5348c1d51eb8..fce92535bd6a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_de.c
-> +++ b/drivers/gpu/drm/i915/display/intel_de.c
-> @@ -7,6 +7,78 @@
->=20=20
->  #include "intel_de.h"
->=20=20
-> +int intel_de_wait_us(struct intel_display *display, i915_reg_t reg,
-> +		     u32 mask, u32 value, unsigned int timeout_us,
-> +		     u32 *out_value)
-> +{
-> +	int ret;
-> +
-> +	intel_dmc_wl_get(display, reg);
-> +
-> +	ret =3D __intel_wait_for_register(__to_uncore(display), reg, mask,
-> +					value, timeout_us, 0, out_value);
-> +
-> +	intel_dmc_wl_put(display, reg);
-> +
-> +	return ret;
-> +}
-> +
-> +int intel_de_wait_ms(struct intel_display *display, i915_reg_t reg,
-> +		     u32 mask, u32 value, unsigned int timeout_ms,
-> +		     u32 *out_value)
-> +{
-> +	int ret;
-> +
-> +	intel_dmc_wl_get(display, reg);
-> +
-> +	ret =3D __intel_wait_for_register(__to_uncore(display), reg, mask,
-> +					value, 2, timeout_ms, out_value);
-> +
-> +	intel_dmc_wl_put(display, reg);
-> +
-> +	return ret;
-> +}
-> +
-> +int intel_de_wait_fw_ms(struct intel_display *display, i915_reg_t reg,
-> +			u32 mask, u32 value, unsigned int timeout_ms,
-> +			u32 *out_value)
-> +{
-> +	return __intel_wait_for_register_fw(__to_uncore(display), reg, mask,
-> +					    value, 2, timeout_ms, out_value);
-> +}
-> +
-> +int intel_de_wait_fw_us_atomic(struct intel_display *display, i915_reg_t=
- reg,
-> +			       u32 mask, u32 value, unsigned int timeout_us,
-> +			       u32 *out_value)
-> +{
-> +	return __intel_wait_for_register_fw(__to_uncore(display), reg, mask,
-> +					    value, timeout_us, 0, out_value);
-> +}
-> +
-> +int intel_de_wait_for_set_us(struct intel_display *display, i915_reg_t r=
-eg,
-> +			     u32 mask, unsigned int timeout_us)
-> +{
-> +	return intel_de_wait_us(display, reg, mask, mask, timeout_us, NULL);
-> +}
-> +
-> +int intel_de_wait_for_clear_us(struct intel_display *display, i915_reg_t=
- reg,
-> +			       u32 mask, unsigned int timeout_us)
-> +{
-> +	return intel_de_wait_us(display, reg, mask, 0, timeout_us, NULL);
-> +}
-> +
-> +int intel_de_wait_for_set_ms(struct intel_display *display, i915_reg_t r=
-eg,
-> +			     u32 mask, unsigned int timeout_ms)
-> +{
-> +	return intel_de_wait_ms(display, reg, mask, mask, timeout_ms, NULL);
-> +}
-> +
-> +int intel_de_wait_for_clear_ms(struct intel_display *display, i915_reg_t=
- reg,
-> +			       u32 mask, unsigned int timeout_ms)
-> +{
-> +	return intel_de_wait_ms(display, reg, mask, 0, timeout_ms, NULL);
-> +}
-> +
->  u8 intel_de_read8(struct intel_display *display, i915_reg_t reg)
->  {
->  	/* this is only used on VGA registers (possible on pre-g4x) */
-> diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i9=
-15/display/intel_de.h
-> index 8ca5904ba84e..f87b84ab9d6d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_de.h
-> +++ b/drivers/gpu/drm/i915/display/intel_de.h
-> @@ -86,85 +86,26 @@ intel_de_rmw(struct intel_display *display, i915_reg_=
-t reg, u32 clear, u32 set)
->  	return val;
->  }
->=20=20
-> -static inline int
-> -intel_de_wait_us(struct intel_display *display, i915_reg_t reg,
-> -		 u32 mask, u32 value, unsigned int timeout_us,
-> -		 u32 *out_value)
-> -{
-> -	int ret;
-> -
-> -	intel_dmc_wl_get(display, reg);
-> -
-> -	ret =3D __intel_wait_for_register(__to_uncore(display), reg, mask,
-> -					value, timeout_us, 0, out_value);
-> -
-> -	intel_dmc_wl_put(display, reg);
-> -
-> -	return ret;
-> -}
-> -
-> -static inline int
-> -intel_de_wait_ms(struct intel_display *display, i915_reg_t reg,
-> -		 u32 mask, u32 value, unsigned int timeout_ms,
-> -		 u32 *out_value)
-> -{
-> -	int ret;
-> -
-> -	intel_dmc_wl_get(display, reg);
-> -
-> -	ret =3D __intel_wait_for_register(__to_uncore(display), reg, mask,
-> -					value, 2, timeout_ms, out_value);
-> -
-> -	intel_dmc_wl_put(display, reg);
-> -
-> -	return ret;
-> -}
-> -
-> -static inline int
-> -intel_de_wait_fw_ms(struct intel_display *display, i915_reg_t reg,
-> -		    u32 mask, u32 value, unsigned int timeout_ms,
-> -		    u32 *out_value)
-> -{
-> -	return __intel_wait_for_register_fw(__to_uncore(display), reg, mask,
-> -					    value, 2, timeout_ms, out_value);
-> -}
-> -
-> -static inline int
-> -intel_de_wait_fw_us_atomic(struct intel_display *display, i915_reg_t reg,
-> -			   u32 mask, u32 value, unsigned int timeout_us,
-> -			   u32 *out_value)
-> -{
-> -	return __intel_wait_for_register_fw(__to_uncore(display), reg, mask,
-> -					    value, timeout_us, 0, out_value);
-> -}
-> -
-> -static inline int
-> -intel_de_wait_for_set_us(struct intel_display *display, i915_reg_t reg,
-> -			 u32 mask, unsigned int timeout_us)
-> -{
-> -	return intel_de_wait_us(display, reg, mask, mask, timeout_us, NULL);
-> -}
-> -
-> -static inline int
-> -intel_de_wait_for_clear_us(struct intel_display *display, i915_reg_t reg,
-> -			   u32 mask, unsigned int timeout_us)
-> -{
-> -	return intel_de_wait_us(display, reg, mask, 0, timeout_us, NULL);
-> -}
-> -
-> -static inline int
-> -intel_de_wait_for_set_ms(struct intel_display *display, i915_reg_t reg,
-> -			 u32 mask, unsigned int timeout_ms)
-> -{
-> -	return intel_de_wait_ms(display, reg, mask, mask, timeout_ms, NULL);
-> -}
-> -
-> -static inline int
-> -intel_de_wait_for_clear_ms(struct intel_display *display, i915_reg_t reg,
-> -			   u32 mask, unsigned int timeout_ms)
-> -{
-> -	return intel_de_wait_ms(display, reg, mask, 0, timeout_ms, NULL);
-> -}
-> +int intel_de_wait_us(struct intel_display *display, i915_reg_t reg,
-> +		     u32 mask, u32 value, unsigned int timeout_us,
-> +		     u32 *out_value);
-> +int intel_de_wait_ms(struct intel_display *display, i915_reg_t reg,
-> +		     u32 mask, u32 value, unsigned int timeout_ms,
-> +		     u32 *out_value);
-> +int intel_de_wait_fw_ms(struct intel_display *display, i915_reg_t reg,
-> +			u32 mask, u32 value, unsigned int timeout_ms,
-> +			u32 *out_value);
-> +int intel_de_wait_fw_us_atomic(struct intel_display *display, i915_reg_t=
- reg,
-> +			       u32 mask, u32 value, unsigned int timeout_us,
-> +			       u32 *out_value);
-> +int intel_de_wait_for_set_us(struct intel_display *display, i915_reg_t r=
-eg,
-> +			     u32 mask, unsigned int timeout_us);
-> +int intel_de_wait_for_clear_us(struct intel_display *display, i915_reg_t=
- reg,
-> +			       u32 mask, unsigned int timeout_us);
-> +int intel_de_wait_for_set_ms(struct intel_display *display, i915_reg_t r=
-eg,
-> +			     u32 mask, unsigned int timeout_ms);
-> +int intel_de_wait_for_clear_ms(struct intel_display *display, i915_reg_t=
- reg,
-> +			       u32 mask, unsigned int timeout_ms);
->=20=20
->  /*
->   * Unlocked mmio-accessors, think carefully before using these.
+System Controller is a firmware-managed entity responsible for selected
+platform-level management functions delegated by driver. Interaction
+with System Controller is performed via a mailbox interface.
 
---=20
-Jani Nikula, Intel
+This series adds foundational infrastructure required to detect and
+initialize System Controller interface and to exchange commands and
+responses with firmware, including support for fragmented message
+transfers for larger payloads.
+
+This establishes base for subsequent System Controller feature
+enablement and firmware command handling.
+
+Follow-up series covering sysctrl usage are available at:
+https://patchwork.freedesktop.org/series/160482/
+https://patchwork.freedesktop.org/series/160184/
+https://patchwork.freedesktop.org/series/161655/
+---
+v2: (Umesh)
+- Fix commit message to 75 chars per line
+- Address CI.Hooks and checkpatch warnings
+- Add sc_to_xe() helper for cleaner conversions
+- Alphabetical order for headers
+- Simplify write/read frame logic using memcpy
+- Drop redundant frame length checks
+- Use xe_mmio_rmw32() for register updates
+- Align FIELD_PREP macros
+- Improve error handling and timeout messages
+- Handle phase_bit revert on write-frame failure
+- Update rdata_len on partial receive before return
+- Remove unnecessary headers
+
+v3: (Matt, Riana, Umesh)
+- Split patch into logical series
+- Rename SC_* macros to SYSCTRL_* for consistency
+- Move MKHI_* defines to .c file
+- Pass xe directly to helpers
+- Place devm_add_action_or_reset() after set_sysctrl_region()
+- Add kernel-doc for xe_sysctrl_mailbox_init()
+- Add short documentation for System Controller in xe_sysctrl.c
+- Avoid hardcoded sizes
+- Move structs to _types.h
+
+v4: (Matt, Mike)
+- Code style improvements
+- Add domain-specific MMIO accessor
+- Change phase_bit to bool type
+- Add input validation and buffer overflow protection
+
+v5: (Umesh, Riana)
+- Reset phase bit to 0 on error conditions
+- Refactor mailbox receive path
+- Updated xe_err messages for consistency
+
+v6: (Matt)
+- Move protocol constants from xe_sysctrl_regs.h to xe_sysctrl_mailbox_types.h
+- Add SYSCTRL_MB_CTRL_MKHI_CMD helper macro
+
+v7:
+- Fix for CI failure
+
+v8: (Matt, Michal, Shuicheng)
+- Reordered patches for logical flow
+- Moved ABI definitions to dedicated header
+- Static functions renamed with short prefix
+- Fixed include order
+- Added VF check
+- Converted runtime checks to assertions
+- Changed xe_sysctrl_send_command() function parameter from 'xe' to 'sc'
+- Added frame length validation and command overflow protection
+- Use REG_FIELD_PREP for hardware registers
+- Changed error format to %pe
+- Removed unnecessary NULL checks and explicit zeros
+- Fixed kernel-doc syntax
+- Added sc_to_xe() helper
+
+v9: (Matt, Umesh, Badal)
+- Extended commit message to explain System Controller and purpose of
+  `has_sysctrl` flag
+- Normalized hexadecimal literal casing
+- Renamed MKHI to SCHI (System Controller Host Interface)
+- Fixed kernel-doc syntax
+
+v10: (Riana, Badal, Anshuman, Umesh)
+- Removed SCHI terminology and aligned to sysctrl mailbox naming
+- Cleaned up commit message
+- Updated sysctrl documentation
+- Fixed mutex lifetime management
+- Added System Controller ABI kernel-doc
+- Converted xe_sysctrl_app_msg_hdr data field to u32
+- Fixed macro alignment
+- Added sysctrl suspend/resume handling
+- Dropped redundant header includes and unused variable initialization
+- Updated runtime PM guarding in xe_sysctrl_send_command() to use
+  guard(xe_pm_runtime_noresume)
+---
+Anoop Vijay (7):
+  drm/xe/xe_sysctrl: Add System Controller types and device integration
+  drm/xe/xe_sysctrl: Add System Controller mailbox register definitions
+  drm/xe/xe_sysctrl: Add ABI and mailbox interface headers
+  drm/xe/xe_sysctrl: Add System Controller initialization support
+  drm/xe/xe_sysctrl: Add System Controller mailbox communication support
+  drm/xe/xe_sysctrl: Add System Controller power management support
+  drm/xe/xe_pci: Enable System Controller support on CRI platform
+
+ drivers/gpu/drm/xe/Makefile                   |   2 +
+ drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h       |  48 +++
+ drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h     |  36 ++
+ drivers/gpu/drm/xe/xe_device.c                |   5 +
+ drivers/gpu/drm/xe/xe_device_types.h          |   6 +
+ drivers/gpu/drm/xe/xe_pci.c                   |   2 +
+ drivers/gpu/drm/xe/xe_pci_types.h             |   1 +
+ drivers/gpu/drm/xe/xe_pm.c                    |  11 +
+ drivers/gpu/drm/xe/xe_sysctrl.c               | 124 ++++++
+ drivers/gpu/drm/xe/xe_sysctrl.h               |  23 ++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.c       | 369 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.h       |  31 ++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h |  36 ++
+ drivers/gpu/drm/xe/xe_sysctrl_types.h         |  32 ++
+ 14 files changed, 726 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
+ create mode 100644 drivers/gpu/drm/xe/regs/xe_sysctrl_regs.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_types.h
+
+-- 
+2.43.0
+
