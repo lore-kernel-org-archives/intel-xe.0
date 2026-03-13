@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C85DF106FD68
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 01:52:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55F90106FD60
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 01:52:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F5AD10EAC9;
-	Fri, 13 Mar 2026 01:52:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C62A10EAD1;
+	Fri, 13 Mar 2026 01:52:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FQjJ/gRW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bzbu2zLA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E03AC10E441;
- Fri, 13 Mar 2026 01:52:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AA8310E441;
+ Fri, 13 Mar 2026 01:52:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1773366739; x=1804902739;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zekN0HwiIvxOapPmkqVTiox/ehyWXXQRcyg8Gec4a1I=;
- b=FQjJ/gRWm7wQ/1gffEY0JQCdZHoP9tnA8DYoU8IPCGSaf90a9BBbAWOY
- 2gASn9JCbMSPWcLPZyftqRboGVYyM7skHi5S/q5hQbWC5fGw3b/fWGPZr
- +xytqxrLTSrf6E6qHH2hzQO9HH3AZapQdh4j0Ltmu2DckLTJni6lUXtlw
- 0QsdwLI6xCsAr/k0tj7wRQ88vL0via51wXNDhpfdouol/nydZHbFxsWtb
- UXry9F8/uE+HVImT3DQadYj2Rx325FLtUXAdGQKTwx/WtBktXpEdGhmC1
- 9nBkGcdxiVBbZJxolmK1MkoMn5aa1CJ1PHP86HZ0FpyFoKWy6tgbBwFep g==;
-X-CSE-ConnectionGUID: ZDe8BWokQCGusRw7Y4ajtw==
-X-CSE-MsgGUID: nnmCXdCaQL2JnKJfXe1+lQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74354559"
-X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="74354559"
+ bh=ZabcyUbRxdBA5HUViTeJoUjAM565/XUWPbCRb8PlGHk=;
+ b=Bzbu2zLAITEhvG6FolFtXSxUs16iHBiutcO82TH3fKsKWvegwMlzyxst
+ i2/aKlppMib9rrOwc1ZjEc3IQbsO/mQF4LnxxR3dcrUXI/mQX7qMdIFmk
+ OB1xPYox6Qh2z0qN9nPA+R8rzh9XmSuu5JtAFRW+fXkungJmx1EoyzZ71
+ stepa38OyJkGgavJAojaMIl6Wrs5OCLFV+f2Icv3t6+I5YFg9KGwKbxvX
+ XP6xP6wrvX75LSLIhL9YXmLNyTJkx31y7FoHi91b3IhsadB61u8BUTzn9
+ RqHAVgeAxkB/2lS4BrlFhuWHtvcvs0GDRbb5eWO5X9dD8vsbXE/3gWCAf A==;
+X-CSE-ConnectionGUID: XR8geJz+Rti5lNnYkqkVgQ==
+X-CSE-MsgGUID: 8H0QbU8ET+C8Ltf8BIYeWw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74354566"
+X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="74354566"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Mar 2026 18:52:12 -0700
-X-CSE-ConnectionGUID: v1qVw0lJShCSNA3+7Yw+sw==
-X-CSE-MsgGUID: vz6Bbs3SQamaPWZKx9TVbg==
+X-CSE-ConnectionGUID: 7S9QgKuTTeW8NEXwnwyRcQ==
+X-CSE-MsgGUID: gYWkRIIqRY2idnw7jytamQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="220108484"
+X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="220108487"
 Received: from debox1-desk4.jf.intel.com ([10.88.27.138])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Mar 2026 18:52:12 -0700
@@ -48,10 +48,10 @@ To: thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
  dri-devel@lists.freedesktop.org, xi.pardee@linux.intel.com
 Cc: david.e.box@linux.intel.com, hansg@kernel.org,
  linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
-Subject: [PATCH 06/22] platform/x86/intel/vsec: Plumb ACPI PMT discovery
- tables through vsec
-Date: Thu, 12 Mar 2026 18:51:45 -0700
-Message-ID: <20260313015202.3660072-7-david.e.box@linux.intel.com>
+Subject: [PATCH 07/22] platform/x86/intel/pmt: Add pre/post decode hooks
+ around header parsing
+Date: Thu, 12 Mar 2026 18:51:46 -0700
+Message-ID: <20260313015202.3660072-8-david.e.box@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260313015202.3660072-1-david.e.box@linux.intel.com>
 References: <20260313015202.3660072-1-david.e.box@linux.intel.com>
@@ -72,173 +72,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some platforms expose PMT discovery via ACPI instead of PCI BARs. Add a
-generic discovery source flag and carry ACPI discovery entries alongside
-the existing PCI resource path so PMT clients can consume either.
+Add optional pre- and post-decode callbacks to the PMT class so namespaces
+can perform setup and cleanup steps around header parsing.
 
-Changes:
-  - Add enum intel_vsec_disc_source { _PCI, _ACPI }.
-  - Extend intel_vsec_platform_info and intel_vsec_device with source enum
-    and ACPI discovery table pointer/
-  - When src=3D=3DACPI, skip BAR resource setup and copy the ACPI discovery
-    entries into the aux device.
+  - Add pmt_pre_decode() and pmt_post_decode() to struct
+    intel_pmt_namespace.
+  - Update intel_pmt_dev_create() to invoke, in order:
+      pre =E2=86=92 header_decode() =E2=86=92 post.
+  - Keep the existing pmt_header_decode() callback unchanged.
 
-No user-visible behavior change yet; this only wires ACPI data through vsec
-in preparation for ACPI-enumerated PMT clients.
+No functional changes. This adds flexibility for upcoming decoders while
+preserving current behavior.
 
 Signed-off-by: David E. Box <david.e.box@linux.intel.com>
 ---
+ drivers/platform/x86/intel/pmt/class.c | 12 ++++++++++++
+ drivers/platform/x86/intel/pmt/class.h |  4 ++++
+ 2 files changed, 16 insertions(+)
 
-Previous changelog:
-  Changes in v7:
-  - No change
-
-  Changes in v6:
-  - Fix checkpatch parens alignment warning
-=20=20
-  Changes in v5:
-  - No change
-=20=20=20=20
-  Changes in v4:
-  - Use check_mul_overflow() instead of array_size() which was
-    incorrectly checking for 0 anyway.
-=20=20
-  Changes in v3:
-  - Re-send with all changes intended for v2 which was sent without them
-    being applied.
-=20=20
-  Changes in v2:
-  - Improve comment to clarify BAR resource setup doesn't apply to ACPI
-    discovery
-  - Add missing #include for kmemdup()
-  - Use array_size() for overflow protection
-    (review comments by Ilpo J=C3=A4rvinen)
-
- drivers/platform/x86/intel/vsec.c | 23 +++++++++++++++++++++++
- include/linux/intel_vsec.h        | 20 +++++++++++++++++++-
- 2 files changed, 42 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/platform/x86/intel/vsec.c b/drivers/platform/x86/intel=
-/vsec.c
-index 34b2c19ecff0..7d5dbc1c1d05 100644
---- a/drivers/platform/x86/intel/vsec.c
-+++ b/drivers/platform/x86/intel/vsec.c
-@@ -24,7 +24,9 @@
- #include <linux/intel_vsec.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
-+#include <linux/overflow.h>
- #include <linux/pci.h>
-+#include <linux/string.h>
- #include <linux/types.h>
+diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/=
+intel/pmt/class.c
+index b4c9964df807..9b315334a69b 100644
+--- a/drivers/platform/x86/intel/pmt/class.c
++++ b/drivers/platform/x86/intel/pmt/class.c
+@@ -381,10 +381,22 @@ int intel_pmt_dev_create(struct intel_pmt_entry *entr=
+y, struct intel_pmt_namespa
+ 	if (IS_ERR(entry->disc_table))
+ 		return PTR_ERR(entry->disc_table);
 =20
- #define PMT_XA_START			0
-@@ -109,6 +111,7 @@ static void intel_vsec_dev_release(struct device *dev)
-=20
- 	ida_free(intel_vsec_dev->ida, intel_vsec_dev->auxdev.id);
-=20
-+	kfree(intel_vsec_dev->acpi_disc);
- 	kfree(intel_vsec_dev->resource);
- 	kfree(intel_vsec_dev);
- }
-@@ -320,6 +323,13 @@ static int intel_vsec_add_dev(struct device *dev, stru=
-ct intel_vsec_header *head
- 	 * auxiliary device driver.
- 	 */
- 	for (i =3D 0, tmp =3D res; i < header->num_entries; i++, tmp++) {
-+		/*
-+		 * Skip resource mapping check for ACPI-based discovery
-+		 * since those tables are read from _DSD, not MMIO.
-+		 */
-+		if (info->src =3D=3D INTEL_VSEC_DISC_ACPI)
-+			break;
-+
- 		tmp->start =3D base_addr + header->offset + i * (header->entry_size * si=
-zeof(u32));
- 		tmp->end =3D tmp->start + (header->entry_size * sizeof(u32)) - 1;
- 		tmp->flags =3D IORESOURCE_MEM;
-@@ -338,6 +348,19 @@ static int intel_vsec_add_dev(struct device *dev, stru=
-ct intel_vsec_header *head
- 	intel_vsec_dev->base_addr =3D info->base_addr;
- 	intel_vsec_dev->priv_data =3D info->priv_data;
- 	intel_vsec_dev->cap_id =3D cap_id;
-+	intel_vsec_dev->src =3D info->src;
-+
-+	if (info->src =3D=3D INTEL_VSEC_DISC_ACPI) {
-+		size_t bytes;
-+
-+		if (check_mul_overflow(intel_vsec_dev->num_resources,
-+				       sizeof(*info->acpi_disc), &bytes))
-+			return -EOVERFLOW;
-+
-+		intel_vsec_dev->acpi_disc =3D kmemdup(info->acpi_disc, bytes, GFP_KERNEL=
-);
-+		if (!intel_vsec_dev->acpi_disc)
-+			return -ENOMEM;
++	if (ns->pmt_pre_decode) {
++		ret =3D ns->pmt_pre_decode(intel_vsec_dev, entry);
++		if (ret)
++			return ret;
 +	}
-=20
- 	if (header->id =3D=3D VSEC_ID_SDSI)
- 		intel_vsec_dev->ida =3D &intel_vsec_sdsi_ida;
-diff --git a/include/linux/intel_vsec.h b/include/linux/intel_vsec.h
-index 4eecb2a6bac4..1fe5665a9d02 100644
---- a/include/linux/intel_vsec.h
-+++ b/include/linux/intel_vsec.h
-@@ -33,6 +33,11 @@ struct device;
- struct pci_dev;
- struct resource;
-=20
-+enum intel_vsec_disc_source {
-+	INTEL_VSEC_DISC_PCI,	/* PCI, default */
-+	INTEL_VSEC_DISC_ACPI,	/* ACPI */
-+};
 +
- enum intel_vsec_id {
- 	VSEC_ID_TELEMETRY	=3D 2,
- 	VSEC_ID_WATCHER		=3D 3,
-@@ -103,6 +108,10 @@ struct vsec_feature_dependency {
-  * @parent:    parent device in the auxbus chain
-  * @headers:   list of headers to define the PMT client devices to create
-  * @deps:      array of feature dependencies
-+ * @acpi_disc: ACPI discovery tables, each entry is two QWORDs
-+ *             in little-endian format as defined by the PMT ACPI spec.
-+ *             Valid only when @provider =3D=3D INTEL_VSEC_DISC_ACPI.
-+ * @src:       source of discovery table data
-  * @priv_data: private data, usable by parent devices, currently a callback
-  * @caps:      bitmask of PMT capabilities for the given headers
-  * @quirks:    bitmask of VSEC device quirks
-@@ -113,6 +122,8 @@ struct intel_vsec_platform_info {
- 	struct device *parent;
- 	struct intel_vsec_header **headers;
- 	const struct vsec_feature_dependency *deps;
-+	u32 (*acpi_disc)[4];
-+	enum intel_vsec_disc_source src;
- 	void *priv_data;
- 	unsigned long caps;
- 	unsigned long quirks;
-@@ -124,7 +135,12 @@ struct intel_vsec_platform_info {
-  * struct intel_vsec_device - Auxbus specific device information
-  * @auxdev:        auxbus device struct for auxbus access
-  * @dev:           struct device associated with the device
-- * @resource:      any resources shared by the parent
-+ * @resource:      PCI discovery resources (BAR windows), one per discovery
-+ *                 instance. Valid only when @src =3D=3D INTEL_VSEC_DISC_P=
-CI
-+ * @acpi_disc:     ACPI discovery tables, each entry is two QWORDs
-+ *                 in little-endian format as defined by the PMT ACPI spec.
-+ *                 Valid only when @src =3D=3D INTEL_VSEC_DISC_ACPI.
-+ * @src:           source of discovery table data
-  * @ida:           id reference
-  * @num_resources: number of resources
-  * @id:            xarray id
-@@ -138,6 +154,8 @@ struct intel_vsec_device {
- 	struct auxiliary_device auxdev;
- 	struct device *dev;
- 	struct resource *resource;
-+	u32 (*acpi_disc)[4];
-+	enum intel_vsec_disc_source src;
- 	struct ida *ida;
- 	int num_resources;
- 	int id; /* xa */
+ 	ret =3D ns->pmt_header_decode(entry, dev);
+ 	if (ret)
+ 		return ret;
+=20
++	if (ns->pmt_post_decode) {
++		ret =3D ns->pmt_post_decode(intel_vsec_dev, entry);
++		if (ret)
++			return ret;
++	}
++
+ 	ret =3D intel_pmt_populate_entry(entry, intel_vsec_dev, disc_res);
+ 	if (ret)
+ 		return ret;
+diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/=
+intel/pmt/class.h
+index 1ae56a5baad2..ff39014b208c 100644
+--- a/drivers/platform/x86/intel/pmt/class.h
++++ b/drivers/platform/x86/intel/pmt/class.h
+@@ -62,6 +62,10 @@ struct intel_pmt_namespace {
+ 	struct xarray *xa;
+ 	int (*pmt_header_decode)(struct intel_pmt_entry *entry,
+ 				 struct device *dev);
++	int (*pmt_pre_decode)(struct intel_vsec_device *ivdev,
++			      struct intel_pmt_entry *entry);
++	int (*pmt_post_decode)(struct intel_vsec_device *ivdev,
++			       struct intel_pmt_entry *entry);
+ 	int (*pmt_add_endpoint)(struct intel_vsec_device *ivdev,
+ 				struct intel_pmt_entry *entry);
+ };
 --=20
 2.43.0
 
