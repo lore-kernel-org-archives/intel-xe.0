@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C19EA106FD69
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 01:52:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7DC2106FD74
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 01:52:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DDC410EAEE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DC4910EAED;
 	Fri, 13 Mar 2026 01:52:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W1+q/hw1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ceg0vL2c";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E27ED10EAD0;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1E4E10EAD9;
  Fri, 13 Mar 2026 01:52:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1773366740; x=1804902740;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=B8JS8RQBRrQVr1GSRI9Lf2J0JExHYR/5c0SOq7MzXKg=;
- b=W1+q/hw18pW4+2GejPmUh2Yg2DANks+/VED5720ec3zGc+J21r1tvdzH
- pWHhV23CA1TvMET/Y+BjZLVCtIWh1bBxuKCE0IZOBR5h5Ny+PjZAViY8r
- gTM34zkPYssYURWLQXa+FP2NjE6lFNBLrAVYUnMgEqtG81mFK9GpW5Q8a
- WmcMI4J6tcLoQH0n4c+icCr/es8gir590Ty6isF1ZP1wQndntNZ6myfPG
- NTes3omJdWVSamXjFq4p6uS3G1jQEirA7WREBQLApQDTM9/v7mGe30Szl
- s16Y8QZQnWpAB6uk9Ha0V/FNryuCMT4LKlVGYTEtgVm5TgXKghI6qXewN w==;
-X-CSE-ConnectionGUID: +ZPXQoppTVSFPipQAYtUrA==
-X-CSE-MsgGUID: qTwq4AbOTCC1sNYugVB9mw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74354620"
-X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="74354620"
+ bh=6yTczkteylqprnj41QSezWSHNioivAQCJgt2Jt7cECE=;
+ b=Ceg0vL2clLu1nM0+WiR2do7U1J/OUjoBnx6viW7Eac//4d7KstesZNiv
+ kvkm614rEKwez32SpHinO11nCi7IVBwVqBJQUIEX4VnIzkLbJO5t7ndSy
+ QLQ9jdiH3KgyoOBpOjDRQUfUmRniLigVMB0fbEXGvEeid+mLORpV/JeHR
+ qF/rIjqSXUa4hknNbexszebyLNdjj/oDvuVX9W6clTjfG6BxdqYOxaw33
+ tODj9jlMM9tPbzF8uxXXQMh4HSMvsXnr8/BzsFY2TTXH0ATj59BS7amD1
+ ux4k0CW8UmuVRrSUZtieKkM39ZvleqKQ4leNIjsoLcV1K+jr+RkmV4MiU w==;
+X-CSE-ConnectionGUID: BF5UpSHJTQ6m7xGqZ9yKzA==
+X-CSE-MsgGUID: 8GHGV69NQCaWgxDbNeqUXA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74354614"
+X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="74354614"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Mar 2026 18:52:12 -0700
-X-CSE-ConnectionGUID: Bfxnia9TQTyslxJwaFfbTA==
-X-CSE-MsgGUID: OChU2o0pQYuVC2HLS/q5lg==
+X-CSE-ConnectionGUID: AFUyW11BRWGG5phaJhJ5fQ==
+X-CSE-MsgGUID: Da0EU9saSaCIbxGUktYzFg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="220108530"
+X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="220108521"
 Received: from debox1-desk4.jf.intel.com ([10.88.27.138])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Mar 2026 18:52:13 -0700
@@ -48,10 +48,9 @@ To: thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
  dri-devel@lists.freedesktop.org, xi.pardee@linux.intel.com
 Cc: david.e.box@linux.intel.com, hansg@kernel.org,
  linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
-Subject: [PATCH 21/22] platform/x86/intel/pmc/ssram: Make PMT registration
- optional
-Date: Thu, 12 Mar 2026 18:52:00 -0700
-Message-ID: <20260313015202.3660072-22-david.e.box@linux.intel.com>
+Subject: [PATCH 18/22] platform/x86/intel/pmc/ssram: Add PCI platform data
+Date: Thu, 12 Mar 2026 18:51:57 -0700
+Message-ID: <20260313015202.3660072-19-david.e.box@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260313015202.3660072-1-david.e.box@linux.intel.com>
 References: <20260313015202.3660072-1-david.e.box@linux.intel.com>
@@ -71,65 +70,145 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The SSRAM telemetry driver extracts essential PMC device ID and power
-management base address information that intel_pmc_core depends on for core
-functionality. PMT registration failure should not prevent this critical
-data from being available, as it would break intel_pmc_core operation
-entirely.
+Add per-device platform data for SSRAM telemetry PCI IDs and route probe
+through a method selector driven by id->driver_data.
 
-Change the behavior to log a warning when PMT registration fails but
-continue with successful driver initialization, ensuring the primary
-telemetry data remains accessible to dependent drivers.
+This is a preparatory refactor for follow-on discovery methods while
+preserving current behavior: all supported IDs continue to use the PCI
+initialization path.
 
 Signed-off-by: David E. Box <david.e.box@linux.intel.com>
 ---
- drivers/platform/x86/intel/pmc/ssram_telemetry.c | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+ .../platform/x86/intel/pmc/ssram_telemetry.c  | 69 +++++++++++++++----
+ 1 file changed, 55 insertions(+), 14 deletions(-)
 
 diff --git a/drivers/platform/x86/intel/pmc/ssram_telemetry.c b/drivers/pla=
 tform/x86/intel/pmc/ssram_telemetry.c
-index b937ebb2322f..12b7c1299c2f 100644
+index 75a80a74a069..7db98037c521 100644
 --- a/drivers/platform/x86/intel/pmc/ssram_telemetry.c
 +++ b/drivers/platform/x86/intel/pmc/ssram_telemetry.c
-@@ -106,6 +106,7 @@ pmc_ssram_telemetry_get_pmc_pci(struct pci_dev *pcidev,=
- unsigned int pmc_idx, u3
- 	void __iomem __free(pmc_ssram_telemetry_iounmap) *tmp_ssram =3D NULL;
- 	void __iomem __free(pmc_ssram_telemetry_iounmap) *ssram =3D NULL;
- 	u64 ssram_base;
-+	int ret;
+@@ -24,6 +24,18 @@
 =20
- 	ssram_base =3D pci_resource_start(pcidev, 0);
- 	tmp_ssram =3D ioremap(ssram_base, SSRAM_HDR_SIZE);
-@@ -133,7 +134,11 @@ pmc_ssram_telemetry_get_pmc_pci(struct pci_dev *pcidev=
-, unsigned int pmc_idx, u3
- 	pmc_ssram_get_devid_pwrmbase(ssram, pmc_idx);
+ DEFINE_FREE(pmc_ssram_telemetry_iounmap, void __iomem *, if (_T) iounmap(_=
+T))
 =20
- 	/* Find and register and PMC telemetry entries */
--	return pmc_ssram_telemetry_add_pmt(pcidev, ssram_base, ssram);
-+	ret =3D pmc_ssram_telemetry_add_pmt(pcidev, ssram_base, ssram);
-+	if (ret)
-+		dev_warn(&pcidev->dev, "could not register PMT\n");
++enum resource_method {
++	RES_METHOD_PCI,
++};
 +
-+	return 0;
++struct ssram_type {
++	enum resource_method method;
++};
++
++static const struct ssram_type pci_main =3D {
++	.method =3D RES_METHOD_PCI,
++};
++
+ static struct pmc_ssram_telemetry pmc_ssram_telems[3];
+ static bool device_probed;
+=20
+@@ -81,7 +93,7 @@ pmc_ssram_telemetry_add_pmt(struct pci_dev *pcidev, u64 s=
+sram_base, void __iomem
  }
 =20
- static int pmc_ssram_telemetry_pci_init(struct pci_dev *pcidev)
-@@ -208,12 +213,12 @@ static int pmc_ssram_telemetry_acpi_init(struct pci_d=
-ev *pcidev,
+ static int
+-pmc_ssram_telemetry_get_pmc(struct pci_dev *pcidev, unsigned int pmc_idx, =
+u32 offset)
++pmc_ssram_telemetry_get_pmc_pci(struct pci_dev *pcidev, unsigned int pmc_i=
+dx, u32 offset)
+ {
+ 	void __iomem __free(pmc_ssram_telemetry_iounmap) *tmp_ssram =3D NULL;
+ 	void __iomem __free(pmc_ssram_telemetry_iounmap) *ssram =3D NULL;
+@@ -116,6 +128,20 @@ pmc_ssram_telemetry_get_pmc(struct pci_dev *pcidev, un=
+signed int pmc_idx, u32 of
+ 	return pmc_ssram_telemetry_add_pmt(pcidev, ssram_base, ssram);
+ }
 =20
- 	ret =3D intel_vsec_register(&pcidev->dev, &info);
- 	if (ret)
--		goto cleanup_acpi_disc;
-+		dev_warn(&pcidev->dev, "could not register PMT\n");
-=20
- 	ret =3D pmc_ssram_telemetry_get_pmc_acpi(pcidev, index);
-=20
--cleanup_acpi_disc:
- 	kfree(acpi_disc);
++static int pmc_ssram_telemetry_pci_init(struct pci_dev *pcidev)
++{
++	int ret;
 +
- cleanup_acpi_buf:
- 	ACPI_FREE(buf.pointer);
++	ret =3D pmc_ssram_telemetry_get_pmc_pci(pcidev, PMC_IDX_MAIN, 0);
++	if (ret)
++		return ret;
++
++	pmc_ssram_telemetry_get_pmc_pci(pcidev, PMC_IDX_IOE, SSRAM_IOE_OFFSET);
++	pmc_ssram_telemetry_get_pmc_pci(pcidev, PMC_IDX_PCH, SSRAM_PCH_OFFSET);
++
++	return ret;
++}
++
+ /**
+  * pmc_ssram_telemetry_get_pmc_info() - Get a PMC devid and base_addr info=
+rmation
+  * @pmc_idx:               Index of the PMC
+@@ -158,8 +184,18 @@ EXPORT_SYMBOL_GPL(pmc_ssram_telemetry_get_pmc_info);
 =20
+ static int pmc_ssram_telemetry_probe(struct pci_dev *pcidev, const struct =
+pci_device_id *id)
+ {
++	const struct ssram_type *ssram_type;
++	enum resource_method method;
+ 	int ret;
+=20
++	ssram_type =3D (const struct ssram_type *)id->driver_data;
++	if (!ssram_type) {
++		dev_dbg(&pcidev->dev, "missing driver data\n");
++		ret =3D -EINVAL;
++		goto probe_finish;
++	}
++
++	method =3D ssram_type->method;
+=20
+ 	ret =3D pcim_enable_device(pcidev);
+ 	if (ret) {
+@@ -167,12 +203,10 @@ static int pmc_ssram_telemetry_probe(struct pci_dev *=
+pcidev, const struct pci_de
+ 		goto probe_finish;
+ 	}
+=20
+-	ret =3D pmc_ssram_telemetry_get_pmc(pcidev, PMC_IDX_MAIN, 0);
+-	if (ret)
+-		goto probe_finish;
+-
+-	pmc_ssram_telemetry_get_pmc(pcidev, PMC_IDX_IOE, SSRAM_IOE_OFFSET);
+-	pmc_ssram_telemetry_get_pmc(pcidev, PMC_IDX_PCH, SSRAM_PCH_OFFSET);
++	if (method =3D=3D RES_METHOD_PCI)
++		ret =3D pmc_ssram_telemetry_pci_init(pcidev);
++	else
++		ret =3D -EINVAL;
+=20
+ probe_finish:
+ 	/*
+@@ -185,13 +219,20 @@ static int pmc_ssram_telemetry_probe(struct pci_dev *=
+pcidev, const struct pci_de
+ }
+=20
+ static const struct pci_device_id pmc_ssram_telemetry_pci_ids[] =3D {
+-	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PMC_DEVID_MTL_SOCM) },
+-	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PMC_DEVID_ARL_SOCS) },
+-	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PMC_DEVID_ARL_SOCM) },
+-	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PMC_DEVID_LNL_SOCM) },
+-	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PMC_DEVID_PTL_PCDH) },
+-	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PMC_DEVID_PTL_PCDP) },
+-	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PMC_DEVID_WCL_PCDN) },
++	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PMC_DEVID_MTL_SOCM),
++		.driver_data =3D (kernel_ulong_t)&pci_main },
++	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PMC_DEVID_ARL_SOCS),
++		.driver_data =3D (kernel_ulong_t)&pci_main },
++	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PMC_DEVID_ARL_SOCM),
++		.driver_data =3D (kernel_ulong_t)&pci_main },
++	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PMC_DEVID_LNL_SOCM),
++		.driver_data =3D (kernel_ulong_t)&pci_main },
++	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PMC_DEVID_PTL_PCDH),
++		.driver_data =3D (kernel_ulong_t)&pci_main },
++	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PMC_DEVID_PTL_PCDP),
++		.driver_data =3D (kernel_ulong_t)&pci_main },
++	{ PCI_DEVICE(PCI_VENDOR_ID_INTEL, PMC_DEVID_WCL_PCDN),
++		.driver_data =3D (kernel_ulong_t)&pci_main },
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(pci, pmc_ssram_telemetry_pci_ids);
 --=20
 2.43.0
 
