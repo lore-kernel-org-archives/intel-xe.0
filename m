@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55F90106FD60
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 01:52:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55399106FD68
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 01:52:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C62A10EAD1;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C18B10EAD0;
 	Fri, 13 Mar 2026 01:52:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bzbu2zLA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T6HZytcx";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AA8310E441;
- Fri, 13 Mar 2026 01:52:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B740510E042;
+ Fri, 13 Mar 2026 01:52:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1773366739; x=1804902739;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZabcyUbRxdBA5HUViTeJoUjAM565/XUWPbCRb8PlGHk=;
- b=Bzbu2zLAITEhvG6FolFtXSxUs16iHBiutcO82TH3fKsKWvegwMlzyxst
- i2/aKlppMib9rrOwc1ZjEc3IQbsO/mQF4LnxxR3dcrUXI/mQX7qMdIFmk
- OB1xPYox6Qh2z0qN9nPA+R8rzh9XmSuu5JtAFRW+fXkungJmx1EoyzZ71
- stepa38OyJkGgavJAojaMIl6Wrs5OCLFV+f2Icv3t6+I5YFg9KGwKbxvX
- XP6xP6wrvX75LSLIhL9YXmLNyTJkx31y7FoHi91b3IhsadB61u8BUTzn9
- RqHAVgeAxkB/2lS4BrlFhuWHtvcvs0GDRbb5eWO5X9dD8vsbXE/3gWCAf A==;
-X-CSE-ConnectionGUID: XR8geJz+Rti5lNnYkqkVgQ==
-X-CSE-MsgGUID: 8H0QbU8ET+C8Ltf8BIYeWw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74354566"
-X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="74354566"
+ bh=oXXOP1gqycimx7oikYmx2NO26Ma/Qa/r2+tpGF/GmCg=;
+ b=T6HZytcxzj3mydW2jb8Aaf09ouInMv4rpqE5OPpYlh1cC8ETVlHYMAcO
+ jPM5wY4aVfea3Cdw5HZ1Jx/vwh6nODO6tSrj7uNrrVJxFkVhpvr+Hm7Bt
+ VzFdLqOxS844LxNUyMv1LiIxw0mpJtuUfNOXMFbP91gtuuoaxzudbzsWZ
+ jrkwZVOvTQebJMl/zvDKd5vsfim4VuKi6My6Il53+Lgz+vo8GiBp/QBBa
+ sMGLpJKMryw9QkPlMqIskSrk8DaGI5diqGGWZDecc+6bcO/WBbNbsALZ8
+ fsx53p6ull9lbIMpP75t9ECoE+0/YItiICoa1CbR+UpKxoHyhtMvLY91z A==;
+X-CSE-ConnectionGUID: PrK6WnP3QbabiAqK0hfJWg==
+X-CSE-MsgGUID: V2TY23v5TU6nsySWtmeunQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74354557"
+X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="74354557"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Mar 2026 18:52:12 -0700
-X-CSE-ConnectionGUID: 7S9QgKuTTeW8NEXwnwyRcQ==
-X-CSE-MsgGUID: gYWkRIIqRY2idnw7jytamQ==
+X-CSE-ConnectionGUID: tpoATOHLSdKE+DtE+0Uxhg==
+X-CSE-MsgGUID: Wmt5vo9rToi/S8iyG1jyRg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="220108487"
+X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="220108481"
 Received: from debox1-desk4.jf.intel.com ([10.88.27.138])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Mar 2026 18:52:12 -0700
@@ -48,10 +48,10 @@ To: thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
  dri-devel@lists.freedesktop.org, xi.pardee@linux.intel.com
 Cc: david.e.box@linux.intel.com, hansg@kernel.org,
  linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
-Subject: [PATCH 07/22] platform/x86/intel/pmt: Add pre/post decode hooks
- around header parsing
-Date: Thu, 12 Mar 2026 18:51:46 -0700
-Message-ID: <20260313015202.3660072-8-david.e.box@linux.intel.com>
+Subject: [PATCH 05/22] platform/x86/intel/vsec: Return real error codes from
+ registration path
+Date: Thu, 12 Mar 2026 18:51:44 -0700
+Message-ID: <20260313015202.3660072-6-david.e.box@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260313015202.3660072-1-david.e.box@linux.intel.com>
 References: <20260313015202.3660072-1-david.e.box@linux.intel.com>
@@ -72,69 +72,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add optional pre- and post-decode callbacks to the PMT class so namespaces
-can perform setup and cleanup steps around header parsing.
+Stop collapsing registration results into booleans. Make
+intel_vsec_walk_header() return int and propagate the first non-zero error
+from intel_vsec_register_device(). intel_vsec_register() now returns that
+error directly and 0 on success.
 
-  - Add pmt_pre_decode() and pmt_post_decode() to struct
-    intel_pmt_namespace.
-  - Update intel_pmt_dev_create() to invoke, in order:
-      pre =E2=86=92 header_decode() =E2=86=92 post.
-  - Keep the existing pmt_header_decode() callback unchanged.
+This preserves success behavior while surfacing meaningful errors instead
+of hiding them behind a bool/-ENODEV, which makes debugging and probe
+ordering issues clearer.
 
-No functional changes. This adds flexibility for upcoming decoders while
-preserving current behavior.
-
+Reviewed-by: Ilpo J=C3=A4rvinen <ilpo.jarvinen@linux.intel.com>
 Signed-off-by: David E. Box <david.e.box@linux.intel.com>
 ---
- drivers/platform/x86/intel/pmt/class.c | 12 ++++++++++++
- drivers/platform/x86/intel/pmt/class.h |  4 ++++
- 2 files changed, 16 insertions(+)
 
-diff --git a/drivers/platform/x86/intel/pmt/class.c b/drivers/platform/x86/=
-intel/pmt/class.c
-index b4c9964df807..9b315334a69b 100644
---- a/drivers/platform/x86/intel/pmt/class.c
-+++ b/drivers/platform/x86/intel/pmt/class.c
-@@ -381,10 +381,22 @@ int intel_pmt_dev_create(struct intel_pmt_entry *entr=
-y, struct intel_pmt_namespa
- 	if (IS_ERR(entry->disc_table))
- 		return PTR_ERR(entry->disc_table);
+Previous changelog:
+  Changes in v7:
+  - No change
+=20=20
+  Changes in v6:
+  - No change
+=20=20
+  Changes in v5:
+  - No change
+=20=20
+  Changes in v4:
+  - No change
+=20=20
+  Changes in v3:
+  - No change
+=20=20
+  Changes in v2:
+  - No change (previous patch 3)
+
+ drivers/platform/x86/intel/vsec.c | 16 ++++++----------
+ 1 file changed, 6 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/platform/x86/intel/vsec.c b/drivers/platform/x86/intel=
+/vsec.c
+index a547e4b98245..34b2c19ecff0 100644
+--- a/drivers/platform/x86/intel/vsec.c
++++ b/drivers/platform/x86/intel/vsec.c
+@@ -461,20 +461,19 @@ static int intel_vsec_register_device(struct device *=
+dev,
+ 	return -EAGAIN;
+ }
 =20
-+	if (ns->pmt_pre_decode) {
-+		ret =3D ns->pmt_pre_decode(intel_vsec_dev, entry);
+-static bool intel_vsec_walk_header(struct device *dev,
+-				   const struct intel_vsec_platform_info *info)
++static int intel_vsec_walk_header(struct device *dev,
++				  const struct intel_vsec_platform_info *info)
+ {
+ 	struct intel_vsec_header **header =3D info->headers;
+-	bool have_devices =3D false;
+ 	int ret;
+=20
+ 	for ( ; *header; header++) {
+ 		ret =3D intel_vsec_register_device(dev, *header, info, info->base_addr);
+-		if (!ret)
+-			have_devices =3D true;
 +		if (ret)
 +			return ret;
-+	}
-+
- 	ret =3D ns->pmt_header_decode(entry, dev);
- 	if (ret)
- 		return ret;
+ 	}
 =20
-+	if (ns->pmt_post_decode) {
-+		ret =3D ns->pmt_post_decode(intel_vsec_dev, entry);
-+		if (ret)
-+			return ret;
-+	}
-+
- 	ret =3D intel_pmt_populate_entry(entry, intel_vsec_dev, disc_res);
- 	if (ret)
- 		return ret;
-diff --git a/drivers/platform/x86/intel/pmt/class.h b/drivers/platform/x86/=
-intel/pmt/class.h
-index 1ae56a5baad2..ff39014b208c 100644
---- a/drivers/platform/x86/intel/pmt/class.h
-+++ b/drivers/platform/x86/intel/pmt/class.h
-@@ -62,6 +62,10 @@ struct intel_pmt_namespace {
- 	struct xarray *xa;
- 	int (*pmt_header_decode)(struct intel_pmt_entry *entry,
- 				 struct device *dev);
-+	int (*pmt_pre_decode)(struct intel_vsec_device *ivdev,
-+			      struct intel_pmt_entry *entry);
-+	int (*pmt_post_decode)(struct intel_vsec_device *ivdev,
-+			       struct intel_pmt_entry *entry);
- 	int (*pmt_add_endpoint)(struct intel_vsec_device *ivdev,
- 				struct intel_pmt_entry *entry);
- };
+-	return have_devices;
++	return 0;
+ }
+=20
+ static bool intel_vsec_walk_dvsec(struct pci_dev *pdev,
+@@ -580,10 +579,7 @@ int intel_vsec_register(struct device *dev,
+ 	if (!dev || !info || !info->headers)
+ 		return -EINVAL;
+=20
+-	if (!intel_vsec_walk_header(dev, info))
+-		return -ENODEV;
+-	else
+-		return 0;
++	return intel_vsec_walk_header(dev, info);
+ }
+ EXPORT_SYMBOL_NS_GPL(intel_vsec_register, "INTEL_VSEC");
+=20
 --=20
 2.43.0
 
