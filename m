@@ -4,40 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B644A106FD70
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 01:52:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C19EA106FD69
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 01:52:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B207710EAEC;
-	Fri, 13 Mar 2026 01:52:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DDC410EAEE;
+	Fri, 13 Mar 2026 01:52:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oDPly3Mr";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W1+q/hw1";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F205810EAD1;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E27ED10EAD0;
  Fri, 13 Mar 2026 01:52:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1773366740; x=1804902740;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9EZCD23+p8RudnMdCZ4NNN4C1wB08jPQU64kU8m1jT0=;
- b=oDPly3MrrhaBtNsatresrI8Vd5wYvp8JRsuaDp5TrIXwRbeG+Hk7OJwO
- Zd1YUpvrxzcHEeisDqqsjIdyexShyCAdz5tYukXijHIR8QPd2TrFZe5Bq
- QpABl8d/xBEOdDYWSeEW5q7RB3jaNnCuggL2708K6rNLK2K/mHA6vecXw
- vUETKb8nhYc/4joHUOP4QYBJRjOypKDNnbwW9wgQCErBxE0WcBKRFUAHA
- YoEQH9J066cedJ2YIncDxSBTzCJZq1Ic/AItoNlD97xmufbt1Hh3C3caA
- h/qsd/MofUf+kfYRkIYylHa53Qv4m3ytATn9/Q/WVDBBoETBadY7B9p2v A==;
-X-CSE-ConnectionGUID: WAakOdvNQAGB1ArPI8LCmA==
-X-CSE-MsgGUID: V76eauPSQD6NJh3lEqSVOg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74354616"
-X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="74354616"
+ bh=B8JS8RQBRrQVr1GSRI9Lf2J0JExHYR/5c0SOq7MzXKg=;
+ b=W1+q/hw18pW4+2GejPmUh2Yg2DANks+/VED5720ec3zGc+J21r1tvdzH
+ pWHhV23CA1TvMET/Y+BjZLVCtIWh1bBxuKCE0IZOBR5h5Ny+PjZAViY8r
+ gTM34zkPYssYURWLQXa+FP2NjE6lFNBLrAVYUnMgEqtG81mFK9GpW5Q8a
+ WmcMI4J6tcLoQH0n4c+icCr/es8gir590Ty6isF1ZP1wQndntNZ6myfPG
+ NTes3omJdWVSamXjFq4p6uS3G1jQEirA7WREBQLApQDTM9/v7mGe30Szl
+ s16Y8QZQnWpAB6uk9Ha0V/FNryuCMT4LKlVGYTEtgVm5TgXKghI6qXewN w==;
+X-CSE-ConnectionGUID: +ZPXQoppTVSFPipQAYtUrA==
+X-CSE-MsgGUID: qTwq4AbOTCC1sNYugVB9mw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74354620"
+X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="74354620"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Mar 2026 18:52:12 -0700
-X-CSE-ConnectionGUID: LJvuCfgKQWq/SleK9LG13Q==
-X-CSE-MsgGUID: n86wPIh7RMiVY8p+4qan0Q==
+X-CSE-ConnectionGUID: Bfxnia9TQTyslxJwaFfbTA==
+X-CSE-MsgGUID: OChU2o0pQYuVC2HLS/q5lg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="220108525"
+X-IronPort-AV: E=Sophos;i="6.23,117,1770624000"; d="scan'208";a="220108530"
 Received: from debox1-desk4.jf.intel.com ([10.88.27.138])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Mar 2026 18:52:13 -0700
@@ -48,10 +48,10 @@ To: thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com,
  dri-devel@lists.freedesktop.org, xi.pardee@linux.intel.com
 Cc: david.e.box@linux.intel.com, hansg@kernel.org,
  linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
-Subject: [PATCH 19/22] platform/x86/intel/pmc/ssram: Refactor memory barrier
- for reentrant probe
-Date: Thu, 12 Mar 2026 18:51:58 -0700
-Message-ID: <20260313015202.3660072-20-david.e.box@linux.intel.com>
+Subject: [PATCH 21/22] platform/x86/intel/pmc/ssram: Make PMT registration
+ optional
+Date: Thu, 12 Mar 2026 18:52:00 -0700
+Message-ID: <20260313015202.3660072-22-david.e.box@linux.intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260313015202.3660072-1-david.e.box@linux.intel.com>
 References: <20260313015202.3660072-1-david.e.box@linux.intel.com>
@@ -71,108 +71,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Xi Pardee <xi.pardee@linux.intel.com>
+The SSRAM telemetry driver extracts essential PMC device ID and power
+management base address information that intel_pmc_core depends on for core
+functionality. PMT registration failure should not prevent this critical
+data from being available, as it would break intel_pmc_core operation
+entirely.
 
-Switch the readiness synchronization from a global device_probed flag to
-per-index devid publication. This is required because a subsequent patch
-makes probe reentrant, so a single global flag can no longer reliably
-signal completion.
+Change the behavior to log a warning when PMT registration fails but
+continue with successful driver initialization, ensuring the primary
+telemetry data remains accessible to dependent drivers.
 
-Signed-off-by: Xi Pardee <xi.pardee@linux.intel.com>
 Signed-off-by: David E. Box <david.e.box@linux.intel.com>
 ---
- .../platform/x86/intel/pmc/ssram_telemetry.c  | 34 ++++++++-----------
- 1 file changed, 14 insertions(+), 20 deletions(-)
+ drivers/platform/x86/intel/pmc/ssram_telemetry.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/platform/x86/intel/pmc/ssram_telemetry.c b/drivers/pla=
 tform/x86/intel/pmc/ssram_telemetry.c
-index 7db98037c521..246efdcf6950 100644
+index b937ebb2322f..12b7c1299c2f 100644
 --- a/drivers/platform/x86/intel/pmc/ssram_telemetry.c
 +++ b/drivers/platform/x86/intel/pmc/ssram_telemetry.c
-@@ -37,7 +37,6 @@ static const struct ssram_type pci_main =3D {
- };
+@@ -106,6 +106,7 @@ pmc_ssram_telemetry_get_pmc_pci(struct pci_dev *pcidev,=
+ unsigned int pmc_idx, u3
+ 	void __iomem __free(pmc_ssram_telemetry_iounmap) *tmp_ssram =3D NULL;
+ 	void __iomem __free(pmc_ssram_telemetry_iounmap) *ssram =3D NULL;
+ 	u64 ssram_base;
++	int ret;
 =20
- static struct pmc_ssram_telemetry pmc_ssram_telems[3];
--static bool device_probed;
+ 	ssram_base =3D pci_resource_start(pcidev, 0);
+ 	tmp_ssram =3D ioremap(ssram_base, SSRAM_HDR_SIZE);
+@@ -133,7 +134,11 @@ pmc_ssram_telemetry_get_pmc_pci(struct pci_dev *pcidev=
+, unsigned int pmc_idx, u3
+ 	pmc_ssram_get_devid_pwrmbase(ssram, pmc_idx);
 =20
- static inline u64 get_base(void __iomem *addr, u32 offset)
- {
-@@ -52,8 +51,13 @@ static void pmc_ssram_get_devid_pwrmbase(void __iomem *s=
-sram, unsigned int pmc_i
- 	pwrm_base =3D get_base(ssram, SSRAM_PWRM_OFFSET);
- 	devid =3D readw(ssram + SSRAM_DEVID_OFFSET);
-=20
--	pmc_ssram_telems[pmc_idx].devid =3D devid;
- 	pmc_ssram_telems[pmc_idx].base_addr =3D pwrm_base;
-+	/*
-+	 * Memory barrier is used to ensure the correct write order between base_=
-addr
-+	 * and devid.
-+	 */
-+	smp_wmb();
-+	pmc_ssram_telems[pmc_idx].devid =3D devid;
- }
-=20
- static int
-@@ -151,32 +155,28 @@ static int pmc_ssram_telemetry_pci_init(struct pci_de=
-v *pcidev)
-  * * 0           - Success
-  * * -EAGAIN     - Probe function has not finished yet. Try again.
-  * * -EINVAL     - Invalid pmc_idx
-- * * -ENODEV     - PMC device is not available
-  */
- int pmc_ssram_telemetry_get_pmc_info(unsigned int pmc_idx,
- 				     struct pmc_ssram_telemetry *pmc_ssram_telemetry)
- {
-+	if (pmc_idx >=3D MAX_NUM_PMC)
-+		return -EINVAL;
+ 	/* Find and register and PMC telemetry entries */
+-	return pmc_ssram_telemetry_add_pmt(pcidev, ssram_base, ssram);
++	ret =3D pmc_ssram_telemetry_add_pmt(pcidev, ssram_base, ssram);
++	if (ret)
++		dev_warn(&pcidev->dev, "could not register PMT\n");
 +
- 	/*
- 	 * PMCs are discovered in probe function. If this function is called befo=
-re
--	 * probe function complete, the result would be invalid. Use device_probed
--	 * variable to avoid this case. Return -EAGAIN to inform the consumer to =
-call
-+	 * probe function complete, the result would be invalid. Use devid to avo=
-id
-+	 * this case. Return -EAGAIN to inform the consumer to call
- 	 * again later.
- 	 */
--	if (!device_probed)
-+	if (!pmc_ssram_telems[pmc_idx].devid)
- 		return -EAGAIN;
-=20
-+	pmc_ssram_telemetry->devid =3D pmc_ssram_telems[pmc_idx].devid;
- 	/*
- 	 * Memory barrier is used to ensure the correct read order between
--	 * device_probed variable and PMC info.
-+	 * devid variable and base_addr.
- 	 */
- 	smp_rmb();
--	if (pmc_idx >=3D MAX_NUM_PMC)
--		return -EINVAL;
--
--	if (!pmc_ssram_telems[pmc_idx].devid)
--		return -ENODEV;
--
--	pmc_ssram_telemetry->devid =3D pmc_ssram_telems[pmc_idx].devid;
- 	pmc_ssram_telemetry->base_addr =3D pmc_ssram_telems[pmc_idx].base_addr;
- 	return 0;
++	return 0;
  }
-@@ -209,12 +209,6 @@ static int pmc_ssram_telemetry_probe(struct pci_dev *p=
-cidev, const struct pci_de
- 		ret =3D -EINVAL;
 =20
- probe_finish:
--	/*
--	 * Memory barrier is used to ensure the correct write order between PMC i=
-nfo
--	 * and device_probed variable.
--	 */
--	smp_wmb();
--	device_probed =3D true;
- 	return ret;
- }
+ static int pmc_ssram_telemetry_pci_init(struct pci_dev *pcidev)
+@@ -208,12 +213,12 @@ static int pmc_ssram_telemetry_acpi_init(struct pci_d=
+ev *pcidev,
+=20
+ 	ret =3D intel_vsec_register(&pcidev->dev, &info);
+ 	if (ret)
+-		goto cleanup_acpi_disc;
++		dev_warn(&pcidev->dev, "could not register PMT\n");
+=20
+ 	ret =3D pmc_ssram_telemetry_get_pmc_acpi(pcidev, index);
+=20
+-cleanup_acpi_disc:
+ 	kfree(acpi_disc);
++
+ cleanup_acpi_buf:
+ 	ACPI_FREE(buf.pointer);
 =20
 --=20
 2.43.0
