@@ -4,51 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0DE7105F78C
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 11:10:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED6A9105F78C
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 11:10:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DEDA10EB7E;
-	Fri, 13 Mar 2026 11:10:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D06D10EB82;
+	Fri, 13 Mar 2026 11:10:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XoSnQoi2";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C9NpkphC";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E22D10E0F5;
- Fri, 13 Mar 2026 11:10:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E274110EB80;
+ Fri, 13 Mar 2026 11:10:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773400233; x=1804936233;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Lkc2I3myb53kYMc2w6fB7IgI8sDy0D/J2UKYLkwprQY=;
- b=XoSnQoi2d951r1EMETkIGqgH5THnQxHbGcmn23DuSAwPQNJstspAPnXV
- A/DsOWWevQjADABVyK3RMR1tNvu5JL613Rkrths7zENrKmOGHxG8nlZK7
- 6LiILY1sEZ4s1fSLwm8oRpx7NK9NI4rL56B4YbAhqGp6fzGquCckaUXL7
- ZTL42iThoTq2psiCyi3hgC6eKifPmOb0RASlREaWmWeK2oDxzAg6C3TQx
- i0AYvZ8CpOoErVbxHXFiOVHnMaPobjpz43feZ8pSpwdWANLcJMUn30lR3
- Pvv82mvXOOQwCaplfzo2fZWz1wBRkQWbLaZP9gQuEyUFLq0zZuOgONrjE A==;
-X-CSE-ConnectionGUID: EjEPA2pmS8e2ObXkx8NDOA==
-X-CSE-MsgGUID: IKf5XnUWQaWU8jBFaQwr/Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="78396141"
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="78396141"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ t=1773400237; x=1804936237;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=08dse88klgF6scaTr+28lc+nIVGFRqkZmkfbGl1gvJA=;
+ b=C9NpkphCLay1FImh+IhUxHkw855yU6CRKaZFeQl50EKE1idaAphwoCgi
+ 4c4BKCgYKySxCzlFDi9tCTLsAcZFdsanVMzYxiIp/FTcvw0B9RilHphUj
+ AbQwjucbQB+exDfkgEP0OC5Zu32c6cY4pULEwrQ0C/J/ZbhgBGw5qmvsn
+ xUR7szZYJPzalgNp7z2fTtUIdcG0thKxwP5whr9XNKPllSM6XxS9y6Rmz
+ zSc25vfh//Hx83eplX1UnyDSAmLLOJgzG3CApnjNo9mtB6A2dvFXg+ihH
+ oAjWmPDBomESF44JKOPHzp/WpKCAyNrSwjMlvyU8qM73Ju7YuJs/uT4yl g==;
+X-CSE-ConnectionGUID: LzOaLZuaQyeN7/4MuzqZFg==
+X-CSE-MsgGUID: 1iyp+zO/QIyG/1xBSbEEpg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="78396149"
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="78396149"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 04:10:33 -0700
-X-CSE-ConnectionGUID: /Fqbtt16RJeneXuiJ2TBlg==
-X-CSE-MsgGUID: CAR/bQx6SmeiBu8kCjCpVg==
+ 13 Mar 2026 04:10:36 -0700
+X-CSE-ConnectionGUID: u5ysasJXR5WLVOM5r/fp3Q==
+X-CSE-MsgGUID: ZLoy5SEzSlyQaMI9xz83+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="221345468"
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="251649944"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.21])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 04:10:31 -0700
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2026 04:10:35 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 0/3] drm/i915/de: Move register polling into display code
-Date: Fri, 13 Mar 2026 13:10:25 +0200
-Message-ID: <20260313111028.25159-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH 1/3] drm/i915/de: Introduce intel_de.c and move intel_de_{read,
+ write}8() there
+Date: Fri, 13 Mar 2026 13:10:26 +0200
+Message-ID: <20260313111028.25159-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260313111028.25159-1-ville.syrjala@linux.intel.com>
+References: <20260313111028.25159-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
@@ -70,33 +73,119 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Implement register polling directly in the display code
-In an effort to decouple the display code from i915/xe.
+intel_de_{read,write}() aren't performance critical so having them
+as static inline is pointless. Introduce intel_de.c and move the
+implementation there.
 
-This is just the first step in a larger display mmio rework.
-My final aim is to move the entire mmio stuff into the display
-code. That will give us:
-- better control over how things are done
-- decouple display register locking from forcewake/etc
-- less overhead. We access a lot of registers, and
-  during vblank evasion critical section performance is
-  especially important.
-- unified RMbus unclaimed error checking for both i915 and xe
-
-Ville Syrjälä (3):
-  drm/i915/de: Introduce intel_de.c and move intel_de_{read,write}8()
-    there
-  drm/i915/de: Move intel_de_wait*() into intel_de.c
-  drm/i915/de: Implement register polling in the display code
-
- drivers/gpu/drm/i915/Makefile                 |   1 +
- drivers/gpu/drm/i915/display/intel_de.c       | 178 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_de.h       | 121 +++---------
- drivers/gpu/drm/xe/Makefile                   |   1 +
- .../drm/xe/compat-i915-headers/intel_uncore.h |  31 ---
- 5 files changed, 203 insertions(+), 129 deletions(-)
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/Makefile           |  1 +
+ drivers/gpu/drm/i915/display/intel_de.c | 23 +++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_de.h | 22 +++-------------------
+ drivers/gpu/drm/xe/Makefile             |  1 +
+ 4 files changed, 28 insertions(+), 19 deletions(-)
  create mode 100644 drivers/gpu/drm/i915/display/intel_de.c
 
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 7e9d9b666511..099f7b68bb30 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -253,6 +253,7 @@ i915-y += \
+ 	display/intel_crtc_state_dump.o \
+ 	display/intel_cursor.o \
+ 	display/intel_dbuf_bw.o \
++	display/intel_de.o \
+ 	display/intel_display.o \
+ 	display/intel_display_conversion.o \
+ 	display/intel_display_driver.o \
+diff --git a/drivers/gpu/drm/i915/display/intel_de.c b/drivers/gpu/drm/i915/display/intel_de.c
+new file mode 100644
+index 000000000000..5348c1d51eb8
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_de.c
+@@ -0,0 +1,23 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#include <drm/drm_print.h>
++
++#include "intel_de.h"
++
++u8 intel_de_read8(struct intel_display *display, i915_reg_t reg)
++{
++	/* this is only used on VGA registers (possible on pre-g4x) */
++	drm_WARN_ON(display->drm, DISPLAY_VER(display) >= 5 || display->platform.g4x);
++
++	return intel_uncore_read8(__to_uncore(display), reg);
++}
++
++void intel_de_write8(struct intel_display *display, i915_reg_t reg, u8 val)
++{
++	drm_WARN_ON(display->drm, DISPLAY_VER(display) >= 5 || display->platform.g4x);
++
++	intel_uncore_write8(__to_uncore(display), reg, val);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
+index f30f3f8ebee1..8ca5904ba84e 100644
+--- a/drivers/gpu/drm/i915/display/intel_de.h
++++ b/drivers/gpu/drm/i915/display/intel_de.h
+@@ -6,8 +6,6 @@
+ #ifndef __INTEL_DE_H__
+ #define __INTEL_DE_H__
+ 
+-#include <drm/drm_print.h>
+-
+ #include "intel_display_core.h"
+ #include "intel_dmc_wl.h"
+ #include "intel_dsb.h"
+@@ -19,6 +17,9 @@ static inline struct intel_uncore *__to_uncore(struct intel_display *display)
+ 	return to_intel_uncore(display->drm);
+ }
+ 
++u8 intel_de_read8(struct intel_display *display, i915_reg_t reg);
++void intel_de_write8(struct intel_display *display, i915_reg_t reg, u8 val);
++
+ static inline u32
+ intel_de_read(struct intel_display *display, i915_reg_t reg)
+ {
+@@ -33,23 +34,6 @@ intel_de_read(struct intel_display *display, i915_reg_t reg)
+ 	return val;
+ }
+ 
+-static inline u8
+-intel_de_read8(struct intel_display *display, i915_reg_t reg)
+-{
+-	/* this is only used on VGA registers (possible on pre-g4x) */
+-	drm_WARN_ON(display->drm, DISPLAY_VER(display) >= 5 || display->platform.g4x);
+-
+-	return intel_uncore_read8(__to_uncore(display), reg);
+-}
+-
+-static inline void
+-intel_de_write8(struct intel_display *display, i915_reg_t reg, u8 val)
+-{
+-	drm_WARN_ON(display->drm, DISPLAY_VER(display) >= 5 || display->platform.g4x);
+-
+-	intel_uncore_write8(__to_uncore(display), reg, val);
+-}
+-
+ static inline u64
+ intel_de_read64_2x32(struct intel_display *display,
+ 		     i915_reg_t lower_reg, i915_reg_t upper_reg)
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 50608312bc66..0399a5f9a107 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -251,6 +251,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	i915-display/intel_dbuf_bw.o \
+ 	i915-display/intel_ddi.o \
+ 	i915-display/intel_ddi_buf_trans.o \
++	i915-display/intel_de.o \
+ 	i915-display/intel_display.o \
+ 	i915-display/intel_display_conversion.o \
+ 	i915-display/intel_display_device.o \
 -- 
 2.52.0
 
