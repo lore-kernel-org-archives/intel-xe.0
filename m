@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0DE6105F79D
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 11:48:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B572105F78C
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 11:51:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A47AB10E075;
-	Fri, 13 Mar 2026 11:48:54 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m79Rea7J";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4193310E075;
- Fri, 13 Mar 2026 11:48:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773402534; x=1804938534;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=/LS/IyeEb1igFkSxZmtAbCGZEHFNf1VnzySQql84wYY=;
- b=m79Rea7Jk3GvIdBEepYxsbRWyBU/4VM4eL3uooVUGV+CiOzsrDrRwVPB
- Y648Nh0PzW8z3l+bQMLGY8KtPux0ZMrIfllNYhcIT2z55m/epki/mqnQX
- wAsXYDmUV+yDmqbJziPfjzOXYic7AJK39HeK+a1WinE0qdRVTje12r2VU
- fJCN8AWtUJENLDrxJUZ56xSkSPAlcGUXx0XxllnieLgLyK8oEkmjsZG0O
- RvIK5JWD7EapsTYh42zQbsY84gWFBCf8kanLcruJxGBHNM7YzU37WzWof
- 2jQFUS0/k7htSh2CCiPgVdWOYy+Drskd6rSC7qK5HGmPFqghReZi1zHJ0 g==;
-X-CSE-ConnectionGUID: ikp5ecNmQ2+Dkegi7vtc0w==
-X-CSE-MsgGUID: 5nh2tyvVSN2iNCvYskVHIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="77115296"
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="77115296"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 04:48:54 -0700
-X-CSE-ConnectionGUID: y1yPKDYRRKKv7p3LHXR/eg==
-X-CSE-MsgGUID: ixXyzgAuRPWHVD7jUUihsg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="225262246"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.21])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 04:48:51 -0700
-Date: Fri, 13 Mar 2026 13:48:49 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, jouni.hogander@intel.com,
- animesh.manna@intel.com
-Subject: Re: [PATCH 03/19] drm/dp: Add bits for AS SDP FAVT Payload Fields
- Parsing support
-Message-ID: <abP5oSlvo5-nwu8E@intel.com>
-References: <20260311113611.3393194-1-ankit.k.nautiyal@intel.com>
- <20260311113611.3393194-4-ankit.k.nautiyal@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CC5210EBB9;
+	Fri, 13 Mar 2026 11:51:16 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FB9110EBB9;
+ Fri, 13 Mar 2026 11:51:15 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1150625932206464920=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260311113611.3393194-4-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/de=3A_Move_registe?=
+ =?utf-8?q?r_polling_into_display_code?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 13 Mar 2026 11:51:15 -0000
+Message-ID: <177340267524.355365.3685956353692575606@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260313111028.25159-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20260313111028.25159-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,44 +36,110 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Mar 11, 2026 at 05:05:55PM +0530, Ankit Nautiyal wrote:
-> DP v2.1 introduced support for sending AS SDP payload bytes for FAVT.
-> Add the relavant bits for the same.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  include/drm/display/drm_dp.h | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-> index 49f0154eb93c..8d172863eba3 100644
-> --- a/include/drm/display/drm_dp.h
-> +++ b/include/drm/display/drm_dp.h
-> @@ -1205,6 +1205,7 @@
->  #define DP_DPRX_FEATURE_ENUMERATION_LIST_CONT_1					0x2214 /* 2.0 E11 */
->  # define DP_ADAPTIVE_SYNC_SDP_SUPPORTED						BIT(0)
->  # define DP_AS_SDP_FIRST_HALF_LINE_OR_3840_PIXEL_CYCLE_WINDOW_NOT_SUPPORTED	BIT(1)
-> +# define DP_AS_SDP_FAVT_PAYLOAD_FIELDS_PARSING_SUPPORTED			BIT(2) /* 2.1 */
+--===============1150625932206464920==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I wonder if this is what we should use to detect AS SDP v2 support?
-The rule is that we can't send AS SDP v2 unless the sink is DP-2.1
-or eDP-1.5.
+== Series Details ==
 
-eDP-1.5 we can supposedly identify from EDP_DPCD_REV (or EDP_REV
-as it's now called in eDP-1.5+), but AFAIK there is no real way
-to identify a DP-2.1 sink :/
+Series: drm/i915/de: Move register polling into display code
+URL   : https://patchwork.freedesktop.org/series/163181/
+State : success
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Summary ==
 
->  # define DP_VSC_EXT_SDP_FRAMEWORK_VERSION_1_SUPPORTED				BIT(4)
->  
->  #define DP_128B132B_SUPPORTED_LINK_RATES       0x2215 /* 2.0 */
-> -- 
-> 2.45.2
+CI Bug Log - changes from xe-4712-4082c266f2930288f1e9faadd4a389f15306a209_BAT -> xe-pw-163181v1_BAT
+====================================================
 
--- 
-Ville Syrjälä
-Intel
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8800 -> IGT_8801
+  * Linux: xe-4712-4082c266f2930288f1e9faadd4a389f15306a209 -> xe-pw-163181v1
+
+  IGT_8800: 8800
+  IGT_8801: 246d93c1df887e151d038cee9eb0fc31650c4fb0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4712-4082c266f2930288f1e9faadd4a389f15306a209: 4082c266f2930288f1e9faadd4a389f15306a209
+  xe-pw-163181v1: 163181v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163181v1/index.html
+
+--===============1150625932206464920==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/de: Move register polling into display code</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163181/">https://patchwork.freedesktop.org/series/163181/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163181v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163181v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4712-4082c266f2930288f1e9faadd4a389f15306a209_BAT -&gt; xe-pw-163181v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8800 -&gt; IGT_8801</li>
+<li>Linux: xe-4712-4082c266f2930288f1e9faadd4a389f15306a209 -&gt; xe-pw-163181v1</li>
+</ul>
+<p>IGT_8800: 8800<br />
+  IGT_8801: 246d93c1df887e151d038cee9eb0fc31650c4fb0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4712-4082c266f2930288f1e9faadd4a389f15306a209: 4082c266f2930288f1e9faadd4a389f15306a209<br />
+  xe-pw-163181v1: 163181v1</p>
+
+</body>
+</html>
+
+--===============1150625932206464920==--
