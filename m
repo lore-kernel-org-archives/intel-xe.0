@@ -4,60 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 428A7105F7B1
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 15:03:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5ABEC105F7B1
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Mar 2026 15:03:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F19A410E468;
-	Fri, 13 Mar 2026 15:03:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E53610E469;
+	Fri, 13 Mar 2026 15:03:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h0+I7Idq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kc8FDDqn";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9187C10E467;
- Fri, 13 Mar 2026 15:03:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8294B10E469;
+ Fri, 13 Mar 2026 15:03:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773414202; x=1804950202;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=SY5iUxQoaBhoZ4n4+4KS7+JoRWrfB6H4DNnhKN+XFqI=;
- b=h0+I7IdqIf7+ndDEBSM31ut9+JFE49U541wKKV1uuVNl4QbdPg1hj/LF
- ZJLAE8GYOGLhNHikznLwSpvWucSLhDsp5rUo9UI+t6zx6AgGZmD6WVH3k
- IUl67YTAmwWf/+hKkZ/OsU7dxvYOUtoEMFIOEtJmNSdtlEjhtpc6gh6+M
- g+5Oc2GVr3RGjdjj0TYYlbQFWhwpF7ELLCOKvNtpDUL3vuCs4Zg6w5sT2
- nhx7HQ05gQGnRfjVpH4P0xTFB4sB2e4CisKMcxixoeseZtuMY1xPIoCZF
- W9NM1QUPT/vNE+e4jpNU7Ob2f8CboRisbJafAaZYMiESTM+wH1EN4kWJa A==;
-X-CSE-ConnectionGUID: aRInOvXBSO2EeCBfdADvMQ==
-X-CSE-MsgGUID: NT9InMprTa6GCk3UP/rpDQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11728"; a="78413885"
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="78413885"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 08:03:22 -0700
-X-CSE-ConnectionGUID: 9fy4A4xIRxaN8/AUtqhMaA==
-X-CSE-MsgGUID: YjbcJ7RFT3COHEUrweLesw==
+ t=1773414211; x=1804950211;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=+zZrlrlLBTGlrMt43VfZN8jaxUEcD5rTLYR5cOzEnUU=;
+ b=kc8FDDqnu78g3nOyEcN7NRuCRIG8jbxsmTbWqtZ8wNhn+8gkkOkPUnbb
+ A5vSp5+AckwxYiwtEvcaxu5l0Twq6OPGoXDwVdVidiT9EZJpA8uhNps+i
+ kKpeVyF2sNFGCasySHO2vQvZ51/UmuPQUkos0hoWop/qJ8CuRYytyvz47
+ QZ+yrE7gJDBoHFb+KJUkdhYx13mlVO+CgU2vRAx5Kx8akDz6UPDp3c5jV
+ Pqs0jXMuND7Pz5iSsqTx1rESAF+hMi6EgejtGJQ+6hvBrfQ9D2FCbdUpp
+ UnsBbFRWEkeZPKV4TgpBSKdXS2li6mUWfkXvJzZ2TiJU6qm2kUMkF1Ww1 w==;
+X-CSE-ConnectionGUID: IgqAKwkoTAmEnvmOU23abw==
+X-CSE-MsgGUID: A6hvr5qaTfWz5OZdphq7/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11728"; a="85223008"
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="85223008"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2026 08:03:31 -0700
+X-CSE-ConnectionGUID: H8QnJzp7TJqGR2uP7m3I5Q==
+X-CSE-MsgGUID: gZp0HqzWQf6QUwBSHfIraA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="221133008"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.193])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 08:03:20 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 3/3] drm/i915/de: Implement register polling in the
- display code
-In-Reply-To: <20260313111028.25159-4-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260313111028.25159-1-ville.syrjala@linux.intel.com>
- <20260313111028.25159-4-ville.syrjala@linux.intel.com>
-Date: Fri, 13 Mar 2026 17:03:16 +0200
-Message-ID: <c642aab2724d1db478cdcd3af623117e6f9dad5c@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="225876196"
+Received: from cjhill-mobl.amr.corp.intel.com (HELO [10.125.110.231])
+ ([10.125.110.231])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2026 08:03:25 -0700
+Message-ID: <082ec14b39aa804f774003af75df407274e50d2f.camel@linux.intel.com>
+Subject: Re: [PATCH 00/22] platform/x86/intel: Add ACPI PMT discovery
+ support and enable NVL PMC telemetry
+From: srinivas pandruvada <srinivas.pandruvada@linux.intel.com>
+To: "David E. Box" <david.e.box@linux.intel.com>, 
+ thomas.hellstrom@linux.intel.com, rodrigo.vivi@intel.com, 
+ irenic.rajneesh@gmail.com, ilpo.jarvinen@linux.intel.com, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ xi.pardee@linux.intel.com
+Cc: hansg@kernel.org, linux-kernel@vger.kernel.org, 
+ platform-driver-x86@vger.kernel.org
+Date: Fri, 13 Mar 2026 08:03:25 -0700
+In-Reply-To: <20260313015202.3660072-1-david.e.box@linux.intel.com>
+References: <20260313015202.3660072-1-david.e.box@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.2 (3.58.2-1.fc43) 
+MIME-Version: 1.0
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,305 +74,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 13 Mar 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> The plan is to move all the mmio stuff into the display code itself.
-> As a first step implement the register polling in intel_de.c.
->
-> Currently i915 and xe implement this stuff in slightly different
-> ways, so there are some functional changes here. Try to go for a
-> reasonable middle ground between the i915 and xe implementations:
-> - the exponential backoff limit is the simpler approach taken
->   by i915 (=3D=3D just clamp the max sleep duration to 1 ms)
+On Thu, 2026-03-12 at 18:51 -0700, David E. Box wrote:
+> This series adds ACPI-based PMT discovery support and wires it into
+> the
+> Intel PMC telemetry stack for Nova Lake S.
 
-The fact that xe has no upper limit is just bonkers, and with a suitable
-sleep value the exponential backoff can be really bad, the timeout
-happening almost 2x later than it should. Also, there's a bunch of quick
-hammering reads with small timeouts at first, which aren't at all
-necessary with longer timeouts. There are downsides to the exponential
-backoff because of it's behaviour.
+I think this series is v7, missing patch prefix for versions.
 
-i915 also doesn't actually clamp the max, it'll double if the wait is
-under the "max", but the doubling is okay to go over the max. Ditto in
-this patch.
+Thanks,
+Srinivas
 
-> - the fast vs. slow timeout handling is similar to i915 where
->   we first try the fast timeout and then again the slow timeout
->   if the condition still isn't satisfied. xe just adds up the
->   timeouts together, which is a bit weird.
-
-Side note, IMO the fast vs. slow must remain an implementation detail
-and not leak outside of intel_de.c. If it really matters, I think it's
-more obvious to do it the way gmbus_wait() currently does it, i.e. first
-atomic then regular in the call site itself. If the wait functions are
-too complex, we either end up with too many functions or functions with
-too many parameters, and anyway calls sites end up having to use
-poll_timeout_us() directly.
-
-> - the atomic wait variant uses udelay() like xe, whereas i915
->   has no udelay()s in its atomic loop. As a compromise go for a
->   fixed 1 usec delay  for short waits, instead of the somewhat
->   peculiar xe behaviour where it effectively just does one
->   iteration of the loop.
-
-Overall I really prefer having separate functions for atomic and
-non-atomic, similar to poll_timeout_us() and poll_timeout_us_atomic(). I
-think it's so much easier to reason with the code with that than having
-atomic as parameter.
-
-> - keep the "use udelay() for < 10 usec waits" logic (which
->   more or less mirrors fsleep()), but include an explicit
->   might_sleep() even for these short waits when called from
->   a non-atomic intel_de_wait*() function. This should prevent
->   people from calling the non-atomic functions from the wrong
->   place.
-
-Another difference between i915/xe and poll_timeout_us() is the range
-for usleep_range(), which is *also* different from fsleep().
-
-i915/xe have:
-
-	usleep_range(wait__, wait__ * 2);
-
-iopoll has:
-
-	usleep_range((__sleep_us >> 2) + 1, __sleep_us);
-
-fsleep() has:
-
-	usleep_range(usecs, usecs + (usecs >> max_slack_shift));
-
-I'm inclined to think all of the non-atomic variants should just use
-fsleep(), but especially changing iopoll might be risky.
-
-> Eventually we may want to switch over to poll_timeout*(),
-> but that lacks the exponential backoff, so a bit too
-> radical to change in one go.
-
-Yeah, *sigh*. I fear it'll be too radical to add exponential backoff in
-iopoll too. But I'm not entirely sure doing 10, 20, 40, 80, 160, etc. us
-waits first when the timeout is like 1000000 us makes any sense
-either. It's just wasteful hammering. Maybe the initial wait should be
-relative to the timeout/sleep instead of fixed.
-
-I don't know, lots of talk here. And lots of stuff I don't actually like
-about this *or* the existing implementations all that much. But since
-this largely remains an implementation detail that can be changed, I
-guess I'm fine.
-
-In the long run I kind of do expect the atomic and non-atomic paths to
-be split. Having them combined is what I dislike most. Plus they'd have
-to be split for migrating to poll_timeout_us() and
-poll_timeout_us_atomic() anyway.
-
-As far as the change is concerned, I think it does what it says on the
-box. Please take the comments into consideration, especially regarding
-future changes, but I'm not insisting on any changes now.
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_de.c       | 99 +++++++++++++++++--
->  .../drm/xe/compat-i915-headers/intel_uncore.h | 31 ------
->  2 files changed, 91 insertions(+), 39 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_de.c b/drivers/gpu/drm/i9=
-15/display/intel_de.c
-> index fce92535bd6a..6cbe50f3e2b4 100644
-> --- a/drivers/gpu/drm/i915/display/intel_de.c
-> +++ b/drivers/gpu/drm/i915/display/intel_de.c
-> @@ -3,10 +3,85 @@
->   * Copyright =C2=A9 2026 Intel Corporation
->   */
->=20=20
-> +#include <linux/delay.h>
-> +
->  #include <drm/drm_print.h>
->=20=20
->  #include "intel_de.h"
->=20=20
-> +static int __intel_de_wait_for_register(struct intel_display *display,
-> +					i915_reg_t reg, u32 mask, u32 value,
-> +					unsigned int timeout_us,
-> +					u32 (*read)(struct intel_display *display, i915_reg_t reg),
-> +					u32 *out_val, bool is_atomic)
-> +{
-> +	const ktime_t end =3D ktime_add_us(ktime_get_raw(), timeout_us);
-> +	int wait_max =3D 1000;
-> +	int wait =3D 10;
-> +	u32 reg_value;
-> +	int ret;
-> +
-> +	might_sleep_if(!is_atomic);
-> +
-> +	if (timeout_us <=3D 10) {
-> +		is_atomic =3D true;
-> +		wait =3D 1;
-> +	}
-> +
-> +	for (;;) {
-> +		bool expired =3D ktime_after(ktime_get_raw(), end);
-> +
-> +		/* guarantee the condition is evaluated after timeout expired */
-> +		barrier();
-> +
-> +		reg_value =3D read(display, reg);
-> +		if ((reg_value & mask) =3D=3D value) {
-> +			ret =3D 0;
-> +			break;
-> +		}
-> +
-> +		if (expired) {
-> +			ret =3D -ETIMEDOUT;
-> +			break;
-> +		}
-> +
-> +		if (is_atomic)
-> +			udelay(wait);
-> +		else
-> +			usleep_range(wait, wait << 1);
-> +
-> +		if (wait < wait_max)
-> +			wait <<=3D 1;
-> +	}
-> +
-> +	if (out_val)
-> +		*out_val =3D reg_value;
-> +
-> +	return ret;
-> +}
-> +
-> +static int intel_de_wait_for_register(struct intel_display *display,
-> +				      i915_reg_t reg, u32 mask, u32 value,
-> +				      unsigned int fast_timeout_us,
-> +				      unsigned int slow_timeout_us,
-> +				      u32 (*read)(struct intel_display *display, i915_reg_t reg),
-> +				      u32 *out_value, bool is_atomic)
-> +{
-> +	int ret;
-> +
-> +	if (fast_timeout_us)
-> +		ret =3D __intel_de_wait_for_register(display, reg, mask, value,
-> +						   fast_timeout_us, read,
-> +						   out_value, is_atomic);
-> +
-> +	if (ret && slow_timeout_us)
-> +		ret =3D __intel_de_wait_for_register(display, reg, mask, value,
-> +						   slow_timeout_us, read,
-> +						   out_value, is_atomic);
-> +
-> +	return ret;
-> +}
-> +
->  int intel_de_wait_us(struct intel_display *display, i915_reg_t reg,
->  		     u32 mask, u32 value, unsigned int timeout_us,
->  		     u32 *out_value)
-> @@ -15,8 +90,10 @@ int intel_de_wait_us(struct intel_display *display, i9=
-15_reg_t reg,
->=20=20
->  	intel_dmc_wl_get(display, reg);
->=20=20
-> -	ret =3D __intel_wait_for_register(__to_uncore(display), reg, mask,
-> -					value, timeout_us, 0, out_value);
-> +	ret =3D intel_de_wait_for_register(display, reg, mask, value,
-> +					 timeout_us, 0,
-> +					 intel_de_read,
-> +					 out_value, false);
->=20=20
->  	intel_dmc_wl_put(display, reg);
->=20=20
-> @@ -31,8 +108,10 @@ int intel_de_wait_ms(struct intel_display *display, i=
-915_reg_t reg,
->=20=20
->  	intel_dmc_wl_get(display, reg);
->=20=20
-> -	ret =3D __intel_wait_for_register(__to_uncore(display), reg, mask,
-> -					value, 2, timeout_ms, out_value);
-> +	ret =3D intel_de_wait_for_register(display, reg, mask, value,
-> +					 2, timeout_ms * 1000,
-> +					 intel_de_read,
-> +					 out_value, false);
->=20=20
->  	intel_dmc_wl_put(display, reg);
->=20=20
-> @@ -43,16 +122,20 @@ int intel_de_wait_fw_ms(struct intel_display *displa=
-y, i915_reg_t reg,
->  			u32 mask, u32 value, unsigned int timeout_ms,
->  			u32 *out_value)
->  {
-> -	return __intel_wait_for_register_fw(__to_uncore(display), reg, mask,
-> -					    value, 2, timeout_ms, out_value);
-> +	return intel_de_wait_for_register(display, reg, mask, value,
-> +					  2, timeout_ms * 1000,
-> +					  intel_de_read_fw,
-> +					  out_value, false);
->  }
->=20=20
->  int intel_de_wait_fw_us_atomic(struct intel_display *display, i915_reg_t=
- reg,
->  			       u32 mask, u32 value, unsigned int timeout_us,
->  			       u32 *out_value)
->  {
-> -	return __intel_wait_for_register_fw(__to_uncore(display), reg, mask,
-> -					    value, timeout_us, 0, out_value);
-> +	return intel_de_wait_for_register(display, reg, mask, value,
-> +					  timeout_us, 0,
-> +					  intel_de_read_fw,
-> +					  out_value, true);
->  }
->=20=20
->  int intel_de_wait_for_set_us(struct intel_display *display, i915_reg_t r=
-eg,
-> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/driv=
-ers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-> index a8cfd65119e0..08d7ab933672 100644
-> --- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-> +++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-> @@ -98,37 +98,6 @@ static inline u32 intel_uncore_rmw(struct intel_uncore=
- *uncore,
->  	return xe_mmio_rmw32(__compat_uncore_to_mmio(uncore), reg, clear, set);
->  }
->=20=20
-> -static inline int
-> -__intel_wait_for_register(struct intel_uncore *uncore, i915_reg_t i915_r=
-eg,
-> -			  u32 mask, u32 value, unsigned int fast_timeout_us,
-> -			  unsigned int slow_timeout_ms, u32 *out_value)
-> -{
-> -	struct xe_reg reg =3D XE_REG(i915_mmio_reg_offset(i915_reg));
-> -	bool atomic;
-> -
-> -	/*
-> -	 * Replicate the behavior from i915 here, in which sleep is not
-> -	 * performed if slow_timeout_ms =3D=3D 0. This is necessary because
-> -	 * of some paths in display code where waits are done in atomic
-> -	 * context.
-> -	 */
-> -	atomic =3D !slow_timeout_ms && fast_timeout_us > 0;
-> -
-> -	return xe_mmio_wait32(__compat_uncore_to_mmio(uncore), reg, mask, value,
-> -			      fast_timeout_us + 1000 * slow_timeout_ms,
-> -			      out_value, atomic);
-> -}
-> -
-> -static inline int
-> -__intel_wait_for_register_fw(struct intel_uncore *uncore, i915_reg_t i91=
-5_reg,
-> -			     u32 mask, u32 value, unsigned int fast_timeout_us,
-> -			     unsigned int slow_timeout_ms, u32 *out_value)
-> -{
-> -	return __intel_wait_for_register(uncore, i915_reg, mask, value,
-> -					 fast_timeout_us, slow_timeout_ms,
-> -					 out_value);
-> -}
-> -
->  static inline u32 intel_uncore_read_fw(struct intel_uncore *uncore,
->  				       i915_reg_t i915_reg)
->  {
-
---=20
-Jani Nikula, Intel
+>=20
+> Today, PMT discovery flow is primarily PCI-oriented. Some platforms
+> expose
+> PMT discovery via ACPI _DSD, and PMC telemetry needs to consume that
+> path
+> for both standalone and companion-device cases. This series addresses
+> that
+> in three logical steps:
+>=20
+> =C2=A0=C2=A0=C2=A0 1. Prepare intel_vsec for ACPI-backed discovery
+> =C2=A0=C2=A0=C2=A0 2. Refactor PMT class handling so discovery source is
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 abstracted (PCI or ACPI)
+> =C2=A0=C2=A0=C2=A0 3. Add/enable PMC consumers using ACPI discovery, incl=
+uding NVL
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SSRAM support
+>=20
+> Patches 1=E2=80=936 were previously posted here:
+> https://lore.kernel.org/all/20260303051953.1453372-1-david.e.box@linux.in=
+tel.com/
+>=20
+> Series layout
+>=20
+> =C2=A0=C2=A0=C2=A0 01-06: intel_vsec cleanup/generalization for ACPI-capa=
+ble
+> discovery
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 plumbing. Pr=
+evious changelog up to V7 included.
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Major patche=
+s:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Patch 6 - ad=
+ds ACPI support in VSEC driver
+>=20
+> =C2=A0=C2=A0=C2=A0 07-12: PMT class refactor and ACPI discovery-source su=
+pport
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Major patche=
+s:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Patch 12 - a=
+dds ACPI support in PMT driver
+>=20
+> =C2=A0=C2=A0=C2=A0 13-22: PMC driver integration
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Major patche=
+s:
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Patch 14 - a=
+dds new ACPI platform driver
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Patch 20 - a=
+dds ACPI discovery support in ssram driver
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Patch 22 - a=
+dds NVL IDs for SSRAM discovery
+>=20
+> David E. Box (20):
+> =C2=A0 platform/x86/intel/vsec: Refactor base_addr handling
+> =C2=A0 platform/x86/intel/vsec: Make driver_data info const
+> =C2=A0 platform/x86/intel/vsec: Decouple add/link helpers from PCI
+> =C2=A0 platform/x86/intel/vsec: Switch exported helpers from pci_dev to
+> =C2=A0=C2=A0=C2=A0 device
+> =C2=A0 platform/x86/intel/vsec: Return real error codes from registration
+> =C2=A0=C2=A0=C2=A0 path
+> =C2=A0 platform/x86/intel/vsec: Plumb ACPI PMT discovery tables through
+> vsec
+> =C2=A0 platform/x86/intel/pmt: Add pre/post decode hooks around header
+> =C2=A0=C2=A0=C2=A0 parsing
+> =C2=A0 platform/x86/intel/pmt/crashlog: Split init into pre-decode
+> =C2=A0 platform/x86/intel/pmt/telemetry: Move overlap check to post-decod=
+e
+> =C2=A0=C2=A0=C2=A0 hook
+> =C2=A0 platform/x86/intel/pmt: Move header decode into common helper
+> =C2=A0 platform/x86/intel/pmt: Pass discovery index instead of resource
+> =C2=A0 platform/x86/intel/pmt: Unify header fetch and add ACPI source
+> =C2=A0 platform/x86/intel/pmc: Add PMC SSRAM Kconfig description
+> =C2=A0 platform/x86/intel/pmc: Add ACPI PWRM telemetry driver for Nova
+> Lake S
+> =C2=A0 platform/x86/intel/pmc/ssram: Rename probe and PCI ID table for
+> =C2=A0=C2=A0=C2=A0 consistency
+> =C2=A0 platform/x86/intel/pmc/ssram: Refactor DEVID/PWRMBASE extraction
+> into
+> =C2=A0=C2=A0=C2=A0 helper
+> =C2=A0 platform/x86/intel/pmc/ssram: Add PCI platform data
+> =C2=A0 platform/x86/intel/pmc/ssram: Add ACPI discovery scaffolding
+> =C2=A0 platform/x86/intel/pmc/ssram: Make PMT registration optional
+> =C2=A0 platform/x86/intel/pmc: Add NVL PCI IDs for SSRAM telemetry
+> discovery
+>=20
+> Xi Pardee (2):
+> =C2=A0 platform/x86/intel/pmc/ssram: Use fixed-size static pmc array
+> =C2=A0 platform/x86/intel/pmc/ssram: Refactor memory barrier for reentran=
+t
+> =C2=A0=C2=A0=C2=A0 probe
+>=20
+> =C2=A0drivers/gpu/drm/xe/xe_debugfs.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
+> =C2=A0drivers/gpu/drm/xe/xe_hwmon.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 =
+2 +-
+> =C2=A0drivers/gpu/drm/xe/xe_vsec.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0 7 +-
+> =C2=A0drivers/gpu/drm/xe/xe_vsec.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0 4 +-
+> =C2=A0drivers/platform/x86/intel/pmc/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 25 ++
+> =C2=A0drivers/platform/x86/intel/pmc/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 |=C2=A0=C2=A0 2 +
+> =C2=A0drivers/platform/x86/intel/pmc/core.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 4 +-
+> =C2=A0drivers/platform/x86/intel/pmc/core.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0 17 ++
+> =C2=A0.../platform/x86/intel/pmc/pwrm_telemetry.c=C2=A0=C2=A0 | 227 +++++=
++++++++++++
+> =C2=A0.../platform/x86/intel/pmc/ssram_telemetry.c=C2=A0 | 254 ++++++++++=
+++++--
+> --
+> =C2=A0drivers/platform/x86/intel/pmt/class.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 170 ++++++++++--
+> =C2=A0drivers/platform/x86/intel/pmt/class.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0 25 +-
+> =C2=A0drivers/platform/x86/intel/pmt/crashlog.c=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0 16 +-
+> =C2=A0drivers/platform/x86/intel/pmt/discovery.c=C2=A0=C2=A0=C2=A0 |=C2=
+=A0=C2=A0 4 +-
+> =C2=A0drivers/platform/x86/intel/pmt/telemetry.c=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 45 +---
+> =C2=A0drivers/platform/x86/intel/pmt/telemetry.h=C2=A0=C2=A0=C2=A0 |=C2=
+=A0 12 +-
+> =C2=A0drivers/platform/x86/intel/sdsi.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 5 +-
+> =C2=A0drivers/platform/x86/intel/vsec.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 121 +++++----
+> =C2=A0drivers/platform/x86/intel/vsec_tpmi.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 8 +-
+> =C2=A0include/linux/intel_vsec.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ |=C2=A0 39 ++-
+> =C2=A020 files changed, 784 insertions(+), 205 deletions(-)
+> =C2=A0create mode 100644 drivers/platform/x86/intel/pmc/pwrm_telemetry.c
+>=20
+>=20
+> base-commit: 11439c4635edd669ae435eec308f4ab8a0804808
