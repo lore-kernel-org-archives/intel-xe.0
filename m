@@ -4,49 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24D5DF53D65
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 15:29:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38D2FF53D6C
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 15:29:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D366E10E27D;
-	Mon, 16 Mar 2026 15:29:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D109110E39D;
+	Mon, 16 Mar 2026 15:29:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="DQZUrNas";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="oBee0WjV";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A76010E39D
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Mar 2026 15:29:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69E3910E3A0
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Mar 2026 15:29:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
- In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-ID:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=Xx3+8tSTQJqmDBQtxFmGi9pVySeekP6amr9tdATHjW4=; b=DQZUrNasKW/MHwQGLDyfbvgz7d
- WN++WTC+XGAqolFKTZ0VUx4MYXSP8dn1wbM6vdajPsasFkPhPTf3AkguvUaH1G5IwlPusuDNuiL3g
- IrszijysZJtFHRrGeQSjBQXT1aIgzTzKgvkJdEC/Rzfok8+hecXPin+2rJug0P7zafDG5s/gMiQT9
- qoPCqxEs6w26SI52xs1iYcjqYzgUg2wu6r0uftgCIGte8KiCWegX34F681jjX8DUIYwtxXa0OmxSK
- wq54KX6PJOoP+IptNOHEhvdup2IuMu3hYi3bQa1nuSOhEdSRah2NHuCkB2swoXUJQjnhsOrTp3SHs
- ub0RBjAg==;
+ bh=vCZVfcD3TeK4RSllYv/HwBYNSlehIobQI1H3bM2JEac=; b=oBee0WjVA9Tx8f5JpIARognnSJ
+ urqFBJIXL6FA0L/t5bEibbACkq4R65xD3s6ciKO+IXasTXzVC+B4l/KFVe0JBR7PY52cUfdi/UMW5
+ OJSJhNzWlg7hjRWelcVtlmTtof89eWQqCKNRl8+Gnng6cFg5zsLUH3FS6ss0T7tIt+9VLLdaGb5SA
+ f2d4C2TYm2DYl3ZCD91V/Mm1SWltFyARlqe95AUoOyfpPSG94i/GIj1lSbye+HHmtlLRsDTE31FOG
+ J1BwSXrQ+dKcJK4bAYvb8dSl4T+nbEJclmC7MVpg52K9AvolT/czWnqHCo07Eeu8j/2NXkBb494H4
+ v2YZKuVg==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1w29sq-00GZ2F-Am; Mon, 16 Mar 2026 16:29:32 +0100
+ id 1w29sr-00GZ2N-M9; Mon, 16 Mar 2026 16:29:33 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Uma Shankar <uma.shankar@intel.com>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v22 02/12] drm/xe: Use write-combine mapping when populating
- DPT
-Date: Mon, 16 Mar 2026 15:29:22 +0000
-Message-ID: <20260316152929.1247-3-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v22 04/12] drm/xe/xelp: Quiesce memory traffic before
+ invalidating AuxCCS
+Date: Mon, 16 Mar 2026 15:29:24 +0000
+Message-ID: <20260316152929.1247-5-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260316152929.1247-1-tvrtko.ursulin@igalia.com>
 References: <20260316152929.1247-1-tvrtko.ursulin@igalia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,38 +60,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The fallback case for DPT backing store is a buffer object in system
-memory buffer, which by default use a write-back CPU caching policy.
+According to i915 commit
+ad8ebf12217e ("drm/i915/gt: Ensure memory quiesced before invalidation")
+quiescing of the memory traffic is required before invalidating the AuxCCS
+tables.
 
-If this fallback gets triggered, and since there is currently no flushing,
-the DPT writes made when pinning a buffer to display are not guaranteed to
-be seen by the display engine.
-
-To fix this, since both the local memory and the stolen memory DPT
-placements already use write-combine, let us make the system memory option
-follow suit by passing down the appropriate flag.
+Add an extra pipe control flush to achieve that.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
-Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_ring_ops.c       | 10 +++++++++-
+ drivers/gpu/drm/xe/xe_ring_ops_types.h |  2 +-
+ 2 files changed, 10 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index d4a9eb550cae..df7d305c6fcd 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -122,7 +122,8 @@ static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
- 						   ttm_bo_type_kernel,
- 						   XE_BO_FLAG_SYSTEM |
- 						   XE_BO_FLAG_GGTT |
--						   XE_BO_FLAG_PAGETABLE,
-+						   XE_BO_FLAG_PAGETABLE |
-+						   XE_BO_FLAG_FORCE_WC,
- 						   alignment, false);
- 	if (IS_ERR(dpt))
- 		return PTR_ERR(dpt);
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 07235a895f4b..91f52d7748ca 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -377,12 +377,20 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 	struct xe_gt *gt = job->q->gt;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	bool lacks_render = !(gt->info.engine_mask & XE_HW_ENGINE_RCS_MASK);
++	const bool aux_ccs = has_aux_ccs(xe);
+ 	u32 mask_flags = 0;
+ 
+ 	*head = lrc->ring.tail;
+ 
+ 	i = emit_copy_timestamp(xe, lrc, dw, i);
+ 
++	/*
++	 * On AuxCCS platforms the invalidation of the Aux table requires
++	 * quiescing the memory traffic beforehand.
++	 */
++	if (aux_ccs)
++		i = emit_render_cache_flush(job, dw, i);
++
+ 	dw[i++] = preparser_disable(true);
+ 	if (lacks_render)
+ 		mask_flags = PIPE_CONTROL_3D_ARCH_FLAGS;
+@@ -393,7 +401,7 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 	i = emit_pipe_invalidate(job->q, mask_flags, job->ring_ops_flush_tlb, dw, i);
+ 
+ 	/* hsdes: 1809175790 */
+-	if (has_aux_ccs(xe))
++	if (aux_ccs)
+ 		i = emit_aux_table_inv(gt, CCS_AUX_INV, dw, i);
+ 
+ 	dw[i++] = preparser_disable(false);
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+index d7e3e150a9a5..477dc7defd72 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
++++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
+@@ -8,7 +8,7 @@
+ 
+ struct xe_sched_job;
+ 
+-#define MAX_JOB_SIZE_DW 58
++#define MAX_JOB_SIZE_DW 70
+ #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
+ 
+ /**
 -- 
 2.52.0
 
