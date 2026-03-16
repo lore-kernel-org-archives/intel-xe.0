@@ -4,49 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32BF0D58B39
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 04:33:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BCEEEFCBC4
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 04:33:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 012DB10E2DB;
-	Mon, 16 Mar 2026 04:33:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59C4710E2E8;
+	Mon, 16 Mar 2026 04:33:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eHRbIulc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SfToEGtf";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED2CB10E2B9;
- Mon, 16 Mar 2026 04:33:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E0E410E2C7;
+ Mon, 16 Mar 2026 04:33:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1773635584; x=1805171584;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Cjd1VtxKKAilin26daUupnu7azewzrc1r0k15q98034=;
- b=eHRbIulcbQZDONcLrnuVerX3eDg8uBa5K/Co+si6dPJiHsLXWOQ39+8m
- 99JvQ51WXX/jmI0xbyzbH1vwokkyfoEmf1yqBH33VWzvO6YUJZbWu6mAu
- wNTCdwSyOXgCFZoNI2hZgo2WE/gnymH7212gmOAK4yqjDhvvS68Bo8WwV
- WwnHTPsPTKhizRDQVH+80dnVzOilK5fmF9WgmFbCUgZaQgZfHhuIBx3in
- eXQHOOUSAEMHzUdsMZ4P/im+9oOpG/4MsOZ4gxafECU6BXGlrYC8H8nfM
- zFTkiQN62CRZ2EY/SIx3ycr95IUY9TeKJ0lpdKhIjxLWxLn+DLY6Xaqga Q==;
-X-CSE-ConnectionGUID: BnE0SODhRIi5MlkfSJdFDw==
-X-CSE-MsgGUID: ljJ9tAzxSxWuQuuyaa03Fw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11730"; a="74683512"
-X-IronPort-AV: E=Sophos;i="6.23,123,1770624000"; d="scan'208";a="74683512"
+ bh=MFZYPFoQh+He7bvkR9zfQLB+IxfRno287YwHXnvwxVA=;
+ b=SfToEGtfAr9G4egMjwdMiUWiF2Xx9qptQwli3zevljaa7x8c3H0WoDMT
+ pJKJTPmLQCGBGk0lJb6f3dLRD8mBSgdylwOkByf5kAnwhsTwv1ZzqDNYg
+ Ar8ueMK/hfoQrIVeMnnoPXAPE94ZgOj0VywDeRZJQ/7uTjk8wX5++lp8f
+ KANSKIoQi2x707LHLyE1+MMKj8iWQStuRwNb+l0oxUsON3AxK8o1Kbghf
+ hFkhJZURHMl5meIm9AQEgpKI7qyPz+IjGkNwjGj7/Fz8DhdTJx3fZRdWe
+ v/6yZrUEVF79mt8vGnIMgXYHzV3N3l9J3+9BZV3CNyqvqkFdUiDWqO114 w==;
+X-CSE-ConnectionGUID: gj5y+9/XSiGLHk0lT0VJEA==
+X-CSE-MsgGUID: APevVPKQSXaMXdMYY//yWg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11730"; a="74683515"
+X-IronPort-AV: E=Sophos;i="6.23,123,1770624000"; d="scan'208";a="74683515"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Mar 2026 21:33:03 -0700
-X-CSE-ConnectionGUID: lKd/Q3m2Scq36qzHFYeC0A==
-X-CSE-MsgGUID: haClJNecR4K3fV4eF6ehOg==
+X-CSE-ConnectionGUID: yPie+y8KT9qeRnQj6JYWYQ==
+X-CSE-MsgGUID: fjPwvP95SmmYyflZOy4ugA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,123,1770624000"; d="scan'208";a="221022171"
+X-IronPort-AV: E=Sophos;i="6.23,123,1770624000"; d="scan'208";a="221022175"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Mar 2026 21:33:03 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: intel-xe@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org
-Subject: [RFC PATCH 08/12] drm/xe: Rework exec queue object on top of DRM dep
-Date: Sun, 15 Mar 2026 21:32:51 -0700
-Message-Id: <20260316043255.226352-9-matthew.brost@intel.com>
+Cc: dri-devel@lists.freedesktop.org, Lizhi Hou <lizhi.hou@amd.com>,
+ Min Ma <mamin506@gmail.com>, Oded Gabbay <ogabbay@kernel.org>,
+ linux-kernel@vger.kernel.org
+Subject: [RFC PATCH 11/12] accel/amdxdna: Convert to drm_dep scheduler layer
+Date: Sun, 15 Mar 2026 21:32:54 -0700
+Message-Id: <20260316043255.226352-12-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260316043255.226352-1-matthew.brost@intel.com>
 References: <20260316043255.226352-1-matthew.brost@intel.com>
@@ -66,821 +68,495 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move drm_dep_queue from the backend scheduler object into the
-xe_exec_queue object. This allows reference counting to shift from
-xe_exec_queue to drm_dep_queue and enables use of the drm_dep_queue fini
-vfunc to initiate asynchronous queue teardown with the GuC firmware.
+Replace drm_gpu_scheduler/drm_sched_entity with the drm_dep layer
+(struct drm_dep_queue / struct drm_dep_job).
 
-Rework and shuffle code so that xe_exec_queue_destroy and
-xe_exec_queue_fini become IRQ-safe. Once this rework is complete, the
-GuC submission backend async-destroy worker can be dropped in favor of
-using dep_free_wq for asynchronous exec-queue destruction.
+aie2_pci.h: struct aie2_hwctx_priv drops the inline struct
+drm_gpu_scheduler and struct drm_sched_entity fields in favour of a
+heap-allocated struct drm_dep_queue *q.  The queue is allocated with
+kzalloc_obj in aie2_ctx_init() and freed via drm_dep_queue_put() on
+teardown and error paths.
 
+amdxdna_ctx.h: struct amdxdna_sched_job drops struct drm_sched_job base
+and struct kref refcnt in favour of struct drm_dep_job base.  Job
+reference counting is handled by drm_dep_job_get/put() rather than a
+private kref; aie2_job_put() is replaced with drm_dep_job_put().
+
+aie2_ctx.c:
+  - aie2_sched_job_run() updated to take struct drm_dep_job *; adds an
+    early return of NULL when the queue is killed via
+    drm_dep_queue_is_killed().
+  - aie2_sched_job_free() renamed to aie2_sched_job_release() and wired
+    as the .release vfunc on struct drm_dep_job_ops; the job free path
+    (cleanup, counter increment, wake_up, dma_fence_put, kfree) is
+    unchanged.
+  - aie2_sched_job_timedout() updated to return drm_dep_timedout_stat.
+    Stop/restart logic is guarded so it only runs once if the TDR fires
+    multiple times.  Returns DRM_DEP_TIMEDOUT_STAT_JOB_SIGNALED if the
+    job has already finished, DRM_DEP_TIMEDOUT_STAT_REQUEUE_JOB
+    otherwise (replacing the previous DRM_GPU_SCHED_STAT_RESET).
+  - drm_sched_stop/start replaced with drm_dep_queue_stop/start.
+  - drm_sched_entity_destroy replaced with drm_dep_queue_kill +
+    drm_dep_queue_put on the context destroy path.
+  - drm_sched_job_init replaced with drm_dep_job_init.
+
+trace/amdxdna.h: trace event updated to accept struct drm_dep_job *
+instead of struct drm_sched_job *.
+
+Cc: dri-devel@lists.freedesktop.org
+Cc: Lizhi Hou <lizhi.hou@amd.com>
+Cc: Min Ma <mamin506@gmail.com>
+Cc: Oded Gabbay <ogabbay@kernel.org>
+Cc: linux-kernel@vger.kernel.org
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c           |  94 ++++++++-------
- drivers/gpu/drm/xe/xe_exec_queue.h           |   9 +-
- drivers/gpu/drm/xe/xe_exec_queue_types.h     |   6 +-
- drivers/gpu/drm/xe/xe_execlist.c             |  18 +--
- drivers/gpu/drm/xe/xe_execlist_types.h       |   2 -
- drivers/gpu/drm/xe/xe_gpu_scheduler.c        |  18 +--
- drivers/gpu/drm/xe/xe_gpu_scheduler.h        |   8 +-
- drivers/gpu/drm/xe/xe_gpu_scheduler_types.h  |   6 +-
- drivers/gpu/drm/xe/xe_guc_exec_queue_types.h |   4 +-
- drivers/gpu/drm/xe/xe_guc_submit.c           | 119 ++++++++++---------
- drivers/gpu/drm/xe/xe_sched_job.c            |   4 +-
- 11 files changed, 143 insertions(+), 145 deletions(-)
+ drivers/accel/amdxdna/Kconfig       |   2 +-
+ drivers/accel/amdxdna/aie2_ctx.c    | 144 +++++++++++++++-------------
+ drivers/accel/amdxdna/aie2_pci.h    |   4 +-
+ drivers/accel/amdxdna/amdxdna_ctx.c |   5 +-
+ drivers/accel/amdxdna/amdxdna_ctx.h |   4 +-
+ include/trace/events/amdxdna.h      |  12 ++-
+ 6 files changed, 88 insertions(+), 83 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index b287d0e0e60a..b34af4594512 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -142,6 +142,12 @@ static void __xe_exec_queue_free(struct xe_exec_queue *q)
- {
- 	int i;
+diff --git a/drivers/accel/amdxdna/Kconfig b/drivers/accel/amdxdna/Kconfig
+index f39d7a87296c..fdce1ef57cc0 100644
+--- a/drivers/accel/amdxdna/Kconfig
++++ b/drivers/accel/amdxdna/Kconfig
+@@ -6,7 +6,7 @@ config DRM_ACCEL_AMDXDNA
+ 	depends on DRM_ACCEL
+ 	depends on PCI && HAS_IOMEM
+ 	depends on X86_64
+-	select DRM_SCHED
++	select DRM_DEP
+ 	select DRM_GEM_SHMEM_HELPER
+ 	select FW_LOADER
+ 	select HMM_MIRROR
+diff --git a/drivers/accel/amdxdna/aie2_ctx.c b/drivers/accel/amdxdna/aie2_ctx.c
+index 202c7a3eef24..89d3d30a5ad0 100644
+--- a/drivers/accel/amdxdna/aie2_ctx.c
++++ b/drivers/accel/amdxdna/aie2_ctx.c
+@@ -4,6 +4,7 @@
+  */
  
-+	if (q->ufence_syncobj)
-+		drm_syncobj_put(q->ufence_syncobj);
-+
-+	for (i = 0; i < q->width; ++i)
-+		xe_lrc_put(q->lrc[i]);
-+
- 	for (i = 0; i < XE_EXEC_QUEUE_TLB_INVAL_COUNT; ++i)
- 		if (q->tlb_inval[i].dep_scheduler)
- 			xe_dep_scheduler_fini(q->tlb_inval[i].dep_scheduler);
-@@ -157,11 +163,19 @@ static void __xe_exec_queue_free(struct xe_exec_queue *q)
- 		xe_vm_put(q->vm);
- 	}
+ #include <drm/amdxdna_accel.h>
++#include <drm/drm_dep.h>
+ #include <drm/drm_device.h>
+ #include <drm/drm_gem.h>
+ #include <drm/drm_gem_shmem_helper.h>
+@@ -29,31 +30,18 @@ MODULE_PARM_DESC(force_cmdlist, "Force use command list (Default true)");
  
-+	if (q->user_vm)
-+		xe_vm_put(q->user_vm);
-+
- 	if (q->xef)
- 		xe_file_put(q->xef);
+ #define HWCTX_MAX_TIMEOUT	60000 /* milliseconds */
  
- 	kvfree(q->replay_state);
--	kfree(q);
-+	if (drm_dep_queue_is_initialized(&q->dep_q)) {
-+		xe_assert(gt_to_xe(q->gt), !drm_dep_queue_refcount(&q->dep_q));
-+		kfree_rcu(q, dep_q.rcu);
-+	} else {
-+		kfree(q);
-+	}
- }
- 
- static int alloc_dep_schedulers(struct xe_device *xe, struct xe_exec_queue *q)
-@@ -214,7 +228,6 @@ static struct xe_exec_queue *__xe_exec_queue_alloc(struct xe_device *xe,
- 	if (!q)
- 		return ERR_PTR(-ENOMEM);
- 
--	kref_init(&q->refcount);
- 	q->flags = flags;
- 	q->hwe = hwe;
- 	q->gt = gt;
-@@ -321,16 +334,6 @@ struct xe_lrc *xe_exec_queue_lrc(struct xe_exec_queue *q)
- 	return q->lrc[0];
- }
- 
--static void __xe_exec_queue_fini(struct xe_exec_queue *q)
+-static void aie2_job_release(struct kref *ref)
 -{
--	int i;
+-	struct amdxdna_sched_job *job;
 -
--	q->ops->fini(q);
--
--	for (i = 0; i < q->width; ++i)
--		xe_lrc_put(q->lrc[i]);
+-	job = container_of(ref, struct amdxdna_sched_job, refcnt);
+-	amdxdna_sched_job_cleanup(job);
+-	atomic64_inc(&job->hwctx->job_free_cnt);
+-	wake_up(&job->hwctx->priv->job_free_wq);
+-	if (job->out_fence)
+-		dma_fence_put(job->out_fence);
+-	kfree(job);
 -}
 -
- static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
+ static void aie2_job_put(struct amdxdna_sched_job *job)
  {
- 	int i, err;
-@@ -357,8 +360,13 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
- 		flags |= XE_LRC_DISABLE_STATE_CACHE_PERF_FIX;
+-	kref_put(&job->refcnt, aie2_job_release);
++	drm_dep_job_put(&job->base);
+ }
  
- 	err = q->ops->init(q);
--	if (err)
-+	if (err) {
-+		if (drm_dep_queue_is_initialized(&q->dep_q))
-+			xe_exec_queue_put(q);
-+		else
-+			__xe_exec_queue_free(q);
- 		return err;
+ /* The bad_job is used in aie2_sched_job_timedout, otherwise, set it to NULL */
+ static void aie2_hwctx_stop(struct amdxdna_dev *xdna, struct amdxdna_hwctx *hwctx,
+-			    struct drm_sched_job *bad_job)
++			    struct drm_dep_job *bad_job)
+ {
+-	drm_sched_stop(&hwctx->priv->sched, bad_job);
++	drm_dep_queue_stop(hwctx->priv->q);
+ 	aie2_destroy_context(xdna->dev_handle, hwctx);
+-	drm_sched_start(&hwctx->priv->sched, 0);
++	drm_dep_queue_start(hwctx->priv->q);
+ }
+ 
+ static int aie2_hwctx_restart(struct amdxdna_dev *xdna, struct amdxdna_hwctx *hwctx)
+@@ -282,21 +270,24 @@ aie2_sched_cmdlist_resp_handler(void *handle, void __iomem *data, size_t size)
+ }
+ 
+ static struct dma_fence *
+-aie2_sched_job_run(struct drm_sched_job *sched_job)
++aie2_sched_job_run(struct drm_dep_job *dep_job)
+ {
+-	struct amdxdna_sched_job *job = drm_job_to_xdna_job(sched_job);
++	struct amdxdna_sched_job *job = drm_job_to_xdna_job(dep_job);
+ 	struct amdxdna_gem_obj *cmd_abo = job->cmd_bo;
+ 	struct amdxdna_hwctx *hwctx = job->hwctx;
+ 	struct dma_fence *fence;
+ 	int ret;
+ 
++	if (drm_dep_queue_is_killed(job->hwctx->priv->q))
++		return NULL;
++
+ 	if (!hwctx->priv->mbox_chann)
+ 		return NULL;
+ 
+ 	if (!mmget_not_zero(job->mm))
+ 		return ERR_PTR(-ESRCH);
+ 
+-	kref_get(&job->refcnt);
++	drm_dep_job_get(&job->base);
+ 	fence = dma_fence_get(job->fence);
+ 
+ 	if (job->drv_cmd) {
+@@ -330,46 +321,58 @@ aie2_sched_job_run(struct drm_sched_job *sched_job)
+ 		mmput(job->mm);
+ 		fence = ERR_PTR(ret);
+ 	}
+-	trace_xdna_job(sched_job, hwctx->name, "sent to device", job->seq);
++	trace_xdna_job(dep_job, hwctx->name, "sent to device", job->seq);
+ 
+ 	return fence;
+ }
+ 
+-static void aie2_sched_job_free(struct drm_sched_job *sched_job)
++static void aie2_sched_job_release(struct drm_dep_job *dep_job)
+ {
+-	struct amdxdna_sched_job *job = drm_job_to_xdna_job(sched_job);
++	struct amdxdna_sched_job *job = drm_job_to_xdna_job(dep_job);
+ 	struct amdxdna_hwctx *hwctx = job->hwctx;
+ 
+-	trace_xdna_job(sched_job, hwctx->name, "job free", job->seq);
++	trace_xdna_job(dep_job, hwctx->name, "job free", job->seq);
+ 	if (!job->job_done)
+ 		up(&hwctx->priv->job_sem);
+ 
+-	drm_sched_job_cleanup(sched_job);
+-	aie2_job_put(job);
++	amdxdna_sched_job_cleanup(job);
++	atomic64_inc(&job->hwctx->job_free_cnt);
++	wake_up(&job->hwctx->priv->job_free_wq);
++	if (job->out_fence)
++		dma_fence_put(job->out_fence);
++	kfree(job);
+ }
+ 
+-static enum drm_gpu_sched_stat
+-aie2_sched_job_timedout(struct drm_sched_job *sched_job)
++static const struct drm_dep_job_ops job_ops = {
++	.release = aie2_sched_job_release,
++};
++
++static enum drm_dep_timedout_stat
++aie2_sched_job_timedout(struct drm_dep_job *dep_job)
+ {
+-	struct amdxdna_sched_job *job = drm_job_to_xdna_job(sched_job);
++	struct amdxdna_sched_job *job = drm_job_to_xdna_job(dep_job);
+ 	struct amdxdna_hwctx *hwctx = job->hwctx;
+ 	struct amdxdna_dev *xdna;
+ 
+-	xdna = hwctx->client->xdna;
+-	trace_xdna_job(sched_job, hwctx->name, "job timedout", job->seq);
+-	job->job_timeout = true;
+-	mutex_lock(&xdna->dev_lock);
+-	aie2_hwctx_stop(xdna, hwctx, sched_job);
++	if (!job->job_timeout) {
++		xdna = hwctx->client->xdna;
++		trace_xdna_job(dep_job, hwctx->name, "job timedout", job->seq);
++		job->job_timeout = true;
++		mutex_lock(&xdna->dev_lock);
++		aie2_hwctx_stop(xdna, hwctx, dep_job);
+ 
+-	aie2_hwctx_restart(xdna, hwctx);
+-	mutex_unlock(&xdna->dev_lock);
++		aie2_hwctx_restart(xdna, hwctx);
++		mutex_unlock(&xdna->dev_lock);
 +	}
  
- 	/*
- 	 * This must occur after q->ops->init to avoid race conditions during VF
-@@ -398,7 +406,7 @@ static int __xe_exec_queue_init(struct xe_exec_queue *q, u32 exec_queue_flags)
+-	return DRM_GPU_SCHED_STAT_RESET;
++	if (drm_dep_job_is_finished(dep_job))
++		return DRM_DEP_TIMEDOUT_STAT_JOB_SIGNALED;
++	else
++		return DRM_DEP_TIMEDOUT_STAT_REQUEUE_JOB;
+ }
+ 
+-static const struct drm_sched_backend_ops sched_ops = {
++static const struct drm_dep_queue_ops sched_ops = {
+ 	.run_job = aie2_sched_job_run,
+-	.free_job = aie2_sched_job_free,
+ 	.timedout_job = aie2_sched_job_timedout,
+ };
+ 
+@@ -534,15 +537,13 @@ int aie2_hwctx_init(struct amdxdna_hwctx *hwctx)
+ {
+ 	struct amdxdna_client *client = hwctx->client;
+ 	struct amdxdna_dev *xdna = client->xdna;
+-	const struct drm_sched_init_args args = {
++	const struct drm_dep_queue_init_args args = {
+ 		.ops = &sched_ops,
+-		.num_rqs = DRM_SCHED_PRIORITY_COUNT,
+ 		.credit_limit = HWCTX_MAX_CMDS,
+ 		.timeout = msecs_to_jiffies(HWCTX_MAX_TIMEOUT),
+ 		.name = "amdxdna_js",
+-		.dev = xdna->ddev.dev,
++		.drm = &xdna->ddev,
+ 	};
+-	struct drm_gpu_scheduler *sched;
+ 	struct amdxdna_hwctx_priv *priv;
+ 	struct amdxdna_gem_obj *heap;
+ 	int i, ret;
+@@ -591,30 +592,29 @@ int aie2_hwctx_init(struct amdxdna_hwctx *hwctx)
+ 		priv->cmd_buf[i] = abo;
+ 	}
+ 
+-	sched = &priv->sched;
+ 	mutex_init(&priv->io_lock);
+ 
+ 	fs_reclaim_acquire(GFP_KERNEL);
+ 	might_lock(&priv->io_lock);
+ 	fs_reclaim_release(GFP_KERNEL);
+ 
+-	ret = drm_sched_init(sched, &args);
+-	if (ret) {
+-		XDNA_ERR(xdna, "Failed to init DRM scheduler. ret %d", ret);
++	priv->q = kzalloc_obj(*priv->q);
++	if (!priv->q) {
++		ret = -ENOMEM;
+ 		goto free_cmd_bufs;
+ 	}
+ 
+-	ret = drm_sched_entity_init(&priv->entity, DRM_SCHED_PRIORITY_NORMAL,
+-				    &sched, 1, NULL);
++	ret = drm_dep_queue_init(priv->q, &args);
+ 	if (ret) {
+-		XDNA_ERR(xdna, "Failed to initial sched entiry. ret %d", ret);
+-		goto free_sched;
++		XDNA_ERR(xdna, "Failed to init dep queue. ret %d", ret);
++		kfree(priv->q);
++		goto free_cmd_bufs;
+ 	}
+ 
+ 	ret = aie2_hwctx_col_list(hwctx);
+ 	if (ret) {
+ 		XDNA_ERR(xdna, "Create col list failed, ret %d", ret);
+-		goto free_entity;
++		goto free_queue;
+ 	}
+ 
+ 	ret = amdxdna_pm_resume_get_locked(xdna);
+@@ -654,10 +654,8 @@ int aie2_hwctx_init(struct amdxdna_hwctx *hwctx)
+ 	amdxdna_pm_suspend_put(xdna);
+ free_col_list:
+ 	kfree(hwctx->col_list);
+-free_entity:
+-	drm_sched_entity_destroy(&priv->entity);
+-free_sched:
+-	drm_sched_fini(&priv->sched);
++free_queue:
++	drm_dep_queue_put(priv->q);
+ free_cmd_bufs:
+ 	for (i = 0; i < ARRAY_SIZE(priv->cmd_buf); i++) {
+ 		if (!priv->cmd_buf[i])
+@@ -683,12 +681,13 @@ void aie2_hwctx_fini(struct amdxdna_hwctx *hwctx)
+ 	aie2_hwctx_wait_for_idle(hwctx);
+ 
+ 	/* Request fw to destroy hwctx and cancel the rest pending requests */
+-	drm_sched_stop(&hwctx->priv->sched, NULL);
++	drm_dep_queue_stop(hwctx->priv->q);
+ 	aie2_release_resource(hwctx);
+-	drm_sched_start(&hwctx->priv->sched, 0);
++	drm_dep_queue_start(hwctx->priv->q);
+ 
+ 	mutex_unlock(&xdna->dev_lock);
+-	drm_sched_entity_destroy(&hwctx->priv->entity);
++	drm_dep_queue_kill(hwctx->priv->q);
++	drm_dep_queue_put(hwctx->priv->q);
+ 
+ 	/* Wait for all submitted jobs to be completed or canceled */
+ 	wait_event(hwctx->priv->job_free_wq,
+@@ -696,7 +695,6 @@ void aie2_hwctx_fini(struct amdxdna_hwctx *hwctx)
+ 		   atomic64_read(&hwctx->job_free_cnt));
+ 	mutex_lock(&xdna->dev_lock);
+ 
+-	drm_sched_fini(&hwctx->priv->sched);
+ 	aie2_ctx_syncobj_destroy(hwctx);
+ 
+ 	for (idx = 0; idx < ARRAY_SIZE(hwctx->priv->cmd_buf); idx++)
+@@ -965,6 +963,7 @@ int aie2_cmd_submit(struct amdxdna_hwctx *hwctx, struct amdxdna_sched_job *job,
+ 	ret = down_interruptible(&hwctx->priv->job_sem);
+ 	if (ret) {
+ 		XDNA_ERR(xdna, "Grab job sem failed, ret %d", ret);
++		goto err_sem;
+ 		return ret;
+ 	}
+ 
+@@ -975,10 +974,13 @@ int aie2_cmd_submit(struct amdxdna_hwctx *hwctx, struct amdxdna_sched_job *job,
+ 		goto up_sem;
+ 	}
+ 
+-	ret = drm_sched_job_init(&job->base, &hwctx->priv->entity, 1, hwctx,
+-				 hwctx->client->filp->client_id);
++	ret = drm_dep_job_init(&job->base, &(struct drm_dep_job_init_args){
++				.ops = &job_ops,
++				.q = hwctx->priv->q,
++				.credits = 1,
++			       });
+ 	if (ret) {
+-		XDNA_ERR(xdna, "DRM job init failed, ret %d", ret);
++		XDNA_ERR(xdna, "DRM dep job init failed, ret %d", ret);
+ 		goto free_chain;
+ 	}
+ 
+@@ -1020,13 +1022,12 @@ int aie2_cmd_submit(struct amdxdna_hwctx *hwctx, struct amdxdna_sched_job *job,
+ 	}
+ 
+ 	mutex_lock(&hwctx->priv->io_lock);
+-	drm_sched_job_arm(&job->base);
+-	job->out_fence = dma_fence_get(&job->base.s_fence->finished);
++	drm_dep_job_arm(&job->base);
++	job->out_fence = dma_fence_get(drm_dep_job_finished_fence(&job->base));
+ 	for (i = 0; i < job->bo_cnt; i++)
+ 		dma_resv_add_fence(job->bos[i]->resv, job->out_fence, DMA_RESV_USAGE_WRITE);
+ 	job->seq = hwctx->priv->seq++;
+-	kref_get(&job->refcnt);
+-	drm_sched_entity_push_job(&job->base);
++	drm_dep_job_push(&job->base);
+ 
+ 	*seq = job->seq;
+ 	drm_syncobj_add_point(hwctx->priv->syncobj, chain, job->out_fence, *seq);
+@@ -1035,18 +1036,23 @@ int aie2_cmd_submit(struct amdxdna_hwctx *hwctx, struct amdxdna_sched_job *job,
+ 	up_read(&xdna->notifier_lock);
+ 	drm_gem_unlock_reservations(job->bos, job->bo_cnt, &acquire_ctx);
+ 
+-	aie2_job_put(job);
+ 	atomic64_inc(&hwctx->job_submit_cnt);
++	aie2_job_put(job);
+ 
  	return 0;
  
- err_lrc:
--	__xe_exec_queue_fini(q);
-+	xe_exec_queue_put(q);
- 	return err;
- }
- 
-@@ -434,7 +442,7 @@ struct xe_exec_queue *xe_exec_queue_create(struct xe_device *xe, struct xe_vm *v
- 
- 	err = __xe_exec_queue_init(q, flags);
- 	if (err)
--		goto err_post_alloc;
-+		return ERR_PTR(err);
- 
- 	/*
- 	 * We can only add the queue to the PXP list after the init is complete,
-@@ -446,15 +454,13 @@ struct xe_exec_queue *xe_exec_queue_create(struct xe_device *xe, struct xe_vm *v
- 	if (xe_exec_queue_uses_pxp(q)) {
- 		err = xe_pxp_exec_queue_add(xe->pxp, q);
- 		if (err)
--			goto err_post_init;
-+			goto err_put;
- 	}
- 
- 	return q;
- 
--err_post_init:
--	__xe_exec_queue_fini(q);
--err_post_alloc:
--	__xe_exec_queue_free(q);
-+err_put:
-+	xe_exec_queue_put(q);
- 	return ERR_PTR(err);
- }
- ALLOW_ERROR_INJECTION(xe_exec_queue_create, ERRNO);
-@@ -565,26 +571,18 @@ ALLOW_ERROR_INJECTION(xe_exec_queue_create_bind, ERRNO);
- 
- /**
-  * xe_exec_queue_destroy() - Destroy an exec queue
-- * @ref: Reference count of the exec queue
-+ * @q: The exec queue
-  *
-  * Called when the last reference to the exec queue is dropped.
-- * Cleans up all resources associated with the exec queue.
-- * This function should not be called directly; use xe_exec_queue_put() instead.
-+ * Starts the cleanup process for an exec queue.
-  */
--void xe_exec_queue_destroy(struct kref *ref)
-+void xe_exec_queue_destroy(struct xe_exec_queue *q)
- {
--	struct xe_exec_queue *q = container_of(ref, struct xe_exec_queue, refcount);
- 	struct xe_exec_queue *eq, *next;
- 	int i;
- 
- 	xe_assert(gt_to_xe(q->gt), atomic_read(&q->job_cnt) == 0);
- 
--	if (q->ufence_syncobj)
--		drm_syncobj_put(q->ufence_syncobj);
--
--	if (xe_exec_queue_uses_pxp(q))
--		xe_pxp_exec_queue_remove(gt_to_xe(q->gt)->pxp, q);
--
- 	xe_exec_queue_last_fence_put_unlocked(q);
- 	for_each_tlb_inval(i)
- 		xe_exec_queue_tlb_inval_last_fence_put_unlocked(q, i);
-@@ -595,24 +593,25 @@ void xe_exec_queue_destroy(struct kref *ref)
- 			xe_exec_queue_put(eq);
- 	}
- 
--	if (q->user_vm) {
--		xe_vm_put(q->user_vm);
--		q->user_vm = NULL;
--	}
--
- 	q->ops->destroy(q);
- }
- 
- /**
-- * xe_exec_queue_fini() - Finalize an exec queue
-+ * xe_exec_queue_fini() - Free an exec queue
-  * @q: The exec queue
-  *
-- * Finalizes the exec queue by updating run ticks, releasing LRC references,
-- * and freeing the queue structure. This is called after the queue has been
-- * destroyed and all references have been dropped.
-+ * Free an exec queues resources.
-+ *
-+ * Context: Process context, not in path of reclaim.
-  */
--void xe_exec_queue_fini(struct xe_exec_queue *q)
-+void xe_exec_queue_free(struct xe_exec_queue *q)
- {
-+	/*
-+	 * We may take dma-resv on final VM put, which is reclaim-unsafe.
-+	 * Teach lockdep that this function is also reclaim-unsafe.
-+	 */
-+	might_alloc(GFP_KERNEL);
+ cleanup_job:
+-	drm_sched_job_cleanup(&job->base);
++	aie2_job_put(job);
++	return ret;
 +
- 	/*
- 	 * Before releasing our ref to lrc and xef, accumulate our run ticks
- 	 * and wakeup any waiters.
-@@ -621,10 +620,21 @@ void xe_exec_queue_fini(struct xe_exec_queue *q)
- 	if (q->xef && atomic_dec_and_test(&q->xef->exec_queue.pending_removal))
- 		wake_up_var(&q->xef->exec_queue.pending_removal);
- 
--	__xe_exec_queue_fini(q);
- 	__xe_exec_queue_free(q);
- }
- 
-+/**
-+ * xe_exec_queue_fini() - Finalize an exec queue
-+ * @q: The exec queue
-+ *
-+ * This is called after the queue has been destroyed and all references in the
-+ * firmware / hardware have been dropped.
-+ */
-+void xe_exec_queue_fini(struct xe_exec_queue *q)
-+{
-+	q->ops->fini(q);
-+}
-+
- /**
-  * xe_exec_queue_assign_name() - Assign a name to an exec queue
-  * @q: The exec queue
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.h b/drivers/gpu/drm/xe/xe_exec_queue.h
-index a82d99bd77bc..694beae7f11b 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.h
-@@ -31,14 +31,15 @@ struct xe_exec_queue *xe_exec_queue_create_bind(struct xe_device *xe,
- 						struct xe_vm *user_vm,
- 						u32 flags, u64 extensions);
- 
-+void xe_exec_queue_destroy(struct xe_exec_queue *q);
- void xe_exec_queue_fini(struct xe_exec_queue *q);
--void xe_exec_queue_destroy(struct kref *ref);
-+void xe_exec_queue_free(struct xe_exec_queue *q);
- void xe_exec_queue_assign_name(struct xe_exec_queue *q, u32 instance);
- 
- static inline struct xe_exec_queue *
- xe_exec_queue_get_unless_zero(struct xe_exec_queue *q)
- {
--	if (kref_get_unless_zero(&q->refcount))
-+	if (drm_dep_queue_get_unless_zero(&q->dep_q))
- 		return q;
- 
- 	return NULL;
-@@ -48,13 +49,13 @@ struct xe_exec_queue *xe_exec_queue_lookup(struct xe_file *xef, u32 id);
- 
- static inline struct xe_exec_queue *xe_exec_queue_get(struct xe_exec_queue *q)
- {
--	kref_get(&q->refcount);
-+	drm_dep_queue_get(&q->dep_q);
- 	return q;
- }
- 
- static inline void xe_exec_queue_put(struct xe_exec_queue *q)
- {
--	kref_put(&q->refcount, xe_exec_queue_destroy);
-+	drm_dep_queue_put(&q->dep_q);
- }
- 
- static inline bool xe_exec_queue_is_parallel(struct xe_exec_queue *q)
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 35c7625a2df5..adb82c9064af 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -6,8 +6,6 @@
- #ifndef _XE_EXEC_QUEUE_TYPES_H_
- #define _XE_EXEC_QUEUE_TYPES_H_
- 
--#include <linux/kref.h>
--
- #include <drm/drm_dep.h>
- 
- #include "xe_gpu_scheduler_types.h"
-@@ -88,8 +86,6 @@ struct xe_exec_queue {
- 	 * really be used for submissions.
- 	 */
- 	struct xe_hw_engine *hwe;
--	/** @refcount: ref count of this exec queue */
--	struct kref refcount;
- 	/** @vm: VM (address space) for this exec queue */
- 	struct xe_vm *vm;
- 	/**
-@@ -246,7 +242,7 @@ struct xe_exec_queue {
- 	/** @ring_ops: ring operations for this exec queue */
- 	const struct xe_ring_ops *ring_ops;
- 	/** @dep_q: dep queue for this exec queue (1 to 1 relationship) */
--	struct drm_dep_queue *dep_q;
-+	struct drm_dep_queue dep_q;
- 
- #define XE_MAX_JOB_COUNT_PER_EXEC_QUEUE	1000
- 	/** @job_cnt: number of drm jobs in this exec queue */
-diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
-index fb948b2c617c..771039b0f4fa 100644
---- a/drivers/gpu/drm/xe/xe_execlist.c
-+++ b/drivers/gpu/drm/xe/xe_execlist.c
-@@ -319,16 +319,12 @@ execlist_run_job(struct drm_dep_job *drm_job)
- 	return job->fence;
- }
- 
--static void execlist_dep_queue_release(struct drm_dep_queue *q)
-+static void execlist_dep_queue_release(struct drm_dep_queue *dep_q)
- {
--	struct xe_execlist_exec_queue *exl =
--		container_of(q, typeof(*exl), queue);
-+	struct xe_exec_queue *q = container_of(dep_q, typeof(*q), dep_q);
- 
--	/*
--	 * RCU free: the dep queue's name may be referenced by exported dma
--	 * fences (timeline name). Defer freeing until after any RCU readers.
--	 */
--	kfree_rcu(exl, queue.rcu);
-+	kfree(q->execlist);
-+	xe_exec_queue_free(q);
- }
- 
- static const struct drm_dep_queue_ops execlist_dep_queue_ops = {
-@@ -359,7 +355,7 @@ static int execlist_exec_queue_init(struct xe_exec_queue *q)
- 
- 	exl->q = q;
- 
--	err = drm_dep_queue_init(&exl->queue, &args);
-+	err = drm_dep_queue_init(&q->dep_q, &args);
- 	if (err)
- 		goto err_free;
- 
-@@ -367,7 +363,6 @@ static int execlist_exec_queue_init(struct xe_exec_queue *q)
- 	exl->has_run = false;
- 	exl->active_priority = XE_EXEC_QUEUE_PRIORITY_UNSET;
- 	q->execlist = exl;
--	q->dep_q = &exl->queue;
- 
- 	xe_exec_queue_assign_name(q, ffs(q->logical_mask) - 1);
- 
-@@ -380,9 +375,6 @@ static int execlist_exec_queue_init(struct xe_exec_queue *q)
- 
- static void execlist_exec_queue_fini(struct xe_exec_queue *q)
- {
--	struct xe_execlist_exec_queue *exl = q->execlist;
--
--	drm_dep_queue_put(&exl->queue);
- }
- 
- static void execlist_exec_queue_destroy_async(struct work_struct *w)
-diff --git a/drivers/gpu/drm/xe/xe_execlist_types.h b/drivers/gpu/drm/xe/xe_execlist_types.h
-index c2c8218db350..9711f1813287 100644
---- a/drivers/gpu/drm/xe/xe_execlist_types.h
-+++ b/drivers/gpu/drm/xe/xe_execlist_types.h
-@@ -34,8 +34,6 @@ struct xe_execlist_port {
- struct xe_execlist_exec_queue {
- 	struct xe_exec_queue *q;
- 
--	struct drm_dep_queue queue;
--
- 	struct xe_execlist_port *port;
- 
- 	bool has_run;
-diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-index 14c1b8df439f..cae1c6428409 100644
---- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-+++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
-@@ -7,7 +7,7 @@
- 
- static void xe_sched_process_msg_queue(struct xe_gpu_scheduler *sched)
- {
--	drm_dep_queue_work_enqueue(&sched->base, &sched->work_process_msg);
-+	drm_dep_queue_work_enqueue(sched->dep_q, &sched->work_process_msg);
- }
- 
- static void xe_sched_process_msg_queue_if_ready(struct xe_gpu_scheduler *sched)
-@@ -43,9 +43,9 @@ static void xe_sched_process_msg_work(struct work_struct *w)
- 		container_of(w, struct xe_gpu_scheduler, work_process_msg);
- 	struct xe_sched_msg *msg;
- 
--	drm_dep_queue_sched_guard(&sched->base);
-+	drm_dep_queue_sched_guard(sched->dep_q);
- 
--	if (drm_dep_queue_is_stopped(&sched->base))
-+	if (drm_dep_queue_is_stopped(sched->dep_q))
- 		return;
- 
- 	msg = xe_sched_get_msg(sched);
-@@ -81,29 +81,29 @@ int xe_sched_init(struct xe_gpu_scheduler *sched,
- 	INIT_LIST_HEAD(&sched->msgs);
- 	INIT_WORK(&sched->work_process_msg, xe_sched_process_msg_work);
- 
--	return drm_dep_queue_init(&sched->base, &args);
-+	return drm_dep_queue_init(sched->dep_q, &args);
- }
- 
- void xe_sched_fini(struct xe_gpu_scheduler *sched)
- {
--	drm_dep_queue_put(&sched->base);
-+	drm_dep_queue_fini(sched->dep_q);
- }
- 
- void xe_sched_submission_start(struct xe_gpu_scheduler *sched)
- {
--	drm_dep_queue_start(&sched->base);
--	drm_dep_queue_work_enqueue(&sched->base, &sched->work_process_msg);
-+	drm_dep_queue_start(sched->dep_q);
-+	drm_dep_queue_work_enqueue(sched->dep_q, &sched->work_process_msg);
- }
- 
- void xe_sched_submission_stop(struct xe_gpu_scheduler *sched)
- {
--	drm_dep_queue_stop(&sched->base);
-+	drm_dep_queue_stop(sched->dep_q);
- 	cancel_work_sync(&sched->work_process_msg);
- }
- 
- void xe_sched_submission_resume_tdr(struct xe_gpu_scheduler *sched)
- {
--	drm_dep_queue_resume_timeout(&sched->base);
-+	drm_dep_queue_resume_timeout(sched->dep_q);
- }
- 
- void xe_sched_add_msg(struct xe_gpu_scheduler *sched,
-diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-index 71c060398be6..7b7bfb2d63e0 100644
---- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-+++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
-@@ -42,7 +42,7 @@ void xe_sched_add_msg_head(struct xe_gpu_scheduler *sched,
- 
- static inline void xe_sched_tdr_queue_imm(struct xe_gpu_scheduler *sched)
- {
--	drm_dep_queue_trigger_timeout(&sched->base);
-+	drm_dep_queue_trigger_timeout(sched->dep_q);
- }
- 
- static inline void xe_sched_resubmit_jobs(struct xe_gpu_scheduler *sched)
-@@ -51,11 +51,11 @@ static inline void xe_sched_resubmit_jobs(struct xe_gpu_scheduler *sched)
- 	struct xe_sched_job *job;
- 	bool restore_replay = false;
- 
--	drm_dep_queue_for_each_pending_job(drm_job, &sched->base) {
-+	drm_dep_queue_for_each_pending_job(drm_job, sched->dep_q) {
- 		job = to_xe_sched_job(drm_job);
- 		restore_replay |= job->restore_replay;
- 		if (restore_replay || !drm_dep_job_is_signaled(drm_job))
--			sched->base.ops->run_job(drm_job);
-+			sched->dep_q->ops->run_job(drm_job);
- 	}
- }
- 
-@@ -76,7 +76,7 @@ struct xe_sched_job *xe_sched_first_pending_job(struct xe_gpu_scheduler *sched)
- {
- 	struct drm_dep_job *drm_job;
- 
--	drm_dep_queue_for_each_pending_job(drm_job, &sched->base)
-+	drm_dep_queue_for_each_pending_job(drm_job, sched->dep_q)
- 		if (!drm_dep_job_is_signaled(drm_job))
- 			return to_xe_sched_job(drm_job);
- 
-diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-index ff89d36d3b2a..b059cb75fca8 100644
---- a/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-+++ b/drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-@@ -41,8 +41,8 @@ struct xe_sched_backend_ops {
-  * struct xe_gpu_scheduler - Xe GPU scheduler
-  */
- struct xe_gpu_scheduler {
--	/** @base: DRM dependency queue */
--	struct drm_dep_queue			base;
-+	/** @dep_q: DRM dependency queue */
-+	struct drm_dep_queue			*dep_q;
- 	/** @ops: Xe scheduler ops */
- 	const struct xe_sched_backend_ops	*ops;
- 	/** @msgs: list of messages to be processed in @work_process_msg */
-@@ -53,6 +53,4 @@ struct xe_gpu_scheduler {
- 	struct work_struct		work_process_msg;
- };
- 
--#define xe_sched_entity		drm_dep_queue
--
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-index 42ba4892ff71..cb15e86823d2 100644
---- a/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-@@ -29,8 +29,6 @@ struct xe_guc_exec_queue {
- 	 */
- #define MAX_STATIC_MSG_TYPE	3
- 	struct xe_sched_msg static_msgs[MAX_STATIC_MSG_TYPE];
--	/** @destroy_async: do final destroy async from this worker */
--	struct work_struct destroy_async;
- 	/** @resume_time: time of last resume */
- 	u64 resume_time;
- 	/** @state: GuC specific state for this xe_exec_queue */
-@@ -40,7 +38,7 @@ struct xe_guc_exec_queue {
- 	/** @wqi_tail: work queue item tail */
- 	u32 wqi_tail;
- 	/** @id: GuC id for this exec_queue */
--	u16 id;
-+	u32 id;
- 	/** @suspend_wait: wait queue used to wait on pending suspends */
- 	wait_queue_head_t suspend_wait;
- 	/** @suspend_pending: a suspend of the exec_queue is pending */
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 2f91902bd2cb..af54ac9d5607 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -403,12 +403,17 @@ void xe_guc_submit_disable(struct xe_guc *guc)
- 	guc->submission_state.enabled = false;
- }
- 
-+#define GUC_ID_INVALID	BIT(31)
-+
- static void __release_guc_id(struct xe_guc *guc, struct xe_exec_queue *q, u32 xa_count)
- {
- 	int i;
- 
- 	lockdep_assert_held(&guc->submission_state.lock);
- 
-+	if (q->guc->id == GUC_ID_INVALID)
-+		return;
-+
- 	for (i = 0; i < xa_count; ++i)
- 		xa_erase(&guc->submission_state.exec_queue_lookup, q->guc->id + i);
- 
-@@ -424,6 +429,8 @@ static int alloc_guc_id(struct xe_guc *guc, struct xe_exec_queue *q)
- 	int ret;
- 	int i;
- 
-+	q->guc->id = GUC_ID_INVALID;
-+
- 	/*
- 	 * Must use GFP_NOWAIT as this lock is in the dma fence signalling path,
- 	 * worse case user gets -ENOMEM on engine create and has to try again.
-@@ -451,6 +458,7 @@ static int alloc_guc_id(struct xe_guc *guc, struct xe_exec_queue *q)
- 
- err_release:
- 	__release_guc_id(guc, q, i);
-+	q->guc->id = GUC_ID_INVALID;
- 
+ free_chain:
+ 	dma_fence_chain_free(chain);
+ up_sem:
+ 	up(&hwctx->priv->job_sem);
+ 	job->job_done = true;
++err_sem:
++	amdxdna_sched_job_cleanup(job);
++	kfree(job);
  	return ret;
  }
-@@ -1630,7 +1638,7 @@ guc_exec_queue_timedout_job(struct drm_dep_job *drm_job)
  
- 	/* Mark all outstanding jobs as bad, thus completing them */
- 	xe_sched_job_set_error(job, err);
--	drm_dep_queue_for_each_pending_job(tmp_job, &sched->base)
-+	drm_dep_queue_for_each_pending_job(tmp_job, sched->dep_q)
- 		xe_sched_job_set_error(to_xe_sched_job(tmp_job), -ECANCELED);
+diff --git a/drivers/accel/amdxdna/aie2_pci.h b/drivers/accel/amdxdna/aie2_pci.h
+index 885ae7e6bfc7..63edcd7fb631 100644
+--- a/drivers/accel/amdxdna/aie2_pci.h
++++ b/drivers/accel/amdxdna/aie2_pci.h
+@@ -7,6 +7,7 @@
+ #define _AIE2_PCI_H_
  
- 	if (xe_exec_queue_is_multi_queue(q)) {
-@@ -1660,45 +1668,16 @@ guc_exec_queue_timedout_job(struct drm_dep_job *drm_job)
- static void guc_exec_queue_fini(struct xe_exec_queue *q)
- {
- 	struct xe_guc_exec_queue *ge = q->guc;
--	struct xe_guc *guc = exec_queue_to_guc(q);
+ #include <drm/amdxdna_accel.h>
++#include <drm/drm_dep.h>
+ #include <linux/limits.h>
+ #include <linux/semaphore.h>
  
--	release_guc_id(guc, q);
- 	xe_sched_fini(&ge->sched);
- }
+@@ -165,8 +166,7 @@ struct amdxdna_hwctx_priv {
+ 	struct amdxdna_gem_obj		*heap;
+ 	void				*mbox_chann;
  
- static void __guc_exec_queue_destroy(struct xe_exec_queue *q)
- {
- 	trace_xe_exec_queue_destroy(q);
--
--	if (xe_exec_queue_is_multi_queue_secondary(q)) {
--		struct xe_exec_queue_group *group = q->multi_queue.group;
--
--		mutex_lock(&group->list_lock);
--		list_del(&q->multi_queue.link);
--		mutex_unlock(&group->list_lock);
--	}
--
- 	xe_exec_queue_fini(q);
- }
+-	struct drm_gpu_scheduler	sched;
+-	struct drm_sched_entity		entity;
++	struct drm_dep_queue		*q;
  
--static void __guc_exec_queue_destroy_async(struct work_struct *w)
--{
--	struct xe_guc_exec_queue *ge =
--		container_of(w, struct xe_guc_exec_queue, destroy_async);
--	struct xe_exec_queue *q = ge->q;
--
--	__guc_exec_queue_destroy(q);
--}
--
--static void guc_exec_queue_destroy_async(struct xe_exec_queue *q)
--{
--	struct xe_guc *guc = exec_queue_to_guc(q);
--	struct xe_device *xe = guc_to_xe(guc);
--
--	INIT_WORK(&q->guc->destroy_async, __guc_exec_queue_destroy_async);
--	queue_work(xe->destroy_wq, &q->guc->destroy_async);
--}
--
- static void __guc_exec_queue_process_msg_cleanup(struct xe_sched_msg *msg)
- {
- 	struct xe_exec_queue *q = msg->private_data;
-@@ -1720,7 +1699,7 @@ static void __guc_exec_queue_process_msg_cleanup(struct xe_sched_msg *msg)
- 	if (exec_queue_registered(q) && xe_uc_fw_is_running(&guc->fw))
- 		disable_scheduling_deregister(guc, q);
- 	else
--		guc_exec_queue_destroy_async(q);
-+		__guc_exec_queue_destroy(q);
- }
+ 	struct mutex			io_lock; /* protect seq and cmd order */
+ 	struct wait_queue_head		job_free_wq;
+diff --git a/drivers/accel/amdxdna/amdxdna_ctx.c b/drivers/accel/amdxdna/amdxdna_ctx.c
+index 838430903a3e..a9dc1677db47 100644
+--- a/drivers/accel/amdxdna/amdxdna_ctx.c
++++ b/drivers/accel/amdxdna/amdxdna_ctx.c
+@@ -509,11 +509,10 @@ int amdxdna_cmd_submit(struct amdxdna_client *client,
+ 		ret = -ENOMEM;
+ 		goto unlock_srcu;
+ 	}
+-	kref_init(&job->refcnt);
  
- static bool guc_exec_queue_allowed_to_change_state(struct xe_exec_queue *q)
-@@ -1911,24 +1890,39 @@ static void guc_exec_queue_process_msg(struct xe_sched_msg *msg)
- 	xe_pm_runtime_put(xe);
- }
+ 	ret = xdna->dev_info->ops->cmd_submit(hwctx, job, seq);
+ 	if (ret)
+-		goto put_fence;
++		return ret;
  
--static void guc_dep_queue_release(struct drm_dep_queue *q)
-+static void guc_dep_queue_release(struct drm_dep_queue *dep_q)
- {
--	struct xe_gpu_scheduler *sched =
--		container_of(q, typeof(*sched), base);
--	struct xe_guc_exec_queue *ge =
--		container_of(sched, typeof(*ge), sched);
-+	struct xe_exec_queue *q =
-+		container_of(dep_q, typeof(*q), dep_q);
-+	struct xe_guc *guc = exec_queue_to_guc(q);
+ 	/*
+ 	 * The amdxdna_hwctx_destroy_rcu() will release hwctx and associated
+@@ -526,8 +525,6 @@ int amdxdna_cmd_submit(struct amdxdna_client *client,
  
--	/*
--	 * RCU free: the dep queue's name may be referenced by exported dma
--	 * fences (timeline name). Defer freeing until after any RCU readers.
--	 */
--	kfree_rcu(ge, sched.base.rcu);
-+	if (xe_exec_queue_is_multi_queue_secondary(q)) {
-+		struct xe_exec_queue_group *group = q->multi_queue.group;
-+
-+		mutex_lock(&group->list_lock);
-+		if (!list_empty(&q->multi_queue.link))
-+			list_del(&q->multi_queue.link);
-+		mutex_unlock(&group->list_lock);
-+	}
-+
-+	release_guc_id(guc, q);
-+	drm_dep_queue_release(dep_q);
-+	kfree(q->guc);
-+	xe_exec_queue_free(q);
-+}
-+
-+static void guc_dep_queue_fini(struct drm_dep_queue *dep_q)
-+{
-+	struct xe_exec_queue *q = container_of(dep_q, typeof(*q), dep_q);
-+
-+	xe_exec_queue_destroy(q);
- }
+ 	return 0;
  
- static const struct drm_dep_queue_ops guc_dep_queue_ops = {
- 	.run_job = guc_exec_queue_run_job,
- 	.timedout_job = guc_exec_queue_timedout_job,
- 	.release = guc_dep_queue_release,
-+	.fini = guc_dep_queue_fini,
+-put_fence:
+-	dma_fence_put(job->fence);
+ unlock_srcu:
+ 	srcu_read_unlock(&client->hwctx_srcu, idx);
+ 	amdxdna_pm_suspend_put(xdna);
+diff --git a/drivers/accel/amdxdna/amdxdna_ctx.h b/drivers/accel/amdxdna/amdxdna_ctx.h
+index fbdf9d000871..a92bd4d6f817 100644
+--- a/drivers/accel/amdxdna/amdxdna_ctx.h
++++ b/drivers/accel/amdxdna/amdxdna_ctx.h
+@@ -7,6 +7,7 @@
+ #define _AMDXDNA_CTX_H_
+ 
+ #include <linux/bitfield.h>
++#include <drm/drm_dep.h>
+ 
+ #include "amdxdna_gem.h"
+ 
+@@ -123,8 +124,7 @@ struct amdxdna_drv_cmd {
  };
  
- static const struct xe_sched_backend_ops xe_sched_ops = {
-@@ -1969,9 +1963,10 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 	if (xe_exec_queue_is_multi_queue_secondary(q)) {
- 		struct xe_exec_queue *primary = xe_exec_queue_multi_queue_primary(q);
+ struct amdxdna_sched_job {
+-	struct drm_sched_job	base;
+-	struct kref		refcnt;
++	struct drm_dep_job	base;
+ 	struct amdxdna_hwctx	*hwctx;
+ 	struct mm_struct	*mm;
+ 	/* The fence to notice DRM scheduler that job is done by hardware */
+diff --git a/include/trace/events/amdxdna.h b/include/trace/events/amdxdna.h
+index c6cb2da7b706..798958edeb60 100644
+--- a/include/trace/events/amdxdna.h
++++ b/include/trace/events/amdxdna.h
+@@ -9,7 +9,7 @@
+ #if !defined(_TRACE_AMDXDNA_H) || defined(TRACE_HEADER_MULTI_READ)
+ #define _TRACE_AMDXDNA_H
  
--		submit_wq = drm_dep_queue_submit_wq(&primary->guc->sched.base);
-+		submit_wq = drm_dep_queue_submit_wq(&primary->dep_q);
- 	}
+-#include <drm/gpu_scheduler.h>
++#include <drm/drm_dep.h>
+ #include <linux/tracepoint.h>
  
-+	ge->sched.dep_q = &q->dep_q;
- 	err = xe_sched_init(&ge->sched, &guc_dep_queue_ops, &xe_sched_ops,
- 			    submit_wq, xe_lrc_ring_size() / MAX_JOB_SIZE_BYTES,
- 			    timeout, guc_to_gt(guc)->ordered_wq, flags,
-@@ -1987,9 +1982,6 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 	if (err)
- 		goto err_sched;
+ TRACE_EVENT(amdxdna_debug_point,
+@@ -30,9 +30,9 @@ TRACE_EVENT(amdxdna_debug_point,
+ );
  
--	/* dep_q IS the queue: ge->sched.base is the drm_dep_queue */
--	q->dep_q = &ge->sched.base;
--
- 	if (xe_guc_read_stopped(guc) || vf_recovery(guc))
- 		xe_sched_submission_stop(sched);
+ TRACE_EVENT(xdna_job,
+-	    TP_PROTO(struct drm_sched_job *sched_job, const char *name, const char *str, u64 seq),
++	    TP_PROTO(struct drm_dep_job *dep_job, const char *name, const char *str, u64 seq),
  
-@@ -2003,7 +1995,7 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
- 		INIT_LIST_HEAD(&q->multi_queue.link);
- 		mutex_lock(&group->list_lock);
- 		if (group->stopped)
--			drm_dep_queue_set_stopped(&q->guc->sched.base);
-+			drm_dep_queue_set_stopped(&q->dep_q);
- 		list_add_tail(&q->multi_queue.link, &group->list);
- 		mutex_unlock(&group->list_lock);
- 	}
-@@ -2021,7 +2013,6 @@ static int guc_exec_queue_init(struct xe_exec_queue *q)
+-	    TP_ARGS(sched_job, name, str, seq),
++	    TP_ARGS(dep_job, name, str, seq),
  
- err_sched:
- 	mutex_unlock(&guc->submission_state.lock);
--	xe_sched_fini(&ge->sched);
+ 	    TP_STRUCT__entry(__string(name, name)
+ 			     __string(str, str)
+@@ -42,8 +42,10 @@ TRACE_EVENT(xdna_job,
  
- 	return err;
- err_free:
-@@ -2041,7 +2032,24 @@ static void guc_exec_queue_kill(struct xe_exec_queue *q)
- static void guc_exec_queue_add_msg(struct xe_exec_queue *q, struct xe_sched_msg *msg,
- 				   u32 opcode)
- {
--	xe_pm_runtime_get_noresume(guc_to_xe(exec_queue_to_guc(q)));
-+	struct xe_device *xe = guc_to_xe(exec_queue_to_guc(q));
-+	bool pm_ref = true;
-+
-+	/*
-+	 * With the reworked exec queue object model on top of drm_dep, it is
-+	 * possible to drop a job reference and the final PM reference, followed
-+	 * immediately by dropping the last exec queue reference, which triggers
-+	 * a cleanup job message.
-+	 *
-+	 * This sequence can only occur from an IRQ handler, so even if the PM
-+	 * reference count reaches zero the device should still be awake. Assert
-+	 * that this is indeed the case.
-+	 */
-+	if ((opcode & OPCODE_MASK) == CLEANUP)
-+		pm_ref = xe_pm_runtime_get_if_active(xe);
-+	else
-+		xe_pm_runtime_get_noresume(xe);
-+	xe_gt_assert(guc_to_gt(exec_queue_to_guc(q)), pm_ref);
+ 	    TP_fast_assign(__assign_str(name);
+ 			   __assign_str(str);
+-			   __entry->fence_context = sched_job->s_fence->finished.context;
+-			   __entry->fence_seqno = sched_job->s_fence->finished.seqno;
++			   __entry->fence_context =
++			   drm_dep_job_finished_fence(dep_job)->context;
++			   __entry->fence_seqno =
++			   drm_dep_job_finished_fence(dep_job)->seqno;
+ 			   __entry->seq = seq;),
  
- 	INIT_LIST_HEAD(&msg->link);
- 	msg->opcode = opcode & OPCODE_MASK;
-@@ -2334,7 +2342,7 @@ static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
- 	}
- 
- 	if (do_destroy)
--		guc_exec_queue_destroy_async(q);
-+		__guc_exec_queue_destroy(q);
- }
- 
- static int guc_submit_reset_prepare(struct xe_guc *guc)
-@@ -2480,7 +2488,7 @@ static void guc_exec_queue_pause(struct xe_guc *guc, struct xe_exec_queue *q)
- 
- 	/* Stop scheduling + flush any DRM scheduler operations */
- 	xe_sched_submission_stop(sched);
--	drm_dep_queue_cancel_tdr_sync(&sched->base);
-+	drm_dep_queue_cancel_tdr_sync(sched->dep_q);
- 
- 	guc_exec_queue_revert_pending_state_change(guc, q);
- 
-@@ -2611,7 +2619,7 @@ static void guc_exec_queue_unpause_prepare(struct xe_guc *guc,
- 	struct drm_dep_job *dep_job;
- 	bool restore_replay = false;
- 
--	drm_dep_queue_for_each_pending_job(dep_job, &sched->base) {
-+	drm_dep_queue_for_each_pending_job(dep_job, sched->dep_q) {
- 		job = to_xe_sched_job(dep_job);
- 		restore_replay |= job->restore_replay;
- 		if (restore_replay) {
-@@ -2734,7 +2742,7 @@ void xe_guc_submit_unpause_vf(struct xe_guc *guc)
- 		 * created after resfix done.
- 		 */
- 		if (q->guc->id != index ||
--		    !drm_dep_queue_is_stopped(&q->guc->sched.base))
-+		    !drm_dep_queue_is_stopped(&q->dep_q))
- 			continue;
- 
- 		guc_exec_queue_unpause(guc, q);
-@@ -2897,7 +2905,7 @@ static void handle_deregister_done(struct xe_guc *guc, struct xe_exec_queue *q)
- 	trace_xe_exec_queue_deregister_done(q);
- 
- 	clear_exec_queue_registered(q);
--	guc_exec_queue_destroy_async(q);
-+	__guc_exec_queue_destroy(q);
- }
- 
- int xe_guc_deregister_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
-@@ -3188,7 +3196,6 @@ guc_exec_queue_wq_snapshot_print(struct xe_guc_submit_exec_queue_snapshot *snaps
- struct xe_guc_submit_exec_queue_snapshot *
- xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q)
- {
--	struct xe_gpu_scheduler *sched = &q->guc->sched;
- 	struct xe_guc_submit_exec_queue_snapshot *snapshot;
- 	int i;
- 
-@@ -3202,8 +3209,8 @@ xe_guc_exec_queue_snapshot_capture(struct xe_exec_queue *q)
- 	snapshot->class = q->class;
- 	snapshot->logical_mask = q->logical_mask;
- 	snapshot->width = q->width;
--	snapshot->refcount = drm_dep_queue_refcount(&sched->base);
--	snapshot->sched_timeout = drm_dep_queue_timeout(&sched->base);
-+	snapshot->refcount = drm_dep_queue_refcount(&q->dep_q);
-+	snapshot->sched_timeout = drm_dep_queue_timeout(&q->dep_q);
- 	snapshot->sched_props.timeslice_us = q->sched_props.timeslice_us;
- 	snapshot->sched_props.preempt_timeout_us =
- 		q->sched_props.preempt_timeout_us;
-diff --git a/drivers/gpu/drm/xe/xe_sched_job.c b/drivers/gpu/drm/xe/xe_sched_job.c
-index 6b83618e82aa..d83f0f9ea4ab 100644
---- a/drivers/gpu/drm/xe/xe_sched_job.c
-+++ b/drivers/gpu/drm/xe/xe_sched_job.c
-@@ -118,7 +118,7 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
- 	err = drm_dep_job_init(&job->drm,
- 			       &(const struct drm_dep_job_init_args){
- 					.ops = &xe_sched_job_dep_ops,
--					.q = q->dep_q,
-+					.q = &q->dep_q,
- 					.credits = 1,
- 			       });
- 	if (err)
-@@ -126,7 +126,6 @@ struct xe_sched_job *xe_sched_job_create(struct xe_exec_queue *q,
- 
- 	job->q = q;
- 	job->sample_timestamp = U64_MAX;
--	xe_exec_queue_get(job->q);
- 	atomic_inc(&q->job_cnt);
- 	xe_pm_runtime_get_noresume(job_to_xe(job));
- 
-@@ -188,7 +187,6 @@ static void xe_sched_job_release(struct drm_dep_job *dep_job)
- 	dma_fence_put(job->fence);
- 	job_free(job);
- 	atomic_dec(&q->job_cnt);
--	xe_exec_queue_put(q);
- 	xe_pm_runtime_put(xe);
- }
- 
+ 	    TP_printk("fence=(context:%llu, seqno:%lld), %s seq#:%lld %s",
 -- 
 2.34.1
 
