@@ -4,90 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DC204FB5E8B
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 23:19:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00CCCFB5E8B
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 23:33:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E62610E4DF;
-	Mon, 16 Mar 2026 23:19:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=oracle.com header.i=@oracle.com header.b="gGSO2LNz";
-	dkim-atps=neutral
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com
- [205.220.177.32])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D909B10E3FF;
- Mon, 16 Mar 2026 23:19:28 +0000 (UTC)
-Received: from pps.filterd (m0246632.ppops.net [127.0.0.1])
- by mx0b-00069f02.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 62GLEeGt1337612; Mon, 16 Mar 2026 23:19:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=cc
- :content-transfer-encoding:date:from:in-reply-to:message-id
- :mime-version:references:subject:to; s=corp-2025-04-25; bh=hCmO/
- 1KujtmmSOaFMR02A3UTYBXh1Y4xq14rESz5/Ls=; b=gGSO2LNzhz9reMs3kP3bc
- iF1S0WDVMaCj2gkQryL27ZgVPMKUA9cMHfUDqdhmp9wlg3PpO2li9jbJU8wplVov
- WqbkUuQlCRNl4wnBz6EhGvIhDAjqBxXqB+tHElIP34YK4Ws9PtL6IVxqkIabfptN
- zs+d7/O0c6Y+CoiF6CoDNE7ry6sou044UCwtWJASRSGM48ticzM4e5D/VMoCfvOp
- VCJfSGCUJsNAa/5rvbH4de5UOvljsjOOgyppvtfyX9S7Ow8C1zCOtxFYaXhGqOsr
- m7M4x3L5jgSn9m7lLLoidMQpk7xbTbswpRwAlrxPClbdJhDdvVnuJPtc6+nMJnZL
- A==
-Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com
- (iadpaimrmta01.appoci.oracle.com [130.35.100.223])
- by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 4cvy9ru6r3-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Mon, 16 Mar 2026 23:19:24 +0000 (GMT)
-Received: from pps.filterd
- (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
- by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (8.18.1.2/8.18.1.2)
- with ESMTP id 62GLXk2T002732; Mon, 16 Mar 2026 23:19:23 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
- by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id
- 4cvx4khd7r-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Mon, 16 Mar 2026 23:19:23 +0000
-Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com
- (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
- by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 62GNJJ2i000736;
- Mon, 16 Mar 2026 23:19:23 GMT
-Received: from ca-dev112.us.oracle.com (ca-dev112.us.oracle.com
- [10.129.136.47])
- by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTP id
- 4cvx4khd77-2; Mon, 16 Mar 2026 23:19:23 +0000
-From: Samasth Norway Ananda <samasth.norway.ananda@oracle.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: samasth.norway.ananda@oracle.com, jani.nikula@intel.com,
- ville.syrjala@linux.intel.com, rodrigo.vivi@intel.com
-Subject: [PATCH v2 1/2] drm/i915/gmbus: fix spurious timeout on 512-byte burst
- reads
-Date: Mon, 16 Mar 2026 16:19:19 -0700
-Message-ID: <20260316231920.135438-2-samasth.norway.ananda@oracle.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20260316231920.135438-1-samasth.norway.ananda@oracle.com>
-References: <20260316231920.135438-1-samasth.norway.ananda@oracle.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D7FE10E331;
+	Mon, 16 Mar 2026 23:33:13 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA8C710E331;
+ Mon, 16 Mar 2026 23:33:11 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6916495173139340224=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-16_06,2026-03-16_06,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0
- phishscore=0 spamscore=0
- adultscore=0 malwarescore=0 mlxlogscore=999 suspectscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2603050001
- definitions=main-2603160193
-X-Authority-Analysis: v=2.4 cv=X5Vf6WTe c=1 sm=1 tr=0 ts=69b88ffc b=1 cx=c_pps
- a=zPCbziy225d3KhSqZt3L1A==:117
- a=zPCbziy225d3KhSqZt3L1A==:17
- a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22 a=jiCTI4zE5U7BLdzWsZGv:22
- a=3I1J8UUJPc9JN9BFgKH3:22 a=yPCof4ZbAAAA:8 a=OGXoSQydl6qUY9OtpiYA:9 cc=ntf
- awl=host:12272
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE2MDE5NCBTYWx0ZWRfX8gkcCytPSfQh
- osXP/qS9QX7SoD1JLLsojgWSg4PL/+CvRiciqjrIsPXu9svDApglnEv50Ly8Yxt9co77i2qWq89
- qPyoaEI7DQsdHFbHl/1wF+Mk8SoiNZ8qyTlMLFqqeAnnyhvL8Yltuzzvifim0MYgcuNqLWwBEkP
- MkAcQm1zFUmDf5d8OgeAUAwenB7A9+OIpDG6uPJKL30M0FH4TahUYP82eeS/ewVgv6kk9nUgxQd
- SnJxPTn6cEfaXB5RpxOjidX27oKbt4vGW+LG+VD9yK7fZPoarRxy8xuCcq+L0T5R8C06+n1qDY/
- SrwuE0/xct0uCd3T92/O+BHafUdpfMWhZH/eLA2O+eW5NhnkJaYYsqmgttSnR4JoRKAPl3jR2fi
- Q4MlTnNIRs9vi9JxRilD4K+1C0SDP5y8ZezfHzSQ/oVZtNv1Q8/7TCn19fDKUd/vuJf6Won9Hi2
- ffljrJT2UK94PyINjV1XPZl/OwoG0Gi7ieiQMd4o=
-X-Proofpoint-GUID: mYphgop-aD6w7Ztb95pRGmHPCVOPeh0R
-X-Proofpoint-ORIG-GUID: mYphgop-aD6w7Ztb95pRGmHPCVOPeh0R
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_kernel-doc_fix_for_headers?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 16 Mar 2026 23:33:11 -0000
+Message-ID: <177370399193.364341.17458874302922127008@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260316180322.1721237-6-shuicheng.lin@intel.com>
+In-Reply-To: <20260316180322.1721237-6-shuicheng.lin@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,37 +35,158 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When reading exactly 512 bytes with burst read enabled, the
-extra_byte_added path breaks out of the inner do-while without
-decrementing len. The outer while(len) then re-enters and gmbus_wait()
-times out since all data has been delivered. Decrement len before the
-break so the outer loop terminates correctly.
+--===============6916495173139340224==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Fixes: d5dc0f43f268 ("drm/i915/gmbus: Enable burst read")
-Signed-off-by: Samasth Norway Ananda <samasth.norway.ananda@oracle.com>
----
- drivers/gpu/drm/i915/display/intel_gmbus.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-index df48f27f1cc1..dd79a866b87e 100644
---- a/drivers/gpu/drm/i915/display/intel_gmbus.c
-+++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-@@ -495,8 +495,10 @@ gmbus_xfer_read_chunk(struct intel_display *display,
- 
- 		val = intel_de_read_fw(display, GMBUS3(display));
- 		do {
--			if (extra_byte_added && len == 1)
-+			if (extra_byte_added && len == 1) {
-+				len--;
- 				break;
-+			}
- 
- 			*buf++ = val & 0xff;
- 			val >>= 8;
--- 
-2.50.1
+Series: kernel-doc fix for headers
+URL   : https://patchwork.freedesktop.org/series/163307/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820_BAT -> xe-pw-163307v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-163307v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163307v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [PASS][3] -> [TIMEOUT][4] ([Intel XE#6506])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163307v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][5] ([Intel XE#7483]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163307v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8805 -> IGT_8806
+  * Linux: xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820 -> xe-pw-163307v1
+
+  IGT_8805: 8805
+  IGT_8806: 8806
+  xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820: a25d8c583e1e52bde77d371081a7c3fcd0a2e820
+  xe-pw-163307v1: 163307v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163307v1/index.html
+
+--===============6916495173139340224==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>kernel-doc fix for headers</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163307/">https://patchwork.freedesktop.org/series/163307/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163307v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163307v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820_BAT -&gt; xe-pw-163307v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-163307v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163307v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@abstime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163307v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163307v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8805 -&gt; IGT_8806</li>
+<li>Linux: xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820 -&gt; xe-pw-163307v1</li>
+</ul>
+<p>IGT_8805: 8805<br />
+  IGT_8806: 8806<br />
+  xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820: a25d8c583e1e52bde77d371081a7c3fcd0a2e820<br />
+  xe-pw-163307v1: 163307v1</p>
+
+</body>
+</html>
+
+--===============6916495173139340224==--
