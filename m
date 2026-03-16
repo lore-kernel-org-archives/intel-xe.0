@@ -4,63 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 085E2F46453
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 11:40:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4240BF46453
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 11:54:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C067610E26C;
-	Mon, 16 Mar 2026 11:40:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EA32210E0C6;
+	Mon, 16 Mar 2026 11:54:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wn5G6pff";
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="P/wGhCwb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4347B10E256
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Mar 2026 11:40:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773661230; x=1805197230;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=QtdLGzEgYjjY0r5MVIbMvUXsQfAXquKsNJdipJSCY6E=;
- b=Wn5G6pffHbxy+1VWnexZSWK3QyBqywFPh8TaSAaPAkKVxbYT+rP6f5EB
- HJrzJMj6Tmb+A/RXfNTXgCjOweUVlM+TlVBAbPMG/iKMMsH/G0J76hVYw
- 2EjUgZipgOQp4+XLPZ1pY3jYPB9PDYasJXVk2Ux97SjZLAEcxBUnCtuSh
- Pgbpafhow4hUBaloW+UbHq6uz20JpwF210w5c2ghUz7z4Tn+nPvcbDtbG
- MrX1wFEX2aSkopIP3iw6t3i3qnKjfssiP9itcM+CRo5Iy+n3W8+rgJRAq
- xyTu/ZA4lkiyn/UHc6GVQ6/lAs4r6Y/mc6Whk0RzDqa+OY3zH1lNI8KUH Q==;
-X-CSE-ConnectionGUID: S+wbkPjvQ1OpOiHr2tKq/g==
-X-CSE-MsgGUID: 2aRsOwpoQ2mLibiSTqk+3A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11730"; a="92056730"
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="92056730"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2026 04:40:30 -0700
-X-CSE-ConnectionGUID: WAa+yDxLQJ290BJg9DSemg==
-X-CSE-MsgGUID: NJqI9ZK2Qoy7oqNTyHMzCw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="226349347"
-Received: from amilburn-desk.amilburn-desk (HELO [10.245.244.246])
- ([10.245.244.246])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2026 04:40:27 -0700
-Message-ID: <20732332-b75f-43e0-a244-210b47b44dc5@intel.com>
-Date: Mon, 16 Mar 2026 11:40:24 +0000
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2480C10E4CD;
+ Mon, 16 Mar 2026 11:54:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1773662042;
+ bh=MYNJIGfDITj9ZeZOXvwH7gIEwz4qBk+zgeOglkEp95k=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=P/wGhCwbBTzLyA057sajLvr4VYuRRatNdyLN0JMsLo3OoyAiQCfC1gy/lNWbgNPLI
+ Yt8/QFX55WCXn//xsYGb3zgWpLmbDpigMJAwbTcowhxGYaow5Li6YD9zCY5AGHmc0t
+ dAj/j0lk+2DtSXlg2dSD0d1gsaoDBNfbOimmXZ/C33Z6o9oB6Gor7le2OcmDcizoKj
+ TzwkGaajvZMXzbla3n0iiShW/iEKyaoyEU2wCadCeSmUk3qc7h4storrRu9ICHWuYC
+ mp/DRM0XOPQFHRyZIichH1Tx5gde1rwK+iusyJaK6wOnqW9AIxcUQyL80YRbeiOseg
+ oxoCBwnT1bNmA==
+Received: from eldfell (unknown [194.136.85.206])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
+ server-digest SHA256) (No client certificate requested)
+ (Authenticated sender: pq)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id 2E48B17E11FF;
+ Mon, 16 Mar 2026 12:54:02 +0100 (CET)
+Date: Mon, 16 Mar 2026 13:53:49 +0200
+From: Pekka Paalanen <pekka.paalanen@collabora.com>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Cc: <harry.wentland@amd.com>, <dri-devel@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <louis.chauvet@bootlin.com>, <mwen@igalia.com>, <contact@emersion.fr>,
+ <alex.hung@amd.com>, <daniels@collabora.com>, <uma.shankar@intel.com>,
+ <maarten.lankhorst@intel.com>, <pranay.samala@intel.com>,
+ <swati2.sharma@intel.com>
+Subject: Re: [PATCH 01/10] drm/colorop: Add DRM_COLOROP_CSC_FF
+Message-ID: <20260316135349.06476e85@eldfell>
+In-Reply-To: <eaaea3f6-76ce-4b20-b7b1-b483594070cd@intel.com>
+References: <20260306165307.3233194-1-chaitanya.kumar.borah@intel.com>
+ <20260306165307.3233194-2-chaitanya.kumar.borah@intel.com>
+ <20260310163229.521186ab@eldfell>
+ <53c3f610-942c-46bf-be5f-a4c51625c358@intel.com>
+ <20260316105724.47d24409@eldfell>
+ <eaaea3f6-76ce-4b20-b7b1-b483594070cd@intel.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] drm/xe: Reject coh_none PAT index for
- CPU_ADDR_MIRROR
-To: Jia Yao <jia.yao@intel.com>, intel-xe@lists.freedesktop.org
-Cc: stable@vger.kernel.org, Shuicheng Lin <shuicheng.lin@intel.com>,
- Mathew Alwin <alwin.mathew@intel.com>,
- Michal Mrozek <michal.mrozek@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-References: <20260129000147.339361-1-jia.yao@intel.com>
- <20260316072257.255372-1-jia.yao@intel.com>
- <20260316072257.255372-3-jia.yao@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260316072257.255372-3-jia.yao@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; boundary="Sig_/P7QkXDCUEVeKGpOC_HDF_hH";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,58 +69,179 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 16/03/2026 07:22, Jia Yao wrote:
-> Add validation in xe_vm_bind_ioctl() to reject PAT indices with
-> XE_COH_NONE coherency mode when used with
-> DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR, consistent with the existing
-> validation for DRM_XE_VM_BIND_OP_MAP_USERPTR.
-> 
-> CPU address mirror mappings use system memory which is CPU cached,
-> making them incompatible with COH_NONE PAT index. Using COH_NONE with
-> CPU cached buffers is a security issue: GPU can bypass CPU caches and
-> directly read stale sensitive data from DRAM, potentially leaking data
-> from previously freed pages.
-> 
-> Although CPU_ADDR_MIRROR mappings don't create actual memory mappings
-> (the range is reserved for dynamic mapping on GPU page faults), the
-> underlying system memory is still CPU cached, so the same PAT coherency
-> restrictions as MAP_USERPTR should apply.
-> 
-> Fixes: ada7486c5668 ("drm/xe: Implement madvise ioctl for xe")
+--Sig_/P7QkXDCUEVeKGpOC_HDF_hH
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-Is this the right fixes tag?
+On Mon, 16 Mar 2026 16:04:32 +0530
+"Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com> wrote:
 
-> Cc: stable@vger.kernel.org # v6.18
-> Cc: Shuicheng Lin <shuicheng.lin@intel.com>
-> Cc: Mathew Alwin <alwin.mathew@intel.com>
-> Cc: Michal Mrozek <michal.mrozek@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: Jia Yao <jia.yao@intel.com>
+> On 3/16/2026 2:27 PM, Pekka Paalanen wrote:
+> > On Mon, 16 Mar 2026 12:46:39 +0530
+> > "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com> wrote:
+> >  =20
+> >> Hi Pekka,
+> >>
+> >> Thank you for looking into the patch. =20
+> >=20
+> > Hi Chaitanya!
+> >=20
+> > Replies inline below.
+> >  =20
+> >>
+> >> On 3/10/2026 8:02 PM, Pekka Paalanen wrote: =20
+> >>> On Fri,  6 Mar 2026 22:22:58 +0530
+> >>> Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
+> >>>     =20
+> >>>> Introduce DRM_COLOROP_CSC_FF, a new colorop type representing a
+> >>>> fixed-function Color Space Conversion (CSC) block.
+> >>>>
+> >>>> Unlike CTM-based colorops, this block does not expose programmable
+> >>>> coefficients. Instead, userspace selects one of the predefined
+> >>>> hardware modes via a new CSC_FF_TYPE enum property. Supported modes
+> >>>> include common YUV->RGB and RGB709->RGB2020 conversions.
+> >>>>
+> >>>> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.co=
+m>
 
-As discussed offline, I think this is needed. My understanding is that 
-when binding an svm range we use the parent vma pat index, and without 
-using the madvise pat control, the default pat index is whatever the 
-user selects here, which could be incoherent, and on least igpu that 
-will be problematic when accessing CPU cached system memory.
+...
 
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> >>>> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_col=
+orop.c
+> >>>> index f421c623b3f0..49422c625f4d 100644
+> >>>> --- a/drivers/gpu/drm/drm_colorop.c
+> >>>> +++ b/drivers/gpu/drm/drm_colorop.c
+> >>>> @@ -68,6 +68,7 @@ static const struct drm_prop_enum_list drm_colorop=
+_type_enum_list[] =3D {
+> >>>>    	{ DRM_COLOROP_CTM_3X4, "3x4 Matrix"},
+> >>>>    	{ DRM_COLOROP_MULTIPLIER, "Multiplier"},
+> >>>>    	{ DRM_COLOROP_3D_LUT, "3D LUT"},
+> >>>> +	{ DRM_COLOROP_CSC_FF, "CSC Fixed-Function"}, =20
+> >>>
+> >>> Hi,
+> >>>
+> >>> the fundamental idea seems fine to me, but I have a lot to say about =
+the
+> >>> nomenclature.
+> >>>
+> >>> What would you think of a more readable name DRM_COLOROP_FIXED_MATRIX
+> >>> "Fixed Matrix"?
+> >>>
+> >>> Alternatively DRM_COLOROP_ENUM_MATRIX "Enumerated Matrix".
+> >>>     =20
+> >>
+> >> I was intentionally staying away from the word matrix because there was
+> >> no programmable matrix but it would make sense to name it something li=
+ke
+> >> DRM_COLOROP_FIXED_MATRIX (or *_PRESET_MATRIX for that matter).
+> >> =20
+> >>>>    };
+> >>>>   =20
+> >>>>    static const char * const colorop_curve_1d_type_names[] =3D {
+> >>>> @@ -90,6 +91,13 @@ static const struct drm_prop_enum_list drm_coloro=
+p_lut3d_interpolation_list[] =3D
+> >>>>    	{ DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL, "Tetrahedral" },
+> >>>>    };
+> >>>>   =20
+> >>>> +static const char * const colorop_csc_ff_type_names[] =3D {
+> >>>> +	[DRM_COLOROP_CSC_FF_YUV601_RGB601]   =3D "YUV601 to RGB601",
+> >>>> +	[DRM_COLOROP_CSC_FF_YUV709_RGB709]   =3D "YUV709 to RGB709",
+> >>>> +	[DRM_COLOROP_CSC_FF_YUV2020_RGB2020] =3D "YUV2020 to RGB2020",
+> >>>> +	[DRM_COLOROP_CSC_FF_RGB709_RGB2020]  =3D "RGB709 to RGB2020", =20
+> >>>
+> >>> I'd suggest names:
+> >>>
+> >>> "YCbCr 601 to RGB"
+> >>> "YCbCr 709 to RGB"
+> >>> "YCbCr 2020 NC to RGB"
+> >>> "RGB709 to RGB2020"
+> >>>
+> >>> or something in that direction.
+> >>>
+> >>> The relevant ITU-R BT specifications use YCbCr nomenclature IIRC. Wrt.
+> >>> YCbCr-to-RGB conversion, there is no RGB601, RGB709 or RGB2020. There
+> >>> is only some RGB, and which primaries it uses is not always tied to
+> >>> which YCbCr conversion was used.
+> >>>    =20
+> >>
+> >> What I understand from this is that the BT.709(et al.) only defines the
+> >> matrix that is used for YCbCr->RGB, "what" RGB it is defined by the
+> >> primaries (which comes with metadata?). =20
+> >=20
+> > Unfortunately, BT.601, BT.709 and BT.2020 define two separate things ea=
+ch:
+> > - the YCbCr<->RGB conversion, and
+> > - the colorspace primaries (and white point, but that is the same for
+> >    them all).
+> >=20
+> > BT.601 actually has two different sets of primaries. Bt.2020 defines
+> > two different YCbCr conversions. BT.709 uses the same primaries as
+> > sRGB, but is different from sRGB on all other aspects.
+> >=20
+> > Therefore, when you refer to any one of these, you also need to be
+> > clear whether you are referring to the YCbCr conversion or to the
+> > primaries.
+> >  =20
+>=20
+> In that case, if the HW block says that it does YCbCr to RGB conversion=20
+> using rec BT.709, the resultant RGB follows the primaries as described=20
+> by BT.709 or mathematically it does not really matter?
 
-> ---
->   drivers/gpu/drm/xe/xe_vm.c | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 5572e12c2a7e..1c4b4a5eeadb 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -3491,7 +3491,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe, struct xe_vm *vm,
->   		    XE_IOCTL_DBG(xe, obj &&
->   				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
->   		    XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE &&
-> -				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
-> +				 (op == DRM_XE_VM_BIND_OP_MAP_USERPTR || is_cpu_addr_mirror)) ||
->   		    XE_IOCTL_DBG(xe, comp_en &&
->   				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
->   		    XE_IOCTL_DBG(xe, op == DRM_XE_VM_BIND_OP_MAP_USERPTR &&
+Hi,
 
+the resultant RGB may or may not follow BT.709 primaries, and knowing
+the primaries is important for further processing in general.
+
+YCbCr<->RGB conversion does not change the primaries. What went in,
+will come out.
+
+> >> I will read up on why our HW names these bits as such. =20
+> >=20
+> > Sure, but keep in mind that your hardware naming is irrelevant for the
+> > UAPI design. =20
+>=20
+> Understood, I just want to make sure that the HW does exactly what we=20
+> will advertise through the UAPI.
+
+Precisely.
+
+
+Thanks,
+pq
+
+> >>> For YCbCr 2020 I feel it's nice to remember, that there are two
+> >>> different conversions in the specification: the simple matrix one
+> >>> called "non-constant luminance", and the complex one called "constant
+> >>> luminance". Hence "NC".
+> >>>
+> >>> It's also good to recall that YCbCr-RGB conversions are done in an
+> >>> electrical space, while RGB709-to-RGB2020 conversion must be done in =
+the
+> >>> optical space. It is up to the userspace to arrange the neighbouring
+> >>> colorops to use the fixed matrix right.
+> >>>     =20
+> >>
+> >> Ack on the above.
+
+--Sig_/P7QkXDCUEVeKGpOC_HDF_hH
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmm3700ACgkQI1/ltBGq
+qqdrsQ/+Lx2AlZuBNc3Dm53Kku7wDcq+aJ8d1yvQK4sz/VtwGZa6nFOuZJC2EYhB
+W84HTue5NbDADOU9oOLRSUOL0AVadFqgoFWB1nW8MRqmsKSqn1jFseFbJY0W0LwR
+l5PQ0tspHJO5zGaA0WvU15b8lz26Lc5ZvFWZ3PWNK3thQvxLQNSD72Zw+nGVNad4
+efYp86BS+y62z4/H6D/+aIxmy8W/9Bs1uftcpT8JV/rVw3V+ctXC8xYWsxZe0U5N
++BzRFBGT/wvJcUOpsjuxI9ZW3y/Gp8no95FcRwNbWTMG2jx6DAZU3DCfIn07OnvU
+H0GJVo6Pll4jFqxfg+33kooVekKBKDltYk3WOPVlrR69TVNivwbmVjUYbprLQBY3
+FGxdrCMTJc3yE8t9BLLbQo/KhtBlfV5Nt08kUVaYDvU7jQSKjId4vEwfbFqHmQrZ
+XM+UnAVl+tIxHqMO83WRLHVGa1wSQ1T3R0/ya5xtBVNsiultZyAu/+bUSohU1z8U
+j1Qdj9k8Vo07PTUb0MAEmotAbFtg0GEJ6XHEGxrsN3RH+YoNmelO6C5KZoSKE6t5
+efAnRDWg5ZDlDDz29UbIgASNv63NHMHpkhE3TzsvAm2b+VATdfsJZAhit6+pYPlt
+IP/+nDP1oO3UjT70ewkVmMGd8kQGcee/QSkyaQPbGlrX7+YBrUY=
+=+7nM
+-----END PGP SIGNATURE-----
+
+--Sig_/P7QkXDCUEVeKGpOC_HDF_hH--
