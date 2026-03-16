@@ -4,58 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27C9EF53D70
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 16:40:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DC97F53D72
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 16:42:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD39C10E2DF;
-	Mon, 16 Mar 2026 16:40:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2ACA910E281;
+	Mon, 16 Mar 2026 16:42:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Oi5zgbPE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W6CqObwf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C48310E2DD;
- Mon, 16 Mar 2026 16:40:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C08E510E287
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Mar 2026 16:42:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773679212; x=1805215212;
+ t=1773679376; x=1805215376;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=acFVAbOsLZTzwNRjuyrAAZSFXUFtzlCBOyUs4KCKZdg=;
- b=Oi5zgbPE9PkJGQ640TV+6L6wpbvEofhe24AI3R3u5gGA0jAEECIB26RJ
- HAcBubN7A9LvfyZzPIMn9umjoz+RdsC2OqbOGlGe5aYtzXJ8Bh+wAt24j
- exPpAgsMpDP1nlMjAAgGlrjbDU7l5qWHavH+wOa3ZYs0PMQ13Hwr51tX5
- WKNccV3WceZqu9Q1QOa2PpJ80AGMdlQaAF53j6gAiVbeeOfgCZI/BaRgj
- amZWf0BdPaF3iiM09XhSLjcy0i2pSHmtzljYQ7zPrxN7Nny/01vDAvnTV
- ppbS5/2p3OZpCrFYAdzdlh4tUCVV3uZXr86bx67bxPKhqNn6wX0r84sRO w==;
-X-CSE-ConnectionGUID: Rhd13fAWRr6F7iNd0gQvHQ==
-X-CSE-MsgGUID: wr4QPMFuQDyE55DGaltbeA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="92085630"
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="92085630"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2026 09:40:12 -0700
-X-CSE-ConnectionGUID: c7aeiS8rSwGBRFu3Ag7xiQ==
-X-CSE-MsgGUID: ZE+cMUABTSihn/ri9wWQlA==
+ bh=J3LIjTrMNoQ3s69hcMh2yYKGbUpDlxQD9mU/IIUNfuw=;
+ b=W6CqObwfDveeosRKcX61Bq/qqNJlyg5SNmETVHqAKWsXmayRxR66c6w4
+ K7ss4IlBZkYVphHd7pWLXTBo0h92ByvKsDZZ9TZe7xz7fXH4ealjiFInz
+ khWQppGJG0IGdogV5yIX5PKlmeUOzowrwz31d6npEKbZvEqJOnhV3DNrU
+ uV49AE7+4EL8sRKFK7mzzR9SYtdvgygND12DV3f9TbsvASiYLEyIsqtr/
+ 703UUfCE4Mpm4Q4be3tQpah4h2o0qbmGReFXZvMa8zuEKuastAjIw+Jpy
+ /Ytw6gKgasy0ZL6efYJRLxIohzdLrBGHGxbCWG7sqtAejDY2C+/dTFZ0g Q==;
+X-CSE-ConnectionGUID: ng0jHEpSRZCZ5fjtd6Y+2Q==
+X-CSE-MsgGUID: +ITdsUzvQvyVjIPciZZHeA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="97308776"
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="97308776"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2026 09:42:56 -0700
+X-CSE-ConnectionGUID: 3HxLPx6RToaAzeW7mZ3IFg==
+X-CSE-MsgGUID: rY5oxy4pS3Kfxa0/TCgbAQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="222190563"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.42])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2026 09:40:09 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
- Khaled Almahallawy <khaled.almahallawy@intel.com>
-Subject: [PATCH 3/3] drm/i915: Skip redundant NV12 plane unlinking
-Date: Mon, 16 Mar 2026 18:39:53 +0200
-Message-ID: <20260316163953.12905-4-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260316163953.12905-1-ville.syrjala@linux.intel.com>
-References: <20260316163953.12905-1-ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="221013843"
+Received: from dut6094bmgfrd.fm.intel.com ([10.80.55.31])
+ by orviesa006.jf.intel.com with ESMTP; 16 Mar 2026 09:42:55 -0700
+From: Jia Yao <jia.yao@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Jia Yao <jia.yao@intel.com>, stable@vger.kernel.org,
+ Shuicheng Lin <shuicheng.lin@intel.com>,
+ Mathew Alwin <alwin.mathew@intel.com>,
+ Michal Mrozek <michal.mrozek@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>
+Subject: [PATCH v5 0/2] drm/xe: PAT index validation for CPU_ADDR_MIRROR and
+ madvise
+Date: Mon, 16 Mar 2026 16:42:51 +0000
+Message-ID: <20260316164253.262406-1-jia.yao@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260129000147.339361-1-jia.yao@intel.com>
+References: <20260129000147.339361-1-jia.yao@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,40 +72,43 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+This series strengthens PAT index validation to reject unsafe
+configurations for CPU cached memory, preventing cases where the GPU may
+bypass CPU caches and observe stale or sensitive data.
 
-plane_atomic_check() will already have unlinked the
-old NV12 planes by the time icl_check_nv12_planes()
-gets called. Drop the redundant second unlinking.
+Patch 1 enforces PAT validation for the madvise ioctl path, ensuring
+XE_COH_NONE cannot be used on CPU cached buffers, including CPU address
+mirror and userptr-backed memory.
 
-Cc: Khaled Almahallawy <khaled.almahallawy@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_plane.c | 11 -----------
- 1 file changed, 11 deletions(-)
+Patch 2 applies the same validation to vm_bind, treating
+DRM_XE_VM_BIND_FLAG_CPU_ADDR_MIRROR the same as MAP_USERPTR with
+respect to permissible PAT indices.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
-index bc1c801a06d7..5390ceb21ca4 100644
---- a/drivers/gpu/drm/i915/display/intel_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_plane.c
-@@ -1547,17 +1547,6 @@ static int icl_check_nv12_planes(struct intel_atomic_state *state,
- 	if (DISPLAY_VER(display) < 11)
- 		return 0;
- 
--	/*
--	 * Destroy all old plane links and make the Y plane invisible
--	 * in the crtc_state->active_planes mask.
--	 */
--	for_each_new_intel_plane_in_state(state, plane, plane_state, i) {
--		if (plane->pipe != crtc->pipe)
--			continue;
--
--		unlink_nv12_plane(crtc_state, plane_state);
--	}
--
- 	if (!crtc_state->nv12_planes)
- 		return 0;
- 
+Both patches close a security gap affecting CPU cached memory access
+when incoherent PAT values are used.
+
+Changes since v5:
+ - Added an additional Fixes tag to correctly reference the root cause
+   patch enabling the problematic PAT behavior.
+
+Fixes: ada7486c5668 ("drm/xe: Implement madvise ioctl for xe")
+Fixes: e1fbc4f18d5b ("drm/xe/uapi: support pat_index selection with vm_bind")
+Cc: stable@vger.kernel.org # v6.18
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Cc: Mathew Alwin <alwin.mathew@intel.com>
+Cc: Michal Mrozek <michal.mrozek@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
+
+Jia Yao (2):
+  drm/xe/uapi: Reject coh_none PAT index for CPU cached memory in
+    madvise
+  drm/xe: Reject coh_none PAT index for CPU_ADDR_MIRROR
+
+ drivers/gpu/drm/xe/xe_vm.c         |  2 +-
+ drivers/gpu/drm/xe/xe_vm_madvise.c | 45 ++++++++++++++++++++++++++++++
+ 2 files changed, 46 insertions(+), 1 deletion(-)
+
 -- 
-2.52.0
+2.43.0
 
