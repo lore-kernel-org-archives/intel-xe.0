@@ -4,157 +4,155 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6DE5F506CB
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 13:07:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDAE7F506CB
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 13:12:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 576E810E07F;
-	Mon, 16 Mar 2026 13:07:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A06510E134;
+	Mon, 16 Mar 2026 13:12:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TP+4ET06";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="EDdc8HUY";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C710710E07F
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Mar 2026 13:07:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773666441; x=1805202441;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=6LEUr3Io9ncmwNlcYfg7gytX55GGYotAagJe4amNuaY=;
- b=TP+4ET06+OXbY5ZKlthKtVFucIVrpxc99Gg/GUD80KlvuFGuZmU5SBph
- +5Yt1AlWFHA4qK+XhizbJv6bZ54Zqpwx9OEcVVBcSXHiBt3ulFwPLXCDV
- LToqa+ibau6OFeLoSn2IIDeCVgu6eqf224Z4JoYh4LAZOoRr/szE0xruw
- C507NLiZOCkD8YoqG9IJdmB5GZoeyw1g2JGn7E+0aKnkXjVX2Bw9/GI4W
- k/Z1270B9wJ+JceGybFds/UuhxbaZzpZAr4IRG196uHcrV2YcVYRos/Pi
- OxSTqGLDe8PRnKaMeVnl7pebFcey14KbC3mV5q6VzDJ55uoPbgz5HHb+p g==;
-X-CSE-ConnectionGUID: m8snea41RlaH2f1lkc/43Q==
-X-CSE-MsgGUID: pBFGlY8zTRyReoJIKBnXkw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="62248238"
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="62248238"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2026 06:07:21 -0700
-X-CSE-ConnectionGUID: v6nanS3tQy60fb0IM8yf9g==
-X-CSE-MsgGUID: 69xeQCr8RKiuEvUUySq+uQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="219116755"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2026 06:07:21 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 16 Mar 2026 06:07:20 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 16 Mar 2026 06:07:20 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.30) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 16 Mar 2026 06:07:20 -0700
+Received: from BL0PR03CU003.outbound.protection.outlook.com
+ (mail-eastusazon11012063.outbound.protection.outlook.com [52.101.53.63])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB6E610E07F;
+ Mon, 16 Mar 2026 13:12:32 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EtkGO+Krtnd+a464SmhHvdztz+gEJP222hiKQ93MyOHFHGV1gly59V2sMg8rkIcDhqWBZ+CD4brO2AvUmHGaI0NnR8xOhVdqsr+lS8eNGWfTH6dhwxkiZuVPrCPRXNOeI5qekReEy+fNz6XOTZOi0q3B+WTl+XaHhVpPoiXEmdCnJj//3wDSbhy2cQMfdfVAxNsubeo3yPu8wV+tKHQumPyKdevEyzXUKp+DHuBIJpaahpRZ2N+Um8sJEeE42cOIZVzo7VPHC6lCRkDEivpZoACl3Ejj5kdCZXy5pYaX5VyuRR81iAkQgCQj7yW6NHivexgIKr0x0e4tQcarcgjnMg==
+ b=JrRd4lppcDqqqAg2h4FjU6/RfaivmUKEv5YqnCM3H+dPkJnv2zr0L1bTTTQ2hGyrHGWKKgqRqAe7G5D8WX/4zXm6okrospVF3tmJABEw256Drg1YCFODNGG5vPKPBTOgthZmOIY+ck+jeNSZw4xqUkyB9VmavNenS1urPQUgJk4aHiAse/vw8jdxbf81+PaKzAxq4/Zi/jGTSIrrrzLiLZVlBuD+kq8O/sO486z/NIzmkf/paoBplVpP+D/43uYhEMvtc0m00G6VIQqT9HeNZc8Aegib/RVnZROd8ag435UYR7+KY6d6k5ig26TpnHWKQCvPnxpv3mljEMXKbtXXIw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6LEUr3Io9ncmwNlcYfg7gytX55GGYotAagJe4amNuaY=;
- b=Iq/8kbbdKpNOGPUeg0EqCTpu/U8gp8oXPYFnRSkxEEonTBewpJOgFssrpdyvmnMUZwuX54vWE5ryZ6g2B9VaCq+FRLQwQmp3iyBFeDbpuQ/Rh3mehGH5O8ZrqHV+sd4ebFyYWFOiQ1y+XZeg+ebrTaGKQqwixSa96D0+CulL0u81IK2P7uQ+nT2OA0GQU+w9aG/KmHYJEzjaxWbCUFs4N5Gj7dxk07yfi5RKubOACrbLOIhYZuE1CIAw1rBLnSDGc3qSQA9dUVzkcsMr7RqV7oGN5csNR3QzCxdQHTFvS+d5PHhniFBt0GXOy3ZqNwkokSKebNZXWVTO5bsJjSFXxg==
+ bh=fa9YfK3Ex+IYYWfsUyA/an84YQknAodMf8UNSdWe+JY=;
+ b=FV9b3ltDH83iU8Pxrv1Cd4t8zkUgi4M/egSOdphszBz0aW+WRxE2ByuXnBnUvGp5bxvfBCRkFGIL/4B3oZrgW451oFR2mAwuzT8z7jmRfaVRtMN5S1CDIHX1yDzgQjKNRbNtdqSd5BGDLzE2z2cTC1lI4FZPRjGzhgFMzH3MSDB+1bO1flsx0Z3W6FrM2FoU4nNySGHUnmxyFDvX0N29d4Bzhh40zc6nfTswH4AnkIxtfQo4YAdl0Zgp0bVAHk3s/7OMIksm3LYe4acXfHmvdAwdD9zTXpDUFTtvOzBCc3Uw3A3XWXELUswktV/TqMD7eSTCryAkCVkpOTg4cwqCCg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA1PR11MB6266.namprd11.prod.outlook.com (2603:10b6:208:3e6::12)
- by DS3PR11MB9624.namprd11.prod.outlook.com (2603:10b6:8:38d::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.19; Mon, 16 Mar
- 2026 13:07:18 +0000
-Received: from IA1PR11MB6266.namprd11.prod.outlook.com
- ([fe80::eda2:e570:4314:8720]) by IA1PR11MB6266.namprd11.prod.outlook.com
- ([fe80::eda2:e570:4314:8720%5]) with mapi id 15.20.9723.014; Mon, 16 Mar 2026
- 13:07:18 +0000
-From: "Bhadane, Dnyaneshwar" <dnyaneshwar.bhadane@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Roper, Matthew D" <matthew.d.roper@intel.com>
-Subject: RE: [PATCH] drm/xe: Include running dword offset in default_lrc dumps
-Thread-Topic: [PATCH] drm/xe: Include running dword offset in default_lrc dumps
-Thread-Index: AQHcsau+mpsCrWAzL0yjNCN9HVHkL7WxJpwA
-Date: Mon, 16 Mar 2026 13:07:18 +0000
-Message-ID: <IA1PR11MB6266719E2A767CE63286776AE240A@IA1PR11MB6266.namprd11.prod.outlook.com>
-References: <20260311-default_lrc_offsets-v1-1-58d8ed3aa081@intel.com>
-In-Reply-To: <20260311-default_lrc_offsets-v1-1-58d8ed3aa081@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA1PR11MB6266:EE_|DS3PR11MB9624:EE_
-x-ms-office365-filtering-correlation-id: 45619096-87c1-4108-f49d-08de835cf3b8
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|38070700021|7053199007|18002099003|22082099003|56012099003;
-x-microsoft-antispam-message-info: X0mswZkcN86gvG6aCTId7xnm2c6BUO2UyZlZv16WxXhy+h13b7jP8HmoEHHulaDRx8+9+luBMLd3wXTqc9Qu5eJg8jIDfOM7D6KYT/DsAFWsYmMVwZOC+Y2WeKKevXGXi8R/wynyf4sf+Eqz0xOSHHfmzkAag9TqINZrE7Dzk645Z9q4qKF7+beUj6UgITFi42LMGreMZu2+8kPNlL4QPx1L8fyManorcH1zZwNfpcYHYt7MXfZUuijfVO2g/AcKCdZZ76IWUGwJQjJQDfMVc0s2svjUfjewb+Kv+O7CEnjx9+CgNVk4lxO9ib97KkFwUv1DyNhvr8ghcHpjSH33SLHfh8E3ezYqGczZuUXfnBMuRML3FriP2/mdPzJO2BH68iIzNJYKeM+h97sJAW6Gk0/Ihm9pM3x89U3RolMrK+zLwMkXkljBekaZBSj0woahDfTqVCfyWZIRw/rDkO5WsLOdkGpQ6XBpuN49ft1HswdrzmDgaqpiLMzf5AQ2i0wOqVPSgQb7eHRZZtMem1qT/IXJ3swAB5PQm9U+95k9oXdTAWLyuSnHHoS/KhxX0nOdNzVmkBVNmsgIHyxtTrhrFPiPDXmTUCzTZmRzGd6yD+M1xZK+N+Cibzu31GBIgLfpJ2eWnpAU0CjYiDm+EE++bWHxH1MJYngRayF7OZ/ooomlm0wzhPK4m45QOlGi9Nl1mjJP8dLtIe4eSVH0Ycui2h1JxWWbox+haRMHjO4qAR4i2pbvhQJxe8XObb3DC0hdapo+KsCrt2WuD0rcDZCJpNH8W2UsxoN5jt+2mNpKWGE=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB6266.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(38070700021)(7053199007)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?bXdnb3ZPQ1llY3ZwK0k3OXc2Q0I3a09tZEZmRjMyS2JSS0dEZXljT3d1RFB5?=
- =?utf-8?B?WkYveGRMbmV3WVFsTFZPV29XZnhmSWNvb09pckg0MFFkWldvNmVQd1lYWlpj?=
- =?utf-8?B?bE9HZGNyK3NMV1hNL3hDOFhqZ2NqVE9KQ3h0SzVGVTZzVnhldVNMRGY0R1F4?=
- =?utf-8?B?dXBxNHFxUEZOSDVKMnRIRnJTbUJBcGY0S0dsTEVjVk1zRzFqNWI5VVdDemN5?=
- =?utf-8?B?dFNnNmVYSXFUWVk0MlJWeXdaeWRvOE1CZmIrM3NSTTVLRE5tT0U5S3VHbUkz?=
- =?utf-8?B?eDFYU1ovOUh0NGkrTHp5MWdlaUV5L2tvME9GVzJ5VCtvL2pGeGUrWjJmOENF?=
- =?utf-8?B?OUkrQXRHVmFmV0F1OEZINTM4REd6NHhSQmJHR0RId1piTUpPakJqRUhYUHdZ?=
- =?utf-8?B?aXNldjM5SFVXc0lTTUc4cnc3UlI4N1J1NE1lSFFIZ0NnWUQ5QjNLTEtXeFZB?=
- =?utf-8?B?b0dlWjJWTnBLRkg0SVNHN2tXT2RORy82dzRlcnB6MElrZklDeHFja3dLVEVT?=
- =?utf-8?B?cUlWdFFXSU04WDFDRFVlRlN6NHNEd0I0MVI3cnZpOVZKdGxrR0V1RmpFMjIy?=
- =?utf-8?B?SGF5djVNRWZZUHZGcEo1Sm1nVE1yT0FzQlMzNGJIZDA4QUVnUzNkdXJtYmdk?=
- =?utf-8?B?Y08xc2Q2bmdXOWpOd0duYjhZYVl2NGplcXZCblhwb2lMc04vb1hVOXFJVFRG?=
- =?utf-8?B?TksxQzd0bFllTDRFVTMyOVA5cFJmZTNsWDVERURDTEN4bWMySW44cEpZajhL?=
- =?utf-8?B?MFYwbkZTY1ZhMDlkNnN6aFhseVZySE4xSWpNUi85STFJYkpmL3BUWXBkVDlR?=
- =?utf-8?B?Z1dtaXo2aFJpKzdnMnJDb3ZaWm9QYUNtMkVuZ1l2d0N4Qzd6enJSTFVXRWpV?=
- =?utf-8?B?V04xdDVkOW1mRHgxcGFJRVZqQXFRdUMyWlpPWUd3VStWZ3docHZyZDVpelhU?=
- =?utf-8?B?OSt4eWR4Nnd2QjQxeWQ1cmhFeWJTcnVyNGxHY0xxMlljZkE0RzQ4T0VaOUZN?=
- =?utf-8?B?OVpZRnYzemZpd2ZuQ0VqOEwxQXFzVGxkeDNmdzJYQWRabER6TEVXMzRSSXZh?=
- =?utf-8?B?NEpyejg5Y01kR2JGNC9QUldhM3JrUFFTSW5idXcrbDFaQlhPY3Y2SlF4TEww?=
- =?utf-8?B?dWl0QjNmbnQzMTAxM2FnM1Y4YnUwcWxNMWtaOThza1graGphM1lreUdWRFpw?=
- =?utf-8?B?a0QwWEhEeFZkaHBGS0VQTzF5dzR4NVVvazEyRWgxODNuUTBobHlPWTFxbklw?=
- =?utf-8?B?RE9PbTRSeEdDMUtkM3MrYXZDZG9KVlUyMitWRzBnbWdDMStySkZMRHdySmUx?=
- =?utf-8?B?RjA5VTBWdTFmQzR1aGtiYW96c3pNQnNoRnYyWmFLeldZdGZjeUF4RnkwOG1y?=
- =?utf-8?B?TnlxMFVrRlhkN0hNWG1MYVFvWnNGbW1rN05aODVjN29CbzJGWVJnL3pqK2ND?=
- =?utf-8?B?S05TT2ZvTS9hQjhoK2VCYVFnNEVmQ3liMTJ1aVFKRElnZWpEWjFpRTl2VmRH?=
- =?utf-8?B?WTVsVTNEN2VINFArcGIwWmlPcVBvOFAyK0hLUmk3R25PQlpWOGY1UEJSazdM?=
- =?utf-8?B?b2RQYUdjSnVyN0h1b0F2cUNCOHdJZFdZM3VrYm1aRlUrcFR3UFp5T2hJU2Vq?=
- =?utf-8?B?UEErVjhsaUdKRmNVbkk5bUkwcnFBOVBuOFlKdHc2YmtMZk5kTTF2S1ZYTUhu?=
- =?utf-8?B?b3oyWTdMK0VuOVJNYWNhWTJaQ1VZS0RxUmV5bDJYa0p0UzVydnpxOWt4b1Bs?=
- =?utf-8?B?S3dJMysyQzZmcm9iSzlHQnlyNUdpaGxpS3pHZi9SN2NZUU15WTcraXY0Rzhy?=
- =?utf-8?B?OGhXTHdGczk4eVlhSlBwcTMyVWs4NDZFOVQzN2tBTVVSckE1eFJGM2pPNFhp?=
- =?utf-8?B?L1h4cnMxdTY5TjM4VzNvMjJhT2J3WjNnRldaYVNBVk5BVzZJWm9HWnZpdU5j?=
- =?utf-8?B?dTRUT0ZHL25qSW02RDBDVWs1TnlHZ1NkeHdkbEpTeVROWVVJYndkeThJYVY1?=
- =?utf-8?B?WWwzNDhqYUZOQXE2QlBDaHJUZDdiWVBpRWJCZU56ODAyNGlRSlJ4R3dkemVB?=
- =?utf-8?B?L2xJY3dQK0VwaTE4ek1rK1RmanZhQVlET3FJdW5HM2N3VFBiZlpOWTQ5QTB5?=
- =?utf-8?B?dTIvc053THYvNGZTa2NDYWpmMm1BQnN2RUNSU3dtVUM0KzVKMUFUdzBXNDJG?=
- =?utf-8?B?L1dndzVQRFFKak5FcDJSVUoxY3Fic3Vta0tHVnRZS1cwdkRSemlLZVI0QXBv?=
- =?utf-8?B?ZDJRNFJ2Yldwbnc1ck1XZzV3U2RRc1FwNncxbXl1MEx3QVh3V2ZnV1U2Si8x?=
- =?utf-8?B?NCtmMklqRFhMR0NsUno5cmNjUnpRRzJxM2ZLeSszeWVmTlpDMTNIdz09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fa9YfK3Ex+IYYWfsUyA/an84YQknAodMf8UNSdWe+JY=;
+ b=EDdc8HUYvoX9SJzJ+g3IYHexSZ4SydKDw/y7/N7HEiBNE/aCM61SbE1Oo8Ti//LA2/wxPjCV5yzWIqz5hTYjsWPG+ii5baGGPa5qNseeT+Twc5sInK6fIXylMnFLMJoWhyBQB/hcNmY6nTbFejZfk3wdkY8ydwghc1LVHmrn7Y/314RzvEftkr6+BBX4otmMcWWFoQxc5WeSLng8Mv+/SYy2H+e11oS6oxPEaFTTn4XLfheZMoesGyFluZcmEAxw6hBxEQRU+JgvwtD8hDUk4+b6K9AGWOTsgqdpGEzU9bFmOTEyPVVbNrKNT6aKWAlnRlTC79L7I4FjGvUzdu+RFA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
+ by SN7PR12MB8060.namprd12.prod.outlook.com (2603:10b6:806:343::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.6; Mon, 16 Mar
+ 2026 13:12:09 +0000
+Received: from CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
+ ([fe80::7de1:4fe5:8ead:5989%6]) with mapi id 15.20.9723.016; Mon, 16 Mar 2026
+ 13:12:09 +0000
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 16 Mar 2026 22:12:01 +0900
+Message-Id: <DH48DNAQCE0Z.2EX23VD27CQVX@nvidia.com>
+Cc: <linux-kernel@vger.kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>,
+ "Boqun Feng" <boqun@kernel.org>, "Gary Guo" <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
+ <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice
+ Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Danilo
+ Krummrich" <dakr@kernel.org>, "Dave Airlie" <airlied@redhat.com>, "Daniel
+ Almeida" <daniel.almeida@collabora.com>, "Koen Koning"
+ <koen.koning@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
+ <nouveau@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>, "Nikola
+ Djukic" <ndjukic@nvidia.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet"
+ <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
+ <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
+ "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
+ <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Helge Deller" <deller@gmx.de>, "Alex Gaynor" <alex.gaynor@gmail.com>,
+ "Boqun Feng" <boqun.feng@gmail.com>, "John Hubbard" <jhubbard@nvidia.com>,
+ "Alistair Popple" <apopple@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>,
+ "Edwin Peer" <epeer@nvidia.com>, "Andrea Righi" <arighi@nvidia.com>, "Andy
+ Ritger" <aritger@nvidia.com>, "Zhi Wang" <zhiw@nvidia.com>, "Balbir Singh"
+ <balbirs@nvidia.com>, "Philipp Stanner" <phasta@kernel.org>, "Elle Rhumsaa"
+ <elle@weathered-steel.dev>, <alexeyi@nvidia.com>, "Eliot Courtney"
+ <ecourtney@nvidia.com>, <joel@joelfernandes.org>,
+ <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <linux-fbdev@vger.kernel.org>
+Subject: Re: [PATCH v12.1 1/1] rust: gpu: Add GPU buddy allocator bindings
+From: "Alexandre Courbot" <acourbot@nvidia.com>
+To: "Joel Fernandes" <joelagnelf@nvidia.com>
+Content-Transfer-Encoding: quoted-printable
+References: <20260308180407.3988286-1-joelagnelf@nvidia.com>
+ <20260309135338.3919996-1-joelagnelf@nvidia.com>
+ <20260309135338.3919996-2-joelagnelf@nvidia.com>
+In-Reply-To: <20260309135338.3919996-2-joelagnelf@nvidia.com>
+X-ClientProxiedBy: TY4P286CA0112.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:405:380::11) To MN2PR12MB3997.namprd12.prod.outlook.com
+ (2603:10b6:208:161::11)
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: nYDQ82BW1tCESnuK6PnlSyjAfbG3YomS4Hv1aVIJocAICSCE8sCf32KipvKExytf/i8h4x8e2bHTPCCmE930PbC0xpzwU/1Z/M9LGvZs1Depl2HGmqnCqAF5raRivLANHBeQtaUQdGzFt9WKkFHwdDzwsaQsNhExKywUwQt8G9LZdKY17TM09tIJ0por7tiTTDyvUq30anTJrMquDMCyy7kudGyUc05UVEWWmSs0bAQhtmF6hVHq6LD/iVsclJFLtBnWhzblX5ol3NzxfHwgQwN4jet2BlyHeDm2RiThU8LrmbIsZo+FUo/Q3tCXDqNAhEK2I6XI6bDwi01Dmao43A==
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|SN7PR12MB8060:EE_
+X-MS-Office365-Filtering-Correlation-Id: c0d62afb-8349-4a0c-8319-08de835da05b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|366016|1800799024|7416014|10070799003|18002099003|22082099003|56012099003;
+X-Microsoft-Antispam-Message-Info: KDpgKFUuAMeZJXofb4ydIaVwFUvWjMITWhWXfp0W/Fqytim1S0XeN6s47xNHCp0a20A87xP3IBrDs23SlJaR7CWP1DCTYqdp7u9a5SyS9svd/dn0YpAOR3OBr+H6E5ZoP1b4PuSepHG4JtS5em4kfwDeMR2FahUTXMMk1jqJs++9kIHNOElVCqFdInMkKiUGvdzXBngAjZE0kWRNWU0+lu/WHjYvB3g1pZyglv6tzkPxDU+Ll7anUF4T742fih3P1pOyp5/dVl5fCZwn2AWCpblqwtNkGiu9u/H2aZZv62KL3CoUASXl0sFbL1fjsOdAdhkhkdmfNn5ELGddcSJgaxDbqCe99nRrBY6j8Q8P/RKksnFC4j2AnzpPQW2ASlDmtlImE5QpRdzy1JO914E5pLXfVumffK9HSacOGuEBO3YK529wf3MovcKv7sGQ/OZFQZTN7vOWkqmY5OOf1c/w1K5TEQ70omCPOIfWTOaXWg/lyH4F59TS+np3OiP+G2DeKv1a4W2TOxjWa/EjyKxwYbItMn79pDMT/lyuGCNxpmIIEgyexO3a7WLxDOELs5tQimWxf33uSHi2+JgB80zKaXPn/vNism+fbuEUBAlqy/XqHymouk/BOxFKf5kOUwafYU/66wI/cdQ7Efw+pAaciXPAP3AMT7bHKsxJYJKVYzoDevEf6nEW7GeWXmMW/SO2t1gTIfqPwqxrLVMuECfLBF5I4+nfpgPiXuFzgxDbvD4=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH2PR12MB3990.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(1800799024)(7416014)(10070799003)(18002099003)(22082099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c1RBME9SQzlRbFN3bEVBZUNYWFZSaldnVTZFdkNUY3A0eUZUVlY0cVdEbmxo?=
+ =?utf-8?B?WkQxNG5md3gvT3hRcEZlcURYbmV4R1ZPVVlwZ0JMbG5XMno1RklDR2hsbU01?=
+ =?utf-8?B?clVBSTJlTDQzZVNtamJYREpSa2VMRGdmckZQYTVKN0IyZmNjY3Y3bmdkZDAv?=
+ =?utf-8?B?WWJqRE42UEhabjRxM2E2RzdCYUhLaisvMkcrQUdpUzExa1FxUy95c3hhUVdM?=
+ =?utf-8?B?QVU1RjIzWXd1V1RZMVB3eG1oalpkSGNMYUtDam9WblJCOEdaOVUzRkpnam1I?=
+ =?utf-8?B?K3c1c1VtMXBRa3lsQmRrSkVDTFRYZ1hFd1RLMG9UZVF3OTJXVDVTMUxRSFV3?=
+ =?utf-8?B?WVFqeG10bGE2TUNtN2hmeVFBOFdjU0V0cFAxR2hoREoyWENCZ3dqeGxVbnFO?=
+ =?utf-8?B?em90VEFaQVgxVzFoU2gvUktyOUthZXd6cDJnLzRnSDVXeEg4TGh2MXR0MUR2?=
+ =?utf-8?B?Q2NQN0VqbVJSLy94UFlJZDJ1T0txNngyOW4xT1l4dnVGQXJJYTQrT1ZMWXRj?=
+ =?utf-8?B?MGk0bDZ2L3pSWnVvQS9XOURDbi96blpwQkEzVlk2YWV6REJwL3F4dFNsd2Jx?=
+ =?utf-8?B?V3BtbEdRVXdxaDBWSlpGOTJRRE42MDR6Sjh3Y0F5VWxIK1JBeVhUNE5nRDcw?=
+ =?utf-8?B?WFQvQ2lCbHV5dWs4eHBpKyt3ZW5RUGdjbVl4d3pJSTh2VTRJbEs3SFI0VXdT?=
+ =?utf-8?B?YnBLYUF6dXRGUDI1Rkcya3daWEpwaUFFZFNjYS9JT3RWMjB5OENCS1NqemR0?=
+ =?utf-8?B?UUFUN1BmZmxHNEJIelY1MlZtTWphQ2hISlFUN1dQU0N4KzNoS3hUcE83RFBr?=
+ =?utf-8?B?dlkzSUhUWDlXZVBVK0lwZzdsa2N5TDlzeFhsbmtCbno2OEVkeXlVeHBnckR5?=
+ =?utf-8?B?Y09oYytiWk9xVzJNOEVIbWVtaUJzdm14Q240bVduUG80TnhvbVhGKzdRVjRH?=
+ =?utf-8?B?Mkplako4K3lIRnJxRkNFQkxRYU1ORGdDT2RESXpMOWlrV2U4RllLOTRPWXZs?=
+ =?utf-8?B?ajR6K3o4RTdWRXB5aENQMDV6OU00ODh1NVpLelYvV2M0eFIzdVZBcFRnTGJh?=
+ =?utf-8?B?Wmo5dThsNnYzdUJESmREVmJrRStsdnVZODhCVmdQTDZhVUc5WEU3MlBaSDVs?=
+ =?utf-8?B?Yzk1dGZTbE9pQmJINDVQZEp6T1pkT1Z5elR2dEdrY0pyY0lybDFUSk9tWnAy?=
+ =?utf-8?B?VGVWYVNzdFRKR0x1NUtMM1ZKdzVtaUxSR1k0aXVDcmZRamFUcm1ZN1JhU1Yw?=
+ =?utf-8?B?dDdtaEpIMEJhT00yWjhQZ1ZYZ2NLMHRCZmVtZ2NUdHNiUmZ6NDd5UitFZm1a?=
+ =?utf-8?B?Z3dSaTNvL0hhUXpEaFhRVkg2dnNvUXlCbCtSRWU4S1dJem4xM0orTWJNWTYz?=
+ =?utf-8?B?NFVyUXFhY2tuTmFqd0NPZXY4NEdqd05qcjFabTlhbjYvSjZmdWhpc0d6UW9i?=
+ =?utf-8?B?bTF2M0V4Y3pOaU1VcVhLWk90MWhmR3dsdVJ2QlcvSExvd2FQYXRzTTQrUTk0?=
+ =?utf-8?B?QTlLOG9wWTVPQmpiYmJJaVMyUXhLUlhhcExxTEdBRXhjOGp1SlFZcllkQ0lX?=
+ =?utf-8?B?RTZzL3B0RVRsaGNLUVlXWm9STVppTGJhY0orL0VzeGlUcVFyNEZyWmw4Ylcz?=
+ =?utf-8?B?VDhZUlNTMFJIdUlObHl0aTRkdEV2WFJoY05GamJuWlVQWDEvVjBUZ1hWdVQ0?=
+ =?utf-8?B?eHBDMmlvcERNb21IUzRKTjA0b0JlUjVwRng5cjFiMk5mRlVnQXIvMy8rdmpv?=
+ =?utf-8?B?YU9zeTdheFZKRks5aE5tTnl0SU9tSVNNRE55Qld0cWt4UjRnaGZETVpybzZp?=
+ =?utf-8?B?dUhOZXRyaDNjaUhxNllQeEFsRm5oNkd6NzdvQmZzMkROVERBV2dUSW85cENv?=
+ =?utf-8?B?VWo2N1dERkd0bk1rWjJLbVNGUVdlWkhWdExjOWNicFZIZlNzN0Zua0hxSXRR?=
+ =?utf-8?B?bVNHM2lVWktJWE5PRVZidGhsNmZGQ1lxbENVSitVSzVFSDd4ZEZ6STNUeHlU?=
+ =?utf-8?B?NERpQkpLd0E3enJFME1WdWlDMExwbDJOTStmajRta3Blb240STNNZkR2REk5?=
+ =?utf-8?B?YW5NVDREd05OOXdNWVREOGpiNEoxS3owZ0o5TGtUM3Y4SnpZdCtaNUxvRWZC?=
+ =?utf-8?B?d3R1Wnd2NzREdmVoc0dNa1hMQU83OHdONHprU21XaCtoWCtURlZaZ0FDNjdu?=
+ =?utf-8?B?OWU1VkZRbjJISmhjdG4yVDNlU1dyUzdkWHBLSlIvTC94MDMvbzB5L2IrYm9Q?=
+ =?utf-8?B?bmtGZkpqYS9lT0QxM2twYUR3YlA1WFJTcUJGbGUveWZQak91QUVNY2Z2OGJm?=
+ =?utf-8?B?blNERlhzUThIdWFjYUVyWXM5K1h6bUtVbzlCODFPc1ZGL25KTTNKS2k3bDIv?=
+ =?utf-8?Q?1BhUd4jK+93O2AC4hBIj3iQjiPzA3DpYSXxPB/nAJth2Y?=
+X-MS-Exchange-AntiSpam-MessageData-1: huXIhbO7R9iCrw==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c0d62afb-8349-4a0c-8319-08de835da05b
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR12MB3997.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6266.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45619096-87c1-4108-f49d-08de835cf3b8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Mar 2026 13:07:18.1938 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fEdtM7df3FkpZCo55LuIIzKuRrlFTCUjuA/BRUU4VHR1sRTMjt740E8E4u91KFtaEMH6scqnl2TPqbzzN1Tl6Jd25zYLHXKvR8zv6U7c0v4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS3PR11MB9624
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2026 13:12:09.2350 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: oZWKdpmHyd+oFuXd3psTLMDEdslhW2Bx0+zP1X57r6xOzcE/Pb4S7nQCGfKIAZjRpo/ABJeYLpv9x5NMe9OmWQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8060
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,147 +167,844 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogSW50ZWwteGUgPGludGVs
-LXhlLWJvdW5jZXNAbGlzdHMuZnJlZWRlc2t0b3Aub3JnPiBPbiBCZWhhbGYgT2YgTWF0dA0KPiBS
-b3Blcg0KPiBTZW50OiBUaHVyc2RheSwgTWFyY2ggMTIsIDIwMjYgNDozNSBBTQ0KPiBUbzogaW50
-ZWwteGVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IENjOiBSb3BlciwgTWF0dGhldyBEIDxtYXR0
-aGV3LmQucm9wZXJAaW50ZWwuY29tPg0KPiBTdWJqZWN0OiBbUEFUQ0hdIGRybS94ZTogSW5jbHVk
-ZSBydW5uaW5nIGR3b3JkIG9mZnNldCBpbiBkZWZhdWx0X2xyYyBkdW1wcw0KPiANCj4gUHJpbnRp
-bmcgYSBydW5uaW5nIGR3b3JkIG9mZnNldCBpbiB0aGUgZGVmYXVsdF9scmNfKiBkZWJ1Z2ZzIGVu
-dHJpZXMgbWFrZXMgaXQNCj4gZWFzaWVyIGZvciBkZXZlbG9wZXJzIHRvIGZpbmQgdGhlIHJpZ2h0
-IG9mZnNldHMgdG8gdXNlIGluIHJlZ3MveGVfbHJjX2xheW91dC5oDQo+IGFuZC9vciBjb21wYXJl
-IHRoZSBkZWZhdWx0IExSQyBjb250ZW50cyBhZ2FpbnN0IHRoZSBic3BlYy1kb2N1bWVudGVkIExS
-Qw0KPiBsYXlvdXQuDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQu
-cm9wZXJAaW50ZWwuY29tPg0KDQpUaGlzIGxvb2tzIGdvb2QgdG8gbWUuIA0KDQpSZXZpZXdlZC1i
-eTogRG55YW5lc2h3YXIgQmhhZGFuZSA8ZG55YW5lc2h3YXIuYmhhZGFuZUBpbnRlbC5jb20+DQoN
-Cj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0veGUveGVfbHJjLmMgfCA2NSArKysrKysrKysrKysr
-KysrKysrKysrKysrKystLS0tLS0tLS0tDQo+IC0tLS0tLS0tDQo+ICAxIGZpbGUgY2hhbmdlZCwg
-MzkgaW5zZXJ0aW9ucygrKSwgMjYgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL3hlL3hlX2xyYy5jIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2xyYy5jIGlu
-ZGV4DQo+IGFhMjZjNzFhZTM0ZjU3MDIyMTc1YTZmZjE0ZDdmMzIwNWE2YzZkZGMuLjc1MjlmODFm
-MzU1ZWExYmIzY2RjNmUNCj4gMDgyNGFjYjg5NjI1NmM0MTgzIDEwMDY0NA0KPiAtLS0gYS9kcml2
-ZXJzL2dwdS9kcm0veGUveGVfbHJjLmMNCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2xy
-Yy5jDQo+IEBAIC0xOTAyLDYgKzE5MDIsNyBAQCBzdGF0aWMgaW50IGluc3RyX2R3KHUzMiBjbWRf
-aGVhZGVyKQ0KPiANCj4gIHN0YXRpYyBpbnQgZHVtcF9taV9jb21tYW5kKHN0cnVjdCBkcm1fcHJp
-bnRlciAqcCwNCj4gIAkJCSAgIHN0cnVjdCB4ZV9ndCAqZ3QsDQo+ICsJCQkgICB1MzIgKnN0YXJ0
-LA0KPiAgCQkJICAgdTMyICpkdywNCj4gIAkJCSAgIGludCByZW1haW5pbmdfZHcpDQo+ICB7DQo+
-IEBAIC0xOTE3LDE1ICsxOTE4LDE4IEBAIHN0YXRpYyBpbnQgZHVtcF9taV9jb21tYW5kKHN0cnVj
-dA0KPiBkcm1fcHJpbnRlciAqcCwNCj4gIAkJd2hpbGUgKG51bV9ub29wIDwgcmVtYWluaW5nX2R3
-ICYmDQo+ICAJCSAgICAgICAoKigrK2R3KSAmIFJFR19HRU5NQVNLKDMxLCAyMykpID09IE1JX05P
-T1ApDQo+ICAJCQludW1fbm9vcCsrOw0KPiAtCQlkcm1fcHJpbnRmKHAsICJbJSMwMTB4XSBNSV9O
-T09QICglZCBkd29yZHMpXG4iLA0KPiBpbnN0X2hlYWRlciwgbnVtX25vb3ApOw0KPiArCQlkcm1f
-cHJpbnRmKHAsICJMUkNbJSM1bHhdICA9ICBbJSMwMTB4XSBNSV9OT09QICglZA0KPiBkd29yZHMp
-XG4iLA0KPiArCQkJICAgZHcgLSBudW1fbm9vcCAtIHN0YXJ0LCBpbnN0X2hlYWRlciwgbnVtX25v
-b3ApOw0KPiAgCQlyZXR1cm4gbnVtX25vb3A7DQo+IA0KPiAgCWNhc2UgTUlfVE9QT0xPR1lfRklM
-VEVSOg0KPiAtCQlkcm1fcHJpbnRmKHAsICJbJSMwMTB4XSBNSV9UT1BPTE9HWV9GSUxURVJcbiIs
-DQo+IGluc3RfaGVhZGVyKTsNCj4gKwkJZHJtX3ByaW50ZihwLCAiTFJDWyUjNWx4XSAgPSAgWyUj
-MDEweF0NCj4gTUlfVE9QT0xPR1lfRklMVEVSXG4iLA0KPiArCQkJICAgZHcgLSBzdGFydCwgaW5z
-dF9oZWFkZXIpOw0KPiAgCQlyZXR1cm4gMTsNCj4gDQo+ICAJY2FzZSBNSV9CQVRDSF9CVUZGRVJf
-RU5EOg0KPiAtCQlkcm1fcHJpbnRmKHAsICJbJSMwMTB4XSBNSV9CQVRDSF9CVUZGRVJfRU5EXG4i
-LA0KPiBpbnN0X2hlYWRlcik7DQo+ICsJCWRybV9wcmludGYocCwgIkxSQ1slIzVseF0gID0gIFsl
-IzAxMHhdDQo+IE1JX0JBVENIX0JVRkZFUl9FTkRcbiIsDQo+ICsJCQkgICBkdyAtIHN0YXJ0LCBp
-bnN0X2hlYWRlcik7DQo+ICAJCS8qIFJldHVybiAncmVtYWluaW5nX2R3JyB0byBjb25zdW1lIHRo
-ZSByZXN0IG9mIHRoZSBMUkMgKi8NCj4gIAkJcmV0dXJuIHJlbWFpbmluZ19kdzsNCj4gIAl9DQo+
-IEBAIC0xOTM5LDM5ICsxOTQzLDQzIEBAIHN0YXRpYyBpbnQgZHVtcF9taV9jb21tYW5kKHN0cnVj
-dA0KPiBkcm1fcHJpbnRlciAqcCwNCj4gDQo+ICAJc3dpdGNoIChpbnN0X2hlYWRlciAmIE1JX09Q
-Q09ERSkgew0KPiAgCWNhc2UgTUlfTE9BRF9SRUdJU1RFUl9JTU06DQo+IC0JCWRybV9wcmludGYo
-cCwgIlslIzAxMHhdIE1JX0xPQURfUkVHSVNURVJfSU1NOiAlZA0KPiByZWdzXG4iLA0KPiAtCQkJ
-ICAgaW5zdF9oZWFkZXIsIChudW1kdyAtIDEpIC8gMik7DQo+ICsJCWRybV9wcmludGYocCwgIkxS
-Q1slIzVseF0gID0gIFslIzAxMHhdDQo+IE1JX0xPQURfUkVHSVNURVJfSU1NOiAlZCByZWdzXG4i
-LA0KPiArCQkJICAgZHcgLSBzdGFydCwgaW5zdF9oZWFkZXIsIChudW1kdyAtIDEpIC8gMik7DQo+
-ICAJCWZvciAoaW50IGkgPSAxOyBpIDwgbnVtZHc7IGkgKz0gMikNCj4gLQkJCWRybV9wcmludGYo
-cCwgIiAtICUjNnggPSAlIzAxMHhcbiIsIGR3W2ldLCBkd1tpICsgMV0pOw0KPiArCQkJZHJtX3By
-aW50ZihwLCAiTFJDWyUjNWx4XSAgPSAgLSAlIzZ4ID0gJSMwMTB4XG4iLA0KPiArCQkJCSAgICZk
-d1tpXSAtIHN0YXJ0LCBkd1tpXSwgZHdbaSArIDFdKTsNCj4gIAkJcmV0dXJuIG51bWR3Ow0KPiAN
-Cj4gIAljYXNlIE1JX0xPQURfUkVHSVNURVJfTUVNICYgTUlfT1BDT0RFOg0KPiAtCQlkcm1fcHJp
-bnRmKHAsICJbJSMwMTB4XSBNSV9MT0FEX1JFR0lTVEVSX01FTToNCj4gJXMlc1xuIiwNCj4gLQkJ
-CSAgIGluc3RfaGVhZGVyLA0KPiArCQlkcm1fcHJpbnRmKHAsICJMUkNbJSM1bHhdICA9ICBbJSMw
-MTB4XQ0KPiBNSV9MT0FEX1JFR0lTVEVSX01FTTogJXMlc1xuIiwNCj4gKwkJCSAgIGR3IC0gc3Rh
-cnQsIGluc3RfaGVhZGVyLA0KPiAgCQkJICAgZHdbMF0gJiBNSV9MUklfTFJNX0NTX01NSU8gPyAi
-Q1NfTU1JTyAiIDogIiIsDQo+ICAJCQkgICBkd1swXSAmIE1JX0xSTV9VU0VfR0dUVCA/ICJVU0Vf
-R0dUVCAiIDogIiIpOw0KPiAgCQlpZiAobnVtZHcgPT0gNCkNCj4gLQkJCWRybV9wcmludGYocCwg
-IiAtICUjNnggPSAlIzAxMGxseFxuIiwNCj4gKwkJCWRybV9wcmludGYocCwgIkxSQ1slIzVseF0g
-ID0gIC0gJSM2eCA9ICUjMDEwbGx4XG4iLA0KPiArCQkJCSAgIGR3IC0gc3RhcnQsDQo+ICAJCQkJ
-ICAgZHdbMV0sICgodTY0KShkd1szXSkgPDwgMzIgfA0KPiAodTY0KShkd1syXSkpKTsNCj4gIAkJ
-ZWxzZQ0KPiAtCQkJZHJtX3ByaW50ZihwLCAiIC0gJSpwaCAoJXMpXG4iLA0KPiAtCQkJCSAgIChp
-bnQpc2l6ZW9mKHUzMikgKiAobnVtZHcgLSAxKSwgZHcgKyAxLA0KPiAtCQkJCSAgIG51bWR3IDwg
-NCA/ICJ0cnVuY2F0ZWQiIDogIm1hbGZvcm1lZCIpOw0KPiArCQkJZHJtX3ByaW50ZihwLCAiTFJD
-WyUjNWx4XSAgPSAgLSAlKnBoICglcylcbiIsDQo+ICsJCQkJICAgZHcgLSBzdGFydCwgKGludClz
-aXplb2YodTMyKSAqIChudW1kdyAtIDEpLA0KPiArCQkJCSAgIGR3ICsgMSwgbnVtZHcgPCA0ID8g
-InRydW5jYXRlZCIgOg0KPiAibWFsZm9ybWVkIik7DQo+ICAJCXJldHVybiBudW1kdzsNCj4gDQo+
-ICAJY2FzZSBNSV9GT1JDRV9XQUtFVVA6DQo+IC0JCWRybV9wcmludGYocCwgIlslIzAxMHhdIE1J
-X0ZPUkNFX1dBS0VVUFxuIiwNCj4gaW5zdF9oZWFkZXIpOw0KPiArCQlkcm1fcHJpbnRmKHAsICJM
-UkNbJSM1bHhdICA9ICBbJSMwMTB4XQ0KPiBNSV9GT1JDRV9XQUtFVVBcbiIsDQo+ICsJCQkgICBk
-dyAtIHN0YXJ0LCBpbnN0X2hlYWRlcik7DQo+ICAJCXJldHVybiBudW1kdzsNCj4gDQo+ICAJZGVm
-YXVsdDoNCj4gLQkJZHJtX3ByaW50ZihwLCAiWyUjMDEweF0gdW5rbm93biBNSSBvcGNvZGUgJSN4
-LCBsaWtlbHkgJWQNCj4gZHdvcmRzXG4iLA0KPiAtCQkJICAgaW5zdF9oZWFkZXIsIG9wY29kZSwg
-bnVtZHcpOw0KPiArCQlkcm1fcHJpbnRmKHAsICJMUkNbJSM1bHhdICA9ICBbJSMwMTB4XSB1bmtu
-b3duIE1JIG9wY29kZQ0KPiAlI3gsIGxpa2VseSAlZCBkd29yZHNcbiIsDQo+ICsJCQkgICBkdyAt
-IHN0YXJ0LCBpbnN0X2hlYWRlciwgb3Bjb2RlLCBudW1kdyk7DQo+ICAJCXJldHVybiBudW1kdzsN
-Cj4gIAl9DQo+ICB9DQo+IA0KPiAgc3RhdGljIGludCBkdW1wX2dmeHBpcGVfY29tbWFuZChzdHJ1
-Y3QgZHJtX3ByaW50ZXIgKnAsDQo+ICAJCQkJc3RydWN0IHhlX2d0ICpndCwNCj4gKwkJCQl1MzIg
-KnN0YXJ0LA0KPiAgCQkJCXUzMiAqZHcsDQo+ICAJCQkJaW50IHJlbWFpbmluZ19kdykNCj4gIHsN
-Cj4gQEAgLTE5OTAsMTEgKzE5OTgsMTMgQEAgc3RhdGljIGludCBkdW1wX2dmeHBpcGVfY29tbWFu
-ZChzdHJ1Y3QNCj4gZHJtX3ByaW50ZXIgKnAsDQo+ICAJc3dpdGNoICgqZHcgJiBHRlhQSVBFX01B
-VENIX01BU0spIHsNCj4gICNkZWZpbmUgTUFUQ0goY21kKSBcDQo+ICAJY2FzZSBjbWQ6IFwNCj4g
-LQkJZHJtX3ByaW50ZihwLCAiWyUjMDEweF0gIiAjY21kICIgKCVkIGR3b3JkcylcbiIsICpkdywN
-Cj4gbnVtZHcpOyBcDQo+ICsJCWRybV9wcmludGYocCwgIkxSQ1slIzVseF0gID0gIFslIzAxMHhd
-ICIgI2NtZCAiICglZA0KPiBkd29yZHMpXG4iLCBcDQo+ICsJCQkgICBkdyAtIHN0YXJ0LCAqZHcs
-IG51bWR3KTsgXA0KPiAgCQlyZXR1cm4gbnVtZHcNCj4gICNkZWZpbmUgTUFUQ0gzRChjbWQpIFwN
-Cj4gIAljYXNlIENNRF8jI2NtZDogXA0KPiAtCQlkcm1fcHJpbnRmKHAsICJbJSMwMTB4XSAiICNj
-bWQgIiAoJWQgZHdvcmRzKVxuIiwgKmR3LA0KPiBudW1kdyk7IFwNCj4gKwkJZHJtX3ByaW50Zihw
-LCAiTFJDWyUjNWx4XSAgPSAgWyUjMDEweF0gIiAjY21kICIgKCVkDQo+IGR3b3JkcylcbiIsIFwN
-Cj4gKwkJCSAgIGR3IC0gc3RhcnQsICpkdywgbnVtZHcpOyBcDQo+ICAJCXJldHVybiBudW1kdw0K
-PiANCj4gIAlNQVRDSChTVEFURV9CQVNFX0FERFJFU1MpOw0KPiBAQCAtMjEyNiwxNCArMjEzNiwx
-NSBAQCBzdGF0aWMgaW50IGR1bXBfZ2Z4cGlwZV9jb21tYW5kKHN0cnVjdA0KPiBkcm1fcHJpbnRl
-ciAqcCwNCj4gIAlNQVRDSDNEKDNEU1RBVEVfU0xJQ0VfVEFCTEVfU1RBVEVfUE9JTlRFUl8yKTsN
-Cj4gDQo+ICAJZGVmYXVsdDoNCj4gLQkJZHJtX3ByaW50ZihwLCAiWyUjMDEweF0gdW5rbm93biBH
-RlhQSVBFIGNvbW1hbmQNCj4gKHBpcGVsaW5lPSUjeCwgb3Bjb2RlPSUjeCwgc3Vib3Bjb2RlPSUj
-eCksIGxpa2VseSAlZCBkd29yZHNcbiIsDQo+IC0JCQkgICAqZHcsIHBpcGVsaW5lLCBvcGNvZGUs
-IHN1Ym9wY29kZSwgbnVtZHcpOw0KPiArCQlkcm1fcHJpbnRmKHAsICJMUkNbJSM1bHhdICA9ICBb
-JSMwMTB4XSB1bmtub3duIEdGWFBJUEUNCj4gY29tbWFuZCAocGlwZWxpbmU9JSN4LCBvcGNvZGU9
-JSN4LCBzdWJvcGNvZGU9JSN4KSwgbGlrZWx5ICVkDQo+IGR3b3Jkc1xuIiwNCj4gKwkJCSAgIGR3
-IC0gc3RhcnQsICpkdywgcGlwZWxpbmUsIG9wY29kZSwgc3Vib3Bjb2RlLA0KPiBudW1kdyk7DQo+
-ICAJCXJldHVybiBudW1kdzsNCj4gIAl9DQo+ICB9DQo+IA0KPiAgc3RhdGljIGludCBkdW1wX2dm
-eF9zdGF0ZV9jb21tYW5kKHN0cnVjdCBkcm1fcHJpbnRlciAqcCwNCj4gIAkJCQkgIHN0cnVjdCB4
-ZV9ndCAqZ3QsDQo+ICsJCQkJICB1MzIgKnN0YXJ0LA0KPiAgCQkJCSAgdTMyICpkdywNCj4gIAkJ
-CQkgIGludCByZW1haW5pbmdfZHcpDQo+ICB7DQo+IEBAIC0yMTUxLDggKzIxNjIsOCBAQCBzdGF0
-aWMgaW50IGR1bXBfZ2Z4X3N0YXRlX2NvbW1hbmQoc3RydWN0DQo+IGRybV9wcmludGVyICpwLA0K
-PiAgCU1BVENIKFNUQVRFX1dSSVRFX0lOTElORSk7DQo+IA0KPiAgCWRlZmF1bHQ6DQo+IC0JCWRy
-bV9wcmludGYocCwgIlslIzAxMHhdIHVua25vd24gR0ZYX1NUQVRFIGNvbW1hbmQNCj4gKG9wY29k
-ZT0lI3gpLCBsaWtlbHkgJWQgZHdvcmRzXG4iLA0KPiAtCQkJICAgKmR3LCBvcGNvZGUsIG51bWR3
-KTsNCj4gKwkJZHJtX3ByaW50ZihwLCAiTFJDWyUjNWx4XSAgPSAgWyUjMDEweF0gdW5rbm93biBH
-RlhfU1RBVEUNCj4gY29tbWFuZCAob3Bjb2RlPSUjeCksIGxpa2VseSAlZCBkd29yZHNcbiIsDQo+
-ICsJCQkgICBkdyAtIHN0YXJ0LCAqZHcsIG9wY29kZSwgbnVtZHcpOw0KPiAgCQlyZXR1cm4gbnVt
-ZHc7DQo+ICAJfQ0KPiAgfQ0KPiBAQCAtMjE2MSw3ICsyMTcyLDcgQEAgdm9pZCB4ZV9scmNfZHVt
-cF9kZWZhdWx0KHN0cnVjdCBkcm1fcHJpbnRlciAqcCwNCj4gIAkJCSBzdHJ1Y3QgeGVfZ3QgKmd0
-LA0KPiAgCQkJIGVudW0geGVfZW5naW5lX2NsYXNzIGh3ZV9jbGFzcykNCj4gIHsNCj4gLQl1MzIg
-KmR3Ow0KPiArCXUzMiAqZHcsICpzdGFydDsNCj4gIAlpbnQgcmVtYWluaW5nX2R3LCBudW1fZHc7
-DQo+IA0KPiAgCWlmICghZ3QtPmRlZmF1bHRfbHJjW2h3ZV9jbGFzc10pIHsNCj4gQEAgLTIxNzQs
-MTggKzIxODUsMjAgQEAgdm9pZCB4ZV9scmNfZHVtcF9kZWZhdWx0KHN0cnVjdCBkcm1fcHJpbnRl
-cg0KPiAqcCwNCj4gIAkgKiBoYXJkd2FyZSBzdGF0dXMgcGFnZS4NCj4gIAkgKi8NCj4gIAlkdyA9
-IGd0LT5kZWZhdWx0X2xyY1tod2VfY2xhc3NdICsgTFJDX1BQSFdTUF9TSVpFOw0KPiArCXN0YXJ0
-ID0gZHc7DQo+ICAJcmVtYWluaW5nX2R3ID0gKHhlX2d0X2xyY19zaXplKGd0LCBod2VfY2xhc3Mp
-IC0gTFJDX1BQSFdTUF9TSVpFKSAvDQo+IDQ7DQo+IA0KPiAgCXdoaWxlIChyZW1haW5pbmdfZHcg
-PiAwKSB7DQo+ICAJCWlmICgoKmR3ICYgWEVfSU5TVFJfQ01EX1RZUEUpID09IFhFX0lOU1RSX01J
-KSB7DQo+IC0JCQludW1fZHcgPSBkdW1wX21pX2NvbW1hbmQocCwgZ3QsIGR3LA0KPiByZW1haW5p
-bmdfZHcpOw0KPiArCQkJbnVtX2R3ID0gZHVtcF9taV9jb21tYW5kKHAsIGd0LCBzdGFydCwgZHcs
-DQo+IHJlbWFpbmluZ19kdyk7DQo+ICAJCX0gZWxzZSBpZiAoKCpkdyAmIFhFX0lOU1RSX0NNRF9U
-WVBFKSA9PSBYRV9JTlNUUl9HRlhQSVBFKQ0KPiB7DQo+IC0JCQludW1fZHcgPSBkdW1wX2dmeHBp
-cGVfY29tbWFuZChwLCBndCwgZHcsDQo+IHJlbWFpbmluZ19kdyk7DQo+ICsJCQludW1fZHcgPSBk
-dW1wX2dmeHBpcGVfY29tbWFuZChwLCBndCwgc3RhcnQsIGR3LA0KPiByZW1haW5pbmdfZHcpOw0K
-PiAgCQl9IGVsc2UgaWYgKCgqZHcgJiBYRV9JTlNUUl9DTURfVFlQRSkgPT0NCj4gWEVfSU5TVFJf
-R0ZYX1NUQVRFKSB7DQo+IC0JCQludW1fZHcgPSBkdW1wX2dmeF9zdGF0ZV9jb21tYW5kKHAsIGd0
-LCBkdywNCj4gcmVtYWluaW5nX2R3KTsNCj4gKwkJCW51bV9kdyA9IGR1bXBfZ2Z4X3N0YXRlX2Nv
-bW1hbmQocCwgZ3QsIHN0YXJ0LA0KPiBkdywgcmVtYWluaW5nX2R3KTsNCj4gIAkJfSBlbHNlIHsN
-Cj4gIAkJCW51bV9kdyA9IG1pbihpbnN0cl9kdygqZHcpLCByZW1haW5pbmdfZHcpOw0KPiAtCQkJ
-ZHJtX3ByaW50ZihwLCAiWyUjMTB4XSBVbmtub3duIGluc3RydWN0aW9uIG9mIHR5cGUNCj4gJSN4
-LCBsaWtlbHkgJWQgZHdvcmRzXG4iLA0KPiArCQkJZHJtX3ByaW50ZihwLCAiTFJDWyUjNWx4XSAg
-PSAgWyUjMTB4XSBVbmtub3duDQo+IGluc3RydWN0aW9uIG9mIHR5cGUgJSN4LCBsaWtlbHkgJWQg
-ZHdvcmRzXG4iLA0KPiArCQkJCSAgIGR3IC0gc3RhcnQsDQo+ICAJCQkJICAgKmR3LCBSRUdfRklF
-TERfR0VUKFhFX0lOU1RSX0NNRF9UWVBFLA0KPiAqZHcpLA0KPiAgCQkJCSAgIG51bV9kdyk7DQo+
-ICAJCX0NCj4gDQo+IC0tLQ0KPiBiYXNlLWNvbW1pdDogNGY4MjNjYjRmOWZhZjY2MTFmMzVjNmE4
-YTcxYWI2OTZlM2E3MzRkNg0KPiBjaGFuZ2UtaWQ6IDIwMjYwMzExLWRlZmF1bHRfbHJjX29mZnNl
-dHMtNWQzM2E1MWZiMGYxDQo+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IC0tDQo+IE1hdHQgUm9wZXIN
-Cj4gR3JhcGhpY3MgU29mdHdhcmUgRW5naW5lZXINCj4gTGludXggR1BVIFBsYXRmb3JtIEVuYWJs
-ZW1lbnQNCj4gSW50ZWwgQ29ycG9yYXRpb24NCg0K
+On Mon Mar 9, 2026 at 10:53 PM JST, Joel Fernandes wrote:
+> Add safe Rust abstractions over the Linux kernel's GPU buddy
+> allocator for physical memory management. The GPU buddy allocator
+> implements a binary buddy system useful for GPU physical memory
+> allocation. nova-core will use it for physical memory allocation.
+>
+> Christian Koenig mentioned he'd like to step down from reviewer role for
+> GPU buddy so updated accordingly. Arun/Matthew agree on the modified entr=
+y.
+>
+> Cc: Nikola Djukic <ndjukic@nvidia.com>
+> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+
+This is getting close IMHO. But `make rustdoc` fails on the examples,
+and there are still clippy warnings - please make sure to address them.
+
+A few more comments below.
+
+<snip>
+> diff --git a/rust/kernel/gpu/buddy.rs b/rust/kernel/gpu/buddy.rs
+> new file mode 100644
+> index 000000000000..9027c9a7778f
+> --- /dev/null
+> +++ b/rust/kernel/gpu/buddy.rs
+> @@ -0,0 +1,611 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +//! GPU buddy allocator bindings.
+> +//!
+> +//! C header: [`include/linux/gpu_buddy.h`](srctree/include/linux/gpu_bu=
+ddy.h)
+> +//!
+> +//! This module provides Rust abstractions over the Linux kernel's GPU b=
+uddy
+> +//! allocator, which implements a binary buddy memory allocator.
+> +//!
+> +//! The buddy allocator manages a contiguous address space and allocates=
+ blocks
+> +//! in power-of-two sizes, useful for GPU physical memory management.
+> +//!
+> +//! # Examples
+> +//!
+> +//! Create a buddy allocator and perform a basic range allocation:
+> +//!
+> +//! ```
+> +//! use kernel::{
+> +//!     gpu::buddy::{GpuBuddy, GpuBuddyAllocMode, GpuBuddyAllocFlags, Gp=
+uBuddyParams},
+
+nit: should also use kernel formatting style.
+
+> +//!     prelude::*,
+> +//!     ptr::Alignment,
+> +//!     sizes::*, //
+> +//! };
+> +//!
+> +//! // Create a 1GB buddy allocator with 4KB minimum chunk size.
+> +//! let buddy =3D GpuBuddy::new(GpuBuddyParams {
+> +//!     base_offset: 0,
+> +//!     physical_memory_size: SZ_1G as u64,
+> +//!     chunk_size: SZ_4K,
+
+`chunk_size` is an interesting case. The C API uses a `u64`, but I think
+we can reasonably consider that we won't ever need chunks larger than
+4GB (or can we :O). I'm actually ok with using a `usize` for this one.
+
+One of the first things the C code does is throwing an error if it is
+not a power of 2, so maybe we can even request an `Alignment`?
+
+I'm a bit torn as to whether we should use a `u64` to conform with the C
+API, but doing so would mean we cannot use an `Alignment`...
+
+> +//! })?;
+> +//!
+> +//! assert_eq!(buddy.size(), SZ_1G as u64);
+> +//! assert_eq!(buddy.chunk_size(), SZ_4K);
+> +//! let initial_free =3D buddy.free_memory();
+> +//!
+> +//! // Allocate 16MB, results in a single 16MB block at offset 0.
+> +//! let allocated =3D KBox::pin_init(
+> +//!     buddy.alloc_blocks(
+> +//!         GpuBuddyAllocMode::Range { start: 0, end: 0 },
+
+This zero-sized range looks confusing for the example. I understand the
+C API allows this, but I don't think we should. Is there a difference
+with just using `GpuBuddyAllocMode::Simple`? If not, let's switch to
+that, and reject zero-sized ranges in the same spirit as we don't allow
+invalid flag combinations.
+
+> +//!         SZ_16M,
+> +//!         Alignment::new::<SZ_16M>(),
+> +//!         GpuBuddyAllocFlags::default(),
+> +//!     ),
+> +//!     GFP_KERNEL,
+> +//! )?;
+> +//! assert_eq!(buddy.free_memory(), initial_free - SZ_16M as u64);
+> +//!
+> +//! let block =3D allocated.iter().next().expect("expected one block");
+> +//! assert_eq!(block.offset(), 0);
+> +//! assert_eq!(block.order(), 12); // 2^12 pages =3D 16MB
+> +//! assert_eq!(block.size(), SZ_16M);
+
+Here we should also check that there is not a second block.
+
+> +//!
+> +//! // Dropping the allocation returns the memory to the buddy allocator=
+.
+
+s/memory/range - technically we are not returning physical memory.
+
+> +//! drop(allocated);
+> +//! assert_eq!(buddy.free_memory(), initial_free);
+> +//! # Ok::<(), Error>(())
+> +//! ```
+> +//!
+> +//! Top-down allocation allocates from the highest addresses:
+> +//!
+> +//! ```
+> +//! # use kernel::{
+> +//! #     gpu::buddy::{GpuBuddy, GpuBuddyAllocMode, GpuBuddyAllocFlags, =
+GpuBuddyParams},
+> +//! #     prelude::*,
+> +//! #     ptr::Alignment,
+> +//! #     sizes::*, //
+
+`make rustdoc` fails to build:
+
+error[E0433]: failed to resolve: use of undeclared type `GpuBuddyAllocFlags=
+`
+    --> rust/doctests_kernel_generated.rs:6182:9
+     |
+6182 |         GpuBuddyAllocFlags::default(),
+     |         ^^^^^^^^^^^^^^^^^^ use of undeclared type `GpuBuddyAllocFlag=
+s`
+     |
+help: an enum with a similar name exists
+     |
+6182 -         GpuBuddyAllocFlags::default(),
+6182 +         GpuBuddyAllocFlag::default(),
+     |
+help: consider importing this struct
+     |
+   3 + use kernel::gpu::buddy::GpuBuddyAllocFlags;
+     |
+
+error[E0433]: failed to resolve: use of undeclared type `GpuBuddyAllocFlags=
+`
+    --> rust/doctests_kernel_generated.rs:6195:9
+     |
+6195 |         GpuBuddyAllocFlags::default(),
+     |         ^^^^^^^^^^^^^^^^^^ use of undeclared type `GpuBuddyAllocFlag=
+s`
+     |
+help: an enum with a similar name exists
+     |
+6195 -         GpuBuddyAllocFlags::default(),
+6195 +         GpuBuddyAllocFlag::default(),
+     |
+help: consider importing this struct
+     |
+   3 + use kernel::gpu::buddy::GpuBuddyAllocFlags;
+
+> +//! # };
+> +//! # let buddy =3D GpuBuddy::new(GpuBuddyParams {
+> +//! #     base_offset: 0,
+> +//! #     physical_memory_size: SZ_1G as u64,
+> +//! #     chunk_size: SZ_4K,
+> +//! # })?;
+> +//! # let initial_free =3D buddy.free_memory();
+> +//! let topdown =3D KBox::pin_init(
+> +//!     buddy.alloc_blocks(
+> +//!         GpuBuddyAllocMode::TopDown,
+> +//!         SZ_16M,
+> +//!         Alignment::new::<SZ_16M>(),
+> +//!         GpuBuddyAllocFlags::default(),
+> +//!     ),
+> +//!     GFP_KERNEL,
+> +//! )?;
+> +//! assert_eq!(buddy.free_memory(), initial_free - SZ_16M as u64);
+> +//!
+> +//! let block =3D topdown.iter().next().expect("expected one block");
+> +//! assert_eq!(block.offset(), (SZ_1G - SZ_16M) as u64);
+> +//! assert_eq!(block.order(), 12);
+> +//! assert_eq!(block.size(), SZ_16M);
+> +//!
+> +//! // Dropping the allocation returns the memory to the buddy allocator=
+.
+> +//! drop(topdown);
+> +//! assert_eq!(buddy.free_memory(), initial_free);
+> +//! # Ok::<(), Error>(())
+> +//! ```
+> +//!
+> +//! Non-contiguous allocation can fill fragmented memory by returning mu=
+ltiple
+> +//! blocks:
+> +//!
+> +//! ```
+> +//! # use kernel::{
+> +//! #     gpu::buddy::{
+> +//! #         GpuBuddy, GpuBuddyAllocFlags, GpuBuddyAllocMode, GpuBuddyP=
+arams,
+> +//! #     },
+> +//! #     prelude::*,
+> +//! #     ptr::Alignment,
+> +//! #     sizes::*, //
+> +//! # };
+> +//! # let buddy =3D GpuBuddy::new(GpuBuddyParams {
+> +//! #     base_offset: 0,
+> +//! #     physical_memory_size: SZ_1G as u64,
+> +//! #     chunk_size: SZ_4K,
+> +//! # })?;
+> +//! # let initial_free =3D buddy.free_memory();
+> +//! // Create fragmentation by allocating 4MB blocks at [0,4M) and [8M,1=
+2M).
+> +//! let frag1 =3D KBox::pin_init(
+> +//!     buddy.alloc_blocks(
+> +//!         GpuBuddyAllocMode::Range { start: 0, end: SZ_4M as u64 },
+> +//!         SZ_4M,
+> +//!         Alignment::new::<SZ_4M>(),
+> +//!         GpuBuddyAllocFlags::default(),
+> +//!     ),
+> +//!     GFP_KERNEL,
+> +//! )?;
+> +//! assert_eq!(buddy.free_memory(), initial_free - SZ_4M as u64);
+> +//!
+> +//! let frag2 =3D KBox::pin_init(
+> +//!     buddy.alloc_blocks(
+> +//!         GpuBuddyAllocMode::Range {
+> +//!             start: SZ_8M as u64,
+> +//!             end: (SZ_8M + SZ_4M) as u64,
+> +//!         },
+> +//!         SZ_4M,
+> +//!         Alignment::new::<SZ_4M>(),
+> +//!         GpuBuddyAllocFlags::default(),
+> +//!     ),
+> +//!     GFP_KERNEL,
+> +//! )?;
+> +//! assert_eq!(buddy.free_memory(), initial_free - SZ_8M as u64);
+> +//!
+> +//! // Allocate 8MB, this returns 2 blocks from the holes.
+> +//! let fragmented =3D KBox::pin_init(
+> +//!     buddy.alloc_blocks(
+> +//!         GpuBuddyAllocMode::Range { start: 0, end: SZ_16M as u64 },
+> +//!         SZ_8M,
+> +//!         Alignment::new::<SZ_4M>(),
+> +//!         GpuBuddyAllocFlags::default(),
+> +//!     ),
+> +//!     GFP_KERNEL,
+> +//! )?;
+> +//! assert_eq!(buddy.free_memory(), initial_free - SZ_16M as u64);
+> +//!
+> +//! let (mut count, mut total) =3D (0u32, 0usize);
+> +//! for block in fragmented.iter() {
+> +//!     assert_eq!(block.size(), SZ_4M);
+> +//!     total +=3D block.size();
+> +//!     count +=3D 1;
+> +//! }
+
+Note that we can avoid mutable variables with this:
+
+//! let total_size: usize =3D fragmented.iter()
+//!      .inspect(|block| assert_eq!(block.size(), SZ_4M))
+//!      .map(|block| block.size())
+//!      .sum();
+//! assert_eq!(total_size, SZ_8M);
+//! assert_eq!(fragmented.iter().count(), 2);
+
+But your call as to whether this is an improvement.
+
+> +//! assert_eq!(total, SZ_8M);
+> +//! assert_eq!(count, 2);
+> +//! # Ok::<(), Error>(())
+> +//! ```
+> +//!
+> +//! Contiguous allocation fails when only fragmented space is available:
+> +//!
+> +//! ```
+> +//! # use kernel::{
+> +//! #     gpu::buddy::{
+> +//! #         GpuBuddy, GpuBuddyAllocFlag, GpuBuddyAllocMode, GpuBuddyPa=
+rams,
+> +//! #     },
+> +//! #     prelude::*,
+> +//! #     ptr::Alignment,
+> +//! #     sizes::*, //
+> +//! # };
+> +//! // Create a small 16MB buddy allocator with fragmented memory.
+> +//! let small =3D GpuBuddy::new(GpuBuddyParams {
+> +//!     base_offset: 0,
+> +//!     physical_memory_size: SZ_16M as u64,
+> +//!     chunk_size: SZ_4K,
+> +//! })?;
+> +//!
+> +//! let _hole1 =3D KBox::pin_init(
+> +//!     small.alloc_blocks(
+> +//!         GpuBuddyAllocMode::Range { start: 0, end: SZ_4M as u64 },
+> +//!         SZ_4M,
+> +//!         Alignment::new::<SZ_4M>(),
+> +//!         GpuBuddyAllocFlags::default(),
+> +//!     ),
+> +//!     GFP_KERNEL,
+> +//! )?;
+> +//!
+> +//! let _hole2 =3D KBox::pin_init(
+> +//!     small.alloc_blocks(
+> +//!         GpuBuddyAllocMode::Range {
+> +//!             start: SZ_8M as u64,
+> +//!             end: (SZ_8M + SZ_4M) as u64,
+> +//!         },
+> +//!         SZ_4M,
+> +//!         Alignment::new::<SZ_4M>(),
+> +//!         GpuBuddyAllocFlags::default(),
+> +//!     ),
+> +//!     GFP_KERNEL,
+> +//! )?;
+> +//!
+> +//! // 8MB contiguous should fail, only two non-contiguous 4MB holes exi=
+st.
+> +//! let result =3D KBox::pin_init(
+> +//!     small.alloc_blocks(
+> +//!         GpuBuddyAllocMode::Simple,
+> +//!         SZ_8M,
+> +//!         Alignment::new::<SZ_4M>(),
+> +//!         GpuBuddyAllocFlag::Contiguous.into(),
+> +//!     ),
+> +//!     GFP_KERNEL,
+> +//! );
+> +//! assert!(result.is_err());
+> +//! # Ok::<(), Error>(())
+> +//! ```
+
+I think these last two examples are great both as documentation and
+tests - the doc has also become much more readable!
+
+> +
+> +use crate::{
+> +    bindings,
+> +    clist_create,
+> +    error::to_result,
+> +    interop::list::CListHead,
+> +    new_mutex,
+> +    prelude::*,
+> +    ptr::Alignment,
+> +    sync::{
+> +        lock::mutex::MutexGuard,
+> +        Arc,
+> +        Mutex, //
+> +    },
+> +    types::Opaque, //
+> +};
+> +
+> +/// Allocation mode for the GPU buddy allocator.
+> +///
+> +/// The mode determines the primary allocation strategy. Modes are mutua=
+lly
+> +/// exclusive: an allocation is either simple, range-constrained, or top=
+-down.
+> +///
+> +/// Orthogonal modifier flags (e.g., contiguous, clear) are specified se=
+parately
+> +/// via [`GpuBuddyAllocFlags`].
+> +#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+> +pub enum GpuBuddyAllocMode {
+> +    /// Simple allocation without constraints.
+> +    Simple,
+> +    /// Range-based allocation between `start` and `end` addresses.
+> +    Range {
+> +        /// Start of the allocation range.
+> +        start: u64,
+> +        /// End of the allocation range.
+> +        end: u64,
+> +    },
+> +    /// Allocate from top of address space downward.
+> +    TopDown,
+> +}
+> +
+> +impl GpuBuddyAllocMode {
+> +    // Returns the C flags corresponding to the allocation mode.
+> +    fn into_flags(self) -> usize {
+> +        match self {
+> +            Self::Simple =3D> 0,
+> +            Self::Range { .. } =3D> bindings::GPU_BUDDY_RANGE_ALLOCATION=
+ as usize,
+> +            Self::TopDown =3D> bindings::GPU_BUDDY_TOPDOWN_ALLOCATION as=
+ usize,
+> +        }
+> +    }
+> +
+> +    // Extracts the range start/end, defaulting to (0, 0) for non-range =
+modes.
+> +    fn range(self) -> (u64, u64) {
+> +        match self {
+> +            Self::Range { start, end } =3D> (start, end),
+> +            _ =3D> (0, 0),
+> +        }
+> +    }
+> +}
+> +
+> +crate::impl_flags!(
+> +    /// Modifier flags for GPU buddy allocation.
+> +    ///
+> +    /// These flags can be combined with any [`GpuBuddyAllocMode`] to co=
+ntrol
+> +    /// additional allocation behavior.
+> +    #[derive(Clone, Copy, Default, PartialEq, Eq)]
+> +    pub struct GpuBuddyAllocFlags(u32);
+> +
+> +    /// Individual modifier flag for GPU buddy allocation.
+> +    #[derive(Clone, Copy, PartialEq, Eq)]
+> +    pub enum GpuBuddyAllocFlag {
+> +        /// Allocate physically contiguous blocks.
+> +        Contiguous =3D bindings::GPU_BUDDY_CONTIGUOUS_ALLOCATION as u32,
+> +
+> +        /// Request allocation from cleared (zeroed) memory.
+> +        Clear =3D bindings::GPU_BUDDY_CLEAR_ALLOCATION as u32,
+> +
+> +        /// Disable trimming of partially used blocks.
+> +        TrimDisable =3D bindings::GPU_BUDDY_TRIM_DISABLE as u32,
+> +    }
+> +);
+> +
+> +/// Parameters for creating a GPU buddy allocator.
+> +pub struct GpuBuddyParams {
+> +    /// Base offset (in bytes) where the managed memory region starts.
+> +    /// Allocations will be offset by this value.
+> +    pub base_offset: u64,
+> +    /// Total physical memory size (in bytes) managed by the allocator.
+> +    pub physical_memory_size: u64,
+> +    /// Minimum allocation unit / chunk size (in bytes), must be >=3D 4K=
+B.
+> +    pub chunk_size: usize,
+
+As I mentioned above, let's consider if we can store this as an `Alignment`=
+.
+
+> +}
+> +
+> +/// Inner structure holding the actual buddy allocator.
+> +///
+> +/// # Synchronization
+> +///
+> +/// The C `gpu_buddy` API requires synchronization (see `include/linux/g=
+pu_buddy.h`).
+> +/// [`GpuBuddyGuard`] ensures that the lock is held for all
+> +/// allocator and free operations, preventing races between concurrent a=
+llocations
+> +/// and the freeing that occurs when [`AllocatedBlocks`] is dropped.
+
+`GpuBuddyGuard` is now private, so we should avoid mentioning it in the
+public documentation as it will just confuse users.
+
+Users won't care about such implementation details - we can just say
+that internal locking ensures all operations are properly synchronized.
+
+> +///
+> +/// # Invariants
+> +///
+> +/// The inner [`Opaque`] contains an initialized buddy allocator.
+> +#[pin_data(PinnedDrop)]
+> +struct GpuBuddyInner {
+> +    #[pin]
+> +    inner: Opaque<bindings::gpu_buddy>,
+> +
+> +    // TODO: Replace `Mutex<()>` with `Mutex<Opaque<..>>` once `Mutex::n=
+ew()`
+> +    // accepts `impl PinInit<T>`.
+> +    #[pin]
+> +    lock: Mutex<()>,
+> +    /// Cached creation parameters (do not change after init).
+> +    params: GpuBuddyParams,
+> +}
+> +
+> +impl GpuBuddyInner {
+> +    /// Create a pin-initializer for the buddy allocator.
+> +    fn new(params: GpuBuddyParams) -> impl PinInit<Self, Error> {
+> +        let size =3D params.physical_memory_size;
+> +        let chunk_size =3D params.chunk_size;
+> +
+> +        // INVARIANT: `gpu_buddy_init` returns 0 on success, at which po=
+int the
+> +        // `gpu_buddy` structure is initialized and ready for use with a=
+ll
+> +        // `gpu_buddy_*` APIs. `try_pin_init!` only completes if all fie=
+lds succeed,
+> +        // so the invariant holds when construction finishes.
+> +        try_pin_init!(Self {
+> +            inner <- Opaque::try_ffi_init(|ptr| {
+> +                // SAFETY: `ptr` points to valid uninitialized memory fr=
+om the pin-init
+> +                // infrastructure. `gpu_buddy_init` will initialize the =
+structure.
+> +                to_result(unsafe { bindings::gpu_buddy_init(ptr, size, c=
+hunk_size as u64) })
+> +            }),
+> +            lock <- new_mutex!(()),
+> +            params,
+> +        })
+> +    }
+> +
+> +    /// Lock the mutex and return a guard for accessing the allocator.
+> +    fn lock(&self) -> GpuBuddyGuard<'_> {
+> +        GpuBuddyGuard {
+> +            inner: self,
+> +            _guard: self.lock.lock(),
+> +        }
+> +    }
+> +}
+> +
+> +#[pinned_drop]
+> +impl PinnedDrop for GpuBuddyInner {
+> +    fn drop(self: Pin<&mut Self>) {
+> +        let guard =3D self.lock();
+> +
+> +        // SAFETY: Per the type invariant, `inner` contains an initializ=
+ed
+> +        // allocator. `guard` provides exclusive access.
+> +        unsafe {
+> +            bindings::gpu_buddy_fini(guard.as_raw());
+> +        }
+> +    }
+> +}
+> +
+> +// SAFETY: GpuBuddyInner can be sent between threads.
+> +unsafe impl Send for GpuBuddyInner {}
+> +
+> +// SAFETY: `GpuBuddyInner` is `Sync` because `GpuBuddyInner::lock`
+> +// serializes all access to the C allocator, preventing data races.
+> +unsafe impl Sync for GpuBuddyInner {}
+> +
+> +// Guard that proves the lock is held, enabling access to the allocator.
+> +// The `_guard` holds the lock for the duration of this guard's lifetime=
+.
+> +struct GpuBuddyGuard<'a> {
+> +    inner: &'a GpuBuddyInner,
+> +    _guard: MutexGuard<'a, ()>,
+> +}
+> +
+> +impl GpuBuddyGuard<'_> {
+> +    /// Get a raw pointer to the underlying C `gpu_buddy` structure.
+> +    fn as_raw(&self) -> *mut bindings::gpu_buddy {
+> +        self.inner.inner.get()
+> +    }
+> +}
+> +
+> +/// GPU buddy allocator instance.
+> +///
+> +/// This structure wraps the C `gpu_buddy` allocator using reference cou=
+nting.
+> +/// The allocator is automatically cleaned up when all references are dr=
+opped.
+> +///
+> +/// Refer to the module-level documentation for usage examples.
+> +pub struct GpuBuddy(Arc<GpuBuddyInner>);
+> +
+> +impl GpuBuddy {
+> +    /// Create a new buddy allocator.
+> +    ///
+> +    /// Creates a buddy allocator that manages a contiguous address spac=
+e of the given
+> +    /// size, with the specified minimum allocation unit (chunk_size mus=
+t be at least 4KB).
+> +    pub fn new(params: GpuBuddyParams) -> Result<Self> {
+> +        Ok(Self(Arc::pin_init(GpuBuddyInner::new(params), GFP_KERNEL)?))
+
+Can be written as:
+
+        Arc::pin_init(GpuBuddyInner::new(params), GFP_KERNEL).map(Self)
+
+I prefer this form as it avoids the `?` and re-wrapping into `Ok` for
+something that is already a `Result`.
+
+>
+> +    }
+> +
+> +    /// Get the base offset for allocations.
+> +    pub fn base_offset(&self) -> u64 {
+> +        self.0.params.base_offset
+> +    }
+> +
+> +    /// Get the chunk size (minimum allocation unit).
+> +    pub fn chunk_size(&self) -> usize {
+
+If my suggestion above works this could return an `Alignment`.
+
+> +        self.0.params.chunk_size
+> +    }
+> +
+> +    /// Get the total managed size.
+> +    pub fn size(&self) -> u64 {
+> +        self.0.params.physical_memory_size
+> +    }
+> +
+> +    /// Get the available (free) memory in bytes.
+> +    pub fn free_memory(&self) -> u64 {
+> +        let guard =3D self.0.lock();
+> +
+> +        // SAFETY: Per the type invariant, `inner` contains an initializ=
+ed allocator.
+> +        // `guard` provides exclusive access.
+> +        unsafe { (*guard.as_raw()).avail }
+> +    }
+> +
+> +    /// Allocate blocks from the buddy allocator.
+> +    ///
+> +    /// Returns a pin-initializer for [`AllocatedBlocks`].
+> +    ///
+> +    /// Takes `&self` instead of `&mut self` because the internal [`Mute=
+x`] provides
+> +    /// synchronization - no external `&mut` exclusivity needed.
+
+This is another implementation detail - the fact this takes `&self` and
+is not `unsafe` is already proof that synchronization is taken care of.
+
+> +    pub fn alloc_blocks(
+> +        &self,
+> +        mode: GpuBuddyAllocMode,
+> +        size: usize,
+
+For this parameter I am pretty sure we want to conform to the C API and
+use a `u64` - there is no benefit in not doing so, and buffers larger
+than 4GB *are* a reality nowadays, (maybe not for graphics, but this
+will also be used in compute scenarios).
+
+> +        min_block_size: Alignment,
+> +        flags: GpuBuddyAllocFlags,
+> +    ) -> impl PinInit<AllocatedBlocks, Error> {
+> +        let buddy_arc =3D Arc::clone(&self.0);
+> +        let (start, end) =3D mode.range();
+> +        let mode_flags =3D mode.into_flags();
+> +        let modifier_flags =3D u32::from(flags) as usize;
+> +
+> +        // Create pin-initializer that initializes list and allocates bl=
+ocks.
+> +        try_pin_init!(AllocatedBlocks {
+> +            buddy: buddy_arc,
+> +            list <- CListHead::new(),
+> +            _: {
+> +                // Lock while allocating to serialize with concurrent fr=
+ees.
+> +                let guard =3D buddy.lock();
+> +
+> +                // SAFETY: Per the type invariant, `inner` contains an i=
+nitialized
+> +                // allocator. `guard` provides exclusive access.
+> +                to_result(unsafe {
+> +                    bindings::gpu_buddy_alloc_blocks(
+> +                        guard.as_raw(),
+> +                        start,
+> +                        end,
+> +                        size as u64,
+> +                        min_block_size.as_usize() as u64,
+> +                        list.as_raw(),
+> +                        mode_flags | modifier_flags,
+> +                    )
+> +                })?
+> +            }
+> +        })
+> +    }
+> +}
+> +
+> +/// Allocated blocks from the buddy allocator with automatic cleanup.
+> +///
+> +/// This structure owns a list of allocated blocks and ensures they are
+> +/// automatically freed when dropped. Use `iter()` to iterate over all
+> +/// allocated blocks.
+> +///
+> +/// # Invariants
+> +///
+> +/// - `list` is an initialized, valid list head containing allocated blo=
+cks.
+> +#[pin_data(PinnedDrop)]
+> +pub struct AllocatedBlocks {
+> +    #[pin]
+> +    list: CListHead,
+> +    buddy: Arc<GpuBuddyInner>,
+> +}
+> +
+> +impl AllocatedBlocks {
+> +    /// Check if the block list is empty.
+> +    pub fn is_empty(&self) -> bool {
+> +        // An empty list head points to itself.
+> +        !self.list.is_linked()
+> +    }
+> +
+> +    /// Iterate over allocated blocks.
+> +    ///
+> +    /// Returns an iterator yielding [`AllocatedBlock`] values. Each [`A=
+llocatedBlock`]
+> +    /// borrows `self` and is only valid for the duration of that borrow=
+.
+> +    pub fn iter(&self) -> impl Iterator<Item =3D AllocatedBlock<'_>> + '=
+_ {
+> +        // SAFETY:
+> +        // - Per the type invariant, `list` is an initialized sentinel `=
+list_head`
+> +        //   and is not concurrently modified (we hold a `&self` borrow)=
+.
+> +        // - The list contains `gpu_buddy_block` items linked via
+> +        //   `__bindgen_anon_1.link`.
+> +        // - `Block` is `#[repr(transparent)]` over `gpu_buddy_block`.
+> +        let clist =3D clist_create!(unsafe {
+> +            self.list.as_raw(),
+> +            Block,
+> +            bindings::gpu_buddy_block,
+> +            __bindgen_anon_1.link
+> +        });
+> +
+> +        clist
+> +            .iter()
+> +            .map(|this| AllocatedBlock { this, blocks: self })
+> +    }
+> +}
+> +
+> +#[pinned_drop]
+> +impl PinnedDrop for AllocatedBlocks {
+> +    fn drop(self: Pin<&mut Self>) {
+> +        let guard =3D self.buddy.lock();
+> +
+> +        // SAFETY:
+> +        // - list is valid per the type's invariants.
+> +        // - guard provides exclusive access to the allocator.
+> +        unsafe {
+> +            bindings::gpu_buddy_free_list(guard.as_raw(), self.list.as_r=
+aw(), 0);
+> +        }
+> +    }
+> +}
+> +
+> +/// A GPU buddy block.
+> +///
+> +/// Transparent wrapper over C `gpu_buddy_block` structure. This type is=
+ returned
+> +/// as references during iteration over [`AllocatedBlocks`].
+> +///
+> +/// # Invariants
+> +///
+> +/// The inner [`Opaque`] contains a valid, allocated `gpu_buddy_block`.
+> +#[repr(transparent)]
+> +struct Block(Opaque<bindings::gpu_buddy_block>);
+> +
+> +impl Block {
+> +    /// Get a raw pointer to the underlying C block.
+> +    fn as_raw(&self) -> *mut bindings::gpu_buddy_block {
+> +        self.0.get()
+> +    }
+> +
+> +    /// Get the block's raw offset in the buddy address space (without b=
+ase offset).
+> +    fn offset(&self) -> u64 {
+> +        // SAFETY: `self.as_raw()` is valid per the type's invariants.
+> +        unsafe { bindings::gpu_buddy_block_offset(self.as_raw()) }
+> +    }
+> +
+> +    /// Get the block order.
+> +    fn order(&self) -> u32 {
+> +        // SAFETY: `self.as_raw()` is valid per the type's invariants.
+> +        unsafe { bindings::gpu_buddy_block_order(self.as_raw()) }
+> +    }
+
+Speaking of synchronization - I only had a quick look at the C API, but
+are we sure these methods can all be called without holding the lock?
+
+> +}
+> +
+> +// SAFETY: `Block` is a wrapper around `gpu_buddy_block` which can be
+> +// sent across threads safely.
+> +unsafe impl Send for Block {}
+> +
+> +// SAFETY: `Block` is only accessed through shared references after
+> +// allocation, and thus safe to access concurrently across threads.
+> +unsafe impl Sync for Block {}
+> +
+> +/// A buddy block paired with its owning [`AllocatedBlocks`] context.
+> +///
+> +/// Unlike a raw block, which only knows its offset within the buddy add=
+ress
+> +/// space, an [`AllocatedBlock`] also has access to the allocator's `bas=
+e_offset`
+> +/// and `chunk_size`, enabling it to compute absolute offsets and byte s=
+izes.
+> +///
+> +/// Returned by [`AllocatedBlocks::iter()`].
+> +pub struct AllocatedBlock<'a> {
+> +    this: &'a Block,
+> +    blocks: &'a AllocatedBlocks,
+> +}
+> +
+> +impl AllocatedBlock<'_> {
+> +    /// Get the block's offset in the address space.
+> +    ///
+> +    /// Returns the absolute offset including the allocator's base offse=
+t.
+> +    /// This is the actual address to use for accessing the allocated me=
+mory.
+> +    pub fn offset(&self) -> u64 {
+> +        self.blocks.buddy.params.base_offset + self.this.offset()
+> +    }
+> +
+> +    /// Get the block order (size =3D chunk_size << order).
+> +    pub fn order(&self) -> u32 {
+> +        self.this.order()
+> +    }
+> +
+> +    /// Get the block's size in bytes.
+> +    pub fn size(&self) -> usize {
+> +        self.blocks.buddy.params.chunk_size << self.this.order()
+> +    }
+> +}
+> diff --git a/rust/kernel/gpu/mod.rs b/rust/kernel/gpu/mod.rs
+
+Let's use `gpu.rs` as the file for this module.
+
+> new file mode 100644
+> index 000000000000..8f25e6367edc
+> --- /dev/null
+> +++ b/rust/kernel/gpu/mod.rs
+> @@ -0,0 +1,5 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +//! GPU subsystem abstractions.
+> +
+> +pub mod buddy;
+
+IMHO we should have a `#[cfg(CONFIG_GPU_BUDDY =3D "y")]` here for
+defensiveness...
+
+>
+> diff --git a/rust/kernel/lib.rs b/rust/kernel/lib.rs
+> index bb741f1e0dfd..63e3f656eb6c 100644
+> --- a/rust/kernel/lib.rs
+> +++ b/rust/kernel/lib.rs
+> @@ -98,6 +98,8 @@
+>  pub mod firmware;
+>  pub mod fmt;
+>  pub mod fs;
+> +#[cfg(CONFIG_GPU_BUDDY =3D "y")]
+> +pub mod gpu;
+
+... because in the future I suspect the condition for enabling that
+module will become broader. I think it's fine to keep it as-is for now
+though.
