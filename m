@@ -4,62 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A896F53D74
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 16:43:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 160C3F53D74
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 16:44:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60C8310E2DF;
-	Mon, 16 Mar 2026 16:43:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5D0510E29A;
+	Mon, 16 Mar 2026 16:44:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U4H8R2CH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bgmfIIIa";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BEE9210E281
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Mar 2026 16:42:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6668B10E2DD
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Mar 2026 16:44:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773679377; x=1805215377;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=kzwLdOOW8mowfFnSs6OLMxZEQWaIBm+6BS9qFkd4LhY=;
- b=U4H8R2CH+LNgQ6Ctt7NgwO6sDn1Fvrk49EGKZy2p5cq2P6zbl6eS/HjD
- lp3tiA6klp97i62nXlAVV6K//7oNgLXrhWH8QT2a3SJkndCqQm5cm0DRL
- ZhUFArtpLAWcvtIb7uw6bw0MadHdzQNrr9EnGLiAPFqcU57K4Ei1hexiI
- +EkyLF/lQiXDYe1Rn+Je2msFA2X155UINN5yQKNbFWrGjXT2tDyfUQwyn
- QVWFhes+LYjI5XoaCdcB3N9B27663AZxsOCPjYczp+55qspUC8tclDcXM
- /fJkAQv/PU7a8YtY9Pad3xjoiQtj9rCwDa2hYIJ9At1Dac+7ZwEyf/oYB w==;
-X-CSE-ConnectionGUID: ATEzAcb0RAiGPhtRhriP9g==
-X-CSE-MsgGUID: 3v1B6VfkQDOS0B/u3mGCqw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="97308779"
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="97308779"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2026 09:42:57 -0700
-X-CSE-ConnectionGUID: da5GKcQNRLOdNepK+ODK6w==
-X-CSE-MsgGUID: pFSUFvd+RTiLcI3vBxtp2A==
+ t=1773679496; x=1805215496;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=riT6nfvifMEiLCPhVrtsvCxSPxELWSPwZfkuF9vaMg8=;
+ b=bgmfIIIa6c4eNE0zErIpFs5RjgCt32kokSGaAA59EL7U3lk2kYJpewQj
+ WC3VnLrERKUsggn+p9/oimqzfh8S3+op7Ufr8m8uZyRWkD0iiUQS/5PNd
+ WoYkrJE4qAk3RQhutqUerWbkyeMUEf06TrKl8X0QVv4deZoh3khvBWY18
+ iurKQnuNZHVVjCpVoDaYFyWU0yfTI9ezNWC5zNcNN5JpffwKieyxQnSW/
+ ScZ+ENx0pAEBuGHoDOVzHvHvZTQQI8MFVSuHZWrCoIQCtTk4rL3d2fRjN
+ iMA6O3rOVX0xWWAU9cOp32e6UbP54Wb4Buo+qN6eejhs5zGgLS5w3jm+j Q==;
+X-CSE-ConnectionGUID: CmAi3Yo/T7apitQ3C3b1mA==
+X-CSE-MsgGUID: McAVtq3kQa6oOAvgKlQ2hw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="74589712"
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="74589712"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2026 09:44:53 -0700
+X-CSE-ConnectionGUID: 6a//6p6gRbqVXDg993oT8A==
+X-CSE-MsgGUID: +tWnAU3sQKWMLVNapnlJTg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="221013860"
-Received: from dut6094bmgfrd.fm.intel.com ([10.80.55.31])
- by orviesa006.jf.intel.com with ESMTP; 16 Mar 2026 09:42:57 -0700
-From: Jia Yao <jia.yao@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Jia Yao <jia.yao@intel.com>, stable@vger.kernel.org,
- Shuicheng Lin <shuicheng.lin@intel.com>,
- Mathew Alwin <alwin.mathew@intel.com>,
- Michal Mrozek <michal.mrozek@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-Subject: [PATCH v6 1/2] drm/xe/uapi: Reject coh_none PAT index for CPU cached
- memory in madvise
-Date: Mon, 16 Mar 2026 16:42:52 +0000
-Message-ID: <20260316164253.262406-2-jia.yao@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260316164253.262406-1-jia.yao@intel.com>
-References: <20260129000147.339361-1-jia.yao@intel.com>
- <20260316164253.262406-1-jia.yao@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="217779400"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2026 09:44:53 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 16 Mar 2026 09:44:52 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Mon, 16 Mar 2026 09:44:52 -0700
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.40) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 16 Mar 2026 09:44:52 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=n24TWaEKvI8GaAiMsdSVS+enAGfLwmfvO7DmmxfMc6vx4p84ZzzcFZcw4klZnVuyh/PtxNYS+sdlKpTDu0w7HJOGMe8T4TxXF7gVuz/viTNnxrvHFw0mPG+DFpgUfIuIi1blpUivgNus8gR5rcqmMZrkVp/+ny/cvhLvIasLIX2ZWUxalEp41sXR17Qch4G1PkDo6Z/0jLoaUpfdg2OnkHUFLjwlfMxJx+YZGRcMaRXV+uZsmXW98UMyTpo4XrQy/SwJWWRJALB+ZTBT2k5UTGt3JFxwgzd14E8sH2Zmu7/523jlbvHU+yr1CqeensPVt1Bdzn1zS9etNcSooZWJAA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GPe0rzaSiKYgmmUVLXAr3df5YkqVqhM/uVAExeXknBg=;
+ b=WiPhdhYbppx5Sk2VuJ7LyULee/DCu8PPNGi0EUUli+ZLuVEA8mFcPv3bO3axCHCT2fg4dXzCrhvefjPo3z1jvr/JcOFymqn3yV6B47bVE3VmmH13J8R+A33Vh0O6i3L3RK5KR8Gi01vm/UP2YCdvM//F6YGaYq7WNgp+O7PeWhQSwcP6/RP5v4chNzZ3m0Ug0Dy/PmO5tKquWqkd7VlBzZpaGp/mU5AmkVa1pRRa6wrbTk/iV0PctTZ7fBGUotm4iAQe4A8Gu0JAXs0NRF0+ViEgVJotkK//rOcIZXns0cP5TH1JzMYRUH5CvjgwGcIKp8GXgDXM1J3qxw7o1nuFzg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by IA0PR11MB7283.namprd11.prod.outlook.com (2603:10b6:208:439::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.16; Mon, 16 Mar
+ 2026 16:44:50 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e%7]) with mapi id 15.20.9723.016; Mon, 16 Mar 2026
+ 16:44:49 +0000
+Date: Mon, 16 Mar 2026 09:44:47 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: "Nguyen, Brian" <brian3.nguyen@intel.com>
+CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: =?utf-8?B?4pyXIFhlLkNJLkZVTEw=?= =?utf-8?Q?=3A?= failure for
+ Page Reclamation Fixes (rev5)
+Message-ID: <20260316164447.GG52346@mdroper-desk1.amr.corp.intel.com>
+References: <20260305171546.67691-5-brian3.nguyen@intel.com>
+ <177294802851.330502.4629589411295974014@a3b018990fe9>
+ <47c69b98-f6ec-4fae-a6e7-16fe7fdd1ef2@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <47c69b98-f6ec-4fae-a6e7-16fe7fdd1ef2@intel.com>
+X-ClientProxiedBy: BY5PR04CA0027.namprd04.prod.outlook.com
+ (2603:10b6:a03:1d0::37) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|IA0PR11MB7283:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2e145007-f09a-4e9b-7ac1-08de837b56f0
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|22082099003|18002099003|56012099003; 
+X-Microsoft-Antispam-Message-Info: 8hICUJ/LCWdHknJuh6SACP+LevsiXxSUtrrzb5M9xjg4SCTGXoBrtdR/V+adErKIbMbRbEuZ9HzSqYxrsfDHCBB7S224QFSmdCodz4ZobbiBPfnUqv/ZrONUNtHnj33ChZ6MeEvZunk4iOelD8OT5mBb/BbFanPz9l0pUFlzuMNoxpVCRZAQTc568jY9ayGlJssTeNiN/Zu6/xNDe4bmrfyGypsK11uaEjYiLIY3Fe6Z3BICYlnn6g4D7Rf1cpYq0PotYeT2BT81Ba39dAzwNX6GGy2r35Aza1D6BzmV32A/VWSXSwjA/g/pMZmHFUtlPLaOq07YTgkRR0m8cftHJBKTAXa4HcLTvJCeWv6HnUrd9Ea6yy296gL4+Dbp1trNZt20rgpgSR92n7tvShGV0W9qETK0ZAuupeG8N56zltOoTep0v0KNw5XeiUd53D4pvHZMvBdSGq4eRK38XKwpuKfoQfBw6DV7kg5APYT59ee0Qm7NX/7u2vHfppRtuUG7TZPsn1BIxQRL9QMHMhar1UveDNEDTJdyLpJ1lQIHmGi/S+6sGAvTcoiYMAk7o1o7AulJ2spYZJ11tKmthP6pQXzCG5Kn9xvHW4qQV7E+HrVkiS2hdk8RP01zUi4Q4flDd57NULSqwJ713pot74NbCp35CT3ehwl1OJ7zO0XGtpkptSjUZGUIVLDqOuInC8JO
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(22082099003)(18002099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?gC3euuum0WtzkhE1Dip+pvTzcZAf3a6uQfZT1dKPsQHlqtlttHTO2jo6UJIF?=
+ =?us-ascii?Q?G+UT77KGBixWR2L4vPhyonE3hAMCgRjLNFyk5or1AEcntNjAG/fgLsJcDlti?=
+ =?us-ascii?Q?4AYD0IX3k+b7b38FA2SccNQdBkD0h2vdDX8y3OpxHaaieWUbQdMovWDRVokE?=
+ =?us-ascii?Q?kCXABmHiA0yH1wslyGvNIkcxML5xUWlAvDTawi7vOMV3gCyeB3G0V5h4Vxo8?=
+ =?us-ascii?Q?P1ZJ0k6jmRuPy6IuLt4mC7RjEQKQKSEPC8dAIehg+yEuZ97UfGpccVYqz6JN?=
+ =?us-ascii?Q?59EoPaB2bvVZvM3QzfzD2KHxD/dGc8Dc7klgSUm5U0K1B0+4aJlqb804T8Hr?=
+ =?us-ascii?Q?A+/DG9ETXFXYkIxr1ZiQZ1mqgdygb/2z+HSDV16i7V+lJtNS5xKtrNKxbg8+?=
+ =?us-ascii?Q?DjdIL/SxEpR6shrQvmQ6hLZqsAVRpcTaJ0IDFBF0P8OYZyz44iMZnqXx3EAU?=
+ =?us-ascii?Q?wvkNwjQT5PHpqW6pH24pYquXOGbY2UeB7J2v3sCqo5/FnO8Qt4lIwCY7j9XS?=
+ =?us-ascii?Q?8Y+4f0Rx5iY0+u/eDgtqnPFUAQsh/tKEnJ+oJ/5IvNbDsHXAzH2miMl0/ET+?=
+ =?us-ascii?Q?o+Hb4MeSeFEbxKxMG6mU3byzinJzx3kUebgj79nv2F2KAXe4xkQozMTLJwqw?=
+ =?us-ascii?Q?NcD7kFJggpZ/0OBS9k/Fd7xDta78NAP6/ZjqdUSitb49sGTbOitMijp1qkZn?=
+ =?us-ascii?Q?To8K/inLfRi2/kjGR6x2QrSFW4x3tRflN+q5u+PsO3qsTeOdcmkAoAj8IWAZ?=
+ =?us-ascii?Q?UofpIEcji1lT7kitITBRyUlSnGx+pWRiVMBFsz8rWlRb5Qw9slipYPK8zGGk?=
+ =?us-ascii?Q?Vm16m/nPd+lDgrgRYtFfiHeSTwCtCSEtGO89yNY7TU4y5RQUC+7Yc7hMA6he?=
+ =?us-ascii?Q?WoPyOO0+x8oO0WbiBwdockCVaL9D4b1MLiKiABnriIPngv7eiMJIUu41uY0+?=
+ =?us-ascii?Q?lyDAHkYqFYH3XFNxm1s4tTW60V0X/YZlM7sAAQEGcGm5HMcICicHIDrcXlaG?=
+ =?us-ascii?Q?a9liv9WPJbrua5f7lxq2A5ZC3CFUdsaoSzIRZFMpEl8Io1WDEhzGrbKbhZNK?=
+ =?us-ascii?Q?VE+JmdF0ok4zcdt1KnBCdZUSIk8jwPBjuA3DIUk/apg3qTALQLtbIxVJIoYj?=
+ =?us-ascii?Q?Y1ffXCIgYDQ6mQR/InqC5ZzTfvjwW3KsJHlhbqK1PjJ2+x3cpzsOCFeOBEyH?=
+ =?us-ascii?Q?iUBSfuXBIuqx61bk0zgxP9CphPcAesBeY3H1iuyw1l7IIkpJQAquuiA53KYq?=
+ =?us-ascii?Q?8o7f9GGIrdaTfYZKsTPnBjZTyHabLFRjg4xhuWQyHdlt6KuIfJtL1MQ09HVP?=
+ =?us-ascii?Q?8G4UPg7ZIwLe3OXoeUvX5DAqenQZdRH0EleAzbJk8JA7O4POiLPzfnFWqZ3/?=
+ =?us-ascii?Q?ll1Y0glUwIZB481inXS9Czb37axJWOBWrOkNC7VEJhTVIREZVT542ME/8jm5?=
+ =?us-ascii?Q?+GaEUFGzCQxXbTjEnS1ZjJZCNz/x8DcPC1kELbhUYaSNE+H2849U685Na6+C?=
+ =?us-ascii?Q?gsOxoHscDobUsKn2JJ52jvS36Z2IGCZsjdNY0WFp3HJJQFoeJEXD6mDh+vUx?=
+ =?us-ascii?Q?qPDXR488gAuqTOdUG2rMH0qiqNjUyXcrBT0y86jX1o7t4ojNRg1B4RgViK4w?=
+ =?us-ascii?Q?YIECApFc6ItL+89MPpZM4YdKQqSTMtSENykyKUM6NFP/xslgQjNIwh7HcRkR?=
+ =?us-ascii?Q?Gfz/UdZZ0idwUQ4xWHLNRlJ8hNXO7hl6IZ/Q8phM9EKZsRYVXjAN6LIW+5B3?=
+ =?us-ascii?Q?FlDFlJAz+ArUpNJFsvkgQ8La0enedj4=3D?=
+X-Exchange-RoutingPolicyChecked: raInK+JFj4aB3Lhbql7CivktgcWWxk3uWNj+z0DZuAnDjjdJO2yaR7CdbRmZRYiJwePJW8tSvTOF7+qMKPIwQy925vHtpPw3SmBiNBGgQNAYURDalJ4tQ2O1ur8o8R1C1B1SXxWDfSthbcJLD9RboEX3+g11CVyz78Wrq8atAYJet69uoOVBGG6Po0XO6CHPSSLtiTE7sh7B+/HDcc2Sgj2rN07uOnDydxvW8f9wEkn32d6VHiyEpJaU9mqhSuKvyMlKmiodqFGJocIoQG2wdkjKFuUyA1ctL6xaa/bjVDODOi7OPJ0IRp3pSreYHQGjbfeGb2rAXOV9lG8OHebxmA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2e145007-f09a-4e9b-7ac1-08de837b56f0
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2026 16:44:49.8347 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RFV0Zk/2iG/LNLQM8TG1llBOdVEAxC0HuRzzCi+4EnMD6/v4aXm9/1ykt0j5NUECwz3XPMG4rlYnDxpSLxWSz8kvlaJnCA/Re4HVZ1Ls4oI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7283
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,113 +159,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add validation in xe_vm_madvise_ioctl() to reject PAT indices with
-XE_COH_NONE coherency mode when applied to CPU cached memory.
+On Wed, Mar 11, 2026 at 11:14:37AM -0700, Nguyen, Brian wrote:
+> 
+> On 3/7/2026 9:33 PM, Patchwork wrote:
+> > Project List - Patchwork *Patch Details*
+> > *Series:* 	Page Reclamation Fixes (rev5)
+> > *URL:* 	https://patchwork.freedesktop.org/series/162258/
+> > *State:* 	failure
+> > *Details:*
+> > https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162258v5/index.html
+> > 
+> > 
+> >   CI Bug Log - changes from
+> >   xe-4675-fce8d7fb2107068c269b868d51aba5f9cf85998a_FULL ->
+> >   xe-pw-162258v5_FULL
+> > 
+> > 
+> >     Summary
+> > 
+> > *FAILURE*
+> > 
+> > Serious unknown changes coming with xe-pw-162258v5_FULL absolutely need
+> > to be
+> > verified manually.
+> > 
+> > If you think the reported changes have nothing to do with the changes
+> > introduced in xe-pw-162258v5_FULL, please notify your bug team
+> > (I915-ci-infra@lists.freedesktop.org) to allow them
+> > to document this new failure mode, which will reduce false positives in
+> > CI.
+> > 
+> > 
+> >     Participating hosts (2 -> 2)
+> > 
+> > No changes in participating hosts
+> > 
+> > 
+> >     Possible new issues
+> > 
+> > Here are the unknown changes that may have been introduced in
+> > xe-pw-162258v5_FULL:
+> > 
+> > 
+> >       IGT changes
+> > 
+> > 
+> >         Possible regressions
+> > 
+> >   * igt@kms_cursor_crc@cursor-dpms@pipe-a-dp-2:
+> >       o shard-bmg: PASS
+> >         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-4675-fce8d7fb2107068c269b868d51aba5f9cf85998a/shard-bmg-5/igt@kms_cursor_crc@cursor-dpms@pipe-a-dp-2.html>
+> >         -> INCOMPLETE
+> >         <https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162258v5/shard-bmg-1/igt@kms_cursor_crc@cursor-dpms@pipe-a-dp-2.html>
+> >         +1 other test incomplete
+> > 
+> Failure is unrelated to the patch series changes. CI looks healthy for this
+> patch series.
 
-Using coh_none with CPU cached buffers is a security issue. When the
-kernel clears pages before reallocation, the clear operation stays in
-CPU cache (dirty). GPU with coh_none can bypass CPU caches and read
-stale sensitive data directly from DRAM, potentially leaking data from
-previously freed pages of other processes.
+Applied to drm-xe-next.  Thanks for the patches and reviews.
 
-This aligns with the existing validation in vm_bind path
-(xe_vm_bind_ioctl_validate_bo).
 
-v2(Matthew brost)
-- Add fixes
-- Move one debug print to better place
+Matt
 
-v3(Matthew Auld)
-- Should be drm/xe/uapi
-- More Cc
-
-v4(Shuicheng Lin)
-- Fix kmem leak issues by the way
-
-v5
-- Remove kmem leak because it has been merged by another patch
-
-v6
-- Remove the fix which is not related to current fix
-
-Fixes: ada7486c5668 ("drm/xe: Implement madvise ioctl for xe")
-Cc: stable@vger.kernel.org # v6.18
-Cc: Shuicheng Lin <shuicheng.lin@intel.com>
-Cc: Mathew Alwin <alwin.mathew@intel.com>
-Cc: Michal Mrozek <michal.mrozek@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Signed-off-by: Jia Yao <jia.yao@intel.com>
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-Acked-by: Michal Mrozek <michal.mrozek@intel.com>
-Acked-by: José Roberto de Souza <jose.souza@intel.com>
----
- drivers/gpu/drm/xe/xe_vm_madvise.c | 45 ++++++++++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index 869db304d96d..f26eb86e9c47 100644
---- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-+++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -365,6 +365,43 @@ static void xe_madvise_details_fini(struct xe_madvise_details *details)
- 	drm_pagemap_put(details->dpagemap);
- }
- 
-+static bool check_pat_args_are_sane(struct xe_device *xe,
-+				    struct xe_vmas_in_madvise_range *madvise_range,
-+				    u16 pat_index)
-+{
-+	u16 coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
-+	int i;
-+
-+	/*
-+	 * Using coh_none with CPU cached buffers is not allowed.
-+	 * Otherwise CPU page clearing can be bypassed, which is a
-+	 * security issue. GPU can directly access system memory and
-+	 * bypass CPU caches, potentially reading stale sensitive data
-+	 * from previously freed pages.
-+	 */
-+	if (coh_mode != XE_COH_NONE)
-+		return true;
-+
-+	for (i = 0; i < madvise_range->num_vmas; i++) {
-+		struct xe_vma *vma = madvise_range->vmas[i];
-+		struct xe_bo *bo = xe_vma_bo(vma);
-+
-+		if (bo) {
-+			/* BO with WB caching + COH_NONE is not allowed */
-+			if (XE_IOCTL_DBG(xe, bo->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB))
-+				return false;
-+			/* Imported dma-buf without caching info, assume cached */
-+			if (XE_IOCTL_DBG(xe, !bo->cpu_caching))
-+				return false;
-+		} else if (XE_IOCTL_DBG(xe, xe_vma_is_cpu_addr_mirror(vma) ||
-+					    xe_vma_is_userptr(vma)))
-+			/* System memory (userptr/SVM) is always CPU cached */
-+			return false;
-+	}
-+
-+	return true;
-+}
-+
- static bool check_bo_args_are_sane(struct xe_vm *vm, struct xe_vma **vmas,
- 				   int num_vmas, u32 atomic_val)
- {
-@@ -455,6 +492,14 @@ int xe_vm_madvise_ioctl(struct drm_device *dev, void *data, struct drm_file *fil
- 	if (err || !madvise_range.num_vmas)
- 		goto madv_fini;
- 
-+	if (args->type == DRM_XE_MEM_RANGE_ATTR_PAT) {
-+		if (!check_pat_args_are_sane(xe, &madvise_range,
-+					     args->pat_index.val)) {
-+			err = -EINVAL;
-+			goto free_vmas;
-+		}
-+	}
-+
- 	if (madvise_range.has_bo_vmas) {
- 		if (args->type == DRM_XE_MEM_RANGE_ATTR_ATOMIC) {
- 			if (!check_bo_args_are_sane(vm, madvise_range.vmas,
 -- 
-2.43.0
-
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
