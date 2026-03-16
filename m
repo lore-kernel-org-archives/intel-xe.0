@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4570F53D81
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 18:08:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9CF0F53D81
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 18:08:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7927510E088;
-	Mon, 16 Mar 2026 18:08:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8095910E283;
+	Mon, 16 Mar 2026 18:08:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GH3IjhrX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m1ltehLj";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 345DC10E088
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Mar 2026 18:08:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD05C10E283
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Mar 2026 18:08:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773684520; x=1805220520;
+ t=1773684522; x=1805220522;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kkS4USlJUeJuM7if/Dul2GUkLTcqaDp2z7gCvrOQmXM=;
- b=GH3IjhrXxY2GKutRHagEQ6T1VSHKGK8mY/lnwmkmWf+xjuU8sYjSqHCl
- 07JlhML/6ddxMunBq03v5L71FxZnT1m2TFCxMLFKJzxlOANIwTetsB7Hc
- ucMp06S8i0pCzNjD0yQWrSCdjER2FGGO88f8sbD9mgHUMyqDf1pyXa360
- aU2HPtrbIFy1xaJFr68BqfJy5jakF/26bB+qNwY1VRA8tM9AYt9oNEW1R
- xRLorU755pI+7ekVJyiAwW06ZZGumoatcKj6RkzNMBEXsvwFJtwIeTUg8
- YcTPCZEBDLfAAB1XecnCSzBKjpwGSpdiVbBsI4eMWnecSd535ShTl4Itf Q==;
-X-CSE-ConnectionGUID: pwlHPqGzQJyCkXsHf9eGhQ==
-X-CSE-MsgGUID: eElIaXMVTSeM5nGi8UW95g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="85026007"
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="85026007"
+ bh=zJ/l9geOskrOb3yLI8pDB1qcYDXpi4nTCy8E4NTiq9A=;
+ b=m1ltehLjJjVdW1bNaDTlrdz8E605qqjOTyI6/f0A6kd+FvMwpgILD+H9
+ Q/xlQ5OWVfZhq5N87N+bIgAZjkcLeOm8w2iAYVVmyAn6yQS299CBPLCUq
+ Ad75qrxezscRK4zqtswxrCPqzMlZU1CJIXV/OokLD2g4RE3PwtCj0WdpM
+ pznuzKMD1Du3ZvBnMl1N4OxT6lmaK97GqKnSs1G2oZWUKJwluzygbEj4N
+ NAUOB5E3Vzfwx+dxKbP0KGIFJwC2VENl3B9wwlRkNOmoW1kNY8hUhhWYB
+ 5RMbgd8l6juPExMIWbzxuA7JOz1lSvJAnU1vdLZzbytdQmppWVbDAfy92 Q==;
+X-CSE-ConnectionGUID: CHkjcFx1QCu4cllXahnA7g==
+X-CSE-MsgGUID: qTy+rXtOTA+dlD9ZUJrPtw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="85026016"
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="85026016"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2026 11:08:28 -0700
-X-CSE-ConnectionGUID: kyLLP0EiQs6OOpnZV4DyMQ==
-X-CSE-MsgGUID: CaLlReJLQ1O3+NdD3irUCA==
+ 16 Mar 2026 11:08:31 -0700
+X-CSE-ConnectionGUID: MYinhtb2SwWERIo0mV/76Q==
+X-CSE-MsgGUID: phEasyz9RIeS3J67FshZKQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="222213743"
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="222213756"
 Received: from shosgclin.sh.intel.com ([10.112.232.103])
- by orviesa007.jf.intel.com with ESMTP; 16 Mar 2026 11:08:27 -0700
+ by orviesa007.jf.intel.com with ESMTP; 16 Mar 2026 11:08:30 -0700
 From: Shuicheng Lin <shuicheng.lin@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Shuicheng Lin <shuicheng.lin@intel.com>
-Subject: [PATCH 3/4] drm/xe: Fix kernel-doc comment syntax issues in header
- files
-Date: Mon, 16 Mar 2026 18:03:18 +0000
-Message-ID: <20260316180322.1721237-9-shuicheng.lin@intel.com>
+Subject: [PATCH 4/4] drm/xe: Fix type and parameter name mismatches in
+ kernel-doc references
+Date: Mon, 16 Mar 2026 18:03:19 +0000
+Message-ID: <20260316180322.1721237-10-shuicheng.lin@intel.com>
 X-Mailer: git-send-email 2.50.1
 In-Reply-To: <20260316180322.1721237-6-shuicheng.lin@intel.com>
 References: <20260316180322.1721237-6-shuicheng.lin@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -67,65 +66,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fix doc comment formatting that does not conform to kernel-doc syntax
-rules:
+Fix kernel-doc references that point to wrong type or parameter names:
 
-- xe_guc_relay_types.h: Add missing space after '/**' in member doc
-  comment (/**@lock -> /** @lock)
-- xe_oa_types.h: Fix struct documentation to use proper kernel-doc
-  format (/** @xe_oa_buffer: -> /** struct xe_oa_buffer -)
-- xe_pagefault_types.h: Use dash instead of colon as separator in
-  struct doc (struct xe_pagefault_queue: -> struct xe_pagefault_queue -)
+- xe_guc_capture_types.h: register_data_type ->
+  capture_register_data_type to match actual enum name
+- xe_oa_types.h: enum @drm_xe_oa_format_type ->
+  enum drm_xe_oa_format_type (spurious '@' before type name)
+- xe_pt_walk.h: @sizes -> @shifts to match actual struct member,
+  @start -> @addr to match actual parameter name,
+  page.table. -> page table. (typo)
 
 Assisted-by: GitHub Copilot:claude-sonnet-4.6
 Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_relay_types.h | 2 +-
- drivers/gpu/drm/xe/xe_oa_types.h        | 4 +++-
- drivers/gpu/drm/xe/xe_pagefault_types.h | 2 +-
- 3 files changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_capture_types.h | 2 +-
+ drivers/gpu/drm/xe/xe_oa_types.h          | 2 +-
+ drivers/gpu/drm/xe/xe_pt_walk.h           | 6 +++---
+ 3 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_relay_types.h b/drivers/gpu/drm/xe/xe_guc_relay_types.h
-index 20eee10856b2..b99a6686416b 100644
---- a/drivers/gpu/drm/xe/xe_guc_relay_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_relay_types.h
-@@ -15,7 +15,7 @@
-  * struct xe_guc_relay - Data used by the VF-PF Relay Communication over GuC.
-  */
- struct xe_guc_relay {
--	/**@lock: protects all internal data. */
-+	/** @lock: protects all internal data. */
- 	spinlock_t lock;
- 
- 	/** @worker: dispatches incoming action messages. */
+diff --git a/drivers/gpu/drm/xe/xe_guc_capture_types.h b/drivers/gpu/drm/xe/xe_guc_capture_types.h
+index 6cb439115597..04e9bbe3e20b 100644
+--- a/drivers/gpu/drm/xe/xe_guc_capture_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_capture_types.h
+@@ -32,7 +32,7 @@ struct __guc_mmio_reg_descr {
+ 	/**
+ 	 * @data_type: data type of the register
+ 	 * Could be 32 bit, low or hi dword of a 64 bit, see enum
+-	 * register_data_type
++	 * capture_register_data_type
+ 	 */
+ 	enum capture_register_data_type data_type;
+ 	/** @flags: Flags for the register */
 diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
-index acd78bc14822..0c48c1e0c2c6 100644
+index 0c48c1e0c2c6..8906c3084b5f 100644
 --- a/drivers/gpu/drm/xe/xe_oa_types.h
 +++ b/drivers/gpu/drm/xe/xe_oa_types.h
-@@ -154,7 +154,9 @@ struct xe_oa {
- 	u16 oa_unit_ids;
- };
- 
--/** @xe_oa_buffer: State of the stream OA buffer */
-+/**
-+ * struct xe_oa_buffer - State of the stream OA buffer
-+ */
- struct xe_oa_buffer {
- 	/** @format: data format */
- 	const struct xe_oa_format *format;
-diff --git a/drivers/gpu/drm/xe/xe_pagefault_types.h b/drivers/gpu/drm/xe/xe_pagefault_types.h
-index aa3cfae01b9c..c4ee625b93dd 100644
---- a/drivers/gpu/drm/xe/xe_pagefault_types.h
-+++ b/drivers/gpu/drm/xe/xe_pagefault_types.h
-@@ -112,7 +112,7 @@ struct xe_pagefault {
- };
+@@ -67,7 +67,7 @@ struct xe_oa_format {
+ 	u32 counter_select;
+ 	/** @size: record size as written by HW (multiple of 64 byte cachelines) */
+ 	int size;
+-	/** @type: of enum @drm_xe_oa_format_type */
++	/** @type: of enum drm_xe_oa_format_type */
+ 	int type;
+ 	/** @header: 32 or 64 bit report headers */
+ 	enum xe_oa_report_header header;
+diff --git a/drivers/gpu/drm/xe/xe_pt_walk.h b/drivers/gpu/drm/xe/xe_pt_walk.h
+index 5c02c244f7de..6a1741f83f36 100644
+--- a/drivers/gpu/drm/xe/xe_pt_walk.h
++++ b/drivers/gpu/drm/xe/xe_pt_walk.h
+@@ -34,7 +34,7 @@ struct xe_pt_walk {
+ 	 * changed during the walk.
+ 	 */
+ 	const u64 *shifts;
+-	/** @max_level: Highest populated level in @sizes */
++	/** @max_level: Highest populated level in @shifts */
+ 	unsigned int max_level;
+ 	/**
+ 	 * @shared_pt_mode: Whether to skip all entries that are private
+@@ -49,7 +49,7 @@ struct xe_pt_walk {
  
  /**
-- * struct xe_pagefault_queue: Xe pagefault queue (consumer)
-+ * struct xe_pagefault_queue - Xe pagefault queue (consumer)
+  * typedef xe_pt_entry_fn - gpu page-table-walk callback-function
+- * @parent: The parent page.table.
++ * @parent: The parent page table.
+  * @offset: The offset (number of entries) into the page table.
+  * @level: The level of @parent.
+  * @addr: The virtual address.
+@@ -118,7 +118,7 @@ static inline bool xe_pt_covers(u64 addr, u64 end, unsigned int level,
+  * @level: Page table level.
+  * @walk: Walk info.
   *
-  * Used to capture all device page faults for deferred processing. Size this
-  * queue to absorb the device’s worst-case number of outstanding faults.
+- * Return: The number of page table entries at this level between @start and
++ * Return: The number of page table entries at this level between @addr and
+  * @end.
+  */
+ static inline pgoff_t
 -- 
 2.43.0
 
