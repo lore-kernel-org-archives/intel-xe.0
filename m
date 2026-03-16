@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41BF5F53D86
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 18:38:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1FEFF53D7E
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 18:39:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE52B10E313;
-	Mon, 16 Mar 2026 18:38:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1CB710E32A;
+	Mon, 16 Mar 2026 18:39:30 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5C0010E30F;
- Mon, 16 Mar 2026 18:38:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 61CE710E0E0;
+ Mon, 16 Mar 2026 18:39:30 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4910301816125761543=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Fix_mismatched_?=
- =?utf-8?q?include_guards_in_header_files?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_change_?=
+ =?utf-8?q?pipe_allocation_order_for_discrete_platforms_=28rev4=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 16 Mar 2026 18:38:12 -0000
-Message-ID: <177368629291.361947.18251475545425362955@a3b018990fe9>
+Date: Mon, 16 Mar 2026 18:39:30 -0000
+Message-ID: <177368637037.361946.17609843003536469022@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260316160451.1688247-2-shuicheng.lin@intel.com>
-In-Reply-To: <20260316160451.1688247-2-shuicheng.lin@intel.com>
+References: <20260316121837.1264876-1-jani.nikula@intel.com>
+In-Reply-To: <20260316121837.1264876-1-jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,52 +40,136 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============4910301816125761543==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: drm/xe: Fix mismatched include guards in header files
-URL   : https://patchwork.freedesktop.org/series/163295/
-State : warning
+Series: drm/i915/display: change pipe allocation order for discrete platforms (rev4)
+URL   : https://patchwork.freedesktop.org/series/157782/
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-1f57ba1afceae32108bd24770069f764d940a0e4
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit f30b3fce1b41349de0410d99193808505d72cb05
-Author: Shuicheng Lin <shuicheng.lin@intel.com>
-Date:   Mon Mar 16 16:04:45 2026 +0000
+CI Bug Log - changes from xe-4729-59dc99dde24b05028be344544ad8c983958329e2_BAT -> xe-pw-157782v4_BAT
+====================================================
 
-    drm/xe: Fix mismatched include guards in header files
-    
-    Fix include guard macros that don't match their respective file names:
-    
-    - xe_gt_idle_types.h: _XE_GT_IDLE_SYSFS_TYPES_H_ -> _XE_GT_IDLE_TYPES_H_
-    - xe_guc_exec_queue_types.h: _XE_GUC_ENGINE_TYPES_H_ -> _XE_GUC_EXEC_QUEUE_TYPES_H_
-    - xe_heci_gsc.h: __XE_HECI_GSC_DEV_H__ -> _XE_HECI_GSC_H_
-    - xe_hw_engine_class_sysfs.h: _XE_ENGINE_CLASS_SYSFS_H_ -> _XE_HW_ENGINE_CLASS_SYSFS_H_
-    - xe_late_bind_fw_types.h: _XE_LATE_BIND_TYPES_H_ -> _XE_LATE_BIND_FW_TYPES_H_
-    - xe_platform_types.h: _XE_PLATFORM_INFO_TYPES_H_ -> _XE_PLATFORM_TYPES_H_
-    - xe_tile_printk.h: _xe_tile_printk_H_ -> _XE_TILE_PRINTK_H_
-    
-    These guards appear to be leftovers from file renames or copy-paste
-    errors. Correcting them to follow the standard convention of matching
-    the file name prevents potential include guard collisions.
-    
-    No functional change expected.
-    
-    Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
-+ /mt/dim checkpatch 973a56bafac086c4d99d530b6896875c96120e78 drm-intel
-f30b3fce1b41 drm/xe: Fix mismatched include guards in header files
--:9: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#9: 
-- xe_guc_exec_queue_types.h: _XE_GUC_ENGINE_TYPES_H_ -> _XE_GUC_EXEC_QUEUE_TYPES_H_
+Summary
+-------
 
-total: 0 errors, 1 warnings, 0 checks, 80 lines checked
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-157782v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4729-59dc99dde24b05028be344544ad8c983958329e2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4729-59dc99dde24b05028be344544ad8c983958329e2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
 
 
+Build changes
+-------------
+
+  * Linux: xe-4729-59dc99dde24b05028be344544ad8c983958329e2 -> xe-pw-157782v4
+
+  IGT_8805: 8805
+  xe-4729-59dc99dde24b05028be344544ad8c983958329e2: 59dc99dde24b05028be344544ad8c983958329e2
+  xe-pw-157782v4: 157782v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v4/index.html
+
+--===============4910301816125761543==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: change pipe allocation order for discrete platforms (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157782/">https://patchwork.freedesktop.org/series/157782/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4729-59dc99dde24b05028be344544ad8c983958329e2_BAT -&gt; xe-pw-157782v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-157782v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4729-59dc99dde24b05028be344544ad8c983958329e2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4729-59dc99dde24b05028be344544ad8c983958329e2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157782v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4729-59dc99dde24b05028be344544ad8c983958329e2 -&gt; xe-pw-157782v4</li>
+</ul>
+<p>IGT_8805: 8805<br />
+  xe-4729-59dc99dde24b05028be344544ad8c983958329e2: 59dc99dde24b05028be344544ad8c983958329e2<br />
+  xe-pw-157782v4: 157782v4</p>
+
+</body>
+</html>
+
+--===============4910301816125761543==--
