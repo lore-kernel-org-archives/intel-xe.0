@@ -4,57 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6254BD58B1A
-	for <intel-xe@archiver.kernel.org>; Sun, 15 Mar 2026 12:32:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC665F30298
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 02:31:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4C2810E245;
-	Sun, 15 Mar 2026 12:32:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8649B10E05F;
+	Mon, 16 Mar 2026 02:31:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FYBYrVMW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KQfTQhu+";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3C3E10E14C;
- Sun, 15 Mar 2026 12:32:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BE3410E05F
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Mar 2026 02:31:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773577944; x=1805113944;
+ t=1773628283; x=1805164283;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=oI6MMjdrRiaCAiLm+4uAHBkh86Uge9u2mrxFB1RgqEA=;
- b=FYBYrVMWVLoCXY1bQb6Wqmx6pAReHf2vld/znmhExgl/5uUQS2JlxG87
- J7Yh8eHE20Pro4AqDqINtUCKX9htJVwSvCId9BA1wWmebnt8fq2IN5PoE
- ymS9uozo8iforCH8clHuIZ9VoWWXq/6dp45YJnpWSfx42JvsPusJB9OQE
- hn7oo0ML4pMngvfPYMpMdu6VJcrBherOaoaXjyqawmoUtjzxN3mMoX3g5
- 9ufhaBklnsZ+saCKnTEp4UpwP+2Nrcs4z3aomcBaKlTe4QNr1DXOHoMjj
- EfHwjupTGENw2wAhYeRqi6QFm6Ip6bCxvYkFaYBOM7UM137PKh9U/dNEL g==;
-X-CSE-ConnectionGUID: 7IrYrytDSSezOk2IFbyUXA==
-X-CSE-MsgGUID: ZM8qw4xbRAq2nWTQgi9xBg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11729"; a="74583986"
-X-IronPort-AV: E=Sophos;i="6.23,122,1770624000"; d="scan'208";a="74583986"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Mar 2026 05:32:24 -0700
-X-CSE-ConnectionGUID: OvcvSN/VRY6kcg8sUlkdvA==
-X-CSE-MsgGUID: bNt8mSvJTS+UeALy/t88Pg==
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=4p0SU9lyfzeuX49gN/iMCetK3Q/8vxf0xZnzxy5NJDU=;
+ b=KQfTQhu++kecCZcNjoAHSU1X+Jbvvci6fAQcLAtJrzMguaV3CLRxGfcq
+ aSIBSQwzA5C9XeTAQDou/bPl1/5ISM5tM4APYQVQJ53VsSYeOTu9mSutj
+ xfEy8GxILcpgB993Blv/Up2fEY07nDL8/kjRsBpFNX7c4zB0gwcsQVJGr
+ YPM904pyL/TRxnNfo3dr61Zid9voTnFFj4VksZRj/COOjAgLPO44AQclA
+ vTOlK2cyYs3CHdvDsPQogv4AP+x24AMaGCYIsufk2vNHu1Udwd3EnmqBv
+ FAAIX9JaxkaRZc/KcMfT9VCufdNi6k5P6vqdfyeP/APlgciTAC88bagbV g==;
+X-CSE-ConnectionGUID: Imje1P0oR36b3VCpxdLd4Q==
+X-CSE-MsgGUID: r3SbAp4ZTESSMt51jhZzZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11730"; a="78490203"
+X-IronPort-AV: E=Sophos;i="6.23,123,1770624000"; d="scan'208";a="78490203"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2026 19:31:23 -0700
+X-CSE-ConnectionGUID: GxzYPsAqT76YWwTluxXtPA==
+X-CSE-MsgGUID: pYrasVGQSumzC8Au5qAWOA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,122,1770624000"; d="scan'208";a="259528675"
-Received: from lkp-server01.sh.intel.com (HELO 418530b1a366) ([10.239.97.150])
- by orviesa001.jf.intel.com with ESMTP; 15 Mar 2026 05:32:22 -0700
-Received: from kbuild by 418530b1a366 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1w1kdn-000000006WR-39ic;
- Sun, 15 Mar 2026 12:32:19 +0000
-Date: Sun, 15 Mar 2026 20:31:47 +0800
-From: kernel test robot <lkp@intel.com>
-To: Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v8 2/4] drm/pagemap: Add helper to access zone_device_data
-Message-ID: <202603152031.EJj7lRw4-lkp@intel.com>
-References: <20260312151726.1779566-3-francois.dugast@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+X-IronPort-AV: E=Sophos;i="6.23,123,1770624000"; d="scan'208";a="220999157"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Mar 2026 19:31:23 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Sun, 15 Mar 2026 19:31:22 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Sun, 15 Mar 2026 19:31:22 -0700
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.47) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Sun, 15 Mar 2026 19:31:21 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PRouNM4OJtv1iCq3YrhqbGMlCUf9AoQKZGR3b3fPmLNXEXKdSTO220pPJgMJm7iWP6yzs/e1OJzYv3d5YUFi+PvnFA/ki6EoY1/JKEWbB897HXtYgouOMsO7RBJU3azvbxOFHGCNguIAeqpPfQTWj45JHcSWOWOVU9vfYbjy7Zd7Ib8ELo/phhjjM+Et0VqwjBCbfLsItqBTagQGOoDN4DPHlQCau8Bs1T82u1EQyGZwOarCJvD3cRBMbvRON5MmyDKNmUfozsrk9u49aC1Qw/liWCaTvpCalzdTVzEXvAPSOCU/vIVJG+TGuzfGPVi0Wx7gu6ezpsScW2RnqYVXiA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PIqzF1SqfClJoclei4Wl69XlgxB5yYeJlKB7A4/HgpQ=;
+ b=aBMJQBUjIEnQ7VqnaHB4hO+/5TPF5ck39zz5LnPcgLcRUk0AD5RuIylXeYjQ2+kNRirxgyegFL/lM1MpMaSysgJwK3lcQ7OV7GHT6BWD0TT33bzr7Kngyt+vlXGoBEIaApCREVP7PGZhVeVAbtS66Y6XwbFfWyJomKS+rG6DsTCebcSvap4MM7D1W/4K6aQnxDpyRTF0HD8KOtDtV6VZvxAn5u62QRyyhQZcQiM3mar6TTzgylbDQI5yenv81v5W7Jb1XZwRqJYC5XuKk+Sh3xHh0O+Zo4Y9tM3IhpVnOSjkZFTidvQuJlkIftucm0if9d1OsXu5gs+TZ4r4ri8zQw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
+ by SA2PR11MB5081.namprd11.prod.outlook.com (2603:10b6:806:118::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.8; Mon, 16 Mar
+ 2026 02:31:13 +0000
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5%7]) with mapi id 15.20.9723.013; Mon, 16 Mar 2026
+ 02:31:13 +0000
+Date: Sun, 15 Mar 2026 19:31:10 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Raag Jadav <raag.jadav@intel.com>
+CC: "Dong, Zhanjun" <zhanjun.dong@intel.com>, <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH v3 03/10] drm/xe/guc_submit: Support cancelling submission
+Message-ID: <abdrboTkN82XHFTw@lstrano-desk.jf.intel.com>
+References: <20260308135536.3852304-1-raag.jadav@intel.com>
+ <20260308135536.3852304-4-raag.jadav@intel.com>
+ <91958e39-1ad7-42e6-b4d0-86e2fe38ca30@intel.com>
+ <abaC4Y80fFU18eCx@black.igk.intel.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20260312151726.1779566-3-francois.dugast@intel.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <abaC4Y80fFU18eCx@black.igk.intel.com>
+X-ClientProxiedBy: MW4PR03CA0260.namprd03.prod.outlook.com
+ (2603:10b6:303:b4::25) To BL3PR11MB6508.namprd11.prod.outlook.com
+ (2603:10b6:208:38f::5)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|SA2PR11MB5081:EE_
+X-MS-Office365-Filtering-Correlation-Id: 31d8dc31-df49-416c-1cf8-08de8304177f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|22082099003|56012099003|18002099003; 
+X-Microsoft-Antispam-Message-Info: 7Np0AXfw2zQymPRzW7gIP/rXtwI3y7/xkHh0sp6+CYEPAWVGZYFw2wuIa80BOjCl3bBCjESpkvbDwioYbSfOzsQhZ2NF9lcnU9p4ywQor8jmFj9+yYSj+B7ObUrt+MUP1vvkbr2JMOspFYrZfbTWNBG1MQo0hit0qf5XJ/TREdcvfyb2T12y4dI+jhkOSDfWZZBBSo9/NN4KdcrRUrutabCBAPcP8hEzZgP4kXqpGzCnMkknUm/+rJVmyXOZ2LLs7hTSAT06RPWRgaX6WDwR0mOWFen4oSUk4GlqgME84K50UxmFuwav6GltXEGPwlFmqmooWwbFfVUdhaeYU7+hlT5URfPrLOd5RmLybAXsAbm7dLZqDPC5pfxUuUZaygrIuR4UHZf+dCvenCcAzNh3/ndXKZM0U9+mJdHClsjn+YHbjYLzqkZMTGjrPDnajRKrHtyZVyDNQ7rdh1t5h1bQr544Vy/OnzEPF+IzaZSMTvtZgN/Uzu+toZ33s2KuUV7cv0ODXFrnlWZknfX3/Dl7CQF+yvdYoFV95cJWUdhhfhL+xFn55SbEHcCh31ZaVSQicFcM9IwaHFs6nuVHA4qfYecGPXBF2bdndwzxot2XQhOKPkURW01nbjyKCg3iP3YDxLqGEnQg7pKb71wr8iYfOauwSNQgyGPdCcxZRcptqdT+7QGLiTpae/qeP8bzC0CZ
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(22082099003)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NlhVTDdTV21yTnFtM1RlaDNpNEpZdTZMbFAvakdXWDlibStoM1pnNitiN3Vz?=
+ =?utf-8?B?c00zR1ViWmhFRWEwNTJtNEw4SUxuSWwzb01ybkxCdFNNN29YMzFWb2V1V0dN?=
+ =?utf-8?B?cnlWaHc3MGxlOHd1WkhMS0pGUFhMMy93Q2hUU3NzRVdCMGRqQWE0K05CRXRv?=
+ =?utf-8?B?QXIxdWNLbXgxc3JBcHNPWllveEdMK0d2cnA1MnAxRm9BeWd4bkJMTzgvMFZj?=
+ =?utf-8?B?UGR0dlBBTjFRNmhLSXo2LzcyTTVEeHZ1WU5aenZSK0NCTDFvSjBXUFU2ekpH?=
+ =?utf-8?B?OGtJUkdQazZxWk1WODNYUGYxWURVRTk2N1hwQTVEdEw2d3A4YU5oNElRa1gr?=
+ =?utf-8?B?Wk5kK1RzUG1uWDY4clNaYkxTbnhLemF1UW51Ry9EV2NkTTI1aWJLTEpWSkNk?=
+ =?utf-8?B?cW9NVEZ1ek9ZRDBaYkwrVC9tOERCTXVENDZUbi83OHpiTlF0NEtjdloybW1X?=
+ =?utf-8?B?bHpuMm94bTJYTkJEZVZTbFVTMEhiTHBLeWpDc0lUbTNLcmU4cXg0KzRwOXNY?=
+ =?utf-8?B?YWUxVGVMa3BSQVZIa25WS1JwUnM2RWFkSldBN0J2Rjh4MVhXYjh6VzdaRllJ?=
+ =?utf-8?B?TVU5ZmJINWFvOUdCWWJDcytIdnFud3FZOUNaR2h0djNOQk9UR2ZKTmd4eGZE?=
+ =?utf-8?B?eUIrL05qV0llaGdlcTR2a0FyR0l1MmpyUjRkeEFtVUZ2aC9aVjRDcXlVQ1Ny?=
+ =?utf-8?B?THU3Q3ZYeHVOVTQ1V3pINHUvb2NqL0xrR1JXR0xjSFVSWmxDVFdvT0JUK0p1?=
+ =?utf-8?B?cjNKNmMvNi90WjNQcDdBVjNBYkx3aUpDdjBFVkFOOUg3ZXoxNFdVeXR6SU9u?=
+ =?utf-8?B?ZHBHNlg1OWRCVVVqWHpMWU9qSFZzUHJ5NHQ3T1FzMXQxWUZSR0IwTXo2YlpR?=
+ =?utf-8?B?Y3Jxd2VXUi9XdzN0cDhELzEwWTNnTmQvamRocmhPUXpVTUR2SkZETGQ0MlVV?=
+ =?utf-8?B?Kzh3Sk5KM0lETHdvRUZIQlpyS085S3hyeG4wYmk3M3ZXV1gvZ1dscW5NcTFU?=
+ =?utf-8?B?MW4zcjkzbU44RU1oOEt2WjllR2RqRmMybG5qbStRSUVyQlpaTmlPMnRwdnVr?=
+ =?utf-8?B?TVlnSFRGNUVHejRjMWlTbDNQeVhCM0crQWQ1YTY5bFd6aUw5MFRva0NrUjhD?=
+ =?utf-8?B?TjJIbXBBQUFXT1dJNGdNUWVKTjQ5L1ROb1REYzlTV2hnVWljL1hSNmtOZFB5?=
+ =?utf-8?B?K0JqcVJNbXZQbzV5eGJkbUhpYVN1ekQxV0k4bHA5YkUyQUdMTUd2Mm42bHpY?=
+ =?utf-8?B?dm9zMmJHZ0FJK2FVM0ljQkhkTnBOL2U5TXNxempnRWNQbzZmZTVhNlg2ekRB?=
+ =?utf-8?B?bTFodGJWc2NvRkg2TkxaUDJYazFuazVDRWZoTXR6b29HMmcrbm1uTUo2cHBH?=
+ =?utf-8?B?cGlqMFAxWi9tbFJ3LzNhZHNGM3h1aFJsUXZSc2pyeWFPVExoUWRvQjRrUlJY?=
+ =?utf-8?B?aWFMc3k2ck1nMzdWMFo0SGZ6am1BL0RvNy9qWVBOV1BFK2RNeUJKaVZqd0RS?=
+ =?utf-8?B?Y3BMakdnK2VWVm5mb25FTzNxU1c5VDY3dVpMRlo2czlCSWcyRW0xNDlkQkcv?=
+ =?utf-8?B?bCtBYm9rYUc0K3Nrb0xIZ3VUWjF2ZU9mVVVrR3A0RkgvN3FlVWFyZzQwa3V1?=
+ =?utf-8?B?TDI1TFc1bHhka2VGeEFTa3g2Qkx0K1VCMWwrUENTelBkL3F6Qk91TU8xMmVj?=
+ =?utf-8?B?MmVPUW1QejZhYUhCeFAwY1RQQ0VRZTVzeVJnUG9jYnpNS29ZUXM3L2Y5Tjk1?=
+ =?utf-8?B?VFM0ai8xTDBmQ3dJclgwWnphQkp4V1Nxd2pKek9kdTMvL294UllBVGJnaWVo?=
+ =?utf-8?B?MHlhTFpwN0lHeXQ0dnVLNEQ3b2pLeDlvYjJFaGJxaUpUQitsL1dGbmRyb3E3?=
+ =?utf-8?B?Z21Vc0FRelRDZlVQLzFuS1JHTG5KNjhpQ2FVOGxFNkFuUlRkTGUwNUg5TDNH?=
+ =?utf-8?B?L25EbEJ0M2RGTGJYOTg2bTRzeU9qQkgwOE8rS0VmSndOODRHdVRiWnl2aGxS?=
+ =?utf-8?B?NVNkR3Q4UE5PbFI0ZXdSS3pEQnlSUTVsd01ZazVOQkZqQ1Y3NGhZeWc5SFNN?=
+ =?utf-8?B?Y0x2eGhEdkQzMnVucVFFR2RUakpMWks4bmJybUgvYmNWSHY1U3pxTzc4WXlx?=
+ =?utf-8?B?NExYMHl1RGZZREJnVVpKZmR6SlZWNVRIem9yUzRMUllSRXA1S3V1VmFDS1py?=
+ =?utf-8?B?RjFkSWlHQkJQaW5pT01nMk4zZmxrOTNwVWlydk9LaTY0MW90YWpDMEtJRFdV?=
+ =?utf-8?B?VDRMdUxBOWVMYlZkYlM0TC9UTkg2WUp6bEp0WTRxSExqVzVVUXZUbk5GZ0pJ?=
+ =?utf-8?B?b2tlZ3BVY3JzVXV3Z09zWXZ2R01taHJQZlJlZVNkaWRyd3NwRmZ3YnVvV3VF?=
+ =?utf-8?Q?zjmpODc497ObKu4Q=3D?=
+X-Exchange-RoutingPolicyChecked: orwLrNz6ymxq5Gr6zF05HBcfHDvV7WjEN9+Q45DnpGme0Tlwq6E1eeBBt5Zu5lLqTc/8gBfJTCcr3g4jve0k0qam8GD2DOXWqxBgfE6WxwWYEDH9J4m4kytzOpuyVZQM/T/hYRRzm4UV4+0vtwhFYxTdoUTiSJ4TrnDWPWAXk4dM0a2b5xkxbnIN61N4aivbXTUh/UpO5EaaED89yzLHu9m6KOy6b3RYWSqjsNcxgG1RNYfdUPasutWS4q+OElMwOreEcytHEwh0+0OiNhYwoQNVVPvBfUf2u2Y+hcl+06upeTz/eCLbwzjBcligaDXREN93Th8hjPJVW2n0+Kkwbw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 31d8dc31-df49-416c-1cf8-08de8304177f
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2026 02:31:13.2091 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: KFXfIdVMQYQdnQ2SvIqMhYlLMPp1tO5wwL5seDw1Z9EaPiAjcV73aY8sAUa8QsLtRnLdKatnPRmFoV9jle9H+w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5081
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,272 +170,175 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Francois,
+On Sun, Mar 15, 2026 at 10:58:57AM +0100, Raag Jadav wrote:
+> On Fri, Mar 13, 2026 at 11:37:03AM -0400, Dong, Zhanjun wrote:
+> > On 2026-03-08 9:55 a.m., Raag Jadav wrote:
+> > > In preparation of usecases which require cancelling submission before
+> > > PCIe FLR, introduce xe_guc_submit_cancel() helper. This cancels and
+> > > frees any in-flight jobs on the scheduler.
+> > 
+> > Could you put more info on why add new cancel functions rather than call
+> > existing xe_sched_submission_stop?
+> > From commit message, it looks very similar to stop, which also do stop +
+> > free action.
+> 
 
-kernel test robot noticed the following build errors:
+Let me start by saying these GuC interfaces for global control are badly
+named and undocumented, which is entirely my fault. We should clean
+these up.
 
-[auto build test ERROR on drm-misc/drm-misc-next]
-[also build test ERROR on daeinki-drm-exynos/exynos-drm-next drm/drm-next drm-i915/for-linux-next drm-i915/for-linux-next-fixes drm-tip/drm-tip linus/master v7.0-rc3 next-20260311]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Let me explain what we currently have in place:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Francois-Dugast/drm-pagemap-Unlock-and-put-folios-when-possible/20260314-185018
-base:   https://gitlab.freedesktop.org/drm/misc/kernel.git drm-misc-next
-patch link:    https://lore.kernel.org/r/20260312151726.1779566-3-francois.dugast%40intel.com
-patch subject: [PATCH v8 2/4] drm/pagemap: Add helper to access zone_device_data
-config: sparc64-allmodconfig (https://download.01.org/0day-ci/archive/20260315/202603152031.EJj7lRw4-lkp@intel.com/config)
-compiler: clang version 23.0.0git (https://github.com/llvm/llvm-project 7d47b695929cc7f85eeb0f87d0189adc04c1c629)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260315/202603152031.EJj7lRw4-lkp@intel.com/reproduce)
+- xe_guc_submit_stop — Stops all scheduling on all queues, cleans up any
+  lost expected G2H, and triggers queue teardown on any queues with jobs
+  that have started but not completed.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603152031.EJj7lRw4-lkp@intel.com/
+- xe_guc_submit_start — Starts scheduling on all queues and resubmits
+  any jobs on queues that were not torn down in xe_guc_submit_stop,
 
-All errors (new ones prefixed by >>):
+- xe_guc_submit_pause — Stops scheduling on all queues.
 
->> drivers/gpu/drm/drm_gpusvm.c:1492:5: error: call to undeclared function 'drm_pagemap_page_zone_device_data'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    1492 |                                 drm_pagemap_page_zone_device_data(page);
-         |                                 ^
-   drivers/gpu/drm/drm_gpusvm.c:1492:5: note: did you mean 'drm_pagemap_page_to_dpagemap'?
-   include/drm/drm_pagemap.h:264:35: note: 'drm_pagemap_page_to_dpagemap' declared here
-     264 | static inline struct drm_pagemap *drm_pagemap_page_to_dpagemap(struct page *page)
-         |                                   ^
->> drivers/gpu/drm/drm_gpusvm.c:1491:28: error: incompatible integer to pointer conversion initializing 'struct drm_pagemap_zdd *' with an expression of type 'int' [-Wint-conversion]
-    1491 |                         struct drm_pagemap_zdd *__zdd =
-         |                                                 ^
-    1492 |                                 drm_pagemap_page_zone_device_data(page);
-         |                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   2 errors generated.
+- xe_guc_submit_pause_abort — Starts scheduling on all queues and
+  initiates teardown on all queues.
 
+- xe_guc_submit_unpause — Resumes scheduling on all queues.
 
-vim +/drm_pagemap_page_zone_device_data +1492 drivers/gpu/drm/drm_gpusvm.c
+The use cases are:
 
-  1366	
-  1367	/**
-  1368	 * drm_gpusvm_get_pages() - Get pages and populate GPU SVM pages struct
-  1369	 * @gpusvm: Pointer to the GPU SVM structure
-  1370	 * @svm_pages: The SVM pages to populate. This will contain the dma-addresses
-  1371	 * @mm: The mm corresponding to the CPU range
-  1372	 * @notifier: The corresponding notifier for the given CPU range
-  1373	 * @pages_start: Start CPU address for the pages
-  1374	 * @pages_end: End CPU address for the pages (exclusive)
-  1375	 * @ctx: GPU SVM context
-  1376	 *
-  1377	 * This function gets and maps pages for CPU range and ensures they are
-  1378	 * mapped for DMA access.
-  1379	 *
-  1380	 * Return: 0 on success, negative error code on failure.
-  1381	 */
-  1382	int drm_gpusvm_get_pages(struct drm_gpusvm *gpusvm,
-  1383				 struct drm_gpusvm_pages *svm_pages,
-  1384				 struct mm_struct *mm,
-  1385				 struct mmu_interval_notifier *notifier,
-  1386				 unsigned long pages_start, unsigned long pages_end,
-  1387				 const struct drm_gpusvm_ctx *ctx)
-  1388	{
-  1389		struct hmm_range hmm_range = {
-  1390			.default_flags = HMM_PFN_REQ_FAULT | (ctx->read_only ? 0 :
-  1391				HMM_PFN_REQ_WRITE),
-  1392			.notifier = notifier,
-  1393			.start = pages_start,
-  1394			.end = pages_end,
-  1395			.dev_private_owner = ctx->device_private_page_owner,
-  1396		};
-  1397		void *zdd;
-  1398		unsigned long timeout =
-  1399			jiffies + msecs_to_jiffies(HMM_RANGE_DEFAULT_TIMEOUT);
-  1400		unsigned long i, j;
-  1401		unsigned long npages = npages_in_range(pages_start, pages_end);
-  1402		unsigned long num_dma_mapped;
-  1403		unsigned int order = 0;
-  1404		unsigned long *pfns;
-  1405		int err = 0;
-  1406		struct dev_pagemap *pagemap;
-  1407		struct drm_pagemap *dpagemap;
-  1408		struct drm_gpusvm_pages_flags flags;
-  1409		enum dma_data_direction dma_dir = ctx->read_only ? DMA_TO_DEVICE :
-  1410								   DMA_BIDIRECTIONAL;
-  1411	
-  1412	retry:
-  1413		if (time_after(jiffies, timeout))
-  1414			return -EBUSY;
-  1415	
-  1416		hmm_range.notifier_seq = mmu_interval_read_begin(notifier);
-  1417		if (drm_gpusvm_pages_valid_unlocked(gpusvm, svm_pages))
-  1418			goto set_seqno;
-  1419	
-  1420		pfns = kvmalloc_array(npages, sizeof(*pfns), GFP_KERNEL);
-  1421		if (!pfns)
-  1422			return -ENOMEM;
-  1423	
-  1424		if (!mmget_not_zero(mm)) {
-  1425			err = -EFAULT;
-  1426			goto err_free;
-  1427		}
-  1428	
-  1429		hmm_range.hmm_pfns = pfns;
-  1430		while (true) {
-  1431			mmap_read_lock(mm);
-  1432			err = hmm_range_fault(&hmm_range);
-  1433			mmap_read_unlock(mm);
-  1434	
-  1435			if (err == -EBUSY) {
-  1436				if (time_after(jiffies, timeout))
-  1437					break;
-  1438	
-  1439				hmm_range.notifier_seq =
-  1440					mmu_interval_read_begin(notifier);
-  1441				continue;
-  1442			}
-  1443			break;
-  1444		}
-  1445		mmput(mm);
-  1446		if (err)
-  1447			goto err_free;
-  1448	
-  1449	map_pages:
-  1450		/*
-  1451		 * Perform all dma mappings under the notifier lock to not
-  1452		 * access freed pages. A notifier will either block on
-  1453		 * the notifier lock or unmap dma.
-  1454		 */
-  1455		drm_gpusvm_notifier_lock(gpusvm);
-  1456	
-  1457		flags.__flags = svm_pages->flags.__flags;
-  1458		if (flags.unmapped) {
-  1459			drm_gpusvm_notifier_unlock(gpusvm);
-  1460			err = -EFAULT;
-  1461			goto err_free;
-  1462		}
-  1463	
-  1464		if (mmu_interval_read_retry(notifier, hmm_range.notifier_seq)) {
-  1465			drm_gpusvm_notifier_unlock(gpusvm);
-  1466			kvfree(pfns);
-  1467			goto retry;
-  1468		}
-  1469	
-  1470		if (!svm_pages->dma_addr) {
-  1471			/* Unlock and restart mapping to allocate memory. */
-  1472			drm_gpusvm_notifier_unlock(gpusvm);
-  1473			svm_pages->dma_addr =
-  1474				kvmalloc_objs(*svm_pages->dma_addr, npages);
-  1475			if (!svm_pages->dma_addr) {
-  1476				err = -ENOMEM;
-  1477				goto err_free;
-  1478			}
-  1479			goto map_pages;
-  1480		}
-  1481	
-  1482		zdd = NULL;
-  1483		pagemap = NULL;
-  1484		num_dma_mapped = 0;
-  1485		for (i = 0, j = 0; i < npages; ++j) {
-  1486			struct page *page = hmm_pfn_to_page(pfns[i]);
-  1487	
-  1488			order = drm_gpusvm_hmm_pfn_to_order(pfns[i], i, npages);
-  1489			if (is_device_private_page(page) ||
-  1490			    is_device_coherent_page(page)) {
-> 1491				struct drm_pagemap_zdd *__zdd =
-> 1492					drm_pagemap_page_zone_device_data(page);
-  1493	
-  1494				if (!ctx->allow_mixed &&
-  1495				    zdd != __zdd && i > 0) {
-  1496					err = -EOPNOTSUPP;
-  1497					goto err_unmap;
-  1498				}
-  1499				zdd = __zdd;
-  1500				if (pagemap != page_pgmap(page)) {
-  1501					if (pagemap) {
-  1502						err = -EOPNOTSUPP;
-  1503						goto err_unmap;
-  1504					}
-  1505	
-  1506					pagemap = page_pgmap(page);
-  1507					dpagemap = drm_pagemap_page_to_dpagemap(page);
-  1508					if (drm_WARN_ON(gpusvm->drm, !dpagemap)) {
-  1509						/*
-  1510						 * Raced. This is not supposed to happen
-  1511						 * since hmm_range_fault() should've migrated
-  1512						 * this page to system.
-  1513						 */
-  1514						err = -EAGAIN;
-  1515						goto err_unmap;
-  1516					}
-  1517				}
-  1518				svm_pages->dma_addr[j] =
-  1519					dpagemap->ops->device_map(dpagemap,
-  1520								  gpusvm->drm->dev,
-  1521								  page, order,
-  1522								  dma_dir);
-  1523				if (dma_mapping_error(gpusvm->drm->dev,
-  1524						      svm_pages->dma_addr[j].addr)) {
-  1525					err = -EFAULT;
-  1526					goto err_unmap;
-  1527				}
-  1528			} else {
-  1529				dma_addr_t addr;
-  1530	
-  1531				if (is_zone_device_page(page) ||
-  1532				    (pagemap && !ctx->allow_mixed)) {
-  1533					err = -EOPNOTSUPP;
-  1534					goto err_unmap;
-  1535				}
-  1536	
-  1537				if (ctx->devmem_only) {
-  1538					err = -EFAULT;
-  1539					goto err_unmap;
-  1540				}
-  1541	
-  1542				addr = dma_map_page(gpusvm->drm->dev,
-  1543						    page, 0,
-  1544						    PAGE_SIZE << order,
-  1545						    dma_dir);
-  1546				if (dma_mapping_error(gpusvm->drm->dev, addr)) {
-  1547					err = -EFAULT;
-  1548					goto err_unmap;
-  1549				}
-  1550	
-  1551				svm_pages->dma_addr[j] = drm_pagemap_addr_encode
-  1552					(addr, DRM_INTERCONNECT_SYSTEM, order,
-  1553					 dma_dir);
-  1554			}
-  1555			i += 1 << order;
-  1556			num_dma_mapped = i;
-  1557			flags.has_dma_mapping = true;
-  1558		}
-  1559	
-  1560		if (pagemap) {
-  1561			flags.has_devmem_pages = true;
-  1562			drm_pagemap_get(dpagemap);
-  1563			drm_pagemap_put(svm_pages->dpagemap);
-  1564			svm_pages->dpagemap = dpagemap;
-  1565		}
-  1566	
-  1567		/* WRITE_ONCE pairs with READ_ONCE for opportunistic checks */
-  1568		WRITE_ONCE(svm_pages->flags.__flags, flags.__flags);
-  1569	
-  1570		drm_gpusvm_notifier_unlock(gpusvm);
-  1571		kvfree(pfns);
-  1572	set_seqno:
-  1573		svm_pages->notifier_seq = hmm_range.notifier_seq;
-  1574	
-  1575		return 0;
-  1576	
-  1577	err_unmap:
-  1578		svm_pages->flags.has_dma_mapping = true;
-  1579		__drm_gpusvm_unmap_pages(gpusvm, svm_pages, num_dma_mapped);
-  1580		drm_gpusvm_notifier_unlock(gpusvm);
-  1581	err_free:
-  1582		kvfree(pfns);
-  1583		if (err == -EAGAIN)
-  1584			goto retry;
-  1585		return err;
-  1586	}
-  1587	EXPORT_SYMBOL_GPL(drm_gpusvm_get_pages);
-  1588	
+- GT reset: xe_guc_submit_stop / xe_guc_submit_start
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+- Runtime PM d3cold: xe_guc_submit_stop / xe_guc_submit_start
+
+- Runtime PM non-d3cold: xe_guc_submit_pause / xe_guc_submit_unpause
+
+- Wedging: xe_guc_submit_stop / xe_guc_submit_pause_abort (added in [1])
+
+- Driver unload: xe_guc_submit_stop / xe_guc_submit_pause_abort (added
+  in [1])
+
+I think for FLR the combination you want is xe_guc_submit_stop /
+xe_guc_submit_pause_abort — tear down all queues (and if the device is
+already wedged, we’ve already done this [1] , but doing it again is
+fine). However, this will tear down the kernel queues that are required
+for the driver to become functional again.
+
+So now that I think about it, I probably gave bad advice regarding
+xe_exec_queue_reinit after [1]. In xe_migrate_reinit, just drop the ref
+to m->q and create a new queue instead - I assume we can allocate memory
+in FLR, if not this answer changes (e.g., we'd also need a hook to reach
+in GuC backend to reinit the queues flags after all of its jobs have
+drained).
+
+> IIUC submission_stop() doesn't free any jobs, it just stops the scheduler
+
+Initiatiating queue teardown will signal all fences, thus free the jobs.
+So submission_stop can do this depending queue / job state -
+xe_guc_submit_pause_abort will do this all queues. We just merged patch
+changing xe_guc_submit_pause_abort behavior last week too [1], which
+will affect your series if the device is wedged.
+
+[1] https://patchwork.freedesktop.org/series/162978/
+
+> and cancels wq used to run jobs. But this leaves the jobs on scheduler's
+> pending list behind if they're not on the wq yet, which results in timeout.
+> So perhaps I used the terminology wrong, will update this.
+> 
+> Also, I know it's a bit hacky to directly bork the scheduler's pending list
+> so this can definitely use some standardization. Open to suggestions.
+> 
+> Raag
+> 
+> > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > > ---
+> > > v3: Cancel in-flight jobs before FLR
+> > > ---
+> > >   drivers/gpu/drm/xe/xe_gpu_scheduler.c | 11 +++++++++++
+> > >   drivers/gpu/drm/xe/xe_gpu_scheduler.h |  1 +
+> > >   drivers/gpu/drm/xe/xe_guc_submit.c    | 24 ++++++++++++++++++++++++
+> > >   drivers/gpu/drm/xe/xe_guc_submit.h    |  1 +
+> > >   4 files changed, 37 insertions(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.c b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+> > > index 9c8004d5dd91..c012dbe84540 100644
+> > > --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+> > > +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.c
+> > > @@ -90,6 +90,17 @@ void xe_sched_fini(struct xe_gpu_scheduler *sched)
+> > >   	drm_sched_fini(&sched->base);
+> > >   }
+> > > +void xe_sched_submission_cancel(struct xe_gpu_scheduler *sched)
+> > > +{
+> > > +	struct drm_gpu_scheduler *base = &sched->base;
+> > > +	struct drm_sched_job *job, *tmp;
+> > > +
+> > > +	list_for_each_entry_safe_reverse(job, tmp, &base->pending_list, list) {
+> > > +		list_del(&job->list);
+> > > +		base->ops->free_job(job);
+> > > +	}
+
+Never do this. Use the queue teardown flows, which signal the fences and
+therefore free the jobs. I can see how you reasoned this, but I suggest
+rebasing on [1], as I believe it includes some pieces that were
+previously missing to make FLR work.
+
+Matt
+
+> > > +}
+> > > +
+> > >   void xe_sched_submission_start(struct xe_gpu_scheduler *sched)
+> > >   {
+> > >   	drm_sched_wqueue_start(&sched->base);
+> > > diff --git a/drivers/gpu/drm/xe/xe_gpu_scheduler.h b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+> > > index 664c2db56af3..ba7892db8428 100644
+> > > --- a/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+> > > +++ b/drivers/gpu/drm/xe/xe_gpu_scheduler.h
+> > > @@ -19,6 +19,7 @@ int xe_sched_init(struct xe_gpu_scheduler *sched,
+> > >   		  struct device *dev);
+> > >   void xe_sched_fini(struct xe_gpu_scheduler *sched);
+> > > +void xe_sched_submission_cancel(struct xe_gpu_scheduler *sched);
+> > >   void xe_sched_submission_start(struct xe_gpu_scheduler *sched);
+> > >   void xe_sched_submission_stop(struct xe_gpu_scheduler *sched);
+> > > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > index de716c1fb18e..cba544cc185c 100644
+> > > --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> > > @@ -2399,6 +2399,30 @@ void xe_guc_submit_stop(struct xe_guc *guc)
+> > >   }
+> > > +/**
+> > > + * xe_guc_submit_cancel - Cancel all runs of submission tasks on given GuC.
+> > > + * @guc: the &xe_guc struct instance whose scheduler is to be cancelled
+> > > + */
+> > > +void xe_guc_submit_cancel(struct xe_guc *guc)
+> > > +{
+> > > +	struct xe_exec_queue *q;
+> > > +	unsigned long index;
+> > > +
+> > > +	mutex_lock(&guc->submission_state.lock);
+> > > +
+> > > +	xa_for_each(&guc->submission_state.exec_queue_lookup, index, q) {
+> > > +		struct xe_gpu_scheduler *sched = &q->guc->sched;
+> > > +
+> > > +		/* Prevent redundant attempts to cancel parallel queues */
+> > > +		if (q->guc->id != index)
+> > > +			continue;
+> > > +
+> > > +		xe_sched_submission_cancel(sched);
+> > > +	}
+> > > +
+> > > +	mutex_unlock(&guc->submission_state.lock);
+> > > +}
+> > > +
+> > >   static void guc_exec_queue_revert_pending_state_change(struct xe_guc *guc,
+> > >   						       struct xe_exec_queue *q)
+> > >   {
+> > > diff --git a/drivers/gpu/drm/xe/xe_guc_submit.h b/drivers/gpu/drm/xe/xe_guc_submit.h
+> > > index b3839a90c142..f361a6d32fd3 100644
+> > > --- a/drivers/gpu/drm/xe/xe_guc_submit.h
+> > > +++ b/drivers/gpu/drm/xe/xe_guc_submit.h
+> > > @@ -16,6 +16,7 @@ int xe_guc_submit_init(struct xe_guc *guc, unsigned int num_ids);
+> > >   int xe_guc_submit_enable(struct xe_guc *guc);
+> > >   void xe_guc_submit_disable(struct xe_guc *guc);
+> > > +void xe_guc_submit_cancel(struct xe_guc *guc);
+> > >   int xe_guc_submit_reset_prepare(struct xe_guc *guc);
+> > >   void xe_guc_submit_reset_wait(struct xe_guc *guc);
+> > >   void xe_guc_submit_stop(struct xe_guc *guc);
+> > 
