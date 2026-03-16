@@ -4,60 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 128A4F013FA
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 21:54:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29AB7F53D9B
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 22:03:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A477910E242;
-	Mon, 16 Mar 2026 21:54:30 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="UG1rg/w6";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B258710E242;
- Mon, 16 Mar 2026 21:54:29 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 6370C40E87;
- Mon, 16 Mar 2026 21:54:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E334C19421;
- Mon, 16 Mar 2026 21:54:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1773698069;
- bh=TMGfrOPqq1QMIR2jmkCprr2khCTXxYuklmyZc5fsbzY=;
- h=From:Date:Subject:To:Cc:From;
- b=UG1rg/w6PophvgY0jPl/iMm0p1n6G1t5lGM/FGnXbWhvNl3z82NdpIRzM/A/gLS3/
- kN+UjWYo/kl0bob/MIMsmMXm8wfx6mvLOf5CfBC6biNAPFA01Dmu2GAG0zcQxVjpwd
- to1dF2Q06P7s0LTzG86pcx0j0AuHWS2VNwLM4cRiTqSTIhgKnJ/UjgBxkVs1h1+4df
- n8uLFRhVp2lr04mo94A5UmEgoMX6L7umbgIixTiDIrcK1p3RBst7lrauvaYrBJ6xAL
- o6A+tngEi7dJgnRu5sa/kHdfP+aIzXRIdMlIbOCYY63WfrZZAIGJlBJ5x0nSMushFf
- X1hztCNQ9UoyQ==
-From: Nathan Chancellor <nathan@kernel.org>
-Date: Mon, 16 Mar 2026 14:54:22 -0700
-Subject: [PATCH] drm/xe: Fix format specifier for printing pointer differences
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD62B10E242;
+	Mon, 16 Mar 2026 22:03:28 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07A1910E242;
+ Mon, 16 Mar 2026 22:03:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7369544903681809337=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260316-drm-xe-fix-32-bit-wformat-ptrdiff-v1-1-0108b10b2b6b@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/yXNywqDMBCF4VeRWXdAEyvSVyldxGRGp+CFSbyA+
- O5N2+UHh/+cEEmFIjyKE5Q2iTJPGdWtAD+4qSeUkA2mNE1pqwaDjngQshxoDXaScOdZR5dwSRq
- EGd2da27r1pK3kDuLUl7/Pp6vv+Pavcmnbxiu6wM+uI0YhQAAAA==
-X-Change-ID: 20260316-drm-xe-fix-32-bit-wformat-ptrdiff-a5f4f8483ec3
-To: Matthew Brost <matthew.brost@intel.com>, 
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Matt Roper <matthew.d.roper@intel.com>, 
- Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- llvm@lists.linux.dev, patches@lists.linux.dev, 
- Nathan Chancellor <nathan@kernel.org>
-X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=6882; i=nathan@kernel.org;
- h=from:subject:message-id; bh=TMGfrOPqq1QMIR2jmkCprr2khCTXxYuklmyZc5fsbzY=;
- b=owGbwMvMwCUmm602sfCA1DTG02pJDJk7aoQTet+WS1Vufzil+PzhjwxSYounzhNdkP422aS19
- Mz7yJsTO0pZGMS4GGTFFFmqH6seNzScc5bxxqlJMHNYmUCGMHBxCsBEWBYxMmz07I3ZK3f38IsY
- MfMyrm+2ioyzJjluyJJ383AxCAtQ+svwP/9AWW0NW3vmuSeqk9JVy2//Ytv8UWiWcciMoPsHlhw
- r5QEA
-X-Developer-Key: i=nathan@kernel.org; a=openpgp;
- fpr=2437CB76E544CB6AB3D9DFD399739260CB6CB716
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Reject_coh=5Fnone?=
+ =?utf-8?q?_PAT_index_for_CPU_cached_memory_in_madvise_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jia Yao" <jia.yao@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 16 Mar 2026 22:03:27 -0000
+Message-ID: <177369860700.363819.1494734588316586658@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260129000147.339361-1-jia.yao@intel.com>
+In-Reply-To: <20260129000147.339361-1-jia.yao@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,157 +36,144 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-GCC and clang warn (or error with CONFIG_WERROR=y / W=e) several times
-when targeting 32-bit platforms along the lines of
+--===============7369544903681809337==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-  drivers/gpu/drm/xe/xe_lrc.c: In function 'dump_mi_command':
-  drivers/gpu/drm/xe/xe_lrc.c:1921:40: error: format '%lx' expects argument of type 'long unsigned int', but argument 3 has type 'int' [-Werror=format=]
-   1921 |                 drm_printf(p, "LRC[%#5lx]  =  [%#010x] MI_NOOP (%d dwords)\n",
-        |                                    ~~~~^
-        |                                        |
-        |                                        long unsigned int
-        |                                    %#5x
-   1922 |                            dw - num_noop - start, inst_header, num_noop);
-        |                            ~~~~~~~~~~~~~~~~~~~~~
-        |                                          |
-        |                                          int
+== Series Details ==
 
-  drivers/gpu/drm/xe/xe_lrc.c:1922:7: error: format specifies type 'unsigned long' but the argument has type '__ptrdiff_t' (aka 'int') [-Werror,-Wformat]
-   1921 |                 drm_printf(p, "LRC[%#5lx]  =  [%#010x] MI_NOOP (%d dwords)\n",
-        |                                    ~~~~~
-        |                                    %#5tx
-   1922 |                            dw - num_noop - start, inst_header, num_noop);
-        |                            ^~~~~~~~~~~~~~~~~~~~~
+Series: drm/xe: Reject coh_none PAT index for CPU cached memory in madvise (rev7)
+URL   : https://patchwork.freedesktop.org/series/160797/
+State : success
 
-Use the '%tx' specifier for printing pointer differences, which clears
-up the warnings for 32-bit platforms while introducing no regressions
-for 64-bit platforms.
+== Summary ==
 
-Fixes: 65fcf19cb36b ("drm/xe: Include running dword offset in default_lrc dumps")
-Signed-off-by: Nathan Chancellor <nathan@kernel.org>
----
- drivers/gpu/drm/xe/xe_lrc.c | 30 +++++++++++++++---------------
- 1 file changed, 15 insertions(+), 15 deletions(-)
+CI Bug Log - changes from xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820_BAT -> xe-pw-160797v7_BAT
+====================================================
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 7fb59386d1c5..31d57d8ec051 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1918,17 +1918,17 @@ static int dump_mi_command(struct drm_printer *p,
- 		while (num_noop < remaining_dw &&
- 		       (*(++dw) & REG_GENMASK(31, 23)) == MI_NOOP)
- 			num_noop++;
--		drm_printf(p, "LRC[%#5lx]  =  [%#010x] MI_NOOP (%d dwords)\n",
-+		drm_printf(p, "LRC[%#5tx]  =  [%#010x] MI_NOOP (%d dwords)\n",
- 			   dw - num_noop - start, inst_header, num_noop);
- 		return num_noop;
- 
- 	case MI_TOPOLOGY_FILTER:
--		drm_printf(p, "LRC[%#5lx]  =  [%#010x] MI_TOPOLOGY_FILTER\n",
-+		drm_printf(p, "LRC[%#5tx]  =  [%#010x] MI_TOPOLOGY_FILTER\n",
- 			   dw - start, inst_header);
- 		return 1;
- 
- 	case MI_BATCH_BUFFER_END:
--		drm_printf(p, "LRC[%#5lx]  =  [%#010x] MI_BATCH_BUFFER_END\n",
-+		drm_printf(p, "LRC[%#5tx]  =  [%#010x] MI_BATCH_BUFFER_END\n",
- 			   dw - start, inst_header);
- 		/* Return 'remaining_dw' to consume the rest of the LRC */
- 		return remaining_dw;
-@@ -1943,35 +1943,35 @@ static int dump_mi_command(struct drm_printer *p,
- 
- 	switch (inst_header & MI_OPCODE) {
- 	case MI_LOAD_REGISTER_IMM:
--		drm_printf(p, "LRC[%#5lx]  =  [%#010x] MI_LOAD_REGISTER_IMM: %d regs\n",
-+		drm_printf(p, "LRC[%#5tx]  =  [%#010x] MI_LOAD_REGISTER_IMM: %d regs\n",
- 			   dw - start, inst_header, (numdw - 1) / 2);
- 		for (int i = 1; i < numdw; i += 2)
--			drm_printf(p, "LRC[%#5lx]  =  - %#6x = %#010x\n",
-+			drm_printf(p, "LRC[%#5tx]  =  - %#6x = %#010x\n",
- 				   &dw[i] - start, dw[i], dw[i + 1]);
- 		return numdw;
- 
- 	case MI_LOAD_REGISTER_MEM & MI_OPCODE:
--		drm_printf(p, "LRC[%#5lx]  =  [%#010x] MI_LOAD_REGISTER_MEM: %s%s\n",
-+		drm_printf(p, "LRC[%#5tx]  =  [%#010x] MI_LOAD_REGISTER_MEM: %s%s\n",
- 			   dw - start, inst_header,
- 			   dw[0] & MI_LRI_LRM_CS_MMIO ? "CS_MMIO " : "",
- 			   dw[0] & MI_LRM_USE_GGTT ? "USE_GGTT " : "");
- 		if (numdw == 4)
--			drm_printf(p, "LRC[%#5lx]  =  - %#6x = %#010llx\n",
-+			drm_printf(p, "LRC[%#5tx]  =  - %#6x = %#010llx\n",
- 				   dw - start,
- 				   dw[1], ((u64)(dw[3]) << 32 | (u64)(dw[2])));
- 		else
--			drm_printf(p, "LRC[%#5lx]  =  - %*ph (%s)\n",
-+			drm_printf(p, "LRC[%#5tx]  =  - %*ph (%s)\n",
- 				   dw - start, (int)sizeof(u32) * (numdw - 1),
- 				   dw + 1, numdw < 4 ? "truncated" : "malformed");
- 		return numdw;
- 
- 	case MI_FORCE_WAKEUP:
--		drm_printf(p, "LRC[%#5lx]  =  [%#010x] MI_FORCE_WAKEUP\n",
-+		drm_printf(p, "LRC[%#5tx]  =  [%#010x] MI_FORCE_WAKEUP\n",
- 			   dw - start, inst_header);
- 		return numdw;
- 
- 	default:
--		drm_printf(p, "LRC[%#5lx]  =  [%#010x] unknown MI opcode %#x, likely %d dwords\n",
-+		drm_printf(p, "LRC[%#5tx]  =  [%#010x] unknown MI opcode %#x, likely %d dwords\n",
- 			   dw - start, inst_header, opcode, numdw);
- 		return numdw;
- 	}
-@@ -1998,12 +1998,12 @@ static int dump_gfxpipe_command(struct drm_printer *p,
- 	switch (*dw & GFXPIPE_MATCH_MASK) {
- #define MATCH(cmd) \
- 	case cmd: \
--		drm_printf(p, "LRC[%#5lx]  =  [%#010x] " #cmd " (%d dwords)\n", \
-+		drm_printf(p, "LRC[%#5tx]  =  [%#010x] " #cmd " (%d dwords)\n", \
- 			   dw - start, *dw, numdw); \
- 		return numdw
- #define MATCH3D(cmd) \
- 	case CMD_##cmd: \
--		drm_printf(p, "LRC[%#5lx]  =  [%#010x] " #cmd " (%d dwords)\n", \
-+		drm_printf(p, "LRC[%#5tx]  =  [%#010x] " #cmd " (%d dwords)\n", \
- 			   dw - start, *dw, numdw); \
- 		return numdw
- 
-@@ -2136,7 +2136,7 @@ static int dump_gfxpipe_command(struct drm_printer *p,
- 	MATCH3D(3DSTATE_SLICE_TABLE_STATE_POINTER_2);
- 
- 	default:
--		drm_printf(p, "LRC[%#5lx]  =  [%#010x] unknown GFXPIPE command (pipeline=%#x, opcode=%#x, subopcode=%#x), likely %d dwords\n",
-+		drm_printf(p, "LRC[%#5tx]  =  [%#010x] unknown GFXPIPE command (pipeline=%#x, opcode=%#x, subopcode=%#x), likely %d dwords\n",
- 			   dw - start, *dw, pipeline, opcode, subopcode, numdw);
- 		return numdw;
- 	}
-@@ -2162,7 +2162,7 @@ static int dump_gfx_state_command(struct drm_printer *p,
- 	MATCH(STATE_WRITE_INLINE);
- 
- 	default:
--		drm_printf(p, "LRC[%#5lx]  =  [%#010x] unknown GFX_STATE command (opcode=%#x), likely %d dwords\n",
-+		drm_printf(p, "LRC[%#5tx]  =  [%#010x] unknown GFX_STATE command (opcode=%#x), likely %d dwords\n",
- 			   dw - start, *dw, opcode, numdw);
- 		return numdw;
- 	}
-@@ -2197,7 +2197,7 @@ void xe_lrc_dump_default(struct drm_printer *p,
- 			num_dw = dump_gfx_state_command(p, gt, start, dw, remaining_dw);
- 		} else {
- 			num_dw = min(instr_dw(*dw), remaining_dw);
--			drm_printf(p, "LRC[%#5lx]  =  [%#10x] Unknown instruction of type %#x, likely %d dwords\n",
-+			drm_printf(p, "LRC[%#5tx]  =  [%#10x] Unknown instruction of type %#x, likely %d dwords\n",
- 				   dw - start,
- 				   *dw, REG_FIELD_GET(XE_INSTR_CMD_TYPE, *dw),
- 				   num_dw);
+Summary
+-------
 
----
-base-commit: 1b12096b4bc5177d685ae098fdb90260ffd5db6b
-change-id: 20260316-drm-xe-fix-32-bit-wformat-ptrdiff-a5f4f8483ec3
+  **SUCCESS**
 
-Best regards,
---  
-Nathan Chancellor <nathan@kernel.org>
+  No regressions found.
 
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-160797v7_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160797v7/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160797v7/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8805 -> IGT_8806
+  * Linux: xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820 -> xe-pw-160797v7
+
+  IGT_8805: 8805
+  IGT_8806: 8806
+  xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820: a25d8c583e1e52bde77d371081a7c3fcd0a2e820
+  xe-pw-160797v7: 160797v7
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160797v7/index.html
+
+--===============7369544903681809337==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Reject coh_none PAT index for CPU cached memory in madvise (rev7)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160797/">https://patchwork.freedesktop.org/series/160797/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160797v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160797v7/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820_BAT -&gt; xe-pw-160797v7_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-160797v7_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160797v7/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160797v7/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8805 -&gt; IGT_8806</li>
+<li>Linux: xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820 -&gt; xe-pw-160797v7</li>
+</ul>
+<p>IGT_8805: 8805<br />
+  IGT_8806: 8806<br />
+  xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820: a25d8c583e1e52bde77d371081a7c3fcd0a2e820<br />
+  xe-pw-160797v7: 160797v7</p>
+
+</body>
+</html>
+
+--===============7369544903681809337==--
