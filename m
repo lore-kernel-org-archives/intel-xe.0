@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDB3EF53D76
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 16:57:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5C38F53D78
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Mar 2026 17:03:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F43210E3A2;
-	Mon, 16 Mar 2026 16:57:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6049910E31F;
+	Mon, 16 Mar 2026 17:03:49 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE76210E3A8;
- Mon, 16 Mar 2026 16:57:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4048669525764847088=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1E3010E31F;
+ Mon, 16 Mar 2026 17:03:48 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe3lpg=3A_Extend_Wa?=
- =?utf-8?q?=5F14026781792_for_xe3lpg?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/=7Bi915=2C_xe=7D=3A_p?=
+ =?utf-8?q?rep_for_sorting_out_step_enums_between_the_drivers?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nitin Gote" <nitin.r.gote@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 16 Mar 2026 16:57:28 -0000
-Message-ID: <177368024889.361947.17686508670300236361@a3b018990fe9>
+Date: Mon, 16 Mar 2026 17:03:48 -0000
+Message-ID: <177368062884.361946.4796163068004651810@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260316113026.326538-2-nitin.r.gote@intel.com>
-In-Reply-To: <20260316113026.326538-2-nitin.r.gote@intel.com>
+References: <cover.1773663208.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1773663208.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,102 +40,156 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4048669525764847088==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/xe3lpg: Extend Wa_14026781792 for xe3lpg
-URL   : https://patchwork.freedesktop.org/series/163276/
-State : success
+Series: drm/{i915, xe}: prep for sorting out step enums between the drivers
+URL   : https://patchwork.freedesktop.org/series/163282/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4727-3c0f46ebae86b197566f2da39cf8f35b137288ac_BAT -> xe-pw-163276v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 34c2c5471971019d4301b7576c3c704b95b1a19d
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Mon Mar 16 14:15:02 2026 +0200
 
-Summary
--------
+    drm/intel: add shared step.h and switch i915 to use it
+    
+    As the first step towards using shared definitions for step name
+    enumerations, add shared include/drm/intel/step.h and switch i915 to use
+    it.
+    
+    Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 973a56bafac086c4d99d530b6896875c96120e78 drm-intel
+8a59dd73677b drm/i915/dmc: simplify stepping info initialization
+e8850a0e23a3 drm/i915/display: add step name in display runtime info
+-:24: ERROR:BRACKET_SPACE: space prohibited before open square bracket '['
+#24: FILE: drivers/gpu/drm/i915/display/intel_display_device.c:1657:
++#define __STEP_NAME(name) [STEP_##name] = #name,
 
-  **SUCCESS**
+total: 1 errors, 0 warnings, 0 checks, 59 lines checked
+09e2e279186b drm/i915/dmc: use step name from runtime info
+36a761dd5cd5 drm/xe/compat: remove intel_step_name macro
+34c2c5471971 drm/intel: add shared step.h and switch i915 to use it
+-:89: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#89: 
+new file mode 100644
 
-  No regressions found.
+-:102: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#102: FILE: include/drm/intel/step.h:9:
++#define STEP_NAME_LIST(func)		\
++	func(A0)			\
++	func(A1)			\
++	func(A2)			\
++	func(A3)			\
++	func(B0)			\
++	func(B1)			\
++	func(B2)			\
++	func(B3)			\
++	func(C0)			\
++	func(C1)			\
++	func(C2)			\
++	func(C3)			\
++	func(D0)			\
++	func(D1)			\
++	func(D2)			\
++	func(D3)			\
++	func(E0)			\
++	func(E1)			\
++	func(E2)			\
++	func(E3)			\
++	func(F0)			\
++	func(F1)			\
++	func(F2)			\
++	func(F3)			\
++	func(G0)			\
++	func(G1)			\
++	func(G2)			\
++	func(G3)			\
++	func(H0)			\
++	func(H1)			\
++	func(H2)			\
++	func(H3)			\
++	func(I0)			\
++	func(I1)			\
++	func(I2)			\
++	func(I3)			\
++	func(J0)			\
++	func(J1)			\
++	func(J2)			\
++	func(J3)
 
-  
+BUT SEE:
 
-Participating hosts (14 -> 14)
-------------------------------
+   do {} while (0) advice is over-stated in a few situations:
 
-  No changes in participating hosts
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
+
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
+
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
+
+   Enjoy this qualification while we work to improve our heuristics.
+
+-:102: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'func' - possible side-effects?
+#102: FILE: include/drm/intel/step.h:9:
++#define STEP_NAME_LIST(func)		\
++	func(A0)			\
++	func(A1)			\
++	func(A2)			\
++	func(A3)			\
++	func(B0)			\
++	func(B1)			\
++	func(B2)			\
++	func(B3)			\
++	func(C0)			\
++	func(C1)			\
++	func(C2)			\
++	func(C3)			\
++	func(D0)			\
++	func(D1)			\
++	func(D2)			\
++	func(D3)			\
++	func(E0)			\
++	func(E1)			\
++	func(E2)			\
++	func(E3)			\
++	func(F0)			\
++	func(F1)			\
++	func(F2)			\
++	func(F3)			\
++	func(G0)			\
++	func(G1)			\
++	func(G2)			\
++	func(G3)			\
++	func(H0)			\
++	func(H1)			\
++	func(H2)			\
++	func(H3)			\
++	func(I0)			\
++	func(I1)			\
++	func(I2)			\
++	func(I3)			\
++	func(J0)			\
++	func(J1)			\
++	func(J2)			\
++	func(J3)
+
+total: 1 errors, 1 warnings, 1 checks, 131 lines checked
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: xe-4727-3c0f46ebae86b197566f2da39cf8f35b137288ac -> xe-pw-163276v1
-
-  IGT_8805: 8805
-  xe-4727-3c0f46ebae86b197566f2da39cf8f35b137288ac: 3c0f46ebae86b197566f2da39cf8f35b137288ac
-  xe-pw-163276v1: 163276v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163276v1/index.html
-
---===============4048669525764847088==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe3lpg: Extend Wa_14026781792 for xe3lpg</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163276/">https://patchwork.freedesktop.org/series/163276/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163276v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163276v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4727-3c0f46ebae86b197566f2da39cf8f35b137288ac_BAT -&gt; xe-pw-163276v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4727-3c0f46ebae86b197566f2da39cf8f35b137288ac -&gt; xe-pw-163276v1</li>
-</ul>
-<p>IGT_8805: 8805<br />
-  xe-4727-3c0f46ebae86b197566f2da39cf8f35b137288ac: 3c0f46ebae86b197566f2da39cf8f35b137288ac<br />
-  xe-pw-163276v1: 163276v1</p>
-
-</body>
-</html>
-
---===============4048669525764847088==--
