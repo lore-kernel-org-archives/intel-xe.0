@@ -4,56 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 139DEFD8770
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 14:10:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49D5FFD877D
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 14:19:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D74310E667;
-	Tue, 17 Mar 2026 14:10:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 035C710E106;
+	Tue, 17 Mar 2026 14:19:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="k81ps8L6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KXpCj6/z";
 	dkim-atps=neutral
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7868510E5C9;
- Tue, 17 Mar 2026 14:10:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1773756603;
- bh=mMG2aIP3veFf7ab9T5YQWN4fAdSMBTKrwwcb3rV/1Vo=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=k81ps8L6xl/vmDTgwo5kRzeLTZ9zFEhe8T6kZns2BjLbGbTjKK+AeUjfpLPMfvqTr
- Uof02h6zowgPkVbhfImsV+QT6bnkTr+O+KAXnXp1kILu5qIPalDe4AnH58uXWvDFr8
- go5wWkHo78hZBrrlrLQXjt4oOG/zWcXgYqHXgFYeKRxj92SE14JM2kNPwNGFr5Vz6Q
- m8ZUItFHemtXNLT1795YyyZTIHoae4mD5YpqB0pVkMU214zMBnRtgj5CjvoQiBg6TZ
- wq0o3g02qJwbCT23VsFjfNWRsWpxB77KIfnYPeD+0vc7SK1Byf4K4PScwGchICrLCr
- icQkPXxbHZ97w==
-Received: from eldfell (unknown [194.136.85.206])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256) (No client certificate requested)
- (Authenticated sender: pq)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 48F9B17E0FA3;
- Tue, 17 Mar 2026 15:10:03 +0100 (CET)
-Date: Tue, 17 Mar 2026 16:09:51 +0200
-From: Pekka Paalanen <pekka.paalanen@collabora.com>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Cc: Harry Wentland <harry.wentland@amd.com>,
- <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <louis.chauvet@bootlin.com>,
- <mwen@igalia.com>, <contact@emersion.fr>, <alex.hung@amd.com>,
- <daniels@collabora.com>, <uma.shankar@intel.com>,
- <maarten.lankhorst@intel.com>, <pranay.samala@intel.com>,
- <swati2.sharma@intel.com>
-Subject: Re: [PATCH 01/10] drm/colorop: Add DRM_COLOROP_CSC_FF
-Message-ID: <20260317160951.407ee82a@eldfell>
-In-Reply-To: <306d456f-4015-4b28-9fd8-b671d4c01929@intel.com>
-References: <20260306165307.3233194-1-chaitanya.kumar.borah@intel.com>
- <20260306165307.3233194-2-chaitanya.kumar.borah@intel.com>
- <3cc8bd83-8a19-488b-b5bf-b71f75c18e74@amd.com>
- <306d456f-4015-4b28-9fd8-b671d4c01929@intel.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D836310E668;
+ Tue, 17 Mar 2026 14:19:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773757163; x=1805293163;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=hrLfHSYtq10Ih1lzzACnCQyYk2Whjzww/0CADzUVK30=;
+ b=KXpCj6/zLYumtgLUj8xtJSo9S7I2Y+HiVcqoaEzjRkdK5YaobAVBXuhR
+ +TIZaMtAZM1Vn9n/nUl5TJsAYS/Ndc1Zsf1oYXi5PSCTldmqog3Kj/EfB
+ kjNEeqm1GDAWFZdQracoE9Vqztx572cwqdD39ZwWC+4tDcWHrIsuxfVy0
+ PSx/uE038sHE1Xe3bmuFVu7oy6o/rwU9DYl5cTTnv3I+W//75nLfv6MfH
+ 4n9GDVjMLzsWzdh8KKbdplAYrfiaJrBbu0QO5mkFIKiBa1dJu55ueKVOF
+ Mnhp2/uLvzNcukMxVhct8JXX5A4IR+1V8tuXoXx/JRPwizmsOoWFf7xbY Q==;
+X-CSE-ConnectionGUID: aFLKSXUlSBusNajFpAmGUg==
+X-CSE-MsgGUID: y/zi61baTweh3LV1tqUwLw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="74973130"
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="74973130"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2026 07:19:23 -0700
+X-CSE-ConnectionGUID: FZWAN9NWTumo4yCqCsfO+Q==
+X-CSE-MsgGUID: q7AjjABPSfWT+rNqylP2CQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="260184975"
+Received: from dhhellew-desk2.ger.corp.intel.com (HELO fedora)
+ ([10.245.245.163])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2026 07:19:21 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH v2 0/3] drm/ttm: Improve the TTM operation context
+ gfp_retry_mayfail behaviour
+Date: Tue, 17 Mar 2026 15:18:53 +0100
+Message-ID: <20260317141856.237876-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/UXs5mYAJtEir5IyuCBoLZVW";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,79 +71,31 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---Sig_/UXs5mYAJtEir5IyuCBoLZVW
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Two small patches around the gfp_retry_mayfail behaviour, and
+one patch to improve associated kerneldoc.
 
-On Tue, 17 Mar 2026 17:59:27 +0530
-"Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com> wrote:
+Patch 1 ensures we don't spam the kernel log on allocation failures.
 
-> AFAIU, the block I wanted to represent is Full Range YCbCr -> Full Range=
-=20
-> RGB. We have the following configuration in our plane.
->=20
-> [YUV range correction Block] -> [Degamma LUT] -> [PRESET CSC] -> [Gamma L=
-UT]
->=20
-> With the legacy "COLOR RANGE" property, selecting limited range enabled=20
-> the YUV range correction block.
->=20
-> I still need to figure out what use-case does the degamma LUT in between=
-=20
-> the Range correction block and the Preset CSC serve since YCbCr to RGB=20
-> conversion will take place in non-linear domain. But it makes me wonder=20
+Patch 2 extends the gfp_retry_mayfail to swap readback.
 
-Hi Chaitanya,
+Patch 3 Improves on the associated kerneldocs.
 
-yes, that is peculiar indeed. At least "Degamma LUT" is usable with RGB
-framebuffers.
+v2:
+- Add patch 3. (Sima).
 
-> if we can have "COLOR ENCODING" and "COLOR RANGE" property within the=20
-> same colorop like you have been implementing in [1] or should they be=20
-> represented by separate colorops.
+Thomas Hellström (3):
+  drm/ttm: Don't spam the log on buffer object backing store allocation
+    failure
+  drm/ttm: Avoid invoking the OOM killer when reading back swapped
+    content
+  drm/ttm: Update the struct ttm_operation_ctx kerneldoc
 
-If there is another operation in between (Degamma LUT) that you want to
-expose, then range-conversion and fixed-matrix operations need to have
-their own colorops. The chain of colorops cannot go backwards.
+ drivers/gpu/drm/ttm/ttm_backup.c |  6 ++++--
+ drivers/gpu/drm/ttm/ttm_pool.c   |  7 +++++--
+ include/drm/ttm/ttm_backup.h     |  2 +-
+ include/drm/ttm/ttm_bo.h         | 28 +++++++++++++++++++---------
+ 4 files changed, 29 insertions(+), 14 deletions(-)
 
-OTOH, if there is a single hardware operation that does both
-range-conversion and fixed-matrix, then there is no problem for a
-driver to translate the pair of colorops into hardware configuration.
-So it sounds like they should be defined as separate colorops, and then
-drivers usually expose them together. Unless the hardware cannot do all
-combinations of their values.
+-- 
+2.53.0
 
-
-Thanks,
-pq
-
-> Uma please weigh in if you have something to add or disagree with.
->=20
-> =3D=3D
-> Chaitanya
->=20
-> [1] https://gitlab.freedesktop.org/hwentland/linux/-/commits/csc-colorop
->=20
-
---Sig_/UXs5mYAJtEir5IyuCBoLZVW
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmm5YK8ACgkQI1/ltBGq
-qqcFqxAAnavVQ1zVA7R6Az97rZC3PV0R3XsvTaucqdizvayLaJCdHHV8mjxfY4hi
-6nXBsiY8SF+kfQ/mA4P3Q/YVHq20EiCON7MxRPwUOh8A0ag0tGVKLTXd9diOSOZV
-Oh5N9WNhVaabMKeI1Zg3q0eMDFtRU5BJSTq65LrBGfT+5OUaZtFCjoB3lwiI2j8t
-3c5mh0sjefM/lFTcjMHWUtajI8NT4Mgf8sD/U37x5hsQ9z7EDISCTpOX2tKYSmXJ
-DQs+DdiObC2a/OR1+BhS1NQDlLoqLCVYCXkwJtWIliw2oZXlCFGf5NU4vFGvT0qT
-KIDwS3xhzY+CdBuJG0D2tiSBDDOF4KEUrtgTDsg1Tq91YB9JzHRLlUZacSozSTFw
-WwHO6VTSnj+od+n6s1C/2Cbx3XGOEKCcZdqFRny5vOCw+vhX2ivMj1vdoZ3KMFE5
-P/Bn0ZH3eNF2nylJq05zaBPLqYMXVrWGw2Rm6wjqGCY4DbIg/9yYju3HoX5ciDay
-8MwudEHYarA2M9mD1kjDn8ENZNSOoHNWZezxB9b20k+h0TyJqLRz4YcCMvaUx6zL
-lSgbQakIOdCymLUsf902ZoqWa1uVzbaEBgvI5tuzEYC8d29ue/MzAhO1P+S1UbPx
-5XlMufUag0dMoMUJ89nOP/dh4i0RRZxXhZSVDVy52idTuJ7+BuM=
-=+5uI
------END PGP SIGNATURE-----
-
---Sig_/UXs5mYAJtEir5IyuCBoLZVW--
