@@ -4,63 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DEBDFF6E87
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 22:09:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A0FDFF6E8B
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 22:09:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C452310E222;
-	Tue, 17 Mar 2026 22:09:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 289AA10E577;
+	Tue, 17 Mar 2026 22:09:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="gQl11/55";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="te4g+eVn";
 	dkim-atps=neutral
-Received: from mail-dy1-f202.google.com (mail-dy1-f202.google.com
- [74.125.82.202])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E180210E222
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 22:09:36 +0000 (UTC)
-Received: by mail-dy1-f202.google.com with SMTP id
- 5a478bee46e88-2c0cd2e4aa6so11149229eec.0
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 15:09:36 -0700 (PDT)
+Received: from mail-dy1-f201.google.com (mail-dy1-f201.google.com
+ [74.125.82.201])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33F4710E577
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 22:09:40 +0000 (UTC)
+Received: by mail-dy1-f201.google.com with SMTP id
+ 5a478bee46e88-2c0cd2e4aa6so11150347eec.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 15:09:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1773785376; x=1774390176;
+ d=google.com; s=20251104; t=1773785379; x=1774390179;
  darn=lists.freedesktop.org; 
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:from:to:cc:subject:date:message-id:reply-to;
- bh=Lq7yxYkymk6UoPo+9FJHSu8+kVpVAWguO7UjWCYWFjQ=;
- b=gQl11/55/bZ2QO8qCh+GXd+c9R5CnxNsbq6jeSAuN4Dd7Sp2xpHxZ/MUXG7QZ9dOum
- K/l3bhIHbtSHg5ZUeZOYLrJ04+GC9aDdQNMzAJeXo1371fGRXc7M0Jnnib7M61HEtHPY
- wJ8k/qRafMwPoRC53sSMjFWDmlfhrQB3Gf7c4oY02HWx/Bk1ermBQfUkgMGZnjMi1gLc
- KN4EzG+e/WB8TjYXsBczfYynS4922/gNsj7OLyGqrRckVVR6at/jy3g1HZF71tDFKPda
- UVgWisYwTHLuTA+chWFZr5u391cVJnLYoJ+nwY844+ewz8BS7CcOf4OwF1L4PgVMbckU
- 3F+A==
+ bh=9+LGfzzHtFhuiKFHVAi1M/hVQayAnDIQqfT0FtjDgc0=;
+ b=te4g+eVnztgOmfEUn0Y1ZFl5AzczLQ4+C7Rmwrpbx5rHwIsVCLSaPIpGVYPdrHDIiB
+ d6tTqAq3s71Z6sbxAWm0sPyiYYtjqGWYAbfmzLoQXGbHtxZoFI5K9L4oIY5TN5rayyPI
+ XOfkU1PZnK9QYb3zuf9O8RpKVMaA5/Mu/llAPgCRmhpp6inZDrp4mSXEpGXJvlgBaqbx
+ PztatdChLI8Ct5dpFPwVP4iVRyjxOoHi5tNUKxEQ3AMyzIf3gHg80pT75AEPn8wx0CBq
+ IoEugxJISrQh7GbfKljbTnNqTtrzUt3kC1Mow0BeMn/DMbHZSQwKJFKcUGuxNW+GvHLc
+ kczw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773785376; x=1774390176;
+ d=1e100.net; s=20251104; t=1773785379; x=1774390179;
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=Lq7yxYkymk6UoPo+9FJHSu8+kVpVAWguO7UjWCYWFjQ=;
- b=NO1w93+kqbOEaY3oFPKeesy75Yaq4bk7KMV8NtwrIF3+IZShyBRLhGV2GAk3TuFDuM
- 8u4rQ4dfe4NpbmXWAoQeF4f2kGKHogqBj2FVEHhdr9buZdUcn7NwXF127Hw5QiL16jsc
- spYD3uylJCVVva1iI1fL4a5Gpoyl4Wi4YCGaimDMx/sjIQt6U9NSBMwkvr/TgxRE4uYZ
- FsnIqMQUXdityk0gdAxdQn3JfUmpvWVJuq09EwRz6D6cdoJnx7+2i2Y4zWow0Iolw/lc
- zQ7TPQ7tqTaft8qU02XF4t4kNxq//WyENEo/uLvYaUL/uoRqmGYAZnT9HA0lvFV3OaD7
- AqtA==
+ bh=9+LGfzzHtFhuiKFHVAi1M/hVQayAnDIQqfT0FtjDgc0=;
+ b=bxfj4TlMe6iOZdZcl4GLNqwiZmm71PDdc8YJMPllK/DCK7Mmc736m/645S0P+ihS+M
+ 1TUKgwUVzkVAWQlsCeBGeZ842RKfyf2NAECWJU0FQI78HZqmGsGTcTj5aey6a4XD9nIS
+ gSVpHRbz+dW5LCYFTaz1Ys/j9zpiIKWWUabOofEQDbjU82IlxocaMfhCud/7WK44wSE0
+ NY6/2z/t4DJ9i57kQ9mtXkeY72dflj8Jn8nKIIPIPVLmsOOuBlcMNlZpqujVWdtg2FEb
+ LjTs+qNTAqPCem++buMUaI+zOBs7Bk7/Lo8WS8KNXpRmLk3iRep12BR1aymM4ecqYsfa
+ MCTg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXUOnasRziP73lBMFsLHm3k9MbsvH2alXtCzcu6uLc2W/V+veybjsncXyOuGXJ69BjUV8ZFslrG7w==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyytPgcHwO/FHEuJWT+RLUyh2CNpY1a0iBAl/xOCUpM5HDF595w
- T5XzeUS3Gv+U5z6Rzbr7rAoLINPOPCvoaVZWZh6VEIHUFA5DEmlya3bs6Yky7lJap987sWPO01E
- 5jTUHHAk51D/oYg==
-X-Received: from dybso14.prod.google.com
- ([2002:a05:7301:690e:b0:2c0:b988:33bc])
+ AJvYcCX3Hr6gBvCsQkmo3JgCMipObUiOUwlrLPOdn7PXmUxqBFrfLWgiycrbT/zcYRkG+oEwNk/79K0Vjg==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzJ96MRfBV+sVkDBHajpfwQ7vxaA4xEazS7YGGhiiBEc255TJ/I
+ DTQOmWlXdTgeOU6hS7uYli29F47corZPeHQr5MitxDzKW8jaQQgpXm0w14IyCOqEqlqWnKgsbqV
+ q/wzNq06kUPyR4Q==
+X-Received: from dybuh11.prod.google.com
+ ([2002:a05:7301:750b:b0:2be:82ee:95dc])
  (user=jdsultan job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:7300:80c8:b0:2b8:6a22:6d52 with SMTP id
- 5a478bee46e88-2c0e5147e25mr564411eec.33.1773785375972; 
- Tue, 17 Mar 2026 15:09:35 -0700 (PDT)
-Date: Tue, 17 Mar 2026 15:09:02 -0700
+ 2002:a05:693c:3743:b0:2c0:dfb2:b50d with SMTP id
+ 5a478bee46e88-2c0e50ea96emr621094eec.25.1773785379305; 
+ Tue, 17 Mar 2026 15:09:39 -0700 (PDT)
+Date: Tue, 17 Mar 2026 15:09:03 -0700
 In-Reply-To: <20260317220908.130968-1-jdsultan@google.com>
 Mime-Version: 1.0
 References: <20260317220908.130968-1-jdsultan@google.com>
 X-Mailer: git-send-email 2.53.0.851.ga537e3e6e9-goog
-Message-ID: <20260317220908.130968-2-jdsultan@google.com>
-Subject: [PATCH v4 1/2] drm/xe/display: Fix reading the framebuffer from
- stolen memory
+Message-ID: <20260317220908.130968-3-jdsultan@google.com>
+Subject: [PATCH v4 2/2] drm/i915/display: Sync state to BIOS for seamless
+ handoff
 From: Juasheem Sultan <jdsultan@google.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
@@ -83,56 +83,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Currently, we attempt to pin stolen memory using the ggtt address. This
-doesn't appear to actually read the framebuffer that was setup by the
-bios. Instead, we have to use the underlying physical address offset
-within stolen memory.
+Align DP timings and C10 PLL state with BIOS values if within a 0.5%
+clock threshold. This prevents minor mismatches from triggering a full
+modeset during the first atomic commit, ensuring a flicker-free handoff.
 
 Signed-off-by: Juasheem Sultan <jdsultan@google.com>
 ---
- drivers/gpu/drm/xe/display/xe_initial_plane.c | 22 ++++++++++++++++++-
- 1 file changed, 21 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 67 ++++++++++++++++++++
+ 1 file changed, 67 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-index 4cfeafcc158d..d818993d9b8a 100644
---- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
-+++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-@@ -19,6 +19,7 @@
- #include "intel_fb.h"
- #include "intel_fb_pin.h"
- #include "xe_bo.h"
-+#include "xe_ttm_stolen_mgr.h"
- #include "xe_vram_types.h"
- #include "xe_wa.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index c4246481fc2f..22e5e931f134 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -6397,6 +6397,71 @@ static int intel_atomic_check_config_and_link(struct intel_atomic_state *state)
  
-@@ -87,7 +88,26 @@ initial_plane_bo(struct xe_device *xe,
- 
- 		if (!stolen)
- 			return NULL;
--		phys_base = base;
+ 	return ret;
+ }
 +
-+		/* Read PTE to find physical address backing the GGTT address */
-+		u64 pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
-+		u64 phys_addr = pte & ~(page_size - 1);
++// Helper function to sanitize pll state
++static void intel_sanitize_pll_state(struct intel_crtc_state *old_crtc_state,
++		struct intel_crtc_state *new_crtc_state)
++{
++	int j;
 +
-+		u64 stolen_base = xe_ttm_stolen_gpu_offset(xe);
++	for (j = 4; j < 9; j++) {
++		if (new_crtc_state->dpll_hw_state.cx0pll.c10.pll[j] !=
++				old_crtc_state->dpll_hw_state.cx0pll.c10.pll[j]) {
++			new_crtc_state->dpll_hw_state.cx0pll.c10.pll[j] =
++				old_crtc_state->dpll_hw_state.cx0pll.c10.pll[j];
++		}
++	}
++}
 +
-+		drm_dbg_kms(&xe->drm,
-+				"Stolen Framebuffer base=%x pte=%llx phys_addr=%llx stolen_base=%llx\n",
-+				base, pte, phys_addr, stolen_base);
++/*
++ * intel_dp_sanitize_seamless_boot - Snap driver state to BIOS state for seamless handoff.
++ * @state: the atomic state to sanitize
++ *
++ * This function compares the driver's calculated new_state with the inherited BIOS state
++ * (old_state). If they are within a small threshold (e.g., 0.5% for clock), it "snaps"
++ * the new_state to match the BIOS state exactly. This prevents minor state mismatches
++ * that would otherwise force a full modeset (and a screen flicker) during the initial
++ * kernel handoff.
++ */
++static void intel_dp_sanitize_seamless_boot(struct intel_atomic_state *state)
++{
++	struct intel_display *display = to_intel_display(state);
++	struct intel_crtc_state *new_crtc_state, *old_crtc_state;
++	struct intel_crtc *crtc;
++	struct intel_encoder *encoder;
++	int i;
 +
-+		/* Make sure that the physical address is in the range of stolen memory */
-+		if (phys_addr >= stolen_base) {
-+			phys_base = phys_addr - stolen_base;
-+		} else {
-+			drm_err(&xe->drm, "Stolen memory outside of stolen range phys_base=%pa\n",
-+					&phys_base);
-+			return NULL;
++	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
++		/*
++		 * We must check old_crtc_state->inherited because new_crtc_state->inherited
++		 * is cleared at the start of intel_atomic_check for userspace commits.
++		 */
++		if (!old_crtc_state->inherited || !new_crtc_state->hw.active)
++			continue;
++
++		if (intel_crtc_has_dp_encoder(new_crtc_state)) {
++			int old_clock = old_crtc_state->hw.adjusted_mode.crtc_clock;
++			int new_clock = new_crtc_state->hw.adjusted_mode.crtc_clock;
++			int threshold = old_clock / 200; /* 0.5% */
++
++			if (abs(new_clock - old_clock) <= threshold) {
++				new_crtc_state->hw.pipe_mode.crtc_clock = old_clock;
++				new_crtc_state->hw.adjusted_mode.crtc_clock = old_clock;
++				new_crtc_state->pixel_rate = old_crtc_state->pixel_rate;
++				new_crtc_state->dp_m_n = old_crtc_state->dp_m_n;
++			}
 +		}
 +
- 		flags |= XE_BO_FLAG_STOLEN;
++		for_each_intel_encoder_mask(display->drm, encoder,
++				new_crtc_state->uapi.encoder_mask) {
++			if (intel_encoder_is_c10phy(encoder)) {
++				if (!new_crtc_state->dpll_hw_state.cx0pll.ssc_enabled)
++					intel_sanitize_pll_state(old_crtc_state, new_crtc_state);
++			}
++		}
++	}
++}
++
+ /**
+  * intel_atomic_check - validate state object
+  * @dev: drm device
+@@ -6447,6 +6512,8 @@ int intel_atomic_check(struct drm_device *dev,
+ 	if (ret)
+ 		goto fail;
  
- 		if (XE_DEVICE_WA(xe, 22019338487_display))
++	intel_dp_sanitize_seamless_boot(state);
++
+ 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+ 		if (!intel_crtc_needs_modeset(new_crtc_state))
+ 			continue;
 -- 
 2.53.0.851.ga537e3e6e9-goog
 
