@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D40E9F33809
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 08:16:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 927E1F33810
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 08:24:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CBB410E565;
-	Tue, 17 Mar 2026 08:16:20 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A49AA10E56A;
- Tue, 17 Mar 2026 08:16:19 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3308614127515613186=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 549A010E428;
+	Tue, 17 Mar 2026 08:24:10 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="kUag940w";
+	dkim-atps=neutral
+Received: from bali.collaboradmins.com (bali.collaboradmins.com
+ [148.251.105.195])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A95B910E428;
+ Tue, 17 Mar 2026 08:24:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1773735848;
+ bh=gT7ZoGuzWlKneb2BYf5Iyt6DDVfn2FhJc0ZIANIIOO0=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=kUag940wB0JxjUlZuKvzUIjfCLfakoJAbc5OxyD+rmV4W0fpXuZA7VHWZYmRFFHv8
+ 98SlvE9Oe24nJCzdvzPES7TdTjE3fU22ZfzUrHkqqHlLXlZph5P+KgUJwRNfqH65Ad
+ 2bd2IDtVZLZJfZQUgHZtnFJ/Vd+SuZjmb6fZ2uWoQxyHAjqmcxfaLddgm/SWs0L2g9
+ 300WnHAliWndxGAgunhKcD10KQthuqQYSbKC9QS/9nqBAYpLu3npJ1oZ25ehWgVGhG
+ uix03hytZKhADeF7/Ag4UdF9NlBYykGsWqReZnqhOWs1jQkQOHXnsrMxyoC6Ku6pzP
+ meIqxkB8MrKxw==
+Received: from eldfell (unknown [194.136.85.206])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
+ server-digest SHA256) (No client certificate requested)
+ (Authenticated sender: pq)
+ by bali.collaboradmins.com (Postfix) with ESMTPSA id BE8D617E0CF3;
+ Tue, 17 Mar 2026 09:24:07 +0100 (CET)
+Date: Tue, 17 Mar 2026 10:23:56 +0200
+From: Pekka Paalanen <pekka.paalanen@collabora.com>
+To: Harry Wentland <harry.wentland@amd.com>
+Cc: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, louis.chauvet@bootlin.com, mwen@igalia.com,
+ contact@emersion.fr, alex.hung@amd.com, daniels@collabora.com,
+ uma.shankar@intel.com, maarten.lankhorst@intel.com,
+ pranay.samala@intel.com, swati2.sharma@intel.com
+Subject: Re: [PATCH 01/10] drm/colorop: Add DRM_COLOROP_CSC_FF
+Message-ID: <20260317102356.76dadf78@eldfell>
+In-Reply-To: <cd9e1aa2-85b8-4add-a3b9-ba7acbd29f60@amd.com>
+References: <20260306165307.3233194-1-chaitanya.kumar.borah@intel.com>
+ <20260306165307.3233194-2-chaitanya.kumar.borah@intel.com>
+ <20260310163229.521186ab@eldfell>
+ <53c3f610-942c-46bf-be5f-a4c51625c358@intel.com>
+ <20260316105724.47d24409@eldfell>
+ <eaaea3f6-76ce-4b20-b7b1-b483594070cd@intel.com>
+ <20260316135349.06476e85@eldfell>
+ <0969dd82-0212-4fec-b693-e53c6ddd692c@amd.com>
+ <20260316180338.0b2f6923@eldfell>
+ <cd9e1aa2-85b8-4add-a3b9-ba7acbd29f60@amd.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_Do_not_create_drm_device_f?=
- =?utf-8?q?or_PF_only_admin_mode_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 17 Mar 2026 08:16:19 -0000
-Message-ID: <177373537965.365316.14972018107684350517@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260316064100.2542412-3-satyanarayana.k.v.p@intel.com>
-In-Reply-To: <20260316064100.2542412-3-satyanarayana.k.v.p@intel.com>
+Content-Type: multipart/signed; boundary="Sig_/TitsDUGOV_T1_aeLDWDGJbe";
+ protocol="application/pgp-signature"; micalg=pgp-sha256
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,61 +70,144 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============3308614127515613186==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+--Sig_/TitsDUGOV_T1_aeLDWDGJbe
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-== Series Details ==
+On Mon, 16 Mar 2026 13:59:57 -0400
+Harry Wentland <harry.wentland@amd.com> wrote:
 
-Series: Do not create drm device for PF only admin mode (rev5)
-URL   : https://patchwork.freedesktop.org/series/160349/
-State : failure
+> On 2026-03-16 12:03, Pekka Paalanen wrote:
+> > On Mon, 16 Mar 2026 10:36:44 -0400
+> > Harry Wentland <harry.wentland@amd.com> wrote:
+> >  =20
+> >> On 2026-03-16 07:53, Pekka Paalanen wrote: =20
+> >>> On Mon, 16 Mar 2026 16:04:32 +0530
+> >>> "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com> wrote:
+> >>>    =20
+> >>>> On 3/16/2026 2:27 PM, Pekka Paalanen wrote:   =20
 
-== Summary ==
+...
 
-ERROR: The runconfig 'xe-4725-f0700a5f37f7cb00aced6fb9a16f86fdf2f493aa_FULL' does not exist in the database
+> >>>>> Unfortunately, BT.601, BT.709 and BT.2020 define two separate thing=
+s each:
+> >>>>> - the YCbCr<->RGB conversion, and
+> >>>>> - the colorspace primaries (and white point, but that is the same f=
+or
+> >>>>>    them all).
+> >>>>>   =20
+> >>
+> >> Would it make sense to treat these as two separate things in terms
+> >> of colorops? =20
+> >=20
+> > Hi Harry,
+> >=20
+> > no, if your hardware not care. There are no semantics for the numbers
+> > in the UAPI, it's just whatever numbers, and mathematical operations on
+> > them.
+> >=20
+> > I suspect that your hardware does care, though, and actually has
+> > separate hardware elements for the YCbCr conversion and the colorspace
+> > conversion matrix. After all, one has to be able to put a LUT or a
+> > curve between the two to make sense.
+> >=20
+> > IOW, two different colorops, yes. But different colorop types? Maybe
+> > that depends on whether they would have the same colorop properties or
+> > not.
+> >  =20
+>=20
+> If I understand you correctly you're saying we can have a single
+> colorop type to represent either type. A client of the API needs
+> to understand what it's doing with the colorop and can use it
+> as either a YCbCr conversion matrix in the case of YCbCr-to-RGB
+> conversion, or an NPM for conversion of linear, normalized data
+> from one set of primaries to another.
+>=20
+> Is that understanding correct?
 
-== Logs ==
+Yes. It's mostly a question of taste, whether we want matrices
+conventionally used in different contexts in the same enum. I think
+it's fine.
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160349v5/index.html
+> >> I have done some work on a CSC colorop and intend to send out the
+> >> patches in the next couple of days.
+> >>
+> >> https://gitlab.freedesktop.org/hwentland/linux/-/commits/csc-colorop
+> >>
+> >> It follows the drm_plane's COLOR_RANGE and COLOR_ENCODING semantic
+> >> and is only intended for YCbCr-to-RGB conversion, like the original
+> >> properties on the plane.
+> >>
+> >> For the colorspace conversion within RGB (e.g., BT709 to BT2020)
+> >> it might make sense then to have its own colorop if HW works on
+> >> pre-defined transformations, or use the CTM 3x3 or 3x4 matrix ops
+> >> if HW provides a flexible matrix.
+> >>
+> >> We might need to think about naming, since colorspace conversion (CSC)
+> >> right now seems to refer to both YCbCr conversion and primaries
+> >> conversion. =20
+> >=20
+> > Indeed.
+> >=20
+> > YCbCr conversion is usually a matrix operation. H.273 calls it
+> > MatrixCoefficients, but it also lists cases where you need the EOTF in
+> > the mix. I could go with "YCbCr coefficients". The pure matrix forms
+> > are used on electrical pixel values.
+> >=20
+> > The color space conversion matrices that are based on (Normalized)
+> > Primary Matrices (NPM) must be used on optical pixel values. NPM is the
+> > matrix that converts optical RGB values to CIE 1931 XYZ. For an
+> > RGB-to-RGB conversion you need one NPM and another inverse NPM chained.
+> >  =20
+>=20
+> This could be expressed in a single matrix, right?
 
---===============3308614127515613186==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Naturally. y =3D N * (M * x) =3D (N * M) * x, where N, M are matrices and
+x, y are column vectors.
+
+> I intend to send out my patches as an RFC either way, but I think I
+> could just as well work with the CSC_FF colorop. I'll have a look at
+> basing my work on this.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+Thanks,
+pq
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Do not create drm device for PF only admin mode (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/160349/">https://patchwork.freedesktop.org/series/160349/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+> > I guess using CSC for the latter is not obvious enough because it has
+> > been used for the former (color model conversion) as well?
+> >=20
+> > How about "color-primary conversion"?
+> >=20
+> > I stole it from
+> > https://onlinelibrary.wiley.com/doi/pdf/10.1002/9780470994375.app8
+> >=20
+> >=20
+> > Thanks,
+> > pq
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160349v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-160349v5/index.html</a></td></tr>
+--Sig_/TitsDUGOV_T1_aeLDWDGJbe
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
-</table>
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmm5D5wACgkQI1/ltBGq
+qqcuPQ/8DYGoaFXGnbHDP5IYvChGSMwmWlF4ogMhGM/zuzrqL0Dr0pTpYhtlv6O6
+jQi8yCxmTBaCjhOeu+cZuP0JuaRJyfJtpyQvLN7YotPemQXzmHPvL3oEZMdPMPvP
+Uv41SUcr1JVLk+7J9jao+lhi9YzUI4WYKFLB73+RB6jpCdB+NUNL/wuRi2lEtFa/
+ZgvWCdEzU2ghTLVv5bj25/A4vTR/LVVhLBeGtfVKziVDlznfrmh1v3Wvxv3Gbw0x
+GsNz/Eu2Uv6DY5u610v6Nse2PiSksVaDALocdVvX4PBcI8wKs+kdEYb+EMigGrn3
+LcA2ACOQw2gsb1mbfo39yTv5g4kRzMPCqjAh3uHGdKShEDMar5LxCLK37KvvwDLx
+tvAEoDxonKZe+q8saGwpYs45Wg2v5tBGlU5tWM8J5FjnjVUvW9/hk4yjVrLB3Eqi
+aVVOHsrvNIyfqi20zeMOApPHCgSwM3Yt2PFZfmTL+hUbMrVwJB3LRcV56uOIigZS
+fl6tAvMab5+/yutxxWenMqJ/h24lqgFWpied6aIK0qEtx/Bhdy4WEU3lgouZL/OR
+Rjh1s8gvDfvu3Pw7Hc3ihVkYSOvX4hnbtTepiIsAbyhO0fQ1vREjONHBNiMimC3O
+ydTrB2Ok3B4k/b6TcLpGahkKrcP8kRShNdRhP4sqvOAfiKQKaMY=
+=LNQa
+-----END PGP SIGNATURE-----
 
-    <p>ERROR: The runconfig 'xe-4725-f0700a5f37f7cb00aced6fb9a16f86fdf2f493aa_FULL' does not exist in the database</p>
-
-</body>
-</html>
-
---===============3308614127515613186==--
+--Sig_/TitsDUGOV_T1_aeLDWDGJbe--
