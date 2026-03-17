@@ -4,61 +4,174 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 927E1F33810
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 08:24:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE10FF3380F
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 08:27:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 549A010E428;
-	Tue, 17 Mar 2026 08:24:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75ACE10E59D;
+	Tue, 17 Mar 2026 08:27:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="kUag940w";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mFoAe3sD";
 	dkim-atps=neutral
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A95B910E428;
- Tue, 17 Mar 2026 08:24:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1773735848;
- bh=gT7ZoGuzWlKneb2BYf5Iyt6DDVfn2FhJc0ZIANIIOO0=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=kUag940wB0JxjUlZuKvzUIjfCLfakoJAbc5OxyD+rmV4W0fpXuZA7VHWZYmRFFHv8
- 98SlvE9Oe24nJCzdvzPES7TdTjE3fU22ZfzUrHkqqHlLXlZph5P+KgUJwRNfqH65Ad
- 2bd2IDtVZLZJfZQUgHZtnFJ/Vd+SuZjmb6fZ2uWoQxyHAjqmcxfaLddgm/SWs0L2g9
- 300WnHAliWndxGAgunhKcD10KQthuqQYSbKC9QS/9nqBAYpLu3npJ1oZ25ehWgVGhG
- uix03hytZKhADeF7/Ag4UdF9NlBYykGsWqReZnqhOWs1jQkQOHXnsrMxyoC6Ku6pzP
- meIqxkB8MrKxw==
-Received: from eldfell (unknown [194.136.85.206])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256) (No client certificate requested)
- (Authenticated sender: pq)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id BE8D617E0CF3;
- Tue, 17 Mar 2026 09:24:07 +0100 (CET)
-Date: Tue, 17 Mar 2026 10:23:56 +0200
-From: Pekka Paalanen <pekka.paalanen@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>
-Cc: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, louis.chauvet@bootlin.com, mwen@igalia.com,
- contact@emersion.fr, alex.hung@amd.com, daniels@collabora.com,
- uma.shankar@intel.com, maarten.lankhorst@intel.com,
- pranay.samala@intel.com, swati2.sharma@intel.com
-Subject: Re: [PATCH 01/10] drm/colorop: Add DRM_COLOROP_CSC_FF
-Message-ID: <20260317102356.76dadf78@eldfell>
-In-Reply-To: <cd9e1aa2-85b8-4add-a3b9-ba7acbd29f60@amd.com>
-References: <20260306165307.3233194-1-chaitanya.kumar.borah@intel.com>
- <20260306165307.3233194-2-chaitanya.kumar.borah@intel.com>
- <20260310163229.521186ab@eldfell>
- <53c3f610-942c-46bf-be5f-a4c51625c358@intel.com>
- <20260316105724.47d24409@eldfell>
- <eaaea3f6-76ce-4b20-b7b1-b483594070cd@intel.com>
- <20260316135349.06476e85@eldfell>
- <0969dd82-0212-4fec-b693-e53c6ddd692c@amd.com>
- <20260316180338.0b2f6923@eldfell>
- <cd9e1aa2-85b8-4add-a3b9-ba7acbd29f60@amd.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5341010E59C;
+ Tue, 17 Mar 2026 08:27:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773736029; x=1805272029;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=ze1f1cZr0xbSuJmGT18h4vXqXGv6MW030KiKhXy77es=;
+ b=mFoAe3sDMf/W5yL9+IIIuaeVvlUgeBfFFqutdN18rE6PgafHw6tnxew2
+ 6ZbM7d+qHD6Q+cbvElM8B9ytUwHKFB023vs9pyIa+giaVPjBewq51ZHsA
+ 0c1q+j7hEmK3IXIAuYjuU5NeygGpp/asZxOU4rMAQSiC+7uh87gnfpudw
+ 5keBrU/bmuNyDWl8tfFN7o4Qed99mpScx9dWNlIWA7zoFKhPaQf36x2yR
+ RJaSrCsgmVL4+ook1n4XbztnMiDkT5Dl2V5FAjN2SJl1RsOS7ZXOLBr6G
+ yZJAVcR1ecGRpZI6FzxmFAB4yz/dPnV0qCbwoDPVpxqCygXqnrRIIumWh Q==;
+X-CSE-ConnectionGUID: 8PT7DKtLS8CGJWxljOFbig==
+X-CSE-MsgGUID: NMYzstocR6qG1j+3d80/iQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="74840730"
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="74840730"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2026 01:27:08 -0700
+X-CSE-ConnectionGUID: H+ltW6dXTh6KrxzdiPz6wQ==
+X-CSE-MsgGUID: XAMnuFW8SSaPSUZcj5PGZA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="260100356"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2026 01:27:07 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 17 Mar 2026 01:27:06 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Tue, 17 Mar 2026 01:27:06 -0700
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.10) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 17 Mar 2026 01:27:06 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=I+ieDr5stnJvwUf8P6DjE/RoX9TFC/5SxkrqxZRjYMe7mlkzSoTQAoJff7n3y2dTvZGn/O0XMq4iEpZQFLOk287GTKzO2gwFpOGMl5MfjGUTk1+T0v8sputRAZ9gDE2sHTMy9zEyTd+i2+sDxTpchFQn+AO2ksSgGSfRPv5evschgefyhHiepc2JtrGgsKvroAP0g5ccipFJrstVNIInsdof+elAIgHwbvPWCbiqyOZrFQyYAGyYwdVrejYp2H6quKxYDiBVdUyiqz7QipPdTMyPD6BK8pcHCfebyKFWorj63ib62BxL/wMeyo0JIOGq+lydYcd6GS3JH73s1PSGLA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aJowOIKO7uHGEdJ4juMTBV3bq7l7uMzwP6/zEOoORNo=;
+ b=QFxGJLw9SctdCzdAufjTzuz9+pbqyxSFuw0gyXbCNcrXwynODR/VmtRg953qlyJYdpEoQ141CT0JCSLe8rcUG2HskOafVyhim9i3mzZlrPrRUx/EFRhTKti1NVLBvXpSMJyMRwqk8d4aGjKO3yvIDujWlyGhGTjGNshkX+bLW/+Gnk5SeVxDSwY8H+fBUsPmT6z736lxp5W5W3JxhWx5SiC/zzTirdO5BdesL9NsA9SsUhmrDYPFgnwLSwnSILjfAYIHy8vdXWxyv56d7GgYA+1NWs/CZzKwbuZcjzMh+Imm2T63omVqDpDgM193bcl3/KVoB3s+KyoyewbupBiCLw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
+ by PH0PR11MB7470.namprd11.prod.outlook.com (2603:10b6:510:288::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.12; Tue, 17 Mar
+ 2026 08:26:58 +0000
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5%7]) with mapi id 15.20.9723.014; Tue, 17 Mar 2026
+ 08:26:58 +0000
+Date: Tue, 17 Mar 2026 01:26:52 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+CC: Daniel Almeida <daniel.almeida@collabora.com>,
+ <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>, "Boris
+ Brezillon" <boris.brezillon@collabora.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@igalia.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas
+ =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, Christian
+ =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Danilo Krummrich
+ <dakr@kernel.org>, David Airlie <airlied@gmail.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Philipp Stanner <phasta@kernel.org>, Simona Vetter <simona@ffwll.ch>, "Sumit
+ Semwal" <sumit.semwal@linaro.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ <linux-kernel@vger.kernel.org>, Sami Tolvanen <samitolvanen@google.com>,
+ Jeffrey Vander Stoep <jeffv@google.com>, Alice Ryhl <aliceryhl@google.com>,
+ Daniel Stone <daniels@collabora.com>, Alexandre Courbot
+ <acourbot@nvidia.com>, John Hubbard <jhubbard@nvidia.com>,
+ <shashanks@nvidia.com>, <jajones@nvidia.com>, Eliot Courtney
+ <ecourtney@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+ rust-for-linux <rust-for-linux@vger.kernel.org>
+Subject: Re: [RFC PATCH 02/12] drm/dep: Add DRM dependency queue layer
+Message-ID: <abkQTEcRujrFLsdn@lstrano-desk.jf.intel.com>
+References: <20260316043255.226352-1-matthew.brost@intel.com>
+ <20260316043255.226352-3-matthew.brost@intel.com>
+ <7A8108C7-7CF0-4EA4-95ED-8003502DC35A@collabora.com>
+ <abjqfXERS6Xk4FAQ@lstrano-desk.jf.intel.com>
+ <CANiq72=Y2g_5=iEzU1L07pMPYD+wVapJXpp9rvYXEzCKEs59Zw@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CANiq72=Y2g_5=iEzU1L07pMPYD+wVapJXpp9rvYXEzCKEs59Zw@mail.gmail.com>
+X-ClientProxiedBy: SJ0PR03CA0009.namprd03.prod.outlook.com
+ (2603:10b6:a03:33a::14) To BL3PR11MB6508.namprd11.prod.outlook.com
+ (2603:10b6:208:38f::5)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/TitsDUGOV_T1_aeLDWDGJbe";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|PH0PR11MB7470:EE_
+X-MS-Office365-Filtering-Correlation-Id: 01a2e2e3-ab5c-4dd3-5f40-08de83fef493
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|7416014|366016|1800799024|56012099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: 2sDNFO65X4paoAIrq+CYS/edjCLQvmIIRcbRb48VeR0YBYg+49YIdRTTzPlzyWNrs6GhPYQ+4lofDmloQpuE12YgKvbtfjjinZoVrlRIMpWdUdslhLZ6vtbaDlomUB5leUjw+rQQv53bHYcIv9QZ4NTyYsc9eDTMDt2DbuhgfSKRHKy8LDkI12Tp7CtXcqrytkpaSvrFHWgTq4Cj53h4U2LQkpl4mx8zKd54QjRvyojD2c/2LKDIdRlz009YhvTVUJm6yiB21Kv5n0o2VL7DiVZ4L/Be4jJj0BJTabN56YiPa3G4uvGqFD/eMlahoDG3Fj70VK+gPj20ktcuAPf27N9es0Yk+lRnY/KqqwEMH9PW0GWQ/h9XEEtaDYIz/gh81fl44bg6wIu7tBIw1TziBI4DoLFn0g8R5FoVItmYaEs902gPdw63AleAaCq6E7ZL6ZASHBhYJnEmfOlPQ2LsbeSYYN23cwv+JWhvbwE9W/7IAjf3BAdf1Jamhj63FEYkxCwjSqLOLFsL7ChqpvxEFphM7IlhT/9HrXprqSGTxm6hkyLVWyw+mUMuAYTcslstVsNbs6e28kBpd1H0CLCnX2OqWDotajx+zzbQLLG8u0ybf+xV5HPWpmaSM3BfEoenguRD70EHwsPXf2bwaEJtHZPR8HKNf15EnwGiU8Lflcc7SIlfwXUMblPnSxZENr7+50Mp0RTklG9QhwuPqJAyznKaQzbd7YD6ykftn2uHmG8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(7416014)(366016)(1800799024)(56012099003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RkNXV3AxNmpJd0psVnBPZ3RVa2FMZldReGp1bVh2eXh5R1JVZTRKNSs3NDla?=
+ =?utf-8?B?dnFnNWh0VlF3cllqWndPK0tXSUtqUUVNU2JxM3htMW5FVkVsckdrOXlNU2s4?=
+ =?utf-8?B?ZDY1U0QwdDNFdFZ4akpBOTVWbFJjMW1uYnAza3VvTGJBUm8xMlFKR2ZPZEla?=
+ =?utf-8?B?OHAzVGpMTG5xNldGZWZ0QmI5NGdlVTQ4N2lSb0ZiY2d3Q3pBaVMwdXlvZGhz?=
+ =?utf-8?B?QUs4VHFKd2NySUs0dERnTlE3STBEV1RTNWN2enVvZHA5bWhEOXE2dE5xODNr?=
+ =?utf-8?B?TjBleGlFTEdTSTU2c2U5aDBXekRhZi9NcXBYaFVIeUxBSU1sekZ1Z1JMYjQ4?=
+ =?utf-8?B?SXhzeGxKMDNhUlpaakFYMGlmcEdWa1hzSHFKWHA0NVozWGlCSTc0ZWl2bDBy?=
+ =?utf-8?B?MXpsNWc5TmdPQ2NoZXJIYUFtOWo3WkRlaEc5S1hxM1RXL1Rwemk4YXFXWklT?=
+ =?utf-8?B?VFV5ODB5eCtCZUhKOUVFY1g0UUpJb0N5cTFaVUZzdXRod1Frc3NiSEJtc3lo?=
+ =?utf-8?B?bzJ3OXJEUXgwclJ6UmViQUFPYUFpeDdXemlzQytKMEVyWGp6SmNkSXhkSUhO?=
+ =?utf-8?B?ODU1bzNGVzJ2azFQZFc3NUhzWi9qaDVsVloya3Z6QjRlWmRISHpuMTBvZDVy?=
+ =?utf-8?B?YitpcXV1SVZvMm1sOExSZGNYT3lxVnFwL0ptZk8wSnRBdFZwWW9mVzMreTlx?=
+ =?utf-8?B?ZnFjYXNGM3gyeXlDK2xKYzVQdm5MbkNqUmMwRVNmUUVGVnpJYkVrZjUzRVVm?=
+ =?utf-8?B?dFpmZ1QzcjJJaWNGVVlIZnhuU3B2aFlLMnVQRlZpNmZ5UFNabGJscjlLMDhX?=
+ =?utf-8?B?V3RQRng3Qy9NbHlOTFJIWlp3Mi9kay84TEhJakF5U3cwTThRVkpBMEk3SlRL?=
+ =?utf-8?B?TnQ4WTllMXZlSTFsVjZyUVBlSEFWUTFIbk9CblNQWHlBcGtiMmdSRkxCbE5Y?=
+ =?utf-8?B?WW1FWjZvbHI5MUIyMENHOUM5VU5NNWdudldkM1FXTU9CNllESVNidVYxbXV4?=
+ =?utf-8?B?R1pVc2tSaGxWSm1Ydk1yK2RVSUtkSWc2dFRLMDNIb3ZSeDNFMGJRdWJIRjVY?=
+ =?utf-8?B?WFNVMjVoL2djTTNRVmlVdnRCaDlBY3FZQmt1dG5CdnlTZ1daNVlJU25QbkVP?=
+ =?utf-8?B?bHAzdENQQzVteklFM1U3TEFvNW9JUktaM0NtSzl1NGI1Q1hITXZ0ZnVNRnpi?=
+ =?utf-8?B?bVNOS1JOb1pJSVRuemFORUdsVndPZXNSb2YyVWh4ZVJPaFVtUVh0LzJKVVFH?=
+ =?utf-8?B?WS9xY2xMZnZrSUNsZG52cTV4R244aWxSTUhEREgwN0pLYjZxaDN5QWoveXZC?=
+ =?utf-8?B?N2YrdmlBTHFNSExsMVRxb2hDRyszTWhWR3RidDZaK2FzVXZkTVNheFF0L3pE?=
+ =?utf-8?B?ajhpd0RBbjNTeUF0a28yMnZoT2wwM3IrL1l2QU5CbTNadFREVUF6eHZCdllu?=
+ =?utf-8?B?WElPRCtmM1luRDNUeTZpOEpOR1p5UjdvYUtXaW5oTmJSMk5NcHl6a1BZNmJ1?=
+ =?utf-8?B?VisraFFCdUdvMkhVZitjeXZOcjZ3MStReFc2eFh3M2JaSEttZmdVYzV5S2lG?=
+ =?utf-8?B?ekVLMmRxTTdTM01abUQ0dWJwVlYxUEQ0MmU5Zmd5MDBLUkhOS2xxU2gzcGEw?=
+ =?utf-8?B?S0N2RkhQcTUyeTdXTGVuNHFDb0lZSmIyWTh3WmNHekQ4SzNSbVRmeEVVMDU1?=
+ =?utf-8?B?UVJ2WEQ3VTNWTmlHc1BjVEdMYlVRYjdHaFp6TXNYSVVPSXVLRk5SMFhmZTBP?=
+ =?utf-8?B?c0RFWVh3TVY4R1lLbFJrRFcxNGEzUktEUVlZeldjdGF4NXptMUNQdUFETkNK?=
+ =?utf-8?B?QzVma1p4N1V2cDhxQjRYajRmc3V1L3NXSXc4T28ySERhUEg2amd3SDdpcFdU?=
+ =?utf-8?B?ZEllb0FNcDNEaWw4S3pYajE3Q0dldEJqUmwxZ053cmhRekM2S3BwZng2WWFC?=
+ =?utf-8?B?T2NQdTdEMDd0OEU2ZWlXTUNNRHlwV2dSMUM0WUR6TmFheUJoNC9hb3lKNDdr?=
+ =?utf-8?B?aVEzKzRKelpSc1Z1ZmU4Zm43QlFsWjJtSlNCYnIwYmY1ZDhUTi8xUTdmb0Mw?=
+ =?utf-8?B?VWFDUDZwQk5rSFFjVzBZVmE1OFdVcmh6SFJKTkZ5M1l4UCtDK0YySUUrWjRx?=
+ =?utf-8?B?RjFNTXZNa3VpQWErc1BzUUFnZFdLNHk4WWx4eUxocldYUzFWQkFFTjFGSitQ?=
+ =?utf-8?B?OTYvb1FrSDduVHVjQ1d3WFVCOW94WUtxWGpxajlGeXpzMDFvUFhFQkhWbDVa?=
+ =?utf-8?B?TUczNmVMWG9xZW9tY1oxeHdoUFdDMEsxU0dJcVJTOFM1NS9jZCsrS0x0T3E1?=
+ =?utf-8?B?MkxDRUxWanpLSFhJVmN4SVEySWxSdXFGclNtamJZbG9RZ0VVcXZhdz09?=
+X-Exchange-RoutingPolicyChecked: ET2Pp7LdXzptm8EX2Gdst9iuj0rIn+xO/D+IfCxOdmlxk5UEdCUbsmQL/AH5I/WGQAODqkQw+bffynFIsR4tLJeorVbSFrT7kIhkrWnmhmdX6scNooVpg027XLeBvtllFtezuebceMbIjZnmB8dLM5Onp23Kb2KH4LCKx46K28x6yQADIqeXQPfA60v93ccLrApVxZWmtuLrCswVxf0BeWIDciUzfLOXw4MBRCXFpTYljUItkw7hd1ROaScpNbbJemZSrObSPCgmU8gbIeRzZrsRjY4lmU0zbQKFutyHnQQwl7JaYx4o1IE2GHmKpQaoMrsuKYT1wJa+VtmnY89+4Q==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 01a2e2e3-ab5c-4dd3-5f40-08de83fef493
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 08:26:58.3165 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jBCJAQXqT8uEHaJKWdvcjdO/TYLUL1k2ydiY1WAsoMAFVkSch6HhAMhnFlZ82cI6BgfH+okMDYe3niq4W+70HQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7470
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,141 +186,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---Sig_/TitsDUGOV_T1_aeLDWDGJbe
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On Tue, Mar 17, 2026 at 08:17:27AM +0100, Miguel Ojeda wrote:
+> On Tue, Mar 17, 2026 at 6:46 AM Matthew Brost <matthew.brost@intel.com> wrote:
+> >
+> > You can do RAII in C - see cleanup.h. Clear object lifetimes and
+> > ownership are what is important. Disciplined coding is the only to do
+> > this regardless of language. RAII doesn't help with help with bad object
+> > models / ownership / lifetime models either.
+> 
 
-On Mon, 16 Mar 2026 13:59:57 -0400
-Harry Wentland <harry.wentland@amd.com> wrote:
+I hate cut off in thteads.
 
-> On 2026-03-16 12:03, Pekka Paalanen wrote:
-> > On Mon, 16 Mar 2026 10:36:44 -0400
-> > Harry Wentland <harry.wentland@amd.com> wrote:
-> >  =20
-> >> On 2026-03-16 07:53, Pekka Paalanen wrote: =20
-> >>> On Mon, 16 Mar 2026 16:04:32 +0530
-> >>> "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com> wrote:
-> >>>    =20
-> >>>> On 3/16/2026 2:27 PM, Pekka Paalanen wrote:   =20
+> "Ownership", "lifetimes" and being "disciplined" *is* what Rust helps
+> with. That is the whole point (even if there are other advantages).
+> 
 
-...
+I get it — you’re a Rust zealot. You can do this in C and enforce the
+rules quite well.
 
-> >>>>> Unfortunately, BT.601, BT.709 and BT.2020 define two separate thing=
-s each:
-> >>>>> - the YCbCr<->RGB conversion, and
-> >>>>> - the colorspace primaries (and white point, but that is the same f=
-or
-> >>>>>    them all).
-> >>>>>   =20
-> >>
-> >> Would it make sense to treat these as two separate things in terms
-> >> of colorops? =20
-> >=20
-> > Hi Harry,
-> >=20
-> > no, if your hardware not care. There are no semantics for the numbers
-> > in the UAPI, it's just whatever numbers, and mathematical operations on
-> > them.
-> >=20
-> > I suspect that your hardware does care, though, and actually has
-> > separate hardware elements for the YCbCr conversion and the colorspace
-> > conversion matrix. After all, one has to be able to put a LUT or a
-> > curve between the two to make sense.
-> >=20
-> > IOW, two different colorops, yes. But different colorop types? Maybe
-> > that depends on whether they would have the same colorop properties or
-> > not.
-> >  =20
->=20
-> If I understand you correctly you're saying we can have a single
-> colorop type to represent either type. A client of the API needs
-> to understand what it's doing with the colorop and can use it
-> as either a YCbCr conversion matrix in the case of YCbCr-to-RGB
-> conversion, or an NPM for conversion of linear, normalized data
-> from one set of primaries to another.
->=20
-> Is that understanding correct?
+RAII cannot describe ownership transfers of refs, nor can it express who
+owns what in multi-threaded components, as far as I know. Ref-tracking
+and ownership need to be explicit.
 
-Yes. It's mostly a question of taste, whether we want matrices
-conventionally used in different contexts in the same enum. I think
-it's fine.
+I’m not going to reply to Rust vs C comments in this thread. If you want
+to talk about ownership, lifetimes, dma-fence enforcement, and teardown
+guarantees, sure.
 
-> >> I have done some work on a CSC colorop and intend to send out the
-> >> patches in the next couple of days.
-> >>
-> >> https://gitlab.freedesktop.org/hwentland/linux/-/commits/csc-colorop
-> >>
-> >> It follows the drm_plane's COLOR_RANGE and COLOR_ENCODING semantic
-> >> and is only intended for YCbCr-to-RGB conversion, like the original
-> >> properties on the plane.
-> >>
-> >> For the colorspace conversion within RGB (e.g., BT709 to BT2020)
-> >> it might make sense then to have its own colorop if HW works on
-> >> pre-defined transformations, or use the CTM 3x3 or 3x4 matrix ops
-> >> if HW provides a flexible matrix.
-> >>
-> >> We might need to think about naming, since colorspace conversion (CSC)
-> >> right now seems to refer to both YCbCr conversion and primaries
-> >> conversion. =20
-> >=20
-> > Indeed.
-> >=20
-> > YCbCr conversion is usually a matrix operation. H.273 calls it
-> > MatrixCoefficients, but it also lists cases where you need the EOTF in
-> > the mix. I could go with "YCbCr coefficients". The pure matrix forms
-> > are used on electrical pixel values.
-> >=20
-> > The color space conversion matrices that are based on (Normalized)
-> > Primary Matrices (NPM) must be used on optical pixel values. NPM is the
-> > matrix that converts optical RGB values to CIE 1931 XYZ. For an
-> > RGB-to-RGB conversion you need one NPM and another inverse NPM chained.
-> >  =20
->=20
-> This could be expressed in a single matrix, right?
+If you want to build on top of a component that’s been tested on a
+production driver, great — please join in. If you want to figure out all
+the pitfalls yourself, well… have fun.
 
-Naturally. y =3D N * (M * x) =3D (N * M) * x, where N, M are matrices and
-x, y are column vectors.
+Matt
 
-> I intend to send out my patches as an RFC either way, but I think I
-> could just as well work with the CSC_FF colorop. I'll have a look at
-> basing my work on this.
-
-
-Thanks,
-pq
-
-
-> > I guess using CSC for the latter is not obvious enough because it has
-> > been used for the former (color model conversion) as well?
-> >=20
-> > How about "color-primary conversion"?
-> >=20
-> > I stole it from
-> > https://onlinelibrary.wiley.com/doi/pdf/10.1002/9780470994375.app8
-> >=20
-> >=20
-> > Thanks,
-> > pq
-
---Sig_/TitsDUGOV_T1_aeLDWDGJbe
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmm5D5wACgkQI1/ltBGq
-qqcuPQ/8DYGoaFXGnbHDP5IYvChGSMwmWlF4ogMhGM/zuzrqL0Dr0pTpYhtlv6O6
-jQi8yCxmTBaCjhOeu+cZuP0JuaRJyfJtpyQvLN7YotPemQXzmHPvL3oEZMdPMPvP
-Uv41SUcr1JVLk+7J9jao+lhi9YzUI4WYKFLB73+RB6jpCdB+NUNL/wuRi2lEtFa/
-ZgvWCdEzU2ghTLVv5bj25/A4vTR/LVVhLBeGtfVKziVDlznfrmh1v3Wvxv3Gbw0x
-GsNz/Eu2Uv6DY5u610v6Nse2PiSksVaDALocdVvX4PBcI8wKs+kdEYb+EMigGrn3
-LcA2ACOQw2gsb1mbfo39yTv5g4kRzMPCqjAh3uHGdKShEDMar5LxCLK37KvvwDLx
-tvAEoDxonKZe+q8saGwpYs45Wg2v5tBGlU5tWM8J5FjnjVUvW9/hk4yjVrLB3Eqi
-aVVOHsrvNIyfqi20zeMOApPHCgSwM3Yt2PFZfmTL+hUbMrVwJB3LRcV56uOIigZS
-fl6tAvMab5+/yutxxWenMqJ/h24lqgFWpied6aIK0qEtx/Bhdy4WEU3lgouZL/OR
-Rjh1s8gvDfvu3Pw7Hc3ihVkYSOvX4hnbtTepiIsAbyhO0fQ1vREjONHBNiMimC3O
-ydTrB2Ok3B4k/b6TcLpGahkKrcP8kRShNdRhP4sqvOAfiKQKaMY=
-=LNQa
------END PGP SIGNATURE-----
-
---Sig_/TitsDUGOV_T1_aeLDWDGJbe--
+> Yes, the cleanup attribute is nice, but even the whole `CLASS` thing
+> is meant to simplify code. Simplifying code does reduce bugs in
+> general, but it doesn't solve anything fundamental. Even if we had C++
+> and full-fledged smart pointers and so on, it doesn't improve
+> meaningfully the situation -- one can still mess things up very easily
+> with them.
+> 
+> And yes, sanitizers and lockdep and runtime solutions that require to
+> trigger paths are amazing, but not anywhere close to enforcing
+> something statically.
+> 
+> The fact that `unsafe` exists doesn't mean "Rust doesn't solve
+> anything". Quite the opposite: the goal is to provide safe
+> abstractions where possible, i.e. we minimize the need for `unsafe`.
+> And for the cases where there is no other way around it, the toolchain
+> will force you to write an explanation for your `unsafe` usage. Then
+> maintainers and reviewers will have to agree with your argument for
+> it.
+> 
+> In particular, it is not something that gets routinely (and
+> implicitly) used every second line like we do in C.
+> 
+> Cheers,
+> Miguel
