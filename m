@@ -4,67 +4,150 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80308FF6E7C
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 20:43:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07517FF6E7F
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 20:55:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3BBF410E362;
-	Tue, 17 Mar 2026 20:43:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8D3810E362;
+	Tue, 17 Mar 2026 20:55:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="EIO7mwrV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="alqpFewz";
 	dkim-atps=neutral
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA97A10E362;
- Tue, 17 Mar 2026 20:43:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1773780213;
- bh=s8wHOKxEu/f0ugUhVWf/KplhmpeCQHsCD28fPopS/Kw=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=EIO7mwrV79dXQtMPxq/uCAzgBffIw2LHnt5TVKHyB2qCoecGVyOEQJLxXbGhAdkib
- 2hyBPhW5QRmvHzgrWYLV+a1sOAoqadQUqlC3UIRR8uNNEwcrHUCfkD/+wO0ucGdgae
- rp3KWcF/3D5aiFaRXnVDw9kxmQ8bBb3iqVz8RlMf6iz9NisdLbbZf93xhmgEitfTDv
- l1pZbIaSdv8vsfDuHjqtjWTsiRNlhnUQBXUIhbCD383rDsS+1p6Cpyc0u2o+tz02lC
- 9wYu8iSvAYnIAg86zdUJ7jfHUKEolHa5ipEdEZHlazL2jSVTnRlB9zlwDaznG7Z4q6
- 9kNYFPAWIH2YQ==
-Received: from fedora (unknown [IPv6:2a01:e0a:2c:6930:d919:a6e:5ea1:8a9f])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256) (No client certificate requested)
- (Authenticated sender: bbrezillon)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 8305717E04DC;
- Tue, 17 Mar 2026 21:43:32 +0100 (CET)
-Date: Tue, 17 Mar 2026 21:43:20 +0100
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Daniel Almeida <daniel.almeida@collabora.com>,
- <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>, Tvrtko
- Ursulin <tvrtko.ursulin@igalia.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>, Danilo Krummrich
- <dakr@kernel.org>, David Airlie <airlied@gmail.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Philipp Stanner <phasta@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- "Sumit Semwal" <sumit.semwal@linaro.org>, Thomas Zimmermann
- <tzimmermann@suse.de>, <linux-kernel@vger.kernel.org>, Sami Tolvanen
- <samitolvanen@google.com>, Jeffrey Vander Stoep <jeffv@google.com>, Alice
- Ryhl <aliceryhl@google.com>, Daniel Stone <daniels@collabora.com>,
- Alexandre Courbot <acourbot@nvidia.com>, John Hubbard
- <jhubbard@nvidia.com>, <shashanks@nvidia.com>, <jajones@nvidia.com>, Eliot
- Courtney <ecourtney@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
- rust-for-linux <rust-for-linux@vger.kernel.org>
-Subject: Re: [RFC PATCH 02/12] drm/dep: Add DRM dependency queue layer
-Message-ID: <20260317214320.74e6c130@fedora>
-In-Reply-To: <abmaDElHmbQkYy57@lstrano-desk.jf.intel.com>
-References: <20260316043255.226352-1-matthew.brost@intel.com>
- <20260316043255.226352-3-matthew.brost@intel.com>
- <7A8108C7-7CF0-4EA4-95ED-8003502DC35A@collabora.com>
- <abjqfXERS6Xk4FAQ@lstrano-desk.jf.intel.com>
- <abmaDElHmbQkYy57@lstrano-desk.jf.intel.com>
-Organization: Collabora
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-redhat-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CB6510E362
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 20:55:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773780931; x=1805316931;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=mqaPjdC3EbW0YpAiBYtJNsgpYYfYPYTkPXNIVvwut6c=;
+ b=alqpFewzuyuk471A/DrsB93h+ADnGMwDraH1aNy6ifOhC+n2q2cYiSUR
+ fcOuq80u4vYzqYMGxRbJZD7+aln753Ckft8vW1iUJnYS2mvRwl9bKYgi9
+ ZRV9/uNqayFGBIQgmsDsb55+6mOXFuEUKp3pq8a1tWEyPArEtGkx4wJEi
+ SsEOY0aRWKn/4OczxK6yASq3Q3yzwDfC2VeUk4rq7ugDQv6tTNCX/KYOG
+ eSWhw80sNmV5zNnjgRm3c7TNtY5rD7oqtQjbYWrBRiz0D+yvfcj6KlJik
+ yqjcL6D6hpIZp95ym/HkXDKeTGFLc9tSDDncoA1FcqqAp4RwuCkX7FYYx w==;
+X-CSE-ConnectionGUID: 3+PkXnNaSIqJGypFbak8pg==
+X-CSE-MsgGUID: 9NWOSXAaRwiL9vZXtgA3yg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="92209158"
+X-IronPort-AV: E=Sophos;i="6.23,126,1770624000"; d="scan'208";a="92209158"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2026 13:55:29 -0700
+X-CSE-ConnectionGUID: D+QFS3HPT9+fWY0/Un521w==
+X-CSE-MsgGUID: Ph4xxYGOTSaBCbpLO3NiXA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,126,1770624000"; d="scan'208";a="218480357"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2026 13:55:29 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 17 Mar 2026 13:55:28 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Tue, 17 Mar 2026 13:55:28 -0700
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.29) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 17 Mar 2026 13:55:27 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=RxUT3BGZNc4Z6zw3ZfYiCASMPQ1yY4aT/nS3Rt5gBwRJ3j1H7IJOW/xBZwX+YXtg7JOZ0aXHYr6aoYPfZg325UfGNm9+cdyNPb7x43JbOv2wDEq+Su+xfs+Ar922QVLMlyb5Xzpzpt0DH9MWdjRVFZAf707TrKvOove3hzf1Wu6FRDZ/UThwaZ1Squc7B/LlinUXpgE7cv8xVKvG0roQkIhAk7ggRxmAAjgy1bfqeRrQfgBZId1SLuBWSpS4Qf9JLKPBuLFZVkj2kV4G37eVkfkflOjehLsLHjwjD1qRxykfejnczEsqe81A7U7glbJdcwP8Mrc/AFqdaBwOm4MO9A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CMEsu2Rn8QimGaOn67Z8N7rcuLtymMd0mnINnBnnOYg=;
+ b=ABo7NHpH/Dg6Vbpdb1v0U4rAtYw0p+c8aTxNMzKCMM8lQX2Qd9Fc+sZH2hH1kp0V1VAwJzqJ9l8ZdguHV4tqV2VdqN5SnjTly9GVSjqOmxASSTVCpCwxjBBRX1LIOYBqNeDrdJ/ie/1V8kc/BAEk16BmN7UupWlhDjcAqzABtMpzPQA8glrduOZZPZ0HJRYopkZyV0r7HVdwtDU5TK6TkKvfs5S35P/7RbShrot/xTws9H4gV6HPcEDxyPW23aPAjF/ipd98jiRG35mJrekZqk0SacMK41oIC7ZfpyFtcvcyXdgPSbNiQyoi3Ga5nItZLP0mFZJvZNdYUcRIOkMnQQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB5456.namprd11.prod.outlook.com (2603:10b6:5:39c::14)
+ by DM4PR11MB6504.namprd11.prod.outlook.com (2603:10b6:8:8d::5) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9723.16; Tue, 17 Mar 2026 20:55:25 +0000
+Received: from DM4PR11MB5456.namprd11.prod.outlook.com
+ ([fe80::62e5:4a7c:f965:9082]) by DM4PR11MB5456.namprd11.prod.outlook.com
+ ([fe80::62e5:4a7c:f965:9082%6]) with mapi id 15.20.9723.018; Tue, 17 Mar 2026
+ 20:55:25 +0000
+From: "Lin, Shuicheng" <shuicheng.lin@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH 0/4] kernel-doc fix for headers
+Thread-Topic: [PATCH 0/4] kernel-doc fix for headers
+Thread-Index: AQHctW/hrPvBAm/I+UKz1MRuQvtMjbWyp6aAgABSLLCAADMPAIAABaIA
+Date: Tue, 17 Mar 2026 20:55:25 +0000
+Message-ID: <DM4PR11MB5456F7FB8A80E3A9B9A71080EA41A@DM4PR11MB5456.namprd11.prod.outlook.com>
+References: <20260316180322.1721237-6-shuicheng.lin@intel.com>
+ <afd9abb5636b6de4c84250dac35565b6db526c48@intel.com>
+ <DM4PR11MB54568B292FD55BFB10B342FEEA41A@DM4PR11MB5456.namprd11.prod.outlook.com>
+ <34f735c369955434693b3f256d39e94e34d49360@intel.com>
+In-Reply-To: <34f735c369955434693b3f256d39e94e34d49360@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB5456:EE_|DM4PR11MB6504:EE_
+x-ms-office365-filtering-correlation-id: ed06f4ea-2a4b-49c1-8606-08de8467834e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|10070799003|366016|38070700021|18002099003|56012099003|22082099003;
+x-microsoft-antispam-message-info: PuewxsD4olPiDXaSD91dwtu2i3eqWuDhxIktY9bzee6R0ioxn+nJeFRJqlZC3LuxLHApELUALAjVlWzqtlnZVEpSOn9/yFdNc6PrOSXI2ks2oiG8UXxU5wxxG5bNBZ4vVCXQzHWKZ9RgGActoL7ZYrMre4MSAygwn1O/EgCQp5J6ignJFmGphJQgyjJOs38Jk0gXxWWH8s3/zGajDWUJt5NQ1/7LFUw0RBID5728fxS4yCZ8xHPbdj6f325j76AztwO9sKcwc3NOITcvfAAWO7sDSPQRQ1o0ssYpyl7z7+jmDUlsOHeM7ypdLu+vAdrwLS/1KxHdlMfyqxYsFQMsrMOb9OrqTJFlVBn16Z6zW2EbEL0vYoe6HvC3RAV/Z3KsjwOSfFBK1jtKTBsbukwYfelrvFWspV4FxhgSlabm+jtl+I6EgvjuFJIOEk+RFJH6Sdzxu0hoWIUZ6jbhPtgJXrC8hssAxwhL0GLxSJfpC9ICVDx8CssbEQi9TjhmQpRYUErXAmvM6E0grj8c6B/t2lFMyYj46goXajHUHxYfqWYBMZ5csodDTa1W13I+ROn/2E8R5x5NHzJPCF9Ffy/zhNLHd25JaxxHAisaUmLer+65kTYTkq5DyaOuvTq/dsAFQMyDnZ9YTr6FJqpUc0YocAomsSTyJDMQrZUJxTCFR8Q7KVr9oly8YGQ+SXf63HuNLXNPoqF19Jkr02CQR0H0bnUvUJTUCqAbynJfNVJlnQD1DtDsld67JYTKc5U/043CN4n5phN2IDpKEVQ3Fr59tStrnDm2gfY541EUrngH6W0=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5456.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(10070799003)(366016)(38070700021)(18002099003)(56012099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?N+nRSSxwMzm3nx1hAgDCwzew9oPYCHdl8kIZ0aGs/tM7HJYV0JVLCj4eJ1NJ?=
+ =?us-ascii?Q?Nw2mny7gjXc4n1ufhE9vdkBSVEB9yty+mZKKEddL4skwufV4YsCNB8tCgJ99?=
+ =?us-ascii?Q?due5L8rkKvMPlHBATmnPZZ3XtfqbmoVXFkFWwvP32N5NWtd0dZo/uWxAJGbO?=
+ =?us-ascii?Q?XNuCg4UKynYspicZ63QpGLl7RqYnr/43LIzBITqtVdkdAFSPfT4b2+5m2a63?=
+ =?us-ascii?Q?+fZq700QqW5RpyLMB0v69zOzcBlIW6FRpJ+v26UP+m0kqNIKxv/K1Enr8zus?=
+ =?us-ascii?Q?0wkmtPBUU3mgLEEn2QW2qC3a01J7JiG2SJxAYRsCEPcZPhI2ERhIavZUdBbN?=
+ =?us-ascii?Q?aHjectQ7mcDfKCB8yoYGbKWLED2t6mLAWOgrDC96vECIp5Kc8SDfDdfy+p7V?=
+ =?us-ascii?Q?zk3QJTQUJ77sv3mg0P3iQWXNheJHFcK/jS3pJj9mQeO3bf9zXVQYKGvyNMG2?=
+ =?us-ascii?Q?MhlNmpUHsd9bpKoI/9KSGnjE6A7YwNqZprKD0anq9C75PYg/dX7ENpUoByr9?=
+ =?us-ascii?Q?1B5Ep9qeHtoZBdap53VcGISRJWO0XIkv86733r2DTqfZep++fGB9NwO8C4uE?=
+ =?us-ascii?Q?Bb9z1r4hSpUiVETJlNR1o3DfSGFfr28aMwlGcIkn4D1yORDG3y6kJm0iRiRe?=
+ =?us-ascii?Q?kW0JMnKD4vgrjuf6sqOMJ0ZMhb4ZiE6455wmO7DxkAZtFoWTzBGKatS3zzvI?=
+ =?us-ascii?Q?786HUUixakH59k45H0TGBf2CUDVKxMEtmpZZTZcTyj66b6NJMWWMpMhXRuhp?=
+ =?us-ascii?Q?zJSCP/Oa3SLufEbXSZKi44YH28tLSSycPOWE5DVVfgDjeOf1IH/p37CyAFnJ?=
+ =?us-ascii?Q?PNgi77n5fEEKJ9GXEFhosVW1WdW8wfmqwhRh7K7YKwdxUKYskl9VRnR4G0RP?=
+ =?us-ascii?Q?WhAgFtkWNZpZsWOFL5CxKlmrmciOFZSaOrq872bCK0PxjfPhLXuPnjta27JA?=
+ =?us-ascii?Q?yGWaYkaA3RSekgZeXXYI447FW3UwM5EEk5KWp5iIwted0hx5gEuthF9sqdmO?=
+ =?us-ascii?Q?7tF8ziWrXAjTcGkHrhFfPQDcUtVjXNXcKWsKKNO85RZKwwFCy/MZTrjNd1dJ?=
+ =?us-ascii?Q?LTnyRRyPvH3BKKOy+tqI5pDpwZ6XbENTayAmwEwToSy9HI7iVCb+htB9zIMj?=
+ =?us-ascii?Q?a+FHt1m6uIosGZ4VFv+b1ARfFmATYdl8PjklrR/anuXih1pB0HGNY6SQFchf?=
+ =?us-ascii?Q?YVGPycSPgqN5iI13Pqb4BWpTuH9SsXx8k+4577rpmL+2F54/4KwpU7f3+g6Y?=
+ =?us-ascii?Q?6txNRgGPXTj3ZXSFKQCntuEomK17maJFakweNkfr72ujvKUSoyDzPZFP18AM?=
+ =?us-ascii?Q?C2qrWBzqoPro0/GrPnR6n+jW/Ad5bA7eMCj/iTilIota2WR9g/7BC+103Di0?=
+ =?us-ascii?Q?pdHvqZsGNLRmbXIRmb3KWATGC4YVp3MPq5jbHstB9peTCfQVqsDO+PK+HExo?=
+ =?us-ascii?Q?rmNvE5WE8XQ7DLFN/OLWOGHYHFle7uuMFJLRrEHA8yeqdFefJnP3vQUOep+D?=
+ =?us-ascii?Q?y+13rMLnvcrbxoIjwPzhiwZhdPMVc3cJ7F4ATdncWdPykUqrHpGBi0J9wgCF?=
+ =?us-ascii?Q?IDBMiLJidCmzseqEoWcsGIl+/KLIpE2uyz3KTwv7ldSYZlCgTm6S4wWthfyu?=
+ =?us-ascii?Q?zQvcy1WGL8qM1SFKNBEQWcoMayAoFxYSzYxh9sqdbJkMyEOQi5nfQTA5+UQX?=
+ =?us-ascii?Q?gFIqDWSXXEDaWhhoqcVSC4H/2TNKQC+3EKSuVPf0xf3389xhZvIpiG4zYgjS?=
+ =?us-ascii?Q?hmmTMH/MkszMLZ7S3dNzIK3DfdjC5yR1Fhwo97kYUEWbKuClTz7EB8LlpYLr?=
+x-ms-exchange-antispam-messagedata-1: McwhHpmd0SnbNQ==
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: ZbU+Cxj3u+zhGgQCM6j9ysd/8q6VH2h1ncFDpSLF8LK1uVGMr0VuQQKk6Zgi1EWaITCoiWYLOnO/Xogmeq9L44SCBoOE+IPcFtnqxf4Rn4+Zo7cJvYhilyRZQbr2vVDOifv3/oDZ8lnCOq9AV/dxzjjfJBZhCcmPtZRDicFyYsiY0Gsj2WCsJksdZsPYz1iPH0E5Gq+CSHWdbXIVsZX8I7ZMqjz4POX+WnQUUnur63FCZ/GPxwJ+0PNBkPHgRCPVC3M/3COMxdy1Q8qAW7U3pzwme41j8bGyun/uVM7FO/5jR/s0EjE9wwgE84dPz91aUlJ7sQ2FsxKBeg3ywDZ3oA==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5456.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed06f4ea-2a4b-49c1-8606-08de8467834e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Mar 2026 20:55:25.2587 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: IIkvOrksjXYeN7QMlOa/6gCzZoscSThoqV/el3gsd/rV9S2lSfiGazHm9jImko8hCa91tZr5ql5W5KRvM/E4Pw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6504
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,293 +162,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Matthew,
-
-Just a few drive-by comments.
-
-On Tue, 17 Mar 2026 11:14:36 -0700
-Matthew Brost <matthew.brost@intel.com> wrote:
-
-> > > > Timeout Detection and Recovery (TDR): a per-queue delayed work item
-> > > > fires when the head pending job exceeds q->job.timeout jiffies, cal=
-ling
-> > > > ops->timedout_job(). drm_dep_queue_trigger_timeout() forces immedia=
-te
-> > > > expiry for device teardown.
-> > > >=20
-> > > > IRQ-safe completion: queues flagged DRM_DEP_QUEUE_FLAGS_JOB_PUT_IRQ=
-_SAFE
-> > > > allow drm_dep_job_done() to be called from hardirq context (e.g. a
-> > > > dma_fence callback). Dependency cleanup is deferred to process cont=
-ext
-> > > > after ops->run_job() returns to avoid calling xa_destroy() from IRQ.
-> > > >=20
-> > > > Zombie-state guard: workers use kref_get_unless_zero() on entry and
-> > > > bail immediately if the queue refcount has already reached zero and
-> > > > async teardown is in flight, preventing use-after-free. =20
-> > >=20
-> > > In rust, when you queue work, you have to pass a reference-counted po=
-inter
-> > > (Arc<T>). We simply never have this problem in a Rust design. If ther=
-e is work
-> > > queued, the queue is alive.
-> > >=20
-> > > By the way, why can=E2=80=99t we simply require synchronous teardowns=
-? =20
+On Tue, Mar 17, 2026 1:23 PM Jani Nikula wrote:
+> On Tue, 17 Mar 2026, "Lin, Shuicheng" <shuicheng.lin@intel.com> wrote:
+> > On Tue Mar 17, 2026 5:26 AM Jani Nikula wrote:
+> >> On Mon, 16 Mar 2026, Shuicheng Lin <shuicheng.lin@intel.com> wrote:
+> >> > Generated by AI and reviewed to confirm the change is correct.
+> >> > Split by category to ease review.
+> >>
+> >> Will you also ask your AI why kernel-doc didn't warn about these in
+> >> the regular build?
+> >
+> > Ha. AI told me that kernel-doc script does not validate whether the nam=
+e
+> match or not.
+> > "
+> > Why kernel-doc Misses These
+> > 1. Inline member docs are stored as sections, not validated against C
+> members. In kdoc_parser.py:1673-1676, when an inline doc like /**
+> @format: ... */ is encountered during prototype parsing, it calls
+> begin_section() and add_text(). The tag name is recorded but never cross-
+> checked against the actual struct member on the next line.
+> > 2. check_sections() (kdoc_parser.py:661-674) only checks the other
+> direction - it detects when a documented section name isn't in the parame=
+ter
+> list, flagging "Excess" descriptions. But for nested members (those with =
+. in the
+> name, line 537), even the "not described" warning is suppressed.
+> > 3. Some structs aren't even parsed. For example, xe_oa_buffer uses /**
+> @xe_oa_buffer: ... */ instead of /** struct xe_oa_buffer - ... */, so ker=
+nel-doc
+> doesn't recognize it as a struct doc block at all.
+> > "
+> > And to fix it:
+> > "
+> > 3. Enhance scripts/kernel-doc itself
+> > The proper fix would be to add validation in kdoc_parser.py that cross-
+> checks inline @member tags against the actual C struct member declared on
+> the following line(s). Specifically:
+> > - In process_proto() around line 1673, after parsing doc_inline_oneline=
+, read
+> the next non-blank line to extract the actual member name and compare it =
+to
+> the @tag.
+> > - Handle dotted names like @outer.inner by checking the leaf component
+> matches.
+> > "
 >=20
-> Consider the case where the DRM dep queue=E2=80=99s refcount drops to zer=
-o, but
-> the device firmware still holds references to the associated queue.
-> These are resources that must be torn down asynchronously. In Xe, I need
-> to send two asynchronous firmware commands before I can safely remove
-> the memory associated with the queue (faulting on this kind of global
-> memory will take down the device) and recycle the firmware ID tied to
-> the queue. These async commands are issued on the driver side, on the
-> DRM dep queue=E2=80=99s workqueue as well.
+> Maybe take that on, then? We've got build checks to run kernel-doc, it's =
+a
+> bummer if it doesn't catch the issues.
 
-Asynchronous teardown is okay, but I'm not too sure using the refcnt to
-know that the queue is no longer usable is the way to go. To me the
-refcnt is what determines when the SW object is no longer referenced by
-any other item in the code, and a work item acting on the queue counts
-as one owner of this queue. If you want to cancel the work in order to
-speed up the destruction of the queue, you can call
-{cancel,disable}_work[_sync](), and have the ref dropped if the
-cancel/disable was effective. Multi-step teardown is also an option,
-but again, the state of the queue shouldn't be determined from its
-refcnt IMHO.
+I can give it a try. My concern is whether it might introduce too many issu=
+es for=20
+modules that aren't strict about kernel-doc but still have this check enabl=
+ed.
+Anyway, I can send a fix and see how the community responds.
 
->=20
-> Now consider a scenario where something goes wrong and those firmware
-> commands never complete, and a device reset is required to recover. The
-> driver=E2=80=99s per-queue tracking logic stops all queues (including zom=
-bie
-> ones), determines which commands were lost, cleans up the side effects
-> of that lost state, and then restarts all queues. That is how we would
-> end up in this work item with a zombie queue. The restart logic could
-> probably be made smart enough to avoid queueing work for zombie queues,
-> but in my opinion it=E2=80=99s safe enough to use kref_get_unless_zero() =
-in the
-> work items.
-
-Well, that only works for single-step teardown, or when you enter the
-last step. At which point, I'm not too sure it's significantly better
-than encoding the state of the queue through a separate field, and have
-the job queue logic reject new jobs if the queue is no longer usable
-(shouldn't even be exposed to userland at this point though).
+Shuicheng
 
 >=20
-> It should also be clear that a DRM dep queue is primarily intended to be
-> embedded inside the driver=E2=80=99s own queue object, even though it is =
-valid
-> to use it as a standalone object. The async teardown flows are also
-> optional features.
+> BR,
+> Jani.
 >=20
-> Let=E2=80=99s also consider a case where you do not need the async firmwa=
-re
-> flows described above, but the DRM dep queue is still embedded in a
-> driver-side object that owns memory via dma-resv. The final queue put
-> may occur in IRQ context (DRM dep avoids kicking a worker just to drop a
-> refi as opt in), or in the reclaim path (any scheduler workqueue is the
-> reclaim path). In either case, you cannot free memory there taking a
-> dma-resv lock, which is why all DRM dep queues ultimately free their
-> resources in a work item outside of reclaim. Many drivers already follow
-> this pattern, but in DRM dep this behavior is built-in.
-
-I agree deferred cleanup is the way to go.
-
 >=20
-> So I don=E2=80=99t think Rust natively solves these types of problems, al=
-though
-> I=E2=80=99ll concede that it does make refcounting a bit more sane.
-
-Rust won't magically defer the cleanup, nor will it dictate how you want
-to do the queue teardown, those are things you need to implement. But it
-should give visibility about object lifetimes, and guarantee that an
-object that's still visible to some owners is usable (the notion of
-usable is highly dependent on the object implementation).
-
-Just a purely theoretical example of a multi-step queue teardown that
-might be possible to encode in rust:
-
-- MyJobQueue<Usable>: The job queue is currently exposed and usable.
-  There's a ::destroy() method consuming 'self' and returning a
-  MyJobQueue<Destroyed> object
-- MyJobQueue<Destroyed>: The user asked for the workqueue to be
-  destroyed. No new job can be pushed. Existing jobs that didn't make
-  it to the FW queue are cancelled, jobs that are in-flight are
-  cancelled if they can, or are just waited upon if they can't. When
-  the whole destruction step is done, ::destroyed() is called, it
-  consumes 'self' and returns a MyJobQueue<Inactive> object.
-- MyJobQueue<Inactive>: The queue is no longer active (HW doesn't have
-  any resources on this queue). It's ready to be cleaned up.
-  ::cleanup() (or just ::drop()) defers the cleanup of some inner
-  object that has been passed around between the various
-  MyJobQueue<State> wrappers.
-
-Each of the state transition can happen asynchronously. A state
-transition consumes the object in one state, and returns a new object
-in its new state. None of the transition involves dropping a refcnt,
-ownership is just transferred. The final MyJobQueue<Inactive> object is
-the object we'll defer cleanup on.
-
-It's a very high-level view of one way this can be implemented (I'm
-sure there are others, probably better than my suggestion) in order to
-make sure the object doesn't go away without the compiler enforcing
-proper state transitions.
-
-> > > > +/**
-> > > > + * DOC: DRM dependency fence
-> > > > + *
-> > > > + * Each struct drm_dep_job has an associated struct drm_dep_fence =
-that
-> > > > + * provides a single dma_fence (@finished) signalled when the hard=
-ware
-> > > > + * completes the job.
-> > > > + *
-> > > > + * The hardware fence returned by &drm_dep_queue_ops.run_job is st=
-ored as
-> > > > + * @parent. @finished is chained to @parent via drm_dep_job_done_c=
-b() and
-> > > > + * is signalled once @parent signals (or immediately if run_job() =
-returns
-> > > > + * NULL or an error). =20
-> > >=20
-> > > I thought this fence proxy mechanism was going away due to recent wor=
-k being
-> > > carried out by Christian?
-> > >  =20
+> >
+> > Shuicheng
+> >
+> >>
+> >> BR,
+> >> Jani.
+> >>
+> >>
+> >> >
+> >> > Shuicheng Lin (4):
+> >> >   drm/xe: Fix stale and mismatched kernel-doc member tags in header
+> >> >     files
+> >> >   drm/xe: Add missing '@' prefix to kernel-doc member tags
+> >> >   drm/xe: Fix kernel-doc comment syntax issues in header files
+> >> >   drm/xe: Fix type and parameter name mismatches in kernel-doc
+> >> >     references
+> >> >
+> >> >  drivers/gpu/drm/xe/xe_device_types.h      | 6 +++---
+> >> >  drivers/gpu/drm/xe/xe_exec_queue_types.h  | 2 +-
+> >> > drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h | 1 -
+> >> >  drivers/gpu/drm/xe/xe_gt_types.h          | 2 +-
+> >> >  drivers/gpu/drm/xe/xe_guc_capture_types.h | 2 +-
+> >> >  drivers/gpu/drm/xe/xe_guc_ct_types.h      | 4 ++--
+> >> >  drivers/gpu/drm/xe/xe_guc_relay_types.h   | 2 +-
+> >> >  drivers/gpu/drm/xe/xe_guc_submit_types.h  | 2 +-
+> >> >  drivers/gpu/drm/xe/xe_hw_engine_types.h   | 2 +-
+> >> >  drivers/gpu/drm/xe/xe_oa_types.h          | 8 +++++---
+> >> >  drivers/gpu/drm/xe/xe_pagefault_types.h   | 4 ++--
+> >> >  drivers/gpu/drm/xe/xe_pt_types.h          | 2 +-
+> >> >  drivers/gpu/drm/xe/xe_pt_walk.h           | 6 +++---
+> >> >  drivers/gpu/drm/xe/xe_vm_types.h          | 2 +-
+> >> >  14 files changed, 23 insertions(+), 22 deletions(-)
+> >>
+> >> --
+> >> Jani Nikula, Intel
 >=20
-> Consider the case where a driver=E2=80=99s hardware fence is implemented =
-as a
-> dma-fence-array or dma-fence-chain. You cannot install these types of
-> fences into a dma-resv or into syncobjs, so a proxy fence is useful
-> here.
-
-Hm, so that's a driver returning a dma_fence_array/chain through
-::run_job()? Why would we not want to have them directly exposed and
-split up into singular fence objects at resv insertion time (I don't
-think syncobjs care, but I might be wrong). I mean, one of the point
-behind the container extraction is so fences coming from the same
-context/timeline can be detected and merged. If you insert the
-container through a proxy, you're defeating the whole fence merging
-optimization.
-
-The second thing is that I'm not sure drivers were ever supposed to
-return fence containers in the first place, because the whole idea
-behind a fence context is that fences are emitted/signalled in
-seqno-order, and if the fence is encoding the state of multiple
-timelines that progress at their own pace, it becomes tricky to control
-that. I guess if it's always the same set of timelines that are
-combined, that would work.
-
-> One example is when a single job submits work to multiple rings
-> that are flipped in hardware at the same time.
-
-We do have that in Panthor, but that's all explicit: in a single
-SUBMIT, you can have multiple jobs targeting different queues, each of
-them having their own set of deps/signal ops. The combination of all the
-signal ops into a container is left to the UMD. It could be automated
-kernel side, but that would be a flag on the SIGNAL op leading to the
-creation of a fence_array containing fences from multiple submitted
-jobs, rather than the driver combining stuff in the fence it returns in
-::run_job().
-
->=20
-> Another case is late arming of hardware fences in run_job (which many
-> drivers do). The proxy fence is immediately available at arm time and
-> can be installed into dma-resv or syncobjs even though the actual
-> hardware fence is not yet available. I think most drivers could be
-> refactored to make the hardware fence immediately available at run_job,
-> though.
-
-Yep, I also think we can arm the driver fence early in the case of
-JobQueue. The reason it couldn't be done before is because the
-scheduler was in the middle, deciding which entity to pull the next job
-from, which was changing the seqno a job driver-fence would be assigned
-(you can't guess that at queue time in that case).
-
-[...]
-
-> > > > + * **Reference counting**
-> > > > + *
-> > > > + * Jobs and queues are both reference counted.
-> > > > + *
-> > > > + * A job holds a reference to its queue from drm_dep_job_init() un=
-til
-> > > > + * drm_dep_job_put() drops the job's last reference and its releas=
-e callback
-> > > > + * runs. This ensures the queue remains valid for the entire lifet=
-ime of any
-> > > > + * job that was submitted to it.
-> > > > + *
-> > > > + * The queue holds its own reference to a job for as long as the j=
-ob is
-> > > > + * internally tracked: from the moment the job is added to the pen=
-ding list
-> > > > + * in drm_dep_queue_run_job() until drm_dep_job_done() kicks the p=
-ut_job
-> > > > + * worker, which calls drm_dep_job_put() to release that reference=
-. =20
-> > >=20
-> > > Why not simply keep track that the job was completed, instead of reli=
-nquishing
-> > > the reference? We can then release the reference once the job is clea=
-ned up
-> > > (by the queue, using a worker) in process context. =20
->=20
-> I think that=E2=80=99s what I=E2=80=99m doing, while also allowing an opt=
--in path to
-> drop the job reference when it signals (in IRQ context)
-
-Did you mean in !IRQ (or !atomic) context here? Feels weird to not
-defer the cleanup when you're in an IRQ/atomic context, but defer it
-when you're in a thread context.
-
-> so we avoid
-> switching to a work item just to drop a ref. That seems like a
-> significant win in terms of CPU cycles.
-
-Well, the cleanup path is probably not where latency matters the most.
-It's adding scheduling overhead, sure, but given all the stuff we defer
-already, I'm not too sure we're at saving a few cycles to get the
-cleanup done immediately. What's important to have is a way to signal
-fences in an atomic context, because this has an impact on latency.
-
-[...]
-
-> > > > + /*
-> > > > + * Drop all input dependency fences now, in process context, befor=
-e the
-> > > > + * final job put. Once the job is on the pending list its last ref=
-erence
-> > > > + * may be dropped from a dma_fence callback (IRQ context), where c=
-alling
-> > > > + * xa_destroy() would be unsafe.
-> > > > + */ =20
-> > >=20
-> > > I assume that =E2=80=9Cpending=E2=80=9D is the list of jobs that have=
- been handed to the driver
-> > > via ops->run_job()?
-> > >=20
-> > > Can=E2=80=99t this problem be solved by not doing anything inside a d=
-ma_fence callback
-> > > other than scheduling the queue worker?
-> > >  =20
->=20
-> Yes, this code is required to support dropping job refs directly in the
-> dma-fence callback (an opt-in feature). Again, this seems like a
-> significant win in terms of CPU cycles, although I haven=E2=80=99t collec=
-ted
-> data yet.
-
-If it significantly hurts the perf, I'd like to understand why, because
-to me it looks like pure-cleanup (no signaling involved), and thus no
-other process waiting for us to do the cleanup. The only thing that
-might have an impact is how fast you release the resources, and given
-it's only a partial cleanup (xa_destroy() still has to be deferred), I'd
-like to understand which part of the immediate cleanup is causing a
-contention (basically which kind of resources the system is starving of)
-
-Regards,
-
-Boris
+> --
+> Jani Nikula, Intel
