@@ -4,128 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28C4BF483C1
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FEE7F483C3
 	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 16:06:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D882A10E5BB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D87A810E5BA;
 	Mon, 23 Mar 2026 16:06:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kEXvo3on";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="I2gXa++t";
 	dkim-atps=neutral
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com
- [209.85.128.169])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 441C210E11B
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 00:08:20 +0000 (UTC)
-Received: by mail-yw1-f169.google.com with SMTP id
- 00721157ae682-7982c3b7dfcso32446417b3.0
- for <intel-xe@lists.freedesktop.org>; Sun, 22 Mar 2026 17:08:20 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774224499; cv=none;
- d=google.com; s=arc-20240605;
- b=fOXTK7nEU714j7veC3kHK3hL1hMXwhmjgjYn0lYLtJNNSFRKcmApZC+FqeZC/ZznqQ
- P4viq5D0E1vt4dvdAd49qWZ2ADKkp+FqN0BZ7a5UvAWtm31Yba72HEz7KDExuB2w/8gC
- wcof7CwyAwUXWwk3bHiSirH+XarB8Z/gOsn4PS4vHA+ZU3y8eNSetFGR83xMU42K6CVH
- 0aN1MBUBjJO5Lkuw2M7z1x+ztuTYMRZ0cbSVKdyAxsVqtvKfl54KDbN2/W0L0LGLVJdB
- D8NDQgdiPBRRmftosqsT7UnbxDctrjafx0/2t+uCasweHxFqvdv2UsiPVtVx0P8lvI38
- TjzA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=+To22M9XrloAsp8zyktj8aS2Z2Pum4SQehyzZWues4c=;
- fh=O9/Iy7T8WGS4Yz4JU7yF+qYCIHDIViKOWt3PKeiig9s=;
- b=cXBmsukOdc2WKXOX2hiaWa1rbgfZQfy6ftl7ujToRIMt360H3dBM0fYiUFVZ0NsdY7
- iZOhABnAYHXydJQCwMDv2nmO4sbZBB6smGWy4aOuWHHIHW5jWKl/Jf7tBLhzuYJuYdKc
- 7IsvSI3g/i9kqfoWUwk1w2K+qonop2vIX2FQoOcM935a9fulm2ZDp7y9pjW45VQasyAK
- 5B/dyajnz3+ugjgj6wgCmKqUF8oWWxEODWvnNKsjtDwiRE4GyWHAEMFEDx+LIJ9IO3P8
- it1DTX0r+kAkt2WrCTMNMCy4V++KSmKLCo1kDiCHjc48ZOahS0I078LIUPAkWzQyXyGP
- XEfw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com
+ [209.85.216.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C3AF610E22C
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 19:00:47 +0000 (UTC)
+Received: by mail-pj1-f43.google.com with SMTP id
+ 98e67ed59e1d1-35b88a4f123so91517a91.1
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 12:00:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1774224499; x=1774829299; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1773774047; x=1774378847; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=+To22M9XrloAsp8zyktj8aS2Z2Pum4SQehyzZWues4c=;
- b=kEXvo3onKDbCYpEcl0SNVj2ns8u+u0QKaeCMtHhJEWK4Qs1BcB3Efu+6t10YZH1hkw
- vLYIWXJSw0z9DtUIP8sh+u3A1mjTUmZKLjJba9RljRCB/yMoZiBm2ZPmO7ITJHN6+W/O
- ocQhy67noDzAjBdt5X2trx1eYJpj/P/9iYwBC8fIkaRVIpBfXOGoH+ZIwDSnMCy141aC
- 6ZbhPLo32QrFsVvcZt6BYQ7s22TBvcpap2AH2eEVTcApnLnHpwpumm1KRfN5PPiBMH1m
- SkFCQSUloorUvOuyNIXfOh3sXVDSSS+Ijgo/pv8sRC7YK0Wbswfi6x4sZu0C2EOGv4wy
- S/Mw==
+ bh=G5pUoPYvzvdY/i+3VyCKmXdQJFa9RgqmeQepWrHmR+w=;
+ b=I2gXa++t1BbszbhmMQv4hFVcP6r+PL/rryMMDT1X8IFx6bFjeroNKkYJ3sNxovPQ3T
+ 0538Np60Q1KGSrQfYgV6cbSG442RbaLwXkI+CWZzxy4wZfB2HWNFnGBXpg67xD35ZhEN
+ jjOA3JwsZu20JZgT30e5y9PZU6WlMINkClmvD6GM3NgiVOzYutru5mhXsLDTTnM9caI/
+ mSostH9WauluE1sMUDZYWE5frzuBo+v7aXgaU3P55Ie8aaOKer+sLRF0vmuHNtq7lOaW
+ ZK3zJ3hrzuMB3BSejca3Ly1EGUNJTMmJsixVSRRS2bYufPAhqx1XWF38kU/RTMdPFyN0
+ StUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774224499; x=1774829299;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ d=1e100.net; s=20251104; t=1773774047; x=1774378847;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=+To22M9XrloAsp8zyktj8aS2Z2Pum4SQehyzZWues4c=;
- b=JqcSH5lRAVCogr27EoDiPPpd/xkuS+mtE0xwTOVoCVFuQq9WjlexQuZ0cG/EOxpHqC
- ATYF1GayVFFhujql2oXYo5eU8lt+gZyR9rddCYntqV4onaj+cZ2GsBYBKAu5BRqueQ4V
- F++ONit38y9cV17OtylVUNQBNtyfZpSHNPkpEijQe9vZ1U6f19qc3SFZqPADVDOfZjUd
- 32kexWGwkbD0LamJJ3CH8x8p/RIbH/bf8qRVeD5F7zPcx3PHdRN+t2mIWh2Levdf5lH0
- OklxbpeUgc7cadc71wM3jy2T222zmrky6Pt2j/KYch+RJTvJsDt02LNaUbd2zxbn+2RN
- 7kGw==
+ bh=G5pUoPYvzvdY/i+3VyCKmXdQJFa9RgqmeQepWrHmR+w=;
+ b=LxeqAxiE/iTnOGKdqPG+oLWX7KFkH9Xt8aDYxBJvS9SHssISrU/BiRoYXKOAofrBCS
+ cbcYe4+tLrUxlABx15LCOfkKAsB4+pqRRzvX/S+rbCOLgZxYCdMeujxQI0Vduuy6JpJr
+ YPegTCnRwys2zvywz5uDFY3nikpP+F1VdPtt5QUQdt/S7gW/JQJY7lrNOz1X4nar5udP
+ nxU2cKBqsHcVLkmAe/0HO2lsCV6EerKQaemLP2K5uPFEGXKSnuyxDnbIubngHaR9nn3P
+ ucGHM44NGOjZgmeynxbfhju8CkxVRhNzyimoMVWNqZ6jlDWbA9E0LLzxrZ3gxYJm6IFv
+ BWeg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWGQ5bX8uaSdEk7aPjEmnT1piEKuI0Gi9r1ri0tRpskuC54E6NsrwfiqEv/PWb3xxJRhrEigh6nXQ==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxnS09Yieeozt3GFFwNjidViYDVGWampW++M8mr/WqY9WjgYy4T
- vwAqO3Xc4Ht+7rkVtNcsL7JgNTaKEkBPuKCX6vfSZdc7uudcTAtp3NWCr+qUKi4IXKJ6NSWCUP9
- vvJRM8lncPIn4cnCyH9aDcMIQWDrbT1M=
-X-Gm-Gg: ATEYQzxaNW9sYZkjMCs1mWVazxI8GsjiZjBLA5xrjNgJnQpksOPXdCiRluCp7P29PI9
- ggMegT8On4r02k//IZaNimrP6HohEbmrLYbWxeQQh4SdfReFcNlNz1FZdwe5q/eyFyDn3y3FH+L
- s9b8N8KfQA1AekbzBYMYvEwdkvIGUYDib68Y3B9RQROr1UBnzkXw48ownTUX+HcowzKGVbtzNKI
- BCX9geifTvYmJDoEqikBZd94rf5YmCDp2WxD5iolnHccUqtTV2jv1CR1Awpb1sIq+b2v0QQJgtJ
- XvFWDt4YKZJkzCligByrE8HL2y/JZeA1Vvnry0tjbGYm1etF
-X-Received: by 2002:a05:690c:4424:b0:798:6f13:2419 with SMTP id
- 00721157ae682-79a90bce798mr96296727b3.37.1774224499042; Sun, 22 Mar 2026
- 17:08:19 -0700 (PDT)
+ AJvYcCVU3uPInY9Ah88Z7oPFaV96GTQm+swLcRXhwfnR/tyM1K4eF2JosPpU7rJfKOk+m3sorsSUqM7sPA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzi2ZgnDGfKFroFUN/INoQ9kS9PJ71k9Ybz/jQsrgVXYzr2FaXp
+ fpHxgB+9NOYG7/phZt11aVlOk+q1j6Nx+28ONvcydZ50weNYTp3hZjKm
+X-Gm-Gg: ATEYQzxDsssL+0Vq99tGBrp5U3y/jeWD12s8WqBY1S7k4MmX0/Z4L0++mLKP8TUSOWO
+ SyWTzgmu+N37sxZTG+Q2lZc+IS1d9BqMUORe9/naPCgjvr74iZD3Xy8oIDkBpaQvuJcLrkQ0Nm3
+ wr2rJStZVBPx/02299cMw8M/Dh/JJQvdKWPj3UknTnA3Lq4ZDQC6Re5zMV2nLedB5qdE6rlzLNa
+ pWQf4Abhot2YtwbyfG9nkjVc9181GsdX1qrfcJQ1ByYmnJti5TrvgHcjZuYUUNQvA1FWDkYxoZH
+ hnEak5FdjAQh3DUdiYFdnQdLcVNklUUh0IFtDt1hnO41jbxBSE38wasupWAyG7Xv/t9O9jy/0Ib
+ tVreCrjkl4TvHwfFnWt6cgVK0T1JG1WRkVEvpm1Vycg63ZI2zixTSk4+AkdcB+8nyMOeOGqxdG2
+ r1R8W4pPGOErIPFrx6EVidQfrHgklEuxbRjzJo/Pnt7vclEGMJlN1zhvjjIKZykW4fsK+UMqSoC
+ 360PnWAAr19HBqiuvSCCt+adA2T7cJ2Kjhy5aA8YsOmwuiaYqlxJHB7T983/3Tx7Jc7KA==
+X-Received: by 2002:a17:90b:3a47:b0:35b:9f51:a755 with SMTP id
+ 98e67ed59e1d1-35badc14391mr3481930a91.18.1773774047144; 
+ Tue, 17 Mar 2026 12:00:47 -0700 (PDT)
+Received: from 2045D.localdomain (76.sub-72-110-123.myvzw.com. [72.110.123.76])
+ by smtp.gmail.com with ESMTPSA id
+ 98e67ed59e1d1-35bba5a2c60sm196240a91.9.2026.03.17.12.00.39
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 17 Mar 2026 12:00:46 -0700 (PDT)
+From: Gui-Dong Han <hanguidong02@gmail.com>
+To: gregkh@linuxfoundation.org,
+	dakr@kernel.org,
+	rafael@kernel.org
+Cc: linux-kernel@vger.kernel.org, driver-core@lists.linux.dev,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-sound@vger.kernel.org,
+ akaieurus@gmail.com, me@ziyao.cc, Gui-Dong Han <hanguidong02@gmail.com>
+Subject: [PATCH 2/4] debugfs: fix placement of EXPORT_SYMBOL_GPL for
+ debugfs_create_str()
+Date: Wed, 18 Mar 2026 02:59:11 +0800
+Message-ID: <20260317185920.43387-3-hanguidong02@gmail.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260317185920.43387-1-hanguidong02@gmail.com>
+References: <20260317185920.43387-1-hanguidong02@gmail.com>
 MIME-Version: 1.0
-References: <20260317201710.934932-1-joelagnelf@nvidia.com>
- <20260317201710.934932-2-joelagnelf@nvidia.com> <abqdUBqchnVFo7Qk@google.com>
- <71b6a115-98f1-4b09-9c04-a99349f51e49@nvidia.com>
- <CANiq72nZKx7pw_rZK2mHHvR=TaeGvMRvg5GTHOd58X17oyxieg@mail.gmail.com>
-In-Reply-To: <CANiq72nZKx7pw_rZK2mHHvR=TaeGvMRvg5GTHOd58X17oyxieg@mail.gmail.com>
-From: =?UTF-8?Q?Alejandra_Gonz=C3=A1lez?= <blyxyas@gmail.com>
-Date: Mon, 23 Mar 2026 01:07:43 +0100
-X-Gm-Features: AQROBzBsI6copsViR8GCb5s4kn_1rinKOMbl-9Inr9UPp4mS88b9cJGUv5vqwNA
-Message-ID: <CAGeanHfNwP6Zs3LSfc9eEO7_LG0kK-jO24oUd7BjxrQbndEmNw@mail.gmail.com>
-Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked list
- interface
-To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Cc: Joel Fernandes <joelagnelf@nvidia.com>, Alice Ryhl <aliceryhl@google.com>, 
- linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>, 
- Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, 
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
- Trevor Gross <tmgross@umich.edu>, Alex Gaynor <alex.gaynor@gmail.com>, 
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- David Airlie <airlied@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>, 
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, 
- Nikola Djukic <ndjukic@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>, 
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa <elle@weathered-steel.dev>, 
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>, 
- Matthew Auld <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Helge Deller <deller@gmx.de>, John Hubbard <jhubbard@nvidia.com>, 
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, 
- Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, 
- Balbir Singh <balbirs@nvidia.com>, alexeyi@nvidia.com, 
- Eliot Courtney <ecourtney@nvidia.com>, dri-devel@lists.freedesktop.org, 
- rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org, 
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 23 Mar 2026 16:04:08 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -141,39 +95,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Mar 18, 2026 at 7:57=E2=80=AFPM Miguel Ojeda
-<miguel.ojeda.sandonis@gmail.com> wrote:
->
-> On Wed, Mar 18, 2026 at 7:31=E2=80=AFPM Joel Fernandes <joelagnelf@nvidia=
-.com> wrote:
-> >
-> > Anyway, the fix is simple, just need to do // SAFETY*: as Miguel sugges=
-ts
-> > here, instead of // SAFETY:
-> > https://lore.kernel.org/all/CANiq72kEnDyUpnWMZmheJytjioeiJUK_C-yQJk77dP=
-id89LExw@mail.gmail.com/
->
-> So, to clarify, I suggested it as a temporary thing we could do if we
-> want to use that "fake `unsafe` block in macro matcher" pattern more
-> and more.
->
-> i.e. if we plan to use the pattern more, then I am happy to ask
-> upstream if it would make sense for Clippy to recognize it (or perhaps
-> it is just a false negative instead of a false positive, given
-> `impl_device_context_deref`), so that we don't need a hacked safety
-> tag (Cc'ing Alejandra).
+The EXPORT_SYMBOL_GPL() for debugfs_create_str was placed incorrectly
+away from the function definition. Move it immediately below the
+debugfs_create_str() function where it belongs.
 
-The team is a bit hesitant on adding comment-specific syntax apart
-from the widely used (and already on clippy) `// SAFETY` comments.
+Fixes: d60b59b96795 ("debugfs: Export debugfs_create_str symbol")
+Signed-off-by: Gui-Dong Han <hanguidong02@gmail.com>
+---
+ fs/debugfs/file.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I'm pushing for some more comments specific to the Rust4Linux project,
-because we already tailor some lints for specific projects (such as the
-Safety Critical Rust Consortium), but adding more than new types of
-comments is a bit much.
+diff --git a/fs/debugfs/file.c b/fs/debugfs/file.c
+index a941d73251b0..edd6aafbfbaa 100644
+--- a/fs/debugfs/file.c
++++ b/fs/debugfs/file.c
+@@ -1047,7 +1047,6 @@ ssize_t debugfs_read_file_str(struct file *file, char __user *user_buf,
+ 
+ 	return ret;
+ }
+-EXPORT_SYMBOL_GPL(debugfs_create_str);
+ 
+ static ssize_t debugfs_write_file_str(struct file *file, const char __user *user_buf,
+ 				      size_t count, loff_t *ppos)
+@@ -1142,6 +1141,7 @@ void debugfs_create_str(const char *name, umode_t mode,
+ 	debugfs_create_mode_unsafe(name, mode, parent, value, &fops_str,
+ 				   &fops_str_ro, &fops_str_wo);
+ }
++EXPORT_SYMBOL_GPL(debugfs_create_str);
+ 
+ static ssize_t read_file_blob(struct file *file, char __user *user_buf,
+ 			      size_t count, loff_t *ppos)
+-- 
+2.43.0
 
-On this specific lint emission, I'll see if I can get it fixed,
-because it's a false
-positive.
-
-Cheers,
-Alejandra.
