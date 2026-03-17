@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB215F33806
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 06:35:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDE73F33807
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 07:05:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AB3210E336;
-	Tue, 17 Mar 2026 06:35:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ncLrQEng";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF80010E2DE;
- Tue, 17 Mar 2026 06:35:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773729348; x=1805265348;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=CUvM03sKJnPCVd7X0MDDUY/5T3Tm3+e6cS3PUwoIDQc=;
- b=ncLrQEngxuOWrlo7xOVUgXZx/4Dizo67jsNx0n+4scn0qpfOotsDUbef
- l9w27ip6AKAWeS7btFgUiUaAdOD/R86tvvSgSV1H5V7/AsgPeiNbf/9KP
- Lh8zX72gmfrlXzAlG73GrxEmJtZr1xdb9KuTn5u9XoIK4Bo6JQ0dqCnJm
- cd4kCXKPjMZ6/mlM88rdNm4YScqy1ry78hgMVaoGDM7+pLsdMPyejDCp/
- TVrpMTykHO4blnvEUfiFO9Bh3ke20ZqJQ6VI/dVIxBp3BbJcZzAdEzQw1
- oVgC57+DUUpARzB+3Jyk7b6h0k2I7xeZ+W7p61zdc45W7h62q45wSLqP7 g==;
-X-CSE-ConnectionGUID: 8jnY+DSZQ76cEN5ga8Zgxg==
-X-CSE-MsgGUID: BpupGE7LSqK5XpvCrBLsRg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="85834461"
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="85834461"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2026 23:35:48 -0700
-X-CSE-ConnectionGUID: 1+nUWRKpTfmNNyMRfdGR/Q==
-X-CSE-MsgGUID: 0kOR0r/RQW6NDcStVdtEgA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="222105318"
-Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2026 23:35:46 -0700
-From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: suraj.kandpal@intel.com,
-	ville.syrjala@linux.intel.com
-Subject: [PATCH v4 2/2] drm/i915/dmc: Enable PIPEDMC_ERROR interrupt
-Date: Tue, 17 Mar 2026 12:07:13 +0530
-Message-ID: <20260317063713.3288576-3-dibin.moolakadan.subrahmanian@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260317063713.3288576-1-dibin.moolakadan.subrahmanian@intel.com>
-References: <20260317063713.3288576-1-dibin.moolakadan.subrahmanian@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5484D10E186;
+	Tue, 17 Mar 2026 07:05:16 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F33B10E186;
+ Tue, 17 Mar 2026 07:05:15 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8271207580394532858=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/psr=3A_Disable_Pan?=
+ =?utf-8?q?el_Replay_on_Dell_XPS_14_DA14260_as_a_quirk?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 17 Mar 2026 07:05:15 -0000
+Message-ID: <177373111510.365038.4997348337900438943@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260317062402.1888624-1-jouni.hogander@intel.com>
+In-Reply-To: <20260317062402.1888624-1-jouni.hogander@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,43 +36,154 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable PIPEDMC_ERROR interrupt bit for display version 35+.
+--===============8271207580394532858==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Changes in v2:
-- Move PIPEDMC_ERROR interrupt enable to a separate patch (Ville Syrjala)
-Changes in v3:
-- Add Bspec reference (Suraj Kandpal)
-Changes in v4:
-- Add TODO to check the enablement of PIPEDMC_ERROR for PTL (Suraj Kandpal)
+== Series Details ==
 
-Bspec: 70296
-Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dmc.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+Series: drm/i915/psr: Disable Panel Replay on Dell XPS 14 DA14260 as a quirk
+URL   : https://patchwork.freedesktop.org/series/163348/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 38b284a0db82..6c803b2dcbcd 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -510,7 +510,13 @@ static void pipedmc_clock_gating_wa(struct intel_display *display, bool enable)
- static u32 pipedmc_interrupt_mask(struct intel_display *display)
- {
- 	if (DISPLAY_VER(display) >= 35)
--		return PIPEDMC_FLIPQ_PROG_DONE;
-+		return PIPEDMC_FLIPQ_PROG_DONE |
-+			PIPEDMC_ERROR;
-+
-+	/*
-+	 * TODO: Check if PIPEDMC_ERROR bit enabling causes errors
-+	 * on PTL, enable it if validation passes
-+	 */
- 
- 	/*
- 	 * FIXME PIPEDMC_ERROR not enabled for now due to LNL pipe B
--- 
-2.43.0
+== Summary ==
 
+CI Bug Log - changes from xe-4732-72df5434544ebbfc63b3649354fb0276b9b4db6a_BAT -> xe-pw-163348v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-163348v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4732-72df5434544ebbfc63b3649354fb0276b9b4db6a/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163348v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6520])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4732-72df5434544ebbfc63b3649354fb0276b9b4db6a/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163348v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][5] ([Intel XE#7483]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4732-72df5434544ebbfc63b3649354fb0276b9b4db6a/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163348v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
+
+
+Build changes
+-------------
+
+  * Linux: xe-4732-72df5434544ebbfc63b3649354fb0276b9b4db6a -> xe-pw-163348v1
+
+  IGT_8806: 8806
+  xe-4732-72df5434544ebbfc63b3649354fb0276b9b4db6a: 72df5434544ebbfc63b3649354fb0276b9b4db6a
+  xe-pw-163348v1: 163348v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163348v1/index.html
+
+--===============8271207580394532858==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/psr: Disable Panel Replay on Dell XPS 14 DA14260 as a quirk</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163348/">https://patchwork.freedesktop.org/series/163348/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163348v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163348v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4732-72df5434544ebbfc63b3649354fb0276b9b4db6a_BAT -&gt; xe-pw-163348v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-163348v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4732-72df5434544ebbfc63b3649354fb0276b9b4db6a/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163348v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4732-72df5434544ebbfc63b3649354fb0276b9b4db6a/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163348v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4732-72df5434544ebbfc63b3649354fb0276b9b4db6a/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163348v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4732-72df5434544ebbfc63b3649354fb0276b9b4db6a -&gt; xe-pw-163348v1</li>
+</ul>
+<p>IGT_8806: 8806<br />
+  xe-4732-72df5434544ebbfc63b3649354fb0276b9b4db6a: 72df5434544ebbfc63b3649354fb0276b9b4db6a<br />
+  xe-pw-163348v1: 163348v1</p>
+
+</body>
+</html>
+
+--===============8271207580394532858==--
