@@ -4,75 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC867FEDA0D
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 19:49:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8542BFEDA0D
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 19:50:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 60CAC10E1CD;
-	Tue, 17 Mar 2026 19:49:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C07210E40C;
+	Tue, 17 Mar 2026 19:50:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=daniel.almeida@collabora.com header.b="GEVHPlTV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eX98cTBt";
 	dkim-atps=neutral
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C883410E1CD;
- Tue, 17 Mar 2026 19:49:18 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1773776956; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=l6DHBX9OpXYx2XB4ahJu3nwGnmoTwJam6cKnRAFzGTaQcSM98cMNmNBISrvJ+k6FjatQyPJ1owo0waUt47F6M7hsnFp2GnRqte1o/3MZsUGDmaEYmfBi7F4S13oM8OU/nhgf1cejCg3aLoGk0EF+c3cBXDqF8S37TZmC/H4R2E0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1773776956;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=qivz7z5qDkBFkveJZY7JZdTDWy+EWa/y0vLvNrlAvYg=; 
- b=mDXdFPf/AHuN1pa1DMWNXURU3m/WOYGDdkz7paN8U/PV5llbqcy7xoBVaC4d2Qaa89oGVpKBW37tdBvBb5ZVA+VRYNw8hLnqbVayedaUB8VZYK1lTaijjVkZR6BNhpckj14Lrfc+pjjvYqjwJpFdOxD3Y6iJ+iLKRvpkyW9vrj0=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=daniel.almeida@collabora.com;
- dmarc=pass header.from=<daniel.almeida@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1773776956; 
- s=zohomail; d=collabora.com; i=daniel.almeida@collabora.com;
- h=Content-Type:Mime-Version:Subject:Subject:From:From:In-Reply-To:Date:Date:Cc:Cc:Content-Transfer-Encoding:Message-Id:Message-Id:References:To:To:Reply-To;
- bh=qivz7z5qDkBFkveJZY7JZdTDWy+EWa/y0vLvNrlAvYg=;
- b=GEVHPlTVrYZDZ661G1DbPwdt/YWYF4U0fV0BRj22+t762Alt06x3gFn5pHrIV6vU
- 0ZxnSF9aruXsJGKU4EytbL1eUd82Br2BKfBiGFe4hln8VTrQOBOkLD9B1YKzobANtcK
- kx9vhVv8ejlfUbZI8qpYjDbNCTwYlo0S0014voLI=
-Received: by mx.zohomail.com with SMTPS id 1773776953256295.04566668878033;
- Tue, 17 Mar 2026 12:49:13 -0700 (PDT)
-Content-Type: text/plain;
-	charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81\))
-Subject: Re: [RFC PATCH 02/12] drm/dep: Add DRM dependency queue layer
-From: Daniel Almeida <daniel.almeida@collabora.com>
-In-Reply-To: <abmaDElHmbQkYy57@lstrano-desk.jf.intel.com>
-Date: Tue, 17 Mar 2026 16:48:53 -0300
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?utf-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?utf-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Philipp Stanner <phasta@kernel.org>,
- Simona Vetter <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, linux-kernel@vger.kernel.org,
- Sami Tolvanen <samitolvanen@google.com>,
- Jeffrey Vander Stoep <jeffv@google.com>, Alice Ryhl <aliceryhl@google.com>,
- Daniel Stone <daniels@collabora.com>,
- Alexandre Courbot <acourbot@nvidia.com>,
- John Hubbard <jhubbard@nvidia.com>, shashanks@nvidia.com,
- jajones@nvidia.com, Eliot Courtney <ecourtney@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- rust-for-linux <rust-for-linux@vger.kernel.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <CC600DA5-968C-440B-8B4F-4E56576C7D5A@collabora.com>
-References: <20260316043255.226352-1-matthew.brost@intel.com>
- <20260316043255.226352-3-matthew.brost@intel.com>
- <7A8108C7-7CF0-4EA4-95ED-8003502DC35A@collabora.com>
- <abjqfXERS6Xk4FAQ@lstrano-desk.jf.intel.com>
- <abmaDElHmbQkYy57@lstrano-desk.jf.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-X-Mailer: Apple Mail (2.3826.700.81)
-X-ZohoMailClient: External
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1112910E40C
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 19:50:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773777040; x=1805313040;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WThuOA3CpZ6nKLQ7l2jxWrQC+iPF+xc1b3IO+MAZRq8=;
+ b=eX98cTBtFK4PUahz8f92U0FHzwgmC5p9lVnAdXRt49EYxjRqhhFZyhNw
+ ClE4cbeX/mZE8qNxtTeyI2PTeITwDyHRpZ35R4yHoThWNWNqkLbuIxYyE
+ 8mu0QQdm3ixz4Fnj5obt8tsJNIk801YTXrcb/nbv6EONZ/DX3egSd5Oqc
+ JjfdAbzz/e/amHS99+5+sdmiSXO0diCp/1UNKmqKNvftDGxRY7HX0G+E9
+ 3OyGRZaDjK1SLx6xiMyavcbZFpOMPR+AAfvCqTPE7Ie7Ygv03C/uxlDd/
+ SEXl4kBYTH3VYshAA5vTplZ/hvB8flsKOil+pz9dcoD1w4LLfwf1117r3 A==;
+X-CSE-ConnectionGUID: zmESon8FQwKrf8E6HjHbjA==
+X-CSE-MsgGUID: 1tO2ks2NSM6WjHeuEU1fEA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="85452526"
+X-IronPort-AV: E=Sophos;i="6.23,126,1770624000"; d="scan'208";a="85452526"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2026 12:50:40 -0700
+X-CSE-ConnectionGUID: 0eWwhKqqRuOnjSBMsK2BQQ==
+X-CSE-MsgGUID: Rub9q758TpaBJJE4UZo0+A==
+X-ExtLoop1: 1
+Received: from dut4407arlh.fm.intel.com ([10.105.10.118])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2026 12:50:39 -0700
+From: Stuart Summers <stuart.summers@intel.com>
+To: 
+Cc: matthew.brost@intel.com, intel-xe@lists.freedesktop.org,
+ Stuart Summers <stuart.summers@intel.com>
+Subject: [PATCH] drm/xe: Add min and max context TLB invalidation sizes
+Date: Tue, 17 Mar 2026 19:50:35 +0000
+Message-ID: <20260317195037.97302-1-stuart.summers@intel.com>
+X-Mailer: git-send-email 2.43.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,72 +64,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-I still need to digest your answers above, there's quite a bit of =
-information.
-Thanks for that. I'll do a pass on it tomorrow.
+Allow platform-defined TLB invalidation min and max lengths.
 
->>> By the way:
->>>=20
->>> I invite you to have a look at this implementation [0]. It currently =
-works in real
->>> hardware i.e.: our downstream "Tyr" driver for Arm Mali is using =
-that at the
->>> moment. It is a mere prototype that we=E2=80=99ve put together to =
-test different
->>> approaches, so it=E2=80=99s not meant to be a =E2=80=9Csolution=E2=80=9D=
- at all. It=E2=80=99s a mere data point
->>> for further discussion.
->=20
-> I think some of the things I pointed out=E2=80=94async teardown, =
-bypass paths,
-> and dropping job refs in IRQ context=E2=80=94would still need to be =
-added,
-> though.
+This gives finer granular control to which invalidations we
+decide to send to GuC. The min size is essentially a round
+up. The max allows us to switch to a full invalidation.
 
-That=E2=80=99s ok, I suppose we can find a way to add these things if =
-they=E2=80=99re
-needed in order to support other FW scheduling GPUs (i.e.: other than =
-Mali,
-which is the only thing I tested on, and Nova, which I assume has very =
-similar
-requirements).
+The expectation here is that GuC will translate the full
+invalidation in this instance into a series of per context
+invalidations. These are then issued with no H2G or G2H
+messages and therefore should be quicker than splitting
+the invalidations from the KMD in max size chunks and sending
+separately.
 
->=20
->>>=20
->>> Philip Stanner is working on this =E2=80=9CJob Queue=E2=80=9D =
-concept too, but from an upstream
->>> perspective.
->>>=20
->>> [0]: =
-https://gitlab.freedesktop.org/panfrost/linux/-/merge_requests/61
->=20
-> I scanned [0], it looks signicantly better than the post upstream. Let
-> me dig in a bit more.
->=20
-> Matt
-> Matt
+Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device_types.h  |  4 ++++
+ drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 14 ++++++++------
+ drivers/gpu/drm/xe/xe_pci.c           |  2 ++
+ drivers/gpu/drm/xe/xe_pci_types.h     |  2 ++
+ 4 files changed, 16 insertions(+), 6 deletions(-)
 
-One thing that is missing is that, at the moment, submit() is fallible =
-and
-there is no preallocation. This can be added to the current design =
-rather
-easily (i.e. by splitting into two different steps, a fallible prepare() =
-where
-rollback is possible, and an infallible commit(), or whatever names get
-chosen).
-
-Perhaps we can also split this into two types too, AtomicJobQueue and =
-JobQueue,
-where only the first one allows refs to be dropped in IRQ context; i.e.: =
-since
-we do not need this in Tyr, and not allowing this makes the design of =
-the
-"non-atomic" version much simpler. Or perhaps we can figure out a way to =
-ensure
-that we don't drop the last ref in IRQ context. I am just brainstorming =
-some
-ideas at this point, and again, I still need to go through your =
-explanations above.
-
-=E2=80=94 Daniel
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 615218d775b1..0c4168fe2ffb 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -137,6 +137,10 @@ struct xe_device {
+ 		u8 vm_max_level;
+ 		/** @info.va_bits: Maximum bits of a virtual address */
+ 		u8 va_bits;
++		/** @info.min_tlb_inval_size: Minimum size of context based TLB invalidations */
++		u64 min_tlb_inval_size;
++		/** @info.max_tlb_inval_size: Maximum size of context based TLB invalidations */
++		u64 max_tlb_inval_size;
+ 
+ 		/*
+ 		 * Keep all flags below alphabetically sorted
+diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+index ced58f46f846..256759b826bc 100644
+--- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
++++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+@@ -117,12 +117,12 @@ static int send_page_reclaim(struct xe_guc *guc, u32 seqno,
+ 
+ static u64 normalize_invalidation_range(struct xe_gt *gt, u64 *start, u64 *end)
+ {
++	struct xe_device *xe = gt_to_xe(gt);
+ 	u64 orig_start = *start;
+ 	u64 length = *end - *start;
+ 	u64 align;
+ 
+-	if (length < SZ_4K)
+-		length = SZ_4K;
++	length = max_t(u64, xe->info.min_tlb_inval_size, length);
+ 
+ 	align = roundup_pow_of_two(length);
+ 	*start = ALIGN_DOWN(*start, align);
+@@ -162,9 +162,12 @@ static int send_tlb_inval_ppgtt(struct xe_guc *guc, u32 seqno, u64 start,
+ 	struct xe_gt *gt = guc_to_gt(guc);
+ 	struct xe_device *xe = guc_to_xe(guc);
+ 	u32 action[MAX_TLB_INVALIDATION_LEN];
+-	u64 length = end - start;
++	u64 normalize_len, length = end - start;
+ 	int len = 0, err;
+ 
++	normalize_len = normalize_invalidation_range(gt, &start,
++						     &end);
++
+ 	xe_gt_assert(gt, (type == XE_GUC_TLB_INVAL_PAGE_SELECTIVE &&
+ 			  !xe->info.has_ctx_tlb_inval) ||
+ 		     (type == XE_GUC_TLB_INVAL_PAGE_SELECTIVE_CTX &&
+@@ -173,11 +176,10 @@ static int send_tlb_inval_ppgtt(struct xe_guc *guc, u32 seqno, u64 start,
+ 	action[len++] = XE_GUC_ACTION_TLB_INVALIDATION;
+ 	action[len++] = !prl_sa ? seqno : TLB_INVALIDATION_SEQNO_INVALID;
+ 	if (!gt_to_xe(gt)->info.has_range_tlb_inval ||
+-	    length > MAX_RANGE_TLB_INVALIDATION_LENGTH) {
++	    length > MAX_RANGE_TLB_INVALIDATION_LENGTH ||
++	    normalize_len > xe->info.max_tlb_inval_size) {
+ 		action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_FULL);
+ 	} else {
+-		u64 normalize_len = normalize_invalidation_range(gt, &start,
+-								 &end);
+ 		bool need_flush = !prl_sa &&
+ 			seqno != TLB_INVALIDATION_SEQNO_INVALID;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 189e2a1c29f9..12569367034b 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -742,6 +742,8 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.va_bits = desc->va_bits;
+ 	xe->info.vm_max_level = desc->vm_max_level;
+ 	xe->info.vram_flags = desc->vram_flags;
++	xe->info.min_tlb_inval_size = desc->min_tlb_inval_size;
++	xe->info.max_tlb_inval_size = desc->max_tlb_inval_size;
+ 
+ 	xe->info.is_dgfx = desc->is_dgfx;
+ 	xe->info.has_cached_pt = desc->has_cached_pt;
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index 8eee4fb1c57c..cd9d3ad96fe0 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -34,6 +34,8 @@ struct xe_device_desc {
+ 	u8 va_bits;
+ 	u8 vm_max_level;
+ 	u8 vram_flags;
++	u64 min_tlb_inval_size;
++	u64 max_tlb_inval_size;
+ 
+ 	u8 require_force_probe:1;
+ 	u8 is_dgfx:1;
+-- 
+2.43.0
 
