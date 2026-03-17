@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25ED0FB5E9F
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 00:50:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CDC5FB5E9F
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 00:50:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B673410E2F0;
-	Tue, 17 Mar 2026 00:50:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8D8610E2F0;
+	Tue, 17 Mar 2026 00:50:51 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D28010E06B;
- Tue, 17 Mar 2026 00:50:35 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8219177824301356747=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F7E910E06B;
+ Tue, 17 Mar 2026 00:50:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/ggtt=3A_Remove_dupli?=
- =?utf-8?q?cate_XE=5FGGTT=5FFLAGS=5F64K_macro_definition?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_use_=25z_format?=
+ =?utf-8?q?_string_for_ptrdiff=5Ft?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shuicheng Lin" <shuicheng.lin@intel.com>
+To: "Arnd Bergmann" <arnd@kernel.org>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 17 Mar 2026 00:50:35 -0000
-Message-ID: <177370863502.364341.13209645167131198114@a3b018990fe9>
+Date: Tue, 17 Mar 2026 00:50:51 -0000
+Message-ID: <177370865104.364316.5974274776425389535@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260316222723.1722591-2-shuicheng.lin@intel.com>
-In-Reply-To: <20260316222723.1722591-2-shuicheng.lin@intel.com>
+References: <20260316224357.658520-1-arnd@kernel.org>
+In-Reply-To: <20260316224357.658520-1-arnd@kernel.org>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,106 +40,48 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8219177824301356747==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/ggtt: Remove duplicate XE_GGTT_FLAGS_64K macro definition
-URL   : https://patchwork.freedesktop.org/series/163326/
-State : success
+Series: drm/xe: use %z format string for ptrdiff_t
+URL   : https://patchwork.freedesktop.org/series/163329/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820_BAT -> xe-pw-163326v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 3773a0a4bd7d40b1dabc6388f8f3d2deee15558b
+Author: Arnd Bergmann <arnd@arndb.de>
+Date:   Mon Mar 16 23:43:46 2026 +0100
 
-Summary
--------
+    drm/xe: use %z format string for ptrdiff_t
+    
+    ptrdiff_t, size_t and long are the same size on all supported architectures,
+    but gcc requires the use of the %zx modifier instead of %lx. On 32-bit
+    targets, the wrong one produces this warning:
+    
+    drivers/gpu/drm/xe/xe_lrc.c:1913:7: error: format specifies type 'unsigned long' but the argument has type '__ptrdiff_t' (aka 'int') [-Werror,-Wformat]
+     1912 |                 drm_printf(p, "LRC[%#5lx]  =  [%#010x] MI_NOOP (%d dwords)\n",
+          |                                    ~~~~~
+          |                                    %#5tx
+     1913 |                            dw - num_noop - start, inst_header, num_noop);
+          |                            ^~~~~~~~~~~~~~~~~~~~~
+    
+    Fixes: 65fcf19cb36b ("drm/xe: Include running dword offset in default_lrc dumps")
+    Signed-off-by: Arnd Bergmann <arnd@arndb.de>
++ /mt/dim checkpatch a25d8c583e1e52bde77d371081a7c3fcd0a2e820 drm-intel
+3773a0a4bd7d drm/xe: use %z format string for ptrdiff_t
+-:6: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#6: 
+ptrdiff_t, size_t and long are the same size on all supported architectures,
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_8805 -> IGT_8806
-  * Linux: xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820 -> xe-pw-163326v1
-
-  IGT_8805: 8805
-  IGT_8806: 8806
-  xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820: a25d8c583e1e52bde77d371081a7c3fcd0a2e820
-  xe-pw-163326v1: 163326v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163326v1/index.html
-
---===============8219177824301356747==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+total: 0 errors, 1 warnings, 0 checks, 100 lines checked
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/ggtt: Remove duplicate XE_GGTT_FLAGS_64K macro definition</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163326/">https://patchwork.freedesktop.org/series/163326/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163326v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163326v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820_BAT -&gt; xe-pw-163326v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8805 -&gt; IGT_8806</li>
-<li>Linux: xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820 -&gt; xe-pw-163326v1</li>
-</ul>
-<p>IGT_8805: 8805<br />
-  IGT_8806: 8806<br />
-  xe-4731-a25d8c583e1e52bde77d371081a7c3fcd0a2e820: a25d8c583e1e52bde77d371081a7c3fcd0a2e820<br />
-  xe-pw-163326v1: 163326v1</p>
-
-</body>
-</html>
-
---===============8219177824301356747==--
