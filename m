@@ -4,77 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 635C7FD8752
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 12:05:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4A84FD875C
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 12:19:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21DA610E622;
-	Tue, 17 Mar 2026 12:05:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A525A10E351;
+	Tue, 17 Mar 2026 12:19:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=daniel.almeida@collabora.com header.b="X4FENUmD";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="GypqWCLI";
 	dkim-atps=neutral
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7190810E621;
- Tue, 17 Mar 2026 12:05:22 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1773749120; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=aSw+ZeQVp4FS3UfPiEqEyugMGGLnaSaQcKspC0AqEmqbwfdQDgP0oaOeHaNNnCKrlwt/EXmXjEKDgqXPft0YiXuFajWf9uXrQEgvGmIHp+3X4+77aR6aVbSaPOwS3/AQJJRUKhYyyle1Q70XL5ZtUPD8pUL6WQmBBxLEzctjYUY=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1773749120;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=GPSSGoZxjNOsc4QauRfSOblkZpvnUtKAHmRJMvKZsAA=; 
- b=Wlv55XXfsZgssAYIbW1h4INPe2vnu0Q8aeMUPYt97frytQeAh9cautTk3QBwZdX0vu5z7ZC4laXeRvHIVZwFyqgoy7YmPtWDN4ti91uQ3JsCT4hMvvpMEFR3TFRDHEudFe82+nNvrkRLydzp4a1iuv1iIXTOgT9M+NZYmNRDOkg=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=daniel.almeida@collabora.com;
- dmarc=pass header.from=<daniel.almeida@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1773749119; 
- s=zohomail; d=collabora.com; i=daniel.almeida@collabora.com;
- h=Content-Type:Mime-Version:Subject:Subject:From:From:In-Reply-To:Date:Date:Cc:Cc:Content-Transfer-Encoding:Message-Id:Message-Id:References:To:To:Reply-To;
- bh=GPSSGoZxjNOsc4QauRfSOblkZpvnUtKAHmRJMvKZsAA=;
- b=X4FENUmDDmpp9SOgWVEu3f/Z/7wCfsbF1zis/K7TNYTtDLUa6/RSZlIP59UsgTGQ
- LtgQI8CQs5XQxOq52wXMzcNjFKkShLwS2/W4sSfz+gewafma+DfrB6rqxm0JaRifC2m
- blm5iCS7bI9liBo193ndM++QMxWMdK1qt2jx6/Ek=
-Received: by mx.zohomail.com with SMTPS id 1773749117110887.5184078065679;
- Tue, 17 Mar 2026 05:05:17 -0700 (PDT)
-Content-Type: text/plain;
-	charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81\))
-Subject: Re: [RFC PATCH 02/12] drm/dep: Add DRM dependency queue layer
-From: Daniel Almeida <daniel.almeida@collabora.com>
-In-Reply-To: <abkQTEcRujrFLsdn@lstrano-desk.jf.intel.com>
-Date: Tue, 17 Mar 2026 09:04:56 -0300
-Cc: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?utf-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?utf-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Philipp Stanner <phasta@kernel.org>,
- Simona Vetter <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, linux-kernel@vger.kernel.org,
- Sami Tolvanen <samitolvanen@google.com>,
- Jeffrey Vander Stoep <jeffv@google.com>, Alice Ryhl <aliceryhl@google.com>,
- Daniel Stone <daniels@collabora.com>,
- Alexandre Courbot <acourbot@nvidia.com>,
- John Hubbard <jhubbard@nvidia.com>, shashanks@nvidia.com,
- jajones@nvidia.com, Eliot Courtney <ecourtney@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>,
- rust-for-linux <rust-for-linux@vger.kernel.org>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6B8510E351;
+ Tue, 17 Mar 2026 12:19:51 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id ACA35435A8;
+ Tue, 17 Mar 2026 12:19:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55742C19425;
+ Tue, 17 Mar 2026 12:19:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1773749991;
+ bh=UieOFz+D2vIk/mOObD9j/eJjAo9MB/imC/AN8dxznY4=;
+ h=Date:Cc:To:From:Subject:References:In-Reply-To:From;
+ b=GypqWCLIUZRr3YpzzpXxvFJgnKC/RpOFtaklY2O070qzJoxx0spGlxX76DiSUCrT1
+ x9ro2LeLhjocJDxuO2p3patgylJtH2Mf7+Rmyt4QNjihfsDnmIlp/J5YTQiOXCnJt/
+ eNMER8E7IcqEirBQ7w3C/KfnlDS/lTMCI5kdd73Upc9GC7NDI+0t4JS8wUDW3bJYBr
+ Hn1y2+xOfbSSRWD0sPW+/v+vAETSuxkjoHTNmZh7LeK9k07A5BhJaM/EOrIKtMhL0u
+ NAf4TqmPfOw4HPC66eNDp4sDQaCqp0llIpfaP36VnytHgDohya6KxC6sjUQoueOpRY
+ BLWuCrxQ1GUnA==
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <0722F4A2-EDA3-4CF6-A023-65A7EE23497C@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 17 Mar 2026 13:19:47 +0100
+Message-Id: <DH51W6XRQXYX.3M30IRYIWZLFG@kernel.org>
+Cc: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ "Boris Brezillon" <boris.brezillon@collabora.com>, "Tvrtko Ursulin"
+ <tvrtko.ursulin@igalia.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "David Airlie"
+ <airlied@gmail.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Philipp Stanner" <phasta@kernel.org>, "Simona Vetter" <simona@ffwll.ch>,
+ "Sumit Semwal" <sumit.semwal@linaro.org>, "Thomas Zimmermann"
+ <tzimmermann@suse.de>, <linux-kernel@vger.kernel.org>, "Miguel Ojeda"
+ <miguel.ojeda.sandonis@gmail.com>
+To: "Matthew Brost" <matthew.brost@intel.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
+Subject: Re: [RFC PATCH 02/12] drm/dep: Add DRM dependency queue layer
 References: <20260316043255.226352-1-matthew.brost@intel.com>
  <20260316043255.226352-3-matthew.brost@intel.com>
- <7A8108C7-7CF0-4EA4-95ED-8003502DC35A@collabora.com>
- <abjqfXERS6Xk4FAQ@lstrano-desk.jf.intel.com>
- <CANiq72=Y2g_5=iEzU1L07pMPYD+wVapJXpp9rvYXEzCKEs59Zw@mail.gmail.com>
- <abkQTEcRujrFLsdn@lstrano-desk.jf.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-X-Mailer: Apple Mail (2.3826.700.81)
-X-ZohoMailClient: External
+ <DH44U26ZLJS2.3DTS9D6PA0IL4@kernel.org>
+ <abjiTQe4/mRQ8wyA@lstrano-desk.jf.intel.com>
+In-Reply-To: <abjiTQe4/mRQ8wyA@lstrano-desk.jf.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,97 +68,156 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Matthew,
-
-> I get it =E2=80=94 you=E2=80=99re a Rust zealot. You can do this in C =
-and enforce the
-> rules quite well.
->=20
-> RAII cannot describe ownership transfers of refs, nor can it express =
-who
-> owns what in multi-threaded components, as far as I know. Ref-tracking
-> and ownership need to be explicit.
->=20
-> I=E2=80=99m not going to reply to Rust vs C comments in this thread. =
-If you want
-> to talk about ownership, lifetimes, dma-fence enforcement, and =
-teardown
-> guarantees, sure.
->=20
-> If you want to build on top of a component that=E2=80=99s been tested =
-on a
-> production driver, great =E2=80=94 please join in. If you want to =
-figure out all
-> the pitfalls yourself, well=E2=80=A6 have fun.
->=20
-> Matt
->=20
-
-It is not about being a Rust zealot. I pointed out that your code has =
-issues.
-Every time you access the queue you have to use a special function =
-because the
-queue might be gone, how is this not a problem?
-
-+ * However, there is a secondary hazard: a worker can be queued while =
-the
-+ * queue is in a "zombie" state =E2=80=94 refcount has already reached =
-zero and async
-+ * teardown is in flight, but the work item has not yet been disabled =
-by
-+ * free_work.  To guard against this every worker uses
-+ * drm_dep_queue_get_unless_zero() at entry; if the refcount is already =
-zero
-+ * the worker bails immediately without touching the queue state.
-
-At various points you document requirements that are simply comments. =
-Resource
-management is scattered all over the place, and it=E2=80=99s sometimes =
-even shared
-with drivers, whom you have no control over.
-
-+ * Drivers that set %DRM_DEP_QUEUE_FLAGS_BYPASS_SUPPORTED and wish to
-+ * serialise their own submit work against the bypass path must acquire =
+On Tue Mar 17, 2026 at 6:10 AM CET, Matthew Brost wrote:
+> On Mon, Mar 16, 2026 at 11:25:23AM +0100, Danilo Krummrich wrote:
+>> The reason I proposed a new component for Rust, is basically what you al=
+so wrote
+>> in your cover letter, plus the fact that it prevents us having to build =
+a Rust
+>> abstraction layer to the DRM GPU scheduler.
+>>=20
+>> The latter I identified as pretty questionable as building another abstr=
+action
+>> layer on top of some infrastructure is really something that you only wa=
+nt to do
+>> when it is mature enough in terms of lifetime and ownership model.
+>>=20
+>
+> I personally don=E2=80=99t think the language matters that much. I care a=
+bout
+> lifetime, ownership, and teardown semantics. I believe I=E2=80=99ve made =
 this
-+ * guard.  Without it, a concurrent caller of drm_dep_job_push() could =
-take
-+ * the bypass path and call ops->run_job() inline between the driver's
-+ * eligibility check and its corresponding action, producing a race.
+> clear in C, so the Rust bindings should be trivial.
 
-How is this not a problem? Again, you=E2=80=99re not in control of =
-driver code.
+No, they won't be trivial -- in fact, in the case of the Jobqueue they may =
+even
+end up being more complicated than a native implementation.
 
-+ * If set, the driver is responsible for freeing the job. If NULL,
+We still want to build the object model around it that allows us to catch m=
+ost
+of the pitfalls at compile time rather than runtime.
 
-Same here.
+For instance, there has been a proposal of having specific work and workque=
+ue
+types that ensure not to violate DMA fence rules, which the Jobqueue can ad=
+opt.
 
-Even if we take Rust out of the equation, how do you plan to solve these =
-things? Or
-do you consider them solved as is?
+We can also use Klint to ensure correctness for those types at compile time=
+.
 
-I worry that we will find ourselves again at XDC in yet another =
-scheduler
-workshop to address the issues that will invariably come up with your =
-new
-design in a few years.
+So, I can easily see this becoming more complicated when we have to go thro=
+ugh
+an FFI layer that makes us loose additional type information / guarantees.
 
-> If you want to build on top of a component that=E2=80=99s been tested =
-on a
-> production driver, great =E2=80=94 please join in. If you want to =
-figure out all
-> the pitfalls yourself, well=E2=80=A6 have fun.
+Anyways, I don't want to argue about this. I don't know why the whole threa=
+d
+took this direction.
 
-Note that I didn=E2=80=99t show up with a low-effort =E2=80=9Chey, how =
-about we rewrite
-this in Rust?=E2=80=9D. Instead, I linked to an actual Rust =
-implementation that I
-spent weeks painstakingly debugging, not to mention the time it took to =
-write
-it. Again, I suggest that you guys have a look, like I did with your =
-code. You
-might find things you end up liking there.=20
+This is not about C vs. Rust, and I see the Rust component to be added
+regardless of this effort.
 
-=E2=80=94 Daniel
+The question for me is whether we want to have a second component besides t=
+he
+GPU scheduler on the C side or not.
 
+If we can replace the existing scheduler entirely and rework all the driver=
+s
+that'd be great and you absolutely have my blessing.
 
+But, I don't want to end up in a situation where this is landed, one or two
+drivers are converted, and everything else is left behind in terms of
+maintainance / maintainer commitment.
 
+>> My point is, the justification for a new Jobqueue component in Rust I co=
+nsider
+>> given by the fact that it allows us to avoid building another abstractio=
+n layer
+>> on top of DRM sched. Additionally, DRM moves to Rust and gathering exper=
+ience
+>> with building native Rust components seems like a good synergy in this c=
+ontext.
+>>
+>
+> If I knew Rust off-hand, I would have written it in Rust :). Perhaps
+> this is an opportunity to learn. But I think the Rust vs. C holy war
+> isn=E2=80=99t in scope here. The real questions are what semantics we wan=
+t, the
+> timeline, and maintainability. Certainly more people know C, and most
+> drivers are written in C, so having the common component in C makes more
+> sense at this point, in my opinion. If the objection is really about the
+> language, I=E2=80=99ll rewrite it in Rust.
+
+Again, I'm not talking about Rust vs. C. I'm talking about why a new Rust
+component is much easier to justify maintainance wise than a new C componen=
+t is.
+
+That is, the existing infrastructure has problems we don't want to build on=
+ top
+of and the abstraction ends up being of a similar magnitude as a native
+implementation.
+
+A new C implementation alongside the existing one is a whole different ques=
+tion.
+
+>> Having that said, the obvious question for me for this series is how drm=
+_dep
+>> fits into the bigger picture.
+>>=20
+>> I.e. what is the maintainance strategy?
+>>
+>
+> I will commit to maintaining code I believe in, and immediately write
+> the bindings on top of this so they=E2=80=99re maintained from day one.
+
+This I am sure about, but what about the existing scheduler infrastructure?=
+ Are
+you going to keep this up as well?
+
+Who keeps supporting it for all the drivers that can't switch (due to not h=
+aving
+firmware queues) or simply did not switch yet?
+
+>> Do we want to support three components allowing users to do the same thi=
+ng? What
+>> happens to DRM sched for 1:1 entity / scheduler relationships?
+>>=20
+>> Is it worth? Do we have enough C users to justify the maintainance of ye=
+t
+>> another component? (Again, DRM moves into the direction of Rust drivers,=
+ so I
+>> don't know how many new C drivers we will see.) I.e. having this compone=
+nt won't
+>> get us rid of the majority of DRM sched users.
+>>=20
+>
+> Actually, with [1], I=E2=80=99m fairly certain that pretty much every dri=
+ver
+> could convert to this new code. Part of the problem, though, is that
+> when looking at this, multiple drivers clearly break dma-fencing rules,
+> so an annotated component like DRM dep would explode their drivers. Not
+> to mention the many driver-side hacks that each individual driver would
+> need to drop (e.g., I would not be receptive to any driver directly
+> touching drm_dep object structs).
+
+I thought the API can't be abused? :) How would you prevent drivers doing t=
+his
+in practice? They need to have the struct definition, and once they have it=
+, you
+can't do anything about them peeking internals, if not caught through revie=
+w.
+
+> Maintainable, as I understand every single LOC, with verbose documentatio=
+n
+> (generated with Copilot, but I=E2=80=99ve reviewed it multiple times and =
+it=E2=80=99s
+> correct), etc.
+
+I'm not sure this is the core criteria for evaluating whether something is
+maintainable or not.
+
+To be honest, this does not sound very community focused.
+
+> Regardless, given all of the above, at a minimum my driver needs to move
+> on one way or another.
+
+Your driver? What do you mean with "it has to move"?
