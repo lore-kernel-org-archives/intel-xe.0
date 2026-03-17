@@ -4,65 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76DD9F33803
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 14:33:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8AA32F3383D
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 14:41:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37DEA10E66B;
-	Tue, 17 Mar 2026 14:33:20 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="HF1ZiEVK";
-	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEE6610E66B;
- Tue, 17 Mar 2026 14:33:19 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 8D3214169B;
- Tue, 17 Mar 2026 14:33:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FB59C4CEF7;
- Tue, 17 Mar 2026 14:33:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1773757999;
- bh=UMKGlEB6GEb6d3+ga9RF5Uym94ud3HWbnp9OP+wid2Q=;
- h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
- b=HF1ZiEVKHe1ymrCoIKfF8q078IFJHcAcjYeIk1K5k/X6OPIHqRshn79IVh/mcojhc
- Qkl72/vCSsXRxwiK010QnUwPMfPCjYLEkdjOF4b0a3HG+9qyQRiEc6+Rr1SpQ33Gts
- KpZOTikBPCsb2OpgbWLjO8GfkhCkhNPPyZGDYozdrBNOppFo624sX6QOlNNVhmsIXs
- vYMqlNWWVGebdNOPNDxH5+n+W4Uc8rTkNT5i/mpH7xsVZYGFvXYUrtTwCnddqPSCAM
- EWlA1c1eDfUW7hPp9kFlaCSIPTR5jMzZN/pjtbwcBFys0XRPU2/oBE3n9e6o+JdNKf
- KVZnlBDjxvL7w==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 17 Mar 2026 15:33:13 +0100
-Message-Id: <DH54QCVVTUZD.3L5VPUW8B38V5@kernel.org>
-Subject: Re: [RFC PATCH 02/12] drm/dep: Add DRM dependency queue layer
-Cc: "Matthew Brost" <matthew.brost@intel.com>,
- <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>, "Boris
- Brezillon" <boris.brezillon@collabora.com>, "Tvrtko Ursulin"
- <tvrtko.ursulin@igalia.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "David Airlie"
- <airlied@gmail.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Philipp Stanner" <phasta@kernel.org>, "Simona Vetter" <simona@ffwll.ch>,
- "Sumit Semwal" <sumit.semwal@linaro.org>, "Thomas Zimmermann"
- <tzimmermann@suse.de>, <linux-kernel@vger.kernel.org>, "Sami Tolvanen"
- <samitolvanen@google.com>, "Jeffrey Vander Stoep" <jeffv@google.com>,
- "Alice Ryhl" <aliceryhl@google.com>, "Daniel Stone"
- <daniels@collabora.com>, "Alexandre Courbot" <acourbot@nvidia.com>, "John
- Hubbard" <jhubbard@nvidia.com>, <shashanks@nvidia.com>,
- <jajones@nvidia.com>, "Eliot Courtney" <ecourtney@nvidia.com>, "Joel
- Fernandes" <joelagnelf@nvidia.com>, "rust-for-linux"
- <rust-for-linux@vger.kernel.org>, "Miguel Ojeda"
- <miguel.ojeda.sandonis@gmail.com>
-To: "Daniel Almeida" <daniel.almeida@collabora.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20260316043255.226352-1-matthew.brost@intel.com>
- <20260316043255.226352-3-matthew.brost@intel.com>
- <7A8108C7-7CF0-4EA4-95ED-8003502DC35A@collabora.com>
- <DH524YJD4UD3.HLHJP0AM401N@kernel.org>
- <974E3052-FCA8-4985-A37D-A1F49C06A77C@collabora.com>
-In-Reply-To: <974E3052-FCA8-4985-A37D-A1F49C06A77C@collabora.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D52710E395;
+	Tue, 17 Mar 2026 14:41:56 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BA4310E69B;
+ Tue, 17 Mar 2026 14:41:54 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4456897219340112703=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EBAT=3A_failure_for_MEI_interrupt_fixes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Simon Richter" <simon.richter@hogyros.de>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 17 Mar 2026 14:41:54 -0000
+Message-ID: <177375851461.366776.6605597398075494300@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260317134741.3420-1-Simon.Richter@hogyros.de>
+In-Reply-To: <20260317134741.3420-1-Simon.Richter@hogyros.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,79 +35,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue Mar 17, 2026 at 3:25 PM CET, Daniel Almeida wrote:
->
->
->> On 17 Mar 2026, at 09:31, Danilo Krummrich <dakr@kernel.org> wrote:
->>=20
->> On Tue Mar 17, 2026 at 3:47 AM CET, Daniel Almeida wrote:
->>> I agree with what Danilo said below, i.e.:  IMHO, with the direction th=
-at DRM
->>> is going, it is much more ergonomic to add a Rust component with a nice=
- C
->>> interface than doing it the other way around.
->>=20
->> This is not exactly what I said. I was talking about the maintainance as=
-pects
->> and that a Rust Jobqueue implementation (for the reasons explained in my=
- initial
->> reply) is easily justifiable in this aspect, whereas another C implement=
-ation,
->> that does *not* replace the existing DRM scheduler entirely, is much har=
-der to
->> justify from a maintainance perspective.
->
-> Ok, I misunderstood your point a bit.
->
->>=20
->> I'm also not sure whether a C interface from the Rust side is easy to es=
-tablish.
->> We don't want to limit ourselves in terms of language capabilities for t=
-his and
->> passing through all the additional infromation Rust carries in the type =
-system
->> might not be straight forward.
->>=20
->> It would be an experiment, and it was one of the ideas behind the Rust J=
-obqueue
->> to see how it turns if we try. Always with the fallback of having C
->> infrastructure as an alternative when it doesn't work out well.
->
-> From previous experience in doing Rust to C FFI in NVK, I don=E2=80=99t s=
-ee, at
-> first, why this can=E2=80=99t work. But I agree with you, there may very =
-well be
-> unanticipated things here and this part is indeed an experiment. No argum=
-ent
-> from me here.
->
->>=20
->> Having this said, I don't see an issue with the drm_dep thing going forw=
-ard if
->> there is a path to replacing DRM sched entirely.
->
-> The issues I pointed out remain. Even if the plan is to have drm_dep + Jo=
-bQueue
-> (and no drm_sched). I feel that my point of considering doing it in Rust =
-remains.
+--===============4456897219340112703==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I mean, as mentioned below, we should have a Rust Jobqueue as independent
-component. Or are you saying you'd consdider having only a Rust component w=
-ith a
-C API eventually? If so, that'd be way too early to consider for various
-reasons.
+== Series Details ==
 
->> The Rust component should remain independent from this for the reasons m=
-entioned
->> in [1].
->>=20
->> [1] https://lore.kernel.org/dri-devel/DH51W6XRQXYX.3M30IRYIWZLFG@kernel.=
-org/
->
-> Ok
->
-> =E2=80=94 Daniel
+Series: MEI interrupt fixes
+URL   : https://patchwork.freedesktop.org/series/163380/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from xe-4734-b65472ae36d2a21ac0a1991618db1e9b09b1dcd0_BAT -> xe-pw-163380v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-163380v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-163380v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (14 -> 4)
+------------------------------
+
+  ERROR: It appears as if the changes made in xe-pw-163380v1_BAT prevented too many machines from booting.
+
+  Missing    (10): bat-bmg-1 bat-lnl-2 bat-ptl-vm bat-dg2-oem2 bat-atsm-2 bat-bmg-3 bat-wcl-1 bat-wcl-2 bat-adlp-vm bat-adlp-7 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4734-b65472ae36d2a21ac0a1991618db1e9b09b1dcd0 -> xe-pw-163380v1
+
+  IGT_8806: 8806
+  xe-4734-b65472ae36d2a21ac0a1991618db1e9b09b1dcd0: b65472ae36d2a21ac0a1991618db1e9b09b1dcd0
+  xe-pw-163380v1: 163380v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163380v1/index.html
+
+--===============4456897219340112703==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>MEI interrupt fixes</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163380/">https://patchwork.freedesktop.org/series/163380/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163380v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163380v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4734-b65472ae36d2a21ac0a1991618db1e9b09b1dcd0_BAT -&gt; xe-pw-163380v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-163380v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-163380v1_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (14 -&gt; 4)</h2>
+<p>ERROR: It appears as if the changes made in xe-pw-163380v1_BAT prevented too many machines from booting.</p>
+<p>Missing    (10): bat-bmg-1 bat-lnl-2 bat-ptl-vm bat-dg2-oem2 bat-atsm-2 bat-bmg-3 bat-wcl-1 bat-wcl-2 bat-adlp-vm bat-adlp-7 </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4734-b65472ae36d2a21ac0a1991618db1e9b09b1dcd0 -&gt; xe-pw-163380v1</li>
+</ul>
+<p>IGT_8806: 8806<br />
+  xe-4734-b65472ae36d2a21ac0a1991618db1e9b09b1dcd0: b65472ae36d2a21ac0a1991618db1e9b09b1dcd0<br />
+  xe-pw-163380v1: 163380v1</p>
+
+</body>
+</html>
+
+--===============4456897219340112703==--
