@@ -4,104 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91EEEF483C1
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 446ABF483C2
 	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 16:04:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 516B110E58A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0963B10E57C;
 	Mon, 23 Mar 2026 16:04:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="I0mA7yLA";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SwRI3JSX";
 	dkim-atps=neutral
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com
- [209.85.160.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7C9210E75A
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 08:47:13 +0000 (UTC)
-Received: by mail-oa1-f42.google.com with SMTP id
- 586e51a60fabf-415b23dd6e5so2243720fac.3
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 01:47:13 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773823633; cv=none;
- d=google.com; s=arc-20240605;
- b=TiQaT3t27ljMa5Y9KXmsEwYof32ajVrIE2FC7RZz5xlbLlk829zOX2MYMq2084LAC5
- XP9SlhDZGgA3tXW6N3ebV6PbGoCZvmYMHzuLe08tdyP3NH6shABdhYbQE+tupPCy9bCP
- dOIfEP8XILLp1N3ZEvQ+Pzcu84W+QME6AXLNwmNXjH/9dXaXTh1aa9KIKojTSWYdj/gY
- GjlUkbuj+GDm3401Tyn+5cdIBNpS8/cl+DBjSR4kUWfyWOYaliwjImNWViSRaUW0hxyM
- 0dXMCTqsUY2CmdxXlaUgIIbTwCGfbRD6jsa0jVmC1tvOk0LtREwGxw1sJxxZLKGS5RI0
- Rimg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=83jPdky0qKJSRYzsoaPc+e5EHJzCiyWfR0yebjpaYT4=;
- fh=43B4gojF6c9r9Kg+QfD5KJOdROBQv0wgud1oIyWB+YQ=;
- b=DwlfQn/zFHTcLOt2zdtKdX7A8k1R4OpATqY7qkx5JF1AliCsNn8W6P9jmTn7QukcFC
- DTq9qjqZmEO/hgRAIAniBHPEsbjJhn7tJySgjvpSgxs0xIu7PtJQu3wPvQfMybEFnIyd
- kFwbRdlXhkjxjHP3PP5f69OrQJyhmF9O+3oDRP+KtPXddyL/IudAwurKgyF7XmDcBsJW
- jij3BFfwy/WvEd4sa9StaRr23gKMTutDN+lPu7NAzCOQf1D2JGVVJZAwAXDEhCmtqr0s
- gSsMGLhnAxobpzHRwy96P1Pqj8ODx/wFfutxbh/cUASh6j37K7QUbYzviXGJQvULykKB
- gsHA==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
+ [209.85.128.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 466C310E576
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 16:46:28 +0000 (UTC)
+Received: by mail-wm1-f49.google.com with SMTP id
+ 5b1f17b1804b1-482f454be5bso980565e9.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 09:46:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773823633; x=1774428433; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
+ d=gmail.com; s=20230601; t=1773765987; x=1774370787; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:from:to:cc:subject:date
  :message-id:reply-to;
- bh=83jPdky0qKJSRYzsoaPc+e5EHJzCiyWfR0yebjpaYT4=;
- b=I0mA7yLA3KBwkAvsqMFVbMDHUQ7b4fRlSN/82xbjecPUG3WzdO5X4+cUC3wYEG1hx2
- jopygxH8EnOVP7LM7Z6ZAtaW+XH3DGLqhmxjBRPaoIidYSk+d1zXoyJl7QR+knY7f0ry
- +2Y2lEp2j+6jXuteWvznJb5h+p3QAslzsOkXitGnA1bZy/iZ2k2XnmB1E5FCldY6oiBh
- pvjkd7FBncX0qhsEihH1ukYzzy1/WC8rlTIb8s6kvQKFb00yf5qKhf12Y+ENtti4WFZs
- jMFevygx2yAaPa5VcDMid9zu4CukEUUI9t14S0Of19uAe+utS15jkeMQq+xmDxqPeYLm
- g5vA==
+ bh=++LJXc5vhHGA5o4goL+ihczkLTg8146WStrt9s5OCas=;
+ b=SwRI3JSXZUxoEGFOU43jTcPqwQ9aJjRvI5ay/dXxPLM4j6wnbT8giEIUKimSXHOMUr
+ V1DouIqzSWYTisMbaGnzt7KsRBIwUZYepeeGdZD3BB0AwhKOEh1nHXKT4alQRfzolmcT
+ fUUQvu05b5sHo/flsvCH5902rxLD3y5l6knPPs3yw4EvqWThtD4fjS//B6QIYd0P/EG6
+ gN8XfeMjVBRN4X5x5YVFbSxczMkKoGy4JcFK+J9v1srZJRw7F+Zi2CQZN2QyShJtZZOc
+ bFIntEVtkQGu5H+QTrBVJi1+uxWGTb2WA+DAFj+7SXZ4NV4pQX55dDikx/S2g6UGWF1L
+ XKlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773823633; x=1774428433;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ d=1e100.net; s=20251104; t=1773765987; x=1774370787;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=83jPdky0qKJSRYzsoaPc+e5EHJzCiyWfR0yebjpaYT4=;
- b=gOm7Inq8MbekeYaH5q5JZ874vzE5ymjVcxtFY0Kf/oecIXFpwnIPbhzhnskOcvtORG
- Cb1wpaorNPia28WhPkbA1P4Y6B+bmMN7b4r0VontGyPsYbPxsi34+uFeTKgZ9a2f+w4f
- 3JOp3rBMSGOTwclCHUozA/J5A2xxHLErkyoMz+Pby+DJdYbLj0by9M6fHWsCzPT1jB8V
- IOS9GPMIMNGF1013wCeD4y0B1iHYQZcQqpPcgHITyW4n2HTSWT+ustmFe5RPhsuzgAKy
- w0lHYO6Ba127981Xx8fYTLDscO6V9ocrV1Dac+X5VLPX/G+N5dhdRm+KR4f5Bkgp0wgt
- 1ADg==
+ bh=++LJXc5vhHGA5o4goL+ihczkLTg8146WStrt9s5OCas=;
+ b=HNqzceJStRNVo8n+TmDPgYY1j9Vp1mMSpXdA+22nYAS8k6XDRBKTsE0Cb5jEEnyuJJ
+ oY0YlIIbSbB+gH3oeLF62bQ8sTAOzMbXETxaSOP8jOOpRprR2bi58946uWCsM7jmgoAk
+ CA28jYbm9nFukbZfGW3pOAg3XYGpwGMmrZsg+rct6jnr2NweSV5cS9+5llZZEKexlAcW
+ RqXdd+X3PK/D8rqQAhvOhG8KhQjaEP2arBT7gd2U5o/3EjDPyKoKZBXBNW5JlhHkjjvO
+ RpXEQ5NpRCEUPltmNzZVOsHKYXs8MnmOkyFBR3V77UoeLmrxPRTIw6vxgW1h26bxF/3w
+ KYQA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUAemIANg6qcFd4DmU/Fcx0cDQIJD6eOVPYvq93nUk/uzGHzqA+Qo9JzNL4PeRlsmfOXJy0hx1iug==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YybTyBUZbBxo4GN6nMw4XsWrTm6Nj6x4g+OoWMNvop+qgRQRSCr
- 24z7zGtAUbymcTqTCwalvYfQzK5sIXuatx4PvLqg9d7MRD3Q1e+sO9ejIv015MXOIhacW7W6rw2
- D8JuC5m2sQLiVHAqUXBJgACdtOPwvJFc=
-X-Gm-Gg: ATEYQzwdrQlOYK9k5lOc8XWF+MEvfTiHG5Qw1rMJVuyJpS+ISIolmeX0sR1bp7lRwvI
- 7KeLgwLZfdEOXOXnH2febvgOPG/PkyAlmF7YEs9Mp0MpsZaeVDnGInNSkTc2i1F7cyGE1OZtuzk
- 0BON5D70Qn4Uhe8M7RfkqzCESzKjBnLrJwV8F4nrT4Y0L4ny+z1i86mh4qpw630HsA7W/1SEbUc
- EWn/PUtu3lXLqJp5g8MviMDG98VPs6OCdv+rDyN1R/Wy4UpqBxRHO2dnvBEPCCUxDd9weN0L5BZ
- iWXOb13YRCa/D2eFFMCz7qjQHSH7qSJ7g9iM9+Nec9ygPPzFldsI7V78G9zJpbFEGX7ZSf7EUCc
- =
-X-Received: by 2002:a05:6871:286:b0:417:64ba:82cc with SMTP id
- 586e51a60fabf-41bd421a82cmr1862712fac.43.1773823632659; Wed, 18 Mar 2026
- 01:47:12 -0700 (PDT)
+ AJvYcCXBP6ET9KLMfCrIXx7LWT6PjSPo8jerV2FyU7Usi0PR4YeJPs4exKSY90X0Jy92fNnnzLGHJ2gosQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy9v3+8FnzEX5rUBKHN/kO74Bqvi9hnvXgoOaWC8awLWk5StdXT
+ lC05Io/9bxjnGVe559ZXRQJEDTT1/iAhF4N/unv35+LgqpTx4PO4gsG0
+X-Gm-Gg: ATEYQzySvVQCpTLt3A/3x1yFAoTUCLIQUjrw9a9eD6RM8v0J5a3eUo3LEY/+ZbktNrM
+ t1mBrbIamYRZAe2lajBFBge1k6kx9n9tlFSnsE3QHfcCRtkCqTgSVQXVcSsk+LpEy1jpeM98HeM
+ +o6b58ZkfXdIT2dVCZNpiAg8Zl6Pu3dTt8tX0Xx0ePqWDpM80bC1bBznAE0k4OdVUnio3+mzOEn
+ rediS7ObPGWNmVwb0CniODBwtY+Uob9FNsBNJ1DIv76JTUeD4zuGCSOyNHk2E//v7yL2fAt4sO0
+ 7F6ML0TSyulVxmY/cK7T5DMigEANivilPJMjlaiepQsjOjDZHM8e3N+mzTrVQbVPrj5LdqFq1Bc
+ Qw9GH1JJ4ebsVuTcXyDhBCOagCpklN/alBjUeOvT9MdeHuXkXCJosNIyw204tL+DzpHCAGyDqL5
+ vy55bFQlqUTOslvHR3JxV+7OuOrffBJdhNauHJ+2BfEXmmUTmqrYWEaLNXi/TLqh+T
+X-Received: by 2002:a5d:5f82:0:b0:439:df59:abc5 with SMTP id
+ ffacd0b85a97d-43b4981a167mr7391373f8f.12.1773765986492; 
+ Tue, 17 Mar 2026 09:46:26 -0700 (PDT)
+Received: from pumpkin (82-69-66-36.dsl.in-addr.zen.co.uk. [82.69.66.36])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-43b518a3e3csm566981f8f.35.2026.03.17.09.46.25
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 17 Mar 2026 09:46:26 -0700 (PDT)
+Date: Tue, 17 Mar 2026 16:46:24 +0000
+From: David Laight <david.laight.linux@gmail.com>
+To: "Arnd Bergmann" <arnd@arndb.de>
+Cc: "Matt Roper" <matthew.d.roper@intel.com>, "Arnd Bergmann"
+ <arnd@kernel.org>, "Matthew Brost" <matthew.brost@intel.com>, Thomas
+ =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>, "Rodrigo
+ Vivi" <rodrigo.vivi@intel.com>, "Dave Airlie" <airlied@gmail.com>, "Simona
+ Vetter" <simona@ffwll.ch>, "Dnyaneshwar Bhadane"
+ <dnyaneshwar.bhadane@intel.com>, "Lucas De Marchi" <demarchi@kernel.org>,
+ "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>, "Umesh Nerlige Ramappa"
+ <umesh.nerlige.ramappa@intel.com>, "Raag Jadav" <raag.jadav@intel.com>,
+ "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] drm/xe: use %z format string for ptrdiff_t
+Message-ID: <20260317164624.79843d2a@pumpkin>
+In-Reply-To: <20260317145647.0d5de2a1@pumpkin>
+References: <20260316224357.658520-1-arnd@kernel.org>
+ <20260316225118.GD2729713@mdroper-desk1.amr.corp.intel.com>
+ <e46c3681-6f5f-4a41-b5bf-72627b4ec87a@app.fastmail.com>
+ <20260317145647.0d5de2a1@pumpkin>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; arm-unknown-linux-gnueabihf)
 MIME-Version: 1.0
-References: <20260317185920.43387-1-hanguidong02@gmail.com>
- <20260317191538.43535-1-hanguidong02@gmail.com>
- <c14b399c9c6bf96f8c7d33615561b0d787ff175b@intel.com>
- <CALbr=LadoX8g--rtU==HQfNQ9f1=KP=7AS-PGfooKaSbnYPz+Q@mail.gmail.com>
- <8ac4b6ef2dfbc1dce0047dee55f2df609287a3ec@intel.com>
-In-Reply-To: <8ac4b6ef2dfbc1dce0047dee55f2df609287a3ec@intel.com>
-From: Gui-Dong Han <hanguidong02@gmail.com>
-Date: Wed, 18 Mar 2026 16:47:00 +0800
-X-Gm-Features: AaiRm51Yf9dm9cacIuRM_2DJNr3deiXg0cux6KcppyZN1nJwEpt6FR9vmcrqdC8
-Message-ID: <CALbr=LboxkVoFrRmZoq7LN=LTL+-ZgoUiTi6utSDEw7M_qX8bA@mail.gmail.com>
-Subject: Re: [PATCH 4/4] drm/i915/display: initialize string params to empty
- strings
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: gregkh@linuxfoundation.org, dakr@kernel.org, rafael@kernel.org, 
- rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, 
- airlied@gmail.com, simona@ffwll.ch, gustavo.sousa@intel.com, 
- demarchi@kernel.org, jouni.hogander@intel.com, luciano.coelho@intel.com, 
- linux-kernel@vger.kernel.org, driver-core@lists.linux.dev, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-sound@vger.kernel.org, 
- akaieurus@gmail.com, me@ziyao.cc
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-Mailman-Approved-At: Mon, 23 Mar 2026 16:04:08 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -117,82 +102,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Mar 18, 2026 at 4:32=E2=80=AFPM Jani Nikula <jani.nikula@linux.inte=
-l.com> wrote:
->
-> On Wed, 18 Mar 2026, Gui-Dong Han <hanguidong02@gmail.com> wrote:
-> > On Wed, Mar 18, 2026 at 4:12=E2=80=AFAM Jani Nikula <jani.nikula@linux.=
-intel.com> wrote:
-> >>
-> >> On Wed, 18 Mar 2026, Gui-Dong Han <hanguidong02@gmail.com> wrote:
-> >> > Passing NULL to debugfs_create_str() causes a NULL pointer dereferen=
-ce
-> >> > upon reading, and is no longer permitted. Change the default values =
-of
-> >> > dmc_firmware_path and vbt_firmware to empty strings ("").
-> >> >
-> >> > Existing code that consumes these parameters already verifies both
-> >> > pointer validity and string length, so empty strings are handled
-> >> > correctly. Furthermore, heap allocation is not required here: these
-> >> > debugfs parameters are created with strictly read-only permissions
-> >> > (0400). As a result, the debugfs write operation is never invoked,
-> >> > meaning the static empty string will not be erroneously freed by
-> >> > kfree().
-> >> >
-> >> > Fixes: e9913f0bd2e1 ("drm/i915/display: move dmc_firmware_path to di=
-splay params")
-> >> > Fixes: 29292bc6cc37 ("drm/i915/display: Move vbt_firmware module par=
-ameter under display")
-> >> > Signed-off-by: Gui-Dong Han <hanguidong02@gmail.com>
-> >> > ---
-> >> >  drivers/gpu/drm/i915/display/intel_display_params.h | 4 ++--
-> >> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >> >
-> >> > diff --git a/drivers/gpu/drm/i915/display/intel_display_params.h b/d=
-rivers/gpu/drm/i915/display/intel_display_params.h
-> >> > index b95ecf728daa..0a8cad98d480 100644
-> >> > --- a/drivers/gpu/drm/i915/display/intel_display_params.h
-> >> > +++ b/drivers/gpu/drm/i915/display/intel_display_params.h
-> >> > @@ -23,8 +23,8 @@ struct drm_printer;
-> >> >   *       debugfs file
-> >> >   */
-> >> >  #define INTEL_DISPLAY_PARAMS_FOR_EACH(param) \
-> >> > -     param(char *, dmc_firmware_path, NULL, 0400) \
-> >> > -     param(char *, vbt_firmware, NULL, 0400) \
-> >> > +     param(char *, dmc_firmware_path, "", 0400) \
-> >> > +     param(char *, vbt_firmware, "", 0400) \
-> >>
-> >> Admittedly this is all very convoluted, but these NULL pointers (or
-> >> pointers to them) are never passed to debugfs_create_str().
-> >
-> > Hi Jani,
-> >
-> > Thanks for your review.
-> >
-> > Could you elaborate on why they are never passed? Looking at
-> > intel_display_debugfs_params.c, the intel_display_debugfs_params()
-> > function iterates over INTEL_DISPLAY_PARAMS_FOR_EACH using the
-> > REGISTER macro. This eventually calls
-> > _intel_display_param_create_file(), which uses _Generic to dispatch
-> > char ** types to debugfs_create_str().
->
-> In _intel_display_param_create_file(), valp is &display->params.x, where
-> x is dmc_firmware_path or vbt_firmware.
->
-> display->params gets initialized using intel_display_params_copy() when
-> struct intel_display is allocated in intel_display_device_probe(). In
-> intel_display_params_copy(), _param_dup_charp() handles the NULL
-> initializer.
->
-> Granted, if the kstrdup() fails, you could end up having NULL there, but
-> at that point it's fine if your debugfs_create_str() change barfs and
-> bails out.
->
-> Like I said, it's convoluted. ;)
+On Tue, 17 Mar 2026 14:56:47 +0000
+David Laight <david.laight.linux@gmail.com> wrote:
 
-Ah, that makes perfect sense.
+> On Tue, 17 Mar 2026 00:07:57 +0100
+> "Arnd Bergmann" <arnd@arndb.de> wrote:
+> 
+> > On Mon, Mar 16, 2026, at 23:51, Matt Roper wrote:  
+> > > On Mon, Mar 16, 2026 at 11:43:46PM +0100, Arnd Bergmann wrote:    
+> > >> From: Arnd Bergmann <arnd@arndb.de>
+> > >> 
+> > >> ptrdiff_t, size_t and long are the same size on all supported architectures,
+> > >> but gcc requires the use of the %zx modifier instead of %lx. On 32-bit    
+> > >
+> > > Nathan Chancellor just sent a fix here:
+> > >
+> > > https://lore.kernel.org/all/20260316-drm-xe-fix-32-bit-wformat-ptrdiff-v1-1-0108b10b2b6b@kernel.org/
+> > >
+> > > His solution uses %tx rather than %zx, which according to
+> > > Documentation/core-api/printk-formats.rst sounds like it's probably the
+> > > most accurate format string for this case?
+> > >    
+> > 
+> > Right, Nathan's version is correct. I wasn't aware that size_t
+> > and ptrdiff_t have different modifiers.  
+> 
+> Consider:
+> void foo(size_t len)
+> {
+> 	char *p = malloc(len);
+> 	char *end = p + len;
+> 	ptrdiff_t diff = p - end;
+> 	printf("len %zu, diff %td\n", len, diff);
+> 	free(p);
+> }
+> Clearly foo(5) output "5 -5".
+> But what about foo(5u << 29) on a 32bit system with a large unlimit and
+> a big enough hole in the address space.
+> More likely would be something running on an x86 in real mode.
+> There malloc(65000) might be reasonable, so size_t would be unsigned int
+> but ptrdiff_t would need to be a signed 32bit type.
+> 
+> Of course, in linux, they are all 'long'.
 
-Thanks for taking the time to explain this in detail! Then we could
-drop this patch from the series.
+I should have said 'the same size as long'.
 
-Thanks.
+> 
+> 	David
+> 
+> 
+> > 
+> >       Arnd
+> >   
+> 
+> 
+
