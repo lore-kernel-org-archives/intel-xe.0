@@ -4,62 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0113FD877E
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 14:19:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5442FD877E
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 14:26:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A4D210E66B;
-	Tue, 17 Mar 2026 14:19:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6016710E675;
+	Tue, 17 Mar 2026 14:26:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Npf4sjCd";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=daniel.almeida@collabora.com header.b="HnT35TMT";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E1AB10E674;
- Tue, 17 Mar 2026 14:19:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773757167; x=1805293167;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0K6Ph3bJoAhgXeJQ/xLzevkk2eibpDETYN3Jmhkk6j4=;
- b=Npf4sjCdAAbJ5AG2LOyrQueKciAAK16qyQJ1SrYiIbOzz7aN7t0koOPy
- jcRMTC+puTLpcOxN6LZY13gUYkylHOSJiO2y+aSAjqzf8nHbRplnGcbE1
- yKjIdbwhcs6ym6nwPp9+XzaNgKbH5Q815TKw7XVpAtt98kpvQ5+ou91mw
- gnipvRJBeHMLSpozD73tkppFbMgpOvsO7M/MH7cIvzbhu7ritLSkMsAG5
- UfCmw5kzqqquypU4utGID4QuSZfu0LxPlqmRcAdgnmNXn6luKSG63J0UH
- O8Bf9yyGb82E9dPDJYPO1ytOjA89axcL6AEcmst2ewhV1glqgxCHqVlFf Q==;
-X-CSE-ConnectionGUID: eznosEJfQ3eySVaBxkcYyQ==
-X-CSE-MsgGUID: vOiuglDSQJCdSeZ+Eb7mWg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="74973140"
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="74973140"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2026 07:19:27 -0700
-X-CSE-ConnectionGUID: /y5uuFuSSvurW3TIUsBOpg==
-X-CSE-MsgGUID: qznoJMPEQ9ee7gu6YSjcXA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="260184985"
-Received: from dhhellew-desk2.ger.corp.intel.com (HELO fedora)
- ([10.245.245.163])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2026 07:19:25 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <dev@lankhorst.se>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 2/3] drm/ttm: Avoid invoking the OOM killer when reading
- back swapped content
-Date: Tue, 17 Mar 2026 15:18:55 +0100
-Message-ID: <20260317141856.237876-3-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260317141856.237876-1-thomas.hellstrom@linux.intel.com>
-References: <20260317141856.237876-1-thomas.hellstrom@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E13210E675;
+ Tue, 17 Mar 2026 14:26:03 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1773757558; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=GadWEUlcojdUNlb5/w4/EcQ6SH+h1bGh8DPIFE9jjZ346Swb3g42g6QO3xsxD36oQVQE50fh8FZtiHaBMa25KSSOFTadtEqrj3rfguP+IReTnCldLjbf2b6593G5eC4gC/sj7q+YvCUWc3ioeHn0TNmj16NDk3jvsH9LAUGERDw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1773757558;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=tt8WteWjbd6fVZa1CqjR1h4UnWjp5UqhSJ+qIwPNGQE=; 
+ b=Vg1gGaoUiGvL7vuK/0RAdnCgeYZTU1h3/BtBJRkPzs3PnZhuyiDZ2eLcz8m8fbWhjN3VkqgKwZxkTt5v1atMEOG0J7kiZktHdvJKlKdbVIu/eNyGSh8EYE5ihAFK5jIbKF4wsCAuaNMoD4ftjBU8yy8Y8ChOXd29NWPvtU5Uan8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=daniel.almeida@collabora.com;
+ dmarc=pass header.from=<daniel.almeida@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1773757558; 
+ s=zohomail; d=collabora.com; i=daniel.almeida@collabora.com;
+ h=Content-Type:Mime-Version:Subject:Subject:From:From:In-Reply-To:Date:Date:Cc:Cc:Content-Transfer-Encoding:Message-Id:Message-Id:References:To:To:Reply-To;
+ bh=tt8WteWjbd6fVZa1CqjR1h4UnWjp5UqhSJ+qIwPNGQE=;
+ b=HnT35TMTzMLuA9TfcuQTuxM7WDPIbrQ90RG0BOQlExRa5H5r1OFTrOqitq8zOHjl
+ gz31huIhsm9Heu5/8EJ/tFD/WBW1M/6XCwE0Mq87eDAfu48w0gWmVHSKBje0marHn9f
+ UeCMjiNgaT0sGwl4UxUpXJ1KJ/JydTN7RTjzcUEA=
+Received: by mx.zohomail.com with SMTPS id 1773757555465479.0341753244137;
+ Tue, 17 Mar 2026 07:25:55 -0700 (PDT)
+Content-Type: text/plain;
+	charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3826.700.81\))
+Subject: Re: [RFC PATCH 02/12] drm/dep: Add DRM dependency queue layer
+From: Daniel Almeida <daniel.almeida@collabora.com>
+In-Reply-To: <DH524YJD4UD3.HLHJP0AM401N@kernel.org>
+Date: Tue, 17 Mar 2026 11:25:35 -0300
+Cc: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?utf-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ =?utf-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Philipp Stanner <phasta@kernel.org>,
+ Simona Vetter <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, linux-kernel@vger.kernel.org,
+ Sami Tolvanen <samitolvanen@google.com>,
+ Jeffrey Vander Stoep <jeffv@google.com>, Alice Ryhl <aliceryhl@google.com>,
+ Daniel Stone <daniels@collabora.com>,
+ Alexandre Courbot <acourbot@nvidia.com>,
+ John Hubbard <jhubbard@nvidia.com>, shashanks@nvidia.com,
+ jajones@nvidia.com, Eliot Courtney <ecourtney@nvidia.com>,
+ Joel Fernandes <joelagnelf@nvidia.com>,
+ rust-for-linux <rust-for-linux@vger.kernel.org>,
+ Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <974E3052-FCA8-4985-A37D-A1F49C06A77C@collabora.com>
+References: <20260316043255.226352-1-matthew.brost@intel.com>
+ <20260316043255.226352-3-matthew.brost@intel.com>
+ <7A8108C7-7CF0-4EA4-95ED-8003502DC35A@collabora.com>
+ <DH524YJD4UD3.HLHJP0AM401N@kernel.org>
+To: Danilo Krummrich <dakr@kernel.org>
+X-Mailer: Apple Mail (2.3826.700.81)
+X-ZohoMailClient: External
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,85 +88,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In situations where the system is very short on RAM, the shmem
-readback from swap-space may invoke the OOM killer.
 
-However, since this might be a recoverable situation where the caller
-is indicating this by setting
-struct ttm_operation_ctx::gfp_retry_mayfail to true, adjust the gfp
-value used by the allocation accordingly.
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/ttm/ttm_backup.c | 6 ++++--
- drivers/gpu/drm/ttm/ttm_pool.c   | 5 ++++-
- include/drm/ttm/ttm_backup.h     | 2 +-
- 3 files changed, 9 insertions(+), 4 deletions(-)
+> On 17 Mar 2026, at 09:31, Danilo Krummrich <dakr@kernel.org> wrote:
+>=20
+> On Tue Mar 17, 2026 at 3:47 AM CET, Daniel Almeida wrote:
+>> I agree with what Danilo said below, i.e.:  IMHO, with the direction =
+that DRM
+>> is going, it is much more ergonomic to add a Rust component with a =
+nice C
+>> interface than doing it the other way around.
+>=20
+> This is not exactly what I said. I was talking about the maintainance =
+aspects
+> and that a Rust Jobqueue implementation (for the reasons explained in =
+my initial
+> reply) is easily justifiable in this aspect, whereas another C =
+implementation,
+> that does *not* replace the existing DRM scheduler entirely, is much =
+harder to
+> justify from a maintainance perspective.
 
-diff --git a/drivers/gpu/drm/ttm/ttm_backup.c b/drivers/gpu/drm/ttm/ttm_backup.c
-index 6bd4c123d94c..81df4cb5606b 100644
---- a/drivers/gpu/drm/ttm/ttm_backup.c
-+++ b/drivers/gpu/drm/ttm/ttm_backup.c
-@@ -44,18 +44,20 @@ void ttm_backup_drop(struct file *backup, pgoff_t handle)
-  * @dst: The struct page to copy into.
-  * @handle: The handle returned when the page was backed up.
-  * @intr: Try to perform waits interruptible or at least killable.
-+ * @additional_gfp: GFP mask to add to the default GFP mask if any.
-  *
-  * Return: 0 on success, Negative error code on failure, notably
-  * -EINTR if @intr was set to true and a signal is pending.
-  */
- int ttm_backup_copy_page(struct file *backup, struct page *dst,
--			 pgoff_t handle, bool intr)
-+			 pgoff_t handle, bool intr, gfp_t additional_gfp)
- {
- 	struct address_space *mapping = backup->f_mapping;
- 	struct folio *from_folio;
- 	pgoff_t idx = ttm_backup_handle_to_shmem_idx(handle);
- 
--	from_folio = shmem_read_folio(mapping, idx);
-+	from_folio = shmem_read_folio_gfp(mapping, idx, mapping_gfp_mask(mapping)
-+					  | additional_gfp);
- 	if (IS_ERR(from_folio))
- 		return PTR_ERR(from_folio);
- 
-diff --git a/drivers/gpu/drm/ttm/ttm_pool.c b/drivers/gpu/drm/ttm/ttm_pool.c
-index 8fa9e09f6ee5..aa41099c5ecf 100644
---- a/drivers/gpu/drm/ttm/ttm_pool.c
-+++ b/drivers/gpu/drm/ttm/ttm_pool.c
-@@ -530,6 +530,8 @@ static int ttm_pool_restore_commit(struct ttm_pool_tt_restore *restore,
- 		p = first_page[i];
- 		if (ttm_backup_page_ptr_is_handle(p)) {
- 			unsigned long handle = ttm_backup_page_ptr_to_handle(p);
-+			gfp_t additional_gfp = ctx->gfp_retry_mayfail ?
-+				__GFP_RETRY_MAYFAIL | __GFP_NOWARN : 0;
- 
- 			if (IS_ENABLED(CONFIG_FAULT_INJECTION) && ctx->interruptible &&
- 			    should_fail(&backup_fault_inject, 1)) {
-@@ -543,7 +545,8 @@ static int ttm_pool_restore_commit(struct ttm_pool_tt_restore *restore,
- 			}
- 
- 			ret = ttm_backup_copy_page(backup, restore->alloced_page + i,
--						   handle, ctx->interruptible);
-+						   handle, ctx->interruptible,
-+						   additional_gfp);
- 			if (ret)
- 				break;
- 
-diff --git a/include/drm/ttm/ttm_backup.h b/include/drm/ttm/ttm_backup.h
-index c33cba111171..29b9c855af77 100644
---- a/include/drm/ttm/ttm_backup.h
-+++ b/include/drm/ttm/ttm_backup.h
-@@ -56,7 +56,7 @@ ttm_backup_page_ptr_to_handle(const struct page *page)
- void ttm_backup_drop(struct file *backup, pgoff_t handle);
- 
- int ttm_backup_copy_page(struct file *backup, struct page *dst,
--			 pgoff_t handle, bool intr);
-+			 pgoff_t handle, bool intr, gfp_t additional_gfp);
- 
- s64
- ttm_backup_backup_page(struct file *backup, struct page *page,
--- 
-2.53.0
+Ok, I misunderstood your point a bit.
+
+>=20
+> I'm also not sure whether a C interface from the Rust side is easy to =
+establish.
+> We don't want to limit ourselves in terms of language capabilities for =
+this and
+> passing through all the additional infromation Rust carries in the =
+type system
+> might not be straight forward.
+>=20
+> It would be an experiment, and it was one of the ideas behind the Rust =
+Jobqueue
+> to see how it turns if we try. Always with the fallback of having C
+> infrastructure as an alternative when it doesn't work out well.
+
+=46rom previous experience in doing Rust to C FFI in NVK, I don=E2=80=99t =
+see, at
+first, why this can=E2=80=99t work. But I agree with you, there may very =
+well be
+unanticipated things here and this part is indeed an experiment. No =
+argument
+from me here.
+
+>=20
+> Having this said, I don't see an issue with the drm_dep thing going =
+forward if
+> there is a path to replacing DRM sched entirely.
+
+The issues I pointed out remain. Even if the plan is to have drm_dep + =
+JobQueue
+(and no drm_sched). I feel that my point of considering doing it in Rust =
+remains.
+
+>=20
+> The Rust component should remain independent from this for the reasons =
+mentioned
+> in [1].
+>=20
+> [1] =
+https://lore.kernel.org/dri-devel/DH51W6XRQXYX.3M30IRYIWZLFG@kernel.org/
+
+Ok
+
+=E2=80=94 Daniel
 
