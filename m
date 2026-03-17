@@ -4,76 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C109BFD707A
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 20:20:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 991F5FD7091
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 20:23:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7352510E6AB;
-	Tue, 17 Mar 2026 20:20:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5964910E6AB;
+	Tue, 17 Mar 2026 20:23:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="r5jqVpcm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oIRJx1YR";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79B6010E69E;
- Tue, 17 Mar 2026 20:20:49 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 0B680405F0;
- Tue, 17 Mar 2026 20:20:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09757C4CEF7;
- Tue, 17 Mar 2026 20:20:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1773778848;
- bh=Qmle9txu0KZ/bF0+kcgC8Uln28DfPARF0J6ui6/x01Q=;
- h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
- b=r5jqVpcmS+5zZBfGilDMs0BFWj7L8gwoVVURthNmeotNe7o0FpSLAzqALX/pqW02e
- zm6Fx6y5YS2RcmczPhdxzW70/HcKt6CXR/RnXz+01g7GHPezNpZm/hkVBXx5DRRr83
- T8F2On0S7JNiCJODM2K/5TsOOhPoXJxxj7H0qYv8P3eqGf3vqL+lpVFSt2l6MAHjea
- 2VqHFC+rzaXyceLXGBgG8n6zUCG244Zxyq4gc2/bRAtHxmUARPUDXnRVu2lBEdRa1P
- LGQvIcb+DaWHOiOCwsm+BKVR4EqDm0YKWm5/4KDwRjXyGnQvfTb2Qcnf5eTZ11KIs9
- Vnp6ay6q8KdSA==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 17 Mar 2026 21:20:37 +0100
-Message-Id: <DH5C4CMXIPXU.3AM5V38WUQRWQ@kernel.org>
-Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked
- list interface
-Cc: <linux-kernel@vger.kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>,
- "Boqun Feng" <boqun@kernel.org>, "Gary Guo" <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
- <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice
- Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Alex
- Gaynor" <alex.gaynor@gmail.com>, "Dave Airlie" <airlied@redhat.com>, "David
- Airlie" <airlied@gmail.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Thomas Zimmermann" <tzimmermann@suse.de>, "Simona Vetter"
- <simona@ffwll.ch>, "Daniel Almeida" <daniel.almeida@collabora.com>, "Koen
- Koning" <koen.koning@linux.intel.com>, "Nikola Djukic"
- <ndjukic@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>, "Philipp
- Stanner" <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>,
- "Jonathan Corbet" <corbet@lwn.net>, "Alex Deucher"
- <alexander.deucher@amd.com>, =?utf-8?q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, "Jani Nikula" <jani.nikula@linux.intel.com>,
- "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi"
- <rodrigo.vivi@intel.com>, "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang
- Rui" <ray.huang@amd.com>, "Matthew Auld" <matthew.auld@intel.com>, "Matthew
- Brost" <matthew.brost@intel.com>, "Lucas De Marchi"
- <lucas.demarchi@intel.com>, =?utf-8?q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, "Helge Deller" <deller@gmx.de>, "John
- Hubbard" <jhubbard@nvidia.com>, "Alistair Popple" <apopple@nvidia.com>,
- "Timur Tabi" <ttabi@nvidia.com>, "Edwin Peer" <epeer@nvidia.com>, "Andrea
- Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>, "Zhi Wang"
- <zhiw@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>,
- <alexeyi@nvidia.com>, "Eliot Courtney" <ecourtney@nvidia.com>,
- <dri-devel@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-fbdev@vger.kernel.org>
-To: "Joel Fernandes" <joelagnelf@nvidia.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20260317201710.934932-1-joelagnelf@nvidia.com>
- <20260317201710.934932-2-joelagnelf@nvidia.com>
- <46986da6-8c89-475c-8561-964adaa7d034@nvidia.com>
-In-Reply-To: <46986da6-8c89-475c-8561-964adaa7d034@nvidia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9897510E6AB
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 20:23:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773778998; x=1805314998;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=0XHcVNRfW/ZQOMO20ZyNYME/iGx8MbvANXo2wK9++os=;
+ b=oIRJx1YRV/7ljMnBtZ13NVlp6qAyRhklOjdUFStbj3su+DftDVpNHjhv
+ rSG17Lx5AbuugjHJ8iwqD8HZNPimGVUSuEB195By+mNPDA/nkeujMVCp9
+ p4zA2hBummCAKtfS+afXtuGOMq461h6d9kHX6lKrMaOrNSnZL3kdhXnhA
+ SahMqoyQyQBdjWx6p/w+d3Q+TsPFq/0xNnJq+4JVsnqmIGDjzeidq9+jb
+ et/vALPrGhIMcN04t+WepXxyFyYKSmMBCs+84QJCXQuNTbV7yC7KwbiyF
+ fBW2Zk3JmDru0J3ezZxP7Jz5hl5a8sRXyenIqPDr2hfaZbvWpjaAyfX9d g==;
+X-CSE-ConnectionGUID: GYCpG2ZxQF2K8tyL+lnaCQ==
+X-CSE-MsgGUID: nST4C7swTFejMjxpcF+auw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="92395838"
+X-IronPort-AV: E=Sophos;i="6.23,126,1770624000"; d="scan'208";a="92395838"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2026 13:23:17 -0700
+X-CSE-ConnectionGUID: shPfU1jbT42I2V2nU1e5OQ==
+X-CSE-MsgGUID: 5UVqDvEfT9aRAk3wK/igJw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,126,1770624000"; d="scan'208";a="226847615"
+Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.32])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2026 13:23:16 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Lin, Shuicheng" <shuicheng.lin@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Subject: RE: [PATCH 0/4] kernel-doc fix for headers
+In-Reply-To: <DM4PR11MB54568B292FD55BFB10B342FEEA41A@DM4PR11MB5456.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260316180322.1721237-6-shuicheng.lin@intel.com>
+ <afd9abb5636b6de4c84250dac35565b6db526c48@intel.com>
+ <DM4PR11MB54568B292FD55BFB10B342FEEA41A@DM4PR11MB5456.namprd11.prod.outlook.com>
+Date: Tue, 17 Mar 2026 22:23:12 +0200
+Message-ID: <34f735c369955434693b3f256d39e94e34d49360@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,9 +69,72 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue Mar 17, 2026 at 9:18 PM CET, Joel Fernandes wrote:
-> Sorry, I forgot to add an additional F: for the rust/kernel/interop.rs fi=
-le.
-> Danilo/Miguel, do you mind adding this when applying?
+On Tue, 17 Mar 2026, "Lin, Shuicheng" <shuicheng.lin@intel.com> wrote:
+> On Tue Mar 17, 2026 5:26 AM Jani Nikula wrote:
+>> On Mon, 16 Mar 2026, Shuicheng Lin <shuicheng.lin@intel.com> wrote:
+>> > Generated by AI and reviewed to confirm the change is correct.
+>> > Split by category to ease review.
+>> 
+>> Will you also ask your AI why kernel-doc didn't warn about these in the regular
+>> build?
+>
+> Ha. AI told me that kernel-doc script does not validate whether the name match or not.
+> "
+> Why kernel-doc Misses These
+> 1. Inline member docs are stored as sections, not validated against C members. In kdoc_parser.py:1673-1676, when an inline doc like /** @format: ... */ is encountered during prototype parsing, it calls begin_section() and add_text(). The tag name is recorded but never cross-checked against the actual struct member on the next line.
+> 2. check_sections() (kdoc_parser.py:661-674) only checks the other direction - it detects when a documented section name isn't in the parameter list, flagging "Excess" descriptions. But for nested members (those with . in the name, line 537), even the "not described" warning is suppressed.
+> 3. Some structs aren't even parsed. For example, xe_oa_buffer uses /** @xe_oa_buffer: ... */ instead of /** struct xe_oa_buffer - ... */, so kernel-doc doesn't recognize it as a struct doc block at all.
+> "
+> And to fix it:
+> "
+> 3. Enhance scripts/kernel-doc itself
+> The proper fix would be to add validation in kdoc_parser.py that cross-checks inline @member tags against the actual C struct member declared on the following line(s). Specifically:
+> - In process_proto() around line 1673, after parsing doc_inline_oneline, read the next non-blank line to extract the actual member name and compare it to the @tag.
+> - Handle dotted names like @outer.inner by checking the leaf component matches.
+> "
 
-I can add it, all good.
+Maybe take that on, then? We've got build checks to run kernel-doc, it's
+a bummer if it doesn't catch the issues.
+
+BR,
+Jani.
+
+
+>
+> Shuicheng
+>
+>> 
+>> BR,
+>> Jani.
+>> 
+>> 
+>> >
+>> > Shuicheng Lin (4):
+>> >   drm/xe: Fix stale and mismatched kernel-doc member tags in header
+>> >     files
+>> >   drm/xe: Add missing '@' prefix to kernel-doc member tags
+>> >   drm/xe: Fix kernel-doc comment syntax issues in header files
+>> >   drm/xe: Fix type and parameter name mismatches in kernel-doc
+>> >     references
+>> >
+>> >  drivers/gpu/drm/xe/xe_device_types.h      | 6 +++---
+>> >  drivers/gpu/drm/xe/xe_exec_queue_types.h  | 2 +-
+>> > drivers/gpu/drm/xe/xe_gt_sriov_pf_types.h | 1 -
+>> >  drivers/gpu/drm/xe/xe_gt_types.h          | 2 +-
+>> >  drivers/gpu/drm/xe/xe_guc_capture_types.h | 2 +-
+>> >  drivers/gpu/drm/xe/xe_guc_ct_types.h      | 4 ++--
+>> >  drivers/gpu/drm/xe/xe_guc_relay_types.h   | 2 +-
+>> >  drivers/gpu/drm/xe/xe_guc_submit_types.h  | 2 +-
+>> >  drivers/gpu/drm/xe/xe_hw_engine_types.h   | 2 +-
+>> >  drivers/gpu/drm/xe/xe_oa_types.h          | 8 +++++---
+>> >  drivers/gpu/drm/xe/xe_pagefault_types.h   | 4 ++--
+>> >  drivers/gpu/drm/xe/xe_pt_types.h          | 2 +-
+>> >  drivers/gpu/drm/xe/xe_pt_walk.h           | 6 +++---
+>> >  drivers/gpu/drm/xe/xe_vm_types.h          | 2 +-
+>> >  14 files changed, 23 insertions(+), 22 deletions(-)
+>> 
+>> --
+>> Jani Nikula, Intel
+
+-- 
+Jani Nikula, Intel
