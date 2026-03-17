@@ -4,34 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 802E2FD876A
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 13:47:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04B0AFD876A
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Mar 2026 13:52:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6E8B10E651;
-	Tue, 17 Mar 2026 13:47:57 +0000 (UTC)
-Received: from psionic.psi5.com (psionic.psi5.com [185.187.169.70])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7582710E640;
- Tue, 17 Mar 2026 13:47:55 +0000 (UTC)
-Received: from localhost.localdomain (unknown
- [IPv6:2400:2410:b120:f200:2e09:4dff:fe00:2e9])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (Client did not present a certificate)
- by psionic.psi5.com (Postfix) with ESMTPSA id CD71D48ADA;
- Tue, 17 Mar 2026 14:47:52 +0100 (CET)
-From: Simon Richter <Simon.Richter@hogyros.de>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Cc: Simon Richter <Simon.Richter@hogyros.de>,
-	stable@vger.kernel.org
-Subject: [PATCH 1/2] drm/xe: allow request_irq on GSC interrupt
-Date: Tue, 17 Mar 2026 22:47:17 +0900
-Message-ID: <20260317134741.3420-2-Simon.Richter@hogyros.de>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260317134741.3420-1-Simon.Richter@hogyros.de>
-References: <20260317134741.3420-1-Simon.Richter@hogyros.de>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB70A10E650;
+	Tue, 17 Mar 2026 13:52:44 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A0B0710E425;
+ Tue, 17 Mar 2026 13:52:43 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_MEI_interrupt_fixes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Simon Richter" <simon.richter@hogyros.de>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 17 Mar 2026 13:52:43 -0000
+Message-ID: <177375556363.366776.12537974077377327916@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260317134741.3420-1-Simon.Richter@hogyros.de>
+In-Reply-To: <20260317134741.3420-1-Simon.Richter@hogyros.de>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,37 +35,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The default flags for freshly allocated interrupts are platform dependent,
-and apparently powerpc and arm set IRQ_NOREQUEST by default.
+== Series Details ==
 
-The normal path is to clear this flag from irq_domain_associate_locked(),
-which wraps the irq domain's "map" function, but the xe driver does not
-define an irq domain and instead allocates the irq descriptor directly, so
-the flags need to be set up manually as well.
+Series: MEI interrupt fixes
+URL   : https://patchwork.freedesktop.org/series/163380/
+State : warning
 
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/6468
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit fd49a82015c2a1dd8bbb6d1bebf409c993edf864
+Author: Simon Richter <Simon.Richter@hogyros.de>
+Date:   Tue Mar 17 22:47:18 2026 +0900
+
+    drm/xe: Use same NUMA node for MEI interrupt
+    
+    The xe driver does not define an irq domain for the GSC (which would
+    automatically allocate the interrupt descriptors on the same NUMA node as
+    the interrupt controller), so explicitly specify the same NUMA node that
+    the PCI device is attached to.
+    
+    Signed-off-by: Simon Richter <Simon.Richter@hogyros.de>
++ /mt/dim checkpatch b65472ae36d2a21ac0a1991618db1e9b09b1dcd0 drm-intel
+c9f2398034a1 drm/xe: allow request_irq on GSC interrupt
+-:15: WARNING:BAD_FIXES_TAG: Please use correct Fixes: style 'Fixes: <12+ chars of sha1> ("<title line>")' - ie: 'Fixes: 87a4c85d3a3e ("drm/xe/gsc: add gsc device support")'
+#15: 
 Fixes: 87a4c85d3a3ed579c86fd2612715ccb94c4001ff
-Cc: <stable@vger.kernel.org> # v6.7+
-Signed-off-by: Simon Richter <Simon.Richter@hogyros.de>
----
- drivers/gpu/drm/xe/xe_heci_gsc.c | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_heci_gsc.c b/drivers/gpu/drm/xe/xe_heci_gsc.c
-index 5af8903e10af..3c4972a9922c 100644
---- a/drivers/gpu/drm/xe/xe_heci_gsc.c
-+++ b/drivers/gpu/drm/xe/xe_heci_gsc.c
-@@ -39,6 +39,7 @@ static int heci_gsc_irq_init(int irq)
- 	irq_set_chip_and_handler_name(irq, &heci_gsc_irq_chip,
- 				      handle_simple_irq, "heci_gsc_irq_handler");
- 
-+	irq_modify_status(irq, IRQ_NOREQUEST | IRQ_NOAUTOEN, IRQ_NOPROBE);
- 	return irq_set_chip_data(irq, NULL);
- }
- 
--- 
-2.47.3
+total: 0 errors, 1 warnings, 0 checks, 7 lines checked
+fd49a82015c2 drm/xe: Use same NUMA node for MEI interrupt
+
 
