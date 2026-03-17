@@ -4,91 +4,90 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DC3FF483C6
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 16:04:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72292F483C1
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 16:04:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4085E10E56C;
-	Mon, 23 Mar 2026 16:04:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31F5B10E58C;
+	Mon, 23 Mar 2026 16:04:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="C/o80Yno";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eNcBzaHS";
 	dkim-atps=neutral
-Received: from mail-dl1-f51.google.com (mail-dl1-f51.google.com [74.125.82.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1807910E1CD
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 19:41:39 +0000 (UTC)
-Received: by mail-dl1-f51.google.com with SMTP id
- a92af1059eb24-1277863a912so494723c88.0
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 12:41:39 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773776498; cv=none;
+Received: from mail-dy1-f182.google.com (mail-dy1-f182.google.com
+ [74.125.82.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4167110E394
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 07:17:41 +0000 (UTC)
+Received: by mail-dy1-f182.google.com with SMTP id
+ 5a478bee46e88-2c0bf0a0236so82970eec.1
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 00:17:41 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773731860; cv=none;
  d=google.com; s=arc-20240605;
- b=i7t3J2Kca/6v98w/22IomcUe4sMrMoYUxoy2FHDvW0pG3BDiCcs3c0cEq/blwbKgg0
- 6DnHeyyagI7nGEHmwqtbZmEsDj9toH4/O6NcKj//p3JzIpR25hnILJWFd+c+HT2cJLIf
- wTRp4SIddKZvCSCtLdz3efXTDZf05sSbkL7yZa7hJYIYWWZX2M3uW/HRqK7dWoffpLLr
- EV0fF2BGK+oVla/Bkwgh8jbN1oprZ0RkzK9L7y1YjJ9kmwBZrhLLVeY6/Hy9VHtSEQbv
- tIFfwQs+Yc5JWEnTj5qVeYzmNiQ96Skn5asU1LpFeHTz1tb2zn9VQ/6nbkYy+UlsjTsc
- x4IQ==
+ b=losFVZsDuE3p+xp0ebTzih+frjFz2aCV1x50EQ0vYxYeddXGBRD7JRbN+MT15qRkrZ
+ eUGRKobR6jecAOEt/inB3+NNkXeLVlqGu3ZexwtnUgXZxMk5/AsjsHonZA5lYM0+TKtO
+ asNgQMGJ5qi+b595Q2TzNjQwRDDl3NExI438Jb5YVR7pDkuelDIjnLlunaqF5ftqdQGW
+ 6UY3/t1DoBJkRnBcqfhgb5zBoYTf3URzs/qYF1wUD42xCKgGG2FELGXjHupbuwIlevmo
+ eyUDEbFg2Lp+sJc1sJJtXhglPvmCvzkbMDRdVOcFnYgVQifjCv4hndqCIqz7f7MgoLM/
+ k5Vg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=wlFA6oh9h2Uqk0U3FytL3VE7dGDdOrHtz15OKY6zjA8=;
- fh=yxFrEGkhk+8OoaYapaERnPNAwFfTz/VDePolT5VeGzU=;
- b=UkqPu1idT8LzSX0uEhycCBCzo2/79FxgJvfpCjnL7kWd9E6+s6zD7a/1IptASgldff
- PZ73ICRowuTDDaRPPpuBm9bKZ+h24xnPbZXQ+bRlS1YDw4bNfBMpnttjHNyv4Phs26WL
- LDtqtLjTBxBL17IuklDGh7fA5+Ll4QpC2Rh6v+CyQNnJ+CpSAm7R/aPEPFRnfZUXRphg
- 1/xi1W6Iy9UvMBGuLRNynu2IXWcyym0e+AXbr0lf9EYZuXPziFyLZAEQ3zfS09XQCzLe
- ReIPmUxgeyfxdzEhCH4aFOmYzuaInCqhtZCeuL41tht1w3qciCVxD58ICBEOoXaYiM44
- /4Gg==; darn=lists.freedesktop.org
+ bh=JRjFojoQ+ay0ef4If4kUCgywrpzkrXMMzGRlp08g/yk=;
+ fh=eqe9hgJydoGYyHjAkBvDRlrYe2brkgIzG2tjdDePwmU=;
+ b=ZyaH4zCnWmZCliuQrxjEdhNxVSBbhvGsppa7v73D8qQ4U9f4U93AEshAuuseNYe3rd
+ IZhIWyQWuSJ6IPzWux8DgMhUi08UCcsUPZYEbQ6nGpSUnnFOIQinSWXOhGR96WWRn7R1
+ vDJHe+/tyEF8tGoDBB7z7f/wruGE9hsqCwgzdY+Ll9xPUxNtYB7QFlieLPRq1loskfs9
+ xjBenJXdrcwSJFaJ/gJCXvhYWUAidSHQOzlD/wwj0N2lLw8GoVEgbWPTCo2aVW03W7WR
+ M50BiIQFLRbjUqLO/DhmeEbKsfCE3Nd2gbXu2NtAhVCXNMxl7Ko2zwlW5E8B0ESzr6Xe
+ 7oDQ==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773776498; x=1774381298; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1773731860; x=1774336660; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=wlFA6oh9h2Uqk0U3FytL3VE7dGDdOrHtz15OKY6zjA8=;
- b=C/o80YnoVsKEcghoy3LfrSG48rHjFCA1DRi02BzMgMRuw3YrRfPj/LIt9WlUrHtJVc
- JHzYzjD+Agrn/akzS3eBqn4rEqQvwK5Xy+I4Q3afh8W5eGKPD+74OiSbzfopb1g7/Gb9
- PxMgcGXezJtx5PYPSXTQKJE0g2ByxOItDN37uQTrGwUCiRX5kRYqDM0Hlz1haVkKwOds
- NEcPTRf9ZXmikk1x6chX55gYHZAiMgPiZ7cz7GVCZQRTw2847mm63TLmsj6gC4f8dtPW
- Q8adLeepG5of7y8qtj7aKY4gVSekLg6Z/hRRjyppB3HYEbbbfbHYk0c5Eljmozuqnhga
- HzHQ==
+ bh=JRjFojoQ+ay0ef4If4kUCgywrpzkrXMMzGRlp08g/yk=;
+ b=eNcBzaHSXi12uck3uK7rd1qtEWdT1GBouy444mwDFT7j9oAPJl2vpAseB0cOVhA42x
+ +9gmsGnqLkyZhtFdXEvmu7yOLCxdkTSCQPY1ZYVrgTgzAIL9I3GtrBTRn0QE1cHVbMKV
+ n1xN7IdAuAqeAIdEbIi5PC7zvh630eaW+IJ8MGITiylQvoRGmxZEftq7ZMPTR8tym57x
+ u3ufufPoSMGTArwXNQD0NZjaG9iP6PdLkYdeGTLIgONYR9y7Be7HhB3+CyQJWrNrXU9E
+ cofOcI2mQP71B+duyYnsKHNhJkNKU/xcKpiVkqc1UwYpJcOvKVMyFl4qGOqVkQzsgcpV
+ XSAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773776498; x=1774381298;
+ d=1e100.net; s=20251104; t=1773731860; x=1774336660;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=wlFA6oh9h2Uqk0U3FytL3VE7dGDdOrHtz15OKY6zjA8=;
- b=g3DNELKfbD4zB49LOtLMn11xm4J95nNKn2lkjdz+HXaAp3lsRz08SBdk0DACOXVWjg
- /XXJuWGI0mrYhbmoh4KLGkt5IMSY9fQYfida49qMEIORwvXiHGSbL4T0uo48gCXEetcE
- TQYMXHn2nWvECxCm5lBasJd81pbNhfE/neh31gzcPkkKIoOk/yrWYW+2PXjpmqOjRJBL
- sGb0CCqbPH2xEGM4GJE1mUSp6sM75DMz/AXl8M5OLv4keWsN0xK3xUL/yqU1Jod7mprK
- BQW6qde+0u3K2vLrV5CP9Ti5TFGu51k9pHswwBQeiG5k7koCvFw6U5t2GfZN1Cj7nCBM
- 8T3w==
+ bh=JRjFojoQ+ay0ef4If4kUCgywrpzkrXMMzGRlp08g/yk=;
+ b=p7Ri6cGKcybQNZIkjfchCblzYS7AERb57+QJtNwhnzzRcU2YCqa27gYizxXF9BoULn
+ 3vSPLeYg+9fi9Uv+yROwq1iuSNJt+Opk0SXbwUzELX2DUItodmznLHCPrn6sVmSUgnaC
+ 6i1QWmuLAOA0aOIWcF+1BuM62Ssc7kJb3KdPM0KyLAFma9kWhcNdTdYYJR/kMqN1KbWD
+ YYZPGCxOIfPWty7H35oBCqcpKkYfHih78o37y4Lkj3MNwIUArqqSPOT4HKToWO/Sxk+Q
+ xF8cRtd8fnCpjfQ0eknjBJts7wYYHLjYetNxf+Cpihy3AiwUXlJHbZSfAVEj0+Ekprz3
+ ez2Q==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVLbyjyd9nNq4txjnsTfsnrJnEPHSd5CRCS24OnepzCaahfA5+W3/YFleoYZdNHHtJygYst3bAs4A==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxBKSJWgx53u8oD0XIsbTgJ9G8rydSmfUwK37GGkidrYCsmhQzD
- u97zbZoGtDaG3pjuQ1jfbfwhJ639Q5lfngXMkpDh4svyHqnSAkZBZIqeHJF1tV+0hqMEeJaeY1t
- vMi45hD+1yoQhR+FnoODBERd1m0XP9AU=
-X-Gm-Gg: ATEYQzxDAQD2kKbcGcb8/+1Jjkk/2MvjXG0D1Zon2U3OEZMUD+Mk5h+RoqlnMG/G0Tb
- bjS4xLwe4gdLaHjQIXtiXoXfCIa7D/zfVSvaF+qgEEK3Ai1wIOJ34j+qT9S4QI2rZoDV3qthhnr
- aba0Jp++kT/WgMbxWbQuqLtD74K3BrOif0leL/U6BbuBF9uWD9//ld4qYYRzyR1Ba+qYygrtDMt
- ZMhNhZPNBOzv/mTHImOnWqXNDzfR/v2a5qw5MnGDKew8Np8CkD9eQEMe9SH3APRT3JwNIxXSAIr
- 7UZ8e27ZBAm59wzCYwEpO0YjsFHo7w0xWZYcXTC4suLJeiKCZ0H4Z7kVRuSgompINtRGm245Ikw
- 1CFXeWE/Av3JZ36oF78AkB9o=
-X-Received: by 2002:a05:7300:dc8f:b0:2be:687:5dbc with SMTP id
- 5a478bee46e88-2c0e5267586mr145307eec.6.1773776498156; Tue, 17 Mar 2026
- 12:41:38 -0700 (PDT)
+ AJvYcCXJLuQIgW5nDzvD53gAgpXUK46Y48XXZffzMMj5QwcB4eaMuOfNygD8x8KvTi2D6/CmtwMYgUzGjA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyxwPHg5QwNp0Oz2uQd30YMJC1eAPahHBpVcCpa2YPzzRHxfpAq
+ FkMQzgJDbLPwxRToduXcrUQeQ6QURtdvNj/P5EDfIjRbb9Ec1slbgOh37jyta1m6D+rfYNoaJV/
+ Z2+D61GxlCyYNnCD+KIKdn6ivVlYIDOo=
+X-Gm-Gg: ATEYQzyt7x4temBg/HtuhEHF1WaDNPxmigRivfylBjXbL2JivU11P36oED37YEdgNkY
+ w6FW3mKK/KJUZdhMSkNVpsj6S9h5O+ywTbZXiJPXfZC6pcAkCFc58z6pLsC+xXbYAMD+lQVZifz
+ pBGfHwL/zevgTalO8oxv4i1xeePrkFZvBOObFPJAJnw43NIDPHuWN+qeRTWotHsuK3Iu/qYa/Ao
+ sYNmBKwY+lS/DfkG1zMXF9SgbcJRKQMpqCa28ZhTw25s6VvdhTHoqEi+dbCnk7cf5eH9AjdUoK2
+ pwweVkpN9CxK98sWHmQJTHbUNFou9N3EDyMD6MvNlpudsHVDtZYZl9H63mciteWHuFUFnkC/dYS
+ NxKSHKFjxmojvPwXs6IQQ934=
+X-Received: by 2002:a05:693c:2b17:b0:2be:6e6:e479 with SMTP id
+ 5a478bee46e88-2bea539710emr3854426eec.2.1773731860241; Tue, 17 Mar 2026
+ 00:17:40 -0700 (PDT)
 MIME-Version: 1.0
 References: <20260316043255.226352-1-matthew.brost@intel.com>
  <20260316043255.226352-3-matthew.brost@intel.com>
  <7A8108C7-7CF0-4EA4-95ED-8003502DC35A@collabora.com>
  <abjqfXERS6Xk4FAQ@lstrano-desk.jf.intel.com>
- <CANiq72=Y2g_5=iEzU1L07pMPYD+wVapJXpp9rvYXEzCKEs59Zw@mail.gmail.com>
- <abkQTEcRujrFLsdn@lstrano-desk.jf.intel.com>
-In-Reply-To: <abkQTEcRujrFLsdn@lstrano-desk.jf.intel.com>
+In-Reply-To: <abjqfXERS6Xk4FAQ@lstrano-desk.jf.intel.com>
 From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Tue, 17 Mar 2026 20:41:24 +0100
-X-Gm-Features: AaiRm53yINyatDJ_WJZjRpETpmBvLRs2cRRQIisdD6TKDINCtuP52WidZCuGK0o
-Message-ID: <CANiq72=gHArzFS=SkiZyPpEfSL+0AcU3ifKRnwfEyet42662PA@mail.gmail.com>
+Date: Tue, 17 Mar 2026 08:17:27 +0100
+X-Gm-Features: AaiRm53oFtZ4LcqzAMb48PPD1CPMNBFJZZjv3_kfdhsd5ZRjk5fQUoV8uzzbJKY
+Message-ID: <CANiq72=Y2g_5=iEzU1L07pMPYD+wVapJXpp9rvYXEzCKEs59Zw@mail.gmail.com>
 Subject: Re: [RFC PATCH 02/12] drm/dep: Add DRM dependency queue layer
 To: Matthew Brost <matthew.brost@intel.com>
 Cc: Daniel Almeida <daniel.almeida@collabora.com>,
@@ -126,37 +125,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 17, 2026 at 9:27=E2=80=AFAM Matthew Brost <matthew.brost@intel.=
+On Tue, Mar 17, 2026 at 6:46=E2=80=AFAM Matthew Brost <matthew.brost@intel.=
 com> wrote:
 >
-> I hate cut off in thteads.
->
-> I get it =E2=80=94 you=E2=80=99re a Rust zealot.
+> You can do RAII in C - see cleanup.h. Clear object lifetimes and
+> ownership are what is important. Disciplined coding is the only to do
+> this regardless of language. RAII doesn't help with help with bad object
+> models / ownership / lifetime models either.
 
-Cut off? Zealot?
+"Ownership", "lifetimes" and being "disciplined" *is* what Rust helps
+with. That is the whole point (even if there are other advantages).
 
-Look, I got the email in my inbox, so I skimmed it to understand why I
-got it and why the Rust list was Cc'd. I happened to notice your
-(quite surprising) claims about Rust, so I decided to reply to a
-couple of those, since I proposed Rust for the kernel.
+Yes, the cleanup attribute is nice, but even the whole `CLASS` thing
+is meant to simplify code. Simplifying code does reduce bugs in
+general, but it doesn't solve anything fundamental. Even if we had C++
+and full-fledged smart pointers and so on, it doesn't improve
+meaningfully the situation -- one can still mess things up very easily
+with them.
 
-How is that a cut off and how does that make a maintainer a zealot?
+And yes, sanitizers and lockdep and runtime solutions that require to
+trigger paths are amazing, but not anywhere close to enforcing
+something statically.
 
-Anyway, my understanding is that we agreed that the cleanup attribute
-in C doesn't enforce much of anything. We also agreed that it is
-important to think about ownership and lifetimes and to enforce the
-rules and to be disciplined. All good so far.
+The fact that `unsafe` exists doesn't mean "Rust doesn't solve
+anything". Quite the opposite: the goal is to provide safe
+abstractions where possible, i.e. we minimize the need for `unsafe`.
+And for the cases where there is no other way around it, the toolchain
+will force you to write an explanation for your `unsafe` usage. Then
+maintainers and reviewers will have to agree with your argument for
+it.
 
-Now, what I said is simply that Rust fundamentally improves the
-situation -- C "RAII" not doing so is not comparable. For instance,
-that statically enforcing things is a meaningful improvement over
-runtime approaches (which generally require to trigger an issue, and
-which in some cases are not suitable for production settings).
-
-Really, I just said Rust would help with things you already stated you
-care about. And nobody claims "Rust solves everything" as you stated.
-So I don't see zealots here, and insulting others doesn't help your
-argument.
+In particular, it is not something that gets routinely (and
+implicitly) used every second line like we do in C.
 
 Cheers,
 Miguel
