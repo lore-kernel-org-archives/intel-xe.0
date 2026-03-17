@@ -4,81 +4,76 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CBB1F483C5
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 16:06:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8472F483C6
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 16:06:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E781C10E5BC;
-	Mon, 23 Mar 2026 16:06:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D16310E5C0;
+	Mon, 23 Mar 2026 16:06:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="UGOIR7jD";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="BEub/dV/";
 	dkim-atps=neutral
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com
- [209.85.210.175])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 110EB10E1C6
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 19:11:13 +0000 (UTC)
-Received: by mail-pf1-f175.google.com with SMTP id
- d2e1a72fcca58-829b2018c94so3324531b3a.0
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 12:11:12 -0700 (PDT)
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com
+ [209.85.216.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 034B910E1B9
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 19:00:02 +0000 (UTC)
+Received: by mail-pj1-f42.google.com with SMTP id
+ 98e67ed59e1d1-35b95a7444bso1948913a91.1
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 12:00:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773774672; x=1774379472; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Ey5xOspEF8t8qpOzkawTxCYiw1oiTsiTR8cXxAAxS3s=;
- b=UGOIR7jDJDlhnXhmmyaTHa6VgrnP0zU6tgwOTuoVmHr2j4pINFADD8u7e98dKd+2dD
- nZwxwoPPad1vlUNJT+3ERo414G0zaEOE8pNYWgW+BecbB1N2mVc8xkFFXcU1ViqFZbxy
- bsloIy3v5Vl3GRJEGz1wxugqYzzfqSGeTscfBe1p6UV6dCWwKsxk/u3/7HEtfBWNXnQH
- 7hd+JyAHAaWeNI4m+REyDQu4aeX9SFUVguJdNpxl90rJ8Fapcs2bGDOCbOTD3hFYjHJD
- ICxhk7uQY3LP1FeP4eUIaJf+UZHOydRCkZYOuXojpg1Bfvkcsz7e8sfkxYnfpu4BgbDe
- K+3g==
+ d=gmail.com; s=20230601; t=1773774001; x=1774378801; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=1PcwMDnihsdnmKVOsfDRGKcGqZ39RTcsdWpVCxqwOIE=;
+ b=BEub/dV/KEDCBqElcqY1iOT7telyykWiEskpih60A78hpRcaKAqkonDjbp/FfPnERU
+ gNYFRqkTRb1BDz/wT34t5XhAVEtl6++7fhPl/vHLfgoRMHO7PaGU2HzgLV2XQhAvbW4V
+ 8c8dans6hLrK3tc/EwzY9lnFh256+3lLrGkrHghZuN4C5TRMIdk6Nm7T+EElgKi0S4nG
+ jezs/OQJkE+O67njcjY0hKarERgDn0etL8nP6XNwVFvHLzzNGZJTXKewOnDleC0A7/LG
+ o/RFdvhhLaFa4aN+Is2sE4mipG1QmjQwy5ABn4+jveIWUfyq44q62OPjphwAltHAaP5u
+ KOSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773774672; x=1774379472;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=Ey5xOspEF8t8qpOzkawTxCYiw1oiTsiTR8cXxAAxS3s=;
- b=E4PBRsS+x1LWoUU1E2Uy/q6iMYugvotFwIqC2HhXcPzk2m5er/1Yh2O86EjsOFGc8o
- sDjeyLDkHhtRvMR1TyddAWP9T4/x0l8Du7iAyThbB54Q60lGctteKi0LDsnlfnMxaZAf
- 6r8IyOPpp6cJmGegCynGfVWi8ykOxbNeung6t29u9zQzQf5DEk3py3shHBSgLs+iy5Mv
- /Xykfg2YszQiC0VcFIjS/WCNq6Km2MM3HLLcL0TS/f/Gqe9fQBEtM4BMNJnb7ibe5uP0
- PS68W+/Zawt6iwSRTIM6d85I8akhNj20UcvYbdgGCAFYLlszdAV29nuFqjQhe+wl6gi+
- CIpA==
+ d=1e100.net; s=20251104; t=1773774001; x=1774378801;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=1PcwMDnihsdnmKVOsfDRGKcGqZ39RTcsdWpVCxqwOIE=;
+ b=s5pg64yv1KcRNGpaexLGpL5xBdxsCKXuAWe+UxOvaMquPwqUWD0xaCKGCSLaBn1Lt3
+ w443O6VmOHlxvwNjG/H/N01yh7h4SQCPXsxtLGFcAEIpgUIqcN8HpRRiXdq7ROYOKfs+
+ hRyhQ0+ujl1DzNQWYLFhFOdhvVk8dG5uqJP7Cot7CBjhduq6XMPfBGHMDmma+iMujc1U
+ hSt06v3ATJ7Zt85LtZsd+LKyJdTNR6pp2XRjzUecWi8LVE4zNiLGtfnCDPOWFZM4sWO7
+ UdoL4MhkyEjbs+vqe74ZLKsZEkoCVhOM1d0VRmuaA14eOLcVuR61Ne+mqwdgdFFwBXKo
+ Q+0w==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXnh/w74W8uT8TIf53zt/LvGhdttuDsGqiuQnfqxhlSo0rvEE3qSsCgsrlHQnMUHrm6QsQlelIW4w==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxS/jKSW21TGGxLbeu0xk1ihoVM9aEy3yuHXogIvuANxVnr4Ima
- m8KCiQB76C+cV/2ZlV99ATH1QB8lRf0HDGtW6yjNwKaB+jt9EtNvA6do
-X-Gm-Gg: ATEYQzw+1vPJlzWWjsC+vZnD6Id2JLwyQGphN+UWQWknhRZqa4u0/hv06Grd2VWdX9I
- neu4WzgoP60Gokftw0OgAd9hfk7v4HzSCTZwv0QmAbDfV9oK0VgDJuXLCMySn2riKF7bVQOyS3z
- 1p2IuCDyShNytxBkF2t6wz03IoFvxLDoG297XMEKdRG3gJg2zA8cQZU3vuAvm7+5hbKXGbge+dB
- qJMxOaOf2z9Nc4n+yPAcIYOfknFGdtKDUWJ2I5n/5CD31zNiVSQOLs9zeBd8Id26hlwZE1EBudO
- IOmITGg2C/9sOxRhu7kEm1I6ELvBQvr6H4uhaBjlJy0tGg3bNEcD+cJtN1Ax1SdRHH/xjTQJeBr
- JZoyQxrZSJNrPHageU1WumumM1mgF/nGWgXv70YhrW+cYVS94Bx3kOlvkELZeMtStRdpcG2JRbr
- gfVCp551/bxpqQt10d055nDZWPT72nAWbIzvXGiTe1zakQ+Js8X1e+6R9Eog7vZtawv5/a4hwmq
- ImuCHm2jgKuu/Zohgm/p/X4RqO1Egm7wbeVNkY+NIb2Gs1yKoC19hGE1wSaZFEGu3Ilgw==
-X-Received: by 2002:a05:6a00:1ca3:b0:81f:4ce8:d64b with SMTP id
- d2e1a72fcca58-82a6ae4f234mr356985b3a.44.1773774672367; 
- Tue, 17 Mar 2026 12:11:12 -0700 (PDT)
+ AJvYcCXUEtiTKMjQdWKswUY89xABEX5PAYsxZMXTMYwp/jzbP93jeDJW0JnXXdudADOyaVRgrHdlzhKTZQ==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyG5o2WfX9VYfy+FRK8OJmVl9ey877g2wjCF4lNLq6iBPG4lfYG
+ X32XRYsRTgAE7Aa8v+uflrwoCd8gyrE08b4XRBNr0tjTcntUxs5szMpG
+X-Gm-Gg: ATEYQzy5l/2SG1XQV4w89mPlMQf1IOkKGfSw+J02O/Up+y/JUYKlffHW5JPiL7+7vfQ
+ mZZeGs+CjQhYCIONYHIwvPsDTpnq1Y+Pme4obgokeYuzvICEZRs1M9dK+Tpe+bTx4OodYWIGsoS
+ Y617zT4Jw3EhzrHCAtoicxGrHQwTf89UZZJcw1b56GCgCuMqOSrUL8HaScBH00Su0Ia+Arezo//
+ wp9DmRdrBzPJ5+OJMz93pM9HGVLUbhqKmljYiqJRPKvx3O07AF/Z4/BBimKfGPwzelP1Ozhyg2f
+ 8tD3N+d2EXfM/6ZPjWcbmpW0kOCnNO561xDOEil/WPyqTDroOBXi02/KoTXJ4VQgS5LJRxWzN7o
+ rcMtQ/8OQZthdu46WaxwfGKQ6mb/BRM49k6TIpC6yrj+ErA/tREi1ffVBk+R6ANJMIeSdFV786T
+ OMY7cs+UVFJ8rnUHtms13Ju1ko8LGJk2b5QSjkwxJegjkonf/kf82gmHqnY57ulwj8KyYEI0lpR
+ QGIyd0H9ScMn3GIJe/Ek3VonXaVE0eh+C7cj0SPYwJbbxgbCTfjY70De/6evLsb+W65sw==
+X-Received: by 2002:a17:90b:1dcd:b0:34c:35ce:3c5f with SMTP id
+ 98e67ed59e1d1-35bb9e45688mr490920a91.5.1773774001443; 
+ Tue, 17 Mar 2026 12:00:01 -0700 (PDT)
 Received: from 2045D.localdomain (76.sub-72-110-123.myvzw.com. [72.110.123.76])
  by smtp.gmail.com with ESMTPSA id
- d2e1a72fcca58-82a6bf0cf5fsm224612b3a.61.2026.03.17.12.11.02
+ 98e67ed59e1d1-35bba5a2c60sm196240a91.9.2026.03.17.11.59.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 17 Mar 2026 12:11:11 -0700 (PDT)
+ Tue, 17 Mar 2026 12:00:01 -0700 (PDT)
 From: Gui-Dong Han <hanguidong02@gmail.com>
-To: gregkh@linuxfoundation.org, dakr@kernel.org, rafael@kernel.org,
- vkoul@kernel.org, yung-chuan.liao@linux.intel.com
-Cc: pierre-louis.bossart@linux.dev, rander.wang@intel.com,
- linux-kernel@vger.kernel.org, driver-core@lists.linux.dev,
+To: gregkh@linuxfoundation.org,
+	dakr@kernel.org,
+	rafael@kernel.org
+Cc: linux-kernel@vger.kernel.org, driver-core@lists.linux.dev,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org, linux-sound@vger.kernel.org,
- akaieurus@gmail.com, me@ziyao.cc, Gui-Dong Han <hanguidong02@gmail.com>,
- yangshiguang <yangshiguang@xiaomi.com>
-Subject: [PATCH 3/4] soundwire: debugfs: initialize firmware_file to empty
- string
-Date: Wed, 18 Mar 2026 03:10:29 +0800
-Message-ID: <20260317191029.43515-1-hanguidong02@gmail.com>
+ akaieurus@gmail.com, me@ziyao.cc, Gui-Dong Han <hanguidong02@gmail.com>
+Subject: [PATCH 0/4] debugfs: disallow NULL string creation and fix callers
+Date: Wed, 18 Mar 2026 02:59:09 +0800
+Message-ID: <20260317185920.43387-1-hanguidong02@gmail.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260317185920.43387-1-hanguidong02@gmail.com>
-References: <20260317185920.43387-1-hanguidong02@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Mon, 23 Mar 2026 16:04:08 +0000
@@ -96,36 +91,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Passing NULL to debugfs_create_str() causes a NULL pointer dereference
-upon reading, and creating debugfs nodes with NULL string pointers is no
-longer permitted. Change the initialization of firmware_file to an
-allocated empty string. Existing driver code using this field handles
-empty strings correctly.
+A recent bug report [1] highlighted a NULL pointer dereference when
+reading a debugfs string file created with a NULL pointer. The community
+discussed the issue and agreed that creating string nodes with NULL is
+invalid and should be forbidden at creation time [2]. Since no fix was
+submitted following the discussion, I have implemented the agreed
+solution.
 
-Fixes: fe46d2a4301d ("soundwire: debugfs: add interface to read/write commands")
-Reported-by: yangshiguang <yangshiguang@xiaomi.com>
-Closes: https://lore.kernel.org/lkml/17647e4c.d461.19b46144a4e.Coremail.yangshiguang1011@163.com/
-Signed-off-by: Gui-Dong Han <hanguidong02@gmail.com>
----
- drivers/soundwire/debugfs.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+Patch 1 modifies debugfs_create_str() to reject NULL pointers, returning
+early and triggering a WARN_ON to expose offending callers.
 
-diff --git a/drivers/soundwire/debugfs.c b/drivers/soundwire/debugfs.c
-index ccc9670ef77c..d4abe8bfca76 100644
---- a/drivers/soundwire/debugfs.c
-+++ b/drivers/soundwire/debugfs.c
-@@ -358,8 +358,9 @@ void sdw_slave_debugfs_init(struct sdw_slave *slave)
- 	debugfs_create_file("go", 0200, d, slave, &cmd_go_fops);
- 
- 	debugfs_create_file("read_buffer", 0400, d, slave, &read_buffer_fops);
--	firmware_file = NULL;
--	debugfs_create_str("firmware_file", 0200, d, &firmware_file);
-+	firmware_file = devm_kstrdup(&slave->dev, "", GFP_KERNEL);
-+	if (firmware_file)
-+		debugfs_create_str("firmware_file", 0200, d, &firmware_file);
- 
- 	slave->debugfs = d;
- }
+Patch 2 is a code hygiene fix. While modifying the file, I noticed the
+EXPORT_SYMBOL_GPL for debugfs_create_str() was misplaced far away from
+the function body. This patch moves it to the correct location.
+
+I carefully audited existing callers across the kernel tree. Some
+drivers passing NULL have already been independently identified and
+fixed [3]. The remaining two subsystems (soundwire and drm/i915) are
+addressed in patches 3 and 4 by initializing their respective string
+parameters to empty strings (""). The existing logic in both subsystems
+correctly and safely handles empty strings.
+
+[1] https://lore.kernel.org/lkml/17647e4c.d461.19b46144a4e.Coremail.yangshiguang1011@163.com/
+[2] https://lore.kernel.org/lkml/2025122221-gag-malt-75ba@gregkh/
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=8cc27f5c6dd1
+
+Gui-Dong Han (4):
+  debugfs: check for NULL pointer in debugfs_create_str()
+  debugfs: fix placement of EXPORT_SYMBOL_GPL for debugfs_create_str()
+  soundwire: debugfs: initialize firmware_file to empty string
+  drm/i915/display: initialize string params to empty strings
+
+ drivers/gpu/drm/i915/display/intel_display_params.h | 4 ++--
+ drivers/soundwire/debugfs.c                         | 5 +++--
+ fs/debugfs/file.c                                   | 7 +++++--
+ 3 files changed, 10 insertions(+), 6 deletions(-)
+
 -- 
 2.43.0
 
