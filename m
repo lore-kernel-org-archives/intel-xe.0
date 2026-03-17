@@ -4,111 +4,89 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72292F483C1
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 16:04:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68442F483C3
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 16:04:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 31F5B10E58C;
-	Mon, 23 Mar 2026 16:04:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E55A10E56A;
+	Mon, 23 Mar 2026 16:04:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="eNcBzaHS";
+	dkim=permerror (0-bit key) header.d=shazbot.org header.i=@shazbot.org header.b="rMILFVqr";
+	dkim=permerror (0-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="W0gy8EiR";
 	dkim-atps=neutral
-Received: from mail-dy1-f182.google.com (mail-dy1-f182.google.com
- [74.125.82.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4167110E394
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 07:17:41 +0000 (UTC)
-Received: by mail-dy1-f182.google.com with SMTP id
- 5a478bee46e88-2c0bf0a0236so82970eec.1
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 00:17:41 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773731860; cv=none;
- d=google.com; s=arc-20240605;
- b=losFVZsDuE3p+xp0ebTzih+frjFz2aCV1x50EQ0vYxYeddXGBRD7JRbN+MT15qRkrZ
- eUGRKobR6jecAOEt/inB3+NNkXeLVlqGu3ZexwtnUgXZxMk5/AsjsHonZA5lYM0+TKtO
- asNgQMGJ5qi+b595Q2TzNjQwRDDl3NExI438Jb5YVR7pDkuelDIjnLlunaqF5ftqdQGW
- 6UY3/t1DoBJkRnBcqfhgb5zBoYTf3URzs/qYF1wUD42xCKgGG2FELGXjHupbuwIlevmo
- eyUDEbFg2Lp+sJc1sJJtXhglPvmCvzkbMDRdVOcFnYgVQifjCv4hndqCIqz7f7MgoLM/
- k5Vg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=JRjFojoQ+ay0ef4If4kUCgywrpzkrXMMzGRlp08g/yk=;
- fh=eqe9hgJydoGYyHjAkBvDRlrYe2brkgIzG2tjdDePwmU=;
- b=ZyaH4zCnWmZCliuQrxjEdhNxVSBbhvGsppa7v73D8qQ4U9f4U93AEshAuuseNYe3rd
- IZhIWyQWuSJ6IPzWux8DgMhUi08UCcsUPZYEbQ6nGpSUnnFOIQinSWXOhGR96WWRn7R1
- vDJHe+/tyEF8tGoDBB7z7f/wruGE9hsqCwgzdY+Ll9xPUxNtYB7QFlieLPRq1loskfs9
- xjBenJXdrcwSJFaJ/gJCXvhYWUAidSHQOzlD/wwj0N2lLw8GoVEgbWPTCo2aVW03W7WR
- M50BiIQFLRbjUqLO/DhmeEbKsfCE3Nd2gbXu2NtAhVCXNMxl7Ko2zwlW5E8B0ESzr6Xe
- 7oDQ==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773731860; x=1774336660; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=JRjFojoQ+ay0ef4If4kUCgywrpzkrXMMzGRlp08g/yk=;
- b=eNcBzaHSXi12uck3uK7rd1qtEWdT1GBouy444mwDFT7j9oAPJl2vpAseB0cOVhA42x
- +9gmsGnqLkyZhtFdXEvmu7yOLCxdkTSCQPY1ZYVrgTgzAIL9I3GtrBTRn0QE1cHVbMKV
- n1xN7IdAuAqeAIdEbIi5PC7zvh630eaW+IJ8MGITiylQvoRGmxZEftq7ZMPTR8tym57x
- u3ufufPoSMGTArwXNQD0NZjaG9iP6PdLkYdeGTLIgONYR9y7Be7HhB3+CyQJWrNrXU9E
- cofOcI2mQP71B+duyYnsKHNhJkNKU/xcKpiVkqc1UwYpJcOvKVMyFl4qGOqVkQzsgcpV
- XSAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773731860; x=1774336660;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=JRjFojoQ+ay0ef4If4kUCgywrpzkrXMMzGRlp08g/yk=;
- b=p7Ri6cGKcybQNZIkjfchCblzYS7AERb57+QJtNwhnzzRcU2YCqa27gYizxXF9BoULn
- 3vSPLeYg+9fi9Uv+yROwq1iuSNJt+Opk0SXbwUzELX2DUItodmznLHCPrn6sVmSUgnaC
- 6i1QWmuLAOA0aOIWcF+1BuM62Ssc7kJb3KdPM0KyLAFma9kWhcNdTdYYJR/kMqN1KbWD
- YYZPGCxOIfPWty7H35oBCqcpKkYfHih78o37y4Lkj3MNwIUArqqSPOT4HKToWO/Sxk+Q
- xF8cRtd8fnCpjfQ0eknjBJts7wYYHLjYetNxf+Cpihy3AiwUXlJHbZSfAVEj0+Ekprz3
- ez2Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXJLuQIgW5nDzvD53gAgpXUK46Y48XXZffzMMj5QwcB4eaMuOfNygD8x8KvTi2D6/CmtwMYgUzGjA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyxwPHg5QwNp0Oz2uQd30YMJC1eAPahHBpVcCpa2YPzzRHxfpAq
- FkMQzgJDbLPwxRToduXcrUQeQ6QURtdvNj/P5EDfIjRbb9Ec1slbgOh37jyta1m6D+rfYNoaJV/
- Z2+D61GxlCyYNnCD+KIKdn6ivVlYIDOo=
-X-Gm-Gg: ATEYQzyt7x4temBg/HtuhEHF1WaDNPxmigRivfylBjXbL2JivU11P36oED37YEdgNkY
- w6FW3mKK/KJUZdhMSkNVpsj6S9h5O+ywTbZXiJPXfZC6pcAkCFc58z6pLsC+xXbYAMD+lQVZifz
- pBGfHwL/zevgTalO8oxv4i1xeePrkFZvBOObFPJAJnw43NIDPHuWN+qeRTWotHsuK3Iu/qYa/Ao
- sYNmBKwY+lS/DfkG1zMXF9SgbcJRKQMpqCa28ZhTw25s6VvdhTHoqEi+dbCnk7cf5eH9AjdUoK2
- pwweVkpN9CxK98sWHmQJTHbUNFou9N3EDyMD6MvNlpudsHVDtZYZl9H63mciteWHuFUFnkC/dYS
- NxKSHKFjxmojvPwXs6IQQ934=
-X-Received: by 2002:a05:693c:2b17:b0:2be:6e6:e479 with SMTP id
- 5a478bee46e88-2bea539710emr3854426eec.2.1773731860241; Tue, 17 Mar 2026
- 00:17:40 -0700 (PDT)
+X-Greylist: delayed 542 seconds by postgrey-1.36 at gabe;
+ Tue, 17 Mar 2026 14:52:46 UTC
+Received: from fhigh-a7-smtp.messagingengine.com
+ (fhigh-a7-smtp.messagingengine.com [103.168.172.158])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E145B10E4AA
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 14:52:46 +0000 (UTC)
+Received: from phl-compute-11.internal (phl-compute-11.internal [10.202.2.51])
+ by mailfhigh.phl.internal (Postfix) with ESMTP id 3DA8A140003C;
+ Tue, 17 Mar 2026 10:43:43 -0400 (EDT)
+Received: from phl-frontend-03 ([10.202.2.162])
+ by phl-compute-11.internal (MEProxy); Tue, 17 Mar 2026 10:43:43 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=shazbot.org; h=
+ cc:cc:content-transfer-encoding:content-type:content-type:date
+ :date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to; s=fm3; t=1773758623;
+ x=1773845023; bh=U9M+HkVQBEYKrxCJ9TstEQmfV+0p5tozuQ5lwFDFX1M=; b=
+ rMILFVqr1IpYmMQ1rQAMzOMN2QYPYf6LtDM3AeD1/yC8cEXCIxG/Z5Q6zPNckHT5
+ Tkxhz65Fi0GXREx9URvc+1b3aXe+2HX6isUOhYXGnbrJ8dx2pmnYGZE0cuv6CgMX
+ NbU4rDAng1lVv/T3le210RmNJrd8RzACAsqABbvekC2d4CSmPO+n8L6xm9DFOFLf
+ iYJ+5nePmhBSs/KwFR421mxt7uMg/uohHJ0itkC+Nwd3ZudlavLIgllE7vELeuwd
+ hQU2wJRfECKdSJ9Hfj4wL9iiYLv3fvIDIcYe+bAfQgj+sYOQutX/4RGjBoR+xuSu
+ rI8oD8kFFaUIJYli4iyg9w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+ messagingengine.com; h=cc:cc:content-transfer-encoding
+ :content-type:content-type:date:date:feedback-id:feedback-id
+ :from:from:in-reply-to:in-reply-to:message-id:mime-version
+ :references:reply-to:subject:subject:to:to:x-me-proxy
+ :x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1773758623; x=
+ 1773845023; bh=U9M+HkVQBEYKrxCJ9TstEQmfV+0p5tozuQ5lwFDFX1M=; b=W
+ 0gy8EiR8pDQLseBb825jsb/L6yuG/Bi0/eZuGcEzSr/7W15rxrzwlYRiVlL1oG6G
+ B45rwMGdiiI6e3BdC0J511jkNal2ZVaH1GxWGyBzA626prK+2tloBYmdrRq+Rlr4
+ 2as3afSoYR2vKdYJsK0mdudKoEG9UELqvvYQoCXidEHubjyQ4c7dtHrC4ZbO6YB8
+ QuVj47+CWoZHam8Ce6HKlYndTGhmQF4xXeWDhXJybnzlhwwyiBwVFU7tIWlgDLrC
+ egMl02HS3UYH0nL3k2ylWrRvv1NszfwPZT/jrGNIzrTxWlTPMrS2SfPTAUdCDVtF
+ UlO+1aeQXkj3aLA1ERlLQ==
+X-ME-Sender: <xms:n2i5aTxlSGXBWVHHBXoi8Pq8Xt0uifqv55qL_vvXQB9lqlt0cl2qCQ>
+ <xme:n2i5acwsuAtdZDwXefslUYw90K72WWRKkkbZ1NieUxE2buvI__CAiEKeZ0B0yNQDY
+ kJ4XndZYLeqGN2wcxRPPaSqYAd3YsTePnOMEneMbtrtHyYPXlG1C-s>
+X-ME-Received: <xmr:n2i5adYX0N6o3-K4D_bXgdgP8UExV-MsfRd7KNufJqYB0UvQjDnrf4nJfvc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeefgedrtddtgdeftdduhedvucetufdoteggodetrf
+ dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+ rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+ gurhepfffhvfevuffkjghfofggtgfgsehtqhertdertdejnecuhfhrohhmpeetlhgvgicu
+ hghilhhlihgrmhhsohhnuceorghlvgigsehshhgriigsohhtrdhorhhgqeenucggtffrrg
+ htthgvrhhnpeegudevhfejueefveduieeuueeifeettdekveekhffgvdetfeelueehgfdt
+ heffhfenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+ grlhgvgiesshhhrgiisghothdrohhrghdpnhgspghrtghpthhtohephedpmhhouggvpehs
+ mhhtphhouhhtpdhrtghpthhtohepphhiohhtrhdrphhiohhrkhhofihskhhisehinhhtvg
+ hlrdgtohhmpdhrtghpthhtohepihhnthgvlhdqgigvsehlihhsthhsrdhfrhgvvgguvghs
+ khhtohhprdhorhhgpdhrtghpthhtohepkhhvmhesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+ dprhgtphhtthhopehmihgthhgrlhdrfihinhhirghrshhkihesihhnthgvlhdrtghomhdp
+ rhgtphhtthhopegrlhgvgiesshhhrgiisghothdrohhrgh
+X-ME-Proxy: <xmx:n2i5adXDSGX71jpIY9TDgFc6mkLD8DLBCmDCklscduk_aFhqmJvxew>
+ <xmx:n2i5abgHghRB2apanOzQY7E62kGRA3xvKIhjQyMGd_gU2BBkV0d6sw>
+ <xmx:n2i5abvaXTNaZNhZQrQiw8iwHmh2w97lkpcuS1CsQ1Oha8oEWzxamQ>
+ <xmx:n2i5aU5-oUii-H627S6_sWdppWrVHzdP76kJgWweNC0a2a7jkJzOkw>
+ <xmx:n2i5abBcU4A0ZAEjaHbIy9oQddOsM32Y8wgvALg8gnvZi8KDqPoGFrRa>
+Feedback-ID: i03f14258:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Tue,
+ 17 Mar 2026 10:43:42 -0400 (EDT)
+Date: Tue, 17 Mar 2026 08:43:40 -0600
+From: Alex Williamson <alex@shazbot.org>
+To: "=?UTF-8?B?UGnDs3Jrb3dza2ks?= Piotr" <piotr.piorkowski@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>, <kvm@vger.kernel.org>,
+ =?UTF-8?B?TWljaGHFgg==?= Winiarski <michal.winiarski@intel.com>,
+ alex@shazbot.org
+Subject: Re: [PATCH v2 2/2] vfio/xe: Notify PF about VF FLR in reset_prepare
+Message-ID: <20260317084340.619c5fad@shazbot.org>
+In-Reply-To: <20260309152449.910636-3-piotr.piorkowski@intel.com>
+References: <20260309152449.910636-1-piotr.piorkowski@intel.com>
+ <20260309152449.910636-3-piotr.piorkowski@intel.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20260316043255.226352-1-matthew.brost@intel.com>
- <20260316043255.226352-3-matthew.brost@intel.com>
- <7A8108C7-7CF0-4EA4-95ED-8003502DC35A@collabora.com>
- <abjqfXERS6Xk4FAQ@lstrano-desk.jf.intel.com>
-In-Reply-To: <abjqfXERS6Xk4FAQ@lstrano-desk.jf.intel.com>
-From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
-Date: Tue, 17 Mar 2026 08:17:27 +0100
-X-Gm-Features: AaiRm53oFtZ4LcqzAMb48PPD1CPMNBFJZZjv3_kfdhsd5ZRjk5fQUoV8uzzbJKY
-Message-ID: <CANiq72=Y2g_5=iEzU1L07pMPYD+wVapJXpp9rvYXEzCKEs59Zw@mail.gmail.com>
-Subject: Re: [RFC PATCH 02/12] drm/dep: Add DRM dependency queue layer
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: Daniel Almeida <daniel.almeida@collabora.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- Boris Brezillon <boris.brezillon@collabora.com>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- Danilo Krummrich <dakr@kernel.org>, David Airlie <airlied@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Philipp Stanner <phasta@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
- Sumit Semwal <sumit.semwal@linaro.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- linux-kernel@vger.kernel.org, Sami Tolvanen <samitolvanen@google.com>, 
- Jeffrey Vander Stoep <jeffv@google.com>, Alice Ryhl <aliceryhl@google.com>, 
- Daniel Stone <daniels@collabora.com>, Alexandre Courbot <acourbot@nvidia.com>, 
- John Hubbard <jhubbard@nvidia.com>, shashanks@nvidia.com, jajones@nvidia.com, 
- Eliot Courtney <ecourtney@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>, 
- rust-for-linux <rust-for-linux@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 23 Mar 2026 16:04:08 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -125,38 +103,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 17, 2026 at 6:46=E2=80=AFAM Matthew Brost <matthew.brost@intel.=
-com> wrote:
->
-> You can do RAII in C - see cleanup.h. Clear object lifetimes and
-> ownership are what is important. Disciplined coding is the only to do
-> this regardless of language. RAII doesn't help with help with bad object
-> models / ownership / lifetime models either.
+On Mon, 9 Mar 2026 16:24:49 +0100
+"Pi=C3=B3rkowski, Piotr" <piotr.piorkowski@intel.com> wrote:
 
-"Ownership", "lifetimes" and being "disciplined" *is* what Rust helps
-with. That is the whole point (even if there are other advantages).
+> From: Piotr Pi=C3=B3rkowski <piotr.piorkowski@intel.com>
+>=20
+> Hook into the PCI error handler reset_prepare() callback to notify
+> the PF about an upcoming VF FLR before reset_done() is executed.
+> This enables early FLR_PREPARE signaling and ensures that the PF is
+> aware of the reset before the completion wait begins.
+>=20
+> Signed-off-by: Piotr Pi=C3=B3rkowski <piotr.piorkowski@intel.com>
+> Cc: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
+> ---
+>  drivers/vfio/pci/xe/main.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+>=20
+> diff --git a/drivers/vfio/pci/xe/main.c b/drivers/vfio/pci/xe/main.c
+> index fff95b2d5dde..88acfcf840fc 100644
+> --- a/drivers/vfio/pci/xe/main.c
+> +++ b/drivers/vfio/pci/xe/main.c
+> @@ -85,6 +85,19 @@ static void xe_vfio_pci_state_mutex_unlock(struct xe_v=
+fio_pci_core_device *xe_vd
+>  	spin_unlock(&xe_vdev->reset_lock);
+>  }
+> =20
+> +static void xe_vfio_pci_reset_prepare(struct pci_dev *pdev)
+> +{
+> +	struct xe_vfio_pci_core_device *xe_vdev =3D pci_get_drvdata(pdev);
+> +	int ret;
+> +
+> +	if (!pdev->is_virtfn)
+> +		return;
+> +
+> +	ret =3D xe_sriov_vfio_flr_prepare(xe_vdev->xe, xe_vdev->vfid);
+> +	if (ret)
+> +		dev_err(&pdev->dev, "Failed to prepare FLR: %d\n", ret);
+> +}
+> +
+>  static void xe_vfio_pci_reset_done(struct pci_dev *pdev)
+>  {
+>  	struct xe_vfio_pci_core_device *xe_vdev =3D pci_get_drvdata(pdev);
+> @@ -127,6 +140,7 @@ static void xe_vfio_pci_reset_done(struct pci_dev *pd=
+ev)
+>  }
+> =20
+>  static const struct pci_error_handlers xe_vfio_pci_err_handlers =3D {
+> +	.reset_prepare =3D xe_vfio_pci_reset_prepare,
+>  	.reset_done =3D xe_vfio_pci_reset_done,
+>  	.error_detected =3D vfio_pci_core_aer_err_detected,
+>  };
 
-Yes, the cleanup attribute is nice, but even the whole `CLASS` thing
-is meant to simplify code. Simplifying code does reduce bugs in
-general, but it doesn't solve anything fundamental. Even if we had C++
-and full-fledged smart pointers and so on, it doesn't improve
-meaningfully the situation -- one can still mess things up very easily
-with them.
+Looks ok to me, should really have Micha=C5=82's ack as well.  Will this go
+in through drm?
 
-And yes, sanitizers and lockdep and runtime solutions that require to
-trigger paths are amazing, but not anywhere close to enforcing
-something statically.
-
-The fact that `unsafe` exists doesn't mean "Rust doesn't solve
-anything". Quite the opposite: the goal is to provide safe
-abstractions where possible, i.e. we minimize the need for `unsafe`.
-And for the cases where there is no other way around it, the toolchain
-will force you to write an explanation for your `unsafe` usage. Then
-maintainers and reviewers will have to agree with your argument for
-it.
-
-In particular, it is not something that gets routinely (and
-implicitly) used every second line like we do in C.
-
-Cheers,
-Miguel
+Reviewed-by: Alex Williamson <alex@shazbot.org>
