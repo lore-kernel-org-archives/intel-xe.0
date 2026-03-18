@@ -4,68 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A47D9F483C7
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9278AF483C6
 	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 16:04:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59B3B10E54E;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C90310E53A;
 	Mon, 23 Mar 2026 16:04:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=smail.nju.edu.cn header.i=@smail.nju.edu.cn header.b="dmQoj5oA";
+	dkim=pass (2048-bit key; unprotected) header.d=sony.com header.i=@sony.com header.b="tNx0spfx";
 	dkim-atps=neutral
-X-Greylist: delayed 443 seconds by postgrey-1.36 at gabe;
- Sat, 21 Mar 2026 11:05:59 UTC
-Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.155.102])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43A8F10E286
- for <intel-xe@lists.freedesktop.org>; Sat, 21 Mar 2026 11:05:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smail.nju.edu.cn;
- s=iohv2404; t=1774091149;
- bh=advCDYONKqzCph5ZTFUFSWs19v2fi8pIDpKWdb7DT7k=;
- h=From:To:Subject:Date:Message-Id:MIME-Version;
- b=dmQoj5oAbGmuqiMHbjUwxTfbeVHD77lQ/Y7GqZKmxOJS8NuzpIKCxi8YpC2R0yDjY
- E+HPWlRUbYe7HjmrvTrnj68nUXPO0XwY+arUBi27MVSy+U/J+d/Unt8DuCZyduRgY0
- HEaF+vvE1fbjrq5uRwoslcZqSO06TLh0hLsntYn4=
-X-QQ-mid: esmtpsz16t1774090671tfd588e52
-X-QQ-Originating-IP: f67St6LdxydDGswlyYyuwo1CRPZJU43NiFBCtGm6+wo=
-Received: from localhost.localdomain ( [116.172.93.199])
- by bizesmtp.qq.com (ESMTP) with 
- id ; Sat, 21 Mar 2026 18:57:48 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 1
-X-BIZMAIL-ID: 6951342301802925313
-EX-QQ-RecipientCnt: 13
-From: Kexin Sun <kexinsun@smail.nju.edu.cn>
-To: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- rodrigo.vivi@intel.com, airlied@gmail.com, simona@ffwll.ch,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: julia.lawall@inria.fr, xutong.ma@inria.fr, kexinsun@smail.nju.edu.cn,
- yunbolyu@smu.edu.sg, ratnadiraw@smu.edu.sg
-Subject: [PATCH] drm/xe: update outdated reference to xe_pt_commit_bind()
-Date: Sat, 21 Mar 2026 18:57:48 +0800
-Message-Id: <20260321105748.6646-1-kexinsun@smail.nju.edu.cn>
-X-Mailer: git-send-email 2.25.1
+X-Greylist: delayed 603 seconds by postgrey-1.36 at gabe;
+ Wed, 18 Mar 2026 06:01:56 UTC
+Received: from jpms-ob02.noc.sony.co.jp (jpms-ob02.noc.sony.co.jp
+ [211.125.140.165])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45BBD10E049;
+ Wed, 18 Mar 2026 06:01:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=sony.com; s=s1jp; t=1773813717; x=1805349717;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=eoMupIu5zVSqyOQhuq6iQarD8KxsCTZiio2rS8ELzNI=;
+ b=tNx0spfxqRHlsXiUAIUNgPc6Ph9DDvCdZ1TkdUv2B91Sv854/teXRGNl
+ pVAIIQBOjH4VLPNxHUs4WDG+XbRUasUlF00PeTcvoTOYTUDVlxX+tydlQ
+ s5b8P8MKkgGP+WExZ2kb+6CAT5MCDRDOVMcnbaL0iJRbQL5vbHoN1uu0J
+ 3NV/rji/k6cfHBkk1XaOeNx6/g9IwM4VGYsPjRxqroyQq96mS+foaT0pt
+ D2+hwZBZcQszkxjdKDR2uQmWW38LHwV1sBxAuKCSjheLVy1SwCMyLX1fK
+ dMNozQE3+Aq4qfn80tVKNz+Uu8TjYj4jEQ+Rr4G/ElA7VKv88kIyrqI0n Q==;
+Received: from unknown (HELO jpmta-ob02.noc.sony.co.jp)
+ ([IPv6:2001:cf8:0:6e7::7])
+ by jpms-ob02.noc.sony.co.jp with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2026 14:51:51 +0900
+X-CSE-ConnectionGUID: rLxGr/LJTuiBO7S+Ph9nTg==
+X-CSE-MsgGUID: gh60nqK7RPO5TcdDQeuduQ==
+X-IronPort-AV: E=Sophos;i="6.23,126,1770562800"; d="scan'208";a="592821526"
+Received: from unknown (HELO rahul-Z690-S01) ([43.11.34.175])
+ by jpmta-ob02.noc.sony.co.jp with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2026 14:51:51 +0900
+Date: Wed, 18 Mar 2026 14:51:42 +0900
+From: Rahul Bukte <rahul.bukte@sony.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] drm/i915/gt: Check set_default_submission() before
+ deferencing
+Message-ID: <abo9bv1oz_5S66zE@rahul-Z690-S01>
+References: <20260203044839.1555147-1-suraj.kandpal@intel.com>
+ <864065cfcd3baaff212135beb781b0a5990728d8@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpsz:smail.nju.edu.cn:qybglogicsvrgz:qybglogicsvrgz5b-0
-X-QQ-XMAILINFO: OLsBWtCIHsg6uc3gAasrhab4LLEiuXzpv1HgRjTEDijafJGEytScpz39
- lZHvmhqmFiYYkASypeBlCC9iaQ0L/RHMyXKRxbATdF25P4h1PdpLiinRYDwoPLBqnPBVDWF
- oBfrue3ueIy3NRMJJFaPtkAt0U8LesfjtGhR0rrKnYc4zCjaqvMZxbPXi1zFQ9YKWx3FhqI
- 1SA9J45a7w69Bej6pcHKxf/QneSacZCXIF1Bx0mGM7PrhY2cMBor42cRn9QYrIz2rGIJkw4
- KwZjzn4Oss7H3fVqRCkCpotoOH4aiN0MjpDiUFx3kYAS/6rm3ZSzRWf6xZUEWfuXdqRk0a4
- DwsGPvZyIrGam8Gipourt5Lpc/aJj1U1bvYtf/ldlMV7GVPPNHY62zJ2TOGHnZ3wW1ao4EL
- N2VeYwFiAALzX9TxXEtWxZJYj32OKBSrZL6cYx5ANqt4eSLQpVzjEo1JAYFs5vcpAYur4+m
- ilN3cTd5z8uJIMYzCaDCaEO8WZw0gXB79C/DHPGjRrUU4SVN8/+jerZZCdn2pfpcvzpmzte
- hQ+AMoENTan+RCS4T862w+qLUuVxO0setNm4ZHDB0m9Xku47NwZKZL4jxtqA0P1ZQIBXXDn
- 9jMTVXjwsgpVK8REztj2uAC/ohsPjF2OAPcB3WUOyuS3g179FmoSvuscXpPBORFayRtJIj0
- 7GUmIYetuTuL3RFPi9/8XmmSbbWJtBikN9AuhpjvoEd4yer56OLhUaPY3WpLs56nFSt/zxY
- LVxYSc3Qz9P5FFigPuHGUCD7lfpyWKbZ2p1Gr28NQIAttp1BM83MasDj4l5GONJ/wyKNDC1
- Qkgw56WmTP5AZ66EVXaYG3hDLrAzpqDwd5JKbNWvV33PzCWiMnyFcwA03PQ4U4zgzzbmASt
- 6lKs+uMYkTRrgcHhWYTMgt069T6EOHwuC/+dtOjCTc3vu56kTMGOrmeSdxekBw1dQSGuFTP
- 4fmCIW3L4GAdJGQdwlzg87QuVEenfryYB4mwvHiqqIFZxu9q992YTsc7XZKoD2B3lFaI9qT
- KMlhPiX3LBpTNZFazAamjEVuEVArgJad4vJrMeLF5hrNGaRRADIcBKgOOwQ+4=
-X-QQ-XMRINFO: NI4Ajvh11aEjEMj13RCX7UuhPEoou2bs1g==
-X-QQ-RECHKSPAM: 0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <864065cfcd3baaff212135beb781b0a5990728d8@intel.com>
 X-Mailman-Approved-At: Mon, 23 Mar 2026 16:04:08 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -81,33 +68,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The function xe_pt_commit_bind() was split into
-xe_pt_commit_prepare_bind(), xe_pt_commit(), and
-xe_pt_abort_bind() by commit a708f6501c69 ("drm/xe: Update
-PT layer with better error handling").  Update the stale
-reference in xe_pt_stage_bind() to list the two functions
-that now perform the cpu-side page-table connection.
+Hi,
 
-Assisted-by: unnamed:deepseek-v3.2 coccinelle
-Signed-off-by: Kexin Sun <kexinsun@smail.nju.edu.cn>
----
- drivers/gpu/drm/xe/xe_pt.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+On Fri, Mar 13, 2026 at 06:34:22PM +0200, Jani Nikula wrote:
+> On Tue, 03 Feb 2026, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> > From: Rahul Bukte <rahul.bukte@sony.com>
+> >
+> > When the i915 driver firmware binaries are not present, the
+> > set_default_submission pointer is not set. This pointer is
+> > dereferenced during suspend anyways.
+> 
+> Which kernel vesions did this happen with? Should this have had Fixes:
+> or Cc: stable?
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 13b355fadd58..8f00e6454721 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -686,7 +686,8 @@ static bool xe_atomic_for_system(struct xe_vm *vm, struct xe_vma *vma)
-  *
-  * This function builds a disconnected page-table tree for a given address
-  * range. The tree is connected to the main vm tree for the gpu using
-- * xe_migrate_update_pgtables() and for the cpu using xe_pt_commit_bind().
-+ * xe_migrate_update_pgtables() and for the cpu using
-+ * xe_pt_commit_prepare_bind() and xe_pt_commit().
-  * The function builds xe_vm_pgtable_update structures for already existing
-  * shared page-tables, and non-existing shared and non-shared page-tables
-  * are built and populated directly.
--- 
-2.25.1
+Fixes: ff44ad51ebf8 ("drm/i915: Move engine->submit_request selection to a vfunc")
+Cc: stable@vger.kernel.org
+
+Suraj, you mentioned that you have commited this to din [1]. Can we add
+this fixes and cc tags to that please?
+
+[1]: https://lore.kernel.org/all/DM3PPF208195D8D000253F905FADCA379F9E36DA@DM3PPF208195D8D.namprd11.prod.outlook.com/
+
+Best regards,
+Rahul
 
