@@ -4,61 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDC8DFCD0DA
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 08:59:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A811D10854D8
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 09:10:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CCEA10E778;
-	Wed, 18 Mar 2026 08:59:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B15410E711;
+	Wed, 18 Mar 2026 09:10:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="AdFXKhWb";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="sT4qsHsB";
 	dkim-atps=neutral
-Received: from mail-wm1-f74.google.com (mail-wm1-f74.google.com
- [209.85.128.74])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A25BB10E773
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 08:59:06 +0000 (UTC)
-Received: by mail-wm1-f74.google.com with SMTP id
- 5b1f17b1804b1-483786a09b1so67456795e9.3
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 01:59:06 -0700 (PDT)
+Received: from mail-ej1-f74.google.com (mail-ej1-f74.google.com
+ [209.85.218.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DC5B10E77C
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 09:10:06 +0000 (UTC)
+Received: by mail-ej1-f74.google.com with SMTP id
+ a640c23a62f3a-b94062e85f9so47411866b.2
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 02:10:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1773824345; x=1774429145;
+ d=google.com; s=20251104; t=1773825005; x=1774429805;
  darn=lists.freedesktop.org; 
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:from:to:cc:subject:date:message-id:reply-to;
- bh=MXY9EHBXCnPWVfnYnREpBujBITTjaoQ0F5qTzNSzUus=;
- b=AdFXKhWbzkC/P817pKAHLvAFJFesMoJvZ6h/nH+QUkSIxbKYNe61F/ZctegLuzcC3s
- G9kENx49LoQ8X7AJnMlIN/HkepXTElQDuybO69SK4QlStqtJ/Z7fK/eD++u9/4USNR1Q
- KzHRdBmKmr6aOlD1HdiZGsW4+DkrPcd76+Rk+jn25js/y5pxkE9I5BLYjdNnfNHf5kqJ
- wVGwcWtc8vUXLYnxQTG7DeEZa7MVwHSpfRAQwovjjHfRfZNOusOliqfICJtt2fvD5aJE
- J1TjfeGrEPXDPZPqLJCzJbj4ckHZ8AcMQMlxMr2bKdxhKUjc8Iziuw9LOnkK0TFTw6rS
- XLWQ==
+ bh=03huxt4oynUT1355qRW2FMfKGuIDazVvmXTmtQppc9Q=;
+ b=sT4qsHsB5s9kky9OqEAPsVhmqsY6f1uENiHTxzznaxlsuDBufxpjzsTFAcWfZ8tUFT
+ KAKTyaM+MnQPRKb+3Gx2V0Y6qrGkIpRokAkII0bH14f1KKa48Xq6No0j4C9lWLag6IKM
+ nKTbf2LPsbESEbo4yQHx8Vjsh3rQGWEORi/HnLelsnCpxyN+OT5Wg+weV5Rpj92MG60F
+ mjOdZKlLirZfU57/AM7dbqu/84A99hZXceopWF+T0YCPI9R99sJcUdFjZuEiWqpluUxM
+ l/p0/MLKA6T04VbYliy1eO6JylmWWauOpvWg18CLdF5IyBwAWORRX20mexcCinv3hLit
+ dxMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773824345; x=1774429145;
+ d=1e100.net; s=20251104; t=1773825005; x=1774429805;
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=MXY9EHBXCnPWVfnYnREpBujBITTjaoQ0F5qTzNSzUus=;
- b=jfcD/ahAIRNGkSSITgMkoa17VmFo8PJJ6oiGVaQYtjev/wk5nPqTKKfHQ7iWIm+Go9
- wQQenurlE9ba530zwV66VVy2rVw/gYnAYWSnUfmDUJlKhTNxQ62QHmVPkYw5+a2GgNQk
- h2EbvIR/ngoSVG0zCsYagBxrfN9bIFZiGeiPvdmZEE9O7T3piWi3bhZYm4ja7D3x5OFi
- 6pzK6vX+P7Eoccwl7BM+O65YKdNtsACYTL4XV0+hb/I3ME7+LXIWsejikPCTepddnKZ7
- AywYnnIi3cst44BLpU5DLdYbqwrKUI2Odw0iX5A+O2TUvQ18sfylZqkEsvBTMpL+rHSN
- k+7Q==
+ bh=03huxt4oynUT1355qRW2FMfKGuIDazVvmXTmtQppc9Q=;
+ b=gsdpRMa3J8xSkTj/8THJON/c9TRycntECgurcJn7Ase3D3PCXmKURNTahV7w6Ci2Rj
+ Wx9JGGXdIpk7g3Y0CDiE3lqLZ9to1WDRT/DETmN8zT6lzVb/Ud5OkCR26hqE87e9AagA
+ Yry92PNlSViZ5vs02kEd2QARCtugPiVu447kI0zBwaiC+i6n0cyMVZoBtz46Z6ekMR1C
+ UIWJo/iF40AiRGqKO6VPi2gMz2fxdscZMzQBPxoSqY5lc0WkNF9wFA0nUxvJC5XRhERp
+ 4b8Xz23hTfZAddOUuJXc5pcobrkhCdpUnYq+yiFCoMBqsucqiCTeKXwzCRPRHtKE/xuM
+ YQ0g==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUZ44FPlIM02c5k+JE/PSk8mIUn9UapjhPdbtbmEzYc6PvfKxguAPw2+Orde3sGcoJyh8hwtfyeiw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxupImAx9Uiqpg0t8oiAs5Tt+3Xv9Je39uLPc35hHCtUDXn984S
- S3sgCskwHrCOfhUzRcjJdR4804i3ZuWCJqpvn+OkQKGnkl4y2Jd+ABqruXnEwgbbOcjA8bGHpn1
- W5fCMBgtf6uy+eFpo1g==
-X-Received: from wmqe14.prod.google.com ([2002:a05:600c:4e4e:b0:485:3539:bc05])
+ AJvYcCUa9miecHgJ+5Z8rgdqzvj6FRSes43z9k7Q09Nuksoq1KJjZmmxABf+UKfcN2sYoZ5aKNdnqbCkQw==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YypxmyXGK945ZK3AQFvrg2c01KPkBmHuGOIZNskzXbf6tIFesCW
+ rUoZlYT9deqZNRRcIq4zGqk6+B14TuwiSiMOSDwhqMjEeb+JYRjuPgzC2y7CDbPKdbN+/LZonkz
+ TaPUzIxH6S3D1iLcNXg==
+X-Received: from ejjr7.prod.google.com ([2002:a17:906:7047:b0:b94:2c7d:9fe])
  (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:600c:a20b:b0:485:3bb5:92cf with SMTP id
- 5b1f17b1804b1-486f4422300mr29381305e9.12.1773824344660; 
- Wed, 18 Mar 2026 01:59:04 -0700 (PDT)
-Date: Wed, 18 Mar 2026 08:59:03 +0000
-In-Reply-To: <46986da6-8c89-475c-8561-964adaa7d034@nvidia.com>
+ 2002:a17:906:c145:b0:b97:ca81:e89a with SMTP id
+ a640c23a62f3a-b97f435a1afmr186730166b.0.1773825004253; 
+ Wed, 18 Mar 2026 02:10:04 -0700 (PDT)
+Date: Wed, 18 Mar 2026 09:10:03 +0000
+In-Reply-To: <20260317201710.934932-2-joelagnelf@nvidia.com>
 Mime-Version: 1.0
 References: <20260317201710.934932-1-joelagnelf@nvidia.com>
  <20260317201710.934932-2-joelagnelf@nvidia.com>
- <46986da6-8c89-475c-8561-964adaa7d034@nvidia.com>
-Message-ID: <abppV3e91iVzplcv@google.com>
+Message-ID: <abpr65jD6esHysWO@google.com>
 Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked list
  interface
 From: Alice Ryhl <aliceryhl@google.com>
@@ -112,57 +111,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 17, 2026 at 04:18:46PM -0400, Joel Fernandes wrote:
+On Tue, Mar 17, 2026 at 04:17:10PM -0400, Joel Fernandes wrote:
+> Add a new module `kernel::interop::list` for working with C's doubly
+> circular linked lists. Provide low-level iteration over list nodes.
 > 
+> Typed iteration over actual items is provided with a `clist_create`
+> macro to assist in creation of the `CList` type.
 > 
-> On 3/17/2026 4:17 PM, Joel Fernandes wrote:
-> > Add a new module `kernel::interop::list` for working with C's doubly
-> > circular linked lists. Provide low-level iteration over list nodes.
-> > 
-> > Typed iteration over actual items is provided with a `clist_create`
-> > macro to assist in creation of the `CList` type.
-> > 
-> > Cc: Nikola Djukic <ndjukic@nvidia.com>
-> > Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
-> > Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
-> > Acked-by: Alexandre Courbot <acourbot@nvidia.com>
-> > Acked-by: Gary Guo <gary@garyguo.net>
-> > Acked-by: Miguel Ojeda <ojeda@kernel.org>
-> > Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
-> > ---
-> >  MAINTAINERS                 |   8 +
-> >  rust/helpers/helpers.c      |   1 +
-> >  rust/helpers/list.c         |  17 ++
-> >  rust/kernel/interop.rs      |   9 +
-> >  rust/kernel/interop/list.rs | 342 ++++++++++++++++++++++++++++++++++++
-> >  rust/kernel/lib.rs          |   2 +
-> >  6 files changed, 379 insertions(+)
-> >  create mode 100644 rust/helpers/list.c
-> >  create mode 100644 rust/kernel/interop.rs
-> >  create mode 100644 rust/kernel/interop/list.rs
-> > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 4bd6b538a51f..e847099efcc2 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -23251,6 +23251,14 @@ T:	git https://github.com/Rust-for-Linux/linux.git alloc-next
-> >  F:	rust/kernel/alloc.rs
-> >  F:	rust/kernel/alloc/
-> >  
-> > +RUST [INTEROP]
-> > +M:	Joel Fernandes <joelagnelf@nvidia.com>
-> > +M:	Alexandre Courbot <acourbot@nvidia.com>
-> > +L:	rust-for-linux@vger.kernel.org
-> > +S:	Maintained
-> > +T:	git https://github.com/Rust-for-Linux/linux.git interop-next
-> > +F:	rust/kernel/interop/
-> 
-> Sorry, I forgot to add an additional F: for the rust/kernel/interop.rs file.
-> Danilo/Miguel, do you mind adding this when applying?
+> Cc: Nikola Djukic <ndjukic@nvidia.com>
+> Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
+> Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
+> Acked-by: Alexandre Courbot <acourbot@nvidia.com>
+> Acked-by: Gary Guo <gary@garyguo.net>
+> Acked-by: Miguel Ojeda <ojeda@kernel.org>
+> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
 
-I think you should consider a mod.rs file to avoid this. It's tiny, and
-just re-exports submodules, so I don't think the "mod.rs name in file
-view" concern is that big, and IMO having files related to interop/
-inside the directory is much better than having them outside.
+I have a few nits below. But overall I think this looks ok:
+
+Reviewed-by: Alice Ryhl <aliceryhl@google.com>
+
+Please do consider my mod.rs suggestion too, though.
+
+> +//! ```
+> +//! use kernel::{
+> +//!     bindings,
+> +//!     clist_create,
+
+IMO the automatic re-exports of macros at the root shouldn't be used.
+Import it from kernel::interop::list::clist_create instead.
+
+Note that you need to put a re-export below macro definition to do this.
+
+	macro_rules! clist_create {
+	    (unsafe { $head:ident, $rust_type:ty, $c_type:ty, $($field:tt).+ }) => {{
+	        // Compile-time check that field path is a `list_head`.
+	        // SAFETY: `p` is a valid pointer to `$c_type`.
+	        let _: fn(*const $c_type) -> *const $crate::bindings::list_head =
+	            |p| unsafe { &raw const (*p).$($field).+ };
+	
+	        // Calculate offset and create `CList`.
+	        const OFFSET: usize = ::core::mem::offset_of!($c_type, $($field).+);
+	        // SAFETY: The caller of this macro is responsible for ensuring safety.
+	        unsafe { $crate::interop::list::CList::<$rust_type, OFFSET>::from_raw($head) }
+	    }};
+	}
+	pub use clist_create; // <-- you need this
+
+See tracepoint.rs or any of the other macros for an example.
+
+> +//! // Create typed [`CList`] from sentinel head.
+> +//! // SAFETY: `head` is valid and initialized, items are `SampleItemC` with
+> +//! // embedded `link` field, and `Item` is `#[repr(transparent)]` over `SampleItemC`.
+> +//! let list = clist_create!(unsafe { head, Item, SampleItemC, link });
+
+Did you try using this in your real use-case? You require `head` to be
+an :ident, but I think for any 'struct list_head' not stored on the
+stack, accepting an :expr would be easier to use so that you can just
+pass `&raw mut my_c_struct.the_list_head` directly to the macro. Right
+now you have to put the raw pointer in a local variable first.
 
 Alice
