@@ -4,79 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 517EA103E190
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 14:43:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 269AA103E183
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 14:51:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 144A610E733;
-	Wed, 18 Mar 2026 14:43:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAF6810E048;
+	Wed, 18 Mar 2026 14:51:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="PLG63xwv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="boNsBytO";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 270BB10E274;
- Wed, 18 Mar 2026 14:43:17 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id DBA884082A;
- Wed, 18 Mar 2026 14:43:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00284C19421;
- Wed, 18 Mar 2026 14:43:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1773844996;
- bh=u09Mfz2oaK3eFSNZEBbTIAth83cK6rCPlN/GqyTfmgM=;
- h=Date:Cc:To:From:Subject:References:In-Reply-To:From;
- b=PLG63xwvR24HD+XRf5cIoXpB6gh/EZwGvlYiSAWfypMrqe6k149dqeTeFuuOlHOzk
- fcG/KWD2k6CF2gw8wZ70N5s1KGkhpWr0bZ6nj9ecBLJXrgBjuX5q8TqMjGEIeN3crF
- v04TSv3PsLfnKRjuFmX+477UMqR3tBmetg2zHzpmS0G3XTXt4LzNtbLeulLOnWGh69
- RszEmfLO8Vd+CTGg+m7CRnid4OA9PSrcl4HWxc6qxPalVR9qBLjogmPkWYqo+vYULp
- vQWpMOPg/0zvKylcbrrPprf4ruVLQtYMeYr8CX3v5Oui7WNBP/BidARKIxRYx7GqJN
- khYLlO+156bnw==
-Mime-Version: 1.0
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26B9B10E048;
+ Wed, 18 Mar 2026 14:51:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773845464; x=1805381464;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=3jWky9SQ4SM/F9lJa0B31L8pDrxgXdicWnreEI/t2kc=;
+ b=boNsBytOJsXYPgfoThG602VFWRiKpgSLHSzfsnQHP460Ub8narJ34Svc
+ 0/Nx0BucnZnuGRw5k3nJliPob9o8M1v+1qXMqPg/wNx3qNagikzu7mqbx
+ HW1vCmWcOA/Rlg31jka2uViTEwzUjUIvmQvYyBVqNvIrEO6qR8VtWJsEP
+ uwHRM1d+ogQxNGiF4NRgglyVBnPfP+cjYkm2kuRx+7vqh5AJzb8H0gzSS
+ 7E7p3GIrS7TGKI2RkXJrEpZRBddcaaGJnSu2bfI3ofuulMleYPtb8dnVf
+ v4gE+vsvH6uYBvNu6nPjvXuTEiWGNTzjm9V6gxv0xHuMHTx/U5CsFLG4n g==;
+X-CSE-ConnectionGUID: 1NZwG0K1Q16CSlvAaGptaw==
+X-CSE-MsgGUID: zdgOEdw3TQeY9cs2h42PJQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="78807706"
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="78807706"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2026 07:51:04 -0700
+X-CSE-ConnectionGUID: JJovyAoRTqmuh88G4BksXQ==
+X-CSE-MsgGUID: uzqby84yQOC+mlmoCbs9nQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="221723578"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO [10.245.244.19])
+ ([10.245.244.19])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2026 07:51:02 -0700
+Message-ID: <dbb22727c88887375737f5a837b245ca22bed988.camel@linux.intel.com>
+Subject: Re: [PATCH v2 0/3] drm/ttm: Improve the TTM operation context
+ gfp_retry_mayfail behaviour
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org, Christian =?ISO-8859-1?Q?K=F6nig?=
+ <christian.koenig@amd.com>
+Cc: Matthew Brost <matthew.brost@intel.com>, Matthew Auld
+ <matthew.auld@intel.com>, dri-devel@lists.freedesktop.org
+Date: Wed, 18 Mar 2026 15:50:59 +0100
+In-Reply-To: <20260317141856.237876-1-thomas.hellstrom@linux.intel.com>
+References: <20260317141856.237876-1-thomas.hellstrom@linux.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 18 Mar 2026 15:43:05 +0100
-Message-Id: <DH5ZKGFWJ0B3.21DGB876S2FYE@kernel.org>
-Cc: "Miguel Ojeda" <miguel.ojeda.sandonis@gmail.com>, "Alexandre Courbot"
- <acourbot@nvidia.com>, "Joel Fernandes" <joelagnelf@nvidia.com>,
- <linux-kernel@vger.kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>, "Boqun
- Feng" <boqun@kernel.org>, "Gary Guo" <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
- <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Trevor
- Gross" <tmgross@umich.edu>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Dave
- Airlie" <airlied@redhat.com>, "David Airlie" <airlied@gmail.com>, "Maarten
- Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
- <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "Simona
- Vetter" <simona@ffwll.ch>, "Daniel Almeida" <daniel.almeida@collabora.com>,
- "Koen Koning" <koen.koning@linux.intel.com>, "Nikola Djukic"
- <ndjukic@nvidia.com>, "Philipp Stanner" <phasta@kernel.org>, "Elle Rhumsaa"
- <elle@weathered-steel.dev>, "Jonathan Corbet" <corbet@lwn.net>, "Alex
- Deucher" <alexander.deucher@amd.com>, =?utf-8?q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, "Jani Nikula" <jani.nikula@linux.intel.com>,
- "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi"
- <rodrigo.vivi@intel.com>, "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang
- Rui" <ray.huang@amd.com>, "Matthew Auld" <matthew.auld@intel.com>, "Matthew
- Brost" <matthew.brost@intel.com>, "Lucas De Marchi"
- <lucas.demarchi@intel.com>, =?utf-8?q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, "Helge Deller" <deller@gmx.de>, "John
- Hubbard" <jhubbard@nvidia.com>, "Alistair Popple" <apopple@nvidia.com>,
- "Timur Tabi" <ttabi@nvidia.com>, "Edwin Peer" <epeer@nvidia.com>, "Andrea
- Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>, "Zhi Wang"
- <zhiw@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>,
- <alexeyi@nvidia.com>, "Eliot Courtney" <ecourtney@nvidia.com>,
- <dri-devel@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-fbdev@vger.kernel.org>
-To: "Alice Ryhl" <aliceryhl@google.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked
- list interface
-References: <20260317201710.934932-1-joelagnelf@nvidia.com>
- <20260317201710.934932-2-joelagnelf@nvidia.com>
- <46986da6-8c89-475c-8561-964adaa7d034@nvidia.com>
- <abppV3e91iVzplcv@google.com> <DH5UOS96171T.Z8XSRX583Q60@nvidia.com>
- <CANiq72=bmJ_GWKowAgv+DWQ8FcWK_HePwjaVgeDmRH+gVD-z5g@mail.gmail.com>
- <CAH5fLgg-kgeBw3Py-EZmAEJhm357u5NJP6na4qJe8v3aeFW5Cg@mail.gmail.com>
-In-Reply-To: <CAH5fLgg-kgeBw3Py-EZmAEJhm357u5NJP6na4qJe8v3aeFW5Cg@mail.gmail.com>
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+MIME-Version: 1.0
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,20 +72,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed Mar 18, 2026 at 3:31 PM CET, Alice Ryhl wrote:
-> On Wed, Mar 18, 2026 at 3:21=E2=80=AFPM Miguel Ojeda
-> <miguel.ojeda.sandonis@gmail.com> wrote:
->> [*] I would have preferred a middle ground like  modules being inside
->> but repeating the folder name, e.g. `.../pci/pci.rs`, but I doubt that
->> will ever be supported upstream since one probably wants to support
->> the other ways at the same time.
+@Christian, Ack to merge these?
 
-I very much like this, because, as you said, the pci/ vs. pci.rs completion
-issue is indeed annoying me a bit. :)
+Thanks,
+Thomas
 
-> In principle this is possible using
->
-> #[path =3D "pci/pci.rs"]
-> pub mod pci;
 
-Not exactly pretty, but if it works I think it's worth.
+On Tue, 2026-03-17 at 15:18 +0100, Thomas Hellstr=C3=B6m wrote:
+> Two small patches around the gfp_retry_mayfail behaviour, and
+> one patch to improve associated kerneldoc.
+>=20
+> Patch 1 ensures we don't spam the kernel log on allocation failures.
+>=20
+> Patch 2 extends the gfp_retry_mayfail to swap readback.
+>=20
+> Patch 3 Improves on the associated kerneldocs.
+>=20
+> v2:
+> - Add patch 3. (Sima).
+>=20
+> Thomas Hellstr=C3=B6m (3):
+> =C2=A0 drm/ttm: Don't spam the log on buffer object backing store
+> allocation
+> =C2=A0=C2=A0=C2=A0 failure
+> =C2=A0 drm/ttm: Avoid invoking the OOM killer when reading back swapped
+> =C2=A0=C2=A0=C2=A0 content
+> =C2=A0 drm/ttm: Update the struct ttm_operation_ctx kerneldoc
+>=20
+> =C2=A0drivers/gpu/drm/ttm/ttm_backup.c |=C2=A0 6 ++++--
+> =C2=A0drivers/gpu/drm/ttm/ttm_pool.c=C2=A0=C2=A0 |=C2=A0 7 +++++--
+> =C2=A0include/drm/ttm/ttm_backup.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 +-
+> =C2=A0include/drm/ttm/ttm_bo.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 28 +++++++++++++++++++---------
+> =C2=A04 files changed, 29 insertions(+), 14 deletions(-)
