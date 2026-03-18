@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 950B8FCD0C1
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 07:10:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C79CDFCD0C6
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 07:33:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5759510E6AC;
-	Wed, 18 Mar 2026 07:10:47 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iQfACK36";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84A9810E6A4
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 07:10:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773817843; x=1805353843;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=qYdzDRnCE+wrOFNJD7b2mTCCtgREdI/DhjA/JUEAs9Y=;
- b=iQfACK36S5Ezcx1/8t54cuuPhoHsBp/dKTY/9RlaoLO13h4g+z/3T1LY
- 0dzqnrsxSapjdz5vk4JTwtqAS4TekKnJnEhqsc0Krp4UenYHN1n2iAK9q
- 2gDHneCKQrAxoVa/pmpF1pvifLXoRlHm3c0OM1K2z/4tryMa4P8VB+Fgh
- Pbytt1yOOn4KBKCQjjHuzHbMIZ7QMgmKb4qbBb/natYnN2430NmFdp6WA
- ESsgKvQkxLBYnelhsoH1B2joF3UljXG9C/A6zKh3A3xsX3sLUqWwco/iC
- KRNDORJKrkBQKWGdVooU1Njb7sFHoKvy+KBMe9mHTX8S/Vd670QVjUO9T A==;
-X-CSE-ConnectionGUID: FRSFvAQHStCj+e0I7SzqfQ==
-X-CSE-MsgGUID: pUQEd9U0R/GbhEG1KNZAbw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="78764296"
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="78764296"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2026 00:10:43 -0700
-X-CSE-ConnectionGUID: WvS1nE9eQF+tRh7GurwXoA==
-X-CSE-MsgGUID: Q7SkcRPrQcCQDvrzjrwoHg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="260424110"
-Received: from hghimira.iind.intel.com ([10.190.239.34])
- by orviesa001.jf.intel.com with ESMTP; 18 Mar 2026 00:10:41 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- stuart.summers@intel.com, arvind.yadav@intel.com, tejas.upadhyay@intel.com,
- Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [RFC 15/15] drm/xe/pt: Set NC PTE bit for VMAs ineligible for access
- counting
-Date: Wed, 18 Mar 2026 13:14:56 +0530
-Message-Id: <20260318074456.2839499-16-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260318074456.2839499-1-himal.prasad.ghimiray@intel.com>
-References: <20260318074456.2839499-1-himal.prasad.ghimiray@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BFC310E694;
+	Wed, 18 Mar 2026 07:33:46 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 546BC10E441;
+ Wed, 18 Mar 2026 07:33:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1305773874873565804=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_cold_reset_recove?=
+ =?utf-8?q?ry_method?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mallesh Koujalagi" <mallesh.koujalagi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 18 Mar 2026 07:33:45 -0000
+Message-ID: <177381922531.370303.1442958415225153612@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260318064016.374656-7-mallesh.koujalagi@intel.com>
+In-Reply-To: <20260318064016.374656-7-mallesh.koujalagi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,58 +36,154 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Set XE_PPGTT_PTE_NC on PTEs for VMAs that can't benefit from access
-counter migration hints, avoiding wasteful slot allocation.
+--===============1305773874873565804==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Bspec: 67095
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_gtt_defs.h |  2 +-
- drivers/gpu/drm/xe/xe_pt.c            | 11 +++++++++++
- 2 files changed, 12 insertions(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gtt_defs.h b/drivers/gpu/drm/xe/regs/xe_gtt_defs.h
-index 4d83461e538b..ace3cbcc13d8 100644
---- a/drivers/gpu/drm/xe/regs/xe_gtt_defs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gtt_defs.h
-@@ -28,11 +28,11 @@
- #define XE_GGTT_PTE_DM			BIT_ULL(1)
- #define XE_USM_PPGTT_PTE_AE		BIT_ULL(10)
- #define XE_PPGTT_PTE_DM			BIT_ULL(11)
-+#define XE_PPGTT_PTE_NC			BIT_ULL(5)
- #define XE_PDE_64K			BIT_ULL(6)
- #define XE_PTE_PS64			BIT_ULL(8)
- #define XE_PTE_NULL			BIT_ULL(9)
- 
- #define XE_PAGE_PRESENT			BIT_ULL(0)
- #define XE_PAGE_RW			BIT_ULL(1)
--
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 2d9ce2c4cb4f..cc8dcdb6649a 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -755,6 +755,17 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
- 			XE_USM_PPGTT_PTE_AE : 0;
- 	}
- 
-+	if (!xe_vma_supports_access_ctr(xe, vma, tile)) {
-+		xe_walk.default_vram_pte |= XE_PPGTT_PTE_NC;
-+		xe_walk.default_system_pte |= XE_PPGTT_PTE_NC;
-+	}
-+
-+	if (range) {
-+		xe_walk.default_vram_pte |= XE_PPGTT_PTE_NC;
-+		if (!range->base.pages.flags.migrate_devmem)
-+			xe_walk.default_system_pte |= XE_PPGTT_PTE_NC;
-+	}
-+
- 	xe_walk.default_vram_pte |= XE_PPGTT_PTE_DM;
- 	xe_walk.dma_offset = bo ? vram_region_gpu_offset(bo->ttm.resource) : 0;
- 	if (!range)
--- 
-2.34.1
+Series: Introduce cold reset recovery method
+URL   : https://patchwork.freedesktop.org/series/163428/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4742-146a21986f74225d0343edeb925095825fa5474f_BAT -> xe-pw-163428v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-163428v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4742-146a21986f74225d0343edeb925095825fa5474f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6519])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4742-146a21986f74225d0343edeb925095825fa5474f/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][5] ([Intel XE#7483]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4742-146a21986f74225d0343edeb925095825fa5474f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
+
+
+Build changes
+-------------
+
+  * Linux: xe-4742-146a21986f74225d0343edeb925095825fa5474f -> xe-pw-163428v1
+
+  IGT_8807: 7f44d96d705f1583d689f1f8c2275b685b4ca11d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4742-146a21986f74225d0343edeb925095825fa5474f: 146a21986f74225d0343edeb925095825fa5474f
+  xe-pw-163428v1: 163428v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v1/index.html
+
+--===============1305773874873565804==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Introduce cold reset recovery method</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163428/">https://patchwork.freedesktop.org/series/163428/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4742-146a21986f74225d0343edeb925095825fa5474f_BAT -&gt; xe-pw-163428v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-163428v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4742-146a21986f74225d0343edeb925095825fa5474f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4742-146a21986f74225d0343edeb925095825fa5474f/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4742-146a21986f74225d0343edeb925095825fa5474f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4742-146a21986f74225d0343edeb925095825fa5474f -&gt; xe-pw-163428v1</li>
+</ul>
+<p>IGT_8807: 7f44d96d705f1583d689f1f8c2275b685b4ca11d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4742-146a21986f74225d0343edeb925095825fa5474f: 146a21986f74225d0343edeb925095825fa5474f<br />
+  xe-pw-163428v1: 163428v1</p>
+
+</body>
+</html>
+
+--===============1305773874873565804==--
