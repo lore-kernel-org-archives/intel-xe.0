@@ -4,100 +4,161 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 475E5FCD0DC
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 08:44:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8BF210854BE
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 08:55:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0164210E05C;
-	Wed, 18 Mar 2026 08:44:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 98BF010E6EB;
+	Wed, 18 Mar 2026 08:55:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JBDfWoTg";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g69+VZZA";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F86110E05C;
- Wed, 18 Mar 2026 08:44:31 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 3A00C60054;
- Wed, 18 Mar 2026 08:44:30 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF1A8C19421;
- Wed, 18 Mar 2026 08:44:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1773823469;
- bh=cAViDTIBzNd4WUgWQ3QnLFn4t4dSjX4YuqynU7+gqDk=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=JBDfWoTgggJG3rAzwJB0mkLIB+7nG/SWmrpRLhW49BKDNi7jqM2/8l34tST4ZPryB
- AAdKmtpGsxhChQBeObXH263gBJKpaIC18mZQWzlz5rgZICxcZa0wBQO7pn/jwJBGD7
- XrNLpCD2BJrlifP2ZCqXoXHss13Mq6WRBythm3qYdKB1sOqu8T9BxQ46Rr4LDz2bxg
- 7m2oK9ELY9tOrpzannk5A1p6MXk6QpzChDIat/6fKumk/K68RbAyet12NPoehldn+M
- py9H4u0NIVWzg5qP53bM0WvIm/mWUm84YPBfzk9a1R7YVoiZE7PdHXPC1oAXgbc9CV
- kg5wgICTsOLWg==
-Message-ID: <b1ae55b3-8058-40ef-96f5-5caf97b1ace5@kernel.org>
-Date: Wed, 18 Mar 2026 09:44:21 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 00/13] Remove device private pages from physical
- address space
-To: Alistair Popple <apopple@nvidia.com>
-Cc: Jordan Niethe <jniethe@nvidia.com>, linux-mm@kvack.org,
- balbirs@nvidia.com, matthew.brost@intel.com, akpm@linux-foundation.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- ziy@nvidia.com, lorenzo.stoakes@oracle.com, lyude@redhat.com,
- dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch, rcampbell@nvidia.com,
- mpenttil@redhat.com, jgg@nvidia.com, willy@infradead.org,
- linuxppc-dev@lists.ozlabs.org, intel-xe@lists.freedesktop.org, jgg@ziepe.ca,
- Felix.Kuehling@amd.com, jhubbard@nvidia.com, maddy@linux.ibm.com,
- mpe@ellerman.id.au, ying.huang@linux.alibaba.com
-References: <20260202113642.59295-1-jniethe@nvidia.com>
- <4b5b222a-18e8-4d48-9acb-39e5bfe4e5f7@kernel.org>
- <abiloqDpIs046DJJ@nvdebian.thelocal>
-From: "David Hildenbrand (Arm)" <david@kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6D8D10E109;
+ Wed, 18 Mar 2026 08:55:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773824116; x=1805360116;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=tPZYYfEWJYvvxGDdk/Pc8aK776jmlOIdTDGVoc4wOD8=;
+ b=g69+VZZAmZ7dYfXrhKLxRQ3EYl8mTyLtw4/ksg4fqGvyPCM0ZBHgKRWW
+ DOluQEOVY0vNpP20I4GOIWI7XEl8fq9fOsP9vlesCfcP8cgbGii7IHdh8
+ /GEDyBBPjQ3f4iuAvun8CrYCSKMcWSV06cHrQHahS4AA4R2GlcVFddSGP
+ ZlXBWZRvAxwr1mukP06F8AIrcgfqHTUfM1yiD3gbl7JYeBVR1ztVv74sA
+ wzjEowOwtU29DWUilg4EhKsEwjnNIukDxcQAC7huQitfBtO/PAR9l6ety
+ jzHz+j9stCO5CL+hj3ZGywE6Ar9/4qfjB1xkYjW8/KfS6bYOhBEunK5fA w==;
+X-CSE-ConnectionGUID: N/aRjDg2Q0KGGjt0yDjTMQ==
+X-CSE-MsgGUID: U01OaBnjRTiKQoWksoEchA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="97479194"
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="97479194"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2026 01:55:15 -0700
+X-CSE-ConnectionGUID: HRxZWW/gSvGB6qINkdeeOg==
+X-CSE-MsgGUID: 0kGA2jMnS2mc9+2VtKbwog==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="219616987"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2026 01:55:14 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 18 Mar 2026 01:55:13 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Wed, 18 Mar 2026 01:55:13 -0700
+Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.10) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 18 Mar 2026 01:55:13 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PuVCqbibGCb5vTqcfVtFz6klrf63uSOGshlyDJ5Pk6fH9jo5YEiIOPbBA6PCEWG+4UpwSucjQO5Ocs8u7fl++FZsiOc88+RumxrWMXw/UIaxcE86smap0ImrI5vq6p5uIIDf1uFbOOMDRQeDi+pFBFOeCqkkoNJE3o7JtiEA+oLhidqP2dtqTOvssEsh1r9AKm6eStzGxpRgfyiEwamYoN5RZdodRcbyBswUUrQOy8pBTMMh4Ccnmm3DKPSdMb7WeSdffT2a0K9MgUvbRXPUlpHTBLKAQN6qWqN9NaoIk+mSYuvnnwQdQ/eNT6O9PYYEKsjy24A/2FC9QUYi75oqpw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tPZYYfEWJYvvxGDdk/Pc8aK776jmlOIdTDGVoc4wOD8=;
+ b=ZFrW4tRm4ox5z+6vZCw4ksgv908iPpkJ+1tLGBdpYxSbtTC/CUatXJkY2RX65Gno5xInbwpoqqNP/gAHRM3ErgPxZHZOvbuC2w+i7W+559Fj2/fAbrxxx2UdU3Y6sWmY7fE273BOmLdXhjjRFTWImZDsrwaxMmBQjk6AcUEJuVuF4/2/2TUz/EGnZIMSC/26XGa2+/5YFkILqgHqeH9QEX33atHohVYhytcQMdi6vqypgTuwDAEGgTw1fzNHt8ZHSJqTZ+9f7D1P1H4PrgzSA+AlOYHsOlMSAyh1hVLLbRO+XSiEWopXQrhy2+KkMv48h5qL93ziXaWSwl0EpsxFew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS4PPF69154114F.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::28) by CY8PR11MB7922.namprd11.prod.outlook.com
+ (2603:10b6:930:7b::16) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Wed, 18 Mar
+ 2026 08:55:11 +0000
+Received: from DS4PPF69154114F.namprd11.prod.outlook.com
+ ([fe80::21d:877c:8b4d:9d7d]) by DS4PPF69154114F.namprd11.prod.outlook.com
+ ([fe80::21d:877c:8b4d:9d7d%2]) with mapi id 15.20.9723.014; Wed, 18 Mar 2026
+ 08:55:11 +0000
+From: "Kahola, Mika" <mika.kahola@intel.com>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>, "Hogander, Jouni"
+ <jouni.hogander@intel.com>
+Subject: RE: [PATCH] drm/i915/psr: Disable Panel Replay on Dell XPS 14 DA14260
+ as a quirk
+Thread-Topic: [PATCH] drm/i915/psr: Disable Panel Replay on Dell XPS 14
+ DA14260 as a quirk
+Thread-Index: AQHctdbCqwGUofoKbUCj7ZFb+039zrWz/gMw
+Date: Wed, 18 Mar 2026 08:55:10 +0000
+Message-ID: <DS4PPF69154114F1909E29187BB25B66AC8EF4EA@DS4PPF69154114F.namprd11.prod.outlook.com>
+References: <20260317062402.1888624-1-jouni.hogander@intel.com>
+In-Reply-To: <20260317062402.1888624-1-jouni.hogander@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-Autocrypt: addr=david@kernel.org; keydata=
- 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
- qIws/H2t
-In-Reply-To: <abiloqDpIs046DJJ@nvdebian.thelocal>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS4PPF69154114F:EE_|CY8PR11MB7922:EE_
+x-ms-office365-filtering-correlation-id: a6708321-5f2b-414a-ed91-08de84cc0ffe
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|376014|1800799024|366016|38070700021|7053199007|22082099003|56012099003|18002099003;
+x-microsoft-antispam-message-info: 5PHyZvfIy2BP/z0HQaOski+ddJsvAm7cQ+w9FWTbuDJQD9wvl3CQbrPoJ5CkmiNGwZkv7WzBC9GdRTafeI3KR7Wt9VHWRgrzkJU4+RLXTx6v74TQyxUQp6d1Tb7pEoDEx+cgKfz66nrEFggvMX4/GaW3jtePrSBm6B3w1skZimPen+E6BpwG3+Pq1NMNHtz5X8NwZVNBiQWnz20TF/TiFCMpccPwpCLPbY4JRvZ10AwvtigTQWbvRWe24MR3LpD8RpzfLqyB5CY5NtrA1Xq131dF0IH4GpUfqdqyonbWDnp3YBlM1hkEGBKuAZDmWdHOKHBMvTn8Rm8DJIn6GcgTEclmn7PZI5KAPL0CliusPinsEygtF5vSES2eZyj7k+PJ7CKrSFs0L3FkIZynKhUgm0l7zDBpNw3we2UjXQX1/dTX04htwgQWZc8hQgbfOvACDT7zoRg9ZoBSvexVpo78hG8URJLxO6zumVBSJL64jHY1IqQlKdp0z3mSLKCYueFKv4vjnbtp4RyJ6MmxGCGHARA1DaqEbjqsZ5XY3Eo3m9sgqQgEzrZaMyghjVdJcUxcWyHPIYnmWKPzWDyCw+FBzzxoKsUaMOeBhK3w0JlotFI+JmXX+/uV4nHGUYY0yIVD+3yfiHUy1O1ls9eBvXX/8pAAoZUnpJcpAp93+mPOtT3AM1cIrIQRv5Tjd7XG48rbphm2XPInZFluFmROTyZBHJOFTEdQ9oOgo9SEyfUfiJ2k4lvD+JUw1fuVFlxf/Fg+
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS4PPF69154114F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(38070700021)(7053199007)(22082099003)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?N0VnUmNUdTEvT0JFRXJNWlgvVmhWdllQT1pBN0RmWDdrUTRrZUxyTC9teHJB?=
+ =?utf-8?B?ZTE1TXhMNUw1MGV6ZHhtM1kwb1QrTWt4NWNka05odDJHSHZiQUhPYjlISjdn?=
+ =?utf-8?B?aTdzSEFLblVxMG5maFE1NWk0cDcvdEwyb3ZicXVsZThUdzdCZ0dkc1l3N3FV?=
+ =?utf-8?B?SWhnOHBzbFNERVY2aGtwcWxtSWtBbEdPeStCTWoyRDhDWW5BMEJ0THFvVCtT?=
+ =?utf-8?B?U0RGRHZXZENIMC96WFhjS2lsUnFkZkJ6dC85T0VSeTFvTW1yNlcycWV2V2l3?=
+ =?utf-8?B?WnVOakwxU3JabENVWWFJWlJqZ1JOaDV4K013cFdHeXg2MDltMVQzOW93WjZL?=
+ =?utf-8?B?Z2IwWVVDRXJ4SXNsSW1SRnRCbEdUREVIclpMZkdEWTJDQlZYeUZ3alY2RWpl?=
+ =?utf-8?B?M0kwYmpSZEJ1Mk1ic0VoRml6aCtDNFRRZEd3NWlVcnJJbVV1WDVZMHRzL1d4?=
+ =?utf-8?B?c3ZvRDA3UjFkRTZmSE5MRlNXWEJ1eFRLd2Fpei9JR0FxL1hiZFNaR0JGdEVU?=
+ =?utf-8?B?dTZCcjUzUm9NWEZFNzBBNnJLYzU3YUFsZEE3NElQZEtvNW9SV2lJLzZVRTJY?=
+ =?utf-8?B?YjZoaHFlYm1XV3BtSnBTWlBiZmRjcllTSTFQWlNrVmp5eU0xN3BEQTM2ckN1?=
+ =?utf-8?B?K3RVVXd2UlVPam9GSWNYTGJqVVRGQ242VXlXY1hSZVNqSm5hSGZNWGlqNkRu?=
+ =?utf-8?B?WmdkRWlNR0l3MkRkck5nYmtrRnI4WkRJc0liWnRHa28zUmVpQzh5aWl0bG4x?=
+ =?utf-8?B?ZmhTWnJmMGtWQXJKRk0yQk0vcFZzN2NPekE1WEtZUkFERDBNUzl2V2psbFRE?=
+ =?utf-8?B?OU9LZlpodWM0U1Rha09nTUhLR1lGU1hQdlBsRjFyb2lzMktuUi9CM2l1R0xp?=
+ =?utf-8?B?T1FhVndKK01GU3owZ3FnSndjbVdFMDRpeWJYaHlBL01uODRnMVRPR21GZHNT?=
+ =?utf-8?B?T0ZBeFg1RHMwWjRsSUUrMHVtV3luR21jZGVHSjFSSExrMnU4M3RkcXYyWmdB?=
+ =?utf-8?B?cXpiQmxYVXkxeUFiT2pLRUx4WDgvNlJmSlA1ZlA5d3R2dk9XOGNPcURORVlP?=
+ =?utf-8?B?cWpVSVptTjNVbW1GSlFNdzJTNCs3azlCdkxqYjg2TG1sR2ovREZXVjBuSVBu?=
+ =?utf-8?B?dWdsb2xPdm8zV0MzSkwzTVEvVG1mb3ZRVU5wb3Fsejh2SW5wMjc3NDN6Zk1K?=
+ =?utf-8?B?UWt6WURWSXlGbmFFOGRJajZ2QTNQaDkrbitHa1JYZjlTN2RFbEh6YVp6Mkcr?=
+ =?utf-8?B?ME5lMzJwN3cvVzlyZi9NTzhNdlJtNXg2MmhWQm1GQk01VWpCeGtDeFY4aHJZ?=
+ =?utf-8?B?cnFKTVhlS0N6WkpXL3NhdjZJWFp2MlJFcXBuMTRPQlZqS201SjB4RjJ6dldx?=
+ =?utf-8?B?NDN1NlhUTFkwOEdKT2drUklCRW1EZnpIUWdrUHlzSktNcmpKUTM4Y05LWEcr?=
+ =?utf-8?B?S3BSVnBCdndVTXFNcWJNck1pTzlkQm9XekF2cmJiZkQ1MnB0bmRxcG9zMFpJ?=
+ =?utf-8?B?S0lMV3JJNFp2dUFvNFdqalNlWm1IU0tBZEJtMG1pUlRHV0kzcktVbERJNFFl?=
+ =?utf-8?B?QWhHVHlhcmZDUUx6c0FhR2hJQmJ3ZnNqd2ZlSW42VlB6VVdScnE4ak1ZbXJt?=
+ =?utf-8?B?MERLTUxkVGh5enhkS0pyT2lwTElQZDJyemxWdTVERzlHdGcwdjJtS25UTk13?=
+ =?utf-8?B?OEQ1dHB5aVJ6aHd4V3oxZjVzMnNHUVlrQWtScHErL0tXT1FPYUlmWkU0WW5y?=
+ =?utf-8?B?RytsMllrY1pNQWdDQlN0K28zSDBEMlR0bi80ZEJHeTZ4alFJbWptVDRPY0lH?=
+ =?utf-8?B?bXkrNGlKeVhDZmx1T0srV1hCaVhLRXhxUldyOXp0cU44ZkVJdnlDTzRjOHRM?=
+ =?utf-8?B?NGdWTGF2Nk5MQ01wakhSdXVseEY1bFlQZWQ5aCtPWFlaWnFPUC8rUHRvMURF?=
+ =?utf-8?B?ZGxVQUdCUnVFWXI1Z3EvNXhHR0l5ZVZ4QWJsNEtwNWY1Mk9YSHlRNitadGdN?=
+ =?utf-8?B?a3VsYnJHbE5yejU3V1BCZGdSR1ZyemRZaVdYUmt4QW5LcStLTHdsZ0VFclB1?=
+ =?utf-8?B?L2xFcUJNTzBRYjR6bU9rUnpOY1NyaWNOSE5sSlJaLzZjRVpwbXZWOVdwRENZ?=
+ =?utf-8?B?MjN6b3dkdWZtaHM3cDJmcmJtUy9CYXhVNER0UVNmbnJOTnZtd1BsZE80MWxh?=
+ =?utf-8?B?THpJRWNBQlRvbnFpa3p4TTFwTTRCMEZabUxKZkROd2RJbVMzTXJYcjNJdWxv?=
+ =?utf-8?B?RlhvNGd1eURrZEVVbExGc0tQT3hSR2hqS3hlWjJoZTR3UEVpNXJ1ZGN6QjBr?=
+ =?utf-8?B?Z0ozV0x3clgxdDIwU2tDN0lWTkdDRTZhTWxsaUlhenZXS3Bhb0U5QT09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: XC9T6gTlXNCGfLXmKTR8cgqpjK30/mAT4Ul0s1CfGWvCjVs86lR+hnGNAchqTslkrFGW4jBGgzCTzdJwYq6CuI8AANmbkMIY4e0PSkra9etVJyLE+CMX+EoLvgDFV4dso7ObVEL90b2XcKiKssf5EQ/2S0R07oOsn/fJHVy2yVC1xLSVNAQ87K2wzJid2dkyEDrYvGHBMI2Z5Xs/sWXVDDxWLBvIgmvb2XIje/MCiN2dMac2Kjcdw80ZIbHLaAaiqpbAW1SEOKsI0UVK+U+Qgg+yRP1KWZy5fTm7qGTiyXuKwslsaHhc8xlLzVcgLdw4vDdzZvHXjszbylG1R5v/RQ==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS4PPF69154114F.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a6708321-5f2b-414a-ed91-08de84cc0ffe
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Mar 2026 08:55:10.9606 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: kbGLos8Ds2DqENTaexl2lGtWwSTRF05TppjECTo2DZujWxmlQRBZ+Iw2JKPFPFEQJnBlkzUtV92Mcr7kjOzYwg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7922
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -112,180 +173,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 3/17/26 02:47, Alistair Popple wrote:
-> On 2026-03-07 at 03:16 +1100, "David Hildenbrand (Arm)" <david@kernel.org> wrote...
->> On 2/2/26 12:36, Jordan Niethe wrote:
->>> Introduction
->>> ------------
->>>
->>> The existing design of device private memory imposes limitations which
->>> render it non functional for certain systems and configurations where
->>> the physical address space is limited. 
->>>
->>> Limited available address space
->>> -------------------------------
->>>
->>> Device private memory is implemented by first reserving a region of the
->>> physical address space. This is a problem. The physical address space is
->>> not a resource that is directly under the kernel's control. Availability
->>> of suitable physical address space is constrained by the underlying
->>> hardware and firmware and may not always be available. 
->>>
->>> Device private memory assumes that it will be able to reserve a device
->>> memory sized chunk of physical address space. However, there is nothing
->>> guaranteeing that this will succeed, and there a number of factors that
->>> increase the likelihood of failure. We need to consider what else may
->>> exist in the physical address space. It is observed that certain VM
->>> configurations place very large PCI windows immediately after RAM. Large
->>> enough that there is no physical address space available at all for
->>> device private memory. This is more likely to occur on 43 bit physical
->>> width systems which have less physical address space.
->>>
->>> The fundamental issue is the physical address space is not a resource
->>> the kernel can rely on being to allocate from at will.  
->>>
->>> New implementation
->>> ------------------
->>>
->>> This series changes device private memory so that it does not require
->>> allocation of physical address space and these problems are avoided.
->>> Instead of using the physical address space, we introduce a "device
->>> private address space" and allocate from there.
->>>
->>> A consequence of placing the device private pages outside of the
->>> physical address space is that they no longer have a PFN. However, it is
->>> still necessary to be able to look up a corresponding device private
->>> page from a device private PTE entry, which means that we still require
->>> some way to index into this device private address space. Instead of a
->>> PFN, device private pages use an offset into this device private address
->>> space to look up device private struct pages.
->>>
->>> The problem that then needs to be addressed is how to avoid confusing
->>> these device private offsets with PFNs. It is the limited usage
->>> of the device private pages themselves which make this possible. A
->>> device private page is only used for userspace mappings, we do not need
->>> to be concerned with them being used within the mm more broadly. This
->>> means that the only way that the core kernel looks up these pages is via
->>> the page table, where their PTE already indicates if they refer to a
->>> device private page via their swap type, e.g.  SWP_DEVICE_WRITE. We can
->>> use this information to determine if the PTE contains a PFN which should
->>> be looked up in the page map, or a device private offset which should be
->>> looked up elsewhere.
->>>
->>> This applies when we are creating PTE entries for device private pages -
->>> because they have their own type there are already must be handled
->>> separately, so it is a small step to convert them to a device private
->>> PFN now too.
->>>
->>> The first part of the series updates callers where device private
->>> offsets might now be encountered to track this extra state.
->>>
->>> The last patch contains the bulk of the work where we change how we
->>> convert between device private pages to device private offsets and then
->>> use a new interface for allocating device private pages without the need
->>> for reserving physical address space.
->>>
->>> By removing the device private pages from the physical address space,
->>> this series also opens up the possibility to moving away from tracking
->>> device private memory using struct pages in the future. This is
->>> desirable as on systems with large amounts of memory these device
->>> private struct pages use a signifiant amount of memory and take a
->>> significant amount of time to initialize.
->>
->> I now went through all of the patches (skimming a bit over some parts
->> that need splitting or rework).
-> 
-> Thanks David for taking the time to do a thorough review. I will let Jordan
-> respond to most of the comments but wanted to add some of my own as I helped
-> with the initial idea.
-> 
->> In general, a noble goal and a reasonable approach.
->>
->> But I get the sense that we are just hacking in yet another zone-device
->> thing. This series certainly makes core-mm more complicated. I provided
->> some inputs on how to make some things less hacky, and will provide
->> further input as you move forward.
-> 
-> I disagree - this isn't hacking in another/new zone-device thing it is cleaning
-> up/reworking a pre-existing zone-device thing (DEVICE_PRIVATE pages). My initial
-> hope was it wouldn't actually involve too much churn on the core-mm side.
-
-... and there is quite some.
-
-stuff like make_readable_exclusive_migration_entry_from_page() must be
-reworked.
-
-Maybe after some reworks it will no longer look like a hack.
-
-Right now it does.
-
-> 
-> It seems that didn't work quite as well as hoped as there are a few places in
-> core-mm where we use raw pfns without actually accessing them rather than using
-> the page/folio. Notably page_vma_mapped in patch 5.
-
-Yes. I provided ideas on how to minimize the impact.
-
-Again, maybe if done right it will be okay-ish.
-
-It will likely still be error prone, but I have no idea how on earth we
-could possible catch reliably for an "unsigned long" pfn whether it is a
-PFN (it's right there in the name ...) or something completely different.
-
-We don't want another pfn_t, it would be too much churn to convert most
-of MM.
-
-> 
-> But overall this is about replacing pfn_to_page()/page_to_pfn() with
-> device-private specific variants, as callers *must* already know when they
-> are dealing with a device-private pfn and treat it specially today (whether
-> explicitly or implicitly). Callers/callees already can't just treat a
-> device-private pfn normally as accessing the pfn will cause machine checks and
-> the associated page is a zone-device page so doesn't behave like a normal struct
-> page.
-> 
->> We really have to minimize the impact, otherwise we'll just keep
->> breaking stuff all the time when we forget a single test for
->> device-private pages in one magical path.
-> 
-> As noted above this is already the case - all paths whether explicitly or
-> implicitly (or just fogotten ... hard to tell) need to consider device-private
-> pages and possibly treat them differently. Even today some magical path that
-> somehow gets a device-private pfn/page and tries to use it as a normal page/pfn
-> will probably break as they don't actually correspond to physical addresses that
-> actually exist and the struct pages are special.
-
-Well, so far a PFN is a PFN, and when you actually have a *page* (after
-pfn_to_page() etc) you can just test for these cases.
-
-The page is actually sufficient to make a decision.
-
-With a PFN you have to carry auxiliary information.
-
-> 
-> So any core-mm churn is really just making this more explicit, but this series
-> doesn't add any new requirements.
-
-Again, maybe it can be done in a better way. I did not enjoy some of the
-code changes I was reading.
-
-> 
-> My bigger aim here is to use this as a stepping stone to removing device-private
-> pages as they just contain a bunch of redundant information from a device driver
-> perspective that introduces a lot of metadata management overhead.
-> 
->> I am not 100% sure how much the additional tests for device-private
->> pages all over the place will cost us. At least it can get compiled out,
->> but most distros will just always have it compiled in.
-> 
-> I didn't notice too many extra checks outside of the migration entry path. But
-> if perf is a concern there I think we could move those checks to device-private
-> specific paths. From memory Jordan did this more as a convenience. Will go look
-> a bit deeper for any other checks we might have added.
-I meant in stuff like page_vma_mapped. Probably not the hottest path,
-and maybe the impact can be reduced by reworking it.
-
--- 
-Cheers,
-
-David
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdm
+eC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIEpvdW5pIEjDtmdh
+bmRlcg0KPiBTZW50OiBUdWVzZGF5LCAxNyBNYXJjaCAyMDI2IDguMjQNCj4gVG86IGludGVsLWdm
+eEBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IGludGVsLXhlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZw0K
+PiBDYzogQ2F2aXR0LCBKb25hdGhhbiA8am9uYXRoYW4uY2F2aXR0QGludGVsLmNvbT47IEhvZ2Fu
+ZGVyLCBKb3VuaSA8am91bmkuaG9nYW5kZXJAaW50ZWwuY29tPg0KPiBTdWJqZWN0OiBbUEFUQ0hd
+IGRybS9pOTE1L3BzcjogRGlzYWJsZSBQYW5lbCBSZXBsYXkgb24gRGVsbCBYUFMgMTQgREExNDI2
+MCBhcyBhIHF1aXJrDQo+IA0KPiBBZGQgbmV3IHF1aXJrIChRVUlSS19ESVNBQkxFX1BBTkVMX1JF
+UExBWSkgZm9yIGRpc2FibGluZyBQYW5lbCBSZXBsYXkgYXMgcXVpcmsgZm9yIHByb2JsZW1hdGlj
+IHNldHVwcy4gQXBwbHkgdGhpcyBuZXdseQ0KPiBhZGRlZCBxdWlyayBvbiBEZWxsIFhQUyAxNA0K
+PiBEQTE0MjYwIGlmIHNwZWNpZmljIHBhbmVsIG1vZGVsIGlzIGluc3RhbGxlZC4NCj4gDQo+IFdl
+IGFyZSBvYnNlcnZpbmcgcHJvYmxlbXMgd2l0aCBEZWxsIFhQUyAxNCBEQTE0MjYwLiBUaGlzIGRl
+dmljZSBoYXMgY2VydGFpbiBMR0QgcGFuZWwgbW9kZWwgd2hpY2ggc2VlbXMgdG8gYmUgcHJvYmxl
+bWF0aWMuDQo+IFdlIGhhdmUgc2VlbiBvdGhlciBMR0QgcGFuZWwgbW9kZWwgd2l0aCBzYW1lIE9V
+SSBpcyB3b3JraW5nIGZpbmUuIER1ZSB0byB0aGlzIHdlIGNhbid0IGFwcGx5IHRoZSBxdWlyayBv
+bmx5IGJhc2VkIG9uIHBhbmVsIE9VSS4NCj4gVGhlcmUgYXJlIGFsc28gY2FzZXMgd2hlcmUgc2Ft
+ZSBkZXZpY2UgbW9kZWwgaGFzIGRpZmZlcmluZyBwYW5lbCBtb2RlbC4gV2UgZG9uJ3Qgd2FudCB0
+byBkaXNhYmxlIFBhbmVsIFJlcGxheSBvbiBzdWNoIGRldmljZXMuDQo+IEJlc3Qgd2UgY2FuIGRv
+IGlzIHRvIGFwcGx5IHRoZSBxdWlyayBiYXNlZCBvbiBib3RoIGRldmljZSBtb2RlbCBhbmQgcGFu
+ZWwgbW9kZWwuDQo+IA0KDQpMR1RNLA0KDQpSZXZpZXdlZC1ieTogTWlrYSBLYWhvbGEgPG1pa2Eu
+a2Fob2xhQGludGVsLmNvbT4NCg0KPiBDbG9zZXM6IGh0dHBzOi8vZ2l0bGFiLmZyZWVkZXNrdG9w
+Lm9yZy9kcm0veGUva2VybmVsLy0vaXNzdWVzLzc1MjENCj4gU2lnbmVkLW9mZi1ieTogSm91bmkg
+SMO2Z2FuZGVyIDxqb3VuaS5ob2dhbmRlckBpbnRlbC5jb20+DQo+IC0tLQ0KPiAgZHJpdmVycy9n
+cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYyAgICB8ICA3ICsrKysrKysNCj4gIGRyaXZl
+cnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcXVpcmtzLmMgfCAxNyArKysrKysrKysrKysr
+KysrLSAgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9xdWlya3MuaCB8ICAxICsN
+Cj4gIDMgZmlsZXMgY2hhbmdlZCwgMjQgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiAN
+Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMg
+Yi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+IGluZGV4IGMxMzEx
+NmU2ZjE3Zi4uYjMxOWU1YmQ2Mjc0IDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
+YXkvaW50ZWxfcHNyLmMNCj4gQEAgLTQ5LDYgKzQ5LDcgQEANCj4gICNpbmNsdWRlICJpbnRlbF9o
+ZG1pLmgiDQo+ICAjaW5jbHVkZSAiaW50ZWxfcHNyLmgiDQo+ICAjaW5jbHVkZSAiaW50ZWxfcHNy
+X3JlZ3MuaCINCj4gKyNpbmNsdWRlICJpbnRlbF9xdWlya3MuaCINCj4gICNpbmNsdWRlICJpbnRl
+bF9zbnBzX3BoeS5oIg0KPiAgI2luY2x1ZGUgImludGVsX3N0ZXAuaCINCj4gICNpbmNsdWRlICJp
+bnRlbF92YmxhbmsuaCINCj4gQEAgLTYwOSw2ICs2MTAsMTIgQEAgc3RhdGljIHZvaWQgX3BhbmVs
+X3JlcGxheV9pbml0X2RwY2Qoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwgc3RydWN0IGludGVs
+X2Nvbm4NCj4gIAlpZiAoaW50ZWxfZHAtPm1zdF9kZXRlY3QgPT0gRFJNX0RQX01TVCkNCj4gIAkJ
+cmV0dXJuOw0KPiANCj4gKwlpZiAoaW50ZWxfaGFzX2RwY2RfcXVpcmsoaW50ZWxfZHAsIFFVSVJL
+X0RJU0FCTEVfUEFORUxfUkVQTEFZKSkgew0KPiArCQlkcm1fZGJnX2ttcyhkaXNwbGF5LT5kcm0s
+DQo+ICsJCQkgICAgIlBhbmVsIFJlcGxheSBzdXBwb3J0IG5vdCBjdXJyZW50bHkgYXZhaWxhYmxl
+IGZvciB0aGlzIHNldHVwXG4iKTsNCj4gKwkJcmV0dXJuOw0KPiArCX0NCj4gKw0KPiAgCXJldCA9
+IGRybV9kcF9kcGNkX3JlYWRfZGF0YSgmaW50ZWxfZHAtPmF1eCwgRFBfUEFORUxfUkVQTEFZX0NB
+UF9TVVBQT1JULA0KPiAgCQkJCSAgICAmY29ubmVjdG9yLT5kcC5wYW5lbF9yZXBsYXlfY2Fwcy5k
+cGNkLA0KPiAgCQkJCSAgICBzaXplb2YoY29ubmVjdG9yLT5kcC5wYW5lbF9yZXBsYXlfY2Fwcy5k
+cGNkKSk7DQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
+X3F1aXJrcy5jIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9xdWlya3MuYw0K
+PiBpbmRleCAxYWJiZGQ0MjZlNTguLjhmMWJmOGY0MThlYyAxMDA2NDQNCj4gLS0tIGEvZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9xdWlya3MuYw0KPiArKysgYi9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3F1aXJrcy5jDQo+IEBAIC04Niw2ICs4NiwxNCBAQCBz
+dGF0aWMgdm9pZCBxdWlya19lZHBfbGltaXRfcmF0ZV9oYnIyKHN0cnVjdCBpbnRlbF9kaXNwbGF5
+ICpkaXNwbGF5KQ0KPiAgCWRybV9pbmZvKGRpc3BsYXktPmRybSwgIkFwcGx5aW5nIGVEUCBMaW1p
+dCByYXRlIHRvIEhCUjIgcXVpcmtcbiIpOyAgfQ0KPiANCj4gK3N0YXRpYyB2b2lkIHF1aXJrX2Rp
+c2FibGVfcGFuZWxfcmVwbGF5KHN0cnVjdCBpbnRlbF9kcCAqaW50ZWxfZHApIHsNCj4gKwlzdHJ1
+Y3QgaW50ZWxfZGlzcGxheSAqZGlzcGxheSA9IHRvX2ludGVsX2Rpc3BsYXkoaW50ZWxfZHApOw0K
+PiArDQo+ICsJaW50ZWxfc2V0X2RwY2RfcXVpcmsoaW50ZWxfZHAsIFFVSVJLX0RJU0FCTEVfUEFO
+RUxfUkVQTEFZKTsNCj4gKwlkcm1faW5mbyhkaXNwbGF5LT5kcm0sICJBcHBseWluZyBkaXNhYmxl
+IFBhbmVsIFJlcGxheSBxdWlya1xuIik7IH0NCj4gKw0KPiAgc3RydWN0IGludGVsX3F1aXJrIHsN
+Cj4gIAlpbnQgZGV2aWNlOw0KPiAgCWludCBzdWJzeXN0ZW1fdmVuZG9yOw0KPiBAQCAtMjUxLDcg
+KzI1OSwxNCBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGludGVsX2RwY2RfcXVpcmsgaW50ZWxfZHBj
+ZF9xdWlya3NbXSA9IHsNCj4gIAkJLnNpbmtfb3VpID0gU0lOS19PVUkoMHgzOCwgMHhlYywgMHgx
+MSksDQo+ICAJCS5ob29rID0gcXVpcmtfZndfc3luY19sZW4sDQo+ICAJfSwNCj4gLQ0KPiArCS8q
+IERlbGwgWFBTIDE0IERBMTQyNjAgKi8NCj4gKwl7DQo+ICsJCS5kZXZpY2UgPSAweGIwODAsDQo+
+ICsJCS5zdWJzeXN0ZW1fdmVuZG9yID0gMHgxMDI4LA0KPiArCQkuc3Vic3lzdGVtX2RldmljZSA9
+IDB4MGRiOSwNCj4gKwkJLnNpbmtfb3VpID0gU0lOS19PVUkoMHgwMCwgMHgyMiwgMHhiOSksDQo+
+ICsJCS5ob29rID0gcXVpcmtfZGlzYWJsZV9wYW5lbF9yZXBsYXksDQo+ICsJfSwNCj4gIH07DQo+
+IA0KPiAgdm9pZCBpbnRlbF9pbml0X3F1aXJrcyhzdHJ1Y3QgaW50ZWxfZGlzcGxheSAqZGlzcGxh
+eSkgZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcXVpcmtz
+LmgNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3F1aXJrcy5oDQo+IGlu
+ZGV4IDA2ZGEwZTI4NmM2Ny4uNzdlNDkwY2FlZDBkIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3F1aXJrcy5oDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2Ry
+bS9pOTE1L2Rpc3BsYXkvaW50ZWxfcXVpcmtzLmgNCj4gQEAgLTIxLDYgKzIxLDcgQEAgZW51bSBp
+bnRlbF9xdWlya19pZCB7DQo+ICAJUVVJUktfTk9fUFBTX0JBQ0tMSUdIVF9QT1dFUl9IT09LLA0K
+PiAgCVFVSVJLX0ZXX1NZTkNfTEVOLA0KPiAgCVFVSVJLX0VEUF9MSU1JVF9SQVRFX0hCUjIsDQo+
+ICsJUVVJUktfRElTQUJMRV9QQU5FTF9SRVBMQVksDQo+ICB9Ow0KPiANCj4gIHZvaWQgaW50ZWxf
+aW5pdF9xdWlya3Moc3RydWN0IGludGVsX2Rpc3BsYXkgKmRpc3BsYXkpOw0KPiAtLQ0KPiAyLjQz
+LjANCg0K
