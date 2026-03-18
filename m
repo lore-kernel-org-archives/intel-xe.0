@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29CD5103E160
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 11:48:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F255103E167
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 12:00:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDDCB10E3F2;
-	Wed, 18 Mar 2026 11:48:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C49C810E528;
+	Wed, 18 Mar 2026 12:00:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="jeBL3UdB";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="h0sJ2oAx";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23DE610E3F2;
- Wed, 18 Mar 2026 11:48:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB3B610E528;
+ Wed, 18 Mar 2026 12:00:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1773834534;
- bh=d3a7I/ZMl2ZcHGMzyuaf4o76FpCmbwrzczn7Nzm42d8=;
+ s=default; t=1773835246;
+ bh=sYBNJX531hWLceWL8RcKg8pAGpCkumKX1qDn/HWUuN8=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=jeBL3UdBaAex3wDEjSuWgHvaT2kP7e6bIZDqeMogW213UhPSERsrD0llmkeA+u+2g
- /U++tt6oiC9Zw9c+Z0THSsK7w8M/v1UUFa0If9ZAkB4MpTdJJ7RP9pCGGfIn/a954R
- BqR36CZ1ChrIr2ic77LyBaLCKbb1Q59+RC2swfjY0g9FlQKA8bsiLQaKaJvo5Upw7H
- K326CXHJ2aLtrhAc4gMXuIz5sagmfTchL9ojX0fE0wFLqT/LAliSziFNzf+2jIP/UP
- hOKWcHaEBTPKa87EpzT4drNvfD4rL2XPAGCcUnVy+ik+x/Vn4HLEsgscB6EP4o6izy
- 0NH67JPaYMPIA==
-Message-ID: <13a30c40-f497-46b7-8984-861a6a9367e4@lankhorst.se>
-Date: Wed, 18 Mar 2026 12:48:53 +0100
+ b=h0sJ2oAx+0zVx1kthmEWNq/CB466M1iidHTvh1sAHYfeOgFQgWg65ZuPxU99JhfEq
+ ICN3RAFKojr4gsDb8tnWsmjWnELox6sDF1yAV2zeka5Z7Lj6laCWmCYKGwKF+RFusv
+ kaahr6Oo/yMH00i2LLBVx7Dv42o/NmkumFvRU44mRSjsBV2pccBCEpFKuUzk3feIb3
+ J81QrM+LEX4ZV8dC+8JV6afGlWk54l+Z7PolsJiH2gUEZ0W0vYk4TZrWM5tYijxYYQ
+ bGZRAKtWgRTqPAiRbgnPGnkgSNUDTBlliFe0weBXK2oBpiChUD337YZ2Id364g9bVt
+ 7Q1XTl7iPUisg==
+Message-ID: <08c99b0d-6adb-423b-9c4b-2e8add00f5d3@lankhorst.se>
+Date: Wed, 18 Mar 2026 13:00:45 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] drm/ttm: Update the struct ttm_operation_ctx
- kerneldoc
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+Subject: Re: [PATCH v4 2/2] drm/i915/display: Sync state to BIOS for seamless
+ handoff
+To: Juasheem Sultan <jdsultan@google.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
-Cc: Simona Vetter <simona.vetter@ffwll.ch>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- dri-devel@lists.freedesktop.org
-References: <20260317141856.237876-1-thomas.hellstrom@linux.intel.com>
- <20260317141856.237876-4-thomas.hellstrom@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Manasi Navare <navaremanasi@google.com>,
+ Drew Davenport <ddavenport@google.com>, Sean Paul <seanpaul@google.com>,
+ Samuel Jacob <samjaco@google.com>, Rajat Jain <rajatja@google.com>
+References: <20260317220908.130968-1-jdsultan@google.com>
+ <20260317220908.130968-3-jdsultan@google.com>
 Content-Language: en-US
 From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <20260317141856.237876-4-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20260317220908.130968-3-jdsultan@google.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,64 +59,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Reviewed-by: Maarten Lankhorst <dev@lankhorst.se>
+Hey,
 
-Den 2026-03-17 kl. 15:18, skrev Thomas Hellström:
-> Update the kerneldoc with a more elaborate description of some members,
-> including the gfp_retry_mayfail member. Use inline kerneldoc.
+Den 2026-03-17 kl. 23:09, skrev Juasheem Sultan:
+> Align DP timings and C10 PLL state with BIOS values if within a 0.5%
+> clock threshold. This prevents minor mismatches from triggering a full
+> modeset during the first atomic commit, ensuring a flicker-free handoff.
 > 
-> Suggested-by: Simona Vetter <simona.vetter@ffwll.ch>
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Signed-off-by: Juasheem Sultan <jdsultan@google.com>
 > ---
->  include/drm/ttm/ttm_bo.h | 28 +++++++++++++++++++---------
->  1 file changed, 19 insertions(+), 9 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 67 ++++++++++++++++++++
+>  1 file changed, 67 insertions(+)
 > 
-> diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-> index bca3a8849d47..8310bc3d55f9 100644
-> --- a/include/drm/ttm/ttm_bo.h
-> +++ b/include/drm/ttm/ttm_bo.h
-> @@ -167,24 +167,34 @@ struct ttm_bo_kmap_obj {
->  /**
->   * struct ttm_operation_ctx
->   *
-> - * @interruptible: Sleep interruptible if sleeping.
-> - * @no_wait_gpu: Return immediately if the GPU is busy.
-> - * @gfp_retry_mayfail: Set the __GFP_RETRY_MAYFAIL when allocation pages.
-> - * @allow_res_evict: Allow eviction of reserved BOs. Can be used when multiple
-> - * BOs share the same reservation object.
-> - * faults. Should only be used by TTM internally.
-> - * @resv: Reservation object to allow reserved evictions with.
-> - * @bytes_moved: Statistics on how many bytes have been moved.
-> - *
->   * Context for TTM operations like changing buffer placement or general memory
->   * allocation.
->   */
->  struct ttm_operation_ctx {
-> +	/** @interruptible: Sleep interruptible if sleeping. */
->  	bool interruptible;
-> +	/** @no_wait_gpu: Return immediately if the GPU is busy. */
->  	bool no_wait_gpu;
-> +	/**
-> +	 * @gfp_retry_mayfail: Use __GFP_RETRY_MAYFAIL | __GFP_NOWARN
-> +	 * when allocation pages. This is to avoid invoking the OOM
-> +	 * killer when populating a buffer object, in order to
-> +	 * forward the error for it to be dealt with.
-> +	 */
->  	bool gfp_retry_mayfail;
-> +	/**
-> +	 * @allow_res_evict: Allow eviction of reserved BOs. Can be used
-> +	 * when multiple BOs share the same reservation object @resv.
-> +	 */
->  	bool allow_res_evict;
-> +	/**
-> +	 * @resv: Reservation object to be used together with
-> +	 * @allow_res_evict.
-> +	 */
->  	struct dma_resv *resv;
-> +	/**
-> +	 * @bytes_moved: Statistics on how many bytes have been moved.
-> +	 */
->  	uint64_t bytes_moved;
->  };
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index c4246481fc2f..22e5e931f134 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -6397,6 +6397,71 @@ static int intel_atomic_check_config_and_link(struct intel_atomic_state *state)
 >  
+>  	return ret;
+>  }
+> +
+> +// Helper function to sanitize pll state
+> +static void intel_sanitize_pll_state(struct intel_crtc_state *old_crtc_state,
+> +		struct intel_crtc_state *new_crtc_state)
+> +{
+> +	int j;
+> +
+> +	for (j = 4; j < 9; j++) {
+> +		if (new_crtc_state->dpll_hw_state.cx0pll.c10.pll[j] !=
+> +				old_crtc_state->dpll_hw_state.cx0pll.c10.pll[j]) {
+> +			new_crtc_state->dpll_hw_state.cx0pll.c10.pll[j] =
+> +				old_crtc_state->dpll_hw_state.cx0pll.c10.pll[j];
+> +		}
+> +	}
+> +}
+> +
+> +/*
+> + * intel_dp_sanitize_seamless_boot - Snap driver state to BIOS state for seamless handoff.
+> + * @state: the atomic state to sanitize
+> + *
+> + * This function compares the driver's calculated new_state with the inherited BIOS state
+> + * (old_state). If they are within a small threshold (e.g., 0.5% for clock), it "snaps"
+> + * the new_state to match the BIOS state exactly. This prevents minor state mismatches
+> + * that would otherwise force a full modeset (and a screen flicker) during the initial
+> + * kernel handoff.
+> + */
+> +static void intel_dp_sanitize_seamless_boot(struct intel_atomic_state *state)
+> +{
+> +	struct intel_display *display = to_intel_display(state);
+> +	struct intel_crtc_state *new_crtc_state, *old_crtc_state;
+> +	struct intel_crtc *crtc;
+> +	struct intel_encoder *encoder;
+> +	int i;
+> +
+> +	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
+> +		/*
+> +		 * We must check old_crtc_state->inherited because new_crtc_state->inherited
+> +		 * is cleared at the start of intel_atomic_check for userspace commits.
+> +		 */
+> +		if (!old_crtc_state->inherited || !new_crtc_state->hw.active)
+> +			continue;
+> +
+> +		if (intel_crtc_has_dp_encoder(new_crtc_state)) {
+> +			int old_clock = old_crtc_state->hw.adjusted_mode.crtc_clock;
+> +			int new_clock = new_crtc_state->hw.adjusted_mode.crtc_clock;
+> +			int threshold = old_clock / 200; /* 0.5% */
+> +
+> +			if (abs(new_clock - old_clock) <= threshold) {
+> +				new_crtc_state->hw.pipe_mode.crtc_clock = old_clock;
+> +				new_crtc_state->hw.adjusted_mode.crtc_clock = old_clock;
+> +				new_crtc_state->pixel_rate = old_crtc_state->pixel_rate;
+> +				new_crtc_state->dp_m_n = old_crtc_state->dp_m_n;
+> +			}
+> +		}
+> +
+> +		for_each_intel_encoder_mask(display->drm, encoder,
+> +				new_crtc_state->uapi.encoder_mask) {
+> +			if (intel_encoder_is_c10phy(encoder)) {
+> +				if (!new_crtc_state->dpll_hw_state.cx0pll.ssc_enabled)
+> +					intel_sanitize_pll_state(old_crtc_state, new_crtc_state);
+> +			}
+> +		}
+> +	}
+> +}
+> +
+>  /**
+>   * intel_atomic_check - validate state object
+>   * @dev: drm device
+> @@ -6447,6 +6512,8 @@ int intel_atomic_check(struct drm_device *dev,
+>  	if (ret)
+>  		goto fail;
+>  
+> +	intel_dp_sanitize_seamless_boot(state);
+> +
+>  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+>  		if (!intel_crtc_needs_modeset(new_crtc_state))
+>  			continue;
 
+This might fix boot state, but in a way that complicates the code considerably.
+
+Have you considered updating intel_pipe_config_compare instead?
+
+Kind regards,
+~Maarten Lankhorst
