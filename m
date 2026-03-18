@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0F21FCD0C5
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 07:10:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03C71FCD0C1
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 07:10:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CCD510E441;
-	Wed, 18 Mar 2026 07:10:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAEF510E6A7;
+	Wed, 18 Mar 2026 07:10:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lw6HSUjF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FgP0tYSA";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EC6210E2E9
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 07:10:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 623FD10E698
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 07:10:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773817812; x=1805353812;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=x051iFqYWmzwPKrHQyoRUaEPX64u1smYSXyS8y594lg=;
- b=lw6HSUjF/gbJ+aYp1VKC7Iew60T8MNCOfNBKKlcbPv8B451oKPQ4Uncu
- CP6hpmKzUAUQGSs7BCnGLoWkC0mB+aFMJ/thJvTbBQtved4+gbnaMOtAZ
- vcHvLEIHmsOp3aUbb5dLaDW+N08PFHRv9rrQckGOINv/WFUabITe4Aaek
- n58TQQEJe9tMGTOmJF2GM4mOeoCq16zu02nn/UcLjjbYIsomh8UnWCGyO
- bOzYfpCVyh9zlhkXoMokXAu/5XiFSQOkGzLZTHceOdk8yqIn5RFd70DJ3
- 6B+AA35oHvOvFtKMTaEV1OXc/dZr8ajdDARyIw6W/RX0j/r0+057yE2Xo A==;
-X-CSE-ConnectionGUID: EuFCUDWLTLCQU9DWUMA+og==
-X-CSE-MsgGUID: 8IH+lLSbQ/CbKrbFwl8IJA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="78764238"
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="78764238"
+ t=1773817816; x=1805353816;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=SqmJpInX7elwx3/CidY4s7NmRkQuwY2iGKEM3pEjJN8=;
+ b=FgP0tYSA0tJrZaDhwdY6WwkVAnRJUQnejejBK2vuPWGMAv3lkHy5aUjP
+ qW7ECV/txNjMR5zEt59RFCmmXJ7uZkD8Hynzzf0vwJX68wBuxoi2XWHeG
+ ZDaPLKNQr002qimgvuaaX4g0V1PWnZOzpW4ngsLDwIzgCzqG6yE5RQ1Vw
+ Ln/y4crsCNSeFEN6xThdMOTVpU/+tZqsgF36gkjj6Qvqy4kMbSNZ378LS
+ K27bUqvULHvp75eJRbC7IaQOR1MuNZcPAmHoA6d4JIl1njyjY4cuMT+yn
+ HT2lN8Kw+sk+PXJUmfPMcxBwFCuvKlvgKl1XJXyRhDD7bERm+FoOjWhCl g==;
+X-CSE-ConnectionGUID: k9WUTSoTQuWDY7LRpwmxCA==
+X-CSE-MsgGUID: RFTdDkGZRXOxr41CpbSB4Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="78764255"
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="78764255"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2026 00:10:06 -0700
-X-CSE-ConnectionGUID: zXVRW5eITxKzDCo1vwesfw==
-X-CSE-MsgGUID: DZkSZ6C9T6WI3PviH/qHGg==
+ 18 Mar 2026 00:10:16 -0700
+X-CSE-ConnectionGUID: hRfSxN1uQ52JylFi3a+gwA==
+X-CSE-MsgGUID: Gk0KKngXQKW36FnDgCSNng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="260423923"
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="260424001"
 Received: from hghimira.iind.intel.com ([10.190.239.34])
- by orviesa001.jf.intel.com with ESMTP; 18 Mar 2026 00:10:04 -0700
+ by orviesa001.jf.intel.com with ESMTP; 18 Mar 2026 00:10:14 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  stuart.summers@intel.com, arvind.yadav@intel.com, tejas.upadhyay@intel.com,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [RFC 00/15] drm/xe: Access counter consumer layer
-Date: Wed, 18 Mar 2026 13:14:41 +0530
-Message-Id: <20260318074456.2839499-1-himal.prasad.ghimiray@intel.com>
+Subject: [RFC 04/15] drm/xe: Implement xe_access_counter_init
+Date: Wed, 18 Mar 2026 13:14:45 +0530
+Message-Id: <20260318074456.2839499-5-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260318074456.2839499-1-himal.prasad.ghimiray@intel.com>
+References: <20260318074456.2839499-1-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,86 +67,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This series implements the Xe access counter consumer layer for discrete
-Intel GPUs. Access counters track GPU memory access patterns and emit
-notifications when a threshold is exceeded; the KMD uses these as hints
-to migrate BOs and SVM ranges to tile-local VRAM.
+Implement initialization for access counter queues and per-queue
+workers. Reuse the existing page fault workqueue (pf_wq) as both
+subsystems are part of the same USM domain.
 
-The series starts by factoring the identical circular buffer code shared
-between page faults and access counters into a generic struct
-xe_usm_queue, then wires both consumers to it. The access counter consumer reuses
-pf_wq rather than allocating a new workqueue.
-
-Two helpers are extracted from the page fault path for reuse:
-xe_vma_lock_and_validate() and xe_device_asid_to_fault_vm(). The worker
-handles both BO-backed VMAs (migrate + rebind) and SVM VMAs (via
-xe_svm_range_setup()).
-
-A new exec queue extension (DRM_XE_EXEC_QUEUE_EXTENSION_SET_ACC_PARAM)
-lets userspace configure per-queue trigger/notify thresholds and
-granularity, which are programmed into CTX_ACC_CTR_THOLD and CTX_ASID
-during LRC init (Bspec: 59264, 59265).
-
-Finally, xe_vma_supports_access_ctr() identifies VMAs ineligible for
-access counting, and xe_pt_stage_bind() sets the NC PTE bit on them to
-avoid wasting finite hardware counter slots (Bspec: 67095).
-
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+---
+ drivers/gpu/drm/xe/xe_access_counter.c | 45 +++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_device.c         |  5 +++
+ drivers/gpu/drm/xe/xe_device_types.h   |  4 +++
+ 3 files changed, 53 insertions(+), 1 deletion(-)
 
-Himal Prasad Ghimiray (15):
-  drm/xe: Add xe_usm_queue generic USM circular buffer
-  drm/xe/pagefault: Use xe_usm_queue helpers
-  drm/xe: Stub out new access_counter layer
-  drm/xe: Implement xe_access_counter_init
-  drm/xe: Implement xe_access_counter_handler
-  drm/xe: Extract xe_vma_lock_and_validate helper
-  drm/xe: Move ASID to FAULT VM lookup to xe_device
-  drm/xe: Implement xe_access_counter_queue_work
-  drm/xe/trace: Add xe_vma_acc trace event for access counter
-    notifications
-  drm/xe/svm: Handle svm ranges on access ctr trigger
-  drm/xe: Add xe_guc_access_counter layer
-  drm/xe/uapi: Add access counter parameter extension for exec queue
-  drm/xe/lrc: Pass exec_queue to xe_lrc_create for access counter params
-  drm/xe/vm: Add xe_vma_supports_access_ctr() helper
-  drm/xe/pt: Set NC PTE bit for VMAs ineligible for access counting
-
- drivers/gpu/drm/xe/Makefile                  |   4 +-
- drivers/gpu/drm/xe/regs/xe_gtt_defs.h        |   2 +-
- drivers/gpu/drm/xe/regs/xe_lrc_layout.h      |  10 +
- drivers/gpu/drm/xe/xe_access_counter.c       | 255 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_access_counter.h       |  17 ++
- drivers/gpu/drm/xe/xe_access_counter_types.h | 123 +++++++++
- drivers/gpu/drm/xe/xe_device.c               |  30 +++
- drivers/gpu/drm/xe/xe_device.h               |   1 +
- drivers/gpu/drm/xe/xe_device_types.h         |   6 +-
- drivers/gpu/drm/xe/xe_exec_queue.c           |  29 ++-
- drivers/gpu/drm/xe/xe_exec_queue_types.h     |   9 +
- drivers/gpu/drm/xe/xe_execlist.c             |   2 +-
- drivers/gpu/drm/xe/xe_guc_access_counter.c   |  62 +++++
- drivers/gpu/drm/xe/xe_guc_access_counter.h   |  15 ++
- drivers/gpu/drm/xe/xe_guc_ct.c               |   4 +
- drivers/gpu/drm/xe/xe_lrc.c                  |  35 ++-
- drivers/gpu/drm/xe/xe_lrc.h                  |   5 +-
- drivers/gpu/drm/xe/xe_pagefault.c            |  79 +-----
- drivers/gpu/drm/xe/xe_pagefault_types.h      |  27 +-
- drivers/gpu/drm/xe/xe_pt.c                   |  11 +
- drivers/gpu/drm/xe/xe_svm.c                  |  59 +++--
- drivers/gpu/drm/xe/xe_svm.h                  |   4 +
- drivers/gpu/drm/xe/xe_trace_bo.h             |  32 ++-
- drivers/gpu/drm/xe/xe_usm_queue.h            | 100 ++++++++
- drivers/gpu/drm/xe/xe_vm.c                   |  72 ++++++
- drivers/gpu/drm/xe/xe_vm.h                   |   6 +
- include/uapi/drm/xe_drm.h                    |  39 +++
- 27 files changed, 910 insertions(+), 128 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_access_counter.c
- create mode 100644 drivers/gpu/drm/xe/xe_access_counter.h
- create mode 100644 drivers/gpu/drm/xe/xe_access_counter_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_guc_access_counter.c
- create mode 100644 drivers/gpu/drm/xe/xe_guc_access_counter.h
- create mode 100644 drivers/gpu/drm/xe/xe_usm_queue.h
-
+diff --git a/drivers/gpu/drm/xe/xe_access_counter.c b/drivers/gpu/drm/xe/xe_access_counter.c
+index f3a8a93b5135..cafcc42897f8 100644
+--- a/drivers/gpu/drm/xe/xe_access_counter.c
++++ b/drivers/gpu/drm/xe/xe_access_counter.c
+@@ -11,6 +11,7 @@
+ #include "xe_access_counter.h"
+ #include "xe_access_counter_types.h"
+ #include "xe_device.h"
++#include "xe_usm_queue.h"
+ 
+ /**
+  * DOC: Xe access counters
+@@ -27,6 +28,38 @@
+  * xe_access_counter.c implements the consumer layer.
+  */
+ 
++static int xe_access_counter_entry_size(void)
++{
++	return roundup_pow_of_two(sizeof(struct xe_access_counter));
++}
++
++static void xe_access_counter_queue_work_func(struct work_struct *w)
++{
++	/* TODO: Implement */
++}
++
++static int xe_access_counter_queue_init(struct xe_device *xe,
++					struct xe_usm_queue *ac_queue)
++{
++	/*
++	 * Allocate a fixed-size queue for access counter notifications.
++	 * Size is determined based on hardware capabilities.
++	 */
++#define XE_ACCESS_COUNTER_QUEUE_NUM_ENTRIES	128
++	ac_queue->size = XE_ACCESS_COUNTER_QUEUE_NUM_ENTRIES *
++			 xe_access_counter_entry_size();
++#undef XE_ACCESS_COUNTER_QUEUE_NUM_ENTRIES
++
++	ac_queue->data = devm_kzalloc(xe->drm.dev, ac_queue->size, GFP_KERNEL);
++	if (!ac_queue->data)
++		return -ENOMEM;
++
++	spin_lock_init(&ac_queue->lock);
++	INIT_WORK(&ac_queue->worker, xe_access_counter_queue_work_func);
++
++	return 0;
++}
++
+ /**
+  * xe_access_counter_init - Initialize access counter consumer layer
+  * @xe: xe device
+@@ -35,7 +68,17 @@
+  */
+ int xe_access_counter_init(struct xe_device *xe)
+ {
+-	/* Stub implementation - to be filled in */
++	int err, i;
++
++	if (!xe->info.has_usm)
++		return 0;
++
++	for (i = 0; i < XE_ACCESS_COUNTER_QUEUE_COUNT; ++i) {
++		err = xe_access_counter_queue_init(xe, xe->usm.ac_queue + i);
++		if (err)
++			return err;
++	}
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index e77a3a3db73d..8773c2d2f69a 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -23,6 +23,7 @@
+ #include "instructions/xe_gpu_commands.h"
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_regs.h"
++#include "xe_access_counter.h"
+ #include "xe_bo.h"
+ #include "xe_bo_evict.h"
+ #include "xe_debugfs.h"
+@@ -933,6 +934,10 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		return err;
+ 
++	err = xe_access_counter_init(xe);
++	if (err)
++		return err;
++
+ 	if (xe->tiles->media_gt &&
+ 	    XE_GT_WA(xe->tiles->media_gt, 15015404425_disable))
+ 		XE_DEVICE_WA_DISABLE(xe, 15015404425);
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index b9231544e500..526cfd09d0b9 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -12,6 +12,7 @@
+ #include <drm/drm_file.h>
+ #include <drm/ttm/ttm_device.h>
+ 
++#include "xe_access_counter_types.h"
+ #include "xe_devcoredump_types.h"
+ #include "xe_drm_ras_types.h"
+ #include "xe_heci_gsc.h"
+@@ -311,6 +312,9 @@ struct xe_device {
+ #define XE_PAGEFAULT_QUEUE_COUNT	4
+ 		/** @usm.pf_queue: Page fault queues */
+ 		struct xe_usm_queue pf_queue[XE_PAGEFAULT_QUEUE_COUNT];
++#define XE_ACCESS_COUNTER_QUEUE_COUNT	4
++		/** @usm.ac_queue: Access counter queues */
++		struct xe_usm_queue ac_queue[XE_ACCESS_COUNTER_QUEUE_COUNT];
+ #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
+ 		/** @usm.pagemap_shrinker: Shrinker for unused pagemaps */
+ 		struct drm_pagemap_shrinker *dpagemap_shrinker;
 -- 
 2.34.1
 
