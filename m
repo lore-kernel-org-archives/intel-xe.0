@@ -4,91 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6482310854D9
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 09:16:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5468910854DB
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 09:26:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01EF910E109;
-	Wed, 18 Mar 2026 09:16:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F384410E77B;
+	Wed, 18 Mar 2026 09:26:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ivf84CT0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FbXJltsG";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E32A610E0DD;
- Wed, 18 Mar 2026 09:16:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69E5710E779;
+ Wed, 18 Mar 2026 09:26:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773825362; x=1805361362;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=PpwWrd+2QR2uovzpbfqsfAWdIZqDhI4/F4guxYzlqsQ=;
- b=Ivf84CT0K9lRbuQAWr84oGjvLCaaIXHlk6+YjukjRAaQxq0cEo6AllJF
- Ze6wpGtRAECvTKlXvzXD9mOBF2d2WpwBjpVEgf9ZUo0CQCeGn+KaRh/1X
- oBnOmhmGdPyT0L9qEPKzQ5qgToN4AHhSS5/khHNACethp155Px6Z2voIm
- DlJb3HmAwlSBBINBX5a44mrXf6LLH/p04TQ3HolDFIfDZWvSeRKs6P/Tv
- TOw8HRy3Xq/guJzmp3r7OrvfQvz/mrnwx0CTNjo3pRvgCt+nOdbQMGsSE
- L/l305qw77EHUnVUjzZBEdKeNajiGyzMXJBAea2oJfkkPd11ZYXjoArq4 g==;
-X-CSE-ConnectionGUID: KtVCLd2rTZC9/PIo9VRJ/A==
-X-CSE-MsgGUID: T75W3dIfSKi9Y3sdEQE++Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="86345768"
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="86345768"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2026 02:16:01 -0700
-X-CSE-ConnectionGUID: 6O7M7J2OR6OTF280f791KA==
-X-CSE-MsgGUID: 2je+XzzIS4a6LIAiBrIMmw==
+ t=1773826003; x=1805362003;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=N1i5m1NjWThIXJu4MxH3bwtIYEBGWAt82Nfiv5h2RLE=;
+ b=FbXJltsGO8au7AWbYlwTTo7rZL3VDqVey3+0IPuPyv3/IDQxWMaAjExj
+ Lnzln4rtDP9FwujQDsuGHcLNvGHvLO6tyN6bA6qf6ptDhp0NV8WLqOtum
+ kgX9jO2W5ulwzxAkt5fFqPRV8b89X5/RcL9XJogYRjyeZhGz5fP3ZKt1S
+ yA4+XoNWrATOMGRxXH7ZciyQn0oNyk3awzfBrA36d+gXxp+w+YlsNv2V/
+ xDP0NFq60GVJV3WNQNOtoJBP/ZaU/kqaTmKF7r7Mz/KH6A8OqlL+sKr/w
+ qXgnbzCAkjXm7VpALy3dXu0UjTl1GCYImJ91zKygnoIpcvWGCMpjfEI0f Q==;
+X-CSE-ConnectionGUID: YrSr6Xf+Qg+kfsSOAZKaxw==
+X-CSE-MsgGUID: ML2yC5paTmGfCQm83AgODQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="85953857"
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="85953857"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2026 02:26:43 -0700
+X-CSE-ConnectionGUID: lXfv0MqDT/OVTLjiUUU5dw==
+X-CSE-MsgGUID: kPCBeupGRkWEopuailZglA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="222783308"
-Received: from cpetruta-mobl1.ger.corp.intel.com (HELO [10.245.244.34])
- ([10.245.244.34])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2026 02:15:49 -0700
-Message-ID: <ada571ca-b624-4494-a6fe-c9ca803c6cc6@intel.com>
-Date: Wed, 18 Mar 2026 09:15:46 +0000
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by fmviesa003.fm.intel.com with ESMTP; 18 Mar 2026 02:26:40 -0700
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: jouni.hogander@intel.com, imre.deak@intel.com, jani.nikula@intel.com,
+ arun.r.murthy@intel.com, Animesh Manna <animesh.manna@intel.com>
+Subject: [PATCH v8 0/3] Panel Replay BW optimization
+Date: Wed, 18 Mar 2026 14:26:39 +0530
+Message-Id: <20260318085642.3621166-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v13 2/2] MAINTAINERS: gpu: buddy: Update reviewer
-To: Joel Fernandes <joelagnelf@nvidia.com>, linux-kernel@vger.kernel.org
-Cc: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
- Andreas Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,
- Trevor Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>,
- Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, Nikola Djukic <ndjukic@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, John Hubbard <jhubbard@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
- <elle@weathered-steel.dev>, alexeyi@nvidia.com,
- Eliot Courtney <ecourtney@nvidia.com>, joel@joelfernandes.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org
-References: <20260308180407.3988286-1-joelagnelf@nvidia.com>
- <20260317220323.1909618-1-joelagnelf@nvidia.com>
- <20260317220323.1909618-3-joelagnelf@nvidia.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260317220323.1909618-3-joelagnelf@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,30 +64,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 17/03/2026 22:03, Joel Fernandes wrote:
-> Christian Koenig mentioned he'd like to step down from the reviewer
-> role for the GPU buddy allocator. Joel Fernandes is stepping in as
-> reviewer with agreement from Matthew Auld and Arun Pravin.
-> 
-> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+Unused bandwidth can be used by external display agents for Panel Replay
+enabled DP panel during idleness with link on. This patch series
+enabling the same.
 
-Acked-by: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 
-> ---
->   MAINTAINERS | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index cd9505d3be60..3353cbf98be1 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8946,7 +8946,7 @@ F:	include/drm/ttm/
->   GPU BUDDY ALLOCATOR
->   M:	Matthew Auld <matthew.auld@intel.com>
->   M:	Arun Pravin <arunpravin.paneerselvam@amd.com>
-> -R:	Christian Koenig <christian.koenig@amd.com>
-> +R:	Joel Fernandes <joelagnelf@nvidia.com>
->   L:	dri-devel@lists.freedesktop.org
->   S:	Maintained
->   T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
+Animesh Manna (3):
+  drm/i915/display: Add drm helper to check pr optimization support
+  drm/i915/display: Add hook to check optimization support for Intel
+    platforms
+  drm/i915/display: Panel Replay BW optimization for DP2.0 tunneling
+
+ drivers/gpu/drm/display/drm_dp_tunnel.c       | 17 +++++++++++++++++
+ .../gpu/drm/i915/display/intel_display_regs.h |  1 +
+ .../gpu/drm/i915/display/intel_dp_tunnel.c    | 18 ++++++++++++++++++
+ .../gpu/drm/i915/display/intel_dp_tunnel.h    |  6 ++++++
+ drivers/gpu/drm/i915/display/intel_psr.c      | 19 +++++++++++++++++--
+ include/drm/display/drm_dp_tunnel.h           |  6 ++++++
+ 6 files changed, 65 insertions(+), 2 deletions(-)
+
+-- 
+2.29.0
 
