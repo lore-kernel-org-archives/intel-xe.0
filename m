@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0344FCD0C1
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 07:10:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79852FCD0BE
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 07:10:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F97310E2E9;
-	Wed, 18 Mar 2026 07:10:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 30D5B10E2EB;
+	Wed, 18 Mar 2026 07:10:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Pqyrmn5v";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iK4X6mHa";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53D9810E2E9
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 791C710E2EB
  for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 07:10:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1773817812; x=1805353812;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QmuKh9nQSSrjpWguNuxuo1A+o9BVLzHjJ65Tq7p6SMk=;
- b=Pqyrmn5vEQAhKXBgnFrpjDhp8XyWeyRVC2PHiO3PCqoZXk40W1DcfXjd
- vCju7vUr5Y4NGPUu8GVGlt71AjfNuKhnfCUFLZCswxUFBSCil0Xv6AIOd
- Q5+iSYSM5pdxGcXaUsDuPquyXZNx7YYgX7TBw1gmmg7Ju/pj8u8oLmZUm
- QxpkSzTf66sCa98QK2dsnWV/Fs0rsR0HHjFG1nZKvmT1BflgzeFgODSi/
- FpqolOTMvpK3IymdT8+awS6xaeW2hnUkZHCTqdmPsMgidgPLCLyLjFteV
- M4NAUXJvfHhKnscRwzpCHqYWVK0RaKYGfmJeVh1rv48wqwdpY4VpQRHs0 g==;
-X-CSE-ConnectionGUID: HqBHHupVSAmObUgLv6/Waw==
-X-CSE-MsgGUID: afFU5sFKTk613298bHgM3A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="78764246"
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="78764246"
+ bh=S2O2bHxp+FwXuaeFfQ5a7v4mT0DJlsxyxBdGhSth1j4=;
+ b=iK4X6mHaTv8s/Xh+e2EKLhIRb2YHiVzB9JJXRnqAuNHUsNgSoJvoNrGx
+ juEDS970Ts4pjUcUAzyPIjSXF3H7eOV1UQgubf0C3GTdSutlbnhUrG/C9
+ FkLEHjlUniTmRv/em8O28wpA9YK/d4AGuog+e6ARcPtRkFh/u1QSlb6TD
+ YiYymKLGmyKx284SaXSEiL2I7riVRQGd4q3bNIh0DWUALzhA+sHJU461S
+ +RxTyZAhMXCItrm36x06yL7pZLArbWO7Z3QBTkIPyGnngPYvrW7m1+Df/
+ vb+EBWjSR0pTV4c9QA4ut8FYuDhbGb9iXklmETwdLQqVSk8PwRtAx56X/ g==;
+X-CSE-ConnectionGUID: tvNVC5cGQFqEiOfOSkoY1w==
+X-CSE-MsgGUID: U1WTOtccRyWM9BbS3QKA3A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="78764241"
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="78764241"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2026 00:10:11 -0700
-X-CSE-ConnectionGUID: k/ueecZnThCpn+YoQTu1PQ==
-X-CSE-MsgGUID: eHmWkZlfQ4eq8Ubx3hfH6w==
+ 18 Mar 2026 00:10:08 -0700
+X-CSE-ConnectionGUID: 66ArPTMTS3mTcItd/MK0dg==
+X-CSE-MsgGUID: suja0R+RT/yTkrl0BagtfA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="260423975"
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="260423957"
 Received: from hghimira.iind.intel.com ([10.190.239.34])
- by orviesa001.jf.intel.com with ESMTP; 18 Mar 2026 00:10:09 -0700
+ by orviesa001.jf.intel.com with ESMTP; 18 Mar 2026 00:10:06 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  stuart.summers@intel.com, arvind.yadav@intel.com, tejas.upadhyay@intel.com,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [RFC 02/15] drm/xe/pagefault: Use xe_usm_queue helpers
-Date: Wed, 18 Mar 2026 13:14:43 +0530
-Message-Id: <20260318074456.2839499-3-himal.prasad.ghimiray@intel.com>
+Subject: [RFC 01/15] drm/xe: Add xe_usm_queue generic USM circular buffer
+Date: Wed, 18 Mar 2026 13:14:42 +0530
+Message-Id: <20260318074456.2839499-2-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260318074456.2839499-1-himal.prasad.ghimiray@intel.com>
 References: <20260318074456.2839499-1-himal.prasad.ghimiray@intel.com>
@@ -68,184 +68,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Wire struct xe_pagefault into the generic xe_usm_queue infrastructure
-introduced in the previous commit.
+Introduce struct xe_usm_queue, a generic lock-protected circular FIFO
+used by USM consumers (page fault, access counter) to receive fixed-size
+entries from IRQ context and process them via a work_struct.
 
-- Use struct xe_usm_queue directly in all pagefault function signatures
-  instead of keeping a xe_pagefault_queue alias; xe_device_types.h
-  already declares pf_queue[] as struct xe_usm_queue.
-- Replace xe_pagefault_entry_size() function with XE_PF_ENTRY_SIZE macro
-  so the value is available at compile time.
-- Remove xe_pagefault_queue_pop() and xe_pagefault_queue_full() wrappers;
-  call xe_usm_queue_pop(), xe_usm_queue_full(), and xe_usm_queue_push()
-  directly at every call site.
-
-No behaviour change.
+Provide three inline helpers in xe_usm_queue.h:
+  xe_usm_queue_full()  - CIRC_SPACE check (caller holds lock)
+  xe_usm_queue_pop()   - dequeue one entry (acquires lock internally)
+  xe_usm_queue_push()  - enqueue one entry (caller holds lock)
 
 Suggested-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h    |  2 +-
- drivers/gpu/drm/xe/xe_pagefault.c       | 41 +++++--------------------
- drivers/gpu/drm/xe/xe_pagefault_types.h | 27 ++--------------
- 3 files changed, 10 insertions(+), 60 deletions(-)
+ drivers/gpu/drm/xe/xe_usm_queue.h | 100 ++++++++++++++++++++++++++++++
+ 1 file changed, 100 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_usm_queue.h
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 615218d775b1..b9231544e500 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -310,7 +310,7 @@ struct xe_device {
- 		 */
- #define XE_PAGEFAULT_QUEUE_COUNT	4
- 		/** @usm.pf_queue: Page fault queues */
--		struct xe_pagefault_queue pf_queue[XE_PAGEFAULT_QUEUE_COUNT];
-+		struct xe_usm_queue pf_queue[XE_PAGEFAULT_QUEUE_COUNT];
- #if IS_ENABLED(CONFIG_DRM_XE_PAGEMAP)
- 		/** @usm.pagemap_shrinker: Shrinker for unused pagemaps */
- 		struct drm_pagemap_shrinker *dpagemap_shrinker;
-diff --git a/drivers/gpu/drm/xe/xe_pagefault.c b/drivers/gpu/drm/xe/xe_pagefault.c
-index ea4857acf28d..67dd07927684 100644
---- a/drivers/gpu/drm/xe/xe_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_pagefault.c
-@@ -204,23 +204,6 @@ static int xe_pagefault_service(struct xe_pagefault *pf)
- 	return err;
- }
- 
--static bool xe_pagefault_queue_pop(struct xe_pagefault_queue *pf_queue,
--				   struct xe_pagefault *pf)
--{
--	bool found_fault = false;
--
--	spin_lock_irq(&pf_queue->lock);
--	if (pf_queue->tail != pf_queue->head) {
--		memcpy(pf, pf_queue->data + pf_queue->tail, sizeof(*pf));
--		pf_queue->tail = (pf_queue->tail + xe_pagefault_entry_size()) %
--			pf_queue->size;
--		found_fault = true;
--	}
--	spin_unlock_irq(&pf_queue->lock);
--
--	return found_fault;
--}
--
- static void xe_pagefault_print(struct xe_pagefault *pf)
- {
- 	xe_gt_info(pf->gt, "\n\tASID: %d\n"
-@@ -246,7 +229,7 @@ static void xe_pagefault_print(struct xe_pagefault *pf)
- 
- static void xe_pagefault_queue_work(struct work_struct *w)
- {
--	struct xe_pagefault_queue *pf_queue =
-+	struct xe_usm_queue *pf_queue =
- 		container_of(w, typeof(*pf_queue), worker);
- 	struct xe_pagefault pf;
- 	unsigned long threshold;
-@@ -254,7 +237,7 @@ static void xe_pagefault_queue_work(struct work_struct *w)
- #define USM_QUEUE_MAX_RUNTIME_MS      20
- 	threshold = jiffies + msecs_to_jiffies(USM_QUEUE_MAX_RUNTIME_MS);
- 
--	while (xe_pagefault_queue_pop(pf_queue, &pf)) {
-+	while (xe_usm_queue_pop(pf_queue, &pf, sizeof(struct xe_pagefault))) {
- 		int err;
- 
- 		if (!pf.gt)	/* Fault squashed during reset */
-@@ -284,7 +267,7 @@ static void xe_pagefault_queue_work(struct work_struct *w)
- }
- 
- static int xe_pagefault_queue_init(struct xe_device *xe,
--				   struct xe_pagefault_queue *pf_queue)
-+				   struct xe_usm_queue *pf_queue)
- {
- 	struct xe_gt *gt;
- 	int total_num_eus = 0;
-@@ -373,7 +356,7 @@ int xe_pagefault_init(struct xe_device *xe)
- }
- 
- static void xe_pagefault_queue_reset(struct xe_device *xe, struct xe_gt *gt,
--				     struct xe_pagefault_queue *pf_queue)
-+				     struct xe_usm_queue *pf_queue)
- {
- 	u32 i;
- 
-@@ -410,14 +393,6 @@ void xe_pagefault_reset(struct xe_device *xe, struct xe_gt *gt)
- 		xe_pagefault_queue_reset(xe, gt, xe->usm.pf_queue + i);
- }
- 
--static bool xe_pagefault_queue_full(struct xe_pagefault_queue *pf_queue)
--{
--	lockdep_assert_held(&pf_queue->lock);
--
--	return CIRC_SPACE(pf_queue->head, pf_queue->tail, pf_queue->size) <=
--		xe_pagefault_entry_size();
--}
--
- /**
-  * xe_pagefault_handler() - Page fault handler
-  * @xe: xe device instance
-@@ -430,17 +405,15 @@ static bool xe_pagefault_queue_full(struct xe_pagefault_queue *pf_queue)
-  */
- int xe_pagefault_handler(struct xe_device *xe, struct xe_pagefault *pf)
- {
--	struct xe_pagefault_queue *pf_queue = xe->usm.pf_queue +
-+	struct xe_usm_queue *pf_queue = xe->usm.pf_queue +
- 		(pf->consumer.asid % XE_PAGEFAULT_QUEUE_COUNT);
- 	unsigned long flags;
- 	bool full;
- 
- 	spin_lock_irqsave(&pf_queue->lock, flags);
--	full = xe_pagefault_queue_full(pf_queue);
-+	full = xe_usm_queue_full(pf_queue, sizeof(struct xe_pagefault));
- 	if (!full) {
--		memcpy(pf_queue->data + pf_queue->head, pf, sizeof(*pf));
--		pf_queue->head = (pf_queue->head + xe_pagefault_entry_size()) %
--			pf_queue->size;
-+		xe_usm_queue_push(pf_queue, pf, sizeof(struct xe_pagefault));
- 		queue_work(xe->usm.pf_wq, &pf_queue->worker);
- 	} else {
- 		drm_warn(&xe->drm,
-diff --git a/drivers/gpu/drm/xe/xe_pagefault_types.h b/drivers/gpu/drm/xe/xe_pagefault_types.h
-index b3289219b1be..49359f643358 100644
---- a/drivers/gpu/drm/xe/xe_pagefault_types.h
-+++ b/drivers/gpu/drm/xe/xe_pagefault_types.h
-@@ -8,6 +8,8 @@
- 
- #include <linux/workqueue.h>
- 
-+#include "xe_usm_queue.h"
+diff --git a/drivers/gpu/drm/xe/xe_usm_queue.h b/drivers/gpu/drm/xe/xe_usm_queue.h
+new file mode 100644
+index 000000000000..5dc2d692d8bb
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_usm_queue.h
+@@ -0,0 +1,100 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
 +
- struct xe_gt;
- struct xe_pagefault;
- 
-@@ -110,29 +112,4 @@ struct xe_pagefault {
- 		u32 msg[XE_PAGEFAULT_PRODUCER_MSG_LEN_DW];
- 	} producer;
- };
--
--/**
-- * struct xe_pagefault_queue: Xe pagefault queue (consumer)
-- *
-- * Used to capture all device page faults for deferred processing. Size this
-- * queue to absorb the device’s worst-case number of outstanding faults.
-- */
--struct xe_pagefault_queue {
--	/**
--	 * @data: Data in queue containing struct xe_pagefault, protected by
--	 * @lock
--	 */
--	void *data;
--	/** @size: Size of queue in bytes */
--	u32 size;
--	/** @head: Head pointer in bytes, moved by producer, protected by @lock */
--	u32 head;
--	/** @tail: Tail pointer in bytes, moved by consumer, protected by @lock */
--	u32 tail;
--	/** @lock: protects page fault queue */
--	spinlock_t lock;
--	/** @worker: to process page faults */
--	struct work_struct worker;
--};
--
- #endif
++#ifndef _XE_USM_QUEUE_H_
++#define _XE_USM_QUEUE_H_
++
++#include <linux/circ_buf.h>
++#include <linux/spinlock.h>
++#include <linux/workqueue.h>
++
++/**
++ * struct xe_usm_queue - Generic USM circular FIFO queue
++ *
++ * A lock-protected circular buffer used by both the page fault consumer and
++ * the access counter consumer. Producers push fixed-size entries from IRQ
++ * context; a work_struct processes them asynchronously.
++ */
++struct xe_usm_queue {
++	/**
++	 * @data: Raw byte buffer backing the queue, protected by @lock
++	 */
++	void *data;
++	/** @size: Total size of @data in bytes */
++	u32 size;
++	/** @head: Write cursor in bytes, moved by producer, protected by @lock */
++	u32 head;
++	/** @tail: Read cursor in bytes, moved by consumer, protected by @lock */
++	u32 tail;
++	/** @lock: Protects the queue head/tail */
++	spinlock_t lock;
++	/** @worker: Work item scheduled to drain the queue */
++	struct work_struct worker;
++};
++
++/**
++ * xe_usm_queue_full - Check whether the queue has no room for one more entry
++ * @q: queue
++ * @size: exact size of one entry in bytes (sizeof the entry struct)
++ *
++ * Must be called with @q->lock held.
++ *
++ * Return: true if the queue is full
++ */
++static inline bool xe_usm_queue_full(struct xe_usm_queue *q, u32 size)
++{
++	u32 entry_size = roundup_pow_of_two(size);
++
++	lockdep_assert_held(&q->lock);
++
++	return CIRC_SPACE(q->head, q->tail, q->size) <= entry_size;
++}
++/**
++ * xe_usm_queue_pop - Pop one entry from the queue into @out
++ * @q: queue
++ * @out: destination buffer, must be at least @size bytes
++ * @size: exact size of one entry in bytes (sizeof the entry struct)
++ *
++ * Acquires @q->lock internally with spin_lock_irq().
++ *
++ * Return: true if an entry was dequeued, false if the queue was empty
++ */
++static inline bool xe_usm_queue_pop(struct xe_usm_queue *q, void *out,
++				    u32 size)
++{
++	u32 entry_size = roundup_pow_of_two(size);
++	bool found = false;
++
++	spin_lock_irq(&q->lock);
++	if (q->tail != q->head) {
++		memcpy(out, q->data + q->tail, size);
++		q->tail = (q->tail + entry_size) % q->size;
++		found = true;
++	}
++	spin_unlock_irq(&q->lock);
++
++	return found;
++}
++
++/**
++ * xe_usm_queue_push - Push one entry into the queue
++ * @q: queue
++ * @in: source buffer, must be at least @size bytes
++ * @size: size of one entry of in bytes
++ *
++ * Must be called with @q->lock held.
++ * Caller must check xe_usm_queue_full() before calling.
++ */
++static inline void xe_usm_queue_push(struct xe_usm_queue *q, const void *in,
++				     u32 size)
++{
++	u32 entry_size = roundup_pow_of_two(size);
++
++	lockdep_assert_held(&q->lock);
++
++	memcpy(q->data + q->head, in, size);
++	q->head = (q->head + entry_size) % q->size;
++}
++#endif
 -- 
 2.34.1
 
