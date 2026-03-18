@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE11F103E177
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 13:30:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D66A7103E179
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 13:35:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF45610E823;
-	Wed, 18 Mar 2026 13:30:23 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZzTk1NAl";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CA2F10E824;
- Wed, 18 Mar 2026 13:30:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773840623; x=1805376623;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uZTr0KiFhPDkOmCO/Us/jL4yoMUCd9NUh5iivJQ/mGA=;
- b=ZzTk1NAlj3ZF7hkOdN2t7I9D6MBNjmRXXpNQekEWc4WPw6kuOcjWSlFY
- f29E/Hqci7fPUTuaoEitw+NOd/BKsCKfrUDilyS/TeSLAF0qW8XPbYShw
- pvzhciJDQvel3nkqAAxHESXm6mNcz4gy6bgmi6WZsW1/EW0ZGTGholUMq
- v8gKO5Ldu/HDNLdxyby39f3vV7Gkywu+QsCXRp24cAFSmjteidXDPQhUc
- MaHKVwViA/GcEokBbkWP/8FR3y0KZurhslbgwv62etkRRMXFwmrohuLrX
- pUnE43Z0JnGJMUQ4oVnoOH0iI7I6VDKbIQv3h7Z2DBKkNygwcwqQWdrAX w==;
-X-CSE-ConnectionGUID: WAGMc9+xS0KvFdnBkEz7LQ==
-X-CSE-MsgGUID: y3VVcstySaqLHAjs+fG9/g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="97500545"
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="97500545"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2026 06:30:22 -0700
-X-CSE-ConnectionGUID: IGXtQOkdRyWZCPpRwVvC/Q==
-X-CSE-MsgGUID: qivIWCbAROqS/Ya9OPmExA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="227577408"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.79])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2026 06:30:19 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 5/5] drm/xe: pass struct xe_device to
- xe_display_bo_fbdev_prefer_stolen()
-Date: Wed, 18 Mar 2026 15:29:50 +0200
-Message-ID: <6cfa029f052a1e7638b09545b04de0991b5f3416.1773840563.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1773840563.git.jani.nikula@intel.com>
-References: <cover.1773840563.git.jani.nikula@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9467E10E82B;
+	Wed, 18 Mar 2026 13:35:58 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D3E310E82B;
+ Wed, 18 Mar 2026 13:35:57 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/=7Bi915=2Cxe=7D=3A_mo?=
+ =?utf-8?q?ve_fbdev_fb_calls_to_parent_interface?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 18 Mar 2026 13:35:57 -0000
+Message-ID: <177384095718.372282.3931902503651593086@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <cover.1773840563.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1773840563.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,71 +36,67 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is xe core code, use struct xe_device for simplicity.
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/xe/display/xe_display_bo.c    | 5 ++---
- drivers/gpu/drm/xe/display/xe_display_bo.h    | 4 ++--
- drivers/gpu/drm/xe/display/xe_initial_plane.c | 2 +-
- 3 files changed, 5 insertions(+), 6 deletions(-)
+Series: drm/{i915,xe}: move fbdev fb calls to parent interface
+URL   : https://patchwork.freedesktop.org/series/163466/
+State : warning
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.c b/drivers/gpu/drm/xe/display/xe_display_bo.c
-index 10436edecc35..f420e2ba581e 100644
---- a/drivers/gpu/drm/xe/display/xe_display_bo.c
-+++ b/drivers/gpu/drm/xe/display/xe_display_bo.c
-@@ -119,9 +119,8 @@ static u32 xe_display_bo_fbdev_pitch_align(u32 stride)
- 	return ALIGN(stride, XE_PAGE_SIZE);
- }
- 
--bool xe_display_bo_fbdev_prefer_stolen(struct drm_device *drm, unsigned int size)
-+bool xe_display_bo_fbdev_prefer_stolen(struct xe_device *xe, unsigned int size)
- {
--	struct xe_device *xe = to_xe_device(drm);
- 	struct ttm_resource_manager *stolen;
- 
- 	stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
-@@ -149,7 +148,7 @@ static struct drm_gem_object *xe_display_bo_fbdev_create(struct drm_device *drm,
- 
- 	obj = ERR_PTR(-ENODEV);
- 
--	if (xe_display_bo_fbdev_prefer_stolen(drm, size)) {
-+	if (xe_display_bo_fbdev_prefer_stolen(xe, size)) {
- 		obj = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe),
- 						size,
- 						ttm_bo_type_kernel, XE_BO_FLAG_SCANOUT |
-diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.h b/drivers/gpu/drm/xe/display/xe_display_bo.h
-index 8980e6ecf54a..c72056884ff4 100644
---- a/drivers/gpu/drm/xe/display/xe_display_bo.h
-+++ b/drivers/gpu/drm/xe/display/xe_display_bo.h
-@@ -6,9 +6,9 @@
- 
- #include <linux/types.h>
- 
--struct drm_device;
-+struct xe_device;
- 
--bool xe_display_bo_fbdev_prefer_stolen(struct drm_device *drm, unsigned int size);
-+bool xe_display_bo_fbdev_prefer_stolen(struct xe_device *xe, unsigned int size);
- 
- extern const struct intel_display_bo_interface xe_display_bo_interface;
- 
-diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-index 6e0a22429184..12c09d33292d 100644
---- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
-+++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-@@ -87,7 +87,7 @@ initial_plane_bo(struct xe_device *xe,
- 
- 		if (IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
- 		    IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION) &&
--		    !xe_display_bo_fbdev_prefer_stolen(&xe->drm, plane_config->size)) {
-+		    !xe_display_bo_fbdev_prefer_stolen(xe, plane_config->size)) {
- 			drm_info(&xe->drm, "Initial FB size exceeds half of stolen, discarding\n");
- 			return NULL;
- 		}
--- 
-2.47.3
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 141ec63366ccb82ff598628508a5bca841dd5aed
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Wed Mar 18 15:29:50 2026 +0200
+
+    drm/xe: pass struct xe_device to xe_display_bo_fbdev_prefer_stolen()
+    
+    This is xe core code, use struct xe_device for simplicity.
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 185629feb8aee7cf88f72d1e67531574f1bea7f5 drm-intel
+23baef62993f drm/xe/fbdev: put intel_fbdev_fb_prefer_stolen() behind IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION)
+9ecaf6ff95bf drm/{i915, xe}/fbdev: drop drm device parameter from intel_fbdev_fb_fill_info()
+f8386f7a0fe0 drm/{i915,xe}: move fbdev fb calls to parent interface
+-:115: WARNING:LONG_LINE: line length of 122 exceeds 100 columns
+#115: FILE: drivers/gpu/drm/i915/display/intel_fbdev.c:218:
++	mode_cmd->pitches[0] = intel_bo_fbdev_pitch_align(display, mode_cmd->width * DIV_ROUND_UP(sizes->surface_bpp, 8));
+
+-:153: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#153: 
+deleted file mode 100644
+
+-:705: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#705: FILE: drivers/gpu/drm/xe/display/xe_display_bo.c:161:
++			drm_info(&xe->drm, "Allocated fbdev into stolen failed: %li\n", PTR_ERR(obj));
+
+-:713: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
+#713: FILE: drivers/gpu/drm/xe/display/xe_display_bo.c:169:
++						XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
+
+-:731: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#731: FILE: drivers/gpu/drm/xe/display/xe_display_bo.c:187:
++static int xe_display_bo_fbdev_fill_info(struct drm_gem_object *_obj, struct fb_info *info,
++			     struct i915_vma *vma)
+
+-:832: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#832: FILE: include/drm/intel/display_parent_interface.h:50:
++	int (*fbdev_fill_info)(struct drm_gem_object *obj, struct fb_info *info, struct i915_vma *vma);
+
+total: 0 errors, 5 warnings, 1 checks, 473 lines checked
+853506b530b6 drm/i915: pass struct drm_i915_private to i915_bo_fbdev_prefer_stolen()
+141ec63366cc drm/xe: pass struct xe_device to xe_display_bo_fbdev_prefer_stolen()
+
 
