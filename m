@@ -4,161 +4,129 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62E75F483C5
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 16:04:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DF08F483C9
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 16:04:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2929410E589;
-	Mon, 23 Mar 2026 16:04:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0320110E01F;
+	Mon, 23 Mar 2026 16:04:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=windriver.com header.i=@windriver.com header.b="kuy78zgW";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="hls9sLPd";
 	dkim-atps=neutral
-Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com
- [205.220.178.238])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84AB110E43A
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 21:04:06 +0000 (UTC)
-Received: from pps.filterd (m0250811.ppops.net [127.0.0.1])
- by mx0a-0064b401.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 62IJ0JUD199012; Wed, 18 Mar 2026 21:03:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
- h=cc:content-transfer-encoding:content-type:date:from
- :in-reply-to:message-id:mime-version:references:subject:to; s=
- PPS06212021; bh=EWL5dcgq/SCDYZU4Ob5N/DZT2HxitJSra1/t+pn7k54=; b=
- kuy78zgWP8tXo/TjSYb3XJicytPUIJTUlAKkbVfdpNKWp/7LozJwUiviPUcVLrTu
- YXainfXcTlLUrCvh0+e0eppdpj6avhN1zyR0qAu79Nyab8Hy5Duzw3SAKQ6Hc+FE
- OZ7mbbtrLSpD3HAn6mkBP4Ps99yQalgKtaFq8Asc2CW/aNnFk70GfRdN+Mo1Bds4
- uDUa5EofdFMBHpC7nORabG86o9ShBydY90w3Kwg31VlY1EFBWlSXa/OjOmB0PgCi
- EXJ42fDJEZrZrGB81aC7gZ3OhmjO1NErYzfxFPVVKlOD63BxD8wG4eIECb+MOl2i
- HjBCl/bWF9l/hDWj3kp6QQ==
-Received: from ph7pr06cu001.outbound.protection.outlook.com
- (mail-westus3azon11010024.outbound.protection.outlook.com [52.101.201.24])
- by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 4cy9ansyxu-1
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
- Wed, 18 Mar 2026 21:03:46 +0000 (GMT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fjPqYF3bRNtEAUp1H5U+TQjGS8BTtGVWdweP55/g3/fTsWAuzrMo6LYwlT0mPl4xn9rYd/Z0uUmLVxIsIAyPc2VBjbxp/q7TlzQRgD0YGq0oZt2Beo3L/Qqe6g+hy1IBmOaXEnrwWjCrWzKRNiEL8FGOyKhXa47vKOXM0LIfqtebUtjNiNGZSXO3p1c/j4pjyBnz1JuOhuzDe+qMV+Q1AXG+abJ5zV/fD0MceV0cev+wvFDARHwgUmYwc8RLMRQWWdpMV8b0LCfotZig6N2LGHpYeidPhTTs5ivrgwlSpuRLlNALwSO28gYkPWkNW8ngiyXctp8JIvzwRzrZvPqX5Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EWL5dcgq/SCDYZU4Ob5N/DZT2HxitJSra1/t+pn7k54=;
- b=F88NwTiqaNtGKDuUMgFbAvyafdfoHRVLFPBTiUunOGUtePGvTqyX5YD7KReGmRx+Sw7CzVFI0lSLXQUQRYYdl9sgxyLIuKJNVwuDjlSlLO15iWXuIE7JLJQCpEMAwbZRCYqk3w4yLIEBBHy/wSMV2hRouk8VVqQuP5OW4K95Bo/RYoMeuKAxZMmcjo1JFWMVoX6NARAZTpdU0k5kc/KSYYFiSmIg7i4lFry+Rcg//1IX+0CfExQaPvlbSOk5oH/DBp6s14fs6w2ZEVdFu7eKBDm3kkCgzyrFWVShxRVWHv9hdpUB4oaVh+e6tCDMO7Mk3j7NtA1IfKtlBvBanH1Law==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
-Received: from SJ2PR11MB7546.namprd11.prod.outlook.com (2603:10b6:a03:4cc::8)
- by IA3PR11MB8893.namprd11.prod.outlook.com (2603:10b6:208:577::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.16; Wed, 18 Mar
- 2026 21:03:44 +0000
-Received: from SJ2PR11MB7546.namprd11.prod.outlook.com
- ([fe80::ca9b:dcf:8881:bced]) by SJ2PR11MB7546.namprd11.prod.outlook.com
- ([fe80::ca9b:dcf:8881:bced%5]) with mapi id 15.20.9723.018; Wed, 18 Mar 2026
- 21:03:44 +0000
-From: "Ionut Nechita (Wind River)" <ionut.nechita@windriver.com>
-To: linux-pci@vger.kernel.org, bhelgaas@google.com
-Cc: helgaas@kernel.org, sebott@linux.ibm.com, schnelle@linux.ibm.com,
- bblock@linux.ibm.com, lkml@mageta.org, alifm@linux.ibm.com,
- julianr@linux.ibm.com, dtatulea@nvidia.com, mani@kernel.org,
- lukas@wunner.de, kbusch@kernel.org, linux@roeck-us.net,
- ionut_n2001@yahoo.com, sunlightlinux@gmail.com,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org,
- intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
- michal.wajdeczko@intel.com, piotr.piorkowski@intel.com,
- "Ionut Nechita (Wind River)" <ionut.nechita@windriver.com>
-Subject: [PATCH v10 2/2] PCI: Fix AB-BA deadlock between device_lock and
- pci_rescan_remove_lock in remove_store
-Date: Wed, 18 Mar 2026 23:03:16 +0200
-Message-ID: <20260318210316.61975-3-ionut.nechita@windriver.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260318210316.61975-1-ionut.nechita@windriver.com>
-References: <20260318210316.61975-1-ionut.nechita@windriver.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: VI1PR07CA0250.eurprd07.prod.outlook.com
- (2603:10a6:803:b4::17) To SJ2PR11MB7546.namprd11.prod.outlook.com
- (2603:10b6:a03:4cc::8)
+Received: from mail-dy1-f169.google.com (mail-dy1-f169.google.com
+ [74.125.82.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA83310E731
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 18:57:27 +0000 (UTC)
+Received: by mail-dy1-f169.google.com with SMTP id
+ 5a478bee46e88-2c0e158158eso6614eec.3
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 11:57:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773860247; cv=none;
+ d=google.com; s=arc-20240605;
+ b=Hpwpg3wxMPLqtMl1/ASuXSLz1sJW4eYiE14buE5TMvSJdXwa1j2hzTeh2oHf0EJ6+K
+ LLkSVrNTBBAN3UqQn5ZOAL5NoIPkTfdN/y3ebSrysdss42M5mq1G9zUzbOPaHCtbh9ZT
+ WxzesOoJpjsSZIBeF7uyUGSVYNSSeUSIsAkHt9PA5LzAoXLdtCHgb0aKjG43tCXT8HRn
+ nz11TBCWCwYhkwuDiGMVggBtH8c83lqhnrHBHxuU8msQd8vLVCKm3PEYjhud0ces3q1j
+ 3pgKYoivPLmA0IGV4OLCuxRB/xJI3QKQE3q6QDObInQkSQ+dA2j4WBtAHOu0HpwGISqO
+ ShRA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=d3bcHjPGT0Fov9B4KoCksRHw66Y8wxvQ5LjIruDyWqI=;
+ fh=e0KzGfWvearmwr1DWZ9caqVKCPEdeDretrekRRw8gTA=;
+ b=Ffi6xRjO3OYYVUuONQpPme7ErrtIhjMU2kIN9Ze7B+CaN2rRfa5K+os6LnHboGSR/2
+ 9d1vVjAd/VyYgmb/P1V3HFKDyAB0AWGiTxavgq7ncWFCRWV3yPoelml7QFRvHXfjay+O
+ 3XVhRxa5Hn4TgYoJb2syWvV1SzXzELvcqamO6+yohzlHgMLG0gCzWSBGqg5tb3Q1TNF8
+ H45G87k3MmQqLTZmtSS0qi/uPc6ytykcRjl/u8aBuJRXAxKQeNk7fi8OcYVBhvr88pPS
+ TuPhYw1+mMnnBHs+DUbbgWlhLwZ+rmKqgibESxCrKEEFaTBjySAdLJAMfTYjm8zE03LC
+ i2xw==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1773860247; x=1774465047; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=d3bcHjPGT0Fov9B4KoCksRHw66Y8wxvQ5LjIruDyWqI=;
+ b=hls9sLPdPRx7gKm2di3aMw2U4eOoEz7UL1WQuwlgmSVnwttmdt5y3dmL6ifcOEIPm6
+ vrrOEbeNXy3TVfnEm89bUrAf2dQ2n2Hg7X5bICkUMdC1wuJgnDVthMzkTACUH0dki0Pa
+ ba8a7Yr0Qd5tu4BFRsVH/vFH95M2ttgA5ZlLadSrmsZTog02L1DjqGm1IKAk9IyBp3Kf
+ 7pq9Uem0z0W1RHuHX3+FZyMXfWHEcl04Ue1fqTnqdjs3o4ftWaGArAH66masDZ8xzSm/
+ 4ZPs2eD8zzbFGTW5Tgn7LwbRB+LF5nwVfebtJzIv6vm3rVID9I5dt03Z0uautMoxF6oh
+ DK7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1773860247; x=1774465047;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=d3bcHjPGT0Fov9B4KoCksRHw66Y8wxvQ5LjIruDyWqI=;
+ b=lTb0mBb7dH7A/rrsH4edIGbNBOg7rQSJSPWTbbW7sMGBz+YBqiLlrikdio+3QakLFg
+ wStTCdFtBMSRqAHNaiBIcItscF8RDdwkl3hnYcW0a9sgjS02Fb7taxhXXlYs1VXLAaq4
+ P2Vngfr4knrYX/pSqitPNbpK2tDPRhVA2ElgemSchInbq51JhAnXj1Py2sgwQQXOJJPP
+ a70PkM6Y6N7RI/RxnYdTo4iFjkNnWLPyjSSZiwISxLfoTHkBWqg0BqwXAJnO3KUMPyK2
+ ys3mc4y9iiNuCDy1dd2s2dkHWVstd/24ix4N+LnXK9LaKnn2ZWo4OjFZb3FVxCSBNiMS
+ hpAA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCW4RTrwkxLKjV7n2TF5hiET/hdoN+CbbjrVTTFH/DcAqfjMabnTKFh3TS38AEzTe7NpPnq9WfA/1Q==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzIce2BwpVejG1hOdqpZueli9Aq9PUzt1c3+JZwUCSSFpbktu8q
+ 2+JSOLc2tjFClOmahmOY0Y+9gJB2PYer1c/5xkEK6nrl7a3MuSamhjHhi8m56VwDy1ueQQGl4Ic
+ DT92kUF2aQ6aRMOETGoRZszk+OMlqmMA=
+X-Gm-Gg: ATEYQzyMDrtMZf+zuIcwHBNQ1A9QZ54TGeNR6UlxaJt4mC2r4PCS0/wtcHPzdluisnM
+ 5+B5PomKakt0DMAgefqNsHfsAo+hSHFtn8MrbD6bGosBz5DBKmUMOCy6zephgePskaN1kDu1gwn
+ Iv91xO3tLfcdtT1jE6RecTUvKnRyTH5dkjuuIhFwhDke5T14Qr89kCwyU35S53u7DUhvDd+ag6w
+ ZcsrLEKooS4voKmQkbuc5DA3Hqs3tkj47gZXQ5oLdRqJDm4y9i7mdmdNowHpiweSh1HHsMQ0bad
+ +BmaKUHK+cBZaNQ3ZoetyIU2iEMKvZzib6VRsZVF0vj2Y2c+gk/WPfgJ1BtPhIuemewk5gOdNZU
+ u+bXfyb47ecY7f6qRVp3PIbg=
+X-Received: by 2002:a05:7300:f191:b0:2be:9886:d4ff with SMTP id
+ 5a478bee46e88-2c0e50fefe8mr982481eec.2.1773860246896; Wed, 18 Mar 2026
+ 11:57:26 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR11MB7546:EE_|IA3PR11MB8893:EE_
-X-MS-Office365-Filtering-Correlation-Id: dc94d7eb-9987-408c-f431-08de8531d706
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|7416014|52116014|376014|366016|10070799003|1800799024|56012099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: DNWR9eWq3S0L6c3VBmPili4ngIbZyctLGSvwWO1S5CszASDPPt971dKS+V3N4LfJJnYWN+Zb63J4w2va40z9MVk3MMtOsSKUVBTG516E0yjR9vk97LjEjI0mEJHxdsffVmFLFnS1+WI8RldNoqlIr2qn5nONHr95d0dFqXb8a1XjfXxI7sLo4xuNUCDYnXXL0fUHLv3EHkAADE/nnH2h4VPDocZLpCsvFeqWn4BeNWI/GElSj5+ss6hLA7kWkINcGHXVoCboFiRu2V6kbu60CiLr3rIVQwUBGs6Y+4U+KOnYd/ejxosgnHcv8WTNiTGAovCDpSjmECDyXu68fdARAcFAoOgouVDcNl6h3jAalx43rPtv7RF5SJbvKTf8lgeI6cUwRPOHGb1Rhnn8grYyIAp6SrHRQvqn2jjbvYokXlQ37sapEpiCZBFV2rnLv1eFSkr/HZOhnaQEMs3kma5JLo4ELOAOYcTnI3HLDZE/7glxj/2WgnDafq2a2jza40VmYViMNMlq7tbd62jbkOon3oTq5n8pCMN74Dg7R+LBmeOcPi6zbG9wOWAdjxCU3dkoIAeNud7LuQaX9X/Wf+GCIdPwcqwiK0swgk3hIncocX3UcrdASmb2Ppe7t2bmycVFSxA0FJZd+AAat90ZSvVGbOZvsf1t6zS5y+yXmiCsTDVA0c6AzfKv8QJJ99AEG9XMbraYDUPDWpBXPRSXYDPakR80tGaWK+JgjmSoGPHB/rDiKlZ7hRehznMhiC1xaFrx
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ2PR11MB7546.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(7416014)(52116014)(376014)(366016)(10070799003)(1800799024)(56012099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?aqgoCFhNQTBoVelZrqdeBFK7vLrIoKKxG0VhnLoHCD4aeo1igsOdaC5rwCtX?=
- =?us-ascii?Q?toXSO9WcE5ACtSgu13bT1Gu8e2gn9Ocy/589QPsqAiOFa6NDDwMWCuIQFAlW?=
- =?us-ascii?Q?mPg5SD0Q506kUQWl1oRlHb7aNnAlwz1cedH9zoirlQRMXJ8q7D1MqTBomYGs?=
- =?us-ascii?Q?vIQ2J5XRnxc0FvHSHxIdrVzhKJRR4dhOqLBuwWP2rIoSyazKdnXQ8Kf5ok/o?=
- =?us-ascii?Q?nRYkBWl4aUibkT4jjNrecRINqicaie8RpRpvgsCuIK8n4lLSMvxMqck+/K7k?=
- =?us-ascii?Q?zOG4VhOSy+jw/eNWNioSG660Ng8D++DBG2oGqtDY/oxeslc+ZziDxgmtrJrw?=
- =?us-ascii?Q?Tk0LxZsnAILox4k+rq+aAT81Q4Z0Kv6TdVoNidHZUvqKtBJukXT4Sv5OGthf?=
- =?us-ascii?Q?zmvQFwKSNwGXaf2j5t9MwE93vH7eHyAj/FQxtuJI5t3ybsuw0UA9rOyBzIwJ?=
- =?us-ascii?Q?UkdlOQ4/5Bx0whwQyuvoZED8aYrUVDwfw6VS+IKfsXlxhPNpGXKbpz4xNyOY?=
- =?us-ascii?Q?e7FYmoxWSYjUaGG4QvJfmdqfvLxNzCrAsZQ20p/gXW1Caa8kZ0IuTLfA3pyX?=
- =?us-ascii?Q?LgQHBp7JVXFKtTV12Ca54qfwe+dHs7Mi18vIiiyjkTmjuV8F1OLwsbwP8tKt?=
- =?us-ascii?Q?wN0+PL97f1vPK8mcRKEFBZlqSFLEw28Sltzt1+T4FEKodK17oA3LgxjBQHgM?=
- =?us-ascii?Q?wxC92kIEz0Ew11/PEE95deL/wcMBhD4ECr/CLLD6wioh7SHitFit/6ZzzdL0?=
- =?us-ascii?Q?axejy5S1ABJTaOios5+i3QXX+xRAMHwxEW643MvOJOrlE1MVQFiGxQoVXjK6?=
- =?us-ascii?Q?b+zeHJrgbej0maa+KKHfUCCmexyZHmoEO5zKMyewyHOP2NdnaFodbWnLbukM?=
- =?us-ascii?Q?iMeOjtjKoNdRdHwNGhO3iUTmGwWGXcqSOrzLVmpOJBCOb44pi5WcC9IVSjHG?=
- =?us-ascii?Q?QPqq2W9zpH2wcblSuhDdjgJsXJWRGlEGoG2k9X+Drspp2t10lpiUS9uwAhPr?=
- =?us-ascii?Q?jkAxzxvOAANBsMyX9E5b5ukvI4g5FIddmovU0ocsmXgmKXrIAJY1FaQu0rYZ?=
- =?us-ascii?Q?g1fZJilVHC68lv5PDEthTiil8uVmSXZnqrsjGqoLnQb6HmtgCW7Cz1JEpIbU?=
- =?us-ascii?Q?OzrtQrmO8bY8wEkqS5KmLTaV9EJum9Lv5d8wr2WT+tJyHx+AXUUW3HIo01FF?=
- =?us-ascii?Q?2WxARF+ioNd+S14LNWWRm1EgKWfqG5Md+GYa5jZcrVqc4XB7yYSHZzDqisM/?=
- =?us-ascii?Q?tu3KiYU3Xk430i6CgyX+2QqhERK1BHAUBH3TSDbd6ryoQBffnXv+l/Y13JDo?=
- =?us-ascii?Q?sk+uPQMQnS/e8PJkuKqri+IwECO8l0ylwVRDUXM0nJC3uXv9kssSpJ7nnWaz?=
- =?us-ascii?Q?OJX9lEuJ5H3ECGQmFCY6HW1LKHkqurEM+54rKRtyY3oKj1AuT2J6zKdrFt4+?=
- =?us-ascii?Q?PwTsLy0kyL/y5X/w0jFZZwzi+9tYu0JXg93dCYLO3eazdtBnAhLf8TwZV0cn?=
- =?us-ascii?Q?FvGJzuJIHyOvZ6W7UzV3OomaYicuRq06ijGzPR9lkyibC0f6RuFxbO7W7ThB?=
- =?us-ascii?Q?CbewffNed8tF6yUoNQohQLLV0e0rgcZWtJl7IFc4mNVPQ/UnCYg/K52sA+ns?=
- =?us-ascii?Q?4Oz07nJ9t1k/9qCZwO6whpByQce/J/ezsByXUtT1nd5IZf3gapad2JcRnNpm?=
- =?us-ascii?Q?4MYBjVLpvXUse4HYa4HepGOeHw7at4k2gRMFgZCfjYmvz1yUn9qIsiIqqRlq?=
- =?us-ascii?Q?vIdnmauRHPtKuy6sd3qe7ZO0k0xEF2KmBvv58Mu5UwBsPOXELRIlXFu0Ku/3?=
-X-MS-Exchange-AntiSpam-MessageData-1: 3I5olm2Eup7C4Kuv/Ib0C5AWqT8paEibDT4=
-X-Exchange-RoutingPolicyChecked: faxOazBnWYPDXMxDHRtJ5HAUxQpBNZ+i3fwH9phBuIYOrW6rdYA8XXvRKhxoWsiaLknyeVNhZBFiK7yuV++Ae++L7C+CRmwnnTbMx05yKKU6vZj9/ggzvKl7rMBd9F5Rs108xCqiE4LPvezwQODn6xM/cYnbWDqcaVPnkFW/57pgnoOcyJ5bcEo/rCKuimMRiwAYsVIzqijzyAckkimsfqEvTOV3o9R1lJdEZNDGw+0tgKqNzDWB4atJVDSm8aY/UKPey5hiNee5khqQv20WPremFmXLFcxpt69PXBvGjjN8ixI6d0UJIdVWgmr6ulU+yFPfBtNIi+7RjbN3pmgupw==
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc94d7eb-9987-408c-f431-08de8531d706
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR11MB7546.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 21:03:44.2079 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: j+pWr15mrQhi1MKngRI/opPQNQqfIbBMo3tYI007jLpmF3nuKKkUotSgTEpITkO+UXd/JDEE9g1gKSIU4BiEA+UKhstAj9+0m70KBpbld8M=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB8893
-X-Authority-Analysis: v=2.4 cv=IrMTsb/g c=1 sm=1 tr=0 ts=69bb1332 cx=c_pps
- a=65kS/IK/0KNveI1QfQMUCw==:117 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19
- a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
- a=xqWC_Br6kY4A:10 a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=bi6dqmuHe4P4UrxVR6um:22 a=klDOsUkWDRETUCZYPvoE:22 a=VwQbUJbxAAAA:8
- a=_jlGtV7tAAAA:8 a=p2eoyRXnAAAA:8 a=VnNF1IyMAAAA:8 a=t7CeM3EgAAAA:8
- a=mm2UkWPFonPHBTd3Hn4A:9 a=nlm17XC03S6CtCLSeiRr:22 a=KSHYvF9M28j0gckGFaEs:22
- a=FdTzh2GWekK77mhwV6Dw:22
-X-Proofpoint-ORIG-GUID: 8Yh7NGsIlLrszms878yHc6iUCt-u9KzK
-X-Proofpoint-GUID: 8Yh7NGsIlLrszms878yHc6iUCt-u9KzK
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDE4MSBTYWx0ZWRfX3Lv3P3SV0YB+
- /2LWxwn2w8MrYrziP0hoN/gMJadM+OjZdqbK3hvhL6ayRjPBlofi88zzxepSRcvCLNWVJsPBQ4J
- H6+mc21TKH+7f6/7Wk/rQRPvZrgvIy+fQOhDqWnW3w9QPok5Jpiu1XiHZ2S9sgNJVNcmjvDLMFi
- FW+pmq0sQPp72ZdGmVCMRew7UksVu7cm+f+54Zq2mGd6CiNBSyWNfRofi3DbaFkQHddi/VJqhoG
- 4jyiOiRtwEIjjsONg0U9QDTZ80jmACKVe1kkQTQ5pcMnrAf8XWE/QmEfC8I/1eFJZRYXWKc1Tsf
- ZwpcwX/OxA4OUKROg9a6YipaCHngYCdT2gLNZpxCgqwHIZeEg6r+vrMQyegOgwSUHjD+QvxdDZ1
- V8sWA2hLKkOHQYb0uCALbg6y0kXzmXu3s72hJUou+8efQrxT8Bka74pQDend3BotLUWZTAG1XbJ
- 8CFzs5eHDrRHgq5MPoA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-18_01,2026-03-17_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 adultscore=0 suspectscore=0 clxscore=1015 bulkscore=0
- impostorscore=0 lowpriorityscore=0 phishscore=0 priorityscore=1501
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2603050001
- definitions=main-2603180181
+References: <20260317201710.934932-1-joelagnelf@nvidia.com>
+ <20260317201710.934932-2-joelagnelf@nvidia.com> <abqdUBqchnVFo7Qk@google.com>
+ <71b6a115-98f1-4b09-9c04-a99349f51e49@nvidia.com>
+In-Reply-To: <71b6a115-98f1-4b09-9c04-a99349f51e49@nvidia.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Wed, 18 Mar 2026 19:57:14 +0100
+X-Gm-Features: AaiRm52hIUr0vzgoavDmbzyJmg3hgU_AUfgRxMfUiR8zNc5S5daML4wMbNTdaCA
+Message-ID: <CANiq72nZKx7pw_rZK2mHHvR=TaeGvMRvg5GTHOd58X17oyxieg@mail.gmail.com>
+Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked list
+ interface
+To: Joel Fernandes <joelagnelf@nvidia.com>,
+ =?UTF-8?Q?Alejandra_Gonz=C3=A1lez?= <blyxyas@gmail.com>
+Cc: Alice Ryhl <aliceryhl@google.com>, linux-kernel@vger.kernel.org, 
+ Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
+ Gary Guo <gary@garyguo.net>, 
+ =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, 
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>, 
+ Trevor Gross <tmgross@umich.edu>, Alex Gaynor <alex.gaynor@gmail.com>, 
+ Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
+ David Airlie <airlied@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>, 
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Koen Koning <koen.koning@linux.intel.com>, 
+ Nikola Djukic <ndjukic@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>, 
+ Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa <elle@weathered-steel.dev>, 
+ Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>, 
+ Matthew Auld <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Helge Deller <deller@gmx.de>, John Hubbard <jhubbard@nvidia.com>, 
+ Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ Edwin Peer <epeer@nvidia.com>, 
+ Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
+ Zhi Wang <zhiw@nvidia.com>, 
+ Balbir Singh <balbirs@nvidia.com>, alexeyi@nvidia.com, 
+ Eliot Courtney <ecourtney@nvidia.com>, dri-devel@lists.freedesktop.org, 
+ rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org, 
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Mailman-Approved-At: Mon, 23 Mar 2026 16:04:08 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -174,79 +142,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-remove_store() calls pci_stop_and_remove_bus_device_locked() which
-takes pci_rescan_remove_lock first, then device_lock during driver
-release.  Meanwhile, unbind_store() takes device_lock first (via
-device_driver_detach), and the driver's .remove() callback may call
-pci_disable_sriov() -> sriov_del_vfs() -> pci_lock_rescan_remove().
+On Wed, Mar 18, 2026 at 7:31=E2=80=AFPM Joel Fernandes <joelagnelf@nvidia.c=
+om> wrote:
+>
+> Anyway, the fix is simple, just need to do // SAFETY*: as Miguel suggests
+> here, instead of // SAFETY:
+> https://lore.kernel.org/all/CANiq72kEnDyUpnWMZmheJytjioeiJUK_C-yQJk77dPid=
+89LExw@mail.gmail.com/
 
-This creates an AB-BA deadlock:
+So, to clarify, I suggested it as a temporary thing we could do if we
+want to use that "fake `unsafe` block in macro matcher" pattern more
+and more.
 
-  CPU0 (remove_store)               CPU1 (unbind_store)
-  --------------------              --------------------
-  pci_lock_rescan_remove()
-                                    device_lock()
-                                    driver .remove()
-                                      sriov_del_vfs()
-                                        pci_lock_rescan_remove()  <-- WAITS
-  pci_stop_bus_device()
-    device_release_driver()
-      device_lock()                                               <-- WAITS
+i.e. if we plan to use the pattern more, then I am happy to ask
+upstream if it would make sense for Clippy to recognize it (or perhaps
+it is just a false negative instead of a false positive, given
+`impl_device_context_deref`), so that we don't need a hacked safety
+tag (Cc'ing Alejandra).
 
-Fix this by calling device_release_driver() in remove_store() before
-pci_stop_and_remove_bus_device_locked().  This ensures the driver's
-.remove() callback (including any SR-IOV VF cleanup) runs to completion
-before pci_rescan_remove_lock is acquired, making both paths take locks
-in the same order: device_lock first, then pci_rescan_remove_lock.
+But if we could put it outside, then we wouldn't need any of that.
+Unsafe macros support could help perhaps here, which I have had it in
+our wishlist too (https://github.com/Rust-for-Linux/linux/issues/354),
+but I guess the fake block could still be useful to make only certain
+macro arms unsafe? (Perhaps Rust could allow `unsafe` just at the
+start of each arm for that...).
 
-After device_release_driver() returns, the driver is already unbound,
-so the subsequent device_release_driver() call inside
-pci_stop_and_remove_bus_device_locked() becomes a no-op.
-
-Fixes: a5338e365c45 ("PCI/IOV: Fix race between SR-IOV enable/disable and hotplug")
-Reported-by: Guenter Roeck <linux@roeck-us.net>
-Closes: https://lore.kernel.org/linux-pci/0ca9e675-478c-411d-be32-e2d81439288f@roeck-us.net/
-Reported-by: Benjamin Block <bblock@linux.ibm.com>
-Closes: https://lore.kernel.org/linux-pci/20260317090149.GA3835708@chlorum.ategam.org/
-Suggested-by: Benjamin Block <bblock@linux.ibm.com>
-Cc: stable@vger.kernel.org
-Signed-off-by: Ionut Nechita <ionut.nechita@windriver.com>
----
- drivers/pci/pci-sysfs.c | 20 +++++++++++++++++++-
- 1 file changed, 19 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/pci/pci-sysfs.c b/drivers/pci/pci-sysfs.c
-index c7780adf564e..e94ea71a4eb8 100644
---- a/drivers/pci/pci-sysfs.c
-+++ b/drivers/pci/pci-sysfs.c
-@@ -521,8 +521,26 @@ static ssize_t remove_store(struct device *dev, struct device_attribute *attr,
- 	if (kstrtoul(buf, 0, &val) < 0)
- 		return -EINVAL;
- 
--	if (val && device_remove_file_self(dev, attr))
-+	if (val && device_remove_file_self(dev, attr)) {
-+		/*
-+		 * Unbind the driver before removing the device to avoid
-+		 * an AB-BA deadlock between device_lock and
-+		 * pci_rescan_remove_lock.  Without this, remove_store
-+		 * takes pci_rescan_remove_lock first (via
-+		 * pci_stop_and_remove_bus_device_locked) and then
-+		 * device_lock during driver release, while a concurrent
-+		 * unbind_store (or sriov_numvfs_store) takes device_lock
-+		 * first and then pci_rescan_remove_lock (via
-+		 * sriov_del_vfs), creating a circular dependency.
-+		 *
-+		 * By unbinding first, the driver's .remove() callback
-+		 * (including any SR-IOV VF cleanup) completes before
-+		 * pci_rescan_remove_lock is acquired, ensuring both
-+		 * paths take locks in the same order.
-+		 */
-+		device_release_driver(dev);
- 		pci_stop_and_remove_bus_device_locked(to_pci_dev(dev));
-+	}
- 	return count;
- }
- static DEVICE_ATTR_IGNORE_LOCKDEP(remove, 0220, NULL,
--- 
-2.53.0
-
+Cheers,
+Miguel
