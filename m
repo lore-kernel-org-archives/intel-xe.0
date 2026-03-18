@@ -4,83 +4,165 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F8D6F483CC
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A2DFF483CB
 	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 16:04:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1D3A10E55B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEDF310E556;
 	Mon, 23 Mar 2026 16:04:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="AdCftPIk";
+	dkim=pass (2048-bit key; unprotected) header.d=windriver.com header.i=@windriver.com header.b="jzBK1RpK";
 	dkim-atps=neutral
-Received: from mail-dy1-f179.google.com (mail-dy1-f179.google.com
- [74.125.82.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 979F610E696
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 04:16:14 +0000 (UTC)
-Received: by mail-dy1-f179.google.com with SMTP id
- 5a478bee46e88-2c0c955a481so1667331eec.1
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Mar 2026 21:16:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773807374; x=1774412174; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=JZvDiA5OjEH9jB/X3wjJ3qQao5asOiEdEuR+UFxLqYM=;
- b=AdCftPIkmTak36f5MKqplLgCKN/xKA0BwFvcaSekDdDEJnE8OxwmBrDSWSOLKxGK+n
- Fm3ja2fU9KBDce6IPtBC68QLuIVrcVHFsl1she29V5P4r2KXUp+YTVE78HJnNroscbGR
- qs6sOXtW5s40BoKOGpg624Rr1gMbixjuY/Gu62PFqeRJ5I57aUfqusLVDYBiTRSKmcSU
- 451LkeqvT16Fuu1yiC3fJwymCnyhcwF/OK4ASuabM9HjYzrsCSQHFYASWRGoTpLVno6b
- EJb5RMNtQ8htTj/+aNoh1fSRaPCuGdB7oP7QBCjDVmf8+IbVFlNV0gNruY4IoPHBuxFf
- gkmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773807374; x=1774412174;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=JZvDiA5OjEH9jB/X3wjJ3qQao5asOiEdEuR+UFxLqYM=;
- b=PNER47Jb3C8TSi2E9+xj7Ic55KOxW8Xp3eEZykj9HEPpdP6TrEZ9RLE63CePQzEUtc
- zkeNNR8hLSnhnyCNX/ELQJfwY9505OE6J0HBV9G6+AsxMtNL3dIF4sIFgjJvin7iG1Sj
- 8nlNpo9Aph91u0SQcwjgm6igONKln6dRInXH938+oxAI0j32xqkda43QLElJzUoKcT2P
- HiS0f1U3TnyYYOZPRHlAjOukE5J7wXhUYorauqhscq3B4oyTCoMK74HDLR/O7vbFfVRa
- EdjJ12nmnEZ+gRGAMNN5RyF+W+OHRS08KseFUanDGaGq4desZwcpylQlY2GMQpXrIbBp
- 4xmg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCUDcZy2WG9CHcc+LjpN6TSoVo5hjBRwdooM8eOiAE9GHsMaKNRiHnZbm+SDUyF5prtluDKJZnAa1w==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywu6A7WejV7MLuNWjt0uPZqX687MHBuyFu20sK7Jb2RuRs8nMAS
- 1dMBxec8MO7KFGaCvST/V9Wpeb1vU3jhT9l+dbh+uqsd6Ype3XlyXliK
-X-Gm-Gg: ATEYQzw118stq/ghNew+t1LT9Aso08vV0Bq006CvEI0UpqDiIjPz91EA8eDS+7p9dle
- jUGGgkCiDxpN6kZULLU2Mef5Q29lcpZqSlzd+dqN9g7Hw1zOdh7gmc3M6ihKYDw3Y+5QWPVeFT1
- vxYXWUsMbuShjTGg7QtW44ADQ0ek6y3xyRRHhLVFyyysZaMu1b6XTWrXQabYq8Vm9RAgGJfGq/y
- 2p3EVmE6n9MiQzj0pd1HRmVWBnIhnO/PEm3XHxNX56EemYYxcw7gJrXjMwFfgxrvlKborjO68+R
- 2xxcUbTONmwfaQI2qQ9OsFwzQ64ZvY1XfCXyHA7VVS9FTD0M7FNOnVn6xDuin6qVtAXt2jOa7y1
- DO7NBCUPa+7oXEs7+JzbzB2kn+GrWAF7+tn+OSLLYeHYI9yWp27sfBc+yLCXW4O980us/0nnulG
- OHiu0QEiUbBM68k4Ia4zjXGDgBofxInMREgsSQ9UbtQ0IQ2O8ayQ2uXtYWZ2xXdR354AoYq2+02
- PEkd7wK9B4MUhRVH43tZyH8SfX+JymX8Dlqz8N6YJuX+w6ZkkaiWq7QaqqiVLG8rquHHcb2
-X-Received: by 2002:a05:693c:2c06:b0:2be:833c:14a6 with SMTP id
- 5a478bee46e88-2c0e5044091mr1153364eec.15.1773807373685; 
- Tue, 17 Mar 2026 21:16:13 -0700 (PDT)
-Received: from 2045L.localdomain (130.sub-75-229-251.myvzw.com.
- [75.229.251.130]) by smtp.gmail.com with ESMTPSA id
- 5a478bee46e88-2c0e560fb5fsm2790870eec.31.2026.03.17.21.16.07
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 17 Mar 2026 21:16:13 -0700 (PDT)
-From: Gui-Dong Han <hanguidong02@gmail.com>
-To: hanguidong02@gmail.com
-Cc: akaieurus@gmail.com, dakr@kernel.org, dri-devel@lists.freedesktop.org,
- driver-core@lists.linux.dev, gregkh@linuxfoundation.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org, me@ziyao.cc,
- pierre-louis.bossart@linux.dev, rafael@kernel.org, rander.wang@intel.com,
- vkoul@kernel.org, yangshiguang@xiaomi.com, yung-chuan.liao@linux.intel.com
-Subject: Re: [PATCH 3/4] soundwire: debugfs: initialize firmware_file to empty
- string
-Date: Wed, 18 Mar 2026 12:14:28 +0800
-Message-ID: <20260318041446.9066-1-hanguidong02@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260317191029.43515-1-hanguidong02@gmail.com>
-References: <20260317191029.43515-1-hanguidong02@gmail.com>
-MIME-Version: 1.0
+Received: from mx0b-0064b401.pphosted.com (mx0b-0064b401.pphosted.com
+ [205.220.178.238])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FE5110E43A
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 21:04:00 +0000 (UTC)
+Received: from pps.filterd (m0250812.ppops.net [127.0.0.1])
+ by mx0a-0064b401.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 62I5f7Fw1345601; Wed, 18 Mar 2026 21:03:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=windriver.com;
+ h=cc:content-transfer-encoding:content-type:date:from
+ :message-id:mime-version:subject:to; s=PPS06212021; bh=3xuypTeKj
+ dQl6ppH9meKDdHaaBTYQt8yGVrDsUobtdI=; b=jzBK1RpKJZHrRh+four0noRy7
+ H4SJ5u5aIhvEjXxVMDMBNUtgaAs3MlFGihTVYVpcV46dF32/eQbkpvYPwPWJQ7J2
+ g+PqIHgTkGlHhITAhFFIJMBzBKC1wfJVyPr7jfifGCFwo3Y6ovfQxxyypkXGVrpu
+ 9DO8oP6gLE09y5x/Km0I6AqUR3OZdHhNSUIVVRYSWyGWrP5iWvDL1ahJ35WNy8gH
+ cYpWfg+xrvmEbaGxGfLBkhmjmbE1yr4+VWEiU4rUQMJKrz5sBQ0/4S0LL/e9C/FT
+ HH+7zo5w4VHANFNRlCuMBRiZhmvF/RqkriSDCjAWH+A3LDpa9ySIcPDwhA46Q==
+Received: from ph7pr06cu001.outbound.protection.outlook.com
+ (mail-westus3azon11010001.outbound.protection.outlook.com [52.101.201.1])
+ by mx0a-0064b401.pphosted.com (PPS) with ESMTPS id 4cxm66bcjj-1
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
+ Wed, 18 Mar 2026 21:03:37 +0000 (GMT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GyLxDlfuP4xSlWK6E9gaXT+zUnNwYFAYbsJ7CpytJrxIoDcAn+WV7cbM4xzYWeUfmPRaYYyRBiYbu6iFmjgmhFzh4Msxr+X281TfcCBEiPOMaXlV2jzTMIq8zKtts13i25SDEVw9QUDe7nEcNdessI6jnqtuZFYuYd3D2t+3bscCawZ3k8ULLNC6HjsngODJGFdjnY9OBvUh27TEOJAjtC4dMnPe5zu+pjY8n4oh5pOCw2OxGSOVqoDKxF+p/As9htjSuBCX7rK2KcMBItVJuZutMm4bouatsC0pF2d8IuBPNUYwSGsUZW1r96KZmPpIvgQNT6pLB+NH2OrQr18GHA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3xuypTeKjdQl6ppH9meKDdHaaBTYQt8yGVrDsUobtdI=;
+ b=Q8ahrmVA6zUvX6enjs74XlJrlXSP6CrJoIATlw+zLcY1vVGFUprJirszBkj1gXZPJTeO7XywmuUWbdWZE0TVVdfrpGanJE99axhyawvo7sxi2gRVe8qFmof1sZQOfNrZC5B7Flm299vv8BpGJCxzwjsvkItpXtybEY7c2TbP+eRRBsKm7iOVLv0Q9i70NK3MZk/RZJYgbk7aFmm1/OPUj6BJmlBOu1WD18WRyFjAM7nlxsrsgg1yUCyQ04ycy9mMV6VMLH6uZH8EhO+NK4ppQOTk+rN+WFHBdCyJ7YrjGcHfVENvMBxwl3yT+ubo5N5CdUtL/DuPFuOge0VwYJBG0Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+Received: from SJ2PR11MB7546.namprd11.prod.outlook.com (2603:10b6:a03:4cc::8)
+ by IA3PR11MB8893.namprd11.prod.outlook.com (2603:10b6:208:577::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.16; Wed, 18 Mar
+ 2026 21:03:32 +0000
+Received: from SJ2PR11MB7546.namprd11.prod.outlook.com
+ ([fe80::ca9b:dcf:8881:bced]) by SJ2PR11MB7546.namprd11.prod.outlook.com
+ ([fe80::ca9b:dcf:8881:bced%5]) with mapi id 15.20.9723.018; Wed, 18 Mar 2026
+ 21:03:32 +0000
+From: "Ionut Nechita (Wind River)" <ionut.nechita@windriver.com>
+To: linux-pci@vger.kernel.org, bhelgaas@google.com
+Cc: helgaas@kernel.org, sebott@linux.ibm.com, schnelle@linux.ibm.com,
+ bblock@linux.ibm.com, lkml@mageta.org, alifm@linux.ibm.com,
+ julianr@linux.ibm.com, dtatulea@nvidia.com, mani@kernel.org,
+ lukas@wunner.de, kbusch@kernel.org, linux@roeck-us.net,
+ ionut_n2001@yahoo.com, sunlightlinux@gmail.com,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+ intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
+ michal.wajdeczko@intel.com, piotr.piorkowski@intel.com,
+ Ionut Nechita <ionut.nechita@windriver.com>
+Subject: [PATCH v10 0/2] PCI/IOV: Fix SR-IOV locking races and AB-BA deadlock
+Date: Wed, 18 Mar 2026 23:03:14 +0200
+Message-ID: <20260318210316.61975-1-ionut.nechita@windriver.com>
+X-Mailer: git-send-email 2.53.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: VI1PR07CA0250.eurprd07.prod.outlook.com
+ (2603:10a6:803:b4::17) To SJ2PR11MB7546.namprd11.prod.outlook.com
+ (2603:10b6:a03:4cc::8)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ2PR11MB7546:EE_|IA3PR11MB8893:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2cd7d919-5ee0-436c-e6b4-08de8531cf97
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|7416014|52116014|376014|366016|10070799003|1800799024|56012099003|18002099003;
+X-Microsoft-Antispam-Message-Info: zZOKi2FE5gOw0C6WdkoJ1kOyCEwfYmjkDk6MO/zGjg0+cDzVuMA8Coiu+KP4GOl76f2ytgbNte5RDS6dU+4fqNzbE00I81z8HywOnn0IIZF00n2qEK+L9WplYU+E73AGDlnc2wx/Dtf82Kz536etkSD9+nUU+LlRMq5sZXrsT/8WnOBmVON9xRq2BWGIIOTlnyq8aKLZ6vT8iBGh5xkmQYwJkpKNawuvtdozCauqYOaDykSkeJA7ixM5v6rARP7C+/6x9IhtwQCnsR30nazdJglUYnTZojogdcWKn2kjIq3fLEV3b4YzFJXrqG6PcdXteyAovftP0M3kLSth/NkEGf2IUsYG7aOgHht0oQml8nOB5AfScdqMkQ/cBUeDx6e6p0r5yrdptnXW85iOpx8iqSctRIPa1WkiOfcH1cljjEyiGuSTMvt+gq0Hkt5dQxHprZQNeuFgmsSGuK33zDndIR1Og9HUe0eYHRS64NOiq738KRoFDNVwTUPxB4P4cAtRBDwTmSsn+v1e0s9PaFT8HCZUrzHGtlQyLAdk2kQI6AkQdlfiOPV/ohtAbGubZ/xlSggzvftG9tNva6rMtHsogGld/kTZDfOzsFg7DeJG1sird9IgMcGWOKlSvyyIhNUzhxxLCVgoOOjc+zmSocPcagHXKuruFFnwxVYlHy/+2sWlnymmEMmLd+3VK4IEEdfKjsahs8PoUkptCTHs7YrpeEcoNZb8o8plT8Xk0vJ4uFAL2doDgzKUjNfnrQ1xa0cM
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ2PR11MB7546.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(52116014)(376014)(366016)(10070799003)(1800799024)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TllpVmRKR3o1Z0JKMWZvUzBlcnlVaDJacG5nMEMyZlFBdHc2aHdJS25uSXlU?=
+ =?utf-8?B?UW5DcG1yRDFXd0REdTNKelMwb1pqR0JnSDIwWktXQjBlU2p3WlF1SjNkNnNI?=
+ =?utf-8?B?YUZXVUFGNC9zMWxuZHdJWXpKcE5xTlAyUTVOckp4c3FpMUNFVWdiVmhvRmNF?=
+ =?utf-8?B?MWNTTFB0Z2Z1WlNvY09yTDFBVHhiSVBtZEtWWmwydXlpNWZ0NkM1L3ZpL1dD?=
+ =?utf-8?B?QTRIbnlETnFLSCtsVlRQNW1taUc0a09vc3hENjJRSWNPWXRPNXdOcXI4V0pk?=
+ =?utf-8?B?eW85aWhWeTdSMjlyTWdHNHVJa2hNTnZhYlJNdWpWZHJmVkxRaXlGUmJYMmE3?=
+ =?utf-8?B?aURXc21jeGwvTGlSRlRIbllDNHJ2UWFkU0wwdXMrdzJhT0RwcXFlTUN2ZXls?=
+ =?utf-8?B?VnM3TGhpU0p4TGZnWmRaOWNrN0RkYW5uTzZtVWtzMklWNEpPRE5vNVFza3R2?=
+ =?utf-8?B?Vys0SmZmeUxIdjNBaUdiN1B6RGpybzNUUTVnd3NPb0laa2xlbTk1MzZ6YUdz?=
+ =?utf-8?B?UEYvUHA0YlptZ00rRFlOeWxPaVk4TUo0TkRxdXo5K05iT052MUlDNzJTOW8z?=
+ =?utf-8?B?V3VDcFdNWk4vKzBuSThjTnVVM0lscmVvRzNVOTc5VG1TMkJNUG5aQWVPdzE0?=
+ =?utf-8?B?eWpQc2wrSEVhK0NxakJCbzB6Y0lqSElsL1ZSL0xKZGE0a3NyVVVqc0JObnVj?=
+ =?utf-8?B?Z1BSMHNsdWFXSGtyeng3OHRnRHg3cVZ2akh4QTZaM0gzNHA5K1pBR1pIR1Ft?=
+ =?utf-8?B?dVgwVEhoQjlZUHQ1RXlWOVlpWU9WMWJyV2VCNW12eUpnSVJPREFvYU9RU0Fy?=
+ =?utf-8?B?U2JpQnlzTzFTWXk1MTBDa2FGMHN1OVJmaXN4ekRHREYyVHZxK0s2SG40QnJH?=
+ =?utf-8?B?S0dWVzNqc3hIdm9acHlDQkNPWnZqcE1Va2pWbHNpZHYrcndCdFhMOWU3TEdh?=
+ =?utf-8?B?dUVmMnhnMTM1SDY4V2lpTklCcFVpc1BhYnV4QThsT2FQb2pDaTBnNnFmY1Rz?=
+ =?utf-8?B?Sk5yaHNqSmxwSndOekt4eTc1SzNtR1hKVGVoeWtrcDcwRmhqWnJiaWRocHdn?=
+ =?utf-8?B?dFU3SGplOTRyV2Z3QzB6b2NPTGx3bUVQZjEvVmZEc2hSWUlDY3A2STVtdUh4?=
+ =?utf-8?B?Q2ZwMHl0V1VmRFhTMTAzOUVJQU1TS041emdpTkJBbkZJcXkxbW9jUHlnYU1L?=
+ =?utf-8?B?cFNGN1VlN2hudGVPYUZUNnVTNU1XTXpZNEtsT2tVOEtrV0x4d2xGSlNrZkda?=
+ =?utf-8?B?NGRPOWtWem5HNlNJcDlWSWVTQy9rNkxzeDFGVi8rbXYzZVBHbGpoYTV2RFJu?=
+ =?utf-8?B?WEFGZWZnZ1dEL1d4dGZXSUI4ZXhwbW03QjBWV0lEY1ZoL3o0VVBtK2RTaVFK?=
+ =?utf-8?B?RU9lZkhJSkJaUjdnb3FjcDNlZlg4RUZlem5NbXF1TEhqVmx5VGM3ZWJlWW42?=
+ =?utf-8?B?d2JnSkpDOTd0V1ovOTFXMVFpV0VlTGFvUVU1VzhvOXpqdUlBdDdNYWcwaUJR?=
+ =?utf-8?B?RTN4ZVl2TVNwN28rSGlIS3diT1hLdjVQZ1B1Y3hKYmcrSXF5N1B2R2I2SzhI?=
+ =?utf-8?B?bUVWMURNY1RiTVVIeTRKdnNYL1ZJK2N4VVAzcGJPUll3bW9pY3Fqb21nbzN3?=
+ =?utf-8?B?R2pBSEszWFJDN0lUbGNMbWR5Qm5iUDluWkdXNC9DRmZENW42Mzc3QmxZbjRR?=
+ =?utf-8?B?SG5pbnpGZ2pMRGZGYXA5Q1FsMFpqdDhLTGFtV21CalFBSjZIWEVYTWlFUjFs?=
+ =?utf-8?B?TEtZUERqUW02ck1OYWRFK1FqMzBjWHp6aDl3aHY3dWFFdGJqWHpNaGRQRmNR?=
+ =?utf-8?B?ZjRlRlBQUkRWRVU0cGVNL3hOL0x4NWlvN2l6eFlnVkRrKzA3aXlGbVZFTDBU?=
+ =?utf-8?B?aGxLOWZ1dHZkSDhvY3FQNDg0VVhKVzdRangwRWxIMCtwMlB1cVl5S0dzUlJO?=
+ =?utf-8?B?Vk0yUTRodW1MR3pvWFg2YTRPYjRhMHdmUUJrUlNERmdtT2Fab2dPVlNpbGUz?=
+ =?utf-8?B?WWEvWnRXQ2hzUEJYTm9yNlBLaU9rQ2VDV2l3TzFEcXBlYWFtekZSeFUzbXBv?=
+ =?utf-8?B?RDAzbVhrQjZNeUMxMFZ1L3F1eEJHcEJ3ZWNQNDhuR29CS3BUOG9OSTNhZDBH?=
+ =?utf-8?B?bVpCME9qN1dFRmxLOEduajFkb0VjZzdlKytnTlZ2cFFxaHhjVEduQXdjNE5k?=
+ =?utf-8?B?aDIyMkE4ZGhHcEY1SVRvNzZwS3dzcDJpaXJ3TEdoekNLVHo4N3llZkREaWtM?=
+ =?utf-8?B?ZGlBcjNCU2V3QXhwQW9sKyt1N0IrNWEraVJiTy9EMjVpV0c1dzUvTkpEbnZD?=
+ =?utf-8?B?cnRyV3NyU2l5b2hrbzg0WDV6R1VUYlo4QXRKbDMyakhoN1I1bmhKNTZyNlBk?=
+ =?utf-8?Q?6MU4xQwzkFPOoR2/sjlUCSr7Mz1Vc/SDKOj62cJdX4dCy?=
+X-MS-Exchange-AntiSpam-MessageData-1: cw7ZftTglABxzYU3yEWQNUZxD7sh/Y6mU0M=
+X-Exchange-RoutingPolicyChecked: EGWoElOHi154WEynN+YQtm8SK6G4buoubNqlMkP4IoI42zjPQCnrV8a9eFTj1HR1D7EzN24Y6gq/4JsyuL+1ryql8wLP7kpNevW6AcSFMN5n9W16E6VOK0pZGDhJrLfPpgLBfNpOWTGClQ9jjaOmz9yQcCPK3nOMG9XX8TiAQqlsdwQFf/pkzgIG5vtELj6i1G9klXH76dtok8PaeMZ/oFcJ97XJhtbrgOhx0IPpA05jB07nDTycwxemCin1h7oKWBC3tB+gW1x9MEpXMXfMfBOCCiHlq2KzZIrClAgeuAUGED1L2aC0Obf1/oSJeTLsqiCE6XeDu8id0LhXLwrhfQ==
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2cd7d919-5ee0-436c-e6b4-08de8531cf97
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR11MB7546.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 21:03:32.0179 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iRu1cIXjWZpqJfXlz1ddIkDn882Ugx1C2Xak+cD0xkjIH9ikY3NRrBdnzNbTHJzQDa72t+Fe0YB+UhC5zKwhMDx2kLqPvNoZwZP2kK6MiHY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB8893
+X-Proofpoint-ORIG-GUID: cJ8XXfVrJiy1fBl5JocCOAB-gQEQV8Tp
+X-Proofpoint-GUID: cJ8XXfVrJiy1fBl5JocCOAB-gQEQV8Tp
+X-Authority-Analysis: v=2.4 cv=fLk0HJae c=1 sm=1 tr=0 ts=69bb1329 cx=c_pps
+ a=k7JwuLoshMfzPsPeu96bmQ==:117 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19
+ a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19 a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19
+ a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10
+ a=VkNPw1HP01LnGYTKEx00:22 a=bi6dqmuHe4P4UrxVR6um:22 a=fTW__CHxibyLmBMfj2wP:22
+ a=VwQbUJbxAAAA:8 a=VnNF1IyMAAAA:8 a=t7CeM3EgAAAA:8 a=TIvJlQMQf6_p_EiZzbUA:9
+ a=QEXdDO2ut3YA:10 a=FdTzh2GWekK77mhwV6Dw:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzE4MDE4MSBTYWx0ZWRfXzi8VkTtedv60
+ 5pVy6lk/r56bWixGubqL3YOQ+M1OGcPfb6PSsss48rJi9lO6sck3yi43LAT9TSdITLW8awF+R6p
+ PqjMjt8WLR3p5l94luHsqRPhQvBujVidAAJhIQvNJJ5eK7MBemolRFc5VNwPtppPHnJobbFMFlw
+ Q1GXelvqGTv0mwuXyzQPI1MLwagTxS/ueem/UCGvq7yOD5725CrwYwIc8hdGbhmpDQMQjrE+2BA
+ FEPt5nE6UBRV4I/ZBYvtH4SZ9brFaqMCEgbeO1CPtUETJcTnHEKG4ULLaEwcADWKF1iwVdXtCOo
+ 4jy1diZDT5pRB1sBq6WvcGp3LYPwkbWixVW0cGDKLaRjShn+fWNEbiC8kQ3rGaRgZNdDHNWua5r
+ oLmVxJykc5ygn3mqYrZLTi0vmWIRxYSmX+TV9qfqBCIUl2RWBd04XfrEcm9QG5hGyVsIKTrZPUT
+ XcnRErVYhocuazBzY6A==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-18_01,2026-03-17_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1011 impostorscore=0 bulkscore=0 lowpriorityscore=0 phishscore=0
+ suspectscore=0 malwarescore=0 priorityscore=1501 adultscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603180181
 X-Mailman-Approved-At: Mon, 23 Mar 2026 16:04:08 +0000
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -96,117 +178,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Mar 18, 2026 at 3:11 AM Gui-Dong Han <hanguidong02@gmail.com> wrote:
->
-> Passing NULL to debugfs_create_str() causes a NULL pointer dereference
-> upon reading, and creating debugfs nodes with NULL string pointers is no
-> longer permitted. Change the initialization of firmware_file to an
-> allocated empty string. Existing driver code using this field handles
-> empty strings correctly.
->
-> Fixes: fe46d2a4301d ("soundwire: debugfs: add interface to read/write commands")
-> Reported-by: yangshiguang <yangshiguang@xiaomi.com>
-> Closes: https://lore.kernel.org/lkml/17647e4c.d461.19b46144a4e.Coremail.yangshiguang1011@163.com/
-> Signed-off-by: Gui-Dong Han <hanguidong02@gmail.com>
-> ---
->  drivers/soundwire/debugfs.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/soundwire/debugfs.c b/drivers/soundwire/debugfs.c
-> index ccc9670ef77c..d4abe8bfca76 100644
-> --- a/drivers/soundwire/debugfs.c
-> +++ b/drivers/soundwire/debugfs.c
-> @@ -358,8 +358,9 @@ void sdw_slave_debugfs_init(struct sdw_slave *slave)
->         debugfs_create_file("go", 0200, d, slave, &cmd_go_fops);
->
->         debugfs_create_file("read_buffer", 0400, d, slave, &read_buffer_fops);
-> -       firmware_file = NULL;
-> -       debugfs_create_str("firmware_file", 0200, d, &firmware_file);
-> +       firmware_file = devm_kstrdup(&slave->dev, "", GFP_KERNEL);
-> +       if (firmware_file)
-> +               debugfs_create_str("firmware_file", 0200, d, &firmware_file);
+From: Ionut Nechita <ionut.nechita@windriver.com>
 
-I initially patterned this fix after commit 8cc27f5c6dd1 [1] by using
-devm_kstrdup(). However, I realized that approach is flawed:
-debugfs_write_file_str() calls a raw kfree(), which causes a mismatch.
-I have submitted a separate patch [2] to fix that existing commit.
+Hi Bjorn,
 
-Additionally, firmware_file is a global pointer in this driver. The
-original code blindly overwrote it with NULL every time a new slave was
-added.
+This is v10 of the fix for the SR-IOV race between driver .remove()
+and concurrent hotplug events.  v10 adds a second patch to fix the
+AB-BA deadlock between device_lock and pci_rescan_remove_lock that
+was reported by Guenter Roeck (via Google's AI review agent) and
+confirmed by Benjamin Block.
 
-To fix both issues properly, I moved the allocation to the subsystem
-init and exit paths so it is only allocated once.
+The AB-BA deadlock:
 
-The updated v2 patch is included below for review. I will wait for
-further comments on the rest of the series and include this updated
-patch if a full v2 series is required.
+  CPU0 (remove_store)               CPU1 (unbind_store)
+  --------------------              --------------------
+  pci_lock_rescan_remove()
+                                    device_lock()
+                                    driver .remove()
+                                      sriov_del_vfs()
+                                        pci_lock_rescan_remove()  <-- WAITS
+  pci_stop_bus_device()
+    device_release_driver()
+      device_lock()                                               <-- WAITS
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=8cc27f5c6dd1
-[2] https://lore.kernel.org/linux-pm/20260318024815.7655-1-hanguidong02@gmail.com/
+Patch 2/2 fixes this by calling device_release_driver() in
+remove_store() before pci_stop_and_remove_bus_device_locked(), so
+that the driver is already unbound when pci_rescan_remove_lock is
+acquired. Both paths then take locks in the same order: device_lock
+first, then pci_rescan_remove_lock.
 
-From bbaff3bc33746a965a2387ffe8302d05e700a1c3 Mon Sep 17 00:00:00 2001
-From: Gui-Dong Han <hanguidong02@gmail.com>
-Date: Wed, 18 Mar 2026 03:10:29 +0800
-Subject: [PATCH v2 3/4] soundwire: debugfs: initialize firmware_file to empty string
+Note: the concurrent unbind_store + hotplug-event case (where the
+hotplug handler takes pci_rescan_remove_lock before device_lock)
+remains a known limitation.  This is a pre-existing issue that
+Benjamin Block is addressing separately in:
+  https://lore.kernel.org/linux-pci/354b9e4a54ced67f3c89df198041df19434fe4c8.1773235561.git.bblock@linux.ibm.com/
 
-Passing NULL to debugfs_create_str() causes a NULL pointer dereference,
-and creating debugfs nodes with NULL string pointers is no longer
-permitted.
+Changes since v9 (Mar 10):
+  - NEW patch 2/2: fix AB-BA deadlock in remove_store() by calling
+    device_release_driver() before pci_stop_and_remove_bus_device_locked(),
+    as suggested by Benjamin Block (addresses Guenter Roeck's report)
+  - Patch 1/2 unchanged from v9
 
-Additionally, firmware_file is a global pointer. Previously, adding every
-new slave blindly overwrote it with NULL.
+Changes since v8 (Mar 9):
+  - Added Reviewed-by from Niklas Schnelle (IBM) and Tested-by (s390)
+  - Added Fixes tags for the three related commits
+  - Removed rescan/remove locking from sriov_numvfs_store() since
+    locking is now handled in sriov_add_vfs() and sriov_del_vfs()
+  - Rebased on linux-next (20260309)
 
-Fix these issues by initializing firmware_file to an allocated empty
-string once in the subsystem init path (sdw_debugfs_init), and freeing
-it in the exit path. Existing driver code handles empty strings
-correctly.
+This race has been independently observed by multiple organizations:
+  - IBM (s390 platform-generated hot-unplug events racing with
+    sriov_del_vfs during PF driver unload)
+  - NVIDIA (tested by Dragos Tatulea in earlier versions)
+  - Intel (xe driver hitting lockdep warnings and deadlocks when
+    calling pci_disable_sriov from .remove)
+  - Wind River (original reporter and patch author)
 
-Fixes: fe46d2a4301d ("soundwire: debugfs: add interface to read/write commands")
-Reported-by: yangshiguang <yangshiguang@xiaomi.com>
-Closes: https://lore.kernel.org/lkml/17647e4c.d461.19b46144a4e.Coremail.yangshiguang1011@163.com/
-Signed-off-by: Gui-Dong Han <hanguidong02@gmail.com>
----
-v2:
-* Replace devm_kstrdup() with kstrdup() to fix allocation/free mismatch
-with debugfs.
-* Move initialization to subsystem init/exit paths to avoid overwriting
-the global pointer on every slave probe.
----
- drivers/soundwire/debugfs.c | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+Test environment:
+  - Tested on s390 by Benjamin Block and Niklas Schnelle (IBM)
+  - Tested on x86_64 with Intel and NVIDIA SR-IOV devices (earlier
+    versions)
 
-diff --git a/drivers/soundwire/debugfs.c b/drivers/soundwire/debugfs.c
-index ccc9670ef77c..2905ec19b838 100644
---- a/drivers/soundwire/debugfs.c
-+++ b/drivers/soundwire/debugfs.c
-@@ -358,8 +358,8 @@ void sdw_slave_debugfs_init(struct sdw_slave *slave)
- 	debugfs_create_file("go", 0200, d, slave, &cmd_go_fops);
- 
- 	debugfs_create_file("read_buffer", 0400, d, slave, &read_buffer_fops);
--	firmware_file = NULL;
--	debugfs_create_str("firmware_file", 0200, d, &firmware_file);
-+	if (firmware_file)
-+		debugfs_create_str("firmware_file", 0200, d, &firmware_file);
- 
- 	slave->debugfs = d;
- }
-@@ -371,10 +371,15 @@ void sdw_slave_debugfs_exit(struct sdw_slave *slave)
- 
- void sdw_debugfs_init(void)
- {
-+	if (!firmware_file)
-+		firmware_file = kstrdup("", GFP_KERNEL);
-+
- 	sdw_debugfs_root = debugfs_create_dir("soundwire", NULL);
- }
- 
- void sdw_debugfs_exit(void)
- {
- 	debugfs_remove_recursive(sdw_debugfs_root);
-+	kfree(firmware_file);
-+	firmware_file = NULL;
- }
--- 
+Based on linux-next (next-20260318).
+
+Link: https://lore.kernel.org/linux-pci/20260214193235.262219-3-ionut.nechita@windriver.com/ [v1]
+Link: https://lore.kernel.org/linux-pci/20260219212648.82606-1-ionut.nechita@windriver.com/ [v2]
+Link: https://lore.kernel.org/lkml/20260225202434.18737-1-ionut.nechita@windriver.com/ [v3]
+Link: https://lore.kernel.org/linux-pci/20260228120138.51197-2-ionut.nechita@windriver.com/ [v4]
+Link: https://lore.kernel.org/linux-pci/20260303080903.28693-1-ionut.nechita@windriver.com/ [v5]
+Link: https://lore.kernel.org/linux-pci/20260306082108.17322-1-ionut.nechita@windriver.com/ [v6]
+Link: https://lore.kernel.org/linux-pci/20260308135352.80346-1-ionut.nechita@windriver.com/ [v7]
+Link: https://lore.kernel.org/linux-pci/20260309194920.16459-1-ionut.nechita@windriver.com/ [v8]
+Link: https://lore.kernel.org/linux-pci/20260310074303.17480-1-ionut.nechita@windriver.com/ [v9]
+
+Ionut Nechita (2):
+  PCI/IOV: Make pci_lock_rescan_remove() reentrant and protect
+    sriov_add_vfs/sriov_del_vfs
+  PCI: Fix AB-BA deadlock between device_lock and
+    pci_rescan_remove_lock in remove_store
+
+ drivers/pci/iov.c       |  9 +++++----
+ drivers/pci/pci-sysfs.c | 20 +++++++++++++++++++-
+ drivers/pci/probe.c     | 11 +++++++++--
+ 3 files changed, 33 insertions(+), 7 deletions(-)
+
+--
 2.43.0
-
