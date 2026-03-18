@@ -4,157 +4,154 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E842D1077603
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 18:31:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4EFB1077604
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 18:38:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB3E710E44B;
-	Wed, 18 Mar 2026 18:31:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8440910E70A;
+	Wed, 18 Mar 2026 18:38:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="aYvbAkJj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bNwP+gcY";
 	dkim-atps=neutral
-Received: from SJ2PR03CU001.outbound.protection.outlook.com
- (mail-westusazon11012019.outbound.protection.outlook.com [52.101.43.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 25F3110E44B;
- Wed, 18 Mar 2026 18:31:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D788B10E70A
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 18:38:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773859119; x=1805395119;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=rrf2h9rMcn0BV5m62nhrs8+eTZFAkI1rMfQ6ymzNkm4=;
+ b=bNwP+gcYH0SePuert4lKC8VcYLDpBAbdq8Y4EW8tvGkJIlCfTdYgCU+m
+ Mklx+fZ0nKLJL+7ORF25utZZtoX3DRhEc/MuaUgO+PbFEzDYInSXJk734
+ jqPIANJ42zg3HIhwgxGEpcYNSpoLte+3nKJ1moo881018RpoersikhXBR
+ qO9tm53wDjynCxLpvxJdOWv8+hnG7IeHCnDrrcDkqnT2kiVPBRtqIdFVM
+ R5D5FTgT0VonnvvcMHL+UKiHoGWyLk3exF2bZ0DcBr9Ojx7ZNv8TSlLMO
+ dt4sNZykKf74RyaQ0WLj8v7LouS0lp4G0bcZDL8BfVvOdTMzfb+tBbrYH g==;
+X-CSE-ConnectionGUID: WhLVKTnmQUusRXWMBpnxiA==
+X-CSE-MsgGUID: zd88u3wiS7qykMIVZZO39Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="86402726"
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="86402726"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2026 11:38:37 -0700
+X-CSE-ConnectionGUID: 0prnckkJSwqlWEw8M6/JvQ==
+X-CSE-MsgGUID: EKbjKMkoRj+e8WcWLGNI3A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="247144065"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2026 11:38:35 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 18 Mar 2026 11:38:33 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Wed, 18 Mar 2026 11:38:33 -0700
+Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.29) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 18 Mar 2026 11:38:33 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=BL9l/dQLANhGwRbJ1to0Dxraa5VK1IQupMWNU/3ux3L03zSVpIXdaIYNyoCbWHByecDYSqKlfGf6MneHKxA36PSoaxukc8Eu+SvM6Y6UwK5IdU4r2VJAww1SZrcXwFqxPXv4xYRaMG9Ud7MHstHj0h9HvTw3y8nZ9Irr+j71grNMB8rGLjuXKtC62LnPzY6Anm+I+HVZ5LppaU1XwBISRIbe2rzTuJA6cr/l0Sbl+MqSw5agILsiIEQBbB2NtHdne9UytsUlWU8UYH/JqdvjDokyI2lqkTEqDFDdtdLg7R7yU5EZfuM2qrd+eyo+jOh43o2e/dlsH6hVVweQu5E/xw==
+ b=V9D2tW6IrwIDI9fMonoVvD4Tij4XonJ61mPHdw9CPM6BTPnkJwre5tsDrjfwizf6kC0KROlCPtfUbgyJo9a18DCn4Jc5bwOhO7VfGFVJkhEECuaENFlOBCGPFlmylMNmdSZ1Brqlek7bKBlxHF92drp0qDaJWbIkSnqYudmgQSubagFcjYDFY6tplBw4LwbdQXVuA2wbMyR5F1EWUOc4p0Kx+prZmQO+XDKAjLlfJoySo0zTwd0+YBckTHHeP8B2yk2zYpt75/wAeaPUaOHxWgwSoMPzpRGOymCf3o/UxwPauB9ZFYmHXjwQ7eqdDm3RGBv/3VPD5ycGMCir3c+oSQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=D4AkG5cRtnPgWmqUJTVT65dV47m4s54uQtF2MkJlhN4=;
- b=n4jwwL+IEZ68nvq2+K8yb50Jt9DmEO+kskR4QS025hrIiRu4OomypbHyWPg298IGqD4R9dLxdpFa2HWEW2cSUKNv9JmR5LVk3/42ak2j7KGsFkaaI6L3gfKoBJZkERGdIXGYFypADkDIUlQ8dF7Rcqdqo2LTDd/JAr3JYVG5BM1a8vLZa+RLcHKtDNv9bzCcoLUMhYjwb9MSWu6NKn4nyN2XaDFwm8Jrg/EjzLQRgWUT7pvduoLpSg7LRRtkgjtGXcrCPDrivR4e3QxwZLe8NVz31CUuslvcLq46FPpJyka8jL1iMUd/2oo5mUtOSt6gsAAmeAL6EAm082DEF/3vug==
+ bh=jjbmAycvQDpwHu8AFDlA2eE+oVN55n0AFoHDSv/k3Nk=;
+ b=lDqAMX7Xt6/Exg2IfXYsKCQLxWavIgWvwl4S2HRl8/MTBTf0qS69YamaCQg+hX9UGfYMCn3L9o+gTQ8Qi3FpwX/GC1zSdISKclrWpYD1hyZWRZuFBt5V9tahBZ5GyhHquO4jDTLT/y5FwL4MmJNdJ1I80G/tksgksJ539HenO8DrllfO150nNbAcmK2wqtJRZXK1VPZwmVewU34E/X4FQMFHaAQ4/mYd3wgRYL5tIQLQvoIvz9EHukLMPH7EhQxkie3jYb+Uw+D0iA+kB/YQZa6UAbyMTmB76PWdiNuk2L5gHqKUU/eqpG+28oMLdy8/QLlyRQZmRvKsCl/dPlmkew==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D4AkG5cRtnPgWmqUJTVT65dV47m4s54uQtF2MkJlhN4=;
- b=aYvbAkJjGaG1ZrlLmrzSr5qJI7o7OX3trbQSziX+kOs8s0PNw8PmPNuAdMTpqiF3P021HAAfOtjK+Og8LyNRJPqUE6W/3c9soTs2plIgK14GSj5wxkGGYZzttNFGCc7DmD8H1KKnvH74E671lTu9bD8sXk1f3nxNtNh1cVu37PsnQ6XcUgw6ceE8OzpI1LWXRp4C6qXU6wR3z/FsaRenmaI1/IydJTWn3ftML2Qpu9TpZgdPEbAAhSY8aMM7Jnw9zDeDkI5YF6CXL61cGwLbj+6vscaI2/u2o9P1TpmZPTM25rajby9CcymuPUDKmoaIpovmRR08Oe+4lc5GbBnvZQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- IA0PR12MB8373.namprd12.prod.outlook.com (2603:10b6:208:40d::11) with
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CYYPR11MB8360.namprd11.prod.outlook.com (2603:10b6:930:c3::9)
+ by MW4PR11MB6959.namprd11.prod.outlook.com (2603:10b6:303:228::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.19; Wed, 18 Mar
- 2026 18:31:40 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9723.016; Wed, 18 Mar 2026
- 18:31:39 +0000
-Message-ID: <71b6a115-98f1-4b09-9c04-a99349f51e49@nvidia.com>
-Date: Wed, 18 Mar 2026 14:31:35 -0400
-User-Agent: Mozilla Thunderbird
-From: Joel Fernandes <joelagnelf@nvidia.com>
-Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked list
- interface
-To: Alice Ryhl <aliceryhl@google.com>
-Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Trevor Gross <tmgross@umich.edu>, Alex Gaynor <alex.gaynor@gmail.com>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- David Airlie <airlied@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Simona Vetter <simona@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, Nikola Djukic
- <ndjukic@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
- <elle@weathered-steel.dev>, Jonathan Corbet <corbet@lwn.net>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, John Hubbard <jhubbard@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
- Andy Ritger <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
- Balbir Singh <balbirs@nvidia.com>, alexeyi@nvidia.com,
- Eliot Courtney <ecourtney@nvidia.com>, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-References: <20260317201710.934932-1-joelagnelf@nvidia.com>
- <20260317201710.934932-2-joelagnelf@nvidia.com> <abqdUBqchnVFo7Qk@google.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.16; Wed, 18 Mar
+ 2026 18:38:30 +0000
+Received: from CYYPR11MB8360.namprd11.prod.outlook.com
+ ([fe80::d11c:a6f0:d986:827a]) by CYYPR11MB8360.namprd11.prod.outlook.com
+ ([fe80::d11c:a6f0:d986:827a%6]) with mapi id 15.20.9723.014; Wed, 18 Mar 2026
+ 18:38:29 +0000
+From: "Cabral, Matias A" <matias.a.cabral@intel.com>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>, "Chegondi, Harish"
+ <harish.chegondi@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Degrood, Felix J" <felix.j.degrood@intel.com>, "Ranjan, Joshua Santhosh"
+ <joshua.santosh.ranjan@intel.com>
+Subject: RE: [PATCH v2 1/1] drm/xe/eustall: Return EBADFD from read if EU
+ stall registers get reset
+Thread-Topic: [PATCH v2 1/1] drm/xe/eustall: Return EBADFD from read if EU
+ stall registers get reset
+Thread-Index: AQHctW6eQLr22lHF6ke4TqP9KhlkObWz3h4AgACnAfCAABlsoA==
+Date: Wed, 18 Mar 2026 18:38:29 +0000
+Message-ID: <CYYPR11MB83609F08EA23C7B4902042E9B24EA@CYYPR11MB8360.namprd11.prod.outlook.com>
+References: <52d991cc7e8bec514bb582717a1c42033672d4a5.1773683739.git.harish.chegondi@intel.com>
+ <87se9xpqub.wl-ashutosh.dixit@intel.com>
+ <CYYPR11MB8360A705B57CE5CF6CFFCB6BB24EA@CYYPR11MB8360.namprd11.prod.outlook.com>
+In-Reply-To: <CYYPR11MB8360A705B57CE5CF6CFFCB6BB24EA@CYYPR11MB8360.namprd11.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
-In-Reply-To: <abqdUBqchnVFo7Qk@google.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BN9PR03CA0514.namprd03.prod.outlook.com
- (2603:10b6:408:131::9) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|IA0PR12MB8373:EE_
-X-MS-Office365-Filtering-Correlation-Id: f833a112-5658-4f8a-e273-08de851c97ee
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|7416014|376014|1800799024|56012099003|22082099003|18002099003|13003099007;
-X-Microsoft-Antispam-Message-Info: N/VKZLJw7OR5lDMwCThwp0vnoty1XmLMbm4zAM45gBYfHJQBp3jDg/aN0GlXb7OxXHn+DXDAHWWgtxYbpn1syJUMK/E/8p5IeSyv2laOZG0//PvT5GMMtqFvTG3nynBTVRTRkbEA71npzKiH9YBOkmWhptpmCfcCfCFlOf646sjv3bMkAZwRm2q2W55tXWUpWrHGVZYpZ6RdG36lxp2MyWBC1Vz9Ku7WGw9KJZ30/7+xum00Z2wX+GoZ6A/mqru8tr+vD3mzRrzin9Job1TeHFWTNdot8skfO+/7PQKGEp2prbkpbpscQj63c1sX2qAtE8Majyb2WzdRLMHHvO0JJ44t8dUpPAKp8IGS92m57iPTycGwlc4unD4KnoeSngboe+ouzYkn5TORItXpLMw2cUyySOGF3VjxHh1m5eBJHHM9iC1diB7//5ww6TyrnTgTBLdYVoMTvJ94BKCmxe8/OQ5A3Lmmgjw3rF9pfTSk3GtTIF4IeHUbeW1FvMhA6WCO95uvuUR5yQgsDWpQ1rzJXbqVOrpjoMq+AH0Newaf4XR77BERyQTeb5MtQwDw5XA0AfsqMQOLYGZ1MLUAlt6Jjql2pF/xT9/xaj/OUEj0ZssPyKoW6cqi3L185rugKO3/nBcoEHb3xu7N6ucwrvcXH3N3+ixnFIzDPdHbcXwR9DE/7QhxALAWJGPJf1FawumAC6dhwyDTNqKwT9FGe5OpgHvdwYgWo4EobwwGAyRfN3c6jk31N6BmHeWO1NvZbP9+
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(7416014)(376014)(1800799024)(56012099003)(22082099003)(18002099003)(13003099007);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CYYPR11MB8360:EE_|MW4PR11MB6959:EE_
+x-ms-office365-filtering-correlation-id: d0572095-36c1-4ea3-2c76-08de851d8c95
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|376014|1800799024|366016|38070700021|7053199007|18002099003|56012099003|22082099003;
+x-microsoft-antispam-message-info: E8ipxhQV9m/ccAFoATDc0zihJdnB/Es9i8crY0SstraIxXlPszb0XxCMmdPp71HmehYEp99zK4ohyW6SEJbFPNJsRiYGMaq3EdTmW7xegixRJao3taN/S88pvdkuapFflbZEkTn2BSXD41iZjH0y234vNA1vxCwvWuKPx3rsl3E//tKOl1xzbCoUUSPXa6YxD8DMZkh7Ge/3f3BGIesjvZ0+moGziNjOUxFePkuBh4O5zoQTQ5qeqlHmxDjLSWURpVQgV78KCeScSF6LvQpoykWyjTzQKy6H2JNeqxid7k9acaoXnBuXRw7boYrGiYzrOaYgQPvQghEUKsz2XyUsDQSrBqZg2KzspsGsB1ukvjHmvXwa7KMgZDTowHzZmyeKsjN7LWFPKCMK7AX+8Jfy+oe75vc3t9/JoMHaFY5yhdSkaC6oMKirFZ5/ADAZ7dqEsG6HmqyMQz91k/g5F1a8uGCE8jrIEqyxJkwglVZpKYpYG7QHRizKgp9At2IxeNda7sfpczXUSvwq1uYrQpcEh7UNoJDRWJSOJfRHiX7j2tyoot+bUAnjaPemMRWjy81GEf2gEUbK9nxT3+ZKHEug0L8RQgEWnuzI24TAwd9uflquL+1GKfWJfDuOgLcY31/bxTRzZaDHUFci2837k4dXTvKabjAY//e1azRWJweHirOb/tgmgq+EoMC2s3NBGb6mVrsjoFyeFpvvZcWLZTiauSkQPnOPXeUcJlZt1EhZvGtOpxzqFeNzQjhxOztFl+qE8KFIzUM5UJxAQW4RPTtJstFdsG7t/1xm/qpXFv2fSk0=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CYYPR11MB8360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(38070700021)(7053199007)(18002099003)(56012099003)(22082099003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZHpjZms4KzNXSVdYSjFZc3ZpNDU1eW52bmlVMlgwc2pKa2Q1QUJxWFFiZFFZ?=
- =?utf-8?B?MFcvR3NkWUVsdUU3VVRkOTNDU0NnZ0JYSEZDcmFLZ09jV0NYVk5YdXpoNkhF?=
- =?utf-8?B?QTRqb1VNYmh5R3VuTWJzWDdDVC9NeStHMVBqWjBnMTZwRnRNQXpBTk51M2Rp?=
- =?utf-8?B?OVI1UGdIQnJxbWsvaXZWNGlBL3B3bUx2b2FMc21HTk9YZ3VvMmJQN3dsMDJr?=
- =?utf-8?B?OXd1SEp5Z0RtWUlteUgrSWxBd2tTdllBaFM3VWlCSWlURlVQRFNaN2c2T203?=
- =?utf-8?B?OTRMTERiZ25jc3RVMFF3dDNTamN1UjNRVVdnc2RFWHhuRGdWZGhBWW1tRDYx?=
- =?utf-8?B?TEVmL0dWS0JmUmsvcUE5Y1c4MlJST1dWRlA4VFVSQWxTT0YxdFpvMXdENWVM?=
- =?utf-8?B?QlpRWG43L1p1WXVXWnJXYzRvZlQxSGhQblF5bys5dll3clZ4MExLYjBnb1o3?=
- =?utf-8?B?MGM5WHJNaC9NUTU4UmEvWUQ5M3dUVVREMldNM05MZDFsbzRVOUxoQ3ZnYkRm?=
- =?utf-8?B?Z1krRXJQcWNKVUo4QnpDYVJ5bWVzdEZSQ2Y2a0dSdURNbTFKRGNyY1ErS3NZ?=
- =?utf-8?B?Rmg5OFc4UnNzRTBieGVmU0NUVkd6SHN5cTFGNHRTdFdvZXE5MndhS0hPQkpT?=
- =?utf-8?B?eHpSMmQyZE1rb1lCdFJLYlJVT2hxRFFncGd1MlVkcFVYbGxYTnBWMEdvMTNZ?=
- =?utf-8?B?cnpHSEhlUEg0RS9VbDE0b0xXOW1wQzJhQlBuMXc4ZWtlRFdxdTBpTVFxeUoz?=
- =?utf-8?B?MERaOG56VkxVVHRUSWNGVHdNUnZnNUt3M0FSVFNyRy9aNkhyTTNveWV0Q29I?=
- =?utf-8?B?L05hOUZHRDRHdXBJaUZzQk5ycndMaXNxQW92Q25LY0xiK2NxUmhWZEJncllP?=
- =?utf-8?B?cDVjVFJKeWVHRnZpaEhUa250MVpLWFYrSVdCN214OHdEbUhtNzBaajYwaVk4?=
- =?utf-8?B?MzFjbHhMVUJsb1ZFdHpIUDJQa0lsQjBaWUV4TjBBbjBXSzlWeUZxM2Jlb0Z0?=
- =?utf-8?B?czREb2t2RWNyRWFEY3A4SzE0eHNlK2hSTEtpSndURk5JT1NOaGZ1VkttcVht?=
- =?utf-8?B?RldMNHF1UzJtR2hPS2lnNGVDVVY1Y1N3bFN5elZzcVVYNE5BYncyelJ6TU93?=
- =?utf-8?B?MzF1blNkUmhVZWkyelFaTkw5aUQ1YzhWaTNaSFV0NUNKclJxbExFTXdxWUVv?=
- =?utf-8?B?ejMvQnQyRWxhWWtrcHNnY1dQNXZ0ZnZZNU5lV0FrbjNHZ3JLeHJoLzVGOTRO?=
- =?utf-8?B?MVk5WFE0TXYvQnBDZVVTRFNFT0k5cEtJZGtnYWlBektvTHowMlVYZ1dKVXE5?=
- =?utf-8?B?dmk0S29vN1ptN0xxMXZ3WE5pdDZLeUZFVVByMmMxYytBcldIU3RnbHFNNm5J?=
- =?utf-8?B?STBYZitXY0hydkg1RDRDWVJJMHkwRStZdmdob0FlMkdVYUs1ZEduMkZqbE9p?=
- =?utf-8?B?bXMySFEyRzkwUlEzV2VyUVczdmxmYzdqVkZXbHd5UHFwck5PdTY2QWxBY3dq?=
- =?utf-8?B?bzBwSkFETm9TMno0WnRKVzlTTDlVYXpRU1BBbHZwQk5GM0E5Uy92UGZqRWtP?=
- =?utf-8?B?WFV3VDFERi9DenhQVG9oTlQzeFR5bWtmMU9YdHJ3MnJJbmxtVU5hN0pGcUpM?=
- =?utf-8?B?dnA3S3VMTTNqSHhOQ29odjcyT1pMNFJSYTRnN2M4aE1wMEZ2cnkvZHhMdVAr?=
- =?utf-8?B?SGtmMHdoMCtpVTdSckhEQlRpVkhtWmY0eUp4TmxITXkvWDgvdk1xWFJyUGti?=
- =?utf-8?B?OVlkbHd1YXJjS2Fzc0h4VS9JbjFLVVFtWlhEWHpYYnZhY3FxdENsVXJ1aUpY?=
- =?utf-8?B?em1tdEdrTXJYS2RPckxCbEUxeTJKNVZVdm9EaE83Mm9CSlhaNDY5cjlSTjdv?=
- =?utf-8?B?TzJhUzh3M0EwRVhITlg3NEN4a3RMRlAvV1kwa2VETVhXazFKM3dielZDK1Bx?=
- =?utf-8?B?S2xreFNYTTV4cTFZdmlUSE16VXpPRHpmVHlBYUlXYkFYWFFJSkJTekVLQmtB?=
- =?utf-8?B?OS9JOUlFK1Z5clQ5VmpmQmxuQWRLd0hJVGNCL0dOZThZb2dDT2ZrZzE3ZWha?=
- =?utf-8?B?RWtVZWhXRGZPU2ZHam9GNzRTWTlvZ0d0ajkwN3I3RjhxUGZDcHIwQXBseXg1?=
- =?utf-8?B?VmY0a3JVNkNDV1gyRzVWczNoaVlmOHFNN3p3cHhhZTBYR2NmcEUzYWlGOW50?=
- =?utf-8?B?YXBNVkZtcHl1NkVkcVV5ZitBUjhkN1lxNlNJdlpFaW9sWUlBRkR6aGlKWnhi?=
- =?utf-8?B?WjZHdDJFN3FSdWtUODlrTXBobzhjelFXeWJlUDFPOHcraThjS3FJK1g2L2VO?=
- =?utf-8?B?bm1ldzRRaVJSckUwenltZldvNHRjRTZDSVNyZjU0UVN0UDQ4VmJMZz09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f833a112-5658-4f8a-e273-08de851c97ee
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Q4tgEjuoXwGHab8HyC7Vb1+yi+lwhXmuaNmm+Blj3appsF723dp0SQQor+4r?=
+ =?us-ascii?Q?Tmy8VGzAcsGicrGnWkaLCX1JYufA9iJlDsGq+4HNX8VUxIA6xPaF4sDI9JKB?=
+ =?us-ascii?Q?ultJDCdRAgiwnGWTfbT5QlgP8jy7ED9Hn3bh7HyaRVCMzmUoQ5S1gNvTSQEi?=
+ =?us-ascii?Q?Ok4IkFtBG72fpotpLyulM+9q7Uk/9s+G0JeFv7PiD3d/fTrvbQGGYlEPCPeF?=
+ =?us-ascii?Q?021hQucNHCybixy+5vjHtwM4fDynXjqvix5WNOFojyoXJxt6twZPf1xB0AUv?=
+ =?us-ascii?Q?xBhjlrSn/paIgXM3E2idY5+L/Vd9ovrngIWJHrRksYwG/0f3KiQ8cuZtHtV1?=
+ =?us-ascii?Q?jpatMnG+S4ZJELkzWWAb4VuSlHHPnjOSHy14LaUB5CFkxwsWghUXJmgE/iGZ?=
+ =?us-ascii?Q?u4EaNy0yYlc7Vh9uzb33wZ58kELs994lVanPixJHw45ea0c/Ea2Nlfjd03mF?=
+ =?us-ascii?Q?x4iNg/y9/Stu0SpDzkEQxNFq6BAQrQ3kyRWLNzIH4Y+tNGgBLZhsDgfNaHm2?=
+ =?us-ascii?Q?ns7Pij9uFT5ozkgfb97Jkn9cqsihJlO8sSDzpAELtF4ASnYvFDSkffkuzvNs?=
+ =?us-ascii?Q?9hVXn+eRl8bFpwT4IzFX9RhtJDA0aBUCu8a0pNjOVfC279Tgu3gbWa9ZV0li?=
+ =?us-ascii?Q?4Hiw/jv00OXyn5TABx8tkprsKdNQwAhsvqqVHV0SdBqHpzsK8YkvDoB/oOAn?=
+ =?us-ascii?Q?fZtYcfCct7jw6+7gXfcwdeLgKaCxt0L2NZ9FhuLKIdK9YIkhnw0S3fNwYpIq?=
+ =?us-ascii?Q?koWdrGXm2wZXjZ1cuetwTxHUBv72XoyN7pdQCV6jDHmeGipdlz05qwecBRyl?=
+ =?us-ascii?Q?iAx0IklGMPk/vXQXk45n4/fVJPtuuaryjp1inyUelGu2OtjUQjX2cGTlr0kt?=
+ =?us-ascii?Q?a3FO5/+PSDm7uAFMU5gErA6yP8jxnKKXLW32OTZsLhN/OOoRYg8m+PJw3pVQ?=
+ =?us-ascii?Q?/w3Nd+kLcufhI51cc4T7o/nx72BjORsftQ8wkeNKq9qtB5CRlMCAcB6r2SuO?=
+ =?us-ascii?Q?d0+82mdcdbYPg2LMvRF3RzsuSe4/6y7pGFyNuCkvxy7eWGq6deQZKvxm6v7z?=
+ =?us-ascii?Q?qAeK1XfGPNMXJRnLqVJwVnsGxNLZHGJcBVEcopt2PqSh1fGditvIeQG/mMZG?=
+ =?us-ascii?Q?corN9QNxSkF9oDDaBYUVGhdWm3xQ0veffGWdutIMi44W9YiQoiE0LTmYGHVh?=
+ =?us-ascii?Q?ZszxemlMt/+f9WN37WZhAhbiJGDbpEISjSVM6mvXbKJc1Y27+0pjiQIzXq7Y?=
+ =?us-ascii?Q?YamKKj0/r8PNyY7mrVFUOAqSk09JS4mkiGQWiaogq7CgJmNIlYc3ejKTz+mG?=
+ =?us-ascii?Q?NitZMO+aHV/KWECsKKsrU+0PuNEOSXo0ayxG81NvZeWtitcojkp8x3Gj0Ahg?=
+ =?us-ascii?Q?QVounPc2lpmFLh4tRsxPFgMJTBJounWU46wTsxHpHCRYT1094bzt0fqmXDgT?=
+ =?us-ascii?Q?iVkrxbNlgpmv4W8noZiNITvyuEvV8+TOn2lPA1WjnHwQpj2AwIBTKAljJA/X?=
+ =?us-ascii?Q?Ll1Bsu3xbJoB73OAdmErv5FP3/ofq+1tFcxZbgBbiKNWb6G8o5J7VUN4ZvwO?=
+ =?us-ascii?Q?SIqiqwvDxosPz7u1j+fi3sZw0u3wtpyNunUmr7kpM9s5xsRDI4ulK8zdZgkH?=
+ =?us-ascii?Q?YY+emVHPFQBZ1SuypaPABBEHek9xwqkpNr2wUtqwpK9vPPN9O2NTaBnHFjCM?=
+ =?us-ascii?Q?XmvTHiHBBDG25hVgf/jluWbvCQAINWNiqTEJB8lHbCWUij/jnlcFF82xE8kL?=
+ =?us-ascii?Q?/erAag8OiA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: hWtlF8y6t0ZvvpEFQ+TsSS0jf0ydA0XTtrSFajC3M9zxg+lJ/P0n/GMSYToFYcAqzPz+eZ1E6xW1C/BVzhNIX/5Dv1Ey7SzYZ2qBPNVflxuqzb18hvKS+v3mLpEbdUd/+Q6GRrNbqZcK6r+HOcmAvpSLNvfZPpiDSQI/WVRHXKxIg695NlPBVs+RP5pdW21Syv7dUpFcc4qcKBc3iIE5V0qwT2Rx+UJqUjPMWvWTAYaMVmDWe5VLsCIn1kMoWbwFoJ8Cbrj9pycbrgWC6c1i564McRjewa81oWZlKAq4PxY8AG2vDFLy2f2Nu3LXeuH0qQrEb3zlhM17sJOJ+HPBQg==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 18:31:39.3045 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WAnMFH+Cud/kLxIZiETdrQiq029r8Cx7OH4EfeqF/1p8/yPvsKEYv2YHbdLNov+Y6W9sbAQOlJhJGFdOXW6AhQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8373
+X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8360.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d0572095-36c1-4ea3-2c76-08de851d8c95
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Mar 2026 18:38:29.2144 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 9z3xR8LmYZnznAmuvB5vOpEloHW5i2jOmQe8pkkwGhBYzow7ZutMIN5uFufkBP6oHdXQKIyqd+URJSc2zA/vV2+cmer2Luuoghl3VQHXfCo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6959
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,224 +166,159 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Second question: in this condition would require a new return error from th=
+e UMD read() API telling the consumer a catastrophic error happened and the=
+ streamer must be closed, right ?=20
 
+Thanks,=20
+_Matias
 
-On 3/18/2026 8:40 AM, Alice Ryhl wrote:
-> On Tue, Mar 17, 2026 at 04:17:10PM -0400, Joel Fernandes wrote:
->> Add a new module `kernel::interop::list` for working with C's doubly
->> circular linked lists. Provide low-level iteration over list nodes.
->>
->> Typed iteration over actual items is provided with a `clist_create`
->> macro to assist in creation of the `CList` type.
->>
->> Cc: Nikola Djukic <ndjukic@nvidia.com>
->> Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
->> Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
->> Acked-by: Alexandre Courbot <acourbot@nvidia.com>
->> Acked-by: Gary Guo <gary@garyguo.net>
->> Acked-by: Miguel Ojeda <ojeda@kernel.org>
->> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
->> ---
->>  MAINTAINERS                 |   8 +
->>  rust/helpers/helpers.c      |   1 +
->>  rust/helpers/list.c         |  17 ++
->>  rust/kernel/interop.rs      |   9 +
->>  rust/kernel/interop/list.rs | 342 ++++++++++++++++++++++++++++++++++++
->>  rust/kernel/lib.rs          |   2 +
->>  6 files changed, 379 insertions(+)
->>  create mode 100644 rust/helpers/list.c
->>  create mode 100644 rust/kernel/interop.rs
->>  create mode 100644 rust/kernel/interop/list.rs
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 4bd6b538a51f..e847099efcc2 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -23251,6 +23251,14 @@ T:	git https://github.com/Rust-for-Linux/linux.git alloc-next
->>  F:	rust/kernel/alloc.rs
->>  F:	rust/kernel/alloc/
->>  
->> +RUST [INTEROP]
->> +M:	Joel Fernandes <joelagnelf@nvidia.com>
->> +M:	Alexandre Courbot <acourbot@nvidia.com>
->> +L:	rust-for-linux@vger.kernel.org
->> +S:	Maintained
->> +T:	git https://github.com/Rust-for-Linux/linux.git interop-next
->> +F:	rust/kernel/interop/
->> +
->>  RUST [NUM]
->>  M:	Alexandre Courbot <acourbot@nvidia.com>
->>  R:	Yury Norov <yury.norov@gmail.com>
->> diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
->> index a3c42e51f00a..724fcb8240ac 100644
->> --- a/rust/helpers/helpers.c
->> +++ b/rust/helpers/helpers.c
->> @@ -35,6 +35,7 @@
->>  #include "io.c"
->>  #include "jump_label.c"
->>  #include "kunit.c"
->> +#include "list.c"
->>  #include "maple_tree.c"
->>  #include "mm.c"
->>  #include "mutex.c"
->> diff --git a/rust/helpers/list.c b/rust/helpers/list.c
->> new file mode 100644
->> index 000000000000..18095a5593c5
->> --- /dev/null
->> +++ b/rust/helpers/list.c
->> @@ -0,0 +1,17 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +
->> +/*
->> + * Helpers for C circular doubly linked list implementation.
->> + */
->> +
->> +#include <linux/list.h>
->> +
->> +__rust_helper void rust_helper_INIT_LIST_HEAD(struct list_head *list)
->> +{
->> +	INIT_LIST_HEAD(list);
->> +}
->> +
->> +__rust_helper void rust_helper_list_add_tail(struct list_head *new, struct list_head *head)
->> +{
->> +	list_add_tail(new, head);
->> +}
->> diff --git a/rust/kernel/interop.rs b/rust/kernel/interop.rs
->> new file mode 100644
->> index 000000000000..b88140cf76dc
->> --- /dev/null
->> +++ b/rust/kernel/interop.rs
->> @@ -0,0 +1,9 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +
->> +//! Infrastructure for interfacing Rust code with C kernel subsystems.
->> +//!
->> +//! This module is intended for low-level, unsafe Rust infrastructure code
->> +//! that interoperates between Rust and C. It is NOT for use directly in
->> +//! Rust drivers.
->> +
->> +pub mod list;
->> diff --git a/rust/kernel/interop/list.rs b/rust/kernel/interop/list.rs
->> new file mode 100644
->> index 000000000000..328f6b0de2ce
->> --- /dev/null
->> +++ b/rust/kernel/interop/list.rs
->> @@ -0,0 +1,342 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +
->> +//! Rust interface for C doubly circular intrusive linked lists.
->> +//!
->> +//! This module provides Rust abstractions for iterating over C `list_head`-based
->> +//! linked lists. It should only be used for cases where C and Rust code share
->> +//! direct access to the same linked list through a C interop interface.
->> +//!
->> +//! Note: This *must not* be used by Rust components that just need a linked list
->> +//! primitive. Use [`kernel::list::List`] instead.
->> +//!
->> +//! # Examples
->> +//!
->> +//! ```
->> +//! use kernel::{
->> +//!     bindings,
->> +//!     clist_create,
->> +//!     types::Opaque,
->> +//! };
->> +//! # // Create test list with values (0, 10, 20) - normally done by C code but it is
->> +//! # // emulated here for doctests using the C bindings.
->> +//! # use core::mem::MaybeUninit;
->> +//! #
->> +//! # /// C struct with embedded `list_head` (typically will be allocated by C code).
->> +//! # #[repr(C)]
->> +//! # pub struct SampleItemC {
->> +//! #     pub value: i32,
->> +//! #     pub link: bindings::list_head,
->> +//! # }
->> +//! #
->> +//! # let mut head = MaybeUninit::<bindings::list_head>::uninit();
->> +//! #
->> +//! # let head = head.as_mut_ptr();
->> +//! # // SAFETY: `head` and all the items are test objects allocated in this scope.
->> +//! # unsafe { bindings::INIT_LIST_HEAD(head) };
->> +//! #
->> +//! # let mut items = [
->> +//! #     MaybeUninit::<SampleItemC>::uninit(),
->> +//! #     MaybeUninit::<SampleItemC>::uninit(),
->> +//! #     MaybeUninit::<SampleItemC>::uninit(),
->> +//! # ];
->> +//! #
->> +//! # for (i, item) in items.iter_mut().enumerate() {
->> +//! #     let ptr = item.as_mut_ptr();
->> +//! #     // SAFETY: `ptr` points to a valid `MaybeUninit<SampleItemC>`.
->> +//! #     unsafe { (*ptr).value = i as i32 * 10 };
->> +//! #     // SAFETY: `&raw mut` creates a pointer valid for `INIT_LIST_HEAD`.
->> +//! #     unsafe { bindings::INIT_LIST_HEAD(&raw mut (*ptr).link) };
->> +//! #     // SAFETY: `link` was just initialized and `head` is a valid list head.
->> +//! #     unsafe { bindings::list_add_tail(&mut (*ptr).link, head) };
->> +//! # }
->> +//!
->> +//! //
->> +//! /// Rust wrapper for the C struct.
->> +//! ///
->> +//! /// The list item struct in this example is defined in C code as:
->> +//! ///
->> +//! /// ```c
->> +//! /// struct SampleItemC {
->> +//! ///     int value;
->> +//! ///     struct list_head link;
->> +//! /// };
->> +//! /// ```
->> +//! #[repr(transparent)]
->> +//! pub struct Item(Opaque<SampleItemC>);
->> +//!
->> +//! impl Item {
->> +//!     pub fn value(&self) -> i32 {
->> +//!         // SAFETY: `Item` has same layout as `SampleItemC`.
->> +//!         unsafe { (*self.0.get()).value }
->> +//!     }
->> +//! }
->> +//!
->> +//!
->> +//! // Create typed [`CList`] from sentinel head.
->> +//! // SAFETY: `head` is valid and initialized, items are `SampleItemC` with
->> +//! // embedded `link` field, and `Item` is `#[repr(transparent)]` over `SampleItemC`.
->> +//! let list = clist_create!(unsafe { head, Item, SampleItemC, link });
-> 
-> Bad news.
-> 
-> My build triggers this warning:
-> 
-> error: statement has unnecessary safety comment
->     --> rust/doctests_kernel_generated.rs:7103:1
->      |
-> 7103 | let list = clist_create!(unsafe { head, Item, SampleItemC, link });
->      | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
->      |
-> help: consider removing the safety comment
->     --> rust/doctests_kernel_generated.rs:7101:4
->      |
-> 7101 | // SAFETY: `head` is valid and initialized, items are `SampleItemC` with
->      |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
->      = help: for further information visit https://rust-lang.github.io/rust-clippy/rust-1.94.0/index.html#unnecessary_safety_comment
->      = note: `-D clippy::unnecessary-safety-comment` implied by `-D warnings`
->      = help: to override `-D warnings` add `#[allow(clippy::unnecessary_safety_comment)]`
-> 
-> This probably needs to be:
-> 
-> 	unsafe { clist_create!(head, Item, SampleItemC, link) }
+-----Original Message-----
+From: Cabral, Matias A=20
+Sent: Wednesday, March 18, 2026 9:59 AM
+To: Dixit, Ashutosh <ashutosh.dixit@intel.com>; Chegondi, Harish <harish.ch=
+egondi@intel.com>
+Cc: intel-xe@lists.freedesktop.org; Degrood, Felix J <felix.j.degrood@intel=
+.com>; Ranjan, Joshua Santhosh <joshua.santosh.ranjan@intel.com>
+Subject: RE: [PATCH v2 1/1] drm/xe/eustall: Return EBADFD from read if EU s=
+tall registers get reset
 
-Oops, I sometimes run clippy wrong. I did: "CLIPPY=1 make" instead of "make
-CLIPPY=1", the reason is habit. I have been doing "LLVM=1 make" for llvm
-builds since many years.
+Hi Harish,
 
-Anyway, the fix is simple, just need to do // SAFETY*: as Miguel suggests
-here, instead of // SAFETY:
-https://lore.kernel.org/all/CANiq72kEnDyUpnWMZmheJytjioeiJUK_C-yQJk77dPid89LExw@mail.gmail.com/
+> return -EBADFD;
 
-Should be easy to do on apply if Danilo doesn't mind. :) I verified on my
-setup that it fixes it.
+Is this making the read() syscall return -EBADFD or setting erno to EBADFD =
+?  would like to clearly understand how to detect this condition in the UMD=
+.=20
 
-thanks,
+Thanks,
+_Matias
 
---
-Joel Fernandes
+-----Original Message-----
+From: Dixit, Ashutosh <ashutosh.dixit@intel.com>
+Sent: Tuesday, March 17, 2026 11:58 PM
+To: Chegondi, Harish <harish.chegondi@intel.com>
+Cc: intel-xe@lists.freedesktop.org; Degrood, Felix J <felix.j.degrood@intel=
+.com>; Cabral, Matias A <matias.a.cabral@intel.com>; Ranjan, Joshua Santhos=
+h <joshua.santosh.ranjan@intel.com>
+Subject: Re: [PATCH v2 1/1] drm/xe/eustall: Return EBADFD from read if EU s=
+tall registers get reset
+
+On Mon, 16 Mar 2026 10:58:56 -0700, Harish Chegondi wrote:
+>
+> If a reset (GT or engine) happens during EU stall data sampling, all=20
+> the EU stall registers can get reset to 0. This will result in EU=20
+> stall data buffers' read and write pointer register values to be out=20
+> of sync with the cached values. This will result in read() returning=20
+> invalid data. To prevent this, check the value of a EU stall base=20
+> register. If it is zero, it indicates a reset may have happened that wipe=
+d the register to zero.
+> If this happens, return EBADFD from read() upon which the user space=20
+> should close the fd and open a new fd for a new EU stall data=20
+> collection session.
+>
+> Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+> ---
+> v2: Move base register check from read to the poll function
+>
+>  drivers/gpu/drm/xe/xe_eu_stall.c | 24 +++++++++++++++++++++++-
+>  1 file changed, 23 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c
+> b/drivers/gpu/drm/xe/xe_eu_stall.c
+> index c34408cfd292..7e14de73a2c9 100644
+> --- a/drivers/gpu/drm/xe/xe_eu_stall.c
+> +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+> @@ -44,6 +44,7 @@ struct per_xecore_buf {
+>  struct xe_eu_stall_data_stream {
+>	bool pollin;
+>	bool enabled;
+> +	bool reset_detected;
+>	int wait_num_reports;
+>	int sampling_rate_mult;
+>	wait_queue_head_t poll_wq;
+> @@ -428,6 +429,17 @@ static bool eu_stall_data_buf_poll(struct xe_eu_stal=
+l_data_stream *stream)
+>			set_bit(xecore, stream->data_drop.mask);
+>		xecore_buf->write =3D write_ptr;
+>	}
+> +	/* If a GT or engine reset happens during EU stall sampling,
+> +	 * all EU stall registers get reset to 0 and the cached values of
+> +	 * the EU stall data buffers' read pointers are out of sync with
+> +	 * the register values. This causes invalid data to be returned
+> +	 * from read(). To prevent this, check the value of a EU stall base
+> +	 * register. If it is zero, there has been a reset.
+> +	 */
+
+As previously discussed, the best way would have been to not have to do thi=
+s. We would just plug into the handler for the reset message from GuC, rath=
+er than to implement a reset detection here (and in other places such as OA=
+). But looks like if we do that, because of the way EUSS registers are rese=
+t, we can return bad EUSS data. So looks like there is no way around doing =
+this "reset detection" here and a solution with the GuC reset handler would=
+ always be racy. Just for the record.
+
+> +	if (unlikely(!xe_gt_mcr_unicast_read_any(gt, XEHPC_EUSTALL_BASE))) {
+> +		stream->reset_detected =3D true;
+> +		min_data_present =3D true;
+
+I don't believe we need to set 'min_data_present =3D true' if we are settin=
+g 'stream->reset_detected =3D true', correct? See if statement at the botto=
+m.
+
+Also, since the write pointer itself gets reset during reset, didn't we wan=
+t to do this register read only when the write pointer is 0 (to avoid an ex=
+tra register read every 5 ms)?
+
+> +	}
+>	mutex_unlock(&stream->xecore_buf_lock);
+>
+>	return min_data_present;
+> @@ -554,6 +566,15 @@ static ssize_t xe_eu_stall_stream_read_locked(struct=
+ xe_eu_stall_data_stream *st
+>		}
+>		stream->data_drop.reported_to_user =3D false;
+>	}
+> +	/* If EU stall registers got reset due to a GT/engine reset,
+> +	 * continuing with the read() will return invalid data to
+> +	 * the user space. Just return -EBADFD instead.
+> +	 */
+> +	if (unlikely(stream->reset_detected)) {
+> +		xe_gt_dbg(gt, "EU stall base register has been reset\n");
+> +		mutex_unlock(&stream->xecore_buf_lock);
+> +		return -EBADFD;
+
+The other option is to return -EIO here and implement DRM_XE_OBSERVATION_IO=
+CTL_STATUS and return status from that. Let me think some more about this.
+
+> +	}
+>
+>	for_each_dss_steering(xecore, gt, group, instance) {
+>		ret =3D xe_eu_stall_data_buf_read(stream, buf, count, &total_size,  @@
+>-692,6 +713,7 @@ static int xe_eu_stall_stream_enable(struct xe_eu_stall_d=
+ata_stream *stream)
+>		xecore_buf->write =3D write_ptr;
+>		xecore_buf->read =3D write_ptr;
+>	}
+> +	stream->reset_detected =3D false;
+
+So after reset, if a stream is disabled and re-enabled, we expect things to=
+ work again and EUSS data to be correct (without re-opening a new stream)?
+
+>	stream->data_drop.reported_to_user =3D false;
+>	bitmap_zero(stream->data_drop.mask, XE_MAX_DSS_FUSE_BITS);
+>
+> @@ -717,7 +739,7 @@ static void eu_stall_data_buf_poll_work_fn(struct wor=
+k_struct *work)
+>		container_of(work, typeof(*stream), buf_poll_work.work);
+>	struct xe_gt *gt =3D stream->gt;
+>
+> -	if (eu_stall_data_buf_poll(stream)) {
+> +	if (stream->reset_detected || eu_stall_data_buf_poll(stream)) {
+>		stream->pollin =3D true;
+>		wake_up(&stream->poll_wq);
+>	}
+> --
+> 2.43.0
+>
