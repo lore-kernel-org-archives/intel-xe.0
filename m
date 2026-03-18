@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C79CDFCD0C6
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 07:33:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56676FCD0C1
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 07:34:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BFC310E694;
-	Wed, 18 Mar 2026 07:33:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12D0910E6A7;
+	Wed, 18 Mar 2026 07:34:38 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 546BC10E441;
- Wed, 18 Mar 2026 07:33:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1305773874873565804=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C34FB10E6A7;
+ Wed, 18 Mar 2026 07:34:36 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Introduce_cold_reset_recove?=
- =?utf-8?q?ry_method?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Access_counter_?=
+ =?utf-8?q?consumer_layer?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mallesh Koujalagi" <mallesh.koujalagi@intel.com>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 18 Mar 2026 07:33:45 -0000
-Message-ID: <177381922531.370303.1442958415225153612@a3b018990fe9>
+Date: Wed, 18 Mar 2026 07:34:36 -0000
+Message-ID: <177381927677.370303.15897289618781512700@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260318064016.374656-7-mallesh.koujalagi@intel.com>
-In-Reply-To: <20260318064016.374656-7-mallesh.koujalagi@intel.com>
+References: <20260318074456.2839499-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20260318074456.2839499-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,150 +40,78 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1305773874873565804==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: Introduce cold reset recovery method
-URL   : https://patchwork.freedesktop.org/series/163428/
-State : success
+Series: drm/xe: Access counter consumer layer
+URL   : https://patchwork.freedesktop.org/series/163429/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4742-146a21986f74225d0343edeb925095825fa5474f_BAT -> xe-pw-163428v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 722116be97eb29b05dfc5d6e8a116200e6e6afda
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Wed Mar 18 13:14:56 2026 +0530
 
-Summary
--------
+    drm/xe/pt: Set NC PTE bit for VMAs ineligible for access counting
+    
+    Set XE_PPGTT_PTE_NC on PTEs for VMAs that can't benefit from access
+    counter migration hints, avoiding wasteful slot allocation.
+    
+    Bspec: 67095
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
++ /mt/dim checkpatch 146a21986f74225d0343edeb925095825fa5474f drm-intel
+a34ae79aabf3 drm/xe: Add xe_usm_queue generic USM circular buffer
+-:19: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#19: 
+new file mode 100644
 
-  **SUCCESS**
+-:77: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#77: FILE: drivers/gpu/drm/xe/xe_usm_queue.h:54:
++}
++/**
 
-  No regressions found.
+total: 0 errors, 1 warnings, 1 checks, 100 lines checked
+ef7ba0ced1e6 drm/xe/pagefault: Use xe_usm_queue helpers
+96db1d53a369 drm/xe: Stub out new access_counter layer
+-:27: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#27: 
+new file mode 100644
 
-  
+total: 0 errors, 1 warnings, 0 checks, 204 lines checked
+67c41fd9b2e5 drm/xe: Implement xe_access_counter_init
+b4fd5859c2d2 drm/xe: Implement xe_access_counter_handler
+54b53d5dd1dd drm/xe: Extract xe_vma_lock_and_validate helper
+ab7b7bdecbe8 drm/xe: Move ASID to FAULT VM lookup to xe_device
+6ca35a793038 drm/xe: Implement xe_access_counter_queue_work
+24fc8fc6bec7 drm/xe/trace: Add xe_vma_acc trace event for access counter notifications
+-:74: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#74: FILE: drivers/gpu/drm/xe/xe_trace_bo.h:133:
++	    TP_STRUCT__entry(
 
-Participating hosts (14 -> 14)
-------------------------------
+-:84: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#84: FILE: drivers/gpu/drm/xe/xe_trace_bo.h:143:
++	    TP_fast_assign(
 
-  No changes in participating hosts
+total: 0 errors, 0 warnings, 2 checks, 75 lines checked
+2b1673bca06e drm/xe/svm: Handle svm ranges on access ctr trigger
+869d75abbabb drm/xe: Add xe_guc_access_counter layer
+-:25: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#25: 
+new file mode 100644
 
-Known issues
-------------
-
-  Here are the changes found in xe-pw-163428v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4742-146a21986f74225d0343edeb925095825fa5474f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6519])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4742-146a21986f74225d0343edeb925095825fa5474f/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][5] ([Intel XE#7483]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4742-146a21986f74225d0343edeb925095825fa5474f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
-
-
-Build changes
--------------
-
-  * Linux: xe-4742-146a21986f74225d0343edeb925095825fa5474f -> xe-pw-163428v1
-
-  IGT_8807: 7f44d96d705f1583d689f1f8c2275b685b4ca11d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4742-146a21986f74225d0343edeb925095825fa5474f: 146a21986f74225d0343edeb925095825fa5474f
-  xe-pw-163428v1: 163428v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v1/index.html
-
---===============1305773874873565804==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 0 errors, 1 warnings, 0 checks, 100 lines checked
+dd0bdd77cda5 drm/xe/uapi: Add access counter parameter extension for exec queue
+56d33bf0de01 drm/xe/lrc: Pass exec_queue to xe_lrc_create for access counter params
+14844dea0366 drm/xe/vm: Add xe_vma_supports_access_ctr() helper
+722116be97eb drm/xe/pt: Set NC PTE bit for VMAs ineligible for access counting
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Introduce cold reset recovery method</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163428/">https://patchwork.freedesktop.org/series/163428/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4742-146a21986f74225d0343edeb925095825fa5474f_BAT -&gt; xe-pw-163428v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-163428v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4742-146a21986f74225d0343edeb925095825fa5474f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4742-146a21986f74225d0343edeb925095825fa5474f/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4742-146a21986f74225d0343edeb925095825fa5474f/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163428v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4742-146a21986f74225d0343edeb925095825fa5474f -&gt; xe-pw-163428v1</li>
-</ul>
-<p>IGT_8807: 7f44d96d705f1583d689f1f8c2275b685b4ca11d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4742-146a21986f74225d0343edeb925095825fa5474f: 146a21986f74225d0343edeb925095825fa5474f<br />
-  xe-pw-163428v1: 163428v1</p>
-
-</body>
-</html>
-
---===============1305773874873565804==--
