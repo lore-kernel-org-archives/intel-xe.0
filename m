@@ -4,153 +4,159 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BFF610775E7
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 16:59:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 040FA10775FE
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 17:58:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA19D10E0FB;
-	Wed, 18 Mar 2026 16:59:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E87210E430;
+	Wed, 18 Mar 2026 17:58:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JdNs442x";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="e/4yGZmN";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2534310E0FB
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 16:59:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773853150; x=1805389150;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=Ulc4rXJ085Ui7T/hfc7V6VXSwJYA0BQs+gHMlO++CCs=;
- b=JdNs442x69ZIVFq6Mu5smImUl8mlZTi7JT3c3GI3dmqhIGYi6vlqML08
- Stq1GxBgBpCsiCci+NKFIaKws5djXx81LjxXeWwDtFKkQBN52Rw7VnzRa
- rFRhsWohOJZYGA5kuGdygY0y+DsqBpmCh2xhdn6OaqN0au4HpkvRMc3wn
- vygJ4f6rYKC6+AQFNPvPbDcwfm1uZmrAksJoEwsdGCf0ocRe/Ym2MLGtK
- uw2Wh31s4empOlH9ZXFH9BPSr8HwKjWyEwjuTuX8n6Kw/J/6uXedhZzoF
- xmZuF+rJatRHHw7hrni703FtTd6NKH60vYCVjJIRdKq4I1oXkFY1rXi3y A==;
-X-CSE-ConnectionGUID: wiWXI82TSUyMHHpkuk2qEg==
-X-CSE-MsgGUID: vhP86nwbSJSFUR8h/Ir55g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="97524494"
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="97524494"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2026 09:59:09 -0700
-X-CSE-ConnectionGUID: DWkakONbQUa9i/Yt1Q9Hbw==
-X-CSE-MsgGUID: Oevv07vTQvuliWMCC70m4Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="227638290"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2026 09:59:10 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 18 Mar 2026 09:59:08 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 18 Mar 2026 09:59:08 -0700
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.69)
- by edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 18 Mar 2026 09:59:08 -0700
+Received: from CY3PR05CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11013047.outbound.protection.outlook.com
+ [40.93.201.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 417FA10E70F;
+ Wed, 18 Mar 2026 17:58:27 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=cMPuPlR+UIgaI/x3wfSyEq3Tqc4EkMkFxaws75rYmx1SN0Sp5KtGJRbSNYH/rK9v346IdaqqQdahKt2WucGyRLIfjbFCod+vtpbk4diDmEuYYyYNueSVm3o5o7WgNH5Gk+/fL7nq4ScNmKy4NgBPn9i+tbMI1izEIjLbrdJqXLMbkAQrQx4tptDykjIVD+OV2sGaIMQDilpobBQO9K5kCsQzvMzB+Lw4OVGdc7q9gP6iBWPvoCTzkzxmxYu978oVgbMW5snTlW0/KH0nKTNbr8gdy37AjnVFQNKJcZS8owZgJjcTTyuS438hTMeOY6THe9Tdw12O17t4cDxQQB2CKg==
+ b=EXtEd3PbgkXn8fejm201gOfVAXsSGgNRnsc1t+NbZzkpcxgOQ2o588ub4689KFTqY5r9hn/E2c5Z1IpkhgwKDuXCCf5YkToRAOTMTv59adG3r7uMU9tDwJMgOZotyCcCmiasfuaTbXAe8cJLAdbSYlDwM7pS+W9xWRYiAJDncH3cVmNH/CnRJiu03J52tZBWR2hwZJgCCavOG+TPF605QVMTMsD3d8k1vIz2HAqQ/aoM4V5yyU2o92ykLepkah63i6uKRDOfeZZm2535WWwaqx5p9YpL9u3lfF+Wn9YP68PcOlhfANM6QfQa7mI8wdv41wiHWy0AheF8QU4cXTLipA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Yl/fqxqUlR6vYVRsIs50TlyebcjwPdDa2r/plILfak0=;
- b=Ao2SyDVq+6rSnzRuvxQM1wpn/oEnp1dR92K1dRfhcr5rhL7clT/ED8UehCx1i3h58gl8FyabihwfCrjaWXhyvMDr9l7HYcFBJx33VRfqVWeWjMpg/+MklmoltCQwZ/N1qyHU2ME0gB885bQzjS6ZnU+AFWGP7kqSpjCLzGX5bRfWpjjCwFX2iyHdQ3SADVZfi7F6x39GV0bd+2kWHFDGl5usZZimH6GwUJ+N3nLLF98bLBnQtBG3FQErUL0Nx8Xf2jRFxqJ5eykkIZYFc+idXOtuJb4+1w1p0LF+lAZX/rseog34gbmMC27TCaiCdEZk+G4o4AN+xtCOeD3TcIf+aw==
+ bh=x3wh9yhYD38Gto0xfRWcHKzhbBx5g/ha95WJcFnrnac=;
+ b=J9HxHJRfln3eye7X39giZpnITd0yqMuO9IhRCDF3aIjEwvGD+y6EZPQjvy1IBNjb2gJl9q4Bc0k/U2drSr/bK4/zf9JuULPU17bWrDcl/r2N/qlpoGPm6t65/kga0fgmlqVe6QlRDWe243yLq1ibbHE00hL4YqdqqGlH+RbQQamCIq6OHohqodhcO6hR7pXp6qJ7SwqCeL7yQWiJOlMeaJcglQlxOBNf6xH+OSGdcn87QaXVptQuFkgsbUGppHwj4t5TBoou3QH+Zh9bfejh3O5R0IAjN3qXIWnOcunYfrxN9pnZJFfIjSW6p6AWz3QtHk09A7FoMc8w/Fa2zQjWyg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CYYPR11MB8360.namprd11.prod.outlook.com (2603:10b6:930:c3::9)
- by CY5PR11MB6437.namprd11.prod.outlook.com (2603:10b6:930:36::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.6; Wed, 18 Mar
- 2026 16:59:05 +0000
-Received: from CYYPR11MB8360.namprd11.prod.outlook.com
- ([fe80::d11c:a6f0:d986:827a]) by CYYPR11MB8360.namprd11.prod.outlook.com
- ([fe80::d11c:a6f0:d986:827a%6]) with mapi id 15.20.9723.014; Wed, 18 Mar 2026
- 16:59:05 +0000
-From: "Cabral, Matias A" <matias.a.cabral@intel.com>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>, "Chegondi, Harish"
- <harish.chegondi@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Degrood, Felix J" <felix.j.degrood@intel.com>, "Ranjan, Joshua Santhosh"
- <joshua.santosh.ranjan@intel.com>
-Subject: RE: [PATCH v2 1/1] drm/xe/eustall: Return EBADFD from read if EU
- stall registers get reset
-Thread-Topic: [PATCH v2 1/1] drm/xe/eustall: Return EBADFD from read if EU
- stall registers get reset
-Thread-Index: AQHctW6eQLr22lHF6ke4TqP9KhlkObWz3h4AgACnAfA=
-Date: Wed, 18 Mar 2026 16:59:04 +0000
-Message-ID: <CYYPR11MB8360A705B57CE5CF6CFFCB6BB24EA@CYYPR11MB8360.namprd11.prod.outlook.com>
-References: <52d991cc7e8bec514bb582717a1c42033672d4a5.1773683739.git.harish.chegondi@intel.com>
- <87se9xpqub.wl-ashutosh.dixit@intel.com>
-In-Reply-To: <87se9xpqub.wl-ashutosh.dixit@intel.com>
-Accept-Language: en-US
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=x3wh9yhYD38Gto0xfRWcHKzhbBx5g/ha95WJcFnrnac=;
+ b=e/4yGZmNza8CxsYjeoZTc7qb2Rt0AVYG3T2z7mHfxzpddSjz2rKlTHmGYPnYa6LYUMjYJH1eF1BwpdsJa2tjwerkXgMUluZkKMSUqg27258tcWpL2YOovTOQsAbgI1lu+q3a+PCkPnOjqVrpWovXSldmZF8gAqHkxWzLkiqVGAfYoyQSNqnLp/i0WnoMv9nqX16rpho/SkZC6PURmZHInbvfPI9BUbA5AXANeuSvClhHKuCaOv7Lv1jhF4Vy+xC5X/1mBS77M227AcmOs72BzMCiohFNb/nt1wBQG3zOWkY0yA8+h3JYtJTy8+yg8gsCUkEv/B214hPPOGaB8RVKQw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
+ BN7PPFED9549B84.namprd12.prod.outlook.com (2603:10b6:40f:fc02::6e7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.8; Wed, 18 Mar
+ 2026 17:58:20 +0000
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9723.016; Wed, 18 Mar 2026
+ 17:58:20 +0000
+Message-ID: <111cf11a-af95-4dec-994c-ebec6af35625@nvidia.com>
+Date: Wed, 18 Mar 2026 13:58:15 -0400
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked list
+ interface
+To: Gary Guo <gary@garyguo.net>, Alice Ryhl <aliceryhl@google.com>
+Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
+ Boqun Feng <boqun@kernel.org>, =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?=
+ <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>,
+ Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Danilo Krummrich <dakr@kernel.org>,
+ Dave Airlie <airlied@redhat.com>, David Airlie <airlied@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Simona Vetter <simona@ffwll.ch>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Koen Koning <koen.koning@linux.intel.com>, Nikola Djukic
+ <ndjukic@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
+ Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
+ <elle@weathered-steel.dev>, Jonathan Corbet <corbet@lwn.net>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Helge Deller <deller@gmx.de>, John Hubbard <jhubbard@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ Edwin Peer <epeer@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
+ Andy Ritger <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
+ Balbir Singh <balbirs@nvidia.com>, alexeyi@nvidia.com,
+ Eliot Courtney <ecourtney@nvidia.com>, dri-devel@lists.freedesktop.org,
+ rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+References: <20260317201710.934932-1-joelagnelf@nvidia.com>
+ <20260317201710.934932-2-joelagnelf@nvidia.com>
+ <46986da6-8c89-475c-8561-964adaa7d034@nvidia.com>
+ <abppV3e91iVzplcv@google.com> <DH5Y1UR318WP.VNY18WXEZHDI@garyguo.net>
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CYYPR11MB8360:EE_|CY5PR11MB6437:EE_
-x-ms-office365-filtering-correlation-id: 2e0ebe32-5aa9-4e74-9ef3-08de850fa9a4
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|38070700021|22082099003|56012099003|7053199007|18002099003;
-x-microsoft-antispam-message-info: oZIVVtaPZZ6KuHHML1xwoMye0rFvZzXYx4BVPGWVyEVAf1eQcC97IdiWcbQIITkgXJABRiqfxuuxVJxRhCAhVkk2MvcTLfbdlf36ukv2r92N493W4KoQbLQ9dVoVMjKIkMImAHTpiyjDCIf5m4pcZi4mNPf7FPf13fzamT1t/JLWwGKiEhj+CgR4wvTHJ94EuXEpUnihRiwvLGUupYzQ1KdYQGadaHOaoDGRB9u6RiopGvIA1PzjpCDJIM/tG3NZDUiR7zjI11gcawglGr6gIaLdhlaSagU097RytZlFF8HqQpLybiLgAIO/Vlb+WxzUIYZy0gJ3GLthPfDprudcOOSKCRiofOst+HygL8dhXGcerxhGQqzFmd8pb+HTBW0Gwt0JPe6JbF61GH2mtVsMjXjNhdQ3YCg2VlQy8Phhcz1oxqtBe6ldbSC+h+OqzejsWZn4FfOUFaQIPsn8ZRwOwvHqNfWA2F1y2bGXl456WcWUz61l4Otmr7Rkx0PxOBwqQgTfiatSutaUn7w6353KIQqSRfrl62zIU/jq6cB75XIH1ikBpbGYpi9rd9FC0p/hmoXtOK97lfv9rnhCE2HBWDfDOapeSTI/WCrSwyP6SL6Qg9XUPkSrjbcLEJj0CjHrcwlm2W5psYqCCgFuSOZbZ6t4pa7OsPTos4b1N0joA7RK5FCtVAA9bRs/Yz2k8OfIOots5yKdS/NVcBY6ioYk1mwAF9i5Ylmws4lwRHuQK5rd3qxdCmJJlHisAtL3qbgiTkl4JdoHvOzdDW7SjxvysfAsFVWlMgcwQwxG+91RVkM=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(38070700021)(22082099003)(56012099003)(7053199007)(18002099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Ov2ZGmpSeN212EmxpGzTzRlbWFumKlFIbyHCQ9BzF1OKI6HUm2a+I/glmhs/?=
- =?us-ascii?Q?Bs1agDyydHy1r9Bb1/AeYa11+Zr53gQdZU6Uqo7PGy9W/l/5WfV2mTqPA0nt?=
- =?us-ascii?Q?BVTjrfrV5iYDYH+CZwQH9uQCmeAqIP0+EnT9g45poGhinPyh8B0ghdoUQrIQ?=
- =?us-ascii?Q?zZ+J2GqILR6lJGAtkurRwdYey4Y5x0gYShuappIohI2SvlH0RKGQAZVgNt2n?=
- =?us-ascii?Q?+BHjSWZd1KbzmGTaLs8JY3Ch16J7ObdDA5SS1zk6ci9I7uI2W4QC3ZkD9ylA?=
- =?us-ascii?Q?BZAaZwZarkhu1QbiQVuwCZ47s0NQOgPvye747AjK87NmeXHLcb8xdCn7CDdA?=
- =?us-ascii?Q?TSC5Bz20X9QRLpbq9UTvTHXWO1OUc19wy8xGbbLJd23DyFpGMpngm9CxoK8c?=
- =?us-ascii?Q?L7J2Kti7nZGoxlr1wWyq1ttOfRK7oRJVSzb86/+IqD4OdePhH5vQukllc2Vl?=
- =?us-ascii?Q?jcCt+pGsYZyoYregAxwZgPkZ+cgmF7fp+3KMJ6c7zor7w1U+S6AEiDRpDVPi?=
- =?us-ascii?Q?wA/G2mW3OJgrZGPXHD/GUZeIGxVX/+OxVvFYLbtxg0Woc2YiwdjtZUs4fltG?=
- =?us-ascii?Q?kIFUM7E+lYRuJJUfV5FxepHTrChfsCvqC10NWcENalBK6MgN1KUMdxRuMN4k?=
- =?us-ascii?Q?nLvMMPCLxMiDxJ3yzvv9TJGgNstvBcGoSTGdwPlAo1EMNa4L6EUvx1rpiVhX?=
- =?us-ascii?Q?xbHBlzcHm+9U7ns82RW8/F7kj4NqsNt1/ywvBV4Mcv5i4TMrIWvKZg0OBL29?=
- =?us-ascii?Q?RJSYDQEWxnmv8esEb7T9svmy6YXxzd0BUZT9701xOTDpCapQDScNfJu7MA6y?=
- =?us-ascii?Q?f2VPn+addsANpkiv+ZwaHRxnpbI5Wih9C4mSGwzfUgNDyo1B6qETZ6cI8GrM?=
- =?us-ascii?Q?AJMQnOcIn2sIyWlK1mVXx53a3/GvkTLXfjs2xk3uzGPUr6c4kL1PqNvO5FOi?=
- =?us-ascii?Q?dAhJyPPjtxBjCtOdbd7WPaDmBj307wsPvEnM5E1UvXs0umrBBgfVz7tCZKz+?=
- =?us-ascii?Q?MRfzHSMBZ5zNzN7vZetFdLzQgefIZmpIvmmFTD7zOjT3dzM2C+jDC2k3IooB?=
- =?us-ascii?Q?hdOyw+K7gIdFxW1oGCXMsaVRerumkiXVy469l1e/d9/ALC0R4Z4HIGvqiLOl?=
- =?us-ascii?Q?91oMzul7dmKkH7Bwf0zV/kowZxGHTEdYsAYxeKiIG9Gjtq6ya2wYjwiVrSys?=
- =?us-ascii?Q?TvXv20ovo2OGzSg0MAr8tjCFo9UBEhSxXnhTh3MK9MHP1NaQcxXXPKyC+irB?=
- =?us-ascii?Q?8OXuZJVyatN+EX2vpqmfK11A7rH6fzy71new68w6/zG1JDOd/p7QB3cYd+ZI?=
- =?us-ascii?Q?X6SAdwDgF54eqSkkr3F3G+NhjAZZiaIY5JDZB86Yr88V4wUYndIMxLLnCllB?=
- =?us-ascii?Q?zZ0fjSG49TDuVWknmn9OrPTmoven7Nfr7c+AuPHOxf1QHk1qiJaP28CIlOsT?=
- =?us-ascii?Q?Q+rvKos51Kmn6YnanIQNeP66TrRzWM/zismkU+bE+dhgMLQMnzXTJUUfyCMb?=
- =?us-ascii?Q?v8e+VvO8rRTrXRCgz10kUrgvzCczCoQQCdbjw25yWBd5zXbauhxs3rpy73gu?=
- =?us-ascii?Q?UCew0jJcNUsf/yo8ZXM9gLFbGAqQ4uF2UF8IhRqn0n+oNbJUxUXjXx3k1igj?=
- =?us-ascii?Q?VtjN30TT0YqsGPNZCdZ9xDjD2iUVpE2tzA+ErXV6eYUVvfDED+OABDQ5P86a?=
- =?us-ascii?Q?cOWIUtBDXMllYO12wO0ZyeTx/Z8K8RKv+ZviVc7QyNiuS4aM0b5o1w+DhLpU?=
- =?us-ascii?Q?ClPzs85q6w=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+From: Joel Fernandes <joelagnelf@nvidia.com>
+In-Reply-To: <DH5Y1UR318WP.VNY18WXEZHDI@garyguo.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BL1PR13CA0117.namprd13.prod.outlook.com
+ (2603:10b6:208:2b9::32) To DS0PR12MB6486.namprd12.prod.outlook.com
+ (2603:10b6:8:c5::21)
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: N105D8qBM5APoRkkbNpNOdbll96g8BkFosEXtD/3RseF6fsHInTlshbWj6UzPi4ftn5Eh0/KG1D66rh67lgYDvUCfXK7QRxVH256smZ3C7F6WQz5ZzwmOuuGu1kf+6RFC1QrbhJnPE3/P3VXtAMULJzh/I6Iqr32x6sZtKxysUwG9XSgWG+43boPBZIUT4qnCyzDSICoZW5y6g7xXfc/s64nuyJO6pT8kqgDyqtNF4UDMN+TJg6lLcQu26j+6Et1NGOrsB29+yQaMC1NgpFHh0X6jLQWwPx3VvCJtR//oTZDdrVPl5S8cwoolRgshO+4o1dIVAK2ahhDwy60Ion+ag==
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|BN7PPFED9549B84:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0dd37e4e-849f-44b7-8f0e-08de8517f05f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|7416014|13003099007|22082099003|18002099003|56012099003|7053199007;
+X-Microsoft-Antispam-Message-Info: kU06GA3Cw0CBCGvFO23LnHW/5iCxuQ0dMVue4VEVh92paVZWUaOY/pjKKGfA0mkNeMs81IqKxkS2d1FRJGvRe2pwJpE0sRaQvlmJvTvpprYLYoJQFTvKdThXUEgDzbsobxfFhBGpbbi8buQ9wbHCPIgYmrra79KFBSPaMk9q1G+B1WXnQybAyqWCJMOnxkSFvhorMz5Yh5ia3lGQPLw60eCUB3YyDR2yHszK12qJvoC4TwptPMkG6xEvF8t/UPbJuwdmzC3MxFBA7B+aTXlEED9wMan4Vwwax9R/uTyc6tby+Zw5rACNrSYDlWFeasb3Hsqft6u8Xen88gc5ffGeYjJvTRXfe+FbQQNYFsQvnAbFXAhBjcRZ4t002uZ/kpZHhjeqjxP1P4pPTSaZ7XGe58NKbHBjLPiewQskc1lvuzTbRpbMkUksXDEbHysE6+G/HpZtKvCJNkNwNk0IQoY+d300aIqpOxS3xRIjemUKALqvQYHjAwLDBwAjSG4FuqYi3zsWUu28LFr9aipIpBPYW/r/3CvmJ2JtE1aDVKZPB8BeNSFYKDM6uJlZHkT6XK7jyLtcRsU/WNFwhIVaBRB8aC8dX9KdGaZyvHk7LRzhhEr5kwvZWx+S+cWBRS0ximYbqZZjmuDZpJ668hf9TwEUc8P5L1dWBgC/c+15QTS9MgRoM4IgCBL+BbRXtw0JLoirXEZWECzNtufHvmp5nuEjWbp7vTCd6yTK5bPFaa6fm7HliH4I4npepLQmjuSSmTHh
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(7416014)(13003099007)(22082099003)(18002099003)(56012099003)(7053199007);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y2RzUnR6V0VLMURuS05OWERWc2YzbmhUYUo4UVZVNWZGamxlbTh5ZkttUEhs?=
+ =?utf-8?B?MG90ZW5XMTY3d1k0VGhZYVZPZE1UUHNHZ1M5M3FVdDk5cHl1WGw5WktWZ0NZ?=
+ =?utf-8?B?MzZkelZLVWgvQXowYmJmRWQ4a2RyNHBzYTZYclVKY1liankxdG9GeVhJZHky?=
+ =?utf-8?B?cEJMbFJldUpZU1NuM0djRGZNNWFXa0k0cnFCSmZWeVhtL1VoK3VGU1pRVnA4?=
+ =?utf-8?B?MjVLVXFjVjljVVdQR1d6TWUrUzBvNWhZWUppOXNwZkRQYnYxaDQzTUtkSjV0?=
+ =?utf-8?B?Mm9NMHg1VzQ0ODk5Qm5EZTViQ280TWptdXBsbnJwR2hNaWdUZzV2dllGMlo4?=
+ =?utf-8?B?M0xMMGc5M28zOGxXZUdaWjNOQmpWM3ExT2UyaCs5cmhsNjZjVTIxUUNWWEFJ?=
+ =?utf-8?B?aGIwNHBaa2dMRldCbGdrNFVkSlZUVDU3QjVhNjYvTHc0Z3grczZUQmx5b1No?=
+ =?utf-8?B?bkRQNk5lbE53clBwZzdYeGg2dE1oQ25qd1FRR2NiNnlzaHBKWW5leGpKVkVz?=
+ =?utf-8?B?TDVnaWYxaTZna3VGSUgvYy9Vb0FUSEZpUURjaVdpdHdIRmpsaWs4Tk9NaFJi?=
+ =?utf-8?B?a2RPY09oaEFBZ0lLZW5YTkJwNFFoRjFiWEdLN1JhMmd1NEFJby9GRHdlaFQ5?=
+ =?utf-8?B?YVk1Mm5iMEdkNElCN0ZYRkh0b0hTb3h4SE9WY2RacTRXK2VNQkZoVjRiVFdy?=
+ =?utf-8?B?d1FMc1J4TTVad25nQWtzSmlpbCtjdU1OZ2lwTnI3NytmeFRxakpRaXZkK3NP?=
+ =?utf-8?B?OFJLYkRITEc2cE0wVlB5eDY2bTllYks4UmVQSWc4UzFJVjB1cTduU2g5WHNX?=
+ =?utf-8?B?aE9YVDVPaGlsOXpRalFmVUlKWHdPTUt2ZlBBT09EV3c4SWlnZEhMT2svNXNs?=
+ =?utf-8?B?OEZIOC96QmVKNDVBQ3d1N1pPWGlneTc1ZUpObUp1c2ZoM0dPVGovWHZLOFRK?=
+ =?utf-8?B?b2VjalhuVjA1RFY3bkw3cFM5S2o0SUpuaitwRnJlbGlMRlNxTXM2VFZlL3c4?=
+ =?utf-8?B?SXVnQThMbWdpYWx0V1hCMGJqcy9yRTFRcTBUb1ZPRlNTUTZ6UnRVUlBucnI0?=
+ =?utf-8?B?YzZpRjVGa0lxNUlneXBmYWRPMWp2ODJkRlhHU2dHWU5haDVqbXVYTlJ5M0lz?=
+ =?utf-8?B?cjFEU3NVL011MjVpNUlXaEtqeGxqZ0VkNG5oUWVKTFdqN2lKcFBHRTFCSU1L?=
+ =?utf-8?B?Ujh0TEQzR1h1YTBwZkVMb3FiZm91RElmZEpXRlV0TnlFcE1OdmVNSDZqd0lO?=
+ =?utf-8?B?NlJULzNJYk1rVnV1MUd1cEFPSDBXcTlBOXdQVlIrYUkvNHRaT1hWRGg1Rzk3?=
+ =?utf-8?B?dnF4SDhuSDJ6NEwvV0RsSS9oRWFQcmM5a1ByYldwTzJMYURKdmlnb0NySUFR?=
+ =?utf-8?B?dGRxMmxDWURNWW1MRUVXaHpISHFoMTNnaVFRbHA2SDNjZFRnWjQ4OWQ1bnNM?=
+ =?utf-8?B?cTZzb2NMeXZIS0V0b0R3WnRpd081MFFXNktHUFd3ektNZnArWTQ1Wnh3Y1Vr?=
+ =?utf-8?B?eVBtaktDOWFpdXdSNmRxUjNodzBkYUZtVE0yM1cvaGx0WTd1TmpibGpjTkdm?=
+ =?utf-8?B?RFpISTZ5R0N5YU9BVDJSeThaV3IzbWtmK0oyWXdEYTQvUlNoYVFFZjA3eklD?=
+ =?utf-8?B?MllKTEhNQkxiVGxwY283L21XZW1PelZWNXQydDV1T2dYdWFCdnhNY3REZ3Q0?=
+ =?utf-8?B?NFdXejRmNTc1YVBJQWFya2FCK0Z3d1VFamxxSDdBOWI1QVpQMGV5TmMvb2hl?=
+ =?utf-8?B?WFU0WTVlSGphcTZkVVJoeVVMK1BGeENLeW1CTDVaU1BGb1pJVWN3SkZBanM5?=
+ =?utf-8?B?Qk9HZEk2bFVmbEl5dFUxd3hNdzNKV2haMTBmUHoxNWpqVm5FYnJKdnBkUkVh?=
+ =?utf-8?B?OEUyY3A3OE1oVkszWkR5Z1FxY0xRdElKMVVldUhjOW5yU3hDZUMwNkxKMXR3?=
+ =?utf-8?B?eHRta2U1VzZCbHFyRFVwVkFzUzdzblhZdkRyOHpId041ZzF1ZVpNZUFJbmR3?=
+ =?utf-8?B?TlFscmdnUXNDUzd6Yi85dDhRNHBhYXpUcjJXUHFFTlk3bUJ4bUZmQTJtem1N?=
+ =?utf-8?B?TUNkb2ZXeThuOVAwdUovb3I2VTFRc1I3b0RsSUt2MFJndE54YXhTbEo5MWJy?=
+ =?utf-8?B?NEFRcDVrSXRrcHFsYklVMmNXS2xFZzdEamZDd1MyV3hWZndyc2U5RytETXNK?=
+ =?utf-8?B?TllNcExRZUdLaklHN2F0cFJzNHg1aHdod1RtdG1oVUp1dk1ReENQaU9CSzFq?=
+ =?utf-8?B?UVl4a29RcCtHQVZ0QlJWdUVuQ3l6RngvbC9SZDVpTHJqMENxVEdiUktXNGJO?=
+ =?utf-8?B?VDNTWmRJTFBOdDhDWE1OblBydlB1azFHUFM3WWM3bTVXdTNsbUVzdz09?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0dd37e4e-849f-44b7-8f0e-08de8517f05f
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8360.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2e0ebe32-5aa9-4e74-9ef3-08de850fa9a4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Mar 2026 16:59:05.0084 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jbYDVb7Jfm54CSIQtlyKkJb967CQDToW2WiVSxtAR/ZynaTPBaXdMgRzDuKuKgRDIE3UzSrqLrG1x3y3/HnwsfkR8Kb8wbxbG0ceK5zjYO8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6437
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2026 17:58:20.0628 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: AzvL4QMf2fR2kknjnNIzU8IrvT1l/gFsLt/OnvZKOKUf/hbH3i8XzUc+k9T2o0fdnmgjxfNTKJhbHnv8Skk6XA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PPFED9549B84
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,142 +171,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Harish,
 
-> return -EBADFD;
 
-Is this making the read() syscall return -EBADFD or setting erno to EBADFD =
-?  would like to clearly understand how to detect this condition in the UMD=
-.=20
+On 3/18/2026 9:31 AM, Gary Guo wrote:
+> On Wed Mar 18, 2026 at 8:59 AM GMT, Alice Ryhl wrote:
+>> On Tue, Mar 17, 2026 at 04:18:46PM -0400, Joel Fernandes wrote:
+>>>
+>>>
+>>> On 3/17/2026 4:17 PM, Joel Fernandes wrote:
+>>>> Add a new module `kernel::interop::list` for working with C's doubly
+>>>> circular linked lists. Provide low-level iteration over list nodes.
+>>>>
+>>>> Typed iteration over actual items is provided with a `clist_create`
+>>>> macro to assist in creation of the `CList` type.
+>>>>
+>>>> Cc: Nikola Djukic <ndjukic@nvidia.com>
+>>>> Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
+>>>> Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
+>>>> Acked-by: Alexandre Courbot <acourbot@nvidia.com>
+>>>> Acked-by: Gary Guo <gary@garyguo.net>
+>>>> Acked-by: Miguel Ojeda <ojeda@kernel.org>
+>>>> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+>>>> ---
+>>>>  MAINTAINERS                 |   8 +
+>>>>  rust/helpers/helpers.c      |   1 +
+>>>>  rust/helpers/list.c         |  17 ++
+>>>>  rust/kernel/interop.rs      |   9 +
+>>>>  rust/kernel/interop/list.rs | 342 ++++++++++++++++++++++++++++++++++++
+>>>>  rust/kernel/lib.rs          |   2 +
+>>>>  6 files changed, 379 insertions(+)
+>>>>  create mode 100644 rust/helpers/list.c
+>>>>  create mode 100644 rust/kernel/interop.rs
+>>>>  create mode 100644 rust/kernel/interop/list.rs
+>>>>
+>>>> diff --git a/MAINTAINERS b/MAINTAINERS
+>>>> index 4bd6b538a51f..e847099efcc2 100644
+>>>> --- a/MAINTAINERS
+>>>> +++ b/MAINTAINERS
+>>>> @@ -23251,6 +23251,14 @@ T:	git https://github.com/Rust-for-Linux/linux.git alloc-next
+>>>>  F:	rust/kernel/alloc.rs
+>>>>  F:	rust/kernel/alloc/
+>>>>  
+>>>> +RUST [INTEROP]
+>>>> +M:	Joel Fernandes <joelagnelf@nvidia.com>
+>>>> +M:	Alexandre Courbot <acourbot@nvidia.com>
+>>>> +L:	rust-for-linux@vger.kernel.org
+>>>> +S:	Maintained
+>>>> +T:	git https://github.com/Rust-for-Linux/linux.git interop-next
+>>>> +F:	rust/kernel/interop/
+>>>
+>>> Sorry, I forgot to add an additional F: for the rust/kernel/interop.rs file.
+>>> Danilo/Miguel, do you mind adding this when applying?
+>>
+>> I think you should consider a mod.rs file to avoid this. It's tiny, and
+>> just re-exports submodules, so I don't think the "mod.rs name in file
+>> view" concern is that big, and IMO having files related to interop/
+>> inside the directory is much better than having them outside.
+>>
+>> Alice
+> 
+> I wanted this for all modules in general. For modules that grow into multiple
+> files we should really use mod.rs and avoid both module_name.rs and the
+> module_name directory.
+> 
 
-Thanks,=20
-_Matias
+This is how it was, and I changed it based on Alex's feedback:
 
------Original Message-----
-From: Dixit, Ashutosh <ashutosh.dixit@intel.com>=20
-Sent: Tuesday, March 17, 2026 11:58 PM
-To: Chegondi, Harish <harish.chegondi@intel.com>
-Cc: intel-xe@lists.freedesktop.org; Degrood, Felix J <felix.j.degrood@intel=
-.com>; Cabral, Matias A <matias.a.cabral@intel.com>; Ranjan, Joshua Santhos=
-h <joshua.santosh.ranjan@intel.com>
-Subject: Re: [PATCH v2 1/1] drm/xe/eustall: Return EBADFD from read if EU s=
-tall registers get reset
+https://lore.kernel.org/all/DH3XD8NUDJNG.2IMPYC40D8DXI@nvidia.com/
 
-On Mon, 16 Mar 2026 10:58:56 -0700, Harish Chegondi wrote:
->
-> If a reset (GT or engine) happens during EU stall data sampling, all=20
-> the EU stall registers can get reset to 0. This will result in EU=20
-> stall data buffers' read and write pointer register values to be out=20
-> of sync with the cached values. This will result in read() returning=20
-> invalid data. To prevent this, check the value of a EU stall base=20
-> register. If it is zero, it indicates a reset may have happened that wipe=
-d the register to zero.
-> If this happens, return EBADFD from read() upon which the user space=20
-> should close the fd and open a new fd for a new EU stall data=20
-> collection session.
->
-> Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
-> ---
-> v2: Move base register check from read to the poll function
->
->  drivers/gpu/drm/xe/xe_eu_stall.c | 24 +++++++++++++++++++++++-
->  1 file changed, 23 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c=20
-> b/drivers/gpu/drm/xe/xe_eu_stall.c
-> index c34408cfd292..7e14de73a2c9 100644
-> --- a/drivers/gpu/drm/xe/xe_eu_stall.c
-> +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-> @@ -44,6 +44,7 @@ struct per_xecore_buf {
->  struct xe_eu_stall_data_stream {
->	bool pollin;
->	bool enabled;
-> +	bool reset_detected;
->	int wait_num_reports;
->	int sampling_rate_mult;
->	wait_queue_head_t poll_wq;
-> @@ -428,6 +429,17 @@ static bool eu_stall_data_buf_poll(struct xe_eu_stal=
-l_data_stream *stream)
->			set_bit(xecore, stream->data_drop.mask);
->		xecore_buf->write =3D write_ptr;
->	}
-> +	/* If a GT or engine reset happens during EU stall sampling,
-> +	 * all EU stall registers get reset to 0 and the cached values of
-> +	 * the EU stall data buffers' read pointers are out of sync with
-> +	 * the register values. This causes invalid data to be returned
-> +	 * from read(). To prevent this, check the value of a EU stall base
-> +	 * register. If it is zero, there has been a reset.
-> +	 */
+I am Ok with both approaches. I would request Danilo if he's applying it,
+that if he could do so without my additional re-send.
 
-As previously discussed, the best way would have been to not have to do thi=
-s. We would just plug into the handler for the reset message from GuC, rath=
-er than to implement a reset detection here (and in other places such as OA=
-). But looks like if we do that, because of the way EUSS registers are rese=
-t, we can return bad EUSS data. So looks like there is no way around doing =
-this "reset detection" here and a solution with the GuC reset handler would=
- always be racy. Just for the record.
+thanks,
 
-> +	if (unlikely(!xe_gt_mcr_unicast_read_any(gt, XEHPC_EUSTALL_BASE))) {
-> +		stream->reset_detected =3D true;
-> +		min_data_present =3D true;
+--
+Joel Fernandes
 
-I don't believe we need to set 'min_data_present =3D true' if we are settin=
-g 'stream->reset_detected =3D true', correct? See if statement at the botto=
-m.
 
-Also, since the write pointer itself gets reset during reset, didn't we wan=
-t to do this register read only when the write pointer is 0 (to avoid an ex=
-tra register read every 5 ms)?
 
-> +	}
->	mutex_unlock(&stream->xecore_buf_lock);
->
->	return min_data_present;
-> @@ -554,6 +566,15 @@ static ssize_t xe_eu_stall_stream_read_locked(struct=
- xe_eu_stall_data_stream *st
->		}
->		stream->data_drop.reported_to_user =3D false;
->	}
-> +	/* If EU stall registers got reset due to a GT/engine reset,
-> +	 * continuing with the read() will return invalid data to
-> +	 * the user space. Just return -EBADFD instead.
-> +	 */
-> +	if (unlikely(stream->reset_detected)) {
-> +		xe_gt_dbg(gt, "EU stall base register has been reset\n");
-> +		mutex_unlock(&stream->xecore_buf_lock);
-> +		return -EBADFD;
-
-The other option is to return -EIO here and implement DRM_XE_OBSERVATION_IO=
-CTL_STATUS and return status from that. Let me think some more about this.
-
-> +	}
->
->	for_each_dss_steering(xecore, gt, group, instance) {
->		ret =3D xe_eu_stall_data_buf_read(stream, buf, count, &total_size,  @@=20
->-692,6 +713,7 @@ static int xe_eu_stall_stream_enable(struct xe_eu_stall_d=
-ata_stream *stream)
->		xecore_buf->write =3D write_ptr;
->		xecore_buf->read =3D write_ptr;
->	}
-> +	stream->reset_detected =3D false;
-
-So after reset, if a stream is disabled and re-enabled, we expect things to=
- work again and EUSS data to be correct (without re-opening a new stream)?
-
->	stream->data_drop.reported_to_user =3D false;
->	bitmap_zero(stream->data_drop.mask, XE_MAX_DSS_FUSE_BITS);
->
-> @@ -717,7 +739,7 @@ static void eu_stall_data_buf_poll_work_fn(struct wor=
-k_struct *work)
->		container_of(work, typeof(*stream), buf_poll_work.work);
->	struct xe_gt *gt =3D stream->gt;
->
-> -	if (eu_stall_data_buf_poll(stream)) {
-> +	if (stream->reset_detected || eu_stall_data_buf_poll(stream)) {
->		stream->pollin =3D true;
->		wake_up(&stream->poll_wq);
->	}
-> --
-> 2.43.0
->
