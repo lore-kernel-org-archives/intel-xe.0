@@ -4,54 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F3FCFCD0A6
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 10:02:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B131FCD0A6
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 10:08:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8F7010E0C7;
-	Wed, 18 Mar 2026 10:02:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CqDad8o0";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4CDAC10E0C7
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 10:02:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773828151; x=1805364151;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=P3QBGQ26ck72X4lcL/ofRghVPQ8V/D7QsLsqG0tz7VY=;
- b=CqDad8o0tHPqeUKoxvk+JGg9e0PIO9/h8xVsCtLlYf6dxBAr/gVyFGBs
- SJZpiATmv31nRmI8Ei35mrTMDfKpsyUv789LVmFgu0zF+WlsWzUjuG0ss
- X4tnb5eQLChhsj0OWkw/4dMMf7D53+PY0t06iz/9Ydn/Eb9NeTKeBQT12
- gZi/2UhnjpcrKWNfwpoqHaVGW6v9eqTtRwYmZ+nuNNY/gYr33jvpvrb1M
- Qbhddoo9eYQUvvOAG/P5dcdq2favHc2B2j2+GVBCIpz4nuUmgv0Jf8mQx
- XLZeWR24YzyJYuv+f4eh7Xll/8DV4z7VFupTiS4TdK6639dFdaeirj6er w==;
-X-CSE-ConnectionGUID: jCO9UvNbSdKXdSWXpij97g==
-X-CSE-MsgGUID: IOGa+HriQLqDe73gnmp7Ag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="78777168"
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="78777168"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2026 03:02:30 -0700
-X-CSE-ConnectionGUID: efOHI/yUS7eCtEkBGIsvuQ==
-X-CSE-MsgGUID: gCRN05P3R6aWsPXnkRfLjg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="226713963"
-Received: from cpetruta-mobl1.ger.corp.intel.com (HELO mwauld-desk.intel.com)
- ([10.245.244.34])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2026 03:02:29 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Matthew Brost <matthew.brost@intel.com>,
-	stable@vger.kernel.org
-Subject: [PATCH v3] drm/xe: always keep track of remap prev/next
-Date: Wed, 18 Mar 2026 10:02:09 +0000
-Message-ID: <20260318100208.78097-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.53.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 097B910E792;
+	Wed, 18 Mar 2026 10:08:25 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0061B10E032;
+ Wed, 18 Mar 2026 10:08:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_=3A_v1=3A_Squash_of_Acces?=
+ =?utf-8?q?s_Counter?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 18 Mar 2026 10:08:23 -0000
+Message-ID: <177382850398.371170.15798382984716836556@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260318101916.2865689-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20260318101916.2865689-1-himal.prasad.ghimiray@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,198 +36,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-During 3D workload, user is reporting hitting:
+== Series Details ==
 
-[  413.361679] WARNING: drivers/gpu/drm/xe/xe_vm.c:1217 at vm_bind_ioctl_ops_unwind+0x1e2/0x2e0 [xe], CPU#7: vkd3d_queue/9925
-[  413.361944] CPU: 7 UID: 1000 PID: 9925 Comm: vkd3d_queue Kdump: loaded Not tainted 7.0.0-070000rc3-generic #202603090038 PREEMPT(lazy)
-[  413.361949] RIP: 0010:vm_bind_ioctl_ops_unwind+0x1e2/0x2e0 [xe]
-[  413.362074] RSP: 0018:ffffd4c25c3df930 EFLAGS: 00010282
-[  413.362077] RAX: 0000000000000000 RBX: ffff8f3ee817ed10 RCX: 0000000000000000
-[  413.362078] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
-[  413.362079] RBP: ffffd4c25c3df980 R08: 0000000000000000 R09: 0000000000000000
-[  413.362081] R10: 0000000000000000 R11: 0000000000000000 R12: ffff8f41fbf99380
-[  413.362082] R13: ffff8f3ee817e968 R14: 00000000ffffffef R15: ffff8f43d00bd380
-[  413.362083] FS:  00000001040ff6c0(0000) GS:ffff8f4696d89000(0000) knlGS:00000000330b0000
-[  413.362085] CS:  0010 DS: 002b ES: 002b CR0: 0000000080050033
-[  413.362086] CR2: 00007ddfc4747000 CR3: 00000002e6262005 CR4: 0000000000f72ef0
-[  413.362088] PKRU: 55555554
-[  413.362089] Call Trace:
-[  413.362092]  <TASK>
-[  413.362096]  xe_vm_bind_ioctl+0xa9a/0xc60 [xe]
+Series: : v1: Squash of Access Counter
+URL   : https://patchwork.freedesktop.org/series/163451/
+State : warning
 
-Which seems to hint that the vma we are re-inserting for the ops unwind
-is either invalid or overlapping with something already inserted in the
-vm. It shouldn't be invalid since this is a re-insertion, so must have
-worked before. Leaving the likely culprit as something already placed
-where we want to insert the vma.
+== Summary ==
 
-Following from that, for the case where we do something like a rebind in
-the middle of a vma, and one or both mapped ends are already compatible,
-we skip doing the rebind of those vma and set next/prev to NULL. As well
-as then adjust the original unmap va range, to avoid unmapping the ends.
-However, if we trigger the unwind path, we end up with three va, with
-the two ends never being removed and the original va range in the middle
-still being the shrunken size.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 63a8be52bd268825bb1823f9d029787ae6c40a81
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Wed Mar 18 15:49:16 2026 +0530
 
-If this occurs, one failure mode is when another unwind op needs to
-interact with that range, which can happen with a vector of binds. For
-example, if we need to re-insert something in place of the original va.
-In this case the va is still the shrunken version, so when removing it
-and then doing a re-insert it can overlap with the ends, which were
-never removed, triggering a warning like above, plus leaving the vm in a
-bad state.
+    v1: Squash of Access Counter
+    
+    DO NOT REVIEW
+    
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
++ /mt/dim checkpatch 146a21986f74225d0343edeb925095825fa5474f drm-intel
+63a8be52bd26 v1: Squash of Access Counter
+-:69: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#69: 
+new file mode 100644
 
-With that, we need two things here:
+-:1403: CHECK:LINE_SPACING: Please don't use multiple blank lines
+#1403: FILE: drivers/gpu/drm/xe/xe_svm.h:300:
++
++
 
- 1) Stop nuking the prev/next tracking for the skip cases. Instead
-    relying on checking for skip prev/next, where needed. That way on the
-    unwind path, we now correctly remove both ends.
+-:1438: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#1438: FILE: drivers/gpu/drm/xe/xe_trace_bo.h:133:
++	    TP_STRUCT__entry(
 
- 2) Undo the unmap va shrinkage, on the unwind path. With the two ends
-    now removed the unmap va should expand back to the original size again,
-    before re-insertion.
+-:1448: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#1448: FILE: drivers/gpu/drm/xe/xe_trace_bo.h:143:
++	    TP_fast_assign(
 
-v2:
-  - Update the explanation in the commit message, based on an actual IGT of
-    triggering this issue, rather than conjecture.
-  - Also undo the unmap shrinkage, for the skip case. With the two ends
-    now removed, the original unmap va range should expand back to the
-    original range.
-v3:
-  - Track the old start/range separately. vma_size/start() uses the va
-    info directly.
+-:1524: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#1524: FILE: drivers/gpu/drm/xe/xe_usm_queue.h:54:
++}
++/**
 
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/7602
-Fixes: 8f33b4f054fc ("drm/xe: Avoid doing rebinds")
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: <stable@vger.kernel.org> # v6.8+
----
- drivers/gpu/drm/xe/xe_pt.c       | 12 ++++++------
- drivers/gpu/drm/xe/xe_vm.c       | 22 ++++++++++++++++++----
- drivers/gpu/drm/xe/xe_vm_types.h |  4 ++++
- 3 files changed, 28 insertions(+), 10 deletions(-)
+total: 0 errors, 1 warnings, 4 checks, 1546 lines checked
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 2d9ce2c4cb4f..713a303c9053 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -1442,9 +1442,9 @@ static int op_check_svm_userptr(struct xe_vm *vm, struct xe_vma_op *op,
- 		err = vma_check_userptr(vm, op->map.vma, pt_update);
- 		break;
- 	case DRM_GPUVA_OP_REMAP:
--		if (op->remap.prev)
-+		if (op->remap.prev && !op->remap.skip_prev)
- 			err = vma_check_userptr(vm, op->remap.prev, pt_update);
--		if (!err && op->remap.next)
-+		if (!err && op->remap.next && !op->remap.skip_next)
- 			err = vma_check_userptr(vm, op->remap.next, pt_update);
- 		break;
- 	case DRM_GPUVA_OP_UNMAP:
-@@ -2198,12 +2198,12 @@ static int op_prepare(struct xe_vm *vm,
- 
- 		err = unbind_op_prepare(tile, pt_update_ops, old);
- 
--		if (!err && op->remap.prev) {
-+		if (!err && op->remap.prev && !op->remap.skip_prev) {
- 			err = bind_op_prepare(vm, tile, pt_update_ops,
- 					      op->remap.prev, false);
- 			pt_update_ops->wait_vm_bookkeep = true;
- 		}
--		if (!err && op->remap.next) {
-+		if (!err && op->remap.next && !op->remap.skip_next) {
- 			err = bind_op_prepare(vm, tile, pt_update_ops,
- 					      op->remap.next, false);
- 			pt_update_ops->wait_vm_bookkeep = true;
-@@ -2428,10 +2428,10 @@ static void op_commit(struct xe_vm *vm,
- 
- 		unbind_op_commit(vm, tile, pt_update_ops, old, fence, fence2);
- 
--		if (op->remap.prev)
-+		if (op->remap.prev && !op->remap.skip_prev)
- 			bind_op_commit(vm, tile, pt_update_ops, op->remap.prev,
- 				       fence, fence2, false);
--		if (op->remap.next)
-+		if (op->remap.next && !op->remap.skip_next)
- 			bind_op_commit(vm, tile, pt_update_ops, op->remap.next,
- 				       fence, fence2, false);
- 		break;
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 5572e12c2a7e..2773f1ee90d4 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2584,7 +2584,6 @@ static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
- 			if (!err && op->remap.skip_prev) {
- 				op->remap.prev->tile_present =
- 					tile_present;
--				op->remap.prev = NULL;
- 			}
- 		}
- 		if (op->remap.next) {
-@@ -2594,11 +2593,13 @@ static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
- 			if (!err && op->remap.skip_next) {
- 				op->remap.next->tile_present =
- 					tile_present;
--				op->remap.next = NULL;
- 			}
- 		}
- 
--		/* Adjust for partial unbind after removing VMA from VM */
-+		/*
-+		 * Adjust for partial unbind after removing VMA from VM. In case
-+		 * of unwind we might need to undo this later.
-+		 */
- 		if (!err) {
- 			op->base.remap.unmap->va->va.addr = op->remap.start;
- 			op->base.remap.unmap->va->va.range = op->remap.range;
-@@ -2717,6 +2718,8 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
- 
- 			op->remap.start = xe_vma_start(old);
- 			op->remap.range = xe_vma_size(old);
-+			op->remap.old_start = op->remap.start;
-+			op->remap.old_range = op->remap.range;
- 
- 			flags |= op->base.remap.unmap->va->flags & XE_VMA_CREATE_MASK;
- 			if (op->base.remap.prev) {
-@@ -2865,8 +2868,19 @@ static void xe_vma_op_unwind(struct xe_vm *vm, struct xe_vma_op *op,
- 			xe_svm_notifier_lock(vm);
- 			vma->gpuva.flags &= ~XE_VMA_DESTROYED;
- 			xe_svm_notifier_unlock(vm);
--			if (post_commit)
-+			if (post_commit) {
-+				/*
-+				 * Restore the old va range, in case of the
-+				 * prev/next skip optimisation. Otherwise what
-+				 * we re-insert here could be smaller than the
-+				 * original range.
-+				 */
-+				op->base.remap.unmap->va->va.addr =
-+					op->remap.old_start;
-+				op->base.remap.unmap->va->va.range =
-+					op->remap.old_range;
- 				xe_vm_insert_vma(vm, vma);
-+			}
- 		}
- 		break;
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 69e80c94138a..fc811b5e308c 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -393,6 +393,10 @@ struct xe_vma_op_remap {
- 	u64 start;
- 	/** @range: range of the VMA unmap */
- 	u64 range;
-+	/** @old_start: Original start of the VMA we unmap */
-+	u64 old_start;
-+	/** @old_range: Original range of the VMA we unmap */
-+	u64 old_range;
- 	/** @skip_prev: skip prev rebind */
- 	bool skip_prev;
- 	/** @skip_next: skip next rebind */
--- 
-2.53.0
 
