@@ -4,64 +4,71 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2826103E199
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 15:05:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE9A9103E199
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 15:27:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EE7B10E853;
-	Wed, 18 Mar 2026 15:05:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A260910E710;
+	Wed, 18 Mar 2026 15:27:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=kde.org header.i=@kde.org header.b="Er61krbc";
+	dkim=pass (2048-bit key; secure) header.d=kde.org header.i=@kde.org header.b="W9RzzBkm";
 	dkim-atps=neutral
 Received: from letterbox.kde.org (letterbox.kde.org [46.43.1.242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1D78A10E853
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 15:05:34 +0000 (UTC)
-Received: from mail-yx1-f47.google.com (mail-yx1-f47.google.com
- [74.125.224.47]) (Authenticated sender: zamundaaa)
- by letterbox.kde.org (Postfix) with ESMTPSA id 7852E323FCD
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 15:05:32 +0000 (GMT)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49EFE10E710
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 15:27:03 +0000 (UTC)
+Received: from mail-yx1-f45.google.com (mail-yx1-f45.google.com
+ [74.125.224.45]) (Authenticated sender: zamundaaa)
+ by letterbox.kde.org (Postfix) with ESMTPSA id E536F3240FB
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 15:27:00 +0000 (GMT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
- t=1773846332; bh=WM60fIRXtZi3AvzEk1cKreMZ/TW2mI+YcbmNPgjc66Y=;
+ t=1773847621; bh=XUl21vHhL+LbY2Xi3MlPdKDu1f5OFFZcciY5bcT+eJ4=;
  h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=Er61krbcZptN2/BXVwr3gjDVJn8tUoi+2w5OPfUiKIsSH6ydZm70JEWgcSxLHchjc
- b0N5w7o+WyJma/EDehW62cXVl77+9SSni6+VCimZ74Qcyoa+2K3C8gXXqbam19lfCA
- 7+DvseniiKusidIQZFfP5jhIa6VpONYs0gAwUriIkWzxDVdNtenzu0UiBAmzo4ZZhZ
- +mVGujWm3KTVgruZ4ULpbHB5vp1NOMhYnISvtPZ94yKdH5m0PIPfdsd6vYDjhKPsQK
- XYT9Pt9mnUzl72vgaqpfjc0l94k5fS3722Ofm/XUqKs1bo8nx0424FlcwJ85ayjV8y
- XeGMz4cMJ68sg==
-Received: by mail-yx1-f47.google.com with SMTP id
- 956f58d0204a3-64ad79dfb6eso61022d50.0
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 08:05:32 -0700 (PDT)
+ b=W9RzzBkm/bxknGyD93+bdnHkqm6qXNXCyHz+B49rwpGz2YOqdrHL53uUpxKenLKu3
+ +phX8CMxx922lGEOq7mAC5qSv/4CanzvgBdI4bKUoMx07lJ2FXn2xADTRyaECK6Hd4
+ c5TgKqTaMBXMTBaXUmHM0Zt6oiqb9K3M7ZCZqKT07F4/0mWCr1GGRIHOrj+h2y9K13
+ G6qmlg9RBzR3q4ZJ3IkF10FGRd9Rc5ytArAJw5JeVWBS326PxFsWDru0CNK+2xlZzk
+ mhItIlITxMsgW8m+vj5nDeOzCxYue7yfPF1cygDmVk18vSET6l+OlX/ZJUbfUTHIbv
+ 11os1yMfaoXkQ==
+Received: by mail-yx1-f45.google.com with SMTP id
+ 956f58d0204a3-649278a69c5so50118d50.3
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 08:27:00 -0700 (PDT)
 X-Forwarded-Encrypted: i=1;
- AJvYcCUareN0uIaG7AhtFmOK3/FNKSUncqnlan+xCyGCisEukI1LMne0NZl2u20mx3hAGwnlVVquGqunuw==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxiwN055Eq2y9WZonLnG5XtITKmCfsvmhafSNl47hYBR1B24PI2
- w6Ed1uzDVzdfnB+4WdxGWLrBJdO/uwFRdbt9SF+M01lIlGhB5pamj4lkgMWzRZECLv/6slf493v
- lsd3FoNbLNHZ7Hfr3R50rSv3AxkyLwIA=
-X-Received: by 2002:a05:690e:23cf:b0:649:d468:f79f with SMTP id
- 956f58d0204a3-64e915c74b5mr2684217d50.59.1773846330156; Wed, 18 Mar 2026
- 08:05:30 -0700 (PDT)
+ AJvYcCVNpkInF1EHM+KKUP8/qZyqUJIR6aWUvpuY4DpukU0EmZGPrSibxf9fXZcqiuEc1F1pcO3eVRscdA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxs7rp4z83V8YcpfpxnZEQmPnIW+dCWjp/DtA4QSzuyhAuQUbo/
+ oaDpUEpVfBRZsOvhVCq8NJayHRKf63uKJUYiQhcrn1WuAsUNmd7tTWwbQV6KfwAmiNwlqxMCZ0J
+ kq8jlOPSYXoW5beLNpAw0NwvwFfdxwTU=
+X-Received: by 2002:a05:690e:4293:20b0:64c:e7a0:7eb8 with SMTP id
+ 956f58d0204a3-64e9134c59fmr3433276d50.24.1773847619255; Wed, 18 Mar 2026
+ 08:26:59 -0700 (PDT)
 MIME-Version: 1.0
 References: <20260223-atomic-v10-0-f59c8def2e70@intel.com>
-In-Reply-To: <20260223-atomic-v10-0-f59c8def2e70@intel.com>
+ <1a4462b8-def9-4474-8382-6e99b7c8276d@intel.com>
+ <aZ1OIDsVfFvyHUK5@intel.com> <5f04b5f1-744e-449e-9a45-00fd477256fc@intel.com>
+ <aZ1lbnop84k4du6N@intel.com>
+ <f155fae0285684108e92887e963358ea0ea158e9@intel.com>
+ <1a39b9d5-ed57-4f6b-a4e2-9e26a2734c32@intel.com>
+ <21d7edcec1b6fd767b066de4ec6734cea8992904@intel.com>
+In-Reply-To: <21d7edcec1b6fd767b066de4ec6734cea8992904@intel.com>
 From: Xaver Hugl <xaver.hugl@kde.org>
-Date: Wed, 18 Mar 2026 16:05:16 +0100
-X-Gmail-Original-Message-ID: <CAFZQkGw=VJnzFWnh7GT_59NhuSTiy3-VPOcKdWTZX14rkgW_uw@mail.gmail.com>
-X-Gm-Features: AaiRm51rkDId2UF8kdECNIRPUwp9vR45i-ie2wDzuOdRk8LoSU1037TqUxrjWRo
-Message-ID: <CAFZQkGw=VJnzFWnh7GT_59NhuSTiy3-VPOcKdWTZX14rkgW_uw@mail.gmail.com>
+Date: Wed, 18 Mar 2026 16:26:48 +0100
+X-Gmail-Original-Message-ID: <CAFZQkGy=P_kymzU5CdsFth9cKmyQQuWZhy5BRryf0gxULhJX=g@mail.gmail.com>
+X-Gm-Features: AaiRm51I2NGi-OkAtLpMwOYBB8XOow-ApWX-oWt-BkyKRFoBuRHFjzKq2mpknrI
+Message-ID: <CAFZQkGy=P_kymzU5CdsFth9cKmyQQuWZhy5BRryf0gxULhJX=g@mail.gmail.com>
 Subject: Re: [PATCH v10 0/7] User readable error codes on atomic_ioctl failure
-To: Arun R Murthy <arun.r.murthy@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: "Murthy, Arun R" <arun.r.murthy@intel.com>, 
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, 
  Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- harry.wentland@amd.com, uma.shankar@intel.com, louis.chauvet@bootlin.com, 
- naveen1.kumar@intel.com, ramya.krishna.yella@intel.com, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, Suraj Kandpal <suraj.kandpal@intel.com>
-Content-Type: multipart/alternative; boundary="000000000000652e3b064d4dc816"
+ Simona Vetter <simona@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, harry.wentland@amd.com,
+ uma.shankar@intel.com, 
+ louis.chauvet@bootlin.com, naveen1.kumar@intel.com, 
+ ramya.krishna.yella@intel.com, dri-devel@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,31 +83,19 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---000000000000652e3b064d4dc816
-Content-Type: text/plain; charset="UTF-8"
+Am Di., 24. Feb. 2026 um 13:07 Uhr schrieb Jani Nikula
+<jani.nikula@linux.intel.com>:
+> Yes. But we can't guarantee all drivers will report the *same* first
+> error in the same circumstances. We can't guarantee we will maintain the
+> *same* first error over time, we can't make that promise without
+> painting ourselves in the corner wrt driver maintenance.
 
-Hi,
-
-I now have an implementation in KWin:
-https://invent.kde.org/plasma/kwin/-/merge_requests/8991
-
-One thing I noticed is still missing is the catch-all case / unspecified
-error; the "invalid API usage" enum value would be quite misleading for
-that.
+That's ok. The point of the error code is to reduce the combinatorial
+explosion of possible configurations compositors have to test in order
+to get a working configuration, but they're still expected to do (if
+necessary) many atomic tests in series, especially when modesets are
+involved. If the first reported error changes, it should still
+eventually reach a working configuration, even if it may take more or
+less time than before.
 
 - Xaver
-
---000000000000652e3b064d4dc816
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><div>Hi,</div><div><br></div><div>I now h=
-ave an implementation in KWin:=C2=A0<a href=3D"https://invent.kde.org/plasm=
-a/kwin/-/merge_requests/8991">https://invent.kde.org/plasma/kwin/-/merge_re=
-quests/8991</a></div><div><br></div><div>One thing I noticed is still missi=
-ng is the catch-all case / unspecified error; the &quot;invalid API usage&q=
-uot; enum value would be quite misleading for that.</div><div><br clear=3D"=
-all"></div><div><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"=
->- Xaver</div></div></div></div></div>
-
---000000000000652e3b064d4dc816--
