@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A1B3FCD0C1
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 07:10:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 950B8FCD0C1
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 07:10:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 217C210E6A4;
-	Wed, 18 Mar 2026 07:10:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5759510E6AC;
+	Wed, 18 Mar 2026 07:10:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FNtXP/Hp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iQfACK36";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3CA0510E6A4
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 07:10:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 84A9810E6A4
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 07:10:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773817841; x=1805353841;
+ t=1773817843; x=1805353843;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=d35aZ7hJQcNyduAXLCcPddLxUMDyxWeWVieWMgTNxUo=;
- b=FNtXP/HpbtoTapiC56JFL4EgoKcLBKWrQNUqiAUYzR1d9S2rbUOLhDo1
- km2IDYpTDYaYRJ6sjFn9jt6fJeOd7TrhigZuhBdZ97NUd32fBUpqDFwm1
- BuuiLDPRRj63ikfZzyLY2YVUBC563+UtKk6weygFFQ2ypA4mYVJSXnw8r
- dpMCM2p/12ghsPA3ITK+uShl/Zf/MWRwlpjQcyNwqS2tHoSiUQEiipFWG
- 9/3KwdTtcvzDr6sltFU5LWcEHBkLMYQPE94zs5zqATKHSKXMyYdK5fU3I
- 0GRLd5Tlwy4+h1RLCysicP/XzfVU+VM5VA9jN8wrr7wawGazqJcdojNRa g==;
-X-CSE-ConnectionGUID: gf8oaqHxRFK4G9M+oaHtWA==
-X-CSE-MsgGUID: zEUYR3r6SPW3W9OEOlcqlw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="78764289"
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="78764289"
+ bh=qYdzDRnCE+wrOFNJD7b2mTCCtgREdI/DhjA/JUEAs9Y=;
+ b=iQfACK36S5Ezcx1/8t54cuuPhoHsBp/dKTY/9RlaoLO13h4g+z/3T1LY
+ 0dzqnrsxSapjdz5vk4JTwtqAS4TekKnJnEhqsc0Krp4UenYHN1n2iAK9q
+ 2gDHneCKQrAxoVa/pmpF1pvifLXoRlHm3c0OM1K2z/4tryMa4P8VB+Fgh
+ Pbytt1yOOn4KBKCQjjHuzHbMIZ7QMgmKb4qbBb/natYnN2430NmFdp6WA
+ ESsgKvQkxLBYnelhsoH1B2joF3UljXG9C/A6zKh3A3xsX3sLUqWwco/iC
+ KRNDORJKrkBQKWGdVooU1Njb7sFHoKvy+KBMe9mHTX8S/Vd670QVjUO9T A==;
+X-CSE-ConnectionGUID: FRSFvAQHStCj+e0I7SzqfQ==
+X-CSE-MsgGUID: pUQEd9U0R/GbhEG1KNZAbw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="78764296"
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="78764296"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2026 00:10:41 -0700
-X-CSE-ConnectionGUID: i9VxB9axQQibHu0Tex1/rA==
-X-CSE-MsgGUID: MLxY5IR9Sqm0lY5q8X/SFQ==
+ 18 Mar 2026 00:10:43 -0700
+X-CSE-ConnectionGUID: WvS1nE9eQF+tRh7GurwXoA==
+X-CSE-MsgGUID: Q7SkcRPrQcCQDvrzjrwoHg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="260424104"
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="260424110"
 Received: from hghimira.iind.intel.com ([10.190.239.34])
- by orviesa001.jf.intel.com with ESMTP; 18 Mar 2026 00:10:39 -0700
+ by orviesa001.jf.intel.com with ESMTP; 18 Mar 2026 00:10:41 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  stuart.summers@intel.com, arvind.yadav@intel.com, tejas.upadhyay@intel.com,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [RFC 14/15] drm/xe/vm: Add xe_vma_supports_access_ctr() helper
-Date: Wed, 18 Mar 2026 13:14:55 +0530
-Message-Id: <20260318074456.2839499-15-himal.prasad.ghimiray@intel.com>
+Subject: [RFC 15/15] drm/xe/pt: Set NC PTE bit for VMAs ineligible for access
+ counting
+Date: Wed, 18 Mar 2026 13:14:56 +0530
+Message-Id: <20260318074456.2839499-16-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260318074456.2839499-1-himal.prasad.ghimiray@intel.com>
 References: <20260318074456.2839499-1-himal.prasad.ghimiray@intel.com>
@@ -67,91 +68,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hardware access counter slots are finite resources. Add a helper
-to determine whether a VMA is eligible for access counting, so
-callers can avoid wasting slots on BOs that cannot benefit from
-migration hints.
+Set XE_PPGTT_PTE_NC on PTEs for VMAs that can't benefit from access
+counter migration hints, avoiding wasteful slot allocation.
 
-A VMA is eligible if:
-  - The device is a discrete GPU (access counters unused on iGPU)
-  - It is a CPU address mirror (SVM) VMA, which is always migratable
-  - The backing BO has more than one placement region
-  - The BO is not already resident in VRAM local to the triggering tile
-
-Userptr and null VMAs are excluded as they have no associated BO.
-
+Bspec: 67095
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 41 ++++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.h |  3 +++
- 2 files changed, 44 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_gtt_defs.h |  2 +-
+ drivers/gpu/drm/xe/xe_pt.c            | 11 +++++++++++
+ 2 files changed, 12 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 659504ec5a13..7f979d6205f4 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -4356,6 +4356,47 @@ void xe_vm_snapshot_free(struct xe_vm_snapshot *snap)
- 	kvfree(snap);
- }
+diff --git a/drivers/gpu/drm/xe/regs/xe_gtt_defs.h b/drivers/gpu/drm/xe/regs/xe_gtt_defs.h
+index 4d83461e538b..ace3cbcc13d8 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gtt_defs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gtt_defs.h
+@@ -28,11 +28,11 @@
+ #define XE_GGTT_PTE_DM			BIT_ULL(1)
+ #define XE_USM_PPGTT_PTE_AE		BIT_ULL(10)
+ #define XE_PPGTT_PTE_DM			BIT_ULL(11)
++#define XE_PPGTT_PTE_NC			BIT_ULL(5)
+ #define XE_PDE_64K			BIT_ULL(6)
+ #define XE_PTE_PS64			BIT_ULL(8)
+ #define XE_PTE_NULL			BIT_ULL(9)
  
-+/**
-+ * xe_vma_supports_access_ctr - Determine if VMA is eligible for access counting
-+ * @xe: Pointer to the Xe device structure
-+ * @vma: The VMA
-+ * @tile: Tile with which VMA bound is associated to
-+ *
-+ * Note, access counters are not used unless enabled in LRC.
-+ */
-+bool xe_vma_supports_access_ctr(struct xe_device *xe,
-+				struct xe_vma *vma,
-+				struct xe_tile *tile)
-+{
-+	struct xe_bo *bo = xe_vma_bo(vma);
-+	struct ttm_resource *res;
-+
-+	if (!IS_DGFX(xe))
-+		return false;
-+
-+	if (xe_vma_is_cpu_addr_mirror(vma))
-+		return true;
-+
-+	/* userptr or using null vma*/
-+	if (!bo)
-+		return false;
-+
-+	res = bo->ttm.resource;
-+	/* if for some reason no backing store, nothing to migrate */
-+	if (!res)
-+		return false;
-+
-+	/* cannot migrate if single placement */
-+	if (bo->placement.num_placement <= 1)
-+		return false;
-+
-+	/* cannot migrate to ourself (already in VRAM local to @tile) */
-+	if (!tile->mem.vram || res->mem_type == tile->mem.vram->placement)
-+		return false;
-+
-+	return true;
-+}
-+
- /**
-  * xe_vma_need_vram_for_atomic - Check if VMA needs VRAM migration for atomic operations
-  * @xe: Pointer to the Xe device structure
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index 127cecfcb80b..17844ef0f0b7 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -178,6 +178,9 @@ struct xe_vma *xe_vm_find_vma_by_addr(struct xe_vm *vm, u64 page_addr);
+ #define XE_PAGE_PRESENT			BIT_ULL(0)
+ #define XE_PAGE_RW			BIT_ULL(1)
+-
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 2d9ce2c4cb4f..cc8dcdb6649a 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -755,6 +755,17 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+ 			XE_USM_PPGTT_PTE_AE : 0;
+ 	}
  
- int xe_vma_need_vram_for_atomic(struct xe_device *xe, struct xe_vma *vma, bool is_atomic);
- 
-+bool xe_vma_supports_access_ctr(struct xe_device *xe, struct xe_vma *vma,
-+				struct xe_tile *tile);
++	if (!xe_vma_supports_access_ctr(xe, vma, tile)) {
++		xe_walk.default_vram_pte |= XE_PPGTT_PTE_NC;
++		xe_walk.default_system_pte |= XE_PPGTT_PTE_NC;
++	}
 +
- int xe_vm_alloc_madvise_vma(struct xe_vm *vm, uint64_t addr, uint64_t size);
- 
- int xe_vm_alloc_cpu_addr_mirror_vma(struct xe_vm *vm, uint64_t addr, uint64_t size);
++	if (range) {
++		xe_walk.default_vram_pte |= XE_PPGTT_PTE_NC;
++		if (!range->base.pages.flags.migrate_devmem)
++			xe_walk.default_system_pte |= XE_PPGTT_PTE_NC;
++	}
++
+ 	xe_walk.default_vram_pte |= XE_PPGTT_PTE_DM;
+ 	xe_walk.dma_offset = bo ? vram_region_gpu_offset(bo->ttm.resource) : 0;
+ 	if (!range)
 -- 
 2.34.1
 
