@@ -4,55 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79852FCD0BE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0F21FCD0C5
 	for <intel-xe@archiver.kernel.org>; Wed, 18 Mar 2026 07:10:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30D5B10E2EB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CCD510E441;
 	Wed, 18 Mar 2026 07:10:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iK4X6mHa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lw6HSUjF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 791C710E2EB
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EC6210E2E9
  for <intel-xe@lists.freedesktop.org>; Wed, 18 Mar 2026 07:10:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1773817812; x=1805353812;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=S2O2bHxp+FwXuaeFfQ5a7v4mT0DJlsxyxBdGhSth1j4=;
- b=iK4X6mHaTv8s/Xh+e2EKLhIRb2YHiVzB9JJXRnqAuNHUsNgSoJvoNrGx
- juEDS970Ts4pjUcUAzyPIjSXF3H7eOV1UQgubf0C3GTdSutlbnhUrG/C9
- FkLEHjlUniTmRv/em8O28wpA9YK/d4AGuog+e6ARcPtRkFh/u1QSlb6TD
- YiYymKLGmyKx284SaXSEiL2I7riVRQGd4q3bNIh0DWUALzhA+sHJU461S
- +RxTyZAhMXCItrm36x06yL7pZLArbWO7Z3QBTkIPyGnngPYvrW7m1+Df/
- vb+EBWjSR0pTV4c9QA4ut8FYuDhbGb9iXklmETwdLQqVSk8PwRtAx56X/ g==;
-X-CSE-ConnectionGUID: tvNVC5cGQFqEiOfOSkoY1w==
-X-CSE-MsgGUID: U1WTOtccRyWM9BbS3QKA3A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="78764241"
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="78764241"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=x051iFqYWmzwPKrHQyoRUaEPX64u1smYSXyS8y594lg=;
+ b=lw6HSUjF/gbJ+aYp1VKC7Iew60T8MNCOfNBKKlcbPv8B451oKPQ4Uncu
+ CP6hpmKzUAUQGSs7BCnGLoWkC0mB+aFMJ/thJvTbBQtved4+gbnaMOtAZ
+ vcHvLEIHmsOp3aUbb5dLaDW+N08PFHRv9rrQckGOINv/WFUabITe4Aaek
+ n58TQQEJe9tMGTOmJF2GM4mOeoCq16zu02nn/UcLjjbYIsomh8UnWCGyO
+ bOzYfpCVyh9zlhkXoMokXAu/5XiFSQOkGzLZTHceOdk8yqIn5RFd70DJ3
+ 6B+AA35oHvOvFtKMTaEV1OXc/dZr8ajdDARyIw6W/RX0j/r0+057yE2Xo A==;
+X-CSE-ConnectionGUID: EuFCUDWLTLCQU9DWUMA+og==
+X-CSE-MsgGUID: 8IH+lLSbQ/CbKrbFwl8IJA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="78764238"
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="78764238"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2026 00:10:08 -0700
-X-CSE-ConnectionGUID: 66ArPTMTS3mTcItd/MK0dg==
-X-CSE-MsgGUID: suja0R+RT/yTkrl0BagtfA==
+ 18 Mar 2026 00:10:06 -0700
+X-CSE-ConnectionGUID: zXVRW5eITxKzDCo1vwesfw==
+X-CSE-MsgGUID: DZkSZ6C9T6WI3PviH/qHGg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="260423957"
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="260423923"
 Received: from hghimira.iind.intel.com ([10.190.239.34])
- by orviesa001.jf.intel.com with ESMTP; 18 Mar 2026 00:10:06 -0700
+ by orviesa001.jf.intel.com with ESMTP; 18 Mar 2026 00:10:04 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
  stuart.summers@intel.com, arvind.yadav@intel.com, tejas.upadhyay@intel.com,
  Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Subject: [RFC 01/15] drm/xe: Add xe_usm_queue generic USM circular buffer
-Date: Wed, 18 Mar 2026 13:14:42 +0530
-Message-Id: <20260318074456.2839499-2-himal.prasad.ghimiray@intel.com>
+Subject: [RFC 00/15] drm/xe: Access counter consumer layer
+Date: Wed, 18 Mar 2026 13:14:41 +0530
+Message-Id: <20260318074456.2839499-1-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260318074456.2839499-1-himal.prasad.ghimiray@intel.com>
-References: <20260318074456.2839499-1-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -68,128 +65,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Introduce struct xe_usm_queue, a generic lock-protected circular FIFO
-used by USM consumers (page fault, access counter) to receive fixed-size
-entries from IRQ context and process them via a work_struct.
+This series implements the Xe access counter consumer layer for discrete
+Intel GPUs. Access counters track GPU memory access patterns and emit
+notifications when a threshold is exceeded; the KMD uses these as hints
+to migrate BOs and SVM ranges to tile-local VRAM.
 
-Provide three inline helpers in xe_usm_queue.h:
-  xe_usm_queue_full()  - CIRC_SPACE check (caller holds lock)
-  xe_usm_queue_pop()   - dequeue one entry (acquires lock internally)
-  xe_usm_queue_push()  - enqueue one entry (caller holds lock)
+The series starts by factoring the identical circular buffer code shared
+between page faults and access counters into a generic struct
+xe_usm_queue, then wires both consumers to it. The access counter consumer reuses
+pf_wq rather than allocating a new workqueue.
+
+Two helpers are extracted from the page fault path for reuse:
+xe_vma_lock_and_validate() and xe_device_asid_to_fault_vm(). The worker
+handles both BO-backed VMAs (migrate + rebind) and SVM VMAs (via
+xe_svm_range_setup()).
+
+A new exec queue extension (DRM_XE_EXEC_QUEUE_EXTENSION_SET_ACC_PARAM)
+lets userspace configure per-queue trigger/notify thresholds and
+granularity, which are programmed into CTX_ACC_CTR_THOLD and CTX_ASID
+during LRC init (Bspec: 59264, 59265).
+
+Finally, xe_vma_supports_access_ctr() identifies VMAs ineligible for
+access counting, and xe_pt_stage_bind() sets the NC PTE bit on them to
+avoid wasting finite hardware counter slots (Bspec: 67095).
 
 Suggested-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/xe_usm_queue.h | 100 ++++++++++++++++++++++++++++++
- 1 file changed, 100 insertions(+)
+
+Himal Prasad Ghimiray (15):
+  drm/xe: Add xe_usm_queue generic USM circular buffer
+  drm/xe/pagefault: Use xe_usm_queue helpers
+  drm/xe: Stub out new access_counter layer
+  drm/xe: Implement xe_access_counter_init
+  drm/xe: Implement xe_access_counter_handler
+  drm/xe: Extract xe_vma_lock_and_validate helper
+  drm/xe: Move ASID to FAULT VM lookup to xe_device
+  drm/xe: Implement xe_access_counter_queue_work
+  drm/xe/trace: Add xe_vma_acc trace event for access counter
+    notifications
+  drm/xe/svm: Handle svm ranges on access ctr trigger
+  drm/xe: Add xe_guc_access_counter layer
+  drm/xe/uapi: Add access counter parameter extension for exec queue
+  drm/xe/lrc: Pass exec_queue to xe_lrc_create for access counter params
+  drm/xe/vm: Add xe_vma_supports_access_ctr() helper
+  drm/xe/pt: Set NC PTE bit for VMAs ineligible for access counting
+
+ drivers/gpu/drm/xe/Makefile                  |   4 +-
+ drivers/gpu/drm/xe/regs/xe_gtt_defs.h        |   2 +-
+ drivers/gpu/drm/xe/regs/xe_lrc_layout.h      |  10 +
+ drivers/gpu/drm/xe/xe_access_counter.c       | 255 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_access_counter.h       |  17 ++
+ drivers/gpu/drm/xe/xe_access_counter_types.h | 123 +++++++++
+ drivers/gpu/drm/xe/xe_device.c               |  30 +++
+ drivers/gpu/drm/xe/xe_device.h               |   1 +
+ drivers/gpu/drm/xe/xe_device_types.h         |   6 +-
+ drivers/gpu/drm/xe/xe_exec_queue.c           |  29 ++-
+ drivers/gpu/drm/xe/xe_exec_queue_types.h     |   9 +
+ drivers/gpu/drm/xe/xe_execlist.c             |   2 +-
+ drivers/gpu/drm/xe/xe_guc_access_counter.c   |  62 +++++
+ drivers/gpu/drm/xe/xe_guc_access_counter.h   |  15 ++
+ drivers/gpu/drm/xe/xe_guc_ct.c               |   4 +
+ drivers/gpu/drm/xe/xe_lrc.c                  |  35 ++-
+ drivers/gpu/drm/xe/xe_lrc.h                  |   5 +-
+ drivers/gpu/drm/xe/xe_pagefault.c            |  79 +-----
+ drivers/gpu/drm/xe/xe_pagefault_types.h      |  27 +-
+ drivers/gpu/drm/xe/xe_pt.c                   |  11 +
+ drivers/gpu/drm/xe/xe_svm.c                  |  59 +++--
+ drivers/gpu/drm/xe/xe_svm.h                  |   4 +
+ drivers/gpu/drm/xe/xe_trace_bo.h             |  32 ++-
+ drivers/gpu/drm/xe/xe_usm_queue.h            | 100 ++++++++
+ drivers/gpu/drm/xe/xe_vm.c                   |  72 ++++++
+ drivers/gpu/drm/xe/xe_vm.h                   |   6 +
+ include/uapi/drm/xe_drm.h                    |  39 +++
+ 27 files changed, 910 insertions(+), 128 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_access_counter.c
+ create mode 100644 drivers/gpu/drm/xe/xe_access_counter.h
+ create mode 100644 drivers/gpu/drm/xe/xe_access_counter_types.h
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_access_counter.c
+ create mode 100644 drivers/gpu/drm/xe/xe_guc_access_counter.h
  create mode 100644 drivers/gpu/drm/xe/xe_usm_queue.h
 
-diff --git a/drivers/gpu/drm/xe/xe_usm_queue.h b/drivers/gpu/drm/xe/xe_usm_queue.h
-new file mode 100644
-index 000000000000..5dc2d692d8bb
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_usm_queue.h
-@@ -0,0 +1,100 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#ifndef _XE_USM_QUEUE_H_
-+#define _XE_USM_QUEUE_H_
-+
-+#include <linux/circ_buf.h>
-+#include <linux/spinlock.h>
-+#include <linux/workqueue.h>
-+
-+/**
-+ * struct xe_usm_queue - Generic USM circular FIFO queue
-+ *
-+ * A lock-protected circular buffer used by both the page fault consumer and
-+ * the access counter consumer. Producers push fixed-size entries from IRQ
-+ * context; a work_struct processes them asynchronously.
-+ */
-+struct xe_usm_queue {
-+	/**
-+	 * @data: Raw byte buffer backing the queue, protected by @lock
-+	 */
-+	void *data;
-+	/** @size: Total size of @data in bytes */
-+	u32 size;
-+	/** @head: Write cursor in bytes, moved by producer, protected by @lock */
-+	u32 head;
-+	/** @tail: Read cursor in bytes, moved by consumer, protected by @lock */
-+	u32 tail;
-+	/** @lock: Protects the queue head/tail */
-+	spinlock_t lock;
-+	/** @worker: Work item scheduled to drain the queue */
-+	struct work_struct worker;
-+};
-+
-+/**
-+ * xe_usm_queue_full - Check whether the queue has no room for one more entry
-+ * @q: queue
-+ * @size: exact size of one entry in bytes (sizeof the entry struct)
-+ *
-+ * Must be called with @q->lock held.
-+ *
-+ * Return: true if the queue is full
-+ */
-+static inline bool xe_usm_queue_full(struct xe_usm_queue *q, u32 size)
-+{
-+	u32 entry_size = roundup_pow_of_two(size);
-+
-+	lockdep_assert_held(&q->lock);
-+
-+	return CIRC_SPACE(q->head, q->tail, q->size) <= entry_size;
-+}
-+/**
-+ * xe_usm_queue_pop - Pop one entry from the queue into @out
-+ * @q: queue
-+ * @out: destination buffer, must be at least @size bytes
-+ * @size: exact size of one entry in bytes (sizeof the entry struct)
-+ *
-+ * Acquires @q->lock internally with spin_lock_irq().
-+ *
-+ * Return: true if an entry was dequeued, false if the queue was empty
-+ */
-+static inline bool xe_usm_queue_pop(struct xe_usm_queue *q, void *out,
-+				    u32 size)
-+{
-+	u32 entry_size = roundup_pow_of_two(size);
-+	bool found = false;
-+
-+	spin_lock_irq(&q->lock);
-+	if (q->tail != q->head) {
-+		memcpy(out, q->data + q->tail, size);
-+		q->tail = (q->tail + entry_size) % q->size;
-+		found = true;
-+	}
-+	spin_unlock_irq(&q->lock);
-+
-+	return found;
-+}
-+
-+/**
-+ * xe_usm_queue_push - Push one entry into the queue
-+ * @q: queue
-+ * @in: source buffer, must be at least @size bytes
-+ * @size: size of one entry of in bytes
-+ *
-+ * Must be called with @q->lock held.
-+ * Caller must check xe_usm_queue_full() before calling.
-+ */
-+static inline void xe_usm_queue_push(struct xe_usm_queue *q, const void *in,
-+				     u32 size)
-+{
-+	u32 entry_size = roundup_pow_of_two(size);
-+
-+	lockdep_assert_held(&q->lock);
-+
-+	memcpy(q->data + q->head, in, size);
-+	q->head = (q->head + entry_size) % q->size;
-+}
-+#endif
 -- 
 2.34.1
 
