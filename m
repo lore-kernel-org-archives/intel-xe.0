@@ -4,63 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9B401090236
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Mar 2026 14:42:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 179881090255
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Mar 2026 16:54:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C6FB10E8F8;
-	Thu, 19 Mar 2026 14:42:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BBBB10E143;
+	Thu, 19 Mar 2026 16:54:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c91Xt275";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Oq+UhEI8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 591A910E8F7;
- Thu, 19 Mar 2026 14:42:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CED0B10E143
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Mar 2026 16:54:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773931345; x=1805467345;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=mF9P9xEJz/zLQh0w3IiPXoQ8nHlIRIchufmKBE0UE+M=;
- b=c91Xt275cj8iGjkHjYpIOlLYC3Aj9AOIl1L9CUfXlVH/x17YiEBi5Y7L
- d3+VhEePx1WGs2gLi8JouE2x32Fg+IAa97fE9mXwN26GarwahNyfq0zIz
- krIO6P5kbYqC6eLFj5AJA0K3ilCV4e5G9dcc4pOSpMyR/YYVNbhWbEx3H
- 5C9Sqpy21eU0X9gvCd3gFAnGtsqdYev1r8kbcd6ZZSxbtpi2P16XqqlG7
- KzzHfdLgJIq6665PT4TGePNp2GLizNgepTk/pEWaF8+bMjBOfL7809vdH
- rlkGm5QxYk3bbg2OD8Q1yOhhUkNbiFO7oRTc+ms+KWhVWbSUDeDtolO9e Q==;
-X-CSE-ConnectionGUID: b1vdBEurTCS5KDqeiVimcg==
-X-CSE-MsgGUID: O3Hf4rfwRUa7Q6aEotRSlQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="86366920"
-X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="86366920"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2026 07:42:24 -0700
-X-CSE-ConnectionGUID: MGdL+LA3RZamzQeX7nNpCQ==
-X-CSE-MsgGUID: z3vJNvLtRmGLuwGF4pRSug==
+ t=1773939276; x=1805475276;
+ h=date:from:to:cc:subject:message-id;
+ bh=jVKUrSzUuk5V+xwElh1lhkQT4d5e9aO4vmX2vP7C6Mw=;
+ b=Oq+UhEI8F2D5HDVNAmfrmZSh3qJqdYqLX487H/VUjt395KiGnjN8r0tI
+ dh/X+ghb6kVICK49d0iFfnktrDa+IdL8VSChWj6dMdnbp3RGkieu0TQnh
+ 70iZAxIBzsyTInwpMizg4TkAhX7fJ4/I7jMssxKCMYbVBQLGzSsJHl914
+ HDNLt1YWWRbYhSTQO52rt9Yt3ZntpNsHJaGvb7/mJkcUTMSA7/WLmuhyI
+ BSYI5ix9ZbEmKYKRu988Xs4yUIrHy8Qsz32X3l+5/8BVvOm6/i4fMJNO2
+ s2tNmGUtFyRDFkKqzDK8vQQUAZSRRG8cmi7T06zTapSXmHoejUrxRAsPH Q==;
+X-CSE-ConnectionGUID: 70+BQYMKQNymLo8ZunM5Jg==
+X-CSE-MsgGUID: O768ojqLQ1eGtHEqgYV0Fg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="74903830"
+X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="74903830"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2026 09:54:35 -0700
+X-CSE-ConnectionGUID: v8LPGi79T3CsAvGz6goCUg==
+X-CSE-MsgGUID: TAPESg2xQyycHgwOgwPhcA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="253447977"
+X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="247278803"
 Received: from lkp-server02.sh.intel.com (HELO a51c2a36b9df) ([10.239.97.151])
- by orviesa002.jf.intel.com with ESMTP; 19 Mar 2026 07:42:19 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 19 Mar 2026 09:54:34 -0700
 Received: from kbuild by a51c2a36b9df with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1w3EZk-0000000019N-2qie;
- Thu, 19 Mar 2026 14:42:16 +0000
-Date: Thu, 19 Mar 2026 22:42:09 +0800
+ (envelope-from <lkp@intel.com>) id 1w3GdF-000000001NR-41ch;
+ Thu, 19 Mar 2026 16:54:06 +0000
+Date: Fri, 20 Mar 2026 00:53:40 +0800
 From: kernel test robot <lkp@intel.com>
-To: Mallesh Koujalagi <mallesh.koujalagi@intel.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- rodrigo.vivi@intel.com
-Cc: oe-kbuild-all@lists.linux.dev, andrealmeid@igalia.com,
- christian.koenig@amd.com, airlied@gmail.com, simona.vetter@ffwll.ch,
- mripard@kernel.org, anshuman.gupta@intel.com,
- badal.nilawar@intel.com, riana.tauro@intel.com,
- karthik.poosa@intel.com, sk.anirban@intel.com, raag.jadav@intel.com,
- Mallesh Koujalagi <mallesh.koujalagi@intel.com>
-Subject: Re: [PATCH v2 1/5] Introduce Xe Uncorrectable Error Handling
-Message-ID: <202603192221.3sEGGig7-lkp@intel.com>
-References: <20260318064016.374656-8-mallesh.koujalagi@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260318064016.374656-8-mallesh.koujalagi@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ 7937ea733f79b3f25e802a0c8360bf7423856f36
+Message-ID: <202603200034.uxainIIu-lkp@intel.com>
+User-Agent: s-nail v14.9.25
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,58 +64,148 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Mallesh,
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: 7937ea733f79b3f25e802a0c8360bf7423856f36  drm/xe: Fix missing runtime PM reference in ccs_mode_store
 
-kernel test robot noticed the following build warnings:
+elapsed time: 1435m
 
-[auto build test WARNING on drm-xe/drm-xe-next]
-[also build test WARNING on drm-misc/drm-misc-next drm/drm-next next-20260318]
-[cannot apply to linus/master v7.0-rc4]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+configs tested: 129
+configs skipped: 0
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Mallesh-Koujalagi/Introduce-Xe-Uncorrectable-Error-Handling/20260318-153303
-base:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-patch link:    https://lore.kernel.org/r/20260318064016.374656-8-mallesh.koujalagi%40intel.com
-patch subject: [PATCH v2 1/5] Introduce Xe Uncorrectable Error Handling
-config: csky-randconfig-r122-20260319 (https://download.01.org/0day-ci/archive/20260319/202603192221.3sEGGig7-lkp@intel.com/config)
-compiler: csky-linux-gcc (GCC) 12.5.0
-sparse: v0.6.5-rc1
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260319/202603192221.3sEGGig7-lkp@intel.com/reproduce)
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202603192221.3sEGGig7-lkp@intel.com/
+tested configs:
+alpha                             allnoconfig    gcc-15.2.0
+alpha                            allyesconfig    gcc-15.2.0
+arc                              allmodconfig    gcc-15.2.0
+arc                               allnoconfig    gcc-15.2.0
+arc                              allyesconfig    gcc-15.2.0
+arc                   randconfig-001-20260319    gcc-8.5.0
+arc                   randconfig-002-20260319    gcc-13.4.0
+arm                               allnoconfig    clang-23
+arm                               allnoconfig    gcc-15.2.0
+arm                              allyesconfig    gcc-15.2.0
+arm                         axm55xx_defconfig    clang-23
+arm                   randconfig-001-20260319    clang-23
+arm                   randconfig-002-20260319    gcc-8.5.0
+arm                   randconfig-003-20260319    gcc-10.5.0
+arm                   randconfig-004-20260319    gcc-11.5.0
+arm                       spear13xx_defconfig    gcc-15.2.0
+arm64                            allmodconfig    clang-19
+arm64                             allnoconfig    gcc-15.2.0
+arm64                 randconfig-001-20260319    clang-23
+arm64                 randconfig-002-20260319    gcc-12.5.0
+arm64                 randconfig-003-20260319    gcc-15.2.0
+arm64                 randconfig-004-20260319    clang-16
+csky                             allmodconfig    gcc-15.2.0
+csky                              allnoconfig    gcc-15.2.0
+csky                  randconfig-001-20260319    gcc-15.2.0
+csky                  randconfig-002-20260319    gcc-15.2.0
+hexagon                          allmodconfig    clang-17
+hexagon                           allnoconfig    clang-23
+hexagon                           allnoconfig    gcc-15.2.0
+hexagon               randconfig-001-20260319    clang-23
+hexagon               randconfig-002-20260319    clang-19
+i386                             allmodconfig    gcc-14
+i386                              allnoconfig    gcc-14
+i386                              allnoconfig    gcc-15.2.0
+i386                             allyesconfig    gcc-14
+i386        buildonly-randconfig-001-20260319    clang-20
+i386        buildonly-randconfig-002-20260319    gcc-14
+i386        buildonly-randconfig-003-20260319    gcc-14
+i386        buildonly-randconfig-004-20260319    clang-20
+i386        buildonly-randconfig-005-20260319    gcc-14
+i386        buildonly-randconfig-006-20260319    clang-20
+i386                  randconfig-001-20260319    clang-20
+i386                  randconfig-002-20260319    clang-20
+i386                  randconfig-003-20260319    gcc-14
+i386                  randconfig-004-20260319    gcc-14
+i386                  randconfig-005-20260319    clang-20
+i386                  randconfig-006-20260319    clang-20
+i386                  randconfig-007-20260319    gcc-13
+i386                  randconfig-012-20260319    gcc-14
+loongarch                        allmodconfig    clang-19
+loongarch                         allnoconfig    clang-23
+loongarch                         allnoconfig    gcc-15.2.0
+loongarch             randconfig-001-20260319    clang-18
+loongarch             randconfig-002-20260319    clang-23
+m68k                             allmodconfig    gcc-15.2.0
+m68k                              allnoconfig    gcc-15.2.0
+m68k                             allyesconfig    gcc-15.2.0
+microblaze                        allnoconfig    gcc-15.2.0
+microblaze                       allyesconfig    gcc-15.2.0
+mips                             allmodconfig    gcc-15.2.0
+mips                              allnoconfig    gcc-15.2.0
+mips                             allyesconfig    gcc-15.2.0
+nios2                            allmodconfig    gcc-11.5.0
+nios2                             allnoconfig    clang-23
+nios2                             allnoconfig    gcc-11.5.0
+nios2                 randconfig-001-20260319    gcc-11.5.0
+nios2                 randconfig-002-20260319    gcc-8.5.0
+openrisc                         allmodconfig    gcc-15.2.0
+openrisc                          allnoconfig    clang-23
+openrisc                          allnoconfig    gcc-15.2.0
+parisc                           allmodconfig    gcc-15.2.0
+parisc                            allnoconfig    clang-23
+parisc                            allnoconfig    gcc-15.2.0
+parisc                           allyesconfig    gcc-15.2.0
+parisc                randconfig-001-20260319    gcc-11.5.0
+parisc                randconfig-002-20260319    gcc-8.5.0
+powerpc                          allmodconfig    gcc-15.2.0
+powerpc                           allnoconfig    clang-23
+powerpc                           allnoconfig    gcc-15.2.0
+powerpc               randconfig-001-20260319    clang-23
+powerpc               randconfig-002-20260319    clang-16
+powerpc64             randconfig-001-20260319    clang-19
+powerpc64             randconfig-002-20260319    clang-23
+riscv                            allmodconfig    clang-23
+riscv                             allnoconfig    clang-23
+riscv                             allnoconfig    gcc-15.2.0
+riscv                            allyesconfig    clang-16
+riscv                 randconfig-001-20260319    gcc-9.5.0
+s390                             allmodconfig    clang-18
+s390                              allnoconfig    clang-23
+s390                             allyesconfig    gcc-15.2.0
+s390                  randconfig-001-20260319    gcc-9.5.0
+s390                  randconfig-002-20260319    clang-23
+sh                               allmodconfig    gcc-15.2.0
+sh                                allnoconfig    clang-23
+sh                                allnoconfig    gcc-15.2.0
+sh                               allyesconfig    gcc-15.2.0
+sh                    randconfig-001-20260319    gcc-10.5.0
+sh                    randconfig-002-20260319    gcc-10.5.0
+sparc                             allnoconfig    clang-23
+sparc                             allnoconfig    gcc-15.2.0
+sparc                 randconfig-001-20260319    gcc-15.2.0
+sparc                 randconfig-002-20260319    gcc-8.5.0
+sparc64                          allmodconfig    clang-23
+sparc64               randconfig-001-20260319    gcc-11.5.0
+sparc64               randconfig-002-20260319    gcc-8.5.0
+um                               allmodconfig    clang-19
+um                                allnoconfig    clang-23
+um                               allyesconfig    gcc-14
+um                    randconfig-001-20260319    gcc-14
+um                    randconfig-002-20260319    clang-23
+x86_64                           allmodconfig    clang-20
+x86_64                            allnoconfig    clang-20
+x86_64                            allnoconfig    clang-23
+x86_64                           allyesconfig    clang-20
+x86_64                randconfig-001-20260319    gcc-14
+x86_64                randconfig-002-20260319    gcc-12
+x86_64                randconfig-003-20260319    gcc-14
+x86_64                randconfig-004-20260319    gcc-14
+x86_64                randconfig-005-20260319    clang-20
+x86_64                randconfig-006-20260319    clang-20
+x86_64                randconfig-012-20260319    gcc-14
+x86_64                randconfig-014-20260319    clang-20
+x86_64                          rhel-9.4-rust    clang-20
+xtensa                            allnoconfig    clang-23
+xtensa                            allnoconfig    gcc-15.2.0
+xtensa                           allyesconfig    gcc-15.2.0
+xtensa                randconfig-001-20260319    gcc-8.5.0
+xtensa                randconfig-002-20260319    gcc-8.5.0
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/gpu/drm/xe/xe_ras.c:170:18: sparse: sparse: incorrect type in assignment (different base types) @@     expected restricted __le32 [usertype] data @@     got unsigned int [assigned] [usertype] req_hdr @@
-   drivers/gpu/drm/xe/xe_ras.c:170:18: sparse:     expected restricted __le32 [usertype] data
-   drivers/gpu/drm/xe/xe_ras.c:170:18: sparse:     got unsigned int [assigned] [usertype] req_hdr
-
-vim +170 drivers/gpu/drm/xe/xe_ras.c
-
-   159	
-   160	static void xe_ras_prepare_sysctrl_command(struct xe_sysctrl_mailbox_command *command,
-   161						   u32 cmd_mask, void *request, size_t request_len,
-   162						   void *response, size_t response_len)
-   163	{
-   164		struct xe_sysctrl_mailbox_app_msg_hdr hdr = {0};
-   165		u32 req_hdr;
-   166	
-   167		req_hdr = FIELD_PREP(APP_HDR_GROUP_ID_MASK, XE_SYSCTRL_GROUP_GFSP) |
-   168			  FIELD_PREP(APP_HDR_COMMAND_MASK, cmd_mask);
-   169	
- > 170		hdr.data = req_hdr;
-   171		command->header = hdr;
-   172		command->data_in = request;
-   173		command->data_in_len = request_len;
-   174		command->data_out = response;
-   175		command->data_out_len = response_len;
-   176	}
-   177	
-
--- 
+--
 0-DAY CI Kernel Test Service
 https://github.com/intel/lkp-tests/wiki
