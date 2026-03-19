@@ -4,16 +4,16 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9B171075297
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Mar 2026 10:07:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0ED02107529A
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Mar 2026 10:07:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7E86010E97A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83D6110E96C;
 	Thu, 19 Mar 2026 10:07:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="jbpjWYlO";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="R6rMpCu/";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DA5910E96D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E6A5510E96D
  for <intel-xe@lists.freedesktop.org>; Thu, 19 Mar 2026 10:07:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
@@ -22,28 +22,28 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=wT6RGhokuWpGdW1f00CnXgYV5jm3CoFHaPa3lDmzyj4=; b=jbpjWYlOUQHMYTC6aoQuCENTi5
- yRbrhDh2BzHPqTbWYezgvmUBcHTDF3QKm5hdozwPEM9I5in52SDDOzVXmREpIC/DUiWhci0cR4jMo
- 0FHL28R+gryDhIfxq6yf3SmwIe0bX6Y1N99usUzLkxXNqLJsdcphdYgLFs7E2imezD2bm5+yv0oRl
- hzGbbE9/Sg7KwulazMWDf1d78yEkSJK9AUWYLfaEMHqWQKj5u5j/VCkWFisfvjZYKtBtyReqXXnXe
- 4hciH5/X7WRxM5f8xKSpq58vdMvTf8WmpkzxdUr8x0O2b7H1YuPvL06+vXsKOL9N1HXkMv82e97GF
- RGOPxksw==;
+ bh=W+7rDSnZRwzZQkyorFPc4qTKA/OpgQmuMghOlRW+5qs=; b=R6rMpCu/TUWXOgrII6CHRzP5nY
+ cyjpS9uC8ydX1/JtijdESzh4QZl53MTuBuRsaTrYwFlQiKjAqtVEhXx4MWdpF8JUGh8DfNJZRMtdu
+ OPETF1LMgiVYJR2GQ6+jHUOuf/Qx7/pKri67V8phNojUvPM7uTDQ7p7YgGAIggJt5dFq6AorojxcI
+ 1kJezHtbiNUb50qDsgC6fVgkgCZUDsv999nmEyIiadlX7Eklh42MssM4d6YRFlPsrQRcb/HfvNTHX
+ zdftuJ+CloqcjejIHwd4xDLwXFvGaXhtj8XrWxrZjYoGltpUG9uac0DVtmfc4CFyNz4gERepGAlG/
+ IqnRhfPA==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1w3AHl-003Hea-Ec; Thu, 19 Mar 2026 11:07:25 +0100
+ id 1w3AHm-003Heh-7V; Thu, 19 Mar 2026 11:07:26 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Uma Shankar <uma.shankar@intel.com>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
  Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
- "Michael J. Ruhl" <michael.j.ruhl@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v23 11/12] drm/xe/display: Add support for AuxCCS
-Date: Thu, 19 Mar 2026 10:07:06 +0000
-Message-ID: <20260319100707.60157-12-tvrtko.ursulin@igalia.com>
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [PATCH v23 12/12] drm/xe/xelp: Expose AuxCCS frame buffer modifiers
+ on Alderlake-P
+Date: Thu, 19 Mar 2026 10:07:07 +0000
+Message-ID: <20260319100707.60157-13-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260319100707.60157-1-tvrtko.ursulin@igalia.com>
 References: <20260319100707.60157-1-tvrtko.ursulin@igalia.com>
@@ -64,68 +64,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add support for mapping the auxiliary CCS buffer into the DPT page tables.
+Now that we have implemented all the related missing bits we can enable
+the AuxCCS compressed modifiers which were disabled in
+cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
 
-This will allow for better power efficiency by enabling the render
-compression frame buffer modifiers such as
-I915_FORMAT_MOD_Y_TILED_GEN12_RC_CCS in a following patch.
+Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+
+        [PLANE:32:plane 1A]: type=PRI
+                uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=28
+                hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000
+
+Display is working fine - no artefacts, no DMAR/PIPE faults.
+
+v2:
+ * Adjust patch title. (Rodrigo)
+
+v3:
+ * Complete rewrite based on the display parent interface.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: José Roberto de Souza <jose.souza@intel.com>
 Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 28 +++++++++++++++++++++++++-
- 1 file changed, 27 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/display/xe_display.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 23a7ec41f01d..e45a1e7a4670 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -56,6 +56,29 @@ write_dpt_padding(struct iosys_map *map, unsigned int dest, unsigned int pad)
- 	return dest + pad * sizeof(u64);
- }
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index 49b6f98e7391..a0a4ddf3bb46 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -541,6 +541,13 @@ static const struct intel_display_irq_interface xe_display_irq_interface = {
+ 	.synchronize = irq_synchronize,
+ };
  
-+static unsigned int
-+write_dpt_remapped_linear(struct xe_bo *bo, struct iosys_map *map,
-+			  unsigned int dest,
-+			  const struct intel_remapped_plane_info *plane)
++static bool has_auxccs(struct drm_device *drm)
 +{
-+	struct xe_device *xe = xe_bo_device(bo);
-+	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
-+	const u64 pte = xe_ggtt_encode_pte_flags(ggtt, bo,
-+						 xe->pat.idx[XE_CACHE_NONE]);
-+	unsigned int offset = plane->offset * XE_PAGE_SIZE;
-+	unsigned int size = plane->size;
++	struct xe_device *xe = to_xe_device(drm);
 +
-+	while (size--) {
-+		u64 addr = xe_bo_addr(bo, offset, XE_PAGE_SIZE);
-+
-+		iosys_map_wr(map, dest, u64, addr | pte);
-+		dest += sizeof(u64);
-+		offset += XE_PAGE_SIZE;
-+	}
-+
-+	return dest;
++	return xe->info.platform == XE_ALDERLAKE_P;
 +}
 +
- static unsigned int
- write_dpt_remapped_tiled(struct xe_bo *bo, struct iosys_map *map,
- 			 unsigned int dest,
-@@ -109,7 +132,10 @@ write_dpt_remapped(struct xe_bo *bo,
- 			dest = write_dpt_padding(map, dest, pad);
- 		}
+ static const struct intel_display_parent_interface parent = {
+ 	.bo = &xe_display_bo_interface,
+ 	.dsb = &xe_display_dsb_interface,
+@@ -552,6 +559,7 @@ static const struct intel_display_parent_interface parent = {
+ 	.pcode = &xe_display_pcode_interface,
+ 	.rpm = &xe_display_rpm_interface,
+ 	.stolen = &xe_display_stolen_interface,
++	.has_auxccs = has_auxccs,
+ };
  
--		dest = write_dpt_remapped_tiled(bo, map, dest, plane);
-+		if (plane->linear)
-+			dest = write_dpt_remapped_linear(bo, map, dest, plane);
-+		else
-+			dest = write_dpt_remapped_tiled(bo, map, dest, plane);
- 	}
- }
- 
+ /**
 -- 
 2.52.0
 
