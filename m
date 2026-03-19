@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5156A109025E
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Mar 2026 17:31:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E78310854D2
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Mar 2026 17:31:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1980D10E94C;
-	Thu, 19 Mar 2026 17:31:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F22FF10E7DD;
+	Thu, 19 Mar 2026 17:31:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y54o+vqX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FKFGTchw";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B906610E94C
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Mar 2026 17:31:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C079810E955
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Mar 2026 17:31:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773941464; x=1805477464;
+ t=1773941468; x=1805477468;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ISAojIhlHkdg4kp0Pxuj5z83j1xfigO12JM66wAZ4zo=;
- b=Y54o+vqXe2uilDOLR1DudSiEY6V+uN07DmLX0qfcP/62oyEwDI0/Y2fc
- 8kjqQhhfj+ao0DvauZrOJ5gZAjwlM9cfcLT0wEn/VGcYDhlHkZb+mjZMH
- WiyDtbM+CFZ20C1OhiE/LD1N78SnGv9i0kXk1jYskTmyyjcDBfsrf9Qti
- OznAaNl20SdfbkgqwYyPhj1DWD2kMdx21hIRvg5duIdfB/wSXS+QZlnKz
- IK1oH6CJFSEOJ66mAL8c87Z+EpshFp0u4r/OHB7FfUs1DsaUv+sw81DZS
- tdzvttzi0fGGb3yRZepT2VBQQ7+JUXfnHj6bTfcQT9/h6dXiH/BJjwCTL g==;
-X-CSE-ConnectionGUID: CouLvkjyTdOq/6RjGnbFbg==
-X-CSE-MsgGUID: iP+U8S76QamALCy/ZTCJVw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="86385171"
-X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="86385171"
+ bh=BUrZv37tUDyZhxQju4bbqtDXipVJBzwQpZZvDZt3kBA=;
+ b=FKFGTchwJ3xCkDTfK5cxM97B2yiUcWV96SFuW2KdbQgPALi1fZmHNIxm
+ kkwg+MLf4e9e+jtIkC293u5EFb8z7KoG2og90ZfZ+QR+TgQRkwEJm43Ff
+ 0ZUL+zD/mk4XT75RPZxhNHtQ2XIN1owyAH+9COoGoT5cfFHk8oSzcWxmv
+ 2Z1A7u98lRsYFzSw2pVaKVnKmnLrR3U+Lwny24a8BtWSCHe+1W2UI0Nyq
+ 3/IeR7oJ6OzXr9YYXMbi35X8uuuEjpby/EXAiRC2lTCLG7/E3MZ+CyTOT
+ Lu3KUA+C6e4mea9uluX8P1rQAutDqYNnAzym8dPBFfY/H4AnK6A2+VX9M Q==;
+X-CSE-ConnectionGUID: Oeh0q3IzRYi6k8sVHTVXpg==
+X-CSE-MsgGUID: qf9SEWyIQQOR+PJhdKhrsQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="86385187"
+X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="86385187"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2026 10:31:04 -0700
-X-CSE-ConnectionGUID: ok7ReZtVRaikoNeAsEbXfA==
-X-CSE-MsgGUID: 1tBSrPP7Tweg73Mytyb6mg==
+ 19 Mar 2026 10:31:08 -0700
+X-CSE-ConnectionGUID: WpWAtgemR5ylHNLm+ASkXQ==
+X-CSE-MsgGUID: PtxDz2rrQ5eHv1GXv5Gvvg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="260925285"
+X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="260925308"
 Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2026 10:31:00 -0700
+ 19 Mar 2026 10:31:04 -0700
 From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
@@ -48,10 +48,10 @@ Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
  riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
  michael.j.ruhl@intel.com, paul.e.luse@intel.com,
  mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
-Subject: [PATCH v11 6/7] drm/xe/xe_sysctrl: Add System Controller power
- management support
-Date: Thu, 19 Mar 2026 10:30:36 -0700
-Message-ID: <20260319173031.1320708-15-anoop.c.vijay@intel.com>
+Subject: [PATCH v11 7/7] drm/xe/xe_pci: Enable System Controller support on
+ CRI platform
+Date: Thu, 19 Mar 2026 10:30:37 -0700
+Message-ID: <20260319173031.1320708-16-anoop.c.vijay@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260319173031.1320708-9-anoop.c.vijay@intel.com>
 References: <20260319173031.1320708-9-anoop.c.vijay@intel.com>
@@ -73,141 +73,44 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Add suspend and resume handlers for System Controller to handle system
-(S3/S4) and runtime power management transitions.
+Enable System Controller support on CRI by setting has_sysctrl capability
+flag in device descriptor and runtime device information.
 
-The handlers disable SoC remapper region before entering low power
-states and restore remapper configuration and mailbox interface on
-resume, re-establishing communication with firmware.
+This allows sysctrl subsystem and mailbox communication to be initialized
+on CRI platforms.
 
 Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
-v10: (Riana, Umesh)
-- Added sysctrl suspend/resume handling
+v8: (Matt, Michal)
+- Reordered patches for logical flow
 
-v11: (Badal)
-- Remove explicit SoC remapper disable on suspend
+v10: (Riana)
+- Cleaned up commit message
 ---
- drivers/gpu/drm/xe/xe_pm.c      | 11 +++++++++
- drivers/gpu/drm/xe/xe_sysctrl.c | 44 +++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl.h |  2 ++
- 3 files changed, 57 insertions(+)
+ drivers/gpu/drm/xe/xe_pci.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 01185f10a883..abdddd44a575 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -26,6 +26,7 @@
- #include "xe_pcode.h"
- #include "xe_pxp.h"
- #include "xe_sriov_vf_ccs.h"
-+#include "xe_sysctrl.h"
- #include "xe_trace.h"
- #include "xe_vm.h"
- #include "xe_wa.h"
-@@ -206,6 +207,8 @@ int xe_pm_suspend(struct xe_device *xe)
- 
- 	xe_i2c_pm_suspend(xe);
- 
-+	xe_sysctrl_pm_suspend(xe);
-+
- 	drm_dbg(&xe->drm, "Device suspended\n");
- 	xe_pm_block_end_signalling();
- 
-@@ -259,6 +262,8 @@ int xe_pm_resume(struct xe_device *xe)
- 
- 	xe_i2c_pm_resume(xe, true);
- 
-+	xe_sysctrl_pm_resume(xe);
-+
- 	xe_irq_resume(xe);
- 
- 	for_each_gt(gt, xe, id) {
-@@ -618,6 +623,9 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
- 
- 	xe_i2c_pm_suspend(xe);
- 
-+	if (xe->d3cold.allowed)
-+		xe_sysctrl_pm_suspend(xe);
-+
- 	xe_rpm_lockmap_release(xe);
- 	xe_pm_write_callback_task(xe, NULL);
- 	return 0;
-@@ -670,6 +678,9 @@ int xe_pm_runtime_resume(struct xe_device *xe)
- 
- 	xe_i2c_pm_resume(xe, xe->d3cold.allowed);
- 
-+	if (xe->d3cold.allowed)
-+		xe_sysctrl_pm_resume(xe);
-+
- 	xe_irq_resume(xe);
- 
- 	for_each_gt(gt, xe, id) {
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
-index 84e3b70043a1..d8f1f8cc2244 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl.c
-+++ b/drivers/gpu/drm/xe/xe_sysctrl.c
-@@ -82,3 +82,47 @@ int xe_sysctrl_init(struct xe_device *xe)
- 
- 	return 0;
- }
-+
-+/**
-+ * xe_sysctrl_pm_suspend() - System Controller suspend handler
-+ * @xe: xe device instance
-+ *
-+ * Invoked during system suspend (S3/S4) and runtime suspend to D3.
-+ *
-+ * The SoC remapper region is cleared automatically by hardware on D3
-+ * cold entry. No action is required. This function is kept to preserve
-+ * suspend/resume symmetry and provide a hook for future System Controller
-+ * suspend handling.
-+ */
-+void xe_sysctrl_pm_suspend(struct xe_device *xe)
-+{
-+	if (!xe->info.has_sysctrl)
-+		return;
-+
-+	if (IS_SRIOV_VF(xe))
-+		return;
-+
-+	/* SoC remapper region is disabled automatically on D3 cold entry; no action required. */
-+}
-+
-+/**
-+ * xe_sysctrl_pm_resume() - System Controller resume handler
-+ * @xe: xe device instance
-+ *
-+ * Invoked during system resume (S3/S4 to S0) and runtime resume from D3cold.
-+ * Restores SoC remapper configuration and reinitializes mailbox interface.
-+ */
-+void xe_sysctrl_pm_resume(struct xe_device *xe)
-+{
-+	struct xe_sysctrl *sc = &xe->sc;
-+
-+	if (!xe->info.has_sysctrl)
-+		return;
-+
-+	if (IS_SRIOV_VF(xe))
-+		return;
-+
-+	xe->soc_remapper.set_sysctrl_region(xe, SYSCTRL_MAILBOX_INDEX);
-+
-+	xe_sysctrl_mailbox_init(sc);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
-index d5d8735038ae..a816feed8da6 100644
---- a/drivers/gpu/drm/xe/xe_sysctrl.h
-+++ b/drivers/gpu/drm/xe/xe_sysctrl.h
-@@ -17,5 +17,7 @@ static inline struct xe_device *sc_to_xe(struct xe_sysctrl *sc)
- }
- 
- int xe_sysctrl_init(struct xe_device *xe);
-+void xe_sysctrl_pm_suspend(struct xe_device *xe);
-+void xe_sysctrl_pm_resume(struct xe_device *xe);
- 
- #endif
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 189e2a1c29f9..f5dd77b6680f 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -465,6 +465,7 @@ static const struct xe_device_desc cri_desc = {
+ 	.has_soc_remapper_sysctrl = true,
+ 	.has_soc_remapper_telem = true,
+ 	.has_sriov = true,
++	.has_sysctrl = true,
+ 	.max_gt_per_tile = 2,
+ 	MULTI_LRC_MASK,
+ 	.require_force_probe = true,
+@@ -764,6 +765,7 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.has_soc_remapper_telem = desc->has_soc_remapper_telem;
+ 	xe->info.has_sriov = xe_configfs_primary_gt_allowed(to_pci_dev(xe->drm.dev)) &&
+ 		desc->has_sriov;
++	xe->info.has_sysctrl = desc->has_sysctrl;
+ 	xe->info.skip_guc_pc = desc->skip_guc_pc;
+ 	xe->info.skip_mtcfg = desc->skip_mtcfg;
+ 	xe->info.skip_pcode = desc->skip_pcode;
 -- 
 2.43.0
 
