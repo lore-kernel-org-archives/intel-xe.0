@@ -4,78 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAD441090221
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Mar 2026 12:51:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF12F1090223
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Mar 2026 13:08:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 86E6B10EA06;
-	Thu, 19 Mar 2026 12:51:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 874AB10EA1D;
+	Thu, 19 Mar 2026 13:08:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Hf//2PEA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gevYDQyB";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8038510E4D1;
- Thu, 19 Mar 2026 12:51:57 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id CAC804459C;
- Thu, 19 Mar 2026 12:51:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5658FC19424;
- Thu, 19 Mar 2026 12:51:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1773924716;
- bh=3JCTw3yQAwzCC0Z3TnAOJaa/wbUuhF+28P/bEaMtvTE=;
- h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
- b=Hf//2PEAF/nTtwZm3T755K9b8oQH3665Q3VRMD0anzbF5f/txUtpJpFzzhUkQMfOt
- FQWI52Rbq3mC7VdKFHs7fMygfOLftFbHThZWxpprlHYTb7nZ6FhYkz/r4PZ1OycQcb
- tGiztUO5ANyUu1kXN8Nk3Kj/PHNaVdoPFrEfiEBsN6i2m2I5GJLFMvGpWnw+DRPEpJ
- WAhMljp9unXDJzqcqcpnkk2nxiSEJyYw/n/oTEUgDwu6RdQdJAw5/9QniNKvKBLVv/
- A8L+7NPsxPo5L0gFrt1+tZyQ7vaGw0H0i8S1Ip0HYppZ6O5xbm2Orbl1CqmW95r87/
- YOsyLjMmc/VtQ==
-Mime-Version: 1.0
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B0B810EA0B;
+ Thu, 19 Mar 2026 13:08:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773925683; x=1805461683;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=HR8Jk68/opNdWlOQHQUpthpihvsBaqH1p0Q1HNvk1Qo=;
+ b=gevYDQyBON9lY/c4jRdj/RacuuOmrvy1qAGgix0ZG6pm51+icv+8PTW/
+ yEIKXlroMcJj6ovUCjPb+/6GFUbngyQWl60AFp/6qm2lcINzZ8uMmlAlm
+ S3lNgz6g9L8gq0U2dX2u+I5g5dvlYfg4/68IQ97ILH0C2QWI/ne5qRhl1
+ huIBoz8FatAOR3JXsfJt7snwOFk38t3kXo/qUiSSwIPhwBhIpiJb9CrVv
+ 6qzxKQgSNMB0Kd+CYXoTAWEzZAzbohaJ5op3aBqLS+niA2jIBsQ3p2eNW
+ N8NR5HgWvjBe7kpMmUBZfbmptNU0QgW7Nj5EIEHmpcSTPiYJFOfKwwd3j A==;
+X-CSE-ConnectionGUID: B3oQK25dRRKY40rXoj5ENA==
+X-CSE-MsgGUID: hChZezJbRWyCNGpllnrm4A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="74907672"
+X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="74907672"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2026 06:07:44 -0700
+X-CSE-ConnectionGUID: 01JS2KF5T8SABxNDQO8vgg==
+X-CSE-MsgGUID: OQcdlmHCRbWwjBi/NNVdNw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="222060608"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.152])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2026 06:07:36 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 3/9] drm/i915/wm:
+ s/skl_check_nv12_wm_level()/skl_check_wm_level_nv12()/
+In-Reply-To: <20260319114034.7093-4-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260319114034.7093-1-ville.syrjala@linux.intel.com>
+ <20260319114034.7093-4-ville.syrjala@linux.intel.com>
+Date: Thu, 19 Mar 2026 15:07:31 +0200
+Message-ID: <c013d0b0ddc6030116dbdcf8957a494c1dd2f3d4@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 19 Mar 2026 13:51:44 +0100
-Message-Id: <DH6RTR2FV614.116P56ME4RPT7@kernel.org>
-Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked
- list interface
-Cc: "Joel Fernandes" <joelagnelf@nvidia.com>,
- <linux-kernel@vger.kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>, "Boqun
- Feng" <boqun@kernel.org>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
- Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
- "Trevor Gross" <tmgross@umich.edu>, "Alex Gaynor" <alex.gaynor@gmail.com>,
- "Dave Airlie" <airlied@redhat.com>, "David Airlie" <airlied@gmail.com>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
- <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "Simona
- Vetter" <simona@ffwll.ch>, "Daniel Almeida" <daniel.almeida@collabora.com>,
- "Koen Koning" <koen.koning@linux.intel.com>, "Nikola Djukic"
- <ndjukic@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>, "Philipp
- Stanner" <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>,
- "Jonathan Corbet" <corbet@lwn.net>, "Alex Deucher"
- <alexander.deucher@amd.com>, =?utf-8?q?Christian_K=C3=B6nig?=
- <christian.koenig@amd.com>, "Jani Nikula" <jani.nikula@linux.intel.com>,
- "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi"
- <rodrigo.vivi@intel.com>, "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang
- Rui" <ray.huang@amd.com>, "Matthew Auld" <matthew.auld@intel.com>, "Matthew
- Brost" <matthew.brost@intel.com>, "Lucas De Marchi"
- <lucas.demarchi@intel.com>, =?utf-8?q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, "Helge Deller" <deller@gmx.de>, "John
- Hubbard" <jhubbard@nvidia.com>, "Alistair Popple" <apopple@nvidia.com>,
- "Timur Tabi" <ttabi@nvidia.com>, "Edwin Peer" <epeer@nvidia.com>, "Andrea
- Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>, "Zhi Wang"
- <zhiw@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>,
- <alexeyi@nvidia.com>, "Eliot Courtney" <ecourtney@nvidia.com>,
- <dri-devel@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-fbdev@vger.kernel.org>
-To: "Gary Guo" <gary@garyguo.net>
-From: "Danilo Krummrich" <dakr@kernel.org>
-References: <20260317201710.934932-1-joelagnelf@nvidia.com>
- <20260317201710.934932-2-joelagnelf@nvidia.com>
- <DH6QAR1HHXRV.1Y7IZ22HC9FZ3@garyguo.net>
- <DH6QUO2T941E.2S1UP7EABOP42@kernel.org>
- <DH6R6GB10S07.AG2EY39F0P85@garyguo.net>
-In-Reply-To: <DH6R6GB10S07.AG2EY39F0P85@garyguo.net>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,13 +72,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu Mar 19, 2026 at 1:21 PM CET, Gary Guo wrote:
-> If there're cases where we do want to justify unsafe code that's not imme=
-diately
-> deferring to the user inside the macro, we could use the SAFETY* trick pr=
-oposed
-> in the thread, without writing an actual `unsafe {}` block.
+On Thu, 19 Mar 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Rename skl_check_nv12_wm_level() to skl_check_wm_level_nv12(). There
+> will be a sort of DDB counterparts to skl_check_wm_level*(), and
+> putting the "nv12" part to the end will allow consistent naming.
 
-Works for me -- if this is what we want to do in such cases, we should prob=
-ably
-document it somewhere in the coding guidelines.
+Overall I dislike "check" in function names. What does it check? What
+does it mean? Should it have a return value? Or is it like an assert?
+
+In skl_watermark.c, there are three types of check functions, all
+behaving differently. check_mbus_joined() is really just
+is_mbus_joined(). I don't know what skl_check_wm_level() or
+skl_check_nv12_wm_level() should be called, because they conditionally
+clear the watermarks. And "checking" doesn't sound like something that
+should modify its arguments. Then you have skl_wm_check_vblank(), which
+modifies its arguments and returns an error code, and I really don't
+know what about it is "checking".
+
+/rant
+
+Anyway, for the patch at hand,
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/skl_watermark.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/d=
+rm/i915/display/skl_watermark.c
+> index 1664b84d0387..24978f312fec 100644
+> --- a/drivers/gpu/drm/i915/display/skl_watermark.c
+> +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+> @@ -1356,7 +1356,7 @@ skl_check_wm_level(struct skl_wm_level *wm, const s=
+truct skl_ddb_entry *ddb)
+>  }
+>=20=20
+>  static void
+> -skl_check_nv12_wm_level(struct skl_wm_level *wm, struct skl_wm_level *uv=
+_wm,
+> +skl_check_wm_level_nv12(struct skl_wm_level *wm, struct skl_wm_level *uv=
+_wm,
+>  			const struct skl_ddb_entry *ddb_y, const struct skl_ddb_entry *ddb)
+>  {
+>  	if (wm->min_ddb_alloc > skl_ddb_entry_size(ddb_y) ||
+> @@ -1555,7 +1555,7 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_sta=
+te *state,
+>=20=20
+>  			if (DISPLAY_VER(display) < 11 &&
+>  			    crtc_state->nv12_planes & BIT(plane_id))
+> -				skl_check_nv12_wm_level(&wm->wm[level],
+> +				skl_check_wm_level_nv12(&wm->wm[level],
+>  							&wm->uv_wm[level],
+>  							ddb_y, ddb);
+>  			else
+
+--=20
+Jani Nikula, Intel
