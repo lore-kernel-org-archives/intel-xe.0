@@ -4,27 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2ECED1091929
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Mar 2026 22:18:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0F90109192B
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Mar 2026 22:30:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4B3C10E192;
-	Thu, 19 Mar 2026 22:18:07 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69BB110E192;
- Thu, 19 Mar 2026 22:18:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7028690049650335250=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6473B10E9D5;
+	Thu, 19 Mar 2026 22:30:46 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mZmtbchF";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7098F10E9C6
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Mar 2026 22:30:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773959445; x=1805495445;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:to:cc;
+ bh=MHtiKT5XEZ9YH17ajrgQwEtRmOoEbqsLGsJEXP835uM=;
+ b=mZmtbchFOWd/CUT3U4fB8id0Zr3EGZhsFVJZINYb3GyFSQ2UBttXbKLM
+ /Z9PLSbOzPaUrYirQK9QP7q3fviIg0LNZ/rpI55XZcHoqGvzGN//xNfrA
+ bQVJQcr+8FEUq0Oh8vD6iFEAn+W4mvwo3DBGgZKRqg7iWVBiCV4CjnOxX
+ 9rjBpqovXvvkpVIEv3ZdjXD4xF2ACheE33pU6WvXZ/e2OKbzPlBwhhyCm
+ 6N8RKELQDhqJ1cJ26jxA1axkm+zhHwrFqc4cPyqMs6lnqfxmS53+1ai7S
+ bTKrmK3OZEyREeiw8+eyhZsFPElU1Hw6ZB3G1+PtK+9gBiZnGMRsIXU6V w==;
+X-CSE-ConnectionGUID: E3QFOPrMQrmxvCoWgKA++A==
+X-CSE-MsgGUID: DpVNKUVmQaifKiZeWd83AA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="78950284"
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; d="scan'208";a="78950284"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2026 15:30:45 -0700
+X-CSE-ConnectionGUID: tFpPN0u4QZqYPCx+GZGDBA==
+X-CSE-MsgGUID: SdHfQI24SwKFUPwKtrjCDA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; d="scan'208";a="222210639"
+Received: from mdroper-desk1.fm.intel.com (HELO
+ mdroper-desk1.amr.corp.intel.com) ([10.1.39.133])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2026 15:30:45 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+Date: Thu, 19 Mar 2026 15:30:34 -0700
+Subject: [PATCH] drm/xe: Implement recent spec updates to Wa_16025250150
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_min_and_max_c?=
- =?utf-8?q?ontext_TLB_invalidation_sizes_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Summers, Stuart" <stuart.summers@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 19 Mar 2026 22:18:06 -0000
-Message-ID: <177395868641.377451.9869612002625984658@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260319210534.218992-1-stuart.summers@intel.com>
-In-Reply-To: <20260319210534.218992-1-stuart.summers@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20260319-wa_16025250150_part2-v1-1-46b1de1a31b2@intel.com>
+X-B4-Tracking: v=1; b=H4sIAAp5vGkC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIzMDY0NL3fLEeEMzAyNTI1MDQ1OD+ILEohIjXRNzs2Qz82QjczMTCyWg1oK
+ i1LTMCrCx0bG1tQAGlBUZZgAAAA==
+X-Change-ID: 20260319-wa_16025250150_part2-476c67c27648
+To: intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2084;
+ i=matthew.d.roper@intel.com; h=from:subject:message-id;
+ bh=MHtiKT5XEZ9YH17ajrgQwEtRmOoEbqsLGsJEXP835uM=;
+ b=owEBbQKS/ZANAwAKAU15JAXIcpAEAcsmYgBpvHkUxA4wzaFbElXf4SuWxmLNA2+PKCD7yGH92
+ 9NMOcK0ho2JAjMEAAEKAB0WIQTCZ8MJRH/rTz8hbaxNeSQFyHKQBAUCabx5FAAKCRBNeSQFyHKQ
+ BBCXD/9JNRGqNHQyPOppJg3m5chrL5XFNZsPVh5rZxnsT+3maqFFQzQPoxCq6w6xEpXWngF4yez
+ z1LSxXwil+yqkl5ptvxurGUKg/FK+IngMTEMsl1/82rJqFxOslwepB1C/P2yq6tWkEpOfRGANNb
+ lg45RWm0J2E6iNWLLSB85Z1wdwWtR0DjhSSeUbAq5YhhrOMj34+rESRvQr8TkpQ0mimk81NATw3
+ ZOdrxYyYXZ3KTkS331JNh/JKhFr9eDmOMWIVxhwfxcdu0hmpBnl5gOOIAOQ3GIXKXiuxgHoYzPf
+ HVs65Os+ILCuX4omjUiYwxXyOQUvVjznElL72V6gx4rZAl6MQ5J/AJ8HWx5JP3mKRHEJ4gaVwwf
+ 5aFkm7eozDNsj/d61OD2aJsR7HjawsEwqVjv3EASPBf1u+ixuXAFuVAdgmO/XZdYf7S1IWJyd53
+ HBca2OpKi4oTCZfUCgy26Go+93sNUB7I8uly5MMtEBtlLsjmzbjM23ol3fouciAdQA5MT6n9Ebe
+ TLhUgABgxJJ0cM78jPwGD/gIa+7yahtfWqcOTgxq44YQ4S1kT2oMt16bqTb1jM8wqUIAn7WEAdH
+ vojk24O+FbBUG+0bzBuOzGmVzUJdPlORcDC6N/Td2IV2C9s7rc3gpKuh65P+USLhLGA0aqrPPvk
+ I6RUW910HqxYM/g==
+X-Developer-Key: i=matthew.d.roper@intel.com; a=openpgp;
+ fpr=C267C309447FEB4F3F216DAC4D792405C8729004
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,160 +84,57 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7028690049650335250==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The hardware teams noticed that the originally documented workaround
+steps for Wa_16025250150 may not be sufficient to fully avoid a hardware
+issue.  The workaround documentation has been augmented to suggest
+programming one additional register; make the corresponding change in
+the driver.
 
-== Series Details ==
+Fixes: 7654d51f1fd8 ("drm/xe/xe2hpg: Add Wa_16025250150")
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 1 +
+ drivers/gpu/drm/xe/xe_wa.c           | 3 ++-
+ 2 files changed, 3 insertions(+), 1 deletion(-)
 
-Series: drm/xe: Add min and max context TLB invalidation sizes (rev2)
-URL   : https://patchwork.freedesktop.org/series/163403/
-State : success
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 84b80e83ac460b0af3777741ef02b15da707a4a6..4ebaa0888a433b4423e0180aa196f66c5dfa71c0 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -578,6 +578,7 @@
+ #define   ENABLE_SMP_LD_RENDER_SURFACE_CONTROL	REG_BIT(44 - 32)
+ #define   FORCE_SLM_FENCE_SCOPE_TO_TILE		REG_BIT(42 - 32)
+ #define   FORCE_UGM_FENCE_SCOPE_TO_TILE		REG_BIT(41 - 32)
++#define   L3_128B_256B_WRT_DIS			REG_BIT(40 - 32)
+ #define   MAXREQS_PER_BANK			REG_GENMASK(39 - 32, 37 - 32)
+ #define   DISABLE_128B_EVICTION_COMMAND_UDW	REG_BIT(36 - 32)
+ #define   LSCFE_SAME_ADDRESS_ATOMICS_COALESCING_DISABLE	REG_BIT(35 - 32)
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 8c55cd187a0c2f17f1d6ed0ef2f9c7a87913a840..430fab6ae1d9abfccc36ffda1e8b88419587b901 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -260,7 +260,8 @@ static const struct xe_rtp_entry_sr gt_was[] = {
+ 				   LSN_DIM_Z_WGT_MASK,
+ 				   LSN_LNI_WGT(1) | LSN_LNE_WGT(1) |
+ 				   LSN_DIM_X_WGT(1) | LSN_DIM_Y_WGT(1) |
+-				   LSN_DIM_Z_WGT(1)))
++				   LSN_DIM_Z_WGT(1)),
++			SET(LSC_CHICKEN_BIT_0_UDW, L3_128B_256B_WRT_DIS))
+ 	},
+ 
+ 	/* Xe3_LPG */
 
-== Summary ==
+---
+base-commit: 242f4d8af4c4708eabb93e79949d45caec8d4354
+change-id: 20260319-wa_16025250150_part2-476c67c27648
 
-CI Bug Log - changes from xe-4747-f4482de2c06e19b0c337b774e485755378990614_BAT -> xe-pw-163403v2_BAT
-====================================================
+Best regards,
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-163403v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#7249] / [Intel XE#7578])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4747-f4482de2c06e19b0c337b774e485755378990614/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163403v2/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#6519]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4747-f4482de2c06e19b0c337b774e485755378990614/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163403v2/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [FAIL][5] ([Intel XE#6520]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4747-f4482de2c06e19b0c337b774e485755378990614/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163403v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-  [Intel XE#7249]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249
-  [Intel XE#7578]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578
-
-
-Build changes
--------------
-
-  * IGT: IGT_8810 -> IGT_8811
-  * Linux: xe-4747-f4482de2c06e19b0c337b774e485755378990614 -> xe-pw-163403v2
-
-  IGT_8810: eb9035ba642724dc0a7711672805f26d1f34f712 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_8811: cc3169e72592a56b806ce54a87060519151ad5fe @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4747-f4482de2c06e19b0c337b774e485755378990614: f4482de2c06e19b0c337b774e485755378990614
-  xe-pw-163403v2: 163403v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163403v2/index.html
-
---===============7028690049650335250==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add min and max context TLB invalidation sizes (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163403/">https://patchwork.freedesktop.org/series/163403/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163403v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163403v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4747-f4482de2c06e19b0c337b774e485755378990614_BAT -&gt; xe-pw-163403v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-163403v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4747-f4482de2c06e19b0c337b774e485755378990614/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163403v2/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249">Intel XE#7249</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578">Intel XE#7578</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4747-f4482de2c06e19b0c337b774e485755378990614/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163403v2/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@reltime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4747-f4482de2c06e19b0c337b774e485755378990614/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163403v2/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8810 -&gt; IGT_8811</li>
-<li>Linux: xe-4747-f4482de2c06e19b0c337b774e485755378990614 -&gt; xe-pw-163403v2</li>
-</ul>
-<p>IGT_8810: eb9035ba642724dc0a7711672805f26d1f34f712 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_8811: cc3169e72592a56b806ce54a87060519151ad5fe @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4747-f4482de2c06e19b0c337b774e485755378990614: f4482de2c06e19b0c337b774e485755378990614<br />
-  xe-pw-163403v2: 163403v2</p>
-
-</body>
-</html>
-
---===============7028690049650335250==--
