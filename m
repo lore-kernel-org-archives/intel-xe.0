@@ -4,53 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FA941075262
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Mar 2026 06:54:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41E4B1075262
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Mar 2026 06:54:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 482FB10E8C2;
-	Thu, 19 Mar 2026 06:54:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 009A610E880;
+	Thu, 19 Mar 2026 06:54:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PqFB+Nf3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Htggi7jr";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 46A4A10E8A9
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Mar 2026 06:54:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6407510E880
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Mar 2026 06:54:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773903248; x=1805439248;
+ t=1773903251; x=1805439251;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Cdfk70soBqnh4PRyrxRN0wtLAp2Z136kW7coSd4LemQ=;
- b=PqFB+Nf3p788KPT2SmCT77dc/asKmLaZ/Eh6FeITTHCui1WZA0bxlYa8
- sL7GjBqkz8h1a03OxsqWgWkMs90vfb+VlmiPcNoQQII4LLuSnUBKdaqvU
- gOxjJif15xkRRQjIH1UrY/DYgUAEG8Gs8HnTjBpALADFpSfwt0yfiSeJu
- c5wnDBNc28TssYTZPrOpc5FUquf3Um3JmtIZ/fY/QovnUey6E62t0r1k2
- h/j28faUBEhRlBiNRwQgrUrlam13CXoRSRj8+6NVuvyn28ttTGCvwMUyZ
- rSWrv1MyRyVnkhRWOP5Il6S7u9F7vG6iJFKNkNhOMRB38tog90l0kftXi w==;
-X-CSE-ConnectionGUID: CFoC97iCRhC9eHZfjcY41g==
-X-CSE-MsgGUID: CBT46TK0StKHh15wcGAJrw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="75045682"
-X-IronPort-AV: E=Sophos;i="6.23,128,1770624000"; d="scan'208";a="75045682"
+ bh=nWuSqs8cU3X+5Q8RDPxIdDqwoDPR42zZ1tQidgubLpU=;
+ b=Htggi7jrJi3MFs95csUH3Sn/55jxMPyU9rsgqEZevsXTmdQG94O5qxU6
+ yIfDZrX+wS7BvucSowbDVl8K8Xp2jN5zh2Bv3IxzfA+jjgOv2SG+Rp5qa
+ v2JgpeAyUjEN+nOcqZktWeLhJK6upLOakSZ7ti5ts6xyadKDxlDlYRWiF
+ nW0bX0Vg1dYQDoMBwPgsEEpYjNTQa/c3OgWestkMtgTEABlbhlMlnuJhN
+ MySLrb7yDJ79vlF2wFrm/+7q+aKjJs6NvEQpIGRFFRVyC4Gwkwz0v0NgR
+ EXcF/dX05d2OaE5FnOq4diLYPNi/duxd6HfzrbVdVPxCjLKOoPVbxEmdu A==;
+X-CSE-ConnectionGUID: 6mbqkXaKQy6n59ZX8KDp7Q==
+X-CSE-MsgGUID: OXkYT0jvRhKMNlq8wCqzXQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="75045683"
+X-IronPort-AV: E=Sophos;i="6.23,128,1770624000"; d="scan'208";a="75045683"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2026 23:54:08 -0700
-X-CSE-ConnectionGUID: 69w6etD2SnG+3eOjjtL5Aw==
-X-CSE-MsgGUID: kzpuSv/lRc+bXl514weXXg==
+ 18 Mar 2026 23:54:11 -0700
+X-CSE-ConnectionGUID: +zDWphBiTjyZzBZQlO3BAw==
+X-CSE-MsgGUID: tAwtcOuwTmWrOc5ctNX+DA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,128,1770624000"; d="scan'208";a="227571270"
+X-IronPort-AV: E=Sophos;i="6.23,128,1770624000"; d="scan'208";a="227571278"
 Received: from tejasupa-desk.iind.intel.com (HELO tejasupa-desk)
  ([10.190.239.37])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2026 23:54:06 -0700
+ 18 Mar 2026 23:54:08 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.auld@intel.com, matthew.brost@intel.com,
  thomas.hellstrom@linux.intel.com, himal.prasad.ghimiray@intel.com,
  Tejas Upadhyay <tejas.upadhyay@intel.com>
-Subject: [RFC PATCH V5 6/7] drm/xe/configfs: Add vram bad page reservation
- policy
-Date: Thu, 19 Mar 2026 12:23:45 +0530
-Message-ID: <20260319065340.2531231-15-tejas.upadhyay@intel.com>
+Subject: [RFC PATCH V5 7/7] drm/xe/cri: Add sysfs interface for bad gpu vram
+ pages
+Date: Thu, 19 Mar 2026 12:23:46 +0530
+Message-ID: <20260319065340.2531231-16-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260319065340.2531231-9-tejas.upadhyay@intel.com>
 References: <20260319065340.2531231-9-tejas.upadhyay@intel.com>
@@ -71,287 +71,210 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The interface enables setting the policy for how bad pages are
-handled in VRAM. This is crucial for maintaining system
-stability in scenarios where VRAM degradation occurs.
+Starting CRI, Include a sysfs interface designed to expose information
+about bad VRAM pages—those identified as having hardware faults
+(e.g., ECC errors). This interface allows userspace tools and
+administrators to monitor the health of the GPU's local memory and
+track the status of page retirement.To get details on bad gpu vram
+pages can be found under /sys/bus/pci/devices/bdf/vram_bad_pages.
 
-By default policy will be "reserve", which can be changed to
-"logging" only.
+Where The format is, pfn : gpu page size : flags
+
+flags:
+R: reserved, this gpu page is reserved.
+P: pending for reserve, this gpu page is marked as bad, will be reserved in next window of page_reserve.
+F: unable to reserve. this gpu page can’t be reserved due to some reasons.
+
+For example if you read using cat /sys/bus/pci/devices/bdf/vram_bad_pages,
+max_pages : 10000
+0x00000000 : 0x00001000 : R
+0x00001234 : 0x00001000 : P
 
 v2:
-- Add CRI check and rebase
+- Add max_pages info as per updated design doc
+- Rebase
 
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_configfs.c     | 64 +++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_configfs.h     |  2 +
- drivers/gpu/drm/xe/xe_device.c       | 44 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c | 11 +++++
- 4 files changed, 120 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_device.c             |  7 ++
+ drivers/gpu/drm/xe/xe_device_sysfs.c       |  7 ++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c       | 77 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.h       |  1 +
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h |  2 +
+ 5 files changed, 94 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_configfs.c b/drivers/gpu/drm/xe/xe_configfs.c
-index 32102600a148..4ac5274a4090 100644
---- a/drivers/gpu/drm/xe/xe_configfs.c
-+++ b/drivers/gpu/drm/xe/xe_configfs.c
-@@ -61,7 +61,8 @@
-  *	    ├── survivability_mode
-  *	    ├── gt_types_allowed
-  *	    ├── engines_allowed
-- *	    └── enable_psmi
-+ *          ├── enable_psmi
-+ *          └── bad_page_reservation
-  *
-  * After configuring the attributes as per next section, the device can be
-  * probed with::
-@@ -159,6 +160,16 @@
-  *
-  * This attribute can only be set before binding to the device.
-  *
-+ * Bad pages reservation:
-+ * ---------------------
-+ *
-+ * Disale vram bad pages reservation, instead just report it in dmesg.
-+ *  Example to disable it::
-+ *
-+ *      # echo 0 > /sys/kernel/config/xe/0000:03:00.0/bad_page_reservation
-+ *
-+ * This attribute can only be set before binding to the device.
-+ *
-  * Context restore BB
-  * ------------------
-  *
-@@ -262,6 +273,7 @@ struct xe_config_group_device {
- 		struct wa_bb ctx_restore_mid_bb[XE_ENGINE_CLASS_MAX];
- 		bool survivability_mode;
- 		bool enable_psmi;
-+		bool bad_page_reservation;
- 		struct {
- 			unsigned int max_vfs;
- 			bool admin_only_pf;
-@@ -281,6 +293,7 @@ static const struct xe_config_device device_defaults = {
- 	.engines_allowed = U64_MAX,
- 	.survivability_mode = false,
- 	.enable_psmi = false,
-+	.bad_page_reservation = true,
- 	.sriov = {
- 		.max_vfs = XE_DEFAULT_MAX_VFS,
- 		.admin_only_pf = XE_DEFAULT_ADMIN_ONLY_PF,
-@@ -575,6 +588,32 @@ static ssize_t enable_psmi_store(struct config_item *item, const char *page, siz
- 	return len;
- }
- 
-+static ssize_t bad_page_reservation_show(struct config_item *item, char *page)
-+{
-+	struct xe_config_device *dev = to_xe_config_device(item);
-+
-+	return sprintf(page, "%d\n", dev->bad_page_reservation);
-+}
-+
-+static ssize_t bad_page_reservation_store(struct config_item *item, const char *page, size_t len)
-+{
-+	struct xe_config_group_device *dev = to_xe_config_group_device(item);
-+	bool val;
-+	int ret;
-+
-+	ret = kstrtobool(page, &val);
-+	if (ret)
-+		return ret;
-+
-+	guard(mutex)(&dev->lock);
-+	if (is_bound(dev))
-+		return -EBUSY;
-+
-+	dev->config.bad_page_reservation = val;
-+
-+	return len;
-+}
-+
- static bool wa_bb_read_advance(bool dereference, char **p,
- 			       const char *append, size_t len,
- 			       size_t *max_size)
-@@ -813,6 +852,7 @@ static ssize_t ctx_restore_post_bb_store(struct config_item *item,
- CONFIGFS_ATTR(, ctx_restore_mid_bb);
- CONFIGFS_ATTR(, ctx_restore_post_bb);
- CONFIGFS_ATTR(, enable_psmi);
-+CONFIGFS_ATTR(, bad_page_reservation);
- CONFIGFS_ATTR(, engines_allowed);
- CONFIGFS_ATTR(, gt_types_allowed);
- CONFIGFS_ATTR(, survivability_mode);
-@@ -821,6 +861,7 @@ static struct configfs_attribute *xe_config_device_attrs[] = {
- 	&attr_ctx_restore_mid_bb,
- 	&attr_ctx_restore_post_bb,
- 	&attr_enable_psmi,
-+	&attr_bad_page_reservation,
- 	&attr_engines_allowed,
- 	&attr_gt_types_allowed,
- 	&attr_survivability_mode,
-@@ -1098,6 +1139,7 @@ static void dump_custom_dev_config(struct pci_dev *pdev,
- 	PRI_CUSTOM_ATTR("%llx", gt_types_allowed);
- 	PRI_CUSTOM_ATTR("%llx", engines_allowed);
- 	PRI_CUSTOM_ATTR("%d", enable_psmi);
-+	PRI_CUSTOM_ATTR("%d", bad_page_reservation);
- 	PRI_CUSTOM_ATTR("%d", survivability_mode);
- 	PRI_CUSTOM_ATTR("%u", sriov.admin_only_pf);
- 
-@@ -1225,6 +1267,26 @@ bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev)
- 	return ret;
- }
- 
-+/**
-+ * xe_configfs_get_bad_page_reservation - get configfs bad_page_reservation setting
-+ * @pdev: pci device
-+ *
-+ * Return: bad_page_reservation setting in configfs
-+ */
-+bool xe_configfs_get_bad_page_reservation(struct pci_dev *pdev)
-+{
-+	struct xe_config_group_device *dev = find_xe_config_group_device(pdev);
-+	bool ret;
-+
-+	if (!dev)
-+		return device_defaults.bad_page_reservation;
-+
-+	ret = dev->config.bad_page_reservation;
-+	config_group_put(&dev->group);
-+
-+	return ret;
-+}
-+
- /**
-  * xe_configfs_get_ctx_restore_mid_bb - get configfs ctx_restore_mid_bb setting
-  * @pdev: pci device
-diff --git a/drivers/gpu/drm/xe/xe_configfs.h b/drivers/gpu/drm/xe/xe_configfs.h
-index 07d62bf0c152..c107d84b2c62 100644
---- a/drivers/gpu/drm/xe/xe_configfs.h
-+++ b/drivers/gpu/drm/xe/xe_configfs.h
-@@ -23,6 +23,7 @@ bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev);
- bool xe_configfs_media_gt_allowed(struct pci_dev *pdev);
- u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev);
- bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev);
-+bool xe_configfs_get_bad_page_reservation(struct pci_dev *pdev);
- u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
- 				       enum xe_engine_class class,
- 				       const u32 **cs);
-@@ -42,6 +43,7 @@ static inline bool xe_configfs_primary_gt_allowed(struct pci_dev *pdev) { return
- static inline bool xe_configfs_media_gt_allowed(struct pci_dev *pdev) { return true; }
- static inline u64 xe_configfs_get_engines_allowed(struct pci_dev *pdev) { return U64_MAX; }
- static inline bool xe_configfs_get_psmi_enabled(struct pci_dev *pdev) { return false; }
-+static inline bool xe_configfs_get_bad_page_reservation(struct pci_dev *pdev) { return true; }
- static inline u32 xe_configfs_get_ctx_restore_mid_bb(struct pci_dev *pdev,
- 						     enum xe_engine_class class,
- 						     const u32 **cs) { return 0; }
 diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index e77a3a3db73d..35e464d55f0b 100644
+index 35e464d55f0b..dff8d989d3e6 100644
 --- a/drivers/gpu/drm/xe/xe_device.c
 +++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -25,6 +25,7 @@
- #include "regs/xe_regs.h"
- #include "xe_bo.h"
- #include "xe_bo_evict.h"
-+#include "xe_configfs.h"
- #include "xe_debugfs.h"
- #include "xe_defaults.h"
- #include "xe_devcoredump.h"
-@@ -68,6 +69,7 @@
- #include "xe_tile.h"
- #include "xe_ttm_stolen_mgr.h"
- #include "xe_ttm_sys_mgr.h"
-+#include "xe_ttm_vram_mgr.h"
- #include "xe_vm.h"
- #include "xe_vm_madvise.h"
- #include "xe_vram.h"
-@@ -834,6 +836,44 @@ static void detect_preproduction_hw(struct xe_device *xe)
- 	}
- }
- 
-+static int xe_device_process_bad_pages(struct xe_device *xe)
-+{
-+	unsigned long offlined[1] = {0x0};
-+	unsigned long queued[1] = {0x3000};
-+	int n_bad_pages = ARRAY_SIZE(offlined) + ARRAY_SIZE(queued);
-+	unsigned long *bad_pages;
-+	bool policy;
-+	u8 i;
-+
-+	if (xe->info.platform != XE_CRESCENTISLAND)
-+		return 0;
-+
-+	/* TODO: FW Integration: Query FW for offline/queued pages */
-+
-+	if (!n_bad_pages)
-+		return 0;
-+	bad_pages = kmalloc_array(n_bad_pages, sizeof(unsigned long), GFP_KERNEL);
-+	if (!bad_pages)
-+		return -ENOMEM;
-+
-+	for (int i = 0; i < ARRAY_SIZE(offlined); i++)
-+		bad_pages[i] = offlined[i];
-+	for (int i = 0; i < ARRAY_SIZE(queued); i++)
-+		bad_pages[ARRAY_SIZE(offlined) + i] = queued[i];
-+
-+	/* Read policy from configfs */
-+	policy = xe_configfs_get_bad_page_reservation(to_pci_dev(xe->drm.dev));
-+	for (i = 0; i < n_bad_pages; i++) {
-+		if (!policy)
-+			drm_err(&xe->drm, "0x%lx is reported as corrupted address by HW\n",
-+				bad_pages[i]);
-+		else
-+			xe_ttm_vram_handle_addr_fault(xe, bad_pages[i]);
-+	}
-+	kfree(bad_pages);
-+	return 0;
-+}
-+
- int xe_device_probe(struct xe_device *xe)
+@@ -840,6 +840,8 @@ static int xe_device_process_bad_pages(struct xe_device *xe)
  {
- 	struct xe_tile *tile;
-@@ -903,6 +943,10 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		return err;
+ 	unsigned long offlined[1] = {0x0};
+ 	unsigned long queued[1] = {0x3000};
++	struct ttm_resource_manager *man;
++	struct xe_ttm_vram_mgr *mgr;
+ 	int n_bad_pages = ARRAY_SIZE(offlined) + ARRAY_SIZE(queued);
+ 	unsigned long *bad_pages;
+ 	bool policy;
+@@ -849,6 +851,11 @@ static int xe_device_process_bad_pages(struct xe_device *xe)
+ 		return 0;
  
-+	err = xe_device_process_bad_pages(xe);
-+	if (err)
-+		return err;
-+
- 	/*
- 	 * Now that GT is initialized (TTM in particular),
- 	 * we can try to init display, and inherit the initial fb.
-diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-index 1ada98b74205..c70256f2987e 100644
---- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-+++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
-@@ -12,6 +12,7 @@
- #include <drm/ttm/ttm_range_manager.h>
+ 	/* TODO: FW Integration: Query FW for offline/queued pages */
++	/* retrieve and fill max_pages from FW */
++	man = ttm_manager_type(&xe->ttm, XE_PL_VRAM0);
++	WARN_ON(!man);
++	mgr = to_xe_ttm_vram_mgr(man);
++	mgr->max_pages = 10000;
  
- #include "xe_bo.h"
+ 	if (!n_bad_pages)
+ 		return 0;
+diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
+index a73e0e957cb0..47c5be4180fe 100644
+--- a/drivers/gpu/drm/xe/xe_device_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+@@ -8,12 +8,14 @@
+ #include <linux/pci.h>
+ #include <linux/sysfs.h>
+ 
 +#include "xe_configfs.h"
  #include "xe_device.h"
- #include "xe_res_cursor.h"
- #include "xe_ttm_stolen_mgr.h"
-@@ -684,6 +685,7 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, unsigned long addr)
- 	struct xe_ttm_vram_mgr *vram_mgr;
- 	struct xe_vram_region *vr;
- 	struct gpu_buddy *mm;
+ #include "xe_device_sysfs.h"
+ #include "xe_mmio.h"
+ #include "xe_pcode_api.h"
+ #include "xe_pcode.h"
+ #include "xe_pm.h"
++#include "xe_ttm_vram_mgr.h"
+ 
+ /**
+  * DOC: Xe device sysfs
+@@ -267,6 +269,7 @@ static const struct attribute_group auto_link_downgrade_attr_group = {
+ int xe_device_sysfs_init(struct xe_device *xe)
+ {
+ 	struct device *dev = xe->drm.dev;
 +	bool policy;
  	int ret;
  
- 	vr = xe_ttm_vram_addr_to_region(xe, addr);
-@@ -695,6 +697,15 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, unsigned long addr)
+ 	if (xe->d3cold.capable) {
+@@ -285,5 +288,9 @@ int xe_device_sysfs_init(struct xe_device *xe)
+ 			return ret;
  	}
- 	vram_mgr = &vr->ttm;
- 	mm = &vram_mgr->mm;
+ 
++	policy = xe_configfs_get_bad_page_reservation(to_pci_dev(dev));
++	if (xe->info.platform == XE_CRESCENTISLAND && policy)
++		xe_ttm_vram_sysfs_init(xe);
 +
-+	policy = xe_configfs_get_bad_page_reservation(to_pci_dev(xe->drm.dev));
-+	if (!policy) {
-+		drm_err(&xe->drm, "0x%lx is reported as corrupted address by HW\n",
-+			addr);
-+		/* TODO: FW Integration: Report to FW to drop addr from SRAM queue */
-+		return 0;
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index c70256f2987e..4d4a62484506 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -711,3 +711,80 @@ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, unsigned long addr)
+ 	return ret;
+ }
+ EXPORT_SYMBOL(xe_ttm_vram_handle_addr_fault);
++
++static void xe_ttm_vram_dump_bad_pages_info(char *buf, struct xe_ttm_vram_mgr *mgr)
++{
++	const unsigned int element_size = sizeof("0xabcdabcd : 0x12345678 : R\n") - 1;
++	const unsigned int maxpage_size = sizeof("max_pages: 10000\n") - 1;
++	struct xe_ttm_vram_offline_resource *pos, *n;
++	struct gpu_buddy_block *block;
++	ssize_t s = 0;
++
++	mutex_lock(&mgr->lock);
++	s += scnprintf(&buf[s], maxpage_size + 1, "max_pages: %d\n", mgr->max_pages);
++	list_for_each_entry_safe(pos, n, &mgr->offlined_pages, offlined_link) {
++		block = list_first_entry(&pos->blocks,
++					 struct gpu_buddy_block,
++					 link);
++		s += scnprintf(&buf[s], element_size + 1,
++			       "0x%08llx : 0x%08llx : %1s\n",
++			       gpu_buddy_block_offset(block) >> PAGE_SHIFT,
++			       gpu_buddy_block_size(&mgr->mm, block),
++			       "R");
++	}
++	list_for_each_entry_safe(pos, n, &mgr->queued_pages, queued_link) {
++		block = list_first_entry(&pos->blocks,
++					 struct gpu_buddy_block,
++					 link);
++		s += scnprintf(&buf[s], element_size + 1,
++			       "0x%08llx : 0x%08llx : %1s\n",
++			       gpu_buddy_block_offset(block) >> PAGE_SHIFT,
++			       gpu_buddy_block_size(&mgr->mm, block),
++			       pos->status ? "P" : "F");
++	}
++	mutex_unlock(&mgr->lock);
++}
++
++static ssize_t vram_bad_pages_show(struct device *dev, struct device_attribute *attr, char *buf)
++{
++	struct pci_dev *pdev = to_pci_dev(dev);
++	struct xe_device *xe = pdev_to_xe_device(pdev);
++	struct ttm_resource_manager *man;
++	struct xe_ttm_vram_mgr *mgr;
++
++	man = ttm_manager_type(&xe->ttm, XE_PL_VRAM0);
++	if (man) {
++		mgr = to_xe_ttm_vram_mgr(man);
++		xe_ttm_vram_dump_bad_pages_info(buf, mgr);
 +	}
 +
- 	/* Reserve page at address */
- 	ret = xe_ttm_vram_reserve_page_at_addr(xe, addr, vram_mgr, mm);
- 	return ret;
++	return sysfs_emit(buf, "%s\n", buf);
++}
++static DEVICE_ATTR_RO(vram_bad_pages);
++
++static void xe_ttm_vram_sysfs_fini(void *arg)
++{
++	struct xe_device *xe = arg;
++
++	device_remove_file(xe->drm.dev, &dev_attr_vram_bad_pages);
++}
++
++/**
++ * xe_ttm_vram_sysfs_init - Initialize vram sysfs component
++ * @tile: Xe Tile object
++ *
++ * It needs to be initialized after the main tile component is ready
++ *
++ * Returns: 0 on success, negative error code on error.
++ */
++int xe_ttm_vram_sysfs_init(struct xe_device *xe)
++{
++	int err;
++
++	err = device_create_file(xe->drm.dev, &dev_attr_vram_bad_pages);
++	if (err)
++		return 0;
++
++	return devm_add_action_or_reset(xe->drm.dev, xe_ttm_vram_sysfs_fini, xe);
++}
++EXPORT_SYMBOL(xe_ttm_vram_sysfs_init);
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+index 8ef06d9d44f7..c33e1a8d9217 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
+@@ -32,6 +32,7 @@ void xe_ttm_vram_get_used(struct ttm_resource_manager *man,
+ 			  u64 *used, u64 *used_visible);
+ 
+ int xe_ttm_vram_handle_addr_fault(struct xe_device *xe, unsigned long addr);
++int xe_ttm_vram_sysfs_init(struct xe_device *xe);
+ static inline struct xe_ttm_vram_mgr_resource *
+ to_xe_ttm_vram_mgr_resource(struct ttm_resource *res)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+index 65245668c183..33fb38238943 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
+@@ -39,6 +39,8 @@ struct xe_ttm_vram_mgr {
+ 	u32 mem_type;
+ 	/** @offline_mode: debugfs hook for setting page offline mode */
+ 	u64 offline_mode;
++	/** @max_pages: max pages that can be in offline queue retrieved from FW */
++	u16 max_pages;
+ };
+ 
+ /**
 -- 
 2.52.0
 
