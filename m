@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C579A108E1ED
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Mar 2026 11:27:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97E13108E1F4
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Mar 2026 11:40:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 156D210E985;
-	Thu, 19 Mar 2026 11:27:27 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D4EF10E983;
- Thu, 19 Mar 2026 11:27:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6518645732428340382=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_AuxCCS_handling_and_render_?=
- =?utf-8?q?compression_modifiers?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A4CF10E899;
+	Thu, 19 Mar 2026 11:40:41 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D9T23iqd";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 872E410E919;
+ Thu, 19 Mar 2026 11:40:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773920440; x=1805456440;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vyV3mULLdOsJ4DI2jTKljfKBsjo/G2yBg9TANU1ffUo=;
+ b=D9T23iqd88F6Qb0W/JLnV6jsCHZBuL58bQBSbM+FI+2BImrpxn2ZWZTD
+ sHNscepRGAi1MOutRuuABSclgf+XrPULvg2Gk4aR7WCXetiygWnIgLxXp
+ g8sfN8ZsYt/mCi9o+E2U8OmtsNNfrEJHd1kRpEBXGKtoiK1iOjPqHTTSQ
+ C8S9dmNo5kHqGf6tpmENx703jriCQNl5oWu4hwkl0Wn16KZ3Tulc7PYVs
+ BB4EnmPu7lJOgvbj2VnLNJI/EgKc8vqYHdYCiLhFgLsbFeVRpvEzsJ44J
+ pliPEtkX4iAqM0PD3JYR6APfiguQ2gJE2zgFawU3OqBK0K28jrvAwlKN9 A==;
+X-CSE-ConnectionGUID: xNgQfmNGRuCh4yMJ/JIFSg==
+X-CSE-MsgGUID: lGpcdn6hQUectMTkG2l2Pg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="78891615"
+X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="78891615"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2026 04:40:39 -0700
+X-CSE-ConnectionGUID: 7fPl5OIWQtCGoqJ1bBlFBQ==
+X-CSE-MsgGUID: G+NFGfrkQKOoMGOUsVtBuQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="222970839"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.169])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2026 04:40:37 -0700
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 19 Mar 2026 11:27:26 -0000
-Message-ID: <177391964649.375689.7679483106040644901@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260319100707.60157-1-tvrtko.ursulin@igalia.com>
-In-Reply-To: <20260319100707.60157-1-tvrtko.ursulin@igalia.com>
+Subject: [PATCH 0/9] drm/i915/wm: Clean up pre-icl NV12 watermarks
+Date: Thu, 19 Mar 2026 13:40:25 +0200
+Message-ID: <20260319114034.7093-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.52.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,179 +65,28 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6518645732428340382==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Series Details ==
+Clean up the NV12 DDB/watermark handling for pre-icl platforms.
 
-Series: AuxCCS handling and render compression modifiers
-URL   : https://patchwork.freedesktop.org/series/163519/
-State : success
+Ville Syrjälä (9):
+  drm/i915/wm: Nuke is_planar from skl+ wm structures
+  drm/i915/wm: Reorder the arguments to skl_allocate_plane_ddb()
+  drm/i915/wm: s/skl_check_nv12_wm_level()/skl_check_wm_level_nv12()/
+  drm/i915/wm: Extract skl_allocate_plane_ddb_nv12()
+  drm/i915/wm: Nuke wm->uv_wm[]
+  drm/i915/wm: s/skl_print_plane_changes()/skl_print_plane_wm_changes()/
+  drm/i915/wm: Extract skl_print_plane_ddb_changes()
+  drm/i915/wm: Include ddb_y in skl_print_wm_changes() on pre-icl
+  drm/i915/wm: Include .min_ddb_alloc_uv in the wm dumps
 
-== Summary ==
+ .../drm/i915/display/intel_display_types.h    |   3 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c  | 160 ++++++++++++------
+ 2 files changed, 105 insertions(+), 58 deletions(-)
 
-CI Bug Log - changes from xe-4745-61409ba11a36fa5aff4ce0f0086a6026a43c5bce_BAT -> xe-pw-163519v1_BAT
-====================================================
+-- 
+2.52.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-163519v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4745-61409ba11a36fa5aff4ce0f0086a6026a43c5bce/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163519v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  * igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:
-    - bat-bmg-2:          NOTRUN -> [SKIP][3] ([Intel XE#2229])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163519v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [ABORT][4] ([Intel XE#7249]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4745-61409ba11a36fa5aff4ce0f0086a6026a43c5bce/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163519v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][6] ([Intel XE#7483]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4745-61409ba11a36fa5aff4ce0f0086a6026a43c5bce/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163519v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [TIMEOUT][8] ([Intel XE#6506]) -> [PASS][9]
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4745-61409ba11a36fa5aff4ce0f0086a6026a43c5bce/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163519v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  
-  [Intel XE#2229]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#7249]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
-
-
-Build changes
--------------
-
-  * Linux: xe-4745-61409ba11a36fa5aff4ce0f0086a6026a43c5bce -> xe-pw-163519v1
-
-  IGT_8810: eb9035ba642724dc0a7711672805f26d1f34f712 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4745-61409ba11a36fa5aff4ce0f0086a6026a43c5bce: 61409ba11a36fa5aff4ce0f0086a6026a43c5bce
-  xe-pw-163519v1: 163519v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163519v1/index.html
-
---===============6518645732428340382==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>AuxCCS handling and render compression modifiers</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163519/">https://patchwork.freedesktop.org/series/163519/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163519v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163519v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4745-61409ba11a36fa5aff4ce0f0086a6026a43c5bce_BAT -&gt; xe-pw-163519v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-163519v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4745-61409ba11a36fa5aff4ce0f0086a6026a43c5bce/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163519v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit:</p>
-<ul>
-<li>bat-bmg-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163519v1/bat-bmg-2/igt@xe_live_ktest@xe_bo@xe_ccs_migrate_kunit.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2229">Intel XE#2229</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4745-61409ba11a36fa5aff4ce0f0086a6026a43c5bce/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249">Intel XE#7249</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163519v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4745-61409ba11a36fa5aff4ce0f0086a6026a43c5bce/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163519v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@abstime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4745-61409ba11a36fa5aff4ce0f0086a6026a43c5bce/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163519v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4745-61409ba11a36fa5aff4ce0f0086a6026a43c5bce -&gt; xe-pw-163519v1</li>
-</ul>
-<p>IGT_8810: eb9035ba642724dc0a7711672805f26d1f34f712 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4745-61409ba11a36fa5aff4ce0f0086a6026a43c5bce: 61409ba11a36fa5aff4ce0f0086a6026a43c5bce<br />
-  xe-pw-163519v1: 163519v1</p>
-
-</body>
-</html>
-
---===============6518645732428340382==--
