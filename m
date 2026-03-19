@@ -4,57 +4,153 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 417C91091926
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Mar 2026 21:31:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 963CA1091926
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Mar 2026 21:37:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BAC9710E989;
-	Thu, 19 Mar 2026 21:31:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F88B10E988;
+	Thu, 19 Mar 2026 21:37:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F98M9qrV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ux9mXcia";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97C7E10E988
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Mar 2026 21:31:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1008410E988
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Mar 2026 21:37:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773955875; x=1805491875;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=PnGagoMOqLc8flREJaVUb7AwwXK9xCziSLbcZeWCIlI=;
- b=F98M9qrVEzcGE1Wbkydf0s4U/xhmCFXD85zN5umieVwqRGQCqazGBjfg
- JqxioMdoxmxuRg4+rgx1l0sO8jFZfzqAQG7Y1zKrvg1T+Oiew3fSPEkic
- KU0JE4kw/zRd/T8q/3E02FeYqgPQAbVLqVbTARJz6VY/xzoilTNajSWio
- Vzw6jtSyH21GB4MuKM+pLggXx9co2OhpmD6QXbRaySboDx9+WkV+Xr02u
- 3Iep4Y1TgycR5glM8X570YVp0NaCUJl5nJy4wq/d0pL1dh5orHDoODqFU
- vtPUs9ny4w3cgx3+YUJoq3D8PScqiwFeTChGWwwb3fHC+z3Z9UWUP62FO Q==;
-X-CSE-ConnectionGUID: qSwHEHNhTo2Vhbipg2mbCA==
-X-CSE-MsgGUID: 4J5DUIkySkOX2KKG9CknEQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="92613558"
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; d="scan'208";a="92613558"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2026 14:31:14 -0700
-X-CSE-ConnectionGUID: tv7avqJkRmGClR7B7UALJQ==
-X-CSE-MsgGUID: dVtksgRlQIa9zNDfuiN1cA==
+ t=1773956228; x=1805492228;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=kRnoZVKBmkgncWUtJ+YVRlGf5SuIDeEpSLVoj6aNGPg=;
+ b=Ux9mXciaUBYlAFijVYz6HHu/jcycXBKCohkYnMelwD2BLG8afb9JvED0
+ k02nE1lVVataa+9d7FSpQxZD5e+TMucWepVVeG3TcXuqo5a8eYQovjLFM
+ Mmt7Ak4mnyPYWmrFLga8f4NA2V/qkbG6I/eQBuTYcElnPaR20YA1gEc+2
+ kFKQAlsU4KtAe0ghpa2iJaGhfa+ZV3UmDs6zc3/qpsWYSvrIifU+Cb+W9
+ TzJkJvcxwdiq3nLdjKR+JeC7gi4NPHGRJzogHybEETP9Rc5/cPMvjyCuR
+ RoLoFr6b/GpGMVuvtktEp7MGdFvVgOJ7tkNdC8jjYTamLNG61wc5mS8jH Q==;
+X-CSE-ConnectionGUID: d1jg1KLxQlyfBqo+b8XEOQ==
+X-CSE-MsgGUID: xRNQkFFESpSWnOE26L0VEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="78946685"
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; d="scan'208";a="78946685"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2026 14:37:08 -0700
+X-CSE-ConnectionGUID: vt2R5RTNTXmI9lRWCnLQVQ==
+X-CSE-MsgGUID: y3zV03IXSomRvW89zjPbJA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; d="scan'208";a="218500716"
-Received: from dut4407arlh.fm.intel.com ([10.105.10.118])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2026 14:31:13 -0700
-From: Stuart Summers <stuart.summers@intel.com>
-To: 
-Cc: piotr.piorkowski@intel.com, michal.wajdeczko@intel.com,
- michal.winiarski@intel.com, intel-xe@lists.freedesktop.org,
- niranjana.vishwanathapura@intel.com,
- Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH 2/2] drm/xe: Add LMTT invalidation to VF provisioning flow
-Date: Thu, 19 Mar 2026 21:31:06 +0000
-Message-ID: <20260319213110.259170-3-stuart.summers@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260319213110.259170-1-stuart.summers@intel.com>
-References: <20260319213110.259170-1-stuart.summers@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; d="scan'208";a="220488014"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2026 14:37:07 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 19 Mar 2026 14:37:06 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Thu, 19 Mar 2026 14:37:06 -0700
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.47) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 19 Mar 2026 14:37:06 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=TnxBEYE2LrUhWveLIyr/cBJcYNp7XFTYSGsnfXUEqkxWQTmUBT9z+w/bH8BTgcLT9TsnszIAa3iWdcC3SP9sB60YkuLxUDssvZjbO3zxKI3QN9+J41QyFK8tKLhMEREcf3myeUT5Pckerqfz1ifIlG5XFyhKL0A2EN4cvkTqn4o5SNKdSk5kIrzA+hDLIgUVBwmjmXlyiSUDeRcblRvBFWwmxPDTsWY3+5Bj3a1SwVkURltiTArWd9mRWBvPReKzk9VNyrGZq6+vtTCAaCJjoG+yOikx0lUT1spFqCQI8rOTmXw9PeVjHmp/CapgN6iz+N/vNOQKPPOoyOzNTRVTuQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aUL+JmjyUlsuLBnYk9dlLnUUXMWTlxtJoq6Qs6KffZo=;
+ b=cYucGrTvNDfqkG5GIWdDQHORIE1RuZE/sA0tDhhZlaiS47AKAwtN3UzTbT5XFrMVOC5M6Ws2ESZo7zY6Zr6QJV1UznsiCxySgB3BrTQQl3j7lFRj53tn+hnHl8hnzymyok6hh0JcVFZwSmy3MfsI1SJm+7eH3hNnWlYiEBK5EbroWSnm/beHM40KpOTC9BKzkCyqHHvFCnyr7XmMtAZ6YS24KWCogOTTc4OoWA08YOsM76ClxbLbPx3SkPJg73K8MJVS2P/cHamQwtX4V57SSZfMN3BaCqrpPMIXNrWu1Ydk7zFfXzMTNor9PZXzY8SdGmEJ8JNe6gC0bl5/fIEAqQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CH0PR11MB5444.namprd11.prod.outlook.com (2603:10b6:610:d3::13)
+ by PH8PR11MB8288.namprd11.prod.outlook.com (2603:10b6:510:1c8::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.9; Thu, 19 Mar
+ 2026 21:36:57 +0000
+Received: from CH0PR11MB5444.namprd11.prod.outlook.com
+ ([fe80::5081:cd4:1a4b:a73e]) by CH0PR11MB5444.namprd11.prod.outlook.com
+ ([fe80::5081:cd4:1a4b:a73e%4]) with mapi id 15.20.9745.007; Thu, 19 Mar 2026
+ 21:36:56 +0000
+From: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
+To: "Summers, Stuart" <stuart.summers@intel.com>, "Summers, Stuart"
+ <stuart.summers@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Brost, 
+ Matthew" <matthew.brost@intel.com>, "Vishwanathapura, Niranjana"
+ <niranjana.vishwanathapura@intel.com>, "Cavitt, Jonathan"
+ <jonathan.cavitt@intel.com>
+Subject: RE: [PATCH] drm/xe: Add min and max context TLB invalidation sizes
+Thread-Topic: [PATCH] drm/xe: Add min and max context TLB invalidation sizes
+Thread-Index: AQHct+QwYSq4dPRiyEKv3HHvjIGz1LW2WioAgAAA23A=
+Date: Thu, 19 Mar 2026 21:36:56 +0000
+Message-ID: <CH0PR11MB5444C674AF8A8CD19A915045E54FA@CH0PR11MB5444.namprd11.prod.outlook.com>
+References: <20260319210534.218992-1-stuart.summers@intel.com>
+ <874cf179e4c6aed3fb36208064fa9c20a90ba7c6.camel@intel.com>
+In-Reply-To: <874cf179e4c6aed3fb36208064fa9c20a90ba7c6.camel@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CH0PR11MB5444:EE_|PH8PR11MB8288:EE_
+x-ms-office365-filtering-correlation-id: d94dde1a-9297-4da4-5bf8-08de85ffa544
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|38070700021|22082099003|56012099003|18002099003|7053199007;
+x-microsoft-antispam-message-info: G6qEoQFoKn4EGjlcYQmzs1VcweEeQD+D4ti9PZzsMfLRjhxvfHaGfqiqhx0rISm9NywNxLGIrvPLeyIX1IMiIbIXen3Ciu0HUkx7LyZh1X3chNHq42Hb9bE7Zv9I3sIoEcmh2pRxKDsVQ1IpZcpo4m5FQurSUKf//2k8GJf0efxQgoQoNDjiD4ufFja+BZFfKWmzfZMYjzqxosCxm9GM9jol/Aosn1r0A5y6yK+loqUOE6yg0PXc5/o5nArakXlYvobXz7HmPSM3sgd2V7E+o6KNKsmhfjhNuyYPzDlEJVw6osIxz2ioMXGEcqZVVeED3oWpu+Nh/jtWmC2NdzlqC4O5lCB/i70p0lbxV72U+V0ZAmlU4d0o9kvT+L44Plv0hMnImKALWbsSKltOnZVNzrb1ppvvlYJs+ZfYRzikADMVtq5LDHwoEhX+ahaKDU42BSCXmUNPaoijYhK8PTztA8zRMDJBF/96rX8KlX6yYWSsMGyN950lfyzL838Snq29Hbt9EJjp0QQw7Rb+yW7VUqTdEYobFLox+EDD++K5zAw36MzHMUcyq4KxJY6qeP2U8voqnjphIBGnzAZnAD4c5IpxUFrlZdMVbRK1vB9ENZqR0on7TnyU8HuCkm82tMic6mXJRQ+LweUXYUa0WGGN020rkyy2jTwp00aPF/529wCHr+n7jtJzQItL+52JTn2N3eeRIeNp31C11k54qFxljq+oiY+V0rxAXF2DQS6m6dwLQ9TX31j5uJ5F8yuG6M9wyePG1PqV2O3C2ZZFncgby+yKtwbgh3fPALJhnGD+NOA=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CH0PR11MB5444.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(38070700021)(22082099003)(56012099003)(18002099003)(7053199007);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?G/GA4tAPlWS0ZLeSMU1m4hjI93uaYPw+lmqnCAROLzU9N80iP+1+K1mI01?=
+ =?iso-8859-1?Q?L2cpZVW8opMhn4KscoNis4/QngFf8eQvE3rFmwNWFh7vWk/uyIjBL89OXx?=
+ =?iso-8859-1?Q?YJYGtD54YNaTsC60Dx6QO5DwSRX4rJ45YEsuYcwsrk2udu9FNh+PevhvXL?=
+ =?iso-8859-1?Q?b25OesDXthnCTEvV1rLYCfxBof8u0BuYb0os5gC4ndSYK3XVYft710F5Ox?=
+ =?iso-8859-1?Q?RQ3hKytoE5lx1UIG/wqZJT4YtjJ56Mq+T5g2CHonx9s2tlM9hzDqNrAB5w?=
+ =?iso-8859-1?Q?1TvKpoI3NsZtDkCsZFNC6n/VS0w3X0v+RnwEGsUlRRcADBTGhvyGejkUm3?=
+ =?iso-8859-1?Q?YT7VMHt4/qVq8aGpvgKu/QEEpsz5x8ghPk83DyMLKFTwOcb/E9Q6XO3H4Y?=
+ =?iso-8859-1?Q?rc2V6kPiW4+bdGpRsn+UB2j+SPYrvqqwkaySoe3NlPpgkXnvGqHXWAl+bW?=
+ =?iso-8859-1?Q?QPJa3OyJ0VnbRfA8fEomeClN9VJm59cOB4G4FKGDkLT5RY6GRx15RqXsOC?=
+ =?iso-8859-1?Q?X5dx8Zuci5UWTwseqwytQjZwhu3bAVwF6ChESdaauh09Euuw6il89AZOQl?=
+ =?iso-8859-1?Q?yQSjS2XaYO5JzTrYc1+HTCdGKNNFC+uDklxvE81ykNSx34PzO1lyZPzu6i?=
+ =?iso-8859-1?Q?ba8Mz2T1QJyEz2Jo2XwBWsGYBF55T771IyKiUZ/Pu+G8qphuoPnGdG2mfZ?=
+ =?iso-8859-1?Q?m4vj3sjM7oLu6pBjaK4kGu78OzcSsMwdv+UiCPLnJobZYnuRAxxm6PXqZT?=
+ =?iso-8859-1?Q?/YCLRY/a+aDU9+M2L6dRDZeaJVG0T8DANZLB0QPDCjquERfIURd1s80FJv?=
+ =?iso-8859-1?Q?iGWlhcpI3Dn9MK0F5dg5i7vB2wJK9KJEEtZzFJDTfZgiyuguZUy+Hs2Zqb?=
+ =?iso-8859-1?Q?jeMR+zkfW9y9KFvOrwRRaciQBnnyo8uG1QZTdRPLQYYVit+zOAD2OkOxJT?=
+ =?iso-8859-1?Q?fwkd2r01euOLRTac8gTuLG0U91Sx/qmhr1DDD9gyAWOWmEy5fwPVS56jua?=
+ =?iso-8859-1?Q?SzvYI2nwZmnMnJYYsU6o8Elt7UKFnhhHOTKuYF6Tfz88r54DLkNVvjv3/S?=
+ =?iso-8859-1?Q?V0saWjvBXT+/u5uCjDRt5GoezRYQjca0nVqVZeQW6Ec2XFULH014YIRdCX?=
+ =?iso-8859-1?Q?jmUGvDjHNKm9BDfCeZB+J0/gKQ3UW3z88hpnF8Tm+t8N616WPrgsn4yc5r?=
+ =?iso-8859-1?Q?qYJWo0T8Hu//Iw/rugpQo1NKycnBYxmeWamGWqSJ5Jq6sKUWlEQcN9vJCY?=
+ =?iso-8859-1?Q?DK80sE7/q/l2YfTbbsIZiffdKYPyCAO3jgscyN5U6xgbPZf3CnjRJlImCi?=
+ =?iso-8859-1?Q?BAaVcGDZ+pE3kOxGo3MvkhRKip4MWso1f0c6dH+LjiwwEEZOJS5/6augiD?=
+ =?iso-8859-1?Q?OjfGA3nmvRr5tnHs0C4qE3IkCG/Yszc3hw7A+7TbqZdXDEI5jNemXK5fSH?=
+ =?iso-8859-1?Q?1gsHd5R0VYKgVZkigKS4YgkIdMaTY+R1gVSuGscoiJoTO0ZEiitniYbuPT?=
+ =?iso-8859-1?Q?gd7I2hBwXWwWh+2bs2H8ivUjXJSDhOkl2X4Fsl5xcklkjoRIumHA599srB?=
+ =?iso-8859-1?Q?maa8wknwtFRTPHqOT8mJ5HUapiQkGfSntUAGgEfA2uEASZKLr4vb1/hKDU?=
+ =?iso-8859-1?Q?/IMixlSHHTfuOwvFUYz0xPnMXS8109EhyA2ikNz4W68uZu/rMvwkUhMP9V?=
+ =?iso-8859-1?Q?bt2/yanpHH003WpEF1hnUB5AWeuPGlmiLR2YHAAtG751nOsFwkRxV7e4AV?=
+ =?iso-8859-1?Q?Dx+DWn94mfFI5aebclywFF7t3TdSBXSKKhdP8GXQowoXPxjfHaPnwTmm64?=
+ =?iso-8859-1?Q?7r5rds8f0g=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Exchange-RoutingPolicyChecked: D17Mou6ZxIWJaWqC4aE2dpkN5ZxhgJHIrBdgdCn4hYeaHugHH2e0Gqgci/HL0MqNVsDD8EQjVRA0qkl8unMACMOQ/u2MMUNehZAE29blULo1CPlA417wDOyEswPTzXZv6YabOOs97WeAMofS92qQXivUjJyDbDzYhKffqo349V3FqHTbsLfzlYN8ZgHDvx0ju/c7fxFgBeQo1/fMOHaTvM0ik0SzrG039c2B0EBfSDCpk0nevcwFeqEQuJg7DR2u2/GE8DnQzvYpyl1J+ncc8+w6obRjRKZc46SJZbUcgqK3fpyZ6WUUVIPDQ18wP3s0bUFpL0ERpSHCfCo3zmiXhg==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5444.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d94dde1a-9297-4da4-5bf8-08de85ffa544
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Mar 2026 21:36:56.7699 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 00AloRBYGl24fDl1DzGPgjUk3DxJnQtZm3yRD/DBupo2uuZDSagDqMrulqqGIyYcbrX5GAxoEE7M91S6lIUTl/Omjw8iNaKN5PeEJn6OhIg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB8288
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,261 +165,223 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There is a new invalidation type added to invalidate an LMTT of a
-particular VF from the PF instead of doing a full invalidation.
+-----Original Message-----
+From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Summer=
+s, Stuart
+Sent: Thursday, March 19, 2026 2:12 PM
+To: Summers, Stuart <stuart.summers@intel.com>
+Cc: intel-xe@lists.freedesktop.org; Brost, Matthew <matthew.brost@intel.com=
+>; Vishwanathapura, Niranjana <niranjana.vishwanathapura@intel.com>
+Subject: Re: [PATCH] drm/xe: Add min and max context TLB invalidation sizes
+>=20
+> On Thu, 2026-03-19 at 21:05 +0000, Stuart Summers wrote:
+> > Allow platform-defined TLB invalidation min and max lengths.
+> >=20
+> > This gives finer granular control to which invalidations we
+> > decide to send to GuC. The min size is essentially a round
+> > up. The max allows us to switch to a full invalidation.
+> >=20
+> > The expectation here is that GuC will translate the full
+> > invalidation in this instance into a series of per context
+> > invalidaitons. These are then issued with no H2G or G2H
+> > messages and therefore should be quicker than splitting
+> > the invalidations from the KMD in max size chunks and sending
+> > separately.
+> >=20
+> > v2: Add proper defaults for min/max if not set in the device
+> > =A0=A0=A0 structures
+> >=20
+> > Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+> > ---
+> > =A0drivers/gpu/drm/xe/xe_device_types.h=A0 |=A0 4 ++++
+> > =A0drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 20 +++++++-------------
+> > =A0drivers/gpu/drm/xe/xe_pci.c=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 |=A0 3 +++
+> > =A0drivers/gpu/drm/xe/xe_pci_types.h=A0=A0=A0=A0 |=A0 2 ++
+> > =A04 files changed, 16 insertions(+), 13 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/xe/xe_device_types.h
+> > b/drivers/gpu/drm/xe/xe_device_types.h
+> > index 615218d775b1..0c4168fe2ffb 100644
+> > --- a/drivers/gpu/drm/xe/xe_device_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> > @@ -137,6 +137,10 @@ struct xe_device {
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0u8 vm_max_level;
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0/** @info.va_bits: Maxi=
+mum bits of a virtual address
+> > */
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0u8 va_bits;
+> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0/** @info.min_tlb_inval_s=
+ize: Minimum size of context
+> > based TLB invalidations */
+> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0u64 min_tlb_inval_size;
+> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0/** @info.max_tlb_inval_s=
+ize: Maximum size of context
+> > based TLB invalidations */
+> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0u64 max_tlb_inval_size;
+> > =A0
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0/*
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 * Keep all flags below=
+ alphabetically sorted
+> > diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> > b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> > index eb40528976ca..7512f889a97a 100644
+> > --- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> > +++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> > @@ -133,12 +133,12 @@ static int send_page_reclaim(struct xe_guc
+> > *guc, u32 seqno,
+> > =A0
+> > =A0static u64 normalize_invalidation_range(struct xe_gt *gt, u64
+> > *start, u64 *end)
+> > =A0{
+> > +=A0=A0=A0=A0=A0=A0=A0struct xe_device *xe =3D gt_to_xe(gt);
+> > =A0=A0=A0=A0=A0=A0=A0=A0u64 orig_start =3D *start;
+> > =A0=A0=A0=A0=A0=A0=A0=A0u64 length =3D *end - *start;
+> > =A0=A0=A0=A0=A0=A0=A0=A0u64 align;
+> > =A0
+> > -=A0=A0=A0=A0=A0=A0=A0if (length < SZ_4K)
+> > -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0length =3D SZ_4K;
+> > +=A0=A0=A0=A0=A0=A0=A0length =3D max_t(u64, xe->info.min_tlb_inval_size=
+, length);
+> > =A0
+> > =A0=A0=A0=A0=A0=A0=A0=A0align =3D roundup_pow_of_two(length);
+> > =A0=A0=A0=A0=A0=A0=A0=A0*start =3D ALIGN_DOWN(*start, align);
+> > @@ -163,13 +163,6 @@ static u64 normalize_invalidation_range(struct
+> > xe_gt *gt, u64 *start, u64 *end)
+> > =A0=A0=A0=A0=A0=A0=A0=A0return length;
+> > =A0}
+> > =A0
+> > -/*
+> > - * Ensure that roundup_pow_of_two(length) doesn't overflow.
+> > - * Note that roundup_pow_of_two() operates on unsigned long,
+> > - * not on u64.
+> > - */
+> > -#define MAX_RANGE_TLB_INVALIDATION_LENGTH
+> > (rounddown_pow_of_two(ULONG_MAX))
+> > -
+> > =A0static int send_tlb_inval_ppgtt(struct xe_guc *guc, u32 seqno, u64
+> > start,
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0u64 end, u32 id, u32 type,
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0struct drm_suballoc *prl_sa)
+> > @@ -178,9 +171,12 @@ static int send_tlb_inval_ppgtt(struct xe_guc
+> > *guc, u32 seqno, u64 start,
+> > =A0=A0=A0=A0=A0=A0=A0=A0struct xe_gt *gt =3D guc_to_gt(guc);
+> > =A0=A0=A0=A0=A0=A0=A0=A0struct xe_device *xe =3D guc_to_xe(guc);
+> > =A0=A0=A0=A0=A0=A0=A0=A0u32 action[MAX_TLB_INVALIDATION_LEN];
+> > -=A0=A0=A0=A0=A0=A0=A0u64 length =3D end - start;
+> > +=A0=A0=A0=A0=A0=A0=A0u64 normalize_len;
+> > =A0=A0=A0=A0=A0=A0=A0=A0int len =3D 0, err;
+> > =A0
+> > +=A0=A0=A0=A0=A0=A0=A0normalize_len =3D normalize_invalidation_range(gt=
+, &start,
+> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0 &end);
+> > +
+> > =A0=A0=A0=A0=A0=A0=A0=A0xe_gt_assert(gt, (type =3D=3D XE_GUC_TLB_INVAL_=
+PAGE_SELECTIVE &&
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0 !xe->info.has_ctx_tlb_inval) ||
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 (type =3D=
+=3D XE_GUC_TLB_INVAL_PAGE_SELECTIVE_CTX &&
+> > @@ -189,11 +185,9 @@ static int send_tlb_inval_ppgtt(struct xe_guc
+> > *guc, u32 seqno, u64 start,
+> > =A0=A0=A0=A0=A0=A0=A0=A0action[len++] =3D XE_GUC_ACTION_TLB_INVALIDATIO=
+N;
+> > =A0=A0=A0=A0=A0=A0=A0=A0action[len++] =3D !prl_sa ? seqno :
+> > TLB_INVALIDATION_SEQNO_INVALID;
+> > =A0=A0=A0=A0=A0=A0=A0=A0if (!gt_to_xe(gt)->info.has_range_tlb_inval ||
+> > -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 length > MAX_RANGE_TLB_INVALIDATION_LEN=
+GTH) {
+> > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 normalize_len > xe->info.max_tlb_inval_=
+size) {
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0action[len++] =3D MAKE_=
+INVAL_OP(XE_GUC_TLB_INVAL_FULL);
+> > =A0=A0=A0=A0=A0=A0=A0=A0} else {
+> > -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0u64 normalize_len =3D nor=
+malize_invalidation_range(gt,
+> > &start,
+> > -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0
+> > &end);
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0bool need_flush =3D !pr=
+l_sa &&
+> > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0seqno !=3D TLB_INVALIDATION_SEQNO_INVALID;
+> > =A0
+> > diff --git a/drivers/gpu/drm/xe/xe_pci.c
+> > b/drivers/gpu/drm/xe/xe_pci.c
+> > index 189e2a1c29f9..5e02f9ab625b 100644
+> > --- a/drivers/gpu/drm/xe/xe_pci.c
+> > +++ b/drivers/gpu/drm/xe/xe_pci.c
+> > @@ -743,6 +743,9 @@ static int xe_info_init_early(struct xe_device
+> > *xe,
+> > =A0=A0=A0=A0=A0=A0=A0=A0xe->info.vm_max_level =3D desc->vm_max_level;
+> > =A0=A0=A0=A0=A0=A0=A0=A0xe->info.vram_flags =3D desc->vram_flags;
+> > =A0
+> > +=A0=A0=A0=A0=A0=A0=A0xe->info.min_tlb_inval_size =3D desc->min_tlb_inv=
+al_size ?:
+> > SZ_4K;
+> > +=A0=A0=A0=A0=A0=A0=A0xe->info.max_tlb_inval_size =3D desc->max_tlb_inv=
+al_size ?:
+> > SZ_1G;
+>=20
+> Basically I decided to get rid of the pathological case for now. I
+> figured 1G is a good happy medium for larger VMAs. Let me know if you
+> have any concerns there though.
 
-A new invalidation type has been added to GuC to accommodate this.
-Add the new invalidation type, add a new TLB invalidation front
-and back end hook for the new type, and use this in xe_lmtt.c
-by passing the VF ID any time we are provisioning the LMTT for
-a particular VF so GuC can then relay that VF ID to hardware
-during the invalidation.
+I was going to comment on this once I saw it, but you already considered
+this issue.  But yeah, SZ_1G seems to be only about 1/2 (or maybe 1/4
+depending on how rounddown_pow_of_two operates on ULONG_MAX)
+the size of the original MAX_RANGE_TLB_INVALIDATION_LENGTH value,
+so I'd say it's probably fine.
 
-Bspec: 59311
+This patch doesn't have any other major mechanical differences compared
+to before its application, though there are some minor concerns regarding
+normalize_invalidation_range:
 
-v2: Couple comments addressed from Niranjana
+1. There's an xe_gt_assert(gt, length >=3D SZ_4K); that was left unchanged =
+in
+this patch.  We might want to target xe->info.min_tlb_inval_size instead?
+2. Using normalize_invalidation_range immediately in send_tlb_inval_ppgtt
+instead of initially operating on 'end - start' like before might result in=
+ more full
+invalidation cases compared to before, as the function seems to return a va=
+lue
+that is more often than not larger than the raw 'end - start' value.
 
-Signed-off-by: Stuart Summers <stuart.summers@intel.com>
----
- drivers/gpu/drm/xe/abi/guc_actions_abi.h   |  2 ++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c |  6 +++---
- drivers/gpu/drm/xe/xe_guc_tlb_inval.c      | 18 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_lmtt.c               | 16 +++++++++++-----
- drivers/gpu/drm/xe/xe_lmtt.h               |  2 +-
- drivers/gpu/drm/xe/xe_tlb_inval.c          | 20 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_tlb_inval.h          |  3 +++
- drivers/gpu/drm/xe/xe_tlb_inval_types.h    | 12 ++++++++++++
- 8 files changed, 70 insertions(+), 9 deletions(-)
+As long as you find these tradeoffs acceptable, I don't see any reason to b=
+lock
+on these concerns.  Regardless of if you make changes based on these notes =
+or not:
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-index 83a6e7794982..31272de6fd3f 100644
---- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-@@ -239,6 +239,8 @@ enum xe_guc_tlb_invalidation_type {
- 	XE_GUC_TLB_INVAL_PAGE_SELECTIVE = 0x1,
- 	XE_GUC_TLB_INVAL_PAGE_SELECTIVE_CTX = 0x2,
- 	XE_GUC_TLB_INVAL_GUC = 0x3,
-+	XE_GUC_TLB_INVAL_ALL_TLB = 0x4,
-+	XE_GUC_TLB_INVAL_LMTT_ONLY = 0x5,
- };
- 
- /*
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index 2f376b5fb088..bcdcb9fec8a1 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -1518,7 +1518,7 @@ static int pf_distribute_config_lmem(struct xe_gt *gt, unsigned int vfid, u64 si
- 	return 0;
- }
- 
--static void pf_force_lmtt_invalidate(struct xe_device *xe)
-+static void pf_force_lmtt_invalidate(struct xe_device *xe, unsigned int vfid)
- {
- 	struct xe_lmtt *lmtt;
- 	struct xe_tile *tile;
-@@ -1529,7 +1529,7 @@ static void pf_force_lmtt_invalidate(struct xe_device *xe)
- 
- 	for_each_tile(tile, xe, tid) {
- 		lmtt = &tile->sriov.pf.lmtt;
--		xe_lmtt_invalidate_hw(lmtt);
-+		xe_lmtt_invalidate_hw(lmtt, vfid);
- 	}
- }
- 
-@@ -1592,7 +1592,7 @@ static int pf_update_vf_lmtt(struct xe_device *xe, unsigned int vfid)
- 		}
- 	}
- 
--	pf_force_lmtt_invalidate(xe);
-+	pf_force_lmtt_invalidate(xe, vfid);
- 	return 0;
- 
- fail:
-diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-index 835ee0d6a00d..7512f889a97a 100644
---- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-+++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-@@ -98,6 +98,22 @@ static int send_tlb_inval_ggtt(struct xe_tlb_inval *tlb_inval, u32 seqno)
- 	return -ECANCELED;
- }
- 
-+static int send_tlb_inval_lmtt(struct xe_tlb_inval *tlb_inval, u32 seqno,
-+			       unsigned int vfid)
-+{
-+	struct xe_guc *guc = tlb_inval->private;
-+	u32 action[] = {
-+		XE_GUC_ACTION_TLB_INVALIDATION,
-+		seqno,
-+		MAKE_INVAL_OP(XE_GUC_TLB_INVAL_LMTT_ONLY),
-+		vfid,
-+	};
-+
-+	xe_gt_assert(guc_to_gt(guc), xe_device_has_lmtt(tlb_inval->xe));
-+
-+	return send_tlb_inval(guc, action, ARRAY_SIZE(action));
-+}
-+
- static int send_page_reclaim(struct xe_guc *guc, u32 seqno,
- 			     u64 gpu_addr)
- {
-@@ -347,6 +363,7 @@ static long tlb_inval_timeout_delay(struct xe_tlb_inval *tlb_inval)
- static const struct xe_tlb_inval_ops guc_tlb_inval_asid_ops = {
- 	.all = send_tlb_inval_all,
- 	.ggtt = send_tlb_inval_ggtt,
-+	.lmtt = send_tlb_inval_lmtt,
- 	.ppgtt = send_tlb_inval_asid_ppgtt,
- 	.initialized = tlb_inval_initialized,
- 	.flush = tlb_inval_flush,
-@@ -356,6 +373,7 @@ static const struct xe_tlb_inval_ops guc_tlb_inval_asid_ops = {
- static const struct xe_tlb_inval_ops guc_tlb_inval_ctx_ops = {
- 	.ggtt = send_tlb_inval_ggtt,
- 	.all = send_tlb_inval_all,
-+	.lmtt = send_tlb_inval_lmtt,
- 	.ppgtt = send_tlb_inval_ctx_ppgtt,
- 	.initialized = tlb_inval_initialized,
- 	.flush = tlb_inval_flush,
-diff --git a/drivers/gpu/drm/xe/xe_lmtt.c b/drivers/gpu/drm/xe/xe_lmtt.c
-index 0c726eda9390..0d0e72ada524 100644
---- a/drivers/gpu/drm/xe/xe_lmtt.c
-+++ b/drivers/gpu/drm/xe/xe_lmtt.c
-@@ -252,7 +252,7 @@ void xe_lmtt_init_hw(struct xe_lmtt *lmtt)
- 	lmtt_setup_dir_ptr(lmtt);
- }
- 
--static int lmtt_invalidate_hw(struct xe_lmtt *lmtt)
-+static int lmtt_invalidate_hw(struct xe_lmtt *lmtt, unsigned int vfid)
- {
- 	struct xe_tlb_inval_fence fences[XE_MAX_GT_PER_TILE];
- 	struct xe_tlb_inval_fence *fence = fences;
-@@ -264,7 +264,10 @@ static int lmtt_invalidate_hw(struct xe_lmtt *lmtt)
- 
- 	for_each_gt_on_tile(gt, tile, id) {
- 		xe_tlb_inval_fence_init(&gt->tlb_inval, fence, true);
--		err = xe_tlb_inval_all(&gt->tlb_inval, fence);
-+		if (gt_to_xe(gt)->info.has_ctx_tlb_inval)
-+			err = xe_tlb_inval_lmtt(&gt->tlb_inval, fence, vfid);
-+		else
-+			err = xe_tlb_inval_all(&gt->tlb_inval, fence);
- 		result = result ?: err;
- 		fence++;
- 	}
-@@ -286,13 +289,16 @@ static int lmtt_invalidate_hw(struct xe_lmtt *lmtt)
- /**
-  * xe_lmtt_invalidate_hw - Invalidate LMTT hardware.
-  * @lmtt: the &xe_lmtt to invalidate
-+ * @vfid: VF ID associated with this LMTT
-  *
-  * Send requests to all GuCs on this tile to invalidate all TLBs.
-  * If the platform has a standalone MERT, also invalidate MERT's TLB.
-+ * Alternatively if the platform supports LMTT specific invalidation,
-+ * invalidate only the LMTT for the given VF.
-  *
-  * This function should be called only when running as a PF driver.
-  */
--void xe_lmtt_invalidate_hw(struct xe_lmtt *lmtt)
-+void xe_lmtt_invalidate_hw(struct xe_lmtt *lmtt, unsigned int vfid)
- {
- 	struct xe_tile *tile = lmtt_to_tile(lmtt);
- 	struct xe_device *xe = lmtt_to_xe(lmtt);
-@@ -300,7 +306,7 @@ void xe_lmtt_invalidate_hw(struct xe_lmtt *lmtt)
- 
- 	lmtt_assert(lmtt, IS_SRIOV_PF(xe));
- 
--	err = lmtt_invalidate_hw(lmtt);
-+	err = lmtt_invalidate_hw(lmtt, vfid);
- 	if (err)
- 		xe_tile_sriov_err(tile, "LMTT invalidation failed (%pe)",
- 				  ERR_PTR(err));
-@@ -367,7 +373,7 @@ static void lmtt_drop_pages(struct xe_lmtt *lmtt, unsigned int vfid)
- 		return;
- 
- 	lmtt_write_pte(lmtt, pd, LMTT_PTE_INVALID, vfid);
--	lmtt_invalidate_hw(lmtt);
-+	lmtt_invalidate_hw(lmtt, vfid);
- 
- 	lmtt_assert(lmtt, pd->level > 0);
- 	lmtt_assert(lmtt, pt->level == pd->level - 1);
-diff --git a/drivers/gpu/drm/xe/xe_lmtt.h b/drivers/gpu/drm/xe/xe_lmtt.h
-index 8fa387b38c52..ad370807ff3c 100644
---- a/drivers/gpu/drm/xe/xe_lmtt.h
-+++ b/drivers/gpu/drm/xe/xe_lmtt.h
-@@ -15,7 +15,7 @@ struct xe_lmtt_ops;
- #ifdef CONFIG_PCI_IOV
- int xe_lmtt_init(struct xe_lmtt *lmtt);
- void xe_lmtt_init_hw(struct xe_lmtt *lmtt);
--void xe_lmtt_invalidate_hw(struct xe_lmtt *lmtt);
-+void xe_lmtt_invalidate_hw(struct xe_lmtt *lmtt, unsigned int vfid);
- int xe_lmtt_prepare_pages(struct xe_lmtt *lmtt, unsigned int vfid, u64 range);
- int xe_lmtt_populate_pages(struct xe_lmtt *lmtt, unsigned int vfid, struct xe_bo *bo, u64 offset);
- void xe_lmtt_drop_pages(struct xe_lmtt *lmtt, unsigned int vfid);
-diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.c b/drivers/gpu/drm/xe/xe_tlb_inval.c
-index 3bcdeecfa3d8..a26420430aa2 100644
---- a/drivers/gpu/drm/xe/xe_tlb_inval.c
-+++ b/drivers/gpu/drm/xe/xe_tlb_inval.c
-@@ -322,6 +322,26 @@ int xe_tlb_inval_ggtt(struct xe_tlb_inval *tlb_inval)
- 	return ret;
- }
- 
-+/**
-+ * xe_tlb_inval_lmtt() - Issue a TLB invalidation for the LMTT for a VF
-+ * @tlb_inval: TLB invalidation client
-+ * @fence: invalidation fence which will be signal on TLB invalidation
-+ * completion
-+ * @vfid: VF ID for this LMTT
-+ *
-+ * Issue a TLB invalidation for the LMTT for a VF. Completion of TLB is
-+ * asynchronous and caller can use the invalidation fence to wait for
-+ * completion.
-+ *
-+ * Return: 0 on success, negative error code on error
-+ */
-+int xe_tlb_inval_lmtt(struct xe_tlb_inval *tlb_inval,
-+		      struct xe_tlb_inval_fence *fence,
-+		      unsigned int vfid)
-+{
-+	return xe_tlb_inval_issue(tlb_inval, fence, tlb_inval->ops->lmtt, vfid);
-+}
-+
- /**
-  * xe_tlb_inval_range() - Issue a TLB invalidation for an address range
-  * @tlb_inval: TLB invalidation client
-diff --git a/drivers/gpu/drm/xe/xe_tlb_inval.h b/drivers/gpu/drm/xe/xe_tlb_inval.h
-index a76b7823a5f2..38d312c41365 100644
---- a/drivers/gpu/drm/xe/xe_tlb_inval.h
-+++ b/drivers/gpu/drm/xe/xe_tlb_inval.h
-@@ -20,6 +20,9 @@ void xe_tlb_inval_reset(struct xe_tlb_inval *tlb_inval);
- int xe_tlb_inval_all(struct xe_tlb_inval *tlb_inval,
- 		     struct xe_tlb_inval_fence *fence);
- int xe_tlb_inval_ggtt(struct xe_tlb_inval *tlb_inval);
-+int xe_tlb_inval_lmtt(struct xe_tlb_inval *tlb_inval,
-+		      struct xe_tlb_inval_fence *fence,
-+		      unsigned int vfid);
- void xe_tlb_inval_vm(struct xe_tlb_inval *tlb_inval, struct xe_vm *vm);
- int xe_tlb_inval_range(struct xe_tlb_inval *tlb_inval,
- 		       struct xe_tlb_inval_fence *fence,
-diff --git a/drivers/gpu/drm/xe/xe_tlb_inval_types.h b/drivers/gpu/drm/xe/xe_tlb_inval_types.h
-index 3d1797d186fd..6205f5619303 100644
---- a/drivers/gpu/drm/xe/xe_tlb_inval_types.h
-+++ b/drivers/gpu/drm/xe/xe_tlb_inval_types.h
-@@ -36,6 +36,18 @@ struct xe_tlb_inval_ops {
- 	 */
- 	int (*ggtt)(struct xe_tlb_inval *tlb_inval, u32 seqno);
- 
-+	/**
-+	 * @lmtt: Invalidate the LMTT for a VF
-+	 * @tlb_inval: TLB invalidation client
-+	 * @seqno: Seqno of TLB invalidation
-+	 * @vfid: VF ID for this LMTT
-+	 *
-+	 * Return 0 on success, -ECANCELED if backend is mid-reset, error on
-+	 * failure
-+	 */
-+	int (*lmtt)(struct xe_tlb_inval *tlb_inval, u32 seqno,
-+		    unsigned int vfid);
-+
- 	/**
- 	 * @ppgtt: Invalidate per-process translation TLBs
- 	 * @tlb_inval: TLB invalidation client
--- 
-2.43.0
+Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+-Jonathan Cavitt
 
+>=20
+> Thanks,
+> Stuart
+>=20
+> > +
+> > =A0=A0=A0=A0=A0=A0=A0=A0xe->info.is_dgfx =3D desc->is_dgfx;
+> > =A0=A0=A0=A0=A0=A0=A0=A0xe->info.has_cached_pt =3D desc->has_cached_pt;
+> > =A0=A0=A0=A0=A0=A0=A0=A0xe->info.has_fan_control =3D desc->has_fan_cont=
+rol;
+> > diff --git a/drivers/gpu/drm/xe/xe_pci_types.h
+> > b/drivers/gpu/drm/xe/xe_pci_types.h
+> > index 8eee4fb1c57c..cd9d3ad96fe0 100644
+> > --- a/drivers/gpu/drm/xe/xe_pci_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_pci_types.h
+> > @@ -34,6 +34,8 @@ struct xe_device_desc {
+> > =A0=A0=A0=A0=A0=A0=A0=A0u8 va_bits;
+> > =A0=A0=A0=A0=A0=A0=A0=A0u8 vm_max_level;
+> > =A0=A0=A0=A0=A0=A0=A0=A0u8 vram_flags;
+> > +=A0=A0=A0=A0=A0=A0=A0u64 min_tlb_inval_size;
+> > +=A0=A0=A0=A0=A0=A0=A0u64 max_tlb_inval_size;
+> > =A0
+> > =A0=A0=A0=A0=A0=A0=A0=A0u8 require_force_probe:1;
+> > =A0=A0=A0=A0=A0=A0=A0=A0u8 is_dgfx:1;
+>=20
+>=20
