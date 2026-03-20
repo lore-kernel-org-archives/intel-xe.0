@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC7D81093181
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Mar 2026 07:25:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29FE91093181
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Mar 2026 07:25:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1B5810E00D;
-	Fri, 20 Mar 2026 07:25:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1BD410E95A;
+	Fri, 20 Mar 2026 07:25:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M65ITi41";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L2ekz7dv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AB9810E00D
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Mar 2026 07:25:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA1E910E95A
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Mar 2026 07:25:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773991553; x=1805527553;
+ t=1773991558; x=1805527558;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=x/fjRXwSYw7XIWlyVnIxZJ3Y6KhNC8DaizwwWcAMLKA=;
- b=M65ITi415in31soJMK45fGA55aDCxJkTanMzwyGKVu9Yxg7kSKjTo4QH
- LuCClP2EGUEEZne8uVZNgo3XXw9qGIjE2P056U3NdZQBRNWMWRa3bTdam
- ZqqZ4ZHi2X+4DfNdCCoryR4qkXsWHOHMZ9oPDZzCXQoH7GRDGEq3W1lY7
- vGAAy09s3ANvtBqgPT/iDO4Nvn9M5lv+VG6UrcEP2XX5bRxxQsodV9m3q
- UlHafcsjsvpdQ08f4OZSYY0ea9Z06SnHGjnH1D38e9pKVGzR9p3qOT3M4
- SF2vNUWSQRMC3DawQoDV4rDw2YYKdFn/lvap55V7pklw5skcxNvS4eEEk A==;
-X-CSE-ConnectionGUID: Jm5lLHbeQAa3kXiQ8CCZ8g==
-X-CSE-MsgGUID: deXfh7TLQi6h0h6JskBsGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="62634653"
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; d="scan'208";a="62634653"
+ bh=aKMg1wqh3aLblQObZguXMdwBHqhsJEUHHZLWhZkxlgM=;
+ b=L2ekz7dvelAfNp9uAhGtowG+5Znzh1Al3tqVFCiFNgDzdjC7bDpvA7dt
+ WK5wvFVk0w3qIwUi9OJvsCwtgcTDLuMhG79tFxumvh1dJLeiIl3UeYYYX
+ yASr8iMOQO8WLbgiijyiVq3NdEXu+Y+lndZJgZ0kbFSawoa8f1kQ2vpoE
+ ZS7MbnPNMbJu1+6/Ijnq78mM/8K5fyz38iGHxx7v1/A5Vm1TtscTNR5VI
+ 1OsD8KsoanHLGGiZjrslGj99Q0qqhTJtI1JHolWD42lXcrAczaMiGVWWn
+ RnCuBIqA5KXex7G68guby/KKeFFwTqDjhTyQ+Rf9XCOI+tWyJVoNxnTxj Q==;
+X-CSE-ConnectionGUID: qKa6hFrbQ96fo0lhX6qoAw==
+X-CSE-MsgGUID: QF4895gYQQmG1+hlBfo/kQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="62634656"
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; d="scan'208";a="62634656"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2026 00:25:53 -0700
-X-CSE-ConnectionGUID: nx54dSbRRRaqa2sl2Q2AUw==
-X-CSE-MsgGUID: sLcnL591QUymrExun5liDQ==
+ 20 Mar 2026 00:25:57 -0700
+X-CSE-ConnectionGUID: O+7ltukeSZuRO+8UplAd3Q==
+X-CSE-MsgGUID: i6tB0g0VSSyU1NLDd47cZQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; d="scan'208";a="227335884"
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; d="scan'208";a="227335895"
 Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2026 00:25:49 -0700
+ 20 Mar 2026 00:25:53 -0700
 From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
@@ -48,9 +48,9 @@ Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
  riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
  michael.j.ruhl@intel.com, paul.e.luse@intel.com,
  mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
-Subject: [RFC v1 4/5] drm/xe/fwctl: Add Xe FWCTL infrastructure support
-Date: Fri, 20 Mar 2026 00:25:32 -0700
-Message-ID: <20260320072528.1780651-11-anoop.c.vijay@intel.com>
+Subject: [RFC v1 5/5] drm/xe/fwctl: Add System Controller FWCTL RPC handler
+Date: Fri, 20 Mar 2026 00:25:33 -0700
+Message-ID: <20260320072528.1780651-12-anoop.c.vijay@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260320072528.1780651-7-anoop.c.vijay@intel.com>
 References: <20260320072528.1780651-7-anoop.c.vijay@intel.com>
@@ -73,346 +73,348 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Add core infrastructure required to support FWCTL subsystem in Xe driver.
-This introduces a generic xe_fwctl device context, integrates FWCTL state
-into xe_device, and sets up device registration and cleanup.
+Add FWCTL RPC handler for Xe System Controller firmware.
 
-This provides foundation for future firmware-specific FWCTL handlers.
+Implement xe_fw_ops to route FWCTL RPCs to System Controller mailbox,
+allowing userspace to issue System Controller commands via FWCTL.
 
 Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
 ---
- Documentation/userspace-api/fwctl/index.rst |   1 +
- drivers/gpu/drm/xe/Kconfig                  |   1 +
- drivers/gpu/drm/xe/Makefile                 |   1 +
- drivers/gpu/drm/xe/xe_device.c              |   5 +
- drivers/gpu/drm/xe/xe_device_types.h        |   4 +
- drivers/gpu/drm/xe/xe_fwctl.c               | 200 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_fwctl.h               |  15 ++
- include/uapi/fwctl/xe.h                     |   4 +
- 8 files changed, 231 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_fwctl.c
- create mode 100644 drivers/gpu/drm/xe/xe_fwctl.h
+ drivers/gpu/drm/xe/Makefile             |   1 +
+ drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h |  29 +++++
+ drivers/gpu/drm/xe/xe_fwctl.c           |  10 +-
+ drivers/gpu/drm/xe/xe_sysctrl_fwctl.c   | 136 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.c |  31 ++++++
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.h |   2 +
+ include/uapi/fwctl/xe.h                 |  25 ++++-
+ 7 files changed, 231 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_fwctl.c
 
-diff --git a/Documentation/userspace-api/fwctl/index.rst b/Documentation/userspace-api/fwctl/index.rst
-index 316ac456ad3b..7ef115216316 100644
---- a/Documentation/userspace-api/fwctl/index.rst
-+++ b/Documentation/userspace-api/fwctl/index.rst
-@@ -12,3 +12,4 @@ to securely construct and execute RPCs inside device firmware.
-    fwctl
-    fwctl-cxl
-    pds_fwctl
-+   xe_fwctl
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 4d7dcaff2b91..b215ccdc1911 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -46,6 +46,7 @@ config DRM_XE
- 	select WANT_DEV_COREDUMP
- 	select AUXILIARY_BUS
- 	select REGMAP if I2C
-+	select FWCTL
- 	help
- 	  Driver for Intel Xe2 series GPUs and later. Experimental support
- 	  for Xe series is also available.
 diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index f9abaf687d46..6d47d5d59cf4 100644
+index 6d47d5d59cf4..f5d7109893c8 100644
 --- a/drivers/gpu/drm/xe/Makefile
 +++ b/drivers/gpu/drm/xe/Makefile
-@@ -47,6 +47,7 @@ xe-y += xe_bb.o \
- 	xe_exec_queue.o \
- 	xe_execlist.o \
- 	xe_force_wake.o \
-+	xe_fwctl.o \
- 	xe_ggtt.o \
- 	xe_gpu_scheduler.o \
- 	xe_gsc.o \
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index c70d4ae413a9..8771c40d1582 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -35,6 +35,7 @@
- #include "xe_exec.h"
- #include "xe_exec_queue.h"
- #include "xe_force_wake.h"
-+#include "xe_fwctl.h"
- #include "xe_ggtt.h"
- #include "xe_gt.h"
- #include "xe_gt_mcr.h"
-@@ -996,6 +997,10 @@ int xe_device_probe(struct xe_device *xe)
+@@ -125,6 +125,7 @@ xe-y += xe_bb.o \
+ 	xe_survivability_mode.o \
+ 	xe_sync.o \
+ 	xe_sysctrl.o \
++	xe_sysctrl_fwctl.o \
+ 	xe_sysctrl_mailbox.o \
+ 	xe_tile.o \
+ 	xe_tile_sysfs.o \
+diff --git a/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h b/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
+index 4cbde267ac44..b80e01e8ae37 100644
+--- a/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
++++ b/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
+@@ -62,4 +62,33 @@ struct xe_sysctrl_app_msg_hdr {
+ #define APP_HDR_VERSION_MASK		GENMASK(23, 16)
+ #define APP_HDR_RESERVED_MASK		GENMASK(31, 24)
  
- 	xe_debugfs_register(xe);
- 
-+	err = xe_fwctl_init(xe);
-+	if (err)
-+		goto err_unregister_display;
++/** System Controller FSP Runtime command group */
++#define XE_SYSCTRL_GROUP_FSP_RUNTIME    0x31
 +
- 	err = xe_hwmon_register(xe);
- 	if (err)
- 		goto err_unregister_display;
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 150c76b2acaf..78262e60d7a2 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -38,6 +38,7 @@
- struct drm_pagemap_shrinker;
- struct intel_display;
- struct intel_dg_nvm_dev;
-+struct xe_fwctl;
- struct xe_ggtt;
- struct xe_i2c;
- struct xe_pat_ops;
-@@ -514,6 +515,9 @@ struct xe_device {
- 	/** @sc: System Controller */
- 	struct xe_sysctrl sc;
- 
-+	/** @fwctl: FWCTL device for firmware management */
-+	struct xe_fwctl *fwctl;
++/*
++ * XE_SYSCTRL_CMD_GET_FEATURE_CFG - Query feature configuration
++ *
++ * Return platform feature capability and configuration state.
++ *
++ * Group: XE_SYSCTRL_GROUP_FSP_RUNTIME (0x31)
++ * Command: 0x10
++ */
++#define XE_SYSCTRL_CMD_GET_FEATURE_CFG    0x10
 +
- 	/** @atomic_svm_timeslice_ms: Atomic SVM fault timeslice MS */
- 	u32 atomic_svm_timeslice_ms;
- 
++/**
++ * DOC: XE_SYSCTRL_CMD_GET_FEATURE_CFG response
++ *
++ * Returns 5 DWORDs:
++ *   DW0: Supported features
++ *   DW1: Enabled features
++ *   DW2: Software-configurable features
++ *   DW3: Pending state (effective after reboot)
++ *   DW4: Default (factory) state
++ *
++ * Each DWORD is a feature bitmap.
++ */
++#define XE_SYSCTRL_GET_FEATURE_CFG_NUM_DWORDS    5
++#define XE_SYSCTRL_GET_FEATURE_CFG_RESP_BYTES    \
++	(XE_SYSCTRL_GET_FEATURE_CFG_NUM_DWORDS * sizeof(__u32))
++
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_fwctl.c b/drivers/gpu/drm/xe/xe_fwctl.c
-new file mode 100644
-index 000000000000..72124b5b3c87
---- /dev/null
+index 72124b5b3c87..2e8faa027487 100644
+--- a/drivers/gpu/drm/xe/xe_fwctl.c
 +++ b/drivers/gpu/drm/xe/xe_fwctl.c
-@@ -0,0 +1,200 @@
+@@ -67,10 +67,12 @@
+ #include "xe_pm.h"
+ #include "xe_printk.h"
+ 
++extern const struct xe_fw_ops xe_sysctrl_fw_ops;
++
+ DEFINE_FREE(xe_fwctl, struct xe_fwctl *, if (_T) fwctl_put(&_T->fwctl))
+ 
+ static const struct xe_fw_ops *fw_ops_table[XE_FW_MAX] = {
+-	/* [XE_FW_...] = &ops, */
++	[XE_FW_SYSCTRL] = &xe_sysctrl_fw_ops,
+ };
+ 
+ static int xe_fwctl_uctx_open(struct fwctl_uctx *uctx)
+@@ -102,12 +104,16 @@ static void *xe_fwctl_info(struct fwctl_uctx *uctx, size_t *length)
+ 					      fwctl);
+ 	struct xe_device *xe = fwctl->xe;
+ 	struct fwctl_info_xe *info;
++	u32 fw_caps = 0;
+ 
+ 	info = kzalloc_obj(*info);
+ 	if (!info)
+ 		return ERR_PTR(-ENOMEM);
+ 
+-	info->fw_caps = 0;
++	if (xe->info.has_sysctrl && fw_ops_table[XE_FW_SYSCTRL])
++		fw_caps |= BIT(XE_FWCTL_CAP_SYSCTRL);
++
++	info->fw_caps = fw_caps;
+ 	info->platform = xe->info.platform;
+ 
+ 	*length = sizeof(*info);
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_fwctl.c b/drivers/gpu/drm/xe/xe_sysctrl_fwctl.c
+new file mode 100644
+index 000000000000..ebdbe6d1dfd8
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sysctrl_fwctl.c
+@@ -0,0 +1,136 @@
 +// SPDX-License-Identifier: MIT
 +/*
 + * Copyright © 2026 Intel Corporation
 + */
++
 +/**
-+ * DOC: Xe FWCTL
++ * DOC: Xe System Controller FWCTL backend
 + *
-+ * Xe FWCTL implements generic FWCTL IOCTLs to provide userspace access to
-+ * firmware management interfaces on Intel Xe discrete GPUs.
++ * Implement FWCTL support for Xe System Controller firmware.
 + *
-+ * Driver registers a FWCTL device during xe_device initialization and
-+ * dispatches firmware RPCs to an appropriate handler based on firmware_type
-+ * field in RPC header.
++ * Provide xe_fw_ops implementation to route FWCTL RPCs to System Controller
++ * mailbox using struct xe_sysctrl_rpc.
 + *
-+ * Each firmware type implements xe_fw_ops interface, providing:
-+ *  - validate_scope(): Validate whether RPC command is allowed for requested
-+ *    access scope (CONFIGURATION, DEBUG_READ_ONLY, DEBUG_WRITE_FULL).
-+ *  - rpc(): Execute firmware RPC and return response.
++ * validate_scope() enforces required access level for System Controller
++ * commands. rpc() executes mailbox transactions and returns responses to
++ * FWCTL core.
 + *
-+ * Userspace should first issue FWCTL_INFO ioctl and check capability flags to
-+ * determine supported firmware types and commands.
-+ *
-+ * After verifying support, userspace may issue FWCTL_RPC with input and output
-+ * buffers pointing to struct fwctl_rpc_xe or firmware‑specific RPC structure
-+ * allocated by userspace. Input and output lengths must match structure size.
-+ *
-+ * Unsupported or invalid commands return -EBADMSG.
-+ *
-+ * Example:
-+ *
-+ * .. code-block:: C
-+ *
-+ *   struct fwctl_info_xe xe_info = {0};
-+ *   struct fwctl_info info = {
-+ *           .size = sizeof(info),
-+ *           .device_data_len = sizeof(xe_info),
-+ *           .out_device_data = (uint64_t)&xe_info,
-+ *   };
-+ *
-+ *   int fd = open("/dev/fwctl/fwctl0", O_RDWR);
-+ *   ioctl(fd, FWCTL_INFO, &info);
-+ *
-+ *   struct xe_sysctrl_rpc req = { ... };
-+ *   struct xe_sysctrl_rpc resp = {0};
-+ *   struct fwctl_rpc rpc = {
-+ *           .size = sizeof(struct fwctl_rpc),
-+ *           .scope = FWCTL_RPC_DEBUG_READ_ONLY,
-+ *           .in_len = sizeof(req),
-+ *           .out_len = sizeof(resp),
-+ *           .in = (uint64_t)&req,
-+ *           .out = (uint64_t)&resp,
-+ *   };
-+ *
-+ *   ioctl(fd, FWCTL_RPC, &rpc);
++ * See xe_fwctl.c for generic FWCTL documentation and userspace usage.
 + */
 +
-+#include <linux/fwctl.h>
-+#include <linux/slab.h>
++#include <linux/bitfield.h>
 +#include <linux/err.h>
++#include <linux/vmalloc.h>
 +
-+#include <uapi/fwctl/fwctl.h>
 +#include <uapi/fwctl/xe.h>
 +
++#include "abi/xe_sysctrl_abi.h"
 +#include "xe_device.h"
-+#include "xe_fwctl.h"
 +#include "xe_fwctl_types.h"
-+#include "xe_pm.h"
++#include "xe_sysctrl.h"
++#include "xe_sysctrl_mailbox.h"
++#include "xe_sysctrl_mailbox_types.h"
 +#include "xe_printk.h"
 +
-+DEFINE_FREE(xe_fwctl, struct xe_fwctl *, if (_T) fwctl_put(&_T->fwctl))
-+
-+static const struct xe_fw_ops *fw_ops_table[XE_FW_MAX] = {
-+	/* [XE_FW_...] = &ops, */
-+};
-+
-+static int xe_fwctl_uctx_open(struct fwctl_uctx *uctx)
++static bool xe_sysctrl_validate_scope(void *rpc_in, size_t in_len,
++				      enum fwctl_rpc_scope scope)
 +{
-+	struct xe_fwctl *fwctl = container_of(uctx->fwctl,
-+					       struct xe_fwctl,
-+					       fwctl);
-+	struct xe_device *xe = fwctl->xe;
++	struct xe_sysctrl_rpc *req = rpc_in;
 +
-+	xe_pm_runtime_get(xe);
++	if (in_len < sizeof(*req))
++		return false;
 +
-+	return 0;
++	if (req->hdr.firmware_type != XE_FW_SYSCTRL)
++		return false;
++
++	switch (req->group_id) {
++	case XE_SYSCTRL_GROUP_FSP_RUNTIME:
++		switch (req->command) {
++		case XE_SYSCTRL_CMD_GET_FEATURE_CFG:
++			return scope >= FWCTL_RPC_CONFIGURATION;
++		default:
++			return false;
++		}
++
++	default:
++		return false;
++	}
 +}
 +
-+static void xe_fwctl_uctx_close(struct fwctl_uctx *uctx)
++static void *xe_sysctrl_rpc(struct xe_device *xe,
++			    enum fwctl_rpc_scope scope,
++			    void *rpc_in, size_t in_len,
++			    size_t *out_len)
 +{
-+	struct xe_fwctl *fwctl = container_of(uctx->fwctl,
-+					       struct xe_fwctl,
-+					       fwctl);
-+	struct xe_device *xe = fwctl->xe;
-+
-+	xe_pm_runtime_put(xe);
-+}
-+
-+static void *xe_fwctl_info(struct fwctl_uctx *uctx, size_t *length)
-+{
-+	struct xe_fwctl *fwctl = container_of(uctx->fwctl,
-+					      struct xe_fwctl,
-+					      fwctl);
-+	struct xe_device *xe = fwctl->xe;
-+	struct fwctl_info_xe *info;
-+
-+	info = kzalloc_obj(*info);
-+	if (!info)
-+		return ERR_PTR(-ENOMEM);
-+
-+	info->fw_caps = 0;
-+	info->platform = xe->info.platform;
-+
-+	*length = sizeof(*info);
-+	return info;
-+}
-+
-+static void *xe_fwctl_rpc(struct fwctl_uctx *uctx,
-+			  enum fwctl_rpc_scope scope,
-+			  void *rpc_in, size_t in_len,
-+			  size_t *out_len)
-+{
-+	struct xe_fwctl *fwctl = container_of(uctx->fwctl,
-+					      struct xe_fwctl,
-+					      fwctl);
-+	struct xe_device *xe = fwctl->xe;
-+	const struct fwctl_rpc_xe *hdr = rpc_in;
-+	const struct xe_fw_ops *ops;
-+	void *resp;
-+
-+	if (in_len < sizeof(*hdr))
-+		return ERR_PTR(-EMSGSIZE);
-+
-+	if (hdr->firmware_type >= XE_FW_MAX)
-+		return ERR_PTR(-EINVAL);
-+
-+	ops = fw_ops_table[hdr->firmware_type];
-+	if (!ops)
-+		return ERR_PTR(-EOPNOTSUPP);
-+
-+	if (ops->validate_scope &&
-+	    !ops->validate_scope(rpc_in, in_len, scope))
-+		return ERR_PTR(-EBADMSG);
-+
-+	resp = ops->rpc(xe, scope, rpc_in, in_len, out_len);
-+	if (IS_ERR(resp))
-+		xe_err(xe, "FWCTL RPC failed: fw=%s err=%ld\n",
-+		       ops->name ?: "unknown", PTR_ERR(resp));
-+
-+	return resp;
-+}
-+
-+static const struct fwctl_ops xe_fwctl_ops = {
-+	.device_type = FWCTL_DEVICE_TYPE_XE,
-+	.uctx_size = sizeof(struct xe_fwctl_uctx),
-+	.open_uctx = xe_fwctl_uctx_open,
-+	.close_uctx = xe_fwctl_uctx_close,
-+	.info = xe_fwctl_info,
-+	.fw_rpc = xe_fwctl_rpc,
-+};
-+
-+static void xe_fwctl_fini(void *dev)
-+{
-+	struct xe_fwctl *fwctl = dev;
-+
-+	fwctl_unregister(&fwctl->fwctl);
-+	fwctl_put(&fwctl->fwctl);
-+}
-+
-+/**
-+ * xe_fwctl_init() - Initialize FWCTL for Xe device
-+ * @xe: xe device instance
-+ *
-+ * Creates and registers FWCTL device for firmware management.
-+ *
-+ * Return: 0 on success, error code on failure
-+ */
-+int xe_fwctl_init(struct xe_device *xe)
-+{
-+	struct xe_fwctl *fwctl __free(xe_fwctl) =
-+		fwctl_alloc_device(xe->drm.dev, &xe_fwctl_ops,
-+				   struct xe_fwctl, fwctl);
-+
++	struct xe_sysctrl_rpc *req = rpc_in;
++	struct xe_sysctrl_mailbox_command cmd = {};
++	size_t in_payload, out_payload = 0;
++	size_t expected_resp_len, resp_size;
 +	int ret;
 +
-+	if (!fwctl)
-+		return -ENOMEM;
++	if (!xe->info.has_sysctrl)
++		return ERR_PTR(-ENODEV);
 +
-+	fwctl->xe = xe;
++	if (in_len < sizeof(*req))
++		return ERR_PTR(-EINVAL);
 +
-+	ret = fwctl_register(&fwctl->fwctl);
++	if (req->hdr.firmware_type != XE_FW_SYSCTRL)
++		return ERR_PTR(-EBADMSG);
++
++	in_payload = in_len - sizeof(*req);
++	if (in_payload > XE_SYSCTRL_MB_MAX_MESSAGE_SIZE)
++		return ERR_PTR(-EMSGSIZE);
++
++	ret = xe_sysctrl_get_response_len(req->group_id, req->command,
++					  req->version, in_payload,
++					  &expected_resp_len);
 +	if (ret)
-+		return ret;
++		return ERR_PTR(-EOPNOTSUPP);
 +
-+	xe->fwctl = fwctl;
++	if (expected_resp_len > XE_SYSCTRL_MB_MAX_MESSAGE_SIZE)
++		return ERR_PTR(-EMSGSIZE);
 +
-+	return devm_add_action_or_reset(xe->drm.dev, xe_fwctl_fini,
-+					no_free_ptr(fwctl));
++	resp_size = sizeof(*req) + expected_resp_len;
++	if (*out_len < resp_size)
++		return ERR_PTR(-EMSGSIZE);
++
++	struct xe_sysctrl_rpc *resp __free(kvfree) = kvzalloc(resp_size, GFP_KERNEL);
++	if (!resp)
++		return ERR_PTR(-ENOMEM);
++
++	cmd.header.data = cpu_to_le32(FIELD_PREP(APP_HDR_GROUP_ID_MASK, req->group_id) |
++				      FIELD_PREP(APP_HDR_COMMAND_MASK, req->command) |
++				      FIELD_PREP(APP_HDR_VERSION_MASK, req->version));
++
++	cmd.data_in = in_payload ? req->payload : NULL;
++	cmd.data_in_len = in_payload;
++
++	cmd.data_out = expected_resp_len ? resp->payload : NULL;
++	cmd.data_out_len = expected_resp_len;
++
++	ret = xe_sysctrl_send_command(&xe->sc, &cmd, &out_payload);
++	if (ret) {
++		xe_err(xe, "sysctrl fwctl RPC failed: group=0x%02x cmd=0x%02x err=%d\n",
++		       req->group_id, req->command, ret);
++		return ERR_PTR(ret);
++	}
++
++	if (out_payload > expected_resp_len)
++		return ERR_PTR(-EIO);
++
++	resp->hdr.firmware_type = XE_FW_SYSCTRL;
++	resp->group_id = req->group_id;
++	resp->command  = req->command;
++	resp->version  = req->version;
++	resp->reserved = 0;
++
++	*out_len = sizeof(*resp) + out_payload;
++
++	return no_free_ptr(resp);
 +}
 +
-+MODULE_IMPORT_NS("FWCTL");
-diff --git a/drivers/gpu/drm/xe/xe_fwctl.h b/drivers/gpu/drm/xe/xe_fwctl.h
-new file mode 100644
-index 000000000000..190405720892
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_fwctl.h
-@@ -0,0 +1,15 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
++const struct xe_fw_ops xe_sysctrl_fw_ops = {
++	.name = "sysctrl",
++	.rpc = xe_sysctrl_rpc,
++	.validate_scope = xe_sysctrl_validate_scope,
++};
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+index b10c8b7e0c40..418ab672528f 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
++++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+@@ -293,6 +293,37 @@ static int sysctrl_send_command(struct xe_sysctrl *sc,
+ 	return 0;
+ }
+ 
++/**
++ * xe_sysctrl_get_response_len - Get expected response length for a command
++ * @group_id: Command group ID
++ * @command: Command ID
++ * @version: Command version
++ * @in_len: Input payload length
++ * @out_len: Pointer to store expected output length
++ *
++ * Returns: 0 on success, -EOPNOTSUPP if command is unknown
 + */
++int xe_sysctrl_get_response_len(u8 group_id, u8 command, u8 version,
++				size_t in_len, size_t *out_len)
++{
++	(void)version;
++	(void)in_len;
 +
-+#ifndef _XE_FWCTL_H_
-+#define _XE_FWCTL_H_
++	switch (group_id) {
++	case XE_SYSCTRL_GROUP_FSP_RUNTIME:
++		switch (command) {
++		case XE_SYSCTRL_CMD_GET_FEATURE_CFG:
++			*out_len = XE_SYSCTRL_GET_FEATURE_CFG_RESP_BYTES;
++			return 0;
++		default:
++			return -EOPNOTSUPP;
++		}
 +
-+#include <linux/types.h>
++	default:
++		return -EOPNOTSUPP;
++	}
++}
 +
-+struct xe_device;
-+
-+int xe_fwctl_init(struct xe_device *xe);
-+
-+#endif
+ /**
+  * xe_sysctrl_mailbox_init - Initialize System Controller mailbox interface
+  * @sc: System controller structure
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
+index 91460be9e22c..f219ad738b81 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
++++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
+@@ -23,6 +23,8 @@ struct xe_sysctrl_mailbox_command;
+ #define XE_SYSCTRL_APP_HDR_VERSION(hdr) \
+ 	FIELD_GET(APP_HDR_VERSION_MASK, le32_to_cpu((hdr)->data))
+ 
++int xe_sysctrl_get_response_len(u8 group_id, u8 command, u8 version,
++				size_t in_len, size_t *out_len);
+ void xe_sysctrl_mailbox_init(struct xe_sysctrl *sc);
+ int xe_sysctrl_send_command(struct xe_sysctrl *sc,
+ 			    struct xe_sysctrl_mailbox_command *cmd,
 diff --git a/include/uapi/fwctl/xe.h b/include/uapi/fwctl/xe.h
-index fb5612dec610..3720f188a7ec 100644
+index 3720f188a7ec..2a1e559f94f2 100644
 --- a/include/uapi/fwctl/xe.h
 +++ b/include/uapi/fwctl/xe.h
-@@ -16,6 +16,10 @@
+@@ -16,8 +16,13 @@
   * through the kernel FWCTL framework.
   */
  
-+enum xe_firmware_type {
-+	XE_FW_MAX = 1,
++enum xe_fwctl_capabilities {
++	XE_FWCTL_CAP_SYSCTRL = 0,
 +};
 +
+ enum xe_firmware_type {
+-	XE_FW_MAX = 1,
++	XE_FW_SYSCTRL = 0,
++	XE_FW_MAX,
+ };
+ 
  /**
-  * struct fwctl_info_xe - FWCTL Information struct for Xe
-  *
+@@ -39,4 +44,22 @@ struct fwctl_rpc_xe {
+ 	__u32 firmware_type;
+ };
+ 
++/**
++ * struct xe_sysctrl_rpc - System Controller RPC
++ * @hdr: Common Xe RPC header (firmware_type = XE_FW_SYSCTRL)
++ * @group_id: Command group identifier
++ * @command: Command code
++ * @version: Command version
++ * @reserved: Reserved for alignment, must be 0
++ * @payload: Variable-length command-specific payload
++ */
++struct xe_sysctrl_rpc {
++	struct fwctl_rpc_xe hdr;
++	__u8 group_id;
++	__u8 command;
++	__u8 version;
++	__u8 reserved;
++	__u8 payload[];
++};
++
+ #endif
 -- 
 2.43.0
 
