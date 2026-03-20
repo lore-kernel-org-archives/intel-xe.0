@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 125941093180
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Mar 2026 07:25:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F03161093180
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Mar 2026 07:25:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF1F610E960;
-	Fri, 20 Mar 2026 07:25:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFE1810E982;
+	Fri, 20 Mar 2026 07:25:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="G3cX8c8x";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n40Mpl09";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB28810E960
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Mar 2026 07:25:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 807CB10E982
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Mar 2026 07:25:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773991545; x=1805527545;
+ t=1773991549; x=1805527549;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1bf9vVLboOfwtUBCsZ7ZT6UUjMLGFGht/bS6PlaWbWg=;
- b=G3cX8c8xG00glaTyUM0crnu746WaTerGINVFL61wo3DOvVlyPFVy/w37
- JSG+18KjuMyMm2Tr3x90Inz5csuWpyKHMVmYK82TmWRthxyateQgXzAls
- 3F981LeG6PhMZhYA7YRGRl7L0TTNs0+a3nmgB7sadD7jyuCeQsLUrgzxm
- C9ohorg7W1/7JAh8oTXSxzY2d8TY2M6VseVURZxumlbcvhrp4xOiv71f8
- WyQNAZm5pS6vueBpHa8UzdWvpLMRQyJ51+FpG9WLm7ldg1o4Vqng5X25c
- F6mrlF5F8A3Y193iqOimOMaBnKdnHY7Jt56gMEJplLafCKT3fjxVRB/M6 Q==;
-X-CSE-ConnectionGUID: Sa7Hp3ZMShy8Jtx0Pzd19Q==
-X-CSE-MsgGUID: iH89zikASV+w6jaDsKYzFw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="62634649"
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; d="scan'208";a="62634649"
+ bh=1KgDbSPu9fr83zcWJKh5870KIAdqsJf7sc0s2Va4h3Q=;
+ b=n40Mpl094l3+ajs0eoBI0HCwSR9zO/W0cpXlcsUOkhlo+WUb6e06xbq7
+ gYr6YTNV8tkrjwUNwXRCH7oWnm54N5d0i2CS3gpRLOj6ob2ZUsFigm3NR
+ b4VqLCpwMAPvzn962E2yK6vkqbdjpymw3dfK8Sd7exAl5gm68dbAoRgf/
+ I10aE5IuZSwu0pT8OvkSQC37NiNlCKtnyGyaoOHCT2nxz5yNlljP7ajQn
+ 79D3iRDmwfmB/5QBWPxs2xW//zTZotH92K4iYfcE+lIg73QvF7yLnMwP9
+ UHN0hXhX/fIELkov1v4MYZ8DUZHU10sDM5euuyOSQzZVhRIM4e5ghngEQ w==;
+X-CSE-ConnectionGUID: liGBGKKkQzKAqFZfMcGrog==
+X-CSE-MsgGUID: lNSKgIv7TCeK+FV/REfX+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="62634652"
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; d="scan'208";a="62634652"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2026 00:25:45 -0700
-X-CSE-ConnectionGUID: mfcKSwGbRHKIjN9jEUsxLw==
-X-CSE-MsgGUID: tivF1hhLQHyt47eJsrT1OA==
+ 20 Mar 2026 00:25:49 -0700
+X-CSE-ConnectionGUID: 55nSlC//TzWhCNcS1Zr++w==
+X-CSE-MsgGUID: 6p+ECexYRTm96TpcE0lEJg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; d="scan'208";a="227335862"
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; d="scan'208";a="227335870"
 Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2026 00:25:41 -0700
+ 20 Mar 2026 00:25:45 -0700
 From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
@@ -48,9 +48,9 @@ Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
  riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
  michael.j.ruhl@intel.com, paul.e.luse@intel.com,
  mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
-Subject: [RFC v1 2/5] drm/xe/fwctl: Add uAPI definitions for Xe FWCTL support
-Date: Fri, 20 Mar 2026 00:25:30 -0700
-Message-ID: <20260320072528.1780651-9-anoop.c.vijay@intel.com>
+Subject: [RFC v1 3/5] drm/xe/fwctl: Add Xe FWCTL type definitions
+Date: Fri, 20 Mar 2026 00:25:31 -0700
+Message-ID: <20260320072528.1780651-10-anoop.c.vijay@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260320072528.1780651-7-anoop.c.vijay@intel.com>
 References: <20260320072528.1780651-7-anoop.c.vijay@intel.com>
@@ -73,74 +73,75 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Add Xe-specific uAPI definitions for FWCTL support. Introduce
-include/uapi/fwctl/xe.h to describe userspace ABI for Xe firmware
-control operations, and extend core FWCTL uAPI to recognize
-Xe device type.
+Add type definitions required for Xe FWCTL infrastructure. Introduce
+xe_fwctl_types.h to define core data structures used by driver,
+including Xe FWCTL device context, per-file context, and firmware
+operation hooks.
 
-This patch adds uAPI definitions only. No functional kernel code
-is introduced.
+This patch adds type definitions only and does not introduce functional
+FWCTL logic.
 
 Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
 ---
- include/uapi/fwctl/fwctl.h |  1 +
- include/uapi/fwctl/xe.h    | 38 ++++++++++++++++++++++++++++++++++++++
- 2 files changed, 39 insertions(+)
- create mode 100644 include/uapi/fwctl/xe.h
+ drivers/gpu/drm/xe/xe_fwctl_types.h | 52 +++++++++++++++++++++++++++++
+ 1 file changed, 52 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_fwctl_types.h
 
-diff --git a/include/uapi/fwctl/fwctl.h b/include/uapi/fwctl/fwctl.h
-index 716ac0eee42d..c63bc15159d3 100644
---- a/include/uapi/fwctl/fwctl.h
-+++ b/include/uapi/fwctl/fwctl.h
-@@ -45,6 +45,7 @@ enum fwctl_device_type {
- 	FWCTL_DEVICE_TYPE_MLX5 = 1,
- 	FWCTL_DEVICE_TYPE_CXL = 2,
- 	FWCTL_DEVICE_TYPE_PDS = 4,
-+	FWCTL_DEVICE_TYPE_XE = 5,
- };
- 
- /**
-diff --git a/include/uapi/fwctl/xe.h b/include/uapi/fwctl/xe.h
+diff --git a/drivers/gpu/drm/xe/xe_fwctl_types.h b/drivers/gpu/drm/xe/xe_fwctl_types.h
 new file mode 100644
-index 000000000000..fb5612dec610
+index 000000000000..22498f2b2fd9
 --- /dev/null
-+++ b/include/uapi/fwctl/xe.h
-@@ -0,0 +1,38 @@
++++ b/drivers/gpu/drm/xe/xe_fwctl_types.h
+@@ -0,0 +1,52 @@
 +/* SPDX-License-Identifier: MIT */
 +/*
 + * Copyright © 2026 Intel Corporation
 + */
 +
-+#ifndef _UAPI_FWCTL_XE_H_
-+#define _UAPI_FWCTL_XE_H_
++#ifndef _XE_FWCTL_TYPES_H_
++#define _XE_FWCTL_TYPES_H_
 +
-+#include <linux/types.h>
++#include <linux/fwctl.h>
 +
-+/**
-+ * DOC: Xe FWCTL Interface
-+ *
-+ * The Xe FWCTL interface provides userspace access to firmware subsystems
-+ * on Intel Xe discrete GPUs. It exposes firmware management capabilities
-+ * through the kernel FWCTL framework.
-+ */
++struct xe_device;
 +
 +/**
-+ * struct fwctl_info_xe - FWCTL Information struct for Xe
++ * struct xe_fwctl - Xe fwctl device context
++ * @fwctl: Base fwctl device
++ * @xe: Back-pointer to Xe device
 + *
-+ * @fw_caps: Firmware capability bitmap
-+ * @platform: Platform type
++ * This structure wraps the fwctl subsystem device with Xe specific
++ * context.
 + */
-+struct fwctl_info_xe {
-+	__u32 fw_caps;
-+	__u32 platform;
++struct xe_fwctl {
++	struct fwctl_device fwctl;
++	struct xe_device *xe;
 +};
 +
 +/**
-+ * struct fwctl_rpc_xe - Common Xe FWCTL RPC header
-+ * @firmware_type: Firmware type
++ * struct xe_fwctl_uctx - Per-FD context
++ * @uctx: Base fwctl context
++ *
++ * Per file-descriptor context for Xe fwctl operations.
 + */
-+struct fwctl_rpc_xe {
-+	__u32 firmware_type;
++struct xe_fwctl_uctx {
++	struct fwctl_uctx uctx;
++};
++
++/**
++ * struct xe_fw_ops - Per-firmware operations
++ * @name: Firmware name
++ * @rpc: Execute RPC
++ * @validate_scope: Validate RPC vs scope
++ *
++ * Operations table for each firmware type
++ */
++struct xe_fw_ops {
++	const char *name;
++	void *(*rpc)(struct xe_device *xe, enum fwctl_rpc_scope scope,
++		     void *in, size_t in_len, size_t *out_len);
++	bool (*validate_scope)(void *in, size_t in_len,
++			       enum fwctl_rpc_scope scope);
 +};
 +
 +#endif
