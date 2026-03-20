@@ -4,59 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6ED23108B8ED
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Mar 2026 10:20:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05985108B8ED
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Mar 2026 10:33:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3510B10EAD1;
-	Fri, 20 Mar 2026 10:20:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PIYZ+zgw";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31A4710EAD0;
- Fri, 20 Mar 2026 10:20:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774002033; x=1805538033;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=DKjRbzTvTQfEwFkAhATBVoudyTIxi0tbaXwC6s6J9V4=;
- b=PIYZ+zgw+NfZ8v292q7DlidmoenhCYF0VMm60sRBY7kfMrwGlUXpYgDB
- iHSAAHNZovvA8nJmTzQtFPvDN2dBUfODjJrymGtqoVsnhxqxR4gibW+xw
- oZeRGN7ygBHOx55M0htdcgQcHYfwf5O0Vamxrqxp3lavmU33ZJBkJTl+f
- HKd7ZF/PqurH2wAn3g5SKyaymme2Lzhok8TMLjL8AszT8MeXTAOlH+MTs
- CUtEOpgOT5W7QnKHHDAAFC4qAsXN77u93bJUXfBmGXfmWhEINqNIGyVQn
- puQnGg58e/7nrZHU3CeubrkxinCwWN2/0WjbAZY1fbluGK7OLKhvAFGDU Q==;
-X-CSE-ConnectionGUID: MorJazhPRbOI1UnlE2oh9g==
-X-CSE-MsgGUID: 79+iyQOzQyykLxkt1vWFEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="92658948"
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; d="scan'208";a="92658948"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2026 03:20:33 -0700
-X-CSE-ConnectionGUID: 7/xScI95SwqrP1H7wK/1BQ==
-X-CSE-MsgGUID: tFKrxceVTyy0WR1y0h/8Ww==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; d="scan'208";a="218616305"
-Received: from administrator-system-product-name.igk.intel.com
- ([10.91.214.181])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2026 03:20:30 -0700
-Date: Fri, 20 Mar 2026 11:20:28 +0100 (CET)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: Imre Deak <imre.deak@intel.com>
-cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Uma Shankar <uma.shankar@intel.com>, 
- =?ISO-8859-15?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, 
- stable@vger.kernel.org
-Subject: Re: [PATCH] drm/i915/dp_tunnel: Fix error handling when clearing
- stream BW in atomic state
-In-Reply-To: <20260320092900.13210-1-imre.deak@intel.com>
-Message-ID: <bbaf3e50-4660-877f-579d-82fa406e077e@intel.com>
-References: <20260320092900.13210-1-imre.deak@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A062110EAD1;
+	Fri, 20 Mar 2026 10:33:16 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 04C5A10EAC8;
+ Fri, 20 Mar 2026 10:33:16 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6815941893081826092=="
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
- boundary="8323329-1895512094-1774002031=:3548790"
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/dp=5Ftunnel=3A_Fix?=
+ =?utf-8?q?_error_handling_when_clearing_stream_BW_in_atomic_state?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 20 Mar 2026 10:33:15 -0000
+Message-ID: <177400279599.379016.10883183111073287766@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260320092900.13210-1-imre.deak@intel.com>
+In-Reply-To: <20260320092900.13210-1-imre.deak@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,146 +36,130 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+--===============6815941893081826092==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---8323329-1895512094-1774002031=:3548790
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+== Series Details ==
 
-On Fri, 20 Mar 2026, Imre Deak wrote:
-> Clearing the DP tunnel stream BW in the atomic state involves getting
-> the tunnel group state, which can fail. Handle the error accordingly.
->
-> This fixes at least one issue where drm_dp_tunnel_atomic_set_stream_bw()
-> failed to get the tunnel group state returning -EDEADLK, which wasn't
-> handled. This lead to the ctx->contended warn later in modeset_lock()
-> while taking a WW mutex for another object in the same atomic state, and
-> thus within the same already contended WW context.
->
-> Moving intel_crtc_state_alloc() later would avoid freeing saved_state on
-> the error path; this stable patch leaves that simplification for a
-> follow-up.
->
-> Cc: Uma Shankar <uma.shankar@intel.com>
-> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Cc: <stable@vger.kernel.org> # v6.9+
-> Fixes: a4efae87ecb2 ("drm/i915/dp: Compute DP tunnel BW during encoder state computation")
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
-> drivers/gpu/drm/i915/display/intel_display.c  |  8 +++++++-
-> .../gpu/drm/i915/display/intel_dp_tunnel.c    | 20 +++++++++++++------
-> .../gpu/drm/i915/display/intel_dp_tunnel.h    | 11 ++++++----
-> 3 files changed, 28 insertions(+), 11 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index ee501009a251f..882db77c0bbcd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -4640,6 +4640,7 @@ intel_crtc_prepare_cleared_state(struct intel_atomic_state *state,
-> 	struct intel_crtc_state *crtc_state =
-> 		intel_atomic_get_new_crtc_state(state, crtc);
-> 	struct intel_crtc_state *saved_state;
-> +	int err;
->
-> 	saved_state = intel_crtc_state_alloc(crtc);
-> 	if (!saved_state)
-> @@ -4648,7 +4649,12 @@ intel_crtc_prepare_cleared_state(struct intel_atomic_state *state,
-> 	/* free the old crtc_state->hw members */
-> 	intel_crtc_free_hw_state(crtc_state);
->
-> -	intel_dp_tunnel_atomic_clear_stream_bw(state, crtc_state);
-> +	err = intel_dp_tunnel_atomic_clear_stream_bw(state, crtc_state);
-> +	if (err) {
-> +		kfree(saved_state);
-> +
+Series: drm/i915/dp_tunnel: Fix error handling when clearing stream BW in atomic state
+URL   : https://patchwork.freedesktop.org/series/163572/
+State : success
 
-I am unsure if the blank line above is neccessary, but I might be also
-missing style guidelines. Otherwise looks good to me.
+== Summary ==
 
-Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
+CI Bug Log - changes from xe-4749-4ae9f18564e78a5447be68aa1e9232a4f2c37b5a_BAT -> xe-pw-163572v1_BAT
+====================================================
 
-BR,
-Michał
+Summary
+-------
 
-> +		return err;
-> +	}
->
-> 	/* FIXME: before the switch to atomic started, a new pipe_config was
-> 	 * kzalloc'd. Code that depends on any field being zero should be
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_tunnel.c b/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
-> index 1fd1ac8d556d8..7363c98172971 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
-> @@ -659,19 +659,27 @@ int intel_dp_tunnel_atomic_compute_stream_bw(struct intel_atomic_state *state,
->  *
->  * Clear any DP tunnel stream BW requirement set by
->  * intel_dp_tunnel_atomic_compute_stream_bw().
-> + *
-> + * Returns 0 in case of success, a negative error code otherwise.
->  */
-> -void intel_dp_tunnel_atomic_clear_stream_bw(struct intel_atomic_state *state,
-> -					    struct intel_crtc_state *crtc_state)
-> +int intel_dp_tunnel_atomic_clear_stream_bw(struct intel_atomic_state *state,
-> +					   struct intel_crtc_state *crtc_state)
-> {
-> 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	int err;
->
-> 	if (!crtc_state->dp_tunnel_ref.tunnel)
-> -		return;
-> +		return 0;
-> +
-> +	err = drm_dp_tunnel_atomic_set_stream_bw(&state->base,
-> +						 crtc_state->dp_tunnel_ref.tunnel,
-> +						 crtc->pipe, 0);
-> +	if (err)
-> +		return err;
->
-> -	drm_dp_tunnel_atomic_set_stream_bw(&state->base,
-> -					   crtc_state->dp_tunnel_ref.tunnel,
-> -					   crtc->pipe, 0);
-> 	drm_dp_tunnel_ref_put(&crtc_state->dp_tunnel_ref);
-> +
-> +	return 0;
-> }
->
-> /**
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_tunnel.h b/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
-> index 7f0f720e8dcad..10ab9eebcef69 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
-> @@ -40,8 +40,8 @@ int intel_dp_tunnel_atomic_compute_stream_bw(struct intel_atomic_state *state,
-> 					     struct intel_dp *intel_dp,
-> 					     const struct intel_connector *connector,
-> 					     struct intel_crtc_state *crtc_state);
-> -void intel_dp_tunnel_atomic_clear_stream_bw(struct intel_atomic_state *state,
-> -					    struct intel_crtc_state *crtc_state);
-> +int intel_dp_tunnel_atomic_clear_stream_bw(struct intel_atomic_state *state,
-> +					   struct intel_crtc_state *crtc_state);
->
-> int intel_dp_tunnel_atomic_add_state_for_crtc(struct intel_atomic_state *state,
-> 					      struct intel_crtc *crtc);
-> @@ -88,9 +88,12 @@ intel_dp_tunnel_atomic_compute_stream_bw(struct intel_atomic_state *state,
-> 	return 0;
-> }
->
-> -static inline void
-> +static inline int
-> intel_dp_tunnel_atomic_clear_stream_bw(struct intel_atomic_state *state,
-> -				       struct intel_crtc_state *crtc_state) {}
-> +				       struct intel_crtc_state *crtc_state)
-> +{
-> +	return 0;
-> +}
->
-> static inline int
-> intel_dp_tunnel_atomic_add_state_for_crtc(struct intel_atomic_state *state,
-> -- 
-> 2.49.1
->
->
---8323329-1895512094-1774002031=:3548790--
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-163572v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#7249] / [Intel XE#7578])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4749-4ae9f18564e78a5447be68aa1e9232a4f2c37b5a/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163572v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+
+  
+  [Intel XE#7249]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249
+  [Intel XE#7578]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8811 -> IGT_8814
+  * Linux: xe-4749-4ae9f18564e78a5447be68aa1e9232a4f2c37b5a -> xe-pw-163572v1
+
+  IGT_8811: cc3169e72592a56b806ce54a87060519151ad5fe @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_8814: 8814
+  xe-4749-4ae9f18564e78a5447be68aa1e9232a4f2c37b5a: 4ae9f18564e78a5447be68aa1e9232a4f2c37b5a
+  xe-pw-163572v1: 163572v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163572v1/index.html
+
+--===============6815941893081826092==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dp_tunnel: Fix error handling when clearing stream BW in atomic state</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163572/">https://patchwork.freedesktop.org/series/163572/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163572v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163572v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4749-4ae9f18564e78a5447be68aa1e9232a4f2c37b5a_BAT -&gt; xe-pw-163572v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-163572v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@core_hotunplug@unbind-rebind:<ul>
+<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4749-4ae9f18564e78a5447be68aa1e9232a4f2c37b5a/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163572v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249">Intel XE#7249</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578">Intel XE#7578</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8811 -&gt; IGT_8814</li>
+<li>Linux: xe-4749-4ae9f18564e78a5447be68aa1e9232a4f2c37b5a -&gt; xe-pw-163572v1</li>
+</ul>
+<p>IGT_8811: cc3169e72592a56b806ce54a87060519151ad5fe @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_8814: 8814<br />
+  xe-4749-4ae9f18564e78a5447be68aa1e9232a4f2c37b5a: 4ae9f18564e78a5447be68aa1e9232a4f2c37b5a<br />
+  xe-pw-163572v1: 163572v1</p>
+
+</body>
+</html>
+
+--===============6815941893081826092==--
