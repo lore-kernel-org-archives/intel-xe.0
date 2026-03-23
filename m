@@ -4,53 +4,66 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC9D6F483F8
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 21:17:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF91AD58CBF
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 21:19:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 701DB10E4A2;
-	Mon, 23 Mar 2026 21:17:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8205510E4B5;
+	Mon, 23 Mar 2026 21:19:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f4tHYl3c";
+	dkim=pass (2048-bit key; secure) header.d=kde.org header.i=@kde.org header.b="NIwXAMPI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8085E10E4A2
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 21:17:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774300668; x=1805836668;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=fxHvkKE7AP+VJgPJs+pXHe0Vf8oNQESxhiBmxOnVOvg=;
- b=f4tHYl3chRijVu5dXKzsmnul08LtmRe4QXQfETyPO/iNFImmPQ3W+n77
- 3dB/+viVfxs4+cEMw8lzaEZ47lWYCRIimFYGB689x+k9Yz7862pyq6L/U
- wQTGTU4igqwkcoZf+u0AJoSVdRaQgY8cQ2F/uuTS4sc7ZcXoy16iNwxqe
- I3EeySLfF53OEIYin2NqawR6veMcxdxLTeUKxTNfyQ7+p06C/2H3xHG/U
- 4DpkC1l62L3NKbHFbvLlQv/sqvA+Vv2kNPkezl8ichTxA+nUZuq6IACHR
- qpPebo8OQL6kvhe95I8PaY908pmy2XZgciGSd+DutoRXWP0GvYDaA3OYJ Q==;
-X-CSE-ConnectionGUID: Lh+TssyWT5qtTcuoU0Tm2w==
-X-CSE-MsgGUID: 0X4C5/IkQXGXDD4teJNjiQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11738"; a="74492842"
-X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="74492842"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2026 14:17:46 -0700
-X-CSE-ConnectionGUID: gItJ5wlVRwGGhBtAhIPcWg==
-X-CSE-MsgGUID: PZIueBSeTSqLsdQbDSZmDA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="224160186"
-Received: from dut4407arlh.fm.intel.com ([10.105.10.83])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2026 14:17:46 -0700
-From: Stuart Summers <stuart.summers@intel.com>
-To: 
-Cc: matthew.brost@intel.com, niranjana.vishwanathapura@intel.com,
- intel-xe@lists.freedesktop.org, Stuart Summers <stuart.summers@intel.com>
-Subject: [PATCH] drm/xe: Always invalidate TLBs on userptr invalidation
-Date: Mon, 23 Mar 2026 21:17:42 +0000
-Message-ID: <20260323211743.285064-1-stuart.summers@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from letterbox.kde.org (letterbox.kde.org [46.43.1.242])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2308610E4AC
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 21:19:36 +0000 (UTC)
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com
+ [209.85.219.50]) (Authenticated sender: zamundaaa)
+ by letterbox.kde.org (Postfix) with ESMTPSA id A4EE2324CB9
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 21:19:34 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
+ t=1774300774; bh=r20OZHTYgzoYdBQOnECr0qFhpYAC9zz0Ibdh/LXucZw=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=NIwXAMPIku8YbMuedkkPuDs98hyP1558Xik7EmjMIedrb7Y1J6VGkvZYXt0SUQlBY
+ 9AzKmJ/oWc5tBnQFZ5MUmLnHCS56DCNW4xZPQEG84TWTadkP0m9IRCkvPDJdY+7Wiq
+ UUBTIC4dVFqdnXHasjcS6uScrwoPIo0pFUD5e6cqscQH87XDFtdVv8QzAnvTXEL2Xa
+ VOFb9MkoskH1xES4IisaunvAdJ7ivKckCyQBPiPP4zrzbz4FUo+80ictL8DnbLTre8
+ i06kpaxerQowe4XlQBaa5B7Hg6PpiYwhp9ogIrQRz5B2IW9WxE5Hunv6Zkv150eJSC
+ eOgveT+3fl1xQ==
+Received: by mail-qv1-f50.google.com with SMTP id
+ 6a1803df08f44-89c6a711ce9so61554216d6.0
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 14:19:34 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXINNtSh935bbWtbpViYH+jnXqgAuvLWZb+XVVZovbOE9nVfh0NGT9g4UM05AjcEoqTvKcgEV3hWA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxKLRq0nS4C/H6ycxLZg88gM07C7VH9JRKriN/hOrLjuoSdw753
+ NkqSXa9vbxfttpGwUv7NZPRL7P7XW1CiSwXq5D6YaZNi1vYEQthw/j92mY4Q3T5c3ONfDaQ/tGT
+ ElGC5F8hQrZ5dwkvYxj2EzAkEHUYQZG4=
+X-Received: by 2002:ad4:5766:0:b0:89a:b7:9a9b with SMTP id
+ 6a1803df08f44-89c85a99ac1mr228043676d6.58.1774300772939; 
+ Mon, 23 Mar 2026 14:19:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20260223-atomic-v10-0-f59c8def2e70@intel.com>
+ <CAFZQkGw=VJnzFWnh7GT_59NhuSTiy3-VPOcKdWTZX14rkgW_uw@mail.gmail.com>
+ <ec9b1e8d-daab-48a7-959a-bfc5309b3ea9@intel.com>
+In-Reply-To: <ec9b1e8d-daab-48a7-959a-bfc5309b3ea9@intel.com>
+From: Xaver Hugl <xaver.hugl@kde.org>
+Date: Mon, 23 Mar 2026 22:19:21 +0100
+X-Gmail-Original-Message-ID: <CAFZQkGxLWnrt1be4S6pJj0qVRfVPXkzvZODNNNKWjpD2NNTAeA@mail.gmail.com>
+X-Gm-Features: AQROBzBi1GIjCBzS3clAXX8UAOhv46EtsZX2EO34VxBgkUC-vgFWSwdNg9EAQo4
+Message-ID: <CAFZQkGxLWnrt1be4S6pJj0qVRfVPXkzvZODNNNKWjpD2NNTAeA@mail.gmail.com>
+Subject: Re: [PATCH v10 0/7] User readable error codes on atomic_ioctl failure
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ harry.wentland@amd.com, uma.shankar@intel.com, louis.chauvet@bootlin.com, 
+ naveen1.kumar@intel.com, ramya.krishna.yella@intel.com, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, Suraj Kandpal <suraj.kandpal@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,37 +78,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Right now we are only invalidating TLBs when we are
-running in fault mode. For non-fault mode based userptr
-VMs, we then rely on context switches after an MMAP has
-happened to ensure the TLB is clean for the next submission.
+> Have added the remaining error codes to the enum
+> drm_mode_atomic_err_code, will push as part of patchset 11.
+I think it would be best to limit the enum values to actionable
+things. Connector and scanout bandwidth sound useful and pretty
+straight-forward to me, but the three other new values don't seem
+useful for compositors at the moment.
 
-With context based TLB invalidation, we can no longer rely
-on the implicit invalidation happening during context switch,
-so remove the fault mode limiter and simply always perform
-that invalidation.
+> DRM_MODE_ATTOMIC_PIPE_BW
+Compositors aren't aware of pipes. What would they do with that information?
 
-I was able to see this behavior using the following test:
-xe_exec_compute_mode --r twice-userptr-invalidate
+> DRM_MODE_ATOMIC_MEMORY_DOMAIN
+> DRM_MODE_ATOMIC_SPEC_VIOLOATION
+I can't think of anything a compositor would do differently with these
+vs. "unspecified_error".
 
-Signed-off-by: Stuart Summers <stuart.summers@intel.com>
----
- drivers/gpu/drm/xe/xe_userptr.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> As far as the enum INVALID_API_USAGE is concerned, there is a certain
+> understanding on the
+> usage of the atomic_ioctl,  any miss in that would fall in this
+> category.
+Invalid API usage would mean the compositor did something it can know
+in advance is wrong based on the KMS API. It can't be used as the
+default value.
 
-diff --git a/drivers/gpu/drm/xe/xe_userptr.c b/drivers/gpu/drm/xe/xe_userptr.c
-index 6761005c0b90..dfd679dd98d9 100644
---- a/drivers/gpu/drm/xe/xe_userptr.c
-+++ b/drivers/gpu/drm/xe/xe_userptr.c
-@@ -102,7 +102,7 @@ xe_vma_userptr_do_inval(struct xe_vm *vm, struct xe_userptr_vma *uvma, bool is_d
- 				    false, MAX_SCHEDULE_TIMEOUT);
- 	XE_WARN_ON(err <= 0);
- 
--	if (xe_vm_in_fault_mode(vm) && userptr->initial_bind) {
-+	if (userptr->initial_bind) {
- 		if (!userptr->finish_inuse) {
- 			/*
- 			 * Defer the TLB wait to an extra pass so the caller
--- 
-2.43.0
+> Some of them include
+>      - Driver doesnt support atomic, but still atomic_ioctl being used
+>      - Invalid/Junk flags
+>      - Async flip not supported
+>      - Flag page flip event along with test only is not supported
+> If changing this INVALID_API_USAGE to UNSPECIFIED_ERROR makes more
+> sense, I can change that.
+No, they're two different things. We need both, and unspecified_error
+needs to be the default for when the driver doesn't set anything more
+specific.
 
+- Xaver
