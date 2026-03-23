@@ -4,144 +4,175 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95DD4F483D8
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 17:23:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47155F483D7
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 17:31:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51A0B10E13E;
-	Mon, 23 Mar 2026 17:23:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE74510E371;
+	Mon, 23 Mar 2026 17:31:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ktcuCEgC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Lc+nOQzD";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1CB710E13E
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 17:23:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7616010E177;
+ Mon, 23 Mar 2026 17:31:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774286627; x=1805822627;
+ t=1774287073; x=1805823073;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=1iZl4LTvmQuIsnB1araxOgu9Qnp4Gb78MkzGYDkkNeU=;
- b=ktcuCEgC2BABPvqBIzzJff3loRASB4qbcAcVl4K4N1CCjjlcZdqWAfH3
- b659EWH5FzjXsvzYOcQ65fHswTYxcl39gb0qGzAZmu9F1HDIS1TP5kh/M
- Ut72w1GntY58SomZSfLuYHZe8lobp8kbuDRVSajpZyvVTme1o7bT0yICR
- Bw6RVILsxfMdQk5ns96CLOmcWwBGOWd++84lzUu5pnlueoWK8V5v83nvX
- HoXorcEp3ymsngAOElXtjye3e2rl10Gk+XSM1VFxI3Fy/6/zmuH5izyyG
- tr+QdJG02N5ebMp5GKqB79DsMOjWUt8ch/ICDw0GpYFOKfHC2uCIblcap Q==;
-X-CSE-ConnectionGUID: Xepq3eM/RmWNlcANI+WWrg==
-X-CSE-MsgGUID: Q9SHy6VDSK2k+l1/F3J6ng==
-X-IronPort-AV: E=McAfee;i="6800,10657,11738"; a="75482865"
-X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="75482865"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2026 10:23:46 -0700
-X-CSE-ConnectionGUID: k/1/kRD4RQ62lsBxG7AqxA==
-X-CSE-MsgGUID: kycJnA+HTbm9DedZV3uaaw==
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=l2/debKP3xZ1S2+uOZU1pq116y6bhhWh1SkzHDH6Odk=;
+ b=Lc+nOQzDdIFGszH9EIzqrrL6cyislSZt1C4Z9oa0JnZL1/3cjlXHlf9/
+ Fixrz0ZrfENgXfOLp213b3sIIsLAzNS7Nj4nVjKNTSe0Lqio1ETFKXr6t
+ SyzDkI10VIrTEJaSaI6ofhFaumVduUE5bD30hiB/xz8AeXyzsR4n7rN0R
+ sVXIagTVxI6rAfSjI2QKdpO4x0ja6bk7VUZXLHiL6XllKR7pvFK16U5Ns
+ VYgJITnBQURxQe6WF4B+2BRMLe9nY3edZtf/VTucKecX6+8eAPA3vu4h/
+ +LmQreaoIqHOpHO1/SSqoR/jjwtppS7NHwLkymTn22A7BLHOyYsHg7cEZ A==;
+X-CSE-ConnectionGUID: zS63fonrRI6I9iDEKl+Kmw==
+X-CSE-MsgGUID: JRPyslXwTsGFyCYqr+0uMQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11738"; a="75174661"
+X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="75174661"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2026 10:31:12 -0700
+X-CSE-ConnectionGUID: 6MifdQjsRAiTmMoV8zAVww==
+X-CSE-MsgGUID: okylxcEnQBWyXaduVNHy0Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="228568896"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2026 10:23:45 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="221253298"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2026 10:31:12 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 23 Mar 2026 10:23:44 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.37; Mon, 23 Mar 2026 10:31:11 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 23 Mar 2026 10:23:44 -0700
-Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.59) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Mon, 23 Mar 2026 10:31:11 -0700
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.29) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 23 Mar 2026 10:23:44 -0700
+ 15.2.2562.37; Mon, 23 Mar 2026 10:31:10 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=IRgFqVUklfHb6GIzvaJvwuWE0qDt36hOww22ZE2SIWSVvajse0nEI1ckX1DABtN3kZgSLdObioQD7DqE/1cVkZFWviSooBG9TmBZ26RL7XhoXcpNc9tfg9/KNOJq2q7ucU6wFNwGiLTMgGjcOzxlvPPyJepNTVorkGIZnb1UtEifNfDvxhWR7RDTB6KwAem+MfVu5NpFvXSQWWtzk3143e6jZSusbVYDIm293c+/K9UXGJ5lpHDt0lClEmc4Qr9fQLwy2ar+O0WvwmP1MXL7JNNzrBDE6M+qifoybqQWeuCEtzpyJGm/tHTkFOymfzonWt9mWpwMNrn5E4Wi557Iyw==
+ b=LsAgPyNmRr5MIlsA0XSTQNEyGHxue6LGNHYz1OPtl2nVzR8loK6SaX3aD6SokaQsfwUlCc8lKNkmcJOStGs/v8J/4aZMEgMuijqrH9K38/If92R5St1EF/f5iteaAc1PqgG5vkKnUZl3e2NNXjg1c46odsk1nucl8svrgHRl24baZF4faMQrK7hKLQVWVsi7ARyDSEkOdbY6nRxds3hZ39UwF9/8k9AWTm3CGTJi/ssZ6ULNViTjlrP3NikGbo9cGneZbVCfo7RPDLZwJFrPiew/UvoQok0cKEgZALc2B+EVGxuU6bDU96uqATIT2zSScPDZvIB/Iyn9AqSBu0hHVw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=y/PPVBbfOe7btil6rEo2Khpmp9AcU9bothlzxTaQznw=;
- b=eb5u5Faw45XZqgqfp/O/OB+T+pAJT6jGE0N3sWK0xzgt/vH5j/FxudpzHyObWJ2ZCSDWSClJXYMuwCklYbXpSGCw6st7/ymN+bUrz/1hccMEzrhNvHGSE6aWHp+1u+es7nIt8jqbQsWJbgm4SFVTMXlVLB+afpwK3iOB9fApGd3OwNv4CB/z+GVQqplpUwLdtYaOEZK5ro67My2N+Z1AVh8Pk0OFPECg0uXtkMe43JFrNkur71SXVL4MtjlMEKU26e38bW4kO2gfukC5anCzAon2UJ6ghOAI2A+D8l9ICAkjI38Mqgf3kk+1WRgLgPQmXNytZWYLAmILxjX949WK/Q==
+ bh=nZMSpsaiRBl0IzecoJIlOr8A1F8ea0LiubCGYJW1/Oo=;
+ b=N+sBT7s6IVo08O+ql5OKMe3mofOvMhk6XjaDBnvBkIxNRmvFrwBFPO+tmPViiwUSgP8tDmGkiNymA/iLIMwNlKo4/3adeS4gPTJOvg9CcQUB8uVmwoKtGW+ZDhSArz+oLfIy+HDFcRBK8tL72ZLQHpervqDSa3XxG2zsa1jPartBmbhZKm/sbJ5LWo3YT/mUJX6cQiPSPacjJuj0P+17DRxMSs6/aNK+Y0XvEjaaMDfunwDshFbXGccRZk4o7NEp0SBrx1GdbXcuVf+xHG+hgAZ9iu8GrDT51vcYZEJ2lqGqlDszLDDpWnEYLQlqDSrDD8Wh0DpAux0vCJKcBTcWhA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
- by DM4PR11MB7759.namprd11.prod.outlook.com (2603:10b6:8:10e::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.15; Mon, 23 Mar
- 2026 17:23:42 +0000
+ by SJ2PR11MB8322.namprd11.prod.outlook.com (2603:10b6:a03:549::14)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Mon, 23 Mar
+ 2026 17:31:07 +0000
 Received: from BL3PR11MB6508.namprd11.prod.outlook.com
  ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
  ([fe80::53c9:f6c2:ffa5:3cb5%7]) with mapi id 15.20.9745.019; Mon, 23 Mar 2026
- 17:23:41 +0000
-Date: Mon, 23 Mar 2026 10:23:38 -0700
+ 17:31:07 +0000
+Date: Mon, 23 Mar 2026 10:31:02 -0700
 From: Matthew Brost <matthew.brost@intel.com>
-To: Stuart Summers <stuart.summers@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <niranjana.vishwanathapura@intel.com>,
- <jonathan.cavitt@intel.com>
-Subject: Re: [PATCH] drm/xe: Add min and max context TLB invalidation sizes
-Message-ID: <acF3Gp800SnB/g5D@lstrano-desk.jf.intel.com>
-References: <20260320204635.94924-1-stuart.summers@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+CC: Daniel Almeida <daniel.almeida@collabora.com>,
+ <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>, "Boris
+ Brezillon" <boris.brezillon@collabora.com>, Tvrtko Ursulin
+ <tvrtko.ursulin@igalia.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas
+ =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, Christian
+ =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Danilo Krummrich
+ <dakr@kernel.org>, David Airlie <airlied@gmail.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Philipp Stanner <phasta@kernel.org>, Simona Vetter <simona@ffwll.ch>, "Sumit
+ Semwal" <sumit.semwal@linaro.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ <linux-kernel@vger.kernel.org>, Sami Tolvanen <samitolvanen@google.com>,
+ Jeffrey Vander Stoep <jeffv@google.com>, Alice Ryhl <aliceryhl@google.com>,
+ Daniel Stone <daniels@collabora.com>, Alexandre Courbot
+ <acourbot@nvidia.com>, John Hubbard <jhubbard@nvidia.com>,
+ <shashanks@nvidia.com>, <jajones@nvidia.com>, Eliot Courtney
+ <ecourtney@nvidia.com>, Joel Fernandes <joelagnelf@nvidia.com>,
+ rust-for-linux <rust-for-linux@vger.kernel.org>
+Subject: Re: [RFC PATCH 02/12] drm/dep: Add DRM dependency queue layer
+Message-ID: <acF41mM66Gh7m4vS@lstrano-desk.jf.intel.com>
+References: <20260316043255.226352-1-matthew.brost@intel.com>
+ <20260316043255.226352-3-matthew.brost@intel.com>
+ <7A8108C7-7CF0-4EA4-95ED-8003502DC35A@collabora.com>
+ <abjqfXERS6Xk4FAQ@lstrano-desk.jf.intel.com>
+ <CANiq72=Y2g_5=iEzU1L07pMPYD+wVapJXpp9rvYXEzCKEs59Zw@mail.gmail.com>
+ <abkQTEcRujrFLsdn@lstrano-desk.jf.intel.com>
+ <CANiq72=gHArzFS=SkiZyPpEfSL+0AcU3ifKRnwfEyet42662PA@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20260320204635.94924-1-stuart.summers@intel.com>
-X-ClientProxiedBy: MW4PR04CA0175.namprd04.prod.outlook.com
- (2603:10b6:303:85::30) To BL3PR11MB6508.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CANiq72=gHArzFS=SkiZyPpEfSL+0AcU3ifKRnwfEyet42662PA@mail.gmail.com>
+X-ClientProxiedBy: MW4PR03CA0349.namprd03.prod.outlook.com
+ (2603:10b6:303:dc::24) To BL3PR11MB6508.namprd11.prod.outlook.com
  (2603:10b6:208:38f::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|DM4PR11MB7759:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4b888ab1-09da-4d00-5a2d-08de8900edc9
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|SJ2PR11MB8322:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4d1d4488-ad12-4242-56b0-08de8901f79b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|56012099003|22082099003|18002099003; 
-X-Microsoft-Antispam-Message-Info: W3GT/pfTVAD+OlD66VLvkGRu/sPGEjBnLzzbgbtK90JVHxG2y6gq+8rZjREZHouPz1Isbf3uJ9i8zZtQGcZFdSLjH9r4Mu3L0XiMDITMvqr/Mh8EHlLz1qJ8oO/CT9Zz7TvKa/EGlgpMpX+z89yWd1c4Khc7DanNxk8fxrJsHlQBWgUAjeMuB7l7OTIAVFfZQZJQnLjnGpCYBiDqQLAmgr1r8S0d2Mwi5SjtVP6h40sqG4LDigsw92QiZ4SX2fQF95mofXz5q27NO1gu8JxLgerIqiozh4Xv7pKAtMIcOQ27E4LI7cfwDighIdKRS8NjV5DaMEs1Niv6bxlfcY0fWOqlLRqBVTY1KubJQpjfNz0OUsRAfwTJzDRKyn0ZZSZ/JFt1QN+8LKDoxoti+SSLhkEbwEmIUAk1quQ6bmtQxvFUOCpwI5gITtt+brDfm90ETN5nN5pU0YOCge3HTGtvEeG9yswA/q0Iw0hhcu7oJE/5AENXumXx/ujMDCFkaUYAzcKAmMj3U+KdmEJ577YdDqpRC4c5w3HYKdlGuKVS+UJVBG5lodGhKZcYfOpjTd1Oz35/qn/4DxDiidGneW1Ase1Gm2h79Ix/WGFNsHT+EUgRdL4rTNKq5s/n5BdxLmzD25XPJX0/XaGDRvA6IxEFzu+cepxkVaV0HZPsSAa1Af0FgPuFEYVaHvvRNKVv7mk00q+9UyuXLTEQ2fx8/KgmqILzlbXTtn9RUEUXjXiGEpE=
+ ARA:13230040|376014|7416014|1800799024|366016|56012099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: 60ZBtoO41wRtPqpxLgW/GxoSmQ1tXm9Ji0kbUWKt5wDO9zEhfV81JoRBBnrn66mVJn8W6AW3Ip14x43HwWyoRNdHH9v1K7gwxZteLqz2M1f6NhvyDTPlVbnwWTR7m6xnWCDFLyiXUhIW0YSO5l9DQWJxrg1h8pEHz79kI+3jK83MbRh6l3+Rz1+t/7xJM3fWmHSEhKtZSbUuys47nw05G1KC7Ir3VeJUCpnd93IDkWvBz8fazHSaxqjIEJk4Uc3AvIbubMbly0HLv8PGwFUjXZYYcbzrB7mJmUoGO0Mjc11nu+Phoj7a0GHs6Ez8fIh1+NLKAhxOBYFfc3VMDkJGle8s0PVgwWrxkQIjriWJxXFTXj7g1cx3C6vXB0w2q69s8mR76gVuhkpTkGzOgM9XxYiJakT78tV8lK0CPNmjJbf+1w0d36dIyiOFB8qXErHscrBFrN93IOMEqflUqeiVPEUeKQpy67xa+S0/floclobVxZD1+ifT2fWsokG9+0rTNwGNHrIgRCb1YaTH6oVjl4F+oywY9b4hbZ4ZM1jRAVGhxjjg9L2Z9OzcO1j65jqUAi21KxFZ9895V3NYPXV1NjObe4IQ+SQwuWXH3dDpvHxBj3NlR7L4AoeFGpIcUresEmDWVyfrnRwmsRnFywhejn4kTu9FgsncafFoExT+8nrL23u7Hqx+S8EVe+OFDhudqxVLRlRnkqmxrQBUVwL06gssXABPdcOlczOLMkjDZ2Y=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(56012099003)(22082099003)(18002099003);
+ SFS:(13230040)(376014)(7416014)(1800799024)(366016)(56012099003)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?y+pZt6WKLYFYBUgyqBOfWczDVdzPqE8Q1go2pjkAbZMaJ5o3UCxIvJQRRxt6?=
- =?us-ascii?Q?/6Uny50aZZh493sDdyAWBEkc7n/UEI03aLhOb1RqxuowJuNQAzCd8YNkBF45?=
- =?us-ascii?Q?Bd/xmsccBmkdgrCDK/iabHRjRzyBOhF3IRoscJOmwf9WvpoAsL46lSuJnGHi?=
- =?us-ascii?Q?uuh1Q3Vxq9SZVNd5cXkFD239uGosATivIwzCOMGPg0kOlETYvc87mKyfqTLU?=
- =?us-ascii?Q?6iv467esYPVtjdYi5KJyk18s6iNwJ/6tdRuzurJ50gYxegK/OJd6LpyUtDNV?=
- =?us-ascii?Q?XBxfOIxKWxo3U8vPJKdpJBv/VzhSf9dDZOWO6wp8cbv7N7Npj8UT8F0ly+DF?=
- =?us-ascii?Q?MmgO5FusB2zlt6nYA8DpIW3Y+pf0hstA2daJqRPYcZqZbt/mFfbkU+euTB2f?=
- =?us-ascii?Q?rLPrlWEBatyjjQ1h3HeZ3SV8wSqxGrXXPmH1F58Pg3TG1eR75PLt+HIpR//k?=
- =?us-ascii?Q?CKiKj2Ega8vbPbG1A+eJL3FS492rGBvppTdFlAp5EJkrjlRtyfTnkFmT01Cm?=
- =?us-ascii?Q?5lwt+m34h4PvDzF/X0qW1VS2qRZOMxEEhvQcvTRou0xdYBqK8cwUSTtCI1M7?=
- =?us-ascii?Q?damC6ZigEAP5ijW3moNo+N+bmbynLekWYWgCxe/9aySV+4HGPfhTPLjcysS4?=
- =?us-ascii?Q?V1bC4zIpPUalZTHGxxTZ2fRnAP5/L+NlODq7NYFGwHmdooRfbN5hbf6qEUkN?=
- =?us-ascii?Q?56BW3vAJeVqsIN2jr89ktog1dtNAZNbLJD8QQm61GJSX8gmsVeLlw2m9gncH?=
- =?us-ascii?Q?N+6Z5TgzEmUEGQsidYGtRKJC5cZC3CQc3Ca/uwzSJ2w4wIEywud2IWT/NHhy?=
- =?us-ascii?Q?iqd64KIBvFfUoXENl2XX4L2uIBqkS4MYWXuDrqDSzB5VzjKPRI5nCV4JFXNf?=
- =?us-ascii?Q?4cOV6aDiNGoIp6aIpLJFq1TXFIshWr9QW1pdP0VTtbTPlPxR/cdMq3QKv3Fg?=
- =?us-ascii?Q?50GrWaDWpTLDtWHAUSxK62drLKgiz9l1F/kGdHx8s0JTHAAanzj4HLSuT/5y?=
- =?us-ascii?Q?oYDUTHSWAtxUaaumhwJBbcGPbu4H5w/yfo5Vsvgf1W6K2fv3KHNn6Ojnzp4R?=
- =?us-ascii?Q?yNEQwoUcMuvNUbn7aPdSRWsFwIZyErnZ9OW0Q+EjizgLvqrp41ZrYYRpUK3o?=
- =?us-ascii?Q?cU18FVSUmrApjMEUtMSEQj2O13hlyHrD3qJ8zID3WdzdxYy+s92CxsLlZw3t?=
- =?us-ascii?Q?0tnq84zqsKU7nhFGVzsq3FzGM7HOW0RLpeu8hHqdYNdduFtaWrdUjHIs1hNk?=
- =?us-ascii?Q?0yyEyAGfJ68E6bkw+VqtTmVffa3sBucwrTT5kf6dHma2GB6L59jigm6ab+9z?=
- =?us-ascii?Q?WTu+0PtJ/yJ1SlO4O8jzRbOruK288yboZn29TwGhOYO4ZjyDzYnDcYLaiXdn?=
- =?us-ascii?Q?ZDx0r8fMUzzdzxHAgJS+jVZ1M+g2BCqof73VoKu++/YVYCuqrOIp59JQACZw?=
- =?us-ascii?Q?38hm6W17Vkvpgf/rcYV9trTecU1GOctpSKI+6meIVsSmez87OU1K2QadY5Kd?=
- =?us-ascii?Q?Gt3zF+T98tpsDNif0IjOFKx/VEU3n9HeClPr9/XyFkmZehQIIqTj3d/3q5IG?=
- =?us-ascii?Q?vHhQEOR1x5n7b89wZM1wCyJ4OrrvL0MGFLEIk28xQsP9ZoPmYnJ3klV1Cj7f?=
- =?us-ascii?Q?eS8ILnekXtcImBKe1X6z449nUYahNrIh5qvEotHrYJiT56bjabhLF1QLlMAk?=
- =?us-ascii?Q?ygvvSKYvV4FnUqld3UtcLIz5CMp8nO5R76VUltmSUtoIsunWEfqUPYhNcy2R?=
- =?us-ascii?Q?XKJ0e9brig=3D=3D?=
-X-Exchange-RoutingPolicyChecked: GR7jYZZ75Ydj8p/dSsL9QFTLLCt9MWgLGnjl3ef9o6apXF/L2q8aWomB81dV+f7AsJ13ze0xlIcRFruIp5qvLYEH0lUT7dWCkK+KagjJRsooH84Op+zT4xXgzWsuZQf6bXK1i2HyOsp4XGSMC4tJTC/6eLlm04geV6cdWRGeE4zUS2h+0X7h+vq+xDqZZ0ATl/je5CN0lHcUkYVfNRs1fqu4KjXqbG+BBxBrd+t+YJYSQeCjYRri0SoqwUMs1CMFrnaRAiW4ukTeXwE/9X/46bPK/dCSLkmi9pM/rG2pYiBzcMwxYm4Sk3Y2v6oWaF3qSzMcOyERGRlMYbtUjoQuig==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4b888ab1-09da-4d00-5a2d-08de8900edc9
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NVdVbkdYa2JhdWVkNFRncFRWNnlWVWhIRW1sZFdsU0RRdk5NY1FXSjBDTzlT?=
+ =?utf-8?B?dGFkcVlhMXBtL3lrWFF0bXYwcjFVWXhVTWdSdjJwSXFMdDczei9NeXlFTnRy?=
+ =?utf-8?B?ZmFGaHN6Y2ZlT2xhTlFGSVZDSkY2MlNMV2NIWDZkandYdXhwVSsxaDROTmFi?=
+ =?utf-8?B?R2RmblZEcHp5eW5JODdyazUzbXlGT0hmbEEvc3VwblUrbjZRUnBVL2xQQllN?=
+ =?utf-8?B?c2x5eGNCcnFKa1BiVm9jeTNhK1VES3pxV1RXcjBxRE9tYm01aVRiVmRRRTly?=
+ =?utf-8?B?MDM3RlpFSXRETUwydEJDUDMrWHVzU2R2dzlUY1Nubk5tWDRYV0NTRjlyYzZC?=
+ =?utf-8?B?Y2dWeFNMRUVzSGhxeFp3VkpjekhKV280R3BNcEdUaDBXRmEwbjRNRnIvWFZu?=
+ =?utf-8?B?ZmZHSnFQNURLMnJ5ckg1akJGZGF4K0RqYzJCc1EzYjF6OU1KM2QzOHVLNWZ5?=
+ =?utf-8?B?WldvUzlGeWNGVkJZUitlSHhVVmxJMTY0RkV4ZVAwbktUejZONTk2MS9BK3FJ?=
+ =?utf-8?B?SWNCYzUrb09meEhkTGdBdU4zZnRpbGZOSUdmS2owY0RJZ01yL2VWcXo0cTlI?=
+ =?utf-8?B?YndRenAvb1F5akVlVXJlZWUyblRvVWVWVDZyRjFQbWNWc2xPRHFtSGR6cHZT?=
+ =?utf-8?B?RkNXTjFrNTY4SGZrUy9hTEVxMlkrNks3WEVUbVVUMnBvU2RXN1ErWW1PbE9K?=
+ =?utf-8?B?Sms5TDIzRjZEd1BkWUNiSGJwZzlNVFJNU1VlOGtUUDRsSC9CVTRPMUZIZWFr?=
+ =?utf-8?B?Tk80cUxtVzI0UTNydFB6MTdSQklxM1ZnN1FBZ2ZGcE92RXhTeFo0ekxRRjgr?=
+ =?utf-8?B?ak5YYnRIVnpxUnArQVEwczM0U0ZkS09TTUR2OG90KzczZWd3bFRhUGREdDZZ?=
+ =?utf-8?B?NmR5eEN5UU9RT3FxTi9CVEFIZ3F3c3lXWUZCS0o5dlVBYXArbjJhNUdOSDFB?=
+ =?utf-8?B?ZmpBRzljbi9GNFZKNDBtdlpBc1VkNmVtaVZ1QlpEN256bjQ2ZUY2Zy9wL2pI?=
+ =?utf-8?B?SVJ2WEhZamgxUVNId290TGkyelAxTUMvRDhqOWUyQXdsdkRndXgrTjNxWWx4?=
+ =?utf-8?B?WjBiYlkyKzRyZWpKTXloakhGZ0NsclhTdFRsUTNPY2UrYVcxUkFRN09nYTJm?=
+ =?utf-8?B?eU9TeUc1ZWhKeFRFa0MxK1g4RjhlWk54VUtaM29wM1UxTjhZemtwczB5eWpG?=
+ =?utf-8?B?bFFJZlQ4ZE1XR1lxbkRJaEFJQUdwVmJ6OXNsU3RsQ3NlOWxZKzh5OFdZVTVN?=
+ =?utf-8?B?S09Wck9pRGo1VG1IWkxXcnhTblJBVzhGbXpGYWExZjFFdm9ydDlBMlNjK1Vz?=
+ =?utf-8?B?S09zNUtYN0JIQm9mcno0ME95MTk3WTJoYTJHOFJnaHZPN00yWkFQbzRlUFps?=
+ =?utf-8?B?OFVrK1dYbzZiT2JGQm0xK0NkMmcvc3RYV2JsQkFQRkdlZEEwSXZncVBMcHVl?=
+ =?utf-8?B?M29GeTR6OTgwaC9VVi9Fb05BdkVzY2U4cHdEekg5NHNVM2ZwSGlQQjUyenBX?=
+ =?utf-8?B?eXh2WFI2eVJPQVo3dXY4cDMyU3Z2Y2JLd1FnbUtDUFIyWmtpVTgwY0J6T3I4?=
+ =?utf-8?B?ZlZkZEpFamo0ZHRYZGp6dTI4LzVFMjhseDVVM1phR3NDNys0MlV3UGN6TFBl?=
+ =?utf-8?B?WERMNi9udjZ1YkdxVFpnczJuVkx6TjBxVXhOQjhRMFFkZ3I1M1QrdHpTREdp?=
+ =?utf-8?B?K2NQeWlGdmN6Y0F0VGFSdnUxMDMrNUw4UUFJYTBXVGRscCt4R3FmZ3kzQ00y?=
+ =?utf-8?B?ZGN1TDM5c1BlM2hDZkNjcldPZ2RFL2JTd0xHNXFnMTRwckdadWJpYVFPWkxG?=
+ =?utf-8?B?ejc1aU1hK01ZWWNJTjI2T3BQTDdiaHhpQTd3aDNPMFdwZyszZktJWTM2VUI2?=
+ =?utf-8?B?NU4zci9YczJmMlZwZ2Q5RmpnSEcyUjRDejMweXJmdVVROEZvNGVBZE9TSUpk?=
+ =?utf-8?B?d3J6MWI0TXpQa3ZiL1phdXROY090UStXUDRnNmlTUnpMbTM1OUhRN09BSHBO?=
+ =?utf-8?B?SlBLZ3lLREF2S1FqcXhkTFE2U0FGY1dWdU83T1dFUkNETy9rS3JocUt5QTY0?=
+ =?utf-8?B?a1ptUDRseGpXM3FZQTJRQld6YUR0WVdrWlRJS2RvWlEwVzFkTmErU1Zua3h1?=
+ =?utf-8?B?OUlPTWJqVVRjS0gwdGVzRXJ1Q0RtSWJubTQ1ajc4WW55RHJmNGd5Zmh6Rldx?=
+ =?utf-8?B?ZU5GSysvQ09lQzhWQlNXRS9VdFNXTm5JRFFIRXJNWlZSREJqZjNpYlc5L1Jx?=
+ =?utf-8?B?dExIV3ZoRGFsZDBJK2dzZFhCaUhPR1l6NkU0Q1NoejdrYXA2TTVnOWdRT0xk?=
+ =?utf-8?B?OGdCTFV2ZmRXOTVCL1BkbHBjci95WHM5RkhHSkN4RmFpSHRUT2pGQT09?=
+X-Exchange-RoutingPolicyChecked: M/Md7SKnF8JCjvFtyxS7IYj5AmImxygpkVHboiMDxQ6Td4grabF8paOS5c6v4fRjKJ/1IKJkFudDdNyPWvKcO7KnA6Xw0JQSq4biZqd3QIwzwR9x9IXp6DMJ28oWlGpYgWX8OKhAgSsmFoFDGGD9UJEJIY2JbQmKRHhgdbOtHA+fV8+ga8diX8ycnq4Q78Akm5E+TY9si+CRWvq86iNTnOFaKPmXmaeAgTH/aFgNVRC3pk51es+jrr8XD3mbHhMPH2PIml4urFDx+aQz+og89A1IlO1DeRBv/kVVnR9Ip3WtQJFuGfrq4bLkqXXX52xsDmPq73cEn2ph9JSvGdUuJQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4d1d4488-ad12-4242-56b0-08de8901f79b
 X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2026 17:23:41.7924 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Mar 2026 17:31:07.6727 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sxnd5AlNOYctCuWsgedfMNcuZXQUEmpLx2gX+JHx0qIVdkWI2ptSiKPkJYvPAkG5/klxscNxouWBq8+nxz+L9g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7759
+X-MS-Exchange-CrossTenant-UserPrincipalName: JXiGlIGWPNXrN02XOfNalDPO33dt7XI8CAwQbGMHYQXgc0xB2xlyWbSJRRC3D7uiaZ42TIdK9nueyzsZxQQldg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8322
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -157,185 +188,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Mar 20, 2026 at 08:46:30PM +0000, Stuart Summers wrote:
-> Allow platform-defined TLB invalidation min and max lengths.
+On Tue, Mar 17, 2026 at 08:41:24PM +0100, Miguel Ojeda wrote:
+> On Tue, Mar 17, 2026 at 9:27 AM Matthew Brost <matthew.brost@intel.com> wrote:
+> >
+> > I hate cut off in thteads.
+> >
+> > I get it — you’re a Rust zealot.
 > 
-> This gives finer granular control to which invalidations we
-> decide to send to GuC. The min size is essentially a round
-> up. The max allows us to switch to a full invalidation.
+> Cut off? Zealot?
 > 
-> The expectation here is that GuC will translate the full
-> invalidation in this instance into a series of per context
-> invalidaitons. These are then issued with no H2G or G2H
-> messages and therefore should be quicker than splitting
-> the invalidations from the KMD in max size chunks and sending
-> separately.
+
+I appologize here I shouldn't type when I get annoyed. This the 2nd
+comment that pointing out difference between C and Rust which really
+wasn't direction I have hoping this thread would take.
+
+> Look, I got the email in my inbox, so I skimmed it to understand why I
+> got it and why the Rust list was Cc'd. I happened to notice your
+> (quite surprising) claims about Rust, so I decided to reply to a
+> couple of those, since I proposed Rust for the kernel.
 > 
-> v2: Add proper defaults for min/max if not set in the device
->     structures
-> v3: Add coverage for pow-of-2 out of bounds cases
+
+Again my mistake.
+
+> How is that a cut off and how does that make a maintainer a zealot?
 > 
-> Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-> Reviewed-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_device_types.h  |  4 +++
->  drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 39 +++++++++++++++++----------
->  drivers/gpu/drm/xe/xe_pci.c           |  3 +++
->  drivers/gpu/drm/xe/xe_pci_types.h     |  2 ++
->  4 files changed, 34 insertions(+), 14 deletions(-)
+> Anyway, my understanding is that we agreed that the cleanup attribute
+> in C doesn't enforce much of anything. We also agreed that it is
+> important to think about ownership and lifetimes and to enforce the
+> rules and to be disciplined. All good so far.
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 615218d775b1..0c4168fe2ffb 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -137,6 +137,10 @@ struct xe_device {
->  		u8 vm_max_level;
->  		/** @info.va_bits: Maximum bits of a virtual address */
->  		u8 va_bits;
-> +		/** @info.min_tlb_inval_size: Minimum size of context based TLB invalidations */
-> +		u64 min_tlb_inval_size;
-> +		/** @info.max_tlb_inval_size: Maximum size of context based TLB invalidations */
-> +		u64 max_tlb_inval_size;
->  
->  		/*
->  		 * Keep all flags below alphabetically sorted
-> diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> index ced58f46f846..e9e0be94ceef 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> @@ -115,14 +115,23 @@ static int send_page_reclaim(struct xe_guc *guc, u32 seqno,
->  			      G2H_LEN_DW_PAGE_RECLAMATION, 1);
->  }
->  
-> +/*
-> + * Ensure that roundup_pow_of_two(length) doesn't overflow.
-> + * Note that roundup_pow_of_two() operates on unsigned long,
-> + * not on u64.
-> + */
-> +#define MAX_RANGE_TLB_INVALIDATION_LENGTH (rounddown_pow_of_two(ULONG_MAX))
-> +
->  static u64 normalize_invalidation_range(struct xe_gt *gt, u64 *start, u64 *end)
->  {
-> +	struct xe_device *xe = gt_to_xe(gt);
->  	u64 orig_start = *start;
->  	u64 length = *end - *start;
->  	u64 align;
->  
-> -	if (length < SZ_4K)
-> -		length = SZ_4K;
-> +	xe_gt_assert(gt, length <= MAX_RANGE_TLB_INVALIDATION_LENGTH);
-> +
-> +	length = max_t(u64, xe->info.min_tlb_inval_size, length);
->  
->  	align = roundup_pow_of_two(length);
->  	*start = ALIGN_DOWN(*start, align);
-> @@ -147,13 +156,6 @@ static u64 normalize_invalidation_range(struct xe_gt *gt, u64 *start, u64 *end)
->  	return length;
->  }
->  
-> -/*
-> - * Ensure that roundup_pow_of_two(length) doesn't overflow.
-> - * Note that roundup_pow_of_two() operates on unsigned long,
-> - * not on u64.
-> - */
-> -#define MAX_RANGE_TLB_INVALIDATION_LENGTH (rounddown_pow_of_two(ULONG_MAX))
-> -
->  static int send_tlb_inval_ppgtt(struct xe_guc *guc, u32 seqno, u64 start,
->  				u64 end, u32 id, u32 type,
->  				struct drm_suballoc *prl_sa)
-> @@ -162,8 +164,20 @@ static int send_tlb_inval_ppgtt(struct xe_guc *guc, u32 seqno, u64 start,
->  	struct xe_gt *gt = guc_to_gt(guc);
->  	struct xe_device *xe = guc_to_xe(guc);
->  	u32 action[MAX_TLB_INVALIDATION_LEN];
-> -	u64 length = end - start;
-> +	u64 normalize_len, length = end - start;
->  	int len = 0, err;
-> +	bool do_full_inval = false;
-> +
-> +	if (!xe->info.has_range_tlb_inval ||
-> +	    length > MAX_RANGE_TLB_INVALIDATION_LENGTH) {
-> +		do_full_inval = true;
-> +	} else {
-> +		normalize_len = normalize_invalidation_range(gt, &start,
-> +							     &end);
-> +
-> +		if (normalize_len > xe->info.max_tlb_inval_size)
-> +			do_full_inval = true;
-> +	}
+> Now, what I said is simply that Rust fundamentally improves the
+> situation -- C "RAII" not doing so is not comparable. For instance,
+> that statically enforcing things is a meaningful improvement over
+> runtime approaches (which generally require to trigger an issue, and
+> which in some cases are not suitable for production settings).
+> 
 
-I suggested this is the last rev, can this logic be moved to
-send_tlb_inval_asid_ppgtt / send_tlb_inval_ctx_ppgtt?
+I agree the static checking in Rust is a very nice feature.
 
-For send_tlb_inval_asid_ppgtt it doesn't really matter as
-send_tlb_inval_ppgtt is called once.
+> Really, I just said Rust would help with things you already stated you
+> care about. And nobody claims "Rust solves everything" as you stated.
+> So I don't see zealots here, and insulting others doesn't help your
+> argument.
 
-But consider send_tlb_inval_ctx_ppgtt where send_tlb_inval_ppgtt is
-called multiple times and each call fails the
-normalize_invalidation_range step (i.e., we set do_full_inval). We only
-need to issue one full invalidation, not multiple.
-
-So likely want to hook in early in existing if statement in
-send_tlb_inval_ctx_ppgtt.
-
-244 #define EXEC_QUEUE_COUNT_FULL_THRESHOLD 8
-245         if (vm->exec_queues.count[id] >= EXEC_QUEUE_COUNT_FULL_THRESHOLD) {
-246                 u32 action[] = {
-247                         XE_GUC_ACTION_TLB_INVALIDATION,
-248                         seqno,
-249                         MAKE_INVAL_OP(XE_GUC_TLB_INVAL_FULL),
-250                 };
-251
-252                 err = send_tlb_inval(guc, action, ARRAY_SIZE(action));
-253                 goto err_unlock;
-254         }
-255 #undef EXEC_QUEUE_COUNT_FULL_THRESHOLD
+I know, appologize.
 
 Matt
 
->  
->  	xe_gt_assert(gt, (type == XE_GUC_TLB_INVAL_PAGE_SELECTIVE &&
->  			  !xe->info.has_ctx_tlb_inval) ||
-> @@ -172,12 +186,9 @@ static int send_tlb_inval_ppgtt(struct xe_guc *guc, u32 seqno, u64 start,
->  
->  	action[len++] = XE_GUC_ACTION_TLB_INVALIDATION;
->  	action[len++] = !prl_sa ? seqno : TLB_INVALIDATION_SEQNO_INVALID;
-> -	if (!gt_to_xe(gt)->info.has_range_tlb_inval ||
-> -	    length > MAX_RANGE_TLB_INVALIDATION_LENGTH) {
-> +	if (do_full_inval) {
->  		action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_FULL);
->  	} else {
-> -		u64 normalize_len = normalize_invalidation_range(gt, &start,
-> -								 &end);
->  		bool need_flush = !prl_sa &&
->  			seqno != TLB_INVALIDATION_SEQNO_INVALID;
->  
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index 189e2a1c29f9..5e02f9ab625b 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -743,6 +743,9 @@ static int xe_info_init_early(struct xe_device *xe,
->  	xe->info.vm_max_level = desc->vm_max_level;
->  	xe->info.vram_flags = desc->vram_flags;
->  
-> +	xe->info.min_tlb_inval_size = desc->min_tlb_inval_size ?: SZ_4K;
-> +	xe->info.max_tlb_inval_size = desc->max_tlb_inval_size ?: SZ_1G;
-> +
->  	xe->info.is_dgfx = desc->is_dgfx;
->  	xe->info.has_cached_pt = desc->has_cached_pt;
->  	xe->info.has_fan_control = desc->has_fan_control;
-> diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-> index 8eee4fb1c57c..cd9d3ad96fe0 100644
-> --- a/drivers/gpu/drm/xe/xe_pci_types.h
-> +++ b/drivers/gpu/drm/xe/xe_pci_types.h
-> @@ -34,6 +34,8 @@ struct xe_device_desc {
->  	u8 va_bits;
->  	u8 vm_max_level;
->  	u8 vram_flags;
-> +	u64 min_tlb_inval_size;
-> +	u64 max_tlb_inval_size;
->  
->  	u8 require_force_probe:1;
->  	u8 is_dgfx:1;
-> -- 
-> 2.43.0
 > 
+> Cheers,
+> Miguel
