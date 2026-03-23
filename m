@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EAA3EC01B4
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 09:31:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E774EC01B7
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 09:31:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 40A3810E4B2;
-	Mon, 23 Mar 2026 09:31:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42CFC10E4AB;
+	Mon, 23 Mar 2026 09:31:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HroDmKw0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FBxiPADL";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76AAE10E3E3
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 09:31:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2843810E4AF
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 09:31:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774258284; x=1805794284;
+ t=1774258286; x=1805794286;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NKXIYg9bTQonoeeoGpnAd3gk2X7QiWeMhTl0gnbGM2c=;
- b=HroDmKw0bSTl5DPsV9FcRsO5he/iV2h28Coq1FwqyEAfzxwKud2+3+CR
- t+NBGghbIYpmdlRsYd0vFORitutkGUCmo7VAEmh4IS3raxvtb+D5l78qp
- pUdzj620oqzmdGKS6lwMzOuK1h2oyyVhqvZ3zSUjYTTLRErYDyi09H4dW
- plNqM/GBaelERGyo1qqowoLlFhv0D9qr9xlmtI2aE2f61yDkp3acSYlBD
- 4QBlshHBPZrZ0vRVES800sLOIZEMQB6ap/yZ45bJ14vQSd2DwTeg7vjBH
- ozxZubyI/gJKQA/XygutgqgQyX0gZWxibbuRAwE8VxSb4gd8JyEtv/uVd A==;
-X-CSE-ConnectionGUID: unykGALmQ1SpOkyXv0XcfA==
-X-CSE-MsgGUID: AONcNZoHSMaLjmXY1ja+Ig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11737"; a="75221757"
-X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="75221757"
+ bh=h+jXG/ZaF1LWeFkaPnjSFqym8ZpKktRboP+G0iCZdeE=;
+ b=FBxiPADLvkly8teFxnt3FY/n+linQAH1r1kBi2iwnKfuC3G7QJJdTrQs
+ 3RzALQ/TQOKx5ytVdTN00eMeRMl1pQ+QKD9+kx6Xg33+6IKjs03QeQ4AE
+ YbFKGWidO8ziWchrtPyazgzvqnJwdTo92Nw51tZLjkKl9CBbCcWEw4Gd3
+ 81yMgUoOJKHZ8FD9yfCFCANMK5j6g7ljT51LX/Y6d4cpVY1ZkqwhqE0JF
+ ov0ZcdffF00Hv3Rv2gUn1DxrksJwsZGfZuQiacyF7mnI4abDDfOhKfTnM
+ XE7tg6sM/TUZfhSH1wazyMsD65h2I16pG2PZtOfTD2Y8VrdOOktEOiUj4 A==;
+X-CSE-ConnectionGUID: sCCV2JIbQeaNfAjKCXmZvA==
+X-CSE-MsgGUID: iBdcGJeRTdWZTv6TvA5zkg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11737"; a="75221759"
+X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="75221759"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2026 02:31:24 -0700
-X-CSE-ConnectionGUID: wUX2Mp/gRWWodbcfkWBGyw==
-X-CSE-MsgGUID: IuS0Kkt6TvmCgNh9f71dAQ==
+ 23 Mar 2026 02:31:26 -0700
+X-CSE-ConnectionGUID: APXe3zlMSWmsMYSPLV1zmQ==
+X-CSE-MsgGUID: WnMMwmU7QCOQnVsFSMegYw==
 X-ExtLoop1: 1
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2026 02:31:22 -0700
+ 23 Mar 2026 02:31:24 -0700
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
  thomas.hellstrom@linux.intel.com
-Subject: [PATCH v7 05/12] drm/xe/vm: Prevent binding of purged buffer objects
-Date: Mon, 23 Mar 2026 15:00:54 +0530
-Message-ID: <20260323093106.2986900-6-arvind.yadav@intel.com>
+Subject: [PATCH v7 06/12] drm/xe/madvise: Implement per-VMA purgeable state
+ tracking
+Date: Mon, 23 Mar 2026 15:00:55 +0530
+Message-ID: <20260323093106.2986900-7-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260323093106.2986900-1-arvind.yadav@intel.com>
 References: <20260323093106.2986900-1-arvind.yadav@intel.com>
@@ -67,196 +68,360 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add purge checking to vma_lock_and_validate() to block new mapping
-operations on purged BOs while allowing cleanup operations to proceed.
+Track purgeable state per-VMA instead of using a coarse shared
+BO check. This prevents purging shared BOs until all VMAs across
+all VMs are marked DONTNEED.
 
-Purged BOs have their backing pages freed by the kernel. New
-mapping operations (MAP, PREFETCH, REMAP) must be rejected with
--EINVAL to prevent GPU access to invalid memory. Cleanup
-operations (UNMAP) must be allowed so applications can release
-resources after detecting purge via the retained field.
+Add xe_bo_all_vmas_dontneed() to check all VMAs before marking
+a BO purgeable. Add xe_bo_recheck_purgeable_on_vma_unbind() to
+handle state transitions when VMAs are destroyed - if all
+remaining VMAs are DONTNEED the BO can become purgeable, or if
+no VMAs remain it transitions to WILLNEED.
 
-REMAP operations require mixed handling - reject new prev/next
-VMAs if the BO is purged, but allow the unmap portion to proceed
-for cleanup.
+The per-VMA purgeable_state field stores the madvise hint for
+each mapping. Shared BOs can only be purged when all VMAs
+unanimously indicate DONTNEED.
 
-The check_purged flag in struct xe_vma_lock_and_validate_flags
-distinguishes between these cases: true for new mappings (must reject),
-false for cleanup (allow).
-
-v2:
-  - Clarify that purged BOs are permanently invalid (i915 semantics)
-  - Remove incorrect claim about madvise(WILLNEED) restoring purged BOs
+This prevents the bug where unmapping the last VMA would incorrectly flip
+a DONTNEED BO back to WILLNEED. The enum-based state check preserves BO
+state when no VMAs remain, only updating when VMAs provide explicit hints.
 
 v3:
-  - Move xe_bo_is_purged check under vma_lock_and_validate (Matt)
-  - Add check_purged parameter to distinguish new mappings from cleanup
-  - Allow UNMAP operations to prevent resource leaks
-  - Handle REMAP operation's dual nature (cleanup + new mappings)
+  - This addresses Thomas Hellström's feedback: "loop over all vmas
+    attached to the bo and check that they all say WONTNEED. This will
+    also need a check at VMA unbinding"
+
+v4:
+  - @madv_purgeable atomic_t → u32 change across all relevant
+    patches (Matt)
 
 v5:
-  - Replace three boolean parameters with struct xe_vma_lock_and_validate_flags
-    to improve readability and prevent argument transposition (Matt)
-  - Use u32 bitfields instead of bool members to match xe_bo_shrink_flags
-    pattern - more efficient packing and follows xe driver conventions (Thomas)
-  - Pass struct as const since flags are read-only (Matt)
+  - Call xe_bo_recheck_purgeable_on_vma_unbind() from xe_vma_destroy()
+    right after drm_gpuva_unlink() where we already hold the BO lock,
+    drop the trylock-based late destroy path (Matt)
+  - Move purgeable_state into xe_vma_mem_attr with the other madvise
+    attributes (Matt)
+  - Drop READ_ONCE since the BO lock already protects us (Matt)
+  - Keep returning false when there are no VMAs - otherwise we'd mark
+    BOs purgeable without any user hint (Matt)
+  - Use xe_bo_set_purgeable_state() instead of direct initialization(Matt)
+  - use xe_assert instead of drm_warn (Thomas)
 
 v6:
-  - Block VM_BIND to DONTNEED BOs with -EBUSY (Thomas, Matt)
+  - Fix state transition bug: don't flip DONTNEED → WILLNEED when last
+    VMA unmapped (Matt)
+  - Change xe_bo_all_vmas_dontneed() from bool to enum to distinguish
+    "no VMAs" from "has WILLNEED VMA" (Matt)
+  - Preserve BO state on NO_VMAS instead of forcing WILLNEED.
+  - Set skip_invalidation explicitly in madvise_purgeable() to ensure
+    DONTNEED always zaps GPU PTEs regardless of prior madvise state.
 
 v7:
-  - Pass xe_vma_lock_and_validate_flags by value instead of by
-    pointer, consistent with xe driver style. (Thomas)
+  - Don't zap PTEs at DONTNEED time -- pages are still alive.
+    The zap happens in xe_bo_move_notify() right before the shrinker
+    frees them.
+  - Simplify xe_bo_recompute_purgeable_state() by relying on the
+    intentional value alignment between xe_bo_vmas_purge_state and
+    xe_madv_purgeable_state enums. Add static_assert to enforce the
+    alignment. (Thomas)
 
+Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 82 ++++++++++++++++++++++++++++++++------
- 1 file changed, 69 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/xe_svm.c        |   1 +
+ drivers/gpu/drm/xe/xe_vm.c         |   9 +-
+ drivers/gpu/drm/xe/xe_vm_madvise.c | 136 +++++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vm_madvise.h |   3 +
+ drivers/gpu/drm/xe/xe_vm_types.h   |  11 +++
+ 5 files changed, 153 insertions(+), 7 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index a91c84487a67..062ef77e283f 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -322,6 +322,7 @@ static void xe_vma_set_default_attributes(struct xe_vma *vma)
+ 		.preferred_loc.migration_policy = DRM_XE_MIGRATE_ALL_PAGES,
+ 		.pat_index = vma->attr.default_pat_index,
+ 		.atomic_access = DRM_XE_ATOMIC_UNDEFINED,
++		.purgeable_state = XE_MADV_PURGEABLE_WILLNEED,
+ 	};
+ 
+ 	xe_vma_mem_attr_copy(&vma->attr, &default_attr);
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index a0ade67d616e..9c1a82b64a43 100644
+index 9c1a82b64a43..07393540f34c 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2918,8 +2918,22 @@ static void vm_bind_ioctl_ops_unwind(struct xe_vm *vm,
+@@ -39,6 +39,7 @@
+ #include "xe_tile.h"
+ #include "xe_tlb_inval.h"
+ #include "xe_trace_bo.h"
++#include "xe_vm_madvise.h"
+ #include "xe_wa.h"
+ 
+ static struct drm_gem_object *xe_vm_obj(struct xe_vm *vm)
+@@ -1085,6 +1086,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ static void xe_vma_destroy_late(struct xe_vma *vma)
+ {
+ 	struct xe_vm *vm = xe_vma_vm(vma);
++	struct xe_bo *bo = xe_vma_bo(vma);
+ 
+ 	if (vma->ufence) {
+ 		xe_sync_ufence_put(vma->ufence);
+@@ -1099,7 +1101,7 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
+ 	} else if (xe_vma_is_null(vma) || xe_vma_is_cpu_addr_mirror(vma)) {
+ 		xe_vm_put(vm);
+ 	} else {
+-		xe_bo_put(xe_vma_bo(vma));
++		xe_bo_put(bo);
+ 	}
+ 
+ 	xe_vma_free(vma);
+@@ -1125,6 +1127,7 @@ static void vma_destroy_cb(struct dma_fence *fence,
+ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
+ {
+ 	struct xe_vm *vm = xe_vma_vm(vma);
++	struct xe_bo *bo = xe_vma_bo(vma);
+ 
+ 	lockdep_assert_held_write(&vm->lock);
+ 	xe_assert(vm->xe, list_empty(&vma->combined_links.destroy));
+@@ -1133,9 +1136,10 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
+ 		xe_assert(vm->xe, vma->gpuva.flags & XE_VMA_DESTROYED);
+ 		xe_userptr_destroy(to_userptr_vma(vma));
+ 	} else if (!xe_vma_is_null(vma) && !xe_vma_is_cpu_addr_mirror(vma)) {
+-		xe_bo_assert_held(xe_vma_bo(vma));
++		xe_bo_assert_held(bo);
+ 
+ 		drm_gpuva_unlink(&vma->gpuva);
++		xe_bo_recompute_purgeable_state(bo);
+ 	}
+ 
+ 	xe_vm_assert_held(vm);
+@@ -2692,6 +2696,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct drm_gpuva_ops *ops,
+ 				.atomic_access = DRM_XE_ATOMIC_UNDEFINED,
+ 				.default_pat_index = op->map.pat_index,
+ 				.pat_index = op->map.pat_index,
++				.purgeable_state = XE_MADV_PURGEABLE_WILLNEED,
+ 			};
+ 
+ 			flags |= op->map.vma_flags & XE_VMA_CREATE_MASK;
+diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
+index ffba2e41c539..ed1940da7739 100644
+--- a/drivers/gpu/drm/xe/xe_vm_madvise.c
++++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+@@ -13,6 +13,7 @@
+ #include "xe_pt.h"
+ #include "xe_svm.h"
+ #include "xe_tlb_inval.h"
++#include "xe_vm.h"
+ 
+ struct xe_vmas_in_madvise_range {
+ 	u64 addr;
+@@ -184,6 +185,116 @@ static void madvise_pat_index(struct xe_device *xe, struct xe_vm *vm,
  	}
  }
  
 +/**
-+ * struct xe_vma_lock_and_validate_flags - Flags for vma_lock_and_validate()
-+ * @res_evict: Allow evicting resources during validation
-+ * @validate: Perform BO validation
-+ * @request_decompress: Request BO decompression
-+ * @check_purged: Reject operation if BO is purged
++ * enum xe_bo_vmas_purge_state - VMA purgeable state aggregation
++ *
++ * Distinguishes whether a BO's VMAs are all DONTNEED, have at least
++ * one WILLNEED, or have no VMAs at all.
++ *
++ * Enum values align with XE_MADV_PURGEABLE_* states for consistency.
 + */
-+struct xe_vma_lock_and_validate_flags {
-+	u32 res_evict : 1;
-+	u32 validate : 1;
-+	u32 request_decompress : 1;
-+	u32 check_purged : 1;
++enum xe_bo_vmas_purge_state {
++	/** @XE_BO_VMAS_STATE_WILLNEED: At least one VMA is WILLNEED */
++	XE_BO_VMAS_STATE_WILLNEED = 0,
++	/** @XE_BO_VMAS_STATE_DONTNEED: All VMAs are DONTNEED */
++	XE_BO_VMAS_STATE_DONTNEED = 1,
++	/** @XE_BO_VMAS_STATE_NO_VMAS: BO has no VMAs */
++	XE_BO_VMAS_STATE_NO_VMAS = 2,
 +};
 +
- static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
--				 bool res_evict, bool validate, bool request_decompress)
-+				 struct xe_vma_lock_and_validate_flags flags)
- {
- 	struct xe_bo *bo = xe_vma_bo(vma);
- 	struct xe_vm *vm = xe_vma_vm(vma);
-@@ -2928,15 +2942,24 @@ static int vma_lock_and_validate(struct drm_exec *exec, struct xe_vma *vma,
- 	if (bo) {
- 		if (!bo->vm)
- 			err = drm_exec_lock_obj(exec, &bo->ttm.base);
--		if (!err && validate)
++/*
++ * xe_bo_recompute_purgeable_state() casts between xe_bo_vmas_purge_state and
++ * xe_madv_purgeable_state. Enforce that WILLNEED=0 and DONTNEED=1 match across
++ * both enums so the single-line cast is always valid.
++ */
++static_assert(XE_BO_VMAS_STATE_WILLNEED == (int)XE_MADV_PURGEABLE_WILLNEED,
++	      "VMA purge state WILLNEED must equal madv purgeable WILLNEED");
++static_assert(XE_BO_VMAS_STATE_DONTNEED == (int)XE_MADV_PURGEABLE_DONTNEED,
++	      "VMA purge state DONTNEED must equal madv purgeable DONTNEED");
 +
-+		/* Reject new mappings to DONTNEED/purged BOs; allow cleanup operations */
-+		if (!err && flags.check_purged) {
-+			if (xe_bo_madv_is_dontneed(bo))
-+				err = -EBUSY;  /* BO marked purgeable */
-+			else if (xe_bo_is_purged(bo))
-+				err = -EINVAL; /* BO already purged */
++/**
++ * xe_bo_all_vmas_dontneed() - Determine BO VMA purgeable state
++ * @bo: Buffer object
++ *
++ * Check all VMAs across all VMs to determine aggregate purgeable state.
++ * Shared BOs require unanimous DONTNEED state from all mappings.
++ *
++ * Caller must hold BO dma-resv lock.
++ *
++ * Return: XE_BO_VMAS_STATE_DONTNEED if all VMAs are DONTNEED,
++ *         XE_BO_VMAS_STATE_WILLNEED if at least one VMA is not DONTNEED,
++ *         XE_BO_VMAS_STATE_NO_VMAS if BO has no VMAs
++ */
++static enum xe_bo_vmas_purge_state xe_bo_all_vmas_dontneed(struct xe_bo *bo)
++{
++	struct drm_gpuvm_bo *vm_bo;
++	struct drm_gpuva *gpuva;
++	struct drm_gem_object *obj = &bo->ttm.base;
++	bool has_vmas = false;
++
++	xe_bo_assert_held(bo);
++
++	drm_gem_for_each_gpuvm_bo(vm_bo, obj) {
++		drm_gpuvm_bo_for_each_va(gpuva, vm_bo) {
++			struct xe_vma *vma = gpuva_to_vma(gpuva);
++
++			has_vmas = true;
++
++			/* Any non-DONTNEED VMA prevents purging */
++			if (vma->attr.purgeable_state != XE_MADV_PURGEABLE_DONTNEED)
++				return XE_BO_VMAS_STATE_WILLNEED;
 +		}
++	}
 +
-+		if (!err && flags.validate)
- 			err = xe_bo_validate(bo, vm,
- 					     xe_vm_allow_vm_eviction(vm) &&
--					     res_evict, exec);
-+					     flags.res_evict, exec);
++	/*
++	 * No VMAs => preserve existing BO purgeable state.
++	 * Avoids incorrectly flipping DONTNEED -> WILLNEED when last VMA unmapped.
++	 */
++	if (!has_vmas)
++		return XE_BO_VMAS_STATE_NO_VMAS;
++
++	return XE_BO_VMAS_STATE_DONTNEED;
++}
++
++/**
++ * xe_bo_recompute_purgeable_state() - Recompute BO purgeable state from VMAs
++ * @bo: Buffer object
++ *
++ * Walk all VMAs to determine if BO should be purgeable or not.
++ * Shared BOs require unanimous DONTNEED state from all mappings.
++ * If the BO has no VMAs the existing state is preserved.
++ *
++ * Locking: Caller must hold BO dma-resv lock. When iterating GPUVM lists,
++ * VM lock must also be held (write) to prevent concurrent VMA modifications.
++ * This is satisfied at both call sites:
++ * - xe_vma_destroy(): holds vm->lock write
++ * - madvise_purgeable(): holds vm->lock write (from madvise ioctl path)
++ *
++ * Return: nothing
++ */
++void xe_bo_recompute_purgeable_state(struct xe_bo *bo)
++{
++	enum xe_bo_vmas_purge_state vma_state;
++
++	if (!bo)
++		return;
++
++	xe_bo_assert_held(bo);
++
++	/*
++	 * Once purged, always purged. Cannot transition back to WILLNEED.
++	 * This matches i915 semantics where purged BOs are permanently invalid.
++	 */
++	if (bo->madv_purgeable == XE_MADV_PURGEABLE_PURGED)
++		return;
++
++	vma_state = xe_bo_all_vmas_dontneed(bo);
++
++	if (vma_state != (enum xe_bo_vmas_purge_state)bo->madv_purgeable &&
++	    vma_state != XE_BO_VMAS_STATE_NO_VMAS)
++		xe_bo_set_purgeable_state(bo, (enum xe_madv_purgeable_state)vma_state);
++}
++
+ /**
+  * madvise_purgeable - Handle purgeable buffer object advice
+  * @xe: XE device
+@@ -215,8 +326,11 @@ static void __maybe_unused madvise_purgeable(struct xe_device *xe,
+ 	for (i = 0; i < num_vmas; i++) {
+ 		struct xe_bo *bo = xe_vma_bo(vmas[i]);
  
- 		if (err)
- 			return err;
+-		if (!bo)
++		if (!bo) {
++			/* Purgeable state applies to BOs only, skip non-BO VMAs */
++			vmas[i]->skip_invalidation = true;
+ 			continue;
++		}
  
--		if (request_decompress)
-+		if (flags.request_decompress)
- 			err = xe_bo_decompress(bo);
- 	}
- 
-@@ -3030,10 +3053,13 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
- 	case DRM_GPUVA_OP_MAP:
- 		if (!op->map.invalidate_on_bind)
- 			err = vma_lock_and_validate(exec, op->map.vma,
--						    res_evict,
--						    !xe_vm_in_fault_mode(vm) ||
--						    op->map.immediate,
--						    op->map.request_decompress);
-+						    (struct xe_vma_lock_and_validate_flags) {
-+							.res_evict = res_evict,
-+							.validate = !xe_vm_in_fault_mode(vm) ||
-+								    op->map.immediate,
-+							.request_decompress = op->map.request_decompress,
-+							.check_purged = true,
-+						    });
- 		break;
- 	case DRM_GPUVA_OP_REMAP:
- 		err = check_ufence(gpuva_to_vma(op->base.remap.unmap->va));
-@@ -3042,13 +3068,28 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
- 
- 		err = vma_lock_and_validate(exec,
- 					    gpuva_to_vma(op->base.remap.unmap->va),
--					    res_evict, false, false);
-+					    (struct xe_vma_lock_and_validate_flags) {
-+						    .res_evict = res_evict,
-+						    .validate = false,
-+						    .request_decompress = false,
-+						    .check_purged = false,
-+					    });
- 		if (!err && op->remap.prev)
- 			err = vma_lock_and_validate(exec, op->remap.prev,
--						    res_evict, true, false);
-+						    (struct xe_vma_lock_and_validate_flags) {
-+							    .res_evict = res_evict,
-+							    .validate = true,
-+							    .request_decompress = false,
-+							    .check_purged = true,
-+						    });
- 		if (!err && op->remap.next)
- 			err = vma_lock_and_validate(exec, op->remap.next,
--						    res_evict, true, false);
-+						    (struct xe_vma_lock_and_validate_flags) {
-+							    .res_evict = res_evict,
-+							    .validate = true,
-+							    .request_decompress = false,
-+							    .check_purged = true,
-+						    });
- 		break;
- 	case DRM_GPUVA_OP_UNMAP:
- 		err = check_ufence(gpuva_to_vma(op->base.unmap.va));
-@@ -3057,7 +3098,12 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
- 
- 		err = vma_lock_and_validate(exec,
- 					    gpuva_to_vma(op->base.unmap.va),
--					    res_evict, false, false);
-+					    (struct xe_vma_lock_and_validate_flags) {
-+						    .res_evict = res_evict,
-+						    .validate = false,
-+						    .request_decompress = false,
-+						    .check_purged = false,
-+					    });
- 		break;
- 	case DRM_GPUVA_OP_PREFETCH:
- 	{
-@@ -3070,9 +3116,19 @@ static int op_lock_and_prep(struct drm_exec *exec, struct xe_vm *vm,
- 				  region <= ARRAY_SIZE(region_to_mem_type));
+ 		/* BO must be locked before modifying madv state */
+ 		xe_bo_assert_held(bo);
+@@ -227,19 +341,31 @@ static void __maybe_unused madvise_purgeable(struct xe_device *xe,
+ 		 */
+ 		if (xe_bo_is_purged(bo)) {
+ 			details->has_purged_bo = true;
++			vmas[i]->skip_invalidation = true;
+ 			continue;
  		}
  
-+		/*
-+		 * Prefetch attempts to migrate BO's backing store without
-+		 * repopulating it first. Purged BOs have no backing store
-+		 * to migrate, so reject the operation.
-+		 */
- 		err = vma_lock_and_validate(exec,
- 					    gpuva_to_vma(op->base.prefetch.va),
--					    res_evict, false, false);
-+					    (struct xe_vma_lock_and_validate_flags) {
-+						    .res_evict = res_evict,
-+						    .validate = false,
-+						    .request_decompress = false,
-+						    .check_purged = true,
-+					    });
- 		if (!err && !xe_vma_has_no_bo(vma))
- 			err = xe_bo_migrate(xe_vma_bo(vma),
- 					    region_to_mem_type[region],
+ 		switch (op->purge_state_val.val) {
+ 		case DRM_XE_VMA_PURGEABLE_STATE_WILLNEED:
+-			xe_bo_set_purgeable_state(bo, XE_MADV_PURGEABLE_WILLNEED);
++			vmas[i]->attr.purgeable_state = XE_MADV_PURGEABLE_WILLNEED;
++			vmas[i]->skip_invalidation = true;
++
++			xe_bo_recompute_purgeable_state(bo);
+ 			break;
+ 		case DRM_XE_VMA_PURGEABLE_STATE_DONTNEED:
+-			xe_bo_set_purgeable_state(bo, XE_MADV_PURGEABLE_DONTNEED);
++			vmas[i]->attr.purgeable_state = XE_MADV_PURGEABLE_DONTNEED;
++			/*
++			 * Don't zap PTEs at DONTNEED time -- pages are still
++			 * alive. The zap happens in xe_bo_move_notify() right
++			 * before the shrinker frees them.
++			 */
++			vmas[i]->skip_invalidation = true;
++
++			xe_bo_recompute_purgeable_state(bo);
+ 			break;
+ 		default:
+-			drm_warn(&vm->xe->drm, "Invalid madvice value = %d\n",
+-				 op->purge_state_val.val);
++			/* Should never hit - values validated in madvise_args_are_sane() */
++			xe_assert(vm->xe, 0);
+ 			return;
+ 		}
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.h b/drivers/gpu/drm/xe/xe_vm_madvise.h
+index b0e1fc445f23..39acd2689ca0 100644
+--- a/drivers/gpu/drm/xe/xe_vm_madvise.h
++++ b/drivers/gpu/drm/xe/xe_vm_madvise.h
+@@ -8,8 +8,11 @@
+ 
+ struct drm_device;
+ struct drm_file;
++struct xe_bo;
+ 
+ int xe_vm_madvise_ioctl(struct drm_device *dev, void *data,
+ 			struct drm_file *file);
+ 
++void xe_bo_recompute_purgeable_state(struct xe_bo *bo);
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 69e80c94138a..033cfdd56c95 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -95,6 +95,17 @@ struct xe_vma_mem_attr {
+ 	 * same as default_pat_index unless overwritten by madvise.
+ 	 */
+ 	u16 pat_index;
++
++	/**
++	 * @purgeable_state: Purgeable hint for this VMA mapping
++	 *
++	 * Per-VMA purgeable state from madvise. Valid states are WILLNEED (0)
++	 * or DONTNEED (1). Shared BOs require all VMAs to be DONTNEED before
++	 * the BO can be purged. PURGED state exists only at BO level.
++	 *
++	 * Protected by BO dma-resv lock. Set via DRM_IOCTL_XE_MADVISE.
++	 */
++	u32 purgeable_state;
+ };
+ 
+ struct xe_vma {
 -- 
 2.43.0
 
