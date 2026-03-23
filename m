@@ -4,66 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BF91AD58CBF
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 21:19:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB6EDF483F8
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 21:21:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8205510E4B5;
-	Mon, 23 Mar 2026 21:19:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=kde.org header.i=@kde.org header.b="NIwXAMPI";
-	dkim-atps=neutral
-Received: from letterbox.kde.org (letterbox.kde.org [46.43.1.242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2308610E4AC
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 21:19:36 +0000 (UTC)
-Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com
- [209.85.219.50]) (Authenticated sender: zamundaaa)
- by letterbox.kde.org (Postfix) with ESMTPSA id A4EE2324CB9
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 21:19:34 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
- t=1774300774; bh=r20OZHTYgzoYdBQOnECr0qFhpYAC9zz0Ibdh/LXucZw=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=NIwXAMPIku8YbMuedkkPuDs98hyP1558Xik7EmjMIedrb7Y1J6VGkvZYXt0SUQlBY
- 9AzKmJ/oWc5tBnQFZ5MUmLnHCS56DCNW4xZPQEG84TWTadkP0m9IRCkvPDJdY+7Wiq
- UUBTIC4dVFqdnXHasjcS6uScrwoPIo0pFUD5e6cqscQH87XDFtdVv8QzAnvTXEL2Xa
- VOFb9MkoskH1xES4IisaunvAdJ7ivKckCyQBPiPP4zrzbz4FUo+80ictL8DnbLTre8
- i06kpaxerQowe4XlQBaa5B7Hg6PpiYwhp9ogIrQRz5B2IW9WxE5Hunv6Zkv150eJSC
- eOgveT+3fl1xQ==
-Received: by mail-qv1-f50.google.com with SMTP id
- 6a1803df08f44-89c6a711ce9so61554216d6.0
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 14:19:34 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCXINNtSh935bbWtbpViYH+jnXqgAuvLWZb+XVVZovbOE9nVfh0NGT9g4UM05AjcEoqTvKcgEV3hWA==@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxKLRq0nS4C/H6ycxLZg88gM07C7VH9JRKriN/hOrLjuoSdw753
- NkqSXa9vbxfttpGwUv7NZPRL7P7XW1CiSwXq5D6YaZNi1vYEQthw/j92mY4Q3T5c3ONfDaQ/tGT
- ElGC5F8hQrZ5dwkvYxj2EzAkEHUYQZG4=
-X-Received: by 2002:ad4:5766:0:b0:89a:b7:9a9b with SMTP id
- 6a1803df08f44-89c85a99ac1mr228043676d6.58.1774300772939; 
- Mon, 23 Mar 2026 14:19:32 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 930F410E56A;
+	Mon, 23 Mar 2026 21:21:35 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD66910E4F7;
+ Mon, 23 Mar 2026 21:21:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8757061083276583624=="
 MIME-Version: 1.0
-References: <20260223-atomic-v10-0-f59c8def2e70@intel.com>
- <CAFZQkGw=VJnzFWnh7GT_59NhuSTiy3-VPOcKdWTZX14rkgW_uw@mail.gmail.com>
- <ec9b1e8d-daab-48a7-959a-bfc5309b3ea9@intel.com>
-In-Reply-To: <ec9b1e8d-daab-48a7-959a-bfc5309b3ea9@intel.com>
-From: Xaver Hugl <xaver.hugl@kde.org>
-Date: Mon, 23 Mar 2026 22:19:21 +0100
-X-Gmail-Original-Message-ID: <CAFZQkGxLWnrt1be4S6pJj0qVRfVPXkzvZODNNNKWjpD2NNTAeA@mail.gmail.com>
-X-Gm-Features: AQROBzBi1GIjCBzS3clAXX8UAOhv46EtsZX2EO34VxBgkUC-vgFWSwdNg9EAQo4
-Message-ID: <CAFZQkGxLWnrt1be4S6pJj0qVRfVPXkzvZODNNNKWjpD2NNTAeA@mail.gmail.com>
-Subject: Re: [PATCH v10 0/7] User readable error codes on atomic_ioctl failure
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- harry.wentland@amd.com, uma.shankar@intel.com, louis.chauvet@bootlin.com, 
- naveen1.kumar@intel.com, ramya.krishna.yella@intel.com, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, Suraj Kandpal <suraj.kandpal@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/eustall=3A_Return_EB?=
+ =?utf-8?q?ADFD_from_read_if_EU_stall_registers_get_reset?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 23 Mar 2026 21:21:34 -0000
+Message-ID: <177430089481.387756.2375999044443092726@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260323201541.3735214-1-ashutosh.dixit@intel.com>
+In-Reply-To: <20260323201541.3735214-1-ashutosh.dixit@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,41 +36,144 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> Have added the remaining error codes to the enum
-> drm_mode_atomic_err_code, will push as part of patchset 11.
-I think it would be best to limit the enum values to actionable
-things. Connector and scanout bandwidth sound useful and pretty
-straight-forward to me, but the three other new values don't seem
-useful for compositors at the moment.
+--===============8757061083276583624==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-> DRM_MODE_ATTOMIC_PIPE_BW
-Compositors aren't aware of pipes. What would they do with that information?
+== Series Details ==
 
-> DRM_MODE_ATOMIC_MEMORY_DOMAIN
-> DRM_MODE_ATOMIC_SPEC_VIOLOATION
-I can't think of anything a compositor would do differently with these
-vs. "unspecified_error".
+Series: drm/xe/eustall: Return EBADFD from read if EU stall registers get reset
+URL   : https://patchwork.freedesktop.org/series/163731/
+State : success
 
-> As far as the enum INVALID_API_USAGE is concerned, there is a certain
-> understanding on the
-> usage of the atomic_ioctl,  any miss in that would fall in this
-> category.
-Invalid API usage would mean the compositor did something it can know
-in advance is wrong based on the KMS API. It can't be used as the
-default value.
+== Summary ==
 
-> Some of them include
->      - Driver doesnt support atomic, but still atomic_ioctl being used
->      - Invalid/Junk flags
->      - Async flip not supported
->      - Flag page flip event along with test only is not supported
-> If changing this INVALID_API_USAGE to UNSPECIFIED_ERROR makes more
-> sense, I can change that.
-No, they're two different things. We need both, and unspecified_error
-needs to be the default for when the driver doesn't set anything more
-specific.
+CI Bug Log - changes from xe-4764-a5c5cfbd8c7054ac678f91dac548c0201df274db_BAT -> xe-pw-163731v1_BAT
+====================================================
 
-- Xaver
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-163731v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4764-a5c5cfbd8c7054ac678f91dac548c0201df274db/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163731v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4764-a5c5cfbd8c7054ac678f91dac548c0201df274db/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163731v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
+
+
+Build changes
+-------------
+
+  * IGT: IGT_8819 -> IGT_8820
+  * Linux: xe-4764-a5c5cfbd8c7054ac678f91dac548c0201df274db -> xe-pw-163731v1
+
+  IGT_8819: 8819
+  IGT_8820: b2f96bfbce5dd7903530e7e3eb0bbeb01eaecfeb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4764-a5c5cfbd8c7054ac678f91dac548c0201df274db: a5c5cfbd8c7054ac678f91dac548c0201df274db
+  xe-pw-163731v1: 163731v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163731v1/index.html
+
+--===============8757061083276583624==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/eustall: Return EBADFD from read if EU stall registers get reset</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163731/">https://patchwork.freedesktop.org/series/163731/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163731v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163731v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4764-a5c5cfbd8c7054ac678f91dac548c0201df274db_BAT -&gt; xe-pw-163731v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-163731v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4764-a5c5cfbd8c7054ac678f91dac548c0201df274db/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163731v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4764-a5c5cfbd8c7054ac678f91dac548c0201df274db/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163731v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_8819 -&gt; IGT_8820</li>
+<li>Linux: xe-4764-a5c5cfbd8c7054ac678f91dac548c0201df274db -&gt; xe-pw-163731v1</li>
+</ul>
+<p>IGT_8819: 8819<br />
+  IGT_8820: b2f96bfbce5dd7903530e7e3eb0bbeb01eaecfeb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4764-a5c5cfbd8c7054ac678f91dac548c0201df274db: a5c5cfbd8c7054ac678f91dac548c0201df274db<br />
+  xe-pw-163731v1: 163731v1</p>
+
+</body>
+</html>
+
+--===============8757061083276583624==--
