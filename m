@@ -4,102 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BAFBF483F3
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 20:10:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAC9BF483D7
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 20:15:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EFE710E057;
-	Mon, 23 Mar 2026 20:10:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A08DD10E3E8;
+	Mon, 23 Mar 2026 20:15:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="kpJke4pi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ntNCwkHz";
 	dkim-atps=neutral
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C2C310E057;
- Mon, 23 Mar 2026 20:10:49 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 15389441BE;
- Mon, 23 Mar 2026 20:10:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DC58C4CEF7;
- Mon, 23 Mar 2026 20:10:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1774296648;
- bh=Nu64mlY3XWdB/UpmDs5KmjCgHvRnp4f74MyqaEjMcSo=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=kpJke4piH13sLowqeW1ymsR3YHAJzBvrh2tafIlfnppwQZ+DuP5tQtQBLqocDVXBG
- 0KKgbqTXQjs4Yu8/FoXm/n3lX4/QsBnZO7/6MFvhbsRLrIODfHDYKZLUAxIREaMJ1T
- HYlZ4GEQrJWCe757vyluxTdXn8cmAyTIM1CQJ8WS7gEdLr3wdYgpL1JxXXpyWZHuip
- gt/3DT2fds1uGtMkWBiztX/XjBKEeZVB1uwUx3OBL4nAPtw+Mwho2PstqljJYLgejA
- mWmi10c2UhZKV0+Dv3OEQdPAtWnF8UDxyRSmArDgyd5lFE44u+i+77UKFlt7fh861/
- 8razqpxdwgRHQ==
-Message-ID: <9dc0b270-f7e3-4bcc-9838-df49cb1e609c@kernel.org>
-Date: Mon, 23 Mar 2026 21:10:42 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F347E10E3E8
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 20:15:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774296947; x=1805832947;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=B6xrbVMfa+UIaUpL100Ugx0F8BZfkQbNc9i3x6y/2BE=;
+ b=ntNCwkHzDRQ7ig5recmQmnXhNunxnC5m3AhlquknuxsWU61p3YC9EvN7
+ mjoAj1NQy/2zYxgiW3hyYXa0Dm8RQ8XfUivj49v6NlxooAUoP6IMIAlsf
+ RdRJn+Ulqjp8FuHf2mmLeSl3VnIb6smNtXZADutfqdy/PBc9Bf6KeV3fP
+ Y5X+11C56utwyFN+7xw79ySPrjihGpxLpBzSjU7XyHWAxynXpOsnbvI+K
+ zngjJlvhylovJYNWYXk6VW0YKv4etMagv3fWjLRDvbhXDgvel8/dUA+Z2
+ gwu47oP4v0Zma8bdrd+NMI/x9Y8ecY7aRZTRuF2xDvjFp79HGRi1sqRFI A==;
+X-CSE-ConnectionGUID: kbR2ADj+R3CL3sT3PKQOqw==
+X-CSE-MsgGUID: 5yhov4OlQxqFGDtu1i4V3g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11738"; a="92878447"
+X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="92878447"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2026 13:15:47 -0700
+X-CSE-ConnectionGUID: Wmx73FYtQGeQoCz77LAXCQ==
+X-CSE-MsgGUID: U8te/1EuTKukT4+7fAY8Bg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="217610317"
+Received: from orsosgc001.jf.intel.com ([10.88.27.185])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2026 13:15:46 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Harish Chegondi <harish.chegondi@intel.com>
+Subject: [PATCH v3] drm/xe/eustall: Return EBADFD from read if EU stall
+ registers get reset
+Date: Mon, 23 Mar 2026 13:15:41 -0700
+Message-ID: <20260323201541.3735214-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 00/13] Remove device private pages from physical
- address space
-To: Alistair Popple <apopple@nvidia.com>
-Cc: Jordan Niethe <jniethe@nvidia.com>, linux-mm@kvack.org,
- balbirs@nvidia.com, matthew.brost@intel.com, akpm@linux-foundation.org,
- linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- ziy@nvidia.com, lorenzo.stoakes@oracle.com, lyude@redhat.com,
- dakr@kernel.org, airlied@gmail.com, simona@ffwll.ch, rcampbell@nvidia.com,
- mpenttil@redhat.com, jgg@nvidia.com, willy@infradead.org,
- linuxppc-dev@lists.ozlabs.org, intel-xe@lists.freedesktop.org, jgg@ziepe.ca,
- Felix.Kuehling@amd.com, jhubbard@nvidia.com, maddy@linux.ibm.com,
- mpe@ellerman.id.au, ying.huang@linux.alibaba.com
-References: <20260202113642.59295-1-jniethe@nvidia.com>
- <4b5b222a-18e8-4d48-9acb-39e5bfe4e5f7@kernel.org>
- <abiloqDpIs046DJJ@nvdebian.thelocal>
- <b1ae55b3-8058-40ef-96f5-5caf97b1ace5@kernel.org>
- <abzUKN62gOA5b6FN@nvdebian.thelocal>
-From: "David Hildenbrand (Arm)" <david@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=david@kernel.org; keydata=
- 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
- qIws/H2t
-In-Reply-To: <abzUKN62gOA5b6FN@nvdebian.thelocal>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,117 +65,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 3/20/26 06:52, Alistair Popple wrote:
-> On 2026-03-18 at 19:44 +1100, "David Hildenbrand (Arm)" <david@kernel.org> wrote...
->> On 3/17/26 02:47, Alistair Popple wrote:
->>> On 2026-03-07 at 03:16 +1100, "David Hildenbrand (Arm)" <david@kernel.org> wrote...
->>>
->>> Thanks David for taking the time to do a thorough review. I will let Jordan
->>> respond to most of the comments but wanted to add some of my own as I helped
->>> with the initial idea.
->>>
->>>
->>> I disagree - this isn't hacking in another/new zone-device thing it is cleaning
->>> up/reworking a pre-existing zone-device thing (DEVICE_PRIVATE pages). My initial
->>> hope was it wouldn't actually involve too much churn on the core-mm side.
->>
->> ... and there is quite some.
->>
->> stuff like make_readable_exclusive_migration_entry_from_page() must be
->> reworked.
-> 
-> Yeah, I was displeased to (re)discover the migration entry business when we
-> fleshed this series out. The idea was basically that raw device-private pfns
-> can't be used sensibly by anything in the core-mm anyway so presumably nothing
-> was.
-> 
-> That turned out to be only somewhat true. The exceptions are:
-> 
-> 1. page_vma_mapped which I think we have a solution for based on the comments to
->    patch 5.
+From: Harish Chegondi <harish.chegondi@intel.com>
 
-Yes, if we just have the page/folio we are in a better position. I
-*suspect* that we want to pass a page range, as the other two weird
-cases might pass a page, that, in the future might not be a folio anymore.
+If a reset (GT or engine) happens during EU stall data sampling, all the
+EU stall registers can get reset to 0. This will result in EU stall data
+buffers' read and write pointer register values to be out of sync with
+the cached values. This will result in read() returning invalid data. To
+prevent this, check the value of a EU stall base register. If it is zero,
+it indicates a reset may have happened that wiped the register to zero.
+If this happens, return EBADFD from read() upon which the user space
+should close the fd and open a new fd for a new EU stall data
+collection session.
 
-> 
-> 2. migration entries which obviously we will have to see if we can rework.
+Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+---
+v2: Move base register check from read to the poll function
+v3: Don't reschedule work item after reset detected (Ashutosh)
 
-Please look into encoding this internally, using one of the highest PFN
-bits or sth like that. We don't have to support this on all weird
-architectures.
+ drivers/gpu/drm/xe/xe_eu_stall.c | 38 +++++++++++++++++++++++++-------
+ 1 file changed, 30 insertions(+), 8 deletions(-)
 
-> 
-> 3. hmm_range_fault()
-
-Yes.
-
-> 
-> 4. page snapshots, although that's actually only used to test zero_pfn so we
->    could probably drop that if we just guarantee device private offsets are
->    always invalid pfns.
-
-Right, I think that can be more reasonably cleaned up.
-
-[...]
-
->>
->> It will likely still be error prone, but I have no idea how on earth we
->> could possible catch reliably for an "unsigned long" pfn whether it is a
->> PFN (it's right there in the name ...) or something completely different.
-> 
-> The idea was (at least for device-private) that you never needed the PFN,
-> only the page. Ie: that calling page_to_pfn() on a device-private page could,
-> conceptually at least, just crash the kernel because it should never happen.
-> 
-> Obviously we identified some exceptions to that rule, the biggest being
-> migration entries, hence the helpers for those.
-> 
->> We don't want another pfn_t, it would be too much churn to convert most
->> of MM.
-> 
-> Given I removed pfn_t I don't need convincing of that :-)
-
-:)
-
->>>
->>> So any core-mm churn is really just making this more explicit, but this series
->>> doesn't add any new requirements.
->>
->> Again, maybe it can be done in a better way. I did not enjoy some of the
->> code changes I was reading.
-> 
-> Ok. Was there anything outside the exceptions above that you did not enjoy?
-
-The last patch was hard to review and I am not sure what else is hiding
-in there. As said, breaking the patch into logical pieces will make this
-a lot easier to review.
-
-> 
-> One idea we did have was to make the PFNs "obviously" invalid PFNs, for example
-> by setting the MSB which exceeds the physical addressing capabilities of
-> every arch/platform. That would allow dropping the hmm and page-snapshot flags
-> although is still a bit of a hack.
-
-I mean, that might be cleaner, because *maybe* one could just teach
-pfn_valid() about that? Or have another, more lightweight helper that
-really just checks for "ordinary" vs. "special" pfns. Needs some thought.
-
-Using the highest bit as "this is not an ordinary pfn" might just do.
-Maybe some highmem considerations (making sure we don't run into weird
-stuff).
-
-> 
-> Ultimately one of the issues we are trying to resolve is that to get a PFN range
-> we use get_free_mem_region(), which essentially just returns a random unused PFN
-> range from the platform/arch perspective so an architecture may not recognise
-> them as valid pfns and hence may not have allocated enough vmemmap space for
-> them. That results in pfn_to_page() overflowing into something else (usually
-> user space VAs, at least in the case of RISC-V).
-
-Yes, I think it's a noble goal :)
-
+diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+index c34408cfd292c..de72a90f0a93e 100644
+--- a/drivers/gpu/drm/xe/xe_eu_stall.c
++++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+@@ -44,6 +44,7 @@ struct per_xecore_buf {
+ struct xe_eu_stall_data_stream {
+ 	bool pollin;
+ 	bool enabled;
++	bool reset_detected;
+ 	int wait_num_reports;
+ 	int sampling_rate_mult;
+ 	wait_queue_head_t poll_wq;
+@@ -428,9 +429,20 @@ static bool eu_stall_data_buf_poll(struct xe_eu_stall_data_stream *stream)
+ 			set_bit(xecore, stream->data_drop.mask);
+ 		xecore_buf->write = write_ptr;
+ 	}
++	/* If a GT or engine reset happens during EU stall sampling,
++	 * all EU stall registers get reset to 0 and the cached values of
++	 * the EU stall data buffers' read pointers are out of sync with
++	 * the register values. This causes invalid data to be returned
++	 * from read(). To prevent this, check the value of a EU stall base
++	 * register. If it is zero, there has been a reset.
++	 */
++	if (unlikely(!xe_gt_mcr_unicast_read_any(gt, XEHPC_EUSTALL_BASE)))
++		stream->reset_detected = true;
++
++	stream->pollin = min_data_present || stream->reset_detected;
+ 	mutex_unlock(&stream->xecore_buf_lock);
+ 
+-	return min_data_present;
++	return stream->pollin;
+ }
+ 
+ static void clear_dropped_eviction_line_bit(struct xe_gt *gt, u16 group, u16 instance)
+@@ -554,6 +566,15 @@ static ssize_t xe_eu_stall_stream_read_locked(struct xe_eu_stall_data_stream *st
+ 		}
+ 		stream->data_drop.reported_to_user = false;
+ 	}
++	/* If EU stall registers got reset due to a GT/engine reset,
++	 * continuing with the read() will return invalid data to
++	 * the user space. Just return -EBADFD instead.
++	 */
++	if (unlikely(stream->reset_detected)) {
++		xe_gt_dbg(gt, "EU stall base register has been reset\n");
++		mutex_unlock(&stream->xecore_buf_lock);
++		return -EBADFD;
++	}
+ 
+ 	for_each_dss_steering(xecore, gt, group, instance) {
+ 		ret = xe_eu_stall_data_buf_read(stream, buf, count, &total_size,
+@@ -609,7 +630,8 @@ static ssize_t xe_eu_stall_stream_read(struct file *file, char __user *buf,
+ 	 * We don't want to block the next read() when there is data in the buffer
+ 	 * now, but couldn't be accommodated in the small user buffer.
+ 	 */
+-	stream->pollin = false;
++	if (!stream->reset_detected)
++		stream->pollin = false;
+ 
+ 	return ret;
+ }
+@@ -717,13 +739,13 @@ static void eu_stall_data_buf_poll_work_fn(struct work_struct *work)
+ 		container_of(work, typeof(*stream), buf_poll_work.work);
+ 	struct xe_gt *gt = stream->gt;
+ 
+-	if (eu_stall_data_buf_poll(stream)) {
+-		stream->pollin = true;
++	if (eu_stall_data_buf_poll(stream))
+ 		wake_up(&stream->poll_wq);
+-	}
+-	queue_delayed_work(gt->eu_stall->buf_ptr_poll_wq,
+-			   &stream->buf_poll_work,
+-			   msecs_to_jiffies(POLL_PERIOD_MS));
++
++	if (!stream->reset_detected)
++		queue_delayed_work(gt->eu_stall->buf_ptr_poll_wq,
++				   &stream->buf_poll_work,
++				   msecs_to_jiffies(POLL_PERIOD_MS));
+ }
+ 
+ static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
 -- 
-Cheers,
+2.48.1
 
-David
