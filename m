@@ -4,53 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DAC9BF483D7
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 20:15:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D7C5F483F7
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 20:17:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A08DD10E3E8;
-	Mon, 23 Mar 2026 20:15:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E71510E3E8;
+	Mon, 23 Mar 2026 20:17:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ntNCwkHz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aPho7yBI";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F347E10E3E8
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 20:15:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B0AB10E3E8
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 20:17:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774296947; x=1805832947;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=B6xrbVMfa+UIaUpL100Ugx0F8BZfkQbNc9i3x6y/2BE=;
- b=ntNCwkHzDRQ7ig5recmQmnXhNunxnC5m3AhlquknuxsWU61p3YC9EvN7
- mjoAj1NQy/2zYxgiW3hyYXa0Dm8RQ8XfUivj49v6NlxooAUoP6IMIAlsf
- RdRJn+Ulqjp8FuHf2mmLeSl3VnIb6smNtXZADutfqdy/PBc9Bf6KeV3fP
- Y5X+11C56utwyFN+7xw79ySPrjihGpxLpBzSjU7XyHWAxynXpOsnbvI+K
- zngjJlvhylovJYNWYXk6VW0YKv4etMagv3fWjLRDvbhXDgvel8/dUA+Z2
- gwu47oP4v0Zma8bdrd+NMI/x9Y8ecY7aRZTRuF2xDvjFp79HGRi1sqRFI A==;
-X-CSE-ConnectionGUID: kbR2ADj+R3CL3sT3PKQOqw==
-X-CSE-MsgGUID: 5yhov4OlQxqFGDtu1i4V3g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11738"; a="92878447"
-X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="92878447"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2026 13:15:47 -0700
-X-CSE-ConnectionGUID: Wmx73FYtQGeQoCz77LAXCQ==
-X-CSE-MsgGUID: U8te/1EuTKukT4+7fAY8Bg==
+ t=1774297047; x=1805833047;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=UeTf/zU6ZAgiwdh8YWFHja9tCGn/vst4KCC4V7/ysRY=;
+ b=aPho7yBIgP8VBJibhzCZcR6LpoqgSFg6GrTS1DXoShJvEkdCGNuzY/Bj
+ jLAWv/S2FmwNxXZk9QhBM1I8zHNQBP8OwkS1ewE9o5RD/Sa7FWFrjEQNq
+ +VXJnyxYmmSHlHSEfOXBb8KUtH6EMr9RqW4vD3bu51spgSpsArv+lErjB
+ xxoCNDdsrLHcE2MuJYfO6dl8cplIMfiE37xnSk4YPyr0rg2bGKmfmjzGS
+ iq+8VyiGlg0eE+LDgeI74CzOxW9UU2I28z1Q9xn3n+UEvDOQPg9gJ7WY2
+ 4XVUt8euvJJqblBysbjmf+MLgEehUhx7ejpQeXsDsz2z0pN9VGTOc9iE+ w==;
+X-CSE-ConnectionGUID: q8xSk8MySxeA2H8VPu/dtA==
+X-CSE-MsgGUID: 8uEQfKByQlOJUS5gWpbALQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11738"; a="85615687"
+X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="85615687"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2026 13:17:26 -0700
+X-CSE-ConnectionGUID: KmzXwGOBTQiEl2rHO4ImHg==
+X-CSE-MsgGUID: OvhPNsq5T7WwCDN3G9/EQQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="217610317"
-Received: from orsosgc001.jf.intel.com ([10.88.27.185])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2026 13:15:46 -0700
-From: Ashutosh Dixit <ashutosh.dixit@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Harish Chegondi <harish.chegondi@intel.com>
-Subject: [PATCH v3] drm/xe/eustall: Return EBADFD from read if EU stall
- registers get reset
-Date: Mon, 23 Mar 2026 13:15:41 -0700
-Message-ID: <20260323201541.3735214-1-ashutosh.dixit@intel.com>
-X-Mailer: git-send-email 2.48.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="254612950"
+Received: from msharm8-mobl2.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
+ ([10.125.35.207])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2026 13:17:26 -0700
+Date: Mon, 23 Mar 2026 13:17:24 -0700
+Message-ID: <877br2qp0r.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Harish Chegondi <harish.chegondi@intel.com>
+Cc: <intel-xe@lists.freedesktop.org>, <felix.j.degrood@intel.com>,
+ <matias.a.cabral@intel.com>, <joshua.santosh.ranjan@intel.com>
+Subject: Re: [PATCH v2 1/1] drm/xe/eustall: Return EBADFD from read if EU
+ stall registers get reset
+In-Reply-To: <ab21JvEQ9nQJzZ2A@intel.com>
+References: <52d991cc7e8bec514bb582717a1c42033672d4a5.1773683739.git.harish.chegondi@intel.com>	<87se9xpqub.wl-ashutosh.dixit@intel.com>	<absZXhGMwjcNb-gn@intel.com>	<878qboqxq9.wl-ashutosh.dixit@intel.com>	<ab21JvEQ9nQJzZ2A@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,107 +71,204 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Harish Chegondi <harish.chegondi@intel.com>
+On Fri, 20 Mar 2026 13:59:18 -0700, Harish Chegondi wrote:
+>
+> On Wed, Mar 18, 2026 at 08:55:42PM -0700, Dixit, Ashutosh wrote:
+> > On Wed, 18 Mar 2026 14:30:06 -0700, Harish Chegondi wrote:
+> > >
+> > > On Tue, Mar 17, 2026 at 11:57:32PM -0700, Dixit, Ashutosh wrote:
+> > > > On Mon, 16 Mar 2026 10:58:56 -0700, Harish Chegondi wrote:
+> > > > >
+> > > > > If a reset (GT or engine) happens during EU stall data sampling, all the
+> > > > > EU stall registers can get reset to 0. This will result in EU stall data
+> > > > > buffers' read and write pointer register values to be out of sync with
+> > > > > the cached values. This will result in read() returning invalid data. To
+> > > > > prevent this, check the value of a EU stall base register. If it is zero,
+> > > > > it indicates a reset may have happened that wiped the register to zero.
+> > > > > If this happens, return EBADFD from read() upon which the user space
+> > > > > should close the fd and open a new fd for a new EU stall data
+> > > > > collection session.
+> > > > >
+> > > > > Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > > > > Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
+> > > > > ---
+> > > > > v2: Move base register check from read to the poll function
+> > > > >
+> > > > >  drivers/gpu/drm/xe/xe_eu_stall.c | 24 +++++++++++++++++++++++-
+> > > > >  1 file changed, 23 insertions(+), 1 deletion(-)
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
+> > > > > index c34408cfd292..7e14de73a2c9 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_eu_stall.c
+> > > > > +++ b/drivers/gpu/drm/xe/xe_eu_stall.c
+> > > > > @@ -44,6 +44,7 @@ struct per_xecore_buf {
+> > > > >  struct xe_eu_stall_data_stream {
+> > > > >	bool pollin;
+> > > > >	bool enabled;
+> > > > > +	bool reset_detected;
+> > > > >	int wait_num_reports;
+> > > > >	int sampling_rate_mult;
+> > > > >	wait_queue_head_t poll_wq;
+> > > > > @@ -428,6 +429,17 @@ static bool eu_stall_data_buf_poll(struct xe_eu_stall_data_stream *stream)
+> > > > >			set_bit(xecore, stream->data_drop.mask);
+> > > > >		xecore_buf->write = write_ptr;
+> > > > >	}
+> > > > > +	/* If a GT or engine reset happens during EU stall sampling,
+> > > > > +	 * all EU stall registers get reset to 0 and the cached values of
+> > > > > +	 * the EU stall data buffers' read pointers are out of sync with
+> > > > > +	 * the register values. This causes invalid data to be returned
+> > > > > +	 * from read(). To prevent this, check the value of a EU stall base
+> > > > > +	 * register. If it is zero, there has been a reset.
+> > > > > +	 */
+> > > >
+> > > > As previously discussed, the best way would have been to not have to do
+> > > > this. We would just plug into the handler for the reset message from GuC,
+> > > > rather than to implement a reset detection here (and in other places such
+> > > > as OA). But looks like if we do that, because of the way EUSS registers are
+> > > > reset, we can return bad EUSS data. So looks like there is no way around
+> > > > doing this "reset detection" here and a solution with the GuC reset handler
+> > > > would always be racy. Just for the record.
+> > >
+> > > Thanks for the summary of the previous discussion. Yes, hooking into the
+> > > GUc reset notification handler will be racy and bad EUSS data will be
+> > > returned to the user space if read() happens after the reset but before
+> > > the GuC reset notification message is processed. That's the reason for
+> > > not taking that approach.
+> > >
+> > > >
+> > > > > +	if (unlikely(!xe_gt_mcr_unicast_read_any(gt, XEHPC_EUSTALL_BASE))) {
+> > > > > +		stream->reset_detected = true;
+> > > > > +		min_data_present = true;
+> > > >
+> > > > I don't believe we need to set 'min_data_present = true' if we are setting
+> > > > 'stream->reset_detected = true', correct? See if statement at the bottom.
+> > >
+> > > Agree. The only difference is that the if statement at the bottom will
+> > > evaluate true in the current execution of eu_stall_data_buf_poll_work_fn
+> > > if min_data_present is set to true. If min_data_present is not set to
+> > > true, the if statement will evaluate to true in the subsequent execution
+> > > of eu_stall_data_buf_poll_work_fn() which is still okay. So, yes, we
+> > > don't have to set min_data_present to true here. Will fix in the next
+> > > version.
+> >
+> > Just switch the order of the two OR operands and you don't have that issue?
+> But switching the order of the two OR operands would cause the function
+> eu_stall_data_buf_poll() to be unnecessarily called even after a reset
+> is detected.
 
-If a reset (GT or engine) happens during EU stall data sampling, all the
-EU stall registers can get reset to 0. This will result in EU stall data
-buffers' read and write pointer register values to be out of sync with
-the cached values. This will result in read() returning invalid data. To
-prevent this, check the value of a EU stall base register. If it is zero,
-it indicates a reset may have happened that wiped the register to zero.
-If this happens, return EBADFD from read() upon which the user space
-should close the fd and open a new fd for a new EU stall data
-collection session.
+Hmm, in that case why even keep rescheduling the work? I took a swipe at
+doing this a little bit differently and have sent a patch v3. Can you take
+a look at that and see what you think. The patch is only compile tested.
 
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Signed-off-by: Harish Chegondi <harish.chegondi@intel.com>
----
-v2: Move base register check from read to the poll function
-v3: Don't reschedule work item after reset detected (Ashutosh)
+I also have a different idea now, which is, should we just call release()
+and close the fd in the kernel itself, if reset is detected. Will check
+with Umesh about this, I think there was something in perf_pmu which was
+doing it. The kernel will automatically return -EBADFD to user land when
+user land tries to use the closed fd. I am not sure if we'll eventually do
+this, but at least it's good to understand if doing this is feasible.
 
- drivers/gpu/drm/xe/xe_eu_stall.c | 38 +++++++++++++++++++++++++-------
- 1 file changed, 30 insertions(+), 8 deletions(-)
+> >
+> > > >
+> > > > Also, since the write pointer itself gets reset during reset, didn't we
+> > > > want to do this register read only when the write pointer is 0 (to avoid an
+> > > > extra register read every 5 ms)?
+> > >
+> > > Good point. I have thought about reducing the number of this register
+> > > reads. The poll function reads the write pointers of all the xecores.
+> > > A reset can happen anytime the poll function is reading the write
+> > > pointers of the xecores. If the reset happens before the poll function
+> > > started reading the write pointers, all write pointers are zeros.
+> > > If the reset happens during the poll function, several write pointers
+> > > read so far can be non-zero while the rest of the pointers after reset
+> > > are all zeros. The if reset happens right after the poll function, the
+> > > write pointers can be a mix of zeros and non-zeros.
+> > > I think the only time this register read can be skipped is if the
+> > > LAST write pointer read is non-zero which means a reset did not happen
+> > > before or during the poll function. Do you agree? I thought of adding a
+> > > check to the if statement to check if the last write pointer is
+> > > non-zero, but to keep the code clean, I didn't. Also, if there are
+> > > n xecores, there will be n write pointer register reads plus one
+> > > additional base register read, which isn't too bad? Also, hoping the use
+> > > of unlikely macro would not impact the performance too much.
+> >
+> > OK, leave this as is I think. Otherwise we'll need to read the base
+> > register each time we see a zero write pointer. So it's ok, leave as is.
+> >
+> > > >
+> > > > > +	}
+> > > > >	mutex_unlock(&stream->xecore_buf_lock);
+> > > > >
+> > > > >	return min_data_present;
+> > > > > @@ -554,6 +566,15 @@ static ssize_t xe_eu_stall_stream_read_locked(struct xe_eu_stall_data_stream *st
+> > > > >		}
+> > > > >		stream->data_drop.reported_to_user = false;
+> > > > >	}
+> > > > > +	/* If EU stall registers got reset due to a GT/engine reset,
+> > > > > +	 * continuing with the read() will return invalid data to
+> > > > > +	 * the user space. Just return -EBADFD instead.
+> > > > > +	 */
+> > > > > +	if (unlikely(stream->reset_detected)) {
+> > > > > +		xe_gt_dbg(gt, "EU stall base register has been reset\n");
+> > > > > +		mutex_unlock(&stream->xecore_buf_lock);
+> > > > > +		return -EBADFD;
+> > > >
+> > > > The other option is to return -EIO here and implement
+> > > > DRM_XE_OBSERVATION_IOCTL_STATUS and return status from that. Let me think
+> > > > some more about this.
+> > >
+> > > I think EBADFD is more appropriate errno than EIO in this case since the
+> > > fd is in a corrupted state and user has to close and re-open the fd.
+> > > Currently, the -EIO is used to indicate drop data in which case, the
+> > > user space can continue to read the data (faster) without closing the fd.
+> >
+> > OK, we can go with -EBADFD, though still thinking about it.
+> >
+> > > >
+> > > > > +	}
+> > > > >
+> > > > >	for_each_dss_steering(xecore, gt, group, instance) {
+> > > > >		ret = xe_eu_stall_data_buf_read(stream, buf, count, &total_size,
+> > > > > @@ -692,6 +713,7 @@ static int xe_eu_stall_stream_enable(struct xe_eu_stall_data_stream *stream)
+> > > > >		xecore_buf->write = write_ptr;
+> > > > >		xecore_buf->read = write_ptr;
+> > > > >	}
+> > > > > +	stream->reset_detected = false;
+> > > >
+> > > > So after reset, if a stream is disabled and re-enabled, we expect things to
+> > > > work again and EUSS data to be correct (without re-opening a new
+> > > > stream)?
+> > >
+> > > Technically, yes, since the EU stall registers programming is done in
+> > > enable, things will work again if the stream is disabled and re-enabled.
+> > > But if the EUSS registers programming is moved into open() in the
+> > > future, things may not work by disabling and re-enabling the stream. So,
+> > > I think we suggest to the UMDs to close the stream and open a new
+> > > stream.
+> >
+> > No we don't suggest anything to UMD's. We decide what we want to do,
+> > implement and enforce it that way and then maintain that uapi.
+> >
+> > OK, then let us make sure after disable/enable, the reset_detected flag
+> > remains set.
+> Okay, I will make sure the reset_detected flag remains set even after a
+> disable and an enable.
 
-diff --git a/drivers/gpu/drm/xe/xe_eu_stall.c b/drivers/gpu/drm/xe/xe_eu_stall.c
-index c34408cfd292c..de72a90f0a93e 100644
---- a/drivers/gpu/drm/xe/xe_eu_stall.c
-+++ b/drivers/gpu/drm/xe/xe_eu_stall.c
-@@ -44,6 +44,7 @@ struct per_xecore_buf {
- struct xe_eu_stall_data_stream {
- 	bool pollin;
- 	bool enabled;
-+	bool reset_detected;
- 	int wait_num_reports;
- 	int sampling_rate_mult;
- 	wait_queue_head_t poll_wq;
-@@ -428,9 +429,20 @@ static bool eu_stall_data_buf_poll(struct xe_eu_stall_data_stream *stream)
- 			set_bit(xecore, stream->data_drop.mask);
- 		xecore_buf->write = write_ptr;
- 	}
-+	/* If a GT or engine reset happens during EU stall sampling,
-+	 * all EU stall registers get reset to 0 and the cached values of
-+	 * the EU stall data buffers' read pointers are out of sync with
-+	 * the register values. This causes invalid data to be returned
-+	 * from read(). To prevent this, check the value of a EU stall base
-+	 * register. If it is zero, there has been a reset.
-+	 */
-+	if (unlikely(!xe_gt_mcr_unicast_read_any(gt, XEHPC_EUSTALL_BASE)))
-+		stream->reset_detected = true;
-+
-+	stream->pollin = min_data_present || stream->reset_detected;
- 	mutex_unlock(&stream->xecore_buf_lock);
- 
--	return min_data_present;
-+	return stream->pollin;
- }
- 
- static void clear_dropped_eviction_line_bit(struct xe_gt *gt, u16 group, u16 instance)
-@@ -554,6 +566,15 @@ static ssize_t xe_eu_stall_stream_read_locked(struct xe_eu_stall_data_stream *st
- 		}
- 		stream->data_drop.reported_to_user = false;
- 	}
-+	/* If EU stall registers got reset due to a GT/engine reset,
-+	 * continuing with the read() will return invalid data to
-+	 * the user space. Just return -EBADFD instead.
-+	 */
-+	if (unlikely(stream->reset_detected)) {
-+		xe_gt_dbg(gt, "EU stall base register has been reset\n");
-+		mutex_unlock(&stream->xecore_buf_lock);
-+		return -EBADFD;
-+	}
- 
- 	for_each_dss_steering(xecore, gt, group, instance) {
- 		ret = xe_eu_stall_data_buf_read(stream, buf, count, &total_size,
-@@ -609,7 +630,8 @@ static ssize_t xe_eu_stall_stream_read(struct file *file, char __user *buf,
- 	 * We don't want to block the next read() when there is data in the buffer
- 	 * now, but couldn't be accommodated in the small user buffer.
- 	 */
--	stream->pollin = false;
-+	if (!stream->reset_detected)
-+		stream->pollin = false;
- 
- 	return ret;
- }
-@@ -717,13 +739,13 @@ static void eu_stall_data_buf_poll_work_fn(struct work_struct *work)
- 		container_of(work, typeof(*stream), buf_poll_work.work);
- 	struct xe_gt *gt = stream->gt;
- 
--	if (eu_stall_data_buf_poll(stream)) {
--		stream->pollin = true;
-+	if (eu_stall_data_buf_poll(stream))
- 		wake_up(&stream->poll_wq);
--	}
--	queue_delayed_work(gt->eu_stall->buf_ptr_poll_wq,
--			   &stream->buf_poll_work,
--			   msecs_to_jiffies(POLL_PERIOD_MS));
-+
-+	if (!stream->reset_detected)
-+		queue_delayed_work(gt->eu_stall->buf_ptr_poll_wq,
-+				   &stream->buf_poll_work,
-+				   msecs_to_jiffies(POLL_PERIOD_MS));
- }
- 
- static int xe_eu_stall_stream_init(struct xe_eu_stall_data_stream *stream,
--- 
-2.48.1
+I think we just need to not to reset it to false here. I took out this line
+in v3 I sent.
 
+> > > >
+> > > > >	stream->data_drop.reported_to_user = false;
+> > > > >	bitmap_zero(stream->data_drop.mask, XE_MAX_DSS_FUSE_BITS);
+> > > > >
+> > > > > @@ -717,7 +739,7 @@ static void eu_stall_data_buf_poll_work_fn(struct work_struct *work)
+> > > > >		container_of(work, typeof(*stream), buf_poll_work.work);
+> > > > >	struct xe_gt *gt = stream->gt;
+> > > > >
+> > > > > -	if (eu_stall_data_buf_poll(stream)) {
+> > > > > +	if (stream->reset_detected || eu_stall_data_buf_poll(stream)) {
+> > > > >		stream->pollin = true;
+> > > > >		wake_up(&stream->poll_wq);
+> > > > >	}
+> > > > > --
+> > > > > 2.43.0
+> > > > >
