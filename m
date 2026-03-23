@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05913EC01B4
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78D4EEC01A9
 	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 09:31:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE40110E349;
-	Mon, 23 Mar 2026 09:31:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EBAB10E3F5;
+	Mon, 23 Mar 2026 09:31:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cMXCjgbW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IJG1Txq/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDF1210E4B3
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 09:31:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C52410E349
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 09:31:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774258287; x=1805794287;
+ t=1774258294; x=1805794294;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=g2mVTRAWWSADwf1IwqbpDI5aysFi8c5on0AwIsAFhAw=;
- b=cMXCjgbW/B3VbNAPQsm8NzdtrB5dJzdAl7d/Y4ei/9NSlI6LGd/29UCJ
- /go1ykNLa0HMvVTYWTvxMDw+FOlDeKJIFj3x9LD9TSHkOyZBOg8GHg/pg
- TGwF4IZGjr4ERjezX99CSKTi5Ef77MDIAzqk4uAeFs1Iix6puvqft1JPj
- WBfoFyBuZIioHe+c027H97kqeie1GIOQt/v1lJ270M70vKXSGkT72F+sd
- Rm3xa3W82fhsVsdV4nafAnTos0WzHQZOaqM2E2L2gT0y+IhIhjbKV1PTb
- YuVzj7DGVdr+bySyajmQ8kmR3GVoDRVEQmLoTdAXTADX7BN3/FT9XExkC A==;
-X-CSE-ConnectionGUID: z9eVeJqVRrKqNPMH3lIgxg==
-X-CSE-MsgGUID: 990sdXQYSyi+S8iS8i0Bjg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11737"; a="75221761"
-X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="75221761"
+ bh=8i6vZyUqEPxKvrVFfP0TioVDDb3gNSx9cKw0AjRDkw4=;
+ b=IJG1Txq/lzKO2HNzfOpugl+Kna4iHpEMVFosJJHCv1wWUbV/WsCZsvw5
+ MSnYgmVYDwhvxYx6lowFedonRT9C7tTxhd8ATJlO2HUa7TnJ3kU77ae59
+ SE6zXG7X7NtUpe09XS/lAT07SrSIFULLBxJDNdF2axC9MnF/u8eJERXJt
+ MOM7n3YibmMl5HX01ABHEJ1VGoFURmzz2qDqK3JM+buYDqqR+wyfJRqrB
+ xZTPDItfp64lGk7eIUKtRt0Gf/rdnvChd9szLP5NIB73IhUKxKJBRCKm6
+ MtsCRDASEncJenr7644iINVa47NOuLYXeYpImqpP+V44QsaIYnL3o7k6O g==;
+X-CSE-ConnectionGUID: uhre6cSrTHyvdzS0Wn38WQ==
+X-CSE-MsgGUID: Bn1WVHh2QqKzdd4ioC3u+Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11737"; a="75221769"
+X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="75221769"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2026 02:31:27 -0700
-X-CSE-ConnectionGUID: phqnbE2DTGeUmSu/1KVhTA==
-X-CSE-MsgGUID: GBw/3kh2S3eP7AneXZPofQ==
+ 23 Mar 2026 02:31:32 -0700
+X-CSE-ConnectionGUID: QicVpVugQNCTNjDuxx00+A==
+X-CSE-MsgGUID: yIj+PYU4TzCrN91ROPbJAQ==
 X-ExtLoop1: 1
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2026 02:31:26 -0700
+ 23 Mar 2026 02:31:31 -0700
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
  thomas.hellstrom@linux.intel.com
-Subject: [PATCH v7 07/12] drm/xe/madvise: Block imported and exported dma-bufs
-Date: Mon, 23 Mar 2026 15:00:56 +0530
-Message-ID: <20260323093106.2986900-8-arvind.yadav@intel.com>
+Subject: [PATCH v7 10/12] drm/xe/bo: Add purgeable shrinker state helpers
+Date: Mon, 23 Mar 2026 15:00:59 +0530
+Message-ID: <20260323093106.2986900-11-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260323093106.2986900-1-arvind.yadav@intel.com>
 References: <20260323093106.2986900-1-arvind.yadav@intel.com>
@@ -67,106 +67,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Prevent marking imported or exported dma-bufs as purgeable.
-External devices may be accessing these buffers without our
-knowledge, making purging unsafe.
+Encapsulate TTM purgeable flag updates and shrinker page accounting
+into helper functions to prevent desynchronization between the TTM
+tt->purgeable flag and the shrinker's page bucket counters.
 
-Check drm_gem_is_imported() for buffers created by other
-drivers and obj->dma_buf for buffers exported to other
-drivers. Silently skip these BOs during madvise processing.
+Without these helpers, direct manipulation of xe_ttm_tt->purgeable
+risks forgetting to update the corresponding shrinker counters,
+leading to incorrect memory pressure calculations.
 
-This follows drm_gem_shmem's purgeable implementation and
-prevents data corruption from purging actively-used shared
-buffers.
-
-v3:
-   - Addresses review feedback from Matt Roper about handling
-     imported/exported BOs correctly in the purgeable BO
-     implementation.
+Update purgeable BO state to PURGED after successful shrinker purge
+for DONTNEED BOs.
 
 v4:
-   - Check should be add to xe_vm_madvise_purgeable_bo.
+  - @madv_purgeable atomic_t → u32 change across all relevant
+    patches (Matt)
 
 v5:
-   - Rename xe_bo_is_external_dmabuf() to xe_bo_is_dmabuf_shared()
-     for clarity (Thomas)
-   - Update comments to clarify why both imports and exports
-     are unsafe to purge.
+  - Update purgeable BO state to PURGED after a successful shrinker
+    purge for DONTNEED BOs.
+  - Split ghost BO and zero-refcount handling in xe_bo_shrink() (Thomas)
 
 v6:
-  - No PTEs to zap for shared dma-bufs.
+  - Create separate patch for 'Split ghost BO and zero-refcount
+    handling'. (Thomas)
+
+v7:
+  - Merge xe_bo_set_purgeable_shrinker() and xe_bo_clear_purgeable_shrinker()
+    into a single static helper xe_bo_set_purgeable_shrinker(bo, new_state)
+    called automatically from xe_bo_set_purgeable_state(). Callers no longer
+    need to manage shrinker accounting separately. (Thomas)
 
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm_madvise.c | 38 ++++++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+ drivers/gpu/drm/xe/xe_bo.c | 43 +++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 42 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index ed1940da7739..340e83764a76 100644
---- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-+++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -185,6 +185,34 @@ static void madvise_pat_index(struct xe_device *xe, struct xe_vm *vm,
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 83a1d1ca6cc6..85e42e785ebe 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -835,6 +835,42 @@ static int xe_bo_move_notify(struct xe_bo *bo,
+ 	return 0;
  }
  
-+
 +/**
-+ * xe_bo_is_dmabuf_shared() - Check if BO is shared via dma-buf
++ * xe_bo_set_purgeable_shrinker() - Update shrinker accounting for purgeable state
 + * @bo: Buffer object
++ * @new_state: New purgeable state being set
 + *
-+ * Prevent marking imported or exported dma-bufs as purgeable.
-+ * For imported BOs, Xe doesn't own the backing store and cannot
-+ * safely reclaim pages (exporter or other devices may still be
-+ * using them). For exported BOs, external devices may have active
-+ * mappings we cannot track.
-+ *
-+ * Return: true if BO is imported or exported, false otherwise
++ * Transfers pages between shrinkable and purgeable buckets when the BO
++ * purgeable state changes. Called automatically from xe_bo_set_purgeable_state().
 + */
-+static bool xe_bo_is_dmabuf_shared(struct xe_bo *bo)
++static void xe_bo_set_purgeable_shrinker(struct xe_bo *bo,
++					 enum xe_madv_purgeable_state new_state)
 +{
-+	struct drm_gem_object *obj = &bo->ttm.base;
++	struct ttm_buffer_object *ttm_bo = &bo->ttm;
++	struct ttm_tt *tt = ttm_bo->ttm;
++	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
++	struct xe_ttm_tt *xe_tt;
++	long tt_pages;
 +
-+	/* Imported: exporter owns backing store */
-+	if (drm_gem_is_imported(obj))
-+		return true;
++	xe_bo_assert_held(bo);
 +
-+	/* Exported: external devices may be accessing */
-+	if (obj->dma_buf)
-+		return true;
++	if (!tt || !ttm_tt_is_populated(tt))
++		return;
 +
-+	return false;
++	xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
++	tt_pages = tt->num_pages;
++
++	if (!xe_tt->purgeable && new_state == XE_MADV_PURGEABLE_DONTNEED) {
++		xe_tt->purgeable = true;
++		/* Transfer pages from shrinkable to purgeable count */
++		xe_shrinker_mod_pages(xe->mem.shrinker, -tt_pages, tt_pages);
++	} else if (xe_tt->purgeable && new_state == XE_MADV_PURGEABLE_WILLNEED) {
++		xe_tt->purgeable = false;
++		/* Transfer pages from purgeable to shrinkable count */
++		xe_shrinker_mod_pages(xe->mem.shrinker, tt_pages, -tt_pages);
++	}
 +}
 +
  /**
-  * enum xe_bo_vmas_purge_state - VMA purgeable state aggregation
+  * xe_bo_set_purgeable_state() - Set BO purgeable state with validation
+  * @bo: Buffer object
+@@ -842,7 +878,8 @@ static int xe_bo_move_notify(struct xe_bo *bo,
   *
-@@ -234,6 +262,10 @@ static enum xe_bo_vmas_purge_state xe_bo_all_vmas_dontneed(struct xe_bo *bo)
+  * Sets the purgeable state with lockdep assertions and validates state
+  * transitions. Once a BO is PURGED, it cannot transition to any other state.
+- * Invalid transitions are caught with xe_assert().
++ * Invalid transitions are caught with xe_assert(). Shrinker page accounting
++ * is updated automatically.
+  */
+ void xe_bo_set_purgeable_state(struct xe_bo *bo,
+ 			       enum xe_madv_purgeable_state new_state)
+@@ -861,6 +898,7 @@ void xe_bo_set_purgeable_state(struct xe_bo *bo,
+ 			new_state != XE_MADV_PURGEABLE_PURGED));
  
- 	xe_bo_assert_held(bo);
+ 	bo->madv_purgeable = new_state;
++	xe_bo_set_purgeable_shrinker(bo, new_state);
+ }
  
-+	/* Shared dma-bufs cannot be purgeable */
-+	if (xe_bo_is_dmabuf_shared(bo))
-+		return XE_BO_VMAS_STATE_WILLNEED;
-+
- 	drm_gem_for_each_gpuvm_bo(vm_bo, obj) {
- 		drm_gpuvm_bo_for_each_va(gpuva, vm_bo) {
- 			struct xe_vma *vma = gpuva_to_vma(gpuva);
-@@ -335,6 +367,12 @@ static void __maybe_unused madvise_purgeable(struct xe_device *xe,
- 		/* BO must be locked before modifying madv state */
- 		xe_bo_assert_held(bo);
+ /**
+@@ -1243,6 +1281,9 @@ long xe_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
+ 			lret = xe_bo_move_notify(xe_bo, ctx);
+ 		if (!lret)
+ 			lret = xe_bo_shrink_purge(ctx, bo, scanned);
++		if (lret > 0 && xe_bo_madv_is_dontneed(xe_bo))
++			xe_bo_set_purgeable_state(xe_bo,
++						  XE_MADV_PURGEABLE_PURGED);
+ 		goto out_unref;
+ 	}
  
-+		/* Skip shared dma-bufs - no PTEs to zap */
-+		if (xe_bo_is_dmabuf_shared(bo)) {
-+			vmas[i]->skip_invalidation = true;
-+			continue;
-+		}
-+
- 		/*
- 		 * Once purged, always purged. Cannot transition back to WILLNEED.
- 		 * This matches i915 semantics where purged BOs are permanently invalid.
 -- 
 2.43.0
 
