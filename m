@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D573EC01A9
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 09:31:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CDCC7EC01B3
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 09:31:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3685D10E48A;
-	Mon, 23 Mar 2026 09:31:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91DD010E48F;
+	Mon, 23 Mar 2026 09:31:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WevPovvW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N8xt3o2s";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DB6A10E349
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 09:31:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BDF5010E3E3
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 09:31:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774258279; x=1805794279;
+ t=1774258282; x=1805794282;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GBV45AU1hAfUWH6RiqPaYDmtc9mbqvf8yKNMk/ye9C0=;
- b=WevPovvW61nDZFaWHoaEhksypw/Y4Zj4045U2uTMHAFt5HUKRSw8U4h3
- t0KF8cUazX5aRCdRQ2ERkkDLwY4cnOj43NftUnaRNB0/Conv+J/q1MCwj
- GFOYXii7WVY0el8MjRNRYIaHCiIx8Rdn2JPF74A4I+ytGF3941niMrVxC
- ASqBJy0AghXwdZqiThEoGEqEG22D5COHo2ZhbyOquvgTGSUVjFcNXIZLF
- xGMgjkzvOnxxhrB39ONI6jx6UgGHCMnNLctfXRziaX3eNFQt2eTl65l0S
- O7UnTowP6v9G3IszjpqyudyAg/AzylDQwUyLhAYlm9HRato3+LPR+x0ig w==;
-X-CSE-ConnectionGUID: 7hlytxaFTcWNnxNWARVlqQ==
-X-CSE-MsgGUID: Vx0VZUvlSWS+ck8SGmKMcw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11737"; a="75221749"
-X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="75221749"
+ bh=OCWnvDJTHbVn/oudB8yq0wzfqfTe9G1NhqExXKif7ZI=;
+ b=N8xt3o2syOmE51n4Tjl2UNULRVh7mq9fCpgrFeRzZLBVSEyUrfUdK0f4
+ EAD7zZUh+dNylblFWX3KUrE4sHTjPCQEYK6yzqy17vA+hSI5kBienqZn6
+ UQRlpE8g3wGzwtcUKu08CGegN/v9iM2Gu/xxl8sKWx3wipetbxhVnYtvH
+ zef9Nt11V3+1uJiuYHAsAe0rLstQfIcafcts37n8s0VaKO7vCqO8VUS8Q
+ 06Hl3Ch/m1XZO0Bs+/W1AkMWX3NapbyDRu5g1FcB0lDLgXl2tz3eOTD9h
+ HjDqayThX7zxrL16UaOZ2v7x2js9/ot4ECERnaLDMgmhgHyhJ8/ikgDdT w==;
+X-CSE-ConnectionGUID: fgmHf+kFQfyE3wijEpLsuQ==
+X-CSE-MsgGUID: 48W5nLlPTEaXjkSFU6RN9w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11737"; a="75221755"
+X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="75221755"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2026 02:31:19 -0700
-X-CSE-ConnectionGUID: sguVFDwtQsqk44iPd1+h+Q==
-X-CSE-MsgGUID: vCrdOmlxQLqs/bN8BBa6Lw==
+ 23 Mar 2026 02:31:22 -0700
+X-CSE-ConnectionGUID: SEIAVdfaTL+z1vi79Dn0UQ==
+X-CSE-MsgGUID: fxyGAIctQs68CLuyXtdVeg==
 X-ExtLoop1: 1
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2026 02:31:17 -0700
+ 23 Mar 2026 02:31:21 -0700
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
  thomas.hellstrom@linux.intel.com
-Subject: [PATCH v7 02/12] drm/xe/bo: Add purgeable bo state tracking and field
- madv to xe_bo
-Date: Mon, 23 Mar 2026 15:00:51 +0530
-Message-ID: <20260323093106.2986900-3-arvind.yadav@intel.com>
+Subject: [PATCH v7 04/12] drm/xe/bo: Block CPU faults to purgeable buffer
+ objects
+Date: Mon, 23 Mar 2026 15:00:53 +0530
+Message-ID: <20260323093106.2986900-5-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260323093106.2986900-1-arvind.yadav@intel.com>
 References: <20260323093106.2986900-1-arvind.yadav@intel.com>
@@ -68,139 +68,92 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add infrastructure for tracking purgeable state of buffer objects.
-This includes:
+Block CPU page faults to buffer objects marked as purgeable (DONTNEED)
+or already purged. Once a BO is marked DONTNEED, its contents can be
+discarded by the kernel at any time, making access undefined behavior.
+Return VM_FAULT_SIGBUS immediately to fail consistently instead of
+allowing erratic behavior where access sometimes works (if not yet
+purged) and sometimes fails (if purged).
 
-Introduce enum xe_madv_purgeable_state with three states:
-   - XE_MADV_PURGEABLE_WILLNEED (0): BO is needed and should not be
-     purged. This is the default state for all BOs.
+For DONTNEED BOs:
+- Block new CPU faults with SIGBUS to prevent undefined behavior.
+- Existing CPU PTEs may still work until TLB flush, but new faults
+  fail immediately.
 
-   - XE_MADV_PURGEABLE_DONTNEED (1): BO is not currently needed and
-     can be purged by the kernel under memory pressure to reclaim
-     resources. Only non-shared BOs can be marked as DONTNEED.
+For PURGED BOs:
+- Backing store has been reclaimed, making CPU access invalid.
+- Without this check, accessing existing mmap mappings would trigger
+  xe_bo_fault_migrate() on freed backing store, causing kernel hangs
+  or crashes.
 
-   - XE_MADV_PURGEABLE_PURGED (2): BO has been purged by the kernel.
-     Accessing a purged BO results in error. Follows i915 semantics
-     where once purged, the BO remains permanently invalid ("once
-     purged, always purged").
+The purgeable check is added to both CPU fault paths:
+- Fastpath (xe_bo_cpu_fault_fastpath): Returns VM_FAULT_SIGBUS immediately
+  under dma-resv lock, preventing attempts to migrate/validate
+  DONTNEED/purged pages.
+- Slowpath (xe_bo_cpu_fault): Returns -EFAULT under drm_exec lock,
+  converted to VM_FAULT_SIGBUS.
 
-Add madv_purgeable field to struct xe_bo for state tracking
-  of purgeable state across concurrent access paths
+This matches i915 semantics for purged buffer handling.
 
 v2:
-  - Add xe_bo_is_purged() helper, improve state documentation
+  - Added xe_bo_is_purged(bo) instead of atomic_read.
+  - Avoids leaks and keeps drm_dev_exit() while returning.
 
 v3:
-  - Add the kernel doc(Matthew Brost)
-  - Add the new helpers xe_bo_madv_is_dontneed(Matthew Brost)
+  - Move xe_bo_is_purged check under a dma-resv lock (Matthew Brost)
 
 v4:
-  - @madv_purgeable atomic_t → u32 change across all relevant
-    patches (Matt)
+  - Add purged check to fastpath (xe_bo_cpu_fault_fastpath) to prevent
+    hang when accessing existing mmap of purged BO.
 
-v5:
-  - Add locking documentation to madv_purgeable field comment (Matt)
+v6:
+  - Block CPU faults to DONTNEED BOs with VM_FAULT_SIGBUS. (Thomas, Matt)
 
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.h       | 56 ++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_bo_types.h |  6 ++++
- 2 files changed, 62 insertions(+)
+ drivers/gpu/drm/xe/xe_bo.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 2cbac16f7db7..fb5541bdf602 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -87,6 +87,28 @@
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index b6055bb4c578..da18b43650e3 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1979,6 +1979,16 @@ static vm_fault_t xe_bo_cpu_fault_fastpath(struct vm_fault *vmf, struct xe_devic
+ 	if (!dma_resv_trylock(tbo->base.resv))
+ 		goto out_validation;
  
- #define XE_PCI_BARRIER_MMAP_OFFSET	(0x50 << XE_PTE_SHIFT)
- 
-+/**
-+ * enum xe_madv_purgeable_state - Buffer object purgeable state enumeration
-+ *
-+ * This enum defines the possible purgeable states for a buffer object,
-+ * allowing userspace to provide memory usage hints to the kernel for
-+ * better memory management under pressure.
-+ *
-+ * @XE_MADV_PURGEABLE_WILLNEED: The buffer object is needed and should not be purged.
-+ * This is the default state.
-+ * @XE_MADV_PURGEABLE_DONTNEED: The buffer object is not currently needed and can be
-+ * purged by the kernel under memory pressure.
-+ * @XE_MADV_PURGEABLE_PURGED: The buffer object has been purged by the kernel.
-+ *
-+ * Accessing a purged buffer will result in an error. Per i915 semantics,
-+ * once purged, a BO remains permanently invalid and must be destroyed and recreated.
-+ */
-+enum xe_madv_purgeable_state {
-+	XE_MADV_PURGEABLE_WILLNEED,
-+	XE_MADV_PURGEABLE_DONTNEED,
-+	XE_MADV_PURGEABLE_PURGED,
-+};
-+
- struct sg_table;
- 
- struct xe_bo *xe_bo_alloc(void);
-@@ -215,6 +237,40 @@ static inline bool xe_bo_is_protected(const struct xe_bo *bo)
- 	return bo->pxp_key_instance;
- }
- 
-+/**
-+ * xe_bo_is_purged() - Check if buffer object has been purged
-+ * @bo: The buffer object to check
-+ *
-+ * Checks if the buffer object's backing store has been discarded by the
-+ * kernel due to memory pressure after being marked as purgeable (DONTNEED).
-+ * Once purged, the BO cannot be restored and any attempt to use it will fail.
-+ *
-+ * Context: Caller must hold the BO's dma-resv lock
-+ * Return: true if the BO has been purged, false otherwise
-+ */
-+static inline bool xe_bo_is_purged(struct xe_bo *bo)
-+{
-+	xe_bo_assert_held(bo);
-+	return bo->madv_purgeable == XE_MADV_PURGEABLE_PURGED;
-+}
-+
-+/**
-+ * xe_bo_madv_is_dontneed() - Check if BO is marked as DONTNEED
-+ * @bo: The buffer object to check
-+ *
-+ * Checks if userspace has marked this BO as DONTNEED (i.e., its contents
-+ * are not currently needed and can be discarded under memory pressure).
-+ * This is used internally to decide whether a BO is eligible for purging.
-+ *
-+ * Context: Caller must hold the BO's dma-resv lock
-+ * Return: true if the BO is marked DONTNEED, false otherwise
-+ */
-+static inline bool xe_bo_madv_is_dontneed(struct xe_bo *bo)
-+{
-+	xe_bo_assert_held(bo);
-+	return bo->madv_purgeable == XE_MADV_PURGEABLE_DONTNEED;
-+}
-+
- static inline void xe_bo_unpin_map_no_vm(struct xe_bo *bo)
- {
- 	if (likely(bo)) {
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index d4fe3c8dca5b..ff8317bfc1ae 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -108,6 +108,12 @@ struct xe_bo {
- 	 * from default
- 	 */
- 	u64 min_align;
-+
-+	/**
-+	 * @madv_purgeable: user space advise on BO purgeability, protected
-+	 * by BO's dma-resv lock.
++	/*
++	 * Reject CPU faults to purgeable BOs. DONTNEED BOs can be purged
++	 * at any time, and purged BOs have no backing store. Either case
++	 * is undefined behavior for CPU access.
 +	 */
-+	u32 madv_purgeable;
- };
++	if (xe_bo_madv_is_dontneed(bo) || xe_bo_is_purged(bo)) {
++		ret = VM_FAULT_SIGBUS;
++		goto out_unlock;
++	}
++
+ 	if (xe_ttm_bo_is_imported(tbo)) {
+ 		ret = VM_FAULT_SIGBUS;
+ 		drm_dbg(&xe->drm, "CPU trying to access an imported buffer object.\n");
+@@ -2069,6 +2079,15 @@ static vm_fault_t xe_bo_cpu_fault(struct vm_fault *vmf)
+ 		if (err)
+ 			break;
  
- #endif
++		/*
++		 * Reject CPU faults to purgeable BOs. DONTNEED BOs can be
++		 * purged at any time, and purged BOs have no backing store.
++		 */
++		if (xe_bo_madv_is_dontneed(bo) || xe_bo_is_purged(bo)) {
++			err = -EFAULT;
++			break;
++		}
++
+ 		if (xe_ttm_bo_is_imported(tbo)) {
+ 			err = -EFAULT;
+ 			drm_dbg(&xe->drm, "CPU trying to access an imported buffer object.\n");
 -- 
 2.43.0
 
