@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96DB7EC01B3
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 09:31:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFE5CEC01A9
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 09:31:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5CD7910E3F5;
-	Mon, 23 Mar 2026 09:31:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75B2210E349;
+	Mon, 23 Mar 2026 09:31:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XbzYTeqI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eSwtO6Q2";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA65A10E349
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 09:31:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5327010E349
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 09:31:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774258275; x=1805794275;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=wi8Dyp/3qVxd7Q8jZvruMxy+JR6+NYft4UmJOV82FPM=;
- b=XbzYTeqIPSuB/UJOW/yddA4g3wNPzdmrHvchY39HOx/ZOBzZRXpGrYin
- ZIiL7jx029LZd+hPlf+87Gr1PZY5Nvzfch/UTpHLFpx1Cts5tVK/dzUmL
- uUYogvA62EFD9C0UbLOOWWpSqVSGUDtaNzGhFaowqK9zZcR8aChff9s8d
- ajSbun87qukfVz0WqIKYyPKPWa6ITTGUpZ0T1PDab99A3alp/hVExIzmJ
- TXcKoYKFCsg+UO1Ebq3X9S/ZI1q52YNiieV5p5ppONV9gbv5hcR8SUu12
- rhVM80tOWIYU+FZwAtiAGCwSYBQgyKZuuXoLgEIXWdXbk9xP0cZTO/oJ8 w==;
-X-CSE-ConnectionGUID: O2Das/KmR7ivJAXtZ+bGeg==
-X-CSE-MsgGUID: J5ACyz2FRoalDPdk0COJNg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11737"; a="75221739"
-X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="75221739"
+ t=1774258277; x=1805794277;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=hQhfdq6MiVGVwcByMLrrM4PKagsZzZFQHcE1I/eoprc=;
+ b=eSwtO6Q2xrQXLO9OUuEpQy0VgggZvaSkee6Oj+mTkNmIgAi7B6bpLZvq
+ fhEFl5fLnyvsCu/Snu2F6GaOjNfjVGJt2YNb0p98tKsCFJx0y6a/6TXA5
+ JlcNzRWPIXy2JS6iiW23DfUQKqIfEzcNUhk/XJrDlw/0VByOcDEUf4HK4
+ 3BOih4DDXyRxvsm3DMrok/Z8SONHIACr85WGuKGd1ML75D5eOTMQFtKfU
+ +L3Wsnmbu9tkFbiKYaGGguqExqYOdpK2bBkpbujde/J1dwdFWWm3JiGzx
+ ifqlwQHcNthVFQQIjq3d/qUda0xTJfRE21uk7c1twlv2LrMdSDrlQGKXS A==;
+X-CSE-ConnectionGUID: PDDQhxDSR/uq1RCL4wplYw==
+X-CSE-MsgGUID: c/OrLyv1RWyKJowlrNMiVQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11737"; a="75221745"
+X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="75221745"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2026 02:31:15 -0700
-X-CSE-ConnectionGUID: WPYGKFS+SbGZb+SUb0pPHg==
-X-CSE-MsgGUID: McSurbN8TNGBGHxzuHeMCg==
+ 23 Mar 2026 02:31:17 -0700
+X-CSE-ConnectionGUID: P+5c8wkDSOe8xJqTlPBkdA==
+X-CSE-MsgGUID: I6ouCyvxQj+OoR1UxsWFlQ==
 X-ExtLoop1: 1
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2026 02:31:13 -0700
+ 23 Mar 2026 02:31:15 -0700
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
- thomas.hellstrom@linux.intel.com
-Subject: [PATCH v7 00/12] drm/xe/madvise: Add support for purgeable buffer
+ thomas.hellstrom@linux.intel.com, Jose Souza <jose.souza@intel.com>
+Subject: [PATCH v7 01/12] drm/xe/uapi: Add UAPI support for purgeable buffer
  objects
-Date: Mon, 23 Mar 2026 15:00:49 +0530
-Message-ID: <20260323093106.2986900-1-arvind.yadav@intel.com>
+Date: Mon, 23 Mar 2026 15:00:50 +0530
+Message-ID: <20260323093106.2986900-2-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260323093106.2986900-1-arvind.yadav@intel.com>
+References: <20260323093106.2986900-1-arvind.yadav@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=yes
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,189 +68,177 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch series introduces comprehensive support for purgeable buffer objects
-in the Xe driver, enabling userspace to provide memory usage hints for better
-memory management under system pressure.
+Extend the DRM_XE_MADVISE ioctl to support purgeable buffer object
+management by adding DRM_XE_VMA_ATTR_PURGEABLE_STATE attribute type.
 
-Overview:
+This allows userspace applications to provide memory usage hints to
+the kernel for better memory management under pressure:
 
-Purgeable memory allows applications to mark buffer objects as "not currently
-needed" (DONTNEED), making them eligible for kernel reclamation during memory
-pressure. This helps prevent OOM conditions and enables more efficient GPU
-memory utilization for workloads with temporary or regeneratable data (caches,
-intermediate results, decoded frames, etc.).
+- WILLNEED: Buffer is needed and should not be purged. If the BO was
+  previously purged, retained field returns 0 indicating backing store
+  was lost (once purged, always purged semantics matching i915).
 
-Purgeable BO Lifecycle:
-1. WILLNEED (default): BO actively needed, kernel preserves backing store
-2. DONTNEED (user hint): BO contents discardable, eligible for purging
-3. PURGED (kernel action): Backing store reclaimed during memory pressure
+- DONTNEED: Buffer is not currently needed and may be purged by the
+  kernel under memory pressure to free resources. Only applies to
+  non-shared BOs.
 
-Key Design Principles:
-  - i915 compatibility: "Once purged, always purged" semantics - purged BOs
-    remain permanently invalid and must be destroyed/recreated
-  - Per-VMA state tracking: Each VMA tracks its own purgeable state, BO is
-    only marked DONTNEED when ALL VMAs across ALL VMs agree (Thomas Hellström)
-  - Safety first: Imported/exported dma-bufs blocked from purgeable state -
-    no visibility into external device usage (Matt Roper)
-  - Multiple protection layers: Validation in madvise, VM bind, mmap, CPU
-    and GPU fault handlers. GPU page faults on DONTNEED BOs are rejected in
-    xe_pagefault_begin() to preserve the GPU PTE invalidation done at madvise
-    time; without this the rebind path would re-map real pages and undo the
-    PTE zap, preventing the shrinker from ever reclaiming the BO.
-  - Correct GPU PTE zapping: madvise_purgeable() explicitly sets
-    skip_invalidation per VMA (false for DONTNEED, true for WILLNEED, purged
-    and dmabuf-shared BOs) so DONTNEED always triggers a GPU PTE zap
-    regardless of prior madvise state.
-  - Scratch PTE support: Fault-mode VMs use scratch pages for safe zero reads
-    on purged BO access.
-  - TTM shrinker integration: Encapsulated helpers manage xe_ttm_tt->purgeable
-    flag and shrinker page accounting (shrinkable vs purgeable buckets)
+  To prevent undefined behavior, the following operations are blocked
+  while a BO is in DONTNEED state:
+  - New mmap() operations return -EBUSY
+  - VM_BIND operations return -EBUSY
+  - New dma-buf exports return -EBUSY
+  - CPU page faults return SIGBUS
+  - GPU page faults fail with -EACCES
 
-v2 Changes:
-  - Reordered patches: Moved shared BO helper before main implementation for
-    proper dependency order
-  - Fixed reference counting in mmap offset validation (use drm_gem_object_put)
-  - Removed incorrect claims about madvise(WILLNEED) restoring purged BOs
-  - Fixed error code documentation inconsistencies
-  - Initialize purge_state_val fields to prevent kernel memory leaks
-  - Use xe_bo_trigger_rebind() for async TLB invalidation (Thomas Hellström)
-  - Add NULL rebind with scratch PTEs for fault mode (Thomas Hellström)
-  - Implement i915-compatible retained field logic (Thomas Hellström)
-  - Skip BO validation for purged BOs in page fault handler (crash fix)
-  - Add scratch VM check in page fault path (non-scratch VMs fail fault)
+  This ensures applications cannot use a BO while marked as DONTNEED,
+  preventing erratic behavior when the kernel purges the backing store.
 
-v3 Changes (addressing Matt and Thomas Hellström feedback):
-  - Per-VMA purgeable state tracking: Added xe_vma->purgeable_state field
-  - Complete VMA check: xe_bo_all_vmas_dontneed() walks all VMAs across all
-    VMs to ensure unanimous DONTNEED before marking BO purgeable
-  - VMA unbind recheck: Added xe_bo_recheck_purgeable_on_vma_unbind() to
-    re-evaluate BO state when VMAs are destroyed
-  - Block external dma-bufs: Added xe_bo_is_external_dmabuf() check using
-    drm_gem_is_imported() and obj->dma_buf to prevent purging imported/exported BOs
-  - Consistent lockdep enforcement: Added xe_bo_assert_held() to all helpers
-    that access madv_purgeable state
-  - Simplified page table logic: Renamed is_null to is_null_or_purged in
-    xe_pt_stage_bind_entry() - purged BOs treated identically to null VMAs
-  - Removed unnecessary checks: Dropped redundant "&& bo" check in xe_ttm_bo_purge()
-  - Xe-specific warnings: Changed drm_warn() to XE_WARN_ON() in purge path
-  - Moved purge checks under locks: Purge state validation now done after
-    acquiring dma-resv lock in vma_lock_and_validate() and xe_pagefault_begin()
-  - Race-free fault handling: Removed unlocked purge check from
-    xe_pagefault_handle_vma(), moved to locked xe_pagefault_begin()
-  - Shrinker helper functions: Added xe_bo_set_purgeable_shrinker() and
-    xe_bo_clear_purgeable_shrinker() to encapsulate TTM purgeable flag updates
-    and shrinker page accounting, improving code clarity and maintainability
+The implementation includes a 'retained' output field (matching i915's
+drm_i915_gem_madvise.retained) that indicates whether the BO's backing
+store still exists (1) or has been purged (0).
 
-v4 Changes (addressing Matt and Thomas Hellström feedback):
-  - UAPI: Removed '__u64 reserved' field from purge_state_val union to fit
-    16-byte size constraint (Matt)
-  - Changed madv_purgeable from atomic_t to u32 across all patches (Matt)
-  - CPU fault handling: Added purged check to fastpath (xe_bo_cpu_fault_fastpath)
-    to prevent hang when accessing existing mmap of purged BO
+Added DRM_XE_QUERY_CONFIG_FLAG_HAS_PURGING_SUPPORT flag to allow
+userspace to detect kernel support for purgeable buffer objects
+before attempting to use the feature.
 
-v5 Changes (addressing Matt and Thomas Hellström feedback):
-  - Add locking documentation to madv_purgeable field comment (Matt)
-  - Introduce xe_bo_set_purgeable_state() helper (void return) to centralize
-    madv_purgeable updates with xe_bo_assert_held() and state transition
-    validation using explicit enum checks (no transition out of PURGED) (Matt)
-  - Make xe_ttm_bo_purge() return int and propagate failures from
-    xe_bo_move(); handle xe_bo_trigger_rebind() failures (e.g. no_wait_gpu
-    paths) rather than silently ignoring (Matt)
-  - Replace drm_WARN_ON with xe_assert for better Xe-specific assertions (Matt)
-  - Hook purgeable handling into madvise_funcs[DRM_XE_VMA_ATTR_PURGEABLE_STATE]
-    instead of special-case path in xe_vm_madvise_ioctl() (Matt)
-  - Track purgeable retained return via xe_madvise_details and perform
-    copy_to_user() from xe_madvise_details_fini() after locks are dropped (Matt)
-  - Set madvise_funcs[DRM_XE_VMA_ATTR_PURGEABLE_STATE] to NULL with
-    __maybe_unused on madvise_purgeable() to maintain bisectability until
-    shrinker integration is complete in final patch (Matt)
-  - Call xe_bo_recheck_purgeable_on_vma_unbind() from xe_vma_destroy()
-    right after drm_gpuva_unlink() where we already hold the BO lock,
-    drop the trylock-based late destroy path (Matt)
-  - Move purgeable_state into xe_vma_mem_attr with the other madvise
-    attributes (Matt)
-  - Drop READ_ONCE since the BO lock already protects us (Matt)
-  - Keep returning false when there are no VMAs - otherwise we'd mark
-    BOs purgeable without any user hint (Matt)
-  -  Use struct xe_vma_lock_and_validate_flags instead of multiple bool
-    parameters to improve readability and prevent argument transposition (Matt)
-  - Fix LRU crash while running shrink test
-  - Skip xe_bo_validate() for purged BOs in xe_gpuvm_validate()
-  - Split ghost BO and zero-refcount handling in xe_bo_shrink() (Thomas)
+v2:
+  - Add PURGED state for read-only status, change ioctl to DRM_IOWR,
+    add retained field for i915 compatibility
 
-v6 Changes (addressing Jose Souza, Thomas Hellström and Matt Brost feedback):
-  - Document DONTNEED blocking behavior in uAPI: Clearly describe which
-    operations are blocked and with what error codes. (Thomas, Matt)
-  - Block VM_BIND to DONTNEED BOs: Return -EBUSY to prevent creating new
-    VMAs to purgeable BOs (undefined behavior). (Thomas, Matt)
-  - Block CPU faults to DONTNEED BOs: Return VM_FAULT_SIGBUS in both fastpath
-    and slowpath to prevent undefined behavior. (Thomas, Matt)
-  - Block new mmap() to DONTNEED/purged BOs: Return -EBUSY for DONTNEED,
-    -EINVAL for PURGED. (Thomas, Matt)
-  - Block dma-buf export of DONTNEED/purged BOs: Return -EBUSY for DONTNEED,
-    -EINVAL for PURGED. (Thomas, Matt)
-  - Fix state transition bug: xe_bo_all_vmas_dontneed() now returns enum to
-    distinguish NO_VMAS (preserve state) from WILLNEED (has active VMAs),
-    preventing incorrect DONTNEED → WILLNEED flip on last VMA unmap (Matt)
-  - Set skip_invalidation explicitly in madvise_purgeable() to ensure
-    DONTNEED always zaps GPU PTEs regardless of prior madvise state.
-  - Add DRM_XE_QUERY_CONFIG_FLAG_HAS_PURGING_SUPPORT for userspace
+v3:
+  - UAPI rule should not be changed (Matthew Brost)
+  - Make 'retained' a userptr (Matthew Brost)
+
+v4:
+  - You cannot make this part of the union (purge_state_val) larger
+    than the existing union (16 bytes). So just drop the '__u64 reserved'
+    field. (Matt)
+
+v5:
+  - Update UAPI documentation to clarify retained must be initialized
+    to 0(Thomas)
+
+v6:
+  - Document DONTNEED BO access blocking behavior to prevent undefined
+    behavior and clarify uAPI contract (Thomas, Matt)
+  - Add query flag DRM_XE_QUERY_CONFIG_FLAG_HAS_PURGING_SUPPORT for
     feature detection. (Jose)
+  - Rename retained to retained_ptr. (Jose)
 
-v7 Changes (addressing Thomas Hellström, Matt B and Jose feedback):
-  - mmap check moved from xe_gem_mmap_offset_ioctl() into a new
-    xe_gem_object_mmap() callback wrapping drm_gem_ttm_mmap(), with
-    interruptible lock (Thomas)
-  - dma-buf export lock made interruptible: xe_bo_lock(bo, true) (Thomas)
-  - vma_lock_and_validate_flags passed by value instead of pointer (reviewer)
-  - xe_bo_recompute_purgeable_state() simplified using enum value alignment
-    between xe_bo_vmas_purge_state and xe_madv_purgeable_state, with
-    static_assert to enforce the alignment (Thomas)
-  - Merge xe_bo_set_purgeable_shrinker/xe_bo_clear_purgeable_shrinker into
-    a single static xe_bo_set_purgeable_shrinker(bo, new_state) called
-    automatically from xe_bo_set_purgeable_state() (Thomas)
-  - Drop "drm/xe/bo: Skip zero-refcount BOs in shrinker" patch — ghost BO
-    path already handles this correctly (Thomas)
-  - Fix Engine memory CAT errors on scratch-page VMs (Matt Roper):
-    xe_pagefault_asid_to_vm() now accepts scratch VMs via
-    || xe_vm_has_scratch(vm); xe_pagefault_begin() checks DONTNEED/purged
-    before validate/migrate and signals skip_rebind to caller via bool*
-    out-parameter to avoid xe_vma_rebind() assert and PTE zap undo
-  - Add new patch 12: Accept canonical GPU addresses in xe_vm_madvise_ioctl()
-    using xe_device_uncanonicalize_addr() (Matt B)
-  - UAPI doc comment improvement. (Jose)
+v7:
+  - Updated UAPI documentation as suggested to reflect 'updated' value
+    instead of 'return'. (Jose)
 
-Arvind Yadav (11):
-  drm/xe/bo: Add purgeable bo state tracking and field madv to xe_bo
-  drm/xe/madvise: Implement purgeable buffer object support
-  drm/xe/bo: Block CPU faults to purgeable buffer objects
-  drm/xe/vm: Prevent binding of purged buffer objects
-  drm/xe/madvise: Implement per-VMA purgeable state tracking
-  drm/xe/madvise: Block imported and exported dma-bufs
-  drm/xe/bo: Block mmap of DONTNEED/purged BOs
-  drm/xe/dma_buf: Block export of DONTNEED/purged BOs
-  drm/xe/bo: Add purgeable shrinker state helpers
-  drm/xe/madvise: Enable purgeable buffer object IOCTL support
-  drm/xe/madvise: Accept canonical GPU addresses in xe_vm_madvise_ioctl
+Cc: Jose Souza <jose.souza@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+---
+ include/uapi/drm/xe_drm.h | 69 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 69 insertions(+)
 
-Himal Prasad Ghimiray (1):
-  drm/xe/uapi: Add UAPI support for purgeable buffer objects
-
- drivers/gpu/drm/xe/xe_bo.c         | 193 +++++++++++++++++--
- drivers/gpu/drm/xe/xe_bo.h         |  58 ++++++
- drivers/gpu/drm/xe/xe_bo_types.h   |   6 +
- drivers/gpu/drm/xe/xe_dma_buf.c    |  21 +++
- drivers/gpu/drm/xe/xe_pagefault.c  |  25 ++-
- drivers/gpu/drm/xe/xe_pt.c         |  40 +++-
- drivers/gpu/drm/xe/xe_query.c      |   2 +
- drivers/gpu/drm/xe/xe_svm.c        |   1 +
- drivers/gpu/drm/xe/xe_vm.c         | 100 ++++++++--
- drivers/gpu/drm/xe/xe_vm_madvise.c | 292 ++++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_vm_madvise.h |   3 +
- drivers/gpu/drm/xe/xe_vm_types.h   |  11 ++
- include/uapi/drm/xe_drm.h          |  69 +++++++
- 13 files changed, 778 insertions(+), 43 deletions(-)
-
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index f8b2afb20540..a59baf5add9a 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -429,6 +429,7 @@ struct drm_xe_query_config {
+ 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_CPU_ADDR_MIRROR	(1 << 2)
+ 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_NO_COMPRESSION_HINT (1 << 3)
+ 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_DISABLE_STATE_CACHE_PERF_FIX	(1 << 4)
++	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_PURGING_SUPPORT    (1 << 5)
+ #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
+ #define DRM_XE_QUERY_CONFIG_VA_BITS			3
+ #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
+@@ -2083,6 +2084,7 @@ struct drm_xe_query_eu_stall {
+  *  - DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC: Set preferred memory location.
+  *  - DRM_XE_MEM_RANGE_ATTR_ATOMIC: Set atomic access policy.
+  *  - DRM_XE_MEM_RANGE_ATTR_PAT: Set page attribute table index.
++ *  - DRM_XE_VMA_ATTR_PURGEABLE_STATE: Set purgeable state for BOs.
+  *
+  * Example:
+  *
+@@ -2115,6 +2117,7 @@ struct drm_xe_madvise {
+ #define DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC	0
+ #define DRM_XE_MEM_RANGE_ATTR_ATOMIC		1
+ #define DRM_XE_MEM_RANGE_ATTR_PAT		2
++#define DRM_XE_VMA_ATTR_PURGEABLE_STATE		3
+ 	/** @type: type of attribute */
+ 	__u32 type;
+ 
+@@ -2205,6 +2208,72 @@ struct drm_xe_madvise {
+ 			/** @pat_index.reserved: Reserved */
+ 			__u64 reserved;
+ 		} pat_index;
++
++		/**
++		 * @purge_state_val: Purgeable state configuration
++		 *
++		 * Used when @type == DRM_XE_VMA_ATTR_PURGEABLE_STATE.
++		 *
++		 * Configures the purgeable state of buffer objects in the specified
++		 * virtual address range. This allows applications to hint to the kernel
++		 * about bo's usage patterns for better memory management.
++		 *
++		 * By default all VMAs are in WILLNEED state.
++		 *
++		 * Supported values for @purge_state_val.val:
++		 *  - DRM_XE_VMA_PURGEABLE_STATE_WILLNEED (0): Marks BO as needed.
++		 *    If the BO was previously purged, the kernel sets the __u32 at
++		 *    @retained_ptr to 0 (backing store lost) so the application knows
++		 *    it must recreate the BO.
++		 *
++		 *  - DRM_XE_VMA_PURGEABLE_STATE_DONTNEED (1): Marks BO as not currently
++		 *    needed. Kernel may purge it under memory pressure to reclaim memory.
++		 *    Only applies to non-shared BOs. The kernel sets the __u32 at
++		 *    @retained_ptr to 1 if the backing store still exists (not yet purged),
++		 *    or 0 if it was already purged.
++		 *
++		 *    Important: Once marked as DONTNEED, touching the BO's memory
++		 *    is undefined behavior. It may succeed temporarily (before the
++		 *    kernel purges the backing store) but will suddenly fail once
++		 *    the BO transitions to PURGED state.
++		 *
++		 *    To transition back: use WILLNEED and check @retained_ptr —
++		 *    if 0, backing store was lost and the BO must be recreated.
++		 *
++		 *    The following operations are blocked in DONTNEED state to
++		 *    prevent the BO from being re-mapped after madvise:
++		 *    - New mmap() calls: Fail with -EBUSY
++		 *    - VM_BIND operations: Fail with -EBUSY
++		 *    - New dma-buf exports: Fail with -EBUSY
++		 *    - CPU page faults (existing mmap): Fail with SIGBUS
++		 *    - GPU page faults (fault-mode VMs): Fail with -EACCES
++		 */
++		struct {
++#define DRM_XE_VMA_PURGEABLE_STATE_WILLNEED	0
++#define DRM_XE_VMA_PURGEABLE_STATE_DONTNEED	1
++			/** @purge_state_val.val: value for DRM_XE_VMA_ATTR_PURGEABLE_STATE */
++			__u32 val;
++
++			/** @purge_state_val.pad: MBZ */
++			__u32 pad;
++			/**
++			 * @purge_state_val.retained_ptr: Pointer to a __u32 output
++			 * field for backing store status.
++			 *
++			 * Userspace must initialize the __u32 value at this address
++			 * to 0 before the ioctl. Kernel writes a __u32 after the
++			 * operation:
++			 * - 1 if backing store exists (not purged)
++			 * - 0 if backing store was purged
++			 *
++			 * If userspace fails to initialize to 0, ioctl returns -EINVAL.
++			 * This ensures a safe default (0 = assume purged) if kernel
++			 * cannot write the result.
++			 *
++			 * Similar to i915's drm_i915_gem_madvise.retained field.
++			 */
++			__u64 retained_ptr;
++		} purge_state_val;
+ 	};
+ 
+ 	/** @reserved: Reserved */
 -- 
 2.43.0
 
