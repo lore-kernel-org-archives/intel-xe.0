@@ -4,61 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B44E0EC01D4
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 11:45:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8104BEC01CD
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Mar 2026 11:52:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78F4610E101;
-	Mon, 23 Mar 2026 11:45:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F6B310E0F4;
+	Mon, 23 Mar 2026 11:52:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fbA1SyrL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MHB+FXa7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6931C10E101
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 11:45:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9EF1410E0F4
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Mar 2026 11:52:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774266355; x=1805802355;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=MgcS3/U8ZrsKJpzmqdTQZmnjGEwF3QHaCsobkjZMz1o=;
- b=fbA1SyrLDPOn6OUNVsPpgIUrzlHz7zymxJziWcBGazgtuZwzQ5OScFox
- KJ886DhTLRWTvqek8kRazJ4jhfehdLWSb2yu3NpacMa+6VN8iGGH1ZAv+
- jC56qMjbWvj2+1HJjZmBrS2yWDrJr5LVwoJ07liNRp62axKqA0YfMM69Q
- U0VEb5TyINrKFLLhmPdXk4e66yniaKdReBuTkyhEwnn/bbYBd/SwB4K0B
- phgBmgd+oSTeTn2A8wzaAxnH17wAx51PsiWvSL3RY0vXPfE1C3NAksyiu
- ahFrNXXMyT9lCYU8/x0TdsjrhjMnDwvvcNoWo/6DxtIL34EhKEu4M6YaM A==;
-X-CSE-ConnectionGUID: 598uneWNQXWmJSHxizJTyA==
-X-CSE-MsgGUID: Rbqh/0BnTmicvwG++eDnuQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11737"; a="86734300"
-X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="86734300"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2026 04:45:55 -0700
-X-CSE-ConnectionGUID: BaW+jAIUREScZ/HvLPG4NQ==
-X-CSE-MsgGUID: Ld/KNcjrSHCPDGunRMFkfA==
+ t=1774266750; x=1805802750;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=EEyQc2WUf3bJiS/Cimck+/ZCUDuoOy6KuoKWSeH5NF0=;
+ b=MHB+FXa7EMBfc4uQIS6RMGOoYy41GWyBiVmfRKVUJ65Rn/OfMUBRtLJD
+ sseoSSIyPKZ3s6NwZC0yqFizyY36otMoI1xqgmigjrpXECsnUqenGvJBy
+ lmGn/zGlosTcsu/3/nvPiVfu6VWPzdahVhUfW88o/SFtPBursPMmgIS2/
+ nQqavuwzswkOQszo7cCsLMaw9tOgpdCa9AR+ZAampW3YuTyPJwu3Fa2Tn
+ E6PbuEynGNSsledjmxPUtCKPJ93OIzSloxK3g5PuUWc80ROCtxhzVqzpd
+ UL4a0rgJA4/k3duVlA6kH/gvUk3zr5G3K+r6U7Fko6V7uuSP8l2CX/pcZ w==;
+X-CSE-ConnectionGUID: P+K4Wt9TTLKH3DDSEdXcRQ==
+X-CSE-MsgGUID: 6n6ZUCL5SISo2C/Mm6z56A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11737"; a="75168271"
+X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="75168271"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2026 04:52:27 -0700
+X-CSE-ConnectionGUID: oSzrqYAtQa6Apsu3a1khXg==
+X-CSE-MsgGUID: K9zoTTmeQfuUglINy5uRyg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="254478074"
-Received: from black.igk.intel.com ([10.91.253.5])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2026 04:45:52 -0700
-Date: Mon, 23 Mar 2026 12:45:49 +0100
-From: Raag Jadav <raag.jadav@intel.com>
-To: "Tauro, Riana" <riana.tauro@intel.com>
-Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
- rodrigo.vivi@intel.com, michal.wajdeczko@intel.com,
- matthew.d.roper@intel.com, umesh.nerlige.ramappa@intel.com,
- mallesh.koujalagi@intel.com, soham.purkait@intel.com,
- anoop.c.vijay@intel.com, aravind.iddamsetty@linux.intel.com
-Subject: Re: [PATCH v3 4/4] drm/xe/ras: Introduce correctable error handling
-Message-ID: <acEn7YTv53VZL6Jj@black.igk.intel.com>
-References: <20260312090657.4026013-1-raag.jadav@intel.com>
- <20260312090657.4026013-5-raag.jadav@intel.com>
- <3aa996d4-1ae2-4bdf-9a07-0c6c345e9328@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,137,1770624000"; d="scan'208";a="247035506"
+Received: from sinjan-super-server.iind.intel.com ([10.190.239.39])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2026 04:52:24 -0700
+From: Karthik Poosa <karthik.poosa@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: anshuman.gupta@intel.com, badal.nilawar@intel.com, rodrigo.vivi@intel.com,
+ raag.jadav@intel.com, riana.tauro@intel.com,
+ Karthik Poosa <karthik.poosa@intel.com>
+Subject: [PATCH v2] drm/xe/hwmon: Read accepted power limit for CRI
+Date: Mon, 23 Mar 2026 17:28:36 +0530
+Message-Id: <20260323115836.3737300-1-karthik.poosa@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3aa996d4-1ae2-4bdf-9a07-0c6c345e9328@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,265 +66,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Mar 19, 2026 at 07:30:06PM +0530, Tauro, Riana wrote:
-> On 3/12/2026 2:36 PM, Raag Jadav wrote:
-> > Add initial support for correctable error handling which is serviced
-> > using system controller event. Currently we only log the errors in
-> > dmesg but this serves as a foundation for RAS infrastructure and will
-> > be further extended to facilitate other RAS features.
-> > 
-> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
-> > ---
-> >   drivers/gpu/drm/xe/Makefile           |  1 +
-> >   drivers/gpu/drm/xe/xe_ras.c           | 89 +++++++++++++++++++++++++++
-> >   drivers/gpu/drm/xe/xe_ras.h           | 14 +++++
-> >   drivers/gpu/drm/xe/xe_ras_types.h     | 73 ++++++++++++++++++++++
-> >   drivers/gpu/drm/xe/xe_sysctrl_event.c |  3 +-
-> >   5 files changed, 179 insertions(+), 1 deletion(-)
-> >   create mode 100644 drivers/gpu/drm/xe/xe_ras.c
-> >   create mode 100644 drivers/gpu/drm/xe/xe_ras.h
-> >   create mode 100644 drivers/gpu/drm/xe/xe_ras_types.h
-> > 
-> > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> > index 373adb20afb2..9811cf732260 100644
-> > --- a/drivers/gpu/drm/xe/Makefile
-> > +++ b/drivers/gpu/drm/xe/Makefile
-> > @@ -113,6 +113,7 @@ xe-y += xe_bb.o \
-> >   	xe_pxp_submit.o \
-> >   	xe_query.o \
-> >   	xe_range_fence.o \
-> > +	xe_ras.o \
-> >   	xe_reg_sr.o \
-> >   	xe_reg_whitelist.o \
-> >   	xe_ring_ops.o \
-> > diff --git a/drivers/gpu/drm/xe/xe_ras.c b/drivers/gpu/drm/xe/xe_ras.c
-> > new file mode 100644
-> > index 000000000000..37a996a6abf8
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/xe/xe_ras.c
-> > @@ -0,0 +1,89 @@
-> > +// SPDX-License-Identifier: MIT
-> > +/*
-> > + * Copyright © 2026 Intel Corporation
-> > + */
-> > +
-> > +#include "xe_assert.h"
-> > +#include "xe_printk.h"
-> > +#include "xe_ras.h"
-> > +#include "xe_ras_types.h"
-> > +#include "xe_sysctrl.h"
-> > +#include "xe_sysctrl_event_types.h"
-> > +
-> > +/* Severity of detected errors  */
-> > +enum xe_ras_severity {
-> > +	XE_RAS_SEV_NOT_SUPPORTED = 0,
-> > +	XE_RAS_SEV_CORRECTABLE,
-> > +	XE_RAS_SEV_UNCORRECTABLE,
-> > +	XE_RAS_SEV_INFORMATIONAL,
-> > +	XE_RAS_SEV_MAX
-> > +};
-> > +
-> > +/* Major IP blocks/components where errors can originate */
-> > +enum xe_ras_component {
-> > +	XE_RAS_COMP_NOT_SUPPORTED = 0,
-> > +	XE_RAS_COMP_DEVICE_MEMORY,
-> > +	XE_RAS_COMP_CORE_COMPUTE,
-> > +	XE_RAS_COMP_RESERVED,
-> > +	XE_RAS_COMP_PCIE,
-> > +	XE_RAS_COMP_FABRIC,
-> > +	XE_RAS_COMP_SOC_INTERNAL,
-> > +	XE_RAS_COMP_MAX
-> > +};
-> > +
-> > +static const char *const xe_ras_severities[] = {
-> > +	[XE_RAS_SEV_NOT_SUPPORTED]		= "Not Supported",
-> > +	[XE_RAS_SEV_CORRECTABLE]		= "Correctable",
-> > +	[XE_RAS_SEV_UNCORRECTABLE]		= "Uncorrectable",
-> > +	[XE_RAS_SEV_INFORMATIONAL]		= "Informational",
-> > +};
-> > +static_assert(ARRAY_SIZE(xe_ras_severities) == XE_RAS_SEV_MAX);
-> > +
-> > +static const char *const xe_ras_components[] = {
-> > +	[XE_RAS_COMP_NOT_SUPPORTED]		= "Not Supported",
-> > +	[XE_RAS_COMP_DEVICE_MEMORY]		= "Device Memory",
-> > +	[XE_RAS_COMP_CORE_COMPUTE]		= "Core Compute",
-> > +	[XE_RAS_COMP_RESERVED]			= "Reserved",
-> > +	[XE_RAS_COMP_PCIE]			= "PCIe",
-> > +	[XE_RAS_COMP_FABRIC]			= "Fabric",
-> > +	[XE_RAS_COMP_SOC_INTERNAL]		= "SoC Internal",
-> > +};
-> > +static_assert(ARRAY_SIZE(xe_ras_components) == XE_RAS_COMP_MAX);
-> > +
-> > +static inline const char *sev_to_str(struct xe_device *xe, u32 sev)
-> > +{
-> > +	xe_assert(xe, sev < XE_RAS_SEV_MAX);
-> > +
-> > +	return sev < XE_RAS_SEV_MAX ? xe_ras_severities[sev] : "Unknown";
-> > +}
-> > +
-> > +static inline const char *comp_to_str(struct xe_device *xe, u32 comp)
-> > +{
-> > +	xe_assert(xe, comp < XE_RAS_COMP_MAX);
-> > +
-> > +	return comp < XE_RAS_COMP_MAX ? xe_ras_components[comp] : "Unknown";
-> > +}
-> > +
-> > +void xe_ras_event_log(struct xe_sysctrl *sc, struct xe_sysctrl_event_response *response)
-> > +{
-> > +	struct xe_ras_event_threshold_crossed *pending = (void *)&response->data;
-> > +	struct xe_ras_error *errors = pending->counters;
-> > +	struct xe_device *xe = sc_to_xe(sc);
-> > +	u32 cid, sev, comp, inst, cause;
-> > +	u8 tile;
-> > +
-> > +	xe_assert(xe, pending->ncounters < XE_RAS_NUM_COUNTERS);
-> > +	xe_warn(xe, "[RAS]: threshold crossed, %u new errors\n", pending->ncounters);
-> > +
-> > +	for (cid = 0; cid < pending->ncounters && cid < XE_RAS_NUM_COUNTERS; cid++) {
-> > +		sev = errors[cid].common.severity;
-> > +		comp = errors[cid].common.component;
-> > +
-> > +		tile = errors[cid].product.unit.tile;
-> > +		inst = errors[cid].product.unit.instance;
-> > +		cause = errors[cid].product.cause.cause;
-> > +
-> > +		xe_warn(xe, "[RAS]: Tile:%u Instance:%u Component:%s Error:%s Cause:%#x\n",
-> > +			tile, inst, comp_to_str(xe, sev), sev_to_str(xe, comp), cause);
-> 
-> We can have minimal logging here with only severity and component and add
-> additional logging
-> 
-> in following patches.
+Update xe_hwmon_pcode_read_power_limit() and
+xe_hwmon_pcode_rmw_power_limit() to read the accepted power limit for
+discrete platforms post CRI.
 
-I plan to remove it entirely once we have cper in place, but until that
-happens (and given the fragility of things) it'll good for debugging.
+For platforms before CRI only the last written pcode value was available.
+From CRI onwards, pcode exposes a new param2 value 2 that allows reading
+the accepted power limit by the hardware.
 
-> > +	}
-> > +}
-> > diff --git a/drivers/gpu/drm/xe/xe_ras.h b/drivers/gpu/drm/xe/xe_ras.h
-> > new file mode 100644
-> > index 000000000000..22f035fa498d
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/xe/xe_ras.h
-> > @@ -0,0 +1,14 @@
-> > +/* SPDX-License-Identifier: MIT */
-> > +/*
-> > + * Copyright © 2026 Intel Corporation
-> > + */
-> > +
-> > +#ifndef _XE_RAS_H_
-> > +#define _XE_RAS_H_
-> > +
-> > +struct xe_sysctrl;
-> > +struct xe_sysctrl_event_response;
-> > +
-> > +void xe_ras_event_log(struct xe_sysctrl *sc, struct xe_sysctrl_event_response *response);
-> > +
-> > +#endif
-> > diff --git a/drivers/gpu/drm/xe/xe_ras_types.h b/drivers/gpu/drm/xe/xe_ras_types.h
-> > new file mode 100644
-> > index 000000000000..2982c4696b6d
-> > --- /dev/null
-> > +++ b/drivers/gpu/drm/xe/xe_ras_types.h
-> > @@ -0,0 +1,73 @@
-> > +/* SPDX-License-Identifier: MIT */
-> > +/*
-> > + * Copyright © 2026 Intel Corporation
-> > + */
-> > +
-> > +#ifndef _XE_RAS_TYPES_H_
-> > +#define _XE_RAS_TYPES_H_
-> > +
-> > +#include <linux/types.h>
-> > +
-> > +#define XE_RAS_NUM_COUNTERS			16
-> > +
-> > +/**
-> > + * struct xe_ras_error_common - Error fields that are common across all products
-> > + */
-> > +struct xe_ras_error_common {
-> > +	/** @severity: Error severity */
-> > +	u8 severity;
-> > +	/** @component: IP block where error originated */
-> > +	u8 component;
-> > +} __packed;
-> > +
-> > +/**
-> > + * struct xe_ras_error_unit - Error unit information
-> > + */
-> > +struct xe_ras_error_unit {
-> > +	/** @tile: Tile identifier */
-> > +	u8 tile;
-> > +	/** @instance: Instance identifier specific to IP */
-> > +	u32 instance;
-> > +} __packed;
-> > +
-> > +/**
-> > + * struct xe_ras_error_cause - Error cause information
-> > + */
-> > +struct xe_ras_error_cause {
-> > +	/** @cause: Cause/checker */
-> > +	u32 cause;
-> > +	/** @reserved: For future use */
-> > +	u8 reserved;
-> > +} __packed;
-> > +
-> > +/**
-> > + * struct xe_ras_error_product - Error fields that are specific to the product
-> > + */
-> > +struct xe_ras_error_product {
-> > +	/** @unit: Unit within IP block */
-> > +	struct xe_ras_error_unit unit;
-> > +	/** @cause: Cause/checker */
-> > +	struct xe_ras_error_cause cause;
-> > +} __packed;
-> > +
-> > +/**
-> > + * struct xe_ras_error - Combines common and product-specific parts
-> > + */
-> > +struct xe_ras_error {
-> 
-> error_class ?
+v2:
+ - Read resolved power limit in xe_hwmon_pcode_rmw_power_limit()
+   as well. (Badal)
+ - Rephrase commit message. (Badal)
+ - Add prepare_power_limit_param2() to prepare param2 for mailbox power
+   limit read.
 
-I know that how it's in the spec, but it's full of needless verbiage that
-doesn't add much to the meaning. I'm fine either way.
+Signed-off-by: Karthik Poosa <karthik.poosa@intel.com>
+---
+ drivers/gpu/drm/xe/xe_hwmon.c     | 21 ++++++++++++++-------
+ drivers/gpu/drm/xe/xe_pcode_api.h |  3 ++-
+ 2 files changed, 16 insertions(+), 8 deletions(-)
 
-Raag
+diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
+index 0fd4d4f1014a..0f92aa3fe8e8 100644
+--- a/drivers/gpu/drm/xe/xe_hwmon.c
++++ b/drivers/gpu/drm/xe/xe_hwmon.c
+@@ -180,6 +180,18 @@ struct xe_hwmon {
+ 	struct xe_hwmon_thermal_info temp;
+ };
+ 
++static inline int prepare_power_limit_param2(const struct xe_hwmon *hwmon)
++{
++	if (hwmon->boot_power_limit_read) {
++		if (hwmon->xe->info.platform >= XE_CRESCENTISLAND)
++			return READ_PL_ACCEPTED;
++		else
++			return READ_PL_FROM_PCODE;
++	} else {
++		return READ_PL_FROM_FW;
++	}
++}
++
+ static int xe_hwmon_pcode_read_power_limit(const struct xe_hwmon *hwmon, u32 attr, int channel,
+ 					   u32 *uval)
+ {
+@@ -191,9 +203,7 @@ static int xe_hwmon_pcode_read_power_limit(const struct xe_hwmon *hwmon, u32 att
+ 						  (channel == CHANNEL_CARD) ?
+ 						  READ_PSYSGPU_POWER_LIMIT :
+ 						  READ_PACKAGE_POWER_LIMIT,
+-						  hwmon->boot_power_limit_read ?
+-						  READ_PL_FROM_PCODE : READ_PL_FROM_FW),
+-						  &val0, &val1);
++						  prepare_power_limit_param2(hwmon)), &val0, &val1);
+ 
+ 	if (ret) {
+ 		drm_dbg(&hwmon->xe->drm, "read failed ch %d val0 0x%08x, val1 0x%08x, ret %d\n",
+@@ -226,10 +236,7 @@ static int xe_hwmon_pcode_rmw_power_limit(const struct xe_hwmon *hwmon, u32 attr
+ 						  (channel == CHANNEL_CARD) ?
+ 						  READ_PSYSGPU_POWER_LIMIT :
+ 						  READ_PACKAGE_POWER_LIMIT,
+-						  hwmon->boot_power_limit_read ?
+-						  READ_PL_FROM_PCODE : READ_PL_FROM_FW),
+-						  &val0, &val1);
+-
++						  prepare_power_limit_param2(hwmon)), &val0, &val1);
+ 	if (ret)
+ 		drm_dbg(&hwmon->xe->drm, "read failed ch %d val0 0x%08x, val1 0x%08x, ret %d\n",
+ 			channel, val0, val1, ret);
+diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
+index 85cc7478b787..d762226a9987 100644
+--- a/drivers/gpu/drm/xe/xe_pcode_api.h
++++ b/drivers/gpu/drm/xe/xe_pcode_api.h
+@@ -47,8 +47,9 @@
+ #define	WRITE_PSYSGPU_POWER_LIMIT		0x7
+ #define	READ_PACKAGE_POWER_LIMIT		0x8
+ #define	WRITE_PACKAGE_POWER_LIMIT		0x9
+-#define	READ_PL_FROM_FW				0x1
+ #define	READ_PL_FROM_PCODE			0x0
++#define	READ_PL_FROM_FW				0x1
++#define	READ_PL_ACCEPTED			0x2
+ 
+ #define   PCODE_THERMAL_INFO			0x25
+ #define     READ_THERMAL_LIMITS			0x0
+-- 
+2.25.1
 
-> > +	/** @common: Common error type and component */
-> > +	struct xe_ras_error_common common;
-> > +	/** @product: Product-specific unit and cause */
-> > +	struct xe_ras_error_product product;
-> > +} __packed;
-> > +
-> > +/**
-> > + * struct xe_ras_event_threshold_crossed - Event data for threshold crossed event
-> > + */
-> > +struct xe_ras_event_threshold_crossed {
-> > +	/** @ncounters: Number of error counters that crossed thresholds */
-> > +	u32 ncounters;
-> > +	/** @counters: Array of error counters that crossed threshold */
-> > +	struct xe_ras_error counters[XE_RAS_NUM_COUNTERS];
-> > +} __packed;
-> > +
-> > +#endif
-> > diff --git a/drivers/gpu/drm/xe/xe_sysctrl_event.c b/drivers/gpu/drm/xe/xe_sysctrl_event.c
-> > index 47afca586bd1..1833ecadd9a1 100644
-> > --- a/drivers/gpu/drm/xe/xe_sysctrl_event.c
-> > +++ b/drivers/gpu/drm/xe/xe_sysctrl_event.c
-> > @@ -6,6 +6,7 @@
-> >   #include "xe_device.h"
-> >   #include "xe_irq.h"
-> >   #include "xe_printk.h"
-> > +#include "xe_ras.h"
-> >   #include "xe_sysctrl.h"
-> >   #include "xe_sysctrl_event_types.h"
-> >   #include "xe_sysctrl_mailbox.h"
-> > @@ -38,7 +39,7 @@ static void xe_sysctrl_get_pending_event(struct xe_sysctrl *sc,
-> >   		}
-> >   		if (response.event == XE_SYSCTRL_EVENT_THRESHOLD_CROSSED) {
-> > -			xe_warn(xe, "[RAS]: error counter threshold crossed\n");
-> > +			xe_ras_event_log(sc, &response);
-> >   		} else {
-> >   			xe_err(xe, "sysctrl: unexpected event %#x\n", response.event);
-> >   			return;
