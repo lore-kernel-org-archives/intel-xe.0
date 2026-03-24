@@ -4,87 +4,107 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AEB6F54ADB
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 17:01:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC19AF54ADB
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 17:07:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE7BF10E515;
-	Tue, 24 Mar 2026 17:01:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F1B210E767;
+	Tue, 24 Mar 2026 17:07:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VwFrOcoV";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="UUNcZotw";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 528E510E515;
- Tue, 24 Mar 2026 17:01:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774371661; x=1805907661;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=aDKWI4cKGQKK5hVg6AfnHxki62nohW34+6dDQKvaUzA=;
- b=VwFrOcoVBKGMqDDBgAAdDZ618MZOWdMCwb8c6Brde0D+5Xd6N/vcqaah
- pMT6SvW7fxK99ie8hqqJiYjh7eQfIH+aUcWaxjeintQuLsVYPcYaVEuLi
- MvQOcTkH+Ae2dcwjdonxzIRtWzmcVTFlu82oPCB8lnr1YfPBjSPhb6Plr
- rHfSiOXIMit2207fx1Qk1ECCueytdCZMlV7Gb2n1NjDNKui7g3TZky5+U
- 9ZDaFOizrA08Iz8Ll6Cvn8iNqwprJ8HAgvHyWhsSiCS7aZQUA82BZyF/Z
- f6QXDbOAvgHvyZMd6DoJUouRkehwA8nZD5JDJwRAjaZGcPHCXQjwF4Fs9 g==;
-X-CSE-ConnectionGUID: sLqmAmVYS9yw2/FQEFwzZw==
-X-CSE-MsgGUID: xRF+3UJGQkOkv5XII4/VZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="78991862"
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="78991862"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 10:01:00 -0700
-X-CSE-ConnectionGUID: b4BAW2/ERUWoQ6r6oZykng==
-X-CSE-MsgGUID: SL+/tSDtRZahvvTQl/a0tQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="254912602"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.220])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 10:00:49 -0700
-Date: Tue, 24 Mar 2026 19:00:45 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org,
- Werner Sembach <wse@tuxedocomputers.com>,
- Andri Yngvason <andri@yngvason.is>, Marius Vlad <marius.vlad@collabora.com>
-Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color format"
-Message-ID: <acLDPYuaVI2-12JX@intel.com>
-References: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
- <20260324-color-format-v11-3-605559af4fb4@collabora.com>
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
+ [148.163.156.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B782B10E767
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Mar 2026 17:07:21 +0000 (UTC)
+Received: from pps.filterd (m0356517.ppops.net [127.0.0.1])
+ by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 62O5eHsp4120967; Tue, 24 Mar 2026 17:07:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+ :content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:sender:subject:to; s=pp1;
+ bh=uxTqQzn37zq82dyIWyZSBRTBU/irP5Ew+hiSH8++MUU=; b=UUNcZotwXPtc
+ ul+XeZcsT7JRizh2OYlz1VafGDPFo/Dxsk9zEhNyu3PS6UvCytB7Ar3c0lhlWwRp
+ OE9RbIYV4MMdISKN2+mTbBqZ2b2WhpI+NCke1JLGKWRvWgY3CrTtChF1Qu+4wKI/
+ wsz/VmQ43hLKVhcm3PWOKSODLSQdLNh8I4tuQuM9T5VVqc54JUe+PNVbiXRatwtg
+ fknIbXtoaAt9HQV3/tr498UH1Tipl3Qi4JRDvGe9G58lTlBpB4wfNzUj78glwPN3
+ xeSS4eqFMWduZPWtsG4zfT3b4gw4cisTdi21m7Sse6yHscOva9uNDfyEk39UedfU
+ hVPZUqs7Eg==
+Received: from ppma22.wdc07v.mail.ibm.com
+ (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
+ by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4d1kw9vr67-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 24 Mar 2026 17:07:18 +0000 (GMT)
+Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
+ by ppma22.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 62OFVmZ9005996;
+ Tue, 24 Mar 2026 17:07:17 GMT
+Received: from smtprelay05.fra02v.mail.ibm.com ([9.218.2.225])
+ by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4d261yk23e-1
+ (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+ Tue, 24 Mar 2026 17:07:16 +0000
+Received: from smtpav05.fra02v.mail.ibm.com (smtpav05.fra02v.mail.ibm.com
+ [10.20.54.104])
+ by smtprelay05.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
+ 62OH7BIa45089256
+ (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+ Tue, 24 Mar 2026 17:07:11 GMT
+Received: from smtpav05.fra02v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 1FCB72004B;
+ Tue, 24 Mar 2026 17:07:11 +0000 (GMT)
+Received: from smtpav05.fra02v.mail.ibm.com (unknown [127.0.0.1])
+ by IMSVA (Postfix) with ESMTP id 08D1820043;
+ Tue, 24 Mar 2026 17:07:11 +0000 (GMT)
+Received: from p1gen4-pw042f0m (unknown [9.52.223.163])
+ by smtpav05.fra02v.mail.ibm.com (Postfix) with ESMTPS;
+ Tue, 24 Mar 2026 17:07:10 +0000 (GMT)
+Received: from bblock by p1gen4-pw042f0m with local (Exim 4.99.1)
+ (envelope-from <bblock@linux.ibm.com>) id 1w55Di-000000094zn-2xqM;
+ Tue, 24 Mar 2026 18:07:10 +0100
+Date: Tue, 24 Mar 2026 18:07:10 +0100
+From: Benjamin Block <bblock@linux.ibm.com>
+To: "Ionut Nechita (Wind River)" <ionut.nechita@windriver.com>
+Cc: schnelle@linux.ibm.com, alifm@linux.ibm.com, bhelgaas@google.com,
+ dtatulea@nvidia.com, helgaas@kernel.org,
+ intel-xe@lists.freedesktop.org, ionut_n2001@yahoo.com,
+ julianr@linux.ibm.com, kbusch@kernel.org, linux-kernel@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux@roeck-us.net, lkml@mageta.org,
+ lukas@wunner.de, mani@kernel.org, matthew.brost@intel.com,
+ michal.wajdeczko@intel.com, piotr.piorkowski@intel.com,
+ sebott@linux.ibm.com, stable@vger.kernel.org, sunlightlinux@gmail.com
+Subject: Re: [PATCH v10 0/2] PCI/IOV: Fix SR-IOV locking races and AB-BA
+ deadlock
+Message-ID: <20260324170710.GA252856@p1gen4-pw042f0m>
+References: <f17b03652a84be73c1d3a2cfea8a016dab99f8e0.camel@linux.ibm.com>
+ <20260319202755.16081-1-ionut.nechita@windriver.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260324-color-format-v11-3-605559af4fb4@collabora.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+In-Reply-To: <20260319202755.16081-1-ionut.nechita@windriver.com>
+X-TM-AS-GCONF: 00
+X-Proofpoint-Reinject: loops=2 maxloops=12
+X-Proofpoint-ORIG-GUID: rY4fF4ZcHAzawRmmUo057d8sT-U_YyZN
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzI0MDEzMCBTYWx0ZWRfX1bWxugcuXBai
+ E41K0wNRWoRBPEiVTuTOhEcE9wVlKL2/pg7193xc+rvSLYJkzqmW/aWJOa9cJ6M3xg9f6ugz3Y8
+ u/j8L3kR/WTS46CsN2edHYoYJqzfn0t+Fb3zLtJKeeAyBFsaULTSbiMivaO1RX4mBjcF9Qk9kYG
+ X0Z7zKsKJEd7wfqQUX9ZSFJs25xlX0S/Fsb1xe8ZbK3Qui5eu0lbNhvUesSrfamVhX8iw3fuN5X
+ v5qFrhW9hrqJ3qumA1RI7x3VSow1TjBqe533/xJ7aINrIrX+Q/MPdY6twziEVwCGR+Q/AyDgkJD
+ HhjqUL2gIikTP3Im1q/B0NexVz5m1WugfjpQRsp3BJL9mV9ac0/m8bLUPxq83/sIeVR2mTEyzcj
+ JteAZwhkTB7tOv1ttyFiOA6y3KmEIjov1bPb7iFCfBvMVjCkz7tip6xNKtvupQ4+X+ocDLmsixh
+ gqBhsA8J+six0MJcb6w==
+X-Proofpoint-GUID: mayWfXcezXzQ0RCPJmiJH_6HnV5S1zrz
+X-Authority-Analysis: v=2.4 cv=OsZCCi/t c=1 sm=1 tr=0 ts=69c2c4c6 cx=c_pps
+ a=5BHTudwdYE3Te8bg5FgnPg==:117 a=5BHTudwdYE3Te8bg5FgnPg==:17
+ a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=RnoormkPH1_aCDwRdu11:22 a=U7nrCbtTmkRpXpFmAIza:22 a=VnNF1IyMAAAA:8
+ a=x-Aaag0WYKWWV6Rne_cA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-03-24_03,2026-03-24_01,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 adultscore=0 clxscore=1011 phishscore=0 suspectscore=0
+ lowpriorityscore=0 priorityscore=1501 bulkscore=0 spamscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603240130
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,132 +119,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 24, 2026 at 05:01:07PM +0100, Nicolas Frattaroli wrote:
-> +enum drm_connector_color_format {
-> +	/**
-> +	 * @DRM_CONNECTOR_COLOR_FORMAT_AUTO: The driver or display protocol
-> +	 * helpers should pick a suitable color format. All implementations of a
-> +	 * specific display protocol must behave the same way with "AUTO", but
-> +	 * different display protocols do not necessarily have the same "AUTO"
-> +	 * semantics.
-> +	 *
-> +	 * For HDMI, "AUTO" picks RGB, but falls back to YCbCr 4:2:0 if the
-> +	 * bandwidth required for full-scale RGB is not available, or the mode
-> +	 * is YCbCr 4:2:0-only, as long as the mode and output both support
-> +	 * YCbCr 4:2:0.
-> +	 *
-> +	 * For display protocols other than HDMI, the recursive bridge chain
-> +	 * format selection picks the first chain of bridge formats that works,
-> +	 * as has already been the case before the introduction of the "color
-> +	 * format" property. Non-HDMI bridges should therefore either sort their
-> +	 * bus output formats by preference, or agree on a unified auto format
-> +	 * selection logic that's implemented in a common state helper (like
-> +	 * how HDMI does it).
-> +	 */
-> +	DRM_CONNECTOR_COLOR_FORMAT_AUTO = 0,
-> +
-> +	/**
-> +	 * @DRM_CONNECTOR_COLOR_FORMAT_RGB444: RGB output format
-> +	 */
-> +	DRM_CONNECTOR_COLOR_FORMAT_RGB444,
-> +
-> +	/**
-> +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR444: YCbCr 4:4:4 output format (ie.
-> +	 * not subsampled)
-> +	 */
-> +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR444,
-> +
-> +	/**
-> +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR422: YCbCr 4:2:2 output format (ie.
-> +	 * with horizontal subsampling)
-> +	 */
-> +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR422,
-> +
-> +	/**
-> +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR420: YCbCr 4:2:0 output format (ie.
-> +	 * with horizontal and vertical subsampling)
-> +	 */
-> +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR420,
-
-Seems like this should document what the quantization range
-should be for each format.
-
-> +
-> +	/**
-> +	 * @DRM_CONNECTOR_COLOR_FORMAT_COUNT: Number of valid connector color
-> +	 * format values in this enum
-> +	 */
-> +	DRM_CONNECTOR_COLOR_FORMAT_COUNT,
-> +};
-> +
-> +/**
-> + * drm_connector_color_format_valid - Validate drm_connector_color_format value
-> + * @fmt: value to check against all values of &enum drm_connector_color_format
-> + *
-> + * Checks whether the passed in value of @fmt is one of the allowable values in
-> + * &enum drm_connector_color_format.
-> + *
-> + * Returns: %true if it's a valid value for the enum, %false otherwise.
-> + */
-> +static inline bool __pure
-> +drm_connector_color_format_valid(enum drm_connector_color_format fmt)
-> +{
-> +	switch (fmt) {
-> +	case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
-> +	case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
-> +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR444:
-> +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR422:
-> +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR420:
-> +		return true;
-> +	default:
-> +		return false;
-> +	}
-> +}
-> +
->  const char *
->  drm_hdmi_connector_get_output_format_name(enum drm_output_color_format fmt);
->  
-> @@ -1129,6 +1217,13 @@ struct drm_connector_state {
->  	 */
->  	enum drm_colorspace colorspace;
->  
-> +	/**
-> +	 * @color_format: State variable for Connector property to request
-> +	 * color format change on Sink. This is most commonly used to switch
-> +	 * between RGB to YUV and vice-versa.
-> +	 */
-> +	enum drm_connector_color_format color_format;
-> +
->  	/**
->  	 * @writeback_job: Writeback job for writeback connectors
->  	 *
-> @@ -2127,6 +2222,12 @@ struct drm_connector {
->  	 */
->  	struct drm_property *colorspace_property;
->  
-> +	/**
-> +	 * @color_format_property: Connector property to set the suitable
-> +	 * color format supported by the sink.
-> +	 */
-> +	struct drm_property *color_format_property;
-> +
->  	/**
->  	 * @path_blob_ptr:
->  	 *
-> @@ -2610,6 +2711,9 @@ bool drm_connector_has_possible_encoder(struct drm_connector *connector,
->  					struct drm_encoder *encoder);
->  const char *drm_get_colorspace_name(enum drm_colorspace colorspace);
->  
-> +int drm_connector_attach_color_format_property(struct drm_connector *connector,
-> +					       unsigned long supported_color_formats);
-> +
->  /**
->   * drm_for_each_connector_iter - connector_list iterator macro
->   * @connector: &struct drm_connector pointer used as cursor
+On Thu, Mar 19, 2026 at 10:27:55PM +0200, Ionut Nechita (Wind River) wrote:
+> On Thu, 19 Mar 2026 13:31:39 +0100, Niklas Schnelle wrote:
+> > For your awareness, I saw that this series has some findings on
+> > Google's new Sashiko AI reviewing tool[0]. At a quick glance the
+> > findings seem like at least reasonable concerns to me. I'm still
+> > looking at this independently also of course.
 > 
-> -- 
-> 2.53.0
+--8<--
+> 3) TOCTOU Race Condition / Lock Window Vulnerability
+>    — a driver can rebind between device_release_driver() and
+>      pci_stop_and_remove_bus_device_locked()
+> 
+>    This is theoretically valid but practically impossible. The
+>    window is a few instructions wide. For this race to trigger:
+> 
+>    a) device_remove_file_self() has already removed the "remove"
+>       sysfs attribute, signaling the device is being torn down
+>    b) a bind_store or udev probe would need to fire in exactly
+>       that window
+>    c) the newly bound driver's probe() would need to call
+>       pci_enable_sriov() and block on pci_rescan_remove_lock
+> 
+>    This is the same pattern used elsewhere in the kernel (e.g.,
+>    the existing remove_store already had no synchronization between
+>    device_remove_file_self() and pci_stop_and_remove_bus_device_locked()
+>    — the patch just adds one more call in between).
+> 
+>    If this is a real concern, it would need to be addressed as a
+>    separate improvement, not as a blocker for this fix.
+
+I haven't had time to fully review all this yet, but one quick comment: after
+the first idea to unbind the device driver I also realized we could have a
+race here between unbinding, and then possibly re-binding. We could probably
+prevent that by marking the device as dead:
+
++	if (val && device_remove_file_self(dev, attr)) {
++		device_lock(dev);
++		kill_device(dev);
++		device_unlock(dev);
+
+This doesn't modify the reference count or anything, but only sets the private
+member of the `struct device` `dead` to true. This can't be undone using the
+device core's public API, and once set, a device can not be bound to a new
+device-driver.
+
+This should prevent any such race AFAICS. The unbind is protected by the
+device-mutex, so once the flag is set, and the unbind is done, this device
+will stay unbound.
+
+It's not really "pretty" though.
 
 -- 
-Ville Syrj�l�
-Intel
+Best Regards, Benjamin Block        /        Linux on IBM Z Kernel Development
+IBM Deutschland Research & Development GmbH    /   https://www.ibm.com/privacy
+Vors. Aufs.-R.: Wolfgang Wendt         /        Geschäftsführung: David Faller
+Sitz der Ges.: Ehningen     /     Registergericht: AmtsG Stuttgart, HRB 243294
