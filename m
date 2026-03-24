@@ -4,158 +4,160 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C93DFEC118
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 20:53:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2760EFEC0FC
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 20:59:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2092710E11D;
-	Tue, 24 Mar 2026 20:53:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B80C210E063;
+	Tue, 24 Mar 2026 20:59:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GaJIeQa1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZRCRjv93";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF09D10E11D
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Mar 2026 20:53:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5809610E063
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Mar 2026 20:59:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774385613; x=1805921613;
+ t=1774385942; x=1805921942;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=iqr2LfHa4cl25lRVX9gMdlwb4fy4QZC+hwl2aKWrATk=;
- b=GaJIeQa1VF4Tny0ZIPLuSPmHnQvjVU50e0NNHBi/fMRu4GUsJTVP7ih6
- TRKrvAzeg6t7QYnC6iR+Ytxrzg3gIlcRSS/ppPK2BYc2KJ/OOD5lAM7Dp
- P5l2BC64zV6ehF2Y/BZQKqnP/iL72V2oer0Dogmh9QAcssL7VDCsFLO45
- lSwOxqBYtHZ5sYWCUOMnd8NTxofR3Fu7xKDnh8alo7DJBlkLB0Q1z7/1w
- oLGJ7/0ChI1548fWMFIh89TL2xfUsIcBbxoqAMRpPQg3YF6fy9kIQjOFk
- +u1ZHM3ENvQZIFIrEuCETsxxlR95N1y97kdj2xlwDEB+rkuoUk8t3bGxs g==;
-X-CSE-ConnectionGUID: dIQ+k4f8SliCU10R9s+8OQ==
-X-CSE-MsgGUID: gwG7VDFwSQe6VRfVXDuFew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="75534154"
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="75534154"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 13:53:32 -0700
-X-CSE-ConnectionGUID: jWlN5spJS3Susk2DmZpR/g==
-X-CSE-MsgGUID: 1slEXS+0Rr63QDiWAVcGUg==
+ bh=Idj9VSvDwRsrKP/4vcyiIE8B+93qS9wfplKRdHpZt3I=;
+ b=ZRCRjv93cNn4EQmrl2/XejBm5TvuKAYX5AMT0a9FLxtwcBaJX/mhEuUp
+ U0DaesWCnFhaF9p2BiLLSTFxCs+Pq/pl9D4y1siD6xYqM0CXhdJE/t3xR
+ AVz56ORrHQSP4i5o1XlWRkmcfOHztHLCMeVouE1lGJrUkIZkJatRLNWRu
+ ODy2CtHAUgYB7kLw0RQuIJ2UV7l9+E3hZ2d+99reuXtpiTwf44yeA3fug
+ hRK+l2JVsbn9qs85jWqquD+k6oqxbGW4Mj2V+DCXnK/PX0Eb3X496Ceig
+ /olTZ+5XAbjFAnzNzn0x8lb++pGBXa96S8KZ/8EjS7zE+VmgNhuiBc8WP g==;
+X-CSE-ConnectionGUID: OInfTKk/Q/SSgbV1XJ/HeQ==
+X-CSE-MsgGUID: NwWPqCo3TDi2VmAxbw//6w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="98038208"
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="98038208"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2026 13:59:01 -0700
+X-CSE-ConnectionGUID: vs9EvNmYTieYWXUp1H13rQ==
+X-CSE-MsgGUID: gS5AE0aWSv2SlNT3w4ptfg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="228937454"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 13:53:32 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="223531594"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2026 13:59:01 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 24 Mar 2026 13:53:31 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.37; Tue, 24 Mar 2026 13:59:01 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 24 Mar 2026 13:53:31 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.22) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Tue, 24 Mar 2026 13:59:01 -0700
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.18)
+ by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 24 Mar 2026 13:53:31 -0700
+ 15.2.2562.37; Tue, 24 Mar 2026 13:59:01 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HW+GPUzG0UbFxTCyswu8mbSfEfwqL0NQq6JTicqN1QsybqTTbg0zEqjiPXQFVemQyG8uOG/CBfKwas0nsT1MjDjGHOrYWSphAWTYymGpaCx5vAf1pWFbxobXI/DDF0EnFoytRVbSVmnEI7jb+eepdokVbE5VPjr8UioAKb5XZMVtUWLJ9MyTl75fCdKwO3a3scHG/IyZAXnK60yBxhDn5To+qnMib6yecchVDvMrNGfAo365101Andl8CTUeME+VwQ8snWkgYmk18xQRStD2x8TC2dDQMZHXlT8uKNiGkIApA3W/3Y+wJw3FquxCy9G3iT4bFpLVhkNjpGHtzL7+Ow==
+ b=JgH6xkD1gB9C4NXh8BmCKUyk5IBtPZQbNZBME2caQAR5N8jQ64lNssuhrBAh0yfMaluIr3ApD08G6SYzrmntQ6uTdoduSr9SvxTY9WK80UCgZ+OPoV6u6asOh05OPIgBdhE5xYeYIW9CRBImEOUqw54JdRgRKXWbFAERZG1ktFDlKNk631/LyT497GwjDYubNwjFYChdpHj+ceOIIjzW6tRkZ+G1D0b5VUx7/dkw35mNSjrsqMa/K9yY9oCnGr6qGg4bjZQ55lzArp6CcEVBITXKq7S7ie0MdSwpeqcg9Tt+sAKHvhg/mqI+2AHB86oYHy5jAMSMy8xxjbWpARBDsw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CsFBP1AN6o6KzCy2Nw8EczoxBa/uHrUNTGCaAB4indE=;
- b=BP3v9B1fCcA4LfLAWjEJ8cFOv7Acrrcl5UrdybQxSu1XuA3dcBSvETz8+TvOx7+VG8s1KCcLVr1UBeltELMzYbkq+PSViwI0pW2aJrZ90FHwBdhZ31CDcel3a8iDj/vilPdfXb6X1NKDThw2FxIQMh22wHr3iPCMwaSyszaLyM3ghMJ6EZnxUG0UiROsysFV3dgJHDEzWogQ8YaV1CVuKEix1M5iJEONwnUpVxXrtLu361IPqUhH53uVTPMw24KY+FHZi0NrGEFwh/9DYKiii9jVmNcnzc0TbzOk3yriKsHbrbVxetAqU0Qbc7bB9phshfOQlyQnU2mF6O1md+d4tg==
+ bh=fgeI0gvplq73KTFslyKv8yAAw2LLNWjMjtnVuqydhXQ=;
+ b=Xwp90tTL6/kZh0hveJYOlA+OPmbH/SYh/574soPpXXNTB4i9DKFaaqyQIrsjKGgrRdLpHOL9IMZvHqmqwRcUKzMcsylWvPRatYErCnBCGFTuWLO7cfFa7d4mbyIyrHe8TMvkRJHK6Ne59GLn3wk5D9mO7j2vg74/hayNK6Pia2XYzQHOVhGHyCNEyrQspfqHmvNDfwn9WiqzwvcSz/H+m0f6hEcB2VeYy+WLn36r3yxCaXX52ZjXGu/Gau5WF93fSoVqAYG1EI3zMp8re8O8zsAtxQJdv0S4xKJjGlpQRXr433Rxi+iuWeTuNhG0YK17bLREV2elivqJwFtN6mOPsA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
- by CHXPR11MB9628.namprd11.prod.outlook.com (2603:10b6:610:2f9::24)
+ by IA0PR11MB7955.namprd11.prod.outlook.com (2603:10b6:208:3dd::6)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Tue, 24 Mar
- 2026 20:53:30 +0000
+ 2026 20:58:58 +0000
 Received: from BL3PR11MB6508.namprd11.prod.outlook.com
  ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
  ([fe80::53c9:f6c2:ffa5:3cb5%7]) with mapi id 15.20.9745.019; Tue, 24 Mar 2026
- 20:53:30 +0000
-Date: Tue, 24 Mar 2026 13:53:27 -0700
+ 20:58:58 +0000
+Date: Tue, 24 Mar 2026 13:58:55 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: "Yang, Fei" <fei.yang@intel.com>
 CC: "Summers, Stuart" <stuart.summers@intel.com>,
  "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Subject: Re: [PATCH] drm/xe: Wait for HW clearance before issuing the next
  TLB inval.
-Message-ID: <acL5x1AakzkokUzt@lstrano-desk.jf.intel.com>
+Message-ID: <acL7D7MVf5F32C++@lstrano-desk.jf.intel.com>
 References: <20260317232133.4106716-1-fei.yang@intel.com>
  <6a481f4d814c4247dcb62929b72e153ab7905cc7.camel@intel.com>
  <ab9/o3gr002U28RM@lstrano-desk.jf.intel.com>
  <BL3PR11MB636276501728DE765677A4B49A48A@BL3PR11MB6362.namprd11.prod.outlook.com>
+ <acL5x1AakzkokUzt@lstrano-desk.jf.intel.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <BL3PR11MB636276501728DE765677A4B49A48A@BL3PR11MB6362.namprd11.prod.outlook.com>
-X-ClientProxiedBy: MW4PR03CA0044.namprd03.prod.outlook.com
- (2603:10b6:303:8e::19) To BL3PR11MB6508.namprd11.prod.outlook.com
+In-Reply-To: <acL5x1AakzkokUzt@lstrano-desk.jf.intel.com>
+X-ClientProxiedBy: MW4PR03CA0073.namprd03.prod.outlook.com
+ (2603:10b6:303:b6::18) To BL3PR11MB6508.namprd11.prod.outlook.com
  (2603:10b6:208:38f::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|CHXPR11MB9628:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3cf32cd9-de14-4ff1-ee62-08de89e76773
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|IA0PR11MB7955:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0404371d-2580-45be-0e71-08de89e82b44
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|22082099003|18002099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: tI4gvwYOp0ZEefZmrR21149byphvWstcNDJF0Vtn8tgWNmNR/Od15UqIG9iqn9L1REDicSGbuLHoGPucWF57wVYmKPjkutIRZNDFS0cPbnE0cLSt4M56v2bZRxnzq+bgrsRFdzI3W8BCa1AFT0vibhmXPzwVGVlQPer47Uxc+WzIbloeT3+lodNhBRkjAS0oxXKdL/Dzxi76rjcXCZZ4zhW3f5mWylnay4Tr51WC1mzB5f9l/TgZJDvJLbpFbQqt95WtxGYn5vKidJ7dPRIvKr/0GwpBe/0CPhWFNNrGAtzMf7A+UjLfoGvB8kOHWdPrgQ0ydUrw0ZR2TTxVCm4TWl5xnCDi++X0HjZBEOl/72CUi9MXKh8beUbff+mDtyKxfKQmPeTKxPdhkkTjwcWT5d6KBWI8jT8HzHrjbbtrr0YAxU6p3M0suljQp6K3JkhVqPzsAPZNk3wUpwmt0B1/FNUaDlWderTGhXLcv9mZoO1Pc7JeLiwr32nCU0rzSEH8W9a2aG/Yqd+03K3jds+KPk08y2Mw44ZljogM6HMw4mIneRM6Q289NvDiBvcDzuXV5qkPenXgZYFMN0Jj6z1zHi5RqYe8ys5/49QAUw8+e7Bc8i8B2ei0hA7fi80EeXPFRCNjLapdlWaUPES7UlXXLoAC+qoqD2GG1hPoVTX7xIl8YnXi2yCslFAfNrWxOsKOeZl7K7K3rAnAYlim/5OEGgHgmPdUt1SmNoRF5PokGgg=
+ ARA:13230040|376014|1800799024|366016|56012099003|18002099003|22082099003; 
+X-Microsoft-Antispam-Message-Info: zYrEQCXk5IF2FSj22OaNRttm6JuOM4yUHu+By2UvmZhXVIwlESbdu0c3U4hQbjSN6z/1D0ffZ81+D0IkhM3/HQmBvSS/0u9+k/lGbbCduwW9iAAltEjkDySyu/gAZfjPd+nEISdrPWE52A247oUAJrl2eD5ACRlMpRIQz5dTltttIPPjhX0VrLP21n866LdJ60jfhcqPDH4D8qz3o0jALg4VzTA5ONYvg5ZkQ2rF6tqvFpYYuanItwjAHDUnip4mH+8+oHRYFfvOdES7qt+3tZhVyqZooZM/LL/lxbvWIJXHHxSqgSE7JO0Jwo76QKkU79HD7rUFJzQmrrlK4PRJ8q6VFupyaa3VmZhY4rycNkiQt1Ci+3Jw08vLD4YO/V/OI/NYAxNn4E4bUrcmk2lM648Y/nAHyFACh5B9yHQVKfVAsj2nKe7aEFz6riAv+8BADDym0nPVLjNOMu8pJgFJelLrIHUholhrBY3a3SZZrvwSuTZ0TkOrUhHW9GqgDMZzWocX3Ub/72Z7CYQIwJcPDQpxO5Hh63HYYgf1pEZqa4hyOnsKtfSbB1LLKHS24gj7QAyjmHLYFtgaJ5hHDdhDt34ADTA+VLpmxu0dreZZtPlUoSoi7VWnty78OqzmoSye7/GKYgr0YVcsIc5sT9BwPp6juFvZMSeuJC/OBYdEWNlB332c2W1wf0dFReClIpSRDK6i19JmAHIoDOUMPHBDEh2+FXKxnaN0t1HpIzcVCxY=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(22082099003)(18002099003)(56012099003);
+ SFS:(13230040)(376014)(1800799024)(366016)(56012099003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NGdPQW5CaXIvdVh4Vk9LMWQ3YTIwQ1dzQ3g0NzI5Yms1MG5nTjc2cGk1dDVU?=
- =?utf-8?B?OVN3SkpmTVpJdndyR3hrYURkV0hCYmpjaThFOGVoRFZxWm80cnhlLzJJM25h?=
- =?utf-8?B?RitDbWZLNXNtVy9TOEtqVlJFN29DTHVJMTBGbUhZbTBjRFFzdVA3RzNFZEtD?=
- =?utf-8?B?RkZob0NUNDB1Vk9yM0xEdWJlNzdUejByNEhMcWowcUcxTWdwMUJSc0JxM3F0?=
- =?utf-8?B?QVhiMWYra1A3MzE2bWZRQzB6VFN5dHlIZzVKWVZCMXVjWUg2Y0tkVEFSOU11?=
- =?utf-8?B?S2NBN2N1MmQ1RHRsNWdWa1B5eVdCbG41elcwOEhJbHh2aU5rekx4alo5S2Z1?=
- =?utf-8?B?RkJHRllKSU5PVk4wRmJaN29NU2NNWkpaOE5sektSSjhFNVhqaEVsVitzdlht?=
- =?utf-8?B?QnBCbG9IVHJOelk3dHZoeTFoRFN1d0kxcy84eUZsaUREKzdUVWZzT3EydkpR?=
- =?utf-8?B?WG54QzZrSmt6T2ZIT1hkbGtxWTNLWGwxQ2FwWk8zbUV3N0llWXFsTWJmUnJB?=
- =?utf-8?B?VkpHcmd4UWZrSG5WY04wK2UzL2F3VXpoeW1FOGxyRmR4azg3a01LV2dGdEcw?=
- =?utf-8?B?Uys4cndjQ0grRDVlRG5lV2JsMDhuaU5wVmNxV0YrZnVsOTkxZld0RWo0WlFm?=
- =?utf-8?B?Ym52RmpPY2gwajd1dGZuQzVvQTk2aVBZMy84amdWZzRwTFIrdGVhWTkwU0Vx?=
- =?utf-8?B?Ti9tbm9HREZCdFVKSHlEbTJoMEw1dmREaGVzeVpsQlVUdlYxbnZlZ01ObFRV?=
- =?utf-8?B?NFdHSlpSYnBzOGV0UmJGbWdpU1dTV3N5d3BjbldkY3U0cU1sTjBQZ3YrczhG?=
- =?utf-8?B?RGdaRTk3WjRXUGdIeVRhdmppRDNrenFvR0FFR2hYK0M2aTluVjhrYkdSWnJt?=
- =?utf-8?B?OXU1UTZqMjhwV0dkeVJCcUxyMS9qb0UwMDVObFRVYjVkb2NpZGFHOEpWMDZp?=
- =?utf-8?B?SzZXbDdZdENNQnpBZEl5K1ErbUU0eGlOcEU1bGdHS0JkM1hxSjVpcGZabFJo?=
- =?utf-8?B?SjVZVTIvOVVqcnhxY2V0WHlTcS9BSHIwUXA5dnBCUCtPcUN5c3lnQk1rSHBv?=
- =?utf-8?B?SXQyWEJwRW5uZ1VuSzVzTGtVRGJFblkvRkl5SUhIelB3Si8zdVZuTzJMbFd6?=
- =?utf-8?B?cXA0bDBEakdRTEI0VFB3RWpCRnRCdHlRQkcyYzNKNFFVUG1icE84MEhCemNU?=
- =?utf-8?B?TVByR04zLyttZDY2ZmFmTmFNNE53QVdzanRkSXFZTE4xc3dlM3psMVB2N2Q4?=
- =?utf-8?B?SHZhTmZQRnVNdjFDQ2dhM25ycEdkcGlZcTA0V25hSTV1eUFwMDhGNXVOc3Z5?=
- =?utf-8?B?d1B5NlpqU1RVM2F3ak1rWUQyNkxXSHFHUXZlbXZ6a2FOSXBSUlZ1US8wTm5s?=
- =?utf-8?B?VWFQR0pKbjNzYnpnSGE2Z3dHRzNpdmZQS0Y4M0oyaVBBRlQxZ1BJMlRZZGI3?=
- =?utf-8?B?bDdzS0R6d21iSlF2TlFyRnh1aEtRd3RhWXNNangzTURZUCsrTXQ4SUEvTGdh?=
- =?utf-8?B?NHFYcFdlM0NPT0RSc2VLbmRkT3FEWVZLWjI5SGlUbFI5WmtFRFYrcHFSYTBp?=
- =?utf-8?B?cUxnTGFXdWM5SlkwaGpoa1JWODFlbjhDWlhLNzNYenJGaGUySmNPSWNEK3VT?=
- =?utf-8?B?WDBxL01JdDJ1MEdoSkFGZDNXZkpWc2FFUXpWVHdaTStJZG1qZEpacUViREp6?=
- =?utf-8?B?YVJkY2tQUUFjYUF4R2VvbzJ0aUNxNE5VUmU0bzNESTVrSzFLNUd3M2dyNGRV?=
- =?utf-8?B?VTk4SERXRVAzRWVVejgvbTB4OXBhRmlTa2YyQTJidjJLYkZ2THZEVEdITnZF?=
- =?utf-8?B?Wi8ySDNycXM5QmRiYUl0WFJZc1hOa1lZZU4xdG1MQzJ2M3dmZy9UZXJES0xw?=
- =?utf-8?B?ZTlyL0huZXhTRUM5aUkrRGlXajVZZTFIdWtnbCs3amxkeTROeFoyNVQzTnZV?=
- =?utf-8?B?cjEzTUVLM3QycW5iZ2tJcXNEcVRWaWw1dE9jRmZBM3QyeTIvQVUyWkp2ek4w?=
- =?utf-8?B?RXJYVGMxMjlvOGJZbm03amUvMTg5Qzc1OFIwSmd6cTh5ZlU0VmoxQ0Zwd3Ry?=
- =?utf-8?B?N29LNFJML25lQTFoa2RBR0JUNWxkdCt0RTJsc2YwZExCMW1pMGYrUVZ5cUZU?=
- =?utf-8?B?OFI0Z2JIR0hoSkl5L2dEZ0lMZ0pITHdLc3crSlVFWG4wSU14aFNKbkVzRWhK?=
- =?utf-8?B?ck1KblZLODY5ZDJ2OXlwQ1NlUEN6dExBcnkrMG43cUdFSHIwNHE3M3FGUzRy?=
- =?utf-8?B?UkVIa0xwTVFFVzZFNTRvd3g3dWhpang4Yk1TT2xMSkZpaDk0UmQ2NVhnTW5N?=
- =?utf-8?B?NGNJczVTZEpUMTRsd3pyWVBXNDkraDF6VlloVkxxRWZmWjYwQ1ZsZz09?=
-X-Exchange-RoutingPolicyChecked: rg63xdX5ldXanDblsC8zQpU7iEk9wQLQnQUtM7QfnhsVsNp1sE+Q9XiEZj8ndYWGNyHt0CE9k9tEprIdoiIJB89gJBlYLqeegXKUYnBV3fLkpOMZUj6mHYT72hgWtaWr8eTc9yiENK6ALKR+HVy42q6wY+nwblT/fIsQK4dZUGojBJljj5Or/p2XYvQLSymYTLMypgKCmQ28kblWg8gj8FERtZlPbGgNZGfmavoNHykYnylcQeL1s1yt23JgrifzEI6KT9CCtxvybToiKnqhfQ4celQWRvrerDtXBAKmQCRq9YgK5rWnvu6HnRN+j6ey+mgdpcPwBMBfEsbRyxnxig==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3cf32cd9-de14-4ff1-ee62-08de89e76773
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Tmk3aTZiR0FEYUdtaHZPWERVeStyRy9SUmNzU1pSWTU1eThqMDJ2MDJ3Z2JG?=
+ =?utf-8?B?VmhIWTNIUlJGMmtlaVc1YWtzbEc5T2VuWVN0ZEFOeDM0anZpTUFpK3VkR2Jh?=
+ =?utf-8?B?NkxYRFlKd09uSGVMc2hEdzFOT0UxeGtVTFMwdVhHaC8yakZHUXl4L1Z0K0xv?=
+ =?utf-8?B?Z1MxUmY1VWZOV09LOTd0ZDNxMGFQS3RXMC9Eam1jOHpTOVU3UHNpVDJ2ejRV?=
+ =?utf-8?B?VzV4aDMrcnp4b3BvT1FjeFdpSUlHaDlKMGZ5T2sxUG1RTTBFTGdjb2pFdzZ2?=
+ =?utf-8?B?SFVBZTNoMVdSSTNvV2tKcGFTeFA0YmFaRHQ5ZURBeDlSNHZwWHQ1Nmh0Y2Fy?=
+ =?utf-8?B?V2ZKR3gvVXlNS0JyeS9oS0djalFTakxoUlZzS2Ura3krOUFSdG0ySGg1V29o?=
+ =?utf-8?B?SmRtYVl4b1R5b3NqVmRUNGRaNGp3ZmZCTFh4dm0xdHhYRC80WVJTeTNiaGlL?=
+ =?utf-8?B?OXVUUDRXcnBRd0Q0cURrenBDbGdvcjJFd2t4VUhzcUhCNzhobmpDNDhKYis0?=
+ =?utf-8?B?b2JlTFJVTlM2ejRoRWdtZlpwZGRJNUlxaENTUmV5Ly8wYnF2MjBMc010Q3NG?=
+ =?utf-8?B?YzJRbUs4d0F6Mis0YllHQ28yOENEMlBEaklRTEtLVDEyazMyVlV3V0Vtc05j?=
+ =?utf-8?B?am9HUnJZTm1VUnA4QXRqR2RYSzN1Wll0WWRwMmVpcUxyMW1Ma00wYUloaGs4?=
+ =?utf-8?B?QUNZdFJNSzVZb0tJbmdzcGlkTzNKclRscFFqU0VjVFlzRW1CVWpxRnpURHBE?=
+ =?utf-8?B?L2ExOGhvWWRHQmdiRFZaOElOWGdMQVRSQ1JUb0V5aXZzQTNwVjdFMFBLU21H?=
+ =?utf-8?B?Y2NEWmx1MTh4U0hrdnZiU0ZKdE9mUWU2bSsyMVNJcGphTTNwdkM3UGRyWTND?=
+ =?utf-8?B?SHdlVW5NOXlNWjJCNHZ0dEVPU0NiYzZndjVLcERKU2xvdzBtaExSdmMreksr?=
+ =?utf-8?B?OElRYUx0TkE4Z3c4RFBKVWN6UkF4Mi9vekx4dVVMRFRmbWdEdEVpUzV2TU5E?=
+ =?utf-8?B?MjR4eXlNUjRjLzNHUnVOM2FFekdIN3k0Nm5qb2dCVU8vLzRaQnhZK3N4ai9k?=
+ =?utf-8?B?ZVp6VldiYWI0cmdvYzFhdDhCWXoxYi8zUmJxZER5TkpienJwOFV5czZjUzZ4?=
+ =?utf-8?B?NUZ4cE5yVGxJcnlGZnl0M2lzd0hnNUlnVy9zNEp4WDg4UkpHd3JsdHIxZGFr?=
+ =?utf-8?B?dmYwU24vd2I4cHMvbnZhUWhOTjhOZzZoL3pCZ2JtLzRzVUI3V1k5bmI1OFM0?=
+ =?utf-8?B?R1V4WVdjNEQ3YjY5N3FUQ1Jkb2VsRjJld3VLbzR4bHh2SENUMFdDYnJUbllN?=
+ =?utf-8?B?eStCYnVSL3BXVWJGcEs4cmpCVmhFR3VvU1B1K0lwVDA0eUFjS0NSMXgvTWY3?=
+ =?utf-8?B?VXhWZHNhajV6SUc5VWY2Q2JYdDFtKy95cDljc3pUcSs0bWRubmFrU21vcmNi?=
+ =?utf-8?B?ejA0ZUlsSytoMUNVdWJZdEd0eUVHbTRJUTNjZVJVR3pja2o3Z2E2UnBmUXlN?=
+ =?utf-8?B?VkxDME8rY2RoMERHd2VxcFRZT0JuQStRc1JlaDRJQWoxdFdHb0pCNnZseE5o?=
+ =?utf-8?B?dXNHSFkybGJKY1NBQktjNjJuMzU3SWpuVnRQaXFiOWdiWDJHMzNmUlFsOXBQ?=
+ =?utf-8?B?M29ZMTYwcDQwQTVJWXZ1VTJBaE1KNHB4Z3JzQ1VmNi9nekZ4Mk50NHhHREQ3?=
+ =?utf-8?B?YVFqdEZzdHhwVnVOVE9US3N6M2NXdXZRTkhLTXBUYkRGQ2UwbmJvOCtzanVP?=
+ =?utf-8?B?UzNlS3ExQmRhSjVsaWZCalRSNWozM2lQWTFHZTlZaDJzVGFEVXA0SUc4YlpV?=
+ =?utf-8?B?aHRLaXA2MXJWcFRaS3lRanhHNFZBK3gwNWRueU05UGhLTmlDK0UyQklmVVY1?=
+ =?utf-8?B?YnNkc2d0WFZWNlJxYnBiVkhESjl2L1RjZVMxekhIbDZvYitqTG9uMTgwb1Zu?=
+ =?utf-8?B?UzlmR0h5enoycHdqWk1XYjNjRTM3SG9YbEVTWFZSdmFvVU44QnJYVWQzR0RE?=
+ =?utf-8?B?TFBRUjkrTzZ3M3haalZjVVJGQTh6cVQ1aUJYVWh2YVRQbUlER0RYUDBNOW5C?=
+ =?utf-8?B?dWhEcGZyM3hMb3BJTUNKb25YVktIU2lOMzVxTXRGTVRWQ0hzMzd3S1YxSlZs?=
+ =?utf-8?B?T0lGc3JBdnB3M1FJM0JqVG5OYzJZWDhyVnBldy90a0JjS2gxSERzYzc4ak55?=
+ =?utf-8?B?c2FGdlpjUjVTcDErSHZ0djA1SkFkWmd4UHd4TzhkNWtQdk0xcHB6MWIvTWxw?=
+ =?utf-8?B?VHBHT3RVYXlKYXEzbmt1ZzF3aDNxT0tFV0c5YytXWjZCTCs4cjcvSVUrM1R5?=
+ =?utf-8?B?SWhYR2o2MmFEcE5mOWg0b2hDdlo5T3NJOHJXTXU3NUxjbnJwL2pDN29QMnd6?=
+ =?utf-8?Q?IkXGtWg4XuJqAc7Y=3D?=
+X-Exchange-RoutingPolicyChecked: bhJ0fvOxlY4PTd6kVZRDNXrwp2ia7MjzkfOWMo7iho+tLJJau565M3vRp+s6VVq1/5W/jj06cMUIUecVp1jZaAEEDYjjrXU5+WDQXEHKFcPzXZQ2o0vuHhIFnZupZ/VREZq5eMVdIhrSvcy3ks9lLpojOixihBqhGKv0WxFz3HcDpe5yxeYG28wwv4DDoqeVb1EAwbTPr9Vl4ItgZnfPv4qwGb2UXNtiCcEQOyUmjy5WQMdoxe5nzaC+QAktlOJ9OFwjCqCKaYpbAhlMkU+gEsfmkbbo5LOxtaUJM2gF90wg6jFUimkGL1F5bt8lQu2nHO2fTPGnGyhoFf519qcjHA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0404371d-2580-45be-0e71-08de89e82b44
 X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2026 20:53:30.1285 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2026 20:58:58.6723 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: A8oPu1vKSG4wEiFYi1tT9FV4YUpMo2zkR079QtzDy95g9caO536aUqM+XOXvbki8QAjX1gQnV/NzftIAcyixaQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CHXPR11MB9628
+X-MS-Exchange-CrossTenant-UserPrincipalName: Xu+3QBjOPImriv958f2tv8ZB3Tz/NjJARPp2oNtZDX5vzwGyFH0Y/YqaJqQR4wcxIlWwGtO+w4kJlzxs/+DzDw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7955
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -171,135 +173,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 24, 2026 at 02:39:54PM -0600, Yang, Fei wrote:
-> > On Tue, Mar 17, 2026 at 05:28:14PM -0600, Summers, Stuart wrote:
-> >> On Tue, 2026-03-17 at 16:21 -0700, fei.yang@intel.com wrote:
-> >>> From: Fei Yang <fei.yang@intel.com>
-> >>>
-> >>> Hardware requires the software to poll the valid bit and make sure
-> >>> it's cleared before issuing a new TLB invalidation request.
-> >>>
-> >>> Signed-off-by: Fei Yang <fei.yang@intel.com>
-> >>> ---
-> >>>  drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 15 +++++++++++++++
-> >>>  1 file changed, 15 insertions(+)
-> >>>
-> >>> diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> >>> b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> >>> index ced58f46f846..4c2f87db3167 100644
-> >>> --- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> >>> +++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-> >>> @@ -63,6 +63,7 @@ static int send_tlb_inval_ggtt(struct xe_tlb_inval
-> >>> *tlb_inval, u32 seqno)
-> >>>         struct xe_guc *guc = tlb_inval->private;
-> >>>         struct xe_gt *gt = guc_to_gt(guc);
-> >>>         struct xe_device *xe = guc_to_xe(guc);
-> >>> +       int ret;
-> >>>
-> >>>         /*
-> >>>          * Returning -ECANCELED in this function is squashed at the
-> >>> caller and @@ -85,11 +86,25 @@ static int send_tlb_inval_ggtt(struct
-> >>> xe_tlb_inval *tlb_inval, u32 seqno)
-> >>>
-> >>>                 CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt),
-> >>> XE_FW_GT);
-> >>>                 if (xe->info.platform == XE_PVC || GRAPHICS_VER(xe)
-> >>> >= 20) {
-> >>> +                       /* Wait 1-second for the valid bit to be
-> >>> cleared */
-> >>> +                       ret = xe_mmio_wait32(mmio,
-> >>> PVC_GUC_TLB_INV_DESC0, PVC_GUC_TLB_INV_DESC0_VALID,
-> >>> +                                            0, 1000 *
-> >>> +USEC_PER_MSEC,
-> >>> NULL, false);
-> >>> +                       if (ret) {
-> >>> +                               pr_info("TLB INVAL cancelled due to
-> >>> uncleared valid bit\n");
-> >>> +                               return -ECANCELED;
-> >>> +                       }
-> >>
-> >> Is there a reason we aren't waiting after the write to make sure the
-> >> invalidation completed? It seems like we should be serializing these
-> >> and at least making sure hardware completes the request rather than
-> >> just sending and hoping for the best.
-> >
-> > Yes, this is correct—we should after wait issue *if* this code is actually needed.
+On Tue, Mar 24, 2026 at 01:53:27PM -0700, Matthew Brost wrote:
+> On Tue, Mar 24, 2026 at 02:39:54PM -0600, Yang, Fei wrote:
+> > > On Tue, Mar 17, 2026 at 05:28:14PM -0600, Summers, Stuart wrote:
+> > >> On Tue, 2026-03-17 at 16:21 -0700, fei.yang@intel.com wrote:
+> > >>> From: Fei Yang <fei.yang@intel.com>
+> > >>>
+> > >>> Hardware requires the software to poll the valid bit and make sure
+> > >>> it's cleared before issuing a new TLB invalidation request.
+> > >>>
+> > >>> Signed-off-by: Fei Yang <fei.yang@intel.com>
+> > >>> ---
+> > >>>  drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 15 +++++++++++++++
+> > >>>  1 file changed, 15 insertions(+)
+> > >>>
+> > >>> diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> > >>> b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> > >>> index ced58f46f846..4c2f87db3167 100644
+> > >>> --- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> > >>> +++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
+> > >>> @@ -63,6 +63,7 @@ static int send_tlb_inval_ggtt(struct xe_tlb_inval
+> > >>> *tlb_inval, u32 seqno)
+> > >>>         struct xe_guc *guc = tlb_inval->private;
+> > >>>         struct xe_gt *gt = guc_to_gt(guc);
+> > >>>         struct xe_device *xe = guc_to_xe(guc);
+> > >>> +       int ret;
+> > >>>
+> > >>>         /*
+> > >>>          * Returning -ECANCELED in this function is squashed at the
+> > >>> caller and @@ -85,11 +86,25 @@ static int send_tlb_inval_ggtt(struct
+> > >>> xe_tlb_inval *tlb_inval, u32 seqno)
+> > >>>
+> > >>>                 CLASS(xe_force_wake, fw_ref)(gt_to_fw(gt),
+> > >>> XE_FW_GT);
+> > >>>                 if (xe->info.platform == XE_PVC || GRAPHICS_VER(xe)
+> > >>> >= 20) {
+> > >>> +                       /* Wait 1-second for the valid bit to be
+> > >>> cleared */
+> > >>> +                       ret = xe_mmio_wait32(mmio,
+> > >>> PVC_GUC_TLB_INV_DESC0, PVC_GUC_TLB_INV_DESC0_VALID,
+> > >>> +                                            0, 1000 *
+> > >>> +USEC_PER_MSEC,
+> > >>> NULL, false);
+> > >>> +                       if (ret) {
+> > >>> +                               pr_info("TLB INVAL cancelled due to
+> > >>> uncleared valid bit\n");
+> > >>> +                               return -ECANCELED;
+> > >>> +                       }
+> > >>
+> > >> Is there a reason we aren't waiting after the write to make sure the
+> > >> invalidation completed? It seems like we should be serializing these
+> > >> and at least making sure hardware completes the request rather than
+> > >> just sending and hoping for the best.
+> > >
+> > > Yes, this is correct—we should after wait issue *if* this code is actually needed.
+> > 
+> > No, the issue is that software cannot issue another TLB invalidation request while the ongoing
+> > one has not been completed yet. Otherwise the hardware could potentially lockup.
+> > So we need to make sure the valid bit is cleared before issuing another TLB invalidation request.
+> > 
 > 
-> No, the issue is that software cannot issue another TLB invalidation request while the ongoing
-> one has not been completed yet. Otherwise the hardware could potentially lockup.
-> So we need to make sure the valid bit is cleared before issuing another TLB invalidation request.
-> 
-
-Yes, but we signal the TLB invalidation fence as complete without
-waiting for the hardware to actually finish. The locking here is also
-incorrect for MMIO-based invalidations, now that I think about it. What
-really needs to happen is:
-
-- In send_tlb_inval_ggtt(), if the MMIO path is taken, acquire a per-GT
-  MMIO TLB invalidation lock after obtaining the FW
-- Issue the TLB invalidation
-- Wait for the valid bit to clear
-- Release the GT MMIO TLB invalidation lock
-
-Without this lock, two threads could both observe the valid bit clearing
-and then both attempt to issue invalidations, clobbering each other.
-
-> > This is early Xe code from me, and it’s questionable whether it’s even required.
-> 
-> This seems to be required, otherwise modprobe would fail at golden context submission,
-> [  480.237382] xe 0000:01:00.0: [drm] *ERROR* Tile0: GT0: hwe ccs0: nop emit_nop_job failed (-ETIME) guc_id=4
+> Yes, but we signal the TLB invalidation fence as complete without
+> waiting for the hardware to actually finish. The locking here is also
+> incorrect for MMIO-based invalidations, now that I think about it. What
+> really needs to happen is:
 > 
 
-I’m somewhat surprised by this. A better solution might be to drop the
-MMIO GT invalidation code in xe_guc_tlb_inval.c and instead issue an
-MMIO GGTT invalidation whenever we reload the GuC.
+Ah, this actually another weird corner where we take down the CTs but
+GuC is still using the GAM port...
 
-We can defer trying this until later, as it is a riskier change.
+> - In send_tlb_inval_ggtt(), if the MMIO path is taken, acquire a per-GT
+>   MMIO TLB invalidation lock after obtaining the FW
+
+So maybe 'Wait for the valid bit to clear' here too but this still isn't
+fully hardend as the GuC could immediately use the GAM port again...
+
+Or perhaps we go straight to my suggestion below - when reloading the
+GuC issue MMIO GT invalidation...
 
 Matt
 
-> > Typically, if the CTs are not live, the GuC isn’t doing anything meaningful in terms of
-> > referencing memory that the KMD is moving around (which would require an invalidation).
-> > So this entire flow of issuing a GAM port TLB invalidation is, again, questionable.
-> >
-> > So I'd suggest move the wait after issue, plus throw in:
-> >
-> > “XXX: Why do we need to invalidate GGTT memory when the CTs are not live? This suggests
-> > the GuC is still in the load phase. Investigate and remove this code once confirmed.'
+> - Issue the TLB invalidation
+> - Wait for the valid bit to clear
+> - Release the GT MMIO TLB invalidation lock
 > 
-> The issue is a consequence of an earlier failure which caused the CT to be disabled. And the KMD
-> sees a bunch of TLB invalidation timeouts.
-> At this time I would expect a GT reset, but that is not how Xe behaves (the ole i915 driver triggers
-> a GT reset on TLB invalidation timeout if I remember correctly)
+> Without this lock, two threads could both observe the valid bit clearing
+> and then both attempt to issue invalidations, clobbering each other.
 > 
-> -Fei
+> > > This is early Xe code from me, and it’s questionable whether it’s even required.
+> > 
+> > This seems to be required, otherwise modprobe would fail at golden context submission,
+> > [  480.237382] xe 0000:01:00.0: [drm] *ERROR* Tile0: GT0: hwe ccs0: nop emit_nop_job failed (-ETIME) guc_id=4
+> > 
 > 
-> > Matt
-> >
-> >>
-> >> Thanks,
-> >> Stuart
-> >>
-> >>>                         xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC1,
-> >>>
-> >>> PVC_GUC_TLB_INV_DESC1_INVALID ATE);
-> >>>                         xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC0,
-> >>>
-> >>> PVC_GUC_TLB_INV_DESC0_VALID);
-> >>>                 } else {
-> >>> +                       /* Wait 1-second for the valid bit to be
-> >>> cleared */
-> >>> +                       ret = xe_mmio_wait32(mmio, GUC_TLB_INV_CR,
-> >>> GUC_TLB_INV_CR_INVALIDATE,
-> >>> +                                            0, 1000 *
-> >>> +USEC_PER_MSEC,
-> >>> NULL, false);
-> >>> +                       if (ret) {
-> >>> +                               pr_info("TLB INVAL cancelled due to
-> >>> uncleared valid bit\n");
-> >>> +                               return -ECANCELED;
-> >>> +                       }
-> >>>                         xe_mmio_write32(mmio, GUC_TLB_INV_CR,
-> >>>                                         GUC_TLB_INV_CR_INVALIDATE);
-> >>>                 }
-> >> 
+> I’m somewhat surprised by this. A better solution might be to drop the
+> MMIO GT invalidation code in xe_guc_tlb_inval.c and instead issue an
+> MMIO GGTT invalidation whenever we reload the GuC.
+> 
+> We can defer trying this until later, as it is a riskier change.
+> 
+> Matt
+> 
+> > > Typically, if the CTs are not live, the GuC isn’t doing anything meaningful in terms of
+> > > referencing memory that the KMD is moving around (which would require an invalidation).
+> > > So this entire flow of issuing a GAM port TLB invalidation is, again, questionable.
+> > >
+> > > So I'd suggest move the wait after issue, plus throw in:
+> > >
+> > > “XXX: Why do we need to invalidate GGTT memory when the CTs are not live? This suggests
+> > > the GuC is still in the load phase. Investigate and remove this code once confirmed.'
+> > 
+> > The issue is a consequence of an earlier failure which caused the CT to be disabled. And the KMD
+> > sees a bunch of TLB invalidation timeouts.
+> > At this time I would expect a GT reset, but that is not how Xe behaves (the ole i915 driver triggers
+> > a GT reset on TLB invalidation timeout if I remember correctly)
+> > 
+> > -Fei
+> > 
+> > > Matt
+> > >
+> > >>
+> > >> Thanks,
+> > >> Stuart
+> > >>
+> > >>>                         xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC1,
+> > >>>
+> > >>> PVC_GUC_TLB_INV_DESC1_INVALID ATE);
+> > >>>                         xe_mmio_write32(mmio, PVC_GUC_TLB_INV_DESC0,
+> > >>>
+> > >>> PVC_GUC_TLB_INV_DESC0_VALID);
+> > >>>                 } else {
+> > >>> +                       /* Wait 1-second for the valid bit to be
+> > >>> cleared */
+> > >>> +                       ret = xe_mmio_wait32(mmio, GUC_TLB_INV_CR,
+> > >>> GUC_TLB_INV_CR_INVALIDATE,
+> > >>> +                                            0, 1000 *
+> > >>> +USEC_PER_MSEC,
+> > >>> NULL, false);
+> > >>> +                       if (ret) {
+> > >>> +                               pr_info("TLB INVAL cancelled due to
+> > >>> uncleared valid bit\n");
+> > >>> +                               return -ECANCELED;
+> > >>> +                       }
+> > >>>                         xe_mmio_write32(mmio, GUC_TLB_INV_CR,
+> > >>>                                         GUC_TLB_INV_CR_INVALIDATE);
+> > >>>                 }
+> > >> 
