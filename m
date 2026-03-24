@@ -4,62 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47E79F54AD9
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 16:36:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AF19F54ADA
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 16:47:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12F9B10E5D8;
-	Tue, 24 Mar 2026 16:36:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XzT+ykH5";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2E7910E5BD;
- Tue, 24 Mar 2026 16:36:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774370204; x=1805906204;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Wy5u0lLvHQFlKEaR6pIm2ZID8L9I4NZ79N701DELhuI=;
- b=XzT+ykH5Anp+n1j2mp13Yfcej36AOo+wpQCmH7AhIZh6lhAaNNdiCpgm
- oRNVR5SF3IHD3jU30humLAAoQ6MqScTNYdHz0sUybSFQX6R2dxJ0dDlax
- pK6ujNEyVJI1ZMVQsHQRfa7kVq48serpFeeOCA6u2pumwXNOQJ7+urNlv
- m73FohVupGvoDlHKUHXgzRRn/TYWnFQ0LPxYLdCNengUeiqS8QLMgFUXn
- JJAXXxFXnPhBMj7fexUt0//acmZoWnnDEhvPCUWf1CNZcUCQ0JOkrEDLb
- PR2v+EDvf+xGhtXG/C0WECmzBN1/4Q1obv11Obgrd/Y9UawaVIouiok1Z A==;
-X-CSE-ConnectionGUID: 3GyJ4sWIQAm5qVz26t51Iw==
-X-CSE-MsgGUID: FmPJtYTmST2XXraWAozy5g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="98014812"
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="98014812"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 09:36:43 -0700
-X-CSE-ConnectionGUID: pgYY84ciQ4OsPRWH9Ja/Bw==
-X-CSE-MsgGUID: 7MeY/opaThePS0pNxerlgA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="224358670"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.220])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 09:36:41 -0700
-Date: Tue, 24 Mar 2026 18:36:37 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Luca Coelho <luciano.coelho@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com
-Subject: Re: [PATCH 6/8] drm/i915/display: move HSW and BDW clock gating init
- to display
-Message-ID: <acK9lVDxOV_hXPiN@intel.com>
-References: <20260324143420.310800-1-luciano.coelho@intel.com>
- <20260324143420.310800-7-luciano.coelho@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id D46A810E777;
+	Tue, 24 Mar 2026 16:47:50 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80FA610E775;
+ Tue, 24 Mar 2026 16:47:50 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260324143420.310800-7-luciano.coelho@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_new_general_DRM_prope?=
+ =?utf-8?q?rty_=22color_format=22_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nicolas Frattaroli" <nicolas.frattaroli@collabora.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 24 Mar 2026 16:47:50 -0000
+Message-ID: <177437087049.392270.5239996264039588958@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
+In-Reply-To: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,162 +36,220 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 24, 2026 at 04:29:55PM +0200, Luca Coelho wrote:
-> Move the HSW and BDW display clock gating programming into the display
-> code.  In this case we need two different helpers, because the common
-> code between these two is split in the middle.
-> 
-> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-> ---
->  .../i915/display/intel_display_clock_gating.c | 33 +++++++++++++++++++
->  .../i915/display/intel_display_clock_gating.h |  6 ++++
->  drivers/gpu/drm/i915/intel_clock_gating.c     | 31 +++--------------
->  3 files changed, 43 insertions(+), 27 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> index e3b7522b4101..0b2edf6acb79 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> @@ -123,3 +123,36 @@ void intel_display_glk_init_clock_gating(struct intel_display *display)
->  		       intel_de_read(display, GEN9_CLKGATE_DIS_0) |
->  		       PWM1_GATING_DIS | PWM2_GATING_DIS);
->  }
-> +
-> +static void
-> +intel_display_hsw_init_clock_gating_common(struct intel_display *display,
-> +					   u32 unmask_vbl)
+== Series Details ==
 
-Passing that as a parameter feels a bit obfuscated.
+Series: Add new general DRM property "color format" (rev8)
+URL   : https://patchwork.freedesktop.org/series/157911/
+State : warning
 
-> +{
-> +	enum pipe pipe;
-> +
-> +	/* WaPsrDPAMaskVBlankInSRD:hsw */
-> +	intel_de_rmw(display, CHICKEN_PAR1_1, 0, HSW_MASK_VBL_TO_PIPE_IN_SRD);
-> +
-> +	for_each_pipe(display, pipe) {
-> +		/* WaPsrDPRSUnmaskVBlankInSRD:hsw,bdw */
-> +		intel_de_rmw(display, CHICKEN_PIPESL_1(pipe), 0, unmask_vbl);
+== Summary ==
 
-If we want to share the function then I'd probably just do
-a platform check here.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d3c08301379dffae6775b6babf47b4242ef85c59
+Author: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Date:   Tue Mar 24 17:01:26 2026 +0100
 
-> +	}
-> +}
-> +
-> +void intel_display_bdw_hsw_init_clock_gating(struct intel_display *display)
-> +{
-> +	/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
-> +	intel_de_rmw(display, CHICKEN_PIPESL_1(PIPE_A), 0, HSW_FBCQ_DIS);
-> +}
+    drm/bridge: Document bridge chain format selection
+    
+    The bridge chain format selection behaviour was, until now,
+    undocumented. With the addition of the "color format" DRM property, it's
+    not sufficiently complex enough that documentation is warranted,
+    especially for driver authors trying to do the right thing.
+    
+    Add a high-level overview of how the process is supposed to work, and
+    mention what the display driver is supposed to do if it wants to make
+    use of this functionality.
+    
+    Reviewed-by: Maxime Ripard <mripard@kernel.org>
+    Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
++ /mt/dim checkpatch 0be244ee3139de3578e9acc56e1b917a4bd162cd drm-intel
+d87c66c9e33f drm/amd/display: Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A check
+9c0de94ff0f8 drm/display: hdmi-state-helper: Use default case for unsupported formats
+f6de78423ab8 drm: Add new general DRM property "color format"
+a0f427a210c0 drm/bridge: Act on the DRM color format property
+-:94: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#94: FILE: drivers/gpu/drm/drm_bridge.c:1288:
++			    drm_hdmi_connector_get_output_format_name(
 
-Why do we have two different functions that shared by
-both platforms?
+-:123: WARNING:ENOTSUPP: ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP
+#123: FILE: drivers/gpu/drm/drm_bridge.c:1317:
++			ret = -ENOTSUPP;
 
-> +
-> +void intel_display_bdw_init_clock_gating(struct intel_display *display)
-> +{
-> +	intel_display_hsw_init_clock_gating_common(display,
-> +						   BDW_UNMASK_VBL_TO_REGS_IN_SRD);
-> +}
-> +
-> +void intel_display_hsw_init_clock_gating(struct intel_display *display)
-> +{
-> +	intel_display_hsw_init_clock_gating_common(display,
-> +						   HSW_UNMASK_VBL_TO_REGS_IN_SRD);
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-> index 4abd34fa5832..0eb240f2f69e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-> @@ -14,12 +14,18 @@ void intel_display_kbl_init_clock_gating(struct intel_display *display);
->  void intel_display_cfl_init_clock_gating(struct intel_display *display);
->  void intel_display_bxt_init_clock_gating(struct intel_display *display);
->  void intel_display_glk_init_clock_gating(struct intel_display *display);
-> +void intel_display_bdw_hsw_init_clock_gating(struct intel_display *display);
-> +void intel_display_bdw_init_clock_gating(struct intel_display *display);
-> +void intel_display_hsw_init_clock_gating(struct intel_display *display);
->  #else
->  static inline void intel_display_skl_init_clock_gating(struct intel_display *display) {}
->  static inline void intel_display_kbl_init_clock_gating(struct intel_display *display) {}
->  static inline void intel_display_cfl_init_clock_gating(struct intel_display *display) {}
->  static inline void intel_display_bxt_init_clock_gating(struct intel_display *display) {}
->  static inline void intel_display_glk_init_clock_gating(struct intel_display *display) {}
-> +static inline void intel_display_bdw_hsw_init_clock_gating(struct intel_display *display) {}
-> +static inline void intel_display_bdw_init_clock_gating(struct intel_display *display) {}
-> +static inline void intel_display_hsw_init_clock_gating(struct intel_display *display) {}
->  #endif
->  
->  #endif /* __INTEL_DISPLAY_CLOCK_GATING_H__ */
-> diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
-> index 777314e0c75d..a8e3eb6f06c8 100644
-> --- a/drivers/gpu/drm/i915/intel_clock_gating.c
-> +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
-> @@ -284,23 +284,12 @@ static void skl_init_clock_gating(struct drm_i915_private *i915)
->  
->  static void bdw_init_clock_gating(struct drm_i915_private *i915)
->  {
-> -	struct intel_display *display = i915->display;
-> -	enum pipe pipe;
-> -
-> -	/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
-> -	intel_uncore_rmw(&i915->uncore, CHICKEN_PIPESL_1(PIPE_A), 0, HSW_FBCQ_DIS);
-> +	intel_display_bdw_hsw_init_clock_gating(i915->display);
->  
->  	/* WaSwitchSolVfFArbitrationPriority:bdw */
->  	intel_uncore_rmw(&i915->uncore, GAM_ECOCHK, 0, HSW_ECOCHK_ARB_PRIO_SOL);
->  
-> -	/* WaPsrDPAMaskVBlankInSRD:bdw */
-> -	intel_uncore_rmw(&i915->uncore, CHICKEN_PAR1_1, 0, HSW_MASK_VBL_TO_PIPE_IN_SRD);
-> -
-> -	for_each_pipe(display, pipe) {
-> -		/* WaPsrDPRSUnmaskVBlankInSRD:bdw */
-> -		intel_uncore_rmw(&i915->uncore, CHICKEN_PIPESL_1(pipe),
-> -				 0, BDW_UNMASK_VBL_TO_REGS_IN_SRD);
-> -	}
-> +	intel_display_bdw_init_clock_gating(i915->display);
->  
->  	/* WaVSRefCountFullforceMissDisable:bdw */
->  	/* WaDSRefCountFullforceMissDisable:bdw */
+-:129: WARNING:ENOTSUPP: ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP
+#129: FILE: drivers/gpu/drm/drm_bridge.c:1322:
++		if (ret != -ENOTSUPP) {
 
-...
-WaKVMNotificationOnConfigChange:bdw somewhere in here is also a display
-thing.
+total: 0 errors, 2 warnings, 1 checks, 113 lines checked
+b4965c563c66 drm/atomic-helper: Add HDMI bridge output bus formats helper
+-:68: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#68: FILE: drivers/gpu/drm/drm_atomic_helper.c:4119:
++drm_atomic_helper_bridge_get_hdmi_output_bus_fmts(struct drm_bridge *bridge,
++					struct drm_bridge_state *bridge_state,
 
-And given that I think sharing anything between the platforms in
-this patch is a bit premature. I think it would be better to just
-move things as is, and do the code sharing refactoring as a followup
-once it's easier to see what's common and what isn't.
+-:138: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#138: FILE: include/drm/drm_atomic_helper.h:300:
++drm_atomic_helper_bridge_get_hdmi_output_bus_fmts(struct drm_bridge *bridge,
++					struct drm_bridge_state *bridge_state,
 
-> @@ -332,20 +321,8 @@ static void bdw_init_clock_gating(struct drm_i915_private *i915)
->  
->  static void hsw_init_clock_gating(struct drm_i915_private *i915)
->  {
-> -	struct intel_display *display = i915->display;
-> -	enum pipe pipe;
-> -
-> -	/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
-> -	intel_uncore_rmw(&i915->uncore, CHICKEN_PIPESL_1(PIPE_A), 0, HSW_FBCQ_DIS);
-> -
-> -	/* WaPsrDPAMaskVBlankInSRD:hsw */
-> -	intel_uncore_rmw(&i915->uncore, CHICKEN_PAR1_1, 0, HSW_MASK_VBL_TO_PIPE_IN_SRD);
-> -
-> -	for_each_pipe(display, pipe) {
-> -		/* WaPsrDPRSUnmaskVBlankInSRD:hsw */
-> -		intel_uncore_rmw(&i915->uncore, CHICKEN_PIPESL_1(pipe),
-> -				 0, HSW_UNMASK_VBL_TO_REGS_IN_SRD);
-> -	}
-> +	intel_display_bdw_hsw_init_clock_gating(i915->display);
-> +	intel_display_hsw_init_clock_gating(i915->display);
->  
->  	/* This is required by WaCatErrorRejectionIssue:hsw */
->  	intel_uncore_rmw(&i915->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
-> -- 
-> 2.53.0
+total: 0 errors, 0 warnings, 2 checks, 101 lines checked
+0361c56c3aba drm/display: hdmi-state-helper: Act on color format DRM property
+-:50: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#50: FILE: drivers/gpu/drm/display/drm_hdmi_state_helper.c:695:
++			drm_dbg_kms(connector->dev, "HDMI does not support color format '%d'.\n",
++				conn_state->color_format);
 
--- 
-Ville Syrjälä
-Intel
+total: 0 errors, 0 warnings, 1 checks, 39 lines checked
+1a3323035bfb drm/display: hdmi-state-helper: Try subsampling in mode_valid
+4946032cee4f drm/i915: Implement the "color format" DRM property
+afc229c6b3ca drm/amdgpu: Implement "color format" DRM property
+70256595dbca drm/rockchip: Add YUV422 output mode constants for VOP2
+54918eb9c848 drm/rockchip: vop2: Add RK3576 to the RG swap special case
+e9ca0167586f drm/rockchip: vop2: Recognise 10-bit YUV422 as YUV format
+9a1cfef9ea45 drm/rockchip: vop2: Set correct output format for RK3576 YUV422
+51630e1613dc drm/bridge: dw-hdmi-qp: Use common HDMI output bus fmts helper
+9b561240ee94 drm/rockchip: dw_hdmi_qp: Implement "color format" DRM property
+3673fb474d8c drm/rockchip: dw_hdmi_qp: Set supported_formats platdata
+e68fb72d2073 drm/connector: Register color format property on HDMI connectors
+09402d52ed20 drm/tests: hdmi: Add tests for the color_format property
+-:112: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#112: FILE: drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c:2253:
++	priv = drm_kunit_helper_connector_hdmi_init_with_edid_funcs(test,
++				BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444) |
+
+-:219: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#219: FILE: drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c:2360:
++	priv = drm_kunit_helper_connector_hdmi_init_with_edid_funcs(test,
++				BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444) |
+
+total: 0 errors, 0 warnings, 2 checks, 278 lines checked
+389857cfb2b8 drm/tests: hdmi: Add tests for HDMI helper's mode_valid
+-:57: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#57: FILE: drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c:2777:
++	priv = drm_kunit_helper_connector_hdmi_init_with_edid_funcs(test,
++				BIT(HDMI_COLORSPACE_RGB) |
+
+-:92: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#92: FILE: drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c:2812:
++	priv = drm_kunit_helper_connector_hdmi_init_with_edid_funcs(test,
++				BIT(HDMI_COLORSPACE_RGB),
+
+-:118: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#118: FILE: drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c:2838:
++	priv = drm_kunit_helper_connector_hdmi_init_with_edid_funcs(test,
++				BIT(HDMI_COLORSPACE_RGB),
+
+total: 0 errors, 0 warnings, 3 checks, 126 lines checked
+81525e38a950 drm/tests: bridge: Add KUnit tests for bridge chain format selection
+-:197: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'name' - possible side-effects?
+#197: FILE: drivers/gpu/drm/tests/drm_bridge_test.c:231:
++#define DEFINE_FMT_FUNCS_FROM_TUPLES(name) \
++static u32 *drm_test_bridge_ ## name ## _out_fmts(struct drm_bridge *bridge,			\
++						  struct drm_bridge_state *bridge_state,	\
++						  struct drm_crtc_state *crtc_state,		\
++						  struct drm_connector_state *conn_state,	\
++						  unsigned int *num_output_fmts)		\
++{												\
++	u32 *out_fmts = kcalloc(ARRAY_SIZE((name)), sizeof(u32), GFP_KERNEL);			\
++												\
++	if (out_fmts)										\
++		*num_output_fmts = get_tuples_out_fmts((name), ARRAY_SIZE((name)), out_fmts);	\
++	else											\
++		*num_output_fmts = 0;								\
++												\
++	return out_fmts;									\
++}												\
++												\
++static u32 *drm_test_bridge_ ## name ## _in_fmts(struct drm_bridge *bridge,			\
++						 struct drm_bridge_state *bridge_state,		\
++						 struct drm_crtc_state *crtc_state,		\
++						 struct drm_connector_state *conn_state,	\
++						 u32 output_fmt,				\
++						 unsigned int *num_input_fmts)			\
++{												\
++	u32 *in_fmts = kcalloc(ARRAY_SIZE((name)), sizeof(u32), GFP_KERNEL);			\
++	unsigned int num_fmts = 0;								\
++	size_t i;										\
++												\
++	if (!in_fmts) {										\
++		*num_input_fmts = 0;								\
++		return NULL;									\
++	}											\
++												\
++	for (i = 0; i < ARRAY_SIZE((name)); i++)						\
++		if ((name)[i].out_fmt == output_fmt)						\
++			in_fmts[num_fmts++] = (name)[i].in_fmt;					\
++												\
++	*num_input_fmts = num_fmts;								\
++												\
++	return in_fmts;										\
++}
+
+-:239: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'hdmi_write_infoframe_func' - possible side-effects?
+#239: FILE: drivers/gpu/drm/tests/drm_bridge_test.c:273:
++#define DRM_BRIDGE_ATOMIC_WITH_BUS_FMT_HDMI_FUNC(ident, input_fmts_func, output_fmts_func,	\
++						 hdmi_write_infoframe_func,			\
++						 hdmi_clear_infoframe_func)			\
++static const struct drm_bridge_funcs (ident) = {						\
++	.atomic_enable			= drm_test_bridge_atomic_enable,			\
++	.atomic_disable			= drm_test_bridge_atomic_disable,			\
++	.atomic_destroy_state		= drm_atomic_helper_bridge_destroy_state,		\
++	.atomic_duplicate_state		= drm_atomic_helper_bridge_duplicate_state,		\
++	.atomic_reset			= drm_atomic_helper_bridge_reset,			\
++	.atomic_get_input_bus_fmts	= (input_fmts_func),					\
++	.atomic_get_output_bus_fmts	= (output_fmts_func),					\
++	.hdmi_write_avi_infoframe	= (hdmi_write_infoframe_func),				\
++	.hdmi_clear_avi_infoframe	= (hdmi_clear_infoframe_func),				\
++	.hdmi_write_hdmi_infoframe	= (hdmi_write_infoframe_func),				\
++	.hdmi_clear_hdmi_infoframe	= (hdmi_clear_infoframe_func),				\
++}
+
+-:239: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'hdmi_clear_infoframe_func' - possible side-effects?
+#239: FILE: drivers/gpu/drm/tests/drm_bridge_test.c:273:
++#define DRM_BRIDGE_ATOMIC_WITH_BUS_FMT_HDMI_FUNC(ident, input_fmts_func, output_fmts_func,	\
++						 hdmi_write_infoframe_func,			\
++						 hdmi_clear_infoframe_func)			\
++static const struct drm_bridge_funcs (ident) = {						\
++	.atomic_enable			= drm_test_bridge_atomic_enable,			\
++	.atomic_disable			= drm_test_bridge_atomic_disable,			\
++	.atomic_destroy_state		= drm_atomic_helper_bridge_destroy_state,		\
++	.atomic_duplicate_state		= drm_atomic_helper_bridge_duplicate_state,		\
++	.atomic_reset			= drm_atomic_helper_bridge_reset,			\
++	.atomic_get_input_bus_fmts	= (input_fmts_func),					\
++	.atomic_get_output_bus_fmts	= (output_fmts_func),					\
++	.hdmi_write_avi_infoframe	= (hdmi_write_infoframe_func),				\
++	.hdmi_clear_avi_infoframe	= (hdmi_clear_infoframe_func),				\
++	.hdmi_write_hdmi_infoframe	= (hdmi_write_infoframe_func),				\
++	.hdmi_clear_hdmi_infoframe	= (hdmi_clear_infoframe_func),				\
++}
+
+-:417: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#417: FILE: drivers/gpu/drm/tests/drm_bridge_test.c:529:
++		edid = drm_edid_alloc(test_edid_hdmi_1080p_rgb_yuv_4k_yuv420_dc_max_200mhz,
++				ARRAY_SIZE(test_edid_hdmi_1080p_rgb_yuv_4k_yuv420_dc_max_200mhz));
+
+-:843: WARNING:ENOTSUPP: ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP
+#843: FILE: drivers/gpu/drm/tests/drm_bridge_test.c:1276:
++	KUNIT_EXPECT_EQ(test, ret, -ENOTSUPP);
+
+total: 0 errors, 1 warnings, 4 checks, 834 lines checked
+67c3d5377595 drm/tests: bridge: Add test for HDMI output bus formats helper
+-:214: CHECK:OPEN_ENDED_LINE: Lines should not end with a '('
+#214: FILE: drivers/gpu/drm/tests/drm_bridge_test.c:957:
++	out_bus_fmts = bridge->funcs->atomic_get_output_bus_fmts(
+
+total: 0 errors, 0 warnings, 1 checks, 212 lines checked
+d3c08301379d drm/bridge: Document bridge chain format selection
+
+
