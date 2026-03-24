@@ -4,107 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC19AF54ADB
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 17:07:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85DA5FEC0EA
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 17:40:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4F1B210E767;
-	Tue, 24 Mar 2026 17:07:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E9ED10E604;
+	Tue, 24 Mar 2026 17:40:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=ibm.com header.i=@ibm.com header.b="UUNcZotw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jr3075Gn";
 	dkim-atps=neutral
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com
- [148.163.156.1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B782B10E767
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Mar 2026 17:07:21 +0000 (UTC)
-Received: from pps.filterd (m0356517.ppops.net [127.0.0.1])
- by mx0a-001b2d01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 62O5eHsp4120967; Tue, 24 Mar 2026 17:07:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
- :content-transfer-encoding:content-type:date:from:in-reply-to
- :message-id:mime-version:references:sender:subject:to; s=pp1;
- bh=uxTqQzn37zq82dyIWyZSBRTBU/irP5Ew+hiSH8++MUU=; b=UUNcZotwXPtc
- ul+XeZcsT7JRizh2OYlz1VafGDPFo/Dxsk9zEhNyu3PS6UvCytB7Ar3c0lhlWwRp
- OE9RbIYV4MMdISKN2+mTbBqZ2b2WhpI+NCke1JLGKWRvWgY3CrTtChF1Qu+4wKI/
- wsz/VmQ43hLKVhcm3PWOKSODLSQdLNh8I4tuQuM9T5VVqc54JUe+PNVbiXRatwtg
- fknIbXtoaAt9HQV3/tr498UH1Tipl3Qi4JRDvGe9G58lTlBpB4wfNzUj78glwPN3
- xeSS4eqFMWduZPWtsG4zfT3b4gw4cisTdi21m7Sse6yHscOva9uNDfyEk39UedfU
- hVPZUqs7Eg==
-Received: from ppma22.wdc07v.mail.ibm.com
- (5c.69.3da9.ip4.static.sl-reverse.com [169.61.105.92])
- by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 4d1kw9vr67-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 24 Mar 2026 17:07:18 +0000 (GMT)
-Received: from pps.filterd (ppma22.wdc07v.mail.ibm.com [127.0.0.1])
- by ppma22.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 62OFVmZ9005996;
- Tue, 24 Mar 2026 17:07:17 GMT
-Received: from smtprelay05.fra02v.mail.ibm.com ([9.218.2.225])
- by ppma22.wdc07v.mail.ibm.com (PPS) with ESMTPS id 4d261yk23e-1
- (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
- Tue, 24 Mar 2026 17:07:16 +0000
-Received: from smtpav05.fra02v.mail.ibm.com (smtpav05.fra02v.mail.ibm.com
- [10.20.54.104])
- by smtprelay05.fra02v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id
- 62OH7BIa45089256
- (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
- Tue, 24 Mar 2026 17:07:11 GMT
-Received: from smtpav05.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 1FCB72004B;
- Tue, 24 Mar 2026 17:07:11 +0000 (GMT)
-Received: from smtpav05.fra02v.mail.ibm.com (unknown [127.0.0.1])
- by IMSVA (Postfix) with ESMTP id 08D1820043;
- Tue, 24 Mar 2026 17:07:11 +0000 (GMT)
-Received: from p1gen4-pw042f0m (unknown [9.52.223.163])
- by smtpav05.fra02v.mail.ibm.com (Postfix) with ESMTPS;
- Tue, 24 Mar 2026 17:07:10 +0000 (GMT)
-Received: from bblock by p1gen4-pw042f0m with local (Exim 4.99.1)
- (envelope-from <bblock@linux.ibm.com>) id 1w55Di-000000094zn-2xqM;
- Tue, 24 Mar 2026 18:07:10 +0100
-Date: Tue, 24 Mar 2026 18:07:10 +0100
-From: Benjamin Block <bblock@linux.ibm.com>
-To: "Ionut Nechita (Wind River)" <ionut.nechita@windriver.com>
-Cc: schnelle@linux.ibm.com, alifm@linux.ibm.com, bhelgaas@google.com,
- dtatulea@nvidia.com, helgaas@kernel.org,
- intel-xe@lists.freedesktop.org, ionut_n2001@yahoo.com,
- julianr@linux.ibm.com, kbusch@kernel.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org, linux@roeck-us.net, lkml@mageta.org,
- lukas@wunner.de, mani@kernel.org, matthew.brost@intel.com,
- michal.wajdeczko@intel.com, piotr.piorkowski@intel.com,
- sebott@linux.ibm.com, stable@vger.kernel.org, sunlightlinux@gmail.com
-Subject: Re: [PATCH v10 0/2] PCI/IOV: Fix SR-IOV locking races and AB-BA
- deadlock
-Message-ID: <20260324170710.GA252856@p1gen4-pw042f0m>
-References: <f17b03652a84be73c1d3a2cfea8a016dab99f8e0.camel@linux.ibm.com>
- <20260319202755.16081-1-ionut.nechita@windriver.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FB3110E604;
+ Tue, 24 Mar 2026 17:40:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774374057; x=1805910057;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=u/0gFANZ5dEfzWgxa0UPUJKda+e3XcIJ6yuvzDP764k=;
+ b=jr3075Gnb+hNB7bPcFKqwPIadjVhkpVHSVOxwV3YCTzRu1i5ZenKYF+g
+ x9boZtjWURKHGW9NPZEyaS550zaXI2esEKM64NEQOWXlXKyCu340+v5Jh
+ RLiJ9OuXSrTLy1OOCTRfdEd5gQesZFB+5kwdljnoA8finTWTzmbzTtUic
+ HqgimAZH96A+g0Vheg5/mgIgarH13kifneOTCPQwQyCSLvFhD5tczJPry
+ E4NbhLkioxZ0QymHlTTyO6sx2e5PobIdsQ95eKUyvCR8qorTeynfWxrQC
+ W5Rk49JtceusNR5CEZtyKXfdipJBw9ONWVpv+I9jzlsPDbp33Lf6Yk4Jb w==;
+X-CSE-ConnectionGUID: ljj57ReoQNurY38cgA7E8w==
+X-CSE-MsgGUID: J7TfOu+rSa26BcmxXguGNQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="62951184"
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="62951184"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2026 10:40:56 -0700
+X-CSE-ConnectionGUID: 0ul2hjvvSQCWITK3SjN1mg==
+X-CSE-MsgGUID: J7VUNphATei40d1FcSZ4Rw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="219550234"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.81])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2026 10:40:54 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/8] drm/i915: move SKL clock gating init to display
+In-Reply-To: <20260324143420.310800-2-luciano.coelho@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260324143420.310800-1-luciano.coelho@intel.com>
+ <20260324143420.310800-2-luciano.coelho@intel.com>
+Date: Tue, 24 Mar 2026 19:40:51 +0200
+Message-ID: <f747c63ee19db048d2fe746170e9c151b0ba1056@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260319202755.16081-1-ionut.nechita@windriver.com>
-X-TM-AS-GCONF: 00
-X-Proofpoint-Reinject: loops=2 maxloops=12
-X-Proofpoint-ORIG-GUID: rY4fF4ZcHAzawRmmUo057d8sT-U_YyZN
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzI0MDEzMCBTYWx0ZWRfX1bWxugcuXBai
- E41K0wNRWoRBPEiVTuTOhEcE9wVlKL2/pg7193xc+rvSLYJkzqmW/aWJOa9cJ6M3xg9f6ugz3Y8
- u/j8L3kR/WTS46CsN2edHYoYJqzfn0t+Fb3zLtJKeeAyBFsaULTSbiMivaO1RX4mBjcF9Qk9kYG
- X0Z7zKsKJEd7wfqQUX9ZSFJs25xlX0S/Fsb1xe8ZbK3Qui5eu0lbNhvUesSrfamVhX8iw3fuN5X
- v5qFrhW9hrqJ3qumA1RI7x3VSow1TjBqe533/xJ7aINrIrX+Q/MPdY6twziEVwCGR+Q/AyDgkJD
- HhjqUL2gIikTP3Im1q/B0NexVz5m1WugfjpQRsp3BJL9mV9ac0/m8bLUPxq83/sIeVR2mTEyzcj
- JteAZwhkTB7tOv1ttyFiOA6y3KmEIjov1bPb7iFCfBvMVjCkz7tip6xNKtvupQ4+X+ocDLmsixh
- gqBhsA8J+six0MJcb6w==
-X-Proofpoint-GUID: mayWfXcezXzQ0RCPJmiJH_6HnV5S1zrz
-X-Authority-Analysis: v=2.4 cv=OsZCCi/t c=1 sm=1 tr=0 ts=69c2c4c6 cx=c_pps
- a=5BHTudwdYE3Te8bg5FgnPg==:117 a=5BHTudwdYE3Te8bg5FgnPg==:17
- a=IkcTkHD0fZMA:10 a=Yq5XynenixoA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=RnoormkPH1_aCDwRdu11:22 a=U7nrCbtTmkRpXpFmAIza:22 a=VnNF1IyMAAAA:8
- a=x-Aaag0WYKWWV6Rne_cA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-24_03,2026-03-24_01,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 adultscore=0 clxscore=1011 phishscore=0 suspectscore=0
- lowpriorityscore=0 priorityscore=1501 bulkscore=0 spamscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2603050001 definitions=main-2603240130
+Content-Type: text/plain
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,59 +69,122 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Mar 19, 2026 at 10:27:55PM +0200, Ionut Nechita (Wind River) wrote:
-> On Thu, 19 Mar 2026 13:31:39 +0100, Niklas Schnelle wrote:
-> > For your awareness, I saw that this series has some findings on
-> > Google's new Sashiko AI reviewing tool[0]. At a quick glance the
-> > findings seem like at least reasonable concerns to me. I'm still
-> > looking at this independently also of course.
-> 
---8<--
-> 3) TOCTOU Race Condition / Lock Window Vulnerability
->    — a driver can rebind between device_release_driver() and
->      pci_stop_and_remove_bus_device_locked()
-> 
->    This is theoretically valid but practically impossible. The
->    window is a few instructions wide. For this race to trigger:
-> 
->    a) device_remove_file_self() has already removed the "remove"
->       sysfs attribute, signaling the device is being torn down
->    b) a bind_store or udev probe would need to fire in exactly
->       that window
->    c) the newly bound driver's probe() would need to call
->       pci_enable_sriov() and block on pci_rescan_remove_lock
-> 
->    This is the same pattern used elsewhere in the kernel (e.g.,
->    the existing remove_store already had no synchronization between
->    device_remove_file_self() and pci_stop_and_remove_bus_device_locked()
->    — the patch just adds one more call in between).
-> 
->    If this is a real concern, it would need to be addressed as a
->    separate improvement, not as a blocker for this fix.
+On Tue, 24 Mar 2026, Luca Coelho <luciano.coelho@intel.com> wrote:
+> Move the SKL-specific display clock gating programming into a new file
+> inside display.
+>
+> This removes dependency from intel_clock_gating.c to the display's
+> intel_pch.h file, so we can remove the include statement.
+>
+> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+> ---
+>  drivers/gpu/drm/i915/Makefile                 |  1 +
+>  .../i915/display/intel_display_clock_gating.c | 19 +++++++++++++++++++
+>  .../i915/display/intel_display_clock_gating.h | 17 +++++++++++++++++
+>  drivers/gpu/drm/i915/intel_clock_gating.c     |  8 ++------
+>  4 files changed, 39 insertions(+), 6 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_display_clock_gating.h
+>
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index be976a90c5a6..89232873d4b7 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -254,6 +254,7 @@ i915-y += \
+>  	display/intel_crtc_state_dump.o \
+>  	display/intel_cursor.o \
+>  	display/intel_dbuf_bw.o \
+> +	display/intel_display_clock_gating.o \
+>  	display/intel_display.o \
+>  	display/intel_display_conversion.o \
+>  	display/intel_display_driver.o \
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> new file mode 100644
+> index 000000000000..4a94593335e0
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> @@ -0,0 +1,19 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright 2026 Intel Corporation
+> + */
+> +
+> +#include <drm/intel/intel_gmd_misc_regs.h>
+> +
+> +#include "intel_de.h"
+> +#include "intel_display_clock_gating.h"
+> +#include "intel_display_regs.h"
+> +
+> +void intel_display_skl_init_clock_gating(struct intel_display *display)
+> +{
+> +	/*
+> +	 * WaFbcTurnOffFbcWatermark:skl
+> +	 * Display WA #0562: skl
+> +	 */
+> +	intel_de_rmw(display, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
+> new file mode 100644
+> index 000000000000..c93997417dcb
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
+> @@ -0,0 +1,17 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright 2026 Intel Corporation
+> + */
+> +
+> +#ifndef __INTEL_DISPLAY_CLOCK_GATING_H__
+> +#define __INTEL_DISPLAY_CLOCK_GATING_H__
+> +
+> +struct intel_display;
+> +
+> +#ifdef I915
+> +void intel_display_skl_init_clock_gating(struct intel_display *display);
+> +#else
+> +static inline void intel_display_skl_init_clock_gating(struct intel_display *display) {}
+> +#endif
 
-I haven't had time to fully review all this yet, but one quick comment: after
-the first idea to unbind the device driver I also realized we could have a
-race here between unbinding, and then possibly re-binding. We could probably
-prevent that by marking the device as dead:
+I don't think we should add any of this #ifdef I915 stuff, because the
+next step will be to remove all of them anyway.
 
-+	if (val && device_remove_file_self(dev, attr)) {
-+		device_lock(dev);
-+		kill_device(dev);
-+		device_unlock(dev);
+Currently they'll only get called for i915, but their existence in xe
+doesn't matter. And eventually they'll be part of the display module.
 
-This doesn't modify the reference count or anything, but only sets the private
-member of the `struct device` `dead` to true. This can't be undone using the
-device core's public API, and once set, a device can not be bound to a new
-device-driver.
+BR,
+Jani.
 
-This should prevent any such race AFAICS. The unbind is protected by the
-device-mutex, so once the flag is set, and the unbind is done, this device
-will stay unbound.
 
-It's not really "pretty" though.
+> +
+> +#endif /* __INTEL_DISPLAY_CLOCK_GATING_H__ */
+> diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
+> index ee2489a2fbe7..454334fef5e7 100644
+> --- a/drivers/gpu/drm/i915/intel_clock_gating.c
+> +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
+> @@ -31,9 +31,9 @@
+>  
+>  #include "display/i9xx_plane_regs.h"
+>  #include "display/intel_display.h"
+> +#include "display/intel_display_clock_gating.h"
+>  #include "display/intel_display_core.h"
+>  #include "display/intel_display_regs.h"
+> -#include "display/intel_pch.h"
+>  #include "gt/intel_engine_regs.h"
+>  #include "gt/intel_gt.h"
+>  #include "gt/intel_gt_mcr.h"
+> @@ -349,11 +349,7 @@ static void skl_init_clock_gating(struct drm_i915_private *i915)
+>  	/* WAC6entrylatency:skl */
+>  	intel_uncore_rmw(&i915->uncore, FBC_LLC_READ_CTRL, 0, FBC_LLC_FULLY_OPEN);
+>  
+> -	/*
+> -	 * WaFbcTurnOffFbcWatermark:skl
+> -	 * Display WA #0562: skl
+> -	 */
+> -	intel_uncore_rmw(&i915->uncore, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
+> +	intel_display_skl_init_clock_gating(i915->display);
+>  }
+>  
+>  static void bdw_init_clock_gating(struct drm_i915_private *i915)
 
 -- 
-Best Regards, Benjamin Block        /        Linux on IBM Z Kernel Development
-IBM Deutschland Research & Development GmbH    /   https://www.ibm.com/privacy
-Vors. Aufs.-R.: Wolfgang Wendt         /        Geschäftsführung: David Faller
-Sitz der Ges.: Ehningen     /     Registergericht: AmtsG Stuttgart, HRB 243294
+Jani Nikula, Intel
