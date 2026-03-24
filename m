@@ -4,27 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 705A7FEC0EC
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 17:49:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FB72FEC0F3
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 18:28:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A9CE10E517;
-	Tue, 24 Mar 2026 17:49:14 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64DD910E30C;
- Tue, 24 Mar 2026 17:49:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4167688451775974235=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A357010E622;
+	Tue, 24 Mar 2026 18:28:52 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O/3peO+C";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31D4C10E630
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Mar 2026 18:28:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774376932; x=1805912932;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=GKe/EXZjrvvFLm2o1REABiNBlbOEmmD3kXUz7Z1tW20=;
+ b=O/3peO+Ce3QhpAJCwbd9ranLAzIiaybOYl2OgeHzcUNwq24+VXYVYux9
+ wBtKGh1EfcCsh02V848So2XBlhgqN6N80KEfQfvzKTk0cSDd6wqy6VgY+
+ xGFsO06b4biIiBBzx8J1Qe7B08u6ZPEIsygbcPYmHf5FvhJ5lUCmjwGiF
+ EPdaSKb+JXeQzImibG7xGLyM2Dik+0CWSeVHEBAPmexXB7q5wrxgDmTif
+ A+lJZEwqj3rINC4RK2WTedLzK7tKLyu72/+RUbn+F56T4Bn8cFzebUwiN
+ JBzYuOD9dh+5ACadO5QiTjrtu54bqID0gKW2C+hHk1bXZnLcRKHaOmw9t A==;
+X-CSE-ConnectionGUID: a6NqWzTfQwyZdJscDK1D4A==
+X-CSE-MsgGUID: wENCLHVJRw+/HJ8WcBVlrA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="75291449"
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="75291449"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2026 11:28:51 -0700
+X-CSE-ConnectionGUID: c0AlmCvxSBOuI4oXbedczA==
+X-CSE-MsgGUID: l/H+/AQbSH++Tawf7jux4w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="229373569"
+Received: from nkumarg-desk.iind.intel.com ([10.190.216.171])
+ by orviesa005.jf.intel.com with ESMTP; 24 Mar 2026 11:28:49 -0700
+From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: thomas.hellstrom@linux.intel.com, stuart.summers@intel.com,
+ Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+Subject: [PATCH v3 0/1] drm/xe: Set GT rp min frequency as 1.2GHz default for
+ BMG/CRI
+Date: Tue, 24 Mar 2026 23:51:37 +0530
+Message-ID: <20260324182136.709386-3-naresh.kumar.g@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Add_new_general_DRM_propert?=
- =?utf-8?q?y_=22color_format=22_=28rev8=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nicolas Frattaroli" <nicolas.frattaroli@collabora.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 24 Mar 2026 17:49:13 -0000
-Message-ID: <177437455339.393007.16388032552575482796@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
-In-Reply-To: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,198 +62,41 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4167688451775974235==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Performance degradation occurs in multi-BMG GPU configurations 
+during Peer-to-Peer transactions when one of the two GPUs remains idle
+with no engine activity.
+The root cause has been identified as frequency downscaling:
+the idle remote GPU reduces its operating frequency to the minimum 400MHz,
+which negatively impacts the bandwidth available for P2P transactions 
+initiated by the active local GPU.
 
-== Series Details ==
+To address above problem this patch ensures for the platform BMG/CRI
+of graphics(GT0) tile.the default GT rp frquency min set as 1.2GHz
+to ensure effetive P2P transaction bandwidth.
 
-Series: Add new general DRM property "color format" (rev8)
-URL   : https://patchwork.freedesktop.org/series/157911/
-State : success
+Note: 
+While frequency boosting improves performance, 
+it also increases power consumption. In single GPU mode,
+it causes the GPU to operate at unnecessarily high frequencies by default
+and as of now we do not have any mechanism to limit this for single
+GPU.
 
-== Summary ==
+v2:
+- Fix Indentation(Thomas)
+- Add comment about power impact(Stuart)
 
-CI Bug Log - changes from xe-4773-3a61374eb191c4ab83fbbcc569bb3f82a5d68819_BAT -> xe-pw-157911v8_BAT
-====================================================
+v3:(Thomas/Ankur/Matt Roper)
+- Add setting frequency to only GT0(Graphics) Tile of BMG/CRI
 
-Summary
--------
+Nareshkumar Gollakoti (1):
+  drm/xe: Set GT rp min frequency as 1.2GHz default for BMG/CRI
 
-  **SUCCESS**
+ drivers/gpu/drm/xe/xe_guc_pc.c | 29 ++++++++++++++++++++++++++++-
+ 1 file changed, 28 insertions(+), 1 deletion(-)
 
-  No regressions found.
+-- 
+2.43.0
 
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-157911v8_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4773-3a61374eb191c4ab83fbbcc569bb3f82a5d68819/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v8/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [PASS][3] -> [TIMEOUT][4] ([Intel XE#6506])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4773-3a61374eb191c4ab83fbbcc569bb3f82a5d68819/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v8/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [PASS][5] -> [FAIL][6] ([Intel XE#6519])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4773-3a61374eb191c4ab83fbbcc569bb3f82a5d68819/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v8/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [DMESG-WARN][7] ([Intel XE#7483]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4773-3a61374eb191c4ab83fbbcc569bb3f82a5d68819/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v8/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  * igt@xe_module_load@load:
-    - bat-wcl-1:          [DMESG-WARN][9] ([Intel XE#7487]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4773-3a61374eb191c4ab83fbbcc569bb3f82a5d68819/bat-wcl-1/igt@xe_module_load@load.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v8/bat-wcl-1/igt@xe_module_load@load.html
-
-  
-#### Warnings ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [DMESG-WARN][11] ([Intel XE#7433]) -> [ABORT][12] ([Intel XE#7249] / [Intel XE#7578])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4773-3a61374eb191c4ab83fbbcc569bb3f82a5d68819/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v8/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#7249]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249
-  [Intel XE#7433]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7433
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
-  [Intel XE#7487]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7487
-  [Intel XE#7578]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578
-
-
-Build changes
--------------
-
-  * Linux: xe-4773-3a61374eb191c4ab83fbbcc569bb3f82a5d68819 -> xe-pw-157911v8
-
-  IGT_8822: 8822
-  xe-4773-3a61374eb191c4ab83fbbcc569bb3f82a5d68819: 3a61374eb191c4ab83fbbcc569bb3f82a5d68819
-  xe-pw-157911v8: 157911v8
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v8/index.html
-
---===============4167688451775974235==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add new general DRM property &quot;color format&quot; (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157911/">https://patchwork.freedesktop.org/series/157911/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4773-3a61374eb191c4ab83fbbcc569bb3f82a5d68819_BAT -&gt; xe-pw-157911v8_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-157911v8_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4773-3a61374eb191c4ab83fbbcc569bb3f82a5d68819/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v8/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@abstime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4773-3a61374eb191c4ab83fbbcc569bb3f82a5d68819/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v8/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4773-3a61374eb191c4ab83fbbcc569bb3f82a5d68819/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v8/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4773-3a61374eb191c4ab83fbbcc569bb3f82a5d68819/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v8/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_module_load@load:</p>
-<ul>
-<li>bat-wcl-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4773-3a61374eb191c4ab83fbbcc569bb3f82a5d68819/bat-wcl-1/igt@xe_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7487">Intel XE#7487</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v8/bat-wcl-1/igt@xe_module_load@load.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4773-3a61374eb191c4ab83fbbcc569bb3f82a5d68819/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7433">Intel XE#7433</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-157911v8/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249">Intel XE#7249</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578">Intel XE#7578</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4773-3a61374eb191c4ab83fbbcc569bb3f82a5d68819 -&gt; xe-pw-157911v8</li>
-</ul>
-<p>IGT_8822: 8822<br />
-  xe-4773-3a61374eb191c4ab83fbbcc569bb3f82a5d68819: 3a61374eb191c4ab83fbbcc569bb3f82a5d68819<br />
-  xe-pw-157911v8: 157911v8</p>
-
-</body>
-</html>
-
---===============4167688451775974235==--
