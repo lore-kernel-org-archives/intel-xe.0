@@ -4,52 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05DF4E9A762
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 10:35:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7791DE9A76A
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 11:08:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B060310E0B0;
-	Tue, 24 Mar 2026 10:34:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MRXtOlDw";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C7DE10E0B0
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Mar 2026 10:34:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774348498; x=1805884498;
- h=date:from:to:cc:subject:message-id;
- bh=AstRS26whJtAG0Hv3u/tAu0PqbF3WrW23HFvxDixPqs=;
- b=MRXtOlDwxmfVMP5GXBtJkr6r/N66CuDXB7CPzBKEAqcqrT1WcXYCDjQl
- YsTHJpjzL57s3s0Rdf8GaQ4v/KAZa2mRgP+gl52SkKQYaPOXDokDNlX47
- U6VzuPUA6c9v5KRd4DZgCYaSd8BE9AvyG4qWwmlMMUWy5k/XIIG3ALk6j
- Tdb3DmiV9bpOb3WC6nW2MSCQJyizgCg2ay1YFZBV9I2XURHhW/klc0eqp
- HqyBDyvn1EqTtVZ1ooafQBZ2A5EJh7CHNb2s6fKqtP91R/Njri1mYqodJ
- yS+JiY36pQ2yc6buCLu0vujceZZTHnLBb4SP3k28eolrMFirOmJBaHfeh w==;
-X-CSE-ConnectionGUID: cEl1zHP3T++TI4dIgDnEcg==
-X-CSE-MsgGUID: l5PPaBlkSwa6feVmPlj72g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11738"; a="97978511"
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="97978511"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 03:34:58 -0700
-X-CSE-ConnectionGUID: D6SB2u2LRROvARMvv+/AqA==
-X-CSE-MsgGUID: mIckwVJkQDSxzNPHq8R5Bg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="262238964"
-Received: from lkp-server01.sh.intel.com (HELO 3905d212be1b) ([10.239.97.150])
- by orviesa001.jf.intel.com with ESMTP; 24 Mar 2026 03:34:57 -0700
-Received: from kbuild by 3905d212be1b with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1w4z66-000000004On-2LV7;
- Tue, 24 Mar 2026 10:34:54 +0000
-Date: Tue, 24 Mar 2026 18:34:37 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26D5110E0CF;
+	Tue, 24 Mar 2026 11:08:18 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F3B210E0CF;
+ Tue, 24 Mar 2026 11:08:16 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2623630988532391472=="
+MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/gsc=3A_test_new_GSC_?=
+ =?utf-8?q?105=2E0=2E2=2E1397_for_PTL_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
- a31566762d4075646a8a2214586158b681e94305
-Message-ID: <202603241829.xC6jt3UH-lkp@intel.com>
-User-Agent: s-nail v14.9.25
+Date: Tue, 24 Mar 2026 11:08:16 -0000
+Message-ID: <177435049656.389820.4299712630115282434@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260323181645.3013877-2-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20260323181645.3013877-2-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,248 +36,140 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: a31566762d4075646a8a2214586158b681e94305  drm/xe: Implement recent spec updates to Wa_16025250150
+--===============2623630988532391472==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-elapsed time: 868m
+== Series Details ==
 
-configs tested: 226
-configs skipped: 2
+Series: drm/xe/gsc: test new GSC 105.0.2.1397 for PTL (rev2)
+URL   : https://patchwork.freedesktop.org/series/163726/
+State : success
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+== Summary ==
 
-tested configs:
-alpha                             allnoconfig    gcc-15.2.0
-alpha                            allyesconfig    gcc-15.2.0
-alpha                               defconfig    gcc-15.2.0
-arc                              allmodconfig    clang-16
-arc                              allmodconfig    gcc-15.2.0
-arc                               allnoconfig    gcc-15.2.0
-arc                              allyesconfig    clang-23
-arc                                 defconfig    gcc-15.2.0
-arc                   randconfig-001-20260324    gcc-8.5.0
-arc                   randconfig-002-20260324    gcc-8.5.0
-arm                               allnoconfig    clang-23
-arm                               allnoconfig    gcc-15.2.0
-arm                              allyesconfig    clang-16
-arm                              allyesconfig    gcc-15.2.0
-arm                                 defconfig    gcc-15.2.0
-arm                   randconfig-001-20260324    gcc-8.5.0
-arm                   randconfig-002-20260324    gcc-8.5.0
-arm                   randconfig-003-20260324    gcc-8.5.0
-arm                   randconfig-004-20260324    gcc-8.5.0
-arm64                            allmodconfig    clang-23
-arm64                             allnoconfig    gcc-15.2.0
-arm64                               defconfig    gcc-15.2.0
-arm64                 randconfig-001-20260324    gcc-13.4.0
-arm64                 randconfig-002-20260324    gcc-13.4.0
-arm64                 randconfig-002-20260324    gcc-8.5.0
-arm64                 randconfig-003-20260324    clang-23
-arm64                 randconfig-003-20260324    gcc-13.4.0
-arm64                 randconfig-004-20260324    clang-23
-arm64                 randconfig-004-20260324    gcc-13.4.0
-csky                             allmodconfig    gcc-15.2.0
-csky                              allnoconfig    gcc-15.2.0
-csky                                defconfig    gcc-15.2.0
-csky                  randconfig-001-20260324    gcc-13.4.0
-csky                  randconfig-001-20260324    gcc-15.2.0
-csky                  randconfig-002-20260324    gcc-13.4.0
-csky                  randconfig-002-20260324    gcc-15.2.0
-hexagon                          allmodconfig    clang-17
-hexagon                          allmodconfig    gcc-15.2.0
-hexagon                           allnoconfig    clang-23
-hexagon                           allnoconfig    gcc-15.2.0
-hexagon                             defconfig    gcc-15.2.0
-hexagon               randconfig-001-20260324    gcc-11.5.0
-hexagon               randconfig-002-20260324    gcc-11.5.0
-i386                             allmodconfig    clang-20
-i386                              allnoconfig    gcc-14
-i386                              allnoconfig    gcc-15.2.0
-i386                             allyesconfig    clang-20
-i386                             allyesconfig    gcc-14
-i386        buildonly-randconfig-001-20260324    gcc-12
-i386        buildonly-randconfig-002-20260324    clang-20
-i386        buildonly-randconfig-002-20260324    gcc-12
-i386        buildonly-randconfig-003-20260324    clang-20
-i386        buildonly-randconfig-003-20260324    gcc-12
-i386        buildonly-randconfig-004-20260324    gcc-12
-i386        buildonly-randconfig-004-20260324    gcc-14
-i386        buildonly-randconfig-005-20260324    clang-20
-i386        buildonly-randconfig-005-20260324    gcc-12
-i386        buildonly-randconfig-006-20260324    gcc-12
-i386        buildonly-randconfig-006-20260324    gcc-14
-i386                                defconfig    gcc-15.2.0
-i386                  randconfig-001-20260324    clang-20
-i386                  randconfig-001-20260324    gcc-14
-i386                  randconfig-002-20260324    clang-20
-i386                  randconfig-003-20260324    clang-20
-i386                  randconfig-004-20260324    clang-20
-i386                  randconfig-005-20260324    clang-20
-i386                  randconfig-006-20260324    clang-20
-i386                  randconfig-006-20260324    gcc-14
-i386                  randconfig-007-20260324    clang-20
-i386                  randconfig-007-20260324    gcc-14
-i386                  randconfig-011-20260324    clang-20
-i386                  randconfig-011-20260324    gcc-13
-i386                  randconfig-012-20260324    clang-20
-i386                  randconfig-012-20260324    gcc-13
-i386                  randconfig-013-20260324    gcc-13
-i386                  randconfig-013-20260324    gcc-14
-i386                  randconfig-014-20260324    gcc-13
-i386                  randconfig-015-20260324    gcc-13
-i386                  randconfig-015-20260324    gcc-14
-i386                  randconfig-016-20260324    gcc-13
-i386                  randconfig-017-20260324    clang-20
-i386                  randconfig-017-20260324    gcc-13
-loongarch                        allmodconfig    clang-23
-loongarch                         allnoconfig    clang-23
-loongarch                         allnoconfig    gcc-15.2.0
-loongarch                           defconfig    clang-19
-loongarch             randconfig-001-20260324    gcc-11.5.0
-loongarch             randconfig-002-20260324    gcc-11.5.0
-m68k                             allmodconfig    gcc-15.2.0
-m68k                              allnoconfig    gcc-15.2.0
-m68k                             allyesconfig    clang-16
-m68k                             allyesconfig    gcc-15.2.0
-m68k                                defconfig    clang-19
-microblaze                        allnoconfig    gcc-15.2.0
-microblaze                       allyesconfig    gcc-15.2.0
-microblaze                          defconfig    clang-19
-mips                             allmodconfig    gcc-15.2.0
-mips                              allnoconfig    gcc-15.2.0
-mips                             allyesconfig    gcc-15.2.0
-mips                           mtx1_defconfig    clang-23
-nios2                            allmodconfig    clang-23
-nios2                            allmodconfig    gcc-11.5.0
-nios2                             allnoconfig    clang-23
-nios2                             allnoconfig    gcc-11.5.0
-nios2                               defconfig    clang-19
-nios2                 randconfig-001-20260324    gcc-11.5.0
-nios2                 randconfig-002-20260324    gcc-11.5.0
-openrisc                         allmodconfig    clang-23
-openrisc                         allmodconfig    gcc-15.2.0
-openrisc                          allnoconfig    clang-23
-openrisc                          allnoconfig    gcc-15.2.0
-openrisc                            defconfig    gcc-15.2.0
-parisc                           allmodconfig    gcc-15.2.0
-parisc                            allnoconfig    clang-23
-parisc                            allnoconfig    gcc-15.2.0
-parisc                           allyesconfig    clang-19
-parisc                           allyesconfig    gcc-15.2.0
-parisc                              defconfig    gcc-15.2.0
-parisc                randconfig-001-20260324    gcc-12.5.0
-parisc                randconfig-001-20260324    gcc-8.5.0
-parisc                randconfig-002-20260324    gcc-10.5.0
-parisc                randconfig-002-20260324    gcc-8.5.0
-parisc64                            defconfig    clang-19
-powerpc                          allmodconfig    gcc-15.2.0
-powerpc                           allnoconfig    clang-23
-powerpc                           allnoconfig    gcc-15.2.0
-powerpc               randconfig-001-20260324    gcc-8.5.0
-powerpc               randconfig-002-20260324    gcc-8.5.0
-powerpc64             randconfig-001-20260324    gcc-14.3.0
-powerpc64             randconfig-001-20260324    gcc-8.5.0
-powerpc64             randconfig-002-20260324    gcc-8.5.0
-riscv                            allmodconfig    clang-23
-riscv                             allnoconfig    clang-23
-riscv                             allnoconfig    gcc-15.2.0
-riscv                            allyesconfig    clang-16
-riscv                               defconfig    clang-23
-riscv                               defconfig    gcc-15.2.0
-riscv                 randconfig-001-20260324    clang-23
-riscv                 randconfig-002-20260324    clang-23
-s390                             allmodconfig    clang-18
-s390                             allmodconfig    clang-19
-s390                              allnoconfig    clang-23
-s390                             allyesconfig    gcc-15.2.0
-s390                                defconfig    clang-23
-s390                                defconfig    gcc-15.2.0
-s390                  randconfig-001-20260324    clang-23
-s390                  randconfig-002-20260324    clang-23
-sh                               allmodconfig    gcc-15.2.0
-sh                                allnoconfig    clang-23
-sh                                allnoconfig    gcc-15.2.0
-sh                               allyesconfig    clang-19
-sh                               allyesconfig    gcc-15.2.0
-sh                                  defconfig    gcc-14
-sh                                  defconfig    gcc-15.2.0
-sh                    randconfig-001-20260324    clang-23
-sh                    randconfig-002-20260324    clang-23
-sparc                             allnoconfig    clang-23
-sparc                             allnoconfig    gcc-15.2.0
-sparc                               defconfig    gcc-15.2.0
-sparc                 randconfig-001-20260324    gcc-14
-sparc                 randconfig-001-20260324    gcc-15.2.0
-sparc                 randconfig-002-20260324    gcc-14
-sparc                 randconfig-002-20260324    gcc-15.2.0
-sparc64                          allmodconfig    clang-23
-sparc64                             defconfig    clang-20
-sparc64                             defconfig    gcc-14
-sparc64               randconfig-001-20260324    clang-23
-sparc64               randconfig-001-20260324    gcc-14
-sparc64               randconfig-002-20260324    clang-20
-sparc64               randconfig-002-20260324    gcc-14
-um                               allmodconfig    clang-19
-um                                allnoconfig    clang-23
-um                               allyesconfig    gcc-14
-um                               allyesconfig    gcc-15.2.0
-um                                  defconfig    clang-23
-um                                  defconfig    gcc-14
-um                             i386_defconfig    gcc-14
-um                    randconfig-001-20260324    gcc-14
-um                    randconfig-002-20260324    clang-17
-um                    randconfig-002-20260324    gcc-14
-um                           x86_64_defconfig    clang-23
-um                           x86_64_defconfig    gcc-14
-x86_64                           allmodconfig    clang-20
-x86_64                            allnoconfig    clang-20
-x86_64                            allnoconfig    clang-23
-x86_64                           allyesconfig    clang-20
-x86_64      buildonly-randconfig-001-20260324    gcc-14
-x86_64      buildonly-randconfig-002-20260324    gcc-14
-x86_64      buildonly-randconfig-003-20260324    gcc-14
-x86_64      buildonly-randconfig-004-20260324    gcc-14
-x86_64      buildonly-randconfig-005-20260324    gcc-14
-x86_64      buildonly-randconfig-006-20260324    gcc-14
-x86_64                              defconfig    gcc-14
-x86_64                                  kexec    clang-20
-x86_64                randconfig-001-20260324    clang-20
-x86_64                randconfig-002-20260324    clang-20
-x86_64                randconfig-003-20260324    clang-20
-x86_64                randconfig-004-20260324    clang-20
-x86_64                randconfig-005-20260324    clang-20
-x86_64                randconfig-006-20260324    clang-20
-x86_64                randconfig-011-20260324    gcc-14
-x86_64                randconfig-012-20260324    gcc-14
-x86_64                randconfig-013-20260324    gcc-14
-x86_64                randconfig-014-20260324    gcc-14
-x86_64                randconfig-015-20260324    gcc-14
-x86_64                randconfig-016-20260324    gcc-14
-x86_64                randconfig-071-20260324    gcc-12
-x86_64                randconfig-072-20260324    gcc-12
-x86_64                randconfig-073-20260324    gcc-12
-x86_64                randconfig-074-20260324    gcc-12
-x86_64                randconfig-075-20260324    gcc-12
-x86_64                randconfig-076-20260324    gcc-12
-x86_64                               rhel-9.4    clang-20
-x86_64                           rhel-9.4-bpf    gcc-14
-x86_64                          rhel-9.4-func    clang-20
-x86_64                    rhel-9.4-kselftests    clang-20
-x86_64                         rhel-9.4-kunit    gcc-14
-x86_64                           rhel-9.4-ltp    gcc-14
-x86_64                          rhel-9.4-rust    clang-20
-xtensa                            allnoconfig    clang-23
-xtensa                            allnoconfig    gcc-15.2.0
-xtensa                           allyesconfig    clang-23
-xtensa                randconfig-001-20260324    gcc-14
-xtensa                randconfig-001-20260324    gcc-8.5.0
-xtensa                randconfig-002-20260324    gcc-14
-xtensa                randconfig-002-20260324    gcc-14.3.0
+CI Bug Log - changes from xe-4769-0c7d9ab970be1e9326b87e8d312443e2bd0da296_BAT -> xe-pw-163726v2_BAT
+====================================================
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-163726v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4769-0c7d9ab970be1e9326b87e8d312443e2bd0da296/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163726v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4769-0c7d9ab970be1e9326b87e8d312443e2bd0da296/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163726v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
+
+
+Build changes
+-------------
+
+  * Linux: xe-4769-0c7d9ab970be1e9326b87e8d312443e2bd0da296 -> xe-pw-163726v2
+
+  IGT_8822: 8822
+  xe-4769-0c7d9ab970be1e9326b87e8d312443e2bd0da296: 0c7d9ab970be1e9326b87e8d312443e2bd0da296
+  xe-pw-163726v2: 163726v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163726v2/index.html
+
+--===============2623630988532391472==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/gsc: test new GSC 105.0.2.1397 for PTL (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163726/">https://patchwork.freedesktop.org/series/163726/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163726v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163726v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4769-0c7d9ab970be1e9326b87e8d312443e2bd0da296_BAT -&gt; xe-pw-163726v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-163726v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4769-0c7d9ab970be1e9326b87e8d312443e2bd0da296/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163726v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4769-0c7d9ab970be1e9326b87e8d312443e2bd0da296/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163726v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4769-0c7d9ab970be1e9326b87e8d312443e2bd0da296 -&gt; xe-pw-163726v2</li>
+</ul>
+<p>IGT_8822: 8822<br />
+  xe-4769-0c7d9ab970be1e9326b87e8d312443e2bd0da296: 0c7d9ab970be1e9326b87e8d312443e2bd0da296<br />
+  xe-pw-163726v2: 163726v2</p>
+
+</body>
+</html>
+
+--===============2623630988532391472==--
