@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3FE7E9A743
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 09:36:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94725E9A75D
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 10:17:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8251310E110;
-	Tue, 24 Mar 2026 09:36:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 261AE10E12B;
+	Tue, 24 Mar 2026 10:17:19 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12C7510E110;
- Tue, 24 Mar 2026 09:36:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2394278551098209191=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F313110E12B;
+ Tue, 24 Mar 2026 10:17:17 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_don=27t?=
- =?utf-8?q?_access_display_PCH_registers_in_non-display_code_=28rev2=29?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe/gsc=3A_test_new_GS?=
+ =?utf-8?q?C_105=2E0=2E2=2E1397_for_PTL_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Luca Coelho" <luciano.coelho@intel.com>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 24 Mar 2026 09:36:02 -0000
-Message-ID: <177434496205.389881.8620407147494061653@a3b018990fe9>
+Date: Tue, 24 Mar 2026 10:17:17 -0000
+Message-ID: <177434743798.389881.2205030472633754018@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260324080441.154609-1-luciano.coelho@intel.com>
-In-Reply-To: <20260324080441.154609-1-luciano.coelho@intel.com>
+References: <20260323181645.3013877-2-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20260323181645.3013877-2-daniele.ceraolospurio@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,177 +40,128 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2394278551098209191==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/i915/display: don't access display PCH registers in non-display code (rev2)
-URL   : https://patchwork.freedesktop.org/series/163369/
-State : success
+Series: drm/xe/gsc: test new GSC 105.0.2.1397 for PTL (rev2)
+URL   : https://patchwork.freedesktop.org/series/163726/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4768-5954c9da1bd82cdd06a370cbb4f23e8eebdf4462_BAT -> xe-pw-163369v2_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit dc148104484356212de0b53868369de123003fa6
+Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Date:   Mon Mar 23 11:16:46 2026 -0700
 
-Summary
--------
+    drm/xe/gsc: test new GSC 105.0.2.1397 for PTL
+    
+    This patch is for testing only. If the testing is ok, the current
+    ptl_gsc_1.bin binary will be replaced with this one.
+    
+    Note that the GSC FW macros use the compatibility version, so we can't
+    use them to produce the path of a binary based on the release version.
+    Since this is a ci-only patch to test a specific FW release, instead
+    of updating the macros we can just hardcode the path.
+    
+    Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
++ /mt/dim checkpatch 4b7edcc15b85ee23b9928da304c47cc1cdb30e87 drm-intel
+dc1481044843 drm/xe/gsc: test new GSC 105.0.2.1397 for PTL
+-:26: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#26: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:147:
++#define XE_GSC_FIRMWARE_DEFS(fw_def, major_ver, path_ver)		\
++	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	path_ver(xe,	gsc,	ptl,	105, 1, 0, "xe/ptl_gsc_105.0.2.1397.bin"))	\
+ 	fw_def(LUNARLAKE,	GT_TYPE_ANY,	major_ver(xe,	gsc,	lnl,	104, 1, 0))	\
+ 	fw_def(METEORLAKE,	GT_TYPE_ANY,	major_ver(i915,	gsc,	mtl,	102, 1, 0))
 
-  **SUCCESS**
+BUT SEE:
 
-  No regressions found.
+   do {} while (0) advice is over-stated in a few situations:
 
-  
+   The more obvious case is macros, like MODULE_PARM_DESC, invoked at
+   file-scope, where C disallows code (it must be in functions).  See
+   $exceptions if you have one to add by name.
 
-Participating hosts (14 -> 14)
-------------------------------
+   More troublesome is declarative macros used at top of new scope,
+   like DECLARE_PER_CPU.  These might just compile with a do-while-0
+   wrapper, but would be incorrect.  Most of these are handled by
+   detecting struct,union,etc declaration primitives in $exceptions.
 
-  No changes in participating hosts
+   Theres also macros called inside an if (block), which "return" an
+   expression.  These cannot do-while, and need a ({}) wrapper.
 
-Known issues
-------------
+   Enjoy this qualification while we work to improve our heuristics.
 
-  Here are the changes found in xe-pw-163369v2_BAT that come from known issues:
+-:26: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'fw_def' - possible side-effects?
+#26: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:147:
++#define XE_GSC_FIRMWARE_DEFS(fw_def, major_ver, path_ver)		\
++	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	path_ver(xe,	gsc,	ptl,	105, 1, 0, "xe/ptl_gsc_105.0.2.1397.bin"))	\
+ 	fw_def(LUNARLAKE,	GT_TYPE_ANY,	major_ver(xe,	gsc,	lnl,	104, 1, 0))	\
+ 	fw_def(METEORLAKE,	GT_TYPE_ANY,	major_ver(i915,	gsc,	mtl,	102, 1, 0))
 
-### IGT changes ###
+-:26: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'major_ver' - possible side-effects?
+#26: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:147:
++#define XE_GSC_FIRMWARE_DEFS(fw_def, major_ver, path_ver)		\
++	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	path_ver(xe,	gsc,	ptl,	105, 1, 0, "xe/ptl_gsc_105.0.2.1397.bin"))	\
+ 	fw_def(LUNARLAKE,	GT_TYPE_ANY,	major_ver(xe,	gsc,	lnl,	104, 1, 0))	\
+ 	fw_def(METEORLAKE,	GT_TYPE_ANY,	major_ver(i915,	gsc,	mtl,	102, 1, 0))
 
-#### Issues hit ####
+-:27: WARNING:LONG_LINE: line length of 129 exceeds 100 columns
+#27: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:148:
++	fw_def(PANTHERLAKE,	GT_TYPE_ANY,	path_ver(xe,	gsc,	ptl,	105, 1, 0, "xe/ptl_gsc_105.0.2.1397.bin"))	\
 
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [PASS][1] -> [ABORT][2] ([Intel XE#7249] / [Intel XE#7578])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4768-5954c9da1bd82cdd06a370cbb4f23e8eebdf4462/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163369v2/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
+-:35: WARNING:MACRO_ARG_UNUSED: Argument 'dir_' is not used in function-like macro
+#35: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:163:
++#define fw_filename_gsc_path(dir_, uc_, shortname_, a, b, c, path_)		\
++	path_
 
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [PASS][3] -> [DMESG-WARN][4] ([Intel XE#7483])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4768-5954c9da1bd82cdd06a370cbb4f23e8eebdf4462/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163369v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+-:35: WARNING:MACRO_ARG_UNUSED: Argument 'uc_' is not used in function-like macro
+#35: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:163:
++#define fw_filename_gsc_path(dir_, uc_, shortname_, a, b, c, path_)		\
++	path_
 
-  * igt@xe_waitfence@abstime:
-    - bat-dg2-oem2:       [PASS][5] -> [TIMEOUT][6] ([Intel XE#6506])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4768-5954c9da1bd82cdd06a370cbb4f23e8eebdf4462/bat-dg2-oem2/igt@xe_waitfence@abstime.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163369v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+-:35: WARNING:MACRO_ARG_UNUSED: Argument 'shortname_' is not used in function-like macro
+#35: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:163:
++#define fw_filename_gsc_path(dir_, uc_, shortname_, a, b, c, path_)		\
++	path_
 
-  
-#### Possible fixes ####
+-:35: WARNING:MACRO_ARG_UNUSED: Argument 'a' is not used in function-like macro
+#35: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:163:
++#define fw_filename_gsc_path(dir_, uc_, shortname_, a, b, c, path_)		\
++	path_
 
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [DMESG-WARN][7] ([Intel XE#7483]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4768-5954c9da1bd82cdd06a370cbb4f23e8eebdf4462/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163369v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+-:35: WARNING:MACRO_ARG_UNUSED: Argument 'b' is not used in function-like macro
+#35: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:163:
++#define fw_filename_gsc_path(dir_, uc_, shortname_, a, b, c, path_)		\
++	path_
 
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][9] ([Intel XE#6519]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4768-5954c9da1bd82cdd06a370cbb4f23e8eebdf4462/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163369v2/bat-dg2-oem2/igt@xe_waitfence@engine.html
+-:35: WARNING:MACRO_ARG_UNUSED: Argument 'c' is not used in function-like macro
+#35: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:163:
++#define fw_filename_gsc_path(dir_, uc_, shortname_, a, b, c, path_)		\
++	path_
 
-  
-  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#7249]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
-  [Intel XE#7578]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578
+-:44: WARNING:MACRO_ARG_UNUSED: Argument 'dir_' is not used in function-like macro
+#44: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:178:
++#define uc_fw_entry_gsc_path(dir_, uc_, shortname_, a, b, c, path_)		\
++	{ path_, a, b, c }
 
+-:44: WARNING:MACRO_ARG_UNUSED: Argument 'uc_' is not used in function-like macro
+#44: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:178:
++#define uc_fw_entry_gsc_path(dir_, uc_, shortname_, a, b, c, path_)		\
++	{ path_, a, b, c }
 
-Build changes
--------------
+-:44: WARNING:MACRO_ARG_UNUSED: Argument 'shortname_' is not used in function-like macro
+#44: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:178:
++#define uc_fw_entry_gsc_path(dir_, uc_, shortname_, a, b, c, path_)		\
++	{ path_, a, b, c }
 
-  * Linux: xe-4768-5954c9da1bd82cdd06a370cbb4f23e8eebdf4462 -> xe-pw-163369v2
-
-  IGT_8822: 8822
-  xe-4768-5954c9da1bd82cdd06a370cbb4f23e8eebdf4462: 5954c9da1bd82cdd06a370cbb4f23e8eebdf4462
-  xe-pw-163369v2: 163369v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163369v2/index.html
-
---===============2394278551098209191==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+total: 1 errors, 10 warnings, 2 checks, 42 lines checked
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/display: don&#x27;t access display PCH registers in non-display code (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163369/">https://patchwork.freedesktop.org/series/163369/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163369v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163369v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4768-5954c9da1bd82cdd06a370cbb4f23e8eebdf4462_BAT -&gt; xe-pw-163369v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-163369v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4768-5954c9da1bd82cdd06a370cbb4f23e8eebdf4462/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163369v2/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249">Intel XE#7249</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578">Intel XE#7578</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4768-5954c9da1bd82cdd06a370cbb4f23e8eebdf4462/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163369v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@abstime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4768-5954c9da1bd82cdd06a370cbb4f23e8eebdf4462/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163369v2/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4768-5954c9da1bd82cdd06a370cbb4f23e8eebdf4462/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163369v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4768-5954c9da1bd82cdd06a370cbb4f23e8eebdf4462/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163369v2/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4768-5954c9da1bd82cdd06a370cbb4f23e8eebdf4462 -&gt; xe-pw-163369v2</li>
-</ul>
-<p>IGT_8822: 8822<br />
-  xe-4768-5954c9da1bd82cdd06a370cbb4f23e8eebdf4462: 5954c9da1bd82cdd06a370cbb4f23e8eebdf4462<br />
-  xe-pw-163369v2: 163369v2</p>
-
-</body>
-</html>
-
---===============2394278551098209191==--
