@@ -4,17 +4,17 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C512F532ED
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F49FF532F5
 	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 08:40:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D83710E5B6;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52F4A10E491;
 	Tue, 24 Mar 2026 08:40:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="MTb6UcG2";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="MfDviRnp";
 	dkim-atps=neutral
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC5B310E491
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Mar 2026 08:40:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2583710E491
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Mar 2026 08:40:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
@@ -22,25 +22,25 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=2kJvaIrWNv3WfSF4GFCrwLNcW0+nMK2vcyZI7RoR5SU=; b=MTb6UcG2/OOVGfM9XDLWGSEr51
- Zff48ZH8Z1tTNtpBcOFXBnGchIklZk9RySCvUFbvG/3qnLcpUB6hBYA2C89wBs2G87fZn9HWZ0TwD
- sdJo2YWr4VAHdgXgsBCPaC2VkfxqHLvHZVaG6N6izA9m2yaF6gzXDuwfNbJzmgPpTrJYLZqxDTV7/
- LN9eXOpX9bIaume9SNiSWELmX0PB67B7BZGVCnRJNJxTlyROPC16HJjod5azoQ/nIxvxOX0oSAnrb
- rCZs0QqoRioPaBsGEHKx+YM5KmcUJcvI0FDCXGtvvILVg9k1rQVZDSbIxsHMMSLmaVGMbseLbGkGZ
- dx+bPqIA==;
+ bh=QBajUN9U1JM6irasVUKUqw2I9RBu4zMe5SyvCT15pb8=; b=MfDviRnpo4QSJAryNJ21B5bnP0
+ v4NcWSkXuQeOSjMUP+Na8slzb0UNbHgiPDYTX8FGjF15gdKEdomXA+PL7xXaEfUuhOzHCH9HdLlLa
+ NrLfMWIHxGVqJrbRV9X6Rk1mTHYh5jtfuiBSBzOewUCMFCFQfvcaHku4tC1FpR3K23uyzNmru4P6f
+ wJkl1PXuUDyzkZEXuHJt1mcJbuSussBnQ5zKxORZVrLbP76C7iJKAwU5S9ZuLhhYaWXUVxJ+CwJsK
+ +hjjPP+467WgPCM0qQekEX3FLxK+N4NUy3AJ3RtGYrf4TbCXRPU3ndqPWGfYHmSGBW01bWemSIi+I
+ drqIHUvw==;
 Received: from [90.240.106.137] (helo=localhost)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1w4xJU-005FWE-8X; Tue, 24 Mar 2026 09:40:36 +0100
+ id 1w4xJR-005FVq-Dc; Tue, 24 Mar 2026 09:40:33 +0100
 From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 To: intel-xe@lists.freedesktop.org
 Cc: kernel-dev@igalia.com, Uma Shankar <uma.shankar@intel.com>,
  Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: [PATCH v25 05/12] drm/xe/xelp: Wait for AuxCCS invalidation to
- complete
-Date: Tue, 24 Mar 2026 08:40:11 +0000
-Message-ID: <20260324084018.20353-6-tvrtko.ursulin@igalia.com>
+Subject: [PATCH v25 01/12] drm/xe: Rename XE_BO_FLAG_SCANOUT to
+ XE_BO_FLAG_FORCE_WC
+Date: Tue, 24 Mar 2026 08:40:07 +0000
+Message-ID: <20260324084018.20353-2-tvrtko.ursulin@igalia.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260324084018.20353-1-tvrtko.ursulin@igalia.com>
 References: <20260324084018.20353-1-tvrtko.ursulin@igalia.com>
@@ -60,64 +60,197 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On AuxCCS platforms we need to wait for AuxCCS invalidations to complete.
+Rename XE_BO_FLAG_SCANOUT to XE_BO_FLAG_FORCE_WC so that the usage of the
+flag can legitimately be expanded to more than just the actual frame-
+buffer objects.
 
 Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Suggested-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/instructions/xe_mi_commands.h | 6 ++++++
- drivers/gpu/drm/xe/xe_ring_ops.c                 | 9 ++++++++-
- drivers/gpu/drm/xe/xe_ring_ops_types.h           | 2 +-
- 3 files changed, 15 insertions(+), 2 deletions(-)
+v2:
+ * Fixed flag check confusion.
+---
+ drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 12 ++++++++----
+ drivers/gpu/drm/xe/display/xe_display_bo.c    |  6 +++---
+ drivers/gpu/drm/xe/display/xe_dsb_buffer.c    |  4 +++-
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |  2 +-
+ drivers/gpu/drm/xe/display/xe_initial_plane.c |  2 +-
+ drivers/gpu/drm/xe/xe_bo.c                    | 17 +++++++++--------
+ drivers/gpu/drm/xe/xe_bo.h                    |  2 +-
+ 7 files changed, 26 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-index 29569eff1af3..ad7d98f2dbba 100644
---- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-@@ -94,4 +94,10 @@
- #define MI_SET_APPID_SESSION_ID_MASK	REG_GENMASK(6, 0)
- #define MI_SET_APPID_SESSION_ID(x)	REG_FIELD_PREP(MI_SET_APPID_SESSION_ID_MASK, x)
+diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+index 87af5646c938..d7030e4d814c 100644
+--- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
++++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+@@ -56,9 +56,11 @@ struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, int size
+ 	if (intel_fbdev_fb_prefer_stolen(drm, size)) {
+ 		obj = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe),
+ 						size,
+-						ttm_bo_type_kernel, XE_BO_FLAG_SCANOUT |
++						ttm_bo_type_kernel,
++						XE_BO_FLAG_FORCE_WC |
+ 						XE_BO_FLAG_STOLEN |
+-						XE_BO_FLAG_GGTT, false);
++						XE_BO_FLAG_GGTT,
++						false);
+ 		if (!IS_ERR(obj))
+ 			drm_info(&xe->drm, "Allocated fbdev into stolen\n");
+ 		else
+@@ -69,9 +71,11 @@ struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, int size
  
-+#define MI_SEMAPHORE_WAIT_TOKEN		(__MI_INSTR(0x1c) | XE_INSTR_NUM_DW(5)) /* XeLP+ */
-+#define   MI_SEMAPHORE_REGISTER_POLL	REG_BIT(16)
-+#define   MI_SEMAPHORE_POLL		REG_BIT(15)
-+#define   MI_SEMAPHORE_CMP_OP_MASK	REG_GENMASK(14, 12)
-+#define   MI_SEMAPHORE_SAD_EQ_SDD	REG_FIELD_PREP(MI_SEMAPHORE_CMP_OP_MASK, 4)
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 629e551304be..7551a6acd076 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -54,7 +54,14 @@ static int emit_aux_table_inv(struct xe_gt *gt, struct xe_reg reg,
- 	dw[i++] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1) | MI_LRI_MMIO_REMAP_EN;
- 	dw[i++] = reg.addr + gt->mmio.adj_offset;
- 	dw[i++] = AUX_INV;
--	dw[i++] = MI_NOOP;
-+	dw[i++] = MI_SEMAPHORE_WAIT_TOKEN |
-+		  MI_SEMAPHORE_REGISTER_POLL |
-+		  MI_SEMAPHORE_POLL |
-+		  MI_SEMAPHORE_SAD_EQ_SDD;
-+	dw[i++] = 0;
-+	dw[i++] = reg.addr + gt->mmio.adj_offset;
-+	dw[i++] = 0;
-+	dw[i++] = 0;
+ 	if (IS_ERR(obj)) {
+ 		obj = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe), size,
+-						ttm_bo_type_kernel, XE_BO_FLAG_SCANOUT |
++						ttm_bo_type_kernel,
++						XE_BO_FLAG_FORCE_WC |
+ 						XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
+-						XE_BO_FLAG_GGTT, false);
++						XE_BO_FLAG_GGTT,
++						false);
+ 	}
  
- 	return i;
- }
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops_types.h b/drivers/gpu/drm/xe/xe_ring_ops_types.h
-index a42a465ac438..1197fc0bf2af 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops_types.h
-+++ b/drivers/gpu/drm/xe/xe_ring_ops_types.h
-@@ -8,7 +8,7 @@
+ 	if (IS_ERR(obj)) {
+diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.c b/drivers/gpu/drm/xe/display/xe_display_bo.c
+index a689f71e7b14..1d81b9908265 100644
+--- a/drivers/gpu/drm/xe/display/xe_display_bo.c
++++ b/drivers/gpu/drm/xe/display/xe_display_bo.c
+@@ -42,9 +42,9 @@ static int xe_display_bo_framebuffer_init(struct drm_gem_object *obj,
+ 	if (ret)
+ 		goto err;
  
- struct xe_sched_job;
+-	if (!(bo->flags & XE_BO_FLAG_SCANOUT)) {
++	if (!(bo->flags & XE_BO_FLAG_FORCE_WC)) {
+ 		/*
+-		 * XE_BO_FLAG_SCANOUT should ideally be set at creation, or is
++		 * XE_BO_FLAG_FORCE_WC should ideally be set at creation, or is
+ 		 * automatically set when creating FB. We cannot change caching
+ 		 * mode when the bo is VM_BINDed, so we can only set
+ 		 * coherency with display when unbound.
+@@ -54,7 +54,7 @@ static int xe_display_bo_framebuffer_init(struct drm_gem_object *obj,
+ 			ret = -EINVAL;
+ 			goto err;
+ 		}
+-		bo->flags |= XE_BO_FLAG_SCANOUT;
++		bo->flags |= XE_BO_FLAG_FORCE_WC;
+ 	}
+ 	ttm_bo_unreserve(&bo->ttm);
+ 	return 0;
+diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
+index 1c67a950c6ad..a7158c73a14c 100644
+--- a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
++++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
+@@ -54,7 +54,9 @@ static struct intel_dsb_buffer *xe_dsb_buffer_create(struct drm_device *drm, siz
+ 					PAGE_ALIGN(size),
+ 					ttm_bo_type_kernel,
+ 					XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
+-					XE_BO_FLAG_SCANOUT | XE_BO_FLAG_GGTT, false);
++					XE_BO_FLAG_FORCE_WC |
++					XE_BO_FLAG_GGTT,
++					false);
+ 	if (IS_ERR(obj)) {
+ 		ret = PTR_ERR(obj);
+ 		goto err_pin_map;
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index dbbc61032b7f..d4a9eb550cae 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -429,7 +429,7 @@ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
+ 		return 0;
  
--#define MAX_JOB_SIZE_DW 72
-+#define MAX_JOB_SIZE_DW 74
- #define MAX_JOB_SIZE_BYTES (MAX_JOB_SIZE_DW * 4)
+ 	/* We reject creating !SCANOUT fb's, so this is weird.. */
+-	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_SCANOUT));
++	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_FORCE_WC));
  
- /**
+ 	vma = __xe_pin_fb_vma(intel_fb, &new_plane_state->view.gtt, alignment);
+ 
+diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+index 65cc0b0c934b..8bcae552dddc 100644
+--- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
++++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+@@ -48,7 +48,7 @@ initial_plane_bo(struct xe_device *xe,
+ 	if (plane_config->size == 0)
+ 		return NULL;
+ 
+-	flags = XE_BO_FLAG_SCANOUT | XE_BO_FLAG_GGTT;
++	flags = XE_BO_FLAG_FORCE_WC | XE_BO_FLAG_GGTT;
+ 
+ 	base = round_down(plane_config->base, page_size);
+ 	if (IS_DGFX(xe)) {
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 216e1d8635f4..7545d2fa3255 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -510,13 +510,11 @@ static struct ttm_tt *xe_ttm_tt_create(struct ttm_buffer_object *ttm_bo,
+ 		WARN_ON((bo->flags & XE_BO_FLAG_USER) && !bo->cpu_caching);
+ 
+ 		/*
+-		 * Display scanout is always non-coherent with the CPU cache.
+-		 *
+ 		 * For Xe_LPG and beyond up to NVL-P (excluding), PPGTT PTE
+ 		 * lookups are also non-coherent and require a CPU:WC mapping.
+ 		 */
+-		if ((!bo->cpu_caching && bo->flags & XE_BO_FLAG_SCANOUT) ||
+-		     (!xe->info.has_cached_pt && bo->flags & XE_BO_FLAG_PAGETABLE))
++		if ((!bo->cpu_caching && bo->flags & XE_BO_FLAG_FORCE_WC) ||
++		    (!xe->info.has_cached_pt && bo->flags & XE_BO_FLAG_PAGETABLE))
+ 			caching = ttm_write_combined;
+ 	}
+ 
+@@ -3201,8 +3199,11 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	if (args->flags & DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING)
+ 		bo_flags |= XE_BO_FLAG_DEFER_BACKING;
+ 
++	/*
++	 * Display scanout is always non-coherent with the CPU cache.
++	 */
+ 	if (args->flags & DRM_XE_GEM_CREATE_FLAG_SCANOUT)
+-		bo_flags |= XE_BO_FLAG_SCANOUT;
++		bo_flags |= XE_BO_FLAG_FORCE_WC;
+ 
+ 	if (args->flags & DRM_XE_GEM_CREATE_FLAG_NO_COMPRESSION) {
+ 		if (XE_IOCTL_DBG(xe, GRAPHICS_VER(xe) < 20))
+@@ -3214,7 +3215,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 
+ 	/* CCS formats need physical placement at a 64K alignment in VRAM. */
+ 	if ((bo_flags & XE_BO_FLAG_VRAM_MASK) &&
+-	    (bo_flags & XE_BO_FLAG_SCANOUT) &&
++	    (args->flags & DRM_XE_GEM_CREATE_FLAG_SCANOUT) &&
+ 	    !(xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K) &&
+ 	    IS_ALIGNED(args->size, SZ_64K))
+ 		bo_flags |= XE_BO_FLAG_NEEDS_64K;
+@@ -3234,7 +3235,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 			 args->cpu_caching != DRM_XE_GEM_CPU_CACHING_WC))
+ 		return -EINVAL;
+ 
+-	if (XE_IOCTL_DBG(xe, bo_flags & XE_BO_FLAG_SCANOUT &&
++	if (XE_IOCTL_DBG(xe, bo_flags & XE_BO_FLAG_FORCE_WC &&
+ 			 args->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB))
+ 		return -EINVAL;
+ 
+@@ -3702,7 +3703,7 @@ int xe_bo_dumb_create(struct drm_file *file_priv,
+ 	bo = xe_bo_create_user(xe, NULL, args->size,
+ 			       DRM_XE_GEM_CPU_CACHING_WC,
+ 			       XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
+-			       XE_BO_FLAG_SCANOUT |
++			       XE_BO_FLAG_FORCE_WC |
+ 			       XE_BO_FLAG_NEEDS_CPU_ACCESS, NULL);
+ 	if (IS_ERR(bo))
+ 		return PTR_ERR(bo);
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 2cbac16f7db7..a0ad846e9450 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -35,7 +35,7 @@
+ #define XE_BO_FLAG_PINNED		BIT(7)
+ #define XE_BO_FLAG_NO_RESV_EVICT	BIT(8)
+ #define XE_BO_FLAG_DEFER_BACKING	BIT(9)
+-#define XE_BO_FLAG_SCANOUT		BIT(10)
++#define XE_BO_FLAG_FORCE_WC		BIT(10)
+ #define XE_BO_FLAG_FIXED_PLACEMENT	BIT(11)
+ #define XE_BO_FLAG_PAGETABLE		BIT(12)
+ #define XE_BO_FLAG_NEEDS_CPU_ACCESS	BIT(13)
 -- 
 2.52.0
 
