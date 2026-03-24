@@ -4,65 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E946E9A748
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 09:23:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E20FE9A743
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 09:34:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C59010E5C2;
-	Tue, 24 Mar 2026 09:23:52 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="lGZrL11D";
-	dkim-atps=neutral
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 919CB10E0D8;
- Tue, 24 Mar 2026 09:23:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1774344229;
- bh=yZQ2+xLkFUtBrYQ3kuAajM2CQ/yzEgdmGO+VpSJ/vQg=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=lGZrL11Dgp1MgW2ycqLbXRcHCAZA8iv27awxZMEyBVAHyVhAZnl+TandY2rcL4a3r
- rvISn7tigekike1wKrxwoajmHiOYyJYCCotofjPz5Q19TDJ4doX+TdZ1ziwW98+Upu
- LsRC/jiz2LtzUZAOKZOAPASF3xmTaFuidaMgf/Z+ACMHNq6yEi5Zikk+dGCbBohVSq
- zi7GBGC/X3yW8lNIUKAEW30CpMk/1YyzzCKPvmmEhJDN7g8u2Rna25oYhwdZVCIFTt
- OHZDB+Z4ms92sH2/EMKDykyGYiLOaBu13GeaBblK36cknrcu44M6mFcrYHHnWO1UtF
- 1AkGv+dSDomGA==
-Received: from fedora (unknown [IPv6:2a01:e0a:2c:6930:d919:a6e:5ea1:8a9f])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256) (No client certificate requested)
- (Authenticated sender: bbrezillon)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id A777E17E54A9;
- Tue, 24 Mar 2026 10:23:48 +0100 (CET)
-Date: Tue, 24 Mar 2026 10:23:45 +0100
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?=
- <thomas.hellstrom@linux.intel.com>, Christian =?UTF-8?B?S8O2bmln?=
- <christian.koenig@amd.com>, Danilo Krummrich <dakr@kernel.org>, David
- Airlie <airlied@gmail.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Philipp Stanner <phasta@kernel.org>, Simona Vetter <simona@ffwll.ch>, Sumit
- Semwal <sumit.semwal@linaro.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH 02/12] drm/dep: Add DRM dependency queue layer
-Message-ID: <20260324102345.17742bef@fedora>
-In-Reply-To: <acGIjjLXuxUzv3aI@lstrano-desk.jf.intel.com>
-References: <20260316043255.226352-1-matthew.brost@intel.com>
- <20260316043255.226352-3-matthew.brost@intel.com>
- <20260317155512.7250be13@fedora>
- <abs1Da8ntfAQISL6@lstrano-desk.jf.intel.com>
- <20260319101153.169c7f36@fedora>
- <acDGf9BYQj6KwRIX@lstrano-desk.jf.intel.com>
- <20260323105504.2d9ae741@fedora>
- <acFzpZruqlZQnQNk@lstrano-desk.jf.intel.com>
- <acGIjjLXuxUzv3aI@lstrano-desk.jf.intel.com>
-Organization: Collabora
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-redhat-linux-gnu)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41F3010E451;
+	Tue, 24 Mar 2026 09:34:02 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62B0310E115;
+ Tue, 24 Mar 2026 09:34:01 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_AuxCCS_handling_and_rende?=
+ =?utf-8?q?r_compression_modifiers?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tvrtko Ursulin" <tvrtko.ursulin@igalia.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 24 Mar 2026 09:34:01 -0000
+Message-ID: <177434484138.389881.944911097319525330@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260324084018.20353-1-tvrtko.ursulin@igalia.com>
+In-Reply-To: <20260324084018.20353-1-tvrtko.ursulin@igalia.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,65 +36,79 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 23 Mar 2026 11:38:06 -0700
-Matthew Brost <matthew.brost@intel.com> wrote:
+== Series Details ==
 
-> 
-> Ok, getting stats is easier than I thought...
-> 
-> ./perf stat -a -e context-switches,cpu-migrations,task-clock,cycles,instructions /home/mbrost/xe/source/drivers.gpu.i915.igt-gpu-tools/build/tests/xe_exec_threads --r threads-basic
-> 
-> This test creates one thread per engine instance (7 instances this BMG
-> device) and submits 1k exec IOCTLs per thread, each performing a DW
-> write. Each exec IOCTL typically does not have unsignaled input dependencies.
-> 
-> With IRQ putting of jobs off + no bypass (drm_dep_queue_flags = 0):
-> 
->              8,449      context-switches
->                412      cpu-migrations
->           2,531.43 msec task-clock
->      1,847,846,588      cpu_atom/cycles/
->      1,847,856,947      cpu_core/cycles/
->    <not supported>      cpu_atom/instructions/
->        460,744,020      cpu_core/instructions/
-> 
-> With IRQ putting of jobs off + bypass (drm_dep_queue_flags =
-> DRM_DEP_QUEUE_FLAGS_BYPASS_SUPPORTED):
-> 
->              8,655      context-switches
->                229      cpu-migrations
->           2,571.33 msec task-clock
->        855,900,607      cpu_atom/cycles/
->        855,900,272      cpu_core/cycles/
->    <not supported>      cpu_atom/instructions/
->        403,651,469      cpu_core/instructions/
-> 
-> With IRQ putting of jobs on + bypass (drm_dep_queue_flags =
-> DRM_DEP_QUEUE_FLAGS_BYPASS_SUPPORTED |
-> DRM_DEP_QUEUE_FLAGS_JOB_PUT_IRQ_SAFE):
-> 
->              5,361      context-switches
->                169      cpu-migrations
->           2,577.44 msec task-clock
->        685,769,153      cpu_atom/cycles/
->        685,768,407      cpu_core/cycles/
->    <not supported>      cpu_atom/instructions/
->        321,336,297      cpu_core/instructions/
+Series: AuxCCS handling and render compression modifiers
+URL   : https://patchwork.freedesktop.org/series/163758/
+State : warning
 
-Thanks for sharing those numbers. For completeness, can you also add the
-"With IRQ putting of jobs on + no bypass" case?
+== Summary ==
 
-I'm a bit surprised by the difference in number of context switches
-given I'd expect the local-CPU to be picked in priority, and so queuing
-work items on the same wq from another work item to be almost free in
-term on scheduling. But I guess there's some load-balancing happening
-when you execute jobs at such a high rate.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6b4771432ce54e05ba629e0a93345f201307602b
+Author: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Date:   Tue Mar 24 08:40:18 2026 +0000
 
-Also, I don't know if that's just noise or if it's reproducible, but
-task-clock seems to be ~40usec lower with the deferred cleanup and
-no-bypass (higher throughput because you're not blocking the dequeuing
-of the next job on the cleanup of the previous one, I suspect).
+    drm/xe/xelp: Expose AuxCCS frame buffer modifiers on Alderlake-P
+    
+    Now that we have implemented all the related missing bits we can enable
+    the AuxCCS compressed modifiers which were disabled in
+    cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
+    
+    Tested with KDE Wayland, on Lenovo Carbon X1 ADL-P:
+    
+            [PLANE:32:plane 1A]: type=PRI
+                    uapi: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=visible, src=28
+                    hw: [FB:242] AR30 little-endian (0x30335241),0x100000000000008,2880x1800, visible=yes, src=2880.000
+    
+    Display is working fine - no artefacts, no DMAR/PIPE faults.
+    
+    v2:
+     * Adjust patch title. (Rodrigo)
+    
+    v3:
+     * Complete rewrite based on the display parent interface.
+    
+    Signed-off-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+    References: cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")
+    Cc: Jani Nikula <jani.nikula@intel.com>
+    Cc: José Roberto de Souza <jose.souza@intel.com>
+    Cc: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 0c7d9ab970be1e9326b87e8d312443e2bd0da296 drm-intel
+1159979cccd0 drm/xe: Rename XE_BO_FLAG_SCANOUT to XE_BO_FLAG_FORCE_WC
+7902898e0319 drm/xe: Use write-combine mapping when populating DPT
+0ae9e78cce2b drm/xe/xelpg: Limit AuxCCS ring buffer programming to Alderlake
+cf59e0436cc1 drm/xe/xelp: Quiesce memory traffic before invalidating AuxCCS
+65b1b9538662 drm/xe/xelp: Wait for AuxCCS invalidation to complete
+6aae9fc0489e drm/xe: Move aux table invalidation to ring ops
+333dd3194ab2 drm/xe/xelp: Add AuxCCS invalidation to the indirect context workarounds
+c2012d96da5b drm/xe/display: Move remapped plane loop out of __xe_pin_fb_vma_dpt
+90ac7c02f473 drm/xe/display: Change write_dpt_remapped_tiled function signature
+4614b791ec41 drm/xe/display: Respect remapped plane alignment
+deab96471218 drm/xe/display: Add support for AuxCCS
+6b4771432ce5 drm/xe/xelp: Expose AuxCCS frame buffer modifiers on Alderlake-P
+-:12: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#12: 
+cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
+
+-:12: ERROR:GIT_COMMIT_ID: Please use git commit description style 'commit <12+ chars of sha1> ("<title line>")' - ie: 'commit cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe")'
+#12: 
+cf48bddd31de ("drm/i915/display: Disable AuxCCS framebuffers if built for Xe").
+
+total: 1 errors, 1 warnings, 0 checks, 20 lines checked
+
 
