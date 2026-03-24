@@ -4,58 +4,159 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF678F54ADD
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 23:51:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 718CFF54AD6
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 23:53:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AEFE10E53F;
-	Tue, 24 Mar 2026 23:51:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34DE510E626;
+	Tue, 24 Mar 2026 23:53:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b996+Hav";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UQlhh2Ds";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8155810E19F;
- Tue, 24 Mar 2026 23:51:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED85A10E626
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Mar 2026 23:53:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774396308; x=1805932308;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=k3gYfap/WBnUBbTgjncL8FsvbtMoIE1QbVEuQc08Lt8=;
- b=b996+Havbmcq+IlPCwLVxzigVlVt1RgN98mNfvjfmCMnfVjKBqAOUeb+
- qwZnLTjGGLj8V6Oa731M0dtkb5SRKSjn/g7cFP9GJXmnbTAkhvuSCb37+
- lqYbQpLGQsLvi/iK/5zd38A0WaOB4LAZJqVDcxQWFEH1TRtPclI1nUI/X
- dEAdpf3aifaq8zZbiur62M77wXZOQEbbvPOMWFE5eWUQcD/p9GF8b6m/1
- 5cmz+5BxwhyYDx1+cz/pJUzFu8vpDwp3fVSgcdtlBQvRzaZKvsZLTuH1k
- cRhu4Mx9HfC7RHoJXoooa7ZRbbnKra8yaUUQWw7Uod50IzYMqpLP1wuZl A==;
-X-CSE-ConnectionGUID: /wRbLcQzTLmlL7c6EDypHA==
-X-CSE-MsgGUID: 3nhXtaM+SMmVTLEUZYgimw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="92809658"
-X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; d="scan'208";a="92809658"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ t=1774396417; x=1805932417;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=GzbWDztl/6ajMl7EXPWayyR7QYNzYXkio3wtMNMfZaQ=;
+ b=UQlhh2Dsxr35plb5lDXQCIa0jXQP8SaNrpyBtTVS8shP+dFUXdlGMX0I
+ gQflhx+Ze9jq9mv+ku0HERQ1NK26yRWfhsPen5SA5AdrikNQRDtMknEee
+ +bJprGZDwiGV4LwAEtE+FusmU/SdWPq/vzm68aIWGfLmfqAUyQWsk0Toy
+ g+uHB2v0eG+6khNUP3ir4XnxNsw/4JUOuRbKW2JD2jQVGbyVaK682gDba
+ cmtmb+U1fYp/LOpgaDPbh1H7pd+NTGBIcGCuEcN3WVuea6HfsGZAHNN5L
+ kRF94CgHpILEKrgFGYo1LQCpi6uE2vYqA5sfqE+JGjSqEWT5XgrHEsALc g==;
+X-CSE-ConnectionGUID: POF3WdaZTs+mbEVxbFfPLA==
+X-CSE-MsgGUID: uAkePpiCTie4llP3VgMUhg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="92809787"
+X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; d="scan'208";a="92809787"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 16:51:48 -0700
-X-CSE-ConnectionGUID: zLsi/3S5QA2+9ul5bX54tw==
-X-CSE-MsgGUID: Z6EkC10kQgiz7y0A+/3cGg==
+ 24 Mar 2026 16:53:36 -0700
+X-CSE-ConnectionGUID: nvDXUdJjTPSHj4mjIXZFnA==
+X-CSE-MsgGUID: MuW7ApUeTRmUZ662WjtPGA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; d="scan'208";a="224519459"
-Received: from administrator-system-product-name.igk.intel.com
- ([10.91.214.181])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 16:51:47 -0700
-Date: Wed, 25 Mar 2026 00:51:44 +0100 (CET)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-cc: Jani Nikula <jani.nikula@intel.com>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 3/5] drm/{i915,xe}: move fbdev fb calls to parent interface
-In-Reply-To: <fa1f7a18-f96e-c347-ac1c-b903c7122e89@intel.com>
-Message-ID: <7157441f-4ec0-2303-25f1-afd477bd65de@intel.com>
-References: <cover.1773840563.git.jani.nikula@intel.com>
- <37ec4a959c375a9099b42d11aa9454c51a96aec2.1773840563.git.jani.nikula@intel.com>
- <fa1f7a18-f96e-c347-ac1c-b903c7122e89@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; d="scan'208";a="228983985"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2026 16:53:37 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 24 Mar 2026 16:53:35 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Tue, 24 Mar 2026 16:53:35 -0700
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.31) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 24 Mar 2026 16:53:33 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Y7U7w8JX6SBs2ALjV6cV2rsERKu1VC25jsOFabhKgtqlHDmoST2AKXEX0DOkJRuAiPdRXWcWQrohy0vJpYQgVnK/u5LAvOxYVBItvpvUNLoeKsOITe4wLmJtSYEPLR6Z7ZBnJUnmzTvq4NvstbJUSjZXICwvJbv611QK///ScPfphAoG49q+lQssaJbI/bUsRAVq8ton3Zj1EOEbAme9TdSCovEU5qeKHxLAPbgZXRUx2HZqw8nQu/vY/HI9WxrfZ+adoUzQQSD/D86XsBCffjrbgzPWOj8E5WbQjZhyasGSNBN90xDxeoiyX/jXeWSsFBwvoqFc3v/QZ9Q3vqaDjw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zuQ65YepC/lcNxlWQeDmjEhgYRteDw+AjrRud+7roEo=;
+ b=Bly4bfwffKU+t+CqNB+MMNuqa/YOT/UEY1nexWgDOXfh3A6bPEHp9yJzLVXwlJvPW19n2NbWqFlGV+YZSVXwblxWZpSt/S5kE+Hs4qIWUHkaLbi+2WtZNDAruNu0A40xeouutUt/HubJrVKNl3Y5IBQIt3E+5VmgouQ30qbDnnGbJVOuADohEYZjtwt10TyT1YAyBDWh6qxf1suELQpKDGoKfVX7H32norZSkTeuJO3s5nTYM81e5CtKqnfSYatImso68+u6KAIaZ0QXHiz6cIQT4GnvsI2ZiBTWsRXxe3g+498vfnXilHL45Np9XZBRYK4vrey1bFI/zVh33+wMjw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
+ by DM6PR11MB4595.namprd11.prod.outlook.com (2603:10b6:5:2ac::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Tue, 24 Mar
+ 2026 23:53:31 +0000
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::53c9:f6c2:ffa5:3cb5%7]) with mapi id 15.20.9745.019; Tue, 24 Mar 2026
+ 23:53:31 +0000
+Date: Tue, 24 Mar 2026 16:53:27 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: "Summers, Stuart" <stuart.summers@intel.com>
+CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Vishwanathapura, Niranjana" <niranjana.vishwanathapura@intel.com>
+Subject: Re: [PATCH] drm/xe: Always invalidate TLBs on userptr invalidation
+Message-ID: <acMj9+JZ2ONGa1yH@lstrano-desk.jf.intel.com>
+References: <20260323211743.285064-1-stuart.summers@intel.com>
+ <acH1IT6MBYvSf2GH@lstrano-desk.jf.intel.com>
+ <0e9794ab3a16896d0790289750f56538602798e6.camel@intel.com>
+ <dbde50462394e808b4de52974f9c7c086191e35a.camel@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <dbde50462394e808b4de52974f9c7c086191e35a.camel@intel.com>
+X-ClientProxiedBy: MW4P220CA0019.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:303:115::24) To BL3PR11MB6508.namprd11.prod.outlook.com
+ (2603:10b6:208:38f::5)
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-1766278022-1774396307=:294587"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|DM6PR11MB4595:EE_
+X-MS-Office365-Filtering-Correlation-Id: 53f02243-7aab-48be-896b-08de8a008d47
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|18002099003|22082099003|56012099003; 
+X-Microsoft-Antispam-Message-Info: VhmIqRrAVHG9/qzrq0nqkr45M1wEd5nShDjjj61HjQMqsHqlBUJwBeN1fw9m8w0gkeGX3dvOOTxmba9ix6CF6paEqPMNQ84jCbP/lUTxOuMoifagzlyvsmvMW9UgiireF4P/sL9s96Gxq2jQF9Zzq8qYd2dd3aNooHFulFG4U4KjLbtOiidsHBsWQALacXzAtb7enM6XQRJDBSARmvHozQxZ11W/lE7JNJhTxC36v+pOeR9sSxYdY4/31G2/UpfvvzHtblhH/w1hEdm2REhl2uVR6e5+7WgwKPZOT5sIEGuqIciCawfmYbpDTaKmVbcFvKwkRn7d1ywKvmBgiIfBcrrnx+/GAcCLBycfDUuEMOQPrCubB4Ih1AHw7e9B+mddv6AUWhDt+1PFjPqPspoT7YXGu9V/JH/GJHzc2l7Qev1w1mNwSvqTpEcLuQgu/G4x4lMtdjXbwyBVDceZXSN9LlTGaCvrsFiDsR7NIXB18BWrbIY/2ZjO40AZANwHXyTu2MB8M6MXrFQvy4pR0EHFLeXDvP3z6rcEC95QSuzFEIaLx7fbjyJcVVH11jbuSm46swRWitR2c393z6OiKoAxZH3162ceQnbYmufP7z0Y3Dftm2UIv3NzXPNPVCi6Nrq4K7EdZ6Sa5c4KkZIqaTVyYpKqFdg7lnfz2SPGt1c6sC7GMnPjZEYlzmjDNtXolXnsQhYVE/iAVO85fv49NW+4eBWdRF7L2P9qWJ3Z2iDHJmg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(22082099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TUlZMUt2OXl0cS9NY00rK0ZRUlNjczVDaGZhM1RVVG5pN3hyVjgzMGp1TWFQ?=
+ =?utf-8?B?K3VYZzZLVTN4T0JIREN5T1oySGFtQVcrUkRKTWhubFZHWGZGL1RYZ2g3S2RX?=
+ =?utf-8?B?UnEvUnQ0NGJCd3pjZ1FjbWxXbUdaRWl3RUhGdmVaanpMYUp4eUFZRGFSbHdx?=
+ =?utf-8?B?d3U0UWhwNXorSFEzUkttNk8yeElGd2hnVUQ0MXlHNTdsSnVEalpDNjExN0E0?=
+ =?utf-8?B?c1pXQTZ5OTZKeDVBd2JFN2toVnBLbnN4SkZJV0pqVmI0c2t5MGdYSXljTkQr?=
+ =?utf-8?B?M0VrY08xT2VGdkNEOXVETHJSVU0vQU8xMmF2NGRPRVlrc2ZVWkxuWmltUFVN?=
+ =?utf-8?B?cDJ3ZVRzSnJ0NTZKNmhpWFN5R0dpT3YveDF3Yjl5TzlJREg2NFI5cjJlTThU?=
+ =?utf-8?B?OXdRLzdNY1FOOWpXTTZDTE1OaTM5UllKRDRGUm8zUG5KMGJPSEY4YXNpOHhn?=
+ =?utf-8?B?eks3c1hIdGFWQ0JyaFEwRVNudlFXUmVTMmkrdDRoN2p0aDgzZFNFdUVkQVFZ?=
+ =?utf-8?B?aVlRL3djc1djZXdsNU1JUTUvOHJMV3k2Q1RrWHlXaVBtcHY3dk91TEhua2V6?=
+ =?utf-8?B?TW1naktMMHlmQ1VSU3poQWxqeFdUdFp3anh3WnF2akMrVzNKTHpwazRzRGUz?=
+ =?utf-8?B?WlNXeVJpQWRvVk1HelVTb3JIaE52OVMvQkZsUm9FT2NuVjZXTVNFNG1HR21O?=
+ =?utf-8?B?S2NvbFBiRlBLTlRLTWpEN1MzTVZlSWhGL3lES0xQVktWSTRab3liTlZNcjlL?=
+ =?utf-8?B?SWFCU1hwcmpHRVV0Ty9maHNuRUJZTm54Vk00T1dkdWxjV1QyS0ozeDNlTW5o?=
+ =?utf-8?B?SHBReTRMdGZ0cXdlZ3JMTm1OL0l6YUtWNXlEMjVicjVZRlpCajZrcmxxdnhB?=
+ =?utf-8?B?Vml0UjlSQ3U3MkFmamtLaG8zVm9yMVQyd0RrYVVSVFd1eFczQkpPVGsvVFVN?=
+ =?utf-8?B?S0xFTnQ5N3o5a3EwRGxPaFJ2bWRFS3NIUFBVQXpOQ3ZpM3hNejgwUnJSdTVx?=
+ =?utf-8?B?YjNhZ0MwakQ4VjFDeDNacy93Q1JuZVZ5RjVNV3ROanJZbFJRYVRpakFjZDRC?=
+ =?utf-8?B?Y1FvOWpPbnM2VU9td1h5SVhSdnp6VlJFK3J6c2g0cklBOXd4MkoxUU1weDNF?=
+ =?utf-8?B?cWw4SHZBSEtBYjJWRC9WTmNHaGVkczdpeFZyajVqd29BRGsxU3pGM2p2Mmls?=
+ =?utf-8?B?Mm5idjdQUFdFSTJtWjhiQkJhU0p2a20xbUtRTkNIT0dVK0Ywbk9oUVQ0Z01V?=
+ =?utf-8?B?MGg3SktSUDlGd1g5bTJFOGxxWkIrUGgzbTN5TzdncDZ3Z29iOUpMYzhwQkRm?=
+ =?utf-8?B?eHczUHVDWUpxQ1dyZjRVUjBhYXB2eHU5NEFlQU1jaDBBQzRXSWFrTGJvMnFO?=
+ =?utf-8?B?OEw2UDZwazF3RUo5WUE2UFB1cDVwQkVtRGttT0lPcE81a0dpUldBN3RqckRR?=
+ =?utf-8?B?aTNvQlRCWnRNcFJ3dWpjS1ZpblVGbHA1VFRiWVlDVnhtNlNrcjdKQy9EOERo?=
+ =?utf-8?B?c1lyMFQvdk9mUGlvYmhiSldtZGlzQnZlVnB3aXM0NGtVQlkrRzd6cnQ3dk5Q?=
+ =?utf-8?B?Nm5oTGZQNGVWRk5teHRuN0trbUZMUXo1eVZWVFZPVlNIMjkra0IzY2NmZWxS?=
+ =?utf-8?B?NHFSaHNhMXZSWWRmQlRHQUp0NzVPd21rNm1Xa0ZJODJqY3RsVXRFTHptRHFS?=
+ =?utf-8?B?QWdTdjQ0dnBWd3BvRkhrUkRJQ2l3eHY0bHJhRlluVHNMRkMrUkdid05DUEFO?=
+ =?utf-8?B?TUVScEdoZnZ2aHJMR0V3NXIzZitRV0JYUXJkT0Z0M09xN2RldFFDdmk3TlNK?=
+ =?utf-8?B?d2lwZG1oRHB4YnhGYXN0OUpNSGFzT2tMWURSc3k5L3RCdGQrNjNLcUhwbzFa?=
+ =?utf-8?B?YW9qNm9nNzRGQm50ekNzUFRsTU5SV1R2UHRjUkhqSHBkUmNOS3lmclBRbEJz?=
+ =?utf-8?B?SGFZdkd6VXdpV1JtWFI4WlVtYUZQNUxnaysvSXl5VWFqV1Q3VlhCU2NOTFNF?=
+ =?utf-8?B?dGErcUFrdFlzUzRDQ1ZVeFhvNmtXaUlVdjlYd1VFUGJBUmlSQjVBZWZtMXV2?=
+ =?utf-8?B?UEVkS3M0N29KNmcrbkVFWDBCRVRGbEdOaGJxR0tEUENFTkJodlhuMENOUHVU?=
+ =?utf-8?B?NCtqdEloUEczS2RJclVrVE55YiszWm92NWgva2d0R3RqSjJHYURNMEVQS1Vs?=
+ =?utf-8?B?cjZXUytVZHRqdFp0TExkd2lyRXJKa2xzRi9rYnpYdVhYUXRIQms1TllickFM?=
+ =?utf-8?B?Q0JiSU5tL1FNQVlDU002WllJSGJvVUlaMEttYytVTTV1OENiTTEwOVpQQkpp?=
+ =?utf-8?B?SGZOL095TXl3ZEpORmM2K3VGTEtGTFVJcXNTQ0RLSy9tZkpKWlFHSG5lL2Mv?=
+ =?utf-8?Q?8ucT3mr3jCwiIEA0=3D?=
+X-Exchange-RoutingPolicyChecked: Vd3Z8+nm6IIVtSKbdyXJ+PhX+qje7vXSwXnboYUZ7qzj1e4VSpDTgtdiA5GYd/YrWl306yHL0+JFVBtb9oaTcKG5jMnA+8V4yRKo7qZTYhgLOZSu+9PZ23DWXo6CBCkxERLVcGmXXRIwbdFzmuM6ZVFmLRUlA/MwqSnPaFLi7jmf7fPiRmL9teU4RK7DIvb3ZohuZn/Ou4zyziMsliQDfh8WFw6jDBX4NdWXhuBUtZ3M1+6739dwO8rRBYn50S63Q2TjFUM01v+w7kWOqaqqj2S8ExUprgvKMPtSeJ4tha0BdhzfTb2kubkjtZWJ/i3JcYUgf/xo5BL6DLRVZlFY9w==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 53f02243-7aab-48be-896b-08de8a008d47
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2026 23:53:31.0361 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: cWNwN2Q1PI08t8LKDpQChFEXQdzGNpTuxaQAYQtMOmpm2CyP2r5mXeqmMYbEjDnVNKHjwByhTTjBDVMAib57dg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4595
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,977 +171,161 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+On Tue, Mar 24, 2026 at 03:51:18PM -0600, Summers, Stuart wrote:
+> On Tue, 2026-03-24 at 14:53 +0000, Summers, Stuart wrote:
+> > On Mon, 2026-03-23 at 19:21 -0700, Matthew Brost wrote:
+> > > On Mon, Mar 23, 2026 at 09:17:42PM +0000, Stuart Summers wrote:
+> > > > Right now we are only invalidating TLBs when we are
+> > > > running in fault mode. For non-fault mode based userptr
+> > > > VMs, we then rely on context switches after an MMAP has
+> > > > happened to ensure the TLB is clean for the next submission.
+> > > > 
+> > > > With context based TLB invalidation, we can no longer rely
+> > > > on the implicit invalidation happening during context switch,
+> > > > so remove the fault mode limiter and simply always perform
+> > > > that invalidation.
+> > > > 
+> > > > I was able to see this behavior using the following test:
+> > > > xe_exec_compute_mode --r twice-userptr-invalidate
+> > > > 
+> > > 
+> > > Hmm, this implies that preempt fences don't issue a TLB
+> > > invalidation...
+> > > I thought we landed on preempt fences do a TLB invalidation in
+> > > offline
+> > > discussions.
+> > 
+> > So initially I was mostly focused on the xe_vm invalidate cases. In
+> > hindsight I should have done a little more focused testing here as
+> > well. This came up after some more extensive testing internally.
+> > 
+> > At least in my latest round of testing, I don't see any issues in
+> > BAT/FULL after this change. I do think getting this merged (or
+> > something similar) and tested more broadly would be interesting.
+> > 
+> > > 
+> > > We may have more work to do here wrt context based TLB
+> > > invalidations.
+> > > 
+> > > I think BO move path likely also needs to be updated then too.
+> > 
+> > Hm.. I haven't seen any issues on the BO side, although it's possible
+> > I've missed something in testing of course (like this LR case). I'd
 
---8323329-1766278022-1774396307=:294587
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+You'd only hit those cases if you run an eviction test.
 
-On Tue, 24 Mar 2026, Michał Grzelak wrote:
-> On Wed, 18 Mar 2026, Jani Nikula wrote:
->> Move the driver specific fbdev fb calls to the display parent
->> interface. Reuse the existing struct intel_display_bo_interface, as this
->> is mostly about gem objects.
->> 
->> Put everything behind IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION) to catch
->> configuration issues at build or link time.
->> 
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->> drivers/gpu/drm/i915/Makefile                 |   3 +-
->> drivers/gpu/drm/i915/display/intel_bo.c       |  27 ++++
->> drivers/gpu/drm/i915/display/intel_bo.h       |   8 ++
->> drivers/gpu/drm/i915/display/intel_fbdev.c    |  14 +--
->> drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 118 ------------------
->> drivers/gpu/drm/i915/display/intel_fbdev_fb.h |  24 ----
->> drivers/gpu/drm/i915/i915_bo.c                | 116 +++++++++++++++++
->> drivers/gpu/drm/i915/i915_bo.h                |   6 +
->> drivers/gpu/drm/i915/i915_initial_plane.c     |   4 +-
->> drivers/gpu/drm/xe/Makefile                   |   1 -
->> drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 116 -----------------
->> drivers/gpu/drm/xe/display/xe_display_bo.c    | 117 +++++++++++++++++
->> drivers/gpu/drm/xe/display/xe_display_bo.h    |   6 +
->> drivers/gpu/drm/xe/display/xe_initial_plane.c |   4 +-
->> include/drm/intel/display_parent_interface.h  |   7 ++
->> 15 files changed, 299 insertions(+), 272 deletions(-)
->> delete mode 100644 drivers/gpu/drm/i915/display/intel_fbdev_fb.c
->> delete mode 100644 drivers/gpu/drm/i915/display/intel_fbdev_fb.h
->> delete mode 100644 drivers/gpu/drm/xe/display/intel_fbdev_fb.c
->> 
->> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
->> index be976a90c5a6..026614d74cc4 100644
->> --- a/drivers/gpu/drm/i915/Makefile
->> +++ b/drivers/gpu/drm/i915/Makefile
->> @@ -324,8 +324,7 @@ i915-$(CONFIG_ACPI) += \
->> 	display/intel_acpi.o \
->> 	display/intel_opregion.o
->> i915-$(CONFIG_DRM_FBDEV_EMULATION) += \
->> -	display/intel_fbdev.o \
->> -	display/intel_fbdev_fb.o
->> +	display/intel_fbdev.o
->> i915-$(CONFIG_DEBUG_FS) += \
->> 	display/intel_display_debugfs.o \
->> 	display/intel_display_debugfs_params.o \
->> diff --git a/drivers/gpu/drm/i915/display/intel_bo.c 
->> b/drivers/gpu/drm/i915/display/intel_bo.c
->> index 3b82d38a0504..8ecdbb7e39f3 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bo.c
->> +++ b/drivers/gpu/drm/i915/display/intel_bo.c
->> @@ -85,3 +85,30 @@ struct drm_gem_object 
->> *intel_bo_framebuffer_lookup(struct intel_display *display
->> {
->> 	return display->parent->bo->framebuffer_lookup(display->drm, filp, 
->> user_mode_cmd);
->> }
->> +
->> +#if IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION)
->> +u32 intel_bo_fbdev_pitch_align(struct intel_display *display, u32 stride)
->> +{
->> +	return display->parent->bo->fbdev_pitch_align(stride);
->> +}
->> +
->> +struct drm_gem_object *intel_bo_fbdev_create(struct intel_display 
->> *display, int size)
->> +{
->> +	return display->parent->bo->fbdev_create(display->drm, size);
->> +}
->> +
->> +void intel_bo_fbdev_destroy(struct drm_gem_object *obj)
->> +{
->> +	struct intel_display *display = to_intel_display(obj->dev);
->> +
->> +	display->parent->bo->fbdev_destroy(obj);
->> +}
->> +
->> +int intel_bo_fbdev_fill_info(struct drm_gem_object *obj, struct fb_info 
->> *info,
->> +			     struct i915_vma *vma)
->> +{
->> +	struct intel_display *display = to_intel_display(obj->dev);
->> +
->> +	return display->parent->bo->fbdev_fill_info(obj, info, vma);
->> +}
->> +#endif
->> diff --git a/drivers/gpu/drm/i915/display/intel_bo.h 
->> b/drivers/gpu/drm/i915/display/intel_bo.h
->> index aec188c706c2..348f7fa66960 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bo.h
->> +++ b/drivers/gpu/drm/i915/display/intel_bo.h
->> @@ -10,6 +10,8 @@ struct drm_file;
->> struct drm_gem_object;
->> struct drm_mode_fb_cmd2;
->> struct drm_scanout_buffer;
->> +struct fb_info;
->> +struct i915_vma;
->> struct intel_display;
->> struct intel_framebuffer;
->> struct seq_file;
->> @@ -31,4 +33,10 @@ struct drm_gem_object 
->> *intel_bo_framebuffer_lookup(struct intel_display *display
->> 						   struct drm_file *filp,
->> 						   const struct 
->> drm_mode_fb_cmd2 *user_mode_cmd);
->> 
->> +u32 intel_bo_fbdev_pitch_align(struct intel_display *display, u32 stride);
->> +struct drm_gem_object *intel_bo_fbdev_create(struct intel_display 
->> *display, int size);
->> +void intel_bo_fbdev_destroy(struct drm_gem_object *obj);
->> +int intel_bo_fbdev_fill_info(struct drm_gem_object *obj, struct fb_info 
->> *info,
->> +			     struct i915_vma *vma);
->> +
->> #endif /* __INTEL_BO__ */
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c 
->> b/drivers/gpu/drm/i915/display/intel_fbdev.c
->> index 6401aaaba199..14ac01c1b3eb 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
->> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
->> @@ -54,7 +54,6 @@
->> #include "intel_fb.h"
->> #include "intel_fb_pin.h"
->> #include "intel_fbdev.h"
->> -#include "intel_fbdev_fb.h"
->> #include "intel_frontbuffer.h"
->> 
->> struct intel_fbdev {
->> @@ -204,7 +203,8 @@ static const struct drm_fb_helper_funcs 
->> intel_fb_helper_funcs = {
->> 	.fb_set_suspend = intelfb_set_suspend,
->> };
->> 
->> -static void intel_fbdev_fill_mode_cmd(struct drm_fb_helper_surface_size 
->> *sizes,
->> +static void intel_fbdev_fill_mode_cmd(struct intel_display *display,
->> +				      struct drm_fb_helper_surface_size 
->> *sizes,
->> 				      struct drm_mode_fb_cmd2 *mode_cmd)
->> {
->> 	/* we don't do packed 24bpp */
->> @@ -215,7 +215,7 @@ static void intel_fbdev_fill_mode_cmd(struct 
->> drm_fb_helper_surface_size *sizes,
->> 	mode_cmd->width = sizes->surface_width;
->> 	mode_cmd->height = sizes->surface_height;
->> 
->> -	mode_cmd->pitches[0] = intel_fbdev_fb_pitch_align(mode_cmd->width * 
->> DIV_ROUND_UP(sizes->surface_bpp, 8));
->> +	mode_cmd->pitches[0] = intel_bo_fbdev_pitch_align(display, 
->> mode_cmd->width * DIV_ROUND_UP(sizes->surface_bpp, 8));
->> 	mode_cmd->pixel_format = 
->> drm_mode_legacy_fb_format(sizes->surface_bpp,
->> 							   sizes->surface_depth);
->> 	mode_cmd->modifier[0] = DRM_FORMAT_MOD_LINEAR;
->> @@ -230,12 +230,12 @@ __intel_fbdev_fb_alloc(struct intel_display *display,
->> 	struct drm_gem_object *obj;
->> 	int size;
->> 
->> -	intel_fbdev_fill_mode_cmd(sizes, &mode_cmd);
->> +	intel_fbdev_fill_mode_cmd(display, sizes, &mode_cmd);
->>
->> 	size = mode_cmd.pitches[0] * mode_cmd.height;
->> 	size = PAGE_ALIGN(size);
->> 
->> -	obj = intel_fbdev_fb_bo_create(display->drm, size);
->> +	obj = intel_bo_fbdev_create(display, size);
->> 	if (IS_ERR(obj)) {
->> 		fb = ERR_CAST(obj);
->> 		goto err;
->> @@ -247,7 +247,7 @@ __intel_fbdev_fb_alloc(struct intel_display *display,
->> 							  mode_cmd.modifier[0]),
->> 				      &mode_cmd);
->> 	if (IS_ERR(fb)) {
->> -		intel_fbdev_fb_bo_destroy(obj);
->> +		intel_bo_fbdev_destroy(obj);
->> 		goto err;
->> 	}
->> 
->> @@ -327,7 +327,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper 
->> *helper,
->>
->> 	obj = intel_fb_bo(&fb->base);
->> 
->> -	ret = intel_fbdev_fb_fill_info(obj, info, vma);
->> +	ret = intel_bo_fbdev_fill_info(obj, info, vma);
->> 	if (ret)
->> 		goto out_unpin;
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c 
->> b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
->> deleted file mode 100644
->> index a696ce42d10b..000000000000
->> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
->> +++ /dev/null
->> @@ -1,118 +0,0 @@
->> -/* SPDX-License-Identifier: MIT */
->> -/*
->> - * Copyright © 2023 Intel Corporation
->> - */
->> -
->> -#include <linux/fb.h>
->> -
->> -#include <drm/drm_print.h>
->> -
->> -#include "gem/i915_gem_lmem.h"
->> -
->> -#include "i915_drv.h"
->> -#include "intel_fbdev_fb.h"
->> -
->> -u32 intel_fbdev_fb_pitch_align(u32 stride)
->> -{
->> -	return ALIGN(stride, 64);
->> -}
->> -
->> -bool intel_fbdev_fb_prefer_stolen(struct drm_device *drm, unsigned int 
->> size)
->> -{
->> -	struct drm_i915_private *i915 = to_i915(drm);
->> -
->> -	/* Skip stolen on MTL as Wa_22018444074 mitigation. */
->> -	if (IS_METEORLAKE(i915))
->> -		return false;
->> -
->> -	/*
->> -	 * If the FB is too big, just don't use it since fbdev is not very
->> -	 * important and we should probably use that space with FBC or other
->> -	 * features.
->> -	 */
->> -	return i915->dsm.usable_size >= size * 2;
->> -}
->> -
->> -struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, 
->> int size)
->> -{
->> -	struct drm_i915_private *i915 = to_i915(drm);
->> -	struct drm_i915_gem_object *obj;
->> -
->> -	obj = ERR_PTR(-ENODEV);
->> -	if (HAS_LMEM(i915)) {
->> -		obj = i915_gem_object_create_lmem(i915, size,
->> -						  I915_BO_ALLOC_CONTIGUOUS |
->> -						  I915_BO_ALLOC_USER);
->> -	} else {
->> -		if (intel_fbdev_fb_prefer_stolen(drm, size))
->> -			obj = i915_gem_object_create_stolen(i915, size);
->> -		else
->> -			drm_info(drm, "Allocating fbdev: Stolen memory not 
->> preferred.\n");
->> -
->> -		if (IS_ERR(obj))
->> -			obj = i915_gem_object_create_shmem(i915, size);
->> -	}
->> -
->> -	if (IS_ERR(obj)) {
->> -		drm_err(drm, "failed to allocate framebuffer (%pe)\n", obj);
->> -		return ERR_PTR(-ENOMEM);
->> -	}
->> -
->> -	return &obj->base;
->> -}
->> -
->> -void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj)
->> -{
->> -	drm_gem_object_put(obj);
->> -}
->> -
->> -int intel_fbdev_fb_fill_info(struct drm_gem_object *_obj, struct fb_info 
->> *info,
->> -			     struct i915_vma *vma)
->> -{
->> -	struct drm_i915_private *i915 = to_i915(_obj->dev);
->> -	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
->> -	struct i915_gem_ww_ctx ww;
->> -	void __iomem *vaddr;
->> -	int ret;
->> -
->> -	if (i915_gem_object_is_lmem(obj)) {
->> -		struct intel_memory_region *mem = obj->mm.region;
->> -
->> -		/* Use fbdev's framebuffer from lmem for discrete */
->> -		info->fix.smem_start =
->> -			(unsigned long)(mem->io.start +
->> -					i915_gem_object_get_dma_address(obj, 
->> 0) -
->> -					mem->region.start);
->> -		info->fix.smem_len = obj->base.size;
->> -	} else {
->> -		struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
->> -
->> -		/* Our framebuffer is the entirety of fbdev's system memory 
->> */
->> -		info->fix.smem_start =
->> -			(unsigned long)(ggtt->gmadr.start + 
->> i915_ggtt_offset(vma));
->> -		info->fix.smem_len = vma->size;
->> -	}
->> -
->> -	for_i915_gem_ww(&ww, ret, false) {
->> -		ret = i915_gem_object_lock(vma->obj, &ww);
->> -
->> -		if (ret)
->> -			continue;
->> -
->> -		vaddr = i915_vma_pin_iomap(vma);
->> -		if (IS_ERR(vaddr)) {
->> -			drm_err(&i915->drm,
->> -				"Failed to remap framebuffer into virtual 
->> memory (%pe)\n", vaddr);
->> -			ret = PTR_ERR(vaddr);
->> -			continue;
->> -		}
->> -	}
->> -
->> -	if (ret)
->> -		return ret;
->> -
->> -	info->screen_base = vaddr;
->> -	info->screen_size = intel_bo_to_drm_bo(obj)->size;
->> -
->> -	return 0;
->> -}
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h 
->> b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
->> deleted file mode 100644
->> index ddba45e9839d..000000000000
->> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
->> +++ /dev/null
->> @@ -1,24 +0,0 @@
->> -/* SPDX-License-Identifier: MIT */
->> -/*
->> - * Copyright © 2023 Intel Corporation
->> - */
->> -
->> -#ifndef __INTEL_FBDEV_FB_H__
->> -#define __INTEL_FBDEV_FB_H__
->> -
->> -#include <linux/types.h>
->> -
->> -struct drm_device;
->> -struct drm_gem_object;
->> -struct drm_mode_fb_cmd2;
->> -struct fb_info;
->> -struct i915_vma;
->> -
->> -u32 intel_fbdev_fb_pitch_align(u32 stride);
->> -struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, 
->> int size);
->> -void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj);
->> -int intel_fbdev_fb_fill_info(struct drm_gem_object *obj, struct fb_info 
->> *info,
->> -			     struct i915_vma *vma);
->> -bool intel_fbdev_fb_prefer_stolen(struct drm_device *drm, unsigned int 
->> size);
->> -
->> -#endif
->> diff --git a/drivers/gpu/drm/i915/i915_bo.c 
->> b/drivers/gpu/drm/i915/i915_bo.c
->> index 1789f7cab05c..7e38d002478e 100644
->> --- a/drivers/gpu/drm/i915/i915_bo.c
->> +++ b/drivers/gpu/drm/i915/i915_bo.c
->> @@ -1,11 +1,14 @@
->> // SPDX-License-Identifier: MIT
->> /* Copyright © 2024 Intel Corporation */
->> 
->> +#include <linux/fb.h>
->> +
->> #include <drm/drm_panic.h>
->> #include <drm/drm_print.h>
->> #include <drm/intel/display_parent_interface.h>
->> 
->> #include "display/intel_fb.h"
->> +#include "gem/i915_gem_lmem.h"
->> #include "gem/i915_gem_mman.h"
->> #include "gem/i915_gem_object.h"
->> #include "gem/i915_gem_object_frontbuffer.h"
->> @@ -141,6 +144,113 @@ i915_bo_framebuffer_lookup(struct drm_device *drm,
->> 	return intel_bo_to_drm_bo(obj);
->> }
->> 
->> +#if IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION)
->> +static u32 i915_bo_fbdev_pitch_align(u32 stride)
->> +{
->> +	return ALIGN(stride, 64);
->> +}
->> +
->> +bool i915_bo_fbdev_prefer_stolen(struct drm_device *drm, unsigned int 
->> size)
->> +{
->> +	struct drm_i915_private *i915 = to_i915(drm);
->> +
->> +	/* Skip stolen on MTL as Wa_22018444074 mitigation. */
->> +	if (IS_METEORLAKE(i915))
->> +		return false;
->> +
->> +	/*
->> +	 * If the FB is too big, just don't use it since fbdev is not very
->> +	 * important and we should probably use that space with FBC or other
->> +	 * features.
->> +	 */
->> +	return i915->dsm.usable_size >= size * 2;
->> +}
->> +
->> +static struct drm_gem_object *i915_bo_fbdev_create(struct drm_device *drm, 
->> int size)
->> +{
->> +	struct drm_i915_private *i915 = to_i915(drm);
->
-> Can we add same trick for i915_bo_fbdev_create() as we are doing
-> with i915_bo_fbdev_prefer_stolen() in patch [4/5]? Or e.g. add a
-> separate 6th patch for that? Up to patch reordering, of course.
->
->> +	struct drm_i915_gem_object *obj;
->> +
->> +	obj = ERR_PTR(-ENODEV);
->> +	if (HAS_LMEM(i915)) {
->> +		obj = i915_gem_object_create_lmem(i915, size,
->> +						  I915_BO_ALLOC_CONTIGUOUS |
->> +						  I915_BO_ALLOC_USER);
->> +	} else {
->> +		if (i915_bo_fbdev_prefer_stolen(drm, size))
->> +			obj = i915_gem_object_create_stolen(i915, size);
->> +		else
->> +			drm_info(drm, "Allocating fbdev: Stolen memory not 
->> preferred.\n");
->> +
->> +		if (IS_ERR(obj))
->> +			obj = i915_gem_object_create_shmem(i915, size);
->> +	}
->> +
->> +	if (IS_ERR(obj)) {
->> +		drm_err(drm, "failed to allocate framebuffer (%pe)\n", obj);
->> +		return ERR_PTR(-ENOMEM);
->> +	}
->> +
->> +	return &obj->base;
->> +}
->> +
->> +static void i915_bo_fbdev_destroy(struct drm_gem_object *obj)
->> +{
->> +	drm_gem_object_put(obj);
->> +}
->> +
->> +static int i915_bo_fbdev_fill_info(struct drm_gem_object *_obj, struct 
->> fb_info *info,
->> +				   struct i915_vma *vma)
->> +{
->> +	struct drm_i915_private *i915 = to_i915(_obj->dev);
->> +	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
->> +	struct i915_gem_ww_ctx ww;
->> +	void __iomem *vaddr;
->> +	int ret;
->> +
->> +	if (i915_gem_object_is_lmem(obj)) {
->> +		struct intel_memory_region *mem = obj->mm.region;
->> +
->> +		/* Use fbdev's framebuffer from lmem for discrete */
->> +		info->fix.smem_start =
->> +			(unsigned long)(mem->io.start +
->> +					i915_gem_object_get_dma_address(obj, 
->> 0) -
->> +					mem->region.start);
->> +		info->fix.smem_len = obj->base.size;
->> +	} else {
->> +		struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
->> +
->> +		/* Our framebuffer is the entirety of fbdev's system memory 
->> */
->> +		info->fix.smem_start =
->> +			(unsigned long)(ggtt->gmadr.start + 
->> i915_ggtt_offset(vma));
->> +		info->fix.smem_len = vma->size;
->> +	}
->> +
->> +	for_i915_gem_ww(&ww, ret, false) {
->> +		ret = i915_gem_object_lock(vma->obj, &ww);
->> +
->> +		if (ret)
->> +			continue;
->> +
->> +		vaddr = i915_vma_pin_iomap(vma);
->> +		if (IS_ERR(vaddr)) {
->> +			drm_err(&i915->drm,
->> +				"Failed to remap framebuffer into virtual 
->> memory (%pe)\n", vaddr);
->> +			ret = PTR_ERR(vaddr);
->> +			continue;
->> +		}
->> +	}
->> +
->> +	if (ret)
->> +		return ret;
->> +
->> +	info->screen_base = vaddr;
->> +	info->screen_size = intel_bo_to_drm_bo(obj)->size;
->> +
->> +	return 0;
->> +}
->> +#endif
->> +
->> const struct intel_display_bo_interface i915_display_bo_interface = {
->> 	.is_tiled = i915_bo_is_tiled,
->> 	.is_userptr = i915_bo_is_userptr,
->> @@ -153,4 +263,10 @@ const struct intel_display_bo_interface 
->> i915_display_bo_interface = {
->> 	.framebuffer_init = i915_bo_framebuffer_init,
->> 	.framebuffer_fini = i915_bo_framebuffer_fini,
->> 	.framebuffer_lookup = i915_bo_framebuffer_lookup,
->> +#if IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION)
->> +	.fbdev_create = i915_bo_fbdev_create,
->> +	.fbdev_destroy = i915_bo_fbdev_destroy,
->> +	.fbdev_fill_info = i915_bo_fbdev_fill_info,
->> +	.fbdev_pitch_align = i915_bo_fbdev_pitch_align,
->> +#endif
->> };
->> diff --git a/drivers/gpu/drm/i915/i915_bo.h 
->> b/drivers/gpu/drm/i915/i915_bo.h
->> index 57255d052dd9..2a0f3050dd42 100644
->> --- a/drivers/gpu/drm/i915/i915_bo.h
->> +++ b/drivers/gpu/drm/i915/i915_bo.h
->> @@ -4,6 +4,12 @@
->> #ifndef __I915_BO_H__
->> #define __I915_BO_H__
->> 
->> +#include <linux/types.h>
->> +
->> +struct drm_device;
->> +
->> +bool i915_bo_fbdev_prefer_stolen(struct drm_device *drm, unsigned int 
->> size);
->> +
->> extern const struct intel_display_bo_interface i915_display_bo_interface;
->> 
->> #endif /* __I915_BO_H__ */
->> diff --git a/drivers/gpu/drm/i915/i915_initial_plane.c 
->> b/drivers/gpu/drm/i915/i915_initial_plane.c
->> index 390a9248d631..f4d631a395d0 100644
->> --- a/drivers/gpu/drm/i915/i915_initial_plane.c
->> +++ b/drivers/gpu/drm/i915/i915_initial_plane.c
->> @@ -9,10 +9,10 @@
->> #include "display/intel_crtc.h"
->> #include "display/intel_display_types.h"
->> #include "display/intel_fb.h"
->> -#include "display/intel_fbdev_fb.h"
->> #include "gem/i915_gem_lmem.h"
->> #include "gem/i915_gem_region.h"
->> 
->> +#include "i915_bo.h"
->> #include "i915_drv.h"
->> #include "i915_initial_plane.h"
->> 
->> @@ -118,7 +118,7 @@ initial_plane_vma(struct drm_i915_private *i915,
->> 	if (IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION) &&
->> 	    IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
->> 	    mem == i915->mm.stolen_region &&
->> -	    !intel_fbdev_fb_prefer_stolen(&i915->drm, size)) {
->> +	    !i915_bo_fbdev_prefer_stolen(&i915->drm, size)) {
->> 		drm_dbg_kms(&i915->drm, "Initial FB size exceeds half of 
->> stolen, discarding\n");
->> 		return NULL;
->> 	}
->> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
->> index dab979287a96..936eb79e9269 100644
->> --- a/drivers/gpu/drm/xe/Makefile
->> +++ b/drivers/gpu/drm/xe/Makefile
->> @@ -211,7 +211,6 @@ $(obj)/i915-display/%.o: 
->> $(srctree)/drivers/gpu/drm/i915/display/%.c FORCE
->> 
->> # Display code specific to xe
->> xe-$(CONFIG_DRM_XE_DISPLAY) += \
->> -	display/intel_fbdev_fb.o \
->> 	display/xe_display.o \
->> 	display/xe_display_bo.o \
->> 	display/xe_display_pcode.o \
->> diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c 
->> b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
->> deleted file mode 100644
->> index 2ad5e5a79287..000000000000
->> --- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
->> +++ /dev/null
->> @@ -1,116 +0,0 @@
->> -/* SPDX-License-Identifier: MIT */
->> -/*
->> - * Copyright © 2023 Intel Corporation
->> - */
->> -
->> -#include <linux/fb.h>
->> -
->> -#include "intel_fbdev_fb.h"
->> -#include "xe_bo.h"
->> -#include "xe_ttm_stolen_mgr.h"
->> -#include "xe_wa.h"
->> -
->> -#include <generated/xe_device_wa_oob.h>
->> -
->> -/*
->> - * FIXME: There shouldn't be any reason to have XE_PAGE_SIZE stride
->> - * alignment. The same 64 as i915 uses should be fine, and we shouldn't 
->> need to
->> - * have driver specific values. However, dropping the stride alignment to 
->> 64
->> - * leads to underflowing the bo pin count in the atomic cleanup work.
->> - */
->> -u32 intel_fbdev_fb_pitch_align(u32 stride)
->> -{
->> -	return ALIGN(stride, XE_PAGE_SIZE);
->> -}
->> -
->> -bool intel_fbdev_fb_prefer_stolen(struct drm_device *drm, unsigned int 
->> size)
->> -{
->> -	struct xe_device *xe = to_xe_device(drm);
->> -	struct ttm_resource_manager *stolen;
->> -
->> -	stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
->> -	if (!stolen)
->> -		return false;
->> -
->> -	if (IS_DGFX(xe))
->> -		return false;
->> -
->> -	if (XE_DEVICE_WA(xe, 22019338487_display))
->> -		return false;
->> -
->> -	/*
->> -	 * If the FB is too big, just don't use it since fbdev is not very
->> -	 * important and we should probably use that space with FBC or other
->> -	 * features.
->> -	 */
->> -	return stolen->size >= size * 2;
->> -}
->> -
->> -struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm, 
->> int size)
->> -{
->> -	struct xe_device *xe = to_xe_device(drm);
->> -	struct xe_bo *obj;
->> -
->> -	obj = ERR_PTR(-ENODEV);
->> -
->> -	if (intel_fbdev_fb_prefer_stolen(drm, size)) {
->> -		obj = xe_bo_create_pin_map_novm(xe, 
->> xe_device_get_root_tile(xe),
->> -						size,
->> -						ttm_bo_type_kernel, 
->> XE_BO_FLAG_SCANOUT |
->> -						XE_BO_FLAG_STOLEN |
->> -						XE_BO_FLAG_GGTT, false);
->> -		if (!IS_ERR(obj))
->> -			drm_info(&xe->drm, "Allocated fbdev into stolen\n");
->> -		else
->> -			drm_info(&xe->drm, "Allocated fbdev into stolen 
->> failed: %li\n", PTR_ERR(obj));
->> -	} else {
->> -		drm_info(&xe->drm, "Allocating fbdev: Stolen memory not 
->> preferred.\n");
->> -	}
->> -
->> -	if (IS_ERR(obj)) {
->> -		obj = xe_bo_create_pin_map_novm(xe, 
->> xe_device_get_root_tile(xe), size,
->> -						ttm_bo_type_kernel, 
->> XE_BO_FLAG_SCANOUT |
->> - 
->> XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
->> -						XE_BO_FLAG_GGTT, false);
->> -	}
->> -
->> -	if (IS_ERR(obj)) {
->> -		drm_err(&xe->drm, "failed to allocate framebuffer (%pe)\n", 
->> obj);
->> -		return ERR_PTR(-ENOMEM);
->> -	}
->> -
->> -	return &obj->ttm.base;
->> -}
->> -
->> -void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj)
->> -{
->> -	xe_bo_unpin_map_no_vm(gem_to_xe_bo(obj));
->> -}
->> -
->> -int intel_fbdev_fb_fill_info(struct drm_gem_object *_obj, struct fb_info 
->> *info,
->> -			     struct i915_vma *vma)
->> -{
->> -	struct xe_bo *obj = gem_to_xe_bo(_obj);
->> -	struct pci_dev *pdev = to_pci_dev(_obj->dev->dev);
->> -
->> -	if (!(obj->flags & XE_BO_FLAG_SYSTEM)) {
->> -		if (obj->flags & XE_BO_FLAG_STOLEN)
->> -			info->fix.smem_start = xe_ttm_stolen_io_offset(obj, 
->> 0);
->> -		else
->> -			info->fix.smem_start =
->> -				pci_resource_start(pdev, 2) +
->> -				xe_bo_addr(obj, 0, XE_PAGE_SIZE);
->> -
->> -		info->fix.smem_len = obj->ttm.base.size;
->> -	} else {
->> -		/* XXX: Pure fiction, as the BO may not be physically 
->> accessible.. */
->> -		info->fix.smem_start = 0;
->> -		info->fix.smem_len = obj->ttm.base.size;
->> -	}
->> -	XE_WARN_ON(iosys_map_is_null(&obj->vmap));
->> -
->> -	info->screen_base = obj->vmap.vaddr_iomem;
->> -	info->screen_size = obj->ttm.base.size;
->> -
->> -	return 0;
->> -}
->> diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.c 
->> b/drivers/gpu/drm/xe/display/xe_display_bo.c
->> index a689f71e7b14..10436edecc35 100644
->> --- a/drivers/gpu/drm/xe/display/xe_display_bo.c
->> +++ b/drivers/gpu/drm/xe/display/xe_display_bo.c
->> @@ -1,6 +1,8 @@
->> // SPDX-License-Identifier: MIT
->> /* Copyright © 2024 Intel Corporation */
->> 
->> +#include <linux/fb.h>
->> +
->> #include <drm/drm_gem.h>
->> #include <drm/intel/display_parent_interface.h>
->> 
->> @@ -8,6 +10,10 @@
->> #include "xe_bo.h"
->> #include "xe_display_bo.h"
->> #include "xe_pxp.h"
->> +#include "xe_ttm_stolen_mgr.h"
->> +#include "xe_wa.h"
->> +
->> +#include <generated/xe_device_wa_oob.h>
->> 
->> static bool xe_display_bo_is_protected(struct drm_gem_object *obj)
->> {
->> @@ -101,6 +107,111 @@ xe_display_bo_framebuffer_lookup(struct drm_device 
->> *drm,
->> 	return gem;
->> }
->> 
->> +#if IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION)
->> +/*
->> + * FIXME: There shouldn't be any reason to have XE_PAGE_SIZE stride
->> + * alignment. The same 64 as i915 uses should be fine, and we shouldn't 
->> need to
->> + * have driver specific values. However, dropping the stride alignment to 
->> 64
->> + * leads to underflowing the bo pin count in the atomic cleanup work.
->> + */
->> +static u32 xe_display_bo_fbdev_pitch_align(u32 stride)
->> +{
->> +	return ALIGN(stride, XE_PAGE_SIZE);
->> +}
->> +
->> +bool xe_display_bo_fbdev_prefer_stolen(struct drm_device *drm, unsigned 
->> int size)
->> +{
->> +	struct xe_device *xe = to_xe_device(drm);
->> +	struct ttm_resource_manager *stolen;
->> +
->> +	stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
->> +	if (!stolen)
->> +		return false;
->> +
->> +	if (IS_DGFX(xe))
->> +		return false;
->> +
->> +	if (XE_DEVICE_WA(xe, 22019338487_display))
->> +		return false;
->> +
->> +	/*
->> +	 * If the FB is too big, just don't use it since fbdev is not very
->> +	 * important and we should probably use that space with FBC or other
->> +	 * features.
->> +	 */
->> +	return stolen->size >= size * 2;
->> +}
->> +
->> +static struct drm_gem_object *xe_display_bo_fbdev_create(struct drm_device 
->> *drm, int size)
->> +{
->> +	struct xe_device *xe = to_xe_device(drm);
->
-> Same question here, but adding it in patch [5/5] or as new 7th patch. Up
-> to patch reordering of course.
->
+> > really like to get this tested more regularly in CI if possible and
+> > work through issues post merge. I think most of the remaining issues,
+> > if they come up, should be timing sensitive.
+> > 
+> > Also the fact that this isn't enabled in anything in xe_pci.c right
+> > now
+> > means we shouldn't cause any major breakage otherwise for the feature
+> > generally. Of course this specific change impacts everyone using
+> > preempt fence like you said. I could add a has_ctx_tlb_inval here - I
+> > had thought about that. But to me this seems like a more general case
+> > given the discussion we had about intent of explicit invalidations.
 
-Please append my original message by:
+I would add knob for context switch == TLB invalidation.
 
-Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
+> > 
+> > Anyway let me know what you think here.
+> 
+> Little more detail here on further analysis...
+> 
+> So I had found this through debug, but looking a little closer, I think
+> the reason we need this is because of the xe_vm_rebind() function with
+> these lines at the top:
+> 
+> if ((xe_vm_in_lr_mode(vm) && !rebind_worker) ||                       
+>      list_empty(&vm->rebind_list))                                    
+>     return 0;
+> 
+> So basically if we aren't in preempt fence mode (lr_mode), we always
+> invalidate the TLBs in ops_execute() called in the xe_vm_rebind()
+> function later on. If we are in preempt fence mode, there is a corner
+> case here it looks like where we call the preempt rebind worker that
+> then calls xe_preempt_work_begin() -> xe_vm_validate_rebind() ->
+> xe_vm_rebind(false) and hits the above case, causing us to skip the TLB
+> invalidation. If we add the hook here, it forces invalidation for
 
-BR,
-Michał
+Kinda, if you look at this comment in xe_pt.c:
 
->> +	struct xe_bo *obj;
->> +
->> +	obj = ERR_PTR(-ENODEV);
->> +
->> +	if (xe_display_bo_fbdev_prefer_stolen(drm, size)) {
->> +		obj = xe_bo_create_pin_map_novm(xe, 
->> xe_device_get_root_tile(xe),
->> +						size,
->> +						ttm_bo_type_kernel, 
->> XE_BO_FLAG_SCANOUT |
->> +						XE_BO_FLAG_STOLEN |
->> +						XE_BO_FLAG_GGTT, false);
->> +		if (!IS_ERR(obj))
->> +			drm_info(&xe->drm, "Allocated fbdev into stolen\n");
->> +		else
->> +			drm_info(&xe->drm, "Allocated fbdev into stolen 
->> failed: %li\n", PTR_ERR(obj));
->> +	} else {
->> +		drm_info(&xe->drm, "Allocating fbdev: Stolen memory not 
->> preferred.\n");
->> +	}
->> +
->> +	if (IS_ERR(obj)) {
->> +		obj = xe_bo_create_pin_map_novm(xe, 
->> xe_device_get_root_tile(xe), size,
->> +						ttm_bo_type_kernel, 
->> XE_BO_FLAG_SCANOUT |
->> + 
->> XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
->> +						XE_BO_FLAG_GGTT, false);
->> +	}
->> +
->> +	if (IS_ERR(obj)) {
->> +		drm_err(&xe->drm, "failed to allocate framebuffer (%pe)\n", 
->> obj);
->> +		return ERR_PTR(-ENOMEM);
->> +	}
->> +
->> +	return &obj->ttm.base;
->> +}
->> +
->> +static void xe_display_bo_fbdev_destroy(struct drm_gem_object *obj)
->> +{
->> +	xe_bo_unpin_map_no_vm(gem_to_xe_bo(obj));
->> +}
->> +
->> +static int xe_display_bo_fbdev_fill_info(struct drm_gem_object *_obj, 
->> struct fb_info *info,
->> +			     struct i915_vma *vma)
->> +{
->> +	struct xe_bo *obj = gem_to_xe_bo(_obj);
->> +	struct pci_dev *pdev = to_pci_dev(_obj->dev->dev);
->> +
->> +	if (!(obj->flags & XE_BO_FLAG_SYSTEM)) {
->> +		if (obj->flags & XE_BO_FLAG_STOLEN)
->> +			info->fix.smem_start = xe_ttm_stolen_io_offset(obj, 
->> 0);
->> +		else
->> +			info->fix.smem_start =
->> +				pci_resource_start(pdev, 2) +
->> +				xe_bo_addr(obj, 0, XE_PAGE_SIZE);
->> +
->> +		info->fix.smem_len = obj->ttm.base.size;
->> +	} else {
->> +		/* XXX: Pure fiction, as the BO may not be physically 
->> accessible.. */
->> +		info->fix.smem_start = 0;
->> +		info->fix.smem_len = obj->ttm.base.size;
->> +	}
->> +	XE_WARN_ON(iosys_map_is_null(&obj->vmap));
->> +
->> +	info->screen_base = obj->vmap.vaddr_iomem;
->> +	info->screen_size = obj->ttm.base.size;
->> +
->> +	return 0;
->> +}
->> +#endif
->> +
->> const struct intel_display_bo_interface xe_display_bo_interface = {
->> 	.is_protected = xe_display_bo_is_protected,
->> 	.key_check = xe_pxp_obj_key_check,
->> @@ -109,4 +220,10 @@ const struct intel_display_bo_interface 
->> xe_display_bo_interface = {
->> 	.framebuffer_init = xe_display_bo_framebuffer_init,
->> 	.framebuffer_fini = xe_display_bo_framebuffer_fini,
->> 	.framebuffer_lookup = xe_display_bo_framebuffer_lookup,
->> +#if IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION)
->> +	.fbdev_create = xe_display_bo_fbdev_create,
->> +	.fbdev_destroy = xe_display_bo_fbdev_destroy,
->> +	.fbdev_fill_info = xe_display_bo_fbdev_fill_info,
->> +	.fbdev_pitch_align = xe_display_bo_fbdev_pitch_align,
->> +#endif
->> };
->> diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.h 
->> b/drivers/gpu/drm/xe/display/xe_display_bo.h
->> index 6879c104b0b1..8980e6ecf54a 100644
->> --- a/drivers/gpu/drm/xe/display/xe_display_bo.h
->> +++ b/drivers/gpu/drm/xe/display/xe_display_bo.h
->> @@ -4,6 +4,12 @@
->> #ifndef __XE_DISPLAY_BO_H__
->> #define __XE_DISPLAY_BO_H__
->> 
->> +#include <linux/types.h>
->> +
->> +struct drm_device;
->> +
->> +bool xe_display_bo_fbdev_prefer_stolen(struct drm_device *drm, unsigned 
->> int size);
->> +
->> extern const struct intel_display_bo_interface xe_display_bo_interface;
->> 
->> #endif
->> diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c 
->> b/drivers/gpu/drm/xe/display/xe_initial_plane.c
->> index 730c6dc49522..6e0a22429184 100644
->> --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
->> +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
->> @@ -12,8 +12,8 @@
->> #include "intel_display_types.h"
->> #include "intel_fb.h"
->> #include "intel_fb_pin.h"
->> -#include "intel_fbdev_fb.h"
->> #include "xe_bo.h"
->> +#include "xe_display_bo.h"
->> #include "xe_display_vma.h"
->> #include "xe_ggtt.h"
->> #include "xe_mmio.h"
->> @@ -87,7 +87,7 @@ initial_plane_bo(struct xe_device *xe,
->>
->> 		if (IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
->> 		    IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION) &&
->> -		    !intel_fbdev_fb_prefer_stolen(&xe->drm, 
->> plane_config->size)) {
->> +		    !xe_display_bo_fbdev_prefer_stolen(&xe->drm, 
->> plane_config->size)) {
->> 			drm_info(&xe->drm, "Initial FB size exceeds half of 
->> stolen, discarding\n");
->> 			return NULL;
->> 		}
->> diff --git a/include/drm/intel/display_parent_interface.h 
->> b/include/drm/intel/display_parent_interface.h
->> index 97ec94a2e749..2fc1794a3da4 100644
->> --- a/include/drm/intel/display_parent_interface.h
->> +++ b/include/drm/intel/display_parent_interface.h
->> @@ -15,6 +15,7 @@ struct drm_gem_object;
->> struct drm_mode_fb_cmd2;
->> struct drm_plane_state;
->> struct drm_scanout_buffer;
->> +struct fb_info;
->> struct i915_vma;
->> struct intel_dpt;
->> struct intel_dsb_buffer;
->> @@ -43,6 +44,12 @@ struct intel_display_bo_interface {
->> 	struct drm_gem_object *(*framebuffer_lookup)(struct drm_device *drm,
->> 						     struct drm_file *filp,
->> 						     const struct 
->> drm_mode_fb_cmd2 *user_mode_cmd);
->> +#if IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION)
->> +	struct drm_gem_object *(*fbdev_create)(struct drm_device *drm, int 
->> size);
->> +	void (*fbdev_destroy)(struct drm_gem_object *obj);
->> +	int (*fbdev_fill_info)(struct drm_gem_object *obj, struct fb_info 
->> *info, struct i915_vma *vma);
->> +	u32 (*fbdev_pitch_align)(u32 stride);
->> +#endif
->> };
->> 
->> struct intel_display_dpt_interface {
->> -- 
->> 2.47.3
->> 
->
---8323329-1766278022-1774396307=:294587--
+                /*
+                 * If rebind, we have to invalidate TLB on !LR vms to invalidate
+                 * cached PTEs point to freed memory. On LR vms this is done
+                 * automatically when the context is re-enabled by the rebind worker,
+                 * or in fault mode it was invalidated on PTE zapping.
+                 *
+                 * If !rebind, and scratch enabled VMs, there is a chance the scratch
+                 * PTE is already cached in the TLB so it needs to be invalidated.
+                 * On !LR VMs this is done in the ring ops preceding a batch, but on
+                 * LR, in particular on user-space batch buffer chaining, it needs to
+                 * be done here.
+                 */
+                if ((!pt_op->rebind && xe_vm_has_scratch(vm) &&
+                     xe_vm_in_lr_mode(vm)))
+                        pt_update_ops->needs_invalidation = true;
+                else if (pt_op->rebind && !xe_vm_in_lr_mode(vm))
+                        /* We bump also if batch_invalidate_tlb is true */
+                        vm->tlb_flush_seqno++;
+
+We explicitly call out that we rely on “automatically when the the
+context being re-enabled by the rebind worker”
+
+So another option is to adjust this if statement to something like:
+
+else if (pt_op->rebind && xe_vm_in_preempt_fence_mode(vm) && !context_switch_invalidation)
+	pt_update_ops->needs_invalidation = true;
+
+This would also cover the BO eviction case I mentioned above. Also avoid
+blocking in the notifier or BO evcition code on the TLB invalidation
+which in general speeds up the entire kernel.
+
+Matt
+
+> lr_mode also.
+> 
+> We could just add this xe_vm_in_lr_mode() check here, but I still think
+> doing this across the board is safest so we aren't hitting some other
+> corner case in the future if we decide to rework those other scenarios.
+> 
+> Thanks,
+> Stuart
+> 
+> > 
+> > Thanks,
+> > Stuart
+> > 
+> > >  
+> > > > Signed-off-by: Stuart Summers <stuart.summers@intel.com>
+> > > > ---
+> > > >  drivers/gpu/drm/xe/xe_userptr.c | 2 +-
+> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/xe/xe_userptr.c
+> > > > b/drivers/gpu/drm/xe/xe_userptr.c
+> > > > index 6761005c0b90..dfd679dd98d9 100644
+> > > > --- a/drivers/gpu/drm/xe/xe_userptr.c
+> > > > +++ b/drivers/gpu/drm/xe/xe_userptr.c
+> > > > @@ -102,7 +102,7 @@ xe_vma_userptr_do_inval(struct xe_vm *vm,
+> > > > struct xe_userptr_vma *uvma, bool is_d
+> > > >                                     false, MAX_SCHEDULE_TIMEOUT);
+> > > >         XE_WARN_ON(err <= 0);
+> > > >  
+> > > > -       if (xe_vm_in_fault_mode(vm) && userptr->initial_bind) {
+> > > > +       if (userptr->initial_bind) {
+> > > 
+> > > Should be change this if statement based on hardware support?
+> > > 
+> > > Matt
+> > > 
+> > > >                 if (!userptr->finish_inuse) {
+> > > >                         /*
+> > > >                          * Defer the TLB wait to an extra pass so
+> > > > the caller
+> > > > -- 
+> > > > 2.43.0
+> > > > 
+> > 
+> 
