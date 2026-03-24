@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB425F54ACD
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 15:37:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79F84F54ACE
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 15:37:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91A2810E717;
-	Tue, 24 Mar 2026 15:37:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F6F110E71A;
+	Tue, 24 Mar 2026 15:37:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bm/jQFEO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PfbJxZax";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5954010E717
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Mar 2026 15:37:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCBEC10E71C
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Mar 2026 15:37:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774366655; x=1805902655;
+ t=1774366657; x=1805902657;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=A9CrpWaW/etMXe3bTPV6UyF0UMgmO9R+xQkFr2XBAAc=;
- b=Bm/jQFEOUUP/TbApvTZkOCS6IqCTRXynOGjHDx2JoZeWul/APlAn0uQ6
- 0jr5grgMLkEctkLCCvXwbmV7ndK/XVC/eRGLL4M8fnpnirU5r4yb7zpQt
- bBJXxITxDQu7SDPukeyKz9k7GQbEvKteKHzCjIlpu/yVc5KKasytxZgWT
- RR92dNDu0JBienoCJDFaDm1VDtB20Uo+ga+xQaJCxMi+pN7fBcMr+veQ+
- l7sU07qA1wqQuU8OzPmqi7L+ylmB28H5nBuH4nNPQKOlHyvzDHXjg1WNK
- hN/J8vpK4xjirfvqpVt9UvSUEm0p4JednZWQzd0f9hRVOBLaTYvXNq40Q g==;
-X-CSE-ConnectionGUID: 0swvFMTwR5yBOPq7Zd7y5Q==
-X-CSE-MsgGUID: 3yaQHaSYTFizJ+4eD5nA9Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="75102392"
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="75102392"
+ bh=H6IG3eL5Nk6Nlv7izIvyI8LI+MP16ORx2hWlmIzBHEU=;
+ b=PfbJxZaxkLilvGIO6+Q0/2ilJzulVsQQ6TzD+czeQvfZKhUUWKC7QiwS
+ 1TK+2wVZye1LwYV+6E6MNkxkeFGyNCnO59c4AUxaR/p0AiaVih11EyKLK
+ v++d5fAQG5JTH7eOUtIi1jcAy1dYWwKQZcBAa908NxUHwrz8A0giJn0nM
+ eES4kBGzNocgCorqsTtdodTFGzPKkVz3QyyFoUZTAX9wsllewIG64+IxE
+ RCd10utFc7nh5IsTJqMMCGUzwFgkr71+vaNhxS92BfkVr/C0OIwmPm8eT
+ uJJ3Ztr7LUNzwZ4maWbIqMHvQpdUdN6k2q/BEDiTSBKpiT+cj4lXtMpRS Q==;
+X-CSE-ConnectionGUID: VJ3A/9qZQQW1Ig4ikYeU+Q==
+X-CSE-MsgGUID: YtiMav15Q5iEk20a25BQvQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="75102395"
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="75102395"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 08:37:35 -0700
-X-CSE-ConnectionGUID: tAMChaUGRpKWhono5LvTPQ==
-X-CSE-MsgGUID: Z8BefmrATKGF7jrkZ2nefQ==
+ 24 Mar 2026 08:37:37 -0700
+X-CSE-ConnectionGUID: Q+EnCYMsTii5CPeqwdHEvw==
+X-CSE-MsgGUID: x4SZummeS6SJ8OSV8LrOzw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="228863577"
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="228863582"
 Received: from valcore-skull-1.fm.intel.com ([10.1.39.17])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 08:37:34 -0700
+ 24 Mar 2026 08:37:36 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
  Alan Previn Teres Alexis <alan.previn.teres.alexis@intel.com>,
  Julia Filipchuk <julia.filipchuk@intel.com>
-Subject: [PATCH v2 1/4] drm/xe/pxp: Clean up termination status on failure
-Date: Tue, 24 Mar 2026 08:37:20 -0700
-Message-ID: <20260324153718.3155504-7-daniele.ceraolospurio@intel.com>
+Subject: [PATCH v2 2/4] drm/xe/pxp: Remove incorrect handling of impossible
+ state during suspend
+Date: Tue, 24 Mar 2026 08:37:21 -0700
+Message-ID: <20260324153718.3155504-8-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260324153718.3155504-6-daniele.ceraolospurio@intel.com>
 References: <20260324153718.3155504-6-daniele.ceraolospurio@intel.com>
@@ -68,33 +69,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If the PXP HW termination fails during PXP start, the normal completion
-code won't be called, so the termination will remain uncomplete. To avoid
-unnecessary waits, mark the termination as completed from the error path.
-Note that we already do this if the termination fails when handling a
-termination irq from the HW.
+The default case of the PXP suspend switch is incorrectly exiting
+without releasing the lock. However, this case is impossible to hit
+because we're switching on an enum and all the valid enum values have
+their own cases. Therefore, we can just get rid of the default case
+and rely on the compiler to warn us if a new enum value is added and
+we forget to add it to the switch.
 
-Fixes: f8caa80154c4 ("drm/xe/pxp: Add PXP queue tracking and session start")
+Fixes: 51462211f4a9 ("drm/xe/pxp: add PXP PM support")
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Alan Previn Teres Alexis <alan.previn.teres.alexis@intel.com>
 Cc: Julia Filipchuk <julia.filipchuk@intel.com>
 Reviewed-by: Julia Filipchuk <julia.filipchuk@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pxp.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/xe/xe_pxp.c | 6 ------
+ 1 file changed, 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_pxp.c b/drivers/gpu/drm/xe/xe_pxp.c
-index e2978e48f660..b60ea85c3e11 100644
+index b60ea85c3e11..a054b57f5ae5 100644
 --- a/drivers/gpu/drm/xe/xe_pxp.c
 +++ b/drivers/gpu/drm/xe/xe_pxp.c
-@@ -583,6 +583,7 @@ static int pxp_start(struct xe_pxp *pxp, u8 type)
- 			drm_err(&pxp->xe->drm, "PXP termination failed before start\n");
- 			mutex_lock(&pxp->mutex);
- 			pxp->status = XE_PXP_ERROR;
-+			complete_all(&pxp->termination);
+@@ -871,11 +871,6 @@ int xe_pxp_pm_suspend(struct xe_pxp *pxp)
+ 		pxp->key_instance++;
+ 		needs_queue_inval = true;
+ 		break;
+-	default:
+-		drm_err(&pxp->xe->drm, "unexpected state during PXP suspend: %u",
+-			pxp->status);
+-		ret = -EIO;
+-		goto out;
+ 	}
  
- 			goto out_unlock;
- 		}
+ 	/*
+@@ -900,7 +895,6 @@ int xe_pxp_pm_suspend(struct xe_pxp *pxp)
+ 
+ 	pxp->last_suspend_key_instance = pxp->key_instance;
+ 
+-out:
+ 	return ret;
+ }
+ 
 -- 
 2.43.0
 
