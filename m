@@ -4,65 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43EA3F54ABA
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 14:05:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F3F6F54AC1
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 14:13:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04BA810E00F;
-	Tue, 24 Mar 2026 14:05:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6388910E6E8;
+	Tue, 24 Mar 2026 14:13:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZgK6ix7Q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wm/T+wZf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B08E10E00F;
- Tue, 24 Mar 2026 14:05:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 387EB10E6E8
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Mar 2026 14:13:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774361108; x=1805897108;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=jGLH/WfSC3JOvT6EfQfzRq0lC/CbygfoqSNYqC/yU4s=;
- b=ZgK6ix7QrPOLLBDW0I0pgwv3mSpSPdojcueFCWw+u5LlLB6BuxqAKovw
- GDRZwlU8sy7OrVzbfMty32asfqpyeRQraCkUGTfVDo20hH1Y7JWJWbtSz
- djCukMhMpuIJV7My4ZnSTJIv1/dgRfnubRep/8NKnfwVPYwkMe4RfDngB
- TUbYORU/43UUhlt2Qfbji+Sur+8/Px0HBAdJ0cBr/3P7aiQM75zA301k0
- BPostzaNKltK+BKm+BB+ziLq2GfAEs9/vnupjtadtvBwUtii+VsLOf8IB
- xeeaE3YQgViuHkEYNzPvopeYOj2f1ugTl9Vv9ihyY4odOKShVTPk3Q4k2 g==;
-X-CSE-ConnectionGUID: mSVDI/DbRraom0ACzS5pWQ==
-X-CSE-MsgGUID: +hFO8xaZSyeVvMFVYRG11A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="97995201"
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="97995201"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 07:05:03 -0700
-X-CSE-ConnectionGUID: NJ71rxhrRo2fAW5U1P6QJg==
-X-CSE-MsgGUID: QlZkmqPCS1Kr04fW2X/WKw==
+ t=1774361628; x=1805897628;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=9+YaDTr7ReEO15DmtCqeOKNWDqpKS0oJoMXwqd+bu+A=;
+ b=Wm/T+wZftutKEumT2iLb6u7a690jArdMuT+lJYXjy2t5Y83IxO43ZKoL
+ XwRNGZM4owUnrjxuSe1dK2QbYVYb+0mEfPyF9sgjLcnQd6G413F8Temc2
+ HF12sa3fFht5rdKLrP7dvdyTCBVWR4t/4P0W2GWkyg0DeOP0Re+RXolos
+ GYdh5PpNfdxlpPjVJCXXSbUZejzLqnSwRUiWzVMEdBDZFqGVkGTL+Hcoi
+ GzZLiNd1r5oVsRD4mmWhB+paNAXIof4WnfHfp5ccI6u+WQ3BbaDCa5QoH
+ 21tUG9kqh61SLcCqQEYxnmyUYg4JoydjKRdxV4tCsSPCmvCkbaLLDDn7S Q==;
+X-CSE-ConnectionGUID: Zw+x5RKqQaaWWoTY228yJQ==
+X-CSE-MsgGUID: itstywEwSnSIOdFgeFr5oQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="100823839"
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="100823839"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2026 07:13:48 -0700
+X-CSE-ConnectionGUID: nz0E2fJXTTKMTOhf+hJ9jA==
+X-CSE-MsgGUID: n6+WaqpKTwWoyP+fla20EA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="226004333"
-Received: from black.igk.intel.com ([10.91.253.5])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 07:05:01 -0700
-Date: Tue, 24 Mar 2026 15:04:58 +0100
-From: Raag Jadav <raag.jadav@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- airlied@gmail.com, simona@ffwll.ch, matthew.brost@intel.com,
- riana.tauro@intel.com, andrealmeid@igalia.com
-Subject: Re: [PATCH v2 0/3] Update 'none' recovery method for DRM wedged event
-Message-ID: <acKaCrzZlg84F5Kq@black.igk.intel.com>
-References: <20260305130720.3685754-1-raag.jadav@intel.com>
- <aa_OxUm6vthhaorE@black.igk.intel.com>
- <acFJuRlHeJ8OyLi6@black.igk.intel.com>
- <5d2171ca-aa9b-4b8f-9ea3-eabb823ef2d6@amd.com>
- <acH4qEdJwwRApZ0t@black.igk.intel.com> <acKXBy3WXzrPERxm@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="229113087"
+Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.244.208])
+ ([10.245.244.208])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2026 07:13:45 -0700
+Message-ID: <09f09c546971b217caef004e20deadd9bff32b2f.camel@linux.intel.com>
+Subject: Re: [PATCH v7 07/12] drm/xe/madvise: Block imported and exported
+ dma-bufs
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Arvind Yadav <arvind.yadav@intel.com>, intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com
+Date: Tue, 24 Mar 2026 15:13:43 +0100
+In-Reply-To: <20260323093106.2986900-8-arvind.yadav@intel.com>
+References: <20260323093106.2986900-1-arvind.yadav@intel.com>
+ <20260323093106.2986900-8-arvind.yadav@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <acKXBy3WXzrPERxm@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,55 +71,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 24, 2026 at 09:52:07AM -0400, Rodrigo Vivi wrote:
-> On Tue, Mar 24, 2026 at 03:36:24AM +0100, Raag Jadav wrote:
-> > On Mon, Mar 23, 2026 at 03:11:58PM +0100, Christian König wrote:
-> > > On 3/23/26 15:10, Raag Jadav wrote:
-> > > > On Tue, Mar 10, 2026 at 08:56:58AM +0100, Raag Jadav wrote:
-> > > >> On Thu, Mar 05, 2026 at 06:36:46PM +0530, Raag Jadav wrote:
-> > > >>> Currently 'none' recovery method for wedged event expects no explicit
-> > > >>> recovery from userspace consumer but it expects driver to have reset
-> > > >>> the device, which may not always be the case. Update documentation and
-> > > >>> log to reflect this expectation.
-> > > >>
-> > > >> Anything I can do to move this forward?
-> > > 
-> > > Invent some tech to clone certain people so that we have more reviewers.
-> > 
-> > If this allows my clones to also review my patches, I fully support this :)
-> > 
-> > > > Ping.
-> > > 
-> > > I will take a look now.
-> > 
-> > Thank you, I think it's safe to land through drm-misc (if anyone has access).
-> 
-> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> 
-> But it is not applying cleanly on drm-misc-next.
-> 
-> drm-misc maintainers, could you please do a backmerge of drm-next?
-> 
-> Or ack these patches to go through drm-xe-next
+On Mon, 2026-03-23 at 15:00 +0530, Arvind Yadav wrote:
+> Prevent marking imported or exported dma-bufs as purgeable.
+> External devices may be accessing these buffers without our
+> knowledge, making purging unsafe.
+>=20
+> Check drm_gem_is_imported() for buffers created by other
+> drivers and obj->dma_buf for buffers exported to other
+> drivers. Silently skip these BOs during madvise processing.
+>=20
+> This follows drm_gem_shmem's purgeable implementation and
+> prevents data corruption from purging actively-used shared
+> buffers.
+>=20
+> v3:
+> =C2=A0=C2=A0 - Addresses review feedback from Matt Roper about handling
+> =C2=A0=C2=A0=C2=A0=C2=A0 imported/exported BOs correctly in the purgeable=
+ BO
+> =C2=A0=C2=A0=C2=A0=C2=A0 implementation.
+>=20
+> v4:
+> =C2=A0=C2=A0 - Check should be add to xe_vm_madvise_purgeable_bo.
+>=20
+> v5:
+> =C2=A0=C2=A0 - Rename xe_bo_is_external_dmabuf() to xe_bo_is_dmabuf_share=
+d()
+> =C2=A0=C2=A0=C2=A0=C2=A0 for clarity (Thomas)
+> =C2=A0=C2=A0 - Update comments to clarify why both imports and exports
+> =C2=A0=C2=A0=C2=A0=C2=A0 are unsafe to purge.
+>=20
+> v6:
+> =C2=A0 - No PTEs to zap for shared dma-bufs.
+>=20
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 
-It's already on misc thanks to Brost. Thank you all for the support.
+Reviewed-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
 
-Raag
-
-> > > >>> v2: Rephrase documentation (Rodrigo)
-> > > >>>
-> > > >>> Raag Jadav (3):
-> > > >>>   drm/doc: Update documentation for 'none' recovery method
-> > > >>>   drm: Update log for 'none' recovery method
-> > > >>>   drm/xe: Send 'none' recovery method for
-> > > >>>     XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET
-> > > >>>
-> > > >>>  Documentation/gpu/drm-uapi.rst | 14 +++++++-------
-> > > >>>  drivers/gpu/drm/drm_drv.c      |  2 +-
-> > > >>>  drivers/gpu/drm/xe/xe_device.c |  9 ++++++++-
-> > > >>>  3 files changed, 16 insertions(+), 9 deletions(-)
-> > > >>>
-> > > >>> -- 
-> > > >>> 2.43.0
-> > > >>>
-> > > 
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_vm_madvise.c | 38
+> ++++++++++++++++++++++++++++++
+> =C2=A01 file changed, 38 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c
+> b/drivers/gpu/drm/xe/xe_vm_madvise.c
+> index ed1940da7739..340e83764a76 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
+> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+> @@ -185,6 +185,34 @@ static void madvise_pat_index(struct xe_device
+> *xe, struct xe_vm *vm,
+> =C2=A0	}
+> =C2=A0}
+> =C2=A0
+> +
+> +/**
+> + * xe_bo_is_dmabuf_shared() - Check if BO is shared via dma-buf
+> + * @bo: Buffer object
+> + *
+> + * Prevent marking imported or exported dma-bufs as purgeable.
+> + * For imported BOs, Xe doesn't own the backing store and cannot
+> + * safely reclaim pages (exporter or other devices may still be
+> + * using them). For exported BOs, external devices may have active
+> + * mappings we cannot track.
+> + *
+> + * Return: true if BO is imported or exported, false otherwise
+> + */
+> +static bool xe_bo_is_dmabuf_shared(struct xe_bo *bo)
+> +{
+> +	struct drm_gem_object *obj =3D &bo->ttm.base;
+> +
+> +	/* Imported: exporter owns backing store */
+> +	if (drm_gem_is_imported(obj))
+> +		return true;
+> +
+> +	/* Exported: external devices may be accessing */
+> +	if (obj->dma_buf)
+> +		return true;
+> +
+> +	return false;
+> +}
+> +
+> =C2=A0/**
+> =C2=A0 * enum xe_bo_vmas_purge_state - VMA purgeable state aggregation
+> =C2=A0 *
+> @@ -234,6 +262,10 @@ static enum xe_bo_vmas_purge_state
+> xe_bo_all_vmas_dontneed(struct xe_bo *bo)
+> =C2=A0
+> =C2=A0	xe_bo_assert_held(bo);
+> =C2=A0
+> +	/* Shared dma-bufs cannot be purgeable */
+> +	if (xe_bo_is_dmabuf_shared(bo))
+> +		return XE_BO_VMAS_STATE_WILLNEED;
+> +
+> =C2=A0	drm_gem_for_each_gpuvm_bo(vm_bo, obj) {
+> =C2=A0		drm_gpuvm_bo_for_each_va(gpuva, vm_bo) {
+> =C2=A0			struct xe_vma *vma =3D gpuva_to_vma(gpuva);
+> @@ -335,6 +367,12 @@ static void __maybe_unused
+> madvise_purgeable(struct xe_device *xe,
+> =C2=A0		/* BO must be locked before modifying madv state */
+> =C2=A0		xe_bo_assert_held(bo);
+> =C2=A0
+> +		/* Skip shared dma-bufs - no PTEs to zap */
+> +		if (xe_bo_is_dmabuf_shared(bo)) {
+> +			vmas[i]->skip_invalidation =3D true;
+> +			continue;
+> +		}
+> +
+> =C2=A0		/*
+> =C2=A0		 * Once purged, always purged. Cannot transition
+> back to WILLNEED.
+> =C2=A0		 * This matches i915 semantics where purged BOs are
+> permanently invalid.
