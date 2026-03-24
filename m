@@ -4,62 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C233F54AC5
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 15:04:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37AC1F54AC5
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 15:14:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C953A10E6E9;
-	Tue, 24 Mar 2026 15:04:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBE9010E6E8;
+	Tue, 24 Mar 2026 15:14:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tqy/S7Yc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d4Gi9Ko/";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A82310E665;
- Tue, 24 Mar 2026 15:04:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27A9610E6E8
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Mar 2026 15:14:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774364679; x=1805900679;
+ t=1774365269; x=1805901269;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=T1EypG6JzbYHgJN98YRLBLJBIpjnEbhSl9LSMOyK8P0=;
- b=Tqy/S7YcWRwgJEVgH/gkJjfQuEMhs5liTmNtMaAwIwprq8XConb8EGgB
- 4lIe8aQL2GFPOPd1ZxRrq60iNiO+BoRe+/AMZVERWTURzr2NseP5/TR3v
- nuejPnWqLLoR6x+dxajrE22kYxJumBp/e+KtHtIdxM3AvTISTV03dYikk
- uID2B9fcKtlWa/kGZ1VWI11911pvmHeRAwxEPfMKBeHlFyeoy6Gpy0ADE
- uY+cNh4S/Ko1ZX554KeJLddoGIet6XpNrw9z0hhuQ4ZQRc54yImmAo7El
- 7my+kwhQrECvzogLbXt/mKLLWkUA4HSQUGpG28kNF3KIm5cQl4yJRd49I Q==;
-X-CSE-ConnectionGUID: Gds8d9NDSGKOrkYOy8Xlrg==
-X-CSE-MsgGUID: YprLmUcRRnus619b9BF61A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="85694365"
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="85694365"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 08:04:39 -0700
-X-CSE-ConnectionGUID: NmCR5oPVTs6WMgu+esXeBA==
-X-CSE-MsgGUID: Rt/9v8v+Sq2uMOcDdiWtaQ==
+ mime-version:in-reply-to;
+ bh=t9PQgoTNPQl2ssoL6YxC7HNMBSofVWeyRlXY7U9POwQ=;
+ b=d4Gi9Ko/40BH7He2ZR4p1R1+S5G5P4BDqiHEtcqLassge184i22WUq6c
+ dtFu/DUNM6Kq/w6jfKO1XAwjjIpIJcRRCbJ0JvsixDhIjW7nqcYfZo5Au
+ ni8sYUAt9uVzw/w0F/+nWqNXKk2NCM3uEz9w32ZHH0nzvfG3xX+5oDeYM
+ Xh2dtbD3hqJi97GIzq2leJXMDleE/6PgO8WRh7bcv6bRGp+1tIl7G/Q8l
+ Lk7ANaxXym/zeBQhJnIjKSHZT0x183U6jD79GukZyEBepAmJje7rZ5X21
+ xmNJPjzDxQ5qZffMB3DtVOOOVo1jetLYPhvpOhTHZNi6Xkm1ZAQc0/1ny w==;
+X-CSE-ConnectionGUID: v62slzB7RWSN0fhMZT2X3Q==
+X-CSE-MsgGUID: +gNwfabJRLmugflaAecrkQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="79293041"
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="79293041"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2026 08:14:28 -0700
+X-CSE-ConnectionGUID: fmAL5JgJTGW5Vw7gVYViFA==
+X-CSE-MsgGUID: XA6OYo+6QcKoNGatnMm6GA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="223439162"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.220])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 08:04:36 -0700
-Date: Tue, 24 Mar 2026 17:04:33 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Luca Coelho <luciano.coelho@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- jani.nikula@linux.intel.com
-Subject: Re: [PATCH 7/8] drm/i915/display: move pre-HSW clock gating init to
- display
-Message-ID: <acKoAdGa3s1S5Pqm@intel.com>
-References: <20260324143420.310800-1-luciano.coelho@intel.com>
- <20260324143420.310800-8-luciano.coelho@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="262313713"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2026 08:14:26 -0700
+Date: Tue, 24 Mar 2026 16:14:23 +0100
+From: Raag Jadav <raag.jadav@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Cc: intel-xe@lists.freedesktop.org, matthew.brost@intel.com,
+ thomas.hellstrom@linux.intel.com, himal.prasad.ghimiray@intel.com,
+ matthew.d.roper@intel.com
+Subject: Re: [PATCH v1] drm/xe: Drop dma mappings for wedged device
+Message-ID: <acKqT7SM56hY6Hhd@black.igk.intel.com>
+References: <20260324071529.447319-1-raag.jadav@intel.com>
+ <019ee8de-9268-4706-841b-25d9b0818f1a@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260324143420.310800-8-luciano.coelho@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+In-Reply-To: <019ee8de-9268-4706-841b-25d9b0818f1a@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,353 +69,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 24, 2026 at 04:29:56PM +0200, Luca Coelho wrote:
-> Move the remaining pre-HSW display clock gating programming into
-> display.
+On Tue, Mar 24, 2026 at 12:52:30PM +0000, Matthew Auld wrote:
+> On 24/03/2026 07:13, Raag Jadav wrote:
+> > As per uapi documentation[1], the prerequisite for wedged device is to
+> > drop all dma mappings. Reuse xe_bo_pci_dev_remove_pinned() for this,
+> > which iterates over external bo list and removes all dma mappings.
+> > 
+> > [1] Documentation/gpu/drm-uapi.rst
 > 
-> This also drops display register includes from intel_clock_gating.c.
+> Can you point to where it says that? Do you just mean the: "disabling DMA to
+> system memory" ?
 > 
-> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-> ---
->  .../i915/display/intel_display_clock_gating.c | 100 ++++++++++++++++
->  .../i915/display/intel_display_clock_gating.h |  12 ++
->  drivers/gpu/drm/i915/intel_clock_gating.c     | 109 +-----------------
->  3 files changed, 118 insertions(+), 103 deletions(-)
+> One other thing that maybe jumps out is:
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> index 0b2edf6acb79..5809c49dccf0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> @@ -6,11 +6,13 @@
->  #include <drm/intel/intel_gmd_misc_regs.h>
->  
->  #include "intel_de.h"
-> +#include "i9xx_plane_regs.h"
->  #include "intel_display.h"
->  #include "intel_display_clock_gating.h"
->  #include "intel_display_regs.h"
->  
->  #include "i915_drv.h"
-> +#include "i915_reg.h"
->  
->  static void intel_display_gen9_init_clock_gating(struct intel_display *display,
->  						 bool has_llc)
-> @@ -156,3 +158,101 @@ void intel_display_hsw_init_clock_gating(struct intel_display *display)
->  	intel_display_hsw_init_clock_gating_common(display,
->  						   HSW_UNMASK_VBL_TO_REGS_IN_SRD);
->  }
-> +
-> +void intel_display_disable_trickle_feed(struct intel_display *display)
-> +{
-> +	enum pipe pipe;
-> +
-> +	for_each_pipe(display, pipe) {
-> +		intel_de_rmw(display, DSPCNTR(display, pipe), 0,
-> +			     DISP_TRICKLE_FEED_DISABLE);
-> +
-> +		intel_de_rmw(display, DSPSURF(display, pipe), 0, 0);
-> +		intel_de_posting_read(display, DSPSURF(display, pipe));
-> +	}
-> +}
-> +
-> +void intel_display_ilk_init_clock_gating(struct intel_display *display)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
-> +	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
-> +
-> +	/*
-> +	 * Required for FBC
-> +	 * WaFbcDisableDpfcClockGating:ilk
-> +	 */
-> +	dspclk_gate |= ILK_DPFCRUNIT_CLOCK_GATE_DISABLE |
-> +		       ILK_DPFCUNIT_CLOCK_GATE_DISABLE |
-> +		       ILK_DPFDUNIT_CLOCK_GATE_ENABLE;
-> +
-> +	intel_de_write(display, PCH_3DCGDIS0,
-> +		       MARIUNIT_CLOCK_GATE_DISABLE |
-> +		       SVSMUNIT_CLOCK_GATE_DISABLE);
-> +	intel_de_write(display, PCH_3DCGDIS1, VFMUNIT_CLOCK_GATE_DISABLE);
+> "All existing mmaps should be invalidated and
+> page faults should be redirected to a dummy page"
+> 
+> Are we also missing that? We have the dummy page flow, but do we actually
+> force everything to be refaulted?
 
-Those two aren't display things.
+I tried this with commit c020fff70d75 but it clearly doesn't cover
+everything.
 
-> +
-> +	intel_de_write(display, ILK_DISPLAY_CHICKEN2,
-> +		       intel_de_read(display, ILK_DISPLAY_CHICKEN2) |
-> +		       ILK_DPARB_GATE | ILK_VSDPFD_FULL);
-> +	dspclk_gate |= ILK_DPARBUNIT_CLOCK_GATE_ENABLE;
-> +	intel_de_write(display, DISP_ARB_CTL,
-> +		       intel_de_read(display, DISP_ARB_CTL) |
-> +		       DISP_FBC_WM_DIS);
-> +
-> +	if (IS_IRONLAKE_M(i915)) {
-> +		/* WaFbcAsynchFlipDisableFbcQueue:ilk */
-> +		intel_de_rmw(display, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
-> +		intel_de_rmw(display, ILK_DISPLAY_CHICKEN2, 0, ILK_DPARB_GATE);
-> +	}
-> +
-> +	intel_de_write(display, ILK_DSPCLK_GATE_D, dspclk_gate);
-> +	intel_de_rmw(display, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
-> +
-> +	intel_display_disable_trickle_feed(display);
-> +}
-> +
-> +void intel_display_gen6_init_clock_gating(struct intel_display *display)
-> +{
-> +	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
-> +
-> +	intel_de_write(display, ILK_DSPCLK_GATE_D, dspclk_gate);
-> +	intel_de_rmw(display, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
-> +
-> +	intel_de_write(display, ILK_DISPLAY_CHICKEN1,
-> +		       intel_de_read(display, ILK_DISPLAY_CHICKEN1) |
-> +		       ILK_FBCQ_DIS | ILK_PABSTRETCH_DIS);
-> +	intel_de_write(display, ILK_DISPLAY_CHICKEN2,
-> +		       intel_de_read(display, ILK_DISPLAY_CHICKEN2) |
-> +		       ILK_DPARB_GATE | ILK_VSDPFD_FULL);
-> +	intel_de_write(display, ILK_DSPCLK_GATE_D,
-> +		       intel_de_read(display, ILK_DSPCLK_GATE_D) |
-> +		       ILK_DPARBUNIT_CLOCK_GATE_ENABLE |
-> +		       ILK_DPFDUNIT_CLOCK_GATE_ENABLE);
-> +
-> +	intel_display_disable_trickle_feed(display);
-> +}
-> +
-> +void intel_display_ivb_init_clock_gating(struct intel_display *display)
-> +{
-> +	intel_de_write(display, ILK_DSPCLK_GATE_D, ILK_VRHUNIT_CLOCK_GATE_DISABLE);
-> +	intel_de_rmw(display, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
-> +}
-> +
-> +void intel_display_g4x_init_clock_gating(struct intel_display *display)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
-> +	u32 dspclk_gate = VRHUNIT_CLOCK_GATE_DISABLE |
-> +			  OVRUNIT_CLOCK_GATE_DISABLE |
-> +			  OVCUNIT_CLOCK_GATE_DISABLE;
-> +
-> +	if (IS_GM45(i915))
-> +		dspclk_gate |= DSSUNIT_CLOCK_GATE_DISABLE;
-> +
-> +	intel_de_write(display, DSPCLK_GATE_D, dspclk_gate);
-> +
-> +	intel_display_disable_trickle_feed(display);
-> +}
-> +
-> +void intel_display_i965gm_init_clock_gating(struct intel_display *display)
-> +{
-> +	intel_de_write(display, DSPCLK_GATE_D, 0);
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-> index 0eb240f2f69e..9eebfc4a6ebe 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-> @@ -17,6 +17,12 @@ void intel_display_glk_init_clock_gating(struct intel_display *display);
->  void intel_display_bdw_hsw_init_clock_gating(struct intel_display *display);
->  void intel_display_bdw_init_clock_gating(struct intel_display *display);
->  void intel_display_hsw_init_clock_gating(struct intel_display *display);
-> +void intel_display_disable_trickle_feed(struct intel_display *display);
-> +void intel_display_ilk_init_clock_gating(struct intel_display *display);
-> +void intel_display_gen6_init_clock_gating(struct intel_display *display);
-> +void intel_display_ivb_init_clock_gating(struct intel_display *display);
-> +void intel_display_g4x_init_clock_gating(struct intel_display *display);
-> +void intel_display_i965gm_init_clock_gating(struct intel_display *display);
->  #else
->  static inline void intel_display_skl_init_clock_gating(struct intel_display *display) {}
->  static inline void intel_display_kbl_init_clock_gating(struct intel_display *display) {}
-> @@ -26,6 +32,12 @@ static inline void intel_display_glk_init_clock_gating(struct intel_display *dis
->  static inline void intel_display_bdw_hsw_init_clock_gating(struct intel_display *display) {}
->  static inline void intel_display_bdw_init_clock_gating(struct intel_display *display) {}
->  static inline void intel_display_hsw_init_clock_gating(struct intel_display *display) {}
-> +static inline void intel_display_disable_trickle_feed(struct intel_display *display) {}
-> +static inline void intel_display_ilk_init_clock_gating(struct intel_display *display) {}
-> +static inline void intel_display_gen6_init_clock_gating(struct intel_display *display) {}
-> +static inline void intel_display_ivb_init_clock_gating(struct intel_display *display) {}
-> +static inline void intel_display_g4x_init_clock_gating(struct intel_display *display) {}
-> +static inline void intel_display_i965gm_init_clock_gating(struct intel_display *display) {}
->  #endif
->  
->  #endif /* __INTEL_DISPLAY_CLOCK_GATING_H__ */
-> diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
-> index a8e3eb6f06c8..98c048387a0a 100644
-> --- a/drivers/gpu/drm/i915/intel_clock_gating.c
-> +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
-> @@ -29,11 +29,8 @@
->  #include <drm/intel/intel_gmd_misc_regs.h>
->  #include <drm/intel/intel_gmd_interrupt_regs.h>
->  
-> -#include "display/i9xx_plane_regs.h"
-> -#include "display/intel_display.h"
->  #include "display/intel_display_clock_gating.h"
->  #include "display/intel_display_core.h"
-> -#include "display/intel_display_regs.h"
->  #include "gt/intel_engine_regs.h"
->  #include "gt/intel_gt.h"
->  #include "gt/intel_gt_mcr.h"
-> @@ -68,74 +65,9 @@ static void glk_init_clock_gating(struct drm_i915_private *i915)
->  	intel_display_glk_init_clock_gating(i915->display);
->  }
->  
-> -static void g4x_disable_trickle_feed(struct drm_i915_private *dev_priv)
-> -{
-> -	struct intel_display *display = dev_priv->display;
-> -	enum pipe pipe;
-> -
-> -	for_each_pipe(display, pipe) {
-> -		intel_uncore_rmw(&dev_priv->uncore, DSPCNTR(display, pipe),
-> -				 0, DISP_TRICKLE_FEED_DISABLE);
-> -
-> -		intel_uncore_rmw(&dev_priv->uncore, DSPSURF(display, pipe),
-> -				 0, 0);
-> -		intel_uncore_posting_read(&dev_priv->uncore,
-> -					  DSPSURF(display, pipe));
-> -	}
-> -}
-> -
->  static void ilk_init_clock_gating(struct drm_i915_private *i915)
->  {
-> -	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
-> -
-> -	/*
-> -	 * Required for FBC
-> -	 * WaFbcDisableDpfcClockGating:ilk
-> -	 */
-> -	dspclk_gate |= ILK_DPFCRUNIT_CLOCK_GATE_DISABLE |
-> -		   ILK_DPFCUNIT_CLOCK_GATE_DISABLE |
-> -		   ILK_DPFDUNIT_CLOCK_GATE_ENABLE;
-> -
-> -	intel_uncore_write(&i915->uncore, PCH_3DCGDIS0,
-> -			   MARIUNIT_CLOCK_GATE_DISABLE |
-> -			   SVSMUNIT_CLOCK_GATE_DISABLE);
-> -	intel_uncore_write(&i915->uncore, PCH_3DCGDIS1,
-> -			   VFMUNIT_CLOCK_GATE_DISABLE);
-> -
-> -	/*
-> -	 * According to the spec the following bits should be set in
-> -	 * order to enable memory self-refresh
-> -	 * The bit 22/21 of 0x42004
-> -	 * The bit 5 of 0x42020
-> -	 * The bit 15 of 0x45000
-> -	 */
-> -	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN2,
-> -			   (intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN2) |
-> -			    ILK_DPARB_GATE | ILK_VSDPFD_FULL));
-> -	dspclk_gate |= ILK_DPARBUNIT_CLOCK_GATE_ENABLE;
-> -	intel_uncore_write(&i915->uncore, DISP_ARB_CTL,
-> -			   (intel_uncore_read(&i915->uncore, DISP_ARB_CTL) |
-> -			    DISP_FBC_WM_DIS));
-> -
-> -	/*
-> -	 * Based on the document from hardware guys the following bits
-> -	 * should be set unconditionally in order to enable FBC.
-> -	 * The bit 22 of 0x42000
-> -	 * The bit 22 of 0x42004
-> -	 * The bit 7,8,9 of 0x42020.
-> -	 */
-> -	if (IS_IRONLAKE_M(i915)) {
-> -		/* WaFbcAsynchFlipDisableFbcQueue:ilk */
-> -		intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
-> -		intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_DPARB_GATE);
-> -	}
-> -
-> -	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, dspclk_gate);
-> -
-> -	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
-> -
-> -	g4x_disable_trickle_feed(i915);
-> -
-> +	intel_display_ilk_init_clock_gating(i915->display);
->  	intel_pch_init_clock_gating(i915->display);
->  }
->  
-> @@ -152,11 +84,7 @@ static void gen6_check_mch_setup(struct drm_i915_private *i915)
->  
->  static void gen6_init_clock_gating(struct drm_i915_private *i915)
->  {
-> -	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
-> -
-> -	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, dspclk_gate);
-> -
-> -	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
-> +	intel_display_gen6_init_clock_gating(i915->display);
->  
->  	intel_uncore_write(&i915->uncore, GEN6_UCGCTL1,
->  			   intel_uncore_read(&i915->uncore, GEN6_UCGCTL1) |
-> @@ -191,19 +119,6 @@ static void gen6_init_clock_gating(struct drm_i915_private *i915)
->  	 *
->  	 * WaFbcAsynchFlipDisableFbcQueue:snb
->  	 */
-> -	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN1,
-> -			   intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN1) |
-> -			   ILK_FBCQ_DIS | ILK_PABSTRETCH_DIS);
-> -	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN2,
-> -			   intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN2) |
-> -			   ILK_DPARB_GATE | ILK_VSDPFD_FULL);
-> -	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D,
-> -			   intel_uncore_read(&i915->uncore, ILK_DSPCLK_GATE_D) |
-> -			   ILK_DPARBUNIT_CLOCK_GATE_ENABLE  |
-> -			   ILK_DPFDUNIT_CLOCK_GATE_ENABLE);
-> -
-> -	g4x_disable_trickle_feed(i915);
-> -
->  	intel_pch_init_clock_gating(i915->display);
->  
->  	gen6_check_mch_setup(i915);
-> @@ -338,10 +253,7 @@ static void ivb_init_clock_gating(struct drm_i915_private *i915)
->  {
->  	struct intel_display *display = i915->display;
->  
-> -	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, ILK_VRHUNIT_CLOCK_GATE_DISABLE);
-> -
-> -	/* WaFbcAsynchFlipDisableFbcQueue:ivb */
-> -	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
-> +	intel_display_ivb_init_clock_gating(display);
->  
->  	/* WaDisableBackToBackFlipFix:ivb */
->  	intel_uncore_write(&i915->uncore, IVB_CHICKEN3,
-> @@ -370,7 +282,7 @@ static void ivb_init_clock_gating(struct drm_i915_private *i915)
->  	intel_uncore_rmw(&i915->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
->  			 0, GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
->  
-> -	g4x_disable_trickle_feed(i915);
-> +	intel_display_disable_trickle_feed(display);
->  
->  	intel_uncore_rmw(&i915->uncore, GEN6_MBCUNIT_SNPCR, GEN6_MBC_SNPCR_MASK,
->  			 GEN6_MBC_SNPCR_MED);
-> @@ -443,21 +355,12 @@ static void chv_init_clock_gating(struct drm_i915_private *i915)
->  
->  static void g4x_init_clock_gating(struct drm_i915_private *i915)
->  {
-> -	u32 dspclk_gate;
-> -
->  	intel_uncore_write(&i915->uncore, RENCLK_GATE_D1, 0);
->  	intel_uncore_write(&i915->uncore, RENCLK_GATE_D2, VF_UNIT_CLOCK_GATE_DISABLE |
->  			   GS_UNIT_CLOCK_GATE_DISABLE |
->  			   CL_UNIT_CLOCK_GATE_DISABLE);
->  	intel_uncore_write(&i915->uncore, RAMCLK_GATE_D, 0);
-> -	dspclk_gate = VRHUNIT_CLOCK_GATE_DISABLE |
-> -		OVRUNIT_CLOCK_GATE_DISABLE |
-> -		OVCUNIT_CLOCK_GATE_DISABLE;
-> -	if (IS_GM45(i915))
-> -		dspclk_gate |= DSSUNIT_CLOCK_GATE_DISABLE;
-> -	intel_uncore_write(&i915->uncore, DSPCLK_GATE_D, dspclk_gate);
-> -
-> -	g4x_disable_trickle_feed(i915);
-> +	intel_display_g4x_init_clock_gating(i915->display);
->  }
->  
->  static void i965gm_init_clock_gating(struct drm_i915_private *i915)
-> @@ -466,7 +369,7 @@ static void i965gm_init_clock_gating(struct drm_i915_private *i915)
->  
->  	intel_uncore_write(uncore, RENCLK_GATE_D1, I965_RCC_CLOCK_GATE_DISABLE);
->  	intel_uncore_write(uncore, RENCLK_GATE_D2, 0);
-> -	intel_uncore_write(uncore, DSPCLK_GATE_D, 0);
-> +	intel_display_i965gm_init_clock_gating(i915->display);
->  	intel_uncore_write(uncore, RAMCLK_GATE_D, 0);
->  	intel_uncore_write16(uncore, DEUC, 0);
->  	intel_uncore_write(uncore,
-> -- 
-> 2.53.0
+> Something like:
+> 
+>  /* Clear all CPU mappings pointing to this device */
+>  unmap_mapping_range(dev->anon_inode->i_mapping, 0, 0, 1);
 
--- 
-Ville Syrjälä
-Intel
+Sure.
+
+> > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > ---
+> > PS: This is pretty much uncharted territory for me, so please consider
+> > this an RFC.
+> > 
+> >   drivers/gpu/drm/xe/xe_bo_evict.c | 8 +++++++-
+> >   drivers/gpu/drm/xe/xe_bo_evict.h | 1 +
+> >   drivers/gpu/drm/xe/xe_device.c   | 2 ++
+> >   3 files changed, 10 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
+> > index 7661fca7f278..f741cda50b2d 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo_evict.c
+> > +++ b/drivers/gpu/drm/xe/xe_bo_evict.c
+> > @@ -270,7 +270,13 @@ int xe_bo_restore_late(struct xe_device *xe)
+> >   	return ret;
+> >   }
+> > -static void xe_bo_pci_dev_remove_pinned(struct xe_device *xe)
+> > +/**
+> > + * xe_bo_pci_dev_remove_pinned() - Unmap external bos
+> > + * @xe: xe device
+> > + *
+> > + * Drop dma mappings of all external pinned bos.
+> > + */
+> > +void xe_bo_pci_dev_remove_pinned(struct xe_device *xe)
+> >   {
+> >   	struct xe_tile *tile;
+> >   	unsigned int id;
+> > diff --git a/drivers/gpu/drm/xe/xe_bo_evict.h b/drivers/gpu/drm/xe/xe_bo_evict.h
+> > index e8385cb7f5e9..6ce27e272780 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo_evict.h
+> > +++ b/drivers/gpu/drm/xe/xe_bo_evict.h
+> > @@ -15,6 +15,7 @@ void xe_bo_notifier_unprepare_all_pinned(struct xe_device *xe);
+> >   int xe_bo_restore_early(struct xe_device *xe);
+> >   int xe_bo_restore_late(struct xe_device *xe);
+> > +void xe_bo_pci_dev_remove_pinned(struct xe_device *xe);
+> >   void xe_bo_pci_dev_remove_all(struct xe_device *xe);
+> >   int xe_bo_pinned_init(struct xe_device *xe);
+> > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> > index 207ad2eea412..ac51b04560df 100644
+> > --- a/drivers/gpu/drm/xe/xe_device.c
+> > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > @@ -1351,6 +1351,8 @@ void xe_device_declare_wedged(struct xe_device *xe)
+> >   	for_each_gt(gt, xe, id)
+> >   		xe_gt_declare_wedged(gt);
+> > +	xe_bo_pci_dev_remove_pinned(xe);
+> 
+> AFAIK this just removes the iommu mappings for kernel BOs (small subset of
+> BOs), if there are any. Also if you are not using iommu, then dma between
+> GPU and system memory is still possible. And for userspace BOs nothing
+> changes. But I guess this is still better than nothing and will maybe catch
+> some misuse?
+
+Yeah, I just floated this to start the discussion. Thanks for the pointers,
+will explore this.
+
+Raag
+
+> >   	if (xe_device_wedged(xe)) {
+> >   		/*
+> >   		 * XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET is intended for debugging
+> 
