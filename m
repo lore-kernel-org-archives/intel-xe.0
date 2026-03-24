@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0B0FF532D4
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 07:08:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEF19F532E9
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 07:18:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 54A2610E5DB;
-	Tue, 24 Mar 2026 07:08:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C44D10E5DC;
+	Tue, 24 Mar 2026 07:18:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rp72YC5y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EPtZSJr8";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 44C3010E5DB
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Mar 2026 07:08:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96E0B10E5DC
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Mar 2026 07:18:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774336108; x=1805872108;
- h=date:from:to:cc:subject:message-id;
- bh=TaWJFG0Z/w1XbZihLDfBSQyXiqOPsk+CLI/Bbl0rbZA=;
- b=Rp72YC5yEuE8zoxWzT9fQx9wXzJPWkOlZvXJ0bIWMBZ/K2/87FkUq0rE
- rx2cGYtUzwm9oiOPAFUjioSbX+c/Y95I0Wxm9U74t36BFt335+L7U2zm7
- J2OZj/yAiw6C8IAlD6TqI9Qfz+cpBujKodTmfd6DgzRhupvc9bLVcFOLh
- u2IfJaI7AC17EznfVtB59T5YLd1Ky5M2jLyfAEr+oQPaoL/25z0lW64kN
- Nsfe/JoTIfyRT1jNLFwguMr3Mxc62wpvAZGP2FjHyzDfOTBvh+a9VOJB2
- u+ubSYIClRXwOZeeBdn35dJaWnvUYum8TRpbv1/qe6RuWgE/wy+ZHIzEJ Q==;
-X-CSE-ConnectionGUID: 4eTxLFxkSDGlF6Z3Oc7H0w==
-X-CSE-MsgGUID: Gbz0KxF5QiOZ4s2RpRhejg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11738"; a="79201492"
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="79201492"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 00:08:27 -0700
-X-CSE-ConnectionGUID: zYtQcilWQT2ZRvbiz4ca6A==
-X-CSE-MsgGUID: rZm5e457QMmY2j9uoe5P4A==
+ t=1774336698; x=1805872698;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=J6nCQ2x12AJ4zS7ZTyJegxjMtujOsJLqVJGlJ3b6wcs=;
+ b=EPtZSJr8xSfs4/wBRDkHMHRZu9D0qLqYzcCJVtKuIqsI8pqLc7sZEKxH
+ 5G/QK7/vgEJtKcHnd743z2/40g7kIDekrsKxfWx825j7wIWjgTIQxa8mS
+ ra/lFOuQHvdEB36EZ7eXi822vbpghZ4r4AkYag/x+RUstbtKf+ciZFZzw
+ XRzS5WkR3K+qj5Kkv6XmYoExG5XXcGvLmKLFLcgWmK12+HCbsglk1qN5o
+ yaONDTQQPoPwXY01BB1zNfa+RX9egvsHt6ih26Ie6D55hDFEH5XPzRHna
+ LYqIGiTZnhCbqHp9LeHNK/eZ49juttwfmJ3ViYdMH+JqPH6r0Bn6pE4Li A==;
+X-CSE-ConnectionGUID: NEt9fWdKTjmah4yGbzB9Rw==
+X-CSE-MsgGUID: /BxSxvSuR6+2ns/hQBAQtw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11738"; a="75415575"
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="75415575"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2026 00:18:17 -0700
+X-CSE-ConnectionGUID: sHd1tQeYTPiJ9bMoUmT9cg==
+X-CSE-MsgGUID: M2z1ULGKSmCm3GroqzHITw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="223350276"
-Received: from lkp-server01.sh.intel.com (HELO 3905d212be1b) ([10.239.97.150])
- by orviesa006.jf.intel.com with ESMTP; 24 Mar 2026 00:08:25 -0700
-Received: from kbuild by 3905d212be1b with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1w4vsE-0000000047t-3pCI;
- Tue, 24 Mar 2026 07:08:22 +0000
-Date: Tue, 24 Mar 2026 15:07:43 +0800
-From: kernel test robot <lkp@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
- 87997b6c6516e049cbaf2fc6810b213d587a06b1
-Message-ID: <202603241535.ppGv0cV8-lkp@intel.com>
-User-Agent: s-nail v14.9.25
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="247913036"
+Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
+ by fmviesa001.fm.intel.com with ESMTP; 24 Mar 2026 00:18:15 -0700
+From: Raag Jadav <raag.jadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
+ matthew.auld@intel.com, himal.prasad.ghimiray@intel.com,
+ matthew.d.roper@intel.com, Raag Jadav <raag.jadav@intel.com>
+Subject: [PATCH v1] drm/xe: Drop dma mappings for wedged device
+Date: Tue, 24 Mar 2026 12:43:02 +0530
+Message-ID: <20260324071529.447319-1-raag.jadav@intel.com>
+X-Mailer: git-send-email 2.43.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,186 +65,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
-branch HEAD: 87997b6c6516e049cbaf2fc6810b213d587a06b1  drm/xe/pf: Fix use-after-free in migration restore
+As per uapi documentation[1], the prerequisite for wedged device is to
+drop all dma mappings. Reuse xe_bo_pci_dev_remove_pinned() for this,
+which iterates over external bo list and removes all dma mappings.
 
-elapsed time: 732m
+[1] Documentation/gpu/drm-uapi.rst
 
-configs tested: 167
-configs skipped: 2
+Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+---
+PS: This is pretty much uncharted territory for me, so please consider
+this an RFC.
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+ drivers/gpu/drm/xe/xe_bo_evict.c | 8 +++++++-
+ drivers/gpu/drm/xe/xe_bo_evict.h | 1 +
+ drivers/gpu/drm/xe/xe_device.c   | 2 ++
+ 3 files changed, 10 insertions(+), 1 deletion(-)
 
-tested configs:
-alpha                             allnoconfig    gcc-15.2.0
-alpha                            allyesconfig    gcc-15.2.0
-alpha                               defconfig    gcc-15.2.0
-arc                              allmodconfig    clang-16
-arc                               allnoconfig    gcc-15.2.0
-arc                              allyesconfig    clang-23
-arc                                 defconfig    gcc-15.2.0
-arc                   randconfig-001-20260324    gcc-8.5.0
-arc                   randconfig-002-20260324    gcc-8.5.0
-arm                               allnoconfig    clang-23
-arm                               allnoconfig    gcc-15.2.0
-arm                              allyesconfig    clang-16
-arm                                 defconfig    gcc-15.2.0
-arm                   randconfig-001-20260324    gcc-8.5.0
-arm                   randconfig-002-20260324    gcc-8.5.0
-arm                   randconfig-003-20260324    gcc-8.5.0
-arm                   randconfig-004-20260324    gcc-8.5.0
-arm64                            allmodconfig    clang-23
-arm64                             allnoconfig    gcc-15.2.0
-arm64                               defconfig    gcc-15.2.0
-arm64                 randconfig-001-20260324    gcc-13.4.0
-arm64                 randconfig-002-20260324    gcc-13.4.0
-arm64                 randconfig-003-20260324    gcc-13.4.0
-arm64                 randconfig-004-20260324    gcc-13.4.0
-csky                             allmodconfig    gcc-15.2.0
-csky                              allnoconfig    gcc-15.2.0
-csky                                defconfig    gcc-15.2.0
-csky                  randconfig-001-20260324    gcc-13.4.0
-csky                  randconfig-002-20260324    gcc-13.4.0
-hexagon                          allmodconfig    gcc-15.2.0
-hexagon                           allnoconfig    clang-23
-hexagon                           allnoconfig    gcc-15.2.0
-hexagon                             defconfig    gcc-15.2.0
-i386                             allmodconfig    clang-20
-i386                              allnoconfig    gcc-14
-i386                              allnoconfig    gcc-15.2.0
-i386                             allyesconfig    clang-20
-i386        buildonly-randconfig-001-20260324    gcc-12
-i386        buildonly-randconfig-002-20260324    gcc-12
-i386        buildonly-randconfig-003-20260324    gcc-12
-i386        buildonly-randconfig-004-20260324    gcc-12
-i386        buildonly-randconfig-005-20260324    gcc-12
-i386        buildonly-randconfig-006-20260324    gcc-12
-i386                                defconfig    gcc-15.2.0
-i386                  randconfig-001-20260324    clang-20
-i386                  randconfig-002-20260324    clang-20
-i386                  randconfig-003-20260324    clang-20
-i386                  randconfig-004-20260324    clang-20
-i386                  randconfig-005-20260324    clang-20
-i386                  randconfig-006-20260324    clang-20
-i386                  randconfig-007-20260324    clang-20
-i386                  randconfig-011-20260324    gcc-13
-i386                  randconfig-012-20260324    gcc-13
-i386                  randconfig-013-20260324    gcc-13
-i386                  randconfig-014-20260324    gcc-13
-i386                  randconfig-015-20260324    gcc-13
-i386                  randconfig-016-20260324    gcc-13
-i386                  randconfig-017-20260324    gcc-13
-loongarch                        allmodconfig    clang-23
-loongarch                         allnoconfig    clang-23
-loongarch                         allnoconfig    gcc-15.2.0
-loongarch                           defconfig    clang-19
-m68k                             allmodconfig    gcc-15.2.0
-m68k                              allnoconfig    gcc-15.2.0
-m68k                             allyesconfig    clang-16
-m68k                                defconfig    clang-19
-microblaze                        allnoconfig    gcc-15.2.0
-microblaze                       allyesconfig    gcc-15.2.0
-microblaze                          defconfig    clang-19
-mips                             allmodconfig    gcc-15.2.0
-mips                              allnoconfig    gcc-15.2.0
-mips                             allyesconfig    gcc-15.2.0
-mips                           mtx1_defconfig    clang-23
-mips                          rb532_defconfig    clang-18
-nios2                            allmodconfig    clang-23
-nios2                             allnoconfig    clang-23
-nios2                               defconfig    clang-19
-openrisc                         allmodconfig    clang-23
-openrisc                          allnoconfig    clang-23
-openrisc                            defconfig    gcc-15.2.0
-parisc                           allmodconfig    gcc-15.2.0
-parisc                            allnoconfig    clang-23
-parisc                           allyesconfig    clang-19
-parisc                              defconfig    gcc-15.2.0
-parisc                randconfig-001-20260324    gcc-8.5.0
-parisc                randconfig-002-20260324    gcc-8.5.0
-parisc64                            defconfig    clang-19
-powerpc                          allmodconfig    gcc-15.2.0
-powerpc                           allnoconfig    clang-23
-powerpc               randconfig-001-20260324    gcc-8.5.0
-powerpc               randconfig-002-20260324    gcc-8.5.0
-powerpc64             randconfig-001-20260324    gcc-8.5.0
-powerpc64             randconfig-002-20260324    gcc-8.5.0
-riscv                            allmodconfig    clang-23
-riscv                             allnoconfig    clang-23
-riscv                            allyesconfig    clang-16
-riscv                               defconfig    gcc-15.2.0
-riscv                 randconfig-001-20260324    clang-23
-riscv                 randconfig-002-20260324    clang-23
-s390                             allmodconfig    clang-19
-s390                              allnoconfig    clang-23
-s390                             allyesconfig    gcc-15.2.0
-s390                                defconfig    gcc-15.2.0
-s390                  randconfig-001-20260324    clang-23
-s390                  randconfig-002-20260324    clang-23
-sh                               allmodconfig    gcc-15.2.0
-sh                                allnoconfig    clang-23
-sh                               allyesconfig    clang-19
-sh                                  defconfig    gcc-14
-sh                    randconfig-001-20260324    clang-23
-sh                    randconfig-002-20260324    clang-23
-sparc                             allnoconfig    clang-23
-sparc                               defconfig    gcc-15.2.0
-sparc                 randconfig-001-20260324    gcc-14
-sparc                 randconfig-002-20260324    gcc-14
-sparc64                          allmodconfig    clang-23
-sparc64                             defconfig    gcc-14
-sparc64               randconfig-001-20260324    gcc-14
-sparc64               randconfig-002-20260324    gcc-14
-um                               allmodconfig    clang-19
-um                                allnoconfig    clang-23
-um                               allyesconfig    gcc-15.2.0
-um                                  defconfig    gcc-14
-um                             i386_defconfig    gcc-14
-um                    randconfig-001-20260324    gcc-14
-um                    randconfig-002-20260324    gcc-14
-um                           x86_64_defconfig    gcc-14
-x86_64                           allmodconfig    clang-20
-x86_64                            allnoconfig    clang-23
-x86_64                           allyesconfig    clang-20
-x86_64      buildonly-randconfig-001-20260324    gcc-14
-x86_64      buildonly-randconfig-002-20260324    gcc-14
-x86_64      buildonly-randconfig-003-20260324    gcc-14
-x86_64      buildonly-randconfig-004-20260324    gcc-14
-x86_64      buildonly-randconfig-005-20260324    gcc-14
-x86_64      buildonly-randconfig-006-20260324    gcc-14
-x86_64                              defconfig    gcc-14
-x86_64                                  kexec    clang-20
-x86_64                randconfig-001-20260324    clang-20
-x86_64                randconfig-002-20260324    clang-20
-x86_64                randconfig-003-20260324    clang-20
-x86_64                randconfig-004-20260324    clang-20
-x86_64                randconfig-005-20260324    clang-20
-x86_64                randconfig-006-20260324    clang-20
-x86_64                randconfig-011-20260324    gcc-14
-x86_64                randconfig-012-20260324    gcc-14
-x86_64                randconfig-013-20260324    gcc-14
-x86_64                randconfig-014-20260324    gcc-14
-x86_64                randconfig-015-20260324    gcc-14
-x86_64                randconfig-016-20260324    gcc-14
-x86_64                randconfig-071-20260324    gcc-12
-x86_64                randconfig-072-20260324    gcc-12
-x86_64                randconfig-073-20260324    gcc-12
-x86_64                randconfig-074-20260324    gcc-12
-x86_64                randconfig-075-20260324    gcc-12
-x86_64                randconfig-076-20260324    gcc-12
-x86_64                               rhel-9.4    clang-20
-x86_64                           rhel-9.4-bpf    gcc-14
-x86_64                          rhel-9.4-func    clang-20
-x86_64                    rhel-9.4-kselftests    clang-20
-x86_64                         rhel-9.4-kunit    gcc-14
-x86_64                           rhel-9.4-ltp    gcc-14
-x86_64                          rhel-9.4-rust    clang-20
-xtensa                            allnoconfig    clang-23
-xtensa                           allyesconfig    clang-23
-xtensa                randconfig-001-20260324    gcc-14
-xtensa                randconfig-002-20260324    gcc-14
+diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
+index 7661fca7f278..f741cda50b2d 100644
+--- a/drivers/gpu/drm/xe/xe_bo_evict.c
++++ b/drivers/gpu/drm/xe/xe_bo_evict.c
+@@ -270,7 +270,13 @@ int xe_bo_restore_late(struct xe_device *xe)
+ 	return ret;
+ }
+ 
+-static void xe_bo_pci_dev_remove_pinned(struct xe_device *xe)
++/**
++ * xe_bo_pci_dev_remove_pinned() - Unmap external bos
++ * @xe: xe device
++ *
++ * Drop dma mappings of all external pinned bos.
++ */
++void xe_bo_pci_dev_remove_pinned(struct xe_device *xe)
+ {
+ 	struct xe_tile *tile;
+ 	unsigned int id;
+diff --git a/drivers/gpu/drm/xe/xe_bo_evict.h b/drivers/gpu/drm/xe/xe_bo_evict.h
+index e8385cb7f5e9..6ce27e272780 100644
+--- a/drivers/gpu/drm/xe/xe_bo_evict.h
++++ b/drivers/gpu/drm/xe/xe_bo_evict.h
+@@ -15,6 +15,7 @@ void xe_bo_notifier_unprepare_all_pinned(struct xe_device *xe);
+ int xe_bo_restore_early(struct xe_device *xe);
+ int xe_bo_restore_late(struct xe_device *xe);
+ 
++void xe_bo_pci_dev_remove_pinned(struct xe_device *xe);
+ void xe_bo_pci_dev_remove_all(struct xe_device *xe);
+ 
+ int xe_bo_pinned_init(struct xe_device *xe);
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 207ad2eea412..ac51b04560df 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -1351,6 +1351,8 @@ void xe_device_declare_wedged(struct xe_device *xe)
+ 	for_each_gt(gt, xe, id)
+ 		xe_gt_declare_wedged(gt);
+ 
++	xe_bo_pci_dev_remove_pinned(xe);
++
+ 	if (xe_device_wedged(xe)) {
+ 		/*
+ 		 * XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET is intended for debugging
+-- 
+2.43.0
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
