@@ -4,56 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05EC7F532EA
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 08:05:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 594D0F532F0
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 08:25:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C16A010E5C7;
-	Tue, 24 Mar 2026 08:05:13 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hMMpidY8";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0B7C10E5FC;
- Tue, 24 Mar 2026 08:05:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774339503; x=1805875503;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=dH2l9z/kYpfCKdyhexsPzjvkbLGx4vvJ5d7KwadHnRQ=;
- b=hMMpidY8Y245/onY4flVPoupfZt55QeysaHE4z4sOM75XobSGi7ciMM4
- Y4M5nFRBTu4D7kuGthlsZ9ncUO+jllnRdXEQMp+z1YDFPeVKenLt/UDVu
- YPEqEaPGtKGWyjTdwXir4HK+vDr1rlRZ3TH11NmUQgY+MQ1Q1TSfbk782
- svSkYeTx8ybJfd8RV/Gg9/aRgIJ3tgmMdIoO+52kwu3I61wfotRrRuH6H
- nq246+zyw3JoOgc6oDNnMI8IV1av2KBIQPzPOv/FOmV55K/8y9DjNfCHH
- YdYwgU+eMuIC6TDdcR0yzBHJdHssIMWyiWrsrd6AwuxmkgefvphB6uwGY g==;
-X-CSE-ConnectionGUID: ZrAVcRHoSe+Vwe6cWSsYLw==
-X-CSE-MsgGUID: A7pbxFG1SUGbNe1F3zqz6w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11738"; a="86045478"
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="86045478"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 01:05:03 -0700
-X-CSE-ConnectionGUID: TyFBwNgjSAGSMepwM1PYZA==
-X-CSE-MsgGUID: Akj4ohWCQditf1FyX7eL/Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="223494976"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO hazy.intel.com)
- ([10.245.244.170])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 01:05:01 -0700
-From: Luca Coelho <luciano.coelho@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	jani.nikula@linux.intel.com
-Subject: [PATCH v2 4/4] drm/i915: move CNP clock gating init into intel_pch
-Date: Tue, 24 Mar 2026 10:04:28 +0200
-Message-ID: <20260324080441.154609-5-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260324080441.154609-1-luciano.coelho@intel.com>
-References: <20260324080441.154609-1-luciano.coelho@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0306210E0F7;
+	Tue, 24 Mar 2026 08:25:22 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0967010E0F7;
+ Tue, 24 Mar 2026 08:25:21 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4496307365582915918=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Drop_dma_mappings?=
+ =?utf-8?q?_for_wedged_device?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Raag Jadav" <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 24 Mar 2026 08:25:21 -0000
+Message-ID: <177434072101.389881.16343254765835543340@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260324071529.447319-1-raag.jadav@intel.com>
+In-Reply-To: <20260324071529.447319-1-raag.jadav@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,74 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move the CNP PCH clock gating programming into
-intel_pch_init_clock_gating() and switch the corresponding
-CFL/CML caller to the display-specific code.
+--===============4496307365582915918==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
----
- drivers/gpu/drm/i915/display/intel_pch.c  | 10 ++++++++++
- drivers/gpu/drm/i915/intel_clock_gating.c | 13 +------------
- 2 files changed, 11 insertions(+), 12 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_pch.c b/drivers/gpu/drm/i915/display/intel_pch.c
-index b7fade66b1da..d2c1b1751838 100644
---- a/drivers/gpu/drm/i915/display/intel_pch.c
-+++ b/drivers/gpu/drm/i915/display/intel_pch.c
-@@ -279,6 +279,13 @@ static void intel_pch_lpt_init_clock_gating(struct intel_display *display)
- 		     TRANS_CHICKEN1_DP0UNIT_GC_DISABLE);
- }
- 
-+static void intel_pch_cnp_init_clock_gating(struct intel_display *display)
-+{
-+	/* Display WA #1181 WaSouthDisplayDisablePWMCGEGating: cnp */
-+	intel_de_rmw(display, SOUTH_DSPCLK_GATE_D, 0,
-+		     CNP_PWM_CGE_GATING_DISABLE);
-+}
-+
- void intel_pch_init_clock_gating(struct intel_display *display)
- {
- 	switch (INTEL_PCH_TYPE(display)) {
-@@ -292,6 +299,9 @@ void intel_pch_init_clock_gating(struct intel_display *display)
- 	case PCH_LPT_LP:
- 		intel_pch_lpt_init_clock_gating(display);
- 		break;
-+	case PCH_CNP:
-+		intel_pch_cnp_init_clock_gating(display);
-+		break;
- 	default:
- 		break;
- 	}
-diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
-index 4c19028a9e20..ee2489a2fbe7 100644
---- a/drivers/gpu/drm/i915/intel_clock_gating.c
-+++ b/drivers/gpu/drm/i915/intel_clock_gating.c
-@@ -299,20 +299,9 @@ static void dg2_init_clock_gating(struct drm_i915_private *i915)
- 			 SGSI_SIDECLK_DIS);
- }
- 
--static void cnp_init_clock_gating(struct drm_i915_private *i915)
--{
--	struct intel_display *display = i915->display;
--
--	if (!HAS_PCH_CNP(display))
--		return;
--
--	/* Display WA #1181 WaSouthDisplayDisablePWMCGEGating: cnp */
--	intel_uncore_rmw(&i915->uncore, SOUTH_DSPCLK_GATE_D, 0, CNP_PWM_CGE_GATING_DISABLE);
--}
--
- static void cfl_init_clock_gating(struct drm_i915_private *i915)
- {
--	cnp_init_clock_gating(i915);
-+	intel_pch_init_clock_gating(i915->display);
- 	gen9_init_clock_gating(i915);
- 
- 	/* WAC6entrylatency:cfl */
--- 
-2.53.0
+Series: drm/xe: Drop dma mappings for wedged device
+URL   : https://patchwork.freedesktop.org/series/163752/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4767-9951377bd719c783792edfb3c7aa27a088ecdab9_BAT -> xe-pw-163752v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4767-9951377bd719c783792edfb3c7aa27a088ecdab9 -> xe-pw-163752v1
+
+  IGT_8822: 8822
+  xe-4767-9951377bd719c783792edfb3c7aa27a088ecdab9: 9951377bd719c783792edfb3c7aa27a088ecdab9
+  xe-pw-163752v1: 163752v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163752v1/index.html
+
+--===============4496307365582915918==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Drop dma mappings for wedged device</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163752/">https://patchwork.freedesktop.org/series/163752/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163752v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163752v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4767-9951377bd719c783792edfb3c7aa27a088ecdab9_BAT -&gt; xe-pw-163752v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4767-9951377bd719c783792edfb3c7aa27a088ecdab9 -&gt; xe-pw-163752v1</li>
+</ul>
+<p>IGT_8822: 8822<br />
+  xe-4767-9951377bd719c783792edfb3c7aa27a088ecdab9: 9951377bd719c783792edfb3c7aa27a088ecdab9<br />
+  xe-pw-163752v1: 163752v1</p>
+
+</body>
+</html>
+
+--===============4496307365582915918==--
