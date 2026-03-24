@@ -4,27 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA98EF54AC6
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 14:40:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62A80F54AC9
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 14:47:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 986D910E6FD;
-	Tue, 24 Mar 2026 14:40:56 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD7E310E6FD;
- Tue, 24 Mar 2026 14:40:55 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8480996000699659229=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2465710E6E8;
+	Tue, 24 Mar 2026 14:47:29 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XHf74YsG";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B13E10E6E8
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Mar 2026 14:47:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774363647; x=1805899647;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=FU5Z0kEQ/A3LOdXuMZyMMX/uP+sDP1LIco74vmcz+G4=;
+ b=XHf74YsGdzS1iuN2RfpRmT620KdbPEe3B92QReK+CNZID3ZmCa9qXitG
+ hv/HPUB0aqSJwisBEoq0gC8Yw92F22WQVY69zmVbXU4Q5E3i9g3iYLaqu
+ PPD1gpARfAQhduGcYlc8MDXLs01IwxZAV/6v13RdNXtj3dgCHA/NhLcJp
+ m3h47taBpXLQanbVPv3HLIJJovRiALk4i1TEws3hbJ/OlrU8l43VsonTT
+ ti77pJenOO7LpAjyTTv/SOVTmWl0I54smDbm2r+kDThGmJ/hjGUJECKaH
+ syMgyvOXjDfOGl0NbRUVgHE5HCj8HcU7OWLLeDnG97AVAsQKpV2s6dLo6 Q==;
+X-CSE-ConnectionGUID: t/4QIRZCTNmGmGRBiYsl7w==
+X-CSE-MsgGUID: nWQOxdx9Rn2Cmk9uo8LLHw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="75451939"
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="75451939"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2026 07:47:27 -0700
+X-CSE-ConnectionGUID: otMgvB1PQ7eh6oM5RC/X6w==
+X-CSE-MsgGUID: EoHUuDlcTceN4zX1k4MNQg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="247438559"
+Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.244.208])
+ ([10.245.244.208])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2026 07:47:25 -0700
+Message-ID: <bf99efe5398cadc1f8dcac8bb34b918eff73bee8.camel@linux.intel.com>
+Subject: Re: [PATCH v7 09/12] drm/xe/dma_buf: Block export of
+ DONTNEED/purged BOs
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Arvind Yadav <arvind.yadav@intel.com>, intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com
+Date: Tue, 24 Mar 2026 15:47:22 +0100
+In-Reply-To: <20260323093106.2986900-10-arvind.yadav@intel.com>
+References: <20260323093106.2986900-1-arvind.yadav@intel.com>
+ <20260323093106.2986900-10-arvind.yadav@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/wm=3A_Watermark/SA?=
- =?utf-8?q?GV_fixes/cleanups/etc?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Tue, 24 Mar 2026 14:40:55 -0000
-Message-ID: <177436325568.391866.2080020730683359030@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260324134843.2364-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20260324134843.2364-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,142 +68,86 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8480996000699659229==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 2026-03-23 at 15:00 +0530, Arvind Yadav wrote:
+> Don't allow exporting BOs marked DONTNEED or PURGED as dma-bufs.
+> DONTNEED BOs can have their contents discarded at any time, making
+> the exported dma-buf unusable for external devices. PURGED BOs have
+> no backing store and are permanently invalid.
+>=20
+> Return -EBUSY for DONTNEED BOs (temporary purgeable state) and
+> -EINVAL for purged BOs (permanent, no backing store).
+>=20
+> The export path now checks the BO's purgeable state before creating
+> the dma-buf, preventing external devices from accessing memory that
+> may be purged at any time.
+>=20
+> v6:
+> - Split DONTNEED =E2=86=92 -EBUSY and PURGED =E2=86=92 -EINVAL for consis=
+tency
+> =C2=A0 with the rest of the series (Thomas, Matt)
+>=20
+> v7:
+> - Use Interruptible lock. (Thomas)
+>=20
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_dma_buf.c | 21 +++++++++++++++++++++
+> =C2=A01 file changed, 21 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c
+> b/drivers/gpu/drm/xe/xe_dma_buf.c
+> index ea370cd373e9..4edbe9f3c001 100644
+> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
+> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
+> @@ -223,6 +223,23 @@ struct dma_buf *xe_gem_prime_export(struct
+> drm_gem_object *obj, int flags)
+> =C2=A0	if (bo->vm)
+> =C2=A0		return ERR_PTR(-EPERM);
+> =C2=A0
+> +	/*
+> +	 * Reject exporting purgeable BOs. DONTNEED BOs can be
+> purged
+> +	 * at any time, making the exported dma-buf unusable. Purged
+> BOs
+> +	 * have no backing store and are permanently invalid.
+> +	 */
+> +	xe_bo_lock(bo, true);
 
-== Series Details ==
+Missing error check.
 
-Series: drm/i915/wm: Watermark/SAGV fixes/cleanups/etc
-URL   : https://patchwork.freedesktop.org/series/163783/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f_BAT -> xe-pw-163783v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-163783v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@sriov_basic@enable-vfs-autoprobe-on:
-    - bat-bmg-2:          [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7433]) +3 other tests dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html
-    - bat-bmg-1:          [PASS][3] -> [DMESG-WARN][4] ([Intel XE#7433]) +3 other tests dmesg-warn
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on.html
-
-  * igt@xe_module_load@load:
-    - bat-bmg-3:          [PASS][5] -> [DMESG-WARN][6] ([Intel XE#7433])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/bat-bmg-3/igt@xe_module_load@load.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/bat-bmg-3/igt@xe_module_load@load.html
-
-  
-  [Intel XE#7433]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7433
+/Thomas
 
 
-Build changes
--------------
 
-  * Linux: xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f -> xe-pw-163783v1
-
-  IGT_8822: 8822
-  xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f: cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f
-  xe-pw-163783v1: 163783v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/index.html
-
---===============8480996000699659229==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/wm: Watermark/SAGV fixes/cleanups/etc</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163783/">https://patchwork.freedesktop.org/series/163783/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f_BAT -&gt; xe-pw-163783v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-163783v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@sriov_basic@enable-vfs-autoprobe-on:</p>
-<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/bat-bmg-2/igt@sriov_basic@enable-vfs-autoprobe-on.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7433">Intel XE#7433</a>) +3 other tests dmesg-warn</li>
-<li>bat-bmg-1:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/bat-bmg-1/igt@sriov_basic@enable-vfs-autoprobe-on.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7433">Intel XE#7433</a>) +3 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_module_load@load:</p>
-<ul>
-<li>bat-bmg-3:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/bat-bmg-3/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/bat-bmg-3/igt@xe_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7433">Intel XE#7433</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f -&gt; xe-pw-163783v1</li>
-</ul>
-<p>IGT_8822: 8822<br />
-  xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f: cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f<br />
-  xe-pw-163783v1: 163783v1</p>
-
-</body>
-</html>
-
---===============8480996000699659229==--
+> +	if (xe_bo_madv_is_dontneed(bo)) {
+> +		ret =3D -EBUSY;
+> +		goto out_unlock;
+> +	}
+> +
+> +	if (xe_bo_is_purged(bo)) {
+> +		ret =3D -EINVAL;
+> +		goto out_unlock;
+> +	}
+> +	xe_bo_unlock(bo);
+> +
+> =C2=A0	ret =3D ttm_bo_setup_export(&bo->ttm, &ctx);
+> =C2=A0	if (ret)
+> =C2=A0		return ERR_PTR(ret);
+> @@ -232,6 +249,10 @@ struct dma_buf *xe_gem_prime_export(struct
+> drm_gem_object *obj, int flags)
+> =C2=A0		buf->ops =3D &xe_dmabuf_ops;
+> =C2=A0
+> =C2=A0	return buf;
+> +
+> +out_unlock:
+> +	xe_bo_unlock(bo);
+> +	return ERR_PTR(ret);
+> =C2=A0}
+> =C2=A0
+> =C2=A0static struct drm_gem_object *
