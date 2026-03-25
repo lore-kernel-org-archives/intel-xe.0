@@ -4,164 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98477109C05D
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 20:35:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C18D4109C05D
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 20:35:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55C8410E8FC;
-	Wed, 25 Mar 2026 20:35:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z518W+U9";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9484110E8FC
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Mar 2026 20:35:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774470932; x=1806006932;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=Brs3/JDKN0B/7yREWVxanIjARUxafyGRbufk7Ahv8ek=;
- b=Z518W+U9+cB5updvEceaTyuuyAWCFxnAH1HN8qZqXRfAW6aDJJbmeDDp
- 2ce/0HdszGZ5ah8BngIm1YXwC5SWkCRRWM0GhjihyhRPkzQDfO8jSGtcJ
- z2zN5p5R9c82vsku2Z/2SA5SLTogHMQDYedTYysQ7mkNwF8z50KKoOfEy
- Vx1q32iR27aAwXbxaCLwWOqmeKB6HW6V//NhjUUqsH6ha4pAqdA8M5wOa
- VNqO6088JVdtROcQdZIGygZKqFL1jPQOx0tfKr7l9QSbJqCxZ5tewy1Vc
- rh2lgUl3zdlGWCCyRyQ/beQmY/trkq7lAka11ydF5sAX1bIxlqkLpVhJX Q==;
-X-CSE-ConnectionGUID: N16LOYAYQiOLw41xEVkbeQ==
-X-CSE-MsgGUID: HY8EWF5BTpWD+eIzEp/tEw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="74547898"
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="74547898"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 13:35:32 -0700
-X-CSE-ConnectionGUID: rKSe06WMRnK/4sAd4WpzeQ==
-X-CSE-MsgGUID: 837sTrf+TlWY4y8Tjj5xlw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="224801496"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 13:35:32 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 25 Mar 2026 13:35:31 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 25 Mar 2026 13:35:31 -0700
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.4) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 25 Mar 2026 13:35:31 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DEqAtjqRqYn/edWKrgFLBiXGxRM5iOYLYBoLomvXU6VP6o2ZHJIqAQGcBWbQIJYLPrt2SV622lwSrJpbbkAIb+VhobK2ZZItjYR9QH59xaDuP35GccLNL4d9UTU+AuoOvj1+tnPzPG6xXwzZq3kW+oSUJqvDt4t1XM3FLI920NRLVht8amb4pByT9GAUogbFmyC7Q/jjfQRo6t5Nxn5liqAulSagO5oGdW96CwpX8ggiLlZIae0PePqMD1v/nhHoBl9Merr69zyANi00oVDmRzNqj9iN7xssmSlWcfJ03dCiw9nyQeQCblafbDfiSkHCI72uBHo6GU2I+ds8LY/g4Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Brs3/JDKN0B/7yREWVxanIjARUxafyGRbufk7Ahv8ek=;
- b=YdIlE/u2ai7jwtXiuQJR90O/YjRapZ3Urn2eXlKp16NDq8QjbN64lV5oTTkaCp2FmBRgfiCuOw/tw3EMkdW/3djAq/xvhOxQpyC25GYpMSTjAZUnpP2vTDF+c35vViV5ck/SzmaHgK25rXzG+GVTazTk7Z2nJsK5AzT3BTcyBIIegaiO64bdCE9gs8OhZ1kAknC46NaLAkgCuS6n0dEGma+RRyepcEUYj3YyJHAvDA1hE5DI9yuRU9d0AkV5gePD0B+xzNoJopFVjjyEIyXZsItvT3goOsZSSCYpZUpmiQM1CJ6FlJwqlwVzPz1zZBsfqxZe3YSE2xcgEma14n1cWg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM8PR11MB5573.namprd11.prod.outlook.com (2603:10b6:8:3b::7) by
- SJ2PR11MB7504.namprd11.prod.outlook.com (2603:10b6:a03:4c5::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9745.15; Wed, 25 Mar 2026 20:35:26 +0000
-Received: from DM8PR11MB5573.namprd11.prod.outlook.com
- ([fe80::6a14:6aa3:4339:4415]) by DM8PR11MB5573.namprd11.prod.outlook.com
- ([fe80::6a14:6aa3:4339:4415%5]) with mapi id 15.20.9769.004; Wed, 25 Mar 2026
- 20:35:26 +0000
-From: "Summers, Stuart" <stuart.summers@intel.com>
-To: "Brost, Matthew" <matthew.brost@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Vishwanathapura, Niranjana" <niranjana.vishwanathapura@intel.com>
-Subject: Re: [PATCH] drm/xe: Always invalidate TLBs on userptr invalidation
-Thread-Topic: [PATCH] drm/xe: Always invalidate TLBs on userptr invalidation
-Thread-Index: AQHcuwqDvtaeByK1NkStSwXNeI4hObW887mAgADSHoCAAHTBAIAAIiSAgAFa/wA=
-Date: Wed, 25 Mar 2026 20:35:26 +0000
-Message-ID: <b62e8f960ccab92bcd045627e77a6d0d14c5cb18.camel@intel.com>
-References: <20260323211743.285064-1-stuart.summers@intel.com>
- <acH1IT6MBYvSf2GH@lstrano-desk.jf.intel.com>
- <0e9794ab3a16896d0790289750f56538602798e6.camel@intel.com>
- <dbde50462394e808b4de52974f9c7c086191e35a.camel@intel.com>
- <acMj9+JZ2ONGa1yH@lstrano-desk.jf.intel.com>
-In-Reply-To: <acMj9+JZ2ONGa1yH@lstrano-desk.jf.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.44.4-0ubuntu2 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM8PR11MB5573:EE_|SJ2PR11MB7504:EE_
-x-ms-office365-filtering-correlation-id: c8e19deb-348d-4e37-2544-08de8aae0bde
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|38070700021|22082099003|56012099003|18002099003;
-x-microsoft-antispam-message-info: LkE2if0VS+SL2BdTlNxL7Ui0fzJ4rt8OL74Wy7Xi7nqRmHqBJnv6SfVZuoOVuM04fD3ZlUwWy2D77DUPKEF/GbKkcAgF3D3YYJzBZ8oLYMSDCRGbxdMpyy773sQ85tcqHOrGw8AZTNd5cMYAMbWo0p3VuoU1QDwOzKj8ayPZpPdV/7etw7OeCkw1H1Miy9ROdqi0ZK5GbblYrh7C6obh4wfuLOr3RIztSQvVZGJnSK7qKPnpLpj2eUc17ZvVicrt0rWzjocQJ//gZRCB7dLH6HI5183uOoAUkvmc4S0drIXu0oD49J4yFZUs/69qUydBD6p2pjWzQXYt2IwJF9kKBJtvXdXOhxq5eZ1EesWx22WRq2fyRyer3tHWwHFhLEoRst8gEsEdjJwzfkJITRId7Z6f45ub5Sq3YC5zqJTix2mSuaEYAUJiBAlaBhnc4gJFK9c5lgQP7bfNohMFghmnSwTIr0dwDUSCM0YpwkAerIYoGfS+i4a1h+r5ll3kE4Nq2lq6AAPKPaSjkGM9coq3sXla++Epmd07F++OSQ0jEhoZc+W3gAvXa8lKHE9tw+HsXg4pF42z9dVAW8c/v4eCwJHNBdeYe5z15jvJzMyG9eiB/zNf/5MeoQPbgGMNUU42B6BZq2fO/7CgILkyv+Kr1EZ84vPjYbOAfdDtpanf0P/HRH28TaY2wcRVnWkwQGuEBK8TWLexvA99Uppu1GnmjdTpeeqqDAOf2fJburY+v80QTb8drWw0vQ63TLFAqIAmLHtupTOob9jwE0bNSryudOIK62GmySoHWItKsAYVw5c=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM8PR11MB5573.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(38070700021)(22082099003)(56012099003)(18002099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eW84QkFvMmp6cFVFYXQ4U0pKR0llZ2pUYWh1d2MrQXlHcjhPcUlWT05kODJw?=
- =?utf-8?B?Z2c2NzF4MERKajZRNzRjVWtRUm9GY2ExWXNYeFB4RVJ5OXZGcnlNL0FJSVB0?=
- =?utf-8?B?OWpwQ2xQRXdmYmtGMVZtQndONlk3NjRSL1FpaFRrb201Q2JRYWRnSFFnWlVm?=
- =?utf-8?B?K2w1MXEwOWJxc1Frak1maFNKenBTYlR2QmtlamFBZXhiOHNVVCtadEs0VFYw?=
- =?utf-8?B?WVpBZjFKaWNpQlNZMzJ1QmZRUmcrTUtMTWN1NmFOU09qSVo4RWhOcEZrMmhs?=
- =?utf-8?B?aEZXYXFGdGxOMG5aTDJoNDFzN01rVEZJaDhQeFloQVBXZjRpWUpPbDh0cFdC?=
- =?utf-8?B?Y082N0d2ak82TGdQcHJaeTFYQXh3blNxaVN3KzBjcE1CdzNjUDloeUtKVmNG?=
- =?utf-8?B?LzdqOEVqSHRGU2RSZmttQlFaYlcySDgrVk5qVnB6cUs4R3llanM5cjRpcU1u?=
- =?utf-8?B?VVRRalpJQnVkMUVhTEhhY3p4dEk5TUNhUUl5T2hkMmNSM3VsN3JIakVBNXlh?=
- =?utf-8?B?QTE4a0ZIdmhWcEpoYkVCTm5sTWUwaS9uSTZoOFdnOXF3VUtCY2xaK0tqcWlM?=
- =?utf-8?B?dXVDUzNRZC9XTngyQ0xJZVlVajg2dmp0T01zM1MyQXZIRzZHcEFwZW9GWC9V?=
- =?utf-8?B?dklyalRZZC90MVdvT0lxYXVaS3RyTWhBK1h2eHVaMytrSHVpMEJYYUpqWlBx?=
- =?utf-8?B?WHJ5eklZOEZCT2g0emh3R2lsZEVpQW8xNTZJTGU5OFBJdFJkLzh4QTg3NG51?=
- =?utf-8?B?bXhwYXhnZUFScThwWktmY1dFZzNpQ0t4TGZWbjNrZWx1azJITkF6aFoxTjkz?=
- =?utf-8?B?M0JnREVON0t1K25NOTExWlN5bW5XWUhsY290YWJrOHpzelhpMkE0NU9mcXdB?=
- =?utf-8?B?emNCTTlSUXJDQyttQUV0VDVOZ1JSTGxZdUxQeXpFYWNsTGF1QjJJV09JbElw?=
- =?utf-8?B?VnB3bTllU1JkR2hVQVNqa3llYkhTU2tNRjM1ZE44WG95SllKRGlDVTRDK3hs?=
- =?utf-8?B?aGcwbjJQWnI5ZVdndUF1K1VHbzVOU2hBdVhWNDM5SFI4R25TNmhhaWx6bDFU?=
- =?utf-8?B?SWdDTjM4b0Mvc296SVA0M0hKZXRFM0FnMzhVVHpVbkdMaXZkZnVsbjBxcks0?=
- =?utf-8?B?K1RhQjArVjRGTXZ1WUdRVFBwcmRtbDRRWWIxUmVPMFdrV3p0Q1o4MElXaEpS?=
- =?utf-8?B?YnV0bkk0VXNOQ2dEYTQ5WlRicml2Wi9WUFFkaStZWmphbXRkeHJSL3BTSlgr?=
- =?utf-8?B?VFNIQ0t1UkI1SmNGM1c5OFZXU2xJbzJ2bVpzd1ZuVTZISktTeGIwU2VNeHV6?=
- =?utf-8?B?a1lOaUhKMEhsYTBTZUk4SEVNczYrRDkzTGxMSk1oU2d2UTFyek9OWnNLdE1k?=
- =?utf-8?B?UCs4Zk1oQ2ltcDVobUN2OXdWTnovRUxHclJra2ROSEV4UXNta3phWm1keEVZ?=
- =?utf-8?B?SFo5NkY5VEVWT00wa2RIams0K0tOZUltNnBFVnJKZEZZVEEzeExXZkxsWndH?=
- =?utf-8?B?bThnTlIzVWQxdlc3dVRZZVJMRDlZc0NkLzluRjN3UVNVVCtkQWpUT3lzQ3dD?=
- =?utf-8?B?L2dzS2NMRnZwa0x3YUUyUW8rNU5Tazltazl4Y3c0U1k1bi9WLzBwY1hpN1B6?=
- =?utf-8?B?RERIdlJ1bS8rSlRTd0hoWnhRditqRW5uL1QrNFNMY2JkQ2xTNWlINkprZlV2?=
- =?utf-8?B?cGd1bGs1aDQyN29hYWtIL1dqWFcrNmNhb0tWUk5nUXRzaWFIdUhqQUpaTVdz?=
- =?utf-8?B?U056TXpRY3Bpd2t6SDJVUGhoaWJUa1JnVlVNN3gzamFuVkwxS0xxUDZacjZW?=
- =?utf-8?B?ejc3ZFBRTm9WODBtTjFQMVJRVUNOaWNXWkNzTWJWd2Y1aTdvbXcvbDU2V1Bv?=
- =?utf-8?B?dU9XaWF6ZXlTM0RIcWJFZkVNOFZldXkvNmhzMFZBQllXNkpTWDUxZ01Zazht?=
- =?utf-8?B?TEt5cDJQTlpYOThEWExqaEJJQzVDQitMbDMwNHB4eVZ3NnoxdnRWbUJsYjBM?=
- =?utf-8?B?aWk3V01Ha0poN0lXaWZHYmxMTHBNbTUzS0FQZ3NKZjFoRlBEMGhWcWt0R1Bp?=
- =?utf-8?B?WmMwUmxYcHFUNGRvcnVHNlI4QmZqMGVrbzcyUGczY3dYKzZuM2hQZjJtdkp3?=
- =?utf-8?B?U3lxVGx3NEJ4aTA5NTJqSUtwdGtJbFRhR2htRmxUVmxxQkdNVTd1NnBZaFp5?=
- =?utf-8?B?ZDRsMXlNTEtQMzh2blQ1RjdBcmloblgwaHlsYWNsb2hwczdFZ1FHRUQ5b1pk?=
- =?utf-8?B?dlhqL3BsS3BMUmx0THZZcW80SlV1OXBrUllyUnowMkYwY3hvS3VxSTBQalky?=
- =?utf-8?B?bFRYaXJmVXRtSi9iYllEa0xGSXVrL3BDTzRrWFV2S094U3B1Z1FBT1NkSC9G?=
- =?utf-8?Q?cxgiaOWLBKsXjv+4=3D?=
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D7DB10E91C;
+	Wed, 25 Mar 2026 20:35:46 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D32910E853;
+ Wed, 25 Mar 2026 20:35:45 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
-Content-ID: <2314260CA88EE44CB158E0AC5C459D53@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: insgTHHt84E4lW2zQA+5rHcv2UpvMTFLgmNlEQ5sqLcePEbRPr1ybuGJXZefIo/7ndUjYCgG97KPwrmCzR3fzirh7y/lqOE+fGwENE/dPDP/kGuN3kN/g8PaSWGvjPaN0sQaD4UM1pg/a4g9zBx+VdR/8u7wmXa1Mk6mb0/9DAZqsTZImhXNwqbVqqLuxjNYgweorlH40KRFsnmHI1lsW/ycR7+ThH4axuc2SV/g+dLYxovImCUfqCOJl+hLQFCacrMHdHg9M3a1tbvHa6AS2HqIqvxQkh+DaL6D6pCfiuITk5x24sR+AZ2iw4yLgkWkuUyVzVs3DsG5Mm/lMm/KbQ==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5573.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c8e19deb-348d-4e37-2544-08de8aae0bde
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Mar 2026 20:35:26.0959 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +qSwT9IgEDfB+BzrEk/4TxCHja3WAgfthPkAeQHNzbE1EpEzqZN629NXnTsTH71oGfuNBAOMXK9Nwy8l8fLJ38iU/BEZCeFXEOHSf1+CBGA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7504
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Fix_use-after-free_on_fra?=
+ =?utf-8?q?mebuffers_and_property_blobs_when_calling_drm=5Fdev=5Funplug_=28r?=
+ =?utf-8?q?ev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 25 Mar 2026 20:35:45 -0000
+Message-ID: <177447094502.398755.85521356969668590@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260313151728.14990-3-dev@lankhorst.se>
+In-Reply-To: <20260313151728.14990-3-dev@lankhorst.se>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,153 +37,303 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDI2LTAzLTI0IGF0IDE2OjUzIC0wNzAwLCBNYXR0aGV3IEJyb3N0IHdyb3RlOg0K
-PiBPbiBUdWUsIE1hciAyNCwgMjAyNiBhdCAwMzo1MToxOFBNIC0wNjAwLCBTdW1tZXJzLCBTdHVh
-cnQgd3JvdGU6DQo+ID4gT24gVHVlLCAyMDI2LTAzLTI0IGF0IDE0OjUzICswMDAwLCBTdW1tZXJz
-LCBTdHVhcnQgd3JvdGU6DQo+ID4gPiBPbiBNb24sIDIwMjYtMDMtMjMgYXQgMTk6MjEgLTA3MDAs
-IE1hdHRoZXcgQnJvc3Qgd3JvdGU6DQo+ID4gPiA+IE9uIE1vbiwgTWFyIDIzLCAyMDI2IGF0IDA5
-OjE3OjQyUE0gKzAwMDAsIFN0dWFydCBTdW1tZXJzIHdyb3RlOg0KPiA+ID4gPiA+IFJpZ2h0IG5v
-dyB3ZSBhcmUgb25seSBpbnZhbGlkYXRpbmcgVExCcyB3aGVuIHdlIGFyZQ0KPiA+ID4gPiA+IHJ1
-bm5pbmcgaW4gZmF1bHQgbW9kZS4gRm9yIG5vbi1mYXVsdCBtb2RlIGJhc2VkIHVzZXJwdHINCj4g
-PiA+ID4gPiBWTXMsIHdlIHRoZW4gcmVseSBvbiBjb250ZXh0IHN3aXRjaGVzIGFmdGVyIGFuIE1N
-QVAgaGFzDQo+ID4gPiA+ID4gaGFwcGVuZWQgdG8gZW5zdXJlIHRoZSBUTEIgaXMgY2xlYW4gZm9y
-IHRoZSBuZXh0IHN1Ym1pc3Npb24uDQo+ID4gPiA+ID4gDQo+ID4gPiA+ID4gV2l0aCBjb250ZXh0
-IGJhc2VkIFRMQiBpbnZhbGlkYXRpb24sIHdlIGNhbiBubyBsb25nZXIgcmVseQ0KPiA+ID4gPiA+
-IG9uIHRoZSBpbXBsaWNpdCBpbnZhbGlkYXRpb24gaGFwcGVuaW5nIGR1cmluZyBjb250ZXh0IHN3
-aXRjaCwNCj4gPiA+ID4gPiBzbyByZW1vdmUgdGhlIGZhdWx0IG1vZGUgbGltaXRlciBhbmQgc2lt
-cGx5IGFsd2F5cyBwZXJmb3JtDQo+ID4gPiA+ID4gdGhhdCBpbnZhbGlkYXRpb24uDQo+ID4gPiA+
-ID4gDQo+ID4gPiA+ID4gSSB3YXMgYWJsZSB0byBzZWUgdGhpcyBiZWhhdmlvciB1c2luZyB0aGUg
-Zm9sbG93aW5nIHRlc3Q6DQo+ID4gPiA+ID4geGVfZXhlY19jb21wdXRlX21vZGUgLS1yIHR3aWNl
-LXVzZXJwdHItaW52YWxpZGF0ZQ0KPiA+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4gSG1tLCB0
-aGlzIGltcGxpZXMgdGhhdCBwcmVlbXB0IGZlbmNlcyBkb24ndCBpc3N1ZSBhIFRMQg0KPiA+ID4g
-PiBpbnZhbGlkYXRpb24uLi4NCj4gPiA+ID4gSSB0aG91Z2h0IHdlIGxhbmRlZCBvbiBwcmVlbXB0
-IGZlbmNlcyBkbyBhIFRMQiBpbnZhbGlkYXRpb24gaW4NCj4gPiA+ID4gb2ZmbGluZQ0KPiA+ID4g
-PiBkaXNjdXNzaW9ucy4NCj4gPiA+IA0KPiA+ID4gU28gaW5pdGlhbGx5IEkgd2FzIG1vc3RseSBm
-b2N1c2VkIG9uIHRoZSB4ZV92bSBpbnZhbGlkYXRlIGNhc2VzLg0KPiA+ID4gSW4NCj4gPiA+IGhp
-bmRzaWdodCBJIHNob3VsZCBoYXZlIGRvbmUgYSBsaXR0bGUgbW9yZSBmb2N1c2VkIHRlc3Rpbmcg
-aGVyZQ0KPiA+ID4gYXMNCj4gPiA+IHdlbGwuIFRoaXMgY2FtZSB1cCBhZnRlciBzb21lIG1vcmUg
-ZXh0ZW5zaXZlIHRlc3RpbmcgaW50ZXJuYWxseS4NCj4gPiA+IA0KPiA+ID4gQXQgbGVhc3QgaW4g
-bXkgbGF0ZXN0IHJvdW5kIG9mIHRlc3RpbmcsIEkgZG9uJ3Qgc2VlIGFueSBpc3N1ZXMgaW4NCj4g
-PiA+IEJBVC9GVUxMIGFmdGVyIHRoaXMgY2hhbmdlLiBJIGRvIHRoaW5rIGdldHRpbmcgdGhpcyBt
-ZXJnZWQgKG9yDQo+ID4gPiBzb21ldGhpbmcgc2ltaWxhcikgYW5kIHRlc3RlZCBtb3JlIGJyb2Fk
-bHkgd291bGQgYmUgaW50ZXJlc3RpbmcuDQo+ID4gPiANCj4gPiA+ID4gDQo+ID4gPiA+IFdlIG1h
-eSBoYXZlIG1vcmUgd29yayB0byBkbyBoZXJlIHdydCBjb250ZXh0IGJhc2VkIFRMQg0KPiA+ID4g
-PiBpbnZhbGlkYXRpb25zLg0KPiA+ID4gPiANCj4gPiA+ID4gSSB0aGluayBCTyBtb3ZlIHBhdGgg
-bGlrZWx5IGFsc28gbmVlZHMgdG8gYmUgdXBkYXRlZCB0aGVuIHRvby4NCj4gPiA+IA0KPiA+ID4g
-SG0uLiBJIGhhdmVuJ3Qgc2VlbiBhbnkgaXNzdWVzIG9uIHRoZSBCTyBzaWRlLCBhbHRob3VnaCBp
-dCdzDQo+ID4gPiBwb3NzaWJsZQ0KPiA+ID4gSSd2ZSBtaXNzZWQgc29tZXRoaW5nIGluIHRlc3Rp
-bmcgb2YgY291cnNlIChsaWtlIHRoaXMgTFIgY2FzZSkuDQo+ID4gPiBJJ2QNCj4gDQo+IFlvdSdk
-IG9ubHkgaGl0IHRob3NlIGNhc2VzIGlmIHlvdSBydW4gYW4gZXZpY3Rpb24gdGVzdC4NCg0KT2sg
-SSdtIG1hbnVhbGx5IHJ1bm5pbmcgdGhyb3VnaCBzb21lIG9mIHRoZXNlIG5vdyBhbmQgSSBkb24n
-dCBzZWUgYW55DQppc3N1ZXMgc28gZmFyIChldmljdC1zbWFsbCBhdCBsZWFzdCkuIA0KDQo+IA0K
-PiA+ID4gcmVhbGx5IGxpa2UgdG8gZ2V0IHRoaXMgdGVzdGVkIG1vcmUgcmVndWxhcmx5IGluIENJ
-IGlmIHBvc3NpYmxlDQo+ID4gPiBhbmQNCj4gPiA+IHdvcmsgdGhyb3VnaCBpc3N1ZXMgcG9zdCBt
-ZXJnZS4gSSB0aGluayBtb3N0IG9mIHRoZSByZW1haW5pbmcNCj4gPiA+IGlzc3VlcywNCj4gPiA+
-IGlmIHRoZXkgY29tZSB1cCwgc2hvdWxkIGJlIHRpbWluZyBzZW5zaXRpdmUuDQo+ID4gPiANCj4g
-PiA+IEFsc28gdGhlIGZhY3QgdGhhdCB0aGlzIGlzbid0IGVuYWJsZWQgaW4gYW55dGhpbmcgaW4g
-eGVfcGNpLmMNCj4gPiA+IHJpZ2h0DQo+ID4gPiBub3cNCj4gPiA+IG1lYW5zIHdlIHNob3VsZG4n
-dCBjYXVzZSBhbnkgbWFqb3IgYnJlYWthZ2Ugb3RoZXJ3aXNlIGZvciB0aGUNCj4gPiA+IGZlYXR1
-cmUNCj4gPiA+IGdlbmVyYWxseS4gT2YgY291cnNlIHRoaXMgc3BlY2lmaWMgY2hhbmdlIGltcGFj
-dHMgZXZlcnlvbmUgdXNpbmcNCj4gPiA+IHByZWVtcHQgZmVuY2UgbGlrZSB5b3Ugc2FpZC4gSSBj
-b3VsZCBhZGQgYSBoYXNfY3R4X3RsYl9pbnZhbCBoZXJlDQo+ID4gPiAtIEkNCj4gPiA+IGhhZCB0
-aG91Z2h0IGFib3V0IHRoYXQuIEJ1dCB0byBtZSB0aGlzIHNlZW1zIGxpa2UgYSBtb3JlIGdlbmVy
-YWwNCj4gPiA+IGNhc2UNCj4gPiA+IGdpdmVuIHRoZSBkaXNjdXNzaW9uIHdlIGhhZCBhYm91dCBp
-bnRlbnQgb2YgZXhwbGljaXQNCj4gPiA+IGludmFsaWRhdGlvbnMuDQo+IA0KPiBJIHdvdWxkIGFk
-ZCBrbm9iIGZvciBjb250ZXh0IHN3aXRjaCA9PSBUTEIgaW52YWxpZGF0aW9uLg0KDQpTbyBiYXNp
-Y2FsbHkgaWYgKGZhdWx0X21vZGUgfHwgaGFzX2N0eF90bGJfaW52YWwpPyBJLmUuIGlzIHRoZXJl
-IGENCnJlYXNvbiBub3QgdG8ganVzdCB0aWUgaGFzX2N0eF90bGJfaW52YWwgYW5kIGhhc19jdHhf
-c3dpdGNoX2ludmFsICh3aGF0DQp5b3UgaGF2ZSBiZWxvdykgdG9nZXRoZXIgZm9yIG5vdz8NCg0K
-PiANCj4gPiA+IA0KPiA+ID4gQW55d2F5IGxldCBtZSBrbm93IHdoYXQgeW91IHRoaW5rIGhlcmUu
-DQo+ID4gDQo+ID4gTGl0dGxlIG1vcmUgZGV0YWlsIGhlcmUgb24gZnVydGhlciBhbmFseXNpcy4u
-Lg0KPiA+IA0KPiA+IFNvIEkgaGFkIGZvdW5kIHRoaXMgdGhyb3VnaCBkZWJ1ZywgYnV0IGxvb2tp
-bmcgYSBsaXR0bGUgY2xvc2VyLCBJDQo+ID4gdGhpbmsNCj4gPiB0aGUgcmVhc29uIHdlIG5lZWQg
-dGhpcyBpcyBiZWNhdXNlIG9mIHRoZSB4ZV92bV9yZWJpbmQoKSBmdW5jdGlvbg0KPiA+IHdpdGgN
-Cj4gPiB0aGVzZSBsaW5lcyBhdCB0aGUgdG9wOg0KPiA+IA0KPiA+IGlmICgoeGVfdm1faW5fbHJf
-bW9kZSh2bSkgJiYgIXJlYmluZF93b3JrZXIpDQo+ID4gfHzCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCANCj4gPiDCoMKgwqDCoCBsaXN0X2VtcHR5KCZ2bS0NCj4g
-PiA+cmViaW5kX2xpc3QpKcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgDQo+ID4gwqDCoMKgIHJldHVybiAwOw0KPiA+
-IA0KPiA+IFNvIGJhc2ljYWxseSBpZiB3ZSBhcmVuJ3QgaW4gcHJlZW1wdCBmZW5jZSBtb2RlIChs
-cl9tb2RlKSwgd2UNCj4gPiBhbHdheXMNCj4gPiBpbnZhbGlkYXRlIHRoZSBUTEJzIGluIG9wc19l
-eGVjdXRlKCkgY2FsbGVkIGluIHRoZSB4ZV92bV9yZWJpbmQoKQ0KPiA+IGZ1bmN0aW9uIGxhdGVy
-IG9uLiBJZiB3ZSBhcmUgaW4gcHJlZW1wdCBmZW5jZSBtb2RlLCB0aGVyZSBpcyBhDQo+ID4gY29y
-bmVyDQo+ID4gY2FzZSBoZXJlIGl0IGxvb2tzIGxpa2Ugd2hlcmUgd2UgY2FsbCB0aGUgcHJlZW1w
-dCByZWJpbmQgd29ya2VyDQo+ID4gdGhhdA0KPiA+IHRoZW4gY2FsbHMgeGVfcHJlZW1wdF93b3Jr
-X2JlZ2luKCkgLT4geGVfdm1fdmFsaWRhdGVfcmViaW5kKCkgLT4NCj4gPiB4ZV92bV9yZWJpbmQo
-ZmFsc2UpIGFuZCBoaXRzIHRoZSBhYm92ZSBjYXNlLCBjYXVzaW5nIHVzIHRvIHNraXAgdGhlDQo+
-ID4gVExCDQo+ID4gaW52YWxpZGF0aW9uLiBJZiB3ZSBhZGQgdGhlIGhvb2sgaGVyZSwgaXQgZm9y
-Y2VzIGludmFsaWRhdGlvbiBmb3INCj4gDQo+IEtpbmRhLCBpZiB5b3UgbG9vayBhdCB0aGlzIGNv
-bW1lbnQgaW4geGVfcHQuYzoNCj4gDQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAv
-Kg0KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAqIElmIHJlYmluZCwgd2UgaGF2
-ZSB0byBpbnZhbGlkYXRlIFRMQiBvbiAhTFIgdm1zIHRvDQo+IGludmFsaWRhdGUNCj4gwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKiBjYWNoZWQgUFRFcyBwb2ludCB0byBmcmVlZCBt
-ZW1vcnkuIE9uIExSIHZtcyB0aGlzDQo+IGlzIGRvbmUNCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgKiBhdXRvbWF0aWNhbGx5IHdoZW4gdGhlIGNvbnRleHQgaXMgcmUtZW5hYmxl
-ZCBieQ0KPiB0aGUgcmViaW5kIHdvcmtlciwNCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqAgKiBvciBpbiBmYXVsdCBtb2RlIGl0IHdhcyBpbnZhbGlkYXRlZCBvbiBQVEUNCj4gemFw
-cGluZy4NCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKg0KPiDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAqIElmICFyZWJpbmQsIGFuZCBzY3JhdGNoIGVuYWJsZWQg
-Vk1zLCB0aGVyZSBpcyBhDQo+IGNoYW5jZSB0aGUgc2NyYXRjaA0KPiDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCAqIFBURSBpcyBhbHJlYWR5IGNhY2hlZCBpbiB0aGUgVExCIHNvIGl0
-IG5lZWRzIHRvIGJlDQo+IGludmFsaWRhdGVkLg0KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCAqIE9uICFMUiBWTXMgdGhpcyBpcyBkb25lIGluIHRoZSByaW5nIG9wcyBwcmVjZWRp
-bmcNCj4gYSBiYXRjaCwgYnV0IG9uDQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-ICogTFIsIGluIHBhcnRpY3VsYXIgb24gdXNlci1zcGFjZSBiYXRjaCBidWZmZXINCj4gY2hhaW5p
-bmcsIGl0IG5lZWRzIHRvDQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICogYmUg
-ZG9uZSBoZXJlLg0KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAqLw0KPiDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgaWYgKCghcHRfb3AtPnJlYmluZCAmJiB4ZV92bV9o
-YXNfc2NyYXRjaCh2bSkgJiYNCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCB4ZV92bV9pbl9scl9tb2RlKHZtKSkpDQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgcHRfdXBkYXRlX29wcy0+bmVlZHNfaW52YWxpZGF0aW9uID0g
-dHJ1ZTsNCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIGVsc2UgaWYgKHB0X29wLT5y
-ZWJpbmQgJiYgIXhlX3ZtX2luX2xyX21vZGUodm0pKQ0KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIC8qIFdlIGJ1bXAgYWxzbyBpZiBiYXRjaF9pbnZhbGlk
-YXRlX3RsYiBpcw0KPiB0cnVlICovDQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgdm0tPnRsYl9mbHVzaF9zZXFubysrOw0KPiANCj4gV2UgZXhwbGljaXRs
-eSBjYWxsIG91dCB0aGF0IHdlIHJlbHkgb24g4oCcYXV0b21hdGljYWxseSB3aGVuIHRoZSB0aGUN
-Cj4gY29udGV4dCBiZWluZyByZS1lbmFibGVkIGJ5IHRoZSByZWJpbmQgd29ya2Vy4oCdDQo+IA0K
-PiBTbyBhbm90aGVyIG9wdGlvbiBpcyB0byBhZGp1c3QgdGhpcyBpZiBzdGF0ZW1lbnQgdG8gc29t
-ZXRoaW5nIGxpa2U6DQo+IA0KPiBlbHNlIGlmIChwdF9vcC0+cmViaW5kICYmIHhlX3ZtX2luX3By
-ZWVtcHRfZmVuY2VfbW9kZSh2bSkgJiYNCj4gIWNvbnRleHRfc3dpdGNoX2ludmFsaWRhdGlvbikN
-Cj4gwqDCoMKgwqDCoMKgwqDCoHB0X3VwZGF0ZV9vcHMtPm5lZWRzX2ludmFsaWRhdGlvbiA9IHRy
-dWU7DQo+IA0KPiBUaGlzIHdvdWxkIGFsc28gY292ZXIgdGhlIEJPIGV2aWN0aW9uIGNhc2UgSSBt
-ZW50aW9uZWQgYWJvdmUuIEFsc28NCj4gYXZvaWQNCj4gYmxvY2tpbmcgaW4gdGhlIG5vdGlmaWVy
-IG9yIEJPIGV2Y2l0aW9uIGNvZGUgb24gdGhlIFRMQiBpbnZhbGlkYXRpb24NCg0KT2sgSSBnZXQg
-eW91ciBwb2ludCBhYm91dCB0aGUgbm90aWZpZXIgcGF0aCBibG9ja2luZyB2cyB0aGUgaW52YWwg
-am9icw0Kd2UncmUgY3JlYXRpbmcgaW4geGVfcHQuYy4uLg0KDQpJJ2xsIGdpdmUgeW91ciBjaGFu
-Z2UgYSB0cnkgYW5kIGxldCB5b3Uga25vdy4uLg0KDQpUaGFua3MsDQpTdHVhcnQNCg0KPiB3aGlj
-aCBpbiBnZW5lcmFsIHNwZWVkcyB1cCB0aGUgZW50aXJlIGtlcm5lbC4NCj4gDQo+IE1hdHQNCj4g
-DQo+ID4gbHJfbW9kZSBhbHNvLg0KPiA+IA0KPiA+IFdlIGNvdWxkIGp1c3QgYWRkIHRoaXMgeGVf
-dm1faW5fbHJfbW9kZSgpIGNoZWNrIGhlcmUsIGJ1dCBJIHN0aWxsDQo+ID4gdGhpbmsNCj4gPiBk
-b2luZyB0aGlzIGFjcm9zcyB0aGUgYm9hcmQgaXMgc2FmZXN0IHNvIHdlIGFyZW4ndCBoaXR0aW5n
-IHNvbWUNCj4gPiBvdGhlcg0KPiA+IGNvcm5lciBjYXNlIGluIHRoZSBmdXR1cmUgaWYgd2UgZGVj
-aWRlIHRvIHJld29yayB0aG9zZSBvdGhlcg0KPiA+IHNjZW5hcmlvcy4NCj4gPiANCj4gPiBUaGFu
-a3MsDQo+ID4gU3R1YXJ0DQo+ID4gDQo+ID4gPiANCj4gPiA+IFRoYW5rcywNCj4gPiA+IFN0dWFy
-dA0KPiA+ID4gDQo+ID4gPiA+IMKgDQo+ID4gPiA+ID4gU2lnbmVkLW9mZi1ieTogU3R1YXJ0IFN1
-bW1lcnMgPHN0dWFydC5zdW1tZXJzQGludGVsLmNvbT4NCj4gPiA+ID4gPiAtLS0NCj4gPiA+ID4g
-PiDCoGRyaXZlcnMvZ3B1L2RybS94ZS94ZV91c2VycHRyLmMgfCAyICstDQo+ID4gPiA+ID4gwqAx
-IGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkNCj4gPiA+ID4gPiAN
-Cj4gPiA+ID4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3VzZXJwdHIuYw0K
-PiA+ID4gPiA+IGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3VzZXJwdHIuYw0KPiA+ID4gPiA+IGlu
-ZGV4IDY3NjEwMDVjMGI5MC4uZGZkNjc5ZGQ5OGQ5IDEwMDY0NA0KPiA+ID4gPiA+IC0tLSBhL2Ry
-aXZlcnMvZ3B1L2RybS94ZS94ZV91c2VycHRyLmMNCj4gPiA+ID4gPiArKysgYi9kcml2ZXJzL2dw
-dS9kcm0veGUveGVfdXNlcnB0ci5jDQo+ID4gPiA+ID4gQEAgLTEwMiw3ICsxMDIsNyBAQCB4ZV92
-bWFfdXNlcnB0cl9kb19pbnZhbChzdHJ1Y3QgeGVfdm0gKnZtLA0KPiA+ID4gPiA+IHN0cnVjdCB4
-ZV91c2VycHRyX3ZtYSAqdXZtYSwgYm9vbCBpc19kDQo+ID4gPiA+ID4gwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBm
-YWxzZSwNCj4gPiA+ID4gPiBNQVhfU0NIRURVTEVfVElNRU9VVCk7DQo+ID4gPiA+ID4gwqDCoMKg
-wqDCoMKgwqDCoFhFX1dBUk5fT04oZXJyIDw9IDApOw0KPiA+ID4gPiA+IMKgDQo+ID4gPiA+ID4g
-LcKgwqDCoMKgwqDCoMKgaWYgKHhlX3ZtX2luX2ZhdWx0X21vZGUodm0pICYmIHVzZXJwdHItPmlu
-aXRpYWxfYmluZCkNCj4gPiA+ID4gPiB7DQo+ID4gPiA+ID4gK8KgwqDCoMKgwqDCoMKgaWYgKHVz
-ZXJwdHItPmluaXRpYWxfYmluZCkgew0KPiA+ID4gPiANCj4gPiA+ID4gU2hvdWxkIGJlIGNoYW5n
-ZSB0aGlzIGlmIHN0YXRlbWVudCBiYXNlZCBvbiBoYXJkd2FyZSBzdXBwb3J0Pw0KPiA+ID4gPiAN
-Cj4gPiA+ID4gTWF0dA0KPiA+ID4gPiANCj4gPiA+ID4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoGlmICghdXNlcnB0ci0+ZmluaXNoX2ludXNlKSB7DQo+ID4gPiA+ID4gwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLyoNCj4gPiA+ID4gPiDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKiBEZWZlciB0
-aGUgVExCIHdhaXQgdG8gYW4gZXh0cmENCj4gPiA+ID4gPiBwYXNzIHNvDQo+ID4gPiA+ID4gdGhl
-IGNhbGxlcg0KPiA+ID4gPiA+IC0tIA0KPiA+ID4gPiA+IDIuNDMuMA0KPiA+ID4gPiA+IA0KPiA+
-ID4gDQo+ID4gDQoNCg==
+== Series Details ==
+
+Series: Fix use-after-free on framebuffers and property blobs when calling drm_dev_unplug (rev4)
+URL   : https://patchwork.freedesktop.org/series/162134/
+State : warning
+
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 417dbb9b98cbc1179c1024e149ad8d51239ba781
+Author: Maarten Lankhorst <dev@lankhorst.se>
+Date:   Wed Mar 25 21:31:00 2026 +0100
+
+    drm: Fix use-after-free on framebuffers and property blobs when calling drm_dev_unplug
+    
+    Hey,
+    
+    Den 2026-03-25 kl. 21:12, skrev Guenter Roeck:
+    > Hi Maarten,
+    >
+    > On Wed, Mar 25, 2026 at 07:28:06PM +0100, Maarten Lankhorst wrote:
+    >> Hello,
+    >>
+    >> What about this patch?
+    >>
+    >> Kind regards,
+    >> ~Maarten Lankhorst
+    >>
+    >> ------8<---------
+    >> diff --git a/drivers/gpu/drm/sysfb/simpledrm.c b/drivers/gpu/drm/sysfb/simpledrm.c
+    >> index 0358164a623c9..ae49aaf99fb2c 100644
+    >> --- a/drivers/gpu/drm/sysfb/simpledrm.c
+    >> +++ b/drivers/gpu/drm/sysfb/simpledrm.c
+    >> @@ -588,6 +588,11 @@ static const struct drm_mode_config_funcs simpledrm_mode_config_funcs = {
+    >>   * Init / Cleanup
+    >>   */
+    >>
+    >> +static void simpledrm_shutdown(struct drm_device *dev, void *arg)
+    >> +{
+    >> +    drm_atomic_helper_shutdown(dev);
+    >> +}
+    >> +
+    >>  static struct simpledrm_device *simpledrm_device_create(struct drm_driver *drv,
+    >>                                                      struct platform_device *pdev)
+    >>  {
+    >> @@ -808,6 +813,10 @@ static struct simpledrm_device *simpledrm_device_create(struct drm_driver *drv,
+    >>
+    >>      drm_mode_config_reset(dev);
+    >>
+    >> +    ret = drmm_add_action_or_reset(dev, simpledrm_shutdown, NULL);
+    >> +    if (ret)
+    >> +            return ERR_PTR(ret);
+    >> +
+    >>      return sdev;
+    >>  }
+    >>
+    >
+    > Unfortunately, this results in an exciting new set of refcount underflows.
+    
+    Thank you, that's very fascinating and unexpected..
+    
+    What happens if you loudly complain on fd close instead?
+    ---------8<----
+    ---------------
+    > Guenter
+    >
+    > ---
+    > [    0.000000] Linux version 6.18.20-spi+ (groeck@server.roeck-us.net) (gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #1 SMP PREEMPT_DYNAMIC Wed Mar 25 12:10:19 PDT 2026
+    > [    0.000000] Command line: BOOT_IMAGE=/boot/vmlinuz-6.18.20-spi+ root=UUID=ce436484-f920-47a8-a8c4-c17ff3a877e8 ro quiet splash amdgpu.gpu_recovery=1 amdgpu.ppfeaturemask=0xfff73fff vt.handoff=7
+    > ...
+    > [    3.806644] nouveau 0000:2b:00.0: NVIDIA GK208B (b060b0b1)
+    > ...
+    > [    4.644370] nouveau 0000:2b:00.0: drm: VRAM: 2048 MiB
+    > [    4.644373] nouveau 0000:2b:00.0: drm: GART: 1048576 MiB
+    > [    4.644375] nouveau 0000:2b:00.0: drm: TMDS table version 2.0
+    > [    4.645032] nouveau 0000:2b:00.0: drm: MM: using COPY for buffer copies
+    > [    4.645959] snd_hda_intel 0000:2b:00.1: bound 0000:2b:00.0 (ops nv50_audio_component_bind_ops [nouveau])
+    > [    4.647016] nouveau 0000:2b:00.0: [drm] Registered 4 planes with drm panic
+    > [    4.647019] [drm] Initialized nouveau 1.4.0 for 0000:2b:00.0 on minor 1
+    > ...
+    > [    4.728390] fbcon: nouveaudrmfb (fb0) is primary device
+    > [    4.728392] fbcon: Deferring console take-over
+    > [    4.728393] nouveau 0000:2b:00.0: [drm] fb0: nouveaudrmfb frame buffer device
+    > [    4.826620] nouveau 0000:2b:00.0: drm: Failure to read SCDC_TMDS_CONFIG: -6
+    > ...
+    > [    4.986925] ------------[ cut here ]------------
+    > [    4.986926] refcount_t: addition on 0; use-after-free.
+    > [    4.986933] WARNING: CPU: 2 PID: 493 at lib/refcount.c:25 refcount_warn_saturate+0x12e/0x150
+    > [    4.986938] Modules linked in: qrtr bnep sunrpc binfmt_misc nls_iso8859_1 amd_atl intel_rapl_msr intel_rapl_common snd_hda_codec_alc882 snd_hda_codec_realtek_lib snd_hda_codec_generic snd_hda_codec_nvhdmi snd_hda_codec_hdmi snd_hda_intel snd_hda_codec snd_hda_core edac_mce_amd snd_intel_dspcfg snd_intel_sdw_acpi snd_hwdep kvm_amd snd_pcm snd_seq_midi snd_seq_midi_event snd_rawmidi kvm snd_seq btusb snd_seq_device snd_timer btmtk btrtl irqbypass polyval_clmulni btbcm snd ghash_clmulni_intel btintel aesni_intel bluetooth joydev input_leds ee1004 soundcore ccp rapl nouveau mxm_wmi drm_gpuvm gpu_sched drm_ttm_helper ttm drm_exec drm_display_helper cec rc_core i2c_piix4 video i2c_smbus wmi_bmof k10temp bfq gpio_amdpt mac_hid sch_fq_codel nct6683 msr parport_pc ppdev lp parport nvme_fabrics efi_pstore nfnetlink dmi_sysfs ip_tables x_tables autofs4 hid_generic nvme usbhid hid igb nvme_core r8169 i2c_algo_bit nvme_keyring ahci realtek dca nvme_auth libahci hkdf wmi
+    > [    4.986973] CPU: 2 UID: 0 PID: 493 Comm: plymouthd Not tainted 6.18.20-spi+ #1 PREEMPT(full)
+    > [    4.986974] Hardware name: Micro-Star International Co., Ltd. MS-7C94/MAG B550M MORTAR MAX WIFI (MS-7C94), BIOS 1.G0 08/22/2023
+    > [    4.986975] RIP: 0010:refcount_warn_saturate+0x12e/0x150
+    > [    4.986977] Code: 1d 28 43 ec 01 80 fb 01 0f 87 fe 61 6c ff 83 e3 01 0f 85 52 ff ff ff 48 c7 c7 18 a3 66 89 c6 05 08 43 ec 01 01 e8 a2 76 80 ff <0f> 0b e9 38 ff ff ff 48 c7 c7 f0 a2 66 89 c6 05 ef 42 ec 01 01 e8
+    > [    4.986978] RSP: 0018:ffffcdec80873990 EFLAGS: 00010246
+    > [    4.986979] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+    > [    4.986979] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+    > [    4.986980] RBP: ffffcdec80873998 R08: 0000000000000000 R09: 0000000000000000
+    > [    4.986980] R10: 0000000000000000 R11: 0000000000000000 R12: ffff8af0493f7c80
+    > [    4.986981] R13: ffff8af0493f7c80 R14: ffff8af04085e740 R15: dead000000000100
+    > [    4.986982] FS:  0000739d3374e000(0000) GS:ffff8aff93d73000(0000) knlGS:0000000000000000
+    > [    4.986983] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+    > [    4.986983] CR2: 0000739d2f268000 CR3: 0000000113bd6000 CR4: 0000000000f50ef0
+    > [    4.986984] PKRU: 55555554
+    > [    4.986984] Call Trace:
+    > [    4.986985]  <TASK>
+    > [    4.986987]  drm_dev_get+0x53/0x80
+    > [    4.986989]  drm_atomic_state_init+0x7b/0xe0
+    > [    4.986991]  drm_atomic_state_alloc+0x98/0xb0
+    > [    4.986992]  drm_atomic_helper_disable_all+0x1d/0x1c0
+    > [    4.986994]  drm_atomic_helper_shutdown+0x9c/0x140
+    > [    4.986995]  simpledrm_shutdown+0xe/0x20
+    > [    4.986997]  drm_managed_release+0x8f/0x160
+    > [    4.986999]  drm_minor_release+0x5f/0x90
+    > [    4.987000]  drm_release+0xda/0x140
+    > [    4.987001]  __fput+0xed/0x2d0
+    > [    4.987010]  fput_close_sync+0x3d/0xa0
+    > [    4.987012]  __x64_sys_close+0x3e/0x90
+    > [    4.987015]  x64_sys_call+0x1b5e/0x26a0
+    > [    4.987019]  do_syscall_64+0x80/0x530
+    > [    4.987022]  ? x64_sys_call+0x1144/0x26a0
+    > [    4.987024]  ? do_syscall_64+0xb8/0x530
+    > [    4.987025]  ? from_kgid_munged+0x17/0x30
+    > [    4.987028]  ? cp_new_stat+0x141/0x180
+    > [    4.987030]  ? __do_sys_newfstat+0x4c/0x80
+    > [    4.987032]  ? __x64_sys_newfstat+0x15/0x20
+    > [    4.987034]  ? x64_sys_call+0x204a/0x26a0
+    > [    4.987035]  ? do_syscall_64+0xb8/0x530
+    > [    4.987037]  ? __x64_sys_newfstat+0x15/0x20
+    > [    4.987038]  ? x64_sys_call+0x204a/0x26a0
+    > [    4.987040]  ? do_syscall_64+0xb8/0x530
+    > [    4.987041]  ? irqentry_exit_to_user_mode+0x2e/0x320
+    > [    4.987043]  ? irqentry_exit+0x43/0x50
+    > [    4.987044]  ? exc_page_fault+0x90/0x1b0
+    > [    4.987046]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+    > [    4.987047] RIP: 0033:0x739d339f774c
+    > [    4.987048] Code: 0f 05 48 3d 00 f0 ff ff 77 3c c3 0f 1f 00 55 48 89 e5 48 83 ec 10 89 7d fc e8 10 1e f8 ff 8b 7d fc 89 c2 b8 03 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 2c 89 d7 89 45 fc e8 72 1e f8 ff 8b 45 fc c9
+    > [    4.987049] RSP: 002b:00007ffd8ca10660 EFLAGS: 00000293 ORIG_RAX: 0000000000000003
+    > [    4.987050] RAX: ffffffffffffffda RBX: 0000615423195870 RCX: 0000739d339f774c
+    > [    4.987051] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 000000000000000b
+    > [    4.987052] RBP: 00007ffd8ca10670 R08: 0000000615423196 R09: 0000000000000007
+    > [    4.987053] R10: 0000615423196bc0 R11: 0000000000000293 R12: 0000739d3374df88
+    > [    4.987055] R13: 0000000000000013 R14: 0000615423209840 R15: 0000615423194130
+    > [    4.987057]  </TASK>
+    > [    4.987058] ---[ end trace 0000000000000000 ]---
+    > [    4.987114] ------------[ cut here ]------------
+    > [    4.987115] refcount_t: underflow; use-after-free.
+    > [    4.987119] WARNING: CPU: 2 PID: 493 at lib/refcount.c:28 refcount_warn_saturate+0xfb/0x150
+    > [    4.987121] Modules linked in: qrtr bnep sunrpc binfmt_misc nls_iso8859_1 amd_atl intel_rapl_msr intel_rapl_common snd_hda_codec_alc882 snd_hda_codec_realtek_lib snd_hda_codec_generic snd_hda_codec_nvhdmi snd_hda_codec_hdmi snd_hda_intel snd_hda_codec snd_hda_core edac_mce_amd snd_intel_dspcfg snd_intel_sdw_acpi snd_hwdep kvm_amd snd_pcm snd_seq_midi snd_seq_midi_event snd_rawmidi kvm snd_seq btusb snd_seq_device snd_timer btmtk btrtl irqbypass polyval_clmulni btbcm snd ghash_clmulni_intel btintel aesni_intel bluetooth joydev input_leds ee1004 soundcore ccp rapl nouveau mxm_wmi drm_gpuvm gpu_sched drm_ttm_helper ttm drm_exec drm_display_helper cec rc_core i2c_piix4 video i2c_smbus wmi_bmof k10temp bfq gpio_amdpt mac_hid sch_fq_codel nct6683 msr parport_pc ppdev lp parport nvme_fabrics efi_pstore nfnetlink dmi_sysfs ip_tables x_tables autofs4 hid_generic nvme usbhid hid igb nvme_core r8169 i2c_algo_bit nvme_keyring ahci realtek dca nvme_auth libahci hkdf wmi
+    > [    4.987147] CPU: 2 UID: 0 PID: 493 Comm: plymouthd Tainted: G        W           6.18.20-spi+ #1 PREEMPT(full)
+    > [    4.987149] Tainted: [W]=WARN
+    > [    4.987149] Hardware name: Micro-Star International Co., Ltd. MS-7C94/MAG B550M MORTAR MAX WIFI (MS-7C94), BIOS 1.G0 08/22/2023
+    > [    4.987150] RIP: 0010:refcount_warn_saturate+0xfb/0x150
+    > [    4.987151] Code: eb 9a 0f b6 1d 56 43 ec 01 80 fb 01 0f 87 41 62 6c ff 83 e3 01 75 85 48 c7 c7 48 a3 66 89 c6 05 3a 43 ec 01 01 e8 d5 76 80 ff <0f> 0b e9 6b ff ff ff 0f b6 1d 28 43 ec 01 80 fb 01 0f 87 fe 61 6c
+    > [    4.987152] RSP: 0018:ffffcdec808739b0 EFLAGS: 00010246
+    > [    4.987153] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+    > [    4.987154] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+    > [    4.987154] RBP: ffffcdec808739b8 R08: 0000000000000000 R09: 0000000000000000
+    > [    4.987155] R10: 0000000000000000 R11: 0000000000000000 R12: ffff8af045e46000
+    > [    4.987155] R13: ffff8af042b0ba00 R14: ffff8af04085e740 R15: dead000000000100
+    > [    4.987156] FS:  0000739d3374e000(0000) GS:ffff8aff93d73000(0000) knlGS:0000000000000000
+    > [    4.987157] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+    > [    4.987158] CR2: 0000739d2f268000 CR3: 0000000113bd6000 CR4: 0000000000f50ef0
+    > [    4.987159] PKRU: 55555554
+    > [    4.987159] Call Trace:
+    > [    4.987159]  <TASK>
+    > [    4.987160]  drm_dev_put+0x8c/0x90
+    > [    4.987162]  __drm_atomic_state_free+0xbe/0xe0
+    > [    4.987163]  drm_atomic_helper_disable_all+0xd0/0x1c0
+    > [    4.987164]  drm_atomic_helper_shutdown+0x9c/0x140
+    > [    4.987165]  simpledrm_shutdown+0xe/0x20
+    > [    4.987167]  drm_managed_release+0x8f/0x160
+    > [    4.987168]  drm_minor_release+0x5f/0x90
+    > [    4.987169]  drm_release+0xda/0x140
+    > [    4.987171]  __fput+0xed/0x2d0
+    > [    4.987172]  fput_close_sync+0x3d/0xa0
+    > [    4.987174]  __x64_sys_close+0x3e/0x90
+    > [    4.987175]  x64_sys_call+0x1b5e/0x26a0
+    > [    4.987177]  do_syscall_64+0x80/0x530
+    > [    4.987178]  ? x64_sys_call+0x1144/0x26a0
+    > [    4.987180]  ? do_syscall_64+0xb8/0x530
+    > [    4.987182]  ? from_kgid_munged+0x17/0x30
+    > [    4.987183]  ? cp_new_stat+0x141/0x180
+    > [    4.987185]  ? __do_sys_newfstat+0x4c/0x80
+    > [    4.987187]  ? __x64_sys_newfstat+0x15/0x20
+    > [    4.987188]  ? x64_sys_call+0x204a/0x26a0
+    > [    4.987189]  ? do_syscall_64+0xb8/0x530
+    > [    4.987191]  ? __x64_sys_newfstat+0x15/0x20
+    > [    4.987193]  ? x64_sys_call+0x204a/0x26a0
+    > [    4.987194]  ? do_syscall_64+0xb8/0x530
+    > [    4.987195]  ? irqentry_exit_to_user_mode+0x2e/0x320
+    > [    4.987196]  ? irqentry_exit+0x43/0x50
+    > [    4.987197]  ? exc_page_fault+0x90/0x1b0
+    > [    4.987199]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+    > [    4.987200] RIP: 0033:0x739d339f774c
+    > [    4.987201] Code: 0f 05 48 3d 00 f0 ff ff 77 3c c3 0f 1f 00 55 48 89 e5 48 83 ec 10 89 7d fc e8 10 1e f8 ff 8b 7d fc 89 c2 b8 03 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 2c 89 d7 89 45 fc e8 72 1e f8 ff 8b 45 fc c9
+    > [    4.987201] RSP: 002b:00007ffd8ca10660 EFLAGS: 00000293 ORIG_RAX: 0000000000000003
+    > [    4.987202] RAX: ffffffffffffffda RBX: 0000615423195870 RCX: 0000739d339f774c
+    > [    4.987203] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 000000000000000b
+    > [    4.987203] RBP: 00007ffd8ca10670 R08: 0000000615423196 R09: 0000000000000007
+    > [    4.987204] R10: 0000615423196bc0 R11: 0000000000000293 R12: 0000739d3374df88
+    > [    4.987204] R13: 0000000000000013 R14: 0000615423209840 R15: 0000615423194130
+    > [    4.987206]  </TASK>
+    > [    4.987206] ---[ end trace 0000000000000000 ]---
+    > [    4.987226] ------------[ cut here ]------------
+    > [    4.987227] WARNING: CPU: 2 PID: 493 at drivers/gpu/drm/drm_mode_config.c:571 drm_mode_config_cleanup+0x34f/0x360
+    > [    4.987229] Modules linked in: qrtr bnep sunrpc binfmt_misc nls_iso8859_1 amd_atl intel_rapl_msr intel_rapl_common snd_hda_codec_alc882 snd_hda_codec_realtek_lib snd_hda_codec_generic snd_hda_codec_nvhdmi snd_hda_codec_hdmi snd_hda_intel snd_hda_codec snd_hda_core edac_mce_amd snd_intel_dspcfg snd_intel_sdw_acpi snd_hwdep kvm_amd snd_pcm snd_seq_midi snd_seq_midi_event snd_rawmidi kvm snd_seq btusb snd_seq_device snd_timer btmtk btrtl irqbypass polyval_clmulni btbcm snd ghash_clmulni_intel btintel aesni_intel bluetooth joydev input_leds ee1004 soundcore ccp rapl nouveau mxm_wmi drm_gpuvm gpu_sched drm_ttm_helper ttm drm_exec drm_display_helper cec rc_core i2c_piix4 video i2c_smbus wmi_bmof k10temp bfq gpio_amdpt mac_hid sch_fq_codel nct6683 msr parport_pc ppdev lp parport nvme_fabrics efi_pstore nfnetlink dmi_sysfs ip_tables x_tables autofs4 hid_generic nvme usbhid hid igb nvme_core r8169 i2c_algo_bit nvme_keyring ahci realtek dca nvme_auth libahci hkdf wmi
+    > [    4.987252] CPU: 2 UID: 0 PID: 493 Comm: plymouthd Tainted: G        W           6.18.20-spi+ #1 PREEMPT(full)
+    > [    4.987254] Tainted: [W]=WARN
+    > [    4.987255] Hardware name: Micro-Star International Co., Ltd. MS-7C94/MAG B550M MORTAR MAX WIFI (MS-7C94), BIOS 1.G0 08/22/2023
+    > [    4.987255] RIP: 0010:drm_mode_config_cleanup+0x34f/0x360
+    > [    4.987257] Code: 70 60 48 c7 c7 d7 90 73 89 e8 3d bb 00 00 48 8d 7d 88 e8 c4 32 fe ff 48 85 c0 75 e2 48 8d 7d 88 e8 d6 31 fe ff e9 7b fd ff ff <0f> 0b e9 79 fe ff ff 0f 0b eb 8e e8 01 a4 65 00 90 90 90 90 90 90
+    > [    4.987257] RSP: 0018:ffffcdec80873a10 EFLAGS: 00010297
+    > [    4.987258] RAX: ffff8af053f78e48 RBX: ffff8af045e46368 RCX: 0000000000000000
+    > [    4.987259] RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffff8af045e46368
+    > [    4.987259] RBP: ffffcdec80873a90 R08: 0000000000000000 R09: 0000000000000000
+    > [    4.987260] R10: 0000000000000000 R11: 0000000000000000 R12: ffff8af045e46000
+    > [    4.987260] R13: ffff8af045e46390 R14: ffff8af045e46230 R15: dead000000000100
+    > [    4.987261] FS:  0000739d3374e000(0000) GS:ffff8aff93d73000(0000) knlGS:0000000000000000
+    > [    4.987262] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+    > [    4.987262] CR2: 0000739d2f268000 CR3: 0000000113bd6000 CR4: 0000000000f50ef0
+    > [    4.987263] PKRU: 55555554
+    > [    4.987263] Call Trace:
+    > [    4.987264]  <TASK>
+    > [    4.987264]  ? drm_managed_release+0xc2/0x160
+    > [    4.987266]  drm_mode_config_init_release+0xe/0x20
+    > [    4.987267]  drm_managed_release+0x8f/0x160
+    > [    4.987268]  drm_minor_release+0x5f/0x90
+    > [    4.987269]  drm_release+0xda/0x140
+    > [    4.987271]  __fput+0xed/0x2d0
+    > [    4.987272]  fput_close_sync+0x3d/0xa0
+    > [    4.987273]  __x64_sys_close+0x3e/0x90
+    > [    4.987275]  x64_sys_call+0x1b5e/0x26a0
+    > [    4.987276]  do_syscall_64+0x80/0x530
+    > [    4.987278]  ? x64_sys_call+0x1144/0x26a0
+    > [    4.987279]  ? do_syscall_64+0xb8/0x530
+    > [    4.987281]  ? from_kgid_munged+0x17/0x30
+    > [    4.987282]  ? cp_new_stat+0x141/0x180
+    > [    4.987284]  ? __do_sys_newfstat+0x4c/0x80
+    > [    4.987286]  ? __x64_sys_newfstat+0x15/0x20
+    > [    4.987287]  ? x64_sys_call+0x204a/0x26a0
+    > [    4.987289]  ? do_syscall_64+0xb8/0x530
+    > [    4.987290]  ? __x64_sys_newfstat+0x15/0x20
+    > [    4.987291]  ? x64_sys_call+0x204a/0x26a0
+    > [    4.987293]  ? do_syscall_64+0xb8/0x530
+    > [    4.987294]  ? irqentry_exit_to_user_mode+0x2e/0x320
+    > [    4.987295]  ? irqentry_exit+0x43/0x50
+    > [    4.987296]  ? exc_page_fault+0x90/0x1b0
+    > [    4.987298]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+    > [    4.987298] RIP: 0033:0x739d339f774c
+    > [    4.987299] Code: 0f 05 48 3d 00 f0 ff ff 77 3c c3 0f 1f 00 55 48 89 e5 48 83 ec 10 89 7d fc e8 10 1e f8 ff 8b 7d fc 89 c2 b8 03 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 2c 89 d7 89 45 fc e8 72 1e f8 ff 8b 45 fc c9
+    > [    4.987300] RSP: 002b:00007ffd8ca10660 EFLAGS: 00000293 ORIG_RAX: 0000000000000003
+    > [    4.987301] RAX: ffffffffffffffda RBX: 0000615423195870 RCX: 0000739d339f774c
+    > [    4.987302] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 000000000000000b
+    > [    4.987302] RBP: 00007ffd8ca10670 R08: 0000000615423196 R09: 0000000000000007
+    > [    4.987303] R10: 0000615423196bc0 R11: 0000000000000293 R12: 0000739d3374df88
+    > [    4.987303] R13: 0000000000000013 R14: 0000615423209840 R15: 0000615423194130
+    > [    4.987304]  </TASK>
+    > [    4.987305] ---[ end trace 0000000000000000 ]---
+    > ...
+    > [    5.124594] nouveau 0000:2b:00.0: drm: Failure to read SCDC_TMDS_CONFIG: -6
+    > ...
+    > [   14.891109] nouveau 0000:2b:00.0: drm: Failure to read SCDC_TMDS_CONFIG: -6
+    > [   14.891114] fbcon: Taking over console
+    > [   14.923125] Console: switching to colour frame buffer device 240x67
+    > [   15.349010] workqueue: drm_fb_helper_damage_work hogged CPU for >10000us 4 times, consider switching to WQ_UNBOUND
+    > [   16.124537] nouveau 0000:2b:00.0: drm: Failure to read SCDC_TMDS_CONFIG: -6
+    > [   17.855855] nouveau 0000:2b:00.0: drm: Failure to read SCDC_TMDS_CONFIG: -6
++ /mt/dim checkpatch ec0484d20b9f962d04a62ff1feb03676c3ce7611 drm-intel
+417dbb9b98cb drm: Fix use-after-free on framebuffers and property blobs when calling drm_dev_unplug
+-:21: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
+#21: 
+>> diff --git a/drivers/gpu/drm/sysfb/simpledrm.c b/drivers/gpu/drm/sysfb/simpledrm.c
+
+-:54: ERROR:BAD_COMMIT_SEPARATOR: Invalid commit separator - some tools may have problems applying this
+#54: 
+---------8<----
+
+-:55: ERROR:BAD_COMMIT_SEPARATOR: Invalid commit separator - some tools may have problems applying this
+#55: 
+---------------
+
+-:272: WARNING:MISSING_FIXES_TAG: The commit message has 'Call Trace:', perhaps it also needs a 'Fixes:' tag?
+
+-:272: ERROR:MISSING_SIGN_OFF: Missing Signed-off-by: line(s)
+
+total: 3 errors, 2 warnings, 0 checks, 8 lines checked
+
+
