@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F818106B50C
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 12:00:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFB4A106B50C
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 12:00:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C645D10E88F;
-	Wed, 25 Mar 2026 12:00:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D6AB10E894;
+	Wed, 25 Mar 2026 12:00:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wxw+9/Z4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lJ6SnXMF";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E962410E88F
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Mar 2026 12:00:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87AD110E894
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Mar 2026 12:00:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774440048; x=1805976048;
+ t=1774440052; x=1805976052;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bvm6CNhvAArjMF2csp72rrezKWVY0graWHJIQse6GNQ=;
- b=Wxw+9/Z4DZbYklhcW2fXSedohofdJB8fmMB1Lx4FMKOOKZbaJCfb5YkK
- xNaGcKDi04kpxtYveHaUetH4+2ZrtJgMfZwaqeSKJPh1OV6y/4zO3knsq
- 8mVrCdpTWdrz6hlowQ0glG9hgu1U7GHg4mVdk7c9uKgV2wVz8BYkJwtef
- 5Yv2mkxQYFV7B1oKQfA6iH7M4jx+ETrOZ371U7gPCZwGFEd4P4YRzopYK
- w1anZ+US2jVcsuPTTqC0ZftZXJ2sqXIMNkLcUTSqNDOlHLJ6tJKM7KRrY
- fMRF217mq5gQXTcnnhsBhsTPIYMYclaFjL/pqC/P9j/IzOjlvXfBIfsta A==;
-X-CSE-ConnectionGUID: vr5frBfiQQKWigqaA7kpww==
-X-CSE-MsgGUID: 0pdfrfLMQjqS9Xe+bbWg2Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="98094663"
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="98094663"
+ bh=7tAbVc+/z+JcfYoMkkSCfA7jkNchX0A4SBKc1PNqbDw=;
+ b=lJ6SnXMF1FZPynWa/9Nb5yowgxqLIaiBqWLpuYuCj2fPItwxR7Olh3Mw
+ w9NxwCotRYNRfnFBOs/kz76/JLxcBK5LTCP7xqIICIVrKpf41+KWNhAs4
+ JaTpCs/yxbvXr43mYesWw9og9o1P/X8tsRD5XB95YLWEVseVUBSXdVrXm
+ QOdwbvp3jqQQqydYqrwacJ0A6D3JyVejRMb9+YXHkeYjB4AFgTiYgs/2X
+ qLfBZyw8P8NIwbpZ3lFQxLcNDtqfYpPDvgpSQFpYhjamoWAo23kAAzljs
+ TLFK18PWpshRJE9mOBztuYT8f+r6no6yO5fFcGtfZyQtkeNdh84z4YGR0 Q==;
+X-CSE-ConnectionGUID: dm2lRTMgRGyzQzwjjrvf+g==
+X-CSE-MsgGUID: nj41B/ImRmyYX9jJSZ3LpA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="98094668"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="98094668"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 05:00:48 -0700
-X-CSE-ConnectionGUID: YM9huoCUQE6MjWpbKdqIlA==
-X-CSE-MsgGUID: gCA5hoH/Tl6sMPLluGL7rw==
+ 25 Mar 2026 05:00:51 -0700
+X-CSE-ConnectionGUID: 11AhOfh0SxmGeqmB+QYyZw==
+X-CSE-MsgGUID: Q/PMKi3YTLiDSSKaBPZAdA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="218087300"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="218087309"
 Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 05:00:45 -0700
+ 25 Mar 2026 05:00:48 -0700
 From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
@@ -48,10 +48,10 @@ Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
  riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
  michael.j.ruhl@intel.com, paul.e.luse@intel.com,
  mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
-Subject: [PATCH v12 3/7] drm/xe/xe_sysctrl: Add ABI and mailbox interface
- headers
-Date: Wed, 25 Mar 2026 05:00:30 -0700
-Message-ID: <20260325120030.510480-12-anoop.c.vijay@intel.com>
+Subject: [PATCH v12 4/7] drm/xe/xe_sysctrl: Add System Controller
+ initialization support
+Date: Wed, 25 Mar 2026 05:00:31 -0700
+Message-ID: <20260325120030.510480-13-anoop.c.vijay@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260325120030.510480-9-anoop.c.vijay@intel.com>
 References: <20260325120030.510480-9-anoop.c.vijay@intel.com>
@@ -74,192 +74,184 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Add ABI definitions, mailbox API, and command data structures required
-for System Controller communication.
+Add initialization and cleanup infrastructure for System Controller
+subsystem and integrate it into xe device probe path.
 
-No functional changes. This patch introduces definitions for mailbox
-communication.
+During initialization, platform support is checked via has_sysctrl
+capability flag and the mailbox region is configured through SoC
+remapper interface.
 
 Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
-v8: (Matt, Michal)
-- Reordered patches for logical flow
-- Moved ABI definitions to dedicated header
+v8: (Matt, Michal, Shuicheng)
+- Fixed include order
+- Added VF check
+- Converted runtime checks to assertions
+- Added sc_to_xe() helper
+- Fixed kernel-doc syntax
 
-v9: (Badal)
-- Renamed MKHI to SCHI (System Controller Host Interface)
-
-v10: (Riana, Badal)
-- Removed SCHI terminology and aligned to sysctrl mailbox naming
-- Added System Controller ABI kernel-doc
-- Converted xe_sysctrl_app_msg_hdr data field to u32
-- Fixed macro alignment
-
-v11: (Umesh)
-- Improve struct member spacing for readability
-- Updated System Controller ABI doc
+v10: (Riana, Anshuman)
+- Updated sysctrl documentation
+- Cleaned up commit message
+- Fixed mutex lifetime management
 ---
- drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h       | 65 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox.h       | 31 +++++++++
- drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h | 40 ++++++++++++
- 3 files changed, 136 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
+ drivers/gpu/drm/xe/Makefile     |  1 +
+ drivers/gpu/drm/xe/xe_device.c  |  5 ++
+ drivers/gpu/drm/xe/xe_sysctrl.c | 82 +++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sysctrl.h | 21 +++++++++
+ 4 files changed, 109 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.h
 
-diff --git a/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h b/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 49de1c22a469..b2d44e7169dd 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -123,6 +123,7 @@ xe-y += xe_bb.o \
+ 	xe_step.o \
+ 	xe_survivability_mode.o \
+ 	xe_sync.o \
++	xe_sysctrl.o \
+ 	xe_tile.o \
+ 	xe_tile_sysfs.o \
+ 	xe_tlb_inval.o \
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index c8e91ff464a7..6df85a240f83 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -65,6 +65,7 @@
+ #include "xe_survivability_mode.h"
+ #include "xe_sriov.h"
+ #include "xe_svm.h"
++#include "xe_sysctrl.h"
+ #include "xe_tile.h"
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_ttm_sys_mgr.h"
+@@ -985,6 +986,10 @@ int xe_device_probe(struct xe_device *xe)
+ 	if (err)
+ 		goto err_unregister_display;
+ 
++	err = xe_sysctrl_init(xe);
++	if (err)
++		goto err_unregister_display;
++
+ 	err = xe_device_sysfs_init(xe);
+ 	if (err)
+ 		goto err_unregister_display;
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
 new file mode 100644
-index 000000000000..4cbde267ac44
+index 000000000000..fd23f345d8c7
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/abi/xe_sysctrl_abi.h
-@@ -0,0 +1,65 @@
++++ b/drivers/gpu/drm/xe/xe_sysctrl.c
+@@ -0,0 +1,82 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#include <linux/device.h>
++#include <linux/mutex.h>
++
++#include <drm/drm_managed.h>
++
++#include "regs/xe_sysctrl_regs.h"
++#include "xe_assert.h"
++#include "xe_device.h"
++#include "xe_mmio.h"
++#include "xe_printk.h"
++#include "xe_soc_remapper.h"
++#include "xe_sriov.h"
++#include "xe_sysctrl.h"
++#include "xe_sysctrl_mailbox.h"
++#include "xe_sysctrl_types.h"
++
++/**
++ * DOC: System Controller (sysctrl)
++ *
++ * System Controller (sysctrl) is a firmware-managed entity on Intel dGPUs
++ * responsible for selected low-level platform management functions.
++ * Communication between driver and System Controller is performed
++ * via a mailbox interface, enabling command and response exchange.
++ *
++ * This module provides initialization and support code for interacting
++ * with System Controller through the mailbox interface.
++ */
++static void sysctrl_fini(void *arg)
++{
++	struct xe_device *xe = arg;
++
++	xe->soc_remapper.set_sysctrl_region(xe, 0);
++}
++
++/**
++ * xe_sysctrl_init() - Initialize System Controller subsystem
++ * @xe: xe device instance
++ *
++ * Entry point for System Controller initialization, called from xe_device_probe.
++ * This function checks platform support and initializes the system controller.
++ *
++ * Return: 0 on success, error code on failure
++ */
++int xe_sysctrl_init(struct xe_device *xe)
++{
++	struct xe_tile *tile = xe_device_get_root_tile(xe);
++	struct xe_sysctrl *sc = &xe->sc;
++	int ret;
++
++	if (!xe->info.has_sysctrl)
++		return 0;
++
++	if (IS_SRIOV_VF(xe))
++		return 0;
++
++	xe_assert(xe, xe->soc_remapper.set_sysctrl_region);
++
++	xe->soc_remapper.set_sysctrl_region(xe, SYSCTRL_MAILBOX_INDEX);
++
++	ret = devm_add_action_or_reset(xe->drm.dev, sysctrl_fini, xe);
++	if (ret)
++		return ret;
++
++	sc->mmio = devm_kzalloc(xe->drm.dev, sizeof(*sc->mmio), GFP_KERNEL);
++	if (!sc->mmio)
++		return -ENOMEM;
++
++	xe_mmio_init(sc->mmio, tile, tile->mmio.regs, tile->mmio.regs_size);
++	sc->mmio->adj_offset = SYSCTRL_BASE;
++	sc->mmio->adj_limit = U32_MAX;
++
++	ret = devm_mutex_init(xe->drm.dev, &sc->cmd_lock);
++	if (ret)
++		return ret;
++
++	return 0;
++}
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
+new file mode 100644
+index 000000000000..d5d8735038ae
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sysctrl.h
+@@ -0,0 +1,21 @@
 +/* SPDX-License-Identifier: MIT */
 +/*
 + * Copyright © 2026 Intel Corporation
 + */
 +
-+#ifndef _XE_SYSCTRL_ABI_H_
-+#define _XE_SYSCTRL_ABI_H_
++#ifndef _XE_SYSCTRL_H_
++#define _XE_SYSCTRL_H_
 +
-+#include <linux/types.h>
++#include <linux/container_of.h>
 +
-+/**
-+ * DOC: System Controller ABI
-+ *
-+ * This header defines the Application Binary Interface (ABI) used by
-+ * drm/xe to communicate with System Controller firmware on Intel Xe3p
-+ * discrete GPU platforms.
-+ *
-+ * System Controller (sysctrl) is a firmware-managed entity on Intel
-+ * dGPUs responsible for certain low-level platform management
-+ * functions.
-+ *
-+ * Communication protocol:
-+ *
-+ * Communication uses a mailbox interface with messages composed of:
-+ *
-+ * - Application message header (struct xe_sysctrl_app_msg_hdr)
-+ *   containing group_id, command, and version
-+ * - Variable-length, command-specific payload
-+ *
-+ * Message header format:
-+ *
-+ * The 32-bit application message header is packed as:
-+ *
-+ * - Bits [7:0]   : Group ID identifying command group
-+ * - Bits [15:8]  : Command identifier within group
-+ * - Bits [23:16] : Command version for interface compatibility
-+ * - Bits [31:24] : Reserved, must be zero
-+ *
-+ * This header defines firmware ABI message formats and constants shared
-+ * between driver and System Controller firmware.
-+ */
++#include "xe_device_types.h"
++#include "xe_sysctrl_types.h"
 +
-+/**
-+ * struct xe_sysctrl_app_msg_hdr - Application layer message header
-+ * @data: 32-bit header data
-+ *
-+ * Header structure for application-level messages.
-+ */
-+struct xe_sysctrl_app_msg_hdr {
-+	u32 data;
-+} __packed;
++static inline struct xe_device *sc_to_xe(struct xe_sysctrl *sc)
++{
++	return container_of(sc, struct xe_device, sc);
++}
 +
-+#define SYSCTRL_HDR_GROUP_ID_MASK	GENMASK(7, 0)
-+#define SYSCTRL_HDR_COMMAND_MASK	GENMASK(14, 8)
-+#define SYSCTRL_HDR_COMMAND_MAX		0x7f
-+#define SYSCTRL_HDR_IS_RESPONSE		BIT(15)
-+#define SYSCTRL_HDR_RESERVED_MASK	GENMASK(23, 16)
-+#define SYSCTRL_HDR_RESULT_MASK		GENMASK(31, 24)
-+
-+#define APP_HDR_GROUP_ID_MASK		GENMASK(7, 0)
-+#define APP_HDR_COMMAND_MASK		GENMASK(15, 8)
-+#define APP_HDR_VERSION_MASK		GENMASK(23, 16)
-+#define APP_HDR_RESERVED_MASK		GENMASK(31, 24)
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
-new file mode 100644
-index 000000000000..91460be9e22c
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.h
-@@ -0,0 +1,31 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#ifndef _XE_SYSCTRL_MAILBOX_H_
-+#define _XE_SYSCTRL_MAILBOX_H_
-+
-+#include <linux/bitfield.h>
-+#include <linux/types.h>
-+
-+#include "abi/xe_sysctrl_abi.h"
-+
-+struct xe_sysctrl;
-+struct xe_sysctrl_mailbox_command;
-+
-+#define XE_SYSCTRL_APP_HDR_GROUP_ID(hdr) \
-+	FIELD_GET(APP_HDR_GROUP_ID_MASK, le32_to_cpu((hdr)->data))
-+
-+#define XE_SYSCTRL_APP_HDR_COMMAND(hdr) \
-+	FIELD_GET(APP_HDR_COMMAND_MASK, le32_to_cpu((hdr)->data))
-+
-+#define XE_SYSCTRL_APP_HDR_VERSION(hdr) \
-+	FIELD_GET(APP_HDR_VERSION_MASK, le32_to_cpu((hdr)->data))
-+
-+void xe_sysctrl_mailbox_init(struct xe_sysctrl *sc);
-+int xe_sysctrl_send_command(struct xe_sysctrl *sc,
-+			    struct xe_sysctrl_mailbox_command *cmd,
-+			    size_t *rdata_len);
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-new file mode 100644
-index 000000000000..89456aec6097
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox_types.h
-@@ -0,0 +1,40 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#ifndef _XE_SYSCTRL_MAILBOX_TYPES_H_
-+#define _XE_SYSCTRL_MAILBOX_TYPES_H_
-+
-+#include <linux/types.h>
-+
-+#include "abi/xe_sysctrl_abi.h"
-+
-+/**
-+ * struct xe_sysctrl_mailbox_command - System Controller mailbox command
-+ */
-+struct xe_sysctrl_mailbox_command {
-+	/** @header: Application message header containing command information */
-+	struct xe_sysctrl_app_msg_hdr header;
-+
-+	/** @data_in: Pointer to input payload data (can be NULL if no input data) */
-+	void *data_in;
-+
-+	/** @data_in_len: Size of input payload in bytes (0 if no input data) */
-+	size_t data_in_len;
-+
-+	/** @data_out: Pointer to output buffer for response data (can be NULL if no response) */
-+	void *data_out;
-+
-+	/** @data_out_len: Size of output buffer in bytes (0 if no response expected) */
-+	size_t data_out_len;
-+};
-+
-+#define XE_SYSCTRL_MB_FRAME_SIZE	16
-+#define XE_SYSCTRL_MB_MAX_FRAMES	64
-+#define XE_SYSCTRL_MB_MAX_MESSAGE_SIZE	\
-+	(XE_SYSCTRL_MB_FRAME_SIZE * XE_SYSCTRL_MB_MAX_FRAMES)
-+
-+#define XE_SYSCTRL_MB_DEFAULT_TIMEOUT_MS	500
++int xe_sysctrl_init(struct xe_device *xe);
 +
 +#endif
 -- 
