@@ -4,29 +4,29 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C8A7109C04D
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 18:05:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D14B0109C040
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 18:17:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 531D510E823;
-	Wed, 25 Mar 2026 18:05:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9793B10E8AF;
+	Wed, 25 Mar 2026 18:17:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="f1kRXwp2";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Exr7mhL2";
 	dkim-atps=neutral
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3951510E823;
- Wed, 25 Mar 2026 18:05:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D0CD10E8AF;
+ Wed, 25 Mar 2026 18:17:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1774461924;
- bh=Vs4dXwsEw9dAcqZ/hEENwSfJ5CgQ9qRbvhbU8eeStKk=;
+ s=default; t=1774462664;
+ bh=bf4ClMtMnbfFXZqSVHtSADODFpA56j8cwmLWASB70GM=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=f1kRXwp2EXZBzAPaaUMRi5hvC5iaNun8QBSF+5mztBlcHw8TBOqxo+4NpA4aI7VQl
- kmv5S8GwPRAnBnsUysDwo5Z109Z2HNvHeIDa5I1SjQdOkucwyUh63/FVq/C6Vls3ku
- 6nt66hmgrB03xANvLASv9Ln7TGdCuTZKdGtZ9OKlDsL6aQLpNn6GCYVGQZf2kGBMTx
- ADOJj92CpZFIdKf7l7SUzzEOpy8FNor4hwA9WrKXlh18W0RDFwnIjolRT+9lpU/mEP
- QiLhJkJFQrtdX7imWZj0qcnwZVFxJbCcf3CZWAsaqO2VDLbCghbAVQxmbYlNEX2+Mv
- ZOgQwJYzn7dOA==
-Message-ID: <9cf997a2-6141-44a1-9df4-c36e1123c14e@lankhorst.se>
-Date: Wed, 25 Mar 2026 19:05:23 +0100
+ b=Exr7mhL2ml0fV/3tLbo33/lSHrlzCHmV8igF6VbRx29vg6qUZ6qLDAkvilurV61u7
+ QXmY7xi6d2JNNjPHypQF1tFSFSFQylAEuovZ2Z02TmvwR/cw0rS5Xo3FYBrmn2MfDd
+ fJT+OWaI+h6jQtIH30wpv1fXlmDDoIh5o89r0ZD1PoKdYU5+Mu4zc6n1Hi8j8OPDki
+ fHdsEQTVVPKjjM4b2VI0/cn9phBkdQDawjAaxFZTGkL14XJA7Q06TiNYRff/fJrx/Y
+ KUmBa1ZoaF22781UV4HvIfPkgvzNEUAgABxccmTpJLnvUBNOQWe6WDgh9gvU7cOrKA
+ TR6RXZiyNuIEw==
+Message-ID: <13dfeca9-81f1-4cb7-8e7a-de6c6936cd0f@lankhorst.se>
+Date: Wed, 25 Mar 2026 19:17:42 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2 1/1] drm: Fix use-after-free on framebuffers and
@@ -58,6 +58,12 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Hey,
 
+Whatever the simple driver is used, is drm_atomic_helper_shutdown() calle=
+d somewhere in it?
+
+Kind regards,
+~Maarten Lankhorst
+
 Den 2026-03-25 kl. 18:26, skrev Guenter Roeck:
 > Hi,
 >=20
@@ -79,12 +85,7 @@ Den 2026-03-25 kl. 18:26, skrev Guenter Roeck:
 > The backtraces are gone with the patch reverted.
 >=20
 > Guenter
-
-That's a weird bug. What framebuffer driver is providing the simple fb?
-
-Kind regards,
-~Maarten Lankhorst
-
+>=20
 > ---
 > [    0.000000] Linux version 6.18.20-spi+ (groeck@server.roeck-us.net) =
 (gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, GNU ld (GNU Binutils for Ub=
