@@ -4,165 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBFFCFEA807
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 05:21:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7268FEA806
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 05:43:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 713BD10E1E8;
-	Wed, 25 Mar 2026 05:21:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D08410E0BC;
+	Wed, 25 Mar 2026 05:43:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OTM/lQ+H";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RpoV1q+u";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A40F10E0BC;
- Wed, 25 Mar 2026 05:21:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B354510E0BC;
+ Wed, 25 Mar 2026 05:43:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774416092; x=1805952092;
+ t=1774417384; x=1805953384;
  h=message-id:date:subject:to:cc:references:from:
- in-reply-to:mime-version;
- bh=0L7yd6KjvHm0ZQf24rBBEy+dmUYKc7C5EXJemMSMsnw=;
- b=OTM/lQ+HOdWZUihBiiehuCNg0Sc6MfVQP198lvvneYAJogkEM++6Qt16
- 4B5vd+z8/teADBS6bb73e4aytnVT9+cgk5rpdVoJrzvTSFJCni16Qecg2
- o+Gg/2BMX41bsIAwKy+sGVH1dxKzqnHGQrLQwZehoG5R97GdPFZobPCmz
- AWfY+UD7hVkV1zZcGLfhnprVrwkuY3v2VQ6I1vXPWOBlN3AMKyKHqH2qE
- /CNQBlkd2+3NuKb34+hFusNSVhPPt6mGv4MbuYu3i+xk+kJleqz1T0GOW
- 3yTSF9NYKBEVzjI+CsFvGoT0avWLbvIwkixZVR5N6RKt/k54HE7s/7HdM w==;
-X-CSE-ConnectionGUID: AC13gqQLR32k7L1JPEaDww==
-X-CSE-MsgGUID: Ms8cOMMlTLakZaSZRHt2EQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="75162355"
-X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; d="scan'208,217";a="75162355"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 22:21:31 -0700
-X-CSE-ConnectionGUID: iUXN2BOdRyejtHzdz+jcJA==
-X-CSE-MsgGUID: d6JpmQZ7RymNFBrbkERABw==
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=HMRmkhlSZeRPoWnIES04wsDI6+skUiaEX4drkp4hVbU=;
+ b=RpoV1q+uierUP9SgclU7N77fo9r959G6RvSaPX7eJEO+7cYHz+YQuAhF
+ ANTfU/SjzlQWnnr1soNDTk4YXKf8mh6I5N6oCUMatslfZI15zv07/i2aW
+ 3EvnZKUOrUV19fSzPH+NX5C7QJEb69A+ZdyMi5z2QHEOxEDMtp3d7PPzM
+ QZxMBYr703nGYhD1hyGPhlmy797vwNbcf9rM6aZ1zJ33qnOPL7iVOXEVK
+ 1IkWc6DJp11IbspFiAKMDVRwF7BH0HBRtuOKM3OxAaShPLGNOCnGaq00U
+ u3eocdN6vxO56W55PdMfQcoeYyFjfffDioUrERnFS9J9W+7EqOcXYRCd+ A==;
+X-CSE-ConnectionGUID: 9FSZzIgVTuu4RtmH2WEVag==
+X-CSE-MsgGUID: 5uFmuArnQb67ZBLHcp0e/w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="98069647"
+X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; d="scan'208";a="98069647"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2026 22:43:04 -0700
+X-CSE-ConnectionGUID: 8fNVdT17QbulUS5SiSNfzQ==
+X-CSE-MsgGUID: tZTyXsgjRBezQGvy195nnQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; 
- d="scan'208,217";a="220158954"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 22:21:30 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; d="scan'208";a="229357659"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2026 22:43:03 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 24 Mar 2026 22:21:30 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.37; Tue, 24 Mar 2026 22:43:03 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 24 Mar 2026 22:21:30 -0700
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.6) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Tue, 24 Mar 2026 22:43:03 -0700
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.46) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 24 Mar 2026 22:21:29 -0700
+ 15.2.2562.37; Tue, 24 Mar 2026 22:43:02 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=C+WB3s+7DsNlLuJ7eyWaHed8ZEFQA941WWn3FswIkslemK1eZmnj8RVi2TfYSig7hPfpmfjmOLQC70OmPE1RaqAMhQFOymq9/c+M9jN8rQx/alIWjpmzeQz9cmNeQFG4DrhJbK+7+NDbNkqdkZ1tUj0DSZd65PvG8f9RYPza8OPq8pgkZ/J+Ezr2It2yHLgxhA0dHevKEyzoYFgMkhbCUoiJDqfUXgjH2F8Dm/I7mtb9J4P+HVo5e86gtyY61yuRXt2phYe3fQ1JsNrLi4oC9dbVO+b1quUTOTUiUM/mLL69ABJ8AJ+tXNbVBfPs2OrMTG9oOWYo12tOoZ0BE+K3GA==
+ b=Clb+cUjq96zymSfwkHgfVC15dfGoLUhacklfGTtnh1cGl0Csm6bzrMNRWJWk0uMv9QGn8pZ+wdSHASESyCvbaPE1APWOWjYvdCJxTpqUitQF4VAxiAVtAYp0J5jHIoL68Sko5woSinNcwl8m9Ij8LvDzzRLUA0YxQAPYScdTqTSu03MXQ1kizMLWLb9RbLh+NoYKO/PU8/Nde5gSZbwd66ZDU6FWhFGOFMADAxQyVRtDo8kB11aXVeV5gwn31KjHPPHQigLq5hBp0rchavDyWPyFVP78LnfDQIt/O0sJXDWttBphA4zOn8oyxJmxn44KjedzpMZklOzdCNQgC+s4Gg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pKZyK1vzyY1e5qUo8Ek/Ugtd/yPZ4uyKheUh2eAPFNw=;
- b=Qv0/i0uj1TSxT1nqeTpYvyG//MQIq0aCr2G7d1TnIyLoZnZBkwVFQ1ZhaciaaFtAjBJZJli3pqRGT5OcLFLqueSvYwNu9tNz1+dz/bmt5GsEs0LMWwiGDExin/N4AE4ViXKRNm7fPG4872STghmGnO8j0/Bw3jjYEuf/OF6siYyTdFfmNQnRaQpXW4DraFeuYJuUpcg3B6wdCwnbhwyW4svOkghypaOpEFDsDMmaLMCB5EQ2BkrP0EZlC2W8/7p+eF2ej84wvfr6qb+mCZzaQq4UKAoRNawyrj3dYDjluI1VqBlyiBSqqVk5OwGhtGc2vdyvA8GodrzX8PS5aknV2w==
+ bh=kJb2jkJrk+hOJPRB3UQ+XHOSGRlX25eErnZJWc8JDZ8=;
+ b=RZSGQ3i+5VqSJ7kt933Xf+iLBOevRtDxGNeRet6FTA/3IrbmKVb5Bl01zaXzeH/PER3v61UnuIa3fhginuOuhMr1GFjKj2ujdyR1+g34urWGp+3fDsaSYtD/4BhLzBVrxvuSfQP03Fr4rzMimzfN2xKQpLvODCEFIX6ZLeTB5k2yvDdyp3iOi7BpUqOH0SfQZb6022MoipYylt/ZLiOdsMivvf3/PG9nZMwq6B+JC9Y5L90NlzGRocjrVDFf4cZJOe4QZdWRW5P62ONfch7PVcxWWU4TMu482hpyI4WpQI53LxA90tClLna81AsA3F8ap/Agspnx30/lXCqYYbG6tQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from LV3PR11MB8695.namprd11.prod.outlook.com (2603:10b6:408:211::15)
- by PH8PR11MB6779.namprd11.prod.outlook.com (2603:10b6:510:1ca::17)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10)
+ by PH8PR11MB6732.namprd11.prod.outlook.com (2603:10b6:510:1c8::10) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Wed, 25 Mar
- 2026 05:21:27 +0000
-Received: from LV3PR11MB8695.namprd11.prod.outlook.com
- ([fe80::ccc3:3fd6:58f5:927]) by LV3PR11MB8695.namprd11.prod.outlook.com
- ([fe80::ccc3:3fd6:58f5:927%3]) with mapi id 15.20.9745.019; Wed, 25 Mar 2026
- 05:21:27 +0000
-Content-Type: multipart/alternative;
- boundary="------------t5vEK6At6E9JRJknleTNywGq"
-Message-ID: <3b1013f3-8ba2-4b13-888a-000e26f4128a@intel.com>
-Date: Wed, 25 Mar 2026 10:51:18 +0530
+ 2026 05:42:54 +0000
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1]) by DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1%6]) with mapi id 15.20.9745.019; Wed, 25 Mar 2026
+ 05:42:54 +0000
+Message-ID: <d6a943e7-b154-4453-b05e-81d12234cf57@intel.com>
+Date: Wed, 25 Mar 2026 11:12:35 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v6 1/1] drm/xe/pf: Restrict device query responses in
- admin-only PF mode
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, Michal Wajdeczko
- <michal.wajdeczko@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?= <piotr.piorkowski@intel.com>, Matthew Brost
- <matthew.brost@intel.com>, =?UTF-8?Q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, =?UTF-8?Q?Micha=C5=82_Winiarski?=
- <michal.winiarski@intel.com>, Dunajski Bartosz <bartosz.dunajski@intel.com>,
- <dri-devel@lists.freedesktop.org>
-References: <20260316064100.2542412-3-satyanarayana.k.v.p@intel.com>
- <20260316064100.2542412-4-satyanarayana.k.v.p@intel.com>
- <875x6lq64y.wl-ashutosh.dixit@intel.com>
+Subject: Re: [PATCH v4 2/2] drm/i915/dmc: Enable PIPEDMC_ERROR interrupt
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+References: <20260317063713.3288576-1-dibin.moolakadan.subrahmanian@intel.com>
+ <20260317063713.3288576-3-dibin.moolakadan.subrahmanian@intel.com>
+ <DM3PPF208195D8D35471EE2EBE5EA7E3E92E341A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ <4d7f5f9a-9ef9-47b9-9494-b7b67c2b774a@intel.com>
+ <DM3PPF208195D8D6962842E2C2C7D797EE2E349A@DM3PPF208195D8D.namprd11.prod.outlook.com>
 Content-Language: en-US
-From: "K V P, Satyanarayana" <satyanarayana.k.v.p@intel.com>
-In-Reply-To: <875x6lq64y.wl-ashutosh.dixit@intel.com>
-X-ClientProxiedBy: MA5P287CA0120.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1d0::6) To LV3PR11MB8695.namprd11.prod.outlook.com
- (2603:10b6:408:211::15)
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <DM3PPF208195D8D6962842E2C2C7D797EE2E349A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5PR01CA0043.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d6::16) To DM4PR11MB7183.namprd11.prod.outlook.com
+ (2603:10b6:8:111::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV3PR11MB8695:EE_|PH8PR11MB6779:EE_
-X-MS-Office365-Filtering-Correlation-Id: c0e78a91-4111-4760-10e1-08de8a2e5d10
+X-MS-TrafficTypeDiagnostic: DM4PR11MB7183:EE_|PH8PR11MB6732:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6cf7b38f-8449-4507-2c68-08de8a315c5b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|8096899003|18002099003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info: GESSLLSpZnqUuG3d4+uxHbgjyKqNDaQqdTpLhMF0OCIE/KUFUY2btVSAJ+880m5HYyoM9tym5ScUURN8Y+DDmd0uu4zdoz9TNPZI7Wo3FBMOQ+ve2XFpxQDWd6RCCe/9LL4RzetcQ8g8pR492/gKuLIvozZ3cSlRGl6aEx6uSrDyyL36ObhWTTej7mPeM84G30ePc4W66MINI2ySyzgJe7s2Naq5q0OCHPVQy5ZW7qtrvb45IFnriD7TR3oG5SbHCf6AmGG8zHgP7IznI2je1HaHAitJHoqtmTVS/hGwgaCX1vjJarX99fxvig/R593ltLA26BWCQP0tlzMuT7N7VCqQn2y7lG/qcVsFlYfmv6MTJJ/czL2pgZBmD4Bqtf9O/807m2e5AZOGTT75MFUJ1WhuLZddwxTiCakvonpg3ZA95rUuwfNHnleT+chdpL3PgXLgWqnWaF9gLqK3NSUnrWwKSsUEi0P36ZHuN2OiugymZj349f7cfhYTyv0oYdbM9WXxYQajy7FscygvWn8L3sEtJnUEgXii0xPFRZNGyFLEZSZZ8+uiBXwzjZ9/54ZngjSZEv616gCJEEf0qIIQGdHBUJj6NPZOp9AbBVnbo2lZN9LLVVcBW1DMxLXRuS/X2T0lcDpjk/fIOAnXapnwyb7lysKosqGSFSecKTLSKsW9vUSPfNclP1/NvKiwe2PpRiJV27XuStk8PsO2bOTdOavpigdEobQ0HAiKrbksEys=
+ ARA:13230040|366016|1800799024|376014|18002099003|22082099003|7053199007|56012099003;
+X-Microsoft-Antispam-Message-Info: C51bRkafP36mZSY3U7BvrBIxmnXUVVQ417YixQlKUNfDHyf0s5kaztYrxbNUqhRrN1yJluCCxq6mR3VFan4tp+CLU2BRMXIpGUyARYMEGybehonukHzsBEsjAb+DMnHBA77NF2cP4SBgAjbs9V2GSKH1w+ttRJ7lUZBYl7+/7ZWMlmk4ZGqRBQ/5RJMVvXdteeaft+HjHYDgxFmg3V5AQrrhXCHFlSTWHjZtGShmWfvhtcnTel7SVL5DM0T9mzE9guMbtFGfLGgHckvhhCDwsl08epJ9Rlwd2fljHHlT7KWkyL3sy4s17zYMnBL61H/gKsR92Wx/BhxDggCUlnCv/TT6c9zGp8MPtzenXoRsb2+vfINi0pu/XdgcKN3ApQ7rLMKzVVbFrmneSGwUkMkmh/hMc/BMVzcV4L/RQOhuWEXH4oCxyeSDWA4y2z1LVlTzgiH/pB9GL+DrOQRoy1VZmgFCx/IB0VvK7X8utYTYFV0UMH90ACb3aI+B8foH4vc/NM1pWhgPyobI3M7VHMacAw+VFr38ibmsHmbcp0kb1LM9mT2yCVVe25DYE1qhn9k9ReEB+4hV9K+aDaIOwBjpwQsDY5GyGCxI2nD7FvsMva3mI56x/5WPKNoBUB8j7y5JKPeMFAyO8DZ5oiY3ZnhteAivbY4PzEqf+2ieMPMJv1C/rhoLPmeFjRLKzZxAz44/333IBTnrDLLLVHDqe9sxbosh7mTtNpraM5xzfC/7l/4=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LV3PR11MB8695.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(8096899003)(18002099003)(56012099003)(22082099003);
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB7183.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(22082099003)(7053199007)(56012099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZmF3bmQ4VjlqTWpDVHlOWEpaaFBZakRaSWxyQmxERGJTcjFRcFlIQVNhQlNV?=
- =?utf-8?B?Y2tWYVpERFV1ZCs0K3dsOVZ0Zk5yVzBBclNUUUxwRlcrVkd1bnA5RHdwRFAv?=
- =?utf-8?B?K0xnblREb1FaTmNhUkFpSkhiVUxzd2ZRSTZZR01MdCt2d0t1MlVmK05VRXJL?=
- =?utf-8?B?SnJ3U1c3SkUzRVdwUENJb2NTai91VlpBdTlHcnBVdTVyZitOZzhtWStId1U4?=
- =?utf-8?B?MGpWdEFPWk82WDJuS1pMcDFxd3dRVmtCdyt1emRHTlJ6TkQyVXcwN2tNblo2?=
- =?utf-8?B?NE1oWHpqaG5Jeit0aTc0VDRjSkVFUHBMRFY5bTVBeTZIbFQ2UTNlOEZ3QVRV?=
- =?utf-8?B?eUpZcnI1TFp5UFlJTkkxdUdOT3o1ZjhhaElaYkdOaVY2UG85QjFiclBCU1Vt?=
- =?utf-8?B?RlJXclhlMlJyK05ybDZwNVhzbnFKaFhKd2R4SzVWc3luekthU2hvWlBvQWdn?=
- =?utf-8?B?TnREYnc4VjhwdDBXUGYzdUZzWHgwTGV2UVk2bzIxK3czeUh6STlLU3RyYUpR?=
- =?utf-8?B?Tmh4NGNYRUVtWkFmVVE0aFRsb3dKczd1U2pjY0dFQlI5YUg4WitLOVNWWFlW?=
- =?utf-8?B?MHBkc01ZNnU1UWY4Qzg4V0NGWThJSStHWEUxMnhINWFwbzlWekU0Zjh0MXpW?=
- =?utf-8?B?SHI0OFF2V3JkSGFVbUN6b1ZqQ2ZKZ0FZWmVvanFFb091VlhQY2tYMW5WL0Vs?=
- =?utf-8?B?amI1UVhJK2pJUmNmUWE1NENUNG1sQ1NSblUwZmRUMHc2ZGpBRUZsS05zUEtM?=
- =?utf-8?B?STBjN21QV2l2bjA1c3dDZE1HNU8zOE5aaTRoS0pMcmpsUlNCbnh6cm53NzJm?=
- =?utf-8?B?TXhKaCsraTdBa0dQdnU0VGNEZmJpTU93dEZhdU5IdWNldnlXdzlZQWkyNTFE?=
- =?utf-8?B?V0RMVi9MSFR2RlAxRkI4MjREWjdKblF0VURmY0JNRGVOOTRPUkhIUzEvYVl2?=
- =?utf-8?B?RENKZFgrVDVORU1XYkdiOEJGWmpVMWM0RldHcGhSVDUwdjNTMDU3MEl1WHp5?=
- =?utf-8?B?WTNzVkU4ZnQvNmNxU3hDS2hjczVyVTFJQ2liNTBHUjNNSi9FQWM4Tjd0RWZI?=
- =?utf-8?B?d3E3dGdKMHo2L3BtdHl2WG5zcVVmWGRBcmh6emRISEVpUVlTaUVpaDg1MVk4?=
- =?utf-8?B?Vjc3cUR4OXBjaWdKMXloRW8wR1N4K1Z1Ukk2VnhUSHNOdWJjSkgzcFR4ZnVF?=
- =?utf-8?B?VkpjM0xGSEZ3MDdKbkl3dEx6UXBWMkdhbkpyOFhleHZJajV2cE9JWnhFbC9p?=
- =?utf-8?B?b2VBU1hpUTQwc012WHQ3WERwZUpLQm9Jbm5rVWRWY0N0cjI0WlNsdGRaSTBT?=
- =?utf-8?B?MW5uSUtrenpWdkFmdldDWjhMWmFETTFmczFYRUdzOEw1VGxxaHhzQlpidzFX?=
- =?utf-8?B?Si9zRkdra0J4MTQ4ZWx5Rjh5WkFrQ1o2bVZBYXZTcjJwZ1VVWmpxNkhQQTNj?=
- =?utf-8?B?ZVNvdW5OWVBmZFlQSWpWOUFLUC9TSUtMWjZqeElXc3U1UlEzOG9qdmR1cUxT?=
- =?utf-8?B?NU02K3JhbktkUG1SSUcwMHBkdHBuY3BMVEVGb0h2VDNlWDdMQXM4V0gxOWxP?=
- =?utf-8?B?SFltTmZEK0lmc0cvbFEvK1hzSEFsRjBTeWlNWDB0Y3NoMEhZei9UQ3Rkcjhy?=
- =?utf-8?B?REZJVmxaZDlPbllOdFlXdUU3UGZ5aGNqZTJlTktRdWVUdGJVWGZBQjl5d1h5?=
- =?utf-8?B?VVJIMEVFckZsQVE2aFNVWGNvS1ZiYUtNTFg2WlE5MU5TRWt6eHNDTVZJRVhS?=
- =?utf-8?B?L0hjTlM2b0pLS2M0OS9kWW9ORTgxbFozU3NKRElyNGpUVWgvWmZSZHlUNmNK?=
- =?utf-8?B?RVlDeStBd2FvM1NKdEx6QWs4K2Z6ckJHMm55Um43bFJ4RDJibXRCUDVTdDhO?=
- =?utf-8?B?VEJhSmRuNlZ6M0hyTGhzWktTTWxHYlFpd0hOb1ZMSjNsYmJYZUI0LzFEZkxT?=
- =?utf-8?B?RC9mK0pYT21VMXluZkF6aWYxNkVnY1Rpc0ZPUkljSjYwbG40dXo0bmI5S3dD?=
- =?utf-8?B?clhZR0FYa1RlMnROOXBmVUhuZGRZTU5yWXVPMWMxOFBHdElkZEp2djlDZ1lo?=
- =?utf-8?B?RC8rVW13VmRnR2l6aE1BdWc0SWQ2WFhpZVVkMlBNR2l0WnhEek55dzNtUHZr?=
- =?utf-8?B?WmJrcWFBZVVHQ0RNaEMwYjVrOWxtMHVmNzJXYTNleTZYcDNkVDQ4Yko2VUNx?=
- =?utf-8?B?UTJab05ZS2NmdCtVb0lxVVZiN1NHcXRTL0RXajJWb1FHbmxQdjhBT0hQcitj?=
- =?utf-8?B?Q0swcE41RTljb3lrZ3F0dkEwRU44VjQzam9TRUUxUE5YaUVjYmlOLzN6SjZW?=
- =?utf-8?B?eU15bUF0SElCVm5RaTNLUGVtaUlBeTROMFNzZWRoc0pTc1pKWEhqN214R1lY?=
- =?utf-8?Q?ukhjeUrrq4eU4hag=3D?=
-X-Exchange-RoutingPolicyChecked: Wbbhatz+uo0xM/oyCmAqpVZRttcqIphSeldVmJ13CLMOkrNtWOk1MAYVAGBfPhVutomYnrPjCEAg46gCAhqQj0R2tH2vTzdnRDpLZi1WD1LVvOP7WJR/apnu7MG63ldbLRBwtL44HQaPSWmlgcF7rhaNJruh7DuRqRmNFACov5mhxePgmQ+X6uNZ/X61ITevF4h8z4r4SZXqsTFDxTRi9Z+zXUylEl+8w3H1sRP+Skxf64QXX//MbGKhwUjJhqkP1LDds9JdiLlGldgYtJAM5OxQbKf9ZVm3pzBtEoP/AtC9gpM4e25GUN4RtWg7iikh6a+xi7mBQplkDg+PlrFEmw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: c0e78a91-4111-4760-10e1-08de8a2e5d10
-X-MS-Exchange-CrossTenant-AuthSource: LV3PR11MB8695.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c1FId3AzaFQxOXZ3S2c5cEhvQTF1U1krNGFsT1gvNS9RTWhraGlybUxYVWNl?=
+ =?utf-8?B?dkYyU3pNd1dsNG9aZFJTTTZQSTRLOGZtNm9KWkl0SjJZZ2tzd1g3TlltenFQ?=
+ =?utf-8?B?N2EvK0d4YnFIc1plVi9tMkd3dTFvWXNvQ3pSdVhUMFJyZndVWHdYcnJIZWdk?=
+ =?utf-8?B?dGhYNzVvVHZZUWtPMGFEWW1jbG9keVdkK3JhQktYZWhRTUt2RzJxVUNIZ3dX?=
+ =?utf-8?B?TE9jZW41OUhDWjlLYjBUOGgyUGVBdGp2TkdNWktCWTN5c2dDUUlRWTNXbUk2?=
+ =?utf-8?B?LzlsMHF2ZENoQ3Q4MlY5Y1F4dXNtWXJlU3lYV21YQUI4MGk4c1VjMUhHZHFq?=
+ =?utf-8?B?M0UyY0o0ZGI5ZkJKM0RlNEVITE1BbE42TVprazVrQzdjWFZHbFBVZEp4d3ow?=
+ =?utf-8?B?QmczTW5xazc1d0pQMHl1c3QzUEg1UGF6UktRcVdWL24zK2gxUFJtVzNPZ2dz?=
+ =?utf-8?B?dm1meU41Vkdna0xmcW84OVBaSjNScHB5bGFkTFFDa2FRdm0yaGFlTU93RWRQ?=
+ =?utf-8?B?eVRwUmJoUUs5RU1tWGcySlNPWFhrSlRmVTVkOVFIVUQ0cDB5WFF1Sy9zc1FO?=
+ =?utf-8?B?TnVNbE9mN0tIeG5ZQ1l0ei9paWFpaW5JK3hwT3pBaENwVmFpOE56WXc2S1Vh?=
+ =?utf-8?B?WjBvdlRQVVdSOUxBNFZBVmdUQk9HUHpVbjZpQ0gzZ3oyRVJ0cVhEVVhEOVph?=
+ =?utf-8?B?RHJ0d2RQOU1sVENZSTRvL1p0RHVCNjJvakRYNW9nL0hVYUZEMWFBR2dib2Ex?=
+ =?utf-8?B?aUZCSE0vNlZtNnppLzB1Zy9COEY4bW5CbHBXYUFGL1dWdlpyMzh2Tkh4OXlx?=
+ =?utf-8?B?VW43OCtJTkhVdDVET3krR2Q2UFA0cDNLTlR0dkZNNVY0dm1RazZYUzJmdGJT?=
+ =?utf-8?B?Z0NwK25rdnFsSTdJVjlRS0s3d0JsTjB6cjFSZ012MzRBSmVIbWNaeGMvbnZq?=
+ =?utf-8?B?OGV6aUJXcXBSQTRhSWl5ZU5LN0xzTU5JK0U2WExFVUdVWHFSelJPZTdOQUVo?=
+ =?utf-8?B?Z2JaVnZrWDhMcFNYYmt5MkZNSFdvTWtjSmMyK0ZMZkpoNjhLS2cwOTRLSStn?=
+ =?utf-8?B?RHhhbnV5UnpNMGxoTlRTRDZKZlM2R01lK1V6bi9CNTZBM1NkSHR1azd6enNS?=
+ =?utf-8?B?R3k3WERNVUdzNC9TRlNqbUl3YXh4K0M2bE4rd0hYWk51c1ZiRGs5cWZWWnE0?=
+ =?utf-8?B?Vmh1cnA4NmhVcW5NaWM1Q3pIY0pacER2MEtPaGVVVDE1dVBWQ2FWZ1NlOW9R?=
+ =?utf-8?B?Zis1ZWM5bGY2VnZxOXJXR082UHpoSFFidWl2TGo2NTNrYmxVQms5bDVaZGlt?=
+ =?utf-8?B?cHowQVdiN1VtbSs2UW8vZXJNL1JrTFE5enpnUDRRV3FYZVdLV3BOM280N2dJ?=
+ =?utf-8?B?MlJMWFhBUzlTK1R1aUoxQ1F1QTZRUjNlejVRNWFHVWoyTHdaRDVXS3JFRzJ3?=
+ =?utf-8?B?UExHOW5EMkNwTmhMNUNtV2JHN29rbUdIbWdHQnRLUVl0M2t5RGwyR20rZ0Rk?=
+ =?utf-8?B?TUI2bFU2WEZ3WnNUd0QrKzlKRkZnVnRWUjc4SVhHSDJXSDFNOUpaeC92R1RV?=
+ =?utf-8?B?VUZEdXYzL0o2VlFYbTYvWEtsYnBSSGtFcE5wYlI4WTB1WmtoMjYwRzNRWGF3?=
+ =?utf-8?B?M1ZZU3dabnZtcWhkQ2R5dGlnRi9Nd2Y2OER4TUl4V0I1VVp1T3RaMm1lQll0?=
+ =?utf-8?B?RGMvL3k5ZEhqWGVwZU9INURLYnBhcWtiYzBBVzRUQk9xeW53Sk5ucEhuTGtq?=
+ =?utf-8?B?aXhwSEZaeDUyVHRzRmpvTGF5UnFSeUVuYm9Cd1BZWmJycUNOZWdLdk82RXZC?=
+ =?utf-8?B?K3U2YnpvdmVscElWQmF3b2tXOUNFTVA4NktrNktleUNkbFhuSlpOOTg4b1Rl?=
+ =?utf-8?B?UkNKYmdROGJBWi9sKys1bStGNmlsdUhnZDNqWlVvTjdZZElQWnhuVEp0eVRG?=
+ =?utf-8?B?b0daaVEwZGZmQUlWWUs3RmlrSUlndmJzZEZnSDZiMXZ0N2xURXF0M05maDNt?=
+ =?utf-8?B?YkRDd1FRVldDa2kyRkpLZGFGMm8rSjNoMVF6SUhaeFR3aFVja2VteHlsb3lk?=
+ =?utf-8?B?bVlHOHN4c3NOWkttcnNZZFUvS3hDZEdYV2Q0YlliTGxFWWorV2ZrOUtUZVhn?=
+ =?utf-8?B?UjBoS0JQbm1KaXNudjNSVG9xaGlGeG9RWHF1QlNwSUgvcS84L3pqeWVObmVB?=
+ =?utf-8?B?c21Ob1A0VUt5OWNRVVlKbmdPYkcvS3ZkUFdXL2tvaW1PdU11eWttTkQzOG9j?=
+ =?utf-8?B?emw5OEY0bFd4U0lqWk1EeVJDU2RXUWlBajlqQ3FRemgzK1crODdyQXBhRGxj?=
+ =?utf-8?B?YmxHNEFqakF3NzRIV2VlMzhWeWZFdjRUUmIrY2xQUU9xVmhORFUyUC9pLzI4?=
+ =?utf-8?Q?sjkoNcw01kNYTNLeHpNl8omh7LE5olewEpy8E?=
+X-Exchange-RoutingPolicyChecked: i9fB0VlGtzcbVAYNfaSxOuBZu5xJ+fwdnvBdsjM8+5Aa3jjxzYui+5CFu/AGn58/0qDR1MTilsYcyl+fyDMq9KepbaIiyfnl72lyiXabrlaUIgmEyzj5wLyJfZPcOoadr6OX51Xq0Q/h6lFb/H2H1GEU8AZYfaqCYMyPzlYWtMNpxrB897GAk5zeUVWi7HPuOWw2zHfWUXtA/KEpUnlwJh6ranHyxYUd0/Gz6mAu3x9sJdE07Q+hZEtvAhj8UjxBuD+uDgJQHoGnq1KaWKSjHA5UCSSqr6ncmI0My/aW38pZTZK7+tH3hMbN72cFWv2YFj8WHMOUMEM0CVURz0OLWA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6cf7b38f-8449-4507-2c68-08de8a315c5b
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7183.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2026 05:21:27.1405 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2026 05:42:54.4865 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: kIWNv7dgw/utp5vrQ0Q1d/5A+aGVv92dMRgkPGfhhZXfrVMo2pDHA/xpcd/dmMF7qvuVIx838E5iNF4rsWQMC1b2++g+gZrcno7v9B/wGZ8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6779
+X-MS-Exchange-CrossTenant-UserPrincipalName: RB3NoYbHs84WoHxr4ymIU9nUkaXQzzdw/mnBqJUjeSt5IyfEu3H95g6axVa7tBs1LKR4sjYsuvesCT5tIDhWUHoZGYgyziKR3Tdhh9zHLFwF0ER9cPohEfJ+mmB+6HnT
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6732
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,149 +175,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---------------t5vEK6At6E9JRJknleTNywGq
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
 
+On 25-03-2026 10:26, Kandpal, Suraj wrote:
+>
+>> -----Original Message-----
+>> From: Dibin Moolakadan Subrahmanian
+>> <dibin.moolakadan.subrahmanian@intel.com>
+>> Sent: Monday, March 23, 2026 10:14 AM
+>> To: Kandpal, Suraj <suraj.kandpal@intel.com>; intel-gfx@lists.freedesktop.org;
+>> intel-xe@lists.freedesktop.org
+>> Cc: ville.syrjala@linux.intel.com
+>> Subject: Re: [PATCH v4 2/2] drm/i915/dmc: Enable PIPEDMC_ERROR interrupt
+>>
+>>
+>> On 17-03-2026 13:06, Kandpal, Suraj wrote:
+>>>> Subject: [PATCH v4 2/2] drm/i915/dmc: Enable PIPEDMC_ERROR interrupt
+>>>>
+>>>> Enable PIPEDMC_ERROR interrupt bit for display version 35+.
+>>>>
+>>>> Changes in v2:
+>>>> - Move PIPEDMC_ERROR interrupt enable to a separate patch (Ville
+>>>> Syrjala) Changes in v3:
+>>>> - Add Bspec reference (Suraj Kandpal) Changes in v4:
+>>>> - Add TODO to check the enablement of PIPEDMC_ERROR for PTL (Suraj
+>>>> Kandpal)
+>>>>
+>>>> Bspec: 70296
+>>>> Signed-off-by: Dibin Moolakadan Subrahmanian
+>>>> <dibin.moolakadan.subrahmanian@intel.com>
+>>>> ---
+>>>>    drivers/gpu/drm/i915/display/intel_dmc.c | 8 +++++++-
+>>>>    1 file changed, 7 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c
+>>>> b/drivers/gpu/drm/i915/display/intel_dmc.c
+>>>> index 38b284a0db82..6c803b2dcbcd 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+>>>> @@ -510,7 +510,13 @@ static void pipedmc_clock_gating_wa(struct
+>>>> intel_display *display, bool enable)  static u32
+>>>> pipedmc_interrupt_mask(struct intel_display *display)  {
+>>> The TODO comment needs to be moved here
+>> I placed the TODO below 35+ version check, so that after PTL validation it can
+>> directly replaced by new mask as below.
+>>
+>> if (DISPLAY_VER(display) >= 35)
+>> 	return PIPEDMC_FLIPQ_PROG_DONE |
+>> 		PIPEDMC_ERROR;
+>>
+>> if (DISPLAY_VER(display) >= 30)
+>> 	return PIPEDMC_FLIPQ_PROG_DONE |
+>> 		PIPEDMC_GTT_FAULT |
+>> 		PIPEDMC_ATS_FAULT |
+>> 		PIPEDMC_ERROR;
+>>
+>> Are there any specific conventions regarding TODO placement?
+>> The current location  seems to be correct to me, but I can move it if
+>> i915 prefers placing TODOs at the beginning of the function.
+>>
+> When you add the TODO where you did you are dictating where you the think change should come
+> And how it should be.
+> That should not be case. TODO should come just before the place where you made the change saying
+> "Enabed PIPEDMC ERROR for DISPLAY_VER >= 35 for now since 30 is untested. Enable it once validation passes"
+>
+> Also the code you mentioned is once way to do it the but the same code when optimized
+> Will look like this
+> mask = PIPEDMC_FLIPQ_PROG_DONE;
+>
+> if (display_ver < 35)
+> mask |= PIPEDMC_GTT_FAULT | PIPEDMC_ATS_FAULT;
+>
+> if (disaplay ver >= 30)
+> mask | = PIPEDMC_ERROR;
+>
+> return mask;
+>
+> Hence we move it on top there
+>
+> Also a basic cscope on i915 to check where TODO are added will give you where we usually add TODO's ; )
 
-On 25-Mar-26 2:47 AM, Dixit, Ashutosh wrote:
-> On Sun, 15 Mar 2026 23:41:02 -0700, Satyanarayana K V P wrote:
->> ---
->> V5 -> V6:
->> - Updated commit message.
->> - Return number of engines and memory regions as zero instead of returning
->> query size as zero (Michal Wajdeczko).
->> - Allow all other query IOCTLs excepts query_engines and query_mem_regions
->> (Michal Wajdeczko).
-> Can someone explain the reason to move away from the approach in v5? Afais
-> v6 has issues of this sort:
-The V6 is due to comment from Rodrigo from V5 "
-
-Looking to this patch I got myself wondering if query.size == 0 is
-long-term proof...   I mean, if we need to get some OA/RAS/telemetry
-kind of API that end up needing some kind of query information....
-
-Michals, thoughts on this?
-
-I know, I know, this solution is indeed much better than my
-proposal of no ioctl exposed. But I mean, since we are taking
-this path and allowing some ioctl. Shouldn't we prepare at least
-the query for that and then only limiting the number of engines
-and memory regions to zero?"
-
-
-and comment from you (Dixit, Ashutosh)as well.
-
-
-"Also, there were some questions about supporting OA in the
-admin-only-pf. Here are some high level points about this:
-
-* OA/EUSTALL is not supported in VF's in current products, this might
-   change in the future
-* OA/EUSTALL in admin-only-pf can be used to profile global counts across
-   VF's
-* OA/EUSTALL themselves don't allow workload submission etc. They only
-   allow reading profiling data from HW
-* OA/EUSTALL in admin-only-pf will need the observation ioctl to be
-   supported. Also, some other query ioctls such as hw configuration,
-   topology, frequency will be needed to make sense of OA/EUSTALL data."
+Will move the TODO to the top of the function.
+Not convinced the mask restructuring provides a clear benefit or constitutes an optimization.
+The additional variable doesn’t seem necessary in this context.
 
 >
-> * query_engines will return 0 engines but query_hwconfig will return > 0
->    engines
-> * query_engines will return 0 engines but query_oa_units will list out the
->    engines
-> * query_oa_units will return valid oa support but observation ioctl will
->    fail
+> Regards,
+> Suraj Kandpal
 >
-> v5 seems to have avoided contradictions of this sort. Or this doesn't
-> matter? Thanks.
-Since we are not exposing any other IOCTLs, even if query_hwconfig  and
-
-query_oa_units find number of engines > 0, the UMD can't submit any WL. So, should be 
-fine right.
-
---------------t5vEK6At6E9JRJknleTNywGq
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 25-Mar-26 2:47 AM, Dixit, Ashutosh
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:875x6lq64y.wl-ashutosh.dixit@intel.com">
-      <pre wrap="" class="moz-quote-pre">On Sun, 15 Mar 2026 23:41:02 -0700, Satyanarayana K V P wrote:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">
----
-V5 -&gt; V6:
-- Updated commit message.
-- Return number of engines and memory regions as zero instead of returning
-query size as zero (Michal Wajdeczko).
-- Allow all other query IOCTLs excepts query_engines and query_mem_regions
-(Michal Wajdeczko).
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-Can someone explain the reason to move away from the approach in v5? Afais
-v6 has issues of this sort:</pre>
-    </blockquote>
-    The V6 is due to comment from Rodrigo from V5 &quot;
-    <pre class="content" style="box-sizing: border-box; overflow: auto; font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; font-size: 13px; display: block; padding: 9.5px; margin: 0px 0px 10px; line-height: 14.3px; color: rgb(51, 51, 51); word-break: break-all; overflow-wrap: break-word; background-color: white; border: 0px; border-radius: 0px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">Looking to this patch I got myself wondering if query.size == 0 is
-long-term proof...   I mean, if we need to get some OA/RAS/telemetry
-kind of API that end up needing some kind of query information....
-
-Michals, thoughts on this?
-
-I know, I know, this solution is indeed much better than my
-proposal of no ioctl exposed. But I mean, since we are taking
-this path and allowing some ioctl. Shouldn't we prepare at least
-the query for that and then only limiting the number of engines
-and memory regions to zero?&quot;
-</pre>
-    <br>
-    <pre class="content" style="box-sizing: border-box; overflow: auto; font-family: Menlo, Monaco, Consolas, &quot;Courier New&quot;, monospace; font-size: 13px; display: block; padding: 9.5px; margin: 0px 0px 10px; line-height: 14.3px; color: rgb(51, 51, 51); word-break: break-all; overflow-wrap: break-word; background-color: white; border: 0px; border-radius: 0px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;">and comment from you (Dixit, Ashutosh)as well.
-</pre>
-    <br>
-    <pre>&quot;Also, there were some questions about supporting OA in the
-admin-only-pf. Here are some high level points about this:
-
-* OA/EUSTALL is not supported in VF's in current products, this might
-  change in the future
-* OA/EUSTALL in admin-only-pf can be used to profile global counts across
-  VF's
-* OA/EUSTALL themselves don't allow workload submission etc. They only
-  allow reading profiling data from HW
-* OA/EUSTALL in admin-only-pf will need the observation ioctl to be
-  supported. Also, some other query ioctls such as hw configuration,
-  topology, frequency will be needed to make sense of OA/EUSTALL data.&quot;</pre>
-    <blockquote type="cite" cite="mid:875x6lq64y.wl-ashutosh.dixit@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-
-* query_engines will return 0 engines but query_hwconfig will return &gt; 0
-  engines
-* query_engines will return 0 engines but query_oa_units will list out the
-  engines
-* query_oa_units will return valid oa support but observation ioctl will
-  fail
-
-v5 seems to have avoided contradictions of this sort. Or this doesn't
-matter? Thanks.</pre>
-    </blockquote>
-    Since we are not exposing any other IOCTLs, even if&nbsp;<span style="white-space: pre-wrap">query_hwconfig</span>&nbsp; and&nbsp;
-    <pre wrap="" class="moz-quote-pre">query_oa_units <span style="white-space: normal">&nbsp;find number of engines &gt; 0, the UMD can't submit any WL.
-So, should be fine right.&nbsp;</span></pre>
-    <blockquote type="cite" cite="mid:875x6lq64y.wl-ashutosh.dixit@intel.com">
-      <pre wrap="" class="moz-quote-pre">
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------t5vEK6At6E9JRJknleTNywGq--
+>>> Otherwise,
+>>> LGTM,
+>>> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>>>
+>>>>    	if (DISPLAY_VER(display) >= 35)
+>>>> -		return PIPEDMC_FLIPQ_PROG_DONE;
+>>>> +		return PIPEDMC_FLIPQ_PROG_DONE |
+>>>> +			PIPEDMC_ERROR;
+>>>> +
+>>>> +	/*
+>>>> +	 * TODO: Check if PIPEDMC_ERROR bit enabling causes errors
+>>>> +	 * on PTL, enable it if validation passes
+>>>> +	 */
+>>>>
+>>>>    	/*
+>>>>    	 * FIXME PIPEDMC_ERROR not enabled for now due to LNL pipe B
+>>>> --
+>>>> 2.43.0
