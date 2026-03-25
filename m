@@ -4,162 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2334D109C059
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 19:13:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2437E109C057
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 19:16:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B02F810E851;
-	Wed, 25 Mar 2026 19:13:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D64B410E832;
+	Wed, 25 Mar 2026 19:16:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TujoluiF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="d/QK387q";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03EC110E851
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Mar 2026 19:13:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 847E910E7D3
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Mar 2026 19:16:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774465982; x=1806001982;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=lfdDBrB33dM3YHtWsjaL329x1BaOgXtpozrut0gCrEI=;
- b=TujoluiFSnBRdB3zx57p+wcd6EXTuVRm/RXejmjJOBQZf2m5wWy4E2+B
- 7a5VXgMuUegpINTEadjz7/7duZYBzKZiwm//W2B6rERDmFJ0rgvMzRp8V
- 2ui+KQ1DrScO0CdBnbTjENrFrH5JfQwL4YMuSYjgiAtrWivGCFj0ksUJt
- aXU5hjCPnZ0Dpol9Vbgj5CBdyRaArplWWLiLJEA+wewqoyY18ae6jpior
- wR9wD5CufUvIklVbCdlvAS1hcqHzoYbSAYXoGlvBo75TotlUJ7Hurq+CB
- hfQJRmFG7Ri+xqNloCzFZZwOvGfFiMC52YMh0YoBllN/LXsXEBJdzh6ja Q==;
-X-CSE-ConnectionGUID: iFm59sesRnuO5EPqnaoMfQ==
-X-CSE-MsgGUID: sfO9AIB3T7qphrX55OW7vA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="75401781"
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="75401781"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 12:13:02 -0700
-X-CSE-ConnectionGUID: A6kTOc0bREGXC7YNKaSNLQ==
-X-CSE-MsgGUID: 8RUSFR+KRwarI2m1tL4How==
+ t=1774466188; x=1806002188;
+ h=date:from:to:cc:subject:message-id;
+ bh=zJqcPwLdIb4zPJz9LDPONal5Qng5Zr+0sBtG0EsRYS8=;
+ b=d/QK387qmN5ie46wE0Z08jVI6+S/ouV70SdkzSAY7qf33r2tyvkQ/HUR
+ Ap9TN1hai9GO5k0jSNQ2NsG94mfgbnv9fTwR/0M+RInza+6l/9PDh3k4F
+ MMjpCNxd2K3/1oFAOIU7UM4yjX9g/nZ3HlQV1Rz+8xtCxeRHRESACTzAw
+ lMiEiRzLPBNCD7va/CkwdrHs8TgqrTghUuY9MNBuKU4C8o2vmlluXkk0X
+ Gn+RSsWm2y+wRWGD0Dw8Tjxdhhk8kMgxpwU1U187lAJC56110omhNxVO8
+ bRF3KCKWedBbytyFJgtA2HNlW6c5/S19wtNKRIxhQq6hv5AOKWx2D1zWR A==;
+X-CSE-ConnectionGUID: aWusM6O7RxGIoIxeHVqeEA==
+X-CSE-MsgGUID: lauieAWaRkSfJAj+yuFC5A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="79421866"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="79421866"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 12:16:28 -0700
+X-CSE-ConnectionGUID: tb+vOqH2R6OoUde64gE4fA==
+X-CSE-MsgGUID: 3shDkSncQrGuQnl8wKL5Qw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="228839568"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 12:13:02 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 25 Mar 2026 12:13:00 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 25 Mar 2026 12:13:00 -0700
-Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.47) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 25 Mar 2026 12:12:58 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bvv3ZcHT+o1WxWkJUMOvlFfxK/oxxVcc50TQtxeBZSwzOyJxsgcowJ0pUcblj3x8tW7Rp0E2nYZ+R0lprK+/qe9LGK8wX/j6GQNic5ChMXoeJpYHyCUuNz+YZD4+ZsfEXLALV+zX0nLPk1MM7YBfCKhM/cFI0L0HKmIxsu6P7bY4jpgMckhqPQ8lxhkvIz2qsPheWEsHRAbxm2qfdc2gqZS58j/axjgH5WfrgIhEFtRlihBWEWQ4VBgwCvQ9OH2C+ul17K+Pda41IpfHij55TnNNonJLsZ5Rm9TdFIoAsWxBUi+KF3vm3ywyu9HnZCAbfqdipyKVws9Dp1SWnbuDoA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bsyXDlvOsSFyDwCcyp7E1PrXd8oPJfxPTSceIzSfUZQ=;
- b=kLlK6r0VOI9XGDjNqFvEs+LnvQZXkUlNxjv+hgt6oW683ZTaPZnhNWfEU0rmjo/iBuyioUbJ2xpFnDRIF7FFQy30M1Yr9elivBBBBLPSj9FM3uSQ2nUGP1ZSSDcDpzTR8jkWTSZkWZ9LgDTjAFs1J7N8umShmBZxnAbp7Iz7VXOqZ0Pn656TfeJcBJa+O1t8Pl1VZK5RqufjwN1YGcnqPzZ2iTBhhMgh0ddYYutuvmxiVAalY8dFlT5wdscYD/o7MtgP7+mvCG+GnwmMl9BUby+ml/YTVMeebqEKYWLIXFSzj/C5bzbwQlXzhz+zYomMF5uKak1BUbrnV3ZRC+4IUg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB7408.namprd11.prod.outlook.com (2603:10b6:8:136::15)
- by CH3PR11MB8414.namprd11.prod.outlook.com (2603:10b6:610:17e::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.6; Wed, 25 Mar
- 2026 19:12:53 +0000
-Received: from DS0PR11MB7408.namprd11.prod.outlook.com
- ([fe80::53aa:3f7a:59cd:e057]) by DS0PR11MB7408.namprd11.prod.outlook.com
- ([fe80::53aa:3f7a:59cd:e057%3]) with mapi id 15.20.9745.012; Wed, 25 Mar 2026
- 19:12:53 +0000
-Date: Wed, 25 Mar 2026 12:12:47 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: "Anoop, Vijay" <anoop.c.vijay@intel.com>
-CC: <intel-xe@lists.freedesktop.org>, <badal.nilawar@intel.com>,
- <rodrigo.vivi@intel.com>, <aravind.iddamsetty@intel.com>,
- <riana.tauro@intel.com>, <anshuman.gupta@intel.com>,
- <matthew.d.roper@intel.com>, <michael.j.ruhl@intel.com>,
- <paul.e.luse@intel.com>, <mohamed.mansoor.v@intel.com>, <kam.nasim@intel.com>
-Subject: Re: [PATCH v12 4/7] drm/xe/xe_sysctrl: Add System Controller
- initialization support
-Message-ID: <acQzryCoU9zL3Vie@soc-5CG1426VCC.clients.intel.com>
-References: <20260325120030.510480-9-anoop.c.vijay@intel.com>
- <20260325120030.510480-13-anoop.c.vijay@intel.com>
- <acQXkNAorUC7EtnH@soc-5CG1426VCC.clients.intel.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <acQXkNAorUC7EtnH@soc-5CG1426VCC.clients.intel.com>
-X-ClientProxiedBy: MW3PR06CA0006.namprd06.prod.outlook.com
- (2603:10b6:303:2a::11) To DS0PR11MB7408.namprd11.prod.outlook.com
- (2603:10b6:8:136::15)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7408:EE_|CH3PR11MB8414:EE_
-X-MS-Office365-Filtering-Correlation-Id: 72d92b85-1416-446f-644c-08de8aa28362
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|18002099003|22082099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: uBDL3LCapLvth9+oVqOz0GU1mAw2PQPrnDXyl/U2n+zUEVrjohWgQR6RPagqDGRev9xnXVx1c5oCaGF5LCRmSkebHR0Gl1I+Pp6uL6uWvBuLz9iJ3ZHzRk5xSmXNUZbVXiQ4/Z5oLD1Ckb7ooHADrcGpGXUhhERAf6OTgz/2IpeFYnsc1isKd6sT/TwfzkDd4m8M6s2lebLI+D6UmcQQGp7jDJK2DWlt94gD+oVUTfS8gVfCbBHjTHz5W9lhu4RfmFjfSBRZX1OT43kxnFkj2fsNo5dWnFUUr0kqyZ0BsnPa44PaaEdmqCqC6UMCcAJLt3FGTvIGS/5u80VUabbZE9K7ujjo95Pf+0a92Iu8oIckO31zDGI7XGYwjFUydYN62MmV010Vj9eRMP2CTOg0flMpF8n1SPU7XZMDtAeV/o+WatR8z+EZ5k1rP/M2Mo0h+tv+dV5E+jruYCpWfDAK35HwlqZ1HX3FRDDEn5LwO8qZQcsnhjQJmxTTiOZkyDaAdRXduCn/2mg4vlyBezl41Gd/FE6NdgbKH4VzS6hU885Dzl+odGah3i8puLfcr2lrdFWZH5/U1OwFtJyK0suO675i74rNleCQBRjlDtDUIb0XIxpPrfbw2oNcmpQLrn4OM7kUuuYRgegmUeEVpDLUZ0rsNfZ/XSEScL1AAdFZlmxlVwOtiUWsRjfVNwTJru4C
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB7408.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aEpyN2ZqbklLditKOWRUSmhuT1N3TzBqbFpyaWJETHhEY0dEZ1U1c3ZkRDJI?=
- =?utf-8?B?YXFzUmdxZFZQbk9ENFdpdHNaNXBLd0VqeHEwSjlTMEY1TTVSSUJwYjJOMjNw?=
- =?utf-8?B?UzkvQ05FK3RmNEZiUUpMS0pnenFpaGFUUWxxcCticTk0c2JpejRicmxKU3pY?=
- =?utf-8?B?ejQ3UVdNa2Q0Rjk1QzB0NjRsT1JpbnFzRFhQZXlMS0MzbXdscVlRcFAzZlZa?=
- =?utf-8?B?TnRjaU5ldllUTVpURWNQWXNJdm9DRUxGdzJYWUxLSnYwTkpXcDJnNSs2elJ0?=
- =?utf-8?B?c0JaZHhxU2dvTzJFbEh3WW1VSEgxNmxkQ2tPdEUwbGRqS0ZRNlBwTG94Znd5?=
- =?utf-8?B?ajdpaC9wZ0RjbEhib1ZVYWF4RUs4ZlBzTVFkVDR0OVllSWx5dDNvNVpZVjlt?=
- =?utf-8?B?VU5JZEZ5d2tyZm5oZEI2OHR5L3luY1htN2w1ZTlZNUI3ZW40RUhIdFF1U2lt?=
- =?utf-8?B?UXNLUTBNdVYxTnVCMmVKOElzZlVEQ05zb3RyUG1ubkQ0S2J3aGtKUlFWYjJo?=
- =?utf-8?B?aWZVejlvbk4xNjlvTWc4OXBObFJpZWJrZG9VdmplVWRXcUF5NDh0bHZobXZm?=
- =?utf-8?B?K2dkMnJ2YU1TMzY1ZGI5ZmRhYXJGWWN1a0xpZ1MvaU1rZ3cwZG5BaXRxcHFi?=
- =?utf-8?B?UjArU2U3RHpDNDBMMWpNTXFqcU9pMWpOOVQrdllKM3ZxczQyWThRMTFtZ24y?=
- =?utf-8?B?Z3FQNlNJczkvV0NaSTlMY0FldVBaSytwRmdrN0YzMTFIeU1hZmdyWkxqQjI2?=
- =?utf-8?B?L0Z5RERLRHFxSHI2a0w1MjlJb2FNSHJtVmJhZmdmcTRFV2Q5blF2QzRFWlMr?=
- =?utf-8?B?WFhGSDN2dDdwbHI5MHkyVU0xZ3ZxVnUyZ1BaaHRNQ2V0blhjY2laamM0Nnh1?=
- =?utf-8?B?Y0RzcFFiQlRCTmZnN0pFdWhjNHBvVE5Mc1VsLzZ3ZUhMR0l6SjgwRG1wTzhJ?=
- =?utf-8?B?L3huWFAzdHpyMEpLTnMzYzVpNDFsY0IwNlZNc0NYL1hrdjJ6azNSUTVnZ2ZZ?=
- =?utf-8?B?M0M5UGhkOE1jcnNNZFdjUjJzWlBsbW1zb1oya1FJWkhmLzVyR0JtNERTdk5a?=
- =?utf-8?B?RHZrNU1Ud2x0eXZoVUduWXpvSm9ZcnMyVGFEOUpmNUNRRUQxM2RrcTU3QXZ4?=
- =?utf-8?B?ck9qMElCbWNZYWRJc0hEQmJCekNXZVRRaC9vNUdzSEVLSjFBcWF5WXdEc2po?=
- =?utf-8?B?OEVjT3orQTRhV1hnYUduS3R2YkN5NHE3alBWVWV1MGcxR0pBcHhnN2VsZGVB?=
- =?utf-8?B?Z2x6bUFHeWQ4SitUN3Y1bmVuVjNXWm1FT3IycElLMndiQ3Qza1k3QmR4WG8y?=
- =?utf-8?B?RTZoMGo0QUJzZEFhVVFJUVBMYjVqa2g2R1RFQUtVUFhhbWo0MmUxTURWZWhL?=
- =?utf-8?B?RjEzVFh0aTRicFlxSkJ0WEpKRFVqMmZuR1QxTTNma091U3RtQjZ2NUZERk1w?=
- =?utf-8?B?V09zQ3MrTHVueTlicXFwL2RIaGJobGxsc0RZSHFKQ2JoNkZaV0dRR2VlM2d1?=
- =?utf-8?B?NmgvUzZ5TXJWZzFKZ28zZ2JlZkxGWCtJTGJ3N0RwVCtjWEFNZFZGa0RiRXkz?=
- =?utf-8?B?SnBUcHhoalRIRjRzNUpDaWZjSERtNDRCT0lLdmExQjU2RTVrbXQ0cnhRT09W?=
- =?utf-8?B?eTRQSTNUTGFrTFN5dXRUeVUxNkpqaEttUVpUVDFpRWxPZC9FMDVsSFhYRGhH?=
- =?utf-8?B?WTN5QjVxRmdrSlVpZUtmeGpPcllReDBJWmNjZjNpQUJFZDNicjV1TThoZXlN?=
- =?utf-8?B?WUNxKytrY3I5T0k4alZKaXdFbFMyYmtLa3BDNHBpZjRwNmZUdzMyRWxKN2lH?=
- =?utf-8?B?NisxVEhPeVlrYzZseWx2ZGc1ZXBoc3JvT3pGTUhvL1lnaWoxN093VDB5SjdE?=
- =?utf-8?B?ZkF3WjFaa0I1UUROT3hSQTFuOTFqVk94OXB4eXV0Mk5qUlFXQlBsYjd5alhs?=
- =?utf-8?B?VENHNXBvRW1IaGlsODRtYjFXempnc1E0SGVtbEh3LzRRVzF2Q0RLWHgyVFB4?=
- =?utf-8?B?RkZoWVErWXcrS3JJZUcwM09Sc3BvZEpDWUgyK1hOeDhVaUtVZTFCTG5LWEZR?=
- =?utf-8?B?OHBiTHkwMG9qblF0SHIzSzQ3S1F5RkFzNmZGNHlNbEZTM1d5aGZ1QXpwdHQz?=
- =?utf-8?B?R1BTMDliaWNva0dLWitpSkpyLzlGQ2xkay9FK0hFc3JkK1lheTYrZE85VHk0?=
- =?utf-8?B?WWI4a29aYXNjQ1I2a2JLQ0V1U3BqQmtSTWFHaFczZDAzZW01c2lIUGwrWHJK?=
- =?utf-8?B?N0NiaXJnbUZJU0V3V3hqaSsvbnBqeklNNXd1NDlDV2dHUXloWnJqU3VNZVRv?=
- =?utf-8?B?ZFdmbUR0czd5UGtncGE2WElCR0NPeHhtNHRyb2w1cTJyRmZ1OWdPOVIxd1Ir?=
- =?utf-8?Q?XgWuKqiDq6LbF/10VV3dl20jSMZb0I1WlWJ92?=
-X-Exchange-RoutingPolicyChecked: CEznPyaS7k4SJmMx4C977Zfp03fQL/0bQPvkFtEUG+nYGZDjiqONTQsk807ym66yokO6U3wfnyWLteNoAzrZ7xaOrGKKI/2jAx63zT6BwYQOTNM1SGVrYEEyqJNQSNeJxmhkOf3SXz/PIl72Ckmp8pN6toDDVkXDEQd6fIFmpnw+l2LYCx69qB8b6cqUN3wR37kRzFQfziAFleI+y1/iywNQs1ispmJQrG7dE5GEUDsm2nLFT0qAR4RR3Wj8rAANvugHlPYHwOCbYfPrYzlIrF2zadXmLqmOjJapjoYQHpgjDEQjFBGp6a1ZSL6wxP7JlgSjgCzhKC39cAErc6XOCg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 72d92b85-1416-446f-644c-08de8aa28362
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7408.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2026 19:12:52.9714 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3ExZd3Vb2FGXyK97y22aQV5JsWLBzLgsGwaH/CtS7WyDnSWpr0+fE5U4njXhmD7PGsIOTJ8Dd8FkKNmZj4/5FxawG/SxEyY/PEOi3C8LWDM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8414
-X-OriginatorOrg: intel.com
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="229234882"
+Received: from lkp-server01.sh.intel.com (HELO 3905d212be1b) ([10.239.97.150])
+ by orviesa004.jf.intel.com with ESMTP; 25 Mar 2026 12:16:27 -0700
+Received: from kbuild by 3905d212be1b with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1w5TiK-000000007ZJ-1rxP;
+ Wed, 25 Mar 2026 19:16:24 +0000
+Date: Thu, 26 Mar 2026 03:15:50 +0800
+From: kernel test robot <lkp@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-next] BUILD SUCCESS
+ 737ec1e81a816731ba74b3f510441b1f4d5068f6
+Message-ID: <202603260341.sHQpaQ45-lkp@intel.com>
+User-Agent: s-nail v14.9.25
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -174,216 +64,202 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Mar 25, 2026 at 10:12:48AM -0700, Umesh Nerlige Ramappa wrote:
->On Wed, Mar 25, 2026 at 05:00:31AM -0700, Anoop, Vijay wrote:
->>From: Anoop Vijay <anoop.c.vijay@intel.com>
->>
->>Add initialization and cleanup infrastructure for System Controller
->>subsystem and integrate it into xe device probe path.
->>
->>During initialization, platform support is checked via has_sysctrl
->>capability flag and the mailbox region is configured through SoC
->>remapper interface.
->>
->>Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
->>Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
->>---
->>v8: (Matt, Michal, Shuicheng)
->>- Fixed include order
->>- Added VF check
->>- Converted runtime checks to assertions
->>- Added sc_to_xe() helper
->>- Fixed kernel-doc syntax
->>
->>v10: (Riana, Anshuman)
->>- Updated sysctrl documentation
->>- Cleaned up commit message
->>- Fixed mutex lifetime management
->>---
->>drivers/gpu/drm/xe/Makefile     |  1 +
->>drivers/gpu/drm/xe/xe_device.c  |  5 ++
->>drivers/gpu/drm/xe/xe_sysctrl.c | 82 +++++++++++++++++++++++++++++++++
->>drivers/gpu/drm/xe/xe_sysctrl.h | 21 +++++++++
->>4 files changed, 109 insertions(+)
->>create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.c
->>create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.h
->>
->>diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
->>index 49de1c22a469..b2d44e7169dd 100644
->>--- a/drivers/gpu/drm/xe/Makefile
->>+++ b/drivers/gpu/drm/xe/Makefile
->>@@ -123,6 +123,7 @@ xe-y += xe_bb.o \
->>	xe_step.o \
->>	xe_survivability_mode.o \
->>	xe_sync.o \
->>+	xe_sysctrl.o \
->>	xe_tile.o \
->>	xe_tile_sysfs.o \
->>	xe_tlb_inval.o \
->>diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
->>index c8e91ff464a7..6df85a240f83 100644
->>--- a/drivers/gpu/drm/xe/xe_device.c
->>+++ b/drivers/gpu/drm/xe/xe_device.c
->>@@ -65,6 +65,7 @@
->>#include "xe_survivability_mode.h"
->>#include "xe_sriov.h"
->>#include "xe_svm.h"
->>+#include "xe_sysctrl.h"
->>#include "xe_tile.h"
->>#include "xe_ttm_stolen_mgr.h"
->>#include "xe_ttm_sys_mgr.h"
->>@@ -985,6 +986,10 @@ int xe_device_probe(struct xe_device *xe)
->>	if (err)
->>		goto err_unregister_display;
->>
->>+	err = xe_sysctrl_init(xe);
->>+	if (err)
->>+		goto err_unregister_display;
->>+
->>	err = xe_device_sysfs_init(xe);
->>	if (err)
->>		goto err_unregister_display;
->>diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
->>new file mode 100644
->>index 000000000000..fd23f345d8c7
->>--- /dev/null
->>+++ b/drivers/gpu/drm/xe/xe_sysctrl.c
->>@@ -0,0 +1,82 @@
->>+// SPDX-License-Identifier: MIT
->>+/*
->>+ * Copyright © 2026 Intel Corporation
->>+ */
->>+
->>+#include <linux/device.h>
->>+#include <linux/mutex.h>
->>+
->>+#include <drm/drm_managed.h>
->>+
->>+#include "regs/xe_sysctrl_regs.h"
->>+#include "xe_assert.h"
->>+#include "xe_device.h"
->>+#include "xe_mmio.h"
->>+#include "xe_printk.h"
->>+#include "xe_soc_remapper.h"
->>+#include "xe_sriov.h"
->>+#include "xe_sysctrl.h"
->>+#include "xe_sysctrl_mailbox.h"
->>+#include "xe_sysctrl_types.h"
->>+
->>+/**
->>+ * DOC: System Controller (sysctrl)
->>+ *
->>+ * System Controller (sysctrl) is a firmware-managed entity on Intel dGPUs
->>+ * responsible for selected low-level platform management functions.
->>+ * Communication between driver and System Controller is performed
->>+ * via a mailbox interface, enabling command and response exchange.
->>+ *
->>+ * This module provides initialization and support code for interacting
->>+ * with System Controller through the mailbox interface.
->>+ */
->>+static void sysctrl_fini(void *arg)
->>+{
->>+	struct xe_device *xe = arg;
->>+
->>+	xe->soc_remapper.set_sysctrl_region(xe, 0);
->>+}
->>+
->>+/**
->>+ * xe_sysctrl_init() - Initialize System Controller subsystem
->>+ * @xe: xe device instance
->>+ *
->>+ * Entry point for System Controller initialization, called from xe_device_probe.
->>+ * This function checks platform support and initializes the system controller.
->>+ *
->>+ * Return: 0 on success, error code on failure
->>+ */
->>+int xe_sysctrl_init(struct xe_device *xe)
->>+{
->>+	struct xe_tile *tile = xe_device_get_root_tile(xe);
->>+	struct xe_sysctrl *sc = &xe->sc;
->>+	int ret;
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: 737ec1e81a816731ba74b3f510441b1f4d5068f6  drm/xe/xelp: Expose AuxCCS frame buffer modifiers on Alderlake-P
 
-Instead of the earlier code, let's just do this.
+elapsed time: 1425m
 
-	if (!xe->info.has_soc_remapper_sysctrl)
-		return 0;
+configs tested: 183
+configs skipped: 3
 
-This will make sure probe works fine on platforms where soc remapper 
-sysctrl is not present.
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
->>+
->>+	if (!xe->info.has_sysctrl)
->>+		return 0;
->>+
->>+	if (IS_SRIOV_VF(xe))
->>+		return 0;
->>+
->>+	xe_assert(xe, xe->soc_remapper.set_sysctrl_region);
+tested configs:
+alpha                             allnoconfig    gcc-15.2.0
+alpha                            allyesconfig    gcc-15.2.0
+alpha                               defconfig    gcc-15.2.0
+arc                              allmodconfig    gcc-15.2.0
+arc                               allnoconfig    gcc-15.2.0
+arc                              allyesconfig    gcc-15.2.0
+arc                                 defconfig    gcc-15.2.0
+arc                   randconfig-001-20260325    gcc-15.2.0
+arc                   randconfig-002-20260325    gcc-8.5.0
+arm                               allnoconfig    clang-23
+arm                               allnoconfig    gcc-15.2.0
+arm                              allyesconfig    gcc-15.2.0
+arm                                 defconfig    clang-23
+arm                             pxa_defconfig    gcc-15.2.0
+arm                   randconfig-001-20260325    gcc-8.5.0
+arm                   randconfig-002-20260325    clang-23
+arm                   randconfig-003-20260325    clang-23
+arm                   randconfig-004-20260325    clang-17
+arm64                            allmodconfig    clang-19
+arm64                             allnoconfig    gcc-15.2.0
+arm64                               defconfig    gcc-15.2.0
+arm64                 randconfig-001-20260325    clang-23
+arm64                 randconfig-002-20260325    gcc-11.5.0
+arm64                 randconfig-003-20260325    gcc-8.5.0
+arm64                 randconfig-004-20260325    clang-23
+csky                             allmodconfig    gcc-15.2.0
+csky                              allnoconfig    gcc-15.2.0
+csky                                defconfig    gcc-15.2.0
+csky                  randconfig-001-20260325    gcc-10.5.0
+csky                  randconfig-002-20260325    gcc-12.5.0
+hexagon                          allmodconfig    clang-17
+hexagon                           allnoconfig    clang-23
+hexagon                           allnoconfig    gcc-15.2.0
+hexagon                             defconfig    clang-23
+hexagon               randconfig-001-20260325    clang-19
+hexagon               randconfig-001-20260326    gcc-8.5.0
+hexagon               randconfig-002-20260325    clang-23
+hexagon               randconfig-002-20260326    gcc-8.5.0
+i386                             allmodconfig    clang-20
+i386                              allnoconfig    gcc-14
+i386                              allnoconfig    gcc-15.2.0
+i386                             allyesconfig    clang-20
+i386        buildonly-randconfig-001-20260325    gcc-14
+i386        buildonly-randconfig-002-20260325    gcc-14
+i386        buildonly-randconfig-003-20260325    clang-20
+i386        buildonly-randconfig-004-20260325    clang-20
+i386        buildonly-randconfig-005-20260325    clang-20
+i386        buildonly-randconfig-006-20260325    clang-20
+i386                                defconfig    clang-20
+i386                  randconfig-001-20260325    clang-20
+i386                  randconfig-002-20260325    clang-20
+i386                  randconfig-003-20260325    gcc-14
+i386                  randconfig-004-20260325    clang-20
+i386                  randconfig-005-20260325    gcc-14
+i386                  randconfig-006-20260325    clang-20
+i386                  randconfig-007-20260325    clang-20
+i386                  randconfig-011-20260325    gcc-14
+i386                  randconfig-012-20260325    gcc-14
+i386                  randconfig-013-20260325    gcc-14
+i386                  randconfig-014-20260325    gcc-14
+i386                  randconfig-015-20260325    clang-20
+i386                  randconfig-016-20260325    clang-20
+i386                  randconfig-017-20260325    gcc-14
+loongarch                        allmodconfig    clang-19
+loongarch                         allnoconfig    clang-23
+loongarch                         allnoconfig    gcc-15.2.0
+loongarch                           defconfig    clang-19
+loongarch             randconfig-001-20260325    clang-23
+loongarch             randconfig-001-20260326    gcc-8.5.0
+loongarch             randconfig-002-20260325    clang-23
+loongarch             randconfig-002-20260326    gcc-8.5.0
+m68k                             allmodconfig    gcc-15.2.0
+m68k                              allnoconfig    gcc-15.2.0
+m68k                             allyesconfig    gcc-15.2.0
+m68k                                defconfig    gcc-15.2.0
+microblaze                        allnoconfig    gcc-15.2.0
+microblaze                       allyesconfig    gcc-15.2.0
+microblaze                          defconfig    gcc-15.2.0
+mips                             allmodconfig    gcc-15.2.0
+mips                              allnoconfig    gcc-15.2.0
+mips                             allyesconfig    gcc-15.2.0
+nios2                            allmodconfig    gcc-11.5.0
+nios2                             allnoconfig    clang-23
+nios2                             allnoconfig    gcc-11.5.0
+nios2                               defconfig    gcc-11.5.0
+nios2                 randconfig-001-20260325    gcc-8.5.0
+nios2                 randconfig-001-20260326    gcc-8.5.0
+nios2                 randconfig-002-20260325    gcc-11.5.0
+nios2                 randconfig-002-20260326    gcc-8.5.0
+openrisc                         allmodconfig    gcc-15.2.0
+openrisc                          allnoconfig    clang-23
+openrisc                          allnoconfig    gcc-15.2.0
+openrisc                            defconfig    gcc-15.2.0
+parisc                           allmodconfig    gcc-15.2.0
+parisc                            allnoconfig    clang-23
+parisc                            allnoconfig    gcc-15.2.0
+parisc                           allyesconfig    gcc-15.2.0
+parisc                              defconfig    gcc-15.2.0
+parisc                randconfig-001-20260325    gcc-8.5.0
+parisc                randconfig-002-20260325    gcc-14.3.0
+parisc64                            defconfig    gcc-15.2.0
+powerpc                          allmodconfig    gcc-15.2.0
+powerpc                           allnoconfig    clang-23
+powerpc                           allnoconfig    gcc-15.2.0
+powerpc               randconfig-001-20260325    clang-23
+powerpc               randconfig-002-20260325    clang-23
+powerpc64             randconfig-001-20260325    clang-23
+powerpc64             randconfig-002-20260325    clang-23
+riscv                            allmodconfig    clang-23
+riscv                             allnoconfig    clang-23
+riscv                             allnoconfig    gcc-15.2.0
+riscv                            allyesconfig    clang-16
+riscv                               defconfig    clang-23
+riscv                 randconfig-001-20260325    clang-20
+riscv                 randconfig-002-20260325    gcc-14.3.0
+s390                             allmodconfig    clang-18
+s390                              allnoconfig    clang-23
+s390                             allyesconfig    gcc-15.2.0
+s390                                defconfig    clang-23
+s390                  randconfig-001-20260325    clang-23
+s390                  randconfig-002-20260325    gcc-8.5.0
+sh                               allmodconfig    gcc-15.2.0
+sh                                allnoconfig    clang-23
+sh                                allnoconfig    gcc-15.2.0
+sh                               allyesconfig    gcc-15.2.0
+sh                                  defconfig    gcc-14
+sh                                  defconfig    gcc-15.2.0
+sh                    randconfig-001-20260325    gcc-15.2.0
+sh                    randconfig-002-20260325    gcc-15.2.0
+sparc                             allnoconfig    clang-23
+sparc                             allnoconfig    gcc-15.2.0
+sparc                               defconfig    gcc-15.2.0
+sparc                 randconfig-001-20260325    gcc-8.5.0
+sparc                 randconfig-002-20260325    gcc-14.3.0
+sparc64                          allmodconfig    clang-23
+sparc64                             defconfig    clang-20
+sparc64                             defconfig    gcc-14
+sparc64               randconfig-001-20260325    clang-23
+sparc64               randconfig-002-20260325    clang-23
+um                               allmodconfig    clang-19
+um                                allnoconfig    clang-23
+um                               allyesconfig    gcc-14
+um                                  defconfig    clang-23
+um                                  defconfig    gcc-14
+um                             i386_defconfig    gcc-14
+um                    randconfig-001-20260325    gcc-13
+um                    randconfig-002-20260325    gcc-14
+um                           x86_64_defconfig    clang-23
+um                           x86_64_defconfig    gcc-14
+x86_64                           allmodconfig    clang-20
+x86_64                            allnoconfig    clang-20
+x86_64                            allnoconfig    clang-23
+x86_64                           allyesconfig    clang-20
+x86_64      buildonly-randconfig-001-20260325    gcc-14
+x86_64      buildonly-randconfig-002-20260325    gcc-14
+x86_64      buildonly-randconfig-003-20260325    gcc-14
+x86_64      buildonly-randconfig-004-20260325    gcc-14
+x86_64      buildonly-randconfig-005-20260325    gcc-14
+x86_64      buildonly-randconfig-006-20260325    clang-20
+x86_64                              defconfig    gcc-14
+x86_64                randconfig-001-20260325    gcc-14
+x86_64                randconfig-002-20260325    gcc-14
+x86_64                randconfig-003-20260325    clang-20
+x86_64                randconfig-004-20260325    clang-20
+x86_64                randconfig-005-20260325    gcc-14
+x86_64                randconfig-006-20260325    gcc-12
+x86_64                randconfig-011-20260325    clang-20
+x86_64                randconfig-012-20260325    gcc-13
+x86_64                randconfig-013-20260325    gcc-14
+x86_64                randconfig-014-20260325    gcc-14
+x86_64                randconfig-015-20260325    clang-20
+x86_64                randconfig-016-20260325    gcc-13
+x86_64                randconfig-071-20260325    clang-20
+x86_64                randconfig-072-20260325    gcc-14
+x86_64                randconfig-073-20260325    clang-20
+x86_64                randconfig-074-20260325    gcc-14
+x86_64                randconfig-075-20260325    gcc-14
+x86_64                randconfig-076-20260325    gcc-14
+x86_64                          rhel-9.4-rust    clang-20
+xtensa                            allnoconfig    clang-23
+xtensa                            allnoconfig    gcc-15.2.0
+xtensa                randconfig-001-20260325    gcc-13.4.0
+xtensa                randconfig-002-20260325    gcc-12.5.0
 
-Delete the assert altogether here.
-
-Umesh
-
->
->Ashutosh pointed out that this is failing for other platforms that do 
->not support SoC remapper. Let's change this assert back to how it was 
->here - 
->https://patchwork.freedesktop.org/patch/701662/?series=159554&rev=7
->
->if the function pointer is NULL, just error out.
->
->Thanks,
->Umesh
->
->
->>+
->>+	xe->soc_remapper.set_sysctrl_region(xe, SYSCTRL_MAILBOX_INDEX);
->>+
->>+	ret = devm_add_action_or_reset(xe->drm.dev, sysctrl_fini, xe);
->>+	if (ret)
->>+		return ret;
->>+
->>+	sc->mmio = devm_kzalloc(xe->drm.dev, sizeof(*sc->mmio), GFP_KERNEL);
->>+	if (!sc->mmio)
->>+		return -ENOMEM;
->>+
->>+	xe_mmio_init(sc->mmio, tile, tile->mmio.regs, tile->mmio.regs_size);
->>+	sc->mmio->adj_offset = SYSCTRL_BASE;
->>+	sc->mmio->adj_limit = U32_MAX;
->>+
->>+	ret = devm_mutex_init(xe->drm.dev, &sc->cmd_lock);
->>+	if (ret)
->>+		return ret;
->>+
->>+	return 0;
->>+}
->>diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
->>new file mode 100644
->>index 000000000000..d5d8735038ae
->>--- /dev/null
->>+++ b/drivers/gpu/drm/xe/xe_sysctrl.h
->>@@ -0,0 +1,21 @@
->>+/* SPDX-License-Identifier: MIT */
->>+/*
->>+ * Copyright © 2026 Intel Corporation
->>+ */
->>+
->>+#ifndef _XE_SYSCTRL_H_
->>+#define _XE_SYSCTRL_H_
->>+
->>+#include <linux/container_of.h>
->>+
->>+#include "xe_device_types.h"
->>+#include "xe_sysctrl_types.h"
->>+
->>+static inline struct xe_device *sc_to_xe(struct xe_sysctrl *sc)
->>+{
->>+	return container_of(sc, struct xe_device, sc);
->>+}
->>+
->>+int xe_sysctrl_init(struct xe_device *xe);
->>+
->>+#endif
->>-- 
->>2.43.0
->>
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
