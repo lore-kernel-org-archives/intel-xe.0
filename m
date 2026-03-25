@@ -4,91 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A80D7FEA83E
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 11:17:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 175E2103A9A7
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 11:19:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A13010E223;
-	Wed, 25 Mar 2026 11:17:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yla9zdcW";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B39910E223;
- Wed, 25 Mar 2026 11:17:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774437476; x=1805973476;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=kzuhQRAn6uUGiXGPYc75BqKQ9p/wHs0wNpdD+t4UBMY=;
- b=Yla9zdcWWHX1HkPgnE4+zQ3gN8PgLC0VclsRBbjBrK3ws5ArBfDQgDJu
- FEq4DHHY68Ssc53ISiV12/F6VMXu+vBSf0oB0puecZdZTKWdk2S033P3b
- ECkXc9rGc2P7IothmtlgNs0uUSC3rtffgUPXLiYHMM7cjtuCXbOCqSaYG
- 3qrdJtFccLb46wNNVi1jP3GsvVdyKGSjl3N//+qNAn9sl/kSZ0aBAHS0d
- v/11PUzia1NJxVzyTk0HP/wolLsZJcP6i1qz256eYQI4XFiT5uHo+xSJM
- JnIudgRGzfiFzH3gne6Vbnav8ZzUAAWi70qnaQQ8RffuD2o/W0TmaKX7m A==;
-X-CSE-ConnectionGUID: NVd9XR3iStGn/JspTXh0sw==
-X-CSE-MsgGUID: Pq9ZKxepStyv5AJLxiMrXQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="78069095"
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="78069095"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 04:17:55 -0700
-X-CSE-ConnectionGUID: +or7FRj0Qpuy3B/PzeXj8w==
-X-CSE-MsgGUID: zCxjcdGPTlafOHFSmBgCsg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="226293924"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.117])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 04:17:46 -0700
-Date: Wed, 25 Mar 2026 13:17:44 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org,
- Werner Sembach <wse@tuxedocomputers.com>,
- Andri Yngvason <andri@yngvason.is>, Marius Vlad <marius.vlad@collabora.com>
-Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color format"
-Message-ID: <acPEWCZ2nvatVh08@intel.com>
-References: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
- <20260324-color-format-v11-3-605559af4fb4@collabora.com>
- <acLDPYuaVI2-12JX@intel.com> <23910073.EfDdHjke4D@workhorse>
- <acLrv5hLyNss-Px5@intel.com>
- <20260325-neat-elegant-raven-ebc9ab@houat>
- <acPA60Ci3n_t__xF@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC8E810E7D1;
+	Wed, 25 Mar 2026 11:19:14 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3BB310E7D1;
+ Wed, 25 Mar 2026 11:19:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <acPA60Ci3n_t__xF@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Enable_Pipe_writeback_=28?=
+ =?utf-8?q?rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 25 Mar 2026 11:19:13 -0000
+Message-ID: <177443755391.396080.1970602293084764832@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260325110744.1096786-1-suraj.kandpal@intel.com>
+In-Reply-To: <20260325110744.1096786-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,112 +36,109 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Mar 25, 2026 at 01:03:07PM +0200, Ville Syrjälä wrote:
-> On Wed, Mar 25, 2026 at 09:24:27AM +0100, Maxime Ripard wrote:
-> > On Tue, Mar 24, 2026 at 09:53:35PM +0200, Ville Syrjälä wrote:
-> > > On Tue, Mar 24, 2026 at 08:10:11PM +0100, Nicolas Frattaroli wrote:
-> > > > On Tuesday, 24 March 2026 18:00:45 Central European Standard Time Ville Syrjälä wrote:
-> > > > > On Tue, Mar 24, 2026 at 05:01:07PM +0100, Nicolas Frattaroli wrote:
-> > > > > > +enum drm_connector_color_format {
-> > > > > > +	/**
-> > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_AUTO: The driver or display protocol
-> > > > > > +	 * helpers should pick a suitable color format. All implementations of a
-> > > > > > +	 * specific display protocol must behave the same way with "AUTO", but
-> > > > > > +	 * different display protocols do not necessarily have the same "AUTO"
-> > > > > > +	 * semantics.
-> > > > > > +	 *
-> > > > > > +	 * For HDMI, "AUTO" picks RGB, but falls back to YCbCr 4:2:0 if the
-> > > > > > +	 * bandwidth required for full-scale RGB is not available, or the mode
-> > > > > > +	 * is YCbCr 4:2:0-only, as long as the mode and output both support
-> > > > > > +	 * YCbCr 4:2:0.
-> > > > > > +	 *
-> > > > > > +	 * For display protocols other than HDMI, the recursive bridge chain
-> > > > > > +	 * format selection picks the first chain of bridge formats that works,
-> > > > > > +	 * as has already been the case before the introduction of the "color
-> > > > > > +	 * format" property. Non-HDMI bridges should therefore either sort their
-> > > > > > +	 * bus output formats by preference, or agree on a unified auto format
-> > > > > > +	 * selection logic that's implemented in a common state helper (like
-> > > > > > +	 * how HDMI does it).
-> > > > > > +	 */
-> > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_AUTO = 0,
-> > > > > > +
-> > > > > > +	/**
-> > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_RGB444: RGB output format
-> > > > > > +	 */
-> > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_RGB444,
-> > > > > > +
-> > > > > > +	/**
-> > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR444: YCbCr 4:4:4 output format (ie.
-> > > > > > +	 * not subsampled)
-> > > > > > +	 */
-> > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR444,
-> > > > > > +
-> > > > > > +	/**
-> > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR422: YCbCr 4:2:2 output format (ie.
-> > > > > > +	 * with horizontal subsampling)
-> > > > > > +	 */
-> > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR422,
-> > > > > > +
-> > > > > > +	/**
-> > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR420: YCbCr 4:2:0 output format (ie.
-> > > > > > +	 * with horizontal and vertical subsampling)
-> > > > > > +	 */
-> > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR420,
-> > > > > 
-> > > > > Seems like this should document what the quantization range
-> > > > > should be for each format.
-> > > > > 
-> > > > 
-> > > > I don't think so? If you want per-component bit depth values,
-> > > > DRM_FORMAT_* defines would be the appropriate values to use. This
-> > > > enum is more abstract than that, and is there to communicate
-> > > > YUV vs. RGB and chroma subsampling, with bit depth being handled
-> > > > by other properties.
-> > > > 
-> > > > If you mean the factor used for subsampling, then that'd only be
-> > > > relevant if YCBCR410 was supported where one chroma plane isn't
-> > > > halved but quartered in resolution. I suspect 4:1:0 will never
-> > > > be added; no digital display protocol standard supports it to my
-> > > > knowledge, and hopefully none ever will.
-> > > 
-> > > No, I mean the quantization range (16-235 vs. 0-255 etc).
-> > > 
-> > > The i915 behaviour is that YCbCr is always limited range,
-> > > RGB can either be full or limited range depending on the 
-> > > "Broadcast RGB" property and other related factors.
-> > 
-> > So far the HDMI state has both the format and quantization range as
-> > different fields. I'm not sure we need to document the range in the
-> > format field, maybe only mention it's not part of the format but has a
-> > field of its own?
-> 
-> I think we only have it for RGB (on some drivers only?). For YCbCr
-> I think the assumption is limited range everywhere.
-> 
-> But I'm not really concerned about documenting struct members.
-> What I'm talking about is the *uapi* docs. Surely userspace
-> will want to know what the new property actually does so the
-> uapi needs to be documented properly. And down the line some
-> new driver might also implement the wrong behaviour if there
-> is no clear specification.
-> 
-> So I'm thinking (or perhaps hoping) the rule might be something like:
-> - YCbCr limited range 
-> - RGB full range if "Broadcast RGB" property is not present
-> - RGB full or limited range based on the "Broadcast RGB" property
->   if it's present
-> 
-> I think the "Broadcast RGB" property itself might also be lacking
-> proper uapi docs, so that may need to be remedied as well.
+== Series Details ==
 
-Oh, and I think a bunch of infoframe code still needs changes to 
-set up the quantization range properly for YCbCr. i915 does handle
-that part correctly, but eg. hdmi_generate_avi_infoframe() does not.
-I didn't spot any changes to that in the series.
+Series: Enable Pipe writeback (rev3)
+URL   : https://patchwork.freedesktop.org/series/152105/
+State : warning
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6f8db1a5c2a4ea267f57092339e5a629541b3b83
+Author: Suraj Kandpal <suraj.kandpal@intel.com>
+Date:   Wed Mar 25 16:37:44 2026 +0530
+
+    drm/i915/writeback: Modify state verify function
+    
+    Modify the state verify functions to take into account the fact
+    that writeback does not need all the timings for it to be set.
+    Moreover there is no need for dpll state nor do we need to set
+    any sort of flags for it.
+    
+    Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
++ /mt/dim checkpatch 41579e12882a0a3b881bfade003fcb1fd39c347c drm-intel
+1fff9a5173ba drm: writeback: rename drm_writeback_connector_init_with_encoder()
+e8616b662e6c drm: writeback: Refactor drm_writeback_connector structure
+-:95: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#95: FILE: drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c:84:
++static int amdgpu_dm_wb_prepare_job(struct drm_connector *connector,
+ 			       struct drm_writeback_job *job)
+
+-:526: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#526: FILE: drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c:91:
++static int dpu_wb_conn_prepare_job(struct drm_connector *connector,
+ 		struct drm_writeback_job *job)
+
+-:538: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#538: FILE: drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c:104:
++static void dpu_wb_conn_cleanup_job(struct drm_connector *connector,
+ 		struct drm_writeback_job *job)
+
+total: 0 errors, 0 warnings, 3 checks, 797 lines checked
+da13b7f38316 drm/i915/writeback: Add writeback registers
+-:12: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#12: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 136 lines checked
+6432e367776a drm/i915/writeback: Add some preliminary writeback definitions
+69530d328f61 drm/i915/writeback: Init writeback connector
+-:29: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#29: 
+new file mode 100644
+
+-:74: WARNING:ALLOC_WITH_SIZEOF: Prefer kzalloc_obj over kzalloc with sizeof
+#74: FILE: drivers/gpu/drm/i915/display/intel_writeback.c:41:
++	conn_state = kzalloc(sizeof(*conn_state), GFP_KERNEL);
+
+-:114: WARNING:ALLOC_WITH_SIZEOF: Prefer kzalloc_obj over kzalloc with sizeof
+#114: FILE: drivers/gpu/drm/i915/display/intel_writeback.c:81:
++	writeback_conn = kzalloc(sizeof(*writeback_conn), GFP_KERNEL);
+
+total: 0 errors, 3 warnings, 0 checks, 150 lines checked
+8f9f2cc3dfeb drm/i915/writeback: Add function to get modes
+cbc9b9896fb6 drm/i915/writeback: Add hook to check modes
+781165efa00b drm/i915/writeback: Define encoder->get_hw_state
+148a1426ca8b drm/i915/writeback: Fill encoder->get_config
+7d635e8df130 drm/i915/writeback: Add private structure for writeback job
+aadac84702b2 drm/i915/writeback: Define function for prepare and cleanup hooks
+-:63: WARNING:ALLOC_WITH_SIZEOF: Prefer kzalloc_obj over kzalloc with sizeof
+#63: FILE: drivers/gpu/drm/i915/display/intel_writeback.c:116:
++	wb_job = kzalloc(sizeof(*wb_job), GFP_KERNEL);
+
+total: 0 errors, 1 warnings, 0 checks, 95 lines checked
+aec3aa586753 drm/i915/writeback: Define compute_config for writeback
+fb4ccf52d3c7 drm/i915/writeback: Define function for connector function detect
+5667f1e2ce67 drm/i915/writeback: Define function to destroy writeback connector
+0bfb32c81a1b drm/i915/writeback: Add connector atomic check
+411f5decd3cc drm/i915/writeback: Add writeback to xe Makefile
+b5f382a43721 drm/i915/writeback: Add the enable sequence from writeback
+3c60f898a126 drm/i915/writeback: Define writeback frame capture function
+8956b20db7f5 drm/{i915/xe}/writeback: Add a writeback helper to get ggtt address
+-:48: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#48: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 63 lines checked
+b62351cf3d37 drm/i915/writeback: Configure WD_STRIDE reg
+f23c7074beca drm/i915/writeback: Configure WD_SURF register
+029a7a549a62 drm/i915/writeback: Enable writeback interrupts
+09575ced281c drm/i915/writeback: Initialize writeback encoder.
+c2a1b282b075 drm/i915/writeback: Define the disable sequence for writeback
+d0b6ab4e361e drm/i915/writeback: Make exception for writeback connector
+6f8db1a5c2a4 drm/i915/writeback: Modify state verify function
+
+
