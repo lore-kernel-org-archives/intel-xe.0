@@ -4,75 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7FC6106B53A
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 13:44:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CF77106B53E
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 13:50:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AD0A10E566;
-	Wed, 25 Mar 2026 13:44:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KAE5zjq0";
-	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6442010E1EE;
- Wed, 25 Mar 2026 13:44:24 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 5706260123;
- Wed, 25 Mar 2026 13:44:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83E8EC4CEF7;
- Wed, 25 Mar 2026 13:44:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1774446263;
- bh=R4VEk07h2v3XpY1QKdgb2vlUARw9jfCfolYo6/LkTvs=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=KAE5zjq0k6W6MQSkOk93LdaEMZFdhYeBkdfVVr5L9uBMksZM7Uj+Rg3tJ/F0cDoxQ
- /ZpWod11vMvBRZaWGpklLfxcVY8wnzkhrkpOKxO2ZpzX3i19eYIlo7JmFdPK8EEcbQ
- JBBTabX12+UWJfO1Bq/qIi6F99cuuS6xKFOHX2vMn9kETetBKgbivIuXWwjRZeoc68
- beV0nrCKaz3wo+/gqXJ9gA7YdKNV/Fs1hiFTBtGQQaaXsLS3mioPckoYsTNVOkDbRS
- G2w69gTn1NGrUnTnqKUR8XcjTDmia772g0/pL5mUppzkDufoGI7LB78+c4NUcgi3sA
- 5UJr5EIo2ULvg==
-Date: Wed, 25 Mar 2026 14:44:20 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>, 
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
- amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org, 
- Werner Sembach <wse@tuxedocomputers.com>, Andri Yngvason <andri@yngvason.is>, 
- Marius Vlad <marius.vlad@collabora.com>
-Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color format"
-Message-ID: <20260325-holistic-llama-of-plenty-acbeca@houat>
-References: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
- <CAPY8ntB9f_=f5kru=8w9BpTuqQR+93maGpT61EKU28Uay2vq8Q@mail.gmail.com>
- <20260325-quaint-bull-of-fortitude-dc68da@houat>
- <12425220.nUPlyArG6x@workhorse>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2A6B10E1E0;
+	Wed, 25 Mar 2026 13:50:22 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 228D910E1E0;
+ Wed, 25 Mar 2026 13:50:22 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8679602827430600728=="
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="nu5efgjywb5co2ik"
-Content-Disposition: inline
-In-Reply-To: <12425220.nUPlyArG6x@workhorse>
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Panel_Replay_BW_optimizatio?=
+ =?utf-8?q?n_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Animesh Manna" <animesh.manna@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 25 Mar 2026 13:50:22 -0000
+Message-ID: <177444662212.397331.4025638761044608016@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260325114154.3688550-1-animesh.manna@intel.com>
+In-Reply-To: <20260325114154.3688550-1-animesh.manna@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,107 +36,172 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
---nu5efgjywb5co2ik
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color
- format"
+--===============8679602827430600728==
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Wed, Mar 25, 2026 at 02:21:24PM +0100, Nicolas Frattaroli wrote:
-> On Wednesday, 25 March 2026 14:05:25 Central European Standard Time Maxim=
-e Ripard wrote:
-> > Hi Dave,
-> >=20
-> > On Wed, Mar 25, 2026 at 12:49:19PM +0000, Dave Stevenson wrote:
-> > > > diff --git a/include/drm/drm_connector.h b/include/drm/drm_connecto=
-r.h
-> > > > index af8b92d2d5b7..bd549f912b76 100644
-> > > > --- a/include/drm/drm_connector.h
-> > > > +++ b/include/drm/drm_connector.h
-> > > > @@ -571,14 +571,102 @@ enum drm_colorspace {
-> > > >   *   YCbCr 4:2:2 output format (ie. with horizontal subsampling)
-> > > >   * @DRM_OUTPUT_COLOR_FORMAT_YCBCR420:
-> > > >   *   YCbCr 4:2:0 output format (ie. with horizontal and vertical s=
-ubsampling)
-> > > > + * @DRM_OUTPUT_COLOR_FORMAT_COUNT:
-> > > > + *   Number of valid output color format values in this enum
-> > > >   */
-> > > >  enum drm_output_color_format {
-> > > >         DRM_OUTPUT_COLOR_FORMAT_RGB444 =3D 0,
-> > > >         DRM_OUTPUT_COLOR_FORMAT_YCBCR444,
-> > > >         DRM_OUTPUT_COLOR_FORMAT_YCBCR422,
-> > > >         DRM_OUTPUT_COLOR_FORMAT_YCBCR420,
-> > > > +       DRM_OUTPUT_COLOR_FORMAT_COUNT,
-> > > >  };
-> > > >
-> > > > +/**
-> > > > + * enum drm_connector_color_format - Connector Color Format Request
-> > > > + *
-> > > > + * This enum, unlike &enum drm_output_color_format, is used to spe=
-cify requests
-> > > > + * for a specific color format on a connector through the DRM "col=
-or format"
-> > > > + * property. The difference is that it has an "AUTO" value to spec=
-ify that
-> > > > + * no specific choice has been made.
-> > > > + */
-> > > > +enum drm_connector_color_format {
-> > > > +       /**
-> > > > +        * @DRM_CONNECTOR_COLOR_FORMAT_AUTO: The driver or display =
-protocol
-> > > > +        * helpers should pick a suitable color format. All impleme=
-ntations of a
-> > > > +        * specific display protocol must behave the same way with =
-"AUTO", but
-> > > > +        * different display protocols do not necessarily have the =
-same "AUTO"
-> > > > +        * semantics.
-> > > > +        *
-> > > > +        * For HDMI, "AUTO" picks RGB, but falls back to YCbCr 4:2:=
-0 if the
-> > > > +        * bandwidth required for full-scale RGB is not available, =
-or the mode
-> > > > +        * is YCbCr 4:2:0-only, as long as the mode and output both=
- support
-> > > > +        * YCbCr 4:2:0.
-> > >=20
-> > > Is there a reason you propose dropping back to YCbCr 4:2:0 without
-> > > trying YCbCr 4:2:2 first? Minimising the subsampling is surely
-> > > beneficial, and vc4 for one can do 4:2:2 but not 4:2:0.
-> >=20
-> > The "auto" behaviour is strictly identical to the one we have right now,
-> > and this one stems from i915. Back when all that logic was added, it was
-> > decided to align every driver behavior on i915 because that's what most
-> > compositors would expect.
->
-> would it be okay to extend the behavior while we're at it? 4:2:2 does save
-> bandwidth compared to RGB (unlike YCbCr 4:4:4). I do think 4:2:2 instead =
-of
-> 4:2:0 will provide benefits in some cases.
+== Series Details ==
 
-I don't really know, we would need to ask some Wayland/Weston devs as
-well, but it sure is something worth discussing.
+Series: Panel Replay BW optimization (rev3)
+URL   : https://patchwork.freedesktop.org/series/163080/
+State : success
 
-I wouldn't do it in this series but as a follow-up though.
+== Summary ==
 
-Maxime
+CI Bug Log - changes from xe-4779-1fda996928180768f2704b8f8c816f10da433131_BAT -> xe-pw-163080v3_BAT
+====================================================
 
---nu5efgjywb5co2ik
-Content-Type: application/pgp-signature; name="signature.asc"
+Summary
+-------
 
------BEGIN PGP SIGNATURE-----
+  **SUCCESS**
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCacPmswAKCRAnX84Zoj2+
-dmGlAX0Q9JHOxhbPAWTKWwWdOKb27uv7yw9UktgOGpTC//J0c33s5cWESV5s9FVr
-OXH5nAQBeQGG5UBUfjnKVw2z5/UIP190HSYoXIe99ktfdFWZXL8eG7RH4sRMWGxb
-vSEBp9nfpg==
-=4Hsf
------END PGP SIGNATURE-----
+  No regressions found.
 
---nu5efgjywb5co2ik--
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-163080v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4779-1fda996928180768f2704b8f8c816f10da433131/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6520])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4779-1fda996928180768f2704b8f8c816f10da433131/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [DMESG-WARN][5] ([Intel XE#7483]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4779-1fda996928180768f2704b8f8c816f10da433131/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  * igt@xe_waitfence@engine:
+    - bat-atsm-2:         [FAIL][7] -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4779-1fda996928180768f2704b8f8c816f10da433131/bat-atsm-2/igt@xe_waitfence@engine.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/bat-atsm-2/igt@xe_waitfence@engine.html
+    - bat-dg2-oem2:       [FAIL][9] ([Intel XE#6519]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4779-1fda996928180768f2704b8f8c816f10da433131/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
+
+
+Build changes
+-------------
+
+  * Linux: xe-4779-1fda996928180768f2704b8f8c816f10da433131 -> xe-pw-163080v3
+
+  IGT_8825: 531ebe0606453021b88f794aad255d9e1a234d3d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-4779-1fda996928180768f2704b8f8c816f10da433131: 1fda996928180768f2704b8f8c816f10da433131
+  xe-pw-163080v3: 163080v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/index.html
+
+--===============8679602827430600728==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Panel Replay BW optimization (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163080/">https://patchwork.freedesktop.org/series/163080/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4779-1fda996928180768f2704b8f8c816f10da433131_BAT -&gt; xe-pw-163080v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-163080v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4779-1fda996928180768f2704b8f8c816f10da433131/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4779-1fda996928180768f2704b8f8c816f10da433131/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4779-1fda996928180768f2704b8f8c816f10da433131/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4779-1fda996928180768f2704b8f8c816f10da433131/bat-atsm-2/igt@xe_waitfence@engine.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/bat-atsm-2/igt@xe_waitfence@engine.html">PASS</a></li>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4779-1fda996928180768f2704b8f8c816f10da433131/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4779-1fda996928180768f2704b8f8c816f10da433131 -&gt; xe-pw-163080v3</li>
+</ul>
+<p>IGT_8825: 531ebe0606453021b88f794aad255d9e1a234d3d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-4779-1fda996928180768f2704b8f8c816f10da433131: 1fda996928180768f2704b8f8c816f10da433131<br />
+  xe-pw-163080v3: 163080v3</p>
+
+</body>
+</html>
+
+--===============8679602827430600728==--
