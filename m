@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 042CB106B53F
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 13:59:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29C8E103A9BD
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 13:59:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC0F810E22A;
-	Wed, 25 Mar 2026 13:59:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD4E710E571;
+	Wed, 25 Mar 2026 13:59:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZpYPVYGD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GcB4YuEi";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0008B10E22A;
- Wed, 25 Mar 2026 13:58:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC29D10E571;
+ Wed, 25 Mar 2026 13:59:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774447140; x=1805983140;
+ t=1774447143; x=1805983143;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1Bs3HTNovwBrxNg0Idc4gwX/7gpAmETVXtpcJvZYEkg=;
- b=ZpYPVYGDPp7ftDsnSIdFkJSqZXgy5azpDGti5W59LHREP5mzpL/GtVLs
- zJEcwNZ/sscSjLBVmoNQgdFiCgXsWl6bG9SLvRy7+4/9YX9L4rIQE4rU+
- slkO4Gkj3yOLU0HlQYWyqpu2+7zYwcTQLwu7Z2s/i2az4J36ct+kt0fmr
- CJ6Uq290bPlCvxrib9a9HUHs01ABw9JpRd8O04QiH+yyEZqTN3lt0FTzD
- oaNelCOoX7LGQ9P4aUNkQNcph7RqspkelVzz46LGGNQGs/v7/cZ5HaZCf
- c2lypheDTN+7erpBLBHImmk9o562DB4tFRwrqQ55WpH+qpU5sQ+hBmz96 g==;
-X-CSE-ConnectionGUID: tjGAfcaOQGGig/SwMw6R/g==
-X-CSE-MsgGUID: AYx5uAvdRNS4w7a1kIXI8Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="75365768"
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="75365768"
+ bh=UsjuaPPD2is9XrOntSu2CffKCakzTixurL8WrY+SztE=;
+ b=GcB4YuEihp8BN4wOmRRoJIyIsqFk/gzww2xfqDclvvx/4JEedX+94IEY
+ Fg2koW0/gqJ1QCvlAl/chEsi87YCf+eaQvzDbiIAlCTS74Ajp/nKUVBys
+ ARMrxRE1zmYUFmd6LiC3TOrlwxwI1QSw5JUtFBQwlLFKMTyMpqHXwKlIb
+ dqmy9eHBbQsrCH5Gz9bxtwD69GjhnjaDWGhk2A1C2IMUWvWDqPwPsylOl
+ C5wHVvaFh+48GkcF6rwQ+vytUUiFZ4ozXBC8bvnqlBpi3fWTsbNCc1x1u
+ bDJB8jgQW3Mxk6/N6lHJfZEXgv82TZOx0Ws6lSqzziGrfQoXK7yVZMF7O w==;
+X-CSE-ConnectionGUID: yNuBS9xTSpa49abIWEH2Zg==
+X-CSE-MsgGUID: xMLwwxx6S9C4X4SwyAFaHw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="75365798"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="75365798"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 06:58:58 -0700
-X-CSE-ConnectionGUID: yflzpG0ERJmbhqLQNkf7mA==
-X-CSE-MsgGUID: ihxccJVjQp2CMjzXpJQA1A==
+ 25 Mar 2026 06:59:02 -0700
+X-CSE-ConnectionGUID: OBtA/LYqSnOgSnk4CL2PxA==
+X-CSE-MsgGUID: 0fqP9ah9QGOh5ZoPjzLf7Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="248197423"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="248197434"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.117])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 06:58:56 -0700
+ 25 Mar 2026 06:59:01 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, stable@vger.kernel.org,
- Mikhail Rudenko <mike.rudenko@gmail.com>
-Subject: [PATCH 1/6] drm/i915/cdclk: Do the full CDCLK dance for
- min_voltage_level changes
-Date: Wed, 25 Mar 2026 15:58:44 +0200
-Message-ID: <20260325135849.12603-2-ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org,
+	stable@vger.kernel.org
+Subject: [PATCH 2/6] drm/i915/dp: Use crtc_state->enhanced_framing properly on
+ ivb/hsw CPU eDP
+Date: Wed, 25 Mar 2026 15:58:45 +0200
+Message-ID: <20260325135849.12603-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260325135849.12603-1-ville.syrjala@linux.intel.com>
 References: <20260325135849.12603-1-ville.syrjala@linux.intel.com>
@@ -74,107 +74,31 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Apparently I forgot about the pipe min_voltage_level when I
-decoupled the CDCLK calculations from modesets. Even if the
-CDCLK frequency doesn't need changing we may still need to
-bump the voltage level to accommodate an increase in the
-port clock frequency.
-
-Currently, even if there is a full modeset, we won't notice the
-need to go through the full CDCLK calculations/programming,
-unless the set of enabled/active pipes changes, or the
-pipe/dbuf min CDCLK changes.
-
-Duplicate the same logic we use the pipe's min CDCLK frequency
-to also deal with its min voltage level.
-
-Note that the 'allow_voltage_level_decrease' stuff isn't
-really useful here since the min voltage level can only
-change during a full modeset. But I think sticking to the
-same approach in the three similar parts (pipe min cdclk,
-pipe min voltage level, dbuf min cdclk) is a good idea.
+Looks like I missed the drm_dp_enhanced_frame_cap() in the ivb/hsw CPU
+eDP code when I introduced crtc_state->enhanced_framing. Fix it up so
+that the state we program to the hardware is guaranteed to match what
+we computed earlier.
 
 Cc: stable@vger.kernel.org
-Tested-by: Mikhail Rudenko <mike.rudenko@gmail.com>
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15826
-Fixes: ba91b9eecb47 ("drm/i915/cdclk: Decouple cdclk from state->modeset")
+Fixes: 3072a24c778a ("drm/i915: Introduce crtc_state->enhanced_framing")
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 54 ++++++++++++++++++++++
- 1 file changed, 54 insertions(+)
+ drivers/gpu/drm/i915/display/g4x_dp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 121a12c5b8ac..a47736613f6e 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -2972,6 +2972,53 @@ static int intel_cdclk_update_crtc_min_cdclk(struct intel_atomic_state *state,
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
+index d7de329abf19..5e74d8a3ba5c 100644
+--- a/drivers/gpu/drm/i915/display/g4x_dp.c
++++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+@@ -136,7 +136,7 @@ static void intel_dp_prepare(struct intel_encoder *encoder,
+ 			intel_dp->DP |= DP_SYNC_VS_HIGH;
+ 		intel_dp->DP |= DP_LINK_TRAIN_OFF_CPT;
  
-+static int intel_cdclk_update_crtc_min_voltage_level(struct intel_atomic_state *state,
-+						     struct intel_crtc *crtc,
-+						     u8 old_min_voltage_level,
-+						     u8 new_min_voltage_level,
-+						     bool *need_cdclk_calc)
-+{
-+	struct intel_display *display = to_intel_display(state);
-+	struct intel_cdclk_state *cdclk_state;
-+	bool allow_voltage_level_decrease = intel_any_crtc_needs_modeset(state);
-+	int ret;
-+
-+	if (new_min_voltage_level == old_min_voltage_level)
-+		return 0;
-+
-+	if (!allow_voltage_level_decrease &&
-+	    new_min_voltage_level < old_min_voltage_level)
-+		return 0;
-+
-+	cdclk_state = intel_atomic_get_cdclk_state(state);
-+	if (IS_ERR(cdclk_state))
-+		return PTR_ERR(cdclk_state);
-+
-+	old_min_voltage_level = cdclk_state->min_voltage_level[crtc->pipe];
-+
-+	if (new_min_voltage_level == old_min_voltage_level)
-+		return 0;
-+
-+	if (!allow_voltage_level_decrease &&
-+	    new_min_voltage_level < old_min_voltage_level)
-+		return 0;
-+
-+	cdclk_state->min_voltage_level[crtc->pipe] = new_min_voltage_level;
-+
-+	ret = intel_atomic_lock_global_state(&cdclk_state->base);
-+	if (ret)
-+		return ret;
-+
-+	*need_cdclk_calc = true;
-+
-+	drm_dbg_kms(display->drm,
-+		    "[CRTC:%d:%s] min voltage level: %d -> %d\n",
-+		    crtc->base.base.id, crtc->base.name,
-+		    old_min_voltage_level, new_min_voltage_level);
-+
-+	return 0;
-+}
-+
- int intel_cdclk_update_dbuf_bw_min_cdclk(struct intel_atomic_state *state,
- 					 int old_min_cdclk, int new_min_cdclk,
- 					 bool *need_cdclk_calc)
-@@ -3387,6 +3434,13 @@ static int intel_crtcs_calc_min_cdclk(struct intel_atomic_state *state,
- 							need_cdclk_calc);
- 		if (ret)
- 			return ret;
-+
-+		ret = intel_cdclk_update_crtc_min_voltage_level(state, crtc,
-+								old_crtc_state->min_voltage_level,
-+								new_crtc_state->min_voltage_level,
-+								need_cdclk_calc);
-+		if (ret)
-+			return ret;
- 	}
+-		if (drm_dp_enhanced_frame_cap(intel_dp->dpcd))
++		if (pipe_config->enhanced_framing)
+ 			intel_dp->DP |= DP_ENHANCED_FRAMING;
  
- 	return 0;
+ 		intel_dp->DP |= DP_PIPE_SEL_IVB(crtc->pipe);
 -- 
 2.52.0
 
