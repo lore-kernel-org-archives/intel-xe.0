@@ -4,159 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 718CFF54AD6
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Mar 2026 23:53:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BB941093168
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 02:08:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34DE510E626;
-	Tue, 24 Mar 2026 23:53:38 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UQlhh2Ds";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED85A10E626
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Mar 2026 23:53:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774396417; x=1805932417;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=GzbWDztl/6ajMl7EXPWayyR7QYNzYXkio3wtMNMfZaQ=;
- b=UQlhh2Dsxr35plb5lDXQCIa0jXQP8SaNrpyBtTVS8shP+dFUXdlGMX0I
- gQflhx+Ze9jq9mv+ku0HERQ1NK26yRWfhsPen5SA5AdrikNQRDtMknEee
- +bJprGZDwiGV4LwAEtE+FusmU/SdWPq/vzm68aIWGfLmfqAUyQWsk0Toy
- g+uHB2v0eG+6khNUP3ir4XnxNsw/4JUOuRbKW2JD2jQVGbyVaK682gDba
- cmtmb+U1fYp/LOpgaDPbh1H7pd+NTGBIcGCuEcN3WVuea6HfsGZAHNN5L
- kRF94CgHpILEKrgFGYo1LQCpi6uE2vYqA5sfqE+JGjSqEWT5XgrHEsALc g==;
-X-CSE-ConnectionGUID: POF3WdaZTs+mbEVxbFfPLA==
-X-CSE-MsgGUID: uAkePpiCTie4llP3VgMUhg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="92809787"
-X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; d="scan'208";a="92809787"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 16:53:36 -0700
-X-CSE-ConnectionGUID: nvDXUdJjTPSHj4mjIXZFnA==
-X-CSE-MsgGUID: MuW7ApUeTRmUZ662WjtPGA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; d="scan'208";a="228983985"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 16:53:37 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 24 Mar 2026 16:53:35 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 24 Mar 2026 16:53:35 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.31) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 24 Mar 2026 16:53:33 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Y7U7w8JX6SBs2ALjV6cV2rsERKu1VC25jsOFabhKgtqlHDmoST2AKXEX0DOkJRuAiPdRXWcWQrohy0vJpYQgVnK/u5LAvOxYVBItvpvUNLoeKsOITe4wLmJtSYEPLR6Z7ZBnJUnmzTvq4NvstbJUSjZXICwvJbv611QK///ScPfphAoG49q+lQssaJbI/bUsRAVq8ton3Zj1EOEbAme9TdSCovEU5qeKHxLAPbgZXRUx2HZqw8nQu/vY/HI9WxrfZ+adoUzQQSD/D86XsBCffjrbgzPWOj8E5WbQjZhyasGSNBN90xDxeoiyX/jXeWSsFBwvoqFc3v/QZ9Q3vqaDjw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zuQ65YepC/lcNxlWQeDmjEhgYRteDw+AjrRud+7roEo=;
- b=Bly4bfwffKU+t+CqNB+MMNuqa/YOT/UEY1nexWgDOXfh3A6bPEHp9yJzLVXwlJvPW19n2NbWqFlGV+YZSVXwblxWZpSt/S5kE+Hs4qIWUHkaLbi+2WtZNDAruNu0A40xeouutUt/HubJrVKNl3Y5IBQIt3E+5VmgouQ30qbDnnGbJVOuADohEYZjtwt10TyT1YAyBDWh6qxf1suELQpKDGoKfVX7H32norZSkTeuJO3s5nTYM81e5CtKqnfSYatImso68+u6KAIaZ0QXHiz6cIQT4GnvsI2ZiBTWsRXxe3g+498vfnXilHL45Np9XZBRYK4vrey1bFI/zVh33+wMjw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
- by DM6PR11MB4595.namprd11.prod.outlook.com (2603:10b6:5:2ac::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Tue, 24 Mar
- 2026 23:53:31 +0000
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::53c9:f6c2:ffa5:3cb5%7]) with mapi id 15.20.9745.019; Tue, 24 Mar 2026
- 23:53:31 +0000
-Date: Tue, 24 Mar 2026 16:53:27 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: "Summers, Stuart" <stuart.summers@intel.com>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Vishwanathapura, Niranjana" <niranjana.vishwanathapura@intel.com>
-Subject: Re: [PATCH] drm/xe: Always invalidate TLBs on userptr invalidation
-Message-ID: <acMj9+JZ2ONGa1yH@lstrano-desk.jf.intel.com>
-References: <20260323211743.285064-1-stuart.summers@intel.com>
- <acH1IT6MBYvSf2GH@lstrano-desk.jf.intel.com>
- <0e9794ab3a16896d0790289750f56538602798e6.camel@intel.com>
- <dbde50462394e808b4de52974f9c7c086191e35a.camel@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <dbde50462394e808b4de52974f9c7c086191e35a.camel@intel.com>
-X-ClientProxiedBy: MW4P220CA0019.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:303:115::24) To BL3PR11MB6508.namprd11.prod.outlook.com
- (2603:10b6:208:38f::5)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FA3710E5BE;
+	Wed, 25 Mar 2026 02:08:46 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E89710E5BE;
+ Wed, 25 Mar 2026 02:08:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1261966664246540471=="
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|DM6PR11MB4595:EE_
-X-MS-Office365-Filtering-Correlation-Id: 53f02243-7aab-48be-896b-08de8a008d47
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|18002099003|22082099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: VhmIqRrAVHG9/qzrq0nqkr45M1wEd5nShDjjj61HjQMqsHqlBUJwBeN1fw9m8w0gkeGX3dvOOTxmba9ix6CF6paEqPMNQ84jCbP/lUTxOuMoifagzlyvsmvMW9UgiireF4P/sL9s96Gxq2jQF9Zzq8qYd2dd3aNooHFulFG4U4KjLbtOiidsHBsWQALacXzAtb7enM6XQRJDBSARmvHozQxZ11W/lE7JNJhTxC36v+pOeR9sSxYdY4/31G2/UpfvvzHtblhH/w1hEdm2REhl2uVR6e5+7WgwKPZOT5sIEGuqIciCawfmYbpDTaKmVbcFvKwkRn7d1ywKvmBgiIfBcrrnx+/GAcCLBycfDUuEMOQPrCubB4Ih1AHw7e9B+mddv6AUWhDt+1PFjPqPspoT7YXGu9V/JH/GJHzc2l7Qev1w1mNwSvqTpEcLuQgu/G4x4lMtdjXbwyBVDceZXSN9LlTGaCvrsFiDsR7NIXB18BWrbIY/2ZjO40AZANwHXyTu2MB8M6MXrFQvy4pR0EHFLeXDvP3z6rcEC95QSuzFEIaLx7fbjyJcVVH11jbuSm46swRWitR2c393z6OiKoAxZH3162ceQnbYmufP7z0Y3Dftm2UIv3NzXPNPVCi6Nrq4K7EdZ6Sa5c4KkZIqaTVyYpKqFdg7lnfz2SPGt1c6sC7GMnPjZEYlzmjDNtXolXnsQhYVE/iAVO85fv49NW+4eBWdRF7L2P9qWJ3Z2iDHJmg=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TUlZMUt2OXl0cS9NY00rK0ZRUlNjczVDaGZhM1RVVG5pN3hyVjgzMGp1TWFQ?=
- =?utf-8?B?K3VYZzZLVTN4T0JIREN5T1oySGFtQVcrUkRKTWhubFZHWGZGL1RYZ2g3S2RX?=
- =?utf-8?B?UnEvUnQ0NGJCd3pjZ1FjbWxXbUdaRWl3RUhGdmVaanpMYUp4eUFZRGFSbHdx?=
- =?utf-8?B?d3U0UWhwNXorSFEzUkttNk8yeElGd2hnVUQ0MXlHNTdsSnVEalpDNjExN0E0?=
- =?utf-8?B?c1pXQTZ5OTZKeDVBd2JFN2toVnBLbnN4SkZJV0pqVmI0c2t5MGdYSXljTkQr?=
- =?utf-8?B?M0VrY08xT2VGdkNEOXVETHJSVU0vQU8xMmF2NGRPRVlrc2ZVWkxuWmltUFVN?=
- =?utf-8?B?cDJ3ZVRzSnJ0NTZKNmhpWFN5R0dpT3YveDF3Yjl5TzlJREg2NFI5cjJlTThU?=
- =?utf-8?B?OXdRLzdNY1FOOWpXTTZDTE1OaTM5UllKRDRGUm8zUG5KMGJPSEY4YXNpOHhn?=
- =?utf-8?B?eks3c1hIdGFWQ0JyaFEwRVNudlFXUmVTMmkrdDRoN2p0aDgzZFNFdUVkQVFZ?=
- =?utf-8?B?aVlRL3djc1djZXdsNU1JUTUvOHJMV3k2Q1RrWHlXaVBtcHY3dk91TEhua2V6?=
- =?utf-8?B?TW1naktMMHlmQ1VSU3poQWxqeFdUdFp3anh3WnF2akMrVzNKTHpwazRzRGUz?=
- =?utf-8?B?WlNXeVJpQWRvVk1HelVTb3JIaE52OVMvQkZsUm9FT2NuVjZXTVNFNG1HR21O?=
- =?utf-8?B?S2NvbFBiRlBLTlRLTWpEN1MzTVZlSWhGL3lES0xQVktWSTRab3liTlZNcjlL?=
- =?utf-8?B?SWFCU1hwcmpHRVV0Ty9maHNuRUJZTm54Vk00T1dkdWxjV1QyS0ozeDNlTW5o?=
- =?utf-8?B?SHBReTRMdGZ0cXdlZ3JMTm1OL0l6YUtWNXlEMjVicjVZRlpCajZrcmxxdnhB?=
- =?utf-8?B?Vml0UjlSQ3U3MkFmamtLaG8zVm9yMVQyd0RrYVVSVFd1eFczQkpPVGsvVFVN?=
- =?utf-8?B?S0xFTnQ5N3o5a3EwRGxPaFJ2bWRFS3NIUFBVQXpOQ3ZpM3hNejgwUnJSdTVx?=
- =?utf-8?B?YjNhZ0MwakQ4VjFDeDNacy93Q1JuZVZ5RjVNV3ROanJZbFJRYVRpakFjZDRC?=
- =?utf-8?B?Y1FvOWpPbnM2VU9td1h5SVhSdnp6VlJFK3J6c2g0cklBOXd4MkoxUU1weDNF?=
- =?utf-8?B?cWw4SHZBSEtBYjJWRC9WTmNHaGVkczdpeFZyajVqd29BRGsxU3pGM2p2Mmls?=
- =?utf-8?B?Mm5idjdQUFdFSTJtWjhiQkJhU0p2a20xbUtRTkNIT0dVK0Ywbk9oUVQ0Z01V?=
- =?utf-8?B?MGg3SktSUDlGd1g5bTJFOGxxWkIrUGgzbTN5TzdncDZ3Z29iOUpMYzhwQkRm?=
- =?utf-8?B?eHczUHVDWUpxQ1dyZjRVUjBhYXB2eHU5NEFlQU1jaDBBQzRXSWFrTGJvMnFO?=
- =?utf-8?B?OEw2UDZwazF3RUo5WUE2UFB1cDVwQkVtRGttT0lPcE81a0dpUldBN3RqckRR?=
- =?utf-8?B?aTNvQlRCWnRNcFJ3dWpjS1ZpblVGbHA1VFRiWVlDVnhtNlNrcjdKQy9EOERo?=
- =?utf-8?B?c1lyMFQvdk9mUGlvYmhiSldtZGlzQnZlVnB3aXM0NGtVQlkrRzd6cnQ3dk5Q?=
- =?utf-8?B?Nm5oTGZQNGVWRk5teHRuN0trbUZMUXo1eVZWVFZPVlNIMjkra0IzY2NmZWxS?=
- =?utf-8?B?NHFSaHNhMXZSWWRmQlRHQUp0NzVPd21rNm1Xa0ZJODJqY3RsVXRFTHptRHFS?=
- =?utf-8?B?QWdTdjQ0dnBWd3BvRkhrUkRJQ2l3eHY0bHJhRlluVHNMRkMrUkdid05DUEFO?=
- =?utf-8?B?TUVScEdoZnZ2aHJMR0V3NXIzZitRV0JYUXJkT0Z0M09xN2RldFFDdmk3TlNK?=
- =?utf-8?B?d2lwZG1oRHB4YnhGYXN0OUpNSGFzT2tMWURSc3k5L3RCdGQrNjNLcUhwbzFa?=
- =?utf-8?B?YW9qNm9nNzRGQm50ekNzUFRsTU5SV1R2UHRjUkhqSHBkUmNOS3lmclBRbEJz?=
- =?utf-8?B?SGFZdkd6VXdpV1JtWFI4WlVtYUZQNUxnaysvSXl5VWFqV1Q3VlhCU2NOTFNF?=
- =?utf-8?B?dGErcUFrdFlzUzRDQ1ZVeFhvNmtXaUlVdjlYd1VFUGJBUmlSQjVBZWZtMXV2?=
- =?utf-8?B?UEVkS3M0N29KNmcrbkVFWDBCRVRGbEdOaGJxR0tEUENFTkJodlhuMENOUHVU?=
- =?utf-8?B?NCtqdEloUEczS2RJclVrVE55YiszWm92NWgva2d0R3RqSjJHYURNMEVQS1Vs?=
- =?utf-8?B?cjZXUytVZHRqdFp0TExkd2lyRXJKa2xzRi9rYnpYdVhYUXRIQms1TllickFM?=
- =?utf-8?B?Q0JiSU5tL1FNQVlDU002WllJSGJvVUlaMEttYytVTTV1OENiTTEwOVpQQkpp?=
- =?utf-8?B?SGZOL095TXl3ZEpORmM2K3VGTEtGTFVJcXNTQ0RLSy9tZkpKWlFHSG5lL2Mv?=
- =?utf-8?Q?8ucT3mr3jCwiIEA0=3D?=
-X-Exchange-RoutingPolicyChecked: Vd3Z8+nm6IIVtSKbdyXJ+PhX+qje7vXSwXnboYUZ7qzj1e4VSpDTgtdiA5GYd/YrWl306yHL0+JFVBtb9oaTcKG5jMnA+8V4yRKo7qZTYhgLOZSu+9PZ23DWXo6CBCkxERLVcGmXXRIwbdFzmuM6ZVFmLRUlA/MwqSnPaFLi7jmf7fPiRmL9teU4RK7DIvb3ZohuZn/Ou4zyziMsliQDfh8WFw6jDBX4NdWXhuBUtZ3M1+6739dwO8rRBYn50S63Q2TjFUM01v+w7kWOqaqqj2S8ExUprgvKMPtSeJ4tha0BdhzfTb2kubkjtZWJ/i3JcYUgf/xo5BL6DLRVZlFY9w==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 53f02243-7aab-48be-896b-08de8a008d47
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Mar 2026 23:53:31.0361 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cWNwN2Q1PI08t8LKDpQChFEXQdzGNpTuxaQAYQtMOmpm2CyP2r5mXeqmMYbEjDnVNKHjwByhTTjBDVMAib57dg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4595
-X-OriginatorOrg: intel.com
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFULL=3A_success_for_drm/i915/wm=3A_Watermark/S?=
+ =?utf-8?q?AGV_fixes/cleanups/etc?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Wed, 25 Mar 2026 02:08:45 -0000
+Message-ID: <177440452530.393431.13070366898067896518@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260324134843.2364-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20260324134843.2364-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -168,164 +36,298 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 24, 2026 at 03:51:18PM -0600, Summers, Stuart wrote:
-> On Tue, 2026-03-24 at 14:53 +0000, Summers, Stuart wrote:
-> > On Mon, 2026-03-23 at 19:21 -0700, Matthew Brost wrote:
-> > > On Mon, Mar 23, 2026 at 09:17:42PM +0000, Stuart Summers wrote:
-> > > > Right now we are only invalidating TLBs when we are
-> > > > running in fault mode. For non-fault mode based userptr
-> > > > VMs, we then rely on context switches after an MMAP has
-> > > > happened to ensure the TLB is clean for the next submission.
-> > > > 
-> > > > With context based TLB invalidation, we can no longer rely
-> > > > on the implicit invalidation happening during context switch,
-> > > > so remove the fault mode limiter and simply always perform
-> > > > that invalidation.
-> > > > 
-> > > > I was able to see this behavior using the following test:
-> > > > xe_exec_compute_mode --r twice-userptr-invalidate
-> > > > 
-> > > 
-> > > Hmm, this implies that preempt fences don't issue a TLB
-> > > invalidation...
-> > > I thought we landed on preempt fences do a TLB invalidation in
-> > > offline
-> > > discussions.
-> > 
-> > So initially I was mostly focused on the xe_vm invalidate cases. In
-> > hindsight I should have done a little more focused testing here as
-> > well. This came up after some more extensive testing internally.
-> > 
-> > At least in my latest round of testing, I don't see any issues in
-> > BAT/FULL after this change. I do think getting this merged (or
-> > something similar) and tested more broadly would be interesting.
-> > 
-> > > 
-> > > We may have more work to do here wrt context based TLB
-> > > invalidations.
-> > > 
-> > > I think BO move path likely also needs to be updated then too.
-> > 
-> > Hm.. I haven't seen any issues on the BO side, although it's possible
-> > I've missed something in testing of course (like this LR case). I'd
+--===============1261966664246540471==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-You'd only hit those cases if you run an eviction test.
+== Series Details ==
 
-> > really like to get this tested more regularly in CI if possible and
-> > work through issues post merge. I think most of the remaining issues,
-> > if they come up, should be timing sensitive.
-> > 
-> > Also the fact that this isn't enabled in anything in xe_pci.c right
-> > now
-> > means we shouldn't cause any major breakage otherwise for the feature
-> > generally. Of course this specific change impacts everyone using
-> > preempt fence like you said. I could add a has_ctx_tlb_inval here - I
-> > had thought about that. But to me this seems like a more general case
-> > given the discussion we had about intent of explicit invalidations.
+Series: drm/i915/wm: Watermark/SAGV fixes/cleanups/etc
+URL   : https://patchwork.freedesktop.org/series/163783/
+State : success
 
-I would add knob for context switch == TLB invalidation.
+== Summary ==
 
-> > 
-> > Anyway let me know what you think here.
-> 
-> Little more detail here on further analysis...
-> 
-> So I had found this through debug, but looking a little closer, I think
-> the reason we need this is because of the xe_vm_rebind() function with
-> these lines at the top:
-> 
-> if ((xe_vm_in_lr_mode(vm) && !rebind_worker) ||                       
->      list_empty(&vm->rebind_list))                                    
->     return 0;
-> 
-> So basically if we aren't in preempt fence mode (lr_mode), we always
-> invalidate the TLBs in ops_execute() called in the xe_vm_rebind()
-> function later on. If we are in preempt fence mode, there is a corner
-> case here it looks like where we call the preempt rebind worker that
-> then calls xe_preempt_work_begin() -> xe_vm_validate_rebind() ->
-> xe_vm_rebind(false) and hits the above case, causing us to skip the TLB
-> invalidation. If we add the hook here, it forces invalidation for
+CI Bug Log - changes from xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f_FULL -> xe-pw-163783v1_FULL
+====================================================
 
-Kinda, if you look at this comment in xe_pt.c:
+Summary
+-------
 
-                /*
-                 * If rebind, we have to invalidate TLB on !LR vms to invalidate
-                 * cached PTEs point to freed memory. On LR vms this is done
-                 * automatically when the context is re-enabled by the rebind worker,
-                 * or in fault mode it was invalidated on PTE zapping.
-                 *
-                 * If !rebind, and scratch enabled VMs, there is a chance the scratch
-                 * PTE is already cached in the TLB so it needs to be invalidated.
-                 * On !LR VMs this is done in the ring ops preceding a batch, but on
-                 * LR, in particular on user-space batch buffer chaining, it needs to
-                 * be done here.
-                 */
-                if ((!pt_op->rebind && xe_vm_has_scratch(vm) &&
-                     xe_vm_in_lr_mode(vm)))
-                        pt_update_ops->needs_invalidation = true;
-                else if (pt_op->rebind && !xe_vm_in_lr_mode(vm))
-                        /* We bump also if batch_invalidate_tlb is true */
-                        vm->tlb_flush_seqno++;
+  **SUCCESS**
 
-We explicitly call out that we rely on “automatically when the the
-context being re-enabled by the rebind worker”
+  No regressions found.
 
-So another option is to adjust this if statement to something like:
+  
 
-else if (pt_op->rebind && xe_vm_in_preempt_fence_mode(vm) && !context_switch_invalidation)
-	pt_update_ops->needs_invalidation = true;
+Participating hosts (2 -> 2)
+------------------------------
 
-This would also cover the BO eviction case I mentioned above. Also avoid
-blocking in the notifier or BO evcition code on the TLB invalidation
-which in general speeds up the entire kernel.
+  No changes in participating hosts
 
-Matt
+Known issues
+------------
 
-> lr_mode also.
-> 
-> We could just add this xe_vm_in_lr_mode() check here, but I still think
-> doing this across the board is safest so we aren't hitting some other
-> corner case in the future if we decide to rework those other scenarios.
-> 
-> Thanks,
-> Stuart
-> 
-> > 
-> > Thanks,
-> > Stuart
-> > 
-> > >  
-> > > > Signed-off-by: Stuart Summers <stuart.summers@intel.com>
-> > > > ---
-> > > >  drivers/gpu/drm/xe/xe_userptr.c | 2 +-
-> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/xe/xe_userptr.c
-> > > > b/drivers/gpu/drm/xe/xe_userptr.c
-> > > > index 6761005c0b90..dfd679dd98d9 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_userptr.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_userptr.c
-> > > > @@ -102,7 +102,7 @@ xe_vma_userptr_do_inval(struct xe_vm *vm,
-> > > > struct xe_userptr_vma *uvma, bool is_d
-> > > >                                     false, MAX_SCHEDULE_TIMEOUT);
-> > > >         XE_WARN_ON(err <= 0);
-> > > >  
-> > > > -       if (xe_vm_in_fault_mode(vm) && userptr->initial_bind) {
-> > > > +       if (userptr->initial_bind) {
-> > > 
-> > > Should be change this if statement based on hardware support?
-> > > 
-> > > Matt
-> > > 
-> > > >                 if (!userptr->finish_inuse) {
-> > > >                         /*
-> > > >                          * Defer the TLB wait to an extra pass so
-> > > > the caller
-> > > > -- 
-> > > > 2.43.0
-> > > > 
-> > 
-> 
+  Here are the changes found in xe-pw-163783v1_FULL that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_module_load@load:
+    - shard-bmg:          ([PASS][1], [PASS][2], [PASS][3], [PASS][4], [PASS][5], [PASS][6], [PASS][7], [PASS][8], [PASS][9], [PASS][10], [PASS][11], [PASS][12], [PASS][13], [PASS][14], [PASS][15], [PASS][16], [PASS][17], [PASS][18], [PASS][19], [PASS][20], [PASS][21], [PASS][22], [PASS][23], [PASS][24], [PASS][25]) -> ([DMESG-WARN][26], [DMESG-WARN][27], [DMESG-WARN][28], [DMESG-WARN][29], [DMESG-WARN][30], [DMESG-WARN][31], [DMESG-WARN][32], [DMESG-WARN][33], [DMESG-WARN][34], [DMESG-WARN][35], [DMESG-WARN][36], [DMESG-WARN][37], [DMESG-WARN][38], [DMESG-WARN][39], [DMESG-WARN][40], [DMESG-WARN][41], [DMESG-WARN][42], [DMESG-WARN][43], [DMESG-WARN][44], [DMESG-WARN][45], [DMESG-WARN][46], [DMESG-WARN][47], [DMESG-WARN][48], [DMESG-WARN][49], [DMESG-WARN][50]) ([Intel XE#7433])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-7/igt@xe_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-4/igt@xe_module_load@load.html
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-2/igt@xe_module_load@load.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-4/igt@xe_module_load@load.html
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-5/igt@xe_module_load@load.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-3/igt@xe_module_load@load.html
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-9/igt@xe_module_load@load.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-3/igt@xe_module_load@load.html
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-8/igt@xe_module_load@load.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-9/igt@xe_module_load@load.html
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-8/igt@xe_module_load@load.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-9/igt@xe_module_load@load.html
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-2/igt@xe_module_load@load.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-10/igt@xe_module_load@load.html
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-10/igt@xe_module_load@load.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-10/igt@xe_module_load@load.html
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-1/igt@xe_module_load@load.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-3/igt@xe_module_load@load.html
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-7/igt@xe_module_load@load.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-6/igt@xe_module_load@load.html
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-6/igt@xe_module_load@load.html
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-4/igt@xe_module_load@load.html
+   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-1/igt@xe_module_load@load.html
+   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-5/igt@xe_module_load@load.html
+   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-7/igt@xe_module_load@load.html
+   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-5/igt@xe_module_load@load.html
+   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-4/igt@xe_module_load@load.html
+   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-4/igt@xe_module_load@load.html
+   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-5/igt@xe_module_load@load.html
+   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-10/igt@xe_module_load@load.html
+   [31]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-10/igt@xe_module_load@load.html
+   [32]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-8/igt@xe_module_load@load.html
+   [33]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-8/igt@xe_module_load@load.html
+   [34]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-10/igt@xe_module_load@load.html
+   [35]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-1/igt@xe_module_load@load.html
+   [36]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-1/igt@xe_module_load@load.html
+   [37]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-1/igt@xe_module_load@load.html
+   [38]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-7/igt@xe_module_load@load.html
+   [39]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-7/igt@xe_module_load@load.html
+   [40]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-7/igt@xe_module_load@load.html
+   [41]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-9/igt@xe_module_load@load.html
+   [42]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-9/igt@xe_module_load@load.html
+   [43]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-9/igt@xe_module_load@load.html
+   [44]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-2/igt@xe_module_load@load.html
+   [45]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-2/igt@xe_module_load@load.html
+   [46]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-3/igt@xe_module_load@load.html
+   [47]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-3/igt@xe_module_load@load.html
+   [48]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-3/igt@xe_module_load@load.html
+   [49]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-6/igt@xe_module_load@load.html
+   [50]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-6/igt@xe_module_load@load.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@flip-vs-expired-vblank-interruptible:
+    - shard-lnl:          [FAIL][51] ([Intel XE#301]) -> [PASS][52] +1 other test pass
+   [51]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-lnl-4/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
+   [52]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-lnl-6/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
+
+  
+  [Intel XE#301]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/301
+  [Intel XE#7433]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7433
+
+
+Build changes
+-------------
+
+  * Linux: xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f -> xe-pw-163783v1
+
+  IGT_8822: 8822
+  xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f: cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f
+  xe-pw-163783v1: 163783v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/index.html
+
+--===============1261966664246540471==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+
+<!DOCTYPE html>
+<html xmlns=3D"http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id=3D"css-table-select" type=3D"text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/wm: Watermark/SAGV fixes/cleanups/e=
+tc</td></tr>
+<tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedesktop.org/se=
+ries/163783/">https://patchwork.freedesktop.org/series/163783/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href=3D"https://intel-gfx-ci.01.org/=
+tree/intel-xe/xe-pw-163783v1/index.html">https://intel-gfx-ci.01.org/tree/i=
+ntel-xe/xe-pw-163783v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f=
+7c9fa0f_FULL -&gt; xe-pw-163783v1_FULL</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (2 -&gt; 2)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-163783v1_FULL that come from known i=
+ssues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>shard-bmg:          (<a href=3D"https://intel-gfx-ci.01.org/tree/intel-=
+xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-7/igt@xe_modu=
+le_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/in=
+tel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-4/igt@xe_=
+module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tre=
+e/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-2/igt=
+@xe_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org=
+/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-4=
+/igt@xe_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01=
+.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-b=
+mg-5/igt@xe_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-c=
+i.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/sha=
+rd-bmg-3/igt@xe_module_load@load.html">PASS</a>, <a href=3D"https://intel-g=
+fx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f=
+/shard-bmg-9/igt@xe_module_load@load.html">PASS</a>, <a href=3D"https://int=
+el-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9=
+fa0f/shard-bmg-3/igt@xe_module_load@load.html">PASS</a>, <a href=3D"https:/=
+/intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0=
+f7c9fa0f/shard-bmg-8/igt@xe_module_load@load.html">PASS</a>, <a href=3D"htt=
+ps://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d6=
+51b0f7c9fa0f/shard-bmg-9/igt@xe_module_load@load.html">PASS</a>, <a href=3D=
+"https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e53=
+91d651b0f7c9fa0f/shard-bmg-8/igt@xe_module_load@load.html">PASS</a>, <a hre=
+f=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a703=
+3e5391d651b0f7c9fa0f/shard-bmg-9/igt@xe_module_load@load.html">PASS</a>, <a=
+ href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0=
+a7033e5391d651b0f7c9fa0f/shard-bmg-2/igt@xe_module_load@load.html">PASS</a>=
+, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072=
+e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-10/igt@xe_module_load@load.html">PAS=
+S</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d=
+4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-10/igt@xe_module_load@load.html=
+">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-4771-cc=
+83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-10/igt@xe_module_load@load=
+.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-47=
+71-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-1/igt@xe_module_load@=
+load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/x=
+e-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-3/igt@xe_module_l=
+oad@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-=
+xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-7/igt@xe_modu=
+le_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/in=
+tel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-6/igt@xe_=
+module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org/tre=
+e/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-6/igt=
+@xe_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01.org=
+/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-bmg-4=
+/igt@xe_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-ci.01=
+.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-b=
+mg-1/igt@xe_module_load@load.html">PASS</a>, <a href=3D"https://intel-gfx-c=
+i.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/sha=
+rd-bmg-5/igt@xe_module_load@load.html">PASS</a>, <a href=3D"https://intel-g=
+fx-ci.01.org/tree/intel-xe/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f=
+/shard-bmg-7/igt@xe_module_load@load.html">PASS</a>) -&gt; (<a href=3D"http=
+s://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-5/igt@xe_mod=
+ule_load@load.html">DMESG-WARN</a>, <a href=3D"https://intel-gfx-ci.01.org/=
+tree/intel-xe/xe-pw-163783v1/shard-bmg-4/igt@xe_module_load@load.html">DMES=
+G-WARN</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-1637=
+83v1/shard-bmg-4/igt@xe_module_load@load.html">DMESG-WARN</a>, <a href=3D"h=
+ttps://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-5/igt@xe_=
+module_load@load.html">DMESG-WARN</a>, <a href=3D"https://intel-gfx-ci.01.o=
+rg/tree/intel-xe/xe-pw-163783v1/shard-bmg-10/igt@xe_module_load@load.html">=
+DMESG-WARN</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-=
+163783v1/shard-bmg-10/igt@xe_module_load@load.html">DMESG-WARN</a>, <a href=
+=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-8/ig=
+t@xe_module_load@load.html">DMESG-WARN</a>, <a href=3D"https://intel-gfx-ci=
+.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-8/igt@xe_module_load@load.ht=
+ml">DMESG-WARN</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe=
+-pw-163783v1/shard-bmg-10/igt@xe_module_load@load.html">DMESG-WARN</a>, <a =
+href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-=
+1/igt@xe_module_load@load.html">DMESG-WARN</a>, <a href=3D"https://intel-gf=
+x-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-1/igt@xe_module_load@loa=
+d.html">DMESG-WARN</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-x=
+e/xe-pw-163783v1/shard-bmg-1/igt@xe_module_load@load.html">DMESG-WARN</a>, =
+<a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-b=
+mg-7/igt@xe_module_load@load.html">DMESG-WARN</a>, <a href=3D"https://intel=
+-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-7/igt@xe_module_load@=
+load.html">DMESG-WARN</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/inte=
+l-xe/xe-pw-163783v1/shard-bmg-7/igt@xe_module_load@load.html">DMESG-WARN</a=
+>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shar=
+d-bmg-9/igt@xe_module_load@load.html">DMESG-WARN</a>, <a href=3D"https://in=
+tel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-9/igt@xe_module_lo=
+ad@load.html">DMESG-WARN</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/i=
+ntel-xe/xe-pw-163783v1/shard-bmg-9/igt@xe_module_load@load.html">DMESG-WARN=
+</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/s=
+hard-bmg-2/igt@xe_module_load@load.html">DMESG-WARN</a>, <a href=3D"https:/=
+/intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-2/igt@xe_module=
+_load@load.html">DMESG-WARN</a>, <a href=3D"https://intel-gfx-ci.01.org/tre=
+e/intel-xe/xe-pw-163783v1/shard-bmg-3/igt@xe_module_load@load.html">DMESG-W=
+ARN</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v=
+1/shard-bmg-3/igt@xe_module_load@load.html">DMESG-WARN</a>, <a href=3D"http=
+s://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-bmg-3/igt@xe_mod=
+ule_load@load.html">DMESG-WARN</a>, <a href=3D"https://intel-gfx-ci.01.org/=
+tree/intel-xe/xe-pw-163783v1/shard-bmg-6/igt@xe_module_load@load.html">DMES=
+G-WARN</a>, <a href=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-1637=
+83v1/shard-bmg-6/igt@xe_module_load@load.html">DMESG-WARN</a>) (<a href=3D"=
+https://gitlab.freedesktop.org/drm/xe/kernel/issues/7433">Intel XE#7433</a>=
+)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@flip-vs-expired-vblank-interruptible:<ul>
+<li>shard-lnl:          <a href=3D"https://intel-gfx-ci.01.org/tree/intel-x=
+e/xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f/shard-lnl-4/igt@kms_flip=
+@flip-vs-expired-vblank-interruptible.html">FAIL</a> (<a href=3D"https://gi=
+tlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a>) -&gt; <a h=
+ref=3D"https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163783v1/shard-lnl-6=
+/igt@kms_flip@flip-vs-expired-vblank-interruptible.html">PASS</a> +1 other =
+test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f -&gt; xe-pw-163=
+783v1</li>
+</ul>
+<p>IGT_8822: 8822<br />
+  xe-4771-cc83f6d4f072e6c0a7033e5391d651b0f7c9fa0f: cc83f6d4f072e6c0a7033e5=
+391d651b0f7c9fa0f<br />
+  xe-pw-163783v1: 163783v1</p>
+
+</body>
+</html>
+
+--===============1261966664246540471==--
