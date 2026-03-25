@@ -4,62 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DCD1106B506
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 12:08:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7346B106B50C
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 12:12:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E100C10E872;
-	Wed, 25 Mar 2026 12:08:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22BDC10E214;
+	Wed, 25 Mar 2026 12:12:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aazDhW+s";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QLnMzNpf";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFC7910E842;
- Wed, 25 Mar 2026 12:08:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F6C610E214;
+ Wed, 25 Mar 2026 12:12:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774440505; x=1805976505;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=+rSuulWREqsT9iIQHpMZ2xXUjDOiIEet/x3Vo+41FFk=;
- b=aazDhW+sszQEh5vHnjfPKGri+HDpPVO07uERoY7FmunccJQ/Gk8Bm8xY
- YdxKPJlStO4nh35TTh/Ize0ceVCrQICrWXO6ZzaICjoMoONi4bUdKR81E
- 4cBZnA+FSooLl4JIM2A6UpQPUHFkdvsgOb/K60rPsmweOf/t7RVlwV9iM
- hGt3GzQBof8olx+OyRBJHd7oe1VHhegTtOpv4zZeLBAZN0Wx5qQnpwFS7
- zYQfaOLcDLb6YRLPLh95AeCL1Ue/0xptpj1CDW4r7/79nMisI/pEHXcg3
- B5n5jwbd3z59Brw0+eD+hQdzfmw9rRD/sWUnzyq6ruShONk+OJNLsWcjC A==;
-X-CSE-ConnectionGUID: rxWGhecWSBKPvcFuXlMHpA==
-X-CSE-MsgGUID: q+Hei6XBRvG3Y7jawr9gJw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="79381712"
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="79381712"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 05:08:24 -0700
-X-CSE-ConnectionGUID: QEdL+GMYT/mFtnXreBv48g==
-X-CSE-MsgGUID: RutsHh+oQwiGJyAFrtesfA==
+ t=1774440723; x=1805976723;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=SXywwCMFgM3yw7auptvPLHy/jGENUcibq6MpFA7KLNE=;
+ b=QLnMzNpf7OCKYjvhl9/zRn06+Uz9QTUoulNtu6g0UOWhZY234R2Oko8k
+ JYVTg5tBwV5YFLaui7Dt46P8TW0plncEetJ8XZigJ+D03wTVw1LFLRPBu
+ E9cwU+1tBQ85pXyKegz2nrtpfHt0NG9vR7LcVuLotC/OLQgDvtE+ARi83
+ i5GpMtVvDpj9GRHby5s6+j/4Fg//FWD/rIl5KwDfbC51+8soC5eM1n1sV
+ fr76D6uL5nZXCzhXxuS9RKJMljy3bL1sxeqFdethlRxDEs56Jm19kpi/d
+ +L48c/T0WTQYB7j8LAPmF3HRrOhcIA/EAVyZJRBNvmrbNaSWibEMKglmx w==;
+X-CSE-ConnectionGUID: hhHWkhl8Quq5infuILGSPw==
+X-CSE-MsgGUID: PiC1VCI9TSSna6KSA127mg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="63022379"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="63022379"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 05:12:03 -0700
+X-CSE-ConnectionGUID: LhfjEGwKTqOmBOhsSiU4xg==
+X-CSE-MsgGUID: J5QvM1TvQe6JMdnshLuwuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="255161043"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.117])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 05:08:22 -0700
-Date: Wed, 25 Mar 2026 14:08:18 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- sowmiya.s@intel.com, uma.shankar@intel.com, swati2.sharma@intel.com,
- chaitanya.kumar.borah@intel.com, arun.r.murthy@intel.com
-Subject: Re: [PATCH v3 08/26] drm/i915/writeback: Define encoder->get_hw_state
-Message-ID: <acPQMrMRziNrueWg@intel.com>
-References: <20260325110744.1096786-1-suraj.kandpal@intel.com>
- <20260325110744.1096786-9-suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="224673427"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by orviesa008.jf.intel.com with ESMTP; 25 Mar 2026 05:12:01 -0700
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: jouni.hogander@intel.com, imre.deak@intel.com, jani.nikula@intel.com,
+ arun.r.murthy@intel.com, Animesh Manna <animesh.manna@intel.com>
+Subject: [PATCH v9 0/3] Panel Replay BW optimization
+Date: Wed, 25 Mar 2026 17:11:51 +0530
+Message-Id: <20260325114154.3688550-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260325110744.1096786-9-suraj.kandpal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,118 +66,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Mar 25, 2026 at 04:37:26PM +0530, Suraj Kandpal wrote:
-> Define the get_hw_state function for encoder which
-> get's the encoder state, pipe config.
-> 
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_writeback.c    | 49 +++++++++++++++++++
->  .../drm/i915/display/intel_writeback_reg.h    |  3 ++
->  2 files changed, 52 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_writeback.c b/drivers/gpu/drm/i915/display/intel_writeback.c
-> index 765f62fa38f8..64769609aefe 100644
-> --- a/drivers/gpu/drm/i915/display/intel_writeback.c
-> +++ b/drivers/gpu/drm/i915/display/intel_writeback.c
-> @@ -17,7 +17,9 @@
->  #include "intel_de.h"
->  #include "intel_display_driver.h"
->  #include "intel_display_types.h"
-> +#include "intel_display_utils.h"
->  #include "intel_writeback.h"
-> +#include "intel_writeback_reg.h"
->  
->  struct intel_writeback_connector {
->  	struct intel_connector connector;
-> @@ -98,6 +100,52 @@ static const struct drm_connector_helper_funcs conn_helper_funcs = {
->  	.mode_valid = intel_writeback_mode_valid,
->  };
->  
-> +static bool
-> +intel_writeback_get_hw_state(struct intel_encoder *encoder,
-> +			     enum pipe *pipe)
-> +{
-> +	struct intel_display *display = to_intel_display(encoder);
-> +	u8 pipe_mask = 0;
-> +	u32 tmp;
-> +
-> +	/* TODO need to be done for both the wd transcoder */
+Unused bandwidth can be used by external display agents for Panel Replay
+enabled DP panel during idleness with link on. This patch series
+enabling the same.
 
-The encoder should know its transcoder.
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 
-> +	tmp = intel_de_read(display,
-> +			    TRANSCONF_WD(TRANSCODER_WD_0));
-> +	if (!(tmp & WD_TRANS_ENABLE))
-> +		return false;
+Animesh Manna (3):
+  drm/i915/display: Add drm helper to check pr optimization support
+  drm/i915/display: Add hook to check optimization support for Intel
+    platforms
+  drm/i915/display: Panel Replay BW optimization for DP2.0 tunneling
 
-Is this register really different enough from the norm to
-warrant its own register definitions?
-
-> +
-> +	tmp = intel_de_read(display,
-> +			    WD_TRANS_FUNC_CTL(TRANSCODER_WD_0));
-> +
-> +	if (!(tmp & TRANS_WD_FUNC_ENABLE))
-> +		return false;
-> +
-> +	switch (tmp & WD_INPUT_SELECT_MASK) {
-> +	case WD_INPUT_PIPE_A:
-> +		pipe_mask |= BIT(PIPE_A);
-> +		break;
-> +	case WD_INPUT_PIPE_B:
-> +		pipe_mask |= BIT(PIPE_B);
-> +		break;
-> +	case WD_INPUT_PIPE_C:
-> +		pipe_mask |= BIT(PIPE_C);
-> +		break;
-> +	case WD_INPUT_PIPE_D:
-> +		pipe_mask |= BIT(PIPE_D);
-> +		break;
-> +	default:
-> +		MISSING_CASE(tmp & WD_INPUT_SELECT_MASK);
-> +		fallthrough;
-> +	}
-> +
-> +	if (pipe_mask == 0)
-> +		return false;
-> +
-> +	*pipe = ffs(pipe_mask) - 1;
-
-What's the point of this pipe_mask?
-
-> +
-> +	return true;
-> +}
-> +
->  int intel_writeback_init(struct intel_display *display)
->  {
->  	struct intel_encoder *encoder;
-> @@ -122,6 +170,7 @@ int intel_writeback_init(struct intel_display *display)
->  	encoder->type = INTEL_OUTPUT_WRITEBACK;
->  	encoder->pipe_mask = ~0;
->  	encoder->cloneable = 0;
-> +	encoder->get_hw_state = intel_writeback_get_hw_state;
->  
->  	connector = &writeback_conn->connector;
->  	ret = intel_writeback_connector_alloc(connector);
-> diff --git a/drivers/gpu/drm/i915/display/intel_writeback_reg.h b/drivers/gpu/drm/i915/display/intel_writeback_reg.h
-> index ffe302ef3dd9..5e7c6c99d191 100644
-> --- a/drivers/gpu/drm/i915/display/intel_writeback_reg.h
-> +++ b/drivers/gpu/drm/i915/display/intel_writeback_reg.h
-> @@ -19,6 +19,9 @@
->  /* Gen12 WD */
->  #define _MMIO_WD(tc, wd0, wd1)	_MMIO_TRANS((tc) - TRANSCODER_WD_0, wd0, wd1)
->  
-> +#define TRANSCONF_WD(tc)	_MMIO_WD(tc,\
-> +				PIPE_WD0_OFFSET,\
-> +				PIPE_WD1_OFFSET)
->  #define WD_TRANS_ENABLE		REG_BIT(31)
->  #define WD_TRANS_STATE		REG_BIT(30)
->  
-> -- 
-> 2.34.1
+ drivers/gpu/drm/display/drm_dp_tunnel.c       | 17 +++++++++++++
+ .../gpu/drm/i915/display/intel_display_regs.h |  1 +
+ .../gpu/drm/i915/display/intel_dp_tunnel.c    | 18 +++++++++++++
+ .../gpu/drm/i915/display/intel_dp_tunnel.h    |  6 +++++
+ drivers/gpu/drm/i915/display/intel_psr.c      | 25 +++++++++++++++++--
+ include/drm/display/drm_dp_tunnel.h           |  6 +++++
+ 6 files changed, 71 insertions(+), 2 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.29.0
+
