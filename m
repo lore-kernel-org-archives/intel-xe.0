@@ -4,56 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92B56106B50F
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 12:12:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDEE5106B50C
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 12:15:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 492E010E891;
-	Wed, 25 Mar 2026 12:12:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82D4B10E89F;
+	Wed, 25 Mar 2026 12:15:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V/jWgnNh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZQLAGTQW";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D96F10E890;
- Wed, 25 Mar 2026 12:12:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FCEB10E89F;
+ Wed, 25 Mar 2026 12:15:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774440735; x=1805976735;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=jvOIzA1WV+mz9tDjj02acqLmRUuHO3GCbd0rS4IJQ6w=;
- b=V/jWgnNhmw8d1c9FbCekumBI4u06byA20e5hn4e01OatSo2WdBNsX6uD
- MGLpzB5XA8ITmrf8mBMIIZCHoxvAhLzvH77aeKZM6G0sfJPlbN9h8GV8U
- 8vAyVyf9+GcHOZlH8m5I35B32AId2GV5JX87KigEYFL+3tz4Xeoxffy38
- IAq6JgLlvZ44xv5617UnX+kS7vqfFjawACFaoYyx9hNXcdlBlHi71LxQR
- wsLz1/tmuI5LYyVK/agJ+cEJeLzuffiCP0tGStR80xkvoj0w13OlY6CUa
- EO0IRNEeMJyhVES/oemTChBceAJMPbFxk7v5Yt/VScJPBBk3iCANszpEf w==;
-X-CSE-ConnectionGUID: JRQAkUzwTMmlekM7twwgkQ==
-X-CSE-MsgGUID: gxn5luZ/TqyTl77KSUZ1QQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="63022443"
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="63022443"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 05:12:15 -0700
-X-CSE-ConnectionGUID: c08ewhVSQUuvI1CuD8WBAg==
-X-CSE-MsgGUID: lSuA7RmtS6C7LqFPQYYnng==
+ t=1774440928; x=1805976928;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=9qw0VjiMuPkUo1YnRiwvH4Y/RE9OH3dyiKQUDwC+GRI=;
+ b=ZQLAGTQWqU7QphU0O9c8BVTWoM3G4IaYQsXOSwD/JhmeB/K5HqBw7SXh
+ MMmJ2INKRBXIZlST1h7zobAcl0sBWI9Am3BGzYSaTeAPOxyAFZdPl5KVQ
+ ZctmwtQvaX0QnaSGikNU42GpOJvUtXbdNnp79VyPTYb6HMrmAEcwD2RJr
+ ZWxCuiapKRq4zBd6hl3diFTSdFIg8BFvNMvQ2xEnQUjAofmE7QNKfOdOC
+ WqKB++NweY+8FzBpylx/uVDyNWTiqTRQ+Y4127Ddv6SVNMNNgp/i67h2h
+ uchmRO/k3/F29IXrQLDU1epmCRFKIwqWKxBiGuTV+8Jg3kIa86NAk0atR g==;
+X-CSE-ConnectionGUID: LcJL1P6JSOGXuwfd4SbZCA==
+X-CSE-MsgGUID: 2WcibOvbRR2F2R1xAH7SwA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="75497157"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="75497157"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 05:15:27 -0700
+X-CSE-ConnectionGUID: Yz5SgdHVSJGJ/2AVNIklLw==
+X-CSE-MsgGUID: Ro872MfeSryQyGdPZ6I0vw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="224673462"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by orviesa008.jf.intel.com with ESMTP; 25 Mar 2026 05:12:13 -0700
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, imre.deak@intel.com, jani.nikula@intel.com,
- arun.r.murthy@intel.com, Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v9 3/3] drm/i915/display: Panel Replay BW optimization for
- DP2.0 tunneling
-Date: Wed, 25 Mar 2026 17:11:54 +0530
-Message-Id: <20260325114154.3688550-4-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20260325114154.3688550-1-animesh.manna@intel.com>
-References: <20260325114154.3688550-1-animesh.manna@intel.com>
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.117])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 05:15:23 -0700
+Date: Wed, 25 Mar 2026 14:15:20 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ sowmiya.s@intel.com, uma.shankar@intel.com, swati2.sharma@intel.com,
+ chaitanya.kumar.borah@intel.com, arun.r.murthy@intel.com
+Subject: Re: [PATCH v3 05/26] drm/i915/writeback: Init writeback connector
+Message-ID: <acPR2C5-z1-jeuxU@intel.com>
+References: <20260325110744.1096786-1-suraj.kandpal@intel.com>
+ <20260325110744.1096786-6-suraj.kandpal@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260325110744.1096786-6-suraj.kandpal@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,113 +73,211 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Unused bandwidth can be used by external display agents for Panel Replay
-enabled DP panel during idleness with link on. Enable source to replace
-dummy data from the display with data from another agent by programming
-TRANS_DP2_CTL [Panel Replay Tunneling Enable].
+On Wed, Mar 25, 2026 at 04:37:23PM +0530, Suraj Kandpal wrote:
+> Initialize writeback connector initialising the virtual encoder
+> and intel connector. We also allocate memory for drm_writeback_connector
+> but not the drm_connector within it due to a constraint
+> we need all connectors to be an intel_connector.
+> The writeback_format arrays is used to tell the user which
+> drm formats are supported by us.
+> 
+> Bspec: 49275
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/Makefile                 |   1 +
+>  .../gpu/drm/i915/display/intel_writeback.c    | 126 ++++++++++++++++++
+>  .../gpu/drm/i915/display/intel_writeback.h    |  17 +++
+>  3 files changed, 144 insertions(+)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_writeback.c
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_writeback.h
+> 
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index b677720a1c2d..1e9140e7713c 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -315,6 +315,7 @@ i915-y += \
+>  	display/intel_vblank.o \
+>  	display/intel_vga.o \
+>  	display/intel_wm.o \
+> +	display/intel_writeback.o \
+>  	display/skl_prefill.o \
+>  	display/skl_scaler.o \
+>  	display/skl_universal_plane.o \
+> diff --git a/drivers/gpu/drm/i915/display/intel_writeback.c b/drivers/gpu/drm/i915/display/intel_writeback.c
+> new file mode 100644
+> index 000000000000..73101ee17d74
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_writeback.c
+> @@ -0,0 +1,126 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2025 Intel Corporation
+> + */
+> +
+> +#include <linux/slab.h>
+> +#include <drm/drm_atomic_state_helper.h>
+> +#include <drm/drm_writeback.h>
+> +#include <drm/drm_modeset_helper_vtables.h>
+> +#include <drm/drm_probe_helper.h>
+> +#include <drm/drm_fourcc.h>
+> +#include <drm/drm_encoder.h>
+> +
+> +#include "intel_atomic.h"
+> +#include "intel_connector.h"
+> +#include "intel_de.h"
+> +#include "intel_display_driver.h"
+> +#include "intel_display_types.h"
+> +#include "intel_writeback.h"
+> +
+> +struct intel_writeback_connector {
+> +	struct intel_connector connector;
+> +	struct intel_encoder encoder;
+> +	enum transcoder trans;
 
-v2:
-- Enable pr bw optimization along with panel replay enable. [Jani]
+We don't call it 'trans' anywhere else.
 
-v3:
-- Write TRANS_DP2_CTL once for both bw optimization and panel replay
-enable. [Jani]
+> +	int frame_num;
 
-v4:
-- Read DPCD once in init() and store in panel_replay_caps. [Jouni]
+This and 'trans' are unused. Please introduce them when needed, not
+here.
 
-v5:
-- Avoid reading DPCD for edp. [Jouni]
-- Use drm_dp_dpcd_read_byte() and some cosmetic changes. [Jani]
+> +};
+> +
+> +static const u32 writeback_formats[] = {
+> +	DRM_FORMAT_XYUV8888,
+> +	DRM_FORMAT_YUYV,
+> +	DRM_FORMAT_XBGR8888,
+> +	DRM_FORMAT_XVYU2101010,
+> +	DRM_FORMAT_VYUY,
+> +	DRM_FORMAT_XBGR2101010,
+> +};
+> +
+> +static int intel_writeback_connector_init(struct intel_connector *connector)
+> +{
+> +	struct intel_digital_connector_state *conn_state;
+> +
+> +	conn_state = kzalloc(sizeof(*conn_state), GFP_KERNEL);
+> +	if (!conn_state)
+> +		return -ENOMEM;
+> +
+> +	__drm_atomic_helper_connector_reset(&connector->base,
+> +					    &conn_state->base);
+> +	return 0;
+> +}
+> +
+> +static int
+> +intel_writeback_connector_alloc(struct intel_connector *connector)
+> +{
+> +	if (intel_writeback_connector_init(connector) < 0) {
+> +		kfree(connector);
+> +		return -ENOMEM;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct drm_encoder_funcs drm_writeback_encoder_funcs = {
+> +	.destroy = drm_encoder_cleanup,
+> +};
+> +
+> +const struct drm_connector_funcs conn_funcs = {
+> +	.fill_modes = drm_helper_probe_single_connector_modes,
+> +	.atomic_duplicate_state = intel_digital_connector_duplicate_state,
+> +	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
+> +};
+> +
+> +static const struct drm_connector_helper_funcs conn_helper_funcs = {
+> +};
+> +
+> +int intel_writeback_init(struct intel_display *display)
+> +{
+> +	struct intel_encoder *encoder;
+> +	struct intel_writeback_connector *writeback_conn;
+> +	struct intel_connector *connector;
+> +	int ret;
+> +
+> +	writeback_conn = kzalloc(sizeof(*writeback_conn), GFP_KERNEL);
+> +	if (!writeback_conn)
+> +		return -ENOSPC;
+> +
+> +	encoder = &writeback_conn->encoder;
+> +	encoder->base.possible_crtcs = 0xf;
 
-v6:
-- Extend the corresponding interface defined in drm_dp_tunnel.c
-to query the Panel Replay optimization capability. [Imre]
+We have code that takes care of that.
 
-v7:
-- Clear TRANS_DP2_PR_TUNNELING_ENABLE if pr bw optimization
-is not allowed. [Jouni]
-- Move intel_dp_is_edp() check. [Jouni]
+> +	ret = drm_encoder_init(display->drm, &encoder->base,
+> +			       &drm_writeback_encoder_funcs,
+> +			       DRM_MODE_ENCODER_VIRTUAL, NULL);
+> +	if (ret) {
+> +		kfree(writeback_conn);
+> +		return ret;
+> +	}
+> +
+> +	encoder->type = INTEL_OUTPUT_WRITEBACK;
+> +	encoder->pipe_mask = ~0;
+> +	encoder->cloneable = 0;
 
-Bspec: 68920
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- .../gpu/drm/i915/display/intel_display_regs.h |  1 +
- drivers/gpu/drm/i915/display/intel_psr.c      | 25 +++++++++++++++++--
- 2 files changed, 24 insertions(+), 2 deletions(-)
+We should probably just nuke all the redundant cloneable=0 assignments
+from all the encoders.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 4746e9ebd920..dada8dc27ea4 100644
---- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -2263,6 +2263,7 @@
- #define TRANS_DP2_CTL(trans)			_MMIO_TRANS(trans, _TRANS_DP2_CTL_A, _TRANS_DP2_CTL_B)
- #define  TRANS_DP2_128B132B_CHANNEL_CODING	REG_BIT(31)
- #define  TRANS_DP2_PANEL_REPLAY_ENABLE		REG_BIT(30)
-+#define  TRANS_DP2_PR_TUNNELING_ENABLE		REG_BIT(26)
- #define  TRANS_DP2_DEBUG_ENABLE			REG_BIT(23)
- 
- #define _TRANS_DP2_VFREQHIGH_A			0x600a4
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index c13116e6f17f..992bd9ffac70 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -44,6 +44,7 @@
- #include "intel_dmc.h"
- #include "intel_dp.h"
- #include "intel_dp_aux.h"
-+#include "intel_dp_tunnel.h"
- #include "intel_dsb.h"
- #include "intel_frontbuffer.h"
- #include "intel_hdmi.h"
-@@ -1023,11 +1024,27 @@ static u8 frames_before_su_entry(struct intel_dp *intel_dp)
- 	return frames_before_su_entry;
- }
- 
-+static bool intel_psr_allow_pr_bw_optimization(struct intel_dp *intel_dp)
-+{
-+	if (intel_dp_is_edp(intel_dp))
-+		return false;
-+
-+	if (!intel_dp_tunnel_bw_alloc_is_enabled(intel_dp))
-+		return false;
-+
-+	if (!intel_dp_tunnel_pr_optimization_supported(intel_dp))
-+		return false;
-+
-+	return true;
-+}
-+
- static void dg2_activate_panel_replay(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_psr *psr = &intel_dp->psr;
- 	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
-+	u32 dp2_ctl_set = TRANS_DP2_PANEL_REPLAY_ENABLE;
-+	u32 dp2_ctl_clear = 0;
- 
- 	if (intel_dp_is_edp(intel_dp) && psr->sel_update_enabled) {
- 		u32 val = psr->su_region_et_enabled ?
-@@ -1040,12 +1057,16 @@ static void dg2_activate_panel_replay(struct intel_dp *intel_dp)
- 			       val);
- 	}
- 
-+	if (intel_psr_allow_pr_bw_optimization(intel_dp))
-+		dp2_ctl_set |= TRANS_DP2_PR_TUNNELING_ENABLE;
-+	else
-+		dp2_ctl_clear = TRANS_DP2_PR_TUNNELING_ENABLE;
-+
- 	intel_de_rmw(display,
- 		     PSR2_MAN_TRK_CTL(display, intel_dp->psr.transcoder),
- 		     0, ADLP_PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME);
- 
--	intel_de_rmw(display, TRANS_DP2_CTL(intel_dp->psr.transcoder), 0,
--		     TRANS_DP2_PANEL_REPLAY_ENABLE);
-+	intel_de_rmw(display, TRANS_DP2_CTL(intel_dp->psr.transcoder), dp2_ctl_clear, dp2_ctl_set);
- }
- 
- static void hsw_activate_psr2(struct intel_dp *intel_dp)
+> +
+> +	connector = &writeback_conn->connector;
+> +	ret = intel_writeback_connector_alloc(connector);
+> +	if (ret) {
+> +		kfree(writeback_conn);
+> +		return ret;
+> +	}
+> +
+> +	connector->base.interlace_allowed = 0;
+
+redundant
+
+> +	drm_connector_helper_add(&connector->base, &conn_helper_funcs);
+> +	ret = drm_writeback_connector_init(display->drm, &connector->base,
+> +					   &conn_funcs, &encoder->base,
+> +					   writeback_formats,
+> +					   ARRAY_SIZE(writeback_formats));
+> +	if (ret) {
+> +		intel_connector_free(connector);
+> +		drm_encoder_cleanup(&encoder->base);
+> +		kfree(&writeback_conn->encoder);
+> +		kfree(writeback_conn);
+> +		return ret;
+> +	}
+> +
+> +	intel_connector_attach_encoder(connector, encoder);
+> +	connector->get_hw_state = intel_connector_get_hw_state;
+> +	connector->base.status = connector_status_disconnected;
+> +	writeback_conn->frame_num = 1;
+> +
+> +	return 0;
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_writeback.h b/drivers/gpu/drm/i915/display/intel_writeback.h
+> new file mode 100644
+> index 000000000000..5911684cb81a
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_writeback.h
+> @@ -0,0 +1,17 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2025 Intel Corporation
+> + */
+> +
+> +#ifndef __INTEL_WRITEBACK_H__
+> +#define __INTEL_WRITEBACK_H__
+> +
+> +#include <linux/types.h>
+> +
+> +struct intel_display;
+> +struct intel_writeback_connector;
+> +
+> +int intel_writeback_init(struct intel_display *display);
+> +
+> +#endif /* __INTEL_WRITEBACK_H__ */
+> +
+> -- 
+> 2.34.1
+
 -- 
-2.29.0
-
+Ville Syrjälä
+Intel
