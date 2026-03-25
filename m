@@ -4,27 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CF77106B53E
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 13:50:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72C6C103A9BD
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 13:58:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2A6B10E1E0;
-	Wed, 25 Mar 2026 13:50:22 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 228D910E1E0;
- Wed, 25 Mar 2026 13:50:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8679602827430600728=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Panel_Replay_BW_optimizatio?=
- =?utf-8?q?n_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Animesh Manna" <animesh.manna@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0FB510E1EE;
+	Wed, 25 Mar 2026 13:58:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iOVJEi9E";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E03010E1EE;
+ Wed, 25 Mar 2026 13:58:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774447135; x=1805983135;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=v2PbOUodmcj9C0Q9g1YpTDSV0g6m2UbZ4dO5KjU/3IY=;
+ b=iOVJEi9ETrbw51f/ABp3H23Fk2l8I9y4XoUZv8vBQjYrh2M+Nv/JiXHK
+ qeqNc7JdOl/sMJcD+koRjfRxuWc7xH9SjXwbQVqp+dVFUrgrXuTaZrLk1
+ uRmfZO2i5d1/wCWBqkJH/EbibW5VV0t3GZk9kmDJPuBNYqEaR4Tfdf3I1
+ mjTqGMllm+aL1LDOdUBazAzz4yZa25F77c3NDg9KFVyLdL/f15O0K+qur
+ rSAU+87mzPB5umxYzPfzw3yHaqJdtArFaSX02J2c8qZBhzCKQHFpezkWt
+ h2BSNYmkOtj0qI2va6x0dnMygb4hNGVCydfsppeiL7CUKL70KTJWdFKRx Q==;
+X-CSE-ConnectionGUID: dLDaRYmDR6OPAfWEmcIBPg==
+X-CSE-MsgGUID: KdrswgJ6TSKT/gkSn9U5nA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="75365732"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="75365732"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 06:58:54 -0700
+X-CSE-ConnectionGUID: nDAM88UzS5ay4S0vbQeIcA==
+X-CSE-MsgGUID: eWh1tZ41SemNPo37vaQR/g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="248197416"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.117])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 06:58:52 -0700
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Date: Wed, 25 Mar 2026 13:50:22 -0000
-Message-ID: <177444662212.397331.4025638761044608016@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260325114154.3688550-1-animesh.manna@intel.com>
-In-Reply-To: <20260325114154.3688550-1-animesh.manna@intel.com>
+Subject: [PATCH 0/6] drm/i915: Some fixes and cleanups
+Date: Wed, 25 Mar 2026 15:58:43 +0200
+Message-ID: <20260325135849.12603-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.52.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,172 +65,30 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8679602827430600728==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Series Details ==
+Somewhat random pile of things:
+- Fix min_voltage_level regression
+- Fix enhanced_framing handling on ivb/hsw CPU eDP
+- improve the state dump a bit
 
-Series: Panel Replay BW optimization (rev3)
-URL   : https://patchwork.freedesktop.org/series/163080/
-State : success
+Ville Syrjälä (6):
+  drm/i915/cdclk: Do the full CDCLK dance for min_voltage_level changes
+  drm/i915/dp: Use crtc_state->enhanced_framing properly on ivb/hsw CPU
+    eDP
+  drm/i915: Split the pipe_src dump to its own line
+  drm/i915: Include the crtc min_voltage_level in the state dump
+  drm/i915: Eliminate out of place "HBlank" CamelCase
+  drm/i915: Move the sharness filter dump next to pfit
 
-== Summary ==
+ drivers/gpu/drm/i915/display/g4x_dp.c         |  2 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    | 54 +++++++++++++++++++
+ .../drm/i915/display/intel_crtc_state_dump.c  | 21 ++++----
+ 3 files changed, 67 insertions(+), 10 deletions(-)
 
-CI Bug Log - changes from xe-4779-1fda996928180768f2704b8f8c816f10da433131_BAT -> xe-pw-163080v3_BAT
-====================================================
+-- 
+2.52.0
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-163080v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4779-1fda996928180768f2704b8f8c816f10da433131/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6520])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4779-1fda996928180768f2704b8f8c816f10da433131/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [DMESG-WARN][5] ([Intel XE#7483]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4779-1fda996928180768f2704b8f8c816f10da433131/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  * igt@xe_waitfence@engine:
-    - bat-atsm-2:         [FAIL][7] -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4779-1fda996928180768f2704b8f8c816f10da433131/bat-atsm-2/igt@xe_waitfence@engine.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/bat-atsm-2/igt@xe_waitfence@engine.html
-    - bat-dg2-oem2:       [FAIL][9] ([Intel XE#6519]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4779-1fda996928180768f2704b8f8c816f10da433131/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
-
-
-Build changes
--------------
-
-  * Linux: xe-4779-1fda996928180768f2704b8f8c816f10da433131 -> xe-pw-163080v3
-
-  IGT_8825: 531ebe0606453021b88f794aad255d9e1a234d3d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-4779-1fda996928180768f2704b8f8c816f10da433131: 1fda996928180768f2704b8f8c816f10da433131
-  xe-pw-163080v3: 163080v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/index.html
-
---===============8679602827430600728==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Panel Replay BW optimization (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163080/">https://patchwork.freedesktop.org/series/163080/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4779-1fda996928180768f2704b8f8c816f10da433131_BAT -&gt; xe-pw-163080v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-163080v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4779-1fda996928180768f2704b8f8c816f10da433131/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@reltime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4779-1fda996928180768f2704b8f8c816f10da433131/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4779-1fda996928180768f2704b8f8c816f10da433131/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4779-1fda996928180768f2704b8f8c816f10da433131/bat-atsm-2/igt@xe_waitfence@engine.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/bat-atsm-2/igt@xe_waitfence@engine.html">PASS</a></li>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4779-1fda996928180768f2704b8f8c816f10da433131/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163080v3/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4779-1fda996928180768f2704b8f8c816f10da433131 -&gt; xe-pw-163080v3</li>
-</ul>
-<p>IGT_8825: 531ebe0606453021b88f794aad255d9e1a234d3d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-4779-1fda996928180768f2704b8f8c816f10da433131: 1fda996928180768f2704b8f8c816f10da433131<br />
-  xe-pw-163080v3: 163080v3</p>
-
-</body>
-</html>
-
---===============8679602827430600728==--
