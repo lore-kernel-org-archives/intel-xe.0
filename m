@@ -4,46 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B84D109C02F
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 15:59:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8D93109C034
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 16:02:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0625710E7F9;
-	Wed, 25 Mar 2026 15:59:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7633B10E7C1;
+	Wed, 25 Mar 2026 16:02:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nzWM0u6Q";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GNW8qyOu";
 	dkim-atps=neutral
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B630910E7CD;
- Wed, 25 Mar 2026 15:59:56 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id EE8C7600AC;
- Wed, 25 Mar 2026 15:59:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CAFEC19423;
- Wed, 25 Mar 2026 15:59:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1774454395;
- bh=+0nYu3vCNrNhMzd9/cm+tOj/aB8NO24ErTKeKQYbAV0=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=nzWM0u6Qn1Ms4fqYrCExyYxHIfM6vh+F+i3D305lycMHoCKQn6flf2mB9tX4f0yf0
- HDXCp6Qn0MlfR5lcr22WMhU8g009OnayD5giTXAChnzu0FmZa/FzGWmLdGWBL/oP+b
- 9bNXvXKVEzrJso+IcawYcSGjBzXjnncUNjHZUd6g8kvvwUalawwmFXR0/FSfVqhN4Z
- 5TcHvhGvaBtA+2pM8pdgJP8NvTvuG62bv34LWoketzyeLzuX0b+B8ZNPGl13T4UeuI
- QakjLYnapmg3qxQ35mZx2hDrLuKeP818tlYa1JC7mOE16Nmtd+Cd/hrAz+w4rd2Wo0
- cBew4lBG36lxw==
-Date: Wed, 25 Mar 2026 05:59:54 -1000
-From: Tejun Heo <tj@kernel.org>
-To: Matthew Brost <matthew.brost@intel.com>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Lai Jiangshan <jiangshanlai@gmail.com>, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 01/12] workqueue: Add interface to teach lockdep to
- warn on reclaim violations
-Message-ID: <acQGehvhyfU5j6uL@slm.duckdns.org>
-References: <20260316043255.226352-1-matthew.brost@intel.com>
- <20260316043255.226352-2-matthew.brost@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D23810E7C1
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Mar 2026 16:02:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774454530; x=1805990530;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Ndn2aZnnbpO9plNfat5kpwfD1VAI717NY9iZWncwls8=;
+ b=GNW8qyOu1Yoc4kc5foxkcemqgJXXJq1b7axPIpKcau4X+j7uxC7+ifYd
+ 5PsKUeIQJWYlpPaoK8FlYUdu66cwaxJ9mc9MkBO/mbZUdieQCMdpCEY1J
+ DnU5hB0Iog54xneKgE7uHfoUQarhXJMrc56DiTx6/ECqEPptW+OgU37/7
+ H0O3R7q1IuP2+JZsMexRuZs248utIe1vggKrkiG7FQzqP4DsUsuVqqBjJ
+ dJuSY2/V7qGWTbvsex+/b7BLir17zclPK/PvuvtZxq0hggA9vvoVQcxQE
+ DVyqt/rkPQCYC+c5SV2aDy/Nr47s5afV1BKi/+xDwVerOxPxzyihrSLGe A==;
+X-CSE-ConnectionGUID: PLsodsjMRw2uEF6GmNkiwg==
+X-CSE-MsgGUID: xjL0wMvHTDi3l8NWqPcE2Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="75690363"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="75690363"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 09:02:04 -0700
+X-CSE-ConnectionGUID: QuPy24PaQe+vXRTPMRsRgw==
+X-CSE-MsgGUID: 4LsoptUQQ1SkIUBNk8IB+g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="223920901"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO fdugast-desk.home)
+ ([10.245.245.87])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 09:02:02 -0700
+From: Francois Dugast <francois.dugast@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Subject: [PATCH] drm/xe: Add new SVM copy GT stats per size
+Date: Wed, 25 Mar 2026 17:01:52 +0100
+Message-ID: <20260325160152.1057556-1-francois.dugast@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260316043255.226352-2-matthew.brost@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,46 +66,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Sorry about the tardiness. Traveling during spring break. Getting more than
-I can catch up with each day.
+Breakdown the GT stats for copy to host and copy to device per size (4K,
+64K 2M) to make it easier for user space to track memory migrations.
+This is helpful to verify allocation alignment is correct when porting
+applications to SVM.
 
-On Sun, Mar 15, 2026 at 09:32:44PM -0700, Matthew Brost wrote:
-> @@ -403,6 +403,7 @@ enum wq_flags {
->  	 */
->  	WQ_POWER_EFFICIENT	= 1 << 7,
->  	WQ_PERCPU		= 1 << 8, /* bound to a specific cpu */
-> +	WQ_MEM_WARN_ON_RECLAIM	= 1 << 9, /* teach lockdep to warn on reclaim */
+Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_stats.c       |  6 ++++++
+ drivers/gpu/drm/xe/xe_gt_stats_types.h |  6 ++++++
+ drivers/gpu/drm/xe/xe_svm.c            | 27 ++++++++++++++++++++++++--
+ 3 files changed, 37 insertions(+), 2 deletions(-)
 
-Shouldn't this require WQ_MEM_RECLAIM?
-
-> +/**
-> + * workqueue_is_reclaim_annotated() - Test whether a workqueue is annotated for
-> + * reclaim safety
-> + * @wq: workqueue to test
-> + *
-> + * Returns true if @wq is flags have both %WQ_MEM_WARN_ON_RECLAIM and
-> + * %WQ_MEM_RECLAIM set. A workqueue marked with these flags indicates that it
-> + * participates in reclaim paths, and therefore must not perform memory
-> + * allocations that can recurse into reclaim (e.g., GFP_KERNEL is not allowed).
-> + *
-> + * Drivers can use this helper to enforce reclaim-safe behavior on workqueues
-> + * that are created or provided elsewhere in the code.
-> + *
-> + * Return:
-> + * true if the workqueue is reclaim-annotated, false otherwise.
-> + */
-> +bool workqueue_is_reclaim_annotated(struct workqueue_struct *wq)
-> +{
-> +	return (wq->flags & WQ_MEM_WARN_ON_RECLAIM) &&
-> +		(wq->flags & WQ_MEM_RECLAIM);
-> +}
-> +EXPORT_SYMBOL_GPL(workqueue_is_reclaim_annotated);
-
-Why is this function necessary? It feels rather odd to use wq as the source
-of this information. Shouldn't that be an innate knowledge of the code
-that's using this?
-
-Thanks.
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_stats.c b/drivers/gpu/drm/xe/xe_gt_stats.c
+index 81cec441b449..59b3b23a54c8 100644
+--- a/drivers/gpu/drm/xe/xe_gt_stats.c
++++ b/drivers/gpu/drm/xe/xe_gt_stats.c
+@@ -85,7 +85,13 @@ static const char *const stat_description[__XE_GT_STATS_NUM_IDS] = {
+ 	DEF_STAT_STR(SVM_64K_CPU_COPY_US, "svm_64K_cpu_copy_us"),
+ 	DEF_STAT_STR(SVM_2M_CPU_COPY_US, "svm_2M_cpu_copy_us"),
+ 	DEF_STAT_STR(SVM_DEVICE_COPY_KB, "svm_device_copy_kb"),
++	DEF_STAT_STR(SVM_4K_DEVICE_COPY_KB, "svm_4K_device_copy_kb"),
++	DEF_STAT_STR(SVM_64K_DEVICE_COPY_KB, "svm_64K_device_copy_kb"),
++	DEF_STAT_STR(SVM_2M_DEVICE_COPY_KB, "svm_2M_device_copy_kb"),
+ 	DEF_STAT_STR(SVM_CPU_COPY_KB, "svm_cpu_copy_kb"),
++	DEF_STAT_STR(SVM_4K_CPU_COPY_KB, "svm_4K_cpu_copy_kb"),
++	DEF_STAT_STR(SVM_64K_CPU_COPY_KB, "svm_64K_cpu_copy_kb"),
++	DEF_STAT_STR(SVM_2M_CPU_COPY_KB, "svm_2M_cpu_copy_kb"),
+ 	DEF_STAT_STR(SVM_4K_GET_PAGES_US, "svm_4K_get_pages_us"),
+ 	DEF_STAT_STR(SVM_64K_GET_PAGES_US, "svm_64K_get_pages_us"),
+ 	DEF_STAT_STR(SVM_2M_GET_PAGES_US, "svm_2M_get_pages_us"),
+diff --git a/drivers/gpu/drm/xe/xe_gt_stats_types.h b/drivers/gpu/drm/xe/xe_gt_stats_types.h
+index b6081c312474..081c787ddcb6 100644
+--- a/drivers/gpu/drm/xe/xe_gt_stats_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_stats_types.h
+@@ -40,7 +40,13 @@ enum xe_gt_stats_id {
+ 	XE_GT_STATS_ID_SVM_64K_CPU_COPY_US,
+ 	XE_GT_STATS_ID_SVM_2M_CPU_COPY_US,
+ 	XE_GT_STATS_ID_SVM_DEVICE_COPY_KB,
++	XE_GT_STATS_ID_SVM_4K_DEVICE_COPY_KB,
++	XE_GT_STATS_ID_SVM_64K_DEVICE_COPY_KB,
++	XE_GT_STATS_ID_SVM_2M_DEVICE_COPY_KB,
+ 	XE_GT_STATS_ID_SVM_CPU_COPY_KB,
++	XE_GT_STATS_ID_SVM_4K_CPU_COPY_KB,
++	XE_GT_STATS_ID_SVM_64K_CPU_COPY_KB,
++	XE_GT_STATS_ID_SVM_2M_CPU_COPY_KB,
+ 	XE_GT_STATS_ID_SVM_4K_GET_PAGES_US,
+ 	XE_GT_STATS_ID_SVM_64K_GET_PAGES_US,
+ 	XE_GT_STATS_ID_SVM_2M_GET_PAGES_US,
+diff --git a/drivers/gpu/drm/xe/xe_svm.c b/drivers/gpu/drm/xe/xe_svm.c
+index a91c84487a67..0251098650af 100644
+--- a/drivers/gpu/drm/xe/xe_svm.c
++++ b/drivers/gpu/drm/xe/xe_svm.c
+@@ -485,10 +485,33 @@ static void xe_svm_copy_kb_stats_incr(struct xe_gt *gt,
+ 				      const enum xe_svm_copy_dir dir,
+ 				      int kb)
+ {
+-	if (dir == XE_SVM_COPY_TO_VRAM)
++	if (dir == XE_SVM_COPY_TO_VRAM) {
++		switch (kb) {
++		case 4:
++			xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_4K_DEVICE_COPY_KB, kb);
++			break;
++		case 64:
++			xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_64K_DEVICE_COPY_KB, kb);
++			break;
++		case 2048:
++			xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_2M_DEVICE_COPY_KB, kb);
++			break;
++		}
+ 		xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_DEVICE_COPY_KB, kb);
+-	else
++	} else {
++		switch (kb) {
++		case 4:
++			xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_4K_CPU_COPY_KB, kb);
++			break;
++		case 64:
++			xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_64K_CPU_COPY_KB, kb);
++			break;
++		case 2048:
++			xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_2M_CPU_COPY_KB, kb);
++			break;
++		}
+ 		xe_gt_stats_incr(gt, XE_GT_STATS_ID_SVM_CPU_COPY_KB, kb);
++	}
+ }
+ 
+ static void xe_svm_copy_us_stats_incr(struct xe_gt *gt,
 -- 
-tejun
+2.43.0
+
