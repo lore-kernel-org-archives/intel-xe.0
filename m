@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CE04109C05A
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 18:54:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9803D109C057
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 18:54:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E5F810E832;
-	Wed, 25 Mar 2026 18:54:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 541D910E86E;
+	Wed, 25 Mar 2026 18:54:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P0tq1mfh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WmTGwMk9";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C86A610E863;
- Wed, 25 Mar 2026 18:54:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD00810E863;
+ Wed, 25 Mar 2026 18:54:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774464860; x=1806000860;
+ t=1774464864; x=1806000864;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=N5JRKXg4wTx/Bcw7904rFg89dPs2FKfkBPgB/SV5F5A=;
- b=P0tq1mfhrgqhOVSbgk1Yg+gmURlNaz0IwKlq9e6wsj40pedjlH0Lp/Yk
- 40bPavc9BIWQAxiJ0ZNMBksUDNEf06iZd2DmNxd/n4+Eec1PnaY19lLkU
- nkcd52W9nRhBhIIuG5rADpaUrlec2/erBOWqqTfo1RuSrGoVzT95vmT3G
- YB1l7KUzkybCo8q0jPloQN7RANb58/q/c4P/XaLClpZ1QaUPvnmrplOFE
- pucGWsqbh2acBNWREjTAlLft9H/NGkgCaGi/oPrFdLzYMw6yOqRRjeNDJ
- qWioC8rVGS0UYC3TbLNGEkk9XJxVyPAFJc1IzQB6AmKIJ/2CJLE8VuRod w==;
-X-CSE-ConnectionGUID: BOOCcbT6RDmPjwS//+8BXA==
-X-CSE-MsgGUID: BV3Z22qVSw+cp/fekXdG1w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="86991648"
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="86991648"
+ bh=BN0ykZZPWN0rdSEAFkBtZKDW8P+oL43dr0pF+OQ4m1E=;
+ b=WmTGwMk9iWkIqh0yL2dvv7K9lBxm0zC9z/u+39Pzvbd995MiuIf0XGhv
+ cLc8LsRgcvvx9nsU6W8bzpKkUp21k0wXC4MdRMlRlTSLAQQO3fgDkjT8M
+ sa7aSlgobTFhO+XCbyaBachdCBLTwU8t9EyeD6qe6XO5ZEQumR0W08q9D
+ egkcLJmbAkoaZ75EXEex/mXScsk8vTxshEH0VmWe8Zq2DmjjeH/g6zwKX
+ 40rRTenjqAzFVCObVPQMIdz+l3ecnmK8kMS3OfyW6rF1HNGURxCRjimfd
+ hjtzqtHKC3Bl8gnhPYmtpbonHWpLv56kMVaJS1tbHXQzC2HgHlJaDRGqF g==;
+X-CSE-ConnectionGUID: KTdB3E+IQk6njpTpdjIiOQ==
+X-CSE-MsgGUID: eife6f70Q5yhvGttdDGAfA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="86991676"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="86991676"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 11:54:19 -0700
-X-CSE-ConnectionGUID: KfUNs/o0TxKDGBZMrrbEuQ==
-X-CSE-MsgGUID: z4xqQ0p0SSO3Qv6uV5HX9A==
+ 25 Mar 2026 11:54:23 -0700
+X-CSE-ConnectionGUID: q76ZvUtfSv2wxNTwq9xxoQ==
+X-CSE-MsgGUID: p+er7SUsTTe4Q6IbOvJ4rA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="221448699"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="221448745"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.117])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 11:54:18 -0700
+ 25 Mar 2026 11:54:22 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 09/12] drm/i915/de: Add a simple intel_de_read64_2x32()
-Date: Wed, 25 Mar 2026 20:53:38 +0200
-Message-ID: <20260325185342.11482-10-ville.syrjala@linux.intel.com>
+Subject: [PATCH 10/12] drm/i915/vrr: Use intel_de_read64_2x32()
+Date: Wed, 25 Mar 2026 20:53:39 +0200
+Message-ID: <20260325185342.11482-11-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260325185342.11482-1-ville.syrjala@linux.intel.com>
 References: <20260325185342.11482-1-ville.syrjala@linux.intel.com>
@@ -72,49 +72,32 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-intel_de_read64_2x32_volatile() is a complex beast because
-it needs to deal with volatile register values. For simpler
-cases we can simply do a pair normal intel_de_read()s.
-
-My main reason for hating overuse of intel_de_read64_2x32_volatile()
-is that it makes register tracepoints confusing. It always
-does three accesses in the somewhat weird udw,ldw,udw order,
-confusing the reader of the trace. Much more clear if we just
-observe the two reads in the natural little endian order.
-
-We also have no non-volatile use case where the LDW and UDW
-are stored in non-consecutive registers, so we can just pass
-along a single register offset.
+Replace the pointless use of intel_de_read64_2x32_volatile()
+with the simpler intel_de_read64_2x32().
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_de.h | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
-index 295e7176b732..624a0627b95c 100644
---- a/drivers/gpu/drm/i915/display/intel_de.h
-+++ b/drivers/gpu/drm/i915/display/intel_de.h
-@@ -53,6 +53,19 @@ intel_de_read64_2x32_volatile(struct intel_display *display,
- 	return val;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index ae5385e92889..fae1186a90b2 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -1053,11 +1053,9 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
  
-+static inline u64
-+intel_de_read64_2x32(struct intel_display *display,
-+		     i915_reg_t reg)
-+{
-+	i915_reg_t upper_reg = _MMIO(i915_mmio_reg_offset(reg) + 4);
-+	u32 lower, upper;
-+
-+	lower = intel_de_read(display, reg);
-+	upper = intel_de_read(display, upper_reg);
-+
-+	return (u64)upper << 32 | lower;
-+}
-+
- static inline void
- intel_de_posting_read(struct intel_display *display, i915_reg_t reg)
- {
+ 	if (crtc_state->cmrr.enable) {
+ 		crtc_state->cmrr.cmrr_n =
+-			intel_de_read64_2x32_volatile(display, TRANS_CMRR_N_LO(display, cpu_transcoder),
+-						      TRANS_CMRR_N_HI(display, cpu_transcoder));
++			intel_de_read64_2x32(display, TRANS_CMRR_N_LO(display, cpu_transcoder));
+ 		crtc_state->cmrr.cmrr_m =
+-			intel_de_read64_2x32_volatile(display, TRANS_CMRR_M_LO(display, cpu_transcoder),
+-						      TRANS_CMRR_M_HI(display, cpu_transcoder));
++			intel_de_read64_2x32(display, TRANS_CMRR_M_LO(display, cpu_transcoder));
+ 	}
+ 
+ 	if (DISPLAY_VER(display) >= 13) {
 -- 
 2.52.0
 
