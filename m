@@ -4,62 +4,68 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B577A106B522
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 12:35:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7575C106B525
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 12:40:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7314D10E6FA;
-	Wed, 25 Mar 2026 12:35:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3093210E1F4;
+	Wed, 25 Mar 2026 12:40:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SnOLmSLy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EggFjcCX";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E211310E6FA;
- Wed, 25 Mar 2026 12:35:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DEB510E1F4;
+ Wed, 25 Mar 2026 12:40:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774442144; x=1805978144;
+ t=1774442417; x=1805978417;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=MY6e1Z1B+7e7nVZeEoQuKprxKRLnb9K1HnXoFF3xXGA=;
- b=SnOLmSLyKn4Hjup+I1n3AmOnEW+HJSrN0YHHJzRQKC9SS3W5If8Zhq5d
- 1wwanBW5AaHx8fPOdYqKcU9tj/Tt0tx3wOWmG5hDHF/uAA1engy18E7se
- zwAZUCBMEDXrU7xvhj2wmrV7OePnA8/Rof/f6Ur+paaH51xD3bLmzOS+/
- qw9BH4ukIvpqt4i7EW6NWfQGEJNxhcN1CGzhfGYYyw6co692Y9/mIMoc/
- 3ysrhmyU+WvSzvWoMj/iIMuEgq588dtz4uf1sR7trKjNM8KRN0vZ6m8Tw
- JRT6U3QIGOBpfVUVPzBHiWuKC7/l5eF8FBURCC9M/7q80wkWmSFjBW3sL w==;
-X-CSE-ConnectionGUID: rlyNsZXTQDi5Yq3FLw2i1Q==
-X-CSE-MsgGUID: CYpgN4SYRNGsTETVXhApKA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="86847152"
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="86847152"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 05:35:44 -0700
-X-CSE-ConnectionGUID: VGL0mwvCRner3A/P2jXO8g==
-X-CSE-MsgGUID: gbONUx1+RfeyCEnGXlh+vQ==
+ mime-version:in-reply-to;
+ bh=0ykjiUAp1iGLjedC402sZIXIRZSWQPp4VGFsoOIHYGQ=;
+ b=EggFjcCXgLo8FxlUK2p1QoHCe7++7L6ugiBI8ATXvBSwXd3Rmny+KgWJ
+ scfjd0lUn/BLVGoeP4J1gpGsTGYxQ6S/oElnRSLS/c0dUyU/NaKX3sS9f
+ YyNSR5fCYvGRc3k4mtJxkg4HhGNH18OJlEJhRV9cwa44d7XOymetOD4Wh
+ NOwX2IIlaXmY7y4GbnzQXTwp9nnU0zQl57jv+LqvR0uWLJYGhveT3pyjl
+ LPfIx3w79K5m/FOT8bhTCnrAt0r0w8xbbmreublpdNiFPcAPRpFLcHa5F
+ aBlJy0bAA9DvVLENTSwJyFizh/qrvYWBc+q5+Rr1Jkplz52WwGbrCuwcj g==;
+X-CSE-ConnectionGUID: DjKcFXKHRSCrC60U847h7A==
+X-CSE-MsgGUID: PomPbq8zSQuJMkn/dzQOhw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="86088710"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="86088710"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 05:40:17 -0700
+X-CSE-ConnectionGUID: NpVP2QpCQ/aAk7BMZuwJiA==
+X-CSE-MsgGUID: WxcnrAMbQZ2f6cr9KP47OQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="229604354"
-Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.117])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 05:35:41 -0700
-Date: Wed, 25 Mar 2026 14:35:38 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- sowmiya.s@intel.com, uma.shankar@intel.com, swati2.sharma@intel.com,
- chaitanya.kumar.borah@intel.com, arun.r.murthy@intel.com
-Subject: Re: [PATCH v3 20/26] drm/i915/writeback: Configure WD_STRIDE reg
-Message-ID: <acPWmiN_z3jrfhSI@intel.com>
-References: <20260325110744.1096786-1-suraj.kandpal@intel.com>
- <20260325110744.1096786-21-suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="229125935"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 05:40:11 -0700
+Date: Wed, 25 Mar 2026 13:40:08 +0100
+From: Raag Jadav <raag.jadav@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ netdev@vger.kernel.org, aravind.iddamsetty@linux.intel.com,
+ anshuman.gupta@intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, simona.vetter@ffwll.ch,
+ airlied@gmail.com, pratik.bari@intel.com,
+ joshua.santosh.ranjan@intel.com, ashwin.kumar.kulkarni@intel.com,
+ shubham.kumar@intel.com, ravi.kishore.koppuravuri@intel.com,
+ anvesh.bakwad@intel.com, maarten.lankhorst@linux.intel.com,
+ Jakub Kicinski <kuba@kernel.org>,
+ Zack McKevitt <zachary.mckevitt@oss.qualcomm.com>,
+ Lijo Lazar <lijo.lazar@amd.com>, Hawking Zhang <Hawking.Zhang@amd.com>,
+ "David S. Miller" <davem@davemloft.net>,
+ Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>
+Subject: Re: [PATCH 1/4] drm/drm_ras: Add clear-error-counter netlink command
+ to drm_ras
+Message-ID: <acPXqL030Syciz1b@black.igk.intel.com>
+References: <20260311102913.3387468-6-riana.tauro@intel.com>
+ <20260311102913.3387468-7-riana.tauro@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260325110744.1096786-21-suraj.kandpal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+In-Reply-To: <20260311102913.3387468-7-riana.tauro@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,90 +80,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Mar 25, 2026 at 04:37:38PM +0530, Suraj Kandpal wrote:
-> Write to the WD_STRIDE register using the appropriate calculation
-> based on the color mode and hactive.
+On Wed, Mar 11, 2026 at 03:59:15PM +0530, Riana Tauro wrote:
+> Introduce a new 'clear-error-counter' DRM RAS command to reset the counter
+> value for a specific error counter of a given node.
 > 
-> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_writeback.c    | 36 +++++++++++++++++++
->  .../drm/i915/display/intel_writeback_reg.h    |  1 +
->  2 files changed, 37 insertions(+)
+> The command is a 'do' netlink request with 'node-id' and 'error-id'
+> as parameters with no additional response payload.
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_writeback.c b/drivers/gpu/drm/i915/display/intel_writeback.c
-> index d3c3716a28a9..e2f7c46015d2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_writeback.c
-> +++ b/drivers/gpu/drm/i915/display/intel_writeback.c
-> @@ -231,15 +231,51 @@ static int intel_writeback_atomic_check(struct drm_connector *connector,
->  	return 0;
->  }
->  
-> +static int
-> +get_color_mode_bpp(struct intel_display *display, u32 color_format)
-> +{
-> +	int bpp = 0;
-> +
-> +	switch (color_format) {
-> +	case DRM_FORMAT_XYUV8888:
-> +	case DRM_FORMAT_YUYV:
-> +	case DRM_FORMAT_VYUY:
-> +	case DRM_FORMAT_XBGR8888:
-> +	case DRM_FORMAT_XBGR2101010:
-> +	case DRM_FORMAT_XVYU2101010:
-> +		bpp = 4;
-> +		break;
-> +	default:
-> +		drm_err(display->drm, "Unsupported format for writeback\n");
-> +		break;
-> +	}
-> +
-> +	return bpp;
-> +}
-> +
->  static void intel_writeback_capture(struct intel_atomic_state *state,
->  				    struct intel_connector *connector)
->  {
->  	struct intel_display *display = to_intel_display(connector);
->  	struct intel_writeback_connector *wb_conn =
->  		conn_to_intel_writeback_connector(connector);
-> +	struct drm_connector_state *conn_state =
-> +		drm_atomic_get_new_connector_state(&state->base, &connector->base);
-> +	struct intel_crtc *crtc = intel_crtc_for_pipe(display, wb_conn->pipe);
-> +	struct intel_crtc_state *crtc_state =
-> +		intel_atomic_get_new_crtc_state(state, crtc);
-> +	const struct drm_display_mode *adjusted_mode =
-> +		&crtc_state->hw.adjusted_mode;
-> +	struct drm_writeback_job *wb_job = conn_state->writeback_job;
->  	enum transcoder trans = wb_conn->trans;
->  	u32 val = 0;
-> +	int bpp;
->  
-> +	bpp = get_color_mode_bpp(display, wb_job->fb->format->format);
-> +	val = DIV_ROUND_UP((adjusted_mode->hdisplay * bpp), 64);
+> Usage
 
-The fb should tell us its stride.
+Missing ":"
 
-> +	intel_de_write(display, WD_STRIDE(trans), WD_STRIDE_VAL(val));
-> +
-> +	val = 0;
->  	val |= START_TRIGGER_FRAME | WD_FRAME_NUMBER(wb_conn->frame_num);
->  	intel_de_rmw(display, WD_TRANS_FUNC_CTL(trans),
->  		     START_TRIGGER_FRAME | WD_FRAME_NUMBER_MASK,
-> diff --git a/drivers/gpu/drm/i915/display/intel_writeback_reg.h b/drivers/gpu/drm/i915/display/intel_writeback_reg.h
-> index 5e7c6c99d191..f526af0f9aff 100644
-> --- a/drivers/gpu/drm/i915/display/intel_writeback_reg.h
-> +++ b/drivers/gpu/drm/i915/display/intel_writeback_reg.h
-> @@ -60,6 +60,7 @@
->  					_WD_STRIDE_0,\
->  					_WD_STRIDE_1)
->  #define WD_STRIDE_MASK			REG_GENMASK(15, 6)
-> +#define WD_STRIDE_VAL(val)		REG_FIELD_PREP(WD_STRIDE_MASK, val)
->  
->  #define _WD_STREAMCAP_CTL0		0x6e590
->  #define _WD_STREAMCAP_CTL1		0x6ed90
-> -- 
-> 2.34.1
+> $ sudo ynl --family drm_ras  --do clear-error-counter --json \
+> '{"node-id":1, "error-id":1}'
+> None
+> 
+> Cc: Jakub Kicinski <kuba@kernel.org>
+> Cc: Zack McKevitt <zachary.mckevitt@oss.qualcomm.com>
+> Cc: Lijo Lazar <lijo.lazar@amd.com>
+> Cc: Hawking Zhang <Hawking.Zhang@amd.com>
+> Cc: David S. Miller <davem@davemloft.net>
+> Cc: Paolo Abeni <pabeni@redhat.com>
+> Cc: Eric Dumazet <edumazet@google.com>
+> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 
--- 
-Ville Syrjälä
-Intel
+Reviewed-by: Raag Jadav <raag.jadav@intel.com>
