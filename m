@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFB4A106B50C
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 12:00:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28248106B506
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 12:00:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D6AB10E894;
-	Wed, 25 Mar 2026 12:00:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1E9910E895;
+	Wed, 25 Mar 2026 12:00:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lJ6SnXMF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mMnsAxOq";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87AD110E894
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Mar 2026 12:00:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 56EDD10E895
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Mar 2026 12:00:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774440052; x=1805976052;
+ t=1774440055; x=1805976055;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7tAbVc+/z+JcfYoMkkSCfA7jkNchX0A4SBKc1PNqbDw=;
- b=lJ6SnXMF1FZPynWa/9Nb5yowgxqLIaiBqWLpuYuCj2fPItwxR7Olh3Mw
- w9NxwCotRYNRfnFBOs/kz76/JLxcBK5LTCP7xqIICIVrKpf41+KWNhAs4
- JaTpCs/yxbvXr43mYesWw9og9o1P/X8tsRD5XB95YLWEVseVUBSXdVrXm
- QOdwbvp3jqQQqydYqrwacJ0A6D3JyVejRMb9+YXHkeYjB4AFgTiYgs/2X
- qLfBZyw8P8NIwbpZ3lFQxLcNDtqfYpPDvgpSQFpYhjamoWAo23kAAzljs
- TLFK18PWpshRJE9mOBztuYT8f+r6no6yO5fFcGtfZyQtkeNdh84z4YGR0 Q==;
-X-CSE-ConnectionGUID: dm2lRTMgRGyzQzwjjrvf+g==
-X-CSE-MsgGUID: nj41B/ImRmyYX9jJSZ3LpA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="98094668"
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="98094668"
+ bh=BJ1vr5nQuXRJTGuczeB/1Ti05okfjnuIyFTHn/Ueazk=;
+ b=mMnsAxOqj5SHcntc2q8yzsXEL+2+JRWI6IxGj2OeRAJ9LjU77XUbu2Hy
+ XMfWzjVa0XIHC7e+e2lNQqk1FSaOnANbQ13z2z7xyA+4KAual7jWJwR64
+ KTf+RMVnHfp11RZTVFS1bcsS4r64oiZJZB8X1srrvAm7lxO7gmpFeNK6K
+ 87KbRNNWeBuL043ivHLYLHMkXGEhZsE2mbK58ZsLFNX6kvqRn1Oh0VvIB
+ btI0uwp0VAX34MgfJX004uHhLb9qPebVgo1qqXqA9oAK/3onQWYKeFWYU
+ WikD3r9XPbsSTsu+PwkpwYVrfYLYPWM+gIqPF6JR/TNx38Xe9/De+6Cuy A==;
+X-CSE-ConnectionGUID: bItu1tesRIWj4X9pjjUY8g==
+X-CSE-MsgGUID: 64otsQRZQSCmR51a+H1/xw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="98094671"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="98094671"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 05:00:51 -0700
-X-CSE-ConnectionGUID: 11AhOfh0SxmGeqmB+QYyZw==
-X-CSE-MsgGUID: Q/PMKi3YTLiDSSKaBPZAdA==
+ 25 Mar 2026 05:00:55 -0700
+X-CSE-ConnectionGUID: XMG6ukEDRF6Z79iGeAtu9A==
+X-CSE-MsgGUID: n5Hvtmo8QtexMXmb+Ul3MA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="218087309"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="218087324"
 Received: from anoopcvi-vm.gar.corp.intel.com ([10.109.80.88])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 05:00:48 -0700
+ 25 Mar 2026 05:00:52 -0700
 From: "Anoop, Vijay" <anoop.c.vijay@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
@@ -48,10 +48,10 @@ Cc: umesh.nerlige.ramappa@intel.com, badal.nilawar@intel.com,
  riana.tauro@intel.com, anshuman.gupta@intel.com, matthew.d.roper@intel.com,
  michael.j.ruhl@intel.com, paul.e.luse@intel.com,
  mohamed.mansoor.v@intel.com, kam.nasim@intel.com, anoop.c.vijay@intel.com
-Subject: [PATCH v12 4/7] drm/xe/xe_sysctrl: Add System Controller
- initialization support
-Date: Wed, 25 Mar 2026 05:00:31 -0700
-Message-ID: <20260325120030.510480-13-anoop.c.vijay@intel.com>
+Subject: [PATCH v12 5/7] drm/xe/xe_sysctrl: Add System Controller mailbox
+ communication support
+Date: Wed, 25 Mar 2026 05:00:32 -0700
+Message-ID: <20260325120030.510480-14-anoop.c.vijay@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260325120030.510480-9-anoop.c.vijay@intel.com>
 References: <20260325120030.510480-9-anoop.c.vijay@intel.com>
@@ -74,186 +74,454 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Anoop Vijay <anoop.c.vijay@intel.com>
 
-Add initialization and cleanup infrastructure for System Controller
-subsystem and integrate it into xe device probe path.
+Add mailbox communication layer required for interacting with System
+Controller firmware, enabling command submission and response handling.
 
-During initialization, platform support is checked via has_sysctrl
-capability flag and the mailbox region is configured through SoC
-remapper interface.
+This patch implements command/response handling logic, including error
+and timeout handling.
 
 Signed-off-by: Anoop Vijay <anoop.c.vijay@intel.com>
 Reviewed-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 ---
-v8: (Matt, Michal, Shuicheng)
-- Fixed include order
-- Added VF check
-- Converted runtime checks to assertions
-- Added sc_to_xe() helper
+v4: (Matt, Mike)
+- Refactor MMIO access to use domain-specific accessor
+- Add input validation and buffer overflow protection
+- Add bounds checking for multi-frame operations
+- Fix potential NULL pointer dereference
+
+v5: (Umesh, Riana)
+- Reset phase bit to 0 on error conditions
+- Refactor mailbox receive path
+- Updated xe_err messages for consistency
+
+v6: (Matt)
+- Use SYSCTRL_MB_CTRL_MKHI_CMD macro instead of FIELD_PREP
+
+v8: (Matt, Michal)
+- Reordered patches for logical flow
+- Static functions renamed with short prefix
+- Changed xe_sysctrl_send_command() function parameter from 'xe' to 'sc'
+- Added frame length validation and command overflow protection
+- Use REG_FIELD_PREP for hardware registers
+- Changed error format to %pe
+- Removed unnecessary NULL checks and explicit zeros
 - Fixed kernel-doc syntax
 
-v10: (Riana, Anshuman)
-- Updated sysctrl documentation
-- Cleaned up commit message
-- Fixed mutex lifetime management
+v9: (Umesh, Badal)
+- Renamed MKHI to SCHI (System Controller Host Interface)
+- Fixed kernel-doc syntax
+
+v10: (Riana, Badal)
+- Removed SCHI terminology and aligned to sysctrl mailbox naming
+- Dropped redundant header includes and unused variable initialization
+- Updated runtime PM guarding in xe_sysctrl_send_command() to use
+  guard(xe_pm_runtime_noresume)
 ---
- drivers/gpu/drm/xe/Makefile     |  1 +
- drivers/gpu/drm/xe/xe_device.c  |  5 ++
- drivers/gpu/drm/xe/xe_sysctrl.c | 82 +++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sysctrl.h | 21 +++++++++
- 4 files changed, 109 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.c
- create mode 100644 drivers/gpu/drm/xe/xe_sysctrl.h
+ drivers/gpu/drm/xe/Makefile             |   1 +
+ drivers/gpu/drm/xe/xe_sysctrl.c         |   2 +
+ drivers/gpu/drm/xe/xe_sysctrl_mailbox.c | 369 ++++++++++++++++++++++++
+ 3 files changed, 372 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
 
 diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 49de1c22a469..b2d44e7169dd 100644
+index b2d44e7169dd..9dacb0579a7d 100644
 --- a/drivers/gpu/drm/xe/Makefile
 +++ b/drivers/gpu/drm/xe/Makefile
-@@ -123,6 +123,7 @@ xe-y += xe_bb.o \
- 	xe_step.o \
+@@ -124,6 +124,7 @@ xe-y += xe_bb.o \
  	xe_survivability_mode.o \
  	xe_sync.o \
-+	xe_sysctrl.o \
+ 	xe_sysctrl.o \
++	xe_sysctrl_mailbox.o \
  	xe_tile.o \
  	xe_tile_sysfs.o \
  	xe_tlb_inval.o \
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index c8e91ff464a7..6df85a240f83 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -65,6 +65,7 @@
- #include "xe_survivability_mode.h"
- #include "xe_sriov.h"
- #include "xe_svm.h"
-+#include "xe_sysctrl.h"
- #include "xe_tile.h"
- #include "xe_ttm_stolen_mgr.h"
- #include "xe_ttm_sys_mgr.h"
-@@ -985,6 +986,10 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		goto err_unregister_display;
- 
-+	err = xe_sysctrl_init(xe);
-+	if (err)
-+		goto err_unregister_display;
-+
- 	err = xe_device_sysfs_init(xe);
- 	if (err)
- 		goto err_unregister_display;
 diff --git a/drivers/gpu/drm/xe/xe_sysctrl.c b/drivers/gpu/drm/xe/xe_sysctrl.c
-new file mode 100644
-index 000000000000..fd23f345d8c7
---- /dev/null
+index fd23f345d8c7..84e3b70043a1 100644
+--- a/drivers/gpu/drm/xe/xe_sysctrl.c
 +++ b/drivers/gpu/drm/xe/xe_sysctrl.c
-@@ -0,0 +1,82 @@
+@@ -78,5 +78,7 @@ int xe_sysctrl_init(struct xe_device *xe)
+ 	if (ret)
+ 		return ret;
+ 
++	xe_sysctrl_mailbox_init(sc);
++
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+new file mode 100644
+index 000000000000..b10c8b7e0c40
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sysctrl_mailbox.c
+@@ -0,0 +1,369 @@
 +// SPDX-License-Identifier: MIT
 +/*
 + * Copyright © 2026 Intel Corporation
 + */
 +
-+#include <linux/device.h>
-+#include <linux/mutex.h>
-+
-+#include <drm/drm_managed.h>
++#include <linux/bitfield.h>
++#include <linux/cleanup.h>
++#include <linux/minmax.h>
++#include <linux/slab.h>
++#include <linux/string.h>
 +
 +#include "regs/xe_sysctrl_regs.h"
-+#include "xe_assert.h"
 +#include "xe_device.h"
 +#include "xe_mmio.h"
++#include "xe_pm.h"
 +#include "xe_printk.h"
-+#include "xe_soc_remapper.h"
-+#include "xe_sriov.h"
 +#include "xe_sysctrl.h"
 +#include "xe_sysctrl_mailbox.h"
-+#include "xe_sysctrl_types.h"
++#include "xe_sysctrl_mailbox_types.h"
 +
-+/**
-+ * DOC: System Controller (sysctrl)
-+ *
-+ * System Controller (sysctrl) is a firmware-managed entity on Intel dGPUs
-+ * responsible for selected low-level platform management functions.
-+ * Communication between driver and System Controller is performed
-+ * via a mailbox interface, enabling command and response exchange.
-+ *
-+ * This module provides initialization and support code for interacting
-+ * with System Controller through the mailbox interface.
-+ */
-+static void sysctrl_fini(void *arg)
++struct xe_sysctrl_mailbox_msg_hdr {
++	__le32 data;
++} __packed;
++
++#define XE_SYSCTRL_HDR_GROUP_ID(hdr) \
++	FIELD_GET(SYSCTRL_HDR_GROUP_ID_MASK, le32_to_cpu((hdr)->data))
++
++#define XE_SYSCTRL_HDR_COMMAND(hdr) \
++	FIELD_GET(SYSCTRL_HDR_COMMAND_MASK, le32_to_cpu((hdr)->data))
++
++#define XE_SYSCTRL_HDR_IS_RESPONSE(hdr) \
++	FIELD_GET(SYSCTRL_HDR_IS_RESPONSE, le32_to_cpu((hdr)->data))
++
++#define XE_SYSCTRL_HDR_RESULT(hdr) \
++	FIELD_GET(SYSCTRL_HDR_RESULT_MASK, le32_to_cpu((hdr)->data))
++
++static bool sysctrl_wait_bit_clear(struct xe_sysctrl *sc, u32 bit_mask,
++				   unsigned int timeout_ms)
 +{
-+	struct xe_device *xe = arg;
-+
-+	xe->soc_remapper.set_sysctrl_region(xe, 0);
-+}
-+
-+/**
-+ * xe_sysctrl_init() - Initialize System Controller subsystem
-+ * @xe: xe device instance
-+ *
-+ * Entry point for System Controller initialization, called from xe_device_probe.
-+ * This function checks platform support and initializes the system controller.
-+ *
-+ * Return: 0 on success, error code on failure
-+ */
-+int xe_sysctrl_init(struct xe_device *xe)
-+{
-+	struct xe_tile *tile = xe_device_get_root_tile(xe);
-+	struct xe_sysctrl *sc = &xe->sc;
 +	int ret;
 +
-+	if (!xe->info.has_sysctrl)
-+		return 0;
++	ret = xe_mmio_wait32_not(sc->mmio, SYSCTRL_MB_CTRL, bit_mask, bit_mask,
++				 timeout_ms * 1000, NULL, false);
 +
-+	if (IS_SRIOV_VF(xe))
-+		return 0;
++	return ret == 0;
++}
 +
-+	xe_assert(xe, xe->soc_remapper.set_sysctrl_region);
++static bool sysctrl_wait_bit_set(struct xe_sysctrl *sc, u32 bit_mask,
++				 unsigned int timeout_ms)
++{
++	int ret;
 +
-+	xe->soc_remapper.set_sysctrl_region(xe, SYSCTRL_MAILBOX_INDEX);
++	ret = xe_mmio_wait32(sc->mmio, SYSCTRL_MB_CTRL, bit_mask, bit_mask,
++			     timeout_ms * 1000, NULL, false);
 +
-+	ret = devm_add_action_or_reset(xe->drm.dev, sysctrl_fini, xe);
-+	if (ret)
-+		return ret;
++	return ret == 0;
++}
 +
-+	sc->mmio = devm_kzalloc(xe->drm.dev, sizeof(*sc->mmio), GFP_KERNEL);
-+	if (!sc->mmio)
-+		return -ENOMEM;
++static int sysctrl_write_frame(struct xe_sysctrl *sc, const void *frame,
++			       size_t len)
++{
++	static const struct xe_reg regs[] = {
++		SYSCTRL_MB_DATA0, SYSCTRL_MB_DATA1, SYSCTRL_MB_DATA2, SYSCTRL_MB_DATA3
++	};
++	struct xe_device *xe = sc_to_xe(sc);
++	u32 val[XE_SYSCTRL_MB_FRAME_SIZE / sizeof(u32)] = {0};
++	u32 dw = DIV_ROUND_UP(len, sizeof(u32));
++	u32 i;
 +
-+	xe_mmio_init(sc->mmio, tile, tile->mmio.regs, tile->mmio.regs_size);
-+	sc->mmio->adj_offset = SYSCTRL_BASE;
-+	sc->mmio->adj_limit = U32_MAX;
++	xe_assert(xe, len > 0 && len <= XE_SYSCTRL_MB_FRAME_SIZE);
 +
-+	ret = devm_mutex_init(xe->drm.dev, &sc->cmd_lock);
-+	if (ret)
-+		return ret;
++	memcpy(val, frame, len);
++
++	for (i = 0; i < dw; i++)
++		xe_mmio_write32(sc->mmio, regs[i], val[i]);
 +
 +	return 0;
 +}
-diff --git a/drivers/gpu/drm/xe/xe_sysctrl.h b/drivers/gpu/drm/xe/xe_sysctrl.h
-new file mode 100644
-index 000000000000..d5d8735038ae
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_sysctrl.h
-@@ -0,0 +1,21 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
 +
-+#ifndef _XE_SYSCTRL_H_
-+#define _XE_SYSCTRL_H_
-+
-+#include <linux/container_of.h>
-+
-+#include "xe_device_types.h"
-+#include "xe_sysctrl_types.h"
-+
-+static inline struct xe_device *sc_to_xe(struct xe_sysctrl *sc)
++static int sysctrl_read_frame(struct xe_sysctrl *sc, void *frame,
++			      size_t len)
 +{
-+	return container_of(sc, struct xe_device, sc);
++	static const struct xe_reg regs[] = {
++		SYSCTRL_MB_DATA0, SYSCTRL_MB_DATA1, SYSCTRL_MB_DATA2, SYSCTRL_MB_DATA3
++	};
++	struct xe_device *xe = sc_to_xe(sc);
++	u32 val[XE_SYSCTRL_MB_FRAME_SIZE / sizeof(u32)] = {0};
++	u32 dw = DIV_ROUND_UP(len, sizeof(u32));
++	u32 i;
++
++	xe_assert(xe, len > 0 && len <= XE_SYSCTRL_MB_FRAME_SIZE);
++
++	for (i = 0; i < dw; i++)
++		val[i] = xe_mmio_read32(sc->mmio, regs[i]);
++
++	memcpy(frame, val, len);
++
++	return 0;
 +}
 +
-+int xe_sysctrl_init(struct xe_device *xe);
++static void sysctrl_clear_response(struct xe_sysctrl *sc)
++{
++	xe_mmio_rmw32(sc->mmio, SYSCTRL_MB_CTRL, SYSCTRL_MB_CTRL_RUN_BUSY_OUT, 0);
++}
 +
-+#endif
++static int sysctrl_prepare_command(struct xe_device *xe,
++				   u8 group_id, u8 command,
++				   const void *data_in, size_t data_in_len,
++				   u8 **mbox_cmd, size_t *cmd_size)
++{
++	struct xe_sysctrl_mailbox_msg_hdr *hdr;
++	size_t size;
++	u8 *buffer;
++
++	xe_assert(xe, command <= SYSCTRL_HDR_COMMAND_MAX);
++
++	if (data_in_len > XE_SYSCTRL_MB_MAX_MESSAGE_SIZE - sizeof(*hdr)) {
++		xe_err(xe, "sysctrl: Input data too large: %zu bytes\n", data_in_len);
++		return -EINVAL;
++	}
++
++	size = sizeof(*hdr) + data_in_len;
++
++	buffer = kmalloc(size, GFP_KERNEL);
++	if (!buffer)
++		return -ENOMEM;
++
++	hdr = (struct xe_sysctrl_mailbox_msg_hdr *)buffer;
++	hdr->data = cpu_to_le32(FIELD_PREP(SYSCTRL_HDR_GROUP_ID_MASK, group_id) |
++				     FIELD_PREP(SYSCTRL_HDR_COMMAND_MASK, command));
++
++	if (data_in && data_in_len)
++		memcpy(buffer + sizeof(*hdr), data_in, data_in_len);
++
++	*mbox_cmd = buffer;
++	*cmd_size = size;
++
++	return 0;
++}
++
++static int sysctrl_send_frames(struct xe_sysctrl *sc,
++			       const u8 *mbox_cmd,
++			       size_t cmd_size, unsigned int timeout_ms)
++{
++	struct xe_device *xe = sc_to_xe(sc);
++	u32 ctrl_reg, total_frames, frame;
++	size_t bytes_sent, frame_size;
++
++	total_frames = DIV_ROUND_UP(cmd_size, XE_SYSCTRL_MB_FRAME_SIZE);
++
++	if (!sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms)) {
++		xe_err(xe, "sysctrl: Mailbox busy\n");
++		return -EBUSY;
++	}
++
++	sc->phase_bit ^= 1;
++	bytes_sent = 0;
++
++	for (frame = 0; frame < total_frames; frame++) {
++		frame_size = min_t(size_t, cmd_size - bytes_sent, XE_SYSCTRL_MB_FRAME_SIZE);
++
++		if (sysctrl_write_frame(sc, mbox_cmd + bytes_sent, frame_size)) {
++			xe_err(xe, "sysctrl: Failed to write frame %u\n", frame);
++			sc->phase_bit = 0;
++			return -EIO;
++		}
++
++		ctrl_reg = SYSCTRL_MB_CTRL_RUN_BUSY |
++			   REG_FIELD_PREP(SYSCTRL_FRAME_CURRENT_MASK, frame) |
++			   REG_FIELD_PREP(SYSCTRL_FRAME_TOTAL_MASK, total_frames - 1) |
++			   SYSCTRL_MB_CTRL_CMD |
++			   (sc->phase_bit ? SYSCTRL_FRAME_PHASE : 0);
++
++		xe_mmio_write32(sc->mmio, SYSCTRL_MB_CTRL, ctrl_reg);
++
++		if (!sysctrl_wait_bit_clear(sc, SYSCTRL_MB_CTRL_RUN_BUSY, timeout_ms)) {
++			xe_err(xe, "sysctrl: Frame %u acknowledgment timeout\n", frame);
++			sc->phase_bit = 0;
++			return -ETIMEDOUT;
++		}
++
++		bytes_sent += frame_size;
++	}
++
++	return 0;
++}
++
++static int sysctrl_process_frame(struct xe_sysctrl *sc, void *out,
++				 size_t frame_size, unsigned int timeout_ms,
++				 bool *done)
++{
++	u32 curr_frame, total_frames, ctrl_reg;
++	struct xe_device *xe = sc_to_xe(sc);
++	int ret;
++
++	if (!sysctrl_wait_bit_set(sc, SYSCTRL_MB_CTRL_RUN_BUSY_OUT, timeout_ms)) {
++		xe_err(xe, "sysctrl: Response frame timeout\n");
++		return -ETIMEDOUT;
++	}
++
++	ctrl_reg = xe_mmio_read32(sc->mmio, SYSCTRL_MB_CTRL);
++	total_frames = FIELD_GET(SYSCTRL_FRAME_TOTAL_MASK, ctrl_reg);
++	curr_frame = FIELD_GET(SYSCTRL_FRAME_CURRENT_MASK, ctrl_reg);
++
++	ret = sysctrl_read_frame(sc, out, frame_size);
++	if (ret)
++		return ret;
++
++	sysctrl_clear_response(sc);
++
++	if (curr_frame == total_frames)
++		*done = true;
++
++	return 0;
++}
++
++static int sysctrl_receive_frames(struct xe_sysctrl *sc,
++				  const struct xe_sysctrl_mailbox_msg_hdr *req,
++				  void *data_out, size_t data_out_len,
++				  size_t *rdata_len, unsigned int timeout_ms)
++{
++	struct xe_sysctrl_mailbox_msg_hdr *hdr;
++	struct xe_device *xe = sc_to_xe(sc);
++	size_t remain = sizeof(*hdr) + data_out_len;
++	u8 *buffer __free(kfree) = kzalloc(remain, GFP_KERNEL);
++	size_t frame_size;
++	bool done = false;
++	int ret = 0;
++	u8 *out;
++
++	if (!buffer)
++		return -ENOMEM;
++
++	out = buffer;
++	while (!done && remain) {
++		frame_size = min_t(size_t, remain, XE_SYSCTRL_MB_FRAME_SIZE);
++
++		ret = sysctrl_process_frame(sc, out, frame_size, timeout_ms,
++					    &done);
++		if (ret)
++			return ret;
++
++		remain -= frame_size;
++		out += frame_size;
++	}
++
++	hdr = (struct xe_sysctrl_mailbox_msg_hdr *)buffer;
++
++	if (!XE_SYSCTRL_HDR_IS_RESPONSE(hdr) ||
++	    XE_SYSCTRL_HDR_GROUP_ID(hdr) != XE_SYSCTRL_HDR_GROUP_ID(req) ||
++	    XE_SYSCTRL_HDR_COMMAND(hdr) != XE_SYSCTRL_HDR_COMMAND(req)) {
++		xe_err(xe, "sysctrl: Response header mismatch\n");
++		return -EPROTO;
++	}
++
++	if (XE_SYSCTRL_HDR_RESULT(hdr) != 0) {
++		xe_err(xe, "sysctrl: Firmware error: 0x%02lx\n",
++		       XE_SYSCTRL_HDR_RESULT(hdr));
++		return -EIO;
++	}
++
++	memcpy(data_out, hdr + 1, data_out_len);
++	*rdata_len = out - buffer - sizeof(*hdr);
++
++	return 0;
++}
++
++static int sysctrl_send_command(struct xe_sysctrl *sc,
++				const u8 *mbox_cmd, size_t cmd_size,
++				void *data_out, size_t data_out_len,
++				size_t *rdata_len, unsigned int timeout_ms)
++{
++	const struct xe_sysctrl_mailbox_msg_hdr *hdr;
++	size_t received;
++	int ret;
++
++	ret = sysctrl_send_frames(sc, mbox_cmd, cmd_size, timeout_ms);
++	if (ret)
++		return ret;
++
++	if (!data_out || !rdata_len)
++		return 0;
++
++	hdr = (const struct xe_sysctrl_mailbox_msg_hdr *)mbox_cmd;
++
++	ret = sysctrl_receive_frames(sc, hdr, data_out, data_out_len,
++				     &received, timeout_ms);
++	if (ret)
++		return ret;
++
++	*rdata_len = received;
++
++	return 0;
++}
++
++/**
++ * xe_sysctrl_mailbox_init - Initialize System Controller mailbox interface
++ * @sc: System controller structure
++ *
++ * Initialize system controller mailbox interface for communication.
++ */
++void xe_sysctrl_mailbox_init(struct xe_sysctrl *sc)
++{
++	u32 ctrl_reg;
++
++	ctrl_reg = xe_mmio_read32(sc->mmio, SYSCTRL_MB_CTRL);
++	sc->phase_bit = (ctrl_reg & SYSCTRL_FRAME_PHASE) ? 1 : 0;
++}
++
++/**
++ * xe_sysctrl_send_command() - Send mailbox command to System Controller
++ * @sc: System Controller instance
++ * @cmd: Command descriptor containing request header and payload buffers
++ * @rdata_len: Pointer to store actual response data length
++ *
++ * Sends a mailbox command to System Controller firmware using
++ * System Controller mailbox and waits for a response.
++ *
++ * Request payload is provided via @cmd->data_in and @cmd->data_in_len.
++ * If a response is expected, @cmd->data_out must point to a buffer of
++ * size @cmd->data_out_len supplied by caller.
++ *
++ * On success, @rdata_len is updated with number of valid response bytes
++ * returned by firmware, bounded by @cmd->data_out_len.
++ *
++ * Return: 0 on success, or negative errno on failure.
++ */
++int xe_sysctrl_send_command(struct xe_sysctrl *sc,
++			    struct xe_sysctrl_mailbox_command *cmd,
++			    size_t *rdata_len)
++{
++	struct xe_device *xe = sc_to_xe(sc);
++	u8 group_id, command_code;
++	u8 *mbox_cmd = NULL;
++	size_t cmd_size = 0;
++	int ret;
++
++	guard(xe_pm_runtime_noresume)(xe);
++
++	xe_assert(xe, xe->info.has_sysctrl);
++	xe_assert(xe, cmd->data_in || cmd->data_out);
++	xe_assert(xe, !cmd->data_in || cmd->data_in_len);
++	xe_assert(xe, !cmd->data_out || cmd->data_out_len);
++
++	group_id = XE_SYSCTRL_APP_HDR_GROUP_ID(&cmd->header);
++	command_code = XE_SYSCTRL_APP_HDR_COMMAND(&cmd->header);
++
++	might_sleep();
++
++	ret = sysctrl_prepare_command(xe, group_id, command_code,
++				      cmd->data_in, cmd->data_in_len,
++				      &mbox_cmd, &cmd_size);
++	if (ret) {
++		xe_err(xe, "sysctrl: Failed to prepare command: %pe\n", ERR_PTR(ret));
++		return ret;
++	}
++
++	guard(mutex)(&sc->cmd_lock);
++
++	ret = sysctrl_send_command(sc, mbox_cmd, cmd_size,
++				   cmd->data_out, cmd->data_out_len, rdata_len,
++				   XE_SYSCTRL_MB_DEFAULT_TIMEOUT_MS);
++	if (ret)
++		xe_err(xe, "sysctrl: Mailbox command failed: %pe\n", ERR_PTR(ret));
++
++	kfree(mbox_cmd);
++
++	return ret;
++}
 -- 
 2.43.0
 
