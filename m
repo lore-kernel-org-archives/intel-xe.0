@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42728103A9AC
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 11:08:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECB4A103A9A9
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Mar 2026 11:08:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09C1510E880;
-	Wed, 25 Mar 2026 11:08:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADEFF10E87E;
+	Wed, 25 Mar 2026 11:08:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a5EDU0ep";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jc2CFKIK";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6DAA10E87A;
- Wed, 25 Mar 2026 11:08:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CDE5610E877;
+ Wed, 25 Mar 2026 11:08:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774436928; x=1805972928;
+ t=1774436923; x=1805972923;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Ix4PhHgYCkthjeLCb1fkM8kKY8K2PRnNNu5hqmu9JcQ=;
- b=a5EDU0epJQ3Z/zxx776W3hDABdSHZPn+lYoeNCuMfsascNaxVcoqlewI
- kYWr2ewlwCiLZdQxX7W71OYUHYIG0ESa1GF2aoedHK44u9rsNEhdghYz/
- cqH2dvZkM4xf9yT5E1lPush4Qy76D5VR2zsRnW969R7CEVq8PZ1JTlQlW
- 2j97wV1kpLo2UEL1jMr8mKGuoBg4VSCXN4TnAniyQah+1uDKewbmbVrCw
- 3d464Mebf+FCEQCnK3ZeHZ/wxCMiUrHeMfaDYDq5lhelqNJb5tU4rygTg
- b29ZoT60OqbhHcBBNKjhfdnhFWsIpiLx0+/FgfdpL8tZ1Qtyk2R6vwU7Z A==;
-X-CSE-ConnectionGUID: TanVx9sXSr2JXzJxShjUuA==
-X-CSE-MsgGUID: XlubFEOoSxGiw4bdPuo5mQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="93047542"
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="93047542"
+ bh=KgBszGwZZAYZcHealIzxCSUCoChgikF7iKTjT4XdLjQ=;
+ b=jc2CFKIKLsfKThKXQ7mDVP+inQGsL5Xevn4d92wEwaW8kgEnSct99fft
+ yDluiJ3BJllXm47t9FpsgiyE33W3TGGYHjvB1vuoeAKatcHYHQ6vSrVQl
+ BqXN+SKqJaIDR/xsVqx9+GP4L/Dab/gegXamRxVtFDyMWYK90o0McKYO5
+ 0wSOALnIo+pw2nqzuX8MPoBoXJvRL6KtIsbVyoEVLILPbHlK9ygV79Xrs
+ iZJxBgrRjfAmfEqq0umTTtGnc9YfM+x6d2CT2/QMsajTfepcMM3nb/6Gq
+ h4D/gvnxg5Xavth0QBIYtQdf+CMIIw7r+iXEui+z8/TjtwCW4x6XUDDOT A==;
+X-CSE-ConnectionGUID: WkqXvvHjTtmHmHvti3xK8Q==
+X-CSE-MsgGUID: /jC+Oav/RZOySl1Je0SImg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="93047538"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="93047538"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 04:08:48 -0700
-X-CSE-ConnectionGUID: 4ApT65wgSlyxb04ognDvBw==
-X-CSE-MsgGUID: moz5x8KhTXmi3xnWZRoXFg==
+ 25 Mar 2026 04:08:43 -0700
+X-CSE-ConnectionGUID: VwGTNZhoQEifURAYqos/bg==
+X-CSE-MsgGUID: lndjndZ7TQ2rSeiKGXM/cA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="219798445"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="219798430"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa006.fm.intel.com with ESMTP; 25 Mar 2026 04:08:46 -0700
+ by fmviesa006.fm.intel.com with ESMTP; 25 Mar 2026 04:08:41 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: sowmiya.s@intel.com, uma.shankar@intel.com, swati2.sharma@intel.com,
  chaitanya.kumar.borah@intel.com, arun.r.murthy@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v3 23/26] drm/i915/writeback: Initialize writeback encoder.
-Date: Wed, 25 Mar 2026 16:37:41 +0530
-Message-Id: <20260325110744.1096786-24-suraj.kandpal@intel.com>
+Subject: [PATCH v3 21/26] drm/i915/writeback: Configure WD_SURF register
+Date: Wed, 25 Mar 2026 16:37:39 +0530
+Message-Id: <20260325110744.1096786-22-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260325110744.1096786-1-suraj.kandpal@intel.com>
 References: <20260325110744.1096786-1-suraj.kandpal@intel.com>
@@ -68,28 +68,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Call the init function to initialize the writeback encoder
-only for ADLP.
+Get the ggtt_offset of the drm_framebuffer which needs to be
+written to the surface base address bits of WD_SURF register.
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/display/intel_writeback.c     | 4 ++++
+ drivers/gpu/drm/i915/display/intel_writeback_reg.h | 2 ++
+ 2 files changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 4cc3e0779e8a..b4cf7153b7c8 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -8030,6 +8030,9 @@ void intel_setup_outputs(struct intel_display *display)
- 		intel_dvo_init(display);
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_writeback.c b/drivers/gpu/drm/i915/display/intel_writeback.c
+index e2f7c46015d2..54e74450e080 100644
+--- a/drivers/gpu/drm/i915/display/intel_writeback.c
++++ b/drivers/gpu/drm/i915/display/intel_writeback.c
+@@ -267,6 +267,7 @@ static void intel_writeback_capture(struct intel_atomic_state *state,
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
+ 	struct drm_writeback_job *wb_job = conn_state->writeback_job;
++	struct intel_writeback_job *job = conn_state->writeback_job->priv;
+ 	enum transcoder trans = wb_conn->trans;
+ 	u32 val = 0;
+ 	int bpp;
+@@ -275,6 +276,9 @@ static void intel_writeback_capture(struct intel_atomic_state *state,
+ 	val = DIV_ROUND_UP((adjusted_mode->hdisplay * bpp), 64);
+ 	intel_de_write(display, WD_STRIDE(trans), WD_STRIDE_VAL(val));
  
-+	if (DISPLAY_VER(display) == 13)
-+		intel_writeback_init(display);
++	val = intel_get_ggtt_addr(job->vma);
++	intel_de_write(display, WD_SURF(trans), val);
 +
- 	for_each_intel_encoder(display->drm, encoder) {
- 		encoder->base.possible_crtcs =
- 			intel_encoder_possible_crtcs(encoder);
+ 	val = 0;
+ 	val |= START_TRIGGER_FRAME | WD_FRAME_NUMBER(wb_conn->frame_num);
+ 	intel_de_rmw(display, WD_TRANS_FUNC_CTL(trans),
+diff --git a/drivers/gpu/drm/i915/display/intel_writeback_reg.h b/drivers/gpu/drm/i915/display/intel_writeback_reg.h
+index f526af0f9aff..403f9b64015b 100644
+--- a/drivers/gpu/drm/i915/display/intel_writeback_reg.h
++++ b/drivers/gpu/drm/i915/display/intel_writeback_reg.h
+@@ -81,6 +81,8 @@
+ #define WD_SURF(tc)			_MMIO_WD(tc,\
+ 					_WD_SURF_0,\
+ 					_WD_SURF_1)
++#define  WD_SURF_ADDR_MASK		REG_GENMASK(31, 12)
++#define  WD_SURF_ADDR(val)		REG_FIELD_PREP(WD_SURF_ADDR_MASK, val)
+ 
+ #define _WD_IMR_0			0x6e560
+ #define _WD_IMR_1			0x6ed60
 -- 
 2.34.1
 
