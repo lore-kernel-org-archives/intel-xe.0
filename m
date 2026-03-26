@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BF7D10A1E68
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 11:18:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B123010A1E68
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 11:24:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF0E110E1DE;
-	Thu, 26 Mar 2026 11:18:37 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZHpfzlN6";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAB1010E1DE;
- Thu, 26 Mar 2026 11:18:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774523916; x=1806059916;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=aSG1ADNdgeWOS6RsXWBaMbISfQXOJtw+APFlnCgUsaM=;
- b=ZHpfzlN6ghRrMVqCkEZhzyahij3LBhkaOnd/ehUs+eRVR/iyj16lOpkP
- Yz5bcW/gd4Ay5ctPEL3yZpMh5nxiYbM0wbfkFQlb5gL4Sh6hAP9K7O8Rr
- wiITw5sWi4l/lqDf3Wx4Rc480sU8J8PMMJCRwo3rYNgH7oVJEo2hudkC1
- MFCch07+K64HD/IXEkVjfj1MoZtA9d3YvqjSbBEY1D8/BE13nee/+xvtT
- 3f3wz4vVzNaY/hXO72/Qex465nVHFrnFkzP2/odTOUfZX+Pz10aVLfXPw
- JWvlZ1aGsXatxRVuBeeMhNHzzZr0gsLjPLgcwwV2AxOMr6n3SuMU45z+Y Q==;
-X-CSE-ConnectionGUID: S8muC6FITE+b8NqJAzVShw==
-X-CSE-MsgGUID: rbCyvS5lQAmALKG5dtYn6g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="75692322"
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75692322"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 04:18:36 -0700
-X-CSE-ConnectionGUID: 548rGh7qQnWmtZdDnhI/Fg==
-X-CSE-MsgGUID: 6uRpm8V1TVaO3AjRSYfNxA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="220127456"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.14])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 04:18:35 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 5/5] drm/i915/dsi: Place clock into LP during LPM if requested
-Date: Thu, 26 Mar 2026 13:18:14 +0200
-Message-ID: <20260326111814.9800-6-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260326111814.9800-1-ville.syrjala@linux.intel.com>
-References: <20260326111814.9800-1-ville.syrjala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D01210E1DE;
+	Thu, 26 Mar 2026 11:24:52 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 154CC10E0BA;
+ Thu, 26 Mar 2026 11:24:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/dsi=3A_Some_DSI_?=
+ =?utf-8?q?fixes_and_improvements?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 26 Mar 2026 11:24:51 -0000
+Message-ID: <177452429106.401012.4826702662433920439@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260326111814.9800-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20260326111814.9800-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,86 +36,58 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-TGL/ADL DSI can be configured to place the clock lane into
-LP state during LPM, if otherwise configured for continuous
-HS clock.
+Series: drm/i915/dsi: Some DSI fixes and improvements
+URL   : https://patchwork.freedesktop.org/series/163908/
+State : warning
 
-Hook that up. VBT tells us whether this should be done.
+== Summary ==
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/icl_dsi.c       | 6 ++++++
- drivers/gpu/drm/i915/display/icl_dsi_regs.h  | 1 +
- drivers/gpu/drm/i915/display/intel_dsi.h     | 1 +
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 2 ++
- 4 files changed, 10 insertions(+)
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a871b73dc1b4f821abec8cf76f99e86790a9f5a4
+Author: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Date:   Thu Mar 26 13:18:14 2026 +0200
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 45ba02486c56..afbaa0465842 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -729,6 +729,12 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
- 		else
- 			tmp |= CLK_HS_CONTINUOUS;
- 
-+		if (DISPLAY_VER(display) >= 12 &&
-+		    intel_dsi->lp_clock_during_lpm)
-+			tmp |= LP_CLK_DURING_LPM;
-+		else
-+			tmp &= ~LP_CLK_DURING_LPM;
-+
- 		/* configure buffer threshold limit to minimum */
- 		tmp &= ~PIX_BUF_THRESHOLD_MASK;
- 		tmp |= PIX_BUF_THRESHOLD_1_4;
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi_regs.h b/drivers/gpu/drm/i915/display/icl_dsi_regs.h
-index 641e8f0b8cdb..55ab57adcb0f 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi_regs.h
-+++ b/drivers/gpu/drm/i915/display/icl_dsi_regs.h
-@@ -227,6 +227,7 @@
- #define  CLK_ENTER_LP_AFTER_DATA	(0x0 << 8)
- #define  CLK_HS_OR_LP			(0x2 << 8)
- #define  CLK_HS_CONTINUOUS		(0x3 << 8)
-+#define  LP_CLK_DURING_LPM		(1 << 7) /* tgl+ */
- #define  LINK_CALIBRATION_MASK		(0x3 << 4)
- #define  LINK_CALIBRATION_SHIFT		4
- #define  CALIBRATION_DISABLED		(0x0 << 4)
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi.h b/drivers/gpu/drm/i915/display/intel_dsi.h
-index f55d48e43af1..9fcdabbf3740 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi.h
-+++ b/drivers/gpu/drm/i915/display/intel_dsi.h
-@@ -80,6 +80,7 @@ struct intel_dsi {
- 	/* NON_BURST_SYNC_PULSE, NON_BURST_SYNC_EVENTS, or BURST_MODE */
- 	int video_mode;
- 
-+	bool lp_clock_during_lpm;
- 	bool blanking_pkt;
- 	bool eot_pkt;
- 	bool clock_stop;
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-index c544871dac0b..fe12041e913c 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-@@ -718,6 +718,7 @@ void intel_dsi_log_params(struct intel_dsi *intel_dsi)
- 		   "burst" : "<unknown>");
- 	drm_printf(&p, "Burst mode ratio %d\n", intel_dsi->burst_mode_ratio);
- 	drm_printf(&p, "Reset timer %d\n", intel_dsi->rst_timer_val);
+    drm/i915/dsi: Place clock into LP during LPM if requested
+    
+    TGL/ADL DSI can be configured to place the clock lane into
+    LP state during LPM, if otherwise configured for continuous
+    HS clock.
+    
+    Hook that up. VBT tells us whether this should be done.
+    
+    Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
++ /mt/dim checkpatch 2ccc868c40a9048ecf287b7bb002d73b5d25c7bf drm-intel
+806cba236ae1 drm/i915/dsi: Don't do DSC horizontal timing adjustments in command mode
+-:49: WARNING:MISSING_FIXES_TAG: The commit message has 'stable@', perhaps it also needs a 'Fixes:' tag?
+
+total: 0 errors, 1 warnings, 0 checks, 16 lines checked
+0d504eb27e80 drm/i915/dsi: s/eotp_pkt/eot_pkt/
+6bdde5b2a24c drm/i915/dsi: Make 'clock_stop' boolean
+ee79304e118d drm/i915/dsi: Fill BLLPs with blanking packets if requested
+-:68: WARNING:LONG_LINE: line length of 107 exceeds 100 columns
+#68: FILE: drivers/gpu/drm/i915/display/intel_dsi_vbt.c:721:
++	drm_printf(&p, "Blanking packets during BLLP %s\n", str_enabled_disabled(intel_dsi->blanking_pkt));
+
+total: 0 errors, 1 warnings, 0 checks, 44 lines checked
+a871b73dc1b4 drm/i915/dsi: Place clock into LP during LPM if requested
+-:66: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#66: FILE: drivers/gpu/drm/i915/display/intel_dsi_vbt.c:721:
 +	drm_printf(&p, "LP clock during LPM %s\n", str_enabled_disabled(intel_dsi->lp_clock_during_lpm));
- 	drm_printf(&p, "Blanking packets during BLLP %s\n", str_enabled_disabled(intel_dsi->blanking_pkt));
- 	drm_printf(&p, "EoT packet %s\n", str_enabled_disabled(intel_dsi->eot_pkt));
- 	drm_printf(&p, "Clock stop during BLLP %s\n", str_enabled_disabled(intel_dsi->clock_stop));
-@@ -771,6 +772,7 @@ bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id)
- 
- 	drm_dbg_kms(display->drm, "\n");
- 
-+	intel_dsi->lp_clock_during_lpm = mipi_config->lp_clock_during_lpm;
- 	intel_dsi->blanking_pkt = mipi_config->blanking_packets_during_bllp;
- 	intel_dsi->eot_pkt = !mipi_config->eot_pkt_disabled;
- 	intel_dsi->clock_stop = mipi_config->enable_clk_stop;
--- 
-2.52.0
+
+total: 0 errors, 1 warnings, 0 checks, 40 lines checked
+
 
