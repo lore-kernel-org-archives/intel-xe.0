@@ -4,27 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21AC510A62FD
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 14:42:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D84310A62FD
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 15:01:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B038E10E286;
-	Thu, 26 Mar 2026 14:42:57 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B77810E12C;
- Thu, 26 Mar 2026 14:42:56 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0984091931987011359=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71DC710EAD2;
+	Thu, 26 Mar 2026 15:01:44 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I4VSeWQy";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74B9510EACA;
+ Thu, 26 Mar 2026 15:01:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774537302; x=1806073302;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=mukvr4hRddGSjLZG9JGvWPsqXgBVbMW4gLVs8MNst88=;
+ b=I4VSeWQy+2gqbC/G/c0yGJ0a9I9kT4C4BQOeY57C+wM/LOv0fX2MLe5p
+ ObE+Fr7IPXyziamR5sOM8aeo5wOvuDSA2ICOTVP3Sj5N51O51TPvAjac5
+ yenZ2W+V8MCa8LqmicR+W8zDk73Wp0BftQ9GkoTcPXFxTFjdMiWnBCTFo
+ DUXnNnDTQKmfhCy5qNJrju5AVn3zOPfatvwpkXoGlvAEOYv5viLvyrLKk
+ Vlcac3L0XDCR2oRJFNfFafy0gd4K17ePqQuhAaITJEA3TeZOvUR1d0EBF
+ M74Ln2wLGZXb67f1ntawi7TTtnYusjl9XXRt+qffT5caCg9UHP48vVUX4 Q==;
+X-CSE-ConnectionGUID: fuij22CeRG6laGoXWw/aLg==
+X-CSE-MsgGUID: mTR58obxSZST6BenfxOxiw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="85903381"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="85903381"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 08:01:39 -0700
+X-CSE-ConnectionGUID: 8+ZFY+czTqmixlWtALPKtA==
+X-CSE-MsgGUID: RpgZYoX/QwqhOincS4TdxQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="218426642"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.199])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 08:01:37 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 3/5] drm/i915/dsi: Make 'clock_stop' boolean
+In-Reply-To: <acU8ft5x55rIp-jx@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260326111814.9800-1-ville.syrjala@linux.intel.com>
+ <20260326111814.9800-4-ville.syrjala@linux.intel.com>
+ <1558669af43583b072c8c58eff1e01960c2d9f8c@intel.com>
+ <acU8ft5x55rIp-jx@intel.com>
+Date: Thu, 26 Mar 2026 17:01:33 +0200
+Message-ID: <557b26b17545103834b9051b7165d8010a88f870@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Drop_all_mappings?=
- =?utf-8?q?_for_wedged_device?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Raag Jadav" <raag.jadav@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 26 Mar 2026 14:42:56 -0000
-Message-ID: <177453617647.401860.2029219998608969241@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260326132816.739363-1-raag.jadav@intel.com>
-In-Reply-To: <20260326132816.739363-1-raag.jadav@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,144 +69,96 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0984091931987011359==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 26 Mar 2026, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Thu, Mar 26, 2026 at 03:40:56PM +0200, Jani Nikula wrote:
+>> On Thu, 26 Mar 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+>> > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> >
+>> > The DSI 'clock_stop' parameter is a boolean, so use a real
+>> > 'bool' for it. And pimp the debug print while at it.
+>> >
+>> > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/display/intel_dsi.h     | 2 +-
+>> >  drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 4 ++--
+>> >  2 files changed, 3 insertions(+), 3 deletions(-)
+>> >
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_dsi.h b/drivers/gpu/dr=
+m/i915/display/intel_dsi.h
+>> > index 8e39d2b52c54..0023ac341aa0 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_dsi.h
+>> > +++ b/drivers/gpu/drm/i915/display/intel_dsi.h
+>> > @@ -81,7 +81,7 @@ struct intel_dsi {
+>> >  	int video_mode;
+>> >=20=20
+>> >  	bool eot_pkt;
+>> > -	u8 clock_stop;
+>> > +	bool clock_stop;
+>> >=20=20
+>> >  	u8 escape_clk_div;
+>> >  	u8 dual_link;
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gp=
+u/drm/i915/display/intel_dsi_vbt.c
+>> > index 51f6a5b82cb2..23da7f5f9578 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+>> > @@ -719,7 +719,7 @@ void intel_dsi_log_params(struct intel_dsi *intel_=
+dsi)
+>> >  	drm_printf(&p, "Burst mode ratio %d\n", intel_dsi->burst_mode_ratio);
+>> >  	drm_printf(&p, "Reset timer %d\n", intel_dsi->rst_timer_val);
+>> >  	drm_printf(&p, "EoT packet %s\n", str_enabled_disabled(intel_dsi->eo=
+t_pkt));
+>> > -	drm_printf(&p, "Clockstop %s\n", str_enabled_disabled(!intel_dsi->cl=
+ock_stop));
+>> > +	drm_printf(&p, "Clock stop during BLLP %s\n", str_enabled_disabled(i=
+ntel_dsi->clock_stop));
+>>=20
+>> What's with the reversed !intel_dsi->clock_stop in the existing log and
+>> the change here?
+>
+> I've had these sitting around for a while so completely forgot I changed
+> it.
+>
+> Looks that it's been wrong since the initial commit.
+>
+> Apparently v2 of the patch
+> https://lore.kernel.org/intel-gfx/1397454507-10273-5-git-send-email-shobh=
+it.kumar@intel.com/
+> had it the correct way around, but then it got messed in
+> in v3 while the capital letters were being made lowercase.
+>
+> I can split that out into its own patch with that explanation.
 
-== Series Details ==
+Not sure I care enough, other than please mention it in the commit
+message. Unless you specifically want that fix backported too.
 
-Series: drm/xe: Drop all mappings for wedged device
-URL   : https://patchwork.freedesktop.org/series/163928/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-4793-2ccc868c40a9048ecf287b7bb002d73b5d25c7bf_BAT -> xe-pw-163928v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-163928v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4793-2ccc868c40a9048ecf287b7bb002d73b5d25c7bf/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163928v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4793-2ccc868c40a9048ecf287b7bb002d73b5d25c7bf/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163928v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
-
-
-Build changes
--------------
-
-  * IGT: IGT_8833 -> IGT_8834
-  * Linux: xe-4793-2ccc868c40a9048ecf287b7bb002d73b5d25c7bf -> xe-pw-163928v1
-
-  IGT_8833: 8833
-  IGT_8834: 8834
-  xe-4793-2ccc868c40a9048ecf287b7bb002d73b5d25c7bf: 2ccc868c40a9048ecf287b7bb002d73b5d25c7bf
-  xe-pw-163928v1: 163928v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163928v1/index.html
-
---===============0984091931987011359==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+BR,
+Jani.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+>
+>>=20
+>> >  	drm_printf(&p, "Mode %s\n", intel_dsi->operation_mode ? "command" : =
+"video");
+>> >  	if (intel_dsi->dual_link =3D=3D DSI_DUAL_LINK_FRONT_BACK)
+>> >  		drm_printf(&p, "Dual link: DSI_DUAL_LINK_FRONT_BACK\n");
+>> > @@ -771,7 +771,7 @@ bool intel_dsi_vbt_init(struct intel_dsi *intel_ds=
+i, u16 panel_id)
+>> >  	drm_dbg_kms(display->drm, "\n");
+>> >=20=20
+>> >  	intel_dsi->eot_pkt =3D !mipi_config->eot_pkt_disabled;
+>> > -	intel_dsi->clock_stop =3D mipi_config->enable_clk_stop ? 1 : 0;
+>> > +	intel_dsi->clock_stop =3D mipi_config->enable_clk_stop;
+>> >  	intel_dsi->lane_count =3D mipi_config->lane_cnt + 1;
+>> >  	intel_dsi->pixel_format =3D
+>> >  		vbt_to_dsi_pixel_format(mipi_config->videomode_color_format);
+>>=20
+>> --=20
+>> Jani Nikula, Intel
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Drop all mappings for wedged device</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163928/">https://patchwork.freedesktop.org/series/163928/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163928v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163928v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4793-2ccc868c40a9048ecf287b7bb002d73b5d25c7bf_BAT -&gt; xe-pw-163928v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-163928v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4793-2ccc868c40a9048ecf287b7bb002d73b5d25c7bf/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163928v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4793-2ccc868c40a9048ecf287b7bb002d73b5d25c7bf/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163928v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_8833 -&gt; IGT_8834</li>
-<li>Linux: xe-4793-2ccc868c40a9048ecf287b7bb002d73b5d25c7bf -&gt; xe-pw-163928v1</li>
-</ul>
-<p>IGT_8833: 8833<br />
-  IGT_8834: 8834<br />
-  xe-4793-2ccc868c40a9048ecf287b7bb002d73b5d25c7bf: 2ccc868c40a9048ecf287b7bb002d73b5d25c7bf<br />
-  xe-pw-163928v1: 163928v1</p>
-
-</body>
-</html>
-
---===============0984091931987011359==--
+--=20
+Jani Nikula, Intel
