@@ -4,88 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E15BB10A62CC
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 13:07:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4977910A62CB
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 13:08:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39AB710E213;
-	Thu, 26 Mar 2026 13:07:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A8A110E286;
+	Thu, 26 Mar 2026 13:08:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NVcikHjG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DJ+ylR6e";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4FFE10E213;
- Thu, 26 Mar 2026 13:07:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 192C510E1DE
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Mar 2026 13:08:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774530454; x=1806066454;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=B3uzQ8tIYnAOOnEmjyfuJEJc59MwMvhEpnCIu1AwAkA=;
- b=NVcikHjGcGId5j+J7DOnW5+LBax9NgjMLGKBZlicW+dycu8wPFPLa+qc
- qhbK5GMHtOFjFvuqg2bB+H+EcENE72859Qy+3JH70V+xC4i65S8xE9W6f
- KLImi4F5y5lxcAEEQej/+VcrEr0/ZWU5Hx4u1yezfn2EvYu7HBVLai9xo
- W8BefGKj/nsriULIdkWWQhHDOfnm0XDnMjtLF9ynKRH8l2s4gDQBIpDkw
- pMDYSGk2tO6HHTXarR+bTdPbEgRLwMGIs5JafqGdc5w5V/O0kR+paorAZ
- 4wcubL3pg1jH6FdInns4i5Jd/6diJVN/yO3EcPgrAp7Y/FnK6rmWAecIa g==;
-X-CSE-ConnectionGUID: dAHMOkHKSQO0DDnVsLL6RA==
-X-CSE-MsgGUID: TlcT7fMdQm2o0SIjg8tbqw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="75784613"
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75784613"
+ t=1774530538; x=1806066538;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=/87x5kquEm6/rzIBylqALFK5cIoLXa8lfOq8aC2Eebo=;
+ b=DJ+ylR6e0iE66TkG5v0OdXBLn6HBe32zqHbeEXpLapFpvfdqY/O21c1z
+ hDgO71/YF92ST44DSE9o8dcSko490wZtNNmRp5qr00mR6y8iXUP/BaPjo
+ h4OktKuFxp/VRhl+Q1UA3EwjFoJhHgWaEM6bvtEhBlmxJquWSUDcOR7vb
+ 5yr5SwvaJEgXH9BgHJ6pVmCe38V21k21KPk619D/jv+Fd4VLmtYRQPKwT
+ aUaXdioIZ+Z3ZbeA/2a3IOMFz9ClsJWiJocxmQ3UX/9CGIWd3VWmp+kMR
+ fpY4mf/6oqCo0mn650rOzvkEU4jeVRLHHZuwwdSW12eeT11K6IzpyrwfJ w==;
+X-CSE-ConnectionGUID: aO6R6bwvRsWxEg8qFQmJ1w==
+X-CSE-MsgGUID: +CISWZtoSIaBCiYd7cLd6g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="75784762"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75784762"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 06:07:30 -0700
-X-CSE-ConnectionGUID: 0oV4jNW1QTiG57YtCW6P5g==
-X-CSE-MsgGUID: HuDaOTRoSHOHVl+3MDMk5A==
+ 26 Mar 2026 06:08:57 -0700
+X-CSE-ConnectionGUID: WLLegAGyTVCYng3rTr/RHQ==
+X-CSE-MsgGUID: rwZNB0lrTCyL+U/4v6xc+A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="224070220"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.14])
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="224070482"
+Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 06:07:18 -0700
-Date: Thu, 26 Mar 2026 15:07:15 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Maxime Ripard <mripard@kernel.org>,
- Harry Wentland <harry.wentland@amd.com>,
- Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org,
- Werner Sembach <wse@tuxedocomputers.com>,
- Andri Yngvason <andri@yngvason.is>, Marius Vlad <marius.vlad@collabora.com>
-Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color format"
-Message-ID: <acUvg3Y7kMf2qioK@intel.com>
-References: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
- <20260325-neat-elegant-raven-ebc9ab@houat>
- <acPA60Ci3n_t__xF@intel.com> <3979783.tdWV9SEqCh@workhorse>
+ 26 Mar 2026 06:08:55 -0700
+From: Arvind Yadav <arvind.yadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
+ thomas.hellstrom@linux.intel.com
+Subject: [PATCH v9 00/12] drm/xe/madvise: Add support for purgeable buffer
+ objects
+Date: Thu, 26 Mar 2026 18:38:26 +0530
+Message-ID: <20260326130843.3545241-1-arvind.yadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=yes
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3979783.tdWV9SEqCh@workhorse>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,138 +67,202 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Mar 26, 2026 at 01:44:03PM +0100, Nicolas Frattaroli wrote:
-> On Wednesday, 25 March 2026 12:03:07 Central European Standard Time Ville Syrj‰l‰ wrote:
-> > On Wed, Mar 25, 2026 at 09:24:27AM +0100, Maxime Ripard wrote:
-> > > On Tue, Mar 24, 2026 at 09:53:35PM +0200, Ville Syrj‰l‰ wrote:
-> > > > On Tue, Mar 24, 2026 at 08:10:11PM +0100, Nicolas Frattaroli wrote:
-> > > > > On Tuesday, 24 March 2026 18:00:45 Central European Standard Time Ville Syrj‰l‰ wrote:
-> > > > > > On Tue, Mar 24, 2026 at 05:01:07PM +0100, Nicolas Frattaroli wrote:
-> > > > > > > +enum drm_connector_color_format {
-> > > > > > > +	/**
-> > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_AUTO: The driver or display protocol
-> > > > > > > +	 * helpers should pick a suitable color format. All implementations of a
-> > > > > > > +	 * specific display protocol must behave the same way with "AUTO", but
-> > > > > > > +	 * different display protocols do not necessarily have the same "AUTO"
-> > > > > > > +	 * semantics.
-> > > > > > > +	 *
-> > > > > > > +	 * For HDMI, "AUTO" picks RGB, but falls back to YCbCr 4:2:0 if the
-> > > > > > > +	 * bandwidth required for full-scale RGB is not available, or the mode
-> > > > > > > +	 * is YCbCr 4:2:0-only, as long as the mode and output both support
-> > > > > > > +	 * YCbCr 4:2:0.
-> > > > > > > +	 *
-> > > > > > > +	 * For display protocols other than HDMI, the recursive bridge chain
-> > > > > > > +	 * format selection picks the first chain of bridge formats that works,
-> > > > > > > +	 * as has already been the case before the introduction of the "color
-> > > > > > > +	 * format" property. Non-HDMI bridges should therefore either sort their
-> > > > > > > +	 * bus output formats by preference, or agree on a unified auto format
-> > > > > > > +	 * selection logic that's implemented in a common state helper (like
-> > > > > > > +	 * how HDMI does it).
-> > > > > > > +	 */
-> > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_AUTO = 0,
-> > > > > > > +
-> > > > > > > +	/**
-> > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_RGB444: RGB output format
-> > > > > > > +	 */
-> > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_RGB444,
-> > > > > > > +
-> > > > > > > +	/**
-> > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR444: YCbCr 4:4:4 output format (ie.
-> > > > > > > +	 * not subsampled)
-> > > > > > > +	 */
-> > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR444,
-> > > > > > > +
-> > > > > > > +	/**
-> > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR422: YCbCr 4:2:2 output format (ie.
-> > > > > > > +	 * with horizontal subsampling)
-> > > > > > > +	 */
-> > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR422,
-> > > > > > > +
-> > > > > > > +	/**
-> > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR420: YCbCr 4:2:0 output format (ie.
-> > > > > > > +	 * with horizontal and vertical subsampling)
-> > > > > > > +	 */
-> > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR420,
-> > > > > > 
-> > > > > > Seems like this should document what the quantization range
-> > > > > > should be for each format.
-> > > > > > 
-> > > > > 
-> > > > > I don't think so? If you want per-component bit depth values,
-> > > > > DRM_FORMAT_* defines would be the appropriate values to use. This
-> > > > > enum is more abstract than that, and is there to communicate
-> > > > > YUV vs. RGB and chroma subsampling, with bit depth being handled
-> > > > > by other properties.
-> > > > > 
-> > > > > If you mean the factor used for subsampling, then that'd only be
-> > > > > relevant if YCBCR410 was supported where one chroma plane isn't
-> > > > > halved but quartered in resolution. I suspect 4:1:0 will never
-> > > > > be added; no digital display protocol standard supports it to my
-> > > > > knowledge, and hopefully none ever will.
-> > > > 
-> > > > No, I mean the quantization range (16-235 vs. 0-255 etc).
-> > > > 
-> > > > The i915 behaviour is that YCbCr is always limited range,
-> > > > RGB can either be full or limited range depending on the 
-> > > > "Broadcast RGB" property and other related factors.
-> > > 
-> > > So far the HDMI state has both the format and quantization range as
-> > > different fields. I'm not sure we need to document the range in the
-> > > format field, maybe only mention it's not part of the format but has a
-> > > field of its own?
-> > 
-> > I think we only have it for RGB (on some drivers only?). For YCbCr
-> > I think the assumption is limited range everywhere.
-> > 
-> > But I'm not really concerned about documenting struct members.
-> > What I'm talking about is the *uapi* docs. Surely userspace
-> > will want to know what the new property actually does so the
-> > uapi needs to be documented properly. And down the line some
-> > new driver might also implement the wrong behaviour if there
-> > is no clear specification.
-> > 
-> > So I'm thinking (or perhaps hoping) the rule might be something like:
-> > - YCbCr limited range 
-> > - RGB full range if "Broadcast RGB" property is not present
-> > - RGB full or limited range based on the "Broadcast RGB" property
-> >   if it's present
-> > 
-> > I think the "Broadcast RGB" property itself might also be lacking
-> > proper uapi docs, so that may need to be remedied as well.
-> > 
-> > 
-> 
-> Alright, so in v12 I'll do the following:
-> 
-> - Add a line to all YCBCR connector formats that specifies they're
->   limited range as long as Broadcast RGB is limited. Whether it's limited
->   range when Broadcast RGB is full is purposefully left undefined.
+This patch series introduces comprehensive support for purgeable buffer objects
+in the Xe driver, enabling userspace to provide memory usage hints for better
+memory management under system pressure.
 
-"Broadcast RGB", as the name implies, only affects RGB output.
+Overview:
 
->   In the future, we can expand this to state they're limited range by
->   default unless some other property is set. If we're not re-using
->   Broadcast RGB for that, this will work out fine, because users who
->   don't know about the eventual new property won't have this behaviour
->   changed. If we do re-use "Broadcast RGB" for that, then only users
->   relying on things we explicitly left undefined will get surprise
->   full range YCBCR.
-> - Add a line to the RGB connector format that specifies its range
->   depends on the "Broadcast RGB" property
-> 
-> This is a bit of a mess, because it's entirely reasonable that a
-> future YCBCR range property would want to default to full range
-> so that users get the most color out of their monitors. But with
-> this description of the connector color formats, we can't do that.
-> 
-> If there are alternate suggestions, I'm open for them. We can't
-> really rename "Broadcast RGB" but if I had a time machine, that'd
-> be my first choice.
-> 
-> Kind regards,
-> Nicolas Frattaroli
-> 
+Purgeable memory allows applications to mark buffer objects as "not currently
+needed" (DONTNEED), making them eligible for kernel reclamation during memory
+pressure. This helps prevent OOM conditions and enables more efficient GPU
+memory utilization for workloads with temporary or regeneratable data (caches,
+intermediate results, decoded frames, etc.).
+
+Purgeable BO Lifecycle:
+1. WILLNEED (default): BO actively needed, kernel preserves backing store
+2. DONTNEED (user hint): BO contents discardable, eligible for purging
+3. PURGED (kernel action): Backing store reclaimed during memory pressure
+
+Key Design Principles:
+  - i915 compatibility: "Once purged, always purged" semantics - purged BOs
+    remain permanently invalid and must be destroyed/recreated
+  - Per-VMA state tracking: Each VMA tracks its own purgeable state, BO is
+    only marked DONTNEED when ALL VMAs across ALL VMs agree (Thomas Hellstr√∂m)
+  - Safety first: Imported/exported dma-bufs blocked from purgeable state -
+    no visibility into external device usage (Matt Roper)
+  - Multiple protection layers: Validation in madvise, VM bind, mmap, CPU
+    and GPU fault handlers. GPU page faults on DONTNEED/purged BOs skip
+    validate/migrate in xe_pagefault_begin(); non-scratch VMs fail with
+    -EACCES, scratch VMs let xe_vma_rebind() run and install scratch PTEs.
+  - GPU PTE zapping at purge time: PTEs are zapped in xe_bo_move_notify()
+    right before the shrinker frees the pages, not at madvise(DONTNEED)
+    time (pages are still alive then). skip_invalidation=true is set for
+    all VMA types to suppress the madvise-time invalidation.
+  - Scratch PTE support: Fault-mode VMs use scratch pages for safe zero reads
+    on purged BO access.
+  - TTM shrinker integration: Encapsulated helpers manage xe_ttm_tt->purgeable
+    flag and shrinker page accounting (shrinkable vs purgeable buckets)
+
+References:
+   Mesa MR Link: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/40573
+
+v2 Changes:
+  - Reordered patches: Moved shared BO helper before main implementation for
+    proper dependency order
+  - Fixed reference counting in mmap offset validation (use drm_gem_object_put)
+  - Removed incorrect claims about madvise(WILLNEED) restoring purged BOs
+  - Fixed error code documentation inconsistencies
+  - Initialize purge_state_val fields to prevent kernel memory leaks
+  - Use xe_bo_trigger_rebind() for async TLB invalidation (Thomas Hellstr√∂m)
+  - Add NULL rebind with scratch PTEs for fault mode (Thomas Hellstr√∂m)
+  - Implement i915-compatible retained field logic (Thomas Hellstr√∂m)
+  - Skip BO validation for purged BOs in page fault handler (crash fix)
+  - Add scratch VM check in page fault path (non-scratch VMs fail fault)
+
+v3 Changes (addressing Matt and Thomas Hellstr√∂m feedback):
+  - Per-VMA purgeable state tracking: Added xe_vma->purgeable_state field
+  - Complete VMA check: xe_bo_all_vmas_dontneed() walks all VMAs across all
+    VMs to ensure unanimous DONTNEED before marking BO purgeable
+  - VMA unbind recheck: Added xe_bo_recheck_purgeable_on_vma_unbind() to
+    re-evaluate BO state when VMAs are destroyed
+  - Block external dma-bufs: Added xe_bo_is_external_dmabuf() check using
+    drm_gem_is_imported() and obj->dma_buf to prevent purging imported/exported BOs
+  - Consistent lockdep enforcement: Added xe_bo_assert_held() to all helpers
+    that access madv_purgeable state
+  - Simplified page table logic: Renamed is_null to is_null_or_purged in
+    xe_pt_stage_bind_entry() - purged BOs treated identically to null VMAs
+  - Removed unnecessary checks: Dropped redundant "&& bo" check in xe_ttm_bo_purge()
+  - Xe-specific warnings: Changed drm_warn() to XE_WARN_ON() in purge path
+  - Moved purge checks under locks: Purge state validation now done after
+    acquiring dma-resv lock in vma_lock_and_validate() and xe_pagefault_begin()
+  - Race-free fault handling: Removed unlocked purge check from
+    xe_pagefault_handle_vma(), moved to locked xe_pagefault_begin()
+  - Shrinker helper functions: Added xe_bo_set_purgeable_shrinker() and
+    xe_bo_clear_purgeable_shrinker() to encapsulate TTM purgeable flag updates
+    and shrinker page accounting, improving code clarity and maintainability
+
+v4 Changes (addressing Matt and Thomas Hellstr√∂m feedback):
+  - UAPI: Removed '__u64 reserved' field from purge_state_val union to fit
+    16-byte size constraint (Matt)
+  - Changed madv_purgeable from atomic_t to u32 across all patches (Matt)
+  - CPU fault handling: Added purged check to fastpath (xe_bo_cpu_fault_fastpath)
+    to prevent hang when accessing existing mmap of purged BO
+
+v5 Changes (addressing Matt and Thomas Hellstr√∂m feedback):
+  - Add locking documentation to madv_purgeable field comment (Matt)
+  - Introduce xe_bo_set_purgeable_state() helper (void return) to centralize
+    madv_purgeable updates with xe_bo_assert_held() and state transition
+    validation using explicit enum checks (no transition out of PURGED) (Matt)
+  - Make xe_ttm_bo_purge() return int and propagate failures from
+    xe_bo_move(); handle xe_bo_trigger_rebind() failures (e.g. no_wait_gpu
+    paths) rather than silently ignoring (Matt)
+  - Replace drm_WARN_ON with xe_assert for better Xe-specific assertions (Matt)
+  - Hook purgeable handling into madvise_funcs[DRM_XE_VMA_ATTR_PURGEABLE_STATE]
+    instead of special-case path in xe_vm_madvise_ioctl() (Matt)
+  - Track purgeable retained return via xe_madvise_details and perform
+    copy_to_user() from xe_madvise_details_fini() after locks are dropped (Matt)
+  - Set madvise_funcs[DRM_XE_VMA_ATTR_PURGEABLE_STATE] to NULL with
+    __maybe_unused on madvise_purgeable() to maintain bisectability until
+    shrinker integration is complete in final patch (Matt)
+  - Call xe_bo_recheck_purgeable_on_vma_unbind() from xe_vma_destroy()
+    right after drm_gpuva_unlink() where we already hold the BO lock,
+    drop the trylock-based late destroy path (Matt)
+  - Move purgeable_state into xe_vma_mem_attr with the other madvise
+    attributes (Matt)
+  - Drop READ_ONCE since the BO lock already protects us (Matt)
+  - Keep returning false when there are no VMAs - otherwise we'd mark
+    BOs purgeable without any user hint (Matt)
+  -  Use struct xe_vma_lock_and_validate_flags instead of multiple bool
+    parameters to improve readability and prevent argument transposition (Matt)
+  - Fix LRU crash while running shrink test
+  - Skip xe_bo_validate() for purged BOs in xe_gpuvm_validate()
+  - Split ghost BO and zero-refcount handling in xe_bo_shrink() (Thomas)
+
+v6 Changes (addressing Jose Souza, Thomas Hellstr√∂m and Matt Brost feedback):
+  - Document DONTNEED blocking behavior in uAPI: Clearly describe which
+    operations are blocked and with what error codes. (Thomas, Matt)
+  - Block VM_BIND to DONTNEED BOs: Return -EBUSY to prevent creating new
+    VMAs to purgeable BOs (undefined behavior). (Thomas, Matt)
+  - Block CPU faults to DONTNEED BOs: Return VM_FAULT_SIGBUS in both fastpath
+    and slowpath to prevent undefined behavior. (Thomas, Matt)
+  - Block new mmap() to DONTNEED/purged BOs: Return -EBUSY for DONTNEED,
+    -EINVAL for PURGED. (Thomas, Matt)
+  - Block dma-buf export of DONTNEED/purged BOs: Return -EBUSY for DONTNEED,
+    -EINVAL for PURGED. (Thomas, Matt)
+  - Fix state transition bug: xe_bo_all_vmas_dontneed() now returns enum to
+    distinguish NO_VMAS (preserve state) from WILLNEED (has active VMAs),
+    preventing incorrect DONTNEED ‚Üí WILLNEED flip on last VMA unmap (Matt)
+  - Set skip_invalidation explicitly in madvise_purgeable() to ensure
+    DONTNEED always zaps GPU PTEs regardless of prior madvise state.
+  - Add DRM_XE_QUERY_CONFIG_FLAG_HAS_PURGING_SUPPORT for userspace
+    feature detection. (Jose)
+
+v7 Changes (addressing Thomas Hellstr√∂m, Matt B and Jose feedback):
+  - mmap check moved from xe_gem_mmap_offset_ioctl() into a new
+    xe_gem_object_mmap() callback wrapping drm_gem_ttm_mmap(), with
+    interruptible lock (Thomas)
+  - dma-buf export lock made interruptible: xe_bo_lock(bo, true) (Thomas)
+  - vma_lock_and_validate_flags passed by value instead of pointer (reviewer)
+  - xe_bo_recompute_purgeable_state() simplified using enum value alignment
+    between xe_bo_vmas_purge_state and xe_madv_purgeable_state, with
+    static_assert to enforce the alignment (Thomas)
+  - Merge xe_bo_set_purgeable_shrinker/xe_bo_clear_purgeable_shrinker into
+    a single static xe_bo_set_purgeable_shrinker(bo, new_state) called
+    automatically from xe_bo_set_purgeable_state() (Thomas)
+  - Drop "drm/xe/bo: Skip zero-refcount BOs in shrinker" patch ‚Äî ghost BO
+    path already handles this correctly (Thomas)
+  - Fix Engine memory CAT errors on scratch-page VMs (Matt Roper):
+    xe_pagefault_asid_to_vm() now accepts scratch VMs via
+    || xe_vm_has_scratch(vm); xe_pagefault_begin() checks DONTNEED/purged
+    before validate/migrate and signals skip_rebind to caller via bool*
+    out-parameter to avoid xe_vma_rebind() assert and PTE zap undo
+  - Add new patch 12: Accept canonical GPU addresses in xe_vm_madvise_ioctl()
+    using xe_device_uncanonicalize_addr() (Matt B)
+  - UAPI doc comment improvement. (Jose)
+
+v8:
+  - Remove skip_rebind out-parameter from xe_pagefault_begin(); always let
+    xe_vma_rebind() run so tile_present is updated and the GPU fault resolves.
+    Previously skip_rebind=true left tile_present=0, causing an infinite
+    refault loop on scratch VMs. (Thomas)
+  - Check xe_bo_lock() return value and propagate error. (Thomas and
+    Matt)
+
+v9:
+  - Rebase
+
+Arvind Yadav (11):
+  drm/xe/bo: Add purgeable bo state tracking and field madv to xe_bo
+  drm/xe/madvise: Implement purgeable buffer object support
+  drm/xe/bo: Block CPU faults to purgeable buffer objects
+  drm/xe/vm: Prevent binding of purged buffer objects
+  drm/xe/madvise: Implement per-VMA purgeable state tracking
+  drm/xe/madvise: Block imported and exported dma-bufs
+  drm/xe/bo: Block mmap of DONTNEED/purged BOs
+  drm/xe/dma_buf: Block export of DONTNEED/purged BOs
+  drm/xe/bo: Add purgeable shrinker state helpers
+  drm/xe/madvise: Enable purgeable buffer object IOCTL support
+  drm/xe/madvise: Accept canonical GPU addresses in xe_vm_madvise_ioctl
+
+Himal Prasad Ghimiray (1):
+  drm/xe/uapi: Add UAPI support for purgeable buffer objects
+
+ drivers/gpu/drm/xe/xe_bo.c         | 194 ++++++++++++++++--
+ drivers/gpu/drm/xe/xe_bo.h         |  58 ++++++
+ drivers/gpu/drm/xe/xe_bo_types.h   |   6 +
+ drivers/gpu/drm/xe/xe_dma_buf.c    |  24 +++
+ drivers/gpu/drm/xe/xe_pagefault.c  |  14 +-
+ drivers/gpu/drm/xe/xe_pt.c         |  40 +++-
+ drivers/gpu/drm/xe/xe_query.c      |   2 +
+ drivers/gpu/drm/xe/xe_svm.c        |   1 +
+ drivers/gpu/drm/xe/xe_vm.c         | 111 +++++++++--
+ drivers/gpu/drm/xe/xe_vm_madvise.c | 304 ++++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_vm_madvise.h |   3 +
+ drivers/gpu/drm/xe/xe_vm_types.h   |  11 ++
+ include/uapi/drm/xe_drm.h          |  69 +++++++
+ 13 files changed, 795 insertions(+), 42 deletions(-)
 
 -- 
-Ville Syrj‰l‰
-Intel
+2.43.0
+
