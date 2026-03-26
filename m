@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7637310A62CC
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 13:09:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C0F710A62CA
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 13:09:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FDEB10E286;
-	Thu, 26 Mar 2026 13:09:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3053610E925;
+	Thu, 26 Mar 2026 13:09:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BbJoSggG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lvtAb4jH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5D3C10E2E2
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Mar 2026 13:09:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9332410E2E2
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Mar 2026 13:09:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774530550; x=1806066550;
+ t=1774530552; x=1806066552;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=koIg9mmXU4q3+1b6BLf9/jthFybcgG951cpqOn/doJI=;
- b=BbJoSggGMwvSrMzCicz7v6hPEwelzTiKGHxGHOqfxBDuIPRwjcoRyKAC
- EVWvpeIhA693ROd/Pdw5rH6lmb46kdTcEzvRRl3BYW+P5HpFBiL7Pt1bC
- EB0hIJ05i+Y+25Y8PXna8FCIN+i7edeTdc5VU6jUpKYdXyHWWKhHG3Y8u
- S+ShLieC8gWdaITEJCNtO+NIlAgr6N2JxUujQ3jfTwq0rYrU1PkV9rHl8
- eF4EhazTcJ8p7iFc2SsD3dSzb72Gp1Z1d2jEF9CjMq/9EoZ0V9dI3VdXN
- TPlFQtgyhkrNgrM075CPggGHG8PKf24ORxlFa/deYqggOKA+xnoomLLqv g==;
-X-CSE-ConnectionGUID: 6Lcu/ECmSiCjtxUtX8MCug==
-X-CSE-MsgGUID: CPYl1GOtRaecLrGCpxMFzw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="75784778"
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75784778"
+ bh=1oHsTLea++QJhAflQwaG8RvuEkSYw/zgiJBx5YPLKQU=;
+ b=lvtAb4jHqmtVjH+g8pZOKs7ylRrCzF3xCxr3vndaYpj+U74/6xy+wl3P
+ VA4zxLD+uuJ65q3odR5LnX5ilZAfh+rkOjLd3ZEWKmkHEglK9kEhbqiky
+ J/QJ06NIFdP5yjy1S/BDX1SAnrvRiKhkclP30q13iEucIILJN3sTGV82F
+ NYgq7DvwK4Bh+slnFr//SqhfjSrMH1aGTC9sAnibcF3Qnm5Zux205IGc9
+ cF2gGBDZhBzPvrJ8yqCdwKe19KrFXYg8+HxOkbZqCS86JS8BdHRaJ3/jk
+ PZva+42B5RZwDLzDfxqyIPsfCcbDTuzP3r5BumNCeSZ8mIH2jY0CyP5/6 w==;
+X-CSE-ConnectionGUID: c7QguObQQh2dU6VpA6OvEw==
+X-CSE-MsgGUID: Tp58BSkHRRm4eqMQdZm/2Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="75784780"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75784780"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 06:09:10 -0700
-X-CSE-ConnectionGUID: 0DWe2O2VTmWsa5f0IYJnsg==
-X-CSE-MsgGUID: DoY3D8KcRpiCxEkw3MkRrw==
+ 26 Mar 2026 06:09:12 -0700
+X-CSE-ConnectionGUID: o8FLEACORf2AQUmjRIvoYA==
+X-CSE-MsgGUID: CGxzeLjvSzudXz3eQRW/0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="224070547"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="224070555"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 06:09:08 -0700
+ 26 Mar 2026 06:09:10 -0700
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
  thomas.hellstrom@linux.intel.com
-Subject: [PATCH v9 07/12] drm/xe/madvise: Block imported and exported dma-bufs
-Date: Thu, 26 Mar 2026 18:38:33 +0530
-Message-ID: <20260326130843.3545241-8-arvind.yadav@intel.com>
+Subject: [PATCH v9 08/12] drm/xe/bo: Block mmap of DONTNEED/purged BOs
+Date: Thu, 26 Mar 2026 18:38:34 +0530
+Message-ID: <20260326130843.3545241-9-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260326130843.3545241-1-arvind.yadav@intel.com>
 References: <20260326130843.3545241-1-arvind.yadav@intel.com>
@@ -68,106 +68,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Prevent marking imported or exported dma-bufs as purgeable.
-External devices may be accessing these buffers without our
-knowledge, making purging unsafe.
+Don't allow new CPU mmaps to BOs marked DONTNEED or PURGED.
+DONTNEED BOs can have their contents discarded at any time, making
+CPU access undefined behavior. PURGED BOs have no backing store and
+are permanently invalid.
 
-Check drm_gem_is_imported() for buffers created by other
-drivers and obj->dma_buf for buffers exported to other
-drivers. Silently skip these BOs during madvise processing.
+Return -EBUSY for DONTNEED BOs (temporary purgeable state) and
+-EINVAL for purged BOs (permanent, no backing store).
 
-This follows drm_gem_shmem's purgeable implementation and
-prevents data corruption from purging actively-used shared
-buffers.
+The mmap offset ioctl now checks the BO's purgeable state before
+allowing userspace to establish a new CPU mapping. This prevents
+the race where userspace gets a valid offset but the BO is purged
+before actual faulting begins.
 
-v3:
-   - Addresses review feedback from Matt Roper about handling
-     imported/exported BOs correctly in the purgeable BO
-     implementation.
-
-v4:
-   - Check should be add to xe_vm_madvise_purgeable_bo.
-
-v5:
-   - Rename xe_bo_is_external_dmabuf() to xe_bo_is_dmabuf_shared()
-     for clarity (Thomas)
-   - Update comments to clarify why both imports and exports
-     are unsafe to purge.
+Existing mmaps (established before DONTNEED) may still work until
+pages are purged, at which point CPU faults fail with SIGBUS.
 
 v6:
-  - No PTEs to zap for shared dma-bufs.
+- Split DONTNEED → -EBUSY and PURGED → -EINVAL for consistency
+  with the rest of the series (Thomas, Matt)
 
-Cc: Matthew Brost <matthew.brost@intel.com>
+v7:
+  - Move purgeable check from xe_gem_mmap_offset_ioctl() into a new
+    xe_gem_object_mmap() callback that wraps drm_gem_ttm_mmap(). (Thomas)
+  - Use an interruptible lock. (Thomas)
+
+v8:
+  - Check xe_bo_lock() return value and propagate error. (Thomas and
+    Matt)
+
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm_madvise.c | 38 ++++++++++++++++++++++++++++++
- 1 file changed, 38 insertions(+)
+ drivers/gpu/drm/xe/xe_bo.c | 27 ++++++++++++++++++++++++++-
+ 1 file changed, 26 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index 991bbd6a7ff3..b5b8dd9f52dd 100644
---- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-+++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -185,6 +185,34 @@ static void madvise_pat_index(struct xe_device *xe, struct xe_vm *vm,
- 	}
- }
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 7da374c7a44e..533e75b9c701 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2168,10 +2168,35 @@ static const struct vm_operations_struct xe_gem_vm_ops = {
+ 	.access = xe_bo_vm_access,
+ };
  
-+
-+/**
-+ * xe_bo_is_dmabuf_shared() - Check if BO is shared via dma-buf
-+ * @bo: Buffer object
-+ *
-+ * Prevent marking imported or exported dma-bufs as purgeable.
-+ * For imported BOs, Xe doesn't own the backing store and cannot
-+ * safely reclaim pages (exporter or other devices may still be
-+ * using them). For exported BOs, external devices may have active
-+ * mappings we cannot track.
-+ *
-+ * Return: true if BO is imported or exported, false otherwise
-+ */
-+static bool xe_bo_is_dmabuf_shared(struct xe_bo *bo)
++static int xe_gem_object_mmap(struct drm_gem_object *obj, struct vm_area_struct *vma)
 +{
-+	struct drm_gem_object *obj = &bo->ttm.base;
++	struct xe_bo *bo = gem_to_xe_bo(obj);
++	int err = 0;
 +
-+	/* Imported: exporter owns backing store */
-+	if (drm_gem_is_imported(obj))
-+		return true;
++	/*
++	 * Reject mmap of purgeable BOs. DONTNEED BOs can be purged
++	 * at any time, making CPU access undefined behavior. Purged BOs have
++	 * no backing store and are permanently invalid.
++	 */
++	err = xe_bo_lock(bo, true);
++	if (err)
++		return err;
 +
-+	/* Exported: external devices may be accessing */
-+	if (obj->dma_buf)
-+		return true;
++	if (xe_bo_madv_is_dontneed(bo))
++		err = -EBUSY;
++	else if (xe_bo_is_purged(bo))
++		err = -EINVAL;
++	xe_bo_unlock(bo);
++	if (err)
++		return err;
 +
-+	return false;
++	return drm_gem_ttm_mmap(obj, vma);
 +}
 +
- /**
-  * enum xe_bo_vmas_purge_state - VMA purgeable state aggregation
-  *
-@@ -234,6 +262,10 @@ static enum xe_bo_vmas_purge_state xe_bo_all_vmas_dontneed(struct xe_bo *bo)
- 
- 	xe_bo_assert_held(bo);
- 
-+	/* Shared dma-bufs cannot be purgeable */
-+	if (xe_bo_is_dmabuf_shared(bo))
-+		return XE_BO_VMAS_STATE_WILLNEED;
-+
- 	drm_gem_for_each_gpuvm_bo(vm_bo, obj) {
- 		drm_gpuvm_bo_for_each_va(gpuva, vm_bo) {
- 			struct xe_vma *vma = gpuva_to_vma(gpuva);
-@@ -335,6 +367,12 @@ static void __maybe_unused madvise_purgeable(struct xe_device *xe,
- 		/* BO must be locked before modifying madv state */
- 		xe_bo_assert_held(bo);
- 
-+		/* Skip shared dma-bufs - no PTEs to zap */
-+		if (xe_bo_is_dmabuf_shared(bo)) {
-+			vmas[i]->skip_invalidation = true;
-+			continue;
-+		}
-+
- 		/*
- 		 * Once purged, always purged. Cannot transition back to WILLNEED.
- 		 * This matches i915 semantics where purged BOs are permanently invalid.
+ static const struct drm_gem_object_funcs xe_gem_object_funcs = {
+ 	.free = xe_gem_object_free,
+ 	.close = xe_gem_object_close,
+-	.mmap = drm_gem_ttm_mmap,
++	.mmap = xe_gem_object_mmap,
+ 	.export = xe_gem_prime_export,
+ 	.vm_ops = &xe_gem_vm_ops,
+ };
 -- 
 2.43.0
 
