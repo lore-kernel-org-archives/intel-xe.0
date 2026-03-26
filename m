@@ -4,51 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A069010AB822
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 21:29:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81CCE10AB827
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 22:02:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DEA610EBD5;
-	Thu, 26 Mar 2026 21:29:34 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ux/MeXYA";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7FA910E31A
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Mar 2026 21:29:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774560573; x=1806096573;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Q3SwfW58V9e/Xc4aDsNZRJVwvZTRrFcG7/0c1VXwGpc=;
- b=Ux/MeXYAcZwC61NkicgMafPMXuAFgzhRSb3HXgds9GMjO1nCf6MvzeVF
- AUIOOQYb/Vc3rTBz3jjpEDsx/YRKB8ee67ysXh+sRu7nMK9VcEh9BRI/V
- 9siZRBXMZduKGuDoRTb7kRbOKj8+kB9dGkw2vOGs1K1AS55C7oywpYP0C
- E9O1kbAtO2rw5If5EtlxWkSZO+sIhU7uCFnV/+BVDjdFu+y+iZ2BhvyZf
- e3lY+5ekUzxO+tEHHGc2ffP6deBf4dITagh3vP+LEnzappHNwWCVS3FHw
- mUD/mo4M3cToi1xAtXMp9igcuqS3UpX4xvujeT56SOuk0kHbZGNp3u7aI g==;
-X-CSE-ConnectionGUID: COumGE7NSAOtUK/JEdGlmg==
-X-CSE-MsgGUID: XFG3S3D2RC2Juv5zCfAX1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75654323"
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75654323"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 14:29:33 -0700
-X-CSE-ConnectionGUID: cCxM+0rPQHqwHh0Rw3hsfg==
-X-CSE-MsgGUID: L+ySYQktQkmcSUPTiOuBoQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="220723691"
-Received: from xwang-desk.fm.intel.com ([10.121.64.134])
- by fmviesa010.fm.intel.com with ESMTP; 26 Mar 2026 14:29:33 -0700
-From: Xin Wang <x.wang@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Xin Wang <x.wang@intel.com>
-Subject: [PATCH] drm/xe: use the asid based invalidation
-Date: Thu, 26 Mar 2026 14:29:31 -0700
-Message-ID: <20260326212931.303796-1-x.wang@intel.com>
-X-Mailer: git-send-email 2.43.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92DCF10E134;
+	Thu, 26 Mar 2026 22:01:57 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2AF510E134;
+ Thu, 26 Mar 2026 22:01:55 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6746885048731976573=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_Wedged_memory_reclaim_fixes?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Thu, 26 Mar 2026 22:01:55 -0000
+Message-ID: <177456251596.404030.7031562520483336743@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260326210116.202585-1-matthew.brost@intel.com>
+In-Reply-To: <20260326210116.202585-1-matthew.brost@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,88 +35,151 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Experiment only not for review
+--===============6746885048731976573==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Xin Wang <x.wang@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 11 ++++++++++-
- drivers/gpu/drm/xe/xe_module.c        |  4 ++++
- drivers/gpu/drm/xe/xe_module.h        |  1 +
- drivers/gpu/drm/xe/xe_pci.c           |  2 ++
- 4 files changed, 17 insertions(+), 1 deletion(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-index ced58f46f846..bccb105af9a7 100644
---- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-+++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-@@ -16,6 +16,7 @@
- #include "xe_guc_tlb_inval.h"
- #include "xe_force_wake.h"
- #include "xe_mmio.h"
-+#include "xe_module.h"
- #include "xe_sa.h"
- #include "xe_tlb_inval.h"
- #include "xe_vm.h"
-@@ -174,7 +175,15 @@ static int send_tlb_inval_ppgtt(struct xe_guc *guc, u32 seqno, u64 start,
- 	action[len++] = !prl_sa ? seqno : TLB_INVALIDATION_SEQNO_INVALID;
- 	if (!gt_to_xe(gt)->info.has_range_tlb_inval ||
- 	    length > MAX_RANGE_TLB_INVALIDATION_LENGTH) {
--		action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_FULL);
-+		if (xe_modparam.enable_asid_tlb_inval) {
-+			action[len++] = MAKE_INVAL_OP_FLUSH(XE_GUC_TLB_INVAL_PAGE_SELECTIVE, true);
-+			action[len++] = id;
-+			action[len++] = 1;
-+			action[len++] = 0;
-+			action[len++] = 0;
-+		} else {
-+			action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_FULL);
-+		}
- 	} else {
- 		u64 normalize_len = normalize_invalidation_range(gt, &start,
- 								 &end);
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 4cb578182912..fdfae7fbb231 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -83,6 +83,10 @@ MODULE_PARM_DESC(wedged_mode,
- 		 "Module's default policy for the wedged mode (0=never, 1=upon-critical-error, 2=upon-any-hang-no-reset "
- 		 "[default=" XE_DEFAULT_WEDGED_MODE_STR "])");
- 
-+module_param_named_unsafe(enable_asid_tlb_inval, xe_modparam.enable_asid_tlb_inval, bool, 0600);
-+MODULE_PARM_DESC(enable_asid_tlb_inval,
-+		 "Use ASID-based page-selective TLB invalidation instead of full invalidation (experimental)");
-+
- static int xe_check_nomodeset(void)
- {
- 	if (drm_firmware_drivers_only())
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index 79cb9639c0f3..648ac49fef76 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -23,6 +23,7 @@ struct xe_modparam {
- #endif
- 	unsigned int wedged_mode;
- 	u32 svm_notifier_size;
-+	bool enable_asid_tlb_inval;
- };
- 
- extern struct xe_modparam xe_modparam;
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 189e2a1c29f9..0566a915abe5 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -955,6 +955,8 @@ static int xe_info_init(struct xe_device *xe,
- 		xe->info.has_device_atomics_on_smem = 1;
- 
- 	xe->info.has_range_tlb_inval = graphics_desc->has_range_tlb_inval;
-+	if (xe_modparam.enable_asid_tlb_inval)
-+		xe->info.has_range_tlb_inval = 0;
- 	xe->info.has_ctx_tlb_inval = graphics_desc->has_ctx_tlb_inval;
- 	xe->info.has_usm = graphics_desc->has_usm;
- 	xe->info.has_64bit_timestamp = graphics_desc->has_64bit_timestamp;
--- 
-2.43.0
+Series: Wedged memory reclaim fixes
+URL   : https://patchwork.freedesktop.org/series/163948/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-4799-e7f370d78d32ed29cc3f100fbc3d1fe1a844978f_BAT -> xe-pw-163948v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-163948v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_waitfence@abstime:
+    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#6506])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4799-e7f370d78d32ed29cc3f100fbc3d1fe1a844978f/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163948v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6519])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4799-e7f370d78d32ed29cc3f100fbc3d1fe1a844978f/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163948v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  * igt@xe_waitfence@reltime:
+    - bat-dg2-oem2:       [PASS][5] -> [FAIL][6] ([Intel XE#6520])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4799-e7f370d78d32ed29cc3f100fbc3d1fe1a844978f/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163948v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html
+
+  
+  [Intel XE#6506]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506
+  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
+  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
+
+
+Build changes
+-------------
+
+  * Linux: xe-4799-e7f370d78d32ed29cc3f100fbc3d1fe1a844978f -> xe-pw-163948v1
+
+  IGT_8834: 8834
+  xe-4799-e7f370d78d32ed29cc3f100fbc3d1fe1a844978f: e7f370d78d32ed29cc3f100fbc3d1fe1a844978f
+  xe-pw-163948v1: 163948v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163948v1/index.html
+
+--===============6746885048731976573==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Wedged memory reclaim fixes</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163948/">https://patchwork.freedesktop.org/series/163948/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163948v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163948v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4799-e7f370d78d32ed29cc3f100fbc3d1fe1a844978f_BAT -&gt; xe-pw-163948v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-163948v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@xe_waitfence@abstime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4799-e7f370d78d32ed29cc3f100fbc3d1fe1a844978f/bat-dg2-oem2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163948v1/bat-dg2-oem2/igt@xe_waitfence@abstime.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6506">Intel XE#6506</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4799-e7f370d78d32ed29cc3f100fbc3d1fe1a844978f/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163948v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@reltime:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4799-e7f370d78d32ed29cc3f100fbc3d1fe1a844978f/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163948v1/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4799-e7f370d78d32ed29cc3f100fbc3d1fe1a844978f -&gt; xe-pw-163948v1</li>
+</ul>
+<p>IGT_8834: 8834<br />
+  xe-4799-e7f370d78d32ed29cc3f100fbc3d1fe1a844978f: e7f370d78d32ed29cc3f100fbc3d1fe1a844978f<br />
+  xe-pw-163948v1: 163948v1</p>
+
+</body>
+</html>
+
+--===============6746885048731976573==--
