@@ -4,51 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8409109E556
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 06:41:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8DBB109E54B
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 06:41:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 983A810E2B7;
-	Thu, 26 Mar 2026 06:41:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C10510E2E1;
+	Thu, 26 Mar 2026 06:41:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ctXbF8Ep";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kIecqc8x";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E2BB010E2B7
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Mar 2026 06:41:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 875E410E2E1
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Mar 2026 06:41:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774507293; x=1806043293;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=pBM1jplurNwkKRXh/QrwL+vtl8OpTxEisTTJ0R98meQ=;
- b=ctXbF8Ep4DEqke+3gaZXYgigkE7p6/Xnn54YbpM1sz+kXxa3YWN90SUf
- XFTmgOsHQRq11QgckHBcsYkaapHpo7T9B6WO9f74OQDyyk50S9d3FXeIx
- dS3MkH8o7lmz/3hQIormllyjdMkB3B5VL64hiF/TEwRmMZr3Az072v8dN
- elHTrxfk/Iig05vyoM6pVnZQ/sawS878hWhSCTcxQK1a6jlxlXjtd8mvf
- R7fPAgVZq0MoVKTzKYDR4o4aBbXhdY66q/iiZhGrFaWMv7F4qtE8fO++p
- HpGqbottp9ud5hwfsELysBasvvgjafinuZHR/NDmwhc2a3Gzcv8/tbwD1 A==;
-X-CSE-ConnectionGUID: e9gGXO8pRp+8nKkdu24QUQ==
-X-CSE-MsgGUID: 5gL9B5BNQmyFTE7kAow+/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="85862984"
-X-IronPort-AV: E=Sophos;i="6.23,141,1770624000"; d="scan'208";a="85862984"
+ t=1774507300; x=1806043300;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=zbo7VbPD/ROJSDsBVZ1lti5h7hjduj85LrWYUklV9w4=;
+ b=kIecqc8x53J3vElgceyH4hFGxW1fNT56LiV+Iz2tNPEvY5b/Tw87xDZ+
+ uH4EBWSK2AC3WqFJSU4fQB781J5PdDmSxCYldJD+DFItVKYOQzaIavpTq
+ PeINoXnPkv4aSKIBq4bfu/RBCJYV9h+K+5uRYFwhaPKOxvUPbSADoOUlD
+ ifo7PAnZItbdTF0jHDT/pf2zUs71/FrYZrr1VgO4De+DgRUbC08zsjykm
+ N24JiU6TW4+Lozub+DgCvFcZO6hLEE8jEEBTsS8unGsykottCP0NroCq/
+ 5xteQ13Zp1PrdDCanAUKVmwgN1s0Vc/R5U9BvO/FHuSCsStXdzY5G2KDN A==;
+X-CSE-ConnectionGUID: OMD9tN99TRqQ/kBACBRbNQ==
+X-CSE-MsgGUID: NMlGJ76LTGaYRp8CmH2jWg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="85863006"
+X-IronPort-AV: E=Sophos;i="6.23,141,1770624000"; d="scan'208";a="85863006"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 23:41:30 -0700
-X-CSE-ConnectionGUID: epEVMRwsRHuDv7Xwd52ieg==
-X-CSE-MsgGUID: AUT8e65BTGGKiY+ADw1zwQ==
+ 25 Mar 2026 23:41:40 -0700
+X-CSE-ConnectionGUID: ZpNPBbxDR1Ck+gFZ22s8lQ==
+X-CSE-MsgGUID: H6LTQyWzSAKXkTazEwpGVA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,141,1770624000"; d="scan'208";a="262830426"
+X-IronPort-AV: E=Sophos;i="6.23,141,1770624000"; d="scan'208";a="262830470"
 Received: from nkumarg-desk.iind.intel.com ([10.190.216.171])
- by orviesa001.jf.intel.com with ESMTP; 25 Mar 2026 23:41:28 -0700
+ by orviesa001.jf.intel.com with ESMTP; 25 Mar 2026 23:41:38 -0700
 From: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: thomas.hellstrom@linux.intel.com, stuart.summers@intel.com,
  Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
-Subject: [PATCH v4 0/1] drm/xe: Set GT rp min frequency as 1.2GHz default for
+Subject: [PATCH v4 1/1] drm/xe: Set GT rp min frequency as 1.2GHz default for
  BMG/CRI
-Date: Thu, 26 Mar 2026 12:04:08 +0530
-Message-ID: <20260326063407.985568-3-naresh.kumar.g@intel.com>
+Date: Thu, 26 Mar 2026 12:04:09 +0530
+Message-ID: <20260326063407.985568-4-naresh.kumar.g@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260326063407.985568-3-naresh.kumar.g@intel.com>
+References: <20260326063407.985568-3-naresh.kumar.g@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -65,21 +67,13 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Performance degradation occurs in multi-BMG GPU configurations 
-during Peer-to-Peer transactions when one of the two GPUs remains idle
-with no engine activity.
-The root cause has been identified as frequency downscaling:
-the idle remote GPU reduces its operating frequency to the minimum 400MHz,
-which negatively impacts the bandwidth available for P2P transactions 
-initiated by the active local GPU.
+ While previously applied only to both tiles GT0(Graphics) and Media(GT1)
+ the BMG G21(Battle image) platform via workaround Wa_14022085890,
+ this 1.2 GHz minimum is now the default for GT0(Graphics) tile
+ of BMG and CRI platforms.
 
-To address above problem this patch ensures for the platform BMG/CRI
-of graphics(GT0) tile.the default GT rp frquency min set as 1.2GHz
-to ensure effetive P2P transaction bandwidth.
-
-Frequency boosting improves performance, but at the expense of
-power consumption.Note that this change only impacts active frequency,
-so idle power consumption should remain the same.
+ Setting this frequency floor(1.2GHz) default is critical in multi GPU
+ environment for supporting effective Peer-to-Peer(P2P) transactions.
 
 v2:
 - Fix Indentation(Thomas)
@@ -91,12 +85,63 @@ v3:(Thomas/Ankur/Matt Roper)
 v4:(Stuart)
 - Move WA check to pc_needs_min_freq_change function
 
-Nareshkumar Gollakoti (1):
-  drm/xe: Set GT rp min frequency as 1.2GHz default for BMG/CRI
-
+Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+---
  drivers/gpu/drm/xe/xe_guc_pc.c | 32 ++++++++++++++++++++++++++++++--
  1 file changed, 30 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index 5e5495a39a3c..f92feee3592d 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -856,9 +856,26 @@ void xe_guc_pc_init_early(struct xe_guc_pc *pc)
+ 	pc_init_fused_rp_values(pc);
+ }
+ 
++static bool pc_needs_min_freq_change(struct xe_guc_pc *pc)
++{
++	struct xe_device *xe = pc_to_xe(pc);
++	struct xe_gt *gt = pc_to_gt(pc);
++
++	if (XE_DEVICE_WA(xe, 14022085890))
++		return true;
++
++	if (xe_gt_is_media_type(gt))
++		return false;
++
++	if (xe->info.platform == XE_BATTLEMAGE ||
++	    xe->info.platform == XE_CRESCENTISLAND)
++		return true;
++
++	return false;
++}
++
+ static int pc_adjust_freq_bounds(struct xe_guc_pc *pc)
+ {
+-	struct xe_tile *tile = gt_to_tile(pc_to_gt(pc));
+ 	int ret;
+ 
+ 	lockdep_assert_held(&pc->freq_lock);
+@@ -885,7 +902,18 @@ static int pc_adjust_freq_bounds(struct xe_guc_pc *pc)
+ 	if (pc_get_min_freq(pc) > pc->rp0_freq)
+ 		ret = pc_set_min_freq(pc, pc->rp0_freq);
+ 
+-	if (XE_DEVICE_WA(tile_to_xe(tile), 14022085890))
++	/*
++	 * Setting GT RP min frequency to 1.2GHz by default for
++	 * GT0(Graphics) Tile of BMG and CRI.
++	 *
++	 * While BMG G21 WA will apply min frequency for
++	 * both GT0(Graphics) and GT1(Media) Tile.
++	 *
++	 * This is an active frequency, so if the device is idle
++	 * we aren't expecting high power output across board
++	 *
++	 */
++	if (pc_needs_min_freq_change(pc))
+ 		ret = pc_set_min_freq(pc, max(BMG_MIN_FREQ, pc_get_min_freq(pc)));
+ 
+ out:
 -- 
 2.43.0
 
