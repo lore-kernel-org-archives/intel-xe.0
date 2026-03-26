@@ -4,57 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B567610A62CA
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 13:09:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 128E910A62CB
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 13:14:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7825610E92B;
-	Thu, 26 Mar 2026 13:09:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9F9F10E955;
+	Thu, 26 Mar 2026 13:14:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="efxq1AZq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GgZfjpXO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E84F010E92A
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Mar 2026 13:09:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BD1B10E957
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Mar 2026 13:14:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774530557; x=1806066557;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8hg5A3Ee6LF+uy182c9uc+kvDzcpiJP7TC5QoCI9Wdo=;
- b=efxq1AZqAL7fIIx3HayoNAzjee/OuihHx7t/WQW9LLN1EDk9QnQkKb4A
- 7EmWktZh3F4+VAiXAct7sG6hpS7DBNuxUBbFslAMYLyoEQUWO9FXLdrGy
- s2cJ8Rq6D2+hqPeiXXDDX1vgHlnvB0eB6QKJ7WL+W38e3e5zshlYLn0Ko
- qN3Zz5/kf6zVoDh/67tQNPg7co3tqhA9KNSQnJE5cLGkrOG79wQuKF5lt
- 3Lsr9+4Bq6XpqYZKYaLYjAitt2O9ZeVxZepn0rONFYFTI7FQMZy9seNfD
- dxQSEP1snYuMp4jS+NqMe0NP/U+stxmeJ/WOX5cxrcOZMJP3Pz/MYhJtI A==;
-X-CSE-ConnectionGUID: uETEkCrfTfK797ObGFUMRg==
-X-CSE-MsgGUID: e/MRt/PwQgKp9Ag/AOmFOQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="75784789"
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75784789"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 06:09:17 -0700
-X-CSE-ConnectionGUID: cVoGYhckSB61Gd5pkScnwA==
-X-CSE-MsgGUID: 9tzIVsIhQKOs2068kMKJVw==
+ t=1774530887; x=1806066887;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=0rSRknNQwy0pUroTwX4OXJtc2hFIpmqDfbQyGp4QnRY=;
+ b=GgZfjpXOHRxuxrR6cklET9BUkw9G9JZmO4G/bAQMgaFm7BT4h3hdP9vv
+ TAfceLXAAHIroSkrfJvCzhhPOev3ym6stA9e5hoyyuEv1ir0a/0lRxDm1
+ z/9fdHYKnIxxCStT8joQ/RWlxd+tb5A9W2dJgrSdqkn3xeM/1R624dekG
+ t2UmVh6NzgkyQsJXAw4t5OqfZ14ayzeBCSTY0OATEHItAO5KbC6MVGI4r
+ jax1rv9RYwkJLGPoOGofWuU2E/Emj9/+8SoK6UaA0wsyemDVp40ZHjkSX
+ 6dvnQiVehZLXUrIlR1BGBbQCDFpkfsoTZVDpYKb4t1k8Hlv0+s+2SO/50 g==;
+X-CSE-ConnectionGUID: 2AWe5S3iT9SU6durdkBEcw==
+X-CSE-MsgGUID: mOkGPmJPR6+gax7A+oVgUQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="75550678"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75550678"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 06:14:47 -0700
+X-CSE-ConnectionGUID: zhDJ9uNORI+1hsNbELwyyg==
+X-CSE-MsgGUID: x3pKBS3/RPSHFLFmRUcVzw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="224070586"
-Received: from varungup-desk.iind.intel.com ([10.190.238.71])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 06:09:15 -0700
-From: Arvind Yadav <arvind.yadav@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
- thomas.hellstrom@linux.intel.com
-Subject: [PATCH v9 11/12] drm/xe/madvise: Enable purgeable buffer object IOCTL
- support
-Date: Thu, 26 Mar 2026 18:38:37 +0530
-Message-ID: <20260326130843.3545241-12-arvind.yadav@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260326130843.3545241-1-arvind.yadav@intel.com>
-References: <20260326130843.3545241-1-arvind.yadav@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="225007312"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.14])
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 06:14:45 -0700
+Date: Thu, 26 Mar 2026 15:14:42 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Maarten Lankhorst <dev@lankhorst.se>
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH] drm/xe: Remove useless comment.
+Message-ID: <acUxQpoZRVwPfQpr@intel.com>
+References: <20260326121818.122401-2-dev@lankhorst.se>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260326121818.122401-2-dev@lankhorst.se>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,93 +71,40 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hook the madvise_purgeable() handler into the madvise IOCTL now that all
-supporting infrastructure is complete:
+On Thu, Mar 26, 2026 at 01:18:14PM +0100, Maarten Lankhorst wrote:
+> Commit 792d2b9a1259 ("drm: drop mtrr from i915"), added this comment,
+> drop it since it was carried over from i915.
+> 
+> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+> ---
+>  drivers/gpu/drm/xe/xe_device.c | 3 ---
+>  1 file changed, 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index e77a3a3db73db..94629d782d07d 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -388,9 +388,6 @@ bool xe_is_xe_file(const struct file *file)
+>  }
+>  
+>  static struct drm_driver driver = {
+> -	/* Don't use MTRRs here; the Xserver or userspace app should
+> -	 * deal with them for Intel hardware.
+> -	 */
 
- - Core purge implementation (patch 3)
- - BO state tracking and helpers (patches 1-2)
- - Per-VMA purgeable state tracking (patch 6)
- - Shrinker integration for memory reclamation (patch 10)
+The entire DRIVER_USE_MTRR was killed off in 2013 with
+commit 281856477cda ("drm: rip out drm_core_has_MTRR checks").
+The leftover comment should be deleted from i915 as well.
 
-This final patch enables userspace to use the DRM_XE_VMA_ATTR_PURGEABLE_STATE
-madvise type to mark buffers as WILLNEED/DONTNEED and receive the retained
-status indicating whether buffers were purged.
+This one is
+Reviewed-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
 
-The feature was kept disabled in earlier patches to maintain bisectability
-and ensure all components are in place before exposing to userspace.
+>  	.driver_features =
+>  	    DRIVER_GEM |
+>  	    DRIVER_RENDER | DRIVER_SYNCOBJ |
+> -- 
+> 2.53.0
 
-Userspace can detect kernel support for purgeable BOs by checking the
-DRM_XE_QUERY_CONFIG_FLAG_HAS_PURGING_SUPPORT flag in the query_config
-response.
-
-v6:
-  - Add DRM_XE_QUERY_CONFIG_FLAG_HAS_PURGING_SUPPORT for userspace
-    feature detection. (Jose)
-
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Thomas Hellstr√∂m <thomas.hellstrom@linux.intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
----
- drivers/gpu/drm/xe/xe_query.c      |  2 ++
- drivers/gpu/drm/xe/xe_vm_madvise.c | 22 +++++-----------------
- 2 files changed, 7 insertions(+), 17 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 4852fdcb4b95..d84d6a422c45 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -342,6 +342,8 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
- 			DRM_XE_QUERY_CONFIG_FLAG_HAS_LOW_LATENCY;
- 	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
- 		DRM_XE_QUERY_CONFIG_FLAG_HAS_DISABLE_STATE_CACHE_PERF_FIX;
-+	config->info[DRM_XE_QUERY_CONFIG_FLAGS] |=
-+		DRM_XE_QUERY_CONFIG_FLAG_HAS_PURGING_SUPPORT;
- 	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
- 		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
- 	config->info[DRM_XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
-diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index b5b8dd9f52dd..33786a5d62a6 100644
---- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-+++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -338,18 +338,11 @@ void xe_bo_recompute_purgeable_state(struct xe_bo *bo)
-  *
-  * Handles DONTNEED/WILLNEED/PURGED states. Tracks if any BO was purged
-  * in details->has_purged_bo for later copy to userspace.
-- *
-- * Note: Marked __maybe_unused until hooked into madvise_funcs[] in the
-- * final patch to maintain bisectability. The NULL placeholder in the
-- * array ensures proper -EINVAL return for userspace until all supporting
-- * infrastructure (shrinker, per-VMA tracking) is complete.
-  */
--static void __maybe_unused madvise_purgeable(struct xe_device *xe,
--					     struct xe_vm *vm,
--					     struct xe_vma **vmas,
--					     int num_vmas,
--					     struct drm_xe_madvise *op,
--					     struct xe_madvise_details *details)
-+static void madvise_purgeable(struct xe_device *xe, struct xe_vm *vm,
-+			      struct xe_vma **vmas, int num_vmas,
-+			      struct drm_xe_madvise *op,
-+			      struct xe_madvise_details *details)
- {
- 	int i;
- 
-@@ -418,12 +411,7 @@ static const madvise_func madvise_funcs[] = {
- 	[DRM_XE_MEM_RANGE_ATTR_PREFERRED_LOC] = madvise_preferred_mem_loc,
- 	[DRM_XE_MEM_RANGE_ATTR_ATOMIC] = madvise_atomic,
- 	[DRM_XE_MEM_RANGE_ATTR_PAT] = madvise_pat_index,
--	/*
--	 * Purgeable support implemented but not enabled yet to maintain
--	 * bisectability. Will be set to madvise_purgeable() in final patch
--	 * when all infrastructure (shrinker, VMA tracking) is complete.
--	 */
--	[DRM_XE_VMA_ATTR_PURGEABLE_STATE] = NULL,
-+	[DRM_XE_VMA_ATTR_PURGEABLE_STATE] = madvise_purgeable,
- };
- 
- static u8 xe_zap_ptes_in_madvise_range(struct xe_vm *vm, u64 start, u64 end)
 -- 
-2.43.0
-
+Ville Syrj‰l‰
+Intel
