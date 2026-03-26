@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56BCB10AB822
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 22:32:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13FA110AB82B
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 22:32:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 108A910EACD;
-	Thu, 26 Mar 2026 22:32:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CFF0D10EAE5;
+	Thu, 26 Mar 2026 22:32:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bz6z+UCw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q3UyhunE";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02B7F10EA59;
- Thu, 26 Mar 2026 22:32:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 18E6F10EAFA;
+ Thu, 26 Mar 2026 22:32:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774564328; x=1806100328;
+ t=1774564332; x=1806100332;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QXYqwdbjNmFXcvosRHXeB7o+NgCVf1WpdXn7lzfy270=;
- b=bz6z+UCwe2lFf2ikAV5a99nWOpcXh+GxCA5QUUWpBdDAaWVNGr912/vL
- ws16DFExwxgnh7aD4GWVtHHZMirMIJIcD+ZveGrIvq+eUkip4Gb52d/6g
- rkL9zKQXTeOk9qDJrx4wfF2rb2x5HwwUEM5ICpQX79uCiDGHq4yKFsZBW
- 1eAMeFpcEh0sKsUa9hxegPM35uNnHyfBcE3OiKfoObscnk3OkooyHlPCY
- GQTapZEtDFg5sOM6oVwSlXxvur5T+khqgiPJ/g7G/gmIjNMJLcNHFK//w
- 48UMBCrSPSwW0/y+0qq6PVq+WQc5pccMCeAzNBMdH3WznS7UQnAXs82LK Q==;
-X-CSE-ConnectionGUID: zFnA9S7tSF2XZxkFZJyBmQ==
-X-CSE-MsgGUID: PoHYhK2JQhKuIwMJ+Lha+w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="78233087"
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="78233087"
+ bh=NiMOAlSm1bCavPugRE68VzolBqP7I9M5L2zhr3eWMNg=;
+ b=Q3UyhunEh9pAt5bUQ8UVDQtyWEIGUO/sHwYh+wtBfaDRbLyFK8CxFWXm
+ 9f1urgcaMXpo+Shx8W/Q5daaVtWGa45uVMRbFm8oVHv086Z5Pb8I0gmp9
+ /kvfAKGuI40e3qAuBkE/Et7dJ6X98JchDVgcV8TYX5P7ygPXE3CU/akof
+ H7uaZ1WqZL6kkTS6tpzG409tmKUn6/T17qIt7KOGRAamvuCAyASloRZrK
+ U/tmV3eqpSW+/yhEtKgt6nBOAtzmhi96SXg9puoHtIO25AhJ61qcEF/nM
+ d852iajcrpdniKnCuF9utOJDSANd1Xe7+/fcx+JMWTHmcJpxoywvWgzP8 Q==;
+X-CSE-ConnectionGUID: Oj+Lsd93QN+awLR+boJxLw==
+X-CSE-MsgGUID: Bs/ZR28wR+m00GNCbt/MMQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="78233092"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="78233092"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 15:32:08 -0700
-X-CSE-ConnectionGUID: OkhU19TvQke3tJGDuE3Aow==
-X-CSE-MsgGUID: juoQAeKVTBOR+8GQsqaHZg==
+ 26 Mar 2026 15:32:12 -0700
+X-CSE-ConnectionGUID: Fe9lqWCQSG+uGLDLNFeDxQ==
+X-CSE-MsgGUID: khLAU+dYSVaDl4m2NqNYWw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="226769504"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="226769525"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.14])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 15:32:06 -0700
+ 26 Mar 2026 15:32:10 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 6/9] drm/i915/casf: Constify crtc_state
-Date: Fri, 27 Mar 2026 00:31:36 +0200
-Message-ID: <20260326223139.19116-7-ville.syrjala@linux.intel.com>
+Subject: [PATCH 7/9] drn/i915/casf: Remove redundant argument from
+ intel_casf_filter_lut_load()
+Date: Fri, 27 Mar 2026 00:31:37 +0200
+Message-ID: <20260326223139.19116-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260326223139.19116-1-ville.syrjala@linux.intel.com>
 References: <20260326223139.19116-1-ville.syrjala@linux.intel.com>
@@ -73,109 +74,41 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Make the crtc_state const everywhere in the sharpness filter
-code where it doesn't need to be mutated.
+intel_casf_filter_lut_load() can find the crtc from the crtc_state.
+No need to pass in both.
 
 Cc: Nemesa Garg <nemesa.garg@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_casf.c | 8 ++++----
- drivers/gpu/drm/i915/display/intel_casf.h | 4 ++--
- drivers/gpu/drm/i915/display/skl_scaler.c | 8 ++++----
- drivers/gpu/drm/i915/display/skl_scaler.h | 2 +-
- 4 files changed, 11 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_casf.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_casf.c b/drivers/gpu/drm/i915/display/intel_casf.c
-index 5a8ffb40d30d..f777aae3fc57 100644
+index f777aae3fc57..21e84a4f9ff5 100644
 --- a/drivers/gpu/drm/i915/display/intel_casf.c
 +++ b/drivers/gpu/drm/i915/display/intel_casf.c
-@@ -75,7 +75,7 @@ static void intel_casf_filter_lut_load(struct intel_crtc *crtc,
- 			       sharpness_lut[i]);
- }
+@@ -61,10 +61,10 @@ const u16 filtercoeff_3[] = {
+ 	FILTER_COEFF_0_125,
+ };
  
--void intel_casf_update_strength(struct intel_crtc_state *crtc_state)
-+void intel_casf_update_strength(const struct intel_crtc_state *crtc_state)
+-static void intel_casf_filter_lut_load(struct intel_crtc *crtc,
+-				       const struct intel_crtc_state *crtc_state)
++static void intel_casf_filter_lut_load(const struct intel_crtc_state *crtc_state)
  {
  	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	int i;
+ 
+ 	intel_de_write(display, SHRPLUT_INDEX(crtc->pipe),
+@@ -270,7 +270,7 @@ void intel_casf_enable(const struct intel_crtc_state *crtc_state)
  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -174,7 +174,7 @@ static int casf_coeff_tap(int i)
- 	return i % SCALER_FILTER_NUM_TAPS;
- }
+ 	u32 sharpness_ctl;
  
--static u32 casf_coeff(struct intel_crtc_state *crtc_state, int t)
-+static u32 casf_coeff(const struct intel_crtc_state *crtc_state, int t)
- {
- 	struct scaler_filter_coeff value;
- 	u32 coeff;
-@@ -192,7 +192,7 @@ static u32 casf_coeff(struct intel_crtc_state *crtc_state, int t)
-  * that are calculated and stored in pch_pfit.casf.coeff as per
-  * SCALER_COEFFICIENT_FORMAT
-  */
--static void intel_casf_write_coeff(struct intel_crtc_state *crtc_state)
-+static void intel_casf_write_coeff(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -264,7 +264,7 @@ void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state)
- 	}
- }
+-	intel_casf_filter_lut_load(crtc, crtc_state);
++	intel_casf_filter_lut_load(crtc_state);
  
--void intel_casf_enable(struct intel_crtc_state *crtc_state)
-+void intel_casf_enable(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-diff --git a/drivers/gpu/drm/i915/display/intel_casf.h b/drivers/gpu/drm/i915/display/intel_casf.h
-index b3fb0bcb3f5b..c4f984b73348 100644
---- a/drivers/gpu/drm/i915/display/intel_casf.h
-+++ b/drivers/gpu/drm/i915/display/intel_casf.h
-@@ -11,9 +11,9 @@
- struct intel_crtc_state;
+ 	intel_casf_write_coeff(crtc_state);
  
- int intel_casf_compute_config(struct intel_crtc_state *crtc_state);
--void intel_casf_update_strength(struct intel_crtc_state *new_crtc_state);
-+void intel_casf_update_strength(const struct intel_crtc_state *new_crtc_state);
- void intel_casf_sharpness_get_config(struct intel_crtc_state *crtc_state);
--void intel_casf_enable(struct intel_crtc_state *crtc_state);
-+void intel_casf_enable(const struct intel_crtc_state *crtc_state);
- void intel_casf_disable(const struct intel_crtc_state *crtc_state);
- void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state);
- bool intel_casf_needs_scaler(const struct intel_crtc_state *crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index d8bf65c6b4a7..762f4bb46c2d 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.c
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -757,13 +757,13 @@ static void skl_scaler_setup_filter(struct intel_display *display,
- 	}
- }
- 
--void skl_scaler_setup_casf(struct intel_crtc_state *crtc_state)
-+void skl_scaler_setup_casf(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct intel_display *display = to_intel_display(crtc);
--	struct drm_display_mode *adjusted_mode =
--	&crtc_state->hw.adjusted_mode;
--	struct intel_crtc_scaler_state *scaler_state =
-+	const struct drm_display_mode *adjusted_mode =
-+		&crtc_state->hw.adjusted_mode;
-+	const struct intel_crtc_scaler_state *scaler_state =
- 		&crtc_state->scaler_state;
- 	struct drm_rect src, dest;
- 	int id, width, height;
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.h b/drivers/gpu/drm/i915/display/skl_scaler.h
-index 7e8d819c019d..20ecf373eb19 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.h
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.h
-@@ -36,7 +36,7 @@ void skl_scaler_disable(const struct intel_crtc_state *old_crtc_state);
- 
- void skl_scaler_get_config(struct intel_crtc_state *crtc_state);
- 
--void skl_scaler_setup_casf(struct intel_crtc_state *crtc_state);
-+void skl_scaler_setup_casf(const struct intel_crtc_state *crtc_state);
- 
- enum drm_mode_status
- skl_scaler_mode_valid(struct intel_display *display,
 -- 
 2.52.0
 
