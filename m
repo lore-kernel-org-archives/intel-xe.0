@@ -4,53 +4,124 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0471710A62CB
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 13:31:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F17C210A62D7
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 13:39:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0C6A10EA25;
-	Thu, 26 Mar 2026 13:31:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D8CF10E9D1;
+	Thu, 26 Mar 2026 13:39:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cG3Ydd5m";
+	dkim=pass (2048-bit key; unprotected) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="VWIz5Dqu";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F8AF10EA25
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Mar 2026 13:31:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774531916; x=1806067916;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Gu/1B+TIC4DFIigg6gMNui2xd6nYMTocnhU8zUOQAIA=;
- b=cG3Ydd5mbS1UIZj2gZ7zc/4Kow9GRoqR5TLpB+qE/YDGUz25aB3vpNp+
- 00R9ZH6jJiBnqZW4thnnm74suAyXbXGSFHS05n3TMCIZ8GDJjF5r+C/5L
- BrD/eo8D47RzExB08s9IwAbcbO5CEkPR9HtoNQEfNC4h4mB1PX8ObXLEz
- j3zfIA17y2rRILNCwePJnEUQe2d//1f5c/72dfWP1kztd/Yt7enX0zpSt
- 6K5eghZsuwuZ/0P8MUIAuGWYgbc05chbgWR1Oo7Drwy0X1cE0nec8mfZN
- U5L0v+PT7yzHgvx+JZ9TDU4ycV6iM0yGK+QWdgVADLucYGppkK2ipCIlp w==;
-X-CSE-ConnectionGUID: XhHBWDELTneEhQ3Y0G0aYQ==
-X-CSE-MsgGUID: T5cBlmDQT/OMmvPJdiFm4Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="75492505"
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75492505"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 06:31:56 -0700
-X-CSE-ConnectionGUID: zqbq8twiSJaI97G6tnOZTA==
-X-CSE-MsgGUID: Y/YBmiZbQJaLqBLXVCRsOg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="248416078"
-Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa001.fm.intel.com with ESMTP; 26 Mar 2026 06:31:54 -0700
-From: Raag Jadav <raag.jadav@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: matthew.brost@intel.com, thomas.hellstrom@linux.intel.com,
- matthew.auld@intel.com, himal.prasad.ghimiray@intel.com,
- matthew.d.roper@intel.com, Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v2] drm/xe: Drop all mappings for wedged device
-Date: Thu, 26 Mar 2026 18:58:16 +0530
-Message-ID: <20260326132816.739363-1-raag.jadav@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com
+ [209.85.128.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FBA510E383
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Mar 2026 13:39:23 +0000 (UTC)
+Received: by mail-yw1-f171.google.com with SMTP id
+ 00721157ae682-79a3ba1653fso9869867b3.3
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Mar 2026 06:39:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774532362; cv=none;
+ d=google.com; s=arc-20240605;
+ b=lMLWwD6k4rpVvV/R7bw0tZuxFApvR8241mCSqPb7qrAQApf1Cr+dA7byeOb3nyNcWZ
+ PABzZJxGFQbgeKSrEfL3nkhmg5TqKZtuAbGVifNoP0Yr2f7If5Pspe9L0DGF++SgyKI0
+ fFodGxK4pGODz7ApaYV4jCP3RXTP91ake78mt6iHrIyKADgDQvY3LfvGbkhcvynzlE3i
+ F7mFgyg04YgJN4GYmqsWisFQl9YdW4ImtN1e97TmMg7c9DfOfgeKbVoo72NYArXT2pww
+ xh+plmNp+Y5KZsgUxtghnyCiNcIz+y8npAnh3uCxhMoG5X35pYMb48mmZa+6iX2iNJ7d
+ c4WQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=IWnlq3YY7P2VGUr2BUkZ+fGGbSx856WYxcxWvnN8cGU=;
+ fh=EHgjYSQE/3oUcjpe/ztoXFBPPvqNoM9u3v7UjYgW78I=;
+ b=R90siBCTCCNvKc7JibjtlyoYTIR5vcPJPAXSoOHi9wpTC1Rf2IO4mcjg6fKNF1FyT4
+ zSN1FAnbZ1E3wCATJ2Sf6Ht9viRJiaaIg+lznlK3jEnHClEnQAp0uTBXH1dnOQg9yOGl
+ STUSFiINpCqZeIP0uYhZN25WrSqu0KfnyCXf1hUIh5kXKZJCENPrgsJbHehL+QWTFStk
+ 6O2hx4/799rmNIHZtG8kpOZz95Pm0SKcrsSrIzQjFPoBgJWXELAzSdYyA90rH+Y3evuK
+ dohyfnwt8wpP6WxIKwzmMH+6aXsjTaIaywGt4Rpc5ebL+iuCIx1BqCs0/fQcDINss/tq
+ cqvg==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=raspberrypi.com; s=google; t=1774532362; x=1775137162;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=IWnlq3YY7P2VGUr2BUkZ+fGGbSx856WYxcxWvnN8cGU=;
+ b=VWIz5DquPpxhvNQuBRF/KNB4nghz+Cev85IkmYO5/WFT7MLWzCMNSumzaCHCTtCfUw
+ x7jIul9/nTLfi6aqhhg1XB+q+Zge8+AKQhK3Jsm1x1kNNnP2rFPQhGnM6mtoalkwXTFV
+ qbFkJDUI4DtNKa6kGER0ibAl1s7z0YIlAnvPdGkqRsif/TWyROieIlORnS/uIPpr05O0
+ 6obJjLScx89MG3L6b167FfnIutyc6daJYSzsNlkrbka2/CtdSYAa7glspCf4NvGujwaM
+ V5AtNZSJuCDLuhGI6kEjNTxcfP4VuRnRVN09JIlkOtSL+ITShRlaN1er1Cljs8PJdJrR
+ fV9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1774532362; x=1775137162;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=IWnlq3YY7P2VGUr2BUkZ+fGGbSx856WYxcxWvnN8cGU=;
+ b=jx+PGhu+b63OB1NMfHd98RU9FWpO7lF7AgduzdZzbMBKjK5MFkgsoZjZX8TyXzwxxA
+ rK2d1Q6pdxGGKbz8JxEN/tlSnjhTeqG8y9zSfxIXlBHo4OQj81YxWt68hXupyLhx5Hs8
+ br9MPEky3hhw0WmE5gGquedVbli7DRc7XgveNQD68Jk4RLlaVek+ouwDfjXZK+ybR2vA
+ /Pn9dMhE1Wm9YXcw1iD91gEffFKkJVQ6EBzgUAIilOxokfdR5EZAMdxGQZMl3kFbuhag
+ j8Cd5+85B6ue86LnGMEX83r+Uufp6lD/tM1EjbM6j6Ec7JdihlrZDOfbG2z5cqvwN3qJ
+ t8ig==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWXNxepffQhOcKNP6ZSiiNz5WF8n/MShlcTDNDDADPMmfZNpl68qpP/HLfpxQKWOIYA0MV+9SsGiA==@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw22EhnLBHRz2uM7bdGQ1MiFMSlpefbSnYBso2ziyO+sCkkmjLU
+ QFVfT6pF2Hec8rFxc5UQ5FU/MXrT0MnZ7YKROLlrfZbXy5cnD5/ENu7eKXD5CoDHrBSU03TlpvG
+ piIgDRiV7D3WsEvRSAbotd+dzoGpcxIvcwL50y78e/Q==
+X-Gm-Gg: ATEYQzwY8Z9uxKtB1cdQNKyVOSzItbPw422ebMriuBR10LnGMQ1vPEtl7EKZq1+SJRm
+ kdk1K6TT8xCNyUiAafeYnGD8VjFk7XXDirUCm2H7/ldp1AzDtJl+qbBCe9ZnnHqQh/h/fZzxVrF
+ /8QZjPrV+pyP7zAkla1NdEK0XLskoaWhd/2r8wT2kysF0QJhdyDiD1TA4AjdL7ELLBRFf3q2m0n
+ TNEOYnG9JR90FXiPyGwVC0J/3mPJyoNPEUnMmdvqJcvnOcro6bPzJd2nW1hwExqsjT7dXEq60le
+ d7/lUmqXu9Fs+7QcaqA2ACSV1ZZwHNrLbflADwA=
+X-Received: by 2002:a05:690c:6086:b0:799:1d0a:aca8 with SMTP id
+ 00721157ae682-79acf391fcamr83445117b3.19.1774532361939; Thu, 26 Mar 2026
+ 06:39:21 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
+ <20260324-color-format-v11-3-605559af4fb4@collabora.com>
+ <CAPY8ntB9f_=f5kru=8w9BpTuqQR+93maGpT61EKU28Uay2vq8Q@mail.gmail.com>
+ <acPmcMbUvzWMzC-Q@intel.com>
+ <CAPY8ntCRPgN_ayHMGXFv9OrJrdyakUcUT0rvgY5J=FvdCFb6eA@mail.gmail.com>
+ <acUi6NEPJ0p48a3U@intel.com>
+In-Reply-To: <acUi6NEPJ0p48a3U@intel.com>
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date: Thu, 26 Mar 2026 13:39:04 +0000
+X-Gm-Features: AQROBzC-fzB7pltEtFba3kfrVDmyhycx0P3xOtZmVXy7A1SvRy2ZJPGwTUQXf-A
+Message-ID: <CAPY8ntDZ30NWmYaptMQzOuXPoi8wzEObzAL=oqhxuq8jSvv2mQ@mail.gmail.com>
+Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color format"
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ kernel@collabora.com, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org, 
+ Werner Sembach <wse@tuxedocomputers.com>, Andri Yngvason <andri@yngvason.is>, 
+ Marius Vlad <marius.vlad@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,68 +136,349 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-As per uapi documentation[1], the prerequisite for wedged device is to
-drop all memory mappings. Follow it.
-
-[1] Documentation/gpu/drm-uapi.rst
-
-v2: Also drop CPU mappings (Matthew Auld)
-
-Fixes: 7bc00751f877 ("drm/xe: Use device wedged event")
-Signed-off-by: Raag Jadav <raag.jadav@intel.com>
----
- drivers/gpu/drm/xe/xe_bo_evict.c | 8 +++++++-
- drivers/gpu/drm/xe/xe_bo_evict.h | 1 +
- drivers/gpu/drm/xe/xe_device.c   | 5 +++++
- 3 files changed, 13 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
-index 7661fca7f278..f741cda50b2d 100644
---- a/drivers/gpu/drm/xe/xe_bo_evict.c
-+++ b/drivers/gpu/drm/xe/xe_bo_evict.c
-@@ -270,7 +270,13 @@ int xe_bo_restore_late(struct xe_device *xe)
- 	return ret;
- }
- 
--static void xe_bo_pci_dev_remove_pinned(struct xe_device *xe)
-+/**
-+ * xe_bo_pci_dev_remove_pinned() - Unmap external bos
-+ * @xe: xe device
-+ *
-+ * Drop dma mappings of all external pinned bos.
-+ */
-+void xe_bo_pci_dev_remove_pinned(struct xe_device *xe)
+On Thu, 26 Mar 2026 at 12:13, Ville Syrj=C3=A4l=C3=A4
+<ville.syrjala@linux.intel.com> wrote:
+>
+> On Thu, Mar 26, 2026 at 11:16:12AM +0000, Dave Stevenson wrote:
+> > On Wed, 25 Mar 2026 at 13:43, Ville Syrj=C3=A4l=C3=A4
+> > <ville.syrjala@linux.intel.com> wrote:
+> > >
+> > > On Wed, Mar 25, 2026 at 12:49:19PM +0000, Dave Stevenson wrote:
+> > > > On Tue, 24 Mar 2026 at 16:02, Nicolas Frattaroli
+> > > > <nicolas.frattaroli@collabora.com> wrote:
+> > > > >
+> > > > > Add a new general DRM property named "color format" which can be =
+used by
+> > > > > userspace to request the display driver to output a particular co=
+lor
+> > > > > format.
+> > > > >
+> > > > > Possible options are:
+> > > > >     - auto (setup by default, driver internally picks the color f=
+ormat)
+> > > > >     - rgb
+> > > > >     - ycbcr444
+> > > > >     - ycbcr422
+> > > > >     - ycbcr420
+> > > > >
+> > > > > Drivers should advertise from this list which formats they suppor=
+t.
+> > > > > Together with this list and EDID data from the sink we should be =
+able
+> > > > > to relay a list of usable color formats to users to pick from.
+> > > > >
+> > > > > Co-developed-by: Werner Sembach <wse@tuxedocomputers.com>
+> > > > > Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
+> > > > > Co-developed-by: Andri Yngvason <andri@yngvason.is>
+> > > > > Signed-off-by: Andri Yngvason <andri@yngvason.is>
+> > > > > Signed-off-by: Marius Vlad <marius.vlad@collabora.com>
+> > > > > Reviewed-by: Maxime Ripard <mripard@kernel.org>
+> > > > > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.c=
+om>
+> > > > > ---
+> > > > >  drivers/gpu/drm/drm_atomic_helper.c |   5 ++
+> > > > >  drivers/gpu/drm/drm_atomic_uapi.c   |  11 ++++
+> > > > >  drivers/gpu/drm/drm_connector.c     | 108 ++++++++++++++++++++++=
+++++++++++++++
+> > > > >  include/drm/drm_connector.h         | 104 ++++++++++++++++++++++=
+++++++++++++
+> > > > >  4 files changed, 228 insertions(+)
+> > > > >
+> > > > > diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/dr=
+m/drm_atomic_helper.c
+> > > > > index 26953ed6b53e..b7753454b777 100644
+> > > > > --- a/drivers/gpu/drm/drm_atomic_helper.c
+> > > > > +++ b/drivers/gpu/drm/drm_atomic_helper.c
+> > > > > @@ -737,6 +737,11 @@ drm_atomic_helper_check_modeset(struct drm_d=
+evice *dev,
+> > > > >                         if (old_connector_state->max_requested_bp=
+c !=3D
+> > > > >                             new_connector_state->max_requested_bp=
+c)
+> > > > >                                 new_crtc_state->connectors_change=
+d =3D true;
+> > > > > +
+> > > > > +                       if (old_connector_state->color_format !=
+=3D
+> > > > > +                           new_connector_state->color_format)
+> > > > > +                               new_crtc_state->connectors_change=
+d =3D true;
+> > > > > +
+> > > > >                 }
+> > > > >
+> > > > >                 if (funcs->atomic_check)
+> > > > > diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/=
+drm_atomic_uapi.c
+> > > > > index 5bd5bf6661df..dee510c85e59 100644
+> > > > > --- a/drivers/gpu/drm/drm_atomic_uapi.c
+> > > > > +++ b/drivers/gpu/drm/drm_atomic_uapi.c
+> > > > > @@ -935,6 +935,15 @@ static int drm_atomic_connector_set_property=
+(struct drm_connector *connector,
+> > > > >                 state->privacy_screen_sw_state =3D val;
+> > > > >         } else if (property =3D=3D connector->broadcast_rgb_prope=
+rty) {
+> > > > >                 state->hdmi.broadcast_rgb =3D val;
+> > > > > +       } else if (property =3D=3D connector->color_format_proper=
+ty) {
+> > > > > +               if (val > INT_MAX || !drm_connector_color_format_=
+valid(val)) {
+> > > > > +                       drm_dbg_atomic(connector->dev,
+> > > > > +                                      "[CONNECTOR:%d:%s] unknown=
+ color format %llu\n",
+> > > > > +                                      connector->base.id, connec=
+tor->name, val);
+> > > > > +                       return -EINVAL;
+> > > > > +               }
+> > > > > +
+> > > > > +               state->color_format =3D val;
+> > > > >         } else if (connector->funcs->atomic_set_property) {
+> > > > >                 return connector->funcs->atomic_set_property(conn=
+ector,
+> > > > >                                 state, property, val);
+> > > > > @@ -1020,6 +1029,8 @@ drm_atomic_connector_get_property(struct dr=
+m_connector *connector,
+> > > > >                 *val =3D state->privacy_screen_sw_state;
+> > > > >         } else if (property =3D=3D connector->broadcast_rgb_prope=
+rty) {
+> > > > >                 *val =3D state->hdmi.broadcast_rgb;
+> > > > > +       } else if (property =3D=3D connector->color_format_proper=
+ty) {
+> > > > > +               *val =3D state->color_format;
+> > > > >         } else if (connector->funcs->atomic_get_property) {
+> > > > >                 return connector->funcs->atomic_get_property(conn=
+ector,
+> > > > >                                 state, property, val);
+> > > > > diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/dr=
+m_connector.c
+> > > > > index 47dc53c4a738..e848374dee0b 100644
+> > > > > --- a/drivers/gpu/drm/drm_connector.c
+> > > > > +++ b/drivers/gpu/drm/drm_connector.c
+> > > > > @@ -1388,6 +1388,18 @@ static const u32 hdmi_colorspaces =3D
+> > > > >         BIT(DRM_MODE_COLORIMETRY_DCI_P3_RGB_D65) |
+> > > > >         BIT(DRM_MODE_COLORIMETRY_DCI_P3_RGB_THEATER);
+> > > > >
+> > > > > +static const u32 hdmi_colorformats =3D
+> > > > > +       BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444) |
+> > > > > +       BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444) |
+> > > > > +       BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR422) |
+> > > > > +       BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR420);
+> > > > > +
+> > > > > +static const u32 dp_colorformats =3D
+> > > > > +       BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444) |
+> > > > > +       BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444) |
+> > > > > +       BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR422) |
+> > > > > +       BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR420);
+> > > > > +
+> > > > >  /*
+> > > > >   * As per DP 1.4a spec, 2.2.5.7.5 VSC SDP Payload for Pixel Enco=
+ding/Colorimetry
+> > > > >   * Format Table 2-120
+> > > > > @@ -2940,6 +2952,102 @@ int drm_connector_attach_colorspace_prope=
+rty(struct drm_connector *connector)
+> > > > >  }
+> > > > >  EXPORT_SYMBOL(drm_connector_attach_colorspace_property);
+> > > > >
+> > > > > +/**
+> > > > > + * drm_connector_attach_color_format_property - create and attac=
+h color format property
+> > > > > + * @connector: connector to create the color format property on
+> > > > > + * @supported_color_formats: bitmask of bit-shifted &enum drm_ou=
+tput_color_format
+> > > > > + *                           values the connector supports
+> > > > > + *
+> > > > > + * Called by a driver to create a color format property. The pro=
+perty is
+> > > > > + * attached to the connector automatically on success.
+> > > > > + *
+> > > > > + * @supported_color_formats should only include color formats th=
+e connector
+> > > > > + * type can actually support.
+> > > > > + *
+> > > > > + * Returns:
+> > > > > + * 0 on success, negative errno on error
+> > > > > + */
+> > > > > +int drm_connector_attach_color_format_property(struct drm_connec=
+tor *connector,
+> > > > > +                                              unsigned long supp=
+orted_color_formats)
+> > > > > +{
+> > > > > +       struct drm_device *dev =3D connector->dev;
+> > > > > +       struct drm_prop_enum_list enum_list[DRM_CONNECTOR_COLOR_F=
+ORMAT_COUNT];
+> > > > > +       unsigned int i =3D 0;
+> > > > > +       unsigned long fmt;
+> > > > > +
+> > > > > +       if (connector->color_format_property)
+> > > > > +               return 0;
+> > > > > +
+> > > > > +       if (!supported_color_formats) {
+> > > > > +               drm_err(dev, "No supported color formats provided=
+ on [CONNECTOR:%d:%s]\n",
+> > > > > +                       connector->base.id, connector->name);
+> > > > > +               return -EINVAL;
+> > > > > +       }
+> > > > > +
+> > > > > +       if (supported_color_formats & ~GENMASK(DRM_OUTPUT_COLOR_F=
+ORMAT_COUNT - 1, 0)) {
+> > > > > +               drm_err(dev, "Unknown color formats provided on [=
+CONNECTOR:%d:%s]\n",
+> > > > > +                       connector->base.id, connector->name);
+> > > > > +               return -EINVAL;
+> > > > > +       }
+> > > > > +
+> > > > > +       switch (connector->connector_type) {
+> > > > > +       case DRM_MODE_CONNECTOR_HDMIA:
+> > > > > +       case DRM_MODE_CONNECTOR_HDMIB:
+> > > > > +               if (supported_color_formats & ~hdmi_colorformats)=
  {
- 	struct xe_tile *tile;
- 	unsigned int id;
-diff --git a/drivers/gpu/drm/xe/xe_bo_evict.h b/drivers/gpu/drm/xe/xe_bo_evict.h
-index e8385cb7f5e9..6ce27e272780 100644
---- a/drivers/gpu/drm/xe/xe_bo_evict.h
-+++ b/drivers/gpu/drm/xe/xe_bo_evict.h
-@@ -15,6 +15,7 @@ void xe_bo_notifier_unprepare_all_pinned(struct xe_device *xe);
- int xe_bo_restore_early(struct xe_device *xe);
- int xe_bo_restore_late(struct xe_device *xe);
- 
-+void xe_bo_pci_dev_remove_pinned(struct xe_device *xe);
- void xe_bo_pci_dev_remove_all(struct xe_device *xe);
- 
- int xe_bo_pinned_init(struct xe_device *xe);
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index b17d4a878686..4c0097f3aefb 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1347,6 +1347,11 @@ void xe_device_declare_wedged(struct xe_device *xe)
- 	for_each_gt(gt, xe, id)
- 		xe_gt_declare_wedged(gt);
- 
-+	/* Drop dma mappings of external bos */
-+	xe_bo_pci_dev_remove_pinned(xe);
-+	/* Drop all CPU mappings pointing to this device */
-+	unmap_mapping_range(xe->drm.anon_inode->i_mapping, 0, 0, 1);
-+
- 	if (xe_device_wedged(xe)) {
- 		/*
- 		 * XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET is intended for debugging
--- 
-2.43.0
+> > > > > +                       drm_err(dev, "Color formats not allowed f=
+or HDMI on [CONNECTOR:%d:%s]\n",
+> > > > > +                               connector->base.id, connector->na=
+me);
+> > > > > +                       return -EINVAL;
+> > > > > +               }
+> > > > > +               break;
+> > > > > +       case DRM_MODE_CONNECTOR_DisplayPort:
+> > > > > +       case DRM_MODE_CONNECTOR_eDP:
+> > > > > +               if (supported_color_formats & ~dp_colorformats) {
+> > > > > +                       drm_err(dev, "Color formats not allowed f=
+or DP on [CONNECTOR:%d:%s]\n",
+> > > > > +                               connector->base.id, connector->na=
+me);
+> > > > > +                       return -EINVAL;
+> > > > > +               }
+> > > > > +               break;
+> > > > > +       }
+> > > > > +
+> > > > > +       enum_list[0].name =3D "AUTO";
+> > > > > +       enum_list[0].type =3D DRM_CONNECTOR_COLOR_FORMAT_AUTO;
+> > > > > +
+> > > > > +       for_each_set_bit(fmt, &supported_color_formats, DRM_OUTPU=
+T_COLOR_FORMAT_COUNT) {
+> > > > > +               switch (fmt) {
+> > > > > +               case DRM_OUTPUT_COLOR_FORMAT_RGB444:
+> > > > > +                       enum_list[++i].type =3D DRM_CONNECTOR_COL=
+OR_FORMAT_RGB444;
+> > > > > +                       break;
+> > > > > +               case DRM_OUTPUT_COLOR_FORMAT_YCBCR444:
+> > > > > +                       enum_list[++i].type =3D DRM_CONNECTOR_COL=
+OR_FORMAT_YCBCR444;
+> > > > > +                       break;
+> > > > > +               case DRM_OUTPUT_COLOR_FORMAT_YCBCR422:
+> > > > > +                       enum_list[++i].type =3D DRM_CONNECTOR_COL=
+OR_FORMAT_YCBCR422;
+> > > > > +                       break;
+> > > > > +               case DRM_OUTPUT_COLOR_FORMAT_YCBCR420:
+> > > > > +                       enum_list[++i].type =3D DRM_CONNECTOR_COL=
+OR_FORMAT_YCBCR420;
+> > > > > +                       break;
+> > > > > +               default:
+> > > > > +                       drm_warn(dev, "Unknown supported format %=
+ld on [CONNECTOR:%d:%s]\n",
+> > > > > +                                fmt, connector->base.id, connect=
+or->name);
+> > > > > +                       continue;
+> > > > > +               }
+> > > > > +               enum_list[i].name =3D drm_hdmi_connector_get_outp=
+ut_format_name(fmt);
+> > > > > +       }
+> > > > > +
+> > > > > +       connector->color_format_property =3D
+> > > > > +               drm_property_create_enum(dev, DRM_MODE_PROP_ENUM,=
+ "color format",
+> > > > > +                                        enum_list, i + 1);
+> > > > > +
+> > > > > +       if (!connector->color_format_property)
+> > > > > +               return -ENOMEM;
+> > > > > +
+> > > > > +       drm_object_attach_property(&connector->base, connector->c=
+olor_format_property,
+> > > > > +                                  DRM_CONNECTOR_COLOR_FORMAT_AUT=
+O);
+> > > > > +
+> > > > > +       return 0;
+> > > > > +}
+> > > > > +EXPORT_SYMBOL(drm_connector_attach_color_format_property);
+> > > > > +
+> > > > >  /**
+> > > > >   * drm_connector_atomic_hdr_metadata_equal - checks if the hdr m=
+etadata changed
+> > > > >   * @old_state: old connector state to compare
+> > > > > diff --git a/include/drm/drm_connector.h b/include/drm/drm_connec=
+tor.h
+> > > > > index af8b92d2d5b7..bd549f912b76 100644
+> > > > > --- a/include/drm/drm_connector.h
+> > > > > +++ b/include/drm/drm_connector.h
+> > > > > @@ -571,14 +571,102 @@ enum drm_colorspace {
+> > > > >   *   YCbCr 4:2:2 output format (ie. with horizontal subsampling)
+> > > > >   * @DRM_OUTPUT_COLOR_FORMAT_YCBCR420:
+> > > > >   *   YCbCr 4:2:0 output format (ie. with horizontal and vertical=
+ subsampling)
+> > > > > + * @DRM_OUTPUT_COLOR_FORMAT_COUNT:
+> > > > > + *   Number of valid output color format values in this enum
+> > > > >   */
+> > > > >  enum drm_output_color_format {
+> > > > >         DRM_OUTPUT_COLOR_FORMAT_RGB444 =3D 0,
+> > > > >         DRM_OUTPUT_COLOR_FORMAT_YCBCR444,
+> > > > >         DRM_OUTPUT_COLOR_FORMAT_YCBCR422,
+> > > > >         DRM_OUTPUT_COLOR_FORMAT_YCBCR420,
+> > > > > +       DRM_OUTPUT_COLOR_FORMAT_COUNT,
+> > > > >  };
+> > > > >
+> > > > > +/**
+> > > > > + * enum drm_connector_color_format - Connector Color Format Requ=
+est
+> > > > > + *
+> > > > > + * This enum, unlike &enum drm_output_color_format, is used to s=
+pecify requests
+> > > > > + * for a specific color format on a connector through the DRM "c=
+olor format"
+> > > > > + * property. The difference is that it has an "AUTO" value to sp=
+ecify that
+> > > > > + * no specific choice has been made.
+> > > > > + */
+> > > > > +enum drm_connector_color_format {
+> > > > > +       /**
+> > > > > +        * @DRM_CONNECTOR_COLOR_FORMAT_AUTO: The driver or displa=
+y protocol
+> > > > > +        * helpers should pick a suitable color format. All imple=
+mentations of a
+> > > > > +        * specific display protocol must behave the same way wit=
+h "AUTO", but
+> > > > > +        * different display protocols do not necessarily have th=
+e same "AUTO"
+> > > > > +        * semantics.
+> > > > > +        *
+> > > > > +        * For HDMI, "AUTO" picks RGB, but falls back to YCbCr 4:=
+2:0 if the
+> > > > > +        * bandwidth required for full-scale RGB is not available=
+, or the mode
+> > > > > +        * is YCbCr 4:2:0-only, as long as the mode and output bo=
+th support
+> > > > > +        * YCbCr 4:2:0.
+> > > >
+> > > > Is there a reason you propose dropping back to YCbCr 4:2:0 without
+> > > > trying YCbCr 4:2:2 first? Minimising the subsampling is surely
+> > > > beneficial, and vc4 for one can do 4:2:2 but not 4:2:0.
+> > >
+> > > On HDMI 4:2:2 is always 12bpc, so it doesn't save any bandwidth
+> > > compared to 8bpc 4:4:4.
+> >
+> > It does save bandwidth against 10 or 12bpc RGB 4:4:4.
+> >
+> > Or is the implication that max_bpc =3D 12 and
+> > DRM_CONNECTOR_COLOR_FORMAT_AUTO should drop bpc down to 8 and select
+> > RGB in preference to selecting 4:2:2?
+>
+> Yeah, YCbCr has all kinds of extra complications compared to RGB, so
+> the policy is to use RGB if possible, and only fall back to YCbCr as a
+> last resort. And in that case 4:2:0 is the only thing that can help.
 
+So a media player wanting to do 12bpc HDR playback at 4k60 over HDMI
+2.0 ends up with 8bpc RGB regardless. That sucks.
+I guess at least an override is being added so userspace can take control.
+
+I'd missed that vc4 had its behaviour changed with the
+drm_hdmi_state_helper update :-(
+
+  Dave
