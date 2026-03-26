@@ -4,52 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 378CC106F2EA
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 08:21:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B1ED106F2EA
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 08:22:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EEDDC10E8F0;
-	Thu, 26 Mar 2026 08:21:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEB3610E1EA;
+	Thu, 26 Mar 2026 08:22:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R+EUsdLc";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="ZT8L9swP";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E696010E8F0
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Mar 2026 08:21:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774513270; x=1806049270;
- h=date:from:to:cc:subject:message-id;
- bh=XN1SeEKojKFgDfdLCtpKda5lOaDuYTOlnsm4SLqV7js=;
- b=R+EUsdLcvvjIe2XR5UwiQykGuH5On4UGgCIIFTSm5yC3DXtJPRhmInhA
- 47EcWwFTldD7nl3tMWRqoun1POHJYUJzxm2jV1rajCaEVPq7A83QLqTvH
- zpWk1UgJJegaAgU67NINObdzasU/b3NZDy65bRj9ILPpW7W6aHWS4hHz/
- +2YkfTb1G4vfGydgAhOBpk+VQbVkBs8DXZb1SuP2wCaZyfLmh3BdCFlEL
- ckNYBnzyLyyd+W73MQB9x9snLv1fjGDvuYUlSJNR9P2bnecq9w3qsLOYF
- YftHjIU0/tVfBgzHF6P40pCSUjXPhX8PzjoMmTsMR4YFHHFOvDsTFM9+C A==;
-X-CSE-ConnectionGUID: 0bb24u4BRB6SvtCQ4I845w==
-X-CSE-MsgGUID: 6abbHbDQTa6lay968AGAeA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="75466732"
-X-IronPort-AV: E=Sophos;i="6.23,141,1770624000"; d="scan'208";a="75466732"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 01:21:10 -0700
-X-CSE-ConnectionGUID: m0zvvHzqRy2RILpqE2OgTA==
-X-CSE-MsgGUID: 0gFIC4qRR4mQp3CDc/76hw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,141,1770624000"; d="scan'208";a="262853381"
-Received: from lkp-server01.sh.intel.com (HELO 3905d212be1b) ([10.239.97.150])
- by orviesa001.jf.intel.com with ESMTP; 26 Mar 2026 01:21:09 -0700
-Received: from kbuild by 3905d212be1b with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1w5fxi-000000008f7-1Joa;
- Thu, 26 Mar 2026 08:21:06 +0000
-Date: Thu, 26 Mar 2026 16:20:18 +0800
-From: kernel test robot <lkp@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
- bfe9e314d7574d1c5c851972e7aee342733819d2
-Message-ID: <202603261610.flpV0wqK-lkp@intel.com>
-User-Agent: s-nail v14.9.25
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6019610E1EA;
+ Thu, 26 Mar 2026 08:22:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1774513350;
+ bh=DP+xLY/0cjszNHvW273UfD/Tj4f7qCLjI945LY987Jo=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=ZT8L9swP9xlPtxCVgNOwvYL7oUX12wznZFRVWU6oljYvO8OW1JFh7OoZdZH43fyBH
+ 4az51fC8Ej+qKgFRrHeIiIXs61mICBStuXyVAuLw+0g269k02I+VkOF0iNcRkamh/8
+ 2iT6nTU5S2BkWTQyKnMd/+34sL/oia0TlxJNeXK9Z+HPXYqaxGkTCiW8KJH3sIfTDJ
+ zUyJNXWLXRv6TpX0bvI77VVkIpYXx86zeJAwMj0BjXEFLZzxdrLfg1JE/cstejNv6k
+ UE3Dar3+vQ7O3qyfxv/Lwr8CdfP09E7M6niHNdynW6wgQPDj0Me6LRjwgBq/UEl4SY
+ Co6SafjtY4fQA==
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
+ =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Guenter Roeck <linux@roeck-us.net>, Simona Vetter <simona.vetter@ffwll.ch>
+Subject: [PATCH] Revert "drm: Fix use-after-free on framebuffers and property
+ blobs when calling drm_dev_unplug"
+Date: Thu, 26 Mar 2026 09:22:18 +0100
+Message-ID: <20260326082217.39941-2-dev@lankhorst.se>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <acRPgts0pCLw8yLq@phenom.ffwll.local>
+References: <acRPgts0pCLw8yLq@phenom.ffwll.local>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,209 +54,171 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
-branch HEAD: bfe9e314d7574d1c5c851972e7aee342733819d2  drm/xe: always keep track of remap prev/next
+This reverts commit 6bee098b91417654703e17eb5c1822c6dfd0c01d.
 
-elapsed time: 760m
+Den 2026-03-25 kl. 22:11, skrev Simona Vetter:
+> On Wed, Mar 25, 2026 at 10:26:40AM -0700, Guenter Roeck wrote:
+>> Hi,
+>>
+>> On Fri, Mar 13, 2026 at 04:17:27PM +0100, Maarten Lankhorst wrote:
+>>> When trying to do a rather aggressive test of igt's "xe_module_load
+>>> --r reload" with a full desktop environment and game running I noticed
+>>> a few OOPSes when dereferencing freed pointers, related to
+>>> framebuffers and property blobs after the compositor exits.
+>>>
+>>> Solve this by guarding the freeing in drm_file with drm_dev_enter/exit,
+>>> and immediately put the references from struct drm_file objects during
+>>> drm_dev_unplug().
+>>>
+>>
+>> With this patch in v6.18.20, I get the warning backtraces below.
+>> The backtraces are gone with the patch reverted.
+>
+> Yeah, this needs to be reverted, reasoning below. Maarten, can you please
+> take care of that and feed the revert through the usual channels? I don't
+> think it's critical enough that we need to fast-track this into drm.git
+> directly.
+>
+> Quoting the patch here again:
+>
+>>  drivers/gpu/drm/drm_file.c        | 5 ++++-
+>>  drivers/gpu/drm/drm_mode_config.c | 9 ++++++---
+>>  2 files changed, 10 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
+>> index ec820686b3021..f52141f842a1f 100644
+>> --- a/drivers/gpu/drm/drm_file.c
+>> +++ b/drivers/gpu/drm/drm_file.c
+>> @@ -233,6 +233,7 @@ static void drm_events_release(struct drm_file *file_priv)
+>>  void drm_file_free(struct drm_file *file)
+>>  {
+>>  	struct drm_device *dev;
+>> +	int idx;
+>>
+>>  	if (!file)
+>>  		return;
+>> @@ -249,9 +250,11 @@ void drm_file_free(struct drm_file *file)
+>>
+>>  	drm_events_release(file);
+>>
+>> -	if (drm_core_check_feature(dev, DRIVER_MODESET)) {
+>> +	if (drm_core_check_feature(dev, DRIVER_MODESET) &&
+>> +	    drm_dev_enter(dev, &idx)) {
+>
+> This is misplaced for two reasons:
+>
+> - Even if we'd want to guarantee that we hold a drm_dev_enter/exit
+>   reference during framebuffer teardown, we'd need to do this
+>   _consistently over all callsites. Not ad-hoc in just one place that a
+>   testcase hits. This also means kerneldoc updates of the relevant hooks
+>   and at least a bunch of acks from other driver people to document the
+>   consensus.
+>
+> - More importantly, this is driver responsibilities in general unless we
+>   have extremely good reasons to the contrary. Which means this must be
+>   placed in xe.
+>
+>>  		drm_fb_release(file);
+>>  		drm_property_destroy_user_blobs(dev, file);
+>> +		drm_dev_exit(idx);
+>>  	}
+>>
+>>  	if (drm_core_check_feature(dev, DRIVER_SYNCOBJ))
+>> diff --git a/drivers/gpu/drm/drm_mode_config.c b/drivers/gpu/drm/drm_mode_config.c
+>> index 84ae8a23a3678..e349418978f79 100644
+>> --- a/drivers/gpu/drm/drm_mode_config.c
+>> +++ b/drivers/gpu/drm/drm_mode_config.c
+>> @@ -583,10 +583,13 @@ void drm_mode_config_cleanup(struct drm_device *dev)
+>>  	 */
+>>  	WARN_ON(!list_empty(&dev->mode_config.fb_list));
+>>  	list_for_each_entry_safe(fb, fbt, &dev->mode_config.fb_list, head) {
+>> -		struct drm_printer p = drm_dbg_printer(dev, DRM_UT_KMS, "[leaked fb]");
+>> +		if (list_empty(&fb->filp_head) || drm_framebuffer_read_refcount(fb) > 1) {
+>> +			struct drm_printer p = drm_dbg_printer(dev, DRM_UT_KMS, "[leaked fb]");
+>
+> This is also wrong:
+>
+> - Firstly, it's a completely independent bug, we do not smash two bugfixes
+>   into one patch.
+>
+> - Secondly, it's again a driver bug: drm_mode_cleanup must be called when
+>   the last drm_device reference disappears (hence the existence of
+>   drmm_mode_config_init), not when the driver gets unbound. The fact that
+>   this shows up in a callchain from a devres cleanup means the intel
+>   driver gets this wrong (like almost everyone else because historically
+>   we didn't know better).
+>
+>   If we don't follow this rule, then we get races with this code here
+>   running concurrently with drm_file fb cleanups, which just does not
+>   work. Review pointed that out, but then shrugged it off with a confused
+>   explanation:
+>
+>   https://lore.kernel.org/all/e61e64c796ccfb17ae673331a3df4b877bf42d82.camel@linux.intel.com/
+>
+>   Yes this also means a lot of the other drm_device teardown that drivers
+>   do happens way too early. There is a massive can of worms here of a
+>   magnitude that most likely is much, much bigger than what you can
+>   backport to stable kernels. Hotunplug is _hard_.
 
-configs tested: 190
-configs skipped: 2
+Back to the drawing board, and fixing it in the intel display driver
+instead.
 
-The following configs have been built successfully.
-More configs may be tested in the coming days.
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reported-by: Guenter Roeck <linux@roeck-us.net>
+Acked-by: Simona Vetter <simona.vetter@ffwll.ch>
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+Fixes: 6bee098b9141 ("drm: Fix use-after-free on framebuffers and property blobs when calling drm_dev_unplug")
+---
+ drivers/gpu/drm/drm_file.c        | 5 +----
+ drivers/gpu/drm/drm_mode_config.c | 9 +++------
+ 2 files changed, 4 insertions(+), 10 deletions(-)
 
-tested configs:
-alpha                             allnoconfig    gcc-15.2.0
-alpha                            allyesconfig    gcc-15.2.0
-alpha                               defconfig    gcc-15.2.0
-arc                              allmodconfig    clang-16
-arc                              allmodconfig    gcc-15.2.0
-arc                               allnoconfig    gcc-15.2.0
-arc                              allyesconfig    clang-23
-arc                                 defconfig    gcc-15.2.0
-arc                   randconfig-001-20260326    gcc-13.4.0
-arc                   randconfig-001-20260326    gcc-8.5.0
-arc                   randconfig-002-20260326    gcc-8.5.0
-arm                               allnoconfig    clang-23
-arm                               allnoconfig    gcc-15.2.0
-arm                              allyesconfig    clang-16
-arm                              allyesconfig    gcc-15.2.0
-arm                                 defconfig    gcc-15.2.0
-arm                        keystone_defconfig    gcc-15.2.0
-arm                   randconfig-001-20260326    clang-23
-arm                   randconfig-001-20260326    gcc-8.5.0
-arm                   randconfig-002-20260326    gcc-11.5.0
-arm                   randconfig-002-20260326    gcc-8.5.0
-arm                   randconfig-003-20260326    gcc-10.5.0
-arm                   randconfig-003-20260326    gcc-8.5.0
-arm                   randconfig-004-20260326    gcc-12.5.0
-arm                   randconfig-004-20260326    gcc-8.5.0
-arm64                            allmodconfig    clang-23
-arm64                             allnoconfig    gcc-15.2.0
-arm64                               defconfig    gcc-15.2.0
-arm64                 randconfig-001-20260326    clang-19
-arm64                 randconfig-002-20260326    clang-19
-arm64                 randconfig-003-20260326    clang-19
-arm64                 randconfig-004-20260326    clang-19
-csky                             allmodconfig    gcc-15.2.0
-csky                              allnoconfig    gcc-15.2.0
-csky                                defconfig    gcc-15.2.0
-csky                  randconfig-001-20260326    clang-19
-csky                  randconfig-002-20260326    clang-19
-hexagon                          allmodconfig    clang-17
-hexagon                          allmodconfig    gcc-15.2.0
-hexagon                           allnoconfig    clang-23
-hexagon                           allnoconfig    gcc-15.2.0
-hexagon                             defconfig    gcc-15.2.0
-hexagon               randconfig-001-20260326    clang-23
-hexagon               randconfig-001-20260326    gcc-8.5.0
-hexagon               randconfig-002-20260326    clang-23
-hexagon               randconfig-002-20260326    gcc-8.5.0
-i386                             allmodconfig    clang-20
-i386                             allmodconfig    gcc-14
-i386                              allnoconfig    gcc-14
-i386                              allnoconfig    gcc-15.2.0
-i386                             allyesconfig    clang-20
-i386        buildonly-randconfig-001-20260326    gcc-14
-i386        buildonly-randconfig-002-20260326    gcc-14
-i386        buildonly-randconfig-003-20260326    gcc-14
-i386        buildonly-randconfig-004-20260326    gcc-14
-i386        buildonly-randconfig-005-20260326    gcc-14
-i386        buildonly-randconfig-006-20260326    gcc-14
-i386                                defconfig    gcc-15.2.0
-i386                  randconfig-011-20260326    clang-20
-i386                  randconfig-012-20260326    clang-20
-i386                  randconfig-013-20260326    clang-20
-i386                  randconfig-014-20260326    clang-20
-i386                  randconfig-015-20260326    clang-20
-i386                  randconfig-016-20260326    clang-20
-i386                  randconfig-017-20260326    clang-20
-loongarch                        allmodconfig    clang-23
-loongarch                         allnoconfig    clang-23
-loongarch                         allnoconfig    gcc-15.2.0
-loongarch                           defconfig    clang-19
-loongarch             randconfig-001-20260326    clang-18
-loongarch             randconfig-001-20260326    gcc-8.5.0
-loongarch             randconfig-002-20260326    gcc-14.3.0
-loongarch             randconfig-002-20260326    gcc-8.5.0
-m68k                             allmodconfig    gcc-15.2.0
-m68k                              allnoconfig    gcc-15.2.0
-m68k                             allyesconfig    clang-16
-m68k                             allyesconfig    gcc-15.2.0
-m68k                                defconfig    clang-19
-microblaze                        allnoconfig    gcc-15.2.0
-microblaze                       allyesconfig    gcc-15.2.0
-microblaze                          defconfig    clang-19
-mips                             allmodconfig    gcc-15.2.0
-mips                              allnoconfig    gcc-15.2.0
-mips                             allyesconfig    gcc-15.2.0
-nios2                            allmodconfig    clang-23
-nios2                            allmodconfig    gcc-11.5.0
-nios2                             allnoconfig    clang-23
-nios2                             allnoconfig    gcc-11.5.0
-nios2                               defconfig    clang-19
-nios2                 randconfig-001-20260326    gcc-8.5.0
-nios2                 randconfig-001-20260326    gcc-9.5.0
-nios2                 randconfig-002-20260326    gcc-8.5.0
-openrisc                         allmodconfig    clang-23
-openrisc                          allnoconfig    clang-23
-openrisc                          allnoconfig    gcc-15.2.0
-openrisc                            defconfig    gcc-15.2.0
-parisc                           allmodconfig    gcc-15.2.0
-parisc                            allnoconfig    clang-23
-parisc                            allnoconfig    gcc-15.2.0
-parisc                           allyesconfig    clang-19
-parisc                           allyesconfig    gcc-15.2.0
-parisc                              defconfig    gcc-15.2.0
-parisc                randconfig-001-20260326    clang-19
-parisc                randconfig-002-20260326    clang-19
-parisc64                            defconfig    clang-19
-powerpc                          allmodconfig    gcc-15.2.0
-powerpc                           allnoconfig    clang-23
-powerpc                           allnoconfig    gcc-15.2.0
-powerpc               randconfig-001-20260326    clang-19
-powerpc               randconfig-002-20260326    clang-19
-powerpc64             randconfig-001-20260326    clang-19
-powerpc64             randconfig-002-20260326    clang-19
-riscv                            allmodconfig    clang-23
-riscv                             allnoconfig    clang-23
-riscv                             allnoconfig    gcc-15.2.0
-riscv                            allyesconfig    clang-16
-riscv                               defconfig    gcc-15.2.0
-riscv                 randconfig-001-20260326    clang-23
-riscv                 randconfig-002-20260326    clang-23
-s390                             allmodconfig    clang-18
-s390                             allmodconfig    clang-19
-s390                              allnoconfig    clang-23
-s390                             allyesconfig    gcc-15.2.0
-s390                                defconfig    gcc-15.2.0
-s390                  randconfig-001-20260326    clang-23
-s390                  randconfig-002-20260326    clang-23
-sh                               allmodconfig    gcc-15.2.0
-sh                                allnoconfig    clang-23
-sh                                allnoconfig    gcc-15.2.0
-sh                               allyesconfig    clang-19
-sh                               allyesconfig    gcc-15.2.0
-sh                                  defconfig    gcc-14
-sh                    randconfig-001-20260326    clang-23
-sh                    randconfig-002-20260326    clang-23
-sparc                             allnoconfig    clang-23
-sparc                             allnoconfig    gcc-15.2.0
-sparc                               defconfig    gcc-15.2.0
-sparc                 randconfig-001-20260326    gcc-14
-sparc                 randconfig-002-20260326    gcc-14
-sparc64                          allmodconfig    clang-23
-sparc64                             defconfig    gcc-14
-sparc64               randconfig-001-20260326    gcc-14
-sparc64               randconfig-002-20260326    gcc-14
-um                               allmodconfig    clang-19
-um                                allnoconfig    clang-23
-um                               allyesconfig    gcc-14
-um                               allyesconfig    gcc-15.2.0
-um                                  defconfig    gcc-14
-um                             i386_defconfig    gcc-14
-um                    randconfig-001-20260326    gcc-14
-um                    randconfig-002-20260326    gcc-14
-um                           x86_64_defconfig    gcc-14
-x86_64                           allmodconfig    clang-20
-x86_64                            allnoconfig    clang-20
-x86_64                            allnoconfig    clang-23
-x86_64                           allyesconfig    clang-20
-x86_64      buildonly-randconfig-001-20260326    clang-20
-x86_64      buildonly-randconfig-002-20260326    clang-20
-x86_64      buildonly-randconfig-003-20260326    clang-20
-x86_64      buildonly-randconfig-004-20260326    clang-20
-x86_64      buildonly-randconfig-005-20260326    clang-20
-x86_64      buildonly-randconfig-006-20260326    clang-20
-x86_64                              defconfig    gcc-14
-x86_64                randconfig-001-20260326    clang-20
-x86_64                randconfig-002-20260326    clang-20
-x86_64                randconfig-003-20260326    clang-20
-x86_64                randconfig-004-20260326    clang-20
-x86_64                randconfig-005-20260326    clang-20
-x86_64                randconfig-006-20260326    clang-20
-x86_64                randconfig-011-20260326    gcc-14
-x86_64                randconfig-012-20260326    gcc-14
-x86_64                randconfig-013-20260326    gcc-14
-x86_64                randconfig-014-20260326    gcc-14
-x86_64                randconfig-015-20260326    gcc-14
-x86_64                randconfig-016-20260326    gcc-14
-x86_64                randconfig-071-20260326    gcc-14
-x86_64                randconfig-072-20260326    gcc-14
-x86_64                randconfig-073-20260326    gcc-14
-x86_64                randconfig-074-20260326    gcc-14
-x86_64                randconfig-075-20260326    gcc-14
-x86_64                randconfig-076-20260326    gcc-14
-x86_64                           rhel-9.4-bpf    gcc-14
-x86_64                         rhel-9.4-kunit    gcc-14
-x86_64                           rhel-9.4-ltp    gcc-14
-x86_64                          rhel-9.4-rust    clang-20
-xtensa                            allnoconfig    clang-23
-xtensa                            allnoconfig    gcc-15.2.0
-xtensa                           allyesconfig    clang-23
-xtensa                randconfig-001-20260326    gcc-14
-xtensa                randconfig-002-20260326    gcc-14
+diff --git a/drivers/gpu/drm/drm_file.c b/drivers/gpu/drm/drm_file.c
+index f52141f842a1f..ec820686b3021 100644
+--- a/drivers/gpu/drm/drm_file.c
++++ b/drivers/gpu/drm/drm_file.c
+@@ -233,7 +233,6 @@ static void drm_events_release(struct drm_file *file_priv)
+ void drm_file_free(struct drm_file *file)
+ {
+ 	struct drm_device *dev;
+-	int idx;
+ 
+ 	if (!file)
+ 		return;
+@@ -250,11 +249,9 @@ void drm_file_free(struct drm_file *file)
+ 
+ 	drm_events_release(file);
+ 
+-	if (drm_core_check_feature(dev, DRIVER_MODESET) &&
+-	    drm_dev_enter(dev, &idx)) {
++	if (drm_core_check_feature(dev, DRIVER_MODESET)) {
+ 		drm_fb_release(file);
+ 		drm_property_destroy_user_blobs(dev, file);
+-		drm_dev_exit(idx);
+ 	}
+ 
+ 	if (drm_core_check_feature(dev, DRIVER_SYNCOBJ))
+diff --git a/drivers/gpu/drm/drm_mode_config.c b/drivers/gpu/drm/drm_mode_config.c
+index 802bc4608abf5..d12db9b0bab81 100644
+--- a/drivers/gpu/drm/drm_mode_config.c
++++ b/drivers/gpu/drm/drm_mode_config.c
+@@ -577,13 +577,10 @@ void drm_mode_config_cleanup(struct drm_device *dev)
+ 	 */
+ 	WARN_ON(!list_empty(&dev->mode_config.fb_list));
+ 	list_for_each_entry_safe(fb, fbt, &dev->mode_config.fb_list, head) {
+-		if (list_empty(&fb->filp_head) || drm_framebuffer_read_refcount(fb) > 1) {
+-			struct drm_printer p = drm_dbg_printer(dev, DRM_UT_KMS, "[leaked fb]");
++		struct drm_printer p = drm_dbg_printer(dev, DRM_UT_KMS, "[leaked fb]");
+ 
+-			drm_printf(&p, "framebuffer[%u]:\n", fb->base.id);
+-			drm_framebuffer_print_info(&p, 1, fb);
+-		}
+-		list_del_init(&fb->filp_head);
++		drm_printf(&p, "framebuffer[%u]:\n", fb->base.id);
++		drm_framebuffer_print_info(&p, 1, fb);
+ 		drm_framebuffer_free(&fb->base.refcount);
+ 	}
+ 
+-- 
+2.51.0
 
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
