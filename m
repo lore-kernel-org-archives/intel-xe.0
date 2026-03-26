@@ -4,151 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41ED9109E557
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 05:45:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E1C2109E557
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 05:51:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02B8010E253;
-	Thu, 26 Mar 2026 05:45:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA87610E253;
+	Thu, 26 Mar 2026 05:51:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mpgKxhWj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MOGBmdk9";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0E0210E253;
- Thu, 26 Mar 2026 05:45:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79E9B10E253
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Mar 2026 05:51:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774503941; x=1806039941;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=9rX2DI+PiJoX/fvM7T/lsYSSq7xJuuqC+Ap9Uh/V1d4=;
- b=mpgKxhWj27ub9FFpK3e1PD4z2p0mq+7BhAsEFgCrWfWfFj+hPiESSMwL
- 0/0u4h0zkQwseDwa1sZmFgmc7Tka9W+raw+Cg51nLJrAlEpej7NddHAmd
- FkzYtE1yuYg46Jma8pcOcyWTU5DbZpQxDCY/166xfWttfkvjB3LviJF3J
- oK2ZsWyZyd5VKJOSmWi++3IhOKDVh92L/TP1n589Bk1Vy3zrO5KIkcvfM
- yCgOCCrU4x0AK+ARlNC/SP7WS5CfPwMtK/VqmjR+TD6NB15dk6Pqd0AyE
- PDtK3znjF/E1ROi50iXgvKCHUguOlDv3Icudq7Mugt5IzPCcDJ4H6bL4X A==;
-X-CSE-ConnectionGUID: XcETj8oJQ5meJfTaqhFGIQ==
-X-CSE-MsgGUID: upVsQmmeSF+/J3I2Jxa/xw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="75574140"
-X-IronPort-AV: E=Sophos;i="6.23,141,1770624000"; d="scan'208";a="75574140"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 22:45:40 -0700
-X-CSE-ConnectionGUID: gVjC0TSeR/OAsGs/Ut0vJw==
-X-CSE-MsgGUID: V2Apn2bLSFyry+cDTG4fug==
+ t=1774504287; x=1806040287;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fxA4CJ3mTJl6oLPvzL+faqTAsyZmOv1zOBp6KMwNxnU=;
+ b=MOGBmdk9/oet0GWD766lpbIK04tNU+4ZGp4HPTKFYgwWJp/RHMUwkfoU
+ NTzGIpb594uPEMWTVLHatv0V1NkwDfFu+SkUqU3SgeBMQGOTJla2p4yC9
+ b0O7ZK8ObJ/G9D85kg0f167Skofi0Cuib+yPDmE8QaKAQPs9dJBogrROb
+ f+YDLTltm7ty6qOR6OnLNV1h7fddg2Q4DOeNxjy92xhcfpqaPy4bMOKwe
+ oK0WiK/+pFeYm6rhqwYlNA2rcG9HVqnGYI4nfYMh/ItCYyWK9MMiBegWk
+ 34aaqakhcotqRKqVil9UyWmDh2AnlI8UPerz+9KCbP1DG2rljZ6VUPVWw Q==;
+X-CSE-ConnectionGUID: XVBAZpoGQ2iWTb13Gt504Q==
+X-CSE-MsgGUID: SHYZnBH4T3G/QrZYCV5xQA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="87031283"
+X-IronPort-AV: E=Sophos;i="6.23,141,1770624000"; d="scan'208";a="87031283"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 22:51:27 -0700
+X-CSE-ConnectionGUID: PCv/PRcoSNiJivpm24z9LA==
+X-CSE-MsgGUID: ZRyI7wLBRTCxMhHbqvVt0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,141,1770624000"; d="scan'208";a="228971369"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 22:45:40 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 25 Mar 2026 22:45:39 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 25 Mar 2026 22:45:39 -0700
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.17) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 25 Mar 2026 22:45:35 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=PqO++7SiV/nZdc4b/KxZxsXfdv2d6F1wxpPhxyUsu/Ox9UET+l+YsqECaLXUQiGX7Boed0AXdenoXmPaNnd5Mxvw9z5enS60J9b3bCyrabQxKJFZWVl3xOSlWxh27+XVfTXzFtKVYpPt3QdHYxaW2UHPVMyxvm3kgRcJE61LuqWQr+iaZ/V/iO4w3NHikhLCtaMkMkHwvlCtNS+71/oJRmZiLgmBXed1BVRFogvMDJmAb+n+wNdHFXpO4CH+ZU/+7hfpDGsCGk6rWQTCIEaeI6whKymNq6E2SOi/+18XioHkNUM+HgirxaWLza7nsZDvoAR103sGq/fYfGNYakpA5A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S1MXti2FT1Jypp0hQIdfUqV921C6juX22zCHerxlR1k=;
- b=eYtHikznOy+Q5CSldObDPnj4j2ThWc99Zn9hJgNJybYgNs0nkut4uzD/BjdIXs91LC7B4Y2bLVvpjTQqk7Jn3UH44Km2fHFUQi1WPnuYTbXLH0k43tF7gJte8MTyQ6c0MNJqQtMkATg87JQRIoI1qHsVqQ3meZ7lLXyE+BVD0sP8eqmOIsTc1VSj+JKvwQ39brBQqeavSiDVZbP4uHc00H3LG44wdJXhqMza4edEwSZbtbseDy0uBRCtwfA/q9ss0sb73X3L3nQ6zJyIu/bWeq8fKNo34RHme0XodLRJbyDbpFpUfdfBUgkUMgz9DQlkP7DxwrGoM4VhSBZmG/TPVQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA1PR11MB6266.namprd11.prod.outlook.com (2603:10b6:208:3e6::12)
- by PH7PR11MB8036.namprd11.prod.outlook.com (2603:10b6:510:248::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.7; Thu, 26 Mar
- 2026 05:45:31 +0000
-Received: from IA1PR11MB6266.namprd11.prod.outlook.com
- ([fe80::eda2:e570:4314:8720]) by IA1PR11MB6266.namprd11.prod.outlook.com
- ([fe80::eda2:e570:4314:8720%5]) with mapi id 15.20.9745.019; Thu, 26 Mar 2026
- 05:45:30 +0000
-From: "Bhadane, Dnyaneshwar" <dnyaneshwar.bhadane@intel.com>
-To: "Brost, Matthew" <matthew.brost@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Subject: RE: [RFC PATCH 04/12] drm/xe: Issue GGTT invalidation under lock in
- ggtt_node_remove
-Thread-Topic: [RFC PATCH 04/12] drm/xe: Issue GGTT invalidation under lock in
- ggtt_node_remove
-Thread-Index: AQHctP5r8oaFZR8cG0OebUJI8K0sk7XAV3gw
-Date: Thu, 26 Mar 2026 05:45:29 +0000
-Message-ID: <IA1PR11MB6266D442CA9E6249174C9428E256A@IA1PR11MB6266.namprd11.prod.outlook.com>
-References: <20260316043255.226352-1-matthew.brost@intel.com>
- <20260316043255.226352-5-matthew.brost@intel.com>
-In-Reply-To: <20260316043255.226352-5-matthew.brost@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA1PR11MB6266:EE_|PH7PR11MB8036:EE_
-x-ms-office365-filtering-correlation-id: 00d0ea1d-3292-43ae-bc37-08de8afae42c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|38070700021|56012099003|18002099003|22082099003;
-x-microsoft-antispam-message-info: O2guKan/5AC38X1L/Uarbv8BFxTtfolV0QvvGFzIANlzeI5WX5cCvwhM2xOUpyvZr97Owj/BOyV24iGuiAzbFXrLf0syHZn5itkHBkEA5RQQvqcdSoRAW3EK2Zp1xmO8c9CA5qGvPqkVnv1Ph4/f/0E4p+yWliWwOT0YkF99yiSyUjyQIzdeJna1qBtxo3EIuz/RmLWnfIxiRqyadTeGFdR5yMGd/ZrayIFb+w3YffFHAREFJMiqJhjm5iu/99KyYSiEZsI3e/qEOrAr72orTwFKjPnHT9OC5MuV/+4AftOLDqmbLXRdJSnXcN0outcXT4WnfluWDpsvKmoIiRhKQuvKnPFqlRixcxNrxmspU1AxzQaPBfFFDh9TrgeMVREiqIPiLeCh1FTDKAMrt0uP7vcnzhZln0eQk8Ii8u1fGFH+AjKgJnhtvdxRPxnvCDPCqXb0nFQPZ3NSMsUioN7Ysxh6tI0+2r60X/IFF2dQ5kF7zhP0Uh9KHrfcAfmcQejpgKRbOjFe0NbT0cPZEi5SlXkcdoQuhrr5EfsDHi+/CCrIHbjFj/DkosJz9iy/FGGNnBD9WnCdmzaSf/coNhHJvvJj2/eQxRX/oTXftwJiXdRPE0VCDL4soDkRyr0G/2Nb/S4DITGWUcKt3lCPxRXv06VYwRYIz7m1SxLmIxB7yIZ5hV2DEw1mrpb8X967FXdW/qjzL+tHAkt/M7ewDLrY6RSZP5bCbpZJAwCzJwJMlgKi6iPGmqSnRXtFafTh0fNX+/1FSHwfYz2ab7H++JoykLmVPbhGco9t7yeisyobqG8=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB6266.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(38070700021)(56012099003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?P36cdy0KX/TkVEt6Ra5TBn5W8zJudEGTiy0rTHujRG2Q2O4Nra4Y1L0jbi9z?=
- =?us-ascii?Q?D6PhV8xG2pjTkDZwd50ePIur64lWxDFoouCpP8AStsMHJP6SIDY88RmvD5ya?=
- =?us-ascii?Q?NCIEQRSw5i2bcoIjAE94amWLzGojzcYGGIOrc2W3WBefcafZPZUep5xuY6L3?=
- =?us-ascii?Q?2j7Dyx9puPGQcoUn7hEn4fkXg0KY6L+IZt8EC+p6Eews7HLNzGutF2UD4C+o?=
- =?us-ascii?Q?ab8LY0VBKxl56cnsWe2Ee1Og7Ose82AX0VM3TvrXPlJP9rWpuu0AkfQ/SU31?=
- =?us-ascii?Q?tPKSVyrSl8DpEZx3CwrSTwoZURfFbAofkdFCyTZ827lHnXtIyqhBfL0+d5H4?=
- =?us-ascii?Q?O76CIN2P3ZiKJHpqf7bIZPiHzrIeAnYU4K0+fwFl8itq1EVqQ8q1NS2/6ReA?=
- =?us-ascii?Q?mECsZzP+ChWNK8aq41HGQa7Z2bZuegR5nraCfBFIeyltIs/JG9SUlYJMkMbB?=
- =?us-ascii?Q?51O08ANd9uKvMz37GJJmB/54NNcAD1LuaNywk4VdSrrhw2wYmyTxUtG3xMkm?=
- =?us-ascii?Q?KRF7cd08DxJ+sywnNRaJ4Hz5jIvIjRkTI81QAwQYXOdQXf6S1SJ/iUqYg8kn?=
- =?us-ascii?Q?0tdJwF8D6BI0E36g9fIuGOENioYPIaevse9tjzvrAqSjqLuWQBQfik6Ccmtx?=
- =?us-ascii?Q?Gm8w06k1Z3F4SDsXIHcgUZtRpxuQsLMhZT4Xv+cZOJvAp+NHGGNSwg7PiW+y?=
- =?us-ascii?Q?I77sKe2DjZXrRPvYAsbnpMrowCyhL2VOKk2nXEfLsWap2oNR+tJMTQzlEgBw?=
- =?us-ascii?Q?Vw1b+Mu9IqKaF7zambIMUYdNHk9lvx2RNmE1mOnUuJvf/1RObysbKVkQnH6b?=
- =?us-ascii?Q?dVwgWIru2lQ4laV3QBlmjW7hULhAqy8nW/BKjgA0cg5SO7DRvLhZSvXoSj2V?=
- =?us-ascii?Q?PC5wTSMEOcBKYl4MKMizepcuZo/k5RKaP/cUhL6lv4+FkLiD3XqGLdprn91B?=
- =?us-ascii?Q?ItuUIQ3Uvcn1Uy42zr89WzOFTt74Bu2fMo1K1ebxvxXGRH/D4ui76G2kg6HM?=
- =?us-ascii?Q?cgUASiDxcKGJU43t5rlTXA4WIKFtqjuaZ7/e6CtwIFNFgH/ns8Shz1EY9gEe?=
- =?us-ascii?Q?28X4AWUqraf7WoPHEyf59hiqenK24YC9GLuB1UwvV4guEk25kyvJt+Z+Tth9?=
- =?us-ascii?Q?n3uqTuBmYOhMh729Gr9SYj6EPV1DrmWupqG7wjM/YWHrovwwn6pP0JxGXPEq?=
- =?us-ascii?Q?l/DDz8G0WQFMuj/xUVlm5szuro0SPse5iN7wqtRacF1w2Wk7fG2EywKwDNg1?=
- =?us-ascii?Q?oHjX6qRRh6ngDUtgzG2ECAv2XieSIlrLL0DzIMMBxtX8e+C5H2qQr02subAN?=
- =?us-ascii?Q?lO7ghFjTQS37vImoxrNfNH2lygSZW6LfMWb3FuXw3ZjPmj2a30ue/geB2bhp?=
- =?us-ascii?Q?veFRAj/J7zvDWaD6DO5ghKpWJ18lHtHmxMwSebAWsL1B1EqpEfa7cCp7PcBS?=
- =?us-ascii?Q?9ost6MdbUERg3a8j5lsBjLnTOi8P+JCMACKf9kbAvGuVQZ7iUuxMPXqk84XY?=
- =?us-ascii?Q?JZH/9CEmv40MKp7wvEYuZErUpHorNTA/8+VNscpoh9mf1Z7gPuy4r30C+qmd?=
- =?us-ascii?Q?EIwl28bKxdECuAP1Kmo9sLHnJI7Iz1vTfqm7VcKrRdXrhrxqahgulcZSezIS?=
- =?us-ascii?Q?WFnGlrqtBMUQXzOl4U0vsyZ9/9dx0xiMJT4fITY1p12ckx7HDVcVxBk4ZqxM?=
- =?us-ascii?Q?330h+2lWIeJ4eiFRdHQn8LZO7C/TVFsvRvMiOkDz3AjOiFbZKkL8g/SpIiBq?=
- =?us-ascii?Q?Np9LMB8Wxg=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=Sophos;i="6.23,141,1770624000"; d="scan'208";a="221585959"
+Received: from varungup-desk.iind.intel.com ([10.190.238.71])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 22:51:25 -0700
+From: Arvind Yadav <arvind.yadav@intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
+ thomas.hellstrom@linux.intel.com
+Subject: [PATCH v8 00/12] drm/xe/madvise: Add support for purgeable buffer
+ objects
+Date: Thu, 26 Mar 2026 11:20:59 +0530
+Message-ID: <20260326055115.3422240-1-arvind.yadav@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: HE7rUlei9zdVi4cxQ6fivb80O3BMQs1Fxksp1kqpO+V2To2oMJepSKCB1bqt9Bknc1r2NqBiKBFTI40wCeEAl+1wHrSZKqEVVN3iVJiGzaSO5l4Nf4pYG6s1/bM/1QgLv5RzqoQVHRWAByTYvazrf9MoHTUD/uqBm/yDtkIg58UGegvmGfc9PIYgo2bAEADKgUIit0O2JQse+PvBqQn5muMdlGI1DDoC/nxEEo8XkyX3XzuzkHV9a+ftBVSx8YduSaTd1WMckE7Gjbe/adwXEWKfYdXlQIgsMN2U+HLWyE9MMvh6ZpBHJpxMJUMZjQ8DYBCO6/Cs+H025s338NxtUg==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6266.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 00d0ea1d-3292-43ae-bc37-08de8afae42c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Mar 2026 05:45:29.6603 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: XQfXoMM3DRI8ztq9876gwrejov6by8Jlzsxb/u7X7Jp7bg+bRIUmRQYdr7mn/ckNVwE/3x7NIyG2UaX+/F7/wd8ew/NhAdoJDRvbTpKG4Uo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8036
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=yes
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,64 +67,199 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+This patch series introduces comprehensive support for purgeable buffer objects
+in the Xe driver, enabling userspace to provide memory usage hints for better
+memory management under system pressure.
 
+Overview:
 
-> -----Original Message-----
-> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of
-> Matthew Brost
-> Sent: Monday, March 16, 2026 10:03 AM
-> To: intel-xe@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org
-> Subject: [RFC PATCH 04/12] drm/xe: Issue GGTT invalidation under lock in
-> ggtt_node_remove
->=20
-> Async work (e.g., GuC queue teardowns) can call ggtt_node_remove, so the
-> operation must be performed under the GGTT lock to ensure the GGTT online
-> check remains stable. GGTT insertion and removal are heavyweight operatio=
-ns
-> (e.g., queue create/destroy), so the additional serialization cost is neg=
-ligible
-> compared to ensuring correctness.
->=20
-> Fixes: 4f3a998a173b ("drm/xe: Open-code GGTT MMIO access protection")
-> Signed-by: Matthew Brost <matthew.brost@intel.com>
+Purgeable memory allows applications to mark buffer objects as "not currently
+needed" (DONTNEED), making them eligible for kernel reclamation during memory
+pressure. This helps prevent OOM conditions and enables more efficient GPU
+memory utilization for workloads with temporary or regeneratable data (caches,
+intermediate results, decoded frames, etc.).
 
-HI, please take care of nitpick here "Signed-off-by" before merging.
+Purgeable BO Lifecycle:
+1. WILLNEED (default): BO actively needed, kernel preserves backing store
+2. DONTNEED (user hint): BO contents discardable, eligible for purging
+3. PURGED (kernel action): Backing store reclaimed during memory pressure
 
-> ---
->  drivers/gpu/drm/xe/xe_ggtt.c | 9 ++-------
->  1 file changed, 2 insertions(+), 7 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> index 017f679ba13f..353b324f7301 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> @@ -482,15 +482,10 @@ static void ggtt_node_remove(struct xe_ggtt_node
-> *node)
->  		xe_ggtt_clear(ggtt, xe_ggtt_node_addr(node),
-> xe_ggtt_node_size(node));
->  	drm_mm_remove_node(&node->base);
->  	node->base.size =3D 0;
-> -	mutex_unlock(&ggtt->lock);
-> -
-> -	if (!bound)
-> -		goto free_node;
-> -
-> -	if (node->invalidate_on_remove)
-> +	if (bound && node->invalidate_on_remove)
->  		xe_ggtt_invalidate(ggtt);
-> +	mutex_unlock(&ggtt->lock);
+Key Design Principles:
+  - i915 compatibility: "Once purged, always purged" semantics - purged BOs
+    remain permanently invalid and must be destroyed/recreated
+  - Per-VMA state tracking: Each VMA tracks its own purgeable state, BO is
+    only marked DONTNEED when ALL VMAs across ALL VMs agree (Thomas Hellström)
+  - Safety first: Imported/exported dma-bufs blocked from purgeable state -
+    no visibility into external device usage (Matt Roper)
+  - Multiple protection layers: Validation in madvise, VM bind, mmap, CPU
+    and GPU fault handlers. GPU page faults on DONTNEED/purged BOs skip
+    validate/migrate in xe_pagefault_begin(); non-scratch VMs fail with
+    -EACCES, scratch VMs let xe_vma_rebind() run and install scratch PTEs.
+  - GPU PTE zapping at purge time: PTEs are zapped in xe_bo_move_notify()
+    right before the shrinker frees the pages, not at madvise(DONTNEED)
+    time (pages are still alive then). skip_invalidation=true is set for
+    all VMA types to suppress the madvise-time invalidation.
+  - Scratch PTE support: Fault-mode VMs use scratch pages for safe zero reads
+    on purged BO access.
+  - TTM shrinker integration: Encapsulated helpers manage xe_ttm_tt->purgeable
+    flag and shrinker page accounting (shrinkable vs purgeable buckets)
 
-Looks good to me,
+References:
+   Mesa MR Link: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/40573
 
-Reviewed-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+v2 Changes:
+  - Reordered patches: Moved shared BO helper before main implementation for
+    proper dependency order
+  - Fixed reference counting in mmap offset validation (use drm_gem_object_put)
+  - Removed incorrect claims about madvise(WILLNEED) restoring purged BOs
+  - Fixed error code documentation inconsistencies
+  - Initialize purge_state_val fields to prevent kernel memory leaks
+  - Use xe_bo_trigger_rebind() for async TLB invalidation (Thomas Hellström)
+  - Add NULL rebind with scratch PTEs for fault mode (Thomas Hellström)
+  - Implement i915-compatible retained field logic (Thomas Hellström)
+  - Skip BO validation for purged BOs in page fault handler (crash fix)
+  - Add scratch VM check in page fault path (non-scratch VMs fail fault)
 
-Dnyaneshwar
->=20
-> -free_node:
->  	ggtt_node_fini(node);
->  }
->=20
-> --
-> 2.34.1
+v3 Changes (addressing Matt and Thomas Hellström feedback):
+  - Per-VMA purgeable state tracking: Added xe_vma->purgeable_state field
+  - Complete VMA check: xe_bo_all_vmas_dontneed() walks all VMAs across all
+    VMs to ensure unanimous DONTNEED before marking BO purgeable
+  - VMA unbind recheck: Added xe_bo_recheck_purgeable_on_vma_unbind() to
+    re-evaluate BO state when VMAs are destroyed
+  - Block external dma-bufs: Added xe_bo_is_external_dmabuf() check using
+    drm_gem_is_imported() and obj->dma_buf to prevent purging imported/exported BOs
+  - Consistent lockdep enforcement: Added xe_bo_assert_held() to all helpers
+    that access madv_purgeable state
+  - Simplified page table logic: Renamed is_null to is_null_or_purged in
+    xe_pt_stage_bind_entry() - purged BOs treated identically to null VMAs
+  - Removed unnecessary checks: Dropped redundant "&& bo" check in xe_ttm_bo_purge()
+  - Xe-specific warnings: Changed drm_warn() to XE_WARN_ON() in purge path
+  - Moved purge checks under locks: Purge state validation now done after
+    acquiring dma-resv lock in vma_lock_and_validate() and xe_pagefault_begin()
+  - Race-free fault handling: Removed unlocked purge check from
+    xe_pagefault_handle_vma(), moved to locked xe_pagefault_begin()
+  - Shrinker helper functions: Added xe_bo_set_purgeable_shrinker() and
+    xe_bo_clear_purgeable_shrinker() to encapsulate TTM purgeable flag updates
+    and shrinker page accounting, improving code clarity and maintainability
+
+v4 Changes (addressing Matt and Thomas Hellström feedback):
+  - UAPI: Removed '__u64 reserved' field from purge_state_val union to fit
+    16-byte size constraint (Matt)
+  - Changed madv_purgeable from atomic_t to u32 across all patches (Matt)
+  - CPU fault handling: Added purged check to fastpath (xe_bo_cpu_fault_fastpath)
+    to prevent hang when accessing existing mmap of purged BO
+
+v5 Changes (addressing Matt and Thomas Hellström feedback):
+  - Add locking documentation to madv_purgeable field comment (Matt)
+  - Introduce xe_bo_set_purgeable_state() helper (void return) to centralize
+    madv_purgeable updates with xe_bo_assert_held() and state transition
+    validation using explicit enum checks (no transition out of PURGED) (Matt)
+  - Make xe_ttm_bo_purge() return int and propagate failures from
+    xe_bo_move(); handle xe_bo_trigger_rebind() failures (e.g. no_wait_gpu
+    paths) rather than silently ignoring (Matt)
+  - Replace drm_WARN_ON with xe_assert for better Xe-specific assertions (Matt)
+  - Hook purgeable handling into madvise_funcs[DRM_XE_VMA_ATTR_PURGEABLE_STATE]
+    instead of special-case path in xe_vm_madvise_ioctl() (Matt)
+  - Track purgeable retained return via xe_madvise_details and perform
+    copy_to_user() from xe_madvise_details_fini() after locks are dropped (Matt)
+  - Set madvise_funcs[DRM_XE_VMA_ATTR_PURGEABLE_STATE] to NULL with
+    __maybe_unused on madvise_purgeable() to maintain bisectability until
+    shrinker integration is complete in final patch (Matt)
+  - Call xe_bo_recheck_purgeable_on_vma_unbind() from xe_vma_destroy()
+    right after drm_gpuva_unlink() where we already hold the BO lock,
+    drop the trylock-based late destroy path (Matt)
+  - Move purgeable_state into xe_vma_mem_attr with the other madvise
+    attributes (Matt)
+  - Drop READ_ONCE since the BO lock already protects us (Matt)
+  - Keep returning false when there are no VMAs - otherwise we'd mark
+    BOs purgeable without any user hint (Matt)
+  -  Use struct xe_vma_lock_and_validate_flags instead of multiple bool
+    parameters to improve readability and prevent argument transposition (Matt)
+  - Fix LRU crash while running shrink test
+  - Skip xe_bo_validate() for purged BOs in xe_gpuvm_validate()
+  - Split ghost BO and zero-refcount handling in xe_bo_shrink() (Thomas)
+
+v6 Changes (addressing Jose Souza, Thomas Hellström and Matt Brost feedback):
+  - Document DONTNEED blocking behavior in uAPI: Clearly describe which
+    operations are blocked and with what error codes. (Thomas, Matt)
+  - Block VM_BIND to DONTNEED BOs: Return -EBUSY to prevent creating new
+    VMAs to purgeable BOs (undefined behavior). (Thomas, Matt)
+  - Block CPU faults to DONTNEED BOs: Return VM_FAULT_SIGBUS in both fastpath
+    and slowpath to prevent undefined behavior. (Thomas, Matt)
+  - Block new mmap() to DONTNEED/purged BOs: Return -EBUSY for DONTNEED,
+    -EINVAL for PURGED. (Thomas, Matt)
+  - Block dma-buf export of DONTNEED/purged BOs: Return -EBUSY for DONTNEED,
+    -EINVAL for PURGED. (Thomas, Matt)
+  - Fix state transition bug: xe_bo_all_vmas_dontneed() now returns enum to
+    distinguish NO_VMAS (preserve state) from WILLNEED (has active VMAs),
+    preventing incorrect DONTNEED → WILLNEED flip on last VMA unmap (Matt)
+  - Set skip_invalidation explicitly in madvise_purgeable() to ensure
+    DONTNEED always zaps GPU PTEs regardless of prior madvise state.
+  - Add DRM_XE_QUERY_CONFIG_FLAG_HAS_PURGING_SUPPORT for userspace
+    feature detection. (Jose)
+
+v7 Changes (addressing Thomas Hellström, Matt B and Jose feedback):
+  - mmap check moved from xe_gem_mmap_offset_ioctl() into a new
+    xe_gem_object_mmap() callback wrapping drm_gem_ttm_mmap(), with
+    interruptible lock (Thomas)
+  - dma-buf export lock made interruptible: xe_bo_lock(bo, true) (Thomas)
+  - vma_lock_and_validate_flags passed by value instead of pointer (reviewer)
+  - xe_bo_recompute_purgeable_state() simplified using enum value alignment
+    between xe_bo_vmas_purge_state and xe_madv_purgeable_state, with
+    static_assert to enforce the alignment (Thomas)
+  - Merge xe_bo_set_purgeable_shrinker/xe_bo_clear_purgeable_shrinker into
+    a single static xe_bo_set_purgeable_shrinker(bo, new_state) called
+    automatically from xe_bo_set_purgeable_state() (Thomas)
+  - Drop "drm/xe/bo: Skip zero-refcount BOs in shrinker" patch — ghost BO
+    path already handles this correctly (Thomas)
+  - Fix Engine memory CAT errors on scratch-page VMs (Matt Roper):
+    xe_pagefault_asid_to_vm() now accepts scratch VMs via
+    || xe_vm_has_scratch(vm); xe_pagefault_begin() checks DONTNEED/purged
+    before validate/migrate and signals skip_rebind to caller via bool*
+    out-parameter to avoid xe_vma_rebind() assert and PTE zap undo
+  - Add new patch 12: Accept canonical GPU addresses in xe_vm_madvise_ioctl()
+    using xe_device_uncanonicalize_addr() (Matt B)
+  - UAPI doc comment improvement. (Jose)
+
+v8:
+  - Remove skip_rebind out-parameter from xe_pagefault_begin(); always let
+    xe_vma_rebind() run so tile_present is updated and the GPU fault resolves.
+    Previously skip_rebind=true left tile_present=0, causing an infinite
+    refault loop on scratch VMs. (Thomas)
+  - Check xe_bo_lock() return value and propagate error. (Thomas and
+    Matt)
+
+Arvind Yadav (11):
+  drm/xe/bo: Add purgeable bo state tracking and field madv to xe_bo
+  drm/xe/madvise: Implement purgeable buffer object support
+  drm/xe/bo: Block CPU faults to purgeable buffer objects
+  drm/xe/vm: Prevent binding of purged buffer objects
+  drm/xe/madvise: Implement per-VMA purgeable state tracking
+  drm/xe/madvise: Block imported and exported dma-bufs
+  drm/xe/bo: Block mmap of DONTNEED/purged BOs
+  drm/xe/dma_buf: Block export of DONTNEED/purged BOs
+  drm/xe/bo: Add purgeable shrinker state helpers
+  drm/xe/madvise: Enable purgeable buffer object IOCTL support
+  drm/xe/madvise: Accept canonical GPU addresses in xe_vm_madvise_ioctl
+
+Himal Prasad Ghimiray (1):
+  drm/xe/uapi: Add UAPI support for purgeable buffer objects
+
+ drivers/gpu/drm/xe/xe_bo.c         | 194 ++++++++++++++++--
+ drivers/gpu/drm/xe/xe_bo.h         |  58 ++++++
+ drivers/gpu/drm/xe/xe_bo_types.h   |   6 +
+ drivers/gpu/drm/xe/xe_dma_buf.c    |  24 +++
+ drivers/gpu/drm/xe/xe_pagefault.c  |  14 +-
+ drivers/gpu/drm/xe/xe_pt.c         |  40 +++-
+ drivers/gpu/drm/xe/xe_query.c      |   2 +
+ drivers/gpu/drm/xe/xe_svm.c        |   1 +
+ drivers/gpu/drm/xe/xe_vm.c         | 111 +++++++++--
+ drivers/gpu/drm/xe/xe_vm_madvise.c | 304 ++++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_vm_madvise.h |   3 +
+ drivers/gpu/drm/xe/xe_vm_types.h   |  11 ++
+ include/uapi/drm/xe_drm.h          |  69 +++++++
+ 13 files changed, 795 insertions(+), 42 deletions(-)
+
+-- 
+2.43.0
 
