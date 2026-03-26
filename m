@@ -4,49 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DE9110AB827
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 22:18:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA3C910AB82B
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 22:31:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF43710E99A;
-	Thu, 26 Mar 2026 22:18:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71E0610E1CC;
+	Thu, 26 Mar 2026 22:31:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P8PX9AjC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YiLIeSLb";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0B3710E99A
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Mar 2026 22:18:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 494D910E1CC;
+ Thu, 26 Mar 2026 22:31:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774563513; x=1806099513;
+ t=1774564304; x=1806100304;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=UyXkYWcbvCqwM8X+8D3wvFwfFBhEH0CRuy30TIW8lRQ=;
- b=P8PX9AjC5zl1o+gWg1c12Z56sGAtJXz6GX6NGPopkUDgP2J/GEt3CzIo
- 7hHczKwQNrnIPk27bjLOVfH2fTfO5i2h7d6f45kH7SOPDz+iQvHo9gOmU
- RDLRMjiw4C31eYEL+93aXbjvYX1bOPWgfXvAVGBoTbidpmPl0EfU1HDEb
- HmPWLoB1K5xBkztQt3rpNSV1+1MFsculzP3mgudCFvFSZNy9AF/AuU7PA
- 6jjZ2ZuqM+qnSn1ZgUkEdOgzSC2TAOg9jmLjUDX3ebzeTzlgBOPjQ+4a0
- 1YwwFojs2FnpxQV6t7lwF8XMVJu5+j558U3EKzVsjo7FRPJmDBOSs/KXe Q==;
-X-CSE-ConnectionGUID: 7pXzTN8vSZSWtfwthcXPJw==
-X-CSE-MsgGUID: JIewYhbQTh6PUuaiftx1ag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="93218465"
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="93218465"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 15:18:33 -0700
-X-CSE-ConnectionGUID: /26Z74LBQ2aIVFem5xgj2g==
-X-CSE-MsgGUID: g6qb3oNATOekPo6IR6cnMg==
+ bh=DsyEp5s/YhgHTJkZ1GLqG4XcnOP9monPRWBrGCWXZL8=;
+ b=YiLIeSLbR54oRhqCDygmfXojjAdu5gJAuG+lB0Yk5IRiiPIEegwaPqY8
+ mehZf2zvkeGmy6lsMGZ2VQCrtIv9GHUylWi+aYuKG9Va+b1zpYvfFoDs4
+ AavkneHTw6l33U23ZJedBLUnePqx7HgpJZ4lXWEvJ5CWw9hZ1oL0h1Jau
+ 7h0JBspWPMLBrgWOPVCF/XPWVoWmWHz9kmjkyc6ZPfwMKPc1wcT0E7AK3
+ ojDUFQEhaUZgyDk/innDZiv+Vw/tP0UjBCEL96E+8DRONF2x0nqCqmmI0
+ FidQyHRXU7ftiBR+c2Y9zXc4V6CuCPDylDr5SDHtBOuw/VMPr+umUQ0wJ Q==;
+X-CSE-ConnectionGUID: I8fUkPYAT8Og6vOf8+zlQw==
+X-CSE-MsgGUID: 5j6C4FfDTY21XP8ZY6Dtpg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="78233014"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="78233014"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 15:31:44 -0700
+X-CSE-ConnectionGUID: 0/KkAzSWSYiYXEFbQJk/Tw==
+X-CSE-MsgGUID: 5Ow1ulgkQYOBfxCW2PJSNw==
 X-ExtLoop1: 1
-Received: from xwang-desk.fm.intel.com ([10.121.64.134])
- by fmviesa003.fm.intel.com with ESMTP; 26 Mar 2026 15:18:33 -0700
-From: Xin Wang <x.wang@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Xin Wang <x.wang@intel.com>
-Subject: [PATCH v2] drm/xe: use the asid based invalidation
-Date: Thu, 26 Mar 2026 15:18:30 -0700
-Message-ID: <20260326221831.352798-1-x.wang@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="226769452"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.14])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 15:31:42 -0700
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+	Nemesa Garg <nemesa.garg@intel.com>
+Subject: [PATCH 0/9] drm/i915/casf: Integrate the sharpness filter properly
+ into the scaler code
+Date: Fri, 27 Mar 2026 00:31:30 +0200
+Message-ID: <20260326223139.19116-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -62,89 +70,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Experiment only not for review
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Signed-off-by: Xin Wang <x.wang@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_tlb_inval.c | 11 ++++++++++-
- drivers/gpu/drm/xe/xe_module.c        |  4 ++++
- drivers/gpu/drm/xe/xe_module.h        |  1 +
- drivers/gpu/drm/xe/xe_pci.c           |  6 ++++++
- 4 files changed, 21 insertions(+), 1 deletion(-)
+The sharpness filter isn't anything special. It's just another
+mode of the pipe scaler, so treat is as such.
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-index ced58f46f846..bccb105af9a7 100644
---- a/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-+++ b/drivers/gpu/drm/xe/xe_guc_tlb_inval.c
-@@ -16,6 +16,7 @@
- #include "xe_guc_tlb_inval.h"
- #include "xe_force_wake.h"
- #include "xe_mmio.h"
-+#include "xe_module.h"
- #include "xe_sa.h"
- #include "xe_tlb_inval.h"
- #include "xe_vm.h"
-@@ -174,7 +175,15 @@ static int send_tlb_inval_ppgtt(struct xe_guc *guc, u32 seqno, u64 start,
- 	action[len++] = !prl_sa ? seqno : TLB_INVALIDATION_SEQNO_INVALID;
- 	if (!gt_to_xe(gt)->info.has_range_tlb_inval ||
- 	    length > MAX_RANGE_TLB_INVALIDATION_LENGTH) {
--		action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_FULL);
-+		if (xe_modparam.enable_asid_tlb_inval) {
-+			action[len++] = MAKE_INVAL_OP_FLUSH(XE_GUC_TLB_INVAL_PAGE_SELECTIVE, true);
-+			action[len++] = id;
-+			action[len++] = 1;
-+			action[len++] = 0;
-+			action[len++] = 0;
-+		} else {
-+			action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_FULL);
-+		}
- 	} else {
- 		u64 normalize_len = normalize_invalidation_range(gt, &start,
- 								 &end);
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 4cb578182912..fdfae7fbb231 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -83,6 +83,10 @@ MODULE_PARM_DESC(wedged_mode,
- 		 "Module's default policy for the wedged mode (0=never, 1=upon-critical-error, 2=upon-any-hang-no-reset "
- 		 "[default=" XE_DEFAULT_WEDGED_MODE_STR "])");
- 
-+module_param_named_unsafe(enable_asid_tlb_inval, xe_modparam.enable_asid_tlb_inval, bool, 0600);
-+MODULE_PARM_DESC(enable_asid_tlb_inval,
-+		 "Use ASID-based page-selective TLB invalidation instead of full invalidation (experimental)");
-+
- static int xe_check_nomodeset(void)
- {
- 	if (drm_firmware_drivers_only())
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index 79cb9639c0f3..648ac49fef76 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -23,6 +23,7 @@ struct xe_modparam {
- #endif
- 	unsigned int wedged_mode;
- 	u32 svm_notifier_size;
-+	bool enable_asid_tlb_inval;
- };
- 
- extern struct xe_modparam xe_modparam;
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 189e2a1c29f9..f47e96aa5967 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -955,6 +955,12 @@ static int xe_info_init(struct xe_device *xe,
- 		xe->info.has_device_atomics_on_smem = 1;
- 
- 	xe->info.has_range_tlb_inval = graphics_desc->has_range_tlb_inval;
-+	if (xe_modparam.enable_asid_tlb_inval)
-+		xe->info.has_range_tlb_inval = 0;
-+	xe_info(xe, "ASID-based TLB invalidation %s (modparam=%u, has_range_tlb_inval=%u)\n",
-+		xe_modparam.enable_asid_tlb_inval ? "enabled" : "disabled",
-+		xe_modparam.enable_asid_tlb_inval,
-+		xe->info.has_range_tlb_inval);
- 	xe->info.has_ctx_tlb_inval = graphics_desc->has_ctx_tlb_inval;
- 	xe->info.has_usm = graphics_desc->has_usm;
- 	xe->info.has_64bit_timestamp = graphics_desc->has_64bit_timestamp;
+This gets rid of tons of special casing all over the place,
+and will allow me to finally land the pending pipe prefill
+series: https://patchwork.freedesktop.org/series/156137/
+
+Note that this will fail some kms_sharpness_filter tests,
+because those tests are basically incorrect. But I couldn't
+decide yet how much of that entire test should be nuked. It
+seems to be doing a *lot* of things, most of which have
+nothing to do with the sharpness filter...
+
+Cc: Nemesa Garg <nemesa.garg@intel.com>
+
+Ville Syrjälä (9):
+  drm/i915/casf: s/casf_enable/enable/
+  drm/i915/casf: Make a proper hw state copy of the sharpness_strength
+  drm/i915/casf: Move the casf state to better place
+  drm/i915/casf: Extract scaler_has_casf()
+  drm/i915/casf: Handle CASF in skl_scaler_get_filter_select()
+  drm/i915/casf: Constify crtc_state
+  drn/i915/casf: Remove redundant argument from
+    intel_casf_filter_lut_load()
+  drm/i915/pfit: Call intel_pfit_compute_config() unconditionally on
+    (e)DP/HDMI
+  drm/i915/casf: Integrate the sharpness filter properly into the scaler
+    code
+
+ drivers/gpu/drm/i915/display/intel_casf.c     | 102 +++++-----------
+ drivers/gpu/drm/i915/display/intel_casf.h     |   6 +-
+ .../drm/i915/display/intel_crtc_state_dump.c  |  11 +-
+ drivers/gpu/drm/i915/display/intel_display.c  |  46 ++------
+ .../drm/i915/display/intel_display_debugfs.c  |   5 +-
+ .../drm/i915/display/intel_display_types.h    |   5 +-
+ drivers/gpu/drm/i915/display/intel_dp.c       |   9 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c     |   8 +-
+ .../drm/i915/display/intel_modeset_setup.c    |   1 +
+ drivers/gpu/drm/i915/display/intel_pfit.c     |  13 ++-
+ drivers/gpu/drm/i915/display/skl_scaler.c     | 110 +++++++-----------
+ drivers/gpu/drm/i915/display/skl_scaler.h     |   2 -
+ 12 files changed, 112 insertions(+), 206 deletions(-)
+
 -- 
-2.43.0
+2.52.0
 
