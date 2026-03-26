@@ -4,28 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6CD4109E558
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 06:48:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 634AF109E55D
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 07:17:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65A6610E9DF;
-	Thu, 26 Mar 2026 06:48:15 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1C1E10E9EC;
- Thu, 26 Mar 2026 06:48:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5317216529566728669=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1583410E9A2;
+	Thu, 26 Mar 2026 07:17:40 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EHtnhb6t";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8E6810E9A2;
+ Thu, 26 Mar 2026 07:17:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774509459; x=1806045459;
+ h=date:from:to:cc:subject:message-id:mime-version:
+ content-transfer-encoding;
+ bh=OYwUvhrsyofM37oU9mgQfaaKJkaUKuX6JktVCFtT0ko=;
+ b=EHtnhb6taYGsfzfhPKX/+PrGuLdz6rr5Bn4HHLJtSaQ9vbsRkBFKNlMb
+ fBNeJa/+s3Sr2XEhBeqxuWtLQj/+ZbBU/0G+Rehx7hy3Pm/ekVO+vpmkH
+ qbcwPcmAwviNd76wQPzIznx/3JPmBreK9aAi+0R6XzmysX8xPCUc3ULmP
+ /9bNCNHOyUayioRtH1orGwKEG74R9JN0I/QI98VCyRRyVBLhPP10sWLEo
+ pr9G1bhxPOd9DV7a/MRe1wtqLUQaKU6aQxradJTdWlSVC5twziy9Oz3/D
+ zPvPyaxMCPY8kNl+17lonmneU0P6+1nGSh4X8d25DBp166tONml6O/JJk g==;
+X-CSE-ConnectionGUID: /oG3RuwWT7u2I6Xsx9yKxQ==
+X-CSE-MsgGUID: iUt1c6i0Sn+muUJ8Mcyddg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="86637336"
+X-IronPort-AV: E=Sophos;i="6.23,141,1770624000"; d="scan'208";a="86637336"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 00:17:39 -0700
+X-CSE-ConnectionGUID: Yi2TMbo3Re6IVJHjXKxydQ==
+X-CSE-MsgGUID: 0drWFrdZSIGX8slDVzPfhw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,141,1770624000"; d="scan'208";a="220081026"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.213])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 00:17:34 -0700
+Date: Thu, 26 Mar 2026 09:17:32 +0200
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-intel-fixes
+Message-ID: <acTdjAoOGkzl3dcc@jlahtine-mobl>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_Fix_use-after-free_on_fram?=
- =?utf-8?q?ebuffers_and_property_blobs_when_calling_drm=5Fdev=5Funplug_=28re?=
- =?utf-8?q?v4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-xe@lists.freedesktop.org
-Date: Thu, 26 Mar 2026 06:48:13 -0000
-Message-ID: <177450769370.399926.5951834965955801899@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260313151728.14990-3-dev@lankhorst.se>
-In-Reply-To: <20260313151728.14990-3-dev@lankhorst.se>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -37,191 +74,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5317216529566728669==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Dave & Sima,
 
-== Series Details ==
+Here goes this week drm-intel-fixes PR towards v7.0-rc6.
 
-Series: Fix use-after-free on framebuffers and property blobs when calling drm_dev_unplug (rev4)
-URL   : https://patchwork.freedesktop.org/series/162134/
-State : failure
+On display side DP tunnel error handling and NV12 plane clobbering fixes
+for atomic state. Then GMBUS timeout fix and __wait_for() barrier fix.
 
-== Summary ==
+Regards, Joonas
 
-CI Bug Log - changes from xe-4785-ec0484d20b9f962d04a62ff1feb03676c3ce7611_FULL -> xe-pw-162134v4_FULL
-====================================================
+***
 
-Summary
--------
+drm-intel-fixes-2026-03-26:
 
-  **FAILURE**
+- DP tunnel error handling fix
+- Spurious GMBUS timeout fix
+- Unlink NV12 planes earlier
+- Order OP vs. timeout correctly in __wait_for()
 
-  Serious unknown changes coming with xe-pw-162134v4_FULL absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-162134v4_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+The following changes since commit c369299895a591d96745d6492d4888259b004a9e:
 
-  
+  Linux 7.0-rc5 (2026-03-22 14:42:17 -0700)
 
-Participating hosts (2 -> 2)
-------------------------------
+are available in the Git repository at:
 
-  No changes in participating hosts
+  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2026-03-26
 
-Possible new issues
--------------------
+for you to fetch changes up to 77fcf58df15edcf3f5b5421f24814fb72796def9:
 
-  Here are the unknown changes that may have been introduced in xe-pw-162134v4_FULL:
+  drm/i915/dp_tunnel: Fix error handling when clearing stream BW in atomic state (2026-03-24 08:00:00 +0200)
 
-### IGT changes ###
+----------------------------------------------------------------
+- DP tunnel error handling fix
+- Spurious GMBUS timeout fix
+- Unlink NV12 planes earlier
+- Order OP vs. timeout correctly in __wait_for()
 
-#### Possible regressions ####
+----------------------------------------------------------------
+Imre Deak (1):
+      drm/i915/dp_tunnel: Fix error handling when clearing stream BW in atomic state
 
-  * igt@core_hotunplug@hotreplug-lateclose:
-    - shard-lnl:          [PASS][1] -> [ABORT][2] +6 other tests abort
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4785-ec0484d20b9f962d04a62ff1feb03676c3ce7611/shard-lnl-6/igt@core_hotunplug@hotreplug-lateclose.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162134v4/shard-lnl-2/igt@core_hotunplug@hotreplug-lateclose.html
+Samasth Norway Ananda (1):
+      drm/i915/gmbus: fix spurious timeout on 512-byte burst reads
 
-  
-Known issues
-------------
+Ville Syrjälä (2):
+      drm/i915: Order OP vs. timeout correctly in __wait_for()
+      drm/i915: Unlink NV12 planes earlier
 
-  Here are the changes found in xe-pw-162134v4_FULL that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma:
-    - shard-lnl:          [PASS][3] -> [FAIL][4] ([Intel XE#5625])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4785-ec0484d20b9f962d04a62ff1feb03676c3ce7611/shard-lnl-8/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162134v4/shard-lnl-5/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@flip-vs-expired-vblank-interruptible:
-    - shard-lnl:          [FAIL][5] ([Intel XE#301] / [Intel XE#3149]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4785-ec0484d20b9f962d04a62ff1feb03676c3ce7611/shard-lnl-7/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162134v4/shard-lnl-2/igt@kms_flip@flip-vs-expired-vblank-interruptible.html
-
-  * igt@kms_pm_dc@deep-pkgc:
-    - shard-lnl:          [FAIL][7] ([Intel XE#2029] / [Intel XE#7395]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4785-ec0484d20b9f962d04a62ff1feb03676c3ce7611/shard-lnl-6/igt@kms_pm_dc@deep-pkgc.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162134v4/shard-lnl-3/igt@kms_pm_dc@deep-pkgc.html
-
-  
-  [Intel XE#2029]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2029
-  [Intel XE#301]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/301
-  [Intel XE#3149]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/3149
-  [Intel XE#5625]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/5625
-  [Intel XE#7395]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7395
-
-
-Build changes
--------------
-
-  * Linux: xe-4785-ec0484d20b9f962d04a62ff1feb03676c3ce7611 -> xe-pw-162134v4
-
-  IGT_8827: 8827
-  xe-4785-ec0484d20b9f962d04a62ff1feb03676c3ce7611: ec0484d20b9f962d04a62ff1feb03676c3ce7611
-  xe-pw-162134v4: 162134v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162134v4/index.html
-
---===============5317216529566728669==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fix use-after-free on framebuffers and property blobs when calling drm_dev_unplug (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162134/">https://patchwork.freedesktop.org/series/162134/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162134v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162134v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4785-ec0484d20b9f962d04a62ff1feb03676c3ce7611_FULL -&gt; xe-pw-162134v4_FULL</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-162134v4_FULL absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-162134v4_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (2 -&gt; 2)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-162134v4_FULL:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@core_hotunplug@hotreplug-lateclose:<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4785-ec0484d20b9f962d04a62ff1feb03676c3ce7611/shard-lnl-6/igt@core_hotunplug@hotreplug-lateclose.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162134v4/shard-lnl-2/igt@core_hotunplug@hotreplug-lateclose.html">ABORT</a> +6 other tests abort</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-162134v4_FULL that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma:<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4785-ec0484d20b9f962d04a62ff1feb03676c3ce7611/shard-lnl-8/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162134v4/shard-lnl-5/igt@xe_exec_system_allocator@pat-index-madvise-pat-idx-uc-multi-vma.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/5625">Intel XE#5625</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank-interruptible:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4785-ec0484d20b9f962d04a62ff1feb03676c3ce7611/shard-lnl-7/igt@kms_flip@flip-vs-expired-vblank-interruptible.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/3149">Intel XE#3149</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162134v4/shard-lnl-2/igt@kms_flip@flip-vs-expired-vblank-interruptible.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_dc@deep-pkgc:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4785-ec0484d20b9f962d04a62ff1feb03676c3ce7611/shard-lnl-6/igt@kms_pm_dc@deep-pkgc.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2029">Intel XE#2029</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7395">Intel XE#7395</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-162134v4/shard-lnl-3/igt@kms_pm_dc@deep-pkgc.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4785-ec0484d20b9f962d04a62ff1feb03676c3ce7611 -&gt; xe-pw-162134v4</li>
-</ul>
-<p>IGT_8827: 8827<br />
-  xe-4785-ec0484d20b9f962d04a62ff1feb03676c3ce7611: ec0484d20b9f962d04a62ff1feb03676c3ce7611<br />
-  xe-pw-162134v4: 162134v4</p>
-
-</body>
-</html>
-
---===============5317216529566728669==--
+ drivers/gpu/drm/i915/display/intel_display.c   |  8 +++++++-
+ drivers/gpu/drm/i915/display/intel_dp_tunnel.c | 20 ++++++++++++++------
+ drivers/gpu/drm/i915/display/intel_dp_tunnel.h | 11 +++++++----
+ drivers/gpu/drm/i915/display/intel_gmbus.c     |  4 +++-
+ drivers/gpu/drm/i915/display/intel_plane.c     | 11 +++++++++--
+ drivers/gpu/drm/i915/i915_wait_util.h          |  2 +-
+ 6 files changed, 41 insertions(+), 15 deletions(-)
