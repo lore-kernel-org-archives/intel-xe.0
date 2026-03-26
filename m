@@ -4,60 +4,156 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D6ECF10AB822
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 22:32:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF97410AB82B
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 22:32:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96CB810EB26;
-	Thu, 26 Mar 2026 22:32:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7478610EB27;
+	Thu, 26 Mar 2026 22:32:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H9f+2olU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T1MCPXwi";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52DCF10EB12;
- Thu, 26 Mar 2026 22:32:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2240010EB27
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Mar 2026 22:32:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774564340; x=1806100340;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=EOkuoxFYz/Fj/J7TyLt8T61bj3jc9jvPkFhmtO/B25c=;
- b=H9f+2olUF23pknvPPUMrM3huj+hCbnBWBrWKI3qvkqVPAtoxxCDzh6vf
- nwFCRNu2eL45x17NwTphUU7OS22CS306UglOPU7vaeG8CpQryHofjekJe
- +YOD0oVvnw5YBXjoRgU+n9O9tkGL/0kN3YM+aXrzDRXL+AHLB4d0TVkDP
- w0m+Qi9C9nZG6enF7xyQ7CUlpqhPH8LR7zqfXCfEr358CYte2fMAMGV0u
- TLGhPfq1XA6qh7o73gRx/unu7szOL7qgeLOtW8JS9p/CHWAcfiwWbwX4r
- MvJMATkw4avJI5LBb6nPjUF6VUWOgjIH1oqOpSOorSYmepOW7/n8yXUe/ Q==;
-X-CSE-ConnectionGUID: 1SviO/mPROeTdJJCZAcMpQ==
-X-CSE-MsgGUID: R9C8wEmRSgqNJ+M9LrnLfA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="86713783"
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="86713783"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 15:32:20 -0700
-X-CSE-ConnectionGUID: TRZMObuOQV2+1Tn8nWvk8A==
-X-CSE-MsgGUID: HBcN9t/RR/O/qM2iu1mc5w==
+ t=1774564372; x=1806100372;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=zBl5vrWy0vGI5mP5QZGdiZJdIRp/qdpV+VPJdKgdpb8=;
+ b=T1MCPXwi5lVcAKrxCtUzl6zJRnzz9rhklbqJ1jOm2pCU0P1ymYJVHq9v
+ 7m+p/jiLazXS/+5RYEt4XWHotgVl1vvDOJkGCMi5xm2BU+8hJ1PCjW0Wa
+ GQULeZfXPey/yFDF9Qy4F2PAcR5ohizrN90v2eL6xoWADsTAeoX1mM/bv
+ miWepmgGQdbiI9oPPUkXNnKwfwzozhPyxRYB79Wd41jpvL6bs1jrPA59V
+ w3iaHHqNjVQOfxC1Esqsjw97RN3uJS22Qx3zsZg92rsemAd+s433bS5OJ
+ PdlvE3prk9N7I24nYIlixv/2gfRBv3W8yDZiRFNAq5KDJGpQDyF44g9uv w==;
+X-CSE-ConnectionGUID: dVcm6zt8SYG7w4LEsN9jyg==
+X-CSE-MsgGUID: RK4AOJAITrC3G61Z0cysAA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="78233161"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="78233161"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 15:32:52 -0700
+X-CSE-ConnectionGUID: EyjYxDUkSzaEgWlpM3qzzQ==
+X-CSE-MsgGUID: /n5aATunQvK2LXOemjEPjg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="248494003"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.14])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 15:32:18 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 9/9] drm/i915/casf: Integrate the sharpness filter properly
- into the scaler code
-Date: Fri, 27 Mar 2026 00:31:39 +0200
-Message-ID: <20260326223139.19116-10-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260326223139.19116-1-ville.syrjala@linux.intel.com>
-References: <20260326223139.19116-1-ville.syrjala@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="226769816"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 15:32:52 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 26 Mar 2026 15:32:51 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Thu, 26 Mar 2026 15:32:51 -0700
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.53) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 26 Mar 2026 15:32:50 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Sa3mPmHgz0v5KvQEMz5BX6IZufjtLLiRvm9M3oFUG7WRjMCeU4+LdRa5C8WP7Z0eZX0bZ2JSG2O0Bs4joAE48/tK8Of8IuE3S3nTAfg+QZNx2s0D6Ri9ZnxQewDGvtAAmKX5Vlp5xJrU702ft+kMymJCl2lRjoQLltqeQwqvRvp1zXc0vyhkShzgEOwvkGK7Jl1oBiLOHQkHU6OyKuktQTn662UU2aSp1Xw8WxPMtcUPtnYRxCNp2BsKy61Rdk1ZKcA5w3qw1e0une19GUmZZNnWGtJ8x2B36L+mn9a4t1Y2B+3h4zSrbotKFpt3XS93bXc5sRWwdxMl11zJyaeW4g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7yJ0JXzo4vnrTgkB+Z49G7WczsSoGXFkueM9GJcQXC4=;
+ b=MxAjevhEG50tHm/iTZvS/gY9JGaaPR5yxbX0ROIr5HOoc2Oz8nOqJV6/JaDsfT0lTsEb4RrpIEMgc2cmQnS4BPpzzKBdnRib1T+V891jaDlKDz8l9xU4pAWvHAkroQ0z9PGueaao6d/z56S6ICs0thDA/TIiADOC1NUKVkT0us8twiqu+JXF1di4lsN6Wm5koMobV7Xhsi9tCdQ+WQuy5wUOnE2Bj29aHeSHOu6+W+KBkrG7or5lp6cqYteOwdPL7tCEgVAMrNQd28WSsj0RWUCXrmWJDGr1IhKFmWSEzRvj7P9R+FvIwEBAbj3TouOujv2Ki9oXXqgf3+LpQNjcpw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB6683.namprd11.prod.outlook.com (2603:10b6:510:1c6::9)
+ by PH8PR11MB6729.namprd11.prod.outlook.com (2603:10b6:510:1c5::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.6; Thu, 26 Mar
+ 2026 22:32:46 +0000
+Received: from PH8PR11MB6683.namprd11.prod.outlook.com
+ ([fe80::a62c:97d9:446:ccca]) by PH8PR11MB6683.namprd11.prod.outlook.com
+ ([fe80::a62c:97d9:446:ccca%4]) with mapi id 15.20.9769.004; Thu, 26 Mar 2026
+ 22:32:46 +0000
+Message-ID: <af38ac06-e332-486b-8d02-bd566db35916@intel.com>
+Date: Thu, 26 Mar 2026 15:32:43 -0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe/ggtt: Remove duplicate XE_GGTT_FLAGS_64K macro
+ definition
+To: Shuicheng Lin <shuicheng.lin@intel.com>, <intel-xe@lists.freedesktop.org>
+CC: Matthew Brost <matthew.brost@intel.com>
+References: <20260316222723.1722591-2-shuicheng.lin@intel.com>
+Content-Language: en-US
+From: "Bai, Zongyao" <zongyao.bai@intel.com>
+In-Reply-To: <20260316222723.1722591-2-shuicheng.lin@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BY1P220CA0020.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:5c3::7) To PH8PR11MB6683.namprd11.prod.outlook.com
+ (2603:10b6:510:1c6::9)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB6683:EE_|PH8PR11MB6729:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1fb52422-ecd3-4ab1-a925-08de8b879a32
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|22082099003|56012099003|18002099003; 
+X-Microsoft-Antispam-Message-Info: oxVSdcu8DbahREYDS/O2dpRaRFxiRcAYgeLTrACOf+83B1F0DJBN0+AGAdrYWN20hMx1oYd1MJMz0N5g+lECOg6W5OOu3csO0zJLE1g4Q2OlUQ/QZwo6t6jDOELbfivMDBpfVVyXeN8GMmYe7mgX4ffsS6B7INvzxTRLVN50qMez3N6+zAXFcjIpXkgVdrbGfq40Pp5exZJesokut0glHiEKev4mYkdxei/jI7aWzOdZtEaHnkdDV+kgoZLZMKlFRMql6xz+7fM6AB26SqIyL7qQ4cCXaF1SYIcFSktZL9xfzNggVfMKyM+a41y2lxPqpyCM2qPFKJ8zv0fW/r1DsuLA4W9zVBoB8hQLDclhH+HmZUA6IY3lYSsqNfGEiBc6kP0sXXMeSzCtzGjnr17UFNE0JuSAJKBQqXTtlphDKyQndxS404bsqdQAyJJ2Zn73lvmpRZ2ET8eeYH42Ant8frjmxAhKuBI90ECfQ6wbdWfU58pe3cDn8qhT+XGNVEPMxmiz7GDDvQdGk6pp7oJAOcduIWpvMfB9HCvKPzVz+QRgSmFR2legsPLBsKLpN+8qQONxELBM8l1/nlvolG4yNCqJ+OuZKX0R9YhhGruPe/GR2WmcwFvdRMUJ52PwIZ4jen68NDC8Nd3iLyUKNOttsvFNYoOyJ/weqrn6XX0ye0niKlfu4VWdKAP4csPgKZMQygxXStAmT2IRqyCFusnwG95/SU2Bdmxe8Y2n69x4Fr0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB6683.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(22082099003)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cHVXY3ZuNUVpVnBnRzhDOGVDaWNDNmVSdUVFZmlzWkczdXhTV0p4UFVScGJh?=
+ =?utf-8?B?b3BxdGNkc2NlVlhUZ0lQMmNhSVBmbWpSTmFNMDltUFdtTmp2Q3l4bzFMNHcz?=
+ =?utf-8?B?UnFkVlFQMVNSQVhGTmE5NjBDcWZXTUJVa0hXVWFzMys5WGNIK0Q3amNad0N0?=
+ =?utf-8?B?YUkyc2xwT3lNK3lvdzh0RGpBakV3Skh6aHdoYmt6VUF1S2txUUVHZEZHN3kw?=
+ =?utf-8?B?N24yM3JncU5jQTkyRTBVMU1tY09vcFBUUjhMby9hUXMvaFI2WTZIaElla3Zt?=
+ =?utf-8?B?dHVNREIxRlVkSHRXdi8xMlZXQk9iYzNIaWlmY2M4VTNSSWlpMzJjMlFwR0xG?=
+ =?utf-8?B?VmE5SmUzcmlwaktRR0NMMWhjaUNrTkxXUVVFMVJGeTZoZUttYUt3Ukl6RHRt?=
+ =?utf-8?B?KzlKc1dWYk1JWTdsalNmam1DOWk1ZndGa0dVNkJ5eDE4OWRRR0EwQzI2UEZR?=
+ =?utf-8?B?b2NhUU1PSElPSnpROUZLYzJLTGNWQ1ZsS25XV1E1MFpXR1gzVVpRWDIvWnFQ?=
+ =?utf-8?B?YStwVzE4OGFqSW4ya3NFOFZXb2tyTDVaNk42N2xKQU93UDhKUXFrTFdwY2xB?=
+ =?utf-8?B?cGxhZTlTTko5bjhwa2pKOEFTV0xTNVlZMHNzbmw0eElZM0paSU9FWGtKbnp5?=
+ =?utf-8?B?Szk2RU9UT0tIOVNKbEtRQ0lOaFhrVDltUkpzUjFVcjZ2R1MxODNCL0pYNVdl?=
+ =?utf-8?B?dUgxU2R6cjcybWdVYXoyNzR2QnVWcDYwdzBVcTFWWERVQXU2ZDhnLzE0RmFN?=
+ =?utf-8?B?WFZiZnZ3aEFONVlLZytHS2NJMFh2VHduSDR5Q0R2OTZkYzRlYnFoVXdCZkp1?=
+ =?utf-8?B?UytSdGFrNXZKOWRYWHhiNFdmNWxUZ3ZzY2NwS1VidERoWlk4QVNETENZaFpt?=
+ =?utf-8?B?Q0ZUZXYrSUs2V1Z4RWJXaG1Cb0FQZ1o2WnpNMm5rYWZzNlJ2WVVlNmlZVVBi?=
+ =?utf-8?B?OGNRZUFEYWxFUFhmaDVUdkd3NXV4clo3S0xOZVdhb3hmMnN2akpqOXVwZ2Nh?=
+ =?utf-8?B?YmEvQ0lZS1JvQzJjbDhxMnhoakFTTlJrSXJnUEJlemVkc24xdUhJbWNES1JM?=
+ =?utf-8?B?WGorclkrK3hBWVVNVXR3OFdNclUza05FSkJqNGcvVkpDVGN6VGlHMzVBWEtD?=
+ =?utf-8?B?eXdGbWt4dFJKNXlHS21idWMwSUhZeGdCMkhmeFRHZzFLR2wrN2Qyay9Hb3NB?=
+ =?utf-8?B?ZWpZZFpWMFJZUVNZSHlWRXVFRWpFaGdYdURNN2xFT0NqZ3ZMM0xLM3pvc25j?=
+ =?utf-8?B?R3JlclV3VkQ0Y01kZmMvT1BkTlVFZHpmaEJJUk96QWpZdGtpL3RCSDArSTZm?=
+ =?utf-8?B?MVRTR01pTFBTUUxBR3NpSFh0TlgraExjYVhYeGtBOW5oQU5YQS9lR0FXRnNp?=
+ =?utf-8?B?Tk1hQ3dUZXhTU1g2NnpTMjJIZ1FNVXhwQ2hVaHBSTHh4Ris5cC9GdldidlBF?=
+ =?utf-8?B?SEptMWVTcjhkc2x4enk0TUw2TmgrbFd6Tk9sZHRRUStVcCtaY3FqUXl2bXBD?=
+ =?utf-8?B?WnJKVHFLbkh4OGdIdXpjRjRCMGFYU3VrenltSjcwVERJcFdwYW1LQ1d6Y3dN?=
+ =?utf-8?B?N2pCbkdCQUtIaUhQWDgxaTFXbzdKSlAzZFY1cVBwUnhYV1hQaGhmRDNzTHR0?=
+ =?utf-8?B?Y2UrckNvL2dhS0FYazh2VkppNzQ0TEdLOFdlSkQrL0UrcjRIY1hBUk1BbDlS?=
+ =?utf-8?B?Wld3VnVZdHBadnB2dmRwUzlIYnE2SHdXNVlJMk5WYk1SL2g0UzIwTWllNk9Z?=
+ =?utf-8?B?UnE4QW96MjQwbjM0aUMvUU5kQ0lMUHZrenY5ZW1GcHJuSVFpVUFiVmREM1lh?=
+ =?utf-8?B?NE4zZ2E3NkpkcHVIS3h5aXk4aUNVblFwMWttNXpVYlE2YnpDUSt3M04wd25i?=
+ =?utf-8?B?a0RFTllVQjVxdk1MSmdPTHhLMlNSVHBvZFJaSGt6RGsxUmZCMnIyQXdqbEEv?=
+ =?utf-8?B?Y2lYSjFSRjQrS2ozQnFwc0krbjExUjk2VHp2YUZtNElTZWtyVkxXdGMrWE1O?=
+ =?utf-8?B?R2pQUVBnTFFhTi95YXBvQXY0YkNLS2FxclE5dTVRdzBDakpqY0hTY3pMVG1x?=
+ =?utf-8?B?UkxHekVUaGtZRWtFdndvRWlaM0lNcHAzMDM3RktRU2dKZG1nUFVCdFp2VStr?=
+ =?utf-8?B?cHNqSkNMTHhwUFVQdGd3NkgvRm9zRE1pTXdCZlMwVTBRRmJLbDhQQWpIc2xx?=
+ =?utf-8?B?bjZOTnk5R00xSzZkUDJmeFdmdGxTdkxLK3gyRWhpQTlWZUp5S3F0dXRPMTlL?=
+ =?utf-8?B?VExjZllsdGp0Ni9wcXpHYUpNd2l3QW5taWZZcm56TUdYcjBGQ2UxSVZObGFk?=
+ =?utf-8?B?NDhlWFNWV2NHcWRKdHpxZnVkSUNpcHI3RjFIQUVSVTh3eVNJNGM2UT09?=
+X-Exchange-RoutingPolicyChecked: rEQi1P+YiEMJscvVrmKsNj2ggs23n51ByEHlXkY8bWccLydJgAFF0h/dwgucODHWjOFCwZmc66l3t9X7zKTlUnk4tpaeKdQNhRLOiFmV1PRSw1DRoA1M/VMDZ8t8Macw+rK2HgdtHcjQBix1sxMd4lFqM4elX9uHPtHOXEcSAcPNHNm6M9EicTfCW0bzfUM4acuETlFrRJM2Q/qS+OtMQzIoBj1MjbQ5A3QMMnRT4vpBPagXHFvGns1nLmN2z4JY/hHxIszzy/6fmQNfV7bOHYeeZjZCW73QBb86+IimZalyQKCxi9/HhlN66262BWpsjhLrMbuFFKfA5B9XVx4T8A==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1fb52422-ecd3-4ab1-a925-08de8b879a32
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6683.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2026 22:32:45.8460 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Dttl0HCLShcw4mXRTG/lmzShR1JtP1QqMMzD3gyzaS+or5AGhbHnM5AN8eC1CDFPLuGDV5U9VN9UMBjSFSV2eA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6729
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,434 +168,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+LGTM
 
-The sharpness filter is just a special mode of the pipe scaler.
-It doesn't warrant all this special casing everywhere. Just
-integrate it properly into the scaler code so that it's treated
-no different from the other pipe scaler uses (scaling,centering,
-YCbCr 4:2:0 output).
+Reviewed-by:  Zongyao Bai
 
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_casf.c    | 62 ++------------
- drivers/gpu/drm/i915/display/intel_casf.h    |  6 +-
- drivers/gpu/drm/i915/display/intel_display.c | 34 +-------
- drivers/gpu/drm/i915/display/intel_pfit.c    | 13 ++-
- drivers/gpu/drm/i915/display/skl_scaler.c    | 85 ++++++++------------
- drivers/gpu/drm/i915/display/skl_scaler.h    |  2 -
- 6 files changed, 53 insertions(+), 149 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_casf.c b/drivers/gpu/drm/i915/display/intel_casf.c
-index 21e84a4f9ff5..c2d2746c5f04 100644
---- a/drivers/gpu/drm/i915/display/intel_casf.c
-+++ b/drivers/gpu/drm/i915/display/intel_casf.c
-@@ -75,20 +75,6 @@ static void intel_casf_filter_lut_load(const struct intel_crtc_state *crtc_state
- 			       sharpness_lut[i]);
- }
- 
--void intel_casf_update_strength(const struct intel_crtc_state *crtc_state)
--{
--	struct intel_display *display = to_intel_display(crtc_state);
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	int win_size;
--
--	intel_de_rmw(display, SHARPNESS_CTL(crtc->pipe), FILTER_STRENGTH_MASK,
--		     FILTER_STRENGTH(crtc_state->pch_pfit.casf.strength));
--
--	win_size = intel_de_read(display, SKL_PS_WIN_SZ(crtc->pipe, 1));
--
--	intel_de_write_fw(display, SKL_PS_WIN_SZ(crtc->pipe, 1), win_size);
--}
--
- static void intel_casf_compute_win_size(struct intel_crtc_state *crtc_state)
- {
- 	const struct drm_display_mode *mode = &crtc_state->hw.adjusted_mode;
-@@ -102,19 +88,15 @@ static void intel_casf_compute_win_size(struct intel_crtc_state *crtc_state)
- 		crtc_state->pch_pfit.casf.win_size = SHARPNESS_FILTER_SIZE_7X7;
- }
- 
-+static void intel_casf_scaler_compute_coef(struct intel_crtc_state *crtc_state);
-+
- int intel_casf_compute_config(struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 
--	if (!HAS_CASF(display))
-+	if (crtc_state->hw.sharpness_strength == 0)
- 		return 0;
- 
--	if (crtc_state->hw.sharpness_strength == 0) {
--		crtc_state->pch_pfit.casf.enable = false;
--		crtc_state->pch_pfit.casf.strength = 0;
--		return 0;
--	}
--
- 	/* CASF with joiner not supported in hardware */
- 	if (crtc_state->joiner_pipes) {
- 		drm_dbg_kms(display->drm, "CASF not supported with joiner\n");
-@@ -136,7 +118,7 @@ int intel_casf_compute_config(struct intel_crtc_state *crtc_state)
- 
- 	intel_casf_compute_win_size(crtc_state);
- 
--	intel_casf_scaler_compute_config(crtc_state);
-+	intel_casf_scaler_compute_coef(crtc_state);
- 
- 	return 0;
- }
-@@ -161,14 +143,6 @@ void intel_casf_sharpness_get_config(struct intel_crtc_state *crtc_state)
- 	}
- }
- 
--bool intel_casf_needs_scaler(const struct intel_crtc_state *crtc_state)
--{
--	if (crtc_state->pch_pfit.casf.enable)
--		return true;
--
--	return false;
--}
--
- static int casf_coeff_tap(int i)
- {
- 	return i % SCALER_FILTER_NUM_TAPS;
-@@ -240,7 +214,7 @@ static void convert_sharpness_coef_binary(struct scaler_filter_coeff *coeff,
- 	}
- }
- 
--void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state)
-+static void intel_casf_scaler_compute_coef(struct intel_crtc_state *crtc_state)
- {
- 	const u16 *filtercoeff;
- 	u16 filter_coeff[SCALER_FILTER_NUM_TAPS];
-@@ -264,32 +238,8 @@ void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state)
- 	}
- }
- 
--void intel_casf_enable(const struct intel_crtc_state *crtc_state)
-+void intel_casf_setup(const struct intel_crtc_state *crtc_state)
- {
--	struct intel_display *display = to_intel_display(crtc_state);
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	u32 sharpness_ctl;
--
- 	intel_casf_filter_lut_load(crtc_state);
--
- 	intel_casf_write_coeff(crtc_state);
--
--	sharpness_ctl = FILTER_EN | FILTER_STRENGTH(crtc_state->pch_pfit.casf.strength);
--
--	sharpness_ctl |= crtc_state->pch_pfit.casf.win_size;
--
--	intel_de_write(display, SHARPNESS_CTL(crtc->pipe), sharpness_ctl);
--
--	skl_scaler_setup_casf(crtc_state);
--}
--
--void intel_casf_disable(const struct intel_crtc_state *crtc_state)
--{
--	struct intel_display *display = to_intel_display(crtc_state);
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--
--	intel_de_write(display, SKL_PS_CTRL(crtc->pipe, 1), 0);
--	intel_de_write(display, SKL_PS_WIN_POS(crtc->pipe, 1), 0);
--	intel_de_write(display, SHARPNESS_CTL(crtc->pipe), 0);
--	intel_de_write(display, SKL_PS_WIN_SZ(crtc->pipe, 1), 0);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_casf.h b/drivers/gpu/drm/i915/display/intel_casf.h
-index c4f984b73348..3ebb7522af0a 100644
---- a/drivers/gpu/drm/i915/display/intel_casf.h
-+++ b/drivers/gpu/drm/i915/display/intel_casf.h
-@@ -11,11 +11,7 @@
- struct intel_crtc_state;
- 
- int intel_casf_compute_config(struct intel_crtc_state *crtc_state);
--void intel_casf_update_strength(const struct intel_crtc_state *new_crtc_state);
- void intel_casf_sharpness_get_config(struct intel_crtc_state *crtc_state);
--void intel_casf_enable(const struct intel_crtc_state *crtc_state);
--void intel_casf_disable(const struct intel_crtc_state *crtc_state);
--void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state);
--bool intel_casf_needs_scaler(const struct intel_crtc_state *crtc_state);
-+void intel_casf_setup(const struct intel_crtc_state *crtc_state);
- 
- #endif /* __INTEL_CASF_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index e02e69467871..58a654ca0d20 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -58,7 +58,6 @@
- #include "intel_audio.h"
- #include "intel_bo.h"
- #include "intel_bw.h"
--#include "intel_casf.h"
- #include "intel_cdclk.h"
- #include "intel_clock_gating.h"
- #include "intel_color.h"
-@@ -988,24 +987,6 @@ static bool audio_disabling(const struct intel_crtc_state *old_crtc_state,
- 		 memcmp(old_crtc_state->eld, new_crtc_state->eld, MAX_ELD_BYTES) != 0);
- }
- 
--static bool intel_casf_enabling(const struct intel_crtc_state *new_crtc_state,
--				const struct intel_crtc_state *old_crtc_state)
--{
--	if (!new_crtc_state->hw.active)
--		return false;
--
--	return is_enabling(pch_pfit.casf.enable, old_crtc_state, new_crtc_state);
--}
--
--static bool intel_casf_disabling(const struct intel_crtc_state *old_crtc_state,
--				 const struct intel_crtc_state *new_crtc_state)
--{
--	if (!new_crtc_state->hw.active)
--		return false;
--
--	return is_disabling(pch_pfit.casf.enable, old_crtc_state, new_crtc_state);
--}
--
- static bool intel_crtc_lobf_enabling(const struct intel_crtc_state *old_crtc_state,
- 				     const struct intel_crtc_state *new_crtc_state)
- {
-@@ -1187,9 +1168,6 @@ static void intel_pre_plane_update(struct intel_atomic_state *state,
- 	if (audio_disabling(old_crtc_state, new_crtc_state))
- 		intel_encoders_audio_disable(state, crtc);
- 
--	if (intel_casf_disabling(old_crtc_state, new_crtc_state))
--		intel_casf_disable(new_crtc_state);
--
- 	intel_drrs_deactivate(old_crtc_state);
- 
- 	if (hsw_ips_pre_update(state, crtc))
-@@ -4308,14 +4286,9 @@ static int intel_crtc_atomic_check(struct intel_atomic_state *state,
- 		return ret;
- 	}
- 
--	ret = intel_casf_compute_config(crtc_state);
--	if (ret)
--		return ret;
--
- 	if (DISPLAY_VER(display) >= 9) {
- 		if (intel_crtc_needs_modeset(crtc_state) ||
--		    intel_crtc_needs_fastset(crtc_state) ||
--		    intel_casf_needs_scaler(crtc_state)) {
-+		    intel_crtc_needs_fastset(crtc_state)) {
- 			ret = skl_update_scaler_crtc(crtc_state);
- 			if (ret)
- 				return ret;
-@@ -6817,11 +6790,6 @@ static void intel_pre_update_crtc(struct intel_atomic_state *state,
- 			intel_vrr_set_transcoder_timings(new_crtc_state);
- 	}
- 
--	if (intel_casf_enabling(new_crtc_state, old_crtc_state))
--		intel_casf_enable(new_crtc_state);
--	else if (new_crtc_state->pch_pfit.casf.strength != old_crtc_state->pch_pfit.casf.strength)
--		intel_casf_update_strength(new_crtc_state);
--
- 	intel_fbc_update(state, crtc);
- 
- 	drm_WARN_ON(display->drm, !intel_display_power_is_enabled(display, POWER_DOMAIN_DC_OFF));
-diff --git a/drivers/gpu/drm/i915/display/intel_pfit.c b/drivers/gpu/drm/i915/display/intel_pfit.c
-index 6dda496190e0..e04ca960f115 100644
---- a/drivers/gpu/drm/i915/display/intel_pfit.c
-+++ b/drivers/gpu/drm/i915/display/intel_pfit.c
-@@ -186,6 +186,7 @@ static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
- 			     const struct drm_connector_state *conn_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	const struct drm_display_mode *adjusted_mode =
- 		&crtc_state->hw.adjusted_mode;
- 	int pipe_src_w = drm_rect_width(&crtc_state->pipe_src);
-@@ -195,7 +196,8 @@ static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
- 	/* Native modes don't need fitting */
- 	if (adjusted_mode->crtc_hdisplay == pipe_src_w &&
- 	    adjusted_mode->crtc_vdisplay == pipe_src_h &&
--	    crtc_state->output_format != INTEL_OUTPUT_FORMAT_YCBCR420)
-+	    crtc_state->output_format != INTEL_OUTPUT_FORMAT_YCBCR420 &&
-+	    crtc_state->hw.sharpness_strength == 0)
- 		return 0;
- 
- 	switch (conn_state->scaling_mode) {
-@@ -249,6 +251,15 @@ static int pch_panel_fitting(struct intel_crtc_state *crtc_state,
- 		return -EINVAL;
- 	}
- 
-+	if (crtc_state->hw.sharpness_strength &&
-+	    (width != pipe_src_w || height != pipe_src_h ||
-+	     crtc_state->output_format != INTEL_OUTPUT_FORMAT_RGB)) {
-+		drm_dbg_kms(display->drm,
-+			    "[CRTC:%d:%s] no scaling/YCbCr output with sharpness filter\n",
-+			    crtc->base.base.id, crtc->base.name);
-+		return -EINVAL;
-+	}
-+
- 	drm_rect_init(&crtc_state->pch_pfit.dst,
- 		      x, y, width, height);
- 	crtc_state->pch_pfit.enabled = true;
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index 762f4bb46c2d..308b8d363bba 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.c
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -270,6 +270,11 @@ int skl_update_scaler_crtc(struct intel_crtc_state *crtc_state)
- {
- 	const struct drm_display_mode *pipe_mode = &crtc_state->hw.pipe_mode;
- 	int width, height;
-+	int ret;
-+
-+	ret = intel_casf_compute_config(crtc_state);
-+	if (ret)
-+		return ret;
- 
- 	if (crtc_state->pch_pfit.enabled) {
- 		width = drm_rect_width(&crtc_state->pch_pfit.dst);
-@@ -284,8 +289,7 @@ int skl_update_scaler_crtc(struct intel_crtc_state *crtc_state)
- 				 drm_rect_width(&crtc_state->pipe_src),
- 				 drm_rect_height(&crtc_state->pipe_src),
- 				 width, height, NULL, 0,
--				 crtc_state->pch_pfit.enabled ||
--				 intel_casf_needs_scaler(crtc_state));
-+				 crtc_state->pch_pfit.enabled);
- }
- 
- /**
-@@ -534,14 +538,11 @@ static int setup_crtc_scaler(struct intel_atomic_state *state,
- 	struct intel_crtc_scaler_state *scaler_state =
- 		&crtc_state->scaler_state;
- 
--	if (intel_casf_needs_scaler(crtc_state) && crtc_state->pch_pfit.enabled)
--		return -EINVAL;
--
- 	return intel_atomic_setup_scaler(crtc_state,
- 					 hweight32(scaler_state->scaler_users),
- 					 crtc, "CRTC", crtc->base.base.id,
- 					 NULL, &scaler_state->scaler_id,
--					 intel_casf_needs_scaler(crtc_state));
-+					 crtc_state->pch_pfit.casf.enable);
- }
- 
- static int setup_plane_scaler(struct intel_atomic_state *state,
-@@ -757,43 +758,14 @@ static void skl_scaler_setup_filter(struct intel_display *display,
- 	}
- }
- 
--void skl_scaler_setup_casf(const struct intel_crtc_state *crtc_state)
-+static u32 casf_sharpness_ctl(const struct intel_crtc_state *crtc_state)
- {
--	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
--	struct intel_display *display = to_intel_display(crtc);
--	const struct drm_display_mode *adjusted_mode =
--		&crtc_state->hw.adjusted_mode;
--	const struct intel_crtc_scaler_state *scaler_state =
--		&crtc_state->scaler_state;
--	struct drm_rect src, dest;
--	int id, width, height;
--	int x = 0, y = 0;
--	enum pipe pipe = crtc->pipe;
--	u32 ps_ctrl;
-+	if (!crtc_state->pch_pfit.casf.enable)
-+		return 0;
- 
--	width = adjusted_mode->crtc_hdisplay;
--	height = adjusted_mode->crtc_vdisplay;
--
--	drm_rect_init(&dest, x, y, width, height);
--
--	width = drm_rect_width(&dest);
--	height = drm_rect_height(&dest);
--	id = scaler_state->scaler_id;
--
--	drm_rect_init(&src, 0, 0,
--		      drm_rect_width(&crtc_state->pipe_src) << 16,
--		      drm_rect_height(&crtc_state->pipe_src) << 16);
--
--	trace_intel_pipe_scaler_update_arm(crtc, id, x, y, width, height);
--
--	ps_ctrl = PS_SCALER_EN | PS_BINDING_PIPE | scaler_state->scalers[id].mode |
--		skl_scaler_get_filter_select(crtc_state->hw.scaling_filter, true);
--
--	intel_de_write_fw(display, SKL_PS_CTRL(pipe, id), ps_ctrl);
--	intel_de_write_fw(display, SKL_PS_WIN_POS(pipe, id),
--			  PS_WIN_XPOS(x) | PS_WIN_YPOS(y));
--	intel_de_write_fw(display, SKL_PS_WIN_SZ(pipe, id),
--			  PS_WIN_XSIZE(width) | PS_WIN_YSIZE(height));
-+	return FILTER_EN |
-+		FILTER_STRENGTH(crtc_state->pch_pfit.casf.strength) |
-+		crtc_state->pch_pfit.casf.win_size;
- }
- 
- void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
-@@ -837,12 +809,20 @@ void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
- 	id = scaler_state->scaler_id;
- 
- 	ps_ctrl = PS_SCALER_EN | PS_BINDING_PIPE | scaler_state->scalers[id].mode |
--		skl_scaler_get_filter_select(crtc_state->hw.scaling_filter, false);
-+		skl_scaler_get_filter_select(crtc_state->hw.scaling_filter,
-+					     crtc_state->pch_pfit.casf.enable);
- 
- 	trace_intel_pipe_scaler_update_arm(crtc, id, x, y, width, height);
- 
--	skl_scaler_setup_filter(display, NULL, pipe, id, 0,
--				crtc_state->hw.scaling_filter);
-+	if (crtc_state->pch_pfit.casf.enable)
-+		intel_casf_setup(crtc_state);
-+	else
-+		skl_scaler_setup_filter(display, NULL, pipe, id, 0,
-+					crtc_state->hw.scaling_filter);
-+
-+	if (scaler_has_casf(display, id))
-+		intel_de_write_fw(display, SHARPNESS_CTL(crtc->pipe),
-+				  casf_sharpness_ctl(crtc_state));
- 
- 	intel_de_write_fw(display, SKL_PS_CTRL(pipe, id), ps_ctrl);
- 
-@@ -930,6 +910,9 @@ static void skl_detach_scaler(struct intel_dsb *dsb,
- 
- 	trace_intel_scaler_disable_arm(crtc, id);
- 
-+	if (scaler_has_casf(display, id))
-+		intel_de_write_dsb(display, dsb, SHARPNESS_CTL(crtc->pipe), 0);
-+
- 	intel_de_write_dsb(display, dsb, SKL_PS_CTRL(crtc->pipe, id), 0);
- 	intel_de_write_dsb(display, dsb, SKL_PS_WIN_POS(crtc->pipe, id), 0);
- 	intel_de_write_dsb(display, dsb, SKL_PS_WIN_SZ(crtc->pipe, id), 0);
-@@ -983,18 +966,16 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
- 		if (scaler_has_casf(display, i))
- 			intel_casf_sharpness_get_config(crtc_state);
- 
--		if (!crtc_state->pch_pfit.casf.enable)
--			crtc_state->pch_pfit.enabled = true;
-+		crtc_state->pch_pfit.enabled = true;
- 
- 		pos = intel_de_read(display, SKL_PS_WIN_POS(crtc->pipe, i));
- 		size = intel_de_read(display, SKL_PS_WIN_SZ(crtc->pipe, i));
- 
--		if (!crtc_state->pch_pfit.casf.enable)
--			drm_rect_init(&crtc_state->pch_pfit.dst,
--				      REG_FIELD_GET(PS_WIN_XPOS_MASK, pos),
--				      REG_FIELD_GET(PS_WIN_YPOS_MASK, pos),
--				      REG_FIELD_GET(PS_WIN_XSIZE_MASK, size),
--				      REG_FIELD_GET(PS_WIN_YSIZE_MASK, size));
-+		drm_rect_init(&crtc_state->pch_pfit.dst,
-+			      REG_FIELD_GET(PS_WIN_XPOS_MASK, pos),
-+			      REG_FIELD_GET(PS_WIN_YPOS_MASK, pos),
-+			      REG_FIELD_GET(PS_WIN_XSIZE_MASK, size),
-+			      REG_FIELD_GET(PS_WIN_YSIZE_MASK, size));
- 
- 		scaler_state->scalers[i].in_use = true;
- 		break;
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.h b/drivers/gpu/drm/i915/display/skl_scaler.h
-index 20ecf373eb19..5deabca909e6 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.h
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.h
-@@ -36,8 +36,6 @@ void skl_scaler_disable(const struct intel_crtc_state *old_crtc_state);
- 
- void skl_scaler_get_config(struct intel_crtc_state *crtc_state);
- 
--void skl_scaler_setup_casf(const struct intel_crtc_state *crtc_state);
--
- enum drm_mode_status
- skl_scaler_mode_valid(struct intel_display *display,
- 		      const struct drm_display_mode *mode,
--- 
-2.52.0
-
+On 3/16/2026 3:27 PM, Shuicheng Lin wrote:
+> XE_GGTT_FLAGS_64K is defined twice in xe_ggtt.c: once at file scope
+> (alongside XE_GGTT_FLAGS_ONLINE) and once inside struct xe_ggtt. The
+> duplicate inside the struct was originally the only definition when the
+> struct lived in xe_ggtt_types.h, but when commit 4f3a998a173b ("drm/xe:
+> Open-code GGTT MMIO access protection") added the file-scope definitions
+> for both FLAGS_64K and FLAGS_ONLINE, it did not remove the pre-existing
+> one inside the struct.
+>
+> Remove the redundant definition inside struct xe_ggtt, keeping only the
+> file-scope pair at the top of the file.
+>
+> Fixes: 4f3a998a173b ("drm/xe: Open-code GGTT MMIO access protection")
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Shuicheng Lin <shuicheng.lin@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_ggtt.c | 1 -
+>   1 file changed, 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+> index 21071b64b09d..68d54ddfcdb1 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+> @@ -115,7 +115,6 @@ struct xe_ggtt {
+>   	/** @size: Total usable size of this GGTT */
+>   	u64 size;
+>   
+> -#define XE_GGTT_FLAGS_64K BIT(0)
+>   	/**
+>   	 * @flags: Flags for this GGTT
+>   	 * Acceptable flags:
