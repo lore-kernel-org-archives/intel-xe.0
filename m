@@ -4,51 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBA0F10A88D4
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 17:16:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C060110A88EA
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 17:16:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B86110EB32;
-	Thu, 26 Mar 2026 17:16:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BBD710EB8B;
+	Thu, 26 Mar 2026 17:16:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MzpAp8IP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZlqJxell";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5E2910EB09;
- Thu, 26 Mar 2026 17:15:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A74F710EB09;
+ Thu, 26 Mar 2026 17:15:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774545347; x=1806081347;
+ t=1774545349; x=1806081349;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=amNWHUT/CcvPrI/zW+e2XMzZsPkD4CCOu1jj3CSkCbk=;
- b=MzpAp8IP0Yi6Ct47WKSiHUo2zXVYAsP97ziuhlTA+ozJpXEp0foSpS+9
- OXbxo9TKrzSGJEwVufkTDR52YmR/IJAsDKp7FiBq46hgk/zYyCyk8atMU
- Of609MrW7HhRjRxwk/NsZZwsk0rQUrim5wZjraUu/KtLo7tX0s9aSuQS8
- 9u1C6OhUNHaTqo2EGfUumIM3ETulmiEt/cD3YrP6TOxjhgFS3fjmUgGiY
- 1AqzbkowGZZssXvP/8PjUHz0ztrs/zKuOf1drpof2pyR+lSa0be/sf5cb
- lxGJqQV8fZQapdQb9/+KY8eMU2x1MuW4Izcioo7jTF99evkLnIa83qfNQ A==;
-X-CSE-ConnectionGUID: 8rHhkKgwSxaFxXvl7jzCzA==
-X-CSE-MsgGUID: WPyhCuHITP++opulMLvMHg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75630609"
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75630609"
+ bh=96ird4+ZT6B37WcmIhjPH+/jdw9vIeYtD1eB+EX70dM=;
+ b=ZlqJxell4gg9BN/am5ij+JOJMtq1XTBSufdVDGVh3LoeOvaCeEos2ov5
+ qHrwg1FYa2oGk2PSHJ9CzZI3HsSiJv5DppMEGurjD9bQHa89XFbMSAyPz
+ tImLxHhWOrPHfS66vyJuYNRrjO7NBorIow/nPU/9CJFpINxfrEHyfJTY8
+ i96IUt8aU3izeFtQyEty0dCfIDSF0je6QifYxDmy3yjCbq8v1ytI49TE/
+ iFSp0vQO5jw+0vEN6+E4eRoIsvxw6lXJivnG66ljswUtju7tE2Ja9Zdl5
+ zHOOJBlTIs9N5YqKDuKnIaEDUth2nlQnnZiBqIRJmIvQ/pYNqydNC8mVg A==;
+X-CSE-ConnectionGUID: k08+yVL2QFyOxY9srLZOXQ==
+X-CSE-MsgGUID: QCTv0M0iQTyIbymlXEeV2w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75630611"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75630611"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 10:15:47 -0700
-X-CSE-ConnectionGUID: Q9FSWBvRSJO6cRvmZUZJuQ==
-X-CSE-MsgGUID: q2ZrAq0bSw6ReYbwSs0hew==
+ 26 Mar 2026 10:15:49 -0700
+X-CSE-ConnectionGUID: V1bN/V6FQDquzDNfAJD8Nw==
+X-CSE-MsgGUID: v1S/kCl0SO6l9dEpB2u6JQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="262975661"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="262975664"
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 10:15:45 -0700
+ 26 Mar 2026 10:15:47 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: animesh.manna@intel.com, uma.shankar@intel.com,
  suresh.kumar.kurmi@intel.com
-Subject: [PATCH 17/19] drm/i915/display: Remove DC3CO DMC debugfs
-Date: Thu, 26 Mar 2026 22:45:55 +0530
-Message-ID: <20260326171557.2065632-18-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [PATCH 18/19] drm/i915/display: Add DC3CO count and residency in dmc
+ debugfs
+Date: Thu, 26 Mar 2026 22:45:56 +0530
+Message-ID: <20260326171557.2065632-19-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260326171557.2065632-1-dibin.moolakadan.subrahmanian@intel.com>
 References: <20260326171557.2065632-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -68,39 +69,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DC3CO is not enabled on TGL and DG1. Remove the debugfs entry for
-DC3CO counts. A new debugfs entry for Xe3LP will be added in a
-subsequent patch.
+Expose DC3CO count and residency for xe3lp platforms via debugfs.
 
 Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c | 6 ------
- 1 file changed, 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dmc.c      | 8 +++++++-
+ drivers/gpu/drm/i915/display/intel_dmc_regs.h | 2 ++
+ 2 files changed, 9 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 74d18806d01f..f0ebdab089ca 100644
+index f0ebdab089ca..6f24ee620f2e 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -1645,19 +1645,13 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
+@@ -1645,7 +1645,13 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
  		   DMC_VERSION_MINOR(dmc->version));
  
  	if (DISPLAY_VER(display) >= 12) {
--		i915_reg_t dc3co_reg;
--
- 		if (display->platform.dgfx || DISPLAY_VER(display) >= 14) {
--			dc3co_reg = DG1_DMC_DEBUG3;
+-		if (display->platform.dgfx || DISPLAY_VER(display) >= 14) {
++		if (DISPLAY_VER(display) >= 35) {
++			seq_printf(m, "DC3CO count: %d\n",
++				   intel_de_read(display, XE3P_DMC_DC3CO_COUNT));
++
++			seq_printf(m, "DC3CO residency: %d\n",
++				   intel_de_read(display, DC_STATE_DC3CO_RESIDENCY));
++		} else if (display->platform.dgfx || DISPLAY_VER(display) >= 14) {
  			dc5_reg = DG1_DMC_DEBUG_DC5_COUNT;
  		} else {
--			dc3co_reg = TGL_DMC_DEBUG3;
  			dc5_reg = TGL_DMC_DEBUG_DC5_COUNT;
- 			dc6_reg = TGL_DMC_DEBUG_DC6_COUNT;
- 		}
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+index 38e342b45af0..1998549b6318 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
+@@ -531,6 +531,8 @@ enum pipedmc_event_id {
+ #define TGL_DMC_DEBUG3		_MMIO(0x101090)
+ #define DG1_DMC_DEBUG3		_MMIO(0x13415c)
  
--		seq_printf(m, "DC3CO count: %d\n",
--			   intel_de_read(display, dc3co_reg));
- 	} else {
- 		dc5_reg = display->platform.broxton ? BXT_DMC_DC3_DC5_COUNT :
- 			SKL_DMC_DC3_DC5_COUNT;
++#define XE3P_DMC_DC3CO_COUNT	_MMIO(0x8f05C)
++
+ #define DMC_WAKELOCK_CFG	_MMIO(0x8F1B0)
+ #define  DMC_WAKELOCK_CFG_ENABLE REG_BIT(31)
+ #define DMC_WAKELOCK1_CTL	_MMIO(0x8F140)
 -- 
 2.43.0
 
