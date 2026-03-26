@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C524F10A62CB
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 13:09:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9312E10A62CA
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Mar 2026 13:09:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8540910E92A;
-	Thu, 26 Mar 2026 13:09:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50B6B10E2D5;
+	Thu, 26 Mar 2026 13:09:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JS0jIe52";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q4Wo2kjQ";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B475410E92B
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Mar 2026 13:09:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DCFE10E92E
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Mar 2026 13:09:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774530559; x=1806066559;
+ t=1774530556; x=1806066556;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=z3+hIEpe/bgtM8ydU4JIIIct8xWll9TAaF8uYGZowoc=;
- b=JS0jIe525uBQKP/HLEK4RyOtWCzAY/yr9soV1RnbQQuf9ecU5qnc8pIx
- QIQzYBnmpfFVKpxz9PT14Ks5PYR788MDfSPmzG/aSblx0K5Kjtg0i8P+j
- +1vqlRsYjHbABjpcFQdLeFBHR7E7UHr9mgyFvttj4D6riomVQdnhc3T4g
- w97DRipygL+S05bl5bNTIlA+SRCFPqtHiKQipqWYDcxGiH6d4yte28vtu
- bpBLQMmVPvzxWlSMo0jdC34AHzLhgb63N/9Qty+hsYv/v6YwfglKjP/xz
- QgBW4dz1Nc8zKBvu8/jMKRdMfCNsjna6yjEa8E2b0665P2JmqI2i9ocKe A==;
-X-CSE-ConnectionGUID: ILxIdiL4R/qhKI9fERkB1A==
-X-CSE-MsgGUID: WLc76oDERHmNBsLr4p4D+Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="75784792"
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75784792"
+ bh=392f/tzGWbB/mQfCFybnudlT5J5Ubw/PwrVNVFEmoTI=;
+ b=Q4Wo2kjQT7AiPCGVHg/aX6uPYBPRJPVNeY5WnDWR9rj8QnWxN0LNYkJW
+ bB5WTsr05DjJmS6S6AyatMxCyTkCS5e8MeTP3ysDuGN7DzHWQAdtLiwm0
+ 0kp8QBJYPBG3QxnCiuxQathcRHiPIyIIFwjoNLNfwIIAQWxw86j9O85af
+ /5QDlfBgtWXoRIujQizF9wvxe0rKhcsXaAE7k2UR9u++WEvCpktYH2RPK
+ S8BqV2k/T9aZh2jK58FlW0qhP067AKe+MRtu736AAahAEnMDisN1mPiqN
+ 1FuY0rF1ox4En061rXB1NuRXg3ypUxHMlyZTgiew0po0u+13ilZtDvQPR w==;
+X-CSE-ConnectionGUID: wTENoLyHQxmFTISoLCoTlw==
+X-CSE-MsgGUID: bi9CblZOQwu/l/yluQM4gA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="75784788"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75784788"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 06:09:19 -0700
-X-CSE-ConnectionGUID: 1Fs9F/1GTRaLWcGxsRX+Mw==
-X-CSE-MsgGUID: +Wd0RsbwQra2AP01eB0e/g==
+ 26 Mar 2026 06:09:15 -0700
+X-CSE-ConnectionGUID: P6xvn587Qxm6fULm+eI02w==
+X-CSE-MsgGUID: WCgZBagYSpGSofw+uhDmzA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="224070592"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="224070576"
 Received: from varungup-desk.iind.intel.com ([10.190.238.71])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 06:09:17 -0700
+ 26 Mar 2026 06:09:13 -0700
 From: Arvind Yadav <arvind.yadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, himal.prasad.ghimiray@intel.com,
  thomas.hellstrom@linux.intel.com
-Subject: [PATCH v9 12/12] drm/xe/madvise: Accept canonical GPU addresses in
- xe_vm_madvise_ioctl
-Date: Thu, 26 Mar 2026 18:38:38 +0530
-Message-ID: <20260326130843.3545241-13-arvind.yadav@intel.com>
+Subject: [PATCH v9 10/12] drm/xe/bo: Add purgeable shrinker state helpers
+Date: Thu, 26 Mar 2026 18:38:36 +0530
+Message-ID: <20260326130843.3545241-11-arvind.yadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260326130843.3545241-1-arvind.yadav@intel.com>
 References: <20260326130843.3545241-1-arvind.yadav@intel.com>
@@ -69,66 +68,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Userspace passes canonical (sign-extended) GPU addresses where bits 63:48
-mirror bit 47. The internal GPUVM uses non-canonical form (upper bits
-zeroed), so passing raw canonical addresses into GPUVM lookups causes
-mismatches for addresses above 128TiB.
+Encapsulate TTM purgeable flag updates and shrinker page accounting
+into helper functions to prevent desynchronization between the TTM
+tt->purgeable flag and the shrinker's page bucket counters.
 
-Strip the sign extension with xe_device_uncanonicalize_addr() at the
-top of xe_vm_madvise_ioctl(). Non-canonical addresses are unaffected.
+Without these helpers, direct manipulation of xe_ttm_tt->purgeable
+risks forgetting to update the corresponding shrinker counters,
+leading to incorrect memory pressure calculations.
 
-Fixes: ada7486c5668 ("drm/xe: Implement madvise ioctl for xe")
+Update purgeable BO state to PURGED after successful shrinker purge
+for DONTNEED BOs.
 
-Suggested-by: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+v4:
+  - @madv_purgeable atomic_t → u32 change across all relevant
+    patches (Matt)
+
+v5:
+  - Update purgeable BO state to PURGED after a successful shrinker
+    purge for DONTNEED BOs.
+  - Split ghost BO and zero-refcount handling in xe_bo_shrink() (Thomas)
+
+v6:
+  - Create separate patch for 'Split ghost BO and zero-refcount
+    handling'. (Thomas)
+
+v7:
+  - Merge xe_bo_set_purgeable_shrinker() and xe_bo_clear_purgeable_shrinker()
+    into a single static helper xe_bo_set_purgeable_shrinker(bo, new_state)
+    called automatically from xe_bo_set_purgeable_state(). Callers no longer
+    need to manage shrinker accounting separately. (Thomas)
+
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Arvind Yadav <arvind.yadav@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm_madvise.c | 16 ++++++++++++----
- 1 file changed, 12 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c | 43 +++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 42 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index 33786a5d62a6..1a4e436210de 100644
---- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-+++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -673,8 +673,15 @@ int xe_vm_madvise_ioctl(struct drm_device *dev, void *data, struct drm_file *fil
- 	struct xe_device *xe = to_xe_device(dev);
- 	struct xe_file *xef = to_xe_file(file);
- 	struct drm_xe_madvise *args = data;
--	struct xe_vmas_in_madvise_range madvise_range = {.addr = args->start,
--							 .range =  args->range, };
-+	struct xe_vmas_in_madvise_range madvise_range = {
-+		/*
-+		 * Userspace may pass canonical (sign-extended) addresses.
-+		 * Strip the sign extension to get the internal non-canonical
-+		 * form used by the GPUVM, matching xe_vm_bind_ioctl() behavior.
-+		 */
-+		.addr = xe_device_uncanonicalize_addr(xe, args->start),
-+		.range = args->range,
-+	};
- 	struct xe_madvise_details details;
- 	u16 pat_index, coh_mode;
- 	struct xe_vm *vm;
-@@ -725,7 +732,7 @@ int xe_vm_madvise_ioctl(struct drm_device *dev, void *data, struct drm_file *fil
- 	if (err)
- 		goto unlock_vm;
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 533e75b9c701..1d4f81b000de 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -838,6 +838,42 @@ static int xe_bo_move_notify(struct xe_bo *bo,
+ 	return 0;
+ }
  
--	err = xe_vm_alloc_madvise_vma(vm, args->start, args->range);
-+	err = xe_vm_alloc_madvise_vma(vm, madvise_range.addr, args->range);
- 	if (err)
- 		goto madv_fini;
++/**
++ * xe_bo_set_purgeable_shrinker() - Update shrinker accounting for purgeable state
++ * @bo: Buffer object
++ * @new_state: New purgeable state being set
++ *
++ * Transfers pages between shrinkable and purgeable buckets when the BO
++ * purgeable state changes. Called automatically from xe_bo_set_purgeable_state().
++ */
++static void xe_bo_set_purgeable_shrinker(struct xe_bo *bo,
++					 enum xe_madv_purgeable_state new_state)
++{
++	struct ttm_buffer_object *ttm_bo = &bo->ttm;
++	struct ttm_tt *tt = ttm_bo->ttm;
++	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
++	struct xe_ttm_tt *xe_tt;
++	long tt_pages;
++
++	xe_bo_assert_held(bo);
++
++	if (!tt || !ttm_tt_is_populated(tt))
++		return;
++
++	xe_tt = container_of(tt, struct xe_ttm_tt, ttm);
++	tt_pages = tt->num_pages;
++
++	if (!xe_tt->purgeable && new_state == XE_MADV_PURGEABLE_DONTNEED) {
++		xe_tt->purgeable = true;
++		/* Transfer pages from shrinkable to purgeable count */
++		xe_shrinker_mod_pages(xe->mem.shrinker, -tt_pages, tt_pages);
++	} else if (xe_tt->purgeable && new_state == XE_MADV_PURGEABLE_WILLNEED) {
++		xe_tt->purgeable = false;
++		/* Transfer pages from purgeable to shrinkable count */
++		xe_shrinker_mod_pages(xe->mem.shrinker, tt_pages, -tt_pages);
++	}
++}
++
+ /**
+  * xe_bo_set_purgeable_state() - Set BO purgeable state with validation
+  * @bo: Buffer object
+@@ -845,7 +881,8 @@ static int xe_bo_move_notify(struct xe_bo *bo,
+  *
+  * Sets the purgeable state with lockdep assertions and validates state
+  * transitions. Once a BO is PURGED, it cannot transition to any other state.
+- * Invalid transitions are caught with xe_assert().
++ * Invalid transitions are caught with xe_assert(). Shrinker page accounting
++ * is updated automatically.
+  */
+ void xe_bo_set_purgeable_state(struct xe_bo *bo,
+ 			       enum xe_madv_purgeable_state new_state)
+@@ -864,6 +901,7 @@ void xe_bo_set_purgeable_state(struct xe_bo *bo,
+ 			new_state != XE_MADV_PURGEABLE_PURGED));
  
-@@ -797,7 +804,8 @@ int xe_vm_madvise_ioctl(struct drm_device *dev, void *data, struct drm_file *fil
- 	madvise_funcs[attr_type](xe, vm, madvise_range.vmas, madvise_range.num_vmas, args,
- 				 &details);
+ 	bo->madv_purgeable = new_state;
++	xe_bo_set_purgeable_shrinker(bo, new_state);
+ }
  
--	err = xe_vm_invalidate_madvise_range(vm, args->start, args->start + args->range);
-+	err = xe_vm_invalidate_madvise_range(vm, madvise_range.addr,
-+					     madvise_range.addr + args->range);
+ /**
+@@ -1246,6 +1284,9 @@ long xe_bo_shrink(struct ttm_operation_ctx *ctx, struct ttm_buffer_object *bo,
+ 			lret = xe_bo_move_notify(xe_bo, ctx);
+ 		if (!lret)
+ 			lret = xe_bo_shrink_purge(ctx, bo, scanned);
++		if (lret > 0 && xe_bo_madv_is_dontneed(xe_bo))
++			xe_bo_set_purgeable_state(xe_bo,
++						  XE_MADV_PURGEABLE_PURGED);
+ 		goto out_unref;
+ 	}
  
- 	if (madvise_range.has_svm_userptr_vmas)
- 		xe_svm_notifier_unlock(vm);
 -- 
 2.43.0
 
