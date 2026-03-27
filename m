@@ -4,27 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC95F10F284E
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 16:40:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5204410F284D
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 16:43:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C12010ECFE;
-	Fri, 27 Mar 2026 16:40:25 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8271C10E3CC;
- Fri, 27 Mar 2026 16:40:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0010137583804017640=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0365610ED00;
+	Fri, 27 Mar 2026 16:43:57 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="K7RNr0jB";
+	dkim-atps=neutral
+Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E97710E3CC;
+ Fri, 27 Mar 2026 16:43:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Transfer-Encoding:
+ Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+ Sender:Reply-To:Content-ID:Content-Description;
+ bh=BINe5VahrxEruN6rxwODM4u4HsY0IVSQhq1Wvv0EbGk=; b=K7RNr0jBHMBreSkUMC6GHsQ8xq
+ oj2iL/08cw+kAmOBPchjcuwG9elTEsrg+leMiYYGGbG0gOlKfiS/sfvctQ2ti0tk4mmou3PgpXwZ4
+ WoFQiKKhLqK7lJhFqYeCO27jaFRdKsjLJ0tgntyjx/UcMU9i4pN30WppvJSKn505TJJc8ymPVphxY
+ 7bRzXLuNWA0U2B5L3YHrn5j0JD6MqRskdTgiqufutlq7USF/rPaV4Jd/NdvhecsJnysxzMaMj4+kQ
+ aY2HZT6vPMNrYxXGEJaE5MZEtYrV2oyNbeJZENpwcmfAy6yYfKzU0GVh4Ff/2+tDIoF8iXuST5cs8
+ jfsIOuOg==;
+Received: from
+ 2001-1c00-8d85-4b00-266e-96ff-fe07-7dcc.cable.dynamic.v6.ziggo.nl
+ ([2001:1c00:8d85:4b00:266e:96ff:fe07:7dcc]
+ helo=noisy.programming.kicks-ass.net)
+ by casper.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+ id 1w6AHq-000000026WF-1d7E; Fri, 27 Mar 2026 16:43:54 +0000
+Received: by noisy.programming.kicks-ass.net (Postfix, from userid 1000)
+ id DC218300E56; Fri, 27 Mar 2026 17:43:53 +0100 (CET)
+Date: Fri, 27 Mar 2026 17:43:53 +0100
+From: Peter Zijlstra <peterz@infradead.org>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Cc: willy@infradead.org, linux-kernel@vger.kernel.org,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>,
+ "Saarinen, Jani" <jani.saarinen@intel.com>, ravitejax.veesam@intel.com
+Subject: Re: Regression on linux-next (next-20260324 )
+Message-ID: <20260327164353.GM3739106@noisy.programming.kicks-ass.net>
+References: <af005996-05e9-4336-8450-d14ca652ba5d@intel.com>
+ <20260327163100.GL3738010@noisy.programming.kicks-ass.net>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Document_GT_stati?=
- =?utf-8?q?stics?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Mar 2026 16:40:24 -0000
-Message-ID: <177462962450.407613.15983716521471431395@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260327155817.201865-1-francois.dugast@intel.com>
-In-Reply-To: <20260327155817.201865-1-francois.dugast@intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260327163100.GL3738010@noisy.programming.kicks-ass.net>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,154 +61,82 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0010137583804017640==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Mar 27, 2026 at 05:31:00PM +0100, Peter Zijlstra wrote:
+> On Fri, Mar 27, 2026 at 07:09:26PM +0530, Borah, Chaitanya Kumar wrote:
+> > Hello Matthew,
+> > 
+> > Hope you are doing well. I am Chaitanya from the linux graphics team in
+> > Intel.
+> > 
+> > This mail is regarding a regression we are seeing in our CI runs[1] on
+> > linux-next repository.
+> > 
+> > Since the version next-20260324 [2], we are seeing the following regression
+> > 
+> > `````````````````````````````````````````````````````````````````````````````````
+> > <5>[  157.361977] [IGT] Inactivity timeout exceeded. Killing the current
+> > test with SIGQUIT.
+> > <6>[  157.362097] sysrq: HELP : loglevel(0-9) reboot(b) crash(c)
+> > show-all-locks(d) terminate-all-tasks(e) memory-full-oom-kill(f)
+> > kill-all-tasks(i) thaw-filesystems(j) sak(k)
+> > show-backtrace-all-active-cpus(l) show-memory-usage(m) nice-all-RT-tasks(n)
+> > poweroff(o) show-registers(p) show-all-timers(q) unraw(r) sync(s)
+> > show-task-states(t) unmount(u) force-fb(v) show-blocked-tasks(w)
+> > dump-ftrace-buffer(z) replay-kernel-logs(R)
+> > <6>[  157.399543] sysrq: Show State
+> > <6>[  157.403061] task:systemd         state:S stack:0     pid:1 tgid:1
+> > ppid:0      task_flags:0x400100 flags:0x00080000
+> > <6>[  157.403067] Call Trace:
+> > <6>[  157.403069]  <TASK>
+> > <6>[  157.403072]  __schedule+0x5d7/0x1ef0
+> > <6>[  157.403078]  ? lock_acquire+0xc4/0x300
+> > <6>[  157.403084]  ? schedule+0x10e/0x180
+> > <6>[  157.403087]  ? lock_release+0xcd/0x2b0
+> > <6>[  157.403092]  schedule+0x3a/0x180
+> > <6>[  157.403094]  schedule_hrtimeout_range_clock+0x112/0x120
+> > <6>[  157.403097]  ? do_epoll_wait+0x3e4/0x5b0
+> > <6>[  157.403102]  ? lock_release+0xcd/0x2b0
+> > <6>[  157.403104]  ? _raw_spin_unlock_irq+0x27/0x70
+> > <6>[  157.403106]  ? do_epoll_wait+0x3e4/0x5b0
+> > <6>[  157.403110]  schedule_hrtimeout_range+0x13/0x30
+> > `````````````````````````````````````````````````````````````````````````````````
+> > Details log can be found in [3].
+> > 
+> > After bisecting the tree, the following patch [4] seems to be the first
+> > "bad" commit
+> > 
+> > `````````````````````````````````````````````````````````````````````````````````````````````````````````
+> > commit 25500ba7e77ce9d3d9b5a1929d41a2ee2e23f6fe
+> > Author: Matthew Wilcox (Oracle) willy@infradead.org
+> > Date:   Thu Mar 5 19:55:43 2026 +0000
+> > 
+> >     locking/mutex: Remove the list_head from struct mutex
+> > `````````````````````````````````````````````````````````````````````````````````````````````````````````
+> > 
+> > We could not revert the patch because of merge conflict but resetting to the
+> > parent of the commit seems to fix the issue.
+> > 
+> > Could you please check why the patch causes this regression and provide a
+> > fix if necessary?
+> 
+> Does this help?
 
-== Series Details ==
+More tidy version of the same...
 
-Series: drm/xe: Document GT statistics
-URL   : https://patchwork.freedesktop.org/series/164005/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-4808-5e969b40dc7d9c8586e1e0725bcaa78b040b3460_BAT -> xe-pw-164005v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-164005v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4808-5e969b40dc7d9c8586e1e0725bcaa78b040b3460/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#6519])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4808-5e969b40dc7d9c8586e1e0725bcaa78b040b3460/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][5] ([Intel XE#7483]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4808-5e969b40dc7d9c8586e1e0725bcaa78b040b3460/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
-
-
-Build changes
--------------
-
-  * Linux: xe-4808-5e969b40dc7d9c8586e1e0725bcaa78b040b3460 -> xe-pw-164005v1
-
-  IGT_8834: 8834
-  xe-4808-5e969b40dc7d9c8586e1e0725bcaa78b040b3460: 5e969b40dc7d9c8586e1e0725bcaa78b040b3460
-  xe-pw-164005v1: 164005v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v1/index.html
-
---===============0010137583804017640==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Document GT statistics</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164005/">https://patchwork.freedesktop.org/series/164005/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4808-5e969b40dc7d9c8586e1e0725bcaa78b040b3460_BAT -&gt; xe-pw-164005v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-164005v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4808-5e969b40dc7d9c8586e1e0725bcaa78b040b3460/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@engine:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4808-5e969b40dc7d9c8586e1e0725bcaa78b040b3460/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4808-5e969b40dc7d9c8586e1e0725bcaa78b040b3460/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4808-5e969b40dc7d9c8586e1e0725bcaa78b040b3460 -&gt; xe-pw-164005v1</li>
-</ul>
-<p>IGT_8834: 8834<br />
-  xe-4808-5e969b40dc7d9c8586e1e0725bcaa78b040b3460: 5e969b40dc7d9c8586e1e0725bcaa78b040b3460<br />
-  xe-pw-164005v1: 164005v1</p>
-
-</body>
-</html>
-
---===============0010137583804017640==--
+---
+diff --git a/kernel/locking/ww_mutex.h b/kernel/locking/ww_mutex.h
+index b1834ab7e782..bb8b410779d4 100644
+--- a/kernel/locking/ww_mutex.h
++++ b/kernel/locking/ww_mutex.h
+@@ -42,7 +42,7 @@ __ww_waiter_last(struct mutex *lock)
+ 	struct mutex_waiter *w = lock->first_waiter;
+ 
+ 	if (w)
+-		w = list_prev_entry(w, list);
++		w = __ww_waiter_prev(lock, w);
+ 	return w;
+ }
+ 
