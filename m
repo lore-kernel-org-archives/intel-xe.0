@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4706210ED654
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 10:12:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE60010ED640
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 10:12:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D71A410EC9D;
-	Fri, 27 Mar 2026 10:12:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E3F410EC8B;
+	Fri, 27 Mar 2026 10:12:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Et1WL6jW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JiinTCfv";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 488D810EC89
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Mar 2026 10:11:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0785010ECBA
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Mar 2026 10:12:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774606319; x=1806142319;
+ t=1774606324; x=1806142324;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tX7A0h5YO8eeWCB9Mx8o1pZCdtzab8uSXsdrlZ+Dv3c=;
- b=Et1WL6jW5YQHHvrVyBuEGJQvCouWZhTANsD5mvQEf7oUoyBV8i20U/v2
- jQxeOcn/cOyBCtg4c98fnANLBVdHV79M0Lg6ksqg+icmI7QhqiCTmMEn2
- afT3ANTtkDQt1cZ5TtQuyHfYZXWD9MNo2YgMmyeV4GXm4khEw1jdYRbhb
- EfwoUHzRUHLqSwwIBQP9C0PqG2R+E4/5GVRmBmHb0zpOri61CjuOnva5C
- EXDV08srOQvLGUh3Fp1/coSzhYhmvbWXLTkMPl/6nwBAJSPsHVrjFTddw
- ECQmy9/d84DW/ES0D2gDgiyT+eYWh2IJ8BzuYPnjA4GEgAAEw4wOTdTeE A==;
-X-CSE-ConnectionGUID: DoXwqPszTAGx/4upVL3AZA==
-X-CSE-MsgGUID: yapmC5TJRxOF7our2OtcDQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75792673"
-X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="75792673"
+ bh=46tBNpGXMXYJfiItvMnHVNb9eLPnlA0Jentl7f4BvXU=;
+ b=JiinTCfv2NkLgWqSiJhGOGOzvVWGZ+15SbiVPVcopaYnjFvxk/vXJmWY
+ yOT8y6YQ7WS9igF9uxUUgCw2D2zP5cr4/GePZw2E9Oytf2G/oF82YLYUE
+ e0A0WKqhUh8LMvNx6x2OJ2zmtcATop+le76nXGndZ6K/B9tf9lGuoE6kF
+ cXUyf/cSDL4dUwlrOpUkOcWGgaLe6BPnZi9r55JBUqz08txo2xbG66APc
+ U2uF+X9/zbtkpJ5Q/ziB9lh4ChSgUEvMruyGglTewo2uEih6oQ6X6/t4f
+ KQjK9gyhd5md7MqPWaRU+yQYVnl/B4dqtZbMeNKpW82tyNVtqWhI0hJyp A==;
+X-CSE-ConnectionGUID: 5NMZ86IlTp2bPqmeGtgzsw==
+X-CSE-MsgGUID: +u+VzmfPRM+X+3yFegSH8g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75792683"
+X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="75792683"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2026 03:11:59 -0700
-X-CSE-ConnectionGUID: qlYGpoXIRpCzG6gi71TA/w==
-X-CSE-MsgGUID: GyBeYaD3S7CeXwRaRqovVw==
+ 27 Mar 2026 03:12:03 -0700
+X-CSE-ConnectionGUID: 8SrQLKddT5q5rn43wT9LRw==
+X-CSE-MsgGUID: EUwmk24HTKKnlsO9tOxKFQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="230197950"
+X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="230197957"
 Received: from gsd-build.iind.intel.com ([10.190.229.167])
- by orviesa005.jf.intel.com with ESMTP; 27 Mar 2026 03:11:57 -0700
+ by orviesa005.jf.intel.com with ESMTP; 27 Mar 2026 03:12:02 -0700
 From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
@@ -47,10 +47,10 @@ Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
  =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
  Maarten Lankhorst <dev@lankhorst.se>,
  Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v2 1/3] drm/xe/mm: add XE MM SUBALLOC manager with shadow
- support
-Date: Fri, 27 Mar 2026 10:11:48 +0000
-Message-ID: <20260327101146.3826819-6-satyanarayana.k.v.p@intel.com>
+Subject: [PATCH v2 3/3] drm/xe/vf: Use drm mm instead of drm sa for CCS
+ read/write
+Date: Fri, 27 Mar 2026 10:11:50 +0000
+Message-ID: <20260327101146.3826819-8-satyanarayana.k.v.p@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260327101146.3826819-5-satyanarayana.k.v.p@intel.com>
 References: <20260327101146.3826819-5-satyanarayana.k.v.p@intel.com>
@@ -71,351 +71,332 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a xe_mm_suballoc manager to allocate sub-ranges from a BO-backed pool
-using drm_mm.
+The suballocator algorithm tracks a hole cursor at the last allocation
+and tries to allocate after it. This is optimized for fence-ordered
+progress, where older allocations are expected to become reusable first.
 
+In fence-enabled mode, that ordering assumption holds. In fence-disabled
+mode, allocations may be freed in arbitrary order, so limiting allocation
+to the current hole window can miss valid free space and fail allocations
+despite sufficient total space.
+
+Use DRM memory manager instead of sub-allocator to get rid of this issue
+as CCS read/write operations do not use fences.
+
+Fixes: 864690cf4dd62 ("drm/xe/vf: Attach and detach CCS copy commands with BO")
 Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Maarten Lankhorst <dev@lankhorst.se>
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
 ---
 V1 -> V2:
 - Renamed xe_drm_mm to xe_mm_suballoc (Thomas)
-- Removed memset during manager init and insert (Matt)
 ---
- drivers/gpu/drm/xe/Makefile               |   1 +
- drivers/gpu/drm/xe/xe_mm_suballoc.c       | 195 ++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_mm_suballoc.h       |  55 ++++++
- drivers/gpu/drm/xe/xe_mm_suballoc_types.h |  42 +++++
- 4 files changed, 293 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_mm_suballoc.c
- create mode 100644 drivers/gpu/drm/xe/xe_mm_suballoc.h
- create mode 100644 drivers/gpu/drm/xe/xe_mm_suballoc_types.h
+ drivers/gpu/drm/xe/xe_bo_types.h           |  3 +-
+ drivers/gpu/drm/xe/xe_migrate.c            | 56 ++++++++++++----------
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs.c       | 39 ++++++++-------
+ drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h |  5 +-
+ 4 files changed, 53 insertions(+), 50 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 49de1c22a469..2df958635a2d 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -41,6 +41,7 @@ xe-y += xe_bb.o \
- 	xe_device_sysfs.o \
- 	xe_dma_buf.o \
- 	xe_drm_client.o \
-+	xe_mm_suballoc.o \
- 	xe_drm_ras.o \
- 	xe_eu_stall.o \
- 	xe_exec.o \
-diff --git a/drivers/gpu/drm/xe/xe_mm_suballoc.c b/drivers/gpu/drm/xe/xe_mm_suballoc.c
-new file mode 100644
-index 000000000000..a186cbe594f1
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_mm_suballoc.c
-@@ -0,0 +1,195 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#include <drm/drm_managed.h>
-+#include <linux/kernel.h>
-+
-+#include "xe_device_types.h"
-+#include "xe_mm_suballoc_types.h"
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index ff8317bfc1ae..aad501c142cf 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -18,6 +18,7 @@
+ #include "xe_ggtt_types.h"
+ 
+ struct xe_device;
++struct xe_mm_suballoc_bb;
+ struct xe_vm;
+ 
+ #define XE_BO_MAX_PLACEMENTS	3
+@@ -88,7 +89,7 @@ struct xe_bo {
+ 	bool ccs_cleared;
+ 
+ 	/** @bb_ccs: BB instructions of CCS read/write. Valid only for VF */
+-	struct xe_bb *bb_ccs[XE_SRIOV_VF_CCS_CTX_COUNT];
++	struct xe_mm_suballoc_bb *bb_ccs[XE_SRIOV_VF_CCS_CTX_COUNT];
+ 
+ 	/**
+ 	 * @cpu_caching: CPU caching mode. Currently only used for userspace
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index fc918b4fba54..359985b58e4f 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -29,6 +29,7 @@
+ #include "xe_hw_engine.h"
+ #include "xe_lrc.h"
+ #include "xe_map.h"
 +#include "xe_mm_suballoc.h"
-+#include "xe_map.h"
-+
-+static void xe_mm_suballoc_manager_fini(struct drm_device *drm, void *arg)
-+{
-+	struct xe_mm_suballoc_manager *drm_mm_manager = arg;
-+	struct xe_bo *bo = drm_mm_manager->bo;
-+
-+	if (!bo) {
-+		drm_err(drm, "no bo for drm mm manager\n");
-+		return;
+ #include "xe_mocs.h"
+ #include "xe_printk.h"
+ #include "xe_pt.h"
+@@ -1166,11 +1167,12 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
+ 	u32 batch_size, batch_size_allocated;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	struct xe_res_cursor src_it, ccs_it;
++	struct xe_mm_suballoc_manager *bb_pool;
+ 	struct xe_sriov_vf_ccs_ctx *ctx;
+-	struct xe_sa_manager *bb_pool;
++	struct xe_mm_suballoc_bb *bb = NULL;
+ 	u64 size = xe_bo_size(src_bo);
+-	struct xe_bb *bb = NULL;
+ 	u64 src_L0, src_L0_ofs;
++	struct xe_bb xe_bb_tmp;
+ 	u32 src_L0_pt;
+ 	int err;
+ 
+@@ -1208,18 +1210,18 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
+ 		size -= src_L0;
+ 	}
+ 
+-	bb = xe_bb_alloc(gt);
++	bb = xe_mm_suballoc_bb_alloc();
+ 	if (IS_ERR(bb))
+ 		return PTR_ERR(bb);
+ 
+ 	bb_pool = ctx->mem.ccs_bb_pool;
+-	scoped_guard(mutex, xe_sa_bo_swap_guard(bb_pool)) {
+-		xe_sa_bo_swap_shadow(bb_pool);
++	scoped_guard(mutex, xe_mm_suballoc_bo_swap_guard(bb_pool)) {
++		xe_mm_suballoc_bo_swap_shadow(bb_pool);
+ 
+-		err = xe_bb_init(bb, bb_pool, batch_size);
++		err = xe_mm_suballoc_bb_insert(bb, bb_pool, batch_size);
+ 		if (err) {
+ 			xe_gt_err(gt, "BB allocation failed.\n");
+-			xe_bb_free(bb, NULL);
++			kfree(bb);
+ 			return err;
+ 		}
+ 
+@@ -1227,6 +1229,7 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
+ 		size = xe_bo_size(src_bo);
+ 		batch_size = 0;
+ 
++		xe_bb_tmp = (struct xe_bb){ .cs = bb->cs, .len = 0 };
+ 		/*
+ 		 * Emit PTE and copy commands here.
+ 		 * The CCS copy command can only support limited size. If the size to be
+@@ -1255,24 +1258,27 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
+ 			xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
+ 			batch_size += EMIT_COPY_CCS_DW;
+ 
+-			emit_pte(m, bb, src_L0_pt, false, true, &src_it, src_L0, src);
++			emit_pte(m, &xe_bb_tmp, src_L0_pt, false, true, &src_it, src_L0, src);
+ 
+-			emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
++			emit_pte(m, &xe_bb_tmp, ccs_pt, false, false, &ccs_it, ccs_size, src);
+ 
+-			bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
+-			flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
++			xe_bb_tmp.len = emit_flush_invalidate(xe_bb_tmp.cs, xe_bb_tmp.len,
++							      flush_flags);
++			flush_flags = xe_migrate_ccs_copy(m, &xe_bb_tmp, src_L0_ofs, src_is_pltt,
+ 							  src_L0_ofs, dst_is_pltt,
+ 							  src_L0, ccs_ofs, true);
+-			bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
++			xe_bb_tmp.len = emit_flush_invalidate(xe_bb_tmp.cs, xe_bb_tmp.len,
++							      flush_flags);
+ 
+ 			size -= src_L0;
+ 		}
+ 
+-		xe_assert(xe, (batch_size_allocated == bb->len));
++		xe_assert(xe, (batch_size_allocated == xe_bb_tmp.len));
++		bb->len = xe_bb_tmp.len;
+ 		src_bo->bb_ccs[read_write] = bb;
+ 
+ 		xe_sriov_vf_ccs_rw_update_bb_addr(ctx);
+-		xe_sa_bo_sync_shadow(bb->bo);
++		xe_mm_suballoc_sync_shadow(bb_pool, &bb->node);
+ 	}
+ 
+ 	return 0;
+@@ -1297,10 +1303,10 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
+ void xe_migrate_ccs_rw_copy_clear(struct xe_bo *src_bo,
+ 				  enum xe_sriov_vf_ccs_rw_ctxs read_write)
+ {
+-	struct xe_bb *bb = src_bo->bb_ccs[read_write];
++	struct xe_mm_suballoc_bb *bb = src_bo->bb_ccs[read_write];
+ 	struct xe_device *xe = xe_bo_device(src_bo);
++	struct xe_mm_suballoc_manager *bb_pool;
+ 	struct xe_sriov_vf_ccs_ctx *ctx;
+-	struct xe_sa_manager *bb_pool;
+ 	u32 *cs;
+ 
+ 	xe_assert(xe, IS_SRIOV_VF(xe));
+@@ -1308,17 +1314,17 @@ void xe_migrate_ccs_rw_copy_clear(struct xe_bo *src_bo,
+ 	ctx = &xe->sriov.vf.ccs.contexts[read_write];
+ 	bb_pool = ctx->mem.ccs_bb_pool;
+ 
+-	guard(mutex) (xe_sa_bo_swap_guard(bb_pool));
+-	xe_sa_bo_swap_shadow(bb_pool);
+-
+-	cs = xe_sa_bo_cpu_addr(bb->bo);
+-	memset(cs, MI_NOOP, bb->len * sizeof(u32));
+-	xe_sriov_vf_ccs_rw_update_bb_addr(ctx);
++	scoped_guard(mutex, xe_mm_suballoc_bo_swap_guard(bb_pool)) {
++		xe_mm_suballoc_bo_swap_shadow(bb_pool);
+ 
+-	xe_sa_bo_sync_shadow(bb->bo);
++		cs = bb_pool->cpu_addr + bb->node.start;
++		memset(cs, MI_NOOP, bb->len * sizeof(u32));
++		xe_sriov_vf_ccs_rw_update_bb_addr(ctx);
+ 
+-	xe_bb_free(bb, NULL);
+-	src_bo->bb_ccs[read_write] = NULL;
++		xe_mm_suballoc_sync_shadow(bb_pool, &bb->node);
++		xe_mm_suballoc_bb_free(bb);
++		src_bo->bb_ccs[read_write] = NULL;
 +	}
-+
-+	drm_mm_takedown(&drm_mm_manager->base);
-+
-+	if (drm_mm_manager->is_iomem)
-+		kvfree(drm_mm_manager->cpu_addr);
-+
-+	drm_mm_manager->bo = NULL;
-+	drm_mm_manager->shadow = NULL;
-+}
-+
-+/**
-+ * xe_mm_suballoc_manager_init() - Create and initialize the DRM MM manager.
-+ * @tile: the &xe_tile where allocate.
-+ * @size: number of bytes to allocate
-+ * @guard: number of bytes to exclude from allocation for guard region
-+ * @flags: additional flags for configuring the DRM MM manager.
-+ *
-+ * Initializes a DRM MM manager for managing memory allocations on a specific
-+ * XE tile. The function allocates a buffer object to back the memory region
-+ * managed by the DRM MM manager.
-+ *
-+ * Return: a pointer to the &xe_mm_suballoc_manager, or an error pointer on failure.
-+ */
-+struct xe_mm_suballoc_manager *xe_mm_suballoc_manager_init(struct xe_tile *tile, u32 size,
-+							   u32 guard, u32 flags)
-+{
-+	struct xe_device *xe = tile_to_xe(tile);
-+	struct xe_mm_suballoc_manager *drm_mm_manager;
-+	u64 managed_size;
-+	struct xe_bo *bo;
-+	int ret;
-+
-+	xe_tile_assert(tile, size > guard);
-+	managed_size = size - guard;
-+
-+	drm_mm_manager = drmm_kzalloc(&xe->drm, sizeof(*drm_mm_manager), GFP_KERNEL);
-+	if (!drm_mm_manager)
-+		return ERR_PTR(-ENOMEM);
-+
-+	bo = xe_managed_bo_create_pin_map(xe, tile, size,
-+					  XE_BO_FLAG_VRAM_IF_DGFX(tile) |
-+					  XE_BO_FLAG_GGTT |
-+					  XE_BO_FLAG_GGTT_INVALIDATE |
-+					  XE_BO_FLAG_PINNED_NORESTORE);
-+	if (IS_ERR(bo)) {
-+		drm_err(&xe->drm, "Failed to prepare %uKiB BO for DRM MM manager (%pe)\n",
-+			size / SZ_1K, bo);
-+		return ERR_CAST(bo);
-+	}
-+	drm_mm_manager->bo = bo;
-+	drm_mm_manager->is_iomem = bo->vmap.is_iomem;
-+
-+	if (bo->vmap.is_iomem) {
-+		drm_mm_manager->cpu_addr = kvzalloc(managed_size, GFP_KERNEL);
-+		if (!drm_mm_manager->cpu_addr)
-+			return ERR_PTR(-ENOMEM);
-+	} else {
-+		drm_mm_manager->cpu_addr = bo->vmap.vaddr;
-+	}
-+
-+	if (flags & XE_MM_SUBALLOC_BO_MANAGER_FLAG_SHADOW) {
-+		struct xe_bo *shadow;
-+
-+		ret = drmm_mutex_init(&xe->drm, &drm_mm_manager->swap_guard);
-+		if (ret)
-+			return ERR_PTR(ret);
-+		if (IS_ENABLED(CONFIG_PROVE_LOCKING)) {
-+			fs_reclaim_acquire(GFP_KERNEL);
-+			might_lock(&drm_mm_manager->swap_guard);
-+			fs_reclaim_release(GFP_KERNEL);
-+		}
-+
-+		shadow = xe_managed_bo_create_pin_map(xe, tile, size,
-+						      XE_BO_FLAG_VRAM_IF_DGFX(tile) |
-+						      XE_BO_FLAG_GGTT |
-+						      XE_BO_FLAG_GGTT_INVALIDATE |
-+						      XE_BO_FLAG_PINNED_NORESTORE);
-+		if (IS_ERR(shadow)) {
-+			drm_err(&xe->drm,
-+				"Failed to prepare %uKiB shadow BO for DRM MM manager (%pe)\n",
-+				size / SZ_1K, shadow);
-+			return ERR_CAST(shadow);
-+		}
-+		drm_mm_manager->shadow = shadow;
-+	}
-+
-+	drm_mm_init(&drm_mm_manager->base, 0, managed_size);
-+	ret = drmm_add_action_or_reset(&xe->drm, xe_mm_suballoc_manager_fini, drm_mm_manager);
-+	if (ret)
-+		return ERR_PTR(ret);
-+
-+	return drm_mm_manager;
-+}
-+
-+/**
-+ * xe_mm_suballoc_bo_swap_shadow() - Swap the primary BO with the shadow BO.
-+ * @drm_mm_manager: the DRM MM manager containing the primary and shadow BOs.
-+ *
-+ * Swaps the primary buffer object with the shadow buffer object in the DRM MM
-+ * manager.
-+ *
-+ * Return: None.
-+ */
-+void xe_mm_suballoc_bo_swap_shadow(struct xe_mm_suballoc_manager *drm_mm_manager)
-+{
-+	struct xe_device *xe = tile_to_xe(drm_mm_manager->bo->tile);
-+
-+	xe_assert(xe, drm_mm_manager->shadow);
-+	lockdep_assert_held(&drm_mm_manager->swap_guard);
-+
-+	swap(drm_mm_manager->bo, drm_mm_manager->shadow);
-+	if (!drm_mm_manager->bo->vmap.is_iomem)
-+		drm_mm_manager->cpu_addr = drm_mm_manager->bo->vmap.vaddr;
-+}
-+
-+/**
-+ * xe_mm_suballoc_sync_shadow() - Synchronize the shadow BO with the primary BO.
-+ * @drm_mm_manager: the DRM MM manager containing the primary and shadow BOs.
-+ * @node: the DRM MM node representing the region to synchronize.
-+ *
-+ * Copies the contents of the specified region from the primary buffer object to
-+ * the shadow buffer object in the DRM MM manager.
-+ *
-+ * Return: None.
-+ */
-+void xe_mm_suballoc_sync_shadow(struct xe_mm_suballoc_manager *drm_mm_manager,
-+				struct drm_mm_node *node)
-+{
-+	struct xe_device *xe = tile_to_xe(drm_mm_manager->bo->tile);
-+
-+	xe_assert(xe, drm_mm_manager->shadow);
-+	lockdep_assert_held(&drm_mm_manager->swap_guard);
-+
-+	xe_map_memcpy_to(xe, &drm_mm_manager->shadow->vmap,
-+			 node->start,
-+			 drm_mm_manager->cpu_addr + node->start,
-+			 node->size);
-+}
-+
-+/**
-+ * xe_mm_suballoc_insert_node() - Insert a node into the DRM MM manager.
-+ * @drm_mm_manager: the DRM MM manager to insert the node into.
-+ * @node: the DRM MM node to insert.
-+ * @size: the size of the node to insert.
-+ *
-+ * Inserts a node into the DRM MM manager and clears the corresponding memory region
-+ * in both the primary and shadow buffer objects.
-+ *
-+ * Return: 0 on success, or a negative error code on failure.
-+ */
-+int xe_mm_suballoc_insert_node(struct xe_mm_suballoc_manager *drm_mm_manager,
-+			       struct drm_mm_node *node, u32 size)
-+{
-+	struct drm_mm *mm = &drm_mm_manager->base;
-+	int ret;
-+
-+	ret = drm_mm_insert_node(mm, node, size);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+/**
-+ * xe_mm_suballoc_remove_node() - Remove a node from the DRM MM manager.
-+ * @node: the DRM MM node to remove.
-+ *
-+ * Return: None.
-+ */
-+void xe_mm_suballoc_remove_node(struct drm_mm_node *node)
-+{
-+	return drm_mm_remove_node(node);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_mm_suballoc.h b/drivers/gpu/drm/xe/xe_mm_suballoc.h
-new file mode 100644
-index 000000000000..afc45691950b
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_mm_suballoc.h
-@@ -0,0 +1,55 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+#ifndef _XE_MM_SUBALLOC_H_
-+#define _XE_MM_SUBALLOC_H_
-+
-+#include <linux/sizes.h>
-+#include <linux/types.h>
-+
-+#include "xe_bo.h"
-+#include "xe_mm_suballoc_types.h"
-+
-+struct dma_fence;
-+struct xe_tile;
-+
-+#define XE_MM_SUBALLOC_BO_MANAGER_FLAG_SHADOW    BIT(0)
-+
-+struct xe_mm_suballoc_manager *xe_mm_suballoc_manager_init(struct xe_tile *tile, u32 size,
-+							   u32 guard, u32 flags);
-+void xe_mm_suballoc_bo_swap_shadow(struct xe_mm_suballoc_manager *drm_mm_manager);
-+void xe_mm_suballoc_sync_shadow(struct xe_mm_suballoc_manager *drm_mm_manager,
-+				struct drm_mm_node *node);
-+int xe_mm_suballoc_insert_node(struct xe_mm_suballoc_manager *drm_mm_manager,
-+			       struct drm_mm_node *node, u32 size);
-+void xe_mm_suballoc_remove_node(struct drm_mm_node *node);
-+
-+/**
-+ * xe_mm_suballoc_manager_gpu_addr() - Retrieve GPU address of a back storage BO
-+ * within a memory manager.
-+ * @drm_mm_manager: The DRM MM memory manager.
-+ *
-+ * Returns: GGTT address of the back storage BO
-+ */
-+static inline u64 xe_mm_suballoc_manager_gpu_addr(struct xe_mm_suballoc_manager
-+						  *drm_mm_manager)
-+{
-+	return xe_bo_ggtt_addr(drm_mm_manager->bo);
-+}
-+
-+/**
-+ * xe_mm_suballoc_bo_swap_guard() - Retrieve the mutex used to guard swap operations
-+ * on a memory manager.
-+ * @drm_mm_manager: The DRM MM memory manager.
-+ *
-+ * Returns: Swap guard mutex.
-+ */
-+static inline struct mutex *xe_mm_suballoc_bo_swap_guard(struct xe_mm_suballoc_manager
-+							 *drm_mm_manager)
-+{
-+	return &drm_mm_manager->swap_guard;
-+}
-+
-+#endif
-+
-diff --git a/drivers/gpu/drm/xe/xe_mm_suballoc_types.h b/drivers/gpu/drm/xe/xe_mm_suballoc_types.h
-new file mode 100644
-index 000000000000..9a877f0fe2bb
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_mm_suballoc_types.h
-@@ -0,0 +1,42 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#ifndef _XE_MM_SUBALLOC_TYPES_H_
-+#define _XE_MM_SUBALLOC_TYPES_H_
-+
-+#include <drm/drm_mm.h>
-+
-+struct xe_bo;
-+
-+struct xe_mm_suballoc_manager {
-+	/** @base: Range allocator over [0, @size) in bytes */
-+	struct drm_mm base;
-+	/** @bo: Active pool BO (GGTT-pinned, CPU-mapped). */
-+	struct xe_bo *bo;
-+	/** @shadow: Shadow BO for atomic command updates. */
-+	struct xe_bo *shadow;
-+	/** @swap_guard: Timeline guard updating @bo and @shadow */
-+	struct mutex swap_guard;
-+	/** @cpu_addr: CPU virtual address of the active BO. */
-+	void *cpu_addr;
-+	/** @size: Total size of the managed address space. */
-+	u64 size;
-+	/** @is_iomem: Whether the managed address space is I/O memory. */
-+	bool is_iomem;
-+};
-+
-+struct xe_mm_suballoc_bb {
-+	/** @node: Range node for this batch buffer. */
-+	struct drm_mm_node node;
-+	/** @manager: Manager this batch buffer belongs to. */
-+	struct xe_mm_suballoc_manager *manager;
-+	/** @cs: Command stream for this batch buffer. */
-+	u32 *cs;
-+	/** @len: Length of the CS in dwords. */
-+	u32 len;
-+};
-+
-+#endif
-+
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+index db023fb66a27..ef12565cdefc 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
+@@ -15,8 +15,8 @@
+ #include "xe_guc_submit.h"
+ #include "xe_lrc.h"
+ #include "xe_migrate.h"
++#include "xe_mm_suballoc.h"
+ #include "xe_pm.h"
+-#include "xe_sa.h"
+ #include "xe_sriov_printk.h"
+ #include "xe_sriov_vf.h"
+ #include "xe_sriov_vf_ccs.h"
+@@ -141,8 +141,8 @@ static u64 get_ccs_bb_pool_size(struct xe_device *xe)
+ 
+ static int alloc_bb_pool(struct xe_tile *tile, struct xe_sriov_vf_ccs_ctx *ctx)
+ {
++	struct xe_mm_suballoc_manager *xe_mm_sa_manager;
+ 	struct xe_device *xe = tile_to_xe(tile);
+-	struct xe_sa_manager *sa_manager;
+ 	u64 bb_pool_size;
+ 	int offset, err;
+ 
+@@ -150,34 +150,33 @@ static int alloc_bb_pool(struct xe_tile *tile, struct xe_sriov_vf_ccs_ctx *ctx)
+ 	xe_sriov_info(xe, "Allocating %s CCS BB pool size = %lldMB\n",
+ 		      ctx->ctx_id ? "Restore" : "Save", bb_pool_size / SZ_1M);
+ 
+-	sa_manager = __xe_sa_bo_manager_init(tile, bb_pool_size, SZ_4K, SZ_16,
+-					     XE_SA_BO_MANAGER_FLAG_SHADOW);
+-
+-	if (IS_ERR(sa_manager)) {
+-		xe_sriov_err(xe, "Suballocator init failed with error: %pe\n",
+-			     sa_manager);
+-		err = PTR_ERR(sa_manager);
++	xe_mm_sa_manager = xe_mm_suballoc_manager_init(tile, bb_pool_size, SZ_4K,
++						       XE_MM_SUBALLOC_BO_MANAGER_FLAG_SHADOW);
++	if (IS_ERR(xe_mm_sa_manager)) {
++		xe_sriov_err(xe, "xe_mm_suballoc init failed with error: %pe\n",
++			     xe_mm_sa_manager);
++		err = PTR_ERR(xe_mm_sa_manager);
+ 		return err;
+ 	}
+ 
+ 	offset = 0;
+-	xe_map_memset(xe, &sa_manager->bo->vmap, offset, MI_NOOP,
++	xe_map_memset(xe, &xe_mm_sa_manager->bo->vmap, offset, MI_NOOP,
+ 		      bb_pool_size);
+-	xe_map_memset(xe, &sa_manager->shadow->vmap, offset, MI_NOOP,
++	xe_map_memset(xe, &xe_mm_sa_manager->shadow->vmap, offset, MI_NOOP,
+ 		      bb_pool_size);
+ 
+ 	offset = bb_pool_size - sizeof(u32);
+-	xe_map_wr(xe, &sa_manager->bo->vmap, offset, u32, MI_BATCH_BUFFER_END);
+-	xe_map_wr(xe, &sa_manager->shadow->vmap, offset, u32, MI_BATCH_BUFFER_END);
++	xe_map_wr(xe, &xe_mm_sa_manager->bo->vmap, offset, u32, MI_BATCH_BUFFER_END);
++	xe_map_wr(xe, &xe_mm_sa_manager->shadow->vmap, offset, u32, MI_BATCH_BUFFER_END);
+ 
+-	ctx->mem.ccs_bb_pool = sa_manager;
++	ctx->mem.ccs_bb_pool = xe_mm_sa_manager;
+ 
+ 	return 0;
+ }
+ 
+ static void ccs_rw_update_ring(struct xe_sriov_vf_ccs_ctx *ctx)
+ {
+-	u64 addr = xe_sa_manager_gpu_addr(ctx->mem.ccs_bb_pool);
++	u64 addr = xe_mm_suballoc_manager_gpu_addr(ctx->mem.ccs_bb_pool);
+ 	struct xe_lrc *lrc = xe_exec_queue_lrc(ctx->mig_q);
+ 	u32 dw[10], i = 0;
+ 
+@@ -388,7 +387,7 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe)
+ #define XE_SRIOV_VF_CCS_RW_BB_ADDR_OFFSET	(2 * sizeof(u32))
+ void xe_sriov_vf_ccs_rw_update_bb_addr(struct xe_sriov_vf_ccs_ctx *ctx)
+ {
+-	u64 addr = xe_sa_manager_gpu_addr(ctx->mem.ccs_bb_pool);
++	u64 addr = xe_mm_suballoc_manager_gpu_addr(ctx->mem.ccs_bb_pool);
+ 	struct xe_lrc *lrc = xe_exec_queue_lrc(ctx->mig_q);
+ 	struct xe_device *xe = gt_to_xe(ctx->mig_q->gt);
+ 
+@@ -412,8 +411,8 @@ int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo)
+ 	struct xe_device *xe = xe_bo_device(bo);
+ 	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
+ 	struct xe_sriov_vf_ccs_ctx *ctx;
++	struct xe_mm_suballoc_bb *bb;
+ 	struct xe_tile *tile;
+-	struct xe_bb *bb;
+ 	int err = 0;
+ 
+ 	xe_assert(xe, IS_VF_CCS_READY(xe));
+@@ -445,7 +444,7 @@ int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo)
+ {
+ 	struct xe_device *xe = xe_bo_device(bo);
+ 	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
+-	struct xe_bb *bb;
++	struct xe_mm_suballoc_bb *bb;
+ 
+ 	xe_assert(xe, IS_VF_CCS_READY(xe));
+ 
+@@ -471,8 +470,8 @@ int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo)
+  */
+ void xe_sriov_vf_ccs_print(struct xe_device *xe, struct drm_printer *p)
+ {
+-	struct xe_sa_manager *bb_pool;
+ 	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
++	struct xe_mm_suballoc_manager *bb_pool;
+ 
+ 	if (!IS_VF_CCS_READY(xe))
+ 		return;
+@@ -485,7 +484,7 @@ void xe_sriov_vf_ccs_print(struct xe_device *xe, struct drm_printer *p)
+ 
+ 		drm_printf(p, "ccs %s bb suballoc info\n", ctx_id ? "write" : "read");
+ 		drm_printf(p, "-------------------------\n");
+-		drm_suballoc_dump_debug_info(&bb_pool->base, p, xe_sa_manager_gpu_addr(bb_pool));
++		drm_mm_print(&bb_pool->base, p);
+ 		drm_puts(p, "\n");
+ 	}
+ }
+diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
+index 22c499943d2a..a825f488c810 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
++++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
+@@ -17,9 +17,6 @@ enum xe_sriov_vf_ccs_rw_ctxs {
+ 	XE_SRIOV_VF_CCS_CTX_COUNT
+ };
+ 
+-struct xe_migrate;
+-struct xe_sa_manager;
+-
+ /**
+  * struct xe_sriov_vf_ccs_ctx - VF CCS migration context data.
+  */
+@@ -33,7 +30,7 @@ struct xe_sriov_vf_ccs_ctx {
+ 	/** @mem: memory data */
+ 	struct {
+ 		/** @mem.ccs_bb_pool: Pool from which batch buffers are allocated. */
+-		struct xe_sa_manager *ccs_bb_pool;
++		struct xe_mm_suballoc_manager *ccs_bb_pool;
+ 	} mem;
+ };
+ 
 -- 
 2.43.0
 
