@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A8CC10F286F
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 20:39:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B2E710F286F
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 20:40:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E067710EE6D;
-	Fri, 27 Mar 2026 20:39:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E704B10EDBB;
+	Fri, 27 Mar 2026 20:39:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JHi3TlTu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X2xXui5M";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 573DD10EE6D
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Mar 2026 20:39:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 072CD10EE99
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Mar 2026 20:39:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774643996; x=1806179996;
+ t=1774644000; x=1806180000;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Rb169TnepQP8UGzwbJhfnzBJrXj4gs5XKPsy2JYlD34=;
- b=JHi3TlTuRBggYD7IWwZGEJYJYYaKvojcTd3J4AXVKEkeOR3AjCwF//Oq
- xLnzZvurzL6MSWYKfElY6KjbmvQ6XYgwdaQ8/pPsPQ4yra90Y+NtXHqn5
- +lm1FOf8LmFRNeTaTU4Yc8GQWJaADGrdCm0lE5cT4qCFIJiA0HiA5a9aT
- XOB0GpHXr5xRm5QEm7TkR1TcZH6rKI8W9dROfT4qcXUonozDQxNZUoCt+
- MwboeQilb0gtBMoAw6k+6MXJrj1QdhNfI27lzZzXYEcmkSy8c7K4rMWOi
- tlFy4OrXdNOgRSmHr0Omij+rJSRZmDJso8MSga0/eLj5XU4rDDObPhIC0 w==;
-X-CSE-ConnectionGUID: aLlO5ExJQnKd/xFgQd2wHw==
-X-CSE-MsgGUID: Xp4Bz1kcSMuRDfBOBC2bMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11742"; a="93110332"
-X-IronPort-AV: E=Sophos;i="6.23,144,1770624000"; d="scan'208";a="93110332"
+ bh=3Fx91a8QS6OBQXUYblM6x9QL5OcrZ/9kLSISI0g/J30=;
+ b=X2xXui5M0+U4xJhlqKOIk5NOENWkIeXO+C6Q1Ah0xBqzKPOYIcNJr8VV
+ e+06gljWOzkW+aHfyCFl/FE/2ZFJaCtldqs6+XpfFH6/gVoKcXem1dWXd
+ Z99lK2bGdrkTmB2xPObe1QLiRldPysxfbWbwLJUfu0AV26u3vdcrAwRMV
+ BhPmilcRSEpIFDPtIqT49PFivffGHIN4j+3a+ilKhgHU2mXltT0zWX25+
+ 2DHgdjmyV2RNq+smFiheCEpgo9k0jobIdy+eNwDehpJmpNp604I0lnzxn
+ cV0n0alR6p0ue3Y5TWWWfHf+Rx49mu7BqagBxT9vylxMXjSY3AHL10l/W A==;
+X-CSE-ConnectionGUID: kYvoQ2LeT9KqgEOe2d1vng==
+X-CSE-MsgGUID: jYi76EmnQD+nuSZdJ2ttIg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11742"; a="93110343"
+X-IronPort-AV: E=Sophos;i="6.23,144,1770624000"; d="scan'208";a="93110343"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2026 13:39:56 -0700
-X-CSE-ConnectionGUID: EStRtI55TEyzf6CwNu5BTQ==
-X-CSE-MsgGUID: c/ZOdvThRfyUrQ9pfdiU9w==
+ 27 Mar 2026 13:39:59 -0700
+X-CSE-ConnectionGUID: fE/RjgXwSW2Ta5/8OCrCNA==
+X-CSE-MsgGUID: TPex2P09S9SOTOjggZXpxA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,144,1770624000"; d="scan'208";a="218794358"
+X-IronPort-AV: E=Sophos;i="6.23,144,1770624000"; d="scan'208";a="218794367"
 Received: from jraag-z790m-itx-wifi.iind.intel.com ([10.190.239.23])
- by fmviesa009.fm.intel.com with ESMTP; 27 Mar 2026 13:39:52 -0700
+ by fmviesa009.fm.intel.com with ESMTP; 27 Mar 2026 13:39:55 -0700
 From: Raag Jadav <raag.jadav@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
@@ -48,9 +48,9 @@ Cc: matthew.brost@intel.com, rodrigo.vivi@intel.com,
  michal.winiarski@intel.com, matthew.auld@intel.com, maarten@lankhorst.se,
  jani.nikula@intel.com, lukasz.laguna@intel.com, zhanjun.dong@intel.com,
  Raag Jadav <raag.jadav@intel.com>
-Subject: [PATCH v4 4/9] drm/xe/irq: Introduce xe_irq_disable()
-Date: Sat, 28 Mar 2026 02:06:15 +0530
-Message-ID: <20260327203620.809353-5-raag.jadav@intel.com>
+Subject: [PATCH v4 5/9] drm/xe: Introduce xe_device_assert_lmem_ready()
+Date: Sat, 28 Mar 2026 02:06:16 +0530
+Message-ID: <20260327203620.809353-6-raag.jadav@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260327203620.809353-1-raag.jadav@intel.com>
 References: <20260327203620.809353-1-raag.jadav@intel.com>
@@ -70,61 +70,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In preparation of usecases which require disabling interrupts before
-PCIe FLR, introduce xe_irq_disable() helper. With this we avoid any
-side-effects of unwarranted irqs.
+In preparation of usecases which require verifying LMEM readiness after
+PCIe FLR, introduce xe_device_assert_lmem_ready() helper.
 
 Signed-off-by: Raag Jadav <raag.jadav@intel.com>
 ---
 v2: Add kernel doc (Matthew Brost)
 ---
- drivers/gpu/drm/xe/xe_irq.c | 13 ++++++++++++-
- drivers/gpu/drm/xe/xe_irq.h |  1 +
- 2 files changed, 13 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_device.c | 10 ++++++++--
+ drivers/gpu/drm/xe/xe_device.h |  1 +
+ 2 files changed, 9 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 7560a45f7f64..9a775c6588dc 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -841,7 +841,13 @@ static void xe_irq_msi_synchronize_irq(struct xe_device *xe)
- 	synchronize_irq(to_pci_dev(xe->drm.dev)->irq);
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 9b0540e3e289..7e58b01dfb9b 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -648,7 +648,13 @@ static int xe_set_dma_info(struct xe_device *xe)
+ 	return err;
  }
  
--void xe_irq_suspend(struct xe_device *xe)
+-static void assert_lmem_ready(struct xe_device *xe)
 +/**
-+ * xe_irq_disable() - Disable irqs
++ * xe_device_assert_lmem_ready() - Verify LMEM readiness
 + * @xe: xe device instance
 + *
-+ * Synchronize pending irqs and disable them.
++ * Verify LMEM readiness and assert on failure.
 + */
-+void xe_irq_disable(struct xe_device *xe)
++void xe_device_assert_lmem_ready(struct xe_device *xe)
  {
- 	atomic_set(&xe->irq.enabled, 0); /* no new irqs */
+ 	if (!IS_DGFX(xe) || IS_SRIOV_VF(xe))
+ 		return;
+@@ -736,7 +742,7 @@ int xe_device_probe_early(struct xe_device *xe)
+ 	 * is flagged after full initialization is complete. Assert if lmem is
+ 	 * not initialized.
+ 	 */
+-	assert_lmem_ready(xe);
++	xe_device_assert_lmem_ready(xe);
  
-@@ -850,6 +856,11 @@ void xe_irq_suspend(struct xe_device *xe)
- 		xe_irq_msix_synchronize_irq(xe);
- 	else
- 		xe_irq_msi_synchronize_irq(xe);
-+}
-+
-+void xe_irq_suspend(struct xe_device *xe)
-+{
-+	xe_irq_disable(xe);
- 	xe_irq_reset(xe); /* turn irqs off */
+ 	xe->wedged.mode = xe_device_validate_wedged_mode(xe, xe_modparam.wedged_mode) ?
+ 			  XE_DEFAULT_WEDGED_MODE : xe_modparam.wedged_mode;
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index e4b9de8d8e95..6e9a478c3b7a 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -144,6 +144,7 @@ static inline struct xe_force_wake *gt_to_fw(struct xe_gt *gt)
+ 	return &gt->pm.fw;
  }
  
-diff --git a/drivers/gpu/drm/xe/xe_irq.h b/drivers/gpu/drm/xe/xe_irq.h
-index a28bd577ba52..abda0592a105 100644
---- a/drivers/gpu/drm/xe/xe_irq.h
-+++ b/drivers/gpu/drm/xe/xe_irq.h
-@@ -14,6 +14,7 @@ struct xe_device;
- struct xe_tile;
- struct xe_gt;
++void xe_device_assert_lmem_ready(struct xe_device *xe);
+ void xe_device_assert_mem_access(struct xe_device *xe);
  
-+void xe_irq_disable(struct xe_device *xe);
- int xe_irq_init(struct xe_device *xe);
- int xe_irq_install(struct xe_device *xe);
- void xe_irq_suspend(struct xe_device *xe);
+ static inline bool xe_device_has_flat_ccs(struct xe_device *xe)
 -- 
 2.43.0
 
