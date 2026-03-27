@@ -4,59 +4,69 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 054F510ED640
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 10:12:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C298210ED64F
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 10:12:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A979510EC9C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81C0D10EC99;
 	Fri, 27 Mar 2026 10:12:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PQz+4dx3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eVLVr/xR";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 888E610EC8B
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Mar 2026 10:12:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E48110EC8B;
+ Fri, 27 Mar 2026 10:12:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774606321; x=1806142321;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=xVo54m1YUoOtqXDkp0Qxl7eKDw2CbMLBctGQphzDcrk=;
- b=PQz+4dx3+jg++qJD7pYoRTnLlihdeWW2vvnwP7WsmF+QrZZZ7waK11OE
- BjNnoBNIqbedeLY5t+XL2gVOFP2MSXsI34liKu8D3dOCQseeH4jckP4Et
- 5Gvw5tbJuMe1oya8sQTGSPblA9LES3sp/xHFcpclxUQ8RcDv20ppVGJQN
- spUMVchv4PgpnaJ1XP7MJND6A0tU98xtvJRmSF+aN6xreE1vc+kuamjBt
- 7XExkR68d2p94TIsoLAs45ZEJK9if25COLoDr09R+8oOutUmtXF95KG/G
- EJjGmk2axcR8DNpWs4l8ZuIPKgl+IHJc9l4Tp5yYSDI5jnepZt399Q5Aa Q==;
-X-CSE-ConnectionGUID: qDHNieqrSlOABK9Z5ZUVNw==
-X-CSE-MsgGUID: 1yJDlOn9R0uPNUqVnDy2kw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75792679"
-X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="75792679"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2026 03:12:01 -0700
-X-CSE-ConnectionGUID: SjQPF+h5SyC1tjuvaCXcfQ==
-X-CSE-MsgGUID: AaU8G0RnSaaxJTKuLk4YkQ==
+ t=1774606320; x=1806142320;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=v9jOy18qqTCEPC0qlEEbTl7NvFVw13aI4sClHw5PUhc=;
+ b=eVLVr/xRZVzGfvR64Jc7c3DcllwDuwACnL9bZS4NlAdfotPuWkft+PEP
+ gDsJ0VI3VxnoebmwGsDnXJk8Q+AP8yud8xh0kAw8GVj1udnn1GYLR9QEU
+ +HCa34TV/8ZkUCPtNgHJpMSJHMgb5sPrqfx/7SOK4cosO7ioesfXrf+mc
+ kynHTPPoDLfSYaPTyfmdo4zOUfp9T9l0OzirIerNmXGRwTpJMIFibP9dn
+ sOqME0X9ekwXzIrWmvzhDlAaGnKgXAO2lcESsdmbp00AA9LKEfjGGEdHi
+ bnmvUxEsEhqUSttAxfIBwLYajqi8dmDboKd8wA1CkeJc4QgzrhQpglzFN A==;
+X-CSE-ConnectionGUID: v37aWdpiQ/KbaTWAvkD7Nw==
+X-CSE-MsgGUID: NldpmV2XSambWylCF0C4MA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="63232694"
+X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="63232694"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2026 03:12:00 -0700
+X-CSE-ConnectionGUID: qCQvs0WARMSGhx0J9O1xvA==
+X-CSE-MsgGUID: uiFw2mXvTDyySMrgGWESIA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="230197953"
-Received: from gsd-build.iind.intel.com ([10.190.229.167])
- by orviesa005.jf.intel.com with ESMTP; 27 Mar 2026 03:12:00 -0700
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <dev@lankhorst.se>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v2 2/3] drm/xe/mm: Add batch buffer allocation functions for
- xe_mm_suballoc manager
-Date: Fri, 27 Mar 2026 10:11:49 +0000
-Message-ID: <20260327101146.3826819-7-satyanarayana.k.v.p@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260327101146.3826819-5-satyanarayana.k.v.p@intel.com>
-References: <20260327101146.3826819-5-satyanarayana.k.v.p@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="229750291"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.188])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2026 03:11:57 -0700
+Date: Fri, 27 Mar 2026 12:11:54 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Juasheem Sultan <jdsultan@google.com>
+Cc: Maarten Lankhorst <dev@lankhorst.se>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Manasi Navare <navaremanasi@google.com>,
+ Drew Davenport <ddavenport@google.com>,
+ Sean Paul <seanpaul@google.com>, Samuel Jacob <samjaco@google.com>,
+ Rajat Jain <rajatja@google.com>
+Subject: Re: [PATCH v4 2/2] drm/i915/display: Sync state to BIOS for seamless
+ handoff
+Message-ID: <acZX6htfhw4v0G8c@intel.com>
+References: <20260317220908.130968-1-jdsultan@google.com>
+ <20260317220908.130968-3-jdsultan@google.com>
+ <08c99b0d-6adb-423b-9c4b-2e8add00f5d3@lankhorst.se>
+ <CAH6Pru5Me2pY31JF2GP61k3gy8XDaLfmH7U6jpAwXoYvGEZBwA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAH6Pru5Me2pY31JF2GP61k3gy8XDaLfmH7U6jpAwXoYvGEZBwA@mail.gmail.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,130 +81,158 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-New APIs xe_mm_suballoc_bb_alloc(), xe_mm_suballoc_bb_insert() and
-xe_mm_suballoc_bb_free() are created to manage allocations from the
-xe_mm_suablloc manager.
+On Thu, Mar 26, 2026 at 04:10:13PM -0700, Juasheem Sultan wrote:
+> Hi,
+> 
+> Thanks for looking at this.
+> 
+> You're saying instead of manually adopting the state that I should focus on
+> modifying the comparisons that we do to determine if we can perform a
+> fastset?
 
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+We don't want any fuzzy fastset hacks anywhere. I intentionally killed
+all that stuff because it was making it impossible to trust that the
+software state actually represents what the hardware is doing.
 
----
-V1 -> V2:
-- Renamed xe_drm_mm to xe_mm_suballoc (Thomas)
-- Removed memset from xe_drm_mm_bb_insert() (Matt).
----
- drivers/gpu/drm/xe/xe_bb.c | 67 ++++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_bb.h |  6 ++++
- 2 files changed, 73 insertions(+)
+Someone needs to figure out what exactly is the difference between
+the states between the GOP and the driver, and then figure out where
+that difference is coming from.
 
-diff --git a/drivers/gpu/drm/xe/xe_bb.c b/drivers/gpu/drm/xe/xe_bb.c
-index b896b6f6615c..1b6990539bdc 100644
---- a/drivers/gpu/drm/xe/xe_bb.c
-+++ b/drivers/gpu/drm/xe/xe_bb.c
-@@ -10,6 +10,7 @@
- #include "xe_device_types.h"
- #include "xe_exec_queue_types.h"
- #include "xe_gt.h"
-+#include "xe_mm_suballoc.h"
- #include "xe_sa.h"
- #include "xe_sched_job.h"
- #include "xe_vm_types.h"
-@@ -172,3 +173,69 @@ void xe_bb_free(struct xe_bb *bb, struct dma_fence *fence)
- 	xe_sa_bo_free(bb->bo, fence);
- 	kfree(bb);
- }
-+
-+/**
-+ * xe_mm_suballoc_bb_alloc() - Allocate a new batch buffer structure for drm_mm
-+ *
-+ * Allocates a new xe_mm_suballoc_bb structure for use with xe_mm_suballoc memory
-+ * management.
-+ *
-+ * Returns: Batch buffer structure or an ERR_PTR(-ENOMEM).
-+ */
-+struct xe_mm_suballoc_bb *xe_mm_suballoc_bb_alloc(void)
-+{
-+	struct xe_mm_suballoc_bb *bb = kzalloc(sizeof(*bb), GFP_KERNEL);
-+
-+	if (!bb)
-+		return ERR_PTR(-ENOMEM);
-+
-+	return bb;
-+}
-+
-+/**
-+ * xe_mm_suballoc_bb_insert() - Initialize a batch buffer and insert a hole
-+ * @bb: Batch buffer structure to initialize
-+ * @bb_pool: drm_mm manager to allocate from
-+ * @dwords: Number of dwords to be allocated
-+ *
-+ * Initializes the batch buffer by allocating memory from the specified
-+ * drm_mm manager.
-+ *
-+ * Return: 0 on success, negative error code on failure.
-+ */
-+int xe_mm_suballoc_bb_insert(struct xe_mm_suballoc_bb *bb,
-+			     struct xe_mm_suballoc_manager *bb_pool,
-+			     u32 dwords)
-+{
-+	int err;
-+
-+	/*
-+	 * We need to allocate space for the requested number of dwords &
-+	 * one additional MI_BATCH_BUFFER_END dword. Since the whole SA
-+	 * is submitted to HW, we need to make sure that the last instruction
-+	 * is not over written when the last chunk of SA is allocated for BB.
-+	 * So, this extra DW acts as a guard here.
-+	 */
-+	err = xe_mm_suballoc_insert_node(bb_pool, &bb->node, 4 * (dwords + 1));
-+	if (err)
-+		return err;
-+
-+	bb->manager = bb_pool;
-+	bb->cs = bb_pool->cpu_addr + bb->node.start;
-+	bb->len = 0;
-+
-+	return 0;
-+}
-+
-+/**
-+ * xe_mm_suballoc_bb_free() - Free a batch buffer allocated with drm_mm
-+ * @bb: Batch buffer structure to free
-+ */
-+void xe_mm_suballoc_bb_free(struct xe_mm_suballoc_bb *bb)
-+{
-+	if (!bb)
-+		return;
-+
-+	xe_mm_suballoc_remove_node(&bb->node);
-+	kfree(bb);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_bb.h b/drivers/gpu/drm/xe/xe_bb.h
-index 231870b24c2f..e587aacc4dbd 100644
---- a/drivers/gpu/drm/xe/xe_bb.h
-+++ b/drivers/gpu/drm/xe/xe_bb.h
-@@ -12,6 +12,8 @@ struct dma_fence;
- 
- struct xe_gt;
- struct xe_exec_queue;
-+struct xe_mm_suballoc_bb;
-+struct xe_mm_suballoc_manager;
- struct xe_sa_manager;
- struct xe_sched_job;
- 
-@@ -24,5 +26,9 @@ struct xe_sched_job *xe_bb_create_migration_job(struct xe_exec_queue *q,
- 						struct xe_bb *bb, u64 batch_ofs,
- 						u32 second_idx);
- void xe_bb_free(struct xe_bb *bb, struct dma_fence *fence);
-+struct xe_mm_suballoc_bb *xe_mm_suballoc_bb_alloc(void);
-+int xe_mm_suballoc_bb_insert(struct xe_mm_suballoc_bb *bb,
-+			     struct xe_mm_suballoc_manager *bb_pool, u32 dwords);
-+void xe_mm_suballoc_bb_free(struct xe_mm_suballoc_bb *bb);
- 
- #endif
+> 
+> -Juasheem
+> 
+> On Wed, Mar 18, 2026 at 5:00 AM Maarten Lankhorst <dev@lankhorst.se> wrote:
+> 
+> > Hey,
+> >
+> > Den 2026-03-17 kl. 23:09, skrev Juasheem Sultan:
+> > > Align DP timings and C10 PLL state with BIOS values if within a 0.5%
+> > > clock threshold. This prevents minor mismatches from triggering a full
+> > > modeset during the first atomic commit, ensuring a flicker-free handoff.
+> > >
+> > > Signed-off-by: Juasheem Sultan <jdsultan@google.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_display.c | 67 ++++++++++++++++++++
+> > >  1 file changed, 67 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > b/drivers/gpu/drm/i915/display/intel_display.c
+> > > index c4246481fc2f..22e5e931f134 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > @@ -6397,6 +6397,71 @@ static int
+> > intel_atomic_check_config_and_link(struct intel_atomic_state *state)
+> > >
+> > >       return ret;
+> > >  }
+> > > +
+> > > +// Helper function to sanitize pll state
+> > > +static void intel_sanitize_pll_state(struct intel_crtc_state
+> > *old_crtc_state,
+> > > +             struct intel_crtc_state *new_crtc_state)
+> > > +{
+> > > +     int j;
+> > > +
+> > > +     for (j = 4; j < 9; j++) {
+> > > +             if (new_crtc_state->dpll_hw_state.cx0pll.c10.pll[j] !=
+> > > +
+> >  old_crtc_state->dpll_hw_state.cx0pll.c10.pll[j]) {
+> > > +                     new_crtc_state->dpll_hw_state.cx0pll.c10.pll[j] =
+> > > +
+> >  old_crtc_state->dpll_hw_state.cx0pll.c10.pll[j];
+> > > +             }
+> > > +     }
+> > > +}
+> > > +
+> > > +/*
+> > > + * intel_dp_sanitize_seamless_boot - Snap driver state to BIOS state
+> > for seamless handoff.
+> > > + * @state: the atomic state to sanitize
+> > > + *
+> > > + * This function compares the driver's calculated new_state with the
+> > inherited BIOS state
+> > > + * (old_state). If they are within a small threshold (e.g., 0.5% for
+> > clock), it "snaps"
+> > > + * the new_state to match the BIOS state exactly. This prevents minor
+> > state mismatches
+> > > + * that would otherwise force a full modeset (and a screen flicker)
+> > during the initial
+> > > + * kernel handoff.
+> > > + */
+> > > +static void intel_dp_sanitize_seamless_boot(struct intel_atomic_state
+> > *state)
+> > > +{
+> > > +     struct intel_display *display = to_intel_display(state);
+> > > +     struct intel_crtc_state *new_crtc_state, *old_crtc_state;
+> > > +     struct intel_crtc *crtc;
+> > > +     struct intel_encoder *encoder;
+> > > +     int i;
+> > > +
+> > > +     for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+> > new_crtc_state, i) {
+> > > +             /*
+> > > +              * We must check old_crtc_state->inherited because
+> > new_crtc_state->inherited
+> > > +              * is cleared at the start of intel_atomic_check for
+> > userspace commits.
+> > > +              */
+> > > +             if (!old_crtc_state->inherited ||
+> > !new_crtc_state->hw.active)
+> > > +                     continue;
+> > > +
+> > > +             if (intel_crtc_has_dp_encoder(new_crtc_state)) {
+> > > +                     int old_clock =
+> > old_crtc_state->hw.adjusted_mode.crtc_clock;
+> > > +                     int new_clock =
+> > new_crtc_state->hw.adjusted_mode.crtc_clock;
+> > > +                     int threshold = old_clock / 200; /* 0.5% */
+> > > +
+> > > +                     if (abs(new_clock - old_clock) <= threshold) {
+> > > +                             new_crtc_state->hw.pipe_mode.crtc_clock =
+> > old_clock;
+> > > +
+> >  new_crtc_state->hw.adjusted_mode.crtc_clock = old_clock;
+> > > +                             new_crtc_state->pixel_rate =
+> > old_crtc_state->pixel_rate;
+> > > +                             new_crtc_state->dp_m_n =
+> > old_crtc_state->dp_m_n;
+> > > +                     }
+> > > +             }
+> > > +
+> > > +             for_each_intel_encoder_mask(display->drm, encoder,
+> > > +                             new_crtc_state->uapi.encoder_mask) {
+> > > +                     if (intel_encoder_is_c10phy(encoder)) {
+> > > +                             if
+> > (!new_crtc_state->dpll_hw_state.cx0pll.ssc_enabled)
+> > > +
+> >  intel_sanitize_pll_state(old_crtc_state, new_crtc_state);
+> > > +                     }
+> > > +             }
+> > > +     }
+> > > +}
+> > > +
+> > >  /**
+> > >   * intel_atomic_check - validate state object
+> > >   * @dev: drm device
+> > > @@ -6447,6 +6512,8 @@ int intel_atomic_check(struct drm_device *dev,
+> > >       if (ret)
+> > >               goto fail;
+> > >
+> > > +     intel_dp_sanitize_seamless_boot(state);
+> > > +
+> > >       for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+> > >               if (!intel_crtc_needs_modeset(new_crtc_state))
+> > >                       continue;
+> >
+> > This might fix boot state, but in a way that complicates the code
+> > considerably.
+> >
+> > Have you considered updating intel_pipe_config_compare instead?
+> >
+> > Kind regards,
+> > ~Maarten Lankhorst
+> >
+
 -- 
-2.43.0
-
+Ville Syrjälä
+Intel
