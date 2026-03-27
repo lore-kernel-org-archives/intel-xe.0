@@ -4,167 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92C0F10ED655
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 10:37:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AAD410ED659
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 10:41:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 38E7D10ED35;
-	Fri, 27 Mar 2026 10:37:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C97610ECA0;
+	Fri, 27 Mar 2026 10:41:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jQlA89cF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="j04Ut96b";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6A5810ED35;
- Fri, 27 Mar 2026 10:37:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C66010ECA0
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Mar 2026 10:41:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774607852; x=1806143852;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=cJuzKl0+ar/wseQsimOk/vi4H8JNYz9OUVu+RmlNoMA=;
- b=jQlA89cFwxzA0CAHUGcPwBfLatlDtsuhyp0X4ALPoZKma0KwZUDU7g9M
- ga51zCiPGZvKa8Fu6h4obMgbQo6P3sZcovkVT3075YQWsckzqa663NUz6
- V7W8orPc/AXOSr+O4pMmbzzXP3lRkjux3FD9uKWMaDpJjmW+rf+75PpWI
- wOyDaZ4waKYWMeu2Bf4YdZZq2SKPeNQ5CQno9u6B7ikVJzcC7GLtd45Cc
- x2DL5pMJQBJnaAclSXZiXuCdRqHjcos9jnGkk7sbrTD4dkymkRsrYCeel
- y0y759Dxpir32mPO0rnv72H/CZ3CBjkfXdQmZ75aUkjgG3r6yg36uaV82 A==;
-X-CSE-ConnectionGUID: ss5dW+/nQJmqAOhF6xp6dw==
-X-CSE-MsgGUID: RA3tPAjeRNaivJqwqur7Lg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="93260100"
-X-IronPort-AV: E=Sophos;i="6.23,144,1770624000"; d="scan'208";a="93260100"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2026 03:37:32 -0700
-X-CSE-ConnectionGUID: 7aAlPfJQT2iOhqa5UlgxWQ==
-X-CSE-MsgGUID: hF+h7UHEQnGiOic8oo2tkQ==
+ t=1774608076; x=1806144076;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=oii/UBr5RU0s5WOd1U8F/ty2mMWTSQ7YGGBHwM5l+E0=;
+ b=j04Ut96bUE1ANrcJ6QwqgzKCV23GE2G/MvjIk0SM26XOq/3BRYNxgNpQ
+ m0YQ0GL4OrNcR0AM1rqWlfXoDGXm6qw3apCM0F/6/amlZGMyJvShnoMM+
+ ugg06jMh00jSsb5XXzVmJpGU6EDKMdqWyLWEJryCqC95sv0KrB6Ib6cOH
+ Iq8wnxbuaYoPmCTBEDyhFkSCdLYH+Fb2JMEiL2dp36oxWgriFSivFQ/Oa
+ qljDHJHT+rjTcXKu5wjcwCgXQ29iRwP19dtm0ytn5x6roYL6gSfvmmwBY
+ 3PWiXf19KxQkW3dPksCCcIhZ614Td83mnl7kYIGYkNvwMo14nLtSONbXV Q==;
+X-CSE-ConnectionGUID: EfNBEjlbTnu4d5SJCo7AQg==
+X-CSE-MsgGUID: 4vB7Xu/VRi2obbWSVmj37w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="63235436"
+X-IronPort-AV: E=Sophos;i="6.23,144,1770624000"; d="scan'208";a="63235436"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2026 03:41:16 -0700
+X-CSE-ConnectionGUID: Pn7jw9F9T+2z906lkFgmIA==
+X-CSE-MsgGUID: 0VPFuIVCQsGCtOsil5lnRw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,144,1770624000"; d="scan'208";a="263220149"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2026 03:37:31 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 27 Mar 2026 03:37:29 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 27 Mar 2026 03:37:29 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.21) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 27 Mar 2026 03:37:28 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=khN2jXhSHmXvIyIFEUZeUoAbeZIa8JyezgBVrsBvUosG3G1VkjpLsLmTFQiGcnFNPISoHNozVJl0wrc8qb1pteoZv2qBXhUeh3v1RAxJRZopwHs9LOdGsIfEnTpFDzWm2v6nAml8wMT1DW/+Ony+UVZcY1i4Bd6rBoAa1owgOp8DOc7GTW/Brwb1QuqJclpfl+rF6j5o2reR3+A7nrWV/Sr7UtzfYpr8AW7nlRtWQ59BL6BlsBkil52PKhXv7wHXQWvng7RFRFJbAbBpNivp+fv3t09dYH8ze0fpTECTFQlyIYXSkr2PtJK4o+K25FQAXFGQlYPcDMSVfCPo1UPn5g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=XAjTLOLgJOw7s+GLhKvyawS6rx4EGrpQ+QcVxzU6YHw=;
- b=CKdtKl+qsJE7xSe0PZPi3OCBktHIh4L0CmDfGmzrUjBJhHcBgSu/AQc6TPXsb9mEwIpvUlHnjEpVBf9ymEVLiemFEENm6ysF9Xv//0K3YXPKZpo0bkbUN0Mj2k+2W3L3OkltjWHzqiprmRiyr0yg6mZXDa1uk7tL3vfyKH63SNy8W2bVOGHT+A0A3VzkuApQ3URq0TyPdHbfwfWHd0ZalP9PALq+23aulr8Y0trdPYFGXSFR6EHp5t8Dsh6kpZ0romdYBMsyNloLX6HJp760DMBGYq4eVEGEUZOK9KYPNhNp41ufu/Y1fRP0uxLLHlLOHKmzfcrTh9BCC9RrV8U/Ow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from IA3PR11MB8985.namprd11.prod.outlook.com (2603:10b6:208:575::17)
- by PH3PPFCE69B97EC.namprd11.prod.outlook.com (2603:10b6:518:1::d4d)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.7; Fri, 27 Mar
- 2026 10:37:24 +0000
-Received: from IA3PR11MB8985.namprd11.prod.outlook.com
- ([fe80::355c:96ca:a45:dd5d]) by IA3PR11MB8985.namprd11.prod.outlook.com
- ([fe80::355c:96ca:a45:dd5d%5]) with mapi id 15.20.9745.012; Fri, 27 Mar 2026
- 10:37:24 +0000
-From: "Romanowski, Rafal" <rafal.romanowski@intel.com>
-To: "Loktionov, Aleksandr" <aleksandr.loktionov@intel.com>, Yury Norov
- <ynorov@nvidia.com>, "Nguyen, Anthony L" <anthony.l.nguyen@intel.com>, "David
- S. Miller" <davem@davemloft.net>, =?iso-8859-1?Q?Thomas_Hellstr=F6m?=
- <thomas.hellstrom@linux.intel.com>, Andrew Lunn <andrew+netdev@lunn.ch>,
- Andrew Morton <akpm@linux-foundation.org>, David Airlie <airlied@gmail.com>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, "Brost, 
- Matthew" <matthew.brost@intel.com>, Paolo Abeni <pabeni@redhat.com>,
- "Kitszel, Przemyslaw" <przemyslaw.kitszel@intel.com>, "Vivi, Rodrigo"
- <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>, Yury Norov
- <yury.norov@gmail.com>, Rasmus Villemoes <linux@rasmusvillemoes.dk>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "intel-wired-lan@lists.osuosl.org" <intel-wired-lan@lists.osuosl.org>
-CC: Simon Horman <horms@kernel.org>, David Laight
- <david.laight.linux@gmail.com>
-Subject: RE: [Intel-wired-lan] [PATCH v2 3/4] ice: use bitmap_empty() in
- ice_vf_has_no_qs_ena
-Thread-Topic: [Intel-wired-lan] [PATCH v2 3/4] ice: use bitmap_empty() in
- ice_vf_has_no_qs_ena
-Thread-Index: AQHcqeGn7rJVzSnEMEiMvYocEfzYx7Wa1JKAgCeC+hA=
-Date: Fri, 27 Mar 2026 10:37:24 +0000
-Message-ID: <IA3PR11MB89858BFD62FDC8DAF0B548658F57A@IA3PR11MB8985.namprd11.prod.outlook.com>
-References: <20260302011159.61778-1-ynorov@nvidia.com>
- <20260302011159.61778-4-ynorov@nvidia.com>
- <IA3PR11MB8986F3692384856A06EACA7DE57EA@IA3PR11MB8986.namprd11.prod.outlook.com>
-In-Reply-To: <IA3PR11MB8986F3692384856A06EACA7DE57EA@IA3PR11MB8986.namprd11.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA3PR11MB8985:EE_|PH3PPFCE69B97EC:EE_
-x-ms-office365-filtering-correlation-id: 44bf339b-f3b9-4cee-4327-08de8becd58f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|7416014|376014|921020|38070700021|56012099003|22082099003|18002099003;
-x-microsoft-antispam-message-info: PoovDwqz8RgfF7zPkGysteea0/Wu9rc3bIS0aWAkmNoqMM84kVTL4DzF4x5ab74Dnt/A19XfwOHDa/v1nV1ihvUpKznIKIpsLKXRa61zDpMSECKIMe+mT+CQkoFBfeWIcQW4SdFydKeqGIdHrLzT8PxR19mpob6pCPjGGA8yGyEsilsSdUfcHpf3Jr/BgkxnIJjiK36yotA8jXR062Ja2oTmO4wr8TTIKO5l3nprCQYsvHSlzb/2/QNCw0l3w/flOy4MJB3nqXEgED0905OGaPpdNVNMoKi9alyKoBqmE9vWVryK9eEm8CRLE3RVnBitO80aS2+rQUNe2i8ynjJENVOjolpm+wbaQLmwY39qaTFx78l5h10iUQrO7Ct13DRXS5EvzRehOvzfqOkzZrgmlAfRyfwsJ1vYyUY7Aw57ttAwp7fYxtnq0CfRsopCfuSJF2iD8r9rAEJAJOBttOw5d0ASTJ6/dgMcMalQIyOZl6O9ac3+flSuwtQ5Or/EsfK+9f/+xs6UVCxqsdkgl9My4yDfNOT+vVuNFU4PVreEgQUHnrF0G1QYh346zzvwjdbSItQNS4C3rdZOcDsBi0kFOiKU9kOfTmcv482Qg//IPQ9ADOg0qtqQ9Nv5R3Hq4dJHi1V4j3TZ7ZpTDqNCYtpnPCFR5RTC1DrIDy5ABmC9DEwIAhgY/czYiykxEhk/KoctUCrI8MSQA/PUm+lNuM29f+SFgFv4Gl0TZMk3zl+PkLp3R69IE5tcHK47oB+d+gXEtNfIvBvR2a6LtGUo9j30CECFrFK31jmDI+2KdNeN3iVACHVUiVYghgk5ghndr5fH
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA3PR11MB8985.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(7416014)(376014)(921020)(38070700021)(56012099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?e5K7U0rOQGysBDs54qLlpMl8PKyR2Cufp8rAjUywtBuiF0WhlwkyLKLW/P?=
- =?iso-8859-1?Q?Rn+vYSkXGWZP3ztVRW4tETKM1iOfUeaJw0WSTWCDhob37c2PE3ay2kUGuC?=
- =?iso-8859-1?Q?FSuxyZzabp3nBE98LQMHSijkX6h4/BSVVf0Az/JTNZvF6UBZf/k+Zu7Bzo?=
- =?iso-8859-1?Q?SIdI9W2miCYJCDtJ9KSlU4dltT1YbZDwsIYa/BloBeL3mofepVNny/sBdy?=
- =?iso-8859-1?Q?KHjNjvY7ylY4qRjWv0YnwSRwKt+pSab9LWRCi1pDDtlylRGhYBCT1gF0ZU?=
- =?iso-8859-1?Q?S5V9FTi2T/JwNG+qMqtkYpyiETYqCCMgj+uFQCTUlbtXqRlh21xDKbxj89?=
- =?iso-8859-1?Q?34w2t4eE/A63r2uLg+2o7k4z2Evsrb6ZqgWmPbnOD9FPuPU4OjaOI87LXm?=
- =?iso-8859-1?Q?1MnXfeBQWU3UhfnUrcc7wJoLAf257cbYKmhIqi6pLzpgBZO1RlKE8nDCm2?=
- =?iso-8859-1?Q?5pOAD5gWfBeQy7CelIxKnV/7iGitHl0C0emdtKihGit774Ogg6kH3zAbRS?=
- =?iso-8859-1?Q?oVv7+v1W6RPszkg+Tm1ao8PX8Bk9+Gzy0E3Q7zsCxYrJokqfR/nHMQf6dW?=
- =?iso-8859-1?Q?aWaZTE/yt61tNahqiAA5GoLXwPmY2ymyxpePsWxHwLmcJTjYmdJvmcSSXY?=
- =?iso-8859-1?Q?M5muXmv3BWlzOMZ8SeCaD5koUNsw8V6AJTDPbbGL0HWnGtKZuHZ3b/qPTX?=
- =?iso-8859-1?Q?Gr1J/loHsYHDLpo64UgBwnDC+cn4iD34DA0Pf1OqWT0DVUUDnn3NJ5i0ll?=
- =?iso-8859-1?Q?MRg51ReuXUzFoqS9MlxKHDIVGafJ6PWRMOqqH3Czys0B/nlxSM5wTOjHkH?=
- =?iso-8859-1?Q?6MahEN0U3O++n2kFHqJulfo4SZKvurQLYb20eUfTGag7CnGVsZce7bxv3C?=
- =?iso-8859-1?Q?mrMhOoW/Bd5vl1sF+Ser7mDhGp5mOFjNe40GjNa9zeTejUU3QCehXGRbnp?=
- =?iso-8859-1?Q?4Qy4Vl8pcrRtgvMpEqNch0YODTLcmhH9Yn6X+qf+jVRO4Jo6vrwgN6RYb5?=
- =?iso-8859-1?Q?nI0MgqK3WcioChO50PK6g5l1al5p06UlKbVqBEaKriKC+JySqfrbr4BM4h?=
- =?iso-8859-1?Q?gbeTqCqButQnQkgzUVnISxXRkjtSVniuTLs6WguUApdlxyNVLl/1eSLik+?=
- =?iso-8859-1?Q?lBT6knF/nnzZw1qI+nqHhdDI+QacrUXxzuCZ9LvEhqFFzbizkLONEK5tPp?=
- =?iso-8859-1?Q?fXQiF5n5N1BMlxSH+axZSvHOzraIvGmOmQGHH7HLyGquijn7OcymgcN3hl?=
- =?iso-8859-1?Q?9GF/htAg5hdVvOBpk4VcRoFverbqkm14ukAzNRjfDzZvPXFMtoHX1r9VQV?=
- =?iso-8859-1?Q?wXoDQk+LfoiQG1bnHc9sFlB7NDmpxY0YVmaO4DELjPpF93uZtrHgKUS/Gx?=
- =?iso-8859-1?Q?IwKpwNtbQL9QrYJtfO+Xvdvi/QrCXHORTnXc9N7d9L8W+7m2V5RxIYqhqP?=
- =?iso-8859-1?Q?DE2xpKYJLMrQs2/w/umwmJt4y6una2BJsaK6EIVnvDgAcNbwf31oglEE6n?=
- =?iso-8859-1?Q?yVL3KXx8RpRbiTyTe7fThE9x1bdAPossikZ6eH9CakoEWMiz+/x2E4BJlX?=
- =?iso-8859-1?Q?a6FPIK9jU/QD3nsVfq/yvQO6vxAn88ngs8GiRvR02Rs/YGsGYx9QG+ubC7?=
- =?iso-8859-1?Q?NE6BzwEIzRDw8MuqN7s92fTLzD1brOeq/cDDb3hNDgBr8q+khUdcXsUEWG?=
- =?iso-8859-1?Q?Abvbzezzc+pqWsn+iBHMnoQ4kWCUILmGUup0TtZdfthvAEyBGhAvZXA3Wm?=
- =?iso-8859-1?Q?7upNHSnfCX7q6j/CVl7mGUjEhMmsqDGHGE6Mbs3d3Vq82Oxg/X0HgJZ7Bh?=
- =?iso-8859-1?Q?FB9UR+xMoQ=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
+X-IronPort-AV: E=Sophos;i="6.23,144,1770624000"; d="scan'208";a="226886233"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.244.146])
+ ([10.245.244.146])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2026 03:41:14 -0700
+Message-ID: <2759679af38d84c75e43b19ef5a93681f789ff28.camel@linux.intel.com>
+Subject: Re: [PATCH v2] drm/xe: Drop all mappings for wedged device
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, Matthew Brost
+ <matthew.brost@intel.com>, Raag Jadav <raag.jadav@intel.com>
+Cc: intel-xe@lists.freedesktop.org, himal.prasad.ghimiray@intel.com, 
+ matthew.d.roper@intel.com
+Date: Fri, 27 Mar 2026 11:41:11 +0100
+In-Reply-To: <9099f0ef-87a9-42f6-888f-57bb73f6d6ae@intel.com>
+References: <20260326132816.739363-1-raag.jadav@intel.com>
+ <acWi1gL2SI+KLWgP@gsse-cloud1.jf.intel.com>
+ <9099f0ef-87a9-42f6-888f-57bb73f6d6ae@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: vMSVc6ItyDJZLZJQ1qCZwRrw4T72tMdtKvW7Rq+bYIjvFjlrAY+0itGaIqUAHPbbRNKZ2Oo+4RsTYum3/vLJLkdrHNaGaY5/SFm7KbtEm/YCUjSrn3eQwCqoSKaHB+e1vLCxB4QWKSCoiBHQtlDxIgvsbCex76ogc4RvEZC0d6n4efpSYJZxI8+hqeXIzzzpJe/mRYKCL+iVOTbfHHzngDtaEqnDB8OvnP6Ta5g268Zyblqzgm0iK2zq4CdIKnTVyZheRUJFvdk4IIeQR8srCAwZA3sGFyioDF+DaGgE5ui7x5A8pX39gtKSBTYa1oqbyRRbXtwYypJS8vfo0YjplA==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB8985.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 44bf339b-f3b9-4cee-4327-08de8becd58f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Mar 2026 10:37:24.4322 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: AEb5yRsNleaGke42Zg7NzKWdr8JPLyycKzlGzZf+DLA3cVqrXFvMTOrLb7+arf/QGV31IHYhPCA0UhPg7y76whiD+SuqKnoRBFL0BoXuByI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPFCE69B97EC
-X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -179,83 +73,144 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-> -----Original Message-----
-> From: Intel-wired-lan <intel-wired-lan-bounces@osuosl.org> On Behalf Of
-> Loktionov, Aleksandr
-> Sent: Monday, March 2, 2026 8:14 AM
-> To: Yury Norov <ynorov@nvidia.com>; Nguyen, Anthony L
-> <anthony.l.nguyen@intel.com>; David S. Miller <davem@davemloft.net>;
-> Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>; Andrew Lunn
-> <andrew+netdev@lunn.ch>; Andrew Morton <akpm@linux-foundation.org>;
-> David Airlie <airlied@gmail.com>; Eric Dumazet <edumazet@google.com>; Jak=
-ub
-> Kicinski <kuba@kernel.org>; Brost, Matthew <matthew.brost@intel.com>; Pao=
-lo
-> Abeni <pabeni@redhat.com>; Kitszel, Przemyslaw
-> <przemyslaw.kitszel@intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.com>; S=
-imona
-> Vetter <simona@ffwll.ch>; Yury Norov <yury.norov@gmail.com>; Rasmus
-> Villemoes <linux@rasmusvillemoes.dk>; dri-devel@lists.freedesktop.org; in=
-tel-
-> xe@lists.freedesktop.org; linux-kernel@vger.kernel.org; netdev@vger.kerne=
-l.org;
-> intel-wired-lan@lists.osuosl.org
-> Cc: Simon Horman <horms@kernel.org>; David Laight
-> <david.laight.linux@gmail.com>
-> Subject: Re: [Intel-wired-lan] [PATCH v2 3/4] ice: use bitmap_empty() in
-> ice_vf_has_no_qs_ena
+On Fri, 2026-03-27 at 10:18 +0000, Matthew Auld wrote:
+> On 26/03/2026 21:19, Matthew Brost wrote:
+> > On Thu, Mar 26, 2026 at 06:58:16PM +0530, Raag Jadav wrote:
+> > > As per uapi documentation[1], the prerequisite for wedged device
+> > > is to
+> > > drop all memory mappings. Follow it.
+> > >=20
+> > > [1] Documentation/gpu/drm-uapi.rst
+> > >=20
+> > > v2: Also drop CPU mappings (Matthew Auld)
+> > >=20
+> > > Fixes: 7bc00751f877 ("drm/xe: Use device wedged event")
+> > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > > ---
+> > > =C2=A0 drivers/gpu/drm/xe/xe_bo_evict.c | 8 +++++++-
+> > > =C2=A0 drivers/gpu/drm/xe/xe_bo_evict.h | 1 +
+> > > =C2=A0 drivers/gpu/drm/xe/xe_device.c=C2=A0=C2=A0 | 5 +++++
+> > > =C2=A0 3 files changed, 13 insertions(+), 1 deletion(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c
+> > > b/drivers/gpu/drm/xe/xe_bo_evict.c
+> > > index 7661fca7f278..f741cda50b2d 100644
+> > > --- a/drivers/gpu/drm/xe/xe_bo_evict.c
+> > > +++ b/drivers/gpu/drm/xe/xe_bo_evict.c
+> > > @@ -270,7 +270,13 @@ int xe_bo_restore_late(struct xe_device *xe)
+> > > =C2=A0=C2=A0	return ret;
+> > > =C2=A0 }
+> > > =C2=A0=20
+> > > -static void xe_bo_pci_dev_remove_pinned(struct xe_device *xe)
+> > > +/**
+> > > + * xe_bo_pci_dev_remove_pinned() - Unmap external bos
+> > > + * @xe: xe device
+> > > + *
+> > > + * Drop dma mappings of all external pinned bos.
+> > > + */
+> > > +void xe_bo_pci_dev_remove_pinned(struct xe_device *xe)
+> > > =C2=A0 {
+> > > =C2=A0=C2=A0	struct xe_tile *tile;
+> > > =C2=A0=C2=A0	unsigned int id;
+> > > diff --git a/drivers/gpu/drm/xe/xe_bo_evict.h
+> > > b/drivers/gpu/drm/xe/xe_bo_evict.h
+> > > index e8385cb7f5e9..6ce27e272780 100644
+> > > --- a/drivers/gpu/drm/xe/xe_bo_evict.h
+> > > +++ b/drivers/gpu/drm/xe/xe_bo_evict.h
+> > > @@ -15,6 +15,7 @@ void xe_bo_notifier_unprepare_all_pinned(struct
+> > > xe_device *xe);
+> > > =C2=A0 int xe_bo_restore_early(struct xe_device *xe);
+> > > =C2=A0 int xe_bo_restore_late(struct xe_device *xe);
+> > > =C2=A0=20
+> > > +void xe_bo_pci_dev_remove_pinned(struct xe_device *xe);
+> > > =C2=A0 void xe_bo_pci_dev_remove_all(struct xe_device *xe);
+> > > =C2=A0=20
+> > > =C2=A0 int xe_bo_pinned_init(struct xe_device *xe);
+> > > diff --git a/drivers/gpu/drm/xe/xe_device.c
+> > > b/drivers/gpu/drm/xe/xe_device.c
+> > > index b17d4a878686..4c0097f3aefb 100644
+> > > --- a/drivers/gpu/drm/xe/xe_device.c
+> > > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > > @@ -1347,6 +1347,11 @@ void xe_device_declare_wedged(struct
+> > > xe_device *xe)
+> > > =C2=A0=C2=A0	for_each_gt(gt, xe, id)
+> > > =C2=A0=C2=A0		xe_gt_declare_wedged(gt);
+> > > =C2=A0=20
+> > > +	/* Drop dma mappings of external bos */
+> > > +	xe_bo_pci_dev_remove_pinned(xe);
+> >=20
+> > Do we even need the part above? unmap_mapping_range() should drop
+> > all
+> > DMA mappings for the device being wedged, right? In other words,
+> > the device
+> > should no longer be able to access system memory or other devices=E2=80=
+=99
+> > memory
+> > via PCIe P2P. I'm not 100% sure about this, though.
 >=20
+> AFAIK unmap_mapping_range() is just for the CPU mmap side. It should=20
+> ensure ~everything is refaulted on the next CPU access, so we can
+> point=20
+> to dummy page.
 >=20
->=20
-> > -----Original Message-----
-> > From: Intel-wired-lan <intel-wired-lan-bounces@osuosl.org> On Behalf
-> > Of Yury Norov via Intel-wired-lan
-> > Sent: Monday, March 2, 2026 2:12 AM
-> > To: Nguyen, Anthony L <anthony.l.nguyen@intel.com>; David S. Miller
-> > <davem@davemloft.net>; Thomas Hellstr=F6m
-> > <thomas.hellstrom@linux.intel.com>; Andrew Lunn
-> > <andrew+netdev@lunn.ch>; Andrew Morton <akpm@linux-foundation.org>;
-> > David Airlie <airlied@gmail.com>; Eric Dumazet <edumazet@google.com>;
-> > Jakub Kicinski <kuba@kernel.org>; Brost, Matthew
-> > <matthew.brost@intel.com>; Paolo Abeni <pabeni@redhat.com>; Kitszel,
-> > Przemyslaw <przemyslaw.kitszel@intel.com>; Vivi, Rodrigo
-> > <rodrigo.vivi@intel.com>; Simona Vetter <simona@ffwll.ch>; Yury Norov
-> > <yury.norov@gmail.com>; Rasmus Villemoes <linux@rasmusvillemoes.dk>;
-> > dri-devel@lists.freedesktop.org; intel-xe@lists.freedesktop.org;
-> > linux-kernel@vger.kernel.org; netdev@vger.kernel.org; intel-wired-
-> > lan@lists.osuosl.org
-> > Cc: Yury Norov <ynorov@nvidia.com>; Simon Horman <horms@kernel.org>;
-> > David Laight <david.laight.linux@gmail.com>
-> > Subject: [Intel-wired-lan] [PATCH v2 3/4] ice: use bitmap_empty() in
-> > ice_vf_has_no_qs_ena
-> >
-> > bitmap_empty() is more verbose and efficient, as it stops traversing
-> > {r,t}xq_ena as soon as the 1st set bit found.
-> >
-> > Signed-off-by: Yury Norov <ynorov@nvidia.com>
-> > ---
-> >  drivers/net/ethernet/intel/ice/ice_vf_lib.c | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/drivers/net/ethernet/intel/ice/ice_vf_lib.c
-> > b/drivers/net/ethernet/intel/ice/ice_vf_lib.c
-> > index c8bc952f05cd..772f6b07340d 100644
-> > --- a/drivers/net/ethernet/intel/ice/ice_vf_lib.c
-> > +++ b/drivers/net/ethernet/intel/ice/ice_vf_lib.c
-> > @@ -1210,8 +1210,8 @@ bool ice_is_vf_trusted(struct ice_vf *vf)
-> >   */
-> >  bool ice_vf_has_no_qs_ena(struct ice_vf *vf)  {
-> > -	return (!bitmap_weight(vf->rxq_ena, ICE_MAX_RSS_QS_PER_VF) &&
-> > -		!bitmap_weight(vf->txq_ena, ICE_MAX_RSS_QS_PER_VF));
-> > +	return bitmap_empty(vf->rxq_ena, ICE_MAX_RSS_QS_PER_VF) &&
-> > +		bitmap_empty(vf->txq_ena, ICE_MAX_RSS_QS_PER_VF);
-> >  }
-> >
-> >  /**
-> > --
-> > 2.43.0
->=20
-> Reviewed-by: Aleksandr Loktionov <aleksandr.loktionov@intel.com>
+> For dma mapping side, I'm still not completely sure what the best=20
+> approach is. On the one hand, device is wedged so we should not
+> really=20
+> be doing new GPU access? Ioctls are all blocked, and with below, CPU=20
+> access will be re-directed to dummy page. So perhaps doing nothing
+> for=20
+> dma mapping side is OK? If we want to actually remove all dma
+> mappings=20
+> for extra safety, I think closest thing is maybe purge all BOs?
+> Similar=20
+> to what we do for an unplug.
 
-Tested-by: Rafal Romanowski <rafal.romanowski@intel.com>
+It sounds like, when the device is wedged beyond recovery, not even the
+unplug / pcie device unbind path should be doing any hwardware
+accesses. So if that path is fixed up to avoid that, then perhaps we
+can just unbind the pcie device just after wedging? That is, of course
+if it's acceptable that the drm_device <-> pcie device association is
+broken.
 
+/Thomas
+
+
+
+>=20
+> So perhaps xe_bo_pci_dev_remove_all() is better here? Also I guess
+> would=20
+> need:
+>=20
+> @@ -349,7 +349,8 @@ static void xe_evict_flags(struct
+> ttm_buffer_object=20
+> *tbo,
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 return;
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
+>=20
+> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (device_unplugged && !tbo->base.=
+dma_buf) {
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if ((device_unplugged || xe_device_=
+wedged(xe)) &&
+> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 !tbo->base.=
+dma_buf) {
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 *placement =3D purge_placement;
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 return;
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
+>=20
+> >=20
+> > Matt
+> >=20
+> > > +	/* Drop all CPU mappings pointing to this device */
+> > > +	unmap_mapping_range(xe->drm.anon_inode->i_mapping, 0, 0,
+> > > 1);
+> > > +
+> > > =C2=A0=C2=A0	if (xe_device_wedged(xe)) {
+> > > =C2=A0=C2=A0		/*
+> > > =C2=A0=C2=A0		 * XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET is
+> > > intended for debugging
+> > > --=20
+> > > 2.43.0
+> > >=20
