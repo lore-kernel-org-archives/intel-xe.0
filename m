@@ -4,27 +4,67 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03DF910BA43C
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 08:27:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5BAF10BA447
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 08:33:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAEFC10E2DE;
-	Fri, 27 Mar 2026 08:27:32 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F21010E2DE;
- Fri, 27 Mar 2026 08:27:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6067268248573325856=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 882D610E389;
+	Fri, 27 Mar 2026 08:33:48 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fe4lSNJV";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AFD4B10E389;
+ Fri, 27 Mar 2026 08:33:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774600428; x=1806136428;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=5JnJZVcTjUsDSvNnmfQ12zXxh0K+BGs/g23rZJ9gsDU=;
+ b=Fe4lSNJVt8BOc9bYhH2PuH2lb+O1oYl78arGhGAYKlRp8XTDND5cmnSA
+ h3vuQK5W8WO0K/nFJYTejuGocg0S6iIpLW65nWpt0zLl/HwUh1np9vMYx
+ 2Muv4kJoQ5rbjQ25TDSkqmAHKWZ8sEeGA+35kVhav83bClvex7rJBUuIR
+ utU5Pwc/plJz0wNXFAiM/pBb0U5RH6sBj+63E/aoKsLakyh4qIGWnZyhR
+ hfPt7hOoHa20jd/yTb4Z2Ywngd4U7t2np4VR1KClH8/B3JM2D+LuClzKU
+ Kg5z3ecu2d0e+wiigc0qQmX9pG9Jo3FgjaVONmC6L+S35OGXUGk9BfHAq w==;
+X-CSE-ConnectionGUID: A5fIHw1wSJi+xTLxFgaXbQ==
+X-CSE-MsgGUID: oEgWjM53RF+Vzgzrr7AI2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75573796"
+X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="75573796"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2026 01:33:47 -0700
+X-CSE-ConnectionGUID: QhWVA9BUQomeBkzKdmxjMw==
+X-CSE-MsgGUID: Qu3pQTu7Q2yL7+QQ6ISDKw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="225504790"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO [10.245.244.146])
+ ([10.245.244.146])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2026 01:33:43 -0700
+Message-ID: <065a48aa13d94cd52d8df38dabe0d955108a615a.camel@linux.intel.com>
+Subject: Re: [PATCH 0/5] Add reclaim to the dmem cgroup controller
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Cc: Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner
+ <hannes@cmpxchg.org>,  Tejun Heo <tj@kernel.org>, Michal
+ =?ISO-8859-1?Q?Koutn=FD?= <mkoutny@suse.com>, 	cgroups@vger.kernel.org,
+ Huang Rui <ray.huang@amd.com>, Matthew Brost	 <matthew.brost@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann	 <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
+ David Airlie	 <airlied@gmail.com>, Christian =?ISO-8859-1?Q?K=F6nig?=	
+ <christian.koenig@amd.com>, Alex Deucher <alexander.deucher@amd.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org, 	linux-kernel@vger.kernel.org
+Date: Fri, 27 Mar 2026 09:33:39 +0100
+In-Reply-To: <20260327081600.4885-1-thomas.hellstrom@linux.intel.com>
+References: <20260327081600.4885-1-thomas.hellstrom@linux.intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe=3A_Add_Wa=5F14026626?=
- =?utf-8?q?235?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nitin Gote" <nitin.r.gote@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Mar 2026 08:27:31 -0000
-Message-ID: <177460005162.404950.13668358461805403991@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260327080719.2136248-2-nitin.r.gote@intel.com>
-In-Reply-To: <20260327080719.2136248-2-nitin.r.gote@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,143 +76,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6067268248573325856==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+T24gRnJpLCAyMDI2LTAzLTI3IGF0IDA5OjE1ICswMTAwLCBUaG9tYXMgSGVsbHN0csO2bSB3cm90
+ZToKPiBXaGVuIHdyaXRpbmcgYSAibWF4IiBsaW1pdCBsb3dlciB0aGFuIHRoZSBjdXJyZW50IHVz
+YWdlLCB0aGUKPiBleGlzdGluZyBjb2RlIHNpbGVudGx5IGZhaWxlZC4gVGhpcyBzZXJpZXMgYWlt
+cyB0byBpbXByb3ZlCj4gb24gdGhhdCBieSByZXR1cm5pbmcgLUVCVVNZIG9uIGZhaWx1cmUgYW5k
+IGFsc28gYXR0ZW1wdAo+IHRvIHN5bmNocm9ub3VzbHkgcmVjbGFpbSBkZXZpY2UgbWVtb3J5IHRv
+IHB1c2ggdGhlIHVzYWdlCj4gdW5kZXIgdGhlIG5ldyBtYXggbGltaXQgdG8gYXZvaWQgdGhlIGVy
+cm9yLgo+IAo+IFBhdGNoIDEgaW1wbGVtZW50cyBlcnJvciBwcm9wYWdhdGlvbi4KPiBQYXRjaCAy
+IGltcGxlbWVudHMgYW5kIGRvY3VtZW50cyBhIHJlY2xhaW0gY2FsbGJhY2sgaW50ZXJmYWNlCj4g
+wqDCoMKgwqDCoCBmb3IgdGhlIGRtZW0gY29udHJvbGxlci4KPiBQYXRjaCAzIGltcGxlbWVudHMg
+YSBUVE0gcmVjbGFpbSBjYWxsYmFjay4KPiBQYXRjaCA0LTUgaG9va3MgdXAgdGhlIHJlY2xhaW0g
+Y2FsbGJhY2sgdG8gdGhlIGRtZW0gY2dyb3Vwcy0KPiDCoMKgwqDCoMKgIGF3YXJlIGRyaXZlcnMg
+eGUgYW5kIGFtZGdwdS4KPiAKPiBUaG9tYXMgSGVsbHN0csO2bSAoNSk6Cj4gwqAgY2dyb3VwL2Rt
+ZW06IFJldHVybiBlcnJvciB3aGVuIHNldHRpbmcgbWF4IGJlbG93IGN1cnJlbnQgdXNhZ2UKPiDC
+oCBjZ3JvdXAvZG1lbTogQWRkIHJlY2xhaW0gY2FsbGJhY2sgZm9yIGxvd2VyaW5nIG1heCBiZWxv
+dyBjdXJyZW50Cj4gdXNhZ2UKPiDCoCBkcm0vdHRtOiBIb29rIHVwIGEgY2dyb3VwLWF3YXJlIHJl
+Y2xhaW0gY2FsbGJhY2sgZm9yIHRoZSBkbWVtCj4gwqDCoMKgIGNvbnRyb2xsZXIKPiDCoCBkcm0v
+eGU6IFdpcmUgdXAgZG1lbSBjZ3JvdXAgcmVjbGFpbSBmb3IgVlJBTSBtYW5hZ2VyCj4gwqAgZHJt
+L2FtZGdwdTogV2lyZSB1cCBkbWVtIGNncm91cCByZWNsYWltIGZvciBWUkFNIG1hbmFnZXIKPiAK
+PiDCoGRyaXZlcnMvZ3B1L2RybS9hbWQvYW1kZ3B1L2FtZGdwdV90dG0uY8KgwqDCoMKgwqAgfMKg
+wqAgMiArLQo+IMKgZHJpdmVycy9ncHUvZHJtL2FtZC9hbWRncHUvYW1kZ3B1X3ZyYW1fbWdyLmMg
+fMKgIDEwICstCj4gwqBkcml2ZXJzL2dwdS9kcm0vdHRtL3R0bV9iby5jwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqAgfMKgIDk1ICsrKysrKysrKysrKysrKystCj4gwqBkcml2ZXJzL2dw
+dS9kcm0vdHRtL3R0bV9ib191dGlsLmPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHzCoMKgIDMgKy0K
+PiDCoGRyaXZlcnMvZ3B1L2RybS90dG0vdHRtX3Jlc291cmNlLmPCoMKgwqDCoMKgwqDCoMKgwqDC
+oCB8wqAgMzYgKysrKysrKwo+IMKgZHJpdmVycy9ncHUvZHJtL3hlL3hlX3R0bV92cmFtX21nci5j
+wqDCoMKgwqDCoMKgwqDCoCB8wqAgMTkgKystLQo+IMKgaW5jbHVkZS9kcm0vdHRtL3R0bV9iby5o
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCB8wqAgMTAgKysKPiDCoGlu
+Y2x1ZGUvZHJtL3R0bS90dG1fcmVzb3VyY2UuaMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+fMKgwqAgNCArCj4gwqBpbmNsdWRlL2xpbnV4L2Nncm91cF9kbWVtLmjCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIHzCoCAxMSArKwo+IMKga2VybmVsL2Nncm91cC9kbWVtLmPCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfCAxMDIgKysrKysr
+KysrKysrKysrKy0KPiAtLQo+IMKgMTAgZmlsZXMgY2hhbmdlZCwgMjY1IGluc2VydGlvbnMoKyks
+IDI3IGRlbGV0aW9ucygtKQoKRm9yIHJlZmVyZW5jZSwgU2VyaWVzIGludHJvZHVjaW5nIGlndCB0
+ZXN0IGlzIGhlcmU6Cmh0dHBzOi8vcGF0Y2h3b3JrLmZyZWVkZXNrdG9wLm9yZy9zZXJpZXMvMTYz
+OTM1LwoKL1Rob21hcwo=
 
-== Series Details ==
-
-Series: drm/xe: Add Wa_14026626235
-URL   : https://patchwork.freedesktop.org/series/163967/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b_BAT -> xe-pw-163967v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-163967v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@xe_waitfence@engine:
-    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#6519]) -> [PASS][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b/bat-dg2-oem2/igt@xe_waitfence@engine.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163967v1/bat-dg2-oem2/igt@xe_waitfence@engine.html
-
-  
-#### Warnings ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [DMESG-WARN][3] ([Intel XE#7433]) -> [ABORT][4] ([Intel XE#7249] / [Intel XE#7578])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163967v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#6519]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519
-  [Intel XE#7249]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249
-  [Intel XE#7433]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7433
-  [Intel XE#7578]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578
-
-
-Build changes
--------------
-
-  * Linux: xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b -> xe-pw-163967v1
-
-  IGT_8834: 8834
-  xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b: 0a7844908d3616b88a7887704eb6dfa0d315be1b
-  xe-pw-163967v1: 163967v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163967v1/index.html
-
---===============6067268248573325856==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add Wa_14026626235</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163967/">https://patchwork.freedesktop.org/series/163967/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163967v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163967v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b_BAT -&gt; xe-pw-163967v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-163967v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@xe_waitfence@engine:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6519">Intel XE#6519</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163967v1/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7433">Intel XE#7433</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163967v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249">Intel XE#7249</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578">Intel XE#7578</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b -&gt; xe-pw-163967v1</li>
-</ul>
-<p>IGT_8834: 8834<br />
-  xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b: 0a7844908d3616b88a7887704eb6dfa0d315be1b<br />
-  xe-pw-163967v1: 163967v1</p>
-
-</body>
-</html>
-
---===============6067268248573325856==--
