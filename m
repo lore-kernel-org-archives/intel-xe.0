@@ -4,27 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1DE910ED674
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 14:19:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D07EA10ED674
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 14:24:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92A3D10E1A6;
-	Fri, 27 Mar 2026 14:19:45 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7880910E1A6;
- Fri, 27 Mar 2026 14:19:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5299904126179857534=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B34710E21B;
+	Fri, 27 Mar 2026 14:24:33 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SAjQb6BM";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7E0710E21B
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Mar 2026 14:24:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774621472; x=1806157472;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=THDCLcocfnAmVg4//UoVmDrSiwRfbOgarN26W5icMiY=;
+ b=SAjQb6BMvL2xBi2VIsnpl+PjJOypPgcb9yUESkaSpqW22ymvdyOap7Eq
+ /CkKMM3sAAe4ZTfqyDdQc5uwSyvFRy5oR9/uTzZl09cGQugG0MVcx5hVs
+ 5yAUJNCAmeQPmE9ytAUqhR6xO9QVPNbFemimqRIJ93cLgzNna+CDffBZW
+ 8PImr26aUn+5nunVaLX39InHCOCkYbV2W/Gak6VqjHasvXebgaO8R8RC7
+ x00P1FWSroQZvFNBJI/ZsO781SweA4NcSJkPzpBGrZ4BvQB6uh7qACf6m
+ anJ4FbBDEdrgpvyt6C7OPZjJU/oI/GdYOGE/vhsu+0kFaAGRrqrCT/gwQ g==;
+X-CSE-ConnectionGUID: 0FKUG1igSwWx+WVLiZLhrw==
+X-CSE-MsgGUID: Kp9KQ/6oSWezwhJ6m+mfpw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75661520"
+X-IronPort-AV: E=Sophos;i="6.23,144,1770624000"; d="scan'208";a="75661520"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2026 07:24:32 -0700
+X-CSE-ConnectionGUID: fPaJGl/rSjiOzxQ9+dY9ag==
+X-CSE-MsgGUID: iqnGizT5S5WLbIlfCav3eg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,144,1770624000"; d="scan'208";a="248366625"
+Received: from black.igk.intel.com ([10.91.253.5])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2026 07:24:29 -0700
+Date: Fri, 27 Mar 2026 15:24:27 +0100
+From: Raag Jadav <raag.jadav@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ intel-xe@lists.freedesktop.org, himal.prasad.ghimiray@intel.com,
+ matthew.d.roper@intel.com
+Subject: Re: [PATCH v2] drm/xe: Drop all mappings for wedged device
+Message-ID: <acaTGxscd9J0cBrw@black.igk.intel.com>
+References: <20260326132816.739363-1-raag.jadav@intel.com>
+ <acWi1gL2SI+KLWgP@gsse-cloud1.jf.intel.com>
+ <9099f0ef-87a9-42f6-888f-57bb73f6d6ae@intel.com>
+ <2759679af38d84c75e43b19ef5a93681f789ff28.camel@linux.intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/xe=5Fsysctrl=3A_Add_?=
- =?utf-8?q?system_controller_component_for_Xe3p_dGPU_platforms_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Anoop, Vijay" <anoop.c.vijay@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Mar 2026 14:19:44 -0000
-Message-ID: <177462118446.407468.7572651730312992933@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260327131837.2192929-9-anoop.c.vijay@intel.com>
-In-Reply-To: <20260327131837.2192929-9-anoop.c.vijay@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2759679af38d84c75e43b19ef5a93681f789ff28.camel@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,154 +70,147 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5299904126179857534==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Mar 27, 2026 at 11:41:11AM +0100, Thomas Hellström wrote:
+> On Fri, 2026-03-27 at 10:18 +0000, Matthew Auld wrote:
+> > On 26/03/2026 21:19, Matthew Brost wrote:
+> > > On Thu, Mar 26, 2026 at 06:58:16PM +0530, Raag Jadav wrote:
+> > > > As per uapi documentation[1], the prerequisite for wedged device
+> > > > is to
+> > > > drop all memory mappings. Follow it.
+> > > > 
+> > > > [1] Documentation/gpu/drm-uapi.rst
+> > > > 
+> > > > v2: Also drop CPU mappings (Matthew Auld)
+> > > > 
+> > > > Fixes: 7bc00751f877 ("drm/xe: Use device wedged event")
+> > > > Signed-off-by: Raag Jadav <raag.jadav@intel.com>
+> > > > ---
+> > > >   drivers/gpu/drm/xe/xe_bo_evict.c | 8 +++++++-
+> > > >   drivers/gpu/drm/xe/xe_bo_evict.h | 1 +
+> > > >   drivers/gpu/drm/xe/xe_device.c   | 5 +++++
+> > > >   3 files changed, 13 insertions(+), 1 deletion(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c
+> > > > b/drivers/gpu/drm/xe/xe_bo_evict.c
+> > > > index 7661fca7f278..f741cda50b2d 100644
+> > > > --- a/drivers/gpu/drm/xe/xe_bo_evict.c
+> > > > +++ b/drivers/gpu/drm/xe/xe_bo_evict.c
+> > > > @@ -270,7 +270,13 @@ int xe_bo_restore_late(struct xe_device *xe)
+> > > >   	return ret;
+> > > >   }
+> > > >   
+> > > > -static void xe_bo_pci_dev_remove_pinned(struct xe_device *xe)
+> > > > +/**
+> > > > + * xe_bo_pci_dev_remove_pinned() - Unmap external bos
+> > > > + * @xe: xe device
+> > > > + *
+> > > > + * Drop dma mappings of all external pinned bos.
+> > > > + */
+> > > > +void xe_bo_pci_dev_remove_pinned(struct xe_device *xe)
+> > > >   {
+> > > >   	struct xe_tile *tile;
+> > > >   	unsigned int id;
+> > > > diff --git a/drivers/gpu/drm/xe/xe_bo_evict.h
+> > > > b/drivers/gpu/drm/xe/xe_bo_evict.h
+> > > > index e8385cb7f5e9..6ce27e272780 100644
+> > > > --- a/drivers/gpu/drm/xe/xe_bo_evict.h
+> > > > +++ b/drivers/gpu/drm/xe/xe_bo_evict.h
+> > > > @@ -15,6 +15,7 @@ void xe_bo_notifier_unprepare_all_pinned(struct
+> > > > xe_device *xe);
+> > > >   int xe_bo_restore_early(struct xe_device *xe);
+> > > >   int xe_bo_restore_late(struct xe_device *xe);
+> > > >   
+> > > > +void xe_bo_pci_dev_remove_pinned(struct xe_device *xe);
+> > > >   void xe_bo_pci_dev_remove_all(struct xe_device *xe);
+> > > >   
+> > > >   int xe_bo_pinned_init(struct xe_device *xe);
+> > > > diff --git a/drivers/gpu/drm/xe/xe_device.c
+> > > > b/drivers/gpu/drm/xe/xe_device.c
+> > > > index b17d4a878686..4c0097f3aefb 100644
+> > > > --- a/drivers/gpu/drm/xe/xe_device.c
+> > > > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > > > @@ -1347,6 +1347,11 @@ void xe_device_declare_wedged(struct
+> > > > xe_device *xe)
+> > > >   	for_each_gt(gt, xe, id)
+> > > >   		xe_gt_declare_wedged(gt);
+> > > >   
+> > > > +	/* Drop dma mappings of external bos */
+> > > > +	xe_bo_pci_dev_remove_pinned(xe);
+> > > 
+> > > Do we even need the part above? unmap_mapping_range() should drop
+> > > all
+> > > DMA mappings for the device being wedged, right? In other words,
+> > > the device
+> > > should no longer be able to access system memory or other devices’
+> > > memory
+> > > via PCIe P2P. I'm not 100% sure about this, though.
+> > 
+> > AFAIK unmap_mapping_range() is just for the CPU mmap side. It should 
+> > ensure ~everything is refaulted on the next CPU access, so we can
+> > point 
+> > to dummy page.
+> > 
+> > For dma mapping side, I'm still not completely sure what the best 
+> > approach is. On the one hand, device is wedged so we should not
+> > really 
+> > be doing new GPU access? Ioctls are all blocked, and with below, CPU 
+> > access will be re-directed to dummy page. So perhaps doing nothing
+> > for 
+> > dma mapping side is OK? If we want to actually remove all dma
+> > mappings 
+> > for extra safety, I think closest thing is maybe purge all BOs?
+> > Similar 
+> > to what we do for an unplug.
 
-== Series Details ==
+In cases where we have huge enough memory in utilization, I'm wondering
+if it'll be worth the overhead to purge them all? With wedged device we're
+already preventing new allocations, so would it be reasonable to just make
+existing bos inaccessible by dropping their mappings and defer the purging
+(which I assume already happens on unbind)?
 
-Series: drm/xe/xe_sysctrl: Add system controller component for Xe3p dGPU platforms (rev4)
-URL   : https://patchwork.freedesktop.org/series/163196/
-State : success
+> It sounds like, when the device is wedged beyond recovery, not even the
+> unplug / pcie device unbind path should be doing any hwardware
+> accesses. So if that path is fixed up to avoid that, then perhaps we
+> can just unbind the pcie device just after wedging? That is, of course
+> if it's acceptable that the drm_device <-> pcie device association is
+> broken.
 
-== Summary ==
+Unbind already takes care of the cleanup, so the expectation with wedging
+is to do the bare minimum to error things out and make them inaccessible.
 
-CI Bug Log - changes from xe-4806-b0c967b64ac6322238cc1cbabd75a3be31fbb637_BAT -> xe-pw-163196v4_BAT
-====================================================
+Raag
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-163196v4_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4806-b0c967b64ac6322238cc1cbabd75a3be31fbb637/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163196v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4806-b0c967b64ac6322238cc1cbabd75a3be31fbb637/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163196v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  * igt@xe_waitfence@reltime:
-    - bat-dg2-oem2:       [FAIL][5] ([Intel XE#6520]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4806-b0c967b64ac6322238cc1cbabd75a3be31fbb637/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163196v4/bat-dg2-oem2/igt@xe_waitfence@reltime.html
-
-  
-  [Intel XE#6520]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
-
-
-Build changes
--------------
-
-  * Linux: xe-4806-b0c967b64ac6322238cc1cbabd75a3be31fbb637 -> xe-pw-163196v4
-
-  IGT_8834: 8834
-  xe-4806-b0c967b64ac6322238cc1cbabd75a3be31fbb637: b0c967b64ac6322238cc1cbabd75a3be31fbb637
-  xe-pw-163196v4: 163196v4
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163196v4/index.html
-
---===============5299904126179857534==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xe_sysctrl: Add system controller component for Xe3p dGPU platforms (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163196/">https://patchwork.freedesktop.org/series/163196/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163196v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163196v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4806-b0c967b64ac6322238cc1cbabd75a3be31fbb637_BAT -&gt; xe-pw-163196v4_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-163196v4_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4806-b0c967b64ac6322238cc1cbabd75a3be31fbb637/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163196v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4806-b0c967b64ac6322238cc1cbabd75a3be31fbb637/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163196v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_waitfence@reltime:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4806-b0c967b64ac6322238cc1cbabd75a3be31fbb637/bat-dg2-oem2/igt@xe_waitfence@reltime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6520">Intel XE#6520</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163196v4/bat-dg2-oem2/igt@xe_waitfence@reltime.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4806-b0c967b64ac6322238cc1cbabd75a3be31fbb637 -&gt; xe-pw-163196v4</li>
-</ul>
-<p>IGT_8834: 8834<br />
-  xe-4806-b0c967b64ac6322238cc1cbabd75a3be31fbb637: b0c967b64ac6322238cc1cbabd75a3be31fbb637<br />
-  xe-pw-163196v4: 163196v4</p>
-
-</body>
-</html>
-
---===============5299904126179857534==--
+> > So perhaps xe_bo_pci_dev_remove_all() is better here? Also I guess
+> > would 
+> > need:
+> > 
+> > @@ -349,7 +349,8 @@ static void xe_evict_flags(struct
+> > ttm_buffer_object 
+> > *tbo,
+> >                  return;
+> >          }
+> > 
+> > -       if (device_unplugged && !tbo->base.dma_buf) {
+> > +       if ((device_unplugged || xe_device_wedged(xe)) &&
+> > +           !tbo->base.dma_buf) {
+> >                  *placement = purge_placement;
+> >                  return;
+> >          }
+> > 
+> > > 
+> > > Matt
+> > > 
+> > > > +	/* Drop all CPU mappings pointing to this device */
+> > > > +	unmap_mapping_range(xe->drm.anon_inode->i_mapping, 0, 0,
+> > > > 1);
+> > > > +
+> > > >   	if (xe_device_wedged(xe)) {
+> > > >   		/*
+> > > >   		 * XE_WEDGED_MODE_UPON_ANY_HANG_NO_RESET is
+> > > > intended for debugging
+> > > > -- 
+> > > > 2.43.0
+> > > > 
