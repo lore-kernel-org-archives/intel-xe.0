@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B6E9109E544
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 09:35:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60B9110A1E63
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 09:40:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2D1110ED55;
-	Fri, 27 Mar 2026 09:35:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MR1j+DWw";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D81A710ED55;
- Fri, 27 Mar 2026 09:35:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774604151; x=1806140151;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=nodLxYeY1cFG9Ec22+AHCsA6f+9QKqXbxLwAJHrC5ek=;
- b=MR1j+DWwW34J2B0NEYzEzaPx51DdtejRxHKH9UH7o/uaVF4aOrD73BrN
- MlwU+aBE+fHE5lUUY/nKMTHHrw9P+ojy3xzVx1bt/vlHHA5Wrls4R3eUK
- VJQmFsOSdSVaSt2NeZ8OaeD/YhycQwH42dIqIehyw9W2uX6Z4PrkPJ6kJ
- ytvyXCkZ4d2SrQv/jg75CQaey4e2ev9+zD0LyhgAHbKi8EPbFhmpluoMz
- zh4n+gP8BVLfh9SJPk92hIHm8d9yFastGNitzGcF65Czx9NZI8Mxj2mPJ
- W4SwkZ5xgs86/5YYuapnuL9u5VbiT11EMMbP3gaHtdMmZ5ghvMWiRmXeH Q==;
-X-CSE-ConnectionGUID: slmyMe6kSLCwCbiRjYekbQ==
-X-CSE-MsgGUID: YhezoS5IQRCKtDNBgS5MCQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75566369"
-X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="75566369"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2026 02:35:51 -0700
-X-CSE-ConnectionGUID: JP3U7L5NSJy0GZeorPBaUA==
-X-CSE-MsgGUID: frrgGYYKRqKmgNCRl0pipw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="220419149"
-Received: from administrator-system-product-name.igk.intel.com
- ([10.91.214.181])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2026 02:35:48 -0700
-Date: Fri, 27 Mar 2026 10:35:46 +0100 (CET)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Nemesa Garg <nemesa.garg@intel.com>
-Subject: Re: [PATCH 5/9] drm/i915/casf: Handle CASF in
- skl_scaler_get_filter_select()
-In-Reply-To: <20260326223139.19116-6-ville.syrjala@linux.intel.com>
-Message-ID: <dfd14fde-d08d-7064-bc76-e7ab09914088@intel.com>
-References: <20260326223139.19116-1-ville.syrjala@linux.intel.com>
- <20260326223139.19116-6-ville.syrjala@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 188EA10E28D;
+	Fri, 27 Mar 2026 09:40:52 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D210510E28D;
+ Fri, 27 Mar 2026 09:40:50 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-1846110227-1774604149=:330621"
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/i915/lt=5Fphy=3A_Buil?=
+ =?utf-8?q?d_HDMI_VDR_config_from_fields_and_use_VDR=5FNUM=5FREGISTERS?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mika Kahola" <mika.kahola@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 27 Mar 2026 09:40:50 -0000
+Message-ID: <177460445083.405318.11173317280304114913@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260327093531.1203339-1-mika.kahola@intel.com>
+In-Reply-To: <20260327093531.1203339-1-mika.kahola@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,29 +36,59 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+== Series Details ==
 
---8323329-1846110227-1774604149=:330621
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+Series: drm/i915/lt_phy: Build HDMI VDR config from fields and use VDR_NUM_REGISTERS
+URL   : https://patchwork.freedesktop.org/series/163975/
+State : warning
 
-On Thu, 26 Mar 2026, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
->
-> Nuke the duplicate CASF_SCALER_FILTER_SELECT and just have
-> skl_scaler_get_filter_select() return the proper value for
-> sharpness filter use. It is the same "use programmable coefficients"
-> value we already use for the nearest neighbor filtering.
->
-> Cc: Nemesa Garg <nemesa.garg@intel.com>
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Summary ==
 
-Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 88e845c3515f665fad6ddba9e0f1d17d9ab74227
+Author: Mika Kahola <mika.kahola@intel.com>
+Date:   Fri Mar 27 09:35:31 2026 +0000
 
-BR,
-Michał
---8323329-1846110227-1774604149=:330621--
+    drm/i915/lt_phy: Build HDMI VDR config from fields and use VDR_NUM_REGISTERS
+    
+    Stop hardcoding LT PHY VDR configuration register values for HDMI.
+    Build VDR config[0] from the mode and (for FRL) the FRL rate encoding,
+    and select DP PLL vs USB PLL programming (FRL10G uses USB PLL,
+    so don’t set DP_PLL_ENABLE). Also build VDR config[1] from the PLL recipe
+    bit and the number-of-registers field.
+    
+    Make intel_lt_phy_calculate_hdmi_state() static and pass
+    struct intel_display for debug logging.
+    
+    Replace the hardcoded <= 12 (13-entry) VDR register loops with a shared
+    constant (VDR_NUM_REGISTERS, 13 VDR entries) when programming, reading out
+    and dumping LT PHY VDR state. Also remove a stray blank line at the end of
+    intel_xe3plpd_pll_disable().
+    
+    BSpec:74667
+    Signed-off-by: Mika Kahola <mika.kahola@intel.com>
++ /mt/dim checkpatch a748e8ef327c92c865410957509417b30f026304 drm-intel
+88e845c3515f drm/i915/lt_phy: Build HDMI VDR config from fields and use VDR_NUM_REGISTERS
+-:116: WARNING:LONG_LINE: line length of 104 exceeds 100 columns
+#116: FILE: drivers/gpu/drm/i915/display/intel_lt_phy.c:1673:
++	lt_state->config[1] = LT_PHY_VDR_PLL_RECIPE | LT_PHY_VDR_NUMBER_OF_REGISTERS(VDR_NUM_REGISTERS);
+
+-:201: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#201: FILE: drivers/gpu/drm/i915/display/intel_lt_phy_regs.h:46:
++#define  LT_PHY_VDR_NUMBER_OF_REGISTERS(val)	REG_FIELD_PREP8(LT_PHY_VDR_NUMBER_OF_REGISTERS_MASK, val)
+
+total: 0 errors, 2 warnings, 0 checks, 154 lines checked
+
+
