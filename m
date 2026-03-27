@@ -4,70 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5735410BA439
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 08:17:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F25EF10BA43C
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 08:26:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 182E410ECEC;
-	Fri, 27 Mar 2026 08:17:02 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eqP5k36H";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E312210ECEC;
- Fri, 27 Mar 2026 08:17:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774599421; x=1806135421;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=HTA3piuPUkYAg53mnACGm0nngNvxcbWu8yTBneObip4=;
- b=eqP5k36HDOhRKalyxfr7IEhG8P4+RlVP3G9wdnZvx+0S/g9+DzXXfhD/
- NkDxq1i8bmMB7rnjxLV+5dJ+5bgk0dn9Tpt01EUbhuIGD+oxDFbk4OKHp
- q1K8YsRcmOmpn5X7/KYbvDltsUmKSrDjQlGnpt0CeB93eWWarw0q9UhkZ
- qfAE4WQyKi1oSRE10Xyv/Dp+GBAcZKr6GDH66AGpzws2YiCNx16lJcBx8
- J3xDJAbTZPfVEPjoPOrHxm37LvKVlm6jpJQf2aQwHd15+ti6f69pLDB+z
- Dr7Y2Hyp4gFrVPFQhKYiSLwPulu3Oa8IPPRUjLydJoaHQzna3djblb4Un Q==;
-X-CSE-ConnectionGUID: pFGhxGdsRs6wBkaf867qSw==
-X-CSE-MsgGUID: Qme/ePjaTKOE58F36XsgXw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75784125"
-X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="75784125"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2026 01:17:00 -0700
-X-CSE-ConnectionGUID: zwrmvJYGTSW6CDJ7eAFMLw==
-X-CSE-MsgGUID: N96fdPgUSZuFfu878NRbRw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="255747969"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO fedora)
- ([10.245.244.146])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2026 01:16:55 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Natalie Vock <natalie.vock@gmx.de>, Johannes Weiner <hannes@cmpxchg.org>,
- Tejun Heo <tj@kernel.org>,
- =?UTF-8?q?Michal=20Koutn=C3=BD?= <mkoutny@suse.com>,
- cgroups@vger.kernel.org, Huang Rui <ray.huang@amd.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>,
- David Airlie <airlied@gmail.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 5/5] drm/amdgpu: Wire up dmem cgroup reclaim for VRAM manager
-Date: Fri, 27 Mar 2026 09:16:00 +0100
-Message-ID: <20260327081600.4885-6-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260327081600.4885-1-thomas.hellstrom@linux.intel.com>
-References: <20260327081600.4885-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2B8B10E35C;
+	Fri, 27 Mar 2026 08:26:01 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F6C910E0E3;
+ Fri, 27 Mar 2026 08:26:00 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Add_reclaim_to_the_dmem_c?=
+ =?utf-8?q?group_controller?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 27 Mar 2026 08:26:00 -0000
+Message-ID: <177459996003.404950.14241092905315733700@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260327081600.4885-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20260327081600.4885-1-thomas.hellstrom@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,62 +36,96 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Register the VRAM manager with the dmem cgroup reclaim infrastructure
-so that lowering dmem.max below current VRAM usage triggers TTM
-eviction rather than failing with -EBUSY.
+== Series Details ==
 
-Guard place->flags in amdgpu_ttm_bo_eviction_valuable() against NULL,
-as the TTM reclaim path passes a NULL place in cgroup drain mode.
+Series: Add reclaim to the dmem cgroup controller
+URL   : https://patchwork.freedesktop.org/series/163970/
+State : warning
 
+== Summary ==
+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 15b809cf5f895b449941f471fd9df6958021d555
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Fri Mar 27 09:16:00 2026 +0100
+
+    drm/amdgpu: Wire up dmem cgroup reclaim for VRAM manager
+    
+    Register the VRAM manager with the dmem cgroup reclaim infrastructure
+    so that lowering dmem.max below current VRAM usage triggers TTM
+    eviction rather than failing with -EBUSY.
+    
+    Guard place->flags in amdgpu_ttm_bo_eviction_valuable() against NULL,
+    as the TTM reclaim path passes a NULL place in cgroup drain mode.
+    
+    Assisted-by: GitHub Copilot:claude-sonnet-4.6
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch a748e8ef327c92c865410957509417b30f026304 drm-intel
+5396b03267e5 cgroup/dmem: Return error when setting max below current usage
+-:14: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#14: 
 Assisted-by: GitHub Copilot:claude-sonnet-4.6
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c      |  2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c | 10 +++++++---
- 2 files changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-index b4ab309bf08a..cd83f30a30f7 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c
-@@ -1491,7 +1491,7 @@ static bool amdgpu_ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
- 	dma_resv_for_each_fence(&resv_cursor, bo->base.resv,
- 				DMA_RESV_USAGE_BOOKKEEP, f) {
- 		if (amdkfd_fence_check_mm(f, current->mm) &&
--		    !(place->flags & TTM_PL_FLAG_CONTIGUOUS))
-+		    !(place && (place->flags & TTM_PL_FLAG_CONTIGUOUS)))
- 			return false;
- 	}
- 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-index 2a241a5b12c4..5987b1b9ec09 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
-@@ -916,14 +916,18 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev)
- {
- 	struct amdgpu_vram_mgr *mgr = &adev->mman.vram_mgr;
- 	struct ttm_resource_manager *man = &mgr->manager;
-+	struct dmem_cgroup_region *cg;
- 	int err;
- 
--	man->cg = drmm_cgroup_register_region(adev_to_drm(adev), "vram", adev->gmc.real_vram_size);
--	if (IS_ERR(man->cg))
--		return PTR_ERR(man->cg);
- 	ttm_resource_manager_init(man, &adev->mman.bdev,
- 				  adev->gmc.real_vram_size);
- 
-+	cg = drmm_cgroup_register_region(adev_to_drm(adev), "vram",
-+					 adev->gmc.real_vram_size);
-+	if (IS_ERR(cg))
-+		return PTR_ERR(cg);
-+	ttm_resource_manager_set_dmem_region(man, cg);
-+
- 	mutex_init(&mgr->lock);
- 	INIT_LIST_HEAD(&mgr->reservations_pending);
- 	INIT_LIST_HEAD(&mgr->reserved_pages);
--- 
-2.53.0
+-:14: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'GitHub Copilot:claude-sonnet-4.6'
+#14: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
+
+total: 1 errors, 1 warnings, 0 checks, 44 lines checked
+4906968a231c cgroup/dmem: Add reclaim callback for lowering max below current usage
+-:22: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#22: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
+
+-:22: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'GitHub Copilot:claude-sonnet-4.6'
+#22: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
+
+total: 1 errors, 1 warnings, 0 checks, 165 lines checked
+34a61b9a5a27 drm/ttm: Hook up a cgroup-aware reclaim callback for the dmem controller
+-:26: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#26: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
+
+-:26: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'GitHub Copilot:claude-sonnet-4.6'
+#26: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
+
+-:127: CHECK:MULTIPLE_ASSIGNMENTS: multiple assignments should be avoided
+#127: FILE: drivers/gpu/drm/ttm/ttm_bo.c:679:
++	evict_walk.try_low = evict_walk.hit_low = false;
+
+total: 1 errors, 1 warnings, 1 checks, 207 lines checked
+0571172946e7 drm/xe: Wire up dmem cgroup reclaim for VRAM manager
+-:13: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#13: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
+
+-:13: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'GitHub Copilot:claude-sonnet-4.6'
+#13: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
+
+total: 1 errors, 1 warnings, 0 checks, 31 lines checked
+15b809cf5f89 drm/amdgpu: Wire up dmem cgroup reclaim for VRAM manager
+-:16: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#16: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
+
+-:16: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'GitHub Copilot:claude-sonnet-4.6'
+#16: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
+
+total: 1 errors, 1 warnings, 0 checks, 29 lines checked
+
 
