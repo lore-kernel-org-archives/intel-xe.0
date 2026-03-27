@@ -4,65 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6FBB10BA426
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 05:34:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 41F5910BA432
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 06:43:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5572C10E3B7;
-	Fri, 27 Mar 2026 05:34:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAC6510ECB1;
+	Fri, 27 Mar 2026 06:43:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VkdZNjP/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GdLHfolO";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0126610EC6C;
- Fri, 27 Mar 2026 05:34:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E88010ECB1;
+ Fri, 27 Mar 2026 06:43:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774589663; x=1806125663;
- h=date:message-id:from:to:cc:subject:in-reply-to:
- references:mime-version;
- bh=eCAn9LxlIjBbvjE2Y7FAkMMMryc1Iula3Vv4wNWds64=;
- b=VkdZNjP/SEmnZAKVAbhf3MjZTGEIeudmAUvrmicFb8yTBWmieUam3bV0
- woAVdLV+r9RpgJHgeXQ1m8MSNjvGJO+E05ki+35p7h7dy5P1Ew/ukYxxg
- rEhWh+kSbIDlhcnbslWCEr7/IOpcBC0gzsIatY6MO61t7NMiBS5F/ds62
- OUjy+7N7fopclrc9s0E6ncNSRo48sGCsTBnYjbbnbhyAt4injWurcsUE8
- HgVtl+cm7riXwMReOpYa6a+D+1Ea7TZL//RlxpASefu1dKB/fp3A0LxrU
- eB+dZJy2SshinWpFHzrkSAX8wYr0aN5MiAsp/+n0syj1CkFalSVLPp/vm w==;
-X-CSE-ConnectionGUID: eqBBzwpgRlKsDB8J5IFIVw==
-X-CSE-MsgGUID: HFbwxfh5Rw6t2rdT3ILqZw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="79517626"
-X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="79517626"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 22:34:22 -0700
-X-CSE-ConnectionGUID: tKj0RDZESVK8s9XXnJZoOQ==
-X-CSE-MsgGUID: deu52ZlCTuyqnMP+zhLX+A==
+ t=1774593822; x=1806129822;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=L+HwGRCoUT4GHqMbFBwBT4E+GOssWBoeKho0Uu6v2js=;
+ b=GdLHfolOJkWkjN/JrlXTggidWkrmjVOJYTslixNtU1F8RNneixa0JZXx
+ 6HeV7djIbZ/q2QYJMmCd6wO85eBK4XNx4EgAjfvNGRhcgJ+gf74hOUaWW
+ +EzNeUVe9hj+lQSNqYviLaf1ikkjzC0VKGTRJxJeRteOyMcVHRBxM1gTN
+ +Vaq9L+6m93QhgoYBrVTucd2d7WFTKfKgh7fr3qWG1SCF5Ca5u3CU7orT
+ a0Bf9fDm7wj29RdX2jbrAI1e/D/FUjjTnC7crS/piapWlvkykJhnySshK
+ igEsasDJEwnmMqDiKT8qbhOEPMUJCPIbuLiZINxvl1OMkhIzs4LYMZlyp w==;
+X-CSE-ConnectionGUID: YbRMBTHcSzSXxRxTSWYWgw==
+X-CSE-MsgGUID: HQFoHKmhSPu66aKO07LgFA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75684250"
+X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="75684250"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 23:43:42 -0700
+X-CSE-ConnectionGUID: /s+0FceUR/2q9lZs7vdrnw==
+X-CSE-MsgGUID: jfHUFKUdQse3ESL80XouDg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="248553381"
-Received: from samuelyo-mobl2.amr.corp.intel.com (HELO adixit-MOBL3.intel.com)
- ([10.125.25.157])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 22:34:22 -0700
-Date: Thu, 26 Mar 2026 22:34:20 -0700
-Message-ID: <87341lzvhf.wl-ashutosh.dixit@intel.com>
-From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Cc: Satyanarayana K V P
- <satyanarayana.k.v.p@intel.com>,<intel-xe@lists.freedesktop.org>, Rodrigo
- Vivi <rodrigo.vivi@intel.com>, Piotr =?ISO-8859-1?Q?Pi=F3rkowski?=
- <piotr.piorkowski@intel.com>, Matthew Brost <matthew.brost@intel.com>,
- Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- =?ISO-8859-2?Q?Micha=B3?= Winiarski <michal.winiarski@intel.com>, Dunajski
- Bartosz <bartosz.dunajski@intel.com>,<dri-devel@lists.freedesktop.org>,
- Robert Krzemien <robert.krzemien@intel.com>
-Subject: Re: [RFC v6 1/1] drm/xe/pf: Restrict device query responses in
- admin-only PF mode
-In-Reply-To: <8d140cfb-ad38-4548-aec0-89581c79d8e5@intel.com>
-References: <20260316064100.2542412-3-satyanarayana.k.v.p@intel.com>	<20260316064100.2542412-4-satyanarayana.k.v.p@intel.com>	<875x6lq64y.wl-ashutosh.dixit@intel.com>	<8d140cfb-ad38-4548-aec0-89581c79d8e5@intel.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
- Emacs/30.2 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
+X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="222313851"
+Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 23:43:41 -0700
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: suraj.kandpal@intel.com
+Subject: [PATCH v5 1/2] drm/i915/dmc: Remove invalid PIPEDMC interrupt bits
+Date: Fri, 27 Mar 2026 12:14:52 +0530
+Message-ID: <20260327064453.2241523-2-dibin.moolakadan.subrahmanian@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260327064453.2241523-1-dibin.moolakadan.subrahmanian@intel.com>
+References: <20260327064453.2241523-1-dibin.moolakadan.subrahmanian@intel.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,87 +67,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 25 Mar 2026 01:38:51 -0700, Michal Wajdeczko wrote:
->
+On display version 35+ PIPEDMC_ATS_FAULT and
+PIPEDMC_GTT_FAULT interrupt bits are no longer defined.
 
-Hi Michal,
+Update the interrupt mask to drop these.
 
-> On 3/24/2026 10:17 PM, Dixit, Ashutosh wrote:
-> > On Sun, 15 Mar 2026 23:41:02 -0700, Satyanarayana K V P wrote:
-> >>
-> >> ---
-> >> V5 -> V6:
-> >> - Updated commit message.
-> >> - Return number of engines and memory regions as zero instead of returning
-> >> query size as zero (Michal Wajdeczko).
-> >> - Allow all other query IOCTLs excepts query_engines and query_mem_regions
-> >> (Michal Wajdeczko).
-> >
-> > Can someone explain the reason to move away from the approach in v5? Afais
-> > v6 has issues of this sort:
-> >
-> > * query_engines will return 0 engines but query_hwconfig will return > 0
-> >   engines
->
-> but those are separate queries on purpose, right?
-> and I guess that even today there could be a mismatch between these numbers:
->
-> * query_engines = engines available for use by the user software
-> * query_hwconfig.engines = report engines present on the hardware
+Changes in v2:
+- Move PIPEDMC_ERROR interrupt enable to a separate patch (Ville Syrjala)
+Changes in v3:
+- Add Bspec reference (Suraj Kandpal)
+Changes in v4:
+- Move bspec position in commit message(Suraj Kandpal)
 
-OK, agreed.
+Bspec: 70296
+Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dmc.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
->
-> > * query_engines will return 0 engines but query_oa_units will list out the
-> >   engines
->
-> and that IMO should be considered as a desired outcome, as I guess (again)
-> that this will allow us to do some OA reporting, even if PF alone is not
-> submitting any workloads and we want to monitor how VFs are doing
->
-> > * query_oa_units will return valid oa support but observation ioctl will
-> >   fail
->
-> my initial idea [1] was to expose observation ioctl as well, maybe we need
-> to add it back?
->
-> [1]
-> https://patchwork.freedesktop.org/patch/706445/?series=160349&rev=2#comment_1299475
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index 1667a829e708..1d2e09471ba4 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -505,6 +505,9 @@ static void pipedmc_clock_gating_wa(struct intel_display *display, bool enable)
+ 
+ static u32 pipedmc_interrupt_mask(struct intel_display *display)
+ {
++	if (DISPLAY_VER(display) >= 35)
++		return PIPEDMC_FLIPQ_PROG_DONE;
++
+ 	/*
+ 	 * FIXME PIPEDMC_ERROR not enabled for now due to LNL pipe B
+ 	 * triggering it during the first DC state transition. Figure
+-- 
+2.43.0
 
-OK, maybe I am thinking, we can expose the observation ioctl, though there
-are both pros and cons to doing this.
-
-Pros: get some OA reporting out of the box. Though the tools etc. will
-      likely not work out of the box because of other missing
-      queries/ioctl's.
-
-Cons: Not sure if it is ok to "snoop" on VF information out of the
-      box. Customers might insist this is not ok and insist on the
-      observation ioctl be removed. Also, on platforms on which OA is
-      supported in VF, there might be a conflict between OA in PF vs VF.
-
-Also, even if we add the observation ioctl, only the base OA feature will
-work. But there are other OA features which require other ioctl's (say
-exec) which will not work in the admin-only-pf mode.
-
-The other option is not add the OA ioctl. And insist that to get regular OA
-reporting/tools to work, the device must be unbound and rebound in the
-normal (non-admin-only) mode.
-
-So we could go with either of these approaches. I am ok either way. Maybe
-just add the observation ioctl for now and revisit after feedback from
-customers/UMD's?
-
-Thanks.
---
-Ashutosh
-
-
-
->
-> >
-> > v5 seems to have avoided contradictions of this sort. Or this doesn't
-> > matter? Thanks.
->
-> but since I'm not using any of those ioctls on daily basis, I might be wrong
->
