@@ -4,63 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42CDD10ED65A
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 10:41:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B69110ED659
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 10:53:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04B4E10ECE6;
-	Fri, 27 Mar 2026 10:41:24 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PyK2soyY";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C8E110ECA9;
- Fri, 27 Mar 2026 10:41:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774608082; x=1806144082;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=iCm+kQ1YYq4O5f1HS1CzcLwvSu1s/ik6knEphcwsQIs=;
- b=PyK2soyYkZ6FQdDEodbjhgqiQLWM82GKR6C1BL2RJM8oiFUPq6LkLu2W
- sd+ydezh1pGaNXZZBNHEMUi5ZOU+3FTF5BAjvWjOxfDNEm9Fts0YrtIJb
- GSiG78GCyF74RMyxnVtw3pkXEeGyMeMfOMBQe7huJN42qlbbjBP39S0rP
- YRPpH1suhObCZ9DqDX7FoKusyubl8RN2DH3XyPzkT9tcmGQFYsqkQcqLV
- NWDxDt6KGTfkVaqXDQlWQ0norS/CzfTA2eVXG27gGIaAeV5bmGf+52SN0
- nAJh2r8l14CE8fSHOXSacrFPFbzGe1yD0wapNOLbcrzlAy50w095Qn7fZ g==;
-X-CSE-ConnectionGUID: 9PLSOP4HS6+GwhKUUsQBPQ==
-X-CSE-MsgGUID: M5FQnoXpRO6/lx57v9s64Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="63235445"
-X-IronPort-AV: E=Sophos;i="6.23,144,1770624000"; d="scan'208";a="63235445"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2026 03:41:22 -0700
-X-CSE-ConnectionGUID: DPL5rnTVRKiYyrJ6ctgOZQ==
-X-CSE-MsgGUID: P46nTebITw6L84/QJipgew==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,144,1770624000"; d="scan'208";a="226886253"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.188])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2026 03:41:20 -0700
-Date: Fri, 27 Mar 2026 12:41:17 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Nemesa Garg <nemesa.garg@intel.com>
-Subject: Re: [PATCH 4/9] drm/i915/casf: Extract scaler_has_casf()
-Message-ID: <acZezWKFo1QwLAci@intel.com>
-References: <20260326223139.19116-1-ville.syrjala@linux.intel.com>
- <20260326223139.19116-5-ville.syrjala@linux.intel.com>
- <5312c2aa-a724-9b98-aa95-e4a4fffe3e91@intel.com>
- <7de76a02-bf3e-49e0-52c0-14ef65c879c3@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id B974010ED97;
+	Fri, 27 Mar 2026 10:53:28 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5377910ED96;
+ Fri, 27 Mar 2026 10:53:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3027969842775186173=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7de76a02-bf3e-49e0-52c0-14ef65c879c3@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_USE_drm_mm_instead_of_drm_S?=
+ =?utf-8?q?A_for_CCS_read/write_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Satyanarayana K V P" <satyanarayana.k.v.p@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Fri, 27 Mar 2026 10:53:27 -0000
+Message-ID: <177460880731.405318.12770940556952381553@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260327101146.3826819-5-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20260327101146.3826819-5-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,168 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Mar 27, 2026 at 11:06:18AM +0100, Michał Grzelak wrote:
-> On Fri, 27 Mar 2026, Michał Grzelak wrote:
-> > On Thu, 26 Mar 2026, Ville Syrjala wrote:
-> >> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >> 
-> >> Extract a small helper to determine if the scaler supports
-> >> the sharpness filter or not.
-> >> 
-> >> Cc: Nemesa Garg <nemesa.garg@intel.com>
-> >> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >> ---
-> >> drivers/gpu/drm/i915/display/skl_scaler.c | 12 ++++++++----
-> >> 1 file changed, 8 insertions(+), 4 deletions(-)
-> >> 
-> >> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c 
-> >> b/drivers/gpu/drm/i915/display/skl_scaler.c
-> >> index e9fe5c0bf6ff..525afd736195 100644
-> >> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
-> >> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-> >> @@ -323,19 +323,24 @@ int skl_update_scaler_plane(struct intel_crtc_state 
-> >> *crtc_state,
-> >> 				 need_scaler);
-> >> }
-> >> 
-> >> +static bool scaler_has_casf(struct intel_display *display, int scaler_id)
-> >> +{
-> >> +	return HAS_CASF(display) && scaler_id == 1;
-> >> +}
-> >> +
-> >> static int intel_allocate_scaler(struct intel_crtc_scaler_state 
-> >> *scaler_state,
-> >> 				 struct intel_crtc *crtc,
-> >> 				 struct intel_plane_state *plane_state,
-> >> 				 bool casf_scaler)
-> >> {
-> >> +	struct intel_display *display = to_intel_display(crtc);
-> >> 	int i;
-> >>
-> >> 	for (i = 0; i < crtc->num_scalers; i++) {
-> >> 		if (scaler_state->scalers[i].in_use)
-> >> 			continue;
-> >> 
-> >> -		/* CASF needs second scaler */
-> >> -		if (!plane_state && casf_scaler && i != 1)
-> >> +		if (casf_scaler && !scaler_has_casf(display, i))
-> >> 			continue;
-> >>
-> >> 		scaler_state->scalers[i].in_use = true;
-> >> @@ -982,8 +987,7 @@ void skl_scaler_get_config(struct intel_crtc_state 
-> >> *crtc_state)
-> >>
-> >> 		id = i;
-> >> 
-> >> -		/* Read CASF regs for second scaler */
-> >> -		if (HAS_CASF(display) && id == 1)
-> >> +		if (scaler_has_casf(display, i))
-> >
-> > With that being changed I am wondering if we need int id at all. The
-> > only user of it is outside the loop. Since id is set to i on every
-> > loop's pass, I guess we can replace it with last value of i. And if
-> > crtc->num_scalers == -1, we wouldn't enter the loop anyway, so the id
-> > is still set to -1. The only scenario I see where it can break is e.g.
-> > when crtc->num_scalers == -2, but I have no clue if it is even possible.
-> >
-> > To be precise, I am wondering about such change (diff without your change
-> > being applied):
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c 
-> > b/drivers/gpu/drm/i915/display/skl_scaler.c
-> > index 4c4deac7f9c8..78852267e60b 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_scaler.c
-> > +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-> > @@ -969,7 +969,6 @@ void skl_scaler_get_config(struct intel_crtc_state 
-> > *crtc_state)
-> >        struct intel_display *display = to_intel_display(crtc_state);
-> >        struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> >        struct intel_crtc_scaler_state *scaler_state = 
-> > &crtc_state->scaler_state;
-> > -       int id = -1;
-> >        int i;
-> >
-> >        /* find scaler attached to this pipe */
-> > @@ -980,8 +979,6 @@ void skl_scaler_get_config(struct intel_crtc_state 
-> > *crtc_state)
-> >                if ((ctl & (PS_SCALER_EN | PS_BINDING_MASK)) != (PS_SCALER_EN 
-> > | PS_BINDING_PIPE))
-> >                        continue;
-> >
-> > -               id = i;
-> > -
-> >                /* Read CASF regs for second scaler */
-> >                if (HAS_CASF(display) && id == 1)
-> >                        intel_casf_sharpness_get_config(crtc_state);
-> > @@ -1003,8 +1000,8 @@ void skl_scaler_get_config(struct intel_crtc_state 
-> > *crtc_state)
-> >                break;
-> >        }
-> >
-> > -       scaler_state->scaler_id = id;
-> > -       if (id >= 0)
-> > +       scaler_state->scaler_id = crtc->num_scalers;
-> > +       if (scaler_state->scaler_id >= 0)
-> >                scaler_state->scaler_users |= (1 << SKL_CRTC_INDEX);
-> >        else
-> >                scaler_state->scaler_users &= ~(1 << SKL_CRTC_INDEX);
-> >
-> > But I don't know if the reasoning above makes any sense.
-> 
-> Now I see that I missed the continue-break magic, so please disregard
-> the whole comment.
+--===============3027969842775186173==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I think the correct thing is to s/i/scaler_id/ and just move the 
-scaler_state->scaler_id and caler_state->scaler_users assignment into
-the loop.
+== Series Details ==
 
-Or even better something like this:
+Series: USE drm mm instead of drm SA for CCS read/write (rev2)
+URL   : https://patchwork.freedesktop.org/series/163588/
+State : success
 
-skl_pipe_scaler_get_hw_state()
-{
-	for (scaler_id) {
-		ctl = ...
-		if (ctl...)
-			return scaler_id;
-	}
+== Summary ==
 
-	return -1;
-}
+CI Bug Log - changes from xe-4804-a748e8ef327c92c865410957509417b30f026304_BAT -> xe-pw-163588v2_BAT
+====================================================
 
-skl_scaler_get_config()
-{
-	scaler_id = skl_pipe_scaler_get_hw_state();
-	if (scaler_id < 0)
-		return;
+Summary
+-------
 
-	// do the scaler readout
-}
+  **SUCCESS**
 
-Feel free to go at it.
+  No regressions found.
 
-> 
-> BR,
-> Michał
-> 
-> >
-> > Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
-> >
-> > BR,
-> > Michał
-> >
-> >> 			intel_casf_sharpness_get_config(crtc_state);
-> >>
-> >> 		if (!crtc_state->pch_pfit.casf.enable)
-> >> -- 
-> >> 2.52.0
-> >> 
-> >> 
-> >
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
 
 
--- 
-Ville Syrjälä
-Intel
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4804-a748e8ef327c92c865410957509417b30f026304 -> xe-pw-163588v2
+
+  IGT_8834: 8834
+  xe-4804-a748e8ef327c92c865410957509417b30f026304: a748e8ef327c92c865410957509417b30f026304
+  xe-pw-163588v2: 163588v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v2/index.html
+
+--===============3027969842775186173==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>USE drm mm instead of drm SA for CCS read/write (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163588/">https://patchwork.freedesktop.org/series/163588/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4804-a748e8ef327c92c865410957509417b30f026304_BAT -&gt; xe-pw-163588v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4804-a748e8ef327c92c865410957509417b30f026304 -&gt; xe-pw-163588v2</li>
+</ul>
+<p>IGT_8834: 8834<br />
+  xe-4804-a748e8ef327c92c865410957509417b30f026304: a748e8ef327c92c865410957509417b30f026304<br />
+  xe-pw-163588v2: 163588v2</p>
+
+</body>
+</html>
+
+--===============3027969842775186173==--
