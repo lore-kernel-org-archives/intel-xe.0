@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 888AD10F286F
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 21:16:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4CCF10F286F
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 21:16:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3812410E045;
-	Fri, 27 Mar 2026 21:16:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99EF010E19C;
+	Fri, 27 Mar 2026 21:16:52 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B98A10E045;
- Fri, 27 Mar 2026 21:16:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8595126810003012938=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BBCE110E19C;
+ Fri, 27 Mar 2026 21:16:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/xe/uc=3A_Track_uc_firmw?=
- =?utf-8?q?are_state_changes?=
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/xe=3A_Document_GT_sta?=
+ =?utf-8?q?tistics_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+To: "Francois Dugast" <francois.dugast@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Mar 2026 21:16:05 -0000
-Message-ID: <177464616546.407613.223144434570952611@a3b018990fe9>
+Date: Fri, 27 Mar 2026 21:16:51 -0000
+Message-ID: <177464621173.407613.4836521155285301133@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260327202407.563-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20260327202407.563-1-michal.wajdeczko@intel.com>
+References: <20260327202749.222794-1-francois.dugast@intel.com>
+In-Reply-To: <20260327202749.222794-1-francois.dugast@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,154 +40,59 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8595126810003012938==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/uc: Track uc firmware state changes
-URL   : https://patchwork.freedesktop.org/series/164018/
-State : success
+Series: drm/xe: Document GT statistics (rev2)
+URL   : https://patchwork.freedesktop.org/series/164005/
+State : warning
 
 == Summary ==
 
-CI Bug Log - changes from xe-4811-d699fa2d9776038b13f7b8153738a850676d0641_BAT -> xe-pw-164018v1_BAT
-====================================================
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 699453801708818b64741cd7f00e0af269909cf8
+Author: Francois Dugast <francois.dugast@intel.com>
+Date:   Fri Mar 27 21:27:49 2026 +0100
 
-Summary
--------
+    drm/xe: Document GT statistics
+    
+    In the context of porting applications to SVM, the Xe GT statistics are
+    used by application developers to validate expected behavior such as
+    proper alignment, page fault count and migrations. As those statistics
+    are made for kernel developers, they assume good understanding of driver
+    internals, which is not always the case on the application side.
+    Therefore, this commit documents the usage of GT statistics and clarifies
+    the meaning of identifiers which correspond to the values exposed via
+    debugfs. Documentation is close to identifiers declaration to make it
+    easier to maintain when adding new entries in the future.
+    
+    v2: Fix page reclaim list (PRL) entries (Matthew Brost)
+    
+    Assisted-by: GitHub Copilot:claude-sonnet-4.6
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch b8c1f8bc16b8aeff4f912cf2d7d0bf385d5ae026 drm-intel
+699453801708 drm/xe: Document GT statistics
+-:18: WARNING:BAD_SIGN_OFF: Non-standard signature: Assisted-by:
+#18: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-  **SUCCESS**
+-:18: ERROR:BAD_SIGN_OFF: Unrecognized email address: 'GitHub Copilot:claude-sonnet-4.6'
+#18: 
+Assisted-by: GitHub Copilot:claude-sonnet-4.6
 
-  No regressions found.
+-:33: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#33: 
+new file mode 100644
 
-  
-
-Participating hosts (14 -> 14)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-164018v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2] ([Intel XE#7483])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4811-d699fa2d9776038b13f7b8153738a850676d0641/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164018v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [DMESG-WARN][3] ([Intel XE#7483]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4811-d699fa2d9776038b13f7b8153738a850676d0641/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164018v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-#### Warnings ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-bmg-2:          [DMESG-WARN][5] ([Intel XE#7433]) -> [ABORT][6] ([Intel XE#7249] / [Intel XE#7578])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4811-d699fa2d9776038b13f7b8153738a850676d0641/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164018v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [Intel XE#7249]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249
-  [Intel XE#7433]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7433
-  [Intel XE#7483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483
-  [Intel XE#7578]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578
+total: 1 errors, 2 warnings, 0 checks, 186 lines checked
 
 
-Build changes
--------------
-
-  * Linux: xe-4811-d699fa2d9776038b13f7b8153738a850676d0641 -> xe-pw-164018v1
-
-  IGT_8834: 8834
-  xe-4811-d699fa2d9776038b13f7b8153738a850676d0641: d699fa2d9776038b13f7b8153738a850676d0641
-  xe-pw-164018v1: 164018v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164018v1/index.html
-
---===============8595126810003012938==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/uc: Track uc firmware state changes</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164018/">https://patchwork.freedesktop.org/series/164018/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164018v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164018v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4811-d699fa2d9776038b13f7b8153738a850676d0641_BAT -&gt; xe-pw-164018v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (14 -&gt; 14)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-164018v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4811-d699fa2d9776038b13f7b8153738a850676d0641/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164018v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4811-d699fa2d9776038b13f7b8153738a850676d0641/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7483">Intel XE#7483</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164018v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-bmg-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4811-d699fa2d9776038b13f7b8153738a850676d0641/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7433">Intel XE#7433</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164018v1/bat-bmg-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7249">Intel XE#7249</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7578">Intel XE#7578</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4811-d699fa2d9776038b13f7b8153738a850676d0641 -&gt; xe-pw-164018v1</li>
-</ul>
-<p>IGT_8834: 8834<br />
-  xe-4811-d699fa2d9776038b13f7b8153738a850676d0641: d699fa2d9776038b13f7b8153738a850676d0641<br />
-  xe-pw-164018v1: 164018v1</p>
-
-</body>
-</html>
-
---===============8595126810003012938==--
