@@ -4,58 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE60010ED640
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 10:12:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84B6210ED651
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 10:16:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E3F410EC8B;
-	Fri, 27 Mar 2026 10:12:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C41F10EC81;
+	Fri, 27 Mar 2026 10:16:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JiinTCfv";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="lVgQkLok";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0785010ECBA
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Mar 2026 10:12:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774606324; x=1806142324;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=46tBNpGXMXYJfiItvMnHVNb9eLPnlA0Jentl7f4BvXU=;
- b=JiinTCfv2NkLgWqSiJhGOGOzvVWGZ+15SbiVPVcopaYnjFvxk/vXJmWY
- yOT8y6YQ7WS9igF9uxUUgCw2D2zP5cr4/GePZw2E9Oytf2G/oF82YLYUE
- e0A0WKqhUh8LMvNx6x2OJ2zmtcATop+le76nXGndZ6K/B9tf9lGuoE6kF
- cXUyf/cSDL4dUwlrOpUkOcWGgaLe6BPnZi9r55JBUqz08txo2xbG66APc
- U2uF+X9/zbtkpJ5Q/ziB9lh4ChSgUEvMruyGglTewo2uEih6oQ6X6/t4f
- KQjK9gyhd5md7MqPWaRU+yQYVnl/B4dqtZbMeNKpW82tyNVtqWhI0hJyp A==;
-X-CSE-ConnectionGUID: 5NMZ86IlTp2bPqmeGtgzsw==
-X-CSE-MsgGUID: +u+VzmfPRM+X+3yFegSH8g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75792683"
-X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="75792683"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2026 03:12:03 -0700
-X-CSE-ConnectionGUID: 8SrQLKddT5q5rn43wT9LRw==
-X-CSE-MsgGUID: EUwmk24HTKKnlsO9tOxKFQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="230197957"
-Received: from gsd-build.iind.intel.com ([10.190.229.167])
- by orviesa005.jf.intel.com with ESMTP; 27 Mar 2026 03:12:02 -0700
-From: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-To: intel-xe@lists.freedesktop.org
-Cc: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Maarten Lankhorst <dev@lankhorst.se>,
- Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH v2 3/3] drm/xe/vf: Use drm mm instead of drm sa for CCS
- read/write
-Date: Fri, 27 Mar 2026 10:11:50 +0000
-Message-ID: <20260327101146.3826819-8-satyanarayana.k.v.p@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260327101146.3826819-5-satyanarayana.k.v.p@intel.com>
-References: <20260327101146.3826819-5-satyanarayana.k.v.p@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7A3E10EC81;
+ Fri, 27 Mar 2026 10:16:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=2Ov0h8F0Aenw99SzX+p2cSP9o4BSawrLEZ6Z866g1RI=; b=lVgQkLokA12kT3MKWbgAduJVvn
+ WI8cHd+tYoe57iLavPN2LiW//LgvLOiDEvu4pzyiJgY+y6GbcxTDHFzld66tGqpvcyAoEpmjrj1c3
+ u/E95PQtqURGmmZGUvOYapJtit+6NeIuV0/cLgBVOjglfc22+3Y58UOH0cRcq3nsGYPtGHoC/MNUq
+ F1mdw3khiGlnabsl7Fn5evy3r5wy2jlZ8PIc0OWTaFl/fd0gFlaSS1lryhBVZtx6xppU0THOPWZhH
+ pZmM6edpcZNDOBjAGG83Yc56+w/wyuPcJQdfhqGTv3tDR88GzSv81jXb4v1cPyPIvNUDYmJimo5n2
+ 7WJo+pAw==;
+Received: from [90.240.106.137] (helo=[192.168.0.101])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1w64Eo-0076Mf-Iw; Fri, 27 Mar 2026 11:16:22 +0100
+Message-ID: <9a78995b-539b-43b9-8a75-e5b9e575d56e@igalia.com>
+Date: Fri, 27 Mar 2026 10:16:21 +0000
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 00/29] Fair(er) DRM scheduler
+To: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: kernel-dev@igalia.com, intel-xe@lists.freedesktop.org,
+ Danilo Krummrich <dakr@kernel.org>, Philipp Stanner <phasta@kernel.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Leo Liu <Leo.Liu@amd.com>, Lucas Stach <l.stach@pengutronix.de>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>,
+ =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+References: <20260306163445.97243-1-tvrtko.ursulin@igalia.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <20260306163445.97243-1-tvrtko.ursulin@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,332 +65,345 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The suballocator algorithm tracks a hole cursor at the last allocation
-and tries to allocate after it. This is optimized for fence-ordered
-progress, where older allocations are expected to become reusable first.
 
-In fence-enabled mode, that ordering assumption holds. In fence-disabled
-mode, allocations may be freed in arbitrary order, so limiting allocation
-to the current hole window can miss valid free space and fail allocations
-despite sufficient total space.
+Gentle thread bump.
 
-Use DRM memory manager instead of sub-allocator to get rid of this issue
-as CCS read/write operations do not use fences.
-
-Fixes: 864690cf4dd62 ("drm/xe/vf: Attach and detach CCS copy commands with BO")
-Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Maarten Lankhorst <dev@lankhorst.se>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-
----
-V1 -> V2:
-- Renamed xe_drm_mm to xe_mm_suballoc (Thomas)
----
- drivers/gpu/drm/xe/xe_bo_types.h           |  3 +-
- drivers/gpu/drm/xe/xe_migrate.c            | 56 ++++++++++++----------
- drivers/gpu/drm/xe/xe_sriov_vf_ccs.c       | 39 ++++++++-------
- drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h |  5 +-
- 4 files changed, 53 insertions(+), 50 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index ff8317bfc1ae..aad501c142cf 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -18,6 +18,7 @@
- #include "xe_ggtt_types.h"
- 
- struct xe_device;
-+struct xe_mm_suballoc_bb;
- struct xe_vm;
- 
- #define XE_BO_MAX_PLACEMENTS	3
-@@ -88,7 +89,7 @@ struct xe_bo {
- 	bool ccs_cleared;
- 
- 	/** @bb_ccs: BB instructions of CCS read/write. Valid only for VF */
--	struct xe_bb *bb_ccs[XE_SRIOV_VF_CCS_CTX_COUNT];
-+	struct xe_mm_suballoc_bb *bb_ccs[XE_SRIOV_VF_CCS_CTX_COUNT];
- 
- 	/**
- 	 * @cpu_caching: CPU caching mode. Currently only used for userspace
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index fc918b4fba54..359985b58e4f 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -29,6 +29,7 @@
- #include "xe_hw_engine.h"
- #include "xe_lrc.h"
- #include "xe_map.h"
-+#include "xe_mm_suballoc.h"
- #include "xe_mocs.h"
- #include "xe_printk.h"
- #include "xe_pt.h"
-@@ -1166,11 +1167,12 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- 	u32 batch_size, batch_size_allocated;
- 	struct xe_device *xe = gt_to_xe(gt);
- 	struct xe_res_cursor src_it, ccs_it;
-+	struct xe_mm_suballoc_manager *bb_pool;
- 	struct xe_sriov_vf_ccs_ctx *ctx;
--	struct xe_sa_manager *bb_pool;
-+	struct xe_mm_suballoc_bb *bb = NULL;
- 	u64 size = xe_bo_size(src_bo);
--	struct xe_bb *bb = NULL;
- 	u64 src_L0, src_L0_ofs;
-+	struct xe_bb xe_bb_tmp;
- 	u32 src_L0_pt;
- 	int err;
- 
-@@ -1208,18 +1210,18 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- 		size -= src_L0;
- 	}
- 
--	bb = xe_bb_alloc(gt);
-+	bb = xe_mm_suballoc_bb_alloc();
- 	if (IS_ERR(bb))
- 		return PTR_ERR(bb);
- 
- 	bb_pool = ctx->mem.ccs_bb_pool;
--	scoped_guard(mutex, xe_sa_bo_swap_guard(bb_pool)) {
--		xe_sa_bo_swap_shadow(bb_pool);
-+	scoped_guard(mutex, xe_mm_suballoc_bo_swap_guard(bb_pool)) {
-+		xe_mm_suballoc_bo_swap_shadow(bb_pool);
- 
--		err = xe_bb_init(bb, bb_pool, batch_size);
-+		err = xe_mm_suballoc_bb_insert(bb, bb_pool, batch_size);
- 		if (err) {
- 			xe_gt_err(gt, "BB allocation failed.\n");
--			xe_bb_free(bb, NULL);
-+			kfree(bb);
- 			return err;
- 		}
- 
-@@ -1227,6 +1229,7 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- 		size = xe_bo_size(src_bo);
- 		batch_size = 0;
- 
-+		xe_bb_tmp = (struct xe_bb){ .cs = bb->cs, .len = 0 };
- 		/*
- 		 * Emit PTE and copy commands here.
- 		 * The CCS copy command can only support limited size. If the size to be
-@@ -1255,24 +1258,27 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- 			xe_assert(xe, IS_ALIGNED(ccs_it.start, PAGE_SIZE));
- 			batch_size += EMIT_COPY_CCS_DW;
- 
--			emit_pte(m, bb, src_L0_pt, false, true, &src_it, src_L0, src);
-+			emit_pte(m, &xe_bb_tmp, src_L0_pt, false, true, &src_it, src_L0, src);
- 
--			emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src);
-+			emit_pte(m, &xe_bb_tmp, ccs_pt, false, false, &ccs_it, ccs_size, src);
- 
--			bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
--			flush_flags = xe_migrate_ccs_copy(m, bb, src_L0_ofs, src_is_pltt,
-+			xe_bb_tmp.len = emit_flush_invalidate(xe_bb_tmp.cs, xe_bb_tmp.len,
-+							      flush_flags);
-+			flush_flags = xe_migrate_ccs_copy(m, &xe_bb_tmp, src_L0_ofs, src_is_pltt,
- 							  src_L0_ofs, dst_is_pltt,
- 							  src_L0, ccs_ofs, true);
--			bb->len = emit_flush_invalidate(bb->cs, bb->len, flush_flags);
-+			xe_bb_tmp.len = emit_flush_invalidate(xe_bb_tmp.cs, xe_bb_tmp.len,
-+							      flush_flags);
- 
- 			size -= src_L0;
- 		}
- 
--		xe_assert(xe, (batch_size_allocated == bb->len));
-+		xe_assert(xe, (batch_size_allocated == xe_bb_tmp.len));
-+		bb->len = xe_bb_tmp.len;
- 		src_bo->bb_ccs[read_write] = bb;
- 
- 		xe_sriov_vf_ccs_rw_update_bb_addr(ctx);
--		xe_sa_bo_sync_shadow(bb->bo);
-+		xe_mm_suballoc_sync_shadow(bb_pool, &bb->node);
- 	}
- 
- 	return 0;
-@@ -1297,10 +1303,10 @@ int xe_migrate_ccs_rw_copy(struct xe_tile *tile, struct xe_exec_queue *q,
- void xe_migrate_ccs_rw_copy_clear(struct xe_bo *src_bo,
- 				  enum xe_sriov_vf_ccs_rw_ctxs read_write)
- {
--	struct xe_bb *bb = src_bo->bb_ccs[read_write];
-+	struct xe_mm_suballoc_bb *bb = src_bo->bb_ccs[read_write];
- 	struct xe_device *xe = xe_bo_device(src_bo);
-+	struct xe_mm_suballoc_manager *bb_pool;
- 	struct xe_sriov_vf_ccs_ctx *ctx;
--	struct xe_sa_manager *bb_pool;
- 	u32 *cs;
- 
- 	xe_assert(xe, IS_SRIOV_VF(xe));
-@@ -1308,17 +1314,17 @@ void xe_migrate_ccs_rw_copy_clear(struct xe_bo *src_bo,
- 	ctx = &xe->sriov.vf.ccs.contexts[read_write];
- 	bb_pool = ctx->mem.ccs_bb_pool;
- 
--	guard(mutex) (xe_sa_bo_swap_guard(bb_pool));
--	xe_sa_bo_swap_shadow(bb_pool);
--
--	cs = xe_sa_bo_cpu_addr(bb->bo);
--	memset(cs, MI_NOOP, bb->len * sizeof(u32));
--	xe_sriov_vf_ccs_rw_update_bb_addr(ctx);
-+	scoped_guard(mutex, xe_mm_suballoc_bo_swap_guard(bb_pool)) {
-+		xe_mm_suballoc_bo_swap_shadow(bb_pool);
- 
--	xe_sa_bo_sync_shadow(bb->bo);
-+		cs = bb_pool->cpu_addr + bb->node.start;
-+		memset(cs, MI_NOOP, bb->len * sizeof(u32));
-+		xe_sriov_vf_ccs_rw_update_bb_addr(ctx);
- 
--	xe_bb_free(bb, NULL);
--	src_bo->bb_ccs[read_write] = NULL;
-+		xe_mm_suballoc_sync_shadow(bb_pool, &bb->node);
-+		xe_mm_suballoc_bb_free(bb);
-+		src_bo->bb_ccs[read_write] = NULL;
-+	}
- }
- 
- /**
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-index db023fb66a27..ef12565cdefc 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs.c
-@@ -15,8 +15,8 @@
- #include "xe_guc_submit.h"
- #include "xe_lrc.h"
- #include "xe_migrate.h"
-+#include "xe_mm_suballoc.h"
- #include "xe_pm.h"
--#include "xe_sa.h"
- #include "xe_sriov_printk.h"
- #include "xe_sriov_vf.h"
- #include "xe_sriov_vf_ccs.h"
-@@ -141,8 +141,8 @@ static u64 get_ccs_bb_pool_size(struct xe_device *xe)
- 
- static int alloc_bb_pool(struct xe_tile *tile, struct xe_sriov_vf_ccs_ctx *ctx)
- {
-+	struct xe_mm_suballoc_manager *xe_mm_sa_manager;
- 	struct xe_device *xe = tile_to_xe(tile);
--	struct xe_sa_manager *sa_manager;
- 	u64 bb_pool_size;
- 	int offset, err;
- 
-@@ -150,34 +150,33 @@ static int alloc_bb_pool(struct xe_tile *tile, struct xe_sriov_vf_ccs_ctx *ctx)
- 	xe_sriov_info(xe, "Allocating %s CCS BB pool size = %lldMB\n",
- 		      ctx->ctx_id ? "Restore" : "Save", bb_pool_size / SZ_1M);
- 
--	sa_manager = __xe_sa_bo_manager_init(tile, bb_pool_size, SZ_4K, SZ_16,
--					     XE_SA_BO_MANAGER_FLAG_SHADOW);
--
--	if (IS_ERR(sa_manager)) {
--		xe_sriov_err(xe, "Suballocator init failed with error: %pe\n",
--			     sa_manager);
--		err = PTR_ERR(sa_manager);
-+	xe_mm_sa_manager = xe_mm_suballoc_manager_init(tile, bb_pool_size, SZ_4K,
-+						       XE_MM_SUBALLOC_BO_MANAGER_FLAG_SHADOW);
-+	if (IS_ERR(xe_mm_sa_manager)) {
-+		xe_sriov_err(xe, "xe_mm_suballoc init failed with error: %pe\n",
-+			     xe_mm_sa_manager);
-+		err = PTR_ERR(xe_mm_sa_manager);
- 		return err;
- 	}
- 
- 	offset = 0;
--	xe_map_memset(xe, &sa_manager->bo->vmap, offset, MI_NOOP,
-+	xe_map_memset(xe, &xe_mm_sa_manager->bo->vmap, offset, MI_NOOP,
- 		      bb_pool_size);
--	xe_map_memset(xe, &sa_manager->shadow->vmap, offset, MI_NOOP,
-+	xe_map_memset(xe, &xe_mm_sa_manager->shadow->vmap, offset, MI_NOOP,
- 		      bb_pool_size);
- 
- 	offset = bb_pool_size - sizeof(u32);
--	xe_map_wr(xe, &sa_manager->bo->vmap, offset, u32, MI_BATCH_BUFFER_END);
--	xe_map_wr(xe, &sa_manager->shadow->vmap, offset, u32, MI_BATCH_BUFFER_END);
-+	xe_map_wr(xe, &xe_mm_sa_manager->bo->vmap, offset, u32, MI_BATCH_BUFFER_END);
-+	xe_map_wr(xe, &xe_mm_sa_manager->shadow->vmap, offset, u32, MI_BATCH_BUFFER_END);
- 
--	ctx->mem.ccs_bb_pool = sa_manager;
-+	ctx->mem.ccs_bb_pool = xe_mm_sa_manager;
- 
- 	return 0;
- }
- 
- static void ccs_rw_update_ring(struct xe_sriov_vf_ccs_ctx *ctx)
- {
--	u64 addr = xe_sa_manager_gpu_addr(ctx->mem.ccs_bb_pool);
-+	u64 addr = xe_mm_suballoc_manager_gpu_addr(ctx->mem.ccs_bb_pool);
- 	struct xe_lrc *lrc = xe_exec_queue_lrc(ctx->mig_q);
- 	u32 dw[10], i = 0;
- 
-@@ -388,7 +387,7 @@ int xe_sriov_vf_ccs_init(struct xe_device *xe)
- #define XE_SRIOV_VF_CCS_RW_BB_ADDR_OFFSET	(2 * sizeof(u32))
- void xe_sriov_vf_ccs_rw_update_bb_addr(struct xe_sriov_vf_ccs_ctx *ctx)
- {
--	u64 addr = xe_sa_manager_gpu_addr(ctx->mem.ccs_bb_pool);
-+	u64 addr = xe_mm_suballoc_manager_gpu_addr(ctx->mem.ccs_bb_pool);
- 	struct xe_lrc *lrc = xe_exec_queue_lrc(ctx->mig_q);
- 	struct xe_device *xe = gt_to_xe(ctx->mig_q->gt);
- 
-@@ -412,8 +411,8 @@ int xe_sriov_vf_ccs_attach_bo(struct xe_bo *bo)
- 	struct xe_device *xe = xe_bo_device(bo);
- 	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
- 	struct xe_sriov_vf_ccs_ctx *ctx;
-+	struct xe_mm_suballoc_bb *bb;
- 	struct xe_tile *tile;
--	struct xe_bb *bb;
- 	int err = 0;
- 
- 	xe_assert(xe, IS_VF_CCS_READY(xe));
-@@ -445,7 +444,7 @@ int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo)
- {
- 	struct xe_device *xe = xe_bo_device(bo);
- 	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
--	struct xe_bb *bb;
-+	struct xe_mm_suballoc_bb *bb;
- 
- 	xe_assert(xe, IS_VF_CCS_READY(xe));
- 
-@@ -471,8 +470,8 @@ int xe_sriov_vf_ccs_detach_bo(struct xe_bo *bo)
-  */
- void xe_sriov_vf_ccs_print(struct xe_device *xe, struct drm_printer *p)
- {
--	struct xe_sa_manager *bb_pool;
- 	enum xe_sriov_vf_ccs_rw_ctxs ctx_id;
-+	struct xe_mm_suballoc_manager *bb_pool;
- 
- 	if (!IS_VF_CCS_READY(xe))
- 		return;
-@@ -485,7 +484,7 @@ void xe_sriov_vf_ccs_print(struct xe_device *xe, struct drm_printer *p)
- 
- 		drm_printf(p, "ccs %s bb suballoc info\n", ctx_id ? "write" : "read");
- 		drm_printf(p, "-------------------------\n");
--		drm_suballoc_dump_debug_info(&bb_pool->base, p, xe_sa_manager_gpu_addr(bb_pool));
-+		drm_mm_print(&bb_pool->base, p);
- 		drm_puts(p, "\n");
- 	}
- }
-diff --git a/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h b/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
-index 22c499943d2a..a825f488c810 100644
---- a/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
-+++ b/drivers/gpu/drm/xe/xe_sriov_vf_ccs_types.h
-@@ -17,9 +17,6 @@ enum xe_sriov_vf_ccs_rw_ctxs {
- 	XE_SRIOV_VF_CCS_CTX_COUNT
- };
- 
--struct xe_migrate;
--struct xe_sa_manager;
--
- /**
-  * struct xe_sriov_vf_ccs_ctx - VF CCS migration context data.
-  */
-@@ -33,7 +30,7 @@ struct xe_sriov_vf_ccs_ctx {
- 	/** @mem: memory data */
- 	struct {
- 		/** @mem.ccs_bb_pool: Pool from which batch buffers are allocated. */
--		struct xe_sa_manager *ccs_bb_pool;
-+		struct xe_mm_suballoc_manager *ccs_bb_pool;
- 	} mem;
- };
- 
--- 
-2.43.0
+On 06/03/2026 16:34, Tvrtko Ursulin wrote:
+> [disclaimer]
+> Please note that as this series includes patches which touch a good number of
+> drivers, I did not copy everyone on everything. Assumption is people are
+> subscribed to dri-devel and for context can look at the whole series there.
+> [/disclaimer]
+> 
+> As a summary, the new scheduling algorithm is insipired by the original Linux
+> CFS and so far no scheduling regressions have been found relative to FIFO.
+> There are improvements in fairness and scheduling of interactive clients when
+> running in parallel with a heavy GPU load (for example Pierre-Eric has one
+> viewperf medical test which shows a nice improvement with amdgpu).
+> 
+> On the high level main advantages of the series are:
+> 
+>   1. Scheduling quality - schedules better than FIFO, solves priority starvation.
+>   2. Code simplification - no more multiple run queues and multiple algorithms.
+>   3. Virtual GPU time based scheduling enables relatively simple addition
+>      of a scheduling cgroup controller in the future.
+> 
+> There is a little bit more detailed write up on the motivation and results in
+> the form of a blog post which may be easier to read:
+> https://blogs.igalia.com/tursulin/fair-er-drm-gpu-scheduler/
+> 
+> First patches add some unit tests which allow for easy evaluation of scheduling
+> behaviour against different client submission patterns. From there onwards it is
+> hopefully a natural progression of cleanups, enablers, adding the fair policy,
+> and finally removing FIFO and RR and simplifying the code base due no more need
+> for multiple run queues.
+> 
+> Series is structured in a way where we could apply the first 12 patches (up to
+> and including "drm/sched: Switch default policy to fair") in one kernel release
+> and then follow up with the rest of the cleanups after a release or two if
+> things will be looking fine. Until the remainder of the series would be merged
+> it would be easy to flip the default algorithm back.
+> 
+> Onto the performance evaluation. As a headline result I have tested three
+> simultaneous clients on the Steam Deck:
+> 
+> One instance of a deferredmultisampling Vulkan demo running with low priority,
+> one normal priority instance of the same demo, and the Unigine Heaven benchmark.
+> 
+> With the FIFO scheduler we can see that the low priority client is completely
+> starved and the GPU time distribution between the other two clients is uneven:
+> 
+> https://people.igalia.com/tursulin/drm-sched-fair/fifo-starvation.png
+> 
+> Switching to the fair scheduler, GPU time distribution is almost equal and the
+> low priority client does get a small share of the GPU:
+> 
+> https://people.igalia.com/tursulin/drm-sched-fair/fair-no-starvation.png
+> 
+> Moving onto the synthetic submission patterns, they are about two simultaneous
+> clients which broadly cover the following categories:
+> 
+>   * Deep queue clients
+>   * Hogs versus interactive
+>   * Priority handling
+> 
+> Lets look at the results:
+> 
+> 1. Two normal priority deep queue clients.
+> 
+> These ones submit one second worth of 8ms jobs. As fast as they can, no
+> dependencies etc. There is no difference in runtime between FIFO and fair but
+> the latter allows both clients to progress with work more evenly:
+> 
+> https://people.igalia.com/tursulin/drm-sched-fair/normal-normal.png
+> 
+> (X axis is time, Y is submitted queue-depth, hence lowering of qd corresponds
+>    with work progress for both clients, tested with both schedulers separately.)
+> 
+> Round-robin is the same as fair here.
+> 
+> 2. Same two clients but one is now low priority.
+> 
+> https://people.igalia.com/tursulin/drm-sched-fair/normal-low.png
+> 
+> Normal priority client is a solid line, low priority dotted. We can see how FIFO
+> completely starves the low priority client until the normal priority is fully
+> done. Only then the low priority client gets any GPU time.
+> 
+> In constrast, fair scheduler allows some GPU time to the low priority client.
+> 
+> Here round-robin flavours are the same as FIFO (same starvation issue).
+> 
+> 3. Same clients but now high versus normal priority.
+> 
+> Similar behaviour as in the previous one with normal a bit less de-prioritised
+> relative to high, than low was against normal.
+> 
+> https://people.igalia.com/tursulin/drm-sched-fair/high-normal.png
+> 
+> And again round-robin flavours are the same as FIFO.
+> 
+> 4. Heavy load vs interactive client.
+> 
+> Heavy client emits a 75% GPU load in the format of 3x 2.5ms jobs followed by a
+> 2.5ms wait. Interactive client emits a 10% GPU load in the format of 1x 1ms job
+> followed by a 9ms wait.
+> 
+> This simulates an interactive graphical client used on top of a relatively heavy
+> background load but no GPU oversubscription.
+> 
+> Graphs show the interactive client only and from now on, instead of looking at
+> the client's queue depth, we look at its "fps".
+> 
+> https://people.igalia.com/tursulin/drm-sched-fair/251008/4-heavy-vs-interactive.png
+> 
+> Here round-robin and round-robin rewritten on top of FIFO are best, with the
+> fair algorithm being very close. FIFO is clearly the worst.
+> 
+> 5. An even heavier load vs interactive client.
+> 
+> This one is oversubscribing the GPU by submitting 4x 50ms jobs and waiting for
+> only one microsecond before repeating the cycle. Interactive client is the same
+> 10% as above.
+> 
+> https://people.igalia.com/tursulin/drm-sched-fair/251008/4-very-heavy-vs-interactive.png
+> 
+> Here FIFO is even worse and fair is again almost as good as the two round-robin
+> flavours.
+> 
+> 6. Low priority GPU hog versus heavy-interactive.
+> 
+> Low priority client: 3x 2.5ms jobs client followed by a 0.5ms wait.
+> Interactive client: 1x 0.5ms job followed by a 10ms wait.
+> 
+> https://people.igalia.com/tursulin/drm-sched-fair/251008/4-low-hog-vs-interactive.png
+> 
+> All schedulers appear to handle this almost equally well but FIFO could still be
+> the last while fair has a slight lead.
+> 
+> As before, I am looking for feedback, ideas for what other kinds of submission
+> scenarios to test, testing on different GPUs and of course reviews.
+> 
+> v2:
+>   * Fixed many rebase errors.
+>   * Added some new patches.
+>   * Dropped single shot dependecy handling.
+> 
+> v3:
+>   * Added scheduling quality unit tests.
+>   * Refined a tiny bit by adding some fairness.
+>   * Dropped a few patches for now.
+> 
+> v4:
+>   * Replaced deadline with fair!
+>   * Refined scheduling quality unit tests.
+>   * Pulled one cleanup patch earlier.
+>   * Fixed "drm/sched: Avoid double re-lock on the job free path".
+> 
+> v5:
+>   * Rebase on top of latest upstream DRM scheduler changes.
+>   * Kerneldoc fixup.
+>   * Improve commit message justification for one patch. (Philipp)
+>   * Add comment in drm_sched_alloc_wq. (Christian)
+> 
+> v6:
+>   * Rebase for "drm/sched: De-clutter drm_sched_init" getting merged.
+>   * Avoid NULL rq dereference from a bad rebase. (Maira)
+>   * Added some kerneldoc throughout. (Maira)
+>   * Removed some lockdep annotations not belonging to one patch. (Maira)
+>   * Use dma_fence_is_signaled in "drm/sched: Avoid double re-lock on the job free path". (Maira, Philipp)
+> 
+> v7:
+>   * Rebase for some prep patches getting merged.
+>   * Dropped submit all ready jobs patch.
+>   * Fixed 64-bit division in unit tests.
+>   * Fixed some more rebase and patch re-ordering mistakes.
+>   * Preserve entity RR order when re-entering the queue.
+>   * Fine tuned the queue re-enter logic for better behaviour with interactive
+>     clients.
+>   * Removed some static inlines.
+>   * Added more kerneldoc.
+>   * Done some benchmarks in the round-robin scheduling modes.
+> 
+> v8:
+>   * Rebased for upstream changes.
+>   * Added assert for reverse numerical order of DRM_SCHED_PRIORITY enums.
+>   * Fixed head of rq priority updates.
+> 
+> *** RFC -> PATCH change log version reset. ***
+> 
+> v9 / v1:
+>   * RFC -> PATCH for the series as agreed during the XDC.
+>   * Updated interactive benchmark graphs.
+>   * Improved handling of interactive clients by replacing the random noise on tie
+>     approach with the average job duration statistics.
+>   * Document in code why we track entity GPU stats in a reference counted structures.
+>   * Document the new structure fields added by the fair policy.
+>   * Undo some tab vs spaces damage.
+>   * More accurate wording in the fair policy commit message.
+>   * Default to fair policy in a separate patch.
+>   * Renamed drm_sched_rq_select_entity to drm_sched_select_entity and make it only take sched.
+>   * Fixed kerneldoc after removing scheduling policies and renaming the rq.
+>   * Reversed arguments of drm_sched_rq_init and cleanup callers. (New patch)
+>   * Removed unused num_rqs from struct drm_sched_args. (New patches)
+>   * Unit tests:
+>     * Added wait duration comments.
+>     * Data structure comments.
+>     * Better name for a local variable.
+>     * Added comment to the short job duration assert.
+>     * Added comment for cond_resched().
+>     * Tweaked some comments
+>     * Added client_done() helper and documented the READ_ONCE.
+>     * Clarified cycles per second calculation.
+> 
+> v2:
+>   * Dropped the sched_rq_init() argument re-order patch.
+>   * Pulled run queue management consolidation patches to start of the series.
+>   * Drm_sched_rq_get_rr_ts() renamed to drm_sched_rq_next_rr_ts().
+>   * Added DRM_SCHED_PRIORITY_INVALID local define.
+>   * Added locking around the ktime_t vruntime read.
+>   * Expanded comment relating to the unlocked entity->priority read.
+>   * Expanded comment relating to the unlocked scheduler average job duration read.
+>   * Various kerneldoc tweaks.
+>   * Undo some tab vs spaces damage harder.
+>   * Undo one empty line rebase damage.
+>   * Reworded commit message for the FIFO and RR removal patch.
+>   * Various commit message spelling, grammar and typo fixes.
+>   * Unit tests:
+>     * Various style changes.
+>     * More descriptive test names.
+>     * Print legend for measured metrics.
+>     * Check for memory allocation failures.
+> 
+> v3:
+>   * Marked fair policy as default in the correct patch.
+>   * Further improved comment in drm_sched_rq_update_prio().
+>   * Moved DRM_SCHED_PRIORITY_INVALID to gpu_scheduler.h.
+>   * Added description of the GPU time to vruntime scaling factors.
+>   * Recorded more collected acks.
+> 
+> v4:
+>   * Rebased, collect ackes and r-b-s receives so far.
+>   * New patch in the series for handling the new ethosu accel driver.
+>   * Bump lower priorities lower down in the run queue when they re-join, in order
+>     to penalize them a bit more than simply making them second in the line to
+>     run as it was in v3.
+> 
+> v5:
+>   * Rebased, collect ackes and r-b-s received so far.
+>   * Fix lost return statement introduced in v2 refactoring.
+>   * Use virtual runtime based on average job durations when placing the re-
+>     joining lower priority entity in the run-queue.
+> 
+> v6:
+>   * Renamed drm_sched_entity_stats_alloc to drm_sched_entity_stats_new.
+>   * Moved drm_sched_entity_stats_job_add_gpu_time to sched_entity.c.
+>   * Improved kerneldoc for struct drm_sched_entity_stats.
+>   * Explained GPU accounting placement in the respective commit text.
+>   * Removed duplicated sched list assignment int the embedding the run-queue
+>     patch.
+> 
+> v7:
+>   * Rebased to catchup with upstream changes.
+>   * Dropped the two amdgpu dependencies from the series - they have been merged
+>     and have propagated to drm-next and drm-tip.
+>   * Applied acks/reviews received since v6.
+> 
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Danilo Krummrich <dakr@kernel.org>
+> CC: Leo Liu <Leo.Liu@amd.com>
+> Cc: Lucas Stach <l.stach@pengutronix.de>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Philipp Stanner <phasta@kernel.org>
+> Cc: Pierre-Eric Pelloux-Prayer <pierre-eric.pelloux-prayer@amd.com>
+> Cc: Michel Dänzer <michel.daenzer@mailbox.org>
+> 
+> Tvrtko Ursulin (29):
+>    drm/sched: Disallow initializing entities with no schedulers
+>    drm/sched: Consolidate entity run queue management
+>    drm/sched: Move run queue related code into a separate file
+>    drm/sched: Add some scheduling quality unit tests
+>    drm/sched: Add some more scheduling quality unit tests
+>    drm/sched: Implement RR via FIFO
+>    drm/sched: Free all finished jobs at once
+>    drm/sched: Account entity GPU time
+>    drm/sched: Remove idle entity from tree
+>    drm/sched: Add fair scheduling policy
+>    drm/sched: Favour interactive clients slightly
+>    drm/sched: Switch default policy to fair
+>    drm/sched: Remove FIFO and RR and simplify to a single run queue
+>    drm/sched: Embed run queue singleton into the scheduler
+>    accel/amdxdna: Remove drm_sched_init_args->num_rqs usage
+>    accel/rocket: Remove drm_sched_init_args->num_rqs usage
+>    accel/ethosu: Remove drm_sched_init_args->num_rqs usage
+>    drm/amdgpu: Remove drm_sched_init_args->num_rqs usage
+>    drm/etnaviv: Remove drm_sched_init_args->num_rqs usage
+>    drm/imagination: Remove drm_sched_init_args->num_rqs usage
+>    drm/lima: Remove drm_sched_init_args->num_rqs usage
+>    drm/msm: Remove drm_sched_init_args->num_rqs usage
+>    drm/nouveau: Remove drm_sched_init_args->num_rqs usage
+>    drm/panfrost: Remove drm_sched_init_args->num_rqs usage
+>    drm/panthor: Remove drm_sched_init_args->num_rqs usage
+>    drm/sched: Remove drm_sched_init_args->num_rqs usage
+>    drm/v3d: Remove drm_sched_init_args->num_rqs usage
+>    drm/xe: Remove drm_sched_init_args->num_rqs usage
+>    drm/sched: Remove drm_sched_init_args->num_rqs
+> 
+>   drivers/accel/amdxdna/aie2_ctx.c              |   1 -
+>   drivers/accel/ethosu/ethosu_job.c             |   1 -
+>   drivers/accel/rocket/rocket_job.c             |   1 -
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c        |   6 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |   1 -
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_job.c       |  27 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_job.h       |   5 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h     |   8 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c   |   8 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c       |   8 +-
+>   drivers/gpu/drm/etnaviv/etnaviv_sched.c       |   1 -
+>   drivers/gpu/drm/imagination/pvr_queue.c       |   1 -
+>   drivers/gpu/drm/lima/lima_sched.c             |   1 -
+>   drivers/gpu/drm/msm/msm_gem_vma.c             |   1 -
+>   drivers/gpu/drm/msm/msm_ringbuffer.c          |   1 -
+>   drivers/gpu/drm/nouveau/nouveau_sched.c       |   1 -
+>   drivers/gpu/drm/panfrost/panfrost_job.c       |   1 -
+>   drivers/gpu/drm/panthor/panthor_mmu.c         |   1 -
+>   drivers/gpu/drm/panthor/panthor_sched.c       |   1 -
+>   drivers/gpu/drm/scheduler/Makefile            |   2 +-
+>   drivers/gpu/drm/scheduler/sched_entity.c      | 163 ++--
+>   drivers/gpu/drm/scheduler/sched_fence.c       |   2 +-
+>   drivers/gpu/drm/scheduler/sched_internal.h    |  70 +-
+>   drivers/gpu/drm/scheduler/sched_main.c        | 351 +------
+>   drivers/gpu/drm/scheduler/sched_rq.c          | 379 ++++++++
+>   drivers/gpu/drm/scheduler/tests/Makefile      |   3 +-
+>   .../gpu/drm/scheduler/tests/mock_scheduler.c  |   1 -
+>   .../gpu/drm/scheduler/tests/tests_scheduler.c | 884 ++++++++++++++++++
+>   drivers/gpu/drm/v3d/v3d_sched.c               |   1 -
+>   drivers/gpu/drm/xe/xe_dep_scheduler.c         |   1 -
+>   drivers/gpu/drm/xe/xe_execlist.c              |   1 -
+>   drivers/gpu/drm/xe/xe_gpu_scheduler.c         |   1 -
+>   include/drm/gpu_scheduler.h                   |  44 +-
+>   33 files changed, 1497 insertions(+), 481 deletions(-)
+>   create mode 100644 drivers/gpu/drm/scheduler/sched_rq.c
+>   create mode 100644 drivers/gpu/drm/scheduler/tests/tests_scheduler.c
+> 
 
