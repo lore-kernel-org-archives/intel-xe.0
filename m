@@ -4,27 +4,94 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0438110F287C
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Mar 2026 23:55:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00F3910F287C
+	for <intel-xe@archiver.kernel.org>; Sat, 28 Mar 2026 00:22:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6CA110EF82;
-	Fri, 27 Mar 2026 23:55:43 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B733910E1D1;
- Fri, 27 Mar 2026 23:55:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8867485363733892390=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9055C10EF9E;
+	Sat, 28 Mar 2026 00:22:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aYWa1uQO";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B48DB10EF89;
+ Sat, 28 Mar 2026 00:22:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774657334; x=1806193334;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=hKLpvsNSY5f61dkDuhlSS6zsyLleYaRSx9gGzSTHTmo=;
+ b=aYWa1uQO7AOBnxiYG5bVageob9xCXyWF8MbdTBgTBAghXYOi5dn12AWj
+ BQGQoAPhGtAtY/c4HAqeC2EucJiTdoBsieLvm230G2p2arSncWp1q3pN8
+ oaZ/sUz813/fcgOOaOeDlma1+vkNGsX5wjKMRr2CLoe5TK24a0Zm0R4cC
+ Xwi59OiosYGE8fKAlBWp3SCqwvbDPgMzHIYCHfVQd3QEcTc+4jMowjXCW
+ kHq4H+BXKM+MXHqv+BiCPe9QIfpED8uSG7AEzqqu0XJgJawLQiOkH/f08
+ Zo6BIE3f88HVq4iGexx1BA7wXLfEBu1xSI/LP0l3Ehn5yUB+fhWk9zykJ Q==;
+X-CSE-ConnectionGUID: PiiLCk4mTYa9RHD6pQxqPQ==
+X-CSE-MsgGUID: UMx5dL9aR1emM5mcLe3uFA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11742"; a="74768559"
+X-IronPort-AV: E=Sophos;i="6.23,145,1770624000"; d="scan'208";a="74768559"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2026 17:22:13 -0700
+X-CSE-ConnectionGUID: mSyIvSuCRBKSEXuAKNOjtQ==
+X-CSE-MsgGUID: SWzO0wyVQ2SyujTRwk21xw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,145,1770624000"; d="scan'208";a="224498686"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.188])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2026 17:22:04 -0700
+Date: Sat, 28 Mar 2026 02:22:01 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ Werner Sembach <wse@tuxedocomputers.com>,
+ Andri Yngvason <andri@yngvason.is>, Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color format"
+Message-ID: <accfKbYPbH7EgAMc@intel.com>
+References: <20260324-color-format-v11-3-605559af4fb4@collabora.com>
+ <acLDPYuaVI2-12JX@intel.com> <23910073.EfDdHjke4D@workhorse>
+ <acLrv5hLyNss-Px5@intel.com>
+ <20260325-neat-elegant-raven-ebc9ab@houat>
+ <acPA60Ci3n_t__xF@intel.com>
+ <20260325-magnificent-ultraviolet-oarfish-baefbc@houat>
+ <acQsw3Wi_xVlBZ8d@intel.com>
+ <20260326-pumpkin-goshawk-of-stamina-0ccb84@houat>
+ <acVzwRyk_J24GrJ4@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFULL=3A_success_for_Add_reclaim_to_the_dmem_cg?=
- =?utf-8?q?roup_controller?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Mar 2026 23:55:42 -0000
-Message-ID: <177465574272.407612.18377783732503573786@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260327081600.4885-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20260327081600.4885-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <acVzwRyk_J24GrJ4@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,152 +103,227 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8867485363733892390==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Mar 26, 2026 at 07:58:25PM +0200, Ville Syrjälä wrote:
+> On Thu, Mar 26, 2026 at 06:02:47PM +0100, Maxime Ripard wrote:
+> > On Wed, Mar 25, 2026 at 08:43:15PM +0200, Ville Syrjälä wrote:
+> > > On Wed, Mar 25, 2026 at 03:56:58PM +0100, Maxime Ripard wrote:
+> > > > On Wed, Mar 25, 2026 at 01:03:07PM +0200, Ville Syrjälä wrote:
+> > > > > On Wed, Mar 25, 2026 at 09:24:27AM +0100, Maxime Ripard wrote:
+> > > > > > On Tue, Mar 24, 2026 at 09:53:35PM +0200, Ville Syrjälä wrote:
+> > > > > > > On Tue, Mar 24, 2026 at 08:10:11PM +0100, Nicolas Frattaroli wrote:
+> > > > > > > > On Tuesday, 24 March 2026 18:00:45 Central European Standard Time Ville Syrjälä wrote:
+> > > > > > > > > On Tue, Mar 24, 2026 at 05:01:07PM +0100, Nicolas Frattaroli wrote:
+> > > > > > > > > > +enum drm_connector_color_format {
+> > > > > > > > > > +	/**
+> > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_AUTO: The driver or display protocol
+> > > > > > > > > > +	 * helpers should pick a suitable color format. All implementations of a
+> > > > > > > > > > +	 * specific display protocol must behave the same way with "AUTO", but
+> > > > > > > > > > +	 * different display protocols do not necessarily have the same "AUTO"
+> > > > > > > > > > +	 * semantics.
+> > > > > > > > > > +	 *
+> > > > > > > > > > +	 * For HDMI, "AUTO" picks RGB, but falls back to YCbCr 4:2:0 if the
+> > > > > > > > > > +	 * bandwidth required for full-scale RGB is not available, or the mode
+> > > > > > > > > > +	 * is YCbCr 4:2:0-only, as long as the mode and output both support
+> > > > > > > > > > +	 * YCbCr 4:2:0.
+> > > > > > > > > > +	 *
+> > > > > > > > > > +	 * For display protocols other than HDMI, the recursive bridge chain
+> > > > > > > > > > +	 * format selection picks the first chain of bridge formats that works,
+> > > > > > > > > > +	 * as has already been the case before the introduction of the "color
+> > > > > > > > > > +	 * format" property. Non-HDMI bridges should therefore either sort their
+> > > > > > > > > > +	 * bus output formats by preference, or agree on a unified auto format
+> > > > > > > > > > +	 * selection logic that's implemented in a common state helper (like
+> > > > > > > > > > +	 * how HDMI does it).
+> > > > > > > > > > +	 */
+> > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_AUTO = 0,
+> > > > > > > > > > +
+> > > > > > > > > > +	/**
+> > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_RGB444: RGB output format
+> > > > > > > > > > +	 */
+> > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_RGB444,
+> > > > > > > > > > +
+> > > > > > > > > > +	/**
+> > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR444: YCbCr 4:4:4 output format (ie.
+> > > > > > > > > > +	 * not subsampled)
+> > > > > > > > > > +	 */
+> > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR444,
+> > > > > > > > > > +
+> > > > > > > > > > +	/**
+> > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR422: YCbCr 4:2:2 output format (ie.
+> > > > > > > > > > +	 * with horizontal subsampling)
+> > > > > > > > > > +	 */
+> > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR422,
+> > > > > > > > > > +
+> > > > > > > > > > +	/**
+> > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR420: YCbCr 4:2:0 output format (ie.
+> > > > > > > > > > +	 * with horizontal and vertical subsampling)
+> > > > > > > > > > +	 */
+> > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR420,
+> > > > > > > > > 
+> > > > > > > > > Seems like this should document what the quantization range
+> > > > > > > > > should be for each format.
+> > > > > > > > > 
+> > > > > > > > 
+> > > > > > > > I don't think so? If you want per-component bit depth values,
+> > > > > > > > DRM_FORMAT_* defines would be the appropriate values to use. This
+> > > > > > > > enum is more abstract than that, and is there to communicate
+> > > > > > > > YUV vs. RGB and chroma subsampling, with bit depth being handled
+> > > > > > > > by other properties.
+> > > > > > > > 
+> > > > > > > > If you mean the factor used for subsampling, then that'd only be
+> > > > > > > > relevant if YCBCR410 was supported where one chroma plane isn't
+> > > > > > > > halved but quartered in resolution. I suspect 4:1:0 will never
+> > > > > > > > be added; no digital display protocol standard supports it to my
+> > > > > > > > knowledge, and hopefully none ever will.
+> > > > > > > 
+> > > > > > > No, I mean the quantization range (16-235 vs. 0-255 etc).
+> > > > > > > 
+> > > > > > > The i915 behaviour is that YCbCr is always limited range,
+> > > > > > > RGB can either be full or limited range depending on the 
+> > > > > > > "Broadcast RGB" property and other related factors.
+> > > > > > 
+> > > > > > So far the HDMI state has both the format and quantization range as
+> > > > > > different fields. I'm not sure we need to document the range in the
+> > > > > > format field, maybe only mention it's not part of the format but has a
+> > > > > > field of its own?
+> > > > > 
+> > > > > I think we only have it for RGB (on some drivers only?). For YCbCr
+> > > > > I think the assumption is limited range everywhere.
+> > > > > 
+> > > > > But I'm not really concerned about documenting struct members.
+> > > > > What I'm talking about is the *uapi* docs. Surely userspace
+> > > > > will want to know what the new property actually does so the
+> > > > > uapi needs to be documented properly. And down the line some
+> > > > > new driver might also implement the wrong behaviour if there
+> > > > > is no clear specification.
+> > > > 
+> > > > Ack
+> > > > 
+> > > > > So I'm thinking (or perhaps hoping) the rule might be something like:
+> > > > > - YCbCr limited range 
+> > > > > - RGB full range if "Broadcast RGB" property is not present
+> > > > 
+> > > > Isn't it much more complicated than that for HDMI though? My
+> > > > recollection was that any VIC but VIC1 would be limited range, and
+> > > > anything else full range?
+> > > 
+> > > Do we have some driver that implements the CTA-861 CE vs. IT mode
+> > > logic but doesn't expose the "Broadcast RGB" property? I was hoping
+> > > those would always go hand in hand now.
+> > 
+> > I'm not sure. i915 and the HDMI state helpers handle it properly (I
+> > think?) but it looks like only vc4 registers the Broadcast RGB property
+> > and uses the HDMI state helpers.
+> > 
+> > And it looks like amdgpu registers Broadcast RGB but doesn't use
+> > drm_default_rgb_quant_range() which seems suspicious?
+> 
+> If they want just manual full vs. limited then they should
+> limit the property to not expose the "auto" option at all.
+> 
+> amdgpu also ties this in with the "colorspace" property, which
+> originally in i915 only controlled the infoframes/etc. But on
+> amdgpu it now controls various aspects of output color
+> transformation. The end result is that the property is a complete
+> mess with most of the values making no sense. And for whatever
+> reason everyone involved refused to remove/deprecate the
+> nonsensical values :/
+> 
+> Looks like this series should make sure the documentation for
+> the "colorspace" property is in sync with the new property
+> as well. Currently now it's giving conflicting information.
 
-== Series Details ==
+After pondering about this a bit more I guess we could actually
+use this to make all the values of the colorspace property make
+some sense.
 
-Series: Add reclaim to the dmem cgroup controller
-URL   : https://patchwork.freedesktop.org/series/163970/
-State : success
+Since we won't have to worry about that RGB->YCbCr 4:2:0
+fallback when using and explicit color format, all we'd have
+to do is explicitly reject the nonsensical combinations:
 
-== Summary ==
+color_format_and_colorspace_ok()
+{
+	switch (color_format) {
+	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR444:
+	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR422:
+	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR420:
+		switch (colorspace) {
+		case DRM_MODE_COLORIMETRY_NO_DATA:
+		case DRM_MODE_COLORIMETRY_SMPTE_170M_YCC:
+		case DRM_MODE_COLORIMETRY_BT601_YCC:
+		case DRM_MODE_COLORIMETRY_BT709_YCC:
+		case DRM_MODE_COLORIMETRY_XVYCC_601:
+		case DRM_MODE_COLORIMETRY_XVYCC_709:
+		case DRM_MODE_COLORIMETRY_SYCC_601:
+		case DRM_MODE_COLORIMETRY_OPYCC_601:
+		case DRM_MODE_COLORIMETRY_BT2020_CYCC:
+		case DRM_MODE_COLORIMETRY_BT2020_YCC:
+		case DRM_MODE_COLORIMETRY_BT709_YCC:
+			return true;
+		default:
+			return false;
+		}
+		break;
+	case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
+		switch (colorspace) {
+		case DRM_MODE_COLORIMETRY_NO_DATA:
+		case DRM_MODE_COLORIMETRY_OPRGB:
+		case DRM_MODE_COLORIMETRY_BT2020_RGB:
+		case DRM_MODE_COLORIMETRY_DCI_P3_RGB_D65:
+		case DRM_MODE_COLORIMETRY_DCI_P3_RGB_THEATER:
+		case DRM_MODE_COLORIMETRY_RGB_WIDE_FIXED:
+		case DRM_MODE_COLORIMETRY_RGB_WIDE_FLOAT:
+		case DRM_MODE_COLORIMETRY_OPRGB:
+		case DRM_MODE_COLORIMETRY_DCI_P3_RGB_D65:
+		case DRM_MODE_COLORIMETRY_BT2020_RGB:
+			return true;
+		default
+			return false;
+		}
+		break;
+	case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
+		switch (colorspace) {
+		case DRM_MODE_COLORIMETRY_NO_DATA:
+		case DRM_MODE_COLORIMETRY_BT2020_RGB:
+		case DRM_MODE_COLORIMETRY_BT2020_YCC:
+			return true;
+		default:
+			return false;
+		}
+	default:
+		bad;
+	}
+}
 
-CI Bug Log - changes from xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b_FULL -> xe-pw-163970v1_FULL
-====================================================
+And then presumably the colorspace property is the thing that should
+dictate which conversion matrix to use. So something like this:
 
-Summary
--------
+csc_matrix()
+{
+	switch (colorspace) {
+	case DRM_MODE_COLORIMETRY_SMPTE_170M_YCC:
+	case DRM_MODE_COLORIMETRY_BT601_YCC:
+	case DRM_MODE_COLORIMETRY_XVYCC_601:
+	case DRM_MODE_COLORIMETRY_SYCC_601:
+	case DRM_MODE_COLORIMETRY_OPYCC_601:
+		return 601;
+	case DRM_MODE_COLORIMETRY_BT709_YCC:
+	case DRM_MODE_COLORIMETRY_XVYCC_709:
+		return 709;
+	case DRM_MODE_COLORIMETRY_BT2020_YCC:
+	case DRM_MODE_COLORIMETRY_BT2020_RGB:
+		return 2020;
+	case DRM_MODE_COLORIMETRY_BT2020_CYCC:
+		return 2020_const;
+	case DRM_MODE_COLORIMETRY_NO_DATA:
+		return vdisplay >= 720 ? 709 : 601;
+	default:
+		bad;
+	}
+}
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (2 -> 2)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-163970v1_FULL that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@flip-vs-expired-vblank@b-edp1:
-    - shard-lnl:          [FAIL][1] ([Intel XE#301]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b/shard-lnl-8/igt@kms_flip@flip-vs-expired-vblank@b-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v1/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank@b-edp1.html
-
-  * igt@kms_pm_dc@dc5-psr:
-    - shard-lnl:          [FAIL][3] ([Intel XE#7340]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b/shard-lnl-8/igt@kms_pm_dc@dc5-psr.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v1/shard-lnl-1/igt@kms_pm_dc@dc5-psr.html
-
-  * igt@kms_pm_dc@deep-pkgc:
-    - shard-lnl:          [FAIL][5] ([Intel XE#2029] / [Intel XE#7395]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b/shard-lnl-1/igt@kms_pm_dc@deep-pkgc.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v1/shard-lnl-3/igt@kms_pm_dc@deep-pkgc.html
-
-  
-  [Intel XE#2029]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/2029
-  [Intel XE#301]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/301
-  [Intel XE#7340]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7340
-  [Intel XE#7395]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7395
-
-
-Build changes
--------------
-
-  * Linux: xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b -> xe-pw-163970v1
-
-  IGT_8834: 8834
-  xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b: 0a7844908d3616b88a7887704eb6dfa0d315be1b
-  xe-pw-163970v1: 163970v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v1/index.html
-
---===============8867485363733892390==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add reclaim to the dmem cgroup controller</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163970/">https://patchwork.freedesktop.org/series/163970/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b_FULL -&gt; xe-pw-163970v1_FULL</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (2 -&gt; 2)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-163970v1_FULL that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@flip-vs-expired-vblank@b-edp1:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b/shard-lnl-8/igt@kms_flip@flip-vs-expired-vblank@b-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/301">Intel XE#301</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v1/shard-lnl-1/igt@kms_flip@flip-vs-expired-vblank@b-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_dc@dc5-psr:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b/shard-lnl-8/igt@kms_pm_dc@dc5-psr.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7340">Intel XE#7340</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v1/shard-lnl-1/igt@kms_pm_dc@dc5-psr.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_dc@deep-pkgc:</p>
-<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b/shard-lnl-1/igt@kms_pm_dc@deep-pkgc.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/2029">Intel XE#2029</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7395">Intel XE#7395</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163970v1/shard-lnl-3/igt@kms_pm_dc@deep-pkgc.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b -&gt; xe-pw-163970v1</li>
-</ul>
-<p>IGT_8834: 8834<br />
-  xe-4803-0a7844908d3616b88a7887704eb6dfa0d315be1b: 0a7844908d3616b88a7887704eb6dfa0d315be1b<br />
-  xe-pw-163970v1: 163970v1</p>
-
-</body>
-</html>
-
---===============8867485363733892390==--
+-- 
+Ville Syrjälä
+Intel
