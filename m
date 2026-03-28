@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E65FF10F3DC1
-	for <intel-xe@archiver.kernel.org>; Sat, 28 Mar 2026 01:46:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C47B10F3DC9
+	for <intel-xe@archiver.kernel.org>; Sat, 28 Mar 2026 02:23:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F72610EFD8;
-	Sat, 28 Mar 2026 01:46:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6C7E10E074;
+	Sat, 28 Mar 2026 02:23:05 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71DC110EFD7;
- Sat, 28 Mar 2026 01:46:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 964CA10E074;
+ Sat, 28 Mar 2026 02:23:04 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============0749160156213261394=="
+ boundary="===============2157574249650823887=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_Xe=2ECI=2EFULL=3A_failure_for_drm/i915/lt=5Fphy=3A_Build?=
- =?utf-8?q?_HDMI_VDR_config_from_fields_and_use_VDR=5FNUM=5FREGISTERS?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFULL=3A_success_for_USE_drm_mm_instead_of_drm_?=
+ =?utf-8?q?SA_for_CCS_read/write_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Mika Kahola" <mika.kahola@intel.com>
+To: "K V P, Satyanarayana" <satyanarayana.k.v.p@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 28 Mar 2026 01:46:11 -0000
-Message-ID: <177466237143.409249.15848108859701570827@a3b018990fe9>
+Date: Sat, 28 Mar 2026 02:23:04 -0000
+Message-ID: <177466458458.409269.2592791143397744171@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260327093531.1203339-1-mika.kahola@intel.com>
-In-Reply-To: <20260327093531.1203339-1-mika.kahola@intel.com>
+References: <20260327101146.3826819-5-satyanarayana.k.v.p@intel.com>
+In-Reply-To: <20260327101146.3826819-5-satyanarayana.k.v.p@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,33 +40,28 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0749160156213261394==
+--===============2157574249650823887==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/i915/lt_phy: Build HDMI VDR config from fields and use VDR_NUM_REGISTERS
-URL   : https://patchwork.freedesktop.org/series/163975/
-State : failure
+Series: USE drm mm instead of drm SA for CCS read/write (rev2)
+URL   : https://patchwork.freedesktop.org/series/163588/
+State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-4804-a748e8ef327c92c865410957509417b30f026304_FULL -> xe-pw-163975v1_FULL
+CI Bug Log - changes from xe-4804-a748e8ef327c92c865410957509417b30f026304_FULL -> xe-pw-163588v2_FULL
 ====================================================
 
 Summary
 -------
 
-  **FAILURE**
+  **SUCCESS**
 
-  Serious unknown changes coming with xe-pw-163975v1_FULL absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-163975v1_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+  No regressions found.
 
   
 
@@ -75,37 +70,56 @@ Participating hosts (2 -> 2)
 
   No changes in participating hosts
 
-Possible new issues
--------------------
+New tests
+---------
 
-  Here are the unknown changes that may have been introduced in xe-pw-163975v1_FULL:
+  New tests have been introduced between xe-4804-a748e8ef327c92c865410957509417b30f026304_FULL and xe-pw-163588v2_FULL:
 
-### IGT changes ###
+### New IGT tests (5) ###
 
-#### Possible regressions ####
+  * igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-0-tile-1-system-memory:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.00] s
 
-  * igt@kms_vblank@ts-continuation-suspend:
-    - shard-lnl:          [PASS][1] -> [INCOMPLETE][2] +1 other test incomplete
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-4804-a748e8ef327c92c865410957509417b30f026304/shard-lnl-3/igt@kms_vblank@ts-continuation-suspend.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163975v1/shard-lnl-8/igt@kms_vblank@ts-continuation-suspend.html
+  * igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_enhance-instance-0-tile-1-system-memory:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.00] s
+
+  * igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-0-tile-1-system-memory:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.01] s
+
+  * igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_enhance-instance-0-tile-1-system-memory:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.01] s
+
+  * igt@xe_fault_injection@oa-add-config-fail-xe_oa_alloc_regs:
+    - Statuses : 1 pass(s)
+    - Exec time: [0.02] s
 
   
+
+
+Changes
+-------
+
+  No changes found
 
 
 Build changes
 -------------
 
-  * Linux: xe-4804-a748e8ef327c92c865410957509417b30f026304 -> xe-pw-163975v1
+  * Linux: xe-4804-a748e8ef327c92c865410957509417b30f026304 -> xe-pw-163588v2
 
   IGT_8834: 8834
   xe-4804-a748e8ef327c92c865410957509417b30f026304: a748e8ef327c92c865410957509417b30f026304
-  xe-pw-163975v1: 163975v1
+  xe-pw-163588v2: 163588v2
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163975v1/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v2/index.html
 
---===============0749160156213261394==
+--===============2157574249650823887==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -125,44 +139,72 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/i915/lt_phy: Build HDMI VDR config from fields and use VDR_NUM_REGISTERS</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163975/">https://patchwork.freedesktop.org/series/163975/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
+<tr><td><b>Series:</b></td><td>USE drm mm instead of drm SA for CCS read/write (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163588/">https://patchwork.freedesktop.org/series/163588/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163975v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163975v1/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163588v2/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from xe-4804-a748e8ef327c92c865410957509417b30f026304_FULL -&gt; xe-pw-163975v1_FULL</h1>
+    <h1>CI Bug Log - changes from xe-4804-a748e8ef327c92c865410957509417b30f026304_FULL -&gt; xe-pw-163588v2_FULL</h1>
 <h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-163975v1_FULL absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-163975v1_FULL, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
 <h2>Participating hosts (2 -&gt; 2)</h2>
 <p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-163975v1_FULL:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
+<h2>New tests</h2>
+<p>New tests have been introduced between xe-4804-a748e8ef327c92c865410957509417b30f026304_FULL and xe-pw-163588v2_FULL:</p>
+<h3>New IGT tests (5)</h3>
 <ul>
-<li>igt@kms_vblank@ts-continuation-suspend:<ul>
-<li>shard-lnl:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-4804-a748e8ef327c92c865410957509417b30f026304/shard-lnl-3/igt@kms_vblank@ts-continuation-suspend.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163975v1/shard-lnl-8/igt@kms_vblank@ts-continuation-suspend.html">INCOMPLETE</a> +1 other test incomplete</li>
+<li>
+<p>igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_decode-instance-0-tile-1-system-memory:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.00] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-dec-all@engine-drm_xe_engine_class_video_enhance-instance-0-tile-1-system-memory:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.00] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_decode-instance-0-tile-1-system-memory:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.01] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_atomic@basic-inc-all@engine-drm_xe_engine_class_video_enhance-instance-0-tile-1-system-memory:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.01] s</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_fault_injection@oa-add-config-fail-xe_oa_alloc_regs:</p>
+<ul>
+<li>Statuses : 1 pass(s)</li>
+<li>Exec time: [0.02] s</li>
 </ul>
 </li>
 </ul>
+<h2>Changes</h2>
+<p>No changes found</p>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: xe-4804-a748e8ef327c92c865410957509417b30f026304 -&gt; xe-pw-163975v1</li>
+<li>Linux: xe-4804-a748e8ef327c92c865410957509417b30f026304 -&gt; xe-pw-163588v2</li>
 </ul>
 <p>IGT_8834: 8834<br />
   xe-4804-a748e8ef327c92c865410957509417b30f026304: a748e8ef327c92c865410957509417b30f026304<br />
-  xe-pw-163975v1: 163975v1</p>
+  xe-pw-163588v2: 163588v2</p>
 
 </body>
 </html>
 
---===============0749160156213261394==--
+--===============2157574249650823887==--
