@@ -4,27 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3BD410ED67B
-	for <intel-xe@archiver.kernel.org>; Sat, 28 Mar 2026 15:15:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 918C810ED67B
+	for <intel-xe@archiver.kernel.org>; Sat, 28 Mar 2026 15:34:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49B8710E200;
-	Sat, 28 Mar 2026 15:15:40 +0000 (UTC)
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67BCE10E200;
- Sat, 28 Mar 2026 15:15:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5838919720616309071=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3947C10E3E9;
+	Sat, 28 Mar 2026 15:34:06 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ANg2NKZD";
+	dkim-atps=neutral
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 21C0B10E3E9;
+ Sat, 28 Mar 2026 15:34:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774712045; x=1806248045;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=DaaIBjBx/BWSMpfW4QimpKvP//Wk/y1P86igup/QWl0=;
+ b=ANg2NKZDDnMMaWLTAVtAfQ8XZbwDMoncUwdJk+Z+hjhYcCvV4i3vUwbs
+ ocznbqeoRRk6ZQyg6mz5AQIqnDiGeP8ZJxrSXYxHVADlTk+QRLEhCm4M5
+ HkETuOmeDq6z06zruFxuUboaAUHpIx4zV2I33a5+BDlPTbYqpr6t5edn7
+ LlWSqJttDj0k19JGimEuPpLa99C6AYz2iZfYuNXFkrpznZcqcb9OoM05v
+ O7iLhRtCFL58O9KUBHFnesavm36on6/2OY8MwtPPNhzSA3lepvdq/tomi
+ 72O3EYp4v5dYTSzCw3bGz3ioTeBm/AAEYERJxwARg4lzKPxFC4DrkIBfB g==;
+X-CSE-ConnectionGUID: LKfYVixMQk611MdCvWQ5Pg==
+X-CSE-MsgGUID: 18yDofOMQgWhSI/Ajysugw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11742"; a="79370325"
+X-IronPort-AV: E=Sophos;i="6.23,146,1770624000"; d="scan'208";a="79370325"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2026 08:34:05 -0700
+X-CSE-ConnectionGUID: cywhcY0HQPmgvjmY90ZtgA==
+X-CSE-MsgGUID: 5pKr37nCQFaXXXXQwvAFlA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,146,1770624000"; d="scan'208";a="225489836"
+Received: from administrator-system-product-name.igk.intel.com
+ ([10.91.214.181])
+ by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Mar 2026 08:34:03 -0700
+Date: Sat, 28 Mar 2026 16:34:01 +0100 (CET)
+From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
+To: =?ISO-8859-15?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+cc: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Nemesa Garg <nemesa.garg@intel.com>
+Subject: Re: [PATCH 3/9] drm/i915/casf: Move the casf state to better place
+In-Reply-To: <acZcKlDoZBwZT9wD@intel.com>
+Message-ID: <e65216e2-461a-9286-644c-1653d12aad87@intel.com>
+References: <20260326223139.19116-1-ville.syrjala@linux.intel.com>
+ <20260326223139.19116-4-ville.syrjala@linux.intel.com>
+ <e45e984b-2087-2683-0cfb-33569562f1f1@intel.com> <acZcKlDoZBwZT9wD@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EFULL=3A_success_for_drm/xe=3A_Document_GT_stat?=
- =?utf-8?q?istics_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Cc: intel-xe@lists.freedesktop.org
-Date: Sat, 28 Mar 2026 15:15:39 -0000
-Message-ID: <177471093939.409333.1530733339371672372@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260327202749.222794-1-francois.dugast@intel.com>
-In-Reply-To: <20260327202749.222794-1-francois.dugast@intel.com>
+Content-Type: multipart/mixed; boundary="8323329-1363232780-1774712044=:601923"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,273 +67,331 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5838919720616309071==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-== Series Details ==
+--8323329-1363232780-1774712044=:601923
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8BIT
 
-Series: drm/xe: Document GT statistics (rev2)
-URL   : https://patchwork.freedesktop.org/series/164005/
-State : success
+On Fri, 27 Mar 2026, Ville Syrjälä wrote:
+> On Fri, Mar 27, 2026 at 10:10:26AM +0100, Michał Grzelak wrote:
+>> On Thu, 26 Mar 2026, Ville Syrjala wrote:
+>>> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>>>
+>>> The casf state is placed inside the 'hw' state for some reason.
+>>> That is only really meant for things we have to duplicate from
+>>> the uapi state. The rest can live on its own in our actual state.
+>>>
+>>> And since casf is just one aspect of the pfit/pipe scaler the
+>>> proper place for it seems to be under pch_pfit.
+>>>
+>>> Cc: Nemesa Garg <nemesa.garg@intel.com>
+>>> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>>> ---
+>>> drivers/gpu/drm/i915/display/intel_casf.c     | 40 +++++++++----------
+>>> .../drm/i915/display/intel_crtc_state_dump.c  |  6 +--
+>>> drivers/gpu/drm/i915/display/intel_display.c  | 12 +++---
+>>> .../drm/i915/display/intel_display_types.h    |  2 +-
+>>> drivers/gpu/drm/i915/display/skl_scaler.c     |  4 +-
+>>> 5 files changed, 32 insertions(+), 32 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_casf.c b/drivers/gpu/drm/i915/display/intel_casf.c
+>>> index 4316d8214e80..5a8ffb40d30d 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_casf.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_casf.c
+>>> @@ -82,7 +82,7 @@ void intel_casf_update_strength(struct intel_crtc_state *crtc_state)
+>>> 	int win_size;
+>>>
+>>> 	intel_de_rmw(display, SHARPNESS_CTL(crtc->pipe), FILTER_STRENGTH_MASK,
+>>> -		     FILTER_STRENGTH(crtc_state->hw.casf_params.strength));
+>>> +		     FILTER_STRENGTH(crtc_state->pch_pfit.casf.strength));
+>>>
+>>> 	win_size = intel_de_read(display, SKL_PS_WIN_SZ(crtc->pipe, 1));
+>>>
+>>> @@ -95,11 +95,11 @@ static void intel_casf_compute_win_size(struct intel_crtc_state *crtc_state)
+>>> 	u32 total_pixels = mode->hdisplay * mode->vdisplay;
+>>>
+>>> 	if (total_pixels <= MAX_PIXELS_FOR_3_TAP_FILTER)
+>>> -		crtc_state->hw.casf_params.win_size = SHARPNESS_FILTER_SIZE_3X3;
+>>> +		crtc_state->pch_pfit.casf.win_size = SHARPNESS_FILTER_SIZE_3X3;
+>>> 	else if (total_pixels <= MAX_PIXELS_FOR_5_TAP_FILTER)
+>>> -		crtc_state->hw.casf_params.win_size = SHARPNESS_FILTER_SIZE_5X5;
+>>> +		crtc_state->pch_pfit.casf.win_size = SHARPNESS_FILTER_SIZE_5X5;
+>>> 	else
+>>> -		crtc_state->hw.casf_params.win_size = SHARPNESS_FILTER_SIZE_7X7;
+>>> +		crtc_state->pch_pfit.casf.win_size = SHARPNESS_FILTER_SIZE_7X7;
+>>> }
+>>>
+>>> int intel_casf_compute_config(struct intel_crtc_state *crtc_state)
+>>> @@ -110,8 +110,8 @@ int intel_casf_compute_config(struct intel_crtc_state *crtc_state)
+>>> 		return 0;
+>>>
+>>> 	if (crtc_state->hw.sharpness_strength == 0) {
+>>> -		crtc_state->hw.casf_params.enable = false;
+>>> -		crtc_state->hw.casf_params.strength = 0;
+>>> +		crtc_state->pch_pfit.casf.enable = false;
+>>> +		crtc_state->pch_pfit.casf.strength = 0;
+>>> 		return 0;
+>>> 	}
+>>>
+>>> @@ -121,7 +121,7 @@ int intel_casf_compute_config(struct intel_crtc_state *crtc_state)
+>>> 		return -EINVAL;
+>>> 	}
+>>>
+>>> -	crtc_state->hw.casf_params.enable = true;
+>>> +	crtc_state->pch_pfit.casf.enable = true;
+>>>
+>>> 	/*
+>>> 	 * HW takes a value in form (1.0 + strength) in 4.4 fixed format.
+>>> @@ -131,7 +131,7 @@ int intel_casf_compute_config(struct intel_crtc_state *crtc_state)
+>>> 	 * 6.3125 in 4.4 format is b01100101 which is equal to 101.
+>>> 	 * Also 85 + 16 = 101.
+>>> 	 */
+>>> -	crtc_state->hw.casf_params.strength =
+>>> +	crtc_state->pch_pfit.casf.strength =
+>>> 		min(crtc_state->hw.sharpness_strength, 0xEF) + 0x10;
+>>>
+>>> 	intel_casf_compute_win_size(crtc_state);
+>>> @@ -151,19 +151,19 @@ void intel_casf_sharpness_get_config(struct intel_crtc_state *crtc_state)
+>>> 	if (sharp & FILTER_EN) {
+>>> 		if (drm_WARN_ON(display->drm,
+>>> 				REG_FIELD_GET(FILTER_STRENGTH_MASK, sharp) < 16))
+>>> -			crtc_state->hw.casf_params.strength = 0;
+>>> +			crtc_state->pch_pfit.casf.strength = 0;
+>>> 		else
+>>> -			crtc_state->hw.casf_params.strength =
+>>> +			crtc_state->pch_pfit.casf.strength =
+>>> 				REG_FIELD_GET(FILTER_STRENGTH_MASK, sharp);
+>>> -		crtc_state->hw.casf_params.enable = true;
+>>> -		crtc_state->hw.casf_params.win_size =
+>>> +		crtc_state->pch_pfit.casf.enable = true;
+>>> +		crtc_state->pch_pfit.casf.win_size =
+>>> 			REG_FIELD_GET(FILTER_SIZE_MASK, sharp);
+>>> 	}
+>>> }
+>>>
+>>> bool intel_casf_needs_scaler(const struct intel_crtc_state *crtc_state)
+>>> {
+>>> -	if (crtc_state->hw.casf_params.enable)
+>>> +	if (crtc_state->pch_pfit.casf.enable)
+>>> 		return true;
+>>>
+>>> 	return false;
+>>> @@ -179,7 +179,7 @@ static u32 casf_coeff(struct intel_crtc_state *crtc_state, int t)
+>>> 	struct scaler_filter_coeff value;
+>>> 	u32 coeff;
+>>>
+>>> -	value = crtc_state->hw.casf_params.coeff[t];
+>>> +	value = crtc_state->pch_pfit.casf.coeff[t];
+>>
+>> Unrelated topic: how you see such renaming?:
+>>
+>> int t -> int tap
+>
+> Probably a good idea. One character variable names aren't what
+> you'd call descriptive. This probably got copied from the
+> nearest neighbor filter code, so a rename should happen there too.
+>
+> Or even better if someone gets rid of the duplicated code entirely
+> and consolidates all the filter coefficient code to one place.
 
-== Summary ==
+I'd give it a shot but I genuinely don't know where to search for
+nearest neighbor filter. I searched for possible declarations of int t,
+but it didn't show anything relevant. Can you point to where should I
+start looking?
 
-CI Bug Log - changes from xe-4811-d699fa2d9776038b13f7b8153738a850676d0641_FULL -> xe-pw-164005v2_FULL
-====================================================
+>
+>>
+>>> 	value.sign = 0;
+>>>
+>>> 	coeff = value.sign << 15 | value.exp << 12 | value.mantissa << 3;
+>>> @@ -189,7 +189,7 @@ static u32 casf_coeff(struct intel_crtc_state *crtc_state, int t)
+>>> /*
+>>>  * 17 phase of 7 taps requires 119 coefficients in 60 dwords per set.
+>>>  * To enable casf:  program scaler coefficients with the coeffients
+>>> - * that are calculated and stored in hw.casf_params.coeff as per
+>>> + * that are calculated and stored in pch_pfit.casf.coeff as per
+>>>  * SCALER_COEFFICIENT_FORMAT
+>>>  */
+>>> static void intel_casf_write_coeff(struct intel_crtc_state *crtc_state)
+>>> @@ -247,9 +247,9 @@ void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state)
+>>> 	u16 sumcoeff = 0;
+>>
+>> Unrelated to the change: some variables have been named as sumcoeff and
+>> others as filter_*coeff{_1,_2,_3}*. How you see renaming:
+>>
+>> u16 sumcoeff -> u16 sum_coeff
+>>
+>> But I might be again missing common codestyle.
+>
+> We generally use the underscore_style for things. So I wouldn't
+> mind the rename.
 
-Summary
--------
+In that case I should probably rename filtercoeff as well. But since
+filter_coeff is already used and global, I guess it would require more
+vigilance then the simple rename above. Do you have any hints on how to
+handle it without breaking everything?
 
-  **SUCCESS**
+BR,
+Michał
 
-  No regressions found.
-
-  
-
-Participating hosts (2 -> 2)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-164005v2_FULL that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_big_fb@yf-tiled-max-hw-stride-32bpp-rotate-180-hflip:
-    - shard-lnl:          NOTRUN -> [SKIP][1] ([Intel XE#1124])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@kms_big_fb@yf-tiled-max-hw-stride-32bpp-rotate-180-hflip.html
-
-  * igt@kms_chamelium_hpd@vga-hpd-enable-disable-mode:
-    - shard-lnl:          NOTRUN -> [SKIP][2] ([Intel XE#373])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@kms_chamelium_hpd@vga-hpd-enable-disable-mode.html
-
-  * igt@kms_cursor_crc@cursor-sliding-32x32:
-    - shard-lnl:          NOTRUN -> [SKIP][3] ([Intel XE#1424])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@kms_cursor_crc@cursor-sliding-32x32.html
-
-  * igt@kms_cursor_legacy@cursorb-vs-flipb-varying-size:
-    - shard-lnl:          NOTRUN -> [SKIP][4] ([Intel XE#309] / [Intel XE#7343])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@kms_cursor_legacy@cursorb-vs-flipb-varying-size.html
-
-  * igt@kms_frontbuffer_tracking@drrs-1p-primscrn-shrfb-plflip-blt:
-    - shard-lnl:          NOTRUN -> [SKIP][5] ([Intel XE#6312] / [Intel XE#651])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@kms_frontbuffer_tracking@drrs-1p-primscrn-shrfb-plflip-blt.html
-
-  * igt@kms_frontbuffer_tracking@drrs-argb161616f-draw-mmap-wc:
-    - shard-lnl:          NOTRUN -> [SKIP][6] ([Intel XE#7061] / [Intel XE#7356])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@kms_frontbuffer_tracking@drrs-argb161616f-draw-mmap-wc.html
-
-  * igt@kms_frontbuffer_tracking@fbc-2p-primscrn-cur-indfb-onoff:
-    - shard-lnl:          NOTRUN -> [SKIP][7] ([Intel XE#656])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@kms_frontbuffer_tracking@fbc-2p-primscrn-cur-indfb-onoff.html
-
-  * igt@kms_plane_lowres@tiling-y:
-    - shard-lnl:          NOTRUN -> [SKIP][8] ([Intel XE#599])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@kms_plane_lowres@tiling-y.html
-
-  * igt@xe_eudebug@sysfs-toggle:
-    - shard-lnl:          NOTRUN -> [SKIP][9] ([Intel XE#7636])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@xe_eudebug@sysfs-toggle.html
-
-  * igt@xe_evict@evict-beng-mixed-many-threads-small:
-    - shard-lnl:          NOTRUN -> [SKIP][10] ([Intel XE#6540] / [Intel XE#688])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@xe_evict@evict-beng-mixed-many-threads-small.html
-
-  * igt@xe_exec_balancer@once-parallel-userptr:
-    - shard-lnl:          NOTRUN -> [SKIP][11] ([Intel XE#7482])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@xe_exec_balancer@once-parallel-userptr.html
-
-  * igt@xe_exec_multi_queue@many-execs-preempt-mode-close-fd-smem:
-    - shard-lnl:          NOTRUN -> [SKIP][12] ([Intel XE#6874]) +2 other tests skip
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@xe_exec_multi_queue@many-execs-preempt-mode-close-fd-smem.html
-
-  * igt@xe_exec_threads@threads-multi-queue-mixed-fd-basic:
-    - shard-lnl:          NOTRUN -> [SKIP][13] ([Intel XE#7138])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@xe_exec_threads@threads-multi-queue-mixed-fd-basic.html
-
-  * igt@xe_prefetch_fault@prefetch-fault:
-    - shard-lnl:          NOTRUN -> [SKIP][14] ([Intel XE#7599])
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@xe_prefetch_fault@prefetch-fault.html
-
-  
-  [Intel XE#1124]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124
-  [Intel XE#1424]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/1424
-  [Intel XE#309]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/309
-  [Intel XE#373]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/373
-  [Intel XE#599]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/599
-  [Intel XE#6312]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6312
-  [Intel XE#651]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/651
-  [Intel XE#6540]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6540
-  [Intel XE#656]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/656
-  [Intel XE#6874]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/6874
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
-  [Intel XE#7061]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7061
-  [Intel XE#7138]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7138
-  [Intel XE#7343]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7343
-  [Intel XE#7356]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7356
-  [Intel XE#7482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482
-  [Intel XE#7599]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7599
-  [Intel XE#7636]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/7636
-
-
-Build changes
--------------
-
-  * Linux: xe-4811-d699fa2d9776038b13f7b8153738a850676d0641 -> xe-pw-164005v2
-
-  IGT_8834: 8834
-  xe-4811-d699fa2d9776038b13f7b8153738a850676d0641: d699fa2d9776038b13f7b8153738a850676d0641
-  xe-pw-164005v2: 164005v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/index.html
-
---===============5838919720616309071==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Document GT statistics (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164005/">https://patchwork.freedesktop.org/series/164005/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-4811-d699fa2d9776038b13f7b8153738a850676d0641_FULL -&gt; xe-pw-164005v2_FULL</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (2 -&gt; 2)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-164005v2_FULL that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_big_fb@yf-tiled-max-hw-stride-32bpp-rotate-180-hflip:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@kms_big_fb@yf-tiled-max-hw-stride-32bpp-rotate-180-hflip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1124">Intel XE#1124</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_chamelium_hpd@vga-hpd-enable-disable-mode:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@kms_chamelium_hpd@vga-hpd-enable-disable-mode.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/373">Intel XE#373</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_crc@cursor-sliding-32x32:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@kms_cursor_crc@cursor-sliding-32x32.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/1424">Intel XE#1424</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@cursorb-vs-flipb-varying-size:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@kms_cursor_legacy@cursorb-vs-flipb-varying-size.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/309">Intel XE#309</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7343">Intel XE#7343</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@drrs-1p-primscrn-shrfb-plflip-blt:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@kms_frontbuffer_tracking@drrs-1p-primscrn-shrfb-plflip-blt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6312">Intel XE#6312</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/651">Intel XE#651</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@drrs-argb161616f-draw-mmap-wc:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@kms_frontbuffer_tracking@drrs-argb161616f-draw-mmap-wc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7061">Intel XE#7061</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7356">Intel XE#7356</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@fbc-2p-primscrn-cur-indfb-onoff:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@kms_frontbuffer_tracking@fbc-2p-primscrn-cur-indfb-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/656">Intel XE#656</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_plane_lowres@tiling-y:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@kms_plane_lowres@tiling-y.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/599">Intel XE#599</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_eudebug@sysfs-toggle:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@xe_eudebug@sysfs-toggle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7636">Intel XE#7636</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-beng-mixed-many-threads-small:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@xe_evict@evict-beng-mixed-many-threads-small.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6540">Intel XE#6540</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_balancer@once-parallel-userptr:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@xe_exec_balancer@once-parallel-userptr.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7482">Intel XE#7482</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_multi_queue@many-execs-preempt-mode-close-fd-smem:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@xe_exec_multi_queue@many-execs-preempt-mode-close-fd-smem.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/6874">Intel XE#6874</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_threads@threads-multi-queue-mixed-fd-basic:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@xe_exec_threads@threads-multi-queue-mixed-fd-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7138">Intel XE#7138</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_prefetch_fault@prefetch-fault:</p>
-<ul>
-<li>shard-lnl:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164005v2/shard-lnl-3/igt@xe_prefetch_fault@prefetch-fault.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/7599">Intel XE#7599</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-4811-d699fa2d9776038b13f7b8153738a850676d0641 -&gt; xe-pw-164005v2</li>
-</ul>
-<p>IGT_8834: 8834<br />
-  xe-4811-d699fa2d9776038b13f7b8153738a850676d0641: d699fa2d9776038b13f7b8153738a850676d0641<br />
-  xe-pw-164005v2: 164005v2</p>
-
-</body>
-</html>
-
---===============5838919720616309071==--
+>
+>>
+>> Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
+>
+> Ta.
+>
+>>
+>> BR,
+>> Michał
+>>
+>>> 	int i;
+>>>
+>>> -	if (crtc_state->hw.casf_params.win_size == 0)
+>>> +	if (crtc_state->pch_pfit.casf.win_size == 0)
+>>> 		filtercoeff = filtercoeff_1;
+>>> -	else if (crtc_state->hw.casf_params.win_size == 1)
+>>> +	else if (crtc_state->pch_pfit.casf.win_size == 1)
+>>> 		filtercoeff = filtercoeff_2;
+>>> 	else
+>>> 		filtercoeff = filtercoeff_3;
+>>> @@ -259,7 +259,7 @@ void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state)
+>>>
+>>> 	for (i = 0; i < SCALER_FILTER_NUM_TAPS; i++) {
+>>> 		filter_coeff[i] = (*(filtercoeff + i) * 100 / sumcoeff);
+>>> -		convert_sharpness_coef_binary(&crtc_state->hw.casf_params.coeff[i],
+>>> +		convert_sharpness_coef_binary(&crtc_state->pch_pfit.casf.coeff[i],
+>>> 					      filter_coeff[i]);
+>>> 	}
+>>> }
+>>> @@ -274,9 +274,9 @@ void intel_casf_enable(struct intel_crtc_state *crtc_state)
+>>>
+>>> 	intel_casf_write_coeff(crtc_state);
+>>>
+>>> -	sharpness_ctl = FILTER_EN | FILTER_STRENGTH(crtc_state->hw.casf_params.strength);
+>>> +	sharpness_ctl = FILTER_EN | FILTER_STRENGTH(crtc_state->pch_pfit.casf.strength);
+>>>
+>>> -	sharpness_ctl |= crtc_state->hw.casf_params.win_size;
+>>> +	sharpness_ctl |= crtc_state->pch_pfit.casf.win_size;
+>>>
+>>> 	intel_de_write(display, SHARPNESS_CTL(crtc->pipe), sharpness_ctl);
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+>>> index 10a9b51337fa..95993f8e5d0d 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
+>>> @@ -382,9 +382,9 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
+>>> 	intel_vdsc_state_dump(&p, 0, pipe_config);
+>>>
+>>> 	drm_printf(&p, "sharpness strength: %d, sharpness tap size: %d, sharpness enable: %d\n",
+>>> -		   pipe_config->hw.casf_params.strength,
+>>> -		   pipe_config->hw.casf_params.win_size,
+>>> -		   pipe_config->hw.casf_params.enable);
+>>> +		   pipe_config->pch_pfit.casf.strength,
+>>> +		   pipe_config->pch_pfit.casf.win_size,
+>>> +		   pipe_config->pch_pfit.casf.enable);
+>>>
+>>> dump_planes:
+>>> 	if (!state)
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>>> index a02c58b5a34d..e02e69467871 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>>> @@ -994,7 +994,7 @@ static bool intel_casf_enabling(const struct intel_crtc_state *new_crtc_state,
+>>> 	if (!new_crtc_state->hw.active)
+>>> 		return false;
+>>>
+>>> -	return is_enabling(hw.casf_params.enable, old_crtc_state, new_crtc_state);
+>>> +	return is_enabling(pch_pfit.casf.enable, old_crtc_state, new_crtc_state);
+>>> }
+>>>
+>>> static bool intel_casf_disabling(const struct intel_crtc_state *old_crtc_state,
+>>> @@ -1003,7 +1003,7 @@ static bool intel_casf_disabling(const struct intel_crtc_state *old_crtc_state,
+>>> 	if (!new_crtc_state->hw.active)
+>>> 		return false;
+>>>
+>>> -	return is_disabling(hw.casf_params.enable, old_crtc_state, new_crtc_state);
+>>> +	return is_disabling(pch_pfit.casf.enable, old_crtc_state, new_crtc_state);
+>>> }
+>>>
+>>> static bool intel_crtc_lobf_enabling(const struct intel_crtc_state *old_crtc_state,
+>>> @@ -5370,12 +5370,12 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>>>
+>>> 		PIPE_CONF_CHECK_BOOL(pch_pfit.enabled);
+>>> 		PIPE_CONF_CHECK_RECT(pch_pfit.dst);
+>>> +		PIPE_CONF_CHECK_BOOL(pch_pfit.casf.enable);
+>>> +		PIPE_CONF_CHECK_I(pch_pfit.casf.win_size);
+>>> +		PIPE_CONF_CHECK_I(pch_pfit.casf.strength);
+>>>
+>>> 		PIPE_CONF_CHECK_I(scaler_state.scaler_id);
+>>> 		PIPE_CONF_CHECK_I(pixel_rate);
+>>> -		PIPE_CONF_CHECK_BOOL(hw.casf_params.enable);
+>>> -		PIPE_CONF_CHECK_I(hw.casf_params.win_size);
+>>> -		PIPE_CONF_CHECK_I(hw.casf_params.strength);
+>>>
+>>> 		PIPE_CONF_CHECK_X(gamma_mode);
+>>> 		if (display->platform.cherryview)
+>>> @@ -6819,7 +6819,7 @@ static void intel_pre_update_crtc(struct intel_atomic_state *state,
+>>>
+>>> 	if (intel_casf_enabling(new_crtc_state, old_crtc_state))
+>>> 		intel_casf_enable(new_crtc_state);
+>>> -	else if (new_crtc_state->hw.casf_params.strength != old_crtc_state->hw.casf_params.strength)
+>>> +	else if (new_crtc_state->pch_pfit.casf.strength != old_crtc_state->pch_pfit.casf.strength)
+>>> 		intel_casf_update_strength(new_crtc_state);
+>>>
+>>> 	intel_fbc_update(state, crtc);
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+>>> index af0d870de342..ca2581fb7bbd 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+>>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+>>> @@ -1037,7 +1037,6 @@ struct intel_crtc_state {
+>>> 		struct drm_display_mode mode, pipe_mode, adjusted_mode;
+>>> 		enum drm_scaling_filter scaling_filter;
+>>> 		u8 sharpness_strength;
+>>> -		struct intel_casf casf_params;
+>>> 	} hw;
+>>>
+>>> 	/* actual state of LUTs */
+>>> @@ -1224,6 +1223,7 @@ struct intel_crtc_state {
+>>>
+>>> 	/* Panel fitter placement and size for Ironlake+ */
+>>> 	struct {
+>>> +		struct intel_casf casf;
+>>> 		struct drm_rect dst;
+>>> 		bool enabled;
+>>> 		bool force_thru;
+>>> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+>>> index cfa17ddb4018..e9fe5c0bf6ff 100644
+>>> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+>>> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+>>> @@ -986,13 +986,13 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
+>>> 		if (HAS_CASF(display) && id == 1)
+>>> 			intel_casf_sharpness_get_config(crtc_state);
+>>>
+>>> -		if (!crtc_state->hw.casf_params.enable)
+>>> +		if (!crtc_state->pch_pfit.casf.enable)
+>>> 			crtc_state->pch_pfit.enabled = true;
+>>>
+>>> 		pos = intel_de_read(display, SKL_PS_WIN_POS(crtc->pipe, i));
+>>> 		size = intel_de_read(display, SKL_PS_WIN_SZ(crtc->pipe, i));
+>>>
+>>> -		if (!crtc_state->hw.casf_params.enable)
+>>> +		if (!crtc_state->pch_pfit.casf.enable)
+>>> 			drm_rect_init(&crtc_state->pch_pfit.dst,
+>>> 				      REG_FIELD_GET(PS_WIN_XPOS_MASK, pos),
+>>> 				      REG_FIELD_GET(PS_WIN_YPOS_MASK, pos),
+>>> --
+>>> 2.52.0
+>>>
+>>>
+>
+>
+> -- 
+> Ville Syrjälä
+> Intel
+>
+--8323329-1363232780-1774712044=:601923--
