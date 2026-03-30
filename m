@@ -4,53 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B426A1061B2A
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Mar 2026 23:53:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A6A01061B2A
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Mar 2026 23:53:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6ECE510E6E7;
-	Mon, 30 Mar 2026 23:53:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C74C410E7C7;
+	Mon, 30 Mar 2026 23:53:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aMZT+ZC0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c9nlhvpl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3702E10E6E7;
- Mon, 30 Mar 2026 23:53:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E16310E7C5;
+ Mon, 30 Mar 2026 23:53:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774914825; x=1806450825;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=S64HRFKJ/flc88YzORJeO5FNbJHLiQNpf4Unr6VzVqg=;
- b=aMZT+ZC0rqfUx6FwMI80DxF3HVF8TOUCSPVf8rIKHpQpAShADeA+ykiq
- YvH3jDdMkRk3WhYMlE83FLg8EXGUhnrL0f0VWdJup19CLptsB6L/7XUDq
- YlskyKYNrXcVlnVdHd0Bx4Z4Lj0RJqcERSaqi4gmF4ANDpkNV1fbveLZ2
- JqRlgF8Oioew8mMgLdjDNraGJ1YUdpu+QrEambEAaGapRrkeKhXXapB8b
- Kpf3jal4vqBIBRBe7pgVeJq1GV5I3+PeTeZS7oaxar2i17sgK6No9AwfI
- G5XwbmUVEZlm4/ekS9QuZdp4OittlwNvM05h4YE5WUEjWGX+eXCOWFmHt A==;
-X-CSE-ConnectionGUID: bfKlFASaSt6HtoxnnpeFIA==
-X-CSE-MsgGUID: hY21Q9zWQVCKewWt5b9pDQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="75979228"
-X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="75979228"
+ t=1774914830; x=1806450830;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=2J9pJYR9OBaDyUDs7S6czDxuVQwC42FxmNUYNth4J98=;
+ b=c9nlhvplW6W2Vx2c0pFARxVRtxMGGGOnbBycMqvBMiZZsHs/wylGqhR7
+ rxk0e8wq6/45WeoU5kiueQgUgSA2INpHYP8cWpq4dh0zWHooedbyKwF8f
+ QWA5gL5u96/4j0Wd7bebwbpZemdE/88DdjWaH/DLjm11c8EI1aGBYQHHU
+ lYI3LTBJ1l4viwp8y5TXi2kaiSyHQkMlxGIqo9H2hs1VioRcVjj3D5xYr
+ ugX+VEm/8iGVJmLZe8xUAifCf/GzSPVrcWd/TJff9w8nPYVBPcn+2IcqH
+ NnSTjp5cEoX/F92s+Du7FkSChVfeylG0miV0vzJ2DlwELENZtn5gN1nNa A==;
+X-CSE-ConnectionGUID: pHbvP09tTeyNPJRd2ekFBQ==
+X-CSE-MsgGUID: QAWrucncReWU5W52cSajgg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="75979234"
+X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="75979234"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 16:53:45 -0700
-X-CSE-ConnectionGUID: wtVvYb3lRoWxcLdZp5HwEQ==
-X-CSE-MsgGUID: fBoAHhHcQVyb7Dvs89gXJg==
+ 30 Mar 2026 16:53:49 -0700
+X-CSE-ConnectionGUID: e881prwtT76zNOZx41fBaQ==
+X-CSE-MsgGUID: uB+4/V7xQkeu9hB8FSiBRw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="225208167"
+X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="225208174"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.155])
  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 16:53:43 -0700
+ 30 Mar 2026 16:53:48 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
  Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Subject: [PATCH 0/9] drm/i915/{dp,
- hdmi}: Restructure DP/HDMI sink format handling
-Date: Tue, 31 Mar 2026 02:53:30 +0300
-Message-ID: <20260330235339.29479-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH 1/9] drm/i915/hdmi: Add missing intel_pfit_mode_valid() for
+ 4:2:0 also modes
+Date: Tue, 31 Mar 2026 02:53:31 +0300
+Message-ID: <20260330235339.29479-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260330235339.29479-1-ville.syrjala@linux.intel.com>
+References: <20260330235339.29479-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
@@ -72,47 +74,34 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Restructure the DP/HDMI sink format handling. I got inspired to do this
-by https://lore.kernel.org/dri-devel/20260324-color-format-v11-8-605559af4fb4@collabora.com/
-
-I envision that after this the aforementioned patch could just
-become something like this:
-
-1. s/intel_foo_compute_formats/intel_foo_compute_formats_auto/
-2. Add a new intel_foo_compute_formats()
-
-   intel_foo_compute_formats()
-   {
-	switch (color_format) {
-	case YCBCR420:
-		return intel_foo_compute_output_format(YCBCR420);
-	case RGB:
-		return intel_foo_compute_output_format(RGB);
-	case AUTO:
-		return intel_foo_compute_formats_auto();
-	}
-   }
+intel_hdmi_mode_valid() is calling intel_pfit_mode_valid() only
+on the first attempt (4:2:0 for "4:2:0 only" modes, 4:4:4 for
+everything else). Add the call also for the "4:2:0 also" modes case
+so that we actually know the pipe scaler can actually produce the
+4:2:0 output.
 
 Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Ville Syrjälä (9):
-  drm/i915/hdmi: Add missing intel_pfit_mode_valid() for 4:2:0 also
-    modes
-  drm/i915/hdmi: Restructure the sink/output format selection
-  drm/i915/hdmi: Restructure 4:2:0 vs. 4:4:4 mode validation
-  drm/i915/dp: Restructure the sink/output format selection
-  drm/i915/dp: Validate "4:2:0 also" modes twice
-  drm/i915/dp: Require a HDMI sink for YCbCr output via PCON
-  drm/i915/dp: Validate sink format in .mode_valid()
-  drm/i915/hdmi: Make the RGB fallback for "4:2:0 only" modes the last
-    resort
-  drm/i915/dp: Make the RGB fallback for "4:2:0 only" modes the last
-    resort
-
- drivers/gpu/drm/i915/display/intel_dp.c   | 213 ++++++++++++++--------
- drivers/gpu/drm/i915/display/intel_hdmi.c | 167 ++++++++++-------
- 2 files changed, 237 insertions(+), 143 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 05e898d10a2b..072b0554cc24 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -2079,6 +2079,11 @@ intel_hdmi_mode_valid(struct drm_connector *_connector,
+ 			return status;
+ 
+ 		sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
++
++		status = intel_pfit_mode_valid(display, mode, sink_format, 0);
++		if (status != MODE_OK)
++			return status;
++
+ 		status = intel_hdmi_mode_clock_valid(&connector->base, clock, has_hdmi_sink,
+ 						     sink_format);
+ 		if (status != MODE_OK)
 -- 
 2.52.0
 
