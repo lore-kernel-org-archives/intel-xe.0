@@ -4,158 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1A1E1061B1B
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Mar 2026 18:30:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABB421061B1C
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Mar 2026 18:44:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C22A10E160;
-	Mon, 30 Mar 2026 18:30:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 579A710E687;
+	Mon, 30 Mar 2026 18:44:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B2LfDaiB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZheuUBU7";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A084110E160
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Mar 2026 18:30:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4600B10E681;
+ Mon, 30 Mar 2026 18:44:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774895408; x=1806431408;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=y+hgotEcPVzEYIhJbLo+7PrsKuoQJPHo6ZP7n2uYWyM=;
- b=B2LfDaiBeWaEicmhJos96d/q2QTmE0nP4Ecq8St0MKCQ9LLvdHE8l/3h
- /SyjPaSTwvyN+h59eUAWm36KugPykG6emxriiOCvc5378yLtrBH2SYwEa
- hWXTCNg48hXU6tgWffw4WjQraLtoeNkV1Wp/aij4yEijqnuADHH+ZApzT
- eOX3SZd/OY/csEYC6fDkyJ08O3JrO86+WmiW9W/X/lHF2gYIiiJywQ9SC
- xXiNqUo2zj0vyd62GyKDiPurwunvzKwmWw+otZEFYK73Rv9/MIaJOENxA
- oYT1+qmvRMwKnwxtzNi1sPQAy0qmfPaMCcbwZDQRvOExG7gPMb7s48PK0 A==;
-X-CSE-ConnectionGUID: om0xWPwTTNmSrZkYWdnKmg==
-X-CSE-MsgGUID: 6Xx4O2VpS8u7eSmKN6TQzg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11743"; a="74928454"
-X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="74928454"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 11:30:08 -0700
-X-CSE-ConnectionGUID: Aeb1G+/GQ2mWJ791Utl3mQ==
-X-CSE-MsgGUID: sZEUv1D+SIiUL8mphvnvxg==
+ t=1774896272; x=1806432272;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=s2k2KDdOHbpajJSKWNzaaHncrxcYkhCkHfd+HYIT8xk=;
+ b=ZheuUBU7YxKNjdcRQRvBGWZhReac83hwjkRmKVNQov6lNzGvhg/pW5Zb
+ nL42s6eY+bmQg9Zf0MRUFeIzUzbIrVnHt7++dbwb4XHsApv2pvDB0bBoM
+ MCYckm3H5xCIHOkI+97o+BtQPguTPa6tIRASYZu6NaPv9bfHUbTC0SzwU
+ BwtzCp7FjPOPNW2q0LsQQDoRZFzZhNpYVBTTX65IhGQDS96rV9l0M4uUp
+ q0kfXrG6329iXFt0JmOHHSs+U99TQ0SZBByJZ+I380+vmp0fx77xB++73
+ RXw9eiKAHzCOG9RrOnN1YHSUxHUxSeZMfTlNDrDQkBWHJUDMTkvNxUqSF A==;
+X-CSE-ConnectionGUID: D4ib3xIpT5y+FHdeuD1qkQ==
+X-CSE-MsgGUID: TPuLV6RKTB2VppGPslYg2g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="93481130"
+X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="93481130"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2026 11:44:31 -0700
+X-CSE-ConnectionGUID: 2j7HGIV+TGeNbwBN4hPvIA==
+X-CSE-MsgGUID: O9ws8MdoTSOH7e9PSPtsJQ==
 X-ExtLoop1: 1
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 11:30:08 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 30 Mar 2026 11:30:07 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 30 Mar 2026 11:30:07 -0700
-Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.54) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 30 Mar 2026 11:30:05 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VXHlz+sczBg/3yyHLgE23zeoQCqOe3QYBdhaxFSGHOeaAfzETH8xG8lqByZ2CxewiJueD65aXsA1oMVDfrb8eLiGFMFkIeh+2DUYum02p6k3MkpH0CnK3Cc3UjjB07IDrPA1q3SpeTF4+IXiLxT9urpoX+i01WHovNEqvduUdOCsLbKWVyCaCacM7yGunoS//RavIJqgwBezEKdGAA2MVRvLnsvyHRV3wiukMbP5JiJQPvoEKRU7vC3wnTS7/DzXG9j8oVtuepV5+wNDy4jLrdIgSgW/4j/XIUzdGwlPl9XaYa6cs3zZT7kainATfHPQCKf38eL13qbgATPSqjbaXQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RIel4Vm7KnwhKpOueP8d1dXn50GZM6IvKKqxa8JhwpA=;
- b=NHVgZ5H7dr7nVxYp/2nkWxshMRPyAE9B4QPHfqK1TWR1laHMik+bD2l6f1/xm20dj+4yAaEpb05MQi69We5xziwHf4JjULyB5SDtERK8aRjpq+vLxUwKn9L/K7VwCjRzoeRwE6BUTyxO0j1fuHQlVs0HEx2DZZAS0Y6FKyHvt1A7Drm5dA0puVRruxm+OppYr65ujiQwa03MoER0WeaBlTg+TZJqvD97ls7evsS5tbnmn8B/VJ5VYsYPGgmW7Ajco/A1H3FmLoUtZE07W3dZzyV+hcc2svv/NkVJE2WaCibbXR8btTACKSHttrfjgsnYn4QuU4iXusTZbVqSdvmu0w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB7757.namprd11.prod.outlook.com (2603:10b6:8:103::22)
- by CH0PR11MB5297.namprd11.prod.outlook.com (2603:10b6:610:bc::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.15; Mon, 30 Mar
- 2026 18:29:50 +0000
-Received: from DM4PR11MB7757.namprd11.prod.outlook.com
- ([fe80::f3ff:11d0:7a52:db0c]) by DM4PR11MB7757.namprd11.prod.outlook.com
- ([fe80::f3ff:11d0:7a52:db0c%3]) with mapi id 15.20.9769.014; Mon, 30 Mar 2026
- 18:29:50 +0000
-Message-ID: <d7fc009d-d965-4733-bafa-2a2c3c6a9dd4@intel.com>
-Date: Mon, 30 Mar 2026 11:29:48 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/1] drm/xe: Set GT rp min frequency as 1.2GHz default
- for BMG/CRI
-To: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>,
- <intel-xe@lists.freedesktop.org>
-CC: <thomas.hellstrom@linux.intel.com>, <stuart.summers@intel.com>
-References: <20260326063407.985568-3-naresh.kumar.g@intel.com>
- <20260326063407.985568-4-naresh.kumar.g@intel.com>
-Content-Language: en-US
-From: "Belgaumkar, Vinay" <vinay.belgaumkar@intel.com>
-In-Reply-To: <20260326063407.985568-4-naresh.kumar.g@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BYAPR04CA0014.namprd04.prod.outlook.com
- (2603:10b6:a03:40::27) To DM4PR11MB7757.namprd11.prod.outlook.com
- (2603:10b6:8:103::22)
+X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="230599356"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.155])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2026 11:44:30 -0700
+Date: Mon, 30 Mar 2026 21:44:26 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, jouni.hogander@intel.com,
+ animesh.manna@intel.com
+Subject: Re: [PATCH 13/19] drm/i915/psr: Write the PR config DPCDs in burst
+ mode
+Message-ID: <acrEiglyKjnRZA0Q@intel.com>
+References: <20260330040656.4116502-1-ankit.k.nautiyal@intel.com>
+ <20260330040656.4116502-14-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB7757:EE_|CH0PR11MB5297:EE_
-X-MS-Office365-Filtering-Correlation-Id: af618070-a7be-4eeb-d3e6-08de8e8a5462
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|18002099003|22082099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: 9+A4ShrE0R6bchAg/WWdXMGD1Aya2IylA2AILVrRgeDNJnGEvqRS8dnwTUi0Ixfh+dRQdEp22H0WQTcVFdLWivSnJy4UIprEbDlZN570ExCHkXox5ULkBeRvipcnJyq/R0xZW33oFpsIQaPXyNuUDEaazBOl6A+cYRZS2/BB1o53P58+C5LfIDewF8M0FkgXLzhWTLQRK1YaOcm4X5WToWTcglvf2R9Yxf1lvU7XMm9Bl1aausXyCW+jDZ87F3BHC8GK/1VOXrIxb04HHFwhFQUJ2AM/7+nooWqtpFCZYh5nB/0VabewnyKXoMay4gzjmInBOhIkhu/EIVmIPC8i1npJ1BtnAnhsK9NPDHFWlTbQsRemtTTETuvJRCOrAODo6RxzpRkeMMeFBMkIiOWzINCgPQZSsHCRaGedwHBOr9m67deFkul/vQ3iN0j8uRJ7F02ac4xlTvpu+yGDrW1fW/EfKdrlDlFWOJOAkgqJQzsCQhaZP5Ykj/DCIs8jwENr/XKIAvB+XIKpZI2BVYzgnujwyEGQ0vFauk6mTEBbIr9PVCYfyzD/f+2sZ0paiawh2rbtroemKVlj+Nkv1c/YrQeoAZTiu1QGMYkrCQPfdefT/cPO8TG66rurxfJnb6oG/2fPzUwCwcuSe2eHzNhTgnixDtj8P7xqtA/bMk1QMq7R6b0lntVdJeOCqOcT5tNq6mp4WtFjtqR07Mz+H9j7OWgaIiIFJKmAs/U7LoCGpVg=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB7757.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TEVqTnc0RmFvUkVyLzcyelQ3U2RiWDFKR0p5TkZnVndrdXpGT0ZmV0NReGJs?=
- =?utf-8?B?UGZWcjA1ck5WNEhYRWc2WGtnY25yQVFKbVhwb2dIOUJaMWFRV2VyZDF2bkZo?=
- =?utf-8?B?U0NRcFRlalFBTk12ZG53NW9HRDFrVnc1YzlGeGNic3IzVnA2eDdWejdEZHAr?=
- =?utf-8?B?ejl4NDFvS3NoOS90VUtKc0l1ZDkzZ2JwVUd2d2tYMEFTVnVtcGk5cmQzUWxq?=
- =?utf-8?B?dmtzNGxUMXFPUTdoS1FMd3FQc1BIdkZrK2RkbGVkejdQRUFObWU5ODlCNlFO?=
- =?utf-8?B?Y0o5VG1qb1E4S3EvSDEwY1EvWlo1K1lWVmJQZG9OMmVKeG1pMk80Q0drMWxF?=
- =?utf-8?B?UG9PMGxBdUkvMnJuM2RiUlFOSnJkTnNxbjN3NHhzalUzMktteHdNK21aeTNn?=
- =?utf-8?B?VkRMNERGeUQzaWpNUDZSczBabldBd1FTblNIc1F4bEptaHR6VEd6ZUtOdHJK?=
- =?utf-8?B?M3V1UUFQTW4ya1dFUjlJcnZVRmVEVkR1YjhTZHBNdEs1NWM4c0JtU1FNbk9k?=
- =?utf-8?B?aXFHa1lGbmE2bVp0ZlpmTnRQa2lUTTNTWDA3N0ZoMytIU2o4ai9UNVZ2ZEJV?=
- =?utf-8?B?eXdBdEp5WUdrNWJKckpmYUZCdFo5WHNZR0dQWENTR0FFa2FHR0VNNUwyUXdk?=
- =?utf-8?B?SGs1R2cvc01RbTNIa3JFVnJRdEZuOU16eGZRdGE1R3pQbFFUbFVMTSs3OXlD?=
- =?utf-8?B?UUdSSHJiSVhydEhFZ1VFeXM2VjVxQWVhY042RHI0L0l6TUswRWJIVjFpNWpE?=
- =?utf-8?B?a3R1ZlNwenJnYVpPZjdHMHl3UENKZkMwbFVvak5acjlraW12ajFjdjhKVkpy?=
- =?utf-8?B?Q0tBM3JoRloyZzZKMTYrZThtNnd1VHlJaytwRFVLZkx5ZkRVWWxuRS8vVzl0?=
- =?utf-8?B?WGhTY1JhSStmMW9yYnZIeWNlT3lyK0xWM1BFcXZ0dXN3VmxzYmJPTXJxSzRr?=
- =?utf-8?B?RExXVlFDNFRydlhWZlV3YmZZU3p2YnJxMkpSYkdQUGZWYVBReEljK1NuMThK?=
- =?utf-8?B?NXN6LzYrY2liUUZ5eTBFSXhSNDF2aU1LNFRCNGZHSlVqODFCSWtRY2Q0YW9H?=
- =?utf-8?B?WDdLdjM0RmtxWm9hN2Jwb0JXOGpqQytjVVBxOVl0c2xwNHFxYXZnV0p3OXA3?=
- =?utf-8?B?RG90anB3c0NPY1pyNHN4a2NqaWdqMHhva1RXSWZMcVJrK1JBWTRpTEFDb2tY?=
- =?utf-8?B?cGVIclJFSVEwdGNRdjRqVHpNSncrWk9aNmsydzBkd2JtbUxMWUdEbHc4ZDU2?=
- =?utf-8?B?Tkg5Q09YWStkSVcrUlBXSksvUjBlaElCb1p3SzMyNW5mcVNXUERubFRkdzBB?=
- =?utf-8?B?UFpkbWJFMktSMTlsa09WN0pEMXMzcnN0SFkrako1eHdiaXNHSUcrOUNQcGZu?=
- =?utf-8?B?VGR5YnpMT3hTWnRHRlNCL3dJM1NBQjN0WnhOTTVoUFZqYzZ3SUVJa1Qwc0lW?=
- =?utf-8?B?TkNEOHNDWnBoQjExVVkrdHRKVXJGTnFtOFRwd2JMSHlvSnBScjJDSlJRQmdr?=
- =?utf-8?B?U2lFY0Fud2JPOTlYL09MbUtwRElvOTZJQ3NXTjV3aER2QXdWdk9VNTBwM3Vp?=
- =?utf-8?B?eGNpRGJGR2diSXlORTAvbWtPUXhSazQ3RklXK3BuOGxjNzVOYm9xejlWVVJO?=
- =?utf-8?B?eXJGMmtaeDNDRjNMd1lrNXMzVEs0VXNERllwRVo2c0k5NnFTbnZ0dTFxU0Z1?=
- =?utf-8?B?US9wczA4bTY4dTFRTFhXT0lzejE1ZEc4bHR4TXlYQTh5NVhuTHZ2bVQvT2Q0?=
- =?utf-8?B?VWdsUUtmOE1aekdDU3g2SWdVVm5OcXdYdklDNmcxbnBjYjI5c2U1czY0b2JY?=
- =?utf-8?B?S1FjVnJqbFVYR3c3dU9LVFZWVkdHSFhrSW04VzRjRk5yVlNuOXpObWwxTlli?=
- =?utf-8?B?bjZUN2N5MTlvK3FHSkJCc1VXYWszaFRvVFhjdlAwY0U0MDJtQVE3Vy9qQlFG?=
- =?utf-8?B?Y3duZU1XZlhSbWpLVUtCUjRWR0VTeUFGN0RjdXliWEVLYlFvMlFPQi84OEFW?=
- =?utf-8?B?d0ZiK0pVSzNtMUoydTZLaHZGYmtRbGZNaG5DckRlaHg3eC9QUXdJMUNnbENo?=
- =?utf-8?B?RFA2ZnVlMGFFL3I3MUVyUnc0VkFVRWVJMXAwNmJYcTVtRERTTnY4eUNNVWRT?=
- =?utf-8?B?VGhpZFUyYkpPT0VPMENHR2pJNzBtNnRoVnd4VnFZRS9kcEloWVI3a2d2VDlh?=
- =?utf-8?B?OXhjUWMzRWFKcWNJZmN2Yi9mS2hTWTV3b2VhUi9oeXRaaFdraUU0YVdjeldW?=
- =?utf-8?B?VjJsVWdxZmxkTTMxTFAyNlFkV3RNc2xOQlJveG1qdjF5OStwWDlscDJ6U09O?=
- =?utf-8?B?Ymw3QWhoQWc2TFZ3K2poUHJxZGxiTnd2bnRaOENYbkZRQjVhYWtVRGVzM01Q?=
- =?utf-8?Q?X2LHxOzFWtjwUrTA=3D?=
-X-Exchange-RoutingPolicyChecked: div8k244vc9y3WcogHayQzdl8Rv5oYMRhtWVfMuowbSqM0t9p8BjFxqRHtakPHpF/Ip9zTk928quiXR8zkNtJCKVUlojPr6wtuJbDUuC1MDfxQEL7l0lv/I30dJYaIIN2UFDex8R0P2kXPJNuzs/nDzsZmUXwNqXnd0eKoA1legamNcP47yAm0MpVZc99eJdCFcEAIqTFk9ctEJ2Yl/n9qvQLOmgH5x1bcmh5pX3aRzPRtv5ds35ASxljrgKfEf7wkz87tqxTvxH4NGGNJaZWSVZpRDwb3jhMAgDfCMhUK+i39Db6FNVnGYTZts8wv8Y5aTpcWaFDVf+xbjh8U2QfA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: af618070-a7be-4eeb-d3e6-08de8e8a5462
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7757.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Mar 2026 18:29:50.7289 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: TqbXycGIOUwvyO3ck8F8aRVdvAvbne+OIvwZ3Kc6xUsjYoVWcg6cw2/z+OevEuFj6efvPL1LI86X4LgmEgIU0riUpHe5ss++nwY7XpcNYA4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5297
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260330040656.4116502-14-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,85 +75,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On 3/25/2026 11:34 PM, Nareshkumar Gollakoti wrote:
->   While previously applied only to both tiles GT0(Graphics) and Media(GT1)
->   the BMG G21(Battle image) platform via workaround Wa_14022085890,
->   this 1.2 GHz minimum is now the default for GT0(Graphics) tile
->   of BMG and CRI platforms.
->
->   Setting this frequency floor(1.2GHz) default is critical in multi GPU
->   environment for supporting effective Peer-to-Peer(P2P) transactions.
->
-> v2:
-> - Fix Indentation(Thomas)
-> - Add comment about power impact(Stuart)
->
-> v3:(Thomas/Ankur/Matt Roper)
-> - Add setting frequency to only GT0(Graphics) Tile of BMG/CRI
->
-> v4:(Stuart)
-> - Move WA check to pc_needs_min_freq_change function
->
-> Signed-off-by: Nareshkumar Gollakoti <naresh.kumar.g@intel.com>
+On Mon, Mar 30, 2026 at 09:36:50AM +0530, Ankit Nautiyal wrote:
+> Replace the consecutive single-byte writes to PANEL_REPLAY_CONFIG and
+> CONFIG2 with one drm_dp_dpcd_write() burst starting at PANEL_REPLAY_CONFIG,
+> reducing AUX transactions.
+> 
+> v2: Drop extra conditions, and optimize variables. (Ville)
+> 
+> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_guc_pc.c | 32 ++++++++++++++++++++++++++++++--
->   1 file changed, 30 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-> index 5e5495a39a3c..f92feee3592d 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-> @@ -856,9 +856,26 @@ void xe_guc_pc_init_early(struct xe_guc_pc *pc)
->   	pc_init_fused_rp_values(pc);
->   }
->   
-> +static bool pc_needs_min_freq_change(struct xe_guc_pc *pc)
-> +{
-> +	struct xe_device *xe = pc_to_xe(pc);
-> +	struct xe_gt *gt = pc_to_gt(pc);
+>  drivers/gpu/drm/i915/display/intel_psr.c | 29 ++++++++++++++----------
+>  1 file changed, 17 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index 2f1b48cd8efd..ca054135ca30 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -782,27 +782,32 @@ static bool psr2_su_region_et_valid(struct intel_connector *connector, bool pane
+>  static void _panel_replay_enable_sink(struct intel_dp *intel_dp,
+>  				      const struct intel_crtc_state *crtc_state)
+>  {
+> -	u8 val = DP_PANEL_REPLAY_ENABLE |
+> -		DP_PANEL_REPLAY_VSC_SDP_CRC_EN |
+> -		DP_PANEL_REPLAY_UNRECOVERABLE_ERROR_EN |
+> -		DP_PANEL_REPLAY_RFB_STORAGE_ERROR_EN |
+> -		DP_PANEL_REPLAY_ACTIVE_FRAME_CRC_ERROR_EN;
+> -	u8 panel_replay_config2 = DP_PANEL_REPLAY_CRC_VERIFICATION;
+> +	struct intel_display *display = to_intel_display(intel_dp);
+> +	u8 panel_replay_config[2];
+> +	int ret;
 > +
-> +	if (XE_DEVICE_WA(xe, 14022085890))
-> +		return true;
-> +
-> +	if (xe_gt_is_media_type(gt))
-> +		return false;
-> +
-> +	if (xe->info.platform == XE_BATTLEMAGE ||
-> +	    xe->info.platform == XE_CRESCENTISLAND)
-> +		return true;
-> +
-> +	return false;
-> +}
-> +
->   static int pc_adjust_freq_bounds(struct xe_guc_pc *pc)
->   {
-> -	struct xe_tile *tile = gt_to_tile(pc_to_gt(pc));
->   	int ret;
->   
->   	lockdep_assert_held(&pc->freq_lock);
-> @@ -885,7 +902,18 @@ static int pc_adjust_freq_bounds(struct xe_guc_pc *pc)
->   	if (pc_get_min_freq(pc) > pc->rp0_freq)
->   		ret = pc_set_min_freq(pc, pc->rp0_freq);
->   
-> -	if (XE_DEVICE_WA(tile_to_xe(tile), 14022085890))
-> +	/*
-> +	 * Setting GT RP min frequency to 1.2GHz by default for
-> +	 * GT0(Graphics) Tile of BMG and CRI.
-> +	 *
-> +	 * While BMG G21 WA will apply min frequency for
-> +	 * both GT0(Graphics) and GT1(Media) Tile.
-> +	 *
-> +	 * This is an active frequency, so if the device is idle
-> +	 * we aren't expecting high power output across board
-> +	 *
-> +	 */
-> +	if (pc_needs_min_freq_change(pc))
->   		ret = pc_set_min_freq(pc, max(BMG_MIN_FREQ, pc_get_min_freq(pc)));
+> +	panel_replay_config[0] = DP_PANEL_REPLAY_ENABLE |
+> +				 DP_PANEL_REPLAY_VSC_SDP_CRC_EN |
+> +				 DP_PANEL_REPLAY_UNRECOVERABLE_ERROR_EN |
+> +				 DP_PANEL_REPLAY_RFB_STORAGE_ERROR_EN |
+> +				 DP_PANEL_REPLAY_ACTIVE_FRAME_CRC_ERROR_EN;
+> +	panel_replay_config[1] = DP_PANEL_REPLAY_CRC_VERIFICATION;
+>  
+>  	if (crtc_state->has_sel_update)
+> -		val |= DP_PANEL_REPLAY_SU_ENABLE;
+> +		panel_replay_config[0] |= DP_PANEL_REPLAY_SU_ENABLE;
+>  
+>  	if (crtc_state->enable_psr2_su_region_et)
+> -		val |= DP_PANEL_REPLAY_ENABLE_SU_REGION_ET;
+> +		panel_replay_config[0] |= DP_PANEL_REPLAY_ENABLE_SU_REGION_ET;
+>  
+>  	if (crtc_state->req_psr2_sdp_prior_scanline)
+> -		panel_replay_config2 |=
+> +		panel_replay_config[1] |=
+>  			DP_PANEL_REPLAY_SU_REGION_SCANLINE_CAPTURE;
+>  
+> -	drm_dp_dpcd_writeb(&intel_dp->aux, PANEL_REPLAY_CONFIG, val);
+> +	ret = drm_dp_dpcd_write(&intel_dp->aux, PANEL_REPLAY_CONFIG,
+> +				panel_replay_config, sizeof(panel_replay_config));
+>  
+> -	drm_dp_dpcd_writeb(&intel_dp->aux, PANEL_REPLAY_CONFIG2,
+> -			   panel_replay_config2);
+> +	if (ret != sizeof(panel_replay_config))
+> +		drm_dbg_kms(display->drm, "Failed to write Panel Replay Configs\n");
 
-LGTM,
+Looks like we don't actually check for errors on any of the
+other DPCD accesses here. So I'd probably drop it here as well.
 
-Reviewed-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+Either way
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
->   
->   out:
+>  }
+>  
+>  static void _psr_enable_sink(struct intel_dp *intel_dp,
+> -- 
+> 2.45.2
+
+-- 
+Ville Syrjälä
+Intel
