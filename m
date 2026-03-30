@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F15D103D959
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Mar 2026 13:53:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 311A11049501
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Mar 2026 13:56:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A8F110E129;
-	Mon, 30 Mar 2026 13:53:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB24610E4B1;
+	Mon, 30 Mar 2026 13:56:35 +0000 (UTC)
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0642C10E129;
- Mon, 30 Mar 2026 13:53:11 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CF8C10E568;
+ Mon, 30 Mar 2026 13:56:34 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2659799334475179245=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_PCI/IOV=3A_Fix_?=
- =?utf-8?q?SR-IOV_locking_races_and_AB-BA_deadlock?=
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915/backlight=3A_Updat?=
+ =?utf-8?q?e_check_for_VESA_backlight?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ionut Nechita (Wind River)" <ionut.nechita@windriver.com>
+To: "Suraj Kandpal" <suraj.kandpal@intel.com>
 Cc: intel-xe@lists.freedesktop.org
-Date: Mon, 30 Mar 2026 13:53:10 -0000
-Message-ID: <177487879099.412829.11721605708865766691@a3b018990fe9>
+Date: Mon, 30 Mar 2026 13:56:34 -0000
+Message-ID: <177487899454.412830.511518268209686639@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260326083534.23602-1-ionut.nechita@windriver.com>
-In-Reply-To: <20260326083534.23602-1-ionut.nechita@windriver.com>
+References: <20260330102035.1288175-1-suraj.kandpal@intel.com>
+In-Reply-To: <20260330102035.1288175-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,16 +40,102 @@ Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============2659799334475179245==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
-Series: PCI/IOV: Fix SR-IOV locking races and AB-BA deadlock
-URL   : https://patchwork.freedesktop.org/series/164082/
-State : failure
+Series: drm/i915/backlight: Update check for VESA backlight
+URL   : https://patchwork.freedesktop.org/series/164073/
+State : success
 
 == Summary ==
 
-Address 'ionut.nechita@windriver.com' is not on the allowlist, which prevents CI from being triggered for this patch.
-If you want Intel GFX CI to accept this address, please contact the script maintainers at i915-ci-infra@lists.freedesktop.org.
-Exception occurred during validation, bailing out!
+CI Bug Log - changes from xe-4818-2662531d3ccb4a569271b75e4a9ccb58990424d8_BAT -> xe-pw-164073v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (14 -> 14)
+------------------------------
+
+  No changes in participating hosts
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4818-2662531d3ccb4a569271b75e4a9ccb58990424d8 -> xe-pw-164073v1
+
+  IGT_8835: 8835
+  xe-4818-2662531d3ccb4a569271b75e4a9ccb58990424d8: 2662531d3ccb4a569271b75e4a9ccb58990424d8
+  xe-pw-164073v1: 164073v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164073v1/index.html
+
+--===============2659799334475179245==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/backlight: Update check for VESA backlight</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164073/">https://patchwork.freedesktop.org/series/164073/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164073v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-164073v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4818-2662531d3ccb4a569271b75e4a9ccb58990424d8_BAT -&gt; xe-pw-164073v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (14 -&gt; 14)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4818-2662531d3ccb4a569271b75e4a9ccb58990424d8 -&gt; xe-pw-164073v1</li>
+</ul>
+<p>IGT_8835: 8835<br />
+  xe-4818-2662531d3ccb4a569271b75e4a9ccb58990424d8: 2662531d3ccb4a569271b75e4a9ccb58990424d8<br />
+  xe-pw-164073v1: 164073v1</p>
+
+</body>
+</html>
+
+--===============2659799334475179245==--
