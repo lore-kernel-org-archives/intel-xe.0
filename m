@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBD331061B1F
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Mar 2026 20:41:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 201381061B21
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Mar 2026 20:41:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EC4910E808;
-	Mon, 30 Mar 2026 20:41:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D435410E80C;
+	Mon, 30 Mar 2026 20:41:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ecFWnk2e";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BkWayoyl";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61B0710E807
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Mar 2026 20:41:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6688210E802
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Mar 2026 20:41:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774903272; x=1806439272;
+ t=1774903265; x=1806439265;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=THaXDTR+zotigPpAMZp/tD3MAylVTObAzMx111KrWo8=;
- b=ecFWnk2ehBYjv9a5kN4X0zcJJ3cWoMu3Pu+SsdaUE4gB98h2qxVVre71
- PEP9g60CC2NNN2gj9apwKn7Yt+cQHFpgfYxSf7nH7x93bBd+RFC/4xXqj
- 5c45O1eNUzHNvT1GHWFltxW4dg+n1W8M1BHeonZ5XKm3hjMQ9vWVgcH7w
- cn6XApztUl7G2OI7ZYR540wjMxDlOxL7xaM6dk/X2RhKvElJhlfxpComw
- tMwwh1tiaPap4EKI9lGaR0M/jIcxwNyabdWcbcwaPN1Etrkc/uevvdltL
- oifDEy7kd692j157PmB+ikKfZtJkpwj5VMcHX0B65ZTnouH3FS3WeRwig Q==;
-X-CSE-ConnectionGUID: dd0zGRjeQCahjPL5cKVgKg==
-X-CSE-MsgGUID: YBL7MJHJTumxL8YCbwPK1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="75923715"
-X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="75923715"
+ bh=k0NmaRml/QjfQNUTBARV+h5IjW0jMCCKcU9ciGH4AA8=;
+ b=BkWayoylG4Bi4IsCKiP2DU2GUl8mKhFLZkvRPC+pEkFyjZ3iHGikfoLH
+ rXoirRCwXB+jw5VkNFY8IhcJZnWgjduZWhrFt4fz+FY83mzLLwL6LG0JN
+ VAMhp84Ps943RZCzZL4sl3L+wDTZAynPBbPrIXj6BOdSGrvLM6/3cGFG1
+ fHVujCfrV9ID467qp1S8InFSeT44OdxoNzEXQ/p+hcGPCXQltf1H2hUZ1
+ FrqhjDeOjBw1elTCnwJnurFm5pcLcDkXY1KWLK9O7L2D9B1J6eTpR7gem
+ NjWTiLGi9xytmVf6xlz1ZkVpYYn2He/GOGD8d+OGoaYhBO+jFt4AhggfU Q==;
+X-CSE-ConnectionGUID: 9Cn149/AS56UEzOz1Mwwig==
+X-CSE-MsgGUID: mseg2v8bQDmxLaImxLL9YQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="75923702"
+X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="75923702"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 13:41:12 -0700
-X-CSE-ConnectionGUID: VyGb1GgzTZO3vJwR6pjwNQ==
-X-CSE-MsgGUID: SpsYg7JIRGKsRu+yvVT/ug==
+ 30 Mar 2026 13:41:05 -0700
+X-CSE-ConnectionGUID: fVubLjLYQ0OJoydac8b/yQ==
+X-CSE-MsgGUID: G5A56SFuTPqpQs/XicMLyg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="225329442"
+X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="225329391"
 Received: from liyantan-mobl1.gar.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.17.179])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 13:41:10 -0700
+ 30 Mar 2026 13:41:03 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 11/13] drm/xe/pf: Extract helper to show which VFs are
- provisioned
-Date: Mon, 30 Mar 2026 22:40:42 +0200
-Message-ID: <20260330204046.567-12-michal.wajdeczko@intel.com>
+Subject: [PATCH 05/13] drm/xe/pf: Reprovision policy settings after GT reset
+Date: Mon, 30 Mar 2026 22:40:36 +0200
+Message-ID: <20260330204046.567-6-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260330204046.567-1-michal.wajdeczko@intel.com>
 References: <20260330204046.567-1-michal.wajdeczko@intel.com>
@@ -68,73 +67,90 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In upcoming patches we will want to show which VFs were already
-provisioned with resources other than LMEM(VRAM). Convert code
-from the LMEM reporting function into a more generic helper that
-can handle both u32 and u64 resources and can report also PF.
+In addition to the reprovisioning of individual VFs configurations,
+we should also reprovision GuC global policy settings. Note that we
+already had a draft function for that but we missed to call it once
+we started handling GT reset. Reuse it now but don't take extra RPM
+as this is now a caller responsibility and drop unused parameter.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 30 +++++++++++++++++-----
- 1 file changed, 23 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf.c        |  1 +
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c | 14 +++-----------
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h |  2 +-
+ 3 files changed, 5 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index e673e96a147a..680ea73d1ce3 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -1934,29 +1934,45 @@ static u64 pf_profile_fair_lmem(struct xe_gt *gt, unsigned int num_vfs)
- 	return ALIGN_DOWN(fair, alignment);
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
+index fb5c9101e275..7868056841b3 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
+@@ -219,6 +219,7 @@ static void pf_restart(struct xe_gt *gt)
+ 
+ 	xe_gt_assert(gt, !xe_pm_runtime_suspended(xe));
+ 
++	xe_gt_sriov_pf_policy_restart(gt);
+ 	xe_gt_sriov_pf_config_restart(gt);
+ 	xe_gt_sriov_pf_control_restart(gt);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
+index c88c4e6a9b61..aa80b4abd42f 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
+@@ -17,7 +17,6 @@
+ #include "xe_guc_ct.h"
+ #include "xe_guc_klv_helpers.h"
+ #include "xe_guc_submit.h"
+-#include "xe_pm.h"
+ 
+ /*
+  * Return: number of KLVs that were successfully parsed and saved,
+@@ -692,30 +691,23 @@ void xe_gt_sriov_pf_policy_sanitize(struct xe_gt *gt)
  }
  
--static void __pf_show_provisioning_lmem(struct xe_gt *gt, unsigned int first_vf,
--					unsigned int num_vfs, bool provisioned)
-+static void __pf_show_provisioned(struct xe_gt *gt, unsigned int first_vf,
-+				  unsigned int num_vfs, bool provisioned,
-+				  u32 (*get32)(struct xe_gt *, unsigned int),
-+				  u64 (*get64)(struct xe_gt *, unsigned int),
-+				  const char *what)
+ /**
+- * xe_gt_sriov_pf_policy_reprovision - Reprovision (and optionally reset) policy settings.
++ * xe_gt_sriov_pf_policy_restart() - Reprovision policy settings.
+  * @gt: the &xe_gt
+- * @reset: if true will reprovision using default values instead of latest
+  *
+  * This function can only be called on PF.
+  *
+  * Return: 0 on success or a negative error code on failure.
+  */
+-int xe_gt_sriov_pf_policy_reprovision(struct xe_gt *gt, bool reset)
++int xe_gt_sriov_pf_policy_restart(struct xe_gt *gt)
  {
- 	unsigned int allvfs = 1 + xe_gt_sriov_pf_get_totalvfs(gt); /* PF plus VFs */
- 	unsigned long *bitmap __free(bitmap) = bitmap_zalloc(allvfs, GFP_KERNEL);
- 	unsigned int weight;
- 	unsigned int n;
-+	bool pf;
-+
-+	xe_gt_assert(gt, get32 || get64);
+ 	int err = 0;
  
- 	if (!bitmap)
- 		return;
+-	xe_pm_runtime_get_noresume(gt_to_xe(gt));
++	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
  
- 	for (n = first_vf; n < first_vf + num_vfs; n++) {
--		if (!!pf_get_vf_config_lmem(gt, VFID(n)) == provisioned)
-+		if ((get32 && (!!get32(gt, VFID(n)) == provisioned)) ||
-+		    (get64 && (!!get64(gt, VFID(n)) == provisioned)))
- 			bitmap_set(bitmap, n, 1);
- 	}
+-	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
+-	if (reset)
+-		pf_sanitize_guc_policies(gt);
+ 	err |= pf_reprovision_sched_if_idle(gt);
+ 	err |= pf_reprovision_reset_engine(gt);
+ 	err |= pf_reprovision_sample_period(gt);
+ 	err |= pf_reprovision_sched_groups(gt);
+-	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
+-
+-	xe_pm_runtime_put(gt_to_xe(gt));
  
-+	pf = test_and_clear_bit(0, bitmap);
- 	weight = bitmap_weight(bitmap, allvfs);
--	if (!weight)
-+	if (!pf && !weight)
- 		return;
- 
--	xe_gt_sriov_info(gt, "VF%s%*pbl %s provisioned with VRAM\n",
--			 weight > 1 ? "s " : "", allvfs, bitmap,
--			 provisioned ? "already" : "not");
-+	xe_gt_sriov_info(gt, "%s%s%s%s%*pbl %s provisioned with %s\n",
-+			 pf ? "PF" : "", pf && weight ? " and " : "",
-+			 weight ? "VF" : "", weight > 1 ? "s " : "",
-+			 allvfs, bitmap, provisioned ? "already" : "not", what);
-+}
-+
-+static void __pf_show_provisioning_lmem(struct xe_gt *gt, unsigned int first_vf,
-+					unsigned int num_vfs, bool provisioned)
-+{
-+	__pf_show_provisioned(gt, first_vf, num_vfs, provisioned,
-+			      NULL, pf_get_vf_config_lmem, "VRAM");
+ 	return err ? -ENXIO : 0;
  }
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
+index bd73aa58f9ca..c9d4c4aaaf5d 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
+@@ -29,7 +29,7 @@ bool xe_gt_sriov_pf_policy_sched_groups_enabled(struct xe_gt *gt);
  
- static void pf_show_all_provisioned_lmem(struct xe_gt *gt)
+ void xe_gt_sriov_pf_policy_init(struct xe_gt *gt);
+ void xe_gt_sriov_pf_policy_sanitize(struct xe_gt *gt);
+-int xe_gt_sriov_pf_policy_reprovision(struct xe_gt *gt, bool reset);
++int xe_gt_sriov_pf_policy_restart(struct xe_gt *gt);
+ int xe_gt_sriov_pf_policy_print(struct xe_gt *gt, struct drm_printer *p);
+ 
+ #endif
 -- 
 2.47.1
 
