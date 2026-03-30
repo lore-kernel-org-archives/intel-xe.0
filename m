@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2017C1061B22
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3746C1061B1E
 	for <intel-xe@archiver.kernel.org>; Mon, 30 Mar 2026 20:41:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE1B310E80B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E915210E80D;
 	Mon, 30 Mar 2026 20:41:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LkkC/XLA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ekIJ7NWH";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05A2410E807
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Mar 2026 20:41:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 542AC10E807
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Mar 2026 20:41:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774903273; x=1806439273;
+ t=1774903274; x=1806439274;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/fieZxWITSCG6eYZBINQDgJQ3BZQh3ei0yGGsHLIuHA=;
- b=LkkC/XLAOFUPzkwdOLilWKKYzez1WhmomhHXsrl1jk8j1r608Hf4ysty
- hFCvzUHE4D2cDk/q3UMNZL08R+/+z2+ograU7EfvJzZCI0mliZSEcvTiV
- Gbfk7S2TzsyrGvDg2fgUyqto4wfifud/glevzYtjPE7D8tABg3uA7yG6B
- 59yV7aE41Uz7M7ybke14ol4EtpNewjjRq+rVmZoCbvY6Y1M0qEj6eUOW3
- j+jf7VRqMYy0kd7Rd8bF1mSwlkGd/3EDD6O1LPW5BoGYO3Qv5s3nkQPCu
- 5haf7LUR46VNNUI+BITGAr36Z/HoWRBvTOUAMlFVgA4hLz/ygAtJc1+a8 g==;
-X-CSE-ConnectionGUID: N9AqVPaVRWySJOGu+MdBrA==
-X-CSE-MsgGUID: JcM1wi5cSjaAMDAGWNpRtQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="75923717"
-X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="75923717"
+ bh=Z7/d4+EAMSONgbKlMfERqpaq7bRMUH4tiQ3tOEL0oOY=;
+ b=ekIJ7NWHW+3sEE/YQW85DEA56LPKOq011CCtuj3IpWwOxKWA5K8SwcQF
+ N4BkLUq5QlOwARZWLdrPFUshMq5Sy6gy85tSjDub/Z5Aju81xVtFeh5a7
+ JCIkf7FXGUUjg20bjmYvKdsUluXSbpbGkAgeTuY7tdVMCji6R2bgMTX8b
+ fQwoIzXEJNZm5a712SBFPF+NwhbIrh3Qb90/v33y44SUUjgiviX3b2ndb
+ CV5RcqiuL4J74Qe6DkI2UTnHB9fD3SKzRWg+mEiGLjJWGg3tFUsgEr7jb
+ r+eRK4DhOyXnH0xjChbhM5k0EfuNfxmSGJ3hDlYmhvvde6JUb+dHT37pu Q==;
+X-CSE-ConnectionGUID: hFfVdsleQgGmxoAW4D7xWQ==
+X-CSE-MsgGUID: xOTx9gTIRQOYOJEos7MgOQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="75923718"
+X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="75923718"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 13:41:13 -0700
-X-CSE-ConnectionGUID: WO11lKt1RvCrLn3oakAAcQ==
-X-CSE-MsgGUID: TldTZCTaRdyGAxSu6qUMIw==
+ 30 Mar 2026 13:41:14 -0700
+X-CSE-ConnectionGUID: DjtGpftTR8KWDKA34+ju/A==
+X-CSE-MsgGUID: Ip8NI5g7S3mdQtPLnG0WaA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="225329452"
+X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="225329462"
 Received: from liyantan-mobl1.gar.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.17.179])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 13:41:11 -0700
+ 30 Mar 2026 13:41:13 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 12/13] drm/xe/pf: Extract helpers for bulk EQ/PT provisioning
-Date: Mon, 30 Mar 2026 22:40:43 +0200
-Message-ID: <20260330204046.567-13-michal.wajdeczko@intel.com>
+Subject: [PATCH 13/13] drm/xe/pf: Perform fair scheduling auto-provisioning
+Date: Mon, 30 Mar 2026 22:40:44 +0200
+Message-ID: <20260330204046.567-14-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260330204046.567-1-michal.wajdeczko@intel.com>
 References: <20260330204046.567-1-michal.wajdeczko@intel.com>
@@ -67,130 +67,145 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We already have functions to bulk provision execution quantum and
-preemption timeout, but they are applying changes to all possible
-VFs, while in upcoming patch we would like to provision only subset
-of available VFs.
+Default VF scheduling configuration is the same as for the PF and
+includes unlimited execution quantum (EQ) and unlimited preemption
+timeout (PT). While this setup gives the most flexibility it does
+not protect the PF or VFs from other VF that could constantly submit
+workloads without any gaps that would let GuC do a VF-switch.
+
+To avoid that, do some trivial auto-provisioning and configure PF
+and all VFs with 16ms EQ and PT. This setup should allow GuC to
+perform a full round-robin with up to 63 VFs within 2s, which in
+turn should match expectations from most of the VMs using VFs.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 66 +++++++++++++---------
- 1 file changed, 40 insertions(+), 26 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 85 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |  1 +
+ drivers/gpu/drm/xe/xe_sriov_pf_provision.c |  2 +
+ 3 files changed, 88 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index 680ea73d1ce3..7f85d6629fec 100644
+index 7f85d6629fec..a2babef5e5f0 100644
 --- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
 +++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -2193,34 +2193,41 @@ u32 xe_gt_sriov_pf_config_get_exec_quantum(struct xe_gt *gt, unsigned int vfid)
- 	return pf_get_exec_quantum(gt, vfid);
+@@ -2661,6 +2661,91 @@ static bool pf_non_default_sched(struct xe_gt *gt, unsigned int vfid)
+ 	       custom_sched_priority(gt, pf_get_sched_priority(gt, vfid));
  }
  
--/**
-- * xe_gt_sriov_pf_config_bulk_set_exec_quantum_locked() - Configure EQ for PF and VFs.
-- * @gt: the &xe_gt to configure
-- * @exec_quantum: requested execution quantum in milliseconds (0 is infinity)
-- *
-- * This function can only be called on PF with the master mutex hold.
-- *
-- * Return: 0 on success or a negative error code on failure.
-- */
--int xe_gt_sriov_pf_config_bulk_set_exec_quantum_locked(struct xe_gt *gt, u32 exec_quantum)
-+static int pf_bulk_set_exec_quantum(struct xe_gt *gt, u32 exec_quantum,
-+				    unsigned int first_vf, unsigned int num_vfs)
- {
--	unsigned int totalvfs = xe_gt_sriov_pf_get_totalvfs(gt);
- 	unsigned int n;
- 	int err = 0;
- 
- 	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
- 
--	for (n = 0; n <= totalvfs; n++) {
-+	for (n = first_vf; n < first_vf + num_vfs; n++) {
- 		err = pf_provision_exec_quantum(gt, VFID(n), exec_quantum);
- 		if (err)
- 			break;
- 	}
- 
--	return pf_config_bulk_set_u32_done(gt, 0, 1 + totalvfs, exec_quantum,
-+	return pf_config_bulk_set_u32_done(gt, first_vf, num_vfs, exec_quantum,
- 					   pf_get_exec_quantum, "execution quantum",
- 					   exec_quantum_unit, n, err);
- }
- 
++static void __pf_show_provisioned_sched(struct xe_gt *gt, unsigned int first_vf,
++					unsigned int num_vfs, bool provisioned)
++{
++	__pf_show_provisioned(gt, first_vf, num_vfs, provisioned,
++			      pf_get_exec_quantum, NULL, "EQ");
++	__pf_show_provisioned(gt, first_vf, num_vfs, provisioned,
++			      pf_get_preempt_timeout, NULL, "PT");
++
++	/* we only care about non-default priorities */
++	if (provisioned)
++		__pf_show_provisioned(gt, first_vf, num_vfs, true,
++				      pf_get_sched_priority, NULL, "PRIORITY");
++}
++
++static void pf_show_all_provisioned_sched(struct xe_gt *gt)
++{
++	__pf_show_provisioned_sched(gt, PFID, 1 + xe_gt_sriov_pf_get_totalvfs(gt), true);
++}
++
++static void pf_show_unprovisioned_sched(struct xe_gt *gt, unsigned int num_vfs)
++{
++	__pf_show_provisioned_sched(gt, PFID, 1 + num_vfs, false);
++}
++
++static bool pf_needs_provision_sched(struct xe_gt *gt, unsigned int num_vfs)
++{
++	unsigned int vfid;
++
++	for (vfid = PFID; vfid < PFID + num_vfs; vfid++) {
++		if (pf_non_default_sched(gt, vfid)) {
++			pf_show_all_provisioned_sched(gt);
++			pf_show_unprovisioned_sched(gt, num_vfs);
++			return false;
++		}
++	}
++
++	pf_show_all_provisioned_sched(gt);
++	return true;
++}
++
++/* With 16ms EQ/PT GuC should be able to handle up to 63 VFs within 2s */
++#define XE_FAIR_EXEC_QUANTUM_MS		16
++#define XE_FAIR_PREEMPT_TIMEOUT_US	16000
++#define XE_FAIR_SCHED_PRIORITY		GUC_SCHED_PRIORITY_LOW
++#define XE_ADMIN_PF_SCHED_PRIORITY	GUC_SCHED_PRIORITY_HIGH
++
 +/**
-+ * xe_gt_sriov_pf_config_bulk_set_exec_quantum_locked() - Configure EQ for PF and VFs.
-+ * @gt: the &xe_gt to configure
-+ * @exec_quantum: requested execution quantum in milliseconds (0 is infinity)
++ * xe_gt_sriov_pf_config_set_fair_sched() - Provision PF and VFs with fair scheduling.
++ * @gt: the &xe_gt
++ * @num_vfs: number of VFs to provision (can't be 0)
 + *
-+ * This function can only be called on PF with the master mutex hold.
++ * This function can only be called on PF.
 + *
 + * Return: 0 on success or a negative error code on failure.
 + */
-+int xe_gt_sriov_pf_config_bulk_set_exec_quantum_locked(struct xe_gt *gt, u32 exec_quantum)
++int xe_gt_sriov_pf_config_set_fair_sched(struct xe_gt *gt, unsigned int num_vfs)
 +{
-+	unsigned int totalvfs = xe_gt_sriov_pf_get_totalvfs(gt);
++	int result = 0;
++	int err;
 +
-+	return pf_bulk_set_exec_quantum(gt, exec_quantum, PFID, 1 + totalvfs);
++	xe_gt_assert(gt, num_vfs);
++	xe_gt_assert(gt, XE_FAIR_EXEC_QUANTUM_MS);
++	xe_gt_assert(gt, XE_FAIR_PREEMPT_TIMEOUT_US);
++
++	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
++
++	if (!pf_needs_provision_sched(gt, num_vfs))
++		return 0;
++
++	err = pf_bulk_set_exec_quantum(gt, XE_FAIR_EXEC_QUANTUM_MS, PFID, 1 + num_vfs);
++	result = result ?: err;
++	err = pf_bulk_set_preempt_timeout(gt, XE_FAIR_PREEMPT_TIMEOUT_US, PFID, 1 + num_vfs);
++	result = result ?: err;
++
++	xe_gt_assert(gt, XE_FAIR_SCHED_PRIORITY == GUC_SCHED_PRIORITY_LOW);
++	xe_gt_assert(gt, !xe_gt_sriov_pf_policy_get_sched_if_idle_locked(gt));
++
++	if (xe_sriov_pf_admin_only(gt_to_xe(gt))) {
++		err = pf_provision_sched_priority(gt, PFID, XE_ADMIN_PF_SCHED_PRIORITY);
++		result = result ?: err;
++	}
++
++	return result;
 +}
 +
- static int pf_provision_groups_exec_quantums(struct xe_gt *gt, unsigned int vfid,
- 					     const u32 *exec_quantums, u32 count)
+ static int pf_provision_threshold(struct xe_gt *gt, unsigned int vfid,
+ 				  enum xe_guc_klv_threshold_index index, u32 value)
  {
-@@ -2418,34 +2425,41 @@ u32 xe_gt_sriov_pf_config_get_preempt_timeout(struct xe_gt *gt, unsigned int vfi
- 	return pf_get_preempt_timeout(gt, vfid);
- }
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+index e9314f0a9b4e..2ec62c12ad5c 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
+@@ -78,6 +78,7 @@ u32 xe_gt_sriov_pf_config_get_threshold(struct xe_gt *gt, unsigned int vfid,
+ int xe_gt_sriov_pf_config_set_threshold(struct xe_gt *gt, unsigned int vfid,
+ 					enum xe_guc_klv_threshold_index index, u32 value);
  
--/**
-- * xe_gt_sriov_pf_config_bulk_set_preempt_timeout_locked() - Configure PT for PF and VFs.
-- * @gt: the &xe_gt to configure
-- * @preempt_timeout: requested preemption timeout in microseconds (0 is infinity)
-- *
-- * This function can only be called on PF with the master mutex hold.
-- *
-- * Return: 0 on success or a negative error code on failure.
-- */
--int xe_gt_sriov_pf_config_bulk_set_preempt_timeout_locked(struct xe_gt *gt, u32 preempt_timeout)
-+static int pf_bulk_set_preempt_timeout(struct xe_gt *gt, u32 preempt_timeout,
-+				       unsigned int first_vf, unsigned int num_vfs)
- {
--	unsigned int totalvfs = xe_gt_sriov_pf_get_totalvfs(gt);
- 	unsigned int n;
- 	int err = 0;
++int xe_gt_sriov_pf_config_set_fair_sched(struct xe_gt *gt, unsigned int num_vfs);
+ int xe_gt_sriov_pf_config_set_fair(struct xe_gt *gt, unsigned int vfid, unsigned int num_vfs);
+ int xe_gt_sriov_pf_config_sanitize(struct xe_gt *gt, unsigned int vfid, long timeout);
+ int xe_gt_sriov_pf_config_release(struct xe_gt *gt, unsigned int vfid, bool force);
+diff --git a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
+index e11874d689fa..0ec7ea83f12a 100644
+--- a/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
++++ b/drivers/gpu/drm/xe/xe_sriov_pf_provision.c
+@@ -41,6 +41,8 @@ static int pf_provision_vfs(struct xe_device *xe, unsigned int num_vfs)
+ 	int err;
  
- 	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
- 
--	for (n = 0; n <= totalvfs; n++) {
-+	for (n = first_vf; n < first_vf + num_vfs; n++) {
- 		err = pf_provision_preempt_timeout(gt, VFID(n), preempt_timeout);
- 		if (err)
- 			break;
+ 	for_each_gt(gt, xe, id) {
++		err = xe_gt_sriov_pf_config_set_fair_sched(gt, num_vfs);
++		result = result ?: err;
+ 		err = xe_gt_sriov_pf_config_set_fair(gt, VFID(1), num_vfs);
+ 		result = result ?: err;
  	}
- 
--	return pf_config_bulk_set_u32_done(gt, 0, 1 + totalvfs, preempt_timeout,
-+	return pf_config_bulk_set_u32_done(gt, first_vf, num_vfs, preempt_timeout,
- 					   pf_get_preempt_timeout, "preemption timeout",
- 					   preempt_timeout_unit, n, err);
- }
- 
-+/**
-+ * xe_gt_sriov_pf_config_bulk_set_preempt_timeout_locked() - Configure PT for PF and VFs.
-+ * @gt: the &xe_gt to configure
-+ * @preempt_timeout: requested preemption timeout in microseconds (0 is infinity)
-+ *
-+ * This function can only be called on PF with the master mutex hold.
-+ *
-+ * Return: 0 on success or a negative error code on failure.
-+ */
-+int xe_gt_sriov_pf_config_bulk_set_preempt_timeout_locked(struct xe_gt *gt, u32 preempt_timeout)
-+{
-+	unsigned int totalvfs = xe_gt_sriov_pf_get_totalvfs(gt);
-+
-+	return pf_bulk_set_preempt_timeout(gt, preempt_timeout, PFID, 1 + totalvfs);
-+}
-+
- static int pf_provision_groups_preempt_timeouts(struct xe_gt *gt, unsigned int vfid,
- 						const u32 *preempt_timeouts, u32 count)
- {
 -- 
 2.47.1
 
