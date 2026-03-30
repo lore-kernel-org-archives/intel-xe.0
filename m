@@ -4,53 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5AE11061B1F
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Mar 2026 20:41:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBF4E1061B1E
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Mar 2026 20:41:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BB9510E7FE;
-	Mon, 30 Mar 2026 20:41:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F24D10E800;
+	Mon, 30 Mar 2026 20:41:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DOZYacyI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DLCXyBut";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2A1410E7FE
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Mar 2026 20:41:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB40810E7D8
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Mar 2026 20:40:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774903262; x=1806439262;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=/P/jSQ2qXvQ0wepVesdbKLYrUEraIS2n2U7kzBImQX4=;
- b=DOZYacyIQtKRoM4DYI3pR3h4n+0J8BzPm349lLbAdcb9+GtPqrbLkBRc
- IJ59429P2y7rLVMhhGYJvMyL21r5GjrK2Z+s91JeH3AvjRLAght1EixPY
- Ns5JfQm83+PFr0oT2hGCxZVKecQ2LA9MMwiWZj0mx1bS91NEyKEx/NwKt
- ApF7M0SAVC7ArHmKieJSnEW1KAOJY2HU9HLGV+Ptqs1G3g046RKKo7vEf
- Nq4DYTdKAq04FtsO4BZEHm98cTIYgpTOi5PALqnbmXN6VuyjitMcG6l9s
- jW3owa9n8ILcp24zBphYJR9B02T41Q6D2nXEfwdojcb4XK8Mst5lQTOor w==;
-X-CSE-ConnectionGUID: UHnFLl3+QQGSiRDuQpnu9A==
-X-CSE-MsgGUID: ep3/7xF+SVWHnBukjXPkOw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="75923700"
-X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="75923700"
+ t=1774903259; x=1806439259;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=OC7980c3D3Iu3HscyF9T1FnUq6sEEIUlwp0INKg6nSg=;
+ b=DLCXyButH6OuA+za5GUhbdjk3A430XGjxfzpXtmrVnr6ZrTU3qyA7d/+
+ wAdz6+w6xq7b6mX3tfk7oqcwqpVZubt4OGWBu6bHH+rPXCv3q0pwwUyb5
+ uxRD00eMy2w8Fb9659i2ebl6rzkigkga023A4RTpcU1YVZqTCH8KjmIk0
+ VfJIB4hlY9JBj0tHYPC29m10WS8tRvgIBuXuYyhN3k4tI9Q0/tFj4nEoc
+ SGg4IQIkj+7yn0w7Fes4SPgbMkPKH0hrxcylE7xTt5ynkRzXqVGZQHEH8
+ hs8711CdOF0TPHR77C1HmGjSG9MHE6vf7Uu5d/tqeKheNQDqhnP7iCM3/ A==;
+X-CSE-ConnectionGUID: hE0oa56eT4W4SATA5Lb8kw==
+X-CSE-MsgGUID: 3B31rn1tS2eAChy/H+NfWQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="75923694"
+X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="75923694"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 13:41:02 -0700
-X-CSE-ConnectionGUID: baXkPTr0QYCLtjnpsw/WTg==
-X-CSE-MsgGUID: g/ee5p2TQh2bhBYmttGvfg==
+ 30 Mar 2026 13:40:58 -0700
+X-CSE-ConnectionGUID: KPesuy+9SPi9BI/Y1EPLkw==
+X-CSE-MsgGUID: MTNZNyzsSSe/Kr5aoGbI5Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="225329365"
+X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="225329321"
 Received: from liyantan-mobl1.gar.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.17.179])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 13:41:00 -0700
+ 30 Mar 2026 13:40:57 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 03/13] drm/xe/pf: Force new VFs prorities only once
-Date: Mon, 30 Mar 2026 22:40:34 +0200
-Message-ID: <20260330204046.567-4-michal.wajdeczko@intel.com>
+Subject: [PATCH 00/13] drm/xe/pf: Improve EQ/PT provisioning
+Date: Mon, 30 Mar 2026 22:40:31 +0200
+Message-ID: <20260330204046.567-1-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260330204046.567-1-michal.wajdeczko@intel.com>
-References: <20260330204046.567-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -67,151 +65,48 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We should force change of VFs scheduling priorities only after
-initial change of the SCHED_IF_IDLE policy. Doing that also during
-any later policy reprovisioning will overwrite changes done on the
-individual per-VF scheduling priorities (currently only for PF).
+Since some time [1] we allow to change scheduling configurations of
+the PF and VFs, what can be done before or after the VFs are enabled.
 
-While around also move priority change code to the _config component
-to maintain a proper isolation. Also document our expectation about
-the GuC version where the new meaning of the policy KLV is present.
+But while default EQ/PT values give the most flexibility, they don't
+protect the PF or other VFs from one VF that could constantly submit
+workloads without any gaps that would let GuC do a VF-switch.
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 28 ++++++++++++++
- drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |  1 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c | 44 ++++++++++------------
- 3 files changed, 48 insertions(+), 25 deletions(-)
+To avoid forcing careless users to use sysfs prior to the experiments,
+perform some auto-provisioning and preset PF and VFs EQ/PT to 16ms,
+which should be fine for most simple usecases.
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-index 658e9b048751..e1c028176eb8 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
-@@ -2550,6 +2550,34 @@ u32 xe_gt_sriov_pf_config_get_sched_priority(struct xe_gt *gt, unsigned int vfid
- 	return priority;
- }
- 
-+/**
-+ * xe_gt_sriov_pf_config_force_sched_priority_locked() - Force update scheduling priority.
-+ * @gt: the &xe_gt
-+ * @priority: new scheduling priority to set
-+ *
-+ * This function allows to update cached values of the scheduling priorities of all
-+ * VFs (and PF) as result of applying the `GUC_KLV_VGT_POLICY_SCHED_IF_IDLE`_ policy.
-+ *
-+ * This function can only be called on PF.
-+ */
-+void xe_gt_sriov_pf_config_force_sched_priority_locked(struct xe_gt *gt, u32 priority)
-+{
-+	unsigned int total_vfs = 1 + xe_gt_sriov_pf_get_totalvfs(gt);
-+	struct xe_gt_sriov_config *config;
-+	unsigned int n;
-+
-+	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
-+
-+	for (n = 0; n < total_vfs; n++) {
-+		config = pf_pick_vf_config(gt, VFID(n));
-+		config->sched_priority = priority;
-+	}
-+
-+	pf_config_bulk_set_u32_done(gt, PFID, 1 + total_vfs, priority,
-+				    pf_get_sched_priority, "scheduling priority",
-+				    sched_priority_unit, n, 0);
-+}
-+
- static void pf_reset_config_sched(struct xe_gt *gt, struct xe_gt_sriov_config *config)
- {
- 	int i;
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-index 4a004ecd6140..e9314f0a9b4e 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h
-@@ -71,6 +71,7 @@ int xe_gt_sriov_pf_config_set_groups_preempt_timeouts(struct xe_gt *gt, unsigned
- 
- u32 xe_gt_sriov_pf_config_get_sched_priority(struct xe_gt *gt, unsigned int vfid);
- int xe_gt_sriov_pf_config_set_sched_priority(struct xe_gt *gt, unsigned int vfid, u32 priority);
-+void xe_gt_sriov_pf_config_force_sched_priority_locked(struct xe_gt *gt, u32 priority);
- 
- u32 xe_gt_sriov_pf_config_get_threshold(struct xe_gt *gt, unsigned int vfid,
- 					enum xe_guc_klv_threshold_index index);
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-index 848e24926ecd..6ab02e96e46c 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-@@ -8,6 +8,7 @@
- #include "abi/guc_actions_sriov_abi.h"
- 
- #include "xe_gt.h"
-+#include "xe_gt_sriov_pf_config.h"
- #include "xe_gt_sriov_pf_helpers.h"
- #include "xe_gt_sriov_pf_policy.h"
- #include "xe_gt_sriov_printk.h"
-@@ -153,33 +154,14 @@ static int pf_update_policy_u32(struct xe_gt *gt, u16 key, u32 *policy, u32 valu
- 	return 0;
- }
- 
--static void pf_bulk_reset_sched_priority(struct xe_gt *gt, u32 priority)
--{
--	unsigned int total_vfs = 1 + xe_gt_sriov_pf_get_totalvfs(gt);
--	unsigned int n;
--
--	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
--	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
--
--	for (n = 0; n < total_vfs; n++)
--		gt->sriov.pf.vfs[n].config.sched_priority = priority;
--}
--
- static int pf_provision_sched_if_idle(struct xe_gt *gt, bool enable)
- {
--	int err;
--
- 	xe_gt_assert(gt, IS_SRIOV_PF(gt_to_xe(gt)));
- 	lockdep_assert_held(xe_gt_sriov_pf_master_mutex(gt));
- 
--	err = pf_update_policy_bool(gt, GUC_KLV_VGT_POLICY_SCHED_IF_IDLE_KEY,
--				    &gt->sriov.pf.policy.guc.sched_if_idle,
--				    enable);
--
--	if (!err)
--		pf_bulk_reset_sched_priority(gt, enable ? GUC_SCHED_PRIORITY_NORMAL :
--					     GUC_SCHED_PRIORITY_LOW);
--	return err;
-+	return pf_update_policy_bool(gt, GUC_KLV_VGT_POLICY_SCHED_IF_IDLE_KEY,
-+				     &gt->sriov.pf.policy.guc.sched_if_idle,
-+				     enable);
- }
- 
- static int pf_reprovision_sched_if_idle(struct xe_gt *gt)
-@@ -209,13 +191,25 @@ static void pf_sanitize_sched_if_idle(struct xe_gt *gt)
-  */
- int xe_gt_sriov_pf_policy_set_sched_if_idle(struct xe_gt *gt, bool enable)
- {
-+	u32 priority;
- 	int err;
- 
--	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
-+	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
-+
- 	err = pf_provision_sched_if_idle(gt, enable);
--	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
-+	if (err)
-+		return err;
- 
--	return err;
-+	/*
-+	 * As of GuC 70.12 a change of this policy impacts individual configs
-+	 * of all VFs. See `GUC_KLV_VGT_POLICY_SCHED_IF_IDLE`_ for details.
-+	 */
-+	xe_gt_assert(gt, GUC_FIRMWARE_VER_AT_LEAST(&gt->uc.guc, 70, 12));
-+
-+	priority = enable ? GUC_SCHED_PRIORITY_NORMAL : GUC_SCHED_PRIORITY_LOW;
-+	xe_gt_sriov_pf_config_force_sched_priority_locked(gt, priority);
-+
-+	return 0;
- }
- 
- /**
+But before doing that, fix some minor corner cases that could impact
+EQ/PT provisioning.
+
+[1] https://gitlab.freedesktop.org/drm/xe/kernel/-/commit/3f984d706d6b
+
+Michal Wajdeczko (13):
+  drm/xe/guc: Update POLICY_SCHED_IF_IDLE documentation
+  drm/xe/pf: Fix pf_get_sched_priority() function signature
+  drm/xe/pf: Force new VFs prorities only once
+  drm/xe/pf: Print applied policy KLVs
+  drm/xe/pf: Reprovision policy settings after GT reset
+  drm/xe/pf: Don't reprovision policies if already default
+  drm/xe/pf: Encode scheduling priority KLV if needed
+  drm/xe/pf: Check EQ/PT/PRIO when testing VF config
+  drm/xe/pf: Allow to change sched_if_idle policy under lock
+  drm/xe/pf: Reprovision scheduling to default when no VFs
+  drm/xe/pf: Extract helper to show which VFs are provisioned
+  drm/xe/pf: Extract helpers for bulk EQ/PT provisioning
+  drm/xe/pf: Perform fair scheduling auto-provisioning
+
+ drivers/gpu/drm/xe/abi/guc_klvs_abi.h      |   7 +
+ drivers/gpu/drm/xe/xe_gt_sriov_pf.c        |   1 +
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 255 ++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.h |   2 +
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c | 122 ++++++----
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h |   4 +-
+ drivers/gpu/drm/xe/xe_pci_sriov.c          |   2 +
+ drivers/gpu/drm/xe/xe_sriov_pf_provision.c |  41 ++++
+ drivers/gpu/drm/xe/xe_sriov_pf_provision.h |   1 +
+ 9 files changed, 355 insertions(+), 80 deletions(-)
+
 -- 
 2.47.1
 
