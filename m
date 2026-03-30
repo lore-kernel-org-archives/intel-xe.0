@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89DE4FF4942
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BB85FF4943
 	for <intel-xe@archiver.kernel.org>; Mon, 30 Mar 2026 04:22:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 407CB10E38A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B39010E395;
 	Mon, 30 Mar 2026 04:22:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jq8P7qsl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z95Iy3X/";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14D5910E384;
- Mon, 30 Mar 2026 04:22:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 440EA10E357;
+ Mon, 30 Mar 2026 04:22:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774844559; x=1806380559;
+ t=1774844549; x=1806380549;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=T71xFQ0kn/1GZ1wJ/gZcmj2gzz2V+AX2NAAbN1HN5gE=;
- b=Jq8P7qslju/aWO88qXVYH92c+xTUjFqHemjSJOGPjtaKF0cfBKOEXQRM
- Pf1ZuDJckbxZESXT4vl3+X689f/caPd5/za2VXvlPArXn/0gxYblPLiW1
- 4COOA1OSVWP+FuaW9/McCMPQ1loQXR2uj9rc5oStrMyJADbhS6hUPAoJe
- tVSIzuFxq2RDKaPTPwhNjLHqFfTv2Dc4WsUqf3JnUyVGIgaGkZ90jo4dZ
- GiDd52L/DK9SfqcCzPH/6HVj00rjfebboh6Rj6eKXMde61jKuBIshsgAq
- 66urbdZ4lBQsrAtk7V/M2Ml8Dzku798CYGO4lfRfbgtYaycyOA5rIKVlh g==;
-X-CSE-ConnectionGUID: ml32tn6NSTSQ9KAr2amhwg==
-X-CSE-MsgGUID: oaN6en4VRVyIVwH9mHf/2Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11743"; a="87218255"
-X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="87218255"
+ bh=QBKkZwzAy/rUq7kZAG9u16eUb0ILdeXewdnTbcG9GpA=;
+ b=Z95Iy3X/dSoeFqyxWcF1mLYE9FNthkGYjAoQs7gcXo7Mxi6SB8uHf1TW
+ U8kSAoqYMvyHJ/i05UKt1CeTNyY0RBf0Xdv7rJXfXj3ZK+K+iwNA2skF5
+ LCdQswmdeqCVZF6DfJC1y/ETSzU3U5E24IYqvcxjh7i9rq+bPZ7DNOAGz
+ ALj0cZDYGyAo89W+HSgs/EC4C9MwXtXySV9iAC4InRhKWecoTRLZnuMVF
+ edE5IwmHXX14Y12Tr4jqs/XTnwr5eaAJKVsHRGzM3+llYQRTYo8Ku1AKK
+ ql49X9Nt9P0qSjF9GY99tMaNxwwCSZUn1m1LsT2ZUzK48TbjblrGC+JVA A==;
+X-CSE-ConnectionGUID: /ok17mYmTduuAHO3n0hDmA==
+X-CSE-MsgGUID: P06/VARjS6m9rmdMcPrQAQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11743"; a="87218243"
+X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="87218243"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2026 21:22:39 -0700
-X-CSE-ConnectionGUID: PRs5ES/pTtSMOEWGabULuQ==
-X-CSE-MsgGUID: Z41zPY8OSKSdQzZkVvddqg==
+ 29 Mar 2026 21:22:29 -0700
+X-CSE-ConnectionGUID: iq0Y9WB9Te2ei0+EFdWOZQ==
+X-CSE-MsgGUID: Z4k6ZuUqQ3uc2WPQpdu+bg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="263871361"
+X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="263871264"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2026 21:22:37 -0700
+ 29 Mar 2026 21:22:27 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 16/19] drm/i915/dp: Set relevant Downspread Ctrl DPCD bits for
- PR + Auxless ALPM
-Date: Mon, 30 Mar 2026 09:36:53 +0530
-Message-ID: <20260330040656.4116502-17-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 12/19] drm/i915/dp: Add member to intel_dp to store AS SDP v2
+ support
+Date: Mon, 30 Mar 2026 09:36:49 +0530
+Message-ID: <20260330040656.4116502-13-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260330040656.4116502-1-ankit.k.nautiyal@intel.com>
 References: <20260330040656.4116502-1-ankit.k.nautiyal@intel.com>
@@ -69,85 +69,96 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-To support Panel Replay with Auxless-ALPM, the source must transmit
-Adaptive-Sync SDPs for video timing synchronization while PR is active.
-As per the DP spec v2.1, this requires setting DPCD 0x0107[6]
-(FIXED_VTOTAL_AS_SDP_EN_IN_PR_ACTIVE). This applies whether VRR is enabled
-(AVT/FAVT) or fixed-timing mode is used.
+DP v2.1 SCR advertises support for FAVT payload fields parsing in DPCD
+0x2214 Bit 2. This indicates the support for Adaptive-Sync SDP version 2
+(AS SDP v2), which allows the source to set the version in HB2[4:0] and the
+payload length in HB3[5:0] of the AS SDP header.
+
+DP v2.1 SCR also adds a bit for Async Video Timing during Panel Replay, in
+Panel Replay Capability DPCD 0x00b1 (Bit 3). When this bit is cleared, the
+sink supports asynchronous video timing while in a Panel Replay Active
+state. The spec mandates that such sinks shall support AS SDP v2.
+
+Infer AS SDP v2 support from these capabilities and store it in
+struct intel_dp for use by subsequent feature enablement changes.
+
+v2:
+ - Include parsing ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR bit to
+   determine AS SDP v2 support. (Ville)
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_link_training.c | 10 ++++++++--
- drivers/gpu/drm/i915/display/intel_dp_link_training.h |  3 ++-
- drivers/gpu/drm/i915/display/intel_dp_mst.c           |  2 +-
- 3 files changed, 11 insertions(+), 4 deletions(-)
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       | 37 +++++++++++++++++++
+ 2 files changed, 38 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 54c585c59b90..136cabf06fd9 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -27,6 +27,7 @@
- #include <drm/display/drm_dp_helper.h>
- #include <drm/drm_print.h>
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index e2496db1642a..efc609eef4f5 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1870,6 +1870,7 @@ struct intel_dp {
+ 	/* connector directly attached - won't be use for modeset in mst world */
+ 	struct intel_connector *attached_connector;
+ 	bool as_sdp_supported;
++	bool as_sdp_v2_supported;
  
-+#include "intel_alpm.h"
- #include "intel_display_core.h"
- #include "intel_display_jiffies.h"
- #include "intel_display_types.h"
-@@ -710,11 +711,14 @@ static bool intel_dp_link_max_vswing_reached(struct intel_dp *intel_dp,
- 	return true;
+ 	struct drm_dp_tunnel *tunnel;
+ 	bool tunnel_suspended:1;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index f9bfb07f0205..b2007ffe18bc 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -6301,6 +6301,40 @@ intel_dp_unset_edid(struct intel_dp *intel_dp)
+ 					       false);
  }
  
--void intel_dp_link_training_set_mode(struct intel_dp *intel_dp, int link_rate, bool is_vrr)
-+void intel_dp_link_training_set_mode(struct intel_dp *intel_dp, int link_rate,
-+				     bool is_vrr,
-+				     bool is_pr_with_link_off)
++static bool
++intel_dp_sink_supports_as_sdp_v2(struct intel_dp *intel_dp)
++{
++	u8 rx_features;
++	u8 pr_caps;
++
++	/*
++	 * The DP spec does not explicitly provide the AS SDP v2 capability.
++	 * So based on the DP v2.1 SCR, we infer it from the following bits:
++	 *
++	 * DP_AS_SDP_FAVT_PAYLOAD_FIELDS_PARSING_SUPPORTED indicates support for
++	 * FAVT, which is explicitly defined to use AS SDP v2.
++	 *
++	 * DP_ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR cleared indicates support
++	 * for Async Video timing in PR active and the spec mandates that such
++	 * sinks shall support AS SDP v2.
++	 */
++	if (drm_dp_dpcd_read_byte(&intel_dp->aux,
++				  DP_DPRX_FEATURE_ENUMERATION_LIST_CONT_1,
++				  &rx_features) == 1) {
++		if (rx_features & DP_AS_SDP_FAVT_PAYLOAD_FIELDS_PARSING_SUPPORTED)
++			return true;
++	}
++
++	if (drm_dp_dpcd_read_byte(&intel_dp->aux,
++				  DP_PANEL_REPLAY_CAP_CAPABILITY,
++				  &pr_caps) == 1) {
++		if (!(pr_caps & DP_PANEL_REPLAY_ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR))
++			return true;
++	}
++
++	return false;
++}
++
+ static void
+ intel_dp_detect_sdp_caps(struct intel_dp *intel_dp)
  {
- 	u8 link_config[2];
+@@ -6308,6 +6342,9 @@ intel_dp_detect_sdp_caps(struct intel_dp *intel_dp)
  
- 	link_config[0] = is_vrr ? DP_MSA_TIMING_PAR_IGNORE_EN : 0;
-+	link_config[0] |= is_pr_with_link_off ? DP_FIXED_VTOTAL_AS_SDP_EN_IN_PR_ACTIVE : 0;
- 	link_config[1] = drm_dp_is_uhbr_rate(link_rate) ?
- 			 DP_SET_ANSI_128B132B : DP_SET_ANSI_8B10B;
- 	drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL, link_config, 2);
-@@ -737,7 +741,9 @@ static void intel_dp_update_downspread_ctrl(struct intel_dp *intel_dp,
- 	  * especially on the first real commit when clearing the inherited flag.
- 	  */
- 	intel_dp_link_training_set_mode(intel_dp,
--					crtc_state->port_clock, crtc_state->vrr.in_range);
-+					crtc_state->port_clock,
-+					crtc_state->vrr.in_range,
-+					intel_alpm_is_alpm_aux_less(intel_dp, crtc_state));
+ 	intel_dp->as_sdp_supported = HAS_AS_SDP(display) &&
+ 		drm_dp_as_sdp_supported(&intel_dp->aux, intel_dp->dpcd);
++
++	intel_dp->as_sdp_v2_supported = intel_dp->as_sdp_supported &&
++					intel_dp_sink_supports_as_sdp_v2(intel_dp);
  }
  
- void intel_dp_link_training_set_bw(struct intel_dp *intel_dp,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-index 1ba22ed6db08..3591210f8ee6 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-@@ -18,7 +18,8 @@ int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp);
- bool intel_dp_lttpr_transparent_mode_enabled(struct intel_dp *intel_dp);
- 
- void intel_dp_link_training_set_mode(struct intel_dp *intel_dp,
--				     int link_rate, bool is_vrr);
-+				     int link_rate, bool is_vrr,
-+				     bool is_pr_with_link_off);
- void intel_dp_link_training_set_bw(struct intel_dp *intel_dp,
- 				   int link_bw, int rate_select, int lane_count,
- 				   bool enhanced_framing);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 887b6de14e46..2201cf7ce015 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -2142,7 +2142,7 @@ void intel_dp_mst_prepare_probe(struct intel_dp *intel_dp)
- 
- 	intel_dp_compute_rate(intel_dp, link_rate, &link_bw, &rate_select);
- 
--	intel_dp_link_training_set_mode(intel_dp, link_rate, false);
-+	intel_dp_link_training_set_mode(intel_dp, link_rate, false, false);
- 	intel_dp_link_training_set_bw(intel_dp, link_bw, rate_select, lane_count,
- 				      drm_dp_enhanced_frame_cap(intel_dp->dpcd));
- 
+ static bool intel_dp_needs_dpcd_probe(struct intel_dp *intel_dp, bool force_on_external)
 -- 
 2.45.2
 
