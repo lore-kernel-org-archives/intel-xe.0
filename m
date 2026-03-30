@@ -4,58 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64626FB3CED
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Mar 2026 10:17:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7D10FB3CFA
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Mar 2026 10:20:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 269A110E0D2;
-	Mon, 30 Mar 2026 10:17:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A5CCB10E530;
+	Mon, 30 Mar 2026 10:20:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JRVB75LX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NaXYIKic";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC38810E0D2
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Mar 2026 10:17:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CACC910E216;
+ Mon, 30 Mar 2026 10:20:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774865876; x=1806401876;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=LfSCOw9qS5dzpBaqx7b0I6BPvalcLQfqNBs7oV4xPCs=;
- b=JRVB75LXaHcpyOS6s2udpstIEAn2EXneb65kvlLjuRim/WI5NcDXPkle
- 7AS1UWd1BXrMRr9+2Jq9NecJgyQMML8y0AKVSwzugKCjXJ3Hft6h9xexu
- pIjzalQzFrahJPR4IUq/VPOI3uHuD/rfVUTyVN/+pGUo3S0weUj9AA/5E
- WgWSwbHxf9TP5UiaP80sTyT4dGjTcWcJah8ymdpB8uRnpVYymEMOyyNxO
- 7/rWLp8u2uM9VOZrAu2iI59OzcG6S4JNRmweehSFG49TAZiZyiJ8TCJ1d
- gWUCbY8EWXX/AXWdjt3EUQB820qhiGr2UzO0gBGwf197Z02Xgou5Vdazr g==;
-X-CSE-ConnectionGUID: Xk3AyKcgRX2x3OUtzt9X7Q==
-X-CSE-MsgGUID: 4gN9pWLfS56aKfARUsnd/Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11743"; a="75750602"
-X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="75750602"
+ t=1774866047; x=1806402047;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nrGx7WtFyYUIU4PrWPRP3sBmwEHhXd1SZz1EiC45yPo=;
+ b=NaXYIKicNkxEi2whZ/2/BeeKRbxGyX9cj3n3CbZf2s9p7xeQ4PyFdPJc
+ L+EuBH1BZog1okyPD+wKlSzbVuN1bYFP8sTCkxruVW5MhoP6EmYD0NpRt
+ pF7mwk7rIRk73KQ4Nb1eos0jCA2ziA4p1zRrolwOMqkgyB276B7y620Ql
+ TK8vmyC7HIkTF+lhl+v21JmlaweO6KCDrG1TPhQXWY6TYI06nEJnUZcWr
+ R5ET6bN9AGzA79upyvC+/kOP0eMSlowPQp5qK9tYr9gIAQzR8ePRPDAj+
+ BgNQFxWoMYHs+5au0TQZNPtrUZgc/AmtjzVY27sjkODcjVbW/G2fyilAl Q==;
+X-CSE-ConnectionGUID: KhDrrPqFS/KTdYy1DbJY7g==
+X-CSE-MsgGUID: DhyqyevBQouIgkvHz30JSg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11743"; a="75750734"
+X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="75750734"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 03:17:56 -0700
-X-CSE-ConnectionGUID: yXAGxcH9RJuViFXdtHTqhw==
-X-CSE-MsgGUID: YjFLwE8yQdKB6IVV6MgUww==
+ 30 Mar 2026 03:20:47 -0700
+X-CSE-ConnectionGUID: OCFDme3uS26cZYEZS5j0LQ==
+X-CSE-MsgGUID: QWcbtS26SyG5vkIIHG0aUQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="263952973"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.17])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 03:17:54 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Simon Richter <Simon.Richter@hogyros.de>, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 5/5] drm/xe: Normalize double-underscore include guards
- to single-underscore
-In-Reply-To: <e8dc2c15-e11b-4e2c-a645-04650cda218b@hogyros.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260317215732.2208976-7-shuicheng.lin@intel.com>
- <20260317215732.2208976-12-shuicheng.lin@intel.com>
- <SA3PR11MB81183F59A452BF482C3338C9D052A@SA3PR11MB8118.namprd11.prod.outlook.com>
- <e8dc2c15-e11b-4e2c-a645-04650cda218b@hogyros.de>
-Date: Mon, 30 Mar 2026 13:17:50 +0300
-Message-ID: <38244de644bab2d58ffd80f2f5d4b3d16940ac98@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="263953491"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa001.jf.intel.com with ESMTP; 30 Mar 2026 03:20:46 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/backlight: Update check for VESA backlight
+Date: Mon, 30 Mar 2026 15:50:36 +0530
+Message-Id: <20260330102035.1288175-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,34 +64,36 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 30 Mar 2026, Simon Richter <Simon.Richter@hogyros.de> wrote:
-> Hi,
->
->>> Six headers use __XE_<NAME>_H__ (double-underscore prefix and suffix) as
->>> their include guards. Normalize them to the single-underscore _XE_<NAME>_H_
->>> convention used by the rest of the xe codebase.
->
-> Single underscore followed by capital letter are reserved identifiers in C.
+With VESA backlight being made fallback. Make sure we are checking
+eDP vesrion >= 1.5 before checking for
+PANEL_LUMINANCE_CONTROL_CAPABLE. We also remove the check
+for SMOOTH BRIGHTNESS which was added due to what the internal spec said.
+After discussion with concerned folk we found out Linux really does
+not need to check this. This is because we have no way of setting
+SMOOTH_BRIGHTNESS due to lack of a interface. This helps us use
+use the PANEL LUMINANCE pathway for more panels.
 
-Well, ackshually...
+Fixes: 40d2f5820951 ("drm/i915/backlight: Remove try_vesa_interface")
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-"All identifiers that begin with an underscore and either an uppercase
-letter or another underscore are always reserved for any use."
-
-Even so:
-
-$ git grep "#define __" | wc -l
-21278
-
-$ git grep "#define _[A-Z]" | wc -l
-17886
-
-The only question here is whether to be consistent or not about the
-reserved identifier usage. ;)
-
-
-BR,
-Jani.
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+index d0c76632a946..396cdc3a3603 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+@@ -644,8 +644,8 @@ intel_dp_aux_supports_vesa_backlight(struct intel_connector *connector)
+ 	struct intel_dp *intel_dp = intel_attached_dp(connector);
+ 	struct intel_panel *panel = &connector->panel;
+ 
+-	if ((intel_dp->edp_dpcd[3] & DP_EDP_PANEL_LUMINANCE_CONTROL_CAPABLE) &&
+-	    (intel_dp->edp_dpcd[3] & DP_EDP_SMOOTH_BRIGHTNESS_CAPABLE)) {
++	if ((intel_dp->edp_dpcd[0] >= DP_EDP_15 &&
++	     intel_dp->edp_dpcd[3] & DP_EDP_PANEL_LUMINANCE_CONTROL_CAPABLE)) {
+ 		drm_dbg_kms(display->drm,
+ 			    "[CONNECTOR:%d:%s] AUX Luminance Based Backlight Control Supported!\n",
+ 			    connector->base.base.id, connector->base.name);
 -- 
-Jani Nikula, Intel
+2.34.1
+
