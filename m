@@ -4,58 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AAFF810F3DC8
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Mar 2026 14:06:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49B8E10F3DCD
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Mar 2026 14:24:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 587D310E678;
-	Mon, 30 Mar 2026 14:06:44 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QU3oRmJx";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1585610E6EB;
- Mon, 30 Mar 2026 14:06:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774879603; x=1806415603;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Qb0VSLuU4LfzuVgSm/CztZd9trL8CtSzrB+KnSXQQl8=;
- b=QU3oRmJxebEZRbypzTogEtVE/RSRtNiKOpdHoFCVKEAChQA6RMvbX9Xk
- NRzMYdbjuPznzyE09wcN7iJ1uy4BAPAKWVNzm0JnFhDGRf0KXxABHoyJ0
- JN3xjzGpmmgOZmdDaKv2F9pxbd5gCk7wLpMulmKJvnDexaz9iJX/nmvEo
- RRIlCHcd2aED4hZ+809U2ao9TrDK6FqyGyk2d8+Zwl+m3jXTBSa9xFIEG
- g7rfFOOEF8HTL82Co5opr8xTwT5bX7T++u42QDPpZMAjkLGvchYNTVbID
- a19tWB7aaIsFUPsyyOraigq1UG3DUvIvsr+tKISyNGocbyiQYf6qIroZ7 Q==;
-X-CSE-ConnectionGUID: 5eX/+FswRQKTFT0RUQ8Sqg==
-X-CSE-MsgGUID: rS+o86b4Qf+5+VEcT/dV3A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11743"; a="79474797"
-X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="79474797"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 07:06:42 -0700
-X-CSE-ConnectionGUID: YR1hZJXCTqexNk42rAniXg==
-X-CSE-MsgGUID: FbDROuQYSayQGvEW5o1ZPA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="249271647"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa001.fm.intel.com with ESMTP; 30 Mar 2026 07:06:39 -0700
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Animesh Manna <animesh.manna@intel.com>,
- Arun R Murthy <arun.r.murthy@intel.com>,
- =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v10 3/3] drm/i915/display: Panel Replay BW optimization for
- DP2.0 tunneling
-Date: Mon, 30 Mar 2026 19:06:20 +0530
-Message-Id: <20260330133620.3750559-4-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20260330133620.3750559-1-animesh.manna@intel.com>
-References: <20260330133620.3750559-1-animesh.manna@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0930C10E78F;
+	Mon, 30 Mar 2026 14:24:00 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69D7610E78F;
+ Mon, 30 Mar 2026 14:23:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_drm/=7Bi915=2Cxe=7D=3A_fi?=
+ =?utf-8?q?nish_switching_to_common_step=2Eh_header?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Mon, 30 Mar 2026 14:23:58 -0000
+Message-ID: <177488063840.412829.919350359361169076@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <cover.1774875688.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1774875688.git.jani.nikula@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,117 +36,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Unused bandwidth can be used by external display agents for Panel Replay
-enabled DP panel during idleness with link on. Enable source to replace
-dummy data from the display with data from another agent by programming
-TRANS_DP2_CTL [Panel Replay Tunneling Enable].
+== Series Details ==
 
-v2:
-- Enable pr bw optimization along with panel replay enable. [Jani]
+Series: drm/{i915,xe}: finish switching to common step.h header
+URL   : https://patchwork.freedesktop.org/series/164085/
+State : warning
 
-v3:
-- Write TRANS_DP2_CTL once for both bw optimization and panel replay
-enable. [Jani]
+== Summary ==
 
-v4:
-- Read DPCD once in init() and store in panel_replay_caps. [Jouni]
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+1f57ba1afceae32108bd24770069f764d940a0e4
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6ba6e2c0e6e9b2b6b16f363ded99812e79b6e57d
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Mon Mar 30 16:02:36 2026 +0300
 
-v5:
-- Avoid reading DPCD for edp. [Jouni]
-- Use drm_dp_dpcd_read_byte() and some cosmetic changes. [Jani]
+    drm/i915/display: switch to including common step file directly
+    
+    Instead of using the proxy intel_step.h in display, just include the
+    common step file directly where needed. This allows us to remove the
+    compat intel_step.h header.
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 8c24b61314434b46cbe4da73f10bce90b0ea45d6 drm-intel
+59f811d7e592 drm/xe/step: switch to the shared step definitions with i915
+5e71c5184812 drm/xe/step: switch from enum xe_step to intel_step naming
+6ba6e2c0e6e9 drm/i915/display: switch to including common step file directly
+-:272: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#272: 
+deleted file mode 100644
 
-v6:
-- Extend the corresponding interface defined in drm_dp_tunnel.c
-to query the Panel Replay optimization capability. [Imre]
+total: 0 errors, 1 warnings, 0 checks, 181 lines checked
 
-v7:
-- Clear TRANS_DP2_PR_TUNNELING_ENABLE if pr bw optimization
-is not allowed. [Jouni]
-- Move intel_dp_is_edp() check. [Jouni]
-
-Bspec: 68920
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
-Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- .../gpu/drm/i915/display/intel_display_regs.h |  1 +
- drivers/gpu/drm/i915/display/intel_psr.c      | 25 +++++++++++++++++--
- 2 files changed, 24 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 4746e9ebd920..dada8dc27ea4 100644
---- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -2263,6 +2263,7 @@
- #define TRANS_DP2_CTL(trans)			_MMIO_TRANS(trans, _TRANS_DP2_CTL_A, _TRANS_DP2_CTL_B)
- #define  TRANS_DP2_128B132B_CHANNEL_CODING	REG_BIT(31)
- #define  TRANS_DP2_PANEL_REPLAY_ENABLE		REG_BIT(30)
-+#define  TRANS_DP2_PR_TUNNELING_ENABLE		REG_BIT(26)
- #define  TRANS_DP2_DEBUG_ENABLE			REG_BIT(23)
- 
- #define _TRANS_DP2_VFREQHIGH_A			0x600a4
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 2f1b48cd8efd..0a7d08f71c16 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -44,6 +44,7 @@
- #include "intel_dmc.h"
- #include "intel_dp.h"
- #include "intel_dp_aux.h"
-+#include "intel_dp_tunnel.h"
- #include "intel_dsb.h"
- #include "intel_frontbuffer.h"
- #include "intel_hdmi.h"
-@@ -1031,11 +1032,27 @@ static u8 frames_before_su_entry(struct intel_dp *intel_dp)
- 	return frames_before_su_entry;
- }
- 
-+static bool intel_psr_allow_pr_bw_optimization(struct intel_dp *intel_dp)
-+{
-+	if (intel_dp_is_edp(intel_dp))
-+		return false;
-+
-+	if (!intel_dp_tunnel_bw_alloc_is_enabled(intel_dp))
-+		return false;
-+
-+	if (!intel_dp_tunnel_pr_optimization_supported(intel_dp))
-+		return false;
-+
-+	return true;
-+}
-+
- static void dg2_activate_panel_replay(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_psr *psr = &intel_dp->psr;
- 	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
-+	u32 dp2_ctl_set = TRANS_DP2_PANEL_REPLAY_ENABLE;
-+	u32 dp2_ctl_clear = 0;
- 
- 	if (intel_dp_is_edp(intel_dp) && psr->sel_update_enabled) {
- 		u32 val = psr->su_region_et_enabled ?
-@@ -1048,12 +1065,16 @@ static void dg2_activate_panel_replay(struct intel_dp *intel_dp)
- 			       val);
- 	}
- 
-+	if (intel_psr_allow_pr_bw_optimization(intel_dp))
-+		dp2_ctl_set |= TRANS_DP2_PR_TUNNELING_ENABLE;
-+	else
-+		dp2_ctl_clear = TRANS_DP2_PR_TUNNELING_ENABLE;
-+
- 	intel_de_rmw(display,
- 		     PSR2_MAN_TRK_CTL(display, intel_dp->psr.transcoder),
- 		     0, ADLP_PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME);
- 
--	intel_de_rmw(display, TRANS_DP2_CTL(intel_dp->psr.transcoder), 0,
--		     TRANS_DP2_PANEL_REPLAY_ENABLE);
-+	intel_de_rmw(display, TRANS_DP2_CTL(intel_dp->psr.transcoder), dp2_ctl_clear, dp2_ctl_set);
- }
- 
- static void hsw_activate_psr2(struct intel_dp *intel_dp)
--- 
-2.29.0
 
