@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 201381061B21
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 808101061B23
 	for <intel-xe@archiver.kernel.org>; Mon, 30 Mar 2026 20:41:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D435410E80C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F147B10E80F;
 	Mon, 30 Mar 2026 20:41:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BkWayoyl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wl61LQhy";
 	dkim-atps=neutral
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6688210E802
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Mar 2026 20:41:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1839210E802
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Mar 2026 20:41:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774903265; x=1806439265;
+ t=1774903268; x=1806439268;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=k0NmaRml/QjfQNUTBARV+h5IjW0jMCCKcU9ciGH4AA8=;
- b=BkWayoylG4Bi4IsCKiP2DU2GUl8mKhFLZkvRPC+pEkFyjZ3iHGikfoLH
- rXoirRCwXB+jw5VkNFY8IhcJZnWgjduZWhrFt4fz+FY83mzLLwL6LG0JN
- VAMhp84Ps943RZCzZL4sl3L+wDTZAynPBbPrIXj6BOdSGrvLM6/3cGFG1
- fHVujCfrV9ID467qp1S8InFSeT44OdxoNzEXQ/p+hcGPCXQltf1H2hUZ1
- FrqhjDeOjBw1elTCnwJnurFm5pcLcDkXY1KWLK9O7L2D9B1J6eTpR7gem
- NjWTiLGi9xytmVf6xlz1ZkVpYYn2He/GOGD8d+OGoaYhBO+jFt4AhggfU Q==;
-X-CSE-ConnectionGUID: 9Cn149/AS56UEzOz1Mwwig==
-X-CSE-MsgGUID: mseg2v8bQDmxLaImxLL9YQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="75923702"
-X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="75923702"
+ bh=MWGxEdHfQodkVSvTiGsO2kqMEmRuAWN8+QgW0/uJMbI=;
+ b=Wl61LQhy2pY9ZcO+AUZ1nge9pQaKEsMeylqp6g7OnbhiC/x6aH9w2lDV
+ PNg0f6inbOHkyoHzVSYzSNk1fmFdhJnj3GiSO5cKlHeP6F/s8NjIlkYFb
+ hRLxxNSgnKhUYhi5p7NyMV1l/h7hPSVCccTkNSyTB9QuVHTLdBbNuXgsZ
+ glG2dMfgqgExcI9rqVUrKjCjO3W2EBV+309gessNHCZaT5LklWrspj7uU
+ lDWXnQ8BDuBZr7KCBSksWKPOkq+PsgiM7WLUoYFvTgV5xkGjJzQBtlrax
+ pcQYkp2EY479BmHUn//Q+AFMd86hIuAj8VnCb/ZLLHu7sm7FFml7OpUFA A==;
+X-CSE-ConnectionGUID: QjCCxZHoQ9OTWaKv+XuhCw==
+X-CSE-MsgGUID: xhYvqJHVQgGPv6IYtfySqw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="75923710"
+X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="75923710"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 13:41:05 -0700
-X-CSE-ConnectionGUID: fVubLjLYQ0OJoydac8b/yQ==
-X-CSE-MsgGUID: G5A56SFuTPqpQs/XicMLyg==
+ 30 Mar 2026 13:41:08 -0700
+X-CSE-ConnectionGUID: RLaVhCl4S26KZ8KiswsW/A==
+X-CSE-MsgGUID: Snjfxr+nSm6UXKqar5wodA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="225329391"
+X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="225329428"
 Received: from liyantan-mobl1.gar.corp.intel.com (HELO
  mwajdecz-hp.clients.intel.com) ([10.246.17.179])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 13:41:03 -0700
+ 30 Mar 2026 13:41:07 -0700
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
 Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Subject: [PATCH 05/13] drm/xe/pf: Reprovision policy settings after GT reset
-Date: Mon, 30 Mar 2026 22:40:36 +0200
-Message-ID: <20260330204046.567-6-michal.wajdeczko@intel.com>
+Subject: [PATCH 08/13] drm/xe/pf: Check EQ/PT/PRIO when testing VF config
+Date: Mon, 30 Mar 2026 22:40:39 +0200
+Message-ID: <20260330204046.567-9-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260330204046.567-1-michal.wajdeczko@intel.com>
 References: <20260330204046.567-1-michal.wajdeczko@intel.com>
@@ -67,90 +67,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In addition to the reprovisioning of individual VFs configurations,
-we should also reprovision GuC global policy settings. Note that we
-already had a draft function for that but we missed to call it once
-we started handling GT reset. Reuse it now but don't take extra RPM
-as this is now a caller responsibility and drop unused parameter.
+In addition to the hard resources (like GGTT, CTXs, DBs) we should
+also check if VF was already configured (by sysfs or debugfs) with
+optional parameters like execution quantum (EQ), preemption timeout
+(PT) or scheduling priority (PRIO) as otherwise we might miss to
+send to the GuC updated latest values after a resume or GT reset.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_sriov_pf.c        |  1 +
- drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c | 14 +++-----------
- drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h |  2 +-
- 3 files changed, 5 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c | 32 ++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-index fb5c9101e275..7868056841b3 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf.c
-@@ -219,6 +219,7 @@ static void pf_restart(struct xe_gt *gt)
- 
- 	xe_gt_assert(gt, !xe_pm_runtime_suspended(xe));
- 
-+	xe_gt_sriov_pf_policy_restart(gt);
- 	xe_gt_sriov_pf_config_restart(gt);
- 	xe_gt_sriov_pf_control_restart(gt);
- 
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-index c88c4e6a9b61..aa80b4abd42f 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.c
-@@ -17,7 +17,6 @@
- #include "xe_guc_ct.h"
- #include "xe_guc_klv_helpers.h"
- #include "xe_guc_submit.h"
--#include "xe_pm.h"
- 
- /*
-  * Return: number of KLVs that were successfully parsed and saved,
-@@ -692,30 +691,23 @@ void xe_gt_sriov_pf_policy_sanitize(struct xe_gt *gt)
+diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+index b05034d3fdf2..e673e96a147a 100644
+--- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
++++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_config.c
+@@ -2090,6 +2090,17 @@ static u32 pf_get_exec_quantum(struct xe_gt *gt, unsigned int vfid)
+ 	return config->exec_quantum[0];
  }
  
++static bool pf_non_default_exec_quantum(struct xe_gt *gt, unsigned int vfid)
++{
++	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(config->exec_quantum); i++)
++		if (config->exec_quantum[i])
++			return true;
++	return false;
++}
++
  /**
-- * xe_gt_sriov_pf_policy_reprovision - Reprovision (and optionally reset) policy settings.
-+ * xe_gt_sriov_pf_policy_restart() - Reprovision policy settings.
+  * xe_gt_sriov_pf_config_set_exec_quantum_locked() - Configure PF/VF execution quantum.
   * @gt: the &xe_gt
-- * @reset: if true will reprovision using default values instead of latest
-  *
-  * This function can only be called on PF.
-  *
-  * Return: 0 on success or a negative error code on failure.
-  */
--int xe_gt_sriov_pf_policy_reprovision(struct xe_gt *gt, bool reset)
-+int xe_gt_sriov_pf_policy_restart(struct xe_gt *gt)
- {
- 	int err = 0;
- 
--	xe_pm_runtime_get_noresume(gt_to_xe(gt));
-+	guard(mutex)(xe_gt_sriov_pf_master_mutex(gt));
- 
--	mutex_lock(xe_gt_sriov_pf_master_mutex(gt));
--	if (reset)
--		pf_sanitize_guc_policies(gt);
- 	err |= pf_reprovision_sched_if_idle(gt);
- 	err |= pf_reprovision_reset_engine(gt);
- 	err |= pf_reprovision_sample_period(gt);
- 	err |= pf_reprovision_sched_groups(gt);
--	mutex_unlock(xe_gt_sriov_pf_master_mutex(gt));
--
--	xe_pm_runtime_put(gt_to_xe(gt));
- 
- 	return err ? -ENXIO : 0;
+@@ -2305,6 +2316,17 @@ static u32 pf_get_preempt_timeout(struct xe_gt *gt, unsigned int vfid)
+ 	return config->preempt_timeout[0];
  }
-diff --git a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
-index bd73aa58f9ca..c9d4c4aaaf5d 100644
---- a/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
-+++ b/drivers/gpu/drm/xe/xe_gt_sriov_pf_policy.h
-@@ -29,7 +29,7 @@ bool xe_gt_sriov_pf_policy_sched_groups_enabled(struct xe_gt *gt);
  
- void xe_gt_sriov_pf_policy_init(struct xe_gt *gt);
- void xe_gt_sriov_pf_policy_sanitize(struct xe_gt *gt);
--int xe_gt_sriov_pf_policy_reprovision(struct xe_gt *gt, bool reset);
-+int xe_gt_sriov_pf_policy_restart(struct xe_gt *gt);
- int xe_gt_sriov_pf_policy_print(struct xe_gt *gt, struct drm_printer *p);
++static bool pf_non_default_preempt_timeout(struct xe_gt *gt, unsigned int vfid)
++{
++	struct xe_gt_sriov_config *config = pf_pick_vf_config(gt, vfid);
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(config->preempt_timeout); i++)
++		if (config->preempt_timeout[i])
++			return true;
++	return false;
++}
++
+ /**
+  * xe_gt_sriov_pf_config_set_preempt_timeout_locked() - Configure PF/VF preemption timeout.
+  * @gt: the &xe_gt
+@@ -2602,6 +2624,13 @@ static void pf_reset_config_sched(struct xe_gt *gt, struct xe_gt_sriov_config *c
+ 	}
+ }
  
- #endif
++static bool pf_non_default_sched(struct xe_gt *gt, unsigned int vfid)
++{
++	return pf_non_default_exec_quantum(gt, vfid) ||
++	       pf_non_default_preempt_timeout(gt, vfid) ||
++	       custom_sched_priority(gt, pf_get_sched_priority(gt, vfid));
++}
++
+ static int pf_provision_threshold(struct xe_gt *gt, unsigned int vfid,
+ 				  enum xe_guc_klv_threshold_index index, u32 value)
+ {
+@@ -2878,6 +2907,9 @@ static int pf_validate_vf_config(struct xe_gt *gt, unsigned int vfid)
+ 		valid_all = valid_all && valid_lmem;
+ 	}
+ 
++	/* also check optional EQ/PT/PRIO */
++	valid_any = valid_any || pf_non_default_sched(gt, vfid);
++
+ 	return valid_all ? 0 : valid_any ? -ENOKEY : -ENODATA;
+ }
+ 
 -- 
 2.47.1
 
