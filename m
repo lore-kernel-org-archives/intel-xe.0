@@ -4,63 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 465871061B1F
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Mar 2026 19:50:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 154121061B21
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Mar 2026 19:50:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CE5F10E147;
-	Mon, 30 Mar 2026 19:50:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D19FC10E76D;
+	Mon, 30 Mar 2026 19:50:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cot/6bZO";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="lrqLj7Op";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4B10710E147;
- Mon, 30 Mar 2026 19:50:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774900231; x=1806436231;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=hE9lA8PiSHGTrwDmpqmId+ivyX0E/CLvvIokY9OuoUY=;
- b=cot/6bZOm1ipgAIpt2hAPaVlZ4fqsfz/dptUsMUY4Kxebec0NAbahj68
- y2+eXArvs/KVkaSSwEvli+j8FuW1a5u5m0p6o8nWMi5cVr2Z3erbZj4+C
- FHo7gln7WEcNO6apaxW4GchwUSCDTJJjtDbAJZ9GdWJpfsv2FSUheJpG1
- bKb850b+/hs9ds7IL1UaON5r5ZtwyQDgCSbLJQVt2PE9ndUHr9FnVNip7
- Yoy4WVAekbOn6xYkp39ofKnZvzD7j3BDHw4IEVe+64TkworTaTNlT9Afg
- NTgEliSEC47HMkDn+8WjqjriXhSWb2tt09eF/Y5qHaSEDoHfTrQfuQ55b g==;
-X-CSE-ConnectionGUID: uQD4KtHoQHCtjNkrEofv7g==
-X-CSE-MsgGUID: Wpa5U75vQBSepRxwvp4VFg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="76094535"
-X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="76094535"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 12:50:31 -0700
-X-CSE-ConnectionGUID: tvdv9p87RKOnspIBRZgS+A==
-X-CSE-MsgGUID: SdbdySu2RCyTT1baK1NmcQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="249366216"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.155])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 12:50:28 -0700
-Date: Mon, 30 Mar 2026 22:50:25 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, jouni.hogander@intel.com,
- animesh.manna@intel.com
-Subject: Re: [PATCH 19/19] drm/i915/dp: Always enable AS SDP if supported by
- source + sink
-Message-ID: <acrUAfRP4nLXSBMD@intel.com>
-References: <20260330040656.4116502-1-ankit.k.nautiyal@intel.com>
- <20260330040656.4116502-20-ankit.k.nautiyal@intel.com>
+Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A219C10E759;
+ Mon, 30 Mar 2026 19:50:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+ References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+ Content-Transfer-Encoding:Content-ID:Content-Description;
+ bh=+/JZYP5QpagLtvYaNDs6zLVTNxiHm41ao7r0f9+QWbk=; b=lrqLj7OpiuMThbJqI0C+rxdc3Y
+ /zT/e2U37UGCeJN4BGoYvwNO7fuW9fCCV3uZ/LUYDlUnTCU4gVBJMVBhK0WmVb/SMmJc5NX8gRKQC
+ lxgLIATuxxsvk/wd5WGfYodYcGhjbnz8g/l+AApQfhp2OH651aAY67gAsBpLpZp5pCtW6XHzWe+t0
+ fe6WnnXuw0I/MrtS5fQtrF/q0cmsNisxm0YDGYMswtqKpN8wKrdn4Opkt3g1TGwW82tFiSHpouL7Z
+ 201ALQBT5ALZqt/BqLS6IklEF/acxA+EHRnDai4pTyaYCuLaDercrVK3E9GXSQ/ZQ80Nwebke1sqA
+ PjwU3t4w==;
+Received: from
+ 2001-1c00-8d85-4b00-266e-96ff-fe07-7dcc.cable.dynamic.v6.ziggo.nl
+ ([2001:1c00:8d85:4b00:266e:96ff:fe07:7dcc]
+ helo=noisy.programming.kicks-ass.net)
+ by casper.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+ id 1w7IdJ-00000007DfV-28lM; Mon, 30 Mar 2026 19:50:45 +0000
+Received: by noisy.programming.kicks-ass.net (Postfix, from userid 1000)
+ id 465E0301BDE; Mon, 30 Mar 2026 21:50:37 +0200 (CEST)
+Date: Mon, 30 Mar 2026 21:50:37 +0200
+From: Peter Zijlstra <peterz@infradead.org>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Cc: willy@infradead.org, linux-kernel@vger.kernel.org,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>,
+ "Saarinen, Jani" <jani.saarinen@intel.com>, ravitejax.veesam@intel.com
+Subject: Re: Regression on linux-next (next-20260324 )
+Message-ID: <20260330195037.GW2872@noisy.programming.kicks-ass.net>
+References: <af005996-05e9-4336-8450-d14ca652ba5d@intel.com>
+ <20260327163100.GL3738010@noisy.programming.kicks-ass.net>
+ <20260327164353.GM3739106@noisy.programming.kicks-ass.net>
+ <df391df3-3a3b-4a65-b3c7-ffe3ab50ee83@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260330040656.4116502-20-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+In-Reply-To: <df391df3-3a3b-4a65-b3c7-ffe3ab50ee83@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,55 +65,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Mar 30, 2026 at 09:36:56AM +0530, Ankit Nautiyal wrote:
-> Currently AS SDP is only configured when VRR is enabled. However, other
-> use cases like CMRR, Panel Replay, etc. also send information to the sink
-> via AS SDPs.
-> 
-> With optimized guardband, we also need to account for wakeup time and other
-> relevant details that depend on the AS SDP position whenever AS SDP is
-> enabled. If a feature enabling AS SDP gets turned on later (after modeset),
-> the guardband might not be sufficient and may need to increase, triggering
-> a full modeset.
-> 
-> To avoid this, always send AS SDP whenever the source and sink both
-> support it.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 7da3dee226a0..81be0767927e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -3136,7 +3136,7 @@ static bool intel_dp_can_use_as_sdp(struct intel_dp *intel_dp,
->  	if (drm_dp_is_branch(intel_dp->dpcd))
->  		return false;
->  
-> -	return crtc_state->vrr.enable;
-> +	return true;
+On Mon, Mar 30, 2026 at 01:56:33PM +0530, Borah, Chaitanya Kumar wrote:
+> > diff --git a/kernel/locking/ww_mutex.h b/kernel/locking/ww_mutex.h
+> > index b1834ab7e782..bb8b410779d4 100644
+> > --- a/kernel/locking/ww_mutex.h
+> > +++ b/kernel/locking/ww_mutex.h
+> > @@ -42,7 +42,7 @@ __ww_waiter_last(struct mutex *lock)
+> >   	struct mutex_waiter *w = lock->first_waiter;
+> >   	if (w)
+> > -		w = list_prev_entry(w, list);
+> > +		w = __ww_waiter_prev(lock, w);
+> >   	return w;
+> >   }
+> Thank you for the response, Peter. Unfortunately, the issue is still seen
+> with this change.
 
-I think what we actually want is something like
+Bah, indeed. Looking at this after the weekend I see that it's actually
+wrong.
 
-...
-	if (pr_auxless_alpm &&
-	    DP_PANEL_REPLAY_ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR)
-		return true;
-	return intel_vrr_possible();
-}
+But I haven't yet had a new idea. I don't suppose there is a relatively
+easy way to reproduce this issue outside of your CI robot?
 
-That way non-VRR PR panels that don't need the AS SDP to maintain
-the synchronization can avoid the AS SDP, and thus potentially use
-a smaller guardband.
-
->  }
->  
->  static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
-> -- 
-> 2.45.2
-
--- 
-Ville Syrjälä
-Intel
+My current working thesis is that since this is graphics, this is
+ww_mutex related. I'll go over this code once more...
