@@ -4,57 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A469A10F92E3
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 16:48:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EB9510F92E3
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 17:16:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 638D210E238;
-	Tue, 31 Mar 2026 16:48:48 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ityoXxWo";
-	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 978B110E238
- for <intel-xe@lists.freedesktop.org>; Tue, 31 Mar 2026 16:48:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774975727; x=1806511727;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=1mf7A5WARp74DDFw8b2+q3dVb5tjb0idUaFG6BOfM+I=;
- b=ityoXxWotT7MZdakK8P5u7mTC6uDx7dkk5NXpuJScpZo1aVkH/3+7Ouu
- 9s6PBt8MmOFZN7aQTXgjgL7kdhh6CV12A05VmuF+k47WRB3YSNunwyIg0
- xQqS8rrm4hQ1+mTet95CwazorvtiK7EkW02vbCcXhsZjr31wCbDPzktYQ
- tFwRheS7snKr4xR5NFlaeM86JCLzvCl23WoapXPH1jMq3mxQ61JTyI7rf
- gPKxEZnKwxTtb8Vy5vThW8mYIOMw/+3IbH4uugvtTp2hmLk5SgE8Z8+HY
- dWQf78bH6+CaU8y6cFHVNwan4q2T1QaGsCSXxP+/TREjyKpQTpYAkPuqN A==;
-X-CSE-ConnectionGUID: Rf/qC150Sp2vDMP5h3jQdA==
-X-CSE-MsgGUID: nIS3a4vCQHaLyIXsVJ4T8g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="93387525"
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="93387525"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 09:48:47 -0700
-X-CSE-ConnectionGUID: 6JCeQxUvQXevDlAipiY26A==
-X-CSE-MsgGUID: VfadKWmIRUedZUeVWjwGEw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="230480579"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO [10.245.244.19])
- ([10.245.244.19])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 09:48:47 -0700
-Message-ID: <36f7b5a5-0878-4ecb-a338-c589eb0e607d@intel.com>
-Date: Tue, 31 Mar 2026 17:48:44 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BA8D10E1FA;
+	Tue, 31 Mar 2026 17:16:36 +0000 (UTC)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C35610E1FA;
+ Tue, 31 Mar 2026 17:16:35 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2829251854881168701=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/xe/vm: Add missing pad and extensions check
-To: Jonathan Cavitt <jonathan.cavitt@intel.com>, intel-xe@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com
-References: <20260331164403.11687-2-jonathan.cavitt@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260331164403.11687-2-jonathan.cavitt@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_Xe=2ECI=2EBAT=3A_success_for_drm/i915=3A_More_uncore_nuk?=
+ =?utf-8?q?age_from_display_code_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Date: Tue, 31 Mar 2026 17:16:35 -0000
+Message-ID: <177497739555.417276.10700877130868139486@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260331154259.24600-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20260331154259.24600-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,37 +36,106 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 31/03/2026 17:44, Jonathan Cavitt wrote:
-> Add missing pad and extensions check to xe_vm_get_property_ioctl
-> 
-> Fixes: 50c577eab051 ("drm/xe/xe_vm: Implement xe_vm_get_property_ioctl")
-> Suggested-by: Matthew Auld <matthew.auld@intel.com>
-> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+--===============2829251854881168701==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Would it make sense to combine this with the other reserved checks?
+== Series Details ==
 
-Either way:
-Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+Series: drm/i915: More uncore nukage from display code (rev3)
+URL   : https://patchwork.freedesktop.org/series/163872/
+State : success
 
-> ---
->   drivers/gpu/drm/xe/xe_vm.c | 3 +++
->   1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 56e2db50bb36..03f129927b0f 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -4159,6 +4159,9 @@ int xe_vm_get_property_ioctl(struct drm_device *drm, void *data,
->   			      args->reserved[2])))
->   		return -EINVAL;
->   
-> +	if (XE_IOCTL_DBG(xe, args->pad || args->extensions))
-> +		return -EINVAL;
-> +
->   	vm = xe_vm_lookup(xef, args->vm_id);
->   	if (XE_IOCTL_DBG(xe, !vm))
->   		return -ENOENT;
+== Summary ==
 
+CI Bug Log - changes from xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c_BAT -> xe-pw-163872v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (13 -> 13)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c -> xe-pw-163872v3
+
+  IGT_8839: 8839
+  xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c: 779129c7868f4c7205901d6e57b25de52b411d1c
+  xe-pw-163872v3: 163872v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163872v3/index.html
+
+--===============2829251854881168701==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: More uncore nukage from display code (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163872/">https://patchwork.freedesktop.org/series/163872/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163872v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163872v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c_BAT -&gt; xe-pw-163872v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (13 -&gt; 13)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c -&gt; xe-pw-163872v3</li>
+</ul>
+<p>IGT_8839: 8839<br />
+  xe-4827-779129c7868f4c7205901d6e57b25de52b411d1c: 779129c7868f4c7205901d6e57b25de52b411d1c<br />
+  xe-pw-163872v3: 163872v3</p>
+
+</body>
+</html>
+
+--===============2829251854881168701==--
