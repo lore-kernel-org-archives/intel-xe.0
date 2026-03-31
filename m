@@ -4,163 +4,158 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2945DFF60D5
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 07:05:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AE1FFF60D5
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 07:12:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C47FA10E299;
-	Tue, 31 Mar 2026 07:05:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08FBE10E87D;
+	Tue, 31 Mar 2026 07:12:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LBPkSF/N";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="X07tWhMB";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B70E010E05E;
- Tue, 31 Mar 2026 07:05:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B30910E87D;
+ Tue, 31 Mar 2026 07:12:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774940754; x=1806476754;
+ t=1774941174; x=1806477174;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=u9jDHz5akFk3U0NpG26YUw6Z7jQNXhqWET4a/40lWHk=;
- b=LBPkSF/Nb0fgr1RcYVrG/1neKJlFiZLvDFturO6/Ck1UuTu/tOSfBqao
- Oa5NFL7Mg0kYGm/iaYnSgllckVzpWYJ6rADM06JpoB7p+mhhn2GWriFx1
- IcmtZrjKKYNmaSvYsQBpE1q2EYSZSy7kXipNLR0D2y/KH0x0psagKaGpx
- LGJfFs58UZ+SB5a9ianKNRH0zXdN475/BOV4vepiyaH6keBQJTD4/WvVe
- exJrde8j3I7SIXBSeFlKI5MFV1qBbDWT3i3z9DQ0/E4O2sD1DFAtbIziM
- d20OCjJhQw6pfTZM6B1REFHH0q2Mj3Po/yLR8Qqrc550g84fIUAd0offe Q==;
-X-CSE-ConnectionGUID: 2eqzHt8gRKiUQUGdOrR65A==
-X-CSE-MsgGUID: rT/0/miGTTSh9vqtoNcQZw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="79545405"
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="79545405"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 00:05:54 -0700
-X-CSE-ConnectionGUID: mR14hH9rSIGOvBLSfYKnbQ==
-X-CSE-MsgGUID: z7BH0b8xSIOvWFwImjCa8A==
+ bh=C7MyS5rzDhQWH14qH4JW1fXyl8pevpo8X4gwaZeHzdU=;
+ b=X07tWhMBBCDxnxqBS5oAwCP/f1RGpUdjNWsGRBcYqkdYNfD12owBqPbl
+ sFUK3hQbWIMywfO4i7VuskrPLnFi9xLImQQ/lLGeQrpQY/3oxyJNbW2AB
+ LBcvwVug7xzys0H4V46Fi+46TFQp8lTuM0yFXD/ooUW6L3LRXUdG8bHLp
+ rcVtHWcjjPzzWGQPKDsyhNuVQtPKnmk3+gp29WmCKNzmc26mJp6NxBxOq
+ qUu48Zf3RAxB8ZRztpw09fSpC8dfNFAI2wmKrVj90HYvNenwpCvaSMWxp
+ bHEQpgPJHwbzFbqtled2Cx3JzSqO4hGTYC76NESIKkjlDqWuJTYnTVnn0 w==;
+X-CSE-ConnectionGUID: zktzJBPxQ76beVYsa75Mbg==
+X-CSE-MsgGUID: nULwHEVXTe2VJEAQv2xG1A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="98554088"
+X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="98554088"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 00:12:54 -0700
+X-CSE-ConnectionGUID: +Iv0CfrtQDGlrXH8x861jg==
+X-CSE-MsgGUID: mtXlFrDtSS2iIYMA+zoyAg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="249494966"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 00:05:52 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="226533674"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 00:12:54 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 31 Mar 2026 00:05:52 -0700
+ 15.2.2562.37; Tue, 31 Mar 2026 00:12:51 -0700
 Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 31 Mar 2026 00:05:52 -0700
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.71)
- by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Tue, 31 Mar 2026 00:12:51 -0700
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.9) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 31 Mar 2026 00:05:51 -0700
+ 15.2.2562.37; Tue, 31 Mar 2026 00:12:48 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZdesXSdheBy5RgBncL7KTUuSTGf701Cz1dofCGxZWW2X6XfzJHHtkcoP+Fr91uXZeJ59yFSIYThBg6c6Xgz5p4Og3gw9XuRlDzDqVOeUqrzzABpOgW2MM04IJB60q13yyiqKILFwXynwAv1/VvOEmnkcm2gJKkY6SX9nP7cFPw+jKwX6qY9k6+WSsFU9E1qWzvyRXNX465TPxQO8BGnbOW7nqmcflUcjM6hxjnp2HUSfsotG2Ytfr2VkdEcZjcg7M3fhxCMKG0dH3gXuOMKD5vpEkQSMoQOAi/0V9eXmnB84cI59QV62Oyu62CYjGfAZNFqKwsYNLofJIolm6YagLQ==
+ b=hx996490f/kiJ1jjqCMzxQBs+2WLuLq0aBFfBkvV5A1QMbOw6yw2x5KjQWMsz4Jp2pNHmt8PxfvbStRJWXqHt/78mHeCgESY2EmJReTWucnYWBdpyrNbeJXYGPvOvFc++cxuyTunnbPjvbA6Qvc7PHSGVjCvOY+RcFKO7OItrlJuLHcHx1mebIzsrm5DRxtQAIslaXgfXs3M1qu/1CiuxzdgYd1kVuM1fmLn1HCcxK+OyLoLI2VmjRhMilgv/e6H2iNicPcSlxEUV0Dg5lxE1rks84A8a9NN33nxQwFmpM4Y2lgR7fuxj0dzCl+ZZVhCew110J1oXTf4MB4jazLiow==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5B6/N4n8j4pI8cS39ZBwqcLbBEHFoxH0I0jZJiXajA8=;
- b=Q/pxPExR7732MKxTQryW6qqlfmNxf7RQTR2Sep1vR9gJhIRpn+SgB+p4+kaX7rAP0ViP6hC3ISS6vAxUEO3/6P/Rrj2feBYEp0IG65lh3GYGKYWTL8dnZHkQHSeWURpquvZWcmH/05OCOXAYMym4H99N3Tu2VjrbWlYMKodpBFwVkUaiyPEyHi+TuysiyoMTFjMhLYl3ucT0BaseSI/ElYv7tVbQO6uFIlCMVrPCpG2KnBRdLyPyNQVO1yFQk2FT1631P7OQ03Kt+64SKvR2vvia47VAcICRsB+xAO0vaW0Mnvy++Vr3P0SXM5RMwwO+R1fAYaXUHgaFLm6W67Iqqg==
+ bh=7Wp9EEZATlI7XuiWgTVQefKyOPeRfr0LyAueCYmtsto=;
+ b=NcjnMzEMvofqo3rBEF2DcLBgbNOLxKM7/4ZeJNuejoOM26MAc/aMkXlq4zvWHfjyNqO6Tw6oyIGCSiF13BNw5k5+cv9uMqjQ0A8tdfqweOOvtEyY+ZZGf3ZZfxnpNgG8Xi5pIRl54ckADi9Ae9PJFqbbNvfDkXM3TlNAsHBTt0ZQPgWNcqQZ/kpEpfsdBc6sAtb14f75WFnnpqu+wlEnfZZ4Qs/umm9cEH8arrst8MiR1sqjlPZbgLESDvmla03pehvXx+6NWSxNpycaYw13+aHg0nN8nbONItofZl23OlG8leGoqIoqWhImo2x6skbgNYbs7o9A8tDBFR0ZyCPbmg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com (2603:10b6:208:372::6)
- by SJ5PPF162366726.namprd11.prod.outlook.com
- (2603:10b6:a0f:fc02::813) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.11; Tue, 31 Mar
- 2026 07:05:44 +0000
-Received: from MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811]) by MN0PR11MB6011.namprd11.prod.outlook.com
- ([fe80::3a69:3aa4:9748:6811%3]) with mapi id 15.20.9769.014; Tue, 31 Mar 2026
- 07:05:44 +0000
-Message-ID: <bc8d7454-918a-4476-b945-ec98caf98812@intel.com>
-Date: Tue, 31 Mar 2026 09:05:38 +0200
+Received: from DM4PR11MB6141.namprd11.prod.outlook.com (2603:10b6:8:b3::13) by
+ MW5PR11MB5931.namprd11.prod.outlook.com (2603:10b6:303:198::9) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9769.15; Tue, 31 Mar 2026 07:12:46 +0000
+Received: from DM4PR11MB6141.namprd11.prod.outlook.com
+ ([fe80::1cfb:82cd:3519:418a]) by DM4PR11MB6141.namprd11.prod.outlook.com
+ ([fe80::1cfb:82cd:3519:418a%6]) with mapi id 15.20.9769.014; Tue, 31 Mar 2026
+ 07:12:46 +0000
+Message-ID: <af99f032-c9e2-4b03-b166-4b3025b2baed@intel.com>
+Date: Tue, 31 Mar 2026 12:42:35 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v7 1/1] drm/xe/pf: Restrict device query responses in
- admin-only PF mode
-To: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>,
- <intel-xe@lists.freedesktop.org>
-CC: Rodrigo Vivi <rodrigo.vivi@intel.com>, =?UTF-8?Q?Piotr_Pi=C3=B3rkowski?=
- <piotr.piorkowski@intel.com>, Matthew Brost <matthew.brost@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>, "Dunajski
- Bartosz" <bartosz.dunajski@intel.com>, Ashutosh Dixit
- <ashutosh.dixit@intel.com>, <dri-devel@lists.freedesktop.org>
-References: <20260331061736.1218962-1-satyanarayana.k.v.p@intel.com>
- <20260331061736.1218962-2-satyanarayana.k.v.p@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20260331061736.1218962-2-satyanarayana.k.v.p@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH v3 03/26] drm/i915/writeback: Add writeback registers
+Content-Language: en-GB
+To: Suraj Kandpal <suraj.kandpal@intel.com>, <intel-xe@lists.freedesktop.org>, 
+ <intel-gfx@lists.freedesktop.org>
+CC: <sowmiya.s@intel.com>, <uma.shankar@intel.com>, <swati2.sharma@intel.com>, 
+ <arun.r.murthy@intel.com>
+References: <20260325110744.1096786-1-suraj.kandpal@intel.com>
+ <20260325110744.1096786-4-suraj.kandpal@intel.com>
+From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20260325110744.1096786-4-suraj.kandpal@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: VI1PR0902CA0044.eurprd09.prod.outlook.com
- (2603:10a6:802:1::33) To MN0PR11MB6011.namprd11.prod.outlook.com
- (2603:10b6:208:372::6)
+X-ClientProxiedBy: MAXPR01CA0110.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a00:5d::28) To SJ1PR11MB6129.namprd11.prod.outlook.com
+ (2603:10b6:a03:488::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6011:EE_|SJ5PPF162366726:EE_
-X-MS-Office365-Filtering-Correlation-Id: 25540336-0e7a-4e83-d3ee-08de8ef3ed2f
+X-MS-TrafficTypeDiagnostic: DM4PR11MB6141:EE_|MW5PR11MB5931:EE_
+X-MS-Office365-Filtering-Correlation-Id: dde920b3-5a19-4305-e86e-08de8ef4e7b2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|56012099003|22082099003|18002099003; 
-X-Microsoft-Antispam-Message-Info: Jjn/D8fV9JTzvwKcHPi9g/rkZOgbqDL/LrtRJCff3/q8HX91BXI7SAA+vgpe6JPBTqYxkPEe1JVlzLXX85cKHbPoaoFNPsJXdVxcnknnm784mYSxkY9yEOrgwbQWITiIcCgN1ZjGnCaS9cMDs+ZdYRR+NTIaFer+xMBt7G9a5AJIqKA33dK5s2sYdKVwkhkTYuORBp44Y/VZlt08BWNlftkRPnb5L5JwoaXHGIcCrKDn5oMPuWd87HkLiQf4ytjn4lg/ku+SDAeMu+zGem9lzm4GSHhwjiuBgEotrG9bM3Hvt69n9IslDkx0jTMbsvapmUfdCKpp1Y7m/HGLvsqqBG/QVoUGEmhr7iGXYfdrq+ck9V7QJva4zyV90mDebjUx/QBSVv1oMgVwiOGihWAkG8FWNRDfdgA0oHP/hRUvFcMsDXNQ0hQQhtHUhAVFssX1tYYRkqdPVgKdvCHtXR0n9K+ODJFN63/6uMbFmO0tO6VEvLYyNx7hH14wn13GwhlrxCMJDne+Axa7KX32sDkAm74jfsYD1Nbv5r1ZtC6VZEINoAX52ldJ8XJJDBe7xUDncLo0r+Os2gGmKkVSbOvD4CEevgzK6k9UuqD06ZLE6Jzo6jncBBbrCu1f/7logJSJASj2RHf+J2566eoCpHYV7f7NxmBqbdAgIu9XuD4B/FSJbURf5FdIoFnEk308R0RKrPBLs6L4bJoBtTr8fG+FEI1OK0INTmthrCoJFsomIkU=
+ ARA:13230040|366016|376014|1800799024|22082099003|18002099003|56012099003; 
+X-Microsoft-Antispam-Message-Info: iWa+d7CLHYtvAvLgz1v/Jnt2RqJvNi8VMkK1AKEj0GN1E6JFHsB2SjdrVyzRpbclCoK0lIDE3JZifhQQddr4P4wzYkgIY9CpqaSh3kLMyurhaNnxr5sHST49I331DlCqsvBw+/ZzbdG4efaD7AXy6uX7SQ9vUGbR5S1mZRHV4m4R5j6WOrQzkhIdJroRMvk1YtPf5HFwFoNNDv/h7dLr/bWAU+cIWmBPXDJoNjYnkxSS8VQ0mwjDKJycBLnk7qIrsXwi6E1oo6SZC+KJ0/r6Pc5thSxX4t6bTlz4kSnM1J3RsbfPJjVszF5gB33JMqD4d6bDo3R7AgGDeOR2MLhkEEFd6/wlvQ/Gr82mI0ZFkTdAkbvFWMTCiuZkg/okuBlGNqiG1aUpXyUpWrbJhzzrgghdzPz65mFgtLK5RwygCT8PN1r3+XsXP5GiCD18h09iE8b0HG4YhBvqbFVIufaom/0fumqIq//GJsIezVjKK+9Ckl41CtkhoHh4MrnM+qIlIdONbS7ofTuYwbpfzUe4BncXb4dZ61GxI2yPgaZ5dPNQ5xaB1J4xzpKjRPxGI+tQ2tHFL/EsDBCo3RGfLAG8OijPZjAWvZp3pbfVqMJM0EtHg4OzoM4PJr5rEJr/FEzw0UqZTMuL0zk6xTnyX9KfKTbVVxTzs7wyQINNoNjdoawb4YOwwkic2W9BR2TxWEKK1dx5psWpabJDqF1dg1gNejpBmnfhNinfjjt/sVNjEOE=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6011.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(56012099003)(22082099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6141.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(22082099003)(18002099003)(56012099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aHRqQnBEQ3dsTnpkTHk3N2lpUGt0YjNrTzRoZmRaVTlqOFppZFhpdmhidnJw?=
- =?utf-8?B?UlNTOW1jWE5iYnpPVlBEMm5obEMvSWhvanhFcXBuZ1VpVVNKRythZ1JXVmsw?=
- =?utf-8?B?OU84TzZ3TEEyN2xxNjYvSEdJVkJVeHVadkRkcG4rK0dwM1BXZkM5bXJGMlN4?=
- =?utf-8?B?Wno5Zk1IUnI5ckR4V0gxYTVwcXBtWDQ5V1BPbkR2amlqTmlBT3ZhdHIvT1VC?=
- =?utf-8?B?VDZkSlVSMVFhUWdMNngySk5jTFQ2Z3NvdTl4TXN2TWNwUzl1VUN4Q3gxZlk5?=
- =?utf-8?B?ZG1WOHpxS2hLckx6T2NzY0VQc2VUcFN2dSt0Z1hxZ3VWQUFrMXhZUG0zLzJX?=
- =?utf-8?B?YXlqb0JJK1BMUUM2d01qRGNhVUNZcW56RjBXMHlHWkNqWWNRU2d4aDVPc2Zn?=
- =?utf-8?B?My9RNkFNeFRiT3R2MkU0R1RpWVVhYVEvUnZYNnhCU2ZtRlRKWEZNeFJ3TzNH?=
- =?utf-8?B?SlA2Y3BHTEFHQUZYeXFaQjVrNXpWdEFJc1Fsc2UxOXc2Y3NJdEJrMjJnYnlE?=
- =?utf-8?B?TkpRV09Majk4ekc1YXlXcUcwbVh2MXkwSGwrSnAvRzdRdFRISFB2NTJNTVJI?=
- =?utf-8?B?bDdsVEMrTHJhZDkzdnZRajdyUkZacWp0ZEdEL2JXKzQ1L2xvNElIS2ZHME9m?=
- =?utf-8?B?WWxsZ3oyU2NpdmtVbi9KVFZCMjZPNXl4Q3BMS0Z3NXhPb2pLbThvbVpGbmVN?=
- =?utf-8?B?Z3NMbGJOZWRxNThsTGh4b25HVmM3dy9rdmtQeHZmbTF1cXdiRmVVTE1NTmJa?=
- =?utf-8?B?VmZqVVJrdzZOQTlEajRRMS9jWS92S3QrVTlsdFpFVERHc0VnNlNPdy9yaHpC?=
- =?utf-8?B?Ly8vZHhvM1pPNzVsZEhBcnhDaHJ4WGVKMk9MeEQxeUdFcGl0RVlkWW9oSm9j?=
- =?utf-8?B?cmJ5MTFyb1dNQWtiSnNXZ21LTVZ6dXJGek9qU0lnVlFxMkN6QnBRb1BDQ3VM?=
- =?utf-8?B?LytWbS9NdHNFejlFRDFxOGo1SjJNSW5wN0I5dEhFSXZoemg4V1cybWZhSktt?=
- =?utf-8?B?a0pZT01KQ2NIejNBcXAzT280bzlmY1VIcnBNWDVHVHhaaEp5N0lMSDRTTHp4?=
- =?utf-8?B?WEhsT2s1TlF1Zk5xRWg2U0J4clJiajlndHpjM1dNbVZRc085NjRBdFM3TlRV?=
- =?utf-8?B?eTEvSS9GOE13U0UwMGZuSjhrdHNsbFJiQUVyTzM5VGMwV0U1SHBsalUxeTFZ?=
- =?utf-8?B?aEl2YWROSlNhQTJSdWRpWHcwTS9kZXJTMWJGbjJxTk56RjMwYXFkeVVVOWJ1?=
- =?utf-8?B?bFRCenROTDAxSEIvbEZ5MEZ4d0crM1lKa0hKK041Y0pXRUh1Q1hGdGx1cjFy?=
- =?utf-8?B?Q09GMmtKUmM0M1pqSTJOd2sreE83V0FPNHYzL2M4WDZ4VUtzTXdRS09mMDBr?=
- =?utf-8?B?SjhPSFllRktia09XSmU2ZTVZZURwcWJlNEtXZmtoUGRTUDBlZ2tZMjhxK3JV?=
- =?utf-8?B?MnZUZ1lscXhlSWVYbFR6Ym9DeXhLZ29RajdiNmhIejlZeG5IeURFMkFRRjZG?=
- =?utf-8?B?NnRONVo4VVhFbFRnR1NCMUh1eXNpTTNjZVNmd0hWQW1oQS9Dd2NmV0NKejJj?=
- =?utf-8?B?Wm1tMDd2SFU1S1Z3Q3U5cGlUczZqVkpPQ2FLM2JtUVZibTAxRk82L013dTFB?=
- =?utf-8?B?cm9iYkdxdGZrbm5Ucy9UMGw2ZXd0M0NnU3U0MDFCVlFVMVowdEx6TEo0cGdx?=
- =?utf-8?B?cEFoczdZcitwNWFMN202RkNEdzYwb3MyVGhtVUhKSUU1dG9ITThqU3lZa3RM?=
- =?utf-8?B?bW9iWHZxRlM0WVhPZlVnanZDSStHaUhZSTc4Sm54VENkaURsQkhUUUVnWFJI?=
- =?utf-8?B?TW9FQmI0ZGR1alNGWlhFMDRvYm1ibUJvUE5lWmlqR1hNK0RCUURCYzVjUlhS?=
- =?utf-8?B?cFNVMGJvNWRodHh4ekM5TmxTbUlGM2Jvc01odGlEME9zdndTMjYzakdDTnBX?=
- =?utf-8?B?R3NqV1VPb0lORCtTdmpwOUkremFrZERHWlU3QzNEU0M4d3A4VHR1bnBxc01U?=
- =?utf-8?B?UHVPUmZnZnlUcFlsWmFyOUhYZmlCSG5tUUM3SGhFUXpDd1JDYlBUM1MyLzhY?=
- =?utf-8?B?L0ZrUE5Sc1NkQkZ0R3pDdFQ2K2ttZ3JCb1NSRUYyRmFrMjdHbnR0QjFBYmlV?=
- =?utf-8?B?WE9KNWFrSjdYaXJTQnczZzRLRXFJUG5MbVRJYW85ZnJsTGVQb2lOMnR1Yk5O?=
- =?utf-8?B?TXlPOWlHazUzTmV2OTdmUThoVVppZnBGUXhDd1N0RjVrbnVqajFoNlY3Rkkw?=
- =?utf-8?B?OU9MejJCRm1yRW1mem1wdytXYS90WWRac05udnNmVmlwdFFtSzlPVTg4bk1N?=
- =?utf-8?B?RnMvNEh3VW45bXdlUENJR1dQeXRiSHRLZ3piNG8xbUxMdmx3dVJPQXkrT3ZH?=
- =?utf-8?Q?rSJreHcnZ/nW+Vs8=3D?=
-X-Exchange-RoutingPolicyChecked: ByTCHY/LufKS7VFG9aORyEs5zmntiK9H59lNv0HbzpZxn3A1a9AyEDpIOBq2JNMiXy+Utqnir15IHX4oEfVqMO/zCVf5SrzKU7b56zj2+IDdq31+Vu2tf9Uf0Fa9cDpvoDoRdV1OIKESNgrnavpJ+/QYBd+wIs4dlJ5cEe0a/z9Xz7v0VONWgoqAR4L9x4udhDZ0yFUpz7vBMEZUdft0da6Vn9n9+1wEmTHGNZfKw7Ne62XW2zjx+3IlEeW+ZxxRqib2DXhkRFEgP4lL2nOjAesh5lo2pVwwD93kFjV74n2Vxy+JRjakyhkXTTvIdaFahPSgxd5KRuFWBtsMWfMaTg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 25540336-0e7a-4e83-d3ee-08de8ef3ed2f
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6011.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?N2pBUGo2QTBNSjF0Z1V2TGk2VHViN010OVJ4cWJQQ1BxakRkTXNFSnJqc2pv?=
+ =?utf-8?B?V3BhUjVZcXJKaisvT3pVNnB6RXhWQWFvbU5iSDNZeFpxNG5BcUIvdUZUdGho?=
+ =?utf-8?B?Qmg2dEdMak0yWndLMC9UYnRVSHNETi9CM1NvM01CVkV5RjFZNk13a1JmU2tN?=
+ =?utf-8?B?STVqRStJaVQ4SHhCdHBUWk5LR2xCbnVqY2NyZE1xcDF3eHoxVzlDN2hCRGJj?=
+ =?utf-8?B?bWxmblErTU9JZWZZZGt1TlFtaVZLb3V3WW5JQ0RBVTRUazNyQXJPV3lSQXcv?=
+ =?utf-8?B?MlNPZFRndCtyK0o5TW5BRE1yZVZvd3BhRmJXSFhmTlVtRDRNOVl2cXdHSVNq?=
+ =?utf-8?B?Z3hjamJmZGxWOGJpUVJIcmEvSDliNkdaYkI5dVNvMWUxazhvYVNyV2gyRGpV?=
+ =?utf-8?B?L0Z3L01MQ3Z4UFEzWHZ2R1EyRXlxQ28vRFFXdGt0YW45Uy83RUxKOFAvdXc4?=
+ =?utf-8?B?MEVKT0U3TFpPMkpvOXdsaEplZjlHc0RleGFwUzRzUkVDaitablg1anN1azJy?=
+ =?utf-8?B?NTB5eE1vVzl5YksyT3p6QmFGV0VadTd4TVNXdmpDU2FIRnFHOTlNRk5Ldjdk?=
+ =?utf-8?B?WFVIckVxTDVDK1RnRFJNWXczRHExckRJQmw4NDc3WG9FN21Jd2hGeTE1SXpP?=
+ =?utf-8?B?Tis1ZWtkM0g4UDB6SlJDTDE2T3poOUJmczI4d2dnL1ZwZ2laYVJJa3hLOUZO?=
+ =?utf-8?B?MEdITmtCdHEySWhKTHArZmF2K1JkV2dPZEROMDZBQU5NMDhuR01BdFUwakZX?=
+ =?utf-8?B?bHJERWpqelhuWEpucGlNaFd5M2QvSUZOSDhJVXB5SnllTm94Z1NONjdiT0s1?=
+ =?utf-8?B?ZmtmUUUrUmFkQkEweUJCTWlpUUZzSWU1M1BhcFdDUmh5YXhjNzh5MFNnQ0JY?=
+ =?utf-8?B?YUpLSzZwV3hxNEw3Z2xLUDRkV2hKNlVNTjN2dC80UmNmVFhkbUlSWE9CQzE0?=
+ =?utf-8?B?c3B4SkhmbDhRQWJrZURNeFdhQ2lVSEt2RmxNNkJUZTIybG9oVXoyVEV5SjZW?=
+ =?utf-8?B?VHFCaGw1K1Roc1laakcxZUNTaTNybzlxL0N6U3AwOEZBanZlSWJYbDY1Qnhv?=
+ =?utf-8?B?dVpvZVVxMmR4SjBhSThUNktNYUJaK3ZwQThHWS83Sm96dkZnUTIwQ0pwN1Q1?=
+ =?utf-8?B?Y1BHcm9mYU9IekRiOHhNdHRWMnlTeXpyMWZJTEZxNVVDZFBOTGFaZitVZzgz?=
+ =?utf-8?B?Z1BaVTd3aTQ2MHRSc0tlVUV6RWVDakh6clVQdEk4aDB1MFBwV0NQczB6VGhF?=
+ =?utf-8?B?bVp2aFp3dlNINkJ3NnBWUm1UU1I2SW16K2tZb0J3WmFoZ3NiZUNuTzVzOTFq?=
+ =?utf-8?B?cU5kU3Ywck1ybThJL1AySG15S2xDWGMwRnB4QmpIajh2Vmg0U3dKbi80MkVS?=
+ =?utf-8?B?d1JiK3p3UnY0ZTRSYlI4WGd0cFVadU4xTUpna0VtcEswNTZQM1lFY25td3h6?=
+ =?utf-8?B?MEdkcW1GVUlOYjVNNENtRGtLRUwxb2xFdzBYZ08vR3NBOGlmVzBWWnlOeWRR?=
+ =?utf-8?B?cHlZeUVFQXJIRkNaY3pwejlHWnltL1hkQ2haVHE2bzlETnNOcWlCL2JGNS9V?=
+ =?utf-8?B?SGV2Uzk2cVlEby9xaFlITXVQZ056VlpNQ0JQL1FGMjVONmpRMEdGdTFYNjNU?=
+ =?utf-8?B?U1ZPZGs5OStwejB1Skw4TU9xbTVWNHh2V2U3SzJGakd5NUNLSzBKTHpkVUpj?=
+ =?utf-8?B?WEZiWTFzbnJkeWh3K1pYUjd0dGxpditzWVVYSVluUUJVS2Z4MkZJSkZKdFk4?=
+ =?utf-8?B?N1pNbDNBN1g3U0p5MzRYTHNCVWZLK0lVUU80Q21WZXBlOTFQbldrMGkyNlpZ?=
+ =?utf-8?B?ckxTR3pGWWZjdkhPdDQxa1haYXkyejczQmEyOEpqUFUrZGVadDlBQXhsRlZi?=
+ =?utf-8?B?RCsxYzNSN3ZEY08rOUNDKzdWQUZoS3lJTmpvK0gzUHFXd0tkd1g5b2VFS0Y5?=
+ =?utf-8?B?VWQ3UUMyUHZudkxmS2NOUjkwNXA0bnFqVHNRam1xZEloeUMvVDhpNVVMMVBM?=
+ =?utf-8?B?b25MOXVIUUlvNFk2UTA2QmlrWDlIdTZVeVZScFU1S2NWcHArUnk5NTgrTEZG?=
+ =?utf-8?B?MTRnNVR4VTkrSE8yNDMrTG9EU3B0cWVnRWl2OHZhWUhBK3NRUXpYMFpubklM?=
+ =?utf-8?B?U21MbWxMNFNlYUdDWGRyYkNzMnVyQjFHYkRsQ1ZGK3VNaHNTL1Q1cGQ4NnM1?=
+ =?utf-8?B?NDVRTEF2a1VZZ3lVRXFvcnZ5RE5YTXZRdGkvTUlPUXdqeDhvbkNWVWw5Mm43?=
+ =?utf-8?B?TGVFTFcxekZuaGVVWFFlQno5WlA0NUJFaTVpSFVHU1duYjVXZTNWaU8xYkFM?=
+ =?utf-8?B?SFZ5ZzFSNFA4SjQyVVU0Y2gxWTFxSmhOaVBmSmJoNGhtQ1ZDTVIzTm1hNWJt?=
+ =?utf-8?Q?XY/F6YstpbhW7aGg=3D?=
+X-Exchange-RoutingPolicyChecked: ZwYq9X9LcdEM2mAt7x6XogC6MZpLPZ9zK/JsmXlO1NDjLwDhbRjzHD9Nys6Xi+aEZn9iRmSux6zpL0pMaxY+SorIDP+ZDmIuO6zbnFH3IzDArM6K7jnzR1z4tXzjgeqQ8xVyXYJHHKHkdBjH5DBzuNkGXnoauZoMmjFZyfjY5GkC5GfCZ7I2G1m4Z7yRD02vSOyCW5jxM2ebl8mScANh+Re1T2vzBcOlGxN24xCk8qoZyiohWhT+Fz5ENsnbu1OYYTf+8wmarfP9AooLLgoXloBWPglWyGAnUEHRfKKkTcdWqUUVuGK/njWh5eLRpa0lDsWrM3Io+wqneMrJhEnUEw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: dde920b3-5a19-4305-e86e-08de8ef4e7b2
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2026 07:05:44.3251 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2026 07:12:46.1845 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: a59j+fAfkq6itIUI1eQ6Lw1wYzJDE2EccOW+iUYmP4GVKv5Dsf1KoAvYEnf7EB7cyg3a1BuW9lY5w+76QMiJ7HFiONdlvJ0hrxh+20wLT04=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF162366726
+X-MS-Exchange-CrossTenant-UserPrincipalName: j+Nd1zg+l31wN7jw2HaSx5wTlt4d7gT/c7mFmeDc/6HBqDUAmgE7Repj65fMHhGaSAYjnAhYYBnu0nLubfFvyyOOWVbbtB/bSNaGfnGUgMI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR11MB5931
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,251 +173,175 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 3/31/2026 8:17 AM, Satyanarayana K V P wrote:
-> When a PF is configured in admin-only mode, it is intended for management
-> only and must not expose workload-facing capabilities to userspace.
+On 3/25/2026 4:37 PM, Suraj Kandpal wrote:
+> Add writeback registers to its own file.
 > 
-> Limit the exposed ioctl set in admin-only PF mode to XE_DEVICE_QUERY, and
-> suppress capability-bearing query payloads so that the userspace cannot
-> discover execution-related device details in this mode.
-> 
-> Enable admin-only mode with:
-> echo <B:D:F> | sudo tee /sys/bus/pci/drivers/xe/unbind
-> sudo mkdir /sys/kernel/config/xe/<B:D:F>
-> echo yes | sudo tee /sys/kernel/config/xe/<B:D:F>/sriov/admin_only_pf
-> echo <B:D:F> | sudo tee /sys/bus/pci/drivers/xe/bind
-> 
-> Signed-off-by: Satyanarayana K V P <satyanarayana.k.v.p@intel.com>
-> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Piotr Piórkowski <piotr.piorkowski@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Michał Winiarski <michal.winiarski@intel.com>
-> Cc: Dunajski Bartosz <bartosz.dunajski@intel.com>
-> Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> 
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 > ---
-> V6 -> V7:
-> - Allowed xe_observation_ioctl as well with admin-only PF (Ashutosh,
-> Michal).
-> - Updated commit message with steps to enable admin-only mode (Rodrigo).
+>   .../drm/i915/display/intel_writeback_reg.h    | 136 ++++++++++++++++++
+>   1 file changed, 136 insertions(+)
+>   create mode 100644 drivers/gpu/drm/i915/display/intel_writeback_reg.h
 > 
-> V5 -> V6:
-> - Updated commit message.
-> - Return number of engines and memory regions as zero instead of
-> returning query size as zero (Michal Wajdeczko).
-> - Allow all other query IOCTLs excepts query_engines and
-> query_mem_regions (Michal Wajdeczko).
-> 
-> V4 -> V5:
-> - Updated commit message (Matt B).
-> - Introduced new driver_admin_only_pf structure (Michal Wajdeczko).
-> - Updated all query configs (Michal Wajdeczko).
-> - Renamed xe_device_is_admin_only() to xe_device_is_admin_only_pf()
-> - Fixed other review comments (Michal Wajdeczko).
-> 
-> V3 -> V4:
-> - Suppressed device capabilities in admin-only PF mode. (Wajdeczko)
-> 
-> V2 -> V3:
-> - Introduced new helper function xe_debugfs_create_files() to create
-> debugfs entries based on admin_only_pf mode or normal mode.
-> 
-> V1 -> V2:
-> - Rebased to latest drm-tip.
-> - Update update_minor_dev() to debugfs_minor_dev().
-> ---
->  drivers/gpu/drm/xe/xe_device.c | 61 +++++++++++++++++++++++++++++++---
->  drivers/gpu/drm/xe/xe_device.h |  1 +
->  drivers/gpu/drm/xe/xe_query.c  |  6 ++++
->  3 files changed, 64 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index cbce1d0ffe48..910a0aa4c3d0 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -25,6 +25,7 @@
->  #include "regs/xe_regs.h"
->  #include "xe_bo.h"
->  #include "xe_bo_evict.h"
-> +#include "xe_configfs.h"
->  #include "xe_debugfs.h"
->  #include "xe_defaults.h"
->  #include "xe_devcoredump.h"
-> @@ -216,6 +217,11 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
->  			  DRM_RENDER_ALLOW),
->  };
->  
-> +static const struct drm_ioctl_desc xe_ioctls_admin_only[] = {
-> +	DRM_IOCTL_DEF_DRV(XE_DEVICE_QUERY, xe_query_ioctl, DRM_RENDER_ALLOW),
-> +	DRM_IOCTL_DEF_DRV(XE_OBSERVATION, xe_observation_ioctl, DRM_RENDER_ALLOW),
-> +};
-> +
->  static long xe_drm_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
->  {
->  	struct drm_file *file_priv = file->private_data;
-> @@ -390,7 +396,7 @@ bool xe_is_xe_file(const struct file *file)
->  	return file->f_op == &xe_driver_fops;
->  }
->  
-> -static struct drm_driver driver = {
-> +static struct drm_driver regular_driver = {
->  	.driver_features =
->  	    DRIVER_GEM |
->  	    DRIVER_RENDER | DRIVER_SYNCOBJ |
-> @@ -415,6 +421,40 @@ static struct drm_driver driver = {
->  	.patchlevel = DRIVER_PATCHLEVEL,
->  };
->  
-> +static struct drm_driver admin_only_driver = {
-> +	.driver_features =
-> +	    DRIVER_GEM | DRIVER_RENDER | DRIVER_GEM_GPUVA,
-> +	.open = xe_file_open,
-> +	.postclose = xe_file_close,
-> +
-> +	.gem_prime_import = xe_gem_prime_import,
-
-not a expert here, but do we need this?
-comment says "This defaults to drm_gem_prime_import() if not set."
-
-> +
-> +	.dumb_create = xe_bo_dumb_create,
-> +	.dumb_map_offset = drm_gem_ttm_dumb_map_offset,
-> +#ifdef CONFIG_PROC_FS
-> +	.show_fdinfo = xe_drm_client_fdinfo,
-> +#endif
-> +	.ioctls = xe_ioctls_admin_only,
-> +	.num_ioctls = ARRAY_SIZE(xe_ioctls_admin_only),
-> +	.fops = &xe_driver_fops,
-> +	.name = DRIVER_NAME,
-> +	.desc = DRIVER_DESC,
-> +	.major = DRIVER_MAJOR,
-> +	.minor = DRIVER_MINOR,
-> +	.patchlevel = DRIVER_PATCHLEVEL,
-> +};
-> +
-> +/**
-> + * xe_device_is_admin_only() - Check whether device is admin only or not.
-> + * @xe: the &xe_device to check
-> + *
-> + * Return: true if the device is admin only, false otherwise.
+> diff --git a/drivers/gpu/drm/i915/display/intel_writeback_reg.h b/drivers/gpu/drm/i915/display/intel_writeback_reg.h
+> new file mode 100644
+> index 000000000000..ffe302ef3dd9
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_writeback_reg.h
+> @@ -0,0 +1,136 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2024 Intel Corporation
 > + */
-> +bool xe_device_is_admin_only(const struct xe_device *xe)
-
-after introducing this function, to avoid confusion, we should revisit: 
- - xe_sriov_pf_admin_only
- - xe->sriov.pf.admin_only
-
-> +{
-> +	return xe->drm.driver == &admin_only_driver;
-> +}
 > +
->  static void xe_device_destroy(struct drm_device *dev, void *dummy)
->  {
->  	struct xe_device *xe = to_xe_device(dev);
-> @@ -439,16 +479,24 @@ static void xe_device_destroy(struct drm_device *dev, void *dummy)
->  struct xe_device *xe_device_create(struct pci_dev *pdev,
->  				   const struct pci_device_id *ent)
->  {
-> +	struct drm_driver *driver = &regular_driver;
->  	struct xe_device *xe;
->  	int err;
->  
-> -	xe_display_driver_set_hooks(&driver);
-> +	/*
-> +	 * Since XE device is not initialized yet, read from configfs
-> +	 * directly to decide whether we are in admin-only PF mode or not.
-> +	 */
-> +	if (xe_configfs_admin_only_pf(pdev))
-> +		driver = &admin_only_driver;
+> +#ifndef __INTEL_WRITEBACK_REGS_H__
+> +#define __INTEL_WRITEBACK_REGS_H__
 > +
-> +	xe_display_driver_set_hooks(driver);
->  
-> -	err = aperture_remove_conflicting_pci_devices(pdev, driver.name);
-> +	err = aperture_remove_conflicting_pci_devices(pdev, driver->name);
->  	if (err)
->  		return ERR_PTR(err);
->  
-> -	xe = devm_drm_dev_alloc(&pdev->dev, &driver, struct xe_device, drm);
-> +	xe = devm_drm_dev_alloc(&pdev->dev, driver, struct xe_device, drm);
->  	if (IS_ERR(xe))
->  		return xe;
->  
-> @@ -708,6 +756,11 @@ int xe_device_probe_early(struct xe_device *xe)
->  
->  	xe_sriov_probe_early(xe);
->  
-> +	if (xe_configfs_admin_only_pf(to_pci_dev(xe->drm.dev)) && !IS_SRIOV_PF(xe)) {
-
-we should be able to use xe_device_is_admin_only() now
-no need to check configfs again
-
-> +		drm_err(&xe->drm, "Admin-only PF mode is enabled in non PF mode\n");
-
-nit: we ca use xe_err() here
-nit: maybe the message should be:
-
-	"Can't run Admin-only mode without SR-IOV PF mode!\n"
-or
-	"Admin-only mode without SR-IOV PF is unsupported!\n"
-
-> +		return -ENODEV;
-> +	}
+> +#include "intel_display_reg_defs.h"
 > +
->  	if (IS_SRIOV_VF(xe))
->  		vf_update_device_info(xe);
->  
-> diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-> index e4b9de8d8e95..c220f2f1352f 100644
-> --- a/drivers/gpu/drm/xe/xe_device.h
-> +++ b/drivers/gpu/drm/xe/xe_device.h
-> @@ -43,6 +43,7 @@ static inline struct xe_device *ttm_to_xe_device(struct ttm_device *ttm)
->  	return container_of(ttm, struct xe_device, ttm);
->  }
->  
-> +bool xe_device_is_admin_only(const struct xe_device *xe);
->  struct xe_device *xe_device_create(struct pci_dev *pdev,
->  				   const struct pci_device_id *ent);
->  int xe_device_probe_early(struct xe_device *xe);
-> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-> index d84d6a422c45..40c7ab9fecf8 100644
-> --- a/drivers/gpu/drm/xe/xe_query.c
-> +++ b/drivers/gpu/drm/xe/xe_query.c
-> @@ -217,6 +217,9 @@ static int query_engines(struct xe_device *xe,
->  
->  	engines->num_engines = i;
->  
-> +	if (xe_device_is_admin_only(xe))
-> +		memset(engines, 0, size);
+> +/* WD 0 and 1 */
+> +#define TRANSCODER_WD0_OFFSET	0x6e000
+> +#define TRANSCODER_WD1_OFFSET	0x6d800
+> +
+> +/* WD 0 and 1 */
+> +#define PIPE_WD0_OFFSET		0x7e008
+> +#define PIPE_WD1_OFFSET		0x7d008
+> +
+> +/* Gen12 WD */
+> +#define _MMIO_WD(tc, wd0, wd1)	_MMIO_TRANS((tc) - TRANSCODER_WD_0, wd0, wd1)
+> +
+> +#define WD_TRANS_ENABLE		REG_BIT(31)
+> +#define WD_TRANS_STATE		REG_BIT(30)
+> +
+> +/* WD transcoder control */
+> +#define _WD_TRANS_FUNC_CTL_0	0x6e400
+> +#define _WD_TRANS_FUNC_CTL_1	0x6ec00
+> +#define WD_TRANS_FUNC_CTL(tc)	_MMIO_WD(tc,\
+> +				_WD_TRANS_FUNC_CTL_0,\
+> +				_WD_TRANS_FUNC_CTL_1)
 
-that looks broken - we will return some number of engines, but all of
-them will be class=0, instance=0, gtid=0
-
-why can't we put is_admin_only case in xe_hw_engine_is_reserved() as
-previously suggested? this should filter-out all engines as expected
-so returned query data will be:
-
-	engines->num_engines = 0;
-	engines->engines[] = { }
+s/TRANS_WD_FUNC_CTL/WD_TRANS_FUNC_CTL
 
 > +
->  	if (copy_to_user(query_ptr, engines, size)) {
->  		kfree(engines);
->  		return -EFAULT;
-> @@ -297,6 +300,9 @@ static int query_mem_regions(struct xe_device *xe,
->  		}
->  	}
->  
-> +	if (xe_device_is_admin_only(xe))
-> +		memset(mem_regions, 0, size);
 
-similar problem here
+No blank line in between register and it's content.
+
+> +#define TRANS_WD_FUNC_ENABLE		REG_BIT(31)
+> +#define WD_TRIGGERED_CAP_MODE_ENABLE	REG_BIT(30)
+> +#define START_TRIGGER_FRAME		REG_BIT(29)
+> +#define STOP_TRIGGER_FRAME		REG_BIT(28)
+> +#define WD_INPUT_SELECT_MASK		REG_GENMASK(14, 12)
+
+maintain bit order.
+
+> +#define WD_INPUT_PIPE_A			REG_FIELD_PREP(WD_INPUT_SELECT_MASK, 0)
+> +#define WD_INPUT_PIPE_B			REG_FIELD_PREP(WD_INPUT_SELECT_MASK, 5)
+> +#define WD_INPUT_PIPE_C			REG_FIELD_PREP(WD_INPUT_SELECT_MASK, 6)
+> +#define WD_INPUT_PIPE_D			REG_FIELD_PREP(WD_INPUT_SELECT_MASK, 7)
+> +#define WD_COLOR_MODE_MASK		REG_GENMASK(22, 20)
+> +#define WD_CONTROL_POINTERS             REG_GENMASK(19, 18)
+> +#define WD_DISABLE_POINTERS             REG_FIELD_PREP(WD_CONTROL_POINTERS, 3)
+> +#define WD_PIX_FMT_YUYV			REG_FIELD_PREP(WD_COLOR_MODE_MASK, 1)
+> +#define WD_PIX_FMT_XYUV8888		REG_FIELD_PREP(WD_COLOR_MODE_MASK, 2)
+> +#define WD_PIX_FMT_XBGR8888		REG_FIELD_PREP(WD_COLOR_MODE_MASK, 3)
+> +#define WD_PIX_FMT_Y410			REG_FIELD_PREP(WD_COLOR_MODE_MASK, 4)
+> +#define WD_PIX_FMT_YUV422		REG_FIELD_PREP(WD_COLOR_MODE_MASK, 5)
+> +#define WD_PIX_FMT_XBGR2101010		REG_FIELD_PREP(WD_COLOR_MODE_MASK, 6)
+> +#define WD_PIX_FMT_RGB565		REG_FIELD_PREP(WD_COLOR_MODE_MASK, 7)
+> +#define WD_FRAME_NUMBER_MASK		REG_GENMASK(3, 0)
+> +#define WD_FRAME_NUMBER(n)		REG_FIELD_PREP(WD_FRAME_NUMBER_MASK, n)
+> +
+
+Indent the register content macros using two extra spaces between 
+#define and the macro name.
+
+> +#define _WD_STRIDE_0			0x6e510
+> +#define _WD_STRIDE_1			0x6ed10
+> +#define WD_STRIDE(tc)			_MMIO_WD(tc,\
+> +					_WD_STRIDE_0,\
+> +					_WD_STRIDE_1)
+> +#define WD_STRIDE_MASK			REG_GENMASK(15, 6)
+
+Probably not needed.
 
 > +
->  	if (!copy_to_user(query_ptr, mem_regions, size))
->  		ret = 0;
->  	else
+> +#define _WD_STREAMCAP_CTL0		0x6e590
+> +#define _WD_STREAMCAP_CTL1		0x6ed90
+> +#define WD_STREAMCAP_CTL(tc)		_MMIO_WD(tc,\
+> +					_WD_STREAMCAP_CTL0,\
+> +					_WD_STREAMCAP_CTL1)
+> +
+> +#define WD_STREAM_CAP_MODE_EN		REG_BIT(31)
+> +#define WD_SLICING_STRAT_MASK		REG_GENMASK(25, 24)
+> +#define WD_SLICING_STRAT_1_1		REG_FIELD_PREP(WD_SLICING_STRAT_MASK, 0)
+> +#define WD_SLICING_STRAT_2_1		REG_FIELD_PREP(WD_SLICING_STRAT_MASK, 1)
+> +#define WD_SLICING_STRAT_4_1		REG_FIELD_PREP(WD_SLICING_STRAT_MASK, 2)
+> +#define WD_SLICING_STRAT_8_1		REG_FIELD_PREP(WD_SLICING_STRAT_MASK, 3)
+> +#define WD_STREAM_OVERRUN_STATUS	1
+
+REG_BIT(0)
+
+> +
+> +#define _WD_SURF_0			0x6e514
+> +#define _WD_SURF_1			0x6ed14
+> +#define WD_SURF(tc)			_MMIO_WD(tc,\
+> +					_WD_SURF_0,\
+> +					_WD_SURF_1)
+> +
+> +#define _WD_IMR_0			0x6e560
+> +#define _WD_IMR_1			0x6ed60
+> +#define WD_IMR(tc)			_MMIO_WD(tc,\
+> +					_WD_IMR_0,\
+> +					_WD_IMR_1)
+> +#define WD_FRAME_COMPLETE_INT		REG_BIT(7)
+> +#define WD_GTT_FAULT_INT		REG_BIT(6)
+> +#define WD_VBLANK_INT			REG_BIT(5)
+> +#define WD_OVERRUN_INT			REG_BIT(4)
+> +#define WD_CAPTURING_INT		REG_BIT(3)
+> +#define WD_WRITE_COMPLETE_INT		REG_BIT(2)
+> +
+> +#define _WD_IIR_0			0x6e564
+> +#define _WD_IIR_1			0x6ed64
+> +#define WD_IIR(tc)			_MMIO_WD(tc,\
+> +					_WD_IIR_0,\
+> +					_WD_IIR_1)
+> +
+> +#define _WD_FRAME_STATUS_0		0x6e568
+> +#define _WD_FRAME_STATUS_1		0x6ed68
+> +#define WD_FRAME_STATUS(tc)		_MMIO_WD(tc,\
+> +					_WD_FRAME_STATUS_0,\
+> +					_WD_FRAME_STATUS_1)
+> +
+> +#define WD_FRAME_COMPLETE		REG_BIT(31)
+> +#define WD_STATE_MASK			REG_GENMASK(26, 24)
+> +#define WD_STATE_IDLE			REG_FIELD_PREP(WD_STATE_MASK, 0)
+> +#define WD_STATE_CAPSTART		REG_FIELD_PREP(WD_STATE_MASK, 1)
+> +#define WD_STATE_FRAME_START		REG_FIELD_PREP(WD_STATE_MASK, 2)
+> +#define WD_STATE_CAPACITIVE		REG_FIELD_PREP(WD_STATE_MASK, 3)
+> +#define WD_STATE_TG_DONE		REG_FIELD_PREP(WD_STATE_MASK, 4)
+> +#define WD_STATE_WDX_DONE		REG_FIELD_PREP(WD_STATE_MASK, 5)
+> +#define WD_STATE_QUICK_CAP		REG_FIELD_PREP(WD_STATE_MASK, 6)
+> +
+> +#define _WD_27_M_0			0x6e524
+> +#define _WD_27_M_1			0x6ed24
+> +#define WD_27_M(tc)			_MMIO_WD(tc,\
+> +					_WD_27_M_0,\
+> +					_WD_27_M_1)
+> +
+> +#define _WD_27_N_0			0x6e528
+> +
+> +/* Address looks wrong in bspec: */
+> +#define _WD_27_N_1			0x6ec28
+> +#define WD_27_N(tc)			_MMIO_WD(tc,\
+> +					_WD_27_N_0,\
+> +					_WD_27_N_1)
+> +
+> +#define _WD_TAIL_CFG_0			0x6e520
+> +#define _WD_TAIL_CFG_1			0x6ed20
+> +
+> +#define WD_TAIL_CFG(tc)			_MMIO_WD(tc,\
+> +					_WD_TAIL_CFG_0,\
+> +					_WD_TAIL_CFG_1)
+> +
+> +#endif /* __INTEL_WRITEBACK_REGS_H__ */
 
