@@ -4,60 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9089F109B46C
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 13:29:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F238A109B46C
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Mar 2026 13:30:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5389610E251;
-	Tue, 31 Mar 2026 13:29:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA9C110E9A1;
+	Tue, 31 Mar 2026 13:30:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WGAxjt/o";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mcoTD8Tk";
 	dkim-atps=neutral
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AD4D10E251;
- Tue, 31 Mar 2026 13:29:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C415A10E988
+ for <intel-xe@lists.freedesktop.org>; Tue, 31 Mar 2026 13:30:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774963745; x=1806499745;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=J/2wVUcQIJYHvpJSvYaAS0J1N5hy6AUn7vIa1PObqJY=;
- b=WGAxjt/oztDuLYAODyhPhrdvevvbopa7RIYfFFuqEPp9QLsjvFmNSz7s
- m1dpYItcs4toJAFoGL0q0njHJvnCr2Alm9tv3sysSi7uZlA2WAKEp+Gus
- 6HtV9wY6880uvvSjeL9lhBlZlimCNM9kvlJjAeKK7KkLXLgCHn6qGAY5G
- 1yukKRrW9yJOPJAStP1WyCsM+znNcFOEfGtOON9Gfm43zAXLR4Anl8ZnW
- q/5NEwkZpCnawOWqbf+Xl5u0O2F5wOr5gpWFHZgnHC5PqUL2kHi+oTDEm
- lXfu1h+bsmZivqJqb2KgB42icpeQOKy3hulPreyYlPqSplQ2cJU+dYC5/ g==;
-X-CSE-ConnectionGUID: k5rogWeRSW+bI/76TtWtWA==
-X-CSE-MsgGUID: rqfislY9TseVWN6BxAunug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="79835720"
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="79835720"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 06:29:05 -0700
-X-CSE-ConnectionGUID: xfnoHEp2TH6T9D+u8pVozA==
-X-CSE-MsgGUID: Kbeh4ic7S8m1K45Scew/tw==
+ t=1774963839; x=1806499839;
+ h=date:from:to:cc:subject:message-id;
+ bh=/RCmt5sMfVzSAjhOndqSXg3ujvCPBtu6uAvgW/Qs4eI=;
+ b=mcoTD8TkRPdX5tMrBp2i2RP57CBqTB1fcR7ebb1LlE+iR0FqWP3xijbR
+ vxNBDk1gQUWBKjbQcR0CLi1Xra6Ex4xZFrXsOTUZRbbuAFGCzLs/oQRww
+ 4D9agEFAXJ0LM5IRWgzVZT4Ni0hn1ehW2KAUby2WalGAgSfRXkPEy7ovJ
+ ogztv2RDa4w2sOgnCFHq6PkJLHXKI0X28ZlWzWVIhWnM2lFbrb1lSz8W/
+ iGZwcZBJ5bZYMGgEgf7zselmkw9I001KGRtd3nBq8OpyooIbtJUxmtuSC
+ gDnYVs9rUANB378SUm6huXl5lkp0Hx48+llFX9vq4QlCmrNDBB6xqpILa A==;
+X-CSE-ConnectionGUID: H44WfnLuTHqiYHZ+y1Y2Rw==
+X-CSE-MsgGUID: 1spowQONTg2soLadrhWz0g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="75939986"
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="75939986"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 06:30:39 -0700
+X-CSE-ConnectionGUID: OwD4cPH/SKmwQL8dVk/jzw==
+X-CSE-MsgGUID: 3CMrDxHoT4Sbnjzy6gLRdA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="231295833"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.24])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 06:29:03 -0700
-Date: Tue, 31 Mar 2026 16:28:58 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/5] drm/{i915, xe}: convert VLV sideband display
- wrappers into real functions
-Message-ID: <acvMGpZbVVjd6tKO@intel.com>
-References: <cover.1774957233.git.jani.nikula@intel.com>
- <57740dc3a820cb5fc1cfcd28e4be58b2cb48020d.1774957233.git.jani.nikula@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <57740dc3a820cb5fc1cfcd28e4be58b2cb48020d.1774957233.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="225535603"
+Received: from lkp-server01.sh.intel.com (HELO 283bf2e1b94a) ([10.239.97.150])
+ by orviesa010.jf.intel.com with ESMTP; 31 Mar 2026 06:30:39 -0700
+Received: from kbuild by 283bf2e1b94a with local (Exim 4.98.2)
+ (envelope-from <lkp@intel.com>) id 1w7ZAx-000000002gl-3jjs;
+ Tue, 31 Mar 2026 13:30:35 +0000
+Date: Tue, 31 Mar 2026 21:29:56 +0800
+From: kernel test robot <lkp@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [drm-xe:drm-xe-fixes] BUILD SUCCESS
+ 56b7432b7e8e6ae1b289cb405d16db4150ef193b
+Message-ID: <202603312148.sZKAOyOJ-lkp@intel.com>
+User-Agent: s-nail v14.9.25
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,377 +64,192 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Mar 31, 2026 at 02:40:54PM +0300, Jani Nikula wrote:
-> Convert the VLV sideband static inline wrappers into real
-> functions. This will help the follow-up work of moving the VLV sideband
-> to the display parent interface.
-> 
-> The downside is that we'll have to build vlv_sideband.c as part of xe
-> build, to avoid a plethora of stubs.
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> ---
-> 
-> 'git show --color-moved' will help review
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-fixes
+branch HEAD: 56b7432b7e8e6ae1b289cb405d16db4150ef193b  drm/xe: Avoid memory allocations in xe_device_declare_wedged()
 
-If only --color-moved and --word-diff could play nice...
+elapsed time: 730m
 
-For some other other patches --word-diff alone seemed pretty good
-fortunately.
+configs tested: 173
+configs skipped: 2
 
-Series is
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+The following configs have been built successfully.
+More configs may be tested in the coming days.
 
-> ---
->  drivers/gpu/drm/i915/display/vlv_sideband.c | 125 +++++++++++++++
->  drivers/gpu/drm/i915/display/vlv_sideband.h | 165 ++++----------------
->  drivers/gpu/drm/xe/Makefile                 |   3 +-
->  3 files changed, 156 insertions(+), 137 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/vlv_sideband.c b/drivers/gpu/drm/i915/display/vlv_sideband.c
-> index e18045f2b89d..2472e0412728 100644
-> --- a/drivers/gpu/drm/i915/display/vlv_sideband.c
-> +++ b/drivers/gpu/drm/i915/display/vlv_sideband.c
-> @@ -8,6 +8,71 @@
->  #include "intel_dpio_phy.h"
->  #include "vlv_sideband.h"
->  
-> +void vlv_bunit_get(struct drm_device *drm)
-> +{
-> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_BUNIT));
-> +}
-> +
-> +u32 vlv_bunit_read(struct drm_device *drm, u32 reg)
-> +{
-> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_BUNIT, reg);
-> +}
-> +
-> +void vlv_bunit_write(struct drm_device *drm, u32 reg, u32 val)
-> +{
-> +	vlv_iosf_sb_write(drm, VLV_IOSF_SB_BUNIT, reg, val);
-> +}
-> +
-> +void vlv_bunit_put(struct drm_device *drm)
-> +{
-> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_BUNIT));
-> +}
-> +
-> +void vlv_cck_get(struct drm_device *drm)
-> +{
-> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_CCK));
-> +}
-> +
-> +u32 vlv_cck_read(struct drm_device *drm, u32 reg)
-> +{
-> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_CCK, reg);
-> +}
-> +
-> +void vlv_cck_write(struct drm_device *drm, u32 reg, u32 val)
-> +{
-> +	vlv_iosf_sb_write(drm, VLV_IOSF_SB_CCK, reg, val);
-> +}
-> +
-> +void vlv_cck_put(struct drm_device *drm)
-> +{
-> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_CCK));
-> +}
-> +
-> +void vlv_ccu_get(struct drm_device *drm)
-> +{
-> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_CCU));
-> +}
-> +
-> +u32 vlv_ccu_read(struct drm_device *drm, u32 reg)
-> +{
-> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_CCU, reg);
-> +}
-> +
-> +void vlv_ccu_write(struct drm_device *drm, u32 reg, u32 val)
-> +{
-> +	vlv_iosf_sb_write(drm, VLV_IOSF_SB_CCU, reg, val);
-> +}
-> +
-> +void vlv_ccu_put(struct drm_device *drm)
-> +{
-> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_CCU));
-> +}
-> +
-> +void vlv_dpio_get(struct drm_device *drm)
-> +{
-> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_DPIO) | BIT(VLV_IOSF_SB_DPIO_2));
-> +}
-> +
->  static enum vlv_iosf_sb_unit vlv_dpio_phy_to_unit(struct intel_display *display,
->  						  enum dpio_phy phy)
->  {
-> @@ -48,3 +113,63 @@ void vlv_dpio_write(struct drm_device *drm,
->  
->  	vlv_iosf_sb_write(drm, unit, reg, val);
->  }
-> +
-> +void vlv_dpio_put(struct drm_device *drm)
-> +{
-> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_DPIO) | BIT(VLV_IOSF_SB_DPIO_2));
-> +}
-> +
-> +void vlv_flisdsi_get(struct drm_device *drm)
-> +{
-> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_FLISDSI));
-> +}
-> +
-> +u32 vlv_flisdsi_read(struct drm_device *drm, u32 reg)
-> +{
-> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_FLISDSI, reg);
-> +}
-> +
-> +void vlv_flisdsi_write(struct drm_device *drm, u32 reg, u32 val)
-> +{
-> +	vlv_iosf_sb_write(drm, VLV_IOSF_SB_FLISDSI, reg, val);
-> +}
-> +
-> +void vlv_flisdsi_put(struct drm_device *drm)
-> +{
-> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_FLISDSI));
-> +}
-> +
-> +void vlv_nc_get(struct drm_device *drm)
-> +{
-> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_NC));
-> +}
-> +
-> +u32 vlv_nc_read(struct drm_device *drm, u8 addr)
-> +{
-> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_NC, addr);
-> +}
-> +
-> +void vlv_nc_put(struct drm_device *drm)
-> +{
-> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_NC));
-> +}
-> +
-> +void vlv_punit_get(struct drm_device *drm)
-> +{
-> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_PUNIT));
-> +}
-> +
-> +u32 vlv_punit_read(struct drm_device *drm, u32 addr)
-> +{
-> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_PUNIT, addr);
-> +}
-> +
-> +int vlv_punit_write(struct drm_device *drm, u32 addr, u32 val)
-> +{
-> +	return vlv_iosf_sb_write(drm, VLV_IOSF_SB_PUNIT, addr, val);
-> +}
-> +
-> +void vlv_punit_put(struct drm_device *drm)
-> +{
-> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_PUNIT));
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/vlv_sideband.h b/drivers/gpu/drm/i915/display/vlv_sideband.h
-> index 2c240d81fead..065273726379 100644
-> --- a/drivers/gpu/drm/i915/display/vlv_sideband.h
-> +++ b/drivers/gpu/drm/i915/display/vlv_sideband.h
-> @@ -4,7 +4,6 @@
->  #ifndef _VLV_SIDEBAND_H_
->  #define _VLV_SIDEBAND_H_
->  
-> -#include <linux/bitops.h>
->  #include <linux/types.h>
->  
->  #include "vlv_iosf_sb.h"
-> @@ -13,144 +12,38 @@
->  enum dpio_phy;
->  struct drm_device;
->  
-> -static inline void vlv_bunit_get(struct drm_device *drm)
-> -{
-> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_BUNIT));
-> -}
-> +void vlv_bunit_get(struct drm_device *drm);
-> +u32 vlv_bunit_read(struct drm_device *drm, u32 reg);
-> +void vlv_bunit_write(struct drm_device *drm, u32 reg, u32 val);
-> +void vlv_bunit_put(struct drm_device *drm);
->  
-> -static inline u32 vlv_bunit_read(struct drm_device *drm, u32 reg)
-> -{
-> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_BUNIT, reg);
-> -}
-> +void vlv_cck_get(struct drm_device *drm);
-> +u32 vlv_cck_read(struct drm_device *drm, u32 reg);
-> +void vlv_cck_write(struct drm_device *drm, u32 reg, u32 val);
-> +void vlv_cck_put(struct drm_device *drm);
->  
-> -static inline void vlv_bunit_write(struct drm_device *drm, u32 reg, u32 val)
-> -{
-> -	vlv_iosf_sb_write(drm, VLV_IOSF_SB_BUNIT, reg, val);
-> -}
-> +void vlv_ccu_get(struct drm_device *drm);
-> +u32 vlv_ccu_read(struct drm_device *drm, u32 reg);
-> +void vlv_ccu_write(struct drm_device *drm, u32 reg, u32 val);
-> +void vlv_ccu_put(struct drm_device *drm);
->  
-> -static inline void vlv_bunit_put(struct drm_device *drm)
-> -{
-> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_BUNIT));
-> -}
-> -
-> -static inline void vlv_cck_get(struct drm_device *drm)
-> -{
-> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_CCK));
-> -}
-> -
-> -static inline u32 vlv_cck_read(struct drm_device *drm, u32 reg)
-> -{
-> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_CCK, reg);
-> -}
-> -
-> -static inline void vlv_cck_write(struct drm_device *drm, u32 reg, u32 val)
-> -{
-> -	vlv_iosf_sb_write(drm, VLV_IOSF_SB_CCK, reg, val);
-> -}
-> -
-> -static inline void vlv_cck_put(struct drm_device *drm)
-> -{
-> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_CCK));
-> -}
-> -
-> -static inline void vlv_ccu_get(struct drm_device *drm)
-> -{
-> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_CCU));
-> -}
-> -
-> -static inline u32 vlv_ccu_read(struct drm_device *drm, u32 reg)
-> -{
-> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_CCU, reg);
-> -}
-> -
-> -static inline void vlv_ccu_write(struct drm_device *drm, u32 reg, u32 val)
-> -{
-> -	vlv_iosf_sb_write(drm, VLV_IOSF_SB_CCU, reg, val);
-> -}
-> -
-> -static inline void vlv_ccu_put(struct drm_device *drm)
-> -{
-> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_CCU));
-> -}
-> -
-> -static inline void vlv_dpio_get(struct drm_device *drm)
-> -{
-> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_DPIO) | BIT(VLV_IOSF_SB_DPIO_2));
-> -}
-> -
-> -#ifdef I915
-> +void vlv_dpio_get(struct drm_device *drm);
->  u32 vlv_dpio_read(struct drm_device *drm, enum dpio_phy phy, int reg);
-> -void vlv_dpio_write(struct drm_device *drm,
-> -		    enum dpio_phy phy, int reg, u32 val);
-> -#else
-> -static inline u32 vlv_dpio_read(struct drm_device *drm, int phy, int reg)
-> -{
-> -	return 0;
-> -}
-> -static inline void vlv_dpio_write(struct drm_device *drm,
-> -				  int phy, int reg, u32 val)
-> -{
-> -}
-> -#endif
-> -
-> -static inline void vlv_dpio_put(struct drm_device *drm)
-> -{
-> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_DPIO) | BIT(VLV_IOSF_SB_DPIO_2));
-> -}
-> -
-> -static inline void vlv_flisdsi_get(struct drm_device *drm)
-> -{
-> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_FLISDSI));
-> -}
-> -
-> -static inline u32 vlv_flisdsi_read(struct drm_device *drm, u32 reg)
-> -{
-> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_FLISDSI, reg);
-> -}
-> -
-> -static inline void vlv_flisdsi_write(struct drm_device *drm, u32 reg, u32 val)
-> -{
-> -	vlv_iosf_sb_write(drm, VLV_IOSF_SB_FLISDSI, reg, val);
-> -}
-> -
-> -static inline void vlv_flisdsi_put(struct drm_device *drm)
-> -{
-> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_FLISDSI));
-> -}
-> -
-> -static inline void vlv_nc_get(struct drm_device *drm)
-> -{
-> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_NC));
-> -}
-> -
-> -static inline u32 vlv_nc_read(struct drm_device *drm, u8 addr)
-> -{
-> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_NC, addr);
-> -}
-> -
-> -static inline void vlv_nc_put(struct drm_device *drm)
-> -{
-> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_NC));
-> -}
-> -
-> -static inline void vlv_punit_get(struct drm_device *drm)
-> -{
-> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_PUNIT));
-> -}
-> -
-> -static inline u32 vlv_punit_read(struct drm_device *drm, u32 addr)
-> -{
-> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_PUNIT, addr);
-> -}
-> -
-> -static inline int vlv_punit_write(struct drm_device *drm, u32 addr, u32 val)
-> -{
-> -	return vlv_iosf_sb_write(drm, VLV_IOSF_SB_PUNIT, addr, val);
-> -}
-> -
-> -static inline void vlv_punit_put(struct drm_device *drm)
-> -{
-> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_PUNIT));
-> -}
-> +void vlv_dpio_write(struct drm_device *drm, enum dpio_phy phy, int reg, u32 val);
-> +void vlv_dpio_put(struct drm_device *drm);
-> +
-> +void vlv_flisdsi_get(struct drm_device *drm);
-> +u32 vlv_flisdsi_read(struct drm_device *drm, u32 reg);
-> +void vlv_flisdsi_write(struct drm_device *drm, u32 reg, u32 val);
-> +void vlv_flisdsi_put(struct drm_device *drm);
-> +
-> +void vlv_nc_get(struct drm_device *drm);
-> +u32 vlv_nc_read(struct drm_device *drm, u8 addr);
-> +void vlv_nc_put(struct drm_device *drm);
-> +
-> +void vlv_punit_get(struct drm_device *drm);
-> +u32 vlv_punit_read(struct drm_device *drm, u32 addr);
-> +int vlv_punit_write(struct drm_device *drm, u32 addr, u32 val);
-> +void vlv_punit_put(struct drm_device *drm);
->  
->  #endif /* _VLV_SIDEBAND_H_ */
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index 9dacb0579a7d..7960c2db33bd 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -332,7 +332,8 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
->  	i915-display/skl_prefill.o \
->  	i915-display/skl_scaler.o \
->  	i915-display/skl_universal_plane.o \
-> -	i915-display/skl_watermark.o
-> +	i915-display/skl_watermark.o \
-> +	i915-display/vlv_sideband.o
->  
->  ifeq ($(CONFIG_ACPI),y)
->  	xe-$(CONFIG_DRM_XE_DISPLAY) += \
-> -- 
-> 2.47.3
+tested configs:
+alpha                             allnoconfig    gcc-15.2.0
+alpha                            allyesconfig    gcc-15.2.0
+alpha                               defconfig    gcc-15.2.0
+arc                              allmodconfig    clang-16
+arc                               allnoconfig    gcc-15.2.0
+arc                              allyesconfig    clang-23
+arc                                 defconfig    gcc-15.2.0
+arc                   randconfig-001-20260331    clang-23
+arc                   randconfig-002-20260331    clang-23
+arm                               allnoconfig    gcc-15.2.0
+arm                              allyesconfig    clang-16
+arm                                 defconfig    gcc-15.2.0
+arm                   randconfig-001-20260331    clang-23
+arm                   randconfig-002-20260331    clang-23
+arm                   randconfig-003-20260331    clang-23
+arm                   randconfig-004-20260331    clang-23
+arm64                            allmodconfig    clang-23
+arm64                             allnoconfig    gcc-15.2.0
+arm64                               defconfig    gcc-15.2.0
+arm64                 randconfig-001-20260331    clang-18
+arm64                 randconfig-002-20260331    clang-18
+arm64                 randconfig-003-20260331    clang-18
+arm64                 randconfig-004-20260331    clang-18
+csky                             allmodconfig    gcc-15.2.0
+csky                              allnoconfig    gcc-15.2.0
+csky                                defconfig    gcc-15.2.0
+csky                  randconfig-001-20260331    clang-18
+csky                  randconfig-002-20260331    clang-18
+hexagon                          allmodconfig    gcc-15.2.0
+hexagon                           allnoconfig    gcc-15.2.0
+hexagon                             defconfig    gcc-15.2.0
+hexagon               randconfig-001-20260331    gcc-11.5.0
+hexagon               randconfig-002-20260331    gcc-11.5.0
+i386                             allmodconfig    clang-20
+i386                              allnoconfig    gcc-15.2.0
+i386                             allyesconfig    clang-20
+i386        buildonly-randconfig-001-20260331    clang-20
+i386        buildonly-randconfig-002-20260331    clang-20
+i386        buildonly-randconfig-003-20260331    clang-20
+i386        buildonly-randconfig-004-20260331    clang-20
+i386        buildonly-randconfig-005-20260331    clang-20
+i386        buildonly-randconfig-006-20260331    clang-20
+i386                                defconfig    gcc-15.2.0
+i386                  randconfig-001-20260331    gcc-14
+i386                  randconfig-002-20260331    gcc-14
+i386                  randconfig-003-20260331    gcc-14
+i386                  randconfig-004-20260331    gcc-14
+i386                  randconfig-005-20260331    gcc-14
+i386                  randconfig-006-20260331    gcc-14
+i386                  randconfig-007-20260331    gcc-14
+i386                  randconfig-011-20260331    clang-20
+i386                  randconfig-012-20260331    clang-20
+i386                  randconfig-013-20260331    clang-20
+i386                  randconfig-014-20260331    clang-20
+i386                  randconfig-015-20260331    clang-20
+i386                  randconfig-016-20260331    clang-20
+i386                  randconfig-017-20260331    clang-20
+loongarch                        allmodconfig    clang-23
+loongarch                         allnoconfig    gcc-15.2.0
+loongarch                           defconfig    clang-19
+loongarch             randconfig-001-20260331    gcc-11.5.0
+loongarch             randconfig-002-20260331    gcc-11.5.0
+m68k                             allmodconfig    gcc-15.2.0
+m68k                              allnoconfig    gcc-15.2.0
+m68k                             allyesconfig    clang-16
+m68k                                defconfig    clang-19
+microblaze                        allnoconfig    gcc-15.2.0
+microblaze                       allyesconfig    gcc-15.2.0
+microblaze                          defconfig    clang-19
+mips                             allmodconfig    gcc-15.2.0
+mips                              allnoconfig    gcc-15.2.0
+mips                             allyesconfig    gcc-15.2.0
+mips                           ip32_defconfig    clang-23
+nios2                            allmodconfig    clang-23
+nios2                            allmodconfig    gcc-11.5.0
+nios2                             allnoconfig    clang-23
+nios2                               defconfig    clang-19
+nios2                 randconfig-001-20260331    gcc-11.5.0
+nios2                 randconfig-002-20260331    gcc-11.5.0
+openrisc                         allmodconfig    clang-23
+openrisc                         allmodconfig    gcc-15.2.0
+openrisc                          allnoconfig    clang-23
+openrisc                            defconfig    gcc-15.2.0
+parisc                           allmodconfig    gcc-15.2.0
+parisc                            allnoconfig    clang-23
+parisc                           allyesconfig    clang-19
+parisc                              defconfig    gcc-15.2.0
+parisc                randconfig-001-20260331    clang-23
+parisc                randconfig-002-20260331    clang-23
+parisc64                            defconfig    clang-19
+powerpc                          allmodconfig    gcc-15.2.0
+powerpc                           allnoconfig    clang-23
+powerpc                      pcm030_defconfig    clang-23
+powerpc               randconfig-001-20260331    clang-23
+powerpc               randconfig-002-20260331    clang-23
+powerpc64                        alldefconfig    clang-23
+powerpc64             randconfig-001-20260331    clang-23
+powerpc64             randconfig-002-20260331    clang-23
+riscv                            allmodconfig    clang-23
+riscv                             allnoconfig    clang-23
+riscv                            allyesconfig    clang-16
+riscv                               defconfig    gcc-15.2.0
+riscv                 randconfig-001-20260331    gcc-15.2.0
+riscv                 randconfig-002-20260331    gcc-15.2.0
+s390                             allmodconfig    clang-19
+s390                              allnoconfig    clang-23
+s390                             allyesconfig    gcc-15.2.0
+s390                                defconfig    gcc-15.2.0
+s390                  randconfig-001-20260331    gcc-15.2.0
+s390                  randconfig-002-20260331    gcc-15.2.0
+sh                               allmodconfig    gcc-15.2.0
+sh                                allnoconfig    clang-23
+sh                               allyesconfig    clang-19
+sh                                  defconfig    gcc-14
+sh                    randconfig-001-20260331    gcc-15.2.0
+sh                    randconfig-002-20260331    gcc-15.2.0
+sparc                             allnoconfig    clang-23
+sparc                               defconfig    gcc-15.2.0
+sparc                 randconfig-001-20260331    gcc-15.2.0
+sparc                 randconfig-002-20260331    gcc-15.2.0
+sparc64                          allmodconfig    clang-23
+sparc64                             defconfig    gcc-14
+sparc64               randconfig-001-20260331    gcc-15.2.0
+sparc64               randconfig-002-20260331    gcc-15.2.0
+um                               allmodconfig    clang-19
+um                                allnoconfig    clang-23
+um                               allyesconfig    gcc-15.2.0
+um                                  defconfig    gcc-14
+um                             i386_defconfig    gcc-14
+um                    randconfig-001-20260331    gcc-15.2.0
+um                    randconfig-002-20260331    gcc-15.2.0
+um                           x86_64_defconfig    gcc-14
+x86_64                           allmodconfig    clang-20
+x86_64                            allnoconfig    clang-23
+x86_64                           allyesconfig    clang-20
+x86_64      buildonly-randconfig-001-20260331    clang-20
+x86_64      buildonly-randconfig-002-20260331    clang-20
+x86_64      buildonly-randconfig-003-20260331    clang-20
+x86_64      buildonly-randconfig-004-20260331    clang-20
+x86_64      buildonly-randconfig-005-20260331    clang-20
+x86_64      buildonly-randconfig-006-20260331    clang-20
+x86_64                              defconfig    gcc-14
+x86_64                                  kexec    clang-20
+x86_64                randconfig-001-20260331    gcc-14
+x86_64                randconfig-002-20260331    gcc-14
+x86_64                randconfig-003-20260331    gcc-14
+x86_64                randconfig-004-20260331    gcc-14
+x86_64                randconfig-005-20260331    gcc-14
+x86_64                randconfig-006-20260331    gcc-14
+x86_64                randconfig-011-20260331    clang-20
+x86_64                randconfig-012-20260331    clang-20
+x86_64                randconfig-013-20260331    clang-20
+x86_64                randconfig-014-20260331    clang-20
+x86_64                randconfig-015-20260331    clang-20
+x86_64                randconfig-016-20260331    clang-20
+x86_64                randconfig-071-20260331    clang-20
+x86_64                randconfig-072-20260331    clang-20
+x86_64                randconfig-073-20260331    clang-20
+x86_64                randconfig-074-20260331    clang-20
+x86_64                randconfig-075-20260331    clang-20
+x86_64                randconfig-076-20260331    clang-20
+x86_64                               rhel-9.4    clang-20
+x86_64                           rhel-9.4-bpf    gcc-14
+x86_64                          rhel-9.4-func    clang-20
+x86_64                    rhel-9.4-kselftests    clang-20
+x86_64                         rhel-9.4-kunit    gcc-14
+x86_64                           rhel-9.4-ltp    gcc-14
+x86_64                          rhel-9.4-rust    clang-20
+xtensa                            allnoconfig    clang-23
+xtensa                           allyesconfig    clang-23
+xtensa                           allyesconfig    gcc-15.2.0
+xtensa                randconfig-001-20260331    gcc-15.2.0
+xtensa                randconfig-002-20260331    gcc-15.2.0
 
--- 
-Ville Syrjälä
-Intel
+--
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
